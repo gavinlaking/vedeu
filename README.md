@@ -1,3 +1,5 @@
+[![Code Climate](https://codeclimate.com/github/gavinlaking/vedeu.png)](https://codeclimate.com/github/gavinlaking/vedeu)
+
 # Vedeu
 
 TODO: Write a gem description
