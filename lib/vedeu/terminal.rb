@@ -1,9 +1,11 @@
 module Vedeu
   class Terminal
+    # @return [Integer]
     def width
       size[1]
     end
 
+    # @return [Integer]
     def height
       size[0]
     end

@@ -10,8 +10,16 @@ module Vedeu
       instance.must_be_instance_of(Vedeu::Buffer)
     end
 
+    describe '#each' do
+      subject { instance.each }
+
+      it { subject.must_be_instance_of(Enumerator) }
+    end
+
     describe '#contents' do
       subject { capture_io { instance.contents }.join }
+
+      it { subject.must_be_instance_of(String) }
 
       it 'returns the contents of the buffer' do
         subject.must_equal("
@@ -27,6 +35,8 @@ module Vedeu
       let(:x) { 2 }
 
       subject { instance.cell(y, x) }
+
+      it { subject.must_be_instance_of(String) }
 
       context 'when the reference is in range' do
         it 'returns the value at that location' do
@@ -50,6 +60,8 @@ module Vedeu
 
       subject { instance.set_cell(y, x, v) }
 
+      it { subject.must_be_instance_of(String) }
+
       context 'when the reference is in range' do
         it 'returns the value at that location' do
           subject.must_equal('*')
@@ -66,6 +78,9 @@ module Vedeu
       end
 
       context 'when the reference is out of range' do
+        it 'must have a spec, please write one' do
+          skip
+        end
       end
     end
 
@@ -75,6 +90,8 @@ module Vedeu
       let(:instance) { klass.new(options) }
 
       subject { instance.set_row(y, v) }
+
+      it { subject.must_be_instance_of(Array) }
 
       it 'sets the row' do
         subject.must_equal(['*', '*', '*', '*'])
@@ -90,12 +107,24 @@ module Vedeu
       end
     end
 
+    describe '#row' do
+      subject { instance.row }
+
+      it { subject.must_be_instance_of(Array) }
+
+      it 'must have a spec, please write one' do
+        skip
+      end
+    end
+
     describe '#set_column' do
       let(:x)        { 2 }
       let(:v)        { '***' }
       let(:instance) { klass.new(options) }
 
       subject { instance.set_column(x, v) }
+
+      it { subject.must_be_instance_of(Array) }
 
       it 'sets the row' do
         subject.must_equal(['*', '*', '*'])
@@ -108,6 +137,16 @@ module Vedeu
 ' '' ''*'' '
 ' '' ''*'' '
 ")
+      end
+    end
+
+    describe '#column' do
+      subject { instance.column }
+
+      it { subject.must_be_instance_of(Array) }
+
+      it 'must have a spec, please write one' do
+        skip
       end
     end
   end

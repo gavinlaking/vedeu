@@ -1,16 +1,21 @@
 module Vedeu
   class Colour
     class << self
+      # @param  pair [Array]
+      # @return      [String]
       def set(pair = [])
         new(pair).set
       end
       alias_method :reset, :set
     end
 
+    # @param  pair [Array]
+    # @return      [Vedeu::Colour]
     def initialize(pair = [])
       @pair = pair
     end
 
+    # @return [String]
     def set
       return reset if pair.empty?
 
