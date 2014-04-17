@@ -2,6 +2,8 @@ module Vedeu
   class OutOfRangeError < StandardError; end
 
   class Buffer
+    include Enumerable
+
     attr_accessor :buffer
 
     def initialize(options = {})
@@ -9,16 +11,13 @@ module Vedeu
       @buffer  = Array.new(height) { Array.new(width) { ' ' } }
     end
 
-    def contents
-      print "\n"
-      buffer.map do |y|
-        y.map do |x|
-          print "'#{x}'"
-        end
-        print "\n"
-      end
+    def each(&block)
+      buffer.each(&block)
+    end
 
-      nil
+    def contents
+      puts
+      buffer.map { |y| y.map { |x| print "'#{x}'" }; puts }
     end
 
     def cell(y, x)
@@ -89,5 +88,19 @@ module Vedeu
         height: 3
       }
     end
+  end
+
+  def self.test_Vedeu__Buffer(klass = Vedeu::Buffer)
+    buffer = klass.new(width: 5, height: 3)
+
+    buffer.set_row(0, 'field')
+    buffer.set_row(1, 'grows')
+    buffer.set_row(2, 'maize')
+
+    puts
+
+    buffer.map { |y| y.map { |x| print "#{x}" }; puts }
+
+    puts
   end
 end
