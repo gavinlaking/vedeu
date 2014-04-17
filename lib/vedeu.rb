@@ -5,5 +5,4 @@ require 'vedeu/colour'
 require 'vedeu/terminal'
 
 module Vedeu
-  # Your code goes here...
 end
