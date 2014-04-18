@@ -16,12 +16,4 @@ module Vedeu
       IO.console.winsize
     end
   end
-
-  def self.test_Vedue__Terminal(klass = Vedeu::Terminal)
-    terminal = klass.new
-
-    puts "Width:  #{terminal.width}"
-    puts "Height: #{terminal.height}"
-    puts
-  end
 end

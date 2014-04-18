@@ -78,26 +78,4 @@ module Vedeu
       [27.chr, '['].join
     end
   end
-
-  def self.test_Vedue__Colour(klass = Vedeu::Colour)
-    codes = [
-              :black,
-              :red,
-              :green,
-              :yellow,
-              :blue,
-              :magenta,
-              :cyan,
-              :white,
-              :default
-            ]
-
-    codes.each do |fg|
-      codes.each do |bg|
-        print [klass.set([fg, bg]), '*', klass.reset].join
-      end
-      puts
-    end
-    puts
-  end
 end

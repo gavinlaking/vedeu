@@ -109,18 +109,4 @@ module Vedeu
       }
     end
   end
-
-  def self.test_Vedeu__Buffer(klass = Vedeu::Buffer)
-    buffer = klass.new(width: 5, height: 3)
-
-    buffer.set_row(0, 'field')
-    buffer.set_row(1, 'grows')
-    buffer.set_row(2, 'maize')
-
-    puts
-
-    buffer.map { |y| y.map { |x| print "#{x}" }; puts }
-
-    puts
-  end
 end
