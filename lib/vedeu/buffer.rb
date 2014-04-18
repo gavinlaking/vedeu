@@ -103,10 +103,7 @@ module Vedeu
     end
 
     def defaults
-      {
-        width:  4,
-        height: 3
-      }
+      Vedeu::Terminal.size
     end
   end
 end

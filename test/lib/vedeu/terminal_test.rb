@@ -13,6 +13,16 @@ module Vedeu
 
     it { instance.must_be_instance_of(Vedeu::Terminal) }
 
+    describe '#size' do
+      subject { klass.size }
+
+      it { subject.must_be_instance_of(Hash) }
+
+      it 'returns a hash of the width and height' do
+        subject.must_equal({ width: 80, height: 25 })
+      end
+    end
+
     describe '#width' do
       subject { instance.width }
 

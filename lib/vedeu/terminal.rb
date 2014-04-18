@@ -1,18 +1,30 @@
 module Vedeu
   class Terminal
+    class << self
+      # @return [Hash]
+      def size
+        new.size
+      end
+    end
+
+    # @return [Hash]
+    def size
+      { width: width, height: height }
+    end
+
     # @return [Fixnum]
     def width
-      size[1]
+      dimensions[1]
     end
 
     # @return [Fixnum]
     def height
-      size[0]
+      dimensions[0]
     end
 
     private
 
-    def size
+    def dimensions
       IO.console.winsize
     end
   end
