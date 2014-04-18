@@ -7,12 +7,12 @@ module Vedeu
     let(:data)     { [] }
     let(:mask)     { [] }
 
-    it 'returns an instance of self' do
-      instance.must_be_instance_of(Vedeu::Compositor)
-    end
+    it { instance.must_be_instance_of(Vedeu::Compositor) }
 
     describe '#interpolate' do
       subject { instance.interpolate }
+
+      it { subject.must_be_instance_of(Array) }
 
       context 'when there is data and styles match' do
         let(:data) { ['a', 'b', 'c'] }

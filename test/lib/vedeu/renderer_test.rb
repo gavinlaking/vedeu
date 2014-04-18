@@ -8,12 +8,12 @@ module Vedeu
       ["\e[31;49ma\e[0m", "\e[39;49mb\e[0m", "\e[32;49mc\e[0m"]
     }
 
-    it 'returns an instance of self' do
-      instance.must_be_instance_of(Vedeu::Renderer)
-    end
+    it { instance.must_be_instance_of(Vedeu::Renderer) }
 
     describe '#render' do
       subject { instance.render }
+
+      it { subject.must_be_instance_of(String) }
 
       it 'renders the row of data' do
         subject

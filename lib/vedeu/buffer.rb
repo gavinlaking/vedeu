@@ -24,47 +24,47 @@ module Vedeu
       buffer.map { |y| y.map { |x| print "'#{x}'" }; puts }
     end
 
-    # @param index [Integer]
-    # @param index [Integer]
-    # @return      [String, OutOfRangeError]
+    # @param  y [Integer]
+    # @param  x [Integer]
+    # @return   [String, OutOfRangeError]
     def cell(y, x)
       raise OutOfRangeError if invalid_reference?(y, x)
       buffer[y][x]
     end
 
-    # @param index [Integer]
-    # @param index [Integer]
-    # @return      [String, OutOfRangeError]
+    # @param  y [Integer]
+    # @param  x [Integer]
+    # @return   [String, OutOfRangeError]
     def set_cell(y, x, v = '')
       raise OutOfRangeError if invalid_reference?(y, x) || invalid_cell?(v)
       buffer[y][x] = v
     end
 
-    # @param index [Integer]
-    # @param value [String]
+    # @param  y [Integer]
+    # @param  v [String]
     # @return      [Array]
     def set_row(y = 0, v = '')
       v.chars.each_with_index { |c, i| set_cell(y, i, c) }
       row(y)
     end
 
-    # @param index [Integer]
-    # @return      [Array]
+    # @param  y [Integer]
+    # @return   [Array]
     def row(y = 0)
       buffer[y]
     end
     alias_method :y, :row
 
-    # @param index [Integer]
-    # @param value [String]
-    # @return      [Array]
+    # @param  x [Integer]
+    # @param  v [String]
+    # @return   [Array]
     def set_column(x = 0, v = '')
       v.chars.each_with_index { |c, i| set_cell(i, x, c) }
       column(x)
     end
 
-    # @param index [Integer]
-    # @return      [Array]
+    # @param  x [Integer]
+    # @return   [Array]
     def column(x = 0)
       buffer.inject([]) { |a, e| a << e[x] }
     end

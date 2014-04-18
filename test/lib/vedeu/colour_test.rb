@@ -2,16 +2,16 @@ require_relative '../../test_helper'
 
 module Vedeu
   describe Colour do
-    let(:klass)      { Colour }
-    let(:instance)   { klass.new }
-    let(:pair)       { [] }
+    let(:klass)    { Colour }
+    let(:instance) { klass.new }
+    let(:pair)     { [] }
 
-    it 'returns an instance of self' do
-      instance.must_be_instance_of(Vedeu::Colour)
-    end
+    it { instance.must_be_instance_of(Vedeu::Colour) }
 
     describe '.set' do
       subject { klass.set(pair) }
+
+      it { subject.must_be_instance_of(String) }
 
       context 'when both the foreground and background is specified' do
         let(:pair) { [:red, :yellow] }
@@ -51,6 +51,16 @@ module Vedeu
         it 'returns the reset code' do
           subject.must_equal("\e[0m")
         end
+      end
+    end
+
+    describe '.reset' do
+      subject { klass.reset }
+
+      it { subject.must_be_instance_of(String) }
+
+      it 'returns the reset code' do
+        subject.must_equal("\e[0m")
       end
     end
   end

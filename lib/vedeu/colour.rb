@@ -7,6 +7,12 @@ module Vedeu
         new(pair).set
       end
       alias_method :reset, :set
+
+      # @param  pair [Array]
+      # @return      [String]
+      def reset(pair = [])
+        new(pair).reset
+      end
     end
 
     # @param  pair [Array]
@@ -19,7 +25,12 @@ module Vedeu
     def set
       return reset if pair.empty?
 
-      [esc, foreground_code, ';', background_code, 'm'].join
+      Esc.set(foreground_code, background_code)
+    end
+
+    # @return [String]
+    def reset
+      Esc.reset
     end
 
     private
@@ -68,14 +79,6 @@ module Vedeu
 
     def background
       pair[1]
-    end
-
-    def reset
-      [esc, '0m'].join
-    end
-
-    def esc
-      [27.chr, '['].join
     end
   end
 end

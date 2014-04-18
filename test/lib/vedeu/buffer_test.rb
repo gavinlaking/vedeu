@@ -2,13 +2,11 @@ require_relative '../../test_helper'
 
 module Vedeu
   describe Buffer do
-    let(:klass)   { Buffer }
-    let(:options) { { width: 4, height: 3 } }
-    let(:instance){ klass.new(options) }
+    let(:klass)    { Buffer }
+    let(:options)  { { width: 4, height: 3 } }
+    let(:instance) { klass.new(options) }
 
-    it 'returns an instance of self' do
-      instance.must_be_instance_of(Vedeu::Buffer)
-    end
+    it { instance.must_be_instance_of(Vedeu::Buffer) }
 
     describe '#each' do
       subject { instance.each }
