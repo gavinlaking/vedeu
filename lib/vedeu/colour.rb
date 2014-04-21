@@ -1,29 +1,29 @@
 module Vedeu
   class Colour
     class << self
-      # @param  pair [Array]
+      # @param  mask [Mask]
       # @return      [String]
-      def set(pair = [])
-        new(pair).set
+      def set(mask = [])
+        new(mask).set
       end
       alias_method :reset, :set
 
-      # @param  pair [Array]
+      # @param  mask [Array]
       # @return      [String]
-      def reset(pair = [])
-        new(pair).reset
+      def reset(mask = [])
+        new(mask).reset
       end
     end
 
-    # @param  pair [Array]
+    # @param  mask [Array]
     # @return      [Vedeu::Colour]
-    def initialize(pair = [])
-      @pair = pair
+    def initialize(mask = [])
+      @mask = mask
     end
 
     # @return [String]
     def set
-      return reset if pair.empty?
+      return reset if mask.empty?
 
       Esc.set(foreground_code, background_code)
     end
@@ -35,7 +35,7 @@ module Vedeu
 
     private
 
-    attr_reader :pair
+    attr_reader :mask
 
     def foreground_code
       foreground_codes[foreground] || foreground_codes[:default]
@@ -74,11 +74,11 @@ module Vedeu
     end
 
     def foreground
-      pair[0]
+      mask[0]
     end
 
     def background
-      pair[1]
+      mask[1]
     end
   end
 end
