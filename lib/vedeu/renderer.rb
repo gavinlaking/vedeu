@@ -1,18 +1,25 @@
 module Vedeu
   class Renderer
-    # @param  row [Array]
-    # @return     [Vedeu::Renderer]
-    def initialize(row = []) # or buffer?
-      @row = row
+    include Enumerable
+
+    # @param  buffer [Array]
+    # @return        [Vedeu::Renderer]
+    def initialize(buffer = [])
+      @buffer = buffer
+    end
+
+    # @return [Enumerator]
+    def each(&block)
+      buffer.each(&block)
     end
 
     # @return [String]
     def render
-      row.join
+      buffer.join
     end
 
     private
 
-    attr_reader :row
+    attr_reader :buffer
   end
 end
