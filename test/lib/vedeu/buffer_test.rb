@@ -53,8 +53,11 @@ module Vedeu
       end
 
       context 'when the reference is out of range' do
-        it 'must have a spec, please write one' do
-          skip
+        let(:y) { 3 }
+        let(:x) { 4 }
+
+        it 'raises an exception' do
+          proc { subject }.must_raise(OutOfRangeError)
         end
       end
     end
