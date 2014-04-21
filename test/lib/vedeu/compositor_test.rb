@@ -9,8 +9,8 @@ module Vedeu
 
     it { instance.must_be_instance_of(Vedeu::Compositor) }
 
-    describe '#interpolate' do
-      subject { instance.interpolate }
+    describe '#compose' do
+      subject { instance.compose }
 
       it { subject.must_be_instance_of(Array) }
 

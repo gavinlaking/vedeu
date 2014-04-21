@@ -3,6 +3,15 @@ module Vedeu
   class OutOfDataError < StandardError; end
 
   class Compositor
+    class << self
+      # @param  data [Array] An array of characters.
+      # @param  mask [Array] An array of styles.
+      # @return      [Array] An interpolated array of characters and styles.
+      def compose(data = [], mask = [])
+        new(data, mask).compose
+      end
+    end
+
     # @param  data [Array] An array of characters.
     # @param  mask [Array] An array of styles.
     # @return      [Vedeu::Compositor]
@@ -11,7 +20,7 @@ module Vedeu
     end
 
     # @return [Array] An interpolated array of characters and styles.
-    def interpolate
+    def compose
       validate!
 
       container = []
