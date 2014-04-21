@@ -15,10 +15,13 @@ module Vedeu
       validate!
 
       container = []
-      data.each_with_index do |character, index|
-        container << [
-          style(index), character, reset
-        ].join
+      columns = []
+      rows.each_with_index do |row, y|
+        row.each_with_index do |column, x|
+          columns << [style(y, x), column, reset]
+        end
+        container << columns
+        columns = []
       end
       container
     end
@@ -27,12 +30,14 @@ module Vedeu
 
     attr_reader :data, :mask
 
+    alias_method :rows, :data
+
     def reset
       Vedeu::Colour.reset
     end
 
-    def style(index)
-      Vedeu::Colour.set(mask[index])
+    def style(y, x)
+      Vedeu::Colour.set(mask[y][x])
     end
 
     def validate!
