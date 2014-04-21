@@ -10,7 +10,7 @@ module Vedeu
     # @return         [Vedeu::Buffer]
     def initialize(options = {})
       @options = options
-      @buffer  = Array.new(height) { Array.new(width) { ' ' } }
+      @buffer  = Array.new(height) { Array.new(width) { :cell } }
     end
 
     # @return [Enumerator]
@@ -18,15 +18,9 @@ module Vedeu
       buffer.each(&block)
     end
 
-    # @return [String]
-    def contents
-      puts
-      buffer.map { |y| y.map { |x| print "'#{x}'" }; puts }
-    end
-
     # @param  y [Integer]
     # @param  x [Integer]
-    # @return   [String, OutOfRangeError]
+    # @return   [Array, OutOfRangeError]
     def cell(y, x)
       raise OutOfRangeError if invalid_reference?(y, x)
       buffer[y][x]
@@ -34,17 +28,22 @@ module Vedeu
 
     # @param  y [Integer]
     # @param  x [Integer]
+    # @param  v [Value]
     # @return   [String, OutOfRangeError]
     def set_cell(y, x, v = '')
-      raise OutOfRangeError if invalid_reference?(y, x) || invalid_cell?(v)
+      raise OutOfRangeError if invalid_reference?(y, x)
       buffer[y][x] = v
     end
 
     # @param  y [Integer]
-    # @param  v [String]
-    # @return      [Array]
+    # @param  v [String, Mask]
+    # @return   [Array]
     def set_row(y = 0, v = '')
-      v.chars.each_with_index { |c, i| set_cell(y, i, c) }
+      if v.is_a?(String)
+        v.chars.each_with_index { |c, i| set_cell(y, i, c) }
+      else
+        v.each_with_index { |el, i| set_cell(y, i, el) }
+      end
       row(y)
     end
 
@@ -56,10 +55,14 @@ module Vedeu
     alias_method :y, :row
 
     # @param  x [Integer]
-    # @param  v [String]
+    # @param  v [Value]
     # @return   [Array]
     def set_column(x = 0, v = '')
-      v.chars.each_with_index { |c, i| set_cell(i, x, c) }
+      if v.is_a?(String)
+        v.chars.each_with_index { |c, i| set_cell(i, x, c) }
+      else
+        v.each_with_index { |el, i| set_cell(i, x, el) }
+      end
       column(x)
     end
 
@@ -71,10 +74,6 @@ module Vedeu
     alias_method :x, :column
 
     private
-
-    def invalid_cell?(v)
-      v.size != 1
-    end
 
     def invalid_reference?(y, x)
       invalid_line?(y) || invalid_column?(x)

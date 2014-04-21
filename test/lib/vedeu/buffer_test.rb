@@ -14,31 +14,17 @@ module Vedeu
       it { subject.must_be_instance_of(Enumerator) }
     end
 
-    describe '#contents' do
-      subject { capture_io { instance.contents }.join }
-
-      it { subject.must_be_instance_of(String) }
-
-      it 'returns the contents of the buffer' do
-        subject.must_equal("
-' '' '' '' '
-' '' '' '' '
-' '' '' '' '
-")
-      end
-    end
-
     describe '#cell' do
       let(:y) { 1 }
       let(:x) { 2 }
 
       subject { instance.cell(y, x) }
 
-      it { subject.must_be_instance_of(String) }
+      it { subject.must_be_instance_of(Symbol) }
 
       context 'when the reference is in range' do
         it 'returns the value at that location' do
-          subject.must_equal(' ')
+          subject.must_equal(:cell)
         end
       end
 
@@ -64,15 +50,6 @@ module Vedeu
         it 'returns the value at that location' do
           subject.must_equal('*')
         end
-
-        it 'updates just that cell' do
-          subject
-          capture_io { instance.contents }.join.must_equal("
-' '' '' '' '
-' '' ''*'' '
-' '' '' '' '
-")
-        end
       end
 
       context 'when the reference is out of range' do
@@ -91,17 +68,20 @@ module Vedeu
 
       it { subject.must_be_instance_of(Array) }
 
-      it 'sets the row' do
-        subject.must_equal(['*', '*', '*', '*'])
+      context 'when the value is a String' do
+        let(:v) { '****' }
+
+        it 'sets the row' do
+          subject.must_equal(['*', '*', '*', '*'])
+        end
       end
 
-      it 'updates just that row' do
-        subject
-        capture_io { instance.contents }.join.must_equal("
-' '' '' '' '
-'*''*''*''*'
-' '' '' '' '
-")
+      context 'when the value is an Array' do
+        let(:v) { ['*','*','*','*'] }
+
+        it 'sets the row' do
+          subject.must_equal(['*', '*', '*', '*'])
+        end
       end
     end
 
@@ -110,8 +90,8 @@ module Vedeu
 
       it { subject.must_be_instance_of(Array) }
 
-      it 'must have a spec, please write one' do
-        skip
+      it 'returns the content of the row at position y' do
+        subject.must_equal([:cell, :cell, :cell, :cell])
       end
     end
 
@@ -124,17 +104,20 @@ module Vedeu
 
       it { subject.must_be_instance_of(Array) }
 
-      it 'sets the row' do
-        subject.must_equal(['*', '*', '*'])
+      context 'when the value is a String' do
+        let(:v) { '***' }
+
+        it 'sets the row' do
+          subject.must_equal(['*', '*', '*'])
+        end
       end
 
-      it 'updates just that column' do
-        subject
-        capture_io { instance.contents }.join.must_equal("
-' '' ''*'' '
-' '' ''*'' '
-' '' ''*'' '
-")
+      context 'when the value is an Array' do
+        let(:v) { ['*', '*', '*'] }
+
+        it 'sets the row' do
+          subject.must_equal(['*', '*', '*'])
+        end
       end
     end
 
@@ -143,8 +126,8 @@ module Vedeu
 
       it { subject.must_be_instance_of(Array) }
 
-      it 'must have a spec, please write one' do
-        skip
+      it 'returns the content of the column at position x' do
+        subject.must_equal([:cell, :cell, :cell])
       end
     end
   end
