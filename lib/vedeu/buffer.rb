@@ -13,6 +13,12 @@ module Vedeu
       @buffer  = Array.new(height) { Array.new(width) { :cell } }
     end
 
+    # @return [NilClass]
+    def to_s
+      each { |row| puts row.inspect }
+      nil
+    end
+
     # @return [Enumerator]
     def each(&block)
       buffer.each(&block)

@@ -8,6 +8,21 @@ module Vedeu
 
     it { instance.must_be_instance_of(Vedeu::Buffer) }
 
+    describe '#to_s' do
+      subject { capture_io { instance.to_s }.join }
+
+      # real method should return NilClass; want to capture io rather
+      # than have it spew into minitest output in terminal; see test
+      # below.
+      # it { subject.must_be_instance_of(NilClass) }
+
+      it "outputs the content of the buffer" do
+        subject.must_equal("[:cell, :cell, :cell, :cell]\n" \
+                           "[:cell, :cell, :cell, :cell]\n" \
+                           "[:cell, :cell, :cell, :cell]\n")
+      end
+    end
+
     describe '#each' do
       subject { instance.each }
 
