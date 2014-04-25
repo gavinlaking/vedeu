@@ -1,25 +1,31 @@
 module Vedeu
   class Terminal
-    def width
-      size[1]
+    class << self
+      # @return [Hash]
+      def size
+        new.size
+      end
     end
 
+    # @return [Hash]
+    def size
+      { width: width, height: height }
+    end
+
+    # @return [Fixnum]
+    def width
+      dimensions[1]
+    end
+
+    # @return [Fixnum]
     def height
-      size[0]
+      dimensions[0]
     end
 
     private
 
-    def size
+    def dimensions
       IO.console.winsize
     end
-  end
-
-  def self.test_Vedue__Terminal(klass = Vedeu::Terminal)
-    terminal = klass.new
-
-    puts "Width:  #{terminal.width}"
-    puts "Height: #{terminal.height}"
-    puts
   end
 end
