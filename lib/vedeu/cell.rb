@@ -1,12 +1,9 @@
 module Vedeu
   class Cell
-    # @param  data [Value]
-    # @return [Vedeu::Cell]
     def initialize(data = nil)
       @data = data
     end
 
-    # @return [Value]
     def first
       Array(data).first
     end

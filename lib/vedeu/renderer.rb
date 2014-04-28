@@ -1,8 +1,6 @@
 module Vedeu
   class Renderer
     class << self
-      # @param  composition [Array]
-      # @return             [String]
       def render(composition = [])
         new(composition).render
       end
@@ -16,12 +14,10 @@ module Vedeu
       @composition = composition
     end
 
-    # @return [Enumerator]
     def each(&block)
       composition.each(&block)
     end
 
-    # @return [String]
     def render
       composition.join
     end
