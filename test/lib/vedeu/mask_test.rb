@@ -7,7 +7,7 @@ module Vedeu
     let(:fg)       { :fg }
     let(:bg)       { :bg }
 
-    it { instance.must_be_instance_of(Vedeu::Mask) }
+    it { instance.must_be_instance_of(Mask) }
 
     describe '.[]' do
       subject { klass[fg, bg] }

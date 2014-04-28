@@ -12,7 +12,7 @@ module Vedeu
       ]
     }
 
-    it { instance.must_be_instance_of(Vedeu::Renderer) }
+    it { instance.must_be_instance_of(Renderer) }
 
     describe '#each' do
       subject { instance.each }

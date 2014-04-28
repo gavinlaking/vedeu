@@ -11,7 +11,7 @@ module Vedeu
       console.stubs(:winsize).returns([25, 80])
     end
 
-    it { instance.must_be_instance_of(Vedeu::Terminal) }
+    it { instance.must_be_instance_of(Terminal) }
 
     describe '#size' do
       subject { klass.size }

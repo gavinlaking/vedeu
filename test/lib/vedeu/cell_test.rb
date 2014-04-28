@@ -6,7 +6,7 @@ module Vedeu
     let(:data)     { :some_value }
     let(:instance) { klass.new(data) }
 
-    it { instance.must_be_instance_of(Vedeu::Cell) }
+    it { instance.must_be_instance_of(Cell) }
 
     describe '#first' do
       subject { instance.first }

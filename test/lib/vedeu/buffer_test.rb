@@ -6,7 +6,7 @@ module Vedeu
     let(:options)  { { width: 4, height: 3 } }
     let(:instance) { klass.new(options) }
 
-    it { instance.must_be_instance_of(Vedeu::Buffer) }
+    it { instance.must_be_instance_of(Buffer) }
 
     describe '#to_s' do
       subject { capture_io { instance.to_s }.join }

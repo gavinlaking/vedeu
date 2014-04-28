@@ -7,7 +7,7 @@ module Vedeu
     let(:fg)       { 39 }
     let(:bg)       { 49 }
 
-    it { instance.must_be_instance_of(Vedeu::Esc) }
+    it { instance.must_be_instance_of(Esc) }
 
     describe '.bold' do
       subject { klass.bold }
