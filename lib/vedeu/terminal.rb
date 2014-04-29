@@ -4,6 +4,14 @@ module Vedeu
       def size
         new.size
       end
+
+      def width
+        new.width
+      end
+
+      def height
+        new.height
+      end
     end
 
     def size

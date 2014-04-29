@@ -87,7 +87,7 @@ module Vedeu
     end
 
     def defaults
-      Vedeu::Terminal.size
+      Terminal.size
     end
   end
 end

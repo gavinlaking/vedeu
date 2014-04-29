@@ -1,15 +1,13 @@
 module Vedeu
   class Renderer
+    include Enumerable
+
     class << self
       def render(composition = [])
         new(composition).render
       end
     end
 
-    include Enumerable
-
-    # @param  composition [Array]
-    # @return        [Vedeu::Renderer]
     def initialize(composition = [])
       @composition = composition
     end
