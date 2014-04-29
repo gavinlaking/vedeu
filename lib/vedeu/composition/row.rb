@@ -1,10 +1,8 @@
 module Vedeu
   module Composition
     class Row
-      class << self
-        def render(rows)
-          new(rows).render
-        end
+      def self.render(rows)
+        new(rows).render
       end
 
       def initialize(rows)

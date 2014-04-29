@@ -3,14 +3,12 @@ module Vedeu
     include Singleton
     attr_writer :buffer
 
-    class << self
-      def instance
-        @instance ||= new
-      end
+    def self.instance
+      @instance ||= new
+    end
 
-      def reset
-        @instance = new
-      end
+    def self.reset
+      @instance = new
     end
 
     def update(index = nil, data = nil)

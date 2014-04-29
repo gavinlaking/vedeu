@@ -2,10 +2,8 @@ module Vedeu
   module Input
     module Character
       class Multibyte
-        class << self
-          def parse(stream)
-            new(stream).parse
-          end
+        def self.parse(stream)
+          new(stream).parse
         end
 
         def initialize(stream)

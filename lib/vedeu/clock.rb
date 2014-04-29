@@ -3,10 +3,8 @@ module Vedeu
   class OutOfTimeError < StandardError; end
 
   class Clock
-    class << self
-      def start(options = {}, &block)
-        new(options).tick(&block)
-      end
+    def self.start(options = {}, &block)
+      new(options).tick(&block)
     end
 
     def initialize(options = {})

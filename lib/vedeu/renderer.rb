@@ -2,10 +2,8 @@ module Vedeu
   class Renderer
     include Enumerable
 
-    class << self
-      def render(composition = [])
-        new(composition).render
-      end
+    def self.render(composition = [])
+      new(composition).render
     end
 
     def initialize(composition = [])

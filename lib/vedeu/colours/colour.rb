@@ -1,14 +1,12 @@
 module Vedeu
   module Colours
     class Colour
-      class << self
-        def set(mask = [])
-          new(mask).set
-        end
+      def self.set(mask = [])
+        new(mask).set
+      end
 
-        def reset(mask = [])
-          new(mask).reset
-        end
+      def self.reset(mask = [])
+        new(mask).reset
       end
 
       def initialize(mask = [])

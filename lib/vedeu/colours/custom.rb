@@ -1,10 +1,8 @@
 module Vedeu
   module Colours
     class Custom
-      class << self
-        def define(name, html_colour)
-          new(name, html_colour).define
-        end
+      def self.define(name, html_colour)
+        new(name, html_colour).define
       end
 
       def initialize(name, html_colour)

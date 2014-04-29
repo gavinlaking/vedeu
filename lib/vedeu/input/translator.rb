@@ -1,10 +1,8 @@
 module Vedeu
   module Input
     class Translator
-      class << self
-        def press(key)
-          new(key).translate
-        end
+      def self.press(key)
+        new(key).translate
       end
 
       def initialize(key)
@@ -92,7 +90,7 @@ module Vedeu
         when 353                  then :"Shift+tab"
         when 13                   then :enter # shadows Ctrl+m
         when 263, 127             then :backspace
-        when '^[3~', Input::Wrapper.press_delete then :delete
+        when Input::Wrapper.press_delete, '^[3~' then :delete
 
         # misc
         when 0                    then :"Ctrl+space"

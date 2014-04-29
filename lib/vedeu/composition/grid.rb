@@ -4,10 +4,8 @@ module Vedeu
 
   module Composition
     class Grid
-      class << self
-        def compose(data = [], mask = [])
-          new(data, mask).compose
-        end
+      def self.compose(data = [], mask = [])
+        new(data, mask).compose
       end
 
       def initialize(data = [], mask = [])

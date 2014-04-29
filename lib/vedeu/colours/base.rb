@@ -10,7 +10,7 @@ module Vedeu
       end
 
       def escape_sequence
-        [esc, prefix, code, m].join
+        [esc, prefix, code, suffix].join
       end
 
       private
@@ -45,7 +45,7 @@ module Vedeu
         Esc.esc
       end
 
-      def m
+      def suffix
         'm'
       end
     end

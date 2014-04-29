@@ -3,10 +3,8 @@ module Vedeu
     class UndefinedColour < StandardError; end
 
     class Style
-      class << self
-        def define(name, foreground, background)
-          new(name, foreground, background).define
-        end
+      def self.define(name, foreground, background)
+        new(name, foreground, background).define
       end
 
       def initialize(name, foreground, background)

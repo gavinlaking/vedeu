@@ -1,10 +1,8 @@
 module Vedeu
   module Input
     class Sequence
-      class << self
-        def parse(stream)
-          new(stream).parse
-        end
+      def self.parse(stream)
+        new(stream).parse
       end
 
       def initialize(stream)
