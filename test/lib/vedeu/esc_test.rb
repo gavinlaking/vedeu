@@ -3,11 +3,6 @@ require_relative '../../test_helper'
 module Vedeu
   describe Esc do
     let(:klass)    { Esc }
-    let(:instance) { klass.new(fg, bg) }
-    let(:fg)       { 39 }
-    let(:bg)       { 49 }
-
-    it { instance.must_be_instance_of(Esc) }
 
     describe '.bold' do
       subject { klass.bold }
@@ -58,11 +53,14 @@ module Vedeu
     end
 
     describe '.set' do
+      let(:fg) {}
+      let(:bg) {}
+
       subject { klass.set(fg, bg) }
 
       it { subject.must_be_instance_of(String) }
 
-      it { subject.must_equal("\e[39;49m") }
+      it { subject.must_equal("\e[38;5;39m\e[48;5;49m") }
     end
 
     describe '.show_cursor' do
@@ -80,6 +78,5 @@ module Vedeu
 
       it { subject.must_equal("\e[4m") }
     end
-
   end
 end

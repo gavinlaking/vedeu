@@ -26,7 +26,7 @@ module Vedeu
       end
 
       def set(fg, bg)
-        new(fg, bg).set
+        Colours::Colour.set([fg, bg])
       end
 
       def show_cursor
@@ -37,17 +37,5 @@ module Vedeu
         [esc, '4m'].join
       end
     end
-
-    def initialize(fg, bg)
-      @fg, @bg = fg, bg
-    end
-
-    def set
-      [Esc.esc, fg, ';', bg, 'm'].join
-    end
-
-    private
-
-    attr_reader :fg, :bg
   end
 end
