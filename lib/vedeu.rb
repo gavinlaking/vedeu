@@ -1,4 +1,3 @@
-require 'curses'
 require 'io/console'
 require 'singleton'
 require 'timeout'
