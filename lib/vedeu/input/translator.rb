@@ -74,29 +74,28 @@ module Vedeu
         when 527                  then :"Ctrl+Shift+end"
         when 532                  then :"Ctrl+Shift+home"
 
-        when Input::Wrapper.press_up        then :up
-        when Input::Wrapper.press_down      then :down
-        when Input::Wrapper.press_left      then :left
-        when Input::Wrapper.press_right     then :right
-        when Input::Wrapper.press_end       then :end
-        when Input::Wrapper.press_home      then :home
-        when Input::Wrapper.press_page_down then :page_down
-        when Input::Wrapper.press_page_up   then :page_up
-        when Input::Wrapper.press_insert    then :insert
-        when Input::Wrapper.press_fkeys     then fkey
+        # when Input::Wrapper.press_up        then :up
+        # when Input::Wrapper.press_down      then :down
+        # when Input::Wrapper.press_left      then :left
+        # when Input::Wrapper.press_right     then :right
+        # when Input::Wrapper.press_end       then :end
+        # when Input::Wrapper.press_home      then :home
+        # when Input::Wrapper.press_page_down then :page_down
+        # when Input::Wrapper.press_page_up   then :page_up
+        # when Input::Wrapper.press_insert    then :insert
+        # when Input::Wrapper.press_fkeys     then fkey
 
         # modify
         when 9                    then :tab
         when 353                  then :"Shift+tab"
         when 13                   then :enter # shadows Ctrl+m
         when 263, 127             then :backspace
-        when Input::Wrapper.press_delete, '^[3~' then :delete
+        when '^[3~'               then :delete
 
         # misc
         when 0                    then :"Ctrl+space"
         when ctrl_key_code?       then ctrl_character
         when 27                   then :escape
-        when Input::Wrapper.press_resize         then :resize
         when ascii_out_of_range?  then key
         when ascii_in_range?      then character
         when alt_key_code?        then alt_character
@@ -141,9 +140,9 @@ module Vedeu
         return (ascii_code? && key.between?(1, 26)) ? key : false
       end
 
-      def fkey
-        :"F#{key - press_f0}"
-      end
+      # def fkey
+      #   :"F#{key - press_f0}"
+      # end
 
       def ascii_code?
         key.is_a?(Fixnum) && (key > 0) && (key < 256)

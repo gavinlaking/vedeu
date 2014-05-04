@@ -1,7 +1,7 @@
 require_relative '../../../test_helper'
 
 module Vedeu
-  module Colours
+  module Colour
     describe Style do
       let(:klass)      { Style }
       let(:pair_name)  { :american_pride }
@@ -9,8 +9,8 @@ module Vedeu
       let(:background) { :white }
 
       before do
-        Colours::Wrapper.stubs(:define_pair).returns(nil)
-        Colours::Palette.stubs(:exists?).returns(exists)
+        Colour::Wrapper.stubs(:define_pair).returns(nil)
+        Colour::Palette.stubs(:exists?).returns(exists)
       end
 
       describe '#define' do
@@ -30,7 +30,7 @@ module Vedeu
           let(:exists) { false }
 
           it 'raises an exception' do
-            proc { subject }.must_raise(Colours::UndefinedColour)
+            proc { subject }.must_raise(Colour::UndefinedColour)
           end
         end
       end

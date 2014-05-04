@@ -1,5 +1,5 @@
 module Vedeu
-  module Colours
+  module Colour
     class Background < Base
       private
 

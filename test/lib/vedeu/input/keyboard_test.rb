@@ -6,7 +6,7 @@ module Vedeu
       let(:klass)   { Keyboard }
       let(:options) { {} }
 
-      before { Input::Wrapper.stubs(:keypress).returns(*input) }
+      before { Terminal.stubs(:input).returns(*input) }
 
       subject { Keyboard.capture(options) }
 

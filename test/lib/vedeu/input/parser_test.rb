@@ -2,8 +2,8 @@ require_relative '../../../test_helper'
 
 module Vedeu
   module Input
-    describe Sequence do
-      let(:klass)  { Sequence }
+    describe Parser do
+      let(:klass)  { Parser }
       let(:stream) { [] }
 
       describe '#parse' do

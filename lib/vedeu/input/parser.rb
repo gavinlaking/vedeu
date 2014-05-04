@@ -1,6 +1,6 @@
 module Vedeu
   module Input
-    class Sequence
+    class Parser
       def self.parse(stream)
         new(stream).parse
       end

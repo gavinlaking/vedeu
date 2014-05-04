@@ -87,7 +87,10 @@ module Vedeu
     end
 
     def defaults
-      Terminal.size
+      {
+        width:  Terminal.width,
+        height: Terminal.height
+      }
     end
   end
 end

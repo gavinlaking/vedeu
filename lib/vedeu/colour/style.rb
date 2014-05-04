@@ -1,5 +1,5 @@
 module Vedeu
-  module Colours
+  module Colour
     class UndefinedColour < StandardError; end
 
     class Style
@@ -12,10 +12,8 @@ module Vedeu
       end
 
       def define
-        Colours::Wrapper.define_pair(pair_id, foreground, background)
-
-        Colours::Palette
-         .create(name, Colours::Wrapper.colour_pair(pair_id)).fetch(name)
+        Colour::Palette
+         .create(name, nil).fetch(name)
       end
 
       private
@@ -23,25 +21,25 @@ module Vedeu
       attr_reader :name
 
       def foreground
-        Colours::Palette.find(@foreground) if exists?(@foreground)
+        Colour::Palette.find(@foreground) if exists?(@foreground)
       end
 
       def background
-        Colours::Palette.find(@background) if exists?(@background)
+        Colour::Palette.find(@background) if exists?(@background)
       end
 
       def pair_id
-        @pair_id = Colours::Palette.next_id
+        @pair_id = Colour::Palette.next_id
       end
 
       def exists?(name)
-        unless Colours::Palette.exists?(name)
-          raise Colours::UndefinedColour, message(name)
+        unless Colour::Palette.exists?(name)
+          raise Colour::UndefinedColour, message(name)
         end
       end
 
       def message(name)
-        "Use `Colours::Custom.define(#{name}, '#rrggbb')` to define " \
+        "Use `Colour::Custom.define(#{name}, '#rrggbb')` to define " \
         "this colour first, replacing 'rrggbb' with a valid HTML colour."
       end
     end

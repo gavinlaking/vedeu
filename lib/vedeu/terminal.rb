@@ -1,35 +1,48 @@
 module Vedeu
   class Terminal
     class << self
-      def size
-        new.size
-      end
-
       def width
-        new.width
+        size.last
       end
 
       def height
-        new.height
+        size.first
       end
-    end
 
-    def size
-      { width: width, height: height }
-    end
+      def size
+        console.winsize
+      end
 
-    def width
-      dimensions[1]
-    end
+      def cooked(&block)
+        console.cooked do
+          clear_screen
 
-    def height
-      dimensions[0]
-    end
+          block.call
+        end if block_given?
+      end
+      alias_method :open_cooked, :cooked
+      alias_method :open,        :cooked
 
-    private
+      def raw(&block)
+        console.raw &block if block_given?
+      end
+      alias_method :open_raw, :raw
 
-    def dimensions
-      IO.console.winsize
+      def console
+        IO.console
+      end
+
+      def clear_screen
+        print Esc.clear
+      end
+
+      def show_cursor
+        print Esc.show_cursor
+      end
+
+      def hide_cursor
+        print Esc.hide_cursor
+      end
     end
   end
 end

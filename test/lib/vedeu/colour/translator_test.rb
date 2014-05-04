@@ -1,7 +1,7 @@
 require_relative '../../../test_helper'
 
 module Vedeu
-  module Colours
+  module Colour
     describe Translator do
       let(:klass) { Translator }
 

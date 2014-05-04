@@ -25,8 +25,12 @@ module Vedeu
         [esc, '0m'].join
       end
 
-      def set(fg, bg)
-        Colours::Colour.set([fg, bg])
+      # def set_colour(fg, bg)
+      #   Colour::Mask.set([fg, bg])
+      # end
+
+      def set_position(y, x)
+        [esc, (y + 1), ';', (x + 1), 'H'].join
       end
 
       def show_cursor

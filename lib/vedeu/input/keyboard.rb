@@ -11,7 +11,7 @@ module Vedeu
 
       def capture
         Clock.start(seconds: sequence_timeout) do
-          key = Input::Wrapper.keypress
+          key = Vedeu::Terminal.input
 
           return parse if key == nil
           sequence << key
@@ -25,7 +25,7 @@ module Vedeu
       private
 
       def parse
-        Input::Sequence.parse(sequence) if sequence.any?
+        Input::Parser.parse(sequence) if sequence.any?
       end
 
       def reset

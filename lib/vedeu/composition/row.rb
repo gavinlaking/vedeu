@@ -27,9 +27,9 @@ module Vedeu
         rows.map do |row|
           row.map do |stream|
             streams << if stream.is_a?(Array)
-              Colours::Colour.set(stream)
+              Colour::Mask.set(stream)
             elsif stream.is_a?(Symbol)
-              Colours::Colour.set(Array(stream))
+              Colour::Mask.set(Array(stream))
             else
               stream
             end

@@ -1,7 +1,7 @@
 require_relative '../../../test_helper'
 
 module Vedeu
-  module Colours
+  module Colour
     describe Palette do
       let(:klass)       { Palette }
       let(:default_set) { { normal: 0, reverse: 262144 } }
@@ -65,10 +65,6 @@ module Vedeu
 
       describe '.next_id' do
         subject { klass.next_id }
-
-        it 'returns the next available ID for Curses.colour_pair' do
-          subject.must_equal(12)
-        end
       end
 
     end

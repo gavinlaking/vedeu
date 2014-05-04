@@ -1,5 +1,5 @@
 module Vedeu
-  module Colours
+  module Colour
     class Base
       def self.escape_sequence(colour = nil)
         new(colour).escape_sequence
@@ -34,7 +34,7 @@ module Vedeu
       end
 
       def html
-        Colours::Translator.translate(colour)
+        Colour::Translator.translate(colour)
       end
 
       def default

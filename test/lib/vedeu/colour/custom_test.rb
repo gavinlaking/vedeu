@@ -1,7 +1,7 @@
 require_relative '../../../test_helper'
 
 module Vedeu
-  module Colours
+  module Colour
     describe Custom do
       let(:klass)       { Custom }
       let(:colour_name) {}
@@ -22,8 +22,6 @@ module Vedeu
       }
 
       describe '#define' do
-        before { Colours::Colour.reset }
-
         subject { klass.define(colour_name, html) }
 
         context 'when the name is defined' do
