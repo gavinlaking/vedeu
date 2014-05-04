@@ -34,7 +34,7 @@ module Vedeu
       alias_method :rows, :data
 
       def reset
-        Colour::Mask.reset
+        Colour::Mask.set
       end
 
       def style(y, x)

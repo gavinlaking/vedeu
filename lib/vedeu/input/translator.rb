@@ -74,6 +74,9 @@ module Vedeu
         when 527                  then :"Ctrl+Shift+end"
         when 532                  then :"Ctrl+Shift+home"
 
+        when 260 then :left
+        when 261 then :right
+
         # when Input::Wrapper.press_up        then :up
         # when Input::Wrapper.press_down      then :down
         # when Input::Wrapper.press_left      then :left

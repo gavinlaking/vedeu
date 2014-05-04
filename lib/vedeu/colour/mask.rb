@@ -1,8 +1,11 @@
 module Vedeu
   module Colour
     class Mask
-      def self.define(mask = [])
-        new(mask).define
+      class << self
+        def define(mask = [])
+          new(mask).define
+        end
+        alias_method :set, :define
       end
 
       def initialize(mask = [])

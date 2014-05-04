@@ -51,7 +51,7 @@ module Vedeu
             let(:mask) { [] }
 
             it 'returns the reset code' do
-              subject.must_equal("\e[0m")
+              subject.must_equal("\e[38;5;39m\e[48;5;49m")
             end
           end
         end
@@ -62,16 +62,6 @@ module Vedeu
           it 'returns the default code' do
             subject.must_equal("\e[38;5;196m\e[48;5;21m")
           end
-        end
-      end
-
-      describe '.reset' do
-        subject { klass.reset }
-
-        it { subject.must_be_instance_of(String) }
-
-        it 'returns the reset code' do
-          subject.must_equal("\e[0m")
         end
       end
     end

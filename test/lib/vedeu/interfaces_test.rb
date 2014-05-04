@@ -3,7 +3,7 @@ require_relative '../../test_helper'
 module Vedeu
   describe Interfaces do
     let(:klass)    { Interfaces }
-    let(:instance) { klass.new(block) }
+    let(:instance) { klass.new {} }
     let(:block)    {}
 
     subject { instance }
