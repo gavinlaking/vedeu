@@ -13,6 +13,7 @@ module Vedeu
 
     def tick(&block)
       raise OutOfWorkError unless block_given?
+
       Timeout.timeout(seconds) do
         while true do
           block.call
