@@ -20,17 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-### Creating your colour palette
-
-By default, Vedeu provides the ...
-
-Vedeu::Custom.define(:name, Mask)
-
-@param name [Symbol] - A named reference to the colour combination.
-@param mask [Mask]   - An container which contains 2 elements.
-                       - A symbol, this will point to another colour in the palette.
-                       - A HTML string, i.e. '#00ff00'.
-
+TODO: Write detailed documentation
 
 ## Contributing
 

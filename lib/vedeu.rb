@@ -7,9 +7,6 @@ require_relative 'vedeu/colour/foreground'
 require_relative 'vedeu/colour/background'
 
 require_relative 'vedeu/colour/mask'
-require_relative 'vedeu/colour/custom'
-require_relative 'vedeu/colour/palette'
-require_relative 'vedeu/colour/style'
 require_relative 'vedeu/colour/translator'
 
 require_relative 'vedeu/composition/grid'
