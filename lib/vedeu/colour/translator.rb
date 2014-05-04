@@ -10,7 +10,7 @@ module Vedeu
       end
 
       def translate
-        return unless html_colour
+        return unless valid?
         [term_colour_base, red, green, blue].inject(:+)
       end
 
@@ -44,6 +44,18 @@ module Vedeu
 
       def term_colour_base
         16
+      end
+
+      def valid?
+        html_colour && valid_type? && valid_format?
+      end
+
+      def valid_type?
+        html_colour.is_a?(String)
+      end
+
+      def valid_format?
+        html_colour =~ /^#([A-Fa-f0-9]{6})$/
       end
     end
   end

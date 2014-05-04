@@ -3,7 +3,8 @@ require_relative '../../../test_helper'
 module Vedeu
   module Colour
     describe Translator do
-      let(:klass) { Translator }
+      let(:klass)       { Translator }
+      let(:html_colour) {}
 
       describe '#translate' do
         {
@@ -14,17 +15,34 @@ module Vedeu
           '#aadd00' => 148, # lime green
           '#b94f1c' => 130, # sunset orange
         }.map do |html_colour, terminal_colour|
-          context 'when a colour is provided' do
+          context 'valid' do
             it 'translation is performed' do
-              klass.translate(html_colour)
-                .must_equal terminal_colour
+              klass.translate(html_colour).must_be_instance_of(Fixnum)
+
+              klass.translate(html_colour).must_equal(terminal_colour)
             end
           end
         end
 
-        context 'when a colour is not provided' do
-          it 'no translation is performed' do
-            klass.translate(nil).must_equal nil
+        context 'invalid' do
+          it 'returns nil when not present' do
+            klass.translate.must_equal(nil)
+          end
+
+          it 'returns nil when the wrong type' do
+            klass.translate(:wrong_type).must_equal(nil)
+          end
+
+          it 'returns nil when invalid format' do
+            klass.translate('345678').must_equal(nil)
+          end
+
+          it 'returns nil when invalid format' do
+            klass.translate('#h11111').must_equal(nil)
+          end
+
+          it 'returns nil when invalid format' do
+            klass.translate('#1111').must_equal(nil)
           end
         end
       end
