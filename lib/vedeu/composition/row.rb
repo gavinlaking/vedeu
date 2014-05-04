@@ -10,16 +10,12 @@ module Vedeu
       end
 
       def render
-        parsed.join(eol)
+        parsed.join("\n")
       end
 
       private
 
       attr_reader :rows
-
-      def eol
-        "\n"
-      end
 
       def parsed
         container = []

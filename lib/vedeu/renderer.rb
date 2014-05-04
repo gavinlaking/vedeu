@@ -21,9 +21,5 @@ module Vedeu
     private
 
     attr_reader :composition
-
-    def eol
-      "\n"
-    end
   end
 end
