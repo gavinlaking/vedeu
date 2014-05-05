@@ -4,7 +4,10 @@ module Vedeu
   module Colour
     describe Translator do
       let(:klass)       { Translator }
+      let(:instance)    { klass.new(html_colour) }
       let(:html_colour) {}
+
+      it { instance.must_be_instance_of(Colour::Translator) }
 
       describe '#translate' do
         {

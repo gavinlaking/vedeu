@@ -51,5 +51,29 @@ module Vedeu
 
       it { skip }
     end
+
+    describe '.console' do
+      subject { klass.console }
+
+      it { skip }
+    end
+
+    describe '.clear_screen' do
+      subject { capture_io { klass.clear_screen }.join }
+
+      it { subject.must_be_instance_of(String) }
+    end
+
+    describe '.show_cursor' do
+      subject { capture_io { klass.show_cursor }.join }
+
+      it { subject.must_be_instance_of(String) }
+    end
+
+    describe '.hide_cursor' do
+      subject { capture_io { klass.hide_cursor }.join }
+
+      it { subject.must_be_instance_of(String) }
+    end
   end
 end
