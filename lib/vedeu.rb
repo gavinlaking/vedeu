@@ -9,8 +9,9 @@ require_relative 'vedeu/colour/background'
 require_relative 'vedeu/colour/mask'
 require_relative 'vedeu/colour/translator'
 
-require_relative 'vedeu/composition/grid'
-require_relative 'vedeu/composition/row'
+require_relative 'vedeu/composition'
+require_relative 'vedeu/grid'
+require_relative 'vedeu/row'
 
 require_relative 'vedeu/input/character/multibyte'
 require_relative 'vedeu/input/character/standard'
