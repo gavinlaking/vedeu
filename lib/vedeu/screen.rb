@@ -18,7 +18,7 @@ module Vedeu
       interfaces
     end
 
-    def add(name, klass = Vedeu::DummyInterface, options = {})
+    def add(name, klass = Vedeu::Dummy, options = {})
       interfaces.merge!(name => Proc.new { klass.new(options) })
 
       interfaces

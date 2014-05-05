@@ -19,7 +19,7 @@ require_relative 'vedeu/input/parser'
 require_relative 'vedeu/input/translator'
 
 require_relative 'vedeu/interface'
-require_relative 'vedeu/dummy_interface'
+require_relative 'vedeu/interfaces/dummy'
 require_relative 'vedeu/application'
 require_relative 'vedeu/buffer'
 require_relative 'vedeu/clock'
