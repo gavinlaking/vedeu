@@ -22,6 +22,46 @@ Or install it yourself as:
 
 TODO: Write detailed documentation
 
+## Notes
+
+Application
+  |-- Clock
+  |-- Screen
+  |     |-- Dummy < Interface
+  |
+  |-- Terminal
+        |-- Esc
+
+Base
+  |-- Translator
+  |-- Esc
+
+Composition
+  |-- Mask
+        |-- Foreground < Base
+        |-- Background < Base
+        |-- Translator
+
+Grid < Composition
+Row < Composition
+
+Keyboard
+  |-- Clock
+  |-- Parser
+  |     |-- Translator
+  |     |-- Standard
+  |     |-- Multibyte
+  |           |-- Translator
+  |           |-- Standard
+  |
+  |-- Terminal
+        |-- Esc
+
+Interface
+  |-- Terminal
+        |-- Esc
+
+
 ## Contributing
 
 1. Fork it ( http://github.com/<my-github-username>/vedeu/fork )
