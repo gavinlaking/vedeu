@@ -10,16 +10,6 @@ module Vedeu
       console.stubs(:winsize).returns([25, 80])
     end
 
-    describe '.size' do
-      subject { klass.size }
-
-      it { subject.must_be_instance_of(Array) }
-
-      it 'returns the width and height of the terminal' do
-        subject.must_equal([25, 80])
-      end
-    end
-
     describe '.width' do
       subject { klass.width }
 
@@ -37,6 +27,16 @@ module Vedeu
 
       it 'returns the height of the terminal' do
         subject.must_equal(25)
+      end
+    end
+
+    describe '.size' do
+      subject { klass.size }
+
+      it { subject.must_be_instance_of(Array) }
+
+      it 'returns the width and height of the terminal' do
+        subject.must_equal([25, 80])
       end
     end
 
