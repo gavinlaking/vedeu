@@ -32,7 +32,7 @@ module Vedeu
     private
 
     def interfaces
-      @interfaces ||= Vedeu::Interfaces.default
+      @interfaces ||= Screen.default
     end
 
     attr_reader :options

@@ -1,5 +1,5 @@
 module Vedeu
-  class Interfaces
+  class Screen
     def self.default
       new do |interface|
         interface.add(:dummy)

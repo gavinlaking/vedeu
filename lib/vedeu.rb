@@ -24,7 +24,7 @@ require_relative 'vedeu/application'
 require_relative 'vedeu/buffer'
 require_relative 'vedeu/clock'
 require_relative 'vedeu/esc'
-require_relative 'vedeu/interfaces'
+require_relative 'vedeu/screen'
 require_relative 'vedeu/position'
 
 require_relative 'vedeu/renderer'

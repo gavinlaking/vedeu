@@ -1,14 +1,14 @@
 require_relative '../../test_helper'
 
 module Vedeu
-  describe Interfaces do
-    let(:klass)    { Interfaces }
+  describe Screen do
+    let(:klass)    { Screen }
     let(:instance) { klass.new {} }
     let(:block)    {}
 
     subject { instance }
 
-    it { subject.must_be_instance_of(Vedeu::Interfaces) }
+    it { subject.must_be_instance_of(Vedeu::Screen) }
 
     describe '#add' do
       let(:interface_name)  {}
