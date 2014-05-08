@@ -1,5 +1,5 @@
 module Vedeu
-  module Colour
+  module Output
     class Mask
       class << self
         def define(mask = [])
@@ -21,11 +21,11 @@ module Vedeu
       attr_reader :mask
 
       def foreground
-        Colour::Foreground.escape_sequence(mask[0])
+        Output::Foreground.escape_sequence(mask[0])
       end
 
       def background
-        Colour::Background.escape_sequence(mask[1])
+        Output::Background.escape_sequence(mask[1])
       end
     end
   end

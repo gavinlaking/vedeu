@@ -1,13 +1,13 @@
 require_relative '../../../test_helper'
 
 module Vedeu
-  module Colour
+  module Output
     describe Translator do
       let(:klass)       { Translator }
       let(:instance)    { klass.new(html_colour) }
       let(:html_colour) {}
 
-      it { instance.must_be_instance_of(Colour::Translator) }
+      it { instance.must_be_instance_of(Output::Translator) }
 
       describe '#translate' do
         {

@@ -26,7 +26,7 @@ module Vedeu
       end
 
       def set_colour(fg, bg)
-        Colour::Mask.set([fg, bg])
+        Output::Mask.set([fg, bg])
       end
 
       def set_position(y, x)

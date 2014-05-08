@@ -30,11 +30,11 @@ module Vedeu
     alias_method :rows, :data
 
     def reset
-      Colour::Mask.set
+      Output::Mask.set
     end
 
     def style(y, x)
-      Colour::Mask.set(mask[y][x])
+      Output::Mask.set(mask[y][x])
     end
 
     def validate!

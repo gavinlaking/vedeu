@@ -1,13 +1,13 @@
 require_relative '../../../test_helper'
 
 module Vedeu
-  module Colour
+  module Output
     describe Mask do
       let(:klass)    { Mask }
       let(:instance) { klass.new }
       let(:mask)     { [] }
 
-      it { instance.must_be_instance_of(Colour::Mask) }
+      it { instance.must_be_instance_of(Output::Mask) }
 
       describe '.set' do
         subject { klass.set(mask) }

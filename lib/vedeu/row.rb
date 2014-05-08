@@ -22,9 +22,9 @@ module Vedeu
       rows.map do |row|
         row.map do |stream|
           streams << if stream.is_a?(Array)
-            Colour::Mask.set(stream)
+            Output::Mask.set(stream)
           elsif stream.is_a?(Symbol)
-            Colour::Mask.set(Array(stream))
+            Output::Mask.set(Array(stream))
           else
             stream
           end
