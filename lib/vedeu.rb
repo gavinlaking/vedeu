@@ -1,3 +1,4 @@
+require 'hamster'
 require 'io/console'
 require 'singleton'
 require 'timeout'
