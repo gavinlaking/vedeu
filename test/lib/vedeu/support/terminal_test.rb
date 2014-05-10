@@ -10,6 +10,14 @@ module Vedeu
       console.stubs(:winsize).returns([25, 80])
     end
 
+    describe '.input' do
+      before  { console.stubs(:getc).returns("t") }
+
+      subject { klass.input }
+
+      it { subject.must_be_instance_of(String) }
+    end
+
     describe '.width' do
       subject { klass.width }
 

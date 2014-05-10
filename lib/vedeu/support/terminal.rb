@@ -1,6 +1,10 @@
 module Vedeu
   class Terminal
     class << self
+      def input
+        console.getc
+      end
+
       def width
         size.last
       end
