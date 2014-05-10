@@ -13,9 +13,7 @@ module Vedeu
     def initialize(&block)
       @interfaces ||= {}
 
-      block.call(self)
-
-      interfaces
+      yield self if block_given?
     end
 
     def add(name, klass, options = {})

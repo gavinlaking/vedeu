@@ -3,7 +3,7 @@ require_relative '../../test_helper'
 module Vedeu
   describe Screen do
     let(:klass)    { Screen }
-    let(:instance) { klass.new {} }
+    let(:instance) { klass.new }
     let(:block)    {}
 
     subject { instance }
@@ -14,6 +14,10 @@ module Vedeu
       subject { klass.default }
 
       it { subject.must_be_instance_of(Screen) }
+
+      it 'adds the dummy interface to the interface list' do
+        subject.show.wont_be_empty
+      end
     end
 
     describe '#add' do
