@@ -21,7 +21,7 @@ module Vedeu
         console.cooked do
           clear_screen
 
-          block.call
+          yield
         end if block_given?
       end
       alias_method :open_cooked, :cooked

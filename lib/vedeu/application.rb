@@ -16,7 +16,7 @@ module Vedeu
         Clock.start do
           keys = Input::Keyboard.capture
 
-          #block.call if block_given?
+          # yield if block_given?
 
           sleep 0.1
         end

@@ -16,7 +16,7 @@ module Vedeu
 
       Timeout.timeout(seconds) do
         while true do
-          block.call
+          yield
         end
       end
     rescue Timeout::Error
