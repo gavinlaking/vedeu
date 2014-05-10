@@ -1,17 +1,24 @@
 module Vedeu
   class Application
     def self.start(interfaces, options = {}, &block)
-      new(interfaces, options).main(&block)
+      new(interfaces, options).start(&block)
     end
 
     def initialize(interfaces, options = {})
       @interfaces, @options = interfaces, options
     end
 
-    def main
+    def start(&block)
       Terminal.open do
+
+        initial_state
+
         Clock.start do
-          real_work
+          keys = Input::Keyboard.capture
+
+          #block.call if block_given?
+
+          sleep 0.1
         end
       end
     rescue OutOfTimeError
@@ -20,16 +27,11 @@ module Vedeu
       Terminal.show_cursor
     end
 
-    def real_work
-      interfaces.run
-      sleep 0.1
-    end
-
-    def simulated_work
-      sleep 0.1
-    end
-
     private
+
+    def initial_state
+      interfaces.initial
+    end
 
     def interfaces
       @interfaces ||= Screen.default
