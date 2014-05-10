@@ -16,27 +16,49 @@ module Vedeu
     it { instance.must_be_instance_of(Interface) }
 
     describe '#initial' do
-      subject { capture_io { instance.initial }.join }
+      subject { instance.initial }
 
-      it { subject.must_be_instance_of(String) }
+      context 'capturing output' do
+        let(:io) { capture_io { subject }.join }
+
+        it { io.must_be_instance_of(String) }
+      end
     end
 
     describe '#main' do
-      subject { capture_io { instance.main }.join }
+      subject { instance.main }
 
-      it { subject.must_be_instance_of(String) }
+      it { subject.must_be_instance_of(NilClass) }
+
+      context 'capturing output' do
+        let(:io) { capture_io { subject }.join }
+
+        it { io.must_be_instance_of(String) }
+      end
     end
 
     describe '#input' do
-      subject { capture_io { instance.input }.join }
+      subject { instance.input }
 
-      it { subject.must_be_instance_of(String) }
+      it { subject.must_be_instance_of(NilClass) }
+
+      context 'capturing output' do
+        let(:io) { capture_io { subject }.join }
+
+        it { io.must_be_instance_of(String) }
+      end
     end
 
     describe '#output' do
-      subject { capture_io { instance.output }.join }
+      subject { instance.output }
 
-      it { subject.must_be_instance_of(String) }
+      it { subject.must_be_instance_of(NilClass) }
+
+      context 'capturing output' do
+        let(:io) { capture_io { subject }.join }
+
+        it { io.must_be_instance_of(String) }
+      end
     end
 
     describe '#width' do

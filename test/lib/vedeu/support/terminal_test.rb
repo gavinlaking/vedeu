@@ -67,21 +67,41 @@ module Vedeu
     end
 
     describe '.clear_screen' do
-      subject { capture_io { klass.clear_screen }.join }
+      before { Esc.stubs(:clear).returns('') }
 
-      it { subject.must_be_instance_of(String) }
+      subject { klass.clear_screen }
+
+      it { subject.must_be_instance_of(NilClass) }
+
+      context 'capturing output' do
+        let(:io) { capture_io { subject }.join }
+
+        it { io.must_be_instance_of(String) }
+      end
     end
 
     describe '.show_cursor' do
-      subject { capture_io { klass.show_cursor }.join }
+      subject { klass.show_cursor }
 
-      it { subject.must_be_instance_of(String) }
+      it { subject.must_be_instance_of(NilClass) }
+
+      context 'capturing output' do
+        let(:io) { capture_io { subject }.join }
+
+        it { io.must_be_instance_of(String) }
+      end
     end
 
     describe '.hide_cursor' do
-      subject { capture_io { klass.hide_cursor }.join }
+      subject { klass.hide_cursor }
 
-      it { subject.must_be_instance_of(String) }
+      it { subject.must_be_instance_of(NilClass) }
+
+      context 'capturing output' do
+        let(:io) { capture_io { subject }.join }
+
+        it { io.must_be_instance_of(String) }
+      end
     end
   end
 end
