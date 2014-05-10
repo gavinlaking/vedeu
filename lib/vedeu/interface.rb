@@ -4,20 +4,22 @@ module Vedeu
       @options = options
     end
 
-    def run
+    def initial
+      print "Interface activated."
+    end
+
+    def main
       output
 
       input
     end
 
-    def input
-      Vedeu::Terminal.show_cursor
-    end
-
     def output
       Vedeu::Terminal.hide_cursor
+    end
 
-      #1.upto(height) { print "\n" }
+    def input
+      Vedeu::Terminal.show_cursor
     end
 
     def width

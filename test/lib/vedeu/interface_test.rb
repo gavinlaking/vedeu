@@ -15,8 +15,14 @@ module Vedeu
 
     it { instance.must_be_instance_of(Interface) }
 
-    describe '#run' do
-      subject { capture_io { instance.run }.join }
+    describe '#initial' do
+      subject { capture_io { instance.initial }.join }
+
+      it { subject.must_be_instance_of(String) }
+    end
+
+    describe '#main' do
+      subject { capture_io { instance.main }.join }
 
       it { subject.must_be_instance_of(String) }
     end

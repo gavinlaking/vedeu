@@ -1,9 +1,9 @@
 module Vedeu
+  class UndefinedInterface < StandardError; end
+
   class Screen
     def self.default
-      new do |interface|
-        interface.add(:dummy)
-      end
+      new { |io| io.add(:dummy, Vedeu::Dummy) }
     end
 
     def self.define(&block)
@@ -18,9 +18,9 @@ module Vedeu
       interfaces
     end
 
-    def add(name, klass = Vedeu::Dummy, options = {})
-      interfaces.merge!(name => Proc.new { klass.new(options) })
-
+    def add(name, klass, options = {})
+      raise UndefinedInterface unless Object.const_defined?(klass.to_s)
+      interfaces[name] = Proc.new { klass.new(options) }
       interfaces
     end
 
@@ -28,10 +28,12 @@ module Vedeu
       interfaces
     end
 
-    def run
-      interfaces.values.map { |interface| interface.call.run }
+    def initial
+      interfaces.values.map { |io| io.call.initial }
+    end
 
-      interfaces
+    def main
+      interfaces.values.map { |io| io.call.main }
     end
 
     private
