@@ -1,7 +1,5 @@
 module Vedeu
   module Process
-    class InvalidCommand < StandardError; end
-
     class Commands
       include Singleton
 
@@ -11,55 +9,40 @@ module Vedeu
         end
         alias_method :define, :instance
 
-        def execute(keys = "")
-          instance.execute(keys)
+        def define(name, klass, args = [], options = {})
+          instance.define(name, klass, args = [], options = {})
+        end
+
+        def execute(command = "")
+          instance.execute(command)
         end
       end
 
       def initialize(&block)
-        @commands ||= { "exit" => Proc.new { puts "Exit called";exit! } }
+        @commands ||= {}
 
         yield self if block_given?
       end
 
-      def add(name, klass)
-        commands[name] = Proc.new { klass.dispatch } unless invalid?(name, klass)
-        commands
+      def define(name, klass, args = [], options = {})
+        commands.merge!(Command.define(name, klass, args, options))
       end
+      alias_method :add, :define
 
-      def show
-        commands
-      end
-
-      def execute(name = "")
-        return commands.fetch(keys).call unless invalid_name?(name)
-      rescue KeyError
+      def execute(command = "")
+        commands.fetch(command).call if exists?
       end
 
       private
       attr_accessor :commands, :instance
 
-      def invalid?(name, klass)
-        raise InvalidCommand, "Name invalid."       if invalid_name?(name)
-        raise InvalidCommand, "Class not defined."  if invalid_klass?(klass)
-        raise InvalidCommand, "No dispatch method." if no_dispatch?(klass)
+      def exists?
+        commands.fetch(keys, false)
       end
 
-      def invalid_name?(name)
-        name.to_s.empty?
-      end
-
-      def invalid_klass?(klass)
-        invalid_name?(klass) || undefined?(klass)
-      end
-
-      def no_dispatch?(klass)
-        not klass.singleton_methods(false).include?(:dispatch)
-      end
-
-      def undefined?(klass)
-        not Object.const_defined?(klass.to_s)
-      end
+      # def exit_command
+        # @commands ||= { "exit" => Proc.new { puts "Exit called";exit! } }
+      # end
     end
   end
 end

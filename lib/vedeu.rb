@@ -25,6 +25,7 @@ require_relative 'vedeu/input/translator'
 require_relative 'vedeu/interface/interface'
 
 require_relative 'vedeu/process/commands'
+require_relative 'vedeu/process/command'
 
 require_relative 'vedeu/application'
 require_relative 'vedeu/version'
