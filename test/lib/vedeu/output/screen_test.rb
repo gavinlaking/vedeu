@@ -29,6 +29,8 @@ module Vedeu
 
       it { subject.must_be_instance_of(Hash) }
 
+      it { subject.wont_be_empty }
+
       context 'when the interface class does not exist' do
         before { Object.stubs(:const_defined?).returns(false) }
 
