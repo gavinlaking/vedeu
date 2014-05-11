@@ -31,19 +31,21 @@ Application
   |
   |-- Terminal
         |-- Esc
+              |-- Mask
 
 Base
   |-- Translator
   |-- Esc
+        |-- Mask
 
-Composition
+Compositor
   |-- Mask
-        |-- Foreground < Base
-        |-- Background < Base
-        |-- Translator
-
-Grid < Composition
-Row < Composition
+  |     |-- Foreground < Base
+  |     |-- Background < Base
+  |     |-- Translator
+  |
+  |-- Esc
+        |-- Mask
 
 Keyboard
   |-- Clock
@@ -56,10 +58,12 @@ Keyboard
   |
   |-- Terminal
         |-- Esc
+              |-- Mask
 
 Interface
   |-- Terminal
         |-- Esc
+              |-- Mask
 
 
 ## Contributing
