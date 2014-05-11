@@ -1,15 +1,15 @@
-require_relative '../../test_helper'
+require_relative '../../../test_helper'
 
 module Vedeu
-  describe Row do
-    let(:klass)    { Row }
+  describe Compositor do
+    let(:klass)    { Compositor }
     let(:instance) { klass.new(rows) }
     let(:rows)     { [[]] }
 
-    it { instance.must_be_instance_of(Row) }
+    it { instance.must_be_instance_of(Compositor) }
 
-    describe '.render' do
-      subject { klass.render(rows) }
+    describe '.write' do
+      subject { klass.write(rows) }
 
       it { subject.must_be_instance_of(String) }
 

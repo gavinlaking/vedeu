@@ -9,14 +9,12 @@ require_relative 'vedeu/support/terminal'
 
 require_relative 'vedeu/output/base'
 require_relative 'vedeu/output/background'
+require_relative 'vedeu/output/compositor'
 require_relative 'vedeu/output/foreground'
 require_relative 'vedeu/output/esc'
 require_relative 'vedeu/output/mask'
+require_relative 'vedeu/output/screen'
 require_relative 'vedeu/output/translator'
-
-require_relative 'vedeu/composition'
-require_relative 'vedeu/grid'
-require_relative 'vedeu/row'
 
 require_relative 'vedeu/input/character/multibyte'
 require_relative 'vedeu/input/character/standard'
@@ -24,9 +22,7 @@ require_relative 'vedeu/input/keyboard'
 require_relative 'vedeu/input/parser'
 require_relative 'vedeu/input/translator'
 
-require_relative 'vedeu/application'
-require_relative 'vedeu/compositor'
-require_relative 'vedeu/interface'
-require_relative 'vedeu/screen'
+require_relative 'vedeu/interface/interface'
 
+require_relative 'vedeu/application'
 require_relative 'vedeu/version'

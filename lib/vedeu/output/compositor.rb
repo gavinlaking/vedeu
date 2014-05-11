@@ -9,15 +9,34 @@ module Vedeu
     end
 
     def write
-      output.map do |line|
-        print line
+      parsed.map do |line|
+        #print line
       end
-      nil
+      parsed.join("\n")
     end
 
     private
 
     attr_reader :output
+
+    def parsed
+      container = []
+      streams = []
+      output.map do |line|
+        line.map do |stream|
+          streams << if stream.is_a?(Array)
+            Output::Mask.set(stream)
+          elsif stream.is_a?(Symbol)
+            Output::Mask.set(Array(stream))
+          else
+            stream
+          end
+        end
+        container << streams.join
+        streams = []
+      end
+      container
+    end
 
     def empty_line(line, width = Terminal.width)
       Esc.set_position(line, 0)
