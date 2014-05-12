@@ -2,12 +2,14 @@ module Vedeu
   class UndefinedInterface < StandardError; end
 
   class Screen
-    def self.default
-      new { |io| io.add(:dummy, Vedeu::Dummy) }
-    end
+    class << self
+      def default
+        new { |io| io.add(:dummy, Vedeu::Dummy) }
+      end
 
-    def self.define(&block)
-      new(&block)
+      def define(&block)
+        new(&block)
+      end
     end
 
     def initialize(&block)
@@ -35,6 +37,7 @@ module Vedeu
     end
 
     private
+
     attr_accessor :interfaces
   end
 end

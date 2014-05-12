@@ -1,8 +1,10 @@
 module Vedeu
   module Input
     class Keyboard
-      def self.capture(options = {})
-        new(options).capture
+      class << self
+        def capture(options = {})
+          new(options).capture
+        end
       end
 
       def initialize(options = {})

@@ -1,8 +1,10 @@
 module Vedeu
   module Input
     class Parser
-      def self.parse(stream)
-        new(stream).parse
+      class << self
+        def parse(stream)
+          new(stream).parse
+        end
       end
 
       def initialize(stream)

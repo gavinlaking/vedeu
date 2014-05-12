@@ -3,7 +3,9 @@ require_relative '../../../test_helper'
 module Vedeu
   module Process
     class DummyCommand
-      def self.dispatch; end
+      class << self
+        def dispatch; end
+      end
     end
 
     describe Command do

@@ -1,7 +1,9 @@
 module Vedeu
   class Compositor
-    def self.write(output = [], options = {})
-      new(output, options).write
+    class << self
+      def write(output = [], options = {})
+        new(output, options).write
+      end
     end
 
     def initialize(output = [], options = {})

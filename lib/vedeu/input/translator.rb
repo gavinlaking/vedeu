@@ -1,8 +1,10 @@
 module Vedeu
   module Input
     class Translator
-      def self.press(key)
-        new(key).translate
+      class << self
+        def press(key)
+          new(key).translate
+        end
       end
 
       def initialize(key)

@@ -34,15 +34,12 @@ module Vedeu
       end
 
       private
+
       attr_accessor :commands, :instance
 
       def exists?
         commands.fetch(keys, false)
       end
-
-      # def exit_command
-        # @commands ||= { "exit" => Proc.new { puts "Exit called";exit! } }
-      # end
     end
   end
 end

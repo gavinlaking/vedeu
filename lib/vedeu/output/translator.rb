@@ -1,8 +1,10 @@
 module Vedeu
   module Output
     class Translator
-      def self.translate(html_colour = nil)
-        new(html_colour).translate
+      class << self
+        def translate(html_colour = nil)
+          new(html_colour).translate
+        end
       end
 
       def initialize(html_colour = nil)

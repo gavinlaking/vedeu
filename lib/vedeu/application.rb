@@ -1,7 +1,9 @@
 module Vedeu
   class Application
-    def self.start(interfaces, options = {}, &block)
-      new(interfaces, options).start(&block)
+    class << self
+      def start(interfaces, options = {}, &block)
+        new(interfaces, options).start(&block)
+      end
     end
 
     def initialize(interfaces, options = {})

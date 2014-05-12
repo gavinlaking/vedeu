@@ -2,8 +2,10 @@ module Vedeu
   module Input
     module Character
       class Standard
-        def self.parse(stream)
-          new(stream).encode
+        class << self
+          def parse(stream)
+            new(stream).encode
+          end
         end
 
         def initialize(stream)
