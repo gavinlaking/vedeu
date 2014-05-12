@@ -33,6 +33,20 @@ module Vedeu
         [esc, (y + 1), ';', (x + 1), 'H'].join
       end
 
+      def set_style(style)
+        case style
+        when :bold        then bold
+        when :clear       then clear
+        when :hide_cursor then hide_cursor
+        when :inverse     then inverse
+        when :reset       then reset
+        when :show_cursor then show_cursor
+        when :underline   then underline
+        else
+          ""
+        end
+      end
+
       def show_cursor
         [esc, '?25h'].join
       end
