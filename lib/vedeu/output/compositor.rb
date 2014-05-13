@@ -29,6 +29,7 @@ module Vedeu
           streams << if stream.is_a?(Array)
             Output::Mask.set(stream)
           elsif stream.is_a?(Symbol)
+            # Esc.set_style(stream)
             Output::Mask.set(Array(stream))
           else
             stream
