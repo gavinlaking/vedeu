@@ -1,45 +1,43 @@
 module Vedeu
-  module Process
-    class Commands
-      include Singleton
+  class Commands
+    include Singleton
 
-      class << self
-        def instance(&block)
-          @instance ||= new(&block)
-        end
-        alias_method :define, :instance
-
-        def define(name, klass, args = [], options = {})
-          instance.define(name, klass, args = [], options = {})
-        end
-
-        def execute(command = "")
-          instance.execute(command)
-        end
+    class << self
+      def instance(&block)
+        @instance ||= new(&block)
       end
+      alias_method :define, :instance
 
-      def initialize(&block)
-        @commands ||= {}
-
-        yield self if block_given?
-      end
-
-      def define(name, klass, args = [], options = {})
-        commands.merge!(Command.define(name, klass, args, options))
-      end
-      alias_method :add, :define
+      # def define(name, klass, args = [], options = {}, &block)
+      #   instance.define(name, klass, args = [], options = {})
+      # end
 
       def execute(command = "")
-        commands.fetch(command).call if exists?
+        instance.execute(command)
       end
+    end
 
-      private
+    def initialize(&block)
+      @commands ||= {}
 
-      attr_accessor :commands, :instance
+      yield self if block_given?
+    end
 
-      def exists?
-        commands.fetch(keys, false)
-      end
+    def define(name, klass, args = [], options = {})
+      commands.merge!(Command.define(name, klass, args, options))
+    end
+    alias_method :add, :define
+
+    def execute(command = "")
+      commands.fetch(command).call if exists?
+    end
+
+    private
+
+    attr_accessor :commands, :instance
+
+    def exists?
+      commands.fetch(keys, false)
     end
   end
 end

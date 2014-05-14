@@ -16,16 +16,26 @@ module Vedeu
     def tick(&block)
       raise OutOfWorkError unless block_given?
 
-      Timeout.timeout(seconds) do
+      timeout do
         while true do
+          yield
+        end
+      end
+    end
+
+    private
+
+    def timeout(&block)
+      if seconds == :infinite
+        yield
+      else
+        Timeout.timeout(seconds) do
           yield
         end
       end
     rescue Timeout::Error
       raise OutOfTimeError
     end
-
-    private
 
     def seconds
       options.fetch(:seconds)
@@ -36,7 +46,7 @@ module Vedeu
     end
 
     def defaults
-      { seconds: 1.0 }
+      { seconds: 5.0 }
     end
   end
 end

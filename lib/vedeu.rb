@@ -22,6 +22,7 @@ require_relative 'vedeu/input/keyboard'
 require_relative 'vedeu/input/parser'
 require_relative 'vedeu/input/translator'
 
+require_relative 'vedeu/interface/interfaces'
 require_relative 'vedeu/interface/interface'
 
 require_relative 'vedeu/process/commands'

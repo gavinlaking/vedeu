@@ -26,7 +26,7 @@ TODO: Write detailed documentation
 
 Application
   |-- Clock
-  |-- Screen
+  |-- Interfaces
   |     |-- Dummy < Interface
   |
   |-- Terminal

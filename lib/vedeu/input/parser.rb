@@ -13,10 +13,13 @@ module Vedeu
 
       def parse
         if needs_paste_fix?
+          IO.console.puts "paste"
           [standard_parse]
         elsif escape_sequence?
+          IO.console.puts "esc seq"
           [Input::Translator.press(stringified_standard_parse)]
         else
+          IO.console.puts "multi"
           multibyte_parse
         end
       end
