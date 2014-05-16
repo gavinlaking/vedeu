@@ -1,32 +1,30 @@
 module Vedeu
-  module Output
-    class Mask
-      class << self
-        def define(mask = [])
-          new(mask).define
-        end
-        alias_method :set, :define
+  class Mask
+    class << self
+      def define(mask = [])
+        new(mask).define
       end
+      alias_method :set, :define
+    end
 
-      def initialize(mask = [])
-        @mask = mask
-      end
+    def initialize(mask = [])
+      @mask = mask
+    end
 
-      def define
-        [foreground, background].join
-      end
+    def define
+      [foreground, background].join
+    end
 
-      private
+    private
 
-      attr_reader :mask
+    attr_reader :mask
 
-      def foreground
-        Output::Foreground.escape_sequence(mask[0])
-      end
+    def foreground
+      Foreground.escape_sequence(mask[0])
+    end
 
-      def background
-        Output::Background.escape_sequence(mask[1])
-      end
+    def background
+      Background.escape_sequence(mask[1])
     end
   end
 end

@@ -27,10 +27,10 @@ module Vedeu
       output.map do |line|
         line.map do |stream|
           streams << if stream.is_a?(Array)
-            Output::Mask.set(stream)
+            Mask.set(stream)
           elsif stream.is_a?(Symbol)
             # Esc.set_style(stream)
-            Output::Mask.set(Array(stream))
+            Mask.set(Array(stream))
           else
             stream
           end
