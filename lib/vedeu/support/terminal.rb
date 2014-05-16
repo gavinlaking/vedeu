@@ -54,6 +54,11 @@ module Vedeu
       def hide_cursor
         print Esc.hide_cursor
       end
+
+      def set_position(y = 0, x = 0)
+        print Esc.set_position(y, x)
+      end
+      alias_method :origin, :set_position
     end
 
     def initialize(options = {}, &block)
