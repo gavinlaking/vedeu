@@ -17,13 +17,14 @@ module Vedeu
         Terminal.open(options) do
           Terminal.clear_screen if clear_screen?
           set_cursor
+          origin
 
           initial_state
 
           Clock.start do
-            keys = Input::Keyboard.capture
+            command = Vedeu::Terminal.input
 
-            Commands.execute(keys)
+            Commands.execute(command)
 
             sleep 0.1
           end
@@ -32,7 +33,9 @@ module Vedeu
     rescue OutOfTimeError
       # puts 'Done.'
     ensure
+      puts
       Terminal.show_cursor
+      Terminal.clear_screen
     end
 
     private
@@ -66,15 +69,20 @@ module Vedeu
       options.fetch(:cursor, :show)
     end
 
+    def origin
+      Terminal.origin
+    end
+
     def options
       defaults.merge!(@options)
     end
 
     def defaults
       {
-        clear:  true,    # or false (clears the screen if true)
-        cursor: :show,   # or :hide
-        mode:   :cooked  # or :raw
+        clear:   true,    # or false (clears the screen if true)
+        cursor:  :show,   # or :hide
+        mode:    :cooked, # or :raw
+        runtime: 1.0      # or :infinite
       }
     end
   end
