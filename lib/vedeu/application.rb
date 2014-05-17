@@ -15,10 +15,6 @@ module Vedeu
 
       else
         Terminal.open(options) do
-          Terminal.clear_screen if clear_screen?
-          set_cursor
-          origin
-
           initial_state
 
           Clock.start do
@@ -50,37 +46,12 @@ module Vedeu
       @interfaces ||= Interfaces.default
     end
 
-    def clear_screen?
-      options.fetch(:clear, true)
-    end
-
-    def set_cursor
-      cursor_mode.fetch(cursor).call
-    end
-
-    def cursor_mode
-      {
-        show: Proc.new { Terminal.show_cursor },
-        hide: Proc.new { Terminal.hide_cursor }
-      }
-    end
-
-    def cursor
-      options.fetch(:cursor, :show)
-    end
-
-    def origin
-      Terminal.origin
-    end
-
     def options
       defaults.merge!(@options)
     end
 
     def defaults
       {
-        clear:   true,    # or false (clears the screen if true)
-        cursor:  :show,   # or :hide
         mode:    :cooked, # or :raw
         runtime: 1.0      # or :infinite
       }

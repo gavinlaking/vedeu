@@ -25,7 +25,7 @@ module Vedeu
 
       def cooked(&block)
         console.cooked do
-          clear_screen
+          initial_setup!
 
           yield
         end if block_given?
@@ -34,7 +34,7 @@ module Vedeu
 
       def raw(&block)
         console.raw do
-          clear_screen
+          initial_setup!
 
           yield
         end if block_given?
@@ -75,6 +75,12 @@ module Vedeu
 
     private
 
+    def initial_setup!
+      clear_screen if clear_screen?
+      set_cursor
+      set_position
+    end
+
     def terminal_mode(&block)
       {
         cooked: Proc.new { Terminal.cooked(&block) },
@@ -82,8 +88,27 @@ module Vedeu
       }
     end
 
+    def cursor_mode
+      {
+        show: Proc.new { Terminal.show_cursor },
+        hide: Proc.new { Terminal.hide_cursor }
+      }
+    end
+
+    def set_cursor
+      cursor_mode.fetch(cursor).call
+    end
+
+    def cursor
+      options.fetch(:cursor, :show)
+    end
+
     def mode
       options.fetch(:mode, :cooked)
+    end
+
+    def clear_screen?
+      options.fetch(:clear, true)
     end
 
     def noop
@@ -96,7 +121,9 @@ module Vedeu
 
     def defaults
       {
-        mode: :cooked # or :raw
+        mode:  :cooked, # or :raw
+        clear: true,    # or false (clears the screen if true)
+        cursor:  :show, # or :hide
       }
     end
   end
