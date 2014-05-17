@@ -4,7 +4,7 @@ module Vedeu
   describe Clock do
     let(:klass)    { Clock }
     let(:instance) { klass.new }
-    let(:options)  { { seconds: 0.001 } }
+    let(:options)  { { runtime: 0.001 } }
     let(:block)    {}
 
     it { instance.must_be_instance_of(Clock) }

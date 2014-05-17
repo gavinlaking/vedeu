@@ -26,10 +26,10 @@ module Vedeu
     private
 
     def timeout(&block)
-      if seconds == :infinite
+      if runtime == :infinite
         yield
       else
-        Timeout.timeout(seconds) do
+        Timeout.timeout(runtime) do
           yield
         end
       end
@@ -37,8 +37,8 @@ module Vedeu
       raise OutOfTimeError
     end
 
-    def seconds
-      options.fetch(:seconds)
+    def runtime
+      options.fetch(:runtime)
     end
 
     def options
@@ -46,7 +46,7 @@ module Vedeu
     end
 
     def defaults
-      { seconds: 5.0 }
+      { runtime: 5.0 }
     end
   end
 end
