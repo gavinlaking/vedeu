@@ -16,8 +16,6 @@ require_relative 'vedeu/output/mask'
 require_relative 'vedeu/output/screen'
 require_relative 'vedeu/output/translator'
 
-require_relative 'vedeu/input/character/multibyte'
-require_relative 'vedeu/input/character/standard'
 require_relative 'vedeu/input/keyboard'
 require_relative 'vedeu/input/encoder'
 
