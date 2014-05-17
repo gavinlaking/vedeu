@@ -15,6 +15,10 @@ module Vedeu
       def execute(command = "")
         instance.execute(command)
       end
+
+      def list
+        instance.list
+      end
     end
 
     def initialize(&block)
@@ -28,16 +32,20 @@ module Vedeu
     end
     alias_method :add, :define
 
-    def execute(command = "")
-      commands.fetch(command).call if exists?
+    def execute(command)
+      commands.fetch(command).call if exists?(command)
+    end
+
+    def list
+      commands.inspect
     end
 
     private
 
     attr_accessor :commands, :instance
 
-    def exists?
-      commands.fetch(keys, false)
+    def exists?(command)
+      commands.fetch(command, false)
     end
   end
 end
