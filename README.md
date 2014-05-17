@@ -47,19 +47,6 @@ Compositor
   |-- Esc
         |-- Mask
 
-Keyboard
-  |-- Clock
-  |-- Encoder
-  |     |-- Translator
-  |     |-- Standard
-  |     |-- Multibyte
-  |           |-- Translator
-  |           |-- Standard
-  |
-  |-- Terminal
-        |-- Esc
-              |-- Mask
-
 Interface
   |-- Terminal
         |-- Esc
