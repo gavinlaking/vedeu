@@ -11,7 +11,7 @@ module Vedeu
     end
 
     describe '.input' do
-      before  { console.stubs(:getc).returns("t") }
+      before  { console.stubs(:gets).returns("test") }
 
       subject { klass.input }
 

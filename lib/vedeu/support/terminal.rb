@@ -2,7 +2,9 @@ module Vedeu
   class Terminal
     class << self
       def input
-        console.getc
+        # console.getc  # => cooked
+        # console.getch # => raw
+        console.gets    # => stream
       end
 
       def width
@@ -94,7 +96,7 @@ module Vedeu
 
     def defaults
       {
-        mode:   :cooked # or :raw
+        mode: :cooked # or :raw
       }
     end
   end
