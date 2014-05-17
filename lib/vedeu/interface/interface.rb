@@ -4,9 +4,7 @@ module Vedeu
       @options = options
     end
 
-    def initial
-      print "Interface activated."
-    end
+    def initial; end
 
     def main
       output
