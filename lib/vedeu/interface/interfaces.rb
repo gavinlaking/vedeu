@@ -19,9 +19,10 @@ module Vedeu
     end
 
     def add(name, klass, options = {})
-      raise UndefinedInterface unless Object.const_defined?(klass.to_s)
-      interfaces[name] = Proc.new { klass.new(options) }
-      interfaces
+      if valid?(klass)
+        interfaces[name] = Proc.new { klass.new(options) }
+        interfaces
+      end
     end
 
     def show
@@ -39,5 +40,10 @@ module Vedeu
     private
 
     attr_accessor :interfaces
+
+    def valid?(klass)
+      raise UndefinedInterface unless Object.const_defined?(klass.to_s)
+      true
+    end
   end
 end
