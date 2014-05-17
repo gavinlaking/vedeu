@@ -49,7 +49,7 @@ Compositor
 
 Keyboard
   |-- Clock
-  |-- Parser
+  |-- Encoder
   |     |-- Translator
   |     |-- Standard
   |     |-- Multibyte
