@@ -22,7 +22,7 @@ module Vedeu
     end
 
     def initialize(&block)
-      @commands ||= {}
+      @commands ||= { 'exit' => Proc.new { Vedeu::Exit.dispatch } }
 
       yield self if block_given?
     end
@@ -42,21 +42,17 @@ module Vedeu
 
     private
 
-    attr_writer   :commands
+    attr_accessor :commands
     attr_accessor :instance
-
-    def commands
-      default_commands.merge!(@commands)
-    end
-
-    def default_commands
-      {
-        'exit' => Proc.new { Vedeu::Exit.dispatch }
-      }
-    end
 
     def exists?(command)
       commands.fetch(command, false)
+    end
+  end
+
+  class Exit
+    def self.dispatch
+      :stop
     end
   end
 end
