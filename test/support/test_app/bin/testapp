@@ -10,12 +10,22 @@ require_relative '../../../../lib/vedeu'
 #   interface.add("", ...)
 # end
 
+class Fake
+  def self.dispatch
+    puts "Fake dispatched..."
+    [
+      [[:white, :red], "Fake executed...",   :reset],
+      [[:white, :green], "Test executed...", :reset],
+    ]
+  end
+end
+
 # use default interface
 Vedeu::Interfaces.default
 
 # define some commands
 Vedeu::Commands.define do |command|
-  # command.add("test", ...)
+  command.add("test", Fake)
 end
 
 # create main loop
