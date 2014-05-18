@@ -4,7 +4,7 @@ module Vedeu
       def input
         # console.getc  # => cooked
         # console.getch # => raw
-        console.gets    # => stream
+        console.gets.chomp    # => stream
       end
 
       def width
@@ -23,18 +23,18 @@ module Vedeu
         new(options).open(&block)
       end
 
-      def cooked(&block)
+      def cooked(instance, &block)
         console.cooked do
-          initial_setup!
+          instance.initial_setup!
 
           yield
         end if block_given?
       end
       alias_method :open_cooked, :cooked
 
-      def raw(&block)
+      def raw(instance, &block)
         console.raw do
-          initial_setup!
+          instance.initial_setup!
 
           yield
         end if block_given?
@@ -47,6 +47,7 @@ module Vedeu
 
       def clear_screen
         print Esc.clear
+        print Esc.reset
       end
 
       def show_cursor
@@ -73,18 +74,18 @@ module Vedeu
       terminal_mode(&block).fetch(mode, noop).call
     end
 
-    private
-
     def initial_setup!
-      clear_screen if clear_screen?
+      Terminal.clear_screen if clear_screen?
       set_cursor
-      set_position
+      Terminal.set_position
     end
+
+    private
 
     def terminal_mode(&block)
       {
-        cooked: Proc.new { Terminal.cooked(&block) },
-        raw:    Proc.new { Terminal.raw(&block) }
+        cooked: Proc.new { Terminal.cooked(self, &block) },
+        raw:    Proc.new { Terminal.raw(self, &block) }
       }
     end
 
