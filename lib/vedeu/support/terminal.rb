@@ -52,8 +52,8 @@ module Vedeu
       end
 
       def clear_screen
-        print Esc.clear
         print Esc.reset
+        print Esc.clear
       end
 
       def show_cursor
