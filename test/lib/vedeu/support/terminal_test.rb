@@ -48,6 +48,12 @@ module Vedeu
       end
     end
 
+    describe '.open' do
+      subject { klass.open }
+
+      it { skip }
+    end
+
     describe '.close' do
       subject { klass.close }
 
@@ -125,6 +131,12 @@ module Vedeu
 
         it { skip }
       end
+    end
+
+    describe '#initial_setup!' do
+      subject { klass.new.initial_setup! }
+
+      it { skip }
     end
   end
 end
