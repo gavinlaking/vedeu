@@ -41,9 +41,10 @@ module Vedeu
       container
     end
 
-    def empty_line(line, width = Terminal.width)
-      Esc.set_position(line, 0)
+    def empty_line(index, width = Terminal.width)
+      print Esc.set_position(index, 0)
       print " " * width
+      print Esc.set_position(index, 0)
     end
 
     def options
