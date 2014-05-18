@@ -2,6 +2,8 @@ module Vedeu
   class Compositor
     class << self
       def write(output = [], options = {})
+        return if output.nil? || output.empty?
+
         new(output, options).write
       end
     end

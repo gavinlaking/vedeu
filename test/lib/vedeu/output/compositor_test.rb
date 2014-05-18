@@ -13,6 +13,12 @@ module Vedeu
 
       it { subject.must_be_instance_of(String) }
 
+      context 'when empty' do
+        let(:rows) { [] }
+
+        it { subject.must_be_instance_of(NilClass) }
+      end
+
       context 'when unstyled' do
         context 'and a single line' do
           let(:rows) { [['Some text...']] }
