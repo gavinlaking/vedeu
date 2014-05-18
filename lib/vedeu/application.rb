@@ -17,6 +17,7 @@ module Vedeu
         Terminal.open(options) do
           initial_state
 
+          Process.event_loop
         end
       end
     ensure
