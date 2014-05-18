@@ -5,17 +5,9 @@ trap('INT') { exit! }
 
 require_relative '../../../../lib/vedeu'
 
-module MyApp
-  class Exit
-    def self.dispatch
-      exit!
-    end
-  end
-end
-
 # define an interface
 # Vedeu::Interfaces.define do |interface|
-#   interface.add
+#   interface.add("", ...)
 # end
 
 # use default interface
@@ -23,7 +15,7 @@ Vedeu::Interfaces.default
 
 # define some commands
 Vedeu::Commands.define do |command|
-  command.add("q", MyApp::Exit)
+  # command.add("test", ...)
 end
 
 # create main loop
