@@ -128,9 +128,9 @@ module Vedeu
 
     def defaults
       {
-        mode:  :cooked, # or :raw
-        clear: true,    # or false (clears the screen if true)
-        cursor:  :show, # or :hide
+        mode:   :cooked, # or :raw
+        clear:  true,    # or false (clears the screen if true)
+        cursor: :show, # or :hide
       }
     end
   end
