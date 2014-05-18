@@ -1,21 +1,17 @@
 module Vedeu
   class Process
     class << self
-      def event_loop(&block)
-        new.event_loop(&block)
+      def event_loop
+        new.event_loop
       end
     end
 
-    def initialize(&block)
+    def initialize
       @running = true
-
-      yield self if block_given?
     end
 
-    def event_loop(&block)
-      while running do
-        print
-      end
+    def event_loop
+      while running { print }
     end
 
     private
