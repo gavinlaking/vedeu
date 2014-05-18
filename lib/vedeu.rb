@@ -1,10 +1,7 @@
 require 'hamster'
 require 'io/console'
 require 'singleton'
-require 'timeout'
 
-require_relative 'vedeu/support/collection'
-require_relative 'vedeu/support/clock'
 require_relative 'vedeu/support/terminal'
 
 require_relative 'vedeu/output/base'

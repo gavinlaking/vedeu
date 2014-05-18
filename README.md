@@ -25,7 +25,6 @@ TODO: Write detailed documentation
 ## Notes
 
 Application
-  |-- Clock
   |-- Interfaces
   |     |-- Dummy < Interface
   |

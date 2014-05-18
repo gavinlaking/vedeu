@@ -17,17 +17,8 @@ module Vedeu
         Terminal.open(options) do
           initial_state
 
-          Clock.start do
-            command = Vedeu::Terminal.input
-
-            Commands.execute(command)
-
-            sleep 0.1
-          end
         end
       end
-    rescue OutOfTimeError
-      # puts 'Done.'
     ensure
       puts
       Terminal.show_cursor
@@ -53,7 +44,6 @@ module Vedeu
     def defaults
       {
         mode:    :cooked, # or :raw
-        runtime: 1.0      # or :infinite
       }
     end
   end
