@@ -21,7 +21,6 @@ module Vedeu
         end
       end
     ensure
-      puts
       Terminal.show_cursor
       Terminal.clear_screen
     end
@@ -44,7 +43,7 @@ module Vedeu
 
     def defaults
       {
-        mode:    :cooked, # or :raw
+        mode: :cooked, # or :raw
       }
     end
   end
