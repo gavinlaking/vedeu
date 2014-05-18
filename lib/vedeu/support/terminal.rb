@@ -23,6 +23,12 @@ module Vedeu
         new(options).open(&block)
       end
 
+      def close
+        clear_screen
+        show_cursor
+        set_position
+      end
+
       def cooked(instance, &block)
         console.cooked do
           instance.initial_setup!

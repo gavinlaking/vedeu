@@ -48,6 +48,12 @@ module Vedeu
       end
     end
 
+    describe '.close' do
+      subject { klass.close }
+
+      it { skip }
+    end
+
     describe '.cooked' do
       subject { klass.cooked }
 

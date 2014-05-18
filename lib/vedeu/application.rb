@@ -21,8 +21,7 @@ module Vedeu
         end
       end
     ensure
-      Terminal.show_cursor
-      Terminal.clear_screen
+      Terminal.close
     end
 
     private
