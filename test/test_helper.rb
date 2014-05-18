@@ -15,6 +15,10 @@ module MiniTest
   end
 end
 
+Minitest.after_run do
+  print [27.chr, '[', '?25h'].join # show cursor
+end
+
 require_relative '../lib/vedeu.rb'
 
 require 'mocha/setup'
