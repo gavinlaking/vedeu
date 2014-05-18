@@ -42,7 +42,18 @@ module Vedeu
 
     private
 
-    attr_accessor :commands, :instance
+    attr_writer   :commands
+    attr_accessor :instance
+
+    def commands
+      default_commands.merge!(@commands)
+    end
+
+    def default_commands
+      {
+        'exit' => Proc.new { Vedeu::Exit.dispatch }
+      }
+    end
 
     def exists?(command)
       commands.fetch(command, false)
