@@ -6,23 +6,19 @@ module Vedeu
       end
     end
 
-    def initialize
-      @running = true
-    end
+    def initialize; end
 
     def event_loop
-      while running { print }
+      while true do
+        command = evaluate
+
+        break if command == :stop
+
+        Compositor.write(command)
+      end
     end
 
     private
-
-    attr_accessor :running
-
-    def print
-      return stop if evaluate == :stop
-
-      Compositor.write(evaluate)
-    end
 
     def evaluate
       Commands.execute(read)
@@ -30,10 +26,6 @@ module Vedeu
 
     def read
       Terminal.input
-    end
-
-    def stop
-      @running = false
     end
   end
 end
