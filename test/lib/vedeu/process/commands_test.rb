@@ -12,6 +12,18 @@ module Vedeu
 
     it { instance.must_be_instance_of(Vedeu::Commands) }
 
+    describe '.execute' do
+      subject { klass.execute }
+
+      it { skip }
+    end
+
+    describe '.list' do
+      subject { klass.list }
+
+      it { subject.must_be_instance_of(String) }
+    end
+
     describe '#define' do
       let(:command_name)  { "some_name" }
       let(:command_klass) { DummyCommandKlass }
@@ -33,6 +45,18 @@ module Vedeu
       subject { instance.list }
 
       it { subject.must_be_instance_of(String) }
+    end
+  end
+
+  describe Exit do
+    let(:klass)    { Exit }
+
+    describe '.dispatch' do
+      subject { klass.dispatch }
+
+      it { subject.must_be_instance_of(Symbol) }
+
+      it { subject.must_equal(:stop) }
     end
   end
 end

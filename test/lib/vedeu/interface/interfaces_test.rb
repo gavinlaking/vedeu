@@ -18,6 +18,12 @@ module Vedeu
       end
     end
 
+    describe '.define' do
+      subject { klass.define }
+
+      it { subject.must_be_instance_of(Interfaces) }
+    end
+
     describe '#add' do
       let(:interface_name)  {}
       let(:interface_klass) { Class }

@@ -63,27 +63,27 @@ module Vedeu
           end
         end
 
-        context 'with single colour' do
+        context 'with a style' do
           context 'and a single line' do
             let(:rows) {
               [
-                [:red, 'Some text...']
+                [:bold, 'Some text...']
               ]
             }
 
-            it { subject.must_equal("\e[38;5;31m\e[48;5;49mSome text...") }
+            it { subject.must_equal("\e[1mSome text...") }
           end
 
           context 'and multi-line' do
             let(:rows) {
               [
-                [:red,   'Some text...'],
-                [:green, 'Some more text...']
+                [:inverse,   'Some text...'],
+                [:underline, 'Some more text...']
               ]
             }
 
-            it { subject.must_equal("\e[38;5;31m\e[48;5;49mSome text...\n" \
-                                    "\e[38;5;32m\e[48;5;49mSome more text...") }
+            it { subject.must_equal("\e[7mSome text...\n" \
+                                    "\e[4mSome more text...") }
           end
         end
 
@@ -95,7 +95,7 @@ module Vedeu
           }
 
           it 'renders in the default style' do
-            subject.must_equal("\e[38;5;39m\e[48;5;49mSome text...")
+            subject.must_equal("Some text...")
           end
         end
       end

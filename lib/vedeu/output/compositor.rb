@@ -13,10 +13,9 @@ module Vedeu
     end
 
     def write
-      parsed.map do |line|
-        #print line
-      end
-      parsed.join("\n")
+      parsed.each_with_index do |data, index|
+        render(data, index)
+      end.join("\n")
     end
 
     private
@@ -31,8 +30,7 @@ module Vedeu
           streams << if stream.is_a?(Array)
             Mask.set(stream)
           elsif stream.is_a?(Symbol)
-            # Esc.set_style(stream)
-            Mask.set(Array(stream))
+            Esc.set_style(stream)
           else
             stream
           end
@@ -43,10 +41,14 @@ module Vedeu
       container
     end
 
-    def empty_line(index, width = Terminal.width)
-      print Esc.set_position(index, 0)
-      print " " * width
-      print Esc.set_position(index, 0)
+    def render(data, index)
+      print Esc.set_position(index, 0),
+            " " * width,
+            data
+    end
+
+    def width
+      Terminal.width
     end
 
     def options
