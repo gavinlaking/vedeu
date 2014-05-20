@@ -15,14 +15,11 @@ module Vedeu
     def enact
       raise InvalidDirective unless valid_directive?
 
+      return Style.set(directive) if directive.is_a?(Symbol)
+
       if directive.is_a?(Array)
-        if directive.first.is_a?(Numeric)
-          Position.set(*directive)
-        elsif directive.first.is_a?(Symbol)
-          Colour.set(directive)
-        end
-      elsif directive.is_a?(Symbol)
-        Style.use(directive)
+        return Position.set(*directive) if directive.first.is_a?(Numeric)
+        return Colour.set(directive)    if directive.first.is_a?(Symbol)
       end
     end
 
