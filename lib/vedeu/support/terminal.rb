@@ -2,9 +2,7 @@ module Vedeu
   class Terminal
     class << self
       def input
-        # console.getc  # => cooked
-        # console.getch # => raw
-        console.gets.chomp    # => stream
+        console.gets.chomp
       end
 
       def output(stream = '')
@@ -134,7 +132,7 @@ module Vedeu
       {
         mode:   :cooked, # or :raw
         clear:  true,    # or false (clears the screen if true)
-        cursor: :show, # or :hide
+        cursor: :show,   # or :hide
       }
     end
   end
