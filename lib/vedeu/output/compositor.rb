@@ -40,9 +40,9 @@ module Vedeu
     end
 
     def render(data, index)
-      print Position.set(index, 0),
-            " " * width,
-            data
+      Terminal.output(Position.set(index, 0))
+      Terminal.output(" " * width)
+      Terminal.output(data)
     end
 
     def width

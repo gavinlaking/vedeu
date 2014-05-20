@@ -18,6 +18,14 @@ module Vedeu
       it { subject.must_be_instance_of(String) }
     end
 
+    describe '.output' do
+      before { console.stubs(:puts).returns("test") }
+
+      subject { klass.output }
+
+      it { subject.must_be_instance_of(String) }
+    end
+
     describe '.width' do
       subject { klass.width }
 
@@ -79,7 +87,10 @@ module Vedeu
     end
 
     describe '.clear_screen' do
-      before { Esc.stubs(:clear).returns('') }
+      before do
+        Esc.stubs(:clear).returns('')
+        console.stubs(:puts)
+      end
 
       subject { klass.clear_screen }
 
@@ -93,6 +104,8 @@ module Vedeu
     end
 
     describe '.show_cursor' do
+      before { console.stubs(:puts) }
+
       subject { klass.show_cursor }
 
       it { subject.must_be_instance_of(NilClass) }
@@ -105,6 +118,8 @@ module Vedeu
     end
 
     describe '.hide_cursor' do
+      before { console.stubs(:puts) }
+
       subject { klass.hide_cursor }
 
       it { subject.must_be_instance_of(NilClass) }

@@ -7,6 +7,10 @@ module Vedeu
         console.gets.chomp    # => stream
       end
 
+      def output(stream = '')
+        console.puts(stream)
+      end
+
       def width
         size.last
       end
@@ -26,7 +30,7 @@ module Vedeu
       def close
         clear_screen
         show_cursor
-        print Position.reset
+        output(Position.reset)
       end
 
       def cooked(instance, &block)
@@ -52,16 +56,16 @@ module Vedeu
       end
 
       def clear_screen
-        print Esc.reset
-        print Esc.clear
+        output(Esc.reset)
+        output(Esc.clear)
       end
 
       def show_cursor
-        print Esc.show_cursor
+        output(Esc.show_cursor)
       end
 
       def hide_cursor
-        print Esc.hide_cursor
+        output(Esc.hide_cursor)
       end
     end
 
@@ -78,7 +82,7 @@ module Vedeu
     def initial_setup!
       Terminal.clear_screen if clear_screen?
       set_cursor
-      print Position.reset
+      output(Position.reset)
     end
 
     private
