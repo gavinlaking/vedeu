@@ -1,21 +1,21 @@
 require_relative '../../../test_helper'
 
 module Vedeu
-  describe Mask do
-    let(:klass)    { Mask }
+  describe Colour do
+    let(:klass)    { Colour }
     let(:instance) { klass.new }
-    let(:mask)     { [] }
+    let(:pair)     { [] }
 
-    it { instance.must_be_instance_of(Mask) }
+    it { instance.must_be_instance_of(Colour) }
 
     describe '.set' do
-      subject { klass.set(mask) }
+      subject { klass.set(pair) }
 
       it { subject.must_be_instance_of(String) }
 
       context 'when the foreground and background are specified as symbols' do
         context 'when both the foreground and background is specified' do
-          let(:mask) { [:red, :yellow] }
+          let(:pair) { [:red, :yellow] }
 
           it 'returns the code for red on yellow' do
             subject.must_equal("\e[38;5;31m\e[48;5;43m")
@@ -23,7 +23,7 @@ module Vedeu
         end
 
         context 'when a foreground is specified' do
-          let(:mask) { [:blue] }
+          let(:pair) { [:blue] }
 
           it 'returns the code for blue on default' do
             subject.must_equal("\e[38;5;34m\e[48;5;49m")
@@ -31,7 +31,7 @@ module Vedeu
         end
 
         context 'when a background is specified' do
-          let(:mask) { [nil, :cyan] }
+          let(:pair) { [nil, :cyan] }
 
           it 'returns the code for default with cyan background' do
             subject.must_equal("\e[38;5;39m\e[48;5;46m")
@@ -39,7 +39,7 @@ module Vedeu
         end
 
         context 'when an invalid foreground/background is specified' do
-          let(:mask) { [:melon, :raspberry] }
+          let(:pair) { [:melon, :raspberry] }
 
           it 'returns the default code' do
             subject.must_equal("\e[38;5;39m\e[48;5;49m")
@@ -47,7 +47,7 @@ module Vedeu
         end
 
         context 'when no foreground/background is specified' do
-          let(:mask) { [] }
+          let(:pair) { [] }
 
           it 'returns the reset code' do
             subject.must_equal("\e[38;5;39m\e[48;5;49m")
@@ -56,7 +56,7 @@ module Vedeu
       end
 
       context 'when the foreground and background are specified as strings' do
-        let(:mask) { ['#ff0000', '#0000ff'] }
+        let(:pair) { ['#ff0000', '#0000ff'] }
 
         it 'returns the default code' do
           subject.must_equal("\e[38;5;196m\e[48;5;21m")

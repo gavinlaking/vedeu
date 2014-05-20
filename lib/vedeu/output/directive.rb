@@ -19,7 +19,7 @@ module Vedeu
         if directive.first.is_a?(Numeric)
           Position.set(*directive)
         elsif directive.first.is_a?(Symbol)
-          Mask.set(directive)
+          Colour.set(directive)
         end
       elsif directive.is_a?(Symbol)
         Style.use(directive)

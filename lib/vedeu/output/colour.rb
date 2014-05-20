@@ -1,14 +1,14 @@
 module Vedeu
-  class Mask
+  class Colour
     class << self
-      def define(mask = [])
-        new(mask).define
+      def define(pair = [])
+        new(pair).define
       end
       alias_method :set, :define
     end
 
-    def initialize(mask = [])
-      @mask = mask
+    def initialize(pair = [])
+      @pair = pair
     end
 
     def define
@@ -17,14 +17,14 @@ module Vedeu
 
     private
 
-    attr_reader :mask
+    attr_reader :pair
 
     def foreground
-      Foreground.escape_sequence(mask[0])
+      Foreground.escape_sequence(pair[0])
     end
 
     def background
-      Background.escape_sequence(mask[1])
+      Background.escape_sequence(pair[1])
     end
   end
 end

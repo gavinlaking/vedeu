@@ -30,26 +30,26 @@ Application
   |
   |-- Terminal
         |-- Esc
-              |-- Mask
+              |-- Colour
 
 Base
   |-- Translator
   |-- Esc
-        |-- Mask
+        |-- Colour
 
 Compositor
-  |-- Mask
+  |-- Colour
   |     |-- Foreground < Base
   |     |-- Background < Base
   |     |-- Translator
   |
   |-- Esc
-        |-- Mask
+        |-- Colour
 
 Interface
   |-- Terminal
         |-- Esc
-              |-- Mask
+              |-- Colour
 
 
 ## Contributing
