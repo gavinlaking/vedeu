@@ -20,7 +20,37 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+TODO: Write detailed documentation
+
+## Notes
+
+Application
+  |-- Interfaces
+  |     |-- Dummy < Interface
+  |
+  |-- Terminal
+        |-- Esc
+              |-- Colour
+
+Base
+  |-- Translator
+  |-- Esc
+        |-- Colour
+
+Compositor
+  |-- Colour
+  |     |-- Foreground < Base
+  |     |-- Background < Base
+  |     |-- Translator
+  |
+  |-- Esc
+        |-- Colour
+
+Interface
+  |-- Terminal
+        |-- Esc
+              |-- Colour
+
 
 ## Contributing
 

@@ -1,16 +1,11 @@
-require_relative '../../test_helper'
+require_relative '../../../test_helper'
 
 module Vedeu
   describe Esc do
-    let(:klass)    { Esc }
-    let(:instance) { klass.new(fg, bg) }
-    let(:fg)       { 39 }
-    let(:bg)       { 49 }
-
-    it { instance.must_be_instance_of(Vedeu::Esc) }
+    let(:described_class)    { Esc }
 
     describe '.bold' do
-      subject { klass.bold }
+      subject { described_class.bold }
 
       it { subject.must_be_instance_of(String) }
 
@@ -18,7 +13,7 @@ module Vedeu
     end
 
     describe '.clear' do
-      subject { klass.clear }
+      subject { described_class.clear }
 
       it { subject.must_be_instance_of(String) }
 
@@ -26,7 +21,7 @@ module Vedeu
     end
 
     describe '.esc' do
-      subject { klass.esc }
+      subject { described_class.esc }
 
       it { subject.must_be_instance_of(String) }
 
@@ -34,7 +29,7 @@ module Vedeu
     end
 
     describe '.hide_cursor' do
-      subject { klass.hide_cursor }
+      subject { described_class.hide_cursor }
 
       it { subject.must_be_instance_of(String) }
 
@@ -42,7 +37,7 @@ module Vedeu
     end
 
     describe '.inverse' do
-      subject { klass.inverse }
+      subject { described_class.inverse }
 
       it { subject.must_be_instance_of(String) }
 
@@ -50,23 +45,15 @@ module Vedeu
     end
 
     describe '.reset' do
-      subject { klass.reset }
+      subject { described_class.reset }
 
       it { subject.must_be_instance_of(String) }
 
       it { subject.must_equal("\e[0m") }
     end
 
-    describe '.set' do
-      subject { klass.set(fg, bg) }
-
-      it { subject.must_be_instance_of(String) }
-
-      it { subject.must_equal("\e[39;49m") }
-    end
-
     describe '.show_cursor' do
-      subject { klass.show_cursor }
+      subject { described_class.show_cursor }
 
       it { subject.must_be_instance_of(String) }
 
@@ -74,12 +61,11 @@ module Vedeu
     end
 
     describe '.underline' do
-      subject { klass.underline }
+      subject { described_class.underline }
 
       it { subject.must_be_instance_of(String) }
 
       it { subject.must_equal("\e[4m") }
     end
-
   end
 end
