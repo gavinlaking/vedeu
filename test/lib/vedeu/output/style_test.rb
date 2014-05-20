@@ -4,10 +4,10 @@ module Vedeu
   describe Style do
     let(:described_class) { Style }
 
-    describe '.use' do
+    describe '.set' do
       let(:style) {}
 
-      subject { described_class.use(style) }
+      subject { described_class.set(style) }
 
       it { subject.must_be_instance_of(String) }
 

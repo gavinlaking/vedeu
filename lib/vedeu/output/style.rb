@@ -1,8 +1,8 @@
 module Vedeu
   class Style
     class << self
-      def use(style)
-        new(style).use
+      def set(style)
+        new(style).set
       end
     end
 
@@ -10,13 +10,14 @@ module Vedeu
       @style = style
     end
 
-    def use
+    def set
       case style
       when :bold        then Esc.bold
       when :clear       then Esc.clear
       when :hide_cursor then Esc.hide_cursor
       when :inverse     then Esc.inverse
       when :reset       then Esc.reset
+      when :normal      then Esc.reset
       when :show_cursor then Esc.show_cursor
       when :underline   then Esc.underline
       else
