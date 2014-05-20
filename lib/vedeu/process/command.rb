@@ -21,7 +21,7 @@ module Vedeu
     attr_reader :name, :klass, :args, :options
 
     def executable
-      Proc.new { klass.dispatch(*args, options) }
+      Proc.new { klass.dispatch(*args) }
     end
 
     def valid?
