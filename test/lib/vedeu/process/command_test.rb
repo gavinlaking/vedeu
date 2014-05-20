@@ -15,7 +15,7 @@ module Vedeu
     let(:cmd_args)    { [] }
     let(:cmd_options) { {} }
 
-    it { instance.must_be_instance_of(Vedeu::Command) }
+    it { instance.must_be_instance_of(Command) }
 
     describe '#define' do
       subject do

@@ -30,7 +30,7 @@ module Vedeu
           if stream.is_a?(String)
             streams << stream
           else
-            streams << Vedeu::Directive.enact(stream)
+            streams << Directive.enact(stream)
           end
         end
         container << streams.join

@@ -6,7 +6,7 @@ module Vedeu
     let(:instance) { described_class.new }
     let(:block)    {}
 
-    it { instance.must_be_instance_of(Vedeu::Interfaces) }
+    it { instance.must_be_instance_of(Interfaces) }
 
     describe '.default' do
       subject { described_class.default }

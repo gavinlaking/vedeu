@@ -4,7 +4,7 @@ module Vedeu
   class Interfaces
     class << self
       def default
-        new { |io| io.add(:dummy, Vedeu::Dummy) }
+        new { |io| io.add(:dummy, Dummy) }
       end
 
       def define(&block)

@@ -7,10 +7,10 @@ module Vedeu
     let(:options)  { {} }
 
     before do
-      Vedeu::Terminal.stubs(:width).returns(80)
-      Vedeu::Terminal.stubs(:height).returns(25)
-      Vedeu::Terminal.stubs(:show_cursor)
-      Vedeu::Terminal.stubs(:hide_cursor)
+      Terminal.stubs(:width).returns(80)
+      Terminal.stubs(:height).returns(25)
+      Terminal.stubs(:show_cursor)
+      Terminal.stubs(:hide_cursor)
     end
 
     it { instance.must_be_instance_of(Interface) }

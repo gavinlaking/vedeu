@@ -22,7 +22,7 @@ module Vedeu
     end
 
     def initialize(&block)
-      @commands ||= { 'exit' => Proc.new { Vedeu::Exit.dispatch } }
+      @commands ||= { 'exit' => Proc.new { Exit.dispatch } }
 
       yield self if block_given?
     end

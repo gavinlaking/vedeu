@@ -10,7 +10,7 @@ module Vedeu
     let(:instance) { described_class.instance }
     let(:block)    {}
 
-    it { instance.must_be_instance_of(Vedeu::Commands) }
+    it { instance.must_be_instance_of(Commands) }
 
     describe '.execute' do
       subject { described_class.execute }

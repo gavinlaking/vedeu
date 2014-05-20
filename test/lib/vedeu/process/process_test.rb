@@ -6,6 +6,6 @@ module Vedeu
     let(:instance) { described_class.new }
     let(:block)    {}
 
-    it { instance.must_be_instance_of(Vedeu::Process) }
+    it { instance.must_be_instance_of(Process) }
   end
 end

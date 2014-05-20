@@ -13,19 +13,19 @@ module Vedeu
     end
 
     def output
-      Vedeu::Terminal.hide_cursor
+      Terminal.hide_cursor
     end
 
     def input
-      Vedeu::Terminal.show_cursor
+      Terminal.show_cursor
     end
 
     def width
-      options[:width]  || Vedeu::Terminal.width
+      options[:width]  || Terminal.width
     end
 
     def height
-      options[:height] || Vedeu::Terminal.height
+      options[:height] || Terminal.height
     end
 
     private
