@@ -12,15 +12,11 @@ module Vedeu
     end
 
     def set
-      [esc, (y + 1), ';', (x + 1), 'H'].join
+      [Esc.esc, (y + 1), ';', (x + 1), 'H'].join
     end
 
     private
 
     attr_accessor :y, :x
-
-    def esc
-      Esc.esc
-    end
   end
 end

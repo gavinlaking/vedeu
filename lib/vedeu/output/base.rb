@@ -11,7 +11,7 @@ module Vedeu
     end
 
     def escape_sequence
-      [esc, prefix, code, suffix].join
+      [Esc.esc, prefix, code, suffix].join
     end
 
     private
@@ -40,10 +40,6 @@ module Vedeu
 
     def default
       codes[:default]
-    end
-
-    def esc
-      Esc.esc
     end
 
     def suffix
