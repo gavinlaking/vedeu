@@ -25,10 +25,6 @@ module Vedeu
         [esc, '0m'].join
       end
 
-      def set_colour(fg, bg)
-        Mask.set([fg, bg])
-      end
-
       def show_cursor
         [esc, '?25h'].join
       end

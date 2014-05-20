@@ -52,17 +52,6 @@ module Vedeu
       it { subject.must_equal("\e[0m") }
     end
 
-    describe '.set_colour' do
-      let(:fg) {}
-      let(:bg) {}
-
-      subject { klass.set_colour(fg, bg) }
-
-      it { subject.must_be_instance_of(String) }
-
-      it { subject.must_equal("\e[38;5;39m\e[48;5;49m") }
-    end
-
     describe '.show_cursor' do
       subject { klass.show_cursor }
 
