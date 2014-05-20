@@ -27,12 +27,10 @@ module Vedeu
       streams = []
       output.map do |line|
         line.map do |stream|
-          streams << if stream.is_a?(Array)
-            Mask.set(stream)
-          elsif stream.is_a?(Symbol)
-            Esc.set_style(stream)
+          if stream.is_a?(String)
+            streams << stream
           else
-            stream
+            streams << Vedeu::Directive.enact(stream)
           end
         end
         container << streams.join
