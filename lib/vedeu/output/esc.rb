@@ -29,10 +29,6 @@ module Vedeu
         Mask.set([fg, bg])
       end
 
-      def set_position(y, x)
-        [esc, (y + 1), ';', (x + 1), 'H'].join
-      end
-
       def set_style(style)
         case style
         when :bold        then bold

@@ -26,7 +26,7 @@ module Vedeu
       def close
         clear_screen
         show_cursor
-        set_position
+        print Position.reset
       end
 
       def cooked(instance, &block)
@@ -63,11 +63,6 @@ module Vedeu
       def hide_cursor
         print Esc.hide_cursor
       end
-
-      def set_position(y = 0, x = 0)
-        print Esc.set_position(y, x)
-      end
-      alias_method :origin, :set_position
     end
 
     def initialize(options = {}, &block)
@@ -83,7 +78,7 @@ module Vedeu
     def initial_setup!
       Terminal.clear_screen if clear_screen?
       set_cursor
-      Terminal.set_position
+      print Position.reset
     end
 
     private

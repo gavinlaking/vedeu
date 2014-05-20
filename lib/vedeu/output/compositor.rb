@@ -42,7 +42,7 @@ module Vedeu
     end
 
     def render(data, index)
-      print Esc.set_position(index, 0),
+      print Position.set(index, 0),
             " " * width,
             data
     end

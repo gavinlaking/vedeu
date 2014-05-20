@@ -63,17 +63,6 @@ module Vedeu
       it { subject.must_equal("\e[38;5;39m\e[48;5;49m") }
     end
 
-    describe '.set_position' do
-      let(:y) { 12 }
-      let(:x) { 19 }
-
-      subject { klass.set_position(y, x) }
-
-      it { subject.must_be_instance_of(String) }
-
-      it { subject.must_equal("\e[13;20H") }
-    end
-
     describe '.set_style' do
       let(:style) {}
 

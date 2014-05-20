@@ -116,23 +116,6 @@ module Vedeu
       end
     end
 
-    describe '.set_position' do
-      let(:y) { 0 }
-      let(:x) { 0 }
-
-      before { Esc.stubs(:set_position).returns(nil) }
-
-      subject { klass.set_position(y, x) }
-
-      it { subject.must_be_instance_of(NilClass) }
-
-      context 'capturing output' do
-        let(:io) { capture_io { subject }.join }
-
-        it { skip }
-      end
-    end
-
     describe '#initial_setup!' do
       subject { klass.new.initial_setup! }
 

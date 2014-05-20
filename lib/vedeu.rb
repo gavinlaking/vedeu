@@ -10,6 +10,7 @@ require_relative 'vedeu/output/foreground'
 require_relative 'vedeu/output/esc'
 require_relative 'vedeu/output/mask'
 require_relative 'vedeu/output/translator'
+require_relative 'vedeu/output/position'
 
 require_relative 'vedeu/interface/interfaces'
 require_relative 'vedeu/interface/interface'
