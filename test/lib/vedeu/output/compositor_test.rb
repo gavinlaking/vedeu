@@ -6,6 +6,8 @@ module Vedeu
     let(:instance) { described_class.new(rows) }
     let(:rows)     { [[]] }
 
+    before { Terminal.stubs(:output) }
+
     it { instance.must_be_instance_of(Compositor) }
 
     describe '.write' do
