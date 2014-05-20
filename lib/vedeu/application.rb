@@ -41,9 +41,7 @@ module Vedeu
     end
 
     def defaults
-      {
-        mode: :cooked, # or :raw
-      }
+      {}
     end
   end
 end
