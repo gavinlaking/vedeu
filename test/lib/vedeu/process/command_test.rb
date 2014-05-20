@@ -8,8 +8,8 @@ module Vedeu
   end
 
   describe Command do
-    let(:klass)       { Command }
-    let(:instance)    { klass.new(cmd_name, cmd_klass, cmd_args, cmd_options) }
+    let(:described_class)       { Command }
+    let(:instance)    { described_class.new(cmd_name, cmd_klass, cmd_args, cmd_options) }
     let(:cmd_name)    { "dummy" }
     let(:cmd_klass)   { DummyCommand }
     let(:cmd_args)    { [] }
@@ -19,7 +19,7 @@ module Vedeu
 
     describe '#define' do
       subject do
-        klass.define(cmd_name, cmd_klass, cmd_args, cmd_options)
+        described_class.define(cmd_name, cmd_klass, cmd_args, cmd_options)
       end
 
       it { subject.must_be_instance_of(Hash) }

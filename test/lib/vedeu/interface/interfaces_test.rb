@@ -2,14 +2,14 @@ require_relative '../../../test_helper'
 
 module Vedeu
   describe Interfaces do
-    let(:klass)    { Interfaces }
-    let(:instance) { klass.new }
+    let(:described_class)    { Interfaces }
+    let(:instance) { described_class.new }
     let(:block)    {}
 
     it { instance.must_be_instance_of(Vedeu::Interfaces) }
 
     describe '.default' do
-      subject { klass.default }
+      subject { described_class.default }
 
       it { subject.must_be_instance_of(Interfaces) }
 
@@ -19,17 +19,17 @@ module Vedeu
     end
 
     describe '.define' do
-      subject { klass.define }
+      subject { described_class.define }
 
       it { subject.must_be_instance_of(Interfaces) }
     end
 
     describe '#add' do
       let(:interface_name)  {}
-      let(:interface_klass) { Class }
+      let(:klass) { Class }
       let(:options)         { {} }
 
-      subject { instance.add(interface_name, interface_klass, options) }
+      subject { instance.add(interface_name, klass, options) }
 
       it { subject.must_be_instance_of(Hash) }
 

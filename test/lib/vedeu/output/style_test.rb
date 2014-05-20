@@ -2,12 +2,12 @@ require_relative '../../../test_helper'
 
 module Vedeu
   describe Style do
-    let(:klass) { Style }
+    let(:described_class) { Style }
 
     describe '.use' do
       let(:style) {}
 
-      subject { klass.use(style) }
+      subject { described_class.use(style) }
 
       it { subject.must_be_instance_of(String) }
 

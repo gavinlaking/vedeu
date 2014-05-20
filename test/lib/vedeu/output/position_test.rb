@@ -2,13 +2,13 @@ require_relative '../../../test_helper'
 
 module Vedeu
   describe Position do
-    let(:klass)    { Position }
-    let(:instance) { klass.new }
+    let(:described_class)    { Position }
+    let(:instance) { described_class.new }
 
     it { instance.must_be_instance_of(Position) }
 
     describe '.set' do
-      subject { klass.set }
+      subject { described_class.set }
 
       it { subject.must_be_instance_of(String) }
 
@@ -22,7 +22,7 @@ module Vedeu
         let(:y) { 12 }
         let(:x) { 19 }
 
-        subject { klass.set(y, x) }
+        subject { described_class.set(y, x) }
 
         it 'returns a position escape sequence' do
           subject.must_equal("\e[13;20H")

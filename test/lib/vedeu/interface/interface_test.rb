@@ -2,8 +2,8 @@ require_relative '../../../test_helper'
 
 module Vedeu
   describe Interface do
-    let(:klass)    { Interface }
-    let(:instance) { klass.new(options) }
+    let(:described_class)    { Interface }
+    let(:instance) { described_class.new(options) }
     let(:options)  { {} }
 
     before do

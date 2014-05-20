@@ -2,8 +2,8 @@ require_relative '../../../test_helper'
 
 module Vedeu
   describe Translator do
-    let(:klass)       { Translator }
-    let(:instance)    { klass.new(html_colour) }
+    let(:described_class)       { Translator }
+    let(:instance)    { described_class.new(html_colour) }
     let(:html_colour) {}
 
     it { instance.must_be_instance_of(Translator) }
@@ -19,32 +19,32 @@ module Vedeu
       }.map do |html_colour, terminal_colour|
         context 'valid' do
           it 'translation is performed' do
-            klass.translate(html_colour).must_be_instance_of(Fixnum)
+            described_class.translate(html_colour).must_be_instance_of(Fixnum)
 
-            klass.translate(html_colour).must_equal(terminal_colour)
+            described_class.translate(html_colour).must_equal(terminal_colour)
           end
         end
       end
 
       context 'invalid' do
         it 'returns nil when not present' do
-          klass.translate.must_equal(nil)
+          described_class.translate.must_equal(nil)
         end
 
         it 'returns nil when the wrong type' do
-          klass.translate(:wrong_type).must_equal(nil)
+          described_class.translate(:wrong_type).must_equal(nil)
         end
 
         it 'returns nil when invalid format' do
-          klass.translate('345678').must_equal(nil)
+          described_class.translate('345678').must_equal(nil)
         end
 
         it 'returns nil when invalid format' do
-          klass.translate('#h11111').must_equal(nil)
+          described_class.translate('#h11111').must_equal(nil)
         end
 
         it 'returns nil when invalid format' do
-          klass.translate('#1111').must_equal(nil)
+          described_class.translate('#1111').must_equal(nil)
         end
       end
     end

@@ -2,14 +2,14 @@ require_relative '../../../test_helper'
 
 module Vedeu
   describe Colour do
-    let(:klass)    { Colour }
-    let(:instance) { klass.new }
+    let(:described_class)    { Colour }
+    let(:instance) { described_class.new }
     let(:pair)     { [] }
 
     it { instance.must_be_instance_of(Colour) }
 
     describe '.set' do
-      subject { klass.set(pair) }
+      subject { described_class.set(pair) }
 
       it { subject.must_be_instance_of(String) }
 

@@ -2,8 +2,8 @@ require_relative '../../test_helper'
 
 module Vedeu
   describe Application do
-    let(:klass)      { Application }
-    let(:instance)   { klass.new(interfaces, options) }
+    let(:described_class){ Application }
+    let(:instance)   { described_class.new(interfaces, options) }
     let(:interfaces) {}
     let(:options)    { {} }
 
@@ -15,7 +15,7 @@ module Vedeu
       it { skip }
 
       context 'when the user sets the clear option' do
-        # subject { klass.clear_screen }
+        # subject { described_class.clear_screen }
 
         # it { subject.must_be_instance_of(NilClass) }
 

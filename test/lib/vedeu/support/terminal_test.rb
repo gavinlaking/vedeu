@@ -2,7 +2,7 @@ require_relative '../../../test_helper'
 
 module Vedeu
   describe Terminal do
-    let(:klass)    { Terminal }
+    let(:described_class)    { Terminal }
     let(:console)  { stub }
 
     before do
@@ -13,7 +13,7 @@ module Vedeu
     describe '.input' do
       before  { console.stubs(:gets).returns("test") }
 
-      subject { klass.input }
+      subject { described_class.input }
 
       it { subject.must_be_instance_of(String) }
     end
@@ -21,13 +21,13 @@ module Vedeu
     describe '.output' do
       before { console.stubs(:puts).returns("test") }
 
-      subject { klass.output }
+      subject { described_class.output }
 
       it { subject.must_be_instance_of(String) }
     end
 
     describe '.width' do
-      subject { klass.width }
+      subject { described_class.width }
 
       it { subject.must_be_instance_of(Fixnum) }
 
@@ -37,7 +37,7 @@ module Vedeu
     end
 
     describe '.height' do
-      subject { klass.height }
+      subject { described_class.height }
 
       it { subject.must_be_instance_of(Fixnum) }
 
@@ -47,7 +47,7 @@ module Vedeu
     end
 
     describe '.size' do
-      subject { klass.size }
+      subject { described_class.size }
 
       it { subject.must_be_instance_of(Array) }
 
@@ -57,31 +57,31 @@ module Vedeu
     end
 
     describe '.open' do
-      subject { klass.open }
+      subject { described_class.open }
 
       it { skip }
     end
 
     describe '.close' do
-      subject { klass.close }
+      subject { described_class.close }
 
       it { skip }
     end
 
     describe '.cooked' do
-      subject { klass.cooked }
+      subject { described_class.cooked }
 
       it { skip }
     end
 
     describe '.raw' do
-      subject { klass.raw }
+      subject { described_class.raw }
 
       it { skip }
     end
 
     describe '.console' do
-      subject { klass.console }
+      subject { described_class.console }
 
       it { skip }
     end
@@ -92,7 +92,7 @@ module Vedeu
         console.stubs(:puts)
       end
 
-      subject { klass.clear_screen }
+      subject { described_class.clear_screen }
 
       it { subject.must_be_instance_of(NilClass) }
 
@@ -106,7 +106,7 @@ module Vedeu
     describe '.show_cursor' do
       before { console.stubs(:puts) }
 
-      subject { klass.show_cursor }
+      subject { described_class.show_cursor }
 
       it { subject.must_be_instance_of(NilClass) }
 
@@ -120,7 +120,7 @@ module Vedeu
     describe '.hide_cursor' do
       before { console.stubs(:puts) }
 
-      subject { klass.hide_cursor }
+      subject { described_class.hide_cursor }
 
       it { subject.must_be_instance_of(NilClass) }
 
@@ -132,7 +132,7 @@ module Vedeu
     end
 
     describe '#initial_setup!' do
-      subject { klass.new.initial_setup! }
+      subject { described_class.new.initial_setup! }
 
       it { skip }
     end

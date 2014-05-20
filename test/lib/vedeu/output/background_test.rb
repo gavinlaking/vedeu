@@ -2,8 +2,8 @@ require_relative '../../../test_helper'
 
 module Vedeu
   describe Background do
-    let(:klass) { Background }
-    let(:instance) { klass.new }
+    let(:described_class) { Background }
+    let(:instance) { described_class.new }
 
     it { instance.must_be_instance_of(Background) }
   end

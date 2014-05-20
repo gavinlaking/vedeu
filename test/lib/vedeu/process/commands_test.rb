@@ -6,20 +6,20 @@ module Vedeu
   end
 
   describe Commands do
-    let(:klass)    { Commands }
-    let(:instance) { klass.instance }
+    let(:described_class)    { Commands }
+    let(:instance) { described_class.instance }
     let(:block)    {}
 
     it { instance.must_be_instance_of(Vedeu::Commands) }
 
     describe '.execute' do
-      subject { klass.execute }
+      subject { described_class.execute }
 
       it { skip }
     end
 
     describe '.list' do
-      subject { klass.list }
+      subject { described_class.list }
 
       it { subject.must_be_instance_of(String) }
     end
@@ -49,10 +49,10 @@ module Vedeu
   end
 
   describe Exit do
-    let(:klass)    { Exit }
+    let(:described_class)    { Exit }
 
     describe '.dispatch' do
-      subject { klass.dispatch }
+      subject { described_class.dispatch }
 
       it { subject.must_be_instance_of(Symbol) }
 
