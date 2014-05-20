@@ -60,6 +60,11 @@ module Vedeu
         output(Esc.clear)
       end
 
+      def clear_line(index)
+        output(Position.set(index, 0))
+        output(" " * width)
+      end
+
       def show_cursor
         output(Esc.show_cursor)
       end

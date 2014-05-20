@@ -14,7 +14,9 @@ module Vedeu
 
     def write
       parsed.each_with_index do |data, index|
-        render(data, index)
+        clear_line(index)
+
+        write_line(data)
       end.join("\n")
     end
 
@@ -39,14 +41,12 @@ module Vedeu
       container
     end
 
-    def render(data, index)
-      Terminal.output(Position.set(index, 0))
-      Terminal.output(" " * width)
-      Terminal.output(data)
+    def clear_line(index)
+      Terminal.clear_line(index)
     end
 
-    def width
-      Terminal.width
+    def write_line(data)
+      Terminal.output(data)
     end
 
     def options
