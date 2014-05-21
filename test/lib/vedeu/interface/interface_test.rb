@@ -15,8 +15,8 @@ module Vedeu
 
     it { instance.must_be_instance_of(Interface) }
 
-    describe '#initial' do
-      subject { instance.initial }
+    describe '#initial_state' do
+      subject { instance.initial_state }
 
       context 'capturing output' do
         let(:io) { capture_io { subject }.join }
@@ -25,8 +25,8 @@ module Vedeu
       end
     end
 
-    describe '#main' do
-      subject { instance.main }
+    describe '#event_loop' do
+      subject { instance.event_loop }
 
       it { subject.must_be_instance_of(NilClass) }
 
@@ -35,42 +35,6 @@ module Vedeu
 
         it { io.must_be_instance_of(String) }
       end
-    end
-
-    describe '#input' do
-      subject { instance.input }
-
-      it { subject.must_be_instance_of(NilClass) }
-
-      context 'capturing output' do
-        let(:io) { capture_io { subject }.join }
-
-        it { io.must_be_instance_of(String) }
-      end
-    end
-
-    describe '#output' do
-      subject { instance.output }
-
-      it { subject.must_be_instance_of(NilClass) }
-
-      context 'capturing output' do
-        let(:io) { capture_io { subject }.join }
-
-        it { io.must_be_instance_of(String) }
-      end
-    end
-
-    describe '#width' do
-      subject { instance.width }
-
-      it { subject.must_be_instance_of(Fixnum) }
-    end
-
-    describe '#height' do
-      subject { instance.height }
-
-      it { subject.must_be_instance_of(Fixnum) }
     end
   end
 end

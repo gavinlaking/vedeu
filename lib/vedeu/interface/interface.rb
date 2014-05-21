@@ -4,33 +4,32 @@ module Vedeu
       @options = options
     end
 
-    def initial; end
+    def initial_state; end
 
-    def main
-      output
-
-      input
-    end
-
-    def output
-      Terminal.hide_cursor
-    end
-
-    def input
-      Terminal.show_cursor
-    end
-
-    def width
-      options[:width]  || Terminal.width
-    end
-
-    def height
-      options[:height] || Terminal.height
-    end
+    def event_loop; end
 
     private
 
     attr_reader :options
+
+    def width
+      options[:width]
+    end
+
+    def height
+      options[:height]
+    end
+
+    def options
+      defaults.merge!(@options)
+    end
+
+    def defaults
+      {
+        width:  Terminal.width,
+        height: Terminal.height
+      }
+    end
   end
 
   class Dummy < Interface; end

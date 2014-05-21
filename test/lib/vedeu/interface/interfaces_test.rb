@@ -48,14 +48,14 @@ module Vedeu
       it { subject.must_be_instance_of(Hash) }
     end
 
-    describe '#initial' do
-      subject { instance.initial }
+    describe '#initial_state' do
+      subject { instance.initial_state }
 
       it { subject.must_be_instance_of(Array) }
     end
 
-    describe '#main' do
-      subject { instance.main }
+    describe '#event_loop' do
+      subject { instance.event_loop }
 
       it { subject.must_be_instance_of(Array) }
     end
