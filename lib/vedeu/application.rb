@@ -20,7 +20,7 @@ module Vedeu
 
     private
 
-    attr_reader :options
+    attr_reader :interfaces, :options
 
     def options
       defaults.merge!(@options)
