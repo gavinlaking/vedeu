@@ -85,7 +85,7 @@ module Vedeu
     def initial_setup!
       Terminal.clear_screen if clear_screen?
       set_cursor
-      output(Position.reset)
+      Terminal.output(Position.reset)
     end
 
     private
