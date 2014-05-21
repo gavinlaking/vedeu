@@ -11,12 +11,34 @@ module Vedeu
     end
 
     def event_loop
-      raise NotImplementedError, 'Subclasses implement this method.'
+      while true do
+        command = input
+
+        break if command == :stop
+
+        output(command)
+      end
+    end
+
+    def input
+      evaluate
+    end
+
+    def output(command)
+      Compositor.write(command)
     end
 
     private
 
     attr_reader :options
+
+    def evaluate
+      Commands.execute(read)
+    end
+
+    def read
+      Terminal.input
+    end
 
     def width
       options[:width]

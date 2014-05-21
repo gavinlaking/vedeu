@@ -22,7 +22,19 @@ module Vedeu
     describe '#event_loop' do
       subject { instance.event_loop }
 
-      it { proc { subject }.must_raise(NotImplementedError) }
+      it { skip }
+    end
+
+    describe '#input' do
+      subject { instance.input }
+
+      it { skip }
+    end
+
+    describe '#output' do
+      subject { instance.output }
+
+      it { skip }
     end
   end
 end

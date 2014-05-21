@@ -16,29 +16,11 @@ module Vedeu
       event_loop
     end
 
-    def event_loop
-      while true do
-        command = evaluate
-
-        break if command == :stop
-
-        Compositor.write(command)
-      end
-    end
-
     private
 
-    def evaluate
-      Commands.execute(read)
+    def event_loop
+      interfaces.event_loop
     end
-
-    def read
-      Terminal.input
-    end
-
-    # def event_loop
-    #   interfaces.event_loop
-    # end
 
     def initial_state
       interfaces.initial_state
