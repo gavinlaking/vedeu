@@ -1,8 +1,8 @@
 module Vedeu
   class Application
     class << self
-      def start(interfaces = nil, options = {}, &block)
-        new(interfaces, options).start(&block)
+      def start(interfaces = nil, options = {})
+        new(interfaces, options).start
       end
     end
 
@@ -10,15 +10,11 @@ module Vedeu
       @interfaces, @options = interfaces, options
     end
 
-    def start(&block)
-      if block_given?
+    def start
+      Terminal.open(options) do
+        initial_state
 
-      else
-        Terminal.open(options) do
-          initial_state
-
-          Process.event_loop
-        end
+        Process.event_loop
       end
     ensure
       Terminal.close
