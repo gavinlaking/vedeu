@@ -29,12 +29,12 @@ module Vedeu
       interfaces
     end
 
-    def initial
-      interfaces.values.map { |io| io.call.initial }
+    def initial_state
+      interfaces.values.map { |io| io.call.initial_state }
     end
 
-    def main
-      interfaces.values.map { |io| io.call.main }
+    def event_loop
+      interfaces.values.map { |io| io.call.event_loop }
     end
 
     private

@@ -1,37 +1,62 @@
 module Vedeu
+  class NotImplementedError < StandardError; end
+
   class Interface
     def initialize(options = {})
       @options = options
     end
 
-    def initial; end
-
-    def main
-      output
-
-      input
+    def initial_state
+      raise NotImplementedError, 'Subclasses implement this method.'
     end
 
-    def output
-      Terminal.hide_cursor
+    def event_loop
+      while true do
+        command = input
+
+        break if command == :stop
+
+        output(command)
+      end
     end
 
     def input
-      Terminal.show_cursor
+      evaluate
     end
 
-    def width
-      options[:width]  || Terminal.width
-    end
-
-    def height
-      options[:height] || Terminal.height
+    def output(command)
+      Compositor.write(command)
     end
 
     private
 
     attr_reader :options
-  end
 
-  class Dummy < Interface; end
+    def evaluate
+      Commands.execute(read)
+    end
+
+    def read
+      Terminal.input
+    end
+
+    def width
+      options[:width]
+    end
+
+    def height
+      options[:height]
+    end
+
+    def options
+      defaults.merge!(@options)
+    end
+
+    def defaults
+      {
+        width:  Terminal.width,
+        height: Terminal.height
+      }
+    end
+  end
 end

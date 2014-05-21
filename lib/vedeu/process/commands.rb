@@ -49,10 +49,4 @@ module Vedeu
       commands.fetch(command, false)
     end
   end
-
-  class Exit
-    def self.dispatch
-      :stop
-    end
-  end
 end

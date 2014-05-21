@@ -1,8 +1,8 @@
 module Vedeu
   class Application
     class << self
-      def start(interfaces = nil, options = {}, &block)
-        new(interfaces, options).start(&block)
+      def start(interfaces = nil, options = {})
+        new(interfaces, options).start
       end
     end
 
@@ -10,15 +10,9 @@ module Vedeu
       @interfaces, @options = interfaces, options
     end
 
-    def start(&block)
-      if block_given?
-
-      else
-        Terminal.open(options) do
-          initial_state
-
-          Process.event_loop
-        end
+    def start
+      Terminal.open(options) do
+        Process.main_sequence(interfaces)
       end
     ensure
       Terminal.close
@@ -26,15 +20,7 @@ module Vedeu
 
     private
 
-    attr_reader :options
-
-    def initial_state
-      interfaces.initial
-    end
-
-    def interfaces
-      @interfaces ||= Interfaces.default
-    end
+    attr_reader :interfaces, :options
 
     def options
       defaults.merge!(@options)

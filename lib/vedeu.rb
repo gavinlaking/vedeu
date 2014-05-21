@@ -16,9 +16,11 @@ require_relative 'vedeu/output/translator'
 
 require_relative 'vedeu/interface/interfaces'
 require_relative 'vedeu/interface/interface'
+require_relative 'vedeu/interface/dummy'
 
 require_relative 'vedeu/process/commands'
 require_relative 'vedeu/process/command'
+require_relative 'vedeu/process/exit'
 require_relative 'vedeu/process/process'
 
 require_relative 'vedeu/application'

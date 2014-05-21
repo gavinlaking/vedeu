@@ -2,75 +2,39 @@ require_relative '../../../test_helper'
 
 module Vedeu
   describe Interface do
-    let(:described_class)    { Interface }
-    let(:instance) { described_class.new(options) }
-    let(:options)  { {} }
+    let(:described_class) { Interface }
+    let(:instance)        { described_class.new(options) }
+    let(:options)         { {} }
 
     before do
       Terminal.stubs(:width).returns(80)
       Terminal.stubs(:height).returns(25)
-      Terminal.stubs(:show_cursor)
-      Terminal.stubs(:hide_cursor)
     end
 
     it { instance.must_be_instance_of(Interface) }
 
-    describe '#initial' do
-      subject { instance.initial }
+    describe '#initial_state' do
+      subject { instance.initial_state }
 
-      context 'capturing output' do
-        let(:io) { capture_io { subject }.join }
-
-        it { io.must_be_instance_of(String) }
-      end
+      it { proc { subject }.must_raise(NotImplementedError) }
     end
 
-    describe '#main' do
-      subject { instance.main }
+    describe '#event_loop' do
+      subject { instance.event_loop }
 
-      it { subject.must_be_instance_of(NilClass) }
-
-      context 'capturing output' do
-        let(:io) { capture_io { subject }.join }
-
-        it { io.must_be_instance_of(String) }
-      end
+      it { skip }
     end
 
     describe '#input' do
       subject { instance.input }
 
-      it { subject.must_be_instance_of(NilClass) }
-
-      context 'capturing output' do
-        let(:io) { capture_io { subject }.join }
-
-        it { io.must_be_instance_of(String) }
-      end
+      it { skip }
     end
 
     describe '#output' do
       subject { instance.output }
 
-      it { subject.must_be_instance_of(NilClass) }
-
-      context 'capturing output' do
-        let(:io) { capture_io { subject }.join }
-
-        it { io.must_be_instance_of(String) }
-      end
-    end
-
-    describe '#width' do
-      subject { instance.width }
-
-      it { subject.must_be_instance_of(Fixnum) }
-    end
-
-    describe '#height' do
-      subject { instance.height }
-
-      it { subject.must_be_instance_of(Fixnum) }
+      it { skip }
     end
   end
 end

@@ -1,31 +1,33 @@
 module Vedeu
   class Process
     class << self
-      def event_loop
-        new.event_loop
+      def main_sequence(interfaces = nil)
+        new(interfaces).main_sequence
       end
     end
 
-    def initialize; end
+    def initialize(interfaces = nil)
+      @interfaces = interfaces
+    end
 
-    def event_loop
-      while true do
-        command = evaluate
+    def main_sequence
+      initial_state
 
-        break if command == :stop
-
-        Compositor.write(command)
-      end
+      event_loop
     end
 
     private
 
-    def evaluate
-      Commands.execute(read)
+    def event_loop
+      interfaces.event_loop
     end
 
-    def read
-      Terminal.input
+    def initial_state
+      interfaces.initial_state
+    end
+
+    def interfaces
+      @interfaces ||= Interfaces.default
     end
   end
 end

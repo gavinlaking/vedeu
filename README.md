@@ -24,32 +24,40 @@ TODO: Write detailed documentation
 
 ## Notes
 
-Application
-  |-- Interfaces
-  |     |-- Dummy < Interface
-  |
-  |-- Terminal
-        |-- Esc
-              |-- Colour
+    Application
+      |-- Interfaces
+      |     |-- Dummy < Interface
+      |
+      |-- Process
+      |     |-- Commands
+      |     |     |-- Command
+      |     |
+      |     |-- Compositor
+      |     |     |-- Directive
+      |     |     |     |-- Colour
+      |     |     |     |     |-- Foreground < Base
+      |     |     |     |     |-- Background < Base
+      |     |     |     |
+      |     |     |     |-- Position
+      |     |     |     |-- Style
+      |     |     |           |-- Esc
+      |     |     |
+      |     |     |-- Terminal
+      |     |
+      |     |-- Terminal
+      |
+      |-- Terminal
 
-Base
-  |-- Translator
-  |-- Esc
-        |-- Colour
+    Base
+      |-- Translator
+      |-- Esc
 
-Compositor
-  |-- Colour
-  |     |-- Foreground < Base
-  |     |-- Background < Base
-  |     |-- Translator
-  |
-  |-- Esc
-        |-- Colour
+    Interface
+      |-- Terminal
 
-Interface
-  |-- Terminal
-        |-- Esc
-              |-- Colour
+    Terminal
+      |-- Esc
+      |-- Position
 
 
 ## Contributing
