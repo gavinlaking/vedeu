@@ -31,6 +31,4 @@ module Vedeu
       }
     end
   end
-
-  class Dummy < Interface; end
 end
