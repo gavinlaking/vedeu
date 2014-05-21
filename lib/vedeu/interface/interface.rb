@@ -1,12 +1,18 @@
 module Vedeu
+  class NotImplementedError < StandardError; end
+
   class Interface
     def initialize(options = {})
       @options = options
     end
 
-    def initial_state; end
+    def initial_state
+      raise NotImplementedError, 'Subclasses implement this method.'
+    end
 
-    def event_loop; end
+    def event_loop
+      raise NotImplementedError, 'Subclasses implement this method.'
+    end
 
     private
 
