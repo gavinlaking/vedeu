@@ -2,7 +2,7 @@ module Vedeu
   class Process
     class << self
       def main_sequence(interfaces = nil)
-        new(interfaces).initial_state.event_loop
+        new(interfaces).main_sequence
       end
     end
 
