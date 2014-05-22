@@ -12,7 +12,7 @@ module Vedeu
 
     def translate
       return unless valid?
-      [term_colour_base, red, green, blue].inject(:+)
+      [16, red, green, blue].inject(:+)
     end
 
     private
@@ -20,31 +20,15 @@ module Vedeu
     attr_reader :html_colour
 
     def red
-      (html_colour[1..2].to_i(16) / colour_divide) * 36
+      (html_colour[1..2].to_i(16) / 51) * 36
     end
 
     def green
-      (html_colour[3..4].to_i(16) / colour_divide) * 6
+      (html_colour[3..4].to_i(16) / 51) * 6
     end
 
     def blue
-      (html_colour[5..6].to_i(16) / colour_divide) * 1
-    end
-
-    def colour_divide
-      source_values / target_values
-    end
-
-    def source_values
-      256
-    end
-
-    def target_values
-      5
-    end
-
-    def term_colour_base
-      16
+      (html_colour[5..6].to_i(16) / 51) * 1
     end
 
     def valid?
