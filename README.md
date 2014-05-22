@@ -51,6 +51,7 @@ TODO: Write detailed documentation
       |     |
       |     |-- Terminal
       |
+      |-- Geometry
       |-- Terminal
 
     Terminal

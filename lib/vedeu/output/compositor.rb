@@ -1,15 +1,15 @@
 module Vedeu
   class Compositor
     class << self
-      def write(output = [])
+      def write(output = [], interface = Dummy)
         return if output.nil? || output.empty?
 
-        new(output).write
+        new(output, interface).write
       end
     end
 
-    def initialize(output = [])
-      @output = output
+    def initialize(output = [], interface = Dummy)
+      @output, @interface = output, interface
     end
 
     def write
@@ -22,7 +22,7 @@ module Vedeu
 
     private
 
-    attr_reader :output
+    attr_reader :output, :interface
 
     def parsed
       container = []
@@ -42,7 +42,11 @@ module Vedeu
     end
 
     def clear_line(index)
-      Terminal.clear_line(index)
+      if interface.is_a?(Dummy)
+        Terminal.clear_line(index)
+      else
+
+      end
     end
 
     def write_line(data)

@@ -3,33 +3,34 @@ require_relative '../../../test_helper'
 module Vedeu
   describe Compositor do
     let(:described_class) { Compositor }
-    let(:instance) { described_class.new(rows) }
-    let(:rows)     { [[]] }
+    let(:instance)        { described_class.new(output, interface) }
+    let(:output)          { [[]] }
+    let(:interface)       {}
 
     before { Terminal.stubs(:output) }
 
     it { instance.must_be_instance_of(Compositor) }
 
     describe '.write' do
-      subject { described_class.write(rows) }
+      subject { described_class.write(output, interface) }
 
       it { subject.must_be_instance_of(String) }
 
       context 'when empty' do
-        let(:rows) { [] }
+        let(:output) { [] }
 
         it { subject.must_be_instance_of(NilClass) }
       end
 
       context 'when unstyled' do
         context 'and a single line' do
-          let(:rows) { [['Some text...']] }
+          let(:output) { [['Some text...']] }
 
           it { subject.must_equal('Some text...') }
         end
 
         context 'and multi-line' do
-          let(:rows) {
+          let(:output) {
             [
               ['Some text...'],
               ['Some more text...']
@@ -43,7 +44,7 @@ module Vedeu
       context 'when styled' do
         context 'with colour pair' do
           context 'and a single line' do
-            let(:rows) {
+            let(:output) {
               [
                 [[:red, :white], 'Some text...']
               ]
@@ -53,7 +54,7 @@ module Vedeu
           end
 
           context 'and multi-line' do
-            let(:rows) {
+            let(:output) {
               [
                 [[:red, :white],   'Some text...'],
                 [[:blue, :yellow], 'Some more text...']
@@ -67,7 +68,7 @@ module Vedeu
 
         context 'with a style' do
           context 'and a single line' do
-            let(:rows) {
+            let(:output) {
               [
                 [:bold, 'Some text...']
               ]
@@ -77,7 +78,7 @@ module Vedeu
           end
 
           context 'and multi-line' do
-            let(:rows) {
+            let(:output) {
               [
                 [:inverse,   'Some text...'],
                 [:underline, 'Some more text...']
@@ -90,7 +91,7 @@ module Vedeu
         end
 
         context 'with an unknown style' do
-          let(:rows) {
+          let(:output) {
             [
               [:unknown, 'Some text...']
             ]
