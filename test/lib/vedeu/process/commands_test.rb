@@ -1,16 +1,20 @@
 require_relative '../../../test_helper'
 
 module Vedeu
-  class DummyCommandKlass
-    def self.dispatch; end
+  class DummyCommand
+    def self.dispatch
+      :noop
+    end
   end
 
   describe Commands do
-    let(:described_class)    { Commands }
-    let(:instance) { described_class.instance }
-    let(:block)    {}
+    let(:described_class) { Commands }
 
-    it { instance.must_be_instance_of(Commands) }
+    describe '.define' do
+      subject { described_class.define }
+
+      it { skip }
+    end
 
     describe '.execute' do
       subject { described_class.execute }
@@ -24,27 +28,15 @@ module Vedeu
       it { subject.must_be_instance_of(String) }
     end
 
-    describe '#define' do
+    describe '.add' do
       let(:command_name)  { "some_name" }
-      let(:command_klass) { DummyCommandKlass }
+      let(:command_klass) { DummyCommand }
       let(:args)          { [] }
       let(:options)       { {} }
 
-      subject { instance.define(command_name, command_klass, args, options) }
+      subject { described_class.add(command_name, command_klass, args, options) }
 
       it { subject.must_be_instance_of(Hash) }
-    end
-
-    describe '#execute' do
-      subject { instance.execute }
-
-      it { skip }
-    end
-
-    describe '#list' do
-      subject { instance.list }
-
-      it { subject.must_be_instance_of(String) }
     end
   end
 end

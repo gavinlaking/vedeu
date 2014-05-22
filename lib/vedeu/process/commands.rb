@@ -1,38 +1,16 @@
 module Vedeu
-  class Commands
-    include Singleton
+  module Commands
+    extend self
 
-    class << self
-      def instance(&block)
-        @instance ||= new(&block)
-      end
-      alias_method :define, :instance
-
-      # def define(name, klass, args = [], options = {}, &block)
-      #   instance.define(name, klass, args = [], options = {})
-      # end
-
-      def execute(command = "")
-        instance.execute(command)
-      end
-
-      def list
-        instance.list
+    def define(&block)
+      if block_given?
+        yield self
+      else
+        self
       end
     end
 
-    def initialize(&block)
-      @commands ||= { 'exit' => Proc.new { Exit.dispatch } }
-
-      yield self if block_given?
-    end
-
-    def define(name, klass, args = [], options = {})
-      commands.merge!(Command.define(name, klass, args, options))
-    end
-    alias_method :add, :define
-
-    def execute(command)
+    def execute(command = "")
       commands.fetch(command).call if exists?(command)
     end
 
@@ -40,13 +18,18 @@ module Vedeu
       commands.inspect
     end
 
-    private
+    def add(name, klass, args = [], options = {})
+      commands.merge!(Command.define(name, klass, args, options))
+    end
 
-    attr_accessor :commands
-    attr_accessor :instance
+    private
 
     def exists?(command)
       commands.fetch(command, false)
+    end
+
+    def commands
+      @commands ||= { 'exit' => Proc.new { Exit.dispatch } }
     end
   end
 end

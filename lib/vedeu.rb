@@ -1,5 +1,4 @@
 require 'io/console'
-require 'singleton'
 
 require_relative 'vedeu/support/terminal'
 

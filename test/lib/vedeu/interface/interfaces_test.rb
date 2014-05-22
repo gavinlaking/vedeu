@@ -1,35 +1,43 @@
 require_relative '../../../test_helper'
 
 module Vedeu
-  describe Interfaces do
-    let(:described_class)    { Interfaces }
-    let(:instance) { described_class.new }
-    let(:block)    {}
+  class DummyInterface < Interface
+    def initial_state; end
 
-    it { instance.must_be_instance_of(Interfaces) }
+    def event_loop; end
+  end
+
+  describe Interfaces do
+    let(:described_class) { Interfaces }
 
     describe '.default' do
       subject { described_class.default }
 
-      it { subject.must_be_instance_of(Interfaces) }
+      it { subject.must_be_instance_of(Hash) }
 
       it 'adds the dummy interface to the interface list' do
-        subject.show.wont_be_empty
+        described_class.list.wont_be_empty
       end
+    end
+
+    describe '.defined' do
+      subject { described_class.defined }
+
+      it { subject.must_be_instance_of(Hash) }
     end
 
     describe '.define' do
       subject { described_class.define }
 
-      it { subject.must_be_instance_of(Interfaces) }
+      it { subject.must_be_instance_of(Module) }
     end
 
-    describe '#add' do
-      let(:interface_name)  {}
-      let(:klass) { Class }
-      let(:options)         { {} }
+    describe '.add' do
+      let(:interface) {}
+      let(:klass)     { DummyInterface }
+      let(:options)   { {} }
 
-      subject { instance.add(interface_name, klass, options) }
+      subject { described_class.add(interface, klass, options) }
 
       it { subject.must_be_instance_of(Hash) }
 
@@ -42,20 +50,25 @@ module Vedeu
       end
     end
 
-    describe '#show' do
-      subject { instance.show }
+    describe '.list' do
+      subject { described_class.list }
 
-      it { subject.must_be_instance_of(Hash) }
+      it { subject.must_be_instance_of(String) }
     end
 
-    describe '#initial_state' do
-      subject { instance.initial_state }
+    describe '.initial_state' do
+      subject { described_class.initial_state }
 
       it { subject.must_be_instance_of(Array) }
     end
 
-    describe '#event_loop' do
-      subject { instance.event_loop }
+    describe '.event_loop' do
+      before do
+        Terminal.stubs(:input)
+        Commands.stubs(:execute).returns(:stop)
+      end
+
+      subject { described_class.event_loop }
 
       it { subject.must_be_instance_of(Array) }
     end

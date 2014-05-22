@@ -1,21 +1,27 @@
 module Vedeu
   class UndefinedInterface < StandardError; end
 
-  class Interfaces
-    class << self
-      def default
-        new { |io| io.add(:dummy, Dummy) }
-      end
+  module Interfaces
+    extend self
 
-      def define(&block)
-        new(&block)
+    def default
+      add(:dummy, Dummy)
+    end
+
+    def defined
+      interfaces.empty? ? nil : interfaces
+    end
+
+    def define(&block)
+      if block_given?
+        yield self
+      else
+        self
       end
     end
 
-    def initialize(&block)
-      @interfaces ||= {}
-
-      yield self if block_given?
+    def list
+      interfaces.inspect
     end
 
     def add(name, klass, options = {})
@@ -23,10 +29,6 @@ module Vedeu
         interfaces[name] = Proc.new { klass.new(options) }
         interfaces
       end
-    end
-
-    def show
-      interfaces
     end
 
     def initial_state
@@ -39,11 +41,13 @@ module Vedeu
 
     private
 
-    attr_accessor :interfaces
-
     def valid?(klass)
       raise UndefinedInterface unless Object.const_defined?(klass.to_s)
       true
+    end
+
+    def interfaces
+      @interfaces ||= {}
     end
   end
 end
