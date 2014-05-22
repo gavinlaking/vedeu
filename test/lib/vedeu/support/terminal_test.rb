@@ -103,6 +103,12 @@ module Vedeu
       end
     end
 
+    describe '.clear_line' do
+      subject { described_class.clear_line }
+
+      it { skip }
+    end
+
     describe '.show_cursor' do
       before { console.stubs(:puts) }
 
@@ -129,6 +135,18 @@ module Vedeu
 
         it { io.must_be_instance_of(String) }
       end
+    end
+
+    describe '#initialize' do
+      subject { described_class.new }
+
+      it { skip }
+    end
+
+    describe '#open' do
+      subject { described_class.new.open }
+
+      it { skip }
     end
 
     describe '#initial_setup!' do
