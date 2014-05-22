@@ -1,26 +1,24 @@
 module Vedeu
   class Application
     class << self
-      def start(interfaces = nil, options = {})
-        new(interfaces, options).start
+      def start(options = {})
+        new(options).start
       end
     end
 
-    def initialize(interfaces = nil, options = {})
-      @interfaces, @options = interfaces, options
+    def initialize(options = {})
+      @options = options
     end
 
     def start
-      Terminal.open(options) do
-        Process.main_sequence(interfaces)
-      end
+      Terminal.open(options) { Process.main_sequence }
     ensure
       Terminal.close
     end
 
     private
 
-    attr_reader :interfaces, :options
+    attr_reader :options
 
     def options
       defaults.merge!(@options)
