@@ -2,7 +2,7 @@ require_relative '../../../test_helper'
 
 module Vedeu
   describe Compositor do
-    let(:described_class)    { Compositor }
+    let(:described_class) { Compositor }
     let(:instance) { described_class.new(rows) }
     let(:rows)     { [[]] }
 

@@ -43,6 +43,12 @@ module Vedeu
         it { subject.must_equal("\e[0m") }
       end
 
+      context 'when the style is normal' do
+        let(:style) { :normal }
+
+        it { subject.must_equal("\e[0m") }
+      end
+
       context 'when the style is show_cursor' do
         let(:style) { :show_cursor }
 

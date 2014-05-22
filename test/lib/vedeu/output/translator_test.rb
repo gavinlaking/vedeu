@@ -2,11 +2,10 @@ require_relative '../../../test_helper'
 
 module Vedeu
   describe Translator do
-    let(:described_class)       { Translator }
-    let(:instance)    { described_class.new(html_colour) }
+    let(:described_class) { Translator }
     let(:html_colour) {}
 
-    it { instance.must_be_instance_of(Translator) }
+    it { described_class.new(html_colour).must_be_instance_of(Translator) }
 
     describe '#translate' do
       {
@@ -31,7 +30,7 @@ module Vedeu
           described_class.translate.must_equal(nil)
         end
 
-        it 'returns nil when the wrong type' do
+        it 'returns nil when the wrong type!' do
           described_class.translate(:wrong_type).must_equal(nil)
         end
 
