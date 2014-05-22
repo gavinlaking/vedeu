@@ -1,14 +1,12 @@
 module Vedeu
   class Process
     class << self
-      def main_sequence(interfaces = nil)
-        new(interfaces).main_sequence
+      def main_sequence
+        new.main_sequence
       end
     end
 
-    def initialize(interfaces = nil)
-      @interfaces = interfaces
-    end
+    def initialize; end
 
     def main_sequence
       initial_state
@@ -27,7 +25,7 @@ module Vedeu
     end
 
     def interfaces
-      @interfaces ||= Interfaces.default
+      @interfaces ||= Interfaces.defined || Interfaces.default
     end
   end
 end
