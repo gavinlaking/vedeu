@@ -1,15 +1,15 @@
 module Vedeu
   class Compositor
     class << self
-      def write(output = [], options = {})
+      def write(output = [])
         return if output.nil? || output.empty?
 
-        new(output, options).write
+        new(output).write
       end
     end
 
-    def initialize(output = [], options = {})
-      @output, @options = output, options
+    def initialize(output = [])
+      @output = output
     end
 
     def write
@@ -47,14 +47,6 @@ module Vedeu
 
     def write_line(data)
       Terminal.output(data)
-    end
-
-    def options
-      defaults.merge!(@options)
-    end
-
-    def defaults
-      {}
     end
   end
 end
