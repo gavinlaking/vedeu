@@ -2,7 +2,7 @@ module Vedeu
   class Application
     class << self
       def start(options = {})
-        new(options).start
+        new(options).main_sequence
       end
     end
 
@@ -10,8 +10,12 @@ module Vedeu
       @options = options
     end
 
-    def start
-      Terminal.open(options) { Process.main_sequence }
+    def main_sequence
+      Terminal.open(options) do
+        initial_state
+
+        event_loop
+      end
     ensure
       Terminal.close
     end
@@ -19,6 +23,18 @@ module Vedeu
     private
 
     attr_reader :options
+
+    def event_loop
+      interfaces.event_loop
+    end
+
+    def initial_state
+      interfaces.initial_state
+    end
+
+    def interfaces
+      @interfaces ||= Interfaces.defined || Interfaces.default
+    end
 
     def options
       defaults.merge!(@options)

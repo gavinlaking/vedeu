@@ -28,24 +28,6 @@ TODO: Write detailed documentation
       |-- Interfaces
       |     |-- Dummy < Interface
       |
-      |-- Process
-      |     |-- Commands
-      |     |     |-- Command
-      |     |
-      |     |-- Compositor
-      |     |     |-- Directive
-      |     |     |     |-- Colour
-      |     |     |     |     |-- Foreground < Base
-      |     |     |     |     |-- Background < Base
-      |     |     |     |
-      |     |     |     |-- Position
-      |     |     |     |-- Style
-      |     |     |           |-- Esc
-      |     |     |
-      |     |     |-- Terminal
-      |     |
-      |     |-- Terminal
-      |
       |-- Terminal
 
     Base
@@ -53,6 +35,22 @@ TODO: Write detailed documentation
       |-- Esc
 
     Interface
+      |-- Commands
+      |     |-- Command
+      |     |-- Exit
+      |
+      |-- Compositor
+      |     |-- Directive
+      |     |     |-- Colour
+      |     |     |     |-- Foreground < Base
+      |     |     |     |-- Background < Base
+      |     |     |
+      |     |     |-- Position
+      |     |     |-- Style
+      |     |           |-- Esc
+      |     |
+      |     |-- Terminal
+      |
       |-- Terminal
 
     Terminal
