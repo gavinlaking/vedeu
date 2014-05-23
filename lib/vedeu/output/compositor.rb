@@ -42,11 +42,7 @@ module Vedeu
     end
 
     def clear_line(index)
-      if interface.is_a?(Dummy)
-        Terminal.clear_line(index)
-      else
-
-      end
+      Terminal.clear_line(index)
     end
 
     def write_line(data)
