@@ -8,6 +8,20 @@ module Vedeu
 
     it { described_instance.must_be_instance_of(Geometry) }
 
+    describe '#z' do
+      subject { described_instance.z }
+
+      context 'using a value' do
+        let(:values) { { z: 2 } }
+
+        it { subject.must_equal(2) }
+      end
+
+      context 'using the default' do
+        it { subject.must_equal(0) }
+      end
+    end
+
     describe '#y' do
       subject { described_instance.y }
 

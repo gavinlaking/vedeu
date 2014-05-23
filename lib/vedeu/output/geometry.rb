@@ -12,6 +12,11 @@ module Vedeu
       values[:height]
     end
 
+    def z
+      values[:z]
+    end
+    alias_method :layer, :z
+
     def y
       values[:y]
     end
@@ -34,6 +39,7 @@ module Vedeu
       {
         width:  Terminal.width,
         height: Terminal.height,
+        z:      0,
         y:      1,
         x:      1
       }
