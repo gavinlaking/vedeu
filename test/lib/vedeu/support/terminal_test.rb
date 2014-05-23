@@ -8,6 +8,7 @@ module Vedeu
     before do
       IO.stubs(:console).returns(console)
       console.stubs(:winsize).returns([25, 80])
+      console.stubs(:print)
     end
 
     describe '.input' do
@@ -19,7 +20,7 @@ module Vedeu
     end
 
     describe '.output' do
-      before { console.stubs(:puts).returns("test") }
+      before { console.stubs(:print).returns("test") }
 
       subject { described_class.output }
 
@@ -87,10 +88,7 @@ module Vedeu
     end
 
     describe '.clear_screen' do
-      before do
-        Esc.stubs(:clear).returns('')
-        console.stubs(:puts)
-      end
+      before { Esc.stubs(:clear).returns('') }
 
       subject { described_class.clear_screen }
 
@@ -110,8 +108,6 @@ module Vedeu
     end
 
     describe '.show_cursor' do
-      before { console.stubs(:puts) }
-
       subject { described_class.show_cursor }
 
       it { subject.must_be_instance_of(NilClass) }
@@ -124,8 +120,6 @@ module Vedeu
     end
 
     describe '.hide_cursor' do
-      before { console.stubs(:puts) }
-
       subject { described_class.hide_cursor }
 
       it { subject.must_be_instance_of(NilClass) }
