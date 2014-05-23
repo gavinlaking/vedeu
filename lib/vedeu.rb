@@ -11,6 +11,7 @@ require_relative 'vedeu/output/geometry'
 require_relative 'vedeu/output/esc'
 require_relative 'vedeu/output/colour'
 require_relative 'vedeu/output/position'
+require_relative 'vedeu/output/renderer'
 require_relative 'vedeu/output/style'
 require_relative 'vedeu/output/translator'
 

@@ -46,17 +46,26 @@ TODO: Write detailed documentation
       |     |     |     |-- Background < Base
       |     |     |
       |     |     |-- Position
+      |     |     |     |-- Esc
+      |     |     |
       |     |     |-- Style
       |     |           |-- Esc
       |     |
-      |     |-- Terminal
+      |     |-- Position
+      |     |     |-- Esc
+      |     |
+      |     |-- Renderer
+      |           |-- Terminal
       |
       |-- Geometry
+      |     |-- Terminal
+      |
       |-- Terminal
 
     Terminal
       |-- Esc
       |-- Position
+            |-- Esc
 
 
 ## Contributing
