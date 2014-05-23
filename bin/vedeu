@@ -6,4 +6,4 @@ trap('INT') { exit! }
 
 require 'vedeu'
 
-Vedeu::Application.new(nil).start
+Vedeu::Application.start

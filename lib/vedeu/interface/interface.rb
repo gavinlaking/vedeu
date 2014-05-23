@@ -25,7 +25,11 @@ module Vedeu
     end
 
     def output(command)
-      Compositor.write(command)
+      Compositor.write(command, self)
+    end
+
+    def geometry
+      @geometry ||= Geometry.new(options[:geometry])
     end
 
     private
@@ -40,22 +44,13 @@ module Vedeu
       Terminal.input
     end
 
-    def width
-      options[:width]
-    end
-
-    def height
-      options[:height]
-    end
-
     def options
       defaults.merge!(@options)
     end
 
     def defaults
       {
-        width:  Terminal.width,
-        height: Terminal.height
+        geometry: {}
       }
     end
   end

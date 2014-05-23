@@ -6,7 +6,7 @@ module Vedeu
       end
 
       def output(stream = '')
-        console.puts(stream)
+        console.print(stream)
       end
 
       def width
@@ -35,7 +35,7 @@ module Vedeu
         console.cooked do
           instance.initial_setup!
 
-          yield
+          yield instance
         end if block_given?
       end
       alias_method :open_cooked, :cooked
@@ -44,7 +44,7 @@ module Vedeu
         console.raw do
           instance.initial_setup!
 
-          yield
+          yield instance
         end if block_given?
       end
       alias_method :open_raw, :raw

@@ -46,9 +46,18 @@ TODO: Write detailed documentation
       |     |     |     |-- Background < Base
       |     |     |
       |     |     |-- Position
+      |     |     |     |-- Esc
+      |     |     |
       |     |     |-- Style
       |     |           |-- Esc
       |     |
+      |     |-- Position
+      |     |     |-- Esc
+      |     |
+      |     |-- Renderer
+      |           |-- Terminal
+      |
+      |-- Geometry
       |     |-- Terminal
       |
       |-- Terminal
@@ -56,6 +65,12 @@ TODO: Write detailed documentation
     Terminal
       |-- Esc
       |-- Position
+            |-- Esc
+
+### On Interfaces
+
+When we create the interface we define it's width, height, and origin (y, x).
+These numbers are based on the area available to the terminal. If the terminal is 80x25, then our interface can use all or some of this area.
 
 
 ## Contributing
