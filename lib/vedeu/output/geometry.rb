@@ -4,14 +4,6 @@ module Vedeu
       @values = values
     end
 
-    def width
-      values[:width]
-    end
-
-    def height
-      values[:height]
-    end
-
     def z
       values[:z]
     end
@@ -29,10 +21,42 @@ module Vedeu
     alias_method :column, :x
     alias_method :col,    :x
 
+    def width
+      values[:width]
+    end
+
+    def height
+      values[:height]
+    end
+
+    def dy
+      clip_y? ? defaults[:height] : (y + height)
+    end
+
+    def dx
+      clip_x? ? defaults[:width] : (x + width)
+    end
+
+    def vx(index = 0) # virtual x position
+      ((x..dx).to_a)[index]
+    end
+
+    def vy(index = 0) # virtual y position
+      ((y..dy).to_a)[index]
+    end
+
     private
 
+    def clip_y?
+      ((y + height) > defaults[:height])
+    end
+
+    def clip_x?
+      ((x + width) > defaults[:width])
+    end
+
     def values
-      defaults.merge!(@values)
+      defaults.merge(@values)
     end
 
     def defaults

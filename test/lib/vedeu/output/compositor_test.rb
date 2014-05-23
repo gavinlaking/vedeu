@@ -5,16 +5,27 @@ module Vedeu
     let(:described_class) { Compositor }
     let(:instance)        { described_class.new(output, interface) }
     let(:output)          { [[]] }
-    let(:interface)       {}
+    let(:stream)          {}
+    let(:interface)       {
+      Vedeu::Interface.new({
+        geometry: {
+          y: 2,
+          x: 2,
+          width: 20,
+          height: 10
+        }
+      })
+    }
 
-    before { Terminal.stubs(:output) }
+    before do
+      Terminal.stubs(:output)
+      Renderer.stubs(:write).returns(stream)
+    end
 
     it { instance.must_be_instance_of(Compositor) }
 
     describe '.write' do
       subject { described_class.write(output, interface) }
-
-      it { subject.must_be_instance_of(String) }
 
       context 'when empty' do
         let(:output) { [] }
@@ -25,8 +36,9 @@ module Vedeu
       context 'when unstyled' do
         context 'and a single line' do
           let(:output) { [['Some text...']] }
+          let(:stream) { 'Some text...' }
 
-          it { subject.must_equal('Some text...') }
+          it { subject.must_equal(stream) }
         end
 
         context 'and multi-line' do
@@ -36,8 +48,9 @@ module Vedeu
               ['Some more text...']
             ]
           }
+          let(:stream) { "Some text...\nSome more text..." }
 
-          it { subject.must_equal("Some text...\nSome more text...") }
+          it { subject.must_equal(stream) }
         end
       end
 
@@ -49,8 +62,9 @@ module Vedeu
                 [[:red, :white], 'Some text...']
               ]
             }
+            let(:stream) { "\e[38;5;31m\e[48;5;47mSome text..." }
 
-            it { subject.must_equal("\e[38;5;31m\e[48;5;47mSome text...") }
+            it { subject.must_equal(stream) }
           end
 
           context 'and multi-line' do
@@ -60,9 +74,12 @@ module Vedeu
                 [[:blue, :yellow], 'Some more text...']
               ]
             }
+            let(:stream) {
+              "\e[38;5;31m\e[48;5;47mSome text...\n" \
+              "\e[38;5;34m\e[48;5;43mSome more text..."
+            }
 
-            it { subject.must_equal("\e[38;5;31m\e[48;5;47mSome text...\n" \
-                                    "\e[38;5;34m\e[48;5;43mSome more text...") }
+            it { subject.must_equal(stream) }
           end
         end
 
@@ -73,8 +90,11 @@ module Vedeu
                 [:bold, 'Some text...']
               ]
             }
+            let(:stream) {
+              "\e[1mSome text..."
+            }
 
-            it { subject.must_equal("\e[1mSome text...") }
+            it { subject.must_equal(stream) }
           end
 
           context 'and multi-line' do
@@ -84,9 +104,12 @@ module Vedeu
                 [:underline, 'Some more text...']
               ]
             }
+            let(:stream) {
+              "\e[7mSome text...\n" \
+              "\e[4mSome more text..."
+            }
 
-            it { subject.must_equal("\e[7mSome text...\n" \
-                                    "\e[4mSome more text...") }
+            it { subject.must_equal(stream) }
           end
         end
 
@@ -96,9 +119,12 @@ module Vedeu
               [:unknown, 'Some text...']
             ]
           }
+          let(:stream) {
+            "Some text..."
+          }
 
           it 'renders in the default style' do
-            subject.must_equal("Some text...")
+            subject.must_equal(stream)
           end
         end
       end

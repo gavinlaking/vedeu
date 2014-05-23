@@ -6,6 +6,11 @@ module Vedeu
     let(:described_instance) { described_class.new(values) }
     let(:values)             { {} }
 
+    before do
+      Terminal.stubs(:width).returns(80)
+      Terminal.stubs(:height).returns(25)
+    end
+
     it { described_instance.must_be_instance_of(Geometry) }
 
     describe '#z' do
@@ -60,8 +65,6 @@ module Vedeu
       end
 
       context 'using the default' do
-        before { Terminal.stubs(:width).returns(80) }
-
         it { subject.must_equal(80) }
       end
     end
@@ -76,9 +79,39 @@ module Vedeu
       end
 
       context 'using the default' do
-        before { Terminal.stubs(:height).returns(25) }
-
         it { subject.must_equal(25) }
+      end
+    end
+
+    describe '#dy' do
+      subject { described_instance.dy }
+
+      context 'when the value is greater than the available terminal size' do
+        it 'clips the value to the terminal size' do
+          subject.must_equal(25)
+        end
+      end
+
+      context 'when the value is less than the available size' do
+        let(:values) { { y: 20, height: 4 } }
+
+        it { subject.must_equal(24) }
+      end
+    end
+
+    describe '#dx' do
+      subject { described_instance.dx }
+
+      context 'when the value is greater than the available terminal size' do
+        it 'clips the value to the terminal size' do
+          subject.must_equal(80)
+        end
+      end
+
+      context 'when the value is less than the available size' do
+        let(:values) { { x: 17, width: 21 } }
+
+        it { subject.must_equal(38) }
       end
     end
   end
