@@ -13,7 +13,7 @@ module Vedeu
     describe '.default' do
       subject { described_class.default }
 
-      it { subject.must_be_instance_of(Hash) }
+      it { subject.must_be_instance_of(Module) }
 
       it 'adds the dummy interface to the interface list' do
         described_class.list.wont_be_empty
@@ -23,7 +23,7 @@ module Vedeu
     describe '.defined' do
       subject { described_class.defined }
 
-      it { subject.must_be_instance_of(Hash) }
+      it { subject.must_be_instance_of(Module) }
     end
 
     describe '.define' do
@@ -39,9 +39,7 @@ module Vedeu
 
       subject { described_class.add(interface, klass, options) }
 
-      it { subject.must_be_instance_of(Hash) }
-
-      it { subject.wont_be_empty }
+      it { subject.must_be_instance_of(Module) }
 
       context 'when the interface class does not exist' do
         before { Object.stubs(:const_defined?).returns(false) }

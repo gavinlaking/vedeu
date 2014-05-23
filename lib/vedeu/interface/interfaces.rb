@@ -9,7 +9,7 @@ module Vedeu
     end
 
     def defined
-      interfaces.empty? ? nil : interfaces
+      interfaces.empty? ? nil : self
     end
 
     def define(&block)
@@ -27,7 +27,7 @@ module Vedeu
     def add(name, klass, options = {})
       if valid?(klass)
         interfaces[name] = Proc.new { klass.new(options) }
-        interfaces
+        self
       end
     end
 
