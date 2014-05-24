@@ -13,13 +13,34 @@ module Vedeu
     describe '.define' do
       let(:subject) { described_class.define }
 
-      it { skip }
+      context 'when a block is given' do
+        let(:subject) { described_class.define { :nil } }
+
+        it 'yields the block' do
+          subject.must_be_instance_of(Symbol)
+        end
+      end
+
+      context 'when a block is not given' do
+        it { subject.must_be_instance_of(Module) }
+      end
     end
 
     describe '.execute' do
-      let(:subject) { described_class.execute }
+      let(:subject) { described_class.execute(command) }
+      let(:command) {}
 
-      it { skip }
+      context 'when the command does not exist' do
+        it { subject.must_be_instance_of(NilClass) }
+      end
+
+      context 'when the command exists' do
+        let(:command) { 'exit' }
+
+        before { Exit.stubs(:dispatch).returns(true) }
+
+        it { subject.must_be_instance_of(TrueClass) }
+      end
     end
 
     describe '.list' do

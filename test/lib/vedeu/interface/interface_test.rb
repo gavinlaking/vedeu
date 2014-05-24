@@ -27,9 +27,14 @@ module Vedeu
     end
 
     describe '#output' do
-      let(:subject) { described_instance.output }
+      let(:subject) { described_instance.output(command) }
+      let(:command) { mock }
 
-      it { skip }
+      before { Compositor.stubs(:write).returns([]) }
+
+      it 'sends the output of the command to the compositor' do
+        subject.must_be_instance_of(Array)
+      end
     end
 
     describe '#geometry' do
