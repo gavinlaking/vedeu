@@ -2,7 +2,7 @@ require_relative '../../../test_helper'
 
 module Vedeu
   describe Esc do
-    let(:described_class)    { Esc }
+    let(:described_class) { Esc }
 
     describe '.bold' do
       let(:subject) { described_class.bold }

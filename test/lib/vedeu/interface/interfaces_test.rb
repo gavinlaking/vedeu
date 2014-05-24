@@ -17,9 +17,9 @@ module Vedeu
     end
 
     describe '.defined' do
-      after { described_class.interfaces = {} }
-
       let(:subject) { described_class.defined }
+
+      after { described_class.interfaces = {} }
 
       context 'when interfaces are not defined' do
         before { described_class.interfaces = {} }
@@ -45,11 +45,10 @@ module Vedeu
     end
 
     describe '.add' do
+      let(:subject) { described_class.add(interface, klass, options) }
       let(:interface) {}
       let(:klass)     { DummyInterface }
       let(:options)   { {} }
-
-      let(:subject) { described_class.add(interface, klass, options) }
 
       it { subject.must_be_instance_of(Module) }
 
@@ -73,12 +72,12 @@ module Vedeu
     end
 
     describe '.event_loop' do
+      let(:subject) { described_class.event_loop }
+
       before do
         Terminal.stubs(:input)
         Commands.stubs(:execute).returns(:stop)
       end
-
-      let(:subject) { described_class.event_loop }
 
       it { subject.must_be_instance_of(Array) }
     end

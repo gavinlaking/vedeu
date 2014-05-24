@@ -29,12 +29,11 @@ module Vedeu
     end
 
     describe '.add' do
+      let(:subject) { described_class.add(command_name, command_klass, args, options) }
       let(:command_name)  { "some_name" }
       let(:command_klass) { DummyCommand }
       let(:args)          { [] }
       let(:options)       { {} }
-
-      let(:subject) { described_class.add(command_name, command_klass, args, options) }
 
       it { subject.must_be_instance_of(Hash) }
     end

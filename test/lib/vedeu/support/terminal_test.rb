@@ -12,17 +12,17 @@ module Vedeu
     end
 
     describe '.input' do
-      before  { console.stubs(:gets).returns("test") }
-
       let(:subject) { described_class.input }
+
+      before  { console.stubs(:gets).returns("test") }
 
       it { subject.must_be_instance_of(String) }
     end
 
     describe '.output' do
-      before { console.stubs(:print).returns("test") }
-
       let(:subject) { described_class.output }
+
+      before { console.stubs(:print).returns("test") }
 
       it { subject.must_be_instance_of(String) }
     end
@@ -88,9 +88,9 @@ module Vedeu
     end
 
     describe '.clear_screen' do
-      before { Esc.stubs(:clear).returns('') }
-
       let(:subject) { described_class.clear_screen }
+
+      before { Esc.stubs(:clear).returns('') }
 
       it { subject.must_be_instance_of(NilClass) }
 

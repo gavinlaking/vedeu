@@ -5,9 +5,8 @@ module Vedeu
     let(:described_class) { Style }
 
     describe '.set' do
-      let(:style) {}
-
       let(:subject) { described_class.set(style) }
+      let(:style) {}
 
       it { subject.must_be_instance_of(String) }
 
