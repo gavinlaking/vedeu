@@ -64,6 +64,12 @@ module Vedeu
         it { subject.must_equal(50) }
       end
 
+      context 'using :auto' do
+        let(:values) { { width: :auto } }
+
+        it { subject.must_equal(80) }
+      end
+
       context 'using the default' do
         it { subject.must_equal(80) }
       end
@@ -76,6 +82,12 @@ module Vedeu
         let(:values) { { height: 20 } }
 
         it { subject.must_equal(20) }
+      end
+
+      context 'using :auto' do
+        let(:values) { { height: :auto } }
+
+        it { subject.must_equal(25) }
       end
 
       context 'using the default' do
