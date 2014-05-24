@@ -72,6 +72,20 @@ TODO: Write detailed documentation
 When we create the interface we define it's width, height, and origin (y, x).
 These numbers are based on the area available to the terminal. If the terminal is 80x25, then our interface can use all or some of this area.
 
+### On Composition
+
+    [                         # interface
+      [                       # stream
+        [                     # directive
+          34, 22              # position directive
+          :red, :black        # colour directive
+        ],
+
+        :directive,           # style directive
+
+        "Textual content..."  # stream data
+      ]
+    ]
 
 ## Contributing
 
