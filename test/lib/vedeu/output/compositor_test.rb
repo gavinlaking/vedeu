@@ -2,11 +2,11 @@ require_relative '../../../test_helper'
 
 module Vedeu
   describe Compositor do
-    let(:described_class) { Compositor }
-    let(:instance)        { described_class.new(output, interface) }
-    let(:output)          { [[]] }
-    let(:stream)          {}
-    let(:interface)       {
+    let(:described_class)    { Compositor }
+    let(:described_instance) { described_class.new(output, interface) }
+    let(:output)             { [[]] }
+    let(:stream)             {}
+    let(:interface)          {
       Vedeu::Interface.new({
         geometry: {
           y: 2,
@@ -22,7 +22,7 @@ module Vedeu
       Renderer.stubs(:write).returns(stream)
     end
 
-    it { instance.must_be_instance_of(Compositor) }
+    it { described_instance.must_be_instance_of(Compositor) }
 
     describe '.write' do
       subject { described_class.write(output, interface) }

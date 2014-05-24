@@ -3,9 +3,9 @@ require_relative '../../../test_helper'
 module Vedeu
   describe Position do
     let(:described_class)    { Position }
-    let(:instance) { described_class.new }
+    let(:described_instance) { described_class.new }
 
-    it { instance.must_be_instance_of(Position) }
+    it { described_instance.must_be_instance_of(Position) }
 
     describe '.set' do
       subject { described_class.set }

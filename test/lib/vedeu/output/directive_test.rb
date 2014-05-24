@@ -2,11 +2,11 @@ require_relative '../../../test_helper'
 
 module Vedeu
   describe Directive do
-    let(:described_class)     { Directive }
-    let(:instance)  { described_class.new(directive) }
-    let(:directive) {}
+    let(:described_class)    { Directive }
+    let(:described_instance) { described_class.new(directive) }
+    let(:directive)          {}
 
-    it { instance.must_be_instance_of(Directive) }
+    it { described_instance.must_be_instance_of(Directive) }
 
     describe '.enact' do
       subject { described_class.enact(directive) }

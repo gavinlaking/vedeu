@@ -8,14 +8,14 @@ module Vedeu
   end
 
   describe Command do
-    let(:described_class)       { Command }
-    let(:instance)    { described_class.new(cmd_name, cmd_klass, cmd_args, cmd_options) }
-    let(:cmd_name)    { "dummy" }
-    let(:cmd_klass)   { DummyCommand }
-    let(:cmd_args)    { [] }
-    let(:cmd_options) { {} }
+    let(:described_class)    { Command }
+    let(:described_instance) { described_class.new(cmd_name, cmd_klass, cmd_args, cmd_options) }
+    let(:cmd_name)           { "dummy" }
+    let(:cmd_klass)          { DummyCommand }
+    let(:cmd_args)           { [] }
+    let(:cmd_options)        { {} }
 
-    it { instance.must_be_instance_of(Command) }
+    it { described_instance.must_be_instance_of(Command) }
 
     describe '#define' do
       subject do
