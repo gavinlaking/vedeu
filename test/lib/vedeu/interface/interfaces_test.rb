@@ -10,6 +10,30 @@ module Vedeu
   describe Interfaces do
     let(:described_class) { Interfaces }
 
+    describe '.define' do
+      subject { described_class.define }
+
+      it { subject.must_be_instance_of(Module) }
+    end
+
+    describe '.defined' do
+      after { described_class.interfaces = {} }
+
+      subject { described_class.defined }
+
+      context 'when interfaces are not defined' do
+        before { described_class.interfaces = {} }
+
+        it { subject.must_be_instance_of(NilClass) }
+      end
+
+      context 'when no interfaces are defined' do
+        before { described_class.interfaces = { mock: :interface } }
+
+        it { subject.must_be_instance_of(Module) }
+      end
+    end
+
     describe '.default' do
       subject { described_class.default }
 
@@ -18,18 +42,6 @@ module Vedeu
       it 'adds the dummy interface to the interface list' do
         described_class.list.wont_be_empty
       end
-    end
-
-    describe '.defined' do
-      subject { described_class.defined }
-
-      it { subject.must_be_instance_of(Module) }
-    end
-
-    describe '.define' do
-      subject { described_class.define }
-
-      it { subject.must_be_instance_of(Module) }
     end
 
     describe '.add' do

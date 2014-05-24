@@ -3,14 +3,7 @@ module Vedeu
 
   module Interfaces
     extend self
-
-    def default
-      add(:dummy, Dummy)
-    end
-
-    def defined
-      interfaces.empty? ? nil : self
-    end
+    attr_accessor :interfaces
 
     def define(&block)
       if block_given?
@@ -18,6 +11,14 @@ module Vedeu
       else
         self
       end
+    end
+
+    def defined
+      interfaces.empty? ? nil : self
+    end
+
+    def default
+      add(:dummy, Dummy)
     end
 
     def list
