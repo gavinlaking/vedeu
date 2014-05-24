@@ -9,7 +9,7 @@ module Vedeu
     it { described_instance.must_be_instance_of(Background) }
 
     describe '#escape_sequence' do
-      subject { described_instance.escape_sequence }
+      let(:subject) { described_instance.escape_sequence }
 
       it { subject.must_be_instance_of(String) }
 

@@ -6,17 +6,17 @@ module Vedeu
     let(:described_instance) { described_class.new }
 
     describe '#initial_state' do
-      subject { described_instance.initial_state }
+      let(:subject) { described_instance.initial_state }
 
       it { subject.must_be_instance_of(NilClass) }
     end
 
     describe '#input' do
-      subject { described_instance.input }
+      let(:subject) { described_instance.input }
     end
 
     describe '#output' do
-      subject { described_instance.output }
+      let(:subject) { described_instance.output }
     end
   end
 end

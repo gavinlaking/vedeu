@@ -9,7 +9,7 @@ module Vedeu
     it { described_instance.must_be_instance_of(Colour) }
 
     describe '.set' do
-      subject { described_class.set(pair) }
+      let(:subject) { described_class.set(pair) }
 
       it { subject.must_be_instance_of(String) }
 

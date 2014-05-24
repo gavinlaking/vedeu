@@ -14,7 +14,7 @@ module Vedeu
     it { described_instance.must_be_instance_of(Geometry) }
 
     describe '#z' do
-      subject { described_instance.z }
+      let(:subject) { described_instance.z }
 
       context 'using a value' do
         let(:values) { { z: 2 } }
@@ -28,7 +28,7 @@ module Vedeu
     end
 
     describe '#y' do
-      subject { described_instance.y }
+      let(:subject) { described_instance.y }
 
       context 'using a value' do
         let(:values) { { y: 17 } }
@@ -42,7 +42,7 @@ module Vedeu
     end
 
     describe '#x' do
-      subject { described_instance.x }
+      let(:subject) { described_instance.x }
 
       context 'using a value' do
         let(:values) { { x: 33 } }
@@ -56,7 +56,7 @@ module Vedeu
     end
 
     describe '#width' do
-      subject { described_instance.width }
+      let(:subject) { described_instance.width }
 
       context 'using a value' do
         let(:values) { { width: 50 } }
@@ -70,7 +70,7 @@ module Vedeu
     end
 
     describe '#height' do
-      subject { described_instance.height }
+      let(:subject) { described_instance.height }
 
       context 'using a value' do
         let(:values) { { height: 20 } }
@@ -84,7 +84,7 @@ module Vedeu
     end
 
     describe '#dy' do
-      subject { described_instance.dy }
+      let(:subject) { described_instance.dy }
 
       context 'when the value is greater than the available terminal size' do
         it 'clips the value to the terminal size' do
@@ -100,7 +100,7 @@ module Vedeu
     end
 
     describe '#dx' do
-      subject { described_instance.dx }
+      let(:subject) { described_instance.dx }
 
       context 'when the value is greater than the available terminal size' do
         it 'clips the value to the terminal size' do

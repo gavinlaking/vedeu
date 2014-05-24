@@ -8,7 +8,7 @@ module Vedeu
     it { described_instance.must_be_instance_of(Position) }
 
     describe '.set' do
-      subject { described_class.set }
+      let(:subject) { described_class.set }
 
       it { subject.must_be_instance_of(String) }
 
@@ -22,7 +22,7 @@ module Vedeu
         let(:y) { 12 }
         let(:x) { 19 }
 
-        subject { described_class.set(y, x) }
+        let(:subject) { described_class.set(y, x) }
 
         it 'returns a position escape sequence' do
           subject.must_equal("\e[13;20H")

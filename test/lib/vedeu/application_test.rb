@@ -9,7 +9,7 @@ module Vedeu
     it { described_instance.must_be_instance_of(Application) }
 
     describe '.start' do
-      subject { described_class.start(options) }
+      let(:subject) { described_class.start(options) }
 
       it { skip }
     end

@@ -5,7 +5,7 @@ module Vedeu
     let(:described_class)    { Esc }
 
     describe '.bold' do
-      subject { described_class.bold }
+      let(:subject) { described_class.bold }
 
       it { subject.must_be_instance_of(String) }
 
@@ -13,7 +13,7 @@ module Vedeu
     end
 
     describe '.clear' do
-      subject { described_class.clear }
+      let(:subject) { described_class.clear }
 
       it { subject.must_be_instance_of(String) }
 
@@ -21,7 +21,7 @@ module Vedeu
     end
 
     describe '.esc' do
-      subject { described_class.esc }
+      let(:subject) { described_class.esc }
 
       it { subject.must_be_instance_of(String) }
 
@@ -29,7 +29,7 @@ module Vedeu
     end
 
     describe '.hide_cursor' do
-      subject { described_class.hide_cursor }
+      let(:subject) { described_class.hide_cursor }
 
       it { subject.must_be_instance_of(String) }
 
@@ -37,7 +37,7 @@ module Vedeu
     end
 
     describe '.inverse' do
-      subject { described_class.inverse }
+      let(:subject) { described_class.inverse }
 
       it { subject.must_be_instance_of(String) }
 
@@ -45,7 +45,7 @@ module Vedeu
     end
 
     describe '.reset' do
-      subject { described_class.reset }
+      let(:subject) { described_class.reset }
 
       it { subject.must_be_instance_of(String) }
 
@@ -53,7 +53,7 @@ module Vedeu
     end
 
     describe '.show_cursor' do
-      subject { described_class.show_cursor }
+      let(:subject) { described_class.show_cursor }
 
       it { subject.must_be_instance_of(String) }
 
@@ -61,7 +61,7 @@ module Vedeu
     end
 
     describe '.underline' do
-      subject { described_class.underline }
+      let(:subject) { described_class.underline }
 
       it { subject.must_be_instance_of(String) }
 

@@ -11,19 +11,19 @@ module Vedeu
     let(:described_class) { Commands }
 
     describe '.define' do
-      subject { described_class.define }
+      let(:subject) { described_class.define }
 
       it { skip }
     end
 
     describe '.execute' do
-      subject { described_class.execute }
+      let(:subject) { described_class.execute }
 
       it { skip }
     end
 
     describe '.list' do
-      subject { described_class.list }
+      let(:subject) { described_class.list }
 
       it { subject.must_be_instance_of(String) }
     end
@@ -34,7 +34,7 @@ module Vedeu
       let(:args)          { [] }
       let(:options)       { {} }
 
-      subject { described_class.add(command_name, command_klass, args, options) }
+      let(:subject) { described_class.add(command_name, command_klass, args, options) }
 
       it { subject.must_be_instance_of(Hash) }
     end

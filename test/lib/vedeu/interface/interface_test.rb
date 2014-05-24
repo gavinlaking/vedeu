@@ -9,31 +9,31 @@ module Vedeu
     it { described_instance.must_be_instance_of(Interface) }
 
     describe '#initial_state' do
-      subject { described_instance.initial_state }
+      let(:subject) { described_instance.initial_state }
 
       it { proc { subject }.must_raise(NotImplementedError) }
     end
 
     describe '#event_loop' do
-      subject { described_instance.event_loop }
+      let(:subject) { described_instance.event_loop }
 
       it { skip }
     end
 
     describe '#input' do
-      subject { described_instance.input }
+      let(:subject) { described_instance.input }
 
       it { skip }
     end
 
     describe '#output' do
-      subject { described_instance.output }
+      let(:subject) { described_instance.output }
 
       it { skip }
     end
 
     describe '#geometry' do
-      subject { described_instance.geometry }
+      let(:subject) { described_instance.geometry }
 
       it { subject.must_be_instance_of(Geometry) }
     end

@@ -5,7 +5,7 @@ module Vedeu
     let(:described_class) { Exit }
 
     describe '.dispatch' do
-      subject { described_class.dispatch }
+      let(:subject) { described_class.dispatch }
 
       it { subject.must_be_instance_of(Symbol) }
 

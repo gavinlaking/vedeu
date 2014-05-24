@@ -11,7 +11,7 @@ module Vedeu
     let(:described_class) { Interfaces }
 
     describe '.define' do
-      subject { described_class.define }
+      let(:subject) { described_class.define }
 
       it { subject.must_be_instance_of(Module) }
     end
@@ -19,7 +19,7 @@ module Vedeu
     describe '.defined' do
       after { described_class.interfaces = {} }
 
-      subject { described_class.defined }
+      let(:subject) { described_class.defined }
 
       context 'when interfaces are not defined' do
         before { described_class.interfaces = {} }
@@ -35,7 +35,7 @@ module Vedeu
     end
 
     describe '.default' do
-      subject { described_class.default }
+      let(:subject) { described_class.default }
 
       it { subject.must_be_instance_of(Module) }
 
@@ -49,7 +49,7 @@ module Vedeu
       let(:klass)     { DummyInterface }
       let(:options)   { {} }
 
-      subject { described_class.add(interface, klass, options) }
+      let(:subject) { described_class.add(interface, klass, options) }
 
       it { subject.must_be_instance_of(Module) }
 
@@ -61,13 +61,13 @@ module Vedeu
     end
 
     describe '.list' do
-      subject { described_class.list }
+      let(:subject) { described_class.list }
 
       it { subject.must_be_instance_of(String) }
     end
 
     describe '.initial_state' do
-      subject { described_class.initial_state }
+      let(:subject) { described_class.initial_state }
 
       it { subject.must_be_instance_of(Array) }
     end
@@ -78,7 +78,7 @@ module Vedeu
         Commands.stubs(:execute).returns(:stop)
       end
 
-      subject { described_class.event_loop }
+      let(:subject) { described_class.event_loop }
 
       it { subject.must_be_instance_of(Array) }
     end

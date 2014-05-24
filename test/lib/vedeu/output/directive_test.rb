@@ -9,7 +9,7 @@ module Vedeu
     it { described_instance.must_be_instance_of(Directive) }
 
     describe '.enact' do
-      subject { described_class.enact(directive) }
+      let(:subject) { described_class.enact(directive) }
 
       context 'when the directive is invalid' do
         it 'raises an exception' do
