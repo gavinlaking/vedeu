@@ -50,7 +50,12 @@ module Vedeu
 
     def defaults
       {
-        geometry: {}
+        geometry: {
+                    y:      1,
+                    x:      1,
+                    width:  :auto,
+                    height: :auto
+                  }
       }
     end
   end
