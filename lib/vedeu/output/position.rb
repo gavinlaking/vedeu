@@ -1,13 +1,18 @@
 module Vedeu
   class Position
     class << self
-      def set(y = 0, x = 0)
+      def set(y = nil, x = nil)
+        return '' if y.nil? || x.nil?
+
         new(y, x).set
       end
-      alias_method :reset, :set
+
+      def reset
+        new(0, 0).set
+      end
     end
 
-    def initialize(y = 0, x = 0)
+    def initialize(y = nil, x = nil)
       @y, @x = y, x
     end
 

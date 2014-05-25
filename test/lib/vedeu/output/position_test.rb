@@ -14,7 +14,7 @@ module Vedeu
 
       context 'when no coordinates are provided' do
         it 'returns a position escape sequence' do
-          subject.must_equal("\e[1;1H")
+          subject.must_equal('')
         end
       end
 
@@ -26,6 +26,16 @@ module Vedeu
         it 'returns a position escape sequence' do
           subject.must_equal("\e[13;20H")
         end
+      end
+    end
+
+    describe '.reset' do
+      let(:subject) { described_class.reset }
+
+      it { subject.must_be_instance_of(String) }
+
+      it 'returns a position escape sequence' do
+        subject.must_equal("\e[1;1H")
       end
     end
   end
