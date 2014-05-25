@@ -51,28 +51,8 @@ module Vedeu
       geometry.vy(index)
     end
 
-    def height
-      geometry.height
-    end
-
     def width
       geometry.width
-    end
-
-    def y
-      geometry.y
-    end
-
-    def dy
-      geometry.dy
-    end
-
-    def x
-      geometry.x
-    end
-
-    def dx
-      geometry.dx
     end
 
     def geometry

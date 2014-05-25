@@ -104,9 +104,10 @@ module Vedeu
     end
 
     describe '.clear_line' do
-      let(:subject) { described_class.clear_line }
+      let(:subject) { described_class.clear_line(index) }
+      let(:index)   { 0 }
 
-      it { skip }
+      it { subject.must_be_instance_of(NilClass) }
     end
 
     describe '.show_cursor' do
@@ -136,19 +137,19 @@ module Vedeu
     describe '#initialize' do
       let(:subject) { described_class.new }
 
-      it { skip }
+      it { subject.must_be_instance_of(Terminal) }
     end
 
     describe '#open' do
       let(:subject) { described_class.new.open }
 
-      it { skip }
+      it { subject.must_be_instance_of(NilClass) }
     end
 
     describe '#initial_setup!' do
       let(:subject) { described_class.new.initial_setup! }
 
-      it { skip }
+      it { subject.must_be_instance_of(NilClass) }
     end
   end
 end
