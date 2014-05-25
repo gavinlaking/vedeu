@@ -18,7 +18,7 @@ module Vedeu
 
     private
 
-    attr_reader :output, :interface
+    attr_reader :interface
 
     def composition
       container = []
@@ -26,12 +26,7 @@ module Vedeu
       output.map do |line|
         line.each_with_index do |stream, index|
           streams << clear_line(index)
-
-          if stream.is_a?(String)
-            streams << stream
-          else
-            streams << Directive.enact(stream)
-          end
+          streams << Directive.enact(stream)
         end
         container << streams.join
         streams = []
@@ -40,7 +35,7 @@ module Vedeu
     end
 
     def clear_line(index)
-      [position(vy(index), vx), (" " * width), position(vy(index), vx)].join
+      [position(vy(index), vx), (' ' * width), position(vy(index), vx)].join
     end
 
     def vx(index = 0)
@@ -61,6 +56,11 @@ module Vedeu
 
     def position(y, x)
       Position.set(y, x)
+    end
+
+    def output
+      return @output.split if @output.is_a?(String)
+      @output
     end
   end
 end
