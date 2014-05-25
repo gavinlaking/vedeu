@@ -23,7 +23,12 @@ module Vedeu
     describe '#input' do
       let(:subject) { described_instance.input }
 
-      it { skip }
+      before do
+        Terminal.stubs(:input).returns('some input')
+        Commands.stubs(:execute).returns('some output')
+      end
+
+      it { subject.must_be_instance_of(String) }
     end
 
     describe '#output' do
