@@ -24,8 +24,8 @@ module Vedeu
 
     it { described_instance.must_be_instance_of(Compositor) }
 
-    describe '.write' do
-      let(:subject) { described_class.write(output, interface) }
+    describe '.arrange' do
+      let(:subject) { described_class.arrange(output, interface) }
 
       context 'when empty' do
         let(:output) { [] }

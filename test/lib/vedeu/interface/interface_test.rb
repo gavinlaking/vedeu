@@ -30,7 +30,7 @@ module Vedeu
       let(:subject) { described_instance.output(command) }
       let(:command) { mock }
 
-      before { Compositor.stubs(:write).returns([]) }
+      before { Compositor.stubs(:arrange).returns([]) }
 
       it 'sends the output of the command to the compositor' do
         subject.must_be_instance_of(Array)
