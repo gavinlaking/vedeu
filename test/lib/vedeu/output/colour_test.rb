@@ -49,8 +49,8 @@ module Vedeu
         context 'when no foreground/background is specified' do
           let(:pair) { [] }
 
-          it 'returns the reset code' do
-            subject.must_equal("\e[38;5;39m\e[48;5;49m")
+          it 'return an empty string' do
+            subject.must_equal('')
           end
         end
       end

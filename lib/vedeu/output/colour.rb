@@ -2,6 +2,8 @@ module Vedeu
   class Colour
     class << self
       def define(pair = [])
+        return '' if pair.empty?
+
         new(pair).define
       end
       alias_method :set, :define
