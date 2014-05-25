@@ -19,35 +19,23 @@ module Vedeu
 
       context 'when the directive is valid' do
         context 'when the directive is a collection' do
-          let(:directive) { [] }
-
           context 'and the first element is a number' do
             let(:directive) { [0, 0] }
 
-            before { Position.stubs(:set) }
-
-            it 'must be a position' do
-              skip
-            end
+            it { subject.must_be_instance_of(String) }
           end
 
           context 'and the first element is a symbol' do
             let(:directive) { [:default, :default] }
 
-            before { Colour.stubs(:set) }
-
-            it 'must be a colour' do
-              skip
-            end
+            it { subject.must_be_instance_of(String) }
           end
         end
 
         context 'when the directive is individual' do
           let(:directive) { :normal }
 
-          it 'must be a style' do
-            skip
-          end
+          it { subject.must_be_instance_of(String) }
         end
       end
     end

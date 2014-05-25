@@ -14,9 +14,11 @@ module Vedeu
     describe '.input' do
       let(:subject) { described_class.input }
 
-      before  { console.stubs(:gets).returns("test") }
+      before  { console.stubs(:gets).returns("test\n") }
 
       it { subject.must_be_instance_of(String) }
+
+      it { subject.must_equal("test") }
     end
 
     describe '.output' do

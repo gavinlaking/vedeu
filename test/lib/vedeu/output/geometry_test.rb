@@ -16,6 +16,8 @@ module Vedeu
     describe '#z' do
       let(:subject) { described_instance.z }
 
+      it { subject.must_be_instance_of(Fixnum) }
+
       context 'using a value' do
         let(:values) { { z: 2 } }
 
@@ -29,6 +31,8 @@ module Vedeu
 
     describe '#y' do
       let(:subject) { described_instance.y }
+
+      it { subject.must_be_instance_of(Fixnum) }
 
       context 'using a value' do
         let(:values) { { y: 17 } }
@@ -44,6 +48,8 @@ module Vedeu
     describe '#x' do
       let(:subject) { described_instance.x }
 
+      it { subject.must_be_instance_of(Fixnum) }
+
       context 'using a value' do
         let(:values) { { x: 33 } }
 
@@ -57,6 +63,8 @@ module Vedeu
 
     describe '#width' do
       let(:subject) { described_instance.width }
+
+      it { subject.must_be_instance_of(Fixnum) }
 
       context 'using a value' do
         let(:values) { { width: 50 } }
@@ -78,6 +86,8 @@ module Vedeu
     describe '#height' do
       let(:subject) { described_instance.height }
 
+      it { subject.must_be_instance_of(Fixnum) }
+
       context 'using a value' do
         let(:values) { { height: 20 } }
 
@@ -98,6 +108,8 @@ module Vedeu
     describe '#dy' do
       let(:subject) { described_instance.dy }
 
+      it { subject.must_be_instance_of(Fixnum) }
+
       context 'when the value is greater than the available terminal size' do
         it 'clips the value to the terminal size' do
           subject.must_equal(25)
@@ -114,6 +126,8 @@ module Vedeu
     describe '#dx' do
       let(:subject) { described_instance.dx }
 
+      it { subject.must_be_instance_of(Fixnum) }
+
       context 'when the value is greater than the available terminal size' do
         it 'clips the value to the terminal size' do
           subject.must_equal(80)
@@ -123,8 +137,26 @@ module Vedeu
       context 'when the value is less than the available size' do
         let(:values) { { x: 17, width: 21 } }
 
+        it { subject.must_be_instance_of(Fixnum) }
+
         it { subject.must_equal(38) }
       end
+    end
+
+    describe '#vx' do
+      let(:subject) { described_instance.vx }
+
+      it { subject.must_be_instance_of(Fixnum) }
+
+      it { subject.must_equal(1) }
+    end
+
+    describe '#vy' do
+      let(:subject) { described_instance.vy }
+
+      it { subject.must_be_instance_of(Fixnum) }
+
+      it { subject.must_equal(1) }
     end
   end
 end
