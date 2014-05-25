@@ -25,7 +25,7 @@ module Vedeu
     end
 
     def output(command)
-      Compositor.write(command, self)
+      Compositor.arrange(command, self)
     end
 
     def geometry

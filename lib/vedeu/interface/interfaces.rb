@@ -3,14 +3,7 @@ module Vedeu
 
   module Interfaces
     extend self
-
-    def default
-      add(:dummy, Dummy)
-    end
-
-    def defined
-      interfaces.empty? ? nil : interfaces
-    end
+    attr_accessor :interfaces
 
     def define(&block)
       if block_given?
@@ -20,6 +13,14 @@ module Vedeu
       end
     end
 
+    def defined
+      interfaces.empty? ? nil : self
+    end
+
+    def default
+      add(:dummy, Dummy)
+    end
+
     def list
       interfaces.inspect
     end
@@ -27,7 +28,7 @@ module Vedeu
     def add(name, klass, options = {})
       if valid?(klass)
         interfaces[name] = Proc.new { klass.new(options) }
-        interfaces
+        self
       end
     end
 

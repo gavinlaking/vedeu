@@ -9,31 +9,41 @@ module Vedeu
     it { described_instance.must_be_instance_of(Interface) }
 
     describe '#initial_state' do
-      subject { described_instance.initial_state }
+      let(:subject) { described_instance.initial_state }
 
       it { proc { subject }.must_raise(NotImplementedError) }
     end
 
     describe '#event_loop' do
-      subject { described_instance.event_loop }
+      let(:subject) { described_instance.event_loop }
 
       it { skip }
     end
 
     describe '#input' do
-      subject { described_instance.input }
+      let(:subject) { described_instance.input }
 
-      it { skip }
+      before do
+        Terminal.stubs(:input).returns('some input')
+        Commands.stubs(:execute).returns('some output')
+      end
+
+      it { subject.must_be_instance_of(String) }
     end
 
     describe '#output' do
-      subject { described_instance.output }
+      let(:subject) { described_instance.output(command) }
+      let(:command) { mock }
 
-      it { skip }
+      before { Compositor.stubs(:arrange).returns([]) }
+
+      it 'sends the output of the command to the compositor' do
+        subject.must_be_instance_of(Array)
+      end
     end
 
     describe '#geometry' do
-      subject { described_instance.geometry }
+      let(:subject) { described_instance.geometry }
 
       it { subject.must_be_instance_of(Geometry) }
     end

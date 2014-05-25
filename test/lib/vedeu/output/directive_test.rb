@@ -2,53 +2,54 @@ require_relative '../../../test_helper'
 
 module Vedeu
   describe Directive do
-    let(:described_class)     { Directive }
-    let(:instance)  { described_class.new(directive) }
-    let(:directive) {}
+    let(:described_class)    { Directive }
+    let(:described_instance) { described_class.new(directives) }
+    let(:directives)         {
+      {
+        position: position,
+        colour:   colour,
+        style:    style
+      }
+    }
+    let(:position)           { [] }
+    let(:colour)             { [] }
+    let(:style)              { [] }
 
-    it { instance.must_be_instance_of(Directive) }
+    it { described_instance.must_be_instance_of(Directive) }
 
     describe '.enact' do
-      subject { described_class.enact(directive) }
+      let(:subject) { described_class.enact(directives) }
 
-      context 'when the directive is invalid' do
-        it 'raises an exception' do
-          proc { subject }.must_raise(InvalidDirective)
-        end
+      it { subject.must_be_instance_of(String) }
+
+      context 'when the position is not set' do
+        it { subject.must_equal('') }
       end
 
-      context 'when the directive is valid' do
-        context 'when the directive is a collection' do
-          let(:directive) { [] }
+      context 'when the position is set' do
+        let(:position) { [4, 5] }
 
-          context 'and the first element is a number' do
-            let(:directive) { [0, 0] }
+        it { subject.must_equal("\e[5;6H") }
+      end
 
-            before { Position.stubs(:set) }
+      context 'when the colour is not set' do
+        it { subject.must_equal('') }
+      end
 
-            it 'must be a position' do
-              skip
-            end
-          end
+      context 'when the colour is set' do
+        let(:colour) { [:red, :black] }
 
-          context 'and the first element is a symbol' do
-            let(:directive) { [:default, :default] }
+        it { subject.must_equal("\e[38;5;31m\e[48;5;40m") }
+      end
 
-            before { Colour.stubs(:set) }
+      context 'when the style is not set' do
+        it { subject.must_equal('') }
+      end
 
-            it 'must be a colour' do
-              skip
-            end
-          end
-        end
+      context 'when the style is set' do
+        let(:style) { [:normal, :underline, :normal] }
 
-        context 'when the directive is individual' do
-          let(:directive) { :normal }
-
-          it 'must be a style' do
-            skip
-          end
-        end
+        it { subject.must_equal("\e[0m\e[4m\e[0m") }
       end
     end
   end

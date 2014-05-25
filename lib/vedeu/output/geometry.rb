@@ -56,7 +56,12 @@ module Vedeu
     end
 
     def values
-      defaults.merge(@values)
+      defaults.merge(auto)
+    end
+
+    def auto
+      @values.delete_if { |k, v| k == :width  && v == :auto }
+      @values.delete_if { |k, v| k == :height && v == :auto }
     end
 
     def defaults

@@ -1,10 +1,10 @@
 module Vedeu
   class Compositor
     class << self
-      def write(output = [], interface = Dummy)
+      def arrange(output = [], interface = Dummy)
         return if output.nil? || output.empty?
 
-        new(output, interface).write
+        new(output, interface).arrange
       end
     end
 
@@ -12,7 +12,7 @@ module Vedeu
       @output, @interface = output, interface
     end
 
-    def write
+    def arrange
       Renderer.write(composition)
     end
 
@@ -51,28 +51,8 @@ module Vedeu
       geometry.vy(index)
     end
 
-    def height
-      geometry.height
-    end
-
     def width
       geometry.width
-    end
-
-    def y
-      geometry.y
-    end
-
-    def dy
-      geometry.dy
-    end
-
-    def x
-      geometry.x
-    end
-
-    def dx
-      geometry.dx
     end
 
     def geometry

@@ -3,13 +3,13 @@ require_relative '../../../test_helper'
 module Vedeu
   describe Colour do
     let(:described_class)    { Colour }
-    let(:instance) { described_class.new }
-    let(:pair)     { [] }
+    let(:described_instance) { described_class.new }
+    let(:pair)               { [] }
 
-    it { instance.must_be_instance_of(Colour) }
+    it { described_instance.must_be_instance_of(Colour) }
 
     describe '.set' do
-      subject { described_class.set(pair) }
+      let(:subject) { described_class.set(pair) }
 
       it { subject.must_be_instance_of(String) }
 
@@ -49,8 +49,8 @@ module Vedeu
         context 'when no foreground/background is specified' do
           let(:pair) { [] }
 
-          it 'returns the reset code' do
-            subject.must_equal("\e[38;5;39m\e[48;5;49m")
+          it 'return an empty string' do
+            subject.must_equal('')
           end
         end
       end

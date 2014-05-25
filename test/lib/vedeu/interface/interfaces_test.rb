@@ -10,38 +10,47 @@ module Vedeu
   describe Interfaces do
     let(:described_class) { Interfaces }
 
-    describe '.default' do
-      subject { described_class.default }
+    describe '.define' do
+      let(:subject) { described_class.define }
 
-      it { subject.must_be_instance_of(Hash) }
+      it { subject.must_be_instance_of(Module) }
+    end
+
+    describe '.defined' do
+      let(:subject) { described_class.defined }
+
+      after { described_class.interfaces = {} }
+
+      context 'when interfaces are not defined' do
+        before { described_class.interfaces = {} }
+
+        it { subject.must_be_instance_of(NilClass) }
+      end
+
+      context 'when no interfaces are defined' do
+        before { described_class.interfaces = { mock: :interface } }
+
+        it { subject.must_be_instance_of(Module) }
+      end
+    end
+
+    describe '.default' do
+      let(:subject) { described_class.default }
+
+      it { subject.must_be_instance_of(Module) }
 
       it 'adds the dummy interface to the interface list' do
         described_class.list.wont_be_empty
       end
     end
 
-    describe '.defined' do
-      subject { described_class.defined }
-
-      it { subject.must_be_instance_of(Hash) }
-    end
-
-    describe '.define' do
-      subject { described_class.define }
-
-      it { subject.must_be_instance_of(Module) }
-    end
-
     describe '.add' do
+      let(:subject) { described_class.add(interface, klass, options) }
       let(:interface) {}
       let(:klass)     { DummyInterface }
       let(:options)   { {} }
 
-      subject { described_class.add(interface, klass, options) }
-
-      it { subject.must_be_instance_of(Hash) }
-
-      it { subject.wont_be_empty }
+      it { subject.must_be_instance_of(Module) }
 
       context 'when the interface class does not exist' do
         before { Object.stubs(:const_defined?).returns(false) }
@@ -51,24 +60,24 @@ module Vedeu
     end
 
     describe '.list' do
-      subject { described_class.list }
+      let(:subject) { described_class.list }
 
       it { subject.must_be_instance_of(String) }
     end
 
     describe '.initial_state' do
-      subject { described_class.initial_state }
+      let(:subject) { described_class.initial_state }
 
       it { subject.must_be_instance_of(Array) }
     end
 
     describe '.event_loop' do
+      let(:subject) { described_class.event_loop }
+
       before do
         Terminal.stubs(:input)
         Commands.stubs(:execute).returns(:stop)
       end
-
-      subject { described_class.event_loop }
 
       it { subject.must_be_instance_of(Array) }
     end

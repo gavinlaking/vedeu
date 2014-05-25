@@ -5,7 +5,7 @@ require 'minitest/pride'
 SimpleCov.start do
   command_name 'MiniTest::Spec'
   add_filter   '/test/'
-end
+end unless ENV["no_simplecov"]
 
 module MiniTest
   class Spec

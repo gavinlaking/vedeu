@@ -14,7 +14,9 @@ module Vedeu
     it { described_instance.must_be_instance_of(Geometry) }
 
     describe '#z' do
-      subject { described_instance.z }
+      let(:subject) { described_instance.z }
+
+      it { subject.must_be_instance_of(Fixnum) }
 
       context 'using a value' do
         let(:values) { { z: 2 } }
@@ -28,7 +30,9 @@ module Vedeu
     end
 
     describe '#y' do
-      subject { described_instance.y }
+      let(:subject) { described_instance.y }
+
+      it { subject.must_be_instance_of(Fixnum) }
 
       context 'using a value' do
         let(:values) { { y: 17 } }
@@ -42,7 +46,9 @@ module Vedeu
     end
 
     describe '#x' do
-      subject { described_instance.x }
+      let(:subject) { described_instance.x }
+
+      it { subject.must_be_instance_of(Fixnum) }
 
       context 'using a value' do
         let(:values) { { x: 33 } }
@@ -56,12 +62,20 @@ module Vedeu
     end
 
     describe '#width' do
-      subject { described_instance.width }
+      let(:subject) { described_instance.width }
+
+      it { subject.must_be_instance_of(Fixnum) }
 
       context 'using a value' do
         let(:values) { { width: 50 } }
 
         it { subject.must_equal(50) }
+      end
+
+      context 'using :auto' do
+        let(:values) { { width: :auto } }
+
+        it { subject.must_equal(80) }
       end
 
       context 'using the default' do
@@ -70,12 +84,20 @@ module Vedeu
     end
 
     describe '#height' do
-      subject { described_instance.height }
+      let(:subject) { described_instance.height }
+
+      it { subject.must_be_instance_of(Fixnum) }
 
       context 'using a value' do
         let(:values) { { height: 20 } }
 
         it { subject.must_equal(20) }
+      end
+
+      context 'using :auto' do
+        let(:values) { { height: :auto } }
+
+        it { subject.must_equal(25) }
       end
 
       context 'using the default' do
@@ -84,7 +106,9 @@ module Vedeu
     end
 
     describe '#dy' do
-      subject { described_instance.dy }
+      let(:subject) { described_instance.dy }
+
+      it { subject.must_be_instance_of(Fixnum) }
 
       context 'when the value is greater than the available terminal size' do
         it 'clips the value to the terminal size' do
@@ -100,7 +124,9 @@ module Vedeu
     end
 
     describe '#dx' do
-      subject { described_instance.dx }
+      let(:subject) { described_instance.dx }
+
+      it { subject.must_be_instance_of(Fixnum) }
 
       context 'when the value is greater than the available terminal size' do
         it 'clips the value to the terminal size' do
@@ -111,8 +137,26 @@ module Vedeu
       context 'when the value is less than the available size' do
         let(:values) { { x: 17, width: 21 } }
 
+        it { subject.must_be_instance_of(Fixnum) }
+
         it { subject.must_equal(38) }
       end
+    end
+
+    describe '#vx' do
+      let(:subject) { described_instance.vx }
+
+      it { subject.must_be_instance_of(Fixnum) }
+
+      it { subject.must_equal(1) }
+    end
+
+    describe '#vy' do
+      let(:subject) { described_instance.vy }
+
+      it { subject.must_be_instance_of(Fixnum) }
+
+      it { subject.must_equal(1) }
     end
   end
 end
