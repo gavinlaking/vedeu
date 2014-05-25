@@ -14,6 +14,12 @@ module Vedeu
       let(:subject) { described_class.define }
 
       it { subject.must_be_instance_of(Module) }
+
+      context 'when a block is given' do
+        let(:subject) { described_class.define { :some_block } }
+
+        it { subject.must_be_instance_of(Symbol) }
+      end
     end
 
     describe '.defined' do
@@ -45,7 +51,7 @@ module Vedeu
     end
 
     describe '.add' do
-      let(:subject) { described_class.add(interface, klass, options) }
+      let(:subject)   { described_class.add(interface, klass, options) }
       let(:interface) {}
       let(:klass)     { DummyInterface }
       let(:options)   { {} }
