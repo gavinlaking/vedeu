@@ -14,6 +14,7 @@ require_relative 'vedeu/output/position'
 require_relative 'vedeu/output/renderer'
 require_relative 'vedeu/output/style'
 require_relative 'vedeu/output/translator'
+require_relative 'vedeu/output/wordwrap'
 
 require_relative 'vedeu/interface/interfaces'
 require_relative 'vedeu/interface/interface'
