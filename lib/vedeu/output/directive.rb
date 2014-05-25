@@ -15,17 +15,38 @@ module Vedeu
     def enact
       raise InvalidDirective unless valid_directive?
 
-      return Style.set(directive) if directive.is_a?(Symbol)
-
-      if directive.is_a?(Array)
-        return Position.set(*directive) if directive.first.is_a?(Numeric)
-        return Colour.set(directive)    if directive.first.is_a?(Symbol)
-      end
+      return style    if style?
+      return position if position?
+      return colour   if colour?
     end
 
     private
 
     attr_reader :directive
+
+    def style?
+      directive.is_a?(Symbol)
+    end
+
+    def style
+      Style.set(directive)
+    end
+
+    def position?
+      directive.is_a?(Array) && directive.first.is_a?(Numeric)
+    end
+
+    def position
+      Position.set(*directive)
+    end
+
+    def colour?
+      directive.is_a?(Array) && directive.first.is_a?(Symbol)
+    end
+
+    def colour
+      Colour.set(directive)
+    end
 
     def valid_directive?
       directive.is_a?(Array) || directive.is_a?(Symbol)
