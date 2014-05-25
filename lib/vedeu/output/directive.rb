@@ -3,53 +3,45 @@ module Vedeu
 
   class Directive
     class << self
-      def enact(directive)
-        new(directive).enact
+      def enact(directives = {})
+        new(directives).enact
       end
     end
 
-    def initialize(directive)
-      @directive = directive
+    def initialize(directives = {})
+      @directives = directives
     end
 
     def enact
-      raise InvalidDirective unless valid_directive?
-
-      return style    if style?
-      return position if position?
-      return colour   if colour?
+      [set_position, set_colour, set_style].join
     end
 
     private
 
-    attr_reader :directive
+    attr_reader :directives
 
-    def style?
-      directive.is_a?(Symbol)
+    def set_position
+      Position.set(*position)
     end
 
-    def style
-      Style.set(directive)
+    def set_colour
+      Colour.set(colour)
     end
 
-    def position?
-      directive.is_a?(Array) && directive.first.is_a?(Numeric)
+    def set_style
+      Array(style).map { |s| Style.set(s) }.join
     end
 
     def position
-      Position.set(*directive)
-    end
-
-    def colour?
-      directive.is_a?(Array) && directive.first.is_a?(Symbol)
+      directives.fetch(:position, [])
     end
 
     def colour
-      Colour.set(directive)
+      directives.fetch(:colour, [])
     end
 
-    def valid_directive?
-      directive.is_a?(Array) || directive.is_a?(Symbol)
+    def style
+      directives.fetch(:style, [])
     end
   end
 end

@@ -3,40 +3,53 @@ require_relative '../../../test_helper'
 module Vedeu
   describe Directive do
     let(:described_class)    { Directive }
-    let(:described_instance) { described_class.new(directive) }
-    let(:directive)          {}
+    let(:described_instance) { described_class.new(directives) }
+    let(:directives)         {
+      {
+        position: position,
+        colour:   colour,
+        style:    style
+      }
+    }
+    let(:position)           { [] }
+    let(:colour)             { [] }
+    let(:style)              { [] }
 
     it { described_instance.must_be_instance_of(Directive) }
 
     describe '.enact' do
-      let(:subject) { described_class.enact(directive) }
+      let(:subject) { described_class.enact(directives) }
 
-      context 'when the directive is invalid' do
-        it 'raises an exception' do
-          proc { subject }.must_raise(InvalidDirective)
-        end
+      it { subject.must_be_instance_of(String) }
+
+      context 'when the position is not set' do
+        it { subject.must_equal('') }
       end
 
-      context 'when the directive is valid' do
-        context 'when the directive is a collection' do
-          context 'and the first element is a number' do
-            let(:directive) { [0, 0] }
+      context 'when the position is set' do
+        let(:position) { [4, 5] }
 
-            it { subject.must_be_instance_of(String) }
-          end
+        it { subject.must_equal("\e[5;6H") }
+      end
 
-          context 'and the first element is a symbol' do
-            let(:directive) { [:default, :default] }
+      context 'when the colour is not set' do
+        it { subject.must_equal('') }
+      end
 
-            it { subject.must_be_instance_of(String) }
-          end
-        end
+      context 'when the colour is set' do
+        let(:colour) { [:red, :black] }
 
-        context 'when the directive is individual' do
-          let(:directive) { :normal }
+        it { subject.must_equal("\e[38;5;31m\e[48;5;40m") }
+      end
 
-          it { subject.must_be_instance_of(String) }
-        end
+      context 'when the style is not set' do
+        it { subject.must_equal('') }
+      end
+
+      context 'when the style is set' do
+        let(:style) { [:normal, :underline, :normal] }
+
+        it { subject.must_equal("\e[0m\e[4m\e[0m") }
       end
     end
   end

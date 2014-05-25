@@ -59,7 +59,7 @@ module Vedeu
           context 'and a single line' do
             let(:output) {
               [
-                [[:red, :white], 'Some text...']
+                [{ colour: [:red, :white] }, 'Some text...']
               ]
             }
             let(:stream) { "\e[38;5;31m\e[48;5;47mSome text..." }
@@ -70,8 +70,8 @@ module Vedeu
           context 'and multi-line' do
             let(:output) {
               [
-                [[:red, :white],   'Some text...'],
-                [[:blue, :yellow], 'Some more text...']
+                [{ colour: [:red, :white] },   'Some text...'],
+                [{ colour: [:blue, :yellow] }, 'Some more text...']
               ]
             }
             let(:stream) {
@@ -87,7 +87,7 @@ module Vedeu
           context 'and a single line' do
             let(:output) {
               [
-                [:bold, 'Some text...']
+                [{ style: :bold }, 'Some text...']
               ]
             }
             let(:stream) {
@@ -100,8 +100,8 @@ module Vedeu
           context 'and multi-line' do
             let(:output) {
               [
-                [:inverse,   'Some text...'],
-                [:underline, 'Some more text...']
+                [{ style: :inverse },   'Some text...'],
+                [{ style: :underline }, 'Some more text...']
               ]
             }
             let(:stream) {
@@ -116,7 +116,7 @@ module Vedeu
         context 'with an unknown style' do
           let(:output) {
             [
-              [:unknown, 'Some text...']
+              [{ style: :unknown }, 'Some text...']
             ]
           }
           let(:stream) {
