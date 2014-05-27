@@ -1,0 +1,44 @@
+#!/usr/bin/env ruby
+$:.unshift(File.dirname(__FILE__) + '/../lib') unless $:.include?(File.dirname(__FILE__) + '/../lib')
+
+-> { its -> { a } }
+trap('INT') { exit! }
+
+require 'vedeu'
+print Vedeu::Esc.clear
+
+geometry = {
+  geometry: {
+    y: 2,
+    x: 2,
+    width: 20,
+    height: 10
+  }
+}
+interface = Vedeu::Interface.new(geometry)
+Vedeu::Renderer.new(interface).clear_interface_rows
+
+geometry = {
+  geometry: {
+    y: 2,
+    x: 23,
+    width: 20,
+    height: 10
+  }
+}
+interface = Vedeu::Interface.new(geometry)
+Vedeu::Renderer.new(interface).clear_interface_rows
+
+geometry = {
+  geometry: {
+    y: 2,
+    x: 44,
+    width: 20,
+    height: 10
+  }
+}
+interface = Vedeu::Interface.new(geometry)
+Vedeu::Renderer.new(interface).clear_interface_rows
+
+print Vedeu::Esc.reset
+print Vedeu::Position.reset
