@@ -29,7 +29,7 @@ module Vedeu
     end
 
     def commands
-      @commands ||= { 'exit' => Proc.new { Exit.dispatch } }
+      @commands ||= { :exit => Proc.new { Exit.dispatch } }
     end
   end
 end
