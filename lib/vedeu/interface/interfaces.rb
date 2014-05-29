@@ -18,14 +18,14 @@ module Vedeu
     end
 
     def default
-      add(:dummy, Dummy)
+      add(:dummy)
     end
 
     def list
       interfaces.inspect
     end
 
-    def add(name, klass, options = {})
+    def add(name, options = {}, klass = Dummy)
       if valid?(klass)
         interfaces[name] = Proc.new { klass.new(options) }
         self

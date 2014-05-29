@@ -51,7 +51,7 @@ module Vedeu
     end
 
     describe '.add' do
-      let(:subject)   { described_class.add(interface, klass, options) }
+      let(:subject)   { described_class.add(interface, options, klass) }
       let(:interface) {}
       let(:klass)     { DummyInterface }
       let(:options)   { {} }
