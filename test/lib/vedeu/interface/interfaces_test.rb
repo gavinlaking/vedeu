@@ -31,24 +31,14 @@ module Vedeu
         before { described_class.interfaces = {} }
 
         it 'adds the default interface and returns all interfaces' do
-          subject.must_be_instance_of(Hash)
+          subject.must_be_instance_of(Module)
         end
       end
 
       context 'when interfaces are defined' do
         before { described_class.interfaces = { mock: :interface } }
 
-        it { subject.must_be_instance_of(Hash) }
-      end
-    end
-
-    describe '.default' do
-      let(:subject) { described_class.default }
-
-      it { subject.must_be_instance_of(Hash) }
-
-      it 'adds the dummy interface to the interface list' do
-        described_class.list.wont_be_empty
+        it { subject.must_be_instance_of(Module) }
       end
     end
 

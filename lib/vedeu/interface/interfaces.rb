@@ -14,13 +14,7 @@ module Vedeu
     end
 
     def defined
-      interfaces.empty? ? default : interfaces
-    end
-
-    def default
-      add(:dummy)
-
-      interfaces
+      interfaces.empty? ? default : self
     end
 
     def list
@@ -28,14 +22,20 @@ module Vedeu
     end
 
     def add(name, options = {}, klass = Dummy)
-      if valid?(klass)
-        interfaces[name] = Proc.new { klass.new(options) }
-        self
-      end
+      interfaces[name] = klass.new(options) if valid?(klass)
+      self
     end
 
     def initial_state
-      interfaces.values.map { |io| io.call.initial_state }
+      interfaces.values.map { |io| io.initial_state }
+    end
+
+    def input
+      interfaces.values.map { |io| io.input }
+    end
+
+    def output(stream)
+      interfaces.values.map { |io| io.output(stream) }
     end
 
     private
@@ -43,6 +43,12 @@ module Vedeu
     def valid?(klass)
       raise UndefinedInterface unless Object.const_defined?(klass.to_s)
       true
+    end
+
+    def default
+      add(:dummy)
+
+      self
     end
 
     def interfaces
