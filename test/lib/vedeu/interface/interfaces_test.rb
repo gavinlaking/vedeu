@@ -30,20 +30,22 @@ module Vedeu
       context 'when interfaces are not defined' do
         before { described_class.interfaces = {} }
 
-        it { subject.must_be_instance_of(NilClass) }
+        it 'adds the default interface and returns all interfaces' do
+          subject.must_be_instance_of(Hash)
+        end
       end
 
-      context 'when no interfaces are defined' do
+      context 'when interfaces are defined' do
         before { described_class.interfaces = { mock: :interface } }
 
-        it { subject.must_be_instance_of(Module) }
+        it { subject.must_be_instance_of(Hash) }
       end
     end
 
     describe '.default' do
       let(:subject) { described_class.default }
 
-      it { subject.must_be_instance_of(Module) }
+      it { subject.must_be_instance_of(Hash) }
 
       it 'adds the dummy interface to the interface list' do
         described_class.list.wont_be_empty
@@ -73,17 +75,6 @@ module Vedeu
 
     describe '.initial_state' do
       let(:subject) { described_class.initial_state }
-
-      it { subject.must_be_instance_of(Array) }
-    end
-
-    describe '.event_loop' do
-      let(:subject) { described_class.event_loop }
-
-      before do
-        Terminal.stubs(:input)
-        Commands.stubs(:execute).returns(:stop)
-      end
 
       it { subject.must_be_instance_of(Array) }
     end

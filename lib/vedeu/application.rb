@@ -12,9 +12,9 @@ module Vedeu
 
     def main_sequence
       Terminal.open(options) do
-        initial_state
+        Interfaces.initial_state
 
-        event_loop
+        # EventLoop.start
       end
     ensure
       Terminal.close
@@ -23,18 +23,6 @@ module Vedeu
     private
 
     attr_reader :options
-
-    def event_loop
-      interfaces.event_loop
-    end
-
-    def initial_state
-      interfaces.initial_state
-    end
-
-    def interfaces
-      @interfaces ||= Interfaces.defined || Interfaces.default
-    end
 
     def options
       defaults.merge!(@options)

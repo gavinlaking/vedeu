@@ -14,11 +14,13 @@ module Vedeu
     end
 
     def defined
-      interfaces.empty? ? nil : self
+      interfaces.empty? ? default : interfaces
     end
 
     def default
       add(:dummy)
+
+      interfaces
     end
 
     def list
@@ -34,10 +36,6 @@ module Vedeu
 
     def initial_state
       interfaces.values.map { |io| io.call.initial_state }
-    end
-
-    def event_loop
-      interfaces.values.map { |io| io.call.event_loop }
     end
 
     private
