@@ -14,12 +14,6 @@ module Vedeu
       it { proc { subject }.must_raise(NotImplementedError) }
     end
 
-    describe '#event_loop' do
-      let(:subject) { described_instance.event_loop }
-
-      it { skip }
-    end
-
     describe '#input' do
       let(:subject) { described_instance.input }
 

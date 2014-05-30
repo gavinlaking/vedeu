@@ -10,16 +10,6 @@ module Vedeu
       raise NotImplementedError, 'Subclasses implement this method.'
     end
 
-    def event_loop
-      while true do
-        command = input
-
-        break if command == :stop
-
-        output(command)
-      end
-    end
-
     def input
       evaluate
     end
