@@ -26,6 +26,14 @@ module Vedeu
       self
     end
 
+    def reset
+      @interfaces = {}
+    end
+
+    def find(name)
+      interfaces[name] || nil
+    end
+
     def initial_state
       interfaces.values.map { |io| io.initial_state }
     end

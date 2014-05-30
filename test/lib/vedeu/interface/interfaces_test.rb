@@ -57,6 +57,34 @@ module Vedeu
       end
     end
 
+    describe '.reset' do
+      let(:subject) { described_class.reset }
+      let(:interface) { :dummy }
+
+      before { described_class.add(:dummy) }
+
+      it { subject.must_be_instance_of(Hash) }
+
+      it { subject.must_be_empty }
+    end
+
+    describe '.find' do
+      let(:subject)   { described_class.find(interface) }
+      let(:interface) { :dummy }
+
+      context 'when the interface exists' do
+        before { described_class.add(:dummy) }
+
+        it { subject.must_be_instance_of(Dummy) }
+      end
+
+      context 'when the interface does not exist' do
+        before { described_class.reset }
+
+        it { subject.must_be_instance_of(NilClass) }
+      end
+    end
+
     describe '.list' do
       let(:subject) { described_class.list }
 
