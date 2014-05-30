@@ -1,14 +1,20 @@
 module Vedeu
   class Compositor
     class << self
-      def arrange(output = [], interface = Dummy)
+      def arrange(output = [], interface = :dummy)
         return if output.nil? || output.empty?
 
-        new(output, interface).arrange
+        if output.is_a?(Array)
+          new(output, interface).arrange
+        elsif output.is_a?(Hash)
+          output.map do |interface, output|
+            new(output, interface).arrange
+          end
+        end
       end
     end
 
-    def initialize(output = [], interface = Dummy)
+    def initialize(output = [], interface = :dummy)
       @output, @interface = output, interface
     end
 
@@ -18,14 +24,12 @@ module Vedeu
 
     private
 
-    attr_reader :interface
-
     def composition
       container = []
       streams = []
       output.map do |line|
         line.each_with_index do |stream, index|
-          streams << clear_line(index)
+          streams << clear(index)
           streams << Directive.enact(stream)
         end
         container << streams.join
@@ -34,16 +38,12 @@ module Vedeu
       container
     end
 
-    def clear_line(index)
-      [position(vy(index), vx), (' ' * width), position(vy(index), vx)].join
+    def clear(index)
+      [origin(index), (' ' * width), origin(index)].join
     end
 
-    def vx(index = 0)
-      geometry.vx(index)
-    end
-
-    def vy(index = 0)
-      geometry.vy(index)
+    def origin(index)
+      Position.set(geometry.vy(index), geometry.vx)
     end
 
     def width
@@ -51,16 +51,21 @@ module Vedeu
     end
 
     def geometry
-      interface.geometry
-    end
-
-    def position(y, x)
-      Position.set(y, x)
+      target_interface.geometry
     end
 
     def output
       return @output.split if @output.is_a?(String)
       @output
+    end
+
+    def target_interface
+      raise UndefinedInterface if interface.nil?
+      interface
+    end
+
+    def interface
+      @_interface ||= Interfaces.defined.find(@interface)
     end
   end
 end

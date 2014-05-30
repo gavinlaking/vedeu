@@ -3,7 +3,7 @@ require_relative '../../../test_helper'
 module Vedeu
   describe Compositor do
     let(:described_class)    { Compositor }
-    let(:described_instance) { described_class.new(output, interface) }
+    let(:described_instance) { described_class.new(output) }
     let(:output)             { [[]] }
     let(:stream)             {}
     let(:interface)          {
@@ -18,6 +18,7 @@ module Vedeu
     }
 
     before do
+      Interfaces.defined
       Terminal.stubs(:output)
       Renderer.stubs(:write).returns(stream)
     end
@@ -25,7 +26,7 @@ module Vedeu
     it { described_instance.must_be_instance_of(Compositor) }
 
     describe '.arrange' do
-      let(:subject) { described_class.arrange(output, interface) }
+      let(:subject) { described_class.arrange(output) }
 
       context 'when empty' do
         let(:output) { [] }
