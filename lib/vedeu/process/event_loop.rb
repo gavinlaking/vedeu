@@ -20,13 +20,11 @@ module Vedeu
 
     def tick
       while @running do
-        # command = Interfaces.defined.input
-        # command = gets.chomp
-        command = "stop"
+        command = Interfaces.defined.input
 
         stop if command == "stop"
 
-        # Interfaces.defined.output(command)
+        Interfaces.defined.output(command)
       end
     end
   end
