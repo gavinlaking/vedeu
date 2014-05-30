@@ -14,7 +14,7 @@ module Vedeu
       Terminal.open(options) do
         Interfaces.initial_state
 
-        # EventLoop.start
+        EventLoop.start
       end
     ensure
       Terminal.close
