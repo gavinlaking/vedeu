@@ -13,12 +13,17 @@ module Vedeu
     end
 
     def enact
+      return directives if string?
       [set_position, set_colour, set_style].join
     end
 
     private
 
     attr_reader :directives
+
+    def string?
+      directives.is_a?(String)
+    end
 
     def set_position
       Position.set(*position)

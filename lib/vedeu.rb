@@ -22,6 +22,7 @@ require_relative 'vedeu/interface/dummy'
 
 require_relative 'vedeu/process/commands'
 require_relative 'vedeu/process/command'
+require_relative 'vedeu/process/event_loop'
 require_relative 'vedeu/process/exit'
 
 require_relative 'vedeu/application'
