@@ -1,12 +1,6 @@
 require_relative '../../../test_helper'
 
 module Vedeu
-  class DummyCommand
-    def self.dispatch
-      :noop
-    end
-  end
-
   describe Commands do
     let(:described_class) { Commands }
 
