@@ -1,12 +1,6 @@
 require_relative '../../../test_helper'
 
 module Vedeu
-  class DummyInterface < Interface
-    def initial_state; end
-
-    def event_loop; end
-  end
-
   describe Interfaces do
     let(:described_class) { Interfaces }
 
