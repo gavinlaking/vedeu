@@ -7,8 +7,8 @@ module Vedeu
         if output.is_a?(Array)
           new(output, interface).arrange
         elsif output.is_a?(Hash)
-          output.map do |interface, output|
-            new(output, interface).arrange
+          output.map do |i, o|
+            new(o, i).arrange
           end
         end
       end
