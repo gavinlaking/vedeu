@@ -14,22 +14,10 @@ module Vedeu
 
     it { subject.must_be_instance_of(EventLoop) }
 
-    describe '.start' do
-      let(:subject) { described_class.start }
+    describe '.main_sequence' do
+      let(:subject) { described_class.main_sequence }
 
-      it { subject.must_be_instance_of(NilClass) }
-    end
-
-    describe '#stop' do
-      let(:subject) { described_class.new.stop }
-
-      it { subject.must_be_instance_of(FalseClass) }
-    end
-
-    describe '#tick' do
-      let(:subject) { described_class.new.tick }
-
-      it { skip }
+      # it { subject.must_be_instance_of(NilClass) }
     end
   end
 end

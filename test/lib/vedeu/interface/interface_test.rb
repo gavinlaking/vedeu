@@ -18,11 +18,11 @@ module Vedeu
       let(:subject) { described_instance.input }
 
       before do
-        Terminal.stubs(:input).returns('some input')
-        Commands.stubs(:execute).returns('some output')
+        Terminal.stubs(:input).returns('stop')
+        Commands.stubs(:execute)
       end
 
-      it { subject.must_be_instance_of(String) }
+      it { subject.must_be_instance_of(NilClass) }
     end
 
     describe '#output' do

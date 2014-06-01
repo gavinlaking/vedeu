@@ -12,11 +12,11 @@ module Vedeu
     end
 
     def input
-      evaluate
+      raise Collapse if evaluate == :stop
     end
 
     def output
-      Compositor.arrange(@output, self)
+      write
     end
 
     def geometry
@@ -33,6 +33,10 @@ module Vedeu
 
     def read
       Terminal.input
+    end
+
+    def write
+      Compositor.arrange(@output, self)
     end
 
     def options

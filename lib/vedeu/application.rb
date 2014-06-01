@@ -2,7 +2,7 @@ module Vedeu
   class Application
     class << self
       def start(options = {})
-        new(options).main_sequence
+        new(options).start
       end
     end
 
@@ -10,11 +10,11 @@ module Vedeu
       @options = options
     end
 
-    def main_sequence
+    def start
       Terminal.open(options) do
         Interfaces.initial_state
 
-        EventLoop.start
+        EventLoop.main_sequence
       end
     ensure
       Terminal.close
