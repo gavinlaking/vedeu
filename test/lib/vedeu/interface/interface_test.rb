@@ -26,7 +26,7 @@ module Vedeu
     end
 
     describe '#output' do
-      let(:subject) { described_instance.output(command) }
+      let(:subject) { described_instance.output }
       let(:command) { mock }
 
       before { Compositor.stubs(:arrange).returns([]) }

@@ -100,8 +100,7 @@ module Vedeu
     end
 
     describe '.output' do
-      let(:subject) { described_class.output(stream) }
-      let(:stream) { "some output..." }
+      let(:subject) { described_class.output }
 
       it { subject.must_be_instance_of(Array) }
     end

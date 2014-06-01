@@ -42,8 +42,8 @@ module Vedeu
       interfaces.values.map { |io| io.input }
     end
 
-    def output(stream)
-      interfaces.values.map { |io| io.output(stream) }
+    def output
+      interfaces.values.map { |io| io.output }
     end
 
     private

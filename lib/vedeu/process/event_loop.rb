@@ -24,7 +24,7 @@ module Vedeu
 
         stop if command == "stop"
 
-        Interfaces.defined.output(command)
+        Interfaces.defined.output
       end
     end
   end

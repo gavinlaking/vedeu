@@ -4,6 +4,7 @@ module Vedeu
   class Interface
     def initialize(options = {})
       @options = options
+      @output  = output
     end
 
     def initial_state
@@ -14,8 +15,8 @@ module Vedeu
       evaluate
     end
 
-    def output(command)
-      Compositor.arrange(command, self)
+    def output
+      Compositor.arrange(@output, self)
     end
 
     def geometry
@@ -27,7 +28,7 @@ module Vedeu
     attr_reader :options
 
     def evaluate
-      Commands.execute(read)
+      @output = Commands.execute(read)
     end
 
     def read

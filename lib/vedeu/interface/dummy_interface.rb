@@ -7,7 +7,7 @@ module Vedeu
       super
     end
 
-    def output(command)
+    def output
       super
     end
   end
