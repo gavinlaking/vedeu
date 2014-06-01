@@ -1,3 +1,5 @@
+require 'date'
+require 'logger'
 require 'io/console'
 
 require_relative 'vedeu/support/terminal'
@@ -28,3 +30,18 @@ require_relative 'vedeu/process/exit'
 
 require_relative 'vedeu/application'
 require_relative 'vedeu/version'
+
+module Vedeu
+  def self.logger
+    @logger ||= Logger
+      .new(root_path + '/logs/vedeu.log').tap do |log|
+      log.formatter = proc do |mode, time, prog, msg|
+        "\n#{time.iso8601}: #{msg}\n"
+      end
+    end
+  end
+
+  def self.root_path
+    File.expand_path('../..', __FILE__)
+  end
+end
