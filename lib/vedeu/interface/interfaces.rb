@@ -21,9 +21,17 @@ module Vedeu
       interfaces.inspect
     end
 
-    def add(name, options = {}, klass = Dummy)
+    def add(name, options = {}, klass = DummyInterface)
       interfaces[name] = klass.new(options) if valid?(klass)
       self
+    end
+
+    def reset
+      @interfaces = {}
+    end
+
+    def find(name)
+      interfaces[name] || nil
     end
 
     def initial_state
@@ -34,8 +42,8 @@ module Vedeu
       interfaces.values.map { |io| io.input }
     end
 
-    def output(stream)
-      interfaces.values.map { |io| io.output(stream) }
+    def output
+      interfaces.values.map { |io| io.output }
     end
 
     private

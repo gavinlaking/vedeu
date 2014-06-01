@@ -1,12 +1,6 @@
 require_relative '../../../test_helper'
 
 module Vedeu
-  class DummyInterface < Interface
-    def initial_state; end
-
-    def event_loop; end
-  end
-
   describe Interfaces do
     let(:described_class) { Interfaces }
 
@@ -42,6 +36,12 @@ module Vedeu
       end
     end
 
+    describe '.list' do
+      let(:subject) { described_class.list }
+
+      it { subject.must_be_instance_of(String) }
+    end
+
     describe '.add' do
       let(:subject)   { described_class.add(interface, options, klass) }
       let(:interface) {}
@@ -57,14 +57,50 @@ module Vedeu
       end
     end
 
-    describe '.list' do
-      let(:subject) { described_class.list }
+    describe '.reset' do
+      let(:subject) { described_class.reset }
+      let(:interface) { :dummy }
 
-      it { subject.must_be_instance_of(String) }
+      before { described_class.add(:dummy) }
+
+      it { subject.must_be_instance_of(Hash) }
+
+      it { subject.must_be_empty }
+    end
+
+    describe '.find' do
+      let(:subject)   { described_class.find(interface) }
+      let(:interface) { :dummy }
+
+      context 'when the interface exists' do
+        before { described_class.add(:dummy) }
+
+        it { subject.must_be_instance_of(DummyInterface) }
+      end
+
+      context 'when the interface does not exist' do
+        before { described_class.reset }
+
+        it { subject.must_be_instance_of(NilClass) }
+      end
     end
 
     describe '.initial_state' do
       let(:subject) { described_class.initial_state }
+
+      it { subject.must_be_instance_of(Array) }
+    end
+
+    describe '.input' do
+      let(:subject) { described_class.input }
+
+      before { Terminal.stubs(:input).returns("some input") }
+
+      it { subject.must_be_instance_of(Array) }
+    end
+
+    describe '.output' do
+      let(:subject) { described_class.output }
 
       it { subject.must_be_instance_of(Array) }
     end

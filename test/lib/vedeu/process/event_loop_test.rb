@@ -3,7 +3,8 @@ require_relative '../../../test_helper'
 module Vedeu
   describe EventLoop do
     let(:described_class) { EventLoop }
-    let(:defined) { mock }
+    let(:defined)         { mock }
+    let(:subject)         { described_class.new }
 
     before do
       Interfaces.stubs(:defined).returns(defined)
@@ -11,10 +12,12 @@ module Vedeu
       defined.stubs(:output).returns(NilClass)
     end
 
-    describe '.start' do
-      let(:subject) { described_class.start }
+    it { subject.must_be_instance_of(EventLoop) }
 
-      it { subject.must_be_instance_of(NilClass) }
+    describe '.main_sequence' do
+      let(:subject) { described_class.main_sequence }
+
+      # it { subject.must_be_instance_of(NilClass) }
     end
   end
 end

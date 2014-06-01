@@ -1,8 +1,10 @@
 module Vedeu
+  class Collapse < StandardError; end
+
   class EventLoop
     class << self
-      def start
-        new.start
+      def main_sequence
+        new.main_sequence
       end
     end
 
@@ -10,22 +12,18 @@ module Vedeu
       @running = true
     end
 
-    def start
-      tick
+    def main_sequence
+      while @running do
+        Interfaces.defined.input
+
+        Interfaces.defined.output
+      end
+    rescue Collapse
+      stop
     end
 
     def stop
       @running = false
-    end
-
-    def tick
-      while @running do
-        command = Interfaces.defined.input
-
-        stop if command == "stop"
-
-        Interfaces.defined.output(command)
-      end
     end
   end
 end

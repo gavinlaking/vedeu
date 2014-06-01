@@ -1,12 +1,6 @@
 require_relative '../../../test_helper'
 
 module Vedeu
-  class DummyCommand
-    def self.dispatch
-      :noop
-    end
-  end
-
   describe Commands do
     let(:described_class) { Commands }
 
@@ -35,7 +29,7 @@ module Vedeu
       end
 
       context 'when the command exists' do
-        let(:command) { :exit }
+        let(:command) { "exit" }
 
         before { Exit.stubs(:dispatch).returns(true) }
 
@@ -51,7 +45,7 @@ module Vedeu
 
     describe '.add' do
       let(:subject) { described_class.add(command_name, command_klass, args, options) }
-      let(:command_name)  { :some_name }
+      let(:command_name)  { "some_name" }
       let(:command_klass) { DummyCommand }
       let(:args)          { [] }
       let(:options)       { {} }
