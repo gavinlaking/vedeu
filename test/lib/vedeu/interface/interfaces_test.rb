@@ -42,6 +42,12 @@ module Vedeu
       end
     end
 
+    describe '.list' do
+      let(:subject) { described_class.list }
+
+      it { subject.must_be_instance_of(String) }
+    end
+
     describe '.add' do
       let(:subject)   { described_class.add(interface, options, klass) }
       let(:interface) {}
@@ -85,14 +91,23 @@ module Vedeu
       end
     end
 
-    describe '.list' do
-      let(:subject) { described_class.list }
-
-      it { subject.must_be_instance_of(String) }
-    end
-
     describe '.initial_state' do
       let(:subject) { described_class.initial_state }
+
+      it { subject.must_be_instance_of(Array) }
+    end
+
+    describe '.input' do
+      let(:subject) { described_class.input }
+
+      before { Terminal.stubs(:input).returns("some input") }
+
+      it { subject.must_be_instance_of(Array) }
+    end
+
+    describe '.output' do
+      let(:subject) { described_class.output(stream) }
+      let(:stream) { "some output..." }
 
       it { subject.must_be_instance_of(Array) }
     end
