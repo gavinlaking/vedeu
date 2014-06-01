@@ -29,23 +29,31 @@ module Vedeu
     end
 
     def empty_name?
-      raise InvalidCommand, "Command name is missing." if name.to_s.empty?
+      invalid("Command name is missing.") if name.to_s.empty?
     end
 
     def empty_klass?
-      raise InvalidCommand, "Command class is missing." if klass.to_s.empty?
+      invalid("Command class is missing.") if klass.to_s.empty?
     end
 
     def klass_defined?
-      unless Object.const_defined?(klass.to_s)
-        raise InvalidCommand, "Command class is not defined."
-      end
+      invalid("Command class is not defined.") unless is_class?
     end
 
     def dispatch_defined?
-      unless klass.singleton_methods(false).include?(:dispatch)
-        raise InvalidCommand, "Command dispatch method is not defined."
-      end
+      invalid("Command dispatch method is not defined.") unless has_dispatch?
+    end
+
+    def is_class?
+      Object.const_defined?(klass.to_s)
+    end
+
+    def has_dispatch?
+      klass.singleton_methods(false).include?(:dispatch)
+    end
+
+    def invalid(message)
+      raise InvalidCommand, message
     end
   end
 end
