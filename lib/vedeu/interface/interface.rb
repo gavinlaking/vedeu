@@ -4,7 +4,7 @@ module Vedeu
   class Interface
     def initialize(options = {})
       @options = options
-      @output  = output
+      @output  = []
     end
 
     def initial_state
