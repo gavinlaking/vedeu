@@ -21,7 +21,7 @@ module Vedeu
       interfaces.inspect
     end
 
-    def add(name, options = {}, klass = Dummy)
+    def add(name, options = {}, klass = DummyInterface)
       interfaces[name] = klass.new(options) if valid?(klass)
       self
     end

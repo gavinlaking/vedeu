@@ -26,7 +26,7 @@ TODO: Write detailed documentation
 
     Application
       |-- Interfaces
-      |     |-- Dummy < Interface
+      |     |-- DummyInterface < Interface
       |
       |-- Terminal
 

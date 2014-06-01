@@ -1,8 +1,8 @@
 require_relative '../../../test_helper'
 
 module Vedeu
-  describe Dummy do
-    let(:described_class)    { Dummy }
+  describe DummyInterface do
+    let(:described_class)    { DummyInterface }
     let(:described_instance) { described_class.new }
 
     describe '#initial_state' do

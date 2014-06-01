@@ -1,5 +1,5 @@
 module Vedeu
-  class Dummy < Interface
+  class DummyInterface < Interface
     def initial_state
     end
 
@@ -7,7 +7,7 @@ module Vedeu
       super
     end
 
-    def output
+    def output(command)
       super
     end
   end

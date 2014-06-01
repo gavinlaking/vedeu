@@ -18,7 +18,7 @@ require_relative 'vedeu/output/wordwrap'
 
 require_relative 'vedeu/interface/interfaces'
 require_relative 'vedeu/interface/interface'
-require_relative 'vedeu/interface/dummy'
+require_relative 'vedeu/interface/dummy_interface'
 
 require_relative 'vedeu/process/commands'
 require_relative 'vedeu/process/command'

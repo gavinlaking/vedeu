@@ -81,7 +81,7 @@ module Vedeu
       context 'when the interface exists' do
         before { described_class.add(:dummy) }
 
-        it { subject.must_be_instance_of(Dummy) }
+        it { subject.must_be_instance_of(DummyInterface) }
       end
 
       context 'when the interface does not exist' do
