@@ -28,6 +28,10 @@ require_relative 'vedeu/process/command'
 require_relative 'vedeu/process/event_loop'
 require_relative 'vedeu/process/exit'
 
+require_relative 'vedeu/repository/repository'
+require_relative 'vedeu/repository/repositories'
+require_relative 'vedeu/repository/storage'
+
 require_relative 'vedeu/application'
 require_relative 'vedeu/version'
 

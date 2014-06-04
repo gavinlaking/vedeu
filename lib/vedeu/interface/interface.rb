@@ -2,6 +2,8 @@ module Vedeu
   class NotImplementedError < StandardError; end
 
   class Interface
+    attr_accessor :id
+
     def initialize(options = {})
       @options = options
       @output  = []

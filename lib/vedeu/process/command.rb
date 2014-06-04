@@ -8,6 +8,8 @@ module Vedeu
       end
     end
 
+    attr_accessor :id
+
     def initialize(name, klass, args = [], options = {})
       @name, @klass, @args, @options = name, klass, args, options
     end
