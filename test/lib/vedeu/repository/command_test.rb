@@ -1,0 +1,43 @@
+require_relative '../../../test_helper'
+
+module Vedeu
+  describe Command do
+    let(:described_class)    { Command }
+    let(:described_instance) { described_class.new(attributes) }
+    let(:attributes)         { { name: :test } }
+
+    it { described_instance.must_be_instance_of(Command) }
+
+    describe '#name' do
+      let(:subject) { described_instance.name }
+
+      context 'when the name is undefined' do
+        let(:attributes) { {} }
+
+        it { subject.must_be_instance_of(NilClass) }
+      end
+
+      context 'when the name is defined' do
+        it { subject.must_be_instance_of(Symbol) }
+      end
+    end
+
+    describe '#executable' do
+      let(:subject) { described_instance.executable }
+
+      it { skip }
+    end
+
+    describe '#options' do
+      let(:subject) { described_instance.options }
+
+      it { subject.must_be_instance_of(Hash) }
+    end
+
+    describe '#execute' do
+      let(:subject) { described_instance.execute }
+
+      it { skip }
+    end
+  end
+end

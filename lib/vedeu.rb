@@ -18,14 +18,12 @@ require_relative 'vedeu/output/style'
 require_relative 'vedeu/output/translator'
 require_relative 'vedeu/output/wordwrap'
 
-
-require_relative 'vedeu/process/commands'
-require_relative 'vedeu/process/command'
 require_relative 'vedeu/process/event_loop'
 require_relative 'vedeu/process/exit'
 
 require_relative 'vedeu/repository/repository'
 require_relative 'vedeu/repository/command_repository'
+require_relative 'vedeu/repository/command'
 require_relative 'vedeu/repository/interface_repository'
 require_relative 'vedeu/repository/interface'
 require_relative 'vedeu/repository/storage'
