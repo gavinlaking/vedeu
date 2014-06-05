@@ -27,8 +27,8 @@ module Vedeu
       map_for_class(klass).values
     end
 
-    def query(klass, selector)
-      send("query_#{selector.class.name.underscore}", selector)
+    def query(klass, selector, attribute = :name)
+      map_for_class(klass).first { |k, v| v.send(attribute) == selector }.last
     end
 
     def reset(klass)

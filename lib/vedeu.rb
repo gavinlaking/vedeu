@@ -32,6 +32,20 @@ require_relative 'vedeu/application'
 require_relative 'vedeu/version'
 
 module Vedeu
+  module ClassMethods
+    def interface(name, options = {})
+      Interface.create({ name: name, options: options })
+    end
+
+    def command(name, klass, options = {})
+      Command.create({ name: name, klass: klass, options: options })
+    end
+  end
+
+  def self.included(receiver)
+    receiver.extend(ClassMethods)
+  end
+
   def self.logger
     @logger ||= Logger
       .new(root_path + '/logs/vedeu.log').tap do |log|

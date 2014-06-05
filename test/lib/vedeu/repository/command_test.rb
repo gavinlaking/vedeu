@@ -4,7 +4,7 @@ module Vedeu
   describe Command do
     let(:described_class)    { Command }
     let(:described_instance) { described_class.new(attributes) }
-    let(:attributes)         { { name: :test } }
+    let(:attributes)         { { name: :test_command } }
 
     it { described_instance.must_be_instance_of(Command) }
 
@@ -19,6 +19,8 @@ module Vedeu
 
       context 'when the name is defined' do
         it { subject.must_be_instance_of(Symbol) }
+
+        it { subject.must_equal(:test_command) }
       end
     end
 

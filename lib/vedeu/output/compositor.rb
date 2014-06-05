@@ -1,4 +1,6 @@
 module Vedeu
+  class UndefinedInterface < StandardError; end
+
   class Compositor
     class << self
       def arrange(output = [], interface = :dummy)
@@ -65,7 +67,7 @@ module Vedeu
     end
 
     def interface
-      @_interface ||= Interfaces.defined.find(@interface)
+      @_interface ||= InterfaceRepository.find_by_name(@interface)
     end
   end
 end
