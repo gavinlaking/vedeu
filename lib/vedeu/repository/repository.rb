@@ -43,5 +43,9 @@ module Vedeu
     def delete(model)
       adaptor.delete(model)
     end
+
+    def reset
+      adaptor.reset(self.klass)
+    end
   end
 end

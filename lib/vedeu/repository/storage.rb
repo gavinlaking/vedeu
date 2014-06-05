@@ -31,6 +31,10 @@ module Vedeu
       send("query_#{selector.class.name.underscore}", selector)
     end
 
+    def reset(klass)
+      all(klass).map { |record| delete(record) }
+    end
+
     private
 
     def map_for_class(klass)
