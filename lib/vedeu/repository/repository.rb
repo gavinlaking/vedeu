@@ -12,6 +12,10 @@ module Vedeu
       adaptor.find(self.klass, id)
     end
 
+    def find_by_name(name)
+      query(name)
+    end
+
     def all
       adaptor.all(self.klass)
     end
