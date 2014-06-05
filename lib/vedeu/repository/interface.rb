@@ -2,8 +2,19 @@ module Vedeu
   class Interface
     attr_accessor :id, :attributes, :result
 
+    class << self
+      def create(attributes = {})
+        new(attributes).create
+      end
+    end
+
     def initialize(attributes = {})
       @attributes = attributes
+    end
+
+    def create
+      InterfaceRepository.create(self)
+      self
     end
 
     def name
