@@ -7,9 +7,8 @@ module Vedeu
     let(:subject)         { described_class.new }
 
     before do
-      Interfaces.stubs(:defined).returns(defined)
-      defined.stubs(:input).returns("stop")
-      defined.stubs(:output).returns(NilClass)
+      InterfaceRepository.stubs(:input).returns("stop")
+      InterfaceRepository.stubs(:output).returns(NilClass)
     end
 
     it { subject.must_be_instance_of(EventLoop) }

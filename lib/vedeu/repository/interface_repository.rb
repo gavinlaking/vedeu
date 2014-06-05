@@ -2,16 +2,36 @@ module Vedeu
   class InterfaceRepository
     extend Repository
 
-    def define(&block)
-      if block_given?
-        yield self
-      else
-        self
+    class << self
+      def define(&block)
+        return self unless block_given?
+        yield  self
       end
-    end
 
-    def self.klass
-      Interface
+      def add(name, options = {})
+        attributes = options.merge!({ name: name })
+        interface  = klass.new(attributes)
+
+        create(interface)
+
+        all
+      end
+
+      def initial_state
+        all.map { |interface| interface.initial_state }
+      end
+
+      def input
+        all.map { |interface| interface.input }
+      end
+
+      def output
+        all.map { |interface| interface.output }
+      end
+
+      def klass
+        Interface
+      end
     end
   end
 end

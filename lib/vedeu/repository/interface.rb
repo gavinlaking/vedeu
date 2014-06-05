@@ -1,16 +1,27 @@
 module Vedeu
-  class NotImplementedError < StandardError; end
-
   class Interface
-    attr_accessor :id
+    attr_accessor :id, :attributes, :result
 
-    def initialize(options = {})
-      @options = options
-      @output  = []
+    def initialize(attributes = {})
+      @attributes = attributes
     end
 
+    def name
+      attributes[:name]
+    end
+
+    def geometry
+      @geometry ||= Geometry.new(options[:geometry])
+    end
+
+    def options
+      defaults.merge!(attributes)
+    end
+
+    # behaviour
+
     def initial_state
-      raise NotImplementedError, 'Subclasses implement this method.'
+      # raise NotImplementedError, 'Subclasses implement this method.'
     end
 
     def input
@@ -21,16 +32,10 @@ module Vedeu
       write
     end
 
-    def geometry
-      @geometry ||= Geometry.new(options[:geometry])
-    end
-
     private
 
-    attr_reader :options
-
     def evaluate
-      @output = Commands.execute(read)
+      @result = CommandRepository.execute(read)
     end
 
     def read
@@ -38,11 +43,7 @@ module Vedeu
     end
 
     def write
-      Compositor.arrange(@output, self)
-    end
-
-    def options
-      defaults.merge!(@options)
+      Compositor.arrange(@result, self)
     end
 
     def defaults
