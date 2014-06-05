@@ -21,7 +21,6 @@ require_relative 'vedeu/output/wordwrap'
 require_relative 'vedeu/interface/interfaces'
 require_relative 'vedeu/interface/interface'
 
-require_relative 'vedeu/process/dummy_command'
 require_relative 'vedeu/process/commands'
 require_relative 'vedeu/process/command'
 require_relative 'vedeu/process/event_loop'
