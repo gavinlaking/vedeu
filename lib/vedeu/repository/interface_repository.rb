@@ -3,20 +3,6 @@ module Vedeu
     extend Repository
 
     class << self
-      def define(&block)
-        return self unless block_given?
-        yield  self
-      end
-
-      def add(name, options = {})
-        attributes = options.merge!({ name: name })
-        interface  = klass.new(attributes)
-
-        create(interface)
-
-        all
-      end
-
       def initial_state
         all.map { |interface| interface.initial_state }
       end

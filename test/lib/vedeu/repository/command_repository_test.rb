@@ -4,14 +4,6 @@ module Vedeu
   describe CommandRepository do
     let(:described_class) { CommandRepository }
 
-    describe '.define' do
-      it { skip }
-    end
-
-    describe '.add' do
-      it { skip }
-    end
-
     describe '.execute' do
       it { skip }
     end
