@@ -13,16 +13,11 @@ module Vedeu
       @active     = false
     end
 
-    def activate
-      @active = true
-    end
-
-    def deactivate
-      @active = false
-    end
-
     def create
       InterfaceRepository.create(self)
+
+      InterfaceRepository.activate(self.name)
+
       self
     end
 

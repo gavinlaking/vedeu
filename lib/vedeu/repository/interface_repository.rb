@@ -4,11 +4,19 @@ module Vedeu
 
     class << self
       def activate(name)
-        all.map do |interface|
-          interface.deactivate
+        deactivate
 
-          interface.activate if interface.name == name
+        all.map do |interface|
+          interface.active = true if interface.name == name
         end
+      end
+
+      def deactivate
+        all.map { |interface| interface.active = false }
+      end
+
+      def activated
+        query(self.klass, :active, true)
       end
 
       def initial_state
