@@ -31,8 +31,9 @@ module Vedeu
       map_for_class(klass).values
     end
 
-    def query(klass, selector, attribute = :name)
-      map_for_class(klass).first { |k, v| v.send(attribute) == selector }.last
+    def query(klass, attribute, value)
+      # map_for_class(klass).map { |_, v| v.send(attribute) == value }
+      map_for_class(klass).first { |_, v| v.send(attribute) == value }.last
     end
 
     private

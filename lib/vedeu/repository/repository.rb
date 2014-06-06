@@ -13,7 +13,7 @@ module Vedeu
     end
 
     def find_by_name(name)
-      query(name)
+      query(self.klass, :name, name)
     end
 
     def all
@@ -25,8 +25,8 @@ module Vedeu
       create(model)
     end
 
-    def query(selector)
-      adaptor.query(self.klass, selector)
+    def query(klass, attribute, value)
+      adaptor.query(klass, attribute, value)
     end
 
     def create(model)
