@@ -47,8 +47,7 @@ module Vedeu
   end
 
   def self.logger
-    @logger ||= Logger
-      .new(root_path + '/logs/vedeu.log').tap do |log|
+    @logger ||= Logger.new(root_path + '/logs/vedeu.log').tap do |log|
       log.formatter = proc do |mode, time, prog, msg|
         "\n#{time.iso8601}: #{msg}\n"
       end

@@ -21,11 +21,8 @@ module Vedeu
     end
 
     def save(model)
-      if model.id
-        update(model)
-      else
-        create(model)
-      end
+      return update(model) if model.id
+      create(model)
     end
 
     def query(selector)

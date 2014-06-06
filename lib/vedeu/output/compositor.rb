@@ -28,7 +28,7 @@ module Vedeu
 
     def composition
       container = []
-      streams = []
+      streams   = []
       output.map do |line|
         line.each_with_index do |stream, index|
           streams << clear(index)
