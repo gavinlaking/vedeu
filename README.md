@@ -85,6 +85,18 @@ These numbers are based on the area available to the terminal. If the terminal i
       ]
     ]
 
+## Usage
+
+    class MyApp
+      include Vedeu
+
+      interface :status, geometry: { y: 1, x: 1, width: :auto, height: 1     }
+      interface :main,   geometry: { y: 2, x: 1, width: :auto, height: :auto }
+
+      command :exit, Vedeu::Exit.dispatch, { keyword: "exit", keypress: "q" }
+      command :help, MyApp.help,           { keyword: "help", keypress: "h" }
+    end
+
 ## Contributing
 
 1. Fork it ( http://github.com/<my-github-username>/vedeu/fork )
