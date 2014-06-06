@@ -109,15 +109,15 @@ module Vedeu
     end
 
     def cursor
-      options.fetch(:cursor, :show)
+      options.fetch(:cursor)
     end
 
     def mode
-      options.fetch(:mode, :cooked)
+      options.fetch(:mode)
     end
 
     def clear_screen?
-      options.fetch(:clear, true)
+      return options.fetch(:clear)
     end
 
     def noop
