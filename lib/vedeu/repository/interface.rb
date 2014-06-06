@@ -1,6 +1,6 @@
 module Vedeu
   class Interface
-    attr_accessor :id, :attributes, :result
+    attr_accessor :id, :active, :attributes, :result
 
     class << self
       def create(attributes = {})
@@ -10,6 +10,15 @@ module Vedeu
 
     def initialize(attributes = {})
       @attributes = attributes
+      @active     = false
+    end
+
+    def activate
+      @active = true
+    end
+
+    def deactivate
+      @active = false
     end
 
     def create
