@@ -8,6 +8,12 @@ module Vedeu
 
     it { described_instance.must_be_instance_of(Interface) }
 
+    describe '#create' do
+      let(:subject) { described_class.create(attributes) }
+
+      it { subject.must_be_instance_of(Interface) }
+    end
+
     describe '#name' do
       let(:subject) { described_instance.name }
 
@@ -40,6 +46,8 @@ module Vedeu
       let(:subject) { described_instance.initial_state }
 
       # it { proc { subject }.must_raise(NotImplementedError) }
+
+      it { subject.must_be_instance_of(NilClass) }
     end
 
     describe '#input' do
@@ -47,10 +55,20 @@ module Vedeu
 
       before do
         Terminal.stubs(:input).returns('stop')
-        CommandRepository.stubs(:execute)
+        CommandRepository.stubs(:execute).returns(result)
       end
 
-      it { subject.must_be_instance_of(NilClass) }
+      context 'when the command evaluates to :stop' do
+        let(:result) { :stop }
+
+        it { proc { subject }.must_raise(Collapse) }
+      end
+
+      context 'when the command evaluates to anything else' do
+        let(:result) { :something_else }
+
+        it { subject.must_be_instance_of(NilClass) }
+      end
     end
 
     describe '#output' do
