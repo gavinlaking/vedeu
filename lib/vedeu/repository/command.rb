@@ -17,6 +17,10 @@ module Vedeu
       self
     end
 
+    def execute(args = [])
+      executable.call(*args)
+    end
+
     def name
       attributes[:name]
     end
@@ -25,18 +29,25 @@ module Vedeu
       Proc.new { |*args| attributes[:klass].dispatch(*args) }
     end
 
-    def options
-      defaults.merge!(attributes)
+    def keyword
+      options[:keyword]
     end
 
-    def execute(args = [])
-      executable.call(*args)
+    def keypress
+      options[:keypress]
+    end
+
+    def options
+      defaults.merge!(attributes)
     end
 
     private
 
     def defaults
-      {}
+      {
+        keyword:  "",
+        keypress: ""
+      }
     end
   end
 end
