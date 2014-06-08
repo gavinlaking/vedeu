@@ -5,10 +5,6 @@ module Vedeu
       @map = {}
     end
 
-    def reset(klass)
-      all(klass).map { |record| delete(record) }
-    end
-
     def create(record)
       @counter = @counter + 1
       record.id ||= @counter
@@ -21,6 +17,10 @@ module Vedeu
 
     def delete(record)
       map_for(record).delete(record.id)
+    end
+
+    def reset(klass)
+      all(klass).map { |record| delete(record) }
     end
 
     def find(klass, id)
