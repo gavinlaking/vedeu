@@ -33,6 +33,10 @@ module Vedeu
       defaults.merge!(attributes)
     end
 
+    def origin(index = 0)
+      Position.set(geometry.vy(index), geometry.vx)
+    end
+
     # behaviour
 
     def initial_state
