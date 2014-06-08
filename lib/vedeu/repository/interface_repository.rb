@@ -28,7 +28,11 @@ module Vedeu
       end
 
       def input
-        all.map { |interface| interface.input }
+        all.map do |interface|
+          interface.origin
+
+          interface.input
+        end
       end
 
       def output
