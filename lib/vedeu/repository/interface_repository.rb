@@ -19,6 +19,10 @@ module Vedeu
         query(klass, :active, true)
       end
 
+      def find_by_name(value)
+        query(klass, :name, value)
+      end
+
       def initial_state
         all.map { |interface| interface.initial_state }
       end

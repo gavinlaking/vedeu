@@ -4,6 +4,7 @@ module Vedeu
   describe InterfaceRepository do
     let(:described_class) { InterfaceRepository }
     let(:interface)       { :dummy }
+    let(:value)           { "dummy" }
 
     before do
       Interface.create({ name: :dummy })
@@ -13,16 +14,28 @@ module Vedeu
       Compositor.stubs(:arrange)
     end
 
+    describe '.activate' do
+      let(:subject) { described_class.activate(interface) }
+
+      it { subject.must_be_instance_of(Array) }
+    end
+
+    describe '.deactivate' do
+      let(:subject) { described_class.deactivate }
+
+      it { subject.must_be_instance_of(Array) }
+    end
+
     describe '.activated' do
       let(:subject) { described_class.activated }
 
       it { subject.must_be_instance_of(Interface) }
     end
 
-    describe '.activate' do
-      let(:subject) { described_class.activate(interface) }
+    describe '.find_by_name' do
+      let(:subject) { described_class.find_by_name(value) }
 
-      it { subject.must_be_instance_of(Array) }
+      it { subject.must_be_instance_of(Interface) }
     end
 
     describe '.initial_state' do
