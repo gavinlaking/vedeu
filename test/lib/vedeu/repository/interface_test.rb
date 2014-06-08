@@ -5,6 +5,13 @@ module Vedeu
     let(:described_class)    { Interface }
     let(:described_instance) { described_class.new(attributes) }
     let(:attributes)         { { name: :test_interface } }
+    let(:result)             {}
+
+    before do
+      Terminal.stubs(:input).returns('stop')
+      Input.stubs(:evaluate).returns(result)
+      Compositor.stubs(:arrange).returns([])
+    end
 
     it { described_instance.must_be_instance_of(Interface) }
 
@@ -53,11 +60,6 @@ module Vedeu
     describe '#input' do
       let(:subject) { described_instance.input }
 
-      before do
-        Terminal.stubs(:input).returns('stop')
-        CommandRepository.stubs(:execute).returns(result)
-      end
-
       context 'when the command evaluates to :stop' do
         let(:result) { :stop }
 
@@ -74,8 +76,6 @@ module Vedeu
     describe '#output' do
       let(:subject) { described_instance.output }
       let(:command) { mock }
-
-      before { Compositor.stubs(:arrange).returns([]) }
 
       it 'sends the output of the command to the compositor' do
         subject.must_be_instance_of(Array)

@@ -54,7 +54,7 @@ module Vedeu
     private
 
     def evaluate
-      @result = CommandRepository.execute(read)
+      @result = Input.evaluate(read)
     end
 
     def read

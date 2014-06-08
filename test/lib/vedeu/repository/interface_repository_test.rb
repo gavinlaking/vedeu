@@ -10,7 +10,7 @@ module Vedeu
       Interface.create({ name: :dummy })
 
       Terminal.stubs(:input)
-      CommandRepository.stubs(:execute)
+      Input.stubs(:evaluate)
       Compositor.stubs(:arrange)
     end
 
