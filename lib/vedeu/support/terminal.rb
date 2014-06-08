@@ -26,9 +26,8 @@ module Vedeu
       end
 
       def close
-        clear_screen
         show_cursor
-        output(Position.reset)
+        output(Position.set(height - 1, 1))
       end
 
       def cooked(instance, &block)
