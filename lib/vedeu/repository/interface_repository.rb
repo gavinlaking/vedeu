@@ -16,7 +16,7 @@ module Vedeu
       end
 
       def activated
-        query(self.klass, :active, true)
+        query(klass, :active, true)
       end
 
       def initial_state
