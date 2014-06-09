@@ -18,6 +18,12 @@ module Vedeu
       it { subject.must_be_instance_of(Command) }
     end
 
+    describe '#execute' do
+      let(:subject) { described_class.execute(args) }
+
+      it { skip }
+    end
+
     describe '#name' do
       let(:subject) { described_instance.name }
 
