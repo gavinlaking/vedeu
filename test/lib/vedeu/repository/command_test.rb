@@ -24,32 +24,10 @@ module Vedeu
       it { skip }
     end
 
-    describe '#name' do
-      let(:subject) { described_instance.name }
-
-      context 'when the name is undefined' do
-        let(:attributes) { {} }
-
-        it { subject.must_be_instance_of(NilClass) }
-      end
-
-      context 'when the name is defined' do
-        it { subject.must_be_instance_of(Symbol) }
-
-        it { subject.must_equal(:test_command) }
-      end
-    end
-
     describe '#executable' do
       let(:subject) { described_instance.executable }
 
       it { skip }
-    end
-
-    describe '#options' do
-      let(:subject) { described_instance.options }
-
-      it { subject.must_be_instance_of(Hash) }
     end
 
     describe '#execute' do

@@ -1,6 +1,6 @@
 module Vedeu
   class Command
-    attr_accessor :id, :attributes
+    attr_accessor :id, :attributes, :name, :klass, :keyword, :keypress
 
     class << self
       def create(attributes = {})
@@ -10,6 +10,10 @@ module Vedeu
 
     def initialize(attributes = {})
       @attributes = attributes
+      @name       = attributes[:name]
+      @klass      = attributes[:klass]
+      @keyword    = attributes.fetch(:options, {}).fetch(:keyword, "")
+      @keypress   = attributes.fetch(:options, {}).fetch(:keypress, "")
     end
 
     def create
@@ -21,33 +25,8 @@ module Vedeu
       executable.call(*args)
     end
 
-    def name
-      attributes[:name]
-    end
-
     def executable
       Proc.new { |*args| attributes[:klass].dispatch(*args) }
-    end
-
-    def keyword
-      options[:keyword]
-    end
-
-    def keypress
-      options[:keypress]
-    end
-
-    def options
-      defaults.merge!(attributes)
-    end
-
-    private
-
-    def defaults
-      {
-        keyword:  "",
-        keypress: ""
-      }
     end
   end
 end
