@@ -1,6 +1,8 @@
 require 'simplecov'
 require 'minitest/autorun'
 require 'minitest/pride'
+require 'pry'
+require 'pry-nav'
 
 SimpleCov.start do
   command_name 'MiniTest::Spec'
