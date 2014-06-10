@@ -4,7 +4,8 @@ module Vedeu
 
     class << self
       def find_by_input(input)
-        by_keypress(input) || by_keyword(input)
+        return by_keypress(input) unless by_keypress(input) == {}
+        return by_keyword(input)  unless by_keyword(input)  == {}
       end
 
       def klass
