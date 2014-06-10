@@ -20,7 +20,7 @@ module Vedeu
     attr_reader :input, :args
 
     def exists?
-      command
+      command.is_a?(Command)
     end
 
     def command
