@@ -32,8 +32,9 @@ module Vedeu
     end
 
     def query(klass, attribute, value)
-      # map_for_class(klass).map { |_, v| v.send(attribute) == value }
-      map_for_class(klass).first { |_, v| v.send(attribute) == value }.last
+      map_for_class(klass).select do |id, object|
+        return object if object.send(attribute) == value
+      end
     end
 
     private
