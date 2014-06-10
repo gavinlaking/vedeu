@@ -7,7 +7,7 @@ module Vedeu
     let(:value)           { "dummy" }
 
     before do
-      Interface.create({ name: :dummy })
+      Interface.create({ name: "dummy" })
 
       Terminal.stubs(:input)
       Input.stubs(:evaluate)
