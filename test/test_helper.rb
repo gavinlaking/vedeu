@@ -19,7 +19,7 @@ end
 
 class DummyCommand
   def self.dispatch
-    :success
+    :stop
   end
 end
 
