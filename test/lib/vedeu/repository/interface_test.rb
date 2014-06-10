@@ -21,40 +21,20 @@ module Vedeu
       it { subject.must_be_instance_of(Interface) }
     end
 
-    describe '#name' do
-      let(:subject) { described_instance.name }
-
-      context 'when the name is undefined' do
-        let(:attributes) { {} }
-
-        it { subject.must_be_instance_of(NilClass) }
-      end
-
-      context 'when the name is defined' do
-        it { subject.must_be_instance_of(Symbol) }
-
-        it { subject.must_equal(:test_interface) }
-      end
-    end
-
-    describe '#geometry' do
-      let(:subject) { described_instance.geometry }
-
-      it { subject.must_be_instance_of(Geometry) }
-    end
-
-    describe '#options' do
-      let(:subject) { described_instance.options }
-
-      it { subject.must_be_instance_of(Hash) }
-    end
-
     describe '#initial_state' do
       let(:subject) { described_instance.initial_state }
 
       # it { proc { subject }.must_raise(NotImplementedError) }
 
       it { subject.must_be_instance_of(NilClass) }
+    end
+
+    describe '#origin' do
+      it { skip }
+    end
+
+    describe '#initial_state' do
+      it { skip }
     end
 
     describe '#input' do
