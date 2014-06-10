@@ -35,11 +35,13 @@ require_relative 'vedeu/version'
 module Vedeu
   module ClassMethods
     def interface(name, options = {})
-      Interface.create({ name: name, options: options })
+      interface_name = name.is_a?(Symbol) ? name.to_s : name
+      Interface.create({ name: interface_name, options: options })
     end
 
     def command(name, klass, options = {})
-      Command.create({ name: name, klass: klass, options: options })
+      command_name = name.is_a?(Symbol) ? name.to_s : name
+      Command.create({ name: command_name, klass: klass, options: options })
     end
   end
 
