@@ -35,7 +35,6 @@ module Vedeu
 
     describe '#find' do
       let(:subject) { described_class.new.find(klass, id) }
-      let(:klass)   {}
 
       it { skip }
     end
@@ -48,7 +47,6 @@ module Vedeu
 
     describe '#query' do
       let(:subject)   { described_class.new.query(klass, attribute, value) }
-      let(:klass)     {}
       let(:attribute) {}
       let(:value)     {}
 
