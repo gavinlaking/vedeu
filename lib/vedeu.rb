@@ -28,6 +28,8 @@ require_relative 'vedeu/repository/command'
 require_relative 'vedeu/repository/interface_repository'
 require_relative 'vedeu/repository/interface'
 require_relative 'vedeu/repository/storage'
+require_relative 'vedeu/repository/dummy_interface'
+require_relative 'vedeu/repository/dummy_command'
 
 require_relative 'vedeu/application'
 require_relative 'vedeu/launcher'
