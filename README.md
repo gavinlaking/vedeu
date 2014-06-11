@@ -25,7 +25,10 @@ TODO: Write detailed documentation
 ## Notes
 
     Application
-      |-- Interfaces
+      |-- EventLoop
+      |     |-- InterfaceRepository
+      |
+      |-- InterfaceRepository
       |-- Terminal
 
     Base
@@ -35,6 +38,8 @@ TODO: Write detailed documentation
     Interface
       |-- Commands
       |     |-- Command
+      |     |     |-- CommandRepository
+      |     |
       |     |-- Exit
       |
       |-- Compositor
@@ -49,6 +54,7 @@ TODO: Write detailed documentation
       |     |     |-- Style
       |     |           |-- Esc
       |     |
+      |     |-- InterfaceRepository
       |     |-- Position
       |     |     |-- Esc
       |     |
@@ -58,6 +64,9 @@ TODO: Write detailed documentation
       |-- Geometry
       |     |-- Terminal
       |
+      |-- Input
+      |-- InterfaceRepository
+      |-- Position
       |-- Terminal
 
     Terminal
