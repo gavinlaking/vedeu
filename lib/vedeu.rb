@@ -30,17 +30,20 @@ require_relative 'vedeu/repository/interface'
 require_relative 'vedeu/repository/storage'
 
 require_relative 'vedeu/application'
+require_relative 'vedeu/launcher'
 require_relative 'vedeu/version'
 
 module Vedeu
   module ClassMethods
     def interface(name, options = {})
       interface_name = name.is_a?(Symbol) ? name.to_s : name
+
       Interface.create({ name: interface_name, options: options })
     end
 
     def command(name, klass, options = {})
       command_name = name.is_a?(Symbol) ? name.to_s : name
+
       Command.create({ name: command_name, klass: klass, options: options })
     end
   end
