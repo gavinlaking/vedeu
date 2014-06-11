@@ -8,7 +8,7 @@ module Vedeu
       end
 
       def reset
-        new(0, 0).set
+        new(1, 1).set
       end
     end
 
@@ -17,7 +17,7 @@ module Vedeu
     end
 
     def set
-      [Esc.esc, (y + 1), ';', (x + 1), 'H'].join
+      [Esc.esc, y, ';', x, 'H'].join
     end
 
     private

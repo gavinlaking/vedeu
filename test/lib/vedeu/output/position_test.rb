@@ -24,7 +24,7 @@ module Vedeu
         let(:x) { 19 }
 
         it 'returns a position escape sequence' do
-          subject.must_equal("\e[13;20H")
+          subject.must_equal("\e[12;19H")
         end
       end
     end
