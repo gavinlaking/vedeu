@@ -6,4 +6,4 @@ trap('INT') { exit! }
 
 require 'vedeu'
 
-Vedeu::Application.start
+Vedeu::Launcher.new(ARGV.dup).execute!

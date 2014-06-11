@@ -5,21 +5,11 @@ module Vedeu
     let(:described_class)    { Compositor }
     let(:described_instance) { described_class.new(output) }
     let(:output)             { [[]] }
-    let(:stream)             {}
-    let(:interface)          {
-      Vedeu::Interface.new({
-        geometry: {
-          y: 2,
-          x: 2,
-          width: 20,
-          height: 10
-        }
-      })
-    }
+    let(:stream)             { [] }
+    let(:interface)          { 'dummy' }
 
     before do
-      Interfaces.defined
-      Terminal.stubs(:output)
+      @interface = Interface.create({ name: 'dummy' })
       Renderer.stubs(:write).returns(stream)
     end
 
@@ -32,6 +22,18 @@ module Vedeu
         let(:output) { [] }
 
         it { subject.must_be_instance_of(NilClass) }
+      end
+
+      context 'when an array (single interface)' do
+        let(:output) { [[]] }
+
+        it { subject.must_be_instance_of(Array) }
+      end
+
+      context 'when a hash (multiple interfaces)' do
+        let(:output) { { test_interface: [] } }
+
+        it { subject.must_be_instance_of(Array) }
       end
 
       context 'when unstyled' do

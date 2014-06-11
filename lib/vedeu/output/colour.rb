@@ -10,7 +10,7 @@ module Vedeu
     end
 
     def initialize(pair = [])
-      @pair = pair
+      @pair = pair || []
     end
 
     def define

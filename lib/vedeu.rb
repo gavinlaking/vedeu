@@ -18,23 +18,44 @@ require_relative 'vedeu/output/style'
 require_relative 'vedeu/output/translator'
 require_relative 'vedeu/output/wordwrap'
 
-require_relative 'vedeu/interface/interfaces'
-require_relative 'vedeu/interface/interface'
-require_relative 'vedeu/interface/dummy_interface'
-
-require_relative 'vedeu/process/dummy_command'
-require_relative 'vedeu/process/commands'
-require_relative 'vedeu/process/command'
 require_relative 'vedeu/process/event_loop'
 require_relative 'vedeu/process/exit'
+require_relative 'vedeu/process/input'
+
+require_relative 'vedeu/repository/repository'
+require_relative 'vedeu/repository/command_repository'
+require_relative 'vedeu/repository/command'
+require_relative 'vedeu/repository/interface_repository'
+require_relative 'vedeu/repository/interface'
+require_relative 'vedeu/repository/storage'
+require_relative 'vedeu/repository/dummy_interface'
+require_relative 'vedeu/repository/dummy_command'
 
 require_relative 'vedeu/application'
+require_relative 'vedeu/launcher'
 require_relative 'vedeu/version'
 
 module Vedeu
+  module ClassMethods
+    def interface(name, options = {})
+      interface_name = name.is_a?(Symbol) ? name.to_s : name
+
+      Interface.create({ name: interface_name, options: options })
+    end
+
+    def command(name, klass, options = {})
+      command_name = name.is_a?(Symbol) ? name.to_s : name
+
+      Command.create({ name: command_name, klass: klass, options: options })
+    end
+  end
+
+  def self.included(receiver)
+    receiver.extend(ClassMethods)
+  end
+
   def self.logger
-    @logger ||= Logger
-      .new(root_path + '/logs/vedeu.log').tap do |log|
+    @logger ||= Logger.new(root_path + '/logs/vedeu.log').tap do |log|
       log.formatter = proc do |mode, time, prog, msg|
         "\n#{time.iso8601}: #{msg}\n"
       end

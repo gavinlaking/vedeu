@@ -9,7 +9,7 @@ module Vedeu
     end
 
     def initialize(directives = {})
-      @directives = directives
+      @directives = directives || {}
     end
 
     def enact

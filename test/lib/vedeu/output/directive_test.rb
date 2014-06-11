@@ -29,7 +29,7 @@ module Vedeu
       context 'when the position is set' do
         let(:position) { [4, 5] }
 
-        it { subject.must_equal("\e[5;6H") }
+        it { subject.must_equal("\e[4;5H") }
       end
 
       context 'when the colour is not set' do

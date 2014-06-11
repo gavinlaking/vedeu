@@ -1,6 +1,8 @@
 require 'simplecov'
 require 'minitest/autorun'
 require 'minitest/pride'
+require 'pry'
+require 'pry-nav'
 
 SimpleCov.start do
   command_name 'MiniTest::Spec'
@@ -12,6 +14,12 @@ module MiniTest
     class << self
       alias_method :context, :describe
     end
+  end
+end
+
+class DummyCommand
+  def self.dispatch
+    :stop
   end
 end
 

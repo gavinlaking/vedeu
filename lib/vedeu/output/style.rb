@@ -21,7 +21,7 @@ module Vedeu
       when :show_cursor then Esc.show_cursor
       when :underline   then Esc.underline
       else
-        ""
+        ''
       end
     end
 

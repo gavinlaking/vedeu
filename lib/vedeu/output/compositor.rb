@@ -1,7 +1,9 @@
 module Vedeu
+  class UndefinedInterface < StandardError; end
+
   class Compositor
     class << self
-      def arrange(output = [], interface = :dummy)
+      def arrange(output = [], interface = 'dummy')
         return if output.nil? || output.empty?
 
         if output.is_a?(Array)
@@ -14,8 +16,9 @@ module Vedeu
       end
     end
 
-    def initialize(output = [], interface = :dummy)
-      @output, @interface = output, interface
+    def initialize(output = [], interface = 'dummy')
+      @output    = output || []
+      @interface = interface
     end
 
     def arrange
@@ -26,7 +29,7 @@ module Vedeu
 
     def composition
       container = []
-      streams = []
+      streams   = []
       output.map do |line|
         line.each_with_index do |stream, index|
           streams << clear(index)
@@ -43,7 +46,7 @@ module Vedeu
     end
 
     def origin(index)
-      Position.set(geometry.vy(index), geometry.vx)
+      target_interface.origin(index)
     end
 
     def width
@@ -65,7 +68,7 @@ module Vedeu
     end
 
     def interface
-      @_interface ||= Interfaces.defined.find(@interface)
+      @_interface ||= InterfaceRepository.find_by_name(@interface)
     end
   end
 end

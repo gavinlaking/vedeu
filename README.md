@@ -25,9 +25,10 @@ TODO: Write detailed documentation
 ## Notes
 
     Application
-      |-- Interfaces
-      |     |-- DummyInterface < Interface
+      |-- EventLoop
+      |     |-- InterfaceRepository
       |
+      |-- InterfaceRepository
       |-- Terminal
 
     Base
@@ -37,6 +38,8 @@ TODO: Write detailed documentation
     Interface
       |-- Commands
       |     |-- Command
+      |     |     |-- CommandRepository
+      |     |
       |     |-- Exit
       |
       |-- Compositor
@@ -51,6 +54,7 @@ TODO: Write detailed documentation
       |     |     |-- Style
       |     |           |-- Esc
       |     |
+      |     |-- InterfaceRepository
       |     |-- Position
       |     |     |-- Esc
       |     |
@@ -60,6 +64,9 @@ TODO: Write detailed documentation
       |-- Geometry
       |     |-- Terminal
       |
+      |-- Input
+      |-- InterfaceRepository
+      |-- Position
       |-- Terminal
 
     Terminal
@@ -86,6 +93,18 @@ These numbers are based on the area available to the terminal. If the terminal i
         "Textual content..."  # stream data
       ]
     ]
+
+## Usage
+
+    class MyApp
+      include Vedeu
+
+      interface :status, geometry: { y: 1, x: 1, width: :auto, height: 1     }
+      interface :main,   geometry: { y: 2, x: 1, width: :auto, height: :auto }
+
+      command :exit, Vedeu::Exit.dispatch, { keyword: "exit", keypress: "q" }
+      command :help, MyApp.help,           { keyword: "help", keypress: "h" }
+    end
 
 ## Contributing
 

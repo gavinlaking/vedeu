@@ -7,7 +7,8 @@ module Vedeu
     end
 
     def initialize(value, options = {})
-      @value, @options = value, options
+      @value   = value
+      @options = options || {}
     end
 
     def reformat
