@@ -17,8 +17,6 @@ module Vedeu
     end
   end
 
-  class DummyStorage; end
-
   describe Repository do
     let(:described_class) { DummyRepository }
 
@@ -38,10 +36,9 @@ module Vedeu
 
     describe '#adaptor=' do
       let(:subject) { described_class.adaptor=(adaptor) }
-      let(:adaptor) { DummyStorage.new }
+      let(:adaptor) { Storage.new }
 
-      # it { subject.must_be_instance_of(DummyStorage) }
-      it { skip }
+      it { subject.must_be_instance_of(Storage) }
     end
 
     describe '#find' do
