@@ -27,6 +27,8 @@ module Vedeu
         all.map { |interface| interface.initial_state }
       end
 
+      def update; end
+
       def input
         all.map do |interface|
           interface.origin

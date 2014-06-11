@@ -56,6 +56,12 @@ module Vedeu
       it { subject.must_be_instance_of(Array) }
     end
 
+    describe '.update' do
+      let(:subject) { described_class.update }
+
+      it { skip }
+    end
+
     describe '.klass' do
       let(:subject) { described_class.klass }
 
