@@ -56,7 +56,7 @@ module Vedeu
     end
 
     def values
-      defaults.merge(auto)
+      defaults.merge!(auto)
     end
 
     def auto
