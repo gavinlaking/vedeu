@@ -12,7 +12,7 @@ module Vedeu
       @attributes = attributes || {}
       @name       = attributes[:name]
       @active     = false
-      @geometry   = Geometry.new(attributes[:geometry])
+      @geometry   = Geometry.new(attributes[:options][:geometry])
     end
 
     def create
