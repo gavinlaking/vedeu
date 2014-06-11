@@ -9,7 +9,7 @@ module Vedeu
     end
 
     def initialize(attributes = {})
-      @attributes = attributes
+      @attributes = attributes || {}
       @name       = attributes[:name]
       @klass      = attributes[:klass]
       @keyword    = attributes.fetch(:options, {}).fetch(:keyword, "")

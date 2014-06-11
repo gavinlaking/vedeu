@@ -72,7 +72,7 @@ module Vedeu
     end
 
     def initialize(options = {}, &block)
-      @options = options
+      @options = options || {}
 
       yield self if block_given?
     end

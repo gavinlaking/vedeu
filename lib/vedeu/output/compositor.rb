@@ -17,7 +17,8 @@ module Vedeu
     end
 
     def initialize(output = [], interface = 'dummy')
-      @output, @interface = output, interface
+      @output    = output || []
+      @interface = interface
     end
 
     def arrange

@@ -9,7 +9,7 @@ module Vedeu
     end
 
     def initialize(attributes = {})
-      @attributes = attributes
+      @attributes = attributes || {}
       @name       = attributes[:name]
       @active     = false
       @geometry   = Geometry.new(attributes[:geometry])

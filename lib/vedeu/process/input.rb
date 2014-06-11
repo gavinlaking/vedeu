@@ -8,7 +8,7 @@ module Vedeu
 
     def initialize(input, args = [])
       @input = input
-      @args  = args
+      @args  = args || []
     end
 
     def evaluate
