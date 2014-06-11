@@ -15,12 +15,6 @@ module Vedeu
       it { skip }
     end
 
-    describe '#update' do
-      let(:subject) { described_class.new.update(record) }
-
-      it { skip }
-    end
-
     describe '#delete' do
       let(:subject) { described_class.new.delete(record) }
 

@@ -11,10 +11,6 @@ module Vedeu
       map_for(record)[record.id] = record
     end
 
-    def update(record)
-      map_for(record)[record.id] = record
-    end
-
     def delete(record)
       map_for(record).delete(record.id)
     end

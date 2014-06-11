@@ -16,21 +16,12 @@ module Vedeu
       adaptor.all(self.klass)
     end
 
-    def save(model)
-      return update(model) if model.id
-      create(model)
-    end
-
     def query(klass, attribute, value)
       adaptor.query(klass, attribute, value)
     end
 
     def create(model)
       adaptor.create(model)
-    end
-
-    def update(model)
-      adaptor.update(model)
     end
 
     def delete(model)
