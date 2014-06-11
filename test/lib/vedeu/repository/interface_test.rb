@@ -58,7 +58,7 @@ module Vedeu
       let(:command) { mock }
 
       it 'sends the output of the command to the compositor' do
-        subject.must_be_instance_of(Array)
+        subject.must_be_instance_of(NilClass)
       end
     end
   end
