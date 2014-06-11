@@ -1,7 +1,7 @@
 module Vedeu
   class Geometry
     def initialize(values = {})
-      @values = values
+      @values = values || {}
     end
 
     def z
