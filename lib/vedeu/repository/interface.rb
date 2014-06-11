@@ -36,7 +36,7 @@ module Vedeu
     end
 
     def output
-      write
+      Compositor.arrange(@result, self) unless @result.nil? || @result.empty?
     end
 
     private
@@ -47,10 +47,6 @@ module Vedeu
 
     def read
       Terminal.input
-    end
-
-    def write
-      Compositor.arrange(@result, self)
     end
   end
 end
