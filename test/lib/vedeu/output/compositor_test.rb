@@ -6,10 +6,10 @@ module Vedeu
     let(:described_instance) { described_class.new(output) }
     let(:output)             { [[]] }
     let(:stream)             { [] }
-    let(:interface)          { :dummy }
+    let(:interface)          { 'dummy' }
 
     before do
-      @interface = Interface.create({ name: :dummy })
+      @interface = Interface.create({ name: 'dummy' })
       Renderer.stubs(:write).returns(stream)
     end
 

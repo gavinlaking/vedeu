@@ -3,7 +3,7 @@ module Vedeu
 
   class Compositor
     class << self
-      def arrange(output = [], interface = :dummy)
+      def arrange(output = [], interface = 'dummy')
         return if output.nil? || output.empty?
 
         if output.is_a?(Array)
@@ -16,7 +16,7 @@ module Vedeu
       end
     end
 
-    def initialize(output = [], interface = :dummy)
+    def initialize(output = [], interface = 'dummy')
       @output, @interface = output, interface
     end
 
