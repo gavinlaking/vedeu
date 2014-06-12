@@ -37,10 +37,10 @@ require_relative 'vedeu/version'
 
 module Vedeu
   module ClassMethods
-    def interface(name, options = {})
+    def interface(name, geometry = {})
       interface_name = name.is_a?(Symbol) ? name.to_s : name
 
-      Interface.create({ name: interface_name, options: options })
+      Interface.create({ name: interface_name, geometry: geometry })
     end
 
     def command(name, klass, options = {})

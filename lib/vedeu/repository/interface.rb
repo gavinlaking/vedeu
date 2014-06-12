@@ -11,8 +11,8 @@ module Vedeu
     def initialize(attributes = {})
       @attributes = attributes || {}
       @name       = attributes[:name]
+      @geometry   = attributes[:geometry]
       @active     = false
-      @geometry   = Geometry.new(attributes[:options][:geometry])
     end
 
     def create
@@ -37,6 +37,10 @@ module Vedeu
 
     def output
       Compositor.arrange(@result, self) unless @result.nil? || @result.empty?
+    end
+
+    def geometry
+      Geometry.new(@geometry)
     end
 
     private
