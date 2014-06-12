@@ -1,6 +1,6 @@
 module Vedeu
   class Launcher
-    def initialize(argv, stdin = STDIN,
+    def initialize(argv, stdin  = STDIN,
                          stdout = STDOUT,
                          stderr = STDERR,
                          kernel = Kernel)
