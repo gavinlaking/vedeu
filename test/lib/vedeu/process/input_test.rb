@@ -4,16 +4,13 @@ module Vedeu
   describe Input do
     let(:described_class) { Input }
     let(:input)           { "" }
-    let(:args)            { [] }
 
-    before do
-      CommandRepository.stubs(:find_by_input)
-    end
+    before { Terminal.stubs(:input).returns(input) }
 
-    describe '.evaluate' do
-      let(:subject) { described_class.evaluate(input, args) }
+    describe '.capture' do
+      let(:subject) { described_class.capture }
 
-      it { subject.must_be_instance_of(NilClass) }
+      it { subject.must_be_instance_of(String) }
     end
   end
 end

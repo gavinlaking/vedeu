@@ -81,8 +81,6 @@ module Vedeu
       let(:subject) { described_class.reset }
 
       it { subject.must_be_instance_of(Array) }
-
-      # it { subject.must_be_empty }
     end
   end
 end

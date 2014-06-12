@@ -21,6 +21,9 @@ require_relative 'vedeu/output/wordwrap'
 require_relative 'vedeu/process/event_loop'
 require_relative 'vedeu/process/exit'
 require_relative 'vedeu/process/input'
+require_relative 'vedeu/process/output'
+require_relative 'vedeu/process/process'
+require_relative 'vedeu/process/queue'
 
 require_relative 'vedeu/repository/repository'
 require_relative 'vedeu/repository/command_repository'
@@ -37,10 +40,10 @@ require_relative 'vedeu/version'
 
 module Vedeu
   module ClassMethods
-    def interface(name, options = {})
+    def interface(name, geometry = {})
       interface_name = name.is_a?(Symbol) ? name.to_s : name
 
-      Interface.create({ name: interface_name, options: options })
+      Interface.create({ name: interface_name, geometry: geometry })
     end
 
     def command(name, klass, options = {})

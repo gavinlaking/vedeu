@@ -17,12 +17,6 @@ module MiniTest
   end
 end
 
-class DummyCommand
-  def self.dispatch
-    :stop
-  end
-end
-
 Minitest.after_run do
   print [27.chr, '[', '?25h'].join # show cursor
 end

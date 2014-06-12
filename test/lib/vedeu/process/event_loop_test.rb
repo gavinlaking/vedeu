@@ -7,16 +7,22 @@ module Vedeu
     let(:subject)         { described_class.new }
 
     before do
-      InterfaceRepository.stubs(:input).returns("stop")
-      InterfaceRepository.stubs(:output).returns(NilClass)
+      Input.stubs(:evaluate)
+      Output.stubs(:render)
     end
 
     it { subject.must_be_instance_of(EventLoop) }
 
+    it { subject.instance_variable_get("@running").must_equal(true) }
+
     describe '.main_sequence' do
       let(:subject) { described_class.main_sequence }
+    end
 
-      # it { subject.must_be_instance_of(NilClass) }
+    describe '#stop' do
+      let(:subject) { described_class.new.stop }
+
+      it { subject.must_be_instance_of(FalseClass) }
     end
   end
 end

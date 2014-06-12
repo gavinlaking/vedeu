@@ -9,9 +9,7 @@ module Vedeu
         if output.is_a?(Array)
           new(output, interface).arrange
         elsif output.is_a?(Hash)
-          output.map do |i, o|
-            new(o, i).arrange
-          end
+          output.map { |i, o| new(o, i).arrange }
         end
       end
     end
@@ -30,14 +28,17 @@ module Vedeu
     def composition
       container = []
       streams   = []
+
       output.map do |line|
         line.each_with_index do |stream, index|
           streams << clear(index)
           streams << Directive.enact(stream)
         end
+
         container << streams.join
         streams = []
       end
+
       container
     end
 
@@ -46,7 +47,7 @@ module Vedeu
     end
 
     def origin(index)
-      target_interface.origin(index)
+      geometry.origin(index)
     end
 
     def width
