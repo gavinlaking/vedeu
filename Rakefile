@@ -7,13 +7,15 @@ Cucumber::Rake::Task.new(:cucumber) do |t|
   t.cucumber_opts = "features --format progress"
 end
 
-Rake::TestTask.new do |t|
+Rake::TestTask.new(:minitest) do |t|
   t.libs << 'lib/vedeu'
   t.test_files = FileList["test/lib/vedeu/*_test.rb",
                           "test/lib/vedeu/**/*_test.rb"]
   t.verbose = false
 end
 
-task :default => :test
+task :default => :minitest
+
+Rake::Task['minitest'].execute
 
 Rake::Task['cucumber'].execute
