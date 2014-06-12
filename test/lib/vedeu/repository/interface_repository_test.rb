@@ -44,22 +44,6 @@ module Vedeu
       it { subject.must_be_instance_of(Array) }
     end
 
-    describe '.input' do
-      let(:subject) { described_class.input }
-
-      it { subject.must_be_instance_of(Array) }
-    end
-
-    describe '.output' do
-      let(:subject) { described_class.output }
-
-      it { subject.must_be_instance_of(Array) }
-    end
-
-    describe '.update' do
-      let(:subject) { described_class.update }
-    end
-
     describe '.klass' do
       let(:subject) { described_class.klass }
 

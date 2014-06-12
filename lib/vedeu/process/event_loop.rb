@@ -14,9 +14,9 @@ module Vedeu
 
     def main_sequence
       while @running do
-        InterfaceRepository.input
+        Input.evaluate
 
-        InterfaceRepository.output
+        Output.render
       end
     rescue Collapse
       stop

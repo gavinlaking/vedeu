@@ -1,6 +1,6 @@
 module Vedeu
   class Interface
-    attr_accessor :id, :active, :attributes, :result, :name, :geometry
+    attr_accessor :id, :attributes, :active, :geometry, :name, :result
 
     class << self
       def create(attributes = {})
@@ -10,9 +10,11 @@ module Vedeu
 
     def initialize(attributes = {})
       @attributes = attributes || {}
-      @name       = attributes[:name]
-      @geometry   = attributes[:geometry]
+
       @active     = false
+      @geometry   = attributes[:geometry]
+      @name       = attributes[:name]
+      @result     = nil
     end
 
     def create
@@ -23,34 +25,10 @@ module Vedeu
       self
     end
 
-    def origin(index = 0)
-      Position.set(geometry.vy(index), geometry.vx)
-    end
-
-    def initial_state
-      # raise NotImplementedError, 'Subclasses implement this method.'
-    end
-
-    def input
-      raise Collapse if evaluate == :stop
-    end
-
-    def output
-      Compositor.arrange(@result, self) unless @result.nil? || @result.empty?
-    end
+    def initial_state; end
 
     def geometry
       Geometry.new(@geometry)
-    end
-
-    private
-
-    def evaluate
-      @result = Input.evaluate(read)
-    end
-
-    def read
-      Terminal.input
     end
   end
 end

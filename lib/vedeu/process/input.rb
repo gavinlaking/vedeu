@@ -1,23 +1,28 @@
 module Vedeu
   class Input
     class << self
-      def evaluate(input, args = [])
-        new(input, args).evaluate
+      def evaluate
+        new.evaluate
       end
     end
 
-    def initialize(input, args = [])
-      @input = input
-      @args  = args || []
-    end
+    def initialize; end
 
     def evaluate
-      command.execute(*args) if exists?
+      raise Collapse if result == :stop
+
+      Queue.enqueue(result) unless empty?
     end
 
     private
 
-    attr_reader :input, :args
+    def empty?
+      result.nil? || result.empty?
+    end
+
+    def result
+      @result ||= command.execute(*args) if exists?
+    end
 
     def exists?
       command.is_a?(Command)
@@ -25,6 +30,14 @@ module Vedeu
 
     def command
       @command ||= CommandRepository.find_by_input(input)
+    end
+
+    def input
+      Terminal.input
+    end
+
+    def args
+      []
     end
   end
 end

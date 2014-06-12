@@ -21,6 +21,8 @@ require_relative 'vedeu/output/wordwrap'
 require_relative 'vedeu/process/event_loop'
 require_relative 'vedeu/process/exit'
 require_relative 'vedeu/process/input'
+require_relative 'vedeu/process/output'
+require_relative 'vedeu/process/queue'
 
 require_relative 'vedeu/repository/repository'
 require_relative 'vedeu/repository/command_repository'

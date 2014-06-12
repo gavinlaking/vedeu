@@ -4,6 +4,10 @@ module Vedeu
       @values = values || {}
     end
 
+    def origin(index = 0)
+      Position.set(vy(index), vx)
+    end
+
     def z
       values[:z]
     end

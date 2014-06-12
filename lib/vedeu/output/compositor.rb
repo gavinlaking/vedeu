@@ -47,7 +47,7 @@ module Vedeu
     end
 
     def origin(index)
-      target_interface.origin(index)
+      geometry.origin(index)
     end
 
     def width

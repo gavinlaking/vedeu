@@ -26,36 +26,5 @@ module Vedeu
 
       it { subject.must_be_instance_of(NilClass) }
     end
-
-    describe '#origin' do
-    end
-
-    describe '#initial_state' do
-    end
-
-    describe '#input' do
-      let(:subject) { described_instance.input }
-
-      context 'when the command evaluates to :stop' do
-        let(:result) { :stop }
-
-        it { proc { subject }.must_raise(Collapse) }
-      end
-
-      context 'when the command evaluates to anything else' do
-        let(:result) { :something_else }
-
-        it { subject.must_be_instance_of(NilClass) }
-      end
-    end
-
-    describe '#output' do
-      let(:subject) { described_instance.output }
-      let(:command) { mock }
-
-      it 'sends the output of the command to the compositor' do
-        subject.must_be_instance_of(NilClass)
-      end
-    end
   end
 end
