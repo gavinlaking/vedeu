@@ -18,8 +18,8 @@ module Vedeu
       CommandRepository.reset
     end
 
-    describe '.find_by_input' do
-      let(:subject) { described_class.find_by_input(input) }
+    describe '.by_keypress' do
+      let(:subject) { described_class.by_keypress(input) }
 
       context 'when the command was found by keypress' do
         let(:input) { 'b' }
@@ -32,6 +32,10 @@ module Vedeu
 
         it { subject.keypress.must_equal('b') }
       end
+    end
+
+    describe '.by_keyword' do
+      let(:subject) { described_class.by_keyword(input) }
 
       context 'when the command was found by keyword' do
         let(:input) { 'apple' }

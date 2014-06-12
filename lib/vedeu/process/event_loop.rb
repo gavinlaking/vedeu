@@ -13,8 +13,12 @@ module Vedeu
     end
 
     def main_sequence
+      InterfaceRepository.initial_state
+
       while @running do
-        Input.evaluate
+        Input.capture
+
+        Process.evaluate
 
         Output.render
       end

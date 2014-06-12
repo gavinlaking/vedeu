@@ -5,7 +5,7 @@ module Vedeu
     let(:described_class) { Queue }
 
     before do
-      described_class.reset
+      described_class.clear
     end
 
     describe '.dequeue' do
@@ -38,11 +38,17 @@ module Vedeu
     end
 
     describe '.clear' do
-      let(:subject) { described_class.reset }
+      let(:subject) { described_class.clear }
 
       it { subject.must_be_instance_of(Array) }
 
       it { subject.must_be_empty }
+    end
+
+    describe '.view' do
+      let(:subject) { described_class.view }
+
+      it { subject.must_be_instance_of(String) }
     end
   end
 end

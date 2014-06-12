@@ -15,8 +15,12 @@ module Vedeu
       store.size
     end
 
-    def reset
+    def clear
       store.clear
+    end
+
+    def view
+      store.inspect
     end
 
     private
