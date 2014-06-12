@@ -61,32 +61,22 @@ module Vedeu
 
     describe '.open' do
       let(:subject) { described_class.open }
-
-      it { skip }
     end
 
     describe '.close' do
       let(:subject) { described_class.close }
-
-      it { skip }
     end
 
     describe '.cooked' do
       let(:subject) { described_class.cooked }
-
-      it { skip }
     end
 
     describe '.raw' do
       let(:subject) { described_class.raw }
-
-      it { skip }
     end
 
     describe '.console' do
       let(:subject) { described_class.console }
-
-      it { skip }
     end
 
     describe '.clear_screen' do

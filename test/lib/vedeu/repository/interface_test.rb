@@ -24,17 +24,13 @@ module Vedeu
     describe '#initial_state' do
       let(:subject) { described_instance.initial_state }
 
-      # it { proc { subject }.must_raise(NotImplementedError) }
-
       it { subject.must_be_instance_of(NilClass) }
     end
 
     describe '#origin' do
-      it { skip }
     end
 
     describe '#initial_state' do
-      it { skip }
     end
 
     describe '#input' do

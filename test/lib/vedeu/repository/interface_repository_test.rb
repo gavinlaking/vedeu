@@ -58,8 +58,6 @@ module Vedeu
 
     describe '.update' do
       let(:subject) { described_class.update }
-
-      it { skip }
     end
 
     describe '.klass' do
