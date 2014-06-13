@@ -10,7 +10,9 @@ module Vedeu
     describe '.capture' do
       let(:subject) { described_class.capture }
 
-      it { subject.must_be_instance_of(String) }
+      it { subject.must_be_instance_of(Array) }
+
+      it { subject.wont_be_empty }
     end
   end
 end
