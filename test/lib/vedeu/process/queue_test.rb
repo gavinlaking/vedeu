@@ -26,7 +26,7 @@ module Vedeu
       let(:subject) { described_class.enqueue(result) }
       let(:result)  { :result }
 
-      it { subject.must_be_instance_of(Module) }
+      it { subject.must_be_instance_of(Array) }
 
       it { subject.size.must_equal(1) }
     end

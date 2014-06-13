@@ -8,7 +8,7 @@ module Vedeu
 
     def enqueue(result)
       store.unshift(result)
-      self
+      store
     end
 
     def size
