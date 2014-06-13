@@ -9,6 +9,12 @@ module Vedeu
     def initialize; end
 
     def capture
+      Queue.enqueue(input)
+    end
+
+    private
+
+    def input
       Terminal.input
     end
   end
