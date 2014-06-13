@@ -1,4 +1,3 @@
 module Vedeu
-  class DummyInterface
-  end
+  class DummyInterface; end
 end

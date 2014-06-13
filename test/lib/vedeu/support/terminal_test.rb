@@ -2,8 +2,8 @@ require_relative '../../../test_helper'
 
 module Vedeu
   describe Terminal do
-    let(:described_class)    { Terminal }
-    let(:console)  { stub }
+    let(:described_class) { Terminal }
+    let(:console)         { stub }
 
     before do
       IO.stubs(:console).returns(console)
@@ -14,7 +14,7 @@ module Vedeu
     describe '.input' do
       let(:subject) { described_class.input }
 
-      before  { console.stubs(:gets).returns("test\n") }
+      before { console.stubs(:gets).returns("test\n") }
 
       it { subject.must_be_instance_of(String) }
 

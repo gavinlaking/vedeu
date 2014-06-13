@@ -4,9 +4,7 @@ module Vedeu
   describe Queue do
     let(:described_class) { Queue }
 
-    before do
-      described_class.clear
-    end
+    before { described_class.clear }
 
     describe '.dequeue' do
       let(:subject) { described_class.dequeue }
