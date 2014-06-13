@@ -6,6 +6,8 @@ module Vedeu
     let(:described_instance) { described_class.new(argv) }
     let(:argv)               { [] }
 
+    before { Application.stubs(:start) }
+
     it { described_instance.must_be_instance_of(Launcher) }
 
     describe '#execute!' do
