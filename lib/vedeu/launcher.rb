@@ -15,7 +15,7 @@ module Vedeu
     def execute!
       $stdin, $stdout, $stderr = @stdin, @stdout, @stderr
 
-      Vedeu::Application.start
+      Application.start
 
       @exit_code = 0
     ensure
