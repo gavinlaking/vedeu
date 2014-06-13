@@ -5,13 +5,16 @@ module Vedeu
     let(:described_class) { Process }
     let(:input)           { nil }
     let(:result)          {}
+    let(:subject)         { described_class.new }
+
+    it { subject.must_be_instance_of(Process) }
 
     describe '.evaluate' do
       let(:subject) { described_class.evaluate }
       let(:command) { Command.new }
 
       before do
-        Queue.enqueue(input)
+        Queue.stubs(:dequeue).returns(input)
         CommandRepository.stubs(:by_keypress).returns(command)
         CommandRepository.stubs(:by_keyword).returns(command)
         command.stubs(:execute).returns(result)

@@ -4,16 +4,23 @@ module Vedeu
   describe Interface do
     let(:described_class)    { Interface }
     let(:described_instance) { described_class.new(attributes) }
-    let(:attributes)         { { name: :test_interface } }
+    let(:subject)            { described_instance }
+    let(:attributes)         {
+      {
+        name: 'dummy',
+        geometry: { width: 80, height: 25, x: 1, y: 1 }
+      }
+    }
     let(:result)             {}
 
     before do
-      Terminal.stubs(:input).returns('stop')
-      Input.stubs(:evaluate).returns(result)
-      Compositor.stubs(:arrange).returns([])
     end
 
-    it { described_instance.must_be_instance_of(Interface) }
+    it { subject.must_be_instance_of(Interface) }
+    it { subject.instance_variable_get("@attributes").must_equal(attributes) }
+    it { subject.instance_variable_get("@active").must_equal(false) }
+    it { subject.instance_variable_get("@geometry").must_equal(attributes[:geometry]) }
+    it { subject.instance_variable_get("@name").must_equal('dummy') }
 
     describe '#create' do
       let(:subject) { described_class.create(attributes) }
@@ -25,6 +32,12 @@ module Vedeu
       let(:subject) { described_instance.initial_state }
 
       it { subject.must_be_instance_of(NilClass) }
+    end
+
+    describe '#geometry' do
+      let(:subject) { described_instance.geometry }
+
+      it { subject.must_be_instance_of(Geometry) }
     end
   end
 end

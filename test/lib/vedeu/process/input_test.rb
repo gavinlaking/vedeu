@@ -4,8 +4,11 @@ module Vedeu
   describe Input do
     let(:described_class) { Input }
     let(:input)           { "" }
+    let(:subject)         { described_class.new }
 
     before { Terminal.stubs(:input).returns(input) }
+
+    it { subject.must_be_instance_of(Input) }
 
     describe '.capture' do
       let(:subject) { described_class.capture }

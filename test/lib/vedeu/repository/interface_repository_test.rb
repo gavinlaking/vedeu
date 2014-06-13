@@ -3,16 +3,10 @@ require_relative '../../../test_helper'
 module Vedeu
   describe InterfaceRepository do
     let(:described_class) { InterfaceRepository }
-    let(:interface)       { :dummy }
-    let(:value)           { "dummy" }
+    let(:interface)       { 'dummy' }
+    let(:value)           { 'dummy' }
 
-    before do
-      Interface.create({ name: "dummy" })
-
-      Terminal.stubs(:input)
-      Input.stubs(:evaluate)
-      Compositor.stubs(:arrange)
-    end
+    before { Interface.create({ name: 'dummy' }) }
 
     describe '.activate' do
       let(:subject) { described_class.activate(interface) }
