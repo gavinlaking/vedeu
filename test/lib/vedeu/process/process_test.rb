@@ -39,7 +39,7 @@ module Vedeu
         context 'or the result is anything else' do
           let(:result) { :something_else }
 
-          it { subject.must_be_instance_of(Module) }
+          it { subject.must_be_instance_of(Array) }
         end
       end
 
@@ -59,7 +59,7 @@ module Vedeu
         context 'or the result is anything else' do
           let(:result) { :something_else }
 
-          it { subject.must_be_instance_of(Module) }
+          it { subject.must_be_instance_of(Array) }
         end
       end
     end
