@@ -13,8 +13,6 @@ module Vedeu
     end
 
     def main_sequence
-      InterfaceRepository.initial_state
-
       while @running do
         Input.capture
 
