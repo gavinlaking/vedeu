@@ -2,7 +2,7 @@
 
 # Vedeu
 
-TODO: Write a gem description
+Vedeu is my attempt at creating a terminal based application framework without the need for Ncurses.
 
 ## Installation
 
@@ -13,10 +13,6 @@ Add this line to your application's Gemfile:
 And then execute:
 
     $ bundle
-
-Or install it yourself as:
-
-    $ gem install vedeu
 
 ## Usage
 
@@ -81,7 +77,8 @@ These numbers are based on the area available to the terminal. If the terminal i
 
 ### On Composition
 
-    [                         # interface
+    {
+      main:                   # interface
       [                       # stream
         [                     # directive
           34, 22              # position directive
@@ -92,18 +89,18 @@ These numbers are based on the area available to the terminal. If the terminal i
 
         "Textual content..."  # stream data
       ]
-    ]
+    }
 
 ## Usage
 
     class MyApp
       include Vedeu
 
-      interface :status, geometry: { y: 1, x: 1, width: :auto, height: 1     }
-      interface :main,   geometry: { y: 2, x: 1, width: :auto, height: :auto }
+      interface 'status', { y: 1, x: 1, width: :auto, height: 1     }
+      interface 'main',   { y: 2, x: 1, width: :auto, height: :auto }
 
-      command :exit, Vedeu::Exit.dispatch, { keyword: "exit", keypress: "q" }
-      command :help, MyApp.help,           { keyword: "help", keypress: "h" }
+      command 'exit', Vedeu::Exit.dispatch, { keyword: "exit", keypress: "q" }
+      command 'help', MyApp.help,           { keyword: "help", keypress: "h" }
     end
 
 ## Contributing
