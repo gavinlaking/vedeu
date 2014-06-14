@@ -1,3 +1,5 @@
 module Vedeu
-  class DummyInterface; end
+  class DummyInterface
+    attr_accessor :id
+  end
 end

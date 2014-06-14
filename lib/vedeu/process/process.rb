@@ -25,7 +25,7 @@ module Vedeu
     end
 
     def not_found?
-      command.nil?
+      command.nil? || command.is_a?(Hash)
     end
 
     def command
