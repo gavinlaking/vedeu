@@ -30,4 +30,16 @@ module Vedeu
       Geometry.new(@geometry)
     end
   end
+
+  module ClassMethods
+    def interface(name, geometry = {})
+      interface_name = name.is_a?(Symbol) ? name.to_s : name
+
+      Interface.create({ name: interface_name, geometry: geometry })
+    end
+  end
+
+  def self.included(receiver)
+    receiver.extend(ClassMethods)
+  end
 end

@@ -39,24 +39,6 @@ require_relative 'vedeu/launcher'
 require_relative 'vedeu/version'
 
 module Vedeu
-  module ClassMethods
-    def interface(name, geometry = {})
-      interface_name = name.is_a?(Symbol) ? name.to_s : name
-
-      Interface.create({ name: interface_name, geometry: geometry })
-    end
-
-    def command(name, klass, options = {})
-      command_name = name.is_a?(Symbol) ? name.to_s : name
-
-      Command.create({ name: command_name, klass: klass, options: options })
-    end
-  end
-
-  def self.included(receiver)
-    receiver.extend(ClassMethods)
-  end
-
   def self.logger
     @logger ||= Logger.new(root_path + '/logs/vedeu.log').tap do |log|
       log.formatter = proc do |mode, time, prog, msg|
