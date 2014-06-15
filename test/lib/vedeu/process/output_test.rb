@@ -12,21 +12,29 @@ module Vedeu
       Queue.stubs(:dequeue).returns(result)
     end
 
-    it { subject.must_be_instance_of(Output) }
+    it 'returns an Output instance' do
+      subject.must_be_instance_of(Output)
+    end
 
     describe '.render' do
       let(:subject) { described_class.render }
 
-      it { subject.must_be_instance_of(NilClass) }
+      it 'returns a NilClass' do
+        subject.must_be_instance_of(NilClass)
+      end
 
       context 'when the result is empty' do
-        it { subject.must_be_instance_of(NilClass) }
+        it 'returns a NilClass' do
+          subject.must_be_instance_of(NilClass)
+        end
       end
 
       context 'when the result is not empty' do
         let(:result) { { 'dummy' => [['test...']] } }
 
-        it { subject.must_be_instance_of(Array) }
+        it 'returns an Array' do
+          subject.must_be_instance_of(Array)
+        end
       end
     end
   end

@@ -15,41 +15,57 @@ module Vedeu
     let(:colour)             { [] }
     let(:style)              { [] }
 
-    it { described_instance.must_be_instance_of(Directive) }
+    it 'returns a Directive instance' do
+      described_instance.must_be_instance_of(Directive)
+    end
 
     describe '.enact' do
       let(:subject) { described_class.enact(directives) }
 
-      it { subject.must_be_instance_of(String) }
+      it 'returns a String' do
+        subject.must_be_instance_of(String)
+      end
 
       context 'when the position is not set' do
-        it { subject.must_equal('') }
+        it 'returns an empty string' do
+          subject.must_equal('')
+        end
       end
 
       context 'when the position is set' do
         let(:position) { [4, 5] }
 
-        it { subject.must_equal("\e[4;5H") }
+        it 'returns an escape sequence' do
+          subject.must_equal("\e[4;5H")
+        end
       end
 
       context 'when the colour is not set' do
-        it { subject.must_equal('') }
+        it 'returns an empty string' do
+          subject.must_equal('')
+        end
       end
 
       context 'when the colour is set' do
         let(:colour) { [:red, :black] }
 
-        it { subject.must_equal("\e[38;5;31m\e[48;5;40m") }
+        it 'returns an escape sequence' do
+          subject.must_equal("\e[38;5;31m\e[48;5;40m")
+        end
       end
 
       context 'when the style is not set' do
-        it { subject.must_equal('') }
+        it 'returns an empty string' do
+          subject.must_equal('')
+        end
       end
 
       context 'when the style is set' do
         let(:style) { [:normal, :underline, :normal] }
 
-        it { subject.must_equal("\e[0m\e[4m\e[0m") }
+        it 'returns an escape sequence' do
+          subject.must_equal("\e[0m\e[4m\e[0m")
+        end
       end
     end
   end

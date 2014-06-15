@@ -16,25 +16,49 @@ module Vedeu
       }
     }
 
-    it { subject.must_be_instance_of(Command) }
-    it { subject.instance_variable_get("@attributes").must_equal(attributes) }
-    it { subject.instance_variable_get("@name").must_equal('dummy') }
-    it { subject.instance_variable_get("@klass").must_equal(DummyCommand) }
-    it { subject.instance_variable_get("@keyword").must_equal('dummy') }
-    it { subject.instance_variable_get("@keypress").must_equal('d') }
+    it 'returns a Command instance' do
+      subject.must_be_instance_of(Command)
+    end
+
+    it 'sets an instance variable' do
+      subject.instance_variable_get("@attributes").must_equal(attributes)
+    end
+
+    it 'sets an instance variable' do
+      subject.instance_variable_get("@name").must_equal('dummy')
+    end
+
+    it 'sets an instance variable' do
+      subject.instance_variable_get("@klass").must_equal(DummyCommand)
+    end
+
+    it 'sets an instance variable' do
+      subject.instance_variable_get("@keyword").must_equal('dummy')
+    end
+
+    it 'sets an instance variable' do
+      subject.instance_variable_get("@keypress").must_equal('d')
+    end
 
     describe '#create' do
       let(:subject) { described_class.create(attributes) }
 
-      it { subject.must_be_instance_of(Command) }
+      it 'returns a Command instance' do
+        subject.must_be_instance_of(Command)
+      end
     end
 
     describe '#execute' do
       let(:subject) { described_instance.execute(args) }
       let(:args)    { [] }
 
-      it { subject.must_be_instance_of(Symbol) }
-      it { subject.must_equal(:dummy) }
+      it 'returns a Symbol' do
+        subject.must_be_instance_of(Symbol)
+      end
+
+      it 'returns the result of execution' do
+        subject.must_equal(:dummy)
+      end
     end
 
     describe '#executable' do

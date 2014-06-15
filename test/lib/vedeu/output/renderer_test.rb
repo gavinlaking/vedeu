@@ -6,21 +6,31 @@ module Vedeu
     let(:described_instance) { described_class.new(composition) }
     let(:composition)        { [] }
 
-    it { described_instance.must_be_instance_of(Renderer) }
+    it 'returns a Renderer instance' do
+      described_instance.must_be_instance_of(Renderer)
+    end
 
     describe '.write' do
       let(:subject) { described_class.write(composition) }
 
-      it { subject.must_be_instance_of(Array) }
+      it 'returns an Array' do
+        subject.must_be_instance_of(Array)
+      end
 
-      it { subject.must_equal([]) }
+      it 'returns an empty array' do
+        subject.must_equal([])
+      end
 
       context 'capturing i/o' do
         let(:captured) { capture_io { subject }.join }
 
-        it { captured.must_be_instance_of(String) }
+        it 'returns a String' do
+          captured.must_be_instance_of(String)
+        end
 
-        it { captured.must_equal("") }
+        it 'returns an empty string' do
+          captured.must_equal("")
+        end
       end
     end
   end

@@ -5,12 +5,16 @@ module Vedeu
     let(:described_class)    { Position }
     let(:described_instance) { described_class.new }
 
-    it { described_instance.must_be_instance_of(Position) }
+    it 'returns a Position instance' do
+      described_instance.must_be_instance_of(Position)
+    end
 
     describe '.set' do
       let(:subject) { described_class.set }
 
-      it { subject.must_be_instance_of(String) }
+      it 'returns a String' do
+        subject.must_be_instance_of(String)
+      end
 
       context 'when no coordinates are provided' do
         it 'returns a position escape sequence' do
@@ -32,7 +36,9 @@ module Vedeu
     describe '.reset' do
       let(:subject) { described_class.reset }
 
-      it { subject.must_be_instance_of(String) }
+      it 'returns a String' do
+        subject.must_be_instance_of(String)
+      end
 
       it 'returns a position escape sequence' do
         subject.must_equal("\e[1;1H")

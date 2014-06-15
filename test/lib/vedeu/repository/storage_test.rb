@@ -7,39 +7,57 @@ module Vedeu
     let(:record)          { DummyCommand.new }
     let(:klass)           {}
 
-    it { subject.must_be_instance_of(Storage) }
-    it { subject.instance_variable_get("@counter").must_equal(0) }
-    it { subject.instance_variable_get("@map").must_equal({}) }
+    it 'returns a Storage instance' do
+      subject.must_be_instance_of(Storage)
+    end
+
+    it 'sets an instance variable' do
+      subject.instance_variable_get("@counter").must_equal(0)
+    end
+
+    it 'sets an instance variable' do
+      subject.instance_variable_get("@map").must_equal({})
+    end
 
     describe '#create' do
       let(:subject) { described_class.new.create(record) }
 
-      it { subject.must_be_instance_of(DummyCommand) }
+      it 'returns the stored record' do
+        subject.must_be_instance_of(DummyCommand)
+      end
     end
 
     describe '#delete' do
       let(:subject) { described_class.new.delete(record) }
 
-      it { subject.must_be_instance_of(NilClass) }
+      it 'returns a NilClass' do
+        subject.must_be_instance_of(NilClass)
+      end
     end
 
     describe '#reset' do
       let(:subject) { described_class.new.reset(klass) }
 
-      it { subject.must_be_instance_of(Array) }
+      it 'returns an Array' do
+        subject.must_be_instance_of(Array)
+      end
     end
 
     describe '#find' do
       let(:subject) { described_class.new.find(klass, id) }
       let(:id)      { 'dummy' }
 
-      it { subject.must_be_instance_of(NilClass) }
+      it 'returns a NilClass' do
+        subject.must_be_instance_of(NilClass)
+      end
     end
 
     describe '#all' do
       let(:subject) { described_class.new.all(klass) }
 
-      it { subject.must_be_instance_of(Array) }
+      it 'returns an Array' do
+        subject.must_be_instance_of(Array)
+      end
     end
 
     describe '#query' do
@@ -47,7 +65,11 @@ module Vedeu
       let(:attribute) {}
       let(:value)     {}
 
-      it { subject.must_be_instance_of(Hash) }
+      context 'when the item cannot be found' do
+        it 'returns a Hash' do
+          subject.must_be_instance_of(Hash)
+        end
+      end
     end
   end
 end

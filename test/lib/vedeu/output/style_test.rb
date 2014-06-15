@@ -8,56 +8,76 @@ module Vedeu
       let(:subject) { described_class.set(style) }
       let(:style) {}
 
-      it { subject.must_be_instance_of(String) }
+      it 'returns a String' do
+        subject.must_be_instance_of(String)
+      end
 
-      it { subject.must_equal('') }
+      it 'returns an empty string' do
+        subject.must_equal('')
+      end
 
       context 'when the style is bold' do
         let(:style) { :bold }
 
-        it { subject.must_equal("\e[1m") }
+        it 'returns an escape sequence' do
+          subject.must_equal("\e[1m")
+        end
       end
 
       context 'when the style is clear' do
         let(:style) { :clear }
 
-        it { subject.must_equal("\e[2J") }
+        it 'returns an escape sequence' do
+          subject.must_equal("\e[2J")
+        end
       end
 
       context 'when the style is hide_cursor' do
         let(:style) { :hide_cursor }
 
-        it { subject.must_equal("\e[?25l") }
+        it 'returns an escape sequence' do
+          subject.must_equal("\e[?25l")
+        end
       end
 
       context 'when the style is inverse' do
         let(:style) { :inverse }
 
-        it { subject.must_equal("\e[7m") }
+        it 'returns an escape sequence' do
+          subject.must_equal("\e[7m")
+        end
       end
 
       context 'when the style is reset' do
         let(:style) { :reset }
 
-        it { subject.must_equal("\e[0m") }
+        it 'returns an escape sequence' do
+          subject.must_equal("\e[0m")
+        end
       end
 
       context 'when the style is normal' do
         let(:style) { :normal }
 
-        it { subject.must_equal("\e[0m") }
+        it 'returns an escape sequence' do
+          subject.must_equal("\e[0m")
+        end
       end
 
       context 'when the style is show_cursor' do
         let(:style) { :show_cursor }
 
-        it { subject.must_equal("\e[?25h") }
+        it 'returns an escape sequence' do
+          subject.must_equal("\e[?25h")
+        end
       end
 
       context 'when the style is underline' do
         let(:style) { :underline }
 
-        it { subject.must_equal("\e[4m") }
+        it 'returns an escape sequence' do
+          subject.must_equal("\e[4m")
+        end
       end
     end
   end

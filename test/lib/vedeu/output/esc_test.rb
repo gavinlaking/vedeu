@@ -7,65 +7,97 @@ module Vedeu
     describe '.bold' do
       let(:subject) { described_class.bold }
 
-      it { subject.must_be_instance_of(String) }
+      it 'returns a String' do
+        subject.must_be_instance_of(String)
+      end
 
-      it { subject.must_equal("\e[1m") }
+      it 'returns an escape sequence' do
+        subject.must_equal("\e[1m")
+      end
     end
 
     describe '.clear' do
       let(:subject) { described_class.clear }
 
-      it { subject.must_be_instance_of(String) }
+      it 'returns a String' do
+        subject.must_be_instance_of(String)
+      end
 
-      it { subject.must_equal("\e[2J") }
+      it 'returns an escape sequence' do
+        subject.must_equal("\e[2J")
+      end
     end
 
     describe '.esc' do
       let(:subject) { described_class.esc }
 
-      it { subject.must_be_instance_of(String) }
+      it 'returns a String' do
+        subject.must_be_instance_of(String)
+      end
 
-      it { subject.must_equal("\e[") }
+      it 'returns an escape sequence' do
+        subject.must_equal("\e[")
+      end
     end
 
     describe '.hide_cursor' do
       let(:subject) { described_class.hide_cursor }
 
-      it { subject.must_be_instance_of(String) }
+      it 'returns a String' do
+        subject.must_be_instance_of(String)
+      end
 
-      it { subject.must_equal("\e[?25l") }
+      it 'returns an escape sequence' do
+        subject.must_equal("\e[?25l")
+      end
     end
 
     describe '.inverse' do
       let(:subject) { described_class.inverse }
 
-      it { subject.must_be_instance_of(String) }
+      it 'returns a String' do
+        subject.must_be_instance_of(String)
+      end
 
-      it { subject.must_equal("\e[7m") }
+      it 'returns an escape sequence' do
+        subject.must_equal("\e[7m")
+      end
     end
 
     describe '.reset' do
       let(:subject) { described_class.reset }
 
-      it { subject.must_be_instance_of(String) }
+      it 'returns a String' do
+        subject.must_be_instance_of(String)
+      end
 
-      it { subject.must_equal("\e[0m") }
+      it 'returns an escape sequence' do
+        subject.must_equal("\e[0m")
+      end
     end
 
     describe '.show_cursor' do
       let(:subject) { described_class.show_cursor }
 
-      it { subject.must_be_instance_of(String) }
+      it 'returns a String' do
+        subject.must_be_instance_of(String)
+      end
 
-      it { subject.must_equal("\e[?25h") }
+      it 'returns an escape sequence' do
+        subject.must_equal("\e[?25h")
+      end
     end
 
     describe '.underline' do
       let(:subject) { described_class.underline }
 
-      it { subject.must_be_instance_of(String) }
+      it 'returns a String' do
+        subject.must_be_instance_of(String)
+      end
 
-      it { subject.must_equal("\e[4m") }
+      it 'returns an escape sequence' do
+        subject.must_equal("\e[4m")
+      end
     end
   end
 end

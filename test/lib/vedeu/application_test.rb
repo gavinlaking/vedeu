@@ -6,7 +6,9 @@ module Vedeu
     let(:described_instance) { described_class.new(options) }
     let(:options)            { {} }
 
-    it { described_instance.must_be_instance_of(Application) }
+    it 'returns an Application instance' do
+      described_instance.must_be_instance_of(Application)
+    end
 
     describe '.start' do
       let(:subject) { described_class.start(options) }
@@ -18,7 +20,9 @@ module Vedeu
         Terminal.stubs(:close)
       end
 
-      it { subject.must_be_instance_of(NilClass) }
+      it 'returns a NilClass' do
+        subject.must_be_instance_of(NilClass)
+      end
     end
   end
 end

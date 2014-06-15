@@ -7,13 +7,20 @@ module Vedeu
     let(:subject)            { described_instance }
     let(:pair)               { [] }
 
-    it { subject.must_be_instance_of(Colour) }
-    it { subject.instance_variable_get("@pair").must_equal([]) }
+    it 'returns a Colour instance' do
+      subject.must_be_instance_of(Colour)
+    end
+
+    it 'sets an instance variable' do
+      subject.instance_variable_get("@pair").must_equal([])
+    end
 
     describe '.set' do
       let(:subject) { described_class.set(pair) }
 
-      it { subject.must_be_instance_of(String) }
+      it 'returns a String' do
+        subject.must_be_instance_of(String)
+      end
 
       context 'when the foreground and background are specified as symbols' do
         context 'when both the foreground and background is specified' do
@@ -69,21 +76,29 @@ module Vedeu
     describe '.reset' do
       let(:subject) { described_class.reset }
 
-      it { subject.must_be_instance_of(String) }
+      it 'returns a String' do
+        subject.must_be_instance_of(String)
+      end
 
-      it { subject.must_equal("\e[38;5;39m\e[48;5;49m") }
+      it 'returns an escape sequence' do
+        subject.must_equal("\e[38;5;39m\e[48;5;49m")
+      end
     end
 
     describe '#foreground' do
       let(:subject) { described_instance.foreground }
 
-      it { subject.must_be_instance_of(String) }
+      it 'returns a String' do
+        subject.must_be_instance_of(String)
+      end
     end
 
     describe '#background' do
       let(:subject) { described_instance.background }
 
-      it { subject.must_be_instance_of(String) }
+      it 'returns a String' do
+        subject.must_be_instance_of(String)
+      end
     end
   end
 end

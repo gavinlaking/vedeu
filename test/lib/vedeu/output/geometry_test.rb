@@ -11,104 +11,142 @@ module Vedeu
       Terminal.stubs(:height).returns(25)
     end
 
-    it { described_instance.must_be_instance_of(Geometry) }
+    it 'returns a Geometry instance' do
+      described_instance.must_be_instance_of(Geometry)
+    end
 
     describe '#z' do
       let(:subject) { described_instance.z }
 
-      it { subject.must_be_instance_of(Fixnum) }
+      it 'returns a Fixnum' do
+        subject.must_be_instance_of(Fixnum)
+      end
 
       context 'using a value' do
         let(:values) { { z: 2 } }
 
-        it { subject.must_equal(2) }
+        it 'returns the value' do
+          subject.must_equal(2)
+        end
       end
 
       context 'using the default' do
-        it { subject.must_equal(0) }
+        it 'returns the default' do
+          subject.must_equal(0)
+        end
       end
     end
 
     describe '#y' do
       let(:subject) { described_instance.y }
 
-      it { subject.must_be_instance_of(Fixnum) }
+      it 'returns a Fixnum' do
+        subject.must_be_instance_of(Fixnum)
+      end
 
       context 'using a value' do
         let(:values) { { y: 17 } }
 
-        it { subject.must_equal(17) }
+        it 'returns the value' do
+          subject.must_equal(17)
+        end
       end
 
       context 'using the default' do
-        it { subject.must_equal(1) }
+        it 'returns the default' do
+          subject.must_equal(1)
+        end
       end
     end
 
     describe '#x' do
       let(:subject) { described_instance.x }
 
-      it { subject.must_be_instance_of(Fixnum) }
+      it 'returns a Fixnum' do
+        subject.must_be_instance_of(Fixnum)
+      end
 
       context 'using a value' do
         let(:values) { { x: 33 } }
 
-        it { subject.must_equal(33) }
+        it 'returns the value' do
+          subject.must_equal(33)
+        end
       end
 
       context 'using the default' do
-        it { subject.must_equal(1) }
+        it 'return the default' do
+          subject.must_equal(1)
+        end
       end
     end
 
     describe '#width' do
       let(:subject) { described_instance.width }
 
-      it { subject.must_be_instance_of(Fixnum) }
+      it 'returns a Fixnum' do
+        subject.must_be_instance_of(Fixnum)
+      end
 
       context 'using a value' do
         let(:values) { { width: 50 } }
 
-        it { subject.must_equal(50) }
+        it 'returns the value' do
+          subject.must_equal(50)
+        end
       end
 
       context 'using :auto' do
         let(:values) { { width: :auto } }
 
-        it { subject.must_equal(80) }
+        it 'returns the value' do
+          subject.must_equal(80)
+        end
       end
 
       context 'using the default' do
-        it { subject.must_equal(80) }
+        it 'returns the default' do
+          subject.must_equal(80)
+        end
       end
     end
 
     describe '#height' do
       let(:subject) { described_instance.height }
 
-      it { subject.must_be_instance_of(Fixnum) }
+      it 'returns a Fixnum' do
+        subject.must_be_instance_of(Fixnum)
+      end
 
       context 'using a value' do
         let(:values) { { height: 20 } }
 
-        it { subject.must_equal(20) }
+        it 'returns the value' do
+          subject.must_equal(20)
+        end
       end
 
       context 'using :auto' do
         let(:values) { { height: :auto } }
 
-        it { subject.must_equal(25) }
+        it 'returns the value' do
+          subject.must_equal(25)
+        end
       end
 
       context 'using the default' do
-        it { subject.must_equal(25) }
+        it 'returns the default' do
+          subject.must_equal(25)
+        end
       end
     end
 
     describe '#dy' do
       let(:subject) { described_instance.dy }
 
-      it { subject.must_be_instance_of(Fixnum) }
+      it 'returns a Fixnum' do
+        subject.must_be_instance_of(Fixnum)
+      end
 
       context 'when the value is greater than the available terminal size' do
         it 'clips the value to the terminal size' do
@@ -119,14 +157,18 @@ module Vedeu
       context 'when the value is less than the available size' do
         let(:values) { { y: 20, height: 4 } }
 
-        it { subject.must_equal(24) }
+        it 'returns the value' do
+          subject.must_equal(24)
+        end
       end
     end
 
     describe '#dx' do
       let(:subject) { described_instance.dx }
 
-      it { subject.must_be_instance_of(Fixnum) }
+      it 'returns a Fixnum' do
+        subject.must_be_instance_of(Fixnum)
+      end
 
       context 'when the value is greater than the available terminal size' do
         it 'clips the value to the terminal size' do
@@ -137,26 +179,34 @@ module Vedeu
       context 'when the value is less than the available size' do
         let(:values) { { x: 17, width: 21 } }
 
-        it { subject.must_be_instance_of(Fixnum) }
-
-        it { subject.must_equal(38) }
+        it 'returns the value' do
+          subject.must_equal(38)
+        end
       end
     end
 
     describe '#vx' do
       let(:subject) { described_instance.vx }
 
-      it { subject.must_be_instance_of(Fixnum) }
+      it 'returns a Fixnum' do
+        subject.must_be_instance_of(Fixnum)
+      end
 
-      it { subject.must_equal(1) }
+      it 'returns the value' do
+        subject.must_equal(1)
+      end
     end
 
     describe '#vy' do
       let(:subject) { described_instance.vy }
 
-      it { subject.must_be_instance_of(Fixnum) }
+      it 'returns a Fixnum' do
+        subject.must_be_instance_of(Fixnum)
+      end
 
-      it { subject.must_equal(1) }
+      it 'returns the value' do
+        subject.must_equal(1)
+      end
     end
   end
 end

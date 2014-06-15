@@ -6,16 +6,22 @@ module Vedeu
     let(:subject)         { described_class.dispatch(command) }
     let(:command)         {}
 
-    it { subject.must_be_instance_of(Symbol) }
+    it 'returns a Symbol' do
+      subject.must_be_instance_of(Symbol)
+    end
 
     context 'when the value exists' do
       let(:command) { :test_command }
 
-      it { subject.must_equal(:test_command) }
+      it 'returns the value' do
+        subject.must_equal(:test_command)
+      end
     end
 
     context 'when the value does not exist' do
-      it { subject.must_equal(:dummy) }
+      it 'returns the default value' do
+        subject.must_equal(:dummy)
+      end
     end
   end
 end
