@@ -43,6 +43,7 @@ TODO: Write detailed documentation
             |           |     |     |-- Esc
             |           |     |
             |           |     |-- Style
+            |           |     |     |-- Cursor
             |           |     |     |-- Esc
             |           |     |
             |           |     |-- Wordwrap
@@ -81,6 +82,7 @@ TODO: Write detailed documentation
       |-- Storage
 
     Terminal
+      |-- Cursor
       |-- Esc
       |-- Position
             |-- Esc
