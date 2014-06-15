@@ -17,15 +17,11 @@ module Vedeu
     private
 
     def result
-      @result ||= command.execute(*args) unless not_found?
+      @result ||= command.execute(*args) if command
     end
 
     def no_result?
       result.nil? || result.empty?
-    end
-
-    def not_found?
-      command.nil? || command.is_a?(Hash)
     end
 
     def command

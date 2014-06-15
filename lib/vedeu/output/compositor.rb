@@ -63,11 +63,6 @@ module Vedeu
       @output
     end
 
-    def target_interface
-      raise UndefinedInterface if interface.nil?
-      interface
-    end
-
     def interface
       @_interface ||= InterfaceRepository.find_by_name(@interface)
     end
