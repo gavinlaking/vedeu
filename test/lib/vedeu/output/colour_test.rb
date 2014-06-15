@@ -4,9 +4,11 @@ module Vedeu
   describe Colour do
     let(:described_class)    { Colour }
     let(:described_instance) { described_class.new }
+    let(:subject)            { described_instance }
     let(:pair)               { [] }
 
-    it { described_instance.must_be_instance_of(Colour) }
+    it { subject.must_be_instance_of(Colour) }
+    it { subject.instance_variable_get("@pair").must_equal([]) }
 
     describe '.set' do
       let(:subject) { described_class.set(pair) }
@@ -62,6 +64,26 @@ module Vedeu
           subject.must_equal("\e[38;5;196m\e[48;5;21m")
         end
       end
+    end
+
+    describe '.reset' do
+      let(:subject) { described_class.reset }
+
+      it { subject.must_be_instance_of(String) }
+
+      it { subject.must_equal("\e[38;5;39m\e[48;5;49m") }
+    end
+
+    describe '#foreground' do
+      let(:subject) { described_instance.foreground }
+
+      it { subject.must_be_instance_of(String) }
+    end
+
+    describe '#background' do
+      let(:subject) { described_instance.background }
+
+      it { subject.must_be_instance_of(String) }
     end
   end
 end

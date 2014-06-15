@@ -7,8 +7,13 @@ module Vedeu
     let(:subject)            { described_instance }
     let(:attributes)         {
       {
-        name: 'dummy',
-        geometry: { width: 80, height: 25, x: 1, y: 1 }
+        name:   'dummy',
+        width:  80,
+        height: 25,
+        x:      1,
+        y:      1,
+        fg:     :red,
+        bg:     :blue
       }
     }
     let(:result)             {}
@@ -19,7 +24,6 @@ module Vedeu
     it { subject.must_be_instance_of(Interface) }
     it { subject.instance_variable_get("@attributes").must_equal(attributes) }
     it { subject.instance_variable_get("@active").must_equal(false) }
-    it { subject.instance_variable_get("@geometry").must_equal(attributes[:geometry]) }
     it { subject.instance_variable_get("@name").must_equal('dummy') }
 
     describe '#create' do
@@ -38,6 +42,12 @@ module Vedeu
       let(:subject) { described_instance.geometry }
 
       it { subject.must_be_instance_of(Geometry) }
+    end
+
+    describe '#colour' do
+      let(:subject) { described_instance.colour }
+
+      it { subject.must_be_instance_of(Colour) }
     end
   end
 end

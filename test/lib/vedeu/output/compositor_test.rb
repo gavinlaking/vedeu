@@ -3,20 +3,28 @@ require_relative '../../../test_helper'
 module Vedeu
   describe Compositor do
     let(:described_class)    { Compositor }
-    let(:described_instance) { described_class.new(output) }
+    let(:described_instance) { described_class.new(output, interface) }
+    let(:subject)            { described_instance }
     let(:output)             { [[]] }
     let(:stream)             { [] }
     let(:interface)          { 'dummy' }
 
     before do
-      @interface = Interface.create({ name: 'dummy' })
+      Interface.create({ name: 'dummy' })
+      Interface.create({ name: 'test_interface' })
       Renderer.stubs(:write).returns(stream)
     end
 
-    it { described_instance.must_be_instance_of(Compositor) }
+    after do
+      InterfaceRepository.reset
+    end
+
+    it { subject.must_be_instance_of(Compositor) }
+    it { subject.instance_variable_get("@output").must_equal([[]]) }
+    it { subject.instance_variable_get("@interface").must_equal("dummy") }
 
     describe '.arrange' do
-      let(:subject) { described_class.arrange(output) }
+      let(:subject) { described_class.arrange(output, interface) }
 
       context 'when empty' do
         let(:output) { [] }
@@ -31,7 +39,7 @@ module Vedeu
       end
 
       context 'when a hash (multiple interfaces)' do
-        let(:output) { { test_interface: [] } }
+        let(:output) { { 'test_interface' => [] } }
 
         it { subject.must_be_instance_of(Array) }
       end

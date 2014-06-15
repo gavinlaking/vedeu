@@ -29,6 +29,8 @@ module Vedeu
       container = []
       streams   = []
 
+      container << colour.set
+
       output.map do |line|
         line.each_with_index do |stream, index|
           streams << clear(index)
@@ -38,6 +40,8 @@ module Vedeu
         container << streams.join
         streams = []
       end
+
+      container << colour.reset
 
       container
     end
@@ -50,12 +54,20 @@ module Vedeu
       geometry.origin(index)
     end
 
+    def height
+      geometry.height
+    end
+
     def width
       geometry.width
     end
 
     def geometry
-      target_interface.geometry
+      interface.geometry
+    end
+
+    def colour
+      interface.colour
     end
 
     def output
