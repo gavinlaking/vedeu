@@ -1,0 +1,325 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta content="Railroad Diagram Generator 1.35.837" name="generator"><style type="text/css" xml:space="preserve">
+    ::-moz-selection
+    {
+      color: #FFFCF0;
+      background: #0F0C00;
+    }
+    ::selection
+    {
+      color: #FFFCF0;
+      background: #0F0C00;
+    }      
+    .ebnf a
+    {
+      text-decoration: none;
+    }
+    .ebnf a:hover
+    {
+      color: #050400;
+      text-decoration: underline;
+    }    
+    .signature
+    {
+      color: #806600;
+      font-size: 11px;
+      text-align: right;
+    }
+    body
+    {
+      font: normal 12px Verdana, sans-serif;
+      color: #0F0C00;
+      background: #FFFCF0;
+    }
+    a:link, a:visited
+    {
+      color: #0F0C00;
+    }
+    a:link.signature, a:visited.signature
+    {
+      color: #806600;
+    }
+    a.button, #tabs li a
+    {
+      padding: 0.25em 0.5em;
+      border: 1px solid #806600;
+      background: #F1E8C6;
+      color: #806600;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a.button:hover, #tabs li a:hover
+    {
+      color: #050400;
+      background: #FFF6D1;
+      border-color: #050400;       
+    }     
+    #tabs
+    {
+      padding: 3px 10px;
+      margin-left: 0;
+      margin-top: 58px;
+      border-bottom: 1px solid #0F0C00;
+    }  
+    #tabs li
+    {
+      list-style: none;
+      margin-left: 5px;
+      display: inline;
+    }
+    #tabs li a
+    {     
+      border-bottom: 1px solid #0F0C00;
+    }
+    #tabs li a.active
+    {
+      color: #0F0C00;
+      background: #FFFCF0;
+      border-color: #0F0C00;
+      border-bottom: 1px solid #FFFCF0;
+      outline: none;
+    }
+    #divs div
+    {
+      display: none;
+      overflow:auto;
+    }
+    #divs div.active
+    {
+      display: block;
+    }
+    #text
+    {
+      border-color: #806600;
+      background: #FFFEFA;
+      color: #050400;
+    }
+    .small
+    {
+      vertical-align: top;
+      text-align: right;
+      font-size: 9px;
+      font-weight: normal;
+      line-height: 120%;
+    }
+    td.small
+    {
+      padding-top: 0px;
+    }
+    .hidden
+    {
+      visibility: hidden;
+    }
+    td:hover .hidden 
+    {
+      visibility: visible;
+    }
+    div.download
+    {
+      display: none;
+      background: #FFFCF0;
+      position: absolute;
+      right: 34px;
+      top: 94px;
+      padding: 10px;
+      border: 1px dotted #0F0C00;
+    }
+    #divs div.ebnf, div.ebnf
+    {
+      display: block;
+      padding-left: 16px;
+      padding-top: 2px; 
+      padding-bottom: 2px; 
+      background: #FFF6D1;
+    }
+    table.palette
+    {
+      border-top: 1px solid #050400;
+      border-right: 1px solid #050400;
+      margin-bottom: 4px
+    }
+    td.palette
+    {
+      border-bottom: 1px solid #050400;
+      border-left: 1px solid #050400;
+    }
+    a.palette
+    {
+      padding: 2px 3px 2px 10px;
+      text-decoration: none;
+    }
+    .palette
+    {
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -o-user-select: none;
+      -ms-user-select: none;
+    }
+  </style></head>
+   <body>
+      
+      <p style="font-size: 14px; font-weight:bold"><a name="Output">Output:</a></p>
+      <img border="0" height="328" src="diagram/Output.png" usemap="#Output.map" width="622"><map name="Output.map">
+         <area coords="157,33,233,65" href="#Interface" shape="rect" title="Interface">
+         <area coords="313,33,377,65" href="#Stream" shape="rect" title="Stream">
+         <area coords="195,131,259,163" href="#Stream" shape="rect" title="Stream">
+         <area coords="175,229,231,261" href="#String" shape="rect" title="String"></map>
+      
+      <p>
+         
+         <div class="ebnf"><pre><a href="#Output" shape="rect" title="Output">Output</a>   ::= ( ( '{' <a href="#Interface" shape="rect" title="Interface">Interface</a> '=&gt;' <a href="#Stream" shape="rect" title="Stream">Stream</a> '}' ( ',' | ) )* | ( '[' ( <a href="#Stream" shape="rect" title="Stream">Stream</a> ( ',' | ) )* ']' ( ',' | ) )* | '[' ( <a href="#String" shape="rect" title="String">String</a> ( ',' | ) )* ']' ( ',' | ) )*</pre></div>
+         
+      </p>
+      
+      <p>no references</p><br><p style="font-size: 14px; font-weight:bold"><a name="Stream">Stream:</a></p>
+      <img border="0" height="182" src="diagram/Stream.png" usemap="#Stream.map" width="592"><map name="Stream.map">
+         <area coords="175,33,249,65" href="#Directive" shape="rect" title="Directive">
+         <area coords="175,99,231,131" href="#String" shape="rect" title="String"></map>
+      
+      <p>
+         
+         <div class="ebnf"><pre><a href="#Stream" shape="rect" title="Stream">Stream</a>   ::= ( '[' ( <a href="#Directive" shape="rect" title="Directive">Directive</a> ( ',' | ) | <a href="#String" shape="rect" title="String">String</a> ( ',' | ) )* ']' ( ',' | ) )*</pre></div>
+         
+      </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            
+            <li><a href="#Output" title="Output">Output</a></li>
+            
+         </ul>
+         
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="Interface">Interface:</a></p>
+      <img border="0" height="36" src="diagram/Interface.png" usemap="#Interface.map" width="114"><map name="Interface.map">
+         <area coords="29,1,85,33" href="#String" shape="rect" title="String"></map>
+      
+      <p>
+         
+         <div class="ebnf"><pre><a href="#Interface" shape="rect" title="Interface">Interface</a>
+         ::= <a href="#String" shape="rect" title="String">String</a></pre></div>
+         
+      </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            
+            <li><a href="#Output" title="Output">Output</a></li>
+            
+         </ul>
+         
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="Directive">Directive:</a></p>
+      <img border="0" height="124" src="diagram/Directive.png" usemap="#Directive.map" width="222"><map name="Directive.map">
+         <area coords="49,1,173,33" href="#PositionDirective" shape="rect" title="PositionDirective">
+         <area coords="49,45,163,77" href="#ColourDirective" shape="rect" title="ColourDirective">
+         <area coords="49,89,153,121" href="#StyleDirective" shape="rect" title="StyleDirective"></map>
+      
+      <p>
+         
+         <div class="ebnf"><pre><a href="#Directive" shape="rect" title="Directive">Directive</a>
+         ::= <a href="#PositionDirective" shape="rect" title="PositionDirective">PositionDirective</a>
+           | <a href="#ColourDirective" shape="rect" title="ColourDirective">ColourDirective</a>
+           | <a href="#StyleDirective" shape="rect" title="StyleDirective">StyleDirective</a></pre></div>
+         
+      </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            
+            <li><a href="#Stream" title="Stream">Stream</a></li>
+            
+         </ul>
+         
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="PositionDirective">PositionDirective:</a></p>
+      <img border="0" height="36" src="diagram/PositionDirective.png" usemap="#PositionDirective.map" width="342"><map name="PositionDirective.map">
+         <area coords="75,1,139,33" href="#Fixnum" shape="rect" title="Fixnum">
+         <area coords="203,1,267,33" href="#Fixnum" shape="rect" title="Fixnum"></map>
+      
+      <p>
+         
+         <div class="ebnf"><pre><a href="#PositionDirective" shape="rect" title="PositionDirective">PositionDirective</a>
+         ::= '[' <a href="#Fixnum" shape="rect" title="Fixnum">Fixnum</a> ',' <a href="#Fixnum" shape="rect" title="Fixnum">Fixnum</a> ']'</pre></div>
+         
+      </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            
+            <li><a href="#Directive" title="Directive">Directive</a></li>
+            
+         </ul>
+         
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="StyleDirective">StyleDirective:</a></p>
+      <img border="0" height="36" src="diagram/StyleDirective.png" usemap="#StyleDirective.map" width="122"><map name="StyleDirective.map">
+         <area coords="29,1,93,33" href="#Symbol" shape="rect" title="Symbol"></map>
+      
+      <p>
+         
+         <div class="ebnf"><pre><a href="#StyleDirective" shape="rect" title="StyleDirective">StyleDirective</a>
+         ::= <a href="#Symbol" shape="rect" title="Symbol">Symbol</a></pre></div>
+         
+      </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            
+            <li><a href="#Directive" title="Directive">Directive</a></li>
+            
+         </ul>
+         
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="ColourDirective">ColourDirective:</a></p>
+      <img border="0" height="36" src="diagram/ColourDirective.png" usemap="#ColourDirective.map" width="342"><map name="ColourDirective.map">
+         <area coords="75,1,139,33" href="#Symbol" shape="rect" title="Symbol">
+         <area coords="203,1,267,33" href="#Symbol" shape="rect" title="Symbol"></map>
+      
+      <p>
+         
+         <div class="ebnf"><pre><a href="#ColourDirective" shape="rect" title="ColourDirective">ColourDirective</a>
+         ::= '[' <a href="#Symbol" shape="rect" title="Symbol">Symbol</a> ',' <a href="#Symbol" shape="rect" title="Symbol">Symbol</a> ']'</pre></div>
+         
+      </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            
+            <li><a href="#Directive" title="Directive">Directive</a></li>
+            
+         </ul>
+         
+      </p><br><hr>
+      
+      <p>
+         
+         <table border="0" class="signature">
+            
+            <tr>
+               
+               <td style="width: 100%">&nbsp;</td>
+               
+               <td valign="top">
+                  
+                  <nobr class="signature">... generated by <a class="signature" href="http://www.bottlecaps.de/rr/ui" name="Railroad-Diagram-Generator" target="_blank" title="http://www.bottlecaps.de/rr/ui">Railroad Diagram Generator</a></nobr>
+                  
+               </td>
+               
+               <td><a href="http://www.bottlecaps.de/rr/ui" name="Railroad-Diagram-Generator" target="_blank" title="http://www.bottlecaps.de/rr/ui">
+                     <img border="0" height="16" src="diagram/rr-1.35.837.png" width="16"></a></td>
+               
+            </tr>
+            
+         </table>
+         
+      </p>
+      
+   </body>
+</html>

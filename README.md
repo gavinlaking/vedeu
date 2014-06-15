@@ -90,19 +90,17 @@ These numbers are based on the area available to the terminal. If the terminal i
 
 ### On Composition
 
-    {
-      main:                   # interface
-      [                       # stream
-        [                     # directive
-          34, 22              # position directive
-          :red, :black        # colour directive
-        ],
+To compose data suitable for output in Vedeu, you can use this EBNF. Diagrams are available in the `documentation` directory.
 
-        :directive,           # style directive
+    Output ::= (('{' (Interface '=>' Stream) '}' (',' | ))* | ('[' (Stream (',' | ))* ']' (',' | ))* | ('[' (String (',' | ))* ']') (',' | ))*
+    Stream ::= ('[' (Directive (',' | ) | String (',' | ))* ']' (',' | ))*
+    Interface ::= String
+    Directive ::= PositionDirective | ColourDirective | StyleDirective
+    PositionDirective ::= '[' Fixnum ',' Fixnum ']'
+    StyleDirective ::= Symbol
+    ColourDirective ::= '[' Symbol ',' Symbol ']'
 
-        "Textual content..."  # stream data
-      ]
-    }
+Diagrams were produced using the Railroad Diagram Generator at `http://bottlecaps.de/rr/ui`.
 
 ## Usage
 
