@@ -31,8 +31,13 @@ module Vedeu
 
       container << colour.set
 
-      output.map do |line|
-        line.each_with_index do |stream, index|
+      output.map do |lines|
+        if lines.size < geometry.height
+          remaining = geometry.height - lines.size
+          remaining.times { |i| lines << "" }
+        end
+
+        lines.each_with_index do |stream, index|
           streams << clear(index)
           streams << Directive.enact(stream)
         end
