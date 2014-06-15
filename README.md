@@ -20,12 +20,23 @@ TODO: Write detailed documentation
 
 ## Notes
 
-    Application
-      |-- EventLoop
-      |     |-- InterfaceRepository
-      |
-      |-- InterfaceRepository
-      |-- Terminal
+    Launcher
+      |-- Application
+            |-- EventLoop
+            |     |-- Input
+            |     |     |-- Queue
+            |     |     |-- Terminal
+            |     |
+            |     |-- Process
+            |     |     |-- CommandRepository
+            |     |     |-- Queue
+            |     |
+            |     |-- Output
+            |           |-- Compositor
+            |           |-- Queue
+            |
+            |-- InterfaceRepository
+            |-- Terminal
 
     Base
       |-- Translator
@@ -69,6 +80,8 @@ TODO: Write detailed documentation
       |-- Esc
       |-- Position
             |-- Esc
+
+    Wordwrap
 
 ### On Interfaces
 
