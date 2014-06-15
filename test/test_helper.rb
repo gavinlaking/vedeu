@@ -1,6 +1,7 @@
 require 'simplecov'
 require 'minitest/autorun'
 require 'minitest/pride'
+require 'minitest/reporters'
 require 'pry'
 require 'pry-nav'
 
@@ -20,6 +21,8 @@ end
 Minitest.after_run do
   print [27.chr, '[', '?25h'].join # show cursor
 end
+
+Minitest::Reporters.use!(Minitest::Reporters::SpecReporter.new)
 
 require_relative '../lib/vedeu.rb'
 
