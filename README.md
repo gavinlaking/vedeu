@@ -33,55 +33,57 @@ TODO: Write detailed documentation
             |     |
             |     |-- Output
             |           |-- Compositor
-            |           |-- Queue
+            |           |
+            |           |-- Directive
+            |           |     |-- Colour
+            |           |     |     |-- Background < Base
+            |           |     |     |-- Foreground < Base
+            |           |     |
+            |           |     |-- Position
+            |           |     |     |-- Esc
+            |           |     |
+            |           |     |-- Style
+            |           |     |     |-- Esc
+            |           |     |
+            |           |     |-- Wordwrap
+            |           |
+            |           |-- InterfaceRepository
+            |           |-- Position
+            |           |     |-- Esc
+            |           |
+            |           |-- Renderer
+            |                 |-- Terminal
+            |                 |-- Queue
             |
             |-- InterfaceRepository
             |-- Terminal
 
     Base
-      |-- Translator
       |-- Esc
+      |-- Translator
+
+    Command
+      |-- CommandRepository
+
+    Exit
 
     Interface
-      |-- Commands
-      |     |-- Command
-      |     |     |-- CommandRepository
-      |     |
-      |     |-- Exit
-      |
-      |-- Compositor
-      |     |-- Directive
-      |     |     |-- Colour
-      |     |     |     |-- Foreground < Base
-      |     |     |     |-- Background < Base
-      |     |     |
-      |     |     |-- Position
-      |     |     |     |-- Esc
-      |     |     |
-      |     |     |-- Style
-      |     |           |-- Esc
-      |     |
-      |     |-- InterfaceRepository
-      |     |-- Position
-      |     |     |-- Esc
-      |     |
-      |     |-- Renderer
-      |           |-- Terminal
+      |-- Colour
+      |     |-- Background < Base
+      |     |-- Foreground < Base
       |
       |-- Geometry
       |     |-- Terminal
       |
-      |-- Input
       |-- InterfaceRepository
-      |-- Position
-      |-- Terminal
+
+    Repository
+      |-- Storage
 
     Terminal
       |-- Esc
       |-- Position
             |-- Esc
-
-    Wordwrap
 
 ### On Interfaces
 
@@ -108,7 +110,7 @@ Diagrams were produced using the Railroad Diagram Generator at `http://bottlecap
       include Vedeu
 
       interface 'status', { y: 1, x: 1, width: :auto, height: 1     }
-      interface 'main',   { y: 2, x: 1, width: :auto, height: :auto }
+      interface 'main',   { y: 2, x: 1, width: :auto, height: :auto, fg: :red, bg: :black }
 
       command 'exit', Vedeu::Exit.dispatch, { keyword: "exit", keypress: "q" }
       command 'help', MyApp.help,           { keyword: "help", keypress: "h" }
@@ -117,7 +119,11 @@ Diagrams were produced using the Railroad Diagram Generator at `http://bottlecap
 ## Contributing
 
 1. Fork it ( http://github.com/<my-github-username>/vedeu/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+2. Clone it
+3. `bundle`
+4. `rake` or `bundle exec guard`
+5. Create your feature branch (`git checkout -b my-new-feature`)
+6. Write some tests, write some code, have some fun
+7. Commit your changes (`git commit -am 'Add some feature'`)
+8. Push to the branch (`git push origin my-new-feature`)
+9. Create new Pull Request
