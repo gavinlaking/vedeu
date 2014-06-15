@@ -8,14 +8,20 @@ module Vedeu
 
     before { Terminal.stubs(:input).returns(input) }
 
-    it { subject.must_be_instance_of(Input) }
+    it 'return an Input instance' do
+      subject.must_be_instance_of(Input)
+    end
 
     describe '.capture' do
       let(:subject) { described_class.capture }
 
-      it { subject.must_be_instance_of(Array) }
+      it 'returns an Array' do
+        subject.must_be_instance_of(Array)
+      end
 
-      it { subject.wont_be_empty }
+      it 'returns the entered characters' do
+        subject.wont_be_empty
+      end
     end
   end
 end

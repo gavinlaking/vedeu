@@ -20,7 +20,7 @@ module Vedeu
     end
 
     def find(klass, id)
-      map_for_class(klass).fetch(id)
+      map_for_class(klass).fetch(id, nil)
     end
 
     def all(klass)

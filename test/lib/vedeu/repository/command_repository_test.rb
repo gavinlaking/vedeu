@@ -24,13 +24,21 @@ module Vedeu
       context 'when the command was found by keypress' do
         let(:input) { 'b' }
 
-        it { subject.must_be_instance_of(Command) }
+        it 'returns the Command instance' do
+          subject.must_be_instance_of(Command)
+        end
 
-        it { subject.name.must_equal('banana') }
+        it 'returns the correct command' do
+          subject.name.must_equal('banana')
+        end
 
-        it { subject.name.wont_equal('apple') }
+        it 'returns the correct command' do
+          subject.name.wont_equal('apple')
+        end
 
-        it { subject.keypress.must_equal('b') }
+        it 'returns the correct command' do
+          subject.keypress.must_equal('b')
+        end
       end
     end
 
@@ -40,20 +48,30 @@ module Vedeu
       context 'when the command was found by keyword' do
         let(:input) { 'apple' }
 
-        it { subject.must_be_instance_of(Command) }
+        it 'returns the Command instance' do
+          subject.must_be_instance_of(Command)
+        end
 
-        it { subject.keypress.must_equal('a') }
+        it 'returns the correct command' do
+          subject.keypress.must_equal('a')
+        end
 
-        it { subject.keypress.wont_equal('b') }
+        it 'returns the correct command' do
+          subject.keypress.wont_equal('b')
+        end
 
-        it { subject.name.wont_equal('banana') }
+        it 'returns the correct command' do
+          subject.name.wont_equal('banana')
+        end
       end
     end
 
     describe '.klass' do
       let(:subject) { described_class.klass }
 
-      it { subject.must_equal(Command) }
+      it 'returns Command' do
+        subject.must_equal(Command)
+      end
     end
   end
 end

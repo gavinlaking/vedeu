@@ -29,8 +29,15 @@ module Vedeu
       container = []
       streams   = []
 
-      output.map do |line|
-        line.each_with_index do |stream, index|
+      container << colour.set
+
+      output.map do |lines|
+        if lines.size < geometry.height
+          remaining = geometry.height - lines.size
+          remaining.times { |i| lines << "" }
+        end
+
+        lines.each_with_index do |stream, index|
           streams << clear(index)
           streams << Directive.enact(stream)
         end
@@ -38,6 +45,8 @@ module Vedeu
         container << streams.join
         streams = []
       end
+
+      container << colour.reset
 
       container
     end
@@ -50,22 +59,25 @@ module Vedeu
       geometry.origin(index)
     end
 
+    def height
+      geometry.height
+    end
+
     def width
       geometry.width
     end
 
     def geometry
-      target_interface.geometry
+      interface.geometry
+    end
+
+    def colour
+      interface.colour
     end
 
     def output
       return @output.split if @output.is_a?(String)
       @output
-    end
-
-    def target_interface
-      raise UndefinedInterface if interface.nil?
-      interface
     end
 
     def interface

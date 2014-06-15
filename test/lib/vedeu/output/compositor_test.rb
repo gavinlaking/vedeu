@@ -3,37 +3,59 @@ require_relative '../../../test_helper'
 module Vedeu
   describe Compositor do
     let(:described_class)    { Compositor }
-    let(:described_instance) { described_class.new(output) }
+    let(:described_instance) { described_class.new(output, interface) }
+    let(:subject)            { described_instance }
     let(:output)             { [[]] }
     let(:stream)             { [] }
     let(:interface)          { 'dummy' }
 
     before do
-      @interface = Interface.create({ name: 'dummy' })
+      Interface.create({ name: 'dummy' })
+      Interface.create({ name: 'test_interface' })
       Renderer.stubs(:write).returns(stream)
     end
 
-    it { described_instance.must_be_instance_of(Compositor) }
+    after do
+      InterfaceRepository.reset
+    end
+
+    it 'returns a Compositor instance' do
+      subject.must_be_instance_of(Compositor)
+    end
+
+    it 'sets an instance variable' do
+      subject.instance_variable_get("@output").must_equal([[]])
+    end
+
+    it 'sets an instance variable' do
+      subject.instance_variable_get("@interface").must_equal("dummy")
+    end
 
     describe '.arrange' do
-      let(:subject) { described_class.arrange(output) }
+      let(:subject) { described_class.arrange(output, interface) }
 
       context 'when empty' do
         let(:output) { [] }
 
-        it { subject.must_be_instance_of(NilClass) }
+        it 'returns a NilClass' do
+          subject.must_be_instance_of(NilClass)
+        end
       end
 
       context 'when an array (single interface)' do
         let(:output) { [[]] }
 
-        it { subject.must_be_instance_of(Array) }
+        it 'returns an Array' do
+          subject.must_be_instance_of(Array)
+        end
       end
 
       context 'when a hash (multiple interfaces)' do
-        let(:output) { { test_interface: [] } }
+        let(:output) { { 'test_interface' => [] } }
 
-        it { subject.must_be_instance_of(Array) }
+        it 'returns an Array' do
+          subject.must_be_instance_of(Array)
+        end
       end
 
       context 'when unstyled' do
@@ -41,7 +63,9 @@ module Vedeu
           let(:output) { [['Some text...']] }
           let(:stream) { 'Some text...' }
 
-          it { subject.must_equal(stream) }
+          it 'returns a String' do
+            subject.must_equal(stream)
+          end
         end
 
         context 'and multi-line' do
@@ -53,7 +77,9 @@ module Vedeu
           }
           let(:stream) { "Some text...\nSome more text..." }
 
-          it { subject.must_equal(stream) }
+          it 'returns a String' do
+            subject.must_equal(stream)
+          end
         end
       end
 
@@ -67,7 +93,9 @@ module Vedeu
             }
             let(:stream) { "\e[38;5;31m\e[48;5;47mSome text..." }
 
-            it { subject.must_equal(stream) }
+            it 'returns a String' do
+              subject.must_equal(stream)
+            end
           end
 
           context 'and multi-line' do
@@ -82,7 +110,9 @@ module Vedeu
               "\e[38;5;34m\e[48;5;43mSome more text..."
             }
 
-            it { subject.must_equal(stream) }
+            it 'returns a String' do
+              subject.must_equal(stream)
+            end
           end
         end
 
@@ -97,7 +127,9 @@ module Vedeu
               "\e[1mSome text..."
             }
 
-            it { subject.must_equal(stream) }
+            it 'returns a String' do
+              subject.must_equal(stream)
+            end
           end
 
           context 'and multi-line' do
@@ -112,7 +144,9 @@ module Vedeu
               "\e[4mSome more text..."
             }
 
-            it { subject.must_equal(stream) }
+            it 'returns a String' do
+              subject.must_equal(stream)
+            end
           end
         end
 

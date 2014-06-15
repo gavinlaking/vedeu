@@ -31,27 +31,35 @@ module Vedeu
     describe '#adaptor' do
       let(:subject) { described_class.adaptor }
 
-      it { subject.must_be_instance_of(Storage) }
+      it 'returns a Storage' do
+        subject.must_be_instance_of(Storage)
+      end
     end
 
     describe '#adaptor=' do
       let(:subject) { described_class.adaptor=(adaptor) }
       let(:adaptor) { Storage.new }
 
-      it { subject.must_be_instance_of(Storage) }
+      it 'returns a Storage' do
+        subject.must_be_instance_of(Storage)
+      end
     end
 
     describe '#find' do
       let(:subject) { described_class.find(id) }
       let(:id)      { @dummy.id }
 
-      it { subject.must_be_instance_of(Dummy) }
+      it 'returns a Dummy' do
+        subject.must_be_instance_of(Dummy)
+      end
     end
 
     describe '#all' do
       let(:subject) { described_class.all }
 
-      it { subject.must_be_instance_of(Array) }
+      it 'returns all the stored items' do
+        subject.must_be_instance_of(Array)
+      end
     end
 
     describe '#query' do
@@ -60,27 +68,35 @@ module Vedeu
       let(:attribute) { :name }
       let(:value)     { "dummy" }
 
-      it { subject.must_be_instance_of(Dummy) }
+      it 'returns a Dummy' do
+        subject.must_be_instance_of(Dummy)
+      end
     end
 
     describe '#create' do
       let(:subject) { described_class.create(model) }
       let(:model)   { @dummy }
 
-      it { subject.must_be_instance_of(Dummy) }
+      it 'returns a Dummy' do
+        subject.must_be_instance_of(Dummy)
+      end
     end
 
     describe '#delete' do
       let(:subject) { described_class.delete(model) }
       let(:model)   { @dummy }
 
-      it { subject.must_be_instance_of(Dummy) }
+      it 'returns a Dummy' do
+        subject.must_be_instance_of(Dummy)
+      end
     end
 
     describe '#reset' do
       let(:subject) { described_class.reset }
 
-      it { subject.must_be_instance_of(Array) }
+      it 'returns an Array' do
+        subject.must_be_instance_of(Array)
+      end
     end
   end
 end

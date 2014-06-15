@@ -7,6 +7,10 @@ module Vedeu
         new(pair).define
       end
       alias_method :set, :define
+
+      def reset
+        new.reset
+      end
     end
 
     def initialize(pair = [])
@@ -16,17 +20,24 @@ module Vedeu
     def define
       [foreground, background].join
     end
+    alias_method :set, :define
+
+    def reset
+      [foreground(:default), background(:default)].join
+    end
+
+    def foreground(value = pair[0])
+      @foreground ||= Foreground.escape_sequence(value)
+    end
+    alias_method :fg, :foreground
+
+    def background(value = pair[1])
+      @background ||= Background.escape_sequence(value)
+    end
+    alias_method :bg, :background
 
     private
 
     attr_reader :pair
-
-    def foreground
-      Foreground.escape_sequence(pair[0])
-    end
-
-    def background
-      Background.escape_sequence(pair[1])
-    end
   end
 end

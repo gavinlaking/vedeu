@@ -8,7 +8,9 @@ module Vedeu
 
     before { Application.stubs(:start) }
 
-    it { described_instance.must_be_instance_of(Launcher) }
+    it 'returns a Launcher instance' do
+      described_instance.must_be_instance_of(Launcher)
+    end
 
     describe '#execute!' do
       let(:subject) { described_instance.execute! }

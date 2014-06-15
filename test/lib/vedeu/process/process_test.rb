@@ -7,7 +7,9 @@ module Vedeu
     let(:result)          {}
     let(:subject)         { described_class.new }
 
-    it { subject.must_be_instance_of(Process) }
+    it 'returns a Process instance' do
+      subject.must_be_instance_of(Process)
+    end
 
     describe '.evaluate' do
       let(:subject) { described_class.evaluate }
@@ -23,26 +25,34 @@ module Vedeu
       after { Queue.clear }
 
       context 'when there is no input' do
-        it { subject.must_be_instance_of(NilClass) }
+        it 'returns a NilClass' do
+          subject.must_be_instance_of(NilClass)
+        end
       end
 
       context 'when the input is a keypress' do
         let(:input) { "q" }
 
         context 'but there is no result' do
-          it { subject.must_be_instance_of(NilClass) }
+          it 'returns a NilClass' do
+            subject.must_be_instance_of(NilClass)
+          end
         end
 
         context 'or the result is :stop' do
           let(:result) { :stop }
 
-          it { proc { subject }.must_raise(Collapse) }
+          it 'raises an exception' do
+            proc { subject }.must_raise(Collapse)
+          end
         end
 
         context 'or the result is anything else' do
           let(:result) { :something_else }
 
-          it { subject.must_be_instance_of(Array) }
+          it 'returns an Array' do
+            subject.must_be_instance_of(Array)
+          end
         end
       end
 
@@ -50,19 +60,25 @@ module Vedeu
         let(:input) { "quit" }
 
         context 'but there is no result' do
-          it { subject.must_be_instance_of(NilClass) }
+          it 'returns a NilClass' do
+            subject.must_be_instance_of(NilClass)
+          end
         end
 
         context 'or the result is :stop' do
           let(:result) { :stop }
 
-          it { proc { subject }.must_raise(Collapse) }
+          it 'raises an exception' do
+            proc { subject }.must_raise(Collapse)
+          end
         end
 
         context 'or the result is anything else' do
           let(:result) { :something_else }
 
-          it { subject.must_be_instance_of(Array) }
+          it 'returns an Array' do
+            subject.must_be_instance_of(Array)
+          end
         end
       end
     end

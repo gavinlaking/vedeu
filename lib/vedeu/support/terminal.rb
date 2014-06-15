@@ -27,7 +27,10 @@ module Vedeu
 
       def close
         show_cursor
-        output(Position.set(height - 1, 1))
+
+        reset_colours
+
+        reset_position
       end
 
       def cooked(instance, &block)
@@ -58,8 +61,7 @@ module Vedeu
       end
 
       def clear_line(index)
-        output(Position.set(index, 0))
-        output(" " * width)
+        output(Position.set(index, 1) + (" " * width) + Position.set(index, 1))
       end
 
       def show_cursor
@@ -68,6 +70,14 @@ module Vedeu
 
       def hide_cursor
         output(Esc.hide_cursor)
+      end
+
+      def reset_colours
+        output(Esc.reset)
+      end
+
+      def reset_position
+        clear_line(height - 1)
       end
     end
 

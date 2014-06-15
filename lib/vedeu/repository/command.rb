@@ -29,4 +29,16 @@ module Vedeu
       Proc.new { |*args| attributes[:klass].dispatch(*args) }
     end
   end
+
+  module ClassMethods
+    def command(name, klass, options = {})
+      command_name = name.is_a?(Symbol) ? name.to_s : name
+
+      Command.create({ name: command_name, klass: klass, options: options })
+    end
+  end
+
+  def self.included(receiver)
+    receiver.extend(ClassMethods)
+  end
 end

@@ -7,9 +7,13 @@ module Vedeu
     describe '.dispatch' do
       let(:subject) { described_class.dispatch }
 
-      it { subject.must_be_instance_of(Symbol) }
+      it 'returns a Symbol' do
+        subject.must_be_instance_of(Symbol)
+      end
 
-      it { subject.must_equal(:stop) }
+      it 'returns the symbol :stop' do
+        subject.must_equal(:stop)
+      end
     end
   end
 end

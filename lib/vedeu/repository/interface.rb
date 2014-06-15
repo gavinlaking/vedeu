@@ -1,6 +1,6 @@
 module Vedeu
   class Interface
-    attr_accessor :id, :attributes, :active, :geometry, :name
+    attr_accessor :id, :attributes, :active, :name
 
     class << self
       def create(attributes = {})
@@ -12,7 +12,6 @@ module Vedeu
       @attributes = attributes || {}
 
       @active     = false
-      @geometry   = attributes[:geometry]
       @name       = attributes[:name]
     end
 
@@ -24,10 +23,38 @@ module Vedeu
       self
     end
 
-    def initial_state; end
+    def initial_state
+      Compositor.arrange([Array.new(geometry.height) { '' }], name)
+    end
 
     def geometry
-      Geometry.new(@geometry)
+      @geometry ||= Geometry.new(attributes)
     end
+
+    def colour
+      @colour ||= Colour.new([foreground, background])
+    end
+
+    private
+
+    def foreground
+      attributes[:fg] || attributes[:foreground]
+    end
+
+    def background
+      attributes[:bg] || attributes[:background]
+    end
+  end
+
+  module ClassMethods
+    def interface(name, options = {})
+      interface_name = name.is_a?(Symbol) ? name.to_s : name
+
+      Interface.create({ name: interface_name }.merge!(options))
+    end
+  end
+
+  def self.included(receiver)
+    receiver.extend(ClassMethods)
   end
 end

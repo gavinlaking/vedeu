@@ -5,7 +5,9 @@ module Vedeu
     let(:described_class) { Translator }
     let(:html_colour) {}
 
-    it { described_class.new(html_colour).must_be_instance_of(Translator) }
+    it 'returns a Translator instance' do
+      described_class.new(html_colour).must_be_instance_of(Translator)
+    end
 
     describe '#translate' do
       {

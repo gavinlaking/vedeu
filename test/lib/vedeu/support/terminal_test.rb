@@ -16,9 +16,13 @@ module Vedeu
 
       before { console.stubs(:gets).returns("test\n") }
 
-      it { subject.must_be_instance_of(String) }
+      it 'returns a String' do
+        subject.must_be_instance_of(String)
+      end
 
-      it { subject.must_equal("test") }
+      it 'returns the entered string' do
+        subject.must_equal("test")
+      end
     end
 
     describe '.output' do
@@ -26,13 +30,21 @@ module Vedeu
 
       before { console.stubs(:print).returns("test") }
 
-      it { subject.must_be_instance_of(String) }
+      it 'returns a String' do
+        subject.must_be_instance_of(String)
+      end
+
+      it 'returns the output' do
+        subject.must_equal("test")
+      end
     end
 
     describe '.width' do
       let(:subject) { described_class.width }
 
-      it { subject.must_be_instance_of(Fixnum) }
+      it 'returns a Fixnum' do
+        subject.must_be_instance_of(Fixnum)
+      end
 
       it 'returns the width of the terminal' do
         subject.must_equal(80)
@@ -42,7 +54,9 @@ module Vedeu
     describe '.height' do
       let(:subject) { described_class.height }
 
-      it { subject.must_be_instance_of(Fixnum) }
+      it 'returns a Fixnum' do
+        subject.must_be_instance_of(Fixnum)
+      end
 
       it 'returns the height of the terminal' do
         subject.must_equal(25)
@@ -52,7 +66,9 @@ module Vedeu
     describe '.size' do
       let(:subject) { described_class.size }
 
-      it { subject.must_be_instance_of(Array) }
+      it 'returns an Array' do
+        subject.must_be_instance_of(Array)
+      end
 
       it 'returns the width and height of the terminal' do
         subject.must_equal([25, 80])
@@ -84,12 +100,16 @@ module Vedeu
 
       before { Esc.stubs(:clear).returns('') }
 
-      it { subject.must_be_instance_of(NilClass) }
+      it 'returns a NilClass' do
+        subject.must_be_instance_of(NilClass)
+      end
 
       context 'capturing output' do
         let(:io) { capture_io { subject }.join }
 
-        it { io.must_be_instance_of(String) }
+        it 'returns a String' do
+          io.must_be_instance_of(String)
+        end
       end
     end
 
@@ -97,49 +117,81 @@ module Vedeu
       let(:subject) { described_class.clear_line(index) }
       let(:index)   { 0 }
 
-      it { subject.must_be_instance_of(NilClass) }
+      it 'returns a NilClass' do
+        subject.must_be_instance_of(NilClass)
+      end
     end
 
     describe '.show_cursor' do
       let(:subject) { described_class.show_cursor }
 
-      it { subject.must_be_instance_of(NilClass) }
+      it 'returns a NilClass' do
+        subject.must_be_instance_of(NilClass)
+      end
 
       context 'capturing output' do
         let(:io) { capture_io { subject }.join }
 
-        it { io.must_be_instance_of(String) }
+        it 'returns a String' do
+          io.must_be_instance_of(String)
+        end
       end
     end
 
     describe '.hide_cursor' do
       let(:subject) { described_class.hide_cursor }
 
-      it { subject.must_be_instance_of(NilClass) }
+      it 'returns a NilClass' do
+        subject.must_be_instance_of(NilClass)
+      end
 
       context 'capturing output' do
         let(:io) { capture_io { subject }.join }
 
-        it { io.must_be_instance_of(String) }
+        it 'returns a String' do
+          io.must_be_instance_of(String)
+        end
+      end
+    end
+
+    describe '.reset_colours' do
+      let(:subject) { described_class.reset_colours }
+
+      it 'returns a NilClass' do
+        subject.must_be_instance_of(NilClass)
+      end
+
+      context 'capturing output' do
+        let(:io) { capture_io { subject }.join }
+
+        it 'returns a String' do
+          io.must_be_instance_of(String)
+        end
       end
     end
 
     describe '#initialize' do
       let(:subject) { described_class.new }
 
-      it { subject.must_be_instance_of(Terminal) }
+      it 'returns a Terminal instance' do
+        subject.must_be_instance_of(Terminal)
+      end
     end
 
     describe '#open' do
       let(:subject) { described_class.new.open }
 
-      it { subject.must_be_instance_of(NilClass) }
+      it 'returns a NilClass' do
+        subject.must_be_instance_of(NilClass)
+      end
     end
 
     describe '#initial_setup!' do
       let(:subject) { described_class.new.initial_setup! }
 
-      it { subject.must_be_instance_of(NilClass) }
+      it 'returns a NilClass' do
+        subject.must_be_instance_of(NilClass)
+      end
     end
   end
 end

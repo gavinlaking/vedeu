@@ -20,7 +20,11 @@ module Vedeu
       end
 
       def find_by_name(value)
-        query(klass, :name, value)
+        interface = query(klass, :name, value)
+
+        raise UndefinedInterface if interface.nil? || interface.is_a?(Hash)
+
+        interface
       end
 
       def initial_state
