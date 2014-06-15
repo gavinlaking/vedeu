@@ -30,7 +30,7 @@ module Vedeu
 
         reset_colours
 
-        output(Position.set(height - 1, 1))
+        reset_position
       end
 
       def cooked(instance, &block)
@@ -74,6 +74,10 @@ module Vedeu
 
       def reset_colours
         output(Esc.reset)
+      end
+
+      def reset_position
+        clear_line(height - 1)
       end
     end
 
