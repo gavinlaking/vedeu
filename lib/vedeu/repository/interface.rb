@@ -23,7 +23,9 @@ module Vedeu
       self
     end
 
-    def initial_state; end
+    def initial_state
+      Compositor.arrange([Array.new(geometry.height) { '' }], name)
+    end
 
     def geometry
       @geometry ||= Geometry.new(attributes)
