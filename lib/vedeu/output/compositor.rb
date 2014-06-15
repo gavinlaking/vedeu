@@ -32,8 +32,8 @@ module Vedeu
       container << colour.set
 
       output.map do |lines|
-        if lines.size < geometry.height
-          remaining = geometry.height - lines.size
+        if lines.size < height
+          remaining = height - lines.size
           remaining.times { |i| lines << "" }
         end
 
