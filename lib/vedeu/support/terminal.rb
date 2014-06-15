@@ -61,8 +61,7 @@ module Vedeu
       end
 
       def clear_line(index)
-        output(Position.set(index, 0))
-        output(" " * width)
+        output(Position.set(index, 1) + (" " * width) + Position.set(index, 1))
       end
 
       def show_cursor
