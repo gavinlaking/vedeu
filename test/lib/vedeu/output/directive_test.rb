@@ -3,7 +3,9 @@ require_relative '../../../test_helper'
 module Vedeu
   describe Directive do
     let(:described_class)    { Directive }
-    let(:described_instance) { described_class.new(directives) }
+    let(:described_instance) { described_class.new(interface, directives) }
+    let(:subject)            { described_instance }
+    let(:interface)          { Interface.new }
     let(:directives)         {
       {
         position: position,
@@ -19,8 +21,16 @@ module Vedeu
       described_instance.must_be_instance_of(Directive)
     end
 
+    it 'sets an instance variable' do
+      subject.instance_variable_get("@interface").must_be_instance_of(Interface)
+    end
+
+    it 'sets an instance variable' do
+      subject.instance_variable_get("@directives").must_be_instance_of(Hash)
+    end
+
     describe '.enact' do
-      let(:subject) { described_class.enact(directives) }
+      let(:subject) { described_class.enact(interface, directives) }
 
       it 'returns a String' do
         subject.must_be_instance_of(String)

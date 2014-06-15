@@ -39,7 +39,7 @@ module Vedeu
 
         lines.each_with_index do |stream, index|
           streams << clear(index)
-          streams << Directive.enact(stream)
+          streams << Directive.enact(interface, stream)
         end
 
         container << streams.join
