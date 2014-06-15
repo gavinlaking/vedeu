@@ -14,21 +14,22 @@ module Vedeu
       end
 
       def up(count = 1)
-        [esc, count, 'A'].join
+        [esc, "#{count || 1}", 'A'].join
       end
 
       def down(count = 1)
-        [esc, count, 'B'].join
+        [esc, "#{count || 1}", 'B'].join
       end
 
       def right(count = 1)
-        [esc, count, 'C'].join
+        [esc, "#{count || 1}", 'C'].join
       end
       alias_method :forward, :right
 
       def left(count = 1)
-        [esc, count, 'D'].join
+        [esc, "#{count || 1}", 'D'].join
       end
+      alias_method :backward, :left
 
       def save
         [esc, 's'].join

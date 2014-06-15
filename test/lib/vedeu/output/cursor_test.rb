@@ -41,7 +41,8 @@ module Vedeu
     end
 
     describe '.up' do
-      let(:subject) { described_class.up }
+      let(:subject) { described_class.up(count) }
+      let(:count)   {}
 
       it 'returns a String' do
         subject.must_be_instance_of(String)
@@ -50,10 +51,19 @@ module Vedeu
       it 'returns an escape sequence' do
         subject.must_equal("\e[1A")
       end
+
+      context 'with a count' do
+        let(:count) { 3 }
+
+        it 'returns an escape sequence' do
+          subject.must_equal("\e[3A")
+        end
+      end
     end
 
     describe '.down' do
-      let(:subject) { described_class.down }
+      let(:subject) { described_class.down(count) }
+      let(:count)   {}
 
       it 'returns a String' do
         subject.must_be_instance_of(String)
@@ -62,10 +72,19 @@ module Vedeu
       it 'returns an escape sequence' do
         subject.must_equal("\e[1B")
       end
+
+      context 'with a count' do
+        let(:count) { 3 }
+
+        it 'returns an escape sequence' do
+          subject.must_equal("\e[3B")
+        end
+      end
     end
 
     describe '.right' do
-      let(:subject) { described_class.right }
+      let(:subject) { described_class.right(count) }
+      let(:count)   {}
 
       it 'returns a String' do
         subject.must_be_instance_of(String)
@@ -74,10 +93,19 @@ module Vedeu
       it 'returns an escape sequence' do
         subject.must_equal("\e[1C")
       end
+
+      context 'with a count' do
+        let(:count) { 3 }
+
+        it 'returns an escape sequence' do
+          subject.must_equal("\e[3C")
+        end
+      end
     end
 
     describe '.left' do
-      let(:subject) { described_class.left }
+      let(:subject) { described_class.left(count) }
+      let(:count)   {}
 
       it 'returns a String' do
         subject.must_be_instance_of(String)
@@ -85,6 +113,14 @@ module Vedeu
 
       it 'returns an escape sequence' do
         subject.must_equal("\e[1D")
+      end
+
+      context 'with a count' do
+        let(:count) { 3 }
+
+        it 'returns an escape sequence' do
+          subject.must_equal("\e[3D")
+        end
       end
     end
 
