@@ -66,8 +66,8 @@ module Vedeu
       let(:value)     {}
 
       context 'when the item cannot be found' do
-        it 'returns a Hash' do
-          subject.must_be_instance_of(Hash)
+        it 'returns a NilClass' do
+          subject.must_be_instance_of(NilClass)
         end
       end
     end

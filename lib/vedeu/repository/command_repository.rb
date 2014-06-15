@@ -4,19 +4,11 @@ module Vedeu
 
     class << self
       def by_keypress(input)
-        command = query(klass, :keypress, input)
-
-        return nil if command.nil? || command.is_a?(Hash)
-
-        command
+        query(klass, :keypress, input)
       end
 
       def by_keyword(input)
-        command = query(klass, :keyword, input)
-
-        return nil if command.nil? || command.is_a?(Hash)
-
-        command
+        query(klass, :keyword, input)
       end
 
       def klass

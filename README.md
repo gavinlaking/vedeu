@@ -20,12 +20,23 @@ TODO: Write detailed documentation
 
 ## Notes
 
-    Application
-      |-- EventLoop
-      |     |-- InterfaceRepository
-      |
-      |-- InterfaceRepository
-      |-- Terminal
+    Launcher
+      |-- Application
+            |-- EventLoop
+            |     |-- Input
+            |     |     |-- Queue
+            |     |     |-- Terminal
+            |     |
+            |     |-- Process
+            |     |     |-- CommandRepository
+            |     |     |-- Queue
+            |     |
+            |     |-- Output
+            |           |-- Compositor
+            |           |-- Queue
+            |
+            |-- InterfaceRepository
+            |-- Terminal
 
     Base
       |-- Translator
@@ -70,6 +81,8 @@ TODO: Write detailed documentation
       |-- Position
             |-- Esc
 
+    Wordwrap
+
 ### On Interfaces
 
 When we create the interface we define it's width, height, and origin (y, x).
@@ -77,19 +90,17 @@ These numbers are based on the area available to the terminal. If the terminal i
 
 ### On Composition
 
-    {
-      main:                   # interface
-      [                       # stream
-        [                     # directive
-          34, 22              # position directive
-          :red, :black        # colour directive
-        ],
+To compose data suitable for output in Vedeu, you can use this EBNF. Diagrams are available in the `documentation` directory.
 
-        :directive,           # style directive
+    Output ::= (('{' (Interface '=>' Stream) '}' (',' | ))* | ('[' (Stream (',' | ))* ']' (',' | ))* | ('[' (String (',' | ))* ']') (',' | ))*
+    Stream ::= ('[' (Directive (',' | ) | String (',' | ))* ']' (',' | ))*
+    Interface ::= String
+    Directive ::= PositionDirective | ColourDirective | StyleDirective
+    PositionDirective ::= '[' Fixnum ',' Fixnum ']'
+    StyleDirective ::= Symbol
+    ColourDirective ::= '[' Symbol ',' Symbol ']'
 
-        "Textual content..."  # stream data
-      ]
-    }
+Diagrams were produced using the Railroad Diagram Generator at `http://bottlecaps.de/rr/ui`.
 
 ## Usage
 

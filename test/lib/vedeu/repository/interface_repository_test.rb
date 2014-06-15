@@ -43,8 +43,10 @@ module Vedeu
     describe '.initial_state' do
       let(:subject) { described_class.initial_state }
 
+      before { Compositor.stubs(:arrange) }
+
       it 'returns an Array' do
-        # subject.must_be_instance_of(Array)
+        subject.must_be_instance_of(Array)
       end
     end
 

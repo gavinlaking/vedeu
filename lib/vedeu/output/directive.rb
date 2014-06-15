@@ -3,23 +3,28 @@ module Vedeu
 
   class Directive
     class << self
-      def enact(directives = {})
-        new(directives).enact
+      def enact(interface, directives = {})
+        new(interface, directives).enact
       end
     end
 
-    def initialize(directives = {})
+    def initialize(interface, directives = {})
+      @interface  = interface
       @directives = directives || {}
     end
 
     def enact
-      return directives if string?
+      return wordwrap if string?
       [set_position, set_colour, set_style].join
     end
 
     private
 
-    attr_reader :directives
+    attr_reader :interface, :directives
+
+    def wordwrap
+      Wordwrap.this(directives, options)
+    end
 
     def string?
       directives.is_a?(String)
@@ -47,6 +52,13 @@ module Vedeu
 
     def style
       directives.fetch(:style, [])
+    end
+
+    def options
+      {
+        width: interface.geometry.width,
+        prune: true
+      }
     end
   end
 end

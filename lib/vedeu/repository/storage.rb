@@ -31,6 +31,8 @@ module Vedeu
       map_for_class(klass).select do |id, result|
         return result if result.send(attribute) == value
       end
+
+      nil
     end
 
     private
