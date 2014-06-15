@@ -3,7 +3,7 @@ module Vedeu
     private
 
     def prefix
-      '38;5;'
+      named? ? '38;2;' : '38;5;'
     end
 
     def codes
