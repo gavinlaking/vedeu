@@ -124,6 +124,18 @@ module Vedeu
       end
     end
 
+    describe '.reset_colours' do
+      let(:subject) { described_class.reset_colours }
+
+      it { subject.must_be_instance_of(NilClass) }
+
+      context 'capturing output' do
+        let(:io) { capture_io { subject }.join }
+
+        it { io.must_be_instance_of(String) }
+      end
+    end
+
     describe '#initialize' do
       let(:subject) { described_class.new }
 

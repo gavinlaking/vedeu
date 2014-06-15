@@ -27,6 +27,9 @@ module Vedeu
 
       def close
         show_cursor
+
+        reset_colours
+
         output(Position.set(height - 1, 1))
       end
 
@@ -68,6 +71,10 @@ module Vedeu
 
       def hide_cursor
         output(Esc.hide_cursor)
+      end
+
+      def reset_colours
+        output(Esc.reset)
       end
     end
 
