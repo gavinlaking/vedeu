@@ -60,7 +60,7 @@ module Vedeu
         let(:colour) { [:red, :black] }
 
         it 'returns an escape sequence' do
-          subject.must_equal("\e[38;5;31m\e[48;5;40m")
+          subject.must_equal("\e[38;2;31m\e[48;2;40m")
         end
       end
 

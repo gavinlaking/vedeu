@@ -65,11 +65,11 @@ module Vedeu
       end
 
       def show_cursor
-        output(Esc.show_cursor)
+        output(Cursor.show)
       end
 
       def hide_cursor
-        output(Esc.hide_cursor)
+        output(Cursor.hide)
       end
 
       def reset_colours

@@ -13,6 +13,7 @@ module Vedeu
 
       @active     = false
       @name       = attributes[:name]
+      @cursor     = attributes.fetch(:cursor, true)
     end
 
     def create
@@ -27,12 +28,19 @@ module Vedeu
       Compositor.arrange([Array.new(geometry.height) { '' }], name)
     end
 
+    def update
+    end
+
     def geometry
       @geometry ||= Geometry.new(attributes)
     end
 
     def colour
       @colour ||= Colour.new([foreground, background])
+    end
+
+    def cursor
+      @cursor ? Cursor.show : Cursor.hide
     end
 
     private

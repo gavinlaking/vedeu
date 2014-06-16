@@ -14,11 +14,11 @@ module Vedeu
       case style
       when :bold        then Esc.bold
       when :clear       then Esc.clear
-      when :hide_cursor then Esc.hide_cursor
+      when :hide_cursor then Cursor.hide
       when :inverse     then Esc.inverse
       when :reset       then Esc.reset
       when :normal      then Esc.reset
-      when :show_cursor then Esc.show_cursor
+      when :show_cursor then Cursor.show
       when :underline   then Esc.underline
       else
         ''

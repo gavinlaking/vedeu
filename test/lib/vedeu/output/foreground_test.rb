@@ -35,7 +35,7 @@ module Vedeu
         end
 
         it 'returns an escape sequence' do
-          subject.must_equal("\e[38;5;31m")
+          subject.must_equal("\e[38;2;31m")
         end
       end
 
@@ -59,7 +59,7 @@ module Vedeu
         end
 
         it 'returns an escape sequence' do
-          subject.must_equal("\e[38;5;39m")
+          subject.must_equal("\e[38;2;39m")
         end
       end
     end

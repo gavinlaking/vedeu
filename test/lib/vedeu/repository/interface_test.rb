@@ -13,7 +13,8 @@ module Vedeu
         x:      1,
         y:      1,
         fg:     :red,
-        bg:     :blue
+        bg:     :blue,
+        cursor: true,
       }
     }
     let(:result)             {}
@@ -65,6 +66,24 @@ module Vedeu
 
       it 'returns a Colour' do
         subject.must_be_instance_of(Colour)
+      end
+    end
+
+    describe '#cursor' do
+      let(:subject) { described_instance.cursor }
+
+      context 'when the cursor is on' do
+        it 'returns an escape sequence' do
+          subject.must_be_instance_of(String)
+        end
+      end
+
+      context 'when the cursor is off' do
+        let(:attributes) { { cursor: false } }
+
+        it 'returns an escape sequence' do
+          subject.must_be_instance_of(String)
+        end
       end
     end
   end
