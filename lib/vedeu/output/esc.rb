@@ -1,44 +1,44 @@
 module Vedeu
-  class Esc
-    class << self
-      def blink
-        [esc, '5m'].join
-      end
+  module Esc
+    extend self
 
-      def bold
-        [esc, '1m'].join
-      end
-      alias_method :bright, :bold
+    def blink
+      [esc, '5m'].join
+    end
 
-      def clear
-        [esc, '2J'].join
-      end
+    def bold
+      [esc, '1m'].join
+    end
+    alias_method :bright, :bold
 
-      def clear_line
-        [esc, '2K'].join
-      end
+    def clear
+      [esc, '2J'].join
+    end
 
-      def esc
-        [27.chr, '['].join
-      end
+    def clear_line
+      [esc, '2K'].join
+    end
 
-      def inverse
-        [esc, '7m'].join
-      end
-      alias_method :reverse, :inverse
+    def esc
+      [27.chr, '['].join
+    end
 
-      def normal
-        [esc, '2m'].join
-      end
-      alias_method :dim, :normal
+    def inverse
+      [esc, '7m'].join
+    end
+    alias_method :reverse, :inverse
 
-      def reset
-        [esc, '0m'].join
-      end
+    def normal
+      [esc, '2m'].join
+    end
+    alias_method :dim, :normal
 
-      def underline
-        [esc, '4m'].join
-      end
+    def reset
+      [esc, '0m'].join
+    end
+
+    def underline
+      [esc, '4m'].join
     end
   end
 end
