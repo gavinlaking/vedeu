@@ -25,7 +25,7 @@ module Vedeu
     end
 
     def initial_state
-      Compositor.arrange([Array.new(geometry.height) { '' }], name)
+      Output.render({ name => [Array.new(geometry.height) { '' }] })
     end
 
     def update
