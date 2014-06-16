@@ -13,6 +13,7 @@ module Vedeu
 
       @active     = false
       @name       = attributes[:name]
+      @cursor     = attributes.fetch(:cursor, true)
     end
 
     def create
@@ -33,6 +34,10 @@ module Vedeu
 
     def colour
       @colour ||= Colour.new([foreground, background])
+    end
+
+    def cursor
+      @cursor ? Cursor.show : Cursor.hide
     end
 
     private

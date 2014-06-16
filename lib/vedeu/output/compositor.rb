@@ -47,6 +47,7 @@ module Vedeu
       end
 
       container << colour.reset
+      container << cursor
 
       container
     end
@@ -73,6 +74,10 @@ module Vedeu
 
     def colour
       interface.colour
+    end
+
+    def cursor
+      interface.cursor
     end
 
     def output
