@@ -28,6 +28,9 @@ module Vedeu
       Compositor.arrange([Array.new(geometry.height) { '' }], name)
     end
 
+    def update
+    end
+
     def geometry
       @geometry ||= Geometry.new(attributes)
     end

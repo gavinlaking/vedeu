@@ -31,6 +31,10 @@ module Vedeu
         all.map { |interface| interface.initial_state }
       end
 
+      def update
+        all.map { |interface| interface.update }
+      end
+
       def klass
         Interface
       end

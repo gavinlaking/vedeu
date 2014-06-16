@@ -50,6 +50,14 @@ module Vedeu
       end
     end
 
+    describe '.update' do
+      let(:subject) { described_class.update }
+
+      it 'returns an Array' do
+        subject.must_be_instance_of(Array)
+      end
+    end
+
     describe '.klass' do
       let(:subject) { described_class.klass }
 
