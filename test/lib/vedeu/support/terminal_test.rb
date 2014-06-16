@@ -77,22 +77,44 @@ module Vedeu
 
     describe '.open' do
       let(:subject) { described_class.open }
+
+      it 'returns a NilClass' do
+        subject.must_be_instance_of(NilClass)
+      end
     end
 
     describe '.close' do
       let(:subject) { described_class.close }
+
+      it 'returns a NilClass' do
+        subject.must_be_instance_of(NilClass)
+      end
     end
 
     describe '.cooked' do
-      let(:subject) { described_class.cooked }
+      let(:subject)  { described_class.cooked(instance) }
+      let(:instance) {}
+
+      it 'returns a NilClass' do
+        subject.must_be_instance_of(NilClass)
+      end
     end
 
     describe '.raw' do
-      let(:subject) { described_class.raw }
+      let(:subject)  { described_class.raw(instance) }
+      let(:instance) {}
+
+      it 'returns a NilClass' do
+        subject.must_be_instance_of(NilClass)
+      end
     end
 
     describe '.console' do
       let(:subject) { described_class.console }
+
+      it 'returns the console' do
+        subject.must_equal(console)
+      end
     end
 
     describe '.clear_screen' do
