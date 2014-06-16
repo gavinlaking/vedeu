@@ -18,12 +18,20 @@ module Vedeu
 
     attr_reader :colour
 
+    def prefix
+      named? || default? ? normal : custom
+    end
+
     def code
       no_colour || named || html || default
     end
 
     def no_colour
       default unless colour
+    end
+
+    def default?
+      colour.nil? || colour == :default
     end
 
     def named

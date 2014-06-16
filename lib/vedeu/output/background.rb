@@ -2,8 +2,12 @@ module Vedeu
   class Background < Base
     private
 
-    def prefix
-      named? ? '48;2;' : '48;5;'
+    def custom
+      '48;5;'
+    end
+
+    def normal
+      '48;2;'
     end
 
     def codes

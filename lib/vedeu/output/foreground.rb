@@ -2,8 +2,12 @@ module Vedeu
   class Foreground < Base
     private
 
-    def prefix
-      named? ? '38;2;' : '38;5;'
+    def custom
+      '38;5;'
+    end
+
+    def normal
+      '38;2;'
     end
 
     def codes
