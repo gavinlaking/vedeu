@@ -6,6 +6,7 @@ require_relative 'vedeu/support/terminal'
 
 require_relative 'vedeu/output/base'
 require_relative 'vedeu/output/background'
+require_relative 'vedeu/output/buffer'
 require_relative 'vedeu/output/compositor'
 require_relative 'vedeu/output/cursor'
 require_relative 'vedeu/output/directive'
