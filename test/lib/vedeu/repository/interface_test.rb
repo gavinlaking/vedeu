@@ -43,8 +43,8 @@ module Vedeu
       end
     end
 
-    describe '#initial_state' do
-      let(:subject) { described_instance.initial_state }
+    describe '#update' do
+      let(:subject) { described_instance.update }
 
       before { Compositor.stubs(:arrange) }
 

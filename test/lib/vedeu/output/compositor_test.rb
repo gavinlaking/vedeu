@@ -10,9 +10,8 @@ module Vedeu
     let(:interface)          { 'dummy' }
 
     before do
-      Interface.create({ name: 'dummy' })
-      Interface.create({ name: 'test_interface' })
-      Renderer.stubs(:write).returns(stream)
+      Interface.create({ name: 'dummy', width: 15, height: 2 })
+      Interface.create({ name: 'test_interface', width: 15, height: 2 })
     end
 
     after do
@@ -60,22 +59,28 @@ module Vedeu
 
       context 'when unstyled' do
         context 'and a single line' do
-          let(:output) { [['Some text...']] }
-          let(:stream) { 'Some text...' }
+          let(:output) { { 'dummy' => [['Some text...']] } }
+          let(:stream) {
+            [[["\e[38;2;39m\e[48;2;49m", "\e[1;1H               \e[1;1HSome text...\e[2;1H               \e[2;1H", "\e[38;2;39m\e[48;2;49m", "\e[?25h"], ["\e[38;2;39m\e[48;2;49m", "\e[1;1H               \e[1;1H\e[2;1H               \e[2;1H", "\e[38;2;39m\e[48;2;49m", "\e[?25h"]]]
+          }
 
-          it 'returns a String' do
+          it 'returns the enqueue composition' do
             subject.must_equal(stream)
           end
         end
 
         context 'and multi-line' do
           let(:output) {
-            [
-              ['Some text...'],
-              ['Some more text...']
-            ]
+            {
+              'dummy' => [
+                ['Some text...'],
+                ['Some more text...']
+              ]
+            }
           }
-          let(:stream) { "Some text...\nSome more text..." }
+          let(:stream) {
+            [[["\e[38;2;39m\e[48;2;49m", "\e[1;1H               \e[1;1HSome text...\e[2;1H               \e[2;1H", "\e[1;1H               \e[1;1HSome more tex...\e[0m\e[2;1H               \e[2;1H", "\e[38;2;39m\e[48;2;49m", "\e[?25h"], ["\e[38;2;39m\e[48;2;49m", "\e[1;1H               \e[1;1H\e[2;1H               \e[2;1H", "\e[38;2;39m\e[48;2;49m", "\e[?25h"]]]
+          }
 
           it 'returns a String' do
             subject.must_equal(stream)
@@ -87,11 +92,15 @@ module Vedeu
         context 'with colour pair' do
           context 'and a single line' do
             let(:output) {
-              [
-                [{ colour: [:red, :white] }, 'Some text...']
-              ]
+              {
+                'dummy' => [
+                  [{ colour: [:red, :white] }, 'Some text...']
+                ]
+              }
             }
-            let(:stream) { "\e[38;5;31m\e[48;5;47mSome text..." }
+            let(:stream) {
+              [[["\e[38;2;39m\e[48;2;49m", "\e[1;1H               \e[1;1H\e[38;2;31m\e[48;2;47m\e[2;1H               \e[2;1HSome text...", "\e[38;2;39m\e[48;2;49m", "\e[?25h"], ["\e[38;2;39m\e[48;2;49m", "\e[1;1H               \e[1;1H\e[2;1H               \e[2;1H", "\e[38;2;39m\e[48;2;49m", "\e[?25h"]]]
+            }
 
             it 'returns a String' do
               subject.must_equal(stream)
@@ -100,14 +109,15 @@ module Vedeu
 
           context 'and multi-line' do
             let(:output) {
-              [
-                [{ colour: [:red, :white] },   'Some text...'],
-                [{ colour: [:blue, :yellow] }, 'Some more text...']
-              ]
+              {
+                'dummy' => [
+                  [{ colour: [:red, :white] },   'Some text...'],
+                  [{ colour: [:blue, :yellow] }, 'Some more text...']
+                ]
+              }
             }
             let(:stream) {
-              "\e[38;5;31m\e[48;5;47mSome text...\n" \
-              "\e[38;5;34m\e[48;5;43mSome more text..."
+              [[["\e[38;2;39m\e[48;2;49m", "\e[1;1H               \e[1;1H\e[38;2;31m\e[48;2;47m\e[2;1H               \e[2;1HSome text...", "\e[1;1H               \e[1;1H\e[38;2;34m\e[48;2;43m\e[2;1H               \e[2;1HSome more tex...\e[0m", "\e[38;2;39m\e[48;2;49m", "\e[?25h"], ["\e[38;2;39m\e[48;2;49m", "\e[1;1H               \e[1;1H\e[2;1H               \e[2;1H", "\e[38;2;39m\e[48;2;49m", "\e[?25h"]]]
             }
 
             it 'returns a String' do
@@ -119,12 +129,14 @@ module Vedeu
         context 'with a style' do
           context 'and a single line' do
             let(:output) {
-              [
-                [{ style: :bold }, 'Some text...']
-              ]
+              {
+                'dummy' => [
+                  [{ style: :bold }, 'Some text...']
+                ]
+              }
             }
             let(:stream) {
-              "\e[1mSome text..."
+              [[["\e[38;2;39m\e[48;2;49m", "\e[1;1H               \e[1;1H\e[1m\e[2;1H               \e[2;1HSome text...", "\e[38;2;39m\e[48;2;49m", "\e[?25h"], ["\e[38;2;39m\e[48;2;49m", "\e[1;1H               \e[1;1H\e[2;1H               \e[2;1H", "\e[38;2;39m\e[48;2;49m", "\e[?25h"]]]
             }
 
             it 'returns a String' do
@@ -134,14 +146,15 @@ module Vedeu
 
           context 'and multi-line' do
             let(:output) {
-              [
-                [{ style: :inverse },   'Some text...'],
-                [{ style: :underline }, 'Some more text...']
-              ]
+              {
+                'dummy' => [
+                  [{ style: :inverse },   'Some text...'],
+                  [{ style: :underline }, 'Some more text...']
+                ]
+              }
             }
             let(:stream) {
-              "\e[7mSome text...\n" \
-              "\e[4mSome more text..."
+              [[["\e[38;2;39m\e[48;2;49m", "\e[1;1H               \e[1;1H\e[7m\e[2;1H               \e[2;1HSome text...", "\e[1;1H               \e[1;1H\e[4m\e[2;1H               \e[2;1HSome more tex...\e[0m", "\e[38;2;39m\e[48;2;49m", "\e[?25h"], ["\e[38;2;39m\e[48;2;49m", "\e[1;1H               \e[1;1H\e[2;1H               \e[2;1H", "\e[38;2;39m\e[48;2;49m", "\e[?25h"]]]
             }
 
             it 'returns a String' do
@@ -152,12 +165,14 @@ module Vedeu
 
         context 'with an unknown style' do
           let(:output) {
-            [
-              [{ style: :unknown }, 'Some text...']
-            ]
+            {
+              'dummy' => [
+                [{ style: :unknown }, 'Some text...']
+              ]
+            }
           }
           let(:stream) {
-            "Some text..."
+            [[["\e[38;2;39m\e[48;2;49m", "\e[1;1H               \e[1;1H\e[2;1H               \e[2;1HSome text...", "\e[38;2;39m\e[48;2;49m", "\e[?25h"], ["\e[38;2;39m\e[48;2;49m", "\e[1;1H               \e[1;1H\e[2;1H               \e[2;1H", "\e[38;2;39m\e[48;2;49m", "\e[?25h"]]]
           }
 
           it 'renders in the default style' do

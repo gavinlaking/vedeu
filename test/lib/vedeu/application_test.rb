@@ -15,7 +15,7 @@ module Vedeu
 
       before do
         Terminal.stubs(:open).yields(self)
-        InterfaceRepository.stubs(:initial_state)
+        Output.stubs(:render)
         EventLoop.stubs(:main_sequence)
         Terminal.stubs(:close)
       end

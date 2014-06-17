@@ -1,5 +1,7 @@
 module Vedeu
   class Interface
+    include Queue
+
     attr_accessor :id, :attributes, :active, :name
 
     class << self
@@ -19,16 +21,15 @@ module Vedeu
     def create
       InterfaceRepository.create(self)
 
-      InterfaceRepository.activate(self.name)
+      InterfaceRepository.activate(name)
+
+      Compositor.arrange({ name => [Array.new(geometry.height) { '' } ] })
 
       self
     end
 
-    def initial_state
-      Output.render({ name => [Array.new(geometry.height) { '' }] })
-    end
-
     def update
+      dequeue
     end
 
     def geometry

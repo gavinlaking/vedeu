@@ -16,13 +16,17 @@ module Vedeu
       let(:command) { Command.new }
 
       before do
+        Interface.create({ name: 'dummy' })
         Queue.stubs(:dequeue).returns(input)
         CommandRepository.stubs(:by_keypress).returns(command)
         CommandRepository.stubs(:by_keyword).returns(command)
         command.stubs(:execute).returns(result)
       end
 
-      after { Queue.clear }
+      after do
+        InterfaceRepository.reset
+        Queue.clear
+      end
 
       context 'when there is no input' do
         it 'returns a NilClass' do
@@ -48,7 +52,7 @@ module Vedeu
         end
 
         context 'or the result is anything else' do
-          let(:result) { :something_else }
+          let(:result) { { 'dummy' => [['output...']] } }
 
           it 'returns an Array' do
             subject.must_be_instance_of(Array)
@@ -74,7 +78,7 @@ module Vedeu
         end
 
         context 'or the result is anything else' do
-          let(:result) { :something_else }
+          let(:result) { { 'dummy' => [['output...']] } }
 
           it 'returns an Array' do
             subject.must_be_instance_of(Array)

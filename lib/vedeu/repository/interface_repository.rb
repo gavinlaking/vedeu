@@ -27,12 +27,8 @@ module Vedeu
         interface
       end
 
-      def initial_state
-        all.map { |interface| interface.initial_state }
-      end
-
       def update
-        all.map { |interface| interface.update }
+        all.map { |interface| interface.update }.compact
       end
 
       def klass

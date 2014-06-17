@@ -50,11 +50,7 @@ TODO: Write detailed documentation
             |           |
             |           |-- InterfaceRepository
             |           |-- Position
-            |           |     |-- Esc
-            |           |
-            |           |-- Renderer
-            |                 |-- Terminal
-            |                 |-- Queue
+            |                 |-- Esc
             |
             |-- InterfaceRepository
             |-- Terminal

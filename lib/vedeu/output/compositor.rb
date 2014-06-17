@@ -20,7 +20,7 @@ module Vedeu
     end
 
     def arrange
-      Renderer.write(composition)
+      interface.enqueue(composition)
     end
 
     private
