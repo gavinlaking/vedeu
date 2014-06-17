@@ -36,15 +36,6 @@ module Vedeu
       end
     end
 
-    describe '#adaptor=' do
-      let(:subject) { described_class.adaptor=(adaptor) }
-      let(:adaptor) { Storage.new }
-
-      it 'returns a Storage' do
-        subject.must_be_instance_of(Storage)
-      end
-    end
-
     describe '#find' do
       let(:subject) { described_class.find(id) }
       let(:id)      { @dummy.id }

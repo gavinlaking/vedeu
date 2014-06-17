@@ -4,16 +4,12 @@ module Vedeu
       @adaptor ||= Storage.new
     end
 
-    def adaptor=(adaptor)
-      @adaptor = adaptor
-    end
-
     def find(id)
-      adaptor.find(self.klass, id)
+      adaptor.find(klass, id)
     end
 
     def all
-      adaptor.all(self.klass)
+      adaptor.all(klass)
     end
 
     def query(klass, attribute, value)
@@ -29,7 +25,7 @@ module Vedeu
     end
 
     def reset
-      adaptor.reset(self.klass)
+      adaptor.reset(klass)
     end
   end
 end
