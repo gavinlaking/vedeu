@@ -3,11 +3,15 @@ module Vedeu
     extend Repository
 
     class << self
-      def activate(name)
+      def create(*args)
+        activate(super)
+      end
+
+      def activate(interface)
         deactivate
 
-        all.map do |interface|
-          interface.active = true if interface.name == name
+        all.map do |stored|
+          stored.active = true if stored == interface
         end
       end
 

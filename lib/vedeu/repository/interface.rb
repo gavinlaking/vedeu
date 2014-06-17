@@ -21,9 +21,7 @@ module Vedeu
     def create
       InterfaceRepository.create(self)
 
-      InterfaceRepository.activate(name)
-
-      Compositor.arrange({ name => [Array.new(geometry.height) { '' } ] })
+      Compositor.arrange(initial_state)
 
       self
     end
@@ -45,6 +43,10 @@ module Vedeu
     end
 
     private
+
+    def initial_state
+      { name => [Array.new(geometry.height) { '' }] }
+    end
 
     def foreground
       attributes[:fg] || attributes[:foreground]
