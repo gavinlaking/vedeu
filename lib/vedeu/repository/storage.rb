@@ -6,7 +6,7 @@ module Vedeu
     end
 
     def create(record)
-      @counter = @counter + 1
+      @counter += 1
       record.id ||= @counter
       map_for(record)[record.id] = record
     end
