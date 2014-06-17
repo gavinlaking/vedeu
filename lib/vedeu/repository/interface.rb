@@ -27,7 +27,11 @@ module Vedeu
     end
 
     def update
-      dequeue
+      if enqueued?
+        dequeue
+      else
+        [cursor, colour.reset, geometry.origin]
+      end
     end
 
     def geometry
