@@ -2,7 +2,7 @@ module Vedeu
   class Storage
     def initialize
       @counter = 0
-      @map = {}
+      @map     = {}
     end
 
     def create(record)
