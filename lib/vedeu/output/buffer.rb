@@ -21,12 +21,12 @@ module Vedeu
     end
 
     def cell(y, x)
-      raise OutOfRangeError if invalid_reference?(y, x)
+      fail OutOfRangeError if invalid_reference?(y, x)
       buffer[y][x]
     end
 
     def set_cell(y, x, v = '')
-      raise OutOfRangeError if invalid_reference?(y, x)
+      fail OutOfRangeError if invalid_reference?(y, x)
       buffer[y][x] = v
     end
 

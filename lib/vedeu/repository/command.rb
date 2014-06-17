@@ -12,8 +12,8 @@ module Vedeu
       @attributes = attributes || {}
       @name       = attributes[:name]
       @klass      = attributes[:klass]
-      @keyword    = attributes.fetch(:options, {}).fetch(:keyword, "")
-      @keypress   = attributes.fetch(:options, {}).fetch(:keypress, "")
+      @keyword    = attributes.fetch(:options, {}).fetch(:keyword, '')
+      @keypress   = attributes.fetch(:options, {}).fetch(:keypress, '')
     end
 
     def create
@@ -26,7 +26,7 @@ module Vedeu
     end
 
     def executable
-      Proc.new { |*args| attributes[:klass].dispatch(*args) }
+      proc { |*args| attributes[:klass].dispatch(*args) }
     end
   end
 

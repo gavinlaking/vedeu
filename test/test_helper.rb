@@ -6,7 +6,7 @@ require 'pry'
 SimpleCov.start do
   command_name 'MiniTest::Spec'
   add_filter   '/test/'
-end unless ENV["no_simplecov"]
+end unless ENV['no_simplecov']
 
 module MiniTest
   class Spec

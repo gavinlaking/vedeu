@@ -63,7 +63,7 @@ module Vedeu
       end
 
       def clear_line(index)
-        output(Position.set(index, 1) + (" " * width) + Position.set(index, 1))
+        output(Position.set(index, 1) + (' ' * width) + Position.set(index, 1))
       end
 
       def show_cursor
@@ -103,15 +103,15 @@ module Vedeu
 
     def terminal_mode(&block)
       {
-        cooked: Proc.new { Terminal.cooked(self, &block) },
-        raw:    Proc.new { Terminal.raw(self, &block) }
+        cooked: proc { Terminal.cooked(self, &block) },
+        raw:    proc { Terminal.raw(self, &block) }
       }
     end
 
     def cursor_mode
       {
-        show: Proc.new { Terminal.show_cursor },
-        hide: Proc.new { Terminal.hide_cursor }
+        show: proc { Terminal.show_cursor },
+        hide: proc { Terminal.hide_cursor }
       }
     end
 
@@ -128,11 +128,11 @@ module Vedeu
     end
 
     def clear_screen?
-      return options.fetch(:clear)
+      options.fetch(:clear)
     end
 
     def noop
-      Proc.new {}
+      proc {}
     end
 
     def options

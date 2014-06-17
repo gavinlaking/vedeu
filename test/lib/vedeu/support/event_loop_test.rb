@@ -17,7 +17,7 @@ module Vedeu
     end
 
     it 'sets an instance variable' do
-      subject.instance_variable_get("@running").must_equal(true)
+      subject.instance_variable_get('@running').must_equal(true)
     end
 
     describe '.main_sequence' do

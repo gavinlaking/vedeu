@@ -21,23 +21,23 @@ module Vedeu
     end
 
     it 'sets an instance variable' do
-      subject.instance_variable_get("@attributes").must_equal(attributes)
+      subject.instance_variable_get('@attributes').must_equal(attributes)
     end
 
     it 'sets an instance variable' do
-      subject.instance_variable_get("@name").must_equal('dummy')
+      subject.instance_variable_get('@name').must_equal('dummy')
     end
 
     it 'sets an instance variable' do
-      subject.instance_variable_get("@klass").must_equal(DummyCommand)
+      subject.instance_variable_get('@klass').must_equal(DummyCommand)
     end
 
     it 'sets an instance variable' do
-      subject.instance_variable_get("@keyword").must_equal('dummy')
+      subject.instance_variable_get('@keyword').must_equal('dummy')
     end
 
     it 'sets an instance variable' do
-      subject.instance_variable_get("@keypress").must_equal('d')
+      subject.instance_variable_get('@keypress').must_equal('d')
     end
 
     describe '#create' do

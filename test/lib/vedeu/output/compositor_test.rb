@@ -23,11 +23,11 @@ module Vedeu
     end
 
     it 'sets an instance variable' do
-      subject.instance_variable_get("@output").must_equal([[]])
+      subject.instance_variable_get('@output').must_equal([[]])
     end
 
     it 'sets an instance variable' do
-      subject.instance_variable_get("@interface").must_equal("dummy")
+      subject.instance_variable_get('@interface').must_equal('dummy')
     end
 
     describe '.arrange' do

@@ -26,7 +26,7 @@ module Vedeu
       def find_by_name(value)
         interface = query(klass, :name, value)
 
-        raise UndefinedInterface if interface.nil?
+        fail UndefinedInterface if interface.nil?
 
         interface
       end

@@ -88,7 +88,7 @@ module Vedeu
       end
 
       it 'returns the queue as a String' do
-        subject.must_equal("[:result]")
+        subject.must_equal('[:result]')
       end
     end
   end

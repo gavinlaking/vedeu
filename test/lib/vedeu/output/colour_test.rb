@@ -12,7 +12,7 @@ module Vedeu
     end
 
     it 'sets an instance variable' do
-      subject.instance_variable_get("@pair").must_equal([])
+      subject.instance_variable_get('@pair').must_equal([])
     end
 
     describe '.set' do

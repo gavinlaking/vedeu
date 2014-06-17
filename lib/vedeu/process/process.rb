@@ -9,7 +9,7 @@ module Vedeu
     def initialize; end
 
     def evaluate
-      raise Collapse if result == :stop
+      fail Collapse if result == :stop
 
       Compositor.arrange(result) unless no_result?
     end

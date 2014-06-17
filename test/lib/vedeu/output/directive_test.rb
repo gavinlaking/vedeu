@@ -22,11 +22,11 @@ module Vedeu
     end
 
     it 'sets an instance variable' do
-      subject.instance_variable_get("@interface").must_be_instance_of(Interface)
+      subject.instance_variable_get('@interface').must_be_instance_of(Interface)
     end
 
     it 'sets an instance variable' do
-      subject.instance_variable_get("@directives").must_be_instance_of(Hash)
+      subject.instance_variable_get('@directives').must_be_instance_of(Hash)
     end
 
     describe '.enact' do

@@ -30,7 +30,7 @@ module Vedeu
     private
 
     def store
-      @store ||= Array.new
+      @store ||= []
     end
   end
 end

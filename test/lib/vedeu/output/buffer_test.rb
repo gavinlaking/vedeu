@@ -12,7 +12,7 @@ module Vedeu
     end
 
     it 'sets an instance variable' do
-      subject.instance_variable_get("@options").must_equal(options)
+      subject.instance_variable_get('@options').must_equal(options)
     end
 
     describe '#to_s' do
