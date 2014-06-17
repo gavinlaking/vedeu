@@ -8,6 +8,8 @@ module Vedeu
 
     before { Interface.create({ name: 'dummy' }) }
 
+    after { InterfaceRepository.reset }
+
     describe '.activate' do
       let(:subject) { described_class.activate(interface) }
 
@@ -40,18 +42,10 @@ module Vedeu
       end
     end
 
-    describe '.initial_state' do
-      let(:subject) { described_class.initial_state }
-
-      before { Compositor.stubs(:arrange) }
-
-      it 'returns an Array' do
-        subject.must_be_instance_of(Array)
-      end
-    end
-
     describe '.update' do
       let(:subject) { described_class.update }
+
+      before { Compositor.stubs(:arrange) }
 
       it 'returns an Array' do
         subject.must_be_instance_of(Array)

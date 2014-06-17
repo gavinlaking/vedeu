@@ -28,14 +28,12 @@ module Vedeu
     describe '.output' do
       let(:subject) { described_class.output }
 
-      before { console.stubs(:print).returns("test") }
-
       it 'returns a String' do
         subject.must_be_instance_of(String)
       end
 
       it 'returns the output' do
-        subject.must_equal("test")
+        subject.must_equal("")
       end
     end
 
@@ -86,8 +84,12 @@ module Vedeu
     describe '.close' do
       let(:subject) { described_class.close }
 
-      it 'returns a NilClass' do
-        subject.must_be_instance_of(NilClass)
+      it 'returns a String' do
+        subject.must_be_instance_of(String)
+      end
+
+      it 'returns an escape sequence' do
+        subject.must_equal("\e[24;1H                                                                                \e[24;1H")
       end
     end
 
@@ -120,18 +122,12 @@ module Vedeu
     describe '.clear_screen' do
       let(:subject) { described_class.clear_screen }
 
-      before { Esc.stubs(:clear).returns('') }
-
-      it 'returns a NilClass' do
-        subject.must_be_instance_of(NilClass)
+      it 'returns a String' do
+        subject.must_be_instance_of(String)
       end
 
-      context 'capturing output' do
-        let(:io) { capture_io { subject }.join }
-
-        it 'returns a String' do
-          io.must_be_instance_of(String)
-        end
+      it 'returns an escape sequence' do
+        subject.must_equal("\e[2J")
       end
     end
 
@@ -139,56 +135,48 @@ module Vedeu
       let(:subject) { described_class.clear_line(index) }
       let(:index)   { 0 }
 
-      it 'returns a NilClass' do
-        subject.must_be_instance_of(NilClass)
+      it 'returns a String' do
+        subject.must_be_instance_of(String)
+      end
+
+      it 'returns an escape sequence' do
+        subject.must_equal("\e[0;1H                                                                                \e[0;1H")
       end
     end
 
     describe '.show_cursor' do
       let(:subject) { described_class.show_cursor }
 
-      it 'returns a NilClass' do
-        subject.must_be_instance_of(NilClass)
+      it 'returns a String' do
+        subject.must_be_instance_of(String)
       end
 
-      context 'capturing output' do
-        let(:io) { capture_io { subject }.join }
-
-        it 'returns a String' do
-          io.must_be_instance_of(String)
-        end
+      it 'returns an escape sequence' do
+        subject.must_equal("\e[?25h")
       end
     end
 
     describe '.hide_cursor' do
       let(:subject) { described_class.hide_cursor }
 
-      it 'returns a NilClass' do
-        subject.must_be_instance_of(NilClass)
+      it 'returns a String' do
+        subject.must_be_instance_of(String)
       end
 
-      context 'capturing output' do
-        let(:io) { capture_io { subject }.join }
-
-        it 'returns a String' do
-          io.must_be_instance_of(String)
-        end
+      it 'returns an escape sequence' do
+        subject.must_equal("\e[?25l")
       end
     end
 
     describe '.reset_colours' do
       let(:subject) { described_class.reset_colours }
 
-      it 'returns a NilClass' do
-        subject.must_be_instance_of(NilClass)
+      it 'returns a String' do
+        subject.must_be_instance_of(String)
       end
 
-      context 'capturing output' do
-        let(:io) { capture_io { subject }.join }
-
-        it 'returns a String' do
-          io.must_be_instance_of(String)
-        end
+      it 'returns an escape sequence' do
+        subject.must_equal("\e[0m")
       end
     end
 
@@ -211,8 +199,12 @@ module Vedeu
     describe '#initial_setup!' do
       let(:subject) { described_class.new.initial_setup! }
 
-      it 'returns a NilClass' do
-        subject.must_be_instance_of(NilClass)
+      it 'returns a String' do
+        subject.must_be_instance_of(String)
+      end
+
+      it 'returns an escape sequence' do
+        subject.must_equal("\e[1;1H")
       end
     end
   end

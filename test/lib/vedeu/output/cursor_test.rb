@@ -171,17 +171,5 @@ module Vedeu
         subject.must_equal("\e[8")
       end
     end
-
-    describe '.esc' do
-      let(:subject) { described_class.esc }
-
-      it 'returns a String' do
-        subject.must_be_instance_of(String)
-      end
-
-      it 'returns an escape sequence' do
-        subject.must_equal("\e[")
-      end
-    end
   end
 end

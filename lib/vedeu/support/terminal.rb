@@ -7,6 +7,8 @@ module Vedeu
 
       def output(stream = '')
         console.print(stream)
+
+        stream
       end
 
       def width

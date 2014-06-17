@@ -35,7 +35,7 @@ module Vedeu
           let(:pair) { [:blue] }
 
           it 'returns the code for blue on default' do
-            subject.must_equal("\e[38;2;34m\e[48;5;49m")
+            subject.must_equal("\e[38;2;34m\e[48;2;49m")
           end
         end
 
@@ -43,7 +43,7 @@ module Vedeu
           let(:pair) { [nil, :cyan] }
 
           it 'returns the code for default with cyan background' do
-            subject.must_equal("\e[38;5;39m\e[48;2;46m")
+            subject.must_equal("\e[38;2;39m\e[48;2;46m")
           end
         end
 

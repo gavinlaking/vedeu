@@ -11,7 +11,7 @@ module Vedeu
     def evaluate
       raise Collapse if result == :stop
 
-      Queue.enqueue(result) unless no_result?
+      Compositor.arrange(result) unless no_result?
     end
 
     private

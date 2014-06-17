@@ -12,7 +12,7 @@ module Vedeu
 
     def start
       Terminal.open(options) do
-        InterfaceRepository.initial_state
+        Output.render
 
         EventLoop.main_sequence
       end

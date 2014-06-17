@@ -11,6 +11,10 @@ module Vedeu
       store
     end
 
+    def enqueued?
+      store.size > 0
+    end
+
     def size
       store.size
     end

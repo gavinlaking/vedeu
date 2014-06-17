@@ -43,13 +43,11 @@ module Vedeu
       end
     end
 
-    describe '#initial_state' do
-      let(:subject) { described_instance.initial_state }
+    describe '#update' do
+      let(:subject) { described_instance.update }
 
-      before { Compositor.stubs(:arrange) }
-
-      it 'returns a NilClass' do
-        subject.must_be_instance_of(NilClass)
+      it 'returns a Array' do
+        subject.must_be_instance_of(Array)
       end
     end
 
