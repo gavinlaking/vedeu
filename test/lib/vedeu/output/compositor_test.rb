@@ -3,15 +3,14 @@ require_relative '../../../test_helper'
 module Vedeu
   describe Compositor do
     let(:described_class)    { Compositor }
-    let(:described_instance) { described_class.new(output, interface) }
+    let(:described_instance) { described_class.new(attributes) }
     let(:subject)            { described_instance }
-    let(:output)             { [[]] }
-    let(:stream)             { [] }
-    let(:interface)          { 'dummy' }
+    let(:attributes)         { { interface: 'dummy', stream: stream } }
+    let(:stream)             { [[]] }
+    let(:composition)        {}
 
     before do
       Interface.create({ name: 'dummy', width: 15, height: 2 })
-      Interface.create({ name: 'test_interface', width: 15, height: 2 })
     end
 
     after do
@@ -23,34 +22,36 @@ module Vedeu
     end
 
     it 'sets an instance variable' do
-      subject.instance_variable_get('@output').must_equal([[]])
+      subject.instance_variable_get('@attributes').must_equal(attributes)
     end
 
     it 'sets an instance variable' do
-      subject.instance_variable_get('@interface').must_equal('dummy')
+      subject.instance_variable_get('@interface').must_equal(attributes[:interface])
     end
 
-    describe '.arrange' do
-      let(:subject) { described_class.arrange(output, interface) }
+    it 'sets an instance variable' do
+      subject.instance_variable_get('@stream').must_equal(attributes[:stream])
+    end
+
+    describe '#arrange' do
+      let(:subject)    { described_class.new(attributes).arrange }
 
       context 'when empty' do
-        let(:output) { [] }
+        let(:stream)      { [[]] }
+        let(:composition) {
+          [
+            [
+              "\e[38;2;39m\e[48;2;49m",
+              "\e[1;1H               \e[1;1H",
+              "\e[38;2;39m\e[48;2;49m",
+              "\e[?25h"
+            ]
+          ]
+        }
 
-        it 'returns a NilClass' do
-          subject.must_be_instance_of(NilClass)
+        it 'returns the initial state of the interface' do
+          subject.must_equal(composition)
         end
-      end
-
-      context 'when an array (single interface)' do
-        let(:output) { [[]] }
-
-        it 'returns an Array' do
-          subject.must_be_instance_of(Array)
-        end
-      end
-
-      context 'when a hash (multiple interfaces)' do
-        let(:output) { { 'test_interface' => [] } }
 
         it 'returns an Array' do
           subject.must_be_instance_of(Array)
@@ -59,31 +60,44 @@ module Vedeu
 
       context 'when unstyled' do
         context 'and a single line' do
-          let(:output) { { 'dummy' => [['Some text...']] } }
-          let(:stream) {
-            [[["\e[38;2;39m\e[48;2;49m", "\e[1;1H               \e[1;1HSome text...\e[2;1H               \e[2;1H", "\e[38;2;39m\e[48;2;49m", "\e[?25h"], ["\e[38;2;39m\e[48;2;49m", "\e[1;1H               \e[1;1H\e[2;1H               \e[2;1H", "\e[38;2;39m\e[48;2;49m", "\e[?25h"]]]
+          let(:stream)      { [['Some text...']] }
+          let(:composition) {
+            [
+              [
+                "\e[38;2;39m\e[48;2;49m",
+                "\e[1;1H               \e[1;1HSome text...",
+                "\e[38;2;39m\e[48;2;49m",
+                "\e[?25h"
+              ]
+            ]
           }
 
-          it 'returns the enqueue composition' do
-            subject.must_equal(stream)
+          it 'returns the enqueued composition' do
+            subject.must_equal(composition)
           end
         end
 
         context 'and multi-line' do
-          let(:output) {
-            {
-              'dummy' => [
-                ['Some text...'],
-                ['Some more text...']
-              ]
-            }
-          }
           let(:stream) {
-            [[["\e[38;2;39m\e[48;2;49m", "\e[1;1H               \e[1;1HSome text...\e[2;1H               \e[2;1H", "\e[1;1H               \e[1;1HSome more tex...\e[0m\e[2;1H               \e[2;1H", "\e[38;2;39m\e[48;2;49m", "\e[?25h"], ["\e[38;2;39m\e[48;2;49m", "\e[1;1H               \e[1;1H\e[2;1H               \e[2;1H", "\e[38;2;39m\e[48;2;49m", "\e[?25h"]]]
+            [
+              ['Some text...'],
+              ['Some more text...']
+            ]
+          }
+          let(:composition) {
+            [
+              [
+                "\e[38;2;39m\e[48;2;49m",
+                "\e[1;1H               \e[1;1HSome text...",
+                "\e[2;1H               \e[2;1HSome more tex...\e[0m",
+                "\e[38;2;39m\e[48;2;49m",
+                "\e[?25h"
+              ]
+            ]
           }
 
-          it 'returns a String' do
-            subject.must_equal(stream)
+          it 'returns the enqueued composition' do
+            subject.must_equal(composition)
           end
         end
       end
@@ -91,92 +105,111 @@ module Vedeu
       context 'when styled' do
         context 'with colour pair' do
           context 'and a single line' do
-            let(:output) {
-              {
-                'dummy' => [
-                  [{ colour: [:red, :white] }, 'Some text...']
-                ]
-              }
-            }
             let(:stream) {
-              [[["\e[38;2;39m\e[48;2;49m", "\e[1;1H               \e[1;1H\e[38;2;31m\e[48;2;47m\e[2;1H               \e[2;1HSome text...", "\e[38;2;39m\e[48;2;49m", "\e[?25h"], ["\e[38;2;39m\e[48;2;49m", "\e[1;1H               \e[1;1H\e[2;1H               \e[2;1H", "\e[38;2;39m\e[48;2;49m", "\e[?25h"]]]
+              [
+                [{ colour: [:red, :white] }, 'Some text...']
+              ]
+            }
+            let(:composition) {
+              [
+                [
+                  "\e[38;2;39m\e[48;2;49m",
+                  "\e[1;1H               \e[1;1H\e[38;2;31m\e[48;2;47mSome text...",
+                  "\e[38;2;39m\e[48;2;49m",
+                  "\e[?25h"
+                ]
+              ]
             }
 
-            it 'returns a String' do
-              subject.must_equal(stream)
+            it 'returns the enqueued composition' do
+              subject.must_equal(composition)
             end
           end
 
           context 'and multi-line' do
-            let(:output) {
-              {
-                'dummy' => [
-                  [{ colour: [:red, :white] },   'Some text...'],
-                  [{ colour: [:blue, :yellow] }, 'Some more text...']
-                ]
-              }
-            }
             let(:stream) {
-              [[["\e[38;2;39m\e[48;2;49m", "\e[1;1H               \e[1;1H\e[38;2;31m\e[48;2;47m\e[2;1H               \e[2;1HSome text...", "\e[1;1H               \e[1;1H\e[38;2;34m\e[48;2;43m\e[2;1H               \e[2;1HSome more tex...\e[0m", "\e[38;2;39m\e[48;2;49m", "\e[?25h"], ["\e[38;2;39m\e[48;2;49m", "\e[1;1H               \e[1;1H\e[2;1H               \e[2;1H", "\e[38;2;39m\e[48;2;49m", "\e[?25h"]]]
+              [
+                [{ colour: [:red, :white] },   'Some text...'],
+                [{ colour: [:blue, :yellow] }, 'Some more text...']
+              ]
+            }
+            let(:composition) {
+              [
+                [
+                  "\e[38;2;39m\e[48;2;49m",
+                  "\e[1;1H               \e[1;1H\e[38;2;31m\e[48;2;47mSome text...",
+                  "\e[2;1H               \e[2;1H\e[38;2;34m\e[48;2;43mSome more tex...\e[0m",
+                  "\e[38;2;39m\e[48;2;49m",
+                  "\e[?25h"
+                ]
+              ]
             }
 
-            it 'returns a String' do
-              subject.must_equal(stream)
+            it 'returns the enqueued composition' do
+              subject.must_equal(composition)
             end
           end
         end
 
         context 'with a style' do
           context 'and a single line' do
-            let(:output) {
-              {
-                'dummy' => [
-                  [{ style: :bold }, 'Some text...']
+            let(:stream)      { [[{ style: :bold }, 'Some text...']] }
+            let(:composition) {
+              [
+                [
+                  "\e[38;2;39m\e[48;2;49m",
+                  "\e[1;1H               \e[1;1H\e[1mSome text...",
+                  "\e[38;2;39m\e[48;2;49m",
+                  "\e[?25h"
                 ]
-              }
-            }
-            let(:stream) {
-              [[["\e[38;2;39m\e[48;2;49m", "\e[1;1H               \e[1;1H\e[1m\e[2;1H               \e[2;1HSome text...", "\e[38;2;39m\e[48;2;49m", "\e[?25h"], ["\e[38;2;39m\e[48;2;49m", "\e[1;1H               \e[1;1H\e[2;1H               \e[2;1H", "\e[38;2;39m\e[48;2;49m", "\e[?25h"]]]
+              ]
             }
 
-            it 'returns a String' do
-              subject.must_equal(stream)
+            it 'returns the enqueued composition' do
+              subject.must_equal(composition)
             end
           end
 
           context 'and multi-line' do
-            let(:output) {
-              {
-                'dummy' => [
+            let(:stream) {
+                [
                   [{ style: :inverse },   'Some text...'],
                   [{ style: :underline }, 'Some more text...']
                 ]
-              }
             }
-            let(:stream) {
-              [[["\e[38;2;39m\e[48;2;49m", "\e[1;1H               \e[1;1H\e[7m\e[2;1H               \e[2;1HSome text...", "\e[1;1H               \e[1;1H\e[4m\e[2;1H               \e[2;1HSome more tex...\e[0m", "\e[38;2;39m\e[48;2;49m", "\e[?25h"], ["\e[38;2;39m\e[48;2;49m", "\e[1;1H               \e[1;1H\e[2;1H               \e[2;1H", "\e[38;2;39m\e[48;2;49m", "\e[?25h"]]]
+            let(:composition) {
+              [
+                [
+                  "\e[38;2;39m\e[48;2;49m",
+                  "\e[1;1H               \e[1;1H\e[7mSome text...",
+                  "\e[2;1H               \e[2;1H\e[4mSome more tex...\e[0m",
+                  "\e[38;2;39m\e[48;2;49m",
+                  "\e[?25h"
+                ]
+              ]
             }
 
-            it 'returns a String' do
-              subject.must_equal(stream)
+            it 'returns the enqueued composition' do
+              subject.must_equal(composition)
             end
           end
         end
 
         context 'with an unknown style' do
-          let(:output) {
-            {
-              'dummy' => [
-                [{ style: :unknown }, 'Some text...']
+          let(:stream)      { [[{ style: :unknown }, 'Some text...']] }
+          let(:composition) {
+            [
+              [
+                "\e[38;2;39m\e[48;2;49m",
+                "\e[1;1H               \e[1;1HSome text...",
+                "\e[38;2;39m\e[48;2;49m",
+                "\e[?25h"
               ]
-            }
-          }
-          let(:stream) {
-            [[["\e[38;2;39m\e[48;2;49m", "\e[1;1H               \e[1;1H\e[2;1H               \e[2;1HSome text...", "\e[38;2;39m\e[48;2;49m", "\e[?25h"], ["\e[38;2;39m\e[48;2;49m", "\e[1;1H               \e[1;1H\e[2;1H               \e[2;1H", "\e[38;2;39m\e[48;2;49m", "\e[?25h"]]]
+            ]
           }
 
-          it 'renders in the default style' do
-            subject.must_equal(stream)
+          it 'returns the enqueued composition' do
+            subject.must_equal(composition)
           end
         end
       end
