@@ -14,7 +14,7 @@ Rake::TestTask.new(:minitest) do |t|
   t.verbose = false
 end
 
-task :default => :minitest
+task default: :minitest
 
 Rake::Task['minitest'].execute
 

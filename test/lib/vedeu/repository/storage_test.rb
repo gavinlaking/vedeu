@@ -12,11 +12,11 @@ module Vedeu
     end
 
     it 'sets an instance variable' do
-      subject.instance_variable_get("@counter").must_equal(0)
+      subject.instance_variable_get('@counter').must_equal(0)
     end
 
     it 'sets an instance variable' do
-      subject.instance_variable_get("@map").must_equal({})
+      subject.instance_variable_get('@map').must_equal({})
     end
 
     describe '#create' do

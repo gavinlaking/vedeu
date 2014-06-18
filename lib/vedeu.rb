@@ -11,7 +11,6 @@ require_relative 'vedeu/support/terminal'
 
 require_relative 'vedeu/output/base'
 require_relative 'vedeu/output/background'
-require_relative 'vedeu/output/buffer'
 require_relative 'vedeu/output/compositor'
 require_relative 'vedeu/output/cursor'
 require_relative 'vedeu/output/directive'
@@ -43,7 +42,7 @@ require_relative 'vedeu/version'
 module Vedeu
   def self.logger
     @logger ||= Logger.new(root_path + '/logs/vedeu.log').tap do |log|
-      log.formatter = proc do |mode, time, prog, msg|
+      log.formatter = proc do |_, time, _, msg|
         "\n#{time.iso8601}: #{msg}\n"
       end
     end

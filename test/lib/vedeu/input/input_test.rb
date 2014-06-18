@@ -3,7 +3,7 @@ require_relative '../../../test_helper'
 module Vedeu
   describe Input do
     let(:described_class) { Input }
-    let(:input)           { "" }
+    let(:input)           { '' }
     let(:subject)         { described_class.new }
 
     before { Terminal.stubs(:input).returns(input) }

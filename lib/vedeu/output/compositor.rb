@@ -34,7 +34,7 @@ module Vedeu
       output.map do |lines|
         if lines.size < height
           remaining = height - lines.size
-          remaining.times { |i| lines << "" }
+          remaining.times { |i| lines << '' }
         end
 
         lines.each_with_index do |stream, index|

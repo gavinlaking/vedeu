@@ -6,7 +6,7 @@ require 'pry'
 SimpleCov.start do
   command_name 'MiniTest::Spec'
   add_filter   '/test/'
-end unless ENV["no_simplecov"]
+end unless ENV['no_simplecov']
 
 module MiniTest
   class Spec
@@ -22,7 +22,10 @@ end
 
 # commented out by default (makes tests slower)
 # require 'minitest/reporters'
-# Minitest::Reporters.use!(Minitest::Reporters::SpecReporter.new)
+# Minitest::Reporters.use!(
+  # Minitest::Reporters::DefaultReporter.new({ color: true, slow_count: 5 })
+  # Minitest::Reporters::SpecReporter.new
+# )
 
 require_relative '../lib/vedeu.rb'
 

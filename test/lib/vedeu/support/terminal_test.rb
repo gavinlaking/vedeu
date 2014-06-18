@@ -21,7 +21,7 @@ module Vedeu
       end
 
       it 'returns the entered string' do
-        subject.must_equal("test")
+        subject.must_equal('test')
       end
     end
 
@@ -33,7 +33,7 @@ module Vedeu
       end
 
       it 'returns the output' do
-        subject.must_equal("")
+        subject.must_equal('')
       end
     end
 

@@ -24,8 +24,8 @@ module Vedeu
 
       context 'when coordinates are provided' do
         let(:subject) { described_class.set(y, x) }
-        let(:y) { 12 }
-        let(:x) { 19 }
+        let(:y)       { 12 }
+        let(:x)       { 19 }
 
         it 'returns a position escape sequence' do
           subject.must_equal("\e[12;19H")

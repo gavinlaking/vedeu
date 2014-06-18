@@ -2,11 +2,11 @@ module Vedeu
   class Storage
     def initialize
       @counter = 0
-      @map = {}
+      @map     = {}
     end
 
     def create(record)
-      @counter = @counter + 1
+      @counter += 1
       record.id ||= @counter
       map_for(record)[record.id] = record
     end
@@ -28,7 +28,7 @@ module Vedeu
     end
 
     def query(klass, attribute, value)
-      map_for_class(klass).select do |id, result|
+      map_for_class(klass).select do |_, result|
         return result if result.send(attribute) == value
       end
 

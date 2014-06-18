@@ -22,6 +22,7 @@ module Vedeu
     def clear
       store.clear
     end
+    alias_method :reset, :clear
 
     def view
       store.inspect
@@ -30,7 +31,7 @@ module Vedeu
     private
 
     def store
-      @store ||= Array.new
+      @store ||= []
     end
   end
 end
