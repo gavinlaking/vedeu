@@ -30,12 +30,12 @@ module Vedeu
 
       container << colour.set
 
-      stream.each_with_index do |lines, index|
-        if lines.size < height
-          remaining = height - lines.size
-          remaining.times { |i| lines << '' }
-        end
+      if stream.size < height
+        remaining = height - stream.size
+        remaining.times { |i| stream << [''] }
+      end
 
+      stream.each_with_index do |lines, index|
         streams << clear(index)
 
         lines.each do |data|
