@@ -62,6 +62,7 @@ module Vedeu
     end
   end
 
+  # :nocov:
   module ClassMethods
     def interface(name, options = {})
       interface_name = name.is_a?(Symbol) ? name.to_s : name
@@ -73,4 +74,5 @@ module Vedeu
   def self.included(receiver)
     receiver.extend(ClassMethods)
   end
+  # :nocov:
 end
