@@ -52,7 +52,7 @@ module Vedeu
     private
 
     def initial_state
-      { name => [Array.new(geometry.height) { '' }] }
+      { name => Array.new(geometry.height) { [""] } }
     end
 
     def foreground
