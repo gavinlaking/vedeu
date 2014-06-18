@@ -22,13 +22,15 @@ module Vedeu
     def create
       InterfaceRepository.create(self)
 
-      Compositor.arrange(initial_state)
-
       self
     end
 
     def update
       if enqueued?
+        @current = dequeue
+      elsif @current.empty?
+        Compositor.arrange(initial_state)
+
         @current = dequeue
       else
         @current
