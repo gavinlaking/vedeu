@@ -19,6 +19,8 @@ module Vedeu
     }
     let(:result)             {}
 
+    after { InterfaceRepository.reset }
+
     it 'returns an Interface instance' do
       subject.must_be_instance_of(Interface)
     end

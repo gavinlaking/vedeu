@@ -2,7 +2,7 @@ module Vedeu
   class Interface
     include Queue
 
-    attr_accessor :id, :attributes, :active, :name
+    attr_accessor :id, :attributes, :active, :name, :cursor, :current
 
     class << self
       def create(attributes = {})
@@ -16,6 +16,7 @@ module Vedeu
       @active     = false
       @name       = attributes[:name]
       @cursor     = attributes.fetch(:cursor, true)
+      @current    = []
     end
 
     def create
@@ -28,9 +29,9 @@ module Vedeu
 
     def update
       if enqueued?
-        dequeue
+        @current = dequeue
       else
-        [cursor, colour.reset, geometry.origin]
+        @current
       end
     end
 
