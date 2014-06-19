@@ -16,11 +16,35 @@ module Vedeu
         subject.must_equal('')
       end
 
+      context 'when the style is blink' do
+        let(:style) { :blink }
+
+        it 'returns an escape sequence' do
+          subject.must_equal("\e[5m")
+        end
+      end
+
+      context 'when the style is blink off' do
+        let(:style) { :blink_off }
+
+        it 'returns an escape sequence' do
+          subject.must_equal("\e[25m")
+        end
+      end
+
       context 'when the style is bold' do
         let(:style) { :bold }
 
         it 'returns an escape sequence' do
           subject.must_equal("\e[1m")
+        end
+      end
+
+      context 'when the style is bold off' do
+        let(:style) { :bold_off }
+
+        it 'returns an escape sequence' do
+          subject.must_equal("\e[21m")
         end
       end
 
@@ -45,6 +69,14 @@ module Vedeu
 
         it 'returns an escape sequence' do
           subject.must_equal("\e[7m")
+        end
+      end
+
+      context 'when the style is positive' do
+        let(:style) { :positive }
+
+        it 'returns an escape sequence' do
+          subject.must_equal("\e[27m")
         end
       end
 
@@ -77,6 +109,14 @@ module Vedeu
 
         it 'returns an escape sequence' do
           subject.must_equal("\e[4m")
+        end
+      end
+
+      context 'when the style is underline off' do
+        let(:style) { :underline_off }
+
+        it 'returns an escape sequence' do
+          subject.must_equal("\e[24m")
         end
       end
     end

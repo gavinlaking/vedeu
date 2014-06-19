@@ -10,7 +10,7 @@ module Vedeu
 
     def render
       InterfaceRepository.update.map do |interface|
-        interface.map { |stream| Terminal.output(stream) unless stream.nil? }
+        interface.map { |stream| Terminal.output(stream) if stream }
       end
     end
   end

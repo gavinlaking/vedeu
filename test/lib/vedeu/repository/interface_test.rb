@@ -8,7 +8,7 @@ module Vedeu
     let(:attributes)         {
       {
         name:   'dummy',
-        width:  40,
+        width:  10,
         height: 5,
         x:      1,
         y:      1,
@@ -19,7 +19,8 @@ module Vedeu
     }
     let(:result)             {}
 
-    after { InterfaceRepository.reset }
+    before { Interface.create(attributes) }
+    after  { InterfaceRepository.reset }
 
     it 'returns an Interface instance' do
       subject.must_be_instance_of(Interface)
@@ -48,9 +49,9 @@ module Vedeu
     describe '#update' do
       let(:subject) { described_instance.update }
 
-      it 'returns a Array' do
-        subject.must_be_instance_of(Array)
-      end
+      # it 'returns a Array' do
+      #   subject.must_be_instance_of(Array)
+      # end
     end
 
     describe '#geometry' do

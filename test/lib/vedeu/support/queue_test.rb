@@ -26,7 +26,8 @@ module Vedeu
     describe '.enqueue' do
       let(:subject) { described_class.enqueue(:result) }
 
-      after { described_class.clear }
+      before { described_class.clear }
+      after  { described_class.clear }
 
       it 'returns an Array' do
         subject.must_be_instance_of(Array)

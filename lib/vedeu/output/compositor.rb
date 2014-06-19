@@ -3,20 +3,17 @@ module Vedeu
 
   class Compositor
     class << self
-      def arrange(output = [], interface = 'dummy')
-        return if output.nil? || output.empty?
-
-        if output.is_a?(Array)
-          new(output, interface).arrange
-        elsif output.is_a?(Hash)
-          output.map { |i, o| new(o, i).arrange }
+      def arrange(output = {})
+        output.map do |interface, stream|
+          new({ interface: interface, stream: stream }).arrange
         end
       end
     end
 
-    def initialize(output = [], interface = 'dummy')
-      @output    = output || []
-      @interface = interface
+    def initialize(attributes = {})
+      @attributes = attributes || {}
+      @interface  = attributes[:interface]
+      @stream     = attributes[:stream]
     end
 
     def arrange
@@ -25,21 +22,24 @@ module Vedeu
 
     private
 
+    attr_reader :attributes, :stream
+
     def composition
       container = []
       streams   = []
 
       container << colour.set
 
-      output.map do |lines|
-        if lines.size < height
-          remaining = height - lines.size
-          remaining.times { |i| lines << '' }
-        end
+      if stream.size < height
+        remaining = height - stream.size
+        remaining.times { |i| stream << [''] }
+      end
 
-        lines.each_with_index do |stream, index|
-          streams << clear(index)
-          streams << Directive.enact(interface, stream)
+      stream.each_with_index do |lines, index|
+        streams << clear(index)
+
+        lines.each do |data|
+          streams << Directive.enact(interface, data)
         end
 
         container << streams.join
@@ -78,11 +78,6 @@ module Vedeu
 
     def cursor
       interface.cursor
-    end
-
-    def output
-      return @output.split if @output.is_a?(String)
-      @output
     end
 
     def interface

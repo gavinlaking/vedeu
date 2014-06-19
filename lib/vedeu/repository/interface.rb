@@ -22,13 +22,15 @@ module Vedeu
     def create
       InterfaceRepository.create(self)
 
-      Compositor.arrange(initial_state)
-
       self
     end
 
     def update
       if enqueued?
+        @current = dequeue
+      elsif @current.empty?
+        Compositor.arrange(initial_state)
+
         @current = dequeue
       else
         @current
@@ -50,7 +52,7 @@ module Vedeu
     private
 
     def initial_state
-      { name => [Array.new(geometry.height) { '' }] }
+      { name => Array.new(geometry.height) { [""] } }
     end
 
     def foreground
@@ -62,6 +64,7 @@ module Vedeu
     end
   end
 
+  # :nocov:
   module ClassMethods
     def interface(name, options = {})
       interface_name = name.is_a?(Symbol) ? name.to_s : name
@@ -73,4 +76,5 @@ module Vedeu
   def self.included(receiver)
     receiver.extend(ClassMethods)
   end
+  # :nocov:
 end

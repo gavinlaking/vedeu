@@ -40,6 +40,7 @@ require_relative 'vedeu/launcher'
 require_relative 'vedeu/version'
 
 module Vedeu
+  # :nocov:
   def self.logger
     @logger ||= Logger.new(root_path + '/logs/vedeu.log').tap do |log|
       log.formatter = proc do |_, time, _, msg|
@@ -47,10 +48,13 @@ module Vedeu
       end
     end
   end
+  # :nocov:
 
   private
 
+  # :nocov:
   def self.root_path
     File.expand_path('../..', __FILE__)
   end
+  # :nocov:
 end
