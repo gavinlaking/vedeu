@@ -16,8 +16,8 @@ module Vedeu
       end
     end
 
-    describe '.update' do
-      let(:subject) { described_class.update }
+    describe '.refresh' do
+      let(:subject) { described_class.refresh }
 
       before { Compositor.stubs(:arrange) }
 

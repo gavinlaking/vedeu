@@ -23,7 +23,7 @@ module Vedeu
       self
     end
 
-    def update
+    def refresh
       if enqueued?
         @current = dequeue
       elsif @current.empty?

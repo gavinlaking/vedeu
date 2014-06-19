@@ -9,8 +9,8 @@ module Vedeu
         end
       end
 
-      def update
-        all.map { |interface| interface.update }.compact
+      def refresh
+        all.map { |interface| interface.refresh }.compact
       end
 
       def klass

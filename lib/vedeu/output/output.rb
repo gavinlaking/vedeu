@@ -9,7 +9,7 @@ module Vedeu
     def initialize; end
 
     def render
-      InterfaceRepository.update.map do |interface|
+      InterfaceRepository.refresh.map do |interface|
         interface.map { |stream| Terminal.output(stream) if stream }
       end
     end

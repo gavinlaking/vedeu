@@ -42,8 +42,8 @@ module Vedeu
       end
     end
 
-    describe '#update' do
-      let(:subject) { described_instance.update }
+    describe '#refresh' do
+      let(:subject) { described_instance.refresh }
 
       # it 'returns a Array' do
       #   subject.must_be_instance_of(Array)
