@@ -2,10 +2,8 @@ require_relative '../../../test_helper'
 
 module Vedeu
   class Dummy
-    attr_accessor :id
-
     def name
-      "dummy"
+      'dummy'
     end
   end
 
@@ -37,8 +35,8 @@ module Vedeu
     end
 
     describe '#find' do
-      let(:subject) { described_class.find(id) }
-      let(:id)      { @dummy.id }
+      let(:subject)     { described_class.find(record_name) }
+      let(:record_name) { @dummy.name }
 
       it 'returns a Dummy' do
         subject.must_be_instance_of(Dummy)
@@ -57,7 +55,7 @@ module Vedeu
       let(:subject)   { described_class.query(klass, attribute, value) }
       let(:klass)     { Dummy }
       let(:attribute) { :name }
-      let(:value)     { "dummy" }
+      let(:value)     { 'dummy' }
 
       it 'returns a Dummy' do
         subject.must_be_instance_of(Dummy)

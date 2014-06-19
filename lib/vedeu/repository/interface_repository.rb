@@ -5,10 +5,10 @@ module Vedeu
     extend Repository
 
     class << self
-      def find_by_name(value)
-        query(klass, :name, value).tap do |interface|
-          fail UndefinedInterface unless interface
-        end
+      def find(name)
+        result = super
+        raise UndefinedInterface unless result
+        result
       end
 
       def refresh

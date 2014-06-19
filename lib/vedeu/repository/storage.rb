@@ -1,26 +1,23 @@
 module Vedeu
   class Storage
     def initialize
-      @counter = 0
-      @map     = {}
+      @map = {}
     end
 
     def create(record)
-      @counter += 1
-      record.id ||= @counter
-      map_for(record)[record.id] = record
+      map_for(record)[record.name] = record
     end
 
     def delete(record)
-      map_for(record).delete(record.id)
+      map_for(record).delete(record.name)
     end
 
     def reset(klass)
       all(klass).map { |record| delete(record) }
     end
 
-    def find(klass, id)
-      map_for_class(klass).fetch(id, nil)
+    def find(klass, name)
+      map_for_class(klass).fetch(name, nil)
     end
 
     def all(klass)

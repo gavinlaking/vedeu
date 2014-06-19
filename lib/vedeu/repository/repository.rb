@@ -4,8 +4,8 @@ module Vedeu
       @adaptor ||= Storage.new
     end
 
-    def find(id)
-      adaptor.find(klass, id)
+    def find(name)
+      adaptor.find(klass, name)
     end
 
     def all

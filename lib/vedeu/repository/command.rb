@@ -1,6 +1,6 @@
 module Vedeu
   class Command
-    attr_accessor :id, :attributes, :name, :klass, :keyword, :keypress
+    attr_accessor :attributes, :name, :klass, :keyword, :keypress
 
     class << self
       def create(attributes = {})

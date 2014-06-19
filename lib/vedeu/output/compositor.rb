@@ -79,7 +79,7 @@ module Vedeu
     end
 
     def interface
-      @_interface ||= InterfaceRepository.find_by_name(@interface)
+      @_interface ||= InterfaceRepository.find(@interface)
     end
   end
 end

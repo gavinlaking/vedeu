@@ -12,10 +12,6 @@ module Vedeu
     end
 
     it 'sets an instance variable' do
-      subject.instance_variable_get('@counter').must_equal(0)
-    end
-
-    it 'sets an instance variable' do
       subject.instance_variable_get('@map').must_equal({})
     end
 
@@ -44,8 +40,8 @@ module Vedeu
     end
 
     describe '#find' do
-      let(:subject) { described_class.new.find(klass, id) }
-      let(:id)      { 'dummy' }
+      let(:subject)     { described_class.new.find(klass, record_name) }
+      let(:record_name) { 'dummy' }
 
       it 'returns a NilClass' do
         subject.must_be_instance_of(NilClass)
