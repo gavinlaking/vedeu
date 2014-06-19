@@ -16,6 +16,18 @@ module Vedeu
       end
     end
 
+    describe '.blink_off' do
+      let(:subject) { described_class.blink_off }
+
+      it 'returns a String' do
+        subject.must_be_instance_of(String)
+      end
+
+      it 'returns an escape sequence' do
+        subject.must_equal("\e[25m")
+      end
+    end
+
     describe '.bold' do
       let(:subject) { described_class.bold }
 
@@ -25,6 +37,18 @@ module Vedeu
 
       it 'returns an escape sequence' do
         subject.must_equal("\e[1m")
+      end
+    end
+
+    describe '.bold_off' do
+      let(:subject) { described_class.bold_off }
+
+      it 'returns a String' do
+        subject.must_be_instance_of(String)
+      end
+
+      it 'returns an escape sequence' do
+        subject.must_equal("\e[21m")
       end
     end
 
@@ -76,6 +100,18 @@ module Vedeu
       end
     end
 
+    describe '.positive' do
+      let(:subject) { described_class.positive }
+
+      it 'returns a String' do
+        subject.must_be_instance_of(String)
+      end
+
+      it 'returns an escape sequence' do
+        subject.must_equal("\e[27m")
+      end
+    end
+
     describe '.normal' do
       let(:subject) { described_class.normal }
 
@@ -109,6 +145,18 @@ module Vedeu
 
       it 'returns an escape sequence' do
         subject.must_equal("\e[4m")
+      end
+    end
+
+    describe '.underline_off' do
+      let(:subject) { described_class.underline_off }
+
+      it 'returns a String' do
+        subject.must_be_instance_of(String)
+      end
+
+      it 'returns an escape sequence' do
+        subject.must_equal("\e[24m")
       end
     end
   end
