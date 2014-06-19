@@ -109,14 +109,14 @@ module Vedeu
           context 'and a single line' do
             let(:stream) {
               [
-                [{ colour: [:red, :white] }, 'Some text...']
+                [{ colour: [:red, :white] }, 'Some text...', { colour: :default }]
               ]
             }
             let(:composition) {
               [
                 [
                   "\e[38;2;39m\e[48;2;49m",
-                  "\e[1;1H               \e[1;1H\e[38;2;31m\e[48;2;47mSome text...",
+                  "\e[1;1H               \e[1;1H\e[38;2;31m\e[48;2;47mSome text...\e[38;5;39m\e[48;5;49m",
                   "\e[2;1H               \e[2;1H",
                   "\e[38;2;39m\e[48;2;49m",
                   "\e[?25h"
@@ -156,12 +156,12 @@ module Vedeu
 
         context 'with a style' do
           context 'and a single line' do
-            let(:stream)      { [[{ style: :bold }, 'Some text...']] }
+            let(:stream)      { [[{ style: :bold }, 'Some text...', { style: :bold_off }]] }
             let(:composition) {
               [
                 [
                   "\e[38;2;39m\e[48;2;49m",
-                  "\e[1;1H               \e[1;1H\e[1mSome text...",
+                  "\e[1;1H               \e[1;1H\e[1mSome text...\e[21m",
                   "\e[2;1H               \e[2;1H",
                   "\e[38;2;39m\e[48;2;49m",
                   "\e[?25h"
