@@ -5,15 +5,15 @@ module Vedeu
     end
 
     def find(name)
-      adaptor.find(klass, name)
+      adaptor.find(entity, name)
     end
 
     def all
-      adaptor.all(klass)
+      adaptor.all(entity)
     end
 
-    def query(klass, attribute, value)
-      adaptor.query(klass, attribute, value)
+    def query(entity, attribute, value)
+      adaptor.query(entity, attribute, value)
     end
 
     def create(model)
@@ -25,7 +25,7 @@ module Vedeu
     end
 
     def reset
-      adaptor.reset(klass)
+      adaptor.reset(entity)
     end
   end
 end

@@ -12,20 +12,20 @@ module Vedeu
       map_for(record).delete(record.name)
     end
 
-    def reset(klass)
-      all(klass).map { |record| delete(record) }
+    def reset(entity)
+      all(entity).map { |record| delete(record) }
     end
 
-    def find(klass, name)
-      map_for_class(klass).fetch(name, nil)
+    def find(entity, name)
+      map_for_class(entity).fetch(name, nil)
     end
 
-    def all(klass)
-      map_for_class(klass).values
+    def all(entity)
+      map_for_class(entity).values
     end
 
-    def query(klass, attribute, value)
-      map_for_class(klass).select do |_, result|
+    def query(entity, attribute, value)
+      map_for_class(entity).select do |_, result|
         return result if result.send(attribute) == value
       end
 
@@ -34,8 +34,8 @@ module Vedeu
 
     private
 
-    def map_for_class(klass)
-      @map[klass.to_s.to_sym] ||= {}
+    def map_for_class(entity)
+      @map[entity.to_s.to_sym] ||= {}
     end
 
     def map_for(record)

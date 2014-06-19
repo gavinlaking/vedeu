@@ -10,7 +10,7 @@ module Vedeu
   class DummyRepository
     extend Repository
 
-    def self.klass
+    def self.entity
       Dummy
     end
   end
@@ -52,8 +52,8 @@ module Vedeu
     end
 
     describe '#query' do
-      let(:subject)   { described_class.query(klass, attribute, value) }
-      let(:klass)     { Dummy }
+      let(:subject)   { described_class.query(entity, attribute, value) }
+      let(:entity)     { Dummy }
       let(:attribute) { :name }
       let(:value)     { 'dummy' }
 

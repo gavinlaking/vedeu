@@ -36,8 +36,8 @@ module Vedeu
       end
     end
 
-    describe '.klass' do
-      let(:subject) { described_class.klass }
+    describe '.entity' do
+      let(:subject) { described_class.entity }
 
       it 'returns an Interface' do
         subject.must_equal(Interface)

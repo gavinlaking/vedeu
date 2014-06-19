@@ -1,6 +1,6 @@
 module Vedeu
   class Command
-    attr_accessor :attributes, :name, :klass, :keyword, :keypress
+    attr_accessor :attributes, :name, :entity, :keyword, :keypress
 
     class << self
       def create(attributes = {})
@@ -11,7 +11,7 @@ module Vedeu
     def initialize(attributes = {})
       @attributes = attributes || {}
       @name       = attributes[:name]
-      @klass      = attributes[:klass]
+      @entity      = attributes[:entity]
       @keyword    = attributes.fetch(:options, {}).fetch(:keyword, '')
       @keypress   = attributes.fetch(:options, {}).fetch(:keypress, '')
     end
@@ -26,16 +26,16 @@ module Vedeu
     end
 
     def executable
-      proc { |*args| attributes[:klass].dispatch(*args) }
+      proc { |*args| attributes[:entity].dispatch(*args) }
     end
   end
 
   # :nocov:
   module ClassMethods
-    def command(name, klass, options = {})
+    def command(name, entity, options = {})
       command_name = name.is_a?(Symbol) ? name.to_s : name
 
-      Command.create({ name: command_name, klass: klass, options: options })
+      Command.create({ name: command_name, entity: entity, options: options })
     end
   end
 

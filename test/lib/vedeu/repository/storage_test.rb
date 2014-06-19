@@ -5,7 +5,7 @@ module Vedeu
     let(:described_class) { Storage }
     let(:subject)         { described_class.new }
     let(:record)          { DummyCommand.new }
-    let(:klass)           {}
+    let(:entity)           {}
 
     it 'returns a Storage instance' do
       subject.must_be_instance_of(Storage)
@@ -32,7 +32,7 @@ module Vedeu
     end
 
     describe '#reset' do
-      let(:subject) { described_class.new.reset(klass) }
+      let(:subject) { described_class.new.reset(entity) }
 
       it 'returns an Array' do
         subject.must_be_instance_of(Array)
@@ -40,7 +40,7 @@ module Vedeu
     end
 
     describe '#find' do
-      let(:subject)     { described_class.new.find(klass, record_name) }
+      let(:subject)     { described_class.new.find(entity, record_name) }
       let(:record_name) { 'dummy' }
 
       it 'returns a NilClass' do
@@ -49,7 +49,7 @@ module Vedeu
     end
 
     describe '#all' do
-      let(:subject) { described_class.new.all(klass) }
+      let(:subject) { described_class.new.all(entity) }
 
       it 'returns an Array' do
         subject.must_be_instance_of(Array)
@@ -57,7 +57,7 @@ module Vedeu
     end
 
     describe '#query' do
-      let(:subject)   { described_class.new.query(klass, attribute, value) }
+      let(:subject)   { described_class.new.query(entity, attribute, value) }
       let(:attribute) {}
       let(:value)     {}
 

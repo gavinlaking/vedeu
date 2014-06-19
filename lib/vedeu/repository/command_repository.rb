@@ -4,14 +4,14 @@ module Vedeu
 
     class << self
       def by_keypress(input)
-        query(klass, :keypress, input)
+        query(entity, :keypress, input)
       end
 
       def by_keyword(input)
-        query(klass, :keyword, input)
+        query(entity, :keyword, input)
       end
 
-      def klass
+      def entity
         Command
       end
     end

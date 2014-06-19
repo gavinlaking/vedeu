@@ -15,7 +15,7 @@ module Vedeu
         all.map { |interface| interface.refresh }.compact
       end
 
-      def klass
+      def entity
         Interface
       end
     end
