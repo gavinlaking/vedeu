@@ -3,26 +3,6 @@ module Vedeu
     extend Repository
 
     class << self
-      def create(*args)
-        activate(super)
-      end
-
-      def activate(interface)
-        deactivate
-
-        all.map do |stored|
-          stored.active = true if stored == interface
-        end
-      end
-
-      def deactivate
-        all.map { |interface| interface.active = false }
-      end
-
-      def activated
-        query(klass, :active, true)
-      end
-
       def find_by_name(value)
         query(klass, :name, value).tap do |interface|
           fail UndefinedInterface unless interface
