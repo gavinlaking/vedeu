@@ -11,7 +11,7 @@ module Vedeu
     def initialize(attributes = {})
       @attributes = attributes || {}
       @name       = attributes[:name]
-      @entity      = attributes[:entity]
+      @entity     = attributes[:entity]
       @keyword    = attributes.fetch(:options, {}).fetch(:keyword, '')
       @keypress   = attributes.fetch(:options, {}).fetch(:keypress, '')
     end
