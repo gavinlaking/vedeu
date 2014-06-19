@@ -24,30 +24,29 @@ module Vedeu
 
     def composition
       container = []
-      streams   = []
 
-      container << colour.set
+      pad_stream
 
+      stream.each_with_index do |lines, index|
+        line = [interface.colour.set, clear(index)]
+
+        lines.each do |data|
+          line << Directive.enact(interface, data)
+        end
+
+        line << interface.colour.reset << interface.cursor
+
+        container << line.join
+      end
+
+      container
+    end
+
+    def pad_stream
       if stream.size < height
         remaining = height - stream.size
         remaining.times { |i| stream << [''] }
       end
-
-      stream.each_with_index do |lines, index|
-        streams << clear(index)
-
-        lines.each do |data|
-          streams << Directive.enact(interface, data)
-        end
-
-        container << streams.join
-        streams = []
-      end
-
-      container << colour.reset
-      container << cursor
-
-      container
     end
 
     def clear(index)
@@ -55,27 +54,15 @@ module Vedeu
     end
 
     def origin(index)
-      geometry.origin(index)
+      interface.geometry.origin(index)
     end
 
     def height
-      geometry.height
+      interface.geometry.height
     end
 
     def width
-      geometry.width
-    end
-
-    def geometry
-      interface.geometry
-    end
-
-    def colour
-      interface.colour
-    end
-
-    def cursor
-      interface.cursor
+      interface.geometry.width
     end
 
     def interface
