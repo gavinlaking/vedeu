@@ -1,6 +1,4 @@
 module Vedeu
-  class UndefinedInterface < StandardError; end
-
   class Compositor
     class << self
       def arrange(output = {})

@@ -1,4 +1,6 @@
 module Vedeu
+  class UndefinedInterface < StandardError; end
+
   class InterfaceRepository
     extend Repository
 
