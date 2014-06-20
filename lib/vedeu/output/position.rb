@@ -12,7 +12,7 @@ module Vedeu
       end
     end
 
-    def initialize(y = nil, x = nil)
+    def initialize(y = 1, x = 1)
       @y, @x = y, x
     end
 
@@ -23,5 +23,13 @@ module Vedeu
     private
 
     attr_accessor :y, :x
+
+    def y
+      @y == 0 ? 1 : @y
+    end
+
+    def x
+      @x == 0 ? 1 : @x
+    end
   end
 end
