@@ -65,6 +65,14 @@ module Vedeu
       interface.geometry.width
     end
 
+    def stream
+      @_stream ||= if @stream.is_a?(String)
+        [@stream.split("\n")]
+      else
+        @stream
+      end
+    end
+
     def interface
       @_interface ||= InterfaceRepository.find(@interface)
     end
