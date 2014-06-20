@@ -15,28 +15,6 @@ module Vedeu
       described_instance.must_be_instance_of(Geometry)
     end
 
-    describe '#z' do
-      let(:subject) { described_instance.z }
-
-      it 'returns a Fixnum' do
-        subject.must_be_instance_of(Fixnum)
-      end
-
-      context 'using a value' do
-        let(:values) { { z: 2 } }
-
-        it 'returns the value' do
-          subject.must_equal(2)
-        end
-      end
-
-      context 'using the default' do
-        it 'returns the default' do
-          subject.must_equal(0)
-        end
-      end
-    end
-
     describe '#y' do
       let(:subject) { described_instance.y }
 

@@ -12,7 +12,11 @@ module Vedeu
       end
 
       def refresh
-        all.map { |interface| interface.refresh }.compact
+        by_layer.map { |interface| interface.refresh }.compact
+      end
+
+      def by_layer
+        all.sort_by { |interface| interface.layer }
       end
 
       def entity

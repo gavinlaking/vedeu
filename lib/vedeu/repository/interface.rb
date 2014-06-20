@@ -15,6 +15,7 @@ module Vedeu
       @name       = attributes[:name]
       @cursor     = attributes.fetch(:cursor, true)
       @current    = []
+      @layer      = attributes.fetch(:layer, 0)
     end
 
     def create
@@ -47,10 +48,14 @@ module Vedeu
       @cursor ? Cursor.show : Cursor.hide
     end
 
+    def layer
+      @layer ||= Layer.new(attributes)
+    end
+
     private
 
     def initial_state
-      { name => Array.new(geometry.height) { [""] } }
+      { name => Array.new(geometry.height) { [''] } }
     end
 
     def foreground

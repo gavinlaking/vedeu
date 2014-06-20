@@ -8,8 +8,8 @@ module Vedeu
     let(:attributes)         {
       {
         name:   'dummy',
-        width:  10,
-        height: 5,
+        width:  15,
+        height: 2,
         x:      1,
         y:      1,
         fg:     :red,

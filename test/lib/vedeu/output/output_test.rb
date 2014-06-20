@@ -6,7 +6,7 @@ module Vedeu
     let(:subject)         { described_class.new }
 
     before do
-      Interface.create({ name: 'dummy', width: 10, height: 2, cursor: true })
+      Interface.create({ name: 'dummy', width: 15, height: 2, cursor: true })
     end
 
     after { InterfaceRepository.reset }

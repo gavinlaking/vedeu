@@ -4,7 +4,7 @@ module Vedeu
   describe InterfaceRepository do
     let(:described_class) { InterfaceRepository }
 
-    before { Interface.create({ name: 'dummy' }) }
+    before { Interface.create({ name: 'dummy', width: 15, height: 2 }) }
     after  { InterfaceRepository.reset }
 
     describe '.find' do
@@ -41,6 +41,26 @@ module Vedeu
 
       it 'returns an Interface' do
         subject.must_equal(Interface)
+      end
+    end
+
+    describe '.by_layer' do
+      let(:subject) { described_class.by_layer }
+
+      before do
+        InterfaceRepository.reset
+        @case_a = Interface.create({ name: 'a', width: 15, height: 2, layer: 1 })
+        @case_b = Interface.create({ name: 'b', width: 15, height: 2, layer: 0 })
+        @case_c = Interface.create({ name: 'c', width: 15, height: 2, layer: 2 })
+      end
+      after  { InterfaceRepository.reset }
+
+      it 'returns an Array' do
+        subject.must_be_instance_of(Array)
+      end
+
+      it 'returns the collection in order they should be drawn' do
+        subject.must_equal([@case_b, @case_a, @case_c])
       end
     end
   end
