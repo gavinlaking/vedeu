@@ -1,6 +1,6 @@
 module Vedeu
   class DummyCommand
-    attr_accessor :id
+    attr_accessor :name
 
     def self.dispatch(value = :dummy)
       value || :dummy

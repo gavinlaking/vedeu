@@ -7,10 +7,10 @@ module Vedeu
 
     before do
       Command.create({ name:    'apple',
-                       klass:   DummyCommand,
+                       entity:   DummyCommand,
                        options: { keypress: 'a', keyword: 'apple' } })
       Command.create({ name:    'banana',
-                       klass:   DummyCommand,
+                       entity:   DummyCommand,
                        options: { keypress: 'b', keyword: 'banana' } })
     end
 
@@ -66,8 +66,8 @@ module Vedeu
       end
     end
 
-    describe '.klass' do
-      let(:subject) { described_class.klass }
+    describe '.entity' do
+      let(:subject) { described_class.entity }
 
       it 'returns Command' do
         subject.must_equal(Command)

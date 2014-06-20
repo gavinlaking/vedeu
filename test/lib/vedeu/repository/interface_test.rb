@@ -31,10 +31,6 @@ module Vedeu
     end
 
     it 'sets an instance variable' do
-      subject.instance_variable_get('@active').must_equal(false)
-    end
-
-    it 'sets an instance variable' do
       subject.instance_variable_get('@name').must_equal('dummy')
     end
 
@@ -46,8 +42,8 @@ module Vedeu
       end
     end
 
-    describe '#update' do
-      let(:subject) { described_instance.update }
+    describe '#refresh' do
+      let(:subject) { described_instance.refresh }
 
       # it 'returns a Array' do
       #   subject.must_be_instance_of(Array)

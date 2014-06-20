@@ -1,39 +1,21 @@
 module Vedeu
+  class UndefinedInterface < StandardError; end
+
   class InterfaceRepository
     extend Repository
 
     class << self
-      def create(*args)
-        activate(super)
+      def find(name)
+        result = super
+        raise UndefinedInterface unless result
+        result
       end
 
-      def activate(interface)
-        deactivate
-
-        all.map do |stored|
-          stored.active = true if stored == interface
-        end
+      def refresh
+        all.map { |interface| interface.refresh }.compact
       end
 
-      def deactivate
-        all.map { |interface| interface.active = false }
-      end
-
-      def activated
-        query(klass, :active, true)
-      end
-
-      def find_by_name(value)
-        query(klass, :name, value).tap do |interface|
-          fail UndefinedInterface unless interface
-        end
-      end
-
-      def update
-        all.map { |interface| interface.update }.compact
-      end
-
-      def klass
+      def entity
         Interface
       end
     end

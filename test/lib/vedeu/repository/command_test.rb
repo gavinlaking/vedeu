@@ -8,7 +8,7 @@ module Vedeu
     let(:attributes)         {
       {
         name:    'dummy',
-        klass:   DummyCommand,
+        entity:   DummyCommand,
         options: {
           keyword:  "dummy",
           keypress: "d"
@@ -29,7 +29,7 @@ module Vedeu
     end
 
     it 'sets an instance variable' do
-      subject.instance_variable_get('@klass').must_equal(DummyCommand)
+      subject.instance_variable_get('@entity').must_equal(DummyCommand)
     end
 
     it 'sets an instance variable' do
