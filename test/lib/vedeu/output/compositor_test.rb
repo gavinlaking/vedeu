@@ -93,6 +93,22 @@ module Vedeu
             subject.must_equal(composition)
           end
         end
+
+        context 'but is a string containing new-lines' do
+          let(:stream)      { "Some text...\nSome more text..." }
+          let(:composition) {
+            [
+              [
+                "\e[38;2;39m\e[48;2;49m\e[1;1H               \e[1;1HSome text...Some more tex...\e[0m\e[38;2;39m\e[48;2;49m\e[?25h",
+                "\e[38;2;39m\e[48;2;49m\e[2;1H               \e[2;1H\e[38;2;39m\e[48;2;49m\e[?25h"
+              ]
+            ]
+          }
+
+          it 'returns the enqueued composition' do
+            subject.must_equal(composition)
+          end
+        end
       end
 
       context 'when styled' do
