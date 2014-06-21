@@ -7,6 +7,7 @@ module Vedeu
 
     before do
       Interface.create({ name: 'dummy', width: 15, height: 2, cursor: true })
+      Terminal.stubs(:output).returns(output)
     end
 
     after { InterfaceRepository.reset }
@@ -17,6 +18,34 @@ module Vedeu
 
     describe '.render' do
       let(:subject) { described_class.render }
+
+      context 'when the interfaces have content' do
+        let(:output) {
+          [
+            [
+              "\e[38;2;39m\e[48;2;49m\e[1;1H               \e[1;1HTesting Outpu...\e[0m\e[38;2;39m\e[48;2;49m\e[?25h",
+              "\e[38;2;39m\e[48;2;49m\e[2;1H               \e[2;1H\e[38;2;39m\e[48;2;49m\e[?25h"
+            ]
+          ]
+        }
+
+        before { Compositor.arrange({ 'dummy' => 'Testing Output.render' }) }
+
+        it { subject.must_equal(output) }
+      end
+
+      context 'when the interfaces have no content' do
+        let(:output) {
+          [
+            [
+              "\e[38;2;39m\e[48;2;49m\e[1;1H               \e[1;1H\e[38;2;39m\e[48;2;49m\e[?25h",
+              "\e[38;2;39m\e[48;2;49m\e[2;1H               \e[2;1H\e[38;2;39m\e[48;2;49m\e[?25h"
+            ]
+          ]
+        }
+
+        it { subject.must_equal(output) }
+      end
     end
   end
 end

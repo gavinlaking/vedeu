@@ -3,8 +3,8 @@ require_relative '../../../test_helper'
 module Vedeu
   describe Layer do
     let(:described_class)    { Layer }
-    let(:described_instance) { described_class.new(values) }
-    let(:values)             { {} }
+    let(:described_instance) { described_class.new(index) }
+    let(:index)              {}
 
     it 'returns a Layer instance' do
       described_instance.must_be_instance_of(Layer)
@@ -17,10 +17,10 @@ module Vedeu
         subject.must_be_instance_of(Fixnum)
       end
 
-      context 'using a value' do
-        let(:values) { { layer: 2 } }
+      context 'using a index' do
+        let(:index) { 2 }
 
-        it 'returns the value' do
+        it 'returns the index' do
           subject.must_equal(2)
         end
       end

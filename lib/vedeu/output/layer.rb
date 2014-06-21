@@ -1,23 +1,9 @@
 module Vedeu
   class Layer
-    def initialize(values = {})
-      @values = values || {}
-    end
+    attr_reader :index
 
-    def index
-      values[:layer]
-    end
-
-    private
-
-    def values
-      defaults.merge!(@values)
-    end
-
-    def defaults
-      {
-        layer: 0
-      }
+    def initialize(index = 0)
+      @index = index || 0
     end
   end
 end
