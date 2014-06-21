@@ -4,7 +4,7 @@ module Vedeu
   describe InterfaceRepository do
     let(:described_class) { InterfaceRepository }
 
-    before { Interface.create({ name: 'dummy', width: 15, height: 2 }) }
+    before { InterfaceRepository.create({ name: 'dummy', width: 15, height: 2 }) }
     after  { InterfaceRepository.reset }
 
     describe '.find' do
@@ -49,9 +49,9 @@ module Vedeu
 
       before do
         InterfaceRepository.reset
-        @case_a = Interface.create({ name: 'a', width: 15, height: 2, layer: 1 })
-        @case_b = Interface.create({ name: 'b', width: 15, height: 2, layer: 0 })
-        @case_c = Interface.create({ name: 'c', width: 15, height: 2, layer: 2 })
+        @case_a = InterfaceRepository.create({ name: 'a', width: 15, height: 2, layer: 1 })
+        @case_b = InterfaceRepository.create({ name: 'b', width: 15, height: 2, layer: 0 })
+        @case_c = InterfaceRepository.create({ name: 'c', width: 15, height: 2, layer: 2 })
       end
       after  { InterfaceRepository.reset }
 

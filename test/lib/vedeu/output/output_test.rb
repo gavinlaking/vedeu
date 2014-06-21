@@ -4,9 +4,10 @@ module Vedeu
   describe Output do
     let(:described_class) { Output }
     let(:subject)         { described_class.new }
+    let(:output)          {}
 
     before do
-      Interface.create({ name: 'dummy', width: 15, height: 2, cursor: true })
+      InterfaceRepository.create({ name: 'dummy', width: 15, height: 2, cursor: true })
       Terminal.stubs(:output).returns(output)
     end
 

@@ -10,7 +10,7 @@ module Vedeu
     let(:composition)        {}
 
     before do
-      Interface.create({ name: 'dummy', width: 15, height: 2 })
+      InterfaceRepository.create({ name: 'dummy', width: 15, height: 2 })
     end
 
     after do

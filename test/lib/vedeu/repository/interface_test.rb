@@ -19,7 +19,7 @@ module Vedeu
     }
     let(:result)             {}
 
-    before { Interface.create(attributes) }
+    before { InterfaceRepository.create(attributes) }
     after  { InterfaceRepository.reset }
 
     it 'returns an Interface instance' do
@@ -32,14 +32,6 @@ module Vedeu
 
     it 'sets an instance variable' do
       subject.instance_variable_get('@name').must_equal('dummy')
-    end
-
-    describe '#create' do
-      let(:subject) { described_class.create(attributes) }
-
-      it 'returns an Interface' do
-        subject.must_be_instance_of(Interface)
-      end
     end
 
     describe '#refresh' do

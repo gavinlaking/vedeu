@@ -5,6 +5,10 @@ module Vedeu
     extend Repository
 
     class << self
+      def create(attributes = {})
+        super(Interface.new(attributes))
+      end
+
       def find(name)
         result = super
         raise UndefinedInterface unless result

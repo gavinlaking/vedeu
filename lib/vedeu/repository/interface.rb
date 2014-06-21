@@ -4,23 +4,11 @@ module Vedeu
 
     attr_accessor :attributes, :name, :cursor, :current
 
-    class << self
-      def create(attributes = {})
-        new(attributes).create
-      end
-    end
-
     def initialize(attributes = {})
       @attributes = attributes || {}
       @name       = attributes[:name]
       @cursor     = attributes.fetch(:cursor, true)
       @current    = []
-    end
-
-    def create
-      InterfaceRepository.create(self)
-
-      self
     end
 
     def refresh
@@ -75,7 +63,9 @@ module Vedeu
     def interface(name, options = {})
       interface_name = name.is_a?(Symbol) ? name.to_s : name
 
-      Interface.create({ name: interface_name }.merge!(options))
+      InterfaceRepository.create({
+        name: interface_name
+      }.merge!(options))
     end
   end
 

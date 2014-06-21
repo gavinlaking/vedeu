@@ -11,6 +11,10 @@ module Vedeu
         query(entity, :keyword, input)
       end
 
+      def create(attributes)
+        super(Command.new(attributes))
+      end
+
       def entity
         Command
       end

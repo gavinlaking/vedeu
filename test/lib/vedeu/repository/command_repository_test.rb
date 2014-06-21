@@ -3,20 +3,26 @@ require_relative '../../../test_helper'
 module Vedeu
   describe CommandRepository do
     let(:described_class) { CommandRepository }
-    let(:input)           { }
+    let(:input)           {}
 
     before do
-      Command.create({ name:    'apple',
-                       entity:   DummyCommand,
-                       options: { keypress: 'a', keyword: 'apple' } })
-      Command.create({ name:    'banana',
-                       entity:   DummyCommand,
-                       options: { keypress: 'b', keyword: 'banana' } })
+      CommandRepository.create({ name:    'apple',
+                                 entity:  DummyCommand,
+                                 options: {
+                                            keypress: 'a',
+                                            keyword:  'apple'
+                                          }
+                               })
+      CommandRepository.create({ name:    'banana',
+                                 entity:  DummyCommand,
+                                 options: {
+                                            keypress: 'b',
+                                            keyword:  'banana'
+                                          }
+                               })
     end
 
-    after do
-      CommandRepository.reset
-    end
+    after { CommandRepository.reset }
 
     describe '.by_keypress' do
       let(:subject) { described_class.by_keypress(input) }
