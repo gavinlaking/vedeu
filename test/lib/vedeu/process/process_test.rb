@@ -16,11 +16,12 @@ module Vedeu
       let(:command) { Command.new }
 
       before do
-        Interface.create({ name: 'dummy' })
+        InterfaceRepository.create({ name: 'dummy', width: 15, height: 2 })
         Queue.stubs(:dequeue).returns(input)
         CommandRepository.stubs(:by_keypress).returns(command)
         CommandRepository.stubs(:by_keyword).returns(command)
         command.stubs(:execute).returns(result)
+        Compositor.stubs(:arrange).returns([])
       end
 
       after do

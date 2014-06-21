@@ -140,7 +140,7 @@ module Vedeu
       end
 
       it 'returns an escape sequence' do
-        subject.must_equal("\e[0;1H                                                                                \e[0;1H")
+        subject.must_equal("\e[1;1H                                                                                \e[1;1H")
       end
     end
 

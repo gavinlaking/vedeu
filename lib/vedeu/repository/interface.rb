@@ -4,23 +4,11 @@ module Vedeu
 
     attr_accessor :attributes, :name, :cursor, :current
 
-    class << self
-      def create(attributes = {})
-        new(attributes).create
-      end
-    end
-
     def initialize(attributes = {})
       @attributes = attributes || {}
       @name       = attributes[:name]
       @cursor     = attributes.fetch(:cursor, true)
       @current    = []
-    end
-
-    def create
-      InterfaceRepository.create(self)
-
-      self
     end
 
     def refresh
@@ -47,10 +35,18 @@ module Vedeu
       @cursor ? Cursor.show : Cursor.hide
     end
 
+    def layer
+      @layer ||= Layer.new(layer_attr).index
+    end
+
     private
 
     def initial_state
-      { name => Array.new(geometry.height) { [""] } }
+      { name => Array.new(geometry.height) { [''] } }
+    end
+
+    def layer_attr
+      attributes.fetch(:layer, 0)
     end
 
     def foreground
@@ -61,18 +57,4 @@ module Vedeu
       attributes[:bg] || attributes[:background]
     end
   end
-
-  # :nocov:
-  module ClassMethods
-    def interface(name, options = {})
-      interface_name = name.is_a?(Symbol) ? name.to_s : name
-
-      Interface.create({ name: interface_name }.merge!(options))
-    end
-  end
-
-  def self.included(receiver)
-    receiver.extend(ClassMethods)
-  end
-  # :nocov:
 end

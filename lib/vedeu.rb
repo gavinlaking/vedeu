@@ -1,6 +1,8 @@
 require 'date'
 require 'logger'
 require 'io/console'
+require 'virtus'
+require 'yajl'
 
 require_relative 'vedeu/input/input'
 
@@ -16,6 +18,7 @@ require_relative 'vedeu/output/cursor'
 require_relative 'vedeu/output/directive'
 require_relative 'vedeu/output/foreground'
 require_relative 'vedeu/output/geometry'
+require_relative 'vedeu/output/layer'
 require_relative 'vedeu/output/esc'
 require_relative 'vedeu/output/colour'
 require_relative 'vedeu/output/output'
@@ -47,6 +50,12 @@ module Vedeu
         "\n#{time.iso8601}: #{msg}\n"
       end
     end
+  end
+  # :nocov:
+
+  # :nocov:
+  def self.included(receiver)
+    receiver.extend(ClassMethods)
   end
   # :nocov:
 

@@ -40,14 +40,6 @@ module Vedeu
       subject.instance_variable_get('@keypress').must_equal('d')
     end
 
-    describe '#create' do
-      let(:subject) { described_class.create(attributes) }
-
-      it 'returns a Command instance' do
-        subject.must_be_instance_of(Command)
-      end
-    end
-
     describe '#execute' do
       let(:subject) { described_instance.execute(args) }
       let(:args)    { [] }

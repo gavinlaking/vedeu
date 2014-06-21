@@ -64,6 +64,14 @@ module Vedeu
         end
       end
 
+      context 'when the style is negative' do
+        let(:style) { :negative }
+
+        it 'returns an escape sequence' do
+          subject.must_equal("\e[7m")
+        end
+      end
+
       context 'when the style is inverse' do
         let(:style) { :inverse }
 

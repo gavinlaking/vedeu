@@ -30,4 +30,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rake',               '10.3.2'
   spec.add_development_dependency 'rubocop'
   spec.add_development_dependency 'simplecov',          '0.8.2'
+
+  spec.add_dependency "virtus"
+  spec.add_dependency "yajl-ruby"
 end

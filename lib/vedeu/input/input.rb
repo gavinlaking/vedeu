@@ -1,12 +1,6 @@
 module Vedeu
-  class Input
-    class << self
-      def capture
-        new.capture
-      end
-    end
-
-    def initialize; end
+  module Input
+    extend self
 
     def capture
       Queue.enqueue(input)

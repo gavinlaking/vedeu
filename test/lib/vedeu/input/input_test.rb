@@ -2,25 +2,23 @@ require_relative '../../../test_helper'
 
 module Vedeu
   describe Input do
-    let(:described_class) { Input }
-    let(:input)           { '' }
-    let(:subject)         { described_class.new }
+    let(:described_module) { Input }
+    let(:input)            { 'input' }
 
-    before { Terminal.stubs(:input).returns(input) }
-
-    it 'return an Input instance' do
-      subject.must_be_instance_of(Input)
+    before do
+      Terminal.stubs(:input).returns(input)
+      Queue.stubs(:enqueue).returns([input])
     end
 
     describe '.capture' do
-      let(:subject) { described_class.capture }
+      let(:subject) { described_module.capture }
 
       it 'returns an Array' do
         subject.must_be_instance_of(Array)
       end
 
-      it 'returns the entered characters' do
-        subject.wont_be_empty
+      it 'returns the enqueue input' do
+        subject.must_equal([input])
       end
     end
   end
