@@ -21,6 +21,7 @@ module Vedeu
         CommandRepository.stubs(:by_keypress).returns(command)
         CommandRepository.stubs(:by_keyword).returns(command)
         command.stubs(:execute).returns(result)
+        Compositor.stubs(:arrange).returns([])
       end
 
       after do
