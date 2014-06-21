@@ -51,6 +51,12 @@ module Vedeu
   end
   # :nocov:
 
+  # :nocov:
+  def self.included(receiver)
+    receiver.extend(ClassMethods)
+  end
+  # :nocov:
+
   private
 
   # :nocov:

@@ -1,23 +1,22 @@
 module Vedeu
-  class CommandRepository
+  module CommandRepository
     extend Repository
+    extend self
 
-    class << self
-      def by_keypress(input)
-        query(entity, :keypress, input)
-      end
+    def by_keypress(input)
+      query(entity, :keypress, input)
+    end
 
-      def by_keyword(input)
-        query(entity, :keyword, input)
-      end
+    def by_keyword(input)
+      query(entity, :keyword, input)
+    end
 
-      def create(attributes)
-        super(Command.new(attributes))
-      end
+    def create(attributes)
+      super(Command.new(attributes))
+    end
 
-      def entity
-        Command
-      end
+    def entity
+      Command
     end
   end
 
@@ -32,10 +31,6 @@ module Vedeu
         options: options
       })
     end
-  end
-
-  def self.included(receiver)
-    receiver.extend(ClassMethods)
   end
   # :nocov:
 end

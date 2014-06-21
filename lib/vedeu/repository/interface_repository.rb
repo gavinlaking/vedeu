@@ -1,31 +1,30 @@
 module Vedeu
   class UndefinedInterface < StandardError; end
 
-  class InterfaceRepository
+  module InterfaceRepository
     extend Repository
+    extend self
 
-    class << self
-      def create(attributes = {})
-        super(Interface.new(attributes))
-      end
+    def create(attributes = {})
+      super(Interface.new(attributes))
+    end
 
-      def find(name)
-        result = super
-        raise UndefinedInterface unless result
-        result
-      end
+    def find(name)
+      result = super
+      raise UndefinedInterface unless result
+      result
+    end
 
-      def refresh
-        by_layer.map { |interface| interface.refresh }.compact
-      end
+    def refresh
+      by_layer.map { |interface| interface.refresh }.compact
+    end
 
-      def by_layer
-        all.sort_by { |interface| interface.layer }
-      end
+    def by_layer
+      all.sort_by { |interface| interface.layer }
+    end
 
-      def entity
-        Interface
-      end
+    def entity
+      Interface
     end
   end
 
@@ -38,10 +37,6 @@ module Vedeu
         name: interface_name
       }.merge!(options))
     end
-  end
-
-  def self.included(receiver)
-    receiver.extend(ClassMethods)
   end
   # :nocov:
 end
