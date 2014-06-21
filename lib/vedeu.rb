@@ -1,6 +1,8 @@
 require 'date'
 require 'logger'
 require 'io/console'
+require 'virtus'
+require 'yajl'
 
 require_relative 'vedeu/input/input'
 
