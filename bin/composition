@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+$:.unshift(File.dirname(__FILE__) + '/../lib') unless $:.include?(File.dirname(__FILE__) + '/../lib')
+
+-> { its -> { a } }
+trap('INT') { exit! }
+
+require 'vedeu'
+require 'pry'
+require 'yajl'
+
+json = File.read('../test/support/composition.json')
+hash = Yajl::Parser.parse(json)
+comp = Vedeu::Buffer::Composition.new(hash)
+
+binding.pry
