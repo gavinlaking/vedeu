@@ -19,10 +19,6 @@ module Vedeu
         subject.must_be_instance_of(Stream)
       end
 
-      it 'has a style attribute' do
-        subject.style.must_be_instance_of(Array)
-      end
-
       it 'has a foreground attribute' do
         subject.foreground.must_be_instance_of(Symbol)
       end
@@ -33,6 +29,10 @@ module Vedeu
 
       it 'has a text attribute' do
         subject.text.must_be_instance_of(String)
+      end
+
+      it 'has a style attribute' do
+        subject.style.must_be_instance_of(Array)
       end
     end
   end
