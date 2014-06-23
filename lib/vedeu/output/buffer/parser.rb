@@ -5,8 +5,12 @@ module Vedeu
         @composition = composition
       end
 
-      def parse
-        binding.pry
+      def to_hash
+        Oj.load(to_json)
+      end
+
+      def to_json
+        Oj.dump(composition, mode: :compat, circular: true)
       end
 
       private

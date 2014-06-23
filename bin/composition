@@ -6,7 +6,6 @@ trap('INT') { exit! }
 
 require 'vedeu'
 require 'pry'
-require 'yajl'
 
 json = File.read('../test/support/composition.json')
 hash = Yajl::Parser.parse(json)
