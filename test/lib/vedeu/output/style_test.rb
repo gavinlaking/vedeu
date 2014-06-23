@@ -72,14 +72,6 @@ module Vedeu
         end
       end
 
-      context 'when the style is inverse' do
-        let(:style) { :inverse }
-
-        it 'returns an escape sequence' do
-          subject.must_equal("\e[7m")
-        end
-      end
-
       context 'when the style is positive' do
         let(:style) { :positive }
 
@@ -100,7 +92,15 @@ module Vedeu
         let(:style) { :normal }
 
         it 'returns an escape sequence' do
-          subject.must_equal("\e[0m")
+          subject.must_equal("\e[24m\e[21m\e[27m")
+        end
+      end
+
+      context 'when the style is dim' do
+        let(:style) { :dim }
+
+        it 'returns an escape sequence' do
+          subject.must_equal("\e[2m")
         end
       end
 

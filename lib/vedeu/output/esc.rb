@@ -34,17 +34,18 @@ module Vedeu
     def negative
       [esc, '7m'].join
     end
-    alias_method :reverse, :negative
-    alias_method :inverse, :negative
 
     def positive
       [esc, '27m'].join
     end
 
     def normal
+      [underline_off, bold_off, positive].join
+    end
+
+    def dim
       [esc, '2m'].join
     end
-    alias_method :dim, :normal
 
     def reset
       [esc, '0m'].join

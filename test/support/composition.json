@@ -1,0 +1,47 @@
+{
+    "interface":[
+        {
+            "name":"dumb",
+            "line":[
+                {
+                    "style":"normal",
+                    "foreground":"red",
+                    "background":"black",
+                    "stream":[
+                        {
+                            "style":"underline negative",
+                            "foreground":"yellow",
+                            "background":"black",
+                            "text":"Some text..."
+                        },
+                        {
+                            "style":"normal",
+                            "foreground":"green",
+                            "background":"black",
+                            "text":"Some more text..."
+                        }
+                    ]
+                },
+                {
+                    "stream":[
+                        {
+                            "text":"Even more text..."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name":"dumber",
+            "line":[
+                {
+                    "stream":[
+                        {
+                            "text":"Yet more text..."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

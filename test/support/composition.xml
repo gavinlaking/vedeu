@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<interface>
+  <name>dumb</name>
+  <line>
+    <style>normal</style>
+    <foreground>red</foreground>
+    <background>black</background>
+    <stream>
+      <style>underline negative</style>
+      <foreground>yellow</foreground>
+      <background>black</background>
+      <text>Some text...</text>
+    </stream>
+    <stream>
+      <style>normal</style>
+      <foreground>green</foreground>
+      <background>black</background>
+      <text>Some more text...</text>
+    </stream>
+  </line>
+  <line>
+    <stream>
+      <text>Even more text...</text>
+    </stream>
+  </line>
+</interface>
+
+<interface>
+  <name>dumber</name>
+  <line>
+    <stream>
+      <text>Yet more text...</text>
+    </stream>
+  </line>
+</interface>

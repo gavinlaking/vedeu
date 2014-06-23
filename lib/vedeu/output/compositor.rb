@@ -45,7 +45,7 @@ module Vedeu
     def pad_stream
       if stream.size < height
         remaining = height - stream.size
-        remaining.times { |i| stream << [''] }
+        remaining.times { |i| stream << [{ text: '' }] }
       end
     end
 
@@ -63,14 +63,6 @@ module Vedeu
 
     def width
       interface.geometry.width
-    end
-
-    def stream
-      @_stream ||= if @stream.is_a?(String)
-        [@stream.split("\n")]
-      else
-        @stream
-      end
     end
 
     def interface
