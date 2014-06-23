@@ -7,14 +7,14 @@
     <foreground>red</foreground>
     <background>black</background>
     <stream>
-      <style>underline reverse</style>
+      <style>underline negative</style>
       <foreground>yellow</foreground>
       <background>black</background>
       <text>Some text...</text>
     </stream>
     <stream>
-      <style>underline</style>
-      <foreground>yellow</foreground>
+      <style>normal</style>
+      <foreground>green</foreground>
       <background>black</background>
       <text>Some more text...</text>
     </stream>

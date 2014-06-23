@@ -5,6 +5,10 @@ module Vedeu
 
       attribute :name, String
       attribute :line, Array[Buffer::Line]
+
+      def to_compositor
+        line.map(&:to_compositor)
+      end
     end
   end
 end

@@ -9,14 +9,14 @@
                     "background":"black",
                     "stream":[
                         {
-                            "style":"underline reverse",
+                            "style":"underline negative",
                             "foreground":"yellow",
                             "background":"black",
                             "text":"Some text..."
                         },
                         {
-                            "style":"underline",
-                            "foreground":"yellow",
+                            "style":"normal",
+                            "foreground":"green",
                             "background":"black",
                             "text":"Some more text..."
                         }

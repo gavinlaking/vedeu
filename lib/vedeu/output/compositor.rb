@@ -45,7 +45,7 @@ module Vedeu
     def pad_stream
       if stream.size < height
         remaining = height - stream.size
-        remaining.times { |i| stream << [''] }
+        remaining.times { |i| stream << [{ text: '' }] }
       end
     end
 

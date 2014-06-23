@@ -30,7 +30,7 @@ module Vedeu
           ]
         }
 
-        before { Compositor.arrange({ 'dummy' => 'Testing Output.render' }) }
+        before { Compositor.arrange({ 'dummy' => [[{ text: 'Testing Output.render' }]] }) }
 
         it { subject.must_equal(output) }
       end

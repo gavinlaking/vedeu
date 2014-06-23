@@ -14,32 +14,27 @@ module Vedeu
     end
 
     def enact
-      return wordwrap if string?
-      [set_position, set_colour, set_style].join
+      [set_position, set_colour, set_style, set_text].join
     end
 
     private
 
     attr_reader :interface, :directives
 
-    def wordwrap
-      Wordwrap.this(directives, options)
-    end
-
-    def string?
-      directives.is_a?(String)
-    end
-
     def set_position
       Position.set(*position)
     end
 
     def set_colour
-      Colour.set(colour)
+      Colour.set(colour) unless colour.empty?
     end
 
     def set_style
       Array(style).map { |s| Style.set(s) }.join
+    end
+
+    def set_text
+      Wordwrap.this(text, options)
     end
 
     def position
@@ -52,6 +47,10 @@ module Vedeu
 
     def style
       directives.fetch(:style, [])
+    end
+
+    def text
+      directives.fetch(:text, '')
     end
 
     def options

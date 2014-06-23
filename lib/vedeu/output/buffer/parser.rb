@@ -5,6 +5,13 @@ module Vedeu
         @composition = composition
       end
 
+      def to_compositor
+        composition.interface.inject({}) do |acc, interface|
+          acc[interface.name] = interface.to_compositor
+          acc
+        end
+      end
+
       def to_hash
         Oj.load(to_json)
       end

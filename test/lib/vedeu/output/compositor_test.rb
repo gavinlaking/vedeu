@@ -34,7 +34,7 @@ module Vedeu
     end
 
     describe '#arrange' do
-      let(:subject)    { described_class.new(attributes).arrange }
+      let(:subject) { described_class.new(attributes).arrange }
 
       context 'when empty' do
         let(:stream)      { [[]] }
@@ -58,7 +58,7 @@ module Vedeu
 
       context 'when unstyled' do
         context 'and a single line' do
-          let(:stream)      { [['Some text...']] }
+          let(:stream)      { [[{ text: 'Some text...' }]] }
           let(:composition) {
             [
               [
@@ -76,8 +76,8 @@ module Vedeu
         context 'and multi-line' do
           let(:stream) {
             [
-              ['Some text...'],
-              ['Some more text...']
+              [{ text: 'Some text...' }],
+              [{ text: 'Some more text...' }]
             ]
           }
           let(:composition) {
@@ -116,7 +116,7 @@ module Vedeu
           context 'and a single line' do
             let(:stream) {
               [
-                [{ colour: [:red, :white] }, 'Some text...', { colour: :default }]
+                [{ colour: [:red, :white], text: 'Some text...' }, { colour: :default }]
               ]
             }
             let(:composition) {
@@ -136,8 +136,8 @@ module Vedeu
           context 'and multi-line' do
             let(:stream) {
               [
-                [{ colour: [:red, :white] },   'Some text...'],
-                [{ colour: [:blue, :yellow] }, 'Some more text...']
+                [{ colour: [:red, :white], text: 'Some text...' }],
+                [{ colour: [:blue, :yellow], text: 'Some more text...' }]
               ]
             }
             let(:composition) {
@@ -159,7 +159,7 @@ module Vedeu
           context 'and a single line' do
             let(:stream)      {
               [
-                [{ style: :bold }, 'Some text...', { style: :bold_off }]
+                [{ style: :bold, text: 'Some text...' }, { style: :bold_off }]
               ]
             }
             let(:composition) {
@@ -179,8 +179,8 @@ module Vedeu
           context 'and multi-line' do
             let(:stream) {
                 [
-                  [{ style: :inverse },   'Some text...'],
-                  [{ style: :underline }, 'Some more text...']
+                  [{ style: :negative, text: 'Some text...' }],
+                  [{ style: :underline, text: 'Some more text...' }]
                 ]
             }
             let(:composition) {
@@ -201,7 +201,7 @@ module Vedeu
         context 'with an unknown style' do
           let(:stream)      {
             [
-              [{ style: :unknown }, 'Some text...']
+              [{ style: :unknown, text: 'Some text...' }]
             ]
           }
           let(:composition) {
@@ -209,6 +209,28 @@ module Vedeu
               [
                 "\e[38;2;39m\e[48;2;49m\e[1;1H               \e[1;1HSome text...\e[38;2;39m\e[48;2;49m\e[?25h",
                 "\e[38;2;39m\e[48;2;49m\e[2;1H               \e[2;1H\e[38;2;39m\e[48;2;49m\e[?25h"
+              ]
+            ]
+          }
+
+          it 'returns the enqueued composition' do
+            subject.must_equal(composition)
+          end
+        end
+
+        context 'with a complicated stream' do
+          let(:stream) {
+            [
+              [{:style=>[:normal], :colour=>[:red, :black]}, {:style=>[:underline, :negative], :colour=>[:yellow, :black], :text=>"Some text..."}, {:style=>[:normal], :colour=>[:green, :black], :text=>"Some more text..."}],
+              [{:style=>[], :colour=>[]}, {:style=>[], :colour=>[], :text=>"Even more text..."}]
+            ]
+          }
+
+          let(:composition) {
+            [
+              [
+                "\e[38;2;39m\e[48;2;49m\e[1;1H               \e[1;1H\e[38;2;31m\e[48;2;40m\e[24m\e[21m\e[27m\e[38;2;33m\e[48;2;40m\e[4m\e[7mSome text...\e[38;2;32m\e[48;2;40m\e[24m\e[21m\e[27mSome more tex...\e[0m\e[38;2;39m\e[48;2;49m\e[?25h",
+                "\e[38;2;39m\e[48;2;49m\e[2;1H               \e[2;1HEven more tex...\e[0m\e[38;2;39m\e[48;2;49m\e[?25h"
               ]
             ]
           }

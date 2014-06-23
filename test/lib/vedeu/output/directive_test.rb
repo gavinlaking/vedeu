@@ -74,7 +74,7 @@ module Vedeu
         let(:style) { [:normal, :underline, :normal] }
 
         it 'returns an escape sequence' do
-          subject.must_equal("\e[0m\e[4m\e[0m")
+          subject.must_equal("\e[24m\e[21m\e[27m\e[4m\e[24m\e[21m\e[27m")
         end
       end
     end

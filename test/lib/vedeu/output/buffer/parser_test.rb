@@ -18,6 +18,18 @@ module Vedeu
         subject.instance_variable_get('@composition').must_equal(composition)
       end
 
+      describe '#to_compositor' do
+        let(:subject) { described_instance.to_compositor }
+
+        it 'returns a Hash' do
+          subject.must_be_instance_of(Hash)
+        end
+
+        it 'returns the composition as a Compositor format' do
+          subject.must_equal({"dumb"=>[[{:style=>[:normal], :colour=>[:red, :black]}, {:style=>[:underline, :negative], :colour=>[:yellow, :black], :text=>"Some text..."}, {:style=>[:normal], :colour=>[:green, :black], :text=>"Some more text..."}], [{:style=>[], :colour=>[]}, {:style=>[], :colour=>[], :text=>"Even more text..."}]], "dumber"=>[[{:style=>[], :colour=>[]}, {:style=>[], :colour=>[], :text=>"Yet more text..."}]]})
+        end
+      end
+
       describe '#to_hash' do
         let(:subject) { described_instance.to_hash }
 
@@ -25,65 +37,8 @@ module Vedeu
           subject.must_be_instance_of(Hash)
         end
 
-        it 'returns a Hash' do
-          subject.must_equal(
-            {
-              "interface"=>[
-                {
-                  "name"=>"dumb",
-                  "line"=>[
-                    {
-                      "style"=>["normal"],
-                      "foreground"=>"red",
-                      "background"=>"black",
-                      "stream"=>[
-                        {
-                          "foreground"=>"yellow",
-                          "background"=>"black",
-                          "style"=>["underline", "reverse"],
-                          "text"=>"Some text..."
-                        }, {
-                          "foreground"=>"yellow",
-                          "background"=>"black",
-                          "style"=>["underline"],
-                          "text"=>"Some more text..."
-                        }
-                      ]
-                    }, {
-                      "style"=>nil,
-                      "foreground"=>nil,
-                      "background"=>nil,
-                      "stream"=>[
-                        {
-                          "foreground"=>nil,
-                          "background"=>nil,
-                          "style"=>nil,
-                          "text"=>"Even more text..."
-                        }
-                      ]
-                    }
-                  ]
-                }, {
-                  "name"=>"dumber",
-                  "line"=>[
-                    {
-                      "style"=>nil,
-                      "foreground"=>nil,
-                      "background"=>nil,
-                      "stream"=>[
-                        {
-                          "foreground"=>nil,
-                          "background"=>nil,
-                          "style"=>nil,
-                          "text"=>"Yet more text..."
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
-          )
+        it 'returns the composition as a Hash' do
+          subject.must_equal({"interface"=>[{"name"=>"dumb", "line"=>[{"style"=>["normal"], "foreground"=>"red", "background"=>"black", "stream"=>[{"style"=>["underline", "negative"], "foreground"=>"yellow", "background"=>"black", "text"=>"Some text..."}, {"style"=>["normal"], "foreground"=>"green", "background"=>"black", "text"=>"Some more text..."}]}, {"style"=>nil, "foreground"=>nil, "background"=>nil, "stream"=>[{"style"=>nil, "foreground"=>nil, "background"=>nil, "text"=>"Even more text..."}]}]}, {"name"=>"dumber", "line"=>[{"style"=>nil, "foreground"=>nil, "background"=>nil, "stream"=>[{"style"=>nil, "foreground"=>nil, "background"=>nil, "text"=>"Yet more text..."}]}]}]})
         end
       end
 
@@ -95,7 +50,7 @@ module Vedeu
         end
 
         it 'returns a String' do
-          subject.must_equal('{"interface":[{"name":"dumb","line":[{"style":["normal"],"foreground":"red","background":"black","stream":[{"foreground":"yellow","background":"black","style":["underline","reverse"],"text":"Some text..."},{"foreground":"yellow","background":"black","style":["underline"],"text":"Some more text..."}]},{"style":null,"foreground":null,"background":null,"stream":[{"foreground":null,"background":null,"style":null,"text":"Even more text..."}]}]},{"name":"dumber","line":[{"style":null,"foreground":null,"background":null,"stream":[{"foreground":null,"background":null,"style":null,"text":"Yet more text..."}]}]}]}')
+          subject.must_equal("{\"interface\":[{\"name\":\"dumb\",\"line\":[{\"style\":[\"normal\"],\"foreground\":\"red\",\"background\":\"black\",\"stream\":[{\"style\":[\"underline\",\"negative\"],\"foreground\":\"yellow\",\"background\":\"black\",\"text\":\"Some text...\"},{\"style\":[\"normal\"],\"foreground\":\"green\",\"background\":\"black\",\"text\":\"Some more text...\"}]},{\"style\":null,\"foreground\":null,\"background\":null,\"stream\":[{\"style\":null,\"foreground\":null,\"background\":null,\"text\":\"Even more text...\"}]}]},{\"name\":\"dumber\",\"line\":[{\"style\":null,\"foreground\":null,\"background\":null,\"stream\":[{\"style\":null,\"foreground\":null,\"background\":null,\"text\":\"Yet more text...\"}]}]}]}")
         end
       end
     end

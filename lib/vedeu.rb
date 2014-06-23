@@ -13,6 +13,7 @@ require_relative 'vedeu/support/terminal'
 
 require_relative 'vedeu/output/buffer/parser'
 require_relative 'vedeu/output/buffer/style'
+require_relative 'vedeu/output/buffer/formatting'
 require_relative 'vedeu/output/buffer/stream'
 require_relative 'vedeu/output/buffer/line'
 require_relative 'vedeu/output/buffer/interface'

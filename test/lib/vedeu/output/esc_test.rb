@@ -88,8 +88,8 @@ module Vedeu
       end
     end
 
-    describe '.inverse' do
-      let(:subject) { described_class.inverse }
+    describe '.negative' do
+      let(:subject) { described_class.negative }
 
       it 'returns a String' do
         subject.must_be_instance_of(String)
@@ -114,6 +114,18 @@ module Vedeu
 
     describe '.normal' do
       let(:subject) { described_class.normal }
+
+      it 'returns a String' do
+        subject.must_be_instance_of(String)
+      end
+
+      it 'returns an escape sequence' do
+        subject.must_equal("\e[24m\e[21m\e[27m")
+      end
+    end
+
+    describe '.dim' do
+      let(:subject) { described_class.dim }
 
       it 'returns a String' do
         subject.must_be_instance_of(String)

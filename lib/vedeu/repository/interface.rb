@@ -42,7 +42,7 @@ module Vedeu
     private
 
     def initial_state
-      { name => Array.new(geometry.height) { [''] } }
+      { name => Array.new(geometry.height) { [{ text: '' }] } }
     end
 
     def layer_attr
