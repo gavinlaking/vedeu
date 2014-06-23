@@ -157,7 +157,11 @@ module Vedeu
 
         context 'with a style' do
           context 'and a single line' do
-            let(:stream)      { [[{ style: :bold }, 'Some text...', { style: :bold_off }]] }
+            let(:stream)      {
+              [
+                [{ style: :bold }, 'Some text...', { style: :bold_off }]
+              ]
+            }
             let(:composition) {
               [
                 [
@@ -195,7 +199,11 @@ module Vedeu
         end
 
         context 'with an unknown style' do
-          let(:stream)      { [[{ style: :unknown }, 'Some text...']] }
+          let(:stream)      {
+            [
+              [{ style: :unknown }, 'Some text...']
+            ]
+          }
           let(:composition) {
             [
               [
