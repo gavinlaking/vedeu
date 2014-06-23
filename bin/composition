@@ -10,5 +10,3 @@ require 'pry'
 json = File.read('../test/support/composition.json')
 hash = Yajl::Parser.parse(json)
 comp = Vedeu::Buffer::Composition.new(hash)
-
-binding.pry
