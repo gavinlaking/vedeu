@@ -12,6 +12,7 @@ module Vedeu
       @exit_code = 1
     end
 
+    # :nocov:
     def execute!
       $stdin, $stdout, $stderr = @stdin, @stdout, @stderr
 
@@ -22,5 +23,6 @@ module Vedeu
       $stdin, $stdout, $stderr = STDIN, STDOUT, STDERR
       @kernel.exit(@exit_code)
     end
+    # :nocov:
   end
 end
