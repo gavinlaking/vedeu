@@ -12,7 +12,6 @@ require_relative 'vedeu/support/json_parser'
 require_relative 'vedeu/support/queue'
 require_relative 'vedeu/support/terminal'
 
-require_relative 'vedeu/output/buffer/parser'
 require_relative 'vedeu/output/buffer/style'
 require_relative 'vedeu/output/buffer/formatting'
 require_relative 'vedeu/output/buffer/stream'
