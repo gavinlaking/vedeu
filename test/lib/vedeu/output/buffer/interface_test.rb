@@ -14,10 +14,24 @@ module Vedeu
 
       it 'has a name attribute' do
         subject.name.must_be_instance_of(String)
+
+        subject.name.must_equal('dummy')
       end
 
       it 'has a line attribute' do
         subject.line.must_be_instance_of(Array)
+
+        subject.line.must_equal([])
+      end
+
+      describe '#to_compositor' do
+        let(:subject) { described_instance.to_compositor }
+
+        it 'returns an Array' do
+          subject.must_be_instance_of(Array)
+
+          subject.must_equal([])
+        end
       end
     end
   end
