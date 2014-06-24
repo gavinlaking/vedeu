@@ -1,0 +1,34 @@
+{
+    "interface":[
+        {
+            "name":"dummy",
+            "line":[
+                {
+                    "stream":[
+                        {
+                            "style":"normal",
+                            "foreground":"yellow",
+                            "background":"black",
+                            "text":"Some text..."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name":"dumber",
+            "line":[
+                {
+                    "stream":[
+                        {
+                            "style":"normal",
+                            "foreground":"red",
+                            "background":"black",
+                            "text":"Some more text..."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

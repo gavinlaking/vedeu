@@ -5,7 +5,7 @@ module Vedeu
     let(:described_class)    { JSONParser }
     let(:described_instance) { described_class.new(json) }
     let(:subject)            { described_instance }
-    let(:json)               { File.read('test/support/single_interface.json') }
+    let(:json)               { "[]" }
 
     it 'returns a JSONParser instance' do
       subject.must_be_instance_of(JSONParser)
@@ -26,8 +26,20 @@ module Vedeu
     describe '#parse' do
       let(:subject) { described_instance.parse }
 
-      it 'returns a Composition instance' do
-        subject.must_be_instance_of(Buffer::Composition)
+      context 'when the JSON contains a single interface' do
+        let(:json) { File.read('test/support/single_interface.json') }
+
+        it 'returns a Composition instance' do
+          subject.must_be_instance_of(Buffer::Composition)
+        end
+      end
+
+      context 'when the JSON contains multiple interfaces' do
+        let(:json) { File.read('test/support/multi_interface.json') }
+
+        it 'returns a Composition instance' do
+          subject.must_be_instance_of(Buffer::Composition)
+        end
       end
     end
   end
