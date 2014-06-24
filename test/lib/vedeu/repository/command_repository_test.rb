@@ -6,20 +6,18 @@ module Vedeu
     let(:input)           {}
 
     before do
-      CommandRepository.create({ name:    'apple',
-                                 entity:  DummyCommand,
-                                 options: {
-                                            keypress: 'a',
-                                            keyword:  'apple'
-                                          }
-                               })
-      CommandRepository.create({ name:    'banana',
-                                 entity:  DummyCommand,
-                                 options: {
-                                            keypress: 'b',
-                                            keyword:  'banana'
-                                          }
-                               })
+      CommandRepository.create({
+        name:     'apple',
+        entity:   DummyCommand,
+        keypress: 'a',
+        keyword:  'apple'
+      })
+      CommandRepository.create({
+        name:     'banana',
+        entity:   DummyCommand,
+        keypress: 'b',
+        keyword:  'banana'
+      })
     end
 
     after { CommandRepository.reset }

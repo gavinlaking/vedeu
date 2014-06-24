@@ -22,13 +22,12 @@ module Vedeu
 
   # :nocov:
   module ClassMethods
-    def command(name, entity, options = {})
-      command_name = name.is_a?(Symbol) ? name.to_s : name
-
+    def command(name, entity, keypress = '', keyword = '')
       CommandRepository.create({
-        name:    command_name,
-        entity:  entity,
-        options: options
+        name:     name,
+        entity:   entity,
+        keypress: keypress,
+        keyword:  keyword
       })
     end
   end
