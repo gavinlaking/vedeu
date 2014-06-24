@@ -15,10 +15,7 @@ And then execute:
     $ bundle
 
 ## Usage
-
-TODO: Write detailed documentation
-
-## Notes
+### Notes
 
     Buffer
       |-- Composition
@@ -93,21 +90,7 @@ TODO: Write detailed documentation
 ### On Interfaces
 
 When we create the interface we define it's width, height, and origin (y, x).
-These numbers are based on the area available to the terminal. If the terminal is 80x25, then our interface can use all or some of this area.
-
-### On Composition
-
-To compose data suitable for output in Vedeu, you can use this EBNF. Diagrams are available in the `documentation` directory.
-
-    Output ::= (('{' (Interface '=>' Stream) '}' (',' | ))* | ('[' (Stream (',' | ))* ']' (',' | ))* | ('[' (String (',' | ))* ']') (',' | ))*
-    Stream ::= ('[' (Directive (',' | ) | String (',' | ))* ']' (',' | ))*
-    Interface ::= String
-    Directive ::= PositionDirective | ColourDirective | StyleDirective
-    PositionDirective ::= '[' Fixnum ',' Fixnum ']'
-    StyleDirective ::= Symbol
-    ColourDirective ::= '[' Symbol ',' Symbol ']'
-
-Diagrams were produced using the Railroad Diagram Generator at `http://bottlecaps.de/rr/ui`.
+These numbers are based on the area available to the terminal. For example, if the terminal size is 80x25, then our interface can use all or some of this area.
 
 ## Usage
 
