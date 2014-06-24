@@ -20,6 +20,12 @@ TODO: Write detailed documentation
 
 ## Notes
 
+    Buffer
+      |-- Composition
+            |-- Interface
+                  |-- Line
+                        |-- Stream
+
     Launcher
       |-- Application
             |-- EventLoop
@@ -33,24 +39,24 @@ TODO: Write detailed documentation
             |     |
             |     |-- Output
             |           |-- Compositor
+            |           |     |-- Directive
+            |           |           |-- Colour
+            |           |           |     |-- Background < Base
+            |           |           |     |-- Foreground < Base
+            |           |           |
+            |           |           |-- Position
+            |           |           |     |-- Esc
+            |           |           |
+            |           |           |-- Style
+            |           |           |     |-- Cursor
+            |           |           |     |-- Esc
+            |           |           |
+            |           |           |-- Wordwrap
+            |           |           |-- InterfaceRepository
             |           |
-            |           |-- Directive
-            |           |     |-- Colour
-            |           |     |     |-- Background < Base
-            |           |     |     |-- Foreground < Base
-            |           |     |
-            |           |     |-- Position
-            |           |     |     |-- Esc
-            |           |     |
-            |           |     |-- Style
-            |           |     |     |-- Cursor
-            |           |     |     |-- Esc
-            |           |     |
-            |           |     |-- Wordwrap
             |           |
             |           |-- InterfaceRepository
-            |           |-- Position
-            |                 |-- Esc
+            |           |-- Terminal
             |
             |-- InterfaceRepository
             |-- Terminal
@@ -70,6 +76,7 @@ TODO: Write detailed documentation
       |     |-- Foreground < Base
       |
       |-- Geometry
+      |     |-- Position
       |     |-- Terminal
       |
       |-- InterfaceRepository
