@@ -84,7 +84,7 @@ module Vedeu
             [
               [
                 "\e[38;2;39m\e[48;2;49m\e[1;1H               \e[1;1HSome text...\e[38;2;39m\e[48;2;49m\e[?25h",
-                "\e[38;2;39m\e[48;2;49m\e[2;1H               \e[2;1HSome more tex...\e[0m\e[38;2;39m\e[48;2;49m\e[?25h"
+                "\e[38;2;39m\e[48;2;49m\e[2;1H               \e[2;1HSome more tex...\e[38;2;39m\e[48;2;49m\e[?25h"
               ]
             ]
           }
@@ -146,7 +146,7 @@ module Vedeu
               [
                 [
                   "\e[38;2;39m\e[48;2;49m\e[1;1H               \e[1;1H\e[38;2;31m\e[48;2;47mSome text...\e[38;2;39m\e[48;2;49m\e[?25h",
-                  "\e[38;2;39m\e[48;2;49m\e[2;1H               \e[2;1H\e[38;2;34m\e[48;2;43mSome more tex...\e[0m\e[38;2;39m\e[48;2;49m\e[?25h"
+                  "\e[38;2;39m\e[48;2;49m\e[2;1H               \e[2;1H\e[38;2;34m\e[48;2;43mSome more tex...\e[38;2;39m\e[48;2;49m\e[?25h"
                 ]
               ]
             }
@@ -189,7 +189,7 @@ module Vedeu
               [
                 [
                   "\e[38;2;39m\e[48;2;49m\e[1;1H               \e[1;1H\e[7mSome text...\e[38;2;39m\e[48;2;49m\e[?25h",
-                  "\e[38;2;39m\e[48;2;49m\e[2;1H               \e[2;1H\e[4mSome more tex...\e[0m\e[38;2;39m\e[48;2;49m\e[?25h"
+                  "\e[38;2;39m\e[48;2;49m\e[2;1H               \e[2;1H\e[4mSome more tex...\e[38;2;39m\e[48;2;49m\e[?25h"
                 ]
               ]
             }
@@ -231,8 +231,8 @@ module Vedeu
           let(:composition) {
             [
               [
-                "\e[38;2;39m\e[48;2;49m\e[1;1H               \e[1;1H\e[38;2;31m\e[48;2;40m\e[24m\e[21m\e[27m\e[38;2;33m\e[48;2;40m\e[4m\e[7mSome text...\e[38;2;32m\e[48;2;40m\e[24m\e[21m\e[27mSome more tex...\e[0m\e[38;2;39m\e[48;2;49m\e[?25h",
-                "\e[38;2;39m\e[48;2;49m\e[2;1H               \e[2;1HEven more tex...\e[0m\e[38;2;39m\e[48;2;49m\e[?25h"
+                "\e[38;2;39m\e[48;2;49m\e[1;1H               \e[1;1H\e[38;2;31m\e[48;2;40m\e[24m\e[21m\e[27m\e[38;2;33m\e[48;2;40m\e[4m\e[7mSome text...\e[38;2;32m\e[48;2;40m\e[24m\e[21m\e[27mSome more tex...\e[38;2;39m\e[48;2;49m\e[?25h",
+                "\e[38;2;39m\e[48;2;49m\e[2;1H               \e[2;1HEven more tex...\e[38;2;39m\e[48;2;49m\e[?25h"
               ]
             ]
           }

@@ -39,6 +39,10 @@ module Vedeu
 
       subject { described_class.this(value, options) }
 
+      it 'returns a String' do
+        subject.must_be_instance_of(String)
+      end
+
       it 'returns formatted text' do
         subject.must_equal(formatted_value)
       end
@@ -47,7 +51,7 @@ module Vedeu
         let(:options)         { { width: 70, prune: true } }
         let(:formatted_value) {
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' \
-          " Curabitur a...\e[0m"
+          " Curabitur a..."
         }
 
         it 'returns formatted text' do
