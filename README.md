@@ -4,6 +4,7 @@
 
 Vedeu is my attempt at creating a terminal based application framework without the need for Ncurses.
 
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -15,94 +16,9 @@ And then execute:
     $ bundle
 
 ## Usage
-### Notes
 
-    Buffer
-      |-- Composition
-            |-- Interface
-                  |-- Line
-                        |-- Stream
+Expect documentation soon!
 
-    Launcher
-      |-- Application
-            |-- EventLoop
-            |     |-- Input
-            |     |     |-- Queue
-            |     |     |-- Terminal
-            |     |
-            |     |-- Process
-            |     |     |-- CommandRepository
-            |     |     |-- Queue
-            |     |
-            |     |-- Output
-            |           |-- Compositor
-            |           |     |-- Directive
-            |           |           |-- Colour
-            |           |           |     |-- Background < Base
-            |           |           |     |-- Foreground < Base
-            |           |           |
-            |           |           |-- Position
-            |           |           |     |-- Esc
-            |           |           |
-            |           |           |-- Style
-            |           |           |     |-- Cursor
-            |           |           |     |-- Esc
-            |           |           |
-            |           |           |-- Wordwrap
-            |           |           |-- InterfaceRepository
-            |           |
-            |           |
-            |           |-- InterfaceRepository
-            |           |-- Terminal
-            |
-            |-- InterfaceRepository
-            |-- Terminal
-
-    Base
-      |-- Esc
-      |-- Translator
-
-    Command
-      |-- CommandRepository
-
-    Exit
-
-    Interface
-      |-- Colour
-      |     |-- Background < Base
-      |     |-- Foreground < Base
-      |
-      |-- Geometry
-      |     |-- Position
-      |     |-- Terminal
-      |
-      |-- InterfaceRepository
-
-    Repository
-      |-- Storage
-
-    Terminal
-      |-- Cursor
-      |-- Esc
-      |-- Position
-            |-- Esc
-
-### On Interfaces
-
-When we create the interface we define it's width, height, and origin (y, x).
-These numbers are based on the area available to the terminal. For example, if the terminal size is 80x25, then our interface can use all or some of this area.
-
-## Usage
-
-    class MyApp
-      include Vedeu
-
-      interface 'status', { y: 1, x: 1, width: :auto, height: 1     }
-      interface 'main',   { y: 2, x: 1, width: :auto, height: :auto, fg: :red, bg: :black }
-
-      command 'exit', Vedeu::Exit.dispatch, { keyword: "exit", keypress: "q" }
-      command 'help', MyApp.help,           { keyword: "help", keypress: "h" }
-    end
 
 ## Contributing
 
