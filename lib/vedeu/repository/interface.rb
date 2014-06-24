@@ -11,6 +11,7 @@ module Vedeu
       @current    = []
     end
 
+    # :nocov:
     def refresh
       if enqueued?
         @current = dequeue
@@ -22,6 +23,7 @@ module Vedeu
         @current
       end
     end
+    # :nocov:
 
     def geometry
       @geometry ||= Geometry.new(attributes)

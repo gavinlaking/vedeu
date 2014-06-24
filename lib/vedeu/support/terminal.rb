@@ -35,6 +35,7 @@ module Vedeu
         reset_position
       end
 
+      # :nocov:
       def cooked(instance, &block)
         console.cooked do
           instance.initial_setup!
@@ -52,6 +53,7 @@ module Vedeu
         end if block_given?
       end
       alias_method :open_raw, :raw
+      # :nocov:
 
       def console
         IO.console
@@ -101,6 +103,7 @@ module Vedeu
 
     private
 
+    # :nocov:
     def terminal_mode(&block)
       {
         cooked: proc { Terminal.cooked(self, &block) },
@@ -114,6 +117,7 @@ module Vedeu
         hide: proc { Terminal.hide_cursor }
       }
     end
+    # :nocov:
 
     def set_cursor
       cursor_mode.fetch(cursor).call

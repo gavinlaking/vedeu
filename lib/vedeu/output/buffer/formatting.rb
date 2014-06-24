@@ -10,19 +10,15 @@ module Vedeu
       private
 
       def colour
-        if foreground && background
-          [foreground, background]
-        elsif foreground.nil? || background.nil?
-          []
-        end
+        return [] if foreground.nil? || background.nil?
+
+        [foreground, background]
       end
 
       def styles
-        if style
-          style
-        elsif style.nil?
-          []
-        end
+        return [] if style.nil?
+
+        style
       end
     end
   end

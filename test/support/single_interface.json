@@ -1,0 +1,19 @@
+{
+    "interface":[
+        {
+            "name":"dummy",
+            "line":[
+                {
+                    "stream":[
+                        {
+                            "style":"normal",
+                            "foreground":"yellow",
+                            "background":"black",
+                            "text":"Some text..."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

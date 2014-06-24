@@ -12,6 +12,7 @@ module Vedeu
       @running = true
     end
 
+    # :nocov:
     def main_sequence
       while @running do
         Input.capture
@@ -23,6 +24,7 @@ module Vedeu
     rescue Collapse
       stop
     end
+    # :nocov:
 
     def stop
       @running = false

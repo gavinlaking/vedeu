@@ -4,7 +4,7 @@ module Vedeu
       include Virtus.model
       include Formatting
 
-      attribute :stream,     Array[Buffer::Stream]
+      attribute :stream, Array[Buffer::Stream]
 
       def to_compositor
         [{ style: styles, colour: colour }, *stream.map(&:to_compositor)]

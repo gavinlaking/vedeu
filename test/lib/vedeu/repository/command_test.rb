@@ -9,10 +9,8 @@ module Vedeu
       {
         name:    'dummy',
         entity:   DummyCommand,
-        options: {
-          keyword:  "dummy",
-          keypress: "d"
-        }
+        keyword:  "dummy",
+        keypress: "d"
       }
     }
 
@@ -20,24 +18,28 @@ module Vedeu
       subject.must_be_instance_of(Command)
     end
 
-    it 'sets an instance variable' do
-      subject.instance_variable_get('@attributes').must_equal(attributes)
+    it 'has a name attribute' do
+      subject.name.must_be_instance_of(String)
+
+      subject.name.must_equal('dummy')
     end
 
-    it 'sets an instance variable' do
-      subject.instance_variable_get('@name').must_equal('dummy')
+    it 'has an entity attribute' do
+      subject.entity.must_be_instance_of(Class)
+
+      subject.entity.must_equal(DummyCommand)
     end
 
-    it 'sets an instance variable' do
-      subject.instance_variable_get('@entity').must_equal(DummyCommand)
+    it 'has a keypress attribute' do
+      subject.keypress.must_be_instance_of(String)
+
+      subject.keypress.must_equal('d')
     end
 
-    it 'sets an instance variable' do
-      subject.instance_variable_get('@keyword').must_equal('dummy')
-    end
+    it 'has an keyword attribute' do
+      subject.keyword.must_be_instance_of(String)
 
-    it 'sets an instance variable' do
-      subject.instance_variable_get('@keypress').must_equal('d')
+      subject.keyword.must_equal('dummy')
     end
 
     describe '#execute' do
@@ -55,6 +57,10 @@ module Vedeu
 
     describe '#executable' do
       let(:subject) { described_instance.executable }
+
+      it 'returns a proc' do
+        subject.class.to_s.must_equal('Proc')
+      end
     end
   end
 end

@@ -51,12 +51,14 @@ module Vedeu
     end
 
     def pruned
-      return value if value.size <= pruned_width
-      [
-        value.chomp.slice(0..pruned_width),
-        '...',
-        Esc.reset
-      ].join
+      if value.size <= pruned_width
+        value
+      else
+        [
+          value.chomp.slice(0..pruned_width),
+          '...'
+        ].join
+      end
     end
 
     def pruned_width
