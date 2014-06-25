@@ -11,14 +11,10 @@ module Vedeu
     def y
       values[:y]
     end
-    alias_method :row,  :y
-    alias_method :line, :y
 
     def x
       values[:x]
     end
-    alias_method :column, :x
-    alias_method :col,    :x
 
     def width
       values[:width]
