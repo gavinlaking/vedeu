@@ -136,8 +136,8 @@ module Vedeu
       end
     end
 
-    describe '.unsave' do
-      let(:subject) { described_class.unsave }
+    describe '.restore' do
+      let(:subject) { described_class.restore }
 
       it 'returns a String' do
         subject.must_be_instance_of(String)
@@ -160,8 +160,8 @@ module Vedeu
       end
     end
 
-    describe '.unsave_all' do
-      let(:subject) { described_class.unsave_all }
+    describe '.restore_all' do
+      let(:subject) { described_class.restore_all }
 
       it 'returns a String' do
         subject.must_be_instance_of(String)
