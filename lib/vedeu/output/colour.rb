@@ -1,12 +1,11 @@
 module Vedeu
   class Colour
     class << self
-      def define(pair = [])
+      def set(pair = [])
         return '' if pair.empty?
 
-        new(pair).define
+        new(pair).set
       end
-      alias_method :set, :define
 
       def reset
         new.reset
@@ -17,10 +16,9 @@ module Vedeu
       @pair = pair || []
     end
 
-    def define
+    def set
       [foreground, background].join
     end
-    alias_method :set, :define
 
     def reset
       [foreground(:default), background(:default)].join
@@ -29,12 +27,10 @@ module Vedeu
     def foreground(value = pair[0])
       @foreground ||= Foreground.escape_sequence(value)
     end
-    alias_method :fg, :foreground
 
     def background(value = pair[1])
       @background ||= Background.escape_sequence(value)
     end
-    alias_method :bg, :background
 
     private
 

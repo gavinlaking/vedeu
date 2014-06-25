@@ -43,7 +43,6 @@ module Vedeu
           yield instance
         end if block_given?
       end
-      alias_method :open_cooked, :cooked
 
       def raw(instance, &block)
         console.raw do
@@ -52,7 +51,6 @@ module Vedeu
           yield instance
         end if block_given?
       end
-      alias_method :open_raw, :raw
       # :nocov:
 
       def console

@@ -13,7 +13,6 @@ module Vedeu
     def bold
       [esc, '1m'].join
     end
-    alias_method :bright, :bold
 
     def bold_off
       [esc, '21m'].join

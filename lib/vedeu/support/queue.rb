@@ -22,7 +22,6 @@ module Vedeu
     def clear
       store.clear
     end
-    alias_method :reset, :clear
 
     def view
       store.inspect
