@@ -35,14 +35,15 @@ Expect proper documentation soon!
 
 ### On Defining Interfaces
 
-    interface :main, { y:          1,
-                       x:          1,
-                       width:      auto, # will set to terminal width
-                       height:     10,   # also accepts :auto
-                       foreground: :white,
-                       background: :black,
-                       cursor:     false,
-                       layer:      0 }
+    interface :main, {
+                y:          1,
+                x:          1,
+                width:      :auto, # will set to terminal width
+                height:     10,    # also accepts :auto
+                foreground: :white,
+                background: :black,
+                cursor:     false,
+                layer:      0 }
 
 Referring to the above example, interfaces have a name, and various default attributes.
 
@@ -61,12 +62,14 @@ Referring to the above example, interfaces have a name, and various default attr
 
 ### On Defining Commands
 
-    command :do_something, { entity:   SomeClass,
-                             keypress: 's',
-                             keyword:  'start' }
+    command :do_something, {
+              entity:    SomeClass,
+              keypress:  's',
+              keyword:   'start',
+              arguments: [:some, { :values => :here }, "etc"] }
 
 As above, commands have a name, a class which performs the action
-(you define this), and they can be invoked with a keypress or a keyword.
+(you define this), and they can be invoked with a keypress or a keyword. At this time, Vedeu will call the `.dispatch` method on your class, passing any arguments you originally defined in the command. In the future, both the method called and the arguments could be dynamic.
 
 
 ### Geometry
