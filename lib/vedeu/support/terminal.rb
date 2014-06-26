@@ -79,6 +79,8 @@ module Vedeu
       end
 
       def reset_position
+        puts
+
         clear_line(height - 1)
       end
     end

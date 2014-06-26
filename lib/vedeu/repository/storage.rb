@@ -34,8 +34,10 @@ module Vedeu
 
     private
 
+    attr_reader :map
+
     def map_for_class(entity)
-      @map[entity.to_s.to_sym] ||= {}
+      map[entity.to_s.to_sym] ||= {}
     end
 
     def map_for(record)
