@@ -48,7 +48,7 @@ module Vedeu
           let(:result) { :stop }
 
           it 'raises an exception' do
-            proc { subject }.must_raise(Collapse)
+            proc { subject }.must_raise(StopIteration)
           end
         end
 
@@ -74,7 +74,7 @@ module Vedeu
           let(:result) { :stop }
 
           it 'raises an exception' do
-            proc { subject }.must_raise(Collapse)
+            proc { subject }.must_raise(StopIteration)
           end
         end
 

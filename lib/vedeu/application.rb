@@ -7,14 +7,14 @@ module Vedeu
     end
 
     def initialize(options = {})
-      @options = options
+      @options = options || {}
     end
 
     def start
       Terminal.open(options) do
         Output.render
 
-        EventLoop.main_sequence
+        runner { main_sequence }
       end
     ensure
       Terminal.close
@@ -24,12 +24,42 @@ module Vedeu
 
     attr_reader :options
 
+    def runner
+      if interactive?
+        interactive { yield }
+      else
+        run_once    { yield }
+      end
+    end
+
+    def main_sequence
+      Input.capture
+
+      Process.evaluate
+
+      Output.render
+    end
+
+    def interactive?
+      options.fetch(:interactive)
+    end
+
+    def interactive
+      loop { yield }
+    end
+
+    def run_once
+      yield
+    end
+
     def options
       defaults.merge!(@options)
     end
 
     def defaults
-      {}
+      {
+        interactive: true
+      }
     end
   end
 end

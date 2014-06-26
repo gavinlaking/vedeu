@@ -2,6 +2,7 @@ require 'date'
 require 'logger'
 require 'io/console'
 require 'oj'
+require 'optparse'
 require 'virtus'
 
 require_relative 'vedeu/input/input'
