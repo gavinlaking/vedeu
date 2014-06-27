@@ -27,6 +27,7 @@ require_relative 'vedeu/output/directive'
 require_relative 'vedeu/output/foreground'
 require_relative 'vedeu/output/geometry'
 require_relative 'vedeu/output/layer'
+require_relative 'vedeu/output/menu'
 require_relative 'vedeu/output/esc'
 require_relative 'vedeu/output/colour'
 require_relative 'vedeu/output/output'
@@ -47,6 +48,7 @@ require_relative 'vedeu/repository/dummy_interface'
 require_relative 'vedeu/repository/dummy_command'
 
 require_relative 'vedeu/application'
+require_relative 'vedeu/configuration'
 require_relative 'vedeu/launcher'
 require_relative 'vedeu/version'
 
@@ -59,9 +61,20 @@ module Vedeu
       end
     end
   end
-  # :nocov:
 
-  # :nocov:
+  def self.debug(filename = 'profile.html', &block)
+    RubyProf.start
+
+    yield
+
+    result = RubyProf.stop
+    result.eliminate_methods!([/^Array/, /^Hash/])
+
+    File.open(Vedeu.root_path + '/tmp/' + filename, 'w') do |file|
+      RubyProf::CallStackPrinter.new(result).print(file)
+    end
+  end
+
   def self.included(receiver)
     receiver.extend(ClassMethods)
   end

@@ -3,8 +3,7 @@ require_relative '../../../test_helper'
 module Vedeu
   describe JSONParser do
     let(:described_class)    { JSONParser }
-    let(:described_instance) { described_class.new(json) }
-    let(:subject)            { described_instance }
+    let(:subject)            { described_class.new(json) }
     let(:json)               { "[]" }
 
     it 'returns a JSONParser instance' do
@@ -24,7 +23,7 @@ module Vedeu
     end
 
     describe '#parse' do
-      let(:subject) { described_instance.parse }
+      let(:subject) { described_class.parse(json) }
 
       context 'when the JSON contains a single interface' do
         let(:json) { File.read('test/support/single_interface.json') }

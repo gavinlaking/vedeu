@@ -46,6 +46,7 @@ module Vedeu
 
     def interactive
       loop { yield }
+    rescue StopIteration
     end
 
     def run_once
