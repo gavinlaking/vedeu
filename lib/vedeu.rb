@@ -4,7 +4,6 @@ require 'io/console'
 require 'oj'
 require 'optparse'
 require 'virtus'
-require 'ruby-prof'
 
 require_relative 'vedeu/input/input'
 
@@ -62,9 +61,7 @@ module Vedeu
       end
     end
   end
-  # :nocov:
 
-  # :nocov:
   def self.debug(filename = 'profile.html', &block)
     RubyProf.start
 
@@ -73,22 +70,11 @@ module Vedeu
     result = RubyProf.stop
     result.eliminate_methods!([/^Array/, /^Hash/])
 
-    File.open('./tmp/' + filename, 'w') do |file|
+    File.open(Vedeu.root_path + '/tmp/' + filename, 'w') do |file|
       RubyProf::CallStackPrinter.new(result).print(file)
     end
   end
 
-  def self.trace
-    trace = TracePoint.new(:call) do |tp|
-      if tp.defined_class.to_s.match(/Troo/)
-        Troo.logger.debug [tp.defined_class.to_s, tp.method_id.to_s].join(' ')
-      end
-    end
-    trace.enable
-  end
-  # :nocov:
-
-  # :nocov:
   def self.included(receiver)
     receiver.extend(ClassMethods)
   end
