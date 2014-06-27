@@ -31,17 +31,15 @@ class SingleInterfaceApp
   end
 
   def self.dispatch
-    [
-      {
-        'main' => [
-                    [
-                      {
-                        :text => "The time is: #{Time.now}.",
-                      }
-                    ]
+    {
+      'main' => [
+                  [
+                    {
+                      :text => "The time is: #{Time.now}.",
+                    }
                   ]
-      }
-    ]
+                ]
+    }
   end
 end
 
