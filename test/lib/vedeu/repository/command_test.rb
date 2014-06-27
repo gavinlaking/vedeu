@@ -7,10 +7,11 @@ module Vedeu
     let(:subject)            { described_instance }
     let(:attributes)         {
       {
-        name:    'dummy',
-        entity:   DummyCommand,
-        keyword:  "dummy",
-        keypress: "d"
+        name:      'dummy',
+        entity:    DummyCommand,
+        keyword:   "dummy",
+        keypress:  "d",
+        arguments: []
       }
     }
 
@@ -40,6 +41,12 @@ module Vedeu
       subject.keyword.must_be_instance_of(String)
 
       subject.keyword.must_equal('dummy')
+    end
+
+    it 'has an arguments attribute' do
+      subject.arguments.must_be_instance_of(Array)
+
+      subject.arguments.must_equal([])
     end
 
     describe '#execute' do
