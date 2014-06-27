@@ -47,6 +47,7 @@ require_relative 'vedeu/repository/dummy_interface'
 require_relative 'vedeu/repository/dummy_command'
 
 require_relative 'vedeu/application'
+require_relative 'vedeu/configuration'
 require_relative 'vedeu/launcher'
 require_relative 'vedeu/version'
 

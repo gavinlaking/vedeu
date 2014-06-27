@@ -16,12 +16,27 @@ module Vedeu
       before do
         Terminal.stubs(:open).yields(self)
         Output.stubs(:render)
+        Input.stubs(:capture)
+        Process.stubs(:evaluate)
         Terminal.stubs(:close)
       end
 
-      it 'returns a NilClass' do
-        skip
-        subject.must_be_instance_of(NilClass)
+      context 'when the application should run interactively' do
+        let(:options) { { interactive: true } }
+
+        before { Process.stubs(:evaluate).raises(StopIteration) }
+
+        it 'returns a NilClass' do
+          subject.must_be_instance_of(NilClass)
+        end
+      end
+
+      context 'when the application should run once' do
+        let(:options) { { interactive: false } }
+
+        it 'returns a NilClass' do
+          subject.must_be_instance_of(NilClass)
+        end
       end
     end
   end

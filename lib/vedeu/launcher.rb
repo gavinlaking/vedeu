@@ -16,7 +16,7 @@ module Vedeu
     def execute!
       $stdin, $stdout, $stderr = @stdin, @stdout, @stderr
 
-      Application.start(options)
+      Application.start(configuration)
 
       @exit_code = 0
     ensure
@@ -29,36 +29,10 @@ module Vedeu
 
     attr_reader :argv
 
-    def options
-      options = {}
-
-      parser = OptionParser.new do |opts|
-        opts.banner = "Usage: #{$PROGRAM_NAME} [options]"
-
-        opts.on_tail("-h", "--help", "Show this message") do |v|
-          puts opts
-          exit
-        end
-
-        opts.on_tail("--version", "Show version") do
-          puts Vedeu::VERSION.join('.')
-          exit
-        end
-
-        opts.on("-I", "--run-once", "Run application once.") do
-          options[:interactive] = false
-        end
-      end
-
-      begin
-        parser.parse!(argv)
-      rescue OptionParser::InvalidOption => e
-        $stderr.puts e
-        $stderr.puts parser
-        exit 1
-      end
-
-      options
+    # :nocov:
+    def configuration
+      Configuration.configure(argv)
     end
+    # :nocov:
   end
 end
