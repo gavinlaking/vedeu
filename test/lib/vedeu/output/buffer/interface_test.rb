@@ -5,23 +5,34 @@ module Vedeu
     describe Interface do
       let(:described_class)    { Interface }
       let(:described_instance) { described_class.new(attributes) }
-      let(:subject)            { described_instance }
       let(:attributes)         { { name: 'dummy', line: [] } }
 
-      it 'returns a Interface instance' do
-        subject.must_be_instance_of(Interface)
+      describe '#initialize' do
+        let(:subject) { described_instance }
+
+        it 'returns a Interface instance' do
+          subject.must_be_instance_of(Interface)
+        end
       end
 
-      it 'has a name attribute' do
-        subject.name.must_be_instance_of(String)
+      describe '#name' do
+        let(:subject) { described_instance.name }
 
-        subject.name.must_equal('dummy')
+        it 'has a name attribute' do
+          subject.must_be_instance_of(String)
+
+          subject.must_equal('dummy')
+        end
       end
 
-      it 'has a line attribute' do
-        subject.line.must_be_instance_of(Array)
+      describe '#line' do
+        let(:subject) { described_instance.line }
 
-        subject.line.must_equal([])
+        it 'has a line attribute' do
+          subject.must_be_instance_of(Array)
+
+          subject.must_equal([])
+        end
       end
 
       describe '#to_compositor' do

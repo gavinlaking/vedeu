@@ -4,15 +4,18 @@ module Vedeu
   describe Colour do
     let(:described_class)    { Colour }
     let(:described_instance) { described_class.new }
-    let(:subject)            { described_instance }
     let(:pair)               { [] }
 
-    it 'returns a Colour instance' do
-      subject.must_be_instance_of(Colour)
-    end
+    describe '#initialize' do
+      let(:subject) { described_instance }
 
-    it 'sets an instance variable' do
-      subject.instance_variable_get('@pair').must_equal([])
+      it 'returns a Colour instance' do
+        subject.must_be_instance_of(Colour)
+      end
+
+      it 'sets an instance variable' do
+        subject.instance_variable_get('@pair').must_equal([])
+      end
     end
 
     describe '.set' do

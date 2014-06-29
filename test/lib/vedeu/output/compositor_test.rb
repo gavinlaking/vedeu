@@ -17,20 +17,22 @@ module Vedeu
       InterfaceRepository.reset
     end
 
-    it 'returns a Compositor instance' do
-      subject.must_be_instance_of(Compositor)
-    end
+    describe '#initialize' do
+      it 'returns a Compositor instance' do
+        subject.must_be_instance_of(Compositor)
+      end
 
-    it 'sets an instance variable' do
-      subject.instance_variable_get('@attributes').must_equal(attributes)
-    end
+      it 'sets an instance variable' do
+        subject.instance_variable_get('@attributes').must_equal(attributes)
+      end
 
-    it 'sets an instance variable' do
-      subject.instance_variable_get('@interface').must_equal(attributes[:interface])
-    end
+      it 'sets an instance variable' do
+        subject.instance_variable_get('@interface').must_equal(attributes[:interface])
+      end
 
-    it 'sets an instance variable' do
-      subject.instance_variable_get('@stream').must_equal(attributes[:stream])
+      it 'sets an instance variable' do
+        subject.instance_variable_get('@stream').must_equal(attributes[:stream])
+      end
     end
 
     describe '#arrange' do

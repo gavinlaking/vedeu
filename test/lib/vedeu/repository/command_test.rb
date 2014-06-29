@@ -15,38 +15,62 @@ module Vedeu
       }
     }
 
-    it 'returns a Command instance' do
-      subject.must_be_instance_of(Command)
+    describe '#initialize' do
+      let(:subject) { described_instance }
+
+      it 'returns a Command instance' do
+        subject.must_be_instance_of(Command)
+      end
     end
 
-    it 'has a name attribute' do
-      subject.name.must_be_instance_of(String)
+    describe '#name' do
+      let(:subject) { described_instance.name }
 
-      subject.name.must_equal('dummy')
+      it 'has a name attribute' do
+        subject.must_be_instance_of(String)
+
+        subject.must_equal('dummy')
+      end
     end
 
-    it 'has an entity attribute' do
-      subject.entity.must_be_instance_of(Class)
+    describe '#entity' do
+      let(:subject) { described_instance.entity }
 
-      subject.entity.must_equal(DummyCommand)
+      it 'has an entity attribute' do
+        subject.must_be_instance_of(Class)
+
+        subject.must_equal(DummyCommand)
+      end
     end
 
-    it 'has a keypress attribute' do
-      subject.keypress.must_be_instance_of(String)
+    describe '#keypress' do
+      let(:subject) { described_instance.keypress }
 
-      subject.keypress.must_equal('d')
+      it 'has a keypress attribute' do
+        subject.must_be_instance_of(String)
+
+        subject.must_equal('d')
+      end
     end
 
-    it 'has an keyword attribute' do
-      subject.keyword.must_be_instance_of(String)
+    describe '#keyword' do
+      let(:subject) { described_instance.keyword }
 
-      subject.keyword.must_equal('dummy')
+      it 'has an keyword attribute' do
+        subject.must_be_instance_of(String)
+
+        subject.must_equal('dummy')
+      end
     end
 
-    it 'has an arguments attribute' do
-      subject.arguments.must_be_instance_of(Array)
+    describe '#arguments' do
+      let(:subject) { described_instance.arguments }
 
-      subject.arguments.must_equal([])
+      it 'has an arguments attribute' do
+        subject.must_be_instance_of(Array)
+
+        subject.must_equal([])
+      end
     end
 
     describe '#execute' do

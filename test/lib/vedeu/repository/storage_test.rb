@@ -5,14 +5,18 @@ module Vedeu
     let(:described_class) { Storage }
     let(:subject)         { described_class.new }
     let(:record)          { DummyCommand.new }
-    let(:entity)           {}
+    let(:entity)          {}
 
-    it 'returns a Storage instance' do
-      subject.must_be_instance_of(Storage)
-    end
+    describe '#initialize' do
+      let(:subject) { described_class.new }
 
-    it 'sets an instance variable' do
-      subject.instance_variable_get('@map').must_equal({})
+      it 'returns a Storage instance' do
+        subject.must_be_instance_of(Storage)
+      end
+
+      it 'sets an instance variable' do
+        subject.instance_variable_get('@map').must_equal({})
+      end
     end
 
     describe '#create' do

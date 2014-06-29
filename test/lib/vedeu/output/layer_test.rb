@@ -6,8 +6,10 @@ module Vedeu
     let(:described_instance) { described_class.new(index) }
     let(:index)              {}
 
-    it 'returns a Layer instance' do
-      described_instance.must_be_instance_of(Layer)
+    describe '#initialize' do
+      it 'returns a Layer instance' do
+        described_instance.must_be_instance_of(Layer)
+      end
     end
 
     describe '#index' do

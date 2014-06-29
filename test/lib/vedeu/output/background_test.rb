@@ -6,8 +6,10 @@ module Vedeu
     let(:described_instance) { described_class.new(colour) }
     let(:colour)             {}
 
-    it 'returns a Background instance' do
-      described_instance.must_be_instance_of(Background)
+    describe '#initialize' do
+      it 'returns a Background instance' do
+        described_instance.must_be_instance_of(Background)
+      end
     end
 
     describe '#escape_sequence' do

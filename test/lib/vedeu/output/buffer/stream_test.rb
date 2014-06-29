@@ -5,7 +5,6 @@ module Vedeu
     describe Stream do
       let(:described_class)    { Stream }
       let(:described_instance) { described_class.new(attributes) }
-      let(:subject)            { described_instance }
       let(:attributes)         {
         {
           style:      'normal',
@@ -15,32 +14,52 @@ module Vedeu
         }
       }
 
-      it 'returns a Stream instance' do
-        subject.must_be_instance_of(Stream)
+      describe '#initialize' do
+        let(:subject) { described_instance }
+
+        it 'returns a Stream instance' do
+          subject.must_be_instance_of(Stream)
+        end
       end
 
-      it 'has a foreground attribute' do
-        subject.foreground.must_be_instance_of(Symbol)
+      describe '#foreground' do
+        let(:subject) { described_instance.foreground }
 
-        subject.foreground.must_equal(:red)
+        it 'has a foreground attribute' do
+          subject.must_be_instance_of(Symbol)
+
+          subject.must_equal(:red)
+        end
       end
 
-      it 'has a background attribute' do
-        subject.background.must_be_instance_of(Symbol)
+      describe '#background' do
+        let(:subject) { described_instance.background }
 
-        subject.background.must_equal(:black)
+        it 'has a background attribute' do
+          subject.must_be_instance_of(Symbol)
+
+          subject.must_equal(:black)
+        end
       end
 
-      it 'has a text attribute' do
-        subject.text.must_be_instance_of(String)
+      describe '#text' do
+        let(:subject) { described_instance.text }
 
-        subject.text.must_equal('Some text')
+        it 'has a text attribute' do
+          subject.must_be_instance_of(String)
+
+          subject.must_equal('Some text')
+        end
       end
 
-      it 'has a style attribute' do
-        subject.style.must_be_instance_of(Array)
+      describe '#style' do
+        let(:subject) { described_instance.style }
 
-        subject.style.must_equal([:normal])
+        it 'has a style attribute' do
+          subject.must_be_instance_of(Array)
+
+          subject.must_equal([:normal])
+        end
       end
 
       describe '#to_compositor' do

@@ -6,19 +6,23 @@ module Vedeu
     let(:subject)            { described_class.new(json) }
     let(:json)               { "[]" }
 
-    it 'returns a JSONParser instance' do
-      subject.must_be_instance_of(JSONParser)
-    end
+    describe '#initialize' do
+      let(:subject) { described_class.new(json) }
 
-    it 'sets an instance variable' do
-      subject.instance_variable_get("@json").must_equal(json)
-    end
+      it 'returns a JSONParser instance' do
+        subject.must_be_instance_of(JSONParser)
+      end
 
-    context 'when the instance variable is nil' do
-      let(:json) {}
+      it 'sets an instance variable' do
+        subject.instance_variable_get("@json").must_equal(json)
+      end
 
-      it 'set the instance variable to empty string' do
-        subject.instance_variable_get("@json").must_equal('')
+      context 'when the instance variable is nil' do
+        let(:json) {}
+
+        it 'set the instance variable to empty string' do
+          subject.instance_variable_get("@json").must_equal('')
+        end
       end
     end
 

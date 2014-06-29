@@ -17,16 +17,20 @@ module Vedeu
     let(:colour)             { [] }
     let(:style)              { [] }
 
-    it 'returns a Directive instance' do
-      described_instance.must_be_instance_of(Directive)
-    end
+    describe '#initialize' do
+      let(:subject) { described_instance }
 
-    it 'sets an instance variable' do
-      subject.instance_variable_get('@interface').must_be_instance_of(Interface)
-    end
+      it 'returns a Directive instance' do
+        described_instance.must_be_instance_of(Directive)
+      end
 
-    it 'sets an instance variable' do
-      subject.instance_variable_get('@directives').must_be_instance_of(Hash)
+      it 'sets an instance variable' do
+        subject.instance_variable_get('@interface').must_be_instance_of(Interface)
+      end
+
+      it 'sets an instance variable' do
+        subject.instance_variable_get('@directives').must_be_instance_of(Hash)
+      end
     end
 
     describe '.enact' do

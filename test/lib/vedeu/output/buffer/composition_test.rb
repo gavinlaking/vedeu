@@ -5,16 +5,19 @@ module Vedeu
     describe Composition do
       let(:described_class)    { Composition }
       let(:described_instance) { described_class.new(attributes) }
-      let(:subject)            { described_instance }
       let(:json)               { File.read(Vedeu.root_path + '/test/support/single_interface.json') }
       let(:attributes)         { Oj.load(json) }
 
-      it 'returns a Composition instance' do
-        subject.must_be_instance_of(Composition)
-      end
+      describe '#initialize' do
+        let(:subject) { described_instance }
 
-      it 'has an interface attribute' do
-        subject.interface.must_be_instance_of(Array)
+        it 'returns a Composition instance' do
+          subject.must_be_instance_of(Composition)
+        end
+
+        it 'has an interface attribute' do
+          subject.interface.must_be_instance_of(Array)
+        end
       end
 
       describe '#to_compositor' do

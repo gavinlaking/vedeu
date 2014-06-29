@@ -15,32 +15,52 @@ module Vedeu
         }
       }
 
-      it 'returns a Line instance' do
-        subject.must_be_instance_of(Line)
+      describe '#initialize' do
+        let(:subject) { described_instance }
+
+        it 'returns a Line instance' do
+          subject.must_be_instance_of(Line)
+        end
       end
 
-      it 'has a style attribute' do
-        subject.style.must_be_instance_of(Array)
+      describe '#style' do
+        let(:subject) { described_instance.style }
 
-        subject.style.must_equal([:normal])
+        it 'has a style attribute' do
+          subject.must_be_instance_of(Array)
+
+          subject.must_equal([:normal])
+        end
       end
 
-      it 'has a foreground attribute' do
-        subject.foreground.must_be_instance_of(Symbol)
+      describe '#foreground' do
+        let(:subject) { described_instance.foreground }
 
-        subject.foreground.must_equal(:red)
+        it 'has a foreground attribute' do
+          subject.must_be_instance_of(Symbol)
+
+          subject.must_equal(:red)
+        end
       end
 
-      it 'has a background attribute' do
-        subject.background.must_be_instance_of(Symbol)
+      describe '#background' do
+        let(:subject) { described_instance.background }
 
-        subject.background.must_equal(:black)
+        it 'has a background attribute' do
+          subject.must_be_instance_of(Symbol)
+
+          subject.must_equal(:black)
+        end
       end
 
-      it 'has a stream attribute' do
-        subject.stream.must_be_instance_of(Array)
+      describe '#stream' do
+        let(:subject) { described_instance.stream }
 
-        subject.stream.must_equal([])
+        it 'has a stream attribute' do
+          subject.must_be_instance_of(Array)
+
+          subject.must_equal([])
+        end
       end
 
       describe '#to_compositor' do

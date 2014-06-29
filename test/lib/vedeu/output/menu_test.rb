@@ -6,8 +6,10 @@ module Vedeu
     let(:described_instance) { described_class.new(index) }
     let(:index)              {}
 
-    it 'returns a Menu instance' do
-      described_instance.must_be_instance_of(Menu)
+    describe '#initialize' do
+      it 'returns a Menu instance' do
+        described_instance.must_be_instance_of(Menu)
+      end
     end
   end
 end

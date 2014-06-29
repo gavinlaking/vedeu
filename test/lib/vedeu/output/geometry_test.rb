@@ -11,8 +11,10 @@ module Vedeu
       Terminal.stubs(:height).returns(25)
     end
 
-    it 'returns a Geometry instance' do
-      described_instance.must_be_instance_of(Geometry)
+    describe '#initialize' do
+      it 'returns a Geometry instance' do
+        described_instance.must_be_instance_of(Geometry)
+      end
     end
 
     describe '#y' do

@@ -5,8 +5,12 @@ module Vedeu
     let(:described_class)    { Position }
     let(:described_instance) { described_class.new }
 
-    it 'returns a Position instance' do
-      described_instance.must_be_instance_of(Position)
+    describe '#initialize' do
+      let(:subject) { described_class.new }
+
+      it 'returns a Position instance' do
+        described_instance.must_be_instance_of(Position)
+      end
     end
 
     describe '.set' do

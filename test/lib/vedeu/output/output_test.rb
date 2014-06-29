@@ -3,7 +3,6 @@ require_relative '../../../test_helper'
 module Vedeu
   describe Output do
     let(:described_class) { Output }
-    let(:subject)         { described_class.new }
     let(:output)          {}
 
     before do
@@ -13,8 +12,12 @@ module Vedeu
 
     after { InterfaceRepository.reset }
 
-    it 'returns an Output instance' do
-      subject.must_be_instance_of(Output)
+    describe '#initialize' do
+      let(:subject) { described_class.new }
+
+      it 'returns an Output instance' do
+        subject.must_be_instance_of(Output)
+      end
     end
 
     describe '.render' do

@@ -5,10 +5,13 @@ module Vedeu
     let(:described_class) { Process }
     let(:input)           { nil }
     let(:result)          {}
-    let(:subject)         { described_class.new }
 
-    it 'returns a Process instance' do
-      subject.must_be_instance_of(Process)
+    describe '#initialize' do
+      let(:subject) { described_class.new }
+
+      it 'returns a Process instance' do
+        subject.must_be_instance_of(Process)
+      end
     end
 
     describe '.evaluate' do
