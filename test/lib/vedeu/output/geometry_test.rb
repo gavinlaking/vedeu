@@ -75,20 +75,6 @@ module Vedeu
           subject.must_equal(50)
         end
       end
-
-      context 'using :auto' do
-        let(:values) { { width: :auto } }
-
-        it 'returns the value' do
-          subject.must_equal(80)
-        end
-      end
-
-      context 'using the default' do
-        it 'returns the default' do
-          subject.must_equal(80)
-        end
-      end
     end
 
     describe '#height' do
@@ -103,20 +89,6 @@ module Vedeu
 
         it 'returns the value' do
           subject.must_equal(20)
-        end
-      end
-
-      context 'using :auto' do
-        let(:values) { { height: :auto } }
-
-        it 'returns the value' do
-          subject.must_equal(25)
-        end
-      end
-
-      context 'using the default' do
-        it 'returns the default' do
-          subject.must_equal(25)
         end
       end
     end
@@ -165,8 +137,8 @@ module Vedeu
       end
     end
 
-    describe '#vx' do
-      let(:subject) { described_instance.vx }
+    describe '#virtual_x' do
+      let(:subject) { described_instance.virtual_x }
 
       it 'returns a Fixnum' do
         subject.must_be_instance_of(Fixnum)
@@ -177,8 +149,8 @@ module Vedeu
       end
     end
 
-    describe '#vy' do
-      let(:subject) { described_instance.vy }
+    describe '#virtual_y' do
+      let(:subject) { described_instance.virtual_y }
 
       it 'returns a Fixnum' do
         subject.must_be_instance_of(Fixnum)

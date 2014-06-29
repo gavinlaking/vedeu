@@ -1,27 +1,22 @@
 module Vedeu
   class Geometry
-    def initialize(values = {})
-      @values = values || {}
-    end
+    include Virtus.model
+
+    attribute :y,      Integer, default: 1
+    attribute :x,      Integer, default: 1
+    attribute :width,  Integer, default: Terminal.width
+    attribute :height, Integer, default: Terminal.height
 
     def origin(index = 0)
-      Position.set(vy(index), vx)
+      Position.set(virtual_y(index), virtual_x)
     end
 
-    def y
-      values[:y]
+    def virtual_x(index = 0)
+      ((x..dx).to_a)[index]
     end
 
-    def x
-      values[:x]
-    end
-
-    def width
-      values[:width]
-    end
-
-    def height
-      values[:height]
+    def virtual_y(index = 0)
+      ((y..dy).to_a)[index]
     end
 
     def dy
@@ -30,14 +25,6 @@ module Vedeu
 
     def dx
       clip_x? ? defaults[:width] : (x + width)
-    end
-
-    def vx(index = 0) # virtual x position
-      ((x..dx).to_a)[index]
-    end
-
-    def vy(index = 0) # virtual y position
-      ((y..dy).to_a)[index]
     end
 
     private
@@ -50,21 +37,10 @@ module Vedeu
       ((x + width) > defaults[:width])
     end
 
-    def values
-      defaults.merge!(auto)
-    end
-
-    def auto
-      @values.delete_if { |k, v| k == :width  && v == :auto }
-      @values.delete_if { |k, v| k == :height && v == :auto }
-    end
-
     def defaults
       {
         width:  Terminal.width,
-        height: Terminal.height,
-        y:      1,
-        x:      1
+        height: Terminal.height
       }
     end
   end
