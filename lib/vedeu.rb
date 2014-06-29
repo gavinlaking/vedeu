@@ -7,6 +7,7 @@ require 'virtus'
 
 require_relative 'vedeu/input/input'
 
+require_relative 'vedeu/support/events'
 require_relative 'vedeu/support/exit'
 require_relative 'vedeu/support/json_parser'
 require_relative 'vedeu/support/queue'
