@@ -28,7 +28,6 @@ require_relative 'vedeu/output/cursor'
 require_relative 'vedeu/output/directive'
 require_relative 'vedeu/output/foreground'
 
-require_relative 'vedeu/output/layer'
 require_relative 'vedeu/output/menu'
 require_relative 'vedeu/output/esc'
 require_relative 'vedeu/output/colour'
