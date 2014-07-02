@@ -14,7 +14,6 @@ require_relative 'vedeu/support/queue'
 require_relative 'vedeu/support/terminal'
 
 require_relative 'vedeu/models/style'
-require_relative 'vedeu/models/formatting'
 require_relative 'vedeu/models/stream'
 require_relative 'vedeu/models/line'
 require_relative 'vedeu/models/interface'
