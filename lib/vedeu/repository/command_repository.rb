@@ -1,7 +1,16 @@
+require_relative '../models/command'
+require_relative 'repository'
+
 module Vedeu
   module CommandRepository
     extend Repository
     extend self
+
+    def by_input(input)
+      return nil unless input
+
+      by_keypress(input) || by_keyword(input)
+    end
 
     def by_keypress(input)
       query(entity, :keypress, input)
@@ -19,16 +28,4 @@ module Vedeu
       Command
     end
   end
-
-  # :nocov:
-  module ClassMethods
-    def command(name, options = {})
-      command_name = name.is_a?(Symbol) ? name.to_s : name
-
-      CommandRepository.create({
-        name: command_name
-      }.merge!(options))
-    end
-  end
-  # :nocov:
 end

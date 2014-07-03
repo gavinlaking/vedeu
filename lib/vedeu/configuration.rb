@@ -1,3 +1,5 @@
+require 'optparse'
+
 module Vedeu
   class Configuration
     class << self

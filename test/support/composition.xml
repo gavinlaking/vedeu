@@ -4,18 +4,24 @@
   <name>dumb</name>
   <line>
     <style>normal</style>
-    <foreground>red</foreground>
-    <background>black</background>
+    <colour>
+      <foreground>#ff0000</foreground>
+      <background>#000000</background>
+    </colour>
     <stream>
       <style>underline negative</style>
-      <foreground>yellow</foreground>
-      <background>black</background>
+      <colour>
+        <foreground>#ffff00</foreground>
+        <background>#000000</background>
+      </colour>
       <text>Some text...</text>
     </stream>
     <stream>
       <style>normal</style>
-      <foreground>green</foreground>
-      <background>black</background>
+      <colour>
+        <foreground>#00ff00</foreground>
+        <background>#000000</background>
+      </colour>
       <text>Some more text...</text>
     </stream>
   </line>

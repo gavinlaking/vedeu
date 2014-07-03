@@ -1,14 +1,16 @@
 {
-    "interface":[
+    "interfaces":[
         {
             "name":"dummy",
-            "line":[
+            "lines":[
                 {
-                    "stream":[
+                    "streams":[
                         {
                             "style":"normal",
-                            "foreground":"yellow",
-                            "background":"black",
+                            "colour":{
+                                "foreground":"#ffff00",
+                                "background":"#000000"
+                            },
                             "text":"Some text..."
                         }
                     ]

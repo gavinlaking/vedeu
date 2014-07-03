@@ -1,3 +1,8 @@
+require_relative 'input/input'
+require_relative 'output/output'
+require_relative 'process/process'
+require_relative 'support/terminal'
+
 module Vedeu
   class Application
     class << self

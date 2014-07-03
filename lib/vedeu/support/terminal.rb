@@ -1,3 +1,9 @@
+require 'io/console'
+
+require_relative '../support/cursor'
+require_relative '../support/esc'
+require_relative '../support/position'
+
 module Vedeu
   class Terminal
     class << self

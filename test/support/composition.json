@@ -1,29 +1,35 @@
 {
-    "interface":[
+    "interfaces":[
         {
             "name":"dumb",
-            "line":[
+            "lines":[
                 {
                     "style":"normal",
-                    "foreground":"red",
-                    "background":"black",
-                    "stream":[
+                    "colour": {
+                        "foreground":"#ff0000",
+                        "background":"#000000"
+                    },
+                    "streams":[
                         {
                             "style":"underline negative",
-                            "foreground":"yellow",
-                            "background":"black",
+                            "colour": {
+                                "foreground":"#ffff00",
+                                "background":"#000000"
+                            },
                             "text":"Some text..."
                         },
                         {
                             "style":"normal",
-                            "foreground":"green",
-                            "background":"black",
+                            "colour": {
+                                "foreground":"#00ff00",
+                                "background":"#000000"
+                            },
                             "text":"Some more text..."
                         }
                     ]
                 },
                 {
-                    "stream":[
+                    "streams":[
                         {
                             "text":"Even more text..."
                         }
@@ -33,9 +39,9 @@
         },
         {
             "name":"dumber",
-            "line":[
+            "lines":[
                 {
-                    "stream":[
+                    "streams":[
                         {
                             "text":"Yet more text..."
                         }

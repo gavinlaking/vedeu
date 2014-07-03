@@ -1,3 +1,5 @@
+require_relative 'esc'
+
 module Vedeu
   class Position
     class << self

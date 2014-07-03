@@ -1,4 +1,5 @@
 require_relative '../../../test_helper'
+require_relative '../../../../lib/vedeu/support/json_parser'
 
 module Vedeu
   describe JSONParser do
@@ -33,7 +34,7 @@ module Vedeu
         let(:json) { File.read('test/support/single_interface.json') }
 
         it 'returns a Composition instance' do
-          subject.must_be_instance_of(Buffer::Composition)
+          subject.must_be_instance_of(Composition)
         end
       end
 
@@ -41,7 +42,7 @@ module Vedeu
         let(:json) { File.read('test/support/multi_interface.json') }
 
         it 'returns a Composition instance' do
-          subject.must_be_instance_of(Buffer::Composition)
+          subject.must_be_instance_of(Composition)
         end
       end
     end

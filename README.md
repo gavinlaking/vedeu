@@ -38,17 +38,22 @@ Expect proper documentation soon!
     interface :main, {
                 y:          1,
                 x:          1,
+                z:          1,
                 width:      :auto, # will set to terminal width
                 height:     10,    # also accepts :auto
-                foreground: :white,
-                background: :black,
+                colour: {
+                  foreground: '#ffffff',
+                  background: '#000000'
+                },
                 cursor:     false,
-                layer:      0 }
+              }
 
 Referring to the above example, interfaces have a name, and various default attributes.
 
 `:y`          sets the starting row point. (See Geometry)
 `:x`          sets the starting column point.
+`:z`          an integer specifying the z-index of the interface.
+              (See Layers)
 `:width`      sets how many characters wide the interface will be.
 `:height`     sets how many characters tall the interface will be.
 
@@ -57,8 +62,6 @@ Referring to the above example, interfaces have a name, and various default attr
 
 `:cursor`     a boolean specifying whether the cursor should show.
 
-`:layer`      an integer specifying the z-index of the interface.
-              (See Layers)
 
 ### On Defining Commands
 
@@ -79,9 +82,7 @@ Geometry for Vedeu, as the same for ANSI terminals, is set top-left, which is po
 
 ### Colours
 
-Vedeu uses the standard ANSI terminal colours, though you can also set arbitrary colours using HTML/CSS style notation (i.e. '#aadd00').
-
-    :black, :red, :green, :yellow, :blue, :magenta, :cyan, :white, :default
+Vedeu uses HTML/CSS style notation (i.e. '#aadd00').
 
 
 ### Layers
@@ -89,7 +90,7 @@ Vedeu uses the standard ANSI terminal colours, though you can also set arbitrary
 Vedeu allows the overlaying of interfaces. To render these correctly,
 Vedeu uses two rules.
 
-  1) The :layer value. 0 would be default, or bottom. 1 would be placed on top of 0. 2 on top of 1, and so on.
+  1) The :z value. 1 would be default, or bottom. 2 would be placed on top of 1. 3 on top of 2, and so on.
   2) If two interfaces occupy the same 'space', the interface which was defined last, wins.
 
 

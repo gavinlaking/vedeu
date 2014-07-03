@@ -1,3 +1,7 @@
+require 'oj'
+
+require_relative '../models/composition'
+
 module Vedeu
   class JSONParser
     class << self
@@ -11,7 +15,7 @@ module Vedeu
     end
 
     def parse
-      Buffer::Composition.new(as_hash)
+      Composition.new(as_hash)
     end
 
     private

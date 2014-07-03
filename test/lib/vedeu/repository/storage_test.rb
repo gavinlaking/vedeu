@@ -1,4 +1,7 @@
 require_relative '../../../test_helper'
+require_relative '../../../support/dummy_command'
+require_relative '../../../../lib/vedeu/repository/storage'
+
 
 module Vedeu
   describe Storage do

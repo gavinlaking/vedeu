@@ -1,4 +1,5 @@
 require_relative '../test_helper'
+require_relative '../../lib/vedeu'
 
 describe Vedeu do
   let(:described_class) { Vedeu }

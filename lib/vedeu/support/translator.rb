@@ -1,17 +1,17 @@
 module Vedeu
   class Translator
     class << self
-      def translate(html_colour = nil)
+      def translate(html_colour = '')
         new(html_colour).translate
       end
     end
 
-    def initialize(html_colour = nil)
-      @html_colour = html_colour
+    def initialize(html_colour = '')
+      @html_colour = html_colour || ''
     end
 
     def translate
-      return unless valid?
+      return '' unless valid?
       [16, red, green, blue].inject(:+)
     end
 
@@ -32,7 +32,13 @@ module Vedeu
     end
 
     def valid?
-      html_colour && valid_type? && valid_format?
+      present? && valid_type? && valid_format?
+    end
+
+    def present?
+      return true unless html_colour.nil? || html_colour.empty?
+
+      false
     end
 
     def valid_type?

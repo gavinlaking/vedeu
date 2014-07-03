@@ -1,24 +1,39 @@
+require 'oj'
+require 'virtus'
+
+require_relative 'interface'
+
 module Vedeu
-  module Buffer
-    class Composition
-      include Virtus.model
+  class Composition
+    include Virtus.model
 
-      attribute :interface, Array[Buffer::Interface]
-
-      def to_compositor
-        interface.inject({}) do |acc, interface|
-          acc[interface.name] = interface.to_compositor
-          acc
-        end
+    class << self
+      def enqueue(composition)
+        new(composition).enqueue
       end
+    end
 
-      def to_hash
-        Oj.load(to_json)
-      end
+    attribute :interfaces, Array[Interface]
 
-      def to_json
-        Oj.dump(attributes, mode: :compat, circular: true)
+    # def to_compositor
+    #   interfaces.inject({}) do |acc, interface|
+    #     acc[interface.name] = interface.to_compositor
+    #     acc
+    #   end
+    # end
+
+    def enqueue
+      interfaces.map do |interface|
+        interface.enqueue(interface.to_s)
       end
+    end
+
+    def to_json
+      Oj.dump(attributes, mode: :compat)
+    end
+
+    def to_s
+      interfaces.map(&:to_s).join
     end
   end
 end

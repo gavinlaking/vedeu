@@ -1,4 +1,5 @@
 require_relative '../../../test_helper'
+require_relative '../../../../lib/vedeu/support/position'
 
 module Vedeu
   describe Position do
@@ -9,7 +10,7 @@ module Vedeu
       let(:subject) { described_class.new }
 
       it 'returns a Position instance' do
-        described_instance.must_be_instance_of(Position)
+        subject.must_be_instance_of(Position)
       end
     end
 

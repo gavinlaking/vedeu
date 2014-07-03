@@ -1,3 +1,6 @@
+require_relative '../repository/interface_repository'
+require_relative '../support/terminal'
+
 module Vedeu
   class Output
     class << self

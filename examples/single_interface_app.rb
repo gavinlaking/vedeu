@@ -8,12 +8,15 @@ class SingleInterfaceApp
   interface :main, {
               y:          1,
               x:          1,
+              z:          1,
               width:      :auto,
               height:     :auto,
-              foreground: :white,
-              background: :black,
-              cursor:     true,
-              layer:      0 }
+              colour: {
+                foreground: '#ffffff',
+                background: '#000000',
+              },
+              cursor:     true
+            }
 
   command   :refresh, {
               entity:    SingleInterfaceApp,

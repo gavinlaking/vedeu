@@ -1,4 +1,5 @@
 require_relative '../../test_helper'
+require_relative '../../../lib/vedeu/version'
 
 module Vedeu
   describe VERSION do

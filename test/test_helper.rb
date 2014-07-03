@@ -28,6 +28,4 @@ end
   # Minitest::Reporters::SpecReporter.new
 # )
 
-require_relative '../lib/vedeu.rb'
-
 require 'mocha/setup'

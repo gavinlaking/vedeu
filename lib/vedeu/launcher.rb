@@ -1,3 +1,6 @@
+require_relative 'application'
+require_relative 'configuration'
+
 module Vedeu
   class Launcher
     def initialize(argv, stdin  = STDIN,

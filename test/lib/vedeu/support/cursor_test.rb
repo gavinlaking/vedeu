@@ -1,4 +1,5 @@
 require_relative '../../../test_helper'
+require_relative '../../../../lib/vedeu/support/cursor'
 
 module Vedeu
   describe Cursor do

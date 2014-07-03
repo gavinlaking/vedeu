@@ -1,3 +1,5 @@
+require 'virtus'
+
 module Vedeu
   class Command
     include Virtus.model

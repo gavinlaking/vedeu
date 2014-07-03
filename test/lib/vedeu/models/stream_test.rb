@@ -1,79 +1,79 @@
 require_relative '../../../test_helper'
+require_relative '../../../../lib/vedeu/models/stream'
 
 module Vedeu
-  module Buffer
-    describe Stream do
-      let(:described_class)    { Stream }
-      let(:described_instance) { described_class.new(attributes) }
-      let(:attributes)         {
-        {
-          style:      'normal',
-          foreground: :red,
-          background: :black,
-          text:       'Some text'
-        }
+  describe Stream do
+    let(:described_class)    { Stream }
+    let(:described_instance) { described_class.new(attributes) }
+    let(:attributes)         {
+      {
+        style:  'normal',
+        colour: { foreground: '#ff0000', background: '#000000' },
+        text:   'Some text'
       }
+    }
 
-      describe '#initialize' do
-        let(:subject) { described_instance }
+    describe '#initialize' do
+      let(:subject) { described_instance }
 
-        it 'returns a Stream instance' do
-          subject.must_be_instance_of(Stream)
-        end
+      it 'returns a Stream instance' do
+        subject.must_be_instance_of(Stream)
+      end
+    end
+
+    describe '#colour' do
+      let(:subject) { described_instance.colour }
+
+      it 'has a colour attribute' do
+        subject.must_be_instance_of(Colour)
+      end
+    end
+
+    describe '#text' do
+      let(:subject) { described_instance.text }
+
+      it 'returns a String' do
+        subject.must_be_instance_of(String)
       end
 
-      describe '#foreground' do
-        let(:subject) { described_instance.foreground }
+      it 'has a text attribute' do
+        subject.must_equal('Some text')
+      end
+    end
 
-        it 'has a foreground attribute' do
-          subject.must_be_instance_of(Symbol)
+    describe '#style' do
+      let(:subject) { described_instance.style }
 
-          subject.must_equal(:red)
-        end
+      it 'has a style attribute' do
+        subject.must_be_instance_of(Style)
+      end
+    end
+
+    # describe '#to_compositor' do
+    #   let(:subject) { described_instance.to_compositor }
+
+    #   it 'returns a Hash' do
+    #     subject.must_be_instance_of(Hash)
+    #   end
+
+    #   it 'returns a Hash' do
+    #     subject.must_equal({
+    #       style:  ['normal'],
+    #       colour: { foreground: '#ff0000', background: '#000000' },
+    #       text:   "Some text"
+    #     })
+    #   end
+    # end
+
+    describe '#to_s' do
+      let(:subject) { described_instance.to_s }
+
+      it 'returns a String' do
+        subject.must_be_instance_of(String)
       end
 
-      describe '#background' do
-        let(:subject) { described_instance.background }
-
-        it 'has a background attribute' do
-          subject.must_be_instance_of(Symbol)
-
-          subject.must_equal(:black)
-        end
-      end
-
-      describe '#text' do
-        let(:subject) { described_instance.text }
-
-        it 'has a text attribute' do
-          subject.must_be_instance_of(String)
-
-          subject.must_equal('Some text')
-        end
-      end
-
-      describe '#style' do
-        let(:subject) { described_instance.style }
-
-        it 'has a style attribute' do
-          subject.must_be_instance_of(Array)
-
-          subject.must_equal([:normal])
-        end
-      end
-
-      describe '#to_compositor' do
-        let(:subject) { described_instance.to_compositor }
-
-        it 'returns a Hash' do
-          subject.must_be_instance_of(Hash)
-
-          subject.must_equal({
-            style:  [:normal],
-            colour: [:red, :black],
-            text:   "Some text"
-          })
-        end
+      it 'returns a String' do
+        subject.must_equal("\e[38;5;196m\e[48;5;16m\e[24m\e[21m\e[27mSome text")
       end
     end
   end

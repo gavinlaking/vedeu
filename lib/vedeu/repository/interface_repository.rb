@@ -1,3 +1,6 @@
+require_relative '../models/interface'
+require_relative 'repository'
+
 module Vedeu
   class UndefinedInterface < StandardError; end
 
@@ -20,23 +23,11 @@ module Vedeu
     end
 
     def by_layer
-      all.sort_by { |interface| interface.layer }
+      all.sort_by { |interface| interface.z }
     end
 
     def entity
       Interface
     end
   end
-
-  # :nocov:
-  module ClassMethods
-    def interface(name, options = {})
-      interface_name = name.is_a?(Symbol) ? name.to_s : name
-
-      InterfaceRepository.create({
-        name: interface_name
-      }.merge!(options))
-    end
-  end
-  # :nocov:
 end

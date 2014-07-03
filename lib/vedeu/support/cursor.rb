@@ -1,3 +1,5 @@
+require_relative 'esc'
+
 module Vedeu
   module Cursor
     extend self

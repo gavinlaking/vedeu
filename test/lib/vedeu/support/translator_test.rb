@@ -1,4 +1,5 @@
 require_relative '../../../test_helper'
+require_relative '../../../../lib/vedeu/support/translator'
 
 module Vedeu
   describe Translator do
@@ -32,24 +33,24 @@ module Vedeu
       end
 
       context 'invalid' do
-        it 'returns nil when not present' do
-          described_class.translate.must_equal(nil)
+        it 'returns empty string when not present' do
+          described_class.translate.must_equal('')
         end
 
-        it 'returns nil when the wrong type!' do
-          described_class.translate(:wrong_type).must_equal(nil)
+        it 'returns empty string when the wrong type!' do
+          described_class.translate(:wrong_type).must_equal('')
         end
 
-        it 'returns nil when invalid format' do
-          described_class.translate('345678').must_equal(nil)
+        it 'returns empty string when invalid format' do
+          described_class.translate('345678').must_equal('')
         end
 
-        it 'returns nil when invalid format' do
-          described_class.translate('#h11111').must_equal(nil)
+        it 'returns empty string when invalid format' do
+          described_class.translate('#h11111').must_equal('')
         end
 
-        it 'returns nil when invalid format' do
-          described_class.translate('#1111').must_equal(nil)
+        it 'returns empty string when invalid format' do
+          described_class.translate('#1111').must_equal('')
         end
       end
     end
