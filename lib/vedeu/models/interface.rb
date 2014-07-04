@@ -20,18 +20,11 @@ module Vedeu
     attribute :z,       Integer, default: 1
     attribute :width,   Integer, default: Terminal.width
     attribute :height,  Integer, default: Terminal.height
+    attribute :current, String,  default: ''
 
     def clear(index = 0)
       [origin(index), (' ' * width), origin(index)].join
     end
-    def current
-      @current || []
-    end
-
-    def current=(value)
-      @current = value
-    end
-
 
     def cursor
       @cursor.nil? ? true : @cursor

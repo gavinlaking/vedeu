@@ -165,23 +165,6 @@ module Vedeu
       end
     end
 
-    describe '#current' do
-      let(:subject) { described_instance.current }
-
-      it 'returns...' do
-        skip
-      end
-    end
-
-    describe '#current=' do
-      let(:subject) { described_instance.current=(value) }
-      let(:value)   {}
-
-      it 'returns...' do
-        skip
-      end
-    end
-
     describe '#cursor' do
       let(:subject) { described_instance.cursor }
 
