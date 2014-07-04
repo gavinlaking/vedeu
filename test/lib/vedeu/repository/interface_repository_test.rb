@@ -79,11 +79,11 @@ module Vedeu
     describe '.entity' do
       let(:subject) { described_class.entity }
 
-      it 'returns a Class' do
+      it 'returns a Class instance' do
         subject.must_be_instance_of(Class)
       end
 
-      it 'returns a Class' do
+      it 'returns Interface' do
         subject.must_equal(Interface)
       end
     end
