@@ -20,6 +20,14 @@ module Vedeu
       end
     end
 
+    describe '#to_json' do
+      let(:subject) { described_instance.to_json }
+
+      it 'returns the model as JSON' do
+        skip
+      end
+    end
+
     describe '#to_s' do
       let(:subject) { described_instance.to_s }
 
