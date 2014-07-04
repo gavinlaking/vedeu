@@ -1,7 +1,7 @@
 require 'virtus'
 
 require_relative 'presentation'
-require_relative 'line'
+require_relative 'line_collection'
 require_relative '../support/position'
 require_relative '../support/cursor'
 require_relative '../support/queue'
@@ -14,7 +14,7 @@ module Vedeu
     include Vedeu::Queue
 
     attribute :name,    String
-    attribute :lines,   Array[Line]
+    attribute :lines,   LineCollection
     attribute :y,       Integer, default: 1
     attribute :x,       Integer, default: 1
     attribute :z,       Integer, default: 1
@@ -24,7 +24,6 @@ module Vedeu
     def clear(index = 0)
       [origin(index), (' ' * width), origin(index)].join
     end
-
     def current
       @current || []
     end
@@ -32,6 +31,7 @@ module Vedeu
     def current=(value)
       @current = value
     end
+
 
     def cursor
       @cursor.nil? ? true : @cursor
