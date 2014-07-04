@@ -1,7 +1,0 @@
-Output ::= (('{' (Interface '=>' Stream) '}' (',' | ))* | ('[' (Stream (',' | ))* ']' (',' | ))* | ('[' (String (',' | ))* ']') (',' | ))*
-Stream ::= ('[' (Directive (',' | ) | String (',' | ))* ']' (',' | ))*
-Interface ::= String
-Directive ::= PositionDirective | ColourDirective | StyleDirective
-PositionDirective ::= '[' Fixnum ',' Fixnum ']'
-StyleDirective ::= Symbol
-ColourDirective ::= '[' Symbol ',' Symbol ']'
