@@ -5,7 +5,7 @@ module Vedeu
   describe Composition do
     let(:described_class)    { Composition }
     let(:described_instance) { described_class.new(attributes) }
-    let(:json)               { File.read('test/support/single_interface.json') }
+    let(:json)               { File.read('test/support/output_1.json') }
     let(:attributes)         { Oj.load(json) }
 
     describe '#initialize' do
