@@ -1,13 +1,13 @@
 require 'virtus'
 
 require_relative 'colour'
-require_relative 'style'
+require_relative 'style_collection'
 
 module Vedeu
   module Presentation
     include Virtus.module
 
     attribute :colour, Colour
-    attribute :style,  Style
+    attribute :style,  StyleCollection
   end
 end

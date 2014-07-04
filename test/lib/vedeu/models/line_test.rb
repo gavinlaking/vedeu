@@ -26,7 +26,7 @@ module Vedeu
       let(:subject) { described_instance.style }
 
       it 'has a style attribute' do
-        subject.must_be_instance_of(Style)
+        subject.must_be_instance_of(String)
       end
     end
 

@@ -2,34 +2,23 @@ require 'virtus'
 
 require_relative '../support/cursor'
 require_relative '../support/esc'
+require_relative 'coercions'
 
 module Vedeu
-  class Style
-    include Virtus.model
+  class StyleCollection < Virtus::Attribute
+    include Coercions
 
-    attribute :value, Array
+    def coerce(values)
+      return '' if empty?(values)
 
-    def initialize(values = [])
-      super({ value: Array(values) })
+      if multiple?(values)
+        values.map { |value| stylize(value) }.join
+      elsif just_text?(values)
+        stylize(values)
+      end
     end
 
-    # def to_compositor
-    #   value
-    # end
-
-    def to_s
-      value.map { |s| value_to_s(s) }.join
-    end
-
-    def empty?
-      value.empty?
-    end
-
-    private
-
-    attr_reader :values
-
-    def value_to_s(value)
+    def stylize(value)
       case value
       when 'blink'         then Esc.blink
       when 'blink_off'     then Esc.blink_off

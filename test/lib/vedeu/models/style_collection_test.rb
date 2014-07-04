@@ -1,12 +1,13 @@
 require_relative '../../../test_helper'
-require_relative '../../../../lib/vedeu/models/style'
+require_relative '../../../../lib/vedeu/models/style_collection'
+require_relative '../../../../lib/vedeu/models/stream'
 
 module Vedeu
-  describe Style do
-    let(:described_class) { Style }
+  describe StyleCollection do
+    let(:described_class) { StyleCollection }
 
-    describe '#to_s' do
-      let(:subject) { described_class.new(style).to_s }
+    describe '#coerce' do
+      let(:subject) { Vedeu::Stream.new({ style: style }).style }
       let(:style)   {}
 
       it 'returns a String' do
