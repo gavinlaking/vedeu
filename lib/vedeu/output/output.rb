@@ -13,7 +13,11 @@ module Vedeu
 
     def render
       InterfaceRepository.refresh.each do |interface|
-        interface.each { |stream| Terminal.output(stream) if stream }
+        if interface.is_a?(Array)
+          interface.each { |stream| Terminal.output(stream) if stream }
+        elsif interface.is_a?(String)
+          Terminal.output(interface)
+        end
       end
     end
   end

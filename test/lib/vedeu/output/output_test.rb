@@ -26,36 +26,12 @@ module Vedeu
       end
     end
 
-    # describe '.render' do
-    #   let(:subject) { described_class.render }
+    describe '.render' do
+      let(:subject) { described_class.render }
 
-    #   context 'when the interfaces have content' do
-    #     let(:output) {
-    #       [
-    #         [
-    #           "\e[1;1H               \e[1;1HTesting Outpu...\e[?25h",
-    #           "\e[2;1H               \e[2;1H\e[?25h"
-    #         ]
-    #       ]
-    #     }
-
-    #     before { Compositor.arrange({ 'dummy' => [[{ text: 'Testing Output.render' }]] }) }
-
-    #     it { subject.must_equal(output) }
-    #   end
-
-    #   context 'when the interfaces have no content' do
-    #     let(:output) {
-    #       [
-    #         [
-    #           "\e[1;1H               \e[1;1H\e[?25h",
-    #           "\e[2;1H               \e[2;1H\e[?25h"
-    #         ]
-    #       ]
-    #     }
-
-    #     it { subject.must_equal(output) }
-    #   end
-    # end
+      it 'returns an Array' do
+        subject.must_be_instance_of(Array)
+      end
+    end
   end
 end

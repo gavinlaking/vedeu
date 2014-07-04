@@ -15,7 +15,11 @@ module Vedeu
       if multiple?(values)
         values.map { |v| Stream.new(v) }
       elsif single?(values)
-        Stream.new(values)
+        if values.is_a?(Array)
+          Stream.new(values.first)
+        else
+          Stream.new(values)
+        end
       elsif values.is_a?(String)
         Stream.new({ text: values })
       end

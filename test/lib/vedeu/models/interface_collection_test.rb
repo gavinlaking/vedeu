@@ -24,7 +24,11 @@ module Vedeu
         let(:interfaces) { { name: 'dummy' } }
 
         it 'returns an Interface' do
-          subject.must_be_instance_of(Interface)
+          subject.must_be_instance_of(Array)
+        end
+
+        it 'returns a collection of Interface objects' do
+          subject.first.must_be_instance_of(Interface)
         end
       end
 
