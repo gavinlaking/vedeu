@@ -1,7 +1,7 @@
 require 'oj'
 require 'virtus'
 
-require_relative 'interface'
+require_relative 'interface_collection'
 
 module Vedeu
   class Composition
@@ -13,7 +13,7 @@ module Vedeu
       end
     end
 
-    attribute :interfaces, Array[Interface]
+    attribute :interfaces, InterfaceCollection
 
     def enqueue
       interfaces.map do |interface|
