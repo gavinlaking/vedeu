@@ -27,14 +27,14 @@ module Vedeu
         subject.must_be_instance_of(String)
       end
 
-      it 'returns a String' do
+      it 'returns an escape sequence' do
         subject.must_equal("\e[38;5;196m\e[48;5;16m")
       end
 
       context 'when the foreground is missing' do
         let(:attributes) { { background: '#000000' } }
 
-        it 'returns a String' do
+        it 'returns an escape sequence' do
           subject.must_equal("\e[48;5;16m")
         end
       end
@@ -42,7 +42,7 @@ module Vedeu
       context 'when the background is missing' do
         let(:attributes) { { foreground: '#ff0000' } }
 
-        it 'returns a String' do
+        it 'returns an escape sequence' do
           subject.must_equal("\e[38;5;196m")
         end
       end
@@ -50,42 +50,8 @@ module Vedeu
       context 'when both are missing' do
         let(:attributes) { {} }
 
-        it 'returns a String' do
+        it 'returns an empty string' do
           subject.must_equal('')
-        end
-      end
-    end
-
-    describe '#empty?' do
-      let(:subject) { described_instance.empty? }
-
-      context 'when both are set' do
-        it 'returns a FalseClass' do
-          subject.must_be_instance_of(FalseClass)
-        end
-      end
-
-      context 'when the foreground is missing' do
-        let(:attributes) { { background: '#000000' } }
-
-        it 'returns a FalseClass' do
-          subject.must_be_instance_of(FalseClass)
-        end
-      end
-
-      context 'when the background is missing' do
-        let(:attributes) { { foreground: '#ff0000' } }
-
-        it 'returns a FalseClass' do
-          subject.must_be_instance_of(FalseClass)
-        end
-      end
-
-      context 'when both are missing' do
-        let(:attributes) { {} }
-
-        it 'returns a TrueClass' do
-          subject.must_be_instance_of(TrueClass)
         end
       end
     end
