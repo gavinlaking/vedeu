@@ -5,156 +5,73 @@ require_relative '../support/esc'
 require_relative '../support/position'
 
 module Vedeu
-  class Terminal
-    class << self
-      def input
-        console.gets.chomp
-      end
-
-      def output(stream = '')
-        console.print(stream)
-
-        stream
-      end
-
-      def width
-        size.last
-      end
-
-      def height
-        size.first
-      end
-
-      def size
-        console.winsize
-      end
-
-      def open(options = {}, &block)
-        new(options).open(&block)
-      end
-
-      def close
-        show_cursor
-
-        reset_colours
-
-        reset_position
-      end
-
-      # :nocov:
-      def cooked(instance, &block)
-        console.cooked do
-          instance.initial_setup!
-
-          yield instance
-        end if block_given?
-      end
-
-      def raw(instance, &block)
-        console.raw do
-          instance.initial_setup!
-
-          yield instance
-        end if block_given?
-      end
-      # :nocov:
-
-      def console
-        IO.console
-      end
-
-      def clear_screen
-        output(Esc.reset)
-        output(Esc.clear)
-      end
-
-      def clear_line(index)
-        output(Position.set(index, 1) + (' ' * width) + Position.set(index, 1))
-      end
-
-      def show_cursor
-        output(Cursor.show)
-      end
-
-      def hide_cursor
-        output(Cursor.hide)
-      end
-
-      def reset_colours
-        output(Esc.reset)
-      end
-
-      def reset_position
-        puts
-
-        clear_line(height - 1)
-      end
-    end
-
-    def initialize(options = {}, &block)
-      @options = options || {}
-
-      yield self if block_given?
-    end
-
+  module Terminal
+    extend self
+    # :nocov:
     def open(&block)
-      terminal_mode(&block).fetch(mode, noop).call
+      console.cooked do
+        reset
+        clear_screen
+        hide_cursor
+
+        yield
+      end if block_given?
+    ensure
+      show_cursor
+      reset
+      clear_last_line
+    end
+    # :nocov:
+
+    def input
+      console.gets.chomp
     end
 
-    def initial_setup!
-      Terminal.clear_screen if clear_screen?
-      set_cursor
-      Terminal.output(Position.reset)
+    def output(stream = '')
+      console.print(stream)
+
+      stream
+    end
+
+    def width
+      size.last
+    end
+
+    def height
+      size.first
+    end
+
+    def size
+      console.winsize
+    end
+
+    def console
+      IO.console
     end
 
     private
 
-    # :nocov:
-    def terminal_mode(&block)
-      {
-        cooked: proc { Terminal.cooked(self, &block) },
-        raw:    proc { Terminal.raw(self, &block) }
-      }
+    def show_cursor
+      output(Cursor.show)
     end
 
-    def cursor_mode
-      {
-        show: proc { Terminal.show_cursor },
-        hide: proc { Terminal.hide_cursor }
-      }
-    end
-    # :nocov:
-
-    def set_cursor
-      cursor_mode.fetch(cursor).call
+    def hide_cursor
+      output(Cursor.hide)
     end
 
-    def cursor
-      options.fetch(:cursor)
+    def reset
+      output(Esc.reset)
     end
 
-    def mode
-      options.fetch(:mode)
+    def clear_screen
+      output(Esc.clear)
     end
 
-    def clear_screen?
-      options.fetch(:clear)
-    end
-
-    def noop
-      proc {}
-    end
-
-    def options
-      defaults.merge!(@options)
-    end
-
-    def defaults
-      {
-        mode:   :cooked, # or :raw
-        clear:  true,    # or false (clears the screen if true)
-        cursor: :show,   # or :hide
-      }
+    def clear_last_line
+      output([
+        Position.set((height - 1), 1),
+        Esc.clear_line
+      ].join)
     end
   end
 end

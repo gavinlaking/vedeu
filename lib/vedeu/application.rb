@@ -16,13 +16,11 @@ module Vedeu
     end
 
     def start
-      Terminal.open(options) do
+      Terminal.open do
         Output.render
 
         runner { main_sequence }
       end
-    ensure
-      Terminal.close
     end
 
     private
