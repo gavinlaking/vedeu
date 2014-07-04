@@ -24,18 +24,6 @@ module Vedeu
       end
     end
 
-    # describe '#to_compositor' do
-    #   let(:subject) { described_instance.to_compositor }
-
-    #   it 'returns a Hash' do
-    #     subject.must_be_instance_of(Hash)
-    #   end
-
-    #   it 'returns the composition as a Compositor format' do
-    #     subject.must_equal({"dummy"=>[[{}, {:style=>['normal'], :colour=>{ foreground: '#ffff00', background: '#000000' }, :text=>"Some text..."}]]})
-    #   end
-    # end
-
     # describe '#to_json' do
     #   let(:subject) { described_instance.to_json }
 

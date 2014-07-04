@@ -63,10 +63,6 @@ module Vedeu
       end
     end
 
-    # def to_compositor
-    #   line.map(&:to_compositor)
-    # end
-
     def to_json
       Oj.dump(attributes, mode: :compat)
     end

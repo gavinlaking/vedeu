@@ -49,22 +49,6 @@ module Vedeu
       end
     end
 
-    # describe '#to_compositor' do
-    #   let(:subject) { described_instance.to_compositor }
-
-    #   it 'returns a Hash' do
-    #     subject.must_be_instance_of(Hash)
-    #   end
-
-    #   it 'returns a Hash' do
-    #     subject.must_equal({
-    #       style:  ['normal'],
-    #       colour: { foreground: '#ff0000', background: '#000000' },
-    #       text:   "Some text"
-    #     })
-    #   end
-    # end
-
     describe '#to_s' do
       let(:subject) { described_instance.to_s }
 

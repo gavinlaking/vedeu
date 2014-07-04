@@ -15,13 +15,6 @@ module Vedeu
 
     attribute :interfaces, Array[Interface]
 
-    # def to_compositor
-    #   interfaces.inject({}) do |acc, interface|
-    #     acc[interface.name] = interface.to_compositor
-    #     acc
-    #   end
-    # end
-
     def enqueue
       interfaces.map do |interface|
         interface.enqueue(interface.to_s)

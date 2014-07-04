@@ -9,15 +9,7 @@ module Vedeu
     include Virtus.model
     include Presentation
 
-    attribute :text,   String, default: ''
-
-    # def to_compositor
-    #   {
-    #     style:  style.to_compositor,
-    #     colour: colour.to_compositor,
-    #     text:   text
-    #   }.delete_if {|_, v| v.nil? || v.empty? }
-    # end
+    attribute :text, String, default: ''
 
     def to_json
       Oj.dump(attributes, mode: :compat)

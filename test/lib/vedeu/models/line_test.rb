@@ -47,23 +47,6 @@ module Vedeu
         subject.must_equal([])
       end
     end
-
-    # describe '#to_compositor' do
-    #   let(:subject) { described_instance.to_compositor }
-
-    #   it 'returns an Array' do
-    #     subject.must_be_instance_of(Array)
-
-    #     subject.must_equal(
-    #       [
-    #         {
-    #           style:  ['normal'],
-    #           colour: { foreground: '#ff0000', background: '#000000' }
-    #         }
-    #       ]
-    #     )
-    #   end
-    # end
   end
 end
 

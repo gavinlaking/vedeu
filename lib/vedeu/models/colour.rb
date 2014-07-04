@@ -13,10 +13,6 @@ module Vedeu
     attribute :foreground, Foreground
     attribute :background, Background
 
-    # def to_compositor
-    #   attributes.delete_if {|_, v| v.nil? || v.empty? }
-    # end
-
     def to_json
       Oj.dump(attributes, mode: :compat)
     end

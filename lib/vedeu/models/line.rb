@@ -10,11 +10,6 @@ module Vedeu
 
     attribute :streams, Array[Stream]
 
-    # def to_compositor
-    #   [
-    #     formatting, *stream.map(&:to_compositor)
-    #   ]
-    # end
 
     def to_json
       Oj.dump(attributes, mode: :compat)

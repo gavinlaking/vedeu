@@ -20,45 +20,6 @@ module Vedeu
       end
     end
 
-    # describe '#to_compositor' do
-    #   let(:subject) { described_instance.to_compositor }
-
-    #   it 'returns a Hash' do
-    #     subject.must_be_instance_of(Hash)
-    #   end
-
-    #   it 'returns a Hash' do
-    #     subject.must_equal({
-    #                          foreground: '#ff0000',
-    #                          background: '#000000'
-    #     })
-    #   end
-
-    #   context 'when the foreground is missing' do
-    #     let(:attributes) { { background: '#000000' } }
-
-    #     it 'returns a Hash' do
-    #       subject.must_equal({ background: '#000000' })
-    #     end
-    #   end
-
-    #   context 'when the background is missing' do
-    #     let(:attributes) { { foreground: '#ff0000' } }
-
-    #     it 'returns a Hash' do
-    #       subject.must_equal({ foreground: '#ff0000' })
-    #     end
-    #   end
-
-    #   context 'when both are missing' do
-    #     let(:attributes) { {} }
-
-    #     it 'returns a Hash' do
-    #       subject.must_equal({})
-    #     end
-    #   end
-    # end
-
     describe '#to_s' do
       let(:subject) { described_instance.to_s }
 
