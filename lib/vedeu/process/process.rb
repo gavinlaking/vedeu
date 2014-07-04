@@ -1,6 +1,6 @@
 require_relative '../repository/command_repository'
 require_relative '../support/queue'
-require_relative '../support/json_parser'
+require_relative '../support/parser'
 
 module Vedeu
   class Process
@@ -15,7 +15,7 @@ module Vedeu
     def evaluate
       fail StopIteration if no_result?
 
-      json = JSONParser.parse(result)
+      json = Parser.parse(result)
 
       Composition.enqueue(json)
     end

@@ -30,7 +30,7 @@ module Vedeu
         Queue.stubs(:dequeue).returns(input)
         CommandRepository.stubs(:by_input).returns(command)
         command.stubs(:execute).returns(result)
-        JSONParser.stubs(:parse).returns(json)
+        Parser.stubs(:parse).returns(json)
         Composition.stubs(:enqueue).returns([])
       end
 
