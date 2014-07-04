@@ -1,43 +1,22 @@
+require 'oj'
 require 'virtus'
 
 require_relative 'presentation'
-require_relative 'stream'
+require_relative 'stream_collection'
 
 module Vedeu
   class Line
     include Virtus.model
     include Presentation
 
-    attribute :streams, Array[Stream]
-
+    attribute :streams, StreamCollection
 
     def to_json
       Oj.dump(attributes, mode: :compat)
     end
 
     def to_s
-      [style.to_s, colour.to_s, *streams.map(&:to_s)].join
-    end
-
-    private
-
-    def formatting
-      {
-        style:  style_to_compositor,
-        colour: colour_to_compositor
-      }.delete_if { |_, v| v.nil? || v.empty? }
-    end
-
-    def style_to_compositor
-      return '' if style.nil? || style.empty?
-
-      style.to_compositor
-    end
-
-    def colour_to_compositor
-      return '' if colour.nil? || colour.empty?
-
-      colour.to_compositor
+      [colour.to_s, style.to_s, streams].join
     end
   end
 end
