@@ -23,8 +23,12 @@ module Vedeu
       context 'when there is a single stream' do
         let(:streams) { "some text" }
 
-        it 'returns a Stream' do
-          subject.must_be_instance_of(Stream)
+        it 'returns an Array' do
+          subject.must_be_instance_of(Array)
+        end
+
+        it 'contains a single Stream object' do
+          subject.size.must_equal(1)
         end
       end
 
@@ -42,6 +46,10 @@ module Vedeu
 
         it 'returns a collection of Stream objects' do
           subject.first.must_be_instance_of(Stream)
+        end
+
+        it 'contains multiple Stream objects' do
+          subject.size.must_equal(2)
         end
       end
     end

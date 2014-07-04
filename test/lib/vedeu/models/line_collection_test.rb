@@ -23,16 +23,24 @@ module Vedeu
       context 'when the line is just a String' do
         let(:lines) { 'some text' }
 
-        it 'returns a Line' do
-          subject.must_be_instance_of(Line)
+        it 'returns an Array' do
+          subject.must_be_instance_of(Array)
+        end
+
+        it 'contains a single Line object' do
+          subject.size.must_equal(1)
         end
       end
 
       context 'when there is a single line' do
         let(:lines) { { streams: { text: 'some text' } } }
 
-        it 'returns a Line' do
-          subject.must_be_instance_of(Line)
+        it 'returns an Array' do
+          subject.must_be_instance_of(Array)
+        end
+
+        it 'contains a single Line object' do
+          subject.size.must_equal(1)
         end
       end
 
@@ -48,8 +56,12 @@ module Vedeu
           subject.must_be_instance_of(Array)
         end
 
-        it 'returns a collection of lines objects' do
+        it 'returns a collection of Line objects' do
           subject.first.must_be_instance_of(Line)
+        end
+
+        it 'contains multiple Line objects' do
+          subject.size.must_equal(2)
         end
       end
     end

@@ -14,8 +14,6 @@ module Vedeu
         values.map { |v| Interface.new(v) }
       elsif single?(values)
         [Interface.new(values)]
-      else
-        fail InvalidInterface
       end
     end
   end

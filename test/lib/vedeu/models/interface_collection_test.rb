@@ -27,8 +27,8 @@ module Vedeu
           subject.must_be_instance_of(Array)
         end
 
-        it 'returns a collection of Interface objects' do
-          subject.first.must_be_instance_of(Interface)
+        it 'contains a single Interface object' do
+          subject.size.must_equal(1)
         end
       end
 
@@ -46,6 +46,10 @@ module Vedeu
 
         it 'returns a collection of Interface objects' do
           subject.first.must_be_instance_of(Interface)
+        end
+
+        it 'contains multiple Line objects' do
+          subject.size.must_equal(2)
         end
       end
     end

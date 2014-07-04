@@ -3,15 +3,15 @@ module Vedeu
     private
 
     def multiple?(values)
-      values.is_a?(Enumerable) && values.size > 1
+      values.is_a?(::Array) && values.size > 1
     end
 
     def single?(values)
-      values.is_a?(Enumerable) && values.one?
+      values.is_a?(::Hash) && values.one?
     end
 
     def just_text?(values)
-      values.is_a?(String)
+      values.is_a?(::String)
     end
 
     def empty?(values)
