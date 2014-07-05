@@ -25,19 +25,3 @@ module Vedeu
     end
   end
 end
-
-# {
-#   interface: {
-#     name: 'dummy',
-#     lines: [{
-#       streams: [{
-#         text: 'Some text...'
-#       }]
-#     }]
-#   }
-# }
-
-# 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-# 'Aliquam pellentesque metus id lacinia viverra. Cras malesuada'
-# 'hendrerit neque, a pharetra risus posuere elementum. Ut felis elit,'
-# 'semper vel ornare ut, vestibulum sit amet orci. Donec eu tortor.'
