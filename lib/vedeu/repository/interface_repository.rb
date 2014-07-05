@@ -18,8 +18,10 @@ module Vedeu
       result
     end
 
-    def find_or_create(name, attributes = {})
-      find(name)
+    def update(name, attributes = {})
+      interface = find(name)
+      interface.attributes = attributes
+      interface
     rescue UndefinedInterface
       create(attributes)
     end

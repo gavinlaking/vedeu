@@ -12,11 +12,11 @@ module Vedeu
 
       if multiple?(values)
         values.map do |value|
-          InterfaceRepository.find_or_create(value['name'], value)
+          InterfaceRepository.update(value[:name], value)
         end
 
       elsif single?(values)
-        [InterfaceRepository.find_or_create(values['name'], values)]
+        [InterfaceRepository.update(values[:name], values)]
 
       end
     end

@@ -48,8 +48,8 @@ module Vedeu
       end
     end
 
-    describe '.find_or_create' do
-      let(:subject)    { described_class.find_or_create(value, attributes) }
+    describe '.update' do
+      let(:subject)    { described_class.update(value, attributes) }
       let(:value)      { 'dummy' }
       let(:attributes) { { name: 'dumber' } }
 
@@ -58,8 +58,8 @@ module Vedeu
       end
 
       context 'when the interface exists' do
-        it 'returns the existing interface' do
-          subject.name.must_equal('dummy')
+        it 'updates and returns the existing interface' do
+          subject.name.must_equal('dumber')
         end
       end
 
