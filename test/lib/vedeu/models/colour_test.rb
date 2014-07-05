@@ -23,8 +23,12 @@ module Vedeu
     describe '#to_json' do
       let(:subject) { described_instance.to_json }
 
+      it 'returns a String' do
+        subject.must_be_instance_of(String)
+      end
+
       it 'returns the model as JSON' do
-        skip
+        subject.must_equal("{\"foreground\":\"\\u001b[38;5;196m\",\"background\":\"\\u001b[48;5;16m\"}")
       end
     end
 

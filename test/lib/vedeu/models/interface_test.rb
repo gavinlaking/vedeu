@@ -184,9 +184,12 @@ module Vedeu
     describe '#refresh' do
       let(:subject) { described_instance.refresh }
 
-      it 'returns a Array' do
-        skip
-        subject.must_be_instance_of(Array)
+      it 'returns a String' do
+        subject.must_be_instance_of(String)
+      end
+
+      it 'returns a String' do
+        subject.must_equal("\e[38;5;196m\e[48;5;16m\e[1;1H       \e[1;1H\e[2;1H       \e[2;1H\e[3;1H       \e[3;1H")
       end
     end
 
@@ -198,8 +201,19 @@ module Vedeu
       end
 
       it 'returns an String' do
-        skip
-        subject.must_equal("")
+        subject.must_equal("\e[38;5;196m\e[48;5;16m\e[1;1H       \e[1;1H\e[2;1H       \e[2;1H\e[3;1H       \e[3;1H")
+      end
+    end
+
+    describe '#to_json' do
+      let(:subject) { described_instance.to_json }
+
+      it 'returns an String' do
+        subject.must_be_instance_of(String)
+      end
+
+      it 'returns an String' do
+        subject.must_equal("{\"colour\":{\"foreground\":\"\\u001b[38;5;196m\",\"background\":\"\\u001b[48;5;16m\"},\"style\":\"\",\"name\":\"dummy\",\"lines\":[],\"y\":1,\"x\":1,\"z\":1,\"width\":7,\"height\":3,\"current\":\"\",\"cursor\":true}")
       end
     end
   end

@@ -7,7 +7,7 @@ module Vedeu
     let(:described_class)    { Composition }
     let(:described_instance) { described_class.new(attributes) }
     let(:attributes)         { { interfaces: interfaces } }
-    let(:interfaces)         { { name: 'dummy' } }
+    let(:interfaces)         { { name: 'dummy', width: 40, height: 25 } }
 
     describe '#initialize' do
       let(:subject) { described_instance }
@@ -20,6 +20,10 @@ module Vedeu
     describe '#enqueue' do
       let(:subject) { described_instance.enqueue }
 
+      before do
+        InterfaceRepository.create({ name: 'dummy', width: 10, height: 2 })
+      end
+
       it 'creates a composition and enqueues the interface for rendering' do
         skip
       end
@@ -30,6 +34,10 @@ module Vedeu
 
       it 'returns a String' do
         subject.must_be_instance_of(String)
+      end
+
+      it 'returns the model as JSON' do
+        subject.must_equal("{\"interfaces\":[{\"colour\":null,\"style\":\"\",\"name\":\"dummy\",\"lines\":[],\"y\":1,\"x\":1,\"z\":1,\"width\":40,\"height\":25,\"current\":\"\",\"cursor\":true}]}")
       end
     end
 

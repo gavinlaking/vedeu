@@ -47,6 +47,30 @@ module Vedeu
         subject.must_equal([])
       end
     end
+
+    describe '#to_json' do
+      let(:subject) { described_instance.to_json }
+
+      it 'returns an String' do
+        subject.must_be_instance_of(String)
+      end
+
+      it 'returns an String' do
+        subject.must_equal("{\"colour\":{\"foreground\":\"\\u001b[38;5;196m\",\"background\":\"\\u001b[48;5;16m\"},\"style\":\"\\u001b[24m\\u001b[21m\\u001b[27m\",\"streams\":[]}")
+      end
+    end
+
+    describe '#to_s' do
+      let(:subject) { described_instance.to_s }
+
+      it 'returns an String' do
+        subject.must_be_instance_of(String)
+      end
+
+      it 'returns an String' do
+        subject.must_equal("\e[38;5;196m\e[48;5;16m\e[24m\e[21m\e[27m")
+      end
+    end
   end
 end
 
