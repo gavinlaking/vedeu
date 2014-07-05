@@ -18,6 +18,12 @@ module Vedeu
       result
     end
 
+    def find_or_create(name, attributes = {})
+      find(name)
+    rescue UndefinedInterface
+      create(attributes)
+    end
+
     def refresh
       by_layer.map { |interface| interface.refresh }.compact
     end

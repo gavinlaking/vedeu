@@ -48,6 +48,30 @@ module Vedeu
       end
     end
 
+    describe '.find_or_create' do
+      let(:subject)    { described_class.find_or_create(value, attributes) }
+      let(:value)      { 'dummy' }
+      let(:attributes) { { name: 'dumber' } }
+
+      it 'returns an Interface' do
+        subject.must_be_instance_of(Interface)
+      end
+
+      context 'when the interface exists' do
+        it 'returns the existing interface' do
+          subject.name.must_equal('dummy')
+        end
+      end
+
+      context 'when the interface does not exist' do
+        before { InterfaceRepository.reset }
+
+        it 'returns the created interface' do
+          subject.name.must_equal('dumber')
+        end
+      end
+    end
+
     describe '.refresh' do
       let(:subject) { described_class.refresh }
 

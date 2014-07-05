@@ -1,6 +1,6 @@
 require 'virtus'
 
-require_relative 'interface'
+require_relative '../repository/interface_repository'
 require_relative 'coercions'
 
 module Vedeu
@@ -11,10 +11,12 @@ module Vedeu
       return [] if empty?(values)
 
       if multiple?(values)
-        values.map { |v| Interface.new(v) }
+        values.map do |value|
+          InterfaceRepository.find_or_create(value['name'], value)
+        end
 
       elsif single?(values)
-        [Interface.new(values)]
+        [InterfaceRepository.find_or_create(values['name'], values)]
 
       end
     end
