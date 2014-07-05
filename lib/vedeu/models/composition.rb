@@ -7,13 +7,11 @@ module Vedeu
   class Composition
     include Virtus.model
 
-    class << self
-      def enqueue(composition)
-        new(composition).enqueue
-      end
-    end
-
     attribute :interfaces, InterfaceCollection
+
+    def self.enqueue(composition)
+      new(composition).enqueue
+    end
 
     def enqueue
       interfaces.map do |interface|

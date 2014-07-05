@@ -1,9 +1,7 @@
 module Vedeu
   class Translator
-    class << self
-      def translate(html_colour = '')
-        new(html_colour).translate
-      end
+    def self.translate(html_colour = '')
+      new(html_colour).translate
     end
 
     def initialize(html_colour = '')

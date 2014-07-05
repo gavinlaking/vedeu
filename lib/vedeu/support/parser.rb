@@ -4,10 +4,8 @@ require_relative '../models/composition'
 
 module Vedeu
   class Parser
-    class << self
-      def parse(output)
-        new(output).parse
-      end
+    def self.parse(output)
+      new(output).parse
     end
 
     def initialize(output)

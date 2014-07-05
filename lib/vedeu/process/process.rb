@@ -4,10 +4,8 @@ require_relative '../support/parser'
 
 module Vedeu
   class Process
-    class << self
-      def evaluate
-        new.evaluate
-      end
+    def self.evaluate
+      new.evaluate
     end
 
     def initialize; end

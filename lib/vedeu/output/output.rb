@@ -3,10 +3,8 @@ require_relative '../support/terminal'
 
 module Vedeu
   class Output
-    class << self
-      def render
-        new.render
-      end
+    def self.render
+      new.render
     end
 
     def initialize; end

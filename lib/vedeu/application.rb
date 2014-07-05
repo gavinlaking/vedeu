@@ -5,10 +5,8 @@ require_relative 'support/terminal'
 
 module Vedeu
   class Application
-    class << self
-      def start(options = {})
-        new(options).start
-      end
+    def self.start(options = {})
+      new(options).start
     end
 
     def initialize(options = {})

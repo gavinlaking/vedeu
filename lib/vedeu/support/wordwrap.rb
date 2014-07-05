@@ -1,9 +1,7 @@
 module Vedeu
   class Wordwrap
-    class << self
-      def this(value, options = {})
-        new(value, options).reformat
-      end
+    def self.this(value, options = {})
+      new(value, options).reformat
     end
 
     def initialize(value, options = {})
