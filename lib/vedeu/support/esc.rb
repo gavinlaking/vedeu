@@ -1,3 +1,4 @@
+require_relative 'cursor'
 require_relative 'translator'
 
 module Vedeu
@@ -32,6 +33,10 @@ module Vedeu
       [esc, '2K'].join
     end
 
+    # def cursor(value)
+    #   Cursor.
+    # end
+
     def esc
       [27.chr, '['].join
     end
@@ -58,6 +63,27 @@ module Vedeu
 
     def reset
       [esc, '0m'].join
+    end
+
+    def stylize(value = 'normal')
+      case value
+      when 'blink'         then blink
+      when 'blink_off'     then blink_off
+      when 'bold'          then bold
+      when 'bold_off'      then bold_off
+      when 'clear'         then clear
+      when 'hide_cursor'   then Cursor.hide
+      when 'negative'      then negative
+      when 'positive'      then positive
+      when 'reset'         then reset
+      when 'normal'        then normal
+      when 'dim'           then dim
+      when 'show_cursor'   then Cursor.show
+      when 'underline'     then underline
+      when 'underline_off' then underline_off
+      else
+        ''
+      end
     end
 
     def underline
