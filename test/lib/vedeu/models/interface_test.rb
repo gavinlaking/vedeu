@@ -234,8 +234,33 @@ module Vedeu
     end
 
     describe '#origin' do
-      let(:subject) { described_instance.origin(index) }
-      let(:index)   {}
+      it 'returns a String' do
+        described_instance.origin.must_be_instance_of(String)
+      end
+
+      it 'returns the origin for the interface' do
+        described_instance.origin.must_equal("\e[1;1H")
+      end
+
+      context 'when the index is provided' do
+        it 'returns the line position relative to the origin' do
+          described_instance.origin(3).must_equal("\e[4;1H")
+        end
+      end
+
+      context 'when the interface is at a custom position' do
+        let(:attributes) { { y: 6, x: 3 }}
+
+        it 'returns the origin for the interface' do
+          described_instance.origin.must_equal("\e[6;3H")
+        end
+
+        context 'when the index is provided' do
+          it 'returns the line position relative to the origin' do
+            described_instance.origin(3).must_equal("\e[9;3H")
+          end
+        end
+      end
     end
 
     describe '#refresh' do
