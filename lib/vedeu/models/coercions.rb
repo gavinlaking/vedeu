@@ -3,11 +3,11 @@ module Vedeu
     private
 
     def multiple?(values)
-      values.is_a?(::Array) && values.size > 1
+      values.is_a?(::Array)
     end
 
     def single?(values)
-      values.is_a?(::Hash) && values.one?
+      values.is_a?(::Hash)
     end
 
     def just_text?(values)
