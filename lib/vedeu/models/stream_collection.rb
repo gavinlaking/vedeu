@@ -14,10 +14,13 @@ module Vedeu
 
       if multiple?(values)
         values.map { |v| Stream.new(v) }
+
       elsif single?(values)
         [Stream.new(values)]
+
       elsif values.is_a?(String)
         [Stream.new({ text: values })]
+
       end
     end
   end

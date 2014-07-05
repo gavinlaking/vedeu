@@ -157,11 +157,11 @@ module Vedeu
       end
     end
 
-    describe '#clear' do
-      let(:subject) { described_instance.clear }
+    describe '#current' do
+      let(:subject) { described_instance.current }
 
       it 'returns a String' do
-        subject.must_equal("\e[1;1H       \e[1;1H")
+        subject.must_be_instance_of(String)
       end
     end
 
@@ -181,12 +181,11 @@ module Vedeu
       end
     end
 
-    describe '#cursor=' do
-      let(:subject) { described_instance.cursor=(value) }
-      let(:value)   {}
+    describe '#clear' do
+      let(:subject) { described_instance.clear }
 
-      it 'returns the cursor value' do
-        skip
+      it 'returns a String' do
+        subject.must_equal("\e[1;1H       \e[1;1H")
       end
     end
 

@@ -2,7 +2,7 @@ require 'virtus'
 
 require_relative 'presentation'
 require_relative 'line_collection'
-require_relative '../support/position'
+require_relative '../support/esc'
 require_relative '../support/cursor'
 require_relative '../support/queue'
 require_relative '../support/terminal'
@@ -21,38 +21,46 @@ module Vedeu
     attribute :width,   Integer, default: Terminal.width
     attribute :height,  Integer, default: Terminal.height
     attribute :current, String,  default: ''
+    attribute :cursor,  Boolean, default: true
 
     def clear(index = 0)
       [origin(index), (' ' * width), origin(index)].join
     end
 
-    def cursor
-      @cursor.nil? ? true : @cursor
-    end
-
-    def cursor=(value)
-      @cursor = value
-    end
-
     def dy
-      clip_y? ? defaults[:height] : (y + height)
+      if clip_y?
+        defaults[:height]
+
+      else
+        (y + height)
+
+      end
     end
 
     def dx
-      clip_x? ? defaults[:width] : (x + width)
+      if clip_x?
+        defaults[:width]
+
+      else
+        (x + width)
+
+      end
     end
 
     def origin(index = 0)
-      Position.set(virtual_y(index), virtual_x)
+      Esc.set_position(virtual_y(index), virtual_x)
     end
 
     def refresh
       if enqueued?
         current = dequeue
+
       elsif current.nil? || current.empty?
         current = clear_interface
+
       else
         current
+
       end
     end
 

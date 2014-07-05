@@ -11,19 +11,19 @@ module Vedeu
   # :nocov:
   module ClassMethods
     def command(name, options = {})
-      command_name = name.is_a?(Symbol) ? name.to_s : name
-
-      CommandRepository.create({
-        name: command_name
-      }.merge!(options))
+      CommandRepository.create({ name: stringify_symbols(name) }
+                       .merge!(options))
     end
 
     def interface(name, options = {})
-      interface_name = name.is_a?(Symbol) ? name.to_s : name
+      InterfaceRepository.create({ name: stringify_symbols(name) }
+                         .merge!(options))
+    end
 
-      InterfaceRepository.create({
-        name: interface_name
-      }.merge!(options))
+    private
+
+    def stringify_symbols(value)
+      value.is_a?(::Symbol) ? value.to_s : value
     end
   end
 

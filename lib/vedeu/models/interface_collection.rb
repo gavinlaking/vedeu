@@ -12,8 +12,10 @@ module Vedeu
 
       if multiple?(values)
         values.map { |v| Interface.new(v) }
+
       elsif single?(values)
         [Interface.new(values)]
+
       end
     end
   end

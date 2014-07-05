@@ -13,8 +13,10 @@ module Vedeu
 
       if multiple?(values)
         values.map { |value| Esc.stylize(value) }.join
+
       elsif just_text?(values)
         Esc.stylize(values)
+
       end
     end
   end

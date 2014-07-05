@@ -173,6 +173,27 @@ module Vedeu
       end
     end
 
+    describe '.set_position' do
+      let(:subject) { described_class.set_position(y, x) }
+      let(:y)       {}
+      let(:x)       {}
+
+      context 'when no coordinates are provided' do
+        it 'returns a position escape sequence' do
+          subject.must_equal("\e[1;1H")
+        end
+      end
+
+      context 'when coordinates are provided' do
+        let(:y)       { 12 }
+        let(:x)       { 19 }
+
+        it 'returns a position escape sequence' do
+          subject.must_equal("\e[12;19H")
+        end
+      end
+    end
+
     describe '.stylize' do
       let(:subject) { described_class.stylize(style) }
       let(:style)   {}

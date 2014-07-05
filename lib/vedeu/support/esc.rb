@@ -1,4 +1,5 @@
 require_relative 'cursor'
+require_relative 'terminal'
 require_relative 'translator'
 
 module Vedeu
@@ -33,6 +34,10 @@ module Vedeu
       [esc, '2K'].join
     end
 
+    def clear_last_line()
+      set_position((Terminal.height - 1), 1) + clear_line
+    end
+
     # def cursor(value)
     #   Cursor.
     # end
@@ -63,6 +68,10 @@ module Vedeu
 
     def reset
       [esc, '0m'].join
+    end
+
+    def set_position(y = 1, x = 1)
+      [esc, ((y == 0 || y == nil) ? 1 : y), ';', ((x == 0 || x == nil) ? 1 : x), 'H'].join
     end
 
     def stylize(value = 'normal')
