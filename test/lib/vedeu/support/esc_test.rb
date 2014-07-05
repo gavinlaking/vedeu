@@ -5,6 +5,18 @@ module Vedeu
   describe Esc do
     let(:described_class) { Esc }
 
+    describe '.background_colour' do
+      let(:subject) { described_class.background_colour }
+
+      it 'returns a String' do
+        subject.must_be_instance_of(String)
+      end
+
+      it 'returns an escape sequence' do
+        subject.must_equal("\e[48;5;16m")
+      end
+    end
+
     describe '.blink' do
       let(:subject) { described_class.blink }
 
@@ -86,6 +98,18 @@ module Vedeu
 
       it 'returns an escape sequence' do
         subject.must_equal("\e[")
+      end
+    end
+
+    describe '.foreground_colour' do
+      let(:subject) { described_class.foreground_colour }
+
+      it 'returns a String' do
+        subject.must_be_instance_of(String)
+      end
+
+      it 'returns an escape sequence' do
+        subject.must_equal("\e[38;5;231m")
       end
     end
 

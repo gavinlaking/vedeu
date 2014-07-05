@@ -16,7 +16,7 @@ module Vedeu
     end
 
     def to_s
-      [foreground, background].join
+      foreground + background
     end
   end
 end

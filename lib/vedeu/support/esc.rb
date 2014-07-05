@@ -1,6 +1,12 @@
+require_relative 'translator'
+
 module Vedeu
   module Esc
     extend self
+
+    def background_colour(value = '#000000')
+      [esc, '48;5;', colour_translator(value), 'm'].join
+    end
 
     def blink
       [esc, '5m'].join
@@ -30,6 +36,10 @@ module Vedeu
       [27.chr, '['].join
     end
 
+    def foreground_colour(value = '#ffffff')
+      [esc, '38;5;', colour_translator(value), 'm'].join
+    end
+#
     def negative
       [esc, '7m'].join
     end
@@ -56,6 +66,12 @@ module Vedeu
 
     def underline_off
       [esc, '24m'].join
+    end
+
+    private
+
+    def colour_translator(value)
+      Translator.translate(value)
     end
   end
 end
