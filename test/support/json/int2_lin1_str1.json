@@ -1,0 +1,20 @@
+{
+    "interfaces": [
+        {
+            "name": "int2_lin1_str1_1",
+            "lines": {
+                "streams": {
+                    "text": "Some text..."
+                }
+            }
+        },
+        {
+            "name": "int2_lin1_str1_2",
+            "lines": {
+                "streams": {
+                    "text": "Some text..."
+                }
+            }
+        }
+    ]
+}

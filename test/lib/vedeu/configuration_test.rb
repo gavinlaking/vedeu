@@ -1,4 +1,5 @@
 require_relative '../../test_helper'
+require_relative '../../../lib/vedeu/configuration'
 
 module Vedeu
   describe Configuration do
@@ -7,16 +8,20 @@ module Vedeu
     let(:args)               { [] }
     let(:subject)            { described_instance }
 
-    it 'returns a Configuration instance' do
-      subject.must_be_instance_of(Configuration)
-    end
+    describe '#initialize' do
+      let(:subject) { described_instance }
 
-    it 'sets an instance variable' do
-      subject.instance_variable_get('@args').must_equal([])
-    end
+      it 'returns a Configuration instance' do
+        subject.must_be_instance_of(Configuration)
+      end
 
-    it 'sets an instance variable' do
-      subject.instance_variable_get('@options').must_equal({})
+      it 'sets an instance variable' do
+        subject.instance_variable_get('@args').must_equal([])
+      end
+
+      it 'sets an instance variable' do
+        subject.instance_variable_get('@options').must_equal({})
+      end
     end
 
     describe '#configure' do

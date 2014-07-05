@@ -1,3 +1,5 @@
+require_relative 'storage'
+
 module Vedeu
   module Repository
     def adaptor

@@ -1,4 +1,5 @@
 require_relative '../../test_helper'
+require_relative '../../../lib/vedeu/application'
 
 module Vedeu
   describe Application do
@@ -6,8 +7,12 @@ module Vedeu
     let(:described_instance) { described_class.new(options) }
     let(:options)            { {} }
 
-    it 'returns an Application instance' do
-      described_instance.must_be_instance_of(Application)
+    describe '#initialize' do
+      let(:subject) { described_class.new(options) }
+
+      it 'returns an Application instance' do
+        subject.must_be_instance_of(Application)
+      end
     end
 
     describe '.start' do

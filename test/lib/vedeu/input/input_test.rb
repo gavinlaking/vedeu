@@ -1,4 +1,5 @@
 require_relative '../../../test_helper'
+require_relative '../../../../lib/vedeu/input/input'
 
 module Vedeu
   describe Input do
@@ -17,7 +18,7 @@ module Vedeu
         subject.must_be_instance_of(Array)
       end
 
-      it 'returns the enqueue input' do
+      it 'returns the enqueued input' do
         subject.must_equal([input])
       end
     end

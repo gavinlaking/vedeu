@@ -1,9 +1,9 @@
+require 'optparse'
+
 module Vedeu
   class Configuration
-    class << self
-      def configure(args = [])
-        new(args).configure
-      end
+    def self.configure(args = [])
+      new(args).configure
     end
 
     def initialize(args = [])

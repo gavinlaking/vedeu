@@ -1,0 +1,66 @@
+{
+    "interfaces": [
+        {
+            "name": "int2_lin2_str3_1",
+            "lines": [
+                {
+                    "streams": [
+                        {
+                            "text": "Some text..."
+                        },
+                        {
+                            "text": " "
+                        },
+                        {
+                            "text": "more text..."
+                        }
+                    ]
+                },
+                {
+                    "streams": [
+                        {
+                            "text": "Some text..."
+                        },
+                        {
+                            "text": " "
+                        },
+                        {
+                            "text": "more text..."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "int2_lin2_str3_2",
+            "lines": [
+                {
+                    "streams": [
+                        {
+                            "text": "Some text..."
+                        },
+                        {
+                            "text": " "
+                        },
+                        {
+                            "text": "more text..."
+                        }
+                    ]
+                },
+                {
+                    "streams": [
+                        {
+                            "text": "Some text..."
+                        },
+                        {
+                            "text": " "
+                        },
+                        {
+                            "text": "more text..."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

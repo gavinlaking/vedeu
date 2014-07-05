@@ -1,51 +1,35 @@
+require_relative '../repository/command_repository'
+require_relative '../support/queue'
+require_relative '../support/parser'
+
 module Vedeu
   class Process
-    class << self
-      def evaluate
-        new.evaluate
-      end
+    def self.evaluate
+      new.evaluate
     end
 
     def initialize; end
 
     def evaluate
-      fail StopIteration if result == :stop
+      fail StopIteration if no_result?
 
-      Compositor.arrange(result) unless no_result?
+      json = Parser.parse(result)
+
+      Composition.enqueue(json)
     end
 
     private
+
+    def no_result?
+      result.nil? || result.empty? || result == :stop
+    end
 
     def result
       @result ||= command.execute(*args) if command
     end
 
-    def no_result?
-      result.nil? || result.empty?
-    end
-
     def command
-      @command ||= find_by_keypress || find_by_keyword
-    end
-
-    def find_by_keypress
-      CommandRepository.by_keypress(input) if keypress?
-    end
-
-    def find_by_keyword
-      CommandRepository.by_keyword(input) if keyword?
-    end
-
-    def keypress?
-      input? && input.size == 1
-    end
-
-    def keyword?
-      input? && input.size > 1
-    end
-
-    def input?
-      !!(input)
+      @command ||= CommandRepository.by_input(input)
     end
 
     def input

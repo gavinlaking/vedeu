@@ -1,0 +1,43 @@
+{
+    "interfaces": {
+        "name": "int1_lin2_str3_styles",
+        "lines": [
+            {
+                "streams": [
+                    {
+                        "text": "Some text...",
+                        "colour": {
+                            "foreground": "#000000",
+                            "background": "#0000ff"
+                        },
+                        "style": [
+                            "normal",
+                            "underline"
+                        ]
+                    },
+                    {
+                        "text": " ",
+                        "colour": {
+                            "foreground": "#ffff00",
+                            "background": "#00ff00"
+                        },
+                        "style": [
+                            "normal"
+                        ]
+                    },
+                    {
+                        "text": "more text...",
+                        "colour": {
+                            "foreground": "#ffffff",
+                            "background": "#ff00ff"
+                        },
+                        "style": [
+                            "bold",
+                            "reverse"
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

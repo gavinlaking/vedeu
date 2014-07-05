@@ -1,16 +1,17 @@
+require_relative '../repository/interface_repository'
+require_relative '../support/terminal'
+
 module Vedeu
   class Output
-    class << self
-      def render
-        new.render
-      end
+    def self.render
+      new.render
     end
 
     def initialize; end
 
     def render
       InterfaceRepository.refresh.each do |interface|
-        interface.each { |stream| Terminal.output(stream) if stream }
+        Terminal.output(interface)
       end
     end
   end

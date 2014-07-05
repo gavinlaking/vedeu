@@ -1,9 +1,12 @@
+require_relative 'input/input'
+require_relative 'output/output'
+require_relative 'process/process'
+require_relative 'support/terminal'
+
 module Vedeu
   class Application
-    class << self
-      def start(options = {})
-        new(options).start
-      end
+    def self.start(options = {})
+      new(options).start
     end
 
     def initialize(options = {})
@@ -11,13 +14,11 @@ module Vedeu
     end
 
     def start
-      Terminal.open(options) do
+      Terminal.open do
         Output.render
 
         runner { main_sequence }
       end
-    ensure
-      Terminal.close
     end
 
     private
