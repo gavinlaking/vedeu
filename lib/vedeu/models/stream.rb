@@ -2,7 +2,6 @@ require 'virtus'
 
 require_relative 'presentation'
 require_relative '../support/terminal'
-require_relative '../support/wordwrap'
 
 module Vedeu
   class Stream
@@ -16,16 +15,7 @@ module Vedeu
     end
 
     def to_s(options = {})
-      [colour, style, Wordwrap.this(text, options)].join
-    end
-
-    private
-
-    def options
-      {
-        width: Terminal.width,
-        prune: true
-      }
+      [colour, style, text].join
     end
   end
 end

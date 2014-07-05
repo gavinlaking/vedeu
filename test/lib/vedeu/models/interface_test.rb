@@ -181,88 +181,6 @@ module Vedeu
       end
     end
 
-    describe '#clear' do
-      let(:subject) { described_instance.clear }
-
-      it 'returns a String' do
-        subject.must_equal("\e[1;1H       \e[1;1H")
-      end
-    end
-
-    describe '#dy' do
-      let(:subject) { described_instance.dy }
-
-      it 'returns a Fixnum' do
-        subject.must_be_instance_of(Fixnum)
-      end
-
-      context 'when the value is greater than the available terminal size' do
-        it 'clips the value to the terminal size' do
-          subject.must_equal(4)
-        end
-      end
-
-      context 'when the value is less than the available size' do
-        let(:attributes) { { y: 20, height: 4 } }
-
-        it 'returns the value' do
-          subject.must_equal(24)
-        end
-      end
-    end
-
-    describe '#dx' do
-      let(:subject) { described_instance.dx }
-
-      it 'returns a Fixnum' do
-        subject.must_be_instance_of(Fixnum)
-      end
-
-      context 'when the value is greater than the available terminal size' do
-        it 'clips the value to the terminal size' do
-          subject.must_equal(8)
-        end
-      end
-
-      context 'when the value is less than the available size' do
-        let(:attributes) { { x: 17, width: 21 } }
-
-        it 'returns the value' do
-          subject.must_equal(38)
-        end
-      end
-    end
-
-    describe '#origin' do
-      it 'returns a String' do
-        described_instance.origin.must_be_instance_of(String)
-      end
-
-      it 'returns the origin for the interface' do
-        described_instance.origin.must_equal("\e[1;1H")
-      end
-
-      context 'when the index is provided' do
-        it 'returns the line position relative to the origin' do
-          described_instance.origin(3).must_equal("\e[4;1H")
-        end
-      end
-
-      context 'when the interface is at a custom position' do
-        let(:attributes) { { y: 6, x: 3 }}
-
-        it 'returns the origin for the interface' do
-          described_instance.origin.must_equal("\e[6;3H")
-        end
-
-        context 'when the index is provided' do
-          it 'returns the line position relative to the origin' do
-            described_instance.origin(3).must_equal("\e[9;3H")
-          end
-        end
-      end
-    end
-
     describe '#refresh' do
       let(:subject) { described_instance.refresh }
 
@@ -282,30 +200,6 @@ module Vedeu
       it 'returns an String' do
         skip
         subject.must_equal("")
-      end
-    end
-
-    describe '#virtual_x' do
-      let(:subject) { described_instance.virtual_x }
-
-      it 'returns a Fixnum' do
-        subject.must_be_instance_of(Fixnum)
-      end
-
-      it 'returns the value' do
-        subject.must_equal(1)
-      end
-    end
-
-    describe '#virtual_y' do
-      let(:subject) { described_instance.virtual_y }
-
-      it 'returns a Fixnum' do
-        subject.must_be_instance_of(Fixnum)
-      end
-
-      it 'returns the value' do
-        subject.must_equal(1)
       end
     end
   end
