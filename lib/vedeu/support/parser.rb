@@ -21,7 +21,7 @@ module Vedeu
     attr_reader :output
 
     def as_hash
-      Oj.load(output)
+      Oj.load(output, symbol_keys: true)
     end
   end
 end
