@@ -16,7 +16,7 @@ module Vedeu
     end
 
     def to_s
-      [colour.to_s, style.to_s, streams].join
+      [colour, style, streams].join
     end
   end
 end

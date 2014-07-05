@@ -16,7 +16,7 @@ module Vedeu
     end
 
     def to_s(options = {})
-      [colour.to_s, style.to_s, Wordwrap.this(text, options)].join
+      [colour, style, Wordwrap.this(text, options)].join
     end
 
     private
