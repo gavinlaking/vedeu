@@ -188,8 +188,18 @@ module Vedeu
         subject.must_be_instance_of(String)
       end
 
-      it 'returns a String' do
-        subject.must_equal("\e[38;5;196m\e[48;5;16m\e[1;1H       \e[1;1H\e[2;1H       \e[2;1H\e[3;1H       \e[3;1H")
+      context 'when content is queued up to be displayed' do
+        before { described_instance.enqueue("\e[38;5;196m\e[48;5;16m\e[1;1HContent\e[1;1H\e[2;1HContent\e[2;1H\e[3;1HContent\e[3;1H") }
+
+        it 'returns the fresh content' do
+          subject.must_equal("\e[38;5;196m\e[48;5;16m\e[1;1HContent\e[1;1H\e[2;1HContent\e[2;1H\e[3;1HContent\e[3;1H")
+        end
+      end
+
+      context 'when there is no content to display' do
+        it 'returns a blank interface' do
+          subject.must_equal("\e[38;5;196m\e[48;5;16m\e[1;1H       \e[1;1H\e[2;1H       \e[2;1H\e[3;1H       \e[3;1H")
+        end
       end
     end
 
