@@ -26,13 +26,13 @@ module Vedeu
 
     def refresh
       if enqueued?
-        current = dequeue
+        self.current = dequeue
 
       elsif no_content?
-        current = clear_interface
+        self.current = clear_interface
 
       else
-        current
+        self.current
 
       end
     end
@@ -48,7 +48,7 @@ module Vedeu
     private
 
     def no_content?
-      current.nil? || current.empty?
+      self.current.nil? || self.current.empty?
     end
 
     def render_content

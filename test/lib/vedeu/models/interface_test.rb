@@ -196,9 +196,19 @@ module Vedeu
         end
       end
 
-      context 'when there is no content to display' do
+      context 'when there is no content to display (initial state)' do
         it 'returns a blank interface' do
           subject.must_equal("\e[38;5;196m\e[48;5;16m\e[1;1H       \e[1;1H\e[2;1H       \e[2;1H\e[3;1H       \e[3;1H")
+        end
+      end
+
+      context 'when there is stale content from last run' do
+        before do
+          described_instance.current = "\e[38;5;196m\e[48;5;16m\e[1;1HOld\e[1;1H\e[2;1HContent\e[2;1H\e[3;1Here\e[3;1H"
+        end
+
+        it 'returns the previously shown content' do
+          subject.must_equal("\e[38;5;196m\e[48;5;16m\e[1;1HOld\e[1;1H\e[2;1HContent\e[2;1H\e[3;1Here\e[3;1H")
         end
       end
     end

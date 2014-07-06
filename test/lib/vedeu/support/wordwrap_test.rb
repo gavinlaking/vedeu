@@ -59,6 +59,15 @@ module Vedeu
           subject.must_equal(formatted_value)
         end
       end
+
+      context 'when the content is less than the prune size' do
+        let(:options) { { width: 70, prune: true } }
+        let(:value)   { 'Some text...' }
+
+        it 'returns formatted text' do
+          subject.must_equal(value)
+        end
+      end
     end
   end
 end
