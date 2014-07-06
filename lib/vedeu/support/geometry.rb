@@ -24,8 +24,8 @@ module Vedeu
     end
 
     def max_y
-      if ((y + height) > Terminal.height)
-        Terminal.height
+      if ((y + height) > screen_height)
+        screen_height
 
       else
         (y + height)
@@ -34,8 +34,8 @@ module Vedeu
     end
 
     def max_x
-      if ((x + width) > Terminal.width)
-        Terminal.width
+      if ((x + width) > screen_width)
+        screen_width
 
       else
         (x + width)
@@ -61,6 +61,14 @@ module Vedeu
 
     def y
       interface.y
+    end
+
+    def screen_height
+      @height ||= Terminal.height
+    end
+
+    def screen_width
+      @width ||= Terminal.width
     end
   end
 end

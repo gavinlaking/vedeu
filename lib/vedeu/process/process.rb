@@ -13,9 +13,9 @@ module Vedeu
     def evaluate
       fail StopIteration if no_result?
 
-      json = Parser.parse(result)
+      parsed_data = Parser.parse(result)
 
-      Composition.enqueue(json)
+      Composition.enqueue(parsed_data)
     end
 
     private

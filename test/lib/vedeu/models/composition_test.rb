@@ -7,7 +7,13 @@ module Vedeu
     let(:described_class)    { Composition }
     let(:described_instance) { described_class.new(attributes) }
     let(:attributes)         { { interfaces: interfaces } }
-    let(:interfaces)         { { name: 'dummy', width: 40, height: 25 } }
+    let(:interfaces)         {
+      {
+        name:   'dummy',
+        width:  40,
+        height: 25
+      }
+    }
 
     describe '#initialize' do
       let(:subject) { described_instance }
@@ -15,17 +21,59 @@ module Vedeu
       it 'returns a Composition instance' do
         subject.must_be_instance_of(Composition)
       end
+
+      it 'sets an instance variable' do
+        subject.instance_variable_get('@interfaces')
+          .must_be_instance_of(Array)
+      end
     end
 
-    describe '#enqueue' do
-      let(:subject) { described_instance.enqueue }
+    describe '#interfaces' do
+      let(:subject) { described_instance.interfaces }
 
-      before do
-        InterfaceRepository.create({ name: 'dummy', width: 10, height: 2 })
+      it 'returns an Array' do
+        subject.must_be_instance_of(Array)
       end
 
-      it 'creates a composition and enqueues the interface for rendering' do
-        skip
+      it 'returns a collection of interfaces' do
+        subject.first.must_be_instance_of(Interface)
+      end
+
+      context 'when no interfaces are associated' do
+        let(:attributes) { {} }
+
+        it 'returns an empty collection' do
+          subject.must_be_empty
+        end
+      end
+    end
+
+    describe '.enqueue' do
+      let(:subject)     { described_class.enqueue(composition) }
+      let(:composition) {
+        {
+          interfaces: [
+            { name: "enq1", lines: { streams: { text: "Some text..." } } },
+            { name: "enq2", lines: { streams: { text: "Some text..." } } }
+          ]
+        }
+      }
+
+      before do
+        InterfaceRepository.create(name: 'enq1', width: 15, height: 2)
+        InterfaceRepository.create(name: 'enq2', width: 15, height: 2)
+      end
+
+      it 'returns an Array' do
+        subject.must_be_instance_of(Array)
+      end
+
+      it 'returns a collection of interfaces' do
+        subject.first.must_be_instance_of(Interface)
+      end
+
+      it 'enqueues the interfaces for rendering' do
+        subject.first.enqueued?.must_equal(true)
       end
     end
 

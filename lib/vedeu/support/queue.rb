@@ -8,7 +8,6 @@ module Vedeu
 
     def enqueue(result)
       store.unshift(result)
-      store
     end
 
     def enqueued?

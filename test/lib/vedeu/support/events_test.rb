@@ -20,10 +20,10 @@ module Vedeu
     end
 
     describe '#on' do
-      let(:subject) { described_instance.on(event) { :do_something } }
+      let(:subject) { described_instance.on(event) { proc { |x, y| x + y } } }
       let(:event)   { :some_event }
 
-      it 'returns the handlers value' do
+      it 'returns an Array' do
         subject.must_be_instance_of(Array)
       end
     end
@@ -31,7 +31,15 @@ module Vedeu
     describe '#trigger' do
       let(:subject) { described_instance.trigger(event, args) }
       let(:event)   { :some_event }
-      let(:args)    {}
+      let(:args)    { :arg }
+
+      before do
+        described_instance.on(:some_event) { proc { |x| x } }
+      end
+
+      it 'returns an Array' do
+        subject.must_be_instance_of(Array)
+      end
     end
   end
 end

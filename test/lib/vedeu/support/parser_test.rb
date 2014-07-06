@@ -27,30 +27,12 @@ module Vedeu
       end
     end
 
-    # describe '#parse' do
-    #   let(:subject) { described_class.parse(output) }
+    describe '#parse' do
+      let(:subject) { described_class.parse(output) }
 
-    #   it 'returns a Composition' do
-    #     subject.must_be_instance_of(Composition)
-    #   end
-
-    #   context 'when the output is an interface name and a stream' do
-    #     it 'returns a composition' do
-    #       subject.must_equal('')
-    #     end
-    #   end
-
-    #   context 'when the output contains a single interface' do
-    #     it 'returns a Composition instance' do
-    #       subject.must_be_instance_of(Composition)
-    #     end
-    #   end
-
-    #   context 'when the output contains multiple interfaces' do
-    #     it 'returns a Composition instance' do
-    #       subject.must_be_instance_of(Composition)
-    #     end
-    #   end
-    # end
+      it 'returns a Composition' do
+        subject.must_be_instance_of(Composition)
+      end
+    end
   end
 end
