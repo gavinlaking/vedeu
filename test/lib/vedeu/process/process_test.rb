@@ -1,66 +1,69 @@
 require_relative '../../../test_helper'
 require_relative '../../../../lib/vedeu/process/process'
-require_relative '../../../../lib/vedeu/repository/interface_repository'
+# require_relative '../../../../lib/vedeu/repository/interface_repository'
+require_relative '../../../support/dummy_command'
+require_relative '../../../../lib/vedeu/repository/command_repository'
 
 module Vedeu
+  class QuitCommand
+    def self.dispatch(*args)
+      :stop
+    end
+  end
+
+  class TestCommand
+    def self.dispatch(*args)
+      :test
+    end
+  end
+
   describe Process do
     let(:described_class) { Process }
-    let(:input)           { nil }
-    let(:result)          {}
-
-    describe '#initialize' do
-      let(:subject) { described_class.new }
-
-      it 'returns a Process instance' do
-        subject.must_be_instance_of(Process)
-      end
-    end
 
     describe '.evaluate' do
       let(:subject) { described_class.evaluate }
-      let(:command) { Command.new }
-      let(:json)    { {} }
 
       before do
-        InterfaceRepository.create({
-          name: 'dummy',
-          width: 15,
-          height: 2
+        CommandRepository.create({
+          'name' =>     'quit',
+          entity:   QuitCommand,
+          keypress: 'q'
+        })
+        CommandRepository.create({
+          name:     'test',
+          entity:   TestCommand,
+          keypress: 't'
         })
         Queue.stubs(:dequeue).returns(input)
-        CommandRepository.stubs(:by_input).returns(command)
-        command.stubs(:execute).returns(result)
-        Parser.stubs(:parse).returns(json)
-        Composition.stubs(:enqueue).returns([])
+        Parser.stubs(:parse).returns(Composition.new)
       end
 
       after do
-        InterfaceRepository.reset
-        Queue.clear
+        CommandRepository.reset
       end
 
       context 'when there is no input' do
-        it 'raises an exception' do
-          proc { subject }.must_raise(StopIteration)
+        let(:input) { '' }
+
+        it 'returns a FalseClass' do
+          subject.must_be_instance_of(FalseClass)
         end
       end
 
       context 'when there is input' do
-        let(:input) { "q" }
-
-        context 'and there is a result' do
-          let(:result) { { 'dummy' => [['output...']] } }
-
-          it 'returns an Array' do
-            subject.must_be_instance_of(Array)
-          end
-        end
-
-        context 'or there is no result or the result is :stop' do
-          let(:result) { :stop }
+        context 'and the result is :stop' do
+          let(:input) { 'q' }
 
           it 'raises an exception' do
             proc { subject }.must_raise(StopIteration)
+          end
+        end
+
+        context 'and there is a result' do
+          let(:input) { 't' }
+
+          it 'returns an Composition' do
+            subject.must_be_instance_of(Composition)
           end
         end
       end

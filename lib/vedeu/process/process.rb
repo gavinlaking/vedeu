@@ -11,17 +11,21 @@ module Vedeu
     def initialize; end
 
     def evaluate
-      fail StopIteration if no_result?
+      return false if input.nil? || input.empty?
 
-      parsed_data = Parser.parse(result)
+      fail StopIteration if stop_requested?
 
-      Composition.enqueue(parsed_data)
+      Parser.parse(result) unless no_result?
     end
 
     private
 
+    def stop_requested?
+      result == :stop
+    end
+
     def no_result?
-      result.nil? || result.empty? || result == :stop
+      result.nil? || result.empty?
     end
 
     def result
