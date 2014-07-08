@@ -19,10 +19,10 @@ module Vedeu
       end
 
       context 'when the instance variable is nil' do
-        let(:output) {}
+        let(:subject) { described_class.new }
 
-        it 'set the instance variable to empty string' do
-          subject.instance_variable_get("@output").must_equal('')
+        it 'set an instance variable' do
+          subject.instance_variable_get("@output").must_equal({})
         end
       end
     end
@@ -30,8 +30,40 @@ module Vedeu
     describe '#parse' do
       let(:subject) { described_class.parse(output) }
 
-      it 'returns a Composition' do
-        subject.must_be_instance_of(Composition)
+      context 'when the output is empty' do
+        let(:output) {}
+
+        it 'returns a NilClass' do
+          subject.must_be_instance_of(NilClass)
+        end
+      end
+
+      context 'when the output is JSON' do
+        let(:output)  { "{\"some\": \"JSON\"}" }
+
+        it 'returns a Composition' do
+          subject.must_be_instance_of(Composition)
+        end
+      end
+
+      context 'when the output is a Hash' do
+        let(:output) {
+          {
+            dummy: 'Some text...'
+          }
+        }
+
+        it 'returns a Composition' do
+          subject.must_be_instance_of(Composition)
+        end
+      end
+
+      context 'when the output is anything else' do
+        let(:output) { [:invalid] }
+
+        it 'raises an exception' do
+          proc { subject }.must_raise(ParseError)
+        end
       end
     end
   end
