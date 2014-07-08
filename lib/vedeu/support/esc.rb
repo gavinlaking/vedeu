@@ -49,7 +49,7 @@ module Vedeu
     def foreground_colour(value = '#ffffff')
       [esc, '38;5;', colour_translator(value), 'm'].join
     end
-#
+
     def negative
       [esc, '7m'].join
     end

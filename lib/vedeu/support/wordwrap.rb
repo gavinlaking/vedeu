@@ -11,6 +11,7 @@ module Vedeu
 
     def reformat
       return pruned if prune?
+
       wordwrapped
     end
 
@@ -51,11 +52,13 @@ module Vedeu
     def pruned
       if value.size <= pruned_width
         value
+
       else
         [
           value.chomp.slice(0..pruned_width),
           '...'
         ].join
+
       end
     end
 

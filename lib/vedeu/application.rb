@@ -28,8 +28,10 @@ module Vedeu
     def runner
       if interactive?
         interactive { yield }
+
       else
         run_once    { yield }
+
       end
     end
 
