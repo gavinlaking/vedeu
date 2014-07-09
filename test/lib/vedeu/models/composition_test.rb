@@ -64,16 +64,16 @@ module Vedeu
         InterfaceRepository.create(name: 'enq2', width: 15, height: 2)
       end
 
-      it 'returns an Array' do
-        subject.must_be_instance_of(Array)
+      it 'returns an Composition' do
+        subject.must_be_instance_of(Composition)
       end
 
       it 'returns a collection of interfaces' do
-        subject.first.must_be_instance_of(Interface)
+        subject.interfaces.first.must_be_instance_of(Interface)
       end
 
       it 'enqueues the interfaces for rendering' do
-        subject.first.enqueued?.must_equal(true)
+        subject.interfaces.first.enqueued?.must_equal(true)
       end
     end
 

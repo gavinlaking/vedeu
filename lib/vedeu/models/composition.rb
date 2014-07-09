@@ -18,6 +18,8 @@ module Vedeu
         interface.enqueue(interface.to_s)
         interface
       end
+
+      self
     end
 
     def to_json

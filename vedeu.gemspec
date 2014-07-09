@@ -25,9 +25,9 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'mocha',              '1.1.0'
   spec.add_development_dependency 'pry',                '0.10.0'
   spec.add_development_dependency 'rake',               '10.3.2'
-  spec.add_development_dependency 'ruby-prof'
+  spec.add_development_dependency 'ruby-prof',          '0.14.2'
   spec.add_development_dependency 'simplecov',          '0.8.2'
 
-  spec.add_dependency "oj"
-  spec.add_dependency "virtus"
+  spec.add_dependency "oj",     '2.9.8'
+  spec.add_dependency "virtus", '1.0.2'
 end

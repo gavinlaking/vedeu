@@ -22,10 +22,6 @@ module Vedeu
       adaptor.create(model)
     end
 
-    def delete(model)
-      adaptor.delete(model)
-    end
-
     def reset
       adaptor.reset(entity)
     end

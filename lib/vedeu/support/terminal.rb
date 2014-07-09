@@ -1,6 +1,5 @@
 require 'io/console'
 
-require_relative '../support/cursor'
 require_relative '../support/esc'
 
 module Vedeu
@@ -9,15 +8,15 @@ module Vedeu
     # :nocov:
     def open(&block)
       console.cooked do
-        output Esc.reset
-        output Esc.clear
-        output Cursor.hide
+        output Esc.string('reset')
+        output Esc.string('clear')
+        output Esc.string('hide_cursor')
 
         yield
       end if block_given?
     ensure
-      output Cursor.show
-      output Esc.reset
+      output Esc.string('show_cursor')
+      output Esc.string('reset')
       output Esc.clear_last_line
     end
     # :nocov:

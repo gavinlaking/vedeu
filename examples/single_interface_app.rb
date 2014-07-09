@@ -5,7 +5,7 @@ require 'vedeu'
 class SingleInterfaceApp
   include Vedeu
 
-  interface :main, {
+  interface 'main', {
               y:          1,
               x:          1,
               z:          1,
@@ -18,12 +18,12 @@ class SingleInterfaceApp
               cursor:     true
             }
 
-  command   :refresh, {
+  command   'refresh', {
               entity:    SingleInterfaceApp,
               keyword:   'refresh',
               keypress:  'r',
               arguments: [] }
-  command   :exit,    {
+  command   'exit',    {
               entity:    Vedeu::Exit,
               keyword:   'exit',
               keypress:  'q',
@@ -35,13 +35,7 @@ class SingleInterfaceApp
 
   def self.dispatch
     {
-      'main' => [
-                  [
-                    {
-                      :text => "The time is: #{Time.now}.",
-                    }
-                  ]
-                ]
+      'main' => "The time is: #{Time.now}."
     }
   end
 end

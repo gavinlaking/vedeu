@@ -3,8 +3,8 @@ require_relative '../../../../lib/vedeu/output/output'
 
 module Vedeu
   describe Output do
-    let(:described_class) { Output }
-    let(:output)          {}
+    let(:described_module) { Output }
+    let(:output)           {}
 
     before do
       InterfaceRepository.create({
@@ -18,16 +18,8 @@ module Vedeu
 
     after { InterfaceRepository.reset }
 
-    describe '#initialize' do
-      let(:subject) { described_class.new }
-
-      it 'returns an Output instance' do
-        subject.must_be_instance_of(Output)
-      end
-    end
-
     describe '.render' do
-      let(:subject) { described_class.render }
+      let(:subject) { described_module.render }
 
       it 'returns an Array' do
         subject.must_be_instance_of(Array)

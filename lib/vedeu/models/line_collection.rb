@@ -1,25 +1,19 @@
 require 'virtus'
 
 require_relative 'line'
-require_relative 'coercions'
 
 module Vedeu
   class InvalidLine < StandardError; end
 
   class LineCollection < Virtus::Attribute
-    include Coercions
-
     def coerce(values)
-      return [] if empty?(values)
+      return [] if values.nil? || values.empty?
 
-      if multiple?(values)
-        values.map { |v| Line.new(v) }
-
-      elsif single?(values)
-        [Line.new(values)]
-
-      elsif just_text?(values)
+      if values.is_a?(::String)
         [Line.new({ streams: values })]
+
+      else
+        [values].flatten.map { |value| Line.new(value) }
 
       end
     end

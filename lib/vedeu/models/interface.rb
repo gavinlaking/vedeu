@@ -4,7 +4,6 @@ require_relative 'presentation'
 require_relative 'line_collection'
 require_relative '../output/interface_renderer'
 require_relative '../support/esc'
-require_relative '../support/cursor'
 require_relative '../support/queue'
 require_relative '../support/terminal'
 

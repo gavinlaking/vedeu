@@ -72,15 +72,6 @@ module Vedeu
       end
     end
 
-    describe '#delete' do
-      let(:subject) { described_class.delete(model) }
-      let(:model)   { @dummy }
-
-      it 'returns a Dummy' do
-        subject.must_be_instance_of(Dummy)
-      end
-    end
-
     describe '#reset' do
       let(:subject) { described_class.reset }
 
