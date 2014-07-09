@@ -1,6 +1,5 @@
 require 'virtus'
 
-require_relative '../support/cursor'
 require_relative '../support/esc'
 
 module Vedeu
@@ -9,10 +8,10 @@ module Vedeu
       return '' if values.nil? || values.empty?
 
       if values.is_a?(::Array)
-        values.map { |value| Esc.stylize(value) }.join
+        values.map { |value| Esc.string(value) }.join
 
       elsif values.is_a?(::String)
-        Esc.stylize(values)
+        Esc.string(values)
 
       end
     end
