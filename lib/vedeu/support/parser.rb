@@ -17,7 +17,7 @@ module Vedeu
     def parse
       return nil if empty?
 
-      Composition.new(parsed_output) #.enqueue
+      Composition.enqueue(parsed_output)
     end
 
     private
