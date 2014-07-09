@@ -2,19 +2,16 @@ require 'virtus'
 
 require_relative '../support/cursor'
 require_relative '../support/esc'
-require_relative 'coercions'
 
 module Vedeu
   class StyleCollection < Virtus::Attribute
-    include Coercions
-
     def coerce(values)
-      return '' if empty?(values)
+      return '' if values.nil? || values.empty?
 
-      if multiple?(values)
+      if values.is_a?(::Array)
         values.map { |value| Esc.stylize(value) }.join
 
-      elsif just_text?(values)
+      elsif values.is_a?(::String)
         Esc.stylize(values)
 
       end
