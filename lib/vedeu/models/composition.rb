@@ -23,11 +23,19 @@ module Vedeu
     end
 
     def to_json
-      Oj.dump(attributes, mode: :compat)
+      Oj.dump(json_attributes, mode: :compat)
     end
 
     def to_s
       interfaces.map(&:to_s).join
+    end
+
+    private
+
+    def json_attributes
+      {
+        interfaces: interfaces
+      }
     end
   end
 end

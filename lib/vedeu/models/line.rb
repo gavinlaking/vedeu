@@ -9,14 +9,25 @@ module Vedeu
     include Virtus.model
     include Presentation
 
+    attribute :model,   Hash
     attribute :streams, StreamCollection
 
     def to_json
-      Oj.dump(attributes, mode: :compat)
+      Oj.dump(json_attributes, mode: :compat)
     end
 
     def to_s
       [colour, style, streams].join
+    end
+
+    private
+
+    def json_attributes
+      {
+        colour:  colour,
+        style:   style,
+        streams: streams
+      }
     end
   end
 end

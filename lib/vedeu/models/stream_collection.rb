@@ -3,8 +3,6 @@ require 'virtus'
 require_relative 'stream'
 
 module Vedeu
-  class InvalidStream < StandardError; end
-
   class StreamCollection < Virtus::Attribute
     def coerce(values)
       return [] if values.nil? || values.empty?
