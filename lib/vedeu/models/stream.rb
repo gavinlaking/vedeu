@@ -11,11 +11,21 @@ module Vedeu
     attribute :text, String, default: ''
 
     def to_json
-      Oj.dump(attributes, mode: :compat)
+      Oj.dump(json_attributes, mode: :compat)
     end
 
     def to_s(options = {})
       [colour, style, text].join
+    end
+
+    private
+
+    def json_attributes
+      {
+        colour: colour,
+        style:  style,
+        text:   text
+      }
     end
   end
 end

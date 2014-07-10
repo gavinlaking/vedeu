@@ -37,7 +37,7 @@ module Vedeu
     end
 
     def to_json
-      Oj.dump(attributes, mode: :compat)
+      Oj.dump(json_attributes, mode: :compat)
     end
 
     def to_s
@@ -56,6 +56,21 @@ module Vedeu
 
     def clear_interface
       InterfaceRenderer.clear(self)
+    end
+
+    def json_attributes
+      {
+        colour: colour, # TODO: translate back?
+        style:  style,
+        name:   name,
+        lines:  lines,
+        y:      y,
+        x:      x,
+        z:      z,
+        width:  width,
+        height: height,
+        cursor: cursor
+      }
     end
   end
 end
