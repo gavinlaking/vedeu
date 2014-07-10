@@ -34,6 +34,20 @@ Expect proper documentation soon!
                          keyword:  'quit' }
     end
 
+
+### Some Terms
+
+To understand how Vedeu works, you need to familiarise yourself with some terms.
+
+  - Interface: This is an area on the screen where you can take input or direct output. You will define it's colour and style, its dimensions, including position and give it a name. You can then direct the output of a command to this interface and Vedeu will ensure the content is placed there. Interfaces can be layered, allowing pseudo 3D effects (if that floats your boat), or to provide a richer application experience.
+
+  - Line: An interface is composed of many lines. Their length being the width of the interface and their number being the height of the interface.
+
+  An interface with `width: 12, height: 5` will have five lines, each made of 12 characters.
+
+  - Stream: A stream is a subset of a line. Having streams basically allow us to apply styles and colours to part of a line; their not necessary, but provide you with greater flexibility for your output.
+
+
 ### On Defining Interfaces
 
     interface :main, {
@@ -83,7 +97,18 @@ Geometry for Vedeu, as the same for ANSI terminals, is set top-left, which is po
 
 ### Colours
 
-Vedeu uses HTML/CSS style notation (i.e. '#aadd00').
+Vedeu uses HTML/CSS style notation (i.e. '#aadd00'), they can be used at the stream level, the line level or for the whole interface.
+
+    "colour": { "foreground": "#ff0000", "background": "#ffffff" }
+
+
+### Styles
+
+Vedeu has a range of symbol styles which are compatible with most terminals which are ANSI compatible.
+
+    "style": []
+
+Like colours, they can be defined in either interfaces, for specific lines or within streams. Styles are applied as encountered.
 
 
 ### Layers
@@ -97,7 +122,7 @@ Vedeu uses two rules.
 
 ## Contributing
 
-1. Fork it ( http://github.com/<my-github-username>/vedeu/fork )
+1. Fork it ( http://github.com/gavinlaking/vedeu/fork )
 2. Clone it
 3. `bundle`
 4. `rake` or `bundle exec guard`
