@@ -8,9 +8,10 @@ module Vedeu
     let(:subject)            { described_instance }
     let(:attributes)         {
       {
+        model:  {},
         style:  'normal',
         colour: { foreground: '#ff0000', background: '#000000' },
-        stream: []
+        stream: [],
       }
     }
 
@@ -35,6 +36,14 @@ module Vedeu
 
       it 'has a colour attribute' do
         subject.must_be_instance_of(Colour)
+      end
+    end
+
+    describe '#model' do
+      let(:subject) { described_instance.model }
+
+      it 'has a model attribute' do
+        subject.must_be_instance_of(Hash)
       end
     end
 

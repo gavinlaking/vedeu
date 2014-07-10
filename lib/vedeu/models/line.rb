@@ -9,6 +9,7 @@ module Vedeu
     include Virtus.model
     include Presentation
 
+    attribute :model,   Hash
     attribute :streams, StreamCollection
 
     def to_json
@@ -18,7 +19,6 @@ module Vedeu
     def to_s
       [colour, style, streams].join
     end
-  end
 
     private
 
@@ -29,4 +29,5 @@ module Vedeu
         streams: streams
       }
     end
+  end
 end
