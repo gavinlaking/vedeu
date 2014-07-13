@@ -87,7 +87,7 @@ module Vedeu
 
     describe '#execute' do
       let(:subject) { described_instance.execute(args) }
-      let(:args)    { [] }
+      let(:args)    { :dummy }
 
       it 'returns a Symbol' do
         subject.must_be_instance_of(Symbol)

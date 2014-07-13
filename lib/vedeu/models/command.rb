@@ -10,7 +10,7 @@ module Vedeu
     attribute :keypress,  String, default: ''
     attribute :arguments, Array,  default: []
 
-    def execute(args = [])
+    def execute(*args)
       executable.call(*args)
     end
 
