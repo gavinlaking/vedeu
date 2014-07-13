@@ -1,0 +1,6 @@
+language: ruby
+rvm:
+  - 2.1.1
+cache: bundler
+script: 'bundle exec rake'
+
