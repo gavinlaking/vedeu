@@ -3,6 +3,7 @@ require 'logger'
 
 require_relative 'vedeu/repository/command_repository'
 require_relative 'vedeu/repository/interface_repository'
+require_relative 'vedeu/repository/event_repository'
 require_relative 'vedeu/support/exit'
 require_relative 'vedeu/launcher'
 require_relative 'vedeu/version'
@@ -18,6 +19,14 @@ module Vedeu
     def interface(name, options = {})
       InterfaceRepository.create({ name: stringify_symbols(name) }
                          .merge!(options))
+    end
+
+    def event(name, &block)
+      EventRepository.register(name, &block)
+    end
+
+    def run(name, *args)
+      EventRepository.trigger(name, *args)
     end
 
     private

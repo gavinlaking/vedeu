@@ -1,26 +1,21 @@
 require_relative '../../../test_helper'
-require_relative '../../../../lib/vedeu/support/events'
+require_relative '../../../../lib/vedeu/repository/event_repository'
 
 module Vedeu
-  describe Events do
-    let(:described_class)    { Events }
+  describe EventRepository do
+    let(:described_class)    { EventRepository }
     let(:described_instance) { described_class.new }
 
-    describe '#initialize' do
-      let(:subject) { described_instance }
+    describe '#handlers' do
+      let(:subject) { described_instance.handlers }
 
-      it 'returns an Events instance' do
-        subject.must_be_instance_of(Events)
-      end
-
-      it 'sets an instance variable' do
-        subject.instance_variable_get('@handlers')
-          .must_be_instance_of(Hash)
+      it 'returns a Hash' do
+        subject.must_be_instance_of(Hash)
       end
     end
 
-    describe '#on' do
-      let(:subject) { described_instance.on(event) { proc { |x, y| x + y } } }
+    describe '#register' do
+      let(:subject) { described_instance.register(event) { proc { |x, y| x + y } } }
       let(:event)   { :some_event }
 
       it 'returns an Array' do
