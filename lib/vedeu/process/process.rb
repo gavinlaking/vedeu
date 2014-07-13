@@ -11,7 +11,7 @@ module Vedeu
     def initialize; end
 
     def evaluate
-      return false if input.nil? || input.empty?
+      return false if no_input?
 
       fail StopIteration if stop_requested?
 
@@ -26,6 +26,10 @@ module Vedeu
 
     def no_result?
       result.nil? || result.empty?
+    end
+
+    def no_input?
+      input.nil? || input.empty?
     end
 
     def result

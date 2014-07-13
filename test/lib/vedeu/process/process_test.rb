@@ -1,6 +1,5 @@
 require_relative '../../../test_helper'
 require_relative '../../../../lib/vedeu/process/process'
-# require_relative '../../../../lib/vedeu/repository/interface_repository'
 require_relative '../../../support/dummy_command'
 require_relative '../../../../lib/vedeu/repository/command_repository'
 
@@ -14,6 +13,11 @@ module Vedeu
   class TestCommand
     def self.dispatch(*args)
       :test
+    end
+  end
+
+  class NoResultCommand
+    def self.dispatch(*args)
     end
   end
 
@@ -33,6 +37,11 @@ module Vedeu
           name:     'test',
           entity:   TestCommand,
           keypress: 't'
+        })
+        CommandRepository.create({
+          name:     'no_result',
+          entity:   NoResultCommand,
+          keypress: 'n'
         })
         Queue.stubs(:dequeue).returns(input)
         Parser.stubs(:parse).returns(Composition.new)
@@ -64,6 +73,14 @@ module Vedeu
 
           it 'returns an Composition' do
             subject.must_be_instance_of(Composition)
+          end
+        end
+
+        context 'but there is no result' do
+          let(:input) { 'n' }
+
+          it 'returns a NilClass' do
+            subject.must_be_instance_of(NilClass)
           end
         end
       end
