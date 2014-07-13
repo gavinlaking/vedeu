@@ -4,10 +4,9 @@ require_relative '../../../../lib/vedeu/repository/event_repository'
 module Vedeu
   describe EventRepository do
     let(:described_class)    { EventRepository }
-    let(:described_instance) { described_class.new }
 
     describe '#handlers' do
-      let(:subject) { described_instance.handlers }
+      let(:subject) { described_class.handlers }
 
       it 'returns a Hash' do
         subject.must_be_instance_of(Hash)
@@ -15,7 +14,7 @@ module Vedeu
     end
 
     describe '#register' do
-      let(:subject) { described_instance.register(event) { proc { |x, y| x + y } } }
+      let(:subject) { described_class.register(event) { proc { |x, y| x + y } } }
       let(:event)   { :some_event }
 
       it 'returns an Array' do
@@ -24,12 +23,12 @@ module Vedeu
     end
 
     describe '#trigger' do
-      let(:subject) { described_instance.trigger(event, args) }
+      let(:subject) { described_class.trigger(event, args) }
       let(:event)   { :some_event }
       let(:args)    { :arg }
 
       before do
-        described_instance.on(:some_event) { proc { |x| x } }
+        described_class.register(:some_event) { proc { |x| x } }
       end
 
       it 'returns an Array' do
