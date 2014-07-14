@@ -26,7 +26,7 @@ module Vedeu
       context 'when the foreground is missing' do
         let(:attributes) { {} }
 
-        it 'returns an escape sequence' do
+        it 'returns an empty string' do
           subject.must_equal('')
         end
       end
