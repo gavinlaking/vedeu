@@ -61,6 +61,22 @@ module Vedeu
           subject.name.wont_equal('banana')
         end
       end
+
+      context 'when no command was found' do
+        let(:input) { 'not_found' }
+
+        it 'returns FalseClass' do
+          subject.must_be_instance_of(FalseClass)
+        end
+      end
+
+      context 'when there is no input' do
+        let(:input) {}
+
+        it 'returns FalseClass' do
+          subject.must_be_instance_of(FalseClass)
+        end
+      end
     end
 
     describe '.create' do
