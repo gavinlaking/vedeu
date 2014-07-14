@@ -85,6 +85,7 @@ module Vedeu
       end
 
       it 'returns the model as JSON' do
+        #subject.must_equal("{\"interfaces\":[{\"colour\":null,\"style\":\"\",\"name\":\"dummy\",\"lines\":[{\"colour\":null,\"style\":\"\",\"model\":{},\"streams\":[{\"colour\":null,\"style\":\"\",\"text\":\"Some text...\"}]}],\"y\":1,\"x\":1,\"z\":1,\"width\":40,\"height\":25,\"current\":\"\",\"cursor\":true}]}")
         subject.must_equal("{\"interfaces\":[{\"colour\":null,\"style\":\"\",\"name\":\"dummy\",\"lines\":[],\"y\":1,\"x\":1,\"z\":1,\"width\":40,\"height\":25,\"current\":\"\",\"cursor\":true}]}")
       end
     end
