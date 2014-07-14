@@ -44,6 +44,12 @@ module Vedeu
     end
   end
 
+  def self.error(exception)
+    logger.debug "\e[38;5;196mError:\e[38;2;39m\e[48;2;49m " +
+                 "#{exception.message}\n\n" +
+                 exception.backtrace.join("\n")
+  end
+
   def self.debug(filename = 'profile.html', &block)
     RubyProf.start
 
