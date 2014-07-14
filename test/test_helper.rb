@@ -1,6 +1,7 @@
 require 'simplecov'
 require 'minitest/autorun'
 require 'minitest/pride'
+require 'minitest/hell'
 require 'pry'
 require 'ruby-prof'
 
