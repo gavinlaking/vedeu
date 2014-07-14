@@ -29,7 +29,7 @@ module Vedeu
 
       before do
         CommandRepository.create({
-          'name' =>     'quit',
+          name:     'quit',
           entity:   QuitCommand,
           keypress: 'q'
         })
