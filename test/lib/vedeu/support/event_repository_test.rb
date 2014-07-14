@@ -34,6 +34,22 @@ module Vedeu
       it 'returns an Array' do
         subject.must_be_instance_of(Array)
       end
+
+      context 'when the event is pre-registered' do
+        let(:event) { :_exit_ }
+
+        it 'returns a collection containing the event' do
+          subject.first.call.must_equal(:exit)
+        end
+      end
+
+      context 'when the event has not been registered' do
+        let(:event) { :_not_found_ }
+
+        it 'returns an empty collection' do
+          subject.must_be_empty
+        end
+      end
     end
   end
 end

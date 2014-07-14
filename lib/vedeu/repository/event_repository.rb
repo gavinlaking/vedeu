@@ -20,8 +20,7 @@ module Vedeu
 
     def defaults
       {
-        :_exit_   => [proc { :exit }],
-        :_toggle_ => [proc { :toggle }],
+        :_exit_ => [ proc { :exit } ],
       }
     end
   end
