@@ -116,6 +116,14 @@ module Vedeu
         end
       end
 
+      context 'when the style is colour_reset' do
+        let(:style) { 'colour_reset' }
+
+        it 'returns an escape sequence' do
+          subject.must_equal("\e[38;2;39m\e[48;2;49m")
+        end
+      end
+
       context 'when the style is hide_cursor' do
         let(:style) { 'hide_cursor' }
 
