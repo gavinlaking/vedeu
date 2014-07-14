@@ -7,7 +7,7 @@ module Vedeu
     end
 
     def initialize(args = [])
-      @args    = args || []
+      @args    = args
       @options = {}
     end
 
