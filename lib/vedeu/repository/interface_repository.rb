@@ -30,12 +30,14 @@ module Vedeu
       by_layer.map { |interface| interface.refresh }.compact
     end
 
-    def by_layer
-      all.sort_by { |interface| interface.z }
-    end
-
     def entity
       Interface
+    end
+
+    private
+
+    def by_layer
+      all.sort_by { |interface| interface.z }
     end
   end
 end

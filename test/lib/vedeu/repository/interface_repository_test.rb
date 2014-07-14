@@ -75,19 +75,17 @@ module Vedeu
     describe '.refresh' do
       let(:subject) { described_class.refresh }
 
-      it 'returns an Array' do
-        subject.must_be_instance_of(Array)
-      end
-    end
-
-    describe '.by_layer' do
-      let(:subject) { described_class.by_layer }
-
       before do
         InterfaceRepository.reset
-        @case_a = InterfaceRepository.create({ name: 'a', width: 15, height: 2, z: 2 })
-        @case_b = InterfaceRepository.create({ name: 'b', width: 15, height: 2, z: 1 })
-        @case_c = InterfaceRepository.create({ name: 'c', width: 15, height: 2, z: 3 })
+        InterfaceRepository.create({
+          name: 'a', width: 15, height: 2, z: 2
+        }).enqueue("a")
+        InterfaceRepository.create({
+          name: 'b', width: 15, height: 2, z: 1
+        }).enqueue("b")
+        InterfaceRepository.create({
+          name: 'c', width: 15, height: 2, z: 3
+        }).enqueue("c")
       end
       after  { InterfaceRepository.reset }
 
@@ -96,7 +94,7 @@ module Vedeu
       end
 
       it 'returns the collection in order they should be drawn' do
-        subject.must_equal([@case_b, @case_a, @case_c])
+        subject.must_equal(['b', 'a', 'c'])
       end
     end
 
