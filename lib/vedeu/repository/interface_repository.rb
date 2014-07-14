@@ -9,7 +9,7 @@ module Vedeu
     extend self
 
     def create(attributes = {})
-      super(Interface.new(attributes))
+      super(entity.new(attributes))
     end
 
     def find(name)

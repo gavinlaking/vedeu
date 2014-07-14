@@ -13,7 +13,7 @@ module Vedeu
     end
 
     def create(attributes)
-      super(Command.new(attributes))
+      super(entity.new(attributes))
     end
 
     def entity
