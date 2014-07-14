@@ -51,6 +51,8 @@ module Vedeu
   end
 
   def self.debug(filename = 'profile.html', &block)
+    require 'ruby-prof'
+
     RubyProf.start
 
     yield
@@ -60,6 +62,7 @@ module Vedeu
 
     File.open(Vedeu.root_path + '/tmp/' + filename, 'w') do |file|
       RubyProf::CallStackPrinter.new(result).print(file)
+      # RubyProf::GraphPrinter.new(result).print(file)
     end
   end
 
