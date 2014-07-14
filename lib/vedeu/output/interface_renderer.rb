@@ -48,7 +48,7 @@ module Vedeu
     end
 
     def origin(index)
-      Geometry.origin(interface, index)
+      interface.geometry.origin(index)
     end
 
     def height

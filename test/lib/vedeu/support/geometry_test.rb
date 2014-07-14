@@ -5,7 +5,6 @@ require_relative '../../../../lib/vedeu/models/interface'
 module Vedeu
   describe Geometry do
     let(:described_class)    { Geometry }
-    let(:described_instance) { described_class.new(interface, index) }
     let(:interface)          { Interface.new(attributes) }
     let(:attributes)         {
       {
@@ -15,116 +14,102 @@ module Vedeu
           foreground: '#ff0000',
           background: '#000000'
         },
-        width:  7,
-        height: 3
+        width:  width,
+        height: height,
+        x:      x,
+        y:      y,
+        z:      z
       }
     }
-    let(:index) { 0 }
+    let(:height) { 5 }
+    let(:index)  { 0 }
+    let(:width)  { 5 }
+    let(:x)      { 1 }
+    let(:y)      { 1 }
+    let(:z)      { 1 }
 
     before do
       Terminal.stubs(:width).returns(40)
-      Terminal.stubs(:height).returns(25)
+      Terminal.stubs(:height).returns(15)
     end
 
     describe '#origin' do
       it 'returns a String' do
-        described_instance.origin.must_be_instance_of(String)
+        described_class.new(interface).origin(index)
+          .must_be_instance_of(String)
       end
 
       it 'returns the origin for the interface' do
-        described_instance.origin.must_equal("\e[1;1H")
+        described_class.new(interface).origin(index)
+          .must_equal("\e[1;1H")
       end
 
       context 'when the index is provided' do
         let(:index) { 3 }
 
         it 'returns the line position relative to the origin' do
-          described_instance.origin.must_equal("\e[4;1H")
+          described_class.new(interface).origin(index)
+            .must_equal("\e[4;1H")
         end
       end
 
       context 'when the interface is at a custom position' do
-        let(:attributes) { { y: 6, x: 3 }}
+        let(:x) { 3 }
+        let(:y) { 6 }
 
         it 'returns the origin for the interface' do
-          described_instance.origin.must_equal("\e[6;3H")
+          described_class.new(interface).origin(index)
+            .must_equal("\e[6;3H")
         end
 
         context 'when the index is provided' do
           let(:index) { 3 }
 
           it 'returns the line position relative to the origin' do
-            described_instance.origin.must_equal("\e[9;3H")
+            described_class.new(interface).origin(index)
+              .must_equal("\e[9;3H")
           end
         end
       end
-    end
 
-    describe '#max_y' do
-      let(:subject) { described_instance.max_y }
+      context 'when the height is more than the terminal height' do
+        let(:height) { 6 }
+        let(:y)      { 20 }
 
-      it 'returns a Fixnum' do
-        subject.must_be_instance_of(Fixnum)
-      end
-
-      context 'when the value is greater than the available terminal size' do
-        it 'clips the value to the terminal size' do
-          subject.must_equal(4)
+        it 'clips the maximum height to the terminal height' do
+          described_class.new(interface).origin(index)
+            .must_equal("\e[1;1H")
         end
       end
 
-      context 'when the value is less than the available size' do
-        let(:attributes) { { y: 20, height: 4 } }
+      context 'when the height is less than the terminal height' do
+        let(:height) { 2 }
+        let(:y)      { 20 }
 
         it 'returns the value' do
-          subject.must_equal(24)
-        end
-      end
-    end
-
-    describe '#max_x' do
-      let(:subject) { described_instance.max_x }
-
-      it 'returns a Fixnum' do
-        subject.must_be_instance_of(Fixnum)
-      end
-
-      context 'when the value is greater than the available terminal size' do
-        it 'clips the value to the terminal size' do
-          subject.must_equal(8)
+          described_class.new(interface).origin(index)
+            .must_equal("\e[1;1H")
         end
       end
 
-      context 'when the value is less than the available size' do
-        let(:attributes) { { x: 17, width: 21 } }
+      context 'when the width is more than the terminal width' do
+        let(:x)     { 30 }
+        let(:width) { 20 }
+
+        it 'clips the maximum width to the terminal width' do
+          described_class.new(interface).origin(index)
+            .must_equal("\e[1;30H")
+        end
+      end
+
+      context 'when the width is less than the terminal width' do
+        let(:x)     { 15 }
+        let(:width) { 20 }
 
         it 'returns the value' do
-          subject.must_equal(38)
+          described_class.new(interface).origin(index)
+            .must_equal("\e[1;15H")
         end
-      end
-    end
-
-    describe '#virtual_x' do
-      let(:subject) { described_instance.virtual_x }
-
-      it 'returns a Fixnum' do
-        subject.must_be_instance_of(Fixnum)
-      end
-
-      it 'returns the value' do
-        subject.must_equal(1)
-      end
-    end
-
-    describe '#virtual_y' do
-      let(:subject) { described_instance.virtual_y }
-
-      it 'returns a Fixnum' do
-        subject.must_be_instance_of(Fixnum)
-      end
-
-      it 'returns the value' do
-        subject.must_equal(1)
       end
     end
   end
