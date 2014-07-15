@@ -3,19 +3,6 @@ require_relative '../../../../lib/vedeu/models/interface'
 
 module Vedeu
   describe Interface do
-    let(:attributes) {
-      {
-        name:   'dummy',
-        lines:  [],
-        colour: {
-          foreground: '#ff0000',
-          background: '#000000'
-        },
-        width:  7,
-        height: 3
-      }
-    }
-
     it 'has a name attribute' do
       Interface.new({ name: 'dummy' }).name.must_equal('dummy')
     end
@@ -67,8 +54,21 @@ module Vedeu
     end
 
     describe '#refresh' do
+      let(:attributes) {
+        {
+          name:   'dummy',
+          lines:  [],
+          colour: {
+            foreground: '#ff0000',
+            background: '#000000'
+          },
+          width:  3,
+          height: 3
+        }
+      }
+
       it 'returns a blank interface when there is no content to display (initial state)' do
-        Interface.new(attributes).refresh.must_equal("\e[38;5;196m\e[48;5;16m\e[1;1H       \e[1;1H\e[2;1H       \e[2;1H\e[3;1H       \e[3;1H")
+        Interface.new(attributes).refresh.must_equal("\e[38;5;196m\e[48;5;16m\e[1;1H   \e[1;1H\e[2;1H   \e[2;1H\e[3;1H   \e[3;1H")
       end
 
       it 'returns the fresh content when content is queued up to be displayed' do
