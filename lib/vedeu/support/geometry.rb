@@ -24,7 +24,7 @@ module Vedeu
     end
 
     def max_y
-      if ((y + height) > Terminal.height)
+      if (y + height) > Terminal.height
         Terminal.height
 
       else
@@ -34,7 +34,7 @@ module Vedeu
     end
 
     def max_x
-      if ((x + width) > Terminal.width)
+      if (x + width) > Terminal.width
         Terminal.width
 
       else
