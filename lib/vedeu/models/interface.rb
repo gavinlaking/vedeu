@@ -23,6 +23,10 @@ module Vedeu
     attribute :current, String,  default: ''
     attribute :cursor,  Boolean, default: true
 
+    def geometry
+      @geometry ||= Geometry.new(self)
+    end
+
     def refresh
       if enqueued?
         self.current = dequeue

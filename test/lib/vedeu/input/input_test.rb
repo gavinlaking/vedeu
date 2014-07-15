@@ -3,23 +3,11 @@ require_relative '../../../../lib/vedeu/input/input'
 
 module Vedeu
   describe Input do
-    let(:described_module) { Input }
-    let(:input)            { 'input' }
-
-    before do
-      Terminal.stubs(:input).returns(input)
-      Queue.stubs(:enqueue).returns([input])
-    end
-
     describe '.capture' do
-      let(:subject) { described_module.capture }
-
-      it 'returns an Array' do
-        subject.must_be_instance_of(Array)
-      end
-
-      it 'returns the enqueued input' do
-        subject.must_equal([input])
+      it 'enqueues the captured input from the terminal' do
+        Terminal.stub :input, 'input' do
+          Input.capture.must_equal(Vedeu::Queue)
+        end
       end
     end
   end

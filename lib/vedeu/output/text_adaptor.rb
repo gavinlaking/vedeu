@@ -13,7 +13,7 @@ module Vedeu
     def adapt
       return [] if no_content?
 
-      lines.map { |line| Line.new({ streams: { text: line } }) }
+      lines.map { |line| { streams: { text: line } } }
     end
 
     private

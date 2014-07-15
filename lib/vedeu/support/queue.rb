@@ -8,6 +8,8 @@ module Vedeu
 
     def enqueue(result)
       store.unshift(result)
+
+      self
     end
 
     def enqueued?
@@ -18,7 +20,7 @@ module Vedeu
       store.size
     end
 
-    def clear
+    def reset
       store.clear
     end
 

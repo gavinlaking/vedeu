@@ -7,7 +7,7 @@ module Vedeu
     end
 
     def initialize(args = [])
-      @args    = args || []
+      @args    = args
       @options = {}
     end
 
@@ -15,7 +15,7 @@ module Vedeu
       parser = OptionParser.new do |opts|
         opts.banner = "Usage: #{$PROGRAM_NAME} [options]"
 
-        opts.on("-1", "--run-once", "Run application once.") do
+        opts.on('-1', '--run-once', 'Run application once.') do
           @options[:interactive] = false
         end
       end

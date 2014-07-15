@@ -3,9 +3,9 @@ require 'logger'
 
 require_relative 'vedeu/repository/command_repository'
 require_relative 'vedeu/repository/interface_repository'
+require_relative 'vedeu/repository/event_repository'
 require_relative 'vedeu/support/exit'
 require_relative 'vedeu/launcher'
-require_relative 'vedeu/version'
 
 module Vedeu
   # :nocov:
@@ -18,6 +18,14 @@ module Vedeu
     def interface(name, options = {})
       InterfaceRepository.create({ name: stringify_symbols(name) }
                          .merge!(options))
+    end
+
+    def event(name, &block)
+      EventRepository.register(name, &block)
+    end
+
+    def run(name, *args)
+      EventRepository.trigger(name, *args)
     end
 
     private
@@ -35,7 +43,15 @@ module Vedeu
     end
   end
 
+  def self.error(exception)
+    logger.debug "\e[38;5;196mError:\e[38;2;39m\e[48;2;49m " +
+                 "#{exception.message}\n\n" +
+                 exception.backtrace.join("\n")
+  end
+
   def self.debug(filename = 'profile.html', &block)
+    require 'ruby-prof'
+
     RubyProf.start
 
     yield
@@ -45,6 +61,7 @@ module Vedeu
 
     File.open(Vedeu.root_path + '/tmp/' + filename, 'w') do |file|
       RubyProf::CallStackPrinter.new(result).print(file)
+      # RubyProf::GraphPrinter.new(result).print(file)
     end
   end
 

@@ -3,189 +3,105 @@ require_relative '../../../../lib/vedeu/support/esc'
 
 module Vedeu
   describe Esc do
-    let(:described_class) { Esc }
-
     describe '.background_colour' do
-      let(:subject) { described_class.background_colour }
-
-      it 'returns a String' do
-        subject.must_be_instance_of(String)
-      end
-
       it 'returns an escape sequence' do
-        subject.must_equal("\e[48;5;16m")
+        Esc.background_colour.must_equal("\e[48;5;16m")
       end
     end
 
     describe '.clear_line' do
-      let(:subject) { described_class.clear_line }
-
-      it 'returns a String' do
-        subject.must_be_instance_of(String)
-      end
-
       it 'returns an escape sequence' do
-        subject.must_equal("\e[2K")
+        Esc.clear_line.must_equal("\e[2K")
+      end
+    end
+
+    describe '.clear_last_line' do
+      it 'returns an escape sequence to clear the last line' do
+        IO.console.stub :winsize, [25, 25] do
+          Esc.clear_last_line.must_equal("\e[24;1H\e[2K")
+        end
       end
     end
 
     describe '.foreground_colour' do
-      let(:subject) { described_class.foreground_colour }
-
-      it 'returns a String' do
-        subject.must_be_instance_of(String)
-      end
-
       it 'returns an escape sequence' do
-        subject.must_equal("\e[38;5;231m")
+        Esc.foreground_colour.must_equal("\e[38;5;231m")
       end
     end
 
     describe '.set_position' do
-      let(:subject) { described_class.set_position(y, x) }
-      let(:y)       {}
-      let(:x)       {}
-
-      context 'when no coordinates are provided' do
-        it 'returns a position escape sequence' do
-          subject.must_equal("\e[1;1H")
-        end
+      it 'returns a position escape sequence when no coordinates are provided' do
+        Esc.set_position.must_equal("\e[1;1H")
       end
 
-      context 'when coordinates are provided' do
-        let(:y)       { 12 }
-        let(:x)       { 19 }
-
-        it 'returns a position escape sequence' do
-          subject.must_equal("\e[12;19H")
-        end
+      it 'returns a position escape sequence when coordinates are provided' do
+        Esc.set_position(12, 19).must_equal("\e[12;19H")
       end
     end
 
     describe '.string' do
-      let(:subject) { described_class.string(style) }
-      let(:style)   {}
-
-      it 'returns a String' do
-        subject.must_be_instance_of(String)
+      it 'returns an empty string when the style is not provided' do
+        Esc.string.must_equal('')
       end
 
-      context 'when the style is not provided' do
-        it 'returns an empty string' do
-          subject.must_equal('')
-        end
+      it 'returns an escape sequence when the style is blink' do
+        Esc.string('blink').must_equal("\e[5m")
       end
 
-      context 'when the style is blink' do
-        let(:style) { 'blink' }
-
-        it 'returns an escape sequence' do
-          subject.must_equal("\e[5m")
-        end
+      it 'returns an escape sequence when the style is blink off' do
+        Esc.string('blink_off').must_equal("\e[25m")
       end
 
-      context 'when the style is blink off' do
-        let(:style) { 'blink_off' }
-
-        it 'returns an escape sequence' do
-          subject.must_equal("\e[25m")
-        end
+      it 'returns an escape sequence when the style is bold' do
+        Esc.string('bold').must_equal("\e[1m")
       end
 
-      context 'when the style is bold' do
-        let(:style) { 'bold' }
-
-        it 'returns an escape sequence' do
-          subject.must_equal("\e[1m")
-        end
+      it 'returns an escape sequence when the style is bold off' do
+        Esc.string('bold_off').must_equal("\e[21m")
       end
 
-      context 'when the style is bold off' do
-        let(:style) { 'bold_off' }
-
-        it 'returns an escape sequence' do
-          subject.must_equal("\e[21m")
-        end
+      it 'returns an escape sequence when the style is clear' do
+        Esc.string('clear').must_equal("\e[2J")
       end
 
-      context 'when the style is clear' do
-        let(:style) { 'clear' }
-
-        it 'returns an escape sequence' do
-          subject.must_equal("\e[2J")
-        end
+      it 'returns an escape sequence when the style is colour_reset' do
+        Esc.string('colour_reset').must_equal("\e[38;2;39m\e[48;2;49m")
       end
 
-      context 'when the style is hide_cursor' do
-        let(:style) { 'hide_cursor' }
-
-        it 'returns an escape sequence' do
-          subject.must_equal("\e[?25l")
-        end
+      it 'returns an escape sequence when the style is hide_cursor' do
+        Esc.string('hide_cursor').must_equal("\e[?25l")
       end
 
-      context 'when the style is negative' do
-        let(:style) { 'negative' }
-
-        it 'returns an escape sequence' do
-          subject.must_equal("\e[7m")
-        end
+      it 'returns an escape sequence when the style is negative' do
+        Esc.string('negative').must_equal("\e[7m")
       end
 
-      context 'when the style is positive' do
-        let(:style) { 'positive' }
-
-        it 'returns an escape sequence' do
-          subject.must_equal("\e[27m")
-        end
+      it 'returns an escape sequence when the style is positive' do
+        Esc.string('positive').must_equal("\e[27m")
       end
 
-      context 'when the style is reset' do
-        let(:style) { 'reset' }
-
-        it 'returns an escape sequence' do
-          subject.must_equal("\e[0m")
-        end
+      it 'returns an escape sequence when the style is reset' do
+        Esc.string('reset').must_equal("\e[0m")
       end
 
-      context 'when the style is normal' do
-        let(:style) { 'normal' }
-
-        it 'returns an escape sequence' do
-          subject.must_equal("\e[24m\e[21m\e[27m")
-        end
+      it 'returns an escape sequence when the style is normal' do
+        Esc.string('normal').must_equal("\e[24m\e[21m\e[27m")
       end
 
-      context 'when the style is dim' do
-        let(:style) { 'dim' }
-
-        it 'returns an escape sequence' do
-          subject.must_equal("\e[2m")
-        end
+      it 'returns an escape sequence when the style is dim' do
+        Esc.string('dim').must_equal("\e[2m")
       end
 
-      context 'when the style is show_cursor' do
-        let(:style) { 'show_cursor' }
-
-        it 'returns an escape sequence' do
-          subject.must_equal("\e[?25h")
-        end
+      it 'returns an escape sequence when the style is show_cursor' do
+        Esc.string('show_cursor').must_equal("\e[?25h")
       end
 
-      context 'when the style is underline' do
-        let(:style) { 'underline' }
-
-        it 'returns an escape sequence' do
-          subject.must_equal("\e[4m")
-        end
+      it 'returns an escape sequence when the style is underline' do
+        Esc.string('underline').must_equal("\e[4m")
       end
 
-      context 'when the style is underline off' do
-        let(:style) { 'underline_off' }
-
-        it 'returns an escape sequence' do
-          subject.must_equal("\e[24m")
-        end
+      it 'returns an escape sequence when the style is underline off' do
+        Esc.string('underline_off').must_equal("\e[24m")
       end
     end
   end

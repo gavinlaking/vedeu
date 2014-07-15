@@ -9,12 +9,12 @@ module Vedeu
     extend self
 
     def create(attributes = {})
-      super(Interface.new(attributes))
+      super(entity.new(attributes))
     end
 
     def find(name)
       result = super
-      raise UndefinedInterface unless result
+      fail UndefinedInterface, "#{name.to_s} could not be found." unless result
       result
     end
 
@@ -30,12 +30,14 @@ module Vedeu
       by_layer.map { |interface| interface.refresh }.compact
     end
 
-    def by_layer
-      all.sort_by { |interface| interface.z }
-    end
-
     def entity
       Interface
+    end
+
+    private
+
+    def by_layer
+      all.sort_by { |interface| interface.z }
     end
   end
 end

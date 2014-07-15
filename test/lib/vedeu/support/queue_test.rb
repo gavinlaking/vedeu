@@ -3,94 +3,70 @@ require_relative '../../../../lib/vedeu/support/queue'
 
 module Vedeu
   describe Queue do
-    let(:described_class) { Queue }
-
     describe '.dequeue' do
-      let(:subject) { described_class.dequeue }
-
-      context 'when the queue is empty' do
-        it 'returns a NilClass' do
-          subject.must_be_instance_of(NilClass)
-        end
+      it 'returns a NilClass when the queue is empty' do
+        Queue.reset
+        Queue.dequeue.must_be_instance_of(NilClass)
       end
 
-      context 'when the queue is not empty' do
-        before { described_class.enqueue(:result) }
-        after  { described_class.clear }
-
-        it 'returns the first entry added' do
-          subject.must_be_instance_of(Symbol)
-        end
+      it 'returns the first entry added when the queue is not empty' do
+        Queue.reset
+        Queue.enqueue(:result)
+        Queue.dequeue.must_be_instance_of(Symbol)
       end
     end
 
     describe '.enqueue' do
-      let(:subject) { described_class.enqueue(:result) }
-
-      before { described_class.clear }
-      after  { described_class.clear }
-
-      it 'returns an Array' do
-        subject.must_be_instance_of(Array)
-      end
-
       it 'contains the enqueued item' do
-        subject.size.must_equal(1)
+        Queue.reset
+        Queue.enqueue(:result).size.must_equal(1)
       end
     end
 
     describe '.enqueued?' do
-      let(:subject) { described_class.enqueued? }
-
-      context 'when the queue contains data' do
-        before { described_class.enqueue(:result) }
-        after  { described_class.clear }
-
-        it 'returns a TrueClass' do
-          subject.must_be_instance_of(TrueClass)
-        end
+      it 'returns true when the queue is not empty' do
+        Queue.reset
+        Queue.enqueue(:result)
+        Queue.enqueued?.must_be_instance_of(TrueClass)
       end
 
-      context 'when the queue is empty' do
-        it 'returns a FalseClass' do
-          subject.must_be_instance_of(FalseClass)
-        end
+      it 'returns false when the queue is empty' do
+        Queue.reset
+        Queue.enqueued?.must_be_instance_of(FalseClass)
       end
     end
 
     describe '.size' do
-      let(:subject) { described_class.size }
-
-      it 'returns a Fixnum' do
-        subject.must_be_instance_of(Fixnum)
+      it 'returns the size of the queue when the queue is empty' do
+        Queue.reset
+        Queue.size.must_equal(0)
       end
 
-      it 'returns the size of the queue' do
-        subject.must_equal(0)
+      it 'returns the size of the queue when the queue is not empty' do
+        Queue.reset
+        Queue.enqueue(:result).enqueue(:result)
+        Queue.size.must_equal(2)
       end
     end
 
     describe '.clear' do
-      let(:subject) { described_class.clear }
-
-      it 'returns an Array' do
-        subject.must_be_instance_of(Array)
-      end
-
       it 'returns an empty array' do
-        subject.must_be_empty
+        Queue.reset
+        Queue.enqueue(:result)
+        Queue.reset.must_be_empty
       end
     end
 
     describe '.view' do
-      let(:subject) { described_class.view }
-
-      it 'returns a String' do
-        subject.must_be_instance_of(String)
+      it 'returns the queue as a String when the queue is empty' do
+        Queue.reset
+        Queue.view.must_equal('[]')
       end
 
-      it 'returns the queue as a String' do
-        subject.must_equal('[]')
+      it 'returns the queue as a String when the queue is not empty' do
+        Queue.reset
+        Queue.enqueue(:result)
+        Queue.view.must_equal('[:result]')
       end
     end
   end

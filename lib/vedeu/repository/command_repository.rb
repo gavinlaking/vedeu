@@ -7,13 +7,11 @@ module Vedeu
     extend self
 
     def by_input(input)
-      return nil unless input
-
       by_keypress(input) || by_keyword(input)
     end
 
     def create(attributes)
-      super(Command.new(attributes))
+      super(entity.new(attributes))
     end
 
     def entity
@@ -23,11 +21,11 @@ module Vedeu
     private
 
     def by_keypress(input)
-      query(entity, :keypress, input)
+      query(entity, :keypress, input) || false
     end
 
     def by_keyword(input)
-      query(entity, :keyword, input)
+      query(entity, :keyword, input) || false
     end
   end
 end

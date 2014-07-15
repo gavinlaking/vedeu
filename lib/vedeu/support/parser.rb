@@ -6,7 +6,7 @@ module Vedeu
   class ParseError < StandardError; end
 
   class Parser
-    def self.parse(output)
+    def self.parse(output = {})
       new(output).parse
     end
 

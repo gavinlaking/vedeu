@@ -3,17 +3,17 @@ require_relative 'terminal'
 
 module Vedeu
   class Geometry
-    def self.origin(interface, index = 0)
-      new(interface, index).origin
+    def initialize(interface)
+      @interface = interface
     end
 
-    def initialize(interface, index = 0)
-      @interface, @index = interface, index
-    end
-
-    def origin
+    def origin(index = 0)
       Esc.set_position(virtual_y(index), virtual_x)
     end
+
+    private
+
+    attr_reader :interface
 
     def virtual_x(index = 0)
       ((x..max_x).to_a)[index]
@@ -24,8 +24,8 @@ module Vedeu
     end
 
     def max_y
-      if ((y + height) > screen_height)
-        screen_height
+      if (y + height) > Terminal.height
+        Terminal.height
 
       else
         (y + height)
@@ -34,18 +34,14 @@ module Vedeu
     end
 
     def max_x
-      if ((x + width) > screen_width)
-        screen_width
+      if (x + width) > Terminal.width
+        Terminal.width
 
       else
         (x + width)
 
       end
     end
-
-    private
-
-    attr_reader :interface, :index
 
     def height
       interface.height
@@ -61,14 +57,6 @@ module Vedeu
 
     def y
       interface.y
-    end
-
-    def screen_height
-      @height ||= Terminal.height
-    end
-
-    def screen_width
-      @width ||= Terminal.width
     end
   end
 end

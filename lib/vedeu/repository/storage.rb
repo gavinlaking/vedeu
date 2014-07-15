@@ -25,6 +25,8 @@ module Vedeu
     end
 
     def query(entity, attribute, value)
+      return false if value.nil? || value.empty?
+
       map_for_class(entity).select do |_, result|
         return result if result.send(attribute) == value
       end

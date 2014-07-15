@@ -17,66 +17,42 @@ module Vedeu
   end
 
   describe Repository do
-    let(:described_class) { DummyRepository }
-
-    before do
-      @dummy = DummyRepository.create(Dummy.new)
-    end
-
-    after do
-      DummyRepository.reset
-    end
-
     describe '#adaptor' do
-      let(:subject) { described_class.adaptor }
-
       it 'returns a Storage' do
-        subject.must_be_instance_of(Storage)
+        DummyRepository.adaptor.must_be_instance_of(Storage)
       end
     end
 
     describe '#find' do
-      let(:subject)     { described_class.find(record_name) }
-      let(:record_name) { @dummy.name }
-
       it 'returns a Dummy' do
-        subject.must_be_instance_of(Dummy)
+        dummy = DummyRepository.create(Dummy.new)
+        DummyRepository.find(dummy.name).must_be_instance_of(Dummy)
       end
     end
 
     describe '#all' do
-      let(:subject) { described_class.all }
-
       it 'returns all the stored items' do
-        subject.must_be_instance_of(Array)
+        DummyRepository.all.must_be_instance_of(Array)
       end
     end
 
     describe '#query' do
-      let(:subject)   { described_class.query(entity, attribute, value) }
-      let(:entity)     { Dummy }
-      let(:attribute) { :name }
-      let(:value)     { 'dummy' }
-
       it 'returns a Dummy' do
-        subject.must_be_instance_of(Dummy)
+        dummy = DummyRepository.create(Dummy.new)
+        DummyRepository.query(Dummy, :name, 'dummy').must_be_instance_of(Dummy)
       end
     end
 
     describe '#create' do
-      let(:subject) { described_class.create(model) }
-      let(:model)   { @dummy }
-
       it 'returns a Dummy' do
-        subject.must_be_instance_of(Dummy)
+        dummy = DummyRepository.create(Dummy.new)
+        DummyRepository.create(dummy).must_be_instance_of(Dummy)
       end
     end
 
     describe '#reset' do
-      let(:subject) { described_class.reset }
-
       it 'returns an Array' do
-        subject.must_be_instance_of(Array)
+        DummyRepository.reset.must_be_instance_of(Array)
       end
     end
   end

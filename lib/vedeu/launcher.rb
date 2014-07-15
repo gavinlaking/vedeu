@@ -22,17 +22,17 @@ module Vedeu
       Application.start(configuration)
 
       @exit_code = 0
+    rescue StandardError => uncaught_exception
+      Vedeu.error(uncaught_exception)
     ensure
       $stdin, $stdout, $stderr = STDIN, STDOUT, STDERR
       @kernel.exit(@exit_code)
     end
-    # :nocov:
 
     private
 
     attr_reader :argv
 
-    # :nocov:
     def configuration
       Configuration.configure(argv)
     end
