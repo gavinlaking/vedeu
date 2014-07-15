@@ -20,7 +20,7 @@ module Vedeu
       store.size
     end
 
-    def clear
+    def reset
       store.clear
     end
 

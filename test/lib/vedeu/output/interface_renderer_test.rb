@@ -18,8 +18,8 @@ module Vedeu
 
     describe '.render' do
       it 'returns the content for the interface' do
-        interface = Interface.new({ name: 'dummy', width: 20, height: 2, lines: 'Some text...' })
-        InterfaceRenderer.render(interface).must_equal("\e[1;1HSome text...")
+        interface = Interface.new({ name: 'dummy', width: 20, height: 2, lines: 'InterfaceRenderer.render' })
+        InterfaceRenderer.render(interface).must_equal("\e[1;1HInterfaceRenderer.render")
       end
     end
   end

@@ -24,8 +24,8 @@ module Vedeu
       it 'returns a collection of interfaces' do
         Composition.enqueue({
           interfaces: [
-            { name: 'enq1', lines: { streams: { text: 'Some text...'} } },
-            { name: 'enq2', lines: { streams: { text: 'Some text...'} } }
+            { name: 'enq1', lines: { streams: { text: 'Composition.enqueue 1' } } },
+            { name: 'enq2', lines: { streams: { text: 'Composition.enqueue 2' } } }
           ]
         }).interfaces.first.must_be_instance_of(Interface)
       end
@@ -33,8 +33,8 @@ module Vedeu
       it 'enqueues the interfaces for rendering' do
         Composition.enqueue({
           interfaces: [
-            { name: 'enq1', lines: { streams: { text: 'Some text...'} } },
-            { name: 'enq2', lines: { streams: { text: 'Some text...'} } }
+            { name: 'enq1', lines: { streams: { text: 'Composition.enqueue 3' } } },
+            { name: 'enq2', lines: { streams: { text: 'Composition.enqueue 4' } } }
           ]
         }).interfaces.first.enqueued?.must_equal(true)
       end

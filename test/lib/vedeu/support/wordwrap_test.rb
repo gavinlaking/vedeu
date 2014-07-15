@@ -48,8 +48,8 @@ module Vedeu
       end
 
       it 'returns formatted text when the content is less than the prune size' do
-        Wordwrap.this('Some text...', { width: 70, prune: true })
-          .must_equal('Some text...')
+        Wordwrap.this('Wordwrap.this', { width: 70, prune: true })
+          .must_equal('Wordwrap.this')
       end
     end
   end

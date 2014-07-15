@@ -13,7 +13,7 @@ module Vedeu
   class TestCommand
     def self.dispatch
       {
-        'dummy' => 'Some text...'
+        'Process#evaluate' => 'TestCommand.dispatch'
       }
     end
   end
@@ -26,7 +26,7 @@ module Vedeu
   describe Process do
     describe '.evaluate' do
       it 'returns false when there is no input' do
-        Queue.clear
+        Queue.reset
         Process.evaluate.must_be_instance_of(FalseClass)
       end
 
@@ -37,6 +37,7 @@ module Vedeu
           entity:   QuitCommand,
           keypress: 'q'
         })
+        Queue.reset
         Queue.enqueue('q')
         proc { Process.evaluate }.must_raise(StopIteration)
       end
@@ -48,6 +49,7 @@ module Vedeu
           entity:   TestCommand,
           keypress: 't'
         })
+        Queue.reset
         Queue.enqueue('t')
         Process.evaluate.must_be_instance_of(Composition)
       end
@@ -59,6 +61,7 @@ module Vedeu
           entity:   NoResultCommand,
           keypress: 'n'
         })
+        Queue.reset
         Queue.enqueue('n')
         Process.evaluate.must_be_instance_of(NilClass)
       end

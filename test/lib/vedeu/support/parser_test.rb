@@ -14,7 +14,7 @@ module Vedeu
 
       it 'returns a Composition when the output is a Hash' do
         Parser.parse({
-          dummy: 'Some text...'
+          parser_parse: 'Parser#parse'
         }).must_be_instance_of(Composition)
       end
 
