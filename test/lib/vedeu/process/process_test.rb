@@ -5,84 +5,62 @@ require_relative '../../../../lib/vedeu/repository/command_repository'
 
 module Vedeu
   class QuitCommand
-    def self.dispatch(*args)
+    def self.dispatch
       :stop
     end
   end
 
   class TestCommand
-    def self.dispatch(*args)
-      :test
+    def self.dispatch
+      {
+        'dummy' => 'Some text...'
+      }
     end
   end
 
   class NoResultCommand
-    def self.dispatch(*args)
+    def self.dispatch
     end
   end
 
   describe Process do
     describe '.evaluate' do
-      def subject
-        Process.evaluate
+      it 'returns false when there is no input' do
+        Queue.clear
+        Process.evaluate.must_be_instance_of(FalseClass)
       end
 
-      before do
+      it 'raises an exception when the result is :stop' do
+        CommandRepository.reset
         CommandRepository.create({
           name:     'quit',
           entity:   QuitCommand,
           keypress: 'q'
         })
+        Queue.enqueue('q')
+        proc { Process.evaluate }.must_raise(StopIteration)
+      end
+
+      it 'returns an Composition when there is a result' do
+        CommandRepository.reset
         CommandRepository.create({
           name:     'test',
           entity:   TestCommand,
           keypress: 't'
         })
+        Queue.enqueue('t')
+        Process.evaluate.must_be_instance_of(Composition)
+      end
+
+      it 'returns a NilClass when there is no result' do
+        CommandRepository.reset
         CommandRepository.create({
           name:     'no_result',
           entity:   NoResultCommand,
           keypress: 'n'
         })
-        Queue.stubs(:dequeue).returns(input)
-        Parser.stubs(:parse).returns(Composition.new)
-      end
-
-      after do
-        CommandRepository.reset
-      end
-
-      context 'when there is no input' do
-        let(:input) { '' }
-
-        it 'returns a FalseClass' do
-          subject.must_be_instance_of(FalseClass)
-        end
-      end
-
-      context 'when there is input' do
-        context 'and the result is :stop' do
-          let(:input) { 'q' }
-
-          it 'raises an exception' do
-            proc { subject }.must_raise(StopIteration)
-          end
-        end
-
-        context 'and there is a result' do
-          let(:input) { 't' }
-
-          it 'returns an Composition' do
-            subject.must_be_instance_of(Composition)
-          end
-        end
-
-        context 'but there is no result' do
-          let(:input) { 'n' }
-
-          it 'returns a NilClass' do
-            subject.must_be_instance_of(NilClass)
-          end
-        end
+        Queue.enqueue('n')
+        Process.evaluate.must_be_instance_of(NilClass)
       end
     end
   end

@@ -4,31 +4,15 @@ require_relative '../../../../lib/vedeu/models/colour'
 
 module Vedeu
   describe Background do
-    let(:attributes) {
-      {
-        background: '#00ff00'
-      }
-    }
-
     describe '#background' do
-      def subject
-        Colour.new(attributes).background
-      end
-
-      it 'returns a String' do
-        subject.must_be_instance_of(String)
-      end
-
       it 'returns an escape sequence' do
-        subject.must_equal("\e[48;5;46m")
+        Colour.new({
+          background: '#00ff00'
+        }).background.must_equal("\e[48;5;46m")
       end
 
-      context 'when the foreground is missing' do
-        let(:attributes) { {} }
-
-        it 'returns an empty string' do
-          subject.must_equal('')
-        end
+      it 'returns an empty string when the foreground is missing' do
+        Colour.new.background.must_equal('')
       end
     end
   end

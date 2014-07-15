@@ -2,27 +2,18 @@ require_relative '../../../test_helper'
 
 module Vedeu
   describe Template do
-    let(:object) { stub(value: 'Hello from variable!') }
-    let(:path)   { '/../../../test/support/template.erb' }
-
     describe '#parse' do
-      def subject
-        Template.new(object, path).parse
+      object = OpenStruct.new(value: 'Hello from variable!')
+
+      it 'parses the template when the template file was found' do
+        path   = '/../../../test/support/template.erb'
+        Template.new(object, path).parse.must_match(/This is the test template/)
+        Template.new(object, path).parse.must_match(/Hello from variable!/)
       end
 
-      context 'when the template file can be found' do
-        it 'parses the template' do
-          subject.must_match(/This is the test template/)
-          subject.must_match(/Hello from variable!/)
-        end
-      end
-
-      context 'when the template file cannot be found' do
-        let(:path) { '/some/wrong/path/template.erb' }
-
-        it 'raises an exception' do
-          proc { subject }.must_raise(Errno::ENOENT)
-        end
+      it 'raises an exception when the template file cannot be found' do
+        path   = '/some/wrong/path/template.erb'
+        proc { Template.new(object, path).parse }.must_raise(Errno::ENOENT)
       end
     end
   end

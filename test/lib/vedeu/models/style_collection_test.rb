@@ -5,16 +5,8 @@ require_relative '../../../../lib/vedeu/models/stream'
 module Vedeu
   describe StyleCollection do
     describe '#coerce' do
-      def subject
-        Stream.new({ style: {} }).style
-      end
-
-      it 'returns a String' do
-        subject.must_be_instance_of(String)
-      end
-
       it 'returns an empty string' do
-        subject.must_equal('')
+        Stream.new({ style: {} }).style.must_equal('')
       end
     end
   end

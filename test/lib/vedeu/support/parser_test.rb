@@ -3,71 +3,23 @@ require_relative '../../../../lib/vedeu/support/parser'
 
 module Vedeu
   describe Parser do
-    let(:output) { File.read('test/support/output_1.json') }
-
-    describe '#initialize' do
-      def subject
-        Parser.new(output)
-      end
-
-      it 'returns a Parser instance' do
-        subject.must_be_instance_of(Parser)
-      end
-
-      it 'sets an instance variable' do
-        subject.instance_variable_get('@output').must_equal(output)
-      end
-
-      context 'when the instance variable is nil' do
-        def subject
-          Parser.new
-        end
-
-        it 'set an instance variable' do
-          subject.instance_variable_get('@output').must_equal({})
-        end
-      end
-    end
-
     describe '#parse' do
-      def subject
-        Parser.parse(output)
+      it 'returns a NilClass when the output is empty' do
+        Parser.parse.must_be_instance_of(NilClass)
       end
 
-      context 'when the output is empty' do
-        let(:output) {}
-
-        it 'returns a NilClass' do
-          subject.must_be_instance_of(NilClass)
-        end
+      it 'returns a Composition when the output is JSON' do
+        Parser.parse("{\"some\": \"JSON\"}").must_be_instance_of(Composition)
       end
 
-      context 'when the output is JSON' do
-        let(:output)  { "{\"some\": \"JSON\"}" }
-
-        it 'returns a Composition' do
-          subject.must_be_instance_of(Composition)
-        end
+      it 'returns a Composition when the output is a Hash' do
+        Parser.parse({
+          dummy: 'Some text...'
+        }).must_be_instance_of(Composition)
       end
 
-      context 'when the output is a Hash' do
-        let(:output) {
-          {
-            dummy: 'Some text...'
-          }
-        }
-
-        it 'returns a Composition' do
-          subject.must_be_instance_of(Composition)
-        end
-      end
-
-      context 'when the output is anything else' do
-        let(:output) { [:invalid] }
-
-        it 'raises an exception' do
-          proc { subject }.must_raise(ParseError)
-        end
+      it 'raises an exception when the output is anything else' do
+        proc { Parser.parse([:invalid]) }.must_raise(ParseError)
       end
     end
   end

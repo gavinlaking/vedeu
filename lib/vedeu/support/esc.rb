@@ -28,7 +28,7 @@ module Vedeu
       ["\e[", row, ';', column, 'H'].join
     end
 
-    def string(value = 'normal')
+    def string(value = '')
       case value
       when 'blink'         then "\e[5m"
       when 'blink_off'     then "\e[25m"

@@ -3,43 +3,27 @@ require_relative '../../../../../lib/vedeu/support/parsing/hash_parser'
 
 module Vedeu
   describe HashParser do
-    let(:output) { {} }
-
     describe '.parse' do
-      def subject
-        HashParser.parse(output)
-      end
-      let(:lines) { mock }
-
-      before { TextAdaptor.stubs(:adapt).returns(lines) }
-
-      it 'returns a Hash' do
-        subject.must_be_instance_of(Hash)
-      end
-
-      context 'when the output is content for a collection of interfaces' do
-        let(:output) {
-          {
-            test: 'Some content...',
-            dummy: 'More content...'
-          }
-        }
-
-        it 'returns a Hash' do
-          subject.must_equal({ interfaces: [{ name: 'test', lines: lines }, { name: 'dummy', lines: lines }] })
-        end
+      it 'returns a Hash when the output is content for multiple interfaces' do
+        HashParser.parse({
+          test: 'Some content...',
+          dummy: 'More content...'
+        }).must_equal({
+          interfaces: [
+            { name: "test", lines: [{ streams: { text: "Some content..." } }] },
+            { name: "dummy", lines: [{streams: { text: "More content..." } }] }
+          ]
+        })
       end
 
-      context 'when the output is content for a single interface' do
-        let(:output) {
-          {
-            dummy: 'Some content...'
-          }
-        }
-
-        it 'returns a Hash' do
-          subject.must_equal({ interfaces: [{ name: 'dummy', lines: lines }] })
-        end
+      it 'returns a Hash when the output is content for a single interface' do
+        HashParser.parse({
+          dummy: 'Some content...'
+        }).must_equal({
+          interfaces: [
+            { name: "dummy", lines: [{ streams: { text: "Some content..." } }] }
+          ]
+        })
       end
     end
   end
