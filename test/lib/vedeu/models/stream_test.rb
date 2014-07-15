@@ -3,9 +3,7 @@ require_relative '../../../../lib/vedeu/models/stream'
 
 module Vedeu
   describe Stream do
-    let(:described_class)    { Stream }
-    let(:described_instance) { described_class.new(attributes) }
-    let(:attributes)         {
+    let(:attributes) {
       {
         style:  'normal',
         colour: { foreground: '#ff0000', background: '#000000' },
@@ -14,7 +12,9 @@ module Vedeu
     }
 
     describe '#initialize' do
-      let(:subject) { described_instance }
+      def subject
+        Stream.new(attributes)
+      end
 
       it 'returns a Stream instance' do
         subject.must_be_instance_of(Stream)
@@ -22,7 +22,9 @@ module Vedeu
     end
 
     describe '#colour' do
-      let(:subject) { described_instance.colour }
+      def subject
+        Stream.new(attributes).colour
+      end
 
       it 'has a colour attribute' do
         subject.must_be_instance_of(Colour)
@@ -30,7 +32,9 @@ module Vedeu
     end
 
     describe '#text' do
-      let(:subject) { described_instance.text }
+      def subject
+        Stream.new(attributes).text
+      end
 
       it 'returns a String' do
         subject.must_be_instance_of(String)
@@ -42,7 +46,9 @@ module Vedeu
     end
 
     describe '#style' do
-      let(:subject) { described_instance.style }
+      def subject
+        Stream.new(attributes).style
+      end
 
       it 'has a style attribute' do
         subject.must_be_instance_of(String)
@@ -50,7 +56,9 @@ module Vedeu
     end
 
     describe '#to_s' do
-      let(:subject) { described_instance.to_s }
+      def subject
+        Stream.new(attributes).to_s
+      end
 
       it 'returns a String' do
         subject.must_be_instance_of(String)
@@ -62,7 +70,9 @@ module Vedeu
     end
 
     describe '#to_json' do
-      let(:subject) { described_instance.to_json }
+      def subject
+        Stream.new(attributes).to_json
+      end
 
       it 'returns a String' do
         subject.must_be_instance_of(String)

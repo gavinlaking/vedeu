@@ -10,7 +10,9 @@ module Vedeu
     let(:attributes)         { { name: 'dummy', width: 20, height: 2 } }
 
     describe '#initialize' do
-      let(:subject) { described_instance }
+      def subject
+        InterfaceRenderer.new(interface)
+      end
 
       it 'returns an InterfaceRenderer instance' do
         subject.must_be_instance_of(InterfaceRenderer)
@@ -22,7 +24,9 @@ module Vedeu
     end
 
     describe '.clear' do
-      let(:subject) { described_class.clear(interface) }
+      def subject
+        InterfaceRenderer.clear(interface)
+      end
 
       it 'returns a String' do
         subject.must_be_instance_of(String)
@@ -42,7 +46,9 @@ module Vedeu
     end
 
     describe '.render' do
-      let(:subject)    { described_class.render(interface) }
+      def subject
+        InterfaceRenderer.render(interface)
+      end
       let(:attributes) { { name: 'dummy', width: 20, height: 2, lines: 'Some text...'} }
 
       it 'returns a String' do

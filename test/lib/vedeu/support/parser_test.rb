@@ -3,12 +3,12 @@ require_relative '../../../../lib/vedeu/support/parser'
 
 module Vedeu
   describe Parser do
-    let(:described_class) { Parser }
-    let(:subject)         { described_class.new(output) }
-    let(:output)          { File.read('test/support/output_1.json') }
+    let(:output) { File.read('test/support/output_1.json') }
 
     describe '#initialize' do
-      let(:subject) { described_class.new(output) }
+      def subject
+        Parser.new(output)
+      end
 
       it 'returns a Parser instance' do
         subject.must_be_instance_of(Parser)
@@ -19,7 +19,9 @@ module Vedeu
       end
 
       context 'when the instance variable is nil' do
-        let(:subject) { described_class.new }
+        def subject
+          Parser.new
+        end
 
         it 'set an instance variable' do
           subject.instance_variable_get('@output').must_equal({})
@@ -28,7 +30,9 @@ module Vedeu
     end
 
     describe '#parse' do
-      let(:subject) { described_class.parse(output) }
+      def subject
+        Parser.parse(output)
+      end
 
       context 'when the output is empty' do
         let(:output) {}

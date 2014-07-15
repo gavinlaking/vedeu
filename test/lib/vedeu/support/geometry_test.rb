@@ -4,9 +4,8 @@ require_relative '../../../../lib/vedeu/models/interface'
 
 module Vedeu
   describe Geometry do
-    let(:described_class)    { Geometry }
-    let(:interface)          { Interface.new(attributes) }
-    let(:attributes)         {
+    let(:interface)  { Interface.new(attributes) }
+    let(:attributes) {
       {
         name:   'dummy',
         lines:  [],
@@ -35,12 +34,12 @@ module Vedeu
 
     describe '#origin' do
       it 'returns a String' do
-        described_class.new(interface).origin(index)
+        Geometry.new(interface).origin(index)
           .must_be_instance_of(String)
       end
 
       it 'returns the origin for the interface' do
-        described_class.new(interface).origin(index)
+        Geometry.new(interface).origin(index)
           .must_equal("\e[1;1H")
       end
 
@@ -48,7 +47,7 @@ module Vedeu
         let(:index) { 3 }
 
         it 'returns the line position relative to the origin' do
-          described_class.new(interface).origin(index)
+          Geometry.new(interface).origin(index)
             .must_equal("\e[4;1H")
         end
       end
@@ -58,7 +57,7 @@ module Vedeu
         let(:y) { 6 }
 
         it 'returns the origin for the interface' do
-          described_class.new(interface).origin(index)
+          Geometry.new(interface).origin(index)
             .must_equal("\e[6;3H")
         end
 
@@ -66,7 +65,7 @@ module Vedeu
           let(:index) { 3 }
 
           it 'returns the line position relative to the origin' do
-            described_class.new(interface).origin(index)
+            Geometry.new(interface).origin(index)
               .must_equal("\e[9;3H")
           end
         end
@@ -77,7 +76,7 @@ module Vedeu
         let(:y)      { 20 }
 
         it 'clips the maximum height to the terminal height' do
-          described_class.new(interface).origin(index)
+          Geometry.new(interface).origin(index)
             .must_equal("\e[1;1H")
         end
       end
@@ -87,7 +86,7 @@ module Vedeu
         let(:y)      { 20 }
 
         it 'returns the value' do
-          described_class.new(interface).origin(index)
+          Geometry.new(interface).origin(index)
             .must_equal("\e[1;1H")
         end
       end
@@ -97,7 +96,7 @@ module Vedeu
         let(:width) { 20 }
 
         it 'clips the maximum width to the terminal width' do
-          described_class.new(interface).origin(index)
+          Geometry.new(interface).origin(index)
             .must_equal("\e[1;30H")
         end
       end
@@ -107,7 +106,7 @@ module Vedeu
         let(:width) { 20 }
 
         it 'returns the value' do
-          described_class.new(interface).origin(index)
+          Geometry.new(interface).origin(index)
             .must_equal("\e[1;15H")
         end
       end

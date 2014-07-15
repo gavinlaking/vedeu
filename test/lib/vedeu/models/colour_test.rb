@@ -3,9 +3,7 @@ require_relative '../../../../lib/vedeu/models/colour'
 
 module Vedeu
   describe Colour do
-    let(:described_class)    { Colour }
-    let(:described_instance) { described_class.new(attributes) }
-    let(:attributes)         {
+    let(:attributes) {
       {
         foreground: '#ff0000',
         background: '#000000'
@@ -13,7 +11,9 @@ module Vedeu
     }
 
     describe '#initialize' do
-      let(:subject) { described_instance }
+      def subject
+        Colour.new(attributes)
+      end
 
       it 'returns a Colour instance' do
         subject.must_be_instance_of(Colour)
@@ -21,7 +21,9 @@ module Vedeu
     end
 
     describe '#to_json' do
-      let(:subject) { described_instance.to_json }
+      def subject
+        Colour.new(attributes).to_json
+      end
 
       it 'returns a String' do
         subject.must_be_instance_of(String)
@@ -33,7 +35,9 @@ module Vedeu
     end
 
     describe '#to_s' do
-      let(:subject) { described_instance.to_s }
+      def subject
+        Colour.new(attributes).to_s
+      end
 
       it 'returns a String' do
         subject.must_be_instance_of(String)

@@ -6,7 +6,9 @@ module Vedeu
     let(:described_class) { Queue }
 
     describe '.dequeue' do
-      let(:subject) { described_class.dequeue }
+      def subject
+        Queue.dequeue
+      end
 
       context 'when the queue is empty' do
         it 'returns a NilClass' do
@@ -25,7 +27,9 @@ module Vedeu
     end
 
     describe '.enqueue' do
-      let(:subject) { described_class.enqueue(:result) }
+      def subject
+        Queue.enqueue(:result)
+      end
 
       before { described_class.clear }
       after  { described_class.clear }
@@ -40,11 +44,13 @@ module Vedeu
     end
 
     describe '.enqueued?' do
-      let(:subject) { described_class.enqueued? }
+      def subject
+        Queue.enqueued?
+      end
 
       context 'when the queue is not empty' do
-        before { described_class.enqueue(:result) }
-        after  { described_class.clear }
+        before { Queue.enqueue(:result) }
+        after  { Queue.clear }
 
         it 'returns a TrueClass' do
           subject.must_be_instance_of(TrueClass)
@@ -59,7 +65,9 @@ module Vedeu
     end
 
     describe '.size' do
-      let(:subject) { described_class.size }
+      def subject
+        Queue.size
+      end
 
       it 'returns a Fixnum' do
         subject.must_be_instance_of(Fixnum)
@@ -82,7 +90,9 @@ module Vedeu
     end
 
     describe '.clear' do
-      let(:subject) { described_class.clear }
+      def subject
+        Queue.clear
+      end
 
       before { described_class.enqueue(:result) }
 
@@ -96,7 +106,9 @@ module Vedeu
     end
 
     describe '.view' do
-      let(:subject) { described_class.view }
+      def subject
+        Queue.view
+      end
 
       it 'returns a String' do
         subject.must_be_instance_of(String)

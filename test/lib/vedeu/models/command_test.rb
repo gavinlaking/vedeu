@@ -4,10 +4,7 @@ require_relative '../../../../lib/vedeu/models/command'
 
 module Vedeu
   describe Command do
-    let(:described_class)    { Command }
-    let(:described_instance) { described_class.new(attributes) }
-    let(:subject)            { described_instance }
-    let(:attributes)         {
+    let(:attributes) {
       {
         name:      'dummy',
         entity:    DummyCommand,
@@ -18,7 +15,9 @@ module Vedeu
     }
 
     describe '#initialize' do
-      let(:subject) { described_instance }
+      def subject
+        Command.new(attributes)
+      end
 
       it 'returns a Command instance' do
         subject.must_be_instance_of(Command)
@@ -26,7 +25,9 @@ module Vedeu
     end
 
     describe '#name' do
-      let(:subject) { described_instance.name }
+      def subject
+        Command.new(attributes).name
+      end
 
       it 'returns a String' do
         subject.must_be_instance_of(String)
@@ -38,7 +39,9 @@ module Vedeu
     end
 
     describe '#entity' do
-      let(:subject) { described_instance.entity }
+      def subject
+        Command.new(attributes).entity
+      end
 
       it 'returns a Class' do
         subject.must_be_instance_of(Class)
@@ -50,7 +53,9 @@ module Vedeu
     end
 
     describe '#keypress' do
-      let(:subject) { described_instance.keypress }
+      def subject
+        Command.new(attributes).keypress
+      end
 
       it 'returns a String' do
         subject.must_be_instance_of(String)
@@ -62,7 +67,9 @@ module Vedeu
     end
 
     describe '#keyword' do
-      let(:subject) { described_instance.keyword }
+      def subject
+        Command.new(attributes).keyword
+      end
 
       it 'returns a String' do
         subject.must_be_instance_of(String)
@@ -74,7 +81,9 @@ module Vedeu
     end
 
     describe '#arguments' do
-      let(:subject) { described_instance.arguments }
+      def subject
+        Command.new(attributes).arguments
+      end
 
       it 'returns a String' do
         subject.must_be_instance_of(Array)
@@ -86,8 +95,9 @@ module Vedeu
     end
 
     describe '#execute' do
-      let(:subject) { described_instance.execute(args) }
-      let(:args)    { :dummy }
+      def subject
+        Command.new(attributes).execute(:dummy)
+      end
 
       it 'returns a Symbol' do
         subject.must_be_instance_of(Symbol)
@@ -99,7 +109,9 @@ module Vedeu
     end
 
     describe '#executable' do
-      let(:subject) { described_instance.executable }
+      def subject
+        Command.new(attributes).executable
+      end
 
       it 'returns a proc' do
         subject.class.to_s.must_equal('Proc')

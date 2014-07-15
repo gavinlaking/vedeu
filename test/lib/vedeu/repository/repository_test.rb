@@ -28,7 +28,9 @@ module Vedeu
     end
 
     describe '#adaptor' do
-      let(:subject) { described_class.adaptor }
+      def subject
+        DummyRepository.adaptor
+      end
 
       it 'returns a Storage' do
         subject.must_be_instance_of(Storage)
@@ -36,7 +38,9 @@ module Vedeu
     end
 
     describe '#find' do
-      let(:subject)     { described_class.find(record_name) }
+      def subject
+        DummyRepository.find(record_name)
+      end
       let(:record_name) { @dummy.name }
 
       it 'returns a Dummy' do
@@ -45,6 +49,9 @@ module Vedeu
     end
 
     describe '#all' do
+      def subject
+        DummyRepository.all
+      end
       let(:subject) { described_class.all }
 
       it 'returns all the stored items' do
@@ -53,7 +60,9 @@ module Vedeu
     end
 
     describe '#query' do
-      let(:subject)   { described_class.query(entity, attribute, value) }
+      def subject
+        DummyRepository.query(entity, attribute, value)
+      end
       let(:entity)     { Dummy }
       let(:attribute) { :name }
       let(:value)     { 'dummy' }
@@ -64,7 +73,9 @@ module Vedeu
     end
 
     describe '#create' do
-      let(:subject) { described_class.create(model) }
+      def subject
+        DummyRepository.create(model)
+      end
       let(:model)   { @dummy }
 
       it 'returns a Dummy' do
@@ -73,7 +84,9 @@ module Vedeu
     end
 
     describe '#reset' do
-      let(:subject) { described_class.reset }
+      def subject
+        DummyRepository.reset
+      end
 
       it 'returns an Array' do
         subject.must_be_instance_of(Array)

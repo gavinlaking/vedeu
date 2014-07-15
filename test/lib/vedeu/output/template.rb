@@ -2,12 +2,13 @@ require_relative '../../../test_helper'
 
 module Vedeu
   describe Template do
-    let(:described_class) { Template }
-    let(:object)          { stub(value: 'Hello from variable!') }
-    let(:path)            { '/../../../test/support/template.erb' }
+    let(:object) { stub(value: 'Hello from variable!') }
+    let(:path)   { '/../../../test/support/template.erb' }
 
     describe '#parse' do
-      let(:subject) { described_class.new(object, path).parse }
+      def subject
+        Template.new(object, path).parse
+      end
 
       context 'when the template file can be found' do
         it 'parses the template' do

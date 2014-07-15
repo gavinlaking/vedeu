@@ -3,8 +3,6 @@ require_relative '../../../../lib/vedeu/repository/interface_repository'
 
 module Vedeu
   describe InterfaceRepository do
-    let(:described_class) { InterfaceRepository }
-
     before do
       InterfaceRepository.create({
         name: 'dummy',
@@ -15,7 +13,9 @@ module Vedeu
     after { InterfaceRepository.reset }
 
     describe '.create' do
-      let(:subject)    { described_class.create(attributes) }
+      def subject
+        InterfaceRepository.create(attributes)
+      end
       let(:attributes) {
         {
           name: 'dummy',
@@ -30,7 +30,9 @@ module Vedeu
     end
 
     describe '.find' do
-      let(:subject) { described_class.find(value) }
+      def subject
+        InterfaceRepository.find(value)
+      end
       let(:value)   { 'dummy' }
 
       context 'when the interface exists' do
@@ -49,7 +51,9 @@ module Vedeu
     end
 
     describe '.update' do
-      let(:subject)    { described_class.update(value, attributes) }
+      def subject
+        InterfaceRepository.update(value, attributes)
+      end
       let(:value)      { 'dummy' }
       let(:attributes) { { name: 'dumber' } }
 
@@ -73,7 +77,9 @@ module Vedeu
     end
 
     describe '.refresh' do
-      let(:subject) { described_class.refresh }
+      def subject
+        InterfaceRepository.refresh
+      end
 
       before do
         InterfaceRepository.reset
@@ -99,7 +105,9 @@ module Vedeu
     end
 
     describe '.entity' do
-      let(:subject) { described_class.entity }
+      def subject
+        InterfaceRepository.entity
+      end
 
       it 'returns a Class instance' do
         subject.must_be_instance_of(Class)

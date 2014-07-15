@@ -7,7 +7,9 @@ module Vedeu
     let(:described_class) { StreamCollection }
 
     describe '#coerce' do
-      let(:subject) { Vedeu::Line.new({ streams: streams }).streams }
+      def subject
+        Line.new({ streams: streams }).streams
+      end
       let(:streams) {}
 
       context 'when there is no stream' do

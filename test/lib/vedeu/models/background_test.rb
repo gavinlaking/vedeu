@@ -4,16 +4,16 @@ require_relative '../../../../lib/vedeu/models/colour'
 
 module Vedeu
   describe Background do
-    let(:described_class)    { Background }
-    let(:described_instance) { Vedeu::Colour.new(attributes) }
-    let(:attributes)         {
+    let(:attributes) {
       {
         background: '#00ff00'
       }
     }
 
     describe '#background' do
-      let(:subject) { described_instance.background }
+      def subject
+        Colour.new(attributes).background
+      end
 
       it 'returns a String' do
         subject.must_be_instance_of(String)

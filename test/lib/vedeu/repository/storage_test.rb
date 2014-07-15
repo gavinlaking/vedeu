@@ -5,13 +5,13 @@ require_relative '../../../../lib/vedeu/repository/storage'
 
 module Vedeu
   describe Storage do
-    let(:described_class) { Storage }
-    let(:subject)         { described_class.new }
-    let(:record)          { DummyCommand.new }
-    let(:entity)          {}
+    let(:record) { DummyCommand.new }
+    let(:entity) {}
 
     describe '#initialize' do
-      let(:subject) { described_class.new }
+      def subject
+        Storage.new
+      end
 
       it 'returns a Storage instance' do
         subject.must_be_instance_of(Storage)
@@ -23,7 +23,9 @@ module Vedeu
     end
 
     describe '#create' do
-      let(:subject) { described_class.new.create(record) }
+      def subject
+        Storage.new.create(record)
+      end
 
       it 'returns the stored record' do
         subject.must_be_instance_of(DummyCommand)
@@ -31,7 +33,9 @@ module Vedeu
     end
 
     describe '#delete' do
-      let(:subject) { described_class.new.delete(record) }
+      def subject
+        Storage.new.delete(record)
+      end
 
       it 'returns a NilClass' do
         subject.must_be_instance_of(NilClass)
@@ -39,7 +43,9 @@ module Vedeu
     end
 
     describe '#reset' do
-      let(:subject) { described_class.new.reset(entity) }
+      def subject
+        Storage.new.reset(entity)
+      end
 
       it 'returns an Array' do
         subject.must_be_instance_of(Array)
@@ -47,7 +53,9 @@ module Vedeu
     end
 
     describe '#find' do
-      let(:subject)     { described_class.new.find(entity, record_name) }
+      def subject
+        Storage.new.find(entity, record_name)
+      end
       let(:record_name) { 'dummy' }
 
       it 'returns a NilClass' do
@@ -56,7 +64,9 @@ module Vedeu
     end
 
     describe '#all' do
-      let(:subject) { described_class.new.all(entity) }
+      def subject
+        Storage.new.all(entity)
+      end
 
       it 'returns an Array' do
         subject.must_be_instance_of(Array)
@@ -64,7 +74,9 @@ module Vedeu
     end
 
     describe '#query' do
-      let(:subject)   { described_class.new.query(entity, attribute, value) }
+      def subject
+        Storage.new.query(entity, attribute, value)
+      end
       let(:attribute) {}
       let(:value)     {}
 

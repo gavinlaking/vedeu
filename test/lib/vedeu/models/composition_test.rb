@@ -16,7 +16,9 @@ module Vedeu
     }
 
     describe '#initialize' do
-      let(:subject) { described_instance }
+      def subject
+        Composition.new(attributes)
+      end
 
       it 'returns a Composition instance' do
         subject.must_be_instance_of(Composition)
@@ -29,7 +31,9 @@ module Vedeu
     end
 
     describe '#interfaces' do
-      let(:subject) { described_instance.interfaces }
+      def subject
+        Composition.new(attributes).interfaces
+      end
 
       it 'returns an Array' do
         subject.must_be_instance_of(Array)
@@ -49,7 +53,9 @@ module Vedeu
     end
 
     describe '.enqueue' do
-      let(:subject)     { described_class.enqueue(composition) }
+      def subject
+        Composition.enqueue(composition)
+      end
       let(:composition) {
         {
           interfaces: [
@@ -78,7 +84,9 @@ module Vedeu
     end
 
     describe '#to_json' do
-      let(:subject) { described_instance.to_json }
+      def subject
+        Composition.new(attributes).to_json
+      end
 
       it 'returns a String' do
         subject.must_be_instance_of(String)
@@ -91,7 +99,9 @@ module Vedeu
     end
 
     describe '#to_s' do
-      let(:subject) { described_instance.to_s }
+      def subject
+        Composition.new(attributes).to_s
+      end
 
       it 'returns a String' do
         subject.must_be_instance_of(String)

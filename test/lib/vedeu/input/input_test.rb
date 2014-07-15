@@ -3,8 +3,7 @@ require_relative '../../../../lib/vedeu/input/input'
 
 module Vedeu
   describe Input do
-    let(:described_module) { Input }
-    let(:input)            { 'input' }
+    let(:input) { 'input' }
 
     before do
       Terminal.stubs(:input).returns(input)
@@ -12,7 +11,9 @@ module Vedeu
     end
 
     describe '.capture' do
-      let(:subject) { described_module.capture }
+      def subject
+        Input.capture
+      end
 
       it 'returns an Array' do
         subject.must_be_instance_of(Array)

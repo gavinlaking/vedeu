@@ -13,7 +13,9 @@ module Vedeu
     end
 
     describe '.input' do
-      let(:subject) { described_class.input }
+      def subject
+        Terminal.input
+      end
 
       before { console.stubs(:gets).returns("test\n") }
 
@@ -27,7 +29,9 @@ module Vedeu
     end
 
     describe '.output' do
-      let(:subject) { described_class.output }
+      def subject
+        Terminal.output
+      end
 
       it 'returns a String' do
         subject.must_be_instance_of(String)
@@ -39,7 +43,9 @@ module Vedeu
     end
 
     describe '.width' do
-      let(:subject) { described_class.width }
+      def subject
+        Terminal.width
+      end
 
       it 'returns a Fixnum' do
         subject.must_be_instance_of(Fixnum)
@@ -51,7 +57,9 @@ module Vedeu
     end
 
     describe '.height' do
-      let(:subject) { described_class.height }
+      def subject
+        Terminal.height
+      end
 
       it 'returns a Fixnum' do
         subject.must_be_instance_of(Fixnum)
@@ -63,7 +71,9 @@ module Vedeu
     end
 
     describe '.size' do
-      let(:subject) { described_class.size }
+      def subject
+        Terminal.size
+      end
 
       it 'returns an Array' do
         subject.must_be_instance_of(Array)
@@ -75,7 +85,9 @@ module Vedeu
     end
 
     describe '.open' do
-      let(:subject) { described_class.open }
+      def subject
+        Terminal.open
+      end
 
       it 'returns a NilClass' do
         subject.must_be_instance_of(NilClass)
@@ -83,7 +95,9 @@ module Vedeu
     end
 
     describe '.console' do
-      let(:subject) { described_class.console }
+      def subject
+        Terminal.console
+      end
 
       it 'returns the console' do
         subject.must_equal(console)

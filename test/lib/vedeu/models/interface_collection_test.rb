@@ -4,10 +4,10 @@ require_relative '../../../../lib/vedeu/models/composition'
 
 module Vedeu
   describe InterfaceCollection do
-    let(:described_class) { InterfaceCollection }
-
     describe '#coerce' do
-      let(:subject)    { Vedeu::Composition.new({ interfaces: interfaces }).interfaces }
+      def subject
+        Composition.new({ interfaces: interfaces }).interfaces
+      end
       let(:interfaces) {}
 
       context 'when there are no interfaces' do

@@ -3,9 +3,7 @@ require_relative '../../../../lib/vedeu/models/interface'
 
 module Vedeu
   describe Interface do
-    let(:described_class)    { Interface }
-    let(:described_instance) { described_class.new(attributes) }
-    let(:attributes)         {
+    let(:attributes) {
       {
         name:   'dummy',
         lines:  [],
@@ -24,7 +22,9 @@ module Vedeu
     end
 
     describe '#initialize' do
-      let(:subject) { described_instance }
+      def subject
+        Interface.new(attributes)
+      end
 
       it 'returns a Interface instance' do
         subject.must_be_instance_of(Interface)
@@ -32,7 +32,9 @@ module Vedeu
     end
 
     describe '#name' do
-      let(:subject) { described_instance.name }
+      def subject
+        Interface.new(attributes).name
+      end
 
       it 'returns a String' do
         subject.must_be_instance_of(String)
@@ -44,7 +46,9 @@ module Vedeu
     end
 
     describe '#lines' do
-      let(:subject) { described_instance.lines }
+      def subject
+        Interface.new(attributes).lines
+      end
 
       it 'returns an Array' do
         subject.must_be_instance_of(Array)
@@ -56,11 +60,19 @@ module Vedeu
     end
 
     describe '#colour' do
-      let(:subject) { described_instance.colour }
+      def subject
+        Interface.new(attributes).colour
+      end
+
+      it 'needs a spec, please write one.' do
+        skip
+      end
     end
 
     describe '#y' do
-      let(:subject) { described_instance.y }
+      def subject
+        Interface.new(attributes).y
+      end
 
       it 'returns a Fixnum' do
         subject.must_be_instance_of(Fixnum)
@@ -82,7 +94,9 @@ module Vedeu
     end
 
     describe '#x' do
-      let(:subject) { described_instance.x }
+      def subject
+        Interface.new(attributes).x
+      end
 
       it 'returns a Fixnum' do
         subject.must_be_instance_of(Fixnum)
@@ -104,7 +118,9 @@ module Vedeu
     end
 
     describe '#z' do
-      let(:subject) { described_instance.z }
+      def subject
+        Interface.new(attributes).z
+      end
 
       it 'returns a Fixnum' do
         subject.must_be_instance_of(Fixnum)
@@ -126,7 +142,9 @@ module Vedeu
     end
 
     describe '#width' do
-      let(:subject) { described_instance.width }
+      def subject
+        Interface.new(attributes).width
+      end
 
       it 'returns a Fixnum' do
         subject.must_be_instance_of(Fixnum)
@@ -142,7 +160,9 @@ module Vedeu
     end
 
     describe '#height' do
-      let(:subject) { described_instance.height }
+      def subject
+        Interface.new(attributes).height
+      end
 
       it 'returns a Fixnum' do
         subject.must_be_instance_of(Fixnum)
@@ -158,7 +178,9 @@ module Vedeu
     end
 
     describe '#current' do
-      let(:subject) { described_instance.current }
+      def subject
+        Interface.new(attributes).current
+      end
 
       it 'returns a String' do
         subject.must_be_instance_of(String)
@@ -166,34 +188,33 @@ module Vedeu
     end
 
     describe '#cursor' do
-      let(:subject) { described_instance.cursor }
+      def subject
+        Interface.new(attributes).cursor
+      end
 
       it 'returns a TrueClass' do
         subject.must_be_instance_of(TrueClass)
       end
 
       context 'when the cursor is off' do
-        before { described_instance.cursor=(false) }
+        before do
+          @interface = Interface.new(attributes)
+          @interface.cursor=(false)
+        end
 
         it 'returns a FalseClass' do
-          subject.must_be_instance_of(FalseClass)
+          @interface.cursor.must_be_instance_of(FalseClass)
         end
       end
     end
 
     describe '#refresh' do
-      let(:subject) { described_instance.refresh }
+      def subject
+        Interface.new(attributes).refresh
+      end
 
       it 'returns a String' do
         subject.must_be_instance_of(String)
-      end
-
-      context 'when content is queued up to be displayed' do
-        before { described_instance.enqueue("\e[38;5;196m\e[48;5;16m\e[1;1HContent\e[1;1H\e[2;1HContent\e[2;1H\e[3;1HContent\e[3;1H") }
-
-        it 'returns the fresh content' do
-          subject.must_equal("\e[38;5;196m\e[48;5;16m\e[1;1HContent\e[1;1H\e[2;1HContent\e[2;1H\e[3;1HContent\e[3;1H")
-        end
       end
 
       context 'when there is no content to display (initial state)' do
@@ -202,19 +223,32 @@ module Vedeu
         end
       end
 
+      context 'when content is queued up to be displayed' do
+        before do
+          @interface = Interface.new(attributes).enqueue("\e[38;5;196m\e[48;5;16m\e[1;1HContent\e[1;1H\e[2;1HContent\e[2;1H\e[3;1HContent\e[3;1H")
+        end
+
+        it 'returns the fresh content' do
+          @interface.refresh.must_equal("\e[38;5;196m\e[48;5;16m\e[1;1HContent\e[1;1H\e[2;1HContent\e[2;1H\e[3;1HContent\e[3;1H")
+        end
+      end
+
       context 'when there is stale content from last run' do
         before do
-          described_instance.current = "\e[38;5;196m\e[48;5;16m\e[1;1HOld\e[1;1H\e[2;1HContent\e[2;1H\e[3;1Here\e[3;1H"
+          @interface = Interface.new(attributes)
+          @interface.current = "\e[38;5;196m\e[48;5;16m\e[1;1HOld\e[1;1H\e[2;1HContent\e[2;1H\e[3;1Here\e[3;1H"
         end
 
         it 'returns the previously shown content' do
-          subject.must_equal("\e[38;5;196m\e[48;5;16m\e[1;1HOld\e[1;1H\e[2;1HContent\e[2;1H\e[3;1Here\e[3;1H")
+          @interface.refresh.must_equal("\e[38;5;196m\e[48;5;16m\e[1;1HOld\e[1;1H\e[2;1HContent\e[2;1H\e[3;1Here\e[3;1H")
         end
       end
     end
 
     describe '#to_s' do
-      let(:subject) { described_instance.to_s }
+      def subject
+        Interface.new(attributes).to_s
+      end
 
       it 'returns an String' do
         subject.must_be_instance_of(String)
@@ -226,7 +260,9 @@ module Vedeu
     end
 
     describe '#to_json' do
-      let(:subject) { described_instance.to_json }
+      def subject
+        Interface.new(attributes).to_json
+      end
 
       it 'returns an String' do
         subject.must_be_instance_of(String)

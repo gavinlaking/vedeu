@@ -3,12 +3,13 @@ require_relative '../../../../../lib/vedeu/support/parsing/hash_parser'
 
 module Vedeu
   describe HashParser do
-    let(:described_module) { HashParser }
-    let(:output)           { {} }
+    let(:output) { {} }
 
     describe '.parse' do
-      let(:subject) { described_module.parse(output) }
-      let(:lines)   { mock }
+      def subject
+        HashParser.parse(output)
+      end
+      let(:lines) { mock }
 
       before { TextAdaptor.stubs(:adapt).returns(lines) }
 

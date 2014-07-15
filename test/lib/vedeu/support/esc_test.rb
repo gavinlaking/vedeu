@@ -6,7 +6,9 @@ module Vedeu
     let(:described_class) { Esc }
 
     describe '.background_colour' do
-      let(:subject) { described_class.background_colour }
+      def subject
+        Esc.background_colour
+      end
 
       it 'returns a String' do
         subject.must_be_instance_of(String)
@@ -18,7 +20,9 @@ module Vedeu
     end
 
     describe '.clear_line' do
-      let(:subject) { described_class.clear_line }
+      def subject
+        Esc.clear_line
+      end
 
       it 'returns a String' do
         subject.must_be_instance_of(String)
@@ -30,7 +34,9 @@ module Vedeu
     end
 
     describe '.foreground_colour' do
-      let(:subject) { described_class.foreground_colour }
+      def subject
+        Esc.foreground_colour
+      end
 
       it 'returns a String' do
         subject.must_be_instance_of(String)
@@ -42,7 +48,9 @@ module Vedeu
     end
 
     describe '.set_position' do
-      let(:subject) { described_class.set_position(y, x) }
+      def subject
+        Esc.set_position(y, x)
+      end
       let(:y)       {}
       let(:x)       {}
 
@@ -63,7 +71,9 @@ module Vedeu
     end
 
     describe '.string' do
-      let(:subject) { described_class.string(style) }
+      def subject
+        Esc.string(style)
+      end
       let(:style)   {}
 
       it 'returns a String' do

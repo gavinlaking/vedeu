@@ -4,10 +4,10 @@ require_relative '../../../../lib/vedeu/models/interface'
 
 module Vedeu
   describe LineCollection do
-    let(:described_class) { LineCollection }
-
     describe '#coerce' do
-      let(:subject) { Vedeu::Interface.new({ lines: lines }).lines }
+      def subject
+        Interface.new({ lines: lines }).lines
+      end
       let(:lines) {}
 
       context 'when there are no lines' do

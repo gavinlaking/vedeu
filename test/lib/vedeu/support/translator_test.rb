@@ -3,11 +3,12 @@ require_relative '../../../../lib/vedeu/support/translator'
 
 module Vedeu
   describe Translator do
-    let(:described_class) { Translator }
-    let(:html_colour)     {}
+    let(:html_colour) {}
 
     describe '#initialize' do
-      let(:subject) { described_class.new(html_colour) }
+      def subject
+        Translator.new(html_colour)
+      end
 
       it 'returns a Translator instance' do
         subject.must_be_instance_of(Translator)
@@ -25,32 +26,32 @@ module Vedeu
       }.map do |html_colour, terminal_colour|
         context 'valid' do
           it 'translation is performed' do
-            described_class.translate(html_colour).must_be_instance_of(Fixnum)
+            Translator.translate(html_colour).must_be_instance_of(Fixnum)
 
-            described_class.translate(html_colour).must_equal(terminal_colour)
+            Translator.translate(html_colour).must_equal(terminal_colour)
           end
         end
       end
 
       context 'invalid' do
         it 'returns empty string when not present' do
-          described_class.translate.must_equal('')
+          Translator.translate.must_equal('')
         end
 
         it 'returns empty string when the wrong type!' do
-          described_class.translate(:wrong_type).must_equal('')
+          Translator.translate(:wrong_type).must_equal('')
         end
 
         it 'returns empty string when invalid format' do
-          described_class.translate('345678').must_equal('')
+          Translator.translate('345678').must_equal('')
         end
 
         it 'returns empty string when invalid format' do
-          described_class.translate('#h11111').must_equal('')
+          Translator.translate('#h11111').must_equal('')
         end
 
         it 'returns empty string when invalid format' do
-          described_class.translate('#1111').must_equal('')
+          Translator.translate('#1111').must_equal('')
         end
       end
     end

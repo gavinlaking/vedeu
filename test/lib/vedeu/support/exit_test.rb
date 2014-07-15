@@ -3,10 +3,10 @@ require_relative '../../../../lib/vedeu/support/exit'
 
 module Vedeu
   describe Exit do
-    let(:described_class) { Exit }
-
     describe '.dispatch' do
-      let(:subject) { described_class.dispatch }
+      def subject
+        Exit.dispatch
+      end
 
       it 'returns a Symbol' do
         subject.must_be_instance_of(Symbol)

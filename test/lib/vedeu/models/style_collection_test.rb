@@ -4,11 +4,10 @@ require_relative '../../../../lib/vedeu/models/stream'
 
 module Vedeu
   describe StyleCollection do
-    let(:described_class) { StyleCollection }
-
     describe '#coerce' do
-      let(:subject) { Vedeu::Stream.new({ style: style }).style }
-      let(:style)   {}
+      def subject
+        Stream.new({ style: {} }).style
+      end
 
       it 'returns a String' do
         subject.must_be_instance_of(String)

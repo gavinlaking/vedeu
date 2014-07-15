@@ -3,11 +3,12 @@ require_relative '../../../../lib/vedeu/output/text_adaptor'
 
 module Vedeu
   describe TextAdaptor do
-    let(:described_class) { TextAdaptor }
-    let(:text)            { '' }
+    let(:text) { '' }
 
     describe '#initialize' do
-      let(:subject) { described_class.new(text) }
+      def subject
+        TextAdaptor.new(text)
+      end
 
       it 'returns an TextAdaptor instance' do
         subject.must_be_instance_of(TextAdaptor)
@@ -19,7 +20,9 @@ module Vedeu
     end
 
     describe '.adapt' do
-      let(:subject) { described_class.adapt(text) }
+      def subject
+        TextAdaptor.adapt(text)
+      end
 
       it 'returns an Array' do
         subject.must_be_instance_of(Array)

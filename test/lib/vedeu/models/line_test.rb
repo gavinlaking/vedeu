@@ -3,10 +3,7 @@ require_relative '../../../../lib/vedeu/models/line'
 
 module Vedeu
   describe Line do
-    let(:described_class)    { Line }
-    let(:described_instance) { described_class.new(attributes) }
-    let(:subject)            { described_instance }
-    let(:attributes)         {
+    let(:attributes) {
       {
         model:  {},
         style:  'normal',
@@ -16,7 +13,9 @@ module Vedeu
     }
 
     describe '#initialize' do
-      let(:subject) { described_instance }
+      def subject
+        Line.new(attributes)
+      end
 
       it 'returns a Line instance' do
         subject.must_be_instance_of(Line)
@@ -24,7 +23,9 @@ module Vedeu
     end
 
     describe '#style' do
-      let(:subject) { described_instance.style }
+      def subject
+        Line.new(attributes).style
+      end
 
       it 'has a style attribute' do
         subject.must_be_instance_of(String)
@@ -32,7 +33,9 @@ module Vedeu
     end
 
     describe '#colour' do
-      let(:subject) { described_instance.colour }
+      def subject
+        Line.new(attributes).colour
+      end
 
       it 'has a colour attribute' do
         subject.must_be_instance_of(Colour)
@@ -40,7 +43,9 @@ module Vedeu
     end
 
     describe '#model' do
-      let(:subject) { described_instance.model }
+      def subject
+        Line.new(attributes).model
+      end
 
       it 'has a model attribute' do
         subject.must_be_instance_of(Hash)
@@ -48,7 +53,9 @@ module Vedeu
     end
 
     describe '#streams' do
-      let(:subject) { described_instance.streams }
+      def subject
+        Line.new(attributes).streams
+      end
 
       it 'has a streams attribute' do
         subject.must_be_instance_of(Array)
@@ -58,7 +65,9 @@ module Vedeu
     end
 
     describe '#to_json' do
-      let(:subject) { described_instance.to_json }
+      def subject
+        Line.new(attributes).to_json
+      end
 
       it 'returns an String' do
         subject.must_be_instance_of(String)
@@ -70,7 +79,9 @@ module Vedeu
     end
 
     describe '#to_s' do
-      let(:subject) { described_instance.to_s }
+      def subject
+        Line.new(attributes).to_s
+      end
 
       it 'returns an String' do
         subject.must_be_instance_of(String)

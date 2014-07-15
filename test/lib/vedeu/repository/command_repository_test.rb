@@ -4,8 +4,7 @@ require_relative '../../../../lib/vedeu/repository/command_repository'
 
 module Vedeu
   describe CommandRepository do
-    let(:described_class) { CommandRepository }
-    let(:input)           {}
+    let(:input) {}
 
     before do
       CommandRepository.create({
@@ -21,11 +20,12 @@ module Vedeu
         keyword:  'banana'
       })
     end
-
     after { CommandRepository.reset }
 
     describe '.by_input' do
-      let(:subject) { described_class.by_input(input) }
+      def subject
+        CommandRepository.by_input(input)
+      end
       let(:input)   { 'b' }
 
       it 'returns the Command instance' do
@@ -80,7 +80,9 @@ module Vedeu
     end
 
     describe '.create' do
-      let(:subject)    { described_class.create(attributes) }
+      def subject
+        CommandRepository.create(attributes)
+      end
       let(:attributes) { {} }
 
       it 'returns a Command' do
@@ -89,7 +91,9 @@ module Vedeu
     end
 
     describe '.entity' do
-      let(:subject) { described_class.entity }
+      def subject
+        CommandRepository.entity
+      end
 
       it 'returns a Class instance' do
         subject.must_be_instance_of(Class)

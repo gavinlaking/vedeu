@@ -3,11 +3,12 @@ require_relative '../../../../../lib/vedeu/support/parsing/json_parser'
 
 module Vedeu
   describe JSONParser do
-    let(:described_module) { JSONParser }
-    let(:output)           { "{}" }
+    let(:output) { "{}" }
 
     describe '.parse' do
-      let(:subject) { described_module.parse(output) }
+      def subject
+        JSONParser.parse(output)
+      end
 
       it 'returns a Hash' do
         subject.must_be_instance_of(Hash)

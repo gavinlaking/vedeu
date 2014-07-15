@@ -7,8 +7,6 @@ module Vedeu
   end
 
   describe Presentation do
-    let(:described_module)   { Presentation }
-    let(:described_instance) { TestPresentation.new(attributes) }
     let(:attributes) {
       {
         colour: {},
@@ -17,7 +15,9 @@ module Vedeu
     }
 
     describe '#colour' do
-      let(:subject) { described_instance.colour }
+      def subject
+        TestPresentation.new(attributes).colour
+      end
 
       it 'returns a Colour instance' do
         subject.must_be_instance_of(Colour)
@@ -25,7 +25,9 @@ module Vedeu
     end
 
     describe '#style' do
-      let(:subject) { described_instance.style }
+      def subject
+        TestPresentation.new(attributes).style
+      end
 
       it 'returns a String' do
         subject.must_be_instance_of(String)

@@ -22,10 +22,10 @@ module Vedeu
   end
 
   describe Process do
-    let(:described_class) { Process }
-
     describe '.evaluate' do
-      let(:subject) { described_class.evaluate }
+      def subject
+        Process.evaluate
+      end
 
       before do
         CommandRepository.create({

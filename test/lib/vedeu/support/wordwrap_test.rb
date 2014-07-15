@@ -3,8 +3,7 @@ require_relative '../../../../lib/vedeu/support/wordwrap'
 
 module Vedeu
   describe Wordwrap do
-    let(:described_class) { Wordwrap }
-    let(:value)           {
+    let(:value) {
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. '    \
       "Curabitur aliquet turpis id dui condimentum elementum.\n"     \
       'Pellentesque blandit vulputate imperdiet. Quisque ut arcu '   \
@@ -19,9 +18,12 @@ module Vedeu
       'sapien magna rhoncus justo, vel molestie metus sapien eget '  \
       "libero.\n\n\n"
     }
-    let(:options)         { {} }
+    let(:options) { {} }
 
     describe '#wordwrap' do
+      def subject
+        Wordwrap.this(value, options)
+      end
       let(:formatted_value) {
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. '  \
         "Curabitur\naliquet turpis id dui condimentum elementum.\n"  \
@@ -37,8 +39,6 @@ module Vedeu
         'mollis, nisi sit amet congue sagittis, sapien magna '       \
         "rhoncus\njusto, vel molestie metus sapien eget libero."
       }
-
-      subject { described_class.this(value, options) }
 
       it 'returns a String' do
         subject.must_be_instance_of(String)

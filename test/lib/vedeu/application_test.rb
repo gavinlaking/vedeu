@@ -3,12 +3,12 @@ require_relative '../../../lib/vedeu/application'
 
 module Vedeu
   describe Application do
-    let(:described_class)    { Application }
-    let(:described_instance) { described_class.new(options) }
-    let(:options)            { {} }
+    let(:options) { {} }
 
     describe '#initialize' do
-      let(:subject) { described_class.new(options) }
+      def subject
+        Application.new(options)
+      end
 
       it 'returns an Application instance' do
         subject.must_be_instance_of(Application)
@@ -16,7 +16,9 @@ module Vedeu
     end
 
     describe '.start' do
-      let(:subject) { described_class.start(options) }
+      def subject
+        Application.start(options)
+      end
 
       before do
         Terminal.stubs(:open).yields(self)

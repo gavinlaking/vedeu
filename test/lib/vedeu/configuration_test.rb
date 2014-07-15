@@ -3,13 +3,12 @@ require_relative '../../../lib/vedeu/configuration'
 
 module Vedeu
   describe Configuration do
-    let(:described_class)    { Configuration }
-    let(:described_instance) { described_class.new(args) }
-    let(:args)               { [] }
-    let(:subject)            { described_instance }
+    let(:args) { [] }
 
     describe '#initialize' do
-      let(:subject) { described_instance }
+      def subject
+        Configuration.new(args)
+      end
 
       it 'returns a Configuration instance' do
         subject.must_be_instance_of(Configuration)
@@ -25,7 +24,9 @@ module Vedeu
     end
 
     describe '#configure' do
-      let(:subject) { described_class.configure(args) }
+      def subject
+        Configuration.configure(args)
+      end
 
       it 'returns a Hash' do
         subject.must_be_instance_of(Hash)
