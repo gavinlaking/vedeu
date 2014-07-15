@@ -17,7 +17,7 @@ module Vedeu
       end
 
       it 'sets an instance variable' do
-        subject.instance_variable_get("@interface").must_equal(interface)
+        subject.instance_variable_get('@interface').must_equal(interface)
       end
     end
 
@@ -43,7 +43,7 @@ module Vedeu
 
     describe '.render' do
       let(:subject)    { described_class.render(interface) }
-      let(:attributes) { { name: 'dummy', width: 20, height: 2, lines: "Some text..." } }
+      let(:attributes) { { name: 'dummy', width: 20, height: 2, lines: 'Some text...'} }
 
       it 'returns a String' do
         subject.must_be_instance_of(String)

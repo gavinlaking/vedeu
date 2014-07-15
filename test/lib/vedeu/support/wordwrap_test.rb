@@ -23,18 +23,18 @@ module Vedeu
 
     describe '#wordwrap' do
       let(:formatted_value) {
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "  \
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. '  \
         "Curabitur\naliquet turpis id dui condimentum elementum.\n"  \
-        "Pellentesque blandit vulputate imperdiet. Quisque ut arcu " \
+        'Pellentesque blandit vulputate imperdiet. Quisque ut arcu ' \
         "dolor.\nMorbi nec vulputate purus.\n\nQuisque porta "       \
         "feugiat egestas. Aenean ac ipsum varius, lobortis\nlacus "  \
         "at, mattis est.\nQuisque viverra facilisis tortor, id "     \
         "convallis metus laoreet quis.\nCurabitur auctor nunc "      \
         "blandit enim volutpat hendrerit. Phasellus\naccumsan "      \
-        "tempor iaculis. Ut in semper massa. Cras quis viverra "     \
+        'tempor iaculis. Ut in semper massa. Cras quis viverra '     \
         "elit.\n\nInteger vitae mattis est. Cras id nisl porttitor " \
         "lectus placerat\ngravida sit amet quis diam.\n\nDonec "     \
-        "mollis, nisi sit amet congue sagittis, sapien magna "       \
+        'mollis, nisi sit amet congue sagittis, sapien magna '       \
         "rhoncus\njusto, vel molestie metus sapien eget libero."
       }
 
@@ -52,7 +52,7 @@ module Vedeu
         let(:options)         { { width: 70, prune: true } }
         let(:formatted_value) {
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' \
-          " Curabitur a..."
+          ' Curabitur a...'
         }
 
         it 'returns formatted text' do

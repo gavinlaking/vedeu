@@ -53,8 +53,8 @@ module Vedeu
       let(:composition) {
         {
           interfaces: [
-            { name: "enq1", lines: { streams: { text: "Some text..." } } },
-            { name: "enq2", lines: { streams: { text: "Some text..." } } }
+            { name: 'enq1', lines: { streams: { text: 'Some text...'} } },
+            { name: 'enq2', lines: { streams: { text: 'Some text...'} } }
           ]
         }
       }

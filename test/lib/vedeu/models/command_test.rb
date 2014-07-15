@@ -11,8 +11,8 @@ module Vedeu
       {
         name:      'dummy',
         entity:    DummyCommand,
-        keyword:   "dummy",
-        keypress:  "d",
+        keyword:   'dummy',
+        keypress:  'd',
         arguments: []
       }
     }

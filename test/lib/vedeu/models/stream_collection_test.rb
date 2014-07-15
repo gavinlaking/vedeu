@@ -21,7 +21,7 @@ module Vedeu
       end
 
       context 'when there is a single stream' do
-        let(:streams) { "some text" }
+        let(:streams) { 'some text' }
 
         it 'returns an Array' do
           subject.must_be_instance_of(Array)

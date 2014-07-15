@@ -15,14 +15,14 @@ module Vedeu
       end
 
       it 'sets an instance variable' do
-        subject.instance_variable_get("@output").must_equal(output)
+        subject.instance_variable_get('@output').must_equal(output)
       end
 
       context 'when the instance variable is nil' do
         let(:subject) { described_class.new }
 
         it 'set an instance variable' do
-          subject.instance_variable_get("@output").must_equal({})
+          subject.instance_variable_get('@output').must_equal({})
         end
       end
     end

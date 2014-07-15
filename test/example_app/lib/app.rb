@@ -47,13 +47,13 @@ module Example
                           }
     command 'time', {
                       entity:   ExampleCommand,
-                      keyword:  "time",
-                      keypress: "t"
+                      keyword: 'time',
+                      keypress: 't'
                     }
     command 'exit', {
                       entity:   Vedeu::Exit,
-                      keyword:  "exit",
-                      keypress: "q"
+                      keyword: 'exit',
+                      keypress: 'q'
                     }
 
     def self.start
