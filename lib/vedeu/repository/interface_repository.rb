@@ -14,7 +14,7 @@ module Vedeu
 
     def find(name)
       result = super
-      raise UndefinedInterface unless result
+      fail UndefinedInterface, "#{name.to_s} could not be found." unless result
       result
     end
 
