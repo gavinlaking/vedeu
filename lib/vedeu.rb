@@ -6,7 +6,6 @@ require_relative 'vedeu/repository/interface_repository'
 require_relative 'vedeu/repository/event_repository'
 require_relative 'vedeu/support/exit'
 require_relative 'vedeu/launcher'
-require_relative 'vedeu/version'
 
 module Vedeu
   # :nocov:
