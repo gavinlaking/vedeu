@@ -30,8 +30,8 @@ module Vedeu
       before { described_class.clear }
       after  { described_class.clear }
 
-      it 'returns an Array' do
-        subject.must_be_instance_of(Array)
+      it 'returns a Module' do
+        subject.must_be_instance_of(Module)
       end
 
       it 'contains the enqueued item' do
@@ -42,7 +42,7 @@ module Vedeu
     describe '.enqueued?' do
       let(:subject) { described_class.enqueued? }
 
-      context 'when the queue contains data' do
+      context 'when the queue is not empty' do
         before { described_class.enqueue(:result) }
         after  { described_class.clear }
 
@@ -65,13 +65,26 @@ module Vedeu
         subject.must_be_instance_of(Fixnum)
       end
 
-      it 'returns the size of the queue' do
-        subject.must_equal(0)
+      context 'when the queue is empty' do
+        it 'returns the size of the queue' do
+          subject.must_equal(0)
+        end
+      end
+
+      context 'when the queue is not empty' do
+        before { described_class.enqueue(:result).enqueue(:result) }
+        after  { described_class.clear }
+
+        it 'returns the size of the queue' do
+          subject.must_equal(2)
+        end
       end
     end
 
     describe '.clear' do
       let(:subject) { described_class.clear }
+
+      before { described_class.enqueue(:result) }
 
       it 'returns an Array' do
         subject.must_be_instance_of(Array)
@@ -89,8 +102,19 @@ module Vedeu
         subject.must_be_instance_of(String)
       end
 
-      it 'returns the queue as a String' do
-        subject.must_equal('[]')
+      context 'when the queue is empty' do
+        it 'returns the queue as a String' do
+          subject.must_equal('[]')
+        end
+      end
+
+      context 'when the queue is not empty' do
+        before { described_class.enqueue(:result) }
+        after  { described_class.clear }
+
+        it 'returns the queue as a String' do
+          subject.must_equal('[:result]')
+        end
       end
     end
   end
