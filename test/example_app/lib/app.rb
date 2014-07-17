@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'bundler/setup'
+require 'pry'
 require 'vedeu'
 
 module Example
@@ -35,16 +36,34 @@ module Example
   class App
     include Vedeu
 
+    def self.example_position
+      @_position = Vedeu::Coordinate.new({ width: 40, height: 5, centered: true }).position
+    end
+
+    def self.command_position
+      {
+        y:        example_position[:bottom],
+        x:        example_position[:x],
+        height:   1,
+        width:    40,
+        centered: true
+      }
+    end
+
     interface 'example',  {
-                            y: 1,  x: 1,  width: 80, height: 5,
-                            colour: { background: '#ff0000', foreground: '#000000' },
+                            colour: {
+                              background: '#ff0000',
+                              foreground: '#000000'
+                            },
                             cursor: false
-                          }
+                          }.merge(example_position)
     interface 'command',  {
-                            y: 6, x: 1, width: 80, height: 1,
-                            colour: { background: '#4040cc', foreground: '#aadd00' },
+                            colour: {
+                              background: '#4040cc',
+                              foreground: '#aadd00'
+                            },
                             cursor: true
-                          }
+                          }.merge(command_position)
     command 'time', {
                       entity:   ExampleCommand,
                       keyword: 'time',
