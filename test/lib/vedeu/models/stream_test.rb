@@ -34,7 +34,7 @@ module Vedeu
           style:  'normal',
           colour: { foreground: '#ff0000', background: '#000000' },
           text:   'Some text'
-        }).to_json.must_equal("{\"colour\":{\"foreground\":\"\\u001b[38;5;196m\",\"background\":\"\\u001b[48;5;16m\"},\"style\":\"\\u001b[24m\\u001b[21m\\u001b[27m\",\"text\":\"Some text\"}")
+        }).to_json.must_equal("{\"colour\":{\"foreground\":\"#ff0000\",\"background\":\"#000000\"},\"style\":\"\\u001b[24m\\u001b[21m\\u001b[27m\",\"text\":\"Some text\"}")
       end
     end
   end
