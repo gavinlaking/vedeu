@@ -54,8 +54,8 @@ To understand how Vedeu works, you need to familiarise yourself with some terms.
                 y:          1,
                 x:          1,
                 z:          1,
-                width:      :auto, # will set to terminal width
-                height:     10,    # also accepts :auto
+                width:      10, # see notes below
+                height:     10,
                 colour: {
                   foreground: '#ffffff',
                   background: '#000000'
@@ -69,8 +69,10 @@ Referring to the above example, interfaces have a name, and various default attr
 `:x`          sets the starting column point.
 `:z`          an integer specifying the z-index of the interface.
               (See Layers)
-`:width`      sets how many characters wide the interface will be.
-`:height`     sets how many characters tall the interface will be.
+
+`:width`      sets character width of the interface
+`:height`     sets character height of the interface
+              Note: not setting a width or height will set the values to the terminal's reported width and height.
 
 `:foreground` sets the default foreground colour. (See Colours)
 `:background` sets the default background colour.
