@@ -4,7 +4,9 @@ require_relative '../../../../lib/vedeu/models/stream'
 module Vedeu
   describe Stream do
     it 'has a colour attribute' do
-      Stream.new({ colour: { foreground: '#ff0000', background: '#000000' } }).colour.must_be_instance_of(Colour)
+      Stream.new({
+        colour: { foreground: '#ff0000', background: '#000000' }
+      }).colour.must_be_instance_of(Colour)
     end
 
     it 'has a text attribute' do
@@ -12,7 +14,8 @@ module Vedeu
     end
 
     it 'has a style attribute' do
-      Stream.new({ style: 'normal' }).style.must_equal("\e[24m\e[21m\e[27m")
+      Stream.new({ style: 'normal' }).style
+        .must_equal("\e[24m\e[21m\e[27m")
     end
 
     describe '#to_s' do

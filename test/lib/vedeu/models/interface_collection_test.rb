@@ -13,12 +13,13 @@ module Vedeu
         Composition.new.interfaces.must_equal([])
       end
 
-      it 'returns a collection of Interface objects when there is a single interface' do
+      it 'returns a collection when there is a single interface' do
         skip
-        Composition.new({ name: 'dummy' }).interfaces.first.must_be_instance_of(Interface)
+        Composition.new({ name: 'dummy' }).interfaces.first
+          .must_be_instance_of(Interface)
       end
 
-      it 'returns a collection of Interface objects when there are multiple interfaces' do
+      it 'returns a collection when there are multiple interfaces' do
         Composition.new({ interfaces: [
           { name: 'dumb' },
           { name: 'dumber' }

@@ -39,7 +39,8 @@ module Vedeu
     describe '#query' do
       it 'returns a Dummy' do
         dummy = DummyRepository.create(Dummy.new)
-        DummyRepository.query(Dummy, :name, 'dummy').must_be_instance_of(Dummy)
+        DummyRepository.query(Dummy, :name, 'dummy')
+          .must_be_instance_of(Dummy)
       end
     end
 

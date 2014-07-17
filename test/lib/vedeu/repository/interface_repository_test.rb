@@ -20,7 +20,8 @@ module Vedeu
           width: 15,
           height: 2
         })
-        InterfaceRepository.find('dummy').must_be_instance_of(Interface)
+        InterfaceRepository.find('dummy')
+          .must_be_instance_of(Interface)
       end
 
       it 'raises an exception when the interface does not exist' do

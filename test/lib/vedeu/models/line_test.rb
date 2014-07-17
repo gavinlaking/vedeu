@@ -8,7 +8,9 @@ module Vedeu
     end
 
     it 'has a colour attribute' do
-      Line.new(colour: { foreground: '#ff0000', background: '#000000' }).colour.must_be_instance_of(Colour)
+      Line.new({
+        colour: { foreground: '#ff0000', background: '#000000' }
+      }).colour.must_be_instance_of(Colour)
     end
 
     it 'has a model attribute' do
