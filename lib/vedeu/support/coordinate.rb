@@ -36,6 +36,10 @@ module Vedeu
         fail OutOfBoundsError, 'Cannot set height to be greater ' \
                                'than the specified or actual '    \
                                'terminal height.'
+      # elsif (y + @height) > terminal_height
+      #   fail OutOfBoundsError, 'Cannot set height as current y ' \
+      #                          'position will cause undesired '
+      #                          'visual side effects.'
       else
         @height
       end
@@ -57,7 +61,6 @@ module Vedeu
     def terminal_width
       fail OutOfBoundsError,
         'Value must be greater than or equal to 1.' if @terminal_width < 1
-
       if @terminal_width > Terminal.width
         fail OutOfBoundsError, 'Cannot set terminal_width to be '  \
                                'greater than the actual terminal ' \
@@ -75,6 +78,10 @@ module Vedeu
         fail OutOfBoundsError, 'Cannot set width to be greater ' \
                                'than the specified or actual ' \
                                'terminal width.'
+      # elsif (x + @width) > terminal_width
+      #   fail OutOfBoundsError, 'Cannot set width as current x ' \
+      #                          'position will cause undesired '
+      #                          'visual side effects.'
       else
         @width
       end
