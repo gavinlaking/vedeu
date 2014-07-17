@@ -34,7 +34,8 @@ module Vedeu
       end
 
       it 'returns FalseClass when no command was found' do
-        CommandRepository.by_input('not_found').must_be_instance_of(FalseClass)
+        CommandRepository.by_input('not_found')
+          .must_be_instance_of(FalseClass)
       end
 
       it 'returns FalseClass when there is no input' do

@@ -9,7 +9,8 @@ module Vedeu
       end
 
       it 'returns a Composition when the output is JSON' do
-        Parser.parse("{\"some\": \"JSON\"}").must_be_instance_of(Composition)
+        Parser.parse("{\"some\": \"JSON\"}")
+          .must_be_instance_of(Composition)
       end
 
       it 'returns a Composition when the output is a Hash' do

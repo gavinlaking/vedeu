@@ -13,7 +13,8 @@ module Vedeu
         '#b94f1c' => 130, # sunset orange
       }.map do |html_colour, terminal_colour|
         it 'translation is performed' do
-          Translator.translate(html_colour).must_equal(terminal_colour)
+          Translator.translate(html_colour)
+            .must_equal(terminal_colour)
         end
       end
 

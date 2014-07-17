@@ -18,6 +18,15 @@ module Vedeu
       end
     end
 
+    describe '.centre' do
+      it 'returns the centre point on the terminal' do
+        console = IO.console
+        console.stub :winsize, [25, 80] do
+          Terminal.centre.must_equal([12, 40])
+        end
+      end
+    end
+
     describe '.width' do
       it 'returns the width of the terminal' do
         console = IO.console

@@ -6,6 +6,8 @@ module Vedeu
     extend self
 
     def background_colour(value = '#000000')
+      return '' if value.empty?
+
       ["\e[48;5;", colour_translator(value), 'm'].join
     end
 
@@ -18,6 +20,8 @@ module Vedeu
     end
 
     def foreground_colour(value = '#ffffff')
+      return '' if value.empty?
+
       ["\e[38;5;", colour_translator(value), 'm'].join
     end
 

@@ -6,13 +6,15 @@ module Vedeu
   describe Storage do
     describe '#create' do
       it 'returns the stored record' do
-        Storage.new.create(DummyCommand.new).must_be_instance_of(DummyCommand)
+        Storage.new.create(DummyCommand.new)
+          .must_be_instance_of(DummyCommand)
       end
     end
 
     describe '#delete' do
       it 'returns a NilClass' do
-        Storage.new.delete(DummyCommand.new).must_be_instance_of(NilClass)
+        Storage.new.delete(DummyCommand.new)
+          .must_be_instance_of(NilClass)
       end
     end
 
@@ -36,7 +38,8 @@ module Vedeu
 
     describe '#query' do
       it 'returns a FalseClass when the item cannot be found' do
-        Storage.new.query(nil, nil, nil).must_be_instance_of(FalseClass)
+        Storage.new.query(nil, nil, nil)
+          .must_be_instance_of(FalseClass)
       end
     end
   end

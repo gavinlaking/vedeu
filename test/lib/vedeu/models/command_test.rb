@@ -9,7 +9,8 @@ module Vedeu
     end
 
     it 'has an entity attribute' do
-      Command.new({ entity: DummyCommand }).entity.must_equal(DummyCommand)
+      Command.new({ entity: DummyCommand }).entity
+        .must_equal(DummyCommand)
     end
 
     it 'has a keypress attribute' do

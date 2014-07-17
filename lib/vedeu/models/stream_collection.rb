@@ -1,19 +1,14 @@
 require 'virtus'
 
+require_relative 'collection'
 require_relative 'stream'
 
 module Vedeu
   class StreamCollection < Virtus::Attribute
+    include Collection
+
     def coerce(values)
-      return [] if values.nil? || values.empty?
-
-      if values.is_a?(::String)
-        [Stream.new({ text: values })]
-
-      else
-        [values].flatten.map { |value| Stream.new(value) }
-
-      end
+      coercer(values, Stream, :text)
     end
   end
 end

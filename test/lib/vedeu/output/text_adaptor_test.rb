@@ -4,7 +4,7 @@ require_relative '../../../../lib/vedeu/output/text_adaptor'
 module Vedeu
   describe TextAdaptor do
     describe '.adapt' do
-      it 'returns an empty collection when processing an empty string' do
+      it 'returns an empty collection for an empty string' do
         TextAdaptor.adapt('').must_be_empty
       end
 
