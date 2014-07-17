@@ -7,6 +7,10 @@ module Vedeu
       it 'returns an escape sequence' do
         Esc.background_colour.must_equal("\e[48;5;16m")
       end
+
+      it 'returns an empty string if the value is empty' do
+        Esc.background_colour('').must_equal('')
+      end
     end
 
     describe '.clear_line' do
@@ -26,6 +30,10 @@ module Vedeu
     describe '.foreground_colour' do
       it 'returns an escape sequence' do
         Esc.foreground_colour.must_equal("\e[38;5;231m")
+      end
+
+      it 'returns an empty string if the value is empty' do
+        Esc.foreground_colour('').must_equal('')
       end
     end
 
