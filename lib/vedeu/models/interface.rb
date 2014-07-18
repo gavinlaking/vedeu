@@ -64,7 +64,7 @@ module Vedeu
 
     def json_attributes
       {
-        colour: colour, # TODO: translate back?
+        colour: colour.as_hash,
         style:  style,
         name:   name,
         lines:  lines,

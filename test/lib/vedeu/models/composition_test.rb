@@ -42,9 +42,9 @@ module Vedeu
 
     describe '#to_json' do
       it 'returns the model as JSON' do
-        attributes = { interfaces: [{ name: 'Composition#to_json', width: 40, height: 25 }] }
+        attributes = { interfaces: [{ name: 'Composition#to_json', width: 5, height: 5, colour: { foreground: '#ffff33', background: '#ffff77' } }] }
 
-        Composition.new(attributes).to_json.must_equal("{\"interfaces\":[{\"colour\":null,\"style\":\"\",\"name\":\"Composition#to_json\",\"lines\":[],\"y\":1,\"x\":1,\"z\":1,\"width\":40,\"height\":25,\"current\":\"\",\"cursor\":true}]}")
+        Composition.new(attributes).to_json.must_equal("{\"interfaces\":[{\"colour\":{\"foreground\":\"\\u001b[38;5;227m\",\"background\":\"\\u001b[48;5;228m\"},\"style\":\"\",\"name\":\"Composition#to_json\",\"lines\":[],\"y\":1,\"x\":1,\"z\":1,\"width\":5,\"height\":5,\"current\":\"\",\"cursor\":true}]}")
       end
     end
 

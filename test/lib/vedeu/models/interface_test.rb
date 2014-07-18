@@ -21,12 +21,12 @@ module Vedeu
     end
 
     it 'has a y attribute' do
-      Interface.new({ y: 17 }).y.must_equal(17)
+      Interface.new({ y: 3 }).y.must_equal(3)
       Interface.new.y.must_equal(1)
     end
 
     it 'has an x attribute' do
-      Interface.new({ x: 33 }).x.must_equal(33)
+      Interface.new({ x: 5 }).x.must_equal(5)
       Interface.new.x.must_equal(1)
     end
 
@@ -36,11 +36,11 @@ module Vedeu
     end
 
     it 'has a width attribute' do
-      Interface.new({ width: 50 }).width.must_equal(50)
+      Interface.new({ width: 10 }).width.must_equal(10)
     end
 
     it 'has a height attribute' do
-      Interface.new({ height: 20 }).height.must_equal(20)
+      Interface.new({ height: 15 }).height.must_equal(15)
     end
 
     it 'has a current attribute' do
@@ -72,14 +72,14 @@ module Vedeu
       end
 
       it 'returns the fresh content when content is queued up to be displayed' do
-        @interface = Interface.new(attributes).enqueue("\e[38;5;196m\e[48;5;16m\e[1;1HContent\e[1;1H\e[2;1HContent\e[2;1H\e[3;1HContent\e[3;1H")
-        @interface.refresh.must_equal("\e[38;5;196m\e[48;5;16m\e[1;1HContent\e[1;1H\e[2;1HContent\e[2;1H\e[3;1HContent\e[3;1H")
+        interface = Interface.new(attributes).enqueue("\e[38;5;196m\e[48;5;16m\e[1;1HContent\e[1;1H\e[2;1HContent\e[2;1H\e[3;1HContent\e[3;1H")
+        interface.refresh.must_equal("\e[38;5;196m\e[48;5;16m\e[1;1HContent\e[1;1H\e[2;1HContent\e[2;1H\e[3;1HContent\e[3;1H")
       end
 
       it 'returns the previously shown content when there is stale content from last run' do
-        @interface = Interface.new(attributes)
-        @interface.current = "\e[38;5;196m\e[48;5;16m\e[1;1HOld\e[1;1H\e[2;1HContent\e[2;1H\e[3;1Here\e[3;1H"
-        @interface.refresh.must_equal("\e[38;5;196m\e[48;5;16m\e[1;1HOld\e[1;1H\e[2;1HContent\e[2;1H\e[3;1Here\e[3;1H")
+        interface = Interface.new(attributes)
+        interface.current = "\e[38;5;196m\e[48;5;16m\e[1;1HOld\e[1;1H\e[2;1HContent\e[2;1H\e[3;1Here\e[3;1H"
+        interface.refresh.must_equal("\e[38;5;196m\e[48;5;16m\e[1;1HOld\e[1;1H\e[2;1HContent\e[2;1H\e[3;1Here\e[3;1H")
       end
     end
 
@@ -109,7 +109,7 @@ module Vedeu
           },
           width:  3,
           height: 3
-        }).to_json.must_equal("{\"colour\":{\"foreground\":\"\\u001b[38;5;196m\",\"background\":\"\\u001b[48;5;16m\"},\"style\":\"\",\"name\":\"dummy\",\"lines\":[],\"y\":1,\"x\":1,\"z\":1,\"width\":3,\"height\":3,\"cursor\":true}")
+        }).to_json.must_equal("{\"colour\":{\"foreground\":\"#ff0000\",\"background\":\"#000000\"},\"style\":\"\",\"name\":\"dummy\",\"lines\":[],\"y\":1,\"x\":1,\"z\":1,\"width\":3,\"height\":3,\"cursor\":true}")
       end
     end
   end

@@ -24,7 +24,7 @@ module Vedeu
 
     def json_attributes
       {
-        colour:  colour,
+        colour:  colour.as_hash,
         style:   style,
         streams: streams
       }
