@@ -1,4 +1,4 @@
-require 'oj'
+require 'json'
 require 'virtus'
 
 require_relative 'interface_collection'
@@ -23,7 +23,7 @@ module Vedeu
     end
 
     def to_json
-      Oj.dump(json_attributes, mode: :compat)
+      json_attributes.to_json
     end
 
     def to_s

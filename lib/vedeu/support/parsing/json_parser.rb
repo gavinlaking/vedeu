@@ -1,12 +1,12 @@
-require 'oj'
+require 'json'
 
 module Vedeu
   module JSONParser
     extend self
 
     def parse(output)
-      Oj.load(output, symbol_keys: true)
-    rescue Oj::ParseError
+      JSON.load(output, nil, symbolize_names: true)
+    rescue JSON::ParserError
       {}
     end
   end

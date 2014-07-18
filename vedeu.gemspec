@@ -26,6 +26,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'ruby-prof',          '0.15.1'
   spec.add_development_dependency 'simplecov',          '0.9.0'
 
-  spec.add_dependency 'oj',     '2.9.9'
   spec.add_dependency 'virtus', '1.0.2'
 end

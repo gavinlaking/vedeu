@@ -1,4 +1,4 @@
-require 'oj'
+require 'json'
 require 'virtus'
 
 require_relative '../support/esc'
@@ -26,8 +26,8 @@ module Vedeu
       @background || ''
     end
 
-    def to_json
-      Oj.dump(as_hash, mode: :compat)
+    def to_json(*args)
+      as_hash.to_json
     end
 
     def to_s

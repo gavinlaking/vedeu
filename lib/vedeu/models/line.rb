@@ -1,4 +1,4 @@
-require 'oj'
+require 'json'
 require 'virtus'
 
 require_relative 'presentation'
@@ -15,7 +15,7 @@ module Vedeu
     attribute :streams, StreamCollection
 
     def to_json
-      Oj.dump(json_attributes, mode: :compat)
+      json_attributes.to_json
     end
 
     def to_s
