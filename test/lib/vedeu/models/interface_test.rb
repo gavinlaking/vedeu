@@ -68,18 +68,43 @@ module Vedeu
       }
 
       it 'returns a blank interface when there is no content to display (initial state)' do
-        Interface.new(attributes).refresh.must_equal("\e[38;5;196m\e[48;5;16m\e[1;1H   \e[1;1H\e[2;1H   \e[2;1H\e[3;1H   \e[3;1H")
+        Interface.new(attributes).refresh.must_equal(
+          "\e[38;5;196m\e[48;5;16m" \
+          "\e[1;1H   \e[1;1H" \
+          "\e[2;1H   \e[2;1H" \
+          "\e[3;1H   \e[3;1H"
+        )
       end
 
       it 'returns the fresh content when content is queued up to be displayed' do
-        interface = Interface.new(attributes).enqueue("\e[38;5;196m\e[48;5;16m\e[1;1HContent\e[1;1H\e[2;1HContent\e[2;1H\e[3;1HContent\e[3;1H")
-        interface.refresh.must_equal("\e[38;5;196m\e[48;5;16m\e[1;1HContent\e[1;1H\e[2;1HContent\e[2;1H\e[3;1HContent\e[3;1H")
+        interface = Interface.new(attributes).enqueue(
+          "\e[38;5;196m\e[48;5;16m" \
+          "\e[1;1HContent\e[1;1H" \
+          "\e[2;1HContent\e[2;1H" \
+          "\e[3;1HContent\e[3;1H"
+        )
+
+        interface.refresh.must_equal(
+          "\e[38;5;196m\e[48;5;16m" \
+          "\e[1;1HContent\e[1;1H" \
+          "\e[2;1HContent\e[2;1H" \
+          "\e[3;1HContent\e[3;1H"
+        )
       end
 
       it 'returns the previously shown content when there is stale content from last run' do
         interface = Interface.new(attributes)
-        interface.current = "\e[38;5;196m\e[48;5;16m\e[1;1HOld\e[1;1H\e[2;1HContent\e[2;1H\e[3;1Here\e[3;1H"
-        interface.refresh.must_equal("\e[38;5;196m\e[48;5;16m\e[1;1HOld\e[1;1H\e[2;1HContent\e[2;1H\e[3;1Here\e[3;1H")
+        interface.current = "\e[38;5;196m\e[48;5;16m" \
+                            "\e[1;1HOld\e[1;1H" \
+                            "\e[2;1HContent\e[2;1H" \
+                            "\e[3;1Here\e[3;1H"
+
+        interface.refresh.must_equal(
+          "\e[38;5;196m\e[48;5;16m" \
+          "\e[1;1HOld\e[1;1H" \
+          "\e[2;1HContent\e[2;1H" \
+          "\e[3;1Here\e[3;1H"
+        )
       end
     end
 
@@ -94,7 +119,12 @@ module Vedeu
           },
           width:  3,
           height: 3
-        }).to_s.must_equal("\e[38;5;196m\e[48;5;16m\e[1;1H   \e[1;1H\e[2;1H   \e[2;1H\e[3;1H   \e[3;1H")
+        }).to_s.must_equal(
+          "\e[38;5;196m\e[48;5;16m" \
+          "\e[1;1H   \e[1;1H" \
+          "\e[2;1H   \e[2;1H" \
+          "\e[3;1H   \e[3;1H"
+        )
       end
     end
 

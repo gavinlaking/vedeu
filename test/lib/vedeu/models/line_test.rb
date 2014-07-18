@@ -3,10 +3,6 @@ require_relative '../../../../lib/vedeu/models/line'
 
 module Vedeu
   describe Line do
-    it 'has a style attribute' do
-      Line.new(style:  'normal').style.must_be_instance_of(String)
-    end
-
     it 'has a colour attribute' do
       Line.new({
         colour: { foreground: '#ff0000', background: '#000000' }
@@ -24,18 +20,18 @@ module Vedeu
     describe '#to_json' do
       it 'returns an String' do
         Line.new({
-          style:   'normal',
           colour:  { foreground: '#ff0000', background: '#000000' },
+          style:   'normal',
           streams: [],
-        }).to_json.must_equal("{\"colour\":{\"foreground\":\"#ff0000\",\"background\":\"#000000\"},\"style\":\"\\u001b[24m\\u001b[21m\\u001b[27m\",\"streams\":[]}")
+        }).to_json.must_equal("{\"colour\":{\"foreground\":\"#ff0000\",\"background\":\"#000000\"},\"style\":[\"normal\"],\"streams\":[]}")
       end
     end
 
     describe '#to_s' do
       it 'returns an String' do
         Line.new({
-          style:  'normal',
           colour: { foreground: '#ff0000', background: '#000000' },
+          style:  'normal',
         }).to_s.must_equal("\e[38;5;196m\e[48;5;16m\e[24m\e[21m\e[27m")
       end
     end

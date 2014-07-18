@@ -9,17 +9,19 @@ module Vedeu
   describe Presentation do
     describe '#colour' do
       it 'returns a Colour instance' do
-        TestPresentation.new({
+        presentation = TestPresentation.new({
           colour: { foreground: '#ff0000', background: '#333333' }
-        }).colour.must_be_instance_of(Colour)
+        })
+        presentation.colour.must_be_instance_of(Colour)
       end
     end
 
     describe '#style' do
       it 'has a style attribute' do
-        TestPresentation.new({
-          style:  ['bold', 'underline']
-        }).style.must_equal("\e[1m\e[4m")
+        presentation = TestPresentation.new({
+          style: ['bold', 'underline']
+        })
+        presentation.style.must_equal(['bold', 'underline'])
       end
     end
   end

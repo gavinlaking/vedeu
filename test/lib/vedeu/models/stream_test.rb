@@ -4,37 +4,47 @@ require_relative '../../../../lib/vedeu/models/stream'
 module Vedeu
   describe Stream do
     it 'has a colour attribute' do
-      Stream.new({
+      stream = Stream.new({
         colour: { foreground: '#ff0000', background: '#000000' }
-      }).colour.must_be_instance_of(Colour)
+      })
+      stream.colour.must_be_instance_of(Colour)
     end
 
     it 'has a text attribute' do
-      Stream.new({ text: 'Some text' }).text.must_equal('Some text')
+      stream = Stream.new({ text: 'Some text' })
+      stream.text.must_equal('Some text')
     end
 
     it 'has a style attribute' do
-      Stream.new({ style: 'normal' }).style
-        .must_equal("\e[24m\e[21m\e[27m")
+      stream = Stream.new({ style: 'normal' })
+      stream.style.must_equal("\e[24m\e[21m\e[27m")
     end
 
     describe '#to_s' do
       it 'returns a String' do
-        Stream.new({
-          style:  'normal',
+        stream = Stream.new({
           colour: { foreground: '#ff0000', background: '#000000' },
+          style:  'normal',
           text:   'Some text'
-        }).to_s.must_equal("\e[38;5;196m\e[48;5;16m\e[24m\e[21m\e[27mSome text")
+        })
+
+        stream.to_s.must_equal(
+          "\e[38;5;196m\e[48;5;16m" \
+          "\e[24m\e[21m\e[27m" \
+          "Some text"
+        )
       end
     end
 
     describe '#to_json' do
       it 'returns a String' do
-        Stream.new({
-          style:  'normal',
+        stream = Stream.new({
           colour: { foreground: '#ff0000', background: '#000000' },
+          style:  'normal',
           text:   'Some text'
-        }).to_json.must_equal("{\"colour\":{\"foreground\":\"#ff0000\",\"background\":\"#000000\"},\"style\":\"\\u001b[24m\\u001b[21m\\u001b[27m\",\"text\":\"Some text\"}")
+        })
+
+        stream.to_json.must_equal("{\"colour\":{\"foreground\":\"#ff0000\",\"background\":\"#000000\"},\"style\":[\"normal\"],\"text\":\"Some text\"}")
       end
     end
   end

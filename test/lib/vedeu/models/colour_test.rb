@@ -56,7 +56,9 @@ module Vedeu
         Colour.new({
           foreground: '#ff0000',
           background: '#000000'
-        }).to_json.must_equal("{\"foreground\":\"#ff0000\",\"background\":\"#000000\"}")
+        }).to_json.must_equal(
+          "{\"foreground\":\"#ff0000\",\"background\":\"#000000\"}"
+        )
       end
     end
 
@@ -90,7 +92,10 @@ module Vedeu
         Colour.new({
           foreground: '#ff0000',
           background: '#000000'
-        }).as_hash.must_equal({ foreground: '#ff0000', background: '#000000' })
+        }).as_hash.must_equal({
+          foreground: '#ff0000',
+          background: '#000000'
+        })
       end
     end
   end

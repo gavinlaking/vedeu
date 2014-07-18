@@ -15,15 +15,15 @@ module Vedeu
       end
 
       it 'returns an empty collection when nil or empty' do
-        Collection.coercer('',  TestClass, :key).must_equal([])
+        Collection.coercer('', TestClass, :key).must_equal([])
       end
 
       it 'returns an empty collection when nil or empty' do
-        Collection.coercer([],  TestClass, :key).must_equal([])
+        Collection.coercer([], TestClass, :key).must_equal([])
       end
 
       it 'returns an empty collection when nil or empty' do
-        Collection.coercer({},  TestClass, :key).must_equal([])
+        Collection.coercer({}, TestClass, :key).must_equal([])
       end
 
       it 'returns a single model in a collection when a String' do
