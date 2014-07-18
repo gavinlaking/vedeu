@@ -1,13 +1,13 @@
 require 'virtus'
 
 require_relative 'colour'
-require_relative 'style_collection'
+require_relative '../support/esc'
 
 module Vedeu
   module Presentation
     include Virtus.module
 
-    attribute :colour, Colour
-    attribute :style,  StyleCollection
+    attribute :colour, Colour,       default: Colour.new
+    attribute :style,  Array[String]
   end
 end

@@ -2,6 +2,7 @@ require 'virtus'
 
 require_relative 'presentation'
 require_relative 'line_collection'
+require_relative 'style'
 require_relative '../output/interface_renderer'
 require_relative '../support/esc'
 require_relative '../support/queue'
@@ -11,6 +12,7 @@ module Vedeu
   class Interface
     include Virtus.model
     include Presentation
+    include Style
     include Vedeu::Queue
 
     attribute :name,    String
@@ -65,7 +67,7 @@ module Vedeu
     def json_attributes
       {
         colour: colour.as_hash,
-        style:  style,
+        style:  style_original,
         name:   name,
         lines:  lines,
         y:      y,

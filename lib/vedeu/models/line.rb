@@ -3,11 +3,13 @@ require 'virtus'
 
 require_relative 'presentation'
 require_relative 'stream_collection'
+require_relative 'style'
 
 module Vedeu
   class Line
     include Virtus.model
     include Presentation
+    include Style
 
     attribute :model,   Hash
     attribute :streams, StreamCollection
@@ -25,7 +27,7 @@ module Vedeu
     def json_attributes
       {
         colour:  colour.as_hash,
-        style:   style,
+        style:   style_original,
         streams: streams
       }
     end
