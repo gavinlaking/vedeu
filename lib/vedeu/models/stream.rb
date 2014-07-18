@@ -3,14 +3,14 @@ require 'virtus'
 
 require_relative 'presentation'
 require_relative '../support/terminal'
-
 require_relative 'style'
+
 module Vedeu
   class Stream
     include Virtus.model
     include Presentation
-
     include Style
+
     attribute :text, String, default: ''
 
     def to_json
@@ -25,7 +25,7 @@ module Vedeu
 
     def json_attributes
       {
-        colour: colour.as_hash,
+        colour: colour,
         style:  style_original,
         text:   text
       }

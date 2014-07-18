@@ -7,8 +7,8 @@ module Vedeu
   class Colour
     include Virtus.model
 
-    attribute :foreground, String
-    attribute :background, String
+    attribute :foreground, String, default: ''
+    attribute :background, String, default: ''
 
     def foreground
       @fg ||= Esc.foreground_colour(css_foreground)
@@ -19,11 +19,11 @@ module Vedeu
     end
 
     def css_foreground
-      @foreground || ''
+      @foreground
     end
 
     def css_background
-      @background || ''
+      @background
     end
 
     def to_json(*args)
