@@ -1,5 +1,5 @@
 require_relative '../../../test_helper'
-require_relative '../../../../lib/vedeu/models/interface_collection'
+require_relative '../../../../lib/vedeu/models/attributes/interface_collection'
 require_relative '../../../../lib/vedeu/models/composition'
 
 module Vedeu

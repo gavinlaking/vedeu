@@ -1,7 +1,7 @@
 require 'json'
 require 'virtus'
 
-require_relative 'interface_collection'
+require_relative 'attributes/interface_collection'
 
 module Vedeu
   class Composition

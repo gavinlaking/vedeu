@@ -2,7 +2,7 @@ require 'json'
 require 'virtus'
 
 require_relative 'presentation'
-require_relative 'line_collection'
+require_relative 'attributes/line_collection'
 require_relative 'style'
 require_relative '../output/interface_renderer'
 require_relative '../support/coordinate'
