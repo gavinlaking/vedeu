@@ -5,25 +5,24 @@ require_relative '../../../../lib/vedeu/models/composition'
 module Vedeu
   describe InterfaceCollection do
     describe '#coerce' do
-      it 'returns a Array' do
-        Composition.new.interfaces.must_be_instance_of(Array)
-      end
+      before { InterfaceRepository.reset }
 
       it 'returns an empty collection when there are no interfaces' do
-        Composition.new.interfaces.must_equal([])
+        composition = Composition.new
+        composition.interfaces.must_equal([])
       end
 
       it 'returns a collection when there is a single interface' do
-        skip
-        Composition.new({ name: 'dummy' }).interfaces.first
-          .must_be_instance_of(Interface)
+        composition = Composition.new({ interfaces: { name: 'InterfaceCollection#coerce' } })
+        composition.interfaces.first.must_be_instance_of(Interface)
       end
 
       it 'returns a collection when there are multiple interfaces' do
-        Composition.new({ interfaces: [
+        composition = Composition.new({ interfaces: [
           { name: 'dumb' },
           { name: 'dumber' }
-        ]}).interfaces.size.must_equal(2)
+        ]})
+        composition.interfaces.size.must_equal(2)
       end
     end
   end

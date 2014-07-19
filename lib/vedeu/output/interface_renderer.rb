@@ -1,5 +1,3 @@
-require_relative '../support/geometry'
-
 module Vedeu
   class InterfaceRenderer
     def self.clear(interface)
@@ -48,7 +46,7 @@ module Vedeu
     end
 
     def origin(index)
-      interface.geometry.origin(index)
+      interface.origin(index)
     end
 
     def height

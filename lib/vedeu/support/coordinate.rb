@@ -1,3 +1,4 @@
+require_relative 'esc'
 require_relative 'terminal'
 
 module Vedeu
@@ -13,6 +14,10 @@ module Vedeu
       @y               = attrs.fetch(:y, 1)
       @x               = attrs.fetch(:x, 1)
       @centred         = attrs.fetch(:centred, true)
+    end
+
+    def origin(index = 0)
+      Esc.set_position(virtual_y(index), virtual_x)
     end
 
     def terminal_height
@@ -36,10 +41,6 @@ module Vedeu
         fail OutOfBoundsError, 'Cannot set height to be greater ' \
                                'than the specified or actual '    \
                                'terminal height.'
-      # elsif (y + @height) > terminal_height
-      #   fail OutOfBoundsError, 'Cannot set height as current y ' \
-      #                          'position will cause undesired '
-      #                          'visual side effects.'
       else
         @height
       end
@@ -49,10 +50,10 @@ module Vedeu
       fail OutOfBoundsError,
         'Value must be greater than or equal to 1.' if @y < 1
 
-      if @y > height
+      if @y > terminal_height
         fail OutOfBoundsError, 'Cannot set y position to be greater' \
-                               ' that the specified height or' \
-                               ' actual terminal height.'
+                               ' that the specified terminal height' \
+                               ' or actual terminal height.'
       else
         @y
       end
@@ -78,10 +79,6 @@ module Vedeu
         fail OutOfBoundsError, 'Cannot set width to be greater ' \
                                'than the specified or actual ' \
                                'terminal width.'
-      # elsif (x + @width) > terminal_width
-      #   fail OutOfBoundsError, 'Cannot set width as current x ' \
-      #                          'position will cause undesired '
-      #                          'visual side effects.'
       else
         @width
       end
@@ -91,10 +88,10 @@ module Vedeu
       fail OutOfBoundsError,
         'Value must be greater than or equal to 1.' if @x < 1
 
-      if @x > width
+      if @x > terminal_width
         fail OutOfBoundsError, 'Cannot set x position to be greater' \
-                               ' that the specified width or' \
-                               ' actual terminal width.'
+                               ' that the specified terminal width' \
+                               ' or actual terminal width.'
       else
         @x
       end
@@ -150,6 +147,16 @@ module Vedeu
         bottom:  bottom,
         right:   right,
       }
+    end
+
+    private
+
+    def virtual_x
+      left
+    end
+
+    def virtual_y(index = 0)
+      ((top..bottom).to_a)[index]
     end
 
   end

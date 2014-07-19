@@ -5,6 +5,7 @@ require_relative 'presentation'
 require_relative 'line_collection'
 require_relative 'style'
 require_relative '../output/interface_renderer'
+require_relative '../support/coordinate'
 require_relative '../support/esc'
 require_relative '../support/queue'
 require_relative '../support/terminal'
@@ -25,9 +26,10 @@ module Vedeu
     attribute :height,  Integer, default: Terminal.height
     attribute :current, String,  default: ''
     attribute :cursor,  Boolean, default: true
+    attribute :centred, Boolean, default: false
 
-    def geometry
-      @geometry ||= Geometry.new(self)
+    def origin(index = 0)
+      geometry.origin(index)
     end
 
     def refresh
@@ -78,6 +80,10 @@ module Vedeu
         height: height,
         cursor: cursor
       }
+    end
+
+    def geometry
+      @_geometry ||= Coordinate.new(attributes)
     end
   end
 end

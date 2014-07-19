@@ -11,6 +11,38 @@ module Vedeu
       proc { Coordinate.new({ height: 6 }) }.must_raise(KeyError)
     end
 
+    describe '#origin' do
+      it 'returns the origin for the interface' do
+        coordinate = Coordinate.new({ width: 5, height: 5, centred: false })
+        coordinate.origin.must_equal("\e[1;1H")
+      end
+
+      it 'returns the origin for the interface' do
+        console = IO.console
+        console.stub :winsize, [25, 80] do
+          coordinate = Coordinate.new({ width: 5, height: 5 })
+          coordinate.origin.must_equal("\e[10;38H")
+        end
+      end
+
+      it 'returns the line position relative to the origin' do
+        coordinate = Coordinate.new({ width: 5, height: 5, centred: false })
+        coordinate.origin(3).must_equal("\e[4;1H")
+      end
+
+      it 'returns the origin for the interface when the interface' \
+         ' is at a custom position' do
+        coordinate = Coordinate.new({ width: 5, height: 5, x: 3, y: 6, centred: false })
+        coordinate.origin.must_equal("\e[6;3H")
+      end
+
+      it 'returns the line position relative to the origin when the' \
+         ' interface is at a custom position' do
+        coordinate = Coordinate.new({ width: 5, height: 5, x: 3, y: 6, centred: false })
+        coordinate.origin(3).must_equal("\e[9;3H")
+      end
+    end
+
     describe '#terminal_height' do
       it 'raises an exception if the value is less than 1' do
         coordinate = Coordinate.new({ height: 6, width: 18, terminal_height: -2 })

@@ -48,15 +48,31 @@ module Vedeu
     end
 
     it 'has a cursor attribute' do
-      Interface.new({ cursor: true }).cursor.must_be :==, true
-      Interface.new({ cursor: false }).cursor.must_be :==, false
-      Interface.new.cursor.must_be :==, true
+      Interface.new({ cursor: true }).cursor.must_equal(true)
+      Interface.new({ cursor: false }).cursor.must_equal(false)
+      Interface.new.cursor.must_equal(true)
+    end
+
+    it 'has a centred attribute' do
+      Interface.new.centred.must_equal(false)
+      Interface.new({ centred: true }).centred.must_equal(true)
+    end
+
+    describe '#origin' do
+      it 'delegates to the Coordinate class to get the origin' do
+        interface = Interface.new({
+          name:   '#origin',
+          width:  5,
+          height: 5
+        })
+        interface.origin.must_equal("\e[1;1H")
+      end
     end
 
     describe '#refresh' do
       let(:attributes) {
         {
-          name:   'dummy',
+          name:   '#refresh',
           lines:  [],
           colour: {
             foreground: '#ff0000',
@@ -111,7 +127,7 @@ module Vedeu
     describe '#to_s' do
       it 'returns an String' do
         Interface.new({
-          name:   'dummy',
+          name:   '#to_s',
           lines:  [],
           colour: {
             foreground: '#ff0000',
@@ -131,7 +147,7 @@ module Vedeu
     describe '#to_json' do
       it 'returns an String' do
         Interface.new({
-          name:   'dummy',
+          name:   '#to_json',
           lines:  [],
           colour: {
             foreground: '#ff0000',
@@ -139,7 +155,7 @@ module Vedeu
           },
           width:  3,
           height: 3
-        }).to_json.must_equal("{\"colour\":{\"foreground\":\"#ff0000\",\"background\":\"#000000\"},\"style\":\"\",\"name\":\"dummy\",\"lines\":[],\"y\":1,\"x\":1,\"z\":1,\"width\":3,\"height\":3,\"cursor\":true}")
+        }).to_json.must_equal("{\"colour\":{\"foreground\":\"#ff0000\",\"background\":\"#000000\"},\"style\":\"\",\"name\":\"#to_json\",\"lines\":[],\"y\":1,\"x\":1,\"z\":1,\"width\":3,\"height\":3,\"cursor\":true}")
       end
     end
   end
