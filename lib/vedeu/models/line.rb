@@ -1,19 +1,21 @@
-require 'oj'
+require 'json'
 require 'virtus'
 
 require_relative 'presentation'
 require_relative 'stream_collection'
+require_relative 'style'
 
 module Vedeu
   class Line
     include Virtus.model
     include Presentation
+    include Style
 
     attribute :model,   Hash
     attribute :streams, StreamCollection
 
     def to_json
-      Oj.dump(json_attributes, mode: :compat)
+      json_attributes.to_json
     end
 
     def to_s
@@ -25,7 +27,7 @@ module Vedeu
     def json_attributes
       {
         colour:  colour,
-        style:   style,
+        style:   style_original,
         streams: streams
       }
     end

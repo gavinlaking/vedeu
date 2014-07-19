@@ -36,11 +36,5 @@ module Vedeu
         }).execute(:dummy).must_equal(:dummy)
       end
     end
-
-    describe '#executable' do
-      it 'needs a spec, please write one.' do
-        skip
-      end
-    end
   end
 end

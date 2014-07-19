@@ -11,6 +11,38 @@ module Vedeu
       proc { Coordinate.new({ height: 6 }) }.must_raise(KeyError)
     end
 
+    describe '#origin' do
+      it 'returns the origin for the interface' do
+        coordinate = Coordinate.new({ width: 5, height: 5, centred: false })
+        coordinate.origin.must_equal("\e[1;1H")
+      end
+
+      it 'returns the origin for the interface' do
+        console = IO.console
+        console.stub :winsize, [25, 80] do
+          coordinate = Coordinate.new({ width: 5, height: 5 })
+          coordinate.origin.must_equal("\e[10;38H")
+        end
+      end
+
+      it 'returns the line position relative to the origin' do
+        coordinate = Coordinate.new({ width: 5, height: 5, centred: false })
+        coordinate.origin(3).must_equal("\e[4;1H")
+      end
+
+      it 'returns the origin for the interface when the interface' \
+         ' is at a custom position' do
+        coordinate = Coordinate.new({ width: 5, height: 5, x: 3, y: 6, centred: false })
+        coordinate.origin.must_equal("\e[6;3H")
+      end
+
+      it 'returns the line position relative to the origin when the' \
+         ' interface is at a custom position' do
+        coordinate = Coordinate.new({ width: 5, height: 5, x: 3, y: 6, centred: false })
+        coordinate.origin(3).must_equal("\e[9;3H")
+      end
+    end
+
     describe '#terminal_height' do
       it 'raises an exception if the value is less than 1' do
         coordinate = Coordinate.new({ height: 6, width: 18, terminal_height: -2 })
@@ -28,16 +60,16 @@ module Vedeu
       it 'returns the value of terminal_height' do
         console = IO.console
         console.stub :winsize, [25, 80] do
-          Coordinate.new({ height: 6, width: 18, terminal_height: 20 })
-            .terminal_height.must_equal(20)
+          coordinate = Coordinate.new({ height: 6, width: 18, terminal_height: 20 })
+          coordinate.terminal_height.must_equal(20)
         end
       end
 
       it 'returns the default height if not set' do
         console = IO.console
         console.stub :winsize, [25, 80] do
-          Coordinate.new({ height: 6, width: 18 })
-            .instance_variable_get('@terminal_height').must_equal(25)
+          coordinate = Coordinate.new({ height: 6, width: 18 })
+          coordinate.terminal_height.must_equal(25)
         end
       end
     end
@@ -56,8 +88,17 @@ module Vedeu
         end
       end
 
+      # it 'raises an exception if the value combined with y position will cause content wrapping' do
+      #   console = IO.console
+      #   console.stub :winsize, [25, 80] do
+      #     coordinate = Coordinate.new({ height: 20, width: 18, y: 10 })
+      #     proc { coordinate.height }.must_raise(OutOfBoundsError)
+      #   end
+      # end
+
       it 'returns the value of height' do
-        Coordinate.new({ height: 6, width: 18 }).height.must_equal(6)
+        coordinate = Coordinate.new({ height: 6, width: 18 })
+        coordinate.height.must_equal(6)
       end
     end
 
@@ -76,11 +117,13 @@ module Vedeu
       end
 
       it 'returns the value of y' do
-        Coordinate.new({ height: 6, width: 18, y: 6 }).y.must_equal(6)
+        coordinate = Coordinate.new({ height: 6, width: 18, y: 6 })
+        coordinate.y.must_equal(6)
       end
 
       it 'returns 1 if not set' do
-        Coordinate.new({ height: 6, width: 18 }).y.must_equal(1)
+        coordinate = Coordinate.new({ height: 6, width: 18 })
+        coordinate.y.must_equal(1)
       end
     end
 
@@ -101,16 +144,16 @@ module Vedeu
       it 'returns the value of terminal_width' do
         console = IO.console
         console.stub :winsize, [25, 80] do
-          Coordinate.new({ height: 6, width: 18, terminal_width: 40 })
-            .terminal_width.must_equal(40)
+          coordinate = Coordinate.new({ height: 6, width: 18, terminal_width: 40 })
+          coordinate.terminal_width.must_equal(40)
         end
       end
 
       it 'returns the default width if not set' do
         console = IO.console
         console.stub :winsize, [25, 80] do
-          Coordinate.new({ height: 6, width: 18 })
-            .terminal_width.must_equal(80)
+          coordinate = Coordinate.new({ height: 6, width: 18 })
+          coordinate.terminal_width.must_equal(80)
         end
       end
     end
@@ -129,9 +172,17 @@ module Vedeu
         end
       end
 
+      # it 'raises an exception if the value combined with x position will cause content wrapping' do
+      #   console = IO.console
+      #   console.stub :winsize, [25, 80] do
+      #     coordinate = Coordinate.new({ height: 20, width: 75, x: 10 })
+      #     proc { coordinate.width }.must_raise(OutOfBoundsError)
+      #   end
+      # end
+
       it 'returns the value of width' do
-        Coordinate.new({ height: 6, width: 18, x: 6 }).width
-          .must_equal(18)
+        coordinate = Coordinate.new({ height: 6, width: 18, x: 6 })
+        coordinate.width.must_equal(18)
       end
     end
 
@@ -150,23 +201,25 @@ module Vedeu
       end
 
       it 'returns the value of x' do
-        Coordinate.new({ height: 6, width: 18, x: 6 }).x.must_equal(6)
+        coordinate = Coordinate.new({ height: 6, width: 18, x: 6 })
+        coordinate.x.must_equal(6)
       end
 
       it 'returns 1 if not set' do
-        Coordinate.new({ height: 6, width: 18 }).x.must_equal(1)
+        coordinate = Coordinate.new({ height: 6, width: 18 })
+        coordinate.x.must_equal(1)
       end
     end
 
     describe '#centered' do
       it 'has a centred attribute' do
-        Coordinate.new({ height: 6, width: 18, centred: false })
-          .centred.must_equal(false)
+        coordinate = Coordinate.new({ height: 6, width: 18, centred: false })
+        coordinate.centred.must_equal(false)
       end
 
       it 'sets the centred attribute to true if not set' do
-        Coordinate.new({ height: 6, width: 18 })
-          .centred.must_equal(true)
+        coordinate = Coordinate.new({ height: 6, width: 18 })
+        coordinate.centred.must_equal(true)
       end
     end
 

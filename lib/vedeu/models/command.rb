@@ -14,8 +14,10 @@ module Vedeu
       executable.call(*args)
     end
 
+    # :nocov:
     def executable
       proc { |*args| entity.dispatch(*args) }
     end
+    # :nocov:
   end
 end

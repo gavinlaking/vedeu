@@ -1,8 +1,11 @@
+require 'json'
 require 'virtus'
 
 require_relative 'presentation'
 require_relative 'line_collection'
+require_relative 'style'
 require_relative '../output/interface_renderer'
+require_relative '../support/coordinate'
 require_relative '../support/esc'
 require_relative '../support/queue'
 require_relative '../support/terminal'
@@ -11,6 +14,7 @@ module Vedeu
   class Interface
     include Virtus.model
     include Presentation
+    include Style
     include Vedeu::Queue
 
     attribute :name,    String
@@ -22,9 +26,10 @@ module Vedeu
     attribute :height,  Integer, default: Terminal.height
     attribute :current, String,  default: ''
     attribute :cursor,  Boolean, default: true
+    attribute :centred, Boolean, default: false
 
-    def geometry
-      @geometry ||= Geometry.new(self)
+    def origin(index = 0)
+      geometry.origin(index)
     end
 
     def refresh
@@ -40,8 +45,8 @@ module Vedeu
       end
     end
 
-    def to_json
-      Oj.dump(json_attributes, mode: :compat)
+    def to_json(*args)
+      json_attributes.to_json
     end
 
     def to_s
@@ -64,8 +69,8 @@ module Vedeu
 
     def json_attributes
       {
-        colour: colour, # TODO: translate back?
-        style:  style,
+        colour: colour,
+        style:  style_original,
         name:   name,
         lines:  lines,
         y:      y,
@@ -75,6 +80,10 @@ module Vedeu
         height: height,
         cursor: cursor
       }
+    end
+
+    def geometry
+      @_geometry ||= Coordinate.new(attributes)
     end
   end
 end

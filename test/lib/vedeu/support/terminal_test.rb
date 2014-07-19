@@ -54,13 +54,6 @@ module Vedeu
       end
     end
 
-    describe '.open' do
-      it 'returns a NilClass' do
-        skip
-        Terminal.open.must_be_instance_of(NilClass)
-      end
-    end
-
     describe '.console' do
       it 'returns the console' do
         console = IO.console

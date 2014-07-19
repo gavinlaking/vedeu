@@ -3,6 +3,7 @@ require_relative 'configuration'
 
 module Vedeu
   class Launcher
+    # :nocov:
     def initialize(argv, stdin  = STDIN,
                          stdout = STDOUT,
                          stderr = STDERR,
@@ -15,7 +16,6 @@ module Vedeu
       @exit_code = 1
     end
 
-    # :nocov:
     def execute!
       $stdin, $stdout, $stderr = @stdin, @stdout, @stderr
 
