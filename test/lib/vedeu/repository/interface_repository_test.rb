@@ -56,15 +56,32 @@ module Vedeu
 
       it 'returns the collection in order they should be drawn' do
         InterfaceRepository.create({
-          name: 'a', width: 5, height: 5, z: 2
-        }).enqueue("a")
+          name:   '.refresh_1',
+          width:  1,
+          height: 1,
+          z:      3,
+          lines:  'alpha'
+        }).enqueue
         InterfaceRepository.create({
-          name: 'b', width: 5, height: 5, z: 1
-        }).enqueue("b")
+          name:   '.refresh_2',
+          width:  1,
+          height: 1,
+          z:      1,
+          lines:  'beta'
+        }).enqueue
         InterfaceRepository.create({
-          name: 'c', width: 5, height: 5, z: 3
-        }).enqueue("c")
-        InterfaceRepository.refresh.must_equal(['b', 'a', 'c'])
+          name:   '.refresh_3',
+          width:  1,
+          height: 1,
+          z:      2,
+          lines:  'gamma'
+        }).enqueue
+
+        InterfaceRepository.refresh.must_equal([
+          "\e[1;1H \e[1;1H\e[1;1Hbeta",
+          "\e[1;1H \e[1;1H\e[1;1Hgamma",
+          "\e[1;1H \e[1;1H\e[1;1Halpha"
+        ])
       end
     end
 

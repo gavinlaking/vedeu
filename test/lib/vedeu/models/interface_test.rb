@@ -58,6 +58,12 @@ module Vedeu
       Interface.new({ centred: true }).centred.must_equal(true)
     end
 
+    describe '#enqueue' do
+      it 'delegates to the Queue class to enqueue itself' do
+        skip
+      end
+    end
+
     describe '#origin' do
       it 'delegates to the Coordinate class to get the origin' do
         interface = Interface.new({
@@ -93,33 +99,62 @@ module Vedeu
       end
 
       it 'returns the fresh content when content is queued up to be displayed' do
-        interface = Interface.new(attributes).enqueue(
-          "\e[38;5;196m\e[48;5;16m" \
-          "\e[1;1HContent\e[1;1H" \
-          "\e[2;1HContent\e[2;1H" \
-          "\e[3;1HContent\e[3;1H"
-        )
+        attributes = {
+          name:   '#refresh',
+          lines:  [
+            { streams: '#refresh' },
+            { streams: '#refresh' },
+            { streams: '#refresh' }
+          ],
+          colour: {
+            foreground: '#ff0000',
+            background: '#000000'
+          },
+          width:  8,
+          height: 3
+        }
+        interface = Interface.new(attributes)
+        interface.enqueue
 
         interface.refresh.must_equal(
           "\e[38;5;196m\e[48;5;16m" \
-          "\e[1;1HContent\e[1;1H" \
-          "\e[2;1HContent\e[2;1H" \
-          "\e[3;1HContent\e[3;1H"
+          "\e[1;1H        \e[1;1H" \
+          "\e[2;1H        \e[2;1H" \
+          "\e[3;1H        \e[3;1H" \
+          "\e[1;1H#refresh" \
+          "\e[2;1H#refresh" \
+          "\e[3;1H#refresh"
         )
       end
 
       it 'returns the previously shown content when there is stale content from last run' do
+        attributes = {
+          name:   '#refresh',
+          lines:  [],
+          colour: {
+            foreground: '#ff0000',
+            background: '#000000'
+          },
+          width:  8,
+          height: 3
+        }
         interface = Interface.new(attributes)
         interface.current = "\e[38;5;196m\e[48;5;16m" \
-                            "\e[1;1HOld\e[1;1H" \
-                            "\e[2;1HContent\e[2;1H" \
-                            "\e[3;1Here\e[3;1H"
+                            "\e[1;1H        \e[1;1H" \
+                            "\e[2;1H        \e[2;1H" \
+                            "\e[3;1H        \e[3;1H" \
+                            "\e[1;1H#refresh" \
+                            "\e[2;1H#refresh" \
+                            "\e[3;1H#refresh"
 
         interface.refresh.must_equal(
           "\e[38;5;196m\e[48;5;16m" \
-          "\e[1;1HOld\e[1;1H" \
-          "\e[2;1HContent\e[2;1H" \
-          "\e[3;1Here\e[3;1H"
+          "\e[1;1H        \e[1;1H" \
+          "\e[2;1H        \e[2;1H" \
+          "\e[3;1H        \e[3;1H" \
+          "\e[1;1H#refresh" \
+          "\e[2;1H#refresh" \
+          "\e[3;1H#refresh"
         )
       end
     end

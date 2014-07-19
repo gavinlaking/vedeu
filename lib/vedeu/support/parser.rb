@@ -1,4 +1,4 @@
-require_relative '../models/composition'
+require_relative 'compositor'
 require_relative 'parsing/hash_parser'
 require_relative 'parsing/json_parser'
 
@@ -17,7 +17,7 @@ module Vedeu
     def parse
       return nil if empty?
 
-      Composition.enqueue(parsed_output)
+      Compositor.enqueue(parsed_output)
     end
 
     private

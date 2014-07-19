@@ -28,6 +28,10 @@ module Vedeu
     attribute :cursor,  Boolean, default: true
     attribute :centred, Boolean, default: false
 
+    def enqueue
+      super(self.to_s)
+    end
+
     def origin(index = 0)
       geometry.origin(index)
     end

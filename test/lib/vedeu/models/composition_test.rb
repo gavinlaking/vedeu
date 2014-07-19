@@ -20,26 +20,6 @@ module Vedeu
       end
     end
 
-    describe '.enqueue' do
-      it 'returns a collection of interfaces' do
-        Composition.enqueue({
-          interfaces: [
-            { name: 'enq1', width: 5, height: 5, lines: { streams: { text: 'Composition.enqueue 1' } } },
-            { name: 'enq2', width: 5, height: 5, lines: { streams: { text: 'Composition.enqueue 2' } } }
-          ]
-        }).interfaces.first.must_be_instance_of(Interface)
-      end
-
-      it 'enqueues the interfaces for rendering' do
-        Composition.enqueue({
-          interfaces: [
-            { name: 'enq1', width: 5, height: 5, lines: { streams: { text: 'Composition.enqueue 3' } } },
-            { name: 'enq2', width: 5, height: 5, lines: { streams: { text: 'Composition.enqueue 4' } } }
-          ]
-        }).interfaces.first.enqueued?.must_equal(true)
-      end
-    end
-
     describe '#to_json' do
       it 'returns the model as JSON' do
         attributes = {

@@ -9,19 +9,6 @@ module Vedeu
 
     attribute :interfaces, InterfaceCollection
 
-    def self.enqueue(composition)
-      new(composition).enqueue
-    end
-
-    def enqueue
-      interfaces.map do |interface|
-        interface.enqueue(interface.to_s)
-        interface
-      end
-
-      self
-    end
-
     def to_json
       json_attributes.to_json
     end
