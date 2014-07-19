@@ -6,9 +6,9 @@ module Vedeu
     describe '.create' do
       it 'returns an Interface' do
         InterfaceRepository.create({
-          name: 'dummy',
-          width: 15,
-          height: 2
+          name:   'dummy',
+          width:  5,
+          height: 5
         }).must_be_instance_of(Interface)
       end
     end
@@ -16,9 +16,9 @@ module Vedeu
     describe '.find' do
       it 'returns an Interface when the interface exists' do
         InterfaceRepository.create({
-          name: 'dummy',
-          width: 15,
-          height: 2
+          name:   'dummy',
+          width:  5,
+          height: 5
         })
         InterfaceRepository.find('dummy')
           .must_be_instance_of(Interface)
@@ -57,13 +57,13 @@ module Vedeu
       it 'returns the collection in order they should be drawn' do
         InterfaceRepository.reset
         InterfaceRepository.create({
-          name: 'a', width: 15, height: 2, z: 2
+          name: 'a', width: 5, height: 5, z: 2
         }).enqueue("a")
         InterfaceRepository.create({
-          name: 'b', width: 15, height: 2, z: 1
+          name: 'b', width: 5, height: 5, z: 1
         }).enqueue("b")
         InterfaceRepository.create({
-          name: 'c', width: 15, height: 2, z: 3
+          name: 'c', width: 5, height: 5, z: 3
         }).enqueue("c")
         InterfaceRepository.refresh.must_equal(['b', 'a', 'c'])
       end

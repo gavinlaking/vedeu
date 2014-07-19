@@ -9,8 +9,8 @@ module Vedeu
         Composition.new({
           interfaces: {
             name:   'dummy',
-            width:  40,
-            height: 25
+            width:  5,
+            height: 5
           }
         }).interfaces.first.must_be_instance_of(Interface)
       end
@@ -24,8 +24,8 @@ module Vedeu
       it 'returns a collection of interfaces' do
         Composition.enqueue({
           interfaces: [
-            { name: 'enq1', lines: { streams: { text: 'Composition.enqueue 1' } } },
-            { name: 'enq2', lines: { streams: { text: 'Composition.enqueue 2' } } }
+            { name: 'enq1', width: 5, height: 5, lines: { streams: { text: 'Composition.enqueue 1' } } },
+            { name: 'enq2', width: 5, height: 5, lines: { streams: { text: 'Composition.enqueue 2' } } }
           ]
         }).interfaces.first.must_be_instance_of(Interface)
       end
@@ -33,8 +33,8 @@ module Vedeu
       it 'enqueues the interfaces for rendering' do
         Composition.enqueue({
           interfaces: [
-            { name: 'enq1', lines: { streams: { text: 'Composition.enqueue 3' } } },
-            { name: 'enq2', lines: { streams: { text: 'Composition.enqueue 4' } } }
+            { name: 'enq1', width: 5, height: 5, lines: { streams: { text: 'Composition.enqueue 3' } } },
+            { name: 'enq2', width: 5, height: 5, lines: { streams: { text: 'Composition.enqueue 4' } } }
           ]
         }).interfaces.first.enqueued?.must_equal(true)
       end
