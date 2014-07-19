@@ -3,6 +3,8 @@ require_relative '../../../../lib/vedeu/repository/interface_repository'
 
 module Vedeu
   describe InterfaceRepository do
+    before { InterfaceRepository.reset }
+
     describe '.create' do
       it 'returns an Interface' do
         InterfaceRepository.create({
@@ -25,7 +27,6 @@ module Vedeu
       end
 
       it 'raises an exception when the interface does not exist' do
-        InterfaceRepository.reset
         proc { InterfaceRepository.find('dummy') }
           .must_raise(UndefinedInterface)
       end
@@ -43,7 +44,6 @@ module Vedeu
       end
 
       it 'returns a new interface when the interface does not exist' do
-        InterfaceRepository.reset
         InterfaceRepository.update('dummy', { name: 'dumber' }).name
           .must_equal('dumber')
       end
@@ -55,7 +55,6 @@ module Vedeu
       end
 
       it 'returns the collection in order they should be drawn' do
-        InterfaceRepository.reset
         InterfaceRepository.create({
           name: 'a', width: 5, height: 5, z: 2
         }).enqueue("a")
