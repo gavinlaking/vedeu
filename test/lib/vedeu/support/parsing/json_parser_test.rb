@@ -10,7 +10,7 @@ module Vedeu
       end
 
       it 'returns an empty hash when the JSON is invalid' do
-        JSONParser.parse("{ invalid JSON }").must_be_instance_of(Hash)
+        JSONParser.parse('{ invalid JSON }').must_be_instance_of(Hash)
       end
     end
   end

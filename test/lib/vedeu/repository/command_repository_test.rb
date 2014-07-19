@@ -22,20 +22,24 @@ module Vedeu
 
     describe '.by_input' do
       it 'returns the correct command when the command was found by keypress' do
-        CommandRepository.by_input('b').name.must_equal('banana')
-        CommandRepository.by_input('b').name.wont_equal('apple')
-        CommandRepository.by_input('b').keypress.must_equal('b')
+        command = CommandRepository.by_input('b')
+
+        command.name.must_equal('banana')
+        command.name.wont_equal('apple')
+        command.keypress.must_equal('b')
       end
 
       it 'returns the correct command when the command was found by keyword' do
-        CommandRepository.by_input('apple').keypress.must_equal('a')
-        CommandRepository.by_input('apple').keypress.wont_equal('b')
-        CommandRepository.by_input('apple').name.wont_equal('banana')
+        command = CommandRepository.by_input('apple')
+
+        command.keypress.must_equal('a')
+        command.keypress.wont_equal('b')
+        command.name.wont_equal('banana')
       end
 
       it 'returns FalseClass when no command was found' do
-        CommandRepository.by_input('not_found')
-          .must_be_instance_of(FalseClass)
+        command = CommandRepository.by_input('not_found')
+        command.must_be_instance_of(FalseClass)
       end
 
       it 'returns FalseClass when there is no input' do
@@ -45,8 +49,8 @@ module Vedeu
 
     describe '.create' do
       it 'returns a Command' do
-        skip
-        CommandRepository.create({}).must_be_instance_of(Command)
+        command = CommandRepository.create({})
+        command.must_be_instance_of(Command)
       end
     end
 

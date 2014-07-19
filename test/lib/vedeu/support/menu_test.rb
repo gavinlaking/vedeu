@@ -60,10 +60,10 @@ module Vedeu
       it 'returns a tuple when the current has changed' do
         menu.next.items.must_equal(
           [
-            [false, false, "hydrogen"],
-            [false, true,  "carbon"],
-            [false, false, "nitrogen"],
-            [false, false, "oxygen"]
+            [false, false, 'hydrogen'],
+            [false, true,  'carbon'],
+            [false, false, 'nitrogen'],
+            [false, false, 'oxygen']
           ]
         )
       end
@@ -72,10 +72,10 @@ module Vedeu
         menu.next.select
         menu.items.must_equal(
           [
-            [false, false, "hydrogen"],
-            [true,  true,  "carbon"],
-            [false, false, "nitrogen"],
-            [false, false, "oxygen"]
+            [false, false, 'hydrogen'],
+            [true,  true,  'carbon'],
+            [false, false, 'nitrogen'],
+            [false, false, 'oxygen']
           ]
         )
       end
@@ -86,10 +86,10 @@ module Vedeu
         menu.next.next
         menu.items.must_equal(
           [
-            [false, false, "hydrogen"],
-            [true,  false, "carbon"],
-            [false, false, "nitrogen"],
-            [false, true,  "oxygen"]
+            [false, false, 'hydrogen'],
+            [true,  false, 'carbon'],
+            [false, false, 'nitrogen'],
+            [false, true,  'oxygen']
           ]
         )
       end
@@ -98,20 +98,20 @@ module Vedeu
     describe '#render' do
       it 'returns a tuple' do
         menu.render.must_equal(
-          [" > hydrogen", "   carbon", "   nitrogen", "   oxygen"]
+          [' > hydrogen', '   carbon', '   nitrogen', '   oxygen']
         )
       end
 
       it 'returns a tuple when the current has changed' do
         menu.next.render.must_equal(
-          ["   hydrogen", " > carbon", "   nitrogen", "   oxygen"]
+          ['   hydrogen', ' > carbon', '   nitrogen', '   oxygen']
         )
       end
 
       it 'returns a tuple when an item is selected' do
         menu.next.select
         menu.render.must_equal(
-          ["   hydrogen", "*> carbon", "   nitrogen", "   oxygen"]
+          ['   hydrogen', '*> carbon', '   nitrogen', '   oxygen']
         )
       end
 
@@ -120,7 +120,7 @@ module Vedeu
         menu.next.select
         menu.next.next
         menu.render.must_equal(
-          ["   hydrogen", "*  carbon", "   nitrogen", " > oxygen"]
+          ['   hydrogen', '*  carbon', '   nitrogen', ' > oxygen']
         )
       end
     end
