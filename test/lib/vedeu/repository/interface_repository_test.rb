@@ -78,9 +78,9 @@ module Vedeu
         }).enqueue
 
         InterfaceRepository.refresh.must_equal([
-          "\e[1;1H \e[1;1H\e[1;1Hbeta",
-          "\e[1;1H \e[1;1H\e[1;1Hgamma",
-          "\e[1;1H \e[1;1H\e[1;1Halpha"
+          "\e[1;1H \e[1;1Hbeta",
+          "\e[1;1H \e[1;1Hgamma",
+          "\e[1;1H \e[1;1Halpha"
         ])
       end
     end

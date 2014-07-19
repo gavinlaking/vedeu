@@ -38,23 +38,17 @@ module Vedeu
     end
 
     def clear_lines
-      height.times.inject([]) { |line, index| line << clear_line(index) }.join
+      interface.height.times.inject([]) do |line, index|
+        line << clear_line(index)
+      end.join
     end
 
     def clear_line(index)
-      origin(index) + (' ' * width) + origin(index)
+      origin(index) + (' ' * interface.width)
     end
 
     def origin(index)
       interface.origin(index)
-    end
-
-    def height
-      interface.height
-    end
-
-    def width
-      interface.width
     end
   end
 end
