@@ -5,6 +5,7 @@ require_relative 'support/terminal'
 
 module Vedeu
   class Application
+    # :nocov:
     def self.start(options = {})
       new(options).start
     end
@@ -65,5 +66,6 @@ module Vedeu
         interactive: true
       }
     end
+    # :nocov:
   end
 end
