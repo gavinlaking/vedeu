@@ -42,7 +42,7 @@ module Vedeu
         proc { Process.evaluate }.must_raise(StopIteration)
       end
 
-      it 'returns an Composition when there is a result' do
+      it 'returns a collection of interfaces when there is a result' do
         CommandRepository.reset
         CommandRepository.create({
           name:     'test',
@@ -51,7 +51,10 @@ module Vedeu
         })
         Queue.reset
         Queue.enqueue('t')
-        Process.evaluate.must_be_instance_of(Composition)
+        evaluation = Process.evaluate
+
+        evaluation.must_be_instance_of(Array)
+        evaluation.size.must_equal(1)
       end
 
       it 'returns a NilClass when there is no result' do

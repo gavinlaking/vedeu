@@ -21,80 +21,55 @@ module Vedeu
     end
 
     def terminal_height
-      fail OutOfBoundsError,
-        'Value must be greater than or equal to 1.' if @terminal_height < 1
+      fail_if_less_than_one(@terminal_height)
 
-      if @terminal_height > Terminal.height
-        fail OutOfBoundsError, 'Cannot set terminal_height to be ' \
-                               'greater than the actual terminal ' \
-                               'height.'
-      else
-        @terminal_height
-      end
+      fail_if_out_of_bounds('terminal_height',
+                            @terminal_height,
+                            Terminal.height)
+
+      @terminal_height
     end
 
     def height
-      fail OutOfBoundsError,
-        'Value must be greater than or equal to 1.' if @height < 1
+      fail_if_less_than_one(@height)
 
-      if @height > terminal_height
-        fail OutOfBoundsError, 'Cannot set height to be greater ' \
-                               'than the specified or actual '    \
-                               'terminal height.'
-      else
-        @height
-      end
+      fail_if_out_of_bounds('height', @height, terminal_height)
+
+      @height
     end
 
     def y
-      fail OutOfBoundsError,
-        'Value must be greater than or equal to 1.' if @y < 1
+      fail_if_less_than_one(@y)
 
-      if @y > terminal_height
-        fail OutOfBoundsError, 'Cannot set y position to be greater' \
-                               ' that the specified terminal height' \
-                               ' or actual terminal height.'
-      else
-        @y
-      end
+      fail_if_out_of_bounds('y', @y, terminal_height)
+
+      @y
     end
 
     def terminal_width
-      fail OutOfBoundsError,
-        'Value must be greater than or equal to 1.' if @terminal_width < 1
-      if @terminal_width > Terminal.width
-        fail OutOfBoundsError, 'Cannot set terminal_width to be '  \
-                               'greater than the actual terminal ' \
-                               'width.'
-      else
-        @terminal_width
-      end
+      fail_if_less_than_one(@terminal_width)
+
+      fail_if_out_of_bounds('terminal_width',
+                            @terminal_width,
+                            Terminal.width)
+
+      @terminal_width
     end
 
     def width
-      fail OutOfBoundsError,
-        'Value must be greater than or equal to 1.' if @width < 1
+      fail_if_less_than_one(@width)
 
-      if @width > terminal_width
-        fail OutOfBoundsError, 'Cannot set width to be greater ' \
-                               'than the specified or actual ' \
-                               'terminal width.'
-      else
-        @width
-      end
+      fail_if_out_of_bounds('width', @width, terminal_width)
+
+      @width
     end
 
     def x
-      fail OutOfBoundsError,
-        'Value must be greater than or equal to 1.' if @x < 1
+      fail_if_less_than_one(@x)
 
-      if @x > terminal_width
-        fail OutOfBoundsError, 'Cannot set x position to be greater' \
-                               ' that the specified terminal width' \
-                               ' or actual terminal width.'
-      else
-        @x
-      end
+      fail_if_out_of_bounds('x', @x, terminal_width)
+
+      @x
     end
 
     def centred
@@ -150,6 +125,18 @@ module Vedeu
     end
 
     private
+
+    def fail_if_less_than_one(value)
+      fail OutOfBoundsError,
+        'Value must be greater than or equal to 1.' if value < 1
+    end
+
+    def fail_if_out_of_bounds(name, attribute, boundary)
+      if attribute > boundary
+        fail OutOfBoundsError,
+          "Cannot set #{name} to be outside the terminal visible area."
+      end
+    end
 
     def virtual_x
       left

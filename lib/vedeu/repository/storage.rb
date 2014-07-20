@@ -16,10 +16,6 @@ module Vedeu
       all(entity).map { |record| delete(record) }
     end
 
-    def find(entity, name)
-      map_for_class(entity).fetch(name, nil)
-    end
-
     def all(entity)
       map_for_class(entity).values
     end
@@ -31,7 +27,7 @@ module Vedeu
         return result if result.send(attribute) == value
       end
 
-      nil
+      false
     end
 
     private

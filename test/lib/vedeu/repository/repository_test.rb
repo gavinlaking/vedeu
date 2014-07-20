@@ -23,13 +23,6 @@ module Vedeu
       end
     end
 
-    describe '#find' do
-      it 'returns a Dummy' do
-        dummy = DummyRepository.create(Dummy.new)
-        DummyRepository.find(dummy.name).must_be_instance_of(Dummy)
-      end
-    end
-
     describe '#all' do
       it 'returns all the stored items' do
         DummyRepository.all.must_be_instance_of(Array)
@@ -37,10 +30,15 @@ module Vedeu
     end
 
     describe '#query' do
-      it 'returns a Dummy' do
-        dummy = DummyRepository.create(Dummy.new)
-        DummyRepository.query(Dummy, :name, 'dummy')
-          .must_be_instance_of(Dummy)
+      it 'delegates to the adaptor' do
+        dumb = Dummy.new
+        DummyRepository.create(dumb)
+
+        result = DummyRepository.query(Dummy, :name, 'dummy')
+        result.must_equal(dumb)
+
+        result = DummyRepository.query(Dummy, :name, 'dumber')
+        result.must_equal(false)
       end
     end
 

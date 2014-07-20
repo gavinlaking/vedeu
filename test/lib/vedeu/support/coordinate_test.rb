@@ -88,14 +88,6 @@ module Vedeu
         end
       end
 
-      # it 'raises an exception if the value combined with y position will cause content wrapping' do
-      #   console = IO.console
-      #   console.stub :winsize, [25, 80] do
-      #     coordinate = Coordinate.new({ height: 20, width: 18, y: 10 })
-      #     proc { coordinate.height }.must_raise(OutOfBoundsError)
-      #   end
-      # end
-
       it 'returns the value of height' do
         coordinate = Coordinate.new({ height: 6, width: 18 })
         coordinate.height.must_equal(6)
@@ -171,14 +163,6 @@ module Vedeu
           proc { coordinate.width }.must_raise(OutOfBoundsError)
         end
       end
-
-      # it 'raises an exception if the value combined with x position will cause content wrapping' do
-      #   console = IO.console
-      #   console.stub :winsize, [25, 80] do
-      #     coordinate = Coordinate.new({ height: 20, width: 75, x: 10 })
-      #     proc { coordinate.width }.must_raise(OutOfBoundsError)
-      #   end
-      # end
 
       it 'returns the value of width' do
         coordinate = Coordinate.new({ height: 6, width: 18, x: 6 })

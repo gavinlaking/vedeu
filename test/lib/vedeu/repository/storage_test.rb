@@ -24,12 +24,6 @@ module Vedeu
       end
     end
 
-    describe '#find' do
-      it 'returns a NilClass' do
-        Storage.new.find(nil, 'dummy').must_be_instance_of(NilClass)
-      end
-    end
-
     describe '#all' do
       it 'returns an Array' do
         Storage.new.all(nil).must_be_instance_of(Array)
@@ -37,9 +31,14 @@ module Vedeu
     end
 
     describe '#query' do
-      it 'returns a FalseClass when the item cannot be found' do
-        Storage.new.query(nil, nil, nil)
-          .must_be_instance_of(FalseClass)
+      it 'returns the item if found, otherwise false' do
+        Record   = Struct.new(:name)
+        storage  = Storage.new
+        hydrogen = storage.create(Record.new('hydrogen'))
+
+        storage.query(Record, :name, nil).must_equal(false)
+        storage.query(Record, :name, 'lithium').must_equal(false)
+        storage.query(Record, :name, 'hydrogen').must_equal(hydrogen)
       end
     end
   end

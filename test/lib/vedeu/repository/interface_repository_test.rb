@@ -3,6 +3,8 @@ require_relative '../../../../lib/vedeu/repository/interface_repository'
 
 module Vedeu
   describe InterfaceRepository do
+    before { InterfaceRepository.reset }
+
     describe '.create' do
       it 'returns an Interface' do
         InterfaceRepository.create({
@@ -14,19 +16,14 @@ module Vedeu
     end
 
     describe '.find' do
-      it 'returns an Interface when the interface exists' do
-        InterfaceRepository.create({
-          name:   'dummy',
-          width:  5,
-          height: 5
-        })
-        InterfaceRepository.find('dummy')
-          .must_be_instance_of(Interface)
+      it 'returns the interface if it exists' do
+        hydrogen =  InterfaceRepository.create({ name: 'hydrogen' })
+
+        InterfaceRepository.find('hydrogen').must_equal(hydrogen)
       end
 
-      it 'raises an exception when the interface does not exist' do
-        InterfaceRepository.reset
-        proc { InterfaceRepository.find('dummy') }
+      it 'raises an exception if it does not exist' do
+        proc { InterfaceRepository.find('helium') }
           .must_raise(UndefinedInterface)
       end
     end
@@ -43,7 +40,6 @@ module Vedeu
       end
 
       it 'returns a new interface when the interface does not exist' do
-        InterfaceRepository.reset
         InterfaceRepository.update('dummy', { name: 'dumber' }).name
           .must_equal('dumber')
       end
@@ -55,17 +51,33 @@ module Vedeu
       end
 
       it 'returns the collection in order they should be drawn' do
-        InterfaceRepository.reset
         InterfaceRepository.create({
-          name: 'a', width: 5, height: 5, z: 2
-        }).enqueue("a")
+          name:   '.refresh_1',
+          width:  1,
+          height: 1,
+          z:      3,
+          lines:  'alpha'
+        }).enqueue
         InterfaceRepository.create({
-          name: 'b', width: 5, height: 5, z: 1
-        }).enqueue("b")
+          name:   '.refresh_2',
+          width:  1,
+          height: 1,
+          z:      1,
+          lines:  'beta'
+        }).enqueue
         InterfaceRepository.create({
-          name: 'c', width: 5, height: 5, z: 3
-        }).enqueue("c")
-        InterfaceRepository.refresh.must_equal(['b', 'a', 'c'])
+          name:   '.refresh_3',
+          width:  1,
+          height: 1,
+          z:      2,
+          lines:  'gamma'
+        }).enqueue
+
+        InterfaceRepository.refresh.must_equal([
+          "\e[1;1H \e[1;1Hbeta",
+          "\e[1;1H \e[1;1Hgamma",
+          "\e[1;1H \e[1;1Halpha"
+        ])
       end
     end
 

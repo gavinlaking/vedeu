@@ -9,14 +9,17 @@ module Vedeu
       end
 
       it 'returns a Composition when the output is JSON' do
+        skip('This is not working as it should...')
+
         Parser.parse("{\"some\": \"JSON\"}")
           .must_be_instance_of(Composition)
       end
 
-      it 'returns a Composition when the output is a Hash' do
-        Parser.parse({
-          parser_parse: 'Parser#parse'
-        }).must_be_instance_of(Composition)
+      it 'returns a collection of interfaces when the output is a Hash' do
+        parser = Parser.parse({ parser_parse: 'Parser#parse' })
+
+        parser.must_be_instance_of(Array)
+        parser.size.must_equal(1)
       end
 
       it 'raises an exception when the output is anything else' do

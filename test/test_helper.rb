@@ -13,6 +13,8 @@ Minitest.after_run do
   print [27.chr, '[', '?25h'].join # show cursor
 end
 
+GC.disable
+
 # commented out by default (makes tests slower)
 # require 'minitest/reporters'
 # Minitest::Reporters.use!(
