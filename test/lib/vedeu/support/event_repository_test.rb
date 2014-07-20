@@ -19,8 +19,8 @@ module Vedeu
     describe '#trigger' do
       it 'returns a collection containing the event when the event is pre-registered' do
         EventRepository.register(:some_event) { proc { |x| x } }
-        EventRepository.trigger(:_exit_, []).first.call
-          .must_equal(:_stop_)
+        proc { EventRepository.trigger(:_exit_, []).first.call }
+          .must_raise(StopIteration)
       end
 
       it 'returns an empty collection when the event has not been registered' do

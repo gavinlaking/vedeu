@@ -1,3 +1,5 @@
+require_relative '../repository/event_repository'
+
 module Vedeu
   class Exit
     def self.dispatch
