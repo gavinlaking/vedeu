@@ -1,18 +1,6 @@
 require_relative '../support/terminal'
 
 module Vedeu
-  class Trigger
-    def self.event(event, *args)
-      EventRepository.trigger(event, *args)
-    end
-  end
-
-  class Register
-    def self.event(event, *args)
-      EventRepository.register(event, &block)
-    end
-  end
-
   module EventRepository
     extend self
 

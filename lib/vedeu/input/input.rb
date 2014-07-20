@@ -8,7 +8,7 @@ module Vedeu
     def capture
       key = input
 
-      Trigger.event(:_mode_switch_) if is_escape?(key)
+      EventRepository.trigger(:_mode_switch_) if is_escape?(key)
 
       Queue.enqueue(key)
     end
