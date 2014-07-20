@@ -11,12 +11,8 @@ module Vedeu
       ["\e[48;5;", colour_translator(value), 'm'].join
     end
 
-    def clear_line
-      "\e[2K"
-    end
-
     def clear_last_line
-      set_position((Terminal.height - 1), 1) + clear_line
+      set_position((Terminal.height - 1), 1) + "\e[2K"
     end
 
     def foreground_colour(value = '#ffffff')
