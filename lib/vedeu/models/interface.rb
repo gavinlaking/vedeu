@@ -50,7 +50,18 @@ module Vedeu
     end
 
     def to_json(*args)
-      json_attributes.to_json
+      {
+        colour: colour,
+        style:  style_original,
+        name:   name,
+        lines:  lines,
+        y:      y,
+        x:      x,
+        z:      z,
+        width:  width,
+        height: height,
+        cursor: cursor
+      }.to_json
     end
 
     def to_s
@@ -69,21 +80,6 @@ module Vedeu
 
     def clear_interface
       InterfaceRenderer.clear(self)
-    end
-
-    def json_attributes
-      {
-        colour: colour,
-        style:  style_original,
-        name:   name,
-        lines:  lines,
-        y:      y,
-        x:      x,
-        z:      z,
-        width:  width,
-        height: height,
-        cursor: cursor
-      }
     end
 
     def geometry

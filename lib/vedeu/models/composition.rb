@@ -10,19 +10,13 @@ module Vedeu
     attribute :interfaces, InterfaceCollection
 
     def to_json
-      json_attributes.to_json
+      {
+        interfaces: interfaces
+      }.to_json
     end
 
     def to_s
       interfaces.map(&:to_s).join
-    end
-
-    private
-
-    def json_attributes
-      {
-        interfaces: interfaces
-      }
     end
   end
 end

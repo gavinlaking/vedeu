@@ -15,21 +15,15 @@ module Vedeu
     attribute :streams, StreamCollection
 
     def to_json
-      json_attributes.to_json
-    end
-
-    def to_s
-      [colour, style, streams].join
-    end
-
-    private
-
-    def json_attributes
       {
         colour:  colour,
         style:   style_original,
         streams: streams
-      }
+      }.to_json
+    end
+
+    def to_s
+      [colour, style, streams].join
     end
   end
 end
