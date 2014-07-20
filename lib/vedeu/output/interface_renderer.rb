@@ -44,7 +44,7 @@ module Vedeu
     end
 
     def clear_line(index)
-      origin(index) + (' ' * interface.width)
+      origin(index) + (' ' * interface.width) + origin(index)
     end
 
     def origin(index)

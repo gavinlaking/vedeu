@@ -47,9 +47,9 @@ module Vedeu
         attributes = JSON.load(json, nil, symbolize_names: true)
 
         Composition.new(attributes).to_s.must_equal(
-          "\e[3;3H          " \
-          "\e[4;3H          " \
-          "\e[5;3H          " \
+          "\e[3;3H          \e[3;3H" \
+          "\e[4;3H          \e[4;3H" \
+          "\e[5;3H          \e[5;3H" \
           "\e[3;3HSome text..."
         )
       end
@@ -60,9 +60,9 @@ module Vedeu
         attributes = JSON.load(json, nil, symbolize_names: true)
 
         Composition.new(attributes).to_s.must_equal(
-          "\e[3;3H          " \
-          "\e[4;3H          " \
-          "\e[5;3H          " \
+          "\e[3;3H          \e[3;3H" \
+          "\e[4;3H          \e[4;3H" \
+          "\e[5;3H          \e[5;3H" \
           "\e[3;3HSome text... more text..."
         )
       end
@@ -73,9 +73,9 @@ module Vedeu
         attributes = JSON.load(json, nil, symbolize_names: true)
 
         Composition.new(attributes).to_s.must_equal(
-          "\e[3;3H          " \
-          "\e[4;3H          " \
-          "\e[5;3H          " \
+          "\e[3;3H          \e[3;3H" \
+          "\e[4;3H          \e[4;3H" \
+          "\e[5;3H          \e[5;3H" \
           "\e[3;3HSome text..." \
           "\e[4;3HSome text..."
         )
@@ -87,9 +87,9 @@ module Vedeu
         attributes = JSON.load(json, nil, symbolize_names: true)
 
         Composition.new(attributes).to_s.must_equal(
-          "\e[3;3H          " \
-          "\e[4;3H          " \
-          "\e[5;3H          " \
+          "\e[3;3H          \e[3;3H" \
+          "\e[4;3H          \e[4;3H" \
+          "\e[5;3H          \e[5;3H" \
           "\e[3;3HSome text... more text..." \
           "\e[4;3HSome text... more text..."
         )
@@ -101,9 +101,9 @@ module Vedeu
         InterfaceRepository.create({ name: 'int1_lin2_str3_styles', y: 3, x: 3, width: 10, height: 3 })
 
         Composition.new(attributes).to_s.must_equal(
-          "\e[3;3H          " \
-          "\e[4;3H          " \
-          "\e[5;3H          " \
+          "\e[3;3H          \e[3;3H" \
+          "\e[4;3H          \e[4;3H" \
+          "\e[5;3H          \e[5;3H" \
           "\e[3;3H\e[38;5;16m\e[48;5;21m\e[24m\e[21m\e[27m\e[4mSome text...\e[38;5;226m\e[48;5;46m\e[24m\e[21m\e[27m \e[38;5;231m\e[48;5;201m\e[1mmore text..."
         )
       end
@@ -115,13 +115,13 @@ module Vedeu
         attributes = JSON.load(json, nil, symbolize_names: true)
 
         Composition.new(attributes).to_s.must_equal(
-          "\e[3;3H          " \
-          "\e[4;3H          " \
-          "\e[5;3H          " \
+          "\e[3;3H          \e[3;3H" \
+          "\e[4;3H          \e[4;3H" \
+          "\e[5;3H          \e[5;3H" \
           "\e[3;3HSome text..." \
-          "\e[6;6H          " \
-          "\e[7;6H          " \
-          "\e[8;6H          " \
+          "\e[6;6H          \e[6;6H" \
+          "\e[7;6H          \e[7;6H" \
+          "\e[8;6H          \e[8;6H" \
           "\e[6;6HSome text..."
         )
       end
@@ -133,13 +133,13 @@ module Vedeu
         attributes = JSON.load(json, nil, symbolize_names: true)
 
         Composition.new(attributes).to_s.must_equal(
-          "\e[3;3H          " \
-          "\e[4;3H          " \
-          "\e[5;3H          " \
+          "\e[3;3H          \e[3;3H" \
+          "\e[4;3H          \e[4;3H" \
+          "\e[5;3H          \e[5;3H" \
           "\e[3;3HSome text... more text..." \
-          "\e[6;6H          " \
-          "\e[7;6H          " \
-          "\e[8;6H          " \
+          "\e[6;6H          \e[6;6H" \
+          "\e[7;6H          \e[7;6H" \
+          "\e[8;6H          \e[8;6H" \
           "\e[6;6HSome text... more text..."
         )
       end
@@ -151,14 +151,14 @@ module Vedeu
         attributes = JSON.load(json, nil, symbolize_names: true)
 
         Composition.new(attributes).to_s.must_equal(
-          "\e[3;3H          " \
-          "\e[4;3H          " \
-          "\e[5;3H          " \
+          "\e[3;3H          \e[3;3H" \
+          "\e[4;3H          \e[4;3H" \
+          "\e[5;3H          \e[5;3H" \
           "\e[3;3HSome text..." \
           "\e[4;3HSome text..." \
-          "\e[3;3H          " \
-          "\e[4;3H          " \
-          "\e[5;3H          " \
+          "\e[3;3H          \e[3;3H" \
+          "\e[4;3H          \e[4;3H" \
+          "\e[5;3H          \e[5;3H" \
           "\e[3;3HSome text..." \
           "\e[4;3HSome text..."
         )
@@ -171,14 +171,14 @@ module Vedeu
         attributes = JSON.load(json, nil, symbolize_names: true)
 
         Composition.new(attributes).to_s.must_equal(
-          "\e[3;3H          " \
-          "\e[4;3H          " \
-          "\e[5;3H          " \
+          "\e[3;3H          \e[3;3H" \
+          "\e[4;3H          \e[4;3H" \
+          "\e[5;3H          \e[5;3H" \
           "\e[3;3HSome text... more text..." \
           "\e[4;3HSome text... more text..." \
-          "\e[6;6H          " \
-          "\e[7;6H          " \
-          "\e[8;6H          " \
+          "\e[6;6H          \e[6;6H" \
+          "\e[7;6H          \e[7;6H" \
+          "\e[8;6H          \e[8;6H" \
           "\e[6;6HSome text... more text..." \
           "\e[7;6HSome text... more text..."
         )
@@ -191,14 +191,14 @@ module Vedeu
         attributes = JSON.load(json, nil, symbolize_names: true)
 
         Composition.new(attributes).to_s.must_equal(
-          "\e[3;3H          " \
-          "\e[4;3H          " \
-          "\e[5;3H          " \
+          "\e[3;3H          \e[3;3H" \
+          "\e[4;3H          \e[4;3H" \
+          "\e[5;3H          \e[5;3H" \
           "\e[3;3H\e[38;5;16m\e[48;5;21m\e[24m\e[21m\e[27m\e[4mSome text...\e[38;5;226m\e[48;5;46m\e[24m\e[21m\e[27m \e[38;5;231m\e[48;5;201m\e[1mmore text..." \
           "\e[4;3H\e[38;5;16m\e[48;5;21m\e[24m\e[21m\e[27m\e[4mSome text...\e[38;5;226m\e[48;5;46m\e[24m\e[21m\e[27m \e[38;5;231m\e[48;5;201m\e[1mmore text..." \
-          "\e[6;6H          " \
-          "\e[7;6H          " \
-          "\e[8;6H          " \
+          "\e[6;6H          \e[6;6H" \
+          "\e[7;6H          \e[7;6H" \
+          "\e[8;6H          \e[8;6H" \
           "\e[6;6H\e[38;5;16m\e[48;5;21m\e[24m\e[21m\e[27m\e[4mSome text...\e[38;5;226m\e[48;5;46m\e[24m\e[21m\e[27m \e[38;5;231m\e[48;5;201m\e[1mmore text..." \
           "\e[7;6H\e[38;5;16m\e[48;5;21m\e[24m\e[21m\e[27m\e[4mSome text...\e[38;5;226m\e[48;5;46m\e[24m\e[21m\e[27m \e[38;5;231m\e[48;5;201m\e[1mmore text..."
         )
