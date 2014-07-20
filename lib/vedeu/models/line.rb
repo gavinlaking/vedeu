@@ -1,8 +1,8 @@
 require 'json'
 require 'virtus'
 
-require_relative 'presentation'
 require_relative 'attributes/stream_collection'
+require_relative 'presentation'
 require_relative 'style'
 
 module Vedeu

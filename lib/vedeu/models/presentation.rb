@@ -1,7 +1,6 @@
 require 'virtus'
 
 require_relative 'colour'
-require_relative '../support/esc'
 
 module Vedeu
   module Presentation

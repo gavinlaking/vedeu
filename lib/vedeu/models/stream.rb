@@ -2,7 +2,6 @@ require 'json'
 require 'virtus'
 
 require_relative 'presentation'
-require_relative '../support/terminal'
 require_relative 'style'
 
 module Vedeu

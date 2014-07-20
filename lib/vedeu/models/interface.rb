@@ -1,21 +1,20 @@
 require 'json'
 require 'virtus'
 
-require_relative 'presentation'
 require_relative 'attributes/line_collection'
+require_relative 'presentation'
 require_relative 'style'
 require_relative '../output/interface_renderer'
 require_relative '../support/coordinate'
-require_relative '../support/esc'
 require_relative '../support/queue'
 require_relative '../support/terminal'
 
 module Vedeu
   class Interface
+    include Vedeu::Queue
     include Virtus.model
     include Presentation
     include Style
-    include Vedeu::Queue
 
     attribute :name,    String
     attribute :lines,   LineCollection
