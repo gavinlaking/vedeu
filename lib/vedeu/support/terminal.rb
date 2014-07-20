@@ -39,6 +39,7 @@ module Vedeu
       stream
     end
 
+    # :nocov:
     def initialize_screen(&block)
       output Esc.string 'reset'
       output Esc.string 'clear'
@@ -70,6 +71,7 @@ module Vedeu
     def raw_mode?
       @mode == :raw
     end
+    # :nocov:
 
     def centre
       [(height / 2), (width / 2)]
