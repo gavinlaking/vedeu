@@ -15,8 +15,8 @@ module Vedeu
           height: 2
         })
         InterfaceRenderer.clear(interface).must_equal(
-          "\e[1;1H     " \
-          "\e[2;1H     "
+          "\e[1;1H     \e[1;1H" \
+          "\e[2;1H     \e[2;1H"
         )
       end
 
@@ -32,8 +32,8 @@ module Vedeu
         })
         InterfaceRenderer.clear(interface).must_equal(
           "\e[38;5;46m\e[48;5;226m" \
-          "\e[1;1H     " \
-          "\e[2;1H     "
+          "\e[1;1H     \e[1;1H" \
+          "\e[2;1H     \e[2;1H"
         )
       end
     end

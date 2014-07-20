@@ -1,5 +1,3 @@
-require_relative '../models/line'
-
 module Vedeu
   class TextAdaptor
     def self.adapt(text)

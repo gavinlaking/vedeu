@@ -13,12 +13,6 @@ module Vedeu
       end
     end
 
-    describe '.clear_line' do
-      it 'returns an escape sequence' do
-        Esc.clear_line.must_equal("\e[2K")
-      end
-    end
-
     describe '.clear_last_line' do
       it 'returns an escape sequence to clear the last line' do
         IO.console.stub :winsize, [25, 25] do

@@ -4,6 +4,8 @@ require_relative 'process/process'
 require_relative 'support/terminal'
 
 module Vedeu
+  ModeSwitch = Class.new(StandardError)
+
   class Application
     # :nocov:
     def self.start(options = {})
@@ -11,11 +13,13 @@ module Vedeu
     end
 
     def initialize(options = {})
-      @options = options || {}
+      @options = options
     end
 
     def start
-      Terminal.open do
+      Terminal.open(mode) do
+        Terminal.set_cursor_mode
+
         Output.render
 
         runner { main_sequence }
@@ -51,10 +55,16 @@ module Vedeu
     def interactive
       loop { yield }
     rescue StopIteration
+    rescue ModeSwitch
+      Terminal.mode_switch
     end
 
     def run_once
       yield
+    end
+
+    def mode
+      options.fetch(:mode)
     end
 
     def options
@@ -63,7 +73,8 @@ module Vedeu
 
     def defaults
       {
-        interactive: true
+        interactive: true,
+        mode:        :raw
       }
     end
     # :nocov:
