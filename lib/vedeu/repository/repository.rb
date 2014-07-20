@@ -6,10 +6,6 @@ module Vedeu
       @adaptor ||= Storage.new
     end
 
-    def find(name)
-      adaptor.find(entity, name)
-    end
-
     def all
       adaptor.all(entity)
     end

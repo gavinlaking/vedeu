@@ -21,11 +21,11 @@ module Vedeu
     private
 
     def by_keypress(input)
-      query(entity, :keypress, input) || false
+      query(entity, :keypress, input)
     end
 
     def by_keyword(input)
-      query(entity, :keyword, input) || false
+      query(entity, :keyword, input)
     end
   end
 end

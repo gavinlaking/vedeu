@@ -13,9 +13,13 @@ module Vedeu
     end
 
     def find(name)
-      result = super
-      fail UndefinedInterface, "#{name.to_s} could not be found." unless result
-      result
+      if result = query(entity, :name, name)
+        result
+
+      else
+        fail UndefinedInterface, "#{name.to_s} could not be found."
+
+      end
     end
 
     def update(name, attributes = {})
