@@ -6,15 +6,17 @@ module Vedeu
   module Terminal
     extend self
     # :nocov:
-    def open(mode = :raw, &block)
+    def open(mode, &block)
       @mode = mode
 
-      if raw_mode?
-        raw_mode(block)
+      if block_given?
+        if raw_mode?
+          console.raw    { initialize_screen { yield } }
 
-      else
-        cooked_mode(block)
+        else
+          console.cooked { initialize_screen { yield } }
 
+        end
       end
     ensure
       restore_screen
@@ -23,7 +25,7 @@ module Vedeu
 
     def input
       if raw_mode?
-        console.gets.chomp
+        console.getc
 
       else
         console.gets.chomp
@@ -37,48 +39,36 @@ module Vedeu
       stream
     end
 
-    def cooked_mode(&block)
-      console.cooked do
-        initialize_screen
+    def initialize_screen(&block)
+      output Esc.string 'reset'
+      output Esc.string 'clear'
+      output Esc.string 'hide_cursor'
 
-        yield
-      end if block_given?
-    end
-
-    def raw_mode(&block)
-      console.raw do
-        initialize_screen
-
-        yield
-      end if block_given?
-    end
-
-    def initialize_screen
-      output Esc.string('reset')
-      output Esc.string('clear')
-      output Esc.string('hide_cursor')
+      yield
     end
 
     def restore_screen
-      output Esc.string('show_cursor')
-      output Esc.string('reset')
+      output Esc.string 'show_cursor'
+      output Esc.string 'reset'
       output Esc.clear_last_line
+    end
+
+    def set_cursor_mode
+      output Esc.string 'show_cursor' unless raw_mode?
+    end
+
+    def mode_switch
+      if raw_mode?
+        Application.start({ mode: :cooked })
+
+      else
+        Application.start({ mode: :raw })
+
+      end
     end
 
     def raw_mode?
       @mode == :raw
-    end
-
-    def cooked_mode?
-      @mode == :cooked
-    end
-
-    def toggle_mode
-      if raw_mode?
-        @mode = :cooked
-      else
-        @mode = :raw
-      end
     end
 
     def centre

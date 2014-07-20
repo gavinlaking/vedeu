@@ -1,4 +1,18 @@
+require_relative '../support/terminal'
+
 module Vedeu
+  class Trigger
+    def self.event(event, *args)
+      EventRepository.trigger(event, *args)
+    end
+  end
+
+  class Register
+    def self.event(event, *args)
+      EventRepository.register(event, &block)
+    end
+  end
+
   module EventRepository
     extend self
 
@@ -20,8 +34,8 @@ module Vedeu
 
     def defaults
       {
-        :_exit_         => [ proc { :_stop_ } ],
-        :_toggle_mode_  => [ proc { :_toggle_mode_ } ]
+        :_exit_         => [ proc { fail StopIteration } ],
+        :_mode_switch_  => [ proc { fail ModeSwitch } ]
       }
     end
   end

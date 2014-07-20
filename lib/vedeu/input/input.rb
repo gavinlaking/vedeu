@@ -6,10 +6,18 @@ module Vedeu
     extend self
 
     def capture
-      Queue.enqueue(input)
+      key = input
+
+      Trigger.event(:_mode_switch_) if is_escape?(key)
+
+      Queue.enqueue(key)
     end
 
     private
+
+    def is_escape?(key)
+      key.ord == 27
+    end
 
     def input
       Terminal.input

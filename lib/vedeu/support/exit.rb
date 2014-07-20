@@ -1,7 +1,7 @@
 module Vedeu
   class Exit
     def self.dispatch
-      :_stop_
+      Trigger.event(:_exit_)
     end
   end
 end
