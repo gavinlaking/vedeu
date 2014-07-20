@@ -4,6 +4,8 @@ require_relative 'process/process'
 require_relative 'support/terminal'
 
 module Vedeu
+  ModeSwitch = Class.new(StandardError)
+
   class Application
     # :nocov:
     def self.start(options = {})
@@ -51,6 +53,7 @@ module Vedeu
     def interactive
       loop { yield }
     rescue StopIteration
+    rescue ModeSwitch
     end
 
     def run_once

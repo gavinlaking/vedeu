@@ -1,7 +1,7 @@
 module Vedeu
   class Exit
     def self.dispatch
-      :stop
+      :_stop_
     end
   end
 end
