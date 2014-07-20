@@ -14,17 +14,11 @@ module Example
               "lines": {
                   "streams": [
                       {
-                        "text": "Some text..."
-                      },
-                      {
-                        "text": " "
-                      },
-                      {
                         "colour": {
                           "foreground": "#00ff00",
                           "background": "#0000ff"
                         },
-                        "text": "The time is: #{Time.now}."
+                        "text": "The time is: #{Time.now}. "
                       }
                   ]
               }
@@ -37,7 +31,11 @@ module Example
     include Vedeu
 
     def self.example_position
-      @_position = Vedeu::Coordinate.new({ width: 40, height: 5, centered: true }).position
+      @_position = Vedeu::Coordinate.new({
+        width:    40,
+        height:   2,
+        centered: true
+      }).position
     end
 
     def self.command_position
