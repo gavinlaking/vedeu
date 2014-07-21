@@ -11,19 +11,9 @@ module Vedeu
   describe Collection do
     describe '#coercer' do
       it 'returns an empty collection when nil or empty' do
-        Collection.coercer(nil, TestClass, :key).must_equal([])
-      end
-
-      it 'returns an empty collection when nil or empty' do
-        Collection.coercer('', TestClass, :key).must_equal([])
-      end
-
-      it 'returns an empty collection when nil or empty' do
-        Collection.coercer([], TestClass, :key).must_equal([])
-      end
-
-      it 'returns an empty collection when nil or empty' do
-        Collection.coercer({}, TestClass, :key).must_equal([])
+        [nil, '', [], {}].each do |empty_value|
+          Collection.coercer(empty_value, TestClass, :key).must_equal([])
+        end
       end
 
       it 'returns a single model in a collection when a String' do
