@@ -54,7 +54,7 @@ module Vedeu
 
     def interactive
       loop { yield }
-    rescue StopIteration
+
     rescue ModeSwitch
       if Terminal.raw_mode?
         Application.start({ mode: :cooked })
