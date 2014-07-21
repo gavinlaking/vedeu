@@ -56,27 +56,21 @@ module Vedeu
     def restore_screen
       output Esc.string 'show_cursor'
       output Esc.string 'reset'
-      output Esc.clear_last_line
+      output clear_last_line
     end
 
     def set_cursor_mode
       output Esc.string 'show_cursor' unless raw_mode?
     end
 
-    def mode_switch
-      if raw_mode?
-        Application.start({ mode: :cooked })
-
-      else
-        Application.start({ mode: :raw })
-
-      end
-    end
-
     def raw_mode?
       @mode == :raw
     end
     # :nocov:
+
+    def clear_last_line
+      Esc.set_position((height - 1), 1) + "\e[2K"
+    end
 
     def centre
       [(height / 2), (width / 2)]

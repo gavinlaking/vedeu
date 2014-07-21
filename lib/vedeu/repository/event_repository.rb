@@ -1,5 +1,3 @@
-require_relative '../support/terminal'
-
 module Vedeu
   module EventRepository
     extend self

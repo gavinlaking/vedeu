@@ -56,7 +56,13 @@ module Vedeu
       loop { yield }
     rescue StopIteration
     rescue ModeSwitch
-      Terminal.mode_switch
+      if Terminal.raw_mode?
+        Application.start({ mode: :cooked })
+
+      else
+        Application.start({ mode: :raw })
+
+      end
     end
 
     def run_once
