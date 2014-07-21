@@ -3,9 +3,10 @@ require_relative '../../../../lib/vedeu/support/terminal'
 
 module Vedeu
   describe Terminal do
+    let(:console) { IO.console }
+
     describe '.input' do
       it 'returns the entered string' do
-        console = IO.console
         console.stub :gets, "test\n" do
           Terminal.input.must_equal('test')
         end
@@ -20,7 +21,7 @@ module Vedeu
 
     describe '.clear_last_line' do
       it 'returns an escape sequence to clear the last line' do
-        IO.console.stub :winsize, [25, 25] do
+        console.stub :winsize, [25, 25] do
           Terminal.clear_last_line.must_equal("\e[24;1H\e[2K")
         end
       end
@@ -28,7 +29,6 @@ module Vedeu
 
     describe '.centre' do
       it 'returns the centre point on the terminal' do
-        console = IO.console
         console.stub :winsize, [25, 80] do
           Terminal.centre.must_equal([12, 40])
         end
@@ -37,7 +37,6 @@ module Vedeu
 
     describe '.width' do
       it 'returns the width of the terminal' do
-        console = IO.console
         console.stub :winsize, [25, 80] do
           Terminal.width.must_equal(80)
         end
@@ -46,7 +45,6 @@ module Vedeu
 
     describe '.height' do
       it 'returns the height of the terminal' do
-        console = IO.console
         console.stub :winsize, [25, 80] do
           Terminal.height.must_equal(25)
         end
@@ -55,7 +53,6 @@ module Vedeu
 
     describe '.size' do
       it 'returns the width and height of the terminal' do
-        console = IO.console
         console.stub :winsize, [25, 80] do
           Terminal.size.must_equal([25, 80])
         end
@@ -64,7 +61,6 @@ module Vedeu
 
     describe '.console' do
       it 'returns the console' do
-        console = IO.console
         Terminal.console.must_equal(console)
       end
     end

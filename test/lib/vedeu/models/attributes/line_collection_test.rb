@@ -4,6 +4,8 @@ require_relative '../../../../../lib/vedeu/models/interface'
 
 module Vedeu
   describe LineCollection do
+    let(:interface) { Interface.new(attributes) }
+
     describe '#coerce' do
       it 'returns an empty collection when there are no lines' do
         Interface.new({ lines: {} }).lines.must_equal([])
