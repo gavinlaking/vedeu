@@ -36,6 +36,19 @@ module Vedeu
       end
     end
 
+    describe '.entries' do
+      it 'returns an empty collection when the queue is empty' do
+        Queue.reset
+        Queue.entries.must_equal([])
+      end
+
+      it 'returns all the enqueue items when the queue is not empty' do
+        Queue.reset
+        Queue.enqueue(:queued_entry)
+        Queue.entries.must_equal([:queued_entry])
+      end
+    end
+
     describe '.size' do
       it 'returns the size of the queue when the queue is empty' do
         Queue.reset

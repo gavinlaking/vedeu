@@ -16,6 +16,10 @@ module Vedeu
       store.size > 0
     end
 
+    def entries
+      store
+    end
+
     def size
       store.size
     end
