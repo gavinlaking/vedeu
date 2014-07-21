@@ -12,6 +12,16 @@ module Vedeu
         Configuration.configure(['--run-once'])
           .must_equal({ interactive: false })
       end
+
+      it 'returns the options which instructs Vedeu to run in cooked mode' do
+        Configuration.configure(['--cooked'])
+          .must_equal({ mode: :cooked })
+      end
+
+      it 'returns the options which instructs Vedeu to run in raw mode' do
+        Configuration.configure(['--raw'])
+          .must_equal({ mode: :raw })
+      end
     end
   end
 end
