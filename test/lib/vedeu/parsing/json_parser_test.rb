@@ -1,5 +1,5 @@
-require_relative '../../../../test_helper'
-require_relative '../../../../../lib/vedeu/support/parsing/json_parser'
+require_relative '../../../test_helper'
+require_relative '../../../../lib/vedeu/parsing/json_parser'
 
 module Vedeu
   describe JSONParser do
