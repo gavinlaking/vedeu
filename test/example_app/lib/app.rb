@@ -83,8 +83,8 @@ module Example
       end
     end
 
-    def self.start
-      Vedeu::Launcher.new([]).execute!
+    def self.start(args = [])
+      Vedeu::Launcher.new(args).execute!
     end
   end
 end
