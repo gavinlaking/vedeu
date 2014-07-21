@@ -29,9 +29,28 @@ Expect proper documentation soon!
 
       interface :main, { }
 
-      command   :exit, { entity:   SomeClass,
-                         keypress: 'q',
-                         keyword:  'quit' }
+      command :thing, { entity:   SomeClass,
+                        keypress: 't',
+                        keyword:  'thing' }
+
+      event :some_event do
+        # ...
+      end
+
+      event :other_event do |hash_args, array_args, args|
+        # ...
+      end
+
+      event :key do |key|
+        case key
+        when 'a' then puts "Apple"
+        when 'b' then puts "Banana"
+        # ...
+        when :f1 then run(:some_event)
+        when :f2 then
+          run(:other_event, { args: here }, [:or, :here], :etc)
+        end
+      end
     end
 
 
@@ -90,6 +109,22 @@ Referring to the above example, interfaces have a name, and various default attr
 
 As above, commands have a name, a class which performs the action
 (you define this), and they can be invoked with a keypress or a keyword. At this time, Vedeu will call the `.dispatch` method on your class, passing any arguments you originally defined in the command. In the future, both the method called and the arguments could be dynamic.
+
+### On Defining Events
+
+    event :event_name do |arg1, arg2|
+
+    end
+
+One can define events which perform work or trigger other events. Vedeu has 3 built-in events which are namespaced with underscores as to hopefully not cause a collision with events you wish to create:
+
+- `_exit_` when triggered, Vedeu will attempt to exit.
+
+- `_keypress_` triggering this event will cause the triggering of the `key` event; which you should define to 'do things'. If the `escape` key is pressed, then `key` is triggered with the argument `:escape`, also an internal event `_mode_switch_` is triggered.
+
+- `_mode_switch_` when triggered (after the user presses `escape`), Vedeu switches from a "raw mode" terminal to a "cooked mode" terminal. The idea here being that the raw mode is for single keypress actions, whilst cooked mode allows the user to enter more elaborate commands- such as commands with arguments.
+
+Note: Overriding or adding additional events to the Vedeu event namespace may cause unpredictable results.
 
 
 ### Geometry
