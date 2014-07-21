@@ -118,11 +118,11 @@ As above, commands have a name, a class which performs the action
 
 One can define events which perform work or trigger other events. Vedeu has 3 built-in events which are namespaced with underscores as to hopefully not cause a collision with events you wish to create:
 
-- `_exit_` when triggered, Vedeu will attempt to exit.
+- `:_exit_` when triggered, Vedeu will attempt to exit.
 
-- `_keypress_` triggering this event will cause the triggering of the `key` event; which you should define to 'do things'. If the `escape` key is pressed, then `key` is triggered with the argument `:escape`, also an internal event `_mode_switch_` is triggered.
+- `:_keypress_` triggering this event will cause the triggering of the `key` event; which you should define to 'do things'. If the `escape` key is pressed, then `key` is triggered with the argument `:escape`, also an internal event `_mode_switch_` is triggered.
 
-- `_mode_switch_` when triggered (after the user presses `escape`), Vedeu switches from a "raw mode" terminal to a "cooked mode" terminal. The idea here being that the raw mode is for single keypress actions, whilst cooked mode allows the user to enter more elaborate commands- such as commands with arguments.
+- `:_mode_switch_` when triggered (after the user presses `escape`), Vedeu switches from a "raw mode" terminal to a "cooked mode" terminal. The idea here being that the raw mode is for single keypress actions, whilst cooked mode allows the user to enter more elaborate commands- such as commands with arguments.
 
 Note: Overriding or adding additional events to the Vedeu event namespace may cause unpredictable results.
 
