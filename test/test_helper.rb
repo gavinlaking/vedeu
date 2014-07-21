@@ -9,10 +9,6 @@ SimpleCov.start do
   add_filter   '/test/'
 end unless ENV['no_simplecov']
 
-Minitest.after_run do
-  print [27.chr, '[', '?25h'].join # show cursor
-end
-
 GC.disable
 
 # commented out by default (makes tests slower)

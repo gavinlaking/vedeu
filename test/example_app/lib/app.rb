@@ -64,14 +64,23 @@ module Example
                           }.merge(command_position)
     command 'time', {
                       entity:   ExampleCommand,
-                      keyword: 'time',
+                      keyword:  'time',
                       keypress: 't'
                     }
     command 'exit', {
                       entity:   Vedeu::Exit,
-                      keyword: 'exit',
+                      keyword:  'exit',
                       keypress: 'q'
                     }
+
+    event :key do |key|
+      case key
+      when 'v' then puts "v was pressed."
+      when :f1 then puts "F1 was pressed."
+      when :f2 then run(:some_event, [:args, :go, :here])
+      else
+      end
+    end
 
     def self.start
       Vedeu::Launcher.new([]).execute!

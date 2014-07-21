@@ -1,18 +1,6 @@
 require_relative '../support/terminal'
 
 module Vedeu
-  class Trigger
-    def self.event(event, *args)
-      EventRepository.trigger(event, *args)
-    end
-  end
-
-  class Register
-    def self.event(event, *args)
-      EventRepository.register(event, &block)
-    end
-  end
-
   module EventRepository
     extend self
 
@@ -35,8 +23,15 @@ module Vedeu
     def defaults
       {
         :_exit_         => [ proc { fail StopIteration } ],
-        :_mode_switch_  => [ proc { fail ModeSwitch } ]
+        :_keypress_     => [ proc { |key| keypress(key) } ],
+        :_mode_switch_  => [ proc { fail ModeSwitch } ],
       }
+    end
+
+    def keypress(key)
+      trigger(:_mode_switch_) if key == :escape
+
+      trigger(:key, key)
     end
   end
 end
