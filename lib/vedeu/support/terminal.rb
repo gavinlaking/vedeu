@@ -21,17 +21,22 @@ module Vedeu
     ensure
       restore_screen
     end
-    # :nocov:
 
     def input
       if raw_mode?
-        console.getc
+        keys = console.getch
+        if keys.ord == 27
+          keys << console.read_nonblock(3) rescue nil
+          keys << console.read_nonblock(2) rescue nil
+        end
+        keys
 
       else
         console.gets.chomp
 
       end
     end
+    # :nocov:
 
     def output(stream = '')
       console.print(stream)
