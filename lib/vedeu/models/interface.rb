@@ -4,7 +4,8 @@ require 'virtus'
 require_relative 'attributes/line_collection'
 require_relative 'presentation'
 require_relative 'style'
-require_relative '../output/interface_renderer'
+require_relative '../output/clear_interface'
+require_relative '../output/render_interface'
 require_relative '../support/coordinate'
 require_relative '../support/queue'
 require_relative '../support/terminal'
@@ -40,7 +41,7 @@ module Vedeu
         self.current = dequeue
 
       elsif no_content?
-        self.current = clear_interface
+        self.current = ClearInterface.call(self)
 
       else
         self.current
@@ -64,21 +65,13 @@ module Vedeu
     end
 
     def to_s
-      clear_interface + render_content
+      RenderInterface.call(self)
     end
 
     private
 
     def no_content?
       self.current.nil? || self.current.empty?
-    end
-
-    def render_content
-      InterfaceRenderer.render(self)
-    end
-
-    def clear_interface
-      InterfaceRenderer.clear(self)
     end
 
     def geometry

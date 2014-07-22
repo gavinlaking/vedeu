@@ -1,6 +1,6 @@
 require_relative '../repository/command_repository'
 require_relative '../support/queue'
-require_relative '../support/parser'
+require_relative '../parsing/parser'
 
 module Vedeu
   class Process

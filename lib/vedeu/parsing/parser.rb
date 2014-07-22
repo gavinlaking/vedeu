@@ -1,6 +1,6 @@
-require_relative 'compositor'
-require_relative 'parsing/hash_parser'
-require_relative 'parsing/json_parser'
+require_relative '../support/compositor'
+require_relative 'hash_parser'
+require_relative 'json_parser'
 
 module Vedeu
   class ParseError < StandardError; end

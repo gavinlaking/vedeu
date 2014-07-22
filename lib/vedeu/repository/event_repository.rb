@@ -1,5 +1,3 @@
-require_relative '../support/terminal'
-
 module Vedeu
   module EventRepository
     extend self
@@ -29,9 +27,9 @@ module Vedeu
     end
 
     def keypress(key)
-      trigger(:_mode_switch_) if key == :escape
-
       trigger(:key, key)
+
+      trigger(:_mode_switch_) if key == :escape
     end
   end
 end

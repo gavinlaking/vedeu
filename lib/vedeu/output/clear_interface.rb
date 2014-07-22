@@ -1,11 +1,7 @@
 module Vedeu
-  class InterfaceRenderer
-    def self.clear(interface)
+  class ClearInterface
+    def self.call(interface)
       new(interface).clear
-    end
-
-    def self.render(interface)
-      new(interface).render
     end
 
     def initialize(interface)
@@ -16,22 +12,9 @@ module Vedeu
       set_colour + clear_lines
     end
 
-    def render
-      out = []
-      content_lines.each_with_index do |line, index|
-        out << origin(index)
-        out << line.to_s
-      end
-      out.join
-    end
-
     private
 
     attr_reader :interface
-
-    def content_lines
-      interface.lines
-    end
 
     def set_colour
       interface.colour.to_s
@@ -44,10 +27,8 @@ module Vedeu
     end
 
     def clear_line(index)
-      origin(index) + (' ' * interface.width) + origin(index)
-    end
-
-    def origin(index)
+      interface.origin(index) +
+      (' ' * interface.width) +
       interface.origin(index)
     end
   end

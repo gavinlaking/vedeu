@@ -78,12 +78,13 @@ module Example
       when 'v' then puts "v was pressed."
       when :f1 then puts "F1 was pressed."
       when :f2 then run(:some_event, [:args, :go, :here])
+      when 'x' then run(:_exit_)
       else
       end
     end
 
-    def self.start
-      Vedeu::Launcher.new([]).execute!
+    def self.start(args = [])
+      Vedeu::Launcher.new(args).execute!
     end
   end
 end

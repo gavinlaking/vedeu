@@ -6,4 +6,4 @@ trap('INT') { exit! }
 
 require_relative '../lib/app'
 
-Example::App.start
+Example::App.start(ARGV.dup)

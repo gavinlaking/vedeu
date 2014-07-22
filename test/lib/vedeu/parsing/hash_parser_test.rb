@@ -1,5 +1,5 @@
-require_relative '../../../../test_helper'
-require_relative '../../../../../lib/vedeu/support/parsing/hash_parser'
+require_relative '../../../test_helper'
+require_relative '../../../../lib/vedeu/parsing/hash_parser'
 
 module Vedeu
   describe HashParser do

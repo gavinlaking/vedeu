@@ -1,4 +1,4 @@
-require_relative '../../output/text_adaptor'
+require_relative 'text_adaptor'
 
 module Vedeu
   class HashParser
