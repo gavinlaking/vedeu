@@ -15,7 +15,7 @@ module Vedeu
     end
 
     def repository
-      raise StandardError, 'Subclasses implement this.'
+      fail StandardError, 'Subclasses implement this.'
     end
 
     private
