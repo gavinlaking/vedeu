@@ -30,9 +30,9 @@ module Vedeu
         }
 
         Compositor.enqueue(attributes)
-        InterfaceRepository.find('Compositor.enqueue_1').dequeue
+        InterfaceRepository.query(:name, 'Compositor.enqueue_1').dequeue
           .must_match(/bd459118e6175689e4394e242debc2ae/)
-        InterfaceRepository.find('Compositor.enqueue_2').dequeue
+        InterfaceRepository.query(:name, 'Compositor.enqueue_2').dequeue
           .must_match(/837acb2cb2ea3ef359257851142a7830/)
       end
     end

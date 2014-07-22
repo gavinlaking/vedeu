@@ -1,25 +1,41 @@
 require_relative 'storage'
 
 module Vedeu
+  EntityNotFound = Class.new(StandardError)
+
   module Repository
-    def adaptor
-      @adaptor ||= Storage.new
+    extend self
+
+    def create(attributes)
+      storage.create(entity, attributes)
     end
 
     def all
-      adaptor.all(entity)
+      storage.all(entity)
     end
 
-    def query(entity, attribute, value)
-      adaptor.query(entity, attribute, value)
-    end
+    def query(attribute, value)
+      if result = storage.query(entity, attribute, value)
+        result
 
-    def create(model)
-      adaptor.create(model)
+      else
+        fail EntityNotFound, "#{entity.to_s} could not be found."
+
+      end
     end
 
     def reset
-      adaptor.reset(entity)
+      storage.reset(entity)
+    end
+
+    def entity
+      fail StandardError, 'The extending module implements this.'
+    end
+
+    private
+
+    def storage
+      @storage ||= Storage.new
     end
   end
 end

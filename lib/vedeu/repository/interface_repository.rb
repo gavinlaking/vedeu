@@ -2,31 +2,15 @@ require_relative '../models/interface'
 require_relative 'repository'
 
 module Vedeu
-  class UndefinedInterface < StandardError; end
-
   module InterfaceRepository
     extend Repository
     extend self
 
-    def create(attributes = {})
-      super(entity.new(attributes))
-    end
-
-    def find(name)
-      if result = query(entity, :name, name)
-        result
-
-      else
-        fail UndefinedInterface, "#{name.to_s} could not be found."
-
-      end
-    end
-
     def update(name, attributes = {})
-      interface = find(name)
+      interface = query(:name, name)
       interface.attributes = attributes
       interface
-    rescue UndefinedInterface
+    rescue EntityNotFound
       create(attributes)
     end
 
