@@ -9,27 +9,15 @@ module Vedeu
     end
 
     def clear
-      set_colour + clear_lines
+      interface.height.times.inject([interface.colour.to_s]) do |line, index|
+        line << interface.origin(index)
+        line << (' ' * interface.width)
+        line << interface.origin(index)
+      end.join
     end
 
     private
 
     attr_reader :interface
-
-    def set_colour
-      interface.colour.to_s
-    end
-
-    def clear_lines
-      interface.height.times.inject([]) do |line, index|
-        line << clear_line(index)
-      end.join
-    end
-
-    def clear_line(index)
-      interface.origin(index) +
-      (' ' * interface.width) +
-      interface.origin(index)
-    end
   end
 end
