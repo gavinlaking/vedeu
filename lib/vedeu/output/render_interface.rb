@@ -11,8 +11,7 @@ module Vedeu
     end
 
     def render
-      out = []
-      out << ClearInterface.call(interface)
+      out = [ClearInterface.call(interface)]
       interface.lines.each_with_index do |line, index|
         out << interface.origin(index)
         out << line.to_s
