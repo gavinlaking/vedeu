@@ -9,9 +9,9 @@ module Vedeu
     end
 
     def clear
-      interface.height.times.inject([interface.colour.to_s]) do |line, index|
+      interface_lines.inject([colours]) do |line, index|
         line << interface.origin(index)
-        line << (' ' * interface.width)
+        line << ' ' * interface.width
         line << interface.origin(index)
       end.join
     end
@@ -19,5 +19,13 @@ module Vedeu
     private
 
     attr_reader :interface
+
+    def colours
+      interface.colour.to_s
+    end
+
+    def interface_lines
+      interface.height.times
+    end
   end
 end
