@@ -12,14 +12,19 @@ module Vedeu
       it 'returns the content for the interface' do
         interface = Interface.new({
           name:   '.call',
-          width:  5,
+          width:  32,
           height: 2,
-          lines:  'RenderInterface.call'
+          lines:  'RenderInterface.call',
+          lines:  [
+            { streams: { text: '1d194f184a0b937c71bfcbdf13511992' } },
+            { streams: { text: '8787092f681b149d645df64e73d3cb37' } }
+          ]
         })
         RenderInterface.call(interface).must_equal(
-          "\e[1;1H     \e[1;1H" \
-          "\e[2;1H     \e[2;1H" \
-          "\e[1;1HRenderInterface.call"
+          "\e[1;1H                                \e[1;1H" \
+          "\e[2;1H                                \e[2;1H" \
+          "\e[1;1H1d194f184a0b937c71bfcbdf13511992" \
+          "\e[2;1H8787092f681b149d645df64e73d3cb37"
         )
       end
     end
