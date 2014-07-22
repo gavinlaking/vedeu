@@ -27,11 +27,15 @@ Expect proper documentation soon!
     class MyApp
       include Vedeu
 
-      interface :main, { }
+      interface 'main' do
+        ...
+      end
 
-      command :thing, { entity:   SomeClass,
-                        keypress: 't',
-                        keyword:  'thing' }
+      command 'thing' do
+        entity   SomeClass
+        keypress 't'
+        keyword  'thing'
+      end
 
       event :some_event do
         # ...
@@ -69,43 +73,41 @@ To understand how Vedeu works, you need to familiarise yourself with some terms.
 
 ### On Defining Interfaces
 
-    interface :main, {
-                y:          1,
-                x:          1,
-                z:          1,
-                width:      10, # see notes below
-                height:     10,
-                colour: {
-                  foreground: '#ffffff',
-                  background: '#000000'
-                },
-                cursor:     false,
-              }
+    interface 'main' do
+      y      1
+      x      1
+      z      1
+      width  10 # see notes below
+      height 10
+      colour foreground: '#ffffff', background: '#000000'
+      cursor false
+    end
 
 Referring to the above example, interfaces have a name, and various default attributes.
 
-`:y`          sets the starting row point. (See Geometry)
-`:x`          sets the starting column point.
-`:z`          an integer specifying the z-index of the interface.
+`y`          sets the starting row point. (See Geometry)
+`x`          sets the starting column point.
+`z`          an integer specifying the z-index of the interface.
               (See Layers)
 
-`:width`      sets character width of the interface
-`:height`     sets character height of the interface
+`width`      sets character width of the interface
+`height`     sets character height of the interface
               Note: not setting a width or height will set the values to the terminal's reported width and height.
 
-`:foreground` sets the default foreground colour. (See Colours)
-`:background` sets the default background colour.
+`foreground` sets the default foreground colour. (See Colours)
+`background` sets the default background colour.
 
-`:cursor`     a boolean specifying whether the cursor should show.
+`cursor`     a boolean specifying whether the cursor should show.
 
 
 ### On Defining Commands
 
-    command :do_something, {
-              entity:    SomeClass,
-              keypress:  's',
-              keyword:   'start',
-              arguments: [:some, { :values => :here }, "etc"] }
+    command 'do_something' do
+      entity    SomeClass
+      keypress  's'
+      keyword   'start'
+      arguments [:some, { :values => :here }, "etc"]
+    end
 
 As above, commands have a name, a class which performs the action
 (you define this), and they can be invoked with a keypress or a keyword. At this time, Vedeu will call the `.dispatch` method on your class, passing any arguments you originally defined in the command. In the future, both the method called and the arguments could be dynamic.
@@ -113,7 +115,6 @@ As above, commands have a name, a class which performs the action
 ### On Defining Events
 
     event :event_name do |arg1, arg2|
-
     end
 
 One can define events which perform work or trigger other events. Vedeu has 3 built-in events which are namespaced with underscores as to hopefully not cause a collision with events you wish to create:

@@ -1,5 +1,11 @@
 module Vedeu
   class TextAdaptor
+    # Convert a block of text into a collection of lines.
+    #
+    # @param text [String] a block of text containing new line (\n)
+    #   characters.
+    #
+    # @return [Array]
     def self.adapt(text)
       new(text).adapt
     end

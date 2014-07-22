@@ -75,6 +75,17 @@ module Vedeu
       end
     end
 
+    describe '#geometry' do
+      it 'delegates to the Coordinate class' do
+        interface = Interface.new({
+          name:   '#geometry',
+          width:  5,
+          height: 5
+        })
+        interface.geometry.must_be_instance_of(Coordinate)
+      end
+    end
+
     describe '#origin' do
       it 'delegates to the Coordinate class to get the origin' do
         interface = Interface.new({

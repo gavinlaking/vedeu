@@ -30,48 +30,39 @@ module Example
   class App
     include Vedeu
 
-    def self.example_position
-      @_position = Vedeu::Coordinate.new({
-        width:    40,
-        height:   2,
-        centered: true
-      }).position
+    # assign the interface to a variable so that you can use it as a
+    # reference in another interface.
+    example = interface 'example' do
+      colour  foreground: '#ff0000', background: '#000000'
+      cursor  false
+      width   40
+      height  3
+      centred true
     end
 
-    def self.command_position
-      {
-        y:        example_position[:bottom],
-        x:        example_position[:x],
-        height:   1,
-        width:    40,
-        centered: true
-      }
+    # y and x come from the interface above, ensuring that 'command'
+    # is positioned under 'example' (see 'y')
+    interface 'command' do
+      colour  foreground: '#aadd00', background: '#4040cc'
+      cursor  true
+      width   40
+      height  1
+      y       example.geometry.bottom
+      x       example.geometry.left
+      centred false
     end
 
-    interface 'example',  {
-                            colour: {
-                              background: '#ff0000',
-                              foreground: '#000000'
-                            },
-                            cursor: false
-                          }.merge(example_position)
-    interface 'command',  {
-                            colour: {
-                              background: '#4040cc',
-                              foreground: '#aadd00'
-                            },
-                            cursor: true
-                          }.merge(command_position)
-    command 'time', {
-                      entity:   ExampleCommand,
-                      keyword:  'time',
-                      keypress: 't'
-                    }
-    command 'exit', {
-                      entity:   Vedeu::Exit,
-                      keyword:  'exit',
-                      keypress: 'q'
-                    }
+    command 'time' do
+      entity   ExampleCommand
+      keyword  'time'
+      keypress 't'
+    end
+
+    command 'exit' do
+      entity   Vedeu::Exit
+      keyword  'exit'
+      keypress 'q'
+    end
 
     event :key do |key|
       case key

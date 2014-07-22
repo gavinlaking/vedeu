@@ -32,6 +32,10 @@ module Vedeu
       super(self.to_s)
     end
 
+    def geometry
+      @_geometry ||= Coordinate.new(attributes)
+    end
+
     def origin(index = 0)
       geometry.origin(index)
     end
@@ -72,10 +76,6 @@ module Vedeu
 
     def no_content?
       self.current.nil? || self.current.empty?
-    end
-
-    def geometry
-      @_geometry ||= Coordinate.new(attributes)
     end
   end
 end

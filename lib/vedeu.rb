@@ -1,8 +1,8 @@
 require 'date'
 require 'logger'
 
-require_relative 'vedeu/repository/command_repository'
-require_relative 'vedeu/repository/interface_repository'
+require_relative 'vedeu/models/builders/command_builder'
+require_relative 'vedeu/models/builders/interface_builder'
 require_relative 'vedeu/repository/event_repository'
 require_relative 'vedeu/support/coordinate'
 require_relative 'vedeu/support/exit'
@@ -11,14 +11,12 @@ require_relative 'vedeu/launcher'
 module Vedeu
   # :nocov:
   module ClassMethods
-    def command(name, options = {})
-      CommandRepository.create({ name: stringify_symbols(name) }
-                       .merge!(options))
+    def command(name, &block)
+      CommandBuilder.build(name, &block)
     end
 
-    def interface(name, options = {})
-      InterfaceRepository.create({ name: stringify_symbols(name) }
-                         .merge!(options))
+    def interface(name, &block)
+      InterfaceBuilder.build(name, &block)
     end
 
     def event(name, &block)
