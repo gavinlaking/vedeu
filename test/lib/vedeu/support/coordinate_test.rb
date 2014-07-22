@@ -351,7 +351,9 @@ module Vedeu
             height:  6,
             width:   18,
             centred: true,
+            top:     9,
             bottom:  15,
+            left:    31,
             right:   49,
           })
         end
@@ -365,7 +367,9 @@ module Vedeu
           height:  6,
           width:   18,
           centred: false,
+          top:     1,
           bottom:  7,
+          left:    7,
           right:   25,
         })
       end
@@ -378,7 +382,9 @@ module Vedeu
           height:  6,
           width:   18,
           centred: false,
+          top:     5,
           bottom:  11,
+          left:    1,
           right:   19,
         })
       end
@@ -391,7 +397,9 @@ module Vedeu
           height:  6,
           width:   18,
           centred: false,
+          top:     1,
           bottom:  7,
+          left:    1,
           right:   19,
         })
       end

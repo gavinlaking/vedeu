@@ -119,7 +119,9 @@ module Vedeu
         height:  height,
         width:   width,
         centred: centred,
+        top:     top,
         bottom:  bottom,
+        left:    left,
         right:   right,
       }
     end
