@@ -3,8 +3,9 @@ require 'logger'
 
 require_relative 'vedeu/models/builders/command_builder'
 require_relative 'vedeu/models/builders/interface_builder'
-require_relative 'vedeu/repository/event_repository'
+require_relative 'vedeu/support/events'
 require_relative 'vedeu/support/geometry'
+require_relative 'vedeu/support/menu'
 require_relative 'vedeu/support/exit'
 require_relative 'vedeu/launcher'
 
@@ -20,17 +21,27 @@ module Vedeu
     end
 
     def event(name, &block)
-      EventRepository.register(name, &block)
+      Vedeu.events.on(name, &block)
     end
+    alias_method :on, :event
 
     def run(name, *args)
-      EventRepository.trigger(name, *args)
+      Vedeu.events.trigger(name, *args)
     end
+    alias_method :trigger, :run
+  end
 
-    private
+  def self.events
+    @events ||= Events.new do
+      on(:_exit_)        { fail StopIteration }
+      on(:_log_)         { |message| Vedeu.logger.debug(message) }
+      on(:_mode_switch_) { fail ModeSwitch    }
 
-    def stringify_symbols(value)
-      value.is_a?(::Symbol) ? value.to_s : value
+      on(:_keypress_) do |key|
+        trigger(:key, key)
+        trigger(:_log_, "key: #{key}")
+        trigger(:_mode_switch_) if key == :escape
+      end
     end
   end
 
@@ -65,8 +76,11 @@ module Vedeu
   end
 
   def self.included(receiver)
+    receiver.send :include, ClassMethods
     receiver.extend(ClassMethods)
   end
+
+  extend ClassMethods
 
   private
 

@@ -42,16 +42,14 @@ Geometry
 Esc
   Translator
 
-EventRepository
+Events
 
 Exit
-  EventRepository
 
 HashParser
   TextAdaptor
 
 Input
-  EventRepository
   Queue
   Terminal
 
@@ -152,10 +150,7 @@ Orphans
 Template - orphaned
 Wordwrap - orphaned
 Menu     - orphaned
-
 Exit     - orphaned
-  EventRepository
-
 
 ----------------------------------------------------------------------
 Grouped
@@ -172,7 +167,6 @@ InterfaceBuilder
 Launcher
   Application
     Input
-      EventRepository
       Queue
       Terminal
         Esc

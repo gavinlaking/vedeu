@@ -1,6 +1,6 @@
 require_relative '../support/queue'
 require_relative '../support/terminal'
-require_relative '../repository/event_repository'
+require_relative '../../vedeu'
 
 module Vedeu
   class Input
@@ -9,7 +9,7 @@ module Vedeu
     end
 
     def capture
-      EventRepository.trigger(:_keypress_, keypress)
+      Vedeu.trigger(:_keypress_, keypress)
 
       Queue.enqueue(keypress)
     end
