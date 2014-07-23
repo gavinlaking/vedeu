@@ -2,8 +2,8 @@ module Vedeu
   class TextAdaptor
     # Convert a block of text into a collection of lines.
     #
-    # @param text [String] a block of text containing new line (\n)
-    #   characters.
+    # @param text [String|Array] a block of text containing new line (\n)
+    #   characters, or a collection of strings.
     #
     # @return [Array]
     def self.adapt(text)
@@ -25,7 +25,11 @@ module Vedeu
     attr_reader :text
 
     def lines
-      text.split(/\n/)
+      if text.is_a?(::Array)
+        text
+      else
+        text.split(/\n/)
+      end
     end
 
     def no_content?
