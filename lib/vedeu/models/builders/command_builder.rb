@@ -1,5 +1,5 @@
 require_relative 'builder'
-require_relative '../../repositories/command_repository'
+require_relative '../../repositories/command'
 
 module Vedeu
   class CommandBuilder < Builder

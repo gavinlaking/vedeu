@@ -1,5 +1,5 @@
 require_relative '../../../test_helper'
-require_relative '../../../../lib/vedeu/repositories/interface_repository'
+require_relative '../../../../lib/vedeu/repositories/interface'
 require_relative '../../../../lib/vedeu/output/clear_interface'
 require_relative '../../../../lib/vedeu/output/render_interface'
 require_relative '../../../../lib/vedeu/models/interface'

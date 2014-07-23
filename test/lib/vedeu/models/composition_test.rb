@@ -1,6 +1,6 @@
 require_relative '../../../test_helper'
 require_relative '../../../../lib/vedeu/models/composition'
-require_relative '../../../../lib/vedeu/repositories/interface_repository'
+require_relative '../../../../lib/vedeu/repositories/interface'
 
 module Vedeu
   describe Composition do

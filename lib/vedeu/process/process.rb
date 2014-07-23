@@ -1,4 +1,4 @@
-require_relative '../repositories/command_repository'
+require_relative '../repositories/command'
 require_relative '../support/queue'
 require_relative '../parsing/parser'
 

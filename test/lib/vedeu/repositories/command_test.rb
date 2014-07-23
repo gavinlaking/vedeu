@@ -1,6 +1,6 @@
 require_relative '../../../test_helper'
 require_relative '../../../support/dummy_command'
-require_relative '../../../../lib/vedeu/repositories/command_repository'
+require_relative '../../../../lib/vedeu/repositories/command'
 
 module Vedeu
   module Repositories

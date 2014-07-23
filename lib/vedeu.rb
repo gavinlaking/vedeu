@@ -129,8 +129,8 @@ end
 
 # require 'vedeu/process/process'
 
-# require 'vedeu/repositories/command_repository'
-# require 'vedeu/repositories/interface_repository'
+# require 'vedeu/repositories/command'
+# require 'vedeu/repositories/interface'
 # require 'vedeu/repositories/repository'
 # require 'vedeu/repositories/storage'
 

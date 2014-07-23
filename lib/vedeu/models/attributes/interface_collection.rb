@@ -1,6 +1,6 @@
 require 'virtus'
 
-require_relative '../../repositories/interface_repository'
+require_relative '../../repositories/interface'
 
 module Vedeu
   class InterfaceCollection < Virtus::Attribute

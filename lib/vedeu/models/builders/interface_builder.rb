@@ -1,6 +1,6 @@
 require_relative 'builder'
 require_relative '../../support/geometry'
-require_relative '../../repositories/interface_repository'
+require_relative '../../repositories/interface'
 
 module Vedeu
   class InterfaceBuilder < Builder
