@@ -11,7 +11,7 @@ module Vedeu
     def trace
       set_trace_func proc { |event, file, line, id, binding, classname|
         if event == watched && classname.to_s.match(klass)
-          Vedeu.logger.debug(sprintf(" %s %-30s #%s", event, classname, id))
+          Vedeu.logger.debug(sprintf(" %s %-35s #%s", event, classname, id))
           # binding.eval('local_variables').each do |var|
           #   print("#{var.to_s} = #{binding.local_variable_get(var).inspect}\n")
           # end
