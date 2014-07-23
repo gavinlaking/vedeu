@@ -53,7 +53,7 @@ module Vedeu
     end
 
     def debug?
-      false
+      true
     end
   end
 end
