@@ -8,7 +8,7 @@ module Vedeu
       return [] if values.nil? || values.empty?
 
       [values].flatten.map do |value|
-        Repositories::InterfaceRepository
+        Repositories::Interface
           .update(value.fetch(:name, nil), value)
       end
     end

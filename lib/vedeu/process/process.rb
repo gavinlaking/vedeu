@@ -37,7 +37,7 @@ module Vedeu
     end
 
     def command
-      @command ||= Repositories::CommandRepository.by_input(input)
+      @command ||= Repositories::Command.by_input(input)
     end
 
     def input

@@ -5,11 +5,11 @@ require_relative '../../../../lib/vedeu/models/interface'
 
 module Vedeu
   describe ClearInterface do
-    before { Repositories::InterfaceRepository.reset }
+    before { Repositories::Interface.reset }
 
     describe '.call' do
       it 'returns the escape sequence to clear the whole interface' do
-        interface = Interface.new({
+        interface = Vedeu::Interface.new({
           name:   'ClearInterface.call',
           width:  5,
           height: 2
@@ -21,7 +21,7 @@ module Vedeu
       end
 
       it 'returns the escape sequence to clear the whole interface with specified colours' do
-        interface = Interface.new({
+        interface = Vedeu::Interface.new({
           name:   'ClearInterface.call',
           width:  5,
           height: 2,

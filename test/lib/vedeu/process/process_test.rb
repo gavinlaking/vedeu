@@ -26,7 +26,7 @@ module Vedeu
   describe Process do
     describe '.evaluate' do
       before do
-        Repositories::CommandRepository.reset
+        Repositories::Command.reset
         Queue.reset
       end
 
@@ -35,7 +35,7 @@ module Vedeu
       end
 
       it 'raises an exception when the result is :stop' do
-        Repositories::CommandRepository.create({
+        Repositories::Command.create({
           name:     'quit',
           entity:   QuitCommand,
           keypress: 'q'
@@ -45,7 +45,7 @@ module Vedeu
       end
 
       it 'returns a collection of interfaces when there is a result' do
-        Repositories::CommandRepository.create({
+        Repositories::Command.create({
           name:     'test',
           entity:   TestCommand,
           keypress: 't'
@@ -58,7 +58,7 @@ module Vedeu
       end
 
       it 'returns a NilClass when there is no result' do
-        Repositories::CommandRepository.create({
+        Repositories::Command.create({
           name:     'no_result',
           entity:   NoResultCommand,
           keypress: 'n'

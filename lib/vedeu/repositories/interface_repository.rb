@@ -3,7 +3,7 @@ require_relative 'repository'
 
 module Vedeu
   module Repositories
-    module InterfaceRepository
+    module Interface
       extend Repository
       extend self
 
@@ -20,7 +20,7 @@ module Vedeu
       end
 
       def entity
-        Interface
+        Vedeu::Interface
       end
 
       private

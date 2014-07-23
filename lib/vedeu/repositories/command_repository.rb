@@ -3,7 +3,7 @@ require_relative 'repository'
 
 module Vedeu
   module Repositories
-    module CommandRepository
+    module Command
       extend Repository
       extend self
 
@@ -12,7 +12,7 @@ module Vedeu
       end
 
       def entity
-        Command
+        Vedeu::Command
       end
 
       private

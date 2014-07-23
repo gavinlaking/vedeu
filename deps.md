@@ -21,9 +21,9 @@ Command
 
 CommandBuilder
   Builder
-  Repositories::CommandRepository
+  Repositories::Command
 
-Repositories::CommandRepository
+Repositories::Command
   Command
   Repositories::Repository
 
@@ -66,12 +66,12 @@ Interface
 InterfaceBuilder
   Builder
   Geometry
-  Repositories::InterfaceRepository
+  Repositories::Interface
 
 InterfaceCollection
-  Repositories::InterfaceRepository
+  Repositories::Interface
 
-Repositories::InterfaceRepository
+Repositories::Interface
   Interface
   Repositories::Repository
 
@@ -93,7 +93,7 @@ LineCollection
 Menu
 
 Output
-  Repositories::InterfaceRepository
+  Repositories::Interface
   Terminal
 
 Parser
@@ -105,7 +105,7 @@ Presentation
   Colour
 
 Process
-  Repositories::CommandRepository
+  Repositories::Command
   Parser
   Queue
 
@@ -162,7 +162,7 @@ CommandBuilder
 InterfaceBuilder
   Builder
   Geometry
-  Repositories::InterfaceRepository
+  Repositories::Interface
 
 Launcher
   Application
@@ -172,7 +172,7 @@ Launcher
         Esc
           Translator
     Output
-      Repositories::InterfaceRepository
+      Repositories::Interface
         Interface
           ClearInterface
           Geometry
@@ -220,7 +220,7 @@ Launcher
         Esc
           Translator
     Process
-      Repositories::CommandRepository
+      Repositories::Command
         Command
         Repositories::Repository
           Repositories::Storage
@@ -228,7 +228,7 @@ Launcher
         Compositor
           Composition
             InterfaceCollection
-              Repositories::InterfaceRepository
+              Repositories::Interface
                 Interface
                   ClearInterface
                   Geometry
