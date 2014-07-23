@@ -4,7 +4,7 @@ require_relative 'terminal'
 module Vedeu
   class OutOfBoundsError < StandardError; end
 
-  class Coordinate
+  class Geometry
     def initialize(attrs = {})
       @attrs           = attrs
       @height          = attrs.fetch(:height)

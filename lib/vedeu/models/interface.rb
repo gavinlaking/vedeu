@@ -6,7 +6,7 @@ require_relative 'presentation'
 require_relative 'style'
 require_relative '../output/clear_interface'
 require_relative '../output/render_interface'
-require_relative '../support/coordinate'
+require_relative '../support/geometry'
 require_relative '../support/queue'
 require_relative '../support/terminal'
 
@@ -33,7 +33,7 @@ module Vedeu
     end
 
     def geometry
-      @_geometry ||= Coordinate.new(attributes)
+      @_geometry ||= Geometry.new(attributes)
     end
 
     def origin(index = 0)

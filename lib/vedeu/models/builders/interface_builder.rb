@@ -1,5 +1,5 @@
 require_relative 'builder'
-require_relative '../../support/coordinate'
+require_relative '../../support/geometry'
 require_relative '../../repository/interface_repository'
 
 module Vedeu
@@ -19,7 +19,7 @@ module Vedeu
     end
 
     def geometry
-      @_geometry ||= Coordinate.new({
+      @_geometry ||= Geometry.new({
         height: user_attributes[:height],
         width:  user_attributes[:width],
       })

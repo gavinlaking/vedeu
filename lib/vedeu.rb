@@ -4,7 +4,7 @@ require 'logger'
 require_relative 'vedeu/models/builders/command_builder'
 require_relative 'vedeu/models/builders/interface_builder'
 require_relative 'vedeu/repository/event_repository'
-require_relative 'vedeu/support/coordinate'
+require_relative 'vedeu/support/geometry'
 require_relative 'vedeu/support/exit'
 require_relative 'vedeu/launcher'
 

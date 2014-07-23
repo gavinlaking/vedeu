@@ -8,6 +8,8 @@ Application
   Process
   Terminal
 
+Builder
+
 ClearInterface
 
 Collection
@@ -16,6 +18,10 @@ Colour
   Esc
 
 Command
+
+CommandBuilder
+  Builder
+  CommandRepository
 
 CommandRepository
   Command
@@ -29,7 +35,7 @@ Compositor
 
 Configuration
 
-Coordinate
+Geometry
   Esc
   Terminal
 
@@ -51,13 +57,18 @@ Input
 
 Interface
   ClearInterface
-  Coordinate
+  Geometry
   LineCollection
   Presentation
   Queue
   RenderInterface
   Style
   Terminal
+
+InterfaceBuilder
+  Builder
+  Geometry
+  InterfaceRepository
 
 InterfaceCollection
   InterfaceRepository
@@ -150,6 +161,14 @@ Exit     - orphaned
 Grouped
 ----------------------------------------------------------------------
 
+CommandBuilder
+  Builder
+
+InterfaceBuilder
+  Builder
+  Geometry
+  InterfaceRepository
+
 Launcher
   Application
     Input
@@ -162,7 +181,7 @@ Launcher
       InterfaceRepository
         Interface
           ClearInterface
-          Coordinate
+          Geometry
             Esc
               Translator
             Terminal
@@ -218,7 +237,7 @@ Launcher
               InterfaceRepository
                 Interface
                   ClearInterface
-                  Coordinate
+                  Geometry
                     Esc
                       Translator
                     Terminal
