@@ -1,4 +1,4 @@
-require_relative '../repository/interface_repository'
+require_relative '../repositories/interface_repository'
 require_relative '../support/terminal'
 
 module Vedeu

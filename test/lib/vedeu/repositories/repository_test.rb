@@ -1,5 +1,5 @@
 require_relative '../../../test_helper'
-require_relative '../../../../lib/vedeu/repository/repository'
+require_relative '../../../../lib/vedeu/repositories/repository'
 
 module Vedeu
   class Dummy

@@ -87,7 +87,7 @@ module Vedeu
 
   extend ClassMethods
 
-  Vedeu.trace
+  # Vedeu.trace
 
   private
 
@@ -129,10 +129,10 @@ end
 
 # require 'vedeu/process/process'
 
-# require 'vedeu/repository/command_repository'
-# require 'vedeu/repository/interface_repository'
-# require 'vedeu/repository/repository'
-# require 'vedeu/repository/storage'
+# require 'vedeu/repositories/command_repository'
+# require 'vedeu/repositories/interface_repository'
+# require 'vedeu/repositories/repository'
+# require 'vedeu/repositories/storage'
 
 # require 'vedeu/support/compositor'
 # require 'vedeu/support/esc'
