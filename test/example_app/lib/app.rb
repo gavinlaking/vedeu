@@ -27,6 +27,27 @@ module Example
     end
   end
 
+  class MenuCommand
+    def self.dispatch
+      @command ||= new
+      @command.dispatch
+    end
+
+    def initialize; end
+
+    def dispatch
+      Vedeu::Parser.parse({ 'example' => render })
+    end
+
+    def render
+      menu.render.map { |item| "#{item}\n" }
+    end
+
+    def menu
+      @_menu ||= Vedeu::Menu.new(['hydrogen', 'carbon', 'nitrogen', 'oxygen'])
+    end
+  end
+
   class App
     include Vedeu
 
@@ -36,7 +57,7 @@ module Example
       colour  foreground: '#ff0000', background: '#000000'
       cursor  false
       width   40
-      height  3
+      height  5
       centred true
     end
 
@@ -58,18 +79,77 @@ module Example
       keypress 't'
     end
 
+    # command 'menu' do
+    #   entity   MenuCommand
+    #   keyword  'menu'
+    #   keypress 'm'
+    # end
+
     command 'exit' do
       entity   Vedeu::Exit
       keyword  'exit'
       keypress 'q'
     end
 
+    event :show_menu do
+      MenuCommand.dispatch
+
+      # Vedeu::Output.render
+    end
+
     event :key do |key|
       case key
-      when 'v' then puts "v was pressed."
-      when :f1 then puts "F1 was pressed."
-      when :f2 then run(:some_event, [:args, :go, :here])
-      when 'x' then run(:_exit_)
+      when "v"        then puts "v was pressed."
+      when :f1        then puts "F1 was pressed."
+      when :f2        then run(:some_event, [:args, :go, :here])
+      when "x"        then run(:_exit_)
+
+      when :up then
+        run(:menu_prev)
+        run(:menu_render)
+        run(:show_menu)
+        run(:refresh)
+
+      when :down then
+        run(:menu_next)
+        run(:menu_render)
+        run(:show_menu)
+        run(:refresh)
+
+      when :page_up then
+        run(:menu_top)
+        run(:menu_render)
+        run(:show_menu)
+        run(:refresh)
+
+      when :page_down then
+        run(:menu_bottom)
+        run(:menu_render)
+        run(:show_menu)
+        run(:refresh)
+
+      when :enter then
+        run(:menu_select)
+        run(:app_select_item, m)
+        run(:menu_render)
+        run(:show_menu)
+        run(:refresh)
+
+      when :backspace then
+        run(:menu_deselect)
+        run(:menu_render)
+        run(:show_menu)
+        run(:refresh)
+
+      when "r" then
+        run(:menu_render)
+        run(:show_menu)
+        run(:refresh)
+
+      when "m" then
+        run(:show_menu)
+        run(:refresh)
+
       else
       end
     end
