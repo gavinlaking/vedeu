@@ -5,11 +5,12 @@ module Vedeu
     end
 
     def initialize(html_colour = '')
-      @html_colour = html_colour || ''
+      @html_colour = html_colour
     end
 
     def translate
       return '' unless valid?
+
       [16, red, green, blue].inject(:+)
     end
 

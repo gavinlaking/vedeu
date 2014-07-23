@@ -1,45 +1,40 @@
 module Vedeu
   class Storage
     def initialize
-      @map = {}
+      @store = {}
     end
 
-    def create(record)
-      map_for(record)[record.name] = record
+    def create(entity, attributes)
+      entities(entity)
+        .store(attributes[:name], entity.new(attributes))
     end
 
-    def delete(record)
-      map_for(record).delete(record.name)
-    end
+    def all(entity = nil)
+      return entities unless entity
 
-    def reset(entity)
-      all(entity).map { |record| delete(record) }
-    end
-
-    def all(entity)
-      map_for_class(entity).values
+      entities(entity).values
     end
 
     def query(entity, attribute, value)
       return false if value.nil? || value.empty?
 
-      map_for_class(entity).select do |_, result|
+      entities(entity).select do |name, result|
         return result if result.send(attribute) == value
       end
 
       false
     end
 
-    private
-
-    attr_reader :map
-
-    def map_for_class(entity)
-      map[entity.to_s.to_sym] ||= {}
+    def reset(entity)
+      store[entity.to_s] = {}
     end
 
-    def map_for(record)
-      map_for_class(record.class)
+    private
+
+    attr_reader :store
+
+    def entities(entity)
+      store[entity.to_s] ||= {}
     end
   end
 end

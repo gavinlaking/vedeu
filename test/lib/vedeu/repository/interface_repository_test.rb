@@ -5,29 +5,6 @@ module Vedeu
   describe InterfaceRepository do
     before { InterfaceRepository.reset }
 
-    describe '.create' do
-      it 'returns an Interface' do
-        InterfaceRepository.create({
-          name:   'dummy',
-          width:  5,
-          height: 5
-        }).must_be_instance_of(Interface)
-      end
-    end
-
-    describe '.find' do
-      it 'returns the interface if it exists' do
-        hydrogen =  InterfaceRepository.create({ name: 'hydrogen' })
-
-        InterfaceRepository.find('hydrogen').must_equal(hydrogen)
-      end
-
-      it 'raises an exception if it does not exist' do
-        proc { InterfaceRepository.find('helium') }
-          .must_raise(UndefinedInterface)
-      end
-    end
-
     describe '.update' do
       it 'returns an Interface' do
         InterfaceRepository.update('dummy', { name: 'dumber' })

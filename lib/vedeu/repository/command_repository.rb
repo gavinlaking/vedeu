@@ -10,10 +10,6 @@ module Vedeu
       by_keypress(input) || by_keyword(input)
     end
 
-    def create(attributes)
-      super(entity.new(attributes))
-    end
-
     def entity
       Command
     end
@@ -21,11 +17,15 @@ module Vedeu
     private
 
     def by_keypress(input)
-      query(entity, :keypress, input)
+      query(:keypress, input)
+    rescue EntityNotFound
+      false
     end
 
     def by_keyword(input)
-      query(entity, :keyword, input)
+      query(:keyword, input)
+    rescue EntityNotFound
+      false
     end
   end
 end

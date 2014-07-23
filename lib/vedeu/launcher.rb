@@ -19,6 +19,8 @@ module Vedeu
     def execute!
       $stdin, $stdout, $stderr = @stdin, @stdout, @stderr
 
+      $stderr.reopen("logs/vedeu.log", "w")
+
       Application.start(configuration)
 
       @exit_code = 0

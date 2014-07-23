@@ -44,6 +44,30 @@ module Vedeu
           ]
         )
       end
+
+      it 'handles collections of lines' do
+        text = ["Lorm ipsum door sit amet, consecteur ",
+                "adipscing elit. Curbitur gravda nisl ",
+                "sit amet sagitis digisim. Nibh, eget."]
+        TextAdaptor.adapt(text).size.must_equal(3)
+        TextAdaptor.adapt(text).must_equal(
+          [
+            {
+              streams: {
+                text: "Lorm ipsum door sit amet, consecteur "
+              }
+            }, {
+              streams: {
+                text: "adipscing elit. Curbitur gravda nisl "
+              }
+            }, {
+              streams: {
+                text: "sit amet sagitis digisim. Nibh, eget."
+              }
+            }
+          ]
+        )
+      end
     end
   end
 end

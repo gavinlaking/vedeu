@@ -37,20 +37,12 @@ module Vedeu
         command.name.wont_equal('banana')
       end
 
-      it 'returns FalseClass when no command was found' do
-        command = CommandRepository.by_input('not_found')
-        command.must_be_instance_of(FalseClass)
+      it 'returns false when no command was found' do
+        CommandRepository.by_input('not_found').must_be_instance_of(FalseClass)
       end
 
-      it 'returns FalseClass when there is no input' do
+      it 'returns false when there is no input' do
         CommandRepository.by_input('').must_be_instance_of(FalseClass)
-      end
-    end
-
-    describe '.create' do
-      it 'returns a Command' do
-        command = CommandRepository.create({})
-        command.must_be_instance_of(Command)
       end
     end
 

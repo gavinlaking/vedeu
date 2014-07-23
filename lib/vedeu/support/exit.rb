@@ -1,9 +1,9 @@
-require_relative '../repository/event_repository'
+require_relative '../../vedeu'
 
 module Vedeu
   class Exit
     def self.dispatch
-      EventRepository.trigger(:_exit_)
+      Vedeu.trigger(:_exit_)
     end
   end
 end

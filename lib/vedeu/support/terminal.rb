@@ -1,6 +1,6 @@
 require 'io/console'
 
-require_relative '../support/esc'
+require_relative 'esc'
 
 module Vedeu
   module Terminal
