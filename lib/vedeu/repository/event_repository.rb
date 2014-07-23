@@ -20,9 +20,9 @@ module Vedeu
 
     def defaults
       {
-        :_exit_         => [ proc { fail StopIteration } ],
+        :_exit_         => [ proc { stop_iteration } ],
         :_keypress_     => [ proc { |key| keypress(key) } ],
-        :_mode_switch_  => [ proc { fail ModeSwitch } ],
+        :_mode_switch_  => [ proc { mode_switch } ],
       }
     end
 
@@ -30,6 +30,14 @@ module Vedeu
       trigger(:key, key)
 
       trigger(:_mode_switch_) if key == :escape
+    end
+
+    def mode_switch
+      fail ModeSwitch
+    end
+
+    def stop_iteration
+      fail StopIteration
     end
   end
 end
