@@ -1,6 +1,7 @@
 require 'date'
 require 'logger'
 
+require_relative 'vedeu/trace'
 require_relative 'vedeu/models/builders/command_builder'
 require_relative 'vedeu/models/builders/interface_builder'
 require_relative 'vedeu/support/events'
@@ -59,7 +60,11 @@ module Vedeu
                  exception.backtrace.join("\n")
   end
 
-  def self.debug(filename = 'profile.html', &block)
+  def self.trace(options = {})
+    Vedeu::Trace.perform(options)
+  end
+
+  def self.profile(filename = 'profile.html', &block)
     require 'ruby-prof'
 
     RubyProf.start
@@ -81,6 +86,8 @@ module Vedeu
   end
 
   extend ClassMethods
+
+  Vedeu.trace
 
   private
 
