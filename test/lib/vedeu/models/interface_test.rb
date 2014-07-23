@@ -71,7 +71,19 @@ module Vedeu
 
     describe '#enqueue' do
       it 'delegates to the Queue class to enqueue itself' do
-        skip
+        Queue.reset
+        interface = Interface.new({
+          name:   'Interface#enqueue',
+          width:  5,
+          height: 2,
+          lines:  [ { streams: { text: 'a8f39' } } ]
+        })
+        interface.enqueue
+        interface.dequeue.must_equal(
+          "\e[1;1H     \e[1;1H" \
+          "\e[2;1H     \e[2;1H" \
+          "\e[1;1Ha8f39"
+        )
       end
     end
 

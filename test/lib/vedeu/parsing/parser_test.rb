@@ -9,10 +9,11 @@ module Vedeu
       end
 
       it 'returns a Composition when the output is JSON' do
-        skip('This is not working as it should...')
+        file   = File.read('test/support/json/int1_lin1_str1.json')
+        parser = Parser.parse(file)
 
-        Parser.parse("{\"some\": \"JSON\"}")
-          .must_be_instance_of(Composition)
+        parser.must_be_instance_of(Array)
+        parser.size.must_equal(1)
       end
 
       it 'returns a collection of interfaces when the output is a Hash' do
