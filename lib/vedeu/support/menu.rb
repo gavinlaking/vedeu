@@ -1,9 +1,29 @@
+require_relative '../../vedeu'
+require_relative 'events'
+
 module Vedeu
   class Menu
     def initialize(collection)
       @collection = collection
       @current    = 0
       @selected   = nil
+      @events     = events
+    end
+
+    def events
+      @_events ||= Vedeu.events.add(self) do
+        on(:menu_next)     { next_item     }
+        on(:menu_prev)     { prev_item     }
+        on(:menu_top)      { top_item      }
+        on(:menu_bottom)   { bottom_item   }
+        on(:menu_select)   { select_item   }
+        on(:menu_deselect) { deselect_item }
+
+        on(:menu_selected) { selected_item }
+        on(:menu_current)  { current_item  }
+        on(:menu_items)    { items         }
+        on(:menu_render)   { render        }
+      end
     end
 
     def current
@@ -64,32 +84,40 @@ module Vedeu
       lines
     end
 
-    def top
+    def top_item
       @current = 0
+
+      self
     end
 
-    def bottom
+    def bottom_item
       @current = last
+
+      self
     end
 
-    def next
+    def next_item
       @current += 1 if @current < last
 
       self
     end
 
-    def prev
+    def prev_item
       @current -= 1 if @current > 0
 
       self
     end
 
-    def select
+    def select_item
       @selected = @current
+
+      self
     end
 
-    def deselect
+    def deselect_item
       @selected = nil
+
+      self
     end
 
     def last
