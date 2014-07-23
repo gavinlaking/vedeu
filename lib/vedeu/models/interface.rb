@@ -1,6 +1,7 @@
 require 'json'
 require 'virtus'
 
+require_relative '../../vedeu'
 require_relative 'attributes/line_collection'
 require_relative 'presentation'
 require_relative 'style'
@@ -27,6 +28,12 @@ module Vedeu
     attribute :current, String,  default: ''
     attribute :cursor,  Boolean, default: true
     attribute :centred, Boolean, default: false
+
+    def initialize(attributes = {})
+      Vedeu.events.on(:refresh) { refresh }
+
+      super
+    end
 
     def enqueue
       super(self.to_s)
