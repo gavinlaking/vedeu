@@ -5,7 +5,7 @@ require_relative '../../../../lib/vedeu/models/interface'
 
 module Vedeu
   describe ClearInterface do
-    before { InterfaceRepository.reset }
+    before { Repositories::InterfaceRepository.reset }
 
     describe '.call' do
       it 'returns the escape sequence to clear the whole interface' do

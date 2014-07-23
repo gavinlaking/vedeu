@@ -21,11 +21,11 @@ Command
 
 CommandBuilder
   Builder
-  CommandRepository
+  Repositories::CommandRepository
 
-CommandRepository
+Repositories::CommandRepository
   Command
-  Repository
+  Repositories::Repository
 
 Composition
   InterfaceCollection
@@ -66,14 +66,14 @@ Interface
 InterfaceBuilder
   Builder
   Geometry
-  InterfaceRepository
+  Repositories::InterfaceRepository
 
 InterfaceCollection
-  InterfaceRepository
+  Repositories::InterfaceRepository
 
-InterfaceRepository
+Repositories::InterfaceRepository
   Interface
-  Repository
+  Repositories::Repository
 
 JSONParser
 
@@ -93,7 +93,7 @@ LineCollection
 Menu
 
 Output
-  InterfaceRepository
+  Repositories::InterfaceRepository
   Terminal
 
 Parser
@@ -105,7 +105,7 @@ Presentation
   Colour
 
 Process
-  CommandRepository
+  Repositories::CommandRepository
   Parser
   Queue
 
@@ -114,10 +114,10 @@ Queue
 RenderInterface
   ClearInterface
 
-Repository
-  Storage
+Repositories::Repository
+  Repositories::Storage
 
-Storage
+Repositories::Storage
 
 Stream
   Presentation
@@ -162,7 +162,7 @@ CommandBuilder
 InterfaceBuilder
   Builder
   Geometry
-  InterfaceRepository
+  Repositories::InterfaceRepository
 
 Launcher
   Application
@@ -172,7 +172,7 @@ Launcher
         Esc
           Translator
     Output
-      InterfaceRepository
+      Repositories::InterfaceRepository
         Interface
           ClearInterface
           Geometry
@@ -214,21 +214,21 @@ Launcher
           Terminal
             Esc
               Translator
-        Repository
-          Storage
+        Repositories::Repository
+          Repositories::Storage
       Terminal
         Esc
           Translator
     Process
-      CommandRepository
+      Repositories::CommandRepository
         Command
-        Repository
-          Storage
+        Repositories::Repository
+          Repositories::Storage
       Parser
         Compositor
           Composition
             InterfaceCollection
-              InterfaceRepository
+              Repositories::InterfaceRepository
                 Interface
                   ClearInterface
                   Geometry
@@ -270,8 +270,8 @@ Launcher
                   Terminal
                     Esc
                       Translator
-                Repository
-                  Storage
+                Repositories::Repository
+                  Repositories::Storage
         HashParser
           TextAdaptor
         JSONParser

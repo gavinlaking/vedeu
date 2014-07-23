@@ -5,7 +5,7 @@ require_relative '../../../../../lib/vedeu/models/composition'
 module Vedeu
   describe InterfaceCollection do
     describe '#coerce' do
-      before { InterfaceRepository.reset }
+      before { Repositories::InterfaceRepository.reset }
 
       it 'returns an empty collection when there are no interfaces' do
         composition = Composition.new

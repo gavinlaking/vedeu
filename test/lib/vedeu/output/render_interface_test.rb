@@ -6,7 +6,7 @@ require_relative '../../../../lib/vedeu/models/interface'
 
 module Vedeu
   describe RenderInterface do
-    before { InterfaceRepository.reset }
+    before { Repositories::InterfaceRepository.reset }
 
     describe '.call' do
       it 'returns the content for the interface' do

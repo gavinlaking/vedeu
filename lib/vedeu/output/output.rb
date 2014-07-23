@@ -6,7 +6,7 @@ module Vedeu
     extend self
 
     def render
-      InterfaceRepository.refresh.each do |interface|
+      Repositories::InterfaceRepository.refresh.each do |interface|
         Terminal.output(interface)
       end
     end

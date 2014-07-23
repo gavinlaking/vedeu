@@ -5,7 +5,7 @@ require_relative '../../repositories/interface_repository'
 module Vedeu
   class InterfaceBuilder < Builder
     def repository
-      InterfaceRepository
+      Repositories::InterfaceRepository
     end
 
     private

@@ -8,7 +8,7 @@ module Vedeu
       it 'returns an Array' do
         output = "\e[3;3H            \e[3;3H" \
                  "\e[3;3HSome text...\e[3;3H"
-        InterfaceRepository.stub(:refresh, [output]) do
+        Repositories::InterfaceRepository.stub(:refresh, [output]) do
           Terminal.stub(:output, output) do
             Output.render.first.must_equal(output)
           end
