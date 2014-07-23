@@ -3,8 +3,7 @@ module Vedeu
     def initialize(&block)
       @handlers = Hash.new { |h, k| h[k] = [] }
 
-      log("Events#initialize " \
-          "self: #{self.object_id}")
+      log("Events#initialize self: #{self.object_id}")
 
       self.instance_eval(&block) if block_given?
 
@@ -23,18 +22,20 @@ module Vedeu
 
     def on(event, &block)
       log("Events#on " \
-          "self:  #{self.object_id} " \
+          "self: #{self.object_id} " \
           "block: #{block.object_id} " \
           "event: #{event.inspect}")
+
       handlers[event] << block
     end
 
     def trigger(event, *args)
       handlers[event].each do |handler|
         log("Events#trigger " \
-            "self:    #{self.object_id} " \
+            "self: #{self.object_id} " \
             "handler: #{handler.object_id} " \
-            "event:   #{event.inspect}")
+            "event: #{event.inspect}")
+
         handler.call(*args)
       end
     end
@@ -48,7 +49,7 @@ module Vedeu
     attr_reader :handlers
 
     def log(message)
-      Vedeu.trigger(:_log_, message) if debug?
+      Vedeu.logger.debug(message) if debug?
     end
 
     def debug?
