@@ -36,8 +36,6 @@ Esc
 
 Events
 
-Exit
-
 HashParser
   TextAdaptor
 
@@ -126,7 +124,6 @@ Orphans
 Template - orphaned
 Wordwrap - orphaned
 Menu     - orphaned
-Exit     - orphaned
 
 ----------------------------------------------------------------------
 Grouped

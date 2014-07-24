@@ -4,7 +4,6 @@ require_relative 'vedeu/support/builder'
 require_relative 'vedeu/support/events'
 require_relative 'vedeu/support/geometry'
 require_relative 'vedeu/support/menu'
-require_relative 'vedeu/support/exit'
 require_relative 'vedeu/launcher'
 
 module Vedeu
