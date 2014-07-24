@@ -6,7 +6,11 @@ require 'vedeu/support/menu'
 require 'vedeu/launcher'
 
 module Vedeu
-  # Vedeu::Instrumentation::Trace.call
+  def self.debug?
+    false
+  end
+
+  Vedeu::Instrumentation::Trace.call if debug?
 
   # :nocov:
   module ClassMethods
