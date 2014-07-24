@@ -58,6 +58,8 @@ module Vedeu
 
       end
       Terminal.output(self.current)
+
+      self.current
     end
 
     def to_json(*args)

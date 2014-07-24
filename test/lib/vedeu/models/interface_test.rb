@@ -118,12 +118,14 @@ module Vedeu
       }
 
       it 'returns a blank interface when there is no content to display (initial state)' do
-        Interface.new(attributes).refresh.must_equal(
-          "\e[38;5;196m\e[48;5;16m" \
-          "\e[1;1H   \e[1;1H" \
-          "\e[2;1H   \e[2;1H" \
-          "\e[3;1H   \e[3;1H"
-        )
+        Terminal.stub(:output, nil) do
+          Interface.new(attributes).refresh.must_equal(
+            "\e[38;5;196m\e[48;5;16m" \
+            "\e[1;1H   \e[1;1H" \
+            "\e[2;1H   \e[2;1H" \
+            "\e[3;1H   \e[3;1H"
+          )
+        end
       end
 
       it 'returns the fresh content when content is queued up to be displayed' do
@@ -144,15 +146,17 @@ module Vedeu
         interface = Interface.new(attributes)
         interface.enqueue
 
-        interface.refresh.must_equal(
-          "\e[38;5;196m\e[48;5;16m" \
-          "\e[1;1H        \e[1;1H" \
-          "\e[2;1H        \e[2;1H" \
-          "\e[3;1H        \e[3;1H" \
-          "\e[1;1H#refresh" \
-          "\e[2;1H#refresh" \
-          "\e[3;1H#refresh"
-        )
+        Terminal.stub(:output, nil) do
+          interface.refresh.must_equal(
+            "\e[38;5;196m\e[48;5;16m" \
+            "\e[1;1H        \e[1;1H" \
+            "\e[2;1H        \e[2;1H" \
+            "\e[3;1H        \e[3;1H" \
+            "\e[1;1H#refresh" \
+            "\e[2;1H#refresh" \
+            "\e[3;1H#refresh"
+          )
+        end
       end
 
       it 'returns the previously shown content when there is stale content from last run' do
@@ -175,15 +179,17 @@ module Vedeu
                             "\e[2;1H#refresh" \
                             "\e[3;1H#refresh"
 
-        interface.refresh.must_equal(
-          "\e[38;5;196m\e[48;5;16m" \
-          "\e[1;1H        \e[1;1H" \
-          "\e[2;1H        \e[2;1H" \
-          "\e[3;1H        \e[3;1H" \
-          "\e[1;1H#refresh" \
-          "\e[2;1H#refresh" \
-          "\e[3;1H#refresh"
-        )
+        Terminal.stub(:output, nil) do
+          interface.refresh.must_equal(
+            "\e[38;5;196m\e[48;5;16m" \
+            "\e[1;1H        \e[1;1H" \
+            "\e[2;1H        \e[2;1H" \
+            "\e[3;1H        \e[3;1H" \
+            "\e[1;1H#refresh" \
+            "\e[2;1H#refresh" \
+            "\e[3;1H#refresh"
+          )
+        end
       end
     end
 
