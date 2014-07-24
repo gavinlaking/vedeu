@@ -1,14 +1,25 @@
-require_relative 'builder'
-require_relative '../../support/geometry'
-require_relative '../../repositories/interface'
+require_relative 'geometry'
+require_relative 'persistence'
 
 module Vedeu
-  class InterfaceBuilder < Builder
-    def repository
-      Repositories::Interface
+  class Builder
+    def self.build(name, &block)
+      new(name).build(&block)
+    end
+
+    def initialize(name)
+      @name = name.to_s
+    end
+
+    def build(&block)
+      self.instance_eval(&block)
+
+      Persistence.create(attributes)
     end
 
     private
+
+    attr_reader :name
 
     def overrides
       @overrides = if user_attributes[:centred] == true
@@ -23,6 +34,14 @@ module Vedeu
         height: user_attributes[:height],
         width:  user_attributes[:width],
       })
+    end
+
+    def attributes
+      user_attributes.merge!(overrides)
+    end
+
+    def user_attributes
+      @attributes ||= { name: name }
     end
 
     def method_missing(method_name, arg, &block)

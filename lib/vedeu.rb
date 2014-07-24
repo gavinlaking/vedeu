@@ -1,6 +1,6 @@
 require_relative 'vedeu/instrumentation'
 
-require_relative 'vedeu/models/builders/interface_builder'
+require_relative 'vedeu/support/builder'
 require_relative 'vedeu/support/events'
 require_relative 'vedeu/support/geometry'
 require_relative 'vedeu/support/menu'
@@ -15,7 +15,7 @@ module Vedeu
   # :nocov:
   module ClassMethods
     def interface(name, &block)
-      InterfaceBuilder.build(name, &block)
+      Builder.build(name, &block)
     end
 
     def event(name, &block)
@@ -89,16 +89,13 @@ end
 # require 'vedeu/parsing/parser'
 # require 'vedeu/parsing/text_adaptor'
 
-# require 'vedeu/repositories/interface'
-# require 'vedeu/repositories/repository'
-# require 'vedeu/repositories/storage'
-
 # require 'vedeu/parsing/compositor'
 # require 'vedeu/support/esc'
 # require 'vedeu/support/events'
 # require 'vedeu/support/exit'
 # require 'vedeu/support/geometry'
 # require 'vedeu/support/menu'
+# require 'vedeu/support/persistence'
 # require 'vedeu/support/queue'
 # require 'vedeu/support/terminal'
 # require 'vedeu/support/translator'

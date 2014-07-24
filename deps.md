@@ -8,6 +8,9 @@ Application
   Terminal
 
 Builder
+  Geometry
+  Interface
+  Persistence
 
 ClearInterface
 
@@ -52,17 +55,8 @@ Interface
   Style
   Terminal
 
-InterfaceBuilder
-  Builder
-  Geometry
-  Repositories::Interface
-
 InterfaceCollection
-  Repositories::Interface
-
-Repositories::Interface
-  Interface
-  Repositories::Repository
+  Persistence
 
 JSONParser
 
@@ -86,6 +80,9 @@ Parser
   HashParser
   JSONParser
 
+Persistence
+  Interface
+
 Presentation
   Colour
 
@@ -97,11 +94,6 @@ Queue
 
 RenderInterface
   ClearInterface
-
-Repositories::Repository
-  Repositories::Storage
-
-Repositories::Storage
 
 Stream
   Presentation
@@ -140,10 +132,10 @@ Exit     - orphaned
 Grouped
 ----------------------------------------------------------------------
 
-InterfaceBuilder
-  Builder
+Builder
+  Interface
   Geometry
-  Repositories::Interface
+  Persistence
 
 Launcher
   Application
@@ -157,7 +149,7 @@ Launcher
         Compositor
           Composition
             InterfaceCollection
-              Repositories::Interface
+              Persistence
                 Interface
                   ClearInterface
                   Geometry
@@ -199,8 +191,6 @@ Launcher
                   Terminal
                     Esc
                       Translator
-                Repositories::Repository
-                  Repositories::Storage
         HashParser
           TextAdaptor
         JSONParser
