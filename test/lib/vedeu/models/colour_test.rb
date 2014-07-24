@@ -10,7 +10,7 @@ module Vedeu
         }).background.must_equal("\e[48;5;16m")
       end
 
-      it 'returns an empty string if the value is empty' do
+      it 'returns an empty string when the value is empty' do
         Colour.new.background.must_equal('')
       end
     end
@@ -22,7 +22,7 @@ module Vedeu
         }).foreground.must_equal("\e[38;5;196m")
       end
 
-      it 'returns an empty string if the value is empty' do
+      it 'returns an empty string when the value is empty' do
         Colour.new.foreground.must_equal('')
       end
     end
