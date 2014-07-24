@@ -3,7 +3,7 @@ require_relative 'hash_parser'
 require_relative 'json_parser'
 
 module Vedeu
-  class ParseError < StandardError; end
+  ParseError = Class.new(StandardError)
 
   class Parser
     def self.parse(output = {})
