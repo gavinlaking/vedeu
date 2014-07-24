@@ -49,7 +49,7 @@ module Vedeu
     attr_reader :handlers
 
     def log(message)
-      Vedeu.logger.debug(message) if debug?
+      Vedeu.logger(message) if debug?
     end
 
     def debug?

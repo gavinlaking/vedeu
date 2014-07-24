@@ -1,7 +1,5 @@
-require 'date'
-require 'logger'
+require_relative 'vedeu/instrumentation'
 
-require_relative 'vedeu/trace'
 require_relative 'vedeu/models/builders/command_builder'
 require_relative 'vedeu/models/builders/interface_builder'
 require_relative 'vedeu/support/events'
@@ -35,7 +33,7 @@ module Vedeu
   def self.events
     @events ||= Events.new do
       on(:_exit_)        { fail StopIteration }
-      on(:_log_)         { |message| Vedeu.logger.debug(message) }
+      on(:_log_)         { |message| Vedeu.log(message) }
       on(:_mode_switch_) { fail ModeSwitch    }
 
       on(:_keypress_) do |key|
@@ -46,48 +44,16 @@ module Vedeu
     end
   end
 
-  def self.logger
-    @logger ||= Logger.new(root_path + '/logs/vedeu.log').tap do |log|
-      log.formatter = proc do |_, time, _, msg|
-        "#{time.iso8601}: #{msg}\n"
-      end
-    end
-  end
-
-  def self.error(exception)
-    logger.debug "\e[38;5;196mError:\e[38;2;39m\e[48;2;49m " +
-                 "#{exception.message}\n\n" +
-                 exception.backtrace.join("\n")
-  end
-
-  def self.trace(options = {})
-    Vedeu::Trace.perform(options)
-  end
-
-  def self.profile(filename = 'profile.html', &block)
-    require 'ruby-prof'
-
-    RubyProf.start
-
-    yield
-
-    result = RubyProf.stop
-    result.eliminate_methods!([/^Array/, /^Hash/])
-
-    File.open(Vedeu.root_path + '/tmp/' + filename, 'w') do |file|
-      RubyProf::CallStackPrinter.new(result).print(file)
-      # RubyProf::GraphPrinter.new(result).print(file)
-    end
+  def self.log(message)
+    Vedeu::Instrumentation::Log.logger.debug(message)
   end
 
   def self.included(receiver)
-    receiver.send :include, ClassMethods
+    receiver.send(:include, ClassMethods)
     receiver.extend(ClassMethods)
   end
 
   extend ClassMethods
-
-  Vedeu.trace
 
   private
 
