@@ -1,6 +1,6 @@
 require 'virtus'
 
-require_relative '../../repository/interface_repository'
+require 'vedeu/support/persistence'
 
 module Vedeu
   class InterfaceCollection < Virtus::Attribute
@@ -8,7 +8,7 @@ module Vedeu
       return [] if values.nil? || values.empty?
 
       [values].flatten.map do |value|
-        InterfaceRepository.update(value.fetch(:name, nil), value)
+        Persistence.update(value.fetch(:name, nil), value)
       end
     end
   end

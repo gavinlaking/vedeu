@@ -1,6 +1,5 @@
-require_relative '../support/queue'
-require_relative '../support/terminal'
-require_relative '../../vedeu'
+require 'vedeu/support/terminal'
+require 'vedeu'
 
 module Vedeu
   class Input
@@ -10,11 +9,13 @@ module Vedeu
 
     def capture
       Vedeu.trigger(:_keypress_, keypress)
-
-      Queue.enqueue(keypress)
     end
 
     private
+
+    def input
+      @_input ||= Terminal.input
+    end
 
     def keypress
       key        = input
@@ -52,10 +53,6 @@ module Vedeu
       end
 
       translated
-    end
-
-    def input
-      @_input ||= Terminal.input
     end
   end
 end

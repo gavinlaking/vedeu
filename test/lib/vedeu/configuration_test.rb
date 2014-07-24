@@ -1,5 +1,5 @@
-require_relative '../../test_helper'
-require_relative '../../../lib/vedeu/configuration'
+require 'test_helper'
+require 'vedeu/configuration'
 
 module Vedeu
   describe Configuration do

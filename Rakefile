@@ -1,11 +1,10 @@
-require 'bundler/gem_tasks'
-require 'rake/testtask'
+require "bundler/gem_tasks"
+require "rake/testtask"
 
-Rake::TestTask.new(:minitest) do |t|
-  t.libs << 'lib/vedeu'
-  t.test_files = FileList['test/lib/vedeu/*_test.rb',
-                          'test/lib/vedeu/**/*_test.rb']
-  # t.options = '-v' # verbose mode
+task :default => :test
+
+Rake::TestTask.new do |t|
+  t.libs.push "lib"
+  t.libs.push "test"
+  t.pattern = "test/**/*_test.rb"
 end
-
-task default: :minitest

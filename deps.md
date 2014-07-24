@@ -4,11 +4,13 @@ By class
 
 Application
   Input
-  Output
   Process
   Terminal
 
 Builder
+  Geometry
+  Interface
+  Persistence
 
 ClearInterface
 
@@ -16,16 +18,6 @@ Collection
 
 Colour
   Esc
-
-Command
-
-CommandBuilder
-  Builder
-  CommandRepository
-
-CommandRepository
-  Command
-  Repository
 
 Composition
   InterfaceCollection
@@ -44,8 +36,6 @@ Esc
 
 Events
 
-Exit
-
 HashParser
   TextAdaptor
 
@@ -63,17 +53,8 @@ Interface
   Style
   Terminal
 
-InterfaceBuilder
-  Builder
-  Geometry
-  InterfaceRepository
-
 InterfaceCollection
-  InterfaceRepository
-
-InterfaceRepository
-  Interface
-  Repository
+  Persistence
 
 JSONParser
 
@@ -92,20 +73,18 @@ LineCollection
 
 Menu
 
-Output
-  InterfaceRepository
-  Terminal
-
 Parser
   Compositor
   HashParser
   JSONParser
 
+Persistence
+  Interface
+
 Presentation
   Colour
 
 Process
-  CommandRepository
   Parser
   Queue
 
@@ -113,11 +92,6 @@ Queue
 
 RenderInterface
   ClearInterface
-
-Repository
-  Storage
-
-Storage
 
 Stream
   Presentation
@@ -150,19 +124,15 @@ Orphans
 Template - orphaned
 Wordwrap - orphaned
 Menu     - orphaned
-Exit     - orphaned
 
 ----------------------------------------------------------------------
 Grouped
 ----------------------------------------------------------------------
 
-CommandBuilder
-  Builder
-
-InterfaceBuilder
-  Builder
+Builder
+  Interface
   Geometry
-  InterfaceRepository
+  Persistence
 
 Launcher
   Application
@@ -171,64 +141,12 @@ Launcher
       Terminal
         Esc
           Translator
-    Output
-      InterfaceRepository
-        Interface
-          ClearInterface
-          Geometry
-            Esc
-              Translator
-            Terminal
-              Esc
-                Translator
-          LineCollection
-            Collection
-            Line
-              Presentation
-                Colour
-                  Esc
-                    Translator
-              StreamCollection
-                Collection
-                Stream
-                  Presentation
-                    Colour
-                      Esc
-                        Translator
-                  Style
-                    Esc
-                      Translator
-              Style
-                Esc
-                  Translator
-          Presentation
-            Colour
-              Esc
-                Translator
-          Queue
-          RenderInterface
-            ClearInterface
-          Style
-            Esc
-              Translator
-          Terminal
-            Esc
-              Translator
-        Repository
-          Storage
-      Terminal
-        Esc
-          Translator
     Process
-      CommandRepository
-        Command
-        Repository
-          Storage
       Parser
         Compositor
           Composition
             InterfaceCollection
-              InterfaceRepository
+              Persistence
                 Interface
                   ClearInterface
                   Geometry
@@ -270,8 +188,6 @@ Launcher
                   Terminal
                     Esc
                       Translator
-                Repository
-                  Storage
         HashParser
           TextAdaptor
         JSONParser

@@ -1,6 +1,6 @@
-require_relative '../../../../test_helper'
-require_relative '../../../../../lib/vedeu/models/attributes/stream_collection'
-require_relative '../../../../../lib/vedeu/models/line'
+require 'test_helper'
+require 'vedeu/models/attributes/stream_collection'
+require 'vedeu/models/line'
 
 module Vedeu
   describe StreamCollection do

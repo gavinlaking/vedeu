@@ -1,4 +1,4 @@
-require_relative '../models/composition'
+require 'vedeu/models/composition'
 
 module Vedeu
   class Compositor

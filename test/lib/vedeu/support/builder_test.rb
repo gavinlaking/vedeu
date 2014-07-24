@@ -1,10 +1,10 @@
-require_relative '../../../../test_helper'
-require_relative '../../../../../lib/vedeu/models/builders/interface_builder'
+require 'test_helper'
+require 'vedeu/support/builder'
 
 module Vedeu
-  describe InterfaceBuilder do
+  describe Builder do
     it 'creates and stores a new interface' do
-      interface = InterfaceBuilder.build('widget') do
+      interface = Builder.build('widget') do
                     colour  foreground: '#ff0000', background: '#5f0000'
                     cursor  false
                     width   10
@@ -16,7 +16,7 @@ module Vedeu
 
     it 'overrides x and y when centred is true' do
       IO.console.stub :winsize, [10, 40] do
-        interface = InterfaceBuilder.build('widget') do
+        interface = Builder.build('widget') do
                       colour  foreground: '#ff0000', background: '#5f0000'
                       cursor  false
                       centred true
@@ -25,13 +25,13 @@ module Vedeu
                       x       5
                       y       5
                     end
-      interface.x.must_equal(15)
-      interface.y.must_equal(4)
+        interface.x.must_equal(15)
+        interface.y.must_equal(4)
       end
     end
 
     it 'uses x and y when centred is false' do
-      interface = InterfaceBuilder.build('widget') do
+      interface = Builder.build('widget') do
                     colour  foreground: '#ff0000', background: '#5f0000'
                     cursor  false
                     centred false
@@ -46,14 +46,14 @@ module Vedeu
 
     it 'allows interfaces to share behaviour' do
       IO.console.stub :winsize, [10, 40] do
-        main =    InterfaceBuilder.build('main') do
+        main =    Builder.build('main') do
                     colour  foreground: '#ff0000', background: '#000000'
                     cursor  false
                     centred true
                     width   10
                     height  2
                   end
-        status =  InterfaceBuilder.build('status') do
+        status =  Builder.build('status') do
                     colour  foreground: 'aadd00', background: '#4040cc'
                     cursor  true
                     centred true

@@ -1,11 +1,11 @@
-require_relative '../../../../test_helper'
-require_relative '../../../../../lib/vedeu/models/attributes/interface_collection'
-require_relative '../../../../../lib/vedeu/models/composition'
+require 'test_helper'
+require 'vedeu/models/attributes/interface_collection'
+require 'vedeu/models/composition'
 
 module Vedeu
   describe InterfaceCollection do
     describe '#coerce' do
-      before { InterfaceRepository.reset }
+      before { Persistence.reset }
 
       it 'returns an empty collection when there are no interfaces' do
         composition = Composition.new

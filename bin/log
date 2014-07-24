@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+$:.unshift(File.dirname(__FILE__) + '/../lib') unless $:.include?(File.dirname(__FILE__) + '/../lib')
+
+-> { its -> { a } }
+trap('INT') { exit! }
+
+require 'vedeu'
+
+loop do
+  Vedeu.log('-B<-------------------------------------------------------------------')
+
+  sleep 10
+end

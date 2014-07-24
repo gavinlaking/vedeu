@@ -1,5 +1,5 @@
-require_relative '../../../test_helper'
-require_relative '../../../../lib/vedeu/support/geometry'
+require 'test_helper'
+require 'vedeu/support/geometry'
 
 module Vedeu
   describe Geometry do

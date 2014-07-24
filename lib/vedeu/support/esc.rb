@@ -1,4 +1,4 @@
-require_relative 'translator'
+require 'vedeu/support/translator'
 
 module Vedeu
   module Esc

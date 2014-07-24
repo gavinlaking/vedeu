@@ -1,7 +1,5 @@
-require_relative 'input/input'
-require_relative 'output/output'
-require_relative 'process/process'
-require_relative 'support/terminal'
+require 'vedeu/support/input'
+require 'vedeu/support/terminal'
 
 module Vedeu
   ModeSwitch = Class.new(StandardError)
@@ -20,7 +18,7 @@ module Vedeu
       Terminal.open(mode) do
         Terminal.set_cursor_mode
 
-        Output.render
+        Vedeu.events.trigger(:refresh)
 
         runner { main_sequence }
       end
@@ -43,9 +41,7 @@ module Vedeu
     def main_sequence
       Input.capture
 
-      Process.evaluate
-
-      Output.render
+      Vedeu.events.trigger(:refresh)
     end
 
     def interactive?

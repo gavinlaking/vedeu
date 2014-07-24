@@ -1,7 +1,7 @@
 require 'virtus'
 
-require_relative 'collection'
-require_relative '../line'
+require 'vedeu/models/attributes/collection'
+require 'vedeu/models/line'
 
 module Vedeu
   class LineCollection < Virtus::Attribute

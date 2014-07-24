@@ -1,5 +1,5 @@
-require_relative '../../../test_helper'
-require_relative '../../../../lib/vedeu/support/wordwrap'
+require 'test_helper'
+require 'vedeu/support/wordwrap'
 
 module Vedeu
   describe Wordwrap do

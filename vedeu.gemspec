@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Gavin Laking']
   spec.email         = ['gavinlaking@gmail.com']
   spec.summary       = %q{A terminal case of wonderland.}
-  spec.homepage      = 'http://www.gavinlaking.name/'
+  spec.homepage      = 'https://github.com/gavinlaking/vedeu'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0")

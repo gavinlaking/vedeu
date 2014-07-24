@@ -1,5 +1,5 @@
-require_relative '../../../test_helper'
-require_relative '../../../../lib/vedeu/support/queue'
+require 'test_helper'
+require 'vedeu/support/queue'
 
 module Vedeu
   describe Queue do

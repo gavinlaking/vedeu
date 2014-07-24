@@ -1,5 +1,5 @@
-require_relative '../../test_helper'
-require_relative '../../../lib/vedeu/application'
+require 'test_helper'
+require 'vedeu/application'
 
 module Vedeu
   describe Application do

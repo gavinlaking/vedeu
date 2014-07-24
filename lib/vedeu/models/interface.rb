@@ -1,14 +1,15 @@
 require 'json'
 require 'virtus'
 
-require_relative 'attributes/line_collection'
-require_relative 'presentation'
-require_relative 'style'
-require_relative '../output/clear_interface'
-require_relative '../output/render_interface'
-require_relative '../support/geometry'
-require_relative '../support/queue'
-require_relative '../support/terminal'
+require 'vedeu'
+require 'vedeu/models/attributes/line_collection'
+require 'vedeu/models/presentation'
+require 'vedeu/models/style'
+require 'vedeu/output/clear_interface'
+require 'vedeu/output/render_interface'
+require 'vedeu/support/geometry'
+require 'vedeu/support/queue'
+require 'vedeu/support/terminal'
 
 module Vedeu
   class Interface
@@ -21,12 +22,17 @@ module Vedeu
     attribute :lines,   LineCollection
     attribute :y,       Integer, default: 1
     attribute :x,       Integer, default: 1
-    attribute :z,       Integer, default: 1
     attribute :width,   Integer, default: Terminal.width
     attribute :height,  Integer, default: Terminal.height
     attribute :current, String,  default: ''
     attribute :cursor,  Boolean, default: true
     attribute :centred, Boolean, default: false
+
+    def initialize(attributes = {})
+      Vedeu.events.on(:refresh) { refresh }
+
+      super
+    end
 
     def enqueue
       super(self.to_s)
@@ -51,6 +57,9 @@ module Vedeu
         self.current
 
       end
+      Terminal.output(self.current)
+
+      self.current
     end
 
     def to_json(*args)
@@ -61,7 +70,6 @@ module Vedeu
         lines:  lines,
         y:      y,
         x:      x,
-        z:      z,
         width:  width,
         height: height,
         cursor: cursor

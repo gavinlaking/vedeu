@@ -1,7 +1,7 @@
 require 'virtus'
 
-require_relative 'collection'
-require_relative '../stream'
+require 'vedeu/models/attributes/collection'
+require 'vedeu/models/stream'
 
 module Vedeu
   class StreamCollection < Virtus::Attribute

@@ -1,5 +1,5 @@
-require_relative '../../vedeu'
-require_relative 'events'
+require 'vedeu'
+require 'vedeu/support/events'
 
 module Vedeu
   class Menu
@@ -47,7 +47,7 @@ module Vedeu
     def items
       items = []
       @collection.each_with_index do |item, index|
-        if index    == @current && index == @selected
+        if index == @current && index == @selected
           items << [true, true, item]
 
         elsif index == @current

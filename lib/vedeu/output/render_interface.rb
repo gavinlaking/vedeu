@@ -1,4 +1,4 @@
-require_relative 'clear_interface'
+require 'vedeu/output/clear_interface'
 
 module Vedeu
   class RenderInterface

@@ -1,8 +1,8 @@
 require 'json'
 require 'virtus'
 
-require_relative 'presentation'
-require_relative 'style'
+require 'vedeu/models/presentation'
+require 'vedeu/models/style'
 
 module Vedeu
   class Stream

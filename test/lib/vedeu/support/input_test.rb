@@ -1,5 +1,5 @@
-require_relative '../../../test_helper'
-require_relative '../../../../lib/vedeu/input/input'
+require 'test_helper'
+require 'vedeu/support/input'
 
 module Vedeu
   describe Input do
@@ -37,17 +37,16 @@ module Vedeu
       }
 
       keypresses.each do |keypress, value|
-        it 'enqueues the captured input from the terminal' do
-          Queue.reset
+        it 'triggers a :key event with the key pressed' do
           Terminal.stub :input, keypress do
-            Input.capture
-            Queue.entries.must_equal([value])
+            Vedeu.stub :trigger, value do
+              Input.capture.must_equal(value)
+            end
           end
         end
       end
 
       it 'switches the terminal mode when escape is pressed' do
-        Queue.reset
         Terminal.stub :input, "\e" do
           proc { Input.capture }.must_raise(ModeSwitch)
         end

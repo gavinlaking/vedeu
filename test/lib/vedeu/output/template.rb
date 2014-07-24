@@ -1,4 +1,5 @@
-require_relative '../../../test_helper'
+require 'test_helper'
+require 'vedeu/output/template'
 
 module Vedeu
   describe Template do

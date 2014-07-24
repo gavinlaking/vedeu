@@ -1,6 +1,6 @@
-require_relative '../../../../test_helper'
-require_relative '../../../../../lib/vedeu/models/attributes/line_collection'
-require_relative '../../../../../lib/vedeu/models/interface'
+require 'test_helper'
+require 'vedeu/models/attributes/line_collection'
+require 'vedeu/models/interface'
 
 module Vedeu
   describe LineCollection do

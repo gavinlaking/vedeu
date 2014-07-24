@@ -1,12 +1,14 @@
-require_relative '../support/compositor'
-require_relative 'hash_parser'
-require_relative 'json_parser'
+require 'vedeu/parsing/compositor'
+require 'vedeu/parsing/hash_parser'
+require 'vedeu/parsing/json_parser'
 
 module Vedeu
-  class ParseError < StandardError; end
+  ParseError = Class.new(StandardError)
 
   class Parser
     def self.parse(output = {})
+      return nil if output.nil? || output.empty?
+
       new(output).parse
     end
 
@@ -15,8 +17,6 @@ module Vedeu
     end
 
     def parse
-      return nil if empty?
-
       Compositor.enqueue(parsed_output)
     end
 
@@ -41,10 +41,6 @@ module Vedeu
 
     def json?
       output.is_a?(String)
-    end
-
-    def empty?
-      output.nil? || output.empty?
     end
   end
 end

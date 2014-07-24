@@ -1,5 +1,5 @@
-require_relative '../../../test_helper'
-require_relative '../../../../lib/vedeu/models/colour'
+require 'test_helper'
+require 'vedeu/models/colour'
 
 module Vedeu
   describe Colour do

@@ -1,5 +1,5 @@
-require_relative '../../../test_helper'
-require_relative '../../../../lib/vedeu/models/presentation'
+require 'test_helper'
+require 'vedeu/models/presentation'
 
 module Vedeu
   class TestPresentation

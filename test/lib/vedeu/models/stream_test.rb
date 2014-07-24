@@ -1,5 +1,5 @@
-require_relative '../../../test_helper'
-require_relative '../../../../lib/vedeu/models/stream'
+require 'test_helper'
+require 'vedeu/models/stream'
 
 module Vedeu
   describe Stream do

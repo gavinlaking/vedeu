@@ -1,8 +1,8 @@
-require_relative 'esc'
-require_relative 'terminal'
+require 'vedeu/support/esc'
+require 'vedeu/support/terminal'
 
 module Vedeu
-  class OutOfBoundsError < StandardError; end
+  OutOfBoundsError = Class.new(StandardError)
 
   class Geometry
     def initialize(attrs = {})
