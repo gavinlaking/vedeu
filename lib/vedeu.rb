@@ -6,8 +6,6 @@ require 'vedeu/support/menu'
 require 'vedeu/launcher'
 
 module Vedeu
-  # :nocov:
-
   # Vedeu::Instrumentation::Trace.call
 
   # :nocov:

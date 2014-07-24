@@ -6,6 +6,7 @@ require 'vedeu'
 
 module Vedeu
   module Instrumentation
+    # :nocov:
     class Log
       def self.logger
         @logger ||= Logger.new(filename).tap do |log|
@@ -105,5 +106,6 @@ module Vedeu
       # everything except Interface, Geometry and Terminal
       # klass: /^Vedeu::(?!.*Interface|Geometry|Terminal).*/
     end
+    # :nocov:
   end
 end
