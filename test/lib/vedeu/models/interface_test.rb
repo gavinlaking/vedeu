@@ -13,7 +13,6 @@ module Vedeu
         },
         y: 3,
         x: 5,
-        z: 2,
         width: 10,
         height: 15,
         current: "\e[1;1H#initialize"
@@ -40,11 +39,6 @@ module Vedeu
     it 'has an x attribute' do
       interface.x.must_equal(5)
       Interface.new.x.must_equal(1)
-    end
-
-    it 'has a z attribute' do
-      interface.z.must_equal(2)
-      Interface.new.z.must_equal(1)
     end
 
     it 'has a width attribute' do
@@ -224,7 +218,7 @@ module Vedeu
           },
           width:  3,
           height: 3
-        }).to_json.must_equal("{\"colour\":{\"foreground\":\"#ff0000\",\"background\":\"#000000\"},\"style\":\"\",\"name\":\"#to_json\",\"lines\":[],\"y\":1,\"x\":1,\"z\":1,\"width\":3,\"height\":3,\"cursor\":true}")
+        }).to_json.must_equal("{\"colour\":{\"foreground\":\"#ff0000\",\"background\":\"#000000\"},\"style\":\"\",\"name\":\"#to_json\",\"lines\":[],\"y\":1,\"x\":1,\"width\":3,\"height\":3,\"cursor\":true}")
       end
     end
   end

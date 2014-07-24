@@ -23,42 +23,6 @@ module Vedeu
         end
       end
 
-      describe '.refresh' do
-        it 'returns an Array' do
-          Interface.refresh.must_be_instance_of(Array)
-        end
-
-        it 'returns the collection in order they should be drawn' do
-          Interface.create({
-            name:   '.refresh_1',
-            width:  1,
-            height: 1,
-            z:      3,
-            lines:  'alpha'
-          }).enqueue
-          Interface.create({
-            name:   '.refresh_2',
-            width:  1,
-            height: 1,
-            z:      1,
-            lines:  'beta'
-          }).enqueue
-          Interface.create({
-            name:   '.refresh_3',
-            width:  1,
-            height: 1,
-            z:      2,
-            lines:  'gamma'
-          }).enqueue
-
-          Interface.refresh.must_equal([
-            "\e[1;1H \e[1;1H\e[1;1Hbeta",
-            "\e[1;1H \e[1;1H\e[1;1Hgamma",
-            "\e[1;1H \e[1;1H\e[1;1Halpha"
-          ])
-        end
-      end
-
       describe '.entity' do
         it 'returns Interface' do
           Interface.entity.must_equal(Vedeu::Interface)

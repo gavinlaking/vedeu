@@ -36,7 +36,7 @@ module Vedeu
           ]
         }
 
-        Composition.new(attributes).to_json.must_equal("{\"interfaces\":[{\"colour\":{\"foreground\":\"\#ffff33\",\"background\":\"\#ffff77\"},\"style\":\"\",\"name\":\"Composition#to_json\",\"lines\":[],\"y\":1,\"x\":1,\"z\":1,\"width\":5,\"height\":5,\"cursor\":true}]}")
+        Composition.new(attributes).to_json.must_equal("{\"interfaces\":[{\"colour\":{\"foreground\":\"\#ffff33\",\"background\":\"\#ffff77\"},\"style\":\"\",\"name\":\"Composition#to_json\",\"lines\":[],\"y\":1,\"x\":1,\"width\":5,\"height\":5,\"cursor\":true}]}")
       end
     end
 

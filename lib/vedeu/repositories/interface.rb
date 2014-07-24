@@ -15,18 +15,8 @@ module Vedeu
         create(attributes)
       end
 
-      def refresh
-        by_layer.map { |interface| interface.refresh }.compact
-      end
-
       def entity
         Vedeu::Interface
-      end
-
-      private
-
-      def by_layer
-        all.sort_by { |interface| interface.z }
       end
     end
   end

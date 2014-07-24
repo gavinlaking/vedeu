@@ -22,7 +22,6 @@ module Vedeu
     attribute :lines,   LineCollection
     attribute :y,       Integer, default: 1
     attribute :x,       Integer, default: 1
-    attribute :z,       Integer, default: 1
     attribute :width,   Integer, default: Terminal.width
     attribute :height,  Integer, default: Terminal.height
     attribute :current, String,  default: ''
@@ -69,7 +68,6 @@ module Vedeu
         lines:  lines,
         y:      y,
         x:      x,
-        z:      z,
         width:  width,
         height: height,
         cursor: cursor

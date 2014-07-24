@@ -70,7 +70,6 @@ To understand how Vedeu works, you need to familiarise yourself with some terms.
     interface 'main' do
       y      1
       x      1
-      z      1
       width  10 # see notes below
       height 10
       colour foreground: '#ffffff', background: '#000000'
@@ -81,8 +80,6 @@ Referring to the above example, interfaces have a name, and various default attr
 
 `y`          sets the starting row point. (See Geometry)
 `x`          sets the starting column point.
-`z`          an integer specifying the z-index of the interface.
-              (See Layers)
 
 `width`      sets character width of the interface
 `height`     sets character height of the interface
@@ -129,15 +126,6 @@ Vedeu has a range of symbol styles which are compatible with most terminals whic
     "style": []
 
 Like colours, they can be defined in either interfaces, for specific lines or within streams. Styles are applied as encountered.
-
-
-### Layers
-
-Vedeu allows the overlaying of interfaces. To render these correctly,
-Vedeu uses two rules.
-
-  1) The :z value. 1 would be default, or bottom. 2 would be placed on top of 1. 3 on top of 2, and so on.
-  2) If two interfaces occupy the same 'space', the interface which was defined last, wins.
 
 
 ## Contributing

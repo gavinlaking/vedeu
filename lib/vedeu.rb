@@ -89,8 +89,6 @@ end
 # require 'vedeu/parsing/parser'
 # require 'vedeu/parsing/text_adaptor'
 
-# require 'vedeu/process/process'
-
 # require 'vedeu/repositories/interface'
 # require 'vedeu/repositories/repository'
 # require 'vedeu/repositories/storage'
