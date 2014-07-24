@@ -8,7 +8,7 @@ require 'vedeu/launcher'
 module Vedeu
   # :nocov:
 
-  Vedeu::Instrumentation::Trace.call
+  # Vedeu::Instrumentation::Trace.call
 
   # :nocov:
   module ClassMethods
@@ -59,46 +59,3 @@ module Vedeu
   end
   # :nocov:
 end
-
-# require 'vedeu/input/input'
-
-# require 'vedeu/models/attributes/collection'
-# require 'vedeu/models/attributes/interface_collection'
-# require 'vedeu/models/attributes/line_collection'
-# require 'vedeu/models/attributes/stream_collection'
-
-# require 'vedeu/models/builders/builder'
-# require 'vedeu/models/builders/interface_builder'
-
-# require 'vedeu/models/colour'
-# require 'vedeu/models/composition'
-# require 'vedeu/models/interface'
-# require 'vedeu/models/line'
-# require 'vedeu/models/presentation'
-# require 'vedeu/models/stream'
-# require 'vedeu/models/style'
-
-# require 'vedeu/output/clear_interface'
-# require 'vedeu/output/render_interface'
-# require 'vedeu/output/template'
-
-# require 'vedeu/parsing/hash_parser'
-# require 'vedeu/parsing/json_parser'
-# require 'vedeu/parsing/parser'
-# require 'vedeu/parsing/text_adaptor'
-
-# require 'vedeu/parsing/compositor'
-# require 'vedeu/support/esc'
-# require 'vedeu/support/events'
-# require 'vedeu/support/exit'
-# require 'vedeu/support/geometry'
-# require 'vedeu/support/menu'
-# require 'vedeu/support/persistence'
-# require 'vedeu/support/queue'
-# require 'vedeu/support/terminal'
-# require 'vedeu/support/translator'
-# require 'vedeu/support/wordwrap'
-
-# require 'vedeu/application'
-# require 'vedeu/configuration'
-# require 'vedeu/launcher'
