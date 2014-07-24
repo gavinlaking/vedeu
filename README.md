@@ -56,7 +56,7 @@ Expect proper documentation soon!
 
 To understand how Vedeu works, you need to familiarise yourself with some terms.
 
-  - Interface: This is an area on the screen where you can take input or direct output. You will define it's colour and style, its dimensions, including position and give it a name. You can then direct the output of a command to this interface and Vedeu will ensure the content is placed there. Interfaces can be layered, allowing pseudo 3D effects (if that floats your boat), or to provide a richer application experience.
+  - Interface: This is an area on the screen where you can take input or direct output. You will define it's colour and style, its dimensions, including position and give it a name. You can then direct the output of a command to this interface and Vedeu will ensure the content is placed there.
 
   - Line: An interface is composed of many lines. Their length being the width of the interface and their number being the height of the interface.
 
@@ -78,17 +78,17 @@ To understand how Vedeu works, you need to familiarise yourself with some terms.
 
 Referring to the above example, interfaces have a name, and various default attributes.
 
-`y`          sets the starting row point. (See Geometry)
-`x`          sets the starting column point.
+- `y`          sets the starting row point. (See Geometry)
+- `x`          sets the starting column point.
 
-`width`      sets character width of the interface
-`height`     sets character height of the interface
-              Note: not setting a width or height will set the values to the terminal's reported width and height.
+- `width`      sets character width of the interface
+- `height`     sets character height of the interface
 
-`foreground` sets the default foreground colour. (See Colours)
-`background` sets the default background colour.
+Note: not setting a width or height will set the values to the terminal's reported width and height.
 
-`cursor`     a boolean specifying whether the cursor should show.
+- `foreground` sets the default foreground colour. (See Colours)
+- `background` sets the default background colour.
+- `cursor` is a Boolean specifying whether the cursor should show.
 
 
 ### On Defining Events
