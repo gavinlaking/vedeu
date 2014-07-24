@@ -1,4 +1,4 @@
-require_relative '../support/compositor'
+require_relative 'compositor'
 require_relative 'hash_parser'
 require_relative 'json_parser'
 
