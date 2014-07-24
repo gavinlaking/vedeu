@@ -36,13 +36,15 @@ module Vedeu
         "k"       => "k"
       }
 
-      # keypresses.each do |keypress, value|
-      #   it 'enqueues the captured input from the terminal' do
-      #     Terminal.stub :input, keypress do
-
-      #     end
-      #   end
-      # end
+      keypresses.each do |keypress, value|
+        it 'triggers a :key event with the key pressed' do
+          Terminal.stub :input, keypress do
+            Vedeu.stub :trigger, value do
+              Input.capture.must_equal(value)
+            end
+          end
+        end
+      end
 
       it 'switches the terminal mode when escape is pressed' do
         Terminal.stub :input, "\e" do
