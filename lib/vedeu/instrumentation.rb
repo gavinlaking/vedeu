@@ -68,7 +68,7 @@ module Vedeu
       def trace
         set_trace_func proc { |event, file, line, id, binding, classname|
           if event == watched && classname.to_s.match(klass)
-            Vedeu.logger(sprintf(" %s %-35s #%s", event, classname, id))
+            Vedeu.log(sprintf(" %s %-35s #%s", event, classname, id))
             # binding.eval('local_variables').each do |var|
             #   print("#{var.to_s} = #{binding.local_variable_get(var).inspect}\n")
             # end
@@ -98,17 +98,17 @@ module Vedeu
       def defaults
         {
           event: 'call',
-          klass: /^Vedeu::(?!.*Line|Stream|Style|Colour|Events|Geometry|Terminal|Esc|Translator).*/
+          klass: /^Vedeu::(?!.*Instrumentation|Line|Stream|Style|Colour|Geometry|Terminal|Esc|Translator).*/
         }
       end
 
       # everything except Interface, Geometry and Terminal
-      # /^Vedeu::(?!.*Interface|Geometry|Terminal).*/
+      # klass: /^Vedeu::(?!.*Interface|Geometry|Terminal).*/
 
       # just Output, Process and Input
-      # /^Vedeu::(Output|Process|Input)/
+      # klass: /^Vedeu::(Output|Process|Input)/
 
-      # /^Vedeu::(?!.*Interface|Colour|Events|Geometry|Terminal|Esc|Translator).*/
+      # klass:  /^Vedeu::(?!.*Interface|Colour|Events|Geometry|Terminal|Esc|Translator).*/
 
     end
   end

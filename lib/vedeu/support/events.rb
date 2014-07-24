@@ -3,7 +3,7 @@ module Vedeu
     def initialize(&block)
       @handlers = Hash.new { |h, k| h[k] = [] }
 
-      log("Events#initialize self: #{self.object_id}")
+      Vedeu.log((' ' * 42) + "self: #{self.object_id}")
 
       self.instance_eval(&block) if block_given?
 
@@ -11,9 +11,8 @@ module Vedeu
     end
 
     def add(object, &block)
-      log("Events#add " \
-          "self: #{self.object_id}" \
-          "menu: #{object.object_id}")
+      Vedeu.log((' ' * 42) + "self: #{self.object_id}")
+      Vedeu.log((' ' * 42) + "menu: #{object.object_id}")
 
       @self_before_instance_eval = eval "self", block.binding
 
@@ -21,20 +20,18 @@ module Vedeu
     end
 
     def on(event, &block)
-      log("Events#on " \
-          "self: #{self.object_id} " \
-          "block: #{block.object_id} " \
-          "event: #{event.inspect}")
+      Vedeu.log((' ' * 42) + "self: #{self.object_id}")
+      Vedeu.log((' ' * 42) + "block: #{block.object_id}")
+      Vedeu.log((' ' * 42) + "event: #{event.inspect}")
 
       handlers[event] << block
     end
 
     def trigger(event, *args)
       handlers[event].each do |handler|
-        log("Events#trigger " \
-            "self: #{self.object_id} " \
-            "handler: #{handler.object_id} " \
-            "event: #{event.inspect}")
+        Vedeu.log((' ' * 42) + "self: #{self.object_id}")
+        Vedeu.log((' ' * 42) + "handler: #{handler.object_id}")
+        Vedeu.log((' ' * 42) + "event: #{event.inspect}")
 
         handler.call(*args)
       end
@@ -47,13 +44,5 @@ module Vedeu
     private
 
     attr_reader :handlers
-
-    def log(message)
-      Vedeu.logger(message) if debug?
-    end
-
-    def debug?
-      true
-    end
   end
 end

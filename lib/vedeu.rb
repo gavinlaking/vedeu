@@ -10,6 +10,10 @@ require_relative 'vedeu/launcher'
 
 module Vedeu
   # :nocov:
+
+  Vedeu::Instrumentation::Trace.call
+
+  # :nocov:
   module ClassMethods
     def command(name, &block)
       CommandBuilder.build(name, &block)
@@ -38,7 +42,7 @@ module Vedeu
 
       on(:_keypress_) do |key|
         trigger(:key, key)
-        trigger(:_log_, "key: #{key}")
+        trigger(:_log_, (' ' * 42) + "key: #{key}")
         trigger(:_mode_switch_) if key == :escape
       end
     end
@@ -100,7 +104,7 @@ end
 # require 'vedeu/repositories/repository'
 # require 'vedeu/repositories/storage'
 
-# require 'vedeu/support/compositor'
+# require 'vedeu/parsing/compositor'
 # require 'vedeu/support/esc'
 # require 'vedeu/support/events'
 # require 'vedeu/support/exit'
