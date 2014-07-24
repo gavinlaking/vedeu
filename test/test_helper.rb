@@ -18,6 +18,6 @@ GC.disable
   # Minitest::Reporters::SpecReporter.new
 # )
 
-# trace method execution with local variables
-# require_relative '../lib/vedeu/trace'
-# Vedeu::Trace.perform({ watched: 'call', klass: /^Vedeu/ })
+# trace method execution with (optionally) local variables
+# require 'vedeu/instrumentation'
+# Vedeu::Instrumentation::Trace.call({ watched: 'call', klass: /^Vedeu/ })
