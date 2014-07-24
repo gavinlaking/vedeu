@@ -16,6 +16,10 @@ module Vedeu
 
     private
 
+    def input
+      @_input ||= Terminal.input
+    end
+
     def keypress
       key        = input
       translated = case key
@@ -52,10 +56,6 @@ module Vedeu
       end
 
       translated
-    end
-
-    def input
-      @_input ||= Terminal.input
     end
   end
 end
