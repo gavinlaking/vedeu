@@ -1,4 +1,4 @@
-require 'vedeu/input/input'
+require 'vedeu/support/input'
 require 'vedeu/support/terminal'
 
 module Vedeu
