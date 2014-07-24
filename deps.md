@@ -4,7 +4,6 @@ By class
 
 Application
   Input
-  Output
   Process
   Terminal
 
@@ -16,16 +15,6 @@ Collection
 
 Colour
   Esc
-
-Command
-
-CommandBuilder
-  Builder
-  Repositories::Command
-
-Repositories::Command
-  Command
-  Repositories::Repository
 
 Composition
   InterfaceCollection
@@ -92,10 +81,6 @@ LineCollection
 
 Menu
 
-Output
-  Repositories::Interface
-  Terminal
-
 Parser
   Compositor
   HashParser
@@ -105,7 +90,6 @@ Presentation
   Colour
 
 Process
-  Repositories::Command
   Parser
   Queue
 
@@ -156,9 +140,6 @@ Exit     - orphaned
 Grouped
 ----------------------------------------------------------------------
 
-CommandBuilder
-  Builder
-
 InterfaceBuilder
   Builder
   Geometry
@@ -171,59 +152,7 @@ Launcher
       Terminal
         Esc
           Translator
-    Output
-      Repositories::Interface
-        Interface
-          ClearInterface
-          Geometry
-            Esc
-              Translator
-            Terminal
-              Esc
-                Translator
-          LineCollection
-            Collection
-            Line
-              Presentation
-                Colour
-                  Esc
-                    Translator
-              StreamCollection
-                Collection
-                Stream
-                  Presentation
-                    Colour
-                      Esc
-                        Translator
-                  Style
-                    Esc
-                      Translator
-              Style
-                Esc
-                  Translator
-          Presentation
-            Colour
-              Esc
-                Translator
-          Queue
-          RenderInterface
-            ClearInterface
-          Style
-            Esc
-              Translator
-          Terminal
-            Esc
-              Translator
-        Repositories::Repository
-          Repositories::Storage
-      Terminal
-        Esc
-          Translator
     Process
-      Repositories::Command
-        Command
-        Repositories::Repository
-          Repositories::Storage
       Parser
         Compositor
           Composition

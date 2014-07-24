@@ -31,12 +31,6 @@ Expect proper documentation soon!
         ...
       end
 
-      command 'thing' do
-        entity   SomeClass
-        keypress 't'
-        keyword  'thing'
-      end
-
       event :some_event do
         # ...
       end
@@ -99,18 +93,6 @@ Referring to the above example, interfaces have a name, and various default attr
 
 `cursor`     a boolean specifying whether the cursor should show.
 
-
-### On Defining Commands
-
-    command 'do_something' do
-      entity    SomeClass
-      keypress  's'
-      keyword   'start'
-      arguments [:some, { :values => :here }, "etc"]
-    end
-
-As above, commands have a name, a class which performs the action
-(you define this), and they can be invoked with a keypress or a keyword. At this time, Vedeu will call the `.dispatch` method on your class, passing any arguments you originally defined in the command. In the future, both the method called and the arguments could be dynamic.
 
 ### On Defining Events
 

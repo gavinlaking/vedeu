@@ -104,12 +104,6 @@ module Vedeu
 
       # everything except Interface, Geometry and Terminal
       # klass: /^Vedeu::(?!.*Interface|Geometry|Terminal).*/
-
-      # just Output, Process and Input
-      # klass: /^Vedeu::(Output|Process|Input)/
-
-      # klass:  /^Vedeu::(?!.*Interface|Colour|Events|Geometry|Terminal|Esc|Translator).*/
-
     end
   end
 end

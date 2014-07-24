@@ -3,9 +3,6 @@ require_relative '../../lib/vedeu'
 
 module Vedeu
   describe ClassMethods do
-    describe '.command' do
-    end
-
     describe '.interface' do
     end
 

@@ -1,4 +1,3 @@
-require_relative '../support/queue'
 require_relative '../support/terminal'
 require_relative '../../vedeu'
 
@@ -10,8 +9,6 @@ module Vedeu
 
     def capture
       Vedeu.trigger(:_keypress_, keypress)
-
-      Queue.enqueue(keypress)
     end
 
     private

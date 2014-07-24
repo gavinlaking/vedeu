@@ -1,6 +1,5 @@
 require_relative 'vedeu/instrumentation'
 
-require_relative 'vedeu/models/builders/command_builder'
 require_relative 'vedeu/models/builders/interface_builder'
 require_relative 'vedeu/support/events'
 require_relative 'vedeu/support/geometry'
@@ -15,10 +14,6 @@ module Vedeu
 
   # :nocov:
   module ClassMethods
-    def command(name, &block)
-      CommandBuilder.build(name, &block)
-    end
-
     def interface(name, &block)
       InterfaceBuilder.build(name, &block)
     end
@@ -75,11 +70,9 @@ end
 # require 'vedeu/models/attributes/stream_collection'
 
 # require 'vedeu/models/builders/builder'
-# require 'vedeu/models/builders/command_builder'
 # require 'vedeu/models/builders/interface_builder'
 
 # require 'vedeu/models/colour'
-# require 'vedeu/models/command'
 # require 'vedeu/models/composition'
 # require 'vedeu/models/interface'
 # require 'vedeu/models/line'
@@ -88,7 +81,6 @@ end
 # require 'vedeu/models/style'
 
 # require 'vedeu/output/clear_interface'
-# require 'vedeu/output/output'
 # require 'vedeu/output/render_interface'
 # require 'vedeu/output/template'
 
@@ -99,7 +91,6 @@ end
 
 # require 'vedeu/process/process'
 
-# require 'vedeu/repositories/command'
 # require 'vedeu/repositories/interface'
 # require 'vedeu/repositories/repository'
 # require 'vedeu/repositories/storage'
