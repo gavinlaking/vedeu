@@ -1,5 +1,5 @@
-require_relative 'esc'
-require_relative 'terminal'
+require 'vedeu/support/esc'
+require 'vedeu/support/terminal'
 
 module Vedeu
   OutOfBoundsError = Class.new(StandardError)

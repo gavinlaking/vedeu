@@ -1,7 +1,7 @@
 require 'json'
 require 'virtus'
 
-require_relative '../support/esc'
+require 'vedeu/support/esc'
 
 module Vedeu
   class Colour

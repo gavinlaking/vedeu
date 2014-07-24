@@ -1,6 +1,6 @@
 require 'virtus'
 
-require_relative '../../support/persistence'
+require 'vedeu/support/persistence'
 
 module Vedeu
   class InterfaceCollection < Virtus::Attribute

@@ -1,15 +1,15 @@
 require 'json'
 require 'virtus'
 
-require_relative '../../vedeu'
-require_relative 'attributes/line_collection'
-require_relative 'presentation'
-require_relative 'style'
-require_relative '../output/clear_interface'
-require_relative '../output/render_interface'
-require_relative '../support/geometry'
-require_relative '../support/queue'
-require_relative '../support/terminal'
+require 'vedeu'
+require 'vedeu/models/attributes/line_collection'
+require 'vedeu/models/presentation'
+require 'vedeu/models/style'
+require 'vedeu/output/clear_interface'
+require 'vedeu/output/render_interface'
+require 'vedeu/support/geometry'
+require 'vedeu/support/queue'
+require 'vedeu/support/terminal'
 
 module Vedeu
   class Interface

@@ -1,5 +1,5 @@
-require_relative '../support/terminal'
-require_relative '../../vedeu'
+require 'vedeu/support/terminal'
+require 'vedeu'
 
 module Vedeu
   class Input

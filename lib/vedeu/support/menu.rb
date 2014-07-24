@@ -1,5 +1,5 @@
-require_relative '../../vedeu'
-require_relative 'events'
+require 'vedeu'
+require 'vedeu/support/events'
 
 module Vedeu
   class Menu

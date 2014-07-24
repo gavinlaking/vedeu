@@ -1,5 +1,5 @@
-require_relative 'application'
-require_relative 'configuration'
+require 'vedeu/application'
+require 'vedeu/configuration'
 
 module Vedeu
   class Launcher

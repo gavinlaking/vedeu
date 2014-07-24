@@ -1,4 +1,4 @@
-require_relative '../models/interface'
+require 'vedeu/models/interface'
 
 module Vedeu
   EntityNotFound = Class.new(StandardError)

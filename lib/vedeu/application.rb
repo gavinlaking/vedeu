@@ -1,5 +1,5 @@
-require_relative 'input/input'
-require_relative 'support/terminal'
+require 'vedeu/input/input'
+require 'vedeu/support/terminal'
 
 module Vedeu
   ModeSwitch = Class.new(StandardError)

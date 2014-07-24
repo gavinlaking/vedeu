@@ -1,10 +1,9 @@
-require_relative 'vedeu/instrumentation'
-
-require_relative 'vedeu/support/builder'
-require_relative 'vedeu/support/events'
-require_relative 'vedeu/support/geometry'
-require_relative 'vedeu/support/menu'
-require_relative 'vedeu/launcher'
+require 'vedeu/instrumentation'
+require 'vedeu/support/builder'
+require 'vedeu/support/events'
+require 'vedeu/support/geometry'
+require 'vedeu/support/menu'
+require 'vedeu/launcher'
 
 module Vedeu
   # :nocov:

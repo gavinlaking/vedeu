@@ -1,4 +1,4 @@
-require_relative '../support/esc'
+require 'vedeu/support/esc'
 
 module Vedeu
   module Style

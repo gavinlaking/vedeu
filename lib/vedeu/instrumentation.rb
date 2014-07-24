@@ -2,7 +2,7 @@ require 'date'
 require 'logger'
 require 'ruby-prof'
 
-require_relative '../vedeu'
+require 'vedeu'
 
 module Vedeu
   module Instrumentation

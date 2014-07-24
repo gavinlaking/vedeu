@@ -1,9 +1,9 @@
 require 'json'
 require 'virtus'
 
-require_relative 'attributes/stream_collection'
-require_relative 'presentation'
-require_relative 'style'
+require 'vedeu/models/attributes/stream_collection'
+require 'vedeu/models/presentation'
+require 'vedeu/models/style'
 
 module Vedeu
   class Line

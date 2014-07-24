@@ -1,6 +1,6 @@
 require 'virtus'
 
-require_relative 'colour'
+require 'vedeu/models/colour'
 
 module Vedeu
   module Presentation

@@ -1,5 +1,5 @@
-require_relative 'geometry'
-require_relative 'persistence'
+require 'vedeu/support/geometry'
+require 'vedeu/support/persistence'
 
 module Vedeu
   class Builder
