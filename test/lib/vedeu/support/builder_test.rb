@@ -1,5 +1,5 @@
-require_relative '../../../test_helper'
-require_relative '../../../../lib/vedeu/support/builder'
+require 'test_helper'
+require 'vedeu/support/builder'
 
 module Vedeu
   describe Builder do

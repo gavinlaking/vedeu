@@ -1,5 +1,5 @@
-require_relative '../../../test_helper'
-require_relative '../../../../lib/vedeu/support/menu'
+require 'test_helper'
+require 'vedeu/support/menu'
 
 module Vedeu
   describe Menu do

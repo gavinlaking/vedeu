@@ -1,5 +1,5 @@
-require_relative '../../../test_helper'
-require_relative '../../../../lib/vedeu/support/esc'
+require 'test_helper'
+require 'vedeu/support/esc'
 
 module Vedeu
   describe Esc do

@@ -1,5 +1,5 @@
-require_relative '../../../test_helper'
-require_relative '../../../../lib/vedeu/support/translator'
+require 'test_helper'
+require 'vedeu/support/translator'
 
 module Vedeu
   describe Translator do

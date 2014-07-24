@@ -1,5 +1,5 @@
-require_relative '../../../test_helper'
-require_relative '../../../../lib/vedeu/parsing/parser'
+require 'test_helper'
+require 'vedeu/parsing/parser'
 
 module Vedeu
   describe Parser do

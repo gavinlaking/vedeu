@@ -1,5 +1,5 @@
-require_relative '../../../test_helper'
-require_relative '../../../../lib/vedeu/support/persistence'
+require 'test_helper'
+require 'vedeu/support/persistence'
 
 module Vedeu
   describe Persistence do

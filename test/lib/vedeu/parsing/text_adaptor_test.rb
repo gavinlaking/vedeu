@@ -1,5 +1,5 @@
-require_relative '../../../test_helper'
-require_relative '../../../../lib/vedeu/parsing/text_adaptor'
+require 'test_helper'
+require 'vedeu/parsing/text_adaptor'
 
 module Vedeu
   describe TextAdaptor do

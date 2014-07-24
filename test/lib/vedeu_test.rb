@@ -1,5 +1,5 @@
-require_relative '../test_helper'
-require_relative '../../lib/vedeu'
+require 'test_helper'
+require 'vedeu'
 
 module Vedeu
   describe ClassMethods do

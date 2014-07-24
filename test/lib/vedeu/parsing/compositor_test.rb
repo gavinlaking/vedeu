@@ -1,5 +1,5 @@
-require_relative '../../../test_helper'
-require_relative '../../../../lib/vedeu/parsing/compositor'
+require 'test_helper'
+require 'vedeu/parsing/compositor'
 
 module Vedeu
   describe Compositor do

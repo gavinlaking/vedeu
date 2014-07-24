@@ -1,5 +1,5 @@
-require_relative '../../../test_helper'
-require_relative '../../../../lib/vedeu/models/line'
+require 'test_helper'
+require 'vedeu/models/line'
 
 module Vedeu
   describe Line do

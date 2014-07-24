@@ -1,5 +1,5 @@
-require_relative '../../../test_helper'
-require_relative '../../../../lib/vedeu/support/terminal'
+require 'test_helper'
+require 'vedeu/support/terminal'
 
 module Vedeu
   describe Terminal do

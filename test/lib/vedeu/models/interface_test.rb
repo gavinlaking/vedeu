@@ -1,5 +1,5 @@
-require_relative '../../../test_helper'
-require_relative '../../../../lib/vedeu/models/interface'
+require 'test_helper'
+require 'vedeu/models/interface'
 
 module Vedeu
   describe Interface do

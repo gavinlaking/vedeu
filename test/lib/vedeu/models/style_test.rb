@@ -1,6 +1,6 @@
-require_relative '../../../test_helper'
-require_relative '../../../../lib/vedeu/models/presentation'
-require_relative '../../../../lib/vedeu/models/style'
+require 'test_helper'
+require 'vedeu/models/presentation'
+require 'vedeu/models/style'
 
 module Vedeu
   class TestStyle
@@ -11,75 +11,75 @@ module Vedeu
   describe Style do
     describe '#style' do
       it 'returns an escape sequence for a single style' do
-        test_style = TestStyle.new(style: 'normal')
-        test_style.style.must_equal("\e[24m\e[21m\e[27m")
+        model = TestStyle.new(style: 'normal')
+        model.style.must_equal("\e[24m\e[21m\e[27m")
       end
 
       it 'returns an escape sequence for multiple styles' do
-        test_style = TestStyle.new(style: ['normal', 'underline'])
-        test_style.style.must_equal("\e[24m\e[21m\e[27m\e[4m")
+        model = TestStyle.new(style: ['normal', 'underline'])
+        model.style.must_equal("\e[24m\e[21m\e[27m\e[4m")
       end
 
       it 'returns an empty string for an unknown style' do
-        test_style = TestStyle.new(style: 'unknown')
-        test_style.style.must_equal('')
+        model = TestStyle.new(style: 'unknown')
+        model.style.must_equal('')
       end
 
       it 'has a style attribute' do
-        test_style = TestStyle.new(style: ['normal'])
-        test_style.style.must_equal("\e[24m\e[21m\e[27m")
+        model = TestStyle.new(style: ['normal'])
+        model.style.must_equal("\e[24m\e[21m\e[27m")
       end
 
       it 'returns an empty string for empty or nil' do
-        test_style = TestStyle.new(style: '')
-        test_style.style.must_equal('')
+        model = TestStyle.new(style: '')
+        model.style.must_equal('')
       end
 
       it 'returns an empty string for empty or nil' do
-        test_style = TestStyle.new(style: nil)
-        test_style.style.must_equal('')
+        model = TestStyle.new(style: nil)
+        model.style.must_equal('')
       end
 
       it 'returns an empty string for empty or nil' do
-        test_style = TestStyle.new(style: [])
-        test_style.style.must_equal('')
+        model = TestStyle.new(style: [])
+        model.style.must_equal('')
       end
     end
 
     describe '#style_original' do
       it 'returns an escape sequence for a single style' do
-        test_style = TestStyle.new(style: 'normal')
-        test_style.style_original.must_equal(['normal'])
+        model = TestStyle.new(style: 'normal')
+        model.style_original.must_equal(['normal'])
       end
 
       it 'returns an escape sequence for multiple styles' do
-        test_style = TestStyle.new(style: ['normal', 'underline'])
-        test_style.style_original.must_equal(['normal', 'underline'])
+        model = TestStyle.new(style: ['normal', 'underline'])
+        model.style_original.must_equal(['normal', 'underline'])
       end
 
       it 'returns an empty string for an unknown style' do
-        test_style = TestStyle.new(style: 'unknown')
-        test_style.style_original.must_equal(['unknown'])
+        model = TestStyle.new(style: 'unknown')
+        model.style_original.must_equal(['unknown'])
       end
 
       it 'has a style attribute' do
-        test_style = TestStyle.new(style: ['normal'])
-        test_style.style_original.must_equal(['normal'])
+        model = TestStyle.new(style: ['normal'])
+        model.style_original.must_equal(['normal'])
       end
 
       it 'returns an empty string for empty or nil' do
-        test_style = TestStyle.new(style: '')
-        test_style.style_original.must_equal([''])
+        model = TestStyle.new(style: '')
+        model.style_original.must_equal([''])
       end
 
       it 'returns an empty string for empty or nil' do
-        test_style = TestStyle.new(style: nil)
-        test_style.style_original.must_equal('')
+        model = TestStyle.new(style: nil)
+        model.style_original.must_equal('')
       end
 
       it 'returns an empty string for empty or nil' do
-        test_style = TestStyle.new(style: [])
-        test_style.style_original.must_equal('')
+        model = TestStyle.new(style: [])
+        model.style_original.must_equal('')
       end
     end
   end

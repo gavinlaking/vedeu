@@ -1,5 +1,5 @@
-require_relative '../../test_helper'
-require_relative '../../../lib/vedeu/launcher'
+require 'test_helper'
+require 'vedeu/launcher'
 
 module Vedeu
   describe Launcher do

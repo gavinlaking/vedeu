@@ -1,5 +1,5 @@
-require_relative '../../../test_helper'
-require_relative '../../../../lib/vedeu/input/input'
+require 'test_helper'
+require 'vedeu/input/input'
 
 module Vedeu
   describe Input do

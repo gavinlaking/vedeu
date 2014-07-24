@@ -1,8 +1,7 @@
-require_relative '../../../test_helper'
-require_relative '../../../../lib/vedeu/support/persistence'
-require_relative '../../../../lib/vedeu/output/clear_interface'
-require_relative '../../../../lib/vedeu/output/render_interface'
-require_relative '../../../../lib/vedeu/models/interface'
+require 'test_helper'
+require 'vedeu/output/render_interface'
+require 'vedeu/models/interface'
+require 'vedeu/support/persistence'
 
 module Vedeu
   describe RenderInterface do

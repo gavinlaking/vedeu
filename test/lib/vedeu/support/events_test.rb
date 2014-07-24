@@ -1,5 +1,5 @@
-require_relative '../../../test_helper'
-require_relative '../../../../lib/vedeu/support/events'
+require 'test_helper'
+require 'vedeu/support/events'
 
 module Vedeu
   describe Events do
