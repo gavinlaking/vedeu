@@ -7,6 +7,8 @@ module Vedeu
 
   class Parser
     def self.parse(output = {})
+      return nil if output.nil? || output.empty?
+
       new(output).parse
     end
 
@@ -15,8 +17,6 @@ module Vedeu
     end
 
     def parse
-      return nil if empty?
-
       Compositor.enqueue(parsed_output)
     end
 
@@ -41,10 +41,6 @@ module Vedeu
 
     def json?
       output.is_a?(String)
-    end
-
-    def empty?
-      output.nil? || output.empty?
     end
   end
 end
