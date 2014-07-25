@@ -3,6 +3,7 @@ require 'vedeu/support/builder'
 require 'vedeu/support/events'
 require 'vedeu/support/geometry'
 require 'vedeu/support/menu'
+require 'vedeu/parsing/parser'
 require 'vedeu/launcher'
 
 module Vedeu
@@ -45,6 +46,10 @@ module Vedeu
 
   def self.log(message)
     Vedeu::Instrumentation::Log.logger.debug(message)
+  end
+
+  def self.error(exception)
+    Vedeu::Instrumentation::Log.error(exception)
   end
 
   def self.included(receiver)
