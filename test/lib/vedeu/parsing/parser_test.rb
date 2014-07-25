@@ -24,7 +24,7 @@ module Vedeu
       end
 
       it 'raises an exception when the output is anything else' do
-        proc { Parser.parse([:invalid]) }.must_raise(ParseError)
+        proc { Parser.parse(:invalid) }.must_raise(ParseError)
       end
     end
   end
