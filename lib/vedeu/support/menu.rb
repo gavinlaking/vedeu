@@ -35,13 +35,13 @@ module Vedeu
     end
 
     def current_item
-      [@current, @collection[@current]]
+      @collection[@current]
     end
 
     def selected_item
       return nil unless @selected
 
-      [@selected, @collection[@selected]]
+      @collection[@selected]
     end
 
     def items

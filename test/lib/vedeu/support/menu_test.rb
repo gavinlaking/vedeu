@@ -31,14 +31,14 @@ module Vedeu
     end
 
     describe '#current_item' do
-      it 'returns a tuple containing the current index and item' do
-        menu.current_item.must_equal([0, 'hydrogen'])
+      it 'returns the current item from the collection' do
+        menu.current_item.must_equal('hydrogen')
       end
 
-      it 'when the current item has changed, the tuple will change' do
+      it 'when the current item has changed' do
         menu.next_item
         menu.next_item
-        menu.current_item.must_equal([2, 'nitrogen'])
+        menu.current_item.must_equal('nitrogen')
       end
     end
 
@@ -47,10 +47,10 @@ module Vedeu
         menu.selected_item.must_equal(nil)
       end
 
-      it 'returns a tuple containing the selected index and item' do
+      it 'returns the selected item from the collection' do
         menu.next_item
         menu.select_item
-        menu.selected_item.must_equal([1, 'carbon'])
+        menu.selected_item.must_equal('carbon')
       end
     end
 
