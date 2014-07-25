@@ -48,7 +48,7 @@ module Vedeu
     attr_reader :handlers
 
     def log(message)
-      Vedeu.log(sprintf("%42s%s", '', message))
+      Vedeu.log(sprintf("%42s%s", '', message)) if Vedeu.debug?
     end
   end
 end

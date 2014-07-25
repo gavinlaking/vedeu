@@ -1,6 +1,6 @@
 require 'date'
 require 'logger'
-require 'ruby-prof'
+# require 'ruby-prof'
 
 require 'vedeu'
 
@@ -17,8 +17,10 @@ module Vedeu
       end
 
       def self.error(exception)
-        logger.debug(exception.message + "\n" +
-                     exception.backtrace.join("\n"))
+        backtrace = exception.backtrace.join("\n")
+        message   = exception.message + "\n" + backtrace
+
+        logger.debug(message)
       end
 
       private
@@ -28,34 +30,34 @@ module Vedeu
       end
     end
 
-    class Profile
-      def self.call(filename = 'profile.html', &block)
-        new(filename).profile(&block)
-      end
+    # class Profile
+    #   def self.call(filename = 'profile.html', &block)
+    #     new(filename).profile(&block)
+    #   end
 
-      def initialize(filename)
-        @filename = filename
-      end
+    #   def initialize(filename)
+    #     @filename = filename
+    #   end
 
-      def profile(&block)
-        RubyProf.start
+    #   def profile(&block)
+    #     RubyProf.start
 
-        yield
+    #     yield
 
-        result = RubyProf.stop.eliminate_methods!([/^Array/, /^Hash/])
+    #     result = RubyProf.stop.eliminate_methods!([/^Array/, /^Hash/])
 
-        File.open(filename, 'w') do |file|
-          RubyProf::CallStackPrinter.new(result).print(file)
-          RubyProf::GraphPrinter.new(result).print(file)
-        end
-      end
+    #     File.open(filename, 'w') do |file|
+    #       RubyProf::CallStackPrinter.new(result).print(file)
+    #       RubyProf::GraphPrinter.new(result).print(file)
+    #     end
+    #   end
 
-      private
+    #   private
 
-      def filename
-        Vedeu.root_path + '/tmp/' + @filename
-      end
-    end
+    #   def filename
+    #     Vedeu.root_path + '/tmp/' + @filename
+    #   end
+    # end
 
     class Trace
       def self.call(options = {})

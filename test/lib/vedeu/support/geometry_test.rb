@@ -44,12 +44,12 @@ module Vedeu
     end
 
     describe '#terminal_height' do
-      it 'raises an exception if the value is less than 1' do
+      it 'raises an exception when the value is less than 1' do
         geometry = Geometry.new({ height: 6, width: 18, terminal_height: -2 })
         proc { geometry.terminal_height }.must_raise(OutOfBoundsError)
       end
 
-      it 'raises an exception if the value is greater than the terminal height' do
+      it 'raises an exception when the value is greater than the terminal height' do
         console = IO.console
         console.stub :winsize, [25, 80] do
           geometry = Geometry.new({ height: 6, width: 18, terminal_height: 30 })
@@ -65,7 +65,7 @@ module Vedeu
         end
       end
 
-      it 'returns the default height if not set' do
+      it 'returns the default height when not set' do
         console = IO.console
         console.stub :winsize, [25, 80] do
           geometry = Geometry.new({ height: 6, width: 18 })
@@ -75,12 +75,12 @@ module Vedeu
     end
 
     describe '#height' do
-      it 'raises an exception if the value is less than 1' do
+      it 'raises an exception when the value is less than 1' do
         geometry = Geometry.new({ height: -6, width: 18 })
         proc { geometry.height }.must_raise(OutOfBoundsError)
       end
 
-      it 'raises an exception if the value is greater than the terminal height' do
+      it 'raises an exception when the value is greater than the terminal height' do
         console = IO.console
         console.stub :winsize, [25, 80] do
           geometry = Geometry.new({ height: 30, width: 18 })
@@ -95,12 +95,12 @@ module Vedeu
     end
 
     describe '#y' do
-      it 'raises an exception if the value is less than 1' do
+      it 'raises an exception when the value is less than 1' do
         geometry = Geometry.new({ height: 6, width: 18, y: -2 })
         proc { geometry.y }.must_raise(OutOfBoundsError)
       end
 
-      it 'raises an exception if the value is greater than the terminal height' do
+      it 'raises an exception when the value is greater than the terminal height' do
         console = IO.console
         console.stub :winsize, [25, 80] do
           geometry = Geometry.new({ height: 6, width: 18, y: 30 })
@@ -113,19 +113,19 @@ module Vedeu
         geometry.y.must_equal(6)
       end
 
-      it 'returns 1 if not set' do
+      it 'returns 1 when not set' do
         geometry = Geometry.new({ height: 6, width: 18 })
         geometry.y.must_equal(1)
       end
     end
 
     describe '#terminal_width' do
-      it 'raises an exception if the value is less than 1' do
+      it 'raises an exception when the value is less than 1' do
         geometry = Geometry.new({ height: 6, width: 18, terminal_width: -2 })
         proc { geometry.terminal_width }.must_raise(OutOfBoundsError)
       end
 
-      it 'raises an exception if the value is greater than the terminal width' do
+      it 'raises an exception when the value is greater than the terminal width' do
         console = IO.console
         console.stub :winsize, [25, 80] do
           geometry = Geometry.new({ height: 6, width: 18, terminal_width: 85 })
@@ -141,7 +141,7 @@ module Vedeu
         end
       end
 
-      it 'returns the default width if not set' do
+      it 'returns the default width when not set' do
         console = IO.console
         console.stub :winsize, [25, 80] do
           geometry = Geometry.new({ height: 6, width: 18 })
@@ -151,12 +151,12 @@ module Vedeu
     end
 
     describe '#width' do
-      it 'raises an exception if the value is less than 1' do
+      it 'raises an exception when the value is less than 1' do
         geometry = Geometry.new({ height: 6, width: -18 })
         proc { geometry.width }.must_raise(OutOfBoundsError)
       end
 
-      it 'raises an exception if the value is greater than the terminal width' do
+      it 'raises an exception when the value is greater than the terminal width' do
         console = IO.console
         console.stub :winsize, [25, 80] do
           geometry = Geometry.new({ height: 6, width: 85 })
@@ -171,12 +171,12 @@ module Vedeu
     end
 
     describe '#x' do
-      it 'raises an exception if the value is less than 1' do
+      it 'raises an exception when the value is less than 1' do
         geometry = Geometry.new({ height: 6, width: 18, x: -2 })
         proc { geometry.x }.must_raise(OutOfBoundsError)
       end
 
-      it 'raises an exception if the value is greater than the terminal width' do
+      it 'raises an exception when the value is greater than the terminal width' do
         console = IO.console
         console.stub :winsize, [25, 80] do
           geometry = Geometry.new({ height: 6, width: 18, x: 85 })
@@ -189,7 +189,7 @@ module Vedeu
         geometry.x.must_equal(6)
       end
 
-      it 'returns 1 if not set' do
+      it 'returns 1 when not set' do
         geometry = Geometry.new({ height: 6, width: 18 })
         geometry.x.must_equal(1)
       end
@@ -201,7 +201,7 @@ module Vedeu
         geometry.centred.must_equal(false)
       end
 
-      it 'sets the centred attribute to true if not set' do
+      it 'sets the centred attribute to true when not set' do
         geometry = Geometry.new({ height: 6, width: 18 })
         geometry.centred.must_equal(true)
       end

@@ -8,7 +8,7 @@ module Vedeu
         Esc.background_colour.must_equal("\e[48;5;16m")
       end
 
-      it 'returns an empty string if the value is empty' do
+      it 'returns an empty string when the value is empty' do
         Esc.background_colour('').must_equal('')
       end
     end
@@ -18,7 +18,7 @@ module Vedeu
         Esc.foreground_colour.must_equal("\e[38;5;231m")
       end
 
-      it 'returns an empty string if the value is empty' do
+      it 'returns an empty string when the value is empty' do
         Esc.foreground_colour('').must_equal('')
       end
     end

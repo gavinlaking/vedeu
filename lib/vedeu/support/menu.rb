@@ -35,13 +35,13 @@ module Vedeu
     end
 
     def current_item
-      [@current, @collection[@current]]
+      @collection[@current]
     end
 
     def selected_item
       return nil unless @selected
 
-      [@selected, @collection[@selected]]
+      @collection[@selected]
     end
 
     def items
@@ -87,37 +87,37 @@ module Vedeu
     def top_item
       @current = 0
 
-      self
+      items
     end
 
     def bottom_item
       @current = last
 
-      self
+      items
     end
 
     def next_item
       @current += 1 if @current < last
 
-      self
+      items
     end
 
     def prev_item
       @current -= 1 if @current > 0
 
-      self
+      items
     end
 
     def select_item
       @selected = @current
 
-      self
+      items
     end
 
     def deselect_item
       @selected = nil
 
-      self
+      items
     end
 
     def last
