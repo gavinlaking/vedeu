@@ -1,4 +1,4 @@
-require 'vedeu/parsing/compositor'
+require 'vedeu/models/composition'
 require 'vedeu/parsing/hash_parser'
 require 'vedeu/parsing/json_parser'
 require 'vedeu/parsing/menu_parser'
@@ -18,7 +18,7 @@ module Vedeu
     end
 
     def parse
-      Compositor.enqueue(parsed_output)
+      Composition.enqueue(parsed_output)
     end
 
     private

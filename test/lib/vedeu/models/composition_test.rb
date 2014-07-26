@@ -4,6 +4,42 @@ require 'vedeu/support/persistence'
 
 module Vedeu
   describe Composition do
+    describe '.enqueue' do
+      it 'enqueues the interfaces for rendering' do
+        attributes = {
+          interfaces: [
+            {
+              name: 'Composition.enqueue_1',
+              width: 5,
+              height: 5,
+              lines: {
+                streams: {
+                  text: 'bd459118e6175689e4394e242debc2ae'
+                }
+              }
+            }, {
+              name: 'Composition.enqueue_2',
+              width: 5,
+              height: 5,
+              lines: {
+                streams: {
+                  text: '837acb2cb2ea3ef359257851142a7830'
+                }
+              }
+            }
+          ]
+        }
+
+        Composition.enqueue(attributes)
+        Persistence
+          .query('Composition.enqueue_1').dequeue
+          .must_match(/bd459118e6175689e4394e242debc2ae/)
+        Persistence
+          .query('Composition.enqueue_2').dequeue
+          .must_match(/837acb2cb2ea3ef359257851142a7830/)
+      end
+    end
+
     describe '#interfaces' do
       it 'returns a collection of interfaces' do
         Composition.new({

@@ -22,9 +22,6 @@ Colour
 Composition
   InterfaceCollection
 
-Compositor
-  Composition
-
 Configuration
 
 Geometry
@@ -74,7 +71,7 @@ LineCollection
 Menu
 
 Parser
-  Compositor
+  Composition
   HashParser
   JSONParser
 
@@ -143,51 +140,50 @@ Launcher
           Translator
     Process
       Parser
-        Compositor
-          Composition
-            InterfaceCollection
-              Persistence
-                Interface
-                  ClearInterface
-                  Geometry
-                    Esc
-                      Translator
-                    Terminal
-                      Esc
-                        Translator
-                  LineCollection
-                    Collection
-                    Line
-                      Presentation
-                        Colour
-                          Esc
-                            Translator
-                      StreamCollection
-                        Collection
-                        Stream
-                          Presentation
-                            Colour
-                              Esc
-                                Translator
-                          Style
-                            Esc
-                              Translator
-                      Style
-                        Esc
-                          Translator
-                  Presentation
-                    Colour
-                      Esc
-                        Translator
-                  Queue
-                  RenderInterface
-                    ClearInterface
-                  Style
-                    Esc
-                      Translator
+        Composition
+          InterfaceCollection
+            Persistence
+              Interface
+                ClearInterface
+                Geometry
+                  Esc
+                    Translator
                   Terminal
                     Esc
                       Translator
+                LineCollection
+                  Collection
+                  Line
+                    Presentation
+                      Colour
+                        Esc
+                          Translator
+                    StreamCollection
+                      Collection
+                      Stream
+                        Presentation
+                          Colour
+                            Esc
+                              Translator
+                        Style
+                          Esc
+                            Translator
+                    Style
+                      Esc
+                        Translator
+                Presentation
+                  Colour
+                    Esc
+                      Translator
+                Queue
+                RenderInterface
+                  ClearInterface
+                Style
+                  Esc
+                    Translator
+                Terminal
+                  Esc
+                    Translator
         HashParser
           TextAdaptor
         JSONParser
