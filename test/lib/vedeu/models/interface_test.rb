@@ -68,14 +68,14 @@ module Vedeu
         Queue.reset
         interface = Interface.new({
           name:   'Interface#enqueue',
-          width:  5,
+          width:  8,
           height: 2,
           lines:  [ { streams: { text: 'a8f39' } } ]
         })
         interface.enqueue
         interface.dequeue.must_equal(
-          "\e[1;1H     \e[1;1H" \
-          "\e[2;1H     \e[2;1H" \
+          "\e[1;1H        \e[1;1H" \
+          "\e[2;1H        \e[2;1H" \
           "\e[1;1Ha8f39"
         )
       end
@@ -140,7 +140,7 @@ module Vedeu
             foreground: '#ff0000',
             background: '#000000'
           },
-          width:  8,
+          width:  11,
           height: 3
         }
         interface = Interface.new(attributes)
@@ -149,9 +149,9 @@ module Vedeu
         Terminal.stub(:output, nil) do
           interface.refresh.must_equal(
             "\e[38;5;196m\e[48;5;16m" \
-            "\e[1;1H        \e[1;1H" \
-            "\e[2;1H        \e[2;1H" \
-            "\e[3;1H        \e[3;1H" \
+            "\e[1;1H           \e[1;1H" \
+            "\e[2;1H           \e[2;1H" \
+            "\e[3;1H           \e[3;1H" \
             "\e[1;1H#refresh" \
             "\e[2;1H#refresh" \
             "\e[3;1H#refresh"
@@ -167,14 +167,14 @@ module Vedeu
             foreground: '#ff0000',
             background: '#000000'
           },
-          width:  8,
+          width:  11,
           height: 3
         }
         interface = Interface.new(attributes)
         interface.current = "\e[38;5;196m\e[48;5;16m" \
-                            "\e[1;1H        \e[1;1H" \
-                            "\e[2;1H        \e[2;1H" \
-                            "\e[3;1H        \e[3;1H" \
+                            "\e[1;1H           \e[1;1H" \
+                            "\e[2;1H           \e[2;1H" \
+                            "\e[3;1H           \e[3;1H" \
                             "\e[1;1H#refresh" \
                             "\e[2;1H#refresh" \
                             "\e[3;1H#refresh"
@@ -182,9 +182,9 @@ module Vedeu
         Terminal.stub(:output, nil) do
           interface.refresh.must_equal(
             "\e[38;5;196m\e[48;5;16m" \
-            "\e[1;1H        \e[1;1H" \
-            "\e[2;1H        \e[2;1H" \
-            "\e[3;1H        \e[3;1H" \
+            "\e[1;1H           \e[1;1H" \
+            "\e[2;1H           \e[2;1H" \
+            "\e[3;1H           \e[3;1H" \
             "\e[1;1H#refresh" \
             "\e[2;1H#refresh" \
             "\e[3;1H#refresh"

@@ -28,13 +28,13 @@ module Vedeu
     end
 
     describe '#to_json' do
-      it 'returns an String' do
+      it 'returns a String' do
         line.to_json.must_equal("{\"colour\":{\"foreground\":\"#ff0000\",\"background\":\"#000000\"},\"style\":[\"normal\"],\"streams\":[]}")
       end
     end
 
     describe '#to_s' do
-      it 'returns an String' do
+      it 'returns a String' do
         line.to_s.must_equal(
           "\e[38;5;196m\e[48;5;16m" \
           "\e[24m\e[21m\e[27m"

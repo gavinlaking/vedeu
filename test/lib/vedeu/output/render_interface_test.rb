@@ -12,18 +12,29 @@ module Vedeu
         interface = Interface.new({
           name:   '.call',
           width:  32,
-          height: 2,
+          height: 3,
           lines:  'RenderInterface.call',
           lines:  [
-            { streams: { text: '1d194f184a0b937c71bfcbdf13511992' } },
-            { streams: { text: '8787092f681b149d645df64e73d3cb37' } }
+            {
+              streams: [{ text: 'this is the first' }]
+            }, {
+              streams: { text: 'this is the second and it is long' }
+            }, {
+              streams: [
+                { text: 'this is the third, ' },
+                { text: 'it is even longer '  },
+                { text: 'and still truncated' }
+              ]
+            }
           ]
         })
         RenderInterface.call(interface).must_equal(
           "\e[1;1H                                \e[1;1H" \
           "\e[2;1H                                \e[2;1H" \
-          "\e[1;1H1d194f184a0b937c71bfcbdf13511992" \
-          "\e[2;1H8787092f681b149d645df64e73d3cb37"
+          "\e[3;1H                                \e[3;1H" \
+          "\e[1;1Hthis is the first" \
+          "\e[2;1Hthis is the second and it is " \
+          "\e[3;1Hthis is the third, it is even"
         )
       end
     end
