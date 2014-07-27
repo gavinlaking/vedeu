@@ -22,7 +22,6 @@ module Vedeu
         on(:menu_selected) { selected_item }
         on(:menu_current)  { current_item  }
         on(:menu_items)    { items         }
-        on(:menu_render)   { render        }
       end
     end
 
@@ -64,24 +63,8 @@ module Vedeu
       items
     end
 
-    def render
-      lines = []
-      items.each do |(sel, cur, item)|
-        if sel && cur
-          lines << "*> #{item}"
-
-        elsif cur
-          lines << " > #{item}"
-
-        elsif sel
-          lines << "*  #{item}"
-
-        else
-          lines << "   #{item}"
-
-        end
-      end
-      lines
+    def view
+      items[@current, @collection.size]
     end
 
     def top_item
