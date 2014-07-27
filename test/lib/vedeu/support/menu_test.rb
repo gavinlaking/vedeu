@@ -55,7 +55,7 @@ module Vedeu
     end
 
     describe '#items' do
-      it 'returns a tuple' do
+      it 'returns a collection of items' do
         menu.items.must_equal(
           [
             [false, true,  'hydrogen'],
@@ -66,7 +66,8 @@ module Vedeu
         )
       end
 
-      it 'returns a tuple when the current has changed' do
+      it 'returns a collection of items when the current has ' \
+         'changed' do
         menu.next_item
         menu.items.must_equal(
           [
@@ -78,7 +79,7 @@ module Vedeu
         )
       end
 
-      it 'returns a tuple when an item is selected' do
+      it 'returns a collection of items when an item is selected' do
         menu.next_item
         menu.select_item
         menu.items.must_equal(
@@ -91,8 +92,8 @@ module Vedeu
         )
       end
 
-      it 'returns a tuple when the current has changed and an item ' \
-         'is selected' do
+      it 'returns a collection of items when the current has ' \
+         'changed and an item is selected' do
         menu.next_item
         menu.select_item
         menu.next_item
@@ -108,55 +109,16 @@ module Vedeu
       end
     end
 
-    describe '#render' do
-      it 'returns a tuple' do
-        menu.render.must_equal(
+    describe '#view' do
+      it 'returns a collection of items when the start position ' \
+         'has changed' do
+        menu.top_item
+        menu.next_item
+        menu.view.must_equal(
           [
-            ' > hydrogen',
-            '   carbon',
-            '   nitrogen',
-            '   oxygen'
-          ]
-        )
-      end
-
-      it 'returns a tuple when the current has changed' do
-        menu.next_item
-        menu.render.must_equal(
-          [
-            '   hydrogen',
-            ' > carbon',
-            '   nitrogen',
-            '   oxygen'
-          ]
-        )
-      end
-
-      it 'returns a tuple when an item is selected' do
-        menu.next_item
-        menu.select_item
-        menu.render.must_equal(
-          [
-            '   hydrogen',
-            '*> carbon',
-            '   nitrogen',
-            '   oxygen'
-          ]
-        )
-      end
-
-      it 'returns a tuple when the current has changed and an item ' \
-         'is selected' do
-        menu.next_item
-        menu.select_item
-        menu.next_item
-        menu.next_item
-        menu.render.must_equal(
-          [
-            '   hydrogen',
-            '*  carbon',
-            '   nitrogen',
-            ' > oxygen'
+            [false, true, "carbon"],
+            [false, false, "nitrogen"],
+            [false, false, "oxygen"]
           ]
         )
       end
