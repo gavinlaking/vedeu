@@ -16,6 +16,12 @@ And then execute:
 
     $ bundle
 
+
+## Example
+
+Have a look at: https://github.com/gavinlaking/playa
+
+
 ## Usage
 
 Expect proper documentation soon!
