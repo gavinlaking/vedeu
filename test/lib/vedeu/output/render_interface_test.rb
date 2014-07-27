@@ -25,6 +25,8 @@ module Vedeu
                 { text: 'it is even longer '  },
                 { text: 'and still truncated' }
               ]
+            }, {
+              streams: [{ text: 'this should not render' }]
             }
           ]
         })

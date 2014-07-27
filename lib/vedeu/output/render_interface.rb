@@ -13,8 +13,10 @@ module Vedeu
     def render
       out = [ClearInterface.call(interface)]
       processed_lines.each_with_index do |line, index|
-        out << interface.origin(index)
-        out << line.to_s
+        if index + 1 <= height
+          out << interface.origin(index)
+          out << line.to_s
+        end
       end
       out.join
     end
@@ -24,7 +26,7 @@ module Vedeu
     attr_reader :interface
 
     def processed_lines
-      lines.each do |line|
+      lines.each_with_index do |line|
         if line.streams.any?
           processed_streams = []
           line_length       = 0
@@ -50,6 +52,10 @@ module Vedeu
 
     def lines
       interface.lines
+    end
+
+    def height
+      interface.height
     end
 
     def width
