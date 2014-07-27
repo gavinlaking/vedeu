@@ -35,7 +35,7 @@ module Vedeu
 
             if (line_length += stream.text.size) >= width
               remainder = width - line_length
-              stream.text = truncate(stream.text, (remainder - 3))
+              stream.text = truncate(stream.text, remainder)
             end
 
             processed_streams << stream
