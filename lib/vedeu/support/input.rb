@@ -7,6 +7,8 @@ module Vedeu
       new.capture
     end
 
+    def initialize; end
+
     def capture
       Vedeu.trigger(:_keypress_, keypress)
     end
