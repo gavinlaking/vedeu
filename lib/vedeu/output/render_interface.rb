@@ -1,5 +1,3 @@
-require 'vedeu/output/clear_interface'
-
 module Vedeu
   class RenderInterface
     def self.call(interface)
@@ -11,7 +9,7 @@ module Vedeu
     end
 
     def render
-      out = [ClearInterface.call(interface)]
+      out = [interface.clear]
       processed_lines.each_with_index do |line, index|
         if index + 1 <= height
           out << interface.origin(index)
