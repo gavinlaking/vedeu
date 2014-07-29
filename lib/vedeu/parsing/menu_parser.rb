@@ -1,10 +1,5 @@
 module Vedeu
   class MenuParser
-    # Convert a Vedeu::Menu into an interface view.
-    #
-    # @param output [Hash] a key/value pair.
-    #
-    # @return [Hash]
     def self.parse(output = {})
       new(output).parse
     end
