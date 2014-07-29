@@ -1,11 +1,16 @@
+require 'erb'
+require 'vedeu/output/helpers'
+
 module Vedeu
   class Template
-    def self.parse(object, path)
-      new(object, path).parse
+    include Helpers
+
+    def self.parse(path, object)
+      new(path, object).parse
     end
 
-    def initialize(object, path)
-      @object, @path = object, path
+    def initialize(path, object)
+      @path, @object = path, object
     end
 
     def parse
