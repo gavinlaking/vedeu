@@ -1,40 +1,43 @@
 require 'erb'
 require 'vedeu/support/helpers'
+require 'vedeu/parsing/text_adaptor'
 
 module Vedeu
   class ERBParser
     include Helpers
 
-    def self.parse(attributes = {})
-      new(attributes).parse
+    def self.parse(object)
+      new(object).parse
     end
 
-    def initialize(attributes = {})
-      @attributes = attributes
+    def initialize(object)
+      @object = object
     end
 
     def parse
-      ERB.new(template, nil, '-', "@output").result(get_binding)
+      {
+        interfaces: [{ name: interface, lines: TextAdaptor.adapt(erb_output) }]
+      }
     end
 
     private
 
-    attr_reader :attributes
+    attr_reader :object
 
-    def template
-      File.read(template_path)
+    def erb_output
+      ERB.new(template, nil, '-', "@output").result(get_binding)
     end
 
-    def template_path
-      attributes.fetch(:path)
+    def interface
+      object.interface
+    end
+
+    def template
+      File.read(object.path)
     end
 
     def get_binding
       object.send(:binding)
-    end
-
-    def object
-      attributes.fetch(:object)
     end
   end
 end
