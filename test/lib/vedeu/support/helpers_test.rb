@@ -1,5 +1,5 @@
 require 'test_helper'
-require 'vedeu/output/helpers'
+require 'vedeu/support/helpers'
 
 module Vedeu
   class TestHelpers
