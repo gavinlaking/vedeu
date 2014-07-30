@@ -2,12 +2,12 @@ require 'vedeu/parsing/text_adaptor'
 
 module Vedeu
   class HashParser
-    def self.parse(output = {})
-      new(output).parse
+    def self.parse(attributes)
+      new(attributes).parse
     end
 
-    def initialize(output = {})
-      @output = output
+    def initialize(attributes)
+      @attributes = attributes
     end
 
     def parse
@@ -16,7 +16,7 @@ module Vedeu
 
     private
 
-    attr_reader :output
+    attr_reader :attributes
 
     def interfaces
       stringified_keys.map do |name, content|
@@ -28,7 +28,7 @@ module Vedeu
     end
 
     def stringified_keys
-      output.inject({}) { |a, (k, v)| a[k.to_s] = v; a }
+      attributes.inject({}) { |a, (k, v)| a[k.to_s] = v; a }
     end
   end
 end
