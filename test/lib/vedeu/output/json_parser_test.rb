@@ -1,5 +1,5 @@
 require 'test_helper'
-require 'vedeu/parsing/json_parser'
+require 'vedeu/output/json_parser'
 
 module Vedeu
   describe JSONParser do

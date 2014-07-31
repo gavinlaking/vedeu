@@ -1,5 +1,5 @@
 require 'test_helper'
-require 'vedeu/parsing/erb_parser'
+require 'vedeu/output/erb_parser'
 require 'vedeu/support/helpers'
 
 class UserView

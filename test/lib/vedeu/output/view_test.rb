@@ -1,5 +1,5 @@
 require 'test_helper'
-require 'vedeu/parsing/view'
+require 'vedeu/output/view'
 
 module Vedeu
   describe View do

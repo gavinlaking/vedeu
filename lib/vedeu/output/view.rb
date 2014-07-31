@@ -1,9 +1,9 @@
 require 'vedeu/models/composition'
-require 'vedeu/parsing/erb_parser'
-require 'vedeu/parsing/raw_parser'
-require 'vedeu/parsing/json_parser'
-require 'vedeu/parsing/menu_parser'
-require 'vedeu/parsing/raw_parser'
+require 'vedeu/output/erb_parser'
+require 'vedeu/output/raw_parser'
+require 'vedeu/output/json_parser'
+require 'vedeu/output/menu_parser'
+require 'vedeu/output/raw_parser'
 
 module Vedeu
   class View

@@ -1,6 +1,6 @@
 require 'erb'
 require 'vedeu/support/helpers'
-require 'vedeu/parsing/text_adaptor'
+require 'vedeu/output/text_adaptor'
 
 module Vedeu
   class ERBParser

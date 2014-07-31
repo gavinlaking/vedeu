@@ -1,5 +1,5 @@
 require 'test_helper'
-require 'vedeu/parsing/menu_parser'
+require 'vedeu/output/menu_parser'
 
 module Vedeu
   describe MenuParser do

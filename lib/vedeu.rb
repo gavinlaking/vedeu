@@ -3,7 +3,7 @@ require 'vedeu/support/builder'
 require 'vedeu/support/events'
 require 'vedeu/support/geometry'
 require 'vedeu/support/menu'
-require 'vedeu/parsing/view'
+require 'vedeu/output/view'
 require 'vedeu/launcher'
 
 module Vedeu

@@ -1,4 +1,4 @@
-require 'vedeu/parsing/text_adaptor'
+require 'vedeu/output/text_adaptor'
 
 module Vedeu
   class RawParser

@@ -1,5 +1,5 @@
 require 'test_helper'
-require 'vedeu/parsing/raw_parser'
+require 'vedeu/output/raw_parser'
 
 module Vedeu
   describe RawParser do
