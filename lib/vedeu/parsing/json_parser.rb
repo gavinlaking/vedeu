@@ -2,22 +2,22 @@ require 'json'
 
 module Vedeu
   class JSONParser
-    def self.parse(output)
-      new(output).parse
+    def self.parse(json)
+      new(json).parse
     end
 
-    def initialize(output)
-      @output = output
+    def initialize(json)
+      @json = json
     end
 
     def parse
-      JSON.load(output, nil, symbolize_names: true)
+      JSON.load(json, nil, symbolize_names: true)
     rescue JSON::ParserError
       {}
     end
 
     private
 
-    attr_reader :output
+    attr_reader :json
   end
 end
