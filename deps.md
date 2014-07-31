@@ -35,7 +35,7 @@ Esc
 
 Events
 
-HashParser
+RawParser
   TextAdaptor
 
 Input
@@ -77,7 +77,7 @@ MenuParser
 Parser
   Composition
   ERBParser
-  HashParser
+  RawParser
   JSONParser
   MenuParser
 
@@ -192,7 +192,7 @@ Launcher
                     Translator
         ERBParser
           Template
-        HashParser
+        RawParser
           TextAdaptor
         JSONParser
         MenuParser

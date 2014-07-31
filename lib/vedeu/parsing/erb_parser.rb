@@ -25,7 +25,7 @@ module Vedeu
     attr_reader :object
 
     def erb_output
-      ERB.new(template, nil, '-', "@output").result(get_binding)
+      ERB.new(template, nil, '-').result(get_binding)
     end
 
     def interface

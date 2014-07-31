@@ -1,7 +1,7 @@
 require 'vedeu/parsing/text_adaptor'
 
 module Vedeu
-  class HashParser
+  class RawParser
     def self.parse(attributes)
       new(attributes).parse
     end

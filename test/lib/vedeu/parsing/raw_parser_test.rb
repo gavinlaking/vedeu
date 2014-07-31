@@ -1,11 +1,11 @@
 require 'test_helper'
-require 'vedeu/parsing/hash_parser'
+require 'vedeu/parsing/raw_parser'
 
 module Vedeu
-  describe HashParser do
+  describe RawParser do
     describe '.parse' do
       it 'returns a Hash when the output is content for multiple interfaces' do
-        HashParser.parse({
+        RawParser.parse({
           test:  'Some content...',
           dummy: 'More content...'
         }).must_equal({
@@ -30,7 +30,7 @@ module Vedeu
       end
 
       it 'returns a Hash when the output is content for a single interface' do
-        HashParser.parse({
+        RawParser.parse({
           dummy: 'Some content...'
         }).must_equal({
           interfaces: [
@@ -47,7 +47,7 @@ module Vedeu
       end
 
       it 'returns a Hash when the output is empty' do
-        HashParser.parse({}).must_equal({ interfaces: [] })
+        RawParser.parse({}).must_equal({ interfaces: [] })
       end
     end
   end

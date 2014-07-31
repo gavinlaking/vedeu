@@ -1,8 +1,9 @@
 require 'vedeu/models/composition'
 require 'vedeu/parsing/erb_parser'
-require 'vedeu/parsing/hash_parser'
+require 'vedeu/parsing/raw_parser'
 require 'vedeu/parsing/json_parser'
 require 'vedeu/parsing/menu_parser'
+require 'vedeu/parsing/raw_parser'
 
 module Vedeu
   class View
@@ -30,15 +31,16 @@ module Vedeu
       {
         erb:     ERBParser,
         json:    JSONParser,
-        hash:    HashParser,
+        hash:    RawParser,
         menu:    MenuParser,
+        raw:     RawRarser,
       }.fetch(type)
     end
   end
 end
 
 # ERBParser:  { :interface, :path, :object }
-# HashParser: { 'interface_name' => String|Array }
+# RawParser: { 'interface_name' => String|Array }
 #             { :interface_name  => String|Array }
 # JSONParser: output (string which is converted into a hash)
 # MenuParser: ['interface_name', Vedeu::Menu instance]

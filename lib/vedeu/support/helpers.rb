@@ -1,4 +1,5 @@
 require 'vedeu/support/esc'
+require 'vedeu/models/colour'
 
 module Vedeu
   module Helpers
