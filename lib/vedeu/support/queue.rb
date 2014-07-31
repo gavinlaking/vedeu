@@ -16,20 +16,8 @@ module Vedeu
       store.size > 0
     end
 
-    def entries
-      store
-    end
-
-    def size
-      store.size
-    end
-
     def reset
       store.clear
-    end
-
-    def view
-      store.inspect
     end
 
     private

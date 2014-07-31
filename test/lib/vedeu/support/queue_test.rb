@@ -17,8 +17,9 @@ module Vedeu
     end
 
     describe '.enqueue' do
-      it 'contains the enqueued item' do
-        Queue.enqueue(:result).size.must_equal(1)
+      it 'stores an item on the queue' do
+        Queue.enqueue(:result)
+        Queue.enqueued?.must_equal(true)
       end
     end
 
@@ -33,43 +34,10 @@ module Vedeu
       end
     end
 
-    describe '.entries' do
-      it 'returns an empty collection when the queue is empty' do
-        Queue.entries.must_equal([])
-      end
-
-      it 'returns all the enqueue items when the queue is not empty' do
-        Queue.enqueue(:queued_entry)
-        Queue.entries.must_equal([:queued_entry])
-      end
-    end
-
-    describe '.size' do
-      it 'returns the size of the queue when the queue is empty' do
-        Queue.size.must_equal(0)
-      end
-
-      it 'returns the size of the queue when the queue is not empty' do
-        Queue.enqueue(:result).enqueue(:result)
-        Queue.size.must_equal(2)
-      end
-    end
-
     describe '.clear' do
       it 'returns an empty array' do
         Queue.enqueue(:result)
         Queue.reset.must_be_empty
-      end
-    end
-
-    describe '.view' do
-      it 'returns the queue as a String when the queue is empty' do
-        Queue.view.must_equal('[]')
-      end
-
-      it 'returns the queue as a String when the queue is not empty' do
-        Queue.enqueue(:result)
-        Queue.view.must_equal('[:result]')
       end
     end
   end
