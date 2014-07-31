@@ -34,6 +34,10 @@ module Vedeu
       super
     end
 
+    def clear
+      @_clear ||= ClearInterface.call(self)
+    end
+
     def enqueue
       super(self.to_s)
     end
@@ -51,7 +55,7 @@ module Vedeu
         self.current = dequeue
 
       elsif no_content?
-        self.current = ClearInterface.call(self)
+        self.current = clear
 
       else
         self.current

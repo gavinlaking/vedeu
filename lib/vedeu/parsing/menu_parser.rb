@@ -1,16 +1,11 @@
 module Vedeu
   class MenuParser
-    # Convert a Vedeu::Menu into an interface view.
-    #
-    # @param output [Hash] a key/value pair.
-    #
-    # @return [Hash]
-    def self.parse(output = {})
-      new(output).parse
+    def self.parse(menu)
+      new(menu).parse
     end
 
-    def initialize(output = {})
-      @output = output
+    def initialize(menu)
+      @menu = menu
     end
 
     def parse
@@ -19,7 +14,7 @@ module Vedeu
 
     private
 
-    attr_reader :output
+    attr_reader :menu
 
     def interface
       { name: name, lines: lines }
@@ -46,11 +41,11 @@ module Vedeu
     end
 
     def items
-      output.last
+      menu.last
     end
 
     def name
-      output.first
+      menu.first
     end
   end
 end

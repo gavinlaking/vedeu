@@ -2,18 +2,13 @@ require 'vedeu/support/esc'
 require 'vedeu/support/terminal'
 
 module Vedeu
+  InvalidHeight    = Class.new(StandardError)
+  InvalidWidth     = Class.new(StandardError)
   OutOfBoundsError = Class.new(StandardError)
 
   class Geometry
     def initialize(attrs = {})
-      @attrs           = attrs
-      @height          = attrs.fetch(:height)
-      @width           = attrs.fetch(:width)
-      @terminal_height = attrs.fetch(:terminal_height, Terminal.height)
-      @terminal_width  = attrs.fetch(:terminal_width,  Terminal.width)
-      @y               = attrs.fetch(:y, 1)
-      @x               = attrs.fetch(:x, 1)
-      @centred         = attrs.fetch(:centred, true)
+      @attrs = attrs
     end
 
     def origin(index = 0)
@@ -21,59 +16,31 @@ module Vedeu
     end
 
     def terminal_height
-      fail_if_less_than_one(@terminal_height)
-
-      fail_if_out_of_bounds('terminal_height',
-                            @terminal_height,
-                            Terminal.height)
-
-      @terminal_height
+      @terminal_height ||= attrs_terminal_height
     end
 
     def height
-      fail_if_less_than_one(@height)
-
-      fail_if_out_of_bounds('height', @height, terminal_height)
-
-      @height
+      @height ||= attrs_height
     end
 
     def y
-      fail_if_less_than_one(@y)
-
-      fail_if_out_of_bounds('y', @y, terminal_height)
-
-      @y
-    end
-
-    def terminal_width
-      fail_if_less_than_one(@terminal_width)
-
-      fail_if_out_of_bounds('terminal_width',
-                            @terminal_width,
-                            Terminal.width)
-
-      @terminal_width
-    end
-
-    def width
-      fail_if_less_than_one(@width)
-
-      fail_if_out_of_bounds('width', @width, terminal_width)
-
-      @width
+      @y ||= attrs_y
     end
 
     def x
-      fail_if_less_than_one(@x)
+      @x ||= attrs_x
+    end
 
-      fail_if_out_of_bounds('x', @x, terminal_width)
+    def terminal_width
+      @terminal_width ||= attrs_terminal_width
+    end
 
-      @x
+    def width
+      @width ||= attrs_width
     end
 
     def centred
-      !!(@centred)
+      @centred ||= attrs_centred
     end
 
     def centre
@@ -128,6 +95,60 @@ module Vedeu
 
     private
 
+    attr_reader :attrs
+
+    def attrs_height
+      height = attrs.fetch(:height)
+      fail_if_less_than_one(height)
+      fail_if_out_of_bounds('height', height, terminal_height)
+      height
+    rescue KeyError
+      fail InvalidHeight, 'An Interface must have a height attribute.'
+    end
+
+    def attrs_terminal_height
+      terminal_height = attrs.fetch(:terminal_height, Terminal.height)
+      fail_if_less_than_one(terminal_height)
+      fail_if_out_of_bounds('terminal_height', terminal_height, Terminal.height)
+      terminal_height
+    end
+
+    def attrs_y
+      y = attrs.fetch(:y, 1)
+      fail_if_less_than_one(y)
+      fail_if_out_of_bounds('y', y, terminal_height)
+      y
+    end
+
+    def attrs_x
+      x = attrs.fetch(:x, 1)
+      fail_if_less_than_one(x)
+      fail_if_out_of_bounds('x', x, terminal_width)
+      x
+    end
+
+    def attrs_terminal_width
+      terminal_width = attrs.fetch(:terminal_width, Terminal.width)
+      fail_if_less_than_one(terminal_width)
+      fail_if_out_of_bounds('terminal_width',
+                            terminal_width,
+                            Terminal.width)
+      terminal_width
+    end
+
+    def attrs_width
+      width = attrs.fetch(:width)
+      fail_if_less_than_one(width)
+      fail_if_out_of_bounds('width', width, terminal_width)
+      width
+    rescue KeyError
+      fail InvalidWidth, 'An Interface must have a width attribute.'
+    end
+
+    def attrs_centred
+      !!(attrs.fetch(:centred, true))
+    end
+
     def fail_if_less_than_one(value)
       fail OutOfBoundsError,
         'Value must be greater than or equal to 1.' if value < 1
@@ -147,6 +168,5 @@ module Vedeu
     def virtual_y(index = 0)
       ((top..bottom).to_a)[index]
     end
-
   end
 end

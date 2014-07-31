@@ -3,14 +3,6 @@ require 'vedeu/support/geometry'
 
 module Vedeu
   describe Geometry do
-    it 'raises an exception when the height attribute is not set' do
-      proc { Geometry.new({ width: 18 }) }.must_raise(KeyError)
-    end
-
-    it 'raises an exception when the width attribute is not set' do
-      proc { Geometry.new({ height: 6 }) }.must_raise(KeyError)
-    end
-
     describe '#origin' do
       it 'returns the origin for the interface' do
         geometry = Geometry.new({ width: 5, height: 5, centred: false })
@@ -75,6 +67,10 @@ module Vedeu
     end
 
     describe '#height' do
+      it 'raises an exception when the height attribute is not set' do
+        proc { Geometry.new({ width: 18 }).height }.must_raise(InvalidHeight)
+      end
+
       it 'raises an exception when the value is less than 1' do
         geometry = Geometry.new({ height: -6, width: 18 })
         proc { geometry.height }.must_raise(OutOfBoundsError)
@@ -151,6 +147,10 @@ module Vedeu
     end
 
     describe '#width' do
+      it 'raises an exception when the width attribute is not set' do
+        proc { Geometry.new({ height: 6 }).width }.must_raise(InvalidWidth)
+      end
+
       it 'raises an exception when the value is less than 1' do
         geometry = Geometry.new({ height: 6, width: -18 })
         proc { geometry.width }.must_raise(OutOfBoundsError)

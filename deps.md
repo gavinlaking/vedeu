@@ -28,12 +28,14 @@ Geometry
   Esc
   Terminal
 
+ERBParser
+
 Esc
   Translator
 
 Events
 
-HashParser
+RawParser
   TextAdaptor
 
 Input
@@ -70,10 +72,14 @@ LineCollection
 
 Menu
 
+MenuParser
+
 Parser
   Composition
-  HashParser
+  ERBParser
+  RawParser
   JSONParser
+  MenuParser
 
 Persistence
   Interface
@@ -102,6 +108,7 @@ Style
   Esc
 
 Template
+  Helpers
 
 Terminal
   Esc
@@ -118,7 +125,6 @@ Wordwrap
 Orphans
 ----------------------------------------------------------------------
 
-Template - orphaned
 Wordwrap - orphaned
 Menu     - orphaned
 
@@ -184,9 +190,12 @@ Launcher
                 Terminal
                   Esc
                     Translator
-        HashParser
+        ERBParser
+          Template
+        RawParser
           TextAdaptor
         JSONParser
+        MenuParser
       Queue
     Terminal
       Esc

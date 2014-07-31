@@ -134,6 +134,19 @@ Vedeu has a range of symbol styles which are compatible with most terminals whic
 Like colours, they can be defined in either interfaces, for specific lines or within streams. Styles are applied as encountered.
 
 
+### Templates
+
+The following helpers are available in to the ERBParser.
+
+    foreground (alias: `fg`)
+
+    background (alias: `bg`)
+
+    colour
+
+    style
+
+
 ## Contributing
 
 1. Fork it ( http://github.com/gavinlaking/vedeu/fork )
