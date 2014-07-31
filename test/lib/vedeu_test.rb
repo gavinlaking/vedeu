@@ -14,19 +14,25 @@ module Vedeu
 
     describe '.view' do
       it 'returns the interface referenced by name' do
-        skip
-        [].must_be_instance_of(Interface)
-        [].name.must_equal([])
+        Vedeu.interface 'Vedeu.view' do
+          width   5
+          height  5
+        end
+
+        Vedeu.view('Vedeu.view').must_be_instance_of(Interface)
+        Vedeu.view('Vedeu.view').name.must_equal('Vedeu.view')
       end
 
       it 'returns false with no name' do
-        skip
-        [].must_equal(false)
+        Vedeu.view(nil).must_equal(false)
+      end
+
+      it 'returns false with empty name' do
+        Vedeu.view('').must_equal(false)
       end
 
       it 'raises an exception if the interface does not exist' do
-        skip
-        proc { }.must_raise(EntityNotFound)
+        proc { Vedeu.view('unknown') }.must_raise(EntityNotFound)
       end
     end
   end

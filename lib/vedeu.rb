@@ -28,6 +28,10 @@ module Vedeu
       Vedeu.events.trigger(name, *args)
     end
     alias_method :trigger, :run
+
+    def view(name)
+      Persistence.query(name)
+    end
   end
 
   def self.events
