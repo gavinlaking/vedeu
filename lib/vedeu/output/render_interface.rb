@@ -24,7 +24,7 @@ module Vedeu
     attr_reader :interface
 
     def processed_lines
-      lines.each_with_index do |line|
+      processed_lines = lines.map do |line|
         if line.streams.any?
           processed_streams = []
           line_length       = 0
@@ -33,13 +33,19 @@ module Vedeu
 
             if (line_length += stream.text.size) >= width
               remainder = width - line_length
-              stream.text = truncate(stream.text, remainder)
-            end
 
-            processed_streams << stream
+              new_stream = Stream.new(text:   truncate(stream.text, remainder),
+                                      style:  stream.style,
+                                      colour: stream.colour)
+              processed_streams << new_stream
+            else
+              processed_streams << stream
+            end
           end
 
-          line.streams = processed_streams
+          new_line = Line.new(streams: processed_streams,
+                              style:   line.style,
+                              colour:  line.colour)
         end
       end
     end
