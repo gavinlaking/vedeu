@@ -2,7 +2,7 @@ require 'virtus'
 
 require 'vedeu'
 require 'vedeu/models/attributes/line_collection'
-require 'vedeu/models/presentation'
+require 'vedeu/models/colour'
 require 'vedeu/models/style'
 require 'vedeu/output/clear_interface'
 require 'vedeu/output/render_interface'
@@ -14,11 +14,12 @@ module Vedeu
   class Interface
     include Vedeu::Queue
     include Virtus.model
-    include Presentation
     include Style
 
     attribute :name,    String
     attribute :lines,   LineCollection
+    attribute :colour,  Colour,  default: Colour.new
+    attribute :style,   Array[String]
     attribute :y,       Integer, default: 1
     attribute :x,       Integer, default: 1
     attribute :width,   Integer, default: Terminal.width

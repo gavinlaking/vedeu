@@ -1,11 +1,13 @@
 require 'test_helper'
-require 'vedeu/models/presentation'
+require 'virtus'
 require 'vedeu/models/style'
 
 module Vedeu
   class TestStyle
-    include Presentation
+    include Virtus.model
     include Style
+
+    attribute :style, Array[String]
   end
 
   describe Style do
