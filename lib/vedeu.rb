@@ -7,9 +7,11 @@ require 'vedeu/output/view'
 require 'vedeu/launcher'
 
 module Vedeu
+  # :nocov:
   def self.debug?
     false
   end
+  # :nocov:
 
   Vedeu::Instrumentation::Trace.call if debug?
 
@@ -56,10 +58,12 @@ module Vedeu
     Vedeu::Instrumentation::Log.error(exception)
   end
 
+  # :nocov:
   def self.included(receiver)
     receiver.send(:include, ClassMethods)
     receiver.extend(ClassMethods)
   end
+  # :nocov:
 
   extend ClassMethods
 
