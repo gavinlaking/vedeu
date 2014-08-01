@@ -16,7 +16,7 @@ module Vedeu
   Vedeu::Instrumentation::Trace.call if debug?
 
   # :nocov:
-  module ClassMethods
+  module API
     def interface(name, &block)
       Builder.build(name, &block)
     end
@@ -60,12 +60,12 @@ module Vedeu
 
   # :nocov:
   def self.included(receiver)
-    receiver.send(:include, ClassMethods)
-    receiver.extend(ClassMethods)
+    receiver.send(:include, API)
+    receiver.extend(API)
   end
   # :nocov:
 
-  extend ClassMethods
+  extend API
 
   private
 

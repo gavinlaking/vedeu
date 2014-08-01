@@ -2,7 +2,7 @@ require 'test_helper'
 require 'vedeu'
 
 module Vedeu
-  describe ClassMethods do
+  describe API do
     describe '.interface' do
     end
 
@@ -23,14 +23,6 @@ module Vedeu
         Vedeu.view('Vedeu.view').name.must_equal('Vedeu.view')
       end
 
-      it 'returns false with no name' do
-        Vedeu.view(nil).must_equal(false)
-      end
-
-      it 'returns false with empty name' do
-        Vedeu.view('').must_equal(false)
-      end
-
       it 'raises an exception if the interface does not exist' do
         proc { Vedeu.view('unknown') }.must_raise(EntityNotFound)
       end
@@ -39,12 +31,6 @@ module Vedeu
 end
 
 describe Vedeu do
-  describe '.debug?' do
-    it 'allows me to quickly enable/disable debugging' do
-      skip
-    end
-  end
-
   describe '.events' do
     it 'creates some system events for the client application' do
       skip
