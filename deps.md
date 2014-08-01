@@ -44,9 +44,9 @@ Input
 
 Interface
   ClearInterface
+  Colour
   Geometry
   LineCollection
-  Presentation
   Queue
   RenderInterface
   Style
@@ -62,7 +62,7 @@ Launcher
   Configuration
 
 Line
-  Presentation
+  Colour
   StreamCollection
   Style
 
@@ -84,9 +84,6 @@ Parser
 Persistence
   Interface
 
-Presentation
-  Colour
-
 Process
   Parser
   Queue
@@ -97,7 +94,7 @@ RenderInterface
   ClearInterface
 
 Stream
-  Presentation
+  Colour
   Style
 
 StreamCollection
@@ -151,6 +148,9 @@ Launcher
             Persistence
               Interface
                 ClearInterface
+                Colour
+                  Esc
+                    Translator
                 Geometry
                   Esc
                     Translator
@@ -160,27 +160,22 @@ Launcher
                 LineCollection
                   Collection
                   Line
-                    Presentation
-                      Colour
-                        Esc
-                          Translator
+                    Colour
+                      Esc
+                        Translator
                     StreamCollection
                       Collection
                       Stream
-                        Presentation
-                          Colour
-                            Esc
-                              Translator
+                        Colour
+                          Esc
+                            Translator
                         Style
                           Esc
                             Translator
                     Style
                       Esc
                         Translator
-                Presentation
-                  Colour
-                    Esc
-                      Translator
+
                 Queue
                 RenderInterface
                   ClearInterface
