@@ -8,7 +8,7 @@ module Vedeu
 
     describe '#events' do
       it 'returns the events defined for menus' do
-        menu.events.must_be_instance_of(Array)
+        menu.events.must_be_instance_of(Hash)
       end
     end
 

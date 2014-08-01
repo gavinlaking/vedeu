@@ -11,25 +11,23 @@ module Vedeu
   def self.debug?
     false
   end
-  # :nocov:
 
   Vedeu::Instrumentation::Trace.call if debug?
 
-  # :nocov:
   module API
     def interface(name, &block)
       Builder.build(name, &block)
     end
 
-    def event(name, &block)
-      Vedeu.events.on(name, &block)
+    def on(name, delay = 0, &block)
+      Vedeu.events.on(name, delay, &block)
     end
-    alias_method :on, :event
+    alias_method :event, :on
 
-    def run(name, *args)
+    def trigger(name, *args)
       Vedeu.events.trigger(name, *args)
     end
-    alias_method :trigger, :run
+    alias_method :run, :trigger
 
     def view(name)
       Persistence.query(name)
@@ -58,12 +56,10 @@ module Vedeu
     Vedeu::Instrumentation::Log.error(exception)
   end
 
-  # :nocov:
   def self.included(receiver)
     receiver.send(:include, API)
     receiver.extend(API)
   end
-  # :nocov:
 
   extend API
 
