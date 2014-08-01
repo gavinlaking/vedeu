@@ -33,7 +33,7 @@ module Vedeu
         json:    JSONParser,
         hash:    RawParser,
         menu:    MenuParser,
-        raw:     RawRarser,
+        raw:     RawParser,
       }.fetch(type)
     end
   end
