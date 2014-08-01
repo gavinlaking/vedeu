@@ -4,35 +4,33 @@ require 'vedeu/output/view'
 module Vedeu
   describe View do
     describe '.render' do
-      # it 'returns when the type is :erb' do
-      #   output = ''
-      #   View.render(:erb, output).must_equal('')
-      # end
+      it 'returns when the type is :erb' do
+        skip
+        View.render(:erb, '').must_equal('')
+      end
 
-      # it 'returns when the type is :json' do
-      #   output = ''
-      #   View.render(:json, output).must_equal('')
-      # end
+      it 'returns when the type is :json' do
+        skip
+        View.render(:json, '').must_equal('')
+      end
 
-      # it 'returns when the type is :hash' do
-      #   output = ''
-      #   View.render(:hash, output).must_equal('')
-      # end
+      it 'returns when the type is :raw' do
+        skip
+        View.render(:raw, '').must_equal('')
+      end
 
-      # it 'returns when the type is :menu' do
-      #   output = ''
-      #   View.render(:menu, output).must_equal('')
-      # end
+      it 'returns when the type is :menu' do
+        skip
+        View.render(:menu, '').must_equal('')
+      end
 
-      # it 'returns when the type is not set' do
-      #   output = ''
-      #   View.render(nil, output).must_equal('')
-      # end
+      it 'returns when the type is not set' do
+        proc { View.render(nil, '') }.must_raise(KeyError)
+      end
 
-      # it 'returns when the type is not recognised' do
-      #   output = ''
-      #   View.render(:unknown, output).must_equal('')
-      # end
+      it 'returns when the type is not recognised' do
+        proc { View.render(:unknown, '') }.must_raise(KeyError)
+      end
     end
   end
 end
