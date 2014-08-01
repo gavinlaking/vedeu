@@ -9,6 +9,8 @@ SimpleCov.start do
   add_filter   '/test/'
 end unless ENV['no_simplecov']
 
+require 'mocha/setup'
+
 GC.disable
 
 # commented out by default (makes tests slower)
