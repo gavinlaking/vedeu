@@ -1,5 +1,5 @@
 require 'test_helper'
-require 'vedeu/parsing/text_adaptor'
+require 'vedeu/output/text_adaptor'
 
 module Vedeu
   describe TextAdaptor do

@@ -1,7 +1,13 @@
 module Vedeu
   class Events
     def initialize(&block)
-      @handlers = Hash.new { |h, k| h[k] = [] }
+      @handlers = Hash.new do |hash, key|
+        hash[key] = {
+          delay:     0,
+          events:    [],
+          last_exec: 0,
+        }
+      end
       self.instance_eval(&block) if block_given?
       self
     end
@@ -12,13 +18,21 @@ module Vedeu
       self.instance_eval(&block)
     end
 
-    def on(event, &block)
-      handlers[event] << block
+    def on(event, delay = 0, &block)
+      handlers[event][:events] << block
+      handlers[event][:delay]  = delay
+      handlers[event]
     end
 
     def trigger(event, *args)
-      handlers[event].each do |handler|
-        handler.call(*args)
+      elapsed = Time.now.to_f - handlers[event][:last_exec]
+
+      if elapsed > handlers[event][:delay]
+        handlers[event][:last_exec] = Time.now.to_f
+
+        handlers[event][:events].each do |handler|
+          handler.call(*args)
+        end
       end
     end
 
@@ -30,6 +44,6 @@ module Vedeu
 
     private
 
-    attr_reader :handlers
+    attr_reader :handlers, :throttles
   end
 end

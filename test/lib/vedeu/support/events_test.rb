@@ -4,15 +4,22 @@ require 'vedeu/support/events'
 module Vedeu
   describe Events do
     describe '#on' do
-      it 'returns an Array' do
+      it 'adds the event block to the handlers' do
+        skip
         events = Events.new
         events.on(:some_event) { proc { |x| x } }
-          .must_be_instance_of(Array)
+      end
+
+      it 'adds the specified throttle to the throttles' do
+        skip
+        events = Events.new
+        events.on(:some_event, 250) { proc { |x| x } }
       end
     end
 
     describe '#trigger' do
-      it 'returns a collection containing the event when the event is pre-registered' do
+      it 'returns a collection containing the event when the event is ' \
+         'pre-registered' do
         events = Events.new do
           on(:_exit_) { fail StopIteration }
         end

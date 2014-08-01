@@ -19,11 +19,9 @@ module Vedeu
     end
 
     def query(value)
-      return false if value.nil? || value.empty?
-
       storage.select do |name, result|
         return result if name == value
-      end
+      end unless value.nil? || value.empty?
 
       fail EntityNotFound, "Interface could not be found."
     end

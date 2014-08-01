@@ -83,7 +83,6 @@ module Vedeu
 
       def pretty!(&block)
         ["\e[38;5;#{rand(22..231)}m", yield, "\e[38;2;39m"].join
-
       end
 
       def watched
@@ -101,7 +100,7 @@ module Vedeu
       def defaults
         {
           event: 'call',
-          klass: /^Vedeu::(?!.*Instrumentation|Line|Stream|Style|Colour|Geometry|Terminal|Esc|Translator).*/
+          klass: /^Vedeu::(?!.*Instrumentation|Interface|Line|Stream|Style|Colour|Geometry|Terminal|Esc|Translator).*/
         }
       end
 
