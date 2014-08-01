@@ -1,6 +1,8 @@
 require 'vedeu/instrumentation'
 require 'vedeu/support/builder'
 require 'vedeu/support/events'
+require 'vedeu/support/persistence'
+
 require 'vedeu/support/geometry'
 require 'vedeu/support/menu'
 require 'vedeu/output/view'

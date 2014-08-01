@@ -30,10 +30,6 @@ module Vedeu
     end
 
     describe '#query' do
-      it 'returns false when the value is not provided' do
-        Persistence.query(nil).must_equal(false)
-      end
-
       it 'returns the record when found' do
         Persistence.create({ name: 'hydrogen' })
 
