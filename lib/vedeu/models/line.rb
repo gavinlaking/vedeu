@@ -7,12 +7,11 @@ require 'vedeu/models/style'
 module Vedeu
   class Line
     include Virtus.model
-    include Style
 
     attribute :colour,  Colour, default: Colour.new
     attribute :model,   Hash
     attribute :streams, StreamCollection
-    attribute :style,   Array[String]
+    attribute :style,   Style,  default: ''
 
     def to_s
       [colour, style, streams].join

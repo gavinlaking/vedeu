@@ -1,31 +1,19 @@
+require 'virtus'
+
 require 'vedeu/support/esc'
 
 module Vedeu
-  module Style
-    def style
-      @_style ||= if no_style?
-        ''
+  class Style < Virtus::Attribute
+    def coerce(value_or_values)
+      return '' if value_or_values.nil? || value_or_values.empty?
+
+      if value_or_values.is_a?(::Array)
+        value_or_values.map { |s| Esc.string(s) }.join
 
       else
-        @style.map { |s| Esc.string(s) }.join
+        Esc.string(value_or_values)
 
       end
-    end
-
-    def style_original
-      @_original ||= if no_style?
-        ''
-
-      else
-        @style
-
-      end
-    end
-
-    private
-
-    def no_style?
-      @style.nil? || @style.empty?
     end
   end
 end

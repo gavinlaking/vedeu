@@ -6,10 +6,9 @@ require 'vedeu/models/style'
 module Vedeu
   class Stream
     include Virtus.model
-    include Style
 
     attribute :colour, Colour, default: Colour.new
-    attribute :style,  Array[String]
+    attribute :style,  Style,  default: ''
     attribute :text,   String, default: ''
 
     def to_s(options = {})

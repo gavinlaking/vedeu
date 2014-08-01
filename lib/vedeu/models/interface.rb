@@ -14,12 +14,11 @@ module Vedeu
   class Interface
     include Vedeu::Queue
     include Virtus.model
-    include Style
 
     attribute :name,    String
     attribute :lines,   LineCollection
     attribute :colour,  Colour,  default: Colour.new
-    attribute :style,   Array[String]
+    attribute :style,   Style,   default: ''
     attribute :y,       Integer, default: 1
     attribute :x,       Integer, default: 1
     attribute :width,   Integer, default: Terminal.width
