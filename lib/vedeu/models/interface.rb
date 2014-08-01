@@ -27,9 +27,10 @@ module Vedeu
     attribute :current, String,  default: ''
     attribute :cursor,  Boolean, default: true
     attribute :centred, Boolean, default: false
+    attribute :delay,   Float,   default: 0.0
 
     def initialize(attributes = {})
-      Vedeu.events.on(:refresh) { refresh }
+      Vedeu.events.on(:refresh, attributes[:delay]) { refresh }
 
       super
     end
