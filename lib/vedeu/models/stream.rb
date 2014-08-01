@@ -1,4 +1,3 @@
-require 'json'
 require 'virtus'
 
 require 'vedeu/models/presentation'
@@ -12,13 +11,6 @@ module Vedeu
 
     attribute :text, String, default: ''
 
-    def to_json
-      {
-        colour: colour,
-        style:  style_original,
-        text:   text
-      }.to_json
-    end
 
     def to_s(options = {})
       [colour, style, text].join

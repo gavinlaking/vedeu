@@ -35,11 +35,5 @@ module Vedeu
         )
       end
     end
-
-    describe '#to_json' do
-      it 'returns a String' do
-        stream.to_json.must_equal("{\"colour\":{\"foreground\":\"#ff0000\",\"background\":\"#000000\"},\"style\":[\"normal\"],\"text\":\"Some text\"}")
-      end
-    end
   end
 end

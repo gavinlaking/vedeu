@@ -1,4 +1,3 @@
-require 'json'
 require 'virtus'
 
 require 'vedeu/models/attributes/stream_collection'
@@ -13,14 +12,6 @@ module Vedeu
 
     attribute :model,   Hash
     attribute :streams, StreamCollection
-
-    def to_json
-      {
-        colour:  colour,
-        style:   style_original,
-        streams: streams
-      }.to_json
-    end
 
     def to_s
       [colour, style, streams].join

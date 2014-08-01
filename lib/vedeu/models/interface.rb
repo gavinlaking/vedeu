@@ -1,4 +1,3 @@
-require 'json'
 require 'virtus'
 
 require 'vedeu'
@@ -67,20 +66,6 @@ module Vedeu
       Terminal.output(self.current)
 
       self.current
-    end
-
-    def to_json(*args)
-      {
-        colour: colour,
-        style:  style_original,
-        name:   name,
-        lines:  lines,
-        y:      y,
-        x:      x,
-        width:  width,
-        height: height,
-        cursor: cursor
-      }.to_json
     end
 
     def to_s

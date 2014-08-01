@@ -1,4 +1,3 @@
-require 'json'
 require 'virtus'
 
 require 'vedeu/models/attributes/interface_collection'
@@ -15,12 +14,6 @@ module Vedeu
 
     def enqueue
       interfaces.map { |interface| interface.enqueue }
-    end
-
-    def to_json
-      {
-        interfaces: interfaces
-      }.to_json
     end
 
     def to_s

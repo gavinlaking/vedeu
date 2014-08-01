@@ -1,4 +1,3 @@
-require 'json'
 require 'virtus'
 
 require 'vedeu/support/esc'
@@ -16,10 +15,6 @@ module Vedeu
 
     def background
       @bg ||= Esc.background_colour(css_background)
-    end
-
-    def to_json(*args)
-      as_hash.to_json
     end
 
     def to_s

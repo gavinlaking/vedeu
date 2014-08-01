@@ -212,20 +212,5 @@ module Vedeu
         )
       end
     end
-
-    describe '#to_json' do
-      it 'returns an String' do
-        Interface.new({
-          name:   '#to_json',
-          lines:  [],
-          colour: {
-            foreground: '#ff0000',
-            background: '#000000'
-          },
-          width:  3,
-          height: 3
-        }).to_json.must_equal("{\"colour\":{\"foreground\":\"#ff0000\",\"background\":\"#000000\"},\"style\":\"\",\"name\":\"#to_json\",\"lines\":[],\"y\":1,\"x\":1,\"width\":3,\"height\":3,\"cursor\":true}")
-      end
-    end
   end
 end
