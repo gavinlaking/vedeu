@@ -1,11 +1,11 @@
 require 'test_helper'
 require 'vedeu/output/render_interface'
 require 'vedeu/models/interface'
-require 'vedeu/support/persistence'
+require 'vedeu/support/interface_store'
 
 module Vedeu
   describe RenderInterface do
-    before { Persistence.reset }
+    before { InterfaceStore.reset }
 
     describe '.call' do
       it 'returns the content for the interface' do

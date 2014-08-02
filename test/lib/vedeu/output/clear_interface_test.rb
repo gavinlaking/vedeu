@@ -1,11 +1,11 @@
 require 'test_helper'
 require 'vedeu/output/clear_interface'
 require 'vedeu/models/interface'
-require 'vedeu/support/persistence'
+require 'vedeu/support/interface_store'
 
 module Vedeu
   describe ClearInterface do
-    before { Persistence.reset }
+    before { InterfaceStore.reset }
 
     describe '.call' do
       it 'returns the escape sequence to clear the whole interface' do

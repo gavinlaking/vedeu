@@ -7,11 +7,6 @@ Application
   Process
   Terminal
 
-Builder
-  Geometry
-  Interface
-  Persistence
-
 ClearInterface
 
 Collection
@@ -53,7 +48,12 @@ Interface
   Terminal
 
 InterfaceCollection
-  Persistence
+  InterfaceStore
+
+InterfaceTemplate
+  Geometry
+  Interface
+  InterfaceStore
 
 JSONParser
 
@@ -81,7 +81,7 @@ Parser
   JSONParser
   MenuParser
 
-Persistence
+InterfaceStore
   Interface
 
 Process
@@ -129,10 +129,10 @@ Menu     - orphaned
 Grouped
 ----------------------------------------------------------------------
 
-Builder
+InterfaceTemplate
   Interface
   Geometry
-  Persistence
+  InterfaceStore
 
 Launcher
   Application
@@ -145,7 +145,7 @@ Launcher
       Parser
         Composition
           InterfaceCollection
-            Persistence
+            InterfaceStore
               Interface
                 ClearInterface
                 Colour

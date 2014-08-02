@@ -1,9 +1,11 @@
 require 'vedeu/models/interface'
 
+# Todo: mutation (persistence)
+
 module Vedeu
   EntityNotFound = Class.new(StandardError)
 
-  module Persistence
+  module InterfaceStore
     extend self
 
     def update(name, attributes = {})

@@ -1,12 +1,14 @@
 require 'vedeu/instrumentation'
-require 'vedeu/support/builder'
+require 'vedeu/support/interface_template'
 require 'vedeu/support/events'
-require 'vedeu/support/persistence'
+require 'vedeu/support/interface_store'
 
 require 'vedeu/support/geometry'
 require 'vedeu/support/menu'
 require 'vedeu/output/view'
 require 'vedeu/launcher'
+
+# Todo: mutation (events)
 
 module Vedeu
   # :nocov:
@@ -18,7 +20,7 @@ module Vedeu
 
   module API
     def interface(name, &block)
-      Builder.build(name, &block)
+      InterfaceTemplate.save(name, &block)
     end
 
     def on(name, delay = 0, &block)
@@ -32,7 +34,7 @@ module Vedeu
     alias_method :run, :trigger
 
     def view(name)
-      Persistence.query(name)
+      InterfaceStore.query(name)
     end
   end
 
