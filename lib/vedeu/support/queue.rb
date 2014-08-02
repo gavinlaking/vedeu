@@ -15,7 +15,7 @@ module Vedeu
     end
 
     def enqueued?
-      store.size > 0
+      store.any?
     end
 
     def reset

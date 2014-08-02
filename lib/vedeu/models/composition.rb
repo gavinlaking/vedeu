@@ -15,7 +15,7 @@ module Vedeu
     end
 
     def enqueue
-      interfaces.map { |interface| interface.enqueue }
+      interfaces.map(&:enqueue)
     end
 
     def to_s
