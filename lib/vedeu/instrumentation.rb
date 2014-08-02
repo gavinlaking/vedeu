@@ -1,6 +1,5 @@
 require 'date'
 require 'logger'
-# require 'ruby-prof'
 
 require 'vedeu'
 
@@ -29,35 +28,6 @@ module Vedeu
         Vedeu.root_path + '/logs/vedeu.log'
       end
     end
-
-    # class Profile
-    #   def self.call(filename = 'profile.html', &block)
-    #     new(filename).profile(&block)
-    #   end
-
-    #   def initialize(filename)
-    #     @filename = filename
-    #   end
-
-    #   def profile(&block)
-    #     RubyProf.start
-
-    #     yield
-
-    #     result = RubyProf.stop.eliminate_methods!([/^Array/, /^Hash/])
-
-    #     File.open(filename, 'w') do |file|
-    #       RubyProf::CallStackPrinter.new(result).print(file)
-    #       RubyProf::GraphPrinter.new(result).print(file)
-    #     end
-    #   end
-
-    #   private
-
-    #   def filename
-    #     Vedeu.root_path + '/tmp/' + @filename
-    #   end
-    # end
 
     class Trace
       def self.call(options = {})
