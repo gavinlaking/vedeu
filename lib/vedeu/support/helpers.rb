@@ -1,6 +1,8 @@
 require 'vedeu/support/esc'
 require 'vedeu/models/colour'
 
+# Todo: style method (actually whole thing)
+
 module Vedeu
   module Helpers
     def foreground(value, &block)

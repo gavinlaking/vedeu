@@ -2,6 +2,8 @@ require 'virtus'
 
 require 'vedeu/models/attributes/interface_collection'
 
+# Todo: mutation (interfaces)
+
 module Vedeu
   class Composition
     include Virtus.model

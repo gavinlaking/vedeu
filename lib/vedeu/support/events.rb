@@ -1,3 +1,5 @@
+# Todo: mutation (events)
+
 module Vedeu
   class Events
     def initialize(&block)

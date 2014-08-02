@@ -10,6 +10,8 @@ require 'vedeu/support/geometry'
 require 'vedeu/support/queue'
 require 'vedeu/support/terminal'
 
+# Todo: mutation (events, current)
+
 module Vedeu
   class Interface
     include Vedeu::Queue

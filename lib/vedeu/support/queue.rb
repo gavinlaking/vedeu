@@ -1,3 +1,5 @@
+# Todo: mutation (queue)
+
 module Vedeu
   module Queue
     extend self
