@@ -34,18 +34,20 @@ module Vedeu
             if (line_length += stream.text.size) >= width
               remainder = width - line_length
 
-              new_stream = Stream.new(text:   truncate(stream.text, remainder),
-                                      style:  stream.style,
-                                      colour: stream.colour)
-              processed_streams << new_stream
+              processed_streams << Stream.new(
+                                    text:   truncate(stream.text, remainder),
+                                    style:  stream.style,
+                                    colour: stream.colour)
+
             else
               processed_streams << stream
+
             end
           end
 
-          new_line = Line.new(streams: processed_streams,
-                              style:   line.style,
-                              colour:  line.colour)
+          Line.new(streams: processed_streams,
+                   style:   line.style,
+                   colour:  line.colour)
         end
       end
     end
