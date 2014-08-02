@@ -1,6 +1,6 @@
 require 'test_helper'
-require 'vedeu/models/attributes/interface_collection'
 require 'vedeu/models/composition'
+require 'vedeu/models/attributes/interface_collection'
 
 module Vedeu
   describe InterfaceCollection do
