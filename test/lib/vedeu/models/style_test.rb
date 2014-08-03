@@ -1,11 +1,11 @@
 require 'test_helper'
-require 'vedeu/models/presentation'
 require 'vedeu/models/style'
 
 module Vedeu
   class TestStyle
-    include Presentation
-    include Style
+    include Virtus.model
+
+    attribute :style, Style
   end
 
   describe Style do
@@ -43,43 +43,6 @@ module Vedeu
       it 'returns an empty string for empty or nil' do
         model = TestStyle.new(style: [])
         model.style.must_equal('')
-      end
-    end
-
-    describe '#style_original' do
-      it 'returns an escape sequence for a single style' do
-        model = TestStyle.new(style: 'normal')
-        model.style_original.must_equal(['normal'])
-      end
-
-      it 'returns an escape sequence for multiple styles' do
-        model = TestStyle.new(style: ['normal', 'underline'])
-        model.style_original.must_equal(['normal', 'underline'])
-      end
-
-      it 'returns an empty string for an unknown style' do
-        model = TestStyle.new(style: 'unknown')
-        model.style_original.must_equal(['unknown'])
-      end
-
-      it 'has a style attribute' do
-        model = TestStyle.new(style: ['normal'])
-        model.style_original.must_equal(['normal'])
-      end
-
-      it 'returns an empty string for empty or nil' do
-        model = TestStyle.new(style: '')
-        model.style_original.must_equal([''])
-      end
-
-      it 'returns an empty string for empty or nil' do
-        model = TestStyle.new(style: nil)
-        model.style_original.must_equal('')
-      end
-
-      it 'returns an empty string for empty or nil' do
-        model = TestStyle.new(style: [])
-        model.style_original.must_equal('')
       end
     end
   end

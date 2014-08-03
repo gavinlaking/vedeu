@@ -27,12 +27,6 @@ module Vedeu
       line.streams.must_equal([])
     end
 
-    describe '#to_json' do
-      it 'returns a String' do
-        line.to_json.must_equal("{\"colour\":{\"foreground\":\"#ff0000\",\"background\":\"#000000\"},\"style\":[\"normal\"],\"streams\":[]}")
-      end
-    end
-
     describe '#to_s' do
       it 'returns a String' do
         line.to_s.must_equal(

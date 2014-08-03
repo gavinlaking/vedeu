@@ -1,3 +1,5 @@
+# Todo: mutation (queue)
+
 module Vedeu
   module Queue
     extend self
@@ -13,7 +15,7 @@ module Vedeu
     end
 
     def enqueued?
-      store.size > 0
+      store.any?
     end
 
     def reset

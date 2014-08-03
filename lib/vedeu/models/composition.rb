@@ -1,7 +1,8 @@
-require 'json'
 require 'virtus'
 
 require 'vedeu/models/attributes/interface_collection'
+
+# Todo: mutation (interfaces)
 
 module Vedeu
   class Composition
@@ -14,13 +15,7 @@ module Vedeu
     end
 
     def enqueue
-      interfaces.map { |interface| interface.enqueue }
-    end
-
-    def to_json
-      {
-        interfaces: interfaces
-      }.to_json
+      interfaces.map(&:enqueue)
     end
 
     def to_s

@@ -1,10 +1,10 @@
 require 'test_helper'
-require 'vedeu/support/builder'
+require 'vedeu/support/interface_template'
 
 module Vedeu
-  describe Builder do
+  describe InterfaceTemplate do
     it 'creates and stores a new interface' do
-      interface = Builder.build('widget') do
+      interface = InterfaceTemplate.save('widget') do
                     colour  foreground: '#ff0000', background: '#5f0000'
                     cursor  false
                     width   10
@@ -16,7 +16,7 @@ module Vedeu
 
     it 'overrides x and y when centred is true' do
       IO.console.stub :winsize, [10, 40] do
-        interface = Builder.build('widget') do
+        interface = InterfaceTemplate.save('widget') do
                       colour  foreground: '#ff0000', background: '#5f0000'
                       cursor  false
                       centred true
@@ -31,7 +31,7 @@ module Vedeu
     end
 
     it 'uses x and y when centred is false' do
-      interface = Builder.build('widget') do
+      interface = InterfaceTemplate.save('widget') do
                     colour  foreground: '#ff0000', background: '#5f0000'
                     cursor  false
                     centred false
@@ -46,14 +46,14 @@ module Vedeu
 
     it 'allows interfaces to share behaviour' do
       IO.console.stub :winsize, [10, 40] do
-        main =    Builder.build('main') do
+        main =    InterfaceTemplate.save('main') do
                     colour  foreground: '#ff0000', background: '#000000'
                     cursor  false
                     centred true
                     width   10
                     height  2
                   end
-        status =  Builder.build('status') do
+        status =  InterfaceTemplate.save('status') do
                     colour  foreground: 'aadd00', background: '#4040cc'
                     cursor  true
                     centred true

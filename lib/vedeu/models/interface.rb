@@ -1,9 +1,8 @@
-require 'json'
 require 'virtus'
 
 require 'vedeu'
 require 'vedeu/models/attributes/line_collection'
-require 'vedeu/models/presentation'
+require 'vedeu/models/colour'
 require 'vedeu/models/style'
 require 'vedeu/output/clear_interface'
 require 'vedeu/output/render_interface'
@@ -11,15 +10,17 @@ require 'vedeu/support/geometry'
 require 'vedeu/support/queue'
 require 'vedeu/support/terminal'
 
+# Todo: mutation (events, current)
+
 module Vedeu
   class Interface
     include Vedeu::Queue
     include Virtus.model
-    include Presentation
-    include Style
 
     attribute :name,    String
     attribute :lines,   LineCollection
+    attribute :colour,  Colour,  default: Colour.new
+    attribute :style,   Style,   default: ''
     attribute :y,       Integer, default: 1
     attribute :x,       Integer, default: 1
     attribute :width,   Integer, default: Terminal.width
@@ -27,12 +28,14 @@ module Vedeu
     attribute :current, String,  default: ''
     attribute :cursor,  Boolean, default: true
     attribute :centred, Boolean, default: false
-    attribute :delay,   Float,   default: 0.0
+    attribute :delay,   Float,   default: 0
 
     def initialize(attributes = {})
-      Vedeu.events.on(:refresh, attributes[:delay]) { refresh }
-
       super
+
+      Vedeu.events.on(:refresh, self.delay) { refresh }
+
+      self
     end
 
     def clear
@@ -65,20 +68,6 @@ module Vedeu
       Terminal.output(self.current)
 
       self.current
-    end
-
-    def to_json(*args)
-      {
-        colour: colour,
-        style:  style_original,
-        name:   name,
-        lines:  lines,
-        y:      y,
-        x:      x,
-        width:  width,
-        height: height,
-        cursor: cursor
-      }.to_json
     end
 
     def to_s

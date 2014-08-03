@@ -7,11 +7,6 @@ Application
   Process
   Terminal
 
-Builder
-  Geometry
-  Interface
-  Persistence
-
 ClearInterface
 
 Collection
@@ -44,16 +39,21 @@ Input
 
 Interface
   ClearInterface
+  Colour
   Geometry
   LineCollection
-  Presentation
   Queue
   RenderInterface
   Style
   Terminal
 
 InterfaceCollection
-  Persistence
+  InterfaceStore
+
+InterfaceTemplate
+  Geometry
+  Interface
+  InterfaceStore
 
 JSONParser
 
@@ -62,7 +62,7 @@ Launcher
   Configuration
 
 Line
-  Presentation
+  Colour
   StreamCollection
   Style
 
@@ -81,11 +81,8 @@ Parser
   JSONParser
   MenuParser
 
-Persistence
+InterfaceStore
   Interface
-
-Presentation
-  Colour
 
 Process
   Parser
@@ -97,7 +94,7 @@ RenderInterface
   ClearInterface
 
 Stream
-  Presentation
+  Colour
   Style
 
 StreamCollection
@@ -132,10 +129,10 @@ Menu     - orphaned
 Grouped
 ----------------------------------------------------------------------
 
-Builder
+InterfaceTemplate
   Interface
   Geometry
-  Persistence
+  InterfaceStore
 
 Launcher
   Application
@@ -148,9 +145,12 @@ Launcher
       Parser
         Composition
           InterfaceCollection
-            Persistence
+            InterfaceStore
               Interface
                 ClearInterface
+                Colour
+                  Esc
+                    Translator
                 Geometry
                   Esc
                     Translator
@@ -160,27 +160,22 @@ Launcher
                 LineCollection
                   Collection
                   Line
-                    Presentation
-                      Colour
-                        Esc
-                          Translator
+                    Colour
+                      Esc
+                        Translator
                     StreamCollection
                       Collection
                       Stream
-                        Presentation
-                          Colour
-                            Esc
-                              Translator
+                        Colour
+                          Esc
+                            Translator
                         Style
                           Esc
                             Translator
                     Style
                       Esc
                         Translator
-                Presentation
-                  Colour
-                    Esc
-                      Translator
+
                 Queue
                 RenderInterface
                   ClearInterface

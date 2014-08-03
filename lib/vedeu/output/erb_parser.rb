@@ -16,7 +16,12 @@ module Vedeu
 
     def parse
       {
-        interfaces: [{ name: interface, lines: TextAdaptor.adapt(erb_output) }]
+        interfaces: [
+          {
+            name:  interface,
+            lines: TextAdaptor.adapt(erb_output)
+          }
+        ]
       }
     end
 

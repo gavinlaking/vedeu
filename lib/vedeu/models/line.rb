@@ -1,26 +1,17 @@
-require 'json'
 require 'virtus'
 
 require 'vedeu/models/attributes/stream_collection'
-require 'vedeu/models/presentation'
+require 'vedeu/models/colour'
 require 'vedeu/models/style'
 
 module Vedeu
   class Line
     include Virtus.model
-    include Presentation
-    include Style
 
+    attribute :colour,  Colour, default: Colour.new
     attribute :model,   Hash
     attribute :streams, StreamCollection
-
-    def to_json
-      {
-        colour:  colour,
-        style:   style_original,
-        streams: streams
-      }.to_json
-    end
+    attribute :style,   Style,  default: ''
 
     def to_s
       [colour, style, streams].join

@@ -1,6 +1,8 @@
 require 'vedeu'
 require 'vedeu/support/events'
 
+# Todo: mutation (events, menu)
+
 module Vedeu
   class Menu
     def initialize(collection)

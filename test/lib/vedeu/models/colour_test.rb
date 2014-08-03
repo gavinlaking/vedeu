@@ -27,39 +27,6 @@ module Vedeu
       end
     end
 
-    describe '#to_json' do
-      it 'returns the model as JSON' do
-        Colour.new({
-          foreground: '#ff0000',
-          background: '#000000'
-        }).to_json.must_equal(
-          "{\"foreground\":\"#ff0000\",\"background\":\"#000000\"}"
-        )
-      end
-
-      it 'returns an escape sequence when the foreground is missing' do
-        Colour.new({
-          background: '#000000'
-        }).to_json.must_equal(
-          "{\"foreground\":\"\",\"background\":\"#000000\"}"
-        )
-      end
-
-      it 'returns an escape sequence when the background is missing' do
-        Colour.new({
-          foreground: '#ff0000',
-        }).to_json.must_equal(
-          "{\"foreground\":\"#ff0000\",\"background\":\"\"}"
-        )
-      end
-
-      it 'returns an empty string when both are missing' do
-        Colour.new.to_json.must_equal(
-          "{\"foreground\":\"\",\"background\":\"\"}"
-        )
-      end
-    end
-
     describe '#to_s' do
       it 'returns an escape sequence' do
         Colour.new({

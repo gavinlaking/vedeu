@@ -38,9 +38,3 @@ module Vedeu
     end
   end
 end
-
-# ERBParser:  { :interface, :path, :object }
-# RawParser: { 'interface_name' => String|Array }
-#             { :interface_name  => String|Array }
-# JSONParser: output (string which is converted into a hash)
-# MenuParser: ['interface_name', Vedeu::Menu instance]

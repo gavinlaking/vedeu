@@ -1,20 +1,20 @@
 require 'vedeu/support/geometry'
-require 'vedeu/support/persistence'
+require 'vedeu/support/interface_store'
 
 module Vedeu
-  class Builder
-    def self.build(name, &block)
-      new(name).build(&block)
+  class InterfaceTemplate
+    def self.save(name, &block)
+      new(name).save(&block)
     end
 
     def initialize(name)
       @name = name.to_s
     end
 
-    def build(&block)
+    def save(&block)
       self.instance_eval(&block)
 
-      Persistence.create(attributes)
+      InterfaceStore.create(attributes)
     end
 
     private
