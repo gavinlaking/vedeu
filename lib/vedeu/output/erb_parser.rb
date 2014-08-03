@@ -12,6 +12,7 @@ module Vedeu
 
     def initialize(object)
       @object = object
+      @output = ''
     end
 
     def parse
