@@ -11,10 +11,12 @@ module Vedeu
           foreground: '#ff0000',
           background: '#000000'
         },
-        y: 3,
-        x: 5,
-        width: 10,
-        height: 15,
+        geometry: {
+          y: 3,
+          x: 5,
+          width: 10,
+          height: 15,
+        },
         current: "\e[1;1H#initialize"
       })
     }
@@ -31,24 +33,6 @@ module Vedeu
       interface.colour.must_be_instance_of(Colour)
     end
 
-    it 'has a y attribute' do
-      interface.y.must_equal(3)
-      Interface.new.y.must_equal(1)
-    end
-
-    it 'has an x attribute' do
-      interface.x.must_equal(5)
-      Interface.new.x.must_equal(1)
-    end
-
-    it 'has a width attribute' do
-      interface.width.must_equal(10)
-    end
-
-    it 'has a height attribute' do
-      interface.height.must_equal(15)
-    end
-
     it 'has a current attribute' do
       interface.current.must_equal("\e[1;1H#initialize")
     end
@@ -58,18 +42,15 @@ module Vedeu
       Interface.new({ cursor: false }).cursor.must_equal(false)
     end
 
-    it 'has a centred attribute' do
-      interface.centred.must_equal(false)
-      Interface.new({ centred: true }).centred.must_equal(true)
-    end
-
     describe '#enqueue' do
       it 'delegates to the Queue class to enqueue itself' do
         Queue.reset
         interface = Interface.new({
           name:   'Interface#enqueue',
-          width:  8,
-          height: 2,
+          geometry: {
+            width:  8,
+            height: 2,
+          },
           lines:  [ { streams: { text: 'a8f39' } } ]
         })
         interface.enqueue
@@ -78,28 +59,6 @@ module Vedeu
           "\e[2;1H        \e[2;1H" \
           "\e[1;1Ha8f39"
         )
-      end
-    end
-
-    describe '#geometry' do
-      it 'delegates to the Geometry class' do
-        interface = Interface.new({
-          name:   '#geometry',
-          width:  5,
-          height: 5
-        })
-        interface.geometry.must_be_instance_of(Geometry)
-      end
-    end
-
-    describe '#origin' do
-      it 'delegates to the Geometry class to get the origin' do
-        interface = Interface.new({
-          name:   '#origin',
-          width:  5,
-          height: 5
-        })
-        interface.origin.must_equal("\e[1;1H")
       end
     end
 
@@ -112,8 +71,10 @@ module Vedeu
             foreground: '#ff0000',
             background: '#000000'
           },
-          width:  3,
-          height: 3
+          geometry: {
+            width:  3,
+            height: 3
+          }
         }
       }
 
@@ -140,8 +101,10 @@ module Vedeu
             foreground: '#ff0000',
             background: '#000000'
           },
-          width:  11,
-          height: 3
+          geometry: {
+            width:  11,
+            height: 3
+          }
         }
         interface = Interface.new(attributes)
         interface.enqueue
@@ -167,8 +130,10 @@ module Vedeu
             foreground: '#ff0000',
             background: '#000000'
           },
-          width:  11,
-          height: 3
+          geometry: {
+            width:  11,
+            height: 3
+          }
         }
         interface = Interface.new(attributes)
         interface.current = "\e[38;5;196m\e[48;5;16m" \
@@ -202,8 +167,10 @@ module Vedeu
             foreground: '#ff0000',
             background: '#000000'
           },
-          width:  3,
-          height: 3
+          geometry: {
+            width:  3,
+            height: 3
+          }
         }).to_s.must_equal(
           "\e[38;5;196m\e[48;5;16m" \
           "\e[1;1H   \e[1;1H" \

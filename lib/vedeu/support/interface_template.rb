@@ -1,7 +1,12 @@
-require 'vedeu/support/geometry'
+require 'vedeu/models/geometry'
 require 'vedeu/support/interface_store'
+require 'vedeu/support/terminal'
 
 module Vedeu
+  InvalidHeight = Class.new(StandardError)
+  InvalidWidth  = Class.new(StandardError)
+  OutOfBounds   = Class.new(StandardError)
+
   class InterfaceTemplate
     def self.save(name, &block)
       new(name).save(&block)
@@ -17,35 +22,44 @@ module Vedeu
       InterfaceStore.create(attributes)
     end
 
+    def x(value)
+      fail OutOfBounds if value < 1 || value > Terminal.width
+
+      attributes[:geometry][:x] = value
+    end
+
+    def y(value)
+      fail OutOfBounds if value < 1 || value > Terminal.height
+
+      attributes[:geometry][:y] = value
+    end
+
+    def width(value)
+      fail InvalidWidth if value < 1 || value > Terminal.width
+
+      attributes[:geometry][:width] = value
+    end
+
+    def height(value)
+      fail InvalidHeight if value < 1 || value > Terminal.height
+
+      attributes[:geometry][:height] = value
+    end
+
+    def centred(value)
+      attributes[:geometry][:centred] = value
+    end
+
     private
 
     attr_reader :name
 
-    def overrides
-      @overrides = if user_attributes[:centred] == true
-        { x: geometry.left, y: geometry.top }
-      else
-        {}
-      end
-    end
-
-    def geometry
-      @_geometry ||= Geometry.new({
-        height: user_attributes[:height],
-        width:  user_attributes[:width],
-      })
-    end
-
     def attributes
-      user_attributes.merge!(overrides)
-    end
-
-    def user_attributes
-      @attributes ||= { name: name }
+      @attributes ||= { name: name, geometry: {} }
     end
 
     def method_missing(method_name, arg, &block)
-      user_attributes[method_name] = arg
+      attributes[method_name] = arg
     end
   end
 end

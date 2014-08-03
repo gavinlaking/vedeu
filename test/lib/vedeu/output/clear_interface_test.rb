@@ -11,8 +11,10 @@ module Vedeu
       it 'returns the escape sequence to clear the whole interface' do
         interface = Interface.new({
           name:   'ClearInterface.call',
-          width:  5,
-          height: 2
+          geometry: {
+            width:  5,
+            height: 2
+          }
         })
         ClearInterface.call(interface).must_equal(
           "\e[1;1H     \e[1;1H" \
@@ -23,8 +25,10 @@ module Vedeu
       it 'returns the escape sequence to clear the whole interface with specified colours' do
         interface = Interface.new({
           name:   'ClearInterface.call',
-          width:  5,
-          height: 2,
+          geometry: {
+            width:  5,
+            height: 2,
+          },
           colour: {
             foreground: '#00ff00',
             background: '#ffff00'
