@@ -38,6 +38,10 @@ module Vedeu
         Esc.string.must_equal('')
       end
 
+      it 'returns an escape sequence when the style is bg_reset' do
+        Esc.string('bg_reset').must_equal("\e[48;2;49m")
+      end
+
       it 'returns an escape sequence when the style is blink' do
         Esc.string('blink').must_equal("\e[5m")
       end
@@ -60,6 +64,10 @@ module Vedeu
 
       it 'returns an escape sequence when the style is colour_reset' do
         Esc.string('colour_reset').must_equal("\e[38;2;39m\e[48;2;49m")
+      end
+
+      it 'returns an escape sequence when the style is fg_reset' do
+        Esc.string('fg_reset').must_equal("\e[38;2;39m")
       end
 
       it 'returns an escape sequence when the style is hide_cursor' do
