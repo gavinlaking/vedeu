@@ -12,6 +12,7 @@ module Vedeu
 
     def initialize(object)
       @object = object
+      @output = ''
     end
 
     def parse
@@ -28,6 +29,16 @@ module Vedeu
     private
 
     attr_reader :object
+
+    def capture(&block)
+      erbout = eval('_erbout', block.binding)
+      erbout_length = erbout.length
+      block.call
+      erbout_addition = erbout[erbout_length..-1]
+      erbout[erbout_length..-1] = ''
+      erbout_addition = erbout_addition.join if erbout_addition.is_a? Array
+      erbout_addition
+    end
 
     def erb_output
       ERB.new(template, nil, '-').result(get_binding)

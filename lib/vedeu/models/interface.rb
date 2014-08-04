@@ -6,7 +6,7 @@ require 'vedeu/models/colour'
 require 'vedeu/models/style'
 require 'vedeu/output/clear_interface'
 require 'vedeu/output/render_interface'
-require 'vedeu/support/geometry'
+require 'vedeu/models/geometry'
 require 'vedeu/support/queue'
 require 'vedeu/support/terminal'
 
@@ -17,18 +17,14 @@ module Vedeu
     include Vedeu::Queue
     include Virtus.model
 
-    attribute :name,    String
-    attribute :lines,   LineCollection
-    attribute :colour,  Colour,  default: Colour.new
-    attribute :style,   Style,   default: ''
-    attribute :y,       Integer, default: 1
-    attribute :x,       Integer, default: 1
-    attribute :width,   Integer, default: Terminal.width
-    attribute :height,  Integer, default: Terminal.height
-    attribute :current, String,  default: ''
-    attribute :cursor,  Boolean, default: true
-    attribute :centred, Boolean, default: false
-    attribute :delay,   Float,   default: 0
+    attribute :name,     String
+    attribute :lines,    LineCollection
+    attribute :colour,   Colour,   default: Colour.new
+    attribute :style,    Style,    default: ''
+    attribute :geometry, Geometry, default: Geometry.new
+    attribute :current,  String,   default: ''
+    attribute :cursor,   Boolean,  default: true
+    attribute :delay,    Float,    default: 0
 
     def initialize(attributes = {})
       super
@@ -44,14 +40,6 @@ module Vedeu
 
     def enqueue
       super(self.to_s)
-    end
-
-    def geometry
-      @_geometry ||= Geometry.new(attributes)
-    end
-
-    def origin(index = 0)
-      geometry.origin(index)
     end
 
     def refresh

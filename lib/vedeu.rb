@@ -3,7 +3,7 @@ require 'vedeu/support/interface_template'
 require 'vedeu/support/events'
 require 'vedeu/support/interface_store'
 
-require 'vedeu/support/geometry'
+require 'vedeu/models/geometry'
 require 'vedeu/support/menu'
 require 'vedeu/output/view'
 require 'vedeu/launcher'

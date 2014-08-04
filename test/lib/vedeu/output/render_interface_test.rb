@@ -11,9 +11,10 @@ module Vedeu
       it 'returns the content for the interface' do
         interface = Interface.new({
           name:   '.call',
-          width:  32,
-          height: 3,
-          lines:  'RenderInterface.call',
+          geometry: {
+            width:  32,
+            height: 3,
+          },
           lines:  [
             {
               streams: [{ text: 'this is the first' }]

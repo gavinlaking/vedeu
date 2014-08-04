@@ -70,7 +70,7 @@ module Vedeu
       def defaults
         {
           event: 'call',
-          klass: /^Vedeu::(?!.*Instrumentation|Interface|Line|Stream|Style|Colour|Geometry|Terminal|Esc|Translator).*/
+          klass: /^Vedeu::(?!.*Instrumentation|Interface|Line|Stream|Style|Colour|Geometry|Terminal|Esc|ColourTranslator).*/
         }
       end
 

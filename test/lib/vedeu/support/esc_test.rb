@@ -5,7 +5,7 @@ module Vedeu
   describe Esc do
     describe '.background_colour' do
       it 'returns an escape sequence' do
-        Esc.background_colour.must_equal("\e[48;5;16m")
+        Esc.background_colour('#000000').must_equal("\e[48;5;16m")
       end
 
       it 'returns an empty string when the value is empty' do
@@ -15,7 +15,7 @@ module Vedeu
 
     describe '.foreground_colour' do
       it 'returns an escape sequence' do
-        Esc.foreground_colour.must_equal("\e[38;5;231m")
+        Esc.foreground_colour('#ffffff').must_equal("\e[38;5;231m")
       end
 
       it 'returns an empty string when the value is empty' do
@@ -36,6 +36,10 @@ module Vedeu
     describe '.string' do
       it 'returns an empty string when the style is not provided' do
         Esc.string.must_equal('')
+      end
+
+      it 'returns an escape sequence when the style is bg_reset' do
+        Esc.string('bg_reset').must_equal("\e[48;2;49m")
       end
 
       it 'returns an escape sequence when the style is blink' do
@@ -60,6 +64,10 @@ module Vedeu
 
       it 'returns an escape sequence when the style is colour_reset' do
         Esc.string('colour_reset').must_equal("\e[38;2;39m\e[48;2;49m")
+      end
+
+      it 'returns an escape sequence when the style is fg_reset' do
+        Esc.string('fg_reset').must_equal("\e[38;2;39m")
       end
 
       it 'returns an escape sequence when the style is hide_cursor' do

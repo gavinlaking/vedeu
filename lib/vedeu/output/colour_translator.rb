@@ -1,5 +1,5 @@
 module Vedeu
-  class Translator
+  class ColourTranslator
     def self.translate(html_colour = '')
       new(html_colour).translate
     end

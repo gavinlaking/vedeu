@@ -7,6 +7,12 @@ module Vedeu
   end
 
   describe Helpers do
+    describe '.line' do
+      it 'returns the block with line returns removed' do
+        skip
+      end
+    end
+
     describe '.foreground' do
       it 'returns an escape sequence for the specified CSS foreground' do
         TestHelpers.new.foreground('#a5f500').must_equal("\e[38;5;148m")
@@ -16,7 +22,7 @@ module Vedeu
 
       it 'returns an escape sequence plus interpolation when a block is given' do
         TestHelpers.new.foreground('#a5f500') { 'Some text' }
-          .must_equal("\e[38;5;148mSome text")
+          .must_equal("\e[38;5;148mSome text\e[38;2;39m")
       end
     end
 
@@ -29,7 +35,7 @@ module Vedeu
 
       it 'returns an escape sequence plus interpolation when a block is given' do
         TestHelpers.new.background('#2f2f2f') { 'Some text' }
-          .must_equal("\e[48;5;16mSome text")
+          .must_equal("\e[48;5;16mSome text\e[48;2;49m")
       end
     end
 
@@ -40,7 +46,8 @@ module Vedeu
       end
 
       it 'returns an escape sequence plus interpolation when a block is given' do
-        TestHelpers.new.colour({ background: '#2f2f2f', foreground: '#a5ff00' }) { 'Some text' }.must_equal("\e[38;5;154m\e[48;5;16mSome text")
+        TestHelpers.new.colour({ background: '#2f2f2f', foreground: '#a5ff00' }) { 'Some text' }
+          .must_equal("\e[38;5;154m\e[48;5;16mSome text\e[38;2;39m\e[48;2;49m")
       end
     end
 
@@ -61,7 +68,7 @@ module Vedeu
 
       it 'returns an escape sequence plus interpolation when a block is given' do
         TestHelpers.new.style('bold', 'underline') { 'Some text' }
-          .must_equal("\e[1m\e[4mSome text")
+          .must_equal("\e[1m\e[4mSome text\e[0m")
       end
     end
   end

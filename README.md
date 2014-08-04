@@ -58,6 +58,20 @@ Expect proper documentation soon!
     end
 
 
+### Building Views
+
+Views with Vedeu are made up of simple building blocks. These blocks can be arranged in a multitude of ways which I hope is more than sufficient for your design needs.
+
+- Interfaces (`Interface`) are made up of lines. (`Line`)
+- Lines are made up of zero, one or multiple streams. (`Stream`)
+- An interface, line or stream can have a colour (`colour`) attribute.
+- An interface, line or stream can have a style (`style`) attribute.
+- Interfaces have a position (`y`, `x`) on the screen, and a size. (`width`, `height`)
+- Interfaces can be placed relative to each other based on their attributes. (`top`, `right`, `bottom`, `left`)
+- Colours are defined in CSS-style values, i.e. `#ff0000` would be red.
+- Styles are named. See the table below for supported styles.
+
+
 ### Some Terms
 
 To understand how Vedeu works, you need to familiarise yourself with some terms.
@@ -132,6 +146,26 @@ Vedeu has a range of symbol styles which are compatible with most terminals whic
     "style": []
 
 Like colours, they can be defined in either interfaces, for specific lines or within streams. Styles are applied as encountered.
+
+| Style name    | Escape Sequence          |
+|---------------|--------------------------|
+| bg_reset      | `\e[48;2;49m`            |
+| blink         | `\e[5m`                  |
+| blink_off     | `\e[25m`                 |
+| bold          | `\e[1m`                  |
+| bold_off      | `\e[21m`                 |
+| clear         | `\e[2J`                  |
+| colour_reset  | `\e[38;2;39m\e[48;2;49m` |
+| fg_reset      | `\e[38;2;39m`            |
+| hide_cursor   | `\e[?25l`                |
+| negative      | `\e[7m`                  |
+| positive      | `\e[27m`                 |
+| reset         | `\e[0m`                  | 
+| normal        | `\e[24m\e[21m\e[27m`     |
+| dim           | `\e[2m`                  |
+| show_cursor   | `\e[?25h`                |
+| underline     | `\e[4m`                  |
+| underline_off | `\e[24m`                 |
 
 
 ### Templates

@@ -12,7 +12,7 @@ module Vedeu
       out = [interface.clear]
       processed_lines.each_with_index do |line, index|
         if index + 1 <= height
-          out << interface.origin(index)
+          out << interface.geometry.origin(index)
           out << line.to_s
         end
       end
@@ -61,11 +61,11 @@ module Vedeu
     end
 
     def height
-      interface.height
+      interface.geometry.height
     end
 
     def width
-      interface.width
+      interface.geometry.width
     end
   end
 end

@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require_relative '../../lib/vedeu/support/translator'
+require_relative '../../lib/vedeu/output/colour_translator'
 
 values = ["00", "5f", "87", "af", "d7", "ff"]
 codes  = {}
@@ -8,7 +8,7 @@ values.each do |r|
   values.each do |g|
     values.each do |b|
       value = ["#", r, g, b].join
-      trans = Vedeu::Translator.translate(value)
+      trans = Vedeu::ColourTranslator.translate(value)
       codes[trans] = value
     end
   end

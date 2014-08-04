@@ -22,8 +22,16 @@ module Vedeu
       stringified_keys.map do |name, content|
         {
           name:  name,
-          lines: TextAdaptor.adapt(content)
+          lines: lines(content)
         }
+      end
+    end
+
+    def lines(content)
+      if content.is_a?(Array) && content.first.is_a?(Hash)
+        content
+      else
+        TextAdaptor.adapt(content)
       end
     end
 

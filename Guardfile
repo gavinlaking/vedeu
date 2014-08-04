@@ -5,3 +5,8 @@ guard :minitest, all_after_pass: true, focus_on_failed: true, env: { 'no_simplec
   end
   watch(%r{^test/test_helper\.rb})       { 'test' }
 end
+
+guard :bundler do
+  watch('Gemfile')
+  watch(/^.+\.gemspec/)
+end
