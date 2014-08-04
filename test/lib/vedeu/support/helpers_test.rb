@@ -7,6 +7,12 @@ module Vedeu
   end
 
   describe Helpers do
+    describe '.line' do
+      it 'returns the block with line returns removed' do
+        skip
+      end
+    end
+
     describe '.foreground' do
       it 'returns an escape sequence for the specified CSS foreground' do
         TestHelpers.new.foreground('#a5f500').must_equal("\e[38;5;148m")

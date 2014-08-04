@@ -1,3 +1,4 @@
+require 'pry'
 require 'vedeu/support/esc'
 require 'vedeu/models/colour'
 
@@ -6,7 +7,8 @@ require 'vedeu/models/colour'
 module Vedeu
   module Helpers
     def line(&block)
-      block.call.gsub(/\n/, '')
+      output = capture(&block)
+      ERB.new(output.gsub(/\n/, ''), nil, '-').result(block.binding)
     end
 
     def foreground(value, &block)
