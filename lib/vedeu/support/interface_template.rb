@@ -5,7 +5,8 @@ require 'vedeu/support/terminal'
 module Vedeu
   InvalidHeight = Class.new(StandardError)
   InvalidWidth  = Class.new(StandardError)
-  OutOfBounds   = Class.new(StandardError)
+  XOutOfBounds  = Class.new(StandardError)
+  YOutOfBounds  = Class.new(StandardError)
 
   class InterfaceTemplate
     def self.save(name, &block)
@@ -23,25 +24,25 @@ module Vedeu
     end
 
     def x(value)
-      fail OutOfBounds if value < 1 || value > Terminal.width
+      fail XOutOfBounds if x_out_of_bounds?(value)
 
       attributes[:geometry][:x] = value
     end
 
     def y(value)
-      fail OutOfBounds if value < 1 || value > Terminal.height
+      fail YOutOfBounds if y_out_of_bounds?(value)
 
       attributes[:geometry][:y] = value
     end
 
     def width(value)
-      fail InvalidWidth if value < 1 || value > Terminal.width
+      fail InvalidWidth if x_out_of_bounds?(value)
 
       attributes[:geometry][:width] = value
     end
 
     def height(value)
-      fail InvalidHeight if value < 1 || value > Terminal.height
+      fail InvalidHeight if y_out_of_bounds?(value)
 
       attributes[:geometry][:height] = value
     end
@@ -60,6 +61,14 @@ module Vedeu
 
     def method_missing(method_name, arg, &block)
       attributes[method_name] = arg
+    end
+
+    def y_out_of_bounds?(value)
+      value < 1 || value > Terminal.height
+    end
+
+    def x_out_of_bounds?(value)
+      value < 1 || value > Terminal.width
     end
   end
 end

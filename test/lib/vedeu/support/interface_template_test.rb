@@ -39,5 +39,59 @@ module Vedeu
         status.geometry.top.must_equal(5)
       end
     end
+
+    describe '#x' do
+      interface = InterfaceTemplate.new('widget')
+
+      it 'raises an exception when the value is out of bounds' do
+        proc { interface.x(0) }.must_raise(XOutOfBounds)
+      end
+
+      it 'raises an exception when the value is out of bounds' do
+        proc { interface.x(999) }.must_raise(XOutOfBounds)
+      end
+    end
+
+    describe '#y' do
+      interface = InterfaceTemplate.new('widget')
+
+      it 'raises an exception when the value is out of bounds' do
+        proc { interface.y(0) }.must_raise(YOutOfBounds)
+      end
+
+      it 'raises an exception when the value is out of bounds' do
+        proc { interface.y(999) }.must_raise(YOutOfBounds)
+      end
+    end
+
+    describe '#width' do
+      interface = InterfaceTemplate.new('widget')
+
+      it 'raises an exception when the value is out of bounds' do
+        proc { interface.width(0) }.must_raise(InvalidWidth)
+      end
+
+      it 'raises an exception when the value is out of bounds' do
+        proc { interface.width(999) }.must_raise(InvalidWidth)
+      end
+    end
+
+    describe '#height' do
+      interface = InterfaceTemplate.new('widget')
+
+      it 'raises an exception when the value is out of bounds' do
+        proc { interface.height(0) }.must_raise(InvalidHeight)
+      end
+
+      it 'raises an exception when the value is out of bounds' do
+        proc { interface.height(999) }.must_raise(InvalidHeight)
+      end
+    end
+
+    describe '#centred' do
+      it 'should hav a valid spec, please write one.' do
+        skip
+      end
+    end
   end
 end
