@@ -1,8 +1,8 @@
 require 'test_helper'
-require 'vedeu/support/translator'
+require 'vedeu/output/colour_translator'
 
 module Vedeu
-  describe Translator do
+  describe ColourTranslator do
     describe '#translate' do
       {
         '#ff0000' => 196, # red
@@ -13,29 +13,29 @@ module Vedeu
         '#b94f1c' => 130, # sunset orange
       }.map do |html_colour, terminal_colour|
         it 'translation is performed' do
-          Translator.translate(html_colour)
+          ColourTranslator.translate(html_colour)
             .must_equal(terminal_colour)
         end
       end
 
       it 'returns empty string when not present' do
-        Translator.translate.must_equal('')
+        ColourTranslator.translate.must_equal('')
       end
 
       it 'returns empty string when the wrong type!' do
-        Translator.translate(:wrong_type).must_equal('')
+        ColourTranslator.translate(:wrong_type).must_equal('')
       end
 
       it 'returns empty string when invalid format' do
-        Translator.translate('345678').must_equal('')
+        ColourTranslator.translate('345678').must_equal('')
       end
 
       it 'returns empty string when invalid format' do
-        Translator.translate('#h11111').must_equal('')
+        ColourTranslator.translate('#h11111').must_equal('')
       end
 
       it 'returns empty string when invalid format' do
-        Translator.translate('#1111').must_equal('')
+        ColourTranslator.translate('#1111').must_equal('')
       end
     end
   end

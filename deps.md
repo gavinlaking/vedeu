@@ -26,7 +26,7 @@ Geometry
 ERBParser
 
 Esc
-  Translator
+  ColourTranslator
 
 Events
 
@@ -113,7 +113,7 @@ Terminal
 
 TextAdaptor
 
-Translator
+ColourTranslator
 
 Wordwrap
 
@@ -140,7 +140,7 @@ Launcher
       Queue
       Terminal
         Esc
-          Translator
+          ColourTranslator
     Process
       Parser
         Composition
@@ -150,41 +150,41 @@ Launcher
                 ClearInterface
                 Colour
                   Esc
-                    Translator
+                    ColourTranslator
                 Geometry
                   Esc
-                    Translator
+                    ColourTranslator
                   Terminal
                     Esc
-                      Translator
+                      ColourTranslator
                 LineCollection
                   Collection
                   Line
                     Colour
                       Esc
-                        Translator
+                        ColourTranslator
                     StreamCollection
                       Collection
                       Stream
                         Colour
                           Esc
-                            Translator
+                            ColourTranslator
                         Style
                           Esc
-                            Translator
+                            ColourTranslator
                     Style
                       Esc
-                        Translator
+                        ColourTranslator
 
                 Queue
                 RenderInterface
                   ClearInterface
                 Style
                   Esc
-                    Translator
+                    ColourTranslator
                 Terminal
                   Esc
-                    Translator
+                    ColourTranslator
         ERBParser
           Template
         RawParser
@@ -194,5 +194,5 @@ Launcher
       Queue
     Terminal
       Esc
-        Translator
+        ColourTranslator
   Configuration

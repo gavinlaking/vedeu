@@ -1,17 +1,17 @@
-require 'vedeu/support/translator'
+require 'vedeu/output/colour_translator'
 
 module Vedeu
   module Esc
     extend self
 
-    def background_colour(value = '#000000')
-      return '' if value.empty?
+    def background_colour(value = '')
+      return '' if value.nil? || value.empty?
 
       ["\e[48;5;", colour_translator(value), 'm'].join
     end
 
-    def foreground_colour(value = '#ffffff')
-      return '' if value.empty?
+    def foreground_colour(value = '')
+      return '' if value.nil? || value.empty?
 
       ["\e[38;5;", colour_translator(value), 'm'].join
     end
@@ -50,7 +50,7 @@ module Vedeu
     private
 
     def colour_translator(value)
-      Translator.translate(value)
+      ColourTranslator.translate(value)
     end
   end
 end
