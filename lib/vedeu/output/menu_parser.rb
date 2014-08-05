@@ -1,11 +1,11 @@
 module Vedeu
   class MenuParser
-    def self.parse(menu)
-      new(menu).parse
+    def self.parse(args)
+      new(args).parse
     end
 
-    def initialize(menu)
-      @menu = menu
+    def initialize(args)
+      @args = args
     end
 
     def parse
@@ -14,7 +14,7 @@ module Vedeu
 
     private
 
-    attr_reader :menu
+    attr_reader :args
 
     def interface
       { name: name, lines: lines }
@@ -41,11 +41,11 @@ module Vedeu
     end
 
     def items
-      menu.last
+      args.last
     end
 
     def name
-      menu.first
+      args.first
     end
   end
 end
