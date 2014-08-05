@@ -18,10 +18,14 @@ module Vedeu
     end
 
     def save(&block)
-      self.instance_eval(&block)
+      self.instance_eval(&block) if block_given?
 
       InterfaceStore.create(attributes)
     end
+
+    private
+
+    attr_reader :name
 
     def x(value)
       fail XOutOfBounds if x_out_of_bounds?(value)
@@ -50,10 +54,6 @@ module Vedeu
     def centred(value)
       attributes[:geometry][:centred] = value
     end
-
-    private
-
-    attr_reader :name
 
     def attributes
       @attributes ||= { name: name, geometry: {} }

@@ -3,15 +3,10 @@ require 'vedeu/support/interface_template'
 
 module Vedeu
   describe InterfaceTemplate do
+    interface = InterfaceTemplate.new('widget')
+
     it 'creates and stores a new interface' do
-      interface = InterfaceTemplate.save('widget') do
-                    colour  foreground: '#ff0000', background: '#5f0000'
-                    cursor  false
-                    width   10
-                    height  2
-                    centred true
-                  end
-      interface.must_be_instance_of(Interface)
+      interface.save.must_be_instance_of(Interface)
     end
 
     it 'allows interfaces to share behaviour' do
@@ -40,58 +35,41 @@ module Vedeu
       end
     end
 
-    describe '#x' do
-      interface = InterfaceTemplate.new('widget')
-
-      it 'raises an exception when the value is out of bounds' do
-        proc { interface.x(0) }.must_raise(XOutOfBounds)
-      end
-
-      it 'raises an exception when the value is out of bounds' do
-        proc { interface.x(999) }.must_raise(XOutOfBounds)
-      end
+    it 'raises an exception when the value is out of bounds' do
+      proc { interface.save { x 0 } }.must_raise(XOutOfBounds)
     end
 
-    describe '#y' do
-      interface = InterfaceTemplate.new('widget')
-
-      it 'raises an exception when the value is out of bounds' do
-        proc { interface.y(0) }.must_raise(YOutOfBounds)
-      end
-
-      it 'raises an exception when the value is out of bounds' do
-        proc { interface.y(999) }.must_raise(YOutOfBounds)
-      end
+    it 'raises an exception when the value is out of bounds' do
+      proc { interface.save { x 999 } }.must_raise(XOutOfBounds)
     end
 
-    describe '#width' do
-      interface = InterfaceTemplate.new('widget')
-
-      it 'raises an exception when the value is out of bounds' do
-        proc { interface.width(0) }.must_raise(InvalidWidth)
-      end
-
-      it 'raises an exception when the value is out of bounds' do
-        proc { interface.width(999) }.must_raise(InvalidWidth)
-      end
+    it 'raises an exception when the value is out of bounds' do
+      proc { interface.save { y 0 } }.must_raise(YOutOfBounds)
     end
 
-    describe '#height' do
-      interface = InterfaceTemplate.new('widget')
-
-      it 'raises an exception when the value is out of bounds' do
-        proc { interface.height(0) }.must_raise(InvalidHeight)
-      end
-
-      it 'raises an exception when the value is out of bounds' do
-        proc { interface.height(999) }.must_raise(InvalidHeight)
-      end
+    it 'raises an exception when the value is out of bounds' do
+      proc { interface.save { y 999 } }.must_raise(YOutOfBounds)
     end
 
-    describe '#centred' do
-      it 'should hav a valid spec, please write one.' do
-        skip
-      end
+    it 'raises an exception when the value is out of bounds' do
+      proc { interface.save { width 0 } }.must_raise(InvalidWidth)
+    end
+
+    it 'raises an exception when the value is out of bounds' do
+      proc { interface.save { width 999 } }.must_raise(InvalidWidth)
+    end
+
+    it 'raises an exception when the value is out of bounds' do
+      proc { interface.save { height 0 } }.must_raise(InvalidHeight)
+    end
+
+    it 'raises an exception when the value is out of bounds' do
+      proc { interface.save { height 999 } }.must_raise(InvalidHeight)
+    end
+
+    it 'should have a valid spec, please write one.' do
+      skip
+      interface = InterfaceTemplate.new('widget')
     end
   end
 end
