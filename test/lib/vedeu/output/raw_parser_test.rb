@@ -46,6 +46,26 @@ module Vedeu
         })
       end
 
+      it 'returns a Hash when the output is content is a Hash' do
+        RawParser.parse({ dummy: [{ streams: { text: 'Some content' } }] })
+          .must_equal(
+            {
+              interfaces: [
+                {
+                  name:  'dummy',
+                  lines: [
+                    {
+                      streams: {
+                        text: 'Some content'
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          )
+      end
+
       it 'returns a Hash when the output is empty' do
         RawParser.parse({}).must_equal({ interfaces: [] })
       end

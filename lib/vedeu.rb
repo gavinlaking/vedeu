@@ -1,8 +1,8 @@
 require 'vedeu/instrumentation'
-require 'vedeu/support/interface_template'
+require 'vedeu/api/interface'
 require 'vedeu/support/events'
 require 'vedeu/support/interface_store'
-
+require 'vedeu/api/view'
 require 'vedeu/models/geometry'
 require 'vedeu/support/menu'
 require 'vedeu/output/view'
@@ -20,7 +20,7 @@ module Vedeu
 
   module API
     def interface(name, &block)
-      InterfaceTemplate.save(name, &block)
+      Interface.save(name, &block)
     end
 
     def on(name, delay = 0, &block)
@@ -33,8 +33,12 @@ module Vedeu
     end
     alias_method :run, :trigger
 
-    def view(name)
+    def with(name, &block)
       InterfaceStore.query(name)
+    end
+
+    def view(name = '', &block)
+      Vedeu::API::View.build(name, &block)
     end
   end
 
