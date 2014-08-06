@@ -50,7 +50,7 @@ Interface
 InterfaceCollection
   InterfaceStore
 
-InterfaceTemplate
+API::Interface
   Geometry
   Interface
   InterfaceStore
@@ -129,7 +129,7 @@ Menu     - orphaned
 Grouped
 ----------------------------------------------------------------------
 
-InterfaceTemplate
+API::Interface
   Interface
   Geometry
   InterfaceStore

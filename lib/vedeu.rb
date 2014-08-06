@@ -1,5 +1,5 @@
 require 'vedeu/instrumentation'
-require 'vedeu/support/interface_template'
+require 'vedeu/api/interface'
 require 'vedeu/support/events'
 require 'vedeu/support/interface_store'
 require 'vedeu/api/view'
@@ -20,7 +20,7 @@ module Vedeu
 
   module API
     def interface(name, &block)
-      InterfaceTemplate.save(name, &block)
+      Interface.save(name, &block)
     end
 
     def on(name, delay = 0, &block)
