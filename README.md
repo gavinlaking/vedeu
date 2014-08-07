@@ -160,25 +160,12 @@ Like colours, they can be defined in either interfaces, for specific lines or wi
 | hide_cursor   | `\e[?25l`                |
 | negative      | `\e[7m`                  |
 | positive      | `\e[27m`                 |
-| reset         | `\e[0m`                  | 
+| reset         | `\e[0m`                  |
 | normal        | `\e[24m\e[21m\e[27m`     |
 | dim           | `\e[2m`                  |
 | show_cursor   | `\e[?25h`                |
 | underline     | `\e[4m`                  |
 | underline_off | `\e[24m`                 |
-
-
-### Templates
-
-The following helpers are available in to the ERBParser.
-
-    foreground (alias: `fg`)
-
-    background (alias: `bg`)
-
-    colour
-
-    style
 
 
 ## Contributing
