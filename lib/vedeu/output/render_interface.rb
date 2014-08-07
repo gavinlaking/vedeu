@@ -24,31 +24,29 @@ module Vedeu
     attr_reader :interface
 
     def processed_lines
-      processed_lines = lines.map do |line|
-        if line.streams.any?
-          processed_streams = []
-          line_length       = 0
-          line.streams.each do |stream|
-            next if stream.text.empty?
+      return [] unless lines.any? { |line| line.streams.any? }
 
-            if (line_length += stream.text.size) >= width
-              remainder = width - line_length
+      lines.map do |line|
+        line_length = 0
+        streams     = line.streams.inject([]) do |processed, stream|
+          next if stream.text.empty?
 
-              processed_streams << Stream.new(
-                                    text:   truncate(stream.text, remainder),
+          if (line_length += stream.text.size) >= width
+            remainder = width - line_length
+
+            processed << Stream.new(text:   truncate(stream.text, remainder),
                                     style:  stream.style,
                                     colour: stream.colour)
 
-            else
-              processed_streams << stream
+          else
+            processed << stream
 
-            end
           end
-
-          Line.new(streams: processed_streams,
-                   style:   line.style,
-                   colour:  line.colour)
         end
+
+        Line.new(streams: streams,
+                 style:   line.style,
+                 colour:  line.colour)
       end
     end
 

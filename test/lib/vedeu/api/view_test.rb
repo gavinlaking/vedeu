@@ -385,11 +385,12 @@ module Vedeu
       end
 
       it 'handles alignment' do
-        skip
         Vedeu.view 'testing_view' do
           line do
-            width 80
-            text  'This is aligned left, and padded with spaces.'
+            stream do
+              width 80
+              text  'This is aligned left, and padded with spaces.'
+            end
           end
         end.must_equal(
           {
@@ -398,8 +399,10 @@ module Vedeu
               colour:  {},
               style:   [],
               streams: [{
-                width: 80,
-                text:  'This is aligned left, and padded with spaces.'
+                colour: {},
+                style:  [],
+                width:  80,
+                text:   'This is aligned left, and padded with spaces.'
               }]
             }]
           }
@@ -410,18 +413,24 @@ module Vedeu
         skip
         Vedeu.view 'testing_view' do
           line do
-            width 80
-            align :left # explicit
-            text  'This is aligned left, and padded with spaces.'
+            stream do
+              width 80
+              align :left # explicit
+              text  'This is aligned left, and padded with spaces.'
+            end
           end
         end.must_equal(
           {
             name:  'testing_view',
             lines: [{
+              colour:  {},
+              style:   [],
               streams: [{
-                width: 80,
-                align: :left,
-                text:  'This is aligned left, and padded with spaces.'
+                colour: {},
+                style:  [],
+                width:  80,
+                align:  :left,
+                text:   'This is aligned left, and padded with spaces.'
               }]
             }]
           }
@@ -432,18 +441,24 @@ module Vedeu
         skip
         Vedeu.view 'testing_view' do
           line do
-            width 80
-            align :centre
-            text  'This is aligned centrally, and padded with spaces.'
+            stream do
+              width 80
+              align :centre
+              text  'This is aligned centrally, and padded with spaces.'
+            end
           end
         end.must_equal(
           {
             name:  'testing_view',
             lines: [{
+              colour:  {},
+              style:   [],
               streams: [{
-                width: 80,
-                align: :centre,
-                text:  'This is aligned right, and padded with spaces.'
+                colour: {},
+                style:  [],
+                width:  80,
+                align:  :centre,
+                text:   'This is aligned right, and padded with spaces.'
               }]
             }]
           }
@@ -454,20 +469,100 @@ module Vedeu
         skip
         Vedeu.view 'testing_view' do
           line do
-            width 80
-            align :right
-            text  'This is aligned right, and padded with spaces.'
+            stream do
+              width 80
+              align :right
+              text  'This is aligned right, and padded with spaces.'
+            end
           end
         end.must_equal(
           {
             name:  'testing_view',
             lines: [{
+              colour:  {},
+              style:   [],
               streams: [{
-                width: 80,
-                align: :right,
-                text:  'This is aligned right, and padded with spaces.'
+                colour: {},
+                style:  [],
+                width:  80,
+                align:  :right,
+                text:   'This is aligned right, and padded with spaces.'
               }]
             }]
+          }
+        )
+      end
+
+      it 'handles multiple colour and text statements correctly' do
+        Vedeu.view 'testing_view' do
+          line do
+            foreground('#ffff00') { text "\u{25B2}" }
+            text " Prev"
+
+            foreground('#ffff00') { text "\u{25BC}" }
+            text " Next"
+
+            foreground('#ffff00') { text "\u{21B2}" }
+            text " Select"
+
+            foreground('#ffff00') { text "\u{2395}" }
+            text " Pause"
+
+            foreground('#ffff00') { text "Q" }
+            text " Quit"
+          end
+        end.must_equal(
+          {
+            name:  'testing_view',
+            lines: [
+              {
+                colour:  {},
+                style:   [],
+                streams: [
+                  {
+                    colour: {
+                      foreground: "#ffff00"
+                    },
+                    style: [],
+                    text: "▲"
+                  }, {
+                    text: " Prev"
+                  }, {
+                    colour: {
+                      foreground: "#ffff00"
+                    },
+                    style: [],
+                    text: "▼"
+                  }, {
+                    text: " Next"
+                  }, {
+                    colour: {
+                      foreground: "#ffff00"
+                    },
+                    style: [],
+                    text: "↲"
+                  }, {
+                    text: " Select"
+                  }, {
+                    colour: {
+                      foreground: "#ffff00"
+                    },
+                    style: [],
+                    text: "⎕"
+                  }, {
+                    text: " Pause"
+                  }, {
+                    colour: {
+                      foreground: "#ffff00"
+                    },
+                    style: [],
+                    text: "Q"
+                  }, {
+                    text: " Quit"
+                  }
+                ]
+              }
+            ]
           }
         )
       end

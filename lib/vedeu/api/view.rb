@@ -18,6 +18,8 @@ module Vedeu
       end
 
       def build(&block)
+        @self_before_instance_eval = eval 'self', block.binding
+
         self.instance_eval(&block) if block_given?
 
         attributes
@@ -34,6 +36,12 @@ module Vedeu
       def name
         return @name if InterfaceStore.query(@name)
       end
+
+      # :nocov:
+      def method_missing(method, *args, &block)
+        @self_before_instance_eval.send method, *args, &block
+      end
+      # :nocov
     end
   end
 end

@@ -16,8 +16,6 @@ module Vedeu
     describe '.foreground' do
       it 'returns an escape sequence for the specified CSS foreground' do
         TestHelpers.new.foreground('#a5f500').must_equal("\e[38;5;148m")
-
-        TestHelpers.new.fg('#851500').must_equal("\e[38;5;88m")
       end
 
       it 'returns an escape sequence plus interpolation when a block is given' do
@@ -29,8 +27,6 @@ module Vedeu
     describe '.background' do
       it 'returns an escape sequence for the specified CSS background' do
         TestHelpers.new.background('#2f2f2f').must_equal("\e[48;5;16m")
-
-        TestHelpers.new.bg('#ffffff').must_equal("\e[48;5;231m")
       end
 
       it 'returns an escape sequence plus interpolation when a block is given' do

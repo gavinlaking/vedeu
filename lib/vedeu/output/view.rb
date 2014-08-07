@@ -1,4 +1,5 @@
 require 'vedeu/models/composition'
+require 'vedeu/output/dsl_parser'
 require 'vedeu/output/erb_parser'
 require 'vedeu/output/raw_parser'
 require 'vedeu/output/json_parser'
@@ -29,6 +30,7 @@ module Vedeu
 
     def parser
       {
+        dsl:     DSLParser,
         erb:     ERBParser,
         json:    JSONParser,
         hash:    RawParser,
