@@ -8,11 +8,6 @@ module Vedeu
         attributes
       end
 
-      def width(value)
-        #attributes[:streams][:width] = value
-        #attributes[:streams] << API::Stream.build({ width: value })
-      end
-
       def align(value)
         attributes[:align] = value
       end

@@ -387,11 +387,12 @@ module Vedeu
       end
 
       it 'handles alignment' do
-        skip
         Vedeu.view 'testing_view' do
           line do
-            width 80
-            text  'This is aligned left, and padded with spaces.'
+            stream do
+              width 80
+              text  'This is aligned left, and padded with spaces.'
+            end
           end
         end.must_equal(
           {
@@ -400,8 +401,10 @@ module Vedeu
               colour:  {},
               style:   [],
               streams: [{
-                width: 80,
-                text:  'This is aligned left, and padded with spaces.'
+                colour: {},
+                style:  [],
+                width:  80,
+                text:   'This is aligned left, and padded with spaces.'
               }]
             }]
           }
@@ -412,18 +415,24 @@ module Vedeu
         skip
         Vedeu.view 'testing_view' do
           line do
-            width 80
-            align :left # explicit
-            text  'This is aligned left, and padded with spaces.'
+            stream do
+              width 80
+              align :left # explicit
+              text  'This is aligned left, and padded with spaces.'
+            end
           end
         end.must_equal(
           {
             name:  'testing_view',
             lines: [{
+              colour:  {},
+              style:   [],
               streams: [{
-                width: 80,
-                align: :left,
-                text:  'This is aligned left, and padded with spaces.'
+                colour: {},
+                style:  [],
+                width:  80,
+                align:  :left,
+                text:   'This is aligned left, and padded with spaces.'
               }]
             }]
           }
@@ -434,18 +443,24 @@ module Vedeu
         skip
         Vedeu.view 'testing_view' do
           line do
-            width 80
-            align :centre
-            text  'This is aligned centrally, and padded with spaces.'
+            stream do
+              width 80
+              align :centre
+              text  'This is aligned centrally, and padded with spaces.'
+            end
           end
         end.must_equal(
           {
             name:  'testing_view',
             lines: [{
+              colour:  {},
+              style:   [],
               streams: [{
-                width: 80,
-                align: :centre,
-                text:  'This is aligned right, and padded with spaces.'
+                colour: {},
+                style:  [],
+                width:  80,
+                align:  :centre,
+                text:   'This is aligned right, and padded with spaces.'
               }]
             }]
           }
@@ -456,18 +471,24 @@ module Vedeu
         skip
         Vedeu.view 'testing_view' do
           line do
-            width 80
-            align :right
-            text  'This is aligned right, and padded with spaces.'
+            stream do
+              width 80
+              align :right
+              text  'This is aligned right, and padded with spaces.'
+            end
           end
         end.must_equal(
           {
             name:  'testing_view',
             lines: [{
+              colour:  {},
+              style:   [],
               streams: [{
-                width: 80,
-                align: :right,
-                text:  'This is aligned right, and padded with spaces.'
+                colour: {},
+                style:  [],
+                width:  80,
+                align:  :right,
+                text:   'This is aligned right, and padded with spaces.'
               }]
             }]
           }
