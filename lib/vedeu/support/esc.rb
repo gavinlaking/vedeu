@@ -1,20 +1,6 @@
-require 'vedeu/output/colour_translator'
-
 module Vedeu
   module Esc
     extend self
-
-    def background_colour(value = '')
-      return '' if value.nil? || value.empty?
-
-      ["\e[48;5;", colour_translator(value), 'm'].join
-    end
-
-    def foreground_colour(value = '')
-      return '' if value.nil? || value.empty?
-
-      ["\e[38;5;", colour_translator(value), 'm'].join
-    end
 
     def set_position(y = 1, x = 1)
       row    = (y == 0 || y == nil) ? 1 : y
@@ -45,12 +31,6 @@ module Vedeu
       else
         ''
       end
-    end
-
-    private
-
-    def colour_translator(value)
-      ColourTranslator.translate(value)
     end
   end
 end
