@@ -9,14 +9,9 @@ module Vedeu
         View.render(:json, '').must_equal('')
       end
 
-      it 'returns when the type is :raw' do
+      it 'returns when the type is :dsl' do
         skip
-        View.render(:raw, '').must_equal('')
-      end
-
-      it 'returns when the type is :menu' do
-        skip
-        View.render(:menu, '').must_equal('')
+        View.render(:dsl, '').must_equal('')
       end
 
       it 'returns when the type is not set' do

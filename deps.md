@@ -23,15 +23,10 @@ Geometry
   Esc
   Terminal
 
-ERBParser
-
 Esc
   ColourTranslator
 
 Events
-
-RawParser
-  TextAdaptor
 
 Input
   Queue
@@ -72,21 +67,8 @@ LineCollection
 
 Menu
 
-MenuParser
-
-Parser
-  Composition
-  ERBParser
-  RawParser
-  JSONParser
-  MenuParser
-
 InterfaceStore
   Interface
-
-Process
-  Parser
-  Queue
 
 Queue
 
@@ -104,14 +86,16 @@ StreamCollection
 Style
   Esc
 
-Template
-  Helpers
-
 Terminal
   Esc
   Application
 
 TextAdaptor
+
+View
+  Composition
+  DSLParser
+  JSONParser
 
 ColourTranslator
 
@@ -185,12 +169,7 @@ Launcher
                 Terminal
                   Esc
                     ColourTranslator
-        ERBParser
-          Template
-        RawParser
-          TextAdaptor
         JSONParser
-        MenuParser
       Queue
     Terminal
       Esc
