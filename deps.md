@@ -2,9 +2,42 @@
 By class
 ----------------------------------------------------------------------
 
+StandardError
+  API::InterfaceNotSpecified
+  EntityNotFound
+  InvalidHeight
+  InvalidWidth
+  ModeSwitch
+  OutOfRange
+  XOutOfBounds
+  YOutOfBounds
+
+API::Base
+  API::Stream
+
+API::Grid
+  Terminal
+
+API::Interface
+  API::Grid
+  Geometry
+  Interface
+  InterfaceStore
+  Terminal
+
+API::Line
+  API::Base
+  API::Stream
+
+API::Stream
+  API::Base
+
+API::View
+  API::Line
+  InterfaceStore
+
 Application
   Input
-  Process
   Terminal
 
 ClearInterface
@@ -12,25 +45,33 @@ ClearInterface
 Collection
 
 Colour
-  Esc
+  Background
+    ColourTranslator
+  Foreground
+    ColourTranslator
 
 Composition
   InterfaceCollection
 
 Configuration
 
+DSLParser
+
 Geometry
   Esc
   Terminal
 
 Esc
-  ColourTranslator
 
 Events
 
 Input
-  Queue
+  Events
   Terminal
+
+Instrumentation
+  Log
+  Trace
 
 Interface
   ClearInterface
@@ -43,11 +84,6 @@ Interface
   Terminal
 
 InterfaceCollection
-  InterfaceStore
-
-API::Interface
-  Geometry
-  Interface
   InterfaceStore
 
 JSONParser
@@ -66,6 +102,7 @@ LineCollection
   Line
 
 Menu
+  Events
 
 InterfaceStore
   Interface
@@ -73,7 +110,8 @@ InterfaceStore
 Queue
 
 RenderInterface
-  ClearInterface
+  Line
+  Stream
 
 Stream
   Colour
@@ -103,13 +141,6 @@ Wordwrap
 
 
 ----------------------------------------------------------------------
-Orphans
-----------------------------------------------------------------------
-
-Wordwrap - orphaned
-Menu     - orphaned
-
-----------------------------------------------------------------------
 Grouped
 ----------------------------------------------------------------------
 
@@ -120,58 +151,49 @@ API::Interface
 
 Launcher
   Application
+    Events
     Input
-      Queue
+      Events
       Terminal
         Esc
-          ColourTranslator
-    Process
-      Parser
-        Composition
-          InterfaceCollection
-            InterfaceStore
-              Interface
-                ClearInterface
-                Colour
-                  Esc
-                    ColourTranslator
-                Geometry
-                  Esc
-                    ColourTranslator
-                  Terminal
-                    Esc
-                      ColourTranslator
-                LineCollection
-                  Collection
-                  Line
-                    Colour
-                      Esc
-                        ColourTranslator
-                    StreamCollection
-                      Collection
-                      Stream
-                        Colour
-                          Esc
-                            ColourTranslator
-                        Style
-                          Esc
-                            ColourTranslator
-                    Style
-                      Esc
-                        ColourTranslator
-
-                Queue
-                RenderInterface
-                  ClearInterface
-                Style
-                  Esc
-                    ColourTranslator
-                Terminal
-                  Esc
-                    ColourTranslator
-        JSONParser
-      Queue
-    Terminal
-      Esc
-        ColourTranslator
   Configuration
+
+View
+  Composition
+    InterfaceCollection
+      InterfaceStore
+        Interface
+          ClearInterface
+          Colour
+            Background
+            Foreground
+          Geometry
+            Esc
+            Terminal
+              Esc
+          LineCollection
+            Collection
+            Line
+              Colour
+                Background
+                Foreground
+              StreamCollection
+                Collection
+                Stream
+                  Colour
+                    Background
+                    Foreground
+                  Style
+                    Esc
+              Style
+                Esc
+          Queue
+          RenderInterface
+            Line
+            Stream
+          Style
+            Esc
+          Terminal
+            Esc
+  DSLParser
+  JSONParser
