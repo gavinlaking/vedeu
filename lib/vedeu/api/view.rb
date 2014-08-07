@@ -1,4 +1,3 @@
-require 'vedeu/api/base'
 require 'vedeu/api/line'
 require 'vedeu/support/interface_store'
 
