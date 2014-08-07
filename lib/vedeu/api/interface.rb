@@ -1,4 +1,5 @@
 require 'vedeu/models/geometry'
+require 'vedeu/api/grid'
 require 'vedeu/support/interface_store'
 require 'vedeu/support/terminal'
 
