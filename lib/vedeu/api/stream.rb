@@ -17,8 +17,6 @@ module Vedeu
 
       def width(value)
         attributes[:width] = value
-        #attributes[:streams][:width] = value
-        #attributes[:streams] << API::Stream.build({ width: value })
       end
 
       def attributes

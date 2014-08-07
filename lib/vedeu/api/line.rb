@@ -21,15 +21,21 @@ module Vedeu
       end
 
       def foreground(value = '', &block)
-        attributes[:streams] << API::Stream.build({ colour: { foreground: value } }, &block)
+        attributes[:streams] << API::Stream.build({
+                                  colour: { foreground: value }
+                                }, &block)
       end
 
       def background(value = '', &block)
-        attributes[:streams] << API::Stream.build({ colour: { background: value } }, &block)
+        attributes[:streams] << API::Stream.build({
+                                  colour: { background: value }
+                                }, &block)
       end
 
       def attributes
-        @_attributes ||= { colour: {}, style: [], streams: [] }.merge!(@attributes)
+        @_attributes ||= { colour:  {},
+                           style:   [],
+                           streams: [] }.merge!(@attributes)
       end
     end
   end
