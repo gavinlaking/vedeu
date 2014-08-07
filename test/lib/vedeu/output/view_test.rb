@@ -4,11 +4,6 @@ require 'vedeu/output/view'
 module Vedeu
   describe View do
     describe '.render' do
-      it 'returns when the type is :erb' do
-        skip
-        View.render(:erb, '').must_equal('')
-      end
-
       it 'returns when the type is :json' do
         skip
         View.render(:json, '').must_equal('')
