@@ -410,7 +410,6 @@ module Vedeu
       end
 
       it 'handles alignment' do
-        skip
         Vedeu.view 'testing_view' do
           line do
             stream do
@@ -438,7 +437,6 @@ module Vedeu
       end
 
       it 'handles alignment' do
-        skip
         Vedeu.view 'testing_view' do
           line do
             stream do
@@ -458,7 +456,7 @@ module Vedeu
                 style:  [],
                 width:  80,
                 align:  :centre,
-                text:   'This is aligned right, and padded with spaces.'
+                text:   'This is aligned centrally, and padded with spaces.'
               }]
             }]
           }
@@ -466,7 +464,6 @@ module Vedeu
       end
 
       it 'handles alignment' do
-        skip
         Vedeu.view 'testing_view' do
           line do
             stream do
