@@ -1,26 +1,34 @@
 require 'vedeu/models/composition'
 
 module Vedeu
+  NotImplemented = Class.new(StandardError)
+
   class View
-    def self.render(data)
-      new(data).render
+    include Vedeu::API
+
+    def self.render(object = nil)
+      new(object).render
     end
 
-    def initialize(data)
-      @data = data
+    def initialize(object = nil)
+      @object = object
     end
 
     def render
       Composition.enqueue(interfaces)
     end
 
+    def output
+      fail NotImplemented, 'Implement #output on your subclass of Vedeu::View.'
+    end
+
     private
 
-    attr_reader :data
+    attr_reader :object
 
     def interfaces
       {
-        interfaces: [ data ]
+        interfaces: [ output ]
       }
     end
   end
