@@ -39,7 +39,7 @@ module Vedeu
       end
 
       it 'returns an escape sequence when the style is clear' do
-        Esc.string('clear').must_equal("\e[2J")
+        Esc.string('clear').must_equal("\e[38;2;39m\e[48;2;49m\e[2J")
       end
 
       it 'returns an escape sequence when the style is colour_reset' do
