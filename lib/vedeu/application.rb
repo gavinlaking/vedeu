@@ -18,7 +18,7 @@ module Vedeu
       Terminal.open(mode) do
         Terminal.set_cursor_mode
 
-        Vedeu.events.trigger(:refresh)
+        Vedeu.events.trigger(:_refresh_)
 
         runner { main_sequence }
       end
@@ -41,7 +41,7 @@ module Vedeu
     def main_sequence
       Input.capture
 
-      Vedeu.events.trigger(:refresh)
+      Vedeu.events.trigger(:_refresh_)
     end
 
     def interactive?

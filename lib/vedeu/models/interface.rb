@@ -18,6 +18,7 @@ module Vedeu
     include Virtus.model
 
     attribute :name,     String
+    attribute :group,    String
     attribute :lines,    LineCollection
     attribute :colour,   Colour,   default: Colour.new
     attribute :style,    Style,    default: ''
@@ -29,7 +30,9 @@ module Vedeu
     def initialize(attributes = {})
       super
 
-      Vedeu.events.on(:refresh, self.delay) { refresh }
+      Vedeu.events.on(:_refresh_, self.delay)                        { refresh }
+      Vedeu.events.on("_refresh_group_#{group}_".to_sym, self.delay) { refresh } unless group.nil? || group.empty?
+      Vedeu.events.on("_refresh_#{name}_".to_sym, self.delay)        { refresh }
 
       self
     end

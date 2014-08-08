@@ -116,13 +116,21 @@ Note: not setting a width or height will set the values to the terminal's report
     event :event_name do |arg1, arg2|
     end
 
-One can define events which perform work or trigger other events. Vedeu has 3 built-in events which are namespaced with underscores as to hopefully not cause a collision with events you wish to create:
+One can define events which perform work or trigger other events. Vedeu has built-in events which are namespaced with underscores as to hopefully not cause a collision with events you wish to create:
+
+- `:_clear_` Clears the whole terminal space.
 
 - `:_exit_` when triggered, Vedeu will attempt to exit.
 
 - `:_keypress_` triggering this event will cause the triggering of the `key` event; which you should define to 'do things'. If the `escape` key is pressed, then `key` is triggered with the argument `:escape`, also an internal event `_mode_switch_` is triggered.
 
 - `:_mode_switch_` when triggered (after the user presses `escape`), Vedeu switches from a "raw mode" terminal to a "cooked mode" terminal. The idea here being that the raw mode is for single keypress actions, whilst cooked mode allows the user to enter more elaborate commands- such as commands with arguments.
+
+- `:_refresh_` triggering this event will cause all interfaces to refresh.
+
+- `:_refresh_group_(group_name)_` will refresh all interfaces belonging to this group. E.g. `_refresh_group_home_` will refresh all interfaces with the group of `home`.
+
+- `:_refresh_(interface_name)_` will refresh the interface with this name. E.g. `_refresh_widget_` will refresh the interface `widget`.
 
 Note: Overriding or adding additional events to the Vedeu event namespace may cause unpredictable results.
 
