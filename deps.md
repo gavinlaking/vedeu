@@ -86,8 +86,6 @@ Interface
 InterfaceCollection
   InterfaceStore
 
-JSONParser
-
 Launcher
   Application
   Configuration
@@ -133,7 +131,6 @@ TextAdaptor
 View
   Composition
   DSLParser
-  JSONParser
 
 ColourTranslator
 
@@ -196,4 +193,3 @@ View
           Terminal
             Esc
   DSLParser
-  JSONParser

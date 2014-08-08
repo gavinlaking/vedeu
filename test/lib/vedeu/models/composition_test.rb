@@ -1,4 +1,7 @@
 require 'test_helper'
+
+require 'json'
+
 require 'vedeu/models/composition'
 require 'vedeu/support/interface_store'
 

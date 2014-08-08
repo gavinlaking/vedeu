@@ -1,34 +1,27 @@
 require 'vedeu/models/composition'
-require 'vedeu/output/dsl_parser'
-require 'vedeu/output/json_parser'
 
 module Vedeu
   class View
-    def self.render(type, output)
-      new(type, output).render
+    def self.render(data)
+      new(data).render
     end
 
-    def initialize(type, output)
-      @type, @output = type, output
+    def initialize(data)
+      @data = data
     end
 
     def render
-      Composition.enqueue(parsed_output)
+      Composition.enqueue(interfaces)
     end
 
     private
 
-    attr_reader :type, :output
+    attr_reader :data
 
-    def parsed_output
-      @parsed ||= parser.parse(output)
-    end
-
-    def parser
+    def interfaces
       {
-        dsl:     DSLParser,
-        json:    JSONParser,
-      }.fetch(type)
+        interfaces: [ data ]
+      }
     end
   end
 end
