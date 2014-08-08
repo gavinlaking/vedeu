@@ -47,6 +47,7 @@ module Vedeu
       on(:_exit_)        { fail StopIteration }
       on(:_log_)         { |message| Vedeu.log(message) }
       on(:_mode_switch_) { fail ModeSwitch    }
+      on(:_clear_)       { Terminal.output(Esc.string('clear')) }
 
       on(:_keypress_) do |key|
         trigger(:key, key)
@@ -70,11 +71,5 @@ module Vedeu
   end
 
   extend API
-
-  private
-
-  def self.root_path
-    File.expand_path('../..', __FILE__)
-  end
   # :nocov:
 end

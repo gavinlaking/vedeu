@@ -3,26 +3,6 @@ require 'vedeu/support/esc'
 
 module Vedeu
   describe Esc do
-    describe '.background_colour' do
-      it 'returns an escape sequence' do
-        Esc.background_colour('#000000').must_equal("\e[48;5;16m")
-      end
-
-      it 'returns an empty string when the value is empty' do
-        Esc.background_colour('').must_equal('')
-      end
-    end
-
-    describe '.foreground_colour' do
-      it 'returns an escape sequence' do
-        Esc.foreground_colour('#ffffff').must_equal("\e[38;5;231m")
-      end
-
-      it 'returns an empty string when the value is empty' do
-        Esc.foreground_colour('').must_equal('')
-      end
-    end
-
     describe '.set_position' do
       it 'returns a position escape sequence when no coordinates are provided' do
         Esc.set_position.must_equal("\e[1;1H")
@@ -59,7 +39,7 @@ module Vedeu
       end
 
       it 'returns an escape sequence when the style is clear' do
-        Esc.string('clear').must_equal("\e[2J")
+        Esc.string('clear').must_equal("\e[38;2;39m\e[48;2;49m\e[2J")
       end
 
       it 'returns an escape sequence when the style is colour_reset' do

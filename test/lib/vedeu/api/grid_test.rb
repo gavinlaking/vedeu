@@ -2,6 +2,16 @@ require 'test_helper'
 
 require 'vedeu/api/grid'
 
+describe Fixnum do
+  describe '#columns' do
+    it 'returns the width if the value is in range' do
+      IO.console.stub :winsize, [25, 60] do
+        1.columns.must_equal(5)
+      end
+    end
+  end
+end
+
 module Vedeu
   module API
     describe Grid do

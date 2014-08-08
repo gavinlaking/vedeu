@@ -1,3 +1,6 @@
+require 'vedeu/models/line'
+require 'vedeu/models/stream'
+
 module Vedeu
   class RenderInterface
     def self.call(interface)

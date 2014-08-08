@@ -1,42 +1,35 @@
 require 'vedeu/models/composition'
-require 'vedeu/output/dsl_parser'
-require 'vedeu/output/erb_parser'
-require 'vedeu/output/raw_parser'
-require 'vedeu/output/json_parser'
-require 'vedeu/output/menu_parser'
-require 'vedeu/output/raw_parser'
 
 module Vedeu
+  NotImplemented = Class.new(StandardError)
+
   class View
-    def self.render(type, output)
-      new(type, output).render
+    include Vedeu::API
+
+    def self.render(object = nil)
+      new(object).render
     end
 
-    def initialize(type, output)
-      @type, @output = type, output
+    def initialize(object = nil)
+      @object = object
     end
 
     def render
-      Composition.enqueue(parsed_output)
+      Composition.enqueue(interfaces)
+    end
+
+    def output
+      fail NotImplemented, 'Implement #output on your subclass of Vedeu::View.'
     end
 
     private
 
-    attr_reader :type, :output
+    attr_reader :object
 
-    def parsed_output
-      @parsed ||= parser.parse(output)
-    end
-
-    def parser
+    def interfaces
       {
-        dsl:     DSLParser,
-        erb:     ERBParser,
-        json:    JSONParser,
-        hash:    RawParser,
-        menu:    MenuParser,
-        raw:     RawParser,
-      }.fetch(type)
+        interfaces: [ output ]
+      }
     end
   end
 end

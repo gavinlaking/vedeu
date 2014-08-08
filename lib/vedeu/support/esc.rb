@@ -1,20 +1,6 @@
-require 'vedeu/output/colour_translator'
-
 module Vedeu
   module Esc
     extend self
-
-    def background_colour(value = '')
-      return '' if value.nil? || value.empty?
-
-      ["\e[48;5;", colour_translator(value), 'm'].join
-    end
-
-    def foreground_colour(value = '')
-      return '' if value.nil? || value.empty?
-
-      ["\e[38;5;", colour_translator(value), 'm'].join
-    end
 
     def set_position(y = 1, x = 1)
       row    = (y == 0 || y == nil) ? 1 : y
@@ -30,7 +16,7 @@ module Vedeu
       when 'blink_off'     then "\e[25m"
       when 'bold'          then "\e[1m"
       when 'bold_off'      then "\e[21m"
-      when 'clear'         then "\e[2J"
+      when 'clear'         then "\e[38;2;39m\e[48;2;49m\e[2J"
       when 'colour_reset'  then "\e[38;2;39m\e[48;2;49m"
       when 'fg_reset'      then "\e[38;2;39m"
       when 'hide_cursor'   then "\e[?25l"
@@ -45,12 +31,6 @@ module Vedeu
       else
         ''
       end
-    end
-
-    private
-
-    def colour_translator(value)
-      ColourTranslator.translate(value)
     end
   end
 end

@@ -1,3 +1,4 @@
+require 'forwardable'
 require 'virtus'
 
 require 'vedeu'
@@ -14,10 +15,12 @@ require 'vedeu/support/terminal'
 
 module Vedeu
   class Interface
+    extend Forwardable
     include Vedeu::Queue
     include Virtus.model
 
     attribute :name,     String
+    attribute :group,    String
     attribute :lines,    LineCollection
     attribute :colour,   Colour,   default: Colour.new
     attribute :style,    Style,    default: ''
@@ -26,10 +29,15 @@ module Vedeu
     attribute :cursor,   Boolean,  default: true
     attribute :delay,    Float,    default: 0
 
+    def_delegators :@geometry, :north, :east, :south, :west,
+                               :top, :right, :bottom, :left
+
     def initialize(attributes = {})
       super
 
-      Vedeu.events.on(:refresh, self.delay) { refresh }
+      Vedeu.events.on(:_refresh_, self.delay)                        { refresh }
+      Vedeu.events.on("_refresh_group_#{group}_".to_sym, self.delay) { refresh } unless group.nil? || group.empty?
+      Vedeu.events.on("_refresh_#{name}_".to_sym, self.delay)        { refresh }
 
       self
     end

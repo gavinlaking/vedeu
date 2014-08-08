@@ -1,5 +1,6 @@
 require 'virtus'
 
+require 'vedeu/output/colour_translator'
 require 'vedeu/support/esc'
 
 module Vedeu
@@ -7,7 +8,7 @@ module Vedeu
     def coerce(value)
       return '' if value.nil? || value.empty?
 
-      Esc.background_colour(value)
+      ["\e[48;5;", ColourTranslator.translate(value), 'm'].join
     end
   end
 
@@ -15,7 +16,7 @@ module Vedeu
     def coerce(value)
       return '' if value.nil? || value.empty?
 
-      Esc.foreground_colour(value)
+      ["\e[38;5;", ColourTranslator.translate(value), 'm'].join
     end
   end
 
