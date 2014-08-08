@@ -21,8 +21,10 @@ module Vedeu
     def lines
       if text.is_a?(::Array)
         text
+
       else
         text.split(/\n/)
+
       end
     end
 
