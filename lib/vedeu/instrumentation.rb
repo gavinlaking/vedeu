@@ -25,7 +25,7 @@ module Vedeu
       private
 
       def self.filename
-        Vedeu.root_path + '/logs/vedeu.log'
+        File.expand_path('../../..', __FILE__) + '/logs/vedeu.log'
       end
     end
 

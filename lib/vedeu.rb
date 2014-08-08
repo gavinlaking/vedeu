@@ -70,11 +70,5 @@ module Vedeu
   end
 
   extend API
-
-  private
-
-  def self.root_path
-    File.expand_path('../..', __FILE__)
-  end
   # :nocov:
 end
