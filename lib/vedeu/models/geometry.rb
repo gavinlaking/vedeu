@@ -25,6 +25,10 @@ module Vedeu
       end
     end
 
+    def north(value = 1)
+      top - value
+    end
+
     def left
       if centred
         centre_x - (width / 2)
@@ -33,12 +37,24 @@ module Vedeu
       end
     end
 
+    def west(value = 1)
+      left - value
+    end
+
     def bottom
       top + height
     end
 
+    def south(value = 1)
+      bottom + value
+    end
+
     def right
       left + width
+    end
+
+    def east(value = 1)
+      right + value
     end
 
     def position

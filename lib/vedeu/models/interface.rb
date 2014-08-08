@@ -1,3 +1,4 @@
+require 'forwardable'
 require 'virtus'
 
 require 'vedeu'
@@ -14,6 +15,7 @@ require 'vedeu/support/terminal'
 
 module Vedeu
   class Interface
+    extend Forwardable
     include Vedeu::Queue
     include Virtus.model
 
@@ -26,6 +28,9 @@ module Vedeu
     attribute :current,  String,   default: ''
     attribute :cursor,   Boolean,  default: true
     attribute :delay,    Float,    default: 0
+
+    def_delegators :@geometry, :north, :east, :south, :west,
+                               :top, :right, :bottom, :left
 
     def initialize(attributes = {})
       super
