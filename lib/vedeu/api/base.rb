@@ -30,8 +30,10 @@ module Vedeu
       def style(values = [], &block)
         if block_given?
           attributes[:streams] << API::Stream.build({ style: [values] }, &block)
+
         else
           [values].flatten.each { |value| attributes[:style] << value }
+
         end
       end
 

@@ -1,22 +1,38 @@
 module Vedeu
   class ColourTranslator
     def self.translate(html_colour = '')
-      new(html_colour).translate
+      new(html_colour).value
     end
 
     def initialize(html_colour = '')
       @html_colour = html_colour
     end
 
-    def translate
+    def background
       return '' unless valid?
 
-      [16, red, green, blue].inject(:+)
+      ["\e[48;5;", translate, 'm'].join
+    end
+
+    def foreground
+      return '' unless valid?
+
+      ["\e[38;5;", translate, 'm'].join
+    end
+
+    def value
+      return '' unless valid?
+
+      translate
     end
 
     private
 
     attr_reader :html_colour
+
+    def translate
+      [16, red, green, blue].inject(:+)
+    end
 
     def red
       (html_colour[1..2].to_i(16) / 51) * 36
