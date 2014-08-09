@@ -18,7 +18,7 @@ module Vedeu
       Terminal.open(mode) do
         Terminal.set_cursor_mode
 
-        Vedeu.events.trigger(:_clear_)
+        Vedeu.events.trigger(:_initialize_)
 
         runner { main_sequence }
       end

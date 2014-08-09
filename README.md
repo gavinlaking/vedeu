@@ -116,7 +116,9 @@ Note: not setting a width or height will set the values to the terminal's report
     event :event_name do |arg1, arg2|
     end
 
-One can define events which perform work or trigger other events. Vedeu has built-in events which are namespaced with underscores as to hopefully not cause a collision with events you wish to create:
+One can define events which perform work or trigger other events. Vedeu has built-in events which are namespaced with underscores:
+
+- `:_initialize_` Special event which Vedeu triggers when it is ready to enter the main loop. Client applications can listen for this event and perform some action(s), like render the first screen, interface or make a sound.
 
 - `:_clear_` Clears the whole terminal space.
 
