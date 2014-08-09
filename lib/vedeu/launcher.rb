@@ -27,7 +27,8 @@ module Vedeu
     #               "Your terminal window is too small.")
 
     rescue StandardError => uncaught_exception
-      Vedeu.error(uncaught_exception)
+      puts uncaught_exception.message
+      puts uncaught_exception.backtrace.join("\n")
 
     ensure
       $stdin, $stdout, $stderr = STDIN, STDOUT, STDERR
