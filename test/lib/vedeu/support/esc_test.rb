@@ -42,6 +42,10 @@ module Vedeu
         Esc.string('clear').must_equal("\e[38;2;39m\e[48;2;49m\e[2J")
       end
 
+      it 'returns an escape sequence when the style is clear_line' do
+        Esc.string('clear_line').must_equal("\e[38;2;39m\e[48;2;49m\e[2K")
+      end
+
       it 'returns an escape sequence when the style is colour_reset' do
         Esc.string('colour_reset').must_equal("\e[38;2;39m\e[48;2;49m")
       end

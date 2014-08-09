@@ -17,6 +17,7 @@ module Vedeu
       when 'bold'          then "\e[1m"
       when 'bold_off'      then "\e[21m"
       when 'clear'         then "\e[38;2;39m\e[48;2;49m\e[2J"
+      when 'clear_line'    then "\e[38;2;39m\e[48;2;49m\e[2K"
       when 'colour_reset'  then "\e[38;2;39m\e[48;2;49m"
       when 'fg_reset'      then "\e[38;2;39m"
       when 'hide_cursor'   then "\e[?25l"

@@ -69,7 +69,7 @@ module Vedeu
     # :nocov:
 
     def clear_last_line
-      Esc.set_position((height - 1), 1) + "\e[2K"
+      Esc.set_position((height - 1), 1) + Esc.string('clear_line')
     end
 
     def centre

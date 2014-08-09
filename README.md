@@ -157,25 +157,26 @@ Vedeu has a range of symbol styles which are compatible with most terminals whic
 
 Like colours, they can be defined in either interfaces, for specific lines or within streams. Styles are applied as encountered.
 
-| Style name    | Escape Sequence          |
-|---------------|--------------------------|
-| bg_reset      | `\e[48;2;49m`            |
-| blink         | `\e[5m`                  |
-| blink_off     | `\e[25m`                 |
-| bold          | `\e[1m`                  |
-| bold_off      | `\e[21m`                 |
-| clear         | `\e[2J`                  |
-| colour_reset  | `\e[38;2;39m\e[48;2;49m` |
-| fg_reset      | `\e[38;2;39m`            |
-| hide_cursor   | `\e[?25l`                |
-| negative      | `\e[7m`                  |
-| positive      | `\e[27m`                 |
-| reset         | `\e[0m`                  |
-| normal        | `\e[24m\e[21m\e[27m`     |
-| dim           | `\e[2m`                  |
-| show_cursor   | `\e[?25h`                |
-| underline     | `\e[4m`                  |
-| underline_off | `\e[24m`                 |
+| Style name    | Escape Sequence               |
+|---------------|-------------------------------|
+| bg_reset      | `\e[48;2;49m`                 |
+| blink         | `\e[5m`                       |
+| blink_off     | `\e[25m`                      |
+| bold          | `\e[1m`                       |
+| bold_off      | `\e[21m`                      |
+| clear         | `\e[2J`                       |
+| clear_line    | `\e[38;2;39m\e[48;2;49m\e[2K` |
+| colour_reset  | `\e[38;2;39m\e[48;2;49m`      |
+| fg_reset      | `\e[38;2;39m`                 |
+| hide_cursor   | `\e[?25l`                     |
+| negative      | `\e[7m`                       |
+| positive      | `\e[27m`                      |
+| reset         | `\e[0m`                       |
+| normal        | `\e[24m\e[21m\e[27m`          |
+| dim           | `\e[2m`                       |
+| show_cursor   | `\e[?25h`                     |
+| underline     | `\e[4m`                       |
+| underline_off | `\e[24m`                      |
 
 
 ## Contributing
@@ -188,4 +189,4 @@ Like colours, they can be defined in either interfaces, for specific lines or wi
 6. Write some tests, write some code, have some fun
 7. Commit your changes (`git commit -am 'Add some feature'`)
 8. Push to the branch (`git push origin my-new-feature`)
-9. Create new Pull Request
+9. Create a new pull request
