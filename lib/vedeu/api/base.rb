@@ -35,11 +35,11 @@ module Vedeu
         end
       end
 
-      # :nocov:
+      private
+
       def method_missing(method, *args, &block)
         @self_before_instance_eval.send method, *args, &block
       end
-      # :nocov
     end
   end
 end
