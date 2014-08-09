@@ -8,7 +8,6 @@ require 'vedeu/models/style'
 require 'vedeu/output/clear_interface'
 require 'vedeu/output/render_interface'
 require 'vedeu/models/geometry'
-require 'vedeu/support/queue'
 require 'vedeu/support/terminal'
 
 # Todo: mutation (events, current)
@@ -16,7 +15,6 @@ require 'vedeu/support/terminal'
 module Vedeu
   class Interface
     extend Forwardable
-    include Vedeu::Queue
     include Virtus.model
 
     attribute :name,     String
@@ -28,6 +26,7 @@ module Vedeu
     attribute :current,  String,   default: ''
     attribute :cursor,   Boolean,  default: true
     attribute :delay,    Float,    default: 0
+    attribute :buffer,   Array,    default: []
 
     def_delegators :@geometry, :north, :east, :south, :west,
                                :top, :right, :bottom, :left
@@ -35,9 +34,14 @@ module Vedeu
     def initialize(attributes = {})
       super
 
-      Vedeu.events.on(:_refresh_, self.delay)                        { refresh }
-      Vedeu.events.on("_refresh_group_#{group}_".to_sym, self.delay) { refresh } unless group.nil? || group.empty?
-      Vedeu.events.on("_refresh_#{name}_".to_sym, self.delay)        { refresh }
+      Vedeu.events.on(:_refresh_, self.delay)                 { refresh }
+      Vedeu.events.on("_refresh_#{name}_".to_sym, self.delay) { refresh }
+
+      unless group.nil? || group.empty?
+        Vedeu.events.on("_refresh_group_#{group}_".to_sym, self.delay) do
+          refresh
+        end
+      end
 
       self
     end
@@ -46,13 +50,17 @@ module Vedeu
       @_clear ||= ClearInterface.call(self)
     end
 
+    def dequeue
+      buffer.pop
+    end
+
     def enqueue
-      super(self.to_s)
+      buffer.unshift(self.to_s)
     end
 
     def refresh
-      if enqueued?
-        self.current = dequeue
+      if buffer.any?
+        self.current = buffer.pop
 
       elsif no_content?
         self.current = clear

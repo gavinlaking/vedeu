@@ -78,7 +78,6 @@ Interface
   Colour
   Geometry
   LineCollection
-  Queue
   RenderInterface
   Style
   Terminal
@@ -104,8 +103,6 @@ Menu
 
 InterfaceStore
   Interface
-
-Queue
 
 RenderInterface
   Line
@@ -184,7 +181,6 @@ View
                     Esc
               Style
                 Esc
-          Queue
           RenderInterface
             Line
             Stream
