@@ -30,7 +30,7 @@ module Vedeu
 
     def_delegators :@geometry, :north, :east, :south, :west,
                                :top, :right, :bottom, :left,
-                               :width, :height
+                               :width, :height, :origin
 
     def initialize(attributes = {})
       super

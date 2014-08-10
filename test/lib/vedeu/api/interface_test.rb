@@ -27,14 +27,14 @@ module Vedeu
                       centred true
                       width   10
                       height  1
-                      y       main.geometry.bottom
-                      x       main.geometry.left
+                      y       use('main').bottom
+                      x       use('main').left
                     end
 
-          main.geometry.left.must_equal(15)
-          main.geometry.top.must_equal(4)
-          status.geometry.left.must_equal(15)
-          status.geometry.top.must_equal(5)
+          main.left.must_equal(15)
+          main.top.must_equal(4)
+          status.left.must_equal(15)
+          status.top.must_equal(5)
         end
       end
 
