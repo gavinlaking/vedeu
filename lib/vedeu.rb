@@ -7,6 +7,7 @@ require 'vedeu/api/line'
 require 'vedeu/api/store'
 require 'vedeu/api/stream'
 require 'vedeu/api/view'
+require 'vedeu/output/view'
 
 require 'vedeu/support/menu'
 require 'vedeu/launcher'
