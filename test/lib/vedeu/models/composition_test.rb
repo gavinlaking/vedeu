@@ -4,6 +4,7 @@ require 'json'
 
 require 'vedeu/models/composition'
 require 'vedeu/api/store'
+require 'vedeu'
 
 module Vedeu
   describe Composition do
@@ -116,7 +117,7 @@ module Vedeu
           "\e[3;3H                              \e[3;3H" \
           "\e[4;3H                              \e[4;3H" \
           "\e[5;3H                              \e[5;3H" \
-          "\e[3;3H\e[38;5;16m\e[48;5;21mSome text...\e[38;5;226m\e[48;5;46m \e[38;5;231m\e[48;5;201mmore text..."
+          "\e[3;3H\e[38;5;16m\e[48;5;21m\e[24m\e[21m\e[27m\e[4mSome text...\e[38;5;226m\e[48;5;46m\e[24m\e[21m\e[27m \e[38;5;231m\e[48;5;201m\e[1mmore text..."
         )
       end
 
@@ -256,13 +257,13 @@ module Vedeu
           "\e[3;3H                              \e[3;3H" \
           "\e[4;3H                              \e[4;3H" \
           "\e[5;3H                              \e[5;3H" \
-          "\e[3;3H\e[38;5;16m\e[48;5;21mSome text...\e[38;5;226m\e[48;5;46m \e[38;5;231m\e[48;5;201mmore text..." \
-          "\e[4;3H\e[38;5;16m\e[48;5;21mSome text...\e[38;5;226m\e[48;5;46m \e[38;5;231m\e[48;5;201mmore text..." \
+          "\e[3;3H\e[38;5;16m\e[48;5;21m\e[24m\e[21m\e[27m\e[4mSome text...\e[38;5;226m\e[48;5;46m\e[24m\e[21m\e[27m \e[38;5;231m\e[48;5;201m\e[1mmore text..." \
+          "\e[4;3H\e[38;5;16m\e[48;5;21m\e[24m\e[21m\e[27m\e[4mSome text...\e[38;5;226m\e[48;5;46m\e[24m\e[21m\e[27m \e[38;5;231m\e[48;5;201m\e[1mmore text..." \
           "\e[6;6H                              \e[6;6H" \
           "\e[7;6H                              \e[7;6H" \
           "\e[8;6H                              \e[8;6H" \
-          "\e[6;6H\e[38;5;16m\e[48;5;21mSome text...\e[38;5;226m\e[48;5;46m \e[38;5;231m\e[48;5;201mmore text..." \
-          "\e[7;6H\e[38;5;16m\e[48;5;21mSome text...\e[38;5;226m\e[48;5;46m \e[38;5;231m\e[48;5;201mmore text..."
+          "\e[6;6H\e[38;5;16m\e[48;5;21m\e[24m\e[21m\e[27m\e[4mSome text...\e[38;5;226m\e[48;5;46m\e[24m\e[21m\e[27m \e[38;5;231m\e[48;5;201m\e[1mmore text..." \
+          "\e[7;6H\e[38;5;16m\e[48;5;21m\e[24m\e[21m\e[27m\e[4mSome text...\e[38;5;226m\e[48;5;46m\e[24m\e[21m\e[27m \e[38;5;231m\e[48;5;201m\e[1mmore text..."
         )
       end
     end

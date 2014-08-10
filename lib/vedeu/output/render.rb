@@ -17,7 +17,6 @@ module Vedeu
         if index + 1 <= height
           out << interface.origin(index)
           out << line.to_s
-          out << interface.origin(index)
         end
       end
       out.join
@@ -61,7 +60,7 @@ module Vedeu
     end
 
     def exceeds_width?(line)
-      content = line.streams.map(&:text)
+      content = line.streams.map(&:text).join
       content.size > width
     end
 
