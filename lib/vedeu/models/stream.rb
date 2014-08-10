@@ -11,20 +11,28 @@ module Vedeu
     attribute :style,  Style,   default: ''
     attribute :text,   String,  default: ''
     attribute :width,  Integer
-    attribute :align,  Symbol,  default: :left # :centre, :right
+    attribute :align,  Symbol,  default: :left
 
-    def to_s(options = {})
-      if width
-        aligned = case align
-        when :left   then text.ljust(width,  ' ')
-        when :right  then text.rjust(width,  ' ')
-        when :centre then text.center(width, ' ')
-        end
+    def to_s
+      [ colour, style, data ].join
+    end
 
-        [colour, style, aligned].join
-      else
-        [colour, style, text].join
+    private
+
+    def data
+      width? ? aligned : text
+    end
+
+    def aligned
+      case align
+      when :right  then text.rjust(width,  ' ')
+      when :centre then text.center(width, ' ')
+      else text.ljust(width, ' ')
       end
+    end
+
+    def width?
+      !!width
     end
   end
 end
