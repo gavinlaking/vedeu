@@ -9,7 +9,6 @@ module Vedeu
     include Virtus.model
 
     attribute :colour,  Colour, default: Colour.new
-    attribute :model,   Hash
     attribute :streams, StreamCollection
     attribute :style,   Style,  default: ''
 

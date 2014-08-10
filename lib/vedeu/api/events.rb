@@ -63,15 +63,13 @@ module Vedeu
         end
       end
 
-      # :nocov:
-      def method_missing(method, *args, &block)
-        @self_before_instance_eval.send method, *args, &block
-      end
-      # :nocov:
-
       private
 
       attr_reader :handlers, :throttles
+
+      def method_missing(method, *args, &block)
+        @self_before_instance_eval.send method, *args, &block
+      end
     end
   end
 end

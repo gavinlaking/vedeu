@@ -9,7 +9,6 @@ module Vedeu
           foreground: '#ff0000',
           background: '#000000'
         },
-        model:   {},
         streams: [],
         style:   'normal'
       })
@@ -17,10 +16,6 @@ module Vedeu
 
     it 'has a colour attribute' do
       line.colour.must_be_instance_of(Colour)
-    end
-
-    it 'has a model attribute' do
-      line.model.must_be_instance_of(Hash)
     end
 
     it 'has a streams attribute' do
