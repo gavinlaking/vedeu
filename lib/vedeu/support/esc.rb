@@ -21,6 +21,8 @@ module Vedeu
       when 'colour_reset'  then "\e[38;2;39m\e[48;2;49m"
       when 'fg_reset'      then "\e[38;2;39m"
       when 'hide_cursor'   then "\e[?25l"
+      when 'screen_init'   then "\e[0m\e[38;2;39m\e[48;2;49m\e[2J\e[?25l"
+      when 'screen_exit'   then "\e[?25h\e[38;2;39m\e[48;2;49m\e[0m"
       when 'negative'      then "\e[7m"
       when 'positive'      then "\e[27m"
       when 'reset'         then "\e[0m"
