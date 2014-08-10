@@ -55,8 +55,6 @@ Composition
 
 Configuration
 
-DSLParser
-
 Geometry
   Esc
   Terminal
@@ -127,7 +125,6 @@ TextAdaptor
 
 View
   Composition
-  DSLParser
 
 ColourTranslator
 
@@ -188,4 +185,3 @@ View
             Esc
           Terminal
             Esc
-  DSLParser
