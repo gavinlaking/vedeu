@@ -26,6 +26,10 @@ module Vedeu
         opts.on('-r', '--raw', 'Run application in raw mode (default).') do
           options[:mode] = :raw
         end
+
+        opts.on('-d', '--debug', 'Run application with debugging on.') do
+          options[:debug] = true
+        end
       end
       parser.parse!(args)
 

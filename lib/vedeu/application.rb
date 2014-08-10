@@ -1,3 +1,4 @@
+require 'vedeu/instrumentation'
 require 'vedeu/support/input'
 require 'vedeu/support/terminal'
 
@@ -5,7 +6,6 @@ module Vedeu
   ModeSwitch = Class.new(StandardError)
 
   class Application
-    # :nocov:
     def self.start(options = {})
       new(options).start
     end
@@ -67,16 +67,20 @@ module Vedeu
       options.fetch(:mode)
     end
 
+    def debug
+      Vedeu::Instrumentation::Trace.call if options.fetch(:debug)
+    end
+
     def options
       defaults.merge!(@options)
     end
 
     def defaults
       {
+        debug:       false,
         interactive: true,
         mode:        :raw
       }
     end
-    # :nocov:
   end
 end
