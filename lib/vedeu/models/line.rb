@@ -13,7 +13,7 @@ module Vedeu
     attribute :style,   Style,  default: ''
 
     def to_s
-      [colour, style, streams].join
+      [ colour, style, streams ].join
     end
   end
 end
