@@ -1,9 +1,17 @@
 require 'vedeu/api/line'
-require 'vedeu/support/interface_store'
+require 'vedeu/api/store'
 
 module Vedeu
   module API
     InterfaceNotSpecified = Class.new(StandardError)
+
+    def render(object = nil)
+      Vedeu::View.render(object)
+    end
+
+    def view(name = '', &block)
+      Vedeu::API::View.build(name, &block)
+    end
 
     class View
       def self.build(name = '', &block)
@@ -33,7 +41,7 @@ module Vedeu
       end
 
       def name
-        return @name if InterfaceStore.query(@name)
+        return @name if Store.query(@name)
       end
 
       # :nocov:

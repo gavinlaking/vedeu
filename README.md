@@ -50,9 +50,9 @@ Expect proper documentation soon!
         when 'a' then puts "Apple"
         when 'b' then puts "Banana"
         # ...
-        when :f1 then run(:some_event)
+        when :f1 then trigger(:some_event)
         when :f2 then
-          run(:other_event, { args: here }, [:or, :here], :etc)
+          trigger(:other_event, { args: here }, [:or, :here], :etc)
         end
       end
     end

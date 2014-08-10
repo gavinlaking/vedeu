@@ -2,7 +2,7 @@ require 'vedeu/models/line'
 require 'vedeu/models/stream'
 
 module Vedeu
-  class RenderInterface
+  class Render
     def self.call(interface)
       new(interface).render
     end

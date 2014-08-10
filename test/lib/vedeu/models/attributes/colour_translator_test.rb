@@ -1,5 +1,5 @@
 require 'test_helper'
-require 'vedeu/output/colour_translator'
+require 'vedeu/models/attributes/colour_translator'
 
 module Vedeu
   describe ColourTranslator do

@@ -1,6 +1,6 @@
 require 'vedeu/models/geometry'
 require 'vedeu/api/grid'
-require 'vedeu/support/interface_store'
+require 'vedeu/api/store'
 require 'vedeu/support/terminal'
 
 module Vedeu
@@ -9,6 +9,10 @@ module Vedeu
     InvalidWidth  = Class.new(StandardError)
     XOutOfBounds  = Class.new(StandardError)
     YOutOfBounds  = Class.new(StandardError)
+
+    def interface(name, &block)
+      Interface.save(name, &block)
+    end
 
     class Interface
       def self.save(name, &block)
@@ -22,12 +26,18 @@ module Vedeu
       def save(&block)
         self.instance_eval(&block) if block_given?
 
-        InterfaceStore.create(attributes)
+        stored_attributes = Store.create(attributes)
+
+        Vedeu::Interface.new(stored_attributes)
       end
 
       private
 
       attr_reader :name
+
+      def use(value)
+        Vedeu.use(value)
+      end
 
       def x(value)
         fail XOutOfBounds if x_out_of_bounds?(value)

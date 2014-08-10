@@ -1,22 +1,22 @@
 require 'test_helper'
-require 'vedeu/output/clear_interface'
+require 'vedeu/output/clear'
 require 'vedeu/models/interface'
-require 'vedeu/support/interface_store'
+require 'vedeu/api/store'
 
 module Vedeu
-  describe ClearInterface do
-    before { InterfaceStore.reset }
+  describe Clear do
+    before { API::Store.reset }
 
     describe '.call' do
       it 'returns the escape sequence to clear the whole interface' do
         interface = Interface.new({
-          name:   'ClearInterface.call',
+          name:   'Clear.call',
           geometry: {
             width:  5,
             height: 2
           }
         })
-        ClearInterface.call(interface).must_equal(
+        Clear.call(interface).must_equal(
           "\e[1;1H     \e[1;1H" \
           "\e[2;1H     \e[2;1H"
         )
@@ -24,7 +24,7 @@ module Vedeu
 
       it 'returns the escape sequence to clear the whole interface with specified colours' do
         interface = Interface.new({
-          name:   'ClearInterface.call',
+          name:   'Clear.call',
           geometry: {
             width:  5,
             height: 2,
@@ -34,7 +34,7 @@ module Vedeu
             background: '#ffff00'
           }
         })
-        ClearInterface.call(interface).must_equal(
+        Clear.call(interface).must_equal(
           "\e[38;5;46m\e[48;5;226m" \
           "\e[1;1H     \e[1;1H" \
           "\e[2;1H     \e[2;1H"

@@ -1,6 +1,6 @@
 require 'virtus'
 
-require 'vedeu/output/colour_translator'
+require 'vedeu/models/attributes/colour_translator'
 
 module Vedeu
   class Background < Virtus::Attribute

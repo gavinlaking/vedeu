@@ -22,7 +22,7 @@ API::Interface
   API::Grid
   Geometry
   Interface
-  InterfaceStore
+  API::Store
   Terminal
 
 API::Line
@@ -34,13 +34,13 @@ API::Stream
 
 API::View
   API::Line
-  InterfaceStore
+  API::Store
 
 Application
   Input
   Terminal
 
-ClearInterface
+Clear
 
 Collection
 
@@ -63,10 +63,10 @@ Geometry
 
 Esc
 
-Events
+API::Events
 
 Input
-  Events
+  API::Events
   Terminal
 
 Instrumentation
@@ -74,16 +74,16 @@ Instrumentation
   Trace
 
 Interface
-  ClearInterface
+  Clear
   Colour
   Geometry
   LineCollection
-  RenderInterface
+  Render
   Style
   Terminal
 
 InterfaceCollection
-  InterfaceStore
+  API::Store
 
 Launcher
   Application
@@ -99,12 +99,12 @@ LineCollection
   Line
 
 Menu
-  Events
+  API::Events
 
-InterfaceStore
+API::Store
   Interface
 
-RenderInterface
+Render
   Line
   Stream
 
@@ -141,7 +141,7 @@ Grouped
 API::Interface
   Interface
   Geometry
-  InterfaceStore
+  API::Store
 
 Launcher
   Application
@@ -155,9 +155,9 @@ Launcher
 View
   Composition
     InterfaceCollection
-      InterfaceStore
+      API::Store
         Interface
-          ClearInterface
+          Clear
           Colour
             Background
             Foreground
@@ -181,7 +181,7 @@ View
                     Esc
               Style
                 Esc
-          RenderInterface
+          Render
             Line
             Stream
           Style

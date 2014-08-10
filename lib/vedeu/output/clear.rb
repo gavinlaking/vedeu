@@ -1,5 +1,5 @@
 module Vedeu
-  class ClearInterface
+  class Clear
     def self.call(interface)
       new(interface).clear
     end

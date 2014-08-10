@@ -5,8 +5,8 @@ require 'vedeu'
 require 'vedeu/models/attributes/line_collection'
 require 'vedeu/models/colour'
 require 'vedeu/models/style'
-require 'vedeu/output/clear_interface'
-require 'vedeu/output/render_interface'
+require 'vedeu/output/clear'
+require 'vedeu/output/render'
 require 'vedeu/models/geometry'
 require 'vedeu/support/terminal'
 
@@ -29,7 +29,8 @@ module Vedeu
     attribute :buffer,   Array,    default: []
 
     def_delegators :@geometry, :north, :east, :south, :west,
-                               :top, :right, :bottom, :left
+                               :top, :right, :bottom, :left,
+                               :width, :height
 
     def initialize(attributes = {})
       super
@@ -47,7 +48,7 @@ module Vedeu
     end
 
     def clear
-      @_clear ||= ClearInterface.call(self)
+      @_clear ||= Clear.call(self)
     end
 
     def dequeue
@@ -75,7 +76,7 @@ module Vedeu
     end
 
     def to_s
-      RenderInterface.call(self)
+      Render.call(self)
     end
 
     private
