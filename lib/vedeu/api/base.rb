@@ -5,7 +5,7 @@ module Vedeu
         new(attributes, &block).build
       end
 
-      def initialize(attributes, &block)
+      def initialize(attributes = {}, &block)
         @attributes = attributes
 
         @self_before_instance_eval = eval 'self', block.binding
@@ -30,16 +30,18 @@ module Vedeu
       def style(values = [], &block)
         if block_given?
           attributes[:streams] << API::Stream.build({ style: [values] }, &block)
+
         else
           [values].flatten.each { |value| attributes[:style] << value }
+
         end
       end
 
-      # :nocov:
+      private
+
       def method_missing(method, *args, &block)
         @self_before_instance_eval.send method, *args, &block
       end
-      # :nocov
     end
   end
 end

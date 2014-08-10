@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require_relative '../../lib/vedeu/output/colour_translator'
+require_relative '../../lib/vedeu/models/attributes/colour_translator'
 
 values = ["00", "5f", "87", "af", "d7", "ff"]
 codes  = {}

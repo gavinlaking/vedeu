@@ -4,6 +4,8 @@ require 'vedeu/api/interface'
 module Vedeu
   module API
     describe Interface do
+      before { API::Store.reset }
+
       interface = Interface.new('widget')
 
       it 'creates and stores a new interface' do
@@ -12,27 +14,27 @@ module Vedeu
 
       it 'allows interfaces to share behaviour' do
         IO.console.stub :winsize, [10, 40] do
-          main =    Interface.save('main') do
+          main =    Vedeu.interface('main') do
                       colour  foreground: '#ff0000', background: '#000000'
                       cursor  false
                       centred true
                       width   10
                       height  2
                     end
-          status =  Interface.save('status') do
+          status =  Vedeu.interface('status') do
                       colour  foreground: 'aadd00', background: '#4040cc'
                       cursor  true
                       centred true
                       width   10
                       height  1
-                      y       main.geometry.bottom
-                      x       main.geometry.left
+                      y       use('main').bottom
+                      x       use('main').left
                     end
 
-          main.geometry.left.must_equal(15)
-          main.geometry.top.must_equal(4)
-          status.geometry.left.must_equal(15)
-          status.geometry.top.must_equal(5)
+          main.left.must_equal(15)
+          main.top.must_equal(4)
+          status.left.must_equal(15)
+          status.top.must_equal(5)
         end
       end
 
@@ -66,11 +68,6 @@ module Vedeu
 
       it 'raises an exception when the value is out of bounds' do
         proc { interface.save { height 999 } }.must_raise(InvalidHeight)
-      end
-
-      it 'should have a valid spec, please write one.' do
-        skip
-        interface = Interface.new('widget')
       end
     end
   end

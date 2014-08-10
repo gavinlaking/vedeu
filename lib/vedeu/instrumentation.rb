@@ -1,11 +1,8 @@
 require 'date'
 require 'logger'
 
-require 'vedeu'
-
 module Vedeu
   module Instrumentation
-    # :nocov:
     class Log
       def self.logger
         @logger ||= Logger.new(filename).tap do |log|
@@ -25,7 +22,7 @@ module Vedeu
       private
 
       def self.filename
-        File.expand_path('../../..', __FILE__) + '/logs/vedeu.log'
+        Dir.home + '/.vedeu/vedeu.log'
       end
     end
 
@@ -51,10 +48,6 @@ module Vedeu
 
       private
 
-      def pretty!(&block)
-        ["\e[38;5;#{rand(22..231)}m", yield, "\e[38;2;39m"].join
-      end
-
       def watched
         options[:event]
       end
@@ -77,6 +70,5 @@ module Vedeu
       # everything except Interface, Geometry and Terminal
       # klass: /^Vedeu::(?!.*Interface|Geometry|Terminal).*/
     end
-    # :nocov:
   end
 end

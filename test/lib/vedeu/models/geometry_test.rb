@@ -55,6 +55,18 @@ module Vedeu
       end
     end
 
+    describe '#north' do
+      it 'returns the top minus the value when the value is provided' do
+        geometry = Geometry.new({ height: 6, width: 18, y: 4 })
+        geometry.north(2).must_equal(2)
+      end
+
+      it 'returns the top minus 1 without a value' do
+        geometry = Geometry.new({ height: 6, width: 18, y: 4 })
+        geometry.north.must_equal(3)
+      end
+    end
+
     describe '#left' do
       it 'centred is true' do
         console = IO.console
@@ -72,6 +84,18 @@ module Vedeu
       it 'centred is false and x is set' do
         geometry = Geometry.new({ height: 6, width: 18, x: 5 })
         geometry.left.must_equal(5)
+      end
+    end
+
+    describe '#west' do
+      it 'returns the left minus the value when the value is provided' do
+        geometry = Geometry.new({ height: 6, width: 18, x: 7 })
+        geometry.west(2).must_equal(5)
+      end
+
+      it 'returns the left minus 1 without a value' do
+        geometry = Geometry.new({ height: 6, width: 18, x: 7 })
+        geometry.west.must_equal(6)
       end
     end
 
@@ -95,6 +119,18 @@ module Vedeu
       end
     end
 
+    describe '#south' do
+      it 'returns the bottom plus the value when the value is provided' do
+        geometry = Geometry.new({ height: 6, width: 18, y: 3 })
+        geometry.south(2).must_equal(11)
+      end
+
+      it 'returns the bottom plus 1 without a value' do
+        geometry = Geometry.new({ height: 6, width: 18, y: 3 })
+        geometry.south.must_equal(10)
+      end
+    end
+
     describe '#right' do
       it 'centred is true' do
         console = IO.console
@@ -112,6 +148,18 @@ module Vedeu
       it 'centred is false and x is set' do
         geometry = Geometry.new({ height: 6, width: 18, x: 5 })
         geometry.right.must_equal(23)
+      end
+    end
+
+    describe '#east' do
+      it 'returns the right plus the value when the value is provided' do
+        geometry = Geometry.new({ height: 6, width: 18, x: 7 })
+        geometry.east(2).must_equal(27)
+      end
+
+      it 'returns the right plus 1 without a value' do
+        geometry = Geometry.new({ height: 6, width: 18, x: 7 })
+        geometry.east.must_equal(26)
       end
     end
 

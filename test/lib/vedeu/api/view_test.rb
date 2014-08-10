@@ -7,7 +7,7 @@ module Vedeu
   module API
     describe View do
       before do
-        InterfaceStore.reset
+        Store.reset
         Interface.save('testing_view') do
           x      1
           y      1

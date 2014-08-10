@@ -2,7 +2,7 @@ require 'vedeu/models/line'
 require 'vedeu/models/stream'
 
 module Vedeu
-  class RenderInterface
+  class Render
     def self.call(interface)
       new(interface).render
     end
@@ -15,7 +15,7 @@ module Vedeu
       out = [interface.clear]
       processed_lines.each_with_index do |line, index|
         if index + 1 <= height
-          out << interface.geometry.origin(index)
+          out << interface.origin(index)
           out << line.to_s
         end
       end
@@ -62,11 +62,11 @@ module Vedeu
     end
 
     def height
-      interface.geometry.height
+      interface.height
     end
 
     def width
-      interface.geometry.width
+      interface.width
     end
   end
 end

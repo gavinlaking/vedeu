@@ -3,7 +3,6 @@ require 'vedeu/configuration'
 
 module Vedeu
   class Launcher
-    # :nocov:
     def initialize(argv, stdin  = STDIN,
                          stdout = STDOUT,
                          stderr = STDERR,
@@ -22,9 +21,13 @@ module Vedeu
       Application.start(configuration)
 
       @exit_code = 0
+    # rescue Vedeu::API::InvalidHeight, Vedeu::API::InvalidWidth
+    #   Vedeu.error("Cannot run this application.\n " \
+    #               "Your terminal window is too small.")
 
     rescue StandardError => uncaught_exception
-      Vedeu.error(uncaught_exception)
+      puts uncaught_exception.message
+      puts uncaught_exception.backtrace.join("\n")
 
     ensure
       $stdin, $stdout, $stderr = STDIN, STDOUT, STDERR
@@ -39,6 +42,5 @@ module Vedeu
     def configuration
       Configuration.configure(argv)
     end
-    # :nocov:
   end
 end

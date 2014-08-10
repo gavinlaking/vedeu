@@ -1,5 +1,5 @@
 require 'vedeu'
-require 'vedeu/support/events'
+require 'vedeu/api/events'
 
 # Todo: mutation (events, menu)
 

@@ -1,11 +1,11 @@
 require 'test_helper'
-require 'vedeu/output/render_interface'
+require 'vedeu/output/render'
 require 'vedeu/models/interface'
-require 'vedeu/support/interface_store'
+require 'vedeu/api/store'
 
 module Vedeu
-  describe RenderInterface do
-    before { InterfaceStore.reset }
+  describe Render do
+    before { API::Store.reset }
 
     describe '.call' do
       it 'returns the content for the interface' do
@@ -31,7 +31,7 @@ module Vedeu
             }
           ]
         })
-        RenderInterface.call(interface).must_equal(
+        Render.call(interface).must_equal(
           "\e[1;1H                                \e[1;1H" \
           "\e[2;1H                                \e[2;1H" \
           "\e[3;1H                                \e[3;1H" \
@@ -50,7 +50,7 @@ module Vedeu
           },
           lines:    []
         })
-        RenderInterface.call(interface).must_equal(
+        Render.call(interface).must_equal(
           "\e[1;1H                                \e[1;1H" \
           "\e[2;1H                                \e[2;1H" \
           "\e[3;1H                                \e[3;1H"
@@ -80,7 +80,7 @@ module Vedeu
             }
           ]
         })
-        RenderInterface.call(interface).must_equal(
+        Render.call(interface).must_equal(
           "\e[1;1H                                \e[1;1H" \
           "\e[2;1H                                \e[2;1H" \
           "\e[3;1H                                \e[3;1H" \

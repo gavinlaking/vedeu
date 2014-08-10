@@ -8,12 +8,7 @@ module Vedeu
 
     describe '#coerce' do
       it 'returns an empty collection when there are no lines' do
-        Interface.new({ lines: {} }).lines.must_equal([])
-      end
-
-      it 'contains a single Line object when the line is just a String' do
-        Interface.new({ lines: 'some text' }).lines.size
-          .must_equal(1)
+        Interface.new({ lines: [] }).lines.must_equal([])
       end
 
       it 'contains a single Line object when there is a single line' do

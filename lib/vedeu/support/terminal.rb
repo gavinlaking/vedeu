@@ -5,7 +5,7 @@ require 'vedeu/support/esc'
 module Vedeu
   module Terminal
     extend self
-    # :nocov:
+
     def open(mode, &block)
       @mode = mode
 
@@ -36,7 +36,6 @@ module Vedeu
 
       end
     end
-    # :nocov:
 
     def output(stream = '')
       console.print(stream)
@@ -44,18 +43,14 @@ module Vedeu
       stream
     end
 
-    # :nocov:
     def initialize_screen(&block)
-      output Esc.string 'reset'
-      output Esc.string 'clear'
-      output Esc.string 'hide_cursor'
+      output Esc.string 'screen_init'
 
       yield
     end
 
     def restore_screen
-      output Esc.string 'show_cursor'
-      output Esc.string 'reset'
+      output Esc.string 'screen_exit'
       output clear_last_line
     end
 
@@ -66,10 +61,9 @@ module Vedeu
     def raw_mode?
       @mode == :raw
     end
-    # :nocov:
 
     def clear_last_line
-      Esc.set_position((height - 1), 1) + "\e[2K"
+      Esc.set_position((height - 1), 1) + Esc.string('clear_line')
     end
 
     def centre

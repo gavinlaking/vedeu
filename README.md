@@ -50,9 +50,9 @@ Expect proper documentation soon!
         when 'a' then puts "Apple"
         when 'b' then puts "Banana"
         # ...
-        when :f1 then run(:some_event)
+        when :f1 then trigger(:some_event)
         when :f2 then
-          run(:other_event, { args: here }, [:or, :here], :etc)
+          trigger(:other_event, { args: here }, [:or, :here], :etc)
         end
       end
     end
@@ -116,7 +116,9 @@ Note: not setting a width or height will set the values to the terminal's report
     event :event_name do |arg1, arg2|
     end
 
-One can define events which perform work or trigger other events. Vedeu has built-in events which are namespaced with underscores as to hopefully not cause a collision with events you wish to create:
+One can define events which perform work or trigger other events. Vedeu has built-in events which are namespaced with underscores:
+
+- `:_initialize_` Special event which Vedeu triggers when it is ready to enter the main loop. Client applications can listen for this event and perform some action(s), like render the first screen, interface or make a sound.
 
 - `:_clear_` Clears the whole terminal space.
 
@@ -155,25 +157,26 @@ Vedeu has a range of symbol styles which are compatible with most terminals whic
 
 Like colours, they can be defined in either interfaces, for specific lines or within streams. Styles are applied as encountered.
 
-| Style name    | Escape Sequence          |
-|---------------|--------------------------|
-| bg_reset      | `\e[48;2;49m`            |
-| blink         | `\e[5m`                  |
-| blink_off     | `\e[25m`                 |
-| bold          | `\e[1m`                  |
-| bold_off      | `\e[21m`                 |
-| clear         | `\e[2J`                  |
-| colour_reset  | `\e[38;2;39m\e[48;2;49m` |
-| fg_reset      | `\e[38;2;39m`            |
-| hide_cursor   | `\e[?25l`                |
-| negative      | `\e[7m`                  |
-| positive      | `\e[27m`                 |
-| reset         | `\e[0m`                  |
-| normal        | `\e[24m\e[21m\e[27m`     |
-| dim           | `\e[2m`                  |
-| show_cursor   | `\e[?25h`                |
-| underline     | `\e[4m`                  |
-| underline_off | `\e[24m`                 |
+| Style name    | Escape Sequence               |
+|---------------|-------------------------------|
+| bg_reset      | `\e[48;2;49m`                 |
+| blink         | `\e[5m`                       |
+| blink_off     | `\e[25m`                      |
+| bold          | `\e[1m`                       |
+| bold_off      | `\e[21m`                      |
+| clear         | `\e[2J`                       |
+| clear_line    | `\e[38;2;39m\e[48;2;49m\e[2K` |
+| colour_reset  | `\e[38;2;39m\e[48;2;49m`      |
+| fg_reset      | `\e[38;2;39m`                 |
+| hide_cursor   | `\e[?25l`                     |
+| negative      | `\e[7m`                       |
+| positive      | `\e[27m`                      |
+| reset         | `\e[0m`                       |
+| normal        | `\e[24m\e[21m\e[27m`          |
+| dim           | `\e[2m`                       |
+| show_cursor   | `\e[?25h`                     |
+| underline     | `\e[4m`                       |
+| underline_off | `\e[24m`                      |
 
 
 ## Contributing
@@ -186,4 +189,4 @@ Like colours, they can be defined in either interfaces, for specific lines or wi
 6. Write some tests, write some code, have some fun
 7. Commit your changes (`git commit -am 'Add some feature'`)
 8. Push to the branch (`git push origin my-new-feature`)
-9. Create new Pull Request
+9. Create a new pull request
