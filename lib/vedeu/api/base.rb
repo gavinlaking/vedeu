@@ -5,7 +5,7 @@ module Vedeu
         new(attributes, &block).build
       end
 
-      def initialize(attributes, &block)
+      def initialize(attributes = {}, &block)
         @attributes = attributes
 
         @self_before_instance_eval = eval 'self', block.binding
