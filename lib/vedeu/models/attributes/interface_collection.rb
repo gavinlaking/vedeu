@@ -2,8 +2,6 @@ require 'virtus'
 
 require 'vedeu/api/store'
 
-# Todo: mutation (persistence)
-
 module Vedeu
   class InterfaceCollection < Virtus::Attribute
     def coerce(values)

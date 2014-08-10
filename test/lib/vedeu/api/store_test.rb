@@ -6,23 +6,6 @@ module Vedeu
     describe Store do
       before { Store.reset }
 
-      # describe '.merge' do
-      #   it 'returns an Interface' do
-      #     Store.merge('dummy', { name: 'dumber' })
-      #       .must_be_instance_of(Vedeu::Interface)
-      #   end
-
-      #   it 'updates and returns the existing interface when the interface exists' do
-      #     Store.merge('dummy', { name: 'dumber' }).name
-      #       .must_equal('dumber')
-      #   end
-
-      #   it 'returns a new interface when the interface does not exist' do
-      #     Store.merge('dummy', { name: 'dumber' }).name
-      #       .must_equal('dumber')
-      #   end
-      # end
-
       describe '#create' do
         it 'creates and returns the stored record' do
           attributes = { name: 'sulphur' }

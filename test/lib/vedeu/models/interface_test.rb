@@ -109,9 +109,9 @@ module Vedeu
         attributes = {
           name:   '#refresh',
           lines:  [
-            { streams: '#refresh' },
-            { streams: '#refresh' },
-            { streams: '#refresh' }
+            { streams: [{ text: '#refresh' }] },
+            { streams: [{ text: '#refresh' }] },
+            { streams: [{ text: '#refresh' }] }
           ],
           colour: {
             foreground: '#ff0000',

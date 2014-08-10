@@ -10,7 +10,7 @@ module Vedeu
       end
 
       it 'contains a single Stream when there is a single stream' do
-        Line.new({ streams: 'some text' }).streams.size
+        Line.new({ streams: [{ text: 'some text' }] }).streams.size
           .must_equal(1)
       end
 
