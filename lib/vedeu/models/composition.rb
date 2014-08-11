@@ -1,8 +1,7 @@
 require 'virtus'
 
 require 'vedeu/models/attributes/interface_collection'
-
-# Todo: mutation (interfaces)
+require 'vedeu/output/buffers'
 
 module Vedeu
   class Composition
@@ -15,7 +14,9 @@ module Vedeu
     end
 
     def enqueue
-      interfaces.map(&:enqueue)
+      interfaces.map do |interface|
+        Buffers.enqueue(interface.name, interface.to_s)
+      end
     end
 
     def to_s

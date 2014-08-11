@@ -48,7 +48,9 @@ module Vedeu
 
       it 'switches the terminal mode when escape is pressed' do
         Terminal.stub :input, "\e" do
-          proc { Input.capture }.must_raise(ModeSwitch)
+          Vedeu.stub :log, nil do
+            proc { Input.capture }.must_raise(ModeSwitch)
+          end
         end
       end
     end

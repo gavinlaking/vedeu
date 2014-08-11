@@ -1,5 +1,6 @@
 require 'virtus'
 
+require 'vedeu/models/interface'
 require 'vedeu/api/store'
 
 module Vedeu

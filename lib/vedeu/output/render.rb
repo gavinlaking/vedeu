@@ -26,31 +26,42 @@ module Vedeu
 
     attr_reader :interface
 
+    # The client application may have created a line that us too long for the
+    # interface. This code tries to truncate streams whilst preserving styles
+    # and colours.
     def processed_lines
       return [] unless lines.any? { |line| line.streams.any? }
 
       lines.map do |line|
-        line_length = 0
-        streams     = line.streams.inject([]) do |processed, stream|
-          next if stream.text.empty?
+        if exceeds_width?(line)
+          line_length = 0
+          processed   = []
+          line.streams.each do |stream|
+            next if stream.text.empty?
 
-          if (line_length += stream.text.size) >= width
-            remainder = width - line_length
+            if (line_length += stream.text.size) >= width
+              remainder = width - line_length
 
-            processed << Stream.new(text:   truncate(stream.text, remainder),
-                                    style:  stream.style,
-                                    colour: stream.colour)
+              processed << Stream.new(text:   truncate(stream.text, remainder),
+                                      style:  stream.style,
+                                      colour: stream.colour)
 
-          else
-            processed << stream
+            else
+              processed << stream
 
+            end
           end
-        end
 
-        Line.new(streams: streams,
-                 style:   line.style,
-                 colour:  line.colour)
+          Line.new(streams: processed, style: line.style, colour: line.colour)
+        else
+          line
+        end
       end
+    end
+
+    def exceeds_width?(line)
+      content = line.streams.map(&:text).join
+      content.size > width
     end
 
     def truncate(text, value)
