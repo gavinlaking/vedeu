@@ -3,11 +3,11 @@ module Vedeu
     InterfaceNotSpecified = Class.new(StandardError)
 
     class View
-      def self.build(name = '', &block)
+      def self.build(name, &block)
         new(name).build(&block)
       end
 
-      def initialize(name = '')
+      def initialize(name)
         fail InterfaceNotSpecified if name.nil? || name.empty?
 
         @name = name.to_s
