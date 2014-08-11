@@ -61,20 +61,20 @@ module Vedeu
         attributes[:geometry][:centred] = value
       end
 
-      def attributes
-        @attributes ||= { name: name, geometry: {} }
-      end
-
-      def method_missing(method_name, arg, &block)
-        attributes[method_name] = arg
-      end
-
       def y_out_of_bounds?(value)
         value < 1 || value > Terminal.height
       end
 
       def x_out_of_bounds?(value)
         value < 1 || value > Terminal.width
+      end
+
+      def method_missing(method_name, arg, &block)
+        attributes[method_name] = arg
+      end
+
+      def attributes
+        @attributes ||= { name: name, geometry: {} }
       end
     end
   end
