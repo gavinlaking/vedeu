@@ -3,10 +3,10 @@ module Vedeu
     def coerce(values)
       return [] if values.nil? || values.empty?
 
-      [values].flatten.map do |buffer_attributes|
-        interface_attributes = API::Store.query(buffer_attributes[:name])
+      [values].flatten.map do |view_attributes|
+        stored_attributes = API::Store.query(view_attributes[:name])
 
-        Interface.new(buffer_attributes.merge!(interface_attributes))
+        Interface.new(stored_attributes.merge!(view_attributes))
       end
     end
   end
