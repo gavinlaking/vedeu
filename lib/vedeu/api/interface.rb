@@ -15,7 +15,7 @@ module Vedeu
       end
 
       def save(&block)
-        self.instance_eval(&block) if block_given?
+        instance_eval(&block) if block_given?
 
         stored_attributes = Store.create(attributes)
         interface = Vedeu::Interface.new(stored_attributes)

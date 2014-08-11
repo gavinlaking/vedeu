@@ -9,7 +9,7 @@ module Vedeu
         @attributes                = attributes
         @self_before_instance_eval = eval('self', block.binding)
 
-        self.instance_eval(&block)
+        instance_eval(&block)
       end
 
       def colour(values = {})

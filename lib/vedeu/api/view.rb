@@ -16,7 +16,7 @@ module Vedeu
       def build(&block)
         @self_before_instance_eval = eval('self', block.binding)
 
-        self.instance_eval(&block) if block_given?
+        instance_eval(&block) if block_given?
 
         attributes
       end

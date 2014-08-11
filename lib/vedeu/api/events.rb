@@ -34,13 +34,13 @@ module Vedeu
             last_exec: 0,
           }
         end
-        self.instance_eval(&block) if block_given?
+        instance_eval(&block) if block_given?
       end
 
       def add(object, &block)
         @self_before_instance_eval = eval('self', block.binding)
 
-        self.instance_eval(&block)
+        instance_eval(&block)
       end
 
       def on(event, delay = 0, &block)
