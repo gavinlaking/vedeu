@@ -1,5 +1,4 @@
 require 'test_helper'
-require 'vedeu/models/stream'
 
 module Vedeu
   describe Stream do

@@ -1,5 +1,3 @@
-require 'vedeu/support/terminal'
-
 module Vedeu
   RefreshFailed = Class.new(StandardError)
 

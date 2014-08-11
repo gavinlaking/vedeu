@@ -1,20 +1,10 @@
-require 'vedeu/models/geometry'
-require 'vedeu/models/composition'
-require 'vedeu/api/grid'
-require 'vedeu/api/store'
-require 'vedeu/support/terminal'
-
 module Vedeu
+  InvalidHeight = Class.new(StandardError)
+  InvalidWidth  = Class.new(StandardError)
+  XOutOfBounds  = Class.new(StandardError)
+  YOutOfBounds  = Class.new(StandardError)
+
   module API
-    InvalidHeight = Class.new(StandardError)
-    InvalidWidth  = Class.new(StandardError)
-    XOutOfBounds  = Class.new(StandardError)
-    YOutOfBounds  = Class.new(StandardError)
-
-    def interface(name, &block)
-      Interface.save(name, &block)
-    end
-
     class Interface
       def self.save(name, &block)
         new(name).save(&block)

@@ -1,9 +1,3 @@
-require 'virtus'
-
-require 'vedeu/models/attributes/stream_collection'
-require 'vedeu/models/colour'
-require 'vedeu/models/style'
-
 module Vedeu
   class Line
     include Virtus.model

@@ -1,5 +1,4 @@
 require 'test_helper'
-require 'vedeu/support/input'
 
 module Vedeu
   describe Input do

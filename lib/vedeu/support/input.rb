@@ -1,6 +1,3 @@
-require 'vedeu/support/terminal'
-require 'vedeu'
-
 module Vedeu
   class Input
     def self.capture

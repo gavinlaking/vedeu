@@ -1,8 +1,5 @@
 require 'test_helper'
 
-require 'vedeu/api/view'
-require 'vedeu'
-
 module Vedeu
   module API
     describe View do

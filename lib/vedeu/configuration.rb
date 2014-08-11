@@ -1,5 +1,3 @@
-require 'optparse'
-
 module Vedeu
   class Configuration
     def self.configure(args = [])

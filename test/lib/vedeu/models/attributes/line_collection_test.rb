@@ -1,6 +1,4 @@
 require 'test_helper'
-require 'vedeu/models/attributes/line_collection'
-require 'vedeu/models/interface'
 
 module Vedeu
   describe LineCollection do

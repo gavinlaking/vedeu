@@ -1,13 +1,3 @@
-require 'forwardable'
-require 'virtus'
-
-require 'vedeu/models/attributes/line_collection'
-require 'vedeu/models/colour'
-require 'vedeu/models/style'
-require 'vedeu/output/clear'
-require 'vedeu/output/render'
-require 'vedeu/models/geometry'
-
 module Vedeu
   class Interface
     extend Forwardable

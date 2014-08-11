@@ -1,8 +1,3 @@
-require 'virtus'
-
-require 'vedeu/models/attributes/interface_collection'
-require 'vedeu/output/buffers'
-
 module Vedeu
   class Composition
     include Virtus.model

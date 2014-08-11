@@ -1,5 +1,4 @@
 require 'test_helper'
-require 'vedeu/configuration'
 
 module Vedeu
   describe Configuration do

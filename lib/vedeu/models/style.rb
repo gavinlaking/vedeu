@@ -1,7 +1,3 @@
-require 'virtus'
-
-require 'vedeu/support/esc'
-
 module Vedeu
   class Style < Virtus::Attribute
     def coerce(value_or_values)

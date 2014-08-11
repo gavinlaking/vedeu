@@ -1,5 +1,3 @@
-require 'vedeu/models/composition'
-
 module Vedeu
   NotImplemented = Class.new(StandardError)
 

@@ -2,10 +2,6 @@ require 'test_helper'
 
 require 'json'
 
-require 'vedeu/models/composition'
-require 'vedeu/api/store'
-require 'vedeu'
-
 module Vedeu
   describe Composition do
     let(:json)       { File.read('test/support/model_test_data.json') }

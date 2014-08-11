@@ -1,5 +1,4 @@
 require 'test_helper'
-require 'vedeu/support/esc'
 
 module Vedeu
   describe Esc do

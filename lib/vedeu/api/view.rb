@@ -1,6 +1,3 @@
-require 'vedeu/api/line'
-require 'vedeu/api/store'
-
 module Vedeu
   module API
     InterfaceNotSpecified = Class.new(StandardError)

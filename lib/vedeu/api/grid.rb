@@ -1,5 +1,3 @@
-require 'vedeu/support/terminal'
-
 class Fixnum
   # Augment Fixnum to calculate column width in a grid-based layout.
   #

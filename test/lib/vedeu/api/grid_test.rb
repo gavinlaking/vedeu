@@ -1,7 +1,5 @@
 require 'test_helper'
 
-require 'vedeu/api/grid'
-
 describe Fixnum do
   describe '#columns' do
     it 'returns the width if the value is in range' do

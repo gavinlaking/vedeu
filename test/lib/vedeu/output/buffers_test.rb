@@ -1,7 +1,5 @@
 require 'test_helper'
 
-require 'vedeu/output/buffers'
-
 module Vedeu
   describe Buffers do
     describe '.create' do

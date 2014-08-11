@@ -1,8 +1,3 @@
-require 'virtus'
-
-require 'vedeu/models/interface'
-require 'vedeu/api/store'
-
 module Vedeu
   class InterfaceCollection < Virtus::Attribute
     def coerce(values)

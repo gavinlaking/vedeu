@@ -1,5 +1,3 @@
-# Todo: mutation (events)
-
 module Vedeu
   module API
     def on(name, delay = 0, &block)
@@ -37,7 +35,6 @@ module Vedeu
           }
         end
         self.instance_eval(&block) if block_given?
-        self
       end
 
       def add(object, &block)
@@ -58,15 +55,13 @@ module Vedeu
         if elapsed > handlers[event][:delay]
           handlers[event][:last_exec] = Time.now.to_f
 
-          handlers[event][:events].each do |handler|
-            handler.call(*args)
-          end
+          handlers[event][:events].each { |handler| handler.call(*args) }
         end
       end
 
       private
 
-      attr_reader :handlers, :throttles
+      attr_reader :handlers
 
       def method_missing(method, *args, &block)
         @self_before_instance_eval.send method, *args, &block
