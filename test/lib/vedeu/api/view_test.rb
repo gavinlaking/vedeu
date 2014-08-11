@@ -61,7 +61,7 @@ module Vedeu
       it 'handles coloured lines' do
         Vedeu.view 'testing_view' do
           line do
-            colour '#ff0000', '#ffff00'
+            colour background: '#ff0000', foreground: '#ffff00'
             text   '2. Line with colours.'
           end
         end.must_equal(

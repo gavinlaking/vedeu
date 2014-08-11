@@ -6,25 +6,17 @@ module Vedeu
       end
 
       def initialize(attributes = {}, &block)
-        @attributes = attributes
-
-        @self_before_instance_eval = eval 'self', block.binding
+        @attributes                = attributes
+        @self_before_instance_eval = eval('self', block.binding)
 
         self.instance_eval(&block)
       end
 
-      def colour(*args)
-        if args.is_a?(Array) && args.size == 2
-          attributes[:colour] = { background: args.first,
-                                  foreground: args.last }
+      def colour(values = {})
+        fail InvalidArgument, '#colour expects a Hash containing :foreground,' \
+                              ' :background or both.' unless values.is_a?(Hash)
 
-        elsif args.is_a?(Array) && args.size == 1 && args.first.is_a?(Hash)
-          attributes[:colour] = args.first
-
-        else
-          attributes[:colour] = {}
-
-        end
+        attributes[:colour] = values
       end
 
       def style(values = [], &block)
