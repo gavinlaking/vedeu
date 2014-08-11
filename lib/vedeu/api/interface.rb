@@ -20,19 +20,7 @@ module Vedeu
         stored_attributes = Store.create(attributes)
         interface = Vedeu::Interface.new(stored_attributes)
 
-        Vedeu::Buffers.create(interface.name, interface.clear)
-
-        Vedeu.events.on("_refresh_#{interface.name}_".to_sym, interface.delay) do
-          Vedeu::Buffers.refresh(interface.name)
-        end
-
-        # TODO:
-        # cannot do group at this time
-        # unless interface.group.nil? || interface.group.empty?
-        #   Vedeu.events.on("_refresh_group_#{interface.group}_".to_sym, interface.delay) do
-        #     buffer.refresh_group(interface.group)
-        #   end
-        # end
+        Vedeu::Buffers.create(interface)
 
         interface
       end
