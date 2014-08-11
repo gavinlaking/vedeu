@@ -19,7 +19,7 @@ module Vedeu
       end
 
       def initialize(name = '')
-        fail Vedeu::API::InterfaceNotSpecified if name.nil? || name.empty?
+        fail InterfaceNotSpecified if name.nil? || name.empty?
 
         @name = name.to_s
       end
@@ -33,7 +33,7 @@ module Vedeu
       end
 
       def line(&block)
-        attributes[:lines] << API::Line.build(&block)
+        attributes[:lines] << Line.build(&block)
       end
 
       def attributes
