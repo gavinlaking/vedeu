@@ -2,14 +2,6 @@ module Vedeu
   module API
     InterfaceNotSpecified = Class.new(StandardError)
 
-    def render(object = nil)
-      Vedeu::View.render(object)
-    end
-
-    def view(name = '', &block)
-      Vedeu::API::View.build(name, &block)
-    end
-
     class View
       def self.build(name = '', &block)
         new(name).build(&block)
