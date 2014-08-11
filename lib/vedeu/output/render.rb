@@ -9,7 +9,7 @@ module Vedeu
     end
 
     def render
-      out = [interface.clear]
+      out = [ Clear.call(interface) ]
       processed_lines.each_with_index do |line, index|
         if index + 1 <= height
           out << interface.origin(index)

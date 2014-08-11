@@ -16,10 +16,6 @@ module Vedeu
                                :top, :right, :bottom, :left,
                                :width, :height, :origin
 
-    def clear
-      @_clear ||= Clear.call(self)
-    end
-
     def to_s
       Render.call(self)
     end
