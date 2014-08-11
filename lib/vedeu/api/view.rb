@@ -22,7 +22,7 @@ module Vedeu
       end
 
       def build(&block)
-        @self_before_instance_eval = eval 'self', block.binding
+        @self_before_instance_eval = eval('self', block.binding)
 
         self.instance_eval(&block) if block_given?
 

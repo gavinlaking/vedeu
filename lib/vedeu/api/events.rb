@@ -38,7 +38,7 @@ module Vedeu
       end
 
       def add(object, &block)
-        @self_before_instance_eval = eval 'self', block.binding
+        @self_before_instance_eval = eval('self', block.binding)
 
         self.instance_eval(&block)
       end
