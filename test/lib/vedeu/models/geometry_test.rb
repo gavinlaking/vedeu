@@ -1,5 +1,4 @@
 require 'test_helper'
-require 'vedeu/models/geometry'
 
 module Vedeu
   describe Geometry do

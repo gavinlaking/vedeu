@@ -1,5 +1,4 @@
 require 'test_helper'
-require 'vedeu/models/interface'
 
 module Vedeu
   describe Interface do

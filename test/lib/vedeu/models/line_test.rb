@@ -1,5 +1,4 @@
 require 'test_helper'
-require 'vedeu/models/line'
 
 module Vedeu
   describe Line do

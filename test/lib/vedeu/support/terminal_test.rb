@@ -1,5 +1,4 @@
 require 'test_helper'
-require 'vedeu/support/terminal'
 
 module Vedeu
   describe Terminal do

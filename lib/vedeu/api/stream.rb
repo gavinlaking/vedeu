@@ -1,5 +1,3 @@
-require 'vedeu/api/base'
-
 module Vedeu
   module API
     class Stream < Base

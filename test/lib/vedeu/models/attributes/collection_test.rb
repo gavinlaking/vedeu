@@ -1,5 +1,4 @@
 require 'test_helper'
-require 'vedeu/models/attributes/collection'
 
 module Vedeu
   class TestClass

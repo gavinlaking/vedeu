@@ -1,33 +1,22 @@
-require 'vedeu/api/line'
-require 'vedeu/api/store'
-
 module Vedeu
   module API
     InterfaceNotSpecified = Class.new(StandardError)
 
-    def render(object = nil)
-      Vedeu::View.render(object)
-    end
-
-    def view(name = '', &block)
-      Vedeu::API::View.build(name, &block)
-    end
-
     class View
-      def self.build(name = '', &block)
+      def self.build(name, &block)
         new(name).build(&block)
       end
 
-      def initialize(name = '')
+      def initialize(name)
         fail InterfaceNotSpecified if name.nil? || name.empty?
 
         @name = name.to_s
       end
 
       def build(&block)
-        @self_before_instance_eval = eval 'self', block.binding
+        @self_before_instance_eval = eval('self', block.binding)
 
-        self.instance_eval(&block) if block_given?
+        instance_eval(&block) if block_given?
 
         attributes
       end

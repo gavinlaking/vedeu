@@ -13,6 +13,8 @@ require 'mocha/setup'
 
 GC.disable
 
+require 'vedeu'
+
 # commented out by default (makes tests slower)
 # require 'minitest/reporters'
 # Minitest::Reporters.use!(
@@ -21,5 +23,5 @@ GC.disable
 # )
 
 # trace method execution with (optionally) local variables
-# require 'vedeu/instrumentation'
-# Vedeu::Instrumentation::Trace.call({ watched: 'call', klass: /^Vedeu/ })
+# require 'vedeu/api/log'
+# Vedeu::Log::Trace.call({ watched: 'call', klass: /^Vedeu/ })

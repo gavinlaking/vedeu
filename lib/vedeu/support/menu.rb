@@ -1,8 +1,3 @@
-require 'vedeu'
-require 'vedeu/api/events'
-
-# Todo: mutation (events, menu)
-
 module Vedeu
   class Menu
     def initialize(collection)

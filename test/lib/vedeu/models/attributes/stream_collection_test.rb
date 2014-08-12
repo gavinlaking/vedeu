@@ -1,6 +1,4 @@
 require 'test_helper'
-require 'vedeu/models/attributes/stream_collection'
-require 'vedeu/models/line'
 
 module Vedeu
   describe StreamCollection do

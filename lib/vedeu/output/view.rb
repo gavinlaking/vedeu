@@ -1,5 +1,3 @@
-require 'vedeu/models/composition'
-
 module Vedeu
   NotImplemented = Class.new(StandardError)
 
@@ -15,7 +13,9 @@ module Vedeu
     end
 
     def render
-      Composition.enqueue(interfaces)
+      composition.interfaces.map do |interface|
+        Buffers.enqueue(interface.name, interface.to_s)
+      end
     end
 
     def output
@@ -25,6 +25,10 @@ module Vedeu
     private
 
     attr_reader :object
+
+    def composition
+      @_composition ||= Composition.new(interfaces)
+    end
 
     def interfaces
       {

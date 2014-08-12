@@ -1,8 +1,3 @@
-require 'virtus'
-
-require 'vedeu/models/colour'
-require 'vedeu/models/style'
-
 module Vedeu
   class Stream
     include Virtus.model

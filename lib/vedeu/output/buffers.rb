@@ -1,13 +1,22 @@
-require 'vedeu/support/terminal'
-
 module Vedeu
   RefreshFailed = Class.new(StandardError)
 
   module Buffers
     extend self
 
-    def create(name, sequence)
-      buffers[name][:clear] = sequence
+    def create(interface)
+      buffers[interface.name][:clear] = Clear.call(interface)
+
+      Vedeu.events.on("_refresh_#{interface.name}_".to_sym, interface.delay) do
+        refresh(interface.name)
+      end
+
+      # TODO: cannot refresh group since no logic to fetch group from buffer
+      # unless interface.group.nil? || interface.group.empty?
+      #   Vedeu.events.on("_refresh_#{interface.group}_".to_sym, interface.delay) do
+      #     refresh_group(interface.group)
+      #   end
+      # end
     end
 
     def enqueue(name, sequence)

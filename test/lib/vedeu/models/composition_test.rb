@@ -2,12 +2,11 @@ require 'test_helper'
 
 require 'json'
 
-require 'vedeu/models/composition'
-require 'vedeu/api/store'
-require 'vedeu'
-
 module Vedeu
   describe Composition do
+    let(:json)       { File.read('test/support/model_test_data.json') }
+    let(:attributes) { JSON.load(json, nil, symbolize_names: true) }
+
     before { API::Store.reset }
 
     describe '#interfaces' do
@@ -37,10 +36,8 @@ module Vedeu
           width  15
           height 3
         end
-        json = File.read('test/support/json/int1_lin1_str1.json')
-        attributes = JSON.load(json, nil, symbolize_names: true)
 
-        Composition.new(attributes).to_s.must_equal(
+        Composition.new(attributes[:test_0001]).to_s.must_equal(
           "\e[3;3H               \e[3;3H" \
           "\e[4;3H               \e[4;3H" \
           "\e[5;3H               \e[5;3H" \
@@ -55,10 +52,8 @@ module Vedeu
           width  30
           height 3
         end
-        json = File.read('test/support/json/int1_lin1_str3.json')
-        attributes = JSON.load(json, nil, symbolize_names: true)
 
-        Composition.new(attributes).to_s.must_equal(
+        Composition.new(attributes[:test_0002]).to_s.must_equal(
           "\e[3;3H                              \e[3;3H" \
           "\e[4;3H                              \e[4;3H" \
           "\e[5;3H                              \e[5;3H" \
@@ -73,10 +68,8 @@ module Vedeu
           width  15
           height 3
         end
-        json = File.read('test/support/json/int1_lin2_str1.json')
-        attributes = JSON.load(json, nil, symbolize_names: true)
 
-        Composition.new(attributes).to_s.must_equal(
+        Composition.new(attributes[:test_0003]).to_s.must_equal(
           "\e[3;3H               \e[3;3H" \
           "\e[4;3H               \e[4;3H" \
           "\e[5;3H               \e[5;3H" \
@@ -92,10 +85,8 @@ module Vedeu
           width  30
           height 3
         end
-        json = File.read('test/support/json/int1_lin2_str3.json')
-        attributes = JSON.load(json, nil, symbolize_names: true)
 
-        Composition.new(attributes).to_s.must_equal(
+        Composition.new(attributes[:test_0004]).to_s.must_equal(
           "\e[3;3H                              \e[3;3H" \
           "\e[4;3H                              \e[4;3H" \
           "\e[5;3H                              \e[5;3H" \
@@ -111,9 +102,8 @@ module Vedeu
           width  30
           height 3
         end
-        json = File.read('test/support/json/int1_lin2_str3_styles.json')
-        attributes = JSON.load(json, nil, symbolize_names: true)
-        Composition.new(attributes).to_s.must_equal(
+
+        Composition.new(attributes[:test_0005]).to_s.must_equal(
           "\e[3;3H                              \e[3;3H" \
           "\e[4;3H                              \e[4;3H" \
           "\e[5;3H                              \e[5;3H" \
@@ -134,10 +124,8 @@ module Vedeu
           width  15
           height 3
         end
-        json = File.read('test/support/json/int2_lin1_str1.json')
-        attributes = JSON.load(json, nil, symbolize_names: true)
 
-        Composition.new(attributes).to_s.must_equal(
+        Composition.new(attributes[:test_0006]).to_s.must_equal(
           "\e[3;3H               \e[3;3H" \
           "\e[4;3H               \e[4;3H" \
           "\e[5;3H               \e[5;3H" \
@@ -162,10 +150,8 @@ module Vedeu
           width  30
           height 3
         end
-        json = File.read('test/support/json/int2_lin1_str3.json')
-        attributes = JSON.load(json, nil, symbolize_names: true)
 
-        Composition.new(attributes).to_s.must_equal(
+        Composition.new(attributes[:test_0007]).to_s.must_equal(
           "\e[3;3H                              \e[3;3H" \
           "\e[4;3H                              \e[4;3H" \
           "\e[5;3H                              \e[5;3H" \
@@ -190,10 +176,8 @@ module Vedeu
           width  15
           height 3
         end
-        json = File.read('test/support/json/int2_lin2_str1.json')
-        attributes = JSON.load(json, nil, symbolize_names: true)
 
-        Composition.new(attributes).to_s.must_equal(
+        Composition.new(attributes[:test_0008]).to_s.must_equal(
           "\e[3;3H               \e[3;3H" \
           "\e[4;3H               \e[4;3H" \
           "\e[5;3H               \e[5;3H" \
@@ -220,10 +204,8 @@ module Vedeu
           width  30
           height 3
         end
-        json = File.read('test/support/json/int2_lin2_str3.json')
-        attributes = JSON.load(json, nil, symbolize_names: true)
 
-        Composition.new(attributes).to_s.must_equal(
+        Composition.new(attributes[:test_0009]).to_s.must_equal(
           "\e[3;3H                              \e[3;3H" \
           "\e[4;3H                              \e[4;3H" \
           "\e[5;3H                              \e[5;3H" \
@@ -250,10 +232,8 @@ module Vedeu
           width  30
           height 3
         end
-        json = File.read('test/support/json/int2_lin2_str3_styles.json')
-        attributes = JSON.load(json, nil, symbolize_names: true)
 
-        Composition.new(attributes).to_s.must_equal(
+        Composition.new(attributes[:test_0010]).to_s.must_equal(
           "\e[3;3H                              \e[3;3H" \
           "\e[4;3H                              \e[4;3H" \
           "\e[5;3H                              \e[5;3H" \

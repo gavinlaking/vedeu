@@ -1,10 +1,5 @@
 require 'test_helper'
 
-require 'vedeu'
-require 'vedeu/models/composition'
-require 'vedeu/models/attributes/interface_collection'
-require 'vedeu/api/store'
-
 module Vedeu
   describe InterfaceCollection do
     describe '#coerce' do

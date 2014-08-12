@@ -1,5 +1,4 @@
 require 'test_helper'
-require 'vedeu/support/menu'
 
 module Vedeu
   describe Menu do

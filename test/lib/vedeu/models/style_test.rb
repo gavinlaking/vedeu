@@ -1,5 +1,4 @@
 require 'test_helper'
-require 'vedeu/models/style'
 
 module Vedeu
   class TestStyle

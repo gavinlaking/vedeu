@@ -1,11 +1,7 @@
-require 'vedeu/models/interface'
-
-# Todo: mutation (persistence)
-
 module Vedeu
-  module API
-    EntityNotFound = Class.new(StandardError)
+  EntityNotFound = Class.new(StandardError)
 
+  module API
     def use(name)
       Vedeu::Interface.new(Store.query(name))
     end
@@ -18,9 +14,7 @@ module Vedeu
       end
 
       def query(name)
-        attributes = storage.fetch(name) do
-          fail EntityNotFound, 'Interface was not found.'
-        end
+        storage.fetch(name) { fail EntityNotFound, 'Interface was not found.' }
       end
 
       def reset

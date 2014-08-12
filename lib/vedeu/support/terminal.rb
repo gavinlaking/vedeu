@@ -1,7 +1,3 @@
-require 'io/console'
-
-require 'vedeu/support/esc'
-
 module Vedeu
   module Terminal
     extend self

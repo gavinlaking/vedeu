@@ -1,7 +1,4 @@
 require 'test_helper'
-require 'vedeu/output/clear'
-require 'vedeu/models/interface'
-require 'vedeu/api/store'
 
 module Vedeu
   describe Clear do

@@ -1,6 +1,3 @@
-require 'vedeu/application'
-require 'vedeu/configuration'
-
 module Vedeu
   class Launcher
     def initialize(argv, stdin  = STDIN,

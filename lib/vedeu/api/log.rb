@@ -1,8 +1,5 @@
-require 'date'
-require 'logger'
-
 module Vedeu
-  module Instrumentation
+  module API
     class Log
       def self.logger
         @logger ||= Logger.new(filename).tap do |log|
@@ -63,7 +60,7 @@ module Vedeu
       def defaults
         {
           event: 'call',
-          klass: /^Vedeu::(?!.*Instrumentation|Interface|Line|Stream|Style|Colour|Geometry|Terminal|Esc|ColourTranslator).*/
+          klass: /^Vedeu::(?!.*Log|Interface|Line|Stream|Style|Colour|Geometry|Terminal|Esc|ColourTranslator).*/
         }
       end
 

@@ -1,5 +1,4 @@
 require 'test_helper'
-require 'vedeu/api/store'
 
 module Vedeu
   module API

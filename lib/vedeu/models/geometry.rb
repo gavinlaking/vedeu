@@ -1,8 +1,3 @@
-require 'virtus'
-
-require 'vedeu/support/esc'
-require 'vedeu/support/terminal'
-
 module Vedeu
   class Geometry
     include Virtus.model

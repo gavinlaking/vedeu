@@ -1,20 +1,10 @@
-require 'vedeu/models/geometry'
-require 'vedeu/models/composition'
-require 'vedeu/api/grid'
-require 'vedeu/api/store'
-require 'vedeu/support/terminal'
-
 module Vedeu
+  InvalidHeight = Class.new(StandardError)
+  InvalidWidth  = Class.new(StandardError)
+  XOutOfBounds  = Class.new(StandardError)
+  YOutOfBounds  = Class.new(StandardError)
+
   module API
-    InvalidHeight = Class.new(StandardError)
-    InvalidWidth  = Class.new(StandardError)
-    XOutOfBounds  = Class.new(StandardError)
-    YOutOfBounds  = Class.new(StandardError)
-
-    def interface(name, &block)
-      Interface.save(name, &block)
-    end
-
     class Interface
       def self.save(name, &block)
         new(name).save(&block)
@@ -25,24 +15,12 @@ module Vedeu
       end
 
       def save(&block)
-        self.instance_eval(&block) if block_given?
+        instance_eval(&block) if block_given?
 
         stored_attributes = Store.create(attributes)
         interface = Vedeu::Interface.new(stored_attributes)
 
-        Vedeu::Buffers.create(interface.name, interface.clear)
-
-        Vedeu.events.on("_refresh_#{interface.name}_".to_sym, interface.delay) do
-          Vedeu::Buffers.refresh(interface.name)
-        end
-
-        # TODO:
-        # cannot do group at this time
-        # unless interface.group.nil? || interface.group.empty?
-        #   Vedeu.events.on("_refresh_group_#{interface.group}_".to_sym, interface.delay) do
-        #     buffer.refresh_group(interface.group)
-        #   end
-        # end
+        Vedeu::Buffers.create(interface)
 
         interface
       end
@@ -83,20 +61,20 @@ module Vedeu
         attributes[:geometry][:centred] = value
       end
 
-      def attributes
-        @attributes ||= { name: name, geometry: {} }
-      end
-
-      def method_missing(method_name, arg, &block)
-        attributes[method_name] = arg
-      end
-
       def y_out_of_bounds?(value)
         value < 1 || value > Terminal.height
       end
 
       def x_out_of_bounds?(value)
         value < 1 || value > Terminal.width
+      end
+
+      def method_missing(method_name, arg, &block)
+        attributes[method_name] = arg
+      end
+
+      def attributes
+        @attributes ||= { name: name, geometry: {} }
       end
     end
   end
