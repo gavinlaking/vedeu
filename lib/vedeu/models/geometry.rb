@@ -52,20 +52,6 @@ module Vedeu
       right + value
     end
 
-    def position
-      {
-        y:       top,
-        x:       left,
-        height:  height,
-        width:   width,
-        centred: centred,
-        top:     top,
-        bottom:  bottom,
-        left:    left,
-        right:   right,
-      }
-    end
-
     private
 
     def centre

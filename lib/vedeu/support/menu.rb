@@ -9,16 +9,16 @@ module Vedeu
 
     def events
       @_events ||= Vedeu.events.add(self) do
-        on(:menu_next)     { next_item     }
-        on(:menu_prev)     { prev_item     }
-        on(:menu_top)      { top_item      }
-        on(:menu_bottom)   { bottom_item   }
-        on(:menu_select)   { select_item   }
-        on(:menu_deselect) { deselect_item }
+        event(:menu_next)     { next_item     }
+        event(:menu_prev)     { prev_item     }
+        event(:menu_top)      { top_item      }
+        event(:menu_bottom)   { bottom_item   }
+        event(:menu_select)   { select_item   }
+        event(:menu_deselect) { deselect_item }
 
-        on(:menu_selected) { selected_item }
-        on(:menu_current)  { current_item  }
-        on(:menu_items)    { items         }
+        event(:menu_selected) { selected_item }
+        event(:menu_current)  { current_item  }
+        event(:menu_items)    { items         }
       end
     end
 

@@ -1,30 +1,5 @@
 module Vedeu
   module API
-    def on(name, delay = 0, &block)
-      Vedeu.events.on(name, delay, &block)
-    end
-    alias_method :event, :on
-
-    def trigger(name, *args)
-      Vedeu.events.trigger(name, *args)
-    end
-
-    def events
-      @events ||= API::Events.new do
-        on(:_exit_)        { fail StopIteration }
-        on(:_log_)         { |message| Vedeu.log(message) }
-        on(:_mode_switch_) { fail ModeSwitch    }
-        on(:_clear_)       { Terminal.output(Esc.string('clear')) }
-        on(:_refresh_)     { Buffers.refresh_all }
-
-        on(:_keypress_) do |key|
-          trigger(:key, key)
-          trigger(:_log_, (' ' * 42) + "key: #{key}")
-          trigger(:_mode_switch_) if key == :escape
-        end
-      end
-    end
-
     class Events
       def initialize(&block)
         @handlers = Hash.new do |hash, key|
@@ -43,7 +18,7 @@ module Vedeu
         instance_eval(&block)
       end
 
-      def on(event, delay = 0, &block)
+      def event(event, delay = 0, &block)
         handlers[event][:events] << block
         handlers[event][:delay]  = delay
         handlers[event]

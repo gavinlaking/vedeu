@@ -3,17 +3,17 @@ require 'test_helper'
 module Vedeu
   module API
     describe Events do
-      describe '#on' do
+      describe '#event' do
         it 'adds the event block to the handlers' do
           skip
           events = Events.new
-          events.on(:some_event) { proc { |x| x } }
+          events.event(:some_event) { proc { |x| x } }
         end
 
         it 'adds the specified throttle to the throttles' do
           skip
           events = Events.new
-          events.on(:some_event, 250) { proc { |x| x } }
+          events.event(:some_event, 250) { proc { |x| x } }
         end
       end
 
@@ -21,7 +21,7 @@ module Vedeu
         it 'returns a collection containing the event when the event is ' \
            'pre-registered' do
           events = Events.new do
-            on(:_exit_) { fail StopIteration }
+            event(:_exit_) { fail StopIteration }
           end
           proc { events.trigger(:_exit_) }.must_raise(StopIteration)
         end
