@@ -96,11 +96,11 @@ module Vedeu
 
     def defaults
       {
-        y:       1,               # Integer, default: 1
-        x:       1,               # Integer, default: 1
-        width:   Terminal.width,  # Integer, default: Terminal.width
-        height:  Terminal.height, # Integer, default: Terminal.height
-        centred: false,           # Boolean, default: false
+        y:       1,
+        x:       1,
+        width:   Terminal.width,
+        height:  Terminal.height,
+        centred: false,
       }
     end
   end
