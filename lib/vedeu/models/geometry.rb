@@ -1,12 +1,32 @@
 module Vedeu
   class Geometry
-    include Virtus.model
+    def initialize(_attributes = {})
+      @_attributes = _attributes
+    end
 
-    attribute :y,       Integer, default: 1
-    attribute :x,       Integer, default: 1
-    attribute :width,   Integer, default: Terminal.width
-    attribute :height,  Integer, default: Terminal.height
-    attribute :centred, Boolean, default: false
+    def attributes
+      _attributes
+    end
+
+    def y
+      @y ||= _attributes[:y]
+    end
+
+    def x
+      @x ||= _attributes[:x]
+    end
+
+    def width
+      @width ||= _attributes[:width]
+    end
+
+    def height
+      @height ||= _attributes[:height]
+    end
+
+    def centred
+      @centred ||= _attributes[:centred]
+    end
 
     def origin(index = 0)
       Esc.set_position(virtual_y[index], left)
@@ -68,6 +88,20 @@ module Vedeu
 
     def virtual_y
       @_virtual_y ||= (top..bottom).to_a
+    end
+
+    def _attributes
+      defaults.merge!(@_attributes)
+    end
+
+    def defaults
+      {
+        y:       1,               # Integer, default: 1
+        x:       1,               # Integer, default: 1
+        width:   Terminal.width,  # Integer, default: Terminal.width
+        height:  Terminal.height, # Integer, default: Terminal.height
+        centred: false,           # Boolean, default: false
+      }
     end
   end
 end

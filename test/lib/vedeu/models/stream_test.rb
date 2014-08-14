@@ -9,11 +9,12 @@ module Vedeu
           background: '#000000'
         },
         text:  'Some text',
-        style: 'normal',
+        style: style,
         width: width,
         align: align
       })
     }
+    let(:style) { 'normal' }
     let(:align) { :left }
     let(:width) { 9 }
 
@@ -35,6 +36,40 @@ module Vedeu
 
     it 'has an align attribute' do
       stream.align.must_equal(:left)
+    end
+
+    describe '#style' do
+      describe 'for a single style' do
+        let(:style) { 'normal' }
+
+        it 'returns an escape sequence' do
+          stream.style.must_equal("\e[24m\e[21m\e[27m")
+        end
+      end
+
+      describe 'for multiple styles' do
+        let(:style) { ['normal', 'underline'] }
+
+        it 'returns an escape sequence for multiple styles' do
+          stream.style.must_equal("\e[24m\e[21m\e[27m\e[4m")
+        end
+      end
+
+      describe 'for an unknown style' do
+        let(:style) { 'unknown' }
+
+        it 'returns an empty string for an unknown style' do
+          stream.style.must_equal('')
+        end
+      end
+
+      describe 'for an empty or nil' do
+        let(:style) { '' }
+
+        it 'returns an empty string for empty or nil' do
+          stream.style.must_equal('')
+        end
+      end
     end
 
     describe '#to_s' do

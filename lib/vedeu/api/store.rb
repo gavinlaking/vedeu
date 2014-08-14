@@ -2,10 +2,6 @@ module Vedeu
   EntityNotFound = Class.new(StandardError)
 
   module API
-    def use(name)
-      Vedeu::Interface.new(Store.query(name))
-    end
-
     module Store
       extend self
 

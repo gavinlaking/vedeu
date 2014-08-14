@@ -1,12 +1,32 @@
 module Vedeu
   class Stream
-    include Virtus.model
+    def initialize(_attributes = {})
+      @_attributes = _attributes
+    end
 
-    attribute :colour, Colour,  default: Colour.new
-    attribute :style,  Style,   default: ''
-    attribute :text,   String,  default: ''
-    attribute :width,  Integer
-    attribute :align,  Symbol,  default: :left
+    def attributes
+      _attributes
+    end
+
+    def colour
+      @colour ||= Colour.new(_attributes[:colour])
+    end
+
+    def style
+      @style ||= Attributes.coerce_styles(_attributes[:style])
+    end
+
+    def text
+      @text ||= _attributes[:text]
+    end
+
+    def width
+      @width ||= _attributes[:width]
+    end
+
+    def align
+      @align ||= _attributes[:align]
+    end
 
     def to_s
       [ colour, style, data ].join
@@ -28,6 +48,20 @@ module Vedeu
 
     def width?
       !!width
+    end
+
+    def _attributes
+      defaults.merge!(@_attributes)
+    end
+
+    def defaults
+      {
+        colour: {},
+        style:  '',
+        text:   '',
+        width:  nil,
+        align:  :left
+      }
     end
   end
 end

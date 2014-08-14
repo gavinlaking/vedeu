@@ -47,6 +47,7 @@ module Vedeu
           },
           lines:    []
         })
+
         Render.call(interface).must_equal(
           "\e[1;1H                                \e[1;1H" \
           "\e[2;1H                                \e[2;1H" \
