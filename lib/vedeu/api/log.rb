@@ -1,3 +1,5 @@
+require 'fileutils'
+
 module Vedeu
   module API
     class Log
@@ -19,7 +21,19 @@ module Vedeu
       private
 
       def self.filename
-        Dir.home + '/.vedeu/vedeu.log'
+        @_filename ||= directory + '/vedeu.log'
+      end
+
+      def self.directory
+        unless File.directory?(path)
+          FileUtils.mkdir_p(path)
+        end
+
+        path
+      end
+
+      def self.path
+        Dir.home + '/.vedeu'
       end
     end
 
