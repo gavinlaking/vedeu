@@ -18,24 +18,34 @@ module Vedeu
     let(:align) { :left }
     let(:width) { 9 }
 
-    it 'has a colour attribute' do
-      stream.colour.must_be_instance_of(Colour)
+    describe '#colour' do
+      it 'has a colour attribute' do
+        stream.colour.must_be_instance_of(Colour)
+      end
     end
 
-    it 'has a text attribute' do
-      stream.text.must_equal('Some text')
+    describe '#text' do
+      it 'has a text attribute' do
+        stream.text.must_equal('Some text')
+      end
     end
 
-    it 'has a style attribute' do
-      stream.style.must_equal("\e[24m\e[21m\e[27m")
+    describe '#style' do
+      it 'has a style attribute' do
+        stream.style.must_equal("\e[24m\e[21m\e[27m")
+      end
     end
 
-    it 'has a width attribute' do
-      stream.width.must_equal(9)
+    describe '#width' do
+      it 'has a width attribute' do
+        stream.width.must_equal(9)
+      end
     end
 
-    it 'has an align attribute' do
-      stream.align.must_equal(:left)
+    describe '#align' do
+      it 'has an align attribute' do
+        stream.align.must_equal(:left)
+      end
     end
 
     describe '#style' do

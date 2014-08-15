@@ -1,31 +1,31 @@
 module Vedeu
   class Stream
-    def initialize(_attributes = {})
-      @_attributes = _attributes
+    def initialize(attributes = {})
+      @attributes = attributes
     end
 
     def attributes
-      _attributes
+      defaults.merge!(@attributes)
     end
 
     def colour
-      @colour ||= Colour.new(_attributes[:colour])
+      @colour ||= Colour.new(attributes[:colour])
     end
 
     def style
-      @style ||= Attributes.coerce_styles(_attributes[:style])
+      @style ||= Attributes.coerce_styles(attributes[:style])
     end
 
     def text
-      @text ||= _attributes[:text]
+      @text ||= attributes[:text]
     end
 
     def width
-      @width ||= _attributes[:width]
+      @width ||= attributes[:width]
     end
 
     def align
-      @align ||= _attributes[:align]
+      @align ||= attributes[:align]
     end
 
     def to_s
@@ -48,10 +48,6 @@ module Vedeu
 
     def width?
       !!width
-    end
-
-    def _attributes
-      defaults.merge!(@_attributes)
     end
 
     def defaults

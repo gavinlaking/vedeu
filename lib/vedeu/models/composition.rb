@@ -1,11 +1,11 @@
 module Vedeu
   class Composition
-    def initialize(_attributes = {})
-      @_attributes = _attributes
+    def initialize(attributes = {})
+      @attributes = attributes
     end
 
     def attributes
-      _attributes
+      defaults.merge!(@attributes)
     end
 
     def interfaces
@@ -29,11 +29,7 @@ module Vedeu
     private
 
     def _interfaces
-      _attributes[:interfaces]
-    end
-
-    def _attributes
-      defaults.merge!(@_attributes)
+      attributes[:interfaces]
     end
 
     def defaults

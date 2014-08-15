@@ -1,19 +1,19 @@
 module Vedeu
   class Colour
-    def initialize(_attributes = {})
-      @_attributes = _attributes
+    def initialize(attributes = {})
+      @attributes = attributes
     end
 
     def attributes
-      _attributes
+      defaults.merge!(@attributes)
     end
 
     def foreground
-      @foreground ||= ColourTranslator.new(_attributes[:foreground]).foreground
+      @foreground ||= ColourTranslator.new(attributes[:foreground]).foreground
     end
 
     def background
-      @background ||= ColourTranslator.new(_attributes[:background]).background
+      @background ||= ColourTranslator.new(attributes[:background]).background
     end
 
     def to_s
@@ -21,10 +21,6 @@ module Vedeu
     end
 
     private
-
-    def _attributes
-      defaults.merge!(@_attributes)
-    end
 
     def defaults
       {

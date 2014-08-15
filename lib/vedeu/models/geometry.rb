@@ -1,31 +1,31 @@
 module Vedeu
   class Geometry
-    def initialize(_attributes = {})
-      @_attributes = _attributes
+    def initialize(attributes = {})
+      @attributes = attributes
     end
 
     def attributes
-      _attributes
+      defaults.merge!(@attributes)
     end
 
     def y
-      @y ||= _attributes[:y]
+      @y ||= attributes[:y]
     end
 
     def x
-      @x ||= _attributes[:x]
+      @x ||= attributes[:x]
     end
 
     def width
-      @width ||= _attributes[:width]
+      @width ||= attributes[:width]
     end
 
     def height
-      @height ||= _attributes[:height]
+      @height ||= attributes[:height]
     end
 
     def centred
-      @centred ||= _attributes[:centred]
+      @centred ||= attributes[:centred]
     end
 
     def origin(index = 0)
@@ -88,10 +88,6 @@ module Vedeu
 
     def virtual_y
       @_virtual_y ||= (top..bottom).to_a
-    end
-
-    def _attributes
-      defaults.merge!(@_attributes)
     end
 
     def defaults
