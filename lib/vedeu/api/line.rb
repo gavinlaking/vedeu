@@ -1,6 +1,19 @@
 module Vedeu
   module API
-    class Line < Base
+    class Line
+      include Helpers
+
+      def self.build(attributes = {}, &block)
+        new(attributes, &block).build
+      end
+
+      def initialize(attributes = {}, &block)
+        @attributes                = attributes
+        @self_before_instance_eval = eval('self', block.binding)
+
+        instance_eval(&block)
+      end
+
       def build
         attributes
       end
@@ -35,6 +48,12 @@ module Vedeu
           style:   [],
           streams: []
         }
+      end
+
+      private
+
+      def method_missing(method, *args, &block)
+        @self_before_instance_eval.send method, *args, &block
       end
     end
   end
