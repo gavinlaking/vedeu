@@ -28,8 +28,8 @@ module Vedeu
       @centred ||= attributes[:centred]
     end
 
-    def origin(index = 0)
-      Esc.set_position(virtual_y[index], left)
+    def origin(index = 0, &block)
+      Esc.set_position(virtual_y[index], left, &block)
     end
 
     def top
