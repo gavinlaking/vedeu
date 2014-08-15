@@ -23,10 +23,14 @@ module Vedeu
       buffers[name][:next].unshift(sequence)
     end
 
-    def refresh(name)
-      data = buffers.fetch(name) do
+    def query(name)
+      buffers.fetch(name) do
         fail RefreshFailed, 'Cannot refresh non-existent interface.'
       end
+    end
+
+    def refresh(name)
+      data = query(name)
 
       sequence = if data[:next].any?
         data[:current] = data[:next].pop

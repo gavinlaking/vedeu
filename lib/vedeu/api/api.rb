@@ -21,7 +21,7 @@ module Vedeu
     end
 
     def interface(name, &block)
-      API::Interface.save(name, &block)
+      API::Interface.create(name, &block)
     end
 
     def log(message)

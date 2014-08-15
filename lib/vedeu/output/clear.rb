@@ -10,9 +10,7 @@ module Vedeu
 
     def clear
       interface_lines.inject([colours]) do |line, index|
-        line << interface.origin(index)
-        line << ' ' * interface.width
-        line << interface.origin(index)
+        line << interface.origin(index) { ' ' * interface.width }
       end.join
     end
 

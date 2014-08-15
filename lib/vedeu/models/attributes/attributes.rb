@@ -16,16 +16,10 @@ module Vedeu
       end
     end
 
-    def coerce_styles(value_or_values)
-      return '' if value_or_values.nil? || value_or_values.empty?
+    def coerce_styles(values)
+      return '' if values.nil? || values.empty?
 
-      if value_or_values.is_a?(::Array)
-        value_or_values.map { |s| Esc.string(s) }.join
-
-      else
-        Esc.string(value_or_values)
-
-      end
+      Array(values).flatten.map { |s| Esc.string(s) }.join
     end
   end
 end

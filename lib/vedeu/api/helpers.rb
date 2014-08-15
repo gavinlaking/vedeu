@@ -1,17 +1,6 @@
 module Vedeu
   module API
-    class Base
-      def self.build(attributes = {}, &block)
-        new(attributes, &block).build
-      end
-
-      def initialize(attributes = {}, &block)
-        @attributes                = attributes
-        @self_before_instance_eval = eval('self', block.binding)
-
-        instance_eval(&block)
-      end
-
+    module Helpers
       def colour(values = {})
         fail InvalidArgument, '#colour expects a Hash containing :foreground,' \
                               ' :background or both.' unless values.is_a?(Hash)
@@ -27,12 +16,6 @@ module Vedeu
           [values].flatten.each { |value| attributes[:style] << value }
 
         end
-      end
-
-      private
-
-      def method_missing(method, *args, &block)
-        @self_before_instance_eval.send method, *args, &block
       end
     end
   end

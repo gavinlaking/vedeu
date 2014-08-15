@@ -1,9 +1,5 @@
 module Vedeu
   class ColourTranslator
-    def self.translate(html_colour = '')
-      new(html_colour).value
-    end
-
     def initialize(html_colour = '')
       @html_colour = html_colour
     end
@@ -18,12 +14,6 @@ module Vedeu
       return '' unless valid?
 
       ["\e[38;5;", translate, 'm'].join
-    end
-
-    def value
-      return '' unless valid?
-
-      translate
     end
 
     private

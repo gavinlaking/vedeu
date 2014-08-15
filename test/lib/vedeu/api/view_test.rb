@@ -5,7 +5,7 @@ module Vedeu
     describe View do
       before do
         Store.reset
-        Interface.save('testing_view') do
+        Interface.create('testing_view') do
           x      1
           y      1
           colour  foreground: '#ffffff', background: '#000000'

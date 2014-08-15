@@ -13,12 +13,37 @@ module Vedeu
       })
     }
 
-    it 'has a colour attribute' do
-      line.colour.must_be_instance_of(Colour)
+    describe '#attributes' do
+      it 'returns the attributes' do
+        line.attributes.must_equal(
+          {
+            colour: {
+              foreground: '#ff0000',
+              background: '#000000'
+            },
+            streams: [],
+            style: 'normal'
+          }
+        )
+      end
     end
 
-    it 'has a streams attribute' do
-      line.streams.must_equal([])
+    describe '#colour' do
+      it 'has a colour attribute' do
+        line.colour.must_be_instance_of(Colour)
+      end
+    end
+
+    describe '#streams' do
+      it 'has a streams attribute' do
+        line.streams.must_equal([])
+      end
+    end
+
+    describe '#style' do
+      it 'has a style attribute' do
+        line.style.must_equal("\e[24m\e[21m\e[27m")
+      end
     end
 
     describe '#to_s' do
