@@ -6,15 +6,15 @@ module Vedeu
 
   module API
     class Interface
-      def self.save(name, &block)
-        new(name).save(&block)
+      def self.create(name, &block)
+        new(name).create(&block)
       end
 
       def initialize(name)
         @name = name.to_s
       end
 
-      def save(&block)
+      def create(&block)
         instance_eval(&block) if block_given?
 
         stored_attributes = Store.create(attributes)
@@ -32,6 +32,18 @@ module Vedeu
 
       def use(value)
         Vedeu.use(value)
+      end
+
+      def cursor(value)
+        attributes[:cursor] = value
+      end
+
+      def delay(value)
+        attributes[:delay] = value
+      end
+
+      def group(value)
+        attributes[:group] = value
       end
 
       def x(value)

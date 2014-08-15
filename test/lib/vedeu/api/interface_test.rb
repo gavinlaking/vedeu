@@ -8,7 +8,7 @@ module Vedeu
       interface = Interface.new('widget')
 
       it 'creates and stores a new interface' do
-        interface.save.must_be_instance_of(Vedeu::Interface)
+        interface.create.must_be_instance_of(Vedeu::Interface)
       end
 
       it 'allows interfaces to share behaviour' do
@@ -38,35 +38,35 @@ module Vedeu
       end
 
       it 'raises an exception when the value is out of bounds' do
-        proc { interface.save { x 0 } }.must_raise(XOutOfBounds)
+        proc { interface.create { x 0 } }.must_raise(XOutOfBounds)
       end
 
       it 'raises an exception when the value is out of bounds' do
-        proc { interface.save { x 999 } }.must_raise(XOutOfBounds)
+        proc { interface.create { x 999 } }.must_raise(XOutOfBounds)
       end
 
       it 'raises an exception when the value is out of bounds' do
-        proc { interface.save { y 0 } }.must_raise(YOutOfBounds)
+        proc { interface.create { y 0 } }.must_raise(YOutOfBounds)
       end
 
       it 'raises an exception when the value is out of bounds' do
-        proc { interface.save { y 999 } }.must_raise(YOutOfBounds)
+        proc { interface.create { y 999 } }.must_raise(YOutOfBounds)
       end
 
       it 'raises an exception when the value is out of bounds' do
-        proc { interface.save { width 0 } }.must_raise(InvalidWidth)
+        proc { interface.create { width 0 } }.must_raise(InvalidWidth)
       end
 
       it 'raises an exception when the value is out of bounds' do
-        proc { interface.save { width 999 } }.must_raise(InvalidWidth)
+        proc { interface.create { width 999 } }.must_raise(InvalidWidth)
       end
 
       it 'raises an exception when the value is out of bounds' do
-        proc { interface.save { height 0 } }.must_raise(InvalidHeight)
+        proc { interface.create { height 0 } }.must_raise(InvalidHeight)
       end
 
       it 'raises an exception when the value is out of bounds' do
-        proc { interface.save { height 999 } }.must_raise(InvalidHeight)
+        proc { interface.create { height 999 } }.must_raise(InvalidHeight)
       end
     end
   end
