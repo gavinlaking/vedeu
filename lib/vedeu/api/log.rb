@@ -25,9 +25,7 @@ module Vedeu
       end
 
       def self.directory
-        unless File.directory?(path)
-          FileUtils.mkdir_p(path)
-        end
+        FileUtils.mkdir_p(path) unless File.directory?(path)
 
         path
       end
