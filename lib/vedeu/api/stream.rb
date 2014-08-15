@@ -18,7 +18,15 @@ module Vedeu
       end
 
       def attributes
-        @_attributes ||= { colour: {}, style: [], text: '' }.merge!(@attributes)
+        @_attributes ||= defaults.merge!(@attributes)
+      end
+
+      def defaults
+        {
+          colour: {},
+          style:  [],
+          text:   ''
+        }
       end
     end
   end
