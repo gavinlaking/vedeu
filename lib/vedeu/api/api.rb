@@ -21,7 +21,7 @@ module Vedeu
     end
 
     def interface(name, &block)
-      API::Interface.create(name, &block)
+      API::Interface.define({ name: name }, &block)
     end
 
     def log(message)
@@ -37,11 +37,11 @@ module Vedeu
     end
 
     def use(name)
-      Vedeu::Interface.new(Store.query(name))
+      Vedeu::Interface.new(Vedeu::Store.query(name))
     end
 
     def view(name, &block)
-      API::View.build(name, &block)
+      API::Interface.build({ name: name }, &block)
     end
   end
 

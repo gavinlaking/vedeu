@@ -13,10 +13,14 @@ module Vedeu
         []
 
       else
-        [_interfaces].flatten.map do |new_attributes|
-          stored_attributes = API::Store.query(new_attributes[:name])
+        [_interfaces].flatten.map do |attrs|
+          stored = Store.query(attrs[:name])
 
-          Interface.new(stored_attributes.merge!(new_attributes))
+          combined = stored.merge(attrs) do |key, s, a|
+            key == :lines && s.empty? ? a : s
+          end
+
+          Interface.new(combined)
         end
 
       end

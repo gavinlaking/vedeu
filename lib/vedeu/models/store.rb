@@ -1,7 +1,6 @@
 module Vedeu
   EntityNotFound = Class.new(StandardError)
 
-  module API
     module Store
       extend self
 
@@ -23,5 +22,4 @@ module Vedeu
         @storage ||= {}
       end
     end
-  end
 end
