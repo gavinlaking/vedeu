@@ -2,15 +2,15 @@ module Vedeu
   module Attributes
     extend self
 
-    def coercer(value, model, key)
-      return [] if value.nil? || value.empty?
+    def coercer(values, model, key)
+      return [] if values.nil? || values.empty?
 
-      [value].flatten.map do |v|
-        if v.is_a?(model)
-          v
+      [values].flatten.map do |value|
+        if value.is_a?(model)
+          value
 
         else
-          model.new(v)
+          model.new(value)
 
         end
       end
@@ -19,7 +19,7 @@ module Vedeu
     def coerce_styles(values)
       return '' if values.nil? || values.empty?
 
-      Array(values).flatten.map { |s| Esc.string(s) }.join
+      Array(values).flatten.map { |value| Esc.string(value) }.join
     end
   end
 end

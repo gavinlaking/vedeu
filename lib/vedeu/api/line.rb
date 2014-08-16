@@ -53,7 +53,7 @@ module Vedeu
       private
 
       def method_missing(method, *args, &block)
-        @self_before_instance_eval.send method, *args, &block
+        @self_before_instance_eval.send(method, *args, &block)
       end
     end
   end

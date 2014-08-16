@@ -21,6 +21,11 @@ module Vedeu
         Configuration.configure(['--raw'])
           .must_equal({ mode: :raw })
       end
+
+      it 'returns the options which instructs Vedeu to run with debugging on' do
+        Configuration.configure(['--debug'])
+          .must_equal({ debug: true })
+      end
     end
   end
 end

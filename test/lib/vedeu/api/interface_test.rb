@@ -19,6 +19,8 @@ module Vedeu
                       centred true
                       width   10
                       height  2
+                      group   'example_group'
+                      delay   0.25
                     end
           status =  Vedeu.interface('status') do
                       colour  foreground: 'aadd00', background: '#4040cc'
@@ -28,6 +30,8 @@ module Vedeu
                       height  1
                       y       use('main').bottom
                       x       use('main').left
+                      group   'example_group'
+                      delay   0.25
                     end
 
           main.left.must_equal(15)

@@ -21,37 +21,79 @@ module Vedeu
       })
     }
 
-    it 'has a name attribute' do
-      interface.name.must_equal('#initialize')
+    describe '#attributes' do
+      it 'returns the value' do
+        interface.attributes.must_equal(
+          {
+            name: '#initialize',
+            group: 'my_group',
+            lines: [],
+            colour: {
+              foreground: '#ff0000',
+              background: '#000000'
+            },
+            style: '',
+            geometry: {
+              y: 3,
+              x: 5,
+              width: 10,
+              height: 15
+            },
+            cursor: true,
+            delay: 0.0,
+            current: "\e[1;1H#initialize"
+          }
+        )
+      end
     end
 
-    it 'has a name attribute' do
-      interface.group.must_equal('my_group')
+    describe '#name' do
+      it 'returns the value' do
+        interface.name.must_equal('#initialize')
+      end
     end
 
-    it 'has a lines attribute' do
-      interface.lines.must_equal([])
+    describe '#group' do
+      it 'returns the value' do
+        interface.group.must_equal('my_group')
+      end
     end
 
-    it 'has a colour attribute' do
-      interface.colour.must_be_instance_of(Colour)
+    describe '#lines' do
+      it 'returns the value' do
+        interface.lines.must_equal([])
+      end
     end
 
-    it 'has a style attribute' do
-      interface.style.must_equal('')
+    describe '#colour' do
+      it 'returns the value' do
+        interface.colour.must_be_instance_of(Colour)
+      end
     end
 
-    it 'has a geometry attribute' do
-      interface.geometry.must_be_instance_of(Geometry)
+    describe '#style' do
+      it 'returns the value' do
+        interface.style.must_equal('')
+      end
     end
 
-    it 'has a cursor attribute' do
-      interface.cursor.must_equal(true)
-      Interface.new({ cursor: false }).cursor.must_equal(false)
+    describe '#geometry' do
+      it 'returns the value' do
+        interface.geometry.must_be_instance_of(Geometry)
+      end
     end
 
-    it 'has a delay attribute' do
-      interface.delay.must_equal(0.0)
+    describe '#cursor' do
+      it 'returns the value' do
+        interface.cursor.must_equal(true)
+        Interface.new({ cursor: false }).cursor.must_equal(false)
+      end
+    end
+
+    describe '#delay' do
+      it 'returns the value' do
+        interface.delay.must_equal(0.0)
+      end
     end
 
     describe '#to_s' do
