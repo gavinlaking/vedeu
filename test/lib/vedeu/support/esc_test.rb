@@ -2,16 +2,6 @@ require 'test_helper'
 
 module Vedeu
   describe Esc do
-    describe '.set_position' do
-      it 'returns a position escape sequence when no coordinates are provided' do
-        Esc.set_position.must_equal("\e[1;1H")
-      end
-
-      it 'returns a position escape sequence when coordinates are provided' do
-        Esc.set_position(12, 19).must_equal("\e[12;19H")
-      end
-    end
-
     describe '.string' do
       it 'returns an empty string when the style is not provided' do
         Esc.string.must_equal('')
