@@ -1,70 +1,103 @@
 module Vedeu
   RefreshFailed = Class.new(StandardError)
 
+  class Buffer
+    attr_reader :clear, :current, :group, :name, :_next
+
+    def initialize(vars)
+      @vars    = vars
+      @name    = vars.fetch(:name)
+      @clear   = vars.fetch(:clear)
+      @current = vars.fetch(:current)
+      @group   = vars.fetch(:group)
+      @_next   = vars.fetch(:next)
+    end
+
+    def enqueue(sequence)
+      merge({ next: sequence })
+    end
+
+    def merge(vars)
+      Buffer.new(@vars.merge(vars))
+    end
+
+    def refresh
+      sequence = if !_next.empty?
+        merge({ current: _next, next: '' }).current
+
+      elsif current.empty?
+        clear
+
+      else
+        current
+
+      end
+
+      Terminal.output(sequence)
+
+      self
+    end
+  end
+
   module Buffers
     extend self
 
     def create(interface)
-      buffers[interface.name][:clear] = Clear.call(interface)
-      buffers[interface.name][:group] = interface.group
+      store(interface.name, Buffer.new({
+                              name:    interface.name,
+                              clear:   Clear.call(interface),
+                              current: '',
+                              group:   interface.group,
+                              next:    ''
+                            }))
 
-      Vedeu.event("_refresh_#{interface.name}_".to_sym, interface.delay) do
-        refresh(interface.name)
-      end
+      create_events(interface.name, interface.group, interface.delay)
+    end
 
-      unless interface.group.nil? || interface.group.empty?
-        Vedeu.event("_refresh_group_#{interface.group}_".to_sym, interface.delay) do
-          refresh_group(interface.group)
-        end
-      end
+    def create_events(name, group, delay)
+      Vedeu.event("_refresh_#{name}_".to_sym, delay) { refresh(name) }
+
+      Vedeu.event("_refresh_group_#{group}_".to_sym, delay) do
+        refresh_group(group)
+      end unless group.nil? || group.empty?
     end
 
     def enqueue(name, sequence)
-      buffers[name][:next].unshift(sequence)
+      store(name, query(name).enqueue(sequence))
     end
 
     def query(name)
-      buffers.fetch(name) do
+      buffers.fetch(name) {
         fail RefreshFailed, 'Cannot refresh non-existent interface.'
-      end
-    end
-
-    def refresh_group(group)
-      buffers.select.map do |name, buffer|
-        name if buffer[:group] == group
-      end.compact.map { |name| refresh(name) }
+      }
     end
 
     def refresh(name)
-      data = query(name)
-
-      sequence = if data[:next].any?
-        data[:current] = data[:next].pop
-
-      elsif data[:current].empty?
-        data[:clear]
-
-      else
-        data[:current]
-
-      end
-      Terminal.output(sequence)
+      store(name, query(name).refresh)
     end
 
     def refresh_all
       buffers.keys.map { |name| refresh(name) }
     end
 
+    def refresh_group(group)
+      buffers.select.map do |name, buffer|
+        name if buffer.group == group
+      end.compact.map { |name| refresh(name) }
+    end
+
     def reset
       @buffers = {}
+    end
+
+    def store(name, buffer)
+      buffers.store(name, buffer)
     end
 
     private
 
     def buffers
-      @buffers ||= Hash.new do |hash, key|
-        hash[key] = { current: '', next: [], clear: '', group: '' }
-      end
+      @buffers ||= {}
     end
   end
 end
