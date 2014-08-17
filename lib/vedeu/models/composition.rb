@@ -5,18 +5,22 @@ module Vedeu
     end
 
     def attributes
-      defaults.merge!(@attributes)
+      @_attributes ||= defaults.merge!(@attributes)
     end
 
     def interfaces
-      @interfaces ||= if _interfaces.nil? || _interfaces.empty?
+      @interfaces ||= if attributes[:interfaces].nil? || attributes[:interfaces].empty?
         []
 
       else
-        [_interfaces].flatten.map do |new_attributes|
-          stored_attributes = API::Store.query(new_attributes[:name])
+        [ attributes[:interfaces] ].flatten.map do |attrs|
+          stored = Store.query(attrs[:name])
 
-          Interface.new(stored_attributes.merge!(new_attributes))
+          combined = stored.merge(attrs) do |key, s, a|
+            key == :lines && s.empty? ? a : s
+          end
+
+          Interface.new(combined)
         end
 
       end
@@ -27,10 +31,6 @@ module Vedeu
     end
 
     private
-
-    def _interfaces
-      attributes[:interfaces]
-    end
 
     def defaults
       {

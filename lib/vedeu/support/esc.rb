@@ -3,20 +3,7 @@ module Vedeu
     extend self
 
     def set_position(y = 1, x = 1, &block)
-      row    = (y == 0 || y == nil) ? 1 : y
-      column = (x == 0 || x == nil) ? 1 : x
-
-      if block_given?
-        out = []
-        out << ["\e[", row, ';', column, 'H'].join
-        out << yield
-        out << ["\e[", row, ';', column, 'H'].join
-        out
-
-      else
-        ["\e[", row, ';', column, 'H'].join
-
-      end
+      Position.new(y, x).to_s(&block)
     end
 
     def string(value = '')

@@ -5,33 +5,43 @@ module Vedeu
   YOutOfBounds  = Class.new(StandardError)
 
   module API
-    class Interface
-      def self.create(name, &block)
-        new(name).create(&block)
+    class Interface < Vedeu::Interface
+      def self.build(attributes = {}, &block)
+        new(attributes, &block).attributes
       end
 
-      def initialize(name)
-        @name = name.to_s
+      def self.define(attributes = {}, &block)
+        new(attributes).define(&block)
       end
 
-      def create(&block)
+      def initialize(attributes = {}, &block)
+        @attributes = attributes
+
+        if block_given?
+          @self_before_instance_eval = eval('self', block.binding)
+
+          instance_eval(&block)
+        end
+      end
+
+      def define(&block)
         instance_eval(&block) if block_given?
-
-        stored_attributes = Store.create(attributes)
-
+        stored_attributes = Vedeu::Store.create(attributes)
         interface = Vedeu::Interface.new(stored_attributes)
-
         Vedeu::Buffers.create(interface)
-
         interface
       end
 
-      private
-
-      attr_reader :name
+      def line(&block)
+        attributes[:lines] << Line.build(&block)
+      end
 
       def use(value)
         Vedeu.use(value)
+      end
+
+      def colour(value)
+        attributes[:colour] = value
       end
 
       def cursor(value)
@@ -74,6 +84,10 @@ module Vedeu
         attributes[:geometry][:centred] = value
       end
 
+      def style(value)
+        attributes[:style] = value
+      end
+
       def y_out_of_bounds?(value)
         value < 1 || value > Terminal.height
       end
@@ -82,12 +96,8 @@ module Vedeu
         value < 1 || value > Terminal.width
       end
 
-      def method_missing(method_name, arg, &block)
-        attributes[method_name] = arg
-      end
-
-      def attributes
-        @attributes ||= { name: name, geometry: {} }
+      def method_missing(method, *args, &block)
+        @self_before_instance_eval.send(method, *args, &block)
       end
     end
   end

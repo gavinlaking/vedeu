@@ -6,6 +6,13 @@
 Vedeu is my attempt at creating a terminal based application framework without the need for Ncurses. I've tried to make Vedeu as simple and flexible as possible.
 
 
+## Requirements
+
+Vedeu has been built on MacOSX 10.9 (Mavericks) with Ruby v2.1.2.
+
+Note: You may have trouble running Vedeu with Windows installations.
+
+
 ## Installation
 
 Add this line to your application's Gemfile:

@@ -2,7 +2,7 @@ require 'test_helper'
 
 module Vedeu
   describe Render do
-    before { API::Store.reset }
+    before { Store.reset }
 
     describe '.call' do
       it 'returns the content for the interface' do

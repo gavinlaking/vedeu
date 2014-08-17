@@ -1,11 +1,21 @@
 module Vedeu
   class Line
-    def initialize(attributes = {})
+    def self.build(attributes = {}, &block)
+      new(attributes, &block).attributes
+    end
+
+    def initialize(attributes = {}, &block)
       @attributes = attributes
+
+      if block_given?
+        @self_before_instance_eval = eval('self', block.binding)
+
+        instance_eval(&block)
+      end
     end
 
     def attributes
-      defaults.merge!(@attributes)
+      @_attributes ||= defaults.merge!(@attributes)
     end
 
     def colour
@@ -30,8 +40,12 @@ module Vedeu
       {
         colour:  {},
         streams: [],
-        style:   ''
+        style:   []
       }
+    end
+
+    def method_missing(method, *args, &block)
+      @self_before_instance_eval.send(method, *args, &block)
     end
   end
 end

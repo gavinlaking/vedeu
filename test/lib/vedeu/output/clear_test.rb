@@ -2,7 +2,7 @@ require 'test_helper'
 
 module Vedeu
   describe Clear do
-    before { API::Store.reset }
+    before { Store.reset }
 
     describe '.call' do
       it 'returns the escape sequence to clear the whole interface' do

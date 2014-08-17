@@ -11,7 +11,7 @@ module Vedeu
     end
 
     def attributes
-      defaults.merge!(@attributes)
+      @_attributes ||= defaults.merge!(@attributes)
     end
 
     def name

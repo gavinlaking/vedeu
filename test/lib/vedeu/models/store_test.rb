@@ -1,7 +1,6 @@
 require 'test_helper'
 
 module Vedeu
-  module API
     describe Store do
       before { Store.reset }
 
@@ -20,7 +19,18 @@ module Vedeu
         end
 
         it 'returns the record when found' do
-          Store.query('chlorine').must_equal({ name: 'chlorine', geometry: {} })
+          Store.query('chlorine').must_equal(
+            {
+              name: 'chlorine',
+              group: '',
+              lines: [],
+              colour: {},
+              style: '',
+              geometry: {},
+              cursor: true,
+              delay: 0.0
+            }
+          )
         end
 
         it 'raises an exception when name is empty' do
@@ -44,5 +54,4 @@ module Vedeu
         end
       end
     end
-  end
 end

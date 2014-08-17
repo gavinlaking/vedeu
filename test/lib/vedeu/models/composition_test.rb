@@ -7,7 +7,7 @@ module Vedeu
     let(:json)       { File.read('test/support/model_test_data.json') }
     let(:attributes) { JSON.load(json, nil, symbolize_names: true) }
 
-    before { API::Store.reset }
+    before { Store.reset }
 
     describe '#interfaces' do
       it 'returns a collection of interfaces' do
