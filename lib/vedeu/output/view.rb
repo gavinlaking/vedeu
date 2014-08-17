@@ -13,7 +13,7 @@ module Vedeu
     end
 
     def render
-      composition.interfaces.map do |interface|
+      interfaces.map do |interface|
         Buffers.enqueue(interface.name, interface.to_s)
       end
     end
@@ -26,11 +26,15 @@ module Vedeu
 
     attr_reader :object
 
-    def composition
-      @_composition ||= Composition.new(interfaces)
+    def interfaces
+      composition.interfaces
     end
 
-    def interfaces
+    def composition
+      @_composition ||= Composition.new(attributes)
+    end
+
+    def attributes
       {
         interfaces: [ output ]
       }
