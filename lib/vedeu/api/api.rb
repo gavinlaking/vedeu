@@ -20,6 +20,10 @@ module Vedeu
       end
     end
 
+    def height
+      Terminal.height
+    end
+
     def interface(name, &block)
       API::Interface.define({ name: name }, &block)
     end
@@ -42,6 +46,10 @@ module Vedeu
 
     def view(name, &block)
       API::Interface.build({ name: name }, &block)
+    end
+
+    def width
+      Terminal.width
     end
   end
 
