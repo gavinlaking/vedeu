@@ -6,17 +6,12 @@ module Vedeu
 
     def events
       @events ||= API::Events.new do
-        event(:_exit_)        { fail StopIteration                   }
-        event(:_log_)         { |message| Vedeu.log(message)         }
-        event(:_mode_switch_) { fail ModeSwitch                      }
-        event(:_clear_)       { Terminal.output(Esc.string('clear')) }
-        event(:_refresh_)     { Buffers.refresh_all                  }
-
-        event(:_keypress_) do |key|
-          trigger(:key, key)
-          trigger(:_log_, (' ' * 42) + "key: #{key}")
-          trigger(:_mode_switch_) if key == :escape
-        end
+        event(:_log_)         { |msg| Vedeu.log(msg)      }
+        event(:_exit_)        { fail StopIteration        }
+        event(:_mode_switch_) { fail ModeSwitch           }
+        event(:_clear_)       { Terminal.clear_screen     }
+        event(:_refresh_)     { Buffers.refresh_all       }
+        event(:_keypress_)    { |key| Vedeu.keypress(key) }
       end
     end
 
@@ -26,6 +21,12 @@ module Vedeu
 
     def interface(name, &block)
       API::Interface.define({ name: name }, &block)
+    end
+
+    def keypress(key)
+      trigger(:key, key)
+      trigger(:_log_, (' ' * 42) + "key: #{key}")
+      trigger(:_mode_switch_) if key == :escape
     end
 
     def log(message)

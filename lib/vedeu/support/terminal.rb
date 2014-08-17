@@ -45,6 +45,10 @@ module Vedeu
       yield
     end
 
+    def clear_screen
+      output Esc.string 'clear'
+    end
+
     def restore_screen
       output Esc.string 'screen_exit'
       output clear_last_line
