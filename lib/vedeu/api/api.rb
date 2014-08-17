@@ -32,10 +32,6 @@ module Vedeu
       API::Log.logger.debug(message)
     end
 
-    # def render(object = nil)
-    #   Vedeu::View.render(object)
-    # end
-
     def trigger(name, *args)
       Vedeu.events.trigger(name, *args)
     end
