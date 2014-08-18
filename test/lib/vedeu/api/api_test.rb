@@ -64,6 +64,8 @@ module Vedeu
 
     describe '.use' do
       it 'raises an exception if the interface has not been defined' do
+        Vedeu::Store.reset
+
         proc { Vedeu.use('some_interface') }.must_raise(Vedeu::EntityNotFound)
       end
 
