@@ -86,6 +86,8 @@ module Vedeu
         attributes[:style] = value
       end
 
+      private
+
       def y_out_of_bounds?(value)
         value < 1 || value > Terminal.height
       end
