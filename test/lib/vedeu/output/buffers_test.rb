@@ -2,115 +2,46 @@ require 'test_helper'
 
 module Vedeu
   describe Buffers do
+    before do
+      Buffers.reset
+    end
+
     describe '.create' do
       it 'creates an entry for the interface, and saves :clear' do
       end
     end
 
+    describe '.create_events' do
+
+    end
+
     describe '.enqueue' do
+      it 'raises an exception if the interface cannot be found by name' do
+        name     = 'unknown'
+        sequence = '...'
+        proc { Buffers.enqueue(name, sequence) }.must_raise(RefreshFailed)
+      end
+
       it 'saves the new sequence for the interface into :next' do
+      end
+    end
+
+    describe '.query' do
+      it 'raises an exception if the interface cannot be found by name' do
+        name     = 'unknown'
+        proc { Buffers.query(name) }.must_raise(RefreshFailed)
+      end
+
+      it 'returns the interface buffer when found' do
+
       end
     end
 
     describe '.refresh' do
       it 'raises an exception if the interface cannot be found by name' do
+        name     = 'unknown'
+        proc { Buffers.refresh(name) }.must_raise(RefreshFailed)
       end
-
-    # describe '#refresh' do
-    #   let(:attributes) {
-    #     {
-    #       name:   '#refresh',
-    #       lines:  [],
-    #       colour: {
-    #         foreground: '#ff0000',
-    #         background: '#000000'
-    #       },
-    #       geometry: {
-    #         width:  3,
-    #         height: 3
-    #       }
-    #     }
-    #   }
-
-    #   it 'returns a blank interface when there is no content to display (initial state)' do
-    #     Terminal.stub(:output, nil) do
-    #       Interface.new(attributes).refresh.must_equal(
-    #         "\e[38;5;196m\e[48;5;16m" \
-    #         "\e[1;1H   \e[1;1H" \
-    #         "\e[2;1H   \e[2;1H" \
-    #         "\e[3;1H   \e[3;1H"
-    #       )
-    #     end
-    #   end
-
-    #   it 'returns the fresh content when content is queued up to be displayed' do
-    #     attributes = {
-    #       name:   '#refresh',
-    #       lines:  [
-    #         { streams: [{ text: '#refresh' }] },
-    #         { streams: [{ text: '#refresh' }] },
-    #         { streams: [{ text: '#refresh' }] }
-    #       ],
-    #       colour: {
-    #         foreground: '#ff0000',
-    #         background: '#000000'
-    #       },
-    #       geometry: {
-    #         width:  11,
-    #         height: 3
-    #       }
-    #     }
-    #     interface = Interface.new(attributes)
-    #     diode = interface.enqueue
-
-    #     Terminal.stub(:output, nil) do
-    #       interface.refresh.must_equal(
-    #         "\e[38;5;196m\e[48;5;16m" \
-    #         "\e[1;1H           \e[1;1H" \
-    #         "\e[2;1H           \e[2;1H" \
-    #         "\e[3;1H           \e[3;1H" \
-    #         "\e[1;1H#refresh" \
-    #         "\e[2;1H#refresh" \
-    #         "\e[3;1H#refresh"
-    #       )
-    #     end
-    #   end
-
-    #   it 'returns the previously shown content when there is stale content from last run' do
-    #     attributes = {
-    #       name:   '#refresh',
-    #       lines:  [],
-    #       colour: {
-    #         foreground: '#ff0000',
-    #         background: '#000000'
-    #       },
-    #       geometry: {
-    #         width:  11,
-    #         height: 3
-    #       }
-    #     }
-    #     interface = Interface.new(attributes)
-    #     interface.current = "\e[38;5;196m\e[48;5;16m" \
-    #                         "\e[1;1H           \e[1;1H" \
-    #                         "\e[2;1H           \e[2;1H" \
-    #                         "\e[3;1H           \e[3;1H" \
-    #                         "\e[1;1H#refresh" \
-    #                         "\e[2;1H#refresh" \
-    #                         "\e[3;1H#refresh"
-
-    #     Terminal.stub(:output, nil) do
-    #       interface.refresh.must_equal(
-    #         "\e[38;5;196m\e[48;5;16m" \
-    #         "\e[1;1H           \e[1;1H" \
-    #         "\e[2;1H           \e[2;1H" \
-    #         "\e[3;1H           \e[3;1H" \
-    #         "\e[1;1H#refresh" \
-    #         "\e[2;1H#refresh" \
-    #         "\e[3;1H#refresh"
-    #       )
-    #     end
-    #   end
-    # end
     end
 
     describe '.refresh_all' do
@@ -118,8 +49,19 @@ module Vedeu
       end
     end
 
+    describe '.refresh_group' do
+    end
+
     describe '.reset' do
       it 'destroys all saved buffers' do
+      end
+    end
+
+    describe '.store' do
+      it 'stores a new buffer by name, and returns the buffer' do
+        name   = 'my_buffer'
+        buffer = mock('Buffer')
+        Buffers.store(name, buffer).must_equal(buffer)
       end
     end
   end
