@@ -9,37 +9,20 @@ module Vedeu
         interface = Interface.new({ name: 'widget' })
 
         it 'creates and stores a new interface' do
-          interface.define.must_be_instance_of(Vedeu::Interface)
-        end
-
-        it 'allows interfaces to share behaviour' do
-          IO.console.stub :winsize, [10, 40] do
-            main =    Vedeu.interface('main') do
-                        colour  foreground: '#ff0000', background: '#000000'
-                        cursor  false
-                        centred true
-                        width   10
-                        height  2
-                        group   'example_group'
-                        delay   0.25
-                      end
-            status =  Vedeu.interface('status') do
-                        colour  foreground: '#aadd00', background: '#4040cc'
-                        cursor  true
-                        centred true
-                        width   10
-                        height  1
-                        y       use('main').bottom
-                        x       use('main').left
-                        group   'example_group'
-                        delay   0.25
-                      end
-
-            main.left.must_equal(15)
-            main.top.must_equal(4)
-            status.left.must_equal(15)
-            status.top.must_equal(5)
-          end
+          interface.define.must_equal(
+            {
+              'widget' => {
+                name:     'widget',
+                group:    '',
+                lines:    [],
+                colour:   {},
+                style:    '',
+                geometry: {},
+                cursor:   true,
+                delay:    0.0
+              }
+            }
+          )
         end
 
         it 'raises an exception when the value is out of bounds' do

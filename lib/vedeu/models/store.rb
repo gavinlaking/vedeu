@@ -6,6 +6,10 @@ module Vedeu
 
     def create(attributes)
       storage.store(attributes[:name], attributes)
+
+      Buffers.create(Interface.new(attributes))
+
+      storage
     end
 
     def query(name)

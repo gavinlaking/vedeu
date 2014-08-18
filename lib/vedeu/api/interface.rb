@@ -26,10 +26,8 @@ module Vedeu
 
       def define(&block)
         instance_eval(&block) if block_given?
-        stored_attributes = Vedeu::Store.create(attributes)
-        interface = Vedeu::Interface.new(stored_attributes)
-        Vedeu::Buffers.create(interface)
-        interface
+
+        Vedeu::Store.create(attributes)
       end
 
       def line(&block)

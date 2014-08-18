@@ -5,10 +5,10 @@ module Vedeu
       before { Store.reset }
 
       describe '#create' do
-        it 'creates and returns the stored record' do
+        it 'stores the interface attributes and returns the storage collection' do
           attributes = { name: 'sulphur' }
 
-          Store.create(attributes).must_equal({ name: 'sulphur' })
+          Store.create(attributes).must_equal({ 'sulphur' => { name: 'sulphur' } })
         end
       end
 
