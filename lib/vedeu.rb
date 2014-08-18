@@ -42,6 +42,7 @@ require 'vedeu/output/clear'
 require 'vedeu/output/render'
 require 'vedeu/output/view'
 
+require 'vedeu/support/buffer'
 require 'vedeu/support/position'
 require 'vedeu/support/esc'
 require 'vedeu/support/input'
