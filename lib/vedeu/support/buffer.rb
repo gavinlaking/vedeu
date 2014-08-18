@@ -15,10 +15,6 @@ module Vedeu
       merge({ next: sequence })
     end
 
-    def merge(vars)
-      Buffer.new(@vars.merge(vars))
-    end
-
     def refresh
       sequence = if !_next.empty?
         merge({ current: _next, next: '' }).current
@@ -34,6 +30,12 @@ module Vedeu
       Terminal.output(sequence)
 
       self
+    end
+
+    private
+
+    def merge(vars)
+      Buffer.new(@vars.merge(vars))
     end
   end
 end
