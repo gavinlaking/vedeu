@@ -88,7 +88,7 @@ module Vedeu
 
         it 'returns a String' do
           stream.to_s.must_equal(
-            "\e[38;5;196m\e[48;5;16m" \
+            "\e[38;2;255;0;0m\e[48;2;0;0;0m" \
             "\e[24m\e[21m\e[27m"      \
             "Some text           "
           )
@@ -99,7 +99,7 @@ module Vedeu
 
           it 'returns a String' do
             stream.to_s.must_equal(
-              "\e[38;5;196m\e[48;5;16m" \
+              "\e[38;2;255;0;0m\e[48;2;0;0;0m" \
               "\e[24m\e[21m\e[27m"      \
               "     Some text      "
             )
@@ -111,7 +111,7 @@ module Vedeu
 
           it 'returns a String' do
             stream.to_s.must_equal(
-              "\e[38;5;196m\e[48;5;16m" \
+              "\e[38;2;255;0;0m\e[48;2;0;0;0m" \
               "\e[24m\e[21m\e[27m"      \
               "           Some text"
             )
@@ -122,7 +122,7 @@ module Vedeu
       describe 'when a width is not set' do
         it 'returns a String' do
           stream.to_s.must_equal(
-            "\e[38;5;196m\e[48;5;16m" \
+            "\e[38;2;255;0;0m\e[48;2;0;0;0m" \
             "\e[24m\e[21m\e[27m"      \
             "Some text"
           )

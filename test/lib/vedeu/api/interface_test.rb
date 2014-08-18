@@ -24,7 +24,7 @@ module Vedeu
                         delay   0.25
                       end
             status =  Vedeu.interface('status') do
-                        colour  foreground: 'aadd00', background: '#4040cc'
+                        colour  foreground: '#aadd00', background: '#4040cc'
                         cursor  true
                         centred true
                         width   10

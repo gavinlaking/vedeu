@@ -9,13 +9,11 @@ module Vedeu
     end
 
     def foreground
-      @foreground ||= ColourTranslator
-        .new(attributes[:foreground], { truecolor: false }).foreground
+      @foreground ||= ColourTranslator.new(attributes[:foreground]).foreground
     end
 
     def background
-      @background ||= ColourTranslator
-        .new(attributes[:background], { truecolor: false }).background
+      @background ||= ColourTranslator.new(attributes[:background]).background
     end
 
     def to_s
