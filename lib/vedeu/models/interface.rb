@@ -39,7 +39,13 @@ module Vedeu
     end
 
     def cursor
-      @cursor ||= attributes[:cursor]
+      @cursor ||= if cursor?
+        Esc.string('show_cursor')
+
+      else
+        Esc.string('hide_cursor')
+
+      end
     end
 
     def delay
@@ -51,6 +57,10 @@ module Vedeu
     end
 
     private
+
+    def cursor?
+      attributes[:cursor] == true
+    end
 
     def defaults
       {

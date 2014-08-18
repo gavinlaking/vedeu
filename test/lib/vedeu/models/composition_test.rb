@@ -41,7 +41,7 @@ module Vedeu
           "\e[3;3H               \e[3;3H" \
           "\e[4;3H               \e[4;3H" \
           "\e[5;3H               \e[5;3H" \
-          "\e[3;3HSome text..."
+          "\e[3;3HSome text...\e[?25h"
         )
       end
 
@@ -57,7 +57,7 @@ module Vedeu
           "\e[3;3H                              \e[3;3H" \
           "\e[4;3H                              \e[4;3H" \
           "\e[5;3H                              \e[5;3H" \
-          "\e[3;3HSome text... more text..."
+          "\e[3;3HSome text... more text...\e[?25h"
         )
       end
 
@@ -74,7 +74,7 @@ module Vedeu
           "\e[4;3H               \e[4;3H" \
           "\e[5;3H               \e[5;3H" \
           "\e[3;3HSome text..." \
-          "\e[4;3HSome text..."
+          "\e[4;3HSome text...\e[?25h"
         )
       end
 
@@ -91,7 +91,7 @@ module Vedeu
           "\e[4;3H                              \e[4;3H" \
           "\e[5;3H                              \e[5;3H" \
           "\e[3;3HSome text... more text..." \
-          "\e[4;3HSome text... more text..."
+          "\e[4;3HSome text... more text...\e[?25h"
         )
       end
 
@@ -107,7 +107,7 @@ module Vedeu
           "\e[3;3H                              \e[3;3H" \
           "\e[4;3H                              \e[4;3H" \
           "\e[5;3H                              \e[5;3H" \
-          "\e[3;3H\e[38;2;0;0;0m\e[48;2;0;0;255m\e[24m\e[21m\e[27m\e[4mSome text...\e[38;2;255;255;0m\e[48;2;0;255;0m\e[24m\e[21m\e[27m \e[38;2;255;255;255m\e[48;2;255;0;255m\e[1mmore text..."
+          "\e[3;3H\e[38;2;0;0;0m\e[48;2;0;0;255m\e[24m\e[21m\e[27m\e[4mSome text...\e[38;2;255;255;0m\e[48;2;0;255;0m\e[24m\e[21m\e[27m \e[38;2;255;255;255m\e[48;2;255;0;255m\e[1mmore text...\e[?25h"
         )
       end
 
@@ -129,11 +129,11 @@ module Vedeu
           "\e[3;3H               \e[3;3H" \
           "\e[4;3H               \e[4;3H" \
           "\e[5;3H               \e[5;3H" \
-          "\e[3;3HSome text..." \
+          "\e[3;3HSome text...\e[?25h"    \
           "\e[6;6H               \e[6;6H" \
           "\e[7;6H               \e[7;6H" \
           "\e[8;6H               \e[8;6H" \
-          "\e[6;6HSome text..."
+          "\e[6;6HSome text...\e[?25h"
         )
       end
 
@@ -155,11 +155,11 @@ module Vedeu
           "\e[3;3H                              \e[3;3H" \
           "\e[4;3H                              \e[4;3H" \
           "\e[5;3H                              \e[5;3H" \
-          "\e[3;3HSome text... more text..."             \
+          "\e[3;3HSome text... more text...\e[?25h"      \
           "\e[6;6H                              \e[6;6H" \
           "\e[7;6H                              \e[7;6H" \
           "\e[8;6H                              \e[8;6H" \
-          "\e[6;6HSome text... more text..."
+          "\e[6;6HSome text... more text...\e[?25h"
         )
       end
 
@@ -182,12 +182,12 @@ module Vedeu
           "\e[4;3H               \e[4;3H" \
           "\e[5;3H               \e[5;3H" \
           "\e[3;3HSome text..." \
-          "\e[4;3HSome text..." \
+          "\e[4;3HSome text...\e[?25h"    \
           "\e[3;3H               \e[3;3H" \
           "\e[4;3H               \e[4;3H" \
           "\e[5;3H               \e[5;3H" \
           "\e[3;3HSome text..." \
-          "\e[4;3HSome text..."
+          "\e[4;3HSome text...\e[?25h"
         )
       end
 
@@ -210,12 +210,12 @@ module Vedeu
           "\e[4;3H                              \e[4;3H" \
           "\e[5;3H                              \e[5;3H" \
           "\e[3;3HSome text... more text..."             \
-          "\e[4;3HSome text... more text..."             \
+          "\e[4;3HSome text... more text...\e[?25h"      \
           "\e[6;6H                              \e[6;6H" \
           "\e[7;6H                              \e[7;6H" \
           "\e[8;6H                              \e[8;6H" \
           "\e[6;6HSome text... more text..."             \
-          "\e[7;6HSome text... more text..."
+          "\e[7;6HSome text... more text...\e[?25h"
         )
       end
 
@@ -238,12 +238,12 @@ module Vedeu
           "\e[4;3H                              \e[4;3H" \
           "\e[5;3H                              \e[5;3H" \
           "\e[3;3H\e[38;2;0;0;0m\e[48;2;0;0;255m\e[24m\e[21m\e[27m\e[4mSome text...\e[38;2;255;255;0m\e[48;2;0;255;0m\e[24m\e[21m\e[27m \e[38;2;255;255;255m\e[48;2;255;0;255m\e[1mmore text..." \
-          "\e[4;3H\e[38;2;0;0;0m\e[48;2;0;0;255m\e[24m\e[21m\e[27m\e[4mSome text...\e[38;2;255;255;0m\e[48;2;0;255;0m\e[24m\e[21m\e[27m \e[38;2;255;255;255m\e[48;2;255;0;255m\e[1mmore text..." \
+          "\e[4;3H\e[38;2;0;0;0m\e[48;2;0;0;255m\e[24m\e[21m\e[27m\e[4mSome text...\e[38;2;255;255;0m\e[48;2;0;255;0m\e[24m\e[21m\e[27m \e[38;2;255;255;255m\e[48;2;255;0;255m\e[1mmore text...\e[?25h" \
           "\e[6;6H                              \e[6;6H" \
           "\e[7;6H                              \e[7;6H" \
           "\e[8;6H                              \e[8;6H" \
           "\e[6;6H\e[38;2;0;0;0m\e[48;2;0;0;255m\e[24m\e[21m\e[27m\e[4mSome text...\e[38;2;255;255;0m\e[48;2;0;255;0m\e[24m\e[21m\e[27m \e[38;2;255;255;255m\e[48;2;255;0;255m\e[1mmore text..." \
-          "\e[7;6H\e[38;2;0;0;0m\e[48;2;0;0;255m\e[24m\e[21m\e[27m\e[4mSome text...\e[38;2;255;255;0m\e[48;2;0;255;0m\e[24m\e[21m\e[27m \e[38;2;255;255;255m\e[48;2;255;0;255m\e[1mmore text..."
+          "\e[7;6H\e[38;2;0;0;0m\e[48;2;0;0;255m\e[24m\e[21m\e[27m\e[4mSome text...\e[38;2;255;255;0m\e[48;2;0;255;0m\e[24m\e[21m\e[27m \e[38;2;255;255;255m\e[48;2;255;0;255m\e[1mmore text...\e[?25h"
         )
       end
     end

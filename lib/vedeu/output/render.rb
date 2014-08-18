@@ -16,6 +16,7 @@ module Vedeu
           out << line.to_s
         end
       end
+      out << interface.cursor
       out.join
     end
 
