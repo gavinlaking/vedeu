@@ -42,7 +42,15 @@ module Vedeu
     end
 
     def view(name, &block)
-      API::Interface.build({ name: name }, &block)
+      {
+        interfaces: [
+          API::Interface.build({ name: name }, &block)
+        ]
+      }
+    end
+
+    def views(&block)
+      API::Composition.build(&block)
     end
 
     def width

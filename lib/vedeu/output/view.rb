@@ -35,9 +35,7 @@ module Vedeu
     end
 
     def attributes
-      {
-        interfaces: [ output ]
-      }
+      output
     end
   end
 end

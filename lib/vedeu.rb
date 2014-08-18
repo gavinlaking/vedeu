@@ -25,6 +25,7 @@ require 'vedeu/models/store'
 require 'vedeu/models/stream'
 
 require 'vedeu/api/api'
+require 'vedeu/api/composition'
 require 'vedeu/api/events'
 require 'vedeu/api/grid'
 require 'vedeu/api/helpers'

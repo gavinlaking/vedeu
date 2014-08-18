@@ -38,7 +38,18 @@ module Vedeu
         Vedeu::Store.reset
 
         Vedeu.interface('Vedeu.interface').must_equal(
-          {"Vedeu.interface"=>{name: "Vedeu.interface", group: "", lines: [], colour: {}, style: "", geometry: {}, cursor: true, delay: 0.0}}
+          {
+            "Vedeu.interface" => {
+              name: "Vedeu.interface",
+              group: "",
+              lines: [],
+              colour: {},
+              style: "",
+              geometry: {},
+              cursor: true,
+              delay: 0.0
+            }
+          }
         )
       end
     end
@@ -79,7 +90,16 @@ module Vedeu
     describe '.view' do
       it 'returns the view attributes for an interface (see View)' do
         Vedeu.view('some_interface').must_equal(
-          {name: "some_interface", group: "", lines: [], colour: {}, style: "", geometry: {}, cursor: true, delay: 0.0}
+          { interfaces: [{
+            name: "some_interface",
+            group: "",
+            lines: [],
+            colour: {},
+            style: "",
+            geometry: {},
+            cursor: true,
+            delay: 0.0
+          }] }
         )
       end
     end

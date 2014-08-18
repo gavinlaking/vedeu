@@ -76,7 +76,7 @@ module Vedeu
               text '2. Another line of text.'
             end
           end.must_equal(
-            {
+            { interfaces: [{
               name:  'testing_view',
               group: '',
               colour: {},
@@ -97,7 +97,7 @@ module Vedeu
                   ]
                 }
               ]
-            }
+            }] }
           )
         end
 
@@ -107,7 +107,7 @@ module Vedeu
               text '1. Line without colours.'
             end
           end.must_equal(
-            {
+            { interfaces: [{
               name:  'testing_view',
               group: '',
               colour: {},
@@ -122,7 +122,7 @@ module Vedeu
                   streams: [{ text: '1. Line without colours.' }]
                 }
               ]
-            }
+            }] }
           )
         end
 
@@ -133,7 +133,7 @@ module Vedeu
               text   '2. Line with colours.'
             end
           end.must_equal(
-            {
+            { interfaces: [{
               name:  'testing_view',
               group: '',
               colour: {},
@@ -148,7 +148,7 @@ module Vedeu
                   streams: [{ text: '2. Line with colours.' }]
                 }
               ]
-            }
+            }] }
           )
         end
 
@@ -159,7 +159,7 @@ module Vedeu
               text   '3. Line with explicit colour declaration.'
             end
           end.must_equal(
-            {
+            { interfaces: [{
               name:  'testing_view',
               group: '',
               colour: {},
@@ -174,7 +174,7 @@ module Vedeu
                   streams: [{ text: '3. Line with explicit colour declaration.' }]
                 }
               ]
-            }
+            }] }
           )
         end
 
@@ -186,7 +186,7 @@ module Vedeu
               end
             end
           end.must_equal(
-            {
+            { interfaces: [{
               name:  'testing_view',
               group: '',
               colour: {},
@@ -207,7 +207,7 @@ module Vedeu
                   }]
                 }
               ]
-            }
+            }] }
           )
         end
 
@@ -219,7 +219,7 @@ module Vedeu
               end
             end
           end.must_equal(
-            {
+            { interfaces: [{
               name:  'testing_view',
               group: '',
               colour: {},
@@ -240,7 +240,7 @@ module Vedeu
                   }]
                 }
               ]
-            }
+            }] }
           )
         end
 
@@ -251,7 +251,7 @@ module Vedeu
               text  '1. Line with a normal style.'
             end
           end.must_equal(
-            {
+            { interfaces: [{
               name: 'testing_view',
               group: '',
               colour: {},
@@ -268,7 +268,7 @@ module Vedeu
                   }]
                 }
               ]
-            }
+            }] }
           )
         end
 
@@ -279,7 +279,7 @@ module Vedeu
               text  '2. Line with an underline style.'
             end
           end.must_equal(
-            {
+            { interfaces: [{
               name: 'testing_view',
               group: '',
               colour: {},
@@ -296,7 +296,7 @@ module Vedeu
                   }]
                 }
               ]
-            }
+            }] }
           )
         end
 
@@ -308,7 +308,7 @@ module Vedeu
               end
             end
           end.must_equal(
-            {
+            { interfaces: [{
               name: 'testing_view',
               group: '',
               colour: {},
@@ -329,7 +329,7 @@ module Vedeu
                   }]
                 }
               ]
-            }
+            }] }
           )
         end
 
@@ -341,7 +341,7 @@ module Vedeu
               end
             end
           end.must_equal(
-            {
+            { interfaces: [{
               name: 'testing_view',
               group: '',
               colour: {},
@@ -362,7 +362,7 @@ module Vedeu
                   }]
                 }
               ]
-            }
+            }] }
           )
         end
 
@@ -374,7 +374,7 @@ module Vedeu
               end
             end
           end.must_equal(
-            {
+            { interfaces: [{
               name:  'testing_view',
               group: '',
               colour: {},
@@ -397,7 +397,7 @@ module Vedeu
                   ]
                 }
               ]
-            }
+            }] }
           )
         end
 
@@ -415,7 +415,7 @@ module Vedeu
               end
             end
           end.must_equal(
-            {
+            { interfaces: [{
               name:  'testing_view',
               group: '',
               colour: {},
@@ -444,7 +444,7 @@ module Vedeu
                   ]
                 }
               ]
-            }
+            }] }
           )
         end
 
@@ -461,7 +461,7 @@ module Vedeu
               end
             end
           end.must_equal(
-            {
+            { interfaces: [{
               name: 'testing_view',
               group: '',
               colour: {},
@@ -493,7 +493,7 @@ module Vedeu
                   ]
                 }
               ]
-            }
+            }] }
           )
         end
 
@@ -510,7 +510,7 @@ module Vedeu
               end
             end
           end.must_equal(
-            {
+            { interfaces: [{
               name: 'testing_view',
               group: '',
               colour: {},
@@ -539,7 +539,7 @@ module Vedeu
                   ]
                 }
               ]
-            }
+            }] }
           )
         end
 
@@ -552,7 +552,7 @@ module Vedeu
               end
             end
           end.must_equal(
-            {
+            { interfaces: [{
               name:  'testing_view',
               group: '',
               colour: {},
@@ -571,7 +571,7 @@ module Vedeu
                   text:   'This is aligned left, and padded with spaces.'
                 }]
               }]
-            }
+            }] }
           )
         end
 
@@ -585,7 +585,7 @@ module Vedeu
               end
             end
           end.must_equal(
-            {
+            { interfaces: [{
               name:  'testing_view',
               group: '',
               colour: {},
@@ -604,7 +604,7 @@ module Vedeu
                   text:   'This is aligned left, and padded with spaces.'
                 }]
               }]
-            }
+            }] }
           )
         end
 
@@ -618,7 +618,7 @@ module Vedeu
               end
             end
           end.must_equal(
-            {
+            { interfaces: [{
               name:  'testing_view',
               group: '',
               colour: {},
@@ -637,7 +637,7 @@ module Vedeu
                   text:   'This is aligned centrally, and padded with spaces.'
                 }]
               }]
-            }
+            }] }
           )
         end
 
@@ -651,7 +651,7 @@ module Vedeu
               end
             end
           end.must_equal(
-            {
+            { interfaces: [{
               name:  'testing_view',
               group: '',
               colour: {},
@@ -670,7 +670,7 @@ module Vedeu
                   text:   'This is aligned right, and padded with spaces.'
                 }]
               }]
-            }
+            }] }
           )
         end
 
@@ -693,7 +693,7 @@ module Vedeu
               text " Quit"
             end
           end.must_equal(
-            {
+            { interfaces: [{
               name:  'testing_view',
               group: '',
               colour: {},
@@ -760,7 +760,7 @@ module Vedeu
                   ]
                 }
               ]
-            }
+            }] }
           )
         end
 
