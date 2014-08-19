@@ -54,6 +54,10 @@ module Vedeu
         attributes[:group] = value
       end
 
+      def name(value)
+        attributes[:name] = value
+      end
+
       def x(value)
         fail XOutOfBounds if x_out_of_bounds?(value)
 
