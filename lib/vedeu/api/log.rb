@@ -1,4 +1,5 @@
 require 'fileutils'
+require 'time'
 
 module Vedeu
   module API
