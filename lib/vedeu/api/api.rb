@@ -25,7 +25,7 @@ module Vedeu
 
     def keypress(key)
       trigger(:key, key)
-      trigger(:_log_, (' ' * 42) + "key: #{key}")
+      trigger(:_log_, "Key: #{key}")
       trigger(:_mode_switch_) if key == :escape
     end
 
