@@ -70,10 +70,12 @@ module Vedeu
       [(height / 2), (width / 2)]
     end
 
+    # @return [Fixnum] The total width of the current terminal.
     def width
       size.last
     end
 
+    # @return [Fixnum] The total height of the current terminal.
     def height
       size.first
     end

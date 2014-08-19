@@ -56,6 +56,122 @@ module Vedeu
         it 'raises an exception when the value is out of bounds' do
           proc { interface.define { height 999 } }.must_raise(InvalidHeight)
         end
+
+        it 'allows the setting of colours' do
+          Interface.build do
+            colour foreground: '#aadd00', background: '#222222'
+          end.must_equal(
+            {
+              name: '',
+              group: '',
+              lines: [],
+              colour: {
+                foreground: "#aadd00",
+                background: "#222222"
+              },
+              style: "",
+              geometry: {},
+              cursor: true,
+              delay: 0.0
+            }
+          )
+        end
+
+        it 'allows the setting of styles' do
+          Interface.build do
+            style 'underline'
+          end.must_equal(
+            {
+              name: '',
+              group: '',
+              lines: [],
+              colour: {},
+              style: "underline",
+              geometry: {},
+              cursor: true,
+              delay: 0.0
+            }
+          )
+        end
+
+        it 'allows the use of other interfaces for attributes like geometry' do
+          IO.console.stub(:winsize, [25, 40]) do
+            Vedeu.interface 'my_interface' do
+              x      5
+              y      5
+              width  5
+              height 5
+            end
+            Interface.build do
+              name   'my_other_interface'
+              y      use('my_interface').south
+            end.must_equal({
+              name: "my_other_interface",
+              group: "",
+              lines: [],
+              colour: {},
+              style: "",
+              geometry: {
+                y: 11
+              },
+              cursor: true,
+              delay: 0.0
+            })
+          end
+        end
+
+        it 'allows the setting of a delay for events triggered for this ' \
+           'interface' do
+          Interface.build do
+            delay 1.0
+          end.must_equal(
+            {
+              name: '',
+              group: '',
+              lines: [],
+              colour: {},
+              style: "",
+              geometry: {},
+              cursor: true,
+              delay: 1.0
+            })
+        end
+
+        it 'allows the interface to be part of a group- useful for creating ' \
+           'separate views' do
+          Interface.build do
+            group 'my_group'
+          end.must_equal(
+            {
+              name: "",
+              group: "my_group",
+              lines: [],
+              colour: {},
+              style: "",
+              geometry: {},
+              cursor: true,
+              delay: 0.0
+            }
+          )
+        end
+
+        it 'allows the setting of the cursor for the interface to be shown ' \
+           'or hidden' do
+          Interface.build do
+            cursor false
+          end.must_equal(
+            {
+              name: "",
+              group: "",
+              lines: [],
+              colour: {},
+              style: "",
+              geometry: {},
+              cursor: false,
+              delay: 0.0
+            }
+          )
+        end
       end
 
       describe '#build' do
