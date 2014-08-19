@@ -6,7 +6,7 @@ module Vedeu
       it 'returns an escape sequence' do
         Colour.new({
           background: '#000000'
-        }).background.must_equal("\e[48;5;16m")
+        }).background.must_equal("\e[48;2;0;0;0m")
       end
 
       it 'returns an empty string when the value is empty' do
@@ -18,7 +18,7 @@ module Vedeu
       it 'returns an escape sequence' do
         Colour.new({
           foreground: '#ff0000'
-        }).foreground.must_equal("\e[38;5;196m")
+        }).foreground.must_equal("\e[38;2;255;0;0m")
       end
 
       it 'returns an empty string when the value is empty' do
@@ -31,19 +31,19 @@ module Vedeu
         Colour.new({
           foreground: '#ff0000',
           background: '#000000'
-        }).to_s.must_equal("\e[38;5;196m\e[48;5;16m")
+        }).to_s.must_equal("\e[38;2;255;0;0m\e[48;2;0;0;0m")
       end
 
       it 'returns an escape sequence when the foreground is missing' do
         Colour.new({
           background: '#000000'
-        }).to_s.must_equal("\e[48;5;16m")
+        }).to_s.must_equal("\e[48;2;0;0;0m")
       end
 
       it 'returns an escape sequence when the background is missing' do
         Colour.new({
           foreground: '#ff0000',
-        }).to_s.must_equal("\e[38;5;196m")
+        }).to_s.must_equal("\e[38;2;255;0;0m")
       end
 
       it 'returns an empty string when both are missing' do

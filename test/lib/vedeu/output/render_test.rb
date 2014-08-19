@@ -34,7 +34,7 @@ module Vedeu
           "\e[3;1H                                \e[3;1H" \
           "\e[1;1Hthis is the first" \
           "\e[2;1Hthis is the second and it is lon" \
-          "\e[3;1Hthis is the third, it is even lo"
+          "\e[3;1Hthis is the third, it is even lo\e[?25h"
         )
       end
 
@@ -51,13 +51,14 @@ module Vedeu
         Render.call(interface).must_equal(
           "\e[1;1H                                \e[1;1H" \
           "\e[2;1H                                \e[2;1H" \
-          "\e[3;1H                                \e[3;1H"
+          "\e[3;1H                                \e[3;1H\e[?25h"
         )
       end
 
       it 'skips lines which have streams with no content' do
         interface = Interface.new({
           name:     '.call',
+          cursor:   false,
           geometry: {
             width:  32,
             height: 3,
@@ -84,7 +85,7 @@ module Vedeu
           "\e[3;1H                                \e[3;1H" \
           "\e[1;1Hthis is the first" \
           "\e[2;1H" \
-          "\e[3;1Hthis is the third, it is even lo"
+          "\e[3;1Hthis is the third, it is even lo\e[?25l"
         )
       end
     end

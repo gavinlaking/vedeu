@@ -18,10 +18,6 @@ module Vedeu
       Application.start(configuration)
 
       @exit_code = 0
-    # rescue Vedeu::API::InvalidHeight, Vedeu::API::InvalidWidth
-    #   Vedeu.error("Cannot run this application.\n " \
-    #               "Your terminal window is too small.")
-
     rescue StandardError => uncaught_exception
       puts uncaught_exception.message
       puts uncaught_exception.backtrace.join("\n")

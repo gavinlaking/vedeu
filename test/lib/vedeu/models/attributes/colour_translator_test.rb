@@ -5,12 +5,12 @@ module Vedeu
   describe ColourTranslator do
     describe '#background' do
       {
-        '#5f0000' => "\e[48;5;52m",
-        '#008700' => "\e[48;5;28m",
-        '#0000d7' => "\e[48;5;20m",
-        '#afafaf' => "\e[48;5;145m",
-        '#afd700' => "\e[48;5;148m",
-        '#af005f' => "\e[48;5;125m",
+        '#5f0000' => "\e[48;2;95;0;0m",
+        '#008700' => "\e[48;2;0;135;0m",
+        '#0000d7' => "\e[48;2;0;0;215m",
+        '#afafaf' => "\e[48;2;175;175;175m",
+        '#afd700' => "\e[48;2;175;215;0m",
+        '#af005f' => "\e[48;2;175;0;95m",
       }.map do |html_colour, terminal_colour|
         it 'translation is performed' do
           ColourTranslator.new(html_colour).background
@@ -41,12 +41,12 @@ module Vedeu
 
     describe '#foreground' do
       {
-        '#5f0000' => "\e[38;5;52m",
-        '#008700' => "\e[38;5;28m",
-        '#0000d7' => "\e[38;5;20m",
-        '#afafaf' => "\e[38;5;145m",
-        '#afd700' => "\e[38;5;148m",
-        '#af005f' => "\e[38;5;125m",
+        '#5f0000' => "\e[38;2;95;0;0m",
+        '#008700' => "\e[38;2;0;135;0m",
+        '#0000d7' => "\e[38;2;0;0;215m",
+        '#afafaf' => "\e[38;2;175;175;175m",
+        '#afd700' => "\e[38;2;175;215;0m",
+        '#af005f' => "\e[38;2;175;0;95m",
       }.map do |html_colour, terminal_colour|
         it 'translation is performed' do
           ColourTranslator.new(html_colour).foreground

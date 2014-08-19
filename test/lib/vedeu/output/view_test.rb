@@ -3,7 +3,7 @@ require 'test_helper'
 module Vedeu
   class ViewTest < View
     def output
-      []
+      { interfaces: [] }
     end
   end
 

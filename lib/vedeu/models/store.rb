@@ -1,25 +1,29 @@
 module Vedeu
   EntityNotFound = Class.new(StandardError)
 
-    module Store
-      extend self
+  module Store
+    extend self
 
-      def create(attributes)
-        storage.store(attributes[:name], attributes)
-      end
+    def create(attributes)
+      storage.store(attributes[:name], attributes)
 
-      def query(name)
-        storage.fetch(name) { fail EntityNotFound, 'Interface was not found.' }
-      end
+      Buffers.create(Interface.new(attributes))
 
-      def reset
-        @storage = {}
-      end
-
-      private
-
-      def storage
-        @storage ||= {}
-      end
+      storage
     end
+
+    def query(name)
+      storage.fetch(name) { fail EntityNotFound, 'Interface was not found.' }
+    end
+
+    def reset
+      @storage = {}
+    end
+
+    private
+
+    def storage
+      @storage ||= {}
+    end
+  end
 end

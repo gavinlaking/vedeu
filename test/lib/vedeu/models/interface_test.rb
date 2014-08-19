@@ -16,8 +16,7 @@ module Vedeu
           x: 5,
           width: 10,
           height: 15,
-        },
-        current: "\e[1;1H#initialize"
+        }
       })
     }
 
@@ -40,8 +39,7 @@ module Vedeu
               height: 15
             },
             cursor: true,
-            delay: 0.0,
-            current: "\e[1;1H#initialize"
+            delay: 0.0
           }
         )
       end
@@ -84,9 +82,12 @@ module Vedeu
     end
 
     describe '#cursor' do
-      it 'returns the value' do
-        interface.cursor.must_equal(true)
-        Interface.new({ cursor: false }).cursor.must_equal(false)
+      it 'returns an escape sequence when the cursor is enabled (default)' do
+        Interface.new({ cursor: true }).cursor.must_equal("\e[?25h")
+      end
+
+      it 'returns an escape sequence when the cursor is disabled' do
+        Interface.new({ cursor: false }).cursor.must_equal("\e[?25l")
       end
     end
 
@@ -110,10 +111,10 @@ module Vedeu
             height: 3
           }
         }).to_s.must_equal(
-          "\e[38;5;196m\e[48;5;16m" \
+          "\e[38;2;255;0;0m\e[48;2;0;0;0m" \
           "\e[1;1H         \e[1;1H" \
           "\e[2;1H         \e[2;1H" \
-          "\e[3;1H         \e[3;1H"
+          "\e[3;1H         \e[3;1H\e[?25h"
         )
       end
     end

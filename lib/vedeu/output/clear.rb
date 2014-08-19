@@ -9,7 +9,7 @@ module Vedeu
     end
 
     def clear
-      interface_lines.inject([colours]) do |line, index|
+      rows.inject([colours]) do |line, index|
         line << interface.origin(index) { ' ' * interface.width }
       end.join
     end
@@ -22,7 +22,7 @@ module Vedeu
       interface.colour.to_s
     end
 
-    def interface_lines
+    def rows
       interface.height.times
     end
   end
