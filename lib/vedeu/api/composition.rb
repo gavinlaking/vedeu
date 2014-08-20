@@ -15,6 +15,8 @@ module Vedeu
         end
       end
 
+      # @param name  [String]
+      # @param block [Proc]
       def view(name, &block)
         attributes[:interfaces] << Interface.build({ name: name }, &block)
       end
