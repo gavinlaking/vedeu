@@ -17,12 +17,19 @@ module Vedeu
     def events
       @events ||= API::Events.new do
         event(:_log_)         { |msg| Vedeu.log(msg)      }
-        event(:_exit_)        { fail StopIteration        }
+        event(:_exit_)        { Vedeu.shutdown            }
         event(:_mode_switch_) { fail ModeSwitch           }
         event(:_clear_)       { Terminal.clear_screen     }
         event(:_refresh_)     { Buffers.refresh_all       }
         event(:_keypress_)    { |key| Vedeu.keypress(key) }
       end
+    end
+
+    # @api private
+    def shutdown
+      trigger(:_cleanup_)
+
+      fail StopIteration
     end
 
     # @return [Fixnum] The total height of the current terminal.
