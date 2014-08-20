@@ -26,7 +26,7 @@ And then execute:
 
 ## Example
 
-Have a look at: https://github.com/gavinlaking/playa
+Have a look at: [Playa](https://github.com/gavinlaking/playa). Please browse the source of Playa and Vedeu to get a feel for how it all works. The [RubyDoc](http://rubydoc.info/github/gavinlaking/vedeu/master/frames) may also help!
 
 
 ## Usage
@@ -34,6 +34,8 @@ Have a look at: https://github.com/gavinlaking/playa
 Expect proper documentation soon!
 
 ### Getting Started
+
+The basic mechanics of a Vedeu app are outlined below:
 
     require 'vedeu'
 
@@ -65,7 +67,7 @@ Expect proper documentation soon!
     end
 
 
-### Building Views
+### Building Interfaces & Views
 
 Views with Vedeu are made up of simple building blocks. These blocks can be arranged in a multitude of ways which I hope is more than sufficient for your design needs.
 
@@ -192,14 +194,38 @@ Like colours, they can be defined in either interfaces, for specific lines or wi
 | underline_off | `\e[24m`                      |
 
 
-## Contributing
+## Development / Contributing
 
-1. Fork it ( http://github.com/gavinlaking/vedeu/fork )
+* Documentation hosted at [RubyDoc](http://rubydoc.info/github/gavinlaking/vedeu/master/frames).
+* Source hosted at [GitHub](https://github.com/gavinlaking/vedeu).
+
+Pull requests are very welcome! Please try to follow these simple rules if applicable:
+
+* Please create a topic branch for every separate change you make.
+* Make sure your patches are well tested.
+* Update the [Yard](http://yardoc.org/) documentation.
+* Update the [README](https://github.com/gavinlaking/vedeu/blob/master/README.md).
+* Please **do not change** the version number.
+
+
+### General contribution help
+
+1. Fork it ([https://github.com/gavinlaking/vedeu/fork](https://github.com/gavinlaking/vedeu/fork))
 2. Clone it
 3. `bundle`
-4. `rake` or `bundle exec guard`
+4. `rake` (runs all tests and coverage report) or `bundle exec guard`
 5. Create your feature branch (`git checkout -b my-new-feature`)
-6. Write some tests, write some code, have some fun
+6. Write some tests, write some code, have some fun!
 7. Commit your changes (`git commit -am 'Add some feature'`)
 8. Push to the branch (`git push origin my-new-feature`)
-9. Create a new pull request
+9. Create a new pull request.
+
+
+## Author & Contributors
+
+[Gavin Laking](https://github.com/gavinlaking) ([@gavinlaking](http://twitter.com/gavinlaking))
+
+
+### Contributors
+
+[https://github.com/gavinlaking/vedeu/graphs/contributors](https://github.com/gavinlaking/vedeu/graphs/contributors)
