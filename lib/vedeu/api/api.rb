@@ -14,13 +14,13 @@ module Vedeu
     #   of either/both.
     #
     # @example
-    #   Vedeu.event 'my_event' do |some, args|
+    #   Vedeu.event :my_event do |some, args|
     #     ... maybe some code here ...
     #
-    #     Vedeu.trigger('my_other_event')
+    #     Vedeu.trigger(:my_other_event)
     #   end
     #
-    #   Vedeu.event('my_other_event', 0.25)
+    #   Vedeu.event(:my_other_event, 0.25)
     #     ... maybe some code here ...
     #   end
     #
@@ -60,8 +60,8 @@ module Vedeu
 
     # Simulate keypresses in your application. TODO: More help.
     #
-    # @param key [String] A simulated keypress. Escape sequences are also
-    #   supported.
+    # @param key [String|Symbol] A simulated keypress. Escape sequences are also
+    #   supported. Special keys like the F-keys are named as symbols; i.e. `:f4`
     #
     # @return []
     def keypress(key)
@@ -87,7 +87,7 @@ module Vedeu
     # @param args [Array] Any arguments the event needs to execute correctly.
     #
     # @example
-    #   Vedeu.trigger('my_event', :oxidize, 'nitrogen')
+    #   Vedeu.trigger(:my_event, :oxidize, 'nitrogen')
     #
     # @return []
     def trigger(name, *args)
