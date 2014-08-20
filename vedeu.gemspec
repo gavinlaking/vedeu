@@ -27,4 +27,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'pry',                '0.10.0'
   spec.add_development_dependency 'rake',               '10.3.2'
   spec.add_development_dependency 'simplecov',          '0.9.0'
+  spec.add_development_dependency 'yard',               '0.8.7.4'
 end

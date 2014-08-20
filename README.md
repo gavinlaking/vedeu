@@ -26,7 +26,7 @@ And then execute:
 
 ## Example
 
-Have a look at: https://github.com/gavinlaking/playa
+Have a look at: [Playa](https://github.com/gavinlaking/playa). Please browse the source of Playa and Vedeu to get a feel for how it all works. The [RubyDoc](http://rubydoc.info/github/gavinlaking/vedeu/master/frames) may also help!
 
 
 ## Usage
@@ -34,6 +34,8 @@ Have a look at: https://github.com/gavinlaking/playa
 Expect proper documentation soon!
 
 ### Getting Started
+
+The basic mechanics of a Vedeu app are outlined below:
 
     require 'vedeu'
 
@@ -65,31 +67,24 @@ Expect proper documentation soon!
     end
 
 
-### Building Views
+### Building Interfaces & Views
 
 Views with Vedeu are made up of simple building blocks. These blocks can be arranged in a multitude of ways which I hope is more than sufficient for your design needs.
 
-- Interfaces (`Interface`) are made up of lines. (`Line`)
-- Lines are made up of zero, one or multiple streams. (`Stream`)
+- A view (`Composition`) is made up of one or more interfaces.
+- An interface is an area on the screen where you can take input or direct output. You will define it's colour and style, its dimensions, including position and give it a name. You can then direct the output of a command, or event, to this interface and Vedeu will ensure the content is placed there.
+- Interfaces (`Interface`) are made up of lines (`Line`), their length being the width of the interface and their number being the height of the interface.
+- An interface with `width: 12, height: 5` will have five lines, each made of 12 characters- providing 60 cells. Colours and styles are handled by terminal escape sequences and therefore do not consume a cell.
+- Lines are made up of zero, one or multiple streams (`Stream`) which are basically subsets of the line.
 - An interface, line or stream can have a colour (`colour`) attribute.
 - An interface, line or stream can have a style (`style`) attribute.
 - Interfaces have a position (`y`, `x`) on the screen, and a size. (`width`, `height`)
-- Interfaces can be placed relative to each other based on their attributes. (`top`, `right`, `bottom`, `left`)
+- Interfaces can be placed relative to each other based on their attributes.
+    - An interface has a `top`, `right`, `bottom`, `left`.
+    - An interface also has a `north` and `west` (`top` and `left` minus 1 respectively).
+    - An interface also has a `south` and `east` (`bottom` and `right` plus 1 respectively).
 - Colours are defined in CSS-style values, i.e. `#ff0000` would be red.
 - Styles are named. See the table below for supported styles.
-
-
-### Some Terms
-
-To understand how Vedeu works, you need to familiarise yourself with some terms.
-
-  - Interface: This is an area on the screen where you can take input or direct output. You will define it's colour and style, its dimensions, including position and give it a name. You can then direct the output of a command to this interface and Vedeu will ensure the content is placed there.
-
-  - Line: An interface is composed of many lines. Their length being the width of the interface and their number being the height of the interface.
-
-  An interface with `width: 12, height: 5` will have five lines, each made of 12 characters.
-
-  - Stream: A stream is a subset of a line. Having streams basically allow us to apply styles and colours to part of a line; their not necessary, but provide you with greater flexibility for your output.
 
 
 ### On Defining Interfaces
@@ -108,8 +103,8 @@ Referring to the above example, interfaces have a name, and various default attr
 - `y`          sets the starting row point. (See Geometry)
 - `x`          sets the starting column point.
 
-- `width`      sets character width of the interface
-- `height`     sets character height of the interface
+- `width`      sets the character width of the interface
+- `height`     sets the character height of the interface
 
 Note: not setting a width or height will set the values to the terminal's reported width and height.
 
@@ -127,11 +122,13 @@ One can define events which perform work or trigger other events. Vedeu has buil
 
 - `:_initialize_` Special event which Vedeu triggers when it is ready to enter the main loop. Client applications can listen for this event and perform some action(s), like render the first screen, interface or make a sound.
 
+- `:_cleanup_` This event is fired by Vedeu when `:_exit_` is triggered. You can hook into this to perform a special action before the application terminates. Saving the user's work, session or preferences might be popular here.
+
 - `:_clear_` Clears the whole terminal space.
 
-- `:_exit_` when triggered, Vedeu will attempt to exit.
+- `:_exit_` when triggered, Vedeu will trigger a `:_cleanup_` event which you can define (to save files, etc) and attempt to exit.
 
-- `:_keypress_` triggering this event will cause the triggering of the `key` event; which you should define to 'do things'. If the `escape` key is pressed, then `key` is triggered with the argument `:escape`, also an internal event `_mode_switch_` is triggered.
+- `:_keypress_` triggering this event will cause the triggering of the `:key` event; which you should define to 'do things'. If the `escape` key is pressed, then `key` is triggered with the argument `:escape`, also an internal event `_mode_switch_` is triggered.
 
 - `:_mode_switch_` when triggered (after the user presses `escape`), Vedeu switches from a "raw mode" terminal to a "cooked mode" terminal. The idea here being that the raw mode is for single keypress actions, whilst cooked mode allows the user to enter more elaborate commands- such as commands with arguments.
 
@@ -141,12 +138,12 @@ One can define events which perform work or trigger other events. Vedeu has buil
 
 - `:_refresh_(interface_name)_` will refresh the interface with this name. E.g. `_refresh_widget_` will refresh the interface `widget`.
 
-Note: Overriding or adding additional events to the Vedeu event namespace may cause unpredictable results.
+Note: Overriding or adding additional events to the Vedeu event namespace may cause unpredictable results. It is recommended to only to hook into events like :_cleanup_, :_initialize_ and :key if you need to do something respective to those events.
 
 
 ### Geometry
 
-Geometry for Vedeu, as the same for ANSI terminals, is set top-left, which is point 1, 1. Interfaces have internal geometry which is handled automatically. Unless you are doing something special, you will probably only set it on a per-interface basis.
+Geometry for Vedeu, as the same for ANSI terminals, is set top-left, which is cell/point 1, 1. Interfaces themselves have internal geometry which is handled automatically. Unless you are doing something special, you will probably only set it on a per-interface basis.
 
 
 ### Colours
@@ -186,14 +183,38 @@ Like colours, they can be defined in either interfaces, for specific lines or wi
 | underline_off | `\e[24m`                      |
 
 
-## Contributing
+## Development / Contributing
 
-1. Fork it ( http://github.com/gavinlaking/vedeu/fork )
+* Documentation hosted at [RubyDoc](http://rubydoc.info/github/gavinlaking/vedeu/master/frames).
+* Source hosted at [GitHub](https://github.com/gavinlaking/vedeu).
+
+Pull requests are very welcome! Please try to follow these simple rules if applicable:
+
+* Please create a topic branch for every separate change you make.
+* Make sure your patches are well tested.
+* Update the [Yard](http://yardoc.org/) documentation.
+* Update the [README](https://github.com/gavinlaking/vedeu/blob/master/README.md).
+* Please **do not change** the version number.
+
+
+### General contribution help
+
+1. Fork it ([https://github.com/gavinlaking/vedeu/fork](https://github.com/gavinlaking/vedeu/fork))
 2. Clone it
 3. `bundle`
-4. `rake` or `bundle exec guard`
+4. `rake` (runs all tests and coverage report) or `bundle exec guard`
 5. Create your feature branch (`git checkout -b my-new-feature`)
-6. Write some tests, write some code, have some fun
+6. Write some tests, write some code, have some fun!
 7. Commit your changes (`git commit -am 'Add some feature'`)
 8. Push to the branch (`git push origin my-new-feature`)
-9. Create a new pull request
+9. Create a new pull request.
+
+
+## Author & Contributors
+
+[Gavin Laking](https://github.com/gavinlaking) ([@gavinlaking](http://twitter.com/gavinlaking))
+
+
+### Contributors
+
+[https://github.com/gavinlaking/vedeu/graphs/contributors](https://github.com/gavinlaking/vedeu/graphs/contributors)
