@@ -24,7 +24,7 @@ module Vedeu
     #     ... maybe some code here ...
     #   end
     #
-    # @return [] # TODO: What does it return?
+    # @return [Hash]
     def event(name, delay = 0, &block)
       Vedeu.events.event(name, delay, &block)
     end
@@ -53,7 +53,7 @@ module Vedeu
     #      ... some interface attributes like width and height ...
     #   end
     #
-    # @return []
+    # @return [Hash]
     def interface(name, &block)
       API::Interface.define({ name: name }, &block)
     end
@@ -89,7 +89,7 @@ module Vedeu
     # @example
     #   Vedeu.trigger(:my_event, :oxidize, 'nitrogen')
     #
-    # @return []
+    # @return [Array]
     def trigger(name, *args)
       Vedeu.events.trigger(name, *args)
     end
@@ -106,7 +106,7 @@ module Vedeu
     #     x     use('my_interface').east(1)
     #   end
     #
-    # @return []
+    # @return [Vedeu::Interface]
     def use(name)
       Vedeu::Interface.new(Vedeu::Store.query(name))
     end
@@ -122,7 +122,7 @@ module Vedeu
     #     ... some view attributes ...
     #   end
     #
-    # @return []
+    # @return [Hash]
     def view(name, &block)
       {
         interfaces: [
@@ -148,7 +148,7 @@ module Vedeu
     #     end
     #   end
     #
-    # @return []
+    # @return [Hash]
     def views(&block)
       API::Composition.build(&block)
     end
