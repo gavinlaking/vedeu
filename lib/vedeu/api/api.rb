@@ -77,7 +77,7 @@ module Vedeu
     #
     # @return [TrueClass]
     def log(message)
-      API::Log.logger.debug(message)
+      Vedeu::Log.logger.debug(message)
     end
 
     # Trigger a registered or system event by name with arguments.
@@ -165,14 +165,22 @@ module Vedeu
 
     # @api private
     def events
-      @events ||= API::Events.new do
+      @events ||= Vedeu::Events.new do
         event(:_log_)         { |msg| Vedeu.log(msg)      }
         event(:_exit_)        { Vedeu.shutdown            }
         event(:_mode_switch_) { fail ModeSwitch           }
         event(:_clear_)       { Terminal.clear_screen     }
         event(:_refresh_)     { Buffers.refresh_all       }
+        event(:_resize_)      { Vedeu.resize              }
         event(:_keypress_)    { |key| Vedeu.keypress(key) }
       end
+    end
+
+    # @api private
+    def resize
+      trigger(:_clear_)
+
+      trigger(:_refresh_)
     end
 
     # @api private

@@ -23,5 +23,5 @@ require 'vedeu'
 # )
 
 # trace method execution with (optionally) local variables
-# require 'vedeu/api/log'
+# require 'vedeu/support/log'
 # Vedeu::Log::Trace.call({ watched: 'call', klass: /^Vedeu/ })

@@ -20,7 +20,7 @@ module Vedeu
       end
 
       it 'returns the Events singleton' do
-        Vedeu.events.must_be_instance_of(API::Events)
+        Vedeu.events.must_be_instance_of(Vedeu::Events)
       end
     end
 
