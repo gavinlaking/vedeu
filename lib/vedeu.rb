@@ -13,7 +13,6 @@ module Vedeu
     receiver.send(:include, API)
     receiver.extend(API)
   end
-
 end
 
 require 'date'
@@ -21,6 +20,8 @@ require 'forwardable'
 require 'io/console'
 require 'logger'
 require 'optparse'
+
+require 'vedeu/configuration'
 
 require 'vedeu/models/attributes/attributes'
 require 'vedeu/models/attributes/colour_translator'
@@ -44,7 +45,6 @@ require 'vedeu/api/log'
 require 'vedeu/api/stream'
 
 require 'vedeu/application'
-require 'vedeu/configuration'
 require 'vedeu/launcher'
 
 require 'vedeu/output/buffers'

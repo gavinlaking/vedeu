@@ -66,6 +66,10 @@ module Vedeu
       Esc.set_position((height - 1), 1) + Esc.string('clear_line')
     end
 
+    def colour_mode
+      Configuration.options[:colour_mode]
+    end
+
     def centre
       [(height / 2), (width / 2)]
     end
