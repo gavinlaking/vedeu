@@ -25,6 +25,8 @@ require 'vedeu/configuration'
 
 require 'vedeu/models/attributes/attributes'
 require 'vedeu/models/attributes/colour_translator'
+require 'vedeu/models/attributes/background'
+require 'vedeu/models/attributes/foreground'
 require 'vedeu/models/composition'
 require 'vedeu/support/terminal'
 require 'vedeu/models/geometry'
