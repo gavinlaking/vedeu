@@ -1,4 +1,13 @@
 module Vedeu
+  EntityNotFound = Class.new(StandardError)
+  InvalidHeight  = Class.new(StandardError)
+  InvalidWidth   = Class.new(StandardError)
+  ModeSwitch     = Class.new(StandardError)
+  NotImplemented = Class.new(StandardError)
+  OutOfRange     = Class.new(StandardError)
+  RefreshFailed  = Class.new(StandardError)
+  XOutOfBounds   = Class.new(StandardError)
+  YOutOfBounds   = Class.new(StandardError)
 
   def self.included(receiver)
     receiver.send(:include, API)

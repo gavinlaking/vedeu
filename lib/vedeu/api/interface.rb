@@ -1,9 +1,4 @@
 module Vedeu
-  InvalidHeight = Class.new(StandardError)
-  InvalidWidth  = Class.new(StandardError)
-  XOutOfBounds  = Class.new(StandardError)
-  YOutOfBounds  = Class.new(StandardError)
-
   module API
     class Interface < Vedeu::Interface
       def self.build(attributes = {}, &block)

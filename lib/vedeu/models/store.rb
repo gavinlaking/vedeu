@@ -1,6 +1,4 @@
 module Vedeu
-  EntityNotFound = Class.new(StandardError)
-
   module Store
     extend self
 

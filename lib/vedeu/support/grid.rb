@@ -16,8 +16,6 @@ class Fixnum
 end
 
 module Vedeu
-  OutOfRange = Class.new(StandardError)
-
   class Grid
     def self.columns(value)
       new(value).columns

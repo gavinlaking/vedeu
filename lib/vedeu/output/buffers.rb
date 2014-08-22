@@ -1,6 +1,4 @@
 module Vedeu
-  RefreshFailed = Class.new(StandardError)
-
   module Buffers
     extend self
 

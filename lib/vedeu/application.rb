@@ -1,6 +1,4 @@
 module Vedeu
-  ModeSwitch = Class.new(StandardError)
-
   class Application
     def self.start(options = {})
       new(options).start

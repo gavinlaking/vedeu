@@ -1,6 +1,4 @@
 module Vedeu
-  NotImplemented = Class.new(StandardError)
-
   class View
     include Vedeu::API
 
