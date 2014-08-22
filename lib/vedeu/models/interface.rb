@@ -6,8 +6,18 @@ module Vedeu
                               :top, :right, :bottom, :left,
                               :width, :height, :origin
 
-    def initialize(attributes = {})
+    def self.build(attributes = {}, &block)
+      new(attributes, &block).attributes
+    end
+
+    def initialize(attributes = {}, &block)
       @attributes = attributes
+
+      if block_given?
+        @self_before_instance_eval = eval('self', block.binding)
+
+        instance_eval(&block)
+      end
     end
 
     def attributes

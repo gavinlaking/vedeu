@@ -1,22 +1,8 @@
 module Vedeu
   module API
     class Interface < Vedeu::Interface
-      def self.build(attributes = {}, &block)
-        new(attributes, &block).attributes
-      end
-
       def self.define(attributes = {}, &block)
         new(attributes).define(&block)
-      end
-
-      def initialize(attributes = {}, &block)
-        @attributes = attributes
-
-        if block_given?
-          @self_before_instance_eval = eval('self', block.binding)
-
-          instance_eval(&block)
-        end
       end
 
       # @param block [Proc]
