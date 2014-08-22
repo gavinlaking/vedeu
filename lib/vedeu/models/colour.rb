@@ -9,11 +9,11 @@ module Vedeu
     end
 
     def foreground
-      @foreground ||= ColourTranslator.new(attributes[:foreground]).foreground
+      @foreground ||= Foreground.escape_sequence(attributes[:foreground])
     end
 
     def background
-      @background ||= ColourTranslator.new(attributes[:background]).background
+      @background ||= Background.escape_sequence(attributes[:background])
     end
 
     def to_s

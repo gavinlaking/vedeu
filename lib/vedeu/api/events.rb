@@ -18,12 +18,14 @@ module Vedeu
         instance_eval(&block)
       end
 
+      # @see Vedeu::API#event
       def event(event, delay = 0, &block)
         handlers[event][:events] << block
         handlers[event][:delay]  = delay
         handlers[event]
       end
 
+      # @see Vedeu::API#trigger
       def trigger(event, *args)
         elapsed = Time.now.to_f - handlers[event][:last_exec]
 
