@@ -12,13 +12,6 @@ module Vedeu
         end
       end
 
-      def self.error(exception)
-        backtrace = exception.backtrace.join("\n")
-        message   = exception.message + "\n" + backtrace
-
-        logger.debug(message)
-      end
-
       private
 
       def self.filename
