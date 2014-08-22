@@ -35,8 +35,10 @@ module Vedeu
     def top
       if centred
         centre_y - (height / 2)
+
       else
         y
+
       end
     end
 
@@ -47,8 +49,10 @@ module Vedeu
     def left
       if centred
         centre_x - (width / 2)
+
       else
         x
+
       end
     end
 
