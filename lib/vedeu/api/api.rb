@@ -1,5 +1,6 @@
 module Vedeu
   module API
+
     # Register an event by name with optional delay (throttling) which when
     # triggered will execute the code contained within the passed block.
     #
@@ -63,6 +64,9 @@ module Vedeu
     # @param key [String|Symbol] A simulated keypress. Escape sequences are also
     #   supported. Special keys like the F-keys are named as symbols; i.e. `:f4`
     #
+    # @example
+    #   TODO
+    #
     # @return []
     def keypress(key)
       trigger(:key, key)
@@ -74,6 +78,9 @@ module Vedeu
     #
     # @param message [String] The message you wish to emit to the log
     #   file, useful for debugging.
+    #
+    # @example
+    #   Vedeu.log('A useful debugging message: Error!')
     #
     # @return [TrueClass]
     def log(message)
@@ -189,6 +196,7 @@ module Vedeu
 
       fail StopIteration
     end
+
   end
 
   extend API

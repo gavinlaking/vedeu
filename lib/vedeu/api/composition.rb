@@ -1,8 +1,7 @@
 module Vedeu
   module API
     class Composition < Vedeu::Composition
-      # @param name  [String]
-      # @param block [Proc]
+
       # @see Vedeu::API#view
       def view(name, &block)
         attributes[:interfaces] << Interface.build({ name: name }, &block)
@@ -13,6 +12,7 @@ module Vedeu
       def method_missing(method, *args, &block)
         @self_before_instance_eval.send(method, *args, &block)
       end
+
     end
   end
 end
