@@ -32,5 +32,11 @@ module Vedeu
         ''
       end
     end
+
+    # private
+
+    # def method_missing(method, *args, &block)
+    #   self.send(:string, method, &block)
+    # end
   end
 end

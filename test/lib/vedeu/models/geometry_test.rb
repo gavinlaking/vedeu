@@ -2,6 +2,40 @@ require 'test_helper'
 
 module Vedeu
   describe Geometry do
+    describe '#viewport_width' do
+      it 'returns the viewport width when the interface fits the terminal' do
+        IO.console.stub(:winsize, [25, 80]) do
+          geometry = Geometry.new({ width: 60, height: 1, x: 5, y: 1 })
+          geometry.viewport_width.must_equal(60)
+        end
+      end
+
+      it 'returns the viewport width when the interface does not fit the ' \
+         'terminal' do
+        IO.console.stub(:winsize, [25, 60]) do
+          geometry = Geometry.new({ width: 60, height: 1, x: 5, y: 1 })
+          geometry.viewport_width.must_equal(55)
+        end
+      end
+    end
+
+    describe '#viewport_height' do
+      it 'returns the viewport height when the interface fits the terminal' do
+        IO.console.stub(:winsize, [25, 80]) do
+          geometry = Geometry.new({ width: 5, height: 20, x: 1, y: 5 })
+          geometry.viewport_height.must_equal(20)
+        end
+      end
+
+      it 'returns the viewport height when the interface does not fit the ' \
+         'terminal' do
+        IO.console.stub(:winsize, [15, 80]) do
+          geometry = Geometry.new({ width: 5, height: 20, x: 1, y: 5 })
+          geometry.viewport_height.must_equal(10)
+        end
+      end
+    end
+
     describe '#origin' do
       it 'returns the origin for the interface' do
         geometry = Geometry.new({ width: 5, height: 5 })

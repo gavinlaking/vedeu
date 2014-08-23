@@ -4,11 +4,11 @@ module Vedeu
 
     def create(interface)
       store(interface.name, Buffer.new({
-                              name:    interface.name,
-                              clear:   Clear.call(interface),
-                              current: '',
-                              group:   interface.group,
-                              next:    ''
+                              interface: interface,
+                              name:      interface.name,
+                              current:   nil,
+                              group:     interface.group,
+                              next:      nil
                             }))
 
       create_events(interface.name, interface.group, interface.delay)

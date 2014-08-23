@@ -1,13 +1,14 @@
 module Vedeu
   class Buffer
-    attr_reader :clear, :current, :group, :name, :_next
+    attr_reader :current, :group, :interface, :name, :_next
 
     def initialize(vars)
       @vars    = vars
       @name    = vars.fetch(:name)
-      @clear   = vars.fetch(:clear)
-      @current = vars.fetch(:current)
       @group   = vars.fetch(:group)
+      @current = vars.fetch(:current)
+
+      @interface = vars.fetch(:interface)
       @_next   = vars.fetch(:next)
     end
 
@@ -16,14 +17,14 @@ module Vedeu
     end
 
     def refresh
-      sequence = if !_next.empty?
-        merge({ current: _next, next: '' }).current
+      sequence = if _next
+        merge({ current: _next, next: nil }).current.to_s
 
-      elsif current.empty?
-        clear
+      elsif current.nil?
+        interface.clear
 
       else
-        current
+        current.to_s
 
       end
 

@@ -11,9 +11,7 @@ module Vedeu
     end
 
     def render
-      interfaces.map do |interface|
-        Buffers.enqueue(interface.name, interface.to_s)
-      end
+      interfaces.map { |interface| Buffers.enqueue(interface.name, interface) }
     end
 
     def output

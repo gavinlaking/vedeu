@@ -4,30 +4,46 @@ module Vedeu
     # Register an event by name with optional delay (throttling) which when
     # triggered will execute the code contained within the passed block.
     #
-    # @param name  [Symbol] The name of the event which will be triggered later
-    # @param delay [Fixnum|Float] Limits the execution of the triggered event to
-    #   the delay in seconds, effectively throttling the event. A delay of 1.0
-    #   will mean that even if the event is triggered multiple times a second
-    #   it will only execute once for that second. Triggers pulled inside the
-    #   delay are discarded.
+    # @param name  [Symbol] The name of the event which will be triggered later.
+    # @param [Hash] opts The options to register the event with.
+    # @option opts :delay [Fixnum|Float] Limits the execution of the
+    #   triggered event to only execute when first triggered, with subsequent
+    #   triggering being ignored until the delay has expired.
+    # @option opts :debounce [Fixnum|Float] Limits the execution of the
+    #   triggered event to only execute once the debounce has expired.
+    #   Subsequent triggers before debounce expiry are ignored.
     # @param block [Proc] The event to be executed when triggered. This block
     #   could be a method call, or the triggering of another event, or sequence
     #   of either/both.
     #
     # @example
     #   Vedeu.event :my_event do |some, args|
-    #     ... maybe some code here ...
+    #     ... some code here ...
     #
     #     Vedeu.trigger(:my_other_event)
     #   end
     #
-    #   Vedeu.event(:my_other_event, 0.25)
-    #     ... maybe some code here ...
+    #   T = Triggered, X = Executed, I = Ignored.
+    #   0.0.....0.2.....0.4.....0.6.....0.8.....1.0.....1.2.....1.4.....1.6...
+    #   .T...T...T...T...T...T...T...T...T...T...T...T...T...T...T...T...T...T
+    #   .X...I...I...I...I...X...I...I...I...I...X...I...I...I...I...I...I...I
+    #
+    #   Vedeu.event(:my_delayed_event, { delay: 0.5 })
+    #     ... some code here ...
+    #   end
+    #
+    #   T = Triggered, X = Executed, I = Ignored.
+    #   0.0.....0.2.....0.4.....0.6.....0.8.....1.0.....1.2.....1.4.....1.6...
+    #   .T...T...T...T...T...T...T...T...T...T...T...T...T...T...T...T...T...T
+    #   .I...I...I...I...I...I...I...X...I...I...I...I...I...I...X...I...I...I
+    #
+    #   Vedeu.event(:my_debounced_event, { debounce: 0.7 })
+    #     ... some code here ...
     #   end
     #
     # @return [Hash]
-    def event(name, delay = 0, &block)
-      Vedeu.events.event(name, delay, &block)
+    def event(name, opts = {}, &block)
+      Vedeu.events.event(name, opts = {}, &block)
     end
 
     # Find out how many lines the current terminal is able to display.
@@ -173,13 +189,13 @@ module Vedeu
     # @api private
     def events
       @events ||= Vedeu::Events.new do
-        event(:_log_)         { |msg| Vedeu.log(msg)      }
-        event(:_exit_)        { Vedeu.shutdown            }
-        event(:_mode_switch_) { fail ModeSwitch           }
-        event(:_clear_)       { Terminal.clear_screen     }
-        event(:_refresh_)     { Buffers.refresh_all       }
-        event(:_resize_)      { Vedeu.resize              }
-        event(:_keypress_)    { |key| Vedeu.keypress(key) }
+        event(:_log_)                       { |msg| Vedeu.log(msg)      }
+        event(:_exit_)                      { Vedeu.shutdown            }
+        event(:_mode_switch_)               { fail ModeSwitch           }
+        event(:_clear_)                     { Terminal.clear_screen     }
+        event(:_refresh_)                   { Buffers.refresh_all       }
+        event(:_resize_, { debounce: 0.5 }) { Vedeu.resize              }
+        event(:_keypress_)                  { |key| Vedeu.keypress(key) }
       end
     end
 
@@ -200,4 +216,6 @@ module Vedeu
   end
 
   extend API
+
+  trap('SIGWINCH') { Vedeu.trigger(:_resize_) }
 end
