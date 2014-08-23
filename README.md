@@ -1,5 +1,6 @@
 [![Code Climate](https://codeclimate.com/github/gavinlaking/vedeu.png)](https://codeclimate.com/github/gavinlaking/vedeu)
 [![Build Status](https://travis-ci.org/gavinlaking/vedeu.svg?branch=master)](https://travis-ci.org/gavinlaking/vedeu)
+[![Inline docs](http://inch-ci.org/github/gavinlaking/vedeu.svg?branch=master)](http://inch-ci.org/github/gavinlaking/vedeu)
 
 # Vedeu
 
