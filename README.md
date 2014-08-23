@@ -37,35 +37,36 @@ Expect proper documentation soon!
 
 The basic mechanics of a Vedeu app are outlined below:
 
-    require 'vedeu'
+```ruby
+require 'vedeu'
 
-    class MyApp
-      include Vedeu
+class MyApp
+  include Vedeu
 
-      interface 'main' do
-        ...
-      end
+  interface 'main' do
+    ...
+  end
 
-      event :some_event do
-        # ...
-      end
+  event :some_event do
+    # ...
+  end
 
-      event :other_event do |hash_args, array_args, args|
-        # ...
-      end
+  event :other_event do |hash_args, array_args, args|
+    # ...
+  end
 
-      event :key do |key|
-        case key
-        when 'a' then puts "Apple"
-        when 'b' then puts "Banana"
-        # ...
-        when :f1 then trigger(:some_event)
-        when :f2 then
-          trigger(:other_event, { args: here }, [:or, :here], :etc)
-        end
-      end
+  event :key do |key|
+    case key
+    when 'a' then puts "Apple"
+    when 'b' then puts "Banana"
+    # ...
+    when :f1 then trigger(:some_event)
+    when :f2 then
+      trigger(:other_event, { args: here }, [:or, :here], :etc)
     end
-
+  end
+end
+```
 
 ### Building Interfaces & Views
 
@@ -89,14 +90,16 @@ Views with Vedeu are made up of simple building blocks. These blocks can be arra
 
 ### On Defining Interfaces
 
-    interface 'main' do
-      y      1
-      x      1
-      width  10 # see notes below
-      height 10
-      colour foreground: '#ffffff', background: '#000000'
-      cursor false
-    end
+```ruby
+interface 'main' do
+  y      1
+  x      1
+  width  10 # see notes below
+  height 10
+  colour foreground: '#ffffff', background: '#000000'
+  cursor false
+end
+```
 
 Referring to the above example, interfaces have a name, and various default attributes.
 
@@ -115,8 +118,10 @@ Note: not setting a width or height will set the values to the terminal's report
 
 ### On Defining Events
 
-    event :event_name do |arg1, arg2|
-    end
+```ruby
+event :event_name do |arg1, arg2|
+end
+```
 
 One can define events which perform work or trigger other events. Vedeu has built-in events which are namespaced with underscores:
 
@@ -150,7 +155,9 @@ Geometry for Vedeu, as the same for ANSI terminals, is set top-left, which is ce
 
 Vedeu uses HTML/CSS style notation (i.e. '#aadd00'), they can be used at the stream level, the line level or for the whole interface.
 
-    "colour": { "foreground": "#ff0000", "background": "#ffffff" }
+```json
+"colour": { "foreground": "#ff0000", "background": "#ffffff" }
+```
 
 
 ### Styles
