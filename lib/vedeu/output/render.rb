@@ -12,7 +12,8 @@ module Vedeu
       out = [ Clear.call(interface) ]
       processed_lines.each_with_index do |line, index|
         if index + 1 <= height
-          out << interface.origin(index)
+          out << interface.colour.to_s
+          out << interface.origin(index) { ' ' * interface.viewport_width }
           out << line.to_s
         end
       end
