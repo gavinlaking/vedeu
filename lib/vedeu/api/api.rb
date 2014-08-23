@@ -189,13 +189,13 @@ module Vedeu
     # @api private
     def events
       @events ||= Vedeu::Events.new do
-        event(:_log_)                       { |msg| Vedeu.log(msg)      }
-        event(:_exit_)                      { Vedeu.shutdown            }
-        event(:_mode_switch_)               { fail ModeSwitch           }
-        event(:_clear_)                     { Terminal.clear_screen     }
-        event(:_refresh_)                   { Buffers.refresh_all       }
-        event(:_resize_, { debounce: 0.5 }) { Vedeu.resize              }
-        event(:_keypress_)                  { |key| Vedeu.keypress(key) }
+        event(:_log_)                     { |msg| Vedeu.log(msg)      }
+        event(:_exit_)                    { Vedeu.shutdown            }
+        event(:_mode_switch_)             { fail ModeSwitch           }
+        event(:_clear_)                   { Terminal.clear_screen     }
+        event(:_refresh_)                 { Buffers.refresh_all       }
+        event(:_resize_, { delay: 0.25 }) { Vedeu.resize              }
+        event(:_keypress_)                { |key| Vedeu.keypress(key) }
       end
     end
 
