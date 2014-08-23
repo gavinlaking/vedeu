@@ -1,4 +1,6 @@
 Copyright (c) 2014 Gavin Laking
+Copyright (c) 2013 Steve Klabnik - Monologger
+                   (https://github.com/steveklabnik/mono_logger)
 
 MIT License
 
