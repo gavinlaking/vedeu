@@ -9,11 +9,23 @@ module Vedeu
     end
 
     def y
-      @y ||= attributes[:y]
+      if attributes[:y].is_a?(Proc)
+        attributes[:y].call
+
+      else
+        attributes[:y]
+
+      end
     end
 
     def x
-      @x ||= attributes[:x]
+      if attributes[:x].is_a?(Proc)
+        attributes[:x].call
+
+      else
+        attributes[:x]
+
+      end
     end
 
     def width
