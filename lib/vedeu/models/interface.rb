@@ -4,10 +4,21 @@ module Vedeu
 
     def_delegators :geometry, :north, :east, :south, :west,
                               :top, :right, :bottom, :left,
-                              :width, :height, :origin
+                              :width, :height, :origin,
+                              :viewport_width, :viewport_height
 
-    def initialize(attributes = {})
+    def self.build(attributes = {}, &block)
+      new(attributes, &block).attributes
+    end
+
+    def initialize(attributes = {}, &block)
       @attributes = attributes
+
+      if block_given?
+        @self_before_instance_eval = eval('self', block.binding)
+
+        instance_eval(&block)
+      end
     end
 
     def attributes
@@ -54,6 +65,11 @@ module Vedeu
 
     def to_s
       Render.call(self)
+    end
+    alias_method :render, :to_s
+
+    def clear
+      Clear.call(self)
     end
 
     private

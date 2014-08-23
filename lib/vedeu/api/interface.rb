@@ -1,25 +1,15 @@
 module Vedeu
   module API
     class Interface < Vedeu::Interface
-      def self.build(attributes = {}, &block)
-        new(attributes, &block).attributes
-      end
 
       def self.define(attributes = {}, &block)
         new(attributes).define(&block)
       end
 
-      def initialize(attributes = {}, &block)
-        @attributes = attributes
-
-        if block_given?
-          @self_before_instance_eval = eval('self', block.binding)
-
-          instance_eval(&block)
-        end
-      end
-
       # @param block [Proc]
+      #
+      # @example
+      #   TODO
       #
       # @return []
       def define(&block)
@@ -44,8 +34,6 @@ module Vedeu
         attributes[:lines] << Line.build(&block)
       end
 
-      # @param value [String]
-      #
       # @see Vedeu::API#use
       def use(value)
         Vedeu.use(value)
@@ -111,6 +99,9 @@ module Vedeu
       #
       # @param value [String]
       #
+      # @example
+      #   TODO
+      #
       # @return []
       def name(value)
         attributes[:name] = value
@@ -119,6 +110,9 @@ module Vedeu
       # Define the starting x position (column) of the interface.
       #
       # @param value [Fixnum]
+      #
+      # @example
+      #   TODO
       #
       # @return []
       def x(value)
@@ -131,6 +125,9 @@ module Vedeu
       #
       # @param value [Fixnum]
       #
+      # @example
+      #   TODO
+      #
       # @return []
       def y(value)
         fail YOutOfBounds if y_out_of_bounds?(value)
@@ -142,6 +139,9 @@ module Vedeu
       #
       # @param value [Fixnum]
       #
+      # @example
+      #   TODO
+      #
       # @return []
       def width(value)
         fail InvalidWidth if x_out_of_bounds?(value)
@@ -152,6 +152,9 @@ module Vedeu
       # Define the number of characters/rows/lines tall the interface will be.
       #
       # @param value [Fixnum]
+      #
+      # @example
+      #   TODO
       #
       # @return []
       def height(value)
@@ -165,6 +168,9 @@ module Vedeu
       #
       # @param value [Boolean]
       #
+      # @example
+      #   TODO
+      #
       # @return []
       def centred(value)
         attributes[:geometry][:centred] = value
@@ -173,6 +179,9 @@ module Vedeu
       # Define the default style attributes for an interface.
       #
       # @param value [Array|String]
+      #
+      # @example
+      #   TODO
       #
       # @return []
       def style(value)
@@ -192,6 +201,7 @@ module Vedeu
       def method_missing(method, *args, &block)
         @self_before_instance_eval.send(method, *args, &block)
       end
+
     end
   end
 end

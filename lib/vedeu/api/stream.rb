@@ -10,6 +10,9 @@ module Vedeu
       #   and will align accordingly. If not value is specified, the stream will
       #   left align.
       #
+      # @example
+      #   TODO
+      #
       # @return [Symbol]
       def align(value)
         attributes[:align] = value
@@ -20,6 +23,9 @@ module Vedeu
       # @param value [String] The text to be added to the stream. If the length
       #   of the text is greater than the interface's width, it will be
       #   truncated and ellipsized.
+      #
+      # @example
+      #   TODO
       #
       # @return [String]
       def text(value)
@@ -32,10 +38,14 @@ module Vedeu
       #
       # @param value [Fixnum] The width in characters.
       #
+      # @example
+      #   TODO
+      #
       # @return [Fixnum]
       def width(value)
         attributes[:width] = value
       end
+
     end
   end
 end

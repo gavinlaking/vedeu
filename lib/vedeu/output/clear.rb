@@ -10,7 +10,7 @@ module Vedeu
 
     def clear
       rows.inject([colours]) do |line, index|
-        line << interface.origin(index) { ' ' * interface.width }
+        line << interface.origin(index) { ' ' * interface.viewport_width }
       end.join
     end
 
@@ -23,7 +23,7 @@ module Vedeu
     end
 
     def rows
-      interface.height.times
+      interface.viewport_height.times
     end
   end
 end

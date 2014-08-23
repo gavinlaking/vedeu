@@ -79,11 +79,11 @@ module Vedeu
     end
 
     def height
-      interface.height
+      interface.viewport_height
     end
 
     def width
-      interface.width
+      interface.viewport_width
     end
   end
 end

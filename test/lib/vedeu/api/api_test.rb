@@ -6,9 +6,11 @@ module Vedeu
       it 'registers and returns the event' do
         Vedeu.event(:some_event).must_equal(
           {
+            deadline:  0,
             delay:     0,
+            debounce:  0,
             events:    [nil],
-            last_exec: 0
+            last_exec: 0,
           }
         )
       end
@@ -20,7 +22,7 @@ module Vedeu
       end
 
       it 'returns the Events singleton' do
-        Vedeu.events.must_be_instance_of(API::Events)
+        Vedeu.events.must_be_instance_of(Vedeu::Events)
       end
     end
 

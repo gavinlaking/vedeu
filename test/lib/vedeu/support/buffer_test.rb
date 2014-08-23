@@ -3,7 +3,14 @@ require 'test_helper'
 module Vedeu
   describe Buffer do
     let(:vars) {
-      { name: 'interface', clear: '', current: '', group: '', next: '' }
+      {
+        name: 'interface',
+        clear: '',
+        current: '',
+        group: '',
+        interface: mock('Interface'),
+        next: ''
+      }
     }
 
     describe '#initialize' do

@@ -34,7 +34,7 @@ module Vedeu
 
     describe '#style' do
       it 'has a style attribute' do
-        line.style.must_equal("\e[24m\e[21m\e[27m")
+        line.style.must_equal("\e[24m\e[22m\e[27m")
       end
     end
 
@@ -42,7 +42,7 @@ module Vedeu
       it 'returns a String' do
         line.to_s.must_equal(
           "\e[38;2;255;0;0m\e[48;2;0;0;0m" \
-          "\e[24m\e[21m\e[27m"
+          "\e[24m\e[22m\e[27m"
         )
       end
     end

@@ -1,10 +1,14 @@
 module Vedeu
   module API
     module Helpers
+
       # Define either or both foreground and background colours for an
       # interface, a stream, or a line.
       #
       # @param values [Hash]
+      #
+      # @example
+      #   TODO
       #
       # @return []
       def colour(values = {})
@@ -19,6 +23,9 @@ module Vedeu
       # @param values [Array|String]
       # @param block  [Proc]
       #
+      # @example
+      #   TODO
+      #
       # @return []
       def style(values = [], &block)
         if block_given?
@@ -29,6 +36,7 @@ module Vedeu
 
         end
       end
+
     end
   end
 end

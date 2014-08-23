@@ -20,6 +20,26 @@ module Vedeu
       @width ||= attributes[:width]
     end
 
+    def viewport_width
+      if (left + width) > Terminal.width
+        width - ((left + width) - Terminal.width)
+
+      else
+        width
+
+      end
+    end
+
+    def viewport_height
+      if (top + height) > Terminal.height
+        height - ((top + height) - Terminal.height)
+
+      else
+        height
+
+      end
+    end
+
     def height
       @height ||= attributes[:height]
     end
@@ -35,8 +55,10 @@ module Vedeu
     def top
       if centred
         centre_y - (height / 2)
+
       else
         y
+
       end
     end
 
@@ -47,8 +69,10 @@ module Vedeu
     def left
       if centred
         centre_x - (width / 2)
+
       else
         x
+
       end
     end
 
@@ -75,7 +99,7 @@ module Vedeu
     private
 
     def centre
-      @_centre ||= Terminal.centre
+      Terminal.centre
     end
 
     def centre_y
