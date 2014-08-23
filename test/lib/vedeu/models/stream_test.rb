@@ -32,7 +32,7 @@ module Vedeu
 
     describe '#style' do
       it 'has a style attribute' do
-        stream.style.must_equal("\e[24m\e[21m\e[27m")
+        stream.style.must_equal("\e[24m\e[22m\e[27m")
       end
     end
 
@@ -53,7 +53,7 @@ module Vedeu
         let(:style) { 'normal' }
 
         it 'returns an escape sequence' do
-          stream.style.must_equal("\e[24m\e[21m\e[27m")
+          stream.style.must_equal("\e[24m\e[22m\e[27m")
         end
       end
 
@@ -61,7 +61,7 @@ module Vedeu
         let(:style) { ['normal', 'underline'] }
 
         it 'returns an escape sequence for multiple styles' do
-          stream.style.must_equal("\e[24m\e[21m\e[27m\e[4m")
+          stream.style.must_equal("\e[24m\e[22m\e[27m\e[4m")
         end
       end
 
@@ -89,7 +89,7 @@ module Vedeu
         it 'returns a String' do
           stream.to_s.must_equal(
             "\e[38;2;255;0;0m\e[48;2;0;0;0m" \
-            "\e[24m\e[21m\e[27m"      \
+            "\e[24m\e[22m\e[27m"      \
             "Some text           "
           )
         end
@@ -100,7 +100,7 @@ module Vedeu
           it 'returns a String' do
             stream.to_s.must_equal(
               "\e[38;2;255;0;0m\e[48;2;0;0;0m" \
-              "\e[24m\e[21m\e[27m"      \
+              "\e[24m\e[22m\e[27m"      \
               "     Some text      "
             )
           end
@@ -112,7 +112,7 @@ module Vedeu
           it 'returns a String' do
             stream.to_s.must_equal(
               "\e[38;2;255;0;0m\e[48;2;0;0;0m" \
-              "\e[24m\e[21m\e[27m"      \
+              "\e[24m\e[22m\e[27m"      \
               "           Some text"
             )
           end
@@ -123,7 +123,7 @@ module Vedeu
         it 'returns a String' do
           stream.to_s.must_equal(
             "\e[38;2;255;0;0m\e[48;2;0;0;0m" \
-            "\e[24m\e[21m\e[27m"      \
+            "\e[24m\e[22m\e[27m"      \
             "Some text"
           )
         end

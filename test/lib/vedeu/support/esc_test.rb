@@ -24,7 +24,7 @@ module Vedeu
       end
 
       it 'returns an escape sequence when the style is bold off' do
-        Esc.string('bold_off').must_equal("\e[21m")
+        Esc.string('bold_off').must_equal("\e[22m")
       end
 
       it 'returns an escape sequence when the style is clear' do
@@ -68,7 +68,7 @@ module Vedeu
       end
 
       it 'returns an escape sequence when the style is normal' do
-        Esc.string('normal').must_equal("\e[24m\e[21m\e[27m")
+        Esc.string('normal').must_equal("\e[24m\e[22m\e[27m")
       end
 
       it 'returns an escape sequence when the style is dim' do
