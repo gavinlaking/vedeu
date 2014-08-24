@@ -1,28 +1,25 @@
 module Vedeu
   class Colour
 
-    # @param  []
-    # @return []
+    attr_reader :attributes
+
+    # @param attributes [Hash]
+    # @return [Colour]
     def initialize(attributes = {})
-      @attributes = attributes
+      @attributes = defaults.merge!(attributes)
     end
 
-    # @return []
-    def attributes
-      defaults.merge!(@attributes)
-    end
-
-    # @return []
+    # @return [String]
     def foreground
       @foreground ||= Foreground.escape_sequence(attributes[:foreground])
     end
 
-    # @return []
+    # @return [String]
     def background
       @background ||= Background.escape_sequence(attributes[:background])
     end
 
-    # @return []
+    # @return [String]
     def to_s
       foreground + background
     end

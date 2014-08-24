@@ -48,7 +48,7 @@ module Vedeu
 
               processed << Stream.new({
                              colour: stream.colour.attributes,
-                             style:  stream.style,
+                             style:  stream.style.values,
                              text:   truncate(stream.text, remainder),
                            })
 
@@ -61,7 +61,7 @@ module Vedeu
           Line.new({
             colour:  line.colour.attributes,
             streams: processed,
-            style:   line.style,
+            style:   line.style.values,
           })
 
         else

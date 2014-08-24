@@ -1,15 +1,16 @@
 module Vedeu
   class Geometry
 
+    attr_reader :attributes, :centred, :height, :width
+
     # @param  []
     # @return []
     def initialize(attributes = {})
-      @attributes = attributes
-    end
+      @attributes = defaults.merge!(attributes)
 
-    # @return []
-    def attributes
-      defaults.merge!(@attributes)
+      @centred = @attributes[:centred]
+      @height  = @attributes[:height]
+      @width   = @attributes[:width]
     end
 
     # @return []
@@ -32,21 +33,6 @@ module Vedeu
         attributes[:x]
 
       end
-    end
-
-    # @return []
-    def width
-      @width ||= attributes[:width]
-    end
-
-    # @return []
-    def height
-      @height ||= attributes[:height]
-    end
-
-    # @return []
-    def centred
-      @centred ||= attributes[:centred]
     end
 
     # @return []

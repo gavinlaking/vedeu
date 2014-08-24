@@ -1,5 +1,6 @@
 module Vedeu
   class Interface
+    include Coercions
 
     extend Forwardable
 
@@ -7,6 +8,8 @@ module Vedeu
                               :top, :right, :bottom, :left,
                               :width, :height, :origin,
                               :viewport_width, :viewport_height
+
+    attr_reader :attributes, :delay, :group, :name
 
     # @param  attributes [Hash]
     # @param  block [Proc]
@@ -19,7 +22,11 @@ module Vedeu
     # @param  block [Proc]
     # @return [Interface]
     def initialize(attributes = {}, &block)
-      @attributes = attributes
+      @attributes = defaults.merge!(attributes)
+
+      @name  = @attributes[:name]
+      @group = @attributes[:group]
+      @delay = @attributes[:delay]
 
       if block_given?
         @self_before_instance_eval = eval('self', block.binding)
@@ -28,24 +35,9 @@ module Vedeu
       end
     end
 
-    # @return [Hash]
-    def attributes
-      @_attributes ||= defaults.merge!(@attributes)
-    end
-
-    # @return [String]
-    def name
-      attributes[:name]
-    end
-
-    # @return [String]
-    def group
-      attributes[:group]
-    end
-
     # @return [Array]
     def lines
-      @lines ||= Attributes.coercer(attributes[:lines], Line, :streams)
+      @lines ||= Line.coercer(attributes[:lines])
     end
 
     # @return [Colour]
@@ -53,9 +45,9 @@ module Vedeu
       @colour ||= Colour.new(attributes[:colour])
     end
 
-    # @return [String]
+    # @return [Style]
     def style
-      @style ||= Attributes.coerce_styles(attributes[:style])
+      @style ||= Style.new(attributes[:style])
     end
 
     # @return [Geometry]
@@ -65,18 +57,13 @@ module Vedeu
 
     # @return [String]
     def cursor
-      @cursor ||= if cursor?
+      @cursor ||= if attributes[:cursor] == true
         Esc.string('show_cursor')
 
       else
         Esc.string('hide_cursor')
 
       end
-    end
-
-    # @return [Float]
-    def delay
-      attributes[:delay]
     end
 
     # @return [String]
@@ -90,10 +77,6 @@ module Vedeu
     end
 
     private
-
-    def cursor?
-      attributes[:cursor] == true
-    end
 
     def defaults
       {

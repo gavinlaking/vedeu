@@ -1,6 +1,8 @@
 module Vedeu
   class Composition
 
+    attr_reader :attributes
+
     # @param  []
     # @param []
     # @return []
@@ -12,18 +14,13 @@ module Vedeu
     # @param []
     # @return []
     def initialize(attributes = {}, &block)
-      @attributes = attributes
+      @attributes = defaults.merge!(attributes)
 
       if block_given?
         @self_before_instance_eval = eval('self', block.binding)
 
         instance_eval(&block)
       end
-    end
-
-    # @return []
-    def attributes
-      @_attributes ||= defaults.merge!(@attributes)
     end
 
     # @return []

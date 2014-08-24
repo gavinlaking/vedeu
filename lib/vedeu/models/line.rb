@@ -1,5 +1,8 @@
 module Vedeu
   class Line
+    include Coercions
+
+    attr_reader :attributes
 
     # @param []
     # @param []
@@ -12,7 +15,7 @@ module Vedeu
     # @param []
     # @return []
     def initialize(attributes = {}, &block)
-      @attributes = attributes
+      @attributes = defaults.merge!(attributes)
 
       if block_given?
         @self_before_instance_eval = eval('self', block.binding)
@@ -21,27 +24,22 @@ module Vedeu
       end
     end
 
-    # @return []
-    def attributes
-      @_attributes ||= defaults.merge!(@attributes)
-    end
-
-    # @return []
+    # @return [Colour]
     def colour
       @colour ||= Colour.new(attributes[:colour])
     end
 
-    # @return []
+    # @return [Array]
     def streams
-      @streams ||= Attributes.coercer(attributes[:streams], Stream, :text)
+      @streams ||= Stream.coercer(attributes[:streams])
     end
 
-    # @return []
+    # @return [Style]
     def style
-      @style ||= Attributes.coerce_styles(attributes[:style])
+      @style ||= Style.new(attributes[:style])
     end
 
-    # @return []
+    # @return [String]
     def to_s
       [ colour, style, streams ].join
     end

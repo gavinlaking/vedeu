@@ -34,7 +34,7 @@ module Vedeu
 
     describe '#style' do
       it 'has a style attribute' do
-        line.style.must_equal("\e[24m\e[22m\e[27m")
+        line.style.must_be_instance_of(Style)
       end
     end
 
