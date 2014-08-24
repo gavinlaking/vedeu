@@ -8,16 +8,16 @@ module Vedeu
                               :width, :height, :origin,
                               :viewport_width, :viewport_height
 
-    # @param  []
-    # @param []
-    # @return []
+    # @param  attributes [Hash]
+    # @param  block [Proc]
+    # @return [Hash]
     def self.build(attributes = {}, &block)
       new(attributes, &block).attributes
     end
 
-    # @param  []
-    # @param []
-    # @return []
+    # @param  attributes [Hash]
+    # @param  block [Proc]
+    # @return [Interface]
     def initialize(attributes = {}, &block)
       @attributes = attributes
 
@@ -28,42 +28,42 @@ module Vedeu
       end
     end
 
-    # @return []
+    # @return [Hash]
     def attributes
       @_attributes ||= defaults.merge!(@attributes)
     end
 
-    # @return []
+    # @return [String]
     def name
-      @name ||= attributes[:name]
+      attributes[:name]
     end
 
-    # @return []
+    # @return [String]
     def group
-      @group ||= attributes[:group]
+      attributes[:group]
     end
 
-    # @return []
+    # @return [Array]
     def lines
       @lines ||= Attributes.coercer(attributes[:lines], Line, :streams)
     end
 
-    # @return []
+    # @return [Colour]
     def colour
       @colour ||= Colour.new(attributes[:colour])
     end
 
-    # @return []
+    # @return [String]
     def style
       @style ||= Attributes.coerce_styles(attributes[:style])
     end
 
-    # @return []
+    # @return [Geometry]
     def geometry
       @geometry ||= Geometry.new(attributes[:geometry])
     end
 
-    # @return []
+    # @return [String]
     def cursor
       @cursor ||= if cursor?
         Esc.string('show_cursor')
@@ -74,18 +74,17 @@ module Vedeu
       end
     end
 
-    # @return []
+    # @return [Float]
     def delay
-      @delay || attributes[:delay]
+      attributes[:delay]
     end
 
-    # @return []
+    # @return [String]
     def to_s
       Render.call(self)
     end
-    alias_method :render, :to_s
 
-    # @return []
+    # @return [String]
     def clear
       Clear.call(self)
     end
