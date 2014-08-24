@@ -1,54 +1,47 @@
 module Vedeu
   class Event
-    def initialize(closure, options = {}, *closure_args)
+    def initialize(closure, options = {})
       @closure      = closure
-      @closure_args = closure_args
       @options      = options
       @deadline     = 0
       @executed_at  = 0
       @now          = 0
     end
 
-    def trigger
-      set_time
+    def trigger(*args)
+      return execute(*args) unless debouncing? || throttling?
 
-      if debouncing?
-        if has_deadline?
-          if set_executed > deadline
-            execute
-          end
-        else
-          set_deadline
-        end
-      elsif throttling?
-        if elapsed_time > delay
-          execute
-        end
-      else
-        execute
-      end
+      return execute(*args) if debouncing? && set_executed > deadline
+
+      return execute(*args) if throttling? && elapsed_time > delay
     end
 
     private
 
-    attr_reader   :closure, :closure_args, :now
-    attr_accessor :deadline, :executed_at
+    attr_reader   :closure
+    attr_accessor :deadline, :executed_at, :now
 
-    def execute
+    def execute(*args)
       reset_deadline
 
       set_executed
 
       reset_time
 
-      closure.call(*closure_args)
+      closure.call(*args)
     end
 
     def throttling?
+      set_time
+
       options[:delay] > 0
     end
 
     def debouncing?
+      set_time
+
+      set_deadline unless has_deadline?
+
       options[:debounce] > 0
     end
 
