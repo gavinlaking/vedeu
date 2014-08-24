@@ -1,11 +1,24 @@
 module Vedeu
   class Stream
+    include Coercions
+
+    attr_reader :attributes, :align, :text, :width
+
+    # @param attributes [Hash]
+    # @param block [Proc]
+    # @return [Hash]
     def self.build(attributes = {}, &block)
       new(attributes, &block).attributes
     end
 
+    # @param attributes [Hash]
+    # @param block [Proc]
+    # @return [Stream]
     def initialize(attributes = {}, &block)
-      @attributes = attributes
+      @attributes = defaults.merge!(attributes)
+      @align      = @attributes[:align]
+      @text       = @attributes[:text]
+      @width      = @attributes[:width]
 
       if block_given?
         @self_before_instance_eval = eval('self', block.binding)
@@ -14,30 +27,17 @@ module Vedeu
       end
     end
 
-    def attributes
-      @_attributes ||= defaults.merge!(@attributes)
-    end
-
+    # @return [Colour]
     def colour
       @colour ||= Colour.new(attributes[:colour])
     end
 
+    # @return [Style]
     def style
-      @style ||= Attributes.coerce_styles(attributes[:style])
+      @style ||= Style.new(attributes[:style])
     end
 
-    def text
-      @text ||= attributes[:text]
-    end
-
-    def width
-      @width ||= attributes[:width]
-    end
-
-    def align
-      @align ||= attributes[:align]
-    end
-
+    # @return [String]
     def to_s
       [ colour, style, data ].join
     end
@@ -73,5 +73,6 @@ module Vedeu
     def method_missing(method, *args, &block)
       @self_before_instance_eval.send(method, *args, &block)
     end
+
   end
 end

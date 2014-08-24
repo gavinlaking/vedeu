@@ -4,6 +4,13 @@ module Vedeu
   describe Clear do
     before { Store.reset }
 
+    describe '#initialize' do
+      it 'returns an instance of itself' do
+        interface = mock('Interface')
+        Clear.new(interface).must_be_instance_of(Clear)
+      end
+    end
+
     describe '.call' do
       it 'returns the escape sequence to clear the whole interface' do
         interface = Interface.new({

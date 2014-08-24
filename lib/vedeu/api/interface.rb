@@ -1,7 +1,11 @@
 module Vedeu
   module API
     class Interface < Vedeu::Interface
+      include Helpers
 
+      # @param []
+      # @param []
+      # @return []
       def self.define(attributes = {}, &block)
         new(attributes).define(&block)
       end
@@ -37,21 +41,6 @@ module Vedeu
       # @see Vedeu::API#use
       def use(value)
         Vedeu.use(value)
-      end
-
-      # Define the default colour attributes for an interface.
-      #
-      # @param value [Hash]
-      #
-      # @example
-      #   interface 'my_interface' do
-      #     colour background: '#000000', foreground: '#ffffff'
-      #     ... some interface attributes ...
-      #   end
-      #
-      # @return []
-      def colour(value)
-        attributes[:colour] = value
       end
 
       # Define the cursor visibility for an interface. A `true` value will show
@@ -115,10 +104,16 @@ module Vedeu
       #   TODO
       #
       # @return []
-      def x(value)
-        fail XOutOfBounds if x_out_of_bounds?(value)
+      def x(value = 0, &block)
+        if block_given?
+          attributes[:geometry][:x] = block
 
-        attributes[:geometry][:x] = value
+        else
+          fail XOutOfBounds if x_out_of_bounds?(value)
+
+          attributes[:geometry][:x] = value
+
+        end
       end
 
       # Define the starting y position (row/line) of the interface.
@@ -129,10 +124,16 @@ module Vedeu
       #   TODO
       #
       # @return []
-      def y(value)
-        fail YOutOfBounds if y_out_of_bounds?(value)
+      def y(value = 0, &block)
+        if block_given?
+          attributes[:geometry][:y] = block
 
-        attributes[:geometry][:y] = value
+        else
+          fail YOutOfBounds if y_out_of_bounds?(value)
+
+          attributes[:geometry][:y] = value
+
+        end
       end
 
       # Define the number of characters/columns wide the interface will be.

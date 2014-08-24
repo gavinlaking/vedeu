@@ -3,14 +3,14 @@ require 'test_helper'
 module Vedeu
   describe API do
     describe '.event' do
+      let(:event) { mock('Event') }
+
+      before { Event.stubs(:new).returns(event) }
+
       it 'registers and returns the event' do
         Vedeu.event(:some_event).must_equal(
           {
-            deadline:  0,
-            delay:     0,
-            debounce:  0,
-            events:    [nil],
-            last_exec: 0,
+            events: [event],
           }
         )
       end
@@ -58,7 +58,7 @@ module Vedeu
 
     describe '.keypress' do
       it 'returns' do
-        Vedeu.keypress('k').must_equal()
+        Vedeu.keypress('k').must_equal(nil)
       end
     end
 

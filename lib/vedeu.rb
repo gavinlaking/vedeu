@@ -1,4 +1,5 @@
 module Vedeu
+
   EntityNotFound = Class.new(StandardError)
   InvalidHeight  = Class.new(StandardError)
   InvalidWidth   = Class.new(StandardError)
@@ -13,6 +14,7 @@ module Vedeu
     receiver.send(:include, API)
     receiver.extend(API)
   end
+
 end
 
 require 'date'
@@ -23,7 +25,7 @@ require 'optparse'
 
 require 'vedeu/configuration'
 
-require 'vedeu/models/attributes/attributes'
+require 'vedeu/models/attributes/coercions'
 require 'vedeu/models/attributes/colour_translator'
 require 'vedeu/models/attributes/background'
 require 'vedeu/models/attributes/foreground'
@@ -31,6 +33,7 @@ require 'vedeu/models/composition'
 require 'vedeu/support/terminal'
 require 'vedeu/models/geometry'
 require 'vedeu/models/colour'
+require 'vedeu/models/style'
 require 'vedeu/models/interface'
 require 'vedeu/models/line'
 require 'vedeu/models/store'
@@ -54,6 +57,7 @@ require 'vedeu/output/view'
 require 'vedeu/support/buffer'
 require 'vedeu/support/position'
 require 'vedeu/support/esc'
+require 'vedeu/support/event'
 require 'vedeu/support/events'
 require 'vedeu/support/grid'
 require 'vedeu/support/input'

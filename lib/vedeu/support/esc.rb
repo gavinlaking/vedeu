@@ -1,11 +1,18 @@
 module Vedeu
   module Esc
+
     extend self
 
+    # @param []
+    # @param []
+    # @param []
+    # @return []
     def set_position(y = 1, x = 1, &block)
       Position.new(y, x).to_s(&block)
     end
 
+    # @param []
+    # @return []
     def string(value = '')
       case value
       when 'bg_reset'      then "\e[48;2;49m"
@@ -38,5 +45,6 @@ module Vedeu
     # def method_missing(method, *args, &block)
     #   self.send(:string, method, &block)
     # end
+
   end
 end

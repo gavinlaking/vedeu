@@ -1,11 +1,15 @@
 module Vedeu
   class Input
+
+    # @return []
     def self.capture
       new.capture
     end
 
+    # @return []
     def initialize; end
 
+    # @return []
     def capture
       Vedeu.trigger(:_keypress_, keypress)
     end
@@ -53,5 +57,6 @@ module Vedeu
 
       translated
     end
+
   end
 end

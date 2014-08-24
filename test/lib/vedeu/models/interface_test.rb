@@ -71,7 +71,7 @@ module Vedeu
 
     describe '#style' do
       it 'returns the value' do
-        interface.style.must_equal('')
+        interface.style.must_be_instance_of(Style)
       end
     end
 

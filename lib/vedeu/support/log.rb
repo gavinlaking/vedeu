@@ -72,6 +72,8 @@ module Vedeu
   end
 
   class Log
+
+    # @return []
     def self.logger
       @logger ||= MonoLogger.new(filename).tap do |log|
         log.formatter = proc do |_, time, _, message|
@@ -95,5 +97,6 @@ module Vedeu
     def self.path
       Dir.home + '/.vedeu'
     end
+
   end
 end

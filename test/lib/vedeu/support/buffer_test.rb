@@ -4,12 +4,9 @@ module Vedeu
   describe Buffer do
     let(:vars) {
       {
-        name: 'interface',
-        clear: '',
-        current: '',
-        group: '',
+        back: '',
+        front: '',
         interface: mock('Interface'),
-        next: ''
       }
     }
 
@@ -30,9 +27,9 @@ module Vedeu
         buffer     = Buffer.new(vars)
         new_buffer = buffer.enqueue('some_sequence')
 
-        buffer._next.must_equal('')
+        buffer.back.must_equal('')
         new_buffer.wont_equal(buffer)
-        new_buffer._next.must_equal('some_sequence')
+        new_buffer.back.must_equal('some_sequence')
       end
     end
 

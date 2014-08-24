@@ -5,17 +5,31 @@ module Vedeu
       before { Store.reset }
 
       describe '#create' do
-        it 'stores the interface attributes and returns the storage collection' do
-          attributes = { name: 'sulphur' }
+        let(:attributes) {
+          {
+            name: 'sulphur'
+          }
+        }
 
-          Store.create(attributes).must_equal({ 'sulphur' => { name: 'sulphur' } })
+        it 'returns an instance of Hash' do
+          Store.create(attributes).must_be_instance_of(Hash)
+        end
+
+        it 'stores the interface attributes and returns the storage ' \
+           'collection' do
+          Store.create(attributes).must_equal(
+            {
+              'sulphur' => { name: 'sulphur' }
+            }
+          )
         end
       end
 
       describe '#query' do
-        before do
-          Store.reset
-          Vedeu.interface('chlorine')
+        before { Vedeu.interface('chlorine') }
+
+        it 'returns an instance of Hash' do
+          Store.query('chlorine').must_be_instance_of(Hash)
         end
 
         it 'returns the record when found' do
@@ -47,6 +61,10 @@ module Vedeu
       end
 
       describe '#reset' do
+        it 'returns an instance of Hash' do
+          Store.reset.must_be_instance_of(Hash)
+        end
+
         it 'deletes all records stored' do
           Vedeu.interface('potassium')
 

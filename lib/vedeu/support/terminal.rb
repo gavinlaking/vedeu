@@ -2,6 +2,9 @@ module Vedeu
   module Terminal
     extend self
 
+    # @param []
+    # @param []
+    # @return []
     def open(mode, &block)
       @mode = mode
 
@@ -18,6 +21,7 @@ module Vedeu
       restore_screen
     end
 
+    # @return []
     def input
       if raw_mode?
         keys = console.getch
@@ -33,43 +37,54 @@ module Vedeu
       end
     end
 
+    # @param []
+    # @return []
     def output(stream = '')
       console.print(stream)
 
       stream
     end
 
+    # @param []
+    # @return []
     def initialize_screen(&block)
       output Esc.string 'screen_init'
 
       yield
     end
 
+    # @return []
     def clear_screen
       output Esc.string 'clear'
     end
 
+    # @return []
     def restore_screen
       output Esc.string 'screen_exit'
       output clear_last_line
     end
 
+    # @return []
     def set_cursor_mode
       output Esc.string 'show_cursor' unless raw_mode?
     end
 
+    # @return []
     def raw_mode?
       @mode == :raw
     end
 
+    # @return []
     def clear_last_line
       Esc.set_position((height - 1), 1) + Esc.string('clear_line')
     end
 
+    # @return []
     def colour_mode
       Configuration.options[:colour_mode]
     end
 
+    # @return []
     def centre
       [(height / 2), (width / 2)]
     end
@@ -84,10 +99,12 @@ module Vedeu
       size.first
     end
 
+    # @return []
     def size
       console.winsize
     end
 
+    # @return []
     def console
       IO.console
     end

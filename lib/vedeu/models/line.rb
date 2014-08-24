@@ -1,11 +1,21 @@
 module Vedeu
   class Line
+    include Coercions
+
+    attr_reader :attributes
+
+    # @param []
+    # @param []
+    # @return []
     def self.build(attributes = {}, &block)
       new(attributes, &block).attributes
     end
 
+    # @param []
+    # @param []
+    # @return []
     def initialize(attributes = {}, &block)
-      @attributes = attributes
+      @attributes = defaults.merge!(attributes)
 
       if block_given?
         @self_before_instance_eval = eval('self', block.binding)
@@ -14,22 +24,22 @@ module Vedeu
       end
     end
 
-    def attributes
-      @_attributes ||= defaults.merge!(@attributes)
-    end
-
+    # @return [Colour]
     def colour
       @colour ||= Colour.new(attributes[:colour])
     end
 
+    # @return [Array]
     def streams
-      @streams ||= Attributes.coercer(attributes[:streams], Stream, :text)
+      @streams ||= Stream.coercer(attributes[:streams])
     end
 
+    # @return [Style]
     def style
-      @style ||= Attributes.coerce_styles(attributes[:style])
+      @style ||= Style.new(attributes[:style])
     end
 
+    # @return [String]
     def to_s
       [ colour, style, streams ].join
     end
@@ -47,5 +57,6 @@ module Vedeu
     def method_missing(method, *args, &block)
       @self_before_instance_eval.send(method, *args, &block)
     end
+
   end
 end

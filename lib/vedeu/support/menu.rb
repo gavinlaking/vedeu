@@ -1,5 +1,8 @@
 module Vedeu
   class Menu
+
+    # @param []
+    # @return []
     def initialize(collection)
       @collection = collection
       @current    = 0
@@ -7,6 +10,7 @@ module Vedeu
       @events     = events
     end
 
+    # @return []
     def events
       @_events ||= Vedeu.events.add(self) do
         event(:menu_next)     { next_item     }
@@ -22,24 +26,29 @@ module Vedeu
       end
     end
 
+    # @return []
     def current
       @current
     end
 
+    # @return []
     def selected
       @selected
     end
 
+    # @return []
     def current_item
       @collection[@current]
     end
 
+    # @return []
     def selected_item
       return nil unless @selected
 
       @collection[@selected]
     end
 
+    # @return []
     def items
       items = []
       @collection.each_with_index do |item, index|
@@ -60,52 +69,62 @@ module Vedeu
       items
     end
 
+    # @return []
     def view
       items[@current, @collection.size]
     end
 
+    # @return []
     def top_item
       @current = 0
 
       items
     end
 
+    # @return []
     def bottom_item
       @current = last
 
       items
     end
 
+    # @return []
     def next_item
       @current += 1 if @current < last
 
       items
     end
 
+    # @return []
     def prev_item
       @current -= 1 if @current > 0
 
       items
     end
 
+    # @return []
     def select_item
       @selected = @current
 
       items
     end
 
+    # @return []
     def deselect_item
       @selected = nil
 
       items
     end
 
+    # @return []
     def last
       @collection.size - 1
     end
 
+    # @return []
     def size
       @collection.size
     end
+
   end
 end

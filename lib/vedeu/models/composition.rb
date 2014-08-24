@@ -1,11 +1,20 @@
 module Vedeu
   class Composition
+
+    attr_reader :attributes
+
+    # @param  []
+    # @param []
+    # @return []
     def self.build(attributes = {}, &block)
       new(attributes, &block).attributes
     end
 
+    # @param  []
+    # @param []
+    # @return []
     def initialize(attributes = {}, &block)
-      @attributes = attributes
+      @attributes = defaults.merge!(attributes)
 
       if block_given?
         @self_before_instance_eval = eval('self', block.binding)
@@ -14,10 +23,7 @@ module Vedeu
       end
     end
 
-    def attributes
-      @_attributes ||= defaults.merge!(@attributes)
-    end
-
+    # @return []
     def interfaces
       @interfaces ||= if attributes[:interfaces].nil? || attributes[:interfaces].empty?
         []
@@ -36,6 +42,7 @@ module Vedeu
       end
     end
 
+    # @return []
     def to_s
       interfaces.map(&:to_s).join
     end
@@ -47,5 +54,6 @@ module Vedeu
         interfaces: []
       }
     end
+
   end
 end

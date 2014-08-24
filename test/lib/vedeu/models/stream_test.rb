@@ -32,7 +32,7 @@ module Vedeu
 
     describe '#style' do
       it 'has a style attribute' do
-        stream.style.must_equal("\e[24m\e[22m\e[27m")
+        stream.style.must_be_instance_of(Style)
       end
     end
 
@@ -45,40 +45,6 @@ module Vedeu
     describe '#align' do
       it 'has an align attribute' do
         stream.align.must_equal(:left)
-      end
-    end
-
-    describe '#style' do
-      describe 'for a single style' do
-        let(:style) { 'normal' }
-
-        it 'returns an escape sequence' do
-          stream.style.must_equal("\e[24m\e[22m\e[27m")
-        end
-      end
-
-      describe 'for multiple styles' do
-        let(:style) { ['normal', 'underline'] }
-
-        it 'returns an escape sequence for multiple styles' do
-          stream.style.must_equal("\e[24m\e[22m\e[27m\e[4m")
-        end
-      end
-
-      describe 'for an unknown style' do
-        let(:style) { 'unknown' }
-
-        it 'returns an empty string for an unknown style' do
-          stream.style.must_equal('')
-        end
-      end
-
-      describe 'for an empty or nil' do
-        let(:style) { '' }
-
-        it 'returns an empty string for empty or nil' do
-          stream.style.must_equal('')
-        end
       end
     end
 
