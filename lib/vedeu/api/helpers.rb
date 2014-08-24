@@ -3,12 +3,23 @@ module Vedeu
     module Helpers
 
       # Define either or both foreground and background colours for an
-      # interface, a stream, or a line.
+      # interface, line or a stream.
       #
       # @param values [Hash]
       #
       # @example
-      #   TODO
+      #   interface 'my_interface' do
+      #     colour background: '#000000', foreground: '#ffffff'
+      #     ... some interface attributes ...
+      #   end
+      #
+      #   line do
+      #     colour background: '#000000', foreground: '#ffffff'
+      #     ... some line attributes ...
+      #
+      #   stream do
+      #     colour background: '#000000', foreground: '#ffffff'
+      #     ... some stream attributes ...
       #
       # @return []
       def colour(values = {})
@@ -18,13 +29,24 @@ module Vedeu
         attributes[:colour] = values
       end
 
-      # Define a style for an interface, a stream or a line.
+      # Define a style for an interface, line or a stream.
       #
       # @param values [Array|String]
       # @param block  [Proc]
       #
       # @example
-      #   TODO
+      #   interface 'my_interface' do
+      #     style 'normal'
+      #     ... some interface attributes ...
+      #   end
+      #
+      #   line do
+      #     style ['bold', 'underline']
+      #     ... some line attributes ...
+      #
+      #   stream do
+      #     style 'blink'
+      #     ... some stream attributes ...
       #
       # @return []
       def style(values = [], &block)

@@ -1,6 +1,7 @@
 module Vedeu
   module API
     class Interface < Vedeu::Interface
+      include Helpers
 
       def self.define(attributes = {}, &block)
         new(attributes).define(&block)
@@ -37,21 +38,6 @@ module Vedeu
       # @see Vedeu::API#use
       def use(value)
         Vedeu.use(value)
-      end
-
-      # Define the default colour attributes for an interface.
-      #
-      # @param value [Hash]
-      #
-      # @example
-      #   interface 'my_interface' do
-      #     colour background: '#000000', foreground: '#ffffff'
-      #     ... some interface attributes ...
-      #   end
-      #
-      # @return []
-      def colour(value)
-        attributes[:colour] = value
       end
 
       # Define the cursor visibility for an interface. A `true` value will show

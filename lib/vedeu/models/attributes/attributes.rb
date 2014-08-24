@@ -2,6 +2,11 @@ module Vedeu
   module Attributes
     extend self
 
+    # param values []
+    # param model []
+    # param key []
+    #
+    # return []
     def coercer(values, model, key)
       return [] if values.nil? || values.empty?
 
@@ -16,6 +21,9 @@ module Vedeu
       end
     end
 
+    # param values [String|Array]
+    #
+    # return [Array]
     def coerce_styles(values)
       return '' if values.nil? || values.empty?
 
