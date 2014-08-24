@@ -109,7 +109,7 @@ module Vedeu
           attributes[:geometry][:x] = block
 
         else
-          fail XOutOfBounds if x_out_of_bounds?(value)
+          Vedeu.log(out_of_bounds('x')) if x_out_of_bounds?(value)
 
           attributes[:geometry][:x] = value
 
@@ -129,7 +129,7 @@ module Vedeu
           attributes[:geometry][:y] = block
 
         else
-          fail YOutOfBounds if y_out_of_bounds?(value)
+          Vedeu.log(out_of_bounds('y')) if y_out_of_bounds?(value)
 
           attributes[:geometry][:y] = value
 
@@ -145,7 +145,7 @@ module Vedeu
       #
       # @return []
       def width(value)
-        fail InvalidWidth if x_out_of_bounds?(value)
+        Vedeu.log(out_of_bounds('width')) if x_out_of_bounds?(value)
 
         attributes[:geometry][:width] = value
       end
@@ -159,7 +159,7 @@ module Vedeu
       #
       # @return []
       def height(value)
-        fail InvalidHeight if y_out_of_bounds?(value)
+        Vedeu.log(out_of_bounds('height')) if y_out_of_bounds?(value)
 
         attributes[:geometry][:height] = value
       end
@@ -190,6 +190,11 @@ module Vedeu
       end
 
       private
+
+      def out_of_bounds(name)
+        "Note: For this terminal, the value of '#{name}' may lead to content " \
+        "that is outside the viewable area."
+      end
 
       def y_out_of_bounds?(value)
         value < 1 || value > Terminal.height

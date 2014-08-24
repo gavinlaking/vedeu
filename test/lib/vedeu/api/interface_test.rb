@@ -25,38 +25,6 @@ module Vedeu
           )
         end
 
-        it 'raises an exception when the value is out of bounds' do
-          proc { interface.define { x 0 } }.must_raise(XOutOfBounds)
-        end
-
-        it 'raises an exception when the value is out of bounds' do
-          proc { interface.define { x 999 } }.must_raise(XOutOfBounds)
-        end
-
-        it 'raises an exception when the value is out of bounds' do
-          proc { interface.define { y 0 } }.must_raise(YOutOfBounds)
-        end
-
-        it 'raises an exception when the value is out of bounds' do
-          proc { interface.define { y 999 } }.must_raise(YOutOfBounds)
-        end
-
-        it 'raises an exception when the value is out of bounds' do
-          proc { interface.define { width 0 } }.must_raise(InvalidWidth)
-        end
-
-        it 'raises an exception when the value is out of bounds' do
-          proc { interface.define { width 999 } }.must_raise(InvalidWidth)
-        end
-
-        it 'raises an exception when the value is out of bounds' do
-          proc { interface.define { height 0 } }.must_raise(InvalidHeight)
-        end
-
-        it 'raises an exception when the value is out of bounds' do
-          proc { interface.define { height 999 } }.must_raise(InvalidHeight)
-        end
-
         it 'allows the setting of colours' do
           Interface.build do
             colour foreground: '#aadd00', background: '#222222'
