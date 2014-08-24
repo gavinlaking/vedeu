@@ -1,5 +1,6 @@
 module Vedeu
   class Launcher
+    # :nocov:
     def initialize(argv, stdin  = STDIN,
                          stdout = STDOUT,
                          stderr = STDERR,
@@ -35,5 +36,6 @@ module Vedeu
     def configuration
       Configuration.configure(argv)
     end
+    # :nocov:
   end
 end

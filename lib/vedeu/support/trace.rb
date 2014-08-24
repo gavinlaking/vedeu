@@ -1,5 +1,6 @@
 module Vedeu
   class Trace
+    # :nocov:
     def self.call(options = {})
       new(options).trace
     end
@@ -43,4 +44,5 @@ module Vedeu
     # everything except Interface, Geometry and Terminal
     # klass: /^Vedeu::(?!.*Interface|Geometry|Terminal).*/
   end
+  # :nocov:
 end

@@ -1,5 +1,6 @@
 module Vedeu
   class Application
+    # :nocov:
     def self.start(options = {})
       new(options).start
     end
@@ -76,5 +77,6 @@ module Vedeu
         mode:        :raw
       }
     end
+    # :nocov:
   end
 end
