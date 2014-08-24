@@ -58,7 +58,7 @@ module Vedeu
 
     describe '.keypress' do
       it 'returns' do
-        Vedeu.keypress('k').must_equal()
+        Vedeu.keypress('k').must_equal(nil)
       end
     end
 
