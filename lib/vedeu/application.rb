@@ -1,14 +1,20 @@
 module Vedeu
   class Application
+
     # :nocov:
+    # @param []
+    # @return []
     def self.start(options = {})
       new(options).start
     end
 
+    # @param []
+    # @return []
     def initialize(options = {})
       @options = options
     end
 
+    # @return []
     def start
       Terminal.open(mode) do
         Terminal.set_cursor_mode
@@ -78,5 +84,6 @@ module Vedeu
       }
     end
     # :nocov:
+
   end
 end

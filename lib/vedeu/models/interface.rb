@@ -1,5 +1,6 @@
 module Vedeu
   class Interface
+
     extend Forwardable
 
     def_delegators :geometry, :north, :east, :south, :west,
@@ -7,10 +8,16 @@ module Vedeu
                               :width, :height, :origin,
                               :viewport_width, :viewport_height
 
+    # @param  []
+    # @param []
+    # @return []
     def self.build(attributes = {}, &block)
       new(attributes, &block).attributes
     end
 
+    # @param  []
+    # @param []
+    # @return []
     def initialize(attributes = {}, &block)
       @attributes = attributes
 
@@ -21,34 +28,42 @@ module Vedeu
       end
     end
 
+    # @return []
     def attributes
       @_attributes ||= defaults.merge!(@attributes)
     end
 
+    # @return []
     def name
       @name ||= attributes[:name]
     end
 
+    # @return []
     def group
       @group ||= attributes[:group]
     end
 
+    # @return []
     def lines
       @lines ||= Attributes.coercer(attributes[:lines], Line, :streams)
     end
 
+    # @return []
     def colour
       @colour ||= Colour.new(attributes[:colour])
     end
 
+    # @return []
     def style
       @style ||= Attributes.coerce_styles(attributes[:style])
     end
 
+    # @return []
     def geometry
       @geometry ||= Geometry.new(attributes[:geometry])
     end
 
+    # @return []
     def cursor
       @cursor ||= if cursor?
         Esc.string('show_cursor')
@@ -59,15 +74,18 @@ module Vedeu
       end
     end
 
+    # @return []
     def delay
       @delay || attributes[:delay]
     end
 
+    # @return []
     def to_s
       Render.call(self)
     end
     alias_method :render, :to_s
 
+    # @return []
     def clear
       Clear.call(self)
     end
@@ -90,5 +108,6 @@ module Vedeu
         delay:    0.0
       }
     end
+
   end
 end

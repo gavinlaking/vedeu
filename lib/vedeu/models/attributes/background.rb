@@ -1,5 +1,6 @@
 module Vedeu
   class Background < ColourTranslator
+
     private
 
     def named
@@ -25,5 +26,6 @@ module Vedeu
       codes.map { |name, code| hash[name] = code + 10 }
       hash
     end
+
   end
 end

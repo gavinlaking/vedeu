@@ -1,18 +1,25 @@
 module Vedeu
   class Configuration
+
+    # @param []
+    # @return []
     def self.configure(args = [])
       new(args).configure
     end
 
+    # @return []
     def self.options
       new.options
     end
 
+    # @param []
+    # @return []
     def initialize(args = [])
       @_options = {}
       @args     = args
     end
 
+    # @return []
     def configure
       parser = OptionParser.new do |opts|
         opts.banner = "Usage: #{$PROGRAM_NAME} [options]"
@@ -51,6 +58,7 @@ module Vedeu
       _options
     end
 
+    # @return []
     def options
       @options ||= defaults.merge!(@_options)
     end
@@ -71,5 +79,6 @@ module Vedeu
     def detect_colour_mode
       24
     end
+
   end
 end

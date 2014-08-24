@@ -1,7 +1,10 @@
 module Vedeu
   module Buffers
+
     extend self
 
+    # @param []
+    # @return []
     def create(interface)
       store(interface.name, Buffer.new({
                               interface: interface,
@@ -14,14 +17,19 @@ module Vedeu
       create_events(interface.name, interface.group, interface.delay)
     end
 
+    # @param []
+    # @param []
+    # @return []
     def enqueue(name, sequence)
       store(name, query(name).enqueue(sequence))
     end
 
+    # @return [Array]
     def refresh_all
       buffers.keys.map { |name| refresh(name) }
     end
 
+    # @return [Hash]
     def reset
       @buffers = {}
     end
@@ -59,5 +67,6 @@ module Vedeu
     def buffers
       @buffers ||= {}
     end
+
   end
 end

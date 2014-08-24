@@ -1,5 +1,6 @@
 module Vedeu
   class Foreground < ColourTranslator
+
     private
 
     def named
@@ -23,5 +24,6 @@ module Vedeu
     def foreground_codes
       codes
     end
+
   end
 end

@@ -1,7 +1,10 @@
 module Vedeu
   class Buffer
+
     attr_reader :current, :group, :interface, :name, :_next
 
+    # @param []
+    # @return []
     def initialize(vars)
       @vars    = vars
       @name    = vars.fetch(:name)
@@ -12,10 +15,13 @@ module Vedeu
       @_next   = vars.fetch(:next)
     end
 
+    # @param []
+    # @return []
     def enqueue(sequence)
       merge({ next: sequence })
     end
 
+    # @return []
     def refresh
       sequence = if _next
         merge({ current: _next, next: nil }).current.to_s
@@ -38,5 +44,6 @@ module Vedeu
     def merge(vars)
       Buffer.new(@vars.merge(vars))
     end
+
   end
 end

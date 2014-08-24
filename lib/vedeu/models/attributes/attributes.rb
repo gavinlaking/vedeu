@@ -1,5 +1,6 @@
 module Vedeu
   module Attributes
+
     extend self
 
     # param values []
@@ -29,5 +30,6 @@ module Vedeu
 
       Array(values).flatten.map { |value| Esc.string(value) }.join
     end
+
   end
 end

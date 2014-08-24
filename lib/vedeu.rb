@@ -1,4 +1,5 @@
 module Vedeu
+
   EntityNotFound = Class.new(StandardError)
   InvalidHeight  = Class.new(StandardError)
   InvalidWidth   = Class.new(StandardError)
@@ -13,6 +14,7 @@ module Vedeu
     receiver.send(:include, API)
     receiver.extend(API)
   end
+
 end
 
 require 'date'

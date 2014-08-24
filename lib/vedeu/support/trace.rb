@@ -1,14 +1,20 @@
 module Vedeu
   class Trace
+
     # :nocov:
+    # @param []
+    # @return []
     def self.call(options = {})
       new(options).trace
     end
 
+    # @param []
+    # @return []
     def initialize(options = {})
       @options = options
     end
 
+    # @return []
     def trace
       set_trace_func proc { |event, file, line, id, binding, classname|
         if event == watched && classname.to_s.match(klass)

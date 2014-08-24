@@ -1,13 +1,19 @@
 module Vedeu
   class Render
+
+    # @param interface [Interface]
+    # @return [String]
     def self.call(interface)
       new(interface).render
     end
 
+    # @param interface [Interface]
+    # @return [Render]
     def initialize(interface)
       @interface = interface
     end
 
+    # @return [String]
     def render
       out = [ Clear.call(interface) ]
       processed_lines.each_with_index do |line, index|
@@ -85,5 +91,6 @@ module Vedeu
     def width
       interface.viewport_width
     end
+
   end
 end

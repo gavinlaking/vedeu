@@ -4,6 +4,13 @@ module Vedeu
   describe Render do
     before { Store.reset }
 
+    describe '#initialize' do
+      it 'returns an instance of itself' do
+        interface = mock('Interface')
+        Render.new(interface).must_be_instance_of(Render)
+      end
+    end
+
     describe '.call' do
       it 'returns the content for the interface' do
         interface = Interface.new({

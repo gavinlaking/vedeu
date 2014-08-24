@@ -1,4 +1,5 @@
 class Fixnum
+
   # Augment Fixnum to calculate column width in a grid-based layout.
   #
   # The grid system splits the terminal width into 12 equal parts, by dividing
@@ -17,14 +18,20 @@ end
 
 module Vedeu
   class Grid
+
+    # @param []
+    # @return []
     def self.columns(value)
       new(value).columns
     end
 
+    # @param []
+    # @return []
     def initialize(value)
       @value = value
     end
 
+    # @return []
     def columns
       fail OutOfRange, 'Valid range is 1..12.' if out_of_range?
 
@@ -46,5 +53,6 @@ module Vedeu
     def out_of_range?
       value < 1 || value > 12
     end
+
   end
 end

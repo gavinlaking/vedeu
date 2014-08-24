@@ -1,6 +1,13 @@
 module Vedeu
   class Launcher
+
     # :nocov:
+    # @param []
+    # @param []
+    # @param []
+    # @param []
+    # @param []
+    # @return []
     def initialize(argv, stdin  = STDIN,
                          stdout = STDOUT,
                          stderr = STDERR,
@@ -13,6 +20,7 @@ module Vedeu
       @exit_code = 1
     end
 
+    # @return []
     def execute!
       $stdin, $stdout, $stderr = @stdin, @stdout, @stderr
 
@@ -37,5 +45,6 @@ module Vedeu
       Configuration.configure(argv)
     end
     # :nocov:
+
   end
 end

@@ -1,9 +1,16 @@
 module Vedeu
   class Stream
+
+    # @param []
+    # @param []
+    # @return []
     def self.build(attributes = {}, &block)
       new(attributes, &block).attributes
     end
 
+    # @param []
+    # @param []
+    # @return []
     def initialize(attributes = {}, &block)
       @attributes = attributes
 
@@ -14,30 +21,37 @@ module Vedeu
       end
     end
 
+    # @return []
     def attributes
       @_attributes ||= defaults.merge!(@attributes)
     end
 
+    # @return []
     def colour
       @colour ||= Colour.new(attributes[:colour])
     end
 
+    # @return []
     def style
       @style ||= Attributes.coerce_styles(attributes[:style])
     end
 
+    # @return []
     def text
       @text ||= attributes[:text]
     end
 
+    # @return []
     def width
       @width ||= attributes[:width]
     end
 
+    # @return []
     def align
       @align ||= attributes[:align]
     end
 
+    # @return []
     def to_s
       [ colour, style, data ].join
     end
@@ -73,5 +87,6 @@ module Vedeu
     def method_missing(method, *args, &block)
       @self_before_instance_eval.send(method, *args, &block)
     end
+
   end
 end

@@ -3,6 +3,9 @@ module Vedeu
     class Interface < Vedeu::Interface
       include Helpers
 
+      # @param []
+      # @param []
+      # @return []
       def self.define(attributes = {}, &block)
         new(attributes).define(&block)
       end

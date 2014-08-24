@@ -1,5 +1,8 @@
 module Vedeu
   class Events
+
+    # @param []
+    # @return []
     def initialize(&block)
       @handlers = Hash.new do |hash, key|
         hash[key] = {
@@ -13,6 +16,9 @@ module Vedeu
       instance_eval(&block) if block_given?
     end
 
+    # @param []
+    # @param []
+    # @return []
     def add(object, &block)
       @self_before_instance_eval = eval('self', block.binding)
 
@@ -84,5 +90,6 @@ module Vedeu
     def method_missing(method, *args, &block)
       @self_before_instance_eval.send(method, *args, &block)
     end
+
   end
 end

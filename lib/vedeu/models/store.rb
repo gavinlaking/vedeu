@@ -1,7 +1,10 @@
 module Vedeu
   module Store
+
     extend self
 
+    # @param []
+    # @return []
     def create(attributes)
       storage.store(attributes[:name], attributes)
 
@@ -10,10 +13,13 @@ module Vedeu
       storage
     end
 
+    # @param []
+    # @return []
     def query(name)
       storage.fetch(name) { fail EntityNotFound, 'Interface was not found.' }
     end
 
+    # @return []
     def reset
       @storage = {}
     end
@@ -23,5 +29,6 @@ module Vedeu
     def storage
       @storage ||= {}
     end
+
   end
 end
