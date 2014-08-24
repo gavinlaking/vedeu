@@ -3,8 +3,8 @@ module Vedeu
 
     attr_reader :attributes, :centred, :height, :width
 
-    # @param  []
-    # @return []
+    # @param attributes [Hash]
+    # @return [Geometry]
     def initialize(attributes = {})
       @attributes = defaults.merge!(attributes)
 
@@ -13,7 +13,7 @@ module Vedeu
       @width   = @attributes[:width]
     end
 
-    # @return []
+    # @return [Fixnum]
     def y
       if attributes[:y].is_a?(Proc)
         attributes[:y].call
@@ -24,7 +24,7 @@ module Vedeu
       end
     end
 
-    # @return []
+    # @return [Fixnum]
     def x
       if attributes[:x].is_a?(Proc)
         attributes[:x].call
@@ -35,7 +35,7 @@ module Vedeu
       end
     end
 
-    # @return []
+    # @return [Fixnum]
     def viewport_width
       if (x + width) > Terminal.width
         width - ((x + width) - Terminal.width)
@@ -46,7 +46,7 @@ module Vedeu
       end
     end
 
-    # @return []
+    # @return [Fixnum]
     def viewport_height
       if (y + height) > Terminal.height
         height - ((y + height) - Terminal.height)
@@ -57,14 +57,14 @@ module Vedeu
       end
     end
 
-    # @param []
-    # @param []
-    # @return []
+    # @param index [Fixnum]
+    # @param block [Proc]
+    # @return [String]
     def origin(index = 0, &block)
       Esc.set_position(virtual_y[index], left, &block)
     end
 
-    # @return []
+    # @return [Fixnum]
     def top
       if centred
         centre_y - (viewport_height / 2)
@@ -75,13 +75,13 @@ module Vedeu
       end
     end
 
-    # @param []
-    # @return []
+    # @param value [Fixnum]
+    # @return [Fixnum]
     def north(value = 1)
       top - value
     end
 
-    # @return []
+    # @return [Fixnum]
     def left
       if centred
         centre_x - (viewport_width / 2)
@@ -92,30 +92,30 @@ module Vedeu
       end
     end
 
-    # @param []
-    # @return []
+    # @param value [Fixnum]
+    # @return [Fixnum]
     def west(value = 1)
       left - value
     end
 
-    # @return []
+    # @return [Fixnum]
     def bottom
       top + height
     end
 
-    # @param []
-    # @return []
+    # @param value [Fixnum]
+    # @return [Fixnum]
     def south(value = 1)
       bottom + value
     end
 
-    # @return []
+    # @return [Fixnum]
     def right
       left + width
     end
 
-    # @param []
-    # @return []
+    # @param value [Fixnum]
+    # @return [Fixnum]
     def east(value = 1)
       right + value
     end

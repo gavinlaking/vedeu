@@ -1,19 +1,19 @@
 module Vedeu
   class ColourTranslator
 
-    # @param  [String]
-    # @return []
+    # @param colour [String]
+    # @return [String]
     def self.escape_sequence(colour = '')
       new(colour).escape_sequence
     end
 
-    # @param  [String]
-    # @return []
+    # @param colour [String]
+    # @return [ColourTranslator]
     def initialize(colour = '')
       @colour = colour
     end
 
-    # @return []
+    # @return [String]
     def escape_sequence
       if no_colour?
         ''

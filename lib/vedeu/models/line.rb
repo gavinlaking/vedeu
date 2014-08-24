@@ -4,16 +4,16 @@ module Vedeu
 
     attr_reader :attributes
 
-    # @param []
-    # @param []
-    # @return []
+    # @param attributes [Hash]
+    # @param block [Proc]
+    # @return [Hash]
     def self.build(attributes = {}, &block)
       new(attributes, &block).attributes
     end
 
-    # @param []
-    # @param []
-    # @return []
+    # @param attributes [Hash]
+    # @param block [Proc]
+    # @return [Line]
     def initialize(attributes = {}, &block)
       @attributes = defaults.merge!(attributes)
 

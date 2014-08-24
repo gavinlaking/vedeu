@@ -19,14 +19,14 @@ end
 module Vedeu
   class Grid
 
-    # @param []
+    # @param value [Fixnum]
     # @return []
     def self.columns(value)
       new(value).columns
     end
 
-    # @param []
-    # @return []
+    # @param value [Fixnum]
+    # @return [Grid]
     def initialize(value)
       @value = value
     end

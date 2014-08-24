@@ -2,14 +2,14 @@ module Vedeu
   class Application
 
     # :nocov:
-    # @param []
+    # @param options [Hash]
     # @return []
     def self.start(options = {})
       new(options).start
     end
 
-    # @param []
-    # @return []
+    # @param options [Hash]
+    # @return [Application]
     def initialize(options = {})
       @options = options
     end

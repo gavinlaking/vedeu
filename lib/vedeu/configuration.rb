@@ -1,25 +1,25 @@
 module Vedeu
   class Configuration
 
-    # @param []
-    # @return []
+    # @param args [Array]
+    # @return [Hash]
     def self.configure(args = [])
       new(args).configure
     end
 
-    # @return []
+    # @return [Hash]
     def self.options
       new.options
     end
 
-    # @param []
-    # @return []
+    # @param args [Array]
+    # @return [Configuration]
     def initialize(args = [])
       @_options = {}
       @args     = args
     end
 
-    # @return []
+    # @return [Hash]
     def configure
       parser = OptionParser.new do |opts|
         opts.banner = "Usage: #{$PROGRAM_NAME} [options]"
@@ -58,7 +58,7 @@ module Vedeu
       _options
     end
 
-    # @return []
+    # @return [Hash]
     def options
       @options ||= defaults.merge!(@_options)
     end

@@ -1,5 +1,9 @@
 module Vedeu
   class Event
+
+    # @param closure [Proc]
+    # @param options [Hash]
+    # @return [Event]
     def initialize(closure, options = {})
       @closure      = closure
       @options      = options
@@ -8,6 +12,8 @@ module Vedeu
       @now          = 0
     end
 
+    # @params args [Array]
+    # @return []
     def trigger(*args)
       return execute(*args) unless debouncing? || throttling?
 

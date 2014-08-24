@@ -3,8 +3,8 @@ module Vedeu
     class Interface < Vedeu::Interface
       include Helpers
 
-      # @param []
-      # @param []
+      # @param attributes [Hash]
+      # @param block [Proc]
       # @return []
       def self.define(attributes = {}, &block)
         new(attributes).define(&block)
@@ -99,6 +99,7 @@ module Vedeu
       # Define the starting x position (column) of the interface.
       #
       # @param value [Fixnum]
+      # @param block [Proc]
       #
       # @example
       #   TODO
@@ -119,6 +120,7 @@ module Vedeu
       # Define the starting y position (row/line) of the interface.
       #
       # @param value [Fixnum]
+      # @param block [Proc]
       #
       # @example
       #   TODO

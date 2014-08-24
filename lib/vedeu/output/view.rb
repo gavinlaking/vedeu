@@ -3,24 +3,24 @@ module Vedeu
 
     include Vedeu::API
 
-    # @param []
-    # @return []
+    # @param object []
+    # @return [Array]
     def self.render(object = nil)
       new(object).render
     end
 
-    # @param []
-    # @return []
+    # @param object []
+    # @return [View]
     def initialize(object = nil)
       @object = object
     end
 
-    # @return []
+    # @return [Array]
     def render
       interfaces.map { |interface| Buffers.enqueue(interface.name, interface) }
     end
 
-    # @return []
+    # @return [Exception]
     def output
       fail NotImplemented, 'Implement #output on your subclass of Vedeu::View.'
     end
