@@ -3,25 +3,24 @@ module Vedeu
 
     extend self
 
-    # @param []
+    # @param interface [Interface]
     # @return []
     def create(interface)
       store(interface.name, Buffer.new({
-                              interface: interface,
-                              name:      interface.name,
-                              current:   nil,
-                              group:     interface.group,
-                              next:      nil
-                            }))
+                              back:      nil,
+                              front:     nil,
+                              interface: interface }))
 
-      create_events(interface.name, interface.group, interface.delay)
+      groups[interface.group] << interface.name unless interface.group.empty?
+
+      create_events(interface)
     end
 
-    # @param []
-    # @param []
+    # @param name [String]
+    # @param view [Interface]
     # @return []
-    def enqueue(name, sequence)
-      store(name, query(name).enqueue(sequence))
+    def enqueue(name, view)
+      store(name, query(name).enqueue(view))
     end
 
     # @return [Array]
@@ -31,17 +30,23 @@ module Vedeu
 
     # @return [Hash]
     def reset
-      @buffers = {}
+      @_buffers = {}
     end
 
     private
 
-    def create_events(name, group, delay)
-      Vedeu.event("_refresh_#{name}_".to_sym, delay) { refresh(name) }
+    def create_events(interface)
+      delay = interface.delay
+      group = interface.group
+      name  = interface.name
+      refresh_name  = "_refresh_#{name}_".to_sym
+      refresh_group = "_refresh_group_#{group}_".to_sym
 
-      Vedeu.event("_refresh_group_#{group}_".to_sym, delay) do
-        refresh_group(group)
-      end unless group.nil? || group.empty?
+      Vedeu.event(refresh_name, delay) { refresh(name) }
+
+      unless group.empty?
+        Vedeu.event(refresh_group, delay) { refresh_group(group) }
+      end
     end
 
     def query(name)
@@ -50,22 +55,30 @@ module Vedeu
       }
     end
 
+    def query_groups(group_name)
+      groups.fetch(group_name) {
+        fail GroupNotFound, 'Cannot find interface group with this name.'
+      }
+    end
+
     def refresh(name)
       store(name, query(name).refresh)
     end
 
-    def refresh_group(group)
-      buffers.select.map do |name, buffer|
-        name if buffer.group == group
-      end.compact.map { |name| refresh(name) }
+    def refresh_group(group_name)
+      query_groups(group_name).map { |name| refresh(name) }
     end
 
     def store(name, buffer)
       buffers.store(name, buffer)
     end
 
+    def groups
+      @_groups ||= Hash.new { |hash, key| hash[key] = [] }
+    end
+
     def buffers
-      @buffers ||= {}
+      @_buffers ||= {}
     end
 
   end

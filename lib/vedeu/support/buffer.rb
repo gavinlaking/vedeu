@@ -1,48 +1,46 @@
 module Vedeu
   class Buffer
 
-    attr_reader :current, :group, :interface, :name, :_next
+    attr_reader :back, :front, :interface
 
-    # @param []
-    # @return []
-    def initialize(vars)
-      @vars    = vars
-      @name    = vars.fetch(:name)
-      @group   = vars.fetch(:group)
-      @current = vars.fetch(:current)
+    # @param attributes [Hash]
+    # @return [Buffer]
+    def initialize(attributes = {})
+      @attributes = attributes
 
-      @interface = vars.fetch(:interface)
-      @_next   = vars.fetch(:next)
+      @back       = attributes.fetch(:back)
+      @front      = attributes.fetch(:front)
+      @interface  = attributes.fetch(:interface)
     end
 
-    # @param []
-    # @return []
-    def enqueue(sequence)
-      merge({ next: sequence })
+    # @param view [Interface]
+    # @return [Buffer]
+    def enqueue(view)
+      merge({ back: view })
     end
 
-    # @return []
+    # @return [Buffer]
     def refresh
-      sequence = if _next
-        merge({ current: _next, next: nil }).current.to_s
+      view = if back
+        merge({ front: back, back: nil }).front.to_s
 
-      elsif current.nil?
+      elsif front.nil?
         interface.clear
 
       else
-        current.to_s
+        front.to_s
 
       end
 
-      Terminal.output(sequence)
+      Terminal.output(view)
 
       self
     end
 
     private
 
-    def merge(vars)
-      Buffer.new(@vars.merge(vars))
+    def merge(new_attributes)
+      Buffer.new(@attributes.merge(new_attributes))
     end
 
   end
