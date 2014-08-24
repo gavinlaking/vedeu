@@ -21,10 +21,10 @@ module Vedeu
 
     # @return [Buffer]
     def refresh
-      view = if back
+      view = if content_available?
         merge({ front: back, back: nil }).front.to_s
 
-      elsif front.nil?
+      elsif no_content_available?
         interface.clear
 
       else
@@ -41,6 +41,14 @@ module Vedeu
 
     def merge(new_attributes)
       Buffer.new(@attributes.merge(new_attributes))
+    end
+
+    def content_available?
+      !!(back)
+    end
+
+    def no_content_available?
+      front.nil?
     end
 
   end
