@@ -2,7 +2,7 @@ require 'test_helper'
 
 module Vedeu
   describe Clear do
-    before { Store.reset }
+    before { Buffers.reset }
 
     describe '#initialize' do
       it 'returns an instance of itself' do

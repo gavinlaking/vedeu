@@ -131,7 +131,7 @@ module Vedeu
     #
     # @return [Vedeu::Interface]
     def use(name)
-      Vedeu::Interface.new(Vedeu::Store.query(name))
+      Vedeu::Interface.new(Vedeu::Buffers.retrieve_attributes(name))
     end
 
     # Define a view (content) for an interface. TODO: More help.

@@ -30,7 +30,7 @@ module Vedeu
 
       else
         [ attributes[:interfaces] ].flatten.map do |attrs|
-          stored = Store.query(attrs[:name])
+          stored = Buffers.retrieve_attributes(attrs[:name])
 
           combined = stored.merge(attrs) do |key, s, a|
             key == :lines && s.empty? ? a : s

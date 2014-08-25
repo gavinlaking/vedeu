@@ -19,7 +19,14 @@ module Vedeu
       def define(&block)
         instance_eval(&block) if block_given?
 
-        Vedeu::Store.create(attributes)
+        Vedeu::Buffers.create(attributes)
+
+        Vedeu.event("_refresh_#{attributes[:name]}_".to_sym,
+                    { delay: attributes[:delay] }) do
+          Vedeu::Buffers.refresh(attributes[:name])
+        end
+
+        true
       end
 
       # Define a single line in a view.

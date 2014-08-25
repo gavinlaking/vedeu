@@ -4,7 +4,6 @@ module Vedeu
   ModeSwitch     = Class.new(StandardError)
   NotImplemented = Class.new(StandardError)
   OutOfRange     = Class.new(StandardError)
-  RefreshFailed  = Class.new(StandardError)
 
   def self.included(receiver)
     receiver.send(:include, API)
@@ -32,7 +31,6 @@ require 'vedeu/models/colour'
 require 'vedeu/models/style'
 require 'vedeu/models/interface'
 require 'vedeu/models/line'
-require 'vedeu/models/store'
 require 'vedeu/models/stream'
 
 require 'vedeu/api/api'
@@ -45,6 +43,7 @@ require 'vedeu/api/stream'
 require 'vedeu/application'
 require 'vedeu/launcher'
 
+require 'vedeu/support/groups'
 require 'vedeu/output/buffers'
 require 'vedeu/output/clear'
 require 'vedeu/output/render'

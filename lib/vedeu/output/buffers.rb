@@ -3,24 +3,53 @@ module Vedeu
 
     extend self
 
+    # @param attributes [Hash]
+    # @return [Hash]
+    def create(attributes)
+      store_attributes(attributes)
+
+      groups.add(attributes[:group], attributes[:name], attributes[:delay])
+
+      store_interface(Interface.new(attributes))
+    end
+
+    # @return [Hash]
+    def reset
+      @_storage = {}
+      @_buffers = {}
+      groups.reset
+    end
+
+    # @param name [String]
+    # @return [Hash]
+    def retrieve_attributes(name)
+      storage.fetch(name) { fail EntityNotFound, 'Interface was not found.' }
+    end
+
+    # @param name [String]
+    # @return [Buffer]
+    def retrieve_interface(name)
+      buffers.fetch(name) { fail EntityNotFound, 'Interface was not found.' }
+    end
+
+    # @param attributes [Hash]
+    # @return [Hash]
+    def store_attributes(attributes)
+      storage.store(attributes[:name], attributes)
+    end
+
     # @param interface [Interface]
-    # @return []
-    def create(interface)
-      store(interface.name, Buffer.new({
-                              back:      nil,
-                              front:     nil,
-                              interface: interface }))
-
-      groups[interface.group] << interface.name unless interface.group.empty?
-
-      create_events(interface)
+    # @return [Buffer]
+    def store_interface(interface)
+      update(interface.name,
+        Buffer.new(interface: interface, back: nil, front: nil))
     end
 
     # @param name [String]
     # @param view [Interface]
     # @return []
     def enqueue(name, view)
-      store(name, query(name).enqueue(view))
+      update(name, retrieve_interface(name).enqueue(view))
     end
 
     # @return [Array]
@@ -28,57 +57,31 @@ module Vedeu
       buffers.keys.map { |name| refresh(name) }
     end
 
-    # @return [Hash]
-    def reset
-      @_buffers = {}
+    # @return [Array]
+    def refresh_group(group_name)
+      groups.find(group_name).map { |name| refresh(name) }
+    end
+
+    def refresh(name)
+      update(name, retrieve_interface(name).refresh)
     end
 
     private
 
-    def create_events(interface)
-      delay = interface.delay
-      group = interface.group
-      name  = interface.name
-      refresh_name  = "_refresh_#{name}_".to_sym
-      refresh_group = "_refresh_group_#{group}_".to_sym
-
-      Vedeu.event(refresh_name, delay) { refresh(name) }
-
-      unless group.empty?
-        Vedeu.event(refresh_group, delay) { refresh_group(group) }
-      end
-    end
-
-    def query(name)
-      buffers.fetch(name) {
-        fail RefreshFailed, 'Cannot refresh non-existent interface.'
-      }
-    end
-
-    def query_groups(group_name)
-      groups.fetch(group_name) {
-        fail GroupNotFound, 'Cannot find interface group with this name.'
-      }
-    end
-
-    def refresh(name)
-      store(name, query(name).refresh)
-    end
-
-    def refresh_group(group_name)
-      query_groups(group_name).map { |name| refresh(name) }
-    end
-
-    def store(name, buffer)
+    def update(name, buffer)
       buffers.store(name, buffer)
     end
 
     def groups
-      @_groups ||= Hash.new { |hash, key| hash[key] = [] }
+      @_groups ||= Groups.new
     end
 
     def buffers
       @_buffers ||= {}
+    end
+
+    def storage
+      @_storage ||= {}
     end
 
   end
