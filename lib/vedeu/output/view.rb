@@ -6,7 +6,7 @@ module Vedeu
     # @param object []
     # @return [Array]
     def self.render(object = nil)
-      new(object).render
+      new(object).enqueue
     end
 
     # @param object []
@@ -16,14 +16,15 @@ module Vedeu
     end
 
     # @return [Array]
-    def render
+    def enqueue
       interfaces.map { |interface| Buffers.enqueue(interface.name, interface) }
     end
 
     # @return [Exception]
-    def output
-      fail NotImplemented, 'Implement #output on your subclass of Vedeu::View.'
+    def render
+      fail NotImplemented, 'Implement #render on your subclass of Vedeu::View.'
     end
+    alias_method :output, :render
 
     private
 
@@ -38,7 +39,7 @@ module Vedeu
     end
 
     def attributes
-      output
+      render
     end
 
   end
