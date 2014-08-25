@@ -1,7 +1,13 @@
 module Vedeu
   class Groups
 
+    # @return [Groups]
     def initialize; end
+
+    # @return [Set]
+    def all
+      @_storage
+    end
 
     # @param name [String]
     # @return [Set]
@@ -15,7 +21,7 @@ module Vedeu
     # @param name [String]
     # @param delay [Float]
     # @return [Groups|FalseClass]
-    def add(group, name, delay)
+    def add(group, name, delay = 0.0)
       return false if group.empty?
 
       storage[group] << name
