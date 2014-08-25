@@ -63,18 +63,6 @@ module Vedeu
       end
     end
 
-    describe '#colour' do
-      it 'returns the value' do
-        interface.colour.must_be_instance_of(Colour)
-      end
-    end
-
-    describe '#style' do
-      it 'returns the value' do
-        interface.style.must_be_instance_of(Style)
-      end
-    end
-
     describe '#geometry' do
       it 'returns the value' do
         interface.geometry.must_be_instance_of(Geometry)

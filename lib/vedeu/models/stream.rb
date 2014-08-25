@@ -1,6 +1,7 @@
 module Vedeu
   class Stream
     include Coercions
+    include Presentation
 
     attr_reader :attributes, :align, :text, :width
 
@@ -25,16 +26,6 @@ module Vedeu
 
         instance_eval(&block)
       end
-    end
-
-    # @return [Colour]
-    def colour
-      @colour ||= Colour.new(attributes[:colour])
-    end
-
-    # @return [Style]
-    def style
-      @style ||= Style.new(attributes[:style])
     end
 
     # @return [String]

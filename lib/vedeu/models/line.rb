@@ -1,6 +1,7 @@
 module Vedeu
   class Line
     include Coercions
+    include Presentation
 
     attr_reader :attributes
 
@@ -24,19 +25,9 @@ module Vedeu
       end
     end
 
-    # @return [Colour]
-    def colour
-      @colour ||= Colour.new(attributes[:colour])
-    end
-
     # @return [Array]
     def streams
       @streams ||= Stream.coercer(attributes[:streams])
-    end
-
-    # @return [Style]
-    def style
-      @style ||= Style.new(attributes[:style])
     end
 
     # @return [String]
