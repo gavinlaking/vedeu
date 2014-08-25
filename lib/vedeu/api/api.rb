@@ -70,7 +70,7 @@ module Vedeu
     #      ... some interface attributes like width and height ...
     #   end
     #
-    # @return [Hash]
+    # @return [TrueClass]
     def interface(name, &block)
       API::Interface.define({ name: name }, &block)
     end
@@ -171,10 +171,16 @@ module Vedeu
     #     end
     #   end
     #
+    #   composition do
+    #     view 'my_interface' do
+    #       ...
+    #   ...
+    #
     # @return [Hash]
     def views(&block)
       API::Composition.build(&block)
     end
+    alias_method :composition, :views
 
     # Find out how many columns the current terminal is able to display.
     #
