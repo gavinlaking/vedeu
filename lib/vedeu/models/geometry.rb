@@ -75,6 +75,15 @@ module Vedeu
       end
     end
 
+    # Returns the row above the top by default.
+    #
+    # @example
+    #   `top` is 4.
+    #
+    #   north     # => 3
+    #   north(2)  # => 2
+    #   north(-4) # => 8
+    #
     # @param value [Fixnum]
     # @return [Fixnum]
     def north(value = 1)
@@ -92,6 +101,15 @@ module Vedeu
       end
     end
 
+    # Returns the column before left by default.
+    #
+    # @example
+    #   `left` is 8.
+    #
+    #   west      # => 7
+    #   west(2)   # => 6
+    #   west(-4)  # => 12
+    #
     # @param value [Fixnum]
     # @return [Fixnum]
     def west(value = 1)
@@ -103,6 +121,15 @@ module Vedeu
       top + height
     end
 
+    # Returns the row below the bottom by default.
+    #
+    # @example
+    #   `bottom` is 12.
+    #
+    #   south     # => 13
+    #   south(2)  # => 14
+    #   south(-4) # => 8
+    #
     # @param value [Fixnum]
     # @return [Fixnum]
     def south(value = 1)
@@ -114,6 +141,15 @@ module Vedeu
       left + width
     end
 
+    # Returns the column after right by default.
+    #
+    # @example
+    #   `right` is 19.
+    #
+    #   east     # => 20
+    #   east(2)  # => 21
+    #   east(-4) # => 15
+    #
     # @param value [Fixnum]
     # @return [Fixnum]
     def east(value = 1)
