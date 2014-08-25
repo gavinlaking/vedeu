@@ -95,6 +95,40 @@ module Vedeu
       end
     end
 
+    describe '.views' do
+      it 'returns the view attributes for a composition (a collection of ' \
+         'interfaces)' do
+        Vedeu.views do
+          view 'osmium'
+          view 'iridium'
+        end.must_equal(
+          {
+            interfaces: [
+              {
+                name: "osmium",
+                group: "",
+                lines: [],
+                colour: {},
+                style: "",
+                geometry: {},
+                cursor: true,
+                delay: 0.0
+              }, {
+                name: "iridium",
+                group: "",
+                lines: [],
+                colour: {},
+                style: "",
+                geometry: {},
+                cursor: true,
+                delay: 0.0
+              }
+            ]
+          }
+        )
+      end
+    end
+
     describe '.width' do
       it 'returns the terminal width' do
         IO.console.stub(:winsize, [24, 40]) do
