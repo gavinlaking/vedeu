@@ -197,20 +197,6 @@ module Vedeu
         attributes[:geometry][:centred] = value
       end
 
-      # Define the default style attributes for an interface.
-      #
-      # @param value [Array|String]
-      #
-      # @example
-      #   interface 'my_interface' do
-      #     style ['underline', 'bold']
-      #     ...
-      #
-      # @return []
-      def style(value)
-        attributes[:style] = value
-      end
-
       private
 
       def out_of_bounds(name)
