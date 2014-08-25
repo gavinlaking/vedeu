@@ -141,17 +141,13 @@ module Vedeu
     # @param block [Proc] The directives you wish to send to this interface.
     #
     # @example
-    #   view 'my_inteface' do
+    #   view 'my_interface' do
     #     ... some view attributes ...
     #   end
     #
     # @return [Hash]
     def view(name, &block)
-      {
-        interfaces: [
-          API::Interface.build({ name: name }, &block)
-        ]
-      }
+      API::Composition.build { view(name, &block) }
     end
 
     # Instruct Vedeu to treat contents of block as a single composition.
