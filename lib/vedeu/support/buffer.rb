@@ -21,18 +21,19 @@ module Vedeu
 
     # @return [Buffer]
     def refresh
-      view = if content_available?
-        merge({ front: back, back: nil }).front.to_s
+      return merge({ front: back, back: nil }).render if content_available?
+      return clear                                    if no_content_available?
+      return render
+    end
 
-      elsif no_content_available?
-        interface.clear
+    def render
+      Terminal.output(front.to_s)
 
-      else
-        front.to_s
+      self
+    end
 
-      end
-
-      Terminal.output(view)
+    def clear
+      Terminal.output(interface.clear)
 
       self
     end

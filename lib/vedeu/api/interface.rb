@@ -112,15 +112,11 @@ module Vedeu
       #
       # @return []
       def x(value = 0, &block)
-        if block_given?
-          attributes[:geometry][:x] = block
+        return attributes[:geometry][:x] = block if block_given?
 
-        else
-          Vedeu.log(out_of_bounds('x')) if x_out_of_bounds?(value)
+        Vedeu.log(out_of_bounds('x')) if x_out_of_bounds?(value)
 
-          attributes[:geometry][:x] = value
-
-        end
+        attributes[:geometry][:x] = value
       end
 
       # Define the starting y position (row/line) of the interface.
@@ -140,15 +136,11 @@ module Vedeu
       #
       # @return []
       def y(value = 0, &block)
-        if block_given?
-          attributes[:geometry][:y] = block
+        return attributes[:geometry][:y] = block if block_given?
 
-        else
-          Vedeu.log(out_of_bounds('y')) if y_out_of_bounds?(value)
+        Vedeu.log(out_of_bounds('y')) if y_out_of_bounds?(value)
 
-          attributes[:geometry][:y] = value
-
-        end
+        attributes[:geometry][:y] = value
       end
 
       # Define the number of characters/columns wide the interface will be.

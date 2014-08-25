@@ -72,8 +72,7 @@ module Vedeu
     end
 
     def exceeds_width?(line)
-      content = line.streams.map(&:text).join
-      content.size > width
+      line.streams.map(&:text).join.size > width
     end
 
     def truncate(text, value)

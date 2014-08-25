@@ -22,9 +22,7 @@ module Vedeu
     end
 
     def background_codes
-      hash = {}
-      codes.map { |name, code| hash[name] = code + 10 }
-      hash
+      codes.inject({}){ |h, (k, v)| h.merge(k => v + 10) }
     end
 
   end
