@@ -85,9 +85,9 @@ module Vedeu
     #
     # @return []
     def keypress(key)
-      trigger(:key, key)
-      trigger(:_log_, "Key: #{key}")
-      trigger(:_mode_switch_) if key == :escape
+      Vedeu.events.trigger(:key, key)
+      Vedeu.events.trigger(:_log_, "Key: #{key}")
+      Vedeu.events.trigger(:_mode_switch_) if key == :escape
     end
 
     # Write a message to the Vedeu log file located at `$HOME/.vedeu/vedeu.log`
