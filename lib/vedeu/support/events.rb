@@ -24,6 +24,13 @@ module Vedeu
       handlers[name]
     end
 
+    # Returns a collection of the names of all the registered events.
+    #
+    # @return [Array]
+    def registered
+      handlers.keys
+    end
+
     # @see Vedeu::API#trigger
     def trigger(name, *args)
       handlers[name][:events].each { |event| event.trigger(*args) }

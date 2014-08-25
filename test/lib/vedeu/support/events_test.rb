@@ -16,6 +16,14 @@ module Vedeu
       end
     end
 
+    describe '#registered' do
+      it 'returns all the registered events by name' do
+        events = Events.new
+        events.event(:some_event) { proc { |x| x } }
+        events.registered.must_equal([:some_event])
+      end
+    end
+
     describe '#trigger' do
       it 'returns a collection containing the event when the event is ' \
          'pre-registered' do
