@@ -102,7 +102,13 @@ module Vedeu
       # @param block [Proc]
       #
       # @example
-      #   TODO
+      #   interface 'my_interface' do
+      #     x 7 # start on column 7.
+      #
+      #   interface 'other_interface' do
+      #     x { use('my_interface').east } # start on column 8, if
+      #                                    # `my_interface` changes position,
+      #                                    # `other_interface` will too.
       #
       # @return []
       def x(value = 0, &block)
@@ -123,7 +129,14 @@ module Vedeu
       # @param block [Proc]
       #
       # @example
-      #   TODO
+      #   interface 'my_interface' do
+      #     y  4
+      #     ...
+      #
+      #   interface 'other_interface' do
+      #     y  { use('my_interface').north } # start on row/line 3, if
+      #     ...                              # `my_interface` changes position,
+      #                                      # `other_interface` will too.
       #
       # @return []
       def y(value = 0, &block)
@@ -143,7 +156,9 @@ module Vedeu
       # @param value [Fixnum]
       #
       # @example
-      #   TODO
+      #   interface 'my_interface' do
+      #     width 25
+      #     ...
       #
       # @return []
       def width(value)
@@ -157,7 +172,9 @@ module Vedeu
       # @param value [Fixnum]
       #
       # @example
-      #   TODO
+      #   interface 'my_interface' do
+      #     height 8
+      #     ...
       #
       # @return []
       def height(value)
@@ -172,7 +189,9 @@ module Vedeu
       # @param value [Boolean]
       #
       # @example
-      #   TODO
+      #   interface 'my_interface' do
+      #     centred true
+      #     ...
       #
       # @return []
       def centred(value)
@@ -184,7 +203,9 @@ module Vedeu
       # @param value [Array|String]
       #
       # @example
-      #   TODO
+      #   interface 'my_interface' do
+      #     style ['underline', 'bold']
+      #     ...
       #
       # @return []
       def style(value)

@@ -11,7 +11,10 @@ module Vedeu
       #   left align.
       #
       # @example
-      #   TODO
+      #   ...
+      #     stream do
+      #       align :right
+      #       ...
       #
       # @return [Symbol]
       def align(value)
@@ -25,7 +28,10 @@ module Vedeu
       #   truncated and ellipsized.
       #
       # @example
-      #   TODO
+      #   ...
+      #     stream do
+      #       text 'Some text to display...'
+      #       ...
       #
       # @return [String]
       def text(value)
@@ -39,7 +45,10 @@ module Vedeu
       # @param value [Fixnum] The width in characters.
       #
       # @example
-      #   TODO
+      #   ...
+      #     stream do
+      #       width 20
+      #       ...
       #
       # @return [Fixnum]
       def width(value)

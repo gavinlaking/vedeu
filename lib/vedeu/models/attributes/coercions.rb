@@ -2,6 +2,9 @@ module Vedeu
   module Coercions
     module ClassMethods
 
+      # Produces new objects of the correct class from attributes hashes,
+      # ignores objects that have already been coerced.
+      #
       # @param values [Array|Hash]
       # @return [Array]
       def coercer(values)

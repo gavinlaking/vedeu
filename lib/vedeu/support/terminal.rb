@@ -79,7 +79,7 @@ module Vedeu
       Esc.set_position((height - 1), 1) + Esc.string('clear_line')
     end
 
-    # @return []
+    # @return [Fixnum]
     def colour_mode
       Configuration.options[:colour_mode]
     end

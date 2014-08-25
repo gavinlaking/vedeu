@@ -11,7 +11,7 @@ module Vedeu
       #   ...
       #     line do
       #       stream do
-      #         ...
+      #         ... other stream directives ...
       #       end
       #     end
       #   ...
@@ -28,7 +28,9 @@ module Vedeu
       # @param value [String]
       #
       # @example
-      #   TODO: add an example
+      #   ...
+      #     line do
+      #       text 'Some text to display...'
       #
       # @return [Array]
       def text(value)
@@ -39,7 +41,10 @@ module Vedeu
       # @param block [Proc]
       #
       # @example
-      #   TODO: add an example
+      #   ...
+      #     line do
+      #       foreground '#00ff00' do
+      #         ... other stream directives ...
       #
       # @return [Array]
       def foreground(value = '', &block)
@@ -52,7 +57,10 @@ module Vedeu
       # @param block [Proc]
       #
       # @example
-      #   TODO: add an example
+      #   ...
+      #     line do
+      #       background '#0022ff' do
+      #         ... other stream directives ...
       #
       # @return [Array]
       def background(value = '', &block)
