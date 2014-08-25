@@ -121,15 +121,5 @@ module Vedeu
       }
     end
 
-    def options
-
-    end
-
-    def defaults
-      {
-
-      }
-    end
-
   end
 end
