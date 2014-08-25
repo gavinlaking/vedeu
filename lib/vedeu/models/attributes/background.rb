@@ -12,7 +12,7 @@ module Vedeu
     end
 
     def rgb
-      if Terminal.colour_mode == 24
+      if Terminal.colour_mode == 16777216
         sprintf("\e[48;2;%s;%s;%sm", *css_to_rgb)
 
       else

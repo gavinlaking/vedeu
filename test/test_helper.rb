@@ -13,6 +13,8 @@ require 'mocha/setup'
 
 GC.disable
 
+ENV['VEDEUTERM'] = 'xterm-truecolor'
+
 require 'vedeu'
 
 # commented out by default (makes tests slower)
