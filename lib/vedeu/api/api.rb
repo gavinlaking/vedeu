@@ -46,6 +46,10 @@ module Vedeu
       Vedeu.events.event(name, opts = {}, &block)
     end
 
+    # def focus(name)
+    #   Focus.by_name(name)
+    # end
+
     # Find out how many lines the current terminal is able to display.
     #
     # @example

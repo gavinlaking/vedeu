@@ -45,6 +45,7 @@ require 'vedeu/api/stream'
 require 'vedeu/application'
 require 'vedeu/launcher'
 
+require 'vedeu/support/focus'
 require 'vedeu/support/groups'
 require 'vedeu/support/buffers'
 require 'vedeu/support/clear'

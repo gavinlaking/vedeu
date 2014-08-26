@@ -18,8 +18,9 @@ module Vedeu
 
     describe '#registered' do
       it 'returns all the registered events by name' do
-        events = Events.new
-        events.event(:some_event) { proc { |x| x } }
+        events = Events.new do
+          event(:some_event) { proc { |x| x } }
+        end
         events.registered.must_equal([:some_event])
       end
     end
@@ -36,6 +37,15 @@ module Vedeu
       it 'returns an empty collection when the event has not been registered' do
         events = Events.new
         events.trigger(:_not_found_).must_be_empty
+      end
+    end
+
+    describe '#reset' do
+      it 'removes all events registered' do
+        events = Events.new do
+          event(:some_event) { proc { |x| x } }
+        end
+        events.reset.must_equal({})
       end
     end
   end

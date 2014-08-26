@@ -36,6 +36,10 @@ module Vedeu
       handlers[name][:events].each { |event| event.trigger(*args) }
     end
 
+    def reset
+      @handlers = Hash.new { |hash, key| hash[key] = { events: [] } }
+    end
+
     private
 
     attr_reader :handlers
