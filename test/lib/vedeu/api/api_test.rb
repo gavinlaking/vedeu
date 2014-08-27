@@ -51,12 +51,6 @@ module Vedeu
       end
     end
 
-    describe '.log' do
-      it 'returns true after writing the message to the log' do
-        Vedeu.log('some message').must_equal(true)
-      end
-    end
-
     describe '.trigger' do
       it 'triggers the specifed event and returns the collection of events' \
          ' which this trigger triggers' do
