@@ -62,6 +62,8 @@ module Vedeu
       groups.find(group_name).map { |name| refresh(name) }
     end
 
+    # @param name [String]
+    # @return []
     def refresh(name)
       update(name, retrieve_interface(name).refresh)
     end

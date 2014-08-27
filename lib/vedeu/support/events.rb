@@ -45,6 +45,9 @@ module Vedeu
       handlers[name][:events].each { |event| event.trigger(*args) }
     end
 
+    # Remove all registered events. Used for testing purposes.
+    #
+    # @return []
     def reset
       @handlers = Hash.new { |hash, key| hash[key] = { events: [] } }
     end
