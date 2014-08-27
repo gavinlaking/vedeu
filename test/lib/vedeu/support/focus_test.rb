@@ -4,7 +4,11 @@ require 'test_helper'
 
 module Vedeu
   describe Focus do
-    before { Vedeu.events.reset }
+    before do
+      Vedeu.unevent(:_focus_next_)
+      Vedeu.unevent(:_focus_prev_)
+      Vedeu.unevent(:_focus_by_name_)
+    end
 
     describe '#add' do
       it 'adds an interface to storage unfocussed' do
@@ -13,20 +17,29 @@ module Vedeu
       end
 
       it 'does not add it again if already exists' do
-        focus = Focus.new(['thallium'])
+        focus = Focus.new
+        focus.add('thallium')
         focus.add('thallium').must_equal(['thallium'])
       end
     end
 
     describe '#by_name' do
       it 'the named interface is focussed when the method is called' do
-        focus = Focus.new(['thallium', 'lead', 'bismuth'])
+        focus = Focus.new
+        focus.add('thallium')
+        focus.add('lead')
+        focus.add('bismuth')
         focus.by_name('bismuth').must_equal('bismuth')
       end
 
       it 'the named interface is focussed when the event is triggered' do
-        focus = Focus.new(['thallium', 'lead', 'bismuth'])
+        focus = Focus.new
+        focus.add('thallium')
+        focus.add('lead')
+        focus.add('bismuth')
+
         Vedeu.trigger(:_focus_by_name_, 'lead')
+
         focus.current.must_equal('lead')
       end
 
@@ -43,7 +56,10 @@ module Vedeu
 
     describe '#current' do
       it 'returns the name of the interface currently in focus' do
-        focus = Focus.new(['thallium', 'lead', 'bismuth'])
+        focus = Focus.new
+        focus.add('thallium')
+        focus.add('lead')
+        focus.add('bismuth')
         focus.current.must_equal('thallium')
       end
 
@@ -55,26 +71,42 @@ module Vedeu
 
     describe '#next_item' do
       it 'the next interface is focussed when the method is called' do
-        focus = Focus.new(['thallium', 'lead', 'bismuth'])
+        focus = Focus.new
+        focus.add('thallium')
+        focus.add('lead')
+        focus.add('bismuth')
         focus.next_item.must_equal('lead')
       end
 
       it 'the next interface is focussed when the event is triggered' do
-        focus = Focus.new(['thallium', 'lead', 'bismuth'])
+        focus = Focus.new
+        focus.add('thallium')
+        focus.add('lead')
+        focus.add('bismuth')
+
         Vedeu.trigger(:_focus_next_)
+
         focus.current.must_equal('lead')
       end
     end
 
     describe '#prev_item' do
       it 'the previous interface is focussed when the method is called' do
-        focus = Focus.new(['thallium', 'lead', 'bismuth'])
+        focus = Focus.new
+        focus.add('thallium')
+        focus.add('lead')
+        focus.add('bismuth')
         focus.prev_item.must_equal('bismuth')
       end
 
       it 'the previous interface is focussed when the event is triggered' do
-        focus = Focus.new(['thallium', 'lead', 'bismuth'])
+        focus = Focus.new
+        focus.add('thallium')
+        focus.add('lead')
+        focus.add('bismuth')
+
         Vedeu.trigger(:_focus_prev_)
+
         focus.current.must_equal('bismuth')
       end
     end

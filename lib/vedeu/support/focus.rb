@@ -5,9 +5,7 @@ module Vedeu
   # Maintains which interface is current in focus.
   class Focus
 
-    def initialize(storage = [])
-      @storage = storage
-
+    def initialize
       register_events
 
       self
