@@ -2,17 +2,24 @@ require 'test_helper'
 
 module Vedeu
   describe API do
+    let(:event) { mock('Event') }
+
+    before { Event.stubs(:new).returns(event) }
+
     describe '.event' do
-      let(:event) { mock('Event') }
-
-      before { Event.stubs(:new).returns(event) }
-
       it 'registers and returns the event' do
         Vedeu.event(:some_event).must_equal(
           {
             events: [event],
           }
         )
+      end
+    end
+
+    describe '.unevent' do
+      it 'unregister the event by name' do
+        Vedeu.event(:calcium) { proc { |x| x } }
+        Vedeu.unevent(:calcium).wont_include(:calcium)
       end
     end
 
@@ -35,36 +42,19 @@ module Vedeu
     end
 
     describe '.interface' do
-      it 'returns the all of the defined interfaces attributes after defining' \
-         ' the interface' do
-        Vedeu::Store.reset
+      it 'creates and stores a new interface' do
+        Vedeu::Buffers.reset
 
-        Vedeu.interface('Vedeu.interface').must_equal(
-          {
-            "Vedeu.interface" => {
-              name: "Vedeu.interface",
-              group: "",
-              lines: [],
-              colour: {},
-              style: "",
-              geometry: {},
-              cursor: true,
-              delay: 0.0
-            }
-          }
-        )
+        Vedeu.interface('Vedeu.interface').must_equal(true)
       end
     end
 
     describe '.keypress' do
-      it 'returns' do
-        Vedeu.keypress('k').must_equal(nil)
-      end
-    end
+      before { event.stubs(:trigger).returns(nil) }
 
-    describe '.log' do
-      it 'returns true after writing the message to the log' do
-        Vedeu.log('some message').must_equal(true)
+      it 'returns nil' do
+        skip
+        Vedeu.keypress('k').must_equal(nil)
       end
     end
 
@@ -77,7 +67,7 @@ module Vedeu
 
     describe '.use' do
       it 'raises an exception if the interface has not been defined' do
-        Vedeu::Store.reset
+        Vedeu::Buffers.reset
 
         proc { Vedeu.use('some_interface') }.must_raise(Vedeu::EntityNotFound)
       end
@@ -102,6 +92,40 @@ module Vedeu
             cursor: true,
             delay: 0.0
           }] }
+        )
+      end
+    end
+
+    describe '.views' do
+      it 'returns the view attributes for a composition (a collection of ' \
+         'interfaces)' do
+        Vedeu.views do
+          view 'osmium'
+          view 'iridium'
+        end.must_equal(
+          {
+            interfaces: [
+              {
+                name: "osmium",
+                group: "",
+                lines: [],
+                colour: {},
+                style: "",
+                geometry: {},
+                cursor: true,
+                delay: 0.0
+              }, {
+                name: "iridium",
+                group: "",
+                lines: [],
+                colour: {},
+                style: "",
+                geometry: {},
+                cursor: true,
+                delay: 0.0
+              }
+            ]
+          }
         )
       end
     end

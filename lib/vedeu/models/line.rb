@@ -1,19 +1,20 @@
 module Vedeu
   class Line
     include Coercions
+    include Presentation
 
     attr_reader :attributes
 
-    # @param []
-    # @param []
-    # @return []
+    # @param attributes [Hash]
+    # @param block [Proc]
+    # @return [Hash]
     def self.build(attributes = {}, &block)
       new(attributes, &block).attributes
     end
 
-    # @param []
-    # @param []
-    # @return []
+    # @param attributes [Hash]
+    # @param block [Proc]
+    # @return [Line]
     def initialize(attributes = {}, &block)
       @attributes = defaults.merge!(attributes)
 
@@ -24,19 +25,9 @@ module Vedeu
       end
     end
 
-    # @return [Colour]
-    def colour
-      @colour ||= Colour.new(attributes[:colour])
-    end
-
     # @return [Array]
     def streams
       @streams ||= Stream.coercer(attributes[:streams])
-    end
-
-    # @return [Style]
-    def style
-      @style ||= Style.new(attributes[:style])
     end
 
     # @return [String]

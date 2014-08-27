@@ -2,7 +2,7 @@ require 'test_helper'
 
 module Vedeu
   class ViewTest < View
-    def output
+    def render
       { interfaces: [] }
     end
   end

@@ -11,7 +11,6 @@ module Vedeu
       #   interface 'my_interface' do
       #     colour background: '#000000', foreground: '#ffffff'
       #     ... some interface attributes ...
-      #   end
       #
       #   line do
       #     colour background: '#000000', foreground: '#ffffff'

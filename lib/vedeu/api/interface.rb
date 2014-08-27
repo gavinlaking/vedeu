@@ -3,8 +3,8 @@ module Vedeu
     class Interface < Vedeu::Interface
       include Helpers
 
-      # @param []
-      # @param []
+      # @param attributes [Hash]
+      # @param block [Proc]
       # @return []
       def self.define(attributes = {}, &block)
         new(attributes).define(&block)
@@ -19,7 +19,14 @@ module Vedeu
       def define(&block)
         instance_eval(&block) if block_given?
 
-        Vedeu::Store.create(attributes)
+        Vedeu::Buffers.create(attributes)
+
+        Vedeu.event("_refresh_#{attributes[:name]}_".to_sym,
+                    { delay: attributes[:delay] }) do
+          Vedeu::Buffers.refresh(attributes[:name])
+        end
+
+        true
       end
 
       # Define a single line in a view.
@@ -99,41 +106,48 @@ module Vedeu
       # Define the starting x position (column) of the interface.
       #
       # @param value [Fixnum]
+      # @param block [Proc]
       #
       # @example
-      #   TODO
+      #   interface 'my_interface' do
+      #     x 7 # start on column 7.
+      #
+      #   interface 'other_interface' do
+      #     x { use('my_interface').east } # start on column 8, if
+      #                                    # `my_interface` changes position,
+      #                                    # `other_interface` will too.
       #
       # @return []
       def x(value = 0, &block)
-        if block_given?
-          attributes[:geometry][:x] = block
+        return attributes[:geometry][:x] = block if block_given?
 
-        else
-          fail XOutOfBounds if x_out_of_bounds?(value)
+        Vedeu.log(out_of_bounds('x')) if x_out_of_bounds?(value)
 
-          attributes[:geometry][:x] = value
-
-        end
+        attributes[:geometry][:x] = value
       end
 
       # Define the starting y position (row/line) of the interface.
       #
       # @param value [Fixnum]
+      # @param block [Proc]
       #
       # @example
-      #   TODO
+      #   interface 'my_interface' do
+      #     y  4
+      #     ...
+      #
+      #   interface 'other_interface' do
+      #     y  { use('my_interface').north } # start on row/line 3, if
+      #     ...                              # `my_interface` changes position,
+      #                                      # `other_interface` will too.
       #
       # @return []
       def y(value = 0, &block)
-        if block_given?
-          attributes[:geometry][:y] = block
+        return attributes[:geometry][:y] = block if block_given?
 
-        else
-          fail YOutOfBounds if y_out_of_bounds?(value)
+        Vedeu.log(out_of_bounds('y')) if y_out_of_bounds?(value)
 
-          attributes[:geometry][:y] = value
-
-        end
+        attributes[:geometry][:y] = value
       end
 
       # Define the number of characters/columns wide the interface will be.
@@ -141,11 +155,13 @@ module Vedeu
       # @param value [Fixnum]
       #
       # @example
-      #   TODO
+      #   interface 'my_interface' do
+      #     width 25
+      #     ...
       #
       # @return []
       def width(value)
-        fail InvalidWidth if x_out_of_bounds?(value)
+        Vedeu.log(out_of_bounds('width')) if x_out_of_bounds?(value)
 
         attributes[:geometry][:width] = value
       end
@@ -155,11 +171,13 @@ module Vedeu
       # @param value [Fixnum]
       #
       # @example
-      #   TODO
+      #   interface 'my_interface' do
+      #     height 8
+      #     ...
       #
       # @return []
       def height(value)
-        fail InvalidHeight if y_out_of_bounds?(value)
+        Vedeu.log(out_of_bounds('height')) if y_out_of_bounds?(value)
 
         attributes[:geometry][:height] = value
       end
@@ -170,26 +188,21 @@ module Vedeu
       # @param value [Boolean]
       #
       # @example
-      #   TODO
+      #   interface 'my_interface' do
+      #     centred true
+      #     ...
       #
       # @return []
       def centred(value)
         attributes[:geometry][:centred] = value
       end
 
-      # Define the default style attributes for an interface.
-      #
-      # @param value [Array|String]
-      #
-      # @example
-      #   TODO
-      #
-      # @return []
-      def style(value)
-        attributes[:style] = value
-      end
-
       private
+
+      def out_of_bounds(name)
+        "Note: For this terminal, the value of '#{name}' may lead to content " \
+        "that is outside the viewable area."
+      end
 
       def y_out_of_bounds?(value)
         value < 1 || value > Terminal.height

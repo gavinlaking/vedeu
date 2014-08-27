@@ -5,9 +5,12 @@ module Vedeu
   class MonoLogger < Logger
     # Create a trappable Logger instance.
     #
-    # @param logdev [String|IO] The filename (String) or IO object (typically STDOUT, STDERR or an open file).
-    # @param shift_age [] Number of old log files to keep, or frequency of rotation (daily, weekly, monthly).
-    # @param shift_size [] Maximum log file size (only applies when shift_age is a number).
+    # @param logdev [String|IO] The filename (String) or IO object (typically
+    #   STDOUT, STDERR or an open file).
+    # @param shift_age [] Number of old log files to keep, or frequency of
+    #   rotation (daily, weekly, monthly).
+    # @param shift_size [] Maximum log file size (only applies when shift_age
+    #   is a number).
     #
     # @example
     #   Logger.new(name, shift_age = 7, shift_size = 1048576)

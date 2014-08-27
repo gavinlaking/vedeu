@@ -16,6 +16,33 @@ module Vedeu
       end
     end
 
+    describe '#unevent' do
+      it 'removes the event by name' do
+        events = Events.new
+        events.event(:chlorine) { proc { |x| x } }
+        events.event(:argon)    { proc { |y| y } }
+        events.unevent(:chlorine)
+        events.registered.must_equal([:argon])
+      end
+
+      it 'removes the event by name only if the name exists' do
+        events = Events.new
+        events.event(:chlorine) { proc { |x| x } }
+        events.event(:argon)    { proc { |y| y } }
+        events.unevent(:potassium)
+        events.registered.must_equal([:chlorine, :argon])
+      end
+    end
+
+    describe '#registered' do
+      it 'returns all the registered events by name' do
+        events = Events.new do
+          event(:some_event) { proc { |x| x } }
+        end
+        events.registered.must_equal([:some_event])
+      end
+    end
+
     describe '#trigger' do
       it 'returns a collection containing the event when the event is ' \
          'pre-registered' do
@@ -28,6 +55,15 @@ module Vedeu
       it 'returns an empty collection when the event has not been registered' do
         events = Events.new
         events.trigger(:_not_found_).must_be_empty
+      end
+    end
+
+    describe '#reset' do
+      it 'removes all events registered' do
+        events = Events.new do
+          event(:some_event) { proc { |x| x } }
+        end
+        events.reset.must_equal({})
       end
     end
   end

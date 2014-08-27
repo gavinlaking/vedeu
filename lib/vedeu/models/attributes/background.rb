@@ -12,7 +12,7 @@ module Vedeu
     end
 
     def rgb
-      if Terminal.colour_mode == 24
+      if Terminal.colour_mode == 16777216
         sprintf("\e[48;2;%s;%s;%sm", *css_to_rgb)
 
       else
@@ -22,9 +22,7 @@ module Vedeu
     end
 
     def background_codes
-      hash = {}
-      codes.map { |name, code| hash[name] = code + 10 }
-      hash
+      codes.inject({}){ |h, (k, v)| h.merge(k => v + 10) }
     end
 
   end

@@ -18,21 +18,9 @@ module Vedeu
     let(:align) { :left }
     let(:width) { 9 }
 
-    describe '#colour' do
-      it 'has a colour attribute' do
-        stream.colour.must_be_instance_of(Colour)
-      end
-    end
-
     describe '#text' do
       it 'has a text attribute' do
         stream.text.must_equal('Some text')
-      end
-    end
-
-    describe '#style' do
-      it 'has a style attribute' do
-        stream.style.must_be_instance_of(Style)
       end
     end
 

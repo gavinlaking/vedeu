@@ -1,6 +1,7 @@
 module Vedeu
   class Interface
     include Coercions
+    include Presentation
 
     extend Forwardable
 
@@ -38,16 +39,6 @@ module Vedeu
     # @return [Array]
     def lines
       @lines ||= Line.coercer(attributes[:lines])
-    end
-
-    # @return [Colour]
-    def colour
-      @colour ||= Colour.new(attributes[:colour])
-    end
-
-    # @return [Style]
-    def style
-      @style ||= Style.new(attributes[:style])
     end
 
     # @return [Geometry]

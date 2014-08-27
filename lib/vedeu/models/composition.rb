@@ -3,16 +3,16 @@ module Vedeu
 
     attr_reader :attributes
 
-    # @param  []
-    # @param []
-    # @return []
+    # @param attributes [Hash]
+    # @param block [Proc]
+    # @return [Hash]
     def self.build(attributes = {}, &block)
       new(attributes, &block).attributes
     end
 
-    # @param  []
-    # @param []
-    # @return []
+    # @param attributes [Hash]
+    # @param block [Proc]
+    # @return [Composition]
     def initialize(attributes = {}, &block)
       @attributes = defaults.merge!(attributes)
 
@@ -23,14 +23,14 @@ module Vedeu
       end
     end
 
-    # @return []
+    # @return [Array]
     def interfaces
       @interfaces ||= if attributes[:interfaces].nil? || attributes[:interfaces].empty?
         []
 
       else
         [ attributes[:interfaces] ].flatten.map do |attrs|
-          stored = Store.query(attrs[:name])
+          stored = Buffers.retrieve_attributes(attrs[:name])
 
           combined = stored.merge(attrs) do |key, s, a|
             key == :lines && s.empty? ? a : s
@@ -42,7 +42,7 @@ module Vedeu
       end
     end
 
-    # @return []
+    # @return [String]
     def to_s
       interfaces.map(&:to_s).join
     end

@@ -2,12 +2,12 @@ module Vedeu
   class Launcher
 
     # :nocov:
-    # @param []
-    # @param []
-    # @param []
-    # @param []
-    # @param []
-    # @return []
+    # @param argv [Array]
+    # @param stdin []
+    # @param stdout []
+    # @param stderr []
+    # @param kernel []
+    # @return [Launcher]
     def initialize(argv, stdin  = STDIN,
                          stdout = STDOUT,
                          stderr = STDERR,

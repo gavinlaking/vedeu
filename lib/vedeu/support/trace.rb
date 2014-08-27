@@ -2,14 +2,14 @@ module Vedeu
   class Trace
 
     # :nocov:
-    # @param []
+    # @param options [Hash]
     # @return []
     def self.call(options = {})
       new(options).trace
     end
 
-    # @param []
-    # @return []
+    # @param options [Hash]
+    # @return [Trace]
     def initialize(options = {})
       @options = options
     end

@@ -46,6 +46,18 @@ module Vedeu
       Vedeu.events.event(name, opts = {}, &block)
     end
 
+    # Unregister an event by name.
+    #
+    # @param name [Symbol]
+    # @return [Hash]
+    def unevent(name)
+      Vedeu.events.unevent(name)
+    end
+
+    # def focus(name)
+    #   Focus.by_name(name)
+    # end
+
     # Find out how many lines the current terminal is able to display.
     #
     # @example
@@ -70,7 +82,7 @@ module Vedeu
     #      ... some interface attributes like width and height ...
     #   end
     #
-    # @return [Hash]
+    # @return [TrueClass]
     def interface(name, &block)
       API::Interface.define({ name: name }, &block)
     end
@@ -85,9 +97,9 @@ module Vedeu
     #
     # @return []
     def keypress(key)
-      trigger(:key, key)
-      trigger(:_log_, "Key: #{key}")
-      trigger(:_mode_switch_) if key == :escape
+      Vedeu.events.trigger(:key, key)
+      Vedeu.events.trigger(:_log_, "Key: #{key}")
+      Vedeu.events.trigger(:_mode_switch_) if key == :escape
     end
 
     # Write a message to the Vedeu log file located at `$HOME/.vedeu/vedeu.log`
@@ -131,7 +143,7 @@ module Vedeu
     #
     # @return [Vedeu::Interface]
     def use(name)
-      Vedeu::Interface.new(Vedeu::Store.query(name))
+      Vedeu::Interface.new(Vedeu::Buffers.retrieve_attributes(name))
     end
 
     # Define a view (content) for an interface. TODO: More help.
@@ -141,17 +153,13 @@ module Vedeu
     # @param block [Proc] The directives you wish to send to this interface.
     #
     # @example
-    #   view 'my_inteface' do
+    #   view 'my_interface' do
     #     ... some view attributes ...
     #   end
     #
     # @return [Hash]
     def view(name, &block)
-      {
-        interfaces: [
-          API::Interface.build({ name: name }, &block)
-        ]
-      }
+      API::Composition.build { view(name, &block) }
     end
 
     # Instruct Vedeu to treat contents of block as a single composition.
@@ -171,10 +179,16 @@ module Vedeu
     #     end
     #   end
     #
+    #   composition do
+    #     view 'my_interface' do
+    #       ...
+    #   ...
+    #
     # @return [Hash]
     def views(&block)
       API::Composition.build(&block)
     end
+    alias_method :composition, :views
 
     # Find out how many columns the current terminal is able to display.
     #

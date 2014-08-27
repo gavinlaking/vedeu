@@ -1,25 +1,25 @@
 module Vedeu
   class Configuration
 
-    # @param []
-    # @return []
+    # @param args [Array]
+    # @return [Hash]
     def self.configure(args = [])
       new(args).configure
     end
 
-    # @return []
+    # @return [Hash]
     def self.options
       new.options
     end
 
-    # @param []
-    # @return []
+    # @param args [Array]
+    # @return [Configuration]
     def initialize(args = [])
       @_options = {}
       @args     = args
     end
 
-    # @return []
+    # @return [Hash]
     def configure
       parser = OptionParser.new do |opts|
         opts.banner = "Usage: #{$PROGRAM_NAME} [options]"
@@ -42,9 +42,8 @@ module Vedeu
 
         opts.on('-C',
                 '--colour-mode',
-                'Run application in particular colour mode. `3`, `8` and `24`' \
-                ' bit modes supported.') do |mode|
-          if ['3', '8', '24'].include?(mode)
+                'Run application in either `16` or `256` colour mode.') do |mode|
+          if ['16', '256'].include?(mode)
             _options[:colour_mode] = mode
 
           else
@@ -58,7 +57,7 @@ module Vedeu
       _options
     end
 
-    # @return []
+    # @return [Hash]
     def options
       @options ||= defaults.merge!(@_options)
     end
@@ -77,7 +76,23 @@ module Vedeu
     end
 
     def detect_colour_mode
-      24
+      if ENV['VEDEUTERM']
+        case ENV['VEDEUTERM']
+        when /-256color$/  then 256
+        when /-truecolor$/ then 16777216
+        else
+          256
+        end
+
+      else
+        case ENV['TERM']
+        when /-256color$/, 'xterm' then 256
+        when /-color$/, 'rxvt'     then 16
+        else
+          256
+        end
+
+      end
     end
 
   end

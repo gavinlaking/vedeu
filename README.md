@@ -154,18 +154,30 @@ Geometry for Vedeu, as the same for ANSI terminals, is set top-left, which is ce
 
 ### Colours
 
-Vedeu uses HTML/CSS style notation (i.e. '#aadd00'), they can be used at the stream level, the line level or for the whole interface.
+Vedeu uses HTML/CSS style notation (i.e. '#aadd00'), they can be used at the stream level, the line level or for the whole interface. Terminals generally support either 8, 16 or 256 colours, with few supporting full 24-bit colour. Vedeu attempts to detect the colour depth using the `$TERM` environment variable.
 
-```json
-"colour": { "foreground": "#ff0000", "background": "#ffffff" }
+To set your `$TERM` variable to allow 256 colour support:
+
+```bash
+echo "export TERM=xterm-256color" >> ~/.bashrc
+```
+
+or, if you wish not to tamper with `$TERM`:
+
+```bash
+echo "export VEDEUTERM=xterm-256color" >> ~/.bashrc
+```
+
+If you know your terminal supports full 24-bit colour, set the `$VEDEUTERM` environment variable:
+
+```bash
+echo "export VEDEUTERM=xterm-truecolor" >> ~/.bashrc
 ```
 
 
 ### Styles
 
 Vedeu has a range of symbol styles which are compatible with most terminals which are ANSI compatible. Like colours, they can be defined in either interfaces, for specific lines or within streams. Styles are applied as encountered.
-
-    "style": []
 
 
 ## Development / Contributing

@@ -1,15 +1,15 @@
 module Vedeu
   class Position
 
-    # @param []
-    # @param []
-    # @return []
+    # @param y [Fixnum]
+    # @param x [Fixnum]
+    # @return [Position]
     def initialize(y = 1, x = 1)
       @y, @x = y, x
     end
 
-    # @param []
-    # @return []
+    # @param block [Proc]
+    # @return [String]
     def to_s(&block)
       if block_given?
         [ sequence, yield, sequence ].join

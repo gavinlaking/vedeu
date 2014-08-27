@@ -1,8 +1,8 @@
 module Vedeu
   class Menu
 
-    # @param []
-    # @return []
+    # @param collection []
+    # @return [Menu]
     def initialize(collection)
       @collection = collection
       @current    = 0
@@ -48,7 +48,7 @@ module Vedeu
       @collection[@selected]
     end
 
-    # @return []
+    # @return [Array]
     def items
       items = []
       @collection.each_with_index do |item, index|
