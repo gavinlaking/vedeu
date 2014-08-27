@@ -16,6 +16,24 @@ module Vedeu
       end
     end
 
+    describe '#unevent' do
+      it 'removes the event by name' do
+        events = Events.new
+        events.event(:chlorine) { proc { |x| x } }
+        events.event(:argon)    { proc { |y| y } }
+        events.unevent(:chlorine)
+        events.registered.must_equal([:argon])
+      end
+
+      it 'removes the event by name only if the name exists' do
+        events = Events.new
+        events.event(:chlorine) { proc { |x| x } }
+        events.event(:argon)    { proc { |y| y } }
+        events.unevent(:potassium)
+        events.registered.must_equal([:chlorine, :argon])
+      end
+    end
+
     describe '#registered' do
       it 'returns all the registered events by name' do
         events = Events.new do

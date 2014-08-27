@@ -24,6 +24,15 @@ module Vedeu
       handlers[name]
     end
 
+    # Unregisters the event by name, effectively deleting the associated events
+    # bound with it also.
+    #
+    # @param name [Symbol]
+    # @return []
+    def unevent(name)
+      handlers.delete_if { |k, v| k == name }
+    end
+
     # Returns a collection of the names of all the registered events.
     #
     # @return [Array]

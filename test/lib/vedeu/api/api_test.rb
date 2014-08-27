@@ -16,6 +16,13 @@ module Vedeu
       end
     end
 
+    describe '.unevent' do
+      it 'unregister the event by name' do
+        Vedeu.event(:calcium) { proc { |x| x } }
+        Vedeu.unevent(:calcium).wont_include(:calcium)
+      end
+    end
+
     describe '.events' do
       it 'should not be visible to the client' do
         skip

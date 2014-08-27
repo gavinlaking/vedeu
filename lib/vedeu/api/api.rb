@@ -46,6 +46,14 @@ module Vedeu
       Vedeu.events.event(name, opts = {}, &block)
     end
 
+    # Unregister an event by name.
+    #
+    # @param name [Symbol]
+    # @return [Hash]
+    def unevent(name)
+      Vedeu.events.unevent(name)
+    end
+
     # def focus(name)
     #   Focus.by_name(name)
     # end
