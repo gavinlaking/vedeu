@@ -1,10 +1,12 @@
 module Vedeu
 
-  EntityNotFound = Class.new(StandardError)
-  GroupNotFound  = Class.new(StandardError)
-  ModeSwitch     = Class.new(StandardError)
-  NotImplemented = Class.new(StandardError)
-  OutOfRange     = Class.new(StandardError)
+  EntityNotFound      = Class.new(StandardError)
+  GroupNotFound       = Class.new(StandardError)
+  InterfaceNotFound   = Class.new(StandardError)
+  ModeSwitch          = Class.new(StandardError)
+  NoInterfacesDefined = Class.new(StandardError)
+  NotImplemented      = Class.new(StandardError)
+  OutOfRange          = Class.new(StandardError)
 
   def self.included(receiver)
     receiver.send(:include, API)

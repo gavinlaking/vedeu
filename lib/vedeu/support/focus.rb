@@ -1,6 +1,4 @@
 module Vedeu
-  NoInterfacesDefined = Class.new(StandardError)
-  InterfaceNotFound   = Class.new(StandardError)
 
   # Maintains which interface is current in focus.
   class Focus
