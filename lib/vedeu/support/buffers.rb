@@ -10,6 +10,8 @@ module Vedeu
 
       groups.add(attributes[:group], attributes[:name], attributes[:delay])
 
+      focus.add(attributes[:name])
+
       store_interface(Interface.new(attributes))
     end
 
@@ -72,6 +74,10 @@ module Vedeu
 
     def update(name, buffer)
       buffers.store(name, buffer)
+    end
+
+    def focus
+      @_focus ||= Focus.new
     end
 
     def groups
