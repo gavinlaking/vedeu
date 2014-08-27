@@ -18,6 +18,7 @@ require 'forwardable'
 require 'io/console'
 require 'logger'
 require 'optparse'
+require 'set'
 
 require 'vedeu/configuration'
 
