@@ -19,21 +19,20 @@ module Vedeu
     end
 
     describe '#by_name' do
-      it 'returns the name of the interface after focussing it' do
+      it 'the named interface is focussed when the method is called' do
         focus = Focus.new(['thallium', 'lead', 'bismuth'])
-
-        Vedeu.trigger(:_focus_by_name_, 'bismuth')
-
-        focus.current.must_equal('bismuth')
+        focus.by_name('bismuth').must_equal('bismuth')
       end
 
-      it 'returns the name of the interface after focussing it' do
+      it 'the named interface is focussed when the event is triggered' do
         focus = Focus.new(['thallium', 'lead', 'bismuth'])
-
-        Vedeu.trigger(:_focus_by_name_, 'bismuth')
         Vedeu.trigger(:_focus_by_name_, 'lead')
-
         focus.current.must_equal('lead')
+      end
+
+      it 'raises an exception if the interface does not exist' do
+        focus = Focus.new
+        proc { Vedeu.trigger(:_focus_by_name_, 'not_found') }.must_raise(InterfaceNotFound)
       end
 
       it 'raises an exception if the interface does not exist' do
@@ -55,16 +54,28 @@ module Vedeu
     end
 
     describe '#next_item' do
-      it 'makes the next interface focussed' do
+      it 'the next interface is focussed when the method is called' do
         focus = Focus.new(['thallium', 'lead', 'bismuth'])
         focus.next_item.must_equal('lead')
+      end
+
+      it 'the next interface is focussed when the event is triggered' do
+        focus = Focus.new(['thallium', 'lead', 'bismuth'])
+        Vedeu.trigger(:_focus_next_)
+        focus.current.must_equal('lead')
       end
     end
 
     describe '#prev_item' do
-      it 'makes the previous interface focussed' do
+      it 'the previous interface is focussed when the method is called' do
         focus = Focus.new(['thallium', 'lead', 'bismuth'])
         focus.prev_item.must_equal('bismuth')
+      end
+
+      it 'the previous interface is focussed when the event is triggered' do
+        focus = Focus.new(['thallium', 'lead', 'bismuth'])
+        Vedeu.trigger(:_focus_prev_)
+        focus.current.must_equal('bismuth')
       end
     end
   end
