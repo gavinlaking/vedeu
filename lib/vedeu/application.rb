@@ -76,7 +76,7 @@ module Vedeu
 
     # @return []
     def debug
-      Vedeu::API::Trace.call if options.fetch(:debug)
+      Vedeu::Trace.call if options.fetch(:debug)
     end
 
     # @return [Hash]
