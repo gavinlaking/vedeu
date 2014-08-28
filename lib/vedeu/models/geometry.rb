@@ -13,6 +13,8 @@ module Vedeu
       @width   = @attributes[:width]
     end
 
+    # Returns the row/line position for the interface.
+    #
     # @return [Fixnum]
     def y
       if attributes[:y].is_a?(Proc)
@@ -24,6 +26,8 @@ module Vedeu
       end
     end
 
+    # Returns the column position for the interface.
+    #
     # @return [Fixnum]
     def x
       if attributes[:x].is_a?(Proc)
@@ -35,6 +39,16 @@ module Vedeu
       end
     end
 
+    # Returns a dynamic value calculated from the current terminal width,
+    # combined with the desired column start point.
+    #
+    # If the interface is `centred` then if the terminal resizes, this value
+    # should attempt to accommodate that.
+    #
+    # For uncentred interfaces, when the terminal resizes, then this will help
+    # Vedeu render the view to ensure no row/line overruns or that the content
+    # is not off-screen.
+    #
     # @return [Fixnum]
     def viewport_width
       if (x + width) > Terminal.width
@@ -46,6 +60,15 @@ module Vedeu
       end
     end
 
+    # Returns a dynamic value calculated from the current terminal height,
+    # combined with the desired row start point.
+    #
+    # If the interface is `centred` then if the terminal resizes, this value
+    # should attempt to accommodate that.
+    #
+    # For uncentred interfaces, when the terminal resizes, then this will help
+    # Vedeu render the view to ensure the content is not off-screen.
+    #
     # @return [Fixnum]
     def viewport_height
       if (y + height) > Terminal.height

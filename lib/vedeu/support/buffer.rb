@@ -26,12 +26,14 @@ module Vedeu
       return render
     end
 
+    # @return [Buffer]
     def render
       Terminal.output(front.to_s)
 
       self
     end
 
+    # @return [Buffer]
     def clear
       Terminal.output(interface.clear)
 
