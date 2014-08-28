@@ -1,12 +1,12 @@
 module Vedeu
   class Input
 
-    # @return []
+    # @return [String|Symbol]
     def self.capture
       new.capture
     end
 
-    # @return []
+    # @return [Input]
     def initialize; end
 
     # @return []

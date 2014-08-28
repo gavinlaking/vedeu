@@ -3,7 +3,12 @@ module Vedeu
 
     attr_reader :back, :front, :interface
 
-    # @param attributes [Hash]
+    # @param attributes [Hash] The buffer attributes.
+    # @param [Hash] attributes
+    # @option attributes :back [Hash] The next view to be rendered.
+    # @option attributes :front [Hash] The view which is currently on screen.
+    # @option attributes :interface [Hash] An attribute form of the interface from
+    #   which we can create a new front or back.
     # @return [Buffer]
     def initialize(attributes = {})
       @attributes = attributes

@@ -87,10 +87,12 @@ module Vedeu
       API::Interface.define({ name: name }, &block)
     end
 
-    # Simulate keypresses in your application. TODO: More help.
+    # Handles the keypress in your application. Can also be used to simulate a
+    # keypress.
     #
-    # @param key [String|Symbol] A simulated keypress. Escape sequences are also
-    #   supported. Special keys like the F-keys are named as symbols; i.e. `:f4`
+    # @param key [String|Symbol] The key which was pressed. Escape sequences
+    #   are also supported. Special keys like the F-keys are named as symbols;
+    #   i.e. `:f4`. A list of these translations can be found at {Vedeu::Input}.
     #
     # @example
     #   TODO

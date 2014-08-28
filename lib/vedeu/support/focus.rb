@@ -11,7 +11,7 @@ module Vedeu
     end
 
     # @param name [String]
-    # @return []
+    # @return [Array]
     def add(name)
       if registered?(name)
         storage
@@ -23,7 +23,7 @@ module Vedeu
     end
 
     # @param name [String]
-    # @return []
+    # @return [String]
     def by_name(name)
       fail InterfaceNotFound unless storage.include?(name)
 
@@ -32,28 +32,28 @@ module Vedeu
       current
     end
 
-    # @return []
+    # @return [String]
     def current
       fail NoInterfacesDefined if storage.empty?
 
       storage.first
     end
 
-    # @return []
+    # @return [String]
     def next_item
       storage.rotate!
 
       current
     end
 
-    # @return []
+    # @return [String]
     def prev_item
       storage.rotate!(-1)
 
       current
     end
 
-    # @return []
+    # @return [TrueClass]
     def register_events
       Vedeu.event(:_focus_next_)    { next_item }
       Vedeu.event(:_focus_prev_)    { prev_item }
