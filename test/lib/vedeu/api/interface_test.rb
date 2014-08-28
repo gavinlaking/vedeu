@@ -834,6 +834,21 @@ module Vedeu
           )
         end
 
+        it 'allows inline values for line' do
+          Vedeu.interface 'helium' do
+          end
+          attributes = Vedeu.view 'helium' do
+            line 'A headline, if you will.'
+            line # with a spacer line
+            line 'This is a line of text...'
+            line do
+              text '...we can mix and match...'
+            end
+            line '...to our hearts content.'
+          end
+          attributes[:interfaces].first[:lines].size.must_equal(5)
+        end
+
       end
     end
   end

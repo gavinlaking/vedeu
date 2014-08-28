@@ -33,9 +33,15 @@ module Vedeu
 
       # Define a single line in a view.
       #
+      # @param value [String]
       # @param block [Proc]
       #
       # @example
+      #   view 'my_interface' do
+      #     line 'This is a line of text...'
+      #     line 'and so is this...'
+      #     ...
+      #
       #   view 'my_interface' do
       #     line do
       #       ... some line attributes ...
@@ -43,8 +49,14 @@ module Vedeu
       #   end
       #
       # @return []
-      def line(&block)
-        attributes[:lines] << Line.build(&block)
+      def line(value = '', &block)
+        if block_given?
+          attributes[:lines] << Line.build(&block)
+
+        else
+          attributes[:lines] << Line.build({ streams: { text: value } })
+
+        end
       end
 
       # @see Vedeu::API#use
