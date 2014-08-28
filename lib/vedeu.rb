@@ -22,6 +22,7 @@ require 'logger'
 require 'optparse'
 require 'set'
 
+require 'vedeu/support/trace'
 require 'vedeu/configuration'
 
 require 'vedeu/models/attributes/coercions'
@@ -63,4 +64,4 @@ require 'vedeu/support/grid'
 require 'vedeu/support/input'
 require 'vedeu/support/log'
 require 'vedeu/support/menu'
-require 'vedeu/support/trace'
+
