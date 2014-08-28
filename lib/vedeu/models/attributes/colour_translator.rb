@@ -1,6 +1,18 @@
 module Vedeu
   class ColourTranslator
 
+    # Convert a CSS/HTML colour string into a terminal escape sequence.
+    #
+    # If provided with an empty value or a string it cannot convert, it will
+    # return an empty string.
+    #
+    # When provided with a named colour, uses the terminal's value for that
+    # colour. If a theme is being used with the terminal, which overrides the
+    # defaults, then the theme's colour will be used. The recognised names are:
+    # :black, :red, :green, :yellow, :blue, :magenta, :cyan, :white, :default.
+    #
+    # TODO: add more documentation
+    #
     # @param colour [String]
     # @return [String]
     def self.escape_sequence(colour = '')
@@ -14,6 +26,7 @@ module Vedeu
     end
 
     # @return [String]
+    # @see Vedeu::ColourTranslator.escape_sequence
     def escape_sequence
       if no_colour?
         ''

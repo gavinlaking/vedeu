@@ -3,6 +3,9 @@ module Vedeu
 
     attr_reader :attributes
 
+    # Builds a new composition, which is a collection of interfaces, ready to be
+    # rendered to the screen.
+    #
     # @param attributes [Hash]
     # @param block [Proc]
     # @return [Hash]
@@ -23,6 +26,9 @@ module Vedeu
       end
     end
 
+    # Returns a collection of interface attributes associated with this
+    # composition.
+    #
     # @return [Array]
     def interfaces
       @interfaces ||= if attributes[:interfaces].nil? || attributes[:interfaces].empty?
@@ -42,6 +48,9 @@ module Vedeu
       end
     end
 
+    # Returns the complete escape sequence which this composition renders to.
+    # This is used by `Terminal.output` to draw the view.
+    #
     # @return [String]
     def to_s
       interfaces.map(&:to_s).join

@@ -3,6 +3,7 @@ module Vedeu
     class Interface < Vedeu::Interface
       include Helpers
 
+      # @see Vedeu::API#interface
       # @param attributes [Hash]
       # @param block [Proc]
       # @return []
@@ -10,6 +11,7 @@ module Vedeu
         new(attributes).define(&block)
       end
 
+      # @see Vedeu::API#interface
       # @param block [Proc]
       #
       # @example

@@ -12,7 +12,7 @@ module Vedeu
       @now          = 0
     end
 
-    # @params args [Array]
+    # @param args [Array]
     # @return []
     def trigger(*args)
       return execute(*args) unless debouncing? || throttling?
