@@ -196,9 +196,18 @@ module Vedeu
       centre.last
     end
 
+    # Provides a virtual y position within the interface's dimensions.
+    #
     # @return [Array]
     def virtual_y
-      @_virtual_y ||= (top..bottom).to_a
+      (top..bottom).to_a
+    end
+
+    # Provides a virtual x position within the interface's dimensions.
+    #
+    # @return [Array]
+    def virtual_x
+      (left..right).to_a
     end
 
     # @return [Hash]
