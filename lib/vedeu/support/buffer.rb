@@ -42,14 +42,17 @@ module Vedeu
 
     private
 
+    # @return [Buffer]
     def merge(new_attributes)
       Buffer.new(@attributes.merge(new_attributes))
     end
 
+    # @return [TrueClass|FalseClass]
     def content_available?
       !!(back)
     end
 
+    # @return [TrueClass|FalseClass]
     def no_content_available?
       front.nil?
     end

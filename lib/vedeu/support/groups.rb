@@ -40,10 +40,12 @@ module Vedeu
 
     private
 
+    # @return [Hash]
     def storage
       @_storage ||= in_memory
     end
 
+    # @return [Hash]
     def in_memory
       Hash.new { |hash, key| hash[key] = Set.new }
     end

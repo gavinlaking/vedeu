@@ -27,6 +27,7 @@ module Vedeu
     attr_reader   :closure
     attr_accessor :deadline, :executed_at, :now
 
+    # @return []
     def execute(*args)
       reset_deadline
 
@@ -37,12 +38,14 @@ module Vedeu
       closure.call(*args)
     end
 
+    # @return [TrueClass|FalseClass]
     def throttling?
       set_time
 
       options[:delay] > 0
     end
 
+    # @return [TrueClass|FalseClass]
     def debouncing?
       set_time
 
@@ -51,48 +54,59 @@ module Vedeu
       options[:debounce] > 0
     end
 
+    # @return [Float]
     def elapsed_time
       now - @executed_at
     end
 
+    # @return [Float]
     def set_executed
       @executed_at = now
     end
 
+    # @return [Float]
     def set_time
       @now = Time.now.to_f
     end
 
+    # @return [Fixnum]
     def reset_time
       @now = 0
     end
 
+    # @return [TrueClass|FalseClass]
     def has_deadline?
       @deadline > 0
     end
 
+    # @return [Fixnum]
     def reset_deadline
       @deadline = 0
     end
 
+    # @return [NilClass]
     def set_deadline
       @deadline = now + debounce
 
       nil
     end
 
+    # @return [Fixnum|Float]
     def debounce
       options[:debounce]
     end
 
+    # @return [Fixnum|Float]
     def delay
       options[:delay]
     end
 
+    # @return [Hash]
     def options
       defaults.merge!(@options)
     end
 
+    # @return [Hash]
     def defaults
       {
         delay:    0,

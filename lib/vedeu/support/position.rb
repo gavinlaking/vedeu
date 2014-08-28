@@ -22,14 +22,17 @@ module Vedeu
 
     private
 
+    # @return [String]
     def sequence
       ["\e[", y, ';', x, 'H'].join
     end
 
+    # @return [Fixnum]
     def y
       (@y == 0 || @y == nil) ? 1 : @y
     end
 
+    # @return [Fixnum]
     def x
       (@x == 0 || @x == nil) ? 1 : @x
     end

@@ -72,22 +72,27 @@ module Vedeu
 
     private
 
+    # @return []
     def update(name, buffer)
       buffers.store(name, buffer)
     end
 
+    # @return [Focus]
     def focus
       @_focus ||= Focus.new
     end
 
+    # @return [Groups]
     def groups
       @_groups ||= Groups.new
     end
 
+    # @return [Hash]
     def buffers
       @_buffers ||= {}
     end
 
+    # @return [Hash]
     def storage
       @_storage ||= {}
     end

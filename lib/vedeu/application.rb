@@ -29,6 +29,7 @@ module Vedeu
 
     attr_reader :options
 
+    # @return []
     def runner
       if interactive?
         interactive { yield }
@@ -39,14 +40,17 @@ module Vedeu
       end
     end
 
+    # @return []
     def main_sequence
       Input.capture
     end
 
+    # @return [TrueClass|FalseClass]
     def interactive?
       options.fetch(:interactive)
     end
 
+    # @return []
     def interactive
       loop { yield }
 
@@ -60,22 +64,27 @@ module Vedeu
       end
     end
 
+    # @return []
     def run_once
       yield
     end
 
+    # @return [Symbol]
     def mode
       options.fetch(:mode)
     end
 
+    # @return []
     def debug
       Vedeu::API::Trace.call if options.fetch(:debug)
     end
 
+    # @return [Hash]
     def options
       defaults.merge!(@options)
     end
 
+    # @return [Hash]
     def defaults
       {
         debug:       false,

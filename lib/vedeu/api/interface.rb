@@ -201,19 +201,23 @@ module Vedeu
 
       private
 
+      # @return [String]
       def out_of_bounds(name)
         "Note: For this terminal, the value of '#{name}' may lead to content " \
         "that is outside the viewable area."
       end
 
+      # @return [TrueClass|FalseClass]
       def y_out_of_bounds?(value)
         value < 1 || value > Terminal.height
       end
 
+      # @return [TrueClass|FalseClass]
       def x_out_of_bounds?(value)
         value < 1 || value > Terminal.width
       end
 
+      # @return []
       def method_missing(method, *args, &block)
         @self_before_instance_eval.send(method, *args, &block)
       end

@@ -16,6 +16,7 @@ module Vedeu
 
     private
 
+    # @return [String]
     def escape_sequences
       @_sequences ||= if values.nil? || values.empty?
         ''

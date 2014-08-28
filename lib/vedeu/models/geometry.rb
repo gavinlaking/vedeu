@@ -181,22 +181,27 @@ module Vedeu
 
     private
 
+    # @return [Fixnum]
     def centre
       Terminal.centre
     end
 
+    # @return [Fixnum]
     def centre_y
       centre.first
     end
 
+    # @return [Fixnum]
     def centre_x
       centre.last
     end
 
+    # @return [Array]
     def virtual_y
       @_virtual_y ||= (top..bottom).to_a
     end
 
+    # @return [Hash]
     def defaults
       {
         y:       1,

@@ -30,14 +30,17 @@ module Vedeu
 
     attr_reader :object
 
+    # @return [Array]
     def interfaces
       composition.interfaces
     end
 
+    # @return [Composition]
     def composition
       @_composition ||= Composition.new(attributes)
     end
 
+    # @return []
     def attributes
       render
     end

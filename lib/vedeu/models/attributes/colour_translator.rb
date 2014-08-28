@@ -50,46 +50,57 @@ module Vedeu
 
     attr_reader :colour
 
+    # @return [TrueClass|FalseClass]
     def no_colour?
       colour.nil? || colour.to_s.empty?
     end
 
+    # @return [TrueClass|FalseClass]
     def named?
       colour.is_a?(Symbol) && valid_name?
     end
 
+    # @return [Exception]
     def named
       fail NotImplemented, 'Subclasses implement this.'
     end
 
+    # @return [TrueClass|FalseClass]
     def valid_name?
       codes.keys.include?(colour)
     end
 
+    # @return [TrueClass|FalseClass]
     def numbered?
       colour.is_a?(Fixnum) && valid_range?
     end
 
+    # @return [Exception]
     def numbered
       fail NotImplemented, 'Subclasses implement this.'
     end
 
+    # @return [TrueClass|FalseClass]
     def valid_range?
       colour >= 0 && colour <= 255
     end
 
+    # @return [TrueClass|FalseClass]
     def rgb?
       colour.is_a?(String) && valid_rgb?
     end
 
+    # @return [Exception]
     def rgb
       fail NotImplemented, 'Subclasses implement this.'
     end
 
+    # @return [TrueClass|FalseClass]
     def valid_rgb?
       colour =~ /^#([A-Fa-f0-9]{6})$/
     end
 
+    # @return [Array]
     def css_to_rgb
       [
         colour[1..2].to_i(16),
@@ -98,6 +109,7 @@ module Vedeu
       ]
     end
 
+    # @return [Fixnum]
     def css_to_numbered
       if rgb?
         [16, red, green, blue].inject(:+)
@@ -108,18 +120,22 @@ module Vedeu
       end
     end
 
+    # @return [Fixnum]
     def red
       (css_to_rgb[0] / 51) * 36
     end
 
+    # @return [Fixnum]
     def green
       (css_to_rgb[1] / 51) * 6
     end
 
+    # @return [Fixnum]
     def blue
       (css_to_rgb[2] / 51) * 1
     end
 
+    # @return [Hash]
     def codes
       {
         black:   30,

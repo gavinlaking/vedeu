@@ -28,18 +28,22 @@ module Vedeu
 
     private
 
+    # @return []
     def watched
       options[:event]
     end
 
+    # @return []
     def klass
       options[:klass]
     end
 
+    # @return [Hash]
     def options
       defaults.merge!(@options)
     end
 
+    # @return [Hash]
     def defaults
       {
         event: 'call',

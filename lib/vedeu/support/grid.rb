@@ -42,14 +42,17 @@ module Vedeu
 
     attr_reader :value
 
+    # @return [Fixnum]
     def column
       actual / 12
     end
 
+    # @return [Fixnum]
     def actual
       Terminal.width
     end
 
+    # @return [TrueClass|FalseClass]
     def out_of_range?
       value < 1 || value > 12
     end

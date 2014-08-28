@@ -3,6 +3,7 @@ module Vedeu
   # Maintains which interface is current in focus.
   class Focus
 
+    # @return [Focus]
     def initialize
       register_events
 
@@ -61,12 +62,14 @@ module Vedeu
 
     private
 
+    # @return [TrueClass|FalseClass]
     def registered?(name)
       return false if storage.empty?
 
       storage.include?(name)
     end
 
+    # @return [Array]
     def storage
       @storage ||= []
     end

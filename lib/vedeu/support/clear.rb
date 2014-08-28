@@ -24,10 +24,12 @@ module Vedeu
 
     attr_reader :interface
 
+    # @return [String]
     def colours
       interface.colour.to_s
     end
 
+    # @return [Enumerator]
     def rows
       interface.viewport_height.times
     end

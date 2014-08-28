@@ -37,6 +37,7 @@ module Vedeu
 
     private
 
+    # @return [Hash]
     def defaults
       {
         colour:  {},
@@ -45,6 +46,7 @@ module Vedeu
       }
     end
 
+    # @return []
     def method_missing(method, *args, &block)
       @self_before_instance_eval.send(method, *args, &block)
     end

@@ -66,6 +66,7 @@ module Vedeu
 
     attr_accessor :args, :_options
 
+    # @return [Hash]
     def defaults
       {
         colour_mode: detect_colour_mode,
@@ -75,6 +76,7 @@ module Vedeu
       }
     end
 
+    # @return [Fixnum]
     def detect_colour_mode
       if ENV['VEDEUTERM']
         case ENV['VEDEUTERM']

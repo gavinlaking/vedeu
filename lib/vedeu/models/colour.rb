@@ -33,6 +33,7 @@ module Vedeu
 
     private
 
+    # @return [Hash]
     def defaults
       {
         foreground: '',

@@ -58,6 +58,7 @@ module Vedeu
 
     private
 
+    # @return [Hash]
     def defaults
       {
         interfaces: []

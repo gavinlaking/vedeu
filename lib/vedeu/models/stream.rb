@@ -35,10 +35,12 @@ module Vedeu
 
     private
 
+    # @return [String]
     def data
       width? ? aligned : text
     end
 
+    # @return [String]
     def aligned
       case align
       when :right  then text.rjust(width,  ' ')
@@ -47,10 +49,12 @@ module Vedeu
       end
     end
 
+    # @return [TrueClass|FalseClass]
     def width?
       !!width
     end
 
+    # @return [Hash]
     def defaults
       {
         colour: {},
@@ -61,6 +65,7 @@ module Vedeu
       }
     end
 
+    # @return []
     def method_missing(method, *args, &block)
       @self_before_instance_eval.send(method, *args, &block)
     end

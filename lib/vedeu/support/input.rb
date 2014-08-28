@@ -16,10 +16,12 @@ module Vedeu
 
     private
 
+    # @return [String]
     def input
       @_input ||= Terminal.input
     end
 
+    # @return [String|Symbol]
     def keypress
       key        = input
       translated = case key

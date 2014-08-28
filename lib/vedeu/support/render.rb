@@ -71,22 +71,27 @@ module Vedeu
       end
     end
 
+    # @return [TrueClass|FalseClass]
     def exceeds_width?(line)
       line.streams.map(&:text).join.size > width
     end
 
+    # @return [String]
     def truncate(text, value)
       text.chomp.slice(0...value)
     end
 
+    # @return [Array]
     def lines
       interface.lines
     end
 
+    # @return [Fixnum]
     def height
       interface.viewport_height
     end
 
+    # @return [Fixnum]
     def width
       interface.viewport_width
     end
