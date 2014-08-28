@@ -37,6 +37,7 @@ module Vedeu
       when "\e[H"    then :home
       when "\e[3~"   then :delete
       when "\e[F"    then :end
+      when "\e[Z"    then :shift_tab
       when "\eOP"    then :f1
       when "\eOQ"    then :f2
       when "\eOR"    then :f3

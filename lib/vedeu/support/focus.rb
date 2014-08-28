@@ -58,6 +58,9 @@ module Vedeu
       Vedeu.event(:_focus_next_)    { next_item }
       Vedeu.event(:_focus_prev_)    { prev_item }
       Vedeu.event(:_focus_by_name_) { |name| by_name(name) }
+      Vedeu.event(:_focussed_)      { current }
+
+      true
     end
 
     private
