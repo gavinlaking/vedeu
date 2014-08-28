@@ -97,7 +97,7 @@ module Vedeu
 
     # @return [TrueClass|FalseClass]
     def valid_rgb?
-      colour =~ /^#([A-Fa-f0-9]{6})$/
+      !!(colour =~ /^#([A-Fa-f0-9]{6})$/)
     end
 
     # @return [Array]
