@@ -3,10 +3,14 @@ module Vedeu
 
     extend self
 
-    # @param y [Fixnum]
-    # @param x [Fixnum]
+    # Return the escape sequence required to position the cursor at a particular
+    # point on the screen. When passed a block, will do the aforementioned,
+    # call the block and then reposition to this location.
+    #
+    # @param y     [Fixnum] The row/line position.
+    # @param x     [Fixnum] The column/character position.
     # @param block [Proc]
-    # @return [String]
+    # @return      [String]
     def set_position(y = 1, x = 1, &block)
       Position.new(y, x).to_s(&block)
     end
