@@ -165,19 +165,33 @@ echo "export TERM=xterm-256color" >> ~/.bashrc
 or, if you wish not to tamper with `$TERM`:
 
 ```bash
-echo "export VEDEUTERM=xterm-256color" >> ~/.bashrc
+echo "export VEDEU_TERM=xterm-256color" >> ~/.bashrc
 ```
 
-If you know your terminal supports full 24-bit colour, set the `$VEDEUTERM` environment variable:
+If you know your terminal supports full 24-bit colour, set the `$VEDEU_TERM` environment variable:
 
 ```bash
-echo "export VEDEUTERM=xterm-truecolor" >> ~/.bashrc
+echo "export VEDEU_TERM=xterm-truecolor" >> ~/.bashrc
 ```
 
 
 ### Styles
 
 Vedeu has a range of symbol styles which are compatible with most terminals which are ANSI compatible. Like colours, they can be defined in either interfaces, for specific lines or within streams. Styles are applied as encountered.
+
+
+## Debugging & Environment Variables
+
+Vedeu has two types of debugging; `VEDEU_DEBUG` and `VEDEU_TRACE`. Both of these can be configured at run-time using the arguments you pass to your application. They can also be enabled/disabled globally by setting environment variables (see below). These messages are written to `~/.vedeu/vedeu.log`.
+
+To enable or disable, use true or false:
+
+```bash
+echo "export VEDEU_DEBUG=true" >> ~/.bashrc
+echo "export VEDEU_TRACE=true" >> ~/.bashrc
+```
+
+Debugging (`VEDEU_DEBUG`) provides helpful messages which inform you what is happening in the application. Tracing (`VEDEU_TRACE`) is a noisy, blow-by-blow account of what is happening, letting you know which methods were called and which events have been triggered. Both (more so with tracing) can impact the performance of your application.
 
 
 ## Development / Contributing
