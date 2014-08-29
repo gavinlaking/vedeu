@@ -26,9 +26,7 @@ module Vedeu
 
       storage[group] << name
 
-      Vedeu.event("_refresh_group_#{group}_".to_sym, { delay: delay }) do
-        Buffers.refresh_group(group)
-      end
+      register_group_refresh_event(group, delay)
 
       self
     end
@@ -39,6 +37,12 @@ module Vedeu
     end
 
     private
+
+    def register_group_refresh_event(group, delay = 0.0)
+      Vedeu.event("_refresh_group_#{group}_".to_sym, { delay: delay }) do
+        Buffers.refresh_group(group)
+      end
+    end
 
     # @return [Hash]
     def storage
