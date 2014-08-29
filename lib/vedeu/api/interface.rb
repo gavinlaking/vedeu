@@ -80,6 +80,10 @@ module Vedeu
         attributes[:cursor] = value
       end
 
+      # To maintain performance interfaces can be delayed from refreshing too
+      # often, the reduces artefacts particularly when resizing the terminal
+      # screen.
+      #
       # @param value [Fixnum|Float]
       #
       # @return []
