@@ -1,5 +1,6 @@
 module Vedeu
   module Terminal
+
     extend self
 
     # @param block [Proc]

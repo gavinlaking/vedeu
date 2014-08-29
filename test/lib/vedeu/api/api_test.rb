@@ -24,10 +24,6 @@ module Vedeu
     end
 
     describe '.events' do
-      it 'should not be visible to the client' do
-        skip
-      end
-
       it 'returns the Events singleton' do
         Vedeu.events.must_be_instance_of(Vedeu::Events)
       end
@@ -53,7 +49,6 @@ module Vedeu
       before { event.stubs(:trigger).returns(nil) }
 
       it 'returns nil' do
-        skip
         Vedeu.keypress('k').must_equal(nil)
       end
     end

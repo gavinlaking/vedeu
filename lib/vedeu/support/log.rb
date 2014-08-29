@@ -76,7 +76,7 @@ module Vedeu
 
   class Log
 
-    # @return []
+    # @return [TrueClass]
     def self.logger
       @logger ||= MonoLogger.new(filename).tap do |log|
         log.formatter = proc do |_, time, _, message|
@@ -87,16 +87,19 @@ module Vedeu
 
     private
 
+    # @return [String]
     def self.filename
       @_filename ||= directory + '/vedeu.log'
     end
 
+    # @return [String]
     def self.directory
       FileUtils.mkdir_p(path) unless File.directory?(path)
 
       path
     end
 
+    # @return [String]
     def self.path
       Dir.home + '/.vedeu'
     end

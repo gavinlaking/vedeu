@@ -4,15 +4,9 @@ module Vedeu
   describe Events do
     describe '#event' do
       it 'adds the event block to the handlers' do
-        skip
         events = Events.new
-        events.event(:some_event) { proc { |x| x } }
-      end
-
-      it 'adds the specified throttle to the throttles' do
-        skip
-        events = Events.new
-        events.event(:some_event, 250) { proc { |x| x } }
+        events.event(:sulphur) { proc { |x| x } }
+        events.registered.must_equal([:sulphur])
       end
     end
 
@@ -61,7 +55,7 @@ module Vedeu
     describe '#reset' do
       it 'removes all events registered' do
         events = Events.new do
-          event(:some_event) { proc { |x| x } }
+          event(:potassium) { proc { |x| x } }
         end
         events.reset.must_equal({})
       end
