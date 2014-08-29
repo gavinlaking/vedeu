@@ -3,6 +3,10 @@ module Vedeu
 
     attr_reader :attributes
 
+    # Initialises a new Colour object which is a container terminal escape
+    # sequences controlling the foreground and background colour of a
+    # character or collection of characters.
+    #
     # @param attributes [Hash]
     # @return [Colour]
     def initialize(attributes = {})
