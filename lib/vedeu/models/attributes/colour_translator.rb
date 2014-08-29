@@ -16,7 +16,7 @@ module Vedeu
     #
     # Finally, when provided a CSS/HTML colour string e.g. '#ff0000', Vedeu will
     # translate that to the 8-bit escape sequence or if you have a capable
-    # terminal and the `VEDEUTERM=xterm-truecolor` environment variable set,
+    # terminal and the `VEDEU_TERM=xterm-truecolor` environment variable set,
     # a 24-bit representation.
     #
     # @param colour [String]

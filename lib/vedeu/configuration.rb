@@ -103,26 +103,37 @@ module Vedeu
       @options ||= defaults
     end
 
+    # @return [Hash]
     def reset
       @options = defaults
     end
 
+    # @return [Hash]
+    def defaults
+      {
+        colour_mode:   detect_colour_mode,
+        debug:         detect_debug_mode,
+        interactive:   true,
+        once:          false,
+        terminal_mode: :raw,  #cooked
+        trace:         detect_trace_mode,
+      }
+    end
+
     # @return [Fixnum]
     def detect_colour_mode
-      if ENV['VEDEUTERM']
-        case ENV['VEDEUTERM']
+      if ENV['VEDEU_TERM']
+        case ENV['VEDEU_TERM']
         when /-256color$/  then 256
         when /-truecolor$/ then 16777216
-        else
-          256
+        else 256
         end
 
       elsif ENV['TERM']
         case ENV['TERM']
         when /-256color$/, 'xterm' then 256
         when /-color$/, 'rxvt'     then 16
-        else
-          256
+        else 256
         end
 
       else
@@ -131,15 +142,34 @@ module Vedeu
       end
     end
 
-    def defaults
-      {
-        colour_mode:   detect_colour_mode,
-        debug:         false,
-        interactive:   true,
-        once:          false,
-        terminal_mode: :raw,  #cooked
-        trace:         false,
-      }
+    # @return [TrueClass|FalseClass]
+    def detect_debug_mode
+      if ENV['VEDEU_DEBUG']
+        case ENV['VEDEU_DEBUG']
+        when 'true'  then true
+        when 'false' then false
+        else false
+        end
+
+      else
+        false
+
+      end
+    end
+
+    # @return [TrueClass|FalseClass]
+    def detect_trace_mode
+      if ENV['VEDEU_TRACE']
+        case ENV['VEDEU_TRACE']
+        when 'true'  then true
+        when 'false' then false
+        else false
+        end
+
+      else
+        false
+
+      end
     end
 
   end

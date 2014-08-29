@@ -6,12 +6,12 @@ module Vedeu
 
     describe '#colour_mode' do
       it 'returns the value of the colour_mode option' do
-        ENV['VEDEUTERM'] = 'xterm-truecolor'
+        ENV['VEDEU_TERM'] = 'xterm-truecolor'
         Configuration.colour_mode.must_equal(16777216)
       end
 
       # it '--colour-mode' do
-      #   ENV['VEDEUTERM'] = 'xterm-256color'
+      #   ENV['VEDEU_TERM'] = 'xterm-256color'
       #   Configuration.configure(['--colour-mode'])
       #   Configuration.colour_mode.must_equal(256)
       # end
