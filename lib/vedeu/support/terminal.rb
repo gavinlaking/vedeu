@@ -77,6 +77,7 @@ module Vedeu
       mode == :raw
     end
 
+    # @return [Symbol]
     def switch_mode!
       if raw_mode?
         @_mode = :cooked
@@ -90,11 +91,6 @@ module Vedeu
     # @return [String]
     def clear_last_line
       Esc.set_position((height - 1), 1) + Esc.string('clear_line')
-    end
-
-    # @return [Fixnum]
-    def colour_mode
-      Configuration.colour_mode
     end
 
     # Returns the mode of the terminal, either `:raw` or `:cooked`
