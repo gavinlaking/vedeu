@@ -68,6 +68,8 @@ module Vedeu
     end
 
     describe '.mode' do
+      before { Configuration.stubs(:terminal_mode).returns(:raw) }
+
       it 'returns the configured terminal mode' do
         Terminal.mode.must_equal(:raw)
       end
