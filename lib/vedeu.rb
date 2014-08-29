@@ -23,6 +23,7 @@ require 'logger'
 require 'optparse'
 require 'set'
 
+require 'vedeu/support/log'
 require 'vedeu/support/trace'
 require 'vedeu/configuration'
 
@@ -32,7 +33,13 @@ require 'vedeu/models/attributes/background'
 require 'vedeu/models/attributes/foreground'
 require 'vedeu/models/attributes/presentation'
 require 'vedeu/models/composition'
+
+require 'vedeu/support/position'
+require 'vedeu/support/esc'
 require 'vedeu/support/terminal'
+require 'vedeu/support/event'
+require 'vedeu/support/events'
+
 require 'vedeu/models/geometry'
 require 'vedeu/models/colour'
 require 'vedeu/models/style'
@@ -47,6 +54,8 @@ require 'vedeu/api/interface'
 require 'vedeu/api/line'
 require 'vedeu/api/stream'
 
+require 'vedeu/support/input'
+
 require 'vedeu/application'
 require 'vedeu/launcher'
 
@@ -57,12 +66,6 @@ require 'vedeu/support/clear'
 require 'vedeu/support/render'
 require 'vedeu/support/view'
 require 'vedeu/support/buffer'
-require 'vedeu/support/position'
-require 'vedeu/support/esc'
-require 'vedeu/support/event'
-require 'vedeu/support/events'
 require 'vedeu/support/grid'
-require 'vedeu/support/input'
-require 'vedeu/support/log'
 require 'vedeu/support/menu'
 

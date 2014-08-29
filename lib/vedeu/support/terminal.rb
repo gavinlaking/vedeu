@@ -2,23 +2,21 @@ module Vedeu
   module Terminal
     extend self
 
-    # @param mode [Symbol]
     # @param block [Proc]
     # @return []
-    def open(mode, &block)
-      @mode = mode
+    def open(&block)
+      fail InvalidSyntax, '`open` requires a block.' unless block_given?
 
-      if block_given?
-        if raw_mode?
-          console.raw    { initialize_screen { yield } }
+      if raw_mode?
+        console.raw    { initialize_screen { yield } }
 
-        else
-          console.cooked { initialize_screen { yield } }
+      else
+        console.cooked { initialize_screen { yield } }
 
-        end
       end
     ensure
       restore_screen
+
     end
 
     # @return [String]
@@ -70,8 +68,23 @@ module Vedeu
     end
 
     # @return [Boolean]
+    def cooked_mode?
+      mode == :cooked
+    end
+
+    # @return [Boolean]
     def raw_mode?
-      @mode == :raw
+      mode == :raw
+    end
+
+    def switch_mode!
+      if raw_mode?
+        @_mode = :cooked
+
+      else
+        @_mode = :raw
+
+      end
     end
 
     # @return [String]
@@ -81,7 +94,14 @@ module Vedeu
 
     # @return [Fixnum]
     def colour_mode
-      Configuration.options[:colour_mode]
+      Configuration.colour_mode
+    end
+
+    # Returns the mode of the terminal, either `:raw` or `:cooked`
+    #
+    # @return [Symbol]
+    def mode
+      @_mode ||= Configuration.terminal_mode
     end
 
     # Returns a coordinate tuple of the format [y, x], where `y` is the row/line
@@ -108,16 +128,23 @@ module Vedeu
       centre.last
     end
 
-    # @return [Fixnum] The total width of the current terminal.
+    # Returns the total width (number of columns/characters) of the current
+    # terminal.
+    #
+    # @return [Fixnum]
     def width
       size.last
     end
 
-    # @return [Fixnum] The total height of the current terminal.
+    # Returns the total height (number of rows/lines) of the current terminal.
+    #
+    # @return [Fixnum]
     def height
       size.first
     end
 
+    # Returns a tuple containing the height and width of the current terminal.
+    #
     # @return [Array]
     def size
       console.winsize
@@ -127,5 +154,6 @@ module Vedeu
     def console
       IO.console
     end
+
   end
 end

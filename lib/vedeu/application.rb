@@ -1,22 +1,21 @@
 module Vedeu
   class Application
+    class << self
 
-    # :nocov:
-    # @param options [Hash]
-    # @return []
-    def self.start(options = {})
-      new(options).start
+      # @return []
+      def start
+        new.start
+      end
+      alias_method :restart, :start
+
     end
 
-    # @param options [Hash]
     # @return [Application]
-    def initialize(options = {})
-      @options = options
-    end
+    def initialize; end
 
     # @return []
     def start
-      Terminal.open(mode) do
+      Terminal.open do
         Terminal.set_cursor_mode
 
         Vedeu.events.trigger(:_initialize_)
@@ -27,41 +26,20 @@ module Vedeu
 
     private
 
-    attr_reader :options
-
     # @return []
     def runner
-      if interactive?
-        interactive { yield }
+      if Configuration.once?
+        run_once { yield }
 
       else
-        run_once    { yield }
+        run_many { yield }
 
       end
     end
 
     # @return []
     def main_sequence
-      Input.capture
-    end
-
-    # @return [TrueClass|FalseClass]
-    def interactive?
-      options.fetch(:interactive)
-    end
-
-    # @return []
-    def interactive
-      loop { yield }
-
-    rescue ModeSwitch
-      if Terminal.raw_mode?
-        Application.start({ mode: :cooked })
-
-      else
-        Application.start({ mode: :raw })
-
-      end
+      Input.capture # if Configuration.interactive?
     end
 
     # @return []
@@ -69,30 +47,16 @@ module Vedeu
       yield
     end
 
-    # @return [Symbol]
-    def mode
-      options.fetch(:mode)
-    end
-
     # @return []
-    def debug
-      Vedeu::Trace.call if options.fetch(:debug)
-    end
+    def run_many
+      loop { yield }
 
-    # @return [Hash]
-    def options
-      defaults.merge!(@options)
-    end
+    rescue ModeSwitch
+      Terminal.switch_mode!
 
-    # @return [Hash]
-    def defaults
-      {
-        debug:       false,
-        interactive: true,
-        mode:        :raw
-      }
+      Application.restart
+
     end
-    # :nocov:
 
   end
 end

@@ -24,7 +24,7 @@ module Vedeu
     def execute!
       $stdin, $stdout, $stderr = @stdin, @stdout, @stderr
 
-      Application.start(configuration)
+      Application.start
 
       @exit_code = 0
     rescue StandardError => uncaught_exception
