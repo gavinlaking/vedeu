@@ -3,6 +3,7 @@ module Vedeu
   EntityNotFound      = Class.new(StandardError)
   GroupNotFound       = Class.new(StandardError)
   InterfaceNotFound   = Class.new(StandardError)
+  InvalidSyntax       = Class.new(StandardError)
   ModeSwitch          = Class.new(StandardError)
   NoInterfacesDefined = Class.new(StandardError)
   NotImplemented      = Class.new(StandardError)

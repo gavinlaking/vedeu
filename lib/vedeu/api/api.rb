@@ -167,7 +167,6 @@ module Vedeu
     end
 
     # Instruct Vedeu to treat contents of block as a single composition.
-    # TODO: More help.
     #
     # @param block [Proc] Instructs Vedeu to treat all of the 'view' directives
     #   therein as one instruction. Useful for redrawing multiple interfaces at
@@ -190,6 +189,8 @@ module Vedeu
     #
     # @return [Hash]
     def views(&block)
+      fail InvalidSyntax, '`views` requires a block.' unless block_given?
+
       API::Composition.build(&block)
     end
     alias_method :composition, :views

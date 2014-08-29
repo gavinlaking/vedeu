@@ -128,6 +128,10 @@ module Vedeu
           }
         )
       end
+
+      it 'raises an exception if a block was not given' do
+        proc { Vedeu.views }.must_raise(InvalidSyntax)
+      end
     end
 
     describe '.width' do
