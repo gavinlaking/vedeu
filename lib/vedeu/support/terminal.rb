@@ -84,9 +84,28 @@ module Vedeu
       Configuration.options[:colour_mode]
     end
 
+    # Returns a coordinate tuple of the format [y, x], where `y` is the row/line
+    # and `x` is the column/character.
+    #
     # @return [Array]
     def centre
       [(height / 2), (width / 2)]
+    end
+
+    # Returns the `y` (row/line) component of the coordinate tuple provided by
+    # {Terminal.centre}
+    #
+    # @return [Fixnum]
+    def centre_y
+      centre.first
+    end
+
+    # Returns the `x` (column/character) component of the coodinate tuple
+    # provided by {Terminal.centre}
+    #
+    # @return [Fixnum]
+    def centre_x
+      centre.last
     end
 
     # @return [Fixnum] The total width of the current terminal.

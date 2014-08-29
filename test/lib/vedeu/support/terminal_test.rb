@@ -35,6 +35,22 @@ module Vedeu
       end
     end
 
+    describe '.centre_y' do
+      it 'returns the centre `y` point on the terminal' do
+        console.stub :winsize, [25, 80] do
+          Terminal.centre_y.must_equal(12)
+        end
+      end
+    end
+
+    describe '.centre_x' do
+      it 'returns the centre `x` point on the terminal' do
+        console.stub :winsize, [25, 80] do
+          Terminal.centre_x.must_equal(40)
+        end
+      end
+    end
+
     describe '.width' do
       it 'returns the width of the terminal' do
         console.stub :winsize, [25, 80] do
