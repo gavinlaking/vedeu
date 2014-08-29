@@ -4,17 +4,57 @@ module Vedeu
   describe Terminal do
     let(:console) { IO.console }
 
-    describe '.input' do
-      it 'returns the entered string' do
-        console.stub :gets, "test\n" do
-          Terminal.input.must_equal('test')
+    describe '.open' do
+      before { IO.console.stubs(:print) }
+
+      it 'raises an exception when no block is given' do
+        proc { Terminal.open }.must_raise(InvalidSyntax)
+      end
+
+      it 'opens a new terminal console in raw mode' do
+        Configuration.stub(:terminal_mode, :raw) do
+          capture_io do
+            Terminal.open do
+              print "Hello from raw mode!"
+            end
+          end.must_equal(["Hello from raw mode!", ""])
+        end
+      end
+
+      it 'opens a new terminal console in cooked mode' do
+        Configuration.stub(:terminal_mode, :cooked) do
+          capture_io do
+            Terminal.open do
+              print "Hello from cooked mode!"
+            end
+          end.must_equal(["Hello from cooked mode!", ""])
         end
       end
     end
 
+    describe '.input' do
+      # it 'returns the entered string in cooked mode' do
+      #   Configuration.stub(:terminal_mode, :cooked) do
+      #     Terminal.console.stub(:gets, "test\n") do
+      #       Terminal.input.must_equal('test')
+      #     end
+      #   end
+      # end
+
+      # it 'returns the entered string in raw mode' do
+      #   Configuration.stub(:terminal_mode, :raw) do
+      #     console.stub :getch, "a" do
+      #       Terminal.input.must_equal("a")
+      #     end
+      #   end
+      # end
+    end
+
     describe '.output' do
+      before { IO.console.stubs(:print) }
+
       it 'returns the output' do
-        Terminal.output.must_equal('')
+        Terminal.output('Some output...').must_equal('Some output...')
       end
     end
 
@@ -24,6 +64,12 @@ module Vedeu
           Terminal.clear_last_line
             .must_equal("\e[24;1H\e[38;2;39m\e[48;2;49m\e[2K")
         end
+      end
+    end
+
+    describe '.mode' do
+      it 'returns the configured terminal mode' do
+        Terminal.mode.must_equal(:raw)
       end
     end
 
