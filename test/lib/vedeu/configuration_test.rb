@@ -60,19 +60,19 @@ module Vedeu
       end
     end
 
-    describe '#mode' do
+    describe '#terminal_mode' do
       it 'returns the value of the mode option' do
-        Configuration.mode.must_equal(:raw)
+        Configuration.terminal_mode.must_equal(:raw)
       end
 
       it '--cooked' do
         Configuration.configure(['--cooked'])
-        Configuration.mode.must_equal(:cooked)
+        Configuration.terminal_mode.must_equal(:cooked)
       end
 
       it '--raw' do
         Configuration.configure(['--raw'])
-        Configuration.mode.must_equal(:raw)
+        Configuration.terminal_mode.must_equal(:raw)
       end
     end
 
@@ -91,12 +91,12 @@ module Vedeu
       it 'returns the options configured' do
         Configuration.options.must_equal(
           {
-            colour_mode: 16777216,
-            debug:       false,
-            interactive: true,
-            once:        false,
-            mode:        :raw,
-            trace:       false
+            colour_mode:   16777216,
+            debug:         false,
+            interactive:   true,
+            once:          false,
+            terminal_mode: :raw,
+            trace:         false
           }
         )
       end
