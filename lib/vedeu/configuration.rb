@@ -13,7 +13,7 @@ module Vedeu
           options[:interactive] = true
         end
 
-        opts.on('-I', '--noninteractive',
+        opts.on('-I', '--noninteractive', '--standalone',
                 'Run the application non-interactively; i.e. not requiring ' \
                 'intervention from the user.') do
           options[:interactive] = false

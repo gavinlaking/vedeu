@@ -42,6 +42,11 @@ module Vedeu
         Configuration.configure(['--noninteractive'])
         Configuration.interactive?.must_equal(false)
       end
+
+      it '--standalone' do
+        Configuration.configure(['--standalone'])
+        Configuration.interactive?.must_equal(false)
+      end
     end
 
     describe '#once?' do
@@ -97,6 +102,22 @@ module Vedeu
             once:          false,
             terminal_mode: :raw,
             trace:         false
+          }
+        )
+      end
+    end
+
+    describe 'exploring multiple options set' do
+      it 'returns the options correctly configured' do
+        Configuration.configure(['--standalone', '--run-once'])
+        Configuration.options.must_equal(
+          {
+            interactive: false,
+            once: true,
+            colour_mode: 16777216,
+            debug: false,
+            terminal_mode: :raw,
+            trace: false
           }
         )
       end
