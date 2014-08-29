@@ -24,6 +24,8 @@ module Vedeu
     def execute!
       $stdin, $stdout, $stderr = @stdin, @stdout, @stderr
 
+      Configuration.configure(argv)
+
       Application.start
 
       @exit_code = 0
@@ -40,12 +42,6 @@ module Vedeu
     private
 
     attr_reader :argv
-
-    # @return []
-    def configuration
-      Configuration.configure(argv)
-    end
-    # :nocov:
 
   end
 end
