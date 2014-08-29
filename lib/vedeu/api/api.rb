@@ -100,7 +100,7 @@ module Vedeu
     # @return []
     def keypress(key)
       Vedeu.events.trigger(:key, key)
-      Vedeu.events.trigger(:_log_, "Key: #{key}")
+      Vedeu.events.trigger(:_log_, "Key: #{key}") if Configuration.debug?
       Vedeu.events.trigger(:_mode_switch_) if key == :escape
       Vedeu.events.trigger(:_focus_next_)  if key == :tab
       Vedeu.events.trigger(:_focus_prev_)  if key == :shift_tab
@@ -116,7 +116,7 @@ module Vedeu
     #
     # @return [TrueClass]
     def log(message)
-      Vedeu::Log.logger.debug(message)
+      Vedeu::Log.logger.debug(message) if Configuration.debug?
     end
 
     # Trigger a registered or system event by name with arguments.
