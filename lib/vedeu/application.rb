@@ -29,7 +29,7 @@ module Vedeu
     # @return []
     def runner
       if Configuration.once?
-        run_once { yield }
+        yield
 
       else
         run_many { yield }
@@ -39,12 +39,13 @@ module Vedeu
 
     # @return []
     def main_sequence
-      Input.capture # if Configuration.interactive?
-    end
+      if Configuration.interactive?
+        Input.capture
 
-    # @return []
-    def run_once
-      yield
+      else
+        # TODO: What should happen here?
+
+      end
     end
 
     # @return []
