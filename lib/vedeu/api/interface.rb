@@ -3,39 +3,18 @@ module Vedeu
     class Interface < Vedeu::Interface
       include Helpers
 
-      # @see Vedeu::API#interface
-      # @param attributes [Hash]
-      # @param block [Proc]
-      # @return []
-      def self.define(attributes = {}, &block)
-        new(attributes).define(&block)
-      end
-
-      # @see Vedeu::API#interface
-      # @param block [Proc]
-      #
-      # @example
-      #   TODO
-      #
-      # @return []
-      def define(&block)
-        instance_eval(&block) if block_given?
-
-        Vedeu::Buffers.create(attributes)
-
-        Vedeu.event("_refresh_#{attributes[:name]}_".to_sym,
-                    { delay: attributes[:delay] }) do
-          Vedeu::Buffers.refresh(attributes[:name])
-        end
-
-        true
-      end
-
       # Define a single line in a view.
       #
+      # @api public
+      # @param value [String]
       # @param block [Proc]
       #
       # @example
+      #   view 'my_interface' do
+      #     line 'This is a line of text...'
+      #     line 'and so is this...'
+      #     ...
+      #
       #   view 'my_interface' do
       #     line do
       #       ... some line attributes ...
@@ -43,10 +22,21 @@ module Vedeu
       #   end
       #
       # @return []
-      def line(&block)
-        attributes[:lines] << Line.build(&block)
+      def line(value = '', &block)
+        if block_given?
+          attributes[:lines] << Line.build(&block)
+
+        else
+          attributes[:lines] << Line.build({ streams: { text: value } })
+
+        end
       end
 
+      # Use the specified interface; useful for sharing attributes with other
+      # interfaces.
+      #
+      # @api public
+      # @param value [String]
       # @see Vedeu::API#use
       def use(value)
         Vedeu.use(value)
@@ -55,19 +45,28 @@ module Vedeu
       # Define the cursor visibility for an interface. A `true` value will show
       # the cursor, whilst `false` will hide it.
       #
+      # @api public
       # @param value [Boolean]
       #
       # @example
       #   interface 'my_interface' do
       #     cursor true
-      #     ... some interface attributes ...
-      #   end
+      #     ...
       #
       # @return []
       def cursor(value)
+        unless value.is_a?(TrueClass) || value.is_a?(FalseClass)
+          fail InvalidSyntax, 'Argument must be `true` or `false` for cursor.'
+        end
+
         attributes[:cursor] = value
       end
 
+      # To maintain performance interfaces can be delayed from refreshing too
+      # often, the reduces artefacts particularly when resizing the terminal
+      # screen.
+      #
+      # @api public
       # @param value [Fixnum|Float]
       #
       # @return []
@@ -79,13 +78,13 @@ module Vedeu
       # targetted together; for example you may want to refresh multiple
       # interfaces at once.
       #
+      # @api public
       # @param value [String]
       #
       # @example
       #   interface 'my_interface' do
-      #     group 'main_screen' do
-      #     ... some interface attributes ...
-      #   end
+      #     group 'main_screen'
+      #     ...
       #
       # @return []
       def group(value)
@@ -95,10 +94,13 @@ module Vedeu
       # The name of the interface. Used to reference the interface throughout
       # your application's execution lifetime.
       #
+      # @api public
       # @param value [String]
       #
       # @example
-      #   TODO
+      #   interface do
+      #     name 'my_interface'
+      #     ...
       #
       # @return []
       def name(value)
@@ -107,6 +109,7 @@ module Vedeu
 
       # Define the starting x position (column) of the interface.
       #
+      # @api public
       # @param value [Fixnum]
       # @param block [Proc]
       #
@@ -130,6 +133,7 @@ module Vedeu
 
       # Define the starting y position (row/line) of the interface.
       #
+      # @api public
       # @param value [Fixnum]
       # @param block [Proc]
       #
@@ -154,6 +158,7 @@ module Vedeu
 
       # Define the number of characters/columns wide the interface will be.
       #
+      # @api public
       # @param value [Fixnum]
       #
       # @example
@@ -170,6 +175,7 @@ module Vedeu
 
       # Define the number of characters/rows/lines tall the interface will be.
       #
+      # @api public
       # @param value [Fixnum]
       #
       # @example
@@ -187,6 +193,7 @@ module Vedeu
       # Instructs Vedeu to calculate x and y geometry automatically based on the
       # centre character of the terminal, the width and the height.
       #
+      # @api public
       # @param value [Boolean]
       #
       # @example
@@ -196,26 +203,11 @@ module Vedeu
       #
       # @return []
       def centred(value)
+        unless value.is_a?(TrueClass) || value.is_a?(FalseClass)
+          fail InvalidSyntax, 'Argument must be `true` or `false` for centred.'
+        end
+
         attributes[:geometry][:centred] = value
-      end
-
-      private
-
-      def out_of_bounds(name)
-        "Note: For this terminal, the value of '#{name}' may lead to content " \
-        "that is outside the viewable area."
-      end
-
-      def y_out_of_bounds?(value)
-        value < 1 || value > Terminal.height
-      end
-
-      def x_out_of_bounds?(value)
-        value < 1 || value > Terminal.width
-      end
-
-      def method_missing(method, *args, &block)
-        @self_before_instance_eval.send(method, *args, &block)
       end
 
     end

@@ -3,6 +3,9 @@ module Vedeu
 
     attr_reader :attributes, :centred, :height, :width
 
+    # Calculate and provide interface geometry determined by both the client's
+    # requirements and the terminal's current viewing area.
+    #
     # @param attributes [Hash]
     # @return [Geometry]
     def initialize(attributes = {})
@@ -80,6 +83,8 @@ module Vedeu
       end
     end
 
+    # Returns the top-left coordinate, relative to the interface's position.
+    #
     # @param index [Fixnum]
     # @param block [Proc]
     # @return [String]
@@ -87,10 +92,13 @@ module Vedeu
       Esc.set_position(virtual_y[index], left, &block)
     end
 
+    # Returns a fixed or dynamic value depending on whether the interface is
+    # centred or not.
+    # 
     # @return [Fixnum]
     def top
       if centred
-        centre_y - (viewport_height / 2)
+        Terminal.centre_y - (viewport_height / 2)
 
       else
         y
@@ -113,10 +121,13 @@ module Vedeu
       top - value
     end
 
+    # Returns a fixed or dynamic value depending on whether the interface is
+    # centred or not.
+    #
     # @return [Fixnum]
     def left
       if centred
-        centre_x - (viewport_width / 2)
+        Terminal.centre_x - (viewport_width / 2)
 
       else
         x
@@ -159,6 +170,9 @@ module Vedeu
       bottom + value
     end
 
+    # Returns a fixed or dynamic value depending on whether the interface is
+    # centred or not.
+    #
     # @return [Fixnum]
     def right
       left + width
@@ -181,22 +195,21 @@ module Vedeu
 
     private
 
-    def centre
-      Terminal.centre
-    end
-
-    def centre_y
-      centre.first
-    end
-
-    def centre_x
-      centre.last
-    end
-
+    # Provides a virtual y position within the interface's dimensions.
+    #
+    # @return [Array]
     def virtual_y
-      @_virtual_y ||= (top..bottom).to_a
+      (top..bottom).to_a
     end
 
+    # Provides a virtual x position within the interface's dimensions.
+    #
+    # @return [Array]
+    def virtual_x
+      (left..right).to_a
+    end
+
+    # @return [Hash]
     def defaults
       {
         y:       1,

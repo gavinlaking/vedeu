@@ -24,7 +24,9 @@ module Vedeu
     def execute!
       $stdin, $stdout, $stderr = @stdin, @stdout, @stderr
 
-      Application.start(configuration)
+      Configuration.configure(argv)
+
+      Application.start
 
       @exit_code = 0
     rescue StandardError => uncaught_exception
@@ -40,11 +42,6 @@ module Vedeu
     private
 
     attr_reader :argv
-
-    def configuration
-      Configuration.configure(argv)
-    end
-    # :nocov:
 
   end
 end

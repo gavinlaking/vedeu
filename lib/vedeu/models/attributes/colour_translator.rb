@@ -11,7 +11,13 @@ module Vedeu
     # defaults, then the theme's colour will be used. The recognised names are:
     # :black, :red, :green, :yellow, :blue, :magenta, :cyan, :white, :default.
     #
-    # TODO: add more documentation
+    # When a number between 0 and 255 is provided, Vedeu will use the terminal
+    # colour corresponding with that colour. TODO: Create chart.
+    #
+    # Finally, when provided a CSS/HTML colour string e.g. '#ff0000', Vedeu will
+    # translate that to the 8-bit escape sequence or if you have a capable
+    # terminal and the `VEDEU_TERM=xterm-truecolor` environment variable set,
+    # a 24-bit representation.
     #
     # @param colour [String]
     # @return [String]
@@ -50,46 +56,68 @@ module Vedeu
 
     attr_reader :colour
 
+    # @api private
+    # @return [TrueClass|FalseClass]
     def no_colour?
       colour.nil? || colour.to_s.empty?
     end
 
+    # @api private
+    # @return [TrueClass|FalseClass]
     def named?
       colour.is_a?(Symbol) && valid_name?
     end
 
+    # @api private
+    # @return [Exception]
     def named
       fail NotImplemented, 'Subclasses implement this.'
     end
 
+    # @api private
+    # @return [TrueClass|FalseClass]
     def valid_name?
       codes.keys.include?(colour)
     end
 
+    # @api private
+    # @return [TrueClass|FalseClass]
     def numbered?
       colour.is_a?(Fixnum) && valid_range?
     end
 
+    # @api private
+    # @return [Exception]
     def numbered
       fail NotImplemented, 'Subclasses implement this.'
     end
 
+    # @api private
+    # @return [TrueClass|FalseClass]
     def valid_range?
       colour >= 0 && colour <= 255
     end
 
+    # @api private
+    # @return [TrueClass|FalseClass]
     def rgb?
       colour.is_a?(String) && valid_rgb?
     end
 
+    # @api private
+    # @return [Exception]
     def rgb
       fail NotImplemented, 'Subclasses implement this.'
     end
 
+    # @api private
+    # @return [TrueClass|FalseClass]
     def valid_rgb?
-      colour =~ /^#([A-Fa-f0-9]{6})$/
+      !!(colour =~ /^#([A-Fa-f0-9]{6})$/)
     end
 
+    # @api private
+    # @return [Array]
     def css_to_rgb
       [
         colour[1..2].to_i(16),
@@ -98,6 +126,8 @@ module Vedeu
       ]
     end
 
+    # @api private
+    # @return [Fixnum]
     def css_to_numbered
       if rgb?
         [16, red, green, blue].inject(:+)
@@ -108,18 +138,26 @@ module Vedeu
       end
     end
 
+    # @api private
+    # @return [Fixnum]
     def red
       (css_to_rgb[0] / 51) * 36
     end
 
+    # @api private
+    # @return [Fixnum]
     def green
       (css_to_rgb[1] / 51) * 6
     end
 
+    # @api private
+    # @return [Fixnum]
     def blue
       (css_to_rgb[2] / 51) * 1
     end
 
+    # @api private
+    # @return [Hash]
     def codes
       {
         black:   30,

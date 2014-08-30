@@ -1,22 +1,32 @@
 module Vedeu
   class Application
+    class << self
 
-    # :nocov:
-    # @param options [Hash]
-    # @return []
-    def self.start(options = {})
-      new(options).start
+      # @return []
+      def start
+        new.start
+      end
+      alias_method :restart, :start
+
     end
 
-    # @param options [Hash]
     # @return [Application]
-    def initialize(options = {})
-      @options = options
-    end
+    def initialize; end
 
+    # Starts the application!
+    # - A new terminal screen is opened (or rather the current terminal is
+    #   requested into either :raw or :cooked mode).
+    # - The cursor visibility is then set dependent on this mode. In :raw mode,
+    #   the cursor is hidden.
+    # - The `:_initialize_` event is triggered. Vedeu does not handle this
+    #   event; the client application may treat this event as Vedeu signalling
+    #   that it is now ready.
+    # - We enter into the main sequence where the application will either run
+    #   once or continuous, interactively or standalone.
+    #
     # @return []
     def start
-      Terminal.open(mode) do
+      Terminal.open do
         Terminal.set_cursor_mode
 
         Vedeu.events.trigger(:_initialize_)
@@ -27,63 +37,41 @@ module Vedeu
 
     private
 
-    attr_reader :options
-
+    # @api private
+    # @return []
     def runner
-      if interactive?
-        interactive { yield }
+      if Configuration.once?
+        yield
 
       else
-        run_once    { yield }
+        run_many { yield }
 
       end
     end
 
+    # @api private
+    # @return []
     def main_sequence
-      Input.capture
+      if Configuration.interactive?
+        Input.capture
+
+      else
+        # TODO: What should happen here?
+
+      end
     end
 
-    def interactive?
-      options.fetch(:interactive)
-    end
-
-    def interactive
+    # @api private
+    # @return []
+    def run_many
       loop { yield }
 
     rescue ModeSwitch
-      if Terminal.raw_mode?
-        Application.start({ mode: :cooked })
+      Terminal.switch_mode!
 
-      else
-        Application.start({ mode: :raw })
+      Application.restart
 
-      end
     end
-
-    def run_once
-      yield
-    end
-
-    def mode
-      options.fetch(:mode)
-    end
-
-    def debug
-      Vedeu::API::Trace.call if options.fetch(:debug)
-    end
-
-    def options
-      defaults.merge!(@options)
-    end
-
-    def defaults
-      {
-        debug:       false,
-        interactive: true,
-        mode:        :raw
-      }
-    end
-    # :nocov:
 
   end
 end

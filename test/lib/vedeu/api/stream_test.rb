@@ -7,6 +7,14 @@ module Vedeu
         it 'returns the value assigned' do
           Stream.new.align(:left).must_equal(:left)
         end
+
+        it 'returns the value assigned' do
+          Stream.new.align('left').must_equal(:left)
+        end
+
+        it 'raises an exception if the value is invalid' do
+          proc { Stream.new.align(:unknown) }.must_raise(InvalidSyntax)
+        end
       end
 
       describe '#text' do

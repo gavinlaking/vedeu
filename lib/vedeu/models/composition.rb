@@ -49,7 +49,7 @@ module Vedeu
     end
 
     # Returns the complete escape sequence which this composition renders to.
-    # This is used by `Terminal.output` to draw the view.
+    # This is used by {Terminal.output} to draw the view.
     #
     # @return [String]
     def to_s
@@ -58,10 +58,17 @@ module Vedeu
 
     private
 
+    # @api private
+    # @return [Hash]
     def defaults
       {
         interfaces: []
       }
+    end
+
+    # @api private
+    def method_missing(method, *args, &block)
+      @self_before_instance_eval.send(method, *args, &block)
     end
 
   end

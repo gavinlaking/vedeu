@@ -8,7 +8,7 @@ module Vedeu
         interface = Interface.new({ name: 'widget' })
 
         it 'creates and stores a new interface' do
-          interface.define.must_equal(true)
+          interface.define.must_be_instance_of(API::Interface)
         end
 
         it 'allows the setting of colours' do
@@ -834,6 +834,72 @@ module Vedeu
           )
         end
 
+        it 'allows inline values for line' do
+          Vedeu.interface 'helium' do
+          end
+          attributes = Vedeu.view 'helium' do
+            line 'A headline, if you will.'
+            line # with a spacer line
+            line 'This is a line of text...'
+            line do
+              text '...we can mix and match...'
+            end
+            line '...to our hearts content.'
+          end
+          attributes[:interfaces].first[:lines].size.must_equal(5)
+        end
+      end
+
+      describe '#cursor' do
+        it 'raises an exception if the value is invalid' do
+          proc {
+            Vedeu.interface 'beryllium' do
+              cursor :invalid
+            end
+          }.must_raise(InvalidSyntax)
+        end
+
+        it 'sets the cursor to true (visible)' do
+          Vedeu.interface 'beryllium' do
+            cursor true
+          end
+
+          Vedeu.use('beryllium').attributes[:cursor].must_equal(true)
+        end
+
+        it 'sets the cursor to false (hidden)' do
+          Vedeu.interface 'beryllium' do
+            cursor false
+          end
+
+          Vedeu.use('beryllium').attributes[:cursor].must_equal(false)
+        end
+      end
+
+      describe '#centred' do
+        it 'raises an exception if the value is invalid' do
+          proc {
+            Vedeu.interface 'boron' do
+              centred :invalid
+            end
+          }.must_raise(InvalidSyntax)
+        end
+
+        it 'sets the centred to true (visible)' do
+          Vedeu.interface 'boron' do
+            centred true
+          end
+
+          Vedeu.use('boron').attributes[:geometry][:centred].must_equal(true)
+        end
+
+        it 'sets the centred to false (hidden)' do
+          Vedeu.interface 'boron' do
+            centred false
+          end
+
+          Vedeu.use('boron').attributes[:geometry][:centred].must_equal(false)
+        end
       end
     end
   end

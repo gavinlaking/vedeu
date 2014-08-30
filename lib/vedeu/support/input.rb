@@ -1,12 +1,12 @@
 module Vedeu
   class Input
 
-    # @return []
+    # @return [String|Symbol]
     def self.capture
       new.capture
     end
 
-    # @return []
+    # @return [Input]
     def initialize; end
 
     # @return []
@@ -16,10 +16,14 @@ module Vedeu
 
     private
 
+    # @api private
+    # @return [String]
     def input
       @_input ||= Terminal.input
     end
 
+    # @api private
+    # @return [String|Symbol]
     def keypress
       key        = input
       translated = case key
@@ -35,6 +39,7 @@ module Vedeu
       when "\e[H"    then :home
       when "\e[3~"   then :delete
       when "\e[F"    then :end
+      when "\e[Z"    then :shift_tab
       when "\eOP"    then :f1
       when "\eOQ"    then :f2
       when "\eOR"    then :f3

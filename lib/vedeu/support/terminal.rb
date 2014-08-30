@@ -1,24 +1,23 @@
 module Vedeu
   module Terminal
+
     extend self
 
-    # @param mode [Symbol]
     # @param block [Proc]
     # @return []
-    def open(mode, &block)
-      @mode = mode
+    def open(&block)
+      fail InvalidSyntax, '`open` requires a block.' unless block_given?
 
-      if block_given?
-        if raw_mode?
-          console.raw    { initialize_screen { yield } }
+      if raw_mode?
+        console.raw    { initialize_screen { yield } }
 
-        else
-          console.cooked { initialize_screen { yield } }
+      else
+        console.cooked { initialize_screen { yield } }
 
-        end
       end
     ensure
       restore_screen
+
     end
 
     # @return [String]
@@ -70,8 +69,34 @@ module Vedeu
     end
 
     # @return [Boolean]
+    def cooked_mode?
+      mode == :cooked
+    end
+
+    # @return [Symbol]
+    def cooked_mode!
+      @_mode = :cooked
+    end
+
+    # @return [Boolean]
     def raw_mode?
-      @mode == :raw
+      mode == :raw
+    end
+
+    # @return [Symbol]
+    def raw_mode!
+      @_mode = :raw
+    end
+
+    # @return [Symbol]
+    def switch_mode!
+      if raw_mode?
+        cooked_mode!
+
+      else
+        raw_mode!
+
+      end
     end
 
     # @return [String]
@@ -79,26 +104,54 @@ module Vedeu
       Esc.set_position((height - 1), 1) + Esc.string('clear_line')
     end
 
-    # @return [Fixnum]
-    def colour_mode
-      Configuration.options[:colour_mode]
+    # Returns the mode of the terminal, either `:raw` or `:cooked`
+    #
+    # @return [Symbol]
+    def mode
+      @_mode ||= Configuration.terminal_mode
     end
 
+    # Returns a coordinate tuple of the format [y, x], where `y` is the row/line
+    # and `x` is the column/character.
+    #
     # @return [Array]
     def centre
       [(height / 2), (width / 2)]
     end
 
-    # @return [Fixnum] The total width of the current terminal.
+    # Returns the `y` (row/line) component of the coordinate tuple provided by
+    # {Terminal.centre}
+    #
+    # @return [Fixnum]
+    def centre_y
+      centre.first
+    end
+
+    # Returns the `x` (column/character) component of the coodinate tuple
+    # provided by {Terminal.centre}
+    #
+    # @return [Fixnum]
+    def centre_x
+      centre.last
+    end
+
+    # Returns the total width (number of columns/characters) of the current
+    # terminal.
+    #
+    # @return [Fixnum]
     def width
       size.last
     end
 
-    # @return [Fixnum] The total height of the current terminal.
+    # Returns the total height (number of rows/lines) of the current terminal.
+    #
+    # @return [Fixnum]
     def height
       size.first
     end
 
+    # Returns a tuple containing the height and width of the current terminal.
+    #
     # @return [Array]
     def size
       console.winsize
@@ -108,5 +161,6 @@ module Vedeu
     def console
       IO.console
     end
+
   end
 end

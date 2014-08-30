@@ -19,6 +19,14 @@ module Vedeu
       new(attributes, &block).attributes
     end
 
+    # @see Vedeu::API#interface
+    # @param attributes [Hash]
+    # @param block [Proc]
+    # @return []
+    def self.define(attributes = {}, &block)
+      new(attributes).define(&block)
+    end
+
     # @param  attributes [Hash]
     # @param  block [Proc]
     # @return [Interface]
@@ -34,6 +42,30 @@ module Vedeu
 
         instance_eval(&block)
       end
+    end
+
+    # @see Vedeu::API#interface
+    # @param block [Proc]
+    #
+    # @example
+    #   TODO
+    #
+    # @return []
+    def define(&block)
+      instance_eval(&block) if block_given?
+
+      if attributes[:name].nil? || attributes[:name].empty?
+        fail InvalidSyntax, 'Interfaces and views must have a `name`.'
+      end
+
+      Vedeu::Buffers.create(attributes)
+
+      Vedeu.event("_refresh_#{attributes[:name]}_".to_sym,
+                  { delay: attributes[:delay] }) do
+        Vedeu::Buffers.refresh(attributes[:name])
+      end
+
+      self
     end
 
     # @return [Array]
@@ -69,6 +101,8 @@ module Vedeu
 
     private
 
+    # @api private
+    # @return [Hash]
     def defaults
       {
         name:     '',
@@ -80,6 +114,31 @@ module Vedeu
         cursor:   true,
         delay:    0.0
       }
+    end
+
+    # @api private
+    # @return [String]
+    def out_of_bounds(name)
+      "Note: For this terminal, the value of '#{name}' may lead to content " \
+      "that is outside the viewable area."
+    end
+
+    # @api private
+    # @return [TrueClass|FalseClass]
+    def y_out_of_bounds?(value)
+      value < 1 || value > Terminal.height
+    end
+
+    # @api private
+    # @return [TrueClass|FalseClass]
+    def x_out_of_bounds?(value)
+      value < 1 || value > Terminal.width
+    end
+
+    # @api private
+    # @return []
+    def method_missing(method, *args, &block)
+      @self_before_instance_eval.send(method, *args, &block)
     end
 
   end

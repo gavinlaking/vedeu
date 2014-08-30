@@ -34,6 +34,50 @@ module Vedeu
     end
 
     describe '#refresh' do
+      it 'renders the fresh content if available' do
+        interface = Interface.new
+        buffer    = Buffer.new({ back: interface, front: nil, interface: interface })
+        Terminal.stub(:output, '') do
+          buffer.refresh.must_be_instance_of(Buffer)
+          buffer.refresh.wont_equal(buffer)
+        end
+      end
+
+      it 'clears the interface if no content is available' do
+        interface = Interface.new
+        buffer    = Buffer.new({ back: nil, front: nil, interface: interface })
+        Terminal.stub(:output, '') do
+          buffer.refresh.must_equal(buffer)
+        end
+      end
+
+      it 'renders the previous/old content if nothing new has arrived' do
+        interface = Interface.new
+        buffer    = Buffer.new({ back: nil, front: interface, interface: interface })
+        Terminal.stub(:output, '') do
+          buffer.refresh.must_equal(buffer)
+        end
+      end
+    end
+
+    describe '#render' do
+      it 'renders the interface and returns the Buffer instance' do
+        interface = Interface.new
+        buffer = Buffer.new({ back: nil, front: nil, interface: interface })
+        Terminal.stub(:output, '') do
+          buffer.render.must_equal(buffer)
+        end
+      end
+    end
+
+    describe '#clear' do
+      it 'clears the interface and returns the Buffer instance' do
+        interface = Interface.new
+        buffer = Buffer.new({ back: nil, front: nil, interface: interface })
+        Terminal.stub(:output, '') do
+          buffer.clear.must_equal(buffer)
+        end
+      end
     end
   end
 end

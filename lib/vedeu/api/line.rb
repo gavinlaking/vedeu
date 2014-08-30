@@ -5,6 +5,7 @@ module Vedeu
 
       # Define a stream (a subset of a line).
       #
+      # @api public
       # @param block [Proc] Block contains directives relating to API::Stream.
       #
       # @example
@@ -18,6 +19,8 @@ module Vedeu
       #
       # @return [Array]
       def stream(&block)
+        fail InvalidSyntax, '`stream` requires a block.' unless block_given?
+
         attributes[:streams] << API::Stream.build(&block)
       end
 
@@ -25,6 +28,7 @@ module Vedeu
       # attributes for this line but is useful for adding lines straight into
       # the interface.
       #
+      # @api public
       # @param value [String]
       #
       # @example
@@ -37,6 +41,7 @@ module Vedeu
         attributes[:streams] << { text: value }
       end
 
+      # @api public
       # @param value [String]
       # @param block [Proc]
       #
@@ -53,6 +58,7 @@ module Vedeu
                                 }, &block)
       end
 
+      # @api public
       # @param value [String]
       # @param block [Proc]
       #

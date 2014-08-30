@@ -6,6 +6,7 @@ module Vedeu
       # Specify the alignment of the stream within the line. Useful in
       # combination with #width to provide simple formatting effects.
       #
+      # @api public
       # @param value [Symbol] `:left`, `:centre` and `right` are valid values
       #   and will align accordingly. If not value is specified, the stream will
       #   left align.
@@ -18,11 +19,17 @@ module Vedeu
       #
       # @return [Symbol]
       def align(value)
-        attributes[:align] = value
+        unless [:left, :right, :centre].include?(value.to_sym)
+          fail InvalidSyntax, '`align` requires a value of `:left`, `:right` ' \
+                              'or `centre`.'
+        end
+
+        attributes[:align] = value.to_sym
       end
 
       # Add textual data to the stream via this method.
       #
+      # @api public
       # @param value [String] The text to be added to the stream. If the length
       #   of the text is greater than the interface's width, it will be
       #   truncated and ellipsized.
@@ -42,6 +49,7 @@ module Vedeu
       # stream. Useful in combination with #align to provide simple formatting
       # effects.
       #
+      # @api public
       # @param value [Fixnum] The width in characters.
       #
       # @example

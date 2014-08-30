@@ -42,7 +42,7 @@ module Vedeu
       end
 
       describe 'when the colour is a CSS value (8-bit / 256 colours)' do
-        before { Terminal.stubs(:colour_mode).returns(8) }
+        before { Configuration.stubs(:colour_mode).returns(8) }
 
         {
           '#5f0000' => "\e[38;5;52m",

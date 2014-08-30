@@ -13,7 +13,7 @@ require 'mocha/setup'
 
 GC.disable
 
-ENV['VEDEUTERM'] = 'xterm-truecolor'
+ENV['VEDEU_TERM'] = 'xterm-truecolor'
 
 require 'vedeu'
 
@@ -26,4 +26,4 @@ require 'vedeu'
 
 # trace method execution with (optionally) local variables
 # require 'vedeu/support/log'
-# Vedeu::Log::Trace.call({ watched: 'call', klass: /^Vedeu/ })
+# Vedeu::Trace.call({ watched: 'call', klass: /^Vedeu/ })

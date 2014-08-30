@@ -16,6 +16,7 @@ module Vedeu
         "\e[H"    => :home,
         "\e[3~"   => :delete,
         "\e[F"    => :end,
+        "\e[Z"    => :shift_tab,
         "\eOP"    => :f1,
         "\eOQ"    => :f2,
         "\eOR"    => :f3,

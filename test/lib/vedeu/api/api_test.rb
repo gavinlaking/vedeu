@@ -24,10 +24,6 @@ module Vedeu
     end
 
     describe '.events' do
-      it 'should not be visible to the client' do
-        skip
-      end
-
       it 'returns the Events singleton' do
         Vedeu.events.must_be_instance_of(Vedeu::Events)
       end
@@ -45,7 +41,7 @@ module Vedeu
       it 'creates and stores a new interface' do
         Vedeu::Buffers.reset
 
-        Vedeu.interface('Vedeu.interface').must_equal(true)
+        Vedeu.interface('Vedeu.interface').must_be_instance_of(API::Interface)
       end
     end
 
@@ -53,8 +49,21 @@ module Vedeu
       before { event.stubs(:trigger).returns(nil) }
 
       it 'returns nil' do
-        skip
         Vedeu.keypress('k').must_equal(nil)
+      end
+    end
+
+    describe '.log' do
+      it 'writes the message to the log file when debugging is enabled' do
+        Configuration.stub(:debug?, true) do
+          Vedeu.log('some message...').must_equal(true)
+        end
+      end
+
+      it 'returns nil when debugging is disabled' do
+        Configuration.stub(:debug?, false) do
+          Vedeu.log('some message...').must_equal(nil)
+        end
       end
     end
 
@@ -127,6 +136,10 @@ module Vedeu
             ]
           }
         )
+      end
+
+      it 'raises an exception if a block was not given' do
+        proc { Vedeu.views }.must_raise(InvalidSyntax)
       end
     end
 
