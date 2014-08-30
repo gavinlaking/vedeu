@@ -65,6 +65,7 @@ module Vedeu
 
     private
 
+    # @api private
     # @return [TrueClass|FalseClass]
     def registered?(name)
       return false if storage.empty?
@@ -72,6 +73,7 @@ module Vedeu
       storage.include?(name)
     end
 
+    # @api private
     # @return [Array]
     def storage
       @storage ||= []

@@ -87,11 +87,13 @@ module Vedeu
 
     private
 
+    # @api private
     # @return [String]
     def self.filename
       @_filename ||= directory + '/vedeu.log'
     end
 
+    # @api private
     # @return [String]
     def self.directory
       FileUtils.mkdir_p(path) unless File.directory?(path)
@@ -99,6 +101,7 @@ module Vedeu
       path
     end
 
+    # @api private
     # @return [String]
     def self.path
       Dir.home + '/.vedeu'

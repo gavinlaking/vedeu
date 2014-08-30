@@ -1,18 +1,28 @@
 module Vedeu
   class Render
 
+    # Attempts to convert the provided interface object with associated lines,
+    # streams, colours, styles, etc, into a single string containing all content
+    # and escape sequences.
+    #
+    # @api private
     # @param interface [Interface]
     # @return [String]
     def self.call(interface)
       new(interface).render
     end
 
+    # Initializes a new Render object with the provided interface.
+    #
     # @param interface [Interface]
     # @return [Render]
     def initialize(interface)
       @interface = interface
     end
 
+    # Produces a single string which contains all content and escape sequences
+    # required to render this interface to a position in the terminal window.
+    #
     # @return [String]
     def render
       out = [ Clear.call(interface) ]
@@ -33,6 +43,9 @@ module Vedeu
     # The client application may have created a line that us too long for the
     # interface. This code tries to truncate streams whilst preserving styles
     # and colours.
+    #
+    # @api private
+    # @return [Array]
     def processed_lines
       return [] unless lines.any? { |line| line.streams.any? }
 
@@ -71,26 +84,46 @@ module Vedeu
       end
     end
 
+    # Converts all streams within a line into a single line of text to then
+    # check that this line (without formatting, as that is not visible) exceeds
+    # the width of the interface.
+    #
+    # @api private
+    # @param line [Line]
     # @return [TrueClass|FalseClass]
     def exceeds_width?(line)
       line.streams.map(&:text).join.size > width
     end
 
+    # Truncates the provided text.
+    #
+    # @api private
+    # @param text [String] The text to be truncated.
+    # @param value [Fixnum] The total length of the text after truncation.
     # @return [String]
     def truncate(text, value)
       text.chomp.slice(0...value)
     end
 
+    # Provides a collection of lines associated with the interface.
+    #
+    # @api private
     # @return [Array]
     def lines
       interface.lines
     end
 
+    # Provides the currently available height of the interface.
+    #
+    # @api private
     # @return [Fixnum]
     def height
       interface.viewport_height
     end
 
+    # Provides the currently available width of the interface.
+    #
+    # @api private
     # @return [Fixnum]
     def width
       interface.viewport_width

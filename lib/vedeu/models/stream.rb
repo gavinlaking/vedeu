@@ -35,11 +35,13 @@ module Vedeu
 
     private
 
+    # @api private
     # @return [String]
     def data
       width? ? aligned : text
     end
 
+    # @api private
     # @return [String]
     def aligned
       case align
@@ -49,11 +51,13 @@ module Vedeu
       end
     end
 
+    # @api private
     # @return [TrueClass|FalseClass]
     def width?
       !!width
     end
 
+    # @api private
     # @return [Hash]
     def defaults
       {
@@ -65,6 +69,7 @@ module Vedeu
       }
     end
 
+    # @api private
     # @return []
     def method_missing(method, *args, &block)
       @self_before_instance_eval.send(method, *args, &block)

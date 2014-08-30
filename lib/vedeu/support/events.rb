@@ -56,6 +56,8 @@ module Vedeu
 
     attr_reader :handlers
 
+    # @api private
+    # @return []
     def method_missing(method, *args, &block)
       @self_before_instance_eval.send(method, *args, &block)
     end

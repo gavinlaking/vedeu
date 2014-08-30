@@ -16,11 +16,13 @@ module Vedeu
 
     private
 
+    # @api private
     # @return [String]
     def input
       @_input ||= Terminal.input
     end
 
+    # @api private
     # @return [String|Symbol]
     def keypress
       key        = input

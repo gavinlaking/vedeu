@@ -5,6 +5,7 @@ module Vedeu
       # Define either or both foreground and background colours for an
       # interface, line or a stream.
       #
+      # @api public
       # @param values [Hash]
       #
       # @example
@@ -30,6 +31,7 @@ module Vedeu
 
       # Define a style for an interface, line or a stream.
       #
+      # @api public
       # @param values [Array|String]
       # @param block  [Proc]
       #

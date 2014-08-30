@@ -4,6 +4,7 @@ module Vedeu
     # Register an event by name with optional delay (throttling) which when
     # triggered will execute the code contained within the passed block.
     #
+    # @api public
     # @param name  [Symbol] The name of the event which will be triggered later.
     # @param [Hash] opts The options to register the event with.
     # @option opts :delay [Fixnum|Float] Limits the execution of the
@@ -23,19 +24,21 @@ module Vedeu
     #     Vedeu.trigger(:my_other_event)
     #   end
     #
-    #   T = Triggered, X = Executed, I = Ignored.
+    #   T = Triggered, X = Executed, i = Ignored.
+    #
     #   0.0.....0.2.....0.4.....0.6.....0.8.....1.0.....1.2.....1.4.....1.6...
     #   .T...T...T...T...T...T...T...T...T...T...T...T...T...T...T...T...T...T
-    #   .X...I...I...I...I...X...I...I...I...I...X...I...I...I...I...I...I...I
+    #   .X...i...i...i...i...X...i...i...i...i...X...i...i...i...i...i...i...i
     #
     #   Vedeu.event(:my_delayed_event, { delay: 0.5 })
     #     ... some code here ...
     #   end
     #
-    #   T = Triggered, X = Executed, I = Ignored.
+    #   T = Triggered, X = Executed, i = Ignored.
+    #
     #   0.0.....0.2.....0.4.....0.6.....0.8.....1.0.....1.2.....1.4.....1.6...
     #   .T...T...T...T...T...T...T...T...T...T...T...T...T...T...T...T...T...T
-    #   .I...I...I...I...I...I...I...X...I...I...I...I...I...I...X...I...I...I
+    #   .i...i...i...i...i...i...i...X...i...i...i...i...i...i...X...i...i...i
     #
     #   Vedeu.event(:my_debounced_event, { debounce: 0.7 })
     #     ... some code here ...
@@ -48,6 +51,7 @@ module Vedeu
 
     # Unregister an event by name.
     #
+    # @api public
     # @param name [Symbol]
     # @return [Hash]
     def unevent(name)
@@ -60,6 +64,7 @@ module Vedeu
 
     # Find out how many lines the current terminal is able to display.
     #
+    # @api public
     # @example
     #   Vedeu.height
     #
@@ -72,6 +77,7 @@ module Vedeu
     # command. This provides the means for you to define your application's
     # views without their content.
     #
+    # @api public
     # @param name  [String] The name of the interface. Used to reference the
     #   interface throughout your application's execution lifetime.
     # @param block [Proc] A set of attributes which define the features of the
@@ -90,6 +96,7 @@ module Vedeu
     # Handles the keypress in your application. Can also be used to simulate a
     # keypress.
     #
+    # @api public
     # @param key [String|Symbol] The key which was pressed. Escape sequences
     #   are also supported. Special keys like the F-keys are named as symbols;
     #   i.e. `:f4`. A list of these translations can be found at {Vedeu::Input}.
@@ -108,6 +115,7 @@ module Vedeu
 
     # Write a message to the Vedeu log file located at `$HOME/.vedeu/vedeu.log`
     #
+    # @api public
     # @param message [String] The message you wish to emit to the log
     #   file, useful for debugging.
     #
@@ -121,6 +129,7 @@ module Vedeu
 
     # Trigger a registered or system event by name with arguments.
     #
+    # @api public
     # @param name [Symbol] The name of the event you wish to trigger.
     #   The event does not have to exist.
     # @param args [Array] Any arguments the event needs to execute correctly.
@@ -135,6 +144,7 @@ module Vedeu
 
     # Use attributes of another interface whilst defining one. TODO: More help.
     #
+    # @api public
     # @param name [String] The name of the interface you wish to use. Typically
     #   used when defining interfaces to share geometry.
     #
@@ -152,6 +162,7 @@ module Vedeu
 
     # Define a view (content) for an interface. TODO: More help.
     #
+    # @api public
     # @param name [String] The name of the interface you are targetting for this
     #   view.
     # @param block [Proc] The directives you wish to send to this interface.
@@ -168,6 +179,7 @@ module Vedeu
 
     # Instruct Vedeu to treat contents of block as a single composition.
     #
+    # @api public
     # @param block [Proc] Instructs Vedeu to treat all of the 'view' directives
     #   therein as one instruction. Useful for redrawing multiple interfaces at
     #   once.
@@ -197,6 +209,7 @@ module Vedeu
 
     # Find out how many columns the current terminal is able to display.
     #
+    # @api public
     # @example
     #   Vedeu.width
     #
@@ -206,6 +219,7 @@ module Vedeu
     end
 
     # @api private
+    # @return []
     def events
       @events ||= Vedeu::Events.new do
         event(:_log_)                     { |msg| Vedeu.log(msg)      }
@@ -219,6 +233,7 @@ module Vedeu
     end
 
     # @api private
+    # @return []
     def resize
       trigger(:_clear_)
 
@@ -226,6 +241,7 @@ module Vedeu
     end
 
     # @api private
+    # @return [Exception]
     def shutdown
       trigger(:_cleanup_)
 
