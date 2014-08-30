@@ -20,6 +20,7 @@ module Vedeu
 
     end
 
+    # :nocov:
     # @return [String]
     def input
       if raw_mode?
@@ -35,6 +36,7 @@ module Vedeu
 
       end
     end
+    # :nocov:
 
     # @param stream [String]
     # @return [String]

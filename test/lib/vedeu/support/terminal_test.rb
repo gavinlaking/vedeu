@@ -32,24 +32,6 @@ module Vedeu
       end
     end
 
-    describe '.input' do
-      # it 'returns the entered string in cooked mode' do
-      #   Configuration.stub(:terminal_mode, :cooked) do
-      #     Terminal.console.stub(:gets, "test\n") do
-      #       Terminal.input.must_equal('test')
-      #     end
-      #   end
-      # end
-
-      # it 'returns the entered string in raw mode' do
-      #   Configuration.stub(:terminal_mode, :raw) do
-      #     console.stub :getch, "a" do
-      #       Terminal.input.must_equal("a")
-      #     end
-      #   end
-      # end
-    end
-
     describe '.output' do
       before { IO.console.stubs(:print) }
 

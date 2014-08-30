@@ -51,9 +51,9 @@ module Vedeu
         end
 
         opts.on('-C', '--colour-mode [COLOURS]', Integer,
-                'Run application in either `8`, `16` or `256` colour ' \
-                'mode.') do |colours|
-          if [8, 16, 256].include?(colours)
+                'Run application in either `8`, `16`, `256` or `16777216` ' \
+                'colour mode.') do |colours|
+          if [8, 16, 256, 16777216].include?(colours)
             options[:colour_mode] = colours
 
           else
@@ -157,6 +157,7 @@ module Vedeu
     #
     # @api private
     # @return [Fixnum]
+    # :nocov:
     def detect_colour_mode
       if ENV['VEDEU_TERM']
         case ENV['VEDEU_TERM']
@@ -177,11 +178,13 @@ module Vedeu
 
       end
     end
+    # :nocov:
 
     # Determine the debug mode via an enviroment variable.
     #
     # @api private
     # @return [TrueClass|FalseClass]
+    # :nocov:
     def detect_debug_mode
       if ENV['VEDEU_DEBUG']
         case ENV['VEDEU_DEBUG']
@@ -195,11 +198,13 @@ module Vedeu
 
       end
     end
+    # :nocov:
 
     # Determine the trace mode via an environment variable.
     #
     # @api private
     # @return [TrueClass|FalseClass]
+    # :nocov:
     def detect_trace_mode
       if ENV['VEDEU_TRACE']
         case ENV['VEDEU_TRACE']
@@ -213,6 +218,7 @@ module Vedeu
 
       end
     end
+    # :nocov:
 
   end
 end

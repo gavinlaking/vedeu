@@ -237,19 +237,23 @@ module Vedeu
 
     # @api private
     # @return []
+    # :nocov:
     def resize
       trigger(:_clear_)
 
       trigger(:_refresh_)
     end
+    # :nocov:
 
     # @api private
     # @return [Exception]
+    # :nocov:
     def shutdown
       trigger(:_cleanup_)
 
       fail StopIteration
     end
+    # :nocov:
 
   end
 

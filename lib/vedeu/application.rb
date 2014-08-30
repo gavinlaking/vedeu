@@ -1,5 +1,6 @@
 module Vedeu
   class Application
+    # :nocov:
     class << self
 
       # @return []
@@ -74,4 +75,5 @@ module Vedeu
     end
 
   end
+  # :nocov:
 end
