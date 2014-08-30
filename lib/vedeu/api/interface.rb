@@ -32,7 +32,11 @@ module Vedeu
         end
       end
 
+      # Use the specified interface; useful for sharing attributes with other
+      # interfaces.
+      #
       # @api public
+      # @param value [String]
       # @see Vedeu::API#use
       def use(value)
         Vedeu.use(value)
@@ -47,11 +51,14 @@ module Vedeu
       # @example
       #   interface 'my_interface' do
       #     cursor true
-      #     ... some interface attributes ...
-      #   end
+      #     ...
       #
       # @return []
       def cursor(value)
+        unless value.is_a?(TrueClass) || value.is_a?(FalseClass)
+          fail InvalidSyntax, 'Argument must be `true` or `false` for cursor.'
+        end
+
         attributes[:cursor] = value
       end
 
@@ -76,9 +83,8 @@ module Vedeu
       #
       # @example
       #   interface 'my_interface' do
-      #     group 'main_screen' do
-      #     ... some interface attributes ...
-      #   end
+      #     group 'main_screen'
+      #     ...
       #
       # @return []
       def group(value)
@@ -92,7 +98,9 @@ module Vedeu
       # @param value [String]
       #
       # @example
-      #   TODO
+      #   interface do
+      #     name 'my_interface'
+      #     ...
       #
       # @return []
       def name(value)
@@ -195,6 +203,10 @@ module Vedeu
       #
       # @return []
       def centred(value)
+        unless value.is_a?(TrueClass) || value.is_a?(FalseClass)
+          fail InvalidSyntax, 'Argument must be `true` or `false` for centred.'
+        end
+
         attributes[:geometry][:centred] = value
       end
 

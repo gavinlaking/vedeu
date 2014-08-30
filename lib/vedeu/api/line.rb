@@ -19,6 +19,8 @@ module Vedeu
       #
       # @return [Array]
       def stream(&block)
+        fail InvalidSyntax, '`stream` requires a block.' unless block_given?
+
         attributes[:streams] << API::Stream.build(&block)
       end
 

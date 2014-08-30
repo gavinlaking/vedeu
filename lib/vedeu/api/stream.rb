@@ -19,7 +19,12 @@ module Vedeu
       #
       # @return [Symbol]
       def align(value)
-        attributes[:align] = value
+        unless [:left, :right, :centre].include?(value.to_sym)
+          fail InvalidSyntax, '`align` requires a value of `:left`, `:right` ' \
+                              'or `centre`.'
+        end
+
+        attributes[:align] = value.to_sym
       end
 
       # Add textual data to the stream via this method.

@@ -41,7 +41,7 @@ module Vedeu
       it 'creates and stores a new interface' do
         Vedeu::Buffers.reset
 
-        Vedeu.interface('Vedeu.interface').must_equal(true)
+        Vedeu.interface('Vedeu.interface').must_be_instance_of(API::Interface)
       end
     end
 

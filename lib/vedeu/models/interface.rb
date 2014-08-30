@@ -54,6 +54,10 @@ module Vedeu
     def define(&block)
       instance_eval(&block) if block_given?
 
+      if attributes[:name].nil? || attributes[:name].empty?
+        fail InvalidSyntax, 'Interfaces and views must have a `name`.'
+      end
+
       Vedeu::Buffers.create(attributes)
 
       Vedeu.event("_refresh_#{attributes[:name]}_".to_sym,
@@ -61,7 +65,7 @@ module Vedeu
         Vedeu::Buffers.refresh(attributes[:name])
       end
 
-      true
+      self
     end
 
     # @return [Array]

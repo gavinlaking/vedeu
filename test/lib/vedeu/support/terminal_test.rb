@@ -68,7 +68,10 @@ module Vedeu
     end
 
     describe '.mode' do
-      before { Configuration.stubs(:terminal_mode).returns(:raw) }
+      before do
+        Configuration.stubs(:terminal_mode).returns(:raw)
+        Terminal.switch_mode! if Terminal.mode == :cooked
+      end
 
       it 'returns the configured terminal mode' do
         Terminal.mode.must_equal(:raw)

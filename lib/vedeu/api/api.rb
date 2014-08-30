@@ -85,11 +85,14 @@ module Vedeu
     #
     # @example
     #   Vedeu.interface 'my_interface' do
-    #      ... some interface attributes like width and height ...
-    #   end
+    #     ...
+    #
+    #   Vedeu.interface do
+    #     name 'interfaces_must_have_a_name'
+    #     ...
     #
     # @return [TrueClass]
-    def interface(name, &block)
+    def interface(name = '', &block)
       API::Interface.define({ name: name }, &block)
     end
 
