@@ -95,6 +95,42 @@ module Vedeu
           "\e[3;1Hthis is the third, it is even lo\e[?25l"
         )
       end
+
+      it 'returns the content for the interface, starting at the optional ' \
+         'top' do
+        interface = Interface.new({
+          name:     '.call',
+          geometry: {
+            width:  32,
+            height: 4,
+          },
+          lines:    [
+            {
+              streams: [{ text: 'this is the first' }]
+            }, {
+              streams: { text: 'this is the second and it is long' }
+            }, {
+              streams: [
+                { text: 'this is the third, ' },
+                { text: 'it is even longer '  },
+                { text: 'and still truncated' }
+              ]
+            }, {
+              streams: [{ text: 'this is exciting!' }]
+            }
+          ]
+        })
+        Render.call(interface, { top: 1 }).must_equal(
+          "\e[1;1H                                \e[1;1H" \
+          "\e[2;1H                                \e[2;1H" \
+          "\e[3;1H                                \e[3;1H" \
+          "\e[4;1H                                \e[4;1H" \
+          "\e[1;1Hthis is the second and it is lon" \
+          "\e[2;1Hthis is the third, it is even lo" \
+          "\e[3;1Hthis is exciting!\e[?25h"
+        )
+      end
+
     end
   end
 end
