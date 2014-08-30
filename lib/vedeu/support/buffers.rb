@@ -12,6 +12,8 @@ module Vedeu
 
       focus.add(attributes[:name])
 
+      register_refresh_event(attributes)
+
       store_interface(Interface.new(attributes))
     end
 
@@ -76,6 +78,14 @@ module Vedeu
     # @return []
     def update(name, buffer)
       buffers.store(name, buffer)
+    end
+
+    def register_refresh_event(attributes)
+      name  = attributes[:name]
+      delay = attributes[:delay]
+      event = "_refresh_#{name}_".to_sym
+
+      Vedeu.event(event, { delay: delay }) { Vedeu::Buffers.refresh(name) }
     end
 
     # @api private

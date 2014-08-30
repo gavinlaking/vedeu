@@ -60,11 +60,6 @@ module Vedeu
 
       Vedeu::Buffers.create(attributes)
 
-      Vedeu.event("_refresh_#{attributes[:name]}_".to_sym,
-                  { delay: attributes[:delay] }) do
-        Vedeu::Buffers.refresh(attributes[:name])
-      end
-
       self
     end
 
