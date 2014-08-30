@@ -3,37 +3,9 @@ module Vedeu
     class Interface < Vedeu::Interface
       include Helpers
 
-      # @see Vedeu::API#interface
-      # @param attributes [Hash]
-      # @api public
-      # @param block [Proc]
-      # @return []
-      def self.define(attributes = {}, &block)
-        new(attributes).define(&block)
-      end
-
-      # @see Vedeu::API#interface
-      # @param block [Proc]
-      #
-      # @example
-      #   TODO
-      #
-      # @return []
-      def define(&block)
-        instance_eval(&block) if block_given?
-
-        Vedeu::Buffers.create(attributes)
-
-        Vedeu.event("_refresh_#{attributes[:name]}_".to_sym,
-                    { delay: attributes[:delay] }) do
-          Vedeu::Buffers.refresh(attributes[:name])
-        end
-
-        true
-      end
-
       # Define a single line in a view.
       #
+      # @api public
       # @param value [String]
       # @param block [Proc]
       #
@@ -224,29 +196,6 @@ module Vedeu
       # @return []
       def centred(value)
         attributes[:geometry][:centred] = value
-      end
-
-      private
-
-      # @return [String]
-      def out_of_bounds(name)
-        "Note: For this terminal, the value of '#{name}' may lead to content " \
-        "that is outside the viewable area."
-      end
-
-      # @return [TrueClass|FalseClass]
-      def y_out_of_bounds?(value)
-        value < 1 || value > Terminal.height
-      end
-
-      # @return [TrueClass|FalseClass]
-      def x_out_of_bounds?(value)
-        value < 1 || value > Terminal.width
-      end
-
-      # @return []
-      def method_missing(method, *args, &block)
-        @self_before_instance_eval.send(method, *args, &block)
       end
 
     end
