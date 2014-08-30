@@ -73,18 +73,28 @@ module Vedeu
       mode == :cooked
     end
 
+    # @return [Symbol]
+    def cooked_mode!
+      @_mode = :cooked
+    end
+
     # @return [Boolean]
     def raw_mode?
       mode == :raw
     end
 
     # @return [Symbol]
+    def raw_mode!
+      @_mode = :raw
+    end
+
+    # @return [Symbol]
     def switch_mode!
       if raw_mode?
-        @_mode = :cooked
+        cooked_mode!
 
       else
-        @_mode = :raw
+        raw_mode!
 
       end
     end

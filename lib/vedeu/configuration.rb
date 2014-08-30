@@ -50,10 +50,10 @@ module Vedeu
           options[:trace] = true
         end
 
-        opts.on('-C', '--colour-mode',
+        opts.on('-C', '--colour-mode [COLOURS]', Integer,
                 'Run application in either `8`, `16` or `256` colour ' \
                 'mode.') do |colours|
-          if ['8', '16', '256'].include?(colours)
+          if [8, 16, 256].include?(colours)
             options[:colour_mode] = colours
 
           else

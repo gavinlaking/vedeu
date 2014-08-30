@@ -106,5 +106,27 @@ module Vedeu
         )
       end
     end
+
+    describe '#clear' do
+      it 'delegates to the Clear class to return an empty interface' do
+        Interface.new({
+          name:   '#to_s',
+          lines:  [],
+          colour: {
+            foreground: '#ff0000',
+            background: '#000000'
+          },
+          geometry: {
+            width:  9,
+            height: 3
+          }
+        }).clear.must_equal(
+          "\e[38;2;255;0;0m\e[48;2;0;0;0m" \
+          "\e[1;1H         \e[1;1H" \
+          "\e[2;1H         \e[2;1H" \
+          "\e[3;1H         \e[3;1H"
+        )
+      end
+    end
   end
 end

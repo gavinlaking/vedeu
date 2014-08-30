@@ -53,6 +53,20 @@ module Vedeu
       end
     end
 
+    describe '.log' do
+      it 'writes the message to the log file when debugging is enabled' do
+        Configuration.stub(:debug?, true) do
+          Vedeu.log('some message...').must_equal(true)
+        end
+      end
+
+      it 'returns nil when debugging is disabled' do
+        Configuration.stub(:debug?, false) do
+          Vedeu.log('some message...').must_equal(nil)
+        end
+      end
+    end
+
     describe '.trigger' do
       it 'triggers the specifed event and returns the collection of events' \
          ' which this trigger triggers' do
