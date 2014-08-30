@@ -68,4 +68,5 @@ require 'vedeu/support/view'
 require 'vedeu/support/buffer'
 require 'vedeu/support/grid'
 require 'vedeu/support/menu'
+require 'vedeu/support/cursor'
 
