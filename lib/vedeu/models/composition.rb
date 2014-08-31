@@ -31,7 +31,7 @@ module Vedeu
     #
     # @return [Array]
     def interfaces
-      @interfaces ||= if attributes[:interfaces].nil? || attributes[:interfaces].empty?
+      @interfaces ||= if no_interfaces_defined?
         []
 
       else
@@ -64,6 +64,12 @@ module Vedeu
       {
         interfaces: []
       }
+    end
+
+    # @api private
+    # @return [TrueClass|FalseClass]
+    def no_interfaces_defined?
+      attributes[:interfaces].nil? || attributes[:interfaces].empty?
     end
 
     # @api private

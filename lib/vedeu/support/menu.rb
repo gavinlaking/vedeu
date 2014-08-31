@@ -69,59 +69,59 @@ module Vedeu
       items
     end
 
-    # @return []
+    # @return [Array]
     def view
       items[@current, @collection.size]
     end
 
-    # @return []
+    # @return [Array]
     def top_item
       @current = 0
 
       items
     end
 
-    # @return []
+    # @return [Array]
     def bottom_item
       @current = last
 
       items
     end
 
-    # @return []
+    # @return [Array]
     def next_item
       @current += 1 if @current < last
 
       items
     end
 
-    # @return []
+    # @return [Array]
     def prev_item
       @current -= 1 if @current > 0
 
       items
     end
 
-    # @return []
+    # @return [Array]
     def select_item
       @selected = @current
 
       items
     end
 
-    # @return []
+    # @return [Array]
     def deselect_item
       @selected = nil
 
       items
     end
 
-    # @return []
+    # @return [Fixnum]
     def last
       @collection.size - 1
     end
 
-    # @return []
+    # @return [Fixnum]
     def size
       @collection.size
     end

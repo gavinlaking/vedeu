@@ -53,7 +53,8 @@ module Vedeu
       # @return [Array]
       def style(values = [], &block)
         if block_given?
-          attributes[:streams] << API::Stream.build({ style: Array(values) }, &block)
+          attributes[:streams] << API::Stream
+                                    .build({ style: Array(values) }, &block)
 
         else
           Array(values).each { |value| attributes[:style] << value }
