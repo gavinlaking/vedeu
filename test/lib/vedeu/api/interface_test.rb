@@ -850,6 +850,104 @@ module Vedeu
         end
       end
 
+      describe '#line' do
+        it 'adds a blank line with no arguments' do
+          interface = Vedeu.interface 'carbon' do
+            line
+          end
+          interface.must_be_instance_of(API::Interface)
+          interface.attributes.must_equal(
+            {
+              name: "carbon",
+              group: "",
+              lines: [
+                {
+                  colour: {},
+                  streams: {
+                    text: ""
+                  },
+                  style: [],
+                  parent: interface
+                }
+              ],
+              colour: {},
+              style: "",
+              geometry: {},
+              cursor: true,
+              delay: 0.0
+            }
+          )
+        end
+
+        it 'adds a line directly with a value and no block' do
+          interface = Vedeu.interface 'carbon' do
+            line 'This is some text...'
+          end
+          interface.must_be_instance_of(API::Interface)
+          interface.attributes.must_equal(
+            {
+              name: "carbon",
+              group: "",
+              lines: [
+                {
+                  colour: {},
+                  streams: {
+                    text: "This is some text..."
+                  },
+                  style: [],
+                  parent: interface
+                }
+              ],
+              colour: {},
+              style: "",
+              geometry: {},
+              cursor: true,
+              delay: 0.0
+            }
+          )
+        end
+
+        it 'allows the addition of more attributes with a block' do
+          interface = Vedeu.interface 'silicon' do
+            line do
+              text 'This is different text...'
+            end
+          end
+          interface.must_be_instance_of(API::Interface)
+          interface.attributes.must_equal(
+            {
+              name: "silicon",
+              group: "",
+              lines: [
+                {
+                  colour: {},
+                  streams: [
+                    {
+                      text: "This is different text..."
+                    }
+                  ],
+                  style: [],
+                  parent: interface
+                }
+              ],
+              colour: {},
+              style: "",
+              geometry: {},
+              cursor: true,
+              delay: 0.0
+            }
+          )
+        end
+      end
+
+      describe '#use' do
+        it 'returns the interface by name' do
+          interface = Vedeu.interface('tungsten') {}
+
+          Interface.new.use('tungsten').must_be_instance_of(Vedeu::Interface)
+        end
+      end
+
       describe '#cursor' do
         it 'raises an exception if the value is invalid' do
           proc {
@@ -873,6 +971,68 @@ module Vedeu
           end
 
           Vedeu.use('beryllium').attributes[:cursor].must_equal(false)
+        end
+      end
+
+      describe '#delay' do
+        it 'sets the delay attribute' do
+          Vedeu.interface 'cobalt' do
+            delay 0.25
+          end
+
+          Vedeu.use('cobalt').attributes[:delay].must_equal(0.25)
+        end
+      end
+
+      describe '#group' do
+        it 'sets the group attribute' do
+          Vedeu.interface 'iron' do
+            group 'elements'
+          end
+
+          Vedeu.use('iron').attributes[:group].must_equal('elements')
+        end
+      end
+
+      describe '#name' do
+        it 'sets the name attribute' do
+          Vedeu.interface do
+            name 'nickel'
+          end
+
+          Vedeu.use('nickel').attributes[:name].must_equal('nickel')
+        end
+      end
+
+      describe '#x' do
+        it 'sets the attribute to the block if a block is given' do
+          skip
+        end
+
+        it 'sets the attribute to the value if a block is not given' do
+          skip
+        end
+      end
+
+      describe '#y' do
+        it 'sets the attribute to the block if a block is given' do
+          skip
+        end
+
+        it 'sets the attribute to the value if a block is not given' do
+          skip
+        end
+      end
+
+      describe '#width' do
+        it 'sets the attribute to the value' do
+          skip
+        end
+      end
+
+      describe '#height' do
+        it 'sets the attribute to the value' do
+          skip
         end
       end
 
