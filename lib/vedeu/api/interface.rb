@@ -24,10 +24,10 @@ module Vedeu
       # @return []
       def line(value = '', &block)
         if block_given?
-          attributes[:lines] << Line.build(&block)
+          attributes[:lines] << Line.build({ parent: self }, &block)
 
         else
-          attributes[:lines] << Line.build({ streams: { text: value } })
+          attributes[:lines] << Line.build({ parent: self, streams: { text: value } })
 
         end
       end

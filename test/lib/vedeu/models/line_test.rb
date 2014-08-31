@@ -10,7 +10,8 @@ module Vedeu
           background: '#000000'
         },
         streams: [],
-        style:   'normal'
+        style:   'normal',
+        parent:  nil,
       }
     }
 

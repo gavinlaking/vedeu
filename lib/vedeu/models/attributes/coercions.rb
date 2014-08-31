@@ -4,10 +4,13 @@ module Vedeu
 
       # Produces new objects of the correct class from attributes hashes,
       # ignores objects that have already been coerced.
+      # When provided with a parent argument, will allow the new object to
+      # know who its daddy is.
       #
       # @param values [Array|Hash]
+      # @param parent [Object|Nil]
       # @return [Array]
-      def coercer(values)
+      def coercer(values, parent = nil)
         return [] if values.nil? || values.empty?
 
         [values].flatten.map do |value|
@@ -15,7 +18,7 @@ module Vedeu
             value
 
           else
-            self.new(value)
+            self.new(value.merge!({ parent: parent }))
 
           end
         end

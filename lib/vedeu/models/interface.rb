@@ -9,7 +9,7 @@ module Vedeu
                               :bottom, :left, :width, :height, :origin,
                               :viewport_width, :viewport_height
 
-    attr_reader :attributes, :delay, :group, :name
+    attr_reader :attributes, :delay, :group, :name, :parent
 
     # @param  attributes [Hash]
     # @param  block [Proc]
@@ -35,6 +35,7 @@ module Vedeu
       @name  = @attributes[:name]
       @group = @attributes[:group]
       @delay = @attributes[:delay]
+      @parent = @attributes[:parent]
 
       if block_given?
         @self_before_instance_eval = eval('self', block.binding)
@@ -62,7 +63,7 @@ module Vedeu
 
     # @return [Array]
     def lines
-      @lines ||= Line.coercer(attributes[:lines])
+      @lines ||= Line.coercer(attributes[:lines], self)
     end
 
     # @return [Geometry]

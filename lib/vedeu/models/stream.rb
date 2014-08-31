@@ -3,7 +3,7 @@ module Vedeu
     include Coercions
     include Presentation
 
-    attr_reader :attributes, :align, :text, :width
+    attr_reader :attributes, :align, :text, :width, :parent
 
     # @param attributes [Hash]
     # @param block [Proc]
@@ -20,6 +20,7 @@ module Vedeu
       @align      = @attributes[:align]
       @text       = @attributes[:text]
       @width      = @attributes[:width]
+      @parent     = @attributes[:parent]
 
       if block_given?
         @self_before_instance_eval = eval('self', block.binding)
@@ -65,7 +66,8 @@ module Vedeu
         style:  [],
         text:   '',
         width:  nil,
-        align:  :left
+        align:  :left,
+        parent: nil
       }
     end
 
