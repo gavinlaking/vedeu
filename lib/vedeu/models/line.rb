@@ -28,15 +28,14 @@ module Vedeu
 
     # @return [Array]
     def streams
-      @streams ||= Stream.coercer(attributes[:streams])
-    end
-
-    # @return [String]
-    def to_s
-      [ colour, style, streams ].join
+      @streams ||= Stream.coercer(attributes[:streams], self)
     end
 
     private
+
+    def data
+      streams
+    end
 
     # @api private
     # @return [Hash]

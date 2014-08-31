@@ -29,11 +29,6 @@ module Vedeu
       end
     end
 
-    # @return [String]
-    def to_s
-      [ colour, style, data ].join
-    end
-
     private
 
     # @api private

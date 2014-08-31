@@ -37,6 +37,34 @@ module Vedeu
     end
 
     describe '#to_s' do
+      it 'reverts to the colours of the line after rendering itself' do
+        line   = Line.new({
+          colour: {
+            foreground: '#00ff00',
+            background: '#000000'
+          },
+          style: 'normal'
+        })
+        stream = Stream.new({
+          colour: {
+            foreground: '#ff0000',
+            background: '#000000'
+          },
+          text:  'Some text',
+          style: 'underline',
+          width: nil,
+          align: :left,
+          parent: line,
+        })
+        stream.to_s.must_equal(
+          "\e[38;2;255;0;0m\e[48;2;0;0;0m" \
+          "\e[4m" \
+          "Some text" \
+          "\e[24m\e[22m\e[27m" \
+          "\e[38;2;0;255;0m\e[48;2;0;0;0m"
+        )
+      end
+
       describe 'when a width is set and align is default' do
         let(:width) { 20 }
 
