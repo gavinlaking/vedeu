@@ -1,10 +1,12 @@
 module Vedeu
+
+  # Calculates and provides interface geometry determined by both the client's
+  # requirements and the terminal's current viewing area.
   class Geometry
 
     attr_reader :attributes, :centred, :height, :width
 
-    # Calculate and provide interface geometry determined by both the client's
-    # requirements and the terminal's current viewing area.
+    # Creates a new interface geometry object.
     #
     # @param attributes [Hash]
     # @return [Geometry]
@@ -94,7 +96,7 @@ module Vedeu
 
     # Returns a fixed or dynamic value depending on whether the interface is
     # centred or not.
-    # 
+    #
     # @return [Fixnum]
     def top
       if centred
@@ -209,6 +211,8 @@ module Vedeu
       (left..right).to_a
     end
 
+    # The default geometry of an interface- full screen.
+    #
     # @return [Hash]
     def defaults
       {

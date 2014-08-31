@@ -1,4 +1,7 @@
 module Vedeu
+
+  # Provides a mechanism for storing and retrieving events by name. A single
+  # name can contain many events. Also an event can trigger other events.
   class Events
 
     # @param block [Proc]
@@ -24,11 +27,7 @@ module Vedeu
       handlers[name]
     end
 
-    # Unregisters the event by name, effectively deleting the associated events
-    # bound with it also.
-    #
-    # @param name [Symbol]
-    # @return []
+    # @see Vedeu::API#unevent
     def unevent(name)
       handlers.delete_if { |k, v| k == name }
     end
@@ -47,7 +46,7 @@ module Vedeu
 
     # Remove all registered events. Used for testing purposes.
     #
-    # @return []
+    # @return [Hash]
     def reset
       @handlers = Hash.new { |hash, key| hash[key] = { events: [] } }
     end

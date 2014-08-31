@@ -21,7 +21,7 @@ module Vedeu
       #     end
       #   end
       #
-      # @return []
+      # @return [API::Interface]
       def line(value = '', &block)
         if block_given?
           attributes[:lines] << Line.build({ parent: self }, &block)
@@ -54,7 +54,7 @@ module Vedeu
       #     cursor true
       #     ...
       #
-      # @return []
+      # @return [API::Interface]
       def cursor(value)
         unless value.is_a?(TrueClass) || value.is_a?(FalseClass)
           fail InvalidSyntax, 'Argument must be `true` or `false` for cursor.'
@@ -70,7 +70,7 @@ module Vedeu
       # @api public
       # @param value [Fixnum|Float]
       #
-      # @return []
+      # @return [API::Interface]
       def delay(value)
         attributes[:delay] = value
       end
@@ -87,7 +87,7 @@ module Vedeu
       #     group 'main_screen'
       #     ...
       #
-      # @return []
+      # @return [API::Interface]
       def group(value)
         attributes[:group] = value
       end
@@ -103,7 +103,7 @@ module Vedeu
       #     name 'my_interface'
       #     ...
       #
-      # @return []
+      # @return [API::Interface]
       def name(value)
         attributes[:name] = value
       end
@@ -123,7 +123,7 @@ module Vedeu
       #                                    # `my_interface` changes position,
       #                                    # `other_interface` will too.
       #
-      # @return []
+      # @return [API::Interface]
       def x(value = 0, &block)
         return attributes[:geometry][:x] = block if block_given?
 
@@ -148,7 +148,7 @@ module Vedeu
       #     ...                              # `my_interface` changes position,
       #                                      # `other_interface` will too.
       #
-      # @return []
+      # @return [API::Interface]
       def y(value = 0, &block)
         return attributes[:geometry][:y] = block if block_given?
 
@@ -167,7 +167,7 @@ module Vedeu
       #     width 25
       #     ...
       #
-      # @return []
+      # @return [API::Interface]
       def width(value)
         Vedeu.log(out_of_bounds('width')) if x_out_of_bounds?(value)
 
@@ -184,7 +184,7 @@ module Vedeu
       #     height 8
       #     ...
       #
-      # @return []
+      # @return [API::Interface]
       def height(value)
         Vedeu.log(out_of_bounds('height')) if y_out_of_bounds?(value)
 
@@ -202,7 +202,7 @@ module Vedeu
       #     centred true
       #     ...
       #
-      # @return []
+      # @return [API::Interface]
       def centred(value)
         unless value.is_a?(TrueClass) || value.is_a?(FalseClass)
           fail InvalidSyntax, 'Argument must be `true` or `false` for centred.'

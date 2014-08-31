@@ -1,4 +1,7 @@
 module Vedeu
+
+  # The class represents one half (the other, can be found at
+  # {Vedeu::Foreground}) of a terminal colour escape sequence.
   class Background < ColourTranslator
 
     private
@@ -27,6 +30,9 @@ module Vedeu
       end
     end
 
+    # Produces the background escape sequence hash from the foreground escape
+    # sequence hash.
+    #
     # @api private
     # @return [Hash]
     def background_codes

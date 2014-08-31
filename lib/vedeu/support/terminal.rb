@@ -118,7 +118,7 @@ module Vedeu
     end
 
     # Returns the `y` (row/line) component of the coordinate tuple provided by
-    # {Terminal.centre}
+    # {Vedeu::Terminal.centre}
     #
     # @return [Fixnum]
     def centre_y
@@ -126,7 +126,7 @@ module Vedeu
     end
 
     # Returns the `x` (column/character) component of the coodinate tuple
-    # provided by {Terminal.centre}
+    # provided by {Vedeu::Terminal.centre}
     #
     # @return [Fixnum]
     def centre_x

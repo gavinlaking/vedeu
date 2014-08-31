@@ -1,5 +1,6 @@
 module Vedeu
   module API
+
     class Composition < Vedeu::Composition
 
       # @api public

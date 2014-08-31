@@ -46,11 +46,7 @@ module Vedeu
 
     # @see Vedeu::API#interface
     # @param block [Proc]
-    #
-    # @example
-    #   TODO
-    #
-    # @return []
+    # @return [Interface]
     def define(&block)
       instance_eval(&block) if block_given?
 

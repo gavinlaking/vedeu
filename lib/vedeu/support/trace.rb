@@ -29,13 +29,13 @@ module Vedeu
     private
 
     # @api private
-    # @return []
+    # @return [String]
     def watched
       options[:event]
     end
 
     # @api private
-    # @return []
+    # @return [Regexp]
     def klass
       options[:klass]
     end

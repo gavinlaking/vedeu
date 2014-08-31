@@ -12,10 +12,7 @@ module Vedeu
       #   ...
       #     line do
       #       stream do
-      #         ... other stream directives ...
-      #       end
-      #     end
-      #   ...
+      #         ...
       #
       # @return [Array]
       def stream(&block)
@@ -34,7 +31,11 @@ module Vedeu
       # @example
       #   ...
       #     line do
-      #       text 'Some text to display...'
+      #       text 'Some text goes here...'
+      #
+      #   ...
+      #     stream do
+      #       text 'Some text goes here...'
       #
       # @return [Array]
       def text(value)

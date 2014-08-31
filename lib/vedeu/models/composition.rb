@@ -27,7 +27,8 @@ module Vedeu
     end
 
     # Returns a collection of interface attributes associated with this
-    # composition.
+    # composition. When used to create views, the stored interface geometry is
+    # combined with the view attributes to create a new interface.
     #
     # @return [Array]
     def interfaces

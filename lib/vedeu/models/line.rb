@@ -33,6 +33,10 @@ module Vedeu
 
     private
 
+    # Convenience method to provide Presentation with a consistent interface.
+    #
+    # @api private
+    # @return [Array]
     def data
       streams
     end

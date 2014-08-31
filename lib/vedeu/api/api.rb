@@ -1,5 +1,16 @@
 module Vedeu
+
+  # Provides the API to Vedeu. Methods therein, and classes belonging to this
+  # module expose Vedeu's core functionality.
   module API
+
+    # Returns information about various registered subsystems.
+    #
+    # @api public
+    # @see Vedeu::API::Defined
+    def defined
+      Vedeu::API::Defined
+    end
 
     # Register an event by name with optional delay (throttling) which when
     # triggered will execute the code contained within the passed block.
@@ -49,7 +60,8 @@ module Vedeu
       Vedeu.events.event(name, opts = {}, &block)
     end
 
-    # Unregister an event by name.
+    # Unregisters the event by name, effectively deleting the associated events
+    # bound with it also.
     #
     # @api public
     # @param name [Symbol]
@@ -97,7 +109,12 @@ module Vedeu
     end
 
     # Handles the keypress in your application. Can also be used to simulate a
-    # keypress.
+    # keypress. The example below will have the following workflow:
+    #
+    # 1) Trigger the event `:key` in your application, which you will handle
+    #    and perform the appropriate action- maybe nothing.
+    # 2) If debugging is enabled in Vedeu, then the key is logged to the log
+    #    file.
     #
     # @api public
     # @param key [String|Symbol] The key which was pressed. Escape sequences
@@ -105,7 +122,7 @@ module Vedeu
     #   i.e. `:f4`. A list of these translations can be found at {Vedeu::Input}.
     #
     # @example
-    #   TODO
+    #   Vedeu.keypress('s')
     #
     # @return []
     def keypress(key)
@@ -153,10 +170,9 @@ module Vedeu
     #
     # @example
     #   Vedeu.interface 'main_screen' do
-    #     ... some attributes ...
     #     width use('my_interface').width
     #     x     use('my_interface').east(1)
-    #   end
+    #     ...
     #
     # @return [Vedeu::Interface]
     def use(name)
@@ -172,8 +188,7 @@ module Vedeu
     #
     # @example
     #   view 'my_interface' do
-    #     ... some view attributes ...
-    #   end
+    #     ...
     #
     # @return [Hash]
     def view(name, &block)
@@ -195,7 +210,7 @@ module Vedeu
     #     view 'my_other_interface' do
     #       ... some other attributes ...
     #     end
-    #   end
+    #     ...
     #
     #   composition do
     #     view 'my_interface' do
@@ -221,8 +236,12 @@ module Vedeu
       Terminal.width
     end
 
+    # Initially accessed by Vedeu itself, this sets up some basic events needed
+    # by Vedeu to run. Afterwards, it is simply a gateway to the Events class
+    # used by other API methods.
+    #
     # @api private
-    # @return []
+    # @return [Events]
     def events
       @events ||= Vedeu::Events.new do
         event(:_log_)                     { |msg| Vedeu.log(msg)      }
@@ -235,6 +254,10 @@ module Vedeu
       end
     end
 
+    # When the terminal emit the 'SIGWINCH' signal, Vedeu can intercept this
+    # and attempt to redraw the current interface with varying degrees of
+    # success.
+    #
     # @api private
     # @return []
     # :nocov:
@@ -245,6 +268,11 @@ module Vedeu
     end
     # :nocov:
 
+    # When called will trigger the user-defined `:_cleanup_:` event which
+    # should be used to close open buffers, save files, etc. After that,
+    # a StopIteration exception is raised which will cause
+    # {Vedeu::Application#start} to exit its loop and terminate the application.
+    #
     # @api private
     # @return [Exception]
     # :nocov:
