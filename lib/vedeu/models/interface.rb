@@ -5,9 +5,8 @@ module Vedeu
 
     extend Forwardable
 
-    def_delegators :geometry, :north, :east, :south, :west,
-                              :top, :right, :bottom, :left,
-                              :width, :height, :origin,
+    def_delegators :geometry, :north, :east, :south, :west, :top, :right,
+                              :bottom, :left, :width, :height, :origin,
                               :viewport_width, :viewport_height
 
     attr_reader :attributes, :delay, :group, :name
@@ -54,9 +53,7 @@ module Vedeu
     def define(&block)
       instance_eval(&block) if block_given?
 
-      if attributes[:name].nil? || attributes[:name].empty?
-        fail InvalidSyntax, 'Interfaces and views must have a `name`.'
-      end
+      validate_attributes!
 
       Vedeu::Buffers.create(attributes)
 
@@ -109,6 +106,14 @@ module Vedeu
         cursor:   true,
         delay:    0.0
       }
+    end
+
+    # @api private
+    # @return [TrueClass|FalseClass]
+    def validate_attributes!
+      if attributes[:name].nil? || attributes[:name].empty?
+        fail InvalidSyntax, 'Interfaces and views must have a `name`.'
+      end
     end
 
     # @api private
