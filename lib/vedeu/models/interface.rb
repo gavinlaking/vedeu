@@ -87,6 +87,12 @@ module Vedeu
       Render.call(self)
     end
 
+    # @param options [Hash]
+    # @return [String]
+    def render(options = {})
+      Render.call(self, options)
+    end
+
     # @return [String]
     def clear
       Clear.call(self)
