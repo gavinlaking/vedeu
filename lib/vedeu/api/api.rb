@@ -138,13 +138,15 @@ module Vedeu
     # @api public
     # @param message [String] The message you wish to emit to the log
     #   file, useful for debugging.
+    # @param force   [TrueClass|FalseClass] When evaluates to true will
+    #   write to the log file regardless of the Configuration setting.
     #
     # @example
     #   Vedeu.log('A useful debugging message: Error!')
     #
     # @return [TrueClass]
-    def log(message)
-      Vedeu::Log.logger.debug(message) if Configuration.debug?
+    def log(message, force = false)
+      Vedeu::Log.logger.debug(message) if Configuration.debug? || force
     end
 
     # Trigger a registered or system event by name with arguments.
