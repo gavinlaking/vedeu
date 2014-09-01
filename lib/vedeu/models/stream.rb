@@ -62,7 +62,7 @@ module Vedeu
         text:   '',
         width:  nil,
         align:  :left,
-        parent: nil
+        parent: nil,
       }
     end
 

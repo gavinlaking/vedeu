@@ -48,7 +48,7 @@ module Vedeu
         colour:  {},
         streams: [],
         style:   [],
-        parent:  nil
+        parent:  nil,
       }
     end
 

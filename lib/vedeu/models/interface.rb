@@ -107,7 +107,8 @@ module Vedeu
         style:    '',
         geometry: {},
         cursor:   true,
-        delay:    0.0
+        delay:    0.0,
+        parent:   nil,
       }
     end
 
