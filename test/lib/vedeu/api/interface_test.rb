@@ -895,99 +895,6 @@ module Vedeu
       #   end
       # end
 
-      describe '#line' do
-        it 'adds a blank line with no arguments' do
-          interface = Vedeu.interface 'carbon' do
-            line
-          end
-          interface.must_be_instance_of(API::Interface)
-          interface.attributes.must_equal(
-            {
-              name: "carbon",
-              group: "",
-              lines: [
-                {
-                  colour: {},
-                  streams: {
-                    text: ""
-                  },
-                  style: [],
-                  parent: interface
-                }
-              ],
-              colour: {},
-              style: "",
-              geometry: {},
-              cursor: true,
-              delay: 0.0,
-              parent: nil,
-            }
-          )
-        end
-
-        it 'adds a line directly with a value and no block' do
-          interface = Vedeu.interface 'carbon' do
-            line 'This is some text...'
-          end
-          interface.must_be_instance_of(API::Interface)
-          interface.attributes.must_equal(
-            {
-              name: "carbon",
-              group: "",
-              lines: [
-                {
-                  colour: {},
-                  streams: {
-                    text: "This is some text..."
-                  },
-                  style: [],
-                  parent: interface
-                }
-              ],
-              colour: {},
-              style: "",
-              geometry: {},
-              cursor: true,
-              delay: 0.0,
-              parent: nil,
-            }
-          )
-        end
-
-        it 'allows the addition of more attributes with a block' do
-          interface = Vedeu.interface 'silicon' do
-            line do
-              text 'This is different text...'
-            end
-          end
-          interface.must_be_instance_of(API::Interface)
-          interface.attributes.must_equal(
-            {
-              name: "silicon",
-              group: "",
-              lines: [
-                {
-                  colour: {},
-                  streams: [
-                    {
-                      text: "This is different text..."
-                    }
-                  ],
-                  style: [],
-                  parent: interface
-                }
-              ],
-              colour: {},
-              style: "",
-              geometry: {},
-              cursor: true,
-              delay: 0.0,
-              parent: nil,
-            }
-          )
-        end
-      end
-
       describe '#use' do
         it 'returns the interface by name' do
           interface = Vedeu.interface('tungsten') {}
@@ -1012,14 +919,16 @@ module Vedeu
                   streams: {
                     text: ""
                   },
-                  style: []
+                  style: [],
+                  parent: interface,
                 }
               ],
               colour: {},
               style: "",
               geometry: {},
               cursor: true,
-              delay: 0.0
+              delay: 0.0,
+              parent: nil,
             }
           )
         end
@@ -1039,14 +948,16 @@ module Vedeu
                   streams: {
                     text: "This is some text..."
                   },
-                  style: []
+                  style: [],
+                  parent: interface,
                 }
               ],
               colour: {},
               style: "",
               geometry: {},
               cursor: true,
-              delay: 0.0
+              delay: 0.0,
+              parent: nil,
             }
           )
         end
@@ -1070,14 +981,16 @@ module Vedeu
                       text: "This is different text..."
                     }
                   ],
-                  style: []
+                  style: [],
+                  parent: interface,
                 }
               ],
               colour: {},
               style: "",
               geometry: {},
               cursor: true,
-              delay: 0.0
+              delay: 0.0,
+              parent: nil
             }
           )
         end
