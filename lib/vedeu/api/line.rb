@@ -54,10 +54,8 @@ module Vedeu
       #
       # @return [Array]
       def foreground(value = '', &block)
-        attributes[:streams] << API::Stream.build({
-                                  parent: self,
-                                  colour: { foreground: value }
-                                }, &block)
+        attributes[:streams] << API::Stream
+          .build({ colour: { foreground: value }, parent: self }, &block)
       end
 
       # @api public
@@ -72,10 +70,8 @@ module Vedeu
       #
       # @return [Array]
       def background(value = '', &block)
-        attributes[:streams] << API::Stream.build({
-                                  parent: self,
-                                  colour: { background: value }
-                                }, &block)
+        attributes[:streams] << API::Stream
+          .build({ colour: { background: value }, parent: self }, &block)
       end
 
     end

@@ -27,8 +27,8 @@ module Vedeu
           attributes[:lines] << Line.build({ parent: self }, &block)
 
         else
-          attributes[:lines] << Line.build({ parent: self,
-                                             streams: { text: value } })
+          attributes[:lines] << Line
+            .build({ streams: { text: value }, parent: self })
 
         end
       end
