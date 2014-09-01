@@ -57,7 +57,8 @@ module Vedeu
     # @return [Fixnum]
     def viewport_width
       if (x + width) > Terminal.width
-        width - ((x + width) - Terminal.width)
+        new_width = width - ((x + width) - Terminal.width)
+        return new_width < 1 ? 1 : new_width
 
       else
         width
@@ -77,7 +78,8 @@ module Vedeu
     # @return [Fixnum]
     def viewport_height
       if (y + height) > Terminal.height
-        height - ((y + height) - Terminal.height)
+        new_height = height - ((y + height) - Terminal.height)
+        return new_height < 1 ? 1 : new_height
 
       else
         height

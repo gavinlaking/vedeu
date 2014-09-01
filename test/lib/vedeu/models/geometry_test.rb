@@ -35,6 +35,13 @@ module Vedeu
           geometry.viewport_width.must_equal(55)
         end
       end
+
+      it 'returns an unusable viewport width when the terminal is tiny' do
+        IO.console.stub(:winsize, [25, -10]) do
+          geometry = Geometry.new({ width: 60, height: 1, x: 5, y: 1 })
+          geometry.viewport_width.must_equal(1)
+        end
+      end
     end
 
     describe '#viewport_height' do
@@ -50,6 +57,13 @@ module Vedeu
         IO.console.stub(:winsize, [15, 80]) do
           geometry = Geometry.new({ width: 5, height: 20, x: 1, y: 5 })
           geometry.viewport_height.must_equal(10)
+        end
+      end
+
+      it 'returns an unusable viewport height when the terminal is tiny' do
+        IO.console.stub(:winsize, [-10, 80]) do
+          geometry = Geometry.new({ width: 60, height: 20, x: 1, y: 5 })
+          geometry.viewport_height.must_equal(1)
         end
       end
     end
