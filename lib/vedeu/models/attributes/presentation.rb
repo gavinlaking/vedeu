@@ -19,36 +19,47 @@ module Vedeu
         end
       end
     end
-    alias_method :render, :to_s
 
     private
 
     # @api private
     # @return [String]
     def parent_colour
-      return parent.colour.render unless parent.nil?
+      return '' if parent.nil?
 
-      ''
+      if parent.is_a?(Hash)
+        ''
+
+      else
+        parent.colour.to_s
+
+      end
     end
 
     # @api private
     # @return [String]
     def parent_style
-      return parent.style.render unless parent.nil?
+      return '' if parent.nil?
 
-      ''
+      if parent.is_a?(Hash)
+        ''
+
+      else
+        parent.style.to_s
+
+      end
     end
 
     # @api private
     # @return [String]
     def render_colour(&block)
-      [ colour.render, yield, parent_colour ].join
+      [ colour.to_s, yield, parent_colour ].join
     end
 
     # @api private
     # @return [String]
     def render_style(&block)
-      [ style.render, yield, parent_style ].join
+      [ style.to_s, yield, parent_style ].join
     end
 
   end

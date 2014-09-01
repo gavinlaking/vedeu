@@ -30,7 +30,9 @@ module Vedeu
     # @param name [String]
     # @return [Hash]
     def retrieve_attributes(name)
-      storage.fetch(name) { fail EntityNotFound, 'Interface was not found.' }
+      storage.fetch(name) do
+        fail InterfaceNotFound, "Interface was not found with #{name.to_s}"
+      end
     end
 
     # Retrieves the last stored version of the interface.
@@ -38,7 +40,9 @@ module Vedeu
     # @param name [String]
     # @return [Buffer]
     def retrieve_interface(name)
-      buffers.fetch(name) { fail EntityNotFound, 'Interface was not found.' }
+      buffers.fetch(name) do
+        fail InterfaceNotFound, "Interface was not found with #{name.to_s}"
+      end
     end
 
     # Stores the interface attributes defined by the API.
@@ -91,6 +95,20 @@ module Vedeu
     # @return []
     def refresh(name)
       update(name, retrieve_interface(name).refresh)
+    end
+
+    # Returns all registered groups by name.
+    #
+    # @return [Array]
+    def registered_groups
+      groups.registered
+    end
+
+    # Returns all registered interfaces by name.
+    #
+    # @return [Array]
+    def registered_interfaces
+      storage.keys
     end
 
     private

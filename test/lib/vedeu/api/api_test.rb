@@ -78,7 +78,8 @@ module Vedeu
       it 'raises an exception if the interface has not been defined' do
         Vedeu::Buffers.reset
 
-        proc { Vedeu.use('some_interface') }.must_raise(Vedeu::EntityNotFound)
+        proc { Vedeu.use('some_interface') }
+          .must_raise(Vedeu::InterfaceNotFound)
       end
 
       it 'returns' do
