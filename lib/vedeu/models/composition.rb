@@ -35,7 +35,7 @@ module Vedeu
     #
     # @return [Array]
     def interfaces
-      return [] unless interfaces_defined?
+      return [] if no_interfaces_defined?
 
       @interfaces ||= [ attributes[:interfaces] ].flatten.map do |attrs|
         stored = Buffers.retrieve_attributes(attrs[:name])
@@ -72,7 +72,7 @@ module Vedeu
     #
     # @api private
     # @return [TrueClass|FalseClass]
-    def interfaces_defined?
+    def no_interfaces_defined?
       attributes[:interfaces].nil? || attributes[:interfaces].empty?
     end
 
