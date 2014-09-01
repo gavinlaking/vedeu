@@ -34,7 +34,6 @@ module Vedeu
     def to_s
       foreground + background
     end
-    alias_method :render, :to_s
 
     private
 

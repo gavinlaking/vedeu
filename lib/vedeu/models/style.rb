@@ -13,7 +13,6 @@ module Vedeu
     def to_s
       escape_sequences
     end
-    alias_method :render, :to_s
 
     private
 

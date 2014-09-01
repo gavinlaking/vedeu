@@ -19,7 +19,6 @@ module Vedeu
 
       end
     end
-    alias_method :render, :to_s
 
     private
 
