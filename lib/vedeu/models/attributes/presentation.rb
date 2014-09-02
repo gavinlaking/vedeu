@@ -37,7 +37,7 @@ module Vedeu
     # @api private
     # @return [String]
     def parent_colour
-      return '' if parent.nil?
+      return '' if parent.nil? || parent.empty?
 
       if parent.is_a?(Hash)
         ''
@@ -51,7 +51,7 @@ module Vedeu
     # @api private
     # @return [String]
     def parent_style
-      return '' if parent.nil?
+      return '' if parent.nil? || parent.empty?
 
       if parent.is_a?(Hash)
         ''

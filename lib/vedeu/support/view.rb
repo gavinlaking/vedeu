@@ -17,7 +17,9 @@ module Vedeu
 
     # @return [Array]
     def enqueue
-      interfaces.map { |interface| Buffers.enqueue(interface.name, interface) }
+      composition.interfaces.map do |interface|
+        Buffers.add(interface.attributes)
+      end
     end
 
     # @return [Exception]
@@ -28,12 +30,6 @@ module Vedeu
     private
 
     attr_reader :object
-
-    # @api private
-    # @return [Array]
-    def interfaces
-      composition.interfaces
-    end
 
     # @api private
     # @return [Composition]

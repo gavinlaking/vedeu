@@ -1,6 +1,7 @@
 module Vedeu
   class Interface
     include Coercions
+    include Common
     include Presentation
 
     extend Forwardable
@@ -57,6 +58,8 @@ module Vedeu
       self
     end
 
+    # Returns a collection of lines associated with this interface.
+    #
     # @return [Array]
     def lines
       @lines ||= Line.coercer(attributes[:lines], self)
@@ -115,7 +118,7 @@ module Vedeu
     # @api private
     # @return [TrueClass|FalseClass]
     def validate_attributes!
-      if attributes[:name].nil? || attributes[:name].empty?
+      unless defined_value?(attributes[:name])
         fail InvalidSyntax, 'Interfaces and views must have a `name`.'
       end
     end

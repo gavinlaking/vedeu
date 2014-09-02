@@ -26,6 +26,8 @@ module Vedeu
       end
     end
 
+    # Returns a collection of streams associated with this line.
+    #
     # @return [Array]
     def streams
       @streams ||= Stream.coercer(attributes[:streams], self)

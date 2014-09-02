@@ -39,6 +39,13 @@ module Vedeu
       handlers.keys
     end
 
+    # Returns a Boolean indicating whether the named event is registered.
+    #
+    # @return [TrueClass|FalseClass]
+    def registered?(name)
+      handlers.key?(name)
+    end
+
     # @see Vedeu::API#trigger
     def trigger(name, *args)
       handlers[name][:events].each { |event| event.trigger(*args) }

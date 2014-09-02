@@ -178,7 +178,7 @@ module Vedeu
     #
     # @return [Vedeu::Interface]
     def use(name)
-      Vedeu::Interface.new(Vedeu::Buffers.retrieve_attributes(name))
+      Vedeu::Interface.new(Vedeu::Interfaces.find(name))
     end
 
     # Define a view (content) for an interface. TODO: More help.
@@ -250,7 +250,7 @@ module Vedeu
         event(:_exit_)                    { Vedeu.shutdown            }
         event(:_mode_switch_)             { fail ModeSwitch           }
         event(:_clear_)                   { Terminal.clear_screen     }
-        event(:_refresh_)                 { Buffers.refresh_all       }
+        event(:_refresh_)                 { Vedeu::Refresh.all        }
         event(:_resize_, { delay: 0.25 }) { Vedeu.resize              }
         event(:_keypress_)                { |key| Vedeu.keypress(key) }
       end
