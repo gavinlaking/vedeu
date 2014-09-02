@@ -12,16 +12,13 @@ module Vedeu
       #   ...
       #     line do
       #       stream do
-      #         ... other stream directives ...
-      #       end
-      #     end
-      #   ...
+      #         ...
       #
       # @return [Array]
       def stream(&block)
         fail InvalidSyntax, '`stream` requires a block.' unless block_given?
 
-        attributes[:streams] << API::Stream.build(&block)
+        attributes[:streams] << API::Stream.build({ parent: self }, &block)
       end
 
       # Define text for a line. Using this directive will not allow stream
@@ -34,7 +31,11 @@ module Vedeu
       # @example
       #   ...
       #     line do
-      #       text 'Some text to display...'
+      #       text 'Some text goes here...'
+      #
+      #   ...
+      #     stream do
+      #       text 'Some text goes here...'
       #
       # @return [Array]
       def text(value)
@@ -53,9 +54,8 @@ module Vedeu
       #
       # @return [Array]
       def foreground(value = '', &block)
-        attributes[:streams] << API::Stream.build({
-                                  colour: { foreground: value }
-                                }, &block)
+        attributes[:streams] << API::Stream
+          .build({ colour: { foreground: value }, parent: self }, &block)
       end
 
       # @api public
@@ -70,9 +70,8 @@ module Vedeu
       #
       # @return [Array]
       def background(value = '', &block)
-        attributes[:streams] << API::Stream.build({
-                                  colour: { background: value }
-                                }, &block)
+        attributes[:streams] << API::Stream
+          .build({ colour: { background: value }, parent: self }, &block)
       end
 
     end

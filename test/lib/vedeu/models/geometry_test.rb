@@ -2,6 +2,24 @@ require 'test_helper'
 
 module Vedeu
   describe Geometry do
+    describe '#y' do
+      it 'returns the value of y when it is a proc' do
+        IO.console.stub(:winsize, [25, 80]) do
+          geometry = Geometry.new({ y: proc { 17 } })
+          geometry.y.must_equal(17)
+        end
+      end
+    end
+
+    describe '#x' do
+      it 'returns the value of x when it is a proc' do
+        IO.console.stub(:winsize, [25, 80]) do
+          geometry = Geometry.new({ x: proc { 58 } })
+          geometry.x.must_equal(58)
+        end
+      end
+    end
+
     describe '#viewport_width' do
       it 'returns the viewport width when the interface fits the terminal' do
         IO.console.stub(:winsize, [25, 80]) do
@@ -15,6 +33,13 @@ module Vedeu
         IO.console.stub(:winsize, [25, 60]) do
           geometry = Geometry.new({ width: 60, height: 1, x: 5, y: 1 })
           geometry.viewport_width.must_equal(55)
+        end
+      end
+
+      it 'returns an unusable viewport width when the terminal is tiny' do
+        IO.console.stub(:winsize, [25, -10]) do
+          geometry = Geometry.new({ width: 60, height: 1, x: 5, y: 1 })
+          geometry.viewport_width.must_equal(1)
         end
       end
     end
@@ -32,6 +57,13 @@ module Vedeu
         IO.console.stub(:winsize, [15, 80]) do
           geometry = Geometry.new({ width: 5, height: 20, x: 1, y: 5 })
           geometry.viewport_height.must_equal(10)
+        end
+      end
+
+      it 'returns an unusable viewport height when the terminal is tiny' do
+        IO.console.stub(:winsize, [-10, 80]) do
+          geometry = Geometry.new({ width: 60, height: 20, x: 1, y: 5 })
+          geometry.viewport_height.must_equal(1)
         end
       end
     end

@@ -4,7 +4,7 @@ module Vedeu
     extend self
 
     # @param block [Proc]
-    # @return []
+    # @return [Array]
     def open(&block)
       fail InvalidSyntax, '`open` requires a block.' unless block_given?
 
@@ -20,6 +20,7 @@ module Vedeu
 
     end
 
+    # :nocov:
     # @return [String]
     def input
       if raw_mode?
@@ -35,13 +36,16 @@ module Vedeu
 
       end
     end
+    # :nocov:
 
-    # @param stream [String]
-    # @return [String]
-    def output(stream = '')
-      console.print(stream)
+    # Prints the streams to the screen and returns the streams.
+    #
+    # @param streams [String|Array]
+    # @return [Array]
+    def output(*streams)
+      streams.each { |stream| console.print(stream) }
 
-      stream
+      streams
     end
 
     # @param block [Proc]
@@ -59,8 +63,7 @@ module Vedeu
 
     # @return [String]
     def restore_screen
-      output Esc.string 'screen_exit'
-      output clear_last_line
+      output(Esc.string('screen_exit'), Esc.string('clear_last_line'))
     end
 
     # @return [String]
@@ -99,11 +102,6 @@ module Vedeu
       end
     end
 
-    # @return [String]
-    def clear_last_line
-      Esc.set_position((height - 1), 1) + Esc.string('clear_line')
-    end
-
     # Returns the mode of the terminal, either `:raw` or `:cooked`
     #
     # @return [Symbol]
@@ -120,7 +118,7 @@ module Vedeu
     end
 
     # Returns the `y` (row/line) component of the coordinate tuple provided by
-    # {Terminal.centre}
+    # {Vedeu::Terminal.centre}
     #
     # @return [Fixnum]
     def centre_y
@@ -128,7 +126,7 @@ module Vedeu
     end
 
     # Returns the `x` (column/character) component of the coodinate tuple
-    # provided by {Terminal.centre}
+    # provided by {Vedeu::Terminal.centre}
     #
     # @return [Fixnum]
     def centre_x

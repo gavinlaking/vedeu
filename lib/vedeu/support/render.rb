@@ -7,17 +7,20 @@ module Vedeu
     #
     # @api private
     # @param interface [Interface]
+    # @param options [Hash]
     # @return [String]
-    def self.call(interface)
-      new(interface).render
+    def self.call(interface, options = {})
+      new(interface, options).render
     end
 
     # Initializes a new Render object with the provided interface.
     #
     # @param interface [Interface]
+    # @param options [Hash]
     # @return [Render]
-    def initialize(interface)
+    def initialize(interface, options = {})
       @interface = interface
+      @options   = options
     end
 
     # Produces a single string which contains all content and escape sequences
@@ -27,10 +30,8 @@ module Vedeu
     def render
       out = [ Clear.call(interface) ]
       processed_lines.each_with_index do |line, index|
-        if index + 1 <= height
-          out << interface.origin(index)
-          out << line.to_s
-        end
+        out << interface.origin(index)
+        out << line.to_s
       end
       out << interface.cursor
       out.join
@@ -63,6 +64,7 @@ module Vedeu
                              colour: stream.colour.attributes,
                              style:  stream.style.values,
                              text:   truncate(stream.text, remainder),
+                             parent: line,
                            })
 
             else
@@ -75,6 +77,7 @@ module Vedeu
             colour:  line.colour.attributes,
             streams: processed,
             style:   line.style.values,
+            parent:  interface,
           })
 
         else
@@ -106,19 +109,24 @@ module Vedeu
     end
 
     # Provides a collection of lines associated with the interface.
+    # If the option `:top` was set, we will start at that line. Any lines
+    # outside of the height will not be rendered.
     #
     # @api private
     # @return [Array]
     def lines
-      interface.lines
+      interface.lines[top..height]
     end
 
     # Provides the currently available height of the interface.
     #
+    # @note The height is reported to be one less line than actual because
+    #   terminal coordinates count from 1, not 0.
+    #
     # @api private
     # @return [Fixnum]
     def height
-      interface.viewport_height
+      interface.viewport_height - 1
     end
 
     # Provides the currently available width of the interface.
@@ -127,6 +135,28 @@ module Vedeu
     # @return [Fixnum]
     def width
       interface.viewport_width
+    end
+
+    # The current top line.
+    #
+    # @api private
+    # @return [Fixnum]
+    def top
+      options[:top]
+    end
+
+    # @api private
+    # @return [Hash]
+    def options
+      @_options ||= defaults.merge!(@options)
+    end
+
+    # @api private
+    # @return [Hash]
+    def defaults
+      {
+        top: 0
+      }
     end
 
   end

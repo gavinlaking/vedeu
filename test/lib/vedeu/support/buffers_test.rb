@@ -8,7 +8,7 @@ module Vedeu
       it 'raises an exception if the interface cannot be found by name' do
         name = 'unknown'
         view = '...'
-        proc { Buffers.enqueue(name, view) }.must_raise(EntityNotFound)
+        proc { Buffers.enqueue(name, view) }.must_raise(InterfaceNotFound)
       end
     end
   end

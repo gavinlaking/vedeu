@@ -32,45 +32,23 @@ module Vedeu
       end
     end
 
-    describe '.input' do
-      # it 'returns the entered string in cooked mode' do
-      #   Configuration.stub(:terminal_mode, :cooked) do
-      #     Terminal.console.stub(:gets, "test\n") do
-      #       Terminal.input.must_equal('test')
-      #     end
-      #   end
-      # end
-
-      # it 'returns the entered string in raw mode' do
-      #   Configuration.stub(:terminal_mode, :raw) do
-      #     console.stub :getch, "a" do
-      #       Terminal.input.must_equal("a")
-      #     end
-      #   end
-      # end
-    end
-
     describe '.output' do
       before { IO.console.stubs(:print) }
 
       it 'returns the output' do
-        Terminal.output('Some output...').must_equal('Some output...')
+        Terminal.output('Some output...').must_equal(['Some output...'])
       end
-    end
 
-    describe '.clear_last_line' do
-      it 'returns an escape sequence to clear the last line' do
-        console.stub :winsize, [25, 25] do
-          Terminal.clear_last_line
-            .must_equal("\e[24;1H\e[38;2;39m\e[48;2;49m\e[2K")
-        end
+      it 'returns the output collection' do
+        Terminal.output('Some output...', 'more output...', 'even more...')
+          .must_equal(['Some output...', 'more output...', 'even more...'])
       end
     end
 
     describe '.clear_screen' do
       it 'clears the screen' do
         console.stub :print, nil do
-          Terminal.clear_screen.must_equal("\e[38;2;39m\e[48;2;49m\e[2J")
+          Terminal.clear_screen.must_equal(["\e[38;2;39m\e[48;2;49m\e[2J"])
         end
       end
     end
@@ -78,7 +56,7 @@ module Vedeu
     describe '.set_cursor_mode' do
       it 'shows the cursor in cooked mode' do
         Terminal.cooked_mode!
-        Terminal.set_cursor_mode.must_equal("\e[?25h")
+        Terminal.set_cursor_mode.must_equal(["\e[?25h"])
       end
 
       it 'hides the cursor in raw mode' do

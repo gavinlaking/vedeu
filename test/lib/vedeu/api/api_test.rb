@@ -78,7 +78,8 @@ module Vedeu
       it 'raises an exception if the interface has not been defined' do
         Vedeu::Buffers.reset
 
-        proc { Vedeu.use('some_interface') }.must_raise(Vedeu::EntityNotFound)
+        proc { Vedeu.use('some_interface') }
+          .must_raise(Vedeu::InterfaceNotFound)
       end
 
       it 'returns' do
@@ -89,9 +90,9 @@ module Vedeu
     end
 
     describe '.view' do
-      it 'returns the view attributes for an interface (see View)' do
-        Vedeu.view('some_interface').must_equal(
-          { interfaces: [{
+      let(:composition) {
+        Composition.build({
+          interfaces: [{
             name: "some_interface",
             group: "",
             lines: [],
@@ -100,42 +101,26 @@ module Vedeu
             geometry: {},
             cursor: true,
             delay: 0.0
-          }] }
-        )
+          }]
+        })
+      }
+      before do
+        Composition.stubs(:build).returns(composition)
+      end
+
+      it 'returns the view attributes for an interface (see View)' do
+        Vedeu.view('some_interface').must_equal(composition)
       end
     end
 
     describe '.views' do
       it 'returns the view attributes for a composition (a collection of ' \
          'interfaces)' do
-        Vedeu.views do
+        attrs = Vedeu.views do
           view 'osmium'
           view 'iridium'
-        end.must_equal(
-          {
-            interfaces: [
-              {
-                name: "osmium",
-                group: "",
-                lines: [],
-                colour: {},
-                style: "",
-                geometry: {},
-                cursor: true,
-                delay: 0.0
-              }, {
-                name: "iridium",
-                group: "",
-                lines: [],
-                colour: {},
-                style: "",
-                geometry: {},
-                cursor: true,
-                delay: 0.0
-              }
-            ]
-          }
-        )
+        end
+        attrs[:interfaces].size.must_equal(2)
       end
 
       it 'raises an exception if a block was not given' do

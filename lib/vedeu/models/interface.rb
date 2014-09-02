@@ -5,12 +5,11 @@ module Vedeu
 
     extend Forwardable
 
-    def_delegators :geometry, :north, :east, :south, :west,
-                              :top, :right, :bottom, :left,
-                              :width, :height, :origin,
+    def_delegators :geometry, :north, :east, :south, :west, :top, :right,
+                              :bottom, :left, :width, :height, :origin,
                               :viewport_width, :viewport_height
 
-    attr_reader :attributes, :delay, :group, :name
+    attr_reader :attributes, :delay, :group, :name, :parent
 
     # @param  attributes [Hash]
     # @param  block [Proc]
@@ -36,6 +35,7 @@ module Vedeu
       @name  = @attributes[:name]
       @group = @attributes[:group]
       @delay = @attributes[:delay]
+      @parent = @attributes[:parent]
 
       if block_given?
         @self_before_instance_eval = eval('self', block.binding)
@@ -46,31 +46,20 @@ module Vedeu
 
     # @see Vedeu::API#interface
     # @param block [Proc]
-    #
-    # @example
-    #   TODO
-    #
-    # @return []
+    # @return [Interface]
     def define(&block)
       instance_eval(&block) if block_given?
 
-      if attributes[:name].nil? || attributes[:name].empty?
-        fail InvalidSyntax, 'Interfaces and views must have a `name`.'
-      end
+      validate_attributes!
 
       Vedeu::Buffers.create(attributes)
-
-      Vedeu.event("_refresh_#{attributes[:name]}_".to_sym,
-                  { delay: attributes[:delay] }) do
-        Vedeu::Buffers.refresh(attributes[:name])
-      end
 
       self
     end
 
     # @return [Array]
     def lines
-      @lines ||= Line.coercer(attributes[:lines])
+      @lines ||= Line.coercer(attributes[:lines], self)
     end
 
     # @return [Geometry]
@@ -94,6 +83,12 @@ module Vedeu
       Render.call(self)
     end
 
+    # @param options [Hash]
+    # @return [String]
+    def render(options = {})
+      Render.call(self, options)
+    end
+
     # @return [String]
     def clear
       Clear.call(self)
@@ -112,8 +107,17 @@ module Vedeu
         style:    '',
         geometry: {},
         cursor:   true,
-        delay:    0.0
+        delay:    0.0,
+        parent:   nil,
       }
+    end
+
+    # @api private
+    # @return [TrueClass|FalseClass]
+    def validate_attributes!
+      if attributes[:name].nil? || attributes[:name].empty?
+        fail InvalidSyntax, 'Interfaces and views must have a `name`.'
+      end
     end
 
     # @api private

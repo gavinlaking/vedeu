@@ -1,14 +1,42 @@
+# Vedeu is a GUI framework for terminal/console applications written in Ruby.
 module Vedeu
 
-  EntityNotFound      = Class.new(StandardError)
-  GroupNotFound       = Class.new(StandardError)
-  InterfaceNotFound   = Class.new(StandardError)
-  InvalidSyntax       = Class.new(StandardError)
-  ModeSwitch          = Class.new(StandardError)
-  NoInterfacesDefined = Class.new(StandardError)
-  NotImplemented      = Class.new(StandardError)
-  OutOfRange          = Class.new(StandardError)
+  # Raised when trying to access a group of interfaces which do not exist by
+  # this name.
+  GroupNotFound = Class.new(StandardError)
 
+  # Raised when an interface cannot be found by name.
+  InterfaceNotFound = Class.new(StandardError)
+
+  # Raised when Vedeu attempts to parse a {Vedeu.view} or {Vedeu.interface} and
+  # encounters a problem.
+  InvalidSyntax = Class.new(StandardError)
+
+  # Raised intentionally when the client application wishes to switch between
+  # cooked and raw (or vice versa) terminal modes. Vedeu is hard-wired to use
+  # the `Escape` key to trigger this change for the time being.
+  ModeSwitch = Class.new(StandardError)
+
+  # Raised when attempting to reach the currently in focus interface, when no
+  # interfaces have been defined yet.
+  NoInterfacesDefined = Class.new(StandardError)
+
+  # Raised to remind me (or client application developers) that the subclass
+  # implements the functionality sought.
+  NotImplemented = Class.new(StandardError)
+
+  # Raised when trying to access an interface column less than 1 or greater
+  # than 12. Vedeu is hard-wired to a 12-column layout for the time being.
+  OutOfRange = Class.new(StandardError)
+
+  # When Vedeu is included within one of your classes, you should have all
+  # API methods at your disposal.
+  #
+  # @example
+  #   class YourClassHere
+  #     include Vedeu
+  #     ...
+  #
   def self.included(receiver)
     receiver.send(:include, API)
     receiver.extend(API)
@@ -47,6 +75,7 @@ require 'vedeu/models/interface'
 require 'vedeu/models/line'
 require 'vedeu/models/stream'
 
+require 'vedeu/api/defined'
 require 'vedeu/api/api'
 require 'vedeu/api/composition'
 require 'vedeu/api/helpers'
@@ -68,4 +97,4 @@ require 'vedeu/support/view'
 require 'vedeu/support/buffer'
 require 'vedeu/support/grid'
 require 'vedeu/support/menu'
-
+require 'vedeu/support/cursor'

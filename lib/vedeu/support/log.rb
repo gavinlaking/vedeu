@@ -2,6 +2,7 @@ require 'fileutils'
 require 'time'
 
 module Vedeu
+  # :nocov:
   class MonoLogger < Logger
     # Create a trappable Logger instance.
     #
@@ -108,4 +109,5 @@ module Vedeu
     end
 
   end
+  # :nocov:
 end

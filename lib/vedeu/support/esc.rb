@@ -26,6 +26,10 @@ module Vedeu
       when 'bold_off'      then "\e[22m"
       when 'clear'         then "\e[38;2;39m\e[48;2;49m\e[2J"
       when 'clear_line'    then "\e[38;2;39m\e[48;2;49m\e[2K"
+      when 'clear_last_line' then
+        [ set_position((Terminal.height - 1), 1),
+          string('clear_line') ].join
+
       when 'colour_reset'  then
         [ string('fg_reset'),
           string('bg_reset') ].join

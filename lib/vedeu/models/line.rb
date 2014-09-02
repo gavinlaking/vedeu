@@ -3,7 +3,7 @@ module Vedeu
     include Coercions
     include Presentation
 
-    attr_reader :attributes
+    attr_reader :attributes, :parent
 
     # @param attributes [Hash]
     # @param block [Proc]
@@ -17,6 +17,7 @@ module Vedeu
     # @return [Line]
     def initialize(attributes = {}, &block)
       @attributes = defaults.merge!(attributes)
+      @parent     = @attributes[:parent]
 
       if block_given?
         @self_before_instance_eval = eval('self', block.binding)
@@ -27,15 +28,18 @@ module Vedeu
 
     # @return [Array]
     def streams
-      @streams ||= Stream.coercer(attributes[:streams])
-    end
-
-    # @return [String]
-    def to_s
-      [ colour, style, streams ].join
+      @streams ||= Stream.coercer(attributes[:streams], self)
     end
 
     private
+
+    # Convenience method to provide Presentation with a consistent interface.
+    #
+    # @api private
+    # @return [Array]
+    def data
+      streams
+    end
 
     # @api private
     # @return [Hash]
@@ -43,7 +47,8 @@ module Vedeu
       {
         colour:  {},
         streams: [],
-        style:   []
+        style:   [],
+        parent:  nil,
       }
     end
 

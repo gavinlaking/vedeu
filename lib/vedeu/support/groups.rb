@@ -9,26 +9,31 @@ module Vedeu
       @_storage
     end
 
-    # @param name [String]
+    # @param group_name [String]
     # @return [Set]
     def find(name)
       storage.fetch(name) do
-        fail GroupNotFound, 'Cannot find interface group with this name.'
+        fail GroupNotFound,
+          "Cannot find interface group with this name: #{name.to_s}."
       end
     end
 
-    # @param group [String]
-    # @param name [String]
-    # @param delay [Float]
+    # @param group_name     [String]
+    # @param interface_name [String]
+    # @param delay          [Float]
     # @return [Groups|FalseClass]
-    def add(group, name, delay = 0.0)
-      return false if group.empty?
+    def add(group_name, interface_name, delay = 0.0)
+      return false if group_name.empty?
 
-      storage[group] << name
+      storage[group_name] << interface_name
 
-      register_group_refresh_event(group, delay)
+      register_group_refresh_event(group_name, delay)
 
       self
+    end
+
+    def registered
+      storage.keys
     end
 
     # @return [Hash]

@@ -13,6 +13,9 @@ module Vedeu
       new(attributes, &block).attributes
     end
 
+    # Initialises a new Composition object which is a container for a collection
+    # of interfaces.
+    #
     # @param attributes [Hash]
     # @param block [Proc]
     # @return [Composition]
@@ -27,29 +30,26 @@ module Vedeu
     end
 
     # Returns a collection of interface attributes associated with this
-    # composition.
+    # composition. When used to create views, the stored interface geometry is
+    # combined with the view attributes to create a new interface.
     #
     # @return [Array]
     def interfaces
-      @interfaces ||= if attributes[:interfaces].nil? || attributes[:interfaces].empty?
-        []
+      return [] if no_interfaces_defined?
 
-      else
-        [ attributes[:interfaces] ].flatten.map do |attrs|
-          stored = Buffers.retrieve_attributes(attrs[:name])
+      @interfaces ||= [ attributes[:interfaces] ].flatten.map do |attrs|
+        stored = Buffers.retrieve_attributes(attrs[:name])
 
-          combined = stored.merge(attrs) do |key, s, a|
-            key == :lines && s.empty? ? a : s
-          end
-
-          Interface.new(combined)
+        combined = stored.merge(attrs) do |key, s, a|
+          key == :lines && s.empty? ? a : s
         end
 
+        Interface.new(combined)
       end
     end
 
     # Returns the complete escape sequence which this composition renders to.
-    # This is used by {Terminal.output} to draw the view.
+    # This is used by {Vedeu::Terminal.output} to draw the view.
     #
     # @return [String]
     def to_s
@@ -58,12 +58,22 @@ module Vedeu
 
     private
 
+    # A new Composition will have no interfaces associated by default.
+    #
     # @api private
     # @return [Hash]
     def defaults
       {
         interfaces: []
       }
+    end
+
+    # Returns a boolean depending on whether there are associated interfaces.
+    #
+    # @api private
+    # @return [TrueClass|FalseClass]
+    def no_interfaces_defined?
+      attributes[:interfaces].nil? || attributes[:interfaces].empty?
     end
 
     # @api private

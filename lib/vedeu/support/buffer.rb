@@ -1,13 +1,13 @@
 module Vedeu
   class Buffer
 
-    attr_reader :back, :front, :interface
+    attr_reader :back, :front, :interface, :top
 
     # @param [Hash] attributes The buffer attributes.
     # @option attributes :back [Hash] The next view to be rendered.
     # @option attributes :front [Hash] The view which is currently on screen.
-    # @option attributes :interface [Hash] An attribute form of the interface from
-    #   which we can create a new front or back.
+    # @option attributes :interface [Hash] An attribute form of the interface
+    #   from which we can create a new front or back.
     # @return [Buffer]
     def initialize(attributes = {})
       @attributes = attributes
@@ -15,6 +15,7 @@ module Vedeu
       @back       = attributes.fetch(:back)
       @front      = attributes.fetch(:front)
       @interface  = attributes.fetch(:interface)
+      @top        = attributes.fetch(:top, 0)
     end
 
     # @param view [Interface]
@@ -32,7 +33,7 @@ module Vedeu
 
     # @return [Buffer]
     def render
-      Terminal.output(front.to_s)
+      Terminal.output(front.render({ top: top }))
 
       self
     end

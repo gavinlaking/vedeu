@@ -1,6 +1,8 @@
 module Vedeu
   class Clear
 
+    # Blanks the interface.
+    #
     # @param interface [Interface]
     # @return [String]
     def self.call(interface)

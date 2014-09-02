@@ -5,16 +5,20 @@ module Vedeu
     describe Line do
       describe '#stream' do
         it 'returns the value assigned' do
-          Line.new.stream do
+          line  = Line.new
+          attrs = line.stream do
             text 'Some text...'
-          end.must_equal(
+          end
+
+          attrs.must_equal(
             [
               {
                 colour: {},
-                style: [],
-                text: "Some text...",
-                width: nil,
-                align: :left
+                style:  [],
+                text:   "Some text...",
+                width:  nil,
+                align:  :left,
+                parent: line
               }
             ]
           )
@@ -43,37 +47,29 @@ module Vedeu
 
       describe '#foreground' do
         it 'returns the value assigned' do
-          Line.new.foreground('#ff0000').must_equal(
-            [
-              {
-                colour: {
-                  foreground: "#ff0000"
-                },
-                style: [],
-                text: "",
-                width: nil,
-                align: :left
-              }
-            ]
-          )
+          attrs = Line.new.foreground('#ff0000')
+          attrs.first[:colour].must_equal({ foreground: "#ff0000" })
+        end
+
+        it 'returns the value assigned with a block' do
+          attrs = Line.new.foreground('#00ff00') do
+            # ...
+          end
+          attrs.first[:colour].must_equal({ foreground: "#00ff00" })
         end
       end
 
       describe '#background' do
         it 'returns the value assigned' do
-          Line.new.background('#00ff00').must_equal(
-            [
-              {
-                colour: {
-                  background: "#00ff00"
-                },
-                style: [],
-                text: "",
-                width: nil,
-                align: :left
-              }
-            ]
-          )
+          attrs = Line.new.background('#00ff00')
+          attrs.first[:colour].must_equal({ background: "#00ff00" })
+        end
+
+        it 'returns the value assigned with a block' do
+          attrs = Line.new.background('#0000ff') do
+            # ...
+          end
+          attrs.first[:colour].must_equal({ background: "#0000ff" })
         end
       end
     end

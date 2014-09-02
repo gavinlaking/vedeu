@@ -24,7 +24,6 @@ module Vedeu
     def render
       fail NotImplemented, 'Implement #render on your subclass of Vedeu::View.'
     end
-    alias_method :output, :render
 
     private
 

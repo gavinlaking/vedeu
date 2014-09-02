@@ -4,8 +4,8 @@ module Vedeu
   describe Buffer do
     let(:vars) {
       {
-        back: '',
-        front: '',
+        back:      '',
+        front:     '',
         interface: mock('Interface'),
       }
     }
@@ -63,7 +63,7 @@ module Vedeu
     describe '#render' do
       it 'renders the interface and returns the Buffer instance' do
         interface = Interface.new
-        buffer = Buffer.new({ back: nil, front: nil, interface: interface })
+        buffer = Buffer.new({ back: nil, front: interface, interface: interface })
         Terminal.stub(:output, '') do
           buffer.render.must_equal(buffer)
         end
