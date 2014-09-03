@@ -1,16 +1,28 @@
 module Vedeu
+
+  # This module allows the sharing of presentation concerns between the models:
+  # Interface, Line and Stream.
+  #
   module Presentation
 
+    # Returns a new Colour instance.
+    #
     # @return [Colour]
     def colour
       @colour ||= Colour.new(attributes[:colour])
     end
 
+    # Returns a new Style instance.
+    #
     # @return [Style]
     def style
       @style ||= Style.new(attributes[:style])
     end
 
+    # Converts the colours and styles to escape sequences, and if the parent
+    # model has previously set the colour and style, reverts back to that for
+    # consistent formatting.
+    #
     # @return [String]
     def to_s
       render_colour do
