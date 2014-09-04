@@ -125,10 +125,20 @@ module Vedeu
       defined_value?(front_buffer(name))
     end
 
+    # Return the named back buffer.
+    #
+    # @api private
+    # @param name [String]
+    # @return [Hash|Nil]
     def back_buffer(name)
       find(name).fetch(:back_buffer, nil)
     end
 
+    # Return the named front buffer.
+    #
+    # @api private
+    # @param name [String]
+    # @return [Hash|Nil]
     def front_buffer(name)
       find(name).fetch(:front_buffer, nil)
     end

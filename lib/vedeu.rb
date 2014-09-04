@@ -1,6 +1,9 @@
 # Vedeu is a GUI framework for terminal/console applications written in Ruby.
 module Vedeu
 
+  # Raised when Vedeu attempts to access a named buffer that does not exist.
+  BufferNotFound = Class.new(StandardError)
+
   # Raised when trying to access a group of interfaces which do not exist by
   # this name.
   GroupNotFound = Class.new(StandardError)
@@ -90,8 +93,6 @@ require 'vedeu/repositories/groups'
 require 'vedeu/repositories/focus'
 require 'vedeu/repositories/events'
 require 'vedeu/repositories/buffers'
-
-
 
 require 'vedeu/support/compositor'
 require 'vedeu/support/refresh'

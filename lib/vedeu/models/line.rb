@@ -30,7 +30,7 @@ module Vedeu
     #
     # @return [Array]
     def streams
-      @streams ||= Stream.coercer(attributes[:streams], self)
+      @streams ||= Stream.coercer(attributes[:streams], parent)
     end
 
     private
@@ -43,6 +43,8 @@ module Vedeu
       streams
     end
 
+    # The default values for a new instance of Line.
+    #
     # @api private
     # @return [Hash]
     def defaults

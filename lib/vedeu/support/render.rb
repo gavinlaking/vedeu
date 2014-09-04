@@ -64,7 +64,7 @@ module Vedeu
                              colour: stream.colour.attributes,
                              style:  stream.style.values,
                              text:   truncate(stream.text, remainder),
-                             parent: line,
+                             parent: line.view_attributes,
                            })
 
             else
@@ -77,7 +77,7 @@ module Vedeu
             colour:  line.colour.attributes,
             streams: processed,
             style:   line.style.values,
-            parent:  interface,
+            parent:  interface.view_attributes,
           })
 
         else

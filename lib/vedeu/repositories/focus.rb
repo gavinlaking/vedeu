@@ -9,9 +9,9 @@ module Vedeu
     # focussed.
     #
     # @api private
-    Vedeu.event(:_focus_next_)    { Focus.next_item }
-    Vedeu.event(:_focus_prev_)    { Focus.prev_item }
-    Vedeu.event(:_focus_by_name_) { |name| Focus.by_name(name) }
+    # Vedeu.event(:_focus_next_)    { Focus.next_item }
+    # Vedeu.event(:_focus_prev_)    { Focus.prev_item }
+    # Vedeu.event(:_focus_by_name_) { |name| Focus.by_name(name) }
 
     # Add an interface name to the focus list unless it is already registered.
     #
@@ -34,7 +34,7 @@ module Vedeu
     def by_name(name)
       fail InterfaceNotFound unless storage.include?(name)
 
-      @storage.rotate!(storage.index(name))
+      storage.rotate!(storage.index(name))
 
       current
     end
@@ -52,7 +52,7 @@ module Vedeu
     #
     # @return [String]
     def next_item
-      @storage.rotate!
+      storage.rotate!
 
       current
     end
@@ -61,7 +61,7 @@ module Vedeu
     #
     # @return [String]
     def prev_item
-      @storage.rotate!(-1)
+      storage.rotate!(-1)
 
       current
     end
@@ -82,18 +82,6 @@ module Vedeu
     end
 
     private
-
-    # Register focussing events.
-    #
-    # @api private
-    # @return [TrueClass]
-    def register_events
-      Vedeu.event(:_focus_next_)    { Focus.next_item }
-      Vedeu.event(:_focus_prev_)    { Focus.prev_item }
-      Vedeu.event(:_focus_by_name_) { |name| Focus.by_name(name) }
-
-      true
-    end
 
     # Returns a boolean indicating whether the named interface is registered.
     #

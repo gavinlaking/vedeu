@@ -5,9 +5,6 @@ module Vedeu
     before { Groups.reset }
     before { Groups.reset }
 
-    # { group: 'elements', name: '', delay: 0.0 }
-
-
     describe '#all' do
       before do
         Groups.add({ group: 'elements', name: 'cobalt', delay: 0.0 })
@@ -54,23 +51,14 @@ module Vedeu
 
       it 'adds the interface name to the group in storage' do
         Groups.add({ group: 'elements', name: 'germanium', delay: 0.0 })
-        Groups.all.must_equal({
-          "elements" => Set['germanium']
-        })
-      end
-
-      it 'registers a refresh event for the group' do
-        Groups.add({ group: 'elements', name: 'arsenic', delay: 0.0 })
-        Vedeu.events.registered.must_include(:_refresh_group_elements_)
+        Groups.all.must_equal({ 'elements' => Set['germanium'] })
       end
     end
 
     describe '#reset' do
       it 'removes all known groups from the storage' do
         Groups.add({ group: 'elements', name: 'bromine', delay: 0.0 })
-        Groups.all.must_equal({
-          "elements" => Set['bromine']
-        })
+        Groups.all.must_equal({ 'elements' => Set['bromine'] })
         Groups.reset.must_be_empty
       end
     end

@@ -1,10 +1,11 @@
 module Vedeu
+
+  # A composition is a collection of interfaces.
   class Composition
 
     attr_reader :attributes
 
-    # Builds a new composition, which is a collection of interfaces, ready to be
-    # rendered to the screen.
+    # Builds a new composition, ready to be rendered to the screen.
     #
     # @param attributes [Hash]
     # @param block [Proc]
@@ -33,13 +34,10 @@ module Vedeu
     #
     # @return [Array]
     def interfaces
-      @interfaces ||= Interface.coercer(attributes[:interfaces], self)
+      @interfaces ||= Interface.coercer(attributes[:interfaces])
     end
 
-    # Returns the default styling for a composition, which is none.
-    #
-    # @return [Hash]
-    def styling
+    def view_attributes
       {}
     end
 
@@ -53,7 +51,7 @@ module Vedeu
 
     private
 
-    # A new Composition will have no interfaces associated by default.
+    # The default values for a new instance of Composition.
     #
     # @api private
     # @return [Hash]

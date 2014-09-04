@@ -1,5 +1,6 @@
 module Vedeu
   module API
+
     class Interface < Vedeu::Interface
       include Helpers
 
@@ -24,11 +25,12 @@ module Vedeu
       # @return [API::Interface]
       def line(value = '', &block)
         if block_given?
-          attributes[:lines] << Line.build({ parent: self }, &block)
+          attributes[:lines] << Line
+            .build({ parent: self.view_attributes }, &block)
 
         else
           attributes[:lines] << Line
-            .build({ streams: { text: value }, parent: self })
+            .build({ streams: { text: value }, parent: self.view_attributes })
 
         end
       end

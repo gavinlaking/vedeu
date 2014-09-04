@@ -62,7 +62,7 @@ module Vedeu
     #
     # @return [Array]
     def lines
-      @lines ||= Line.coercer(attributes[:lines], self)
+      @lines ||= Line.coercer(attributes[:lines], parent)
     end
 
     # @return [Geometry]
@@ -99,6 +99,8 @@ module Vedeu
 
     private
 
+    # The default values for a new instance of Interface.
+    #
     # @api private
     # @return [Hash]
     def defaults

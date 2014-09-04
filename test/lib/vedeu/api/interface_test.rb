@@ -160,7 +160,7 @@ module Vedeu
                     text: ""
                   },
                   style: [],
-                  parent: interface,
+                  parent: interface.view_attributes,
                 }
               ],
               colour: {},
@@ -189,7 +189,7 @@ module Vedeu
                     text: "This is some text..."
                   },
                   style: [],
-                  parent: interface,
+                  parent: interface.view_attributes,
                 }
               ],
               colour: {},
@@ -222,7 +222,7 @@ module Vedeu
                     }
                   ],
                   style: [],
-                  parent: interface,
+                  parent: interface.view_attributes,
                 }
               ],
               colour: {},

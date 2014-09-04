@@ -1,5 +1,6 @@
 module Vedeu
   module API
+
     class Line < Vedeu::Line
       include Helpers
 
@@ -18,7 +19,8 @@ module Vedeu
       def stream(&block)
         fail InvalidSyntax, '`stream` requires a block.' unless block_given?
 
-        attributes[:streams] << API::Stream.build({ parent: self }, &block)
+        attributes[:streams] << API::Stream
+          .build({ parent: self.view_attributes }, &block)
       end
 
       # Define text for a line. Using this directive will not allow stream
@@ -54,8 +56,10 @@ module Vedeu
       #
       # @return [Array]
       def foreground(value = '', &block)
-        attributes[:streams] << API::Stream
-          .build({ colour: { foreground: value }, parent: self }, &block)
+        stream = API::Stream.build({ colour: { foreground: value },
+                                     parent: self.view_attributes }, &block)
+
+        attributes[:streams] << stream
       end
 
       # @api public
@@ -70,10 +74,13 @@ module Vedeu
       #
       # @return [Array]
       def background(value = '', &block)
-        attributes[:streams] << API::Stream
-          .build({ colour: { background: value }, parent: self }, &block)
+        stream = API::Stream.build({ colour: { background: value },
+                                     parent: self.view_attributes }, &block)
+
+        attributes[:streams] << stream
       end
 
     end
+
   end
 end

@@ -1,13 +1,11 @@
 require 'pry'
-
 module Vedeu
 
   # Combines stored interface layout/geometry with an interface view/buffer
-  # to create a single interface.
+  # to create a single view to be sent to the terminal for output.
   class Compositor
 
-    # @param name [String] The name of the interface and buffer to combine into
-    #   a view.
+    # @param name [String] The name of the interface/buffer.
     # @return [Compositor]
     def self.render(name)
       new(name).render
@@ -15,15 +13,13 @@ module Vedeu
 
     # Initialize a new Compositor.
     #
-    # @param name [String] The name of the interface and buffer to combine into
-    #   a view.
+    # @param name [String] The name of the interface/buffer.
     # @return [Compositor]
     def initialize(name)
       @name = name
     end
 
-    # Send the view to the terminal to be displayed on the screen, then return
-    # an instance of the compositor.
+    # Send the view to the terminal, then return an instance of Compositor.
     #
     # @return [Compositor]
     def render
@@ -40,14 +36,11 @@ module Vedeu
     # @return [String]
     def view
       if buffer
-        #Interface.new(new_interface).render
-
-        Vedeu.log(new_interface.inspect, true)
-
         Render.call(Interface.new(new_interface))
+
       else
-        #Interface.new(interface).clear
         Clear.call(Interface.new(interface))
+
       end
     end
 
@@ -57,15 +50,11 @@ module Vedeu
     # @api private
     # @return [Hash]
     def new_interface
-      buffer.merge(interface) do |attribute, view, layout|
-        if attribute == :lines && view.empty?
-          layout
-
-        else
-          view
-
-        end
-      end
+      combined = interface
+      combined[:lines]  = buffer[:lines]
+      combined[:colour] = buffer[:colour] unless buffer[:colour].nil? || buffer[:colour].empty?
+      combined[:style]  = buffer[:style]  unless buffer[:style].nil?  || buffer[:style].empty?
+      combined
     end
 
     # Returns the attributes of the named interface (layout).

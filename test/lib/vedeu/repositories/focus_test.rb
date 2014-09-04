@@ -3,6 +3,7 @@ require 'test_helper'
 module Vedeu
   describe Focus do
     before { Focus.reset }
+    after  { Focus.reset }
 
     describe '#add' do
       it 'adds an interface to storage focussed' do
@@ -22,22 +23,6 @@ module Vedeu
         Focus.add({ name: 'lead' })
         Focus.add({ name: 'bismuth' })
         Focus.by_name('lead').must_equal('lead')
-      end
-
-      it 'the named interface is focussed when the event is triggered' do
-        Focus.add({ name: 'thallium' })
-        Focus.add({ name: 'lead' })
-        Focus.add({ name: 'bismuth' })
-
-        Vedeu.trigger(:_focus_by_name_, 'lead')
-
-        Focus.current.must_equal('lead')
-      end
-
-      it 'raises an exception if the event is triggered for an interface ' \
-         'that does not exist' do
-        proc { Vedeu.trigger(:_focus_by_name_, 'not_found') }
-          .must_raise(InterfaceNotFound)
       end
 
       it 'raises an exception if the interface does not exist' do
@@ -65,16 +50,6 @@ module Vedeu
         Focus.add({ name: 'bismuth' })
         Focus.next_item.must_equal('lead')
       end
-
-      it 'the next interface is focussed when the event is triggered' do
-        Focus.add({ name: 'thallium' })
-        Focus.add({ name: 'lead' })
-        Focus.add({ name: 'bismuth' })
-
-        Vedeu.trigger(:_focus_next_)
-
-        Focus.current.must_equal('lead')
-      end
     end
 
     describe '#prev_item' do
@@ -83,16 +58,6 @@ module Vedeu
         Focus.add({ name: 'lead' })
         Focus.add({ name: 'bismuth' })
         Focus.prev_item.must_equal('bismuth')
-      end
-
-      it 'the previous interface is focussed when the event is triggered' do
-        Focus.add({ name: 'thallium' })
-        Focus.add({ name: 'lead' })
-        Focus.add({ name: 'bismuth' })
-
-        Vedeu.trigger(:_focus_prev_)
-
-        Focus.current.must_equal('bismuth')
       end
     end
 

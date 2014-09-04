@@ -30,7 +30,7 @@
 #               delay: 0.0,
 #               lines: [
 #                 {
-#                   parent:  @interface,
+#                   parent:  @interface.view_attributes,
 #                   colour:  {},
 #                   style:   [],
 #                   streams: [

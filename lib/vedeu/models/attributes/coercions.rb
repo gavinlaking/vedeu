@@ -6,11 +6,11 @@ module Vedeu
 
       # Produces new objects of the correct class from attributes hashes,
       # ignores objects that have already been coerced.
-      # When provided with a parent argument, will allow the new object to know
-      # the colour and style of its parent.
+      # When provided with a parent argument, will allow the new object
+      # to know the colour and style of its parent.
       #
       # @param values [Array|Hash]
-      # @param parent [Object|Nil]
+      # @param parent [Hash|Nil]
       # @return [Array]
       def coercer(values, parent = nil)
         return [] unless defined_value?(values)

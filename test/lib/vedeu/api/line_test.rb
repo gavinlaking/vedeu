@@ -18,7 +18,7 @@ module Vedeu
                 text:   "Some text...",
                 width:  nil,
                 align:  :left,
-                parent: line
+                parent: line.view_attributes,
               }
             ]
           )

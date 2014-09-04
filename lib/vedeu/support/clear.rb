@@ -1,7 +1,11 @@
 module Vedeu
+
+  # Clears all the character data for the area defined by an interface. This
+  # class is called every time an interface is rendered to prepare the area
+  # for new data.
   class Clear
 
-    # Blanks the interface.
+    # Blanks the area defined by the interface.
     #
     # @param interface [Interface]
     # @return [String]

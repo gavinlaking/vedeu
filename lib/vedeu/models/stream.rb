@@ -53,6 +53,8 @@ module Vedeu
       !!width
     end
 
+    # The default values for a new instance of Stream.
+    #
     # @api private
     # @return [Hash]
     def defaults
