@@ -10,6 +10,8 @@ module Vedeu
     # @param attributes [Hash]
     # @return [Hash]
     def create(attributes)
+      add(attributes)
+
       Vedeu::Interfaces.add(attributes)
       Vedeu::Refresh.add_interface(attributes)
 
