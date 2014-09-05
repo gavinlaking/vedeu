@@ -1,6 +1,7 @@
 module Vedeu
 
-  # TODO: what does this module do?
+  # Provides escape sequence strings for setting the cursor position and various
+  # display related functions.
   module Esc
 
     extend self
@@ -17,58 +18,180 @@ module Vedeu
       Position.new(y, x).to_s(&block)
     end
 
-    # @param value [String]
+    # Return the escape sequence string from the list of recognised sequence
+    # 'commands', or an empty string if the 'command' cannot be found.
+    #
+    # @param value [String|Symbol]
     # @return [String]
     def string(value = '')
-      case value
-      when 'bg_reset'      then "\e[48;2;49m"
-      when 'blink'         then "\e[5m"
-      when 'blink_off'     then "\e[25m"
-      when 'bold'          then "\e[1m"
-      when 'bold_off'      then "\e[22m"
-      when 'clear'         then "\e[38;2;39m\e[48;2;49m\e[2J"
-      when 'clear_line'    then "\e[38;2;39m\e[48;2;49m\e[2K"
-      when 'clear_last_line' then
-        [ set_position((Terminal.height - 1), 1),
-          string('clear_line') ].join
+      return '' if value.to_sym.empty?
 
-      when 'colour_reset'  then
-        [ string('fg_reset'),
-          string('bg_reset') ].join
-
-      when 'dim'           then "\e[2m"
-      when 'fg_reset'      then "\e[38;2;39m"
-      when 'hide_cursor'   then "\e[?25l"
-      when 'negative'      then "\e[7m"
-      when 'normal'        then
-        [ string('underline_off'),
-          string('bold_off'),
-          string('positive') ].join
-
-      when 'positive'      then "\e[27m"
-      when 'reset'         then "\e[0m"
-      when 'screen_init'   then
-        [ string('reset'),
-          string('clear'),
-          string('hide_cursor') ].join
-
-      when 'screen_exit'   then
-        [ string('show_cursor'),
-          string('colour_reset'),
-          string('reset') ].join
-      when 'show_cursor'   then "\e[?25h"
-      when 'underline'     then "\e[4m"
-      when 'underline_off' then "\e[24m"
-      else
-        ''
-      end
+      sequences.fetch(value.to_sym, proc { '' }).call
     end
 
-    # private
+    private
 
-    # def method_missing(method, *args, &block)
-    #   self.send(:string, method, &block)
-    # end
+    # @api private
+    # @return [Hash]
+    def sequences
+      {
+        bg_reset:        proc { bg_reset },
+        blink:           proc { blink },
+        blink_off:       proc { blink_off },
+        bold:            proc { bold },
+        bold_off:        proc { bold_off },
+        clear:           proc { clear },
+        clear_line:      proc { clear_line },
+        clear_last_line: proc { clear_last_line },
+        colour_reset:    proc { colour_reset },
+        dim:             proc { dim },
+        fg_reset:        proc { fg_reset },
+        hide_cursor:     proc { hide_cursor },
+        negative:        proc { negative },
+        normal:          proc { normal },
+        positive:        proc { positive },
+        reset:           proc { reset },
+        screen_init:     proc { screen_init },
+        screen_exit:     proc { screen_exit },
+        show_cursor:     proc { show_cursor },
+        underline:       proc { underline },
+        underline_off:   proc { underline_off },
+      }
+    end
+
+    # @api private
+    # @return [String]
+    def bg_reset
+      "\e[48;2;49m"
+    end
+
+    # @api private
+    # @return [String]
+    def blink
+      "\e[5m"
+    end
+
+    # @api private
+    # @return [String]
+    def blink_off
+      "\e[25m"
+    end
+
+    # @api private
+    # @return [String]
+    def bold
+      "\e[1m"
+    end
+
+    # @api private
+    # @return [String]
+    def bold_off
+      "\e[22m"
+    end
+
+    # @api private
+    # @return [String]
+    def clear
+      "\e[38;2;39m\e[48;2;49m\e[2J"
+    end
+
+    # @api private
+    # @return [String]
+    def clear_line
+      "\e[38;2;39m\e[48;2;49m\e[2K"
+    end
+
+    # @api private
+    # @return [String]
+    def clear_last_line
+      [ set_position((Terminal.height - 1), 1),
+        string('clear_line') ].join
+    end
+
+    # @api private
+    # @return [String]
+    def colour_reset
+      [ string('fg_reset'),
+        string('bg_reset') ].join
+    end
+
+    # @api private
+    # @return [String]
+    def dim
+      "\e[2m"
+    end
+
+    # @api private
+    # @return [String]
+    def fg_reset
+      "\e[38;2;39m"
+    end
+
+    # @api private
+    # @return [String]
+    def hide_cursor
+      "\e[?25l"
+    end
+
+    # @api private
+    # @return [String]
+    def negative
+      "\e[7m"
+    end
+
+    # @api private
+    # @return [String]
+    def normal
+      [ string('underline_off'),
+        string('bold_off'),
+        string('positive') ].join
+    end
+
+    # @api private
+    # @return [String]
+    def positive
+      "\e[27m"
+    end
+
+    # @api private
+    # @return [String]
+    def reset
+      "\e[0m"
+    end
+
+    # @api private
+    # @return [String]
+    def screen_init
+      [ string('reset'),
+        string('clear'),
+        string('hide_cursor') ].join
+    end
+
+    # @api private
+    # @return [String]
+    def screen_exit
+      [ string('show_cursor'),
+        string('colour_reset'),
+        string('reset') ].join
+    end
+
+    # @api private
+    # @return [String]
+    def show_cursor
+      "\e[?25h"
+    end
+
+    # @api private
+    # @return [String]
+    def underline
+      "\e[4m"
+    end
+
+    # @api private
+    # @return [String]
+    def underline_off
+      "\e[24m"
+    end
 
   end
 end
