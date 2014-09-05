@@ -22,7 +22,7 @@ module Vedeu
       # @api private
       # @return [Exception]
       def stop
-        trigger(:_cleanup_)
+        Vedeu.trigger(:_cleanup_)
 
         fail StopIteration
       end
