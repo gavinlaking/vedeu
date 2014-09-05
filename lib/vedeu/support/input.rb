@@ -27,42 +27,45 @@ module Vedeu
     # @api private
     # @return [String|Symbol]
     def keypress
-      key        = input
-      translated = case key
-      when "\r"      then :enter
-      when "\t"      then :tab
-      when "\e"      then :escape
-      when "\e[A"    then :up
-      when "\e[B"    then :down
-      when "\e[C"    then :right
-      when "\e[D"    then :left
-      when "\e[5~"   then :page_up
-      when "\e[6~"   then :page_down
-      when "\e[H"    then :home
-      when "\e[3~"   then :delete
-      when "\e[F"    then :end
-      when "\e[Z"    then :shift_tab
-      when "\eOP"    then :f1
-      when "\eOQ"    then :f2
-      when "\eOR"    then :f3
-      when "\eOS"    then :f4
-      when "\e[15~"  then :f5
-      when "\e[17~"  then :f6
-      when "\e[18~"  then :f7
-      when "\e[19~"  then :f8
-      when "\e[20~"  then :f9
-      when "\e[21~"  then :f10
-      when "\e[23~"  then :f11
-      when "\e[24~"  then :f12
-      when "\e[1;2P" then :print_screen
-      when "\e[1;2Q" then :scroll_lock
-      when "\e[1;2R" then :pause_break
-      when "\u007F"  then :backspace
-      else
-        key
-      end
+      key = input
 
-      translated
+      specials.fetch(key, key)
+    end
+
+    # @api private
+    # @return [Hash]
+    def specials
+      {
+        "\r"      => :enter,
+        "\t"      => :tab,
+        "\e"      => :escape,
+        "\e[A"    => :up,
+        "\e[B"    => :down,
+        "\e[C"    => :right,
+        "\e[D"    => :left,
+        "\e[5~"   => :page_up,
+        "\e[6~"   => :page_down,
+        "\e[H"    => :home,
+        "\e[3~"   => :delete,
+        "\e[F"    => :end,
+        "\e[Z"    => :shift_tab,
+        "\eOP"    => :f1,
+        "\eOQ"    => :f2,
+        "\eOR"    => :f3,
+        "\eOS"    => :f4,
+        "\e[15~"  => :f5,
+        "\e[17~"  => :f6,
+        "\e[18~"  => :f7,
+        "\e[19~"  => :f8,
+        "\e[20~"  => :f9,
+        "\e[21~"  => :f10,
+        "\e[23~"  => :f11,
+        "\e[24~"  => :f12,
+        "\e[1;2P" => :print_screen,
+        "\e[1;2Q" => :scroll_lock,
+        "\e[1;2R" => :pause_break,
+        "\u007F"  => :backspace,
+      }
     end
 
   end
