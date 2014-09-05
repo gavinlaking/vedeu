@@ -7,14 +7,6 @@ module Vedeu
 
     extend self
 
-    # Register events which allow the control of which interface should be
-    # focussed.
-    #
-    # @api private
-    # Vedeu.event(:_focus_next_)    { Focus.next_item }
-    # Vedeu.event(:_focus_prev_)    { Focus.prev_item }
-    # Vedeu.event(:_focus_by_name_) { |name| Focus.by_name(name) }
-
     # Add an interface name to the focus list unless it is already registered.
     #
     # @param attributes [String]

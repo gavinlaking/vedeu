@@ -70,10 +70,6 @@ module Vedeu
       Vedeu.events.unevent(name)
     end
 
-    # def focus(name)
-    #   Focus.by_name(name)
-    # end
-
     # Find out how many lines the current terminal is able to display.
     #
     # @api public
@@ -267,21 +263,6 @@ module Vedeu
       trigger(:_clear_)
 
       trigger(:_refresh_)
-    end
-    # :nocov:
-
-    # When called will trigger the user-defined `:_cleanup_:` event which
-    # should be used to close open buffers, save files, etc. After that,
-    # a StopIteration exception is raised which will cause
-    # {Vedeu::Application#start} to exit its loop and terminate the application.
-    #
-    # @api private
-    # @return [Exception]
-    # :nocov:
-    def shutdown
-      trigger(:_cleanup_)
-
-      fail StopIteration
     end
     # :nocov:
 
