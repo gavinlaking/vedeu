@@ -1,5 +1,5 @@
-
-# TODO: what does this class do?
+# Monkey-patch Ruby's Fixnum to provide a columns method.
+# TODO: Don't monkey-patch because it is naughty.
 class Fixnum
 
   # Augment Fixnum to calculate column width in a grid-based layout.
@@ -14,17 +14,18 @@ class Fixnum
   #                     # Terminal is 92 characters wide, maximum value is
   #                     # therefore 84, meaning a column is 7 characters wide.
   def columns
-     Vedeu::Grid.columns(self)
+    Vedeu::Grid.columns(self)
   end
 end
 
 module Vedeu
 
-  # TODO: what does this class do?
+  # Divides horizontal terminal space into 12 equal columns, discarding
+  # the remainder.
   class Grid
 
     # @param value [Fixnum]
-    # @return []
+    # @return [Fixnum]
     def self.columns(value)
       new(value).columns
     end
@@ -35,7 +36,7 @@ module Vedeu
       @value = value
     end
 
-    # @return []
+    # @return [Fixnum|OutOfRange]
     def columns
       fail OutOfRange, 'Valid range is 1..12.' if out_of_range?
 
