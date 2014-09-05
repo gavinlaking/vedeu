@@ -47,7 +47,7 @@ module Vedeu
       Terminal.open do
         Terminal.set_cursor_mode
 
-        Vedeu.events.trigger(:_initialize_)
+        Vedeu.trigger(:_initialize_)
 
         runner { main_sequence }
       end

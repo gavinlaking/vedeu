@@ -124,11 +124,11 @@ module Vedeu
     #
     # @return []
     def keypress(key)
-      Vedeu.events.trigger(:key, key)
-      Vedeu.events.trigger(:_log_, "Key: #{key}") if Configuration.debug?
-      Vedeu.events.trigger(:_mode_switch_) if key == :escape
-      Vedeu.events.trigger(:_focus_next_)  if key == :tab
-      Vedeu.events.trigger(:_focus_prev_)  if key == :shift_tab
+      Vedeu.trigger(:key, key)
+      Vedeu.trigger(:_log_, "Key: #{key}") if Configuration.debug?
+      Vedeu.trigger(:_mode_switch_) if key == :escape
+      Vedeu.trigger(:_focus_next_)  if key == :tab
+      Vedeu.trigger(:_focus_prev_)  if key == :shift_tab
     end
 
     # Write a message to the Vedeu log file located at `$HOME/.vedeu/vedeu.log`
