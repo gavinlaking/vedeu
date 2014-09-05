@@ -4,10 +4,12 @@ module Vedeu
   # module expose Vedeu's core functionality.
   module API
 
-    # Returns information about various registered subsystems.
+    # Returns information about various registered subsystems when used with
+    # a defined method within {Vedeu::API::Defined}.
     #
     # @api public
     # @see Vedeu::API::Defined
+    # @return [Vedeu::API::Defined]
     def defined
       Vedeu::API::Defined
     end

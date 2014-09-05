@@ -1,6 +1,7 @@
 module Vedeu
 
-  # TODO: what does this class do?
+  # Allows the customisation of Vedeu's behaviour through command-line
+  # arguments.
   module Configuration
 
     extend self
