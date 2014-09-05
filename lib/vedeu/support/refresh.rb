@@ -6,26 +6,32 @@ module Vedeu
     include Vedeu::Common
     extend self
 
-    # Add a refresh event for the interface and a refresh event for the group.
+    # Add a refresh event for the interface.
     #
     # @param attributes [Hash]
-    # @return []
-    def add(attributes)
+    # @return [TrueClass|FalseClass]
+    def add_interface(attributes)
       register_by_name(attributes[:name], attributes[:delay])
+    end
 
+    # Add a refresh event for the group.
+    #
+    # @param attributes [Hash]
+    # @return [TrueClass|FalseClass]
+    def add_group(attributes)
       register_by_group(attributes[:group], attributes[:delay])
     end
 
     # Refresh all registered interfaces.
     #
-    # @return []
+    # @return [Array]
     def all
       Vedeu::Interfaces.registered.each { |name| by_name(name) }
     end
 
     # Refresh the interface which is currently focussed.
     #
-    # @return []
+    # @return [|NoInterfacesDefined]
     def by_focus
       by_name(Vedeu::Focus.current)
     end
@@ -33,7 +39,8 @@ module Vedeu
     # Refresh an interface, or collection of interfaces belonging to a group.
     #
     # @param group_name [String] The name of the group to be refreshed.
-    # @return [Array] A collection of the names of interfaces refreshed.
+    # @return [Array|GroupNotFound] A collection of the names of interfaces
+    #   refreshed, or an exception if the group was not found.
     def by_group(group_name)
       Vedeu::Groups.find(group_name).each { |name| by_name(name) }
     end
@@ -41,7 +48,7 @@ module Vedeu
     # Refresh an interface by name.
     #
     # @param name [String] The name of the interface to be refreshed.
-    # @return []
+    # @return [|BufferNotFound]
     def by_name(name)
       Vedeu::Compositor.render(name)
     end

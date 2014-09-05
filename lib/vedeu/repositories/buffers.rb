@@ -11,9 +11,12 @@ module Vedeu
     # @return [Hash]
     def create(attributes)
       Vedeu::Interfaces.add(attributes)
+      Vedeu::Refresh.add_interface(attributes)
+
       Vedeu::Groups.add(attributes)
+      Vedeu::Refresh.add_group(attributes)
+
       Vedeu::Focus.add(attributes)
-      Vedeu::Refresh.add(attributes)
     end
 
     # Add an interface view into the back buffer. If the buffer is already
