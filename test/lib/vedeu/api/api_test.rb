@@ -6,6 +6,12 @@ module Vedeu
 
     before { Event.stubs(:new).returns(event) }
 
+    describe '.defined' do
+      it 'returns a reference to the API::Defined module' do
+        Vedeu.defined.must_equal(Vedeu::API::Defined)
+      end
+    end
+
     describe '.event' do
       it 'registers and returns the event' do
         Vedeu.event(:some_event).must_equal(
@@ -131,6 +137,12 @@ module Vedeu
         IO.console.stub(:winsize, [24, 40]) do
           Vedeu.width.must_equal(40)
         end
+      end
+    end
+
+    describe '.resize' do
+      it 'triggers the :_clear_ and :_refresh_ events' do
+        skip
       end
     end
   end
