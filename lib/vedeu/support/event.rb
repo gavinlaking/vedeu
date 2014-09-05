@@ -106,13 +106,13 @@ module Vedeu
     # @api private
     # @return [Fixnum|Float]
     def debounce
-      options[:debounce]
+      options[:debounce] || defaults[:debounce]
     end
 
     # @api private
     # @return [Fixnum|Float]
     def delay
-      options[:delay]
+      options[:delay] || defaults[:delay]
     end
 
     # @api private
@@ -125,8 +125,8 @@ module Vedeu
     # @return [Hash]
     def defaults
       {
-        delay:    0,
-        debounce: 0
+        delay:    0.0,
+        debounce: 0.0
       }
     end
 
