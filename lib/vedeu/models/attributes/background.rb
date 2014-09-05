@@ -6,6 +6,11 @@ module Vedeu
 
     private
 
+    # Returns an escape sequence for a named background colour.
+    #
+    # Valid names are: `:black`, `:red`, `:green`, `:yellow`, `:blue`,
+    # `:magenta`, `:cyan`, `:white` and `:default`.
+    #
     # @api private
     # @return [String]
     def named
@@ -30,8 +35,8 @@ module Vedeu
       end
     end
 
-    # Produces the background escape sequence hash from the foreground escape
-    # sequence hash.
+    # Produces the background named colour escape sequence hash from the
+    # foreground escape sequence hash.
     #
     # @api private
     # @return [Hash]

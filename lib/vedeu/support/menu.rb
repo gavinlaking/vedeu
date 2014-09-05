@@ -1,5 +1,6 @@
 module Vedeu
 
+  # TODO: what does this class do?
   class Menu
 
     # @param collection []

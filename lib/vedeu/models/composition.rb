@@ -37,6 +37,10 @@ module Vedeu
       @interfaces ||= Interface.coercer(attributes[:interfaces])
     end
 
+    # Returns the view attributes for a Composition, which will always be none,
+    # as a composition is a merely a collection of interfaces.
+    #
+    # @return [Hash]
     def view_attributes
       {}
     end

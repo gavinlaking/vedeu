@@ -212,16 +212,18 @@ Pull requests are very welcome! Please try to follow these simple rules if appli
 
 1. Fork it ([https://github.com/gavinlaking/vedeu/fork](https://github.com/gavinlaking/vedeu/fork))
 2. Clone it
-3. `bundle`
-4. `rake` (runs all tests and coverage report) or `bundle exec guard`
+3. Run `bundle`
+4. Run `rake` (runs all tests and coverage report) or `bundle exec guard`
 5. Create your feature branch (`git checkout -b my-new-feature`)
-6. Write some tests, write some code, have some fun!
+6. Write some tests, write some code, **have some fun!**
 7. Commit your changes (`git commit -am 'Add some feature'`)
 8. Push to the branch (`git push origin my-new-feature`)
 9. Create a new pull request.
 
 
 ## Author & Contributors
+
+### Author
 
 [Gavin Laking](https://github.com/gavinlaking) ([@gavinlaking](http://twitter.com/gavinlaking))
 

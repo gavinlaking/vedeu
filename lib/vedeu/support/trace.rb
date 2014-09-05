@@ -1,4 +1,9 @@
 module Vedeu
+
+  # This class currently provides the means to trace each method call which
+  # occurs inside Vedeu. This is very useful (to me!) for debugging. Running
+  # this will make your application less responsive, and the tests
+  # excruciatingly slow to run.
   class Trace
 
     # :nocov:

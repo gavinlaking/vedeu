@@ -1,7 +1,9 @@
 module Vedeu
   module API
 
+    # Provides methods to be used to define views.
     class Line < Vedeu::Line
+
       include Helpers
 
       # Define a stream (a subset of a line).

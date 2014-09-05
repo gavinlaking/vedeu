@@ -1,4 +1,6 @@
 module Vedeu
+
+  # TODO: what does this module do?
   module Esc
 
     extend self

@@ -1,6 +1,8 @@
 module Vedeu
 
-  # Maintains which interface by name is current in focus.
+  # The Focus repository is simply a collection of interface names, this module
+  # serving to store and manipulate the which interface is currently being
+  # focussed.
   module Focus
 
     extend self
@@ -93,12 +95,16 @@ module Vedeu
       storage.include?(name)
     end
 
+    # Provides accessor to the in-memory storage.
+    #
     # @api private
     # @return [Array]
     def storage
       @storage ||= in_memory
     end
 
+    # Returns an empty collection ready for the storing of interface names.
+    #
     # @api private
     # @return [Array]
     def in_memory

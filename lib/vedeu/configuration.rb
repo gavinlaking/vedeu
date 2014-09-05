@@ -1,5 +1,8 @@
 module Vedeu
+
+  # TODO: what does this class do?
   module Configuration
+
     extend self
 
     # Parses arguments passed on the command-line or via {Vedeu::Launcher} into

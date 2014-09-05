@@ -1,4 +1,6 @@
 module Vedeu
+
+  # Orchestrates the running of the main application loop.
   class Application
     # :nocov:
     class << self
@@ -9,6 +11,21 @@ module Vedeu
       end
       alias_method :restart, :start
 
+      # Stops the application!
+      # - The `:_cleanup_` event is triggered. Vedeu does not handle this event;
+      #   the client application may treat this event as Vedeu signalling that it
+      #   is about to terminate. Client applications are encouraged to use this
+      #   event to close any open buffers, save files, empty trash, etc.
+      # - A StopIteration exception is raised which will cause {#start} to exit
+      #   its looop and terminate the application.
+      #
+      # @api private
+      # @return [Exception]
+      def stop
+        trigger(:_cleanup_)
+
+        fail StopIteration
+      end
     end
 
     # @return [Application]
@@ -38,6 +55,9 @@ module Vedeu
 
     private
 
+    # Runs the application loop either once, or forever (exceptions and signals
+    # permitting).
+    #
     # @api private
     # @return []
     def runner
@@ -50,6 +70,12 @@ module Vedeu
       end
     end
 
+    # For an interactive application we capture input, (usually from the user),
+    # and continue the main loop.
+    #
+    # TODO: It appears for non-interactive applications, we do nothing. Must
+    # investigate.
+    #
     # @api private
     # @return []
     def main_sequence
@@ -62,6 +88,9 @@ module Vedeu
       end
     end
 
+    # Runs the application in a continuous loop. This loop is stopped elsewhere
+    # with the raising of the StopIteration exception.
+    #
     # @api private
     # @return []
     def run_many

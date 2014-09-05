@@ -1,4 +1,6 @@
 module Vedeu
+
+  # TODO: what does this class do?
   class Render
 
     # Attempts to convert the provided interface object with associated lines,

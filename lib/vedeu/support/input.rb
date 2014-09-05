@@ -1,4 +1,6 @@
 module Vedeu
+
+  # TODO: what does this class do?
   class Input
 
     # @return [String|Symbol]

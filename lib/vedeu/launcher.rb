@@ -1,4 +1,9 @@
 module Vedeu
+
+  # This class ensures that STDIN, STDOUT and STDERR point to the correct
+  # places. It also handles the initial configuration of the application,
+  # the starting of the application, the handling of uncaught exceptions and
+  # finally the exiting of the application with the correct exit code.
   class Launcher
 
     # :nocov:

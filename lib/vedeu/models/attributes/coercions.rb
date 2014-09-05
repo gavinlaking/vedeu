@@ -1,5 +1,9 @@
 module Vedeu
+
+  # Provides means to convert attributes into the correct model.
   module Coercions
+
+    # TODO: what does this class do?
     module ClassMethods
 
       include Vedeu::Common
@@ -27,8 +31,9 @@ module Vedeu
       end
     end
 
-    # Whenever this module is included in another class or module, make its
-    # methods into class methods, so they may be called directly.
+    # Whenever this module {Vedeu::Coercions} is included in another class or
+    # module, make its methods into class methods, so they may be called
+    # directly.
     def self.included(receiver)
       receiver.extend(ClassMethods)
     end

@@ -1,4 +1,6 @@
 module Vedeu
+
+  # TODO: what does this class do?
   class Buffer
 
     attr_reader :back, :front, :interface, :top

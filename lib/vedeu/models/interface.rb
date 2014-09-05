@@ -1,5 +1,8 @@
 module Vedeu
+
+  # TODO: what does this class do?
   class Interface
+
     include Coercions
     include Common
     include Presentation

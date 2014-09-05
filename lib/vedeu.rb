@@ -1,4 +1,8 @@
+#
+#
 # Vedeu is a GUI framework for terminal/console applications written in Ruby.
+#
+#
 module Vedeu
 
   # Raised when Vedeu attempts to access a named buffer that does not exist.

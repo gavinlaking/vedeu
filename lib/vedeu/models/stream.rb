@@ -1,5 +1,8 @@
 module Vedeu
+
+  # TODO: what does this class do?
   class Stream
+
     include Coercions
     include Presentation
 

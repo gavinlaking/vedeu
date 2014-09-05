@@ -30,6 +30,9 @@ module Vedeu
       end
     end
 
+    # Produces the foreground named colour escape sequence hash from
+    # {Vedeu::ColourTranslator#codes}
+    #
     # @api private
     # @return [Hash]
     def foreground_codes

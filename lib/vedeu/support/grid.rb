@@ -1,3 +1,5 @@
+
+# TODO: what does this class do?
 class Fixnum
 
   # Augment Fixnum to calculate column width in a grid-based layout.
@@ -17,6 +19,8 @@ class Fixnum
 end
 
 module Vedeu
+
+  # TODO: what does this class do?
   class Grid
 
     # @param value [Fixnum]

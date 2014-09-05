@@ -25,7 +25,7 @@ module Vedeu
 
     # Find a group by name and return all of its associated interfaces.
     #
-    # @param group_name [String]
+    # @param name [String]
     # @return [Set]
     def find(name)
       storage.fetch(name) do
