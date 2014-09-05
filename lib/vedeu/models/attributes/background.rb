@@ -14,13 +14,13 @@ module Vedeu
     # @api private
     # @return [String]
     def named
-      ["\e[", background_codes[colour], "m"].join
+      ["\e[", background_codes[colour], 'm'].join
     end
 
     # @api private
     # @return [String]
     def numbered
-      ["\e[48;5;", css_to_numbered, "m"].join
+      ["\e[48;5;", css_to_numbered, 'm'].join
     end
 
     # @api private

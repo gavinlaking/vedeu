@@ -9,13 +9,13 @@ module Vedeu
     # @api private
     # @return [String]
     def named
-      ["\e[", foreground_codes[colour], "m"].join
+      ["\e[", foreground_codes[colour], 'm'].join
     end
 
     # @api private
     # @return [String]
     def numbered
-      ["\e[38;5;", css_to_numbered, "m"].join
+      ["\e[38;5;", css_to_numbered, 'm'].join
     end
 
     # @api private
