@@ -4,6 +4,8 @@ module Vedeu
   # to create a single view to be sent to the terminal for output.
   class Compositor
 
+    include Common
+
     # @param name [String] The name of the interface/buffer.
     # @return [Compositor]
     def self.render(name)
@@ -18,13 +20,11 @@ module Vedeu
       @name = name
     end
 
-    # Send the view to the terminal, then return an instance of Compositor.
+    # Send the view to the terminal.
     #
-    # @return [Compositor]
+    # @return [Array]
     def render
       Terminal.output(view)
-
-      self
     end
 
     private
@@ -43,16 +43,16 @@ module Vedeu
       end
     end
 
-    # Combine the buffer attributes with the interface attributes, if the buffer
-    # has no content, then the content of the interface will be used.
+    # Combine the buffer attributes with the interface attributes. Buffer
+    # presentation attributes will override interface defaults.
     #
     # @api private
     # @return [Hash]
     def new_interface
       combined = interface
       combined[:lines]  = buffer[:lines]
-      combined[:colour] = buffer[:colour] unless buffer[:colour].nil? || buffer[:colour].empty?
-      combined[:style]  = buffer[:style]  unless buffer[:style].nil?  || buffer[:style].empty?
+      combined[:colour] = buffer[:colour] if defined_value?(buffer[:colour])
+      combined[:style]  = buffer[:style]  if defined_value?(buffer[:style])
       combined
     end
 
