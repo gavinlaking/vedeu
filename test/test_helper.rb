@@ -9,6 +9,14 @@ SimpleCov.start do
   add_filter   '/test/'
 end unless ENV['no_simplecov']
 
+module MiniTest
+  class Spec
+    class << self
+      alias_method :context, :describe
+    end
+  end
+end
+
 require 'mocha/setup'
 
 GC.disable
