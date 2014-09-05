@@ -1,4 +1,3 @@
-require 'pry'
 module Vedeu
 
   # Combines stored interface layout/geometry with an interface view/buffer

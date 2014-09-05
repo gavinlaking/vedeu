@@ -4,6 +4,8 @@ module Vedeu
   # name can contain many events. Also an event can trigger other events.
   class Events
 
+    # Initializes a new Events class.
+    #
     # @param block [Proc]
     # @return [Events]
     def initialize(&block)

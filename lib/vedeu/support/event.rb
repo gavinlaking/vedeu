@@ -1,4 +1,6 @@
 module Vedeu
+
+  # Contains all the logic of the event. Handles debouncing and throttling.
   class Event
 
     # @param closure [Proc]

@@ -1,4 +1,5 @@
 module Vedeu
+
   class Menu
 
     # @param collection []

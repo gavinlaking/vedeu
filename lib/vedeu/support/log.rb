@@ -50,7 +50,7 @@ module Vedeu
         @dev.close rescue nil
       end
 
-    private
+      private
 
       def open_logfile(filename)
         if (FileTest.exist?(filename))
