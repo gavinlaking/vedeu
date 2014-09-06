@@ -187,6 +187,16 @@ module Vedeu
       Vedeu.events.trigger(name, *args)
     end
 
+    # Unregisters the event by name, effectively deleting the associated events
+    # bound with it also.
+    #
+    # @api public
+    # @param name [Symbol]
+    # @return [Hash]
+    def unevent(name)
+      Vedeu.events.unevent(name)
+    end
+
     # Use attributes of another interface whilst defining one. TODO: More help.
     #
     # @api public
@@ -259,16 +269,6 @@ module Vedeu
     # @return [Fixnum] The total width of the current terminal.
     def width
       Terminal.width
-    end
-
-    # Unregisters the event by name, effectively deleting the associated events
-    # bound with it also.
-    #
-    # @api public
-    # @param name [Symbol]
-    # @return [Hash]
-    def unevent(name)
-      Vedeu.events.unevent(name)
     end
 
   end
