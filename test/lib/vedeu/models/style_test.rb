@@ -2,6 +2,14 @@ require 'test_helper'
 
 module Vedeu
   describe Style do
+    describe '#initialize' do
+      it 'returns an instance of itself' do
+        values = ''
+
+        Style.new(values).must_be_instance_of(Style)
+      end
+    end
+
     describe '#to_s' do
       describe 'for a single style' do
         let(:values) { 'normal' }

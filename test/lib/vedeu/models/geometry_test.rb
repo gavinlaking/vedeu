@@ -2,6 +2,13 @@ require 'test_helper'
 
 module Vedeu
   describe Geometry do
+    describe '#initialize' do
+      it 'returns an instance of itself' do
+        attributes = {}
+        Geometry.new(attributes).must_be_instance_of(Geometry)
+      end
+    end
+
     describe '#y' do
       it 'returns the value of y when it is a proc' do
         IO.console.stub(:winsize, [25, 80]) do

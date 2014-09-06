@@ -9,6 +9,14 @@ module Vedeu
 
     before { Buffers.reset }
 
+    describe '#initialize' do
+      it 'returns an instance of itself' do
+        attributes = {}
+
+        Composition.new(attributes).must_be_instance_of(Composition)
+      end
+    end
+
     describe '#interfaces' do
       it 'returns a collection of interfaces' do
         Vedeu.interface('dummy') do
