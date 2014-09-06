@@ -92,13 +92,17 @@ module Vedeu
     # @api private
     # @return [String]
     def clear
-      "\e[38;2;39m\e[48;2;49m\e[2J"
+      [ string('fg_reset'),
+        string('bg_reset'),
+        "\e[2J" ].join
     end
 
     # @api private
     # @return [String]
     def clear_line
-      "\e[38;2;39m\e[48;2;49m\e[2K"
+      [ string('fg_reset'),
+        string('bg_reset'),
+        "\e[2K" ].join
     end
 
     # @api private
