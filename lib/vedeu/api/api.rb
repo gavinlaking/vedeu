@@ -62,14 +62,25 @@ module Vedeu
       Vedeu.events.event(name, opts = {}, &block)
     end
 
-    # Unregisters the event by name, effectively deleting the associated events
-    # bound with it also.
+    # Initially accessed by Vedeu itself, this sets up some basic events needed
+    # by Vedeu to run. Afterwards, it is simply a gateway to the Events class
+    # used by other API methods.
     #
-    # @api public
-    # @param name [Symbol]
-    # @return [Hash]
-    def unevent(name)
-      Vedeu.events.unevent(name)
+    # @api private
+    # @return [Events]
+    def events
+      @events ||= Vedeu::Events.new do
+        event(:_clear_)                   { Terminal.clear_screen     }
+        event(:_exit_)                    { Vedeu::Application.stop   }
+        event(:_focus_by_name_)           { |name| Vedeu::Focus.by_name(name) }
+        event(:_focus_next_)              { Vedeu::Focus.next_item    }
+        event(:_focus_prev_)              { Vedeu::Focus.prev_item    }
+        event(:_keypress_)                { |key| Vedeu.keypress(key) }
+        event(:_log_)                     { |msg| Vedeu.log(msg)      }
+        event(:_mode_switch_)             { fail ModeSwitch           }
+        event(:_refresh_)                 { Vedeu::Refresh.all        }
+        event(:_resize_, { delay: 0.25 }) { Vedeu.resize              }
+      end
     end
 
     # Find out how many lines the current terminal is able to display.
@@ -146,6 +157,20 @@ module Vedeu
     def log(message, force = false)
       Vedeu::Log.logger.debug(message) if Configuration.debug? || force
     end
+
+    # When the terminal emit the 'SIGWINCH' signal, Vedeu can intercept this
+    # and attempt to redraw the current interface with varying degrees of
+    # success. Can also be used to simulate a terminal resize.
+    #
+    # @api private
+    # @return []
+    # :nocov:
+    def resize
+      trigger(:_clear_)
+
+      trigger(:_refresh_)
+    end
+    # :nocov:
 
     # Trigger a registered or system event by name with arguments.
     #
@@ -236,40 +261,15 @@ module Vedeu
       Terminal.width
     end
 
-    # Initially accessed by Vedeu itself, this sets up some basic events needed
-    # by Vedeu to run. Afterwards, it is simply a gateway to the Events class
-    # used by other API methods.
+    # Unregisters the event by name, effectively deleting the associated events
+    # bound with it also.
     #
-    # @api private
-    # @return [Events]
-    def events
-      @events ||= Vedeu::Events.new do
-        event(:_clear_)                   { Terminal.clear_screen     }
-        event(:_exit_)                    { Vedeu::Application.stop   }
-        event(:_focus_by_name_)           { |name| Vedeu::Focus.by_name(name) }
-        event(:_focus_next_)              { Vedeu::Focus.next_item    }
-        event(:_focus_prev_)              { Vedeu::Focus.prev_item    }
-        event(:_keypress_)                { |key| Vedeu.keypress(key) }
-        event(:_log_)                     { |msg| Vedeu.log(msg)      }
-        event(:_mode_switch_)             { fail ModeSwitch           }
-        event(:_refresh_)                 { Vedeu::Refresh.all        }
-        event(:_resize_, { delay: 0.25 }) { Vedeu.resize              }
-      end
+    # @api public
+    # @param name [Symbol]
+    # @return [Hash]
+    def unevent(name)
+      Vedeu.events.unevent(name)
     end
-
-    # When the terminal emit the 'SIGWINCH' signal, Vedeu can intercept this
-    # and attempt to redraw the current interface with varying degrees of
-    # success. Can also be used to simulate a terminal resize.
-    #
-    # @api private
-    # @return []
-    # :nocov:
-    def resize
-      trigger(:_clear_)
-
-      trigger(:_refresh_)
-    end
-    # :nocov:
 
   end
 
