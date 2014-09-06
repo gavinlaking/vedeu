@@ -117,34 +117,9 @@ Note: not setting a width or height will set the values to the terminal's report
 - `cursor` is a Boolean specifying whether the cursor should show.
 
 
-### On Defining Events
+### Events
 
-```ruby
-event :event_name do |arg1, arg2|
-end
-```
-
-One can define events which perform work or trigger other events. Vedeu has built-in events which are namespaced with underscores:
-
-- `:_initialize_` Special event which Vedeu triggers when it is ready to enter the main loop. Client applications can listen for this event and perform some action(s), like render the first screen, interface or make a sound.
-
-- `:_cleanup_` This event is fired by Vedeu when `:_exit_` is triggered. You can hook into this to perform a special action before the application terminates. Saving the user's work, session or preferences might be popular here.
-
-- `:_clear_` Clears the whole terminal space.
-
-- `:_exit_` when triggered, Vedeu will trigger a `:_cleanup_` event which you can define (to save files, etc) and attempt to exit.
-
-- `:_keypress_` triggering this event will cause the triggering of the `:key` event; which you should define to 'do things'. If the `escape` key is pressed, then `key` is triggered with the argument `:escape`, also an internal event `_mode_switch_` is triggered.
-
-- `:_mode_switch_` when triggered (after the user presses `escape`), Vedeu switches from a "raw mode" terminal to a "cooked mode" terminal. The idea here being that the raw mode is for single keypress actions, whilst cooked mode allows the user to enter more elaborate commands- such as commands with arguments.
-
-- `:_refresh_` triggering this event will cause all interfaces to refresh.
-
-- `:_refresh_group_(group_name)_` will refresh all interfaces belonging to this group. E.g. `_refresh_group_home_` will refresh all interfaces with the group of `home`.
-
-- `:_refresh_(interface_name)_` will refresh the interface with this name. E.g. `_refresh_widget_` will refresh the interface `widget`.
-
-Note: Overriding or adding additional events to the Vedeu event namespace may cause unpredictable results. It is recommended to only to hook into events like :_cleanup_, :_initialize_ and :key if you need to do something respective to those events.
+More information about events can be found here: [Vedeu Events](http://www.rubydoc.info/github/gavinlaking/vedeu/file/docs/events.md)
 
 
 ### Geometry
