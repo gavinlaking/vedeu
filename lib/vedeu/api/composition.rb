@@ -7,7 +7,7 @@ module Vedeu
       # @api public
       # @see Vedeu::API#view
       def view(name, &block)
-        attributes[:interfaces] << Interface
+        attributes[:interfaces] << API::Interface
           .build({ name: name, parent: self.view_attributes }, &block)
       end
 

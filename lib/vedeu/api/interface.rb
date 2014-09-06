@@ -27,11 +27,11 @@ module Vedeu
       # @return [API::Interface]
       def line(value = '', &block)
         if block_given?
-          attributes[:lines] << Line
+          attributes[:lines] << API::Line
             .build({ parent: self.view_attributes }, &block)
 
         else
-          attributes[:lines] << Line
+          attributes[:lines] << API::Line
             .build({ streams: { text: value }, parent: self.view_attributes })
 
         end
