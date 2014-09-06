@@ -14,7 +14,7 @@ Doing it this way will mean you can use any API method without the `Vedeu.` pref
 ```ruby
 class SomeClassInYourApplication
   include Vedeu
-  
+
   ...
 ```
 
@@ -26,11 +26,11 @@ Doing it this way means you need to use the `Vedeu.` prefix.
 ```ruby
 class OtherClassInYourApplication
   ...
-   
+
   def some_method
-    Vedeu.some_api_method   
+    Vedeu.some_api_method
   end
-   
+
   ...
 ```
 
@@ -46,6 +46,7 @@ height
 interface
 keypress
 log
+menu
 resize
 trigger
 unevent
@@ -68,6 +69,9 @@ y
 width
 height
 centred
+
+items
+name
 
 stream
 text
