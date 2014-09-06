@@ -10,8 +10,10 @@ module Vedeu
     # Stores the interface attributes defined by the API.
     #
     # @param attributes [Hash]
-    # @return [Hash]
+    # @return [Hash|FalseClass]
     def add(attributes)
+      return false if attributes[:name].empty?
+
       storage.store(attributes[:name], attributes)
     end
 
