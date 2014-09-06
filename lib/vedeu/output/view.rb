@@ -1,4 +1,9 @@
 module Vedeu
+
+  # Subclassing Vedeu::View will allow Vedeu to call your #render method.
+  # This method should contain attributes required to build a view or views.
+  # These attributes will be added to the back buffer of each interface
+  # mentioned, to be rendered upon next refresh.
   class View
 
     include Vedeu::API
@@ -9,6 +14,8 @@ module Vedeu
       new(object).enqueue
     end
 
+    # Returns a new instance of View.
+    #
     # @param object []
     # @return [View]
     def initialize(object = nil)
@@ -17,7 +24,9 @@ module Vedeu
 
     # @return [Array]
     def enqueue
-      interfaces.map { |interface| Buffers.enqueue(interface.name, interface) }
+      composition.interfaces.map do |interface|
+        Buffers.add(interface.attributes)
+      end
     end
 
     # @return [Exception]
@@ -29,18 +38,17 @@ module Vedeu
 
     attr_reader :object
 
-    # @api private
-    # @return [Array]
-    def interfaces
-      composition.interfaces
-    end
-
+    # Create a new Composition object with the attributes.
+    #
     # @api private
     # @return [Composition]
     def composition
       @_composition ||= Composition.new(attributes)
     end
 
+    # Calls the #render method of the subclass, hopefully receives attributes
+    # suitable to create one or more views.
+    #
     # @api private
     # @return []
     def attributes

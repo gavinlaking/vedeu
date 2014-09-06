@@ -1,6 +1,9 @@
 module Vedeu
   module API
+
+    # Provides methods to be used to define views.
     class Stream < Vedeu::Stream
+
       include Helpers
 
       # Specify the alignment of the stream within the line. Useful in

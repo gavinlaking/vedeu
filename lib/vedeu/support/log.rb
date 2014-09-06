@@ -28,7 +28,11 @@ module Vedeu
       end
     end
 
+    # Ensures we can always write to the log file by creating a lock-less
+    # log device.
     class LocklessLogDevice < LogDevice
+
+      # @return []
       def initialize(log = nil)
         @dev = @filename = @shift_age = @shift_size = nil
         if log.respond_to?(:write) and log.respond_to?(:close)
@@ -40,18 +44,21 @@ module Vedeu
         end
       end
 
+      # @return []
       def write(message)
         @dev.write(message)
       rescue Exception => ignored
         warn("log writing failed. #{ignored}")
       end
 
+      # @return []
       def close
         @dev.close rescue nil
       end
 
-    private
+      private
 
+      # @return []
       def open_logfile(filename)
         if (FileTest.exist?(filename))
           open(filename, (File::WRONLY | File::APPEND))
@@ -60,6 +67,7 @@ module Vedeu
         end
       end
 
+      # @return []
       def create_logfile(filename)
         logdev = open(filename, (File::WRONLY | File::APPEND | File::CREAT))
         logdev.sync = true
@@ -67,6 +75,7 @@ module Vedeu
         logdev
       end
 
+      # @return []
       def add_log_header(file)
         file.write(
           "# Logfile created on %s by %s\n" % [Time.now.to_s, Logger::ProgName]
@@ -75,6 +84,8 @@ module Vedeu
     end
   end
 
+  # Provides the ability to Log anything to the Vedeu log file which is
+  # hard-coded to reside in `$HOME/.vedeu/vedeu.log`.
   class Log
 
     # @return [TrueClass]

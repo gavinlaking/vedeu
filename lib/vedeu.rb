@@ -1,5 +1,12 @@
+#
+#
 # Vedeu is a GUI framework for terminal/console applications written in Ruby.
+#
+#
 module Vedeu
+
+  # Raised when Vedeu attempts to access a named buffer that does not exist.
+  BufferNotFound = Class.new(StandardError)
 
   # Raised when trying to access a group of interfaces which do not exist by
   # this name.
@@ -51,6 +58,7 @@ require 'logger'
 require 'optparse'
 require 'set'
 
+require 'vedeu/support/common'
 require 'vedeu/support/log'
 require 'vedeu/support/trace'
 require 'vedeu/configuration'
@@ -66,7 +74,6 @@ require 'vedeu/support/position'
 require 'vedeu/support/esc'
 require 'vedeu/support/terminal'
 require 'vedeu/support/event'
-require 'vedeu/support/events'
 
 require 'vedeu/models/geometry'
 require 'vedeu/models/colour'
@@ -74,6 +81,8 @@ require 'vedeu/models/style'
 require 'vedeu/models/interface'
 require 'vedeu/models/line'
 require 'vedeu/models/stream'
+
+require 'vedeu/repositories/events'
 
 require 'vedeu/api/defined'
 require 'vedeu/api/api'
@@ -83,18 +92,23 @@ require 'vedeu/api/interface'
 require 'vedeu/api/line'
 require 'vedeu/api/stream'
 
-require 'vedeu/support/input'
+require 'vedeu/repositories/interfaces'
+require 'vedeu/repositories/groups'
+require 'vedeu/repositories/focus'
+require 'vedeu/repositories/events'
+require 'vedeu/repositories/buffers'
 
-require 'vedeu/application'
-require 'vedeu/launcher'
+require 'vedeu/output/clear'
+require 'vedeu/output/compositor'
+require 'vedeu/output/refresh'
+require 'vedeu/output/render'
+require 'vedeu/output/view'
 
-require 'vedeu/support/focus'
-require 'vedeu/support/groups'
-require 'vedeu/support/buffers'
-require 'vedeu/support/clear'
-require 'vedeu/support/render'
-require 'vedeu/support/view'
-require 'vedeu/support/buffer'
 require 'vedeu/support/grid'
 require 'vedeu/support/menu'
 require 'vedeu/support/cursor'
+
+require 'vedeu/input/input'
+
+require 'vedeu/application'
+require 'vedeu/launcher'

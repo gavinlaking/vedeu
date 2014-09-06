@@ -29,7 +29,7 @@ module Vedeu
 
     describe '#to_s' do
       it 'returns output' do
-        line   = Line.new({
+        line = Line.new({
           colour: {
             foreground: '#00ff00',
             background: '#000000'
@@ -45,7 +45,7 @@ module Vedeu
           style: 'underline',
           width: nil,
           align: :left,
-          parent: line,
+          parent: line.view_attributes,
         })
         stream.to_s.must_equal(
           "\e[38;2;255;0;0m\e[48;2;0;0;0m" \

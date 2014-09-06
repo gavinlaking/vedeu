@@ -1,5 +1,10 @@
 module Vedeu
+
+  # A Line represents a single row of the terminal. It is a container for
+  # {Vedeu::Stream} objects. A line's width is determined by the
+  # {Vedeu::Interface} it belongs to.
   class Line
+
     include Coercions
     include Presentation
 
@@ -12,6 +17,8 @@ module Vedeu
       new(attributes, &block).attributes
     end
 
+    # Returns a new instance of Line.
+    #
     # @param attributes [Hash]
     # @param block [Proc]
     # @return [Line]
@@ -26,9 +33,11 @@ module Vedeu
       end
     end
 
+    # Returns a collection of streams associated with this line.
+    #
     # @return [Array]
     def streams
-      @streams ||= Stream.coercer(attributes[:streams], self)
+      @streams ||= Stream.coercer(attributes[:streams], parent)
     end
 
     private
@@ -41,6 +50,8 @@ module Vedeu
       streams
     end
 
+    # The default values for a new instance of Line.
+    #
     # @api private
     # @return [Hash]
     def defaults

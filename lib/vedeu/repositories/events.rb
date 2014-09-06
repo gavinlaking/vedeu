@@ -2,8 +2,12 @@ module Vedeu
 
   # Provides a mechanism for storing and retrieving events by name. A single
   # name can contain many events. Also an event can trigger other events.
+  #
+  # @api private
   class Events
 
+    # Initializes a new Events class.
+    #
     # @param block [Proc]
     # @return [Events]
     def initialize(&block)
@@ -37,6 +41,13 @@ module Vedeu
     # @return [Array]
     def registered
       handlers.keys
+    end
+
+    # Returns a Boolean indicating whether the named event is registered.
+    #
+    # @return [TrueClass|FalseClass]
+    def registered?(name)
+      handlers.key?(name)
     end
 
     # @see Vedeu::API#trigger

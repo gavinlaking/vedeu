@@ -1,6 +1,9 @@
 module Vedeu
   module API
+
+    # Provides methods to be used to define interfaces or views.
     class Interface < Vedeu::Interface
+
       include Helpers
 
       # Define a single line in a view.
@@ -24,11 +27,12 @@ module Vedeu
       # @return [API::Interface]
       def line(value = '', &block)
         if block_given?
-          attributes[:lines] << Line.build({ parent: self }, &block)
+          attributes[:lines] << API::Line
+            .build({ parent: self.view_attributes }, &block)
 
         else
-          attributes[:lines] << Line
-            .build({ streams: { text: value }, parent: self })
+          attributes[:lines] << API::Line
+            .build({ streams: { text: value }, parent: self.view_attributes })
 
         end
       end

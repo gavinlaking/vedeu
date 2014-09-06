@@ -1,8 +1,16 @@
 module Vedeu
+
+  # This module is the direct interface between Vedeu and your terminal/
+  # console, via Ruby's IO core library.
+  #
+  # @api private
   module Terminal
 
     extend self
 
+    # Opens a terminal screen in either `raw` or `cooked` mode. On exit,
+    # attempts to restore the screen. See {Vedeu::Terminal#restore_screen}.
+    #
     # @param block [Proc]
     # @return [Array]
     def open(&block)
@@ -20,8 +28,11 @@ module Vedeu
 
     end
 
-    # :nocov:
+    # Takes input from the user via the keyboard. Accepts special keys like
+    # the F-Keys etc, by capturing the entire sequence.
+    #
     # @return [String]
+    # :nocov:
     def input
       if raw_mode?
         keys = console.getch
@@ -56,41 +67,64 @@ module Vedeu
       yield
     end
 
+    # Clears the entire terminal space.
+    #
     # @return [String]
     def clear_screen
       output Esc.string 'clear'
     end
 
+    # Attempts to tidy up the screen just before the application terminates.
+    # The cursor is shown, colours are reset to terminal defaults, the
+    # terminal is told to reset, and finally we clear the last line ready for
+    # the prompt.
+    #
     # @return [String]
     def restore_screen
       output(Esc.string('screen_exit'), Esc.string('clear_last_line'))
     end
 
+    # Sets the cursor to be visible unless in raw mode, whereby it will be left
+    # hidden.
+    #
     # @return [String]
     def set_cursor_mode
       output Esc.string 'show_cursor' unless raw_mode?
     end
 
+    # Returns a boolean indicating whether the terminal is currently in `cooked`
+    # mode.
+    #
     # @return [Boolean]
     def cooked_mode?
       mode == :cooked
     end
 
+    # Sets the terminal in to `cooked` mode.
+    #
     # @return [Symbol]
     def cooked_mode!
       @_mode = :cooked
     end
 
+    # Returns a boolean indicating whether the terminal is currently in `raw`
+    # mode.
+    #
     # @return [Boolean]
     def raw_mode?
       mode == :raw
     end
 
+    # Sets the terminal in to `raw` mode.
+    #
     # @return [Symbol]
     def raw_mode!
       @_mode = :raw
     end
 
+    # Toggles the terminal's mode between `cooked` and `raw`, depending on its
+    # current mode.
+    #
     # @return [Symbol]
     def switch_mode!
       if raw_mode?
@@ -155,6 +189,8 @@ module Vedeu
       console.winsize
     end
 
+    # Provides our gateway into the wonderful rainbow-filled world of IO.
+    #
     # @return [File]
     def console
       IO.console

@@ -1,4 +1,11 @@
 module Vedeu
+
+  # This class currently provides the means to trace each method call which
+  # occurs inside Vedeu. This is very useful (to me!) for debugging. Running
+  # this will make your application less responsive, and the tests
+  # excruciatingly slow to run.
+  #
+  # @api private
   class Trace
 
     # :nocov:
@@ -18,7 +25,7 @@ module Vedeu
     def trace
       set_trace_func proc { |event, file, line, id, binding, classname|
         if event == watched && classname.to_s.match(klass)
-          Vedeu.log(sprintf(" %s %-35s #%s", event, classname, id))
+          Vedeu.log(sprintf(" %s %-35s #%s", event, classname, id), true)
           # binding.eval('local_variables').each do |var|
           #   print("#{var.to_s} = #{binding.local_variable_get(var).inspect}\n")
           # end
@@ -51,7 +58,7 @@ module Vedeu
     def defaults
       {
         event: 'call',
-        klass: /^Vedeu::(?!.*Log|Interface|Line|Stream|Style|Colour|Geometry|Terminal|Esc|ColourTranslator).*/
+        klass: /^Vedeu::.*/
       }
     end
 

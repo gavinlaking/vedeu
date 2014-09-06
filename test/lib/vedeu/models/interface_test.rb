@@ -20,6 +20,15 @@ module Vedeu
       })
     }
 
+    describe '#initialize' do
+      it 'returns an instance of itself' do
+        attributes = {}
+
+        Interface.new(attributes).must_be_instance_of(Interface)
+      end
+    end
+
+
     describe '#attributes' do
       it 'returns the value' do
         interface.attributes.must_equal(

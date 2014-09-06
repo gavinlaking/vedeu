@@ -1,5 +1,10 @@
 module Vedeu
+
+  # A Stream can represent a character or collection of characters as part of a
+  # {Vedeu::Line} which you wish to colour and style independently of the other
+  # characters in that line.
   class Stream
+
     include Coercions
     include Presentation
 
@@ -12,6 +17,8 @@ module Vedeu
       new(attributes, &block).attributes
     end
 
+    # Returns a new instance of Stream.
+    #
     # @param attributes [Hash]
     # @param block [Proc]
     # @return [Stream]
@@ -53,6 +60,8 @@ module Vedeu
       !!width
     end
 
+    # The default values for a new instance of Stream.
+    #
     # @api private
     # @return [Hash]
     def defaults

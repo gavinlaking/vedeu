@@ -18,9 +18,9 @@ module Vedeu
       end
 
       describe '#groups' do
-        it 'returns no groups when none currently registered' do
-          Vedeu::Buffers.reset
+        before { Vedeu::Groups.reset }
 
+        it 'returns no groups when none currently registered' do
           Defined.groups.must_equal([])
         end
 
@@ -32,9 +32,9 @@ module Vedeu
       end
 
       describe '#interfaces' do
-        it 'returns no interfaces when none currently registered' do
-          Vedeu::Buffers.reset
+        before { Vedeu::Interfaces.reset }
 
+        it 'returns no interfaces when none currently registered' do
           Defined.interfaces.must_equal([])
         end
 

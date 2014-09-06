@@ -4,10 +4,12 @@ module Vedeu
   # module expose Vedeu's core functionality.
   module API
 
-    # Returns information about various registered subsystems.
+    # Returns information about various registered subsystems when used with
+    # a defined method within {Vedeu::API::Defined}.
     #
     # @api public
     # @see Vedeu::API::Defined
+    # @return [Vedeu::API::Defined]
     def defined
       Vedeu::API::Defined
     end
@@ -60,19 +62,26 @@ module Vedeu
       Vedeu.events.event(name, opts = {}, &block)
     end
 
-    # Unregisters the event by name, effectively deleting the associated events
-    # bound with it also.
+    # Initially accessed by Vedeu itself, this sets up some basic events needed
+    # by Vedeu to run. Afterwards, it is simply a gateway to the Events class
+    # used by other API methods.
     #
-    # @api public
-    # @param name [Symbol]
-    # @return [Hash]
-    def unevent(name)
-      Vedeu.events.unevent(name)
+    # @api private
+    # @return [Events]
+    def events
+      @events ||= Vedeu::Events.new do
+        event(:_clear_)                   { Terminal.clear_screen     }
+        event(:_exit_)                    { Vedeu::Application.stop   }
+        event(:_focus_by_name_)           { |name| Vedeu::Focus.by_name(name) }
+        event(:_focus_next_)              { Vedeu::Focus.next_item    }
+        event(:_focus_prev_)              { Vedeu::Focus.prev_item    }
+        event(:_keypress_)                { |key| Vedeu.keypress(key) }
+        event(:_log_)                     { |msg| Vedeu.log(msg)      }
+        event(:_mode_switch_)             { fail ModeSwitch           }
+        event(:_refresh_)                 { Vedeu::Refresh.all        }
+        event(:_resize_, { delay: 0.25 }) { Vedeu.resize              }
+      end
     end
-
-    # def focus(name)
-    #   Focus.by_name(name)
-    # end
 
     # Find out how many lines the current terminal is able to display.
     #
@@ -126,11 +135,11 @@ module Vedeu
     #
     # @return []
     def keypress(key)
-      Vedeu.events.trigger(:key, key)
-      Vedeu.events.trigger(:_log_, "Key: #{key}") if Configuration.debug?
-      Vedeu.events.trigger(:_mode_switch_) if key == :escape
-      Vedeu.events.trigger(:_focus_next_)  if key == :tab
-      Vedeu.events.trigger(:_focus_prev_)  if key == :shift_tab
+      Vedeu.trigger(:key, key)
+      Vedeu.trigger(:_log_, "Key: #{key}") if Configuration.debug?
+      Vedeu.trigger(:_mode_switch_) if key == :escape
+      Vedeu.trigger(:_focus_next_)  if key == :tab
+      Vedeu.trigger(:_focus_prev_)  if key == :shift_tab
     end
 
     # Write a message to the Vedeu log file located at `$HOME/.vedeu/vedeu.log`
@@ -148,6 +157,20 @@ module Vedeu
     def log(message, force = false)
       Vedeu::Log.logger.debug(message) if Configuration.debug? || force
     end
+
+    # When the terminal emit the 'SIGWINCH' signal, Vedeu can intercept this
+    # and attempt to redraw the current interface with varying degrees of
+    # success. Can also be used to simulate a terminal resize.
+    #
+    # @api private
+    # @return []
+    # :nocov:
+    def resize
+      trigger(:_clear_)
+
+      trigger(:_refresh_)
+    end
+    # :nocov:
 
     # Trigger a registered or system event by name with arguments.
     #
@@ -178,7 +201,7 @@ module Vedeu
     #
     # @return [Vedeu::Interface]
     def use(name)
-      Vedeu::Interface.new(Vedeu::Buffers.retrieve_attributes(name))
+      Vedeu::Interface.new(Vedeu::Interfaces.find(name))
     end
 
     # Define a view (content) for an interface. TODO: More help.
@@ -238,52 +261,15 @@ module Vedeu
       Terminal.width
     end
 
-    # Initially accessed by Vedeu itself, this sets up some basic events needed
-    # by Vedeu to run. Afterwards, it is simply a gateway to the Events class
-    # used by other API methods.
+    # Unregisters the event by name, effectively deleting the associated events
+    # bound with it also.
     #
-    # @api private
-    # @return [Events]
-    def events
-      @events ||= Vedeu::Events.new do
-        event(:_log_)                     { |msg| Vedeu.log(msg)      }
-        event(:_exit_)                    { Vedeu.shutdown            }
-        event(:_mode_switch_)             { fail ModeSwitch           }
-        event(:_clear_)                   { Terminal.clear_screen     }
-        event(:_refresh_)                 { Buffers.refresh_all       }
-        event(:_resize_, { delay: 0.25 }) { Vedeu.resize              }
-        event(:_keypress_)                { |key| Vedeu.keypress(key) }
-      end
+    # @api public
+    # @param name [Symbol]
+    # @return [Hash]
+    def unevent(name)
+      Vedeu.events.unevent(name)
     end
-
-    # When the terminal emit the 'SIGWINCH' signal, Vedeu can intercept this
-    # and attempt to redraw the current interface with varying degrees of
-    # success.
-    #
-    # @api private
-    # @return []
-    # :nocov:
-    def resize
-      trigger(:_clear_)
-
-      trigger(:_refresh_)
-    end
-    # :nocov:
-
-    # When called will trigger the user-defined `:_cleanup_:` event which
-    # should be used to close open buffers, save files, etc. After that,
-    # a StopIteration exception is raised which will cause
-    # {Vedeu::Application#start} to exit its loop and terminate the application.
-    #
-    # @api private
-    # @return [Exception]
-    # :nocov:
-    def shutdown
-      trigger(:_cleanup_)
-
-      fail StopIteration
-    end
-    # :nocov:
 
   end
 

@@ -1,1 +1,6 @@
 --private
+--protected
+--embed-mixin ClassMethods
+-
+docs/api.md
+docs/events.md

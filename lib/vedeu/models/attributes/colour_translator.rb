@@ -1,23 +1,27 @@
 module Vedeu
+
+  # Convert a CSS/HTML colour string into a terminal escape sequence.
+  #
+  # If provided with an empty value or a string it cannot convert, it will
+  # return an empty string.
+  #
+  # When provided with a named colour, uses the terminal's value for that
+  # colour. If a theme is being used with the terminal, which overrides the
+  # defaults, then the theme's colour will be used. The recognised names are:
+  # :black, :red, :green, :yellow, :blue, :magenta, :cyan, :white, :default.
+  #
+  # When a number between 0 and 255 is provided, Vedeu will use the terminal
+  # colour corresponding with that colour. TODO: Create chart.
+  #
+  # Finally, when provided a CSS/HTML colour string e.g. '#ff0000', Vedeu will
+  # translate that to the 8-bit escape sequence or if you have a capable
+  # terminal and the `VEDEU_TERM=xterm-truecolor` environment variable set,
+  # a 24-bit representation.
+  #
+  # @api private
   class ColourTranslator
 
     # Convert a CSS/HTML colour string into a terminal escape sequence.
-    #
-    # If provided with an empty value or a string it cannot convert, it will
-    # return an empty string.
-    #
-    # When provided with a named colour, uses the terminal's value for that
-    # colour. If a theme is being used with the terminal, which overrides the
-    # defaults, then the theme's colour will be used. The recognised names are:
-    # :black, :red, :green, :yellow, :blue, :magenta, :cyan, :white, :default.
-    #
-    # When a number between 0 and 255 is provided, Vedeu will use the terminal
-    # colour corresponding with that colour. TODO: Create chart.
-    #
-    # Finally, when provided a CSS/HTML colour string e.g. '#ff0000', Vedeu will
-    # translate that to the 8-bit escape sequence or if you have a capable
-    # terminal and the `VEDEU_TERM=xterm-truecolor` environment variable set,
-    # a 24-bit representation.
     #
     # @param colour [String]
     # @return [String]
@@ -25,6 +29,8 @@ module Vedeu
       new(colour).escape_sequence
     end
 
+    # Return a new instance of ColourTranslator.
+    #
     # @param colour [String]
     # @return [ColourTranslator]
     def initialize(colour = '')
@@ -32,7 +38,7 @@ module Vedeu
     end
 
     # @return [String]
-    # @see Vedeu::ColourTranslator.escape_sequence
+    # @see Vedeu::ColourTranslator
     def escape_sequence
       if no_colour?
         ''

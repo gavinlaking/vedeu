@@ -6,6 +6,12 @@ module Vedeu
 
     before { Event.stubs(:new).returns(event) }
 
+    describe '.defined' do
+      it 'returns a reference to the API::Defined module' do
+        Vedeu.defined.must_equal(Vedeu::API::Defined)
+      end
+    end
+
     describe '.event' do
       it 'registers and returns the event' do
         Vedeu.event(:some_event).must_equal(
@@ -75,23 +81,23 @@ module Vedeu
     end
 
     describe '.use' do
-      it 'raises an exception if the interface has not been defined' do
-        Vedeu::Buffers.reset
+      before { Vedeu::Interfaces.reset }
 
-        proc { Vedeu.use('some_interface') }
+      it 'raises an exception if the interface has not been defined' do
+        proc { Vedeu.use('unknown') }
           .must_raise(Vedeu::InterfaceNotFound)
       end
 
       it 'returns' do
-        Vedeu.interface('some_interface')
+        Vedeu.interface('aluminium')
 
-        Vedeu.use('some_interface').must_be_instance_of(Vedeu::Interface)
+        Vedeu.use('aluminium').must_be_instance_of(Vedeu::Interface)
       end
     end
 
     describe '.view' do
       let(:composition) {
-        Composition.build({
+        {
           interfaces: [{
             name: "some_interface",
             group: "",
@@ -100,13 +106,11 @@ module Vedeu
             style: "",
             geometry: {},
             cursor: true,
-            delay: 0.0
+            delay: 0.0,
+            parent: {}
           }]
-        })
+        }
       }
-      before do
-        Composition.stubs(:build).returns(composition)
-      end
 
       it 'returns the view attributes for an interface (see View)' do
         Vedeu.view('some_interface').must_equal(composition)
@@ -133,6 +137,12 @@ module Vedeu
         IO.console.stub(:winsize, [24, 40]) do
           Vedeu.width.must_equal(40)
         end
+      end
+    end
+
+    describe '.resize' do
+      it 'triggers the :_clear_ and :_refresh_ events' do
+        skip
       end
     end
   end

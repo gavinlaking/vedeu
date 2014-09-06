@@ -1,12 +1,49 @@
-require 'test_helper'
-
 module Vedeu
-  describe Input do
-    describe '.capture' do
-      keypresses = {
+
+  # Captures input from the user via {Vedeu::Terminal#input} and translates
+  # special characters into symbols.
+  #
+  # @api private
+  class Input
+
+    # @return [String|Symbol]
+    def self.capture
+      new.capture
+    end
+
+    # Returns a new instance of Input.
+    #
+    # @return [Input]
+    def initialize; end
+
+    # @return []
+    def capture
+      Vedeu.trigger(:_keypress_, keypress)
+    end
+
+    private
+
+    # @api private
+    # @return [String]
+    def input
+      @_input ||= Terminal.input
+    end
+
+    # @api private
+    # @return [String|Symbol]
+    def keypress
+      key = input
+
+      specials.fetch(key, key)
+    end
+
+    # @api private
+    # @return [Hash]
+    def specials
+      {
         "\r"      => :enter,
         "\t"      => :tab,
-        # "\e"      => :escape, # handled below in separate test
+        "\e"      => :escape,
         "\e[A"    => :up,
         "\e[B"    => :down,
         "\e[C"    => :right,
@@ -33,26 +70,8 @@ module Vedeu
         "\e[1;2Q" => :scroll_lock,
         "\e[1;2R" => :pause_break,
         "\u007F"  => :backspace,
-        "k"       => "k"
       }
-
-      keypresses.each do |keypress, value|
-        it 'triggers a :key event with the key pressed' do
-          Terminal.stub :input, keypress do
-            Vedeu.stub :trigger, value do
-              Input.capture.must_equal(value)
-            end
-          end
-        end
-      end
-
-      it 'switches the terminal mode when escape is pressed' do
-        Terminal.stub :input, "\e" do
-          Vedeu.stub :log, nil do
-            proc { Input.capture }.must_raise(ModeSwitch)
-          end
-        end
-      end
     end
+
   end
 end

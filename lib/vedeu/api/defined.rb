@@ -20,14 +20,14 @@ module Vedeu
       #
       # @return [Array]
       def groups
-        Vedeu::Buffers.registered_groups
+        Vedeu::Groups.registered
       end
 
       # Returns all interfaces currently registered with Vedeu.
       #
       # @return [Array]
       def interfaces
-        Vedeu::Buffers.registered_interfaces
+        Vedeu::Interfaces.registered
       end
 
     end

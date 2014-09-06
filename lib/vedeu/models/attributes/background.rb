@@ -2,20 +2,27 @@ module Vedeu
 
   # The class represents one half (the other, can be found at
   # {Vedeu::Foreground}) of a terminal colour escape sequence.
+  #
+  # @api private
   class Background < ColourTranslator
 
     private
 
+    # Returns an escape sequence for a named background colour.
+    #
+    # Valid names are: `:black`, `:red`, `:green`, `:yellow`, `:blue`,
+    # `:magenta`, `:cyan`, `:white` and `:default`.
+    #
     # @api private
     # @return [String]
     def named
-      ["\e[", background_codes[colour], "m"].join
+      ["\e[", background_codes[colour], 'm'].join
     end
 
     # @api private
     # @return [String]
     def numbered
-      ["\e[48;5;", css_to_numbered, "m"].join
+      ["\e[48;5;", css_to_numbered, 'm'].join
     end
 
     # @api private
@@ -30,8 +37,8 @@ module Vedeu
       end
     end
 
-    # Produces the background escape sequence hash from the foreground escape
-    # sequence hash.
+    # Produces the background named colour escape sequence hash from the
+    # foreground escape sequence hash.
     #
     # @api private
     # @return [Hash]

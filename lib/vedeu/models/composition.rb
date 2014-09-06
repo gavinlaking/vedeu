@@ -1,10 +1,11 @@
 module Vedeu
+
+  # A composition is a collection of interfaces.
   class Composition
 
     attr_reader :attributes
 
-    # Builds a new composition, which is a collection of interfaces, ready to be
-    # rendered to the screen.
+    # Builds a new composition, ready to be rendered to the screen.
     #
     # @param attributes [Hash]
     # @param block [Proc]
@@ -13,8 +14,7 @@ module Vedeu
       new(attributes, &block).attributes
     end
 
-    # Initialises a new Composition object which is a container for a collection
-    # of interfaces.
+    # Returns a new instance of Composition.
     #
     # @param attributes [Hash]
     # @param block [Proc]
@@ -29,23 +29,19 @@ module Vedeu
       end
     end
 
-    # Returns a collection of interface attributes associated with this
-    # composition. When used to create views, the stored interface geometry is
-    # combined with the view attributes to create a new interface.
+    # Returns a collection of interfaces associated with this composition.
     #
     # @return [Array]
     def interfaces
-      return [] if no_interfaces_defined?
+      @interfaces ||= Interface.coercer(attributes[:interfaces])
+    end
 
-      @interfaces ||= [ attributes[:interfaces] ].flatten.map do |attrs|
-        stored = Buffers.retrieve_attributes(attrs[:name])
-
-        combined = stored.merge(attrs) do |key, s, a|
-          key == :lines && s.empty? ? a : s
-        end
-
-        Interface.new(combined)
-      end
+    # Returns the view attributes for a Composition, which will always be none,
+    # as a composition is a merely a collection of interfaces.
+    #
+    # @return [Hash]
+    def view_attributes
+      {}
     end
 
     # Returns the complete escape sequence which this composition renders to.
@@ -58,7 +54,7 @@ module Vedeu
 
     private
 
-    # A new Composition will have no interfaces associated by default.
+    # The default values for a new instance of Composition.
     #
     # @api private
     # @return [Hash]
@@ -66,14 +62,6 @@ module Vedeu
       {
         interfaces: []
       }
-    end
-
-    # Returns a boolean depending on whether there are associated interfaces.
-    #
-    # @api private
-    # @return [TrueClass|FalseClass]
-    def no_interfaces_defined?
-      attributes[:interfaces].nil? || attributes[:interfaces].empty?
     end
 
     # @api private

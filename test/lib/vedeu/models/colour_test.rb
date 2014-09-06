@@ -2,6 +2,14 @@ require 'test_helper'
 
 module Vedeu
   describe Colour do
+    describe '#initialize' do
+      it 'returns an instance of itself' do
+        attributes = {}
+
+        Colour.new(attributes).must_be_instance_of(Colour)
+      end
+    end
+
     describe '#background' do
       it 'returns an escape sequence' do
         Colour.new({

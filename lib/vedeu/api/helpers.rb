@@ -1,5 +1,8 @@
 module Vedeu
   module API
+
+    # Provides colour and style helpers for use in the {API::Interface},
+    # {API::Line} and {API::Stream} classes.
     module Helpers
 
       # Define either or both foreground and background colours for an
@@ -11,15 +14,15 @@ module Vedeu
       # @example
       #   interface 'my_interface' do
       #     colour background: '#000000', foreground: '#ffffff'
-      #     ... some interface attributes ...
+      #     ...
       #
       #   line do
       #     colour background: '#000000', foreground: '#ffffff'
-      #     ... some line attributes ...
+      #     ...
       #
       #   stream do
       #     colour background: '#000000', foreground: '#ffffff'
-      #     ... some stream attributes ...
+      #     ...
       #
       # @return [Hash]
       def colour(values)
@@ -31,7 +34,7 @@ module Vedeu
         attributes[:colour] = values
       end
 
-      # Define a style for an interface, line or a stream.
+      # Define a style or styles for an interface, line or a stream.
       #
       # @api public
       # @param values [Array|String]

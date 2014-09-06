@@ -18,6 +18,13 @@ module Vedeu
     let(:align) { :left }
     let(:width) { 9 }
 
+    describe '#initialize' do
+      it 'returns an instance of itself' do
+        attributes = {}
+        Stream.new(attributes).must_be_instance_of(Stream)
+      end
+    end
+
     describe '#text' do
       it 'has a text attribute' do
         stream.text.must_equal('Some text')
@@ -54,7 +61,7 @@ module Vedeu
           style: 'underline',
           width: nil,
           align: :left,
-          parent: line,
+          parent: line.view_attributes,
         })
         stream.to_s.must_equal(
           "\e[38;2;255;0;0m\e[48;2;0;0;0m" \

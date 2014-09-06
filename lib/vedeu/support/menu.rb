@@ -1,6 +1,12 @@
 module Vedeu
+
+  # Converts the collection passed into a list of menu items which can be
+  # navigated using the instance methods or events provided.
+  #
   class Menu
 
+    # Returns a new instance of Menu.
+    #
     # @param collection []
     # @return [Menu]
     def initialize(collection)
@@ -10,6 +16,8 @@ module Vedeu
       @events     = events
     end
 
+    # Creates events to manipulate this menu.
+    #
     # @return []
     def events
       @_events ||= Vedeu.events.add(self) do
@@ -26,28 +34,41 @@ module Vedeu
       end
     end
 
-    # @return []
+    # Returns the index of the value in the collection which is current.
+    #
+    # @return [Fixnum]
     def current
       @current
     end
 
-    # @return []
+    # Returns the index of the value in the collection which is selected.
+    #
+    # @return [Fixnum]
     def selected
       @selected
     end
 
+    # Returns the item from the collection which shares the same index as the
+    # value of {Vedeu::Menu#current}.
+    #
     # @return []
     def current_item
       @collection[@current]
     end
 
-    # @return []
+    # Returns the item from the collection which shares the same index as the
+    # value of {Vedeu::Menu#selected}.
+    #
+    # @return [|NilClass]
     def selected_item
       return nil unless @selected
 
       @collection[@selected]
     end
 
+    # Returns a new collection of items, which includes the `current` and
+    # `selected` states.
+    #
     # @return [Array]
     def items
       items = []
@@ -74,6 +95,8 @@ module Vedeu
       items[@current, @collection.size]
     end
 
+    # Sets the value of current to be the first item of the collection.
+    #
     # @return [Array]
     def top_item
       @current = 0
@@ -81,6 +104,8 @@ module Vedeu
       items
     end
 
+    # Sets the value of current to be the last item of the collection.
+    #
     # @return [Array]
     def bottom_item
       @current = last
@@ -88,6 +113,9 @@ module Vedeu
       items
     end
 
+    # Sets the value of current to be the next item in the collection until we
+    # reach the last.
+    #
     # @return [Array]
     def next_item
       @current += 1 if @current < last
@@ -95,6 +123,9 @@ module Vedeu
       items
     end
 
+    # Sets the value of current to be the previous item in the collection until
+    # we reach the first.
+    #
     # @return [Array]
     def prev_item
       @current -= 1 if @current > 0
@@ -102,6 +133,8 @@ module Vedeu
       items
     end
 
+    # Sets the selected item to be the same value as the current item.
+    #
     # @return [Array]
     def select_item
       @selected = @current
@@ -109,6 +142,8 @@ module Vedeu
       items
     end
 
+    # Removes the value of `selected`, meaning no items are selected.
+    #
     # @return [Array]
     def deselect_item
       @selected = nil
@@ -116,11 +151,15 @@ module Vedeu
       items
     end
 
+    # Returns the last index of the collection.
+    #
     # @return [Fixnum]
     def last
       @collection.size - 1
     end
 
+    # Returns the size of the collection.
+    #
     # @return [Fixnum]
     def size
       @collection.size

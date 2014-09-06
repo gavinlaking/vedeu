@@ -1,5 +1,11 @@
 module Vedeu
+
+  # Allows the customisation of Vedeu's behaviour through command-line
+  # arguments.
+  #
+  # @api public
   module Configuration
+
     extend self
 
     # Parses arguments passed on the command-line or via {Vedeu::Launcher} into

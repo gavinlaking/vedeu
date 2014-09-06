@@ -1,6 +1,12 @@
 module Vedeu
+
+  # An Interface represents a portion of the terminal defined by
+  # {Vedeu::Geometry}. It is a container for {Vedeu::Line} and {Vedeu::Stream}
+  # objects.
   class Interface
+
     include Coercions
+    include Common
     include Presentation
 
     extend Forwardable
@@ -26,6 +32,8 @@ module Vedeu
       new(attributes).define(&block)
     end
 
+    # Return a new instance of Interface.
+    #
     # @param  attributes [Hash]
     # @param  block [Proc]
     # @return [Interface]
@@ -57,9 +65,11 @@ module Vedeu
       self
     end
 
+    # Returns a collection of lines associated with this interface.
+    #
     # @return [Array]
     def lines
-      @lines ||= Line.coercer(attributes[:lines], self)
+      @lines ||= Line.coercer(attributes[:lines], parent)
     end
 
     # @return [Geometry]
@@ -96,6 +106,8 @@ module Vedeu
 
     private
 
+    # The default values for a new instance of Interface.
+    #
     # @api private
     # @return [Hash]
     def defaults
@@ -115,7 +127,7 @@ module Vedeu
     # @api private
     # @return [TrueClass|FalseClass]
     def validate_attributes!
-      if attributes[:name].nil? || attributes[:name].empty?
+      unless defined_value?(attributes[:name])
         fail InvalidSyntax, 'Interfaces and views must have a `name`.'
       end
     end

@@ -9,6 +9,14 @@ SimpleCov.start do
   add_filter   '/test/'
 end unless ENV['no_simplecov']
 
+module MiniTest
+  class Spec
+    class << self
+      alias_method :context, :describe
+    end
+  end
+end
+
 require 'mocha/setup'
 
 GC.disable
@@ -16,6 +24,35 @@ GC.disable
 ENV['VEDEU_TERM'] = 'xterm-truecolor'
 
 require 'vedeu'
+
+module Vedeu
+  def self.reset_all!
+    Vedeu::Buffers.reset
+    Vedeu::Configuration.reset
+    Vedeu.events.reset
+    Vedeu::Focus.reset
+    Vedeu::Groups.reset
+    Vedeu::Interfaces.reset
+  end
+end
+
+module MyMiniTestPlugin
+  # Code to run before every test case
+  def before_setup
+    super
+    Vedeu.reset_all!
+  end
+
+  # Code to run after every test case
+  def after_teardown
+    Vedeu.reset_all!
+    super
+  end
+end
+
+class MiniTest::Spec
+  include MyMiniTestPlugin
+end
 
 # commented out by default (makes tests slower)
 # require 'minitest/reporters'
