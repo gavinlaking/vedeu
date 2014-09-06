@@ -26,8 +26,11 @@ module Vedeu
 
     end
 
-    # :nocov:
+    # Takes input from the user via the keyboard. Accepts special keys like
+    # the F-Keys etc, by capturing the entire sequence.
+    #
     # @return [String]
+    # :nocov:
     def input
       if raw_mode?
         keys = console.getch
@@ -62,6 +65,8 @@ module Vedeu
       yield
     end
 
+    # Clears the entire terminal space.
+    #
     # @return [String]
     def clear_screen
       output Esc.string 'clear'
@@ -77,6 +82,9 @@ module Vedeu
       output(Esc.string('screen_exit'), Esc.string('clear_last_line'))
     end
 
+    # Sets the cursor to be visible unless in raw mode, whereby it will be left
+    # hidden.
+    #
     # @return [String]
     def set_cursor_mode
       output Esc.string 'show_cursor' unless raw_mode?

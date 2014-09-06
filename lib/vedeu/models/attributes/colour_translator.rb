@@ -27,6 +27,8 @@ module Vedeu
       new(colour).escape_sequence
     end
 
+    # Return a new instance of ColourTranslator.
+    #
     # @param colour [String]
     # @return [ColourTranslator]
     def initialize(colour = '')

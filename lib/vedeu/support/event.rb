@@ -3,6 +3,8 @@ module Vedeu
   # Contains all the logic of an event. Handles debouncing and throttling.
   class Event
 
+    # Returns a new instance of Event.
+    #
     # @param closure [Proc]
     # @param options [Hash]
     # @return [Event]
@@ -14,6 +16,8 @@ module Vedeu
       @now          = 0
     end
 
+    # Triggers the event based on debouncing and throttling conditions.
+    #
     # @param args [Array]
     # @return []
     def trigger(*args)
@@ -29,6 +33,8 @@ module Vedeu
     attr_reader   :closure
     attr_accessor :deadline, :executed_at, :now
 
+    # Execute the code stored in the event closure.
+    #
     # @api private
     # @return []
     def execute(*args)
@@ -41,6 +47,10 @@ module Vedeu
       closure.call(*args)
     end
 
+    # Returns a boolean indicating whether throttling is required for this
+    # event. Setting the delay option to any value greater than 0 will enable
+    # throttling.
+    #
     # @api private
     # @return [TrueClass|FalseClass]
     def throttling?
@@ -49,6 +59,10 @@ module Vedeu
       options[:delay] > 0
     end
 
+    # Returns a boolean indicating whether debouncing is required for this
+    # event. Setting the debounce option to any value greater than 0 will
+    # enable debouncing.
+    #
     # @api private
     # @return [TrueClass|FalseClass]
     def debouncing?

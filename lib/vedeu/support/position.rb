@@ -3,6 +3,8 @@ module Vedeu
   # Change coordinates into an escape sequence to set the cursor position.
   class Position
 
+    # Initializes a new instance of Position.
+    #
     # @param y [Fixnum]
     # @param x [Fixnum]
     # @return [Position]

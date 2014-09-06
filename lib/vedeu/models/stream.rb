@@ -1,6 +1,8 @@
 module Vedeu
 
-  # TODO: what does this class do?
+  # A Stream can represent a character or collection of characters as part of a
+  # {Vedeu::Line} which you wish to colour and style independently of the other
+  # characters in that line.
   class Stream
 
     include Coercions
@@ -15,6 +17,8 @@ module Vedeu
       new(attributes, &block).attributes
     end
 
+    # Returns a new instance of Stream.
+    #
     # @param attributes [Hash]
     # @param block [Proc]
     # @return [Stream]

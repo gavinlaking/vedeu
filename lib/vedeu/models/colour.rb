@@ -1,13 +1,13 @@
 module Vedeu
 
-  # TODO: what does this class do?
+  # Provides a container for terminal escape sequences controlling the
+  # foreground and background colours of a character or collection of
+  # characters.
   class Colour
 
     attr_reader :attributes
 
-    # Initialises a new Colour object which is a container for terminal escape
-    # sequences controlling the foreground and background colours of a
-    # character or collection of characters.
+    # Returns a new instance of Colour.
     #
     # @param attributes [Hash]
     # @return [Colour]

@@ -21,6 +21,10 @@ module Vedeu
       @interface = interface
     end
 
+    # For each visible line of the interface, set the foreground and background
+    # colours to those specified when the interface was defined, then starting
+    # write space characters over the area which the interface occupies.
+    #
     # @return [String]
     def clear
       rows.inject([colours]) do |line, index|

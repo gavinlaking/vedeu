@@ -3,7 +3,8 @@ module Vedeu
   # Provides means to convert attributes into the correct model.
   module Coercions
 
-    # TODO: what does this class do?
+    # Contains class methods which are accessible as such to classes and modules
+    # which include {Vedeu::Coercions}.
     module ClassMethods
 
       include Vedeu::Common

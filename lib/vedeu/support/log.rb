@@ -28,7 +28,8 @@ module Vedeu
       end
     end
 
-    # TODO: what does this class do?
+    # Ensures we can always write to the log file by creating a lock-less
+    # log device.
     class LocklessLogDevice < LogDevice
 
       # @return []
@@ -83,7 +84,8 @@ module Vedeu
     end
   end
 
-  # TODO: what does this class do?
+  # Provides the ability to Log anything to the Vedeu log file which is
+  # hard-coded to reside in `$HOME/.vedeu/vedeu.log`.
   class Log
 
     # @return [TrueClass]

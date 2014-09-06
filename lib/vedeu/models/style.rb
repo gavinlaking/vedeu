@@ -8,7 +8,7 @@ module Vedeu
 
     attr_reader :values
 
-    # Initialize a new Style class.
+    # Return a new instance of Style.
     #
     # @param values [String|Array] The style value or values collection.
     # @return [Style]
@@ -16,7 +16,7 @@ module Vedeu
       @values = values
     end
 
-    # Return the terminal escape sequences for the values provided..
+    # Return the terminal escape sequences for the values provided.
     #
     # @return [String]
     def to_s
@@ -25,6 +25,8 @@ module Vedeu
 
     private
 
+    # Converts the style or styles into terminal escape sequences.
+    #
     # @api private
     # @return [String]
     def escape_sequences

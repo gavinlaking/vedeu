@@ -6,7 +6,7 @@ module Vedeu
 
     attr_reader :attributes, :centred, :height, :width
 
-    # Creates a new interface geometry object.
+    # Returns a new instance of Geometry.
     #
     # @param attributes [Hash]
     # @return [Geometry]

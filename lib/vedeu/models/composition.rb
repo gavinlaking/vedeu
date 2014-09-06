@@ -14,8 +14,7 @@ module Vedeu
       new(attributes, &block).attributes
     end
 
-    # Initialises a new Composition object which is a container for a collection
-    # of interfaces.
+    # Returns a new instance of Composition.
     #
     # @param attributes [Hash]
     # @param block [Proc]
