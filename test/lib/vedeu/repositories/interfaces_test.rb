@@ -68,7 +68,7 @@ module Vedeu
     end
 
     describe '#reset' do
-      it 'removes all known groups from the storage' do
+      it 'removes all known interfaces from the storage' do
         Interfaces.add({ name: 'bromine' })
         Interfaces.all.must_equal({ 'bromine' => { name: 'bromine' } })
         Interfaces.reset.must_be_empty
