@@ -37,3 +37,43 @@ class OtherClassInYourApplication
 ... TODO ...
 
 
+### API DSL methods
+
+defined
+event
+events
+height
+interface
+keypress
+log
+resize
+trigger
+unevent
+use
+view
+views
+width
+
+colour
+style
+
+line
+use
+cursor
+delay
+group
+name
+x
+y
+width
+height
+centred
+
+stream
+text
+foreground
+background
+
+align
+text
+width
