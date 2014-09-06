@@ -158,6 +158,29 @@ module Vedeu
       Vedeu::Log.logger.debug(message) if Configuration.debug? || force
     end
 
+    # Register a menu by name which will display output from a event or
+    # command. This provides the means for you to define your application's
+    # views without their content.
+    #
+    # @api public
+    # @param name  [String] The name of the menu. Used to reference the
+    #   menu throughout your application's execution lifetime.
+    # @param block [Proc] A set of attributes which define the features of the
+    #   menu. TODO: More help.
+    #
+    # @example
+    #   Vedeu.menu 'my_interface' do
+    #     ...
+    #
+    #   Vedeu.menu do
+    #     name 'menus_must_have_a_name'
+    #     ...
+    #
+    # @return [API::Menu]
+    def menu(name = '', &block)
+      API::Menu.define({ name: name }, &block)
+    end
+
     # When the terminal emit the 'SIGWINCH' signal, Vedeu can intercept this
     # and attempt to redraw the current interface with varying degrees of
     # success. Can also be used to simulate a terminal resize.

@@ -33,6 +33,7 @@ module Vedeu
     Vedeu::Focus.reset
     Vedeu::Groups.reset
     Vedeu::Interfaces.reset
+    Vedeu::Menus.reset
   end
 end
 

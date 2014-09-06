@@ -79,6 +79,14 @@ module Vedeu
       end
     end
 
+    describe '.menu' do
+      it 'creates and stores a new menu' do
+        Vedeu.menu('Vedeu.menu') do
+          # ...
+        end.must_be_instance_of(API::Menu)
+      end
+    end
+
     describe '.trigger' do
       it 'triggers the specifed event and returns the collection of events' \
          ' which this trigger triggers' do

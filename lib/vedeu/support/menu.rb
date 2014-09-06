@@ -7,7 +7,7 @@ module Vedeu
 
     # Returns a new instance of Menu.
     #
-    # @param collection []
+    # @param collection [Array]
     # @return [Menu]
     def initialize(collection)
       @collection = collection
