@@ -1,11 +1,13 @@
 module Vedeu
 
-  # TODO: what does this class do?
+  # Attempts to convert the provided interface object with associated lines,
+  # streams, colours, styles, etc, into a single string containing all content
+  # and escape sequences.
   class Render
 
-    # Attempts to convert the provided interface object with associated lines,
-    # streams, colours, styles, etc, into a single string containing all content
-    # and escape sequences.
+    # Create a new instance of Render with the provided {Vedeu::Interface} and
+    # then convert the interface into a single string of content and escape
+    # sequences.
     #
     # @api private
     # @param interface [Interface]
@@ -15,7 +17,7 @@ module Vedeu
       new(interface, options).render
     end
 
-    # Initializes a new Render object with the provided interface.
+    # Return a new instance of Render.
     #
     # @param interface [Interface]
     # @param options [Hash]

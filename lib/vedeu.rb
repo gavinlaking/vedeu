@@ -98,15 +98,17 @@ require 'vedeu/repositories/focus'
 require 'vedeu/repositories/events'
 require 'vedeu/repositories/buffers'
 
-require 'vedeu/support/compositor'
-require 'vedeu/support/refresh'
-require 'vedeu/support/clear'
-require 'vedeu/support/render'
-require 'vedeu/support/view'
+require 'vedeu/output/clear'
+require 'vedeu/output/compositor'
+require 'vedeu/output/refresh'
+require 'vedeu/output/render'
+require 'vedeu/output/view'
+
 require 'vedeu/support/grid'
 require 'vedeu/support/menu'
 require 'vedeu/support/cursor'
-require 'vedeu/support/input'
+
+require 'vedeu/input/input'
 
 require 'vedeu/application'
 require 'vedeu/launcher'

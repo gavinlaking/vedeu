@@ -13,6 +13,8 @@ module Vedeu
       new(interface).clear
     end
 
+    # Returns a new instance of Clear.
+    #
     # @param interface [Interface]
     # @return [Clear]
     def initialize(interface)
