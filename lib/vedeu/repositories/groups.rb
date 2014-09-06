@@ -1,6 +1,8 @@
 module Vedeu
 
   # Repository for storing and retrieving interfaces by their group name.
+  #
+  # @api private
   module Groups
 
     extend self

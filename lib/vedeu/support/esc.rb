@@ -2,6 +2,8 @@ module Vedeu
 
   # Provides escape sequence strings for setting the cursor position and various
   # display related functions.
+  #
+  # @api private
   module Esc
 
     extend self

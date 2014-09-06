@@ -1,6 +1,8 @@
 module Vedeu
 
   # Refreshes the terminal.
+  #
+  # @api private
   module Refresh
 
     include Vedeu::Common

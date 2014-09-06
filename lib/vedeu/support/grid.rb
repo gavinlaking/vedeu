@@ -22,6 +22,8 @@ module Vedeu
 
   # Divides horizontal terminal space into 12 equal columns, discarding
   # the remainder.
+  #
+  # @api private
   class Grid
 
     # @param value [Fixnum]

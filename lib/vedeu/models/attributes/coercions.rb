@@ -1,6 +1,8 @@
 module Vedeu
 
   # Provides means to convert attributes into the correct model.
+  #
+  # @api private
   module Coercions
 
     # Contains class methods which are accessible as such to classes and modules

@@ -3,6 +3,8 @@ module Vedeu
   # The Focus repository is simply a collection of interface names, this module
   # serving to store and manipulate the which interface is currently being
   # focussed.
+  #
+  # @api private
   module Focus
 
     extend self

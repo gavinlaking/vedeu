@@ -3,6 +3,8 @@ module Vedeu
   # Provides a container for terminal escape sequences controlling the
   # foreground and background colours of a character or collection of
   # characters.
+  #
+  # @api private
   class Colour
 
     attr_reader :attributes

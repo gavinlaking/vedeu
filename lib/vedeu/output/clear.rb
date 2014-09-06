@@ -3,6 +3,8 @@ module Vedeu
   # Clears all the character data for the area defined by an interface. This
   # class is called every time an interface is rendered to prepare the area
   # for new data.
+  #
+  # @api private
   class Clear
 
     # Blanks the area defined by the interface.

@@ -1,6 +1,8 @@
 module Vedeu
 
   # Contains all the logic of an event. Handles debouncing and throttling.
+  #
+  # @api private
   class Event
 
     # Returns a new instance of Event.

@@ -3,6 +3,8 @@ module Vedeu
   # Attempts to convert the provided interface object with associated lines,
   # streams, colours, styles, etc, into a single string containing all content
   # and escape sequences.
+  #
+  # @api private
   class Render
 
     # Create a new instance of Render with the provided {Vedeu::Interface} and

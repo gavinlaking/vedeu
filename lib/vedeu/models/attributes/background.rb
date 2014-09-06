@@ -2,6 +2,8 @@ module Vedeu
 
   # The class represents one half (the other, can be found at
   # {Vedeu::Foreground}) of a terminal colour escape sequence.
+  #
+  # @api private
   class Background < ColourTranslator
 
     private

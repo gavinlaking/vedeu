@@ -2,6 +2,8 @@ module Vedeu
 
   # Stores interface views to be later combined with interface geometry to be
   # displayed.
+  #
+  # @api private
   module Buffers
 
     include Vedeu::Common

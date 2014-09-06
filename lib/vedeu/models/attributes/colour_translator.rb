@@ -17,6 +17,8 @@ module Vedeu
   # translate that to the 8-bit escape sequence or if you have a capable
   # terminal and the `VEDEU_TERM=xterm-truecolor` environment variable set,
   # a 24-bit representation.
+  #
+  # @api private
   class ColourTranslator
 
     # Convert a CSS/HTML colour string into a terminal escape sequence.

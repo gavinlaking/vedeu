@@ -1,6 +1,8 @@
 module Vedeu
 
   # Repository for storing and retrieving defined interfaces.
+  #
+  # @api private
   module Interfaces
 
     extend self

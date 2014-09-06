@@ -1,6 +1,8 @@
 module Vedeu
 
   # Stores and manipulates the position of the current cursor.
+  #
+  # @api private
   class Cursor
 
     attr_reader :top, :bottom, :left, :right, :cursor_x, :cursor_y

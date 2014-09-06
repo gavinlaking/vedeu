@@ -4,6 +4,8 @@ module Vedeu
   # occurs inside Vedeu. This is very useful (to me!) for debugging. Running
   # this will make your application less responsive, and the tests
   # excruciatingly slow to run.
+  #
+  # @api private
   class Trace
 
     # :nocov:
