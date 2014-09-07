@@ -1,6 +1,8 @@
 module Vedeu
   module API
 
+    # Provides the mechanism to create menus within client applications and use
+    # events to drive them.
     class Menu
 
       include Common
@@ -9,7 +11,7 @@ module Vedeu
 
       # @param attributes [Hash]
       # @param block [Proc]
-      # @return []
+      # @return [API::Menu]
       def self.define(attributes = {}, &block)
         new(attributes).define(&block)
       end
@@ -17,13 +19,13 @@ module Vedeu
       # Return a new instance of Menu.
       #
       # @param  attributes [Hash]
-      # @return [Menu]
+      # @return [API::Menu]
       def initialize(attributes = {})
         @attributes = defaults.merge!(attributes)
       end
 
       # @param block [Proc]
-      # @return []
+      # @return [API::Menu]
       def define(&block)
         fail InvalidSyntax, '`menu` requires a block.' unless block_given?
 
@@ -107,13 +109,3 @@ module Vedeu
     end
   end
 end
-
-# menu 'menu_name' do
-#   items []
-# end
-
-# menu do
-#   name      'menu_name'
-#   items     []
-# end
-

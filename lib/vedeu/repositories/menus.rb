@@ -7,6 +7,8 @@ module Vedeu
 
     extend self
 
+    # System events which when called with the appropriate menu name will
+    # update the menu accordingly.
     Vedeu.event(:_menu_current_)  { |name| Menus.use(name).current_item  }
     Vedeu.event(:_menu_selected_) { |name| Menus.use(name).selected_item }
     Vedeu.event(:_menu_next_)     { |name| Menus.use(name).next_item     }
