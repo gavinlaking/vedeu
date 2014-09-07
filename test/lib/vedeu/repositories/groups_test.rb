@@ -3,6 +3,8 @@ require 'test_helper'
 module Vedeu
   describe Groups do
     describe '#add' do
+      before { Groups.reset }
+
       it 'returns false if the group name is empty' do
         Groups.add({ group: '', name: 'gallium', delay: 0.0 }).must_equal(false)
       end
@@ -15,6 +17,7 @@ module Vedeu
 
     describe '#all' do
       before do
+        Groups.reset
         Groups.add({ group: 'elements', name: 'cobalt', delay: 0.0 })
         Groups.add({ group: 'elements', name: 'nickel', delay: 0.0 })
         Groups.add({ group: 'elements', name: 'copper', delay: 0.0 })
@@ -28,7 +31,10 @@ module Vedeu
     end
 
     describe '#find' do
-      before { Groups.add({ group: 'elements', name: 'zinc', delay: 0.0 }) }
+      before do
+        Groups.reset
+        Groups.add({ group: 'elements', name: 'zinc', delay: 0.0 })
+      end
 
       it 'raises an exception if the group cannot be found' do
         proc { Groups.find('not_found') }.must_raise(GroupNotFound)
@@ -41,6 +47,7 @@ module Vedeu
 
     describe '#registered' do
       before do
+        Groups.reset
         Groups.add({ group: 'elements', name: 'cobalt', delay: 0.0 })
         Groups.add({ group: 'minerals', name: 'ruby', delay: 0.0 })
         Groups.add({ group: 'elements', name: 'copper', delay: 0.0 })
@@ -65,6 +72,8 @@ module Vedeu
     end
 
     describe '#reset' do
+      before { Groups.reset }
+
       it 'removes all known groups from the storage' do
         Groups.add({ group: 'elements', name: 'bromine', delay: 0.0 })
         Groups.all.must_equal({ 'elements' => Set['bromine'] })

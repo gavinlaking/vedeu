@@ -4,7 +4,114 @@ module Vedeu
 
   describe Menus do
 
+    describe 'System events defined by Menus' do
+      before do
+        Menus.reset
+        Menus.add({ name:  'elements',
+                    items: Vedeu::Menu.new([:sulphur, :gold, :tin, :helium]) })
+      end
+
+      it 'raises an exception when triggered with an unregistered name' do
+        proc {
+          Vedeu.trigger(:_menu_current_, 'unknown')
+        }.must_raise(MenuNotFound)
+      end
+
+      it '_menu_current_' do
+        Vedeu.trigger(:_menu_current_, 'elements').must_equal(:sulphur)
+      end
+
+      it '_menu_selected_ when no item is selected' do
+        Vedeu.trigger(:_menu_selected_, 'elements').must_equal([nil])
+      end
+
+      it '_menu_selected_ when an item is selected' do
+        Vedeu.trigger(:_menu_next_, 'elements')
+        Vedeu.trigger(:_menu_select_, 'elements')
+        Vedeu.trigger(:_menu_selected_, 'elements').must_equal(:gold)
+      end
+
+      it '_menu_next_' do
+        Vedeu.trigger(:_menu_next_, 'elements').must_equal(
+          [
+            [false, false, :sulphur],
+            [false, true, :gold],
+            [false, false, :tin],
+            [false, false, :helium]
+          ]
+        )
+      end
+
+      it '_menu_prev_' do
+        Vedeu.trigger(:_menu_prev_, 'elements').must_equal(
+          [
+            [false, true, :sulphur],
+            [false, false, :gold],
+            [false, false, :tin],
+            [false, false, :helium]
+          ]
+        )
+      end
+
+      it '_menu_top_' do
+        Vedeu.trigger(:_menu_top_, 'elements').must_equal(
+          [
+            [false, true, :sulphur],
+            [false, false, :gold],
+            [false, false, :tin],
+            [false, false, :helium]
+          ]
+        )
+      end
+
+      it '_menu_bottom_' do
+        Vedeu.trigger(:_menu_bottom_, 'elements').must_equal(
+          [
+            [false, false, :sulphur],
+            [false, false, :gold],
+            [false, false, :tin],
+            [false, true, :helium]
+          ]
+        )
+      end
+
+      it '_menu_select_' do
+        Vedeu.trigger(:_menu_select_, 'elements').must_equal(
+          [
+            [true, true, :sulphur],
+            [false, false, :gold],
+            [false, false, :tin],
+            [false, false, :helium]
+          ]
+        )
+      end
+
+      it '_menu_deselect_' do
+        Vedeu.trigger(:_menu_deselect_, 'elements').must_equal(
+          [
+            [false, true, :sulphur],
+            [false, false, :gold],
+            [false, false, :tin],
+            [false, false, :helium]
+          ]
+        )
+      end
+
+      it '_menu_items_' do
+        Vedeu.trigger(:_menu_items_, 'elements').must_equal(
+          [
+            [false, true, :sulphur],
+            [false, false, :gold],
+            [false, false, :tin],
+            [false, false, :helium]
+          ]
+        )
+      end
+    end
+
     describe '#add' do
+      before { Menus.reset }
+
       it 'returns false if the menu name is empty' do
         Menus.add({ name: '' }).must_equal(false)
       end
@@ -24,6 +131,7 @@ module Vedeu
 
     describe '#all' do
       before do
+        Menus.reset
         Menus.add({ name: 'barium' })
         Menus.add({ name: 'lanthanum' })
         Menus.add({ name: 'cerium' })
@@ -54,6 +162,7 @@ module Vedeu
 
     describe '#registered' do
       before do
+        Menus.reset
         Menus.add({ name: 'barium' })
         Menus.add({ name: 'caesium' })
       end
@@ -95,6 +204,8 @@ module Vedeu
     end
 
     describe '#reset' do
+      before { Menus.reset }
+
       it 'removes all known menus from the storage' do
         Menus.add({ name: 'uranium' })
         Menus.all.must_equal({ 'uranium' => { name: 'uranium' } })

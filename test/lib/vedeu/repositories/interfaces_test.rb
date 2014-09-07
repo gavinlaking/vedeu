@@ -4,6 +4,8 @@ module Vedeu
   describe Interfaces do
 
     describe '#add' do
+      before { Interfaces.reset }
+
       it 'returns false if the interface name is empty' do
         Interfaces.add({ name: '' }).must_equal(false)
       end
@@ -16,6 +18,7 @@ module Vedeu
 
     describe '#all' do
       before do
+        Interfaces.reset
         Interfaces.add({ name: 'cobalt' })
         Interfaces.add({ name: 'nickel' })
         Interfaces.add({ name: 'copper' })
@@ -46,6 +49,7 @@ module Vedeu
 
     describe '#registered' do
       before do
+        Interfaces.reset
         Interfaces.add({ name: 'cobalt' })
         Interfaces.add({ name: 'ruby' })
       end
@@ -68,6 +72,8 @@ module Vedeu
     end
 
     describe '#reset' do
+      before { Interfaces.reset }
+
       it 'removes all known interfaces from the storage' do
         Interfaces.add({ name: 'bromine' })
         Interfaces.all.must_equal({ 'bromine' => { name: 'bromine' } })

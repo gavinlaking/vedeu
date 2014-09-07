@@ -5,6 +5,8 @@ module Vedeu
 
     describe Menu do
       describe '.define' do
+        before { Menus.reset }
+
         it 'raises an exception if no block was given' do
           proc { Menu.define }.must_raise(InvalidSyntax)
         end

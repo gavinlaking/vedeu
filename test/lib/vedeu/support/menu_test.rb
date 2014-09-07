@@ -5,12 +5,6 @@ module Vedeu
     let(:collection) { ['hydrogen', 'carbon', 'nitrogen', 'oxygen'] }
     let(:menu)       { Menu.new(collection) }
 
-    describe '#events' do
-      it 'returns the events defined for menus' do
-        menu.events.must_be_instance_of(Hash)
-      end
-    end
-
     describe '#current' do
       it 'returns the current index' do
         menu.current.must_equal(0)
