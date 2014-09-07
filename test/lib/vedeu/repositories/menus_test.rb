@@ -10,8 +10,15 @@ module Vedeu
       end
 
       it 'adds the menu to the storage' do
-        Menus.add({ name: 'strontium' })
-        Menus.all.must_equal({ 'strontium' => { name: 'strontium' } })
+        collection = [:hydrogen, :helium, :beryllium, :lithium]
+        items      = Vedeu::Menu.new(collection)
+
+        Menus.add({ name: 'elements', items: items })
+        Menus.all.must_equal(
+          {
+            'elements' => { name: 'elements', items: items }
+          }
+        )
       end
     end
 
