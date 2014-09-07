@@ -17,7 +17,7 @@ module Vedeu
       storage.store(attributes[:name], attributes)
     end
 
-    # Return the whole repository.
+    # Return the whole repository of menus.
     #
     # @return [Hash]
     def all
@@ -47,6 +47,18 @@ module Vedeu
     # @return [TrueClass|FalseClass]
     def registered?(name)
       storage.key?(name)
+    end
+
+    # Removes the menu from the repository and associated events.
+    #
+    # @param name [String]
+    # @return [TrueClass|FalseClass]
+    def remove(name)
+      return false unless registered?(name)
+
+      storage.delete(name) { false }
+
+      true
     end
 
     # Reset the menus repository; removing all registered menus.

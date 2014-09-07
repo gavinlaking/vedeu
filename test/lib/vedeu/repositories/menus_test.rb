@@ -68,6 +68,25 @@ module Vedeu
       end
     end
 
+    describe '#remove' do
+      it 'returns false when the menu is not registered' do
+        Menus.remove('not_registered').must_equal(false)
+      end
+
+      it 'removes the menu from the repository' do
+        Menus.add({ name: 'antimony' })
+        Menus.registered?('antimony').must_equal(true)
+        Menus.remove('antimony')
+        Menus.registered?('antimony').must_equal(false)
+      end
+
+      it 'returns true when the menu was registered and is now removed' do
+        Menus.add({ name: 'tellurium' })
+        Menus.remove('tellurium').must_equal(true)
+        Menus.registered?('tellurium').must_equal(false)
+      end
+    end
+
     describe '#reset' do
       it 'removes all known menus from the storage' do
         Menus.add({ name: 'uranium' })
