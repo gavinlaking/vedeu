@@ -52,7 +52,15 @@ module Vedeu
 
     # @see Vedeu::API#trigger
     def trigger(name, *args)
-      handlers[name][:events].map { |event| event.trigger(*args) }
+      results = handlers[name][:events].map { |event| event.trigger(*args) }
+
+      if results.one?
+        results.first
+
+      else
+        results
+
+      end
     end
 
     # Remove all registered events. Used for testing purposes.
