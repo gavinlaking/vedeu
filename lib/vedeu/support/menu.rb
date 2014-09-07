@@ -13,25 +13,6 @@ module Vedeu
       @collection = collection
       @current    = 0
       @selected   = nil
-      @events     = events
-    end
-
-    # Creates events to manipulate this menu.
-    #
-    # @return []
-    def events
-      @_events ||= Vedeu.events.add(self) do
-        event(:menu_next)     { next_item     }
-        event(:menu_prev)     { prev_item     }
-        event(:menu_top)      { top_item      }
-        event(:menu_bottom)   { bottom_item   }
-        event(:menu_select)   { select_item   }
-        event(:menu_deselect) { deselect_item }
-
-        event(:menu_selected) { selected_item }
-        event(:menu_current)  { current_item  }
-        event(:menu_items)    { items         }
-      end
     end
 
     # Returns the index of the value in the collection which is current.
