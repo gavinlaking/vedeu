@@ -52,7 +52,7 @@ module Vedeu
 
     # @see Vedeu::API#trigger
     def trigger(name, *args)
-      handlers[name][:events].each { |event| event.trigger(*args) }
+      handlers[name][:events].map { |event| event.trigger(*args) }
     end
 
     # Remove all registered events. Used for testing purposes.
