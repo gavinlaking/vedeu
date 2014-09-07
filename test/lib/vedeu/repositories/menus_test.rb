@@ -95,5 +95,21 @@ module Vedeu
       end
     end
 
+    describe '#use' do
+      it 'returns the Vedeu::Menu instance stored when the named menu exists' do
+        collection = [:calcium, :fermium, :nitrogen, :palladium]
+        items      = Vedeu::Menu.new(collection)
+        Menus.add({ name: 'elements', items: items })
+
+        Menus.use('elements').must_equal(items)
+      end
+
+      it 'raises an exception if there are no items' do
+        Menus.add({ name: 'elements' })
+
+        proc { Menus.use('elements') }.must_raise(MenuNotFound)
+      end
+    end
+
   end
 end

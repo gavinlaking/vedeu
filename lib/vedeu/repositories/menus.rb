@@ -70,6 +70,16 @@ module Vedeu
       @_storage = in_memory
     end
 
+    # Access a menu by name.
+    #
+    # @param name [String]
+    # @return [Vedeu::Menu|MenuNotFound]
+    def use(name)
+      find(name).fetch(:items) do
+        fail MenuNotFound, "This menu '#{name}' has no items."
+      end
+    end
+
     private
 
     # @api private
