@@ -47,8 +47,14 @@ module Vedeu
       @collection[@selected]
     end
 
-    # Returns a new collection of items, which includes the `current` and
-    # `selected` states.
+    # Returns a new collection of items.
+    # Each element of the collection is of the format:
+    #
+    #   [ selected, current, item ]
+    #
+    # `selected` is a boolean indicating whether the item is selected.
+    # `current`  is a boolean indicating whether the item is current.
+    # `item`     is the item itself.
     #
     # @return [Array]
     def items
