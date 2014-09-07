@@ -195,7 +195,8 @@ module Vedeu
     end
     # :nocov:
 
-    # Trigger a registered or system event by name with arguments.
+    # Trigger a registered or system event by name with arguments. If the
+    # event stored returns a value, that is returned.
     #
     # @api public
     # @param name [Symbol] The name of the event you wish to trigger.
@@ -205,7 +206,7 @@ module Vedeu
     # @example
     #   Vedeu.trigger(:my_event, :oxidize, 'nitrogen')
     #
-    # @return [Array]
+    # @return [Array|undefined]
     def trigger(name, *args)
       Vedeu.events.trigger(name, *args)
     end
