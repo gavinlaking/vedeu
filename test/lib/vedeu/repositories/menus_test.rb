@@ -107,6 +107,17 @@ module Vedeu
           ]
         )
       end
+
+      it '_menu_view_' do
+        Vedeu.trigger(:_menu_view_, 'elements').must_equal(
+          [
+            [false, true, :sulphur],
+            [false, false, :gold],
+            [false, false, :tin],
+            [false, false, :helium]
+          ]
+        )
+      end
     end
 
     describe '#add' do

@@ -77,6 +77,8 @@ module Vedeu
       items
     end
 
+    # Returns a subset of all the items.
+    #
     # @return [Array]
     def view
       items[@current, @collection.size]

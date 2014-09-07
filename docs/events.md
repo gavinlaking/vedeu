@@ -97,6 +97,11 @@ Requires target menu name as argument. Deselects all menu items.
 Requires target menu name as argument. Returns all the menu items with
 respective `current` or `selected` boolean indicators.
 
+### `:_menu_view_`
+
+Requires target menu name as argument. Returns a subset of the menu items;
+starting at the current item to the last item.
+
 ### `:_mode_switch_`
 
 When triggered (after the user presses `escape`), Vedeu switches from a "raw mode" terminal to a "cooked mode" terminal. The idea here being that the raw mode is for single keypress actions, whilst cooked mode allows the user to enter more elaborate commands- such as commands with arguments.

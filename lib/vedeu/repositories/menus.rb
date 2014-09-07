@@ -18,6 +18,7 @@ module Vedeu
     Vedeu.event(:_menu_select_)   { |name| Menus.use(name).select_item   }
     Vedeu.event(:_menu_deselect_) { |name| Menus.use(name).deselect_item }
     Vedeu.event(:_menu_items_)    { |name| Menus.use(name).items         }
+    Vedeu.event(:_menu_view_)     { |name| Menus.use(name).view          }
 
     # Stores the menu attributes defined by the API.
     #
