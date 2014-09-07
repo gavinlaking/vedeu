@@ -19,6 +19,9 @@ module Vedeu
   # encounters a problem.
   InvalidSyntax = Class.new(StandardError)
 
+  # Raised when a menu cannot be found by name.
+  MenuNotFound = Class.new(StandardError)
+
   # Raised intentionally when the client application wishes to switch between
   # cooked and raw (or vice versa) terminal modes. Vedeu is hard-wired to use
   # the `Escape` key to trigger this change for the time being.
@@ -90,8 +93,10 @@ require 'vedeu/api/composition'
 require 'vedeu/api/helpers'
 require 'vedeu/api/interface'
 require 'vedeu/api/line'
+require 'vedeu/api/menu'
 require 'vedeu/api/stream'
 
+require 'vedeu/repositories/menus'
 require 'vedeu/repositories/interfaces'
 require 'vedeu/repositories/groups'
 require 'vedeu/repositories/focus'

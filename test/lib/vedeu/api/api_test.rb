@@ -22,13 +22,6 @@ module Vedeu
       end
     end
 
-    describe '.unevent' do
-      it 'unregister the event by name' do
-        Vedeu.event(:calcium) { proc { |x| x } }
-        Vedeu.unevent(:calcium).wont_include(:calcium)
-      end
-    end
-
     describe '.events' do
       it 'returns the Events singleton' do
         Vedeu.events.must_be_instance_of(Vedeu::Events)
@@ -71,12 +64,40 @@ module Vedeu
           Vedeu.log('some message...').must_equal(nil)
         end
       end
+
+      it 'write the message to the log file when the `force` argument ' \
+         'evaluates to true' do
+        Configuration.stub(:debug?, false) do
+          Vedeu.log('some message...', true).must_equal(true)
+        end
+      end
+    end
+
+    describe '.resize' do
+      it 'triggers the :_clear_ and :_refresh_ events' do
+        skip
+      end
+    end
+
+    describe '.menu' do
+      it 'creates and stores a new menu' do
+        Vedeu.menu('Vedeu.menu') do
+          # ...
+        end.must_be_instance_of(API::Menu)
+      end
     end
 
     describe '.trigger' do
       it 'triggers the specifed event and returns the collection of events' \
          ' which this trigger triggers' do
         Vedeu.trigger(:vedeu_trigger_event, :event_arguments).must_equal([])
+      end
+    end
+
+    describe '.unevent' do
+      it 'unregister the event by name' do
+        Vedeu.event(:calcium) { proc { |x| x } }
+        Vedeu.unevent(:calcium).wont_include(:calcium)
       end
     end
 
@@ -140,10 +161,5 @@ module Vedeu
       end
     end
 
-    describe '.resize' do
-      it 'triggers the :_clear_ and :_refresh_ events' do
-        skip
-      end
-    end
   end
 end

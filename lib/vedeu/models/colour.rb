@@ -7,6 +7,7 @@ module Vedeu
   # @api private
   class Colour
 
+    # @return [Hash]
     attr_reader :attributes
 
     # Returns a new instance of Colour.

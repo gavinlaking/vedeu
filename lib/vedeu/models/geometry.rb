@@ -6,7 +6,17 @@ module Vedeu
   # @api private
   class Geometry
 
-    attr_reader :attributes, :centred, :height, :width
+    # @return [Hash]
+    attr_reader :attributes
+
+    # @return [TrueClass|FalseClass]
+    attr_reader :centred
+
+    # @return [Fixnum]
+    attr_reader :height
+
+    # @return [Fixnum]
+    attr_reader :width
 
     # Returns a new instance of Geometry.
     #

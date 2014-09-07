@@ -65,6 +65,7 @@ module Vedeu
     end
 
     # @api private
+    # @return []
     def method_missing(method, *args, &block)
       @self_before_instance_eval.send(method, *args, &block)
     end

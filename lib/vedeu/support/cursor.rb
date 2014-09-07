@@ -5,7 +5,23 @@ module Vedeu
   # @api private
   class Cursor
 
-    attr_reader :top, :bottom, :left, :right, :cursor_x, :cursor_y
+    # @return [Fixnum]
+    attr_reader :top
+
+    # @return [Fixnum]
+    attr_reader :bottom
+
+    # @return [Fixnum]
+    attr_reader :left
+
+    # @return [Fixnum]
+    attr_reader :right
+
+    # @return [Fixnum]
+    attr_reader :cursor_x
+
+    # @return [Fixnum]
+    attr_reader :cursor_y
 
     # Provides a new instance of Cursor.
     #

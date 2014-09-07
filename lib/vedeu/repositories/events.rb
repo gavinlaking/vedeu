@@ -52,7 +52,15 @@ module Vedeu
 
     # @see Vedeu::API#trigger
     def trigger(name, *args)
-      handlers[name][:events].each { |event| event.trigger(*args) }
+      results = handlers[name][:events].map { |event| event.trigger(*args) }
+
+      if results.one?
+        results.first
+
+      else
+        results
+
+      end
     end
 
     # Remove all registered events. Used for testing purposes.
@@ -64,6 +72,7 @@ module Vedeu
 
     private
 
+    # @return [Hash]
     attr_reader :handlers
 
     # @api private

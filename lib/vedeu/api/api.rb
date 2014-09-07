@@ -158,6 +158,29 @@ module Vedeu
       Vedeu::Log.logger.debug(message) if Configuration.debug? || force
     end
 
+    # Register a menu by name which will display output from a event or
+    # command. This provides the means for you to define your application's
+    # views without their content.
+    #
+    # @api public
+    # @param name  [String] The name of the menu. Used to reference the
+    #   menu throughout your application's execution lifetime.
+    # @param block [Proc] A set of attributes which define the features of the
+    #   menu. TODO: More help.
+    #
+    # @example
+    #   Vedeu.menu 'my_interface' do
+    #     ...
+    #
+    #   Vedeu.menu do
+    #     name 'menus_must_have_a_name'
+    #     ...
+    #
+    # @return [API::Menu]
+    def menu(name = '', &block)
+      API::Menu.define({ name: name }, &block)
+    end
+
     # When the terminal emit the 'SIGWINCH' signal, Vedeu can intercept this
     # and attempt to redraw the current interface with varying degrees of
     # success. Can also be used to simulate a terminal resize.
@@ -172,7 +195,8 @@ module Vedeu
     end
     # :nocov:
 
-    # Trigger a registered or system event by name with arguments.
+    # Trigger a registered or system event by name with arguments. If the
+    # event stored returns a value, that is returned.
     #
     # @api public
     # @param name [Symbol] The name of the event you wish to trigger.
@@ -182,9 +206,19 @@ module Vedeu
     # @example
     #   Vedeu.trigger(:my_event, :oxidize, 'nitrogen')
     #
-    # @return [Array]
+    # @return [Array|undefined]
     def trigger(name, *args)
       Vedeu.events.trigger(name, *args)
+    end
+
+    # Unregisters the event by name, effectively deleting the associated events
+    # bound with it also.
+    #
+    # @api public
+    # @param name [Symbol]
+    # @return [Hash]
+    def unevent(name)
+      Vedeu.events.unevent(name)
     end
 
     # Use attributes of another interface whilst defining one. TODO: More help.
@@ -259,16 +293,6 @@ module Vedeu
     # @return [Fixnum] The total width of the current terminal.
     def width
       Terminal.width
-    end
-
-    # Unregisters the event by name, effectively deleting the associated events
-    # bound with it also.
-    #
-    # @api public
-    # @param name [Symbol]
-    # @return [Hash]
-    def unevent(name)
-      Vedeu.events.unevent(name)
     end
 
   end
