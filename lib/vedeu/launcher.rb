@@ -48,6 +48,7 @@ module Vedeu
 
     private
 
+    # @return [Array]
     attr_reader :argv
 
   end

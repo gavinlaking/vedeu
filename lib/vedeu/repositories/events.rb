@@ -72,6 +72,7 @@ module Vedeu
 
     private
 
+    # @return [Hash]
     attr_reader :handlers
 
     # @api private

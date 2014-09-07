@@ -32,8 +32,17 @@ module Vedeu
 
     private
 
+    # @return [Proc]
     attr_reader   :closure
-    attr_accessor :deadline, :executed_at, :now
+
+    # @return []
+    attr_accessor :deadline
+
+    # @return []
+    attr_accessor :executed_at
+
+    # @return []
+    attr_accessor :now
 
     # Execute the code stored in the event closure.
     #

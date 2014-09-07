@@ -31,6 +31,7 @@ module Vedeu
 
     private
 
+    # @return [String]
     attr_reader :name
 
     # @api private
