@@ -66,13 +66,9 @@ module Vedeu
 
             if (line_length += stream.text.size) >= width
               remainder = width - line_length
+              truncated = truncate(stream.text, remainder)
 
-              processed << Stream.new({
-                             colour: stream.colour.attributes,
-                             style:  stream.style.values,
-                             text:   truncate(stream.text, remainder),
-                             parent: line.view_attributes,
-                           })
+              processed << build_stream(line, stream, truncated)
 
             else
               processed << stream
@@ -80,18 +76,45 @@ module Vedeu
             end
           end
 
-          Line.new({
-            colour:  line.colour.attributes,
-            streams: processed,
-            style:   line.style.values,
-            parent:  interface.view_attributes,
-          })
+          build_line(line, processed)
 
         else
           line
 
         end
       end
+    end
+
+    # Builds a new Stream object with the newly truncated text and previous
+    # attributes.
+    #
+    # @api private
+    # @param line [Line]
+    # @param stream [Stream]
+    # @param text [String]
+    # @return [Stream]
+    def build_stream(line, stream, text)
+      attributes = stream.view_attributes.merge!({
+        parent: line.view_attributes,
+        text:   text,
+      })
+
+      Stream.new(attributes)
+    end
+
+    # Builds a new Line object with the new streams and previous attributes.
+    #
+    # @api private
+    # @param line [Line]
+    # @param streams [Array]
+    # @return [Line]
+    def build_line(line, streams)
+      attributes = line.view_attributes.merge!({
+        parent:  interface.view_attributes,
+        streams: streams,
+      })
+
+      Line.new(attributes)
     end
 
     # Converts all streams within a line into a single line of text to then
