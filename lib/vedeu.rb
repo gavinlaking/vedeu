@@ -61,10 +61,10 @@ require 'logger'
 require 'optparse'
 require 'set'
 
+require 'vedeu/configuration'
 require 'vedeu/support/common'
 require 'vedeu/support/log'
 require 'vedeu/support/trace'
-require 'vedeu/configuration'
 
 require 'vedeu/models/attributes/coercions'
 require 'vedeu/models/attributes/colour_translator'
