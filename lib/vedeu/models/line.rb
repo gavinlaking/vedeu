@@ -37,7 +37,7 @@ module Vedeu
     #
     # @return [Array]
     def streams
-      @streams ||= Stream.coercer(attributes[:streams], parent)
+      @streams ||= Stream.coercer(attributes[:streams])
     end
 
     private

@@ -69,7 +69,7 @@ module Vedeu
     #
     # @return [Array]
     def lines
-      @lines ||= Line.coercer(attributes[:lines], parent)
+      @lines ||= Line.coercer(attributes[:lines])
     end
 
     # @return [Geometry]
