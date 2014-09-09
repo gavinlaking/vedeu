@@ -24,10 +24,11 @@ module Vedeu
     end
 
     # Add an interface view into the back buffer. If the buffer is already
-    # registered, then we preserve its front buffer.
+    # registered, then we preserve its front buffer. Returns the name of the
+    # buffer added to storage.
     #
     # @param attributes [Hash]
-    # @return [Hash]
+    # @return [String]
     def add(attributes)
       if registered?(attributes[:name])
         buffer = find(attributes[:name])
@@ -41,7 +42,7 @@ module Vedeu
 
       end
 
-      storage
+      attributes[:name]
     end
 
     # Find the buffer by name.
@@ -91,6 +92,30 @@ module Vedeu
       front_buffer(name)
     end
 
+    # Returns a collection of the names of all registered buffers.
+    #
+    # @return [Array]
+    def registered
+      storage.keys
+    end
+
+    # Returns a boolean indicating whether the named buffer is registered.
+    #
+    # @api private
+    # @param name [String]
+    # @return [TrueClass|FalseClass]
+    def registered?(name)
+      storage.key?(name)
+    end
+
+    # Reset the buffers repository; removing all buffers. This does not delete
+    # the interfaces themselves.
+    #
+    # @return [Hash]
+    def reset
+      @_storage = in_memory
+    end
+
     # Swap the named back buffer into the front buffer of the same name.
     #
     # @param name [String]
@@ -102,14 +127,6 @@ module Vedeu
         front_buffer: buffer[:back_buffer],
         back_buffer:  nil,
       })
-    end
-
-    # Reset the buffers repository; removing all buffers. This does not delete
-    # the interfaces themselves.
-    #
-    # @return [Hash]
-    def reset
-      @_storage = in_memory
     end
 
     private
@@ -148,15 +165,6 @@ module Vedeu
     # @return [Hash|Nil]
     def front_buffer(name)
       find(name).fetch(:front_buffer, nil)
-    end
-
-    # Returns a boolean indicating whether the named buffer is registered.
-    #
-    # @api private
-    # @param name [String]
-    # @return [TrueClass|FalseClass]
-    def registered?(name)
-      storage.key?(name)
     end
 
     # Access to the storage for this repository.
