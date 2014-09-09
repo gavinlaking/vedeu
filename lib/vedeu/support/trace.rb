@@ -34,17 +34,12 @@ module Vedeu
           vars = variables(binding)
 
           if vars.empty?
-            log_this(sprintf("(%s) %s %-25s #%-30s", class_count,
-                                                     event,
-                                                     classname,
-                                                     id))
+            log_this(sprintf("(%s) %s %-25s #%-30s",
+              class_count, event, classname, id))
 
           else
-            log_this(sprintf("(%s) %s %-25s #%-30s\n%s\n", class_count,
-                                                           event,
-                                                           classname,
-                                                           id,
-                                                           vars))
+            log_this(sprintf("(%s) %s %-25s #%-30s\n%s\n",
+              class_count, event, classname, id, vars))
 
           end
         end
