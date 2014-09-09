@@ -73,17 +73,23 @@ module Vedeu
       end
     end
 
-    describe '.resize' do
-      it 'triggers the :_clear_ and :_refresh_ events' do
-        skip
-      end
-    end
-
     describe '.menu' do
       it 'creates and stores a new menu' do
         Vedeu.menu('Vedeu.menu') do
           # ...
         end.must_be_instance_of(API::Menu)
+      end
+    end
+
+    describe '.render' do
+      it 'directly writes the view buffer to the terminal' do
+        skip
+      end
+    end
+
+    describe '.resize' do
+      it 'triggers the :_clear_ and :_refresh_ events' do
+        skip
       end
     end
 
