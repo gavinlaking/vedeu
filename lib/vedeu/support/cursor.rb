@@ -1,6 +1,10 @@
 module Vedeu
 
-  # Stores and manipulates the position of the current cursor.
+  # Stores and manipulates the position of the current cursor. This class
+  # features boundary attributes (top, bottom, left, right) which will be
+  # virtual constraints on the cursor, for a given interface.
+  #
+  # @todo Better documentation, re-write class description.
   #
   # @api private
   class Cursor
@@ -36,9 +40,9 @@ module Vedeu
     def initialize(attributes = {})
       @attributes = attributes
 
-      @top        = attributes.fetch(:top)
+      @top        = attributes.fetch(:top, 1)
       @bottom     = attributes.fetch(:bottom)
-      @left       = attributes.fetch(:left)
+      @left       = attributes.fetch(:left, 1)
       @right      = attributes.fetch(:right)
       @cursor_y   = attributes.fetch(:cursor_y, @top)
       @cursor_x   = attributes.fetch(:cursor_x, @left)
@@ -113,5 +117,60 @@ module Vedeu
 
       self
     end
+
+    # Returns an escape sequence to position the cursor and set its visibility.
+    # When passed a block, will position the cursor, yield and return the
+    # original position.
+    #
+    # @param block [Proc]
+    # @return [String]
+    def to_s(&block)
+      if block_given?
+        [ sequence, yield, sequence ].join
+
+      else
+        sequence
+
+      end
+    end
+
+    private
+
+    # Returns the escape sequence to position the cursor.
+    #
+    # @api private
+    # @return [String]
+    def position_sequence
+      ["\e[", y, ';', x, 'H'].join
+    end
+
+    # Returns the escape sequence to show the cursor.
+    #
+    # @api private
+    # @return [String]
+    def show_sequence
+      Esc.string('show_cursor')
+    end
+
+    # Returns the escape sequence to hide the cursor.
+    #
+    # @api private
+    # @return [String]
+    def hide_sequence
+      Esc.string('hide_cursor')
+    end
+
+    # @api private
+    # @return [Fixnum]
+    def y
+      (@y == 0 || @y == nil) ? 1 : @y
+    end
+
+    # @api private
+    # @return [Fixnum]
+    def x
+      (@x == 0 || @x == nil) ? 1 : @x
+    end
+
   end
 end
