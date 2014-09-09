@@ -184,6 +184,26 @@ module Vedeu
       API::Menu.define({ name: name }, &block)
     end
 
+    # Directly write a view buffer to the terminal. Using this method means
+    # that the refresh event does not need to be triggered after creating the
+    # view or views, though can be later triggered if needed.
+    #
+    # @api public
+    # @param block [Proc] The directives you wish to send to render. Must
+    #                     include `view` or `views` with associated sub-
+    #                     directives.
+    #
+    # @example
+    #   Vedeu.render do
+    #     views do
+    #       view 'my_interface' do
+    #         ...
+    #
+    # @return [Array]
+    def render(&block)
+      API::Composition.render(&block)
+    end
+
     # When the terminal emit the 'SIGWINCH' signal, Vedeu can intercept this
     # and attempt to redraw the current interface with varying degrees of
     # success. Can also be used to simulate a terminal resize.
