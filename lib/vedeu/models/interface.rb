@@ -17,6 +17,8 @@ module Vedeu
 
     attr_reader :attributes, :delay, :group, :name, :parent
 
+    # Builds up a new Interface object and returns the attributes.
+    #
     # @param  attributes [Hash]
     # @param  block [Proc]
     # @return [Hash]

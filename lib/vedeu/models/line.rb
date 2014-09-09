@@ -10,6 +10,8 @@ module Vedeu
 
     attr_reader :attributes, :parent
 
+    # Builds up a new Line object and returns the attributes.
+    #
     # @param attributes [Hash]
     # @param block [Proc]
     # @return [Hash]

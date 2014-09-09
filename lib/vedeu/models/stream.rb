@@ -10,6 +10,8 @@ module Vedeu
 
     attr_reader :attributes, :align, :text, :width, :parent
 
+    # Builds up a new Stream object and returns the attributes.
+    #
     # @param attributes [Hash]
     # @param block [Proc]
     # @return [Hash]
@@ -38,12 +40,17 @@ module Vedeu
 
     private
 
+    # Returns the text aligned if a width was set, otherwise just the text.
+    #
     # @api private
     # @return [String]
     def data
       width? ? aligned : text
     end
 
+    # Returns an aligned string if the string is shorter than the specified
+    # width; the excess area being padded by spaces.
+    #
     # @api private
     # @return [String]
     def aligned
@@ -54,6 +61,8 @@ module Vedeu
       end
     end
 
+    # Returns a boolean to indicate whether this stream has a width set.
+    #
     # @api private
     # @return [TrueClass|FalseClass]
     def width?
