@@ -61,7 +61,7 @@ module Vedeu
     #
     # @return [Hash]
     def event(name, opts = {}, &block)
-      Vedeu.events.event(name, opts = {}, &block)
+      Vedeu.events.event(name, opts, &block)
     end
 
     # Initially accessed by Vedeu itself, this sets up some basic events needed
