@@ -4,10 +4,11 @@ module Vedeu
   describe Cursor do
     let(:attributes) {
       {
-        top:    3,
-        bottom: 6,
-        left:   3,
-        right:  6
+        top:     3,
+        bottom:  6,
+        left:    3,
+        right:   6,
+        visible: false,
       }
     }
 
@@ -73,6 +74,22 @@ module Vedeu
         cursor = Cursor.new(attributes)
         cursor.move_right
         cursor.position.must_equal([3, 4])
+      end
+    end
+
+    describe '#show_cursor' do
+      it 'sets the visible attribute to true' do
+        cursor = Cursor.new(attributes)
+        cursor.show_cursor
+        cursor.visible.must_equal(true)
+      end
+    end
+
+    describe '#hide_cursor' do
+      it 'sets the visible attribute to false' do
+        cursor = Cursor.new(attributes.merge!(cursor: true))
+        cursor.hide_cursor
+        cursor.visible.must_equal(false)
       end
     end
   end

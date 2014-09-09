@@ -26,6 +26,9 @@ module Vedeu
     # @return [Fixnum]
     attr_reader :cursor_y
 
+    # @return [TrueClass|FalseClass]
+    attr_reader :visible
+
     # Provides a new instance of Cursor.
     #
     # @param attributes [Hash]
@@ -39,6 +42,7 @@ module Vedeu
       @right      = attributes.fetch(:right)
       @cursor_y   = attributes.fetch(:cursor_y, @top)
       @cursor_x   = attributes.fetch(:cursor_x, @left)
+      @visible    = attributes.fetch(:visible, false)
     end
 
     # Reports the position of the cursor.
@@ -92,5 +96,22 @@ module Vedeu
       self
     end
 
+    # Make the cursor visible if it is not already.
+    #
+    # @return [Cursor]
+    def show_cursor
+      @visible = true
+
+      self
+    end
+
+    # Make the cursor invisible if it is not already.
+    #
+    # @return [Cursor]
+    def hide_cursor
+      @visible = false
+
+      self
+    end
   end
 end
