@@ -4,6 +4,9 @@ module Vedeu
   # This method should contain attributes required to build a view or views.
   # These attributes will be added to the back buffer of each interface
   # mentioned, to be rendered upon next refresh.
+  #
+  # @deprecated May disappear in 0.3.0. Prefer {Vedeu::API#render} instead.
+  # @see Vedeu::API#render
   class View
 
     include Vedeu::API

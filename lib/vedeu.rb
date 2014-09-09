@@ -1,7 +1,4 @@
-#
-#
 # Vedeu is a GUI framework for terminal/console applications written in Ruby.
-#
 #
 module Vedeu
 

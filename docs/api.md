@@ -47,6 +47,7 @@ interface
 keypress
 log
 menu
+render
 resize
 trigger
 unevent

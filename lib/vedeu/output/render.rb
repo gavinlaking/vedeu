@@ -50,7 +50,10 @@ module Vedeu
 
     # The client application may have created a line that us too long for the
     # interface. This code tries to truncate streams whilst preserving styles
-    # and colours.
+    # and colours. To achieve this, it successively checks each stream length
+    # against remaining line length and truncates the stream data if it
+    # exceeds the line length. Further stream data that does not fit is
+    # discarded.
     #
     # @api private
     # @return [Array]
