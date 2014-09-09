@@ -60,7 +60,7 @@ module Vedeu
       lines.map do |line|
         if exceeds_width?(line)
           line_length = 0
-          processed   = []
+          new_streams = []
           line.streams.each do |stream|
             next if stream.text.empty?
 
@@ -68,15 +68,15 @@ module Vedeu
               remainder = width - line_length
               truncated = truncate(stream.text, remainder)
 
-              processed << build_stream(line, stream, truncated)
+              new_streams << build_stream(line, stream, truncated)
 
             else
-              processed << stream
+              new_streams << stream
 
             end
           end
 
-          build_line(line, processed)
+          build_line(line, new_streams)
 
         else
           line
