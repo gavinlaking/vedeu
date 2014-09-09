@@ -160,22 +160,23 @@ module Vedeu
       Vedeu::Log.logger.debug(message) if Configuration.debug? || force
     end
 
-    # Register a menu by name which will display output from a event or
-    # command. This provides the means for you to define your application's
-    # views without their content.
+    # Register a menu by name which will display a collection of items for your
+    # users to select; and provide interactivity within your application.
     #
     # @api public
     # @param name  [String] The name of the menu. Used to reference the
     #   menu throughout your application's execution lifetime.
     # @param block [Proc] A set of attributes which define the features of the
-    #   menu. TODO: More help.
+    #   menu. See {Vedeu::API::Menu#items} and {Vedeu::API::Menu#name}.
     #
     # @example
     #   Vedeu.menu 'my_interface' do
+    #     items [:item_1, :item_2, :item_3]
     #     ...
     #
     #   Vedeu.menu do
     #     name 'menus_must_have_a_name'
+    #     items Track.all_my_favourites
     #     ...
     #
     # @return [API::Menu]

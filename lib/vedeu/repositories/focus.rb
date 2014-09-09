@@ -89,7 +89,7 @@ module Vedeu
       storage.include?(name)
     end
 
-    # Provides accessor to the in-memory storage.
+    # Access to the storage for this repository.
     #
     # @api private
     # @return [Array]

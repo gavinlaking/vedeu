@@ -95,6 +95,8 @@ module Vedeu
 
     private
 
+    # Access to the storage for this repository.
+    #
     # @api private
     # @return [Hash]
     def storage

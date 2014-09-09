@@ -92,6 +92,8 @@ module Vedeu
         }
       end
 
+      # At present, validates that a menu has a name attribute.
+      #
       # @api private
       # @return [TrueClass|FalseClass]
       def validate_attributes!

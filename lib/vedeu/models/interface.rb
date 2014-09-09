@@ -124,6 +124,8 @@ module Vedeu
       }
     end
 
+    # At present, validates that an interface or view has a name attribute.
+    #
     # @api private
     # @return [TrueClass|FalseClass]
     def validate_attributes!
@@ -132,19 +134,26 @@ module Vedeu
       end
     end
 
+    # Returns the out of bounds error message for the given named attribute.
+    #
     # @api private
+    # @param name [String]
     # @return [String]
     def out_of_bounds(name)
       "Note: For this terminal, the value of '#{name}' may lead to content " \
       "that is outside the viewable area."
     end
 
+    # Checks the value is within the terminal's confines.
+    #
     # @api private
     # @return [TrueClass|FalseClass]
     def y_out_of_bounds?(value)
       value < 1 || value > Terminal.height
     end
 
+    # Checks the value is within the terminal's confines.
+    #
     # @api private
     # @return [TrueClass|FalseClass]
     def x_out_of_bounds?(value)
