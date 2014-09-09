@@ -90,22 +90,6 @@ module Vedeu
       end
     end
 
-    # @return [String]
-    def to_s
-      Render.call(self)
-    end
-
-    # @param options [Hash]
-    # @return [String]
-    def render(options = {})
-      Render.call(self, options)
-    end
-
-    # @return [String]
-    def clear
-      Clear.call(self)
-    end
-
     private
 
     # The default values for a new instance of Interface.
