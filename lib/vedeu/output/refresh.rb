@@ -39,8 +39,6 @@ module Vedeu
       Vedeu::Compositor.render(name)
     end
 
-    private
-
   end
 
 end

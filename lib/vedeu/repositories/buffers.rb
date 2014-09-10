@@ -59,23 +59,15 @@ module Vedeu
     def latest(name)
       if new_content?(name)
         swap_buffers(name)
-        content(name)
+        front_buffer(name)
 
       elsif old_content?(name)
-        content(name)
+        front_buffer(name)
 
       else
         nil
 
       end
-    end
-
-    # Returns the named front buffer.
-    #
-    # @param name [String]
-    # @return [Hash]
-    def content(name)
-      front_buffer(name)
     end
 
     # Returns a collection of the names of all registered buffers.
@@ -102,8 +94,11 @@ module Vedeu
       @_storage = in_memory
     end
 
+    private
+
     # Swap the named back buffer into the front buffer of the same name.
     #
+    # @api private
     # @param name [String]
     # @return [Hash]
     def swap_buffers(name)
@@ -114,8 +109,6 @@ module Vedeu
         back_buffer:  nil,
       })
     end
-
-    private
 
     # Return a boolean indicating whether the named back buffer has new content.
     #
