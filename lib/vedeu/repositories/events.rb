@@ -36,6 +36,8 @@ module Vedeu
 
     # Returns a Boolean indicating whether the named event is registered.
     #
+    # @api private
+    # @param name [Symbol] The name of the event to check.
     # @return [TrueClass|FalseClass]
     def registered?(name)
       handlers.key?(name)
