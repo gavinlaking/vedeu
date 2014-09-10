@@ -64,17 +64,18 @@ module Vedeu
         if exceeds_width?(line)
           line_length = 0
           new_streams = []
-          line.streams.each do |stream|
+
+          new_streams = line.streams.map do |stream|
             next if stream.text.empty?
 
             if (line_length += stream.text.size) >= width
               remainder = width - line_length
               truncated = truncate(stream.text, remainder)
 
-              new_streams << build_stream(line, stream, truncated)
+              build_stream(line, stream, truncated)
 
             else
-              new_streams << stream
+              stream
 
             end
           end
