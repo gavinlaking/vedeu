@@ -3,9 +3,6 @@ require 'test_helper'
 module Vedeu
   describe Buffers do
 
-    describe '.create' do
-    end
-
     describe '.add' do
       it 'returns the name of the buffer added to storage' do
         Buffers.add({ name: 'molybdenum' }).must_equal('molybdenum')

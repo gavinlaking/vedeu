@@ -19,6 +19,10 @@ module Vedeu
   # Raised when a menu cannot be found by name.
   MenuNotFound = Class.new(StandardError)
 
+  # Raised when the attributes argument to {Vedeu::Registrar} does not contain
+  # a required key or the value to that key is nil or empty.
+  MissingRequired = Class.new(StandardError)
+
   # Raised intentionally when the client application wishes to switch between
   # cooked and raw (or vice versa) terminal modes. Vedeu is hard-wired to use
   # the `Escape` key to trigger this change for the time being.
@@ -99,6 +103,8 @@ require 'vedeu/repositories/groups'
 require 'vedeu/repositories/focus'
 require 'vedeu/repositories/events'
 require 'vedeu/repositories/buffers'
+
+require 'vedeu/support/registrar'
 
 require 'vedeu/output/clear'
 require 'vedeu/output/compositor'

@@ -9,20 +9,6 @@ module Vedeu
     include Vedeu::Common
     extend self
 
-    # @param attributes [Hash]
-    # @return [Hash]
-    def create(attributes)
-      add(attributes)
-
-      Vedeu::Interfaces.add(attributes)
-      Vedeu::Refresh.add_interface(attributes)
-
-      Vedeu::Groups.add(attributes)
-      Vedeu::Refresh.add_group(attributes)
-
-      Vedeu::Focus.add(attributes)
-    end
-
     # Add an interface view into the back buffer. If the buffer is already
     # registered, then we preserve its front buffer. Returns the name of the
     # buffer added to storage.

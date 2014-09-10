@@ -62,7 +62,7 @@ module Vedeu
 
       validate_attributes!
 
-      Vedeu::Buffers.create(attributes)
+      Registrar.record(attributes)
 
       self
     end
