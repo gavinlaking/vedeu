@@ -39,46 +39,68 @@ class OtherClassInYourApplication
 
 ### API DSL methods
 
-defined
-event
-events
-height
-interface
-keypress
-log
-menu
-render
-resize
-trigger
-unevent
-use
-view
-views
-width
+#### Events
 
-colour
-style
+- event
+- trigger
+- unevent
 
-line
-use
-cursor
-delay
-group
-name
-x
-y
-width
-height
-centred
 
-items
-name
+#### Input
 
-stream
-text
-foreground
-background
+- keypress
 
-align
-text
-width
+
+#### Interfaces
+
+- interface
+  - centred
+  - colour
+  - cursor
+  - delay
+  - group
+  - height
+  - name
+  - style
+  - use
+  - width
+  - x
+  - y
+
+
+#### Views
+
+- render
+  - views
+    - view
+  - view
+    - colour
+    - line
+      - background
+      - colour
+      - foreground
+      - stream
+        - align
+        - colour
+        - style
+        - text
+        - width
+      - style
+    - name
+    - style
+  - use
+
+
+#### Menus
+
+- menu
+  - items
+  - name
+
+
+#### Miscellany
+
+- defined
+- log
+- resize
+
