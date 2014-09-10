@@ -69,16 +69,6 @@ module Vedeu
       storage
     end
 
-    # Reset the focus repository; removing all items. This does not delete
-    # the interfaces themselves.
-    #
-    # @return [Hash]
-    def reset
-      @storage = in_memory
-    end
-
-    private
-
     # Returns a boolean indicating whether the named interface is registered.
     #
     # @api private
@@ -88,6 +78,16 @@ module Vedeu
 
       storage.include?(name)
     end
+
+    # Reset the focus repository; removing all items. This does not delete
+    # the interfaces themselves.
+    #
+    # @return [Hash]
+    def reset
+      @storage = in_memory
+    end
+
+    private
 
     # Access to the storage for this repository.
     #
