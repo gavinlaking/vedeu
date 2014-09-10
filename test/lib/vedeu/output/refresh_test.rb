@@ -2,18 +2,6 @@ require 'test_helper'
 
 module Vedeu
   describe Refresh do
-    describe '.add_interface' do
-      it 'returns false when provided with no attributes' do
-        Refresh.add_interface({}).must_equal(false)
-      end
-    end
-
-    describe '.add_group' do
-      it 'returns false when provided with no attributes' do
-        Refresh.add_group({}).must_equal(false)
-      end
-    end
-
     describe '.all' do
       it 'returns an empty collection when there are no registered ' \
          'interfaces' do

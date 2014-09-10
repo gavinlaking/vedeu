@@ -5,6 +5,7 @@ module Vedeu
   # @api private
   module Groups
 
+    include Vedeu::Common
     extend self
 
     # Add an interface name to a group, creating the group if it doesn't already
@@ -13,9 +14,13 @@ module Vedeu
     # @param attributes [Hash]
     # @return [Groups|FalseClass]
     def add(attributes)
-      return false if attributes[:group].empty?
+      return false unless defined_value?(attributes[:group])
 
       storage[attributes[:group]] << attributes[:name]
+
+      register_event(attributes)
+
+      true
     end
 
     # Return the whole repository.
@@ -59,6 +64,27 @@ module Vedeu
     end
 
     private
+
+    # Register a refresh event for a group of interfaces by name. When the event
+    # is called, all interfaces belonging to the group with this name will be
+    # refreshed.
+    #
+    # @api private
+    # @param attributes [Hash]
+    # @return []
+    def register_event(attributes)
+      name       = attributes[:group]
+      delay      = attributes[:delay] || 0.0
+      event_name = "_refresh_group_#{name}_".to_sym
+
+      return false if Vedeu.events.registered?(name)
+
+      Vedeu.event(event_name, { delay: delay }) do
+        Vedeu::Refresh.by_group(name)
+      end
+
+      true
+    end
 
     # Access to the storage for this repository.
     #

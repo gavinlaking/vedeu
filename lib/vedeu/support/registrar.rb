@@ -23,10 +23,8 @@ module Vedeu
       Vedeu::Buffers.add(attributes)
 
       Vedeu::Interfaces.add(attributes)
-      Vedeu::Refresh.add_interface(attributes)
 
       Vedeu::Groups.add(attributes)
-      Vedeu::Refresh.add_group(attributes)
 
       Vedeu::Focus.add(attributes)
 
