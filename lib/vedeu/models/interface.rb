@@ -60,8 +60,6 @@ module Vedeu
     def define(&block)
       instance_eval(&block) if block_given?
 
-      validate_attributes!
-
       Registrar.record(attributes)
 
       self
@@ -108,16 +106,6 @@ module Vedeu
         delay:    0.0,
         parent:   nil,
       }
-    end
-
-    # At present, validates that an interface or view has a name attribute.
-    #
-    # @api private
-    # @return [TrueClass|FalseClass]
-    def validate_attributes!
-      unless defined_value?(attributes[:name])
-        fail InvalidSyntax, 'Interfaces and views must have a `name`.'
-      end
     end
 
     # Returns the out of bounds error message for the given named attribute.
