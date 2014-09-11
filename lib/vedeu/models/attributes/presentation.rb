@@ -6,7 +6,7 @@ module Vedeu
   # @api private
   module Presentation
 
-    # Returns the colour attributes of the receiving class.
+    # Returns the colour and style attributes of the receiving class.
     #
     # @return [Hash]
     def view_attributes

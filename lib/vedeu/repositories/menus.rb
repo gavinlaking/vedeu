@@ -103,6 +103,9 @@ module Vedeu
       @_storage ||= in_memory
     end
 
+    # Returns an empty collection ready for the storing of menus by name with
+    # associated menu instance.
+    #
     # @api private
     # @return [Hash]
     def in_memory

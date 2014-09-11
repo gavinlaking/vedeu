@@ -72,6 +72,8 @@ module Vedeu
       @lines ||= Line.coercer(attributes[:lines])
     end
 
+    # Returns the position and size of the interface.
+    #
     # @return [Geometry]
     def geometry
       @geometry ||= Geometry.new(attributes[:geometry])
