@@ -6,7 +6,7 @@ module Vedeu
 
     include Vedeu::Common
 
-    attr_reader :values
+    attr_reader :attributes, :values
 
     # Return a new instance of Style.
     #
@@ -14,6 +14,15 @@ module Vedeu
     # @return [Style]
     def initialize(values)
       @values = values
+    end
+
+    # Return an attributes hash for this class.
+    #
+    # @return [Hash]
+    def attributes
+      {
+        style: values
+      }
     end
 
     # Return the terminal escape sequences for the values provided.
