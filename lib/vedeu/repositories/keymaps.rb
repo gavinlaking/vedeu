@@ -37,9 +37,9 @@ module Vedeu
     # Find a keymap by interface name.
     #
     # @param name [String]
-    # @return [Hash|FalseClass]
+    # @return [Hash]
     def find(name)
-      storage.fetch(name, false)
+      storage.fetch(name, {})
     end
 
     # Return a boolean indicating whether the key is registered as a global key.

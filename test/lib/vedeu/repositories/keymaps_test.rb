@@ -28,17 +28,24 @@ module Vedeu
     end
 
     describe '#find' do
+      let(:attributes) {
+        {
+          interfaces: ['flerovium'],
+          keys: [{ key: 'u', action: proc { :some_action } }]
+        }
+      }
+
       before do
         Keymaps.reset
-
+        Keymaps.add(attributes)
       end
 
       it 'returns false when the named keymap cannot be found' do
-        Keymaps.find('vanadium').must_equal(false)
+        Keymaps.find('vanadium').must_equal({})
       end
 
       it 'returns the keymap when the named keymap was found' do
-        Keymaps.find('_global_keymap_').must_equal({})
+        Keymaps.find('flerovium').wont_be_empty
       end
     end
 
