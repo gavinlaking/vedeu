@@ -18,6 +18,7 @@ module Vedeu
     def add(attributes)
       if registered?(attributes[:name])
         buffer = find(attributes[:name])
+
         buffer[:back_buffer] = attributes
 
       else

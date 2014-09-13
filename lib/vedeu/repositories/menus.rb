@@ -5,6 +5,7 @@ module Vedeu
   # @api private
   module Menus
 
+    include Common
     extend self
 
     # System events which when called with the appropriate menu name will
@@ -25,7 +26,7 @@ module Vedeu
     # @param attributes [Hash]
     # @return [Hash|FalseClass]
     def add(attributes)
-      return false if attributes[:name].empty?
+      return false unless defined_value?(attributes[:name])
 
       storage.store(attributes[:name], attributes)
     end
@@ -57,6 +58,7 @@ module Vedeu
 
     # Returns a boolean indicating whether the named menu is registered.
     #
+    # @param name [String]
     # @return [TrueClass|FalseClass]
     def registered?(name)
       storage.key?(name)
