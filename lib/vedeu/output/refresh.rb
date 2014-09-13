@@ -39,6 +39,33 @@ module Vedeu
       Vedeu::Compositor.render(name)
     end
 
+    # Register a refresh event for an interface or group of interfaces by name.
+    # When the event is called, the interface, or all interfaces belonging to
+    # the group with this name will be refreshed.
+    #
+    # @api private
+    # @param type [Symbol]
+    # @param name [String]
+    # @param delay [Float]
+    # @return [Boolean]
+    def register_event(type, name, delay = 0.0)
+      event = if type == :by_group
+        "_refresh_group_#{name}_".to_sym
+
+      else
+        "_refresh_#{name}_".to_sym
+
+      end
+
+      return false if Vedeu.events.registered?(event)
+
+      Vedeu.event(event, { delay: delay }) do
+        Vedeu::Refresh.send(type, name)
+      end
+
+      true
+    end
+
   end
 
 end

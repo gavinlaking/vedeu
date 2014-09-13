@@ -65,25 +65,15 @@ module Vedeu
 
     private
 
-    # Register a refresh event for a group of interfaces by name. When the event
-    # is called, all interfaces belonging to the group with this name will be
-    # refreshed.
-    #
+    # @see Vedeu::Refresh.register_event
     # @api private
     # @param attributes [Hash]
-    # @return []
+    # @return [Boolean]
     def register_event(attributes)
       name       = attributes[:group]
       delay      = attributes[:delay] || 0.0
-      event_name = "_refresh_group_#{name}_".to_sym
 
-      return false if Vedeu.events.registered?(event_name)
-
-      Vedeu.event(event_name, { delay: delay }) do
-        Vedeu::Refresh.by_group(name)
-      end
-
-      true
+      Vedeu::Refresh.register_event(:by_group, name, delay)
     end
 
     # Access to the storage for this repository.
