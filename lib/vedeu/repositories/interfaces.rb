@@ -76,7 +76,7 @@ module Vedeu
       delay      = attributes[:delay] || 0.0
       event_name = "_refresh_#{name}_".to_sym
 
-      return false if Vedeu.events.registered?(name)
+      return false if Vedeu.events.registered?(event_name)
 
       Vedeu.event(event_name, { delay: delay }) do
         Vedeu::Refresh.by_name(name)
