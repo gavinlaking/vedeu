@@ -181,6 +181,8 @@ module Vedeu
     #
     # @return [API::Menu]
     def menu(name = '', &block)
+      fail InvalidSyntax, '`menu` requires a block.' unless block_given?
+
       API::Menu.define({ name: name }, &block)
     end
 
