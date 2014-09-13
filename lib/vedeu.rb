@@ -16,6 +16,9 @@ module Vedeu
   # encounters a problem.
   InvalidSyntax = Class.new(StandardError)
 
+  # Raised when attempting to assign a key which is already in use.
+  KeyInUse = Class.new(StandardError)
+
   # Raised when a menu cannot be found by name.
   MenuNotFound = Class.new(StandardError)
 
@@ -83,6 +86,7 @@ require 'vedeu/models/geometry'
 require 'vedeu/models/colour'
 require 'vedeu/models/style'
 require 'vedeu/models/interface'
+require 'vedeu/models/keymap'
 require 'vedeu/models/line'
 require 'vedeu/models/stream'
 
@@ -93,11 +97,14 @@ require 'vedeu/api/api'
 require 'vedeu/api/composition'
 require 'vedeu/api/helpers'
 require 'vedeu/api/interface'
+require 'vedeu/api/keymap'
 require 'vedeu/api/line'
 require 'vedeu/api/menu'
 require 'vedeu/api/stream'
 
 require 'vedeu/repositories/menus'
+require 'vedeu/repositories/keymap_validator'
+require 'vedeu/repositories/keymaps'
 require 'vedeu/repositories/interfaces'
 require 'vedeu/repositories/groups'
 require 'vedeu/repositories/focus'

@@ -73,6 +73,11 @@ module Vedeu
       options
     end
 
+    #
+    def configure_keys
+
+    end
+
     # Returns the chosen colour mode.
     #
     # @return [Fixnum]
@@ -108,6 +113,13 @@ module Vedeu
       options[:once]
     end
     alias_method :once, :once?
+
+    # Returns
+    #
+    # @return [Hash]
+    def system_keys
+      options[:system_keys]
+    end
 
     # Returns the terminal mode for the application. Default is `:raw`.
     #
@@ -153,8 +165,19 @@ module Vedeu
         debug:         detect_debug_mode,
         interactive:   true,
         once:          false,
+        system_keys:   default_system_keys,
         terminal_mode: :raw,  #cooked
         trace:         detect_trace_mode,
+      }
+    end
+
+    #
+    def default_system_keys
+      {
+        exit:        'q',
+        focus_next:  :tab,
+        focus_prev:  :shift_tab,
+        mode_switch: :escape,
       }
     end
 
