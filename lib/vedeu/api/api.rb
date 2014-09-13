@@ -119,29 +119,14 @@ module Vedeu
       API::Interface.define({ name: name }, &block)
     end
 
-    # Handles the keypress in your application. Can also be used to simulate a
-    # keypress. The example below will have the following workflow:
-    #
-    # 1) Trigger the event `:key` in your application, which you will handle
-    #    and perform the appropriate action- maybe nothing.
-    # 2) If debugging is enabled in Vedeu, then the key is logged to the log
-    #    file.
-    #
     # @api public
-    # @param key [String|Symbol] The key which was pressed. Escape sequences
-    #   are also supported. Special keys like the F-keys are named as symbols;
-    #   i.e. `:f4`. A list of these translations can be found at {Vedeu::Input}.
     #
     # @example
     #   Vedeu.keypress('s')
     #
-    # @return []
+    # @see Vedeu::Keymaps.use
     def keypress(key)
-      Vedeu.trigger(:key, key)
-      Vedeu.trigger(:_log_, "Key: #{key}") if Configuration.debug?
-      Vedeu.trigger(:_mode_switch_) if key == :escape
-      Vedeu.trigger(:_focus_next_)  if key == :tab
-      Vedeu.trigger(:_focus_prev_)  if key == :shift_tab
+      Vedeu::Keymaps.use(key)
     end
 
     # Define actions for keypresses for when specific interfaces are in focus.

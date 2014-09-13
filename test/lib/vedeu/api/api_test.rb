@@ -45,10 +45,10 @@ module Vedeu
     end
 
     describe '.keypress' do
-      before { event.stubs(:trigger).returns(nil) }
+      before { Vedeu::Focus.stubs(:current).returns('') }
 
-      it 'returns nil' do
-        Vedeu.keypress('k').must_equal(nil)
+      it 'returns false when the key was not registered' do
+        Vedeu.keypress('k').must_equal(false)
       end
     end
 

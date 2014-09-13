@@ -4,6 +4,8 @@ module Vedeu
   describe Keymaps do
 
     describe '#add' do
+      before { Keymaps.reset }
+
       it 'returns false when there are no keys defined' do
         attributes = {}
 
@@ -18,26 +20,152 @@ module Vedeu
     end
 
     describe '#all' do
-      it 'returns' do
-        skip
+      before { Keymaps.reset }
+
+      it 'returns all stored keymaps' do
+        Keymaps.all.must_equal({ '_global_keymap_' => {} })
       end
     end
 
     describe '#find' do
-      it 'returns' do
-        skip
+      before do
+        Keymaps.reset
+
+      end
+
+      it 'returns false when the named keymap cannot be found' do
+        Keymaps.find('vanadium').must_equal(false)
+      end
+
+      it 'returns the keymap when the named keymap was found' do
+        Keymaps.find('_global_keymap_').must_equal({})
+      end
+    end
+
+    describe '#global_key?' do
+      before do
+        Keymaps.reset
+        Keymaps.stubs(:global_keys).returns(['i', 'j'])
+      end
+
+      it 'returns false when the key is not registered as a global key' do
+        Keymaps.global_key?('h').must_equal(false)
+      end
+
+      it 'returns true when the key is registered as a global key' do
+        Keymaps.global_key?('j').must_equal(true)
+      end
+    end
+
+    describe '#global_keys' do
+      let(:attributes) {
+        {
+          keys: [
+            {
+              key: 'a', action: proc { :action_a }
+            },{
+              key: 'b', action: proc { :action_b }
+            },{
+              key: 'c', action: proc { :action_c }
+            }
+          ]
+        }
+      }
+
+      before do
+        Keymaps.reset
+        Keymaps.add(attributes)
+      end
+
+      it 'returns the defined global keys' do
+        Keymaps.global_keys.must_equal(['a', 'b', 'c'])
+      end
+    end
+
+    describe '#interface_key?' do
+      before do
+        Keymaps.reset
+        Keymaps.stubs(:interface_keys).returns(['g', 'h'])
+      end
+
+      it 'returns false when the key is not registered with an interface' do
+        Keymaps.interface_key?('f').must_equal(false)
+      end
+
+      it 'returns true when the key is registered with an interface' do
+        Keymaps.interface_key?('g').must_equal(true)
+      end
+
+      context 'when the interface argument is provided' do
+        before do
+          Keymaps.stubs(:find).returns({ 'j' => proc { :some_action } })
+        end
+
+        it 'return false when the key is not registered with the specified ' \
+           'interface' do
+          Keymaps.interface_key?('k', 'cadmium').must_equal(false)
+        end
+
+        it 'return true when the key is registered with the specified ' \
+           'interface' do
+          Keymaps.interface_key?('j', 'cadmium').must_equal(true)
+        end
+      end
+    end
+
+    describe '#interface_keys' do
+      let(:rhodium_attributes) {
+        {
+          interfaces: ['rhodium'],
+          keys: [
+            {
+              key: 'd', action: proc { :action_d }
+            },{
+              key: 'e', action: proc { :action_e }
+            }
+          ]
+        }
+      }
+      let(:magnesium_attributes) {
+        {
+          interfaces: ['magnesium'],
+          keys: [
+            {
+              key: 'e', action: proc { :action_e }
+            },{
+              key: 'f', action: proc { :action_g }
+            }
+          ]
+        }
+      }
+
+      before do
+        Keymaps.reset
+        Keymaps.add(rhodium_attributes)
+        Keymaps.add(magnesium_attributes)
+      end
+
+      it 'returns the defined keys for all interfaces' do
+        Keymaps.interface_keys.must_equal(['d', 'e', 'f'])
       end
     end
 
     describe '#registered' do
-      it 'returns' do
-        skip
+      before { Keymaps.reset }
+
+      it 'returns a collection of the interface names of all registered ' \
+      'keymaps' do
+        Keymaps.registered.must_equal(['_global_keymap_'])
       end
     end
 
     describe '#registered?' do
-      it 'returns' do
-        skip
+      it 'returns false when the named keymap is not registered' do
+        Keymaps.registered?('vanadium').must_equal(false)
+      end
+
+      it 'returns true when the named keymap is registered' do
+        Keymaps.registered?('_global_keymap_').must_equal(true)
       end
     end
 
@@ -47,64 +175,73 @@ module Vedeu
       end
     end
 
-    describe '#use' do
-      context 'when registered as an interface key' do
-        context 'and the interface is in focus' do
-          it 'returns' do
-            skip
-          end
-        end
+    describe '#system_key?' do
+      it 'returns false when the key is not registered as a system key' do
+        Keymaps.system_key?('r').must_equal(false)
+      end
 
-        context 'but the interface is not in focus' do
-          it 'returns' do
-            skip
-          end
+      it 'returns true when the key is registered as a system key' do
+        Keymaps.system_key?('q').must_equal(true)
+      end
+    end
+
+    describe '#system_keys' do
+      it 'returns the defined system keys' do
+        Keymaps.system_keys.must_equal(['q', :tab, :shift_tab, :escape])
+      end
+    end
+
+    describe '#use' do
+      let(:meitnerium_attributes) {
+        {
+          interfaces: ['meitnerium'],
+          keys: [{
+            key: 'm', action: proc { :key_m_pressed }
+          }]
+        }
+      }
+      let(:global_attributes) {
+        {
+          keys: [{
+            key: 'o', action: proc { :key_o_pressed }
+          }]
+        }
+      }
+
+      before do
+        Keymaps.reset
+        Keymaps.add(meitnerium_attributes)
+        Keymaps.add(global_attributes)
+        Vedeu::Focus.stubs(:current).returns('meitnerium')
+        Vedeu::Configuration.stubs(:system_keys).returns({ :key_p_pressed => 'p' })
+        Vedeu.stubs(:trigger).returns(:system_key_p_pressed)
+      end
+
+      context 'when not registered' do
+        it 'returns false' do
+          Keymaps.use('l').must_equal(false)
+        end
+      end
+
+      context 'when registered as an interface key and the interface is in ' \
+              'focus' do
+        it 'returns the result of the keypress' do
+          Keymaps.use('m').must_equal(:key_m_pressed)
         end
       end
 
       context 'when registered as a global key' do
-        it 'returns' do
-          skip
+        it 'returns the result of the keypress' do
+          Keymaps.use('o').must_equal(:key_o_pressed)
         end
       end
 
       context 'when registered as a system key' do
-        it 'returns' do
-          skip
+        it 'returns the result of the keypress' do
+          Keymaps.use('p').must_equal(:system_key_p_pressed)
         end
       end
     end
 
   end
 end
-
-interfaces = ['hydrogen', 'helium']
-
-attributes = {
-  interfaces: ['xenon', 'hassium'],
-  keys:       [
-    { key: 'a', action: proc { :a_action } },
-    { key: 'b', action: proc { :b_action } },
-    { key: 'c', action: proc { :c_action } },
-    { key: 'd', action: proc { :d_action } }
-  ],
-}
-
-storage = {
-  'interface_name' => {
-    'a' => proc { :some_action },
-    'b' => proc { :some_action },
-    'c' => proc { :some_action },
-  },
-  '_global_keymap_' => {
-    'd' => proc { :some_action },
-    'e' => proc { :some_action },
-    'f' => proc { :some_action },
-  },
-  '_system_' => {
-
-  }
-}
-
-# if keymap has no name use _global_keymap_ ?
-# if keymap has more than on interface, create keymap for each interface name
