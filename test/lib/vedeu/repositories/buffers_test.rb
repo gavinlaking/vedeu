@@ -4,6 +4,8 @@ module Vedeu
   describe Buffers do
 
     describe '.add' do
+      before { Buffers.reset }
+
       it 'returns the name of the buffer added to storage' do
         Buffers.add({ name: 'molybdenum' }).must_equal('molybdenum')
       end
@@ -48,6 +50,18 @@ module Vedeu
         it '' do
           skip
         end
+      end
+    end
+
+    describe '.registered' do
+      it '' do
+        skip
+      end
+    end
+
+    describe '.registered>' do
+      it '' do
+        skip
       end
     end
 

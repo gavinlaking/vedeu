@@ -70,5 +70,17 @@ module Vedeu
         Focus.registered.must_equal(['thallium', 'lead', 'bismuth'])
       end
     end
+
+    describe '.registered?' do
+      it '' do
+        skip
+      end
+    end
+
+    describe '.reset' do
+      it '' do
+        skip
+      end
+    end
   end
 end
