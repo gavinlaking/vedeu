@@ -87,7 +87,7 @@ module Vedeu
     end
 
     # Returns a boolean indicating whether the key is in the system keymap.
-    # System keys must be redefined using {Configuration.configure_keys}.
+    # System keys must be redefined using {Vedeu::Configuration.configure_keys}.
     #
     # @param key [String|Symbol]
     # @return [TrueClass|FalseClass]
