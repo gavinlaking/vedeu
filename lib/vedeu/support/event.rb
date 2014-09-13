@@ -25,9 +25,9 @@ module Vedeu
     def trigger(*args)
       return execute(*args) unless debouncing? || throttling?
 
-      return execute(*args) if debouncing? && set_executed > deadline
+      return execute(*args) if debouncing? && debounce_expired?
 
-      return execute(*args) if throttling? && elapsed_time > delay
+      return execute(*args) if throttling? && throttle_expired?
     end
 
     private
@@ -70,6 +70,23 @@ module Vedeu
       options[:delay] > 0
     end
 
+    # Returns a boolean indicating whether the throttle has expired.
+    #
+    # @api private
+    # @return [TrueClass|FalseClass]
+    def throttle_expired?
+      if elapsed_time > delay
+        Vedeu.log("Event throttle has expired for '#{event_name}', executing " \
+                  "event.")
+        true
+
+      else
+        Vedeu.log("Event throttle not yet expired for '#{event_name}'.")
+        false
+
+      end
+    end
+
     # Returns a boolean indicating whether debouncing is required for this
     # event. Setting the debounce option to any value greater than 0 will
     # enable debouncing.
@@ -82,6 +99,23 @@ module Vedeu
       set_deadline unless has_deadline?
 
       options[:debounce] > 0
+    end
+
+    # Returns a boolean indicating whether the debounce has expired.
+    #
+    # @api private
+    # @return [TrueClass|FalseClass]
+    def debounce_expired?
+      if set_executed > deadline
+        Vedeu.log("Event debounce has expired for '#{event_name}', executing " \
+                  "event.")
+        true
+
+      else
+        Vedeu.log("Event debounce not yet expired for '#{event_name}'.")
+        false
+
+      end
     end
 
     # @api private
@@ -129,6 +163,12 @@ module Vedeu
     end
 
     # @api private
+    # @return [String]
+    def event_name
+      options[:event_name].to_s
+    end
+
+    # @api private
     # @return [Fixnum|Float]
     def debounce
       options[:debounce] || defaults[:debounce]
@@ -150,8 +190,9 @@ module Vedeu
     # @return [Hash]
     def defaults
       {
-        delay:    0.0,
-        debounce: 0.0
+        delay:      0.0,
+        debounce:   0.0,
+        event_name: '',
       }
     end
 

@@ -18,7 +18,9 @@ module Vedeu
 
     # @see Vedeu::API#event
     def event(name, opts = {}, &block)
-      handlers[name][:events] << Event.new(block, opts)
+      Vedeu.log("Registering event '#{name}'")
+
+      handlers[name][:events] << Event.new(block, opts.merge!({ event_name: name }))
       handlers[name]
     end
 
