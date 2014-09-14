@@ -49,6 +49,9 @@ class OtherClassInYourApplication
 #### Input
 
 - keypress
+- keys
+  - key
+  - interface
 
 
 #### Interfaces
@@ -101,6 +104,8 @@ class OtherClassInYourApplication
 #### Miscellany
 
 - defined
+- height
 - log
 - resize
+- width
 
