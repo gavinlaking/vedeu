@@ -1,5 +1,7 @@
 module Vedeu
 
+  # A Keymap is the binding of a keypress to one or more interfaces; or globally
+  # to perform a client application defined action.
   class Keymap
 
     include Common

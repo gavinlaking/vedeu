@@ -1,5 +1,8 @@
 module Vedeu
 
+  # Repository for storing, retrieving and using defined keymaps.
+  #
+  # @api private
   module Keymaps
 
     include Vedeu::Common

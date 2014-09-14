@@ -1,6 +1,7 @@
 module Vedeu
   module API
 
+    # Provides methods to be used to define keypress mapped to actions.
     class Keymap < Vedeu::Keymap
 
       # Define a keypress to perform an action.

@@ -1,5 +1,9 @@
 module Vedeu
 
+  # When the client application has defined interfaces to be used, the Registrar
+  # stores these interfaces into various repositories for later use.
+  #
+  # @api private
   class Registrar
 
     include Common
@@ -16,6 +20,8 @@ module Vedeu
       @attributes = attributes
     end
 
+    # Adds the attributes to a variety of repositories to use later.
+    #
     # @return [TrueClass|MissingRequired]
     def record
       validate_attributes!
@@ -33,6 +39,7 @@ module Vedeu
 
     private
 
+    # Client application defined settings for interfaces etc.
     attr_reader :attributes
 
     # At present, validates that attributes has a `:name` key that is not nil or

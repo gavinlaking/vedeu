@@ -73,11 +73,6 @@ module Vedeu
       options
     end
 
-    #
-    def configure_keys
-
-    end
-
     # Returns the chosen colour mode.
     #
     # @return [Fixnum]
@@ -171,7 +166,7 @@ module Vedeu
       }
     end
 
-    #
+    # Vedeu's system keys.
     def default_system_keys
       {
         exit:        'q',
