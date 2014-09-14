@@ -56,15 +56,9 @@ class MyApp
     # ...
   end
 
-  event :key do |key|
-    case key
-    when 'a' then puts "Apple"
-    when 'b' then puts "Banana"
-    # ...
-    when :f1 then trigger(:some_event)
-    when :f2 then
-      trigger(:other_event, { args: here }, [:or, :here], :etc)
-    end
+  keys do
+    key('a') { trigger(':apple') }
+    key('b') { trigger(':banana') }
   end
 end
 ```
