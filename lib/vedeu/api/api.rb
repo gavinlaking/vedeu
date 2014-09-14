@@ -153,7 +153,7 @@ module Vedeu
     #     interface 'my_interface' # => will only function when 'my_interface'
     #     ...                      #    is in focus
     #
-    # @return []
+    # @return [API::Keymap]
     def keys(name_or_names = '', &block)
       fail InvalidSyntax, '`keys` requires a block.' unless block_given?
 
@@ -227,12 +227,14 @@ module Vedeu
     # success. Can also be used to simulate a terminal resize.
     #
     # @api private
-    # @return []
+    # @return [TrueClass]
     # :nocov:
     def resize
       trigger(:_clear_)
 
       trigger(:_refresh_)
+
+      true
     end
     # :nocov:
 

@@ -52,6 +52,18 @@ module Vedeu
       end
     end
 
+    describe '.keys' do
+      it 'returns an instance of API::Keymap' do
+        Vedeu.keys do
+          # ...
+        end.must_be_instance_of(API::Keymap)
+      end
+
+      it 'raises an exception when the block is not provided' do
+        proc { Vedeu.keys }.must_raise(InvalidSyntax)
+      end
+    end
+
     describe '.log' do
       it 'writes the message to the log file when debugging is enabled' do
         Configuration.stub(:debug?, true) do
