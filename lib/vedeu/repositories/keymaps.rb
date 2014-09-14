@@ -143,11 +143,14 @@ module Vedeu
     #
     # @return [|FalseClass]
     def use(key)
-      Vedeu.trigger(:_log_, "Key: #{key}") if Configuration.debug?
+      Vedeu.log("Key pressed: '#{key}'")
+
       Vedeu.trigger(:key, key)
 
-      if interface_key?(key, Vedeu::Focus.current)
-        find(Vedeu::Focus.current).fetch(key, noop).call
+      focussed_interface = Vedeu::Focus.current
+
+      if interface_key?(key, focussed_interface)
+        find(focussed_interface).fetch(key, noop).call
 
       elsif global_key?(key)
         find('_global_keymap_').fetch(key, noop).call
@@ -193,10 +196,21 @@ module Vedeu
 
         fail KeyInUse, message unless valid
 
-        namespace = defined_value?(interface) ? interface : '_global_keymap_'
+        Vedeu.log("Registering key '#{keymap[:key]}' with " \
+                  "'#{namespace(interface)}'")
 
-        storage[namespace].merge!({ keymap[:key] => keymap[:action] })
+        storage[namespace(interface)]
+          .merge!({ keymap[:key] => keymap[:action] })
       end
+    end
+
+    # Determine which interface to store the key with.
+    #
+    # @api private
+    # @param interface [String]
+    # @return [String]
+    def namespace(interface = '')
+      return defined_value?(interface) ? interface : '_global_keymap_'
     end
 
     # Returns a noop proc which when called returns :noop.

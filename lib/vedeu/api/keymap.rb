@@ -4,27 +4,34 @@ module Vedeu
     # Provides methods to be used to define keypress mapped to actions.
     class Keymap < Vedeu::Keymap
 
-      # Define a keypress to perform an action.
+      # Define keypress(es) to perform an action.
       #
-      # @param value [String|Symbol] The key pressed. Special keys can be
-      #   found in {Vedeu::Input#specials}
+      # @param value_or_values [String|Symbol] The key(s) pressed. Special keys
+      #   can be found in {Vedeu::Input#specials}. When more than one key is
+      #   defined, then the extras are treated as aliases.
       # @param block [Proc] The action to perform when this key is pressed. Can
       #   be a method call or event triggered.
       #
       # @example
       #   keys do
-      #     key('s') { trigger(:save) }
-      #     key('o') { trigger(:open) }
+      #     key('s')        { trigger(:save) }
+      #     key('h', :left) { trigger(:left) }
+      #     key('j', :down) { trigger(:down) }
       #     ...
       #
       # @return []
-      def key(value = '', &block)
+      def key(*value_or_values, &block)
         fail InvalidSyntax,
           'No action defined for `key`.' unless block_given?
-        fail InvalidSyntax,
-          'No keypress defined for `key`.' unless defined_value?(value)
+        fail InvalidSyntax, 'No keypress(es) defined for `key`.' unless
+          defined_value?(value_or_values)
 
-        attributes[:keys] << { key: value, action: block }
+        value_or_values.each do |value|
+          fail InvalidSyntax, 'Key cannot be empty.' unless
+            defined_value?(value)
+
+          attributes[:keys] << { key: value, action: block }
+        end
       end
 
       # The interface(s) which will handle these keys.

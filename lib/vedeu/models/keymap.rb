@@ -21,16 +21,9 @@ module Vedeu
     # Instantiate a new instance of the Keymap model.
     #
     # @param attributes [Hash]
-    # @param block [Proc]
     # @return [Keymap]
-    def initialize(attributes = {}, &block)
+    def initialize(attributes = {})
       @attributes = defaults.merge!(attributes)
-
-      if block_given?
-        @self_before_instance_eval = eval('self', block.binding)
-
-        instance_eval(&block)
-      end
     end
 
     # Adds the attributes to the Keymaps repository.
@@ -38,7 +31,11 @@ module Vedeu
     # @param block [Proc]
     # @return [Interface]
     def define(&block)
-      instance_eval(&block) if block_given?
+      if block_given?
+        @self_before_instance_eval = eval('self', block.binding)
+
+        instance_eval(&block)
+      end
 
       Keymaps.add(attributes)
 

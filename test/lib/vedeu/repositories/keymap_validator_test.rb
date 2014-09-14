@@ -45,7 +45,7 @@ module Vedeu
         it 'returns false with a message' do
           result = KeymapValidator.check(storage, 'a', '')
           result.must_include(false)
-          result.last.must_match(/registered to an interface/)
+          result.last.must_match(/therefore cannot be global/)
         end
       end
 

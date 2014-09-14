@@ -31,18 +31,18 @@ module Vedeu
     # @see KeymapValidator.check
     def check
       if system_key?(key)
-        [false, 'Cannot register key as already in use by the system.']
+        [false, "#{fail_message(key)} by the system."]
 
       elsif global_key?(key)
-        [false, 'Cannot register key as already in use as a global key.']
+        [false, "#{fail_message(key)} as a global key."]
 
       elsif interface_key?(key, interface)
         if defined_value?(interface)
-          [false, 'Cannot register key as already in use by this interface.']
+          [false, "#{fail_message(key)} by this interface."]
 
         else
-          [false, 'Cannot register key as a global key as it is already ' \
-                  ' registered to an interface.']
+          [false, "#{fail_message(key)} by another interface and therefore " \
+                  'cannot be global.']
 
         end
       else
@@ -93,6 +93,10 @@ module Vedeu
     # @return [Boolean]
     def system_key?(key)
       Configuration.system_keys.values.include?(key)
+    end
+
+    def fail_message(key)
+      "Cannot register key '#{key.to_s}' as already in use"
     end
 
   end

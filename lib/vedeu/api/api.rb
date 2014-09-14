@@ -134,8 +134,8 @@ module Vedeu
     # meaning its action will happen regardless of the interface in focus.
     #
     # @api public
-    # @param name_or_names [String|Array] The name or names of the
-    #   interface(s) which will handle these keys.
+    # @param name_or_names [String] The name or names of the interface(s) which
+    #   will handle these keys.
     # @param block [Proc]
     #
     # @example
@@ -146,7 +146,7 @@ module Vedeu
     #   keys 'my_interface' do     # => will only function when 'my_interface'
     #     ...                      #    is in focus
     #
-    #   keys ['main', 'other'] do  # => will function for both 'main' and
+    #   keys('main', 'other') do   # => will function for both 'main' and
     #     ...                      #    'other' interfaces
     #
     #   keys do
@@ -154,10 +154,10 @@ module Vedeu
     #     ...                      #    is in focus
     #
     # @return [API::Keymap]
-    def keys(name_or_names = '', &block)
+    def keys(*name_or_names, &block)
       fail InvalidSyntax, '`keys` requires a block.' unless block_given?
 
-      API::Keymap.define({ interfaces: Array(name_or_names) }, &block)
+      API::Keymap.define({ interfaces: name_or_names }, &block)
     end
 
     # Write a message to the Vedeu log file located at `$HOME/.vedeu/vedeu.log`
