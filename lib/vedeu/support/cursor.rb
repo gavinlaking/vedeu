@@ -1,66 +1,63 @@
 module Vedeu
 
-  # Stores and manipulates the position of the current cursor. This class
-  # features boundary attributes (top, bottom, left, right) which will be
-  # virtual constraints on the cursor, for a given interface.
-  #
-  # @todo Better documentation, re-write class description.
+  # Stores and manipulates the position of the current cursor.
   #
   # @api private
   class Cursor
 
-    # @return [Hash]
-    attr_reader :attributes
-
-    # @return [Fixnum]
-    attr_reader :top
-
-    # @return [Fixnum]
-    attr_reader :bottom
-
-    # @return [Fixnum]
-    attr_reader :left
-
-    # @return [Fixnum]
-    attr_reader :right
-
-    # @return [Fixnum]
-    attr_reader :cursor_x
-
-    # @return [Fixnum]
-    attr_reader :cursor_y
-
-    # @return [TrueClass|FalseClass]
-    attr_reader :visible
-
     # Provides a new instance of Cursor.
     #
-    # @param attributes [Hash]
+    # @param interface [Interface]
     # @return [Cursor]
-    def initialize(attributes = {})
-      @attributes = attributes
+    def initialize(interface)
+      @interface = interface
+    end
 
-      @top        = attributes.fetch(:top, 1)
-      @bottom     = attributes.fetch(:bottom)
-      @left       = attributes.fetch(:left, 1)
-      @right      = attributes.fetch(:right)
-      @cursor_y   = attributes.fetch(:cursor_y, @top)
-      @cursor_x   = attributes.fetch(:cursor_x, @left)
-      @visible    = attributes.fetch(:visible, false)
+    # Returns an attributes hash containing the state of the instance.
+    #
+    # @return [Hash]
+    def attributes
+      {
+        visible: visible,
+        x:       cursor_x,
+        y:       cursor_y,
+      }
+    end
+
+    # Returns the y coordinate of the cursor.
+    #
+    # @return [Fixnum]
+    def cursor_y
+      @cursor_y ||= top
+    end
+
+    # Returns the x coordinate of the cursor.
+    #
+    # @return [Fixnum]
+    def cursor_x
+      @cursor_x ||= left
     end
 
     # Reports the position of the cursor.
     #
     # @return [Array]
     def position
-      [ @cursor_y, @cursor_x ]
+      [ cursor_y, cursor_x ]
     end
+
+    # Returns a boolean indicating the visibility of the cursor.
+    #
+    # @return [Boolean]
+    def visible
+      @visible ||= false
+    end
+    alias_method :visible?, :visible
 
     # Move the cursor up one row.
     #
     # @return [Cursor]
     def move_up
-      unless @cursor_y == top || @cursor_y - 1 < top
+      unless cursor_y == top || cursor_y - 1 < top
         @cursor_y -= 1
       end
 
@@ -71,7 +68,7 @@ module Vedeu
     #
     # @return [Cursor]
     def move_down
-      unless @cursor_y == bottom || @cursor_y + 1 > bottom
+      unless cursor_y == bottom || cursor_y + 1 > bottom
         @cursor_y += 1
       end
 
@@ -82,7 +79,7 @@ module Vedeu
     #
     # @return [Cursor]
     def move_left
-      unless @cursor_x == left || @cursor_x - 1 < left
+      unless cursor_x == left || cursor_x - 1 < left
         @cursor_x -= 1
       end
 
@@ -93,7 +90,7 @@ module Vedeu
     #
     # @return [Cursor]
     def move_right
-      unless @cursor_x == right || @cursor_x + 1 > right
+      unless cursor_x == right || cursor_x + 1 > right
         @cursor_x += 1
       end
 
@@ -136,12 +133,64 @@ module Vedeu
 
     private
 
+    attr_reader :interface
+
+    # Returns the top coordinate of the interface.
+    #
+    # @api private
+    # @return [Fixnum]
+    def top
+      interface.top
+    end
+
+    # Returns the right coordinate of the interface.
+    #
+    # @api private
+    # @return [Fixnum]
+    def right
+      interface.right
+    end
+
+    # Returns the bottom coordinate of the interface.
+    #
+    # @api private
+    # @return [Fixnum]
+    def bottom
+      interface.bottom
+    end
+
+    # Returns the left coordinate of the interface.
+    #
+    # @api private
+    # @return [Fixnum]
+    def left
+      interface.left
+    end
+
+    # Returns the escape sequence to position the cursor and set its visibility.
+    #
+    # @api private
+    # @return [String]
+    def sequence
+      position_sequence + visibility_sequence
+    end
+
     # Returns the escape sequence to position the cursor.
     #
     # @api private
     # @return [String]
     def position_sequence
-      ["\e[", y, ';', x, 'H'].join
+      ["\e[", cursor_y, ';', cursor_x, 'H'].join
+    end
+
+    # Returns the escape sequence for setting the visibility of the cursor.
+    #
+    # @api private
+    # @return [String]
+    def visibility_sequence
+      return show_sequence if visible?
+
+      hide_sequence
     end
 
     # Returns the escape sequence to show the cursor.
@@ -158,18 +207,6 @@ module Vedeu
     # @return [String]
     def hide_sequence
       Esc.string('hide_cursor')
-    end
-
-    # @api private
-    # @return [Fixnum]
-    def y
-      (@y == 0 || @y == nil) ? 1 : @y
-    end
-
-    # @api private
-    # @return [Fixnum]
-    def x
-      (@x == 0 || @x == nil) ? 1 : @x
     end
 
   end
