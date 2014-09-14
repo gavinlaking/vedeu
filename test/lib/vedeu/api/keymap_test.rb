@@ -27,6 +27,12 @@ module Vedeu
             key('f') { :some_action }
           end.must_be_instance_of(API::Keymap)
         end
+
+        it 'returns a collection of the keypresses' do
+          Keymap.new.key('v', 'd', 'u') do
+            :some_action
+          end.must_equal(['v', 'd', 'u'])
+        end
       end
 
       describe '#interface' do
@@ -42,6 +48,10 @@ module Vedeu
             key('e') { :some_action }
             interface ['neodymium', 'californium']
           end.must_be_instance_of(API::Keymap)
+        end
+
+        it 'returnsa collection of the interfaces' do
+          Keymap.new.interface('americium').must_equal(['americium'])
         end
       end
 

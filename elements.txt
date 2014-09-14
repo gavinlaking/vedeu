@@ -2,20 +2,20 @@ holmium
 neon
 mercury
 protactinium
-calcium
-fermium
-nitrogen
-palladium
-silicon
-oxygen
-americium
-bismuth
+- calcium
+- fermium
+- nitrogen
+- palladium
+- silicon
+- oxygen
+- americium
+- bismuth
 ununpentium
-chlorine
+- chlorine
 neptunium
 plutonium
-carbon
-zinc
+- carbon
+- zinc
 polonium
 roentgenium
 darmstadtium

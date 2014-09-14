@@ -19,7 +19,7 @@ module Vedeu
       #     key('j', :down) { trigger(:down) }
       #     ...
       #
-      # @return []
+      # @return [Array] A collection containing the keypress(es).
       def key(*value_or_values, &block)
         fail InvalidSyntax,
           'No action defined for `key`.' unless block_given?
@@ -36,8 +36,8 @@ module Vedeu
 
       # The interface(s) which will handle these keys.
       #
-      # @param name_or_names [String|Array] The name or names of the
-      # interface(s) which will handle these keys.
+      # @param name_or_names [String] The name or names of the interface(s)
+      # which will handle these keys.
       #
       # @example
       #   keys do
@@ -47,13 +47,13 @@ module Vedeu
       #     ...
       #
       #   keys do
-      #     interface ['main', 'other']
+      #     interface('main', 'other')
       #     key('s')  { :something }
       #     ...
       #
-      # @return []
-      def interface(name_or_names)
-        attributes[:interfaces] = Array(name_or_names)
+      # @return [Array]
+      def interface(*name_or_names)
+        attributes[:interfaces] = name_or_names
       end
 
     end
