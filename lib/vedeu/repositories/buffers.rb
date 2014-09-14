@@ -9,28 +9,16 @@ module Vedeu
     include Vedeu::Common
     extend self
 
-    # @param attributes [Hash]
-    # @return [Hash]
-    def create(attributes)
-      add(attributes)
-
-      Vedeu::Interfaces.add(attributes)
-      Vedeu::Refresh.add_interface(attributes)
-
-      Vedeu::Groups.add(attributes)
-      Vedeu::Refresh.add_group(attributes)
-
-      Vedeu::Focus.add(attributes)
-    end
-
     # Add an interface view into the back buffer. If the buffer is already
-    # registered, then we preserve its front buffer.
+    # registered, then we preserve its front buffer. Returns the name of the
+    # buffer added to storage.
     #
     # @param attributes [Hash]
-    # @return [Hash]
+    # @return [String]
     def add(attributes)
       if registered?(attributes[:name])
         buffer = find(attributes[:name])
+
         buffer[:back_buffer] = attributes
 
       else
@@ -41,7 +29,7 @@ module Vedeu
 
       end
 
-      storage
+      attributes[:name]
     end
 
     # Find the buffer by name.
@@ -72,10 +60,10 @@ module Vedeu
     def latest(name)
       if new_content?(name)
         swap_buffers(name)
-        content(name)
+        front_buffer(name)
 
       elsif old_content?(name)
-        content(name)
+        front_buffer(name)
 
       else
         nil
@@ -83,25 +71,20 @@ module Vedeu
       end
     end
 
-    # Returns the named front buffer.
+    # Returns a collection of the names of all registered buffers.
     #
-    # @param name [String]
-    # @return [Hash]
-    def content(name)
-      front_buffer(name)
+    # @return [Array]
+    def registered
+      storage.keys
     end
 
-    # Swap the named back buffer into the front buffer of the same name.
+    # Returns a boolean indicating whether the named buffer is registered.
     #
+    # @api private
     # @param name [String]
-    # @return [Hash]
-    def swap_buffers(name)
-      buffer = find(name)
-
-      storage.store(name, {
-        front_buffer: buffer[:back_buffer],
-        back_buffer:  nil,
-      })
+    # @return [Boolean]
+    def registered?(name)
+      storage.key?(name)
     end
 
     # Reset the buffers repository; removing all buffers. This does not delete
@@ -114,11 +97,25 @@ module Vedeu
 
     private
 
+    # Swap the named back buffer into the front buffer of the same name.
+    #
+    # @api private
+    # @param name [String]
+    # @return [Hash]
+    def swap_buffers(name)
+      buffer = find(name)
+
+      storage.store(name, {
+        front_buffer: buffer[:back_buffer],
+        back_buffer:  nil,
+      })
+    end
+
     # Return a boolean indicating whether the named back buffer has new content.
     #
     # @api private
     # @param name [String]
-    # @return [TrueClass|FalseClass]
+    # @return [Boolean]
     def new_content?(name)
       defined_value?(back_buffer(name))
     end
@@ -127,7 +124,7 @@ module Vedeu
     #
     # @api private
     # @param name [String]
-    # @return [TrueClass|FalseClass]
+    # @return [Boolean]
     def old_content?(name)
       defined_value?(front_buffer(name))
     end
@@ -150,15 +147,8 @@ module Vedeu
       find(name).fetch(:front_buffer, nil)
     end
 
-    # Returns a boolean indicating whether the named buffer is registered.
+    # Access to the storage for this repository.
     #
-    # @api private
-    # @param name [String]
-    # @return [TrueClass|FalseClass]
-    def registered?(name)
-      storage.key?(name)
-    end
-
     # @api private
     # @return [Hash]
     def storage

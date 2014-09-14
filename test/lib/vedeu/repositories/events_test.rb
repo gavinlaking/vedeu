@@ -37,6 +37,12 @@ module Vedeu
       end
     end
 
+    describe '#registered?' do
+      it '' do
+        skip
+      end
+    end
+
     describe '#trigger' do
       it 'returns a collection containing the event when the event is ' \
          'pre-registered' do

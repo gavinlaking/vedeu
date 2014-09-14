@@ -10,6 +10,8 @@ module Vedeu
 
     attr_reader :attributes, :parent
 
+    # Builds up a new Line object and returns the attributes.
+    #
     # @param attributes [Hash]
     # @param block [Proc]
     # @return [Hash]
@@ -37,7 +39,7 @@ module Vedeu
     #
     # @return [Array]
     def streams
-      @streams ||= Stream.coercer(attributes[:streams], parent)
+      @streams ||= Stream.coercer(attributes[:streams])
     end
 
     private

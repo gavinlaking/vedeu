@@ -64,13 +64,13 @@ module Vedeu
     attr_reader :colour
 
     # @api private
-    # @return [TrueClass|FalseClass]
+    # @return [Boolean]
     def no_colour?
       colour.nil? || colour.to_s.empty?
     end
 
     # @api private
-    # @return [TrueClass|FalseClass]
+    # @return [Boolean]
     def named?
       colour.is_a?(Symbol) && valid_name?
     end
@@ -82,13 +82,13 @@ module Vedeu
     end
 
     # @api private
-    # @return [TrueClass|FalseClass]
+    # @return [Boolean]
     def valid_name?
       codes.keys.include?(colour)
     end
 
     # @api private
-    # @return [TrueClass|FalseClass]
+    # @return [Boolean]
     def numbered?
       colour.is_a?(Fixnum) && valid_range?
     end
@@ -100,13 +100,13 @@ module Vedeu
     end
 
     # @api private
-    # @return [TrueClass|FalseClass]
+    # @return [Boolean]
     def valid_range?
       colour >= 0 && colour <= 255
     end
 
     # @api private
-    # @return [TrueClass|FalseClass]
+    # @return [Boolean]
     def rgb?
       colour.is_a?(String) && valid_rgb?
     end
@@ -118,7 +118,7 @@ module Vedeu
     end
 
     # @api private
-    # @return [TrueClass|FalseClass]
+    # @return [Boolean]
     def valid_rgb?
       !!(colour =~ /^#([A-Fa-f0-9]{6})$/)
     end

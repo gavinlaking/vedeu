@@ -5,31 +5,23 @@ module Vedeu
   # @api private
   module Coercions
 
-    # Contains class methods which are accessible as such to classes and modules
-    # which include {Vedeu::Coercions}.
-    module ClassMethods
+    include Vedeu::Common
 
-      include Vedeu::Common
+    # Produces new objects of the correct class from attributes hashes,
+    # ignores objects that have already been coerced.
+    #
+    # @param values [Array|Hash]
+    # @return [Array]
+    def coercer(values)
+      return [] unless defined_value?(values)
 
-      # Produces new objects of the correct class from attributes hashes,
-      # ignores objects that have already been coerced.
-      # When provided with a parent argument, will allow the new object
-      # to know the colour and style of its parent.
-      #
-      # @param values [Array|Hash]
-      # @param parent [Hash|Nil]
-      # @return [Array]
-      def coercer(values, parent = nil)
-        return [] unless defined_value?(values)
+      [values].flatten.map do |value|
+        if value.is_a?(self)
+          value
 
-        [values].flatten.map do |value|
-          if value.is_a?(self)
-            value
+        else
+          self.new(value)
 
-          else
-            self.new(value.merge!({ parent: parent }))
-
-          end
         end
       end
     end
@@ -38,7 +30,7 @@ module Vedeu
     # module, make its methods into class methods, so they may be called
     # directly.
     def self.included(receiver)
-      receiver.extend(ClassMethods)
+      receiver.extend(self)
     end
 
   end

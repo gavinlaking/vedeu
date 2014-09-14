@@ -7,8 +7,8 @@ module Vedeu
 
     # Returns a boolean indicating whether a variable has a useful value.
     #
-    # @param variable [String|Array] The variable to check.
-    # @return [TrueClass|FalseClass]
+    # @param variable [String|Symbol|Array] The variable to check.
+    # @return [Boolean]
     def defined_value?(variable)
       return true unless variable.nil? || variable.empty?
 

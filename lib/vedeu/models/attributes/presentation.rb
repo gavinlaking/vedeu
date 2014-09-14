@@ -6,7 +6,7 @@ module Vedeu
   # @api private
   module Presentation
 
-    # Returns the colour attributes of the receiving class.
+    # Returns the colour and style attributes of the receiving class.
     #
     # @return [Hash]
     def view_attributes
@@ -45,18 +45,28 @@ module Vedeu
 
     private
 
+    # Renders the colour attributes of the receiver, yields (to then render the
+    # the styles) and once returned, attempts to set the colours back to the
+    # those of the receiver's parent.
+    #
     # @api private
     # @return [String]
     def render_colour(&block)
       [ colour.to_s, yield, parent_colour ].join
     end
 
+    # Renders the style attributes of the receiver, yields (to then render the
+    # next model, or finally, the content) and once returned, attempts to set
+    # the colours back to those of the receiver's parent.
+    #
     # @api private
     # @return [String]
     def render_style(&block)
       [ style.to_s, yield, parent_style ].join
     end
 
+    # Returns the parent colour as an escape sequence if set.
+    #
     # @api private
     # @return [String]
     def parent_colour
@@ -65,6 +75,7 @@ module Vedeu
       Colour.new(parent[:colour]).to_s
     end
 
+    # Returns the parent style as an escape sequence if set.
     # @api private
     # @return [String]
     def parent_style

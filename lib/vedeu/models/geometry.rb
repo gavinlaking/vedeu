@@ -3,13 +3,15 @@ module Vedeu
   # Calculates and provides interface geometry determined by both the client's
   # requirements and the terminal's current viewing area.
   #
+  # With terminal geometry, the origin is top-left, y = 1, x = 1.
+  #
   # @api private
   class Geometry
 
     # @return [Hash]
     attr_reader :attributes
 
-    # @return [TrueClass|FalseClass]
+    # @return [Boolean]
     attr_reader :centred
 
     # @return [Fixnum]
@@ -166,6 +168,8 @@ module Vedeu
       left - value
     end
 
+    # Returns a fixed or dynamic value depending on the value of {#top}.
+    #
     # @return [Fixnum]
     def bottom
       top + height

@@ -44,6 +44,20 @@ module Vedeu
           Defined.interfaces.must_equal(['hydrogen'])
         end
       end
+
+      describe '#menus' do
+        before { Vedeu::Menus.reset }
+
+        it 'returns no menus when none currently registered' do
+          Defined.menus.must_equal([])
+        end
+
+        it 'returns all menus currently registered' do
+          Vedeu.menu('seaborgium') { items [:promethium, :astatine, :niobium] }
+
+          Defined.menus.must_equal(['seaborgium'])
+        end
+      end
     end
   end
 end

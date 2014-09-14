@@ -1,7 +1,4 @@
-#
-#
 # Vedeu is a GUI framework for terminal/console applications written in Ruby.
-#
 #
 module Vedeu
 
@@ -19,8 +16,15 @@ module Vedeu
   # encounters a problem.
   InvalidSyntax = Class.new(StandardError)
 
+  # Raised when attempting to assign a key which is already in use.
+  KeyInUse = Class.new(StandardError)
+
   # Raised when a menu cannot be found by name.
   MenuNotFound = Class.new(StandardError)
+
+  # Raised when the attributes argument to {Vedeu::Registrar} does not contain
+  # a required key or the value to that key is nil or empty.
+  MissingRequired = Class.new(StandardError)
 
   # Raised intentionally when the client application wishes to switch between
   # cooked and raw (or vice versa) terminal modes. Vedeu is hard-wired to use
@@ -61,10 +65,10 @@ require 'logger'
 require 'optparse'
 require 'set'
 
+require 'vedeu/configuration'
 require 'vedeu/support/common'
 require 'vedeu/support/log'
 require 'vedeu/support/trace'
-require 'vedeu/configuration'
 
 require 'vedeu/models/attributes/coercions'
 require 'vedeu/models/attributes/colour_translator'
@@ -82,6 +86,7 @@ require 'vedeu/models/geometry'
 require 'vedeu/models/colour'
 require 'vedeu/models/style'
 require 'vedeu/models/interface'
+require 'vedeu/models/keymap'
 require 'vedeu/models/line'
 require 'vedeu/models/stream'
 
@@ -92,16 +97,21 @@ require 'vedeu/api/api'
 require 'vedeu/api/composition'
 require 'vedeu/api/helpers'
 require 'vedeu/api/interface'
+require 'vedeu/api/keymap'
 require 'vedeu/api/line'
 require 'vedeu/api/menu'
 require 'vedeu/api/stream'
 
 require 'vedeu/repositories/menus'
+require 'vedeu/repositories/keymap_validator'
+require 'vedeu/repositories/keymaps'
 require 'vedeu/repositories/interfaces'
 require 'vedeu/repositories/groups'
 require 'vedeu/repositories/focus'
 require 'vedeu/repositories/events'
 require 'vedeu/repositories/buffers'
+
+require 'vedeu/support/registrar'
 
 require 'vedeu/output/clear'
 require 'vedeu/output/compositor'

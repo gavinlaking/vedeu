@@ -92,8 +92,10 @@ module Vedeu
         }
       end
 
+      # At present, validates that a menu has a name attribute.
+      #
       # @api private
-      # @return [TrueClass|FalseClass]
+      # @return [Boolean]
       def validate_attributes!
         unless defined_value?(attributes[:name])
           fail InvalidSyntax, 'Menus must have a `name`.'

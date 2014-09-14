@@ -9,7 +9,6 @@ module Vedeu
     def initialize(attributes = {})
       @attributes = attributes
       @name       = attributes[:name]
-      @parent     = attributes[:parent]
     end
   end
 
@@ -30,7 +29,7 @@ module Vedeu
       it 'returns a collection of models when a single hash' do
         coerced = TestClass.coercer({ :name => 'test1' })
         coerced.must_be_instance_of(Array)
-        coerced.first.attributes.must_equal({ name: "test1", parent: nil })
+        coerced.first.attributes.must_equal({ name: "test1" })
       end
 
       it 'returns a collection of models when multiple hashes' do
@@ -39,14 +38,14 @@ module Vedeu
         ])
         coerced.size.must_equal(2)
         coerced.map(&:attributes).must_equal(
-          [{ name: "test1", parent: nil }, { name: "test2", parent: nil }]
+          [{ name: "test1" }, { name: "test2" }]
         )
       end
 
       it 'returns a collection of models when a single array' do
         coerced = TestClass.coercer([{ :name => 'test3' }])
         coerced.size.must_equal(1)
-        coerced.first.attributes.must_equal({ name: "test3", parent: nil })
+        coerced.first.attributes.must_equal({ name: "test3" })
       end
     end
   end

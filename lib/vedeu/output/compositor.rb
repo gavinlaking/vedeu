@@ -34,6 +34,9 @@ module Vedeu
     # @return [String]
     attr_reader :name
 
+    # Renders the buffer unless empty, otherwise clears the area which the
+    # interface occupies.
+    #
     # @api private
     # @return [String]
     def view

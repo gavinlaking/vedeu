@@ -30,6 +30,13 @@ module Vedeu
         Vedeu::Interfaces.registered
       end
 
+      # Returns all menus currently registered with Vedeu.
+      #
+      # @return [Array]
+      def menus
+        Vedeu::Menus.registered
+      end
+
     end
   end
 end

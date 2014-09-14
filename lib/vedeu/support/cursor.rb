@@ -5,6 +5,9 @@ module Vedeu
   # @api private
   class Cursor
 
+    # @return [Hash]
+    attr_reader :attributes
+
     # @return [Fixnum]
     attr_reader :top
 

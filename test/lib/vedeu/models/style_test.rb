@@ -10,6 +10,16 @@ module Vedeu
       end
     end
 
+    describe '#attributes' do
+      it 'returns an attributes hash for this instance' do
+        Style.new(['bold']).attributes.must_equal(
+          {
+            style: ['bold']
+          }
+        )
+      end
+    end
+
     describe '#to_s' do
       describe 'for a single style' do
         let(:values) { 'normal' }

@@ -5,6 +5,7 @@ module Vedeu
   # @api private
   module Menus
 
+    include Common
     extend self
 
     # System events which when called with the appropriate menu name will
@@ -25,7 +26,9 @@ module Vedeu
     # @param attributes [Hash]
     # @return [Hash|FalseClass]
     def add(attributes)
-      return false if attributes[:name].empty?
+      return false unless defined_value?(attributes[:name])
+
+      Vedeu.log("Registering menu '#{attributes[:name]}'")
 
       storage.store(attributes[:name], attributes)
     end
@@ -57,7 +60,8 @@ module Vedeu
 
     # Returns a boolean indicating whether the named menu is registered.
     #
-    # @return [TrueClass|FalseClass]
+    # @param name [String]
+    # @return [Boolean]
     def registered?(name)
       storage.key?(name)
     end
@@ -65,7 +69,7 @@ module Vedeu
     # Removes the menu from the repository and associated events.
     #
     # @param name [String]
-    # @return [TrueClass|FalseClass]
+    # @return [Boolean]
     def remove(name)
       return false unless registered?(name)
 
@@ -95,12 +99,17 @@ module Vedeu
 
     private
 
+    # Access to the storage for this repository.
+    #
     # @api private
     # @return [Hash]
     def storage
       @_storage ||= in_memory
     end
 
+    # Returns an empty collection ready for the storing of menus by name with
+    # associated menu instance.
+    #
     # @api private
     # @return [Hash]
     def in_memory

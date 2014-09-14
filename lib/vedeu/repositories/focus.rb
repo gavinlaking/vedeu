@@ -41,6 +41,8 @@ module Vedeu
     def current
       fail NoInterfacesDefined if storage.empty?
 
+      Vedeu.log("Interface in focus: '#{storage.first}'")
+
       storage.first
     end
 
@@ -69,32 +71,32 @@ module Vedeu
       storage
     end
 
-    # Reset the focus repository; removing all items. This does not delete
-    # the interfaces themselves.
-    #
-    # @return [Hash]
-    def reset
-      @storage = in_memory
-    end
-
-    private
-
     # Returns a boolean indicating whether the named interface is registered.
     #
     # @api private
-    # @return [TrueClass|FalseClass]
+    # @return [Boolean]
     def registered?(name)
       return false if storage.empty?
 
       storage.include?(name)
     end
 
-    # Provides accessor to the in-memory storage.
+    # Reset the focus repository; removing all items. This does not delete
+    # the interfaces themselves.
+    #
+    # @return [Hash]
+    def reset
+      @_storage = in_memory
+    end
+
+    private
+
+    # Access to the storage for this repository.
     #
     # @api private
     # @return [Array]
     def storage
-      @storage ||= in_memory
+      @_storage ||= in_memory
     end
 
     # Returns an empty collection ready for the storing of interface names.

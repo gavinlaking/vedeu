@@ -115,6 +115,12 @@ module Vedeu
             debug:         false,
             interactive:   true,
             once:          false,
+            system_keys:   {
+              exit:        "q",
+              focus_next:  :tab,
+              focus_prev:  :shift_tab,
+              mode_switch: :escape
+            },
             terminal_mode: :raw,
             trace:         false
           }
@@ -131,6 +137,12 @@ module Vedeu
             once: true,
             colour_mode: 16777216,
             debug: false,
+            system_keys:   {
+              exit:        "q",
+              focus_next:  :tab,
+              focus_prev:  :shift_tab,
+              mode_switch: :escape
+            },
             terminal_mode: :raw,
             trace: false
           }

@@ -135,11 +135,81 @@ module Vedeu
         end
       end
 
-      describe '#use' do
-        it 'returns the interface by name' do
-          interface = Vedeu.interface('tungsten') {}
+      describe '#centred' do
+        it 'raises an exception if the value is invalid' do
+          proc {
+            Vedeu.interface 'boron' do
+              centred :invalid
+            end
+          }.must_raise(InvalidSyntax)
+        end
 
-          Interface.new.use('tungsten').must_be_instance_of(Vedeu::Interface)
+        it 'sets the centred to true (visible)' do
+          Vedeu.interface 'boron' do
+            centred true
+          end
+
+          Vedeu.use('boron').attributes[:geometry][:centred].must_equal(true)
+        end
+
+        it 'sets the centred to false (hidden)' do
+          Vedeu.interface 'boron' do
+            centred false
+          end
+
+          Vedeu.use('boron').attributes[:geometry][:centred].must_equal(false)
+        end
+      end
+
+      describe '#cursor' do
+        it 'raises an exception if the value is invalid' do
+          proc {
+            Vedeu.interface 'beryllium' do
+              cursor :invalid
+            end
+          }.must_raise(InvalidSyntax)
+        end
+
+        it 'sets the cursor to true (visible)' do
+          Vedeu.interface 'beryllium' do
+            cursor true
+          end
+
+          Vedeu.use('beryllium').attributes[:cursor].must_equal(true)
+        end
+
+        it 'sets the cursor to false (hidden)' do
+          Vedeu.interface 'beryllium' do
+            cursor false
+          end
+
+          Vedeu.use('beryllium').attributes[:cursor].must_equal(false)
+        end
+      end
+
+      describe '#delay' do
+        it 'sets the delay attribute' do
+          Vedeu.interface 'cobalt' do
+            delay 0.25
+          end
+
+          Vedeu.use('cobalt').attributes[:delay].must_equal(0.25)
+        end
+      end
+
+      describe '#group' do
+        it 'sets the group attribute' do
+          Vedeu.interface 'iron' do
+            group 'elements'
+          end
+
+          Vedeu.use('iron').attributes[:group].must_equal('elements')
+        end
+      end
+
+      describe '#height' do
+        it 'sets the attribute to the value' do
+          skip
         end
       end
 
@@ -236,52 +306,6 @@ module Vedeu
         end
       end
 
-      describe '#cursor' do
-        it 'raises an exception if the value is invalid' do
-          proc {
-            Vedeu.interface 'beryllium' do
-              cursor :invalid
-            end
-          }.must_raise(InvalidSyntax)
-        end
-
-        it 'sets the cursor to true (visible)' do
-          Vedeu.interface 'beryllium' do
-            cursor true
-          end
-
-          Vedeu.use('beryllium').attributes[:cursor].must_equal(true)
-        end
-
-        it 'sets the cursor to false (hidden)' do
-          Vedeu.interface 'beryllium' do
-            cursor false
-          end
-
-          Vedeu.use('beryllium').attributes[:cursor].must_equal(false)
-        end
-      end
-
-      describe '#delay' do
-        it 'sets the delay attribute' do
-          Vedeu.interface 'cobalt' do
-            delay 0.25
-          end
-
-          Vedeu.use('cobalt').attributes[:delay].must_equal(0.25)
-        end
-      end
-
-      describe '#group' do
-        it 'sets the group attribute' do
-          Vedeu.interface 'iron' do
-            group 'elements'
-          end
-
-          Vedeu.use('iron').attributes[:group].must_equal('elements')
-        end
-      end
-
       describe '#name' do
         it 'sets the name attribute' do
           Vedeu.interface do
@@ -289,6 +313,20 @@ module Vedeu
           end
 
           Vedeu.use('nickel').attributes[:name].must_equal('nickel')
+        end
+      end
+
+      describe '#use' do
+        it 'returns the interface by name' do
+          interface = Vedeu.interface('tungsten') {}
+
+          Interface.new.use('tungsten').must_be_instance_of(Vedeu::Interface)
+        end
+      end
+
+      describe '#width' do
+        it 'sets the attribute to the value' do
+          skip
         end
       end
 
@@ -312,43 +350,6 @@ module Vedeu
         end
       end
 
-      describe '#width' do
-        it 'sets the attribute to the value' do
-          skip
-        end
-      end
-
-      describe '#height' do
-        it 'sets the attribute to the value' do
-          skip
-        end
-      end
-
-      describe '#centred' do
-        it 'raises an exception if the value is invalid' do
-          proc {
-            Vedeu.interface 'boron' do
-              centred :invalid
-            end
-          }.must_raise(InvalidSyntax)
-        end
-
-        it 'sets the centred to true (visible)' do
-          Vedeu.interface 'boron' do
-            centred true
-          end
-
-          Vedeu.use('boron').attributes[:geometry][:centred].must_equal(true)
-        end
-
-        it 'sets the centred to false (hidden)' do
-          Vedeu.interface 'boron' do
-            centred false
-          end
-
-          Vedeu.use('boron').attributes[:geometry][:centred].must_equal(false)
-        end
-      end
     end
   end
 end

@@ -131,6 +131,57 @@ module Vedeu
         )
       end
 
+      it 'returns to using the presentation attributes of the line after a ' \
+         'stream finishes' do
+        Vedeu.interface 'oxygen' do
+          width 40
+          height 2
+        end
+
+        class OxygenView < Vedeu::View
+          def render
+            Vedeu.view 'oxygen' do
+              line do
+                colour background: '#000000', foreground: '#ffffff'
+                stream do
+                  text 'the grass is '
+                end
+                stream do
+                  colour foreground: '#00ff00'
+                  text 'green'
+                end
+                stream do
+                  text ' and the sky is '
+                end
+                stream do
+                  colour foreground: '#0000ff'
+                  text 'blue'
+                end
+                stream do
+                  text '.'
+                end
+              end
+            end
+          end
+        end
+
+        IO.console.stub(:print, nil) do
+          OxygenView.render
+
+          Compositor.render('oxygen').must_equal([
+            "\e[1;1H                                        \e[1;1H" \
+            "\e[2;1H                                        \e[2;1H" \
+            "\e[1;1H\e[38;2;255;255;255m\e[48;2;0;0;0m" \
+              "the grass is \e[38;2;255;255;255m\e[48;2;0;0;0m" \
+              "\e[38;2;0;255;0mgreen\e[38;2;255;255;255m\e[48;2;0;0;0m" \
+              " and the sky is \e[38;2;255;255;255m\e[48;2;0;0;0m" \
+              "\e[38;2;0;0;255mblue\e[38;2;255;255;255m\e[48;2;0;0;0m" \
+              ".\e[38;2;255;255;255m\e[48;2;0;0;0m" \
+            "\e[?25h"
+          ])
+        end
+      end
+
     end
   end
 end

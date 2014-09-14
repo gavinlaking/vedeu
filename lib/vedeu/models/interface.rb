@@ -17,6 +17,8 @@ module Vedeu
 
     attr_reader :attributes, :delay, :group, :name, :parent
 
+    # Builds up a new Interface object and returns the attributes.
+    #
     # @param  attributes [Hash]
     # @param  block [Proc]
     # @return [Hash]
@@ -58,9 +60,7 @@ module Vedeu
     def define(&block)
       instance_eval(&block) if block_given?
 
-      validate_attributes!
-
-      Vedeu::Buffers.create(attributes)
+      Registrar.record(attributes)
 
       self
     end
@@ -69,9 +69,11 @@ module Vedeu
     #
     # @return [Array]
     def lines
-      @lines ||= Line.coercer(attributes[:lines], parent)
+      @lines ||= Line.coercer(attributes[:lines])
     end
 
+    # Returns the position and size of the interface.
+    #
     # @return [Geometry]
     def geometry
       @geometry ||= Geometry.new(attributes[:geometry])
@@ -86,22 +88,6 @@ module Vedeu
         Esc.string('hide_cursor')
 
       end
-    end
-
-    # @return [String]
-    def to_s
-      Render.call(self)
-    end
-
-    # @param options [Hash]
-    # @return [String]
-    def render(options = {})
-      Render.call(self, options)
-    end
-
-    # @return [String]
-    def clear
-      Clear.call(self)
     end
 
     private
@@ -122,33 +108,6 @@ module Vedeu
         delay:    0.0,
         parent:   nil,
       }
-    end
-
-    # @api private
-    # @return [TrueClass|FalseClass]
-    def validate_attributes!
-      unless defined_value?(attributes[:name])
-        fail InvalidSyntax, 'Interfaces and views must have a `name`.'
-      end
-    end
-
-    # @api private
-    # @return [String]
-    def out_of_bounds(name)
-      "Note: For this terminal, the value of '#{name}' may lead to content " \
-      "that is outside the viewable area."
-    end
-
-    # @api private
-    # @return [TrueClass|FalseClass]
-    def y_out_of_bounds?(value)
-      value < 1 || value > Terminal.height
-    end
-
-    # @api private
-    # @return [TrueClass|FalseClass]
-    def x_out_of_bounds?(value)
-      value < 1 || value > Terminal.width
     end
 
     # @api private

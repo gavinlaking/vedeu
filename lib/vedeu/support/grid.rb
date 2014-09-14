@@ -63,7 +63,7 @@ module Vedeu
     end
 
     # @api private
-    # @return [TrueClass|FalseClass]
+    # @return [Boolean]
     def out_of_range?
       value < 1 || value > 12
     end

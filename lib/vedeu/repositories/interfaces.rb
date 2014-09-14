@@ -5,6 +5,7 @@ module Vedeu
   # @api private
   module Interfaces
 
+    include Vedeu::Common
     extend self
 
     # Stores the interface attributes defined by the API.
@@ -12,9 +13,15 @@ module Vedeu
     # @param attributes [Hash]
     # @return [Hash|FalseClass]
     def add(attributes)
-      return false if attributes[:name].empty?
+      return false unless defined_value?(attributes[:name])
+
+      Vedeu.log("Registering interface '#{attributes[:name]}'")
 
       storage.store(attributes[:name], attributes)
+
+      register_event(attributes)
+
+      true
     end
 
     # Return the whole repository.
@@ -44,7 +51,7 @@ module Vedeu
 
     # Returns a boolean indicating whether the named interface is registered.
     #
-    # @return [TrueClass|FalseClass]
+    # @return [Boolean]
     def registered?(name)
       storage.key?(name)
     end
@@ -60,6 +67,19 @@ module Vedeu
 
     private
 
+    # @see Vedeu::Refresh.register_event
+    # @api private
+    # @param attributes [Hash]
+    # @return [Boolean]
+    def register_event(attributes)
+      name       = attributes[:name]
+      delay      = attributes[:delay] || 0.0
+
+      Vedeu::Refresh.register_event(:by_name, name, delay)
+    end
+
+    # Access to the storage for this repository.
+    #
     # @api private
     # @return [Hash]
     def storage

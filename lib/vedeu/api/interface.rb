@@ -6,45 +6,24 @@ module Vedeu
 
       include Helpers
 
-      # Define a single line in a view.
+      # Instructs Vedeu to calculate x and y geometry automatically based on the
+      # centre character of the terminal, the width and the height.
       #
       # @api public
-      # @param value [String]
-      # @param block [Proc]
+      # @param value [Boolean]
       #
       # @example
-      #   view 'my_interface' do
-      #     line 'This is a line of text...'
-      #     line 'and so is this...'
+      #   interface 'my_interface' do
+      #     centred true
       #     ...
       #
-      #   view 'my_interface' do
-      #     line do
-      #       ... some line attributes ...
-      #     end
-      #   end
-      #
       # @return [API::Interface]
-      def line(value = '', &block)
-        if block_given?
-          attributes[:lines] << API::Line
-            .build({ parent: self.view_attributes }, &block)
-
-        else
-          attributes[:lines] << API::Line
-            .build({ streams: { text: value }, parent: self.view_attributes })
-
+      def centred(value)
+        unless value.is_a?(TrueClass) || value.is_a?(FalseClass)
+          fail InvalidSyntax, 'Argument must be `true` or `false` for centred.'
         end
-      end
 
-      # Use the specified interface; useful for sharing attributes with other
-      # interfaces.
-      #
-      # @api public
-      # @param value [String]
-      # @see Vedeu::API#use
-      def use(value)
-        Vedeu.use(value)
+        attributes[:geometry][:centred] = value
       end
 
       # Define the cursor visibility for an interface. A `true` value will show
@@ -96,6 +75,54 @@ module Vedeu
         attributes[:group] = value
       end
 
+      # Define the number of characters/rows/lines tall the interface will be.
+      #
+      # @api public
+      # @param value [Fixnum]
+      #
+      # @example
+      #   interface 'my_interface' do
+      #     height 8
+      #     ...
+      #
+      # @return [API::Interface]
+      def height(value)
+        Vedeu.log(out_of_bounds('height')) if y_out_of_bounds?(value)
+
+        attributes[:geometry][:height] = value
+      end
+
+      # Define a single line in a view.
+      #
+      # @api public
+      # @param value [String]
+      # @param block [Proc]
+      #
+      # @example
+      #   view 'my_interface' do
+      #     line 'This is a line of text...'
+      #     line 'and so is this...'
+      #     ...
+      #
+      #   view 'my_interface' do
+      #     line do
+      #       ... some line attributes ...
+      #     end
+      #   end
+      #
+      # @return [API::Interface]
+      def line(value = '', &block)
+        if block_given?
+          attributes[:lines] << API::Line
+            .build({ parent: self.view_attributes }, &block)
+
+        else
+          attributes[:lines] << API::Line
+            .build({ streams: { text: value }, parent: self.view_attributes })
+
+        end
+      end
+
       # The name of the interface. Used to reference the interface throughout
       # your application's execution lifetime.
       #
@@ -110,6 +137,33 @@ module Vedeu
       # @return [API::Interface]
       def name(value)
         attributes[:name] = value
+      end
+
+      # Use the specified interface; useful for sharing attributes with other
+      # interfaces.
+      #
+      # @api public
+      # @param value [String]
+      # @see Vedeu::API#use
+      def use(value)
+        Vedeu.use(value)
+      end
+
+      # Define the number of characters/columns wide the interface will be.
+      #
+      # @api public
+      # @param value [Fixnum]
+      #
+      # @example
+      #   interface 'my_interface' do
+      #     width 25
+      #     ...
+      #
+      # @return [API::Interface]
+      def width(value)
+        Vedeu.log(out_of_bounds('width')) if x_out_of_bounds?(value)
+
+        attributes[:geometry][:width] = value
       end
 
       # Define the starting x position (column) of the interface.
@@ -161,58 +215,32 @@ module Vedeu
         attributes[:geometry][:y] = value
       end
 
-      # Define the number of characters/columns wide the interface will be.
-      #
-      # @api public
-      # @param value [Fixnum]
-      #
-      # @example
-      #   interface 'my_interface' do
-      #     width 25
-      #     ...
-      #
-      # @return [API::Interface]
-      def width(value)
-        Vedeu.log(out_of_bounds('width')) if x_out_of_bounds?(value)
+      private
 
-        attributes[:geometry][:width] = value
+      # Returns the out of bounds error message for the given named attribute.
+      #
+      # @api private
+      # @param name [String]
+      # @return [String]
+      def out_of_bounds(name)
+        "Note: For this terminal, the value of '#{name}' may lead to content " \
+        "that is outside the viewable area."
       end
 
-      # Define the number of characters/rows/lines tall the interface will be.
+      # Checks the value is within the terminal's confines.
       #
-      # @api public
-      # @param value [Fixnum]
-      #
-      # @example
-      #   interface 'my_interface' do
-      #     height 8
-      #     ...
-      #
-      # @return [API::Interface]
-      def height(value)
-        Vedeu.log(out_of_bounds('height')) if y_out_of_bounds?(value)
-
-        attributes[:geometry][:height] = value
+      # @api private
+      # @return [Boolean]
+      def y_out_of_bounds?(value)
+        value < 1 || value > Terminal.height
       end
 
-      # Instructs Vedeu to calculate x and y geometry automatically based on the
-      # centre character of the terminal, the width and the height.
+      # Checks the value is within the terminal's confines.
       #
-      # @api public
-      # @param value [Boolean]
-      #
-      # @example
-      #   interface 'my_interface' do
-      #     centred true
-      #     ...
-      #
-      # @return [API::Interface]
-      def centred(value)
-        unless value.is_a?(TrueClass) || value.is_a?(FalseClass)
-          fail InvalidSyntax, 'Argument must be `true` or `false` for centred.'
-        end
-
-        attributes[:geometry][:centred] = value
+      # @api private
+      # @return [Boolean]
+      def x_out_of_bounds?(value)
+        value < 1 || value > Terminal.width
       end
 
     end

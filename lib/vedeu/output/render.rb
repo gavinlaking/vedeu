@@ -50,7 +50,10 @@ module Vedeu
 
     # The client application may have created a line that us too long for the
     # interface. This code tries to truncate streams whilst preserving styles
-    # and colours.
+    # and colours. To achieve this, it successively checks each stream length
+    # against remaining line length and truncates the stream data if it
+    # exceeds the line length. Further stream data that does not fit is
+    # discarded.
     #
     # @api private
     # @return [Array]
@@ -60,32 +63,24 @@ module Vedeu
       lines.map do |line|
         if exceeds_width?(line)
           line_length = 0
-          processed   = []
-          line.streams.each do |stream|
+          new_streams = []
+
+          new_streams = line.streams.map do |stream|
             next if stream.text.empty?
 
             if (line_length += stream.text.size) >= width
               remainder = width - line_length
+              truncated = truncate(stream.text, remainder)
 
-              processed << Stream.new({
-                             colour: stream.colour.attributes,
-                             style:  stream.style.values,
-                             text:   truncate(stream.text, remainder),
-                             parent: line.view_attributes,
-                           })
+              build_stream(line, stream, truncated)
 
             else
-              processed << stream
+              stream
 
             end
           end
 
-          Line.new({
-            colour:  line.colour.attributes,
-            streams: processed,
-            style:   line.style.values,
-            parent:  interface.view_attributes,
-          })
+          build_line(line, new_streams)
 
         else
           line
@@ -94,13 +89,45 @@ module Vedeu
       end
     end
 
+    # Builds a new Stream object with the newly truncated text and previous
+    # attributes.
+    #
+    # @api private
+    # @param line [Line]
+    # @param stream [Stream]
+    # @param text [String]
+    # @return [Stream]
+    def build_stream(line, stream, text)
+      attributes = stream.view_attributes.merge!({
+        parent: line.view_attributes,
+        text:   text,
+      })
+
+      Stream.new(attributes)
+    end
+
+    # Builds a new Line object with the new streams and previous attributes.
+    #
+    # @api private
+    # @param line [Line]
+    # @param streams [Array]
+    # @return [Line]
+    def build_line(line, streams)
+      attributes = line.view_attributes.merge!({
+        parent:  interface.view_attributes,
+        streams: streams,
+      })
+
+      Line.new(attributes)
+    end
+
     # Converts all streams within a line into a single line of text to then
     # check that this line (without formatting, as that is not visible) exceeds
     # the width of the interface.
     #
     # @api private
     # @param line [Line]
-    # @return [TrueClass|FalseClass]
+    # @return [Boolean]
     def exceeds_width?(line)
       line.streams.map(&:text).join.size > width
     end

@@ -1,5 +1,7 @@
 module Vedeu
 
+  # Vedeu::Trace.call({ trace: true })
+
   # Provides the API to Vedeu. Methods therein, and classes belonging to this
   # module expose Vedeu's core functionality.
   module API
@@ -59,7 +61,7 @@ module Vedeu
     #
     # @return [Hash]
     def event(name, opts = {}, &block)
-      Vedeu.events.event(name, opts = {}, &block)
+      Vedeu.events.event(name, opts, &block)
     end
 
     # Initially accessed by Vedeu itself, this sets up some basic events needed
@@ -117,29 +119,45 @@ module Vedeu
       API::Interface.define({ name: name }, &block)
     end
 
-    # Handles the keypress in your application. Can also be used to simulate a
-    # keypress. The example below will have the following workflow:
-    #
-    # 1) Trigger the event `:key` in your application, which you will handle
-    #    and perform the appropriate action- maybe nothing.
-    # 2) If debugging is enabled in Vedeu, then the key is logged to the log
-    #    file.
-    #
     # @api public
-    # @param key [String|Symbol] The key which was pressed. Escape sequences
-    #   are also supported. Special keys like the F-keys are named as symbols;
-    #   i.e. `:f4`. A list of these translations can be found at {Vedeu::Input}.
     #
     # @example
     #   Vedeu.keypress('s')
     #
-    # @return []
+    # @see Vedeu::Keymaps.use
     def keypress(key)
-      Vedeu.trigger(:key, key)
-      Vedeu.trigger(:_log_, "Key: #{key}") if Configuration.debug?
-      Vedeu.trigger(:_mode_switch_) if key == :escape
-      Vedeu.trigger(:_focus_next_)  if key == :tab
-      Vedeu.trigger(:_focus_prev_)  if key == :shift_tab
+      Vedeu::Keymaps.use(key)
+    end
+
+    # Define actions for keypresses for when specific interfaces are in focus.
+    # Unless an interface is specified, the key will be assumed to be global,
+    # meaning its action will happen regardless of the interface in focus.
+    #
+    # @api public
+    # @param name_or_names [String] The name or names of the interface(s) which
+    #   will handle these keys.
+    # @param block [Proc]
+    #
+    # @example
+    #   keys do                    # => will be global
+    #     key('s') { :something }
+    #     ...
+    #
+    #   keys 'my_interface' do     # => will only function when 'my_interface'
+    #     ...                      #    is in focus
+    #
+    #   keys('main', 'other') do   # => will function for both 'main' and
+    #     ...                      #    'other' interfaces
+    #
+    #   keys do
+    #     interface 'my_interface' # => will only function when 'my_interface'
+    #     ...                      #    is in focus
+    #
+    # @return [API::Keymap]
+    def keys(*name_or_names, &block)
+      fail InvalidSyntax, '`keys` requires a block.' unless block_given?
+
+      API::Keymap.define({ interfaces: name_or_names }, &block)
     end
 
     # Write a message to the Vedeu log file located at `$HOME/.vedeu/vedeu.log`
@@ -147,7 +165,7 @@ module Vedeu
     # @api public
     # @param message [String] The message you wish to emit to the log
     #   file, useful for debugging.
-    # @param force   [TrueClass|FalseClass] When evaluates to true will
+    # @param force   [Boolean] When evaluates to true will
     #   write to the log file regardless of the Configuration setting.
     #
     # @example
@@ -158,27 +176,50 @@ module Vedeu
       Vedeu::Log.logger.debug(message) if Configuration.debug? || force
     end
 
-    # Register a menu by name which will display output from a event or
-    # command. This provides the means for you to define your application's
-    # views without their content.
+    # Register a menu by name which will display a collection of items for your
+    # users to select; and provide interactivity within your application.
     #
     # @api public
     # @param name  [String] The name of the menu. Used to reference the
     #   menu throughout your application's execution lifetime.
     # @param block [Proc] A set of attributes which define the features of the
-    #   menu. TODO: More help.
+    #   menu. See {Vedeu::API::Menu#items} and {Vedeu::API::Menu#name}.
     #
     # @example
     #   Vedeu.menu 'my_interface' do
+    #     items [:item_1, :item_2, :item_3]
     #     ...
     #
     #   Vedeu.menu do
     #     name 'menus_must_have_a_name'
+    #     items Track.all_my_favourites
     #     ...
     #
     # @return [API::Menu]
     def menu(name = '', &block)
+      fail InvalidSyntax, '`menu` requires a block.' unless block_given?
+
       API::Menu.define({ name: name }, &block)
+    end
+
+    # Directly write a view buffer to the terminal. Using this method means
+    # that the refresh event does not need to be triggered after creating the
+    # view or views, though can be later triggered if needed.
+    #
+    # @api public
+    # @param block [Proc] The directives you wish to send to render. Must
+    #                     include `view` or `views` with associated sub-
+    #                     directives.
+    #
+    # @example
+    #   Vedeu.render do
+    #     views do
+    #       view 'my_interface' do
+    #         ...
+    #
+    # @return [Array]
+    def render(&block)
+      API::Composition.render(&block)
     end
 
     # When the terminal emit the 'SIGWINCH' signal, Vedeu can intercept this
@@ -186,12 +227,14 @@ module Vedeu
     # success. Can also be used to simulate a terminal resize.
     #
     # @api private
-    # @return []
+    # @return [TrueClass]
     # :nocov:
     def resize
       trigger(:_clear_)
 
       trigger(:_refresh_)
+
+      true
     end
     # :nocov:
 

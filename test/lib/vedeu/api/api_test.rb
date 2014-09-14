@@ -45,10 +45,22 @@ module Vedeu
     end
 
     describe '.keypress' do
-      before { event.stubs(:trigger).returns(nil) }
+      before { Vedeu::Focus.stubs(:current).returns('') }
 
-      it 'returns nil' do
-        Vedeu.keypress('k').must_equal(nil)
+      it 'returns false when the key was not registered' do
+        Vedeu.keypress('k').must_equal(false)
+      end
+    end
+
+    describe '.keys' do
+      it 'returns an instance of API::Keymap' do
+        Vedeu.keys do
+          # ...
+        end.must_be_instance_of(API::Keymap)
+      end
+
+      it 'raises an exception when the block is not provided' do
+        proc { Vedeu.keys }.must_raise(InvalidSyntax)
       end
     end
 
@@ -73,17 +85,23 @@ module Vedeu
       end
     end
 
-    describe '.resize' do
-      it 'triggers the :_clear_ and :_refresh_ events' do
-        skip
-      end
-    end
-
     describe '.menu' do
       it 'creates and stores a new menu' do
         Vedeu.menu('Vedeu.menu') do
           # ...
         end.must_be_instance_of(API::Menu)
+      end
+    end
+
+    describe '.render' do
+      it 'directly writes the view buffer to the terminal' do
+        skip
+      end
+    end
+
+    describe '.resize' do
+      it 'triggers the :_clear_ and :_refresh_ events' do
+        skip
       end
     end
 

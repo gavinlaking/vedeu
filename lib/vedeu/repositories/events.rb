@@ -16,18 +16,13 @@ module Vedeu
       instance_eval(&block) if block_given?
     end
 
-    # @param object []
-    # @param block [Proc]
-    # @return []
-    def add(object, &block)
-      @self_before_instance_eval = eval('self', block.binding)
-
-      instance_eval(&block)
-    end
-
     # @see Vedeu::API#event
     def event(name, opts = {}, &block)
-      handlers[name][:events] << Event.new(block, opts)
+      Vedeu.log("Registering event '#{name}'")
+
+      options = opts.merge!({ event_name: name })
+
+      handlers[name][:events] << Event.new(block, options)
       handlers[name]
     end
 
@@ -45,7 +40,9 @@ module Vedeu
 
     # Returns a Boolean indicating whether the named event is registered.
     #
-    # @return [TrueClass|FalseClass]
+    # @api private
+    # @param name [Symbol] The name of the event to check.
+    # @return [Boolean]
     def registered?(name)
       handlers.key?(name)
     end
