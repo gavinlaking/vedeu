@@ -63,7 +63,7 @@ module Vedeu
     # throttling.
     #
     # @api private
-    # @return [TrueClass|FalseClass]
+    # @return [Boolean]
     def throttling?
       set_time
 
@@ -73,7 +73,7 @@ module Vedeu
     # Returns a boolean indicating whether the throttle has expired.
     #
     # @api private
-    # @return [TrueClass|FalseClass]
+    # @return [Boolean]
     def throttle_expired?
       if elapsed_time > delay
         Vedeu.log("Event throttle has expired for '#{event_name}', executing " \
@@ -92,7 +92,7 @@ module Vedeu
     # enable debouncing.
     #
     # @api private
-    # @return [TrueClass|FalseClass]
+    # @return [Boolean]
     def debouncing?
       set_time
 
@@ -104,7 +104,7 @@ module Vedeu
     # Returns a boolean indicating whether the debounce has expired.
     #
     # @api private
-    # @return [TrueClass|FalseClass]
+    # @return [Boolean]
     def debounce_expired?
       if set_executed > deadline
         Vedeu.log("Event debounce has expired for '#{event_name}', executing " \
@@ -143,7 +143,7 @@ module Vedeu
     end
 
     # @api private
-    # @return [TrueClass|FalseClass]
+    # @return [Boolean]
     def has_deadline?
       @deadline > 0
     end

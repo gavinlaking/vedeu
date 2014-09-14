@@ -49,7 +49,7 @@ module Vedeu
 
     # Returns a boolean indicating whether the named interface is registered.
     #
-    # @return [TrueClass|FalseClass]
+    # @return [Boolean]
     def registered?(name)
       storage.key?(name)
     end

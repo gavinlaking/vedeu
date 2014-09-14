@@ -52,7 +52,7 @@ module Vedeu
     #
     # @api private
     # @param message [String]
-    # @return [TrueClass|FalseClass]
+    # @return [Boolean]
     def log_this(message)
       Vedeu::Log.logger.debug(message)
     end
@@ -85,7 +85,7 @@ module Vedeu
     end
 
     # @api private
-    # @return [TrueClass|FalseClass]
+    # @return [Boolean]
     def trace?
       options[:trace]
     end

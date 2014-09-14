@@ -82,7 +82,7 @@ module Vedeu
     #
     # @api private
     # @param name [String]
-    # @return [TrueClass|FalseClass]
+    # @return [Boolean]
     def registered?(name)
       storage.key?(name)
     end
@@ -115,7 +115,7 @@ module Vedeu
     #
     # @api private
     # @param name [String]
-    # @return [TrueClass|FalseClass]
+    # @return [Boolean]
     def new_content?(name)
       defined_value?(back_buffer(name))
     end
@@ -124,7 +124,7 @@ module Vedeu
     #
     # @api private
     # @param name [String]
-    # @return [TrueClass|FalseClass]
+    # @return [Boolean]
     def old_content?(name)
       defined_value?(front_buffer(name))
     end

@@ -11,7 +11,7 @@ module Vedeu
     # @return [Hash]
     attr_reader :attributes
 
-    # @return [TrueClass|FalseClass]
+    # @return [Boolean]
     attr_reader :centred
 
     # @return [Fixnum]

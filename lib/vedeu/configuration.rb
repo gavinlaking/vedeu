@@ -88,7 +88,7 @@ module Vedeu
     # Returns whether debugging is enabled or disabled. Default is false;
     # meaning nothing apart from warnings are written to the log file.
     #
-    # @return [TrueClass|FalseClass]
+    # @return [Boolean]
     def debug?
       options[:debug]
     end
@@ -98,7 +98,7 @@ module Vedeu
     # standalone (will run until terminates of natural causes.) Default is true;
     # meaning the application will require user input.
     #
-    # @return [TrueClass|FalseClass]
+    # @return [Boolean]
     def interactive?
       options[:interactive]
     end
@@ -108,7 +108,7 @@ module Vedeu
     # not. Default is false; meaning the application will loop forever or until
     # terminated by the user.
     #
-    # @return [TrueClass|FalseClass]
+    # @return [Boolean]
     def once?
       options[:once]
     end
@@ -132,7 +132,7 @@ module Vedeu
     # the log file (logging method calls and events trigger). Default is false;
     # meaning tracing is disabled.
     #
-    # @return [TrueClass|FalseClass]
+    # @return [Boolean]
     def trace?
       options[:trace]
     end
@@ -212,7 +212,7 @@ module Vedeu
     # Determine the debug mode via an enviroment variable.
     #
     # @api private
-    # @return [TrueClass|FalseClass]
+    # @return [Boolean]
     # :nocov:
     def detect_debug_mode
       if ENV['VEDEU_DEBUG']
@@ -232,7 +232,7 @@ module Vedeu
     # Determine the trace mode via an environment variable.
     #
     # @api private
-    # @return [TrueClass|FalseClass]
+    # @return [Boolean]
     # :nocov:
     def detect_trace_mode
       if ENV['VEDEU_TRACE']

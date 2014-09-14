@@ -40,7 +40,7 @@ module Vedeu
     #
     # @api private
     # @param name [Symbol] The name of the event to check.
-    # @return [TrueClass|FalseClass]
+    # @return [Boolean]
     def registered?(name)
       handlers.key?(name)
     end

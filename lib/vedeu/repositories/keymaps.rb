@@ -45,7 +45,7 @@ module Vedeu
     # Return a boolean indicating whether the key is registered as a global key.
     #
     # @param key [String|Symbol]
-    # @return [TrueClass|FalseClass]
+    # @return [Boolean]
     def global_key?(key)
       global_keys.include?(key)
     end
@@ -63,7 +63,7 @@ module Vedeu
     #
     # @param key [String|Symbol]
     # @param interface [String]
-    # @return [TrueClass|FalseClass]
+    # @return [Boolean]
     def interface_key?(key, interface = '')
       if defined_value?(interface)
         find(interface).keys.include?(key)
@@ -94,7 +94,7 @@ module Vedeu
     # registered.
     #
     # @param name [String]
-    # @return [TrueClass|FalseClass]
+    # @return [Boolean]
     def registered?(name)
       storage.key?(name)
     end
@@ -110,7 +110,7 @@ module Vedeu
     # Return a boolean indicating whether the key is registered as a system key.
     #
     # @param key [String|Symbol]
-    # @return [TrueClass|FalseClass]
+    # @return [Boolean]
     def system_key?(key)
       system_keys.include?(key)
     end

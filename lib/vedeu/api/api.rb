@@ -165,7 +165,7 @@ module Vedeu
     # @api public
     # @param message [String] The message you wish to emit to the log
     #   file, useful for debugging.
-    # @param force   [TrueClass|FalseClass] When evaluates to true will
+    # @param force   [Boolean] When evaluates to true will
     #   write to the log file regardless of the Configuration setting.
     #
     # @example

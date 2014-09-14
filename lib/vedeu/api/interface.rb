@@ -230,7 +230,7 @@ module Vedeu
       # Checks the value is within the terminal's confines.
       #
       # @api private
-      # @return [TrueClass|FalseClass]
+      # @return [Boolean]
       def y_out_of_bounds?(value)
         value < 1 || value > Terminal.height
       end
@@ -238,7 +238,7 @@ module Vedeu
       # Checks the value is within the terminal's confines.
       #
       # @api private
-      # @return [TrueClass|FalseClass]
+      # @return [Boolean]
       def x_out_of_bounds?(value)
         value < 1 || value > Terminal.width
       end

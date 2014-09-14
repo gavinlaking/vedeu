@@ -59,7 +59,7 @@ module Vedeu
     # Returns a boolean indicating whether the named menu is registered.
     #
     # @param name [String]
-    # @return [TrueClass|FalseClass]
+    # @return [Boolean]
     def registered?(name)
       storage.key?(name)
     end
@@ -67,7 +67,7 @@ module Vedeu
     # Removes the menu from the repository and associated events.
     #
     # @param name [String]
-    # @return [TrueClass|FalseClass]
+    # @return [Boolean]
     def remove(name)
       return false unless registered?(name)
 

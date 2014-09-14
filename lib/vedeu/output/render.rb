@@ -127,7 +127,7 @@ module Vedeu
     #
     # @api private
     # @param line [Line]
-    # @return [TrueClass|FalseClass]
+    # @return [Boolean]
     def exceeds_width?(line)
       line.streams.map(&:text).join.size > width
     end

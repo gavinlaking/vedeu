@@ -50,7 +50,7 @@ module Vedeu
 
     # Returns a Boolean indicating whether the named group is registered.
     #
-    # @return [TrueClass|FalseClass]
+    # @return [Boolean]
     def registered?(name)
       storage.key?(name)
     end

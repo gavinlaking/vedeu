@@ -64,7 +64,7 @@ module Vedeu
     # Returns a boolean to indicate whether this stream has a width set.
     #
     # @api private
-    # @return [TrueClass|FalseClass]
+    # @return [Boolean]
     def width?
       !!width
     end

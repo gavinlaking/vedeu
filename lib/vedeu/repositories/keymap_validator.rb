@@ -63,7 +63,7 @@ module Vedeu
     #
     # @param key [String|Symbol]
     # @param interface [String]
-    # @return [TrueClass|FalseClass]
+    # @return [Boolean]
     def interface_key?(key, interface = '')
       if defined_value?(interface)
         return false unless storage.key?(interface)
@@ -81,7 +81,7 @@ module Vedeu
     # Returns a boolean indicating whether the key is in the global keymap.
     #
     # @param key [String|Symbol]
-    # @return [TrueClass|FalseClass]
+    # @return [Boolean]
     def global_key?(key)
       storage.fetch('_global_keymap_').keys.include?(key)
     end
@@ -90,7 +90,7 @@ module Vedeu
     # System keys must be redefined using {Vedeu::Configuration.configure_keys}.
     #
     # @param key [String|Symbol]
-    # @return [TrueClass|FalseClass]
+    # @return [Boolean]
     def system_key?(key)
       Configuration.system_keys.values.include?(key)
     end
