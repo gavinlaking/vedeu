@@ -39,6 +39,8 @@ class OtherClassInYourApplication
 
 ### API DSL methods
 
+Note: Nesting indicates where an API method is allowed/supposed to be used.
+
 #### Events
 
 - event
