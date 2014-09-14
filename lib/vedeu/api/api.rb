@@ -74,13 +74,9 @@ module Vedeu
       @events ||= Vedeu::Events.new do
         event(:_clear_)                   { Terminal.clear_screen     }
         event(:_exit_)                    { Vedeu::Application.stop   }
-        event(:_focus_by_name_)           { |name| Vedeu::Focus.by_name(name) }
-        event(:_focus_next_)              { Vedeu::Focus.next_item    }
-        event(:_focus_prev_)              { Vedeu::Focus.prev_item    }
         event(:_keypress_)                { |key| Vedeu.keypress(key) }
         event(:_log_)                     { |msg| Vedeu.log(msg)      }
         event(:_mode_switch_)             { fail ModeSwitch           }
-        event(:_refresh_)                 { Vedeu::Refresh.all        }
         event(:_resize_, { delay: 0.25 }) { Vedeu.resize              }
       end
     end
