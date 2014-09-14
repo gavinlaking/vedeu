@@ -41,6 +41,8 @@ module Vedeu
     def current
       fail NoInterfacesDefined if storage.empty?
 
+      Vedeu.log("Interface in focus: '#{storage.first}'")
+
       storage.first
     end
 

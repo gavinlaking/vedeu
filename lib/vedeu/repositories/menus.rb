@@ -28,6 +28,8 @@ module Vedeu
     def add(attributes)
       return false unless defined_value?(attributes[:name])
 
+      Vedeu.log("Registering menu '#{attributes[:name]}'")
+
       storage.store(attributes[:name], attributes)
     end
 
