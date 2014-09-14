@@ -6,6 +6,8 @@ module Vedeu
     describe Keymap do
 
       describe '#key' do
+        before { Vedeu::Keymaps.reset }
+
         it 'raises an exception when a block is not given' do
           proc {
             Vedeu.keys do
