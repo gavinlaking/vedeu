@@ -30,6 +30,8 @@ module Vedeu
 
       Vedeu.log("Registering menu '#{attributes[:name]}'")
 
+      attributes.merge!({ items: Vedeu::Menu.new(attributes[:items]) })
+
       storage.store(attributes[:name], attributes)
     end
 
@@ -90,11 +92,9 @@ module Vedeu
     # Access a menu by name.
     #
     # @param name [String]
-    # @return [Vedeu::Menu|MenuNotFound]
+    # @return [Vedeu::Menu]
     def use(name)
-      find(name).fetch(:items) do
-        fail MenuNotFound, "This menu '#{name}' has no items."
-      end
+      find(name).fetch(:items)
     end
 
     private

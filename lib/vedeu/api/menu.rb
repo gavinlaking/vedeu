@@ -60,7 +60,7 @@ module Vedeu
       #
       # @return [Vedeu::Menu]
       def items(collection = [])
-        attributes[:items] = Vedeu::Menu.new(collection)
+        attributes[:items] = collection
       end
 
       # The name of the menu. Used to reference the menu throughout your

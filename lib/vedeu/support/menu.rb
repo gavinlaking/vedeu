@@ -8,9 +8,11 @@ module Vedeu
     # Returns a new instance of Menu.
     #
     # @param collection [Array]
+    # @param name [String]
     # @return [Menu]
-    def initialize(collection)
+    def initialize(collection, name = '')
       @collection = collection
+      @name       = name
       @current    = 0
       @selected   = nil
     end

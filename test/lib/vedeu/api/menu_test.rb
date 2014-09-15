@@ -38,15 +38,16 @@ module Vedeu
       end
 
       describe '#items' do
-        it 'returns an instance of Vedeu::Menu' do
-          menu = Menu.new
-          menu.items.must_be_instance_of(Vedeu::Menu)
+        it 'returns an empty collection when no items are provided' do
+          Menu.new.items.must_equal([])
         end
 
         it 'assigns the instance of Vedeu::Menu to the attributes' do
+          items = [:sodium, :magnesium, :aluminium, :silicon]
+
           menu = Menu.new
-          menu.items([:sodium, :magnesium, :aluminium, :silicon])
-          menu.attributes[:items].must_be_instance_of(Vedeu::Menu)
+          menu.items(items)
+          menu.attributes[:items].must_equal(items)
         end
       end
 

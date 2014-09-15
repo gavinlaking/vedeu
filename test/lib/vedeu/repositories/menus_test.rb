@@ -5,10 +5,14 @@ module Vedeu
   describe Menus do
 
     describe 'System events defined by Menus' do
+      let(:collection) { [:sulphur, :gold, :tin, :helium] }
+      let(:instance)   { Vedeu::Menu.new(collection) }
+
       before do
         Menus.reset
         Menus.add({ name:  'elements',
-                    items: Vedeu::Menu.new([:sulphur, :gold, :tin, :helium]) })
+                    items: collection })
+        Vedeu::Menu.stubs(:new).returns(instance)
       end
 
       it 'raises an exception when triggered with an unregistered name' do
@@ -76,11 +80,13 @@ module Vedeu
       end
 
       it '_menu_select_' do
+        2.times { Vedeu.trigger(:_menu_next_, 'elements') }
+
         Vedeu.trigger(:_menu_select_, 'elements').must_equal(
           [
-            [true, true, :sulphur],
+            [false, false, :sulphur],
             [false, false, :gold],
-            [false, false, :tin],
+            [true,  true,  :tin],
             [false, false, :helium]
           ]
         )
@@ -98,11 +104,15 @@ module Vedeu
       end
 
       it '_menu_items_' do
+        2.times { Vedeu.trigger(:_menu_next_, 'elements') }
+        Vedeu.trigger(:_menu_select_, 'elements')
+        Vedeu.trigger(:_menu_prev_, 'elements')
+
         Vedeu.trigger(:_menu_items_, 'elements').must_equal(
           [
-            [false, true, :sulphur],
-            [false, false, :gold],
-            [false, false, :tin],
+            [false, false, :sulphur],
+            [false, true,  :gold],
+            [true,  false, :tin],
             [false, false, :helium]
           ]
         )
@@ -121,20 +131,23 @@ module Vedeu
     end
 
     describe '#add' do
-      before { Menus.reset }
+      let(:collection) { [:hydrogen, :helium, :beryllium, :lithium] }
+      let(:instance)   { Vedeu::Menu.new(collection) }
+
+      before do
+        Menus.reset
+        Vedeu::Menu.stubs(:new).returns(instance)
+      end
 
       it 'returns false if the menu name is empty' do
         Menus.add({ name: '' }).must_equal(false)
       end
 
       it 'adds the menu to the storage' do
-        collection = [:hydrogen, :helium, :beryllium, :lithium]
-        items      = Vedeu::Menu.new(collection)
-
-        Menus.add({ name: 'elements', items: items })
+        Menus.add({ name: 'elements', items: collection })
         Menus.all.must_equal(
           {
-            'elements' => { name: 'elements', items: items }
+            'elements' => { name: 'elements', items: instance }
           }
         )
       end
@@ -149,13 +162,7 @@ module Vedeu
       end
 
       it 'returns the storage' do
-        Menus.all.must_equal(
-          {
-            'barium' => { name: 'barium' },
-            'lanthanum' => { name: 'lanthanum' },
-            'cerium' => { name: 'cerium' }
-          }
-        )
+        Menus.all.keys.must_equal(['barium', 'lanthanum', 'cerium'])
       end
     end
 
@@ -167,7 +174,7 @@ module Vedeu
       end
 
       it 'returns the attributes of the named menu' do
-        Menus.find('erbium').must_equal({ name: 'erbium' })
+        Menus.find('erbium').must_be_instance_of(Hash)
       end
     end
 
@@ -219,24 +226,24 @@ module Vedeu
 
       it 'removes all known menus from the storage' do
         Menus.add({ name: 'uranium' })
-        Menus.all.must_equal({ 'uranium' => { name: 'uranium' } })
+        Menus.all.wont_be_empty
         Menus.reset.must_be_empty
       end
     end
 
     describe '#use' do
-      it 'returns the Vedeu::Menu instance stored when the named menu exists' do
-        collection = [:calcium, :fermium, :nitrogen, :palladium]
-        items      = Vedeu::Menu.new(collection)
-        Menus.add({ name: 'elements', items: items })
+      let(:collection) { [:calcium, :fermium, :nitrogen, :palladium] }
+      let(:instance)   { Vedeu::Menu.new(collection) }
 
-        Menus.use('elements').must_equal(items)
+      before do
+        Menus.reset
+        Vedeu::Menu.stubs(:new).returns(instance)
       end
 
-      it 'raises an exception if there are no items' do
-        Menus.add({ name: 'elements' })
+      it 'returns the Vedeu::Menu instance stored when the named menu exists' do
+        Menus.add({ name: 'elements', items: collection })
 
-        proc { Menus.use('elements') }.must_raise(MenuNotFound)
+        Menus.use('elements').must_equal(instance)
       end
     end
 
