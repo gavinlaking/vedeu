@@ -1,11 +1,8 @@
 ## Vedeu Events
 
-Vedeu provides an event mechanism to facilitate the functionality of your
-application. The events are either Vedeu defined, ie. system events or
-user defined, ie. user events.
+Vedeu provides an event mechanism to facilitate the functionality of your application. The events are either Vedeu defined, ie. system events or user defined, ie. user events.
 
-Events described in this document assume that you have included Vedeu in your
-class:
+Events described in this document assume that you have included Vedeu in your class:
 
 ```ruby
   class SomeClassInYourApplication
@@ -16,8 +13,7 @@ class:
 
 ## System Events
 
-System events generally control the internal state of Vedeu with respects to
-your application. They are soft-namespaced using underscores.
+System events generally control the internal state of Vedeu with respects to your application. They are soft-namespaced using underscores.
 
 ### `:_cleanup_`
 
@@ -27,21 +23,49 @@ This event is fired by Vedeu when `:_exit_` is triggered. You can hook into this
 
 Clears the whole terminal space.
 
+### `:_cursor_up_`
+
+Moves the cursor for the focussed interface up one row, but will not exceed the boundary of the interface.
+
+### `:_cursor_right_`
+
+Moves the cursor for the focussed interface right one column, but will not exceed the boundary of the interface.
+
+### `:_cursor_down_`
+
+Moves the cursor for the focussed interface down one row, but will not exceed the boundary of the interface.
+
+### `:_cursor_left_`
+
+Moves the cursor for the focussed interface left one column, but will not exceed the boundary of the interface.
+
+### `:_cursor_hide_`
+
+Hides the cursor for the focussed interface.
+
+### `:_cursor_show_`
+
+Shows the cursor for the focussed interface.
+
+### `:_cursor_refresh_`
+
+Refreshes the cursor for the focussed interface.
+
 ### `:_exit_`
 
 When triggered, Vedeu will trigger a `:_cleanup_` event which you can define (to save files, etc) and attempt to exit.
 
 ### `:_focus_by_name_`
 
-When triggered with an interface name will focus that interface.
+When triggered with an interface name will focus that interface and restore the cursor position and visibility.
 
 ### `:_focus_next_`
 
-When triggered will focus the next interface.
+When triggered will focus the next interface and restore the cursor position and visibility.
 
 ### `:_focus_prev_`
 
-When triggered will focus the previous interface.
+When triggered will focus the previous interface and restore the cursor position and visibility.
 
 ### `:_initialize_`
 
@@ -65,28 +89,23 @@ Requires target menu name as argument. Returns the selected menu item.
 
 ### `:_menu_next_`
 
-Requires target menu name as argument. Makes the next menu item the current menu
-item, until it reaches the last item.
+Requires target menu name as argument. Makes the next menu item the current menu item, until it reaches the last item.
 
 ### `:_menu_prev_`
 
-Requires target menu name as argument. Makes the previous menu item the current
-menu item, until it reaches the first item.
+Requires target menu name as argument. Makes the previous menu item the current menu item, until it reaches the first item.
 
 ### `:_menu_top_`
 
-Requires target menu name as argument. Makes the first menu item the current
-menu item.
+Requires target menu name as argument. Makes the first menu item the current menu item.
 
 ### `:_menu_bottom_`
 
-Requires target menu name as argument. Makes the last menu item the current menu
-item.
+Requires target menu name as argument. Makes the last menu item the current menu item.
 
 ### `:_menu_select_`
 
-Requires target menu name as argument. Makes the current menu item also the
-selected menu item.
+Requires target menu name as argument. Makes the current menu item also the selected menu item.
 
 ### `:_menu_deselect_`
 
@@ -94,13 +113,11 @@ Requires target menu name as argument. Deselects all menu items.
 
 ### `:_menu_items_`
 
-Requires target menu name as argument. Returns all the menu items with
-respective `current` or `selected` boolean indicators.
+Requires target menu name as argument. Returns all the menu items with respective `current` or `selected` boolean indicators.
 
 ### `:_menu_view_`
 
-Requires target menu name as argument. Returns a subset of the menu items;
-starting at the current item to the last item.
+Requires target menu name as argument. Returns a subset of the menu items; starting at the current item to the last item.
 
 ### `:_mode_switch_`
 
@@ -120,15 +137,12 @@ Will refresh the interface with this name. E.g. `_refresh_widget_` will refresh 
 
 ### `:_resize_`
 
-When triggered will cause Vedeu to trigger the `:_clear_` and `:_refresh_`
-events. Please see those events for their behaviour.
+When triggered will cause Vedeu to trigger the `:_clear_` and `:_refresh_` events. Please see those events for their behaviour.
 
 
 ##### Notes:
 
-System events can be handled or triggered by your application also, but overriding or adding additional events to the Vedeu system event namespace may cause unpredictable results. It is recommended to only to hook into events like :_cleanup_, :_initialize_ and :key if you need to do something respective
-to those events.
-
+System events can be handled or triggered by your application also, but overriding or adding additional events to the Vedeu system event namespace may cause unpredictable results. It is recommended to only to hook into events like :_cleanup_, :_initialize_ and :key if you need to do something respective to those events.
 
 ... TODO ... What about events in Vedeu::Menu?
 

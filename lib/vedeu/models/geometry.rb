@@ -110,8 +110,8 @@ module Vedeu
       Esc.set_position(virtual_y[index], left, &block)
     end
 
-    # Returns a fixed or dynamic value depending on whether the interface is
-    # centred or not.
+    # Returns the top coordinate of the interface, a fixed or dynamic value
+    # depending on whether the interface is centred or not.
     #
     # @return [Fixnum]
     def top
@@ -139,8 +139,8 @@ module Vedeu
       top - value
     end
 
-    # Returns a fixed or dynamic value depending on whether the interface is
-    # centred or not.
+    # Returns the left coordinate of the interface, a fixed or dynamic value
+    # depending on whether the interface is centred or not.
     #
     # @return [Fixnum]
     def left
@@ -168,7 +168,8 @@ module Vedeu
       left - value
     end
 
-    # Returns a fixed or dynamic value depending on the value of {#top}.
+    # Returns the bottom coordinate of the interface, a fixed or dynamic value
+    # depending on the value of {#top}.
     #
     # @return [Fixnum]
     def bottom
@@ -190,8 +191,8 @@ module Vedeu
       bottom + value
     end
 
-    # Returns a fixed or dynamic value depending on whether the interface is
-    # centred or not.
+    # Returns the right coordinate of the interface, a fixed or dynamic value
+    # depending on the value of {#left}.
     #
     # @return [Fixnum]
     def right
