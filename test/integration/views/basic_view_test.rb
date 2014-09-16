@@ -26,7 +26,6 @@
 #               colour: {},
 #               style: '',
 #               geometry: {},
-#               cursor: true,
 #               delay: 0.0,
 #               lines: [
 #                 {
@@ -58,7 +57,6 @@
 #               colour: {},
 #               style: '',
 #               geometry: {},
-#               cursor: true,
 #               delay: 0.0,
 #               lines: [
 #                 {
@@ -85,7 +83,6 @@
 #               colour: {},
 #               style: '',
 #               geometry: {},
-#               cursor: true,
 #               delay: 0.0,
 #               lines: [
 #                 {
@@ -112,7 +109,6 @@
 #               colour: {},
 #               style: '',
 #               geometry: {},
-#               cursor: true,
 #               delay: 0.0,
 #               lines: [
 #                 {
@@ -140,7 +136,6 @@
 #               colour: {},
 #               style: '',
 #               geometry: {},
-#               cursor: true,
 #               delay: 0.0,
 #               lines: [
 #                 {
@@ -175,7 +170,6 @@
 #               colour: {},
 #               style: '',
 #               geometry: {},
-#               cursor: true,
 #               delay: 0.0,
 #               lines: [
 #                 {
@@ -209,7 +203,6 @@
 #               colour: {},
 #               style: '',
 #               geometry: {},
-#               cursor: true,
 #               delay: 0.0,
 #               lines: [
 #                 {
@@ -238,7 +231,6 @@
 #               colour: {},
 #               style: '',
 #               geometry: {},
-#               cursor: true,
 #               delay: 0.0,
 #               lines: [
 #                 {
@@ -268,7 +260,6 @@
 #               colour: {},
 #               style: '',
 #               geometry: {},
-#               cursor: true,
 #               delay: 0.0,
 #               lines: [
 #                 {
@@ -303,7 +294,6 @@
 #               colour: {},
 #               style: '',
 #               geometry: {},
-#               cursor: true,
 #               delay: 0.0,
 #               lines: [
 #                 {
@@ -338,7 +328,6 @@
 #               colour: {},
 #               style: '',
 #               geometry: {},
-#               cursor: true,
 #               delay: 0.0,
 #               lines: [
 #                 {
@@ -381,7 +370,6 @@
 #               colour: {},
 #               style: '',
 #               geometry: {},
-#               cursor: true,
 #               delay: 0.0,
 #               lines: [
 #                 {
@@ -430,7 +418,6 @@
 #               colour: {},
 #               style: '',
 #               geometry: {},
-#               cursor: true,
 #               delay: 0.0,
 #               lines: [
 #                 {
@@ -482,7 +469,6 @@
 #               colour: {},
 #               style: '',
 #               geometry: {},
-#               cursor: true,
 #               delay: 0.0,
 #               lines: [
 #                 {
@@ -527,7 +513,6 @@
 #               colour: {},
 #               style: '',
 #               geometry: {},
-#               cursor: true,
 #               delay: 0.0,
 #               lines: [{
 #                 parent: nil,
@@ -562,7 +547,6 @@
 #               colour: {},
 #               style: '',
 #               geometry: {},
-#               cursor: true,
 #               delay: 0.0,
 #               lines: [{
 #                 parent: nil,
@@ -597,7 +581,6 @@
 #               colour: {},
 #               style: '',
 #               geometry: {},
-#               cursor: true,
 #               delay: 0.0,
 #               lines: [{
 #                 parent: nil,
@@ -632,7 +615,6 @@
 #               colour: {},
 #               style: '',
 #               geometry: {},
-#               cursor: true,
 #               delay: 0.0,
 #               lines: [{
 #                 parent: nil,
@@ -676,7 +658,6 @@
 #               colour: {},
 #               style: '',
 #               geometry: {},
-#               cursor: true,
 #               delay: 0.0,
 #               lines: [
 #                 {

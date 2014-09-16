@@ -39,7 +39,6 @@ module Vedeu
         out << interface.origin(index)
         out << line.to_s
       end
-      out << interface.cursor
       out.join
     end
 

@@ -26,7 +26,6 @@ module Vedeu
               },
               style: "",
               geometry: {},
-              cursor: true,
               delay: 0.0,
               parent: nil,
             }
@@ -44,7 +43,6 @@ module Vedeu
               colour: {},
               style: "underline",
               geometry: {},
-              cursor: true,
               delay: 0.0,
               parent: nil,
             }
@@ -71,7 +69,6 @@ module Vedeu
               geometry: {
                 y: 11
               },
-              cursor: true,
               delay: 0.0,
               parent: nil,
             })
@@ -90,7 +87,6 @@ module Vedeu
               colour: {},
               style: "",
               geometry: {},
-              cursor: true,
               delay: 1.0,
               parent: nil,
             })
@@ -108,26 +104,6 @@ module Vedeu
               colour: {},
               style: "",
               geometry: {},
-              cursor: true,
-              delay: 0.0,
-              parent: nil,
-            }
-          )
-        end
-
-        it 'allows the setting of the cursor for the interface to be shown ' \
-           'or hidden' do
-          Interface.build do
-            cursor false
-          end.must_equal(
-            {
-              name: "",
-              group: "",
-              lines: [],
-              colour: {},
-              style: "",
-              geometry: {},
-              cursor: false,
               delay: 0.0,
               parent: nil,
             }
@@ -158,32 +134,6 @@ module Vedeu
           end
 
           Vedeu.use('boron').attributes[:geometry][:centred].must_equal(false)
-        end
-      end
-
-      describe '#cursor' do
-        it 'raises an exception if the value is invalid' do
-          proc {
-            Vedeu.interface 'beryllium' do
-              cursor :invalid
-            end
-          }.must_raise(InvalidSyntax)
-        end
-
-        it 'sets the cursor to true (visible)' do
-          Vedeu.interface 'beryllium' do
-            cursor true
-          end
-
-          Vedeu.use('beryllium').attributes[:cursor].must_equal(true)
-        end
-
-        it 'sets the cursor to false (hidden)' do
-          Vedeu.interface 'beryllium' do
-            cursor false
-          end
-
-          Vedeu.use('beryllium').attributes[:cursor].must_equal(false)
         end
       end
 
@@ -236,7 +186,6 @@ module Vedeu
               colour: {},
               style: "",
               geometry: {},
-              cursor: true,
               delay: 0.0,
               parent: nil,
             }
@@ -265,7 +214,6 @@ module Vedeu
               colour: {},
               style: "",
               geometry: {},
-              cursor: true,
               delay: 0.0,
               parent: nil,
             }
@@ -298,7 +246,6 @@ module Vedeu
               colour: {},
               style: "",
               geometry: {},
-              cursor: true,
               delay: 0.0,
               parent: nil
             }

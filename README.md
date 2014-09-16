@@ -92,7 +92,6 @@ interface 'main' do
   width  10 # see notes below
   height 10
   colour foreground: '#ffffff', background: '#000000'
-  cursor false
 end
 ```
 
@@ -108,7 +107,6 @@ Note: not setting a width or height will set the values to the terminal's report
 
 - `foreground` sets the default foreground colour. (See Colours)
 - `background` sets the default background colour.
-- `cursor` is a Boolean specifying whether the cursor should show.
 
 
 ### Events

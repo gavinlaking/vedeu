@@ -41,7 +41,7 @@ module Vedeu
           "\e[3;1H                                \e[3;1H" \
           "\e[1;1Hthis is the first" \
           "\e[2;1Hthis is the second and it is lon" \
-          "\e[3;1Hthis is the third, it is even lo\e[?25h"
+          "\e[3;1Hthis is the third, it is even lo"
         )
       end
 
@@ -58,14 +58,13 @@ module Vedeu
         Render.call(interface).must_equal(
           "\e[1;1H                                \e[1;1H" \
           "\e[2;1H                                \e[2;1H" \
-          "\e[3;1H                                \e[3;1H\e[?25h"
+          "\e[3;1H                                \e[3;1H"
         )
       end
 
       it 'skips lines which have streams with no content' do
         interface = Interface.new({
           name:     '.call',
-          cursor:   false,
           geometry: {
             width:  32,
             height: 3,
@@ -92,44 +91,44 @@ module Vedeu
           "\e[3;1H                                \e[3;1H" \
           "\e[1;1Hthis is the first" \
           "\e[2;1H" \
-          "\e[3;1Hthis is the third, it is even lo\e[?25l"
+          "\e[3;1Hthis is the third, it is even lo"
         )
       end
 
-      it 'returns the content for the interface, starting at the optional ' \
-         'top' do
-        interface = Interface.new({
-          name:     '.call',
-          geometry: {
-            width:  32,
-            height: 4,
-          },
-          lines:    [
-            {
-              streams: [{ text: 'this is the first' }]
-            }, {
-              streams: { text: 'this is the second and it is long' }
-            }, {
-              streams: [
-                { text: 'this is the third, ' },
-                { text: 'it is even longer '  },
-                { text: 'and still truncated' }
-              ]
-            }, {
-              streams: [{ text: 'this is exciting!' }]
-            }
-          ]
-        })
-        Render.call(interface, { top: 1 }).must_equal(
-          "\e[1;1H                                \e[1;1H" \
-          "\e[2;1H                                \e[2;1H" \
-          "\e[3;1H                                \e[3;1H" \
-          "\e[4;1H                                \e[4;1H" \
-          "\e[1;1Hthis is the second and it is lon" \
-          "\e[2;1Hthis is the third, it is even lo" \
-          "\e[3;1Hthis is exciting!\e[?25h"
-        )
-      end
+      # it 'returns the content for the interface, starting at the optional ' \
+      #    'top' do
+      #   interface = Interface.new({
+      #     name:     '.call',
+      #     geometry: {
+      #       width:  32,
+      #       height: 4,
+      #     },
+      #     lines:    [
+      #       {
+      #         streams: [{ text: 'this is the first' }]
+      #       }, {
+      #         streams: { text: 'this is the second and it is long' }
+      #       }, {
+      #         streams: [
+      #           { text: 'this is the third, ' },
+      #           { text: 'it is even longer '  },
+      #           { text: 'and still truncated' }
+      #         ]
+      #       }, {
+      #         streams: [{ text: 'this is exciting!' }]
+      #       }
+      #     ]
+      #   })
+      #   Render.call(interface, { top: 1 }).must_equal(
+      #     "\e[1;1H                                \e[1;1H" \
+      #     "\e[2;1H                                \e[2;1H" \
+      #     "\e[3;1H                                \e[3;1H" \
+      #     "\e[4;1H                                \e[4;1H" \
+      #     "\e[1;1Hthis is the second and it is lon" \
+      #     "\e[2;1Hthis is the third, it is even lo" \
+      #     "\e[3;1H"
+      #   )
+      # end
 
       it 'returns to using the presentation attributes of the line after a ' \
          'stream finishes' do
@@ -176,8 +175,7 @@ module Vedeu
               "\e[38;2;0;255;0mgreen\e[38;2;255;255;255m\e[48;2;0;0;0m" \
               " and the sky is \e[38;2;255;255;255m\e[48;2;0;0;0m" \
               "\e[38;2;0;0;255mblue\e[38;2;255;255;255m\e[48;2;0;0;0m" \
-              ".\e[38;2;255;255;255m\e[48;2;0;0;0m" \
-            "\e[?25h"
+              ".\e[38;2;255;255;255m\e[48;2;0;0;0m"
           ])
         end
       end

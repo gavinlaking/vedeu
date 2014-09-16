@@ -30,6 +30,8 @@ module Vedeu
 
       Vedeu::Interfaces.add(attributes)
 
+      Vedeu::Cursors.add(attributes)
+
       Vedeu::Groups.add(attributes)
 
       Vedeu::Focus.add(attributes)

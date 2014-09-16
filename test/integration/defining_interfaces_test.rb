@@ -9,7 +9,6 @@ class MyFirstApplication
     width   40
     height  4
     centred false
-    cursor  true
     delay   0.25
     group   'elements'
   end

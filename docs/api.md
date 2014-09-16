@@ -59,7 +59,6 @@ class OtherClassInYourApplication
 - interface
   - centred
   - colour
-  - cursor
   - delay
   - group
   - height

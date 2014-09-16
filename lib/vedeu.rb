@@ -5,6 +5,9 @@ module Vedeu
   # Raised when Vedeu attempts to access a named buffer that does not exist.
   BufferNotFound = Class.new(StandardError)
 
+  # Raised when a cursor cannot be found by name.
+  CursorNotFound = Class.new(StandardError)
+
   # Raised when trying to access a group of interfaces which do not exist by
   # this name.
   GroupNotFound = Class.new(StandardError)
@@ -86,6 +89,7 @@ require 'vedeu/models/geometry'
 require 'vedeu/models/colour'
 require 'vedeu/models/style'
 require 'vedeu/models/interface'
+require 'vedeu/models/cursor'
 require 'vedeu/models/keymap'
 require 'vedeu/models/line'
 require 'vedeu/models/stream'
@@ -110,6 +114,7 @@ require 'vedeu/repositories/groups'
 require 'vedeu/repositories/focus'
 require 'vedeu/repositories/events'
 require 'vedeu/repositories/buffers'
+require 'vedeu/repositories/cursors'
 
 require 'vedeu/support/registrar'
 
@@ -121,7 +126,6 @@ require 'vedeu/output/view'
 
 require 'vedeu/support/grid'
 require 'vedeu/support/menu'
-require 'vedeu/support/cursor'
 
 require 'vedeu/input/input'
 

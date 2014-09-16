@@ -26,26 +26,6 @@ module Vedeu
         attributes[:geometry][:centred] = value
       end
 
-      # Define the cursor visibility for an interface. A `true` value will show
-      # the cursor, whilst `false` will hide it.
-      #
-      # @api public
-      # @param value [Boolean]
-      #
-      # @example
-      #   interface 'my_interface' do
-      #     cursor true
-      #     ...
-      #
-      # @return [API::Interface]
-      def cursor(value)
-        unless value.is_a?(TrueClass) || value.is_a?(FalseClass)
-          fail InvalidSyntax, 'Argument must be `true` or `false` for cursor.'
-        end
-
-        attributes[:cursor] = value
-      end
-
       # To maintain performance interfaces can be delayed from refreshing too
       # often, the reduces artefacts particularly when resizing the terminal
       # screen.

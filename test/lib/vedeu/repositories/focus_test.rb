@@ -72,14 +72,24 @@ module Vedeu
     end
 
     describe '.registered?' do
-      it '' do
-        skip
+      it 'returns false when there are no interfaces registered' do
+        Focus.registered?('thallium').must_equal(false)
+      end
+
+      it 'returns false when the named interface is not registered' do
+        Focus.add({ name: 'thallium' })
+        Focus.registered?('lead').must_equal(false)
+      end
+
+      it 'returns true if the named interface is registered' do
+        Focus.add({ name: 'lead' })
+        Focus.registered?('lead').must_equal(true)
       end
     end
 
     describe '.reset' do
-      it '' do
-        skip
+      it 'returns an empty collection with no focussed interfaces stored' do
+        Focus.reset.must_equal([])
       end
     end
   end

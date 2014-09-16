@@ -144,7 +144,6 @@ module Vedeu
             colour: {},
             style: "",
             geometry: {},
-            cursor: true,
             delay: 0.0,
             parent: {}
           }]
