@@ -44,14 +44,6 @@ module Vedeu
       {}
     end
 
-    # Returns the complete escape sequence which this composition renders to.
-    # This is used by {Vedeu::Terminal.output} to draw the view.
-    #
-    # @return [String]
-    def to_s
-      interfaces.map(&:to_s).join
-    end
-
     private
 
     # The default values for a new instance of Composition.
