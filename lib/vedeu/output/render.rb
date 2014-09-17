@@ -57,9 +57,9 @@ module Vedeu
     # @api private
     # @return [Array]
     def processed_lines
-      return [] unless lines.any? { |line| line.streams.any? }
+      return [] unless visible_lines.any? { |line| line.streams.any? }
 
-      lines.map do |line|
+      visible_lines.map do |line|
         if exceeds_width?(line)
           line_length = 0
           new_streams = []
@@ -141,14 +141,22 @@ module Vedeu
       text.chomp.slice(0...value)
     end
 
-    # Provides a collection of lines associated with the interface.
+    # Provides the collection of visible lines associated with the interface.
     # If the option `:top` was set, we will start at that line. Any lines
     # outside of the height will not be rendered.
     #
     # @api private
     # @return [Array]
+    def visible_lines
+      lines[top..height]
+    end
+
+    # Provides the collection of lines associated with the interface.
+    #
+    # @api private
+    # @return [Array]
     def lines
-      interface.lines[top..height]
+      interface.lines
     end
 
     # Provides the currently available height of the interface.
