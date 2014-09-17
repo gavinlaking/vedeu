@@ -42,6 +42,16 @@ module Vedeu
       end
     end
 
+    # Returns a boolean indicating whether the named interface is registered.
+    #
+    # @api private
+    # @return [Boolean]
+    def registered?(name)
+      return false if storage.empty?
+
+      storage.keys.include?(name)
+    end
+
     # Perform an action (moving, showing or hiding) and save the new cursor
     # state.
     #
