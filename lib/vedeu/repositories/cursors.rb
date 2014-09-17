@@ -1,7 +1,7 @@
 module Vedeu
 
-  # Repository for storing, retrieving and manipulating the cursor position of
-  # an interface.
+  # Repository for storing, retrieving and manipulating the cursor position and
+  # visibility for an interface.
   #
   # @api private
   module Cursors
@@ -19,7 +19,10 @@ module Vedeu
     Vedeu.event(:_cursor_show_)    { Cursors.use(:show)       }
     Vedeu.event(:_cursor_refresh_) { Cursors.use(:refresh)    }
 
+    # Adds an interface to the cursors repository.
+    #
     # @param attributes [Hash]
+    # @return [Hash]
     def add(attributes)
       return false unless defined_value?(attributes[:name])
 
