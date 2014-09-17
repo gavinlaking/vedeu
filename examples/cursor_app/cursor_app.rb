@@ -17,15 +17,15 @@ class VedeuCursorApp
     centred true
     colour  foreground: '#ff0000', background: '#000000'
     height  4
-    width   2
+    width   12
   end
 
   interface 'krypton' do
     centred false
     colour  foreground: '#ffff00', background: '#000000'
     height  4
-    width   4
-    y       { use('iron').top }
+    width   12
+    y       { use('iron').south }
     x       { use('iron').east(1) }
   end
 
@@ -33,9 +33,18 @@ class VedeuCursorApp
     centred false
     colour  foreground: '#ff00ff', background: '#000000'
     height  4
-    width   4
-    y       { use('iron').top }
-    x       { use('iron').west(5) }
+    width   12
+    y       { use('iron').north(5) }
+    x       { use('iron').west(13) }
+  end
+
+  interface 'argon' do
+    centred  false
+    colour   foreground: '#00ff00', background: '#000000'
+    height   4
+    width    12
+    y        { use('iron').south }
+    x        { use('iron').west(13) }
   end
 
   keys do
@@ -47,23 +56,24 @@ class VedeuCursorApp
 
   render do
     view 'iron' do
-      line do
-        text 'Fe'
-      end
+      line 'shift+tab to'
+      line 'move to the'
+      line 'previous one'
     end
     view 'francium' do
-      line do
-        stream do
-          text 'Fr'
-          align :centre
-          width 4
-        end
-      end
+      line 'Press tab to'
+      line 'move to next'
+      line 'interface or'
     end
     view 'krypton' do
-      line do
-        text 'Kr'
-      end
+      line 'Position is'
+      line 'remembered'
+      line 'between'
+      line 'interfaces.'
+    end
+    view 'argon' do
+      line 'To exit this'
+      line 'just press Q'
     end
   end
 
