@@ -139,10 +139,10 @@ module Vedeu
         {
           interfaces: [{
             name: "some_interface",
-            group: "",
+            group: '',
             lines: [],
             colour: {},
-            style: "",
+            style: '',
             geometry: {},
             delay: 0.0,
             parent: {}

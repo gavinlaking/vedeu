@@ -17,7 +17,7 @@ module Vedeu
             Terminal.open do
               print "Hello from raw mode!"
             end
-          end.must_equal(["Hello from raw mode!", ""])
+          end.must_equal(['Hello from raw mode!', ''])
         end
       end
 
@@ -27,7 +27,7 @@ module Vedeu
             Terminal.open do
               print "Hello from cooked mode!"
             end
-          end.must_equal(["Hello from cooked mode!", ""])
+          end.must_equal(['Hello from cooked mode!', ''])
         end
       end
     end

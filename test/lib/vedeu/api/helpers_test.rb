@@ -48,7 +48,7 @@ module Vedeu
           HelpersTestClass.new.style do
             #...
           end.must_equal(
-            [{ colour: {}, style: [], text: "", width: nil, align: :left, parent: nil, }]
+            [{ colour: {}, style: [], text: '', width: nil, align: :left, parent: nil, }]
           )
         end
 
@@ -60,7 +60,7 @@ module Vedeu
               {
                 colour: {},
                 style: ['italic'],
-                text: "",
+                text: '',
                 width: nil,
                 align: :left,
                 parent: nil,
@@ -77,7 +77,7 @@ module Vedeu
               {
                 colour: {},
                 style: ['italic', 'blink'],
-                text: "",
+                text: '',
                 width: nil,
                 align: :left,
                 parent: nil,

@@ -31,17 +31,17 @@ module Vedeu
     # @see KeymapValidator.check
     def check
       if system_key?(key)
-        [false, "#{fail_message(key)} by the system."]
+        [false, fail_message(key) + ' by the system.']
 
       elsif global_key?(key)
-        [false, "#{fail_message(key)} as a global key."]
+        [false, fail_message(key) + ' as a global key.']
 
       elsif interface_key?(key, interface)
         if defined_value?(interface)
-          [false, "#{fail_message(key)} by this interface."]
+          [false, fail_message(key) + ' by this interface.']
 
         else
-          [false, "#{fail_message(key)} by another interface and therefore " \
+          [false, fail_message(key) + ' by another interface and therefore ' \
                   'cannot be global.']
 
         end

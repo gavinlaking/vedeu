@@ -667,7 +667,7 @@
 #                   streams: [
 #                     {
 #                       colour: {
-#                         foreground: "#ffff00"
+#                         foreground: '#ffff00'
 #                       },
 #                       style: [],
 #                       text: "▲",
@@ -678,7 +678,7 @@
 #                       text: " Prev",
 #                     }, {
 #                       colour: {
-#                         foreground: "#ffff00"
+#                         foreground: '#ffff00'
 #                       },
 #                       style: [],
 #                       text: "▼",
@@ -689,7 +689,7 @@
 #                       text: " Next",
 #                     }, {
 #                       colour: {
-#                         foreground: "#ffff00"
+#                         foreground: '#ffff00'
 #                       },
 #                       style: [],
 #                       text: "↲",
@@ -700,7 +700,7 @@
 #                       text: " Select",
 #                     }, {
 #                       colour: {
-#                         foreground: "#ffff00"
+#                         foreground: '#ffff00'
 #                       },
 #                       style: [],
 #                       text: "⎕",
@@ -711,7 +711,7 @@
 #                       text: " Pause",
 #                     }, {
 #                       colour: {
-#                         foreground: "#ffff00"
+#                         foreground: '#ffff00'
 #                       },
 #                       style: [],
 #                       text: "Q",

@@ -21,10 +21,10 @@ module Vedeu
               group: '',
               lines: [],
               colour: {
-                foreground: "#aadd00",
-                background: "#222222"
+                foreground: '#aadd00',
+                background: '#222222'
               },
-              style: "",
+              style: '',
               geometry: {},
               delay: 0.0,
               parent: nil,
@@ -62,10 +62,10 @@ module Vedeu
               y      use('my_interface').south
             end.must_equal({
               name: "my_other_interface",
-              group: "",
+              group: '',
               lines: [],
               colour: {},
-              style: "",
+              style: '',
               geometry: {
                 y: 11
               },
@@ -85,7 +85,7 @@ module Vedeu
               group: '',
               lines: [],
               colour: {},
-              style: "",
+              style: '',
               geometry: {},
               delay: 1.0,
               parent: nil,
@@ -98,11 +98,11 @@ module Vedeu
             group 'my_group'
           end.must_equal(
             {
-              name: "",
+              name: '',
               group: "my_group",
               lines: [],
               colour: {},
-              style: "",
+              style: '',
               geometry: {},
               delay: 0.0,
               parent: nil,
@@ -171,20 +171,20 @@ module Vedeu
           interface.must_be_instance_of(API::Interface)
           interface.attributes.must_equal(
             {
-              name: "carbon",
-              group: "",
+              name: 'carbon',
+              group: '',
               lines: [
                 {
                   colour: {},
                   streams: {
-                    text: ""
+                    text: ''
                   },
                   style: [],
                   parent: interface.view_attributes,
                 }
               ],
               colour: {},
-              style: "",
+              style: '',
               geometry: {},
               delay: 0.0,
               parent: nil,
@@ -199,8 +199,8 @@ module Vedeu
           interface.must_be_instance_of(API::Interface)
           interface.attributes.must_equal(
             {
-              name: "carbon",
-              group: "",
+              name: 'carbon',
+              group: '',
               lines: [
                 {
                   colour: {},
@@ -212,7 +212,7 @@ module Vedeu
                 }
               ],
               colour: {},
-              style: "",
+              style: '',
               geometry: {},
               delay: 0.0,
               parent: nil,
@@ -230,7 +230,7 @@ module Vedeu
           interface.attributes.must_equal(
             {
               name: "silicon",
-              group: "",
+              group: '',
               lines: [
                 {
                   colour: {},
@@ -244,7 +244,7 @@ module Vedeu
                 }
               ],
               colour: {},
-              style: "",
+              style: '',
               geometry: {},
               delay: 0.0,
               parent: nil

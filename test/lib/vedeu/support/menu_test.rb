@@ -109,9 +109,9 @@ module Vedeu
         menu.next_item
         menu.view.must_equal(
           [
-            [false, true, "carbon"],
-            [false, false, "nitrogen"],
-            [false, false, "oxygen"]
+            [false, true, 'carbon'],
+            [false, false, 'nitrogen'],
+            [false, false, 'oxygen']
           ]
         )
       end
