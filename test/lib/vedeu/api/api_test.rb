@@ -28,6 +28,12 @@ module Vedeu
       end
     end
 
+    describe '.focus' do
+      it 'sets the named interface to be focussed' do
+        skip
+      end
+    end
+
     describe '.height' do
       it 'returns the terminal height' do
         IO.console.stub(:winsize, [24, 40]) do

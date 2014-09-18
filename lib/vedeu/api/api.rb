@@ -81,6 +81,15 @@ module Vedeu
       end
     end
 
+    # Used after defining an interface or interfaces to set the initially
+    # focussed interface.
+    #
+    # @param name [String] The interface to focus; must be defined.
+    # @return []
+    def focus(name)
+      Vedeu.trigger(:_focus_by_name, name)
+    end
+
     # Find out how many lines the current terminal is able to display.
     #
     # @api public
