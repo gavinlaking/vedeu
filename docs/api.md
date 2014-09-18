@@ -103,6 +103,7 @@ class OtherClassInYourApplication
 #### Miscellany
 
 - defined
+- focus
 - height
 - log
 - resize
