@@ -23,11 +23,32 @@ module Vedeu
       # @return [Symbol]
       def align(value)
         unless [:left, :right, :centre].include?(value.to_sym)
-          fail InvalidSyntax, '`align` requires a value of `:left`, `:right` ' \
+          fail InvalidSyntax, '`align` requires a value of `left`, `right` ' \
                               'or `centre`.'
         end
 
         attributes[:align] = value.to_sym
+      end
+
+      # Syntactic sugar used with {API::Stream.align} to left align content.
+      #
+      # @return [Symbol]
+      def left
+        :left
+      end
+
+      # Syntactic sugar used with {API::Stream.align} to right align content.
+      #
+      # @return [Symbol]
+      def right
+        :right
+      end
+
+      # Syntactic sugar used with {API::Stream.align} to centre align content.
+      #
+      # @return [Symbol]
+      def centre
+        :centre
       end
 
       # Add textual data to the stream via this method.
