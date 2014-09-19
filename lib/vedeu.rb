@@ -68,8 +68,10 @@ require 'logger'
 require 'optparse'
 require 'set'
 
-require 'vedeu/configuration'
 require 'vedeu/support/common'
+require 'vedeu/configuration/cli'
+require 'vedeu/configuration/api'
+require 'vedeu/configuration'
 require 'vedeu/support/log'
 require 'vedeu/support/trace'
 

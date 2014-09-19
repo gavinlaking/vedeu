@@ -6,6 +6,12 @@ module Vedeu
 
     before { Event.stubs(:new).returns(event) }
 
+    describe '.configure' do
+      it 'raises an exception unless a block was given' do
+        proc { Vedeu.configure }.must_raise(InvalidSyntax)
+      end
+    end
+
     describe '.defined' do
       it 'returns a reference to the API::Defined module' do
         Vedeu.defined.must_equal(Vedeu::API::Defined)

@@ -6,6 +6,17 @@ module Vedeu
   # module expose Vedeu's core functionality.
   module API
 
+    # Configure Vedeu using a simple configuration DSL.
+    #
+    # @api public
+    # @see Vedeu::Configuration::API
+    # @return []
+    def configure(&block)
+      fail InvalidSyntax, '`configure` requires a block.' unless block_given?
+
+      Vedeu::Configuration.configure(&block)
+    end
+
     # Returns information about various registered subsystems when used with
     # a defined method within {Vedeu::API::Defined}.
     #

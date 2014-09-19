@@ -1,74 +1,30 @@
 module Vedeu
 
-  # Allows the customisation of Vedeu's behaviour through command-line
-  # arguments.
+  # Allows the customisation of Vedeu's behaviour through the configuration API
+  # or command-line arguments.
+
+  # Provides access to Vedeu's configuration, which was set with sensible
+  # defaults (influenced by environment variables), overridden by client
+  # application settings (via the configuration API), or any command-line
+  # arguments provided.
   #
   # @api public
   module Configuration
 
     extend self
 
-    # Parses arguments passed on the command-line or via {Vedeu::Launcher} into
-    # options used by Vedeu to affect certain behaviours.
+    # Configure Vedeu with sensible defaults. If the client application sets
+    # options, override the defaults with those, and if command-line arguments
+    # are provided at application invocation, override any options with the
+    # arguments provided.
     #
     # @param args [Array]
+    # @param block [Proc]
     # @return [Hash]
-    def configure(args = [])
-      parser = OptionParser.new do |opts|
-        opts.banner = "Usage: #{$PROGRAM_NAME} [options]"
+    def configure(args = [], &block)
+      options.merge!(API.configure(&block)) if block_given?
 
-        opts.on('-i', '--interactive',
-                'Run the application in interactive mode (default).') do
-          options[:interactive] = true
-        end
-
-        opts.on('-I', '--noninteractive', '--standalone',
-                'Run the application non-interactively; i.e. not requiring ' \
-                'intervention from the user.') do
-          options[:interactive] = false
-        end
-
-        opts.on('-1', '--run-once',
-                'Run the application loop once.') do
-          options[:once] = true
-        end
-
-        opts.on('-n', '--run-many',
-                'Run the application loop continuously (default).') do
-          options[:once] = false
-        end
-
-        opts.on('-c', '--cooked', 'Run application in cooked mode.') do
-          options[:terminal_mode] = :cooked
-        end
-
-        opts.on('-r', '--raw', 'Run application in raw mode (default).') do
-          options[:terminal_mode] = :raw
-        end
-
-        opts.on('-d', '--debug', 'Run application with debugging on.') do
-          options[:debug] = true
-        end
-
-        opts.on('-D', '--trace', 'Run application with debugging on with ' \
-                                 'method and event tracing (noisy!).') do
-          options[:debug] = true
-          options[:trace] = true
-        end
-
-        opts.on('-C', '--colour-mode [COLOURS]', Integer,
-                'Run application in either `8`, `16`, `256` or `16777216` ' \
-                'colour mode.') do |colours|
-          if [8, 16, 256, 16777216].include?(colours)
-            options[:colour_mode] = colours
-
-          else
-            options[:colour_mode] = 8
-
-          end
-        end
-      end
-      parser.parse!(args)
+      options.merge!(CLI.configure(args)) if args.any?
 
       options
     end
@@ -133,13 +89,6 @@ module Vedeu
     end
     alias_method :trace, :trace?
 
-    # Returns all the options current configured.
-    #
-    # @return [Hash]
-    def options
-      @options ||= defaults
-    end
-
     # Resets all options to Vedeu defaults.
     #
     # @return [Hash]
@@ -148,6 +97,13 @@ module Vedeu
     end
 
     private
+
+    # Returns all the options current configured.
+    #
+    # @return [Hash]
+    def options
+      @options ||= defaults
+    end
 
     # The Vedeu default options, which of course are influenced by enviroment
     # variables also.
@@ -161,7 +117,7 @@ module Vedeu
         interactive:   true,
         once:          false,
         system_keys:   default_system_keys,
-        terminal_mode: :raw,  #cooked
+        terminal_mode: :raw,
         trace:         detect_trace_mode,
       }
     end
