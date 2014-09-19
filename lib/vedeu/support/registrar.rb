@@ -41,7 +41,6 @@ module Vedeu
 
     private
 
-    # Client application defined settings for interfaces etc.
     attr_reader :attributes
 
     # At present, validates that attributes has a `:name` key that is not nil or

@@ -44,7 +44,6 @@ module Vedeu
 
     private
 
-    # @return [Interface]
     attr_reader :interface
 
     # The client application may have created a line that us too long for the

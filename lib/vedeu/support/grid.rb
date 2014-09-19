@@ -47,7 +47,6 @@ module Vedeu
 
     private
 
-    # @return [Fixnum]
     attr_reader :value
 
     # @api private

@@ -60,7 +60,6 @@ module Vedeu
 
     private
 
-    # @return [Fixnum|NilClass|Symbol|String]
     attr_reader :colour
 
     # @api private
