@@ -83,11 +83,13 @@ require 'vedeu/repositories/cursors'
 
 require 'vedeu/support/registrar'
 
+require 'vedeu/output/area'
 require 'vedeu/output/clear'
 require 'vedeu/output/compositor'
 require 'vedeu/output/refresh'
 require 'vedeu/output/render'
 require 'vedeu/output/view'
+require 'vedeu/output/viewport'
 
 require 'vedeu/support/grid'
 require 'vedeu/support/menu'
