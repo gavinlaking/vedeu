@@ -8,7 +8,7 @@ module Vedeu
   # application settings (via the configuration API), or any command-line
   # arguments provided.
   #
-  # @api public
+  # @api private
   module Configuration
 
     extend self

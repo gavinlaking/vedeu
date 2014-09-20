@@ -2,7 +2,7 @@ module Vedeu
 
   # Orchestrates the running of the main application loop.
   #
-  # @api public
+  # @api private
   class Application
     # :nocov:
     class << self

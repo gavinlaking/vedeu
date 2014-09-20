@@ -2,6 +2,8 @@ module Vedeu
   module API
 
     # @see Vedeu::Composition
+    #
+    # @api public
     class Composition < Vedeu::Composition
 
       # Directly write a view buffer to the terminal.

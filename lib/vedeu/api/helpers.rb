@@ -3,6 +3,8 @@ module Vedeu
 
     # Provides colour and style helpers for use in the {API::Interface},
     # {API::Line} and {API::Stream} classes.
+    #
+    # @api public
     module Helpers
 
       # Define either or both foreground and background colours for an

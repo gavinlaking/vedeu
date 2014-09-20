@@ -7,6 +7,7 @@ module Vedeu
   #
   # @deprecated May disappear in 0.3.0. Prefer {Vedeu::API#render} instead.
   # @see Vedeu::API#render
+  # @api private
   class View
 
     include Vedeu::API

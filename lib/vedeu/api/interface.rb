@@ -2,6 +2,8 @@ module Vedeu
   module API
 
     # Provides methods to be used to define interfaces or views.
+    #
+    # @api public
     class Interface < Vedeu::Interface
 
       include Helpers

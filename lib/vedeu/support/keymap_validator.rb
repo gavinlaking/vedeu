@@ -3,6 +3,7 @@ module Vedeu
   # Validates that a given key is can be used and is not already in-use, either
   # by the same interface, globally or as a system key.
   #
+  # @api private
   class KeymapValidator
 
     include Common

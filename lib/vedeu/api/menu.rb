@@ -3,6 +3,8 @@ module Vedeu
 
     # Provides the mechanism to create menus within client applications and use
     # events to drive them.
+    #
+    # @api public
     class Menu
 
       include Common

@@ -2,6 +2,8 @@ module Vedeu
   module API
 
     # Provides methods to be used to define views.
+    #
+    # @api public
     class Line < Vedeu::Line
 
       include Helpers
