@@ -15,10 +15,6 @@ Events described in this document assume that you have included Vedeu in your cl
 
 System events generally control the internal state of Vedeu with respects to your application. They are soft-namespaced using underscores.
 
-### `:_cleanup_`
-
-This event is fired by Vedeu when `:_exit_` is triggered. You can hook into this to perform a special action before the application terminates. Saving the user's work, session or preferences might be popular here.
-
 ### `:_clear_`
 
 Clears the whole terminal space.
@@ -66,10 +62,6 @@ When triggered will focus the next interface and restore the cursor position and
 ### `:_focus_prev_`
 
 When triggered will focus the previous interface and restore the cursor position and visibility.
-
-### `:_initialize_`
-
-Special event which Vedeu triggers when it is ready to enter the main loop. Client applications can listen for this event and perform some action(s), like render the first screen, interface or make a sound.
 
 ### `:_keypress_`
 
@@ -153,6 +145,17 @@ System events can be handled or triggered by your application also, but overridi
 
 User events allow you to orchestrate behaviour within your application, ie. the user presses a specific key, you trigger an event to make something happen. Eg. pressing 'p' instructs the player to play.
 
+## Pre-defined User Events
+
+Vedeu pre-defines a few user events, which client applications can listen for, or trigger themselves.
+
+### `:_cleanup_`
+
+Vedeu triggers this event when `:_exit_` is triggered. You can hook into this to perform a special action before the application terminates. Saving the user's work, session or preferences might be popular here.
+
+### `:_initialize_`
+
+Vedeu triggers this event when it is ready to enter the main loop. Client applications can listen for this event and perform some action(s), like render the first screen, interface or make a sound.
 
 #### How to define user events
 
