@@ -79,20 +79,20 @@ module Vedeu
     describe '.log' do
       it 'writes the message to the log file when debugging is enabled' do
         Configuration.stub(:debug?, true) do
-          Vedeu.log('some message...').must_equal(true)
+          Vedeu.log('Testing debugging to log').must_equal(true)
         end
       end
 
       it 'returns nil when debugging is disabled' do
         Configuration.stub(:debug?, false) do
-          Vedeu.log('some message...').must_equal(nil)
+          Vedeu.log('some message not logged...').must_equal(nil)
         end
       end
 
       it 'write the message to the log file when the `force` argument ' \
          'evaluates to true' do
         Configuration.stub(:debug?, false) do
-          Vedeu.log('some message...', true).must_equal(true)
+          Vedeu.log('Testing forced debugging to log', true).must_equal(true)
         end
       end
     end
@@ -112,7 +112,7 @@ module Vedeu
     end
 
     describe '.resize' do
-      it 'triggers the :_clear_ and :_refresh_ events' do
+      it 'triggers the :_clear_, :_refresh_ and :_cursor_refresh_ events' do
         skip
       end
     end
@@ -139,7 +139,7 @@ module Vedeu
           .must_raise(Vedeu::InterfaceNotFound)
       end
 
-      it 'returns' do
+      it 'returns an instance of the named interface' do
         Vedeu.interface('aluminium')
 
         Vedeu.use('aluminium').must_be_instance_of(Vedeu::Interface)
