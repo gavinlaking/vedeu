@@ -75,8 +75,8 @@ module Vedeu
     # For an interactive application we capture input, (usually from the user),
     # and continue the main loop.
     #
-    # TODO: It appears for non-interactive applications, we do nothing. Must
-    # investigate.
+    # @todo It appears for non-interactive applications, we do nothing. Must
+    #   investigate.
     #
     # @api private
     # @return []
@@ -85,7 +85,7 @@ module Vedeu
         Input.capture
 
       else
-        # TODO: What should happen here?
+
 
       end
     end

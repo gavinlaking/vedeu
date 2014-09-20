@@ -7,7 +7,7 @@ module Vedeu
       include Helpers
 
       # Specify the alignment of the stream within the line. Useful in
-      # combination with #width to provide simple formatting effects.
+      # combination with {#width} to provide simple formatting effects.
       #
       # @api public
       # @param value [Symbol] `:left`, `:centre` and `right` are valid values
@@ -30,21 +30,21 @@ module Vedeu
         attributes[:align] = value.to_sym
       end
 
-      # Syntactic sugar used with {API::Stream.align} to left align content.
+      # Syntactic sugar used with {#align} to left align content.
       #
       # @return [Symbol]
       def left
         :left
       end
 
-      # Syntactic sugar used with {API::Stream.align} to right align content.
+      # Syntactic sugar used with {#align} to right align content.
       #
       # @return [Symbol]
       def right
         :right
       end
 
-      # Syntactic sugar used with {API::Stream.align} to centre align content.
+      # Syntactic sugar used with {#align} to centre align content.
       #
       # @return [Symbol]
       def centre

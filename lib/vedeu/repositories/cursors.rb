@@ -58,7 +58,6 @@ module Vedeu
     # Perform an action (moving, showing or hiding) and save the new cursor
     # state.
     #
-    # @param name [String]
     # @param action [Symbol] A symbol representing the method name to be called
     #   on the Cursor instance.
     # @return [String] The escape sequence sent to the Terminal on completion

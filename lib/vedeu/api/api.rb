@@ -116,11 +116,12 @@ module Vedeu
     # command. This provides the means for you to define your application's
     # views without their content.
     #
+    # @todo More documentation required.
     # @api public
     # @param name  [String] The name of the interface. Used to reference the
     #   interface throughout your application's execution lifetime.
     # @param block [Proc] A set of attributes which define the features of the
-    #   interface. TODO: More help.
+    #   interface.
     #
     # @example
     #   Vedeu.interface 'my_interface' do
@@ -282,8 +283,9 @@ module Vedeu
       Vedeu.events.unevent(name)
     end
 
-    # Use attributes of another interface whilst defining one. TODO: More help.
+    # Use attributes of another interface whilst defining one.
     #
+    # @todo More documentation required.
     # @api public
     # @param name [String] The name of the interface you wish to use. Typically
     #   used when defining interfaces to share geometry.
@@ -299,8 +301,9 @@ module Vedeu
       Vedeu::Interface.new(Vedeu::Interfaces.find(name))
     end
 
-    # Define a view (content) for an interface. TODO: More help.
+    # Define a view (content) for an interface.
     #
+    # @todo More documentation required.
     # @api public
     # @param name [String] The name of the interface you are targetting for this
     #   view.
