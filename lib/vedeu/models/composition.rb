@@ -1,6 +1,8 @@
 module Vedeu
 
   # A composition is a collection of interfaces.
+  #
+  # @api private
   class Composition
 
     attr_reader :attributes
@@ -42,14 +44,6 @@ module Vedeu
     # @return [Hash]
     def view_attributes
       {}
-    end
-
-    # Returns the complete escape sequence which this composition renders to.
-    # This is used by {Vedeu::Terminal.output} to draw the view.
-    #
-    # @return [String]
-    def to_s
-      interfaces.map(&:to_s).join
     end
 
     private

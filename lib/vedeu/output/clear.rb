@@ -36,7 +36,6 @@ module Vedeu
 
     private
 
-    # @return [Interface]
     attr_reader :interface
 
     # @api private

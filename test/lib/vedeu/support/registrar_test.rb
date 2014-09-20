@@ -49,6 +49,12 @@ module Vedeu
         Interfaces.registered?('mendelevium').must_equal(true)
       end
 
+      it 'sends the attributes to the Cursors repository' do
+        Registrar.record(attributes)
+
+        Cursors.registered?('mendelevium').must_equal(true)
+      end
+
       it 'sends the attributes to the Groups repository' do
         Registrar.record(attributes)
 

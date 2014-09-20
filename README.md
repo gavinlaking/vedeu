@@ -92,7 +92,6 @@ interface 'main' do
   width  10 # see notes below
   height 10
   colour foreground: '#ffffff', background: '#000000'
-  cursor false
 end
 ```
 
@@ -108,7 +107,6 @@ Note: not setting a width or height will set the values to the terminal's report
 
 - `foreground` sets the default foreground colour. (See Colours)
 - `background` sets the default background colour.
-- `cursor` is a Boolean specifying whether the cursor should show.
 
 
 ### Events
@@ -176,6 +174,7 @@ Pull requests are very welcome! Please try to follow these simple rules if appli
 * Update the [README](https://github.com/gavinlaking/vedeu/blob/master/README.md).
 * Please **do not change** the version number.
 
+Any branch on the repository that is not `master` is probably experimental; do not rely on anything in these branches.
 
 ### General contribution help
 

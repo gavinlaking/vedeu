@@ -2,6 +2,8 @@ module Vedeu
 
   # Converts the style value or value collection into a terminal escape
   # sequence. Unrecognised values are discarded- an empty string is returned.
+  #
+  # @api private
   class Style
 
     include Vedeu::Common

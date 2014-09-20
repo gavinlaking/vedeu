@@ -3,6 +3,7 @@ require 'time'
 
 module Vedeu
   # :nocov:
+  # @api private
   class MonoLogger < Logger
     # Create a trappable Logger instance.
     #
@@ -86,6 +87,8 @@ module Vedeu
 
   # Provides the ability to Log anything to the Vedeu log file which is
   # hard-coded to reside in `$HOME/.vedeu/vedeu.log`.
+  #
+  # @api private
   class Log
 
     # @return [TrueClass]

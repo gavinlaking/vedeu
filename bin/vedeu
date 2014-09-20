@@ -1,9 +1,13 @@
 #!/usr/bin/env ruby
-$:.unshift(File.dirname(__FILE__) + '/../lib') unless $:.include?(File.dirname(__FILE__) + '/../lib')
+$LOAD_PATH.unshift(File.dirname(__FILE__) + '/../lib') unless $LOAD_PATH.include?(File.dirname(__FILE__) + '/../lib')
 
 -> { its -> { a } }
 trap('INT') { exit! }
 
-require 'vedeu'
-
-Vedeu::Launcher.new(ARGV.dup).execute!
+puts ''
+puts 'Vedeu is a Ruby gem. This executable serves for a future in which ' \
+     'Vedeu can generate a starting point for your terminal-based GUI '   \
+     'application.'
+puts ''
+puts 'Please see: https://github.com/gavinlaking/vedeu for more details.'
+puts ''

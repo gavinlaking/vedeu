@@ -2,12 +2,14 @@ module Vedeu
   module API
 
     # Provides methods to be used to define views.
+    #
+    # @api public
     class Stream < Vedeu::Stream
 
       include Helpers
 
       # Specify the alignment of the stream within the line. Useful in
-      # combination with #width to provide simple formatting effects.
+      # combination with {#width} to provide simple formatting effects.
       #
       # @api public
       # @param value [Symbol] `:left`, `:centre` and `right` are valid values
@@ -23,11 +25,32 @@ module Vedeu
       # @return [Symbol]
       def align(value)
         unless [:left, :right, :centre].include?(value.to_sym)
-          fail InvalidSyntax, '`align` requires a value of `:left`, `:right` ' \
+          fail InvalidSyntax, '`align` requires a value of `left`, `right` ' \
                               'or `centre`.'
         end
 
         attributes[:align] = value.to_sym
+      end
+
+      # Syntactic sugar used with {#align} to left align content.
+      #
+      # @return [Symbol]
+      def left
+        :left
+      end
+
+      # Syntactic sugar used with {#align} to right align content.
+      #
+      # @return [Symbol]
+      def right
+        :right
+      end
+
+      # Syntactic sugar used with {#align} to centre align content.
+      #
+      # @return [Symbol]
+      def centre
+        :centre
       end
 
       # Add textual data to the stream via this method.

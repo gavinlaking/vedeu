@@ -11,13 +11,14 @@ module Vedeu
   # :black, :red, :green, :yellow, :blue, :magenta, :cyan, :white, :default.
   #
   # When a number between 0 and 255 is provided, Vedeu will use the terminal
-  # colour corresponding with that colour. TODO: Create chart.
+  # colour corresponding with that colour.
   #
   # Finally, when provided a CSS/HTML colour string e.g. '#ff0000', Vedeu will
   # translate that to the 8-bit escape sequence or if you have a capable
   # terminal and the `VEDEU_TERM=xterm-truecolor` environment variable set,
   # a 24-bit representation.
   #
+  # @todo More documentation required (create a fancy chart!)
   # @api private
   class ColourTranslator
 
@@ -60,7 +61,6 @@ module Vedeu
 
     private
 
-    # @return [Fixnum|NilClass|Symbol|String]
     attr_reader :colour
 
     # @api private

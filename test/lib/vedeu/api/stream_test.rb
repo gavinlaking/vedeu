@@ -17,6 +17,24 @@ module Vedeu
         end
       end
 
+      describe '#left' do
+        it 'returns a Symbol' do
+          Stream.new.left.must_equal(:left)
+        end
+      end
+
+      describe '#right' do
+        it 'returns a Symbol' do
+          Stream.new.right.must_equal(:right)
+        end
+      end
+
+      describe '#centre' do
+        it 'returns a Symbol' do
+          Stream.new.centre.must_equal(:centre)
+        end
+      end
+
       describe '#text' do
         it 'returns the value assigned' do
           Stream.new.text('Some text...').must_equal('Some text...')

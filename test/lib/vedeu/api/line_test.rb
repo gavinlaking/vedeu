@@ -48,28 +48,28 @@ module Vedeu
       describe '#foreground' do
         it 'returns the value assigned' do
           attrs = Line.new.foreground('#ff0000')
-          attrs.first[:colour].must_equal({ foreground: "#ff0000" })
+          attrs.first[:colour].must_equal({ foreground: '#ff0000' })
         end
 
         it 'returns the value assigned with a block' do
           attrs = Line.new.foreground('#00ff00') do
             # ...
           end
-          attrs.first[:colour].must_equal({ foreground: "#00ff00" })
+          attrs.first[:colour].must_equal({ foreground: '#00ff00' })
         end
       end
 
       describe '#background' do
         it 'returns the value assigned' do
           attrs = Line.new.background('#00ff00')
-          attrs.first[:colour].must_equal({ background: "#00ff00" })
+          attrs.first[:colour].must_equal({ background: '#00ff00' })
         end
 
         it 'returns the value assigned with a block' do
           attrs = Line.new.background('#0000ff') do
             # ...
           end
-          attrs.first[:colour].must_equal({ background: "#0000ff" })
+          attrs.first[:colour].must_equal({ background: '#0000ff' })
         end
       end
     end

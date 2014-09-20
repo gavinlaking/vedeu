@@ -3,22 +3,13 @@ module Vedeu
   # Calculates and provides interface geometry determined by both the client's
   # requirements and the terminal's current viewing area.
   #
-  # With terminal geometry, the origin is top-left, y = 1, x = 1.
+  # Geometry for Vedeu, as the same for ANSI terminals, has the origin at
+  # top-left, y = 1, x = 1. The 'y' coordinate is deliberately first.
   #
   # @api private
   class Geometry
 
-    # @return [Hash]
-    attr_reader :attributes
-
-    # @return [Boolean]
-    attr_reader :centred
-
-    # @return [Fixnum]
-    attr_reader :height
-
-    # @return [Fixnum]
-    attr_reader :width
+    attr_reader :attributes, :centred, :height, :width
 
     # Returns a new instance of Geometry.
     #
@@ -110,8 +101,8 @@ module Vedeu
       Esc.set_position(virtual_y[index], left, &block)
     end
 
-    # Returns a fixed or dynamic value depending on whether the interface is
-    # centred or not.
+    # Returns the top coordinate of the interface, a fixed or dynamic value
+    # depending on whether the interface is centred or not.
     #
     # @return [Fixnum]
     def top
@@ -139,8 +130,8 @@ module Vedeu
       top - value
     end
 
-    # Returns a fixed or dynamic value depending on whether the interface is
-    # centred or not.
+    # Returns the left coordinate of the interface, a fixed or dynamic value
+    # depending on whether the interface is centred or not.
     #
     # @return [Fixnum]
     def left
@@ -168,7 +159,8 @@ module Vedeu
       left - value
     end
 
-    # Returns a fixed or dynamic value depending on the value of {#top}.
+    # Returns the bottom coordinate of the interface, a fixed or dynamic value
+    # depending on the value of {#top}.
     #
     # @return [Fixnum]
     def bottom
@@ -190,8 +182,8 @@ module Vedeu
       bottom + value
     end
 
-    # Returns a fixed or dynamic value depending on whether the interface is
-    # centred or not.
+    # Returns the right coordinate of the interface, a fixed or dynamic value
+    # depending on the value of {#left}.
     #
     # @return [Fixnum]
     def right

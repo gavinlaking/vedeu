@@ -1,5 +1,5 @@
 # Monkey-patch Ruby's Fixnum to provide a columns method.
-# TODO: Don't monkey-patch because it is naughty.
+# @todo Don't monkey-patch because it is naughty.
 class Fixnum
 
   # Augment Fixnum to calculate column width in a grid-based layout.
@@ -47,7 +47,6 @@ module Vedeu
 
     private
 
-    # @return [Fixnum]
     attr_reader :value
 
     # @api private

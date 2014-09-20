@@ -5,6 +5,9 @@ module Vedeu
   # Raised when Vedeu attempts to access a named buffer that does not exist.
   BufferNotFound = Class.new(StandardError)
 
+  # Raised when a cursor cannot be found by name.
+  CursorNotFound = Class.new(StandardError)
+
   # Raised when trying to access a group of interfaces which do not exist by
   # this name.
   GroupNotFound = Class.new(StandardError)
@@ -65,8 +68,10 @@ require 'logger'
 require 'optparse'
 require 'set'
 
-require 'vedeu/configuration'
 require 'vedeu/support/common'
+require 'vedeu/configuration/cli'
+require 'vedeu/configuration/api'
+require 'vedeu/configuration/configuration'
 require 'vedeu/support/log'
 require 'vedeu/support/trace'
 
@@ -86,6 +91,7 @@ require 'vedeu/models/geometry'
 require 'vedeu/models/colour'
 require 'vedeu/models/style'
 require 'vedeu/models/interface'
+require 'vedeu/models/cursor'
 require 'vedeu/models/keymap'
 require 'vedeu/models/line'
 require 'vedeu/models/stream'
@@ -102,14 +108,15 @@ require 'vedeu/api/line'
 require 'vedeu/api/menu'
 require 'vedeu/api/stream'
 
+require 'vedeu/support/keymap_validator'
 require 'vedeu/repositories/menus'
-require 'vedeu/repositories/keymap_validator'
 require 'vedeu/repositories/keymaps'
 require 'vedeu/repositories/interfaces'
 require 'vedeu/repositories/groups'
 require 'vedeu/repositories/focus'
 require 'vedeu/repositories/events'
 require 'vedeu/repositories/buffers'
+require 'vedeu/repositories/cursors'
 
 require 'vedeu/support/registrar'
 
@@ -121,7 +128,6 @@ require 'vedeu/output/view'
 
 require 'vedeu/support/grid'
 require 'vedeu/support/menu'
-require 'vedeu/support/cursor'
 
 require 'vedeu/input/input'
 

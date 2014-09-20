@@ -31,7 +31,6 @@ module Vedeu
 
     private
 
-    # @return [String]
     attr_reader :name
 
     # Renders the buffer unless empty, otherwise clears the area which the

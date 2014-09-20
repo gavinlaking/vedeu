@@ -3,6 +3,8 @@ module Vedeu
 
     # Provides the mechanism to create menus within client applications and use
     # events to drive them.
+    #
+    # @api public
     class Menu
 
       include Common
@@ -60,7 +62,7 @@ module Vedeu
       #
       # @return [Vedeu::Menu]
       def items(collection = [])
-        attributes[:items] = Vedeu::Menu.new(collection)
+        attributes[:items] = collection
       end
 
       # The name of the menu. Used to reference the menu throughout your

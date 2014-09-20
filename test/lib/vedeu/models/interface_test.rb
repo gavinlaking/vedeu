@@ -47,7 +47,6 @@ module Vedeu
               width: 10,
               height: 15
             },
-            cursor: true,
             delay: 0.0,
             parent: nil
           }
@@ -76,16 +75,6 @@ module Vedeu
     describe '#geometry' do
       it 'returns the value' do
         interface.geometry.must_be_instance_of(Geometry)
-      end
-    end
-
-    describe '#cursor' do
-      it 'returns an escape sequence when the cursor is enabled (default)' do
-        Interface.new({ cursor: true }).cursor.must_equal("\e[?25h")
-      end
-
-      it 'returns an escape sequence when the cursor is disabled' do
-        Interface.new({ cursor: false }).cursor.must_equal("\e[?25l")
       end
     end
 

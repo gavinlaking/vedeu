@@ -3,14 +3,17 @@ module Vedeu
   # Converts the collection passed into a list of menu items which can be
   # navigated using the instance methods or events provided.
   #
+  # @api private
   class Menu
 
     # Returns a new instance of Menu.
     #
     # @param collection [Array]
+    # @param name [String]
     # @return [Menu]
-    def initialize(collection)
+    def initialize(collection, name = '')
       @collection = collection
+      @name       = name
       @current    = 0
       @selected   = nil
     end

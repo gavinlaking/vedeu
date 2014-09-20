@@ -21,12 +21,11 @@ module Vedeu
               group: '',
               lines: [],
               colour: {
-                foreground: "#aadd00",
-                background: "#222222"
+                foreground: '#aadd00',
+                background: '#222222'
               },
-              style: "",
+              style: '',
               geometry: {},
-              cursor: true,
               delay: 0.0,
               parent: nil,
             }
@@ -44,7 +43,6 @@ module Vedeu
               colour: {},
               style: "underline",
               geometry: {},
-              cursor: true,
               delay: 0.0,
               parent: nil,
             }
@@ -64,14 +62,13 @@ module Vedeu
               y      use('my_interface').south
             end.must_equal({
               name: "my_other_interface",
-              group: "",
+              group: '',
               lines: [],
               colour: {},
-              style: "",
+              style: '',
               geometry: {
                 y: 11
               },
-              cursor: true,
               delay: 0.0,
               parent: nil,
             })
@@ -88,9 +85,8 @@ module Vedeu
               group: '',
               lines: [],
               colour: {},
-              style: "",
+              style: '',
               geometry: {},
-              cursor: true,
               delay: 1.0,
               parent: nil,
             })
@@ -102,32 +98,12 @@ module Vedeu
             group 'my_group'
           end.must_equal(
             {
-              name: "",
+              name: '',
               group: "my_group",
               lines: [],
               colour: {},
-              style: "",
+              style: '',
               geometry: {},
-              cursor: true,
-              delay: 0.0,
-              parent: nil,
-            }
-          )
-        end
-
-        it 'allows the setting of the cursor for the interface to be shown ' \
-           'or hidden' do
-          Interface.build do
-            cursor false
-          end.must_equal(
-            {
-              name: "",
-              group: "",
-              lines: [],
-              colour: {},
-              style: "",
-              geometry: {},
-              cursor: false,
               delay: 0.0,
               parent: nil,
             }
@@ -158,32 +134,6 @@ module Vedeu
           end
 
           Vedeu.use('boron').attributes[:geometry][:centred].must_equal(false)
-        end
-      end
-
-      describe '#cursor' do
-        it 'raises an exception if the value is invalid' do
-          proc {
-            Vedeu.interface 'beryllium' do
-              cursor :invalid
-            end
-          }.must_raise(InvalidSyntax)
-        end
-
-        it 'sets the cursor to true (visible)' do
-          Vedeu.interface 'beryllium' do
-            cursor true
-          end
-
-          Vedeu.use('beryllium').attributes[:cursor].must_equal(true)
-        end
-
-        it 'sets the cursor to false (hidden)' do
-          Vedeu.interface 'beryllium' do
-            cursor false
-          end
-
-          Vedeu.use('beryllium').attributes[:cursor].must_equal(false)
         end
       end
 
@@ -221,22 +171,21 @@ module Vedeu
           interface.must_be_instance_of(API::Interface)
           interface.attributes.must_equal(
             {
-              name: "carbon",
-              group: "",
+              name: 'carbon',
+              group: '',
               lines: [
                 {
                   colour: {},
                   streams: {
-                    text: ""
+                    text: ''
                   },
                   style: [],
                   parent: interface.view_attributes,
                 }
               ],
               colour: {},
-              style: "",
+              style: '',
               geometry: {},
-              cursor: true,
               delay: 0.0,
               parent: nil,
             }
@@ -250,8 +199,8 @@ module Vedeu
           interface.must_be_instance_of(API::Interface)
           interface.attributes.must_equal(
             {
-              name: "carbon",
-              group: "",
+              name: 'carbon',
+              group: '',
               lines: [
                 {
                   colour: {},
@@ -263,9 +212,8 @@ module Vedeu
                 }
               ],
               colour: {},
-              style: "",
+              style: '',
               geometry: {},
-              cursor: true,
               delay: 0.0,
               parent: nil,
             }
@@ -282,7 +230,7 @@ module Vedeu
           interface.attributes.must_equal(
             {
               name: "silicon",
-              group: "",
+              group: '',
               lines: [
                 {
                   colour: {},
@@ -296,9 +244,8 @@ module Vedeu
                 }
               ],
               colour: {},
-              style: "",
+              style: '',
               geometry: {},
-              cursor: true,
               delay: 0.0,
               parent: nil
             }

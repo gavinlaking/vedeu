@@ -3,6 +3,8 @@ module Vedeu
   # An Interface represents a portion of the terminal defined by
   # {Vedeu::Geometry}. It is a container for {Vedeu::Line} and {Vedeu::Stream}
   # objects.
+  #
+  # @api private
   class Interface
 
     include Coercions
@@ -79,17 +81,6 @@ module Vedeu
       @geometry ||= Geometry.new(attributes[:geometry])
     end
 
-    # @return [String]
-    def cursor
-      @cursor ||= if attributes[:cursor] == true
-        Esc.string('show_cursor')
-
-      else
-        Esc.string('hide_cursor')
-
-      end
-    end
-
     private
 
     # The default values for a new instance of Interface.
@@ -104,7 +95,6 @@ module Vedeu
         colour:   {},
         style:    '',
         geometry: {},
-        cursor:   true,
         delay:    0.0,
         parent:   nil,
       }

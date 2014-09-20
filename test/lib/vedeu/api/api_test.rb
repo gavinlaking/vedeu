@@ -6,6 +6,12 @@ module Vedeu
 
     before { Event.stubs(:new).returns(event) }
 
+    describe '.configure' do
+      it 'raises an exception unless a block was given' do
+        proc { Vedeu.configure }.must_raise(InvalidSyntax)
+      end
+    end
+
     describe '.defined' do
       it 'returns a reference to the API::Defined module' do
         Vedeu.defined.must_equal(Vedeu::API::Defined)
@@ -25,6 +31,12 @@ module Vedeu
     describe '.events' do
       it 'returns the Events singleton' do
         Vedeu.events.must_be_instance_of(Vedeu::Events)
+      end
+    end
+
+    describe '.focus' do
+      it 'sets the named interface to be focussed' do
+        skip
       end
     end
 
@@ -139,12 +151,11 @@ module Vedeu
         {
           interfaces: [{
             name: "some_interface",
-            group: "",
+            group: '',
             lines: [],
             colour: {},
-            style: "",
+            style: '',
             geometry: {},
-            cursor: true,
             delay: 0.0,
             parent: {}
           }]

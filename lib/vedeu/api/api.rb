@@ -6,6 +6,17 @@ module Vedeu
   # module expose Vedeu's core functionality.
   module API
 
+    # Configure Vedeu using a simple configuration DSL.
+    #
+    # @api public
+    # @see Vedeu::Configuration
+    # @return []
+    def configure(&block)
+      fail InvalidSyntax, '`configure` requires a block.' unless block_given?
+
+      Vedeu::Configuration.configure(&block)
+    end
+
     # Returns information about various registered subsystems when used with
     # a defined method within {Vedeu::API::Defined}.
     #
@@ -74,15 +85,20 @@ module Vedeu
       @events ||= Vedeu::Events.new do
         event(:_clear_)                   { Terminal.clear_screen     }
         event(:_exit_)                    { Vedeu::Application.stop   }
-        event(:_focus_by_name_)           { |name| Vedeu::Focus.by_name(name) }
-        event(:_focus_next_)              { Vedeu::Focus.next_item    }
-        event(:_focus_prev_)              { Vedeu::Focus.prev_item    }
         event(:_keypress_)                { |key| Vedeu.keypress(key) }
         event(:_log_)                     { |msg| Vedeu.log(msg)      }
         event(:_mode_switch_)             { fail ModeSwitch           }
-        event(:_refresh_)                 { Vedeu::Refresh.all        }
         event(:_resize_, { delay: 0.25 }) { Vedeu.resize              }
       end
+    end
+
+    # Used after defining an interface or interfaces to set the initially
+    # focussed interface.
+    #
+    # @param name [String] The interface to focus; must be defined.
+    # @return []
+    def focus(name)
+      Vedeu.trigger(:_focus_by_name, name)
     end
 
     # Find out how many lines the current terminal is able to display.
@@ -100,11 +116,12 @@ module Vedeu
     # command. This provides the means for you to define your application's
     # views without their content.
     #
+    # @todo More documentation required.
     # @api public
     # @param name  [String] The name of the interface. Used to reference the
     #   interface throughout your application's execution lifetime.
     # @param block [Proc] A set of attributes which define the features of the
-    #   interface. TODO: More help.
+    #   interface.
     #
     # @example
     #   Vedeu.interface 'my_interface' do
@@ -234,6 +251,8 @@ module Vedeu
 
       trigger(:_refresh_)
 
+      trigger(:_cursor_refresh_)
+
       true
     end
     # :nocov:
@@ -264,8 +283,9 @@ module Vedeu
       Vedeu.events.unevent(name)
     end
 
-    # Use attributes of another interface whilst defining one. TODO: More help.
+    # Use attributes of another interface whilst defining one.
     #
+    # @todo More documentation required.
     # @api public
     # @param name [String] The name of the interface you wish to use. Typically
     #   used when defining interfaces to share geometry.
@@ -281,8 +301,9 @@ module Vedeu
       Vedeu::Interface.new(Vedeu::Interfaces.find(name))
     end
 
-    # Define a view (content) for an interface. TODO: More help.
+    # Define a view (content) for an interface.
     #
+    # @todo More documentation required.
     # @api public
     # @param name [String] The name of the interface you are targetting for this
     #   view.

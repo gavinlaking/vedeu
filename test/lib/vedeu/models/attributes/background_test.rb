@@ -16,7 +16,7 @@ module Vedeu
           magenta: "\e[45m",
           white:   "\e[47m",
           default: "\e[49m",
-          unknown: "",
+          unknown: '',
         }.map do |colour, result|
           it "returns the correct escape sequence for #{colour}" do
             Background.escape_sequence(colour).must_equal(result)
@@ -32,8 +32,8 @@ module Vedeu
           118 => "\e[48;5;118m",
           143 => "\e[48;5;143m",
           219 => "\e[48;5;219m",
-          -2  => "",
-          442 => ""
+          -2  => '',
+          442 => ''
         }.map do |colour, result|
           it "returns the correct escape sequence for #{colour}" do
             Background.escape_sequence(colour).must_equal(result)
