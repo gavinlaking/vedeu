@@ -35,7 +35,7 @@ module Vedeu
       # @return [Hash]
       def configuration
         if system_key_options.any?
-          options.merge!({ system_keys: system_key_options })
+          options.merge({ system_keys: system_key_options })
 
         else
           options
@@ -280,7 +280,7 @@ module Vedeu
       # @api private
       # @return [Hash]
       def system_key_options
-        @_system_key_options ||= {}
+        @_system_key_options ||= Configuration.default_system_keys
       end
 
       # Checks that the value provided to {#colour_mode} is valid.

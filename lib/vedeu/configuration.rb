@@ -96,6 +96,18 @@ module Vedeu
       @options = defaults
     end
 
+    # Vedeu's system keys.
+    #
+    # @return [Hash]
+    def default_system_keys
+      {
+        exit:        'q',
+        focus_next:  :tab,
+        focus_prev:  :shift_tab,
+        mode_switch: :escape,
+      }
+    end
+
     private
 
     # Returns all the options current configured.
@@ -119,16 +131,6 @@ module Vedeu
         system_keys:   default_system_keys,
         terminal_mode: :raw,
         trace:         detect_trace_mode,
-      }
-    end
-
-    # Vedeu's system keys.
-    def default_system_keys
-      {
-        exit:        'q',
-        focus_next:  :tab,
-        focus_prev:  :shift_tab,
-        mode_switch: :escape,
       }
     end
 
