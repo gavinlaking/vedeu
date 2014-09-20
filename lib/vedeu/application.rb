@@ -86,7 +86,7 @@ module Vedeu
         Input.capture
 
       else
-
+        Vedeu.trigger(:_standalone_)
 
       end
     end
