@@ -8,7 +8,7 @@ module Vedeu
 
       # Configure Vedeu via command-line arguments. Options set here via
       # arguments override the client application configuration set via
-      # {Vedeu.configure}.
+      # {Vedeu::API#configure}.
       #
       # @param args [Array]
       # @return [Hash]
@@ -16,10 +16,18 @@ module Vedeu
         new(args = []).configuration
       end
 
+      # Returns an instance of Configuration::CLI.
+      #
+      # @param args [Array]
+      # @return [Configuration::CLI]
       def initialize(args = [])
         @args = args
       end
 
+      # Returns the configuration options set up by parsing the command-line
+      # arguments passed to the client application.
+      #
+      # @return [Hash]
       def configuration
         parser = OptionParser.new do |opts|
           opts.banner = "Usage: #{$PROGRAM_NAME} [options]"
@@ -84,6 +92,11 @@ module Vedeu
 
       attr_reader :args
 
+      # Returns the options set via command-line arguments parsed by
+      # OptionParser, or an empty Hash if none were set or parsed.
+      #
+      # @api private
+      # @return [Hash]
       def options
         @_options ||= {}
       end
