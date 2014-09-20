@@ -96,8 +96,9 @@ module Vedeu
       @options = defaults
     end
 
-    # Vedeu's system keys.
+    # Vedeu's default system keys. Use {#system_keys}.
     #
+    # @api private
     # @return [Hash]
     def default_system_keys
       {
@@ -112,6 +113,7 @@ module Vedeu
 
     # Returns all the options current configured.
     #
+    # @api private
     # @return [Hash]
     def options
       @options ||= defaults
