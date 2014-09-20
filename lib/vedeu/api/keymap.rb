@@ -29,8 +29,9 @@ module Vedeu
           defined_value?(value_or_values)
 
         value_or_values.each do |value|
-          fail InvalidSyntax, 'Key cannot be empty.' unless
-            defined_value?(value)
+          fail InvalidSyntax,
+            'An invalid value for `key` was encountered.' unless
+              defined_value?(value)
 
           attributes[:keys] << { key: value, action: block }
         end
