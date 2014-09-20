@@ -174,6 +174,7 @@ Pull requests are very welcome! Please try to follow these simple rules if appli
 * Update the [README](https://github.com/gavinlaking/vedeu/blob/master/README.md).
 * Please **do not change** the version number.
 
+Any branch on the repository that is not `master` is probably experimental; do not rely on anything in these branches.
 
 ### General contribution help
 
