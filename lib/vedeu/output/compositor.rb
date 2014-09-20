@@ -26,6 +26,8 @@ module Vedeu
     #
     # @return [Array]
     def render
+      Vedeu.log("Rendering view: '#{name}'")
+
       Terminal.output(view)
     end
 

@@ -18,7 +18,7 @@ module Vedeu
 
     # @see Vedeu::API#event
     def event(name, opts = {}, &block)
-      Vedeu.log("Registering event '#{name}'")
+      Vedeu.log("Registering event: '#{name}'")
 
       options = opts.merge!({ event_name: name })
 

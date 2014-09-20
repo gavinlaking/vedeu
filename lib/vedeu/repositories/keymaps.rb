@@ -196,7 +196,7 @@ module Vedeu
 
         fail KeyInUse, message unless valid
 
-        Vedeu.log("Registering key '#{keymap[:key]}' with " \
+        Vedeu.log("Registering key: '#{keymap[:key]}' with " \
                   "'#{namespace(interface)}'")
 
         storage[namespace(interface)]

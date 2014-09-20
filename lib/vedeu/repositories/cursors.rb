@@ -26,6 +26,8 @@ module Vedeu
     def add(attributes)
       return false unless defined_value?(attributes[:name])
 
+      Vedeu.log("Registering cursor: '#{attributes[:name]}'")
+
       storage.store(attributes[:name], {
         name: attributes[:name],
         x: 1,

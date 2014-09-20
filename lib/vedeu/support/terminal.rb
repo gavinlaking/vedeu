@@ -17,9 +17,13 @@ module Vedeu
       fail InvalidSyntax, '`open` requires a block.' unless block_given?
 
       if raw_mode?
+        Vedeu.log("Terminal entering 'raw' mode")
+
         console.raw    { initialize_screen { yield } }
 
       else
+        Vedeu.log("Terminal entering 'cooked' mode")
+
         console.cooked { initialize_screen { yield } }
 
       end
@@ -128,9 +132,13 @@ module Vedeu
     # @return [Symbol]
     def switch_mode!
       if raw_mode?
+        Vedeu.log("Terminal switching to 'cooked' mode")
+
         cooked_mode!
 
       else
+        Vedeu.log("Terminal switching to 'raw' mode")
+
         raw_mode!
 
       end

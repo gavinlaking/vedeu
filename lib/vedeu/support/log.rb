@@ -95,7 +95,17 @@ module Vedeu
     def self.logger
       @logger ||= MonoLogger.new(filename).tap do |log|
         log.formatter = proc do |_, time, _, message|
-          time.utc.iso8601 + ": " + message + "\n"
+          utc_time = time.utc.iso8601
+
+          if @last_seen == utc_time
+            message + "\n"
+
+          else
+            @last_seen = utc_time
+
+            "\n\e[4m\e[31m" + utc_time + "\e[39m\e[24m\n" + message + "\n"
+
+          end
         end
       end
     end

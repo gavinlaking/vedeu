@@ -15,7 +15,7 @@ module Vedeu
     def add(attributes)
       return false unless defined_value?(attributes[:name])
 
-      Vedeu.log("Registering interface '#{attributes[:name]}'")
+      Vedeu.log("Registering interface: '#{attributes[:name]}'")
 
       storage.store(attributes[:name], attributes)
 
