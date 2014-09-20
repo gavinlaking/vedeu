@@ -21,7 +21,7 @@ require 'mocha/setup'
 
 GC.disable
 
-ENV['VEDEU_TERM'] = 'xterm-truecolor'
+ENV['VEDEU_TESTMODE'] = '1'
 
 require 'vedeu'
 

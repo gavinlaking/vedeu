@@ -119,7 +119,7 @@ module Vedeu
       @options ||= defaults
     end
 
-    # The Vedeu default options, which of course are influenced by enviroment
+    # The Vedeu default options, which of course are influenced by environment
     # variables also.
     #
     # @api private
@@ -136,13 +136,15 @@ module Vedeu
       }
     end
 
-    # Determine the terminal colour mode via enviroment variables, or be
-    # optimistic and settle for 256 colours.
+    # Attempt to determine the terminal colour mode via environment variables,
+    # or be optimistic and settle for 256 colours.
     #
     # @api private
     # @return [Fixnum]
     # :nocov:
     def detect_colour_mode
+      return 16777216 if ENV['VEDEU_TESTMODE']
+
       if ENV['VEDEU_TERM']
         case ENV['VEDEU_TERM']
         when /-256color$/  then 256
@@ -164,23 +166,17 @@ module Vedeu
     end
     # :nocov:
 
-    # Determine the debug mode via an enviroment variable.
+    # Determine the debug mode via an environment variable.
     #
     # @api private
     # @return [Boolean]
     # :nocov:
     def detect_debug_mode
-      if ENV['VEDEU_DEBUG']
-        case ENV['VEDEU_DEBUG']
-        when 'true'  then true
-        when 'false' then false
-        else false
-        end
+      return false if ENV['VEDEU_TESTMODE']
 
-      else
-        false
+      return true if ENV['VEDEU_DEBUG']
 
-      end
+      false
     end
     # :nocov:
 
@@ -190,17 +186,11 @@ module Vedeu
     # @return [Boolean]
     # :nocov:
     def detect_trace_mode
-      if ENV['VEDEU_TRACE']
-        case ENV['VEDEU_TRACE']
-        when 'true'  then true
-        when 'false' then false
-        else false
-        end
+      return false if ENV['VEDEU_TESTMODE']
 
-      else
-        false
+      return true if ENV['VEDEU_TRACE']
 
-      end
+      false
     end
     # :nocov:
 

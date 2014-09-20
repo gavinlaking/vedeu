@@ -9,7 +9,7 @@ module Vedeu
     # Configure Vedeu using a simple configuration DSL.
     #
     # @api public
-    # @see Vedeu::Configuration::API
+    # @see Vedeu::Configuration
     # @return []
     def configure(&block)
       fail InvalidSyntax, '`configure` requires a block.' unless block_given?

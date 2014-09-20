@@ -71,7 +71,7 @@ require 'set'
 require 'vedeu/support/common'
 require 'vedeu/configuration/cli'
 require 'vedeu/configuration/api'
-require 'vedeu/configuration'
+require 'vedeu/configuration/configuration'
 require 'vedeu/support/log'
 require 'vedeu/support/trace'
 

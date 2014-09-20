@@ -63,26 +63,5 @@ module Vedeu
       end
     end
 
-    # describe 'exploring multiple options set' do
-    #   it 'returns the options correctly configured' do
-    #     Configuration.configure(['--standalone', '--run-once']).must_equal(
-    #       {
-    #         interactive: true,
-    #         once: false,
-    #         colour_mode: 16777216,
-    #         debug: false,
-    #         system_keys:   {
-    #           exit:        "q",
-    #           focus_next:  :tab,
-    #           focus_prev:  :shift_tab,
-    #           mode_switch: :escape
-    #         },
-    #         terminal_mode: :raw,
-    #         trace: false
-    #       }
-    #     )
-    #   end
-    # end
-
   end
 end
