@@ -4,13 +4,15 @@ module Vedeu
 
   # Provides the API to Vedeu. Methods therein, and classes belonging to this
   # module expose Vedeu's core functionality.
+  #
+  # @api public
   module API
 
     # Configure Vedeu using a simple configuration DSL.
     #
-    # @api public
-    # @see Vedeu::Configuration
+    # @param block [Proc]
     # @return []
+    # @see Vedeu::Configuration
     def configure(&block)
       fail InvalidSyntax, '`configure` requires a block.' unless block_given?
 
@@ -20,9 +22,8 @@ module Vedeu
     # Returns information about various registered subsystems when used with
     # a defined method within {Vedeu::API::Defined}.
     #
-    # @api public
-    # @see Vedeu::API::Defined
     # @return [Vedeu::API::Defined]
+    # @see Vedeu::API::Defined
     def defined
       Vedeu::API::Defined
     end
@@ -30,7 +31,6 @@ module Vedeu
     # Register an event by name with optional delay (throttling) which when
     # triggered will execute the code contained within the passed block.
     #
-    # @api public
     # @param name  [Symbol] The name of the event which will be triggered later.
     # @param [Hash] opts The options to register the event with.
     # @option opts :delay [Fixnum|Float] Limits the execution of the
@@ -103,7 +103,6 @@ module Vedeu
 
     # Find out how many lines the current terminal is able to display.
     #
-    # @api public
     # @example
     #   Vedeu.height
     #
@@ -117,7 +116,6 @@ module Vedeu
     # views without their content.
     #
     # @todo More documentation required.
-    # @api public
     # @param name  [String] The name of the interface. Used to reference the
     #   interface throughout your application's execution lifetime.
     # @param block [Proc] A set of attributes which define the features of the
@@ -136,7 +134,7 @@ module Vedeu
       API::Interface.define({ name: name }, &block)
     end
 
-    # @api public
+    # Simulate a keypress.
     #
     # @example
     #   Vedeu.keypress('s')
@@ -179,7 +177,6 @@ module Vedeu
 
     # Write a message to the Vedeu log file located at `$HOME/.vedeu/vedeu.log`
     #
-    # @api public
     # @param message [String] The message you wish to emit to the log
     #   file, useful for debugging.
     # @param force   [Boolean] When evaluates to true will
@@ -196,7 +193,6 @@ module Vedeu
     # Register a menu by name which will display a collection of items for your
     # users to select; and provide interactivity within your application.
     #
-    # @api public
     # @param name  [String] The name of the menu. Used to reference the
     #   menu throughout your application's execution lifetime.
     # @param block [Proc] A set of attributes which define the features of the
@@ -223,7 +219,6 @@ module Vedeu
     # that the refresh event does not need to be triggered after creating the
     # view or views, though can be later triggered if needed.
     #
-    # @api public
     # @param block [Proc] The directives you wish to send to render. Must
     #                     include `view` or `views` with associated sub-
     #                     directives.
@@ -260,7 +255,6 @@ module Vedeu
     # Trigger a registered or system event by name with arguments. If the
     # event stored returns a value, that is returned.
     #
-    # @api public
     # @param name [Symbol] The name of the event you wish to trigger.
     #   The event does not have to exist.
     # @param args [Array] Any arguments the event needs to execute correctly.
@@ -276,7 +270,6 @@ module Vedeu
     # Unregisters the event by name, effectively deleting the associated events
     # bound with it also.
     #
-    # @api public
     # @param name [Symbol]
     # @return [Hash]
     def unevent(name)
@@ -286,7 +279,6 @@ module Vedeu
     # Use attributes of another interface whilst defining one.
     #
     # @todo More documentation required.
-    # @api public
     # @param name [String] The name of the interface you wish to use. Typically
     #   used when defining interfaces to share geometry.
     #
@@ -304,7 +296,6 @@ module Vedeu
     # Define a view (content) for an interface.
     #
     # @todo More documentation required.
-    # @api public
     # @param name [String] The name of the interface you are targetting for this
     #   view.
     # @param block [Proc] The directives you wish to send to this interface.
@@ -320,7 +311,6 @@ module Vedeu
 
     # Instruct Vedeu to treat contents of block as a single composition.
     #
-    # @api public
     # @param block [Proc] Instructs Vedeu to treat all of the 'view' directives
     #   therein as one instruction. Useful for redrawing multiple interfaces at
     #   once.
@@ -350,7 +340,6 @@ module Vedeu
 
     # Find out how many columns the current terminal is able to display.
     #
-    # @api public
     # @example
     #   Vedeu.width
     #

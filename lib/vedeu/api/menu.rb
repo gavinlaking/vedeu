@@ -48,7 +48,6 @@ module Vedeu
       # In the 'my_playlist' example below, your `Track` model may return a
       # collection of tracks to populate the menu.
       #
-      # @api public
       # @param collection [Array]
       #
       # @example
@@ -68,7 +67,6 @@ module Vedeu
       # The name of the menu. Used to reference the menu throughout your
       # application's execution lifetime.
       #
-      # @api public
       # @param value [String]
       #
       # @example

@@ -11,7 +11,6 @@ module Vedeu
       # Instructs Vedeu to calculate x and y geometry automatically based on the
       # centre character of the terminal, the width and the height.
       #
-      # @api public
       # @param value [Boolean]
       #
       # @example
@@ -32,7 +31,6 @@ module Vedeu
       # often, the reduces artefacts particularly when resizing the terminal
       # screen.
       #
-      # @api public
       # @param value [Fixnum|Float]
       #
       # @return [API::Interface]
@@ -44,7 +42,6 @@ module Vedeu
       # targetted together; for example you may want to refresh multiple
       # interfaces at once.
       #
-      # @api public
       # @param value [String]
       #
       # @example
@@ -59,7 +56,6 @@ module Vedeu
 
       # Define the number of characters/rows/lines tall the interface will be.
       #
-      # @api public
       # @param value [Fixnum]
       #
       # @example
@@ -76,7 +72,6 @@ module Vedeu
 
       # Define a single line in a view.
       #
-      # @api public
       # @param value [String]
       # @param block [Proc]
       #
@@ -108,7 +103,6 @@ module Vedeu
       # The name of the interface. Used to reference the interface throughout
       # your application's execution lifetime.
       #
-      # @api public
       # @param value [String]
       #
       # @example
@@ -124,7 +118,6 @@ module Vedeu
       # Use the specified interface; useful for sharing attributes with other
       # interfaces.
       #
-      # @api public
       # @param value [String]
       # @see Vedeu::API#use
       def use(value)
@@ -133,7 +126,6 @@ module Vedeu
 
       # Define the number of characters/columns wide the interface will be.
       #
-      # @api public
       # @param value [Fixnum]
       #
       # @example
@@ -150,7 +142,6 @@ module Vedeu
 
       # Define the starting x position (column) of the interface.
       #
-      # @api public
       # @param value [Fixnum]
       # @param block [Proc]
       #
@@ -174,7 +165,6 @@ module Vedeu
 
       # Define the starting y position (row/line) of the interface.
       #
-      # @api public
       # @param value [Fixnum]
       # @param block [Proc]
       #
