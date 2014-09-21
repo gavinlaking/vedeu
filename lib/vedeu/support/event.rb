@@ -67,12 +67,11 @@ module Vedeu
     # @return [Boolean]
     def throttle_expired?
       if elapsed_time > delay
-        Vedeu.log("Event throttle has expired for '#{event_name}', executing " \
-                  "event.")
         true
 
       else
-        Vedeu.log("Event throttle not yet expired for '#{event_name}'.")
+        Vedeu.log("Event '#{event_name}' is being throttled")
+
         false
 
       end
@@ -98,12 +97,11 @@ module Vedeu
     # @return [Boolean]
     def debounce_expired?
       if set_executed > deadline
-        Vedeu.log("Event debounce has expired for '#{event_name}', executing " \
-                  "event.")
         true
 
       else
-        Vedeu.log("Event debounce not yet expired for '#{event_name}'.")
+        Vedeu.log("Event '#{event_name}' is being debounced")
+
         false
 
       end
