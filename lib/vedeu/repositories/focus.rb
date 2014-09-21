@@ -53,6 +53,8 @@ module Vedeu
 
       storage.rotate!(storage.index(name))
 
+      Vedeu.log("Interface in focus: '#{current}'")
+
       current
     end
 
@@ -61,8 +63,6 @@ module Vedeu
     # @return [String]
     def current
       fail NoInterfacesDefined if storage.empty?
-
-      Vedeu.log("Interface in focus: '#{storage.first}'")
 
       storage.first
     end
@@ -73,6 +73,8 @@ module Vedeu
     def next_item
       storage.rotate!
 
+      Vedeu.log("Interface in focus: '#{current}'")
+
       current
     end
 
@@ -81,6 +83,8 @@ module Vedeu
     # @return [String]
     def prev_item
       storage.rotate!(-1)
+
+      Vedeu.log("Interface in focus: '#{current}'")
 
       current
     end
