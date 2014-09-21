@@ -11,21 +11,22 @@ module Vedeu
       # Instructs Vedeu to calculate x and y geometry automatically based on the
       # centre character of the terminal, the width and the height.
       #
-      # @param value [Boolean]
+      # @param value [Boolean] Any value other than nil or false will evaluate
+      #   to true.
       #
       # @example
       #   interface 'my_interface' do
-      #     centred true
+      #     centred!
+      #
+      #   interface 'my_interface' do
+      #     centred false
       #     ...
       #
       # @return [API::Interface]
-      def centred(value)
-        unless value.is_a?(TrueClass) || value.is_a?(FalseClass)
-          fail InvalidSyntax, 'Argument must be `true` or `false` for centred.'
-        end
-
-        attributes[:geometry][:centred] = value
+      def centred(value = true)
+        attributes[:geometry][:centred] = !!(value)
       end
+      alias_method :centred!, :centred
 
       # To maintain performance interfaces can be delayed from refreshing too
       # often, the reduces artefacts particularly when resizing the terminal
