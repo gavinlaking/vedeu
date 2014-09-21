@@ -16,53 +16,34 @@ module Vedeu
     let(:interface) { 'dubnium' }
 
     describe '.check' do
-      context 'when already in use as a system key' do
-        it 'returns false with a message' do
-          result = KeymapValidator.check(storage, :shift_tab, interface)
-          result.must_include(false)
-          result.last.must_match(/by the system/)
-        end
+      it 'raises an exception when already in use as a system key' do
+        proc {
+          KeymapValidator.check(storage, :shift_tab, interface)
+        }.must_raise(KeyInUse)
       end
 
-      context 'when already in use as a global key' do
-        it 'returns false with a message' do
-          result = KeymapValidator.check(storage, 'g', interface)
-          result.must_include(false)
-          result.last.must_match(/as a global key/)
-        end
+      it 'raises an exception when already in use as a global key' do
+        proc {
+          KeymapValidator.check(storage, 'g', interface)
+        }.must_raise(KeyInUse)
       end
 
-      context 'when already in use by the interface' do
-        it 'returns false with a message' do
-          result = KeymapValidator.check(storage, 'a', interface)
-          result.must_include(false)
-          result.last.must_match(/by this interface/)
-        end
+      it 'raises an exception when already in use by the interface' do
+        proc {
+          KeymapValidator.check(storage, 'a', interface)
+        }.must_raise(KeyInUse)
       end
 
-      context 'when attempting to register a global key which is already in ' \
-              'use by an interface' do
-        it 'returns false with a message' do
-          result = KeymapValidator.check(storage, 'a', '')
-          result.must_include(false)
-          result.last.must_match(/therefore cannot be global/)
-        end
+      it 'raises an exception when already in use' do
+        proc { KeymapValidator.check(storage, 'a', '') }.must_raise(KeyInUse)
       end
 
-      context 'when valid as a global key' do
-        it 'returns true with a message' do
-          result = KeymapValidator.check(storage, 'h', '')
-          result.must_include(true)
-          result.last.must_match(/can be registered/)
-        end
+      it 'returns true when valid as a global key' do
+        KeymapValidator.check(storage, 'h', '').must_equal(true)
       end
 
-      context 'when valid as an interface key' do
-        it 'returns true with a message' do
-          result = KeymapValidator.check(storage, 'b', 'dubnium')
-          result.must_include(true)
-          result.last.must_match(/can be registered/)
-        end
+      it 'returns true when valid as an interface key' do
+        KeymapValidator.check(storage, 'b', 'dubnium').must_equal(true)
       end
     end
 
@@ -73,7 +54,7 @@ module Vedeu
         interface = ''
 
         KeymapValidator.new(storage, key, interface)
-          .must_be_instance_of(KeymapValidator)
+        .must_be_instance_of(KeymapValidator)
       end
     end
 

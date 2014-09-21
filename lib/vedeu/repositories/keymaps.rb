@@ -177,13 +177,6 @@ module Vedeu
       Vedeu.trigger(event)
     end
 
-    # @param key [String|Symbol]
-    # @param interface [String]
-    # @return []
-    def validate(key, interface = '')
-      Vedeu::KeymapValidator.check(storage, key, interface)
-    end
-
     # Registers the key.
     #
     # @api private
@@ -192,15 +185,11 @@ module Vedeu
     # @return []
     def register(attributes, interface = '')
       attributes[:keys].map do |keymap|
-        valid, message = validate(keymap[:key], interface)
+        KeymapValidator.check(storage, keymap[:key], interface)
 
-        fail KeyInUse, message unless valid
+        Vedeu.log("Registering key: '#{keymap[:key]}' with '#{namespace(interface)}'")
 
-        Vedeu.log("Registering key: '#{keymap[:key]}' with " \
-                  "'#{namespace(interface)}'")
-
-        storage[namespace(interface)]
-          .merge!({ keymap[:key] => keymap[:action] })
+        storage[namespace(interface)].merge!({ keymap[:key] => keymap[:action] })
       end
     end
 
