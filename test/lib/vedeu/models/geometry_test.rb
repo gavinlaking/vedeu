@@ -234,5 +234,19 @@ module Vedeu
         geometry.east.must_equal(26)
       end
     end
+
+    describe '#virtual_y' do
+      it 'returns the virtual y positions within the interfaces dimensions' do
+        geometry = Geometry.new({ height: 6, width: 6, x: 7, y: 5 })
+        geometry.virtual_y.must_equal([5, 6, 7, 8, 9, 10, 11])
+      end
+    end
+
+    describe '#virtual_x' do
+      it 'returns the virtual x positions within the interfaces dimensions' do
+        geometry = Geometry.new({ height: 6, width: 6, x: 7, y: 5 })
+        geometry.virtual_x.must_equal([7, 8, 9, 10, 11, 12, 13])
+      end
+    end
   end
 end

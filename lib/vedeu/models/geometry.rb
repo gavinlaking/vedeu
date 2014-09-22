@@ -205,8 +205,6 @@ module Vedeu
       right + value
     end
 
-    private
-
     # Provides a virtual y position within the interface's dimensions.
     #
     # @return [Array]
@@ -220,6 +218,8 @@ module Vedeu
     def virtual_x
       (left..right).to_a
     end
+
+    private
 
     # The default geometry of an interface- full screen.
     #
