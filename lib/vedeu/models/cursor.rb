@@ -35,7 +35,16 @@ module Vedeu
         y:     y,
       }
     end
-    alias_method :refresh, :attributes
+
+    # Returns the cursor's attributes after triggering a refresh event for the
+    # named interface with those attributes.
+    #
+    # @return [Hash]
+    def refresh
+      Vedeu.trigger(refresh_event_name, attributes)
+
+      attributes
+    end
 
     # Move the cursor up one row.
     #
@@ -45,7 +54,7 @@ module Vedeu
         @y -= 1
       end
 
-      attributes
+      refresh
     end
 
     # Move the cursor down one row.
@@ -56,7 +65,7 @@ module Vedeu
         @y += 1
       end
 
-      attributes
+      refresh
     end
 
     # Move the cursor left one column.
@@ -67,7 +76,7 @@ module Vedeu
         @x -= 1
       end
 
-      attributes
+      refresh
     end
 
     # Move the cursor right one column.
@@ -78,7 +87,7 @@ module Vedeu
         @x += 1
       end
 
-      attributes
+      refresh
     end
 
     # Make the cursor visible if it is not already.
@@ -87,7 +96,7 @@ module Vedeu
     def show
       @state = :show
 
-      attributes
+      refresh
     end
 
     # Make the cursor invisible if it is not already.
@@ -96,7 +105,7 @@ module Vedeu
     def hide
       @state = :hide
 
-      attributes
+      refresh
     end
 
     # Toggle the visibility of the cursor.
@@ -111,7 +120,7 @@ module Vedeu
 
       end
 
-      attributes
+      refresh
     end
 
     # Returns an escape sequence to position the cursor and set its visibility.
@@ -231,6 +240,13 @@ module Vedeu
     # @return [Array]
     def states
       [:show, :hide]
+    end
+
+    # Returns the refresh event name.
+    # @api private
+    # @return [Symbol]
+    def refresh_event_name
+      "_refresh_#{name}_".to_sym
     end
 
     # The default values for a new instance of Cursor.

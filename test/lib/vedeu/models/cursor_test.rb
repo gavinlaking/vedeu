@@ -19,6 +19,7 @@ module Vedeu
         x      12
         y      5
       end
+      Terminal.console.stubs(:print)
     end
 
     describe '#initialize' do
@@ -30,6 +31,14 @@ module Vedeu
     describe '#attributes' do
       it 'returns a hash containing the attributes of the instance' do
         Cursor.new(attributes).attributes.must_equal(
+          { name: 'silver', state: :show, x: 12, y: 5 }
+        )
+      end
+    end
+
+    describe '#refresh' do
+      it 'returns a hash containing the attributes of the instance' do
+        Cursor.new(attributes).refresh.must_equal(
           { name: 'silver', state: :show, x: 12, y: 5 }
         )
       end
