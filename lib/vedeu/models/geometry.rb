@@ -162,6 +162,9 @@ module Vedeu
     # Returns the bottom coordinate of the interface, a fixed or dynamic value
     # depending on the value of {#top}.
     #
+    # @todo I think `height` should be `viewport_height` because the terminal
+    #   may have resized, and viewport_height will properly handle this.
+    #
     # @return [Fixnum]
     def bottom
       top + height
@@ -185,6 +188,9 @@ module Vedeu
     # Returns the right coordinate of the interface, a fixed or dynamic value
     # depending on the value of {#left}.
     #
+    # @todo I think `width` should be `viewport_width` because the terminal may
+    #   have resized, and viewport_width will properly handle this.
+    #
     # @return [Fixnum]
     def right
       left + width
@@ -207,16 +213,51 @@ module Vedeu
 
     # Provides a virtual y position within the interface's dimensions.
     #
+    # @example
+    #   # top = 3
+    #   # bottom = 6
+    #   # virtual_y # => [3, 4, 5]
+    #
     # @return [Array]
     def virtual_y
-      (top..bottom).to_a
+      (top...bottom).to_a
     end
 
     # Provides a virtual x position within the interface's dimensions.
     #
+    # @example
+    #   # left = 9
+    #   # right = 13
+    #   # virtual_x # => [9, 10, 11, 12]
+    #
     # @return [Array]
     def virtual_x
-      (left..right).to_a
+      (left...right).to_a
+    end
+
+    # Provides all the geometry in a convenient hash.
+    #
+    # @return [Hash]
+    def to_h
+      {
+        centred:         centred,
+        height:          height,
+        width:           width,
+        x:               x,
+        y:               y,
+        viewport_height: viewport_height,
+        viewport_width:  viewport_width,
+        top:             top,
+        right:           right,
+        bottom:          bottom,
+        left:            left,
+        north:           north,
+        east:            east,
+        south:           south,
+        west:            west,
+        virtual_x:       virtual_x,
+        virtual_y:       virtual_y,
+      }
     end
 
     private

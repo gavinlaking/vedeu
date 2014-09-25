@@ -238,14 +238,41 @@ module Vedeu
     describe '#virtual_y' do
       it 'returns the virtual y positions within the interfaces dimensions' do
         geometry = Geometry.new({ height: 6, width: 6, x: 7, y: 5 })
-        geometry.virtual_y.must_equal([5, 6, 7, 8, 9, 10, 11])
+        geometry.virtual_y.must_equal([5, 6, 7, 8, 9, 10])
       end
     end
 
     describe '#virtual_x' do
       it 'returns the virtual x positions within the interfaces dimensions' do
         geometry = Geometry.new({ height: 6, width: 6, x: 7, y: 5 })
-        geometry.virtual_x.must_equal([7, 8, 9, 10, 11, 12, 13])
+        geometry.virtual_x.must_equal([7, 8, 9, 10, 11, 12])
+      end
+    end
+
+    describe '#to_h' do
+      it 'returns all the values within the instance as a hash' do
+        geometry = Geometry.new({ height: 6, width: 6, x: 3, y: 3 })
+        geometry.to_h.must_equal(
+          {
+            centred:         false,
+            height:          6,
+            width:           6,
+            x:               3,
+            y:               3,
+            viewport_height: 6,
+            viewport_width:  6,
+            top:             3,
+            right:           9,
+            bottom:          9,
+            left:            3,
+            north:           2,
+            east:            10,
+            south:           10,
+            west:            2,
+            virtual_x:       [3, 4, 5, 6, 7, 8],
+            virtual_y:       [3, 4, 5, 6, 7, 8]
+          }
+        )
       end
     end
   end
