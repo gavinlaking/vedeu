@@ -10,8 +10,8 @@ module Vedeu
       #
       # @param block [Proc]
       # @return [Array] A collection of strings, each defining containing the
-      #                 escape sequences and content. This data has already
-      #                 been sent to the terminal to be output.
+      #   escape sequences and content. This data has already been sent to the
+      #   terminal to be output.
       def self.render(&block)
         fail InvalidSyntax, '`render` requires a block.' unless block_given?
 
@@ -21,7 +21,7 @@ module Vedeu
           Buffers.add(interface.attributes)
 
           interface.name
-        end.map { |name| Compositor.render(name) }
+        end.map { |name| Vedeu::Refresh.by_name(name) }
       end
 
       # @param name [String]
