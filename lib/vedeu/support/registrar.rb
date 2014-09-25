@@ -24,8 +24,6 @@ module Vedeu
     #
     # @return [TrueClass|MissingRequired]
     def record
-      validate_attributes!
-
       Vedeu::Buffers.add(attributes)
 
       Vedeu::Interfaces.add(attributes)
@@ -42,25 +40,6 @@ module Vedeu
     private
 
     attr_reader :attributes
-
-    # At present, validates that attributes has a `:name` key that is not nil or
-    # empty.
-    #
-    # @api private
-    # @return [TrueClass|MissingRequired]
-    def validate_attributes!
-      return exception unless attributes.key?(:name)
-      return exception unless defined_value?(attributes[:name])
-
-      true
-    end
-
-    # Raises the MissingRequired exception.
-    #
-    # @see Vedeu::MissingRequired
-    def exception
-      fail MissingRequired, 'Cannot store data without a name attribute.'
-    end
 
   end
 

@@ -10,6 +10,12 @@ module Vedeu
         Buffers.add({ name: 'molybdenum' }).must_equal('molybdenum')
       end
 
+      it 'raises an exception if the attributes does not have a :name key' do
+        attributes = { no_name_key: '' }
+
+        proc { Buffers.add(attributes) }.must_raise(MissingRequired)
+      end
+
       context 'when the buffer is already registered' do
         it 'retrieves the buffer in storage, and adds the attributes to the ' \
            'back buffer, preserving the front which may already have content' do

@@ -16,6 +16,8 @@ module Vedeu
     # @param attributes [Hash]
     # @return [String]
     def add(attributes)
+      validate_attributes!(attributes)
+
       if registered?(attributes[:name])
         buffer = find(attributes[:name])
 

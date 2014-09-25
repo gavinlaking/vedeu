@@ -24,6 +24,8 @@ module Vedeu
     # @param attributes [Hash]
     # @return [Hash]
     def add(attributes)
+      validate_attributes!(attributes)
+
       return false unless defined_value?(attributes[:name])
 
       Vedeu.log("Registering cursor: '#{attributes[:name]}'")

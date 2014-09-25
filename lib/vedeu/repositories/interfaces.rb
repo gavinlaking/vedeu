@@ -5,7 +5,7 @@ module Vedeu
   # @api private
   module Interfaces
 
-    include Vedeu::Common
+    include Common
     extend self
 
     # Stores the interface attributes defined by the API.
@@ -13,7 +13,7 @@ module Vedeu
     # @param attributes [Hash]
     # @return [Hash|FalseClass]
     def add(attributes)
-      return false unless defined_value?(attributes[:name])
+      validate_attributes!(attributes)
 
       Vedeu.log("Registering interface: '#{attributes[:name]}'")
 

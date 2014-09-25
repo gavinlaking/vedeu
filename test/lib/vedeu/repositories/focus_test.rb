@@ -15,6 +15,12 @@ module Vedeu
         Focus.add({ name: 'thallium' })
         Focus.registered.must_equal(['thallium'])
       end
+
+      it 'raises an exception if the attributes does not have a :name key' do
+        attributes = { no_name_key: '' }
+
+        proc { Focus.add(attributes) }.must_raise(MissingRequired)
+      end
     end
 
     describe '#by_name' do

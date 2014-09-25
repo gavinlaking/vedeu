@@ -13,6 +13,12 @@ module Vedeu
         Groups.add({ group: 'elements', name: 'germanium', delay: 0.0 })
         Groups.all.must_equal({ 'elements' => Set['germanium'] })
       end
+
+      it 'raises an exception if the attributes does not have a :name key' do
+        attributes = { no_name_key: '' }
+
+        proc { Groups.add(attributes) }.must_raise(MissingRequired)
+      end
     end
 
     describe '#all' do
@@ -61,7 +67,7 @@ module Vedeu
 
     describe '#registered?' do
       it 'returns true when the group is registered' do
-        Groups.add({ group: 'registered' })
+        Groups.add({ group: 'registered', name: 'irrelevant' })
 
         Groups.registered?('registered').must_equal(true)
       end

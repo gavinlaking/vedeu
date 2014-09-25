@@ -6,13 +6,15 @@ module Vedeu
     describe '#add' do
       before { Interfaces.reset }
 
-      it 'returns false if the interface name is empty' do
-        Interfaces.add({ name: '' }).must_equal(false)
-      end
-
       it 'adds the interface to the storage' do
         Interfaces.add({ name: 'germanium' })
         Interfaces.all.must_equal({ 'germanium' => { name: 'germanium' } })
+      end
+
+      it 'raises an exception if the attributes does not have a :name key' do
+        attributes = { no_name_key: '' }
+
+        proc { Interfaces.add(attributes) }.must_raise(MissingRequired)
       end
     end
 

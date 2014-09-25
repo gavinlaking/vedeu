@@ -5,7 +5,7 @@ module Vedeu
   # @api private
   module Groups
 
-    include Vedeu::Common
+    include Common
     extend self
 
     # Add an interface name to a group, creating the group if it doesn't already
@@ -14,6 +14,8 @@ module Vedeu
     # @param attributes [Hash]
     # @return [Groups|FalseClass]
     def add(attributes)
+      validate_attributes!(attributes)
+
       return false unless defined_value?(attributes[:group])
 
       storage[attributes[:group]] << attributes[:name]

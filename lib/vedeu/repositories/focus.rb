@@ -7,6 +7,7 @@ module Vedeu
   # @api private
   module Focus
 
+    include Common
     extend self
 
     # System events which when called will change which interface is currently
@@ -32,6 +33,8 @@ module Vedeu
     # @param attributes [String]
     # @return [Array]
     def add(attributes)
+      validate_attributes!(attributes)
+
       if registered?(attributes[:name])
         storage
 
