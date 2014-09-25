@@ -12,20 +12,17 @@ module Vedeu
     # sequences.
     #
     # @param interface [Interface]
-    # @param options [Hash]
     # @return [String]
-    def self.call(interface, options = {})
-      new(interface, options).render
+    def self.call(interface)
+      new(interface).render
     end
 
     # Return a new instance of Render.
     #
     # @param interface [Interface]
-    # @param options [Hash]
     # @return [Render]
-    def initialize(interface, options = {})
+    def initialize(interface)
       @interface = interface
-      @options   = options
     end
 
     # Produces a single string which contains all content and escape sequences
@@ -138,29 +135,17 @@ module Vedeu
     end
 
     # Provides the collection of visible lines associated with the interface.
-    # If the option `:top` was set, we will start at that line. Any lines
-    # outside of the height will not be rendered.
     #
     # @return [Array]
     def visible_lines
-      lines[top...height]
+      viewport.visible_lines
     end
 
-    # Provides the collection of lines associated with the interface.
+    # Provides the visible area of the content within the interface.
     #
-    # @return [Array]
-    def lines
-      interface.lines
-    end
-
-    # Provides the currently available height of the interface.
-    #
-    # @note The height is reported to be one less line than actual because
-    #   terminal coordinates count from 1, not 0.
-    #
-    # @return [Fixnum]
-    def height
-      interface.viewport_height
+    # @return [Viewport]
+    def viewport
+      interface.viewport
     end
 
     # Provides the currently available width of the interface.

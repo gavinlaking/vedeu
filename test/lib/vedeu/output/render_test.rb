@@ -2,39 +2,32 @@ require 'test_helper'
 
 module Vedeu
   describe Render do
-    before { Buffers.reset }
+    before do
+      Buffers.reset
+      Cursors.reset
+      Interfaces.reset
+
+      Vedeu.interface('fluorine') do
+        width  32
+        height 3
+        line 'this is the first'
+        line 'this is the second and it is long'
+        line 'this is the third, it is even longer and still truncated'
+        line 'this should not render'
+      end
+    end
 
     describe '#initialize' do
       it 'returns an instance of itself' do
-        interface = mock('Interface')
+        interface = Interface.new
         Render.new(interface).must_be_instance_of(Render)
       end
     end
 
     describe '.call' do
+      let(:interface) { Vedeu.use('fluorine') }
+
       it 'returns the content for the interface' do
-        interface = Interface.new({
-          name:     '.call',
-          geometry: {
-            width:  32,
-            height: 3,
-          },
-          lines:    [
-            {
-              streams: [{ text: 'this is the first' }]
-            }, {
-              streams: { text: 'this is the second and it is long' }
-            }, {
-              streams: [
-                { text: 'this is the third, ' },
-                { text: 'it is even longer '  },
-                { text: 'and still truncated' }
-              ]
-            }, {
-              streams: [{ text: 'this should not render' }]
-            }
-          ]
-        })
         Render.call(interface).must_equal(
           "\e[1;1H                                \e[1;1H" \
           "\e[2;1H                                \e[2;1H" \
@@ -48,7 +41,7 @@ module Vedeu
 
       it 'returns a blank interface if there are no streams of text' do
         interface = Interface.new({
-          name:     '.call',
+          name:     'fluorine',
           geometry: {
             width:  32,
             height: 3,
@@ -66,7 +59,7 @@ module Vedeu
 
       it 'skips lines which have streams with no content' do
         interface = Interface.new({
-          name:     '.call',
+          name:     'fluorine',
           geometry: {
             width:  32,
             height: 3,

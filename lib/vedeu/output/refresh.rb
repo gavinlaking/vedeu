@@ -37,7 +37,7 @@ module Vedeu
     # Refresh an interface by name.
     #
     # @param name [String] The name of the interface to be refreshed.
-    # @return [|BufferNotFound]
+    # @return [Array|BufferNotFound]
     def by_name(name)
       Vedeu::Compositor.render(name)
     end
