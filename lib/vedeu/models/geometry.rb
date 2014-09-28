@@ -92,7 +92,8 @@ module Vedeu
       end
     end
 
-    # Returns the top-left coordinate, relative to the interface's position.
+    # Returns an escape sequence to position the cursor at the top-left
+    # coordinate, relative to the interface's position.
     #
     # @param index [Fixnum]
     # @param block [Proc]

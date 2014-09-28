@@ -43,7 +43,7 @@ module Vedeu
 
     private
 
-    attr_reader :interface
+    attr_reader :interface, :options
 
     # The client application may have created a line that us too long for the
     # interface. This code tries to truncate streams whilst preserving styles

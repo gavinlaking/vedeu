@@ -2,32 +2,25 @@ require 'test_helper'
 
 module Vedeu
   describe Interface do
-    let(:interface) {
-      Interface.new({
-        name:  '#initialize',
-        group: 'my_group',
-        lines: [],
-        colour: {
-          foreground: '#ff0000',
-          background: '#000000'
-        },
-        geometry: {
-          y: 3,
-          x: 5,
-          width: 10,
-          height: 15,
-        }
-      })
-    }
+    let(:interface) { Vedeu.use('#initialize') }
 
-    describe '#initialize' do
-      it 'returns an instance of itself' do
-        attributes = {}
-
-        Interface.new(attributes).must_be_instance_of(Interface)
+    before do
+      Interfaces.reset
+      Vedeu.interface('#initialize') do
+        group 'my_group'
+        colour foreground: '#ff0000', background: '#000000'
+        y 3
+        x 5
+        width 10
+        height 15
       end
     end
 
+    describe '#initialize' do
+      it 'returns an instance of itself' do
+        interface.must_be_instance_of(Interface)
+      end
+    end
 
     describe '#attributes' do
       it 'returns the value' do
@@ -95,6 +88,12 @@ module Vedeu
     describe '#delay' do
       it 'returns the value' do
         interface.delay.must_equal(0.0)
+      end
+    end
+
+    describe '#cursor' do
+      it 'returns the associated cursor for this interface' do
+        interface.cursor.must_be_instance_of(Cursor)
       end
     end
 

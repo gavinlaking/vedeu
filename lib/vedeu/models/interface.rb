@@ -88,6 +88,20 @@ module Vedeu
       @geometry ||= Geometry.new(attributes[:geometry])
     end
 
+    # Returns the currently visible area of the interface.
+    #
+    # @return [Viewport]
+    def viewport
+      @viewport ||= Viewport.new(self)
+    end
+
+    # Returns the cursor associated with this interface.
+    #
+    # @return [Cursor]
+    def cursor
+      @cursor ||= Cursors.cursor(name)
+    end
+
     private
 
     # The default values for a new instance of Interface.

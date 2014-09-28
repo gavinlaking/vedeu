@@ -33,7 +33,9 @@ module Vedeu
         name: attributes[:name],
         x: 1,
         y: 1,
-        state: :show
+        state: :show,
+        x_offset: 0,
+        y_offset: 0
       })
     end
 
@@ -49,6 +51,17 @@ module Vedeu
       storage.store(attributes[:name], attributes)
     end
 
+    # Reset the cursors repository; removing all cursors.
+    #
+    # @return [Hash]
+    def reset
+      @_storage = in_memory
+    end
+
+    def update(attributes)
+      find(attributes[:name]).merge!(attributes)
+    end
+
     # Perform an action (moving, showing or hiding) and save the new cursor
     # state.
     #
@@ -58,11 +71,13 @@ module Vedeu
     #   of the action.
     def use(action)
       name   = Focus.current
-      cursor = Cursor.new(find(name))
+      c = cursor(name)
 
-      storage.store(name, cursor.send(action))
+      storage.store(name, c.send(action))
 
-      Terminal.output(cursor.to_s)
+      Vedeu.trigger("_refresh_#{name}_".to_sym)
+
+      Terminal.output(c.to_s)
     end
 
     private

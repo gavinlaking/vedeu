@@ -10,6 +10,8 @@ module Vedeu
 
     def_delegators :geometry, :top, :right, :bottom, :left
 
+    attr_reader :name, :x_offset, :y_offset
+
     # Provides a new instance of Cursor.
     #
     # @param attributes [Hash] The stored attributes for a cursor.
@@ -21,6 +23,8 @@ module Vedeu
       @state = @attributes[:state]
       @x     = @attributes[:x]
       @y     = @attributes[:y]
+      @x_offset = @attributes[:x_offset]
+      @y_offset = @attributes[:y_offset]
     end
 
     # Returns an attribute hash for the current position and visibility of the
@@ -33,17 +37,16 @@ module Vedeu
         state: state,
         x:     x,
         y:     y,
+        x_offset: x_offset,
+        y_offset: y_offset,
       }
     end
+    alias_method :refresh, :attributes
 
-    # Returns the cursor's attributes after triggering a refresh event for the
-    # named interface with those attributes.
-    #
-    # @return [Hash]
-    def refresh
-      Vedeu.trigger(refresh_event_name, attributes)
+    def update(attrs)
+      Cursors.update(attributes.merge!(attrs))
 
-      attributes
+      Cursor.new(attributes)
     end
 
     # Move the cursor up one row.
@@ -54,7 +57,9 @@ module Vedeu
         @y -= 1
       end
 
-      refresh
+      @y_offset -= 1 if y_offset > 0
+
+      attributes
     end
 
     # Move the cursor down one row.
@@ -65,7 +70,9 @@ module Vedeu
         @y += 1
       end
 
-      refresh
+      @y_offset += 1
+
+      attributes
     end
 
     # Move the cursor left one column.
@@ -76,7 +83,9 @@ module Vedeu
         @x -= 1
       end
 
-      refresh
+      @x_offset -= 1 if x_offset > 0
+
+      attributes
     end
 
     # Move the cursor right one column.
@@ -87,7 +96,9 @@ module Vedeu
         @x += 1
       end
 
-      refresh
+      @x_offset += 1
+
+      attributes
     end
 
     # Make the cursor visible if it is not already.
@@ -96,7 +107,7 @@ module Vedeu
     def show
       @state = :show
 
-      refresh
+      attributes
     end
 
     # Make the cursor invisible if it is not already.
@@ -105,7 +116,7 @@ module Vedeu
     def hide
       @state = :hide
 
-      refresh
+      attributes
     end
 
     # Toggle the visibility of the cursor.
@@ -120,7 +131,7 @@ module Vedeu
 
       end
 
-      refresh
+      attributes
     end
 
     # Returns an escape sequence to position the cursor and set its visibility.
@@ -141,7 +152,7 @@ module Vedeu
 
     private
 
-    attr_reader :name, :state
+    attr_reader :state
 
     # Returns the escape sequence to position the cursor and set its visibility.
     #
@@ -183,7 +194,8 @@ module Vedeu
     # @return [Fixnum]
     def y
       if y_out_of_range?
-        @y = top
+        @y_offset = 0
+        @y        = top
 
       else
         @y
@@ -197,7 +209,8 @@ module Vedeu
     # @return [Fixnum]
     def x
       if x_out_of_range?
-        @x = left
+        @x_offset = 0
+        @x        = left
 
       else
         @x
@@ -242,13 +255,6 @@ module Vedeu
       [:show, :hide]
     end
 
-    # Returns the refresh event name.
-    # @api private
-    # @return [Symbol]
-    def refresh_event_name
-      "_refresh_#{name}_".to_sym
-    end
-
     # The default values for a new instance of Cursor.
     #
     # @return [Hash]
@@ -258,6 +264,8 @@ module Vedeu
         x:     1,
         y:     1,
         state: :hide,
+        x_offset: 0,
+        y_offset: 0,
       }
     end
 

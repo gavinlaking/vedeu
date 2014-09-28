@@ -13,6 +13,13 @@ class VedeuCursorApp
 
   event(:_initialize_) { trigger(:_refresh_) }
 
+  interface 'silver' do
+    height 4
+    width  10
+    y      5
+    x      12
+  end
+
   interface 'iron' do
     centred true
     colour  foreground: '#ff0000', background: '#000000'
@@ -26,6 +33,15 @@ class VedeuCursorApp
     height  4
     width   12
     y       { use('iron').south }
+    x       { use('iron').east(1) }
+  end
+
+  interface 'copernicium' do
+    centred false
+    colour  foreground: '#00aaff', background: '#000000'
+    height  4
+    width   12
+    y       { use('iron').north(5) }
     x       { use('iron').east(1) }
   end
 
@@ -54,24 +70,43 @@ class VedeuCursorApp
     key(:left)  { trigger(:_cursor_left_)  }
   end
 
+  focus('argon')
+
   render do
-    view 'iron' do
-      line 'shift+tab to'
-      line 'move to the'
-      line 'previous one'
+    view 'silver' do
+      line 'a123456789'
+      line 'b123456789'
+      line 'c123456789'
+      line 'd123456789'
+      line 'e123456789'
+      line 'f123456789'
     end
     view 'francium' do
       line 'Press tab to'
       line 'move to next'
       line 'interface or'
     end
-    view 'krypton' do
+    view 'copernicium' do
+      line 'shift+tab to'
+      line 'move to the'
+      line 'previous one'
+    end
+    view 'iron' do
+      line 'A really'
+      line 'simple'
+      line 'cursor demo'
+    end
+    view 'argon' do
       line 'Position is'
       line 'remembered'
       line 'between'
       line 'interfaces.'
+      line 'This one has'
+      line 'more lines'
+      line 'to show and'
+      line 'demo scrolling'
     end
-    view 'argon' do
+    view 'krypton' do
       line 'To exit this'
       line 'just press Q'
     end
