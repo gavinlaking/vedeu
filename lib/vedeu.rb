@@ -17,6 +17,9 @@ module Vedeu
 
 end
 
+$LIB_DIR = File.dirname(__FILE__) + '/../lib'
+$LOAD_PATH.unshift($LIB_DIR) unless $LOAD_PATH.include?($LIB_DIR)
+
 require 'date'
 require 'forwardable'
 require 'io/console'
