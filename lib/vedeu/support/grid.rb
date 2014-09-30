@@ -40,7 +40,7 @@ module Vedeu
 
     # @return [Fixnum|OutOfRange]
     def columns
-      fail OutOfRange, 'Valid range is 1..12.' if out_of_range?
+      fail OutOfRange, 'Valid range between 1 and 12.' if out_of_range?
 
       column * value
     end
@@ -49,6 +49,8 @@ module Vedeu
 
     attr_reader :value
 
+    # Returns the width of a single column in characters.
+    #
     # @api private
     # @return [Fixnum]
     def column
