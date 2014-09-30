@@ -66,7 +66,7 @@ module Vedeu
     # @return [String] The escape sequence sent to the Terminal on completion
     #   of the action.
     def use(action)
-      name   = Focus.current
+      name = Focus.current
       c = cursor(name)
 
       storage.store(name, c.send(action))
