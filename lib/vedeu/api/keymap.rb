@@ -1,4 +1,5 @@
 module Vedeu
+
   module API
 
     # Provides methods to be used to define keypress mapped to actions.
@@ -59,7 +60,8 @@ module Vedeu
         attributes[:interfaces] = name_or_names
       end
 
-    end
+    end # Keymap
 
-  end
-end
+  end # API
+
+end # Vedeu

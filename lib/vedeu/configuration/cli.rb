@@ -123,8 +123,8 @@ module Vedeu
         @_options ||= {}
       end
 
-    end
+    end # CLI
 
-  end
+  end # Configuration
 
-end
+end # Vedeu

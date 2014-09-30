@@ -67,6 +67,6 @@ module Vedeu
       true
     end
 
-  end
+  end # Refresh
 
-end
+end # Vedeu

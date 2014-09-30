@@ -52,5 +52,6 @@ module Vedeu
 
     attr_reader :argv
 
-  end
-end
+  end # Launcher
+
+end # Vedeu

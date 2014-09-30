@@ -185,5 +185,6 @@ module Vedeu
       }
     end
 
-  end
-end
+  end # Event
+
+end # Vedeu

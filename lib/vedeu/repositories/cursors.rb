@@ -93,6 +93,6 @@ module Vedeu
       {}
     end
 
-  end
+  end # Cursors
 
-end
+end # Vedeu

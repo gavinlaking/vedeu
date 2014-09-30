@@ -1,4 +1,5 @@
 module Vedeu
+
   module API
 
     # Provides methods to be used to define interfaces or views.
@@ -216,6 +217,8 @@ module Vedeu
         value < 1 || value > Terminal.width
       end
 
-    end
-  end
-end
+    end # Interface
+
+  end # API
+
+end # Vedeu

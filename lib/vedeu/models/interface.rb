@@ -108,5 +108,6 @@ module Vedeu
       @self_before_instance_eval.send(method, *args, &block)
     end
 
-  end
-end
+  end # Interface
+
+end # Vedeu

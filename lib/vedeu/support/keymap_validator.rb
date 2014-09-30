@@ -94,6 +94,6 @@ module Vedeu
       Configuration.system_keys.values.include?(key)
     end
 
-  end
+  end # KeymapValidator
 
-end
+end # Vedeu

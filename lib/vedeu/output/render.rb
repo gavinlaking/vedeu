@@ -199,5 +199,6 @@ module Vedeu
       }
     end
 
-  end
-end
+  end # Render
+
+end # Vedeu

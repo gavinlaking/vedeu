@@ -275,5 +275,6 @@ module Vedeu
       }
     end
 
-  end
-end
+  end # Geometry
+
+end # Vedeu

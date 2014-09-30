@@ -179,5 +179,6 @@ module Vedeu
       }
     end
 
-  end
-end
+  end # ColourTranslator
+
+end # Vedeu

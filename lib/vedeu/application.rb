@@ -107,6 +107,6 @@ module Vedeu
 
     end
 
-  end
+  end # Application
   # :nocov:
-end
+end # Vedeu

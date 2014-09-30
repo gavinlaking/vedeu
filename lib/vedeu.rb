@@ -15,7 +15,7 @@ module Vedeu
     receiver.extend(API)
   end
 
-end
+end # Vedeu
 
 $LIB_DIR = File.dirname(__FILE__) + '/../lib'
 $LOAD_PATH.unshift($LIB_DIR) unless $LOAD_PATH.include?($LIB_DIR)

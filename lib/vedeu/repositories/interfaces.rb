@@ -92,5 +92,6 @@ module Vedeu
       {}
     end
 
-  end
-end
+  end # Interfaces
+
+end # Vedeu

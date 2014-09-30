@@ -39,6 +39,6 @@ module Vedeu
       fail MissingRequired, "Cannot store data without a #{attr} attribute."
     end
 
-  end
-end
+  end # Common
 
+end # Vedeu

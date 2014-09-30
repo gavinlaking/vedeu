@@ -41,6 +41,6 @@ module Vedeu
 
     attr_reader :attributes
 
-  end
+  end # Registrar
 
-end
+end # Vedeu

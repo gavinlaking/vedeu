@@ -44,4 +44,4 @@ module Vedeu
   # than 12. Vedeu is hard-wired to a 12-column layout for the time being.
   OutOfRange = Class.new(StandardError)
 
-end
+end # Vedeu

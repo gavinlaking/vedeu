@@ -48,5 +48,6 @@ module Vedeu
       end.join
     end
 
-  end
-end
+  end # Style
+
+end # Vedeu

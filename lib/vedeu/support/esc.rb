@@ -199,5 +199,6 @@ module Vedeu
       "\e[24m"
     end
 
-  end
-end
+  end # Esc
+
+end # Vedeu

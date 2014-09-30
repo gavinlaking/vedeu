@@ -16,7 +16,8 @@ class Fixnum
   def columns
     Vedeu::Grid.columns(self)
   end
-end
+
+end # Fixnum
 
 module Vedeu
 
@@ -69,5 +70,6 @@ module Vedeu
       value < 1 || value > 12
     end
 
-  end
-end
+  end # Grid
+
+end # Vedeu

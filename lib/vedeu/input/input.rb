@@ -76,5 +76,6 @@ module Vedeu
       }
     end
 
-  end
-end
+  end # Input
+
+end # Vedeu

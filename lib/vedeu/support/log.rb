@@ -132,6 +132,6 @@ module Vedeu
       Dir.home + '/.vedeu'
     end
 
-  end
+  end # Log
   # :nocov:
-end
+end # Vedeu

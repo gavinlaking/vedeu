@@ -50,5 +50,6 @@ module Vedeu
       interface.viewport_height.times
     end
 
-  end
-end
+  end # Clear
+
+end # Vedeu

@@ -132,5 +132,6 @@ module Vedeu
       []
     end
 
-  end
-end
+  end # Focus
+
+end # Vedeu

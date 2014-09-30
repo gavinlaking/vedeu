@@ -168,6 +168,6 @@ module Vedeu
       end
     end
 
-  end
+  end # Buffers
 
-end
+end # Vedeu

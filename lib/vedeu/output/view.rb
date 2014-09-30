@@ -59,5 +59,6 @@ module Vedeu
       render
     end
 
-  end
-end
+  end # View
+
+end # Vedeu

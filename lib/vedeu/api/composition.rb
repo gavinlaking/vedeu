@@ -1,4 +1,5 @@
 module Vedeu
+
   module API
 
     # @see Vedeu::Composition
@@ -33,6 +34,8 @@ module Vedeu
           .build({ name: name, parent: self.view_attributes }, &block)
       end
 
-    end
-  end
-end
+    end # Composition
+
+  end # API
+
+end # Vedeu

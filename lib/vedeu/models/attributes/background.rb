@@ -46,5 +46,6 @@ module Vedeu
       codes.inject({}){ |h, (k, v)| h.merge(k => v + 10) }
     end
 
-  end
-end
+  end # Background
+
+end # Vedeu

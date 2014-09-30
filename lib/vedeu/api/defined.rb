@@ -1,4 +1,5 @@
 module Vedeu
+
   module API
 
     # Provides a set of helpful API methods to return information about various
@@ -44,6 +45,8 @@ module Vedeu
         Vedeu::Menus.registered
       end
 
-    end
-  end
-end
+    end # Defined
+
+  end # API
+
+end # Vedeu

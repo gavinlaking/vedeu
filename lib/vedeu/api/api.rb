@@ -348,9 +348,10 @@ module Vedeu
       Terminal.width
     end
 
-  end
+  end # API
 
   extend API
 
   trap('SIGWINCH') { Vedeu.trigger(:_resize_) }
-end
+
+end # Vedeu

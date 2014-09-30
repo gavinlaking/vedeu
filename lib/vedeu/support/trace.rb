@@ -122,7 +122,8 @@ module Vedeu
         Vedeu.const_get(c).to_s
       end.to_set
     end
-  end
+
+  end # Trace
   # :nocov:
-end
+end # Vedeu
 

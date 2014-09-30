@@ -204,5 +204,6 @@ module Vedeu
       IO.console
     end
 
-  end
-end
+  end # Terminal
+
+end # Vedeu

@@ -223,6 +223,6 @@ module Vedeu
       { '_global_keymap_' => {} }
     end
 
-  end
+  end # Keymaps
 
-end
+end # Vedeu

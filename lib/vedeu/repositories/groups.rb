@@ -92,5 +92,6 @@ module Vedeu
       Hash.new { |hash, key| hash[key] = Set.new }
     end
 
-  end
-end
+  end # Groups
+
+end # Vedeu

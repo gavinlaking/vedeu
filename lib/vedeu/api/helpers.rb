@@ -1,4 +1,5 @@
 module Vedeu
+
   module API
 
     # Provides colour and style helpers for use in the {API::Interface},
@@ -65,6 +66,8 @@ module Vedeu
         end
       end
 
-    end
-  end
-end
+    end # Helpers
+
+  end # API
+
+end # Vedeu

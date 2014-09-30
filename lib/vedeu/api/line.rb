@@ -1,4 +1,5 @@
 module Vedeu
+
   module API
 
     # Provides methods to be used to define views.
@@ -80,7 +81,8 @@ module Vedeu
         attributes[:streams] << stream
       end
 
-    end
+    end # Line
 
-  end
-end
+  end # API
+
+end # Vedeu
