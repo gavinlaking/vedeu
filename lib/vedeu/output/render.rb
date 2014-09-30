@@ -155,29 +155,6 @@ module Vedeu
       interface.viewport_width
     end
 
-    # The current top line.
-    #
-    # @return [Fixnum]
-    def top
-      options[:top]
-    end
-
-    # @return [Hash]
-    def options
-      @_options ||= defaults.merge!(@options)
-    end
-
-    # @return [Hash]
-    def defaults
-      {
-        top:   0,
-        name:  '',
-        state: '',
-        x:     0,
-        y:     0,
-      }
-    end
-
   end # Render
 
 end # Vedeu

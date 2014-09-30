@@ -19,12 +19,12 @@ module Vedeu
     def initialize(attributes = {})
       @attributes = defaults.merge!(attributes)
 
-      @name  = @attributes[:name]
-      @state = @attributes[:state]
-      @x     = @attributes[:x]
-      @y     = @attributes[:y]
-      @x_offset = @attributes[:x_offset]
-      @y_offset = @attributes[:y_offset]
+      @name       = @attributes[:name]
+      @state      = @attributes[:state]
+      @x          = @attributes[:x]
+      @y          = @attributes[:y]
+      @x_offset   = @attributes[:x_offset]
+      @y_offset   = @attributes[:y_offset]
     end
 
     # Returns an attribute hash for the current position and visibility of the
@@ -33,16 +33,21 @@ module Vedeu
     # @return [Hash]
     def attributes
       {
-        name:  name,
-        state: state,
-        x:     x,
-        y:     y,
+        name:     name,
+        state:    state,
+        x:        x,
+        y:        y,
         x_offset: x_offset,
         y_offset: y_offset,
       }
     end
     alias_method :refresh, :attributes
 
+    # Update the stored cursor attributes and return a new instance of the
+    # interface's cursor.
+    #
+    # @param attrs [Hash]
+    # @return [Cursor]
     def update(attrs)
       Cursors.update(attributes.merge!(attrs))
 

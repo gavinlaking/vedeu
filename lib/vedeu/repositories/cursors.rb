@@ -39,6 +39,14 @@ module Vedeu
       })
     end
 
+    # Create a new instance of a stored cursor.
+    #
+    # @param name [String]
+    # @return [Cursor]
+    def cursor(name)
+      Cursor.new(find(name))
+    end
+
     # Saves the attributes in the repository for future use.
     #
     # @param attributes [Hash]

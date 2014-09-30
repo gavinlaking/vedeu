@@ -28,6 +28,6 @@ module Vedeu
       @offset ||= CursorOffset.new(interface)
     end
 
-  end
-end
+  end # Viewport
 
+end # Vedeu

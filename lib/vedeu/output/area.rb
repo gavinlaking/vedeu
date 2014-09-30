@@ -2,6 +2,9 @@ module Vedeu
   InvalidHeight = Class.new(StandardError)
   InvalidWidth  = Class.new(StandardError)
 
+  # Provides a collection of methods useful in calculating geometries for
+  # interfaces, cursors and viewports.
+  #
   class Area
 
     attr_reader  :y, :x, :height, :width
@@ -85,22 +88,61 @@ module Vedeu
       end
     end
 
+    # Returns the maximum x coordinate for an area.
+    #
+    # @return [Fixnum]
     def max_x
-      min_x + width
+      if width == 0
+        0
+
+      else
+        min_x + width
+
+      end
     end
 
+    # Returns the maximum y index for an area.
+    #
+    # @return [Fixnum]
+    def max_y_index
+      if height == 0
+        0
+
+      else
+        indexed_y.last
+
+      end
+    end
+
+    # Returns the maximum x coordinate for an area.
+    #
+    # @return [Fixnum]
+    def max_x_index
+      if width == 0
+        0
+
+      else
+        indexed_x.last
+
+      end
+    end
+
+    # @return [Area]
     def up
       Area.new(y - 1, x, height, width)
     end
 
+    # @return [Area]
     def down
       Area.new(y + 1, x, height, width)
     end
 
+    # @return [Area]
     def left
       Area.new(y, x - 1, height, width)
     end
 
+    # @return [Area]
     def right
       Area.new(y, x + 1, height, width)
     end
