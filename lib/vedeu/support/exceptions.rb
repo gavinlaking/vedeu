@@ -13,17 +13,9 @@ module Vedeu
   # Raised when an interface cannot be found by name.
   InterfaceNotFound = Class.new(StandardError)
 
-  # Raised when the value for a height is less than 0 or nil.
-  # @see Vedeu::Area#new
-  InvalidHeight = Class.new(StandardError)
-
   # Raised when Vedeu attempts to parse a {Vedeu.view} or {Vedeu.interface} and
   # encounters a problem.
   InvalidSyntax = Class.new(StandardError)
-
-  # Raised when the value for a width is less than 0 or nil.
-  # @see Vedeu::Area#new
-  InvalidWidth = Class.new(StandardError)
 
   # Raised when attempting to assign a key which is already in use.
   KeyInUse = Class.new(StandardError)

@@ -3,85 +3,111 @@ module Vedeu
   # Provides a collection of methods useful in calculating geometries for
   # interfaces, cursors and viewports.
   #
+  # @todo Rename (min|max)_(x|y) to x_min, y_max etc.
+  #
   class Area
 
-    attr_reader  :y, :x, :height, :width
-    alias_method :min_y, :y
-    alias_method :min_x, :x
+    attr_reader  :attributes, :height, :x_min, :y_min, :width, :x, :y
 
     # Returns an instance of Area.
     #
-    # @param y [Fixnum]
-    # @param x [Fixnum]
-    # @param height [Fixnum]
-    # @param width [Fixnum]
+    # @param  attributes [Hash] The attributes to initialize this class with.
+    # @option attributes :height [Fixnum] The number of rows or lines to use.
+    # @option attributes :x_min [Fixnum] The starting x coordinate for the area.
+    # @option attributes :y_min [Fixnum] The starting y coordinate for the area.
+    # @option attributes :width [Fixnum] The number of characters or columns to
+    #   use.
+    # @option attributes :x [Fixnum] A coordinate in the area. This value should
+    #   be an actual terminal coordinate.
+    # @option attributes :y [Fixnum] A coordinate in the area. This value should
+    #   be an actual terminal coordinate.
+    #
     # @return [Area]
-    def initialize(y = 0, x = 0, height = 0, width = 0)
-      @y      = y || 0
-      @x      = x || 0
-      @height = height || 0
-      @width  = width  || 0
+    def initialize(attributes = {})
+      @attributes = defaults.merge!(attributes)
+
+      @height = @attributes.fetch(:height)
+      @x_min  = @attributes.fetch(:x_min)
+      @y_min  = @attributes.fetch(:y_min)
+      @width  = @attributes.fetch(:width)
+      @x      = @attributes.fetch(:x)
+      @y      = @attributes.fetch(:y)
+    end
+
+    def inspect
+      attributes.merge!({
+        # y_range: y_range,
+        # x_range: x_range,
+        # y_indices: y_indices,
+        # x_indices: x_indices,
+        y_max: y_max,
+        x_max: x_max,
+        y_max_index: y_max_index,
+        x_max_index: x_max_index,
+        y_offset: y_offset,
+        x_offset: x_offset,
+      }).inspect
     end
 
     # Returns an array with all coordinates from and including y to and
-    # including max_y.
+    # including y_max.
     #
     # @example
     #   # height = 4
-    #   # min_y  = 7
-    #   # max_y  = 11
-    #   range_y # => [7, 8, 9, 10]
+    #   # y_min  = 7
+    #   # y_max  = 11
+    #   y_range # => [7, 8, 9, 10]
     #
     # @return [Array]
-    def range_y
-      (min_y...max_y).to_a
+    def y_range
+      (y_min...y_max).to_a
     end
 
     # Returns an array with all coordinates from and including x to and
-    # including max_x.
+    # including x_max.
     #
     # @example
     #   # width = 10
-    #   # min_x = 4
-    #   # max_x = 14
-    #   range_x # => [4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+    #   # x_min = 4
+    #   # x_max = 14
+    #   x_range # => [4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
     #
     # @return [Array]
-    def range_x
-      (min_x...max_x).to_a
+    def x_range
+      (x_min...x_max).to_a
     end
 
-    # Converts #range_y to an array of indicies.
+    # Returns the same as #y_range, except as indices of an array.
     #
     # @example
     #   # height = 4
-    #   indexed_y # => [0, 1, 2, 3]
+    #   y_indices # => [0, 1, 2, 3]
     #
     # @return [Array]
-    def indexed_y
+    def y_indices
       (0...height).to_a
     end
 
-    # Converts #range_x to an array of indicies.
+    # Returns the same as #x_range, except as indices of an array.
     #
     # @example
     #   # width = 10
-    #   indexed_x # => [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    #   x_indices # => [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
     #
     # @return [Array]
-    def indexed_x
+    def x_indices
       (0...width).to_a
     end
 
     # Returns the maximum y coordinate for an area.
     #
     # @return [Fixnum]
-    def max_y
+    def y_max
       if height == 0
         0
 
       else
-        min_y + height
+        y_min + height
 
       end
     end
@@ -89,12 +115,12 @@ module Vedeu
     # Returns the maximum x coordinate for an area.
     #
     # @return [Fixnum]
-    def max_x
+    def x_max
       if width == 0
         0
 
       else
-        min_x + width
+        x_min + width
 
       end
     end
@@ -102,47 +128,83 @@ module Vedeu
     # Returns the maximum y index for an area.
     #
     # @return [Fixnum]
-    def max_y_index
+    def y_max_index
       if height == 0
         0
 
       else
-        indexed_y.last
+        y_indices.last
 
       end
     end
 
-    # Returns the maximum x coordinate for an area.
+    # Returns the maximum x index for an area.
     #
     # @return [Fixnum]
-    def max_x_index
+    def x_max_index
       if width == 0
         0
 
       else
-        indexed_x.last
+        x_indices.last
 
       end
     end
 
-    # @return [Area]
-    def up
-      Area.new(y - 1, x, height, width)
+    # Returns the y coordinate as an offset in the area's y range.
+    #
+    # @example
+    #   # y_range  = [7, 8, 9, 10]
+    #   # y = 8
+    #   y_offset # => 1
+    #
+    def y_offset
+      if height == 0 || y <= y_min
+        0
+
+      elsif y >= y_max
+        y_max_index
+
+      else
+        y_range.index(y)
+
+      end
     end
 
-    # @return [Area]
-    def down
-      Area.new(y + 1, x, height, width)
+    # Returns the x coordinate as an offset in the area's x range.
+    #
+    # @example
+    #   # x_range = [4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+    #   # x = 8
+    #   x_offset # => 4
+    #
+    def x_offset
+      if width == 0 || x <= x_min
+        0
+
+      elsif x >= x_max
+        x_max_index
+
+      else
+        x_range.index(x)
+
+      end
     end
 
-    # @return [Area]
-    def left
-      Area.new(y, x - 1, height, width)
-    end
+    private
 
-    # @return [Area]
-    def right
-      Area.new(y, x + 1, height, width)
+    # Returns the default attributes for an Area instance.
+    #
+    # @return [Hash]
+    def defaults
+      {
+        height: 0,
+        x_min:  0,
+        y_min:  0,
+        width:  0,
+        x:      0,
+        y:      0,
+      }
     end
 
   end # Area
