@@ -1,6 +1,4 @@
 module Vedeu
-  InvalidHeight = Class.new(StandardError)
-  InvalidWidth  = Class.new(StandardError)
 
   # Provides a collection of methods useful in calculating geometries for
   # interfaces, cursors and viewports.
