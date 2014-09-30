@@ -72,8 +72,8 @@ module Vedeu
     # @param attributes [Hash]
     # @return [Boolean]
     def register_event(attributes)
-      name       = attributes[:group]
-      delay      = attributes[:delay] || 0.0
+      name  = attributes[:group]
+      delay = attributes[:delay] || 0.0
 
       Vedeu::Refresh.register_event(:by_group, name, delay)
     end
