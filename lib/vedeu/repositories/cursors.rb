@@ -58,10 +58,6 @@ module Vedeu
       @_storage = in_memory
     end
 
-    def update(attributes)
-      find(attributes[:name]).merge!(attributes)
-    end
-
     # Perform an action (moving, showing or hiding) and save the new cursor
     # state.
     #
