@@ -62,9 +62,7 @@ module Vedeu
 
       return false if Vedeu.events.registered?(event)
 
-      Vedeu.event(event, { delay: delay }) do
-        Vedeu::Refresh.send(type, name)
-      end
+      Vedeu.event(event, { delay: delay }) { Vedeu::Refresh.send(type, name) }
 
       true
     end
