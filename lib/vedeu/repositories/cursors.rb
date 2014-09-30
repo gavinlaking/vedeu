@@ -51,11 +51,8 @@ module Vedeu
     #
     # @param name [String]
     # @return [Boolean]
-    def registered?(name = '')
-      return false unless defined_value?(name)
-      return false if storage.empty?
-
-      storage.keys.include?(name)
+    def registered?(name)
+      storage.key?(name)
     end
 
     # Perform an action (moving, showing or hiding) and save the new cursor
