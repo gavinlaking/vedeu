@@ -15,5 +15,27 @@ module Vedeu
       end
     end
 
+    describe '#find' do
+      it 'returns something' do
+        skip
+      end
+    end
+
+    describe '#registered?' do
+      it 'returns false when the name is nil' do
+        Cursors.registered?(nil).must_equal(false)
+      end
+
+      it 'returns false when the name is empty' do
+        Cursors.registered?('').must_equal(false)
+      end
+    end
+
+    describe '#use' do
+      it 'returns something' do
+        skip
+      end
+    end
+
   end
 end

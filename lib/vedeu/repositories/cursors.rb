@@ -49,9 +49,10 @@ module Vedeu
 
     # Returns a boolean indicating whether the named interface is registered.
     #
-    # @api private
+    # @param name [String]
     # @return [Boolean]
-    def registered?(name)
+    def registered?(name = '')
+      return false unless defined_value?(name)
       return false if storage.empty?
 
       storage.keys.include?(name)
