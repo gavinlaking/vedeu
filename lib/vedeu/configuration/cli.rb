@@ -36,39 +36,55 @@ module Vedeu
 
           opts.on('-i', '--interactive',
                   'Run the application in interactive mode (default).') do
+            Vedeu.log("Configuration::CLI interactive: true")
+
             options[:interactive] = true
           end
 
           opts.on('-I', '--noninteractive', '--standalone',
                   'Run the application non-interactively; i.e. not requiring ' \
                   'intervention from the user.') do
+            Vedeu.log("Configuration::CLI interactive: false")
+
             options[:interactive] = false
           end
 
           opts.on('-1', '--run-once',
                   'Run the application loop once.') do
+            Vedeu.log("Configuration::CLI once: true")
+
             options[:once] = true
           end
 
           opts.on('-n', '--run-many',
                   'Run the application loop continuously (default).') do
+            Vedeu.log("Configuration::CLI once: false")
+
             options[:once] = false
           end
 
           opts.on('-c', '--cooked', 'Run application in cooked mode.') do
+            Vedeu.log("Configuration::CLI terminal_mode: :cooked")
+
             options[:terminal_mode] = :cooked
           end
 
           opts.on('-r', '--raw', 'Run application in raw mode (default).') do
+            Vedeu.log("Configuration::CLI terminal_mode: :raw")
+
             options[:terminal_mode] = :raw
           end
 
           opts.on('-d', '--debug', 'Run application with debugging on.') do
+            Vedeu.log("Configuration::CLI debug: true")
+
             options[:debug] = true
           end
 
           opts.on('-D', '--trace', 'Run application with debugging on with ' \
                                    'method and event tracing (noisy!).') do
+            Vedeu.log("Configuration::CLI trace: true")
+
             options[:debug] = true
             options[:trace] = true
           end
@@ -77,9 +93,13 @@ module Vedeu
                   'Run application in either `8`, `16`, `256` or `16777216` ' \
                   'colour mode.') do |colours|
             if [8, 16, 256, 16777216].include?(colours)
+              Vedeu.log("Configuration::CLI colour_mode: #{colours.to_s}")
+
               options[:colour_mode] = colours
 
             else
+              Vedeu.log("Configuration::CLI colour_mode: 8 (defaulted)")
+
               options[:colour_mode] = 8
 
             end
