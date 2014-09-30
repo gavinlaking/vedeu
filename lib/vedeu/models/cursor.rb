@@ -43,6 +43,36 @@ module Vedeu
     end
     alias_method :refresh, :attributes
 
+    # Returns the y coordinate of the cursor, unless out of range, in which case
+    # sets y to the first row (top) of the interface.
+    #
+    # @return [Fixnum]
+    def y
+      if y_out_of_range?
+        @y_offset = 0
+        @y        = top
+
+      else
+        @y
+
+      end
+    end
+
+    # Returns the x coordinate of the cursor, unless out of range, in which case
+    # sets x to the first column (left) of the interface.
+    #
+    # @return [Fixnum]
+    def x
+      if x_out_of_range?
+        @x_offset = 0
+        @x        = left
+
+      else
+        @x
+
+      end
+    end
+
     # Update the stored cursor attributes and return a new instance of the
     # interface's cursor.
     #
@@ -191,36 +221,6 @@ module Vedeu
       return false if state == :hide
 
       true
-    end
-
-    # Returns the y coordinate of the cursor, unless out of range, in which case
-    # sets y to the first row (top) of the interface.
-    #
-    # @return [Fixnum]
-    def y
-      if y_out_of_range?
-        @y_offset = 0
-        @y        = top
-
-      else
-        @y
-
-      end
-    end
-
-    # Returns the x coordinate of the cursor, unless out of range, in which case
-    # sets x to the first column (left) of the interface.
-    #
-    # @return [Fixnum]
-    def x
-      if x_out_of_range?
-        @x_offset = 0
-        @x        = left
-
-      else
-        @x
-
-      end
     end
 
     # Returns a boolean indicating whether the previous y coordinate is still
