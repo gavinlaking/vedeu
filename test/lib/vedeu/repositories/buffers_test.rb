@@ -65,7 +65,7 @@ module Vedeu
       end
     end
 
-    describe '.registered>' do
+    describe '.registered?' do
       it '' do
         skip
       end
@@ -73,8 +73,8 @@ module Vedeu
 
     describe '.reset' do
       it '' do
-          skip
-        end
+        skip
+      end
     end
 
   end
