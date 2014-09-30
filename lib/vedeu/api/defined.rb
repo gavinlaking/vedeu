@@ -30,6 +30,13 @@ module Vedeu
         Vedeu::Interfaces.registered
       end
 
+      # Returns the names of all keymaps currently registered with Vedeu.
+      #
+      # @return [Array]
+      def keymaps
+        Vedeu::Keymaps.registered
+      end
+
       # Returns all menus currently registered with Vedeu.
       #
       # @return [Array]

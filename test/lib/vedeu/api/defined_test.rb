@@ -45,6 +45,22 @@ module Vedeu
         end
       end
 
+      describe '#keymaps' do
+        before { Vedeu::Keymaps.reset }
+
+        it 'returns the default keymap when no others are registered' do
+          Defined.keymaps.must_equal(['_global_keymap_'])
+        end
+
+        it 'returns all keymaps currently registered' do
+          Vedeu.keys('flerovium') do
+            key('u') { :some_action }
+          end
+
+          Defined.keymaps.must_equal(['_global_keymap_', 'flerovium'])
+        end
+      end
+
       describe '#menus' do
         before { Vedeu::Menus.reset }
 
