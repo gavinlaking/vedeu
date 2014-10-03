@@ -40,6 +40,7 @@ module Vedeu
         out << interface.origin(index)
         out << line.to_s
       end
+      out << interface.cursor.to_s if interface.in_focus?
       out.join
     end
 
@@ -142,7 +143,7 @@ module Vedeu
     #
     # @return [Array]
     def visible_lines
-      lines[top..height]
+      lines[top...height]
     end
 
     # Provides the collection of lines associated with the interface.
@@ -159,7 +160,7 @@ module Vedeu
     #
     # @return [Fixnum]
     def height
-      interface.viewport_height - 1
+      interface.viewport_height
     end
 
     # Provides the currently available width of the interface.
@@ -184,7 +185,11 @@ module Vedeu
     # @return [Hash]
     def defaults
       {
-        top: 0
+        top:   0,
+        name:  '',
+        state: '',
+        x:     0,
+        y:     0,
       }
     end
 
