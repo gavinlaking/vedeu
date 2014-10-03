@@ -67,6 +67,14 @@ module Vedeu
       storage.first
     end
 
+    # Returns a boolean indicating whether the named interface is focussed.
+    #
+    # @param name [String]
+    # @return [Boolean]
+    def current?(name)
+      current == name
+    end
+
     # Put the next interface relative to the current interfaces in focus.
     #
     # @return [String]

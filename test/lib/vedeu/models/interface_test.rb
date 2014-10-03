@@ -60,6 +60,20 @@ module Vedeu
       end
     end
 
+    describe '#in_focus?' do
+      context 'when the interface is currently in focus' do
+        before { Focus.stubs(:current?).returns(true) }
+
+        it { interface.in_focus?.must_equal(true) }
+      end
+
+      context 'when the interface is not currently in focus' do
+        before { Focus.stubs(:current?).returns(false) }
+
+        it { interface.in_focus?.must_equal(false) }
+      end
+    end
+
     describe '#group' do
       it 'returns the value' do
         interface.group.must_equal('my_group')

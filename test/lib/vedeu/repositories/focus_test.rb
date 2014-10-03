@@ -49,6 +49,18 @@ module Vedeu
       end
     end
 
+    describe '#current?' do
+      before { Focus.stubs(:current).returns('lead') }
+
+      context 'when the interface is currently in focus' do
+        it { Focus.current?('lead').must_equal(true) }
+      end
+
+      context 'when the interface is not currently in focus' do
+        it { Focus.current?('bismuth').must_equal(false) }
+      end
+    end
+
     describe '#next_item' do
       it 'the next interface is focussed when the method is called' do
         Focus.add({ name: 'thallium' })
