@@ -89,7 +89,7 @@ module Vedeu
     # @api private
     # @return []
     def method_missing(method, *args, &block)
-      Vedeu.log("Stream#method_missing #{method.to_s} #{args.inspect}")
+      Vedeu.log("Stream#method_missing '#{method.to_s}' (args: #{args.inspect})")
 
       @self_before_instance_eval.send(method, *args, &block)
     end
