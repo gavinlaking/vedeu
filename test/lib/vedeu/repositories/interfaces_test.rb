@@ -37,6 +37,23 @@ module Vedeu
       end
     end
 
+    describe '#build' do
+      let(:attributes) { { name: 'rhenium' } }
+
+      before { Interfaces.add(attributes) }
+      after  { Interfaces.reset }
+
+      it 'returns a new instance of Interface based on the stored attributes' do
+        Interfaces.build('rhenium').must_be_instance_of(Interface)
+      end
+
+      context 'when the interface cannot be found' do
+        it 'raises an exception' do
+          proc { Interfaces.build('manganese') }.must_raise(InterfaceNotFound)
+        end
+      end
+    end
+
     describe '#find' do
       before { Interfaces.add({ name: 'zinc' }) }
 

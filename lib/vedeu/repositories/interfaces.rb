@@ -31,6 +31,14 @@ module Vedeu
       storage
     end
 
+    # Create an instance of Interface from the stored attributes.
+    #
+    # @param name [String]
+    # @return [Interface]
+    def build(name)
+      Interface.new(find(name))
+    end
+
     # Find an interface by name and return the attributes used to define it.
     #
     # @param name [String]
