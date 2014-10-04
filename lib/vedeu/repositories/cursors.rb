@@ -29,11 +29,13 @@ module Vedeu
 
       Vedeu.log("Registering cursor: '#{attributes[:name]}'")
 
+      interface = Interface.new(attributes)
+
       storage.store(attributes[:name], {
-        name: attributes[:name],
-        x: 1,
-        y: 1,
-        state: :show,
+        name:     attributes[:name],
+        state:    :show,
+        x:        interface.left,
+        y:        interface.top,
         x_offset: 0,
         y_offset: 0
       })
@@ -43,7 +45,7 @@ module Vedeu
     #
     # @param name [String]
     # @return [Cursor]
-    def cursor(name)
+    def build(name)
       Cursor.new(find(name))
     end
 
@@ -66,6 +68,18 @@ module Vedeu
       @_storage = in_memory
     end
 
+    # Saves the attributes in the repository for future use.
+    #
+    # @param attributes [Hash]
+    # @return [Hash]
+    def update(attributes)
+      return false unless defined_value?(attributes[:name])
+
+      Vedeu.log("Updating cursor: '#{attributes[:name]}'")
+
+      storage.store(attributes[:name], attributes)
+    end
+
     # Perform an action (moving, showing or hiding) and save the new cursor
     # state.
     #
@@ -74,14 +88,14 @@ module Vedeu
     # @return [String] The escape sequence sent to the Terminal on completion
     #   of the action.
     def use(action)
-      name = Focus.current
-      c = cursor(name)
+      name   = Focus.current
+      cursor = build(name)
 
-      storage.store(name, c.send(action))
+      storage.store(name, cursor.send(action))
 
       Vedeu.trigger("_refresh_#{name}_".to_sym)
 
-      Terminal.output(c.to_s)
+      Terminal.output(cursor.to_s)
     end
 
     private

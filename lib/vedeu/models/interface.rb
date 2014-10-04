@@ -99,7 +99,7 @@ module Vedeu
     #
     # @return [Cursor]
     def cursor
-      @cursor ||= Cursors.cursor(name)
+      @cursor ||= Cursors.build(name)
     end
 
     private
