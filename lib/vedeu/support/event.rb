@@ -70,7 +70,7 @@ module Vedeu
         true
 
       else
-        Vedeu.log("Event '#{event_name}' is being throttled")
+        Vedeu.log("Throttling event '#{event_name}'")
 
         false
 
@@ -100,7 +100,7 @@ module Vedeu
         true
 
       else
-        Vedeu.log("Event '#{event_name}' is being debounced")
+        Vedeu.log("Debouncing event '#{event_name}'")
 
         false
 
