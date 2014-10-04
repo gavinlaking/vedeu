@@ -29,6 +29,8 @@ module Vedeu
     #
     # @return [String]
     def clear
+      Vedeu.log("Clearing view: '#{interface.name}'")
+
       rows.inject([colours]) do |line, index|
         line << interface.origin(index) { ' ' * interface.viewport_width }
       end.join

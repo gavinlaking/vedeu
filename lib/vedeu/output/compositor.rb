@@ -40,13 +40,9 @@ module Vedeu
     # @return [String]
     def view
       if buffer
-        Vedeu.log("Rendering view: '#{name}'")
-
         Render.call(Interface.new(new_interface))
 
       else
-        Vedeu.log("Clearing view: '#{name}'")
-
         Clear.call(Interface.new(interface))
 
       end

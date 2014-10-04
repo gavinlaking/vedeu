@@ -34,6 +34,8 @@ module Vedeu
     #
     # @return [String]
     def render
+      Vedeu.log("Rendering view: '#{interface.name}'")
+
       out = [ Clear.call(interface) ]
       processed_lines.each_with_index do |line, index|
         out << interface.origin(index)
