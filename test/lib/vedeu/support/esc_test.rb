@@ -2,6 +2,30 @@ require 'test_helper'
 
 module Vedeu
   describe Esc do
+    describe 'colours defined via define_method' do
+      it 'returns an escape sequence for the foreground colour' do
+        Esc.magenta.must_equal("\e[35m")
+      end
+
+      it 'returns an escape sequence for the foreground colour and resets ' \
+         'after calling the block' do
+        Esc.cyan do
+          'ununpentium'
+        end.must_equal("\e[36mununpentium\e[39m")
+      end
+
+      it 'returns an escape sequence for the background colour' do
+        Esc.on_yellow.must_equal("\e[43m")
+      end
+
+      it 'returns an escape sequence for the background colour and resets ' \
+         'after calling the block' do
+        Esc.on_red do
+          'livermorium'
+        end.must_equal("\e[41mlivermorium\e[49m")
+      end
+    end
+
     describe '.string' do
       it 'returns an empty string when the style is not provided' do
         Esc.string.must_equal('')
