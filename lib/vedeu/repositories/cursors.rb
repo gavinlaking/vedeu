@@ -41,7 +41,7 @@ module Vedeu
       })
     end
 
-    # Create a new instance of a stored cursor.
+    # Create an instance of Cursor from the stored attributes.
     #
     # @param name [String]
     # @return [Cursor]

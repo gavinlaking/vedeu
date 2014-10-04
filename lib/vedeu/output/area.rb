@@ -34,33 +34,61 @@ module Vedeu
       @y      = @attributes.fetch(:y)
     end
 
-    def inspect
-      attributes.merge!({
-        # y_range: y_range,
-        # x_range: x_range,
-        # y_indices: y_indices,
-        # x_indices: x_indices,
-        y_max: y_max,
-        x_max: x_max,
-        y_max_index: y_max_index,
-        x_max_index: x_max_index,
-        y_offset: y_offset,
-        x_offset: x_offset,
-      }).inspect
-    end
-
-    # Returns an array with all coordinates from and including y to and
-    # including y_max.
+    # Returns the same as #x_range, except as indices of an array.
     #
     # @example
-    #   # height = 4
-    #   # y_min  = 7
-    #   # y_max  = 11
-    #   y_range # => [7, 8, 9, 10]
+    #   # width = 10
+    #   x_indices # => [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
     #
     # @return [Array]
-    def y_range
-      (y_min...y_max).to_a
+    def x_indices
+      (0...width).to_a
+    end
+
+    # Returns the maximum x coordinate for an area.
+    #
+    # @return [Fixnum]
+    def x_max
+      if width == 0
+        0
+
+      else
+        x_min + width
+
+      end
+    end
+
+    # Returns the maximum x index for an area.
+    #
+    # @return [Fixnum]
+    def x_max_index
+      if width == 0
+        0
+
+      else
+        x_indices.last
+
+      end
+    end
+
+    # Returns the x coordinate as an offset in the area's x range.
+    #
+    # @example
+    #   # x_range = [4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+    #   # x = 8
+    #   x_offset # => 4
+    #
+    def x_offset
+      if width == 0 || x <= x_min
+        0
+
+      elsif x >= x_max
+        x_max_index
+
+      else
+        x_range.index(x)
+
+      end
     end
 
     # Returns an array with all coordinates from and including x to and
@@ -88,17 +116,6 @@ module Vedeu
       (0...height).to_a
     end
 
-    # Returns the same as #x_range, except as indices of an array.
-    #
-    # @example
-    #   # width = 10
-    #   x_indices # => [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-    #
-    # @return [Array]
-    def x_indices
-      (0...width).to_a
-    end
-
     # Returns the maximum y coordinate for an area.
     #
     # @return [Fixnum]
@@ -112,19 +129,6 @@ module Vedeu
       end
     end
 
-    # Returns the maximum x coordinate for an area.
-    #
-    # @return [Fixnum]
-    def x_max
-      if width == 0
-        0
-
-      else
-        x_min + width
-
-      end
-    end
-
     # Returns the maximum y index for an area.
     #
     # @return [Fixnum]
@@ -134,19 +138,6 @@ module Vedeu
 
       else
         y_indices.last
-
-      end
-    end
-
-    # Returns the maximum x index for an area.
-    #
-    # @return [Fixnum]
-    def x_max_index
-      if width == 0
-        0
-
-      else
-        x_indices.last
 
       end
     end
@@ -171,24 +162,18 @@ module Vedeu
       end
     end
 
-    # Returns the x coordinate as an offset in the area's x range.
+    # Returns an array with all coordinates from and including y to and
+    # including y_max.
     #
     # @example
-    #   # x_range = [4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
-    #   # x = 8
-    #   x_offset # => 4
+    #   # height = 4
+    #   # y_min  = 7
+    #   # y_max  = 11
+    #   y_range # => [7, 8, 9, 10]
     #
-    def x_offset
-      if width == 0 || x <= x_min
-        0
-
-      elsif x >= x_max
-        x_max_index
-
-      else
-        x_range.index(x)
-
-      end
+    # @return [Array]
+    def y_range
+      (y_min...y_max).to_a
     end
 
     private
