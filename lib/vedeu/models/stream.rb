@@ -40,6 +40,13 @@ module Vedeu
       end
     end
 
+    # Returns the content of this stream.
+    #
+    # @return [String]
+    def content
+      data
+    end
+
     private
 
     # Returns the text aligned if a width was set, otherwise just the text.
