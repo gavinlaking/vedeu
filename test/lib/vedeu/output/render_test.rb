@@ -27,6 +27,8 @@ module Vedeu
     describe '.call' do
       let(:interface) { Vedeu.use('fluorine') }
 
+      before { interface.stubs(:in_focus?).returns(true) }
+
       it 'returns the content for the interface' do
         Render.call(interface).must_equal(
           "\e[1;1H                                \e[1;1H" \

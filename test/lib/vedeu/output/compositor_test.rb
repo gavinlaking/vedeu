@@ -2,7 +2,10 @@ require 'test_helper'
 
 module Vedeu
   describe Compositor do
-    before { Terminal.console.stubs(:print) }
+    before do
+      Interfaces.reset
+      Terminal.console.stubs(:print)
+    end
 
     describe '.render' do
       it 'raises an exception if the buffer/interface cannot be found' do
@@ -18,10 +21,13 @@ module Vedeu
             height 3
           end
 
+          Vedeu.focus('xenon')
+
           Compositor.render('xenon').must_equal([
             "\e[1;1H     \e[1;1H" \
             "\e[2;1H     \e[2;1H" \
-            "\e[3;1H     \e[3;1H"
+            "\e[3;1H     \e[3;1H" \
+            "\e[1;1H\e[?25h"
           ])
         end
       end
@@ -34,6 +40,8 @@ module Vedeu
             width  5
             height 3
           end
+
+          Vedeu.focus('neon')
 
           class MyCompositorView < Vedeu::View
             def render
@@ -53,7 +61,8 @@ module Vedeu
             "\e[3;1H     \e[3;1H" \
             "\e[1;1Hargon" \
             "\e[2;1Hboron" \
-            "\e[3;1Hradon"
+            "\e[3;1Hradon" \
+            "\e[1;1H\e[?25h"
           ])
         end
       end

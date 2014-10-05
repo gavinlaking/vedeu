@@ -6,15 +6,18 @@ module Vedeu
   # @api private
   class Cursor
 
-    extend Forwardable
-
-    def_delegators :geometry, :top, :right, :bottom, :left
-
-    attr_reader :name, :x_offset, :y_offset
+    attr_reader :name, :x, :y
 
     # Provides a new instance of Cursor.
     #
     # @param attributes [Hash] The stored attributes for a cursor.
+    # @option attributes :name [String] The name of the interface this cursor
+    #   belongs to.
+    # @option attributes :state [Symbol] The visibility of the cursor, either
+    #   +:hide+ or +:show+.
+    # @option attributes :x [Fixnum]
+    # @option attributes :y [Fixnum]
+    #
     # @return [Cursor]
     def initialize(attributes = {})
       @attributes = defaults.merge!(attributes)
@@ -39,97 +42,47 @@ module Vedeu
     end
     alias_method :refresh, :attributes
 
-    # Returns the y coordinate of the cursor, unless out of range, in which case
-    # sets y to the first row (top) of the interface.
+    # Saves the attributes to the Cursors repository.
     #
-    # @return [Fixnum]
-    def y
-      if y_out_of_range?
-        @y_offset = 0
-        @y        = top
-
-      else
-        @y
-
-      end
-    end
-
-    # Returns the x coordinate of the cursor, unless out of range, in which case
-    # sets x to the first column (left) of the interface.
-    #
-    # @return [Fixnum]
-    def x
-      if x_out_of_range?
-        @x_offset = 0
-        @x        = left
-
-      else
-        @x
-
-      end
-    end
-
-    # Update the stored cursor attributes and return a new instance of the
-    # interface's cursor.
-    #
-    # @param attrs [Hash]
-    # @return [Cursor]
-    def update(attrs)
-      Cursors.update(attributes.merge!(attrs))
-
-      Cursor.new(attributes)
+    # @return []
+    def update
+      Cursors.update(attributes)
     end
 
     # Move the cursor up one row.
     #
     # @return [Cursor]
     def move_up
-      unless y == top || y - 1 < top
-        @y -= 1
-      end
+      @y -= 1
 
-      @y_offset -= 1 if y_offset > 0
-
-      attributes
+      update
     end
 
     # Move the cursor down one row.
     #
     # @return [Cursor]
     def move_down
-      unless y == bottom || y + 1 >= bottom
-        @y += 1
-      end
+      @y += 1
 
-      @y_offset += 1
-
-      attributes
+      update
     end
 
     # Move the cursor left one column.
     #
     # @return [Cursor]
     def move_left
-      unless x == left || x - 1 < left
-        @x -= 1
-      end
+      @x -= 1
 
-      @x_offset -= 1 if x_offset > 0
-
-      attributes
+      update
     end
 
     # Move the cursor right one column.
     #
     # @return [Cursor]
     def move_right
-      unless x == right || x + 1 >= right
-        @x += 1
-      end
+      @x += 1
 
-      @x_offset += 1
-
-      attributes
+      update
     end
 
     # Make the cursor visible if it is not already.
@@ -138,7 +91,7 @@ module Vedeu
     def show
       @state = :show
 
-      attributes
+      update
     end
 
     # Make the cursor invisible if it is not already.
@@ -147,7 +100,7 @@ module Vedeu
     def hide
       @state = :hide
 
-      attributes
+      update
     end
 
     # Toggle the visibility of the cursor.
@@ -162,7 +115,7 @@ module Vedeu
 
       end
 
-      attributes
+      update
     end
 
     # Returns an escape sequence to position the cursor and set its visibility.
@@ -220,36 +173,6 @@ module Vedeu
       Esc.string('hide_cursor')
     end
 
-    # Returns a boolean indicating whether the previous y coordinate is still
-    # inside the interface or terminal.
-    #
-    # @return [Boolean]
-    def y_out_of_range?
-      @y < top || @y > bottom
-    end
-
-    # Returns a boolean indicating whether the previous x coordinate is still
-    # inside the interface or terminal.
-    #
-    # @return [Boolean]
-    def x_out_of_range?
-      @x < left || @x > right
-    end
-
-    # Returns the position and size of the interface.
-    #
-    # @return [Geometry]
-    def geometry
-      @geometry ||= Vedeu::Geometry.new(interface[:geometry])
-    end
-
-    # Returns the attributes of a named interface.
-    #
-    # @return [Hash]
-    def interface
-      Vedeu::Interfaces.find(name)
-    end
-
     # The valid visibility states for the cursor.
     #
     # @return [Array]
@@ -262,12 +185,10 @@ module Vedeu
     # @return [Hash]
     def defaults
       {
-        name:  '',
-        x:     1,
-        y:     1,
-        state: :hide,
-        x_offset: 0,
-        y_offset: 0,
+        name:     '',
+        state:    :hide,
+        x:        1,
+        y:        1,
       }
     end
 

@@ -8,25 +8,39 @@ module Vedeu
   # position.
   class Viewport
 
+    attr_reader :cursor
+
     def initialize(interface)
       @interface = interface
+
+      @cursor = interface.cursor
+
+      @content = Area.new({
+        y_min:  @interface.top,
+        x_min:  @interface.left,
+        y:      @cursor.y,
+        x:      @cursor.x,
+        height: @interface.lines.size,
+        width:  @interface.viewport_width })
+      Vedeu.log("Viewport#initialize content: #{@content.inspect}")
+
+      @visible = Area.new({
+        y_min:  @content.y_offset,
+        x_min:  @content.x_offset,
+        y:      @cursor.y,
+        x:      @cursor.x,
+        height: @interface.viewport_height,
+        width:  @interface.viewport_width })
+      Vedeu.log("Viewport#initialize visible: #{@visible.inspect}")
     end
 
     def visible_lines
-      lines[offset.y_offset...(offset.y_offset + interface.viewport_height)]
+      interface.lines[@visible.y_min...@visible.y_max]
     end
 
     private
 
     attr_reader :interface
-
-    def lines
-      interface.lines
-    end
-
-    def offset
-      @offset ||= CursorOffset.new(interface)
-    end
 
   end # Viewport
 
