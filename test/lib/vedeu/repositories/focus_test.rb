@@ -23,6 +23,12 @@ module Vedeu
       end
     end
 
+    describe '#all' do
+      it 'returns the repository' do
+        Focus.all.must_equal([])
+      end
+    end
+
     describe '#by_name' do
       it 'the named interface is focussed when the method is called' do
         Focus.add({ name: 'thallium' })

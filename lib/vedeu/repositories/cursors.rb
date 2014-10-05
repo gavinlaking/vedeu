@@ -36,6 +36,13 @@ module Vedeu
       })
     end
 
+    # Return the whole repository.
+    #
+    # @return [Hash]
+    def all
+      storage
+    end
+
     # Find the cursor attributes by name.
     #
     # @param name [String]

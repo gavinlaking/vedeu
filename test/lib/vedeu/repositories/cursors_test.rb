@@ -3,6 +3,8 @@ require 'test_helper'
 module Vedeu
   describe Cursors do
 
+    before { Cursors.reset }
+
     describe '#add' do
       it 'raises an exception if the attributes does not have a :name key' do
         attributes = { no_name_key: '' }
@@ -12,6 +14,12 @@ module Vedeu
 
       it 'returns something' do
         skip
+      end
+    end
+
+    describe '#all' do
+      it 'returns the repository' do
+        Cursors.all.must_equal({})
       end
     end
 

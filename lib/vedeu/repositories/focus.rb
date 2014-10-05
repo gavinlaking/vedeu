@@ -44,6 +44,13 @@ module Vedeu
       end
     end
 
+    # Return the whole repository.
+    #
+    # @return [Array]
+    def all
+      storage
+    end
+
     # Focus an interface by name.
     #
     # @param name [String]

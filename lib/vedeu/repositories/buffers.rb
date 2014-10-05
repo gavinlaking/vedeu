@@ -34,6 +34,13 @@ module Vedeu
       attributes[:name]
     end
 
+    # Return the whole repository of buffers.
+    #
+    # @return [Hash]
+    def all
+      storage
+    end
+
     # Find the buffer by name.
     #
     # @param name [String]
