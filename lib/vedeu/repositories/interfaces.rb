@@ -6,6 +6,7 @@ module Vedeu
   module Interfaces
 
     include Common
+    include Repository
     extend self
 
     # Stores the interface attributes defined by the API.
@@ -24,44 +25,12 @@ module Vedeu
       true
     end
 
-    # Return the whole repository.
-    #
-    # @return [Hash]
-    def all
-      storage
-    end
-
     # Create an instance of Interface from the stored attributes.
     #
     # @param name [String]
     # @return [Interface]
     def build(name)
       Interface.new(find(name))
-    end
-
-    # Find an interface by name and return the attributes used to define it.
-    #
-    # @param name [String]
-    # @return [Hash]
-    def find(name)
-      storage.fetch(name) do
-        fail InterfaceNotFound,
-          "Interface was not found with this name: #{name.to_s}."
-      end
-    end
-
-    # Returns a collection of the names of all the registered interfaces.
-    #
-    # @return [Array]
-    def registered
-      storage.keys
-    end
-
-    # Returns a boolean indicating whether the named interface is registered.
-    #
-    # @return [Boolean]
-    def registered?(name)
-      storage.key?(name)
     end
 
     # Reset the interfaces repository; removing all registered interfaces.
@@ -98,6 +67,14 @@ module Vedeu
     # @return [Hash]
     def in_memory
       {}
+    end
+
+    # @api private
+    # @param name [String]
+    # @return []
+    def not_found(name)
+      fail InterfaceNotFound,
+        "Interface was not found with this name: #{name.to_s}."
     end
 
   end # Interfaces

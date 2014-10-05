@@ -6,7 +6,8 @@ module Vedeu
   # @api private
   module Buffers
 
-    include Vedeu::Common
+    include Common
+    include Repository
     extend self
 
     # Add an interface view into the back buffer. If the buffer is already
@@ -32,23 +33,6 @@ module Vedeu
       end
 
       attributes[:name]
-    end
-
-    # Return the whole repository of buffers.
-    #
-    # @return [Hash]
-    def all
-      storage
-    end
-
-    # Find the buffer by name.
-    #
-    # @param name [String]
-    # @return [Hash]
-    def find(name)
-      storage.fetch(name) do
-        fail BufferNotFound, "Cannot find buffer with this name: #{name.to_s}."
-      end
     end
 
     # Returns the latest content for the named buffer. The latest content always
@@ -78,30 +62,6 @@ module Vedeu
         nil
 
       end
-    end
-
-    # Returns a collection of the names of all registered buffers.
-    #
-    # @return [Array]
-    def registered
-      storage.keys
-    end
-
-    # Returns a boolean indicating whether the named buffer is registered.
-    #
-    # @api private
-    # @param name [String]
-    # @return [Boolean]
-    def registered?(name)
-      storage.key?(name)
-    end
-
-    # Reset the buffers repository; removing all buffers. This does not delete
-    # the interfaces themselves.
-    #
-    # @return [Hash]
-    def reset
-      @_storage = in_memory
     end
 
     private
@@ -173,6 +133,13 @@ module Vedeu
           back_buffer:  nil,
         }
       end
+    end
+
+    # @api private
+    # @param name [String]
+    # @return []
+    def not_found(name)
+      fail BufferNotFound, "Cannot find buffer with this name: #{name.to_s}."
     end
 
   end # Buffers

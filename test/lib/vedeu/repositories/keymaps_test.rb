@@ -19,14 +19,6 @@ module Vedeu
       end
     end
 
-    describe '#all' do
-      before { Keymaps.reset }
-
-      it 'returns all stored keymaps' do
-        Keymaps.all.must_equal({ '_global_keymap_' => {} })
-      end
-    end
-
     describe '#find' do
       let(:attributes) {
         {
@@ -157,15 +149,6 @@ module Vedeu
       end
     end
 
-    describe '#registered' do
-      before { Keymaps.reset }
-
-      it 'returns a collection of the interface names of all registered ' \
-      'keymaps' do
-        Keymaps.registered.must_equal(['_global_keymap_'])
-      end
-    end
-
     describe '#registered?' do
       it 'returns false when the named keymap is not registered' do
         Keymaps.registered?('vanadium').must_equal(false)
@@ -173,12 +156,6 @@ module Vedeu
 
       it 'returns true when the named keymap is registered' do
         Keymaps.registered?('_global_keymap_').must_equal(true)
-      end
-    end
-
-    describe '#reset' do
-      it 'removes all stored keymaps' do
-        Keymaps.reset.must_equal({ '_global_keymap_' => {} })
       end
     end
 

@@ -4,6 +4,7 @@ module Vedeu
   # name can contain many events. Also, an event can trigger other events.
   module Events
 
+    include Repository
     extend self
 
     # @see Vedeu::API#event
@@ -17,22 +18,6 @@ module Vedeu
     end
     alias_method :event, :add
 
-    # Returns a collection of the names of all the registered events.
-    #
-    # @return [Array]
-    def registered
-      storage.keys
-    end
-
-    # Returns a Boolean indicating whether the named event is registered.
-    #
-    # @api private
-    # @param name [Symbol] The name of the event to check.
-    # @return [Boolean]
-    def registered?(name)
-      storage.key?(name)
-    end
-
     # @see Vedeu::API#unevent
     def remove(name)
       return false unless registered?(name)
@@ -42,13 +27,6 @@ module Vedeu
       true
     end
     alias_method :unevent, :remove
-
-    # Remove all registered events. Used for testing purposes.
-    #
-    # @return [Hash]
-    def reset
-      @_storage = in_memory
-    end
 
     # @see Vedeu::API#trigger
     def use(name, *args)

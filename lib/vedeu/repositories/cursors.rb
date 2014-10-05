@@ -7,6 +7,7 @@ module Vedeu
   module Cursors
 
     include Common
+    include Repository
     extend self
 
     # System events which when called will update the cursor position or
@@ -36,30 +37,16 @@ module Vedeu
       })
     end
 
-    # Return the whole repository.
+    # Saves the attributes in the repository for future use.
     #
+    # @param attributes [Hash]
     # @return [Hash]
-    def all
-      storage
-    end
+    def update(attributes)
+      return false unless defined_value?(attributes[:name])
 
-    # Find the cursor attributes by name.
-    #
-    # @param name [String]
-    # @return [Hash]
-    def find(name)
-      storage.fetch(name) do
-        fail CursorNotFound,
-          "Cursor was not found with this name: #{name.to_s}."
-      end
-    end
+      Vedeu.log("Updating cursor: '#{attributes[:name]}'")
 
-    # Returns a boolean indicating whether the named interface is registered.
-    #
-    # @param name [String]
-    # @return [Boolean]
-    def registered?(name)
-      storage.key?(name)
+      storage.store(attributes[:name], attributes)
     end
 
     # Perform an action (moving, showing or hiding) and save the new cursor
@@ -98,6 +85,13 @@ module Vedeu
     # @return [Hash]
     def in_memory
       {}
+    end
+
+    # @api private
+    # @param name [String]
+    # @return []
+    def not_found(name)
+      fail CursorNotFound, "Cursor was not found with this name: #{name.to_s}."
     end
 
   end # Cursors

@@ -6,6 +6,7 @@ module Vedeu
   module Groups
 
     include Common
+    include Repository
     extend self
 
     # Add an interface name to a group, creating the group if it doesn't already
@@ -23,46 +24,6 @@ module Vedeu
       register_event(attributes)
 
       true
-    end
-
-    # Return the whole repository.
-    #
-    # @return [Set]
-    def all
-      storage
-    end
-
-    # Find a group by name and return all of its associated interfaces.
-    #
-    # @param name [String]
-    # @return [Set]
-    def find(name)
-      storage.fetch(name) do
-        fail GroupNotFound,
-          "Cannot find interface group with this name: #{name.to_s}."
-      end
-    end
-
-    # Returns a collection of the names of all registered groups.
-    #
-    # @return [Array]
-    def registered
-      storage.keys
-    end
-
-    # Returns a Boolean indicating whether the named group is registered.
-    #
-    # @return [Boolean]
-    def registered?(name)
-      storage.key?(name)
-    end
-
-    # Reset the groups repository; removing all groups. This does not delete
-    # the interfaces themselves.
-    #
-    # @return [Hash]
-    def reset
-      @_storage = in_memory
     end
 
     private
@@ -90,6 +51,14 @@ module Vedeu
     # @return [Hash]
     def in_memory
       Hash.new { |hash, key| hash[key] = Set.new }
+    end
+
+    # @api private
+    # @param name [String]
+    # @return []
+    def not_found(name)
+      fail GroupNotFound,
+        "Cannot find interface group with this name: #{name.to_s}."
     end
 
   end # Groups

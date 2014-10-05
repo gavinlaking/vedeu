@@ -45,6 +45,7 @@ require 'vedeu/models/attributes/foreground'
 require 'vedeu/models/attributes/presentation'
 require 'vedeu/models/composition'
 
+require 'vedeu/support/repository'
 require 'vedeu/support/position'
 require 'vedeu/support/esc'
 require 'vedeu/support/terminal'

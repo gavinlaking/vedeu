@@ -6,6 +6,7 @@ module Vedeu
   module Menus
 
     include Common
+    include Repository
     extend self
 
     # System events which when called with the appropriate menu name will
@@ -35,39 +36,6 @@ module Vedeu
       storage.store(attributes[:name], attributes)
     end
 
-    # Return the whole repository of menus.
-    #
-    # @return [Hash]
-    def all
-      storage
-    end
-
-    # Find a menu by name.
-    #
-    # @param name [String]
-    # @return [Hash]
-    def find(name)
-      storage.fetch(name) do
-        fail MenuNotFound,
-          "Menu was not found with this name: #{name.to_s}."
-      end
-    end
-
-    # Returns a collection of the names of all the registered menus.
-    #
-    # @return [Array]
-    def registered
-      storage.keys
-    end
-
-    # Returns a boolean indicating whether the named menu is registered.
-    #
-    # @param name [String]
-    # @return [Boolean]
-    def registered?(name)
-      storage.key?(name)
-    end
-
     # Removes the menu from the repository and associated events.
     #
     # @param name [String]
@@ -78,15 +46,6 @@ module Vedeu
       storage.delete(name) { false }
 
       true
-    end
-
-    # Reset the menus repository; removing all registered menus.
-    # This will delete the menus themselves, and the client application
-    # will need to either redefine menus before using them, or restart.
-    #
-    # @return [Hash]
-    def reset
-      @_storage = in_memory
     end
 
     # Access a menu by name.
@@ -114,6 +73,13 @@ module Vedeu
     # @return [Hash]
     def in_memory
       {}
+    end
+
+    # @api private
+    # @param name [String]
+    # @return []
+    def not_found(name)
+      fail MenuNotFound, "Menu was not found with this name: #{name.to_s}."
     end
 
   end # Menus

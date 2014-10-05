@@ -24,19 +24,6 @@ module Vedeu
       end
     end
 
-    describe '#registered' do
-      it 'returns all the registered events by name' do
-        Events.add(:some_event) { proc { |x| x } }
-        Events.registered.must_include(:some_event)
-      end
-    end
-
-    describe '#registered?' do
-      it '' do
-        skip
-      end
-    end
-
     describe '#trigger' do
       it 'returns the result of triggering the event' do
         NastyException = Class.new(StandardError)
@@ -50,14 +37,5 @@ module Vedeu
         Events.use(:_not_found_).must_be_empty
       end
     end
-
-    # describe '#reset' do
-    #   it 'removes all events registered' do
-    #     Events.add(:potassium)
-    #     Events.registered.must_include(:potassium)
-    #     Events.reset
-    #     Events.registered.wont_include(:potassium)
-    #   end
-    # end
   end
 end

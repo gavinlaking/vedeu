@@ -31,28 +31,6 @@ module Vedeu
       end
     end
 
-    describe '#all' do
-      before { Buffers.reset }
-
-      it 'returns the repository' do
-        Buffers.all.must_equal({})
-      end
-    end
-
-    describe '.find' do
-      context 'when the buffer does not exist by this name' do
-        it '' do
-          skip
-        end
-      end
-
-      context 'when the buffer can be found by name' do
-        it '' do
-          skip
-        end
-      end
-    end
-
     describe '.latest' do
       context 'when the buffer does not exist by this name' do
         it '' do
@@ -64,24 +42,6 @@ module Vedeu
         it '' do
           skip
         end
-      end
-    end
-
-    describe '.registered' do
-      it '' do
-        skip
-      end
-    end
-
-    describe '.registered?' do
-      it '' do
-        skip
-      end
-    end
-
-    describe '.reset' do
-      it '' do
-        skip
       end
     end
 

@@ -8,6 +8,7 @@ module Vedeu
   module Focus
 
     include Common
+    include Repository
     extend self
 
     # System events which when called will change which interface is currently
@@ -42,13 +43,6 @@ module Vedeu
         storage << attributes[:name]
 
       end
-    end
-
-    # Return the whole repository.
-    #
-    # @return [Array]
-    def all
-      storage
     end
 
     # Focus an interface by name.
@@ -119,14 +113,6 @@ module Vedeu
       return false if storage.empty?
 
       storage.include?(name)
-    end
-
-    # Reset the focus repository; removing all items. This does not delete
-    # the interfaces themselves.
-    #
-    # @return [Hash]
-    def reset
-      @_storage = in_memory
     end
 
     private
