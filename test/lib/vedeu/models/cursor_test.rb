@@ -68,7 +68,7 @@ module Vedeu
         3.times { cursor.move_down }
         cursor.move_up
         cursor.attributes.must_equal(
-          { name: 'silver', state: :show, x: 19, y: 7 }
+          { name: 'silver', state: :show, x: 19, y: 10 }
         )
       end
     end
@@ -76,17 +76,9 @@ module Vedeu
     describe '#move_down' do
       it 'moves the cursor down' do
         cursor = Cursor.new(attributes)
-        cursor.move_down
-        cursor.attributes.must_equal(
-          { name: 'silver', state: :show, x: 19, y: 8 }
-        )
-      end
-
-      it 'does not move down when already at the bottom' do
-        cursor = Cursor.new(attributes)
         5.times { cursor.move_down }
         cursor.attributes.must_equal(
-          { name: 'silver', state: :show, x: 19, y: 8 }
+          { name: 'silver', state: :show, x: 19, y: 13 }
         )
       end
     end
@@ -105,25 +97,17 @@ module Vedeu
         3.times { cursor.move_right }
         cursor.move_left
         cursor.attributes.must_equal(
-          { name: 'silver', state: :show, x: 20, y: 8 }
+          { name: 'silver', state: :show, x: 21, y: 8 }
         )
       end
     end
 
     describe '#move_right' do
-      it 'does not move right when already at rightmost' do
+      it 'moves the cursor right' do
         cursor = Cursor.new(attributes)
         11.times { cursor.move_right }
         cursor.attributes.must_equal(
-          { name: 'silver', state: :show, x: 21, y: 8 }
-        )
-      end
-
-      it 'moves the cursor right' do
-        cursor = Cursor.new(attributes)
-        cursor.move_right
-        cursor.attributes.must_equal(
-          { name: 'silver', state: :show, x: 20, y: 8 }
+          { name: 'silver', state: :show, x: 30, y: 8 }
         )
       end
     end

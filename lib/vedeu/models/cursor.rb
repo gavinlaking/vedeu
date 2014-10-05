@@ -6,7 +6,7 @@ module Vedeu
   # @api private
   class Cursor
 
-    attr_reader :name, :x, :y
+    attr_reader :name, :state, :x, :y
 
     # Provides a new instance of Cursor.
     #
@@ -42,80 +42,59 @@ module Vedeu
     end
     alias_method :refresh, :attributes
 
-    # Saves the attributes to the Cursors repository.
-    #
-    # @return []
-    def update
-      Cursors.update(attributes)
-    end
-
     # Move the cursor up one row.
     #
-    # @return [Cursor]
+    # @return [Hash]
     def move_up
-      @y -= 1
-
-      update
+      @attributes.merge!({ y: @y -= 1 })
     end
 
     # Move the cursor down one row.
     #
-    # @return [Cursor]
+    # @return [Hash]
     def move_down
-      @y += 1
-
-      update
+      @attributes.merge!({ y: @y += 1 })
     end
 
     # Move the cursor left one column.
     #
-    # @return [Cursor]
+    # @return [Hash]
     def move_left
-      @x -= 1
-
-      update
+      @attributes.merge!({ x: @x -= 1 })
     end
 
     # Move the cursor right one column.
     #
-    # @return [Cursor]
+    # @return [Hash]
     def move_right
-      @x += 1
-
-      update
+      @attributes.merge!({ x: @x += 1 })
     end
 
     # Make the cursor visible if it is not already.
     #
-    # @return [Symbol]
+    # @return [Hash]
     def show
-      @state = :show
-
-      update
+      @attributes.merge!({ state: @state = :show })
     end
 
     # Make the cursor invisible if it is not already.
     #
-    # @return [Symbol]
+    # @return [Hash]
     def hide
-      @state = :hide
-
-      update
+      @attributes.merge!({ state: @state = :hide })
     end
 
     # Toggle the visibility of the cursor.
     #
-    # @return [Symbol]
+    # @return [Hash]
     def toggle
       if visible?
-        @state = :hide
+        hide
 
       else
-        @state = :show
+        show
 
       end
-
-      update
     end
 
     # Returns an escape sequence to position the cursor and set its visibility.
@@ -147,8 +126,6 @@ module Vedeu
     end
 
     private
-
-    attr_reader :state
 
     # Returns the escape sequence to position the cursor and set its visibility.
     #
