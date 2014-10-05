@@ -37,9 +37,19 @@ module Vedeu
     # This will delete the interfaces themselves, and the client application
     # will need to either redefine interfaces before using them, or restart.
     #
+    # Note: It also resets repositories which depend on interfaces being
+    # registered.
+    #
     # @return [Hash]
     def reset
       @_storage = in_memory
+
+      Vedeu::Buffers.reset
+      Vedeu::Cursors.reset
+      Vedeu::Focus.reset
+      Vedeu::Groups.reset
+
+      @_storage
     end
 
     private
