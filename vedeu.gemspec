@@ -21,11 +21,11 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'guard',              '2.6.1'
   spec.add_development_dependency 'guard-bundler',      '2.0.0'
   spec.add_development_dependency 'guard-minitest',     '2.3.2'
-  spec.add_development_dependency 'minitest',           '5.4.1'
+  spec.add_development_dependency 'minitest',           '5.4.2'
   spec.add_development_dependency 'minitest-reporters', '1.0.5'
   spec.add_development_dependency 'mocha',              '1.1.0'
   spec.add_development_dependency 'pry',                '0.10.1'
   spec.add_development_dependency 'rake',               '10.3.2'
-  spec.add_development_dependency 'simplecov',          '0.9.0'
+  spec.add_development_dependency 'simplecov',          '0.9.1'
   spec.add_development_dependency 'yard',               '0.8.7.4'
 end
