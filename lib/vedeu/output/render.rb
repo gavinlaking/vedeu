@@ -138,7 +138,7 @@ module Vedeu
     #
     # @return [Array]
     def visible_lines
-      viewport.visible_lines
+      @visible_lines ||= viewport.visible_lines
     end
 
     # Provides the visible area of the content within the interface.
