@@ -4,7 +4,7 @@ module Vedeu
 
   describe Menus do
 
-    describe 'System events defined by Menus' do
+    describe ' system events defined by Menus' do
       let(:collection) { [:sulphur, :gold, :tin, :helium] }
       let(:instance)   { Vedeu::Menu.new(collection) }
 

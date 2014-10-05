@@ -1,41 +1,27 @@
 module Vedeu
 
   # Provides a mechanism for storing and retrieving events by name. A single
-  # name can contain many events. Also an event can trigger other events.
-  #
-  # @api private
-  class Events
+  # name can contain many events. Also, an event can trigger other events.
+  module Events
 
-    # Initializes a new Events class.
-    #
-    # @param block [Proc]
-    # @return [Events]
-    def initialize(&block)
-      @handlers = Hash.new { |hash, key| hash[key] = { events: [] } }
-
-      instance_eval(&block) if block_given?
-    end
+    extend self
 
     # @see Vedeu::API#event
-    def event(name, opts = {}, &block)
+    def add(name, opts = {}, &block)
       Vedeu.log("Registering event: '#{name}'")
 
       options = opts.merge!({ event_name: name })
 
-      handlers[name][:events] << Event.new(block, options)
-      handlers[name]
+      storage[name][:events] << Event.new(block, options)
+      storage[name]
     end
-
-    # @see Vedeu::API#unevent
-    def unevent(name)
-      handlers.delete_if { |k, v| k == name }
-    end
+    alias_method :event, :add
 
     # Returns a collection of the names of all the registered events.
     #
     # @return [Array]
     def registered
-      handlers.keys
+      storage.keys
     end
 
     # Returns a Boolean indicating whether the named event is registered.
@@ -44,12 +30,29 @@ module Vedeu
     # @param name [Symbol] The name of the event to check.
     # @return [Boolean]
     def registered?(name)
-      handlers.key?(name)
+      storage.key?(name)
+    end
+
+    # @see Vedeu::API#unevent
+    def remove(name)
+      return false unless registered?(name)
+
+      storage.delete(name) { false }
+
+      true
+    end
+    alias_method :unevent, :remove
+
+    # Remove all registered events. Used for testing purposes.
+    #
+    # @return [Hash]
+    def reset
+      @_storage = in_memory
     end
 
     # @see Vedeu::API#trigger
-    def trigger(name, *args)
-      results = handlers[name][:events].map { |event| event.trigger(*args) }
+    def use(name, *args)
+      results = storage[name][:events].map { |event| event.trigger(*args) }
 
       if results.one?
         results.first
@@ -59,25 +62,34 @@ module Vedeu
 
       end
     end
-
-    # Remove all registered events. Used for testing purposes.
-    #
-    # @return [Hash]
-    def reset
-      @handlers = Hash.new { |hash, key| hash[key] = { events: [] } }
-    end
+    alias_method :trigger, :use
 
     private
 
-    attr_reader :handlers
-
+    # Access to the storage for this repository.
+    #
     # @api private
-    # @return []
-    def method_missing(method, *args, &block)
-      Vedeu.log("Events#method_missing '#{method.to_s}' (args: #{args.inspect})")
-
-      @self_before_instance_eval.send(method, *args, &block)
+    # @return [Hash]
+    def storage
+      @_storage ||= in_memory
     end
+
+    # Returns an empty collection ready for the storing of events by name with
+    # associated event instance.
+    #
+    # @api private
+    # @return [Hash]
+    def in_memory
+      Hash.new { |hash, key| hash[key] = { events: [] } }
+    end
+
+    # System events needed by Vedeu to run.
+    add(:_clear_)                   { Terminal.clear_screen     }
+    add(:_exit_)                    { Vedeu::Application.stop   }
+    add(:_keypress_)                { |key| Vedeu.keypress(key) }
+    add(:_log_)                     { |msg| Vedeu.log(msg)      }
+    add(:_mode_switch_)             { fail ModeSwitch           }
+    add(:_resize_, { delay: 0.25 }) { Vedeu.resize              }
 
   end # Events
 

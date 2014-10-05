@@ -19,18 +19,10 @@ module Vedeu
     end
 
     describe '.event' do
-      it 'registers and returns the event' do
-        Vedeu.event(:some_event).must_equal(
-          {
-            events: [event],
-          }
-        )
-      end
-    end
+      it 'delegates to the Events repository' do
+        Events.expects(:add)
 
-    describe '.events' do
-      it 'returns the Events singleton' do
-        Vedeu.events.must_be_instance_of(Vedeu::Events)
+        Vedeu.event(:some_event)
       end
     end
 
@@ -127,7 +119,9 @@ module Vedeu
     describe '.unevent' do
       it 'unregister the event by name' do
         Vedeu.event(:calcium) { proc { |x| x } }
-        Vedeu.unevent(:calcium).wont_include(:calcium)
+        Events.registered.must_include(:calcium)
+        Vedeu.unevent(:calcium)
+        Events.registered.wont_include(:calcium)
       end
     end
 

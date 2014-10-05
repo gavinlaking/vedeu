@@ -4,12 +4,6 @@ module Vedeu
   module API
     describe Defined do
       describe '#events' do
-        it 'returns no events when none currently registered' do
-          Vedeu.stub(:events, Events.new) do
-            Defined.events.must_equal([])
-          end
-        end
-
         it 'returns all events currently registered' do
           Vedeu.event(:birthday) { :eat_too_much_cake }
 

@@ -32,6 +32,9 @@ require 'vedeu/support/common'
 require 'vedeu/configuration/cli'
 require 'vedeu/configuration/api'
 require 'vedeu/configuration/configuration'
+
+require 'vedeu/api/api'
+
 require 'vedeu/support/log'
 require 'vedeu/support/trace'
 
@@ -59,7 +62,6 @@ require 'vedeu/models/stream'
 require 'vedeu/repositories/events'
 
 require 'vedeu/api/defined'
-require 'vedeu/api/api'
 require 'vedeu/api/composition'
 require 'vedeu/api/helpers'
 require 'vedeu/api/interface'

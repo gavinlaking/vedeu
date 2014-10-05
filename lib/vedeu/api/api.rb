@@ -72,24 +72,7 @@ module Vedeu
     #
     # @return [Hash]
     def event(name, opts = {}, &block)
-      Vedeu.events.event(name, opts, &block)
-    end
-
-    # Initially accessed by Vedeu itself, this sets up some basic events needed
-    # by Vedeu to run. Afterwards, it is simply a gateway to the Events class
-    # used by other API methods.
-    #
-    # @api private
-    # @return [Events]
-    def events
-      @events ||= Vedeu::Events.new do
-        event(:_clear_)                   { Terminal.clear_screen     }
-        event(:_exit_)                    { Vedeu::Application.stop   }
-        event(:_keypress_)                { |key| Vedeu.keypress(key) }
-        event(:_log_)                     { |msg| Vedeu.log(msg)      }
-        event(:_mode_switch_)             { fail ModeSwitch           }
-        event(:_resize_, { delay: 0.25 }) { Vedeu.resize              }
-      end
+      Events.add(name, opts, &block)
     end
 
     # Used after defining an interface or interfaces to set the initially
@@ -264,7 +247,7 @@ module Vedeu
     #
     # @return [Array|undefined]
     def trigger(name, *args)
-      Vedeu.events.trigger(name, *args)
+      Events.use(name, *args)
     end
 
     # Unregisters the event by name, effectively deleting the associated events
@@ -273,7 +256,7 @@ module Vedeu
     # @param name [Symbol]
     # @return [Hash]
     def unevent(name)
-      Vedeu.events.unevent(name)
+      Events.remove(name)
     end
 
     # Use attributes of another interface whilst defining one.

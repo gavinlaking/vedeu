@@ -2,38 +2,32 @@ require 'test_helper'
 
 module Vedeu
   describe Events do
-    describe '#event' do
-      it 'adds the event block to the handlers' do
-        events = Events.new
-        events.event(:sulphur) { proc { |x| x } }
-        events.registered.must_equal([:sulphur])
+    describe '#add' do
+      it 'adds the event' do
+        Events.add(:sulphur) { proc { |x| x } }
+        Events.registered.must_include(:sulphur)
       end
     end
 
-    describe '#unevent' do
+    describe '#remove' do
       it 'removes the event by name' do
-        events = Events.new
-        events.event(:chlorine) { proc { |x| x } }
-        events.event(:argon)    { proc { |y| y } }
-        events.unevent(:chlorine)
-        events.registered.must_equal([:argon])
+        Events.add(:chlorine) { proc { |x| x } }
+        Events.add(:argon)    { proc { |y| y } }
+        Events.remove(:chlorine)
+        Events.registered.wont_include(:chlorine)
       end
 
       it 'removes the event by name only if the name exists' do
-        events = Events.new
-        events.event(:chlorine) { proc { |x| x } }
-        events.event(:argon)    { proc { |y| y } }
-        events.unevent(:potassium)
-        events.registered.must_equal([:chlorine, :argon])
+        Events.add(:chlorine) { proc { |x| x } }
+        Events.add(:argon)    { proc { |y| y } }
+        Events.remove(:potassium).must_equal(false)
       end
     end
 
     describe '#registered' do
       it 'returns all the registered events by name' do
-        events = Events.new do
-          event(:some_event) { proc { |x| x } }
-        end
-        events.registered.must_equal([:some_event])
+        Events.add(:some_event) { proc { |x| x } }
+        Events.registered.must_include(:some_event)
       end
     end
 
@@ -44,27 +38,26 @@ module Vedeu
     end
 
     describe '#trigger' do
-      it 'returns a collection containing the event when the event is ' \
-         'pre-registered' do
-        events = Events.new do
-          event(:_exit_) { fail StopIteration }
-        end
-        proc { events.trigger(:_exit_) }.must_raise(StopIteration)
+      it 'returns the result of triggering the event' do
+        NastyException = Class.new(StandardError)
+
+        Events.add(:_nasty_exception_) { fail NastyException }
+
+        proc { Events.use(:_nasty_exception_) }.must_raise(NastyException)
       end
 
       it 'returns an empty collection when the event has not been registered' do
-        events = Events.new
-        events.trigger(:_not_found_).must_be_empty
+        Events.use(:_not_found_).must_be_empty
       end
     end
 
-    describe '#reset' do
-      it 'removes all events registered' do
-        events = Events.new do
-          event(:potassium) { proc { |x| x } }
-        end
-        events.reset.must_equal({})
-      end
-    end
+    # describe '#reset' do
+    #   it 'removes all events registered' do
+    #     Events.add(:potassium)
+    #     Events.registered.must_include(:potassium)
+    #     Events.reset
+    #     Events.registered.wont_include(:potassium)
+    #   end
+    # end
   end
 end

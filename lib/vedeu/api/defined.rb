@@ -14,7 +14,7 @@ module Vedeu
       #
       # @return [Array]
       def events
-        Vedeu.events.registered
+        Vedeu::Events.registered
       end
 
       # Returns all groups currently registered with Vedeu.
