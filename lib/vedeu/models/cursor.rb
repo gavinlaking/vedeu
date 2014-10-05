@@ -23,8 +23,6 @@ module Vedeu
       @state      = @attributes[:state]
       @x          = @attributes[:x]
       @y          = @attributes[:y]
-      @x_offset   = @attributes[:x_offset]
-      @y_offset   = @attributes[:y_offset]
     end
 
     # Returns an attribute hash for the current position and visibility of the
@@ -37,8 +35,6 @@ module Vedeu
         state:    state,
         x:        x,
         y:        y,
-        x_offset: x_offset,
-        y_offset: y_offset,
       }
     end
     alias_method :refresh, :attributes

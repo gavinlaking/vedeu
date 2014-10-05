@@ -6,10 +6,8 @@ module Vedeu
       {
         name:     'silver',
         state:    :show,
-        x:        19, # index(7)
-        y:        8,  # outside interface bottom
-        x_offset: 7,  #
-        y_offset: 4,  #
+        x:        19,
+        y:        8
       }
     }
 
@@ -24,11 +22,6 @@ module Vedeu
       Terminal.console.stubs(:print)
     end
 
-    # ..........
-    # ..........
-    # ..........
-    # .......|..
-
     describe '#initialize' do
       it 'returns an instance of itself' do
         Cursor.new(attributes).must_be_instance_of(Cursor)
@@ -38,7 +31,7 @@ module Vedeu
     describe '#attributes' do
       it 'returns a hash containing the attributes of the instance' do
         Cursor.new(attributes).attributes.must_equal(
-          { name: 'silver', state: :show, x: 19, y: 8, x_offset: 7, y_offset: 4 }
+          { name: 'silver', state: :show, x: 19, y: 8 }
         )
       end
     end
@@ -46,7 +39,7 @@ module Vedeu
     describe '#refresh' do
       it 'returns a hash containing the attributes of the instance' do
         Cursor.new(attributes).refresh.must_equal(
-          { name: 'silver', state: :show, x: 19, y: 8, x_offset: 7, y_offset: 4 }
+          { name: 'silver', state: :show, x: 19, y: 8 }
         )
       end
     end
@@ -56,7 +49,7 @@ module Vedeu
         cursor = Cursor.new(attributes)
         cursor.move_up
         cursor.attributes.must_equal(
-          { name: 'silver', state: :show, x: 19, y: 7, x_offset: 7, y_offset: 3 }
+          { name: 'silver', state: :show, x: 19, y: 7 }
         )
       end
 
@@ -65,7 +58,7 @@ module Vedeu
         3.times { cursor.move_down }
         cursor.move_up
         cursor.attributes.must_equal(
-          { name: 'silver', state: :show, x: 19, y: 7, x_offset: 7, y_offset: 6 }
+          { name: 'silver', state: :show, x: 19, y: 7 }
         )
       end
     end
@@ -75,7 +68,7 @@ module Vedeu
         cursor = Cursor.new(attributes)
         cursor.move_down
         cursor.attributes.must_equal(
-          { name: 'silver', state: :show, x: 19, y: 8, x_offset: 7, y_offset: 5 }
+          { name: 'silver', state: :show, x: 19, y: 8 }
         )
       end
 
@@ -83,7 +76,7 @@ module Vedeu
         cursor = Cursor.new(attributes)
         5.times { cursor.move_down }
         cursor.attributes.must_equal(
-          { name: 'silver', state: :show, x: 19, y: 8, x_offset: 7, y_offset: 9 }
+          { name: 'silver', state: :show, x: 19, y: 8 }
         )
       end
     end
@@ -93,7 +86,7 @@ module Vedeu
         cursor = Cursor.new(attributes)
         cursor.move_left
         cursor.attributes.must_equal(
-          { name: 'silver', state: :show, x: 18, y: 8, x_offset: 6, y_offset: 4 }
+          { name: 'silver', state: :show, x: 18, y: 8 }
         )
       end
 
@@ -102,7 +95,7 @@ module Vedeu
         3.times { cursor.move_right }
         cursor.move_left
         cursor.attributes.must_equal(
-          { name: 'silver', state: :show, x: 20, y: 8, x_offset: 9, y_offset: 4 }
+          { name: 'silver', state: :show, x: 20, y: 8 }
         )
       end
     end
@@ -112,7 +105,7 @@ module Vedeu
         cursor = Cursor.new(attributes)
         11.times { cursor.move_right }
         cursor.attributes.must_equal(
-          { name: 'silver', state: :show, x: 21, y: 8, x_offset: 18, y_offset: 4 }
+          { name: 'silver', state: :show, x: 21, y: 8 }
         )
       end
 
@@ -120,7 +113,7 @@ module Vedeu
         cursor = Cursor.new(attributes)
         cursor.move_right
         cursor.attributes.must_equal(
-          { name: 'silver', state: :show, x: 20, y: 8, x_offset: 8, y_offset: 4 }
+          { name: 'silver', state: :show, x: 20, y: 8 }
         )
       end
     end
@@ -130,11 +123,11 @@ module Vedeu
         cursor = Cursor.new(attributes)
         cursor.hide
         cursor.attributes.must_equal(
-          { name: 'silver', state: :hide, x: 19, y: 8, x_offset: 7, y_offset: 4 }
+          { name: 'silver', state: :hide, x: 19, y: 8 }
         )
         cursor.show
         cursor.attributes.must_equal(
-          { name: 'silver', state: :show, x: 19, y: 8, x_offset: 7, y_offset: 4 }
+          { name: 'silver', state: :show, x: 19, y: 8 }
         )
       end
     end
@@ -144,7 +137,7 @@ module Vedeu
         cursor = Cursor.new(attributes)
         cursor.hide
         cursor.attributes.must_equal(
-          { name: 'silver', state: :hide, x: 19, y: 8, x_offset: 7, y_offset: 4 }
+          { name: 'silver', state: :hide, x: 19, y: 8 }
         )
       end
     end
@@ -154,11 +147,11 @@ module Vedeu
         cursor = Cursor.new(attributes)
         cursor.toggle
         cursor.attributes.must_equal(
-          { name: 'silver', state: :hide, x: 19, y: 8, x_offset: 7, y_offset: 4 }
+          { name: 'silver', state: :hide, x: 19, y: 8 }
         )
         cursor.toggle
         cursor.attributes.must_equal(
-          { name: 'silver', state: :show, x: 19, y: 8, x_offset: 7, y_offset: 4 }
+          { name: 'silver', state: :show, x: 19, y: 8 }
         )
       end
     end

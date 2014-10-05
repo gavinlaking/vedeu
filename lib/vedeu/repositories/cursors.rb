@@ -36,8 +36,6 @@ module Vedeu
         state:    :show,
         x:        interface.left,
         y:        interface.top,
-        x_offset: 0,
-        y_offset: 0
       })
     end
 
