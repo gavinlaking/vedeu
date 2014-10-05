@@ -137,7 +137,7 @@ module Vedeu
     # @param name [String]
     # @return [Hash|Nil]
     def back_buffer(name)
-      find(name).fetch(:back_buffer, nil)
+      find(name)[:back_buffer]
     end
 
     # Return the named front buffer.
@@ -146,7 +146,7 @@ module Vedeu
     # @param name [String]
     # @return [Hash|Nil]
     def front_buffer(name)
-      find(name).fetch(:front_buffer, nil)
+      find(name)[:front_buffer]
     end
 
     # Access to the storage for this repository.
