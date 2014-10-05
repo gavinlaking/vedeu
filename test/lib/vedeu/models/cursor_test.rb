@@ -44,6 +44,16 @@ module Vedeu
       end
     end
 
+    describe '#visible?' do
+      it 'returns false when the cursor is not visible' do
+        Cursor.new({ state: :hide }).visible?.must_equal(false)
+      end
+
+      it 'returns true when the cursor is visible' do
+        Cursor.new({ state: :show }).visible?.must_equal(true)
+      end
+    end
+
     describe '#move_up' do
       it 'does not move up when already at the top' do
         cursor = Cursor.new(attributes)

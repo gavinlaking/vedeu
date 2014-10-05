@@ -181,6 +181,18 @@ module Vedeu
       end
     end
 
+    # Return a boolean indicating the visibility of the cursor, invisible if
+    # the state is not defined.
+    #
+    # @api private
+    # @return [Boolean]
+    def visible?
+      return false unless states.include?(state)
+      return false if state == :hide
+
+      true
+    end
+
     private
 
     attr_reader :state
@@ -206,17 +218,6 @@ module Vedeu
       return Esc.string('show_cursor') if visible?
 
       Esc.string('hide_cursor')
-    end
-
-    # Return a boolean indicating the visibility of the cursor, invisible if
-    # the state is not defined.
-    #
-    # @return [Boolean]
-    def visible?
-      return false unless states.include?(state)
-      return false if state == :hide
-
-      true
     end
 
     # Returns a boolean indicating whether the previous y coordinate is still
