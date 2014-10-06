@@ -179,14 +179,6 @@ module Vedeu
       proc { :noop }
     end
 
-    # Access to the storage for this repository.
-    #
-    # @api private
-    # @return [Array]
-    def storage
-      @_storage ||= in_memory
-    end
-
     # @api private
     # @return [Array]
     def in_memory

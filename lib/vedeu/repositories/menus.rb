@@ -25,9 +25,9 @@ module Vedeu
     # Stores the menu attributes defined by the API.
     #
     # @param attributes [Hash]
-    # @return [Hash|FalseClass]
+    # @return [Hash|MissingRequired]
     def add(attributes)
-      return false unless defined_value?(attributes[:name])
+      validate_attributes!(attributes)
 
       Vedeu.log("Registering menu: '#{attributes[:name]}'")
 
@@ -57,14 +57,6 @@ module Vedeu
     end
 
     private
-
-    # Access to the storage for this repository.
-    #
-    # @api private
-    # @return [Hash]
-    def storage
-      @_storage ||= in_memory
-    end
 
     # Returns an empty collection ready for the storing of menus by name with
     # associated menu instance.

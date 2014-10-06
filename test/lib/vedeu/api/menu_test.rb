@@ -12,7 +12,7 @@ module Vedeu
         end
 
         it 'raises an exception if no name was specified for the menu' do
-          proc { Menu.define { } }.must_raise(InvalidSyntax)
+          proc { Menu.define { } }.must_raise(MissingRequired)
         end
 
         it 'adds the menu to the menus repository' do

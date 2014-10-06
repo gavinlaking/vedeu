@@ -36,8 +36,6 @@ module Vedeu
 
         instance_eval(&block)
 
-        validate_attributes!
-
         Vedeu::Menus.add(attributes)
 
         self
@@ -91,16 +89,6 @@ module Vedeu
           name:  '',
           items: []
         }
-      end
-
-      # At present, validates that a menu has a name attribute.
-      #
-      # @api private
-      # @return [Boolean]
-      def validate_attributes!
-        unless defined_value?(attributes[:name])
-          fail InvalidSyntax, 'Menus must have a `name`.'
-        end
       end
 
       # @api private

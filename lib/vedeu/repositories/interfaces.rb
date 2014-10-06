@@ -55,14 +55,6 @@ module Vedeu
       Vedeu::Refresh.register_event(:by_name, name, delay)
     end
 
-    # Access to the storage for this repository.
-    #
-    # @api private
-    # @return [Hash]
-    def storage
-      @_storage ||= in_memory
-    end
-
     # @api private
     # @return [Hash]
     def in_memory

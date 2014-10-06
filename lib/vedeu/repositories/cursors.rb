@@ -67,21 +67,17 @@ module Vedeu
 
     private
 
-    # Access to the storage for this repository.
-    #
-    # @api private
-    # @example
-    #   { 'holmium' => { name: 'holmium', y: 12, x: 6, state: :show } }
-    #
-    # @return [Hash]
-    def storage
-      @_storage ||= in_memory
-    end
-
     # Returns an empty collection ready for the storing of cursors by name with
     # current attributes.
     #
     # @api private
+    # @example
+    #   { 'holmium' => {
+    #                    name:     'holmium',
+    #                    state:    :show,
+    #                    x:        1,
+    #                    y:        1 } }
+    #
     # @return [Hash]
     def in_memory
       {}

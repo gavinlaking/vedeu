@@ -116,14 +116,6 @@ module Vedeu
       find(name)[:front_buffer]
     end
 
-    # Access to the storage for this repository.
-    #
-    # @api private
-    # @return [Hash]
-    def storage
-      @_storage ||= in_memory
-    end
-
     # @api private
     # @return [Hash]
     def in_memory

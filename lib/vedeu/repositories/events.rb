@@ -44,14 +44,6 @@ module Vedeu
 
     private
 
-    # Access to the storage for this repository.
-    #
-    # @api private
-    # @return [Hash]
-    def storage
-      @_storage ||= in_memory
-    end
-
     # Returns an empty collection ready for the storing of events by name with
     # associated event instance.
     #
