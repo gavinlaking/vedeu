@@ -6,7 +6,11 @@ module Vedeu
   # @api private
   class Cursor
 
-    attr_reader :name, :state, :x, :y
+    extend Forwardable
+
+    def_delegators :interface, :top, :right, :bottom, :left
+
+    attr_reader :name, :state
 
     # Provides a new instance of Cursor.
     #
@@ -41,6 +45,40 @@ module Vedeu
       }
     end
     alias_method :refresh, :attributes
+
+    # Returns the x coordinate (column/character) of the cursor. Attempts to
+    # sensibly reposition the cursor if it is currently outside the interface.
+    #
+    # @return [Fixnum]
+    def x
+      if @x < left
+        @x = left
+
+      elsif @x > right
+        @x = right
+
+      else
+        @x
+
+      end
+    end
+
+    # Returns the y coordinate (row/line) of the cursor. Attempts to sensibly
+    # reposition the cursor if it is currently outside the interface.
+    #
+    # @return [Fixnum]
+    def y
+      if @y < top
+        @y = top
+
+      elsif @y > bottom
+        @y = bottom
+
+      else
+        @y
+
+      end
+    end
 
     # Move the cursor up one row.
     #
@@ -147,6 +185,18 @@ module Vedeu
       return Esc.string('show_cursor') if visible?
 
       Esc.string('hide_cursor')
+    end
+
+    # Returns an instance of the associated interface for this cursor, used to
+    # ensure that {x} and {y} are still 'inside' the interface. A cursor could
+    # be 'outside' the interface if the terminal has resized, causing the
+    # geometry of an interface to change and therefore invalidating the cursor's
+    # position.
+    #
+    # @api private
+    # @return [Interface]
+    def interface
+      @_interface ||= Interfaces.build(name)
     end
 
     # The valid visibility states for the cursor.

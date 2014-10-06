@@ -36,6 +36,58 @@ module Vedeu
       end
     end
 
+    describe '#x' do
+      it 'returns a Fixnum' do
+        Cursor.new(attributes).x.must_be_instance_of(Fixnum)
+      end
+
+      context 'when the cursors position is outside the interface' do
+        let(:attributes) { { name: 'silver', state: :show, x: 10, y: 8 } }
+
+        it 'repositions the cursor at the start of the line' do
+          Cursor.new(attributes).attributes.must_equal(
+            { name: 'silver', state: :show, x: 12, y: 8 }
+          )
+        end
+      end
+
+      context 'when the cursors position is outside the interface' do
+        let(:attributes) { { name: 'silver', state: :show, x: 25, y: 8 } }
+
+        it 'repositions the cursor at the end of the line' do
+          Cursor.new(attributes).attributes.must_equal(
+            { name: 'silver', state: :show, x: 22, y: 8 }
+          )
+        end
+      end
+    end
+
+    describe '#y' do
+      it 'returns a Fixnum' do
+        Cursor.new(attributes).y.must_be_instance_of(Fixnum)
+      end
+
+      context 'when the cursors position is outside the interface' do
+        let(:attributes) { { name: 'silver', state: :show, x: 19, y: 3 } }
+
+        it 'repositions the cursor at the start of the line' do
+          Cursor.new(attributes).attributes.must_equal(
+            { name: 'silver', state: :show, x: 19, y: 5 }
+          )
+        end
+      end
+
+      context 'when the cursors position is outside the interface' do
+        let(:attributes) { { name: 'silver', state: :show, x: 19, y: 12 } }
+
+        it 'repositions the cursor at the end of the line' do
+          Cursor.new(attributes).attributes.must_equal(
+            { name: 'silver', state: :show, x: 19, y: 9 }
+          )
+        end
+      end
+    end
+
     describe '#refresh' do
       it 'returns a hash containing the attributes of the instance' do
         Cursor.new(attributes).refresh.must_equal(
@@ -55,20 +107,21 @@ module Vedeu
     end
 
     describe '#move_up' do
-      it 'does not move up when already at the top' do
+      it 'does not move up when already at the topmost' do
         cursor = Cursor.new(attributes)
-        cursor.move_up
+        10.times { cursor.move_up }
+
         cursor.attributes.must_equal(
-          { name: 'silver', state: :show, x: 19, y: 7 }
+          { name: 'silver', state: :show, x: 19, y: 5 }
         )
       end
 
       it 'moves the cursor up' do
         cursor = Cursor.new(attributes)
-        3.times { cursor.move_down }
         cursor.move_up
+
         cursor.attributes.must_equal(
-          { name: 'silver', state: :show, x: 19, y: 10 }
+          { name: 'silver', state: :show, x: 19, y: 7 }
         )
       end
     end
@@ -78,7 +131,7 @@ module Vedeu
         cursor = Cursor.new(attributes)
         5.times { cursor.move_down }
         cursor.attributes.must_equal(
-          { name: 'silver', state: :show, x: 19, y: 13 }
+          { name: 'silver', state: :show, x: 19, y: 9 }
         )
       end
     end
@@ -86,28 +139,39 @@ module Vedeu
     describe '#move_left' do
       it 'does not move left when already at leftmost' do
         cursor = Cursor.new(attributes)
-        cursor.move_left
+        10.times { cursor.move_left }
+
         cursor.attributes.must_equal(
-          { name: 'silver', state: :show, x: 18, y: 8 }
+          { name: 'silver', state: :show, x: 12, y: 8 }
         )
       end
 
       it 'moves the cursor left' do
         cursor = Cursor.new(attributes)
-        3.times { cursor.move_right }
         cursor.move_left
+
         cursor.attributes.must_equal(
-          { name: 'silver', state: :show, x: 21, y: 8 }
+          { name: 'silver', state: :show, x: 18, y: 8 }
         )
       end
     end
 
     describe '#move_right' do
+      it 'does not move right when already at rightmost' do
+        cursor = Cursor.new(attributes)
+        10.times { cursor.move_right }
+
+        cursor.attributes.must_equal(
+          { name: 'silver', state: :show, x: 22, y: 8 }
+        )
+      end
+
       it 'moves the cursor right' do
         cursor = Cursor.new(attributes)
-        11.times { cursor.move_right }
+        cursor.move_right
+
         cursor.attributes.must_equal(
-          { name: 'silver', state: :show, x: 30, y: 8 }
+          { name: 'silver', state: :show, x: 20, y: 8 }
         )
       end
     end
