@@ -12,6 +12,7 @@ module Vedeu
     # attempts to restore the screen. See {Vedeu::Terminal#restore_screen}.
     #
     # @param block [Proc]
+    # @raise [InvalidSyntax] When the required block is not given.
     # @return [Array]
     def open(&block)
       fail InvalidSyntax, '`open` requires a block.' unless block_given?

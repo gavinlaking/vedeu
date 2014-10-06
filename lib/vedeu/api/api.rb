@@ -11,7 +11,8 @@ module Vedeu
     # Configure Vedeu using a simple configuration DSL.
     #
     # @param block [Proc]
-    # @return []
+    # @raise [InvalidSyntax] When the required block is not given.
+    # @return [Hash]
     # @see Vedeu::Configuration
     def configure(&block)
       fail InvalidSyntax, '`configure` requires a block.' unless block_given?
@@ -79,7 +80,8 @@ module Vedeu
     # focussed interface.
     #
     # @param name [String] The interface to focus; must be defined.
-    # @return []
+    # @return [String] The name of the interface now in focus.
+    # @raise [InterfaceNotFound] When the interface cannot be found.
     def focus(name)
       Vedeu.trigger(:_focus_by_name_, name)
     end
@@ -151,6 +153,7 @@ module Vedeu
     #     interface 'my_interface' # => will only function when 'my_interface'
     #     ...                      #    is in focus
     #
+    # @raise [InvalidSyntax] When the required block is not given.
     # @return [API::Keymap]
     def keys(*name_or_names, &block)
       fail InvalidSyntax, '`keys` requires a block.' unless block_given?
@@ -191,6 +194,7 @@ module Vedeu
     #     items Track.all_my_favourites
     #     ...
     #
+    # @raise [InvalidSyntax] When the required block is not given.
     # @return [API::Menu]
     def menu(name = '', &block)
       fail InvalidSyntax, '`menu` requires a block.' unless block_given?
@@ -313,6 +317,7 @@ module Vedeu
     #       ...
     #   ...
     #
+    # @raise [InvalidSyntax] When the required block is not given.
     # @return [Hash]
     def views(&block)
       fail InvalidSyntax, '`views` requires a block.' unless block_given?

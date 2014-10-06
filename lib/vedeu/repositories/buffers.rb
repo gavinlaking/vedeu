@@ -129,7 +129,8 @@ module Vedeu
 
     # @api private
     # @param name [String]
-    # @return []
+    # @raise [BufferNotFound] When the entity cannot be found with this name.
+    # @return [BufferNotFound]
     def not_found(name)
       fail BufferNotFound, "Cannot find buffer with this name: #{name.to_s}."
     end

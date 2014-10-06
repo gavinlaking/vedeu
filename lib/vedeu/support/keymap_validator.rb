@@ -29,6 +29,7 @@ module Vedeu
       @storage, @key, @interface = storage, key, interface
     end
 
+    # @raise [KeyInUse] When the key is already in use.
     # @see KeymapValidator.check
     def check
       if system_key?(key)

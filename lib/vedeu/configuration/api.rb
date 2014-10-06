@@ -194,6 +194,8 @@ module Vedeu
       #     ...
       #
       # @param value [Fixnum]
+      # @raise [InvalidSyntax] When the value parameter is not one of +8+, +16+,
+      #   +256+ or +16777216+.
       # @return [Boolean]
       def colour_mode(value = nil)
         fail InvalidSyntax, '`colour_mode` must be `8`, `16`, `256`, ' \
@@ -341,6 +343,8 @@ module Vedeu
       # @api private
       # @param system_key [String] The calling method wishing to raise an
       #   exception.
+      # @raise [InvalidSyntax] When the system_key parameter is not a String or
+      #   Symbol.
       # @return [InvalidSyntax]
       def invalid_key(system_key)
         fail InvalidSyntax, "`#{system_key}` must be a String or a Symbol."

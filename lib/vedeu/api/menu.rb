@@ -28,6 +28,7 @@ module Vedeu
       end
 
       # @param block [Proc]
+      # @raise [InvalidSyntax] When the required block is not given.
       # @return [API::Menu]
       def define(&block)
         fail InvalidSyntax, '`menu` requires a block.' unless block_given?

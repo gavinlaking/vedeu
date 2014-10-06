@@ -85,7 +85,8 @@ module Vedeu
 
     # @api private
     # @param name [String]
-    # @return []
+    # @raise [CursorNotFound] When the entity cannot be found with this name.
+    # @return [CursorNotFound]
     def not_found(name)
       fail CursorNotFound, "Cursor was not found with this name: #{name.to_s}."
     end

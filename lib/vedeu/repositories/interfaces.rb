@@ -63,7 +63,8 @@ module Vedeu
 
     # @api private
     # @param name [String]
-    # @return []
+    # @raise [InterfaceNotFound] When the entity cannot be found with this name.
+    # @return [InterfaceNotFound]
     def not_found(name)
       fail InterfaceNotFound,
         "Interface was not found with this name: #{name.to_s}."

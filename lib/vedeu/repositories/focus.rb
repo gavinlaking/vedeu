@@ -48,6 +48,7 @@ module Vedeu
     # Focus an interface by name.
     #
     # @param name [String]
+    # @raise [InterfaceNotFound] When the interface cannot be found.
     # @return [String]
     def by_name(name)
       fail InterfaceNotFound unless storage.include?(name)
@@ -61,6 +62,8 @@ module Vedeu
 
     # Return the interface currently focussed.
     #
+    # @raise [NoInterfacesDefined] When no interfaces are defined, we cannot
+    #   make one focussed.
     # @return [String]
     def current
       fail NoInterfacesDefined if storage.empty?

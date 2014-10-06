@@ -10,6 +10,7 @@ module Vedeu
       # Directly write a view buffer to the terminal.
       #
       # @param block [Proc]
+      # @raise [InvalidSyntax] When the required block is not given.
       # @return [Array] A collection of strings, each defining containing the
       #   escape sequences and content. This data has already been sent to the
       #   terminal to be output.

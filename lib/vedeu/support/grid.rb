@@ -39,9 +39,12 @@ module Vedeu
       @value = value
     end
 
+    # @raise [OutOfRange] When the value parameter is not between 1 and 12
+    #   inclusive.
     # @return [Fixnum|OutOfRange]
     def columns
-      fail OutOfRange, 'Valid range between 1 and 12.' if out_of_range?
+      fail OutOfRange,
+        'Valid value between 1 and 12 inclusive.' if out_of_range?
 
       column * value
     end

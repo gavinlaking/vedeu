@@ -31,7 +31,8 @@ module Vedeu
       true
     end
 
-    # Find a keymap by interface name.
+    # Find a keymap by named interface. Return an empty collection when there =
+    # are no specific keys defined for the named interface.
     #
     # @param name [String]
     # @return [Hash]

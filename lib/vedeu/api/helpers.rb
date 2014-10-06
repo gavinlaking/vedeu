@@ -26,6 +26,8 @@ module Vedeu
       #     colour background: '#000000', foreground: '#ffffff'
       #     ...
       #
+      # @raise [InvalidSyntax] When the values parameter does not contain
+      #   required keys.
       # @return [Hash]
       def colour(values)
         unless values.key?(:foreground) || values.key?(:background)

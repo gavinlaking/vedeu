@@ -22,6 +22,8 @@ module Vedeu
       #       align :right
       #       ...
       #
+      # @raise [InvalidSyntax] When the value parameter is not one of +:left+,
+      #   +:right+ or +:centre+.
       # @return [Symbol]
       def align(value)
         unless [:left, :right, :centre].include?(value.to_sym)

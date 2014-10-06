@@ -22,6 +22,9 @@ module Vedeu
       #     key('j', :down) { trigger(:down) }
       #     ...
       #
+      # @raise [InvalidSyntax] When the required block is not given, the
+      #   value_or_values parameter is undefined, or when processing the
+      #   collection, a member is undefined.
       # @return [Array] A collection containing the keypress(es).
       def key(*value_or_values, &block)
         fail InvalidSyntax,

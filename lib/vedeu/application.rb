@@ -18,11 +18,11 @@ module Vedeu
       #   the client application may treat this event as Vedeu signalling that it
       #   is about to terminate. Client applications are encouraged to use this
       #   event to close any open buffers, save files, empty trash, etc.
-      # - A StopIteration exception is raised which will cause {#start} to exit
-      #   its looop and terminate the application.
       #
       # @api private
-      # @return [Exception]
+      # @raise [StopIteration] Will cause {#start} to exit its loop and
+      #   terminate the application.
+      # @return [StopIteration]
       def stop
         Vedeu.trigger(:_cleanup_)
 

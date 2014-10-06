@@ -65,6 +65,8 @@ module Vedeu
     # Raises the MissingRequired exception.
     #
     # @param attr [String] A textual representation of the attribute.
+    # @raise [MissingRequired] When an attribute, defined by the attr parameter
+    #   is missing.
     # @return [MissingRequired]
     def missing_required(attr = 'name')
       fail MissingRequired, "Cannot store data without a #{attr} attribute."

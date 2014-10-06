@@ -69,7 +69,8 @@ module Vedeu
 
     # @api private
     # @param name [String]
-    # @return []
+    # @raise [MenuNotFound] When the entity cannot be found with this name.
+    # @return [MenuNotFound]
     def not_found(name)
       fail MenuNotFound, "Menu was not found with this name: #{name.to_s}."
     end
