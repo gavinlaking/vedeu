@@ -13,7 +13,7 @@ module Vedeu
     # exist, and rejecting the interface if it is already known.
     #
     # @param attributes [Hash]
-    # @return [Groups|FalseClass]
+    # @return [Boolean]
     def add(attributes)
       validate_attributes!(attributes)
 

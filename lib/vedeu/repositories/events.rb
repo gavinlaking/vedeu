@@ -2,6 +2,8 @@ module Vedeu
 
   # Provides a mechanism for storing and retrieving events by name. A single
   # name can contain many events. Also, an event can trigger other events.
+  #
+  # @api private
   module Events
 
     include Repository

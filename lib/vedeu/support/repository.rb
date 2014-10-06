@@ -1,5 +1,6 @@
 module Vedeu
 
+  # @api private
   module Repository
 
     # Return the whole repository.

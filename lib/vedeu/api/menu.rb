@@ -91,6 +91,10 @@ module Vedeu
         }
       end
 
+      # @param method [Symbol] The name of the method sought.
+      # @param args [Array] The arguments which the method was to be invoked
+      #   with.
+      # @param block [Proc] The optional block provided to the method.
       # @return []
       def method_missing(method, *args, &block)
         Vedeu.log("API::Menu#method_missing '#{method.to_s}' (args: #{args.inspect})")

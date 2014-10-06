@@ -9,6 +9,7 @@ module Vedeu
   class Trace
 
     # :nocov:
+
     # @param options [Hash]
     # @return []
     def self.call(options = {})

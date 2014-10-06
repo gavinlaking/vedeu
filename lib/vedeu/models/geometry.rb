@@ -95,6 +95,8 @@ module Vedeu
     # Returns an escape sequence to position the cursor at the top-left
     # coordinate, relative to the interface's position.
     #
+    # @todo I think this method belongs with Area.
+    #
     # @param index [Fixnum]
     # @param block [Proc]
     # @return [String]
@@ -214,6 +216,8 @@ module Vedeu
 
     # Provides a virtual y position within the interface's dimensions.
     #
+    # @todo I think this method belongs with Area.
+    #
     # @example
     #   # top = 3
     #   # bottom = 6
@@ -225,6 +229,8 @@ module Vedeu
     end
 
     # Provides a virtual x position within the interface's dimensions.
+    #
+    # @todo I think this method belongs with Area.
     #
     # @example
     #   # left = 9

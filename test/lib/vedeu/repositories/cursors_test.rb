@@ -17,12 +17,6 @@ module Vedeu
       end
     end
 
-    describe '#use' do
-      it 'returns something' do
-        skip
-      end
-    end
-
     describe '#build' do
       let(:attributes) { { name: 'chromium' } }
 
@@ -51,6 +45,21 @@ module Vedeu
         let(:attributes) { { no_name_key: 'some_value' } }
 
         it { Cursors.update(attributes).must_equal(false) }
+      end
+    end
+
+    describe '#use' do
+      before do
+        Interfaces.reset
+        Vedeu.interface('chromium') do
+          # ...
+        end
+        Terminal.console.stubs(:print)
+      end
+
+      it 'returns an escape sequence containing the visibility and position ' \
+         'of the cursor' do
+        Cursors.use(:refresh).must_equal(["\e[1;1H\e[?25h"])
       end
     end
 

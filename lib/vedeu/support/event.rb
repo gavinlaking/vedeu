@@ -37,6 +37,7 @@ module Vedeu
 
     # Execute the code stored in the event closure.
     #
+    # @param args []
     # @return []
     def execute(*args)
       reset_deadline

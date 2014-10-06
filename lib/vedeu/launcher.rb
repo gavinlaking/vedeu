@@ -9,6 +9,7 @@ module Vedeu
   class Launcher
 
     # :nocov:
+
     # @param argv [Array]
     # @param stdin []
     # @param stdout []

@@ -59,32 +59,13 @@ module Vedeu
       storage.store(attributes[:name], attributes)
     end
 
-    # Reset the cursors repository; removing all cursors.
-    #
-    # @return [Hash]
-    def reset
-      @_storage = in_memory
-    end
-
-    # Saves the attributes in the repository for future use.
-    #
-    # @param attributes [Hash]
-    # @return [Hash]
-    def update(attributes)
-      return false unless defined_value?(attributes[:name])
-
-      Vedeu.log("Updating cursor: '#{attributes[:name]}'")
-
-      storage.store(attributes[:name], attributes)
-    end
-
-    # Perform an action (moving, showing or hiding) and save the new cursor
-    # state.
+    # Perform an action (moving, showing or hiding) of the cursor on the
+    # currently focussed interface and save the new cursor state.
     #
     # @param action [Symbol] A symbol representing the method name to be called
     #   on the Cursor instance.
-    # @return [String] The escape sequence sent to the Terminal on completion
-    #   of the action.
+    # @return [Array] A collection containing the escape sequence for the
+    #   visibility and position of the cursor.
     def use(action)
       name   = Focus.current
       cursor = build(name)

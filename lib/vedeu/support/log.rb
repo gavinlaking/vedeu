@@ -2,9 +2,11 @@ require 'fileutils'
 require 'time'
 
 module Vedeu
-  # :nocov:
+
   # @api private
   class MonoLogger < Logger
+    # :nocov:
+
     # Create a trappable Logger instance.
     #
     # @param logdev [String|IO] The filename (String) or IO object (typically
@@ -83,6 +85,8 @@ module Vedeu
         )
       end
     end
+
+    # :nocov:
   end
 
   # Provides the ability to Log anything to the Vedeu log file which is
@@ -90,6 +94,8 @@ module Vedeu
   #
   # @api private
   class Log
+
+    # :nocov:
 
     # @return [TrueClass]
     def self.logger
@@ -129,6 +135,8 @@ module Vedeu
       Dir.home + '/.vedeu'
     end
 
+    # :nocov:
+
   end # Log
-  # :nocov:
+
 end # Vedeu

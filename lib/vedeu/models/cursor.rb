@@ -116,7 +116,6 @@ module Vedeu
     # Return a boolean indicating the visibility of the cursor, invisible if
     # the state is not defined.
     #
-    # @api private
     # @return [Boolean]
     def visible?
       return false unless states.include?(state)
@@ -134,7 +133,7 @@ module Vedeu
       [ position, visibility ].join
     end
 
-    # Returns the escape sequence to position the cursor.
+    # Returns the escape sequence for setting the position of the cursor.
     #
     # @return [String]
     def position
