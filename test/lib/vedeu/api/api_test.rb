@@ -28,7 +28,9 @@ module Vedeu
 
     describe '.focus' do
       it 'sets the named interface to be focussed' do
-        skip
+        Vedeu.expects(:trigger).with(:_focus_by_name_, 'plutonium')
+
+        Vedeu.focus('plutonium')
       end
     end
 

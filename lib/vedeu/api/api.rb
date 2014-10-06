@@ -81,7 +81,7 @@ module Vedeu
     # @param name [String] The interface to focus; must be defined.
     # @return []
     def focus(name)
-      Vedeu.trigger(:_focus_by_name, name)
+      Vedeu.trigger(:_focus_by_name_, name)
     end
 
     # Find out how many lines the current terminal is able to display.
