@@ -53,32 +53,40 @@ module Vedeu
     describe '#y_indices' do
       let(:attributes) { { y_min: 7, x_min: 1, height: 4, width: 3 } }
 
-      it 'returns the indexed y range' do
+      it 'returns the indices for y' do
         area.y_indices.must_equal([0, 1, 2, 3])
       end
 
       context 'when the height is 0' do
         let(:attributes) { { y_min: 7, x_min: 1, height: 0, width: 3 } }
 
-        it 'returns an empty range' do
-          area.y_indices.must_equal([])
-        end
+        it { area.y_indices.must_be_empty }
+      end
+
+      context 'when the height is less than 0' do
+        let(:attributes) { { y_min: 7, x_min: 1, height: -3, width: 3 } }
+
+        it { area.y_indices.must_be_empty }
       end
     end
 
     describe '#x_indices' do
       let(:attributes) { { y_min: 1, x_min: 4, height: 3, width: 10 } }
 
-      it 'returns the indexed x range' do
+      it 'returns the indices for x' do
         area.x_indices.must_equal([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
       end
 
       context 'when the width is 0' do
         let(:attributes) { { y_min: 7, x_min: 1, height: 3, width: 0 } }
 
-        it 'returns an empty range' do
-          area.x_indices.must_equal([])
-        end
+        it { area.x_indices.must_be_empty }
+      end
+
+      context 'when the width is less than 0' do
+        let(:attributes) { { y_min: 7, x_min: 1, height: 3, width: -2 } }
+
+        it { area.x_indices.must_be_empty }
       end
     end
 
@@ -89,7 +97,7 @@ module Vedeu
         it { area.y_max.must_equal(10) }
       end
 
-      context 'when the height is 0' do
+      context 'when the height is 0 or negative' do
         let(:attributes) { { y_min: 7, x_min: 1, height: 0, width: 6 } }
 
         it { area.y_max.must_equal(0) }
@@ -103,7 +111,7 @@ module Vedeu
         it { area.x_max.must_equal(7) }
       end
 
-      context 'when the width is 0' do
+      context 'when the width is 0 or negative' do
         let(:attributes) { { y_min: 9, x_min: 1, height: 3, width: 0 } }
 
         it { area.x_max.must_equal(0) }
@@ -122,6 +130,12 @@ module Vedeu
 
         it { area.y_max_index.must_equal(0) }
       end
+
+      context 'when the height is < 0' do
+        let(:attributes) { { y_min: 9, x_min: 1, height: -3, width: 6 } }
+
+        it { area.y_max_index.must_equal(0) }
+      end
     end
 
     describe '#x_max_index' do
@@ -133,6 +147,12 @@ module Vedeu
 
       context 'when the width is 0' do
         let(:attributes) { { y_min: 9, x_min: 1, height: 3, width: 0 } }
+
+        it { area.x_max_index.must_equal(0) }
+      end
+
+      context 'when the width is < 0' do
+        let(:attributes) { { y_min: 9, x_min: 1, height: 3, width: -2 } }
 
         it { area.x_max_index.must_equal(0) }
       end
