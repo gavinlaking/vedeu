@@ -22,24 +22,26 @@ module Vedeu
     end
 
     # Performs the trace operation. Building strings which include:
-    # - a count of classes registered with Vedeu,
-    # - the class name being traced,
-    # - the method name being traced,
-    # - any local variables belonging to the method.
+    # - (class_count) a count of classes registered with Vedeu,
+    # - (classname) the class name being traced,
+    # - (id) the method name being traced,
+    # - (vars) any local variables belonging to the method.
+    #
+    # @todo Deprecate, and use TracePoint instead.
     #
     # @return []
     def trace
       set_trace_func proc { |event, file, line, id, binding, classname|
-        if event == watched && classes.include?(classname.to_s)
+        if event == watched && id != :log && classes.include?(classname.to_s)
           vars = variables(binding)
 
           if vars.empty?
-            log_this(sprintf("(%s) %s %-25s #%-30s",
-              class_count, event, classname, id))
+            log_this(sprintf("%s %-25s #%-20s",
+              class_count, classname, id))
 
           else
-            log_this(sprintf("(%s) %s %-25s #%-30s\n%s\n",
-              class_count, event, classname, id, vars))
+            log_this(sprintf("%s %-25s #%-20s\n%s\n",
+              class_count, classname, id, vars))
 
           end
         end
@@ -69,11 +71,15 @@ module Vedeu
       binding.eval('local_variables').each do |var|
         variable = var.to_s
         value    = binding.local_variable_get(var)
+        valclass = value.class.to_s
         output   = (value.is_a?(Proc)) ? '#<Proc:...' : value.inspect
 
-        entries << sprintf("\e[32m%57s %-10s\e[39m= \e[34m%s\e[39m", " ",
-                                                                     variable,
-                                                                     output)
+        content  = Esc.send(class_colour.fetch(valclass, :white)) { output }
+
+        entries << sprintf("%33s %-10s = %s %s", " ",
+                                                 Esc.green { variable },
+                                                 Esc.magenta { valclass },
+                                                 content)
       end
       entries.join("\n")
     end
@@ -105,25 +111,125 @@ module Vedeu
       }
     end
 
-    # Returns the number of Vedeu classes/modules. (Useful for debugging.)
-    #
-    # @api private
-    # @return [Fixnum]
-    def class_count
-      classes.size.to_s
+    # @return [Hash]
+    def class_colour
+      {
+        'Array'    => :yellow,
+        'Fixnum'   => :cyan,
+        'Hash'     => :blue,
+        'NilClass' => :red,
+        'String'   => :green,
+        'Symbol'   => :magenta,
+      }
     end
 
-    # Returns all the classes defined within Vedeu.
+    # Returns the number of Vedeu classes/modules. (Useful for debugging.)
+    #
+    # @return [String]
+    def class_count
+      @_count ||= "(#{classes.size.to_s}/#{vedeu_classes.size.to_s})"
+    end
+
+    # Returns the classes to be traced, without exceptions or ignored classes.
     #
     # @api private
     # @return [Set]
     def classes
-      @_classes ||= Vedeu.constants.collect do |c|
+      @_classes ||= vedeu_classes - vedeu_exceptions - ignored_classes
+    end
+
+    # Returns all the classes defined within Vedeu.
+    #
+    # @return [Set]
+    def vedeu_classes
+      @_vedeu_classes ||= Vedeu.constants.collect do |c|
         Vedeu.const_get(c).to_s
       end.to_set
     end
 
-  end # Trace
-  # :nocov:
-end # Vedeu
+    # Returns all the exceptions defined within Vedeu.
+    #
+    # @todo Vedeu should produce this set.
+    #
+    # @return [Set]
+    def vedeu_exceptions
+      Set.new [
+        'Vedeu::BufferNotFound',
+        'Vedeu::CursorNotFound',
+        'Vedeu::GroupNotFound',
+        'Vedeu::InterfaceNotFound',
+        'Vedeu::InvalidSyntax',
+        'Vedeu::KeyInUse',
+        'Vedeu::MenuNotFound',
+        'Vedeu::MissingRequired',
+        'Vedeu::ModeSwitch',
+        'Vedeu::NoInterfacesDefined',
+        'Vedeu::NotImplemented',
+        'Vedeu::OutOfRange',
+      ]
+    end
 
+    # Returns a set of classes to ignore during tracing.
+    #
+    # @todo Make this configurable at runtime.
+    #
+    # @return [Set]
+    def ignored_classes
+      Set.new [
+        # 'Vedeu::API',
+        # 'Vedeu::Application',
+        # 'Vedeu::Area',
+        # 'Vedeu::Background',
+        # 'Vedeu::Buffers',
+        # 'Vedeu::Clear',
+        'Vedeu::Coercions',
+        'Vedeu::Colour',
+        'Vedeu::ColourTranslator',
+        'Vedeu::Common',
+        # 'Vedeu::Composition',
+        # 'Vedeu::Compositor',
+        'Vedeu::Configuration',
+        # 'Vedeu::Cursor',
+        # 'Vedeu::Cursors',
+        'Vedeu::Esc',
+        'Vedeu::Event',
+        # 'Vedeu::Events',
+        # 'Vedeu::Focus',
+        # 'Vedeu::Foreground',
+        'Vedeu::Geometry',
+        # 'Vedeu::Grid',
+        # 'Vedeu::Groups',
+        # 'Vedeu::Input',
+        # 'Vedeu::Interface',
+        # 'Vedeu::Interfaces',
+        # 'Vedeu::Keymap',
+        # 'Vedeu::Keymaps',
+        # 'Vedeu::KeymapValidator',
+        # 'Vedeu::Launcher',
+        # 'Vedeu::Line',
+        'Vedeu::Log',
+        # 'Vedeu::Menu',
+        # 'Vedeu::Menus',
+        'Vedeu::MonoLogger',
+        # 'Vedeu::Offset',
+        # 'Vedeu::Offsets',
+        'Vedeu::Position',
+        'Vedeu::Presentation',
+        # 'Vedeu::Refresh',
+        # 'Vedeu::Registrar',
+        # 'Vedeu::Render',
+        'Vedeu::Repository',
+        'Vedeu::Stream',
+        'Vedeu::Style',
+        'Vedeu::Terminal',
+        'Vedeu::Trace',
+        # 'Vedeu::View',
+        # 'Vedeu::Viewport',
+      ]
+    end
+
+    # :nocov:
+
+  end # Trace
+
+end # Vedeu

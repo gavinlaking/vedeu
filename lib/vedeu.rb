@@ -33,10 +33,10 @@ require 'vedeu/configuration/cli'
 require 'vedeu/configuration/api'
 require 'vedeu/configuration/configuration'
 
-require 'vedeu/api/api'
-
 require 'vedeu/support/log'
 require 'vedeu/support/trace'
+
+require 'vedeu/api/api'
 
 require 'vedeu/models/attributes/coercions'
 require 'vedeu/models/attributes/colour_translator'
@@ -96,3 +96,5 @@ require 'vedeu/input/input'
 
 require 'vedeu/application'
 require 'vedeu/launcher'
+
+# Vedeu::Trace.call({ trace: true })

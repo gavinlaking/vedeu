@@ -1,7 +1,5 @@
 module Vedeu
 
-  # Vedeu::Trace.call({ trace: true })
-
   # Provides the API to Vedeu. Methods therein, and classes belonging to this
   # module expose Vedeu's core functionality.
   #
