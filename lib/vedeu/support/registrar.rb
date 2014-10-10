@@ -6,8 +6,6 @@ module Vedeu
   # @api private
   class Registrar
 
-    include Common
-
     # @param attributes [Hash]
     # @return [TrueClass|]
     def self.record(attributes = {})
@@ -25,6 +23,8 @@ module Vedeu
     # @return [TrueClass|MissingRequired]
     def record
       Vedeu::Buffers.add(attributes)
+
+      Vedeu::Offsets.add(attributes)
 
       Vedeu::Interfaces.add(attributes)
 

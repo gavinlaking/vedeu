@@ -43,6 +43,12 @@ module Vedeu
         Buffers.registered?('mendelevium').must_equal(true)
       end
 
+      it 'sends the attributes to the Offsets repository' do
+        Registrar.record(attributes)
+
+        Offsets.registered?('mendelevium').must_equal(true)
+      end
+
       it 'sends the attributes to the Interfaces repository' do
         Registrar.record(attributes)
 

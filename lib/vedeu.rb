@@ -59,6 +59,7 @@ require 'vedeu/models/cursor'
 require 'vedeu/models/keymap'
 require 'vedeu/models/line'
 require 'vedeu/models/stream'
+require 'vedeu/models/offset'
 
 require 'vedeu/repositories/events'
 
@@ -72,6 +73,7 @@ require 'vedeu/api/menu'
 require 'vedeu/api/stream'
 
 require 'vedeu/support/keymap_validator'
+require 'vedeu/repositories/offsets'
 require 'vedeu/repositories/menus'
 require 'vedeu/repositories/keymaps'
 require 'vedeu/repositories/interfaces'
