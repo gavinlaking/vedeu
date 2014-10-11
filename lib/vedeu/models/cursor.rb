@@ -6,10 +6,6 @@ module Vedeu
   # @api private
   class Cursor
 
-    extend Forwardable
-
-    def_delegators :interface, :top, :right, :bottom, :left
-
     attr_reader :name, :state
 
     # Provides a new instance of Cursor.
@@ -51,11 +47,11 @@ module Vedeu
     #
     # @return [Fixnum]
     def x
-      if @x < left
-        @x = left
+      if @x < interface.left
+        @x = interface.left
 
-      elsif @x > right
-        @x = right
+      elsif @x > interface.right
+        @x = interface.right
 
       else
         @x
@@ -68,44 +64,16 @@ module Vedeu
     #
     # @return [Fixnum]
     def y
-      if @y < top
-        @y = top
+      if @y < interface.top
+        @y = interface.top
 
-      elsif @y > bottom
-        @y = bottom
+      elsif @y > interface.bottom
+        @y = interface.bottom
 
       else
         @y
 
       end
-    end
-
-    # Move the cursor up one row.
-    #
-    # @return [Hash]
-    def move_up
-      @attributes.merge!({ y: @y -= 1 })
-    end
-
-    # Move the cursor down one row.
-    #
-    # @return [Hash]
-    def move_down
-      @attributes.merge!({ y: @y += 1 })
-    end
-
-    # Move the cursor left one column.
-    #
-    # @return [Hash]
-    def move_left
-      @attributes.merge!({ x: @x -= 1 })
-    end
-
-    # Move the cursor right one column.
-    #
-    # @return [Hash]
-    def move_right
-      @attributes.merge!({ x: @x += 1 })
     end
 
     # Make the cursor visible if it is not already.
