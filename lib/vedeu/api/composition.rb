@@ -28,7 +28,7 @@ module Vedeu
 
       # @param name [String]
       # @param block [Proc]
-      # @return []
+      # @return [Hash]
       # @see Vedeu::API#view
       def view(name, &block)
         attributes[:interfaces] << API::Interface

@@ -9,8 +9,13 @@ module Vedeu
         end
       end
 
-
       describe '#view' do
+        it 'returns a Hash' do
+          Vedeu.view('thulium') do
+            # ...
+          end.must_be_instance_of(Hash)
+        end
+
         it 'allows a single view to be defined' do
           skip
         end
