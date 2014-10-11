@@ -87,6 +87,7 @@ require 'vedeu/support/registrar'
 
 require 'vedeu/output/area'
 require 'vedeu/output/clear'
+require 'vedeu/output/content_area'
 require 'vedeu/output/compositor'
 require 'vedeu/output/refresh'
 require 'vedeu/output/render'
