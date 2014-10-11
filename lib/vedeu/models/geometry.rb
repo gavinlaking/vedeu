@@ -167,7 +167,7 @@ module Vedeu
     #
     # @return [Fixnum]
     def bottom
-      top + height
+      top + viewport_height
     end
 
     # Returns the row below the bottom by default.
@@ -193,7 +193,7 @@ module Vedeu
     #
     # @return [Fixnum]
     def right
-      left + width
+      left + viewport_width
     end
 
     # Returns the column after right by default.
