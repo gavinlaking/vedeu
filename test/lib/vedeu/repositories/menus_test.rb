@@ -4,7 +4,7 @@ module Vedeu
 
   describe Menus do
 
-    describe 'System events defined by Menus' do
+    describe ' system events defined by Menus' do
       let(:collection) { [:sulphur, :gold, :tin, :helium] }
       let(:instance)   { Vedeu::Menu.new(collection) }
 
@@ -139,8 +139,8 @@ module Vedeu
         Vedeu::Menu.stubs(:new).returns(instance)
       end
 
-      it 'returns false if the menu name is empty' do
-        Menus.add({ name: '' }).must_equal(false)
+      it 'raises an exception if menu name is empty' do
+        proc { Menus.add({ name: '' }) }.must_raise(MissingRequired)
       end
 
       it 'adds the menu to the storage' do
@@ -150,55 +150,6 @@ module Vedeu
             'elements' => { name: 'elements', items: instance }
           }
         )
-      end
-    end
-
-    describe '#all' do
-      before do
-        Menus.reset
-        Menus.add({ name: 'barium' })
-        Menus.add({ name: 'lanthanum' })
-        Menus.add({ name: 'cerium' })
-      end
-
-      it 'returns the storage' do
-        Menus.all.keys.must_equal(['barium', 'lanthanum', 'cerium'])
-      end
-    end
-
-    describe '#find' do
-      before { Menus.add({ name: 'erbium' }) }
-
-      it 'raises an exception if the menu cannot be found' do
-        proc { Menus.find('not_found') }.must_raise(MenuNotFound)
-      end
-
-      it 'returns the attributes of the named menu' do
-        Menus.find('erbium').must_be_instance_of(Hash)
-      end
-    end
-
-    describe '#registered' do
-      before do
-        Menus.reset
-        Menus.add({ name: 'barium' })
-        Menus.add({ name: 'caesium' })
-      end
-
-      it 'returns all the registered menus from storage' do
-        Menus.registered.must_equal(['barium', 'caesium'])
-      end
-    end
-
-    describe '#registered?' do
-      it 'returns true when the menu is registered' do
-        Menus.add({ name: 'registered' })
-
-        Menus.registered?('registered').must_equal(true)
-      end
-
-      it 'returns false when the menu is not registered' do
-        Menus.registered?('not_registered').must_equal(false)
       end
     end
 
@@ -218,16 +169,6 @@ module Vedeu
         Menus.add({ name: 'tellurium' })
         Menus.remove('tellurium').must_equal(true)
         Menus.registered?('tellurium').must_equal(false)
-      end
-    end
-
-    describe '#reset' do
-      before { Menus.reset }
-
-      it 'removes all known menus from the storage' do
-        Menus.add({ name: 'uranium' })
-        Menus.all.wont_be_empty
-        Menus.reset.must_be_empty
       end
     end
 

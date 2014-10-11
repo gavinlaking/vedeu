@@ -7,6 +7,8 @@ module Vedeu
   # @api private
   module Focus
 
+    include Common
+    include Repository
     extend self
 
     # System events which when called will change which interface is currently
@@ -32,6 +34,8 @@ module Vedeu
     # @param attributes [String]
     # @return [Array]
     def add(attributes)
+      validate_attributes!(attributes)
+
       if registered?(attributes[:name])
         storage
 
@@ -44,24 +48,35 @@ module Vedeu
     # Focus an interface by name.
     #
     # @param name [String]
+    # @raise [InterfaceNotFound] When the interface cannot be found.
     # @return [String]
     def by_name(name)
       fail InterfaceNotFound unless storage.include?(name)
 
       storage.rotate!(storage.index(name))
 
+      Vedeu.log("Interface in focus: '#{current}'")
+
       current
     end
 
     # Return the interface currently focussed.
     #
+    # @raise [NoInterfacesDefined] When no interfaces are defined, we cannot
+    #   make one focussed.
     # @return [String]
     def current
       fail NoInterfacesDefined if storage.empty?
 
-      Vedeu.log("Interface in focus: '#{storage.first}'")
-
       storage.first
+    end
+
+    # Returns a boolean indicating whether the named interface is focussed.
+    #
+    # @param name [String]
+    # @return [Boolean]
+    def current?(name)
+      current == name
     end
 
     # Put the next interface relative to the current interfaces in focus.
@@ -69,6 +84,8 @@ module Vedeu
     # @return [String]
     def next_item
       storage.rotate!
+
+      Vedeu.log("Interface in focus: '#{current}'")
 
       current
     end
@@ -78,6 +95,8 @@ module Vedeu
     # @return [String]
     def prev_item
       storage.rotate!(-1)
+
+      Vedeu.log("Interface in focus: '#{current}'")
 
       current
     end
@@ -99,23 +118,7 @@ module Vedeu
       storage.include?(name)
     end
 
-    # Reset the focus repository; removing all items. This does not delete
-    # the interfaces themselves.
-    #
-    # @return [Hash]
-    def reset
-      @_storage = in_memory
-    end
-
     private
-
-    # Access to the storage for this repository.
-    #
-    # @api private
-    # @return [Array]
-    def storage
-      @_storage ||= in_memory
-    end
 
     # Returns an empty collection ready for the storing of interface names.
     #
@@ -125,5 +128,6 @@ module Vedeu
       []
     end
 
-  end
-end
+  end # Focus
+
+end # Vedeu

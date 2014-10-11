@@ -5,7 +5,8 @@ module Vedeu
   # @api private
   module Groups
 
-    include Vedeu::Common
+    include Common
+    include Repository
     extend self
 
     # Add an interface name to a group, creating the group if it doesn't already
@@ -14,6 +15,8 @@ module Vedeu
     # @param attributes [Hash]
     # @return [Groups|FalseClass]
     def add(attributes)
+      validate_attributes!(attributes)
+
       return false unless defined_value?(attributes[:group])
 
       storage[attributes[:group]] << attributes[:name]
@@ -23,46 +26,6 @@ module Vedeu
       true
     end
 
-    # Return the whole repository.
-    #
-    # @return [Set]
-    def all
-      storage
-    end
-
-    # Find a group by name and return all of its associated interfaces.
-    #
-    # @param name [String]
-    # @return [Set]
-    def find(name)
-      storage.fetch(name) do
-        fail GroupNotFound,
-          "Cannot find interface group with this name: #{name.to_s}."
-      end
-    end
-
-    # Returns a collection of the names of all registered groups.
-    #
-    # @return [Array]
-    def registered
-      storage.keys
-    end
-
-    # Returns a Boolean indicating whether the named group is registered.
-    #
-    # @return [Boolean]
-    def registered?(name)
-      storage.key?(name)
-    end
-
-    # Reset the groups repository; removing all groups. This does not delete
-    # the interfaces themselves.
-    #
-    # @return [Hash]
-    def reset
-      @_storage = in_memory
-    end
-
     private
 
     # @see Vedeu::Refresh.register_event
@@ -70,18 +33,10 @@ module Vedeu
     # @param attributes [Hash]
     # @return [Boolean]
     def register_event(attributes)
-      name       = attributes[:group]
-      delay      = attributes[:delay] || 0.0
+      name  = attributes[:group]
+      delay = attributes[:delay] || 0.0
 
       Vedeu::Refresh.register_event(:by_group, name, delay)
-    end
-
-    # Access to the storage for this repository.
-    #
-    # @api private
-    # @return [Hash]
-    def storage
-      @_storage ||= in_memory
     end
 
     # @api private
@@ -90,5 +45,15 @@ module Vedeu
       Hash.new { |hash, key| hash[key] = Set.new }
     end
 
-  end
-end
+    # @api private
+    # @param name [String]
+    # @raise [GroupNotFound] When the entity cannot be found with this name.
+    # @return [GroupNotFound]
+    def not_found(name)
+      fail GroupNotFound,
+        "Cannot find interface group with this name: #{name.to_s}."
+    end
+
+  end # Groups
+
+end # Vedeu

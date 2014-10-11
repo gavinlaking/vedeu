@@ -60,15 +60,13 @@ module Vedeu
 
       end
 
-      return false if Vedeu.events.registered?(event)
+      return false if Events.registered?(event)
 
-      Vedeu.event(event, { delay: delay }) do
-        Vedeu::Refresh.send(type, name)
-      end
+      Events.add(event, { delay: delay }) { Vedeu::Refresh.send(type, name) }
 
       true
     end
 
-  end
+  end # Refresh
 
-end
+end # Vedeu

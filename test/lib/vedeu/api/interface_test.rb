@@ -2,6 +2,7 @@ require 'test_helper'
 
 module Vedeu
   module API
+
     describe Interface do
       before { Vedeu::Buffers.reset }
 
@@ -112,28 +113,12 @@ module Vedeu
       end
 
       describe '#centred' do
-        it 'raises an exception if the value is invalid' do
-          proc {
-            Vedeu.interface 'boron' do
-              centred :invalid
-            end
-          }.must_raise(InvalidSyntax)
+        it 'returns false if the value is false or nil' do
+          API::Interface.new.centred(false).must_equal(false)
         end
 
-        it 'sets the centred to true (visible)' do
-          Vedeu.interface 'boron' do
-            centred true
-          end
-
-          Vedeu.use('boron').attributes[:geometry][:centred].must_equal(true)
-        end
-
-        it 'sets the centred to false (hidden)' do
-          Vedeu.interface 'boron' do
-            centred false
-          end
-
-          Vedeu.use('boron').attributes[:geometry][:centred].must_equal(false)
+        it 'returns true' do
+          API::Interface.new.centred.must_equal(true)
         end
       end
 

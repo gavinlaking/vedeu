@@ -6,7 +6,8 @@ module Vedeu
   # @api private
   module Buffers
 
-    include Vedeu::Common
+    include Common
+    include Repository
     extend self
 
     # Add an interface view into the back buffer. If the buffer is already
@@ -16,6 +17,8 @@ module Vedeu
     # @param attributes [Hash]
     # @return [String]
     def add(attributes)
+      validate_attributes!(attributes)
+
       if registered?(attributes[:name])
         buffer = find(attributes[:name])
 
@@ -30,16 +33,6 @@ module Vedeu
       end
 
       attributes[:name]
-    end
-
-    # Find the buffer by name.
-    #
-    # @param name [String]
-    # @return [Hash]
-    def find(name)
-      storage.fetch(name) do
-        fail BufferNotFound, "Cannot find buffer with this name: #{name.to_s}."
-      end
     end
 
     # Returns the latest content for the named buffer. The latest content always
@@ -69,30 +62,6 @@ module Vedeu
         nil
 
       end
-    end
-
-    # Returns a collection of the names of all registered buffers.
-    #
-    # @return [Array]
-    def registered
-      storage.keys
-    end
-
-    # Returns a boolean indicating whether the named buffer is registered.
-    #
-    # @api private
-    # @param name [String]
-    # @return [Boolean]
-    def registered?(name)
-      storage.key?(name)
-    end
-
-    # Reset the buffers repository; removing all buffers. This does not delete
-    # the interfaces themselves.
-    #
-    # @return [Hash]
-    def reset
-      @_storage = in_memory
     end
 
     private
@@ -135,7 +104,7 @@ module Vedeu
     # @param name [String]
     # @return [Hash|Nil]
     def back_buffer(name)
-      find(name).fetch(:back_buffer, nil)
+      find(name)[:back_buffer]
     end
 
     # Return the named front buffer.
@@ -144,15 +113,7 @@ module Vedeu
     # @param name [String]
     # @return [Hash|Nil]
     def front_buffer(name)
-      find(name).fetch(:front_buffer, nil)
-    end
-
-    # Access to the storage for this repository.
-    #
-    # @api private
-    # @return [Hash]
-    def storage
-      @_storage ||= in_memory
+      find(name)[:front_buffer]
     end
 
     # @api private
@@ -166,6 +127,14 @@ module Vedeu
       end
     end
 
-  end
+    # @api private
+    # @param name [String]
+    # @raise [BufferNotFound] When the entity cannot be found with this name.
+    # @return [BufferNotFound]
+    def not_found(name)
+      fail BufferNotFound, "Cannot find buffer with this name: #{name.to_s}."
+    end
 
-end
+  end # Buffers
+
+end # Vedeu

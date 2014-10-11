@@ -84,5 +84,6 @@ module Vedeu
       Style.new(parent[:style]).to_s
     end
 
-  end
-end
+  end # Presentation
+
+end # Vedeu

@@ -15,6 +15,12 @@ module Vedeu
         Focus.add({ name: 'thallium' })
         Focus.registered.must_equal(['thallium'])
       end
+
+      it 'raises an exception if the attributes does not have a :name key' do
+        attributes = { no_name_key: '' }
+
+        proc { Focus.add(attributes) }.must_raise(MissingRequired)
+      end
     end
 
     describe '#by_name' do
@@ -40,6 +46,18 @@ module Vedeu
 
       it 'raises an exception if there are no interfaces defined' do
         proc { Focus.current }.must_raise(NoInterfacesDefined)
+      end
+    end
+
+    describe '#current?' do
+      before { Focus.stubs(:current).returns('lead') }
+
+      context 'when the interface is currently in focus' do
+        it { Focus.current?('lead').must_equal(true) }
+      end
+
+      context 'when the interface is not currently in focus' do
+        it { Focus.current?('bismuth').must_equal(false) }
       end
     end
 
@@ -87,10 +105,5 @@ module Vedeu
       end
     end
 
-    describe '.reset' do
-      it 'returns an empty collection with no focussed interfaces stored' do
-        Focus.reset.must_equal([])
-      end
-    end
   end
 end

@@ -5,7 +5,8 @@ module Vedeu
   # @api private
   module Interfaces
 
-    include Vedeu::Common
+    include Common
+    include Repository
     extend self
 
     # Stores the interface attributes defined by the API.
@@ -13,9 +14,9 @@ module Vedeu
     # @param attributes [Hash]
     # @return [Hash|FalseClass]
     def add(attributes)
-      return false unless defined_value?(attributes[:name])
+      validate_attributes!(attributes)
 
-      Vedeu.log("Registering interface '#{attributes[:name]}'")
+      Vedeu.log("Registering interface: '#{attributes[:name]}'")
 
       storage.store(attributes[:name], attributes)
 
@@ -24,36 +25,12 @@ module Vedeu
       true
     end
 
-    # Return the whole repository.
-    #
-    # @return [Hash]
-    def all
-      storage
-    end
-
-    # Find an interface by name and return the attributes used to define it.
+    # Create an instance of Interface from the stored attributes.
     #
     # @param name [String]
-    # @return [Hash]
-    def find(name)
-      storage.fetch(name) do
-        fail InterfaceNotFound,
-          "Interface was not found with this name: #{name.to_s}."
-      end
-    end
-
-    # Returns a collection of the names of all the registered interfaces.
-    #
-    # @return [Array]
-    def registered
-      storage.keys
-    end
-
-    # Returns a boolean indicating whether the named interface is registered.
-    #
-    # @return [Boolean]
-    def registered?(name)
-      storage.key?(name)
+    # @return [Interface]
+    def build(name)
+      Interface.new(find(name))
     end
 
     # Reset the interfaces repository; removing all registered interfaces.
@@ -72,18 +49,10 @@ module Vedeu
     # @param attributes [Hash]
     # @return [Boolean]
     def register_event(attributes)
-      name       = attributes[:name]
-      delay      = attributes[:delay] || 0.0
+      name  = attributes[:name]
+      delay = attributes[:delay] || 0.0
 
       Vedeu::Refresh.register_event(:by_name, name, delay)
-    end
-
-    # Access to the storage for this repository.
-    #
-    # @api private
-    # @return [Hash]
-    def storage
-      @_storage ||= in_memory
     end
 
     # @api private
@@ -92,5 +61,15 @@ module Vedeu
       {}
     end
 
-  end
-end
+    # @api private
+    # @param name [String]
+    # @raise [InterfaceNotFound] When the entity cannot be found with this name.
+    # @return [InterfaceNotFound]
+    def not_found(name)
+      fail InterfaceNotFound,
+        "Interface was not found with this name: #{name.to_s}."
+    end
+
+  end # Interfaces
+
+end # Vedeu

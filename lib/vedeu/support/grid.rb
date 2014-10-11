@@ -16,7 +16,8 @@ class Fixnum
   def columns
     Vedeu::Grid.columns(self)
   end
-end
+
+end # Fixnum
 
 module Vedeu
 
@@ -38,9 +39,12 @@ module Vedeu
       @value = value
     end
 
+    # @raise [OutOfRange] When the value parameter is not between 1 and 12
+    #   inclusive.
     # @return [Fixnum|OutOfRange]
     def columns
-      fail OutOfRange, 'Valid range is 1..12.' if out_of_range?
+      fail OutOfRange,
+        'Valid value between 1 and 12 inclusive.' if out_of_range?
 
       column * value
     end
@@ -49,6 +53,8 @@ module Vedeu
 
     attr_reader :value
 
+    # Returns the width of a single column in characters.
+    #
     # @api private
     # @return [Fixnum]
     def column
@@ -67,5 +73,6 @@ module Vedeu
       value < 1 || value > 12
     end
 
-  end
-end
+  end # Grid
+
+end # Vedeu

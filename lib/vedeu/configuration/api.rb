@@ -60,6 +60,8 @@ module Vedeu
       # @param value [Boolean]
       # @return [Boolean]
       def interactive!(value = true)
+        Vedeu.log("Configuration::API interactive: #{value.to_s}")
+
         options[:interactive] = value
       end
       alias_method :interactive, :interactive!
@@ -75,6 +77,8 @@ module Vedeu
       # @param value [Boolean]
       # @return [Boolean]
       def standalone!(value = true)
+        Vedeu.log("Configuration::API interactive: #{!value.to_s}")
+
         options[:interactive] = !value
       end
       alias_method :standalone, :standalone!
@@ -91,6 +95,8 @@ module Vedeu
       # @param value [Boolean]
       # @return [Boolean]
       def run_once!(value = true)
+        Vedeu.log("Configuration::API once: #{value.to_s}")
+
         options[:once] = value
       end
       alias_method :run_once, :run_once!
@@ -104,6 +110,8 @@ module Vedeu
       #
       # @return [Boolean]
       def cooked!
+        Vedeu.log("Configuration::API terminal_mode: :cooked")
+
         options[:terminal_mode] = :cooked
       end
       alias_method :cooked, :cooked!
@@ -117,6 +125,8 @@ module Vedeu
       #
       # @return [Boolean]
       def raw!
+        Vedeu.log("Configuration::API terminal_mode: :raw")
+
         options[:terminal_mode] = :raw
       end
       alias_method :raw, :raw!
@@ -139,9 +149,13 @@ module Vedeu
       # @return [Boolean]
       def debug!(value = true)
         if options.key?(:trace) && options[:trace] != false
+          Vedeu.log("Configuration::API debug: true")
+
           options[:debug] = true
 
         else
+          Vedeu.log("Configuration::API debug: #{value.to_s}")
+
           options[:debug] = value
 
         end
@@ -166,6 +180,8 @@ module Vedeu
       def trace!(value = true)
         options[:debug] = true if value === true
 
+        Vedeu.log("Configuration::API trace: #{value.to_s}")
+
         options[:trace] = value
       end
       alias_method :trace, :trace!
@@ -178,10 +194,14 @@ module Vedeu
       #     ...
       #
       # @param value [Fixnum]
+      # @raise [InvalidSyntax] When the value parameter is not one of +8+, +16+,
+      #   +256+ or +16777216+.
       # @return [Boolean]
       def colour_mode(value = nil)
         fail InvalidSyntax, '`colour_mode` must be `8`, `16`, `256`, ' \
                             '`16777216`.' unless valid_colour_mode?(value)
+
+        Vedeu.log("Configuration::API colour_mode: #{value.to_s}")
 
         options[:colour_mode] = value
       end
@@ -201,6 +221,8 @@ module Vedeu
       # @return [String|Symbol]
       def exit_key(value)
         return invalid_key('exit_key') unless valid_key?(value)
+
+        Vedeu.log("Configuration::API exit_key: #{value.to_s}")
 
         system_key_options[:exit] = value
       end
@@ -222,6 +244,8 @@ module Vedeu
       def focus_next_key(value)
         return invalid_key('exit_key') unless valid_key?(value)
 
+        Vedeu.log("Configuration::API focus_next: #{value.to_s}")
+
         system_key_options[:focus_next] = value
       end
 
@@ -242,6 +266,8 @@ module Vedeu
       def focus_prev_key(value)
         return invalid_key('exit_key') unless valid_key?(value)
 
+        Vedeu.log("Configuration::API focus_prev: #{value.to_s}")
+
         system_key_options[:focus_prev] = value
       end
 
@@ -261,6 +287,8 @@ module Vedeu
       # @return [String|Symbol]
       def mode_switch_key(value)
         return invalid_key('exit_key') unless valid_key?(value)
+
+        Vedeu.log("Configuration::API mode_switch: #{value.to_s}")
 
         system_key_options[:mode_switch] = value
       end
@@ -315,13 +343,15 @@ module Vedeu
       # @api private
       # @param system_key [String] The calling method wishing to raise an
       #   exception.
+      # @raise [InvalidSyntax] When the system_key parameter is not a String or
+      #   Symbol.
       # @return [InvalidSyntax]
       def invalid_key(system_key)
         fail InvalidSyntax, "`#{system_key}` must be a String or a Symbol."
       end
 
-    end
+    end # API
 
-  end
+  end # Configuration
 
-end
+end # Vedeu

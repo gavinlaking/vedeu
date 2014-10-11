@@ -37,6 +37,9 @@ module Vedeu
       specials.fetch(key, key)
     end
 
+    # Translates (if possible) entered escape sequences into symbols
+    # representing the key which was pressed.
+    #
     # @api private
     # @return [Hash]
     def specials
@@ -73,5 +76,6 @@ module Vedeu
       }
     end
 
-  end
-end
+  end # Input
+
+end # Vedeu

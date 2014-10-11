@@ -40,6 +40,13 @@ module Vedeu
       end
     end
 
+    # Returns the content of this stream.
+    #
+    # @return [String]
+    def content
+      data
+    end
+
     private
 
     # Returns the text aligned if a width was set, otherwise just the text.
@@ -89,8 +96,11 @@ module Vedeu
     # @api private
     # @return []
     def method_missing(method, *args, &block)
+      Vedeu.log("Stream#method_missing '#{method.to_s}' (args: #{args.inspect})")
+
       @self_before_instance_eval.send(method, *args, &block)
     end
 
-  end
-end
+  end # Stream
+
+end # Vedeu

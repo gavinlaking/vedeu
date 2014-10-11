@@ -67,6 +67,13 @@ module Vedeu
       self
     end
 
+    # Returns a boolean indicating whether this interface is currently in focus.
+    #
+    # @return [Boolean]
+    def in_focus?
+      Focus.current?(name)
+    end
+
     # Returns a collection of lines associated with this interface.
     #
     # @return [Array]
@@ -103,8 +110,11 @@ module Vedeu
     # @api private
     # @return []
     def method_missing(method, *args, &block)
+      Vedeu.log("Interface#method_missing '#{method.to_s}' (args: #{args.inspect})")
+
       @self_before_instance_eval.send(method, *args, &block)
     end
 
-  end
-end
+  end # Interface
+
+end # Vedeu

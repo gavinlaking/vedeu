@@ -6,68 +6,32 @@ module Vedeu
     describe '#add' do
       before { Interfaces.reset }
 
-      it 'returns false if the interface name is empty' do
-        Interfaces.add({ name: '' }).must_equal(false)
-      end
-
       it 'adds the interface to the storage' do
         Interfaces.add({ name: 'germanium' })
         Interfaces.all.must_equal({ 'germanium' => { name: 'germanium' } })
       end
-    end
 
-    describe '#all' do
-      before do
-        Interfaces.reset
-        Interfaces.add({ name: 'cobalt' })
-        Interfaces.add({ name: 'nickel' })
-        Interfaces.add({ name: 'copper' })
-      end
+      it 'raises an exception if the attributes does not have a :name key' do
+        attributes = { no_name_key: '' }
 
-      it 'returns the storage' do
-        Interfaces.all.must_equal(
-          {
-            'cobalt' => { name: 'cobalt' },
-            'nickel' => { name: 'nickel' },
-            'copper' => { name: 'copper' }
-          }
-        )
+        proc { Interfaces.add(attributes) }.must_raise(MissingRequired)
       end
     end
 
-    describe '#find' do
-      before { Interfaces.add({ name: 'zinc' }) }
+    describe '#build' do
+      let(:attributes) { { name: 'rhenium' } }
 
-      it 'raises an exception if the interface cannot be found' do
-        proc { Interfaces.find('not_found') }.must_raise(InterfaceNotFound)
+      before { Interfaces.add(attributes) }
+      after  { Interfaces.reset }
+
+      it 'returns a new instance of Interface based on the stored attributes' do
+        Interfaces.build('rhenium').must_be_instance_of(Interface)
       end
 
-      it 'returns the attributes of the named interface' do
-        Interfaces.find('zinc').must_equal({ name: 'zinc' })
-      end
-    end
-
-    describe '#registered' do
-      before do
-        Interfaces.reset
-        Interfaces.add({ name: 'cobalt' })
-        Interfaces.add({ name: 'ruby' })
-      end
-
-      it 'returns all the registered interfaces from storage' do
-        Interfaces.registered.must_equal(['cobalt', 'ruby'])
-      end
-    end
-
-    describe '#registered?' do
-      it 'returns true when the interface is registered' do
-        Interfaces.add({ name: 'registered' })
-
-        Interfaces.registered?('registered').must_equal(true)
-      end
-
-      it 'returns false when the interface is not registered' do
-        Interfaces.registered?('not_registered').must_equal(false)
+      context 'when the interface cannot be found' do
+        it 'raises an exception' do
+          proc { Interfaces.build('manganese') }.must_raise(InterfaceNotFound)
+        end
       end
     end
 

@@ -194,5 +194,6 @@ module Vedeu
     end
     # :nocov:
 
-  end
-end
+  end # Configuration
+
+end # Vedeu

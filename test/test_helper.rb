@@ -11,6 +11,8 @@ end unless ENV['no_simplecov']
 
 module MiniTest
   class Spec
+    # parallelize_me! # uncomment to unleash hell
+
     class << self
       alias_method :context, :describe
     end

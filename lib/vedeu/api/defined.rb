@@ -1,4 +1,5 @@
 module Vedeu
+
   module API
 
     # Provides a set of helpful API methods to return information about various
@@ -13,7 +14,7 @@ module Vedeu
       #
       # @return [Array]
       def events
-        Vedeu.events.registered
+        Vedeu::Events.registered
       end
 
       # Returns all groups currently registered with Vedeu.
@@ -30,6 +31,13 @@ module Vedeu
         Vedeu::Interfaces.registered
       end
 
+      # Returns the names of all keymaps currently registered with Vedeu.
+      #
+      # @return [Array]
+      def keymaps
+        Vedeu::Keymaps.registered
+      end
+
       # Returns all menus currently registered with Vedeu.
       #
       # @return [Array]
@@ -37,6 +45,8 @@ module Vedeu
         Vedeu::Menus.registered
       end
 
-    end
-  end
-end
+    end # Defined
+
+  end # API
+
+end # Vedeu

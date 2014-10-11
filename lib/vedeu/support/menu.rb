@@ -157,5 +157,6 @@ module Vedeu
       @collection.size
     end
 
-  end
-end
+  end # Menu
+
+end # Vedeu

@@ -1,4 +1,5 @@
 module Vedeu
+
   module API
 
     # Provides the mechanism to create menus within client applications and use
@@ -27,6 +28,7 @@ module Vedeu
       end
 
       # @param block [Proc]
+      # @raise [InvalidSyntax] When the required block is not given.
       # @return [API::Menu]
       def define(&block)
         fail InvalidSyntax, '`menu` requires a block.' unless block_given?
@@ -34,8 +36,6 @@ module Vedeu
         @self_before_instance_eval = eval('self', block.binding)
 
         instance_eval(&block)
-
-        validate_attributes!
 
         Vedeu::Menus.add(attributes)
 
@@ -48,7 +48,6 @@ module Vedeu
       # In the 'my_playlist' example below, your `Track` model may return a
       # collection of tracks to populate the menu.
       #
-      # @api public
       # @param collection [Array]
       #
       # @example
@@ -68,7 +67,6 @@ module Vedeu
       # The name of the menu. Used to reference the menu throughout your
       # application's execution lifetime.
       #
-      # @api public
       # @param value [String]
       #
       # @example
@@ -94,22 +92,16 @@ module Vedeu
         }
       end
 
-      # At present, validates that a menu has a name attribute.
-      #
-      # @api private
-      # @return [Boolean]
-      def validate_attributes!
-        unless defined_value?(attributes[:name])
-          fail InvalidSyntax, 'Menus must have a `name`.'
-        end
-      end
-
       # @api private
       # @return []
       def method_missing(method, *args, &block)
+        Vedeu.log("API::Menu#method_missing '#{method.to_s}' (args: #{args.inspect})")
+
         @self_before_instance_eval.send(method, *args, &block)
       end
 
-    end
-  end
-end
+    end # Menu
+
+  end # API
+
+end # Vedeu

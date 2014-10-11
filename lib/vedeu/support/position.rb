@@ -49,5 +49,6 @@ module Vedeu
       (@x == 0 || @x == nil) ? 1 : @x
     end
 
-  end
-end
+  end # Position
+
+end # Vedeu

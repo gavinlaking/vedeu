@@ -1,4 +1,5 @@
 module Vedeu
+
   module API
 
     # @see Vedeu::Composition
@@ -8,11 +9,11 @@ module Vedeu
 
       # Directly write a view buffer to the terminal.
       #
-      # @api public
       # @param block [Proc]
+      # @raise [InvalidSyntax] When the required block is not given.
       # @return [Array] A collection of strings, each defining containing the
-      #                 escape sequences and content. This data has already
-      #                 been sent to the terminal to be output.
+      #   escape sequences and content. This data has already been sent to the
+      #   terminal to be output.
       def self.render(&block)
         fail InvalidSyntax, '`render` requires a block.' unless block_given?
 
@@ -22,16 +23,20 @@ module Vedeu
           Buffers.add(interface.attributes)
 
           interface.name
-        end.map { |name| Compositor.render(name) }
+        end.map { |name| Vedeu::Refresh.by_name(name) }
       end
 
-      # @api public
+      # @param name [String]
+      # @param block [Proc]
+      # @return []
       # @see Vedeu::API#view
       def view(name, &block)
         attributes[:interfaces] << API::Interface
           .build({ name: name, parent: self.view_attributes }, &block)
       end
 
-    end
-  end
-end
+    end # Composition
+
+  end # API
+
+end # Vedeu

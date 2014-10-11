@@ -18,11 +18,11 @@ module Vedeu
       #   the client application may treat this event as Vedeu signalling that it
       #   is about to terminate. Client applications are encouraged to use this
       #   event to close any open buffers, save files, empty trash, etc.
-      # - A StopIteration exception is raised which will cause {#start} to exit
-      #   its looop and terminate the application.
       #
       # @api private
-      # @return [Exception]
+      # @raise [StopIteration] Will cause {#start} to exit its loop and
+      #   terminate the application.
+      # @return [StopIteration]
       def stop
         Vedeu.trigger(:_cleanup_)
 
@@ -73,10 +73,11 @@ module Vedeu
     end
 
     # For an interactive application we capture input, (usually from the user),
-    # and continue the main loop.
-    #
-    # @todo It appears for non-interactive applications, we do nothing. Must
-    #   investigate.
+    # and continue the main loop. If the client application does not require
+    # user input then Vedeu triggers the `:_standalone_` event for each run of
+    # the main loop. The client application is expected to respond to this event
+    # and 'do something useful'. When the client application has finished, it
+    # should trigger the `:_exit_` event.
     #
     # @api private
     # @return []
@@ -85,13 +86,14 @@ module Vedeu
         Input.capture
 
       else
-
+        Vedeu.trigger(:_standalone_)
 
       end
     end
 
-    # Runs the application in a continuous loop. This loop is stopped elsewhere
-    # with the raising of the StopIteration exception.
+    # Runs the application in a continuous loop. This loop is stopped when an
+    # uncaught exception occurs or when either the `:_mode_switch_` or `:_exit_`
+    # event is triggered.
     #
     # @api private
     # @return []
@@ -105,6 +107,6 @@ module Vedeu
 
     end
 
-  end
+  end # Application
   # :nocov:
-end
+end # Vedeu

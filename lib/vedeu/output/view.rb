@@ -33,6 +33,8 @@ module Vedeu
       end
     end
 
+    # @raise [NotImplemented] Subclasses of this class must implement this
+    #   method.
     # @return [Exception]
     def render
       fail NotImplemented, 'Implement #render on your subclass of Vedeu::View.'
@@ -59,5 +61,6 @@ module Vedeu
       render
     end
 
-  end
-end
+  end # View
+
+end # Vedeu

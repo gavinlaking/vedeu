@@ -34,6 +34,8 @@ module Vedeu
     #
     # @return [String]
     def render
+      Vedeu.log("Rendering view: '#{interface.name}'")
+
       out = [ Clear.call(interface) ]
       processed_lines.each_with_index do |line, index|
         out << interface.origin(index)
@@ -64,11 +66,11 @@ module Vedeu
           new_streams = []
 
           new_streams = line.streams.map do |stream|
-            next if stream.text.empty?
+            next if stream.content.empty?
 
-            if (line_length += stream.text.size) >= width
+            if (line_length += stream.content.size) >= width
               remainder = width - line_length
-              truncated = truncate(stream.text, remainder)
+              truncated = truncate(stream.content, remainder)
 
               build_stream(line, stream, truncated)
 
@@ -93,12 +95,12 @@ module Vedeu
     # @api private
     # @param line [Line]
     # @param stream [Stream]
-    # @param text [String]
+    # @param content [String]
     # @return [Stream]
-    def build_stream(line, stream, text)
+    def build_stream(line, stream, content)
       attributes = stream.view_attributes.merge!({
         parent: line.view_attributes,
-        text:   text,
+        text:   content,
       })
 
       Stream.new(attributes)
@@ -127,17 +129,17 @@ module Vedeu
     # @param line [Line]
     # @return [Boolean]
     def exceeds_width?(line)
-      line.streams.map(&:text).join.size > width
+      line.streams.map(&:content).join.size > width
     end
 
-    # Truncates the provided text.
+    # Truncates the provided string.
     #
     # @api private
-    # @param text [String] The text to be truncated.
-    # @param value [Fixnum] The total length of the text after truncation.
+    # @param string [String] The string to be truncated.
+    # @param value [Fixnum] The total length of the string after truncation.
     # @return [String]
-    def truncate(text, value)
-      text.chomp.slice(0...value)
+    def truncate(string, value)
+      string.chomp.slice(0...value)
     end
 
     # Provides the collection of visible lines associated with the interface.
@@ -199,5 +201,6 @@ module Vedeu
       }
     end
 
-  end
-end
+  end # Render
+
+end # Vedeu

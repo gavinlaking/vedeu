@@ -76,5 +76,7 @@ module Vedeu
     def buffer
       @_buffer ||= Vedeu::Buffers.latest(name)
     end
-  end
-end
+
+  end # Compositor
+
+end # Vedeu

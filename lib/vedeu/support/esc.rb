@@ -8,6 +8,38 @@ module Vedeu
 
     extend self
 
+    # Dynamically creates methods for each terminal named colour. When a block
+    # is given, then the colour is reset to 'default' once the block is called.
+    #
+    # @example
+    #   Esc.red                     # => "\e[31m"
+    #
+    #   Esc.red { 'some text' }     # => "\e[31msome text\e[39m"
+    #
+    #   Esc.on_blue                 # => "\e[44m"
+    #
+    #   Esc.on_blue { 'some text' } # => "\e[44msome text\e[49m"
+    #
+    # @return [String]
+    {
+      black:   30,
+      red:     31,
+      green:   32,
+      yellow:  33,
+      blue:    34,
+      magenta: 35,
+      cyan:    36,
+      white:   37,
+      default: 39,
+    }.each do |key, code|
+      define_method(key) do |&blk|
+        "\e[#{code}m" + (blk ? blk.call + "\e[39m" : '')
+      end
+      define_method('on_' + key.to_s) do |&blk|
+        "\e[#{code + 10}m" + (blk ? blk.call + "\e[49m" : '')
+      end
+    end
+
     # Return the escape sequence required to position the cursor at a particular
     # point on the screen. When passed a block, will do the aforementioned,
     # call the block and then reposition to this location.
@@ -199,5 +231,6 @@ module Vedeu
       "\e[24m"
     end
 
-  end
-end
+  end # Esc
+
+end # Vedeu

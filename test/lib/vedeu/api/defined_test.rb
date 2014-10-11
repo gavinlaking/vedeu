@@ -4,12 +4,6 @@ module Vedeu
   module API
     describe Defined do
       describe '#events' do
-        it 'returns no events when none currently registered' do
-          Vedeu.stub(:events, Events.new) do
-            Defined.events.must_equal([])
-          end
-        end
-
         it 'returns all events currently registered' do
           Vedeu.event(:birthday) { :eat_too_much_cake }
 
@@ -42,6 +36,22 @@ module Vedeu
           Vedeu.interface('hydrogen') { group 'elements' }
 
           Defined.interfaces.must_equal(['hydrogen'])
+        end
+      end
+
+      describe '#keymaps' do
+        before { Vedeu::Keymaps.reset }
+
+        it 'returns the default keymap when no others are registered' do
+          Defined.keymaps.must_equal(['_global_keymap_'])
+        end
+
+        it 'returns all keymaps currently registered' do
+          Vedeu.keys('flerovium') do
+            key('u') { :some_action }
+          end
+
+          Defined.keymaps.must_equal(['_global_keymap_', 'flerovium'])
         end
       end
 

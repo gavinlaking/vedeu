@@ -59,7 +59,7 @@ Note: Nesting indicates where an API method is allowed/supposed to be used.
 #### Interfaces
 
 - interface
-  - centred
+  - centred (or centred!)
   - colour
   - delay
   - group

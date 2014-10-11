@@ -5,7 +5,8 @@ module Vedeu
   # @api private
   module Keymaps
 
-    include Vedeu::Common
+    include Common
+    include Repository
     extend self
 
     # Stores the keymap attributes defined by the API.
@@ -30,14 +31,8 @@ module Vedeu
       true
     end
 
-    # Return the whole repository of keymaps.
-    #
-    # @return [Hash]
-    def all
-      storage
-    end
-
-    # Find a keymap by interface name.
+    # Find a keymap by named interface. Return an empty collection when there =
+    # are no specific keys defined for the named interface.
     #
     # @param name [String]
     # @return [Hash]
@@ -84,30 +79,6 @@ module Vedeu
       storage.reject do |k, _|
         k == '_global_keymap_'
       end.map { |_, v| v.keys }.flatten.uniq
-    end
-
-    # Returns a collection of the interface names of all the registered keymaps.
-    #
-    # @return [Array]
-    def registered
-      storage.keys
-    end
-
-    # Returns a boolean indicating whether the named interface has a keymap
-    # registered.
-    #
-    # @param name [String]
-    # @return [Boolean]
-    def registered?(name)
-      storage.key?(name)
-    end
-
-    # Reset the keymaps repository; removing all registered keymaps. Only the
-    # system keymap will remain.
-    #
-    # @return [Hash]
-    def reset
-      @_storage = in_memory
     end
 
     # Return a boolean indicating whether the key is registered as a system key.
@@ -177,13 +148,6 @@ module Vedeu
       Vedeu.trigger(event)
     end
 
-    # @param key [String|Symbol]
-    # @param interface [String]
-    # @return []
-    def validate(key, interface = '')
-      Vedeu::KeymapValidator.check(storage, key, interface)
-    end
-
     # Registers the key.
     #
     # @api private
@@ -192,15 +156,11 @@ module Vedeu
     # @return []
     def register(attributes, interface = '')
       attributes[:keys].map do |keymap|
-        valid, message = validate(keymap[:key], interface)
+        KeymapValidator.check(storage, keymap[:key], interface)
 
-        fail KeyInUse, message unless valid
+        Vedeu.log("Registering key: '#{keymap[:key]}' with '#{namespace(interface)}'")
 
-        Vedeu.log("Registering key '#{keymap[:key]}' with " \
-                  "'#{namespace(interface)}'")
-
-        storage[namespace(interface)]
-          .merge!({ keymap[:key] => keymap[:action] })
+        storage[namespace(interface)].merge!({ keymap[:key] => keymap[:action] })
       end
     end
 
@@ -220,20 +180,12 @@ module Vedeu
       proc { :noop }
     end
 
-    # Access to the storage for this repository.
-    #
-    # @api private
-    # @return [Array]
-    def storage
-      @_storage ||= in_memory
-    end
-
     # @api private
     # @return [Array]
     def in_memory
       { '_global_keymap_' => {} }
     end
 
-  end
+  end # Keymaps
 
-end
+end # Vedeu

@@ -256,6 +256,7 @@ module Vedeu
         state: :hide,
       }
     end
-  end
 
-end
+  end # Cursor
+
+end # Vedeu

@@ -33,5 +33,6 @@ module Vedeu
       receiver.extend(self)
     end
 
-  end
-end
+  end # Coercions
+
+end # Vedeu

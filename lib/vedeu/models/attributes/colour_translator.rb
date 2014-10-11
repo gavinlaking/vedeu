@@ -76,6 +76,8 @@ module Vedeu
     end
 
     # @api private
+    # @raise [NotImplemented] Subclasses of this class must implement this
+    #   method.
     # @return [Exception]
     def named
       fail NotImplemented, 'Subclasses implement this.'
@@ -94,7 +96,9 @@ module Vedeu
     end
 
     # @api private
-    # @return [Exception]
+    # @raise [NotImplemented] Subclasses of this class must implement this
+    #   method.
+    # @return [NotImplemented]
     def numbered
       fail NotImplemented, 'Subclasses implement this.'
     end
@@ -112,7 +116,9 @@ module Vedeu
     end
 
     # @api private
-    # @return [Exception]
+    # @raise [NotImplemented] Subclasses of this class must implement this
+    #   method.
+    # @return [NotImplemented]
     def rgb
       fail NotImplemented, 'Subclasses implement this.'
     end
@@ -179,5 +185,6 @@ module Vedeu
       }
     end
 
-  end
-end
+  end # ColourTranslator
+
+end # Vedeu

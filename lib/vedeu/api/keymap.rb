@@ -1,4 +1,5 @@
 module Vedeu
+
   module API
 
     # Provides methods to be used to define keypress mapped to actions.
@@ -21,6 +22,9 @@ module Vedeu
       #     key('j', :down) { trigger(:down) }
       #     ...
       #
+      # @raise [InvalidSyntax] When the required block is not given, the
+      #   value_or_values parameter is undefined, or when processing the
+      #   collection, a member is undefined.
       # @return [Array] A collection containing the keypress(es).
       def key(*value_or_values, &block)
         fail InvalidSyntax,
@@ -29,8 +33,9 @@ module Vedeu
           defined_value?(value_or_values)
 
         value_or_values.each do |value|
-          fail InvalidSyntax, 'Key cannot be empty.' unless
-            defined_value?(value)
+          fail InvalidSyntax,
+            'An invalid value for `key` was encountered.' unless
+              defined_value?(value)
 
           attributes[:keys] << { key: value, action: block }
         end
@@ -58,7 +63,8 @@ module Vedeu
         attributes[:interfaces] = name_or_names
       end
 
-    end
+    end # Keymap
 
-  end
-end
+  end # API
+
+end # Vedeu

@@ -1,16 +1,17 @@
 module Vedeu
 
-  # Vedeu::Trace.call({ trace: true })
-
   # Provides the API to Vedeu. Methods therein, and classes belonging to this
   # module expose Vedeu's core functionality.
+  #
+  # @api public
   module API
 
     # Configure Vedeu using a simple configuration DSL.
     #
-    # @api public
+    # @param block [Proc]
+    # @raise [InvalidSyntax] When the required block is not given.
+    # @return [Hash]
     # @see Vedeu::Configuration
-    # @return []
     def configure(&block)
       fail InvalidSyntax, '`configure` requires a block.' unless block_given?
 
@@ -20,9 +21,8 @@ module Vedeu
     # Returns information about various registered subsystems when used with
     # a defined method within {Vedeu::API::Defined}.
     #
-    # @api public
-    # @see Vedeu::API::Defined
     # @return [Vedeu::API::Defined]
+    # @see Vedeu::API::Defined
     def defined
       Vedeu::API::Defined
     end
@@ -30,7 +30,6 @@ module Vedeu
     # Register an event by name with optional delay (throttling) which when
     # triggered will execute the code contained within the passed block.
     #
-    # @api public
     # @param name  [Symbol] The name of the event which will be triggered later.
     # @param [Hash] opts The options to register the event with.
     # @option opts :delay [Fixnum|Float] Limits the execution of the
@@ -72,38 +71,21 @@ module Vedeu
     #
     # @return [Hash]
     def event(name, opts = {}, &block)
-      Vedeu.events.event(name, opts, &block)
-    end
-
-    # Initially accessed by Vedeu itself, this sets up some basic events needed
-    # by Vedeu to run. Afterwards, it is simply a gateway to the Events class
-    # used by other API methods.
-    #
-    # @api private
-    # @return [Events]
-    def events
-      @events ||= Vedeu::Events.new do
-        event(:_clear_)                   { Terminal.clear_screen     }
-        event(:_exit_)                    { Vedeu::Application.stop   }
-        event(:_keypress_)                { |key| Vedeu.keypress(key) }
-        event(:_log_)                     { |msg| Vedeu.log(msg)      }
-        event(:_mode_switch_)             { fail ModeSwitch           }
-        event(:_resize_, { delay: 0.25 }) { Vedeu.resize              }
-      end
+      Events.add(name, opts, &block)
     end
 
     # Used after defining an interface or interfaces to set the initially
     # focussed interface.
     #
     # @param name [String] The interface to focus; must be defined.
-    # @return []
+    # @return [String] The name of the interface now in focus.
+    # @raise [InterfaceNotFound] When the interface cannot be found.
     def focus(name)
-      Vedeu.trigger(:_focus_by_name, name)
+      Vedeu.trigger(:_focus_by_name_, name)
     end
 
     # Find out how many lines the current terminal is able to display.
     #
-    # @api public
     # @example
     #   Vedeu.height
     #
@@ -117,7 +99,6 @@ module Vedeu
     # views without their content.
     #
     # @todo More documentation required.
-    # @api public
     # @param name  [String] The name of the interface. Used to reference the
     #   interface throughout your application's execution lifetime.
     # @param block [Proc] A set of attributes which define the features of the
@@ -136,7 +117,7 @@ module Vedeu
       API::Interface.define({ name: name }, &block)
     end
 
-    # @api public
+    # Simulate a keypress.
     #
     # @example
     #   Vedeu.keypress('s')
@@ -170,6 +151,7 @@ module Vedeu
     #     interface 'my_interface' # => will only function when 'my_interface'
     #     ...                      #    is in focus
     #
+    # @raise [InvalidSyntax] When the required block is not given.
     # @return [API::Keymap]
     def keys(*name_or_names, &block)
       fail InvalidSyntax, '`keys` requires a block.' unless block_given?
@@ -179,7 +161,6 @@ module Vedeu
 
     # Write a message to the Vedeu log file located at `$HOME/.vedeu/vedeu.log`
     #
-    # @api public
     # @param message [String] The message you wish to emit to the log
     #   file, useful for debugging.
     # @param force   [Boolean] When evaluates to true will
@@ -196,7 +177,6 @@ module Vedeu
     # Register a menu by name which will display a collection of items for your
     # users to select; and provide interactivity within your application.
     #
-    # @api public
     # @param name  [String] The name of the menu. Used to reference the
     #   menu throughout your application's execution lifetime.
     # @param block [Proc] A set of attributes which define the features of the
@@ -212,6 +192,7 @@ module Vedeu
     #     items Track.all_my_favourites
     #     ...
     #
+    # @raise [InvalidSyntax] When the required block is not given.
     # @return [API::Menu]
     def menu(name = '', &block)
       fail InvalidSyntax, '`menu` requires a block.' unless block_given?
@@ -223,7 +204,6 @@ module Vedeu
     # that the refresh event does not need to be triggered after creating the
     # view or views, though can be later triggered if needed.
     #
-    # @api public
     # @param block [Proc] The directives you wish to send to render. Must
     #                     include `view` or `views` with associated sub-
     #                     directives.
@@ -260,7 +240,6 @@ module Vedeu
     # Trigger a registered or system event by name with arguments. If the
     # event stored returns a value, that is returned.
     #
-    # @api public
     # @param name [Symbol] The name of the event you wish to trigger.
     #   The event does not have to exist.
     # @param args [Array] Any arguments the event needs to execute correctly.
@@ -270,23 +249,21 @@ module Vedeu
     #
     # @return [Array|undefined]
     def trigger(name, *args)
-      Vedeu.events.trigger(name, *args)
+      Events.use(name, *args)
     end
 
     # Unregisters the event by name, effectively deleting the associated events
     # bound with it also.
     #
-    # @api public
     # @param name [Symbol]
     # @return [Hash]
     def unevent(name)
-      Vedeu.events.unevent(name)
+      Events.remove(name)
     end
 
     # Use attributes of another interface whilst defining one.
     #
     # @todo More documentation required.
-    # @api public
     # @param name [String] The name of the interface you wish to use. Typically
     #   used when defining interfaces to share geometry.
     #
@@ -304,7 +281,6 @@ module Vedeu
     # Define a view (content) for an interface.
     #
     # @todo More documentation required.
-    # @api public
     # @param name [String] The name of the interface you are targetting for this
     #   view.
     # @param block [Proc] The directives you wish to send to this interface.
@@ -320,7 +296,6 @@ module Vedeu
 
     # Instruct Vedeu to treat contents of block as a single composition.
     #
-    # @api public
     # @param block [Proc] Instructs Vedeu to treat all of the 'view' directives
     #   therein as one instruction. Useful for redrawing multiple interfaces at
     #   once.
@@ -340,6 +315,7 @@ module Vedeu
     #       ...
     #   ...
     #
+    # @raise [InvalidSyntax] When the required block is not given.
     # @return [Hash]
     def views(&block)
       fail InvalidSyntax, '`views` requires a block.' unless block_given?
@@ -350,7 +326,6 @@ module Vedeu
 
     # Find out how many columns the current terminal is able to display.
     #
-    # @api public
     # @example
     #   Vedeu.width
     #
@@ -359,9 +334,10 @@ module Vedeu
       Terminal.width
     end
 
-  end
+  end # API
 
   extend API
 
   trap('SIGWINCH') { Vedeu.trigger(:_resize_) }
-end
+
+end # Vedeu

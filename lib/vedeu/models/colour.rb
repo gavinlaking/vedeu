@@ -50,5 +50,6 @@ module Vedeu
       }
     end
 
-  end
-end
+  end # Colour
+
+end # Vedeu

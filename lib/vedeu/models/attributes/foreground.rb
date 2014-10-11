@@ -41,5 +41,6 @@ module Vedeu
       codes
     end
 
-  end
-end
+  end # Foreground
+
+end # Vedeu

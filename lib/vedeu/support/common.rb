@@ -16,6 +16,6 @@ module Vedeu
       false
     end
 
-  end
-end
+  end # Common
 
+end # Vedeu

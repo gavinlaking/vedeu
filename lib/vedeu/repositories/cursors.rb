@@ -7,6 +7,7 @@ module Vedeu
   module Cursors
 
     include Common
+    include Repository
     extend self
 
     # System events which when called will update the cursor position or
@@ -24,7 +25,9 @@ module Vedeu
     # @param attributes [Hash]
     # @return [Hash]
     def add(attributes)
-      return false unless defined_value?(attributes[:name])
+      validate_attributes!(attributes)
+
+      Vedeu.log("Registering cursor: '#{attributes[:name]}'")
 
       storage.store(attributes[:name], {
         name: attributes[:name],
@@ -34,25 +37,16 @@ module Vedeu
       })
     end
 
-    # Find the cursor attributes by name.
+    # Saves the attributes in the repository for future use.
     #
-    # @param name [String]
+    # @param attributes [Hash]
     # @return [Hash]
-    def find(name)
-      storage.fetch(name) do
-        fail CursorNotFound,
-          "Cursor was not found with this name: #{name.to_s}."
-      end
-    end
+    def update(attributes)
+      return false unless defined_value?(attributes[:name])
 
-    # Returns a boolean indicating whether the named interface is registered.
-    #
-    # @api private
-    # @return [Boolean]
-    def registered?(name)
-      return false if storage.empty?
+      Vedeu.log("Updating cursor: '#{attributes[:name]}'")
 
-      storage.keys.include?(name)
+      storage.store(attributes[:name], attributes)
     end
 
     # Perform an action (moving, showing or hiding) and save the new cursor
@@ -73,26 +67,30 @@ module Vedeu
 
     private
 
-    # Access to the storage for this repository.
-    #
-    # @api private
-    # @example
-    #   { 'holmium' => { name: 'holmium', y: 12, x: 6, state: :show } }
-    #
-    # @return [Hash]
-    def storage
-      @_storage ||= in_memory
-    end
-
     # Returns an empty collection ready for the storing of cursors by name with
     # current attributes.
     #
     # @api private
+    # @example
+    #   { 'holmium' => {
+    #                    name:     'holmium',
+    #                    state:    :show,
+    #                    x:        1,
+    #                    y:        1 } }
+    #
     # @return [Hash]
     def in_memory
       {}
     end
 
-  end
+    # @api private
+    # @param name [String]
+    # @raise [CursorNotFound] When the entity cannot be found with this name.
+    # @return [CursorNotFound]
+    def not_found(name)
+      fail CursorNotFound, "Cursor was not found with this name: #{name.to_s}."
+    end
 
-end
+  end # Cursors
+
+end # Vedeu
