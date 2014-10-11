@@ -22,7 +22,7 @@ module Vedeu
       let(:attributes) { { y_min: 7, x_min: 1, height: 4, width: 3 } }
 
       it 'returns the actual y range' do
-        area.y_range.must_equal([7, 8, 9, 10])
+        area.y_range.must_equal([7, 8, 9, 10, 11])
       end
 
       context 'when the height is 0' do
@@ -38,7 +38,7 @@ module Vedeu
       let(:attributes) { { y_min: 1, x_min: 4, height: 3, width: 10 } }
 
       it 'returns the actual x range' do
-        area.x_range.must_equal([4, 5, 6, 7, 8, 9, 10, 11, 12, 13])
+        area.x_range.must_equal([4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
       end
 
       context 'when the width is 0' do
