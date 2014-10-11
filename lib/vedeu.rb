@@ -51,6 +51,7 @@ require 'vedeu/support/esc'
 require 'vedeu/support/terminal'
 require 'vedeu/support/event'
 
+
 require 'vedeu/models/geometry'
 require 'vedeu/models/colour'
 require 'vedeu/models/style'
@@ -88,6 +89,7 @@ require 'vedeu/support/registrar'
 require 'vedeu/output/area'
 require 'vedeu/output/clear'
 require 'vedeu/output/content_area'
+require 'vedeu/output/visible_area'
 require 'vedeu/output/compositor'
 require 'vedeu/output/refresh'
 require 'vedeu/output/render'
@@ -96,6 +98,7 @@ require 'vedeu/output/viewport'
 
 require 'vedeu/support/grid'
 require 'vedeu/support/menu'
+require 'vedeu/support/move'
 
 require 'vedeu/input/input'
 
