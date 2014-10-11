@@ -10,15 +10,11 @@ module Vedeu
     include Repository
     extend self
 
-    # System events which when called will update the cursor position or
-    # visibility accordingly for the interface in focus.
-    Vedeu.event(:_cursor_up_)      { Cursors.use(:move_up)    }
-    Vedeu.event(:_cursor_right_)   { Cursors.use(:move_right) }
-    Vedeu.event(:_cursor_down_)    { Cursors.use(:move_down)  }
-    Vedeu.event(:_cursor_left_)    { Cursors.use(:move_left)  }
-    Vedeu.event(:_cursor_hide_)    { Cursors.use(:hide)       }
-    Vedeu.event(:_cursor_show_)    { Cursors.use(:show)       }
-    Vedeu.event(:_cursor_refresh_) { Cursors.use(:refresh)    }
+    # System events which when called will update the cursor visibility
+    # accordingly for the interface in focus.
+    Vedeu.event(:_cursor_hide_)    { Cursors.use(:hide)    }
+    Vedeu.event(:_cursor_show_)    { Cursors.use(:show)    }
+    Vedeu.event(:_cursor_refresh_) { Cursors.use(:refresh) }
 
     # Adds an interface to the cursors repository.
     #
@@ -67,7 +63,10 @@ module Vedeu
     # @return [Array] A collection containing the escape sequence for the
     #   visibility and position of the cursor.
     def use(action)
-      name   = Focus.current
+      name = Focus.current
+
+      Vedeu.log("Using cursor: '#{name}' (#{action.to_s})")
+
       cursor = build(name)
 
       storage.store(name, cursor.send(action))

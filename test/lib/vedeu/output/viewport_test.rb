@@ -1,6 +1,46 @@
 require 'test_helper'
 
 module Vedeu
+
+  describe Viewport do
+    let(:interface) { Interface.new({ name: 'lucie' }) }
+    let(:viewport)  { Viewport.new(interface) }
+
+    describe '#initialize' do
+      it 'returns an instance of itself' do
+        viewport.must_be_instance_of(Viewport)
+      end
+    end
+
+    describe '#visible_lines' do
+    end
+
+    # describe '#y_max' do
+    #   context '< 0' do
+    #     it { viewport.y_max(-2).must_equal(0) }
+
+    #     it { viewport.y_max(0).must_equal(0) }
+    #   end
+
+    #   context '> content y_max_index' do
+    #     it { viewport.y_max(12).must_equal(9) }
+    #   end
+
+    #   context '(offset_y + view y_max_index) > content y_max_index' do
+    #     it { viewport.y_max(8).must_equal(5) }
+    #   end
+
+    #   context '(offset_y + view y_max_index) < content y_max_index' do
+    #     it { viewport.y_max(4).must_equal(4) }
+
+    #     it { viewport.y_max(5).must_equal(5) }
+
+    #     it { viewport.y_max(6).must_equal(5) }
+    #   end
+    # end
+
+  end
+
   # describe Viewport do
   #   let(:instance) { Viewport.new(lines, y, x) }
   #   let(:lines) {
@@ -129,4 +169,5 @@ module Vedeu
   #   end
 
   # end
+
 end

@@ -49,29 +49,37 @@ module Vedeu
     # and we should return nothing.
     #
     # @param name [String]
-    # @return [Hash]
+    # @return [Hash|NilClass]
     def latest(name)
-      if new_content?(name)
-        swap_buffers(name)
-        front_buffer(name)
+      # if new_content?(name)
+      #   swap_buffers(name)
+      #   front_buffer(name)
 
-      elsif old_content?(name)
-        front_buffer(name)
+      # elsif old_content?(name)
+      #   front_buffer(name)
 
-      else
-        nil
+      # else
+      #   nil
 
-      end
+      # end
+
+      swap_buffers(name) if new_content?(name)
+
+      front_buffer(name)
     end
 
     private
 
-    # Swap the named back buffer into the front buffer of the same name.
+    # Swap the named back buffer into the front buffer of the same name. This is
+    # called when the back buffer has new content (perhaps as part of a
+    # refresh). It also resets the offsets (i.e. scroll position)
     #
     # @param name [String]
     # @return [Hash]
     def swap_buffers(name)
       buffer = find(name)
+
+      Offsets.update({ name: name })
 
       storage.store(name, {
         front_buffer: buffer[:back_buffer],
@@ -91,9 +99,9 @@ module Vedeu
     #
     # @param name [String]
     # @return [Boolean]
-    def old_content?(name)
-      defined_value?(front_buffer(name))
-    end
+    # def old_content?(name)
+    #   defined_value?(front_buffer(name))
+    # end
 
     # Return the named back buffer.
     #
