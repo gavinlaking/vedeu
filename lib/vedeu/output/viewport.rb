@@ -102,24 +102,6 @@ module Vedeu
       @_stored ||= Offsets.find(interface.name)
     end
 
-    # Returns the geometry of the visible area of the interface.
-    #
-    # @return [Array]
-    def visible_area
-      @_visible_area ||= Area.new({
-        height: visible_height,
-        width: visible_width
-      })
-    end
-
-    def visible_height
-      interface.height
-    end
-
-    def visible_width
-      interface.width
-    end
-
     # Returns the geometry of the content.
     #
     # @return [Array]
@@ -132,20 +114,20 @@ module Vedeu
 
     def content_height
       if content?
-        [interface.lines.size, interface.height].max
+        [interface.lines.size, visible_height].max
 
       else
-        interface.height
+        visible_height
 
       end
     end
 
     def content_width
       if content?
-        [content_maximum_line_length, interface.width].max
+        [content_maximum_line_length, visible_width].max
 
       else
-        interface.width
+        visible_width
 
       end
     end
@@ -158,6 +140,34 @@ module Vedeu
 
     def content?
       interface.lines.any?
+    end
+
+    # Returns the geometry of the visible area of the interface.
+    #
+    # @return [Array]
+    def visible_area
+      @_visible_area ||= Area.new({
+        height: visible_height,
+        width: visible_width
+      })
+    end
+
+    # Return the interfaces height value.
+    #
+    # @todo I think this should be #viewport_height.
+    #
+    # @return [Fixnum]
+    def visible_height
+      interface.height
+    end
+
+    # Return the interfaces width value.
+    #
+    # @todo I think this should be #viewport_width.
+    #
+    # @return [Fixnum]
+    def visible_width
+      interface.width
     end
 
   end # Viewport
