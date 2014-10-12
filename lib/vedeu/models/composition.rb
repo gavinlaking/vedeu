@@ -50,7 +50,6 @@ module Vedeu
 
     # The default values for a new instance of Composition.
     #
-    # @api private
     # @return [Hash]
     def defaults
       {
@@ -58,7 +57,6 @@ module Vedeu
       }
     end
 
-    # @api private
     # @return []
     def method_missing(method, *args, &block)
       Vedeu.log("Composition#method_missing '#{method.to_s}' (args: #{args.inspect})")

@@ -298,7 +298,6 @@ module Vedeu
       # Returns the options set via the configuration API DSL or an empty Hash
       # if none were set.
       #
-      # @api private
       # @return [Hash]
       def options
         @_options ||= {}
@@ -307,7 +306,6 @@ module Vedeu
       # Returns the system keys set via the configuration API DSL or an empty
       # hash if none were redefined.
       #
-      # @api private
       # @return [Hash]
       def system_key_options
         @_system_key_options ||= Configuration.default_system_keys
@@ -315,7 +313,6 @@ module Vedeu
 
       # Checks that the value provided to {#colour_mode} is valid.
       #
-      # @api private
       # @param value [Fixnum]
       # @return [Boolean]
       def valid_colour_mode?(value)
@@ -326,7 +323,6 @@ module Vedeu
       # {#focus_prev_key} and {#mode_switch_key} is valid. Must be a Symbol or a
       # non-empty String.
       #
-      # @api private
       # @param value [String|Symbol]
       # @return [Boolean]
       def valid_key?(value)
@@ -340,7 +336,6 @@ module Vedeu
       # Raises an exception on behalf of the calling method to report that the
       # value provided is not valid.
       #
-      # @api private
       # @param system_key [String] The calling method wishing to raise an
       #   exception.
       # @raise [InvalidSyntax] When the system_key parameter is not a String or

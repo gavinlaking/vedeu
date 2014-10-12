@@ -46,7 +46,6 @@ module Vedeu
     # When the event is called, the interface, or all interfaces belonging to
     # the group with this name will be refreshed.
     #
-    # @api private
     # @param type [Symbol]
     # @param name [String]
     # @param delay [Float]

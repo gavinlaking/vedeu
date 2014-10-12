@@ -23,13 +23,11 @@ module Vedeu
 
     private
 
-    # @api private
     # @return [String]
     def input
       @_input ||= Terminal.input
     end
 
-    # @api private
     # @return [String|Symbol]
     def keypress
       key = input
@@ -40,7 +38,6 @@ module Vedeu
     # Translates (if possible) entered escape sequences into symbols
     # representing the key which was pressed.
     #
-    # @api private
     # @return [Hash]
     def specials
       {

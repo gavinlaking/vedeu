@@ -61,13 +61,11 @@ module Vedeu
     # Returns an empty collection ready for the storing of menus by name with
     # associated menu instance.
     #
-    # @api private
     # @return [Hash]
     def in_memory
       {}
     end
 
-    # @api private
     # @param name [String]
     # @raise [MenuNotFound] When the entity cannot be found with this name.
     # @return [MenuNotFound]

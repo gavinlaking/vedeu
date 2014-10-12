@@ -31,19 +31,16 @@ module Vedeu
 
     private
 
-    # @api private
     # @return [String]
     def sequence
       ["\e[", y, ';', x, 'H'].join
     end
 
-    # @api private
     # @return [Fixnum]
     def y
       (@y == 0 || @y == nil) ? 1 : @y
     end
 
-    # @api private
     # @return [Fixnum]
     def x
       (@x == 0 || @x == nil) ? 1 : @x

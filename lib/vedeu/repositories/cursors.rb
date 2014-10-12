@@ -70,7 +70,6 @@ module Vedeu
     # Returns an empty collection ready for the storing of cursors by name with
     # current attributes.
     #
-    # @api private
     # @example
     #   { 'holmium' => {
     #                    name:     'holmium',
@@ -83,7 +82,6 @@ module Vedeu
       {}
     end
 
-    # @api private
     # @param name [String]
     # @raise [CursorNotFound] When the entity cannot be found with this name.
     # @return [CursorNotFound]

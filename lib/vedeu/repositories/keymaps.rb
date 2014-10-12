@@ -150,7 +150,6 @@ module Vedeu
 
     # Registers the key.
     #
-    # @api private
     # @param attributes [Hash]
     # @param interface [String]
     # @return []
@@ -166,7 +165,6 @@ module Vedeu
 
     # Determine which interface to store the key with.
     #
-    # @api private
     # @param interface [String]
     # @return [String]
     def namespace(interface = '')
@@ -180,7 +178,6 @@ module Vedeu
       proc { :noop }
     end
 
-    # @api private
     # @return [Array]
     def in_memory
       { '_global_keymap_' => {} }

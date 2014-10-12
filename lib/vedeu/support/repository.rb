@@ -43,7 +43,6 @@ module Vedeu
 
     # Access to the storage for this repository.
     #
-    # @api private
     # @return [Hash]
     def storage
       @_storage ||= in_memory
@@ -52,7 +51,6 @@ module Vedeu
     # At present, validates that attributes has a `:name` key that is not nil or
     # empty.
     #
-    # @api private
     # @param attributes [Hash]
     # @return [TrueClass|MissingRequired]
     def validate_attributes!(attributes)

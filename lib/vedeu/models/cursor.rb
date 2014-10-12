@@ -136,7 +136,6 @@ module Vedeu
 
     # Returns the escape sequence to position the cursor and set its visibility.
     #
-    # @api private
     # @return [String]
     def sequence
       [ position, visibility ].join
@@ -144,7 +143,6 @@ module Vedeu
 
     # Returns the escape sequence to position the cursor.
     #
-    # @api private
     # @return [String]
     def position
       ["\e[", y, ';', x, 'H'].join
@@ -152,7 +150,6 @@ module Vedeu
 
     # Returns the escape sequence for setting the visibility of the cursor.
     #
-    # @api private
     # @return [String]
     def visibility
       return Esc.string('show_cursor') if visible?
@@ -163,7 +160,6 @@ module Vedeu
     # Return a boolean indicating the visibility of the cursor, invisible if
     # the state is not defined.
     #
-    # @api private
     # @return [Boolean]
     def visible?
       return false unless states.include?(state)
@@ -175,7 +171,6 @@ module Vedeu
     # Returns the y coordinate of the cursor, unless out of range, in which case
     # sets y to the first row (top) of the interface.
     #
-    # @api private
     # @return [Fixnum]
     def y
       if y_out_of_range?
@@ -190,7 +185,6 @@ module Vedeu
     # Returns the x coordinate of the cursor, unless out of range, in which case
     # sets x to the first column (left) of the interface.
     #
-    # @api private
     # @return [Fixnum]
     def x
       if x_out_of_range?
@@ -205,7 +199,6 @@ module Vedeu
     # Returns a boolean indicating whether the previous y coordinate is still
     # inside the interface or terminal.
     #
-    # @api private
     # @return [Boolean]
     def y_out_of_range?
       @y < top || @y > bottom
@@ -214,7 +207,6 @@ module Vedeu
     # Returns a boolean indicating whether the previous x coordinate is still
     # inside the interface or terminal.
     #
-    # @api private
     # @return [Boolean]
     def x_out_of_range?
       @x < left || @x > right
@@ -222,7 +214,6 @@ module Vedeu
 
     # Returns the position and size of the interface.
     #
-    # @api private
     # @return [Geometry]
     def geometry
       @geometry ||= Vedeu::Geometry.new(interface[:geometry])
@@ -230,7 +221,6 @@ module Vedeu
 
     # Returns the attributes of a named interface.
     #
-    # @api private
     # @return [Hash]
     def interface
       Vedeu::Interfaces.find(name)
@@ -238,7 +228,6 @@ module Vedeu
 
     # The valid visibility states for the cursor.
     #
-    # @api private
     # @return [Array]
     def states
       [:show, :hide]
@@ -246,7 +235,6 @@ module Vedeu
 
     # The default values for a new instance of Cursor.
     #
-    # @api private
     # @return [Hash]
     def defaults
       {

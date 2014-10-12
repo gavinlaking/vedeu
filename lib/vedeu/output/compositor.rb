@@ -36,7 +36,6 @@ module Vedeu
     # Renders the buffer unless empty, otherwise clears the area which the
     # interface occupies.
     #
-    # @api private
     # @return [String]
     def view
       if buffer
@@ -51,7 +50,6 @@ module Vedeu
     # Combine the buffer attributes with the interface attributes. Buffer
     # presentation attributes will override interface defaults.
     #
-    # @api private
     # @return [Hash]
     def new_interface
       combined = interface
@@ -63,7 +61,6 @@ module Vedeu
 
     # Returns the attributes of the named interface (layout).
     #
-    # @api private
     # @return [Hash]
     def interface
       @_interface ||= Vedeu::Interfaces.find(name)
@@ -71,7 +68,6 @@ module Vedeu
 
     # Returns the attributes of the latest buffer (view).
     #
-    # @api private
     # @return [Hash]
     def buffer
       @_buffer ||= Vedeu::Buffers.latest(name)

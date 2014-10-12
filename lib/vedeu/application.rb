@@ -19,7 +19,6 @@ module Vedeu
       #   is about to terminate. Client applications are encouraged to use this
       #   event to close any open buffers, save files, empty trash, etc.
       #
-      # @api private
       # @raise [StopIteration] Will cause {#start} to exit its loop and
       #   terminate the application.
       # @return [StopIteration]
@@ -60,7 +59,6 @@ module Vedeu
     # Runs the application loop either once, or forever (exceptions and signals
     # permitting).
     #
-    # @api private
     # @return []
     def runner
       if Configuration.once?
@@ -79,7 +77,6 @@ module Vedeu
     # and 'do something useful'. When the client application has finished, it
     # should trigger the `:_exit_` event.
     #
-    # @api private
     # @return []
     def main_sequence
       if Configuration.interactive?
@@ -95,7 +92,6 @@ module Vedeu
     # uncaught exception occurs or when either the `:_mode_switch_` or `:_exit_`
     # event is triggered.
     #
-    # @api private
     # @return []
     def run_many
       loop { yield }

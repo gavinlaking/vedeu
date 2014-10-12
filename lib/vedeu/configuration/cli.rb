@@ -117,7 +117,6 @@ module Vedeu
       # Returns the options set via command-line arguments parsed by
       # OptionParser, or an empty Hash if none were set or parsed.
       #
-      # @api private
       # @return [Hash]
       def options
         @_options ||= {}

@@ -98,7 +98,6 @@ module Vedeu
 
     # Vedeu's default system keys. Use {#system_keys}.
     #
-    # @api private
     # @return [Hash]
     def default_system_keys
       {
@@ -113,7 +112,6 @@ module Vedeu
 
     # Returns all the options current configured.
     #
-    # @api private
     # @return [Hash]
     def options
       @options ||= defaults
@@ -122,7 +120,6 @@ module Vedeu
     # The Vedeu default options, which of course are influenced by environment
     # variables also.
     #
-    # @api private
     # @return [Hash]
     def defaults
       {
@@ -139,7 +136,6 @@ module Vedeu
     # Attempt to determine the terminal colour mode via environment variables,
     # or be optimistic and settle for 256 colours.
     #
-    # @api private
     # @return [Fixnum]
     # :nocov:
     def detect_colour_mode
@@ -168,7 +164,6 @@ module Vedeu
 
     # Determine the debug mode via an environment variable.
     #
-    # @api private
     # @return [Boolean]
     # :nocov:
     def detect_debug_mode
@@ -182,7 +177,6 @@ module Vedeu
 
     # Determine the trace mode via an environment variable.
     #
-    # @api private
     # @return [Boolean]
     # :nocov:
     def detect_trace_mode

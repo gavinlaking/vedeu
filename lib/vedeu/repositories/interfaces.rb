@@ -55,7 +55,6 @@ module Vedeu
     private
 
     # @see Vedeu::Refresh.register_event
-    # @api private
     # @param attributes [Hash]
     # @return [Boolean]
     def register_event(attributes)
@@ -65,13 +64,11 @@ module Vedeu
       Vedeu::Refresh.register_event(:by_name, name, delay)
     end
 
-    # @api private
     # @return [Hash]
     def in_memory
       {}
     end
 
-    # @api private
     # @param name [String]
     # @raise [InterfaceNotFound] When the entity cannot be found with this name.
     # @return [InterfaceNotFound]

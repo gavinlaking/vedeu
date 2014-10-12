@@ -55,19 +55,16 @@ module Vedeu
 
     # Returns the width of a single column in characters.
     #
-    # @api private
     # @return [Fixnum]
     def column
       actual / 12
     end
 
-    # @api private
     # @return [Fixnum]
     def actual
       Terminal.width
     end
 
-    # @api private
     # @return [Boolean]
     def out_of_range?
       value < 1 || value > 12

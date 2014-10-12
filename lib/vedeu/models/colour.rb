@@ -41,7 +41,6 @@ module Vedeu
 
     private
 
-    # @api private
     # @return [Hash]
     def defaults
       {

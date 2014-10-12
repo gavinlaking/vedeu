@@ -63,19 +63,16 @@ module Vedeu
 
     attr_reader :colour
 
-    # @api private
     # @return [Boolean]
     def no_colour?
       colour.nil? || colour.to_s.empty?
     end
 
-    # @api private
     # @return [Boolean]
     def named?
       colour.is_a?(Symbol) && valid_name?
     end
 
-    # @api private
     # @raise [NotImplemented] Subclasses of this class must implement this
     #   method.
     # @return [Exception]
@@ -83,19 +80,16 @@ module Vedeu
       fail NotImplemented, 'Subclasses implement this.'
     end
 
-    # @api private
     # @return [Boolean]
     def valid_name?
       codes.keys.include?(colour)
     end
 
-    # @api private
     # @return [Boolean]
     def numbered?
       colour.is_a?(Fixnum) && valid_range?
     end
 
-    # @api private
     # @raise [NotImplemented] Subclasses of this class must implement this
     #   method.
     # @return [NotImplemented]
@@ -103,19 +97,16 @@ module Vedeu
       fail NotImplemented, 'Subclasses implement this.'
     end
 
-    # @api private
     # @return [Boolean]
     def valid_range?
       colour >= 0 && colour <= 255
     end
 
-    # @api private
     # @return [Boolean]
     def rgb?
       colour.is_a?(String) && valid_rgb?
     end
 
-    # @api private
     # @raise [NotImplemented] Subclasses of this class must implement this
     #   method.
     # @return [NotImplemented]
@@ -123,13 +114,11 @@ module Vedeu
       fail NotImplemented, 'Subclasses implement this.'
     end
 
-    # @api private
     # @return [Boolean]
     def valid_rgb?
       !!(colour =~ /^#([A-Fa-f0-9]{6})$/)
     end
 
-    # @api private
     # @return [Array]
     def css_to_rgb
       [
@@ -139,7 +128,6 @@ module Vedeu
       ]
     end
 
-    # @api private
     # @return [Fixnum]
     def css_to_numbered
       if rgb?
@@ -151,25 +139,21 @@ module Vedeu
       end
     end
 
-    # @api private
     # @return [Fixnum]
     def red
       (css_to_rgb[0] / 51) * 36
     end
 
-    # @api private
     # @return [Fixnum]
     def green
       (css_to_rgb[1] / 51) * 6
     end
 
-    # @api private
     # @return [Fixnum]
     def blue
       (css_to_rgb[2] / 51) * 1
     end
 
-    # @api private
     # @return [Hash]
     def codes
       {

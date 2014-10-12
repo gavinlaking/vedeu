@@ -48,7 +48,6 @@ module Vedeu
 
     # The default attributes of the Keymap model.
     #
-    # @api private
     # @return [Hash]
     def defaults
       {
@@ -57,7 +56,6 @@ module Vedeu
       }
     end
 
-    # @api private
     # @return []
     def method_missing(method, *args, &block)
       Vedeu.log("Keymap#method_missing '#{method.to_s}' (args: #{args.inspect})")

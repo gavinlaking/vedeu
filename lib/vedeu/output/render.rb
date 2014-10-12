@@ -11,7 +11,6 @@ module Vedeu
     # then convert the interface into a single string of content and escape
     # sequences.
     #
-    # @api private
     # @param interface [Interface]
     # @param options [Hash]
     # @return [String]
@@ -55,7 +54,6 @@ module Vedeu
     # exceeds the line length. Further stream data that does not fit is
     # discarded.
     #
-    # @api private
     # @return [Array]
     def processed_lines
       return [] unless visible_lines.any? { |line| line.streams.any? }
@@ -92,7 +90,6 @@ module Vedeu
     # Builds a new Stream object with the newly truncated text and previous
     # attributes.
     #
-    # @api private
     # @param line [Line]
     # @param stream [Stream]
     # @param content [String]
@@ -108,7 +105,6 @@ module Vedeu
 
     # Builds a new Line object with the new streams and previous attributes.
     #
-    # @api private
     # @param line [Line]
     # @param streams [Array]
     # @return [Line]
@@ -125,7 +121,6 @@ module Vedeu
     # check that this line (without formatting, as that is not visible) exceeds
     # the width of the interface.
     #
-    # @api private
     # @param line [Line]
     # @return [Boolean]
     def exceeds_width?(line)
@@ -134,7 +129,6 @@ module Vedeu
 
     # Truncates the provided string.
     #
-    # @api private
     # @param string [String] The string to be truncated.
     # @param value [Fixnum] The total length of the string after truncation.
     # @return [String]
@@ -146,7 +140,6 @@ module Vedeu
     # If the option `:top` was set, we will start at that line. Any lines
     # outside of the height will not be rendered.
     #
-    # @api private
     # @return [Array]
     def visible_lines
       lines[top..height]
@@ -154,7 +147,6 @@ module Vedeu
 
     # Provides the collection of lines associated with the interface.
     #
-    # @api private
     # @return [Array]
     def lines
       interface.lines
@@ -165,7 +157,6 @@ module Vedeu
     # @note The height is reported to be one less line than actual because
     #   terminal coordinates count from 1, not 0.
     #
-    # @api private
     # @return [Fixnum]
     def height
       interface.viewport_height - 1
@@ -173,7 +164,6 @@ module Vedeu
 
     # Provides the currently available width of the interface.
     #
-    # @api private
     # @return [Fixnum]
     def width
       interface.viewport_width
@@ -181,19 +171,16 @@ module Vedeu
 
     # The current top line.
     #
-    # @api private
     # @return [Fixnum]
     def top
       options[:top]
     end
 
-    # @api private
     # @return [Hash]
     def options
       @_options ||= defaults.merge!(@options)
     end
 
-    # @api private
     # @return [Hash]
     def defaults
       {

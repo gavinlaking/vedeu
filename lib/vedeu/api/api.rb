@@ -223,7 +223,6 @@ module Vedeu
     # and attempt to redraw the current interface with varying degrees of
     # success. Can also be used to simulate a terminal resize.
     #
-    # @api private
     # @return [TrueClass]
     # :nocov:
     def resize

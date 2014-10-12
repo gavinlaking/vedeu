@@ -51,7 +51,6 @@ module Vedeu
 
     # Returns the text aligned if a width was set, otherwise just the text.
     #
-    # @api private
     # @return [String]
     def data
       width? ? aligned : text
@@ -60,7 +59,6 @@ module Vedeu
     # Returns an aligned string if the string is shorter than the specified
     # width; the excess area being padded by spaces.
     #
-    # @api private
     # @return [String]
     def aligned
       case align
@@ -72,7 +70,6 @@ module Vedeu
 
     # Returns a boolean to indicate whether this stream has a width set.
     #
-    # @api private
     # @return [Boolean]
     def width?
       !!width
@@ -80,7 +77,6 @@ module Vedeu
 
     # The default values for a new instance of Stream.
     #
-    # @api private
     # @return [Hash]
     def defaults
       {
@@ -93,7 +89,6 @@ module Vedeu
       }
     end
 
-    # @api private
     # @return []
     def method_missing(method, *args, &block)
       Vedeu.log("Stream#method_missing '#{method.to_s}' (args: #{args.inspect})")

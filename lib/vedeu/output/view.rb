@@ -46,7 +46,6 @@ module Vedeu
 
     # Create a new Composition object with the attributes.
     #
-    # @api private
     # @return [Composition]
     def composition
       @_composition ||= Composition.new(attributes)
@@ -55,7 +54,6 @@ module Vedeu
     # Calls the #render method of the subclass, hopefully receives attributes
     # suitable to create one or more views.
     #
-    # @api private
     # @return []
     def attributes
       render

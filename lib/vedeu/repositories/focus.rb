@@ -110,7 +110,6 @@ module Vedeu
 
     # Returns a boolean indicating whether the named interface is registered.
     #
-    # @api private
     # @return [Boolean]
     def registered?(name)
       return false if storage.empty?
@@ -122,7 +121,6 @@ module Vedeu
 
     # Returns an empty collection ready for the storing of interface names.
     #
-    # @api private
     # @return [Array]
     def in_memory
       []

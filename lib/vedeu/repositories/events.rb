@@ -47,7 +47,6 @@ module Vedeu
     # Returns an empty collection ready for the storing of events by name with
     # associated event instance.
     #
-    # @api private
     # @return [Hash]
     def in_memory
       Hash.new { |hash, key| hash[key] = { events: [] } }
