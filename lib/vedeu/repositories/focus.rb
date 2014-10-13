@@ -14,20 +14,9 @@ module Vedeu
     # System events which when called will change which interface is currently
     # focussed. When the interface is brought into focus, its cursor position
     # and visibility is restored.
-    Vedeu.event(:_focus_by_name_) do |name|
-      Vedeu::Focus.by_name(name)
-      Vedeu.trigger(:_cursor_refresh_)
-    end
-
-    Vedeu.event(:_focus_next_) do
-      Vedeu::Focus.next_item
-      Vedeu.trigger(:_cursor_refresh_)
-    end
-
-    Vedeu.event(:_focus_prev_) do
-      Vedeu::Focus.prev_item
-      Vedeu.trigger(:_cursor_refresh_)
-    end
+    Vedeu.event(:_focus_by_name_) { |name| Vedeu::Focus.by_name(name) }
+    Vedeu.event(:_focus_next_)    { Vedeu::Focus.next_item }
+    Vedeu.event(:_focus_prev_)    { Vedeu::Focus.prev_item }
 
     # Add an interface name to the focus list unless it is already registered.
     #
@@ -56,6 +45,8 @@ module Vedeu
       storage.rotate!(storage.index(name))
 
       Vedeu.log("Interface in focus: '#{current}'")
+
+      refresh
 
       current
     end
@@ -87,6 +78,8 @@ module Vedeu
 
       Vedeu.log("Interface in focus: '#{current}'")
 
+      refresh
+
       current
     end
 
@@ -98,7 +91,16 @@ module Vedeu
 
       Vedeu.log("Interface in focus: '#{current}'")
 
+      refresh
+
       current
+    end
+
+    # Refresh the interface in focus.
+    #
+    # @return [Array]
+    def refresh
+      Vedeu.trigger("_refresh_#{current}_".to_sym)
     end
 
     # Returns all registered interfaces by name.
