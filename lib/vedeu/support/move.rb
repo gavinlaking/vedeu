@@ -8,57 +8,38 @@ module Vedeu
 
     extend self
 
-    # @return []
+    # @return [Array]
     def down
-      move(:y, 1)
+      move(1, 0)
     end
 
-    # @return []
+    # @return [Array]
     def up
-      move(:y, -1)
+      move(-1, 0)
     end
 
-    # @return []
+    # @return [Array]
     def right
-      move(:x, 1)
+      move(0, 1)
     end
 
-    # @return []
+    # @return [Array]
     def left
-      move(:x, -1)
+      move(0, -1)
     end
 
     private
 
-    # @param axis [Symbol]
-    # @param value [Fixnum]
-    # @return []
-    def move(axis, value)
-      move_cursor(axis, value)
-      move_offset(axis, value)
+    # @param y [Fixnum]
+    # @param x [Fixnum]
+    # @return [Array] An array of the results of the events associated with
+    #   +:_cursor_refresh_+.
+    def move(y, x)
+      [Cursors, Offsets].each do |repository|
+        repository.move(y, x)
+      end
 
       Vedeu.trigger(:_cursor_refresh_)
-    end
-
-    def move_cursor(axis, value)
-      attributes = Cursors.find(name)
-
-      attributes[axis] += value
-
-      Cursors.update(attributes)
-    end
-
-    def move_offset(axis, value)
-      offset = Offsets.find(name)
-
-      attributes = offset.attributes
-      attributes[axis] += value
-
-      Offsets.update(attributes)
-    end
-
-    def name
-      Focus.current
     end
 
     # System events which when called will move in the direction specified;
