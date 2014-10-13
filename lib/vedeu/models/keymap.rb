@@ -13,7 +13,9 @@ module Vedeu
     # Define a keymap for an interface or interfaces to perform an action when
     # a key is pressed whilst an aforementioned interface is in focus.
     #
-    # @param attributes [Hash]
+    # @param attributes [Hash] The attributes to register the keymap with.
+    # @option attributes :interfaces []
+    # @option attributes :keys []
     # @param block [Proc]
     # @return [Keymap]
     def self.define(attributes = {}, &block)
