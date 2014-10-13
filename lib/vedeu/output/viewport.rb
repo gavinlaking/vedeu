@@ -25,15 +25,12 @@ module Vedeu
 
     def off_y
       if visible_area.y_indices.include?(offset.y)
-        Vedeu.log(Esc.red { "YOffset in Top Block (#{offset.y})" }, true)
         0
 
       elsif ((content_area.y_max_index - visible_area.y_max_index)...content_area.y_max_index).to_a.include?(offset.y)
-        Vedeu.log(Esc.red { "YOffset in Bottom Block (#{offset.y})" }, true)
         content_area.y_max_index - visible_area.y_max_index
 
       else
-        Vedeu.log(Esc.red { "YOffset in Not in Block (#{offset.y})" }, true)
         offset.y
 
       end
@@ -41,15 +38,12 @@ module Vedeu
 
     def off_x
       if visible_area.x_indices.include?(stored_offset.x)
-        Vedeu.log(Esc.red { "XOffset in Top Block (#{stored_offset.x})" }, true)
         0
 
       elsif ((content_area.x_max_index - visible_area.x_max_index)...content_area.x_max_index).to_a.include?(stored_offset.x)
-        Vedeu.log(Esc.red { "XOffset in Bottom Block (#{stored_offset.x})" }, true)
         content_area.x_max_index - visible_area.x_max_index
 
       else
-        Vedeu.log(Esc.red { "XOffset in Not in Block (#{stored_offset.x})" }, true)
         stored_offset.x
 
       end
@@ -65,15 +59,12 @@ module Vedeu
 
     def y_offset
       if stored_offset.y < 0
-        Vedeu.log(Esc.red { "YOffset < 0 (#{stored_offset.y})" }, true)
         0
 
       elsif stored_offset.y > content_area.y_max_index
-        Vedeu.log(Esc.red { "YOffset > content height (#{stored_offset.y})" }, true)
         content_area.y_max_index
 
       elsif (stored_offset.y + visible_area.y_max_index) > content_area.y_max_index
-        Vedeu.log(Esc.red { "YOffset+Visible > content height (#{stored_offset.y})" }, true)
         content_area.y_max_index - visible_area.y_max_index
 
       elsif (stored_offset.y + visible_area.y_max_index) <= content_area.y_max_index
