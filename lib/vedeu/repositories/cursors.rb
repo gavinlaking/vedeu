@@ -29,7 +29,7 @@ module Vedeu
 
       storage.store(attributes[:name], {
         name:     attributes[:name],
-        state:    :show,
+        state:    :hide,
         x:        interface.left,
         y:        interface.top,
       })
