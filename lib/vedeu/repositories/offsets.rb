@@ -36,6 +36,13 @@ module Vedeu
       end
     end
 
+    # @param y [Fixnum]
+    # @param x [Fixnum]
+    # @return [Offset]
+    def move(y, x)
+      find(Focus.current).move(y, x)
+    end
+
     private
 
     # @api private
