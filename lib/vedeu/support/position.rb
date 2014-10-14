@@ -1,17 +1,18 @@
 module Vedeu
 
   # Change coordinates into an escape sequence to set the cursor position.
+  # Also used as the basis of an Offset.
   #
   # @api private
-  class Position
+  class Position < Array
 
     # Initializes a new instance of Position.
     #
     # @param y [Fixnum]
     # @param x [Fixnum]
     # @return [Position]
-    def initialize(y = 1, x = 1)
-      @y, @x = y, x
+    def initialize(y = 0, x = 0)
+      super([y, x])
     end
 
     # Returns an escape sequence to position the cursor. When passed a block,
@@ -31,19 +32,29 @@ module Vedeu
 
     private
 
+    # Returns the escape sequence to reposition the cursors at the coordinates
+    # specified by x and y. If either of these values are 0, then we use 1,
+    # as ANSI terminals do not have a 0, 0 coordinate.
+    #
     # @return [String]
     def sequence
-      ["\e[", y, ';', x, 'H'].join
+      ["\e[", (y == 0 ? 1 : y), ';', (x == 0 ? 1 : x), 'H'].join
     end
 
+    # Returns the y coordinate. Can be 0 as this class may also be used as an
+    # Offset.
+    #
     # @return [Fixnum]
     def y
-      (@y == 0 || @y == nil) ? 1 : @y
+      (first == nil) ? 0 : first
     end
 
+    # Returns the x coordinate. Can be 0 as this class may also be used as an
+    # Offset.
+    #
     # @return [Fixnum]
     def x
-      (@x == 0 || @x == nil) ? 1 : @x
+      (last == nil) ? 0 : last
     end
 
   end # Position
