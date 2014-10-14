@@ -27,7 +27,7 @@ module Vedeu
             "\e[1;1H     \e[1;1H" \
             "\e[2;1H     \e[2;1H" \
             "\e[3;1H     \e[3;1H" \
-            "\e[1;1H\e[?25h"
+            "\e[1;1H\e[?25l"
           ])
         end
       end
@@ -62,7 +62,7 @@ module Vedeu
             "\e[1;1Hargon" \
             "\e[2;1Hboron" \
             "\e[3;1Hradon" \
-            "\e[1;1H\e[?25h"
+            "\e[1;1H\e[?25l"
           ])
         end
       end
