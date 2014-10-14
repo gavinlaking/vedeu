@@ -88,6 +88,13 @@ module Vedeu
       @geometry ||= Geometry.new(attributes[:geometry])
     end
 
+    # Returns the current offset for the content within the interface.
+    #
+    # @return [Offset]
+    def offset
+      @offset ||= Offsets.find(name)
+    end
+
     # Returns the currently visible area of the interface.
     #
     # @return [Viewport]
