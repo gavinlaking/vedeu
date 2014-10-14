@@ -14,8 +14,7 @@ module Vedeu
     extend Forwardable
 
     def_delegators :geometry, :north, :east, :south, :west, :top, :right,
-                              :bottom, :left, :width, :height, :origin,
-                              :viewport_width, :viewport_height
+                              :bottom, :left, :width, :height, :origin
 
     attr_reader :attributes, :delay, :group, :name, :parent
 

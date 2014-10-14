@@ -152,7 +152,7 @@ module Vedeu
     #
     # @return [Fixnum]
     def width
-      interface.viewport_width
+      interface.width
     end
 
   end # Render
