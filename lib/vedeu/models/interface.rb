@@ -79,6 +79,7 @@ module Vedeu
     def lines
       @lines ||= Line.coercer(attributes[:lines])
     end
+    alias_method :content, :lines
 
     # Returns the position and size of the interface.
     #
