@@ -130,20 +130,6 @@ module Vedeu
       end
     end
 
-    describe '#toggle' do
-      it 'sets the visibility to the opposite of its current state' do
-        cursor = Cursor.new(attributes)
-        cursor.toggle
-        cursor.attributes.must_equal(
-          { name: 'silver', state: :hide, x: 19, y: 8 }
-        )
-        cursor.toggle
-        cursor.attributes.must_equal(
-          { name: 'silver', state: :show, x: 19, y: 8 }
-        )
-      end
-    end
-
     describe '#to_s' do
       it 'returns the escape sequence to position and set the visibility of ' \
          'the cursor' do

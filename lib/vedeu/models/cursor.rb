@@ -76,31 +76,22 @@ module Vedeu
       end
     end
 
-    # Make the cursor visible if it is not already.
+    # Make the cursor visible.
     #
     # @return [Hash]
     def show
-      @attributes.merge!({ state: @state = :show })
+      @state = :show
+
+      Cursors.update(attributes)
     end
 
-    # Make the cursor invisible if it is not already.
+    # Make the cursor invisible.
     #
     # @return [Hash]
     def hide
-      @attributes.merge!({ state: @state = :hide })
-    end
+      @state = :hide
 
-    # Toggle the visibility of the cursor.
-    #
-    # @return [Hash]
-    def toggle
-      if visible?
-        hide
-
-      else
-        show
-
-      end
+      Cursors.update(attributes)
     end
 
     # Returns an escape sequence to position the cursor and set its visibility.
