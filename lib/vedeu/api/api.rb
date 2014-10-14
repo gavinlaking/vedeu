@@ -230,8 +230,6 @@ module Vedeu
 
       trigger(:_refresh_)
 
-      trigger(:_cursor_refresh_)
-
       true
     end
     # :nocov:

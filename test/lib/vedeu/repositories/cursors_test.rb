@@ -48,20 +48,5 @@ module Vedeu
       end
     end
 
-    describe '#use' do
-      before do
-        Interfaces.reset
-        Vedeu.interface('chromium') do
-          # ...
-        end
-        Terminal.console.stubs(:print)
-      end
-
-      it 'returns an escape sequence containing the visibility and position ' \
-         'of the cursor' do
-        Cursors.use(:refresh).must_equal(["\e[1;1H\e[?25h"])
-      end
-    end
-
   end
 end

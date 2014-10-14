@@ -43,10 +43,6 @@ Hides the cursor for the focussed interface.
 
 Shows the cursor for the focussed interface.
 
-### `:_cursor_refresh_`
-
-Refreshes the cursor for the focussed interface.
-
 ### `:_exit_`
 
 When triggered, Vedeu will trigger a `:_cleanup_` event which you can define (to save files, etc) and attempt to exit.

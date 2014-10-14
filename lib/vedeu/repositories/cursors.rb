@@ -12,9 +12,8 @@ module Vedeu
 
     # System events which when called will update the cursor visibility
     # accordingly for the interface in focus.
-    Vedeu.event(:_cursor_hide_)    { Cursors.use(:hide)    }
-    Vedeu.event(:_cursor_show_)    { Cursors.use(:show)    }
-    Vedeu.event(:_cursor_refresh_) { Cursors.use(:refresh) }
+    Vedeu.event(:_cursor_hide_)    { Cursors.hide }
+    Vedeu.event(:_cursor_show_)    { Cursors.show }
 
     # Adds an interface to the cursors repository.
     #
@@ -43,6 +42,23 @@ module Vedeu
       Cursor.new(find(name))
     end
 
+    # @return [Cursor]
+    def hide
+      find(Focus.current).hide
+    end
+
+    # @param y [Fixnum]
+    # @param x [Fixnum]
+    # @return [Cursor]
+    def move(y, x)
+      find(Focus.current).move(y, x)
+    end
+
+    # @return [Cursor]
+    def show
+      find(Focus.current).show
+    end
+
     # Saves the attributes in the repository for future use.
     #
     # @param attributes [Hash]
@@ -52,28 +68,9 @@ module Vedeu
 
       Vedeu.log("Updating cursor: '#{attributes[:name]}'")
 
-      storage.store(attributes[:name], attributes)
-    end
+      old = find(attributes[:name])
 
-    # Perform an action (moving, showing or hiding) of the cursor on the
-    # currently focussed interface and save the new cursor state.
-    #
-    # @param action [Symbol] A symbol representing the method name to be called
-    #   on the Cursor instance.
-    # @return [Array] A collection containing the escape sequence for the
-    #   visibility and position of the cursor.
-    def use(action)
-      name = Focus.current
-
-      Vedeu.log("Using cursor: '#{name}' (#{action.to_s})")
-
-      cursor = build(name)
-
-      storage.store(name, cursor.send(action))
-
-      Vedeu.trigger("_refresh_#{name}_".to_sym)
-
-      Terminal.output(cursor.to_s)
+      storage.store(attributes[:name], old.merge!(attributes))
     end
 
     private

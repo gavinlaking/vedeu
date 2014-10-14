@@ -39,7 +39,7 @@ module Vedeu
         repository.move(y, x)
       end
 
-      Vedeu.trigger(:_cursor_refresh_)
+      Focus.refresh
     end
 
     # System events which when called will move in the direction specified;

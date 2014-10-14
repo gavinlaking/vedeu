@@ -106,7 +106,7 @@ module Vedeu
     end
 
     describe '.resize' do
-      it 'triggers the :_clear_, :_refresh_ and :_cursor_refresh_ events' do
+      it 'triggers the :_clear_, and :_refresh_ events' do
         skip
       end
     end
