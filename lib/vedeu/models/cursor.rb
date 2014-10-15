@@ -184,7 +184,7 @@ module Vedeu
     def defaults
       {
         name:     '',
-        state:    :hide,
+        state:    :show,
         x:        1,
         y:        1,
       }
