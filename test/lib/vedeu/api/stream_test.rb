@@ -17,6 +17,26 @@ module Vedeu
         end
       end
 
+      describe '#background' do
+        it 'returns the value assigned' do
+          skip 'Vedeu::API::Stream#background is skipped'
+        end
+
+        it 'raises an exception if the value is not defined' do
+          skip 'Vedeu::API::Stream#background is skipped'
+        end
+      end
+
+      describe '#foreground' do
+        it 'returns the value assigned' do
+          skip 'Vedeu::API::Stream#foreground is skipped'
+        end
+
+        it 'raises an exception if the value is not defined' do
+          skip 'Vedeu::API::Stream#foreground is skipped'
+        end
+      end
+
       describe '#left' do
         it 'returns a Symbol' do
           Stream.new.left.must_equal(:left)

@@ -34,6 +34,36 @@ module Vedeu
         attributes[:align] = value.to_sym
       end
 
+      # @param value [String]
+      #
+      # @example
+      #   ...
+      #     stream do
+      #       background '#0022ff'
+      #       ... other stream directives ...
+      #
+      # @return [Array]
+      def background(value = '')
+        fail InvalidSyntax, '`background` requires a value.' unless defined_value?(value)
+
+        attributes[:colour].merge!({ background: value })
+      end
+
+      # @param value [String]
+      #
+      # @example
+      #   ...
+      #     stream do
+      #       foreground '#0022ff'
+      #       ... other stream directives ...
+      #
+      # @return [Array]
+      def foreground(value = '')
+        fail InvalidSyntax, '`foreground` requires a value.' unless defined_value?(value)
+
+        attributes[:colour].merge!({ foreground: value })
+      end
+
       # Syntactic sugar used with {#align} to left align content.
       #
       # @return [Symbol]
