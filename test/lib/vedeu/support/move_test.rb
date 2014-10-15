@@ -4,10 +4,13 @@ module Vedeu
   describe Move do
     before do
       Interfaces.reset
-      Cursors.add({ name: 'thorium' })
+      Registrar.record({ name: 'thorium' })
+      Terminal.console.stubs(:print)
     end
 
     context 'when no interfaces are defined' do
+      before { Interfaces.reset }
+
       it { proc { Move.down }.must_raise(NoInterfacesDefined) }
 
       it { proc { Move.up }.must_raise(NoInterfacesDefined) }
