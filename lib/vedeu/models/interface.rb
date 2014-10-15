@@ -102,13 +102,6 @@ module Vedeu
       @viewport ||= Viewport.new(self)
     end
 
-    # Returns the cursor associated with this interface.
-    #
-    # @return [Cursor]
-    def cursor
-      @cursor ||= Cursors.build(name)
-    end
-
     private
 
     # The default values for a new instance of Interface.

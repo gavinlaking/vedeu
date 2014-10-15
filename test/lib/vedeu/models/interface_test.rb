@@ -91,11 +91,5 @@ module Vedeu
       end
     end
 
-    describe '#cursor' do
-      it 'returns the associated cursor for this interface' do
-        interface.cursor.must_be_instance_of(Cursor)
-      end
-    end
-
   end
 end
