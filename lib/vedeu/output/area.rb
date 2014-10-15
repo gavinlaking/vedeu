@@ -9,6 +9,19 @@ module Vedeu
 
     # Returns an instance of Area.
     #
+    # @param interface [Interface]
+    # @return [Area]
+    def self.from_interface(interface)
+      new({
+        y_min: interface.top,
+        height: interface.height,
+        x_min: interface.left,
+        width: interface.width
+      })
+    end
+
+    # Returns an instance of Area.
+    #
     # @param  attributes [Hash] The attributes to initialize this class with.
     # @option attributes :y_min [Fixnum] The starting y coordinate for the area,
     #   equivalent to +:top+ in {Geometry} parlance.
@@ -120,21 +133,21 @@ module Vedeu
       x_indices.last
     end
 
-    # Returns the y coordinate as an offset in the area's y range. When a value
-    # is provided, the y coordinate is overridden. Crudely corrects out of range
-    # values.
+    # Returns the y coordinate as an offset index in the area's y range. When a
+    # value is provided, the y coordinate is overridden. Crudely corrects out of
+    # range values.
     #
     # @example
     #   # y_range  = [7, 8, 9, 10]
     #   # y = 8
-    #   y_offset     # => 1
-    #   y_offset(10) # => 3
-    #   y_offset(5)  # => 0
-    #   y_offset(15) # => 3
+    #   y_index     # => 1
+    #   y_index(10) # => 3
+    #   y_index(5)  # => 0
+    #   y_index(15) # => 3
     #
     # @param value [Fixnum]
     # @return [Fixnum]
-    def y_offset(value = y)
+    def y_index(value = y)
       if height <= 0 || value <= y_min
         0
 
@@ -147,21 +160,21 @@ module Vedeu
       end
     end
 
-    # Returns the x coordinate as an offset in the area's x range. When a value
-    # is provided, the x coordinate is overridden. Crudely corrects out of range
-    # values.
+    # Returns the x coordinate as an offset index in the area's x range. When a
+    # value is provided, the x coordinate is overridden. Crudely corrects out of
+    # range values.
     #
     # @example
     #   # x_range = [4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
     #   # x = 8
-    #   x_offset     # => 4
-    #   x_offset(11) # => 7
-    #   x_offset(2)  # => 0
-    #   x_offset(15) # => 9
+    #   x_index     # => 4
+    #   x_index(11) # => 7
+    #   x_index(2)  # => 0
+    #   x_index(15) # => 9
     #
     # @param value [Fixnum]
     # @return [Fixnum]
-    def x_offset(value = x)
+    def x_index(value = x)
       if width <= 0 || value <= x_min
         0
 
@@ -174,17 +187,67 @@ module Vedeu
       end
     end
 
+    # Returns the actual position of y for a given index. Crudely corrects out
+    # of range values.
+    #
+    # @example
+    #   # y_range = [7, 8, 9, 10, 11]
+    #   y_position     # => 7
+    #   y_position(-2) # => 7
+    #   y_position(2)  # => 9
+    #   y_position(7)  # => 11
+    #
+    # @param index [Fixnum]
+    # @return [Fixnum]
+    def y_position(index = 0)
+      if index <= 0
+        y_min
+
+      elsif index >= y_max_index
+        y_max
+
+      else
+        y_range[index]
+
+      end
+    end
+
+    # Returns the actual position of x for a given index. Crudely corrects out
+    # of range values.
+    #
+    # @example
+    #   # x_range = [4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+    #   x_position     # => 4
+    #   x_position(-2) # => 4
+    #   x_position(2)  # => 6
+    #   x_position(15) # => 13
+    #
+    # @param index [Fixnum]
+    # @return [Fixnum]
+    def x_position(index = 0)
+      if index <= 0
+        x_min
+
+      elsif index >= x_max_index
+        x_max
+
+      else
+        x_range[index]
+
+      end
+    end
+
     # Returns an array with all coordinates from x to x_max.
     #
     # @example
     #   # width = 10
     #   # x_min = 4
     #   # x_max = 14
-    #   x_range # => [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+    #   x_range # => [4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
     #
     # @return [Array]
     def x_range
-      (x_min..x_max).to_a
+      (x_min...x_max).to_a
     end
 
     # Returns an array with all coordinates from y to y_max.
@@ -193,11 +256,11 @@ module Vedeu
     #   # height = 4
     #   # y_min  = 7
     #   # y_max  = 11
-    #   y_range # => [7, 8, 9, 10, 11]
+    #   y_range # => [7, 8, 9, 10]
     #
     # @return [Array]
     def y_range
-      (y_min..y_max).to_a
+      (y_min...y_max).to_a
     end
 
     private
