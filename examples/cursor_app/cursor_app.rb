@@ -31,15 +31,53 @@ class VedeuCursorApp
 
   render do
     view 'iron' do
-      line 'A 23456789 hydrogen helium'
+      line do
+        stream do
+          text 'A 23456789 '
+        end
+        stream do
+          background '#550000'
+          foreground '#ffff00'
+          text 'hydrogen'
+        end
+        stream do
+          text ' helium'
+        end
+      end
       line 'B 23456789 lithium beryllium boron nitrogen'
-      line 'C 23456789 carbon oxygen fluorine'
+      line do
+        stream do
+          text 'C 23456789'
+        end
+        stream do
+          text ' carbon oxygen '
+        end
+        stream do
+          background '#aadd00'
+          foreground '#000000'
+          text 'fluorine'
+        end
+      end
       line 'D 23456789'
       line
       line 'E 23456789 neon sodium'
-      line 'F 23456789 magnesium aluminium'
+      line do
+        stream do
+          text 'F 23456789 magnesium '
+        end
+        stream do
+          foreground '#00aaff'
+          text 'aluminium'
+        end
+      end
       line 'G 23456789 silicon'
-      line 'H 234'
+      line do
+        stream do
+          background '#550000'
+          foreground '#ff00ff'
+          text 'H 234'
+        end
+      end
     end
   end
 
