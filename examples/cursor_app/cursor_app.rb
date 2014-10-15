@@ -17,7 +17,7 @@ class VedeuCursorApp
     centred true
     colour  foreground: '#ff0000', background: '#000000'
     height  4
-    width   12
+    width   15
   end
 
   keys do
@@ -31,13 +31,15 @@ class VedeuCursorApp
 
   render do
     view 'iron' do
-      line 'A_23456789'
-      line 'B_23456789'
-      line 'C_23456789'
-      line 'D_23456789'
-      line 'E_23456789'
-      line 'F_23456789'
-      line 'G_23456789'
+      line 'A 23456789 hydrogen helium'
+      line 'B 23456789 lithium beryllium boron nitrogen'
+      line 'C 23456789 carbon oxygen fluorine'
+      line 'D 23456789'
+      line
+      line 'E 23456789 neon sodium'
+      line 'F 23456789 magnesium aluminium'
+      line 'G 23456789 silicon'
+      line 'H 234'
     end
   end
 
