@@ -26,20 +26,25 @@ module Vedeu
 
       interface = Interface.new(attributes)
 
-      storage.store(attributes[:name], {
+      storage.store(attributes[:name], Cursor.new({
         name:     attributes[:name],
-        state:    :hide,
+        state:    :show,
         x:        interface.left,
         y:        interface.top,
-      })
+      }))
     end
 
-    # Create an instance of Cursor from the stored attributes.
+    # Find cursor by named interface, registers an cursor by interface name if
+    # not found.
     #
     # @param name [String]
     # @return [Cursor]
-    def build(name)
-      Cursor.new(find(name))
+    def find(name)
+      storage.fetch(name) do
+        Vedeu.log("Cursor not found, registering new for: '#{name}'")
+
+        storage.store(name, Cursor.new({ name: name }))
+      end
     end
 
     # @return [Cursor]
@@ -68,9 +73,9 @@ module Vedeu
 
       Vedeu.log("Updating cursor: '#{attributes[:name]}'")
 
-      old = find(attributes[:name])
+      old = find(attributes[:name]).attributes
 
-      storage.store(attributes[:name], old.merge!(attributes))
+      storage.store(attributes[:name], Cursor.new(old.merge!(attributes)))
     end
 
     private
