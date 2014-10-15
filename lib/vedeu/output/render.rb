@@ -37,7 +37,7 @@ module Vedeu
         out << interface.origin(index)
         out << line.to_s
       end
-      out << interface.cursor.to_s if interface.in_focus?
+      out << viewport.cursor if interface.in_focus?
       out.join
     end
 
@@ -54,7 +54,11 @@ module Vedeu
     #
     # @return [Array]
     def processed_lines
-      return [] unless visible_lines.any? { |line| line.streams.any? }
+      return [] unless visible_lines.any?
+
+      # return [] unless visible_lines.any? do |line|
+      #   line.streams.any?
+      # end
 
       visible_lines.map do |line|
         if exceeds_width?(line)
@@ -138,14 +142,21 @@ module Vedeu
     #
     # @return [Array]
     def visible_lines
-      @visible_lines ||= viewport.visible_lines
+      viewport.visible_lines
+    end
+
+    # Provides
+    #
+    # @return
+    def visible_columns
+      viewport.visible_columns
     end
 
     # Provides the visible area of the content within the interface.
     #
     # @return [Viewport]
     def viewport
-      interface.viewport
+      @_viewport ||= Viewport.new(interface)
     end
 
     # Provides the currently available width of the interface.

@@ -17,7 +17,7 @@ module Vedeu
     def add(attributes)
       validate_attributes!(attributes)
 
-      Vedeu.log("#{action(__callee__)} offset: '#{ attributes[:name]}'")
+      Vedeu.log("#{action(__callee__)} offset: '#{attributes[:name]}' (#{attributes.inspect})")
 
       storage.store(attributes[:name], Offset.new(attributes))
     end

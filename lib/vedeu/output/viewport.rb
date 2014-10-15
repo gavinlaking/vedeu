@@ -8,159 +8,205 @@ module Vedeu
   #
   class Viewport
 
+    extend Forwardable
+
+    def_delegators :interface, :content, :height, :offset, :width
+
     # @param interface [Interface] An instance of interface.
     # @return [Viewport]
     def initialize(interface)
       @interface = interface
+
+      @top     = 0
+      @left    = 0
     end
 
-    # @return [Array]
+    # @return []
+    def cursor
+      area   = Area.from_interface(interface)
+      curs_x = area.x_position(offset.x)
+      curs_y = area.y_position(offset.y)
+
+      Cursor.new({ name: interface.name, y: curs_y, x: curs_x }).to_s
+    end
+
+    # @return []
     def visible_lines
-      interface.lines[off_y...(off_y + visible_area.height)]
+      set_position
+
+      lines_to_display = content[display_lines] || []
+      # lines_to_display[height - 1] ||= []
+      # lines_to_display.map do |line|
+      #   line ||= ''
+      #   line[display_columns] || ''
+      # end
+    end
+
+    def visible_columns
+      display_columns
     end
 
     private
 
     attr_reader :interface
 
-    def off_y
-      if visible_area.y_indices.include?(offset.y)
-        0
+    # @return []
+    def set_position
+      scroll_line_into_view
 
-      elsif ((content_area.y_max_index - visible_area.y_max_index)...content_area.y_max_index).to_a.include?(offset.y)
-        content_area.y_max_index - visible_area.y_max_index
+      scroll_column_into_view
 
-      else
+      Vedeu.log("#set_position: y: #{offset.y} x: #{offset.x}")
+
+      Cursors.update({ name: interface.name, y: offset.y, x: offset.x })
+    end
+
+    # @return []
+    def scroll_line_into_view
+      result = line_adjustment
+      set_top(result) if result
+    end
+
+    # @return []
+    def line_adjustment
+      if offset.y < display_lines.min
         offset.y
 
-      end
-    end
-
-    def off_x
-      if visible_area.x_indices.include?(stored_offset.x)
-        0
-
-      elsif ((content_area.x_max_index - visible_area.x_max_index)...content_area.x_max_index).to_a.include?(stored_offset.x)
-        content_area.x_max_index - visible_area.x_max_index
-
-      else
-        stored_offset.x
+      elsif offset.y > display_lines.max
+        offset.y - (display_lines.max - display_lines.min)
 
       end
     end
 
-    def offset
-      @_offset = Offsets.update({
-        name: stored_offset.name,
-        y:    y_offset,
-        x:    x_offset,
-      })
+    # @param value [Fixnum]
+    # @return []
+    def set_top(value)
+      max_top = (content_height - height)
+      @top = [[value, max_top].min, 0].max
+
+      Vedeu.log("#set_top: y: #{@top} x: #{offset.x}")
+
+      Offsets.update({ name: interface.name, y: @top, x: offset.x })
+
+      @top
     end
 
-    def y_offset
-      if stored_offset.y < 0
-        0
+    # @return []
+    def scroll_column_into_view
+      result = column_adjustment
+      set_left(result) if result
+    end
 
-      elsif stored_offset.y > content_area.y_max_index
-        content_area.y_max_index
+    # @return []
+    def column_adjustment
+      if offset.x < (display_columns.min + column_scroll_threshold)
+        Vedeu.log("#column_adjustment ox < val")
+        offset.x - column_scroll_offset
 
-      elsif (stored_offset.y + visible_area.y_max_index) > content_area.y_max_index
-        content_area.y_max_index - visible_area.y_max_index
-
-      elsif (stored_offset.y + visible_area.y_max_index) <= content_area.y_max_index
-        stored_offset.y
+      elsif offset.x > (display_columns.max - column_scroll_threshold)
+        Vedeu.log("#column_adjustment ox > val")
+        # size = display_columns.max - display_columns.min + 1
+        size = display_columns.max - display_columns.min
+        Vedeu.log("what: #{offset.x - size + 1 + column_scroll_offset}")
+        offset.x - size + 1 + column_scroll_offset
 
       end
     end
 
-    def x_offset
-      if stored_offset.x < 0
-        0
+    # @param value [Fixnum]
+    # @return []
+    def set_left(value)
+      @left = [value, 0].max
 
-      elsif stored_offset.x > content_area.x_max_index
-        content_area.x_max_index
+      Vedeu.log("#set_top: y: #{offset.y} x: #{@left}")
 
-      elsif (stored_offset.x + visible_area.x_max_index) > content_area.x_max_index
-        content_area.x_max_index - visible_area.x_max_index
+      Offsets.update({ name: interface.name, y: offset.y, x: @left })
 
-      elsif (stored_offset.x + visible_area.x_max_index) <= content_area.x_max_index
-        stored_offset.x
-
-      end
+      @left
     end
 
-    def stored_offset
-      @_stored ||= Offsets.find(interface.name)
+    # @return [Range]
+    def display_lines
+      @top..(@top + height - 1)
     end
 
-    # Returns the geometry of the content.
+    # @return [Range]
+    def display_columns
+      @left..(@left + width - 1)
+    end
+
+    # @todo Maybe remove, not used.
+    # @param line [Fixnum] Current y position
+    # @return []
+    def visible_area(line)
+      line += @top
+      start_of_line = [line, @left]
+      last_visible_column = @left + width - 1
+      end_of_line = [line, last_visible_column]
+
+      start_of_line..end_of_line
+    end
+
+    # Returns the height of the content, or when no content, the visible height
+    # of the interface.
     #
-    # @return [Array]
-    def content_area
-      @_content_area ||= Area.new({
-        height: content_height,
-        width: content_width
-      })
-    end
-
+    # @return [Fixnum]
     def content_height
       if content?
-        [interface.lines.size, visible_height].max
+        [content.size, height].max
 
       else
-        visible_height
+        height
 
       end
     end
 
+    # Returns the width of the content, or when no content, the visible width of
+    # the interface.
+    #
+    # @return [Fixnum]
     def content_width
       if content?
-        [content_maximum_line_length, visible_width].max
+        [content_maximum_line_length, width].max
 
       else
-        visible_width
+        width
 
       end
     end
 
+    # Returns the character length of the longest line for this interface.
+    #
+    # @return [Fixnum]
     def content_maximum_line_length
-      interface.lines.map do |line|
+      content.map do |line|
         line.streams.map(&:content).join.size
       end.max
     end
 
+    # Return a boolean indicating whether this interface currently has content.
+    #
+    # @return [Boolean]
     def content?
-      interface.lines.any?
+      content.any?
     end
 
-    # Returns the geometry of the visible area of the interface.
-    #
-    # @return [Array]
-    def visible_area
-      @_visible_area ||= Area.new({
-        height: visible_height,
-        width: visible_width
-      })
-    end
-
-    # Return the interfaces height value.
-    #
-    # @todo I think this should be #viewport_height.
-    #
     # @return [Fixnum]
-    def visible_height
-      interface.height
+    def column_scroll_threshold
+      options[:column_scroll_threshold]
     end
 
-    # Return the interfaces width value.
-    #
-    # @todo I think this should be #viewport_width.
-    #
     # @return [Fixnum]
-    def visible_width
-      interface.width
+    def column_scroll_offset
+      options[:column_scroll_offset]
     end
 
-  end # Viewport
-
-end # Vedeu
+    # @return [Hash]
+    def options
+      {
+        column_scroll_threshold: 1, # 1
+        column_scroll_offset:    5, # 5
+      }
+    end
+  end
+end

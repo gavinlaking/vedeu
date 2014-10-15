@@ -44,6 +44,10 @@ module Vedeu
       @streams ||= Stream.coercer(attributes[:streams])
     end
 
+    def stream_sizes
+      streams.map(&:content).size
+    end
+
     private
 
     # Convenience method to provide Presentation with a consistent interface.
