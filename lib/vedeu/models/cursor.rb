@@ -60,11 +60,11 @@ module Vedeu
     #
     # @return [Fixnum]
     def x
-      if @x < interface.left
+      if @x <= interface.left
         @x = interface.left
 
-      elsif @x > interface.right
-        @x = interface.right
+      elsif @x >= interface.right
+        @x = interface.right - 1
 
       else
         @x
@@ -77,11 +77,11 @@ module Vedeu
     #
     # @return [Fixnum]
     def y
-      if @y < interface.top
+      if @y <= interface.top
         @y = interface.top
 
-      elsif @y > interface.bottom
-        @y = interface.bottom
+      elsif @y >= interface.bottom
+        @y = interface.bottom - 1
 
       else
         @y

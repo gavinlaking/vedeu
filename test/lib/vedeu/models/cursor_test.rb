@@ -56,7 +56,7 @@ module Vedeu
 
         it 'repositions the cursor at the end of the line' do
           Cursor.new(attributes).attributes.must_equal(
-            { name: 'silver', state: :show, x: 22, y: 8 }
+            { name: 'silver', state: :show, x: 21, y: 8 }
           )
         end
       end
@@ -82,7 +82,7 @@ module Vedeu
 
         it 'repositions the cursor at the end of the line' do
           Cursor.new(attributes).attributes.must_equal(
-            { name: 'silver', state: :show, x: 19, y: 9 }
+            { name: 'silver', state: :show, x: 19, y: 8 }
           )
         end
       end
