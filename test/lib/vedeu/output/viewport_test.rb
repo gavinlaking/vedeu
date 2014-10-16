@@ -1,6 +1,13 @@
-# require 'test_helper'
+require 'test_helper'
 
-# module Vedeu
+module Vedeu
+
+  describe Viewport do
+  end
+
+end
+
+
 #   describe Window do
 #     let(:window) { Window.new(10, 10) }
 

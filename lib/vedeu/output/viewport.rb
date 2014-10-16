@@ -17,8 +17,8 @@ module Vedeu
     def initialize(interface)
       @interface = interface
 
-      @top     = 0
-      @left    = 0
+      @top  = 0
+      @left = 0
     end
 
     # @return []
@@ -52,77 +52,53 @@ module Vedeu
 
     # @return []
     def set_position
-      scroll_line_into_view
-
-      scroll_column_into_view
-
-      Vedeu.log("#set_position: y: #{offset.y} x: #{offset.x}")
-
-      Cursors.update({ name: interface.name, y: offset.y, x: offset.x })
-    end
-
-    # @return []
-    def scroll_line_into_view
-      result = line_adjustment
-      set_top(result) if result
+      line_adjustment
+      column_adjustment
     end
 
     # @return []
     def line_adjustment
       if offset.y < display_lines.min
-        offset.y
+        set_top(offset.y)
 
       elsif offset.y > display_lines.max
-        offset.y - (display_lines.max - display_lines.min)
+        new_top = offset.y - (display_lines.max - display_lines.min)
+        set_top(new_top)
+
+      else
+        # @top does not need adjusting
 
       end
-    end
-
-    # @param value [Fixnum]
-    # @return []
-    def set_top(value)
-      max_top = (content_height - height)
-      @top = [[value, max_top].min, 0].max
-
-      Vedeu.log("#set_top: y: #{@top} x: #{offset.x}")
-
-      Offsets.update({ name: interface.name, y: @top, x: offset.x })
-
-      @top
-    end
-
-    # @return []
-    def scroll_column_into_view
-      result = column_adjustment
-      set_left(result) if result
     end
 
     # @return []
     def column_adjustment
       if offset.x < (display_columns.min + column_scroll_threshold)
-        Vedeu.log("#column_adjustment ox < val")
-        offset.x - column_scroll_offset
+        new_left = offset.x - column_scroll_offset
+        set_left(new_left)
 
       elsif offset.x > (display_columns.max - column_scroll_threshold)
-        Vedeu.log("#column_adjustment ox > val")
-        # size = display_columns.max - display_columns.min + 1
         size = display_columns.max - display_columns.min
-        Vedeu.log("what: #{offset.x - size + 1 + column_scroll_offset}")
-        offset.x - size + 1 + column_scroll_offset
+        new_left = offset.x - size + 1 + column_scroll_offset
+        set_left(new_left)
+
+      else
+        # @left does not need adjusting
 
       end
     end
 
     # @param value [Fixnum]
-    # @return []
+    # @return [Fixnum]
+    def set_top(value)
+      max_top = (content_height - height)
+      @top = [[value, max_top].min, 0].max
+    end
+
+    # @param value [Fixnum]
+    # @return [Fixnum]
     def set_left(value)
       @left = [value, 0].max
-
-      Vedeu.log("#set_top: y: #{offset.y} x: #{@left}")
-
-      Offsets.update({ name: interface.name, y: offset.y, x: @left })
-
-      @left
     end
 
     # @return [Range]
@@ -204,8 +180,8 @@ module Vedeu
     # @return [Hash]
     def options
       {
-        column_scroll_threshold: 1, # 1
-        column_scroll_offset:    5, # 5
+        column_scroll_threshold: 1,
+        column_scroll_offset:    5,
       }
     end
   end
