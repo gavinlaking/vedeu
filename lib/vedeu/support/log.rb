@@ -103,20 +103,20 @@ module Vedeu
         log.formatter = proc do |_, time, _, message|
           utc_time = time.utc.iso8601
 
-          if @last_seen == utc_time
-            message + "\n"
-
-          else
-            @last_seen = utc_time
-
-            "\n\e[4m\e[31m" + utc_time + "\e[39m\e[24m\n" + message + "\n"
-
-          end
+          [timestamp(utc_time), message, "\n"].join
         end
       end
     end
 
     private
+
+    def self.timestamp(utc_time)
+      return "" if @last_seen == utc_time
+
+      @last_seen = utc_time
+
+      "\n\e[4m\e[31m" + utc_time + "\e[39m\e[24m\n"
+    end
 
     # @return [String]
     def self.filename
