@@ -37,25 +37,21 @@ module Vedeu
       end
     end
 
-    # Returns a collection of streams associated with this line.
+    # Returns a collection of streams associated with this line. This method
+    # also has the alias_method :data, a convenience method to provide
+    # Presentation with a consistent interface.
     #
     # @return [Array]
     def streams
       @streams ||= Stream.coercer(attributes[:streams])
     end
+    alias_method :data, :streams
 
     def stream_sizes
       streams.map(&:content).size
     end
 
     private
-
-    # Convenience method to provide Presentation with a consistent interface.
-    #
-    # @return [Array]
-    def data
-      streams
-    end
 
     # The default values for a new instance of Line.
     #

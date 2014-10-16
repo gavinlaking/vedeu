@@ -40,21 +40,17 @@ module Vedeu
       end
     end
 
-    # Returns the content of this stream.
+    # Returns the text aligned if a width was set, otherwise just the text. This
+    # method also has the alias_method :data, a convenience method to provide
+    # Presentation with a consistent interface.
     #
     # @return [String]
     def content
-      data
-    end
-
-    private
-
-    # Returns the text aligned if a width was set, otherwise just the text.
-    #
-    # @return [String]
-    def data
       width? ? aligned : text
     end
+    alias_method :data, :content
+
+    private
 
     # Returns an aligned string if the string is shorter than the specified
     # width; the excess area being padded by spaces.
