@@ -52,7 +52,7 @@ module Vedeu
     #
     # @return [Fixnum]
     def x
-      return @x = 0 if @x < 0
+      return @x = 0 if @x <= 0
 
       @x
     end
@@ -61,7 +61,7 @@ module Vedeu
     #
     # @return [Fixnum]
     def y
-      return @y = 0 if @y < 0
+      return @y = 0 if @y <= 0
 
       @y
     end
