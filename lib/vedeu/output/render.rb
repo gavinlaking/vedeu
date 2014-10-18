@@ -66,9 +66,9 @@ module Vedeu
           new_streams = []
 
           new_streams = line.streams.map do |stream|
-            next if stream.content.empty?
+            next if stream.empty?
 
-            if (line_length += stream.content.size) >= width
+            if (line_length += stream.size) >= width
               remainder = width - line_length
               truncated = truncate(stream.content, remainder)
 
@@ -126,7 +126,7 @@ module Vedeu
     # @param line [Line]
     # @return [Boolean]
     def exceeds_width?(line)
-      line.streams.map(&:content).join.size > width
+      line.size > width
     end
 
     # Truncates the provided string.
