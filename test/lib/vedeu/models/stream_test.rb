@@ -25,6 +25,28 @@ module Vedeu
       end
     end
 
+    describe '#empty?' do
+      context 'when there is no content' do
+        before { stream.stubs(:size).returns(0) }
+
+        it { stream.empty?.must_equal(true) }
+      end
+
+      it 'returns false when there is content' do
+        stream.empty?.must_equal(false)
+      end
+    end
+
+    describe '#size' do
+      it 'returns a Fixnum' do
+        stream.size.must_be_instance_of(Fixnum)
+      end
+
+      it 'returns the size of the stream' do
+        stream.size.must_equal(9)
+      end
+    end
+
     describe '#text' do
       it 'has a text attribute' do
         stream.text.must_equal('Some text')

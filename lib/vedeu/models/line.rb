@@ -37,6 +37,20 @@ module Vedeu
       end
     end
 
+    # Returns a boolean indicating whether the line has content.
+    #
+    # @return [Boolean]
+    def empty?
+      size == 0
+    end
+
+    # Returns the size of the content in characters without formatting.
+    #
+    # @return [Fixnum]
+    def size
+      streams.map(&:size).inject(0, :+) { |sum, x| sum += x }
+    end
+
     # Returns a collection of streams associated with this line. This method
     # also has the alias_method :data, a convenience method to provide
     # Presentation with a consistent interface.

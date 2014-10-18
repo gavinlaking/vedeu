@@ -50,6 +50,20 @@ module Vedeu
     end
     alias_method :data, :content
 
+    # Returns a boolean indicating whether the stream has content.
+    #
+    # @return [Boolean]
+    def empty?
+      size == 0
+    end
+
+    # Returns the size of the content in characters without formatting.
+    #
+    # @return [Fixnum]
+    def size
+      content.size
+    end
+
     private
 
     # Returns an aligned string if the string is shorter than the specified
