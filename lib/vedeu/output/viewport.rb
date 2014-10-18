@@ -16,12 +16,11 @@ module Vedeu
     # @return [Viewport]
     def initialize(interface)
       @interface = interface
-
-      @top  = 0
-      @left = 0
+      @top       = 0
+      @left      = 0
     end
 
-    # @return []
+    # @return [Cursor]
     def cursor
       area   = Area.from_interface(interface)
       curs_x = area.x_position(offset.x)
@@ -30,7 +29,7 @@ module Vedeu
       Cursor.new({ name: interface.name, y: curs_y, x: curs_x }).to_s
     end
 
-    # @return []
+    # @return [Array]
     def visible_lines
       set_position
 
@@ -50,13 +49,13 @@ module Vedeu
 
     attr_reader :interface
 
-    # @return []
+    # @return [Fixnum]
     def set_position
       line_adjustment
       column_adjustment
     end
 
-    # @return []
+    # @return [Fixnum]
     def line_adjustment
       if offset.y < display_lines.min
         set_top(offset.y)
@@ -71,7 +70,7 @@ module Vedeu
       end
     end
 
-    # @return []
+    # @return [Fixnum]
     def column_adjustment
       if offset.x < (display_columns.min + column_scroll_threshold)
         new_left = offset.x - column_scroll_offset
@@ -115,10 +114,10 @@ module Vedeu
     # @param line [Fixnum] Current y position
     # @return []
     def visible_area(line)
-      line += @top
-      start_of_line = [line, @left]
+      line                += @top
+      start_of_line       = [line, @left]
       last_visible_column = @left + width - 1
-      end_of_line = [line, last_visible_column]
+      end_of_line         = [line, last_visible_column]
 
       start_of_line..end_of_line
     end
