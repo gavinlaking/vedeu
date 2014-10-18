@@ -45,6 +45,45 @@ module Vedeu
       end
     end
 
+    describe '#chars' do
+      it 'returns an Array' do
+        line.chars.must_be_instance_of(Array)
+      end
+
+      context 'when there is no content' do
+        before { line.stubs(:size).returns(0) }
+
+        it { line.chars.must_equal([]) }
+      end
+
+      context 'when there is content' do
+        it 'returns an Array' do
+          line.chars.must_equal(
+            [
+              "\e[38;2;255;0;0mS", "\e[38;2;255;0;0mo", "\e[38;2;255;0;0mm",
+              "\e[38;2;255;0;0me", "\e[38;2;255;0;0mt", "\e[38;2;255;0;0mh",
+              "\e[38;2;255;0;0mi", "\e[38;2;255;0;0mn", "\e[38;2;255;0;0mg",
+              "\e[38;2;255;0;0m ", "\e[38;2;255;0;0mi", "\e[38;2;255;0;0mn",
+              "\e[38;2;255;0;0mt", "\e[38;2;255;0;0me", "\e[38;2;255;0;0mr",
+              "\e[38;2;255;0;0me", "\e[38;2;255;0;0ms", "\e[38;2;255;0;0mt",
+              "\e[38;2;255;0;0mi", "\e[38;2;255;0;0mn", "\e[38;2;255;0;0mg",
+              "\e[38;2;255;0;0m ", "\e[38;2;0;255;0mo", "\e[38;2;0;255;0mn",
+              "\e[38;2;0;255;0m ", "\e[38;2;0;255;0mt", "\e[38;2;0;255;0mh",
+              "\e[38;2;0;255;0mi", "\e[38;2;0;255;0ms", "\e[38;2;0;255;0m ",
+              "\e[38;2;0;255;0ml", "\e[38;2;0;255;0mi", "\e[38;2;0;255;0mn",
+              "\e[38;2;0;255;0me", "\e[38;2;0;255;0m ", "\e[38;2;0;0;255mw",
+              "\e[38;2;0;0;255mo", "\e[38;2;0;0;255mu", "\e[38;2;0;0;255ml",
+              "\e[38;2;0;0;255md", "\e[38;2;0;0;255m ", "\e[38;2;0;0;255mb",
+              "\e[38;2;0;0;255me", "\e[38;2;0;0;255m ", "\e[38;2;0;0;255mc",
+              "\e[38;2;0;0;255mo", "\e[38;2;0;0;255mo", "\e[38;2;0;0;255ml",
+              "\e[38;2;0;0;255m,", "\e[38;2;0;0;255m ", "\e[38;2;0;0;255me",
+              "\e[38;2;0;0;255mh", "\e[38;2;0;0;255m?"
+            ]
+          )
+        end
+      end
+    end
+
     describe '#empty?' do
       context 'when there is no content' do
         before { line.stubs(:size).returns(0) }

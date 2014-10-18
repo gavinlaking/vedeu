@@ -37,6 +37,16 @@ module Vedeu
       end
     end
 
+    # Returns an array of all the characters with formatting for this line.
+    #
+    # @return [Array]
+    # @see Vedeu::Stream
+    def chars
+      return [] if empty?
+
+      @_chars ||= streams.map(&:chars).flatten
+    end
+
     # Returns a boolean indicating whether the line has content.
     #
     # @return [Boolean]
