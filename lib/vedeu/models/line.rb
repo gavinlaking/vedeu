@@ -71,10 +71,6 @@ module Vedeu
     end
     alias_method :data, :streams
 
-    def stream_sizes
-      streams.map(&:content).size
-    end
-
     private
 
     # The default values for a new instance of Line.

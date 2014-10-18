@@ -14,22 +14,14 @@ module Vedeu
         parent:  nil,
       }
     }
-    let(:streams) { # 53
+    let(:streams) {
       [
-        # 22 (0,  21) (0, 21)
         Stream.new({
-          colour: { foreground: '#ff0000' },
-          text: 'Something interesting ' }),
-
-        # 13 (22, 34) (0, 12)
+          colour: { foreground: '#ff0000' }, text: 'Something interesting ' }),
         Stream.new({
-          colour: { foreground: '#00ff00' },
-          text: 'on this line ' }),
-
-        # 18 (35, 53) (0, 17)
+          colour: { foreground: '#00ff00' }, text: 'on this line ' }),
         Stream.new({
-          colour: { foreground: '#0000ff' },
-          text: 'would be cool, eh?' })
+          colour: { foreground: '#0000ff' }, text: 'would be cool, eh?' })
       ]
     }
 
@@ -109,12 +101,6 @@ module Vedeu
     describe '#streams' do
       it 'has a streams attribute' do
         line.streams.must_be_instance_of(Array)
-      end
-    end
-
-    describe '#stream_offsets' do
-      it 'returns the lengths of the streams' do
-        line.stream_offsets.must_equal([22, 13, 18])
       end
     end
 
