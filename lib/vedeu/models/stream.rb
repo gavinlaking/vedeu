@@ -40,6 +40,22 @@ module Vedeu
       end
     end
 
+    # Returns an array of characters, each element is the escape sequences of
+    # colours and styles for this stream, the character itself, and the escape
+    # sequences of colours and styles for the parent of the stream
+    # ({Vedeu::Line}).
+    #
+    # @return [Array]
+    def chars
+      return [] if empty?
+
+      char_attrs = view_attributes.merge!({ parent: parent })
+
+      @_chars ||= content.chars.map do |c|
+        Char.new(char_attrs.merge!({ value: c })).to_s
+      end
+    end
+
     # Returns the text aligned if a width was set, otherwise just the text. This
     # method also has the alias_method :data, a convenience method to provide
     # Presentation with a consistent interface.
