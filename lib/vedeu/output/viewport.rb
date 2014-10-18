@@ -30,19 +30,18 @@ module Vedeu
     end
 
     # @return [Array]
-    def visible_lines
+    def visible_content
       set_position
 
-      lines_to_display = content[display_lines] || []
-      # lines_to_display[height - 1] ||= []
-      # lines_to_display.map do |line|
-      #   line ||= ''
-      #   line[display_columns] || ''
-      # end
-    end
+      if content?
+        content[display_lines].map do |line|
+          line.chars[display_columns]
+        end.compact
 
-    def visible_columns
-      display_columns
+      else
+        []
+
+      end
     end
 
     private
@@ -110,18 +109,6 @@ module Vedeu
       @left..(@left + width - 1)
     end
 
-    # @todo Maybe remove, not used.
-    # @param line [Fixnum] Current y position
-    # @return []
-    def visible_area(line)
-      line                += @top
-      start_of_line       = [line, @left]
-      last_visible_column = @left + width - 1
-      end_of_line         = [line, last_visible_column]
-
-      start_of_line..end_of_line
-    end
-
     # Returns the height of the content, or when no content, the visible height
     # of the interface.
     #
@@ -154,9 +141,7 @@ module Vedeu
     #
     # @return [Fixnum]
     def content_maximum_line_length
-      content.map do |line|
-        line.streams.map(&:content).join.size
-      end.max
+      content.map { |line| line.size }.max
     end
 
     # Return a boolean indicating whether this interface currently has content.
