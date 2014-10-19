@@ -38,11 +38,11 @@ require 'vedeu/support/trace'
 
 require 'vedeu/api/api'
 
-require 'vedeu/models/attributes/coercions'
-require 'vedeu/models/attributes/colour_translator'
-require 'vedeu/models/attributes/background'
-require 'vedeu/models/attributes/foreground'
-require 'vedeu/models/attributes/presentation'
+require 'vedeu/support/coercions'
+require 'vedeu/support/colour_translator'
+require 'vedeu/models/background'
+require 'vedeu/models/foreground'
+require 'vedeu/support/presentation'
 require 'vedeu/models/composition'
 
 require 'vedeu/support/repository'
