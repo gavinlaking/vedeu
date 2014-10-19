@@ -51,18 +51,6 @@ module Vedeu
     # @param name [String]
     # @return [Hash|NilClass]
     def latest(name)
-      # if new_content?(name)
-      #   swap_buffers(name)
-      #   front_buffer(name)
-
-      # elsif old_content?(name)
-      #   front_buffer(name)
-
-      # else
-      #   nil
-
-      # end
-
       swap_buffers(name) if new_content?(name)
 
       front_buffer(name)
