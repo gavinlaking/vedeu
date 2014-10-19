@@ -34,6 +34,8 @@ module Vedeu
         attributes[:align] = value.to_sym
       end
 
+      # Specify the background colour for a stream.
+      #
       # @param value [String]
       #
       # @example
@@ -42,13 +44,15 @@ module Vedeu
       #       background '#0022ff'
       #       ... other stream directives ...
       #
-      # @return [Array]
+      # @return [Hash]
       def background(value = '')
         fail InvalidSyntax, '`background` requires a value.' unless defined_value?(value)
 
         attributes[:colour].merge!({ background: value })
       end
 
+      # Specify the foreground colour for a stream.
+      #
       # @param value [String]
       #
       # @example
@@ -57,7 +61,7 @@ module Vedeu
       #       foreground '#0022ff'
       #       ... other stream directives ...
       #
-      # @return [Array]
+      # @return [Hash]
       def foreground(value = '')
         fail InvalidSyntax, '`foreground` requires a value.' unless defined_value?(value)
 
