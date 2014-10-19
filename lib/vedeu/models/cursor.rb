@@ -147,7 +147,7 @@ module Vedeu
     #
     # @return [String]
     def position
-      ["\e[", y, ';', x, 'H'].join
+      @_position ||= Position.new(y, x).to_s
     end
 
     # Returns the escape sequence for setting the visibility of the cursor.
