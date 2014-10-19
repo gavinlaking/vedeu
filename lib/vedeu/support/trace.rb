@@ -149,7 +149,6 @@ module Vedeu
     def vedeu_exceptions
       Set.new [
         'Vedeu::BufferNotFound',
-        'Vedeu::CursorNotFound',
         'Vedeu::GroupNotFound',
         'Vedeu::InterfaceNotFound',
         'Vedeu::InvalidSyntax',
