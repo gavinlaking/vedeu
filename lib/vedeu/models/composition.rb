@@ -64,7 +64,7 @@ module Vedeu
     def method_missing(method, *args, &block)
       Vedeu.log("Composition#method_missing '#{method.to_s}' (args: #{args.inspect})")
 
-      @self_before_instance_eval.send(method, *args, &block)
+      @self_before_instance_eval.send(method, *args, &block) if @self_before_instance_eval
     end
 
   end # Composition

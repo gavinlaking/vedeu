@@ -4,6 +4,7 @@ require 'json'
 
 module Vedeu
   describe Composition do
+
     before { Buffers.reset }
 
     describe '#initialize' do
@@ -30,6 +31,12 @@ module Vedeu
 
       it 'returns an empty collection when no interfaces are associated' do
         Composition.new.interfaces.must_be_empty
+      end
+    end
+
+    describe '#method_missing' do
+      it 'returns nil' do
+        Composition.new.some_missing_method(:test).must_equal(nil)
       end
     end
 
