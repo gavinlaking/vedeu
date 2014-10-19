@@ -1,6 +1,11 @@
 Copyright (c) 2014 Gavin Laking
 Copyright (c) 2013 Steve Klabnik - Monologger
                    (https://github.com/steveklabnik/mono_logger)
+                   Note: Code used inline in Vedeu::Log.
+Copyright (c) 2013 Michael Grosser - Ruco
+                   (https://github.com/grosser/ruco)
+                   Note: Code from ruco's Window class was used as basis of
+                     Vedeu::Viewport.
 
 MIT License
 
