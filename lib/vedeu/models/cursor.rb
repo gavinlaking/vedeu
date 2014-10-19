@@ -6,6 +6,10 @@ module Vedeu
   # @api private
   class Cursor
 
+    extend Forwardable
+
+    def_delegators :interface, :top, :right, :bottom, :left
+
     attr_reader :name, :state
 
     # Provides a new instance of Cursor.
@@ -60,11 +64,11 @@ module Vedeu
     #
     # @return [Fixnum]
     def x
-      if @x <= interface.left
-        @x = interface.left
+      if @x <= left
+        @x = left
 
-      elsif @x >= interface.right
-        @x = interface.right - 1
+      elsif @x >= right
+        @x = right - 1
 
       else
         @x
@@ -77,11 +81,11 @@ module Vedeu
     #
     # @return [Fixnum]
     def y
-      if @y <= interface.top
-        @y = interface.top
+      if @y <= top
+        @y = top
 
-      elsif @y >= interface.bottom
-        @y = interface.bottom - 1
+      elsif @y >= bottom
+        @y = bottom - 1
 
       else
         @y
@@ -168,7 +172,7 @@ module Vedeu
     # @api private
     # @return [Interface]
     def interface
-      @_interface ||= Interfaces.build(name)
+      @interface ||= Interfaces.build(name)
     end
 
     # The valid visibility states for the cursor.
