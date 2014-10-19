@@ -82,7 +82,7 @@ module Vedeu
 
     # @return [Boolean]
     def valid_name?
-      codes.keys.include?(colour)
+      Esc.codes.keys.include?(colour)
     end
 
     # @return [Boolean]
@@ -152,21 +152,6 @@ module Vedeu
     # @return [Fixnum]
     def blue
       (css_to_rgb[2] / 51) * 1
-    end
-
-    # @return [Hash]
-    def codes
-      {
-        black:   30,
-        red:     31,
-        green:   32,
-        yellow:  33,
-        blue:    34,
-        magenta: 35,
-        cyan:    36,
-        white:   37,
-        default: 39,
-      }
     end
 
   end # ColourTranslator

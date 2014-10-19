@@ -8,6 +8,21 @@ module Vedeu
 
     extend self
 
+    # @return [Hash]
+    def codes
+      {
+        black:   30,
+        red:     31,
+        green:   32,
+        yellow:  33,
+        blue:    34,
+        magenta: 35,
+        cyan:    36,
+        white:   37,
+        default: 39,
+      }
+    end
+
     # Dynamically creates methods for each terminal named colour. When a block
     # is given, then the colour is reset to 'default' once the block is called.
     #
@@ -21,17 +36,7 @@ module Vedeu
     #   Esc.on_blue { 'some text' } # => "\e[44msome text\e[49m"
     #
     # @return [String]
-    {
-      black:   30,
-      red:     31,
-      green:   32,
-      yellow:  33,
-      blue:    34,
-      magenta: 35,
-      cyan:    36,
-      white:   37,
-      default: 39,
-    }.each do |key, code|
+    codes.each do |key, code|
       define_method(key) do |&blk|
         "\e[#{code}m" + (blk ? blk.call + "\e[39m" : '')
       end
