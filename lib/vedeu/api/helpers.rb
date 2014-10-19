@@ -8,6 +8,31 @@ module Vedeu
     # @api public
     module Helpers
 
+      include Common
+
+      # Define the background colour for an interface, or a stream.
+      #
+      # @param value [String]
+      #
+      # @example
+      #   interface 'my_interface' do
+      #     background '#0022ff'
+      #     ...
+      #
+      #   stream do
+      #     background '#0022ff'
+      #     ...
+      #
+      # @raise [InvalidSyntax] When the value is not defined.
+      # @return [Hash]
+      def background(value = '')
+        unless defined_value?(value)
+          fail InvalidSyntax, '`background` requires a value.'
+        end
+
+        attributes[:colour].merge!({ background: value })
+      end
+
       # Define either or both foreground and background colours for an
       # interface, line or a stream.
       #
@@ -36,6 +61,29 @@ module Vedeu
         end
 
         attributes[:colour] = values
+      end
+
+      # Define the foreground colour for an interface, or a stream.
+      #
+      # @param value [String]
+      #
+      # @example
+      #   interface 'my_interface' do
+      #     foreground '#0022ff'
+      #     ...
+      #
+      #   stream do
+      #     foreground '#0022ff'
+      #     ...
+      #
+      # @raise [InvalidSyntax] When the value is not defined.
+      # @return [Hash]
+      def foreground(value = '')
+        unless defined_value?(value)
+          fail InvalidSyntax, '`foreground` requires a value.'
+        end
+
+        attributes[:colour].merge!({ foreground: value })
       end
 
       # Define a style or styles for an interface, line or a stream.
