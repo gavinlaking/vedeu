@@ -1,5 +1,6 @@
 module Vedeu
 
+  # @api private
   module Repository
 
     # Return the whole repository.
@@ -15,6 +16,20 @@ module Vedeu
     # @return [Hash]
     def find(name)
       storage.fetch(name) { not_found(name) }
+    end
+
+    # Find entity by named interface, registers an entity by interface name if
+    # not found.
+    #
+    # @param name [String]
+    # @return [Cursor|Offset]
+    def find_or_create(name)
+      storage.fetch(name) do
+        Vedeu.log("Entity (#{entity.to_s}) not found, " \
+                  "registering new for: '#{name}'")
+
+        storage.store(name, entity.new({ name: name }))
+      end
     end
 
     # Returns a collection of the names of all the registered entities.
@@ -41,9 +56,16 @@ module Vedeu
 
     private
 
+    # @param method [Symbol]
+    # @return [String]
+    def action(method)
+      return 'Registering' if method == :add
+
+      'Updating'
+    end
+
     # Access to the storage for this repository.
     #
-    # @api private
     # @return [Hash]
     def storage
       @_storage ||= in_memory
@@ -52,7 +74,6 @@ module Vedeu
     # At present, validates that attributes has a `:name` key that is not nil or
     # empty.
     #
-    # @api private
     # @param attributes [Hash]
     # @return [TrueClass|MissingRequired]
     def validate_attributes!(attributes)

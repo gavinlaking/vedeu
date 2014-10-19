@@ -13,7 +13,9 @@ module Vedeu
     # Define a keymap for an interface or interfaces to perform an action when
     # a key is pressed whilst an aforementioned interface is in focus.
     #
-    # @param attributes [Hash]
+    # @param attributes [Hash] The attributes to register the keymap with.
+    # @option attributes :interfaces []
+    # @option attributes :keys []
     # @param block [Proc]
     # @return [Keymap]
     def self.define(attributes = {}, &block)
@@ -48,7 +50,6 @@ module Vedeu
 
     # The default attributes of the Keymap model.
     #
-    # @api private
     # @return [Hash]
     def defaults
       {
@@ -57,12 +58,14 @@ module Vedeu
       }
     end
 
-    # @api private
+    # @param method [Symbol] The name of the method sought.
+    # @param args [Array] The arguments which the method was to be invoked with.
+    # @param block [Proc] The optional block provided to the method.
     # @return []
     def method_missing(method, *args, &block)
       Vedeu.log("Keymap#method_missing '#{method.to_s}' (args: #{args.inspect})")
 
-      @self_before_instance_eval.send(method, *args, &block)
+      @self_before_instance_eval.send(method, *args, &block) if @self_before_instance_eval
     end
 
   end # Keymap

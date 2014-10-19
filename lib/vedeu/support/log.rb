@@ -2,9 +2,10 @@ require 'fileutils'
 require 'time'
 
 module Vedeu
-  # :nocov:
+
   # @api private
   class MonoLogger < Logger
+
     # Create a trappable Logger instance.
     #
     # @param logdev [String|IO] The filename (String) or IO object (typically
@@ -83,6 +84,7 @@ module Vedeu
         )
       end
     end
+
   end
 
   # Provides the ability to Log anything to the Vedeu log file which is
@@ -97,28 +99,26 @@ module Vedeu
         log.formatter = proc do |_, time, _, message|
           utc_time = time.utc.iso8601
 
-          if @last_seen == utc_time
-            message + "\n"
-
-          else
-            @last_seen = utc_time
-
-            "\n\e[4m\e[31m" + utc_time + "\e[39m\e[24m\n" + message + "\n"
-
-          end
+          [timestamp(utc_time), message, "\n"].join
         end
       end
     end
 
     private
 
-    # @api private
+    def self.timestamp(utc_time)
+      return "" if @last_seen == utc_time
+
+      @last_seen = utc_time
+
+      "\n\e[4m\e[31m" + utc_time + "\e[39m\e[24m\n"
+    end
+
     # @return [String]
     def self.filename
       @_filename ||= directory + '/vedeu.log'
     end
 
-    # @api private
     # @return [String]
     def self.directory
       FileUtils.mkdir_p(path) unless File.directory?(path)
@@ -126,12 +126,11 @@ module Vedeu
       path
     end
 
-    # @api private
     # @return [String]
     def self.path
       Dir.home + '/.vedeu'
     end
 
   end # Log
-  # :nocov:
+
 end # Vedeu

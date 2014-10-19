@@ -17,34 +17,15 @@ class VedeuCursorApp
     centred true
     colour  foreground: '#ff0000', background: '#000000'
     height  4
-    width   12
+    width   15
   end
 
-  interface 'krypton' do
-    centred false
-    colour  foreground: '#ffff00', background: '#000000'
-    height  4
-    width   12
-    y       { use('iron').south }
-    x       { use('iron').east(1) }
-  end
-
-  interface 'francium' do
-    centred false
-    colour  foreground: '#ff00ff', background: '#000000'
-    height  4
-    width   12
-    y       { use('iron').north(5) }
-    x       { use('iron').west(13) }
-  end
-
-  interface 'argon' do
-    centred  false
-    colour   foreground: '#00ff00', background: '#000000'
-    height   4
-    width    12
-    y        { use('iron').south }
-    x        { use('iron').west(13) }
+  interface 'gold' do
+    colour foreground: '#00ff00', background: '#001100'
+    height 4
+    width  15
+    x      use('iron').left
+    y      use('iron').south
   end
 
   keys do
@@ -54,26 +35,57 @@ class VedeuCursorApp
     key(:left)  { trigger(:_cursor_left_)  }
   end
 
+  focus('iron')
+
   render do
     view 'iron' do
-      line 'shift+tab to'
-      line 'move to the'
-      line 'previous one'
-    end
-    view 'francium' do
-      line 'Press tab to'
-      line 'move to next'
-      line 'interface or'
-    end
-    view 'krypton' do
-      line 'Position is'
-      line 'remembered'
-      line 'between'
-      line 'interfaces.'
-    end
-    view 'argon' do
-      line 'To exit this'
-      line 'just press Q'
+      line do
+        stream do
+          text 'A 23456789 '
+        end
+        stream do
+          background '#550000'
+          foreground '#ffff00'
+          text 'hydrogen'
+        end
+        stream do
+          text ' helium'
+        end
+      end
+      line 'B 23456789 lithium beryllium boron nitrogen'
+      line do
+        stream do
+          text 'C 23456789'
+        end
+        stream do
+          text ' carbon oxygen '
+        end
+        stream do
+          background '#aadd00'
+          foreground '#000000'
+          text 'fluorine'
+        end
+      end
+      line 'D 23456789'
+      line
+      line 'E 23456789 neon sodium'
+      line do
+        stream do
+          text 'F 23456789 magnesium '
+        end
+        stream do
+          foreground '#00aaff'
+          text 'aluminium'
+        end
+      end
+      line 'G 23456789 silicon'
+      line do
+        stream do
+          background '#550000'
+          foreground '#ff00ff'
+          text 'H 234'
+        end
+      end
     end
   end
 

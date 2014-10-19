@@ -2,6 +2,8 @@ module Vedeu
 
   # Provides a mechanism for storing and retrieving events by name. A single
   # name can contain many events. Also, an event can trigger other events.
+  #
+  # @api private
   module Events
 
     include Repository
@@ -47,7 +49,6 @@ module Vedeu
     # Returns an empty collection ready for the storing of events by name with
     # associated event instance.
     #
-    # @api private
     # @return [Hash]
     def in_memory
       Hash.new { |hash, key| hash[key] = { events: [] } }

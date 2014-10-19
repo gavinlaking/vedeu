@@ -49,30 +49,25 @@ module Vedeu
     # and we should return nothing.
     #
     # @param name [String]
-    # @return [Hash]
+    # @return [Hash|NilClass]
     def latest(name)
-      if new_content?(name)
-        swap_buffers(name)
-        front_buffer(name)
+      swap_buffers(name) if new_content?(name)
 
-      elsif old_content?(name)
-        front_buffer(name)
-
-      else
-        nil
-
-      end
+      front_buffer(name)
     end
 
     private
 
-    # Swap the named back buffer into the front buffer of the same name.
+    # Swap the named back buffer into the front buffer of the same name. This is
+    # called when the back buffer has new content (perhaps as part of a
+    # refresh). It also resets the offsets (i.e. scroll position)
     #
-    # @api private
     # @param name [String]
     # @return [Hash]
     def swap_buffers(name)
       buffer = find(name)
+
+      Offsets.update({ name: name })
 
       storage.store(name, {
         front_buffer: buffer[:back_buffer],
@@ -82,7 +77,6 @@ module Vedeu
 
     # Return a boolean indicating whether the named back buffer has new content.
     #
-    # @api private
     # @param name [String]
     # @return [Boolean]
     def new_content?(name)
@@ -91,16 +85,14 @@ module Vedeu
 
     # Return a boolean indicating whether the named front buffer has content.
     #
-    # @api private
     # @param name [String]
     # @return [Boolean]
-    def old_content?(name)
-      defined_value?(front_buffer(name))
-    end
+    # def old_content?(name)
+    #   defined_value?(front_buffer(name))
+    # end
 
     # Return the named back buffer.
     #
-    # @api private
     # @param name [String]
     # @return [Hash|Nil]
     def back_buffer(name)
@@ -109,14 +101,12 @@ module Vedeu
 
     # Return the named front buffer.
     #
-    # @api private
     # @param name [String]
     # @return [Hash|Nil]
     def front_buffer(name)
       find(name)[:front_buffer]
     end
 
-    # @api private
     # @return [Hash]
     def in_memory
       Hash.new do |hash, interface_name|
@@ -127,7 +117,6 @@ module Vedeu
       end
     end
 
-    # @api private
     # @param name [String]
     # @raise [BufferNotFound] When the entity cannot be found with this name.
     # @return [BufferNotFound]

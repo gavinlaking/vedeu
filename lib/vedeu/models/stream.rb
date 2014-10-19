@@ -40,27 +40,51 @@ module Vedeu
       end
     end
 
-    # Returns the content of this stream.
+    # Returns an array of characters, each element is the escape sequences of
+    # colours and styles for this stream, the character itself, and the escape
+    # sequences of colours and styles for the parent of the stream
+    # ({Vedeu::Line}).
+    #
+    # @return [Array]
+    def chars
+      return [] if empty?
+
+      char_attrs = view_attributes.merge!({ parent: parent })
+
+      @_chars ||= content.chars.map do |c|
+        Char.new(char_attrs.merge!({ value: c })).to_s
+      end
+    end
+
+    # Returns the text aligned if a width was set, otherwise just the text. This
+    # method also has the alias_method :data, a convenience method to provide
+    # Presentation with a consistent interface.
     #
     # @return [String]
     def content
-      data
+      width? ? aligned : text
+    end
+    alias_method :data, :content
+
+    # Returns a boolean indicating whether the stream has content.
+    #
+    # @return [Boolean]
+    def empty?
+      size == 0
+    end
+
+    # Returns the size of the content in characters without formatting.
+    #
+    # @return [Fixnum]
+    def size
+      content.size
     end
 
     private
 
-    # Returns the text aligned if a width was set, otherwise just the text.
-    #
-    # @api private
-    # @return [String]
-    def data
-      width? ? aligned : text
-    end
-
     # Returns an aligned string if the string is shorter than the specified
     # width; the excess area being padded by spaces.
     #
-    # @api private
     # @return [String]
     def aligned
       case align
@@ -72,7 +96,6 @@ module Vedeu
 
     # Returns a boolean to indicate whether this stream has a width set.
     #
-    # @api private
     # @return [Boolean]
     def width?
       !!width
@@ -80,7 +103,6 @@ module Vedeu
 
     # The default values for a new instance of Stream.
     #
-    # @api private
     # @return [Hash]
     def defaults
       {
@@ -93,12 +115,14 @@ module Vedeu
       }
     end
 
-    # @api private
+    # @param method [Symbol] The name of the method sought.
+    # @param args [Array] The arguments which the method was to be invoked with.
+    # @param block [Proc] The optional block provided to the method.
     # @return []
     def method_missing(method, *args, &block)
       Vedeu.log("Stream#method_missing '#{method.to_s}' (args: #{args.inspect})")
 
-      @self_before_instance_eval.send(method, *args, &block)
+      @self_before_instance_eval.send(method, *args, &block) if @self_before_instance_eval
     end
 
   end # Stream

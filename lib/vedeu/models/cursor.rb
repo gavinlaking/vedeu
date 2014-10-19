@@ -8,19 +8,28 @@ module Vedeu
 
     extend Forwardable
 
-    def_delegators :geometry, :top, :right, :bottom, :left
+    def_delegators :interface, :top, :right, :bottom, :left
+
+    attr_reader :name, :state
 
     # Provides a new instance of Cursor.
     #
     # @param attributes [Hash] The stored attributes for a cursor.
+    # @option attributes :name [String] The name of the interface this cursor
+    #   belongs to.
+    # @option attributes :state [Symbol] The visibility of the cursor, either
+    #   +:hide+ or +:show+.
+    # @option attributes :x [Fixnum]
+    # @option attributes :y [Fixnum]
+    #
     # @return [Cursor]
     def initialize(attributes = {})
       @attributes = defaults.merge!(attributes)
 
-      @name  = @attributes[:name]
-      @state = @attributes[:state]
-      @x     = @attributes[:x]
-      @y     = @attributes[:y]
+      @name       = @attributes[:name]
+      @state      = @attributes[:state]
+      @x          = @attributes[:x]
+      @y          = @attributes[:y]
     end
 
     # Returns an attribute hash for the current position and visibility of the
@@ -29,89 +38,64 @@ module Vedeu
     # @return [Hash]
     def attributes
       {
-        name:  name,
-        state: state,
-        x:     x,
-        y:     y,
+        name:     name,
+        state:    state,
+        x:        x,
+        y:        y,
       }
     end
     alias_method :refresh, :attributes
 
-    # Move the cursor up one row.
+    # Returns the x coordinate (column/character) of the cursor. Attempts to
+    # sensibly reposition the cursor if it is currently outside the interface.
     #
-    # @return [Cursor]
-    def move_up
-      unless y == top || y - 1 < top
-        @y -= 1
-      end
+    # @return [Fixnum]
+    def x
+      if @x <= left
+        @x = left
 
-      attributes
+      elsif @x >= right
+        @x = right - 1
+
+      else
+        @x
+
+      end
     end
 
-    # Move the cursor down one row.
+    # Returns the y coordinate (row/line) of the cursor. Attempts to sensibly
+    # reposition the cursor if it is currently outside the interface.
     #
-    # @return [Cursor]
-    def move_down
-      unless y == bottom || y + 1 >= bottom
-        @y += 1
-      end
+    # @return [Fixnum]
+    def y
+      if @y <= top
+        @y = top
 
-      attributes
+      elsif @y >= bottom
+        @y = bottom - 1
+
+      else
+        @y
+
+      end
     end
 
-    # Move the cursor left one column.
+    # Make the cursor visible.
     #
-    # @return [Cursor]
-    def move_left
-      unless x == left || x - 1 < left
-        @x -= 1
-      end
-
-      attributes
-    end
-
-    # Move the cursor right one column.
-    #
-    # @return [Cursor]
-    def move_right
-      unless x == right || x + 1 >= right
-        @x += 1
-      end
-
-      attributes
-    end
-
-    # Make the cursor visible if it is not already.
-    #
-    # @return [Symbol]
+    # @return [Hash]
     def show
       @state = :show
 
-      attributes
+      Cursors.update(attributes)
     end
 
-    # Make the cursor invisible if it is not already.
+    # Make the cursor invisible.
     #
-    # @return [Symbol]
+    # @return [Hash]
     def hide
       @state = :hide
 
-      attributes
-    end
-
-    # Toggle the visibility of the cursor.
-    #
-    # @return [Symbol]
-    def toggle
-      if visible?
-        @state = :hide
-
-      else
-        @state = :show
-
-      end
-
-      attributes
+      Cursors.update(attributes)
     end
 
     # Returns an escape sequence to position the cursor and set its visibility.
@@ -130,40 +114,9 @@ module Vedeu
       end
     end
 
-    private
-
-    attr_reader :name, :state
-
-    # Returns the escape sequence to position the cursor and set its visibility.
-    #
-    # @api private
-    # @return [String]
-    def sequence
-      [ position, visibility ].join
-    end
-
-    # Returns the escape sequence to position the cursor.
-    #
-    # @api private
-    # @return [String]
-    def position
-      ["\e[", y, ';', x, 'H'].join
-    end
-
-    # Returns the escape sequence for setting the visibility of the cursor.
-    #
-    # @api private
-    # @return [String]
-    def visibility
-      return Esc.string('show_cursor') if visible?
-
-      Esc.string('hide_cursor')
-    end
-
     # Return a boolean indicating the visibility of the cursor, invisible if
     # the state is not defined.
     #
-    # @api private
     # @return [Boolean]
     def visible?
       return false unless states.include?(state)
@@ -172,73 +125,45 @@ module Vedeu
       true
     end
 
-    # Returns the y coordinate of the cursor, unless out of range, in which case
-    # sets y to the first row (top) of the interface.
+    private
+
+    # Returns the escape sequence to position the cursor and set its visibility.
     #
-    # @api private
-    # @return [Fixnum]
-    def y
-      if y_out_of_range?
-        @y = top
-
-      else
-        @y
-
-      end
+    # @return [String]
+    def sequence
+      [ position, visibility ].join
     end
 
-    # Returns the x coordinate of the cursor, unless out of range, in which case
-    # sets x to the first column (left) of the interface.
+    # Returns the escape sequence for setting the position of the cursor.
     #
-    # @api private
-    # @return [Fixnum]
-    def x
-      if x_out_of_range?
-        @x = left
-
-      else
-        @x
-
-      end
+    # @return [String]
+    def position
+      @_position ||= Position.new(y, x).to_s
     end
 
-    # Returns a boolean indicating whether the previous y coordinate is still
-    # inside the interface or terminal.
+    # Returns the escape sequence for setting the visibility of the cursor.
     #
-    # @api private
-    # @return [Boolean]
-    def y_out_of_range?
-      @y < top || @y > bottom
+    # @return [String]
+    def visibility
+      return Esc.string('show_cursor') if visible?
+
+      Esc.string('hide_cursor')
     end
 
-    # Returns a boolean indicating whether the previous x coordinate is still
-    # inside the interface or terminal.
+    # Returns an instance of the associated interface for this cursor, used to
+    # ensure that {x} and {y} are still 'inside' the interface. A cursor could
+    # be 'outside' the interface if the terminal has resized, causing the
+    # geometry of an interface to change and therefore invalidating the cursor's
+    # position.
     #
     # @api private
-    # @return [Boolean]
-    def x_out_of_range?
-      @x < left || @x > right
-    end
-
-    # Returns the position and size of the interface.
-    #
-    # @api private
-    # @return [Geometry]
-    def geometry
-      @geometry ||= Vedeu::Geometry.new(interface[:geometry])
-    end
-
-    # Returns the attributes of a named interface.
-    #
-    # @api private
-    # @return [Hash]
+    # @return [Interface]
     def interface
-      Vedeu::Interfaces.find(name)
+      @interface ||= Interfaces.build(name)
     end
 
     # The valid visibility states for the cursor.
     #
-    # @api private
     # @return [Array]
     def states
       [:show, :hide]
@@ -246,14 +171,13 @@ module Vedeu
 
     # The default values for a new instance of Cursor.
     #
-    # @api private
     # @return [Hash]
     def defaults
       {
-        name:  '',
-        x:     1,
-        y:     1,
-        state: :hide,
+        name:     '',
+        state:    :show,
+        x:        1,
+        y:        1,
       }
     end
 

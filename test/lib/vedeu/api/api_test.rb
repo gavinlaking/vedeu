@@ -106,7 +106,7 @@ module Vedeu
     end
 
     describe '.resize' do
-      it 'triggers the :_clear_, :_refresh_ and :_cursor_refresh_ events' do
+      it 'triggers the :_clear_, and :_refresh_ events' do
         skip
       end
     end
@@ -164,11 +164,20 @@ module Vedeu
     end
 
     describe '.views' do
-      it 'returns the view attributes for a composition (a collection of ' \
-         'interfaces)' do
+      it 'allows multiple views to be defined at once' do
         attrs = Vedeu.views do
-          view 'osmium'
-          view 'iridium'
+          view 'view_1' do
+            line do
+              text '1. A line of text in view 1.'
+              text '2. Another line of text in view 1.'
+            end
+          end
+          view 'view_2' do
+            line do
+              text '1. A line of text in view 2.'
+              text '2. Another line of text in view 2.'
+            end
+          end
         end
         attrs[:interfaces].size.must_equal(2)
       end

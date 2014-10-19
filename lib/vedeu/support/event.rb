@@ -37,7 +37,7 @@ module Vedeu
 
     # Execute the code stored in the event closure.
     #
-    # @api private
+    # @param args []
     # @return []
     def execute(*args)
       reset_deadline
@@ -53,7 +53,6 @@ module Vedeu
     # event. Setting the delay option to any value greater than 0 will enable
     # throttling.
     #
-    # @api private
     # @return [Boolean]
     def throttling?
       set_time
@@ -63,7 +62,6 @@ module Vedeu
 
     # Returns a boolean indicating whether the throttle has expired.
     #
-    # @api private
     # @return [Boolean]
     def throttle_expired?
       if elapsed_time > delay
@@ -81,7 +79,6 @@ module Vedeu
     # event. Setting the debounce option to any value greater than 0 will
     # enable debouncing.
     #
-    # @api private
     # @return [Boolean]
     def debouncing?
       set_time
@@ -93,7 +90,6 @@ module Vedeu
 
     # Returns a boolean indicating whether the debounce has expired.
     #
-    # @api private
     # @return [Boolean]
     def debounce_expired?
       if set_executed > deadline
@@ -107,43 +103,36 @@ module Vedeu
       end
     end
 
-    # @api private
     # @return [Float]
     def elapsed_time
       now - @executed_at
     end
 
-    # @api private
     # @return [Float]
     def set_executed
       @executed_at = now
     end
 
-    # @api private
     # @return [Float]
     def set_time
       @now = Time.now.to_f
     end
 
-    # @api private
     # @return [Fixnum]
     def reset_time
       @now = 0
     end
 
-    # @api private
     # @return [Boolean]
     def has_deadline?
       @deadline > 0
     end
 
-    # @api private
     # @return [Fixnum]
     def reset_deadline
       @deadline = 0
     end
 
-    # @api private
     # @return [NilClass]
     def set_deadline
       @deadline = now + debounce
@@ -151,31 +140,26 @@ module Vedeu
       nil
     end
 
-    # @api private
     # @return [String]
     def event_name
       options[:event_name].to_s
     end
 
-    # @api private
     # @return [Fixnum|Float]
     def debounce
       options[:debounce] || defaults[:debounce]
     end
 
-    # @api private
     # @return [Fixnum|Float]
     def delay
       options[:delay] || defaults[:delay]
     end
 
-    # @api private
     # @return [Hash]
     def options
       defaults.merge!(@options)
     end
 
-    # @api private
     # @return [Hash]
     def defaults
       {

@@ -2,52 +2,48 @@ require 'test_helper'
 
 module Vedeu
   describe Render do
-    before { Buffers.reset }
+    before do
+      Buffers.reset
+      Cursors.reset
+      Interfaces.reset
+
+      Vedeu.interface('fluorine') do
+        width  32
+        height 3
+        line 'this is the first'
+        line 'this is the second and it is long'
+        line 'this is the third, it is even longer and still truncated'
+        line 'this should not render'
+      end
+    end
 
     describe '#initialize' do
       it 'returns an instance of itself' do
-        interface = mock('Interface')
+        interface = Interface.new
         Render.new(interface).must_be_instance_of(Render)
       end
     end
 
     describe '.call' do
+      let(:interface) { Vedeu.use('fluorine') }
+
+      before { interface.stubs(:in_focus?).returns(true) }
+
       it 'returns the content for the interface' do
-        interface = Interface.new({
-          name:     '.call',
-          geometry: {
-            width:  32,
-            height: 3,
-          },
-          lines:    [
-            {
-              streams: [{ text: 'this is the first' }]
-            }, {
-              streams: { text: 'this is the second and it is long' }
-            }, {
-              streams: [
-                { text: 'this is the third, ' },
-                { text: 'it is even longer '  },
-                { text: 'and still truncated' }
-              ]
-            }, {
-              streams: [{ text: 'this should not render' }]
-            }
-          ]
-        })
         Render.call(interface).must_equal(
           "\e[1;1H                                \e[1;1H" \
           "\e[2;1H                                \e[2;1H" \
           "\e[3;1H                                \e[3;1H" \
           "\e[1;1Hthis is the first" \
           "\e[2;1Hthis is the second and it is lon" \
-          "\e[3;1Hthis is the third, it is even lo"
+          "\e[3;1Hthis is the third, it is even lo" \
+          "\e[1;1H\e[?25h"
         )
       end
 
       it 'returns a blank interface if there are no streams of text' do
         interface = Interface.new({
-          name:     '.call',
+          name:     'fluorine',
           geometry: {
             width:  32,
             height: 3,
@@ -58,13 +54,14 @@ module Vedeu
         Render.call(interface).must_equal(
           "\e[1;1H                                \e[1;1H" \
           "\e[2;1H                                \e[2;1H" \
-          "\e[3;1H                                \e[3;1H"
+          "\e[3;1H                                \e[3;1H" \
+          "\e[1;1H\e[?25h"
         )
       end
 
       it 'skips lines which have streams with no content' do
         interface = Interface.new({
-          name:     '.call',
+          name:     'fluorine',
           geometry: {
             width:  32,
             height: 3,
@@ -91,7 +88,8 @@ module Vedeu
           "\e[3;1H                                \e[3;1H" \
           "\e[1;1Hthis is the first" \
           "\e[2;1H" \
-          "\e[3;1Hthis is the third, it is even lo"
+          "\e[3;1Hthis is the third, it is even lo" \
+          "\e[1;1H\e[?25h"
         )
       end
 
@@ -132,16 +130,13 @@ module Vedeu
         IO.console.stub(:print, nil) do
           OxygenView.render
 
-          Compositor.render('oxygen').must_equal([
-            "\e[1;1H                                        \e[1;1H" \
-            "\e[2;1H                                        \e[2;1H" \
-            "\e[1;1H\e[38;2;255;255;255m\e[48;2;0;0;0m" \
-              "the grass is \e[38;2;255;255;255m\e[48;2;0;0;0m" \
-              "\e[38;2;0;255;0mgreen\e[38;2;255;255;255m\e[48;2;0;0;0m" \
-              " and the sky is \e[38;2;255;255;255m\e[48;2;0;0;0m" \
-              "\e[38;2;0;0;255mblue\e[38;2;255;255;255m\e[48;2;0;0;0m" \
-              ".\e[38;2;255;255;255m\e[48;2;0;0;0m"
-          ])
+          Compositor.render('oxygen').must_equal(
+            [
+              "\e[1;1H                                        \e[1;1H" \
+              "\e[2;1H                                        \e[2;1H" \
+              "\e[1;1Ht\e[38;2;255;255;255m\e[48;2;0;0;0mh\e[38;2;255;255;255m\e[48;2;0;0;0me\e[38;2;255;255;255m\e[48;2;0;0;0m \e[38;2;255;255;255m\e[48;2;0;0;0mg\e[38;2;255;255;255m\e[48;2;0;0;0mr\e[38;2;255;255;255m\e[48;2;0;0;0ma\e[38;2;255;255;255m\e[48;2;0;0;0ms\e[38;2;255;255;255m\e[48;2;0;0;0ms\e[38;2;255;255;255m\e[48;2;0;0;0m \e[38;2;255;255;255m\e[48;2;0;0;0mi\e[38;2;255;255;255m\e[48;2;0;0;0ms\e[38;2;255;255;255m\e[48;2;0;0;0m \e[38;2;255;255;255m\e[48;2;0;0;0m\e[38;2;0;255;0mg\e[38;2;255;255;255m\e[48;2;0;0;0m\e[38;2;0;255;0mr\e[38;2;255;255;255m\e[48;2;0;0;0m\e[38;2;0;255;0me\e[38;2;255;255;255m\e[48;2;0;0;0m\e[38;2;0;255;0me\e[38;2;255;255;255m\e[48;2;0;0;0m\e[38;2;0;255;0mn\e[38;2;255;255;255m\e[48;2;0;0;0m \e[38;2;255;255;255m\e[48;2;0;0;0ma\e[38;2;255;255;255m\e[48;2;0;0;0mn\e[38;2;255;255;255m\e[48;2;0;0;0md\e[38;2;255;255;255m\e[48;2;0;0;0m \e[38;2;255;255;255m\e[48;2;0;0;0mt\e[38;2;255;255;255m\e[48;2;0;0;0mh\e[38;2;255;255;255m\e[48;2;0;0;0me\e[38;2;255;255;255m\e[48;2;0;0;0m \e[38;2;255;255;255m\e[48;2;0;0;0ms\e[38;2;255;255;255m\e[48;2;0;0;0mk\e[38;2;255;255;255m\e[48;2;0;0;0my\e[38;2;255;255;255m\e[48;2;0;0;0m \e[38;2;255;255;255m\e[48;2;0;0;0mi\e[38;2;255;255;255m\e[48;2;0;0;0ms\e[38;2;255;255;255m\e[48;2;0;0;0m \e[38;2;255;255;255m\e[48;2;0;0;0m\e[38;2;0;0;255mb\e[38;2;255;255;255m\e[48;2;0;0;0m\e[38;2;0;0;255ml\e[38;2;255;255;255m\e[48;2;0;0;0m\e[38;2;0;0;255mu\e[38;2;255;255;255m\e[48;2;0;0;0m\e[38;2;0;0;255me\e[38;2;255;255;255m\e[48;2;0;0;0m.\e[38;2;255;255;255m\e[48;2;0;0;0m"
+            ]
+          )
         end
       end
 

@@ -3,9 +3,6 @@ module Vedeu
   # Raised when Vedeu attempts to access a named buffer that does not exist.
   BufferNotFound = Class.new(StandardError)
 
-  # Raised when a cursor cannot be found by name.
-  CursorNotFound = Class.new(StandardError)
-
   # Raised when trying to access a group of interfaces which do not exist by
   # this name.
   GroupNotFound = Class.new(StandardError)

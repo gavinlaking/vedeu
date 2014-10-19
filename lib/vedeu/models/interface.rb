@@ -14,8 +14,7 @@ module Vedeu
     extend Forwardable
 
     def_delegators :geometry, :north, :east, :south, :west, :top, :right,
-                              :bottom, :left, :width, :height, :origin,
-                              :viewport_width, :viewport_height
+                              :bottom, :left, :width, :height, :origin
 
     attr_reader :attributes, :delay, :group, :name, :parent
 
@@ -67,6 +66,17 @@ module Vedeu
       self
     end
 
+    # Returns an instance of Cursor.
+    #
+    # @return [Cursor]
+    def cursor
+      @_cursor ||= Cursor.new({
+        name: name,
+        x:    area.x_position(offset.x),
+        y:    area.y_position(offset.y),
+      })
+    end
+
     # Returns a boolean indicating whether this interface is currently in focus.
     #
     # @return [Boolean]
@@ -80,6 +90,7 @@ module Vedeu
     def lines
       @lines ||= Line.coercer(attributes[:lines])
     end
+    alias_method :content, :lines
 
     # Returns the position and size of the interface.
     #
@@ -88,11 +99,29 @@ module Vedeu
       @geometry ||= Geometry.new(attributes[:geometry])
     end
 
+    # Returns the current offset for the content within the interface.
+    #
+    # @return [Offset]
+    def offset
+      @offset ||= Offsets.find_or_create(name)
+    end
+
+    # Returns the currently visible area of the interface.
+    #
+    # @return [Viewport]
+    def viewport
+      @_viewport ||= Viewport.show(self)
+    end
+
     private
+
+    # @return [Area]
+    def area
+      @_area ||= Area.from_interface(self)
+    end
 
     # The default values for a new instance of Interface.
     #
-    # @api private
     # @return [Hash]
     def defaults
       {
@@ -107,12 +136,14 @@ module Vedeu
       }
     end
 
-    # @api private
+    # @param method [Symbol] The name of the method sought.
+    # @param args [Array] The arguments which the method was to be invoked with.
+    # @param block [Proc] The optional block provided to the method.
     # @return []
     def method_missing(method, *args, &block)
       Vedeu.log("Interface#method_missing '#{method.to_s}' (args: #{args.inspect})")
 
-      @self_before_instance_eval.send(method, *args, &block)
+      @self_before_instance_eval.send(method, *args, &block) if @self_before_instance_eval
     end
 
   end # Interface

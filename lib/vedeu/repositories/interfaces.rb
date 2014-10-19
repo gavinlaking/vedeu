@@ -37,15 +37,24 @@ module Vedeu
     # This will delete the interfaces themselves, and the client application
     # will need to either redefine interfaces before using them, or restart.
     #
+    # Note: It also resets repositories which depend on interfaces being
+    # registered.
+    #
     # @return [Hash]
     def reset
       @_storage = in_memory
+
+      Vedeu::Buffers.reset
+      Vedeu::Cursors.reset
+      Vedeu::Focus.reset
+      Vedeu::Groups.reset
+
+      @_storage
     end
 
     private
 
     # @see Vedeu::Refresh.register_event
-    # @api private
     # @param attributes [Hash]
     # @return [Boolean]
     def register_event(attributes)
@@ -55,13 +64,11 @@ module Vedeu
       Vedeu::Refresh.register_event(:by_name, name, delay)
     end
 
-    # @api private
     # @return [Hash]
     def in_memory
       {}
     end
 
-    # @api private
     # @param name [String]
     # @raise [InterfaceNotFound] When the entity cannot be found with this name.
     # @return [InterfaceNotFound]

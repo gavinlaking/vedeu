@@ -38,7 +38,6 @@ module Vedeu
 
     # Converts the style or styles into terminal escape sequences.
     #
-    # @api private
     # @return [String]
     def escape_sequences
       return '' unless defined_value?(values)

@@ -8,7 +8,6 @@ module Vedeu
   # @api private
   class Trace
 
-    # :nocov:
     # @param options [Hash]
     # @return []
     def self.call(options = {})
@@ -52,7 +51,6 @@ module Vedeu
 
     # Writes the message to the log file.
     #
-    # @api private
     # @param message [String]
     # @return [Boolean]
     def log_this(message)
@@ -63,7 +61,6 @@ module Vedeu
     # traced. Makes the log file extremely noisy, but very useful for hunting
     # down bugs.
     #
-    # @api private
     # @param binding [Class]
     # @return [String]
     def variables(binding)
@@ -84,25 +81,21 @@ module Vedeu
       entries.join("\n")
     end
 
-    # @api private
     # @return [String]
     def watched
       options[:event]
     end
 
-    # @api private
     # @return [Boolean]
     def trace?
       options[:trace]
     end
 
-    # @api private
     # @return [Hash]
     def options
       defaults.merge!(@options)
     end
 
-    # @api private
     # @return [Hash]
     def defaults
       {
@@ -132,7 +125,6 @@ module Vedeu
 
     # Returns the classes to be traced, without exceptions or ignored classes.
     #
-    # @api private
     # @return [Set]
     def classes
       @_classes ||= vedeu_classes - vedeu_exceptions - ignored_classes
@@ -155,7 +147,6 @@ module Vedeu
     def vedeu_exceptions
       Set.new [
         'Vedeu::BufferNotFound',
-        'Vedeu::CursorNotFound',
         'Vedeu::GroupNotFound',
         'Vedeu::InterfaceNotFound',
         'Vedeu::InvalidSyntax',
@@ -227,8 +218,6 @@ module Vedeu
         # 'Vedeu::Viewport',
       ]
     end
-
-    # :nocov:
 
   end # Trace
 

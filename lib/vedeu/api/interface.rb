@@ -193,7 +193,6 @@ module Vedeu
 
       # Returns the out of bounds error message for the given named attribute.
       #
-      # @api private
       # @param name [String]
       # @return [String]
       def out_of_bounds(name)
@@ -203,7 +202,7 @@ module Vedeu
 
       # Checks the value is within the terminal's confines.
       #
-      # @api private
+      # @param value [Fixnum]
       # @return [Boolean]
       def y_out_of_bounds?(value)
         value < 1 || value > Terminal.height
@@ -211,7 +210,7 @@ module Vedeu
 
       # Checks the value is within the terminal's confines.
       #
-      # @api private
+      # @param value [Fixnum]
       # @return [Boolean]
       def x_out_of_bounds?(value)
         value < 1 || value > Terminal.width

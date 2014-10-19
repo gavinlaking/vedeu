@@ -27,11 +27,11 @@ module Vedeu
       end
     end
 
-    describe '#viewport_width' do
+    describe '#width' do
       it 'returns the viewport width when the interface fits the terminal' do
         IO.console.stub(:winsize, [25, 80]) do
           geometry = Geometry.new({ width: 60, height: 1, x: 5, y: 1 })
-          geometry.viewport_width.must_equal(60)
+          geometry.width.must_equal(60)
         end
       end
 
@@ -39,23 +39,23 @@ module Vedeu
          'terminal' do
         IO.console.stub(:winsize, [25, 60]) do
           geometry = Geometry.new({ width: 60, height: 1, x: 5, y: 1 })
-          geometry.viewport_width.must_equal(55)
+          geometry.width.must_equal(55)
         end
       end
 
       it 'returns an unusable viewport width when the terminal is tiny' do
         IO.console.stub(:winsize, [25, -10]) do
           geometry = Geometry.new({ width: 60, height: 1, x: 5, y: 1 })
-          geometry.viewport_width.must_equal(1)
+          geometry.width.must_equal(1)
         end
       end
     end
 
-    describe '#viewport_height' do
+    describe '#height' do
       it 'returns the viewport height when the interface fits the terminal' do
         IO.console.stub(:winsize, [25, 80]) do
           geometry = Geometry.new({ width: 5, height: 20, x: 1, y: 5 })
-          geometry.viewport_height.must_equal(20)
+          geometry.height.must_equal(20)
         end
       end
 
@@ -63,14 +63,14 @@ module Vedeu
          'terminal' do
         IO.console.stub(:winsize, [15, 80]) do
           geometry = Geometry.new({ width: 5, height: 20, x: 1, y: 5 })
-          geometry.viewport_height.must_equal(10)
+          geometry.height.must_equal(10)
         end
       end
 
       it 'returns an unusable viewport height when the terminal is tiny' do
         IO.console.stub(:winsize, [-10, 80]) do
           geometry = Geometry.new({ width: 60, height: 20, x: 1, y: 5 })
-          geometry.viewport_height.must_equal(1)
+          geometry.height.must_equal(1)
         end
       end
     end
@@ -259,8 +259,6 @@ module Vedeu
             width:           6,
             x:               3,
             y:               3,
-            viewport_height: 6,
-            viewport_width:  6,
             top:             3,
             right:           9,
             bottom:          9,

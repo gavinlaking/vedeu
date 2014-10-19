@@ -79,6 +79,14 @@ module Vedeu
       end
     end
 
+    describe '#refresh' do
+      it 'triggers the event to refresh the interface current in focus' do
+        Focus.add({ name: 'thallium' })
+
+        Focus.refresh.must_equal([])
+      end
+    end
+
     describe '#registered' do
       it 'returns all the names of the interfaces which can be focussed' do
         Focus.add({ name: 'thallium' })

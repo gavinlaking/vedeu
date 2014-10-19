@@ -49,7 +49,6 @@ module Vedeu
     # the styles) and once returned, attempts to set the colours back to the
     # those of the receiver's parent.
     #
-    # @api private
     # @return [String]
     def render_colour(&block)
       [ colour.to_s, yield, parent_colour ].join
@@ -59,7 +58,6 @@ module Vedeu
     # next model, or finally, the content) and once returned, attempts to set
     # the colours back to those of the receiver's parent.
     #
-    # @api private
     # @return [String]
     def render_style(&block)
       [ style.to_s, yield, parent_style ].join
@@ -67,7 +65,6 @@ module Vedeu
 
     # Returns the parent colour as an escape sequence if set.
     #
-    # @api private
     # @return [String]
     def parent_colour
       return '' if parent.nil?
@@ -76,7 +73,7 @@ module Vedeu
     end
 
     # Returns the parent style as an escape sequence if set.
-    # @api private
+    #
     # @return [String]
     def parent_style
       return '' if parent.nil?

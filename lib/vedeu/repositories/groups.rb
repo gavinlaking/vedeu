@@ -13,7 +13,7 @@ module Vedeu
     # exist, and rejecting the interface if it is already known.
     #
     # @param attributes [Hash]
-    # @return [Groups|FalseClass]
+    # @return [Boolean]
     def add(attributes)
       validate_attributes!(attributes)
 
@@ -29,7 +29,6 @@ module Vedeu
     private
 
     # @see Vedeu::Refresh.register_event
-    # @api private
     # @param attributes [Hash]
     # @return [Boolean]
     def register_event(attributes)
@@ -39,13 +38,11 @@ module Vedeu
       Vedeu::Refresh.register_event(:by_group, name, delay)
     end
 
-    # @api private
     # @return [Hash]
     def in_memory
       Hash.new { |hash, key| hash[key] = Set.new }
     end
 
-    # @api private
     # @param name [String]
     # @raise [GroupNotFound] When the entity cannot be found with this name.
     # @return [GroupNotFound]

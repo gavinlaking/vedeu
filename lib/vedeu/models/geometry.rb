@@ -9,7 +9,7 @@ module Vedeu
   # @api private
   class Geometry
 
-    attr_reader :attributes, :centred, :height, :width
+    attr_reader :attributes, :centred
 
     # Returns a new instance of Geometry.
     #
@@ -60,13 +60,13 @@ module Vedeu
     # is not off-screen.
     #
     # @return [Fixnum]
-    def viewport_width
-      if (x + width) > Terminal.width
-        new_width = width - ((x + width) - Terminal.width)
+    def width
+      if (x + @width) > Terminal.width
+        new_width = @width - ((x + @width) - Terminal.width)
         return new_width < 1 ? 1 : new_width
 
       else
-        width
+        @width
 
       end
     end
@@ -81,18 +81,21 @@ module Vedeu
     # Vedeu render the view to ensure the content is not off-screen.
     #
     # @return [Fixnum]
-    def viewport_height
-      if (y + height) > Terminal.height
-        new_height = height - ((y + height) - Terminal.height)
+    def height
+      if (y + @height) > Terminal.height
+        new_height = @height - ((y + @height) - Terminal.height)
         return new_height < 1 ? 1 : new_height
 
       else
-        height
+        @height
 
       end
     end
 
-    # Returns the top-left coordinate, relative to the interface's position.
+    # Returns an escape sequence to position the cursor at the top-left
+    # coordinate, relative to the interface's position.
+    #
+    # @todo I think this method belongs with Area.
     #
     # @param index [Fixnum]
     # @param block [Proc]
@@ -107,7 +110,7 @@ module Vedeu
     # @return [Fixnum]
     def top
       if centred
-        Terminal.centre_y - (viewport_height / 2)
+        Terminal.centre_y - (height / 2)
 
       else
         y
@@ -136,7 +139,7 @@ module Vedeu
     # @return [Fixnum]
     def left
       if centred
-        Terminal.centre_x - (viewport_width / 2)
+        Terminal.centre_x - (width / 2)
 
       else
         x
@@ -162,9 +165,6 @@ module Vedeu
     # Returns the bottom coordinate of the interface, a fixed or dynamic value
     # depending on the value of {#top}.
     #
-    # @todo I think `height` should be `viewport_height` because the terminal
-    #   may have resized, and viewport_height will properly handle this.
-    #
     # @return [Fixnum]
     def bottom
       top + height
@@ -188,9 +188,6 @@ module Vedeu
     # Returns the right coordinate of the interface, a fixed or dynamic value
     # depending on the value of {#left}.
     #
-    # @todo I think `width` should be `viewport_width` because the terminal may
-    #   have resized, and viewport_width will properly handle this.
-    #
     # @return [Fixnum]
     def right
       left + width
@@ -213,6 +210,8 @@ module Vedeu
 
     # Provides a virtual y position within the interface's dimensions.
     #
+    # @todo I think this method belongs with Area.
+    #
     # @example
     #   # top = 3
     #   # bottom = 6
@@ -224,6 +223,8 @@ module Vedeu
     end
 
     # Provides a virtual x position within the interface's dimensions.
+    #
+    # @todo I think this method belongs with Area.
     #
     # @example
     #   # left = 9
@@ -245,8 +246,6 @@ module Vedeu
         width:           width,
         x:               x,
         y:               y,
-        viewport_height: viewport_height,
-        viewport_width:  viewport_width,
         top:             top,
         right:           right,
         bottom:          bottom,

@@ -214,7 +214,10 @@ module Vedeu
     #       view 'my_interface' do
     #         ...
     #
-    # @return [Array]
+    # @raise [InvalidSyntax] When the required block is not given.
+    # @return [Array] A collection of strings, each defining containing the
+    #   escape sequences and content. This data has already been sent to the
+    #   terminal to be output.
     def render(&block)
       API::Composition.render(&block)
     end
@@ -223,19 +226,14 @@ module Vedeu
     # and attempt to redraw the current interface with varying degrees of
     # success. Can also be used to simulate a terminal resize.
     #
-    # @api private
     # @return [TrueClass]
-    # :nocov:
     def resize
       trigger(:_clear_)
 
       trigger(:_refresh_)
 
-      trigger(:_cursor_refresh_)
-
       true
     end
-    # :nocov:
 
     # Trigger a registered or system event by name with arguments. If the
     # event stored returns a value, that is returned.

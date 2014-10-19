@@ -85,7 +85,9 @@ Note: Nesting indicates where an API method is allowed/supposed to be used.
       - foreground
       - stream
         - align
+        - background
         - colour
+        - foreground
         - style
         - text
         - width

@@ -32,7 +32,7 @@ module Vedeu
       Vedeu.log("Clearing view: '#{interface.name}'")
 
       rows.inject([colours]) do |line, index|
-        line << interface.origin(index) { ' ' * interface.viewport_width }
+        line << interface.origin(index) { ' ' * interface.width }
       end.join
     end
 
@@ -40,16 +40,14 @@ module Vedeu
 
     attr_reader :interface
 
-    # @api private
     # @return [String]
     def colours
       interface.colour.to_s
     end
 
-    # @api private
     # @return [Enumerator]
     def rows
-      interface.viewport_height.times
+      interface.height.times
     end
 
   end # Clear

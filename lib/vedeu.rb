@@ -38,11 +38,11 @@ require 'vedeu/support/trace'
 
 require 'vedeu/api/api'
 
-require 'vedeu/models/attributes/coercions'
-require 'vedeu/models/attributes/colour_translator'
-require 'vedeu/models/attributes/background'
-require 'vedeu/models/attributes/foreground'
-require 'vedeu/models/attributes/presentation'
+require 'vedeu/support/coercions'
+require 'vedeu/support/colour_translator'
+require 'vedeu/models/background'
+require 'vedeu/models/foreground'
+require 'vedeu/support/presentation'
 require 'vedeu/models/composition'
 
 require 'vedeu/support/repository'
@@ -57,8 +57,10 @@ require 'vedeu/models/style'
 require 'vedeu/models/interface'
 require 'vedeu/models/cursor'
 require 'vedeu/models/keymap'
+require 'vedeu/models/char'
 require 'vedeu/models/line'
 require 'vedeu/models/stream'
+require 'vedeu/models/offset'
 
 require 'vedeu/repositories/events'
 
@@ -72,6 +74,7 @@ require 'vedeu/api/menu'
 require 'vedeu/api/stream'
 
 require 'vedeu/support/keymap_validator'
+require 'vedeu/repositories/offsets'
 require 'vedeu/repositories/menus'
 require 'vedeu/repositories/keymaps'
 require 'vedeu/repositories/interfaces'
@@ -83,14 +86,17 @@ require 'vedeu/repositories/cursors'
 
 require 'vedeu/support/registrar'
 
+require 'vedeu/output/area'
 require 'vedeu/output/clear'
 require 'vedeu/output/compositor'
 require 'vedeu/output/refresh'
 require 'vedeu/output/render'
 require 'vedeu/output/view'
+require 'vedeu/output/viewport'
 
 require 'vedeu/support/grid'
 require 'vedeu/support/menu'
+require 'vedeu/support/move'
 
 require 'vedeu/input/input'
 

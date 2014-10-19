@@ -37,7 +37,7 @@ module Vedeu
     # Refresh an interface by name.
     #
     # @param name [String] The name of the interface to be refreshed.
-    # @return [|BufferNotFound]
+    # @return [Array|BufferNotFound]
     def by_name(name)
       Vedeu::Compositor.render(name)
     end
@@ -46,7 +46,6 @@ module Vedeu
     # When the event is called, the interface, or all interfaces belonging to
     # the group with this name will be refreshed.
     #
-    # @api private
     # @param type [Symbol]
     # @param name [String]
     # @param delay [Float]

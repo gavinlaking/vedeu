@@ -65,7 +65,6 @@ module Vedeu
 
     private
 
-    # @api private
     # @return [Hash]
     def sequences
       {
@@ -93,37 +92,31 @@ module Vedeu
       }
     end
 
-    # @api private
     # @return [String]
     def bg_reset
       "\e[48;2;49m"
     end
 
-    # @api private
     # @return [String]
     def blink
       "\e[5m"
     end
 
-    # @api private
     # @return [String]
     def blink_off
       "\e[25m"
     end
 
-    # @api private
     # @return [String]
     def bold
       "\e[1m"
     end
 
-    # @api private
     # @return [String]
     def bold_off
       "\e[22m"
     end
 
-    # @api private
     # @return [String]
     def clear
       [ string('fg_reset'),
@@ -131,7 +124,6 @@ module Vedeu
         "\e[2J" ].join
     end
 
-    # @api private
     # @return [String]
     def clear_line
       [ string('fg_reset'),
@@ -139,45 +131,38 @@ module Vedeu
         "\e[2K" ].join
     end
 
-    # @api private
     # @return [String]
     def clear_last_line
       [ set_position((Terminal.height - 1), 1),
         string('clear_line') ].join
     end
 
-    # @api private
     # @return [String]
     def colour_reset
       [ string('fg_reset'),
         string('bg_reset') ].join
     end
 
-    # @api private
     # @return [String]
     def dim
       "\e[2m"
     end
 
-    # @api private
     # @return [String]
     def fg_reset
       "\e[38;2;39m"
     end
 
-    # @api private
     # @return [String]
     def hide_cursor
       "\e[?25l"
     end
 
-    # @api private
     # @return [String]
     def negative
       "\e[7m"
     end
 
-    # @api private
     # @return [String]
     def normal
       [ string('underline_off'),
@@ -185,19 +170,16 @@ module Vedeu
         string('positive') ].join
     end
 
-    # @api private
     # @return [String]
     def positive
       "\e[27m"
     end
 
-    # @api private
     # @return [String]
     def reset
       "\e[0m"
     end
 
-    # @api private
     # @return [String]
     def screen_init
       [ string('reset'),
@@ -205,7 +187,6 @@ module Vedeu
         string('hide_cursor') ].join
     end
 
-    # @api private
     # @return [String]
     def screen_exit
       [ string('show_cursor'),
@@ -213,19 +194,16 @@ module Vedeu
         string('reset') ].join
     end
 
-    # @api private
     # @return [String]
     def show_cursor
       "\e[?25h"
     end
 
-    # @api private
     # @return [String]
     def underline
       "\e[4m"
     end
 
-    # @api private
     # @return [String]
     def underline_off
       "\e[24m"
