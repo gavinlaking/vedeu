@@ -1,8 +1,6 @@
 module Vedeu
 
-  # Facade which accesses various subsystems (like {Vedeu::Cursors},
-  # {Vedeu::Offsets}) when a movement action occurs. The subsystems themselves
-  # are responsible for ensuring integrity.
+  # Facade to access Offsets when a movement action occurs.
   #
   module Move
 
@@ -32,12 +30,9 @@ module Vedeu
 
     # @param y [Fixnum]
     # @param x [Fixnum]
-    # @return [Array] An array of the results of the events associated with
-    #   +:_cursor_refresh_+.
+    # @return [Array]
     def move(y, x)
-      [Cursors, Offsets].each do |repository|
-        repository.move(y, x)
-      end
+      Offsets.move(y, x)
 
       Focus.refresh
     end
