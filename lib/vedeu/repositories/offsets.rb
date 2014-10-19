@@ -51,14 +51,6 @@ module Vedeu
       {}
     end
 
-    # @param method [Symbol]
-    # @return [String]
-    def action(method)
-      return 'Registering' if method == :add
-
-      'Updating'
-    end
-
   end # Offsets
 
 end # Vedeu

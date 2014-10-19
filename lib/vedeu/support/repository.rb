@@ -42,6 +42,14 @@ module Vedeu
 
     private
 
+    # @param method [Symbol]
+    # @return [String]
+    def action(method)
+      return 'Registering' if method == :add
+
+      'Updating'
+    end
+
     # Access to the storage for this repository.
     #
     # @return [Hash]

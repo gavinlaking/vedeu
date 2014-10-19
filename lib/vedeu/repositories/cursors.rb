@@ -66,14 +66,6 @@ module Vedeu
 
     private
 
-    # @param method [Symbol]
-    # @return [String]
-    def action(method)
-      return 'Registering' if method == :add
-
-      'Updating'
-    end
-
     # Returns an empty collection ready for the storing of cursors by name with
     # current attributes.
     #
