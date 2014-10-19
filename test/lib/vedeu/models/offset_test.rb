@@ -14,8 +14,10 @@ module Vedeu
     end
 
     describe '#attributes' do
+      let(:attributes) { { name: 'roentgenium', y: 5, x: 12 } }
+
       it 'returns the attributes' do
-        skip
+        offset.attributes.must_equal(attributes)
       end
     end
 

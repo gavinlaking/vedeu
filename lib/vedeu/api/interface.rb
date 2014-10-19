@@ -23,7 +23,7 @@ module Vedeu
       #     centred false
       #     ...
       #
-      # @return [API::Interface]
+      # @return [Boolean]
       def centred(value = true)
         attributes[:geometry][:centred] = !!(value)
       end
@@ -35,7 +35,7 @@ module Vedeu
       #
       # @param value [Fixnum|Float]
       #
-      # @return [API::Interface]
+      # @return [Fixnum|Float]
       def delay(value)
         attributes[:delay] = value
       end
@@ -51,7 +51,7 @@ module Vedeu
       #     group 'main_screen'
       #     ...
       #
-      # @return [API::Interface]
+      # @return [String]
       def group(value)
         attributes[:group] = value
       end
@@ -65,7 +65,7 @@ module Vedeu
       #     height 8
       #     ...
       #
-      # @return [API::Interface]
+      # @return [Fixnum]
       def height(value)
         Vedeu.log(out_of_bounds('height')) if y_out_of_bounds?(value)
 
@@ -89,7 +89,7 @@ module Vedeu
       #     end
       #   end
       #
-      # @return [API::Interface]
+      # @return [API::Line]
       def line(value = '', &block)
         if block_given?
           attributes[:lines] << API::Line
@@ -112,7 +112,7 @@ module Vedeu
       #     name 'my_interface'
       #     ...
       #
-      # @return [API::Interface]
+      # @return [String]
       def name(value)
         attributes[:name] = value
       end
@@ -135,7 +135,7 @@ module Vedeu
       #     width 25
       #     ...
       #
-      # @return [API::Interface]
+      # @return [Fixnum]
       def width(value)
         Vedeu.log(out_of_bounds('width')) if x_out_of_bounds?(value)
 
@@ -156,7 +156,7 @@ module Vedeu
       #                                    # `my_interface` changes position,
       #                                    # `other_interface` will too.
       #
-      # @return [API::Interface]
+      # @return [Fixnum]
       def x(value = 0, &block)
         return attributes[:geometry][:x] = block if block_given?
 
@@ -180,7 +180,7 @@ module Vedeu
       #     ...                              # `my_interface` changes position,
       #                                      # `other_interface` will too.
       #
-      # @return [API::Interface]
+      # @return [Fixnum]
       def y(value = 0, &block)
         return attributes[:geometry][:y] = block if block_given?
 
