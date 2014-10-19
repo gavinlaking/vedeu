@@ -12,6 +12,11 @@ module Vedeu
 
     def_delegators :interface, :content, :height, :offset, :width
 
+    # @see Viewport#show
+    def self.show(interface)
+      new(interface).show
+    end
+
     # Returns an instance of Viewport.
     #
     # @param interface [Interface] An instance of interface.
@@ -25,7 +30,7 @@ module Vedeu
     # Returns the visible content for the interface.
     #
     # @return [Array]
-    def visible_content
+    def show
       line_adjustment
       column_adjustment
 

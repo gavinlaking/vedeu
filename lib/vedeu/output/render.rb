@@ -9,7 +9,7 @@ module Vedeu
 
     extend Forwardable
 
-    def_delegators :viewport, :visible_content
+    def_delegators :interface, :viewport
 
     # Create a new instance of Render with the provided {Vedeu::Interface} and
     # then convert the interface into a single string of content and escape
@@ -38,7 +38,7 @@ module Vedeu
 
       Vedeu.log("Rendering view: '#{interface.name}'")
 
-      visible_content.each_with_index do |line, index|
+      viewport.each_with_index do |line, index|
         out << interface.origin(index)
         out << line.join
       end
@@ -49,13 +49,6 @@ module Vedeu
     private
 
     attr_reader :interface
-
-    # Provides the visible content from the interface.
-    #
-    # @return [Viewport]
-    def viewport
-      @viewport ||= Viewport.new(interface)
-    end
 
   end # Render
 

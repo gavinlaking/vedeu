@@ -110,11 +110,12 @@ module Vedeu
     #
     # @return [Viewport]
     def viewport
-      @viewport ||= Viewport.new(self)
+      @_viewport ||= Viewport.show(self)
     end
 
     private
 
+    # @return [Area]
     def area
       @_area ||= Area.from_interface(self)
     end

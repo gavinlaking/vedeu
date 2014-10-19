@@ -4,6 +4,7 @@ module Vedeu
   # the a single character in a {Vedeu::Stream}.
   #
   # @note The parent of a Char is a Line.
+  # @todo Colour and style is not being correctly reset. (GL 2014-10-19)
   #
   # @api private
   class Char
