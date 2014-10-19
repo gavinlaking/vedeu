@@ -137,7 +137,6 @@ module Vedeu
     # or be optimistic and settle for 256 colours.
     #
     # @return [Fixnum]
-    # :nocov:
     def detect_colour_mode
       return 16777216 if ENV['VEDEU_TESTMODE']
 
@@ -160,12 +159,10 @@ module Vedeu
 
       end
     end
-    # :nocov:
 
     # Determine the debug mode via an environment variable.
     #
     # @return [Boolean]
-    # :nocov:
     def detect_debug_mode
       return false if ENV['VEDEU_TESTMODE']
 
@@ -173,12 +170,10 @@ module Vedeu
 
       false
     end
-    # :nocov:
 
     # Determine the trace mode via an environment variable.
     #
     # @return [Boolean]
-    # :nocov:
     def detect_trace_mode
       return false if ENV['VEDEU_TESTMODE']
 
@@ -186,7 +181,6 @@ module Vedeu
 
       false
     end
-    # :nocov:
 
   end # Configuration
 

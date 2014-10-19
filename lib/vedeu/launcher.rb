@@ -8,8 +8,6 @@ module Vedeu
   # @api public
   class Launcher
 
-    # :nocov:
-
     # @param argv [Array]
     # @param stdin []
     # @param stdout []

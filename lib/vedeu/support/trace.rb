@@ -8,8 +8,6 @@ module Vedeu
   # @api private
   class Trace
 
-    # :nocov:
-
     # @param options [Hash]
     # @return []
     def self.call(options = {})
@@ -220,8 +218,6 @@ module Vedeu
         # 'Vedeu::Viewport',
       ]
     end
-
-    # :nocov:
 
   end # Trace
 

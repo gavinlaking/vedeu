@@ -227,7 +227,6 @@ module Vedeu
     # success. Can also be used to simulate a terminal resize.
     #
     # @return [TrueClass]
-    # :nocov:
     def resize
       trigger(:_clear_)
 
@@ -235,7 +234,6 @@ module Vedeu
 
       true
     end
-    # :nocov:
 
     # Trigger a registered or system event by name with arguments. If the
     # event stored returns a value, that is returned.

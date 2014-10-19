@@ -4,7 +4,7 @@ module Vedeu
   #
   # @api private
   class Application
-    # :nocov:
+
     class << self
 
       # @return []
@@ -27,7 +27,8 @@ module Vedeu
 
         fail StopIteration
       end
-    end
+
+    end # self
 
     # @return [Application]
     def initialize; end
@@ -104,5 +105,5 @@ module Vedeu
     end
 
   end # Application
-  # :nocov:
+
 end # Vedeu

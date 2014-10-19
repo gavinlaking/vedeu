@@ -5,7 +5,6 @@ module Vedeu
 
   # @api private
   class MonoLogger < Logger
-    # :nocov:
 
     # Create a trappable Logger instance.
     #
@@ -86,7 +85,6 @@ module Vedeu
       end
     end
 
-    # :nocov:
   end
 
   # Provides the ability to Log anything to the Vedeu log file which is
@@ -94,8 +92,6 @@ module Vedeu
   #
   # @api private
   class Log
-
-    # :nocov:
 
     # @return [TrueClass]
     def self.logger
@@ -134,8 +130,6 @@ module Vedeu
     def self.path
       Dir.home + '/.vedeu'
     end
-
-    # :nocov:
 
   end # Log
 

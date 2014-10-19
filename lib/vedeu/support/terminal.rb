@@ -37,7 +37,6 @@ module Vedeu
     # the F-Keys etc, by capturing the entire sequence.
     #
     # @return [String]
-    # :nocov:
     def input
       if raw_mode?
         keys = console.getch
@@ -52,7 +51,6 @@ module Vedeu
 
       end
     end
-    # :nocov:
 
     # Prints the streams to the screen and returns the streams.
     #
