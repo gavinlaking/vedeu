@@ -20,6 +20,14 @@ class VedeuCursorApp
     width   15
   end
 
+  interface 'gold' do
+    colour foreground: '#00ff00', background: '#001100'
+    height 4
+    width  15
+    x      use('iron').left
+    y      use('iron').south
+  end
+
   keys do
     key(:up)    { trigger(:_cursor_up_)    }
     key(:right) { trigger(:_cursor_right_) }
