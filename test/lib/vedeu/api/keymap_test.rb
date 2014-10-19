@@ -52,7 +52,7 @@ module Vedeu
           end.must_be_instance_of(API::Keymap)
         end
 
-        it 'returnsa collection of the interfaces' do
+        it 'returns a collection of the interfaces' do
           Keymap.new.interface('americium').must_equal(['americium'])
         end
       end
