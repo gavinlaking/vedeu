@@ -8,20 +8,8 @@ module Vedeu
 
     include Common
     include Repository
+    include Positional
     extend self
-
-    # Add or update the offset coordinates for interface content.
-    #
-    # @param attributes [Hash]
-    # @return [Offset]
-    def add(attributes)
-      validate_attributes!(attributes)
-
-      Vedeu.log("#{action(__callee__)} offset: '#{attributes[:name]}'")
-
-      storage.store(attributes[:name], Offset.new(attributes))
-    end
-    alias_method :update, :add
 
     # @param y [Fixnum]
     # @param x [Fixnum]

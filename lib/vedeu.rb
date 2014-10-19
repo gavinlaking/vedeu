@@ -74,6 +74,7 @@ require 'vedeu/api/menu'
 require 'vedeu/api/stream'
 
 require 'vedeu/support/keymap_validator'
+require 'vedeu/repositories/positional'
 require 'vedeu/repositories/offsets'
 require 'vedeu/repositories/menus'
 require 'vedeu/repositories/keymaps'
