@@ -43,6 +43,9 @@ module Vedeu
 
     attr_reader :interface
 
+    # Scrolls the content vertically when the stored y offset for the interface
+    # is outside of the visible area.
+    #
     # @return [Fixnum]
     def line_adjustment
       if offset.y < lines.min
@@ -57,6 +60,9 @@ module Vedeu
       end
     end
 
+    # Scrolls the content horizontally when the stored x offset for the
+    # interface is outside of the visible area.
+    #
     # @return [Fixnum]
     def column_adjustment
       if offset.x < columns.min
