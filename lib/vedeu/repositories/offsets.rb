@@ -23,29 +23,20 @@ module Vedeu
     end
     alias_method :update, :add
 
-    # Find offsets by named interface, registers an offset by interface name if
-    # not found.
-    #
-    # @param name [String]
-    # @return [Offset]
-    def find(name)
-      storage.fetch(name) do
-        Vedeu.log("Offset not found, registering new for: '#{name}'")
-
-        storage.store(name, Offset.new({ name: name }))
-      end
-    end
-
     # @param y [Fixnum]
     # @param x [Fixnum]
     # @return [Offset]
     def move(y, x)
-      find(Focus.current).move(y, x)
+      find_or_create(Focus.current).move(y, x)
     end
 
     private
 
-    # @api private
+    # @return [Class]
+    def entity
+      Offset
+    end
+
     # @return [Hash]
     def in_memory
       {}

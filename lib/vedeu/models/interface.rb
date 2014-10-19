@@ -92,7 +92,7 @@ module Vedeu
     #
     # @return [Offset]
     def offset
-      @offset ||= Offsets.find(name)
+      @offset ||= Offsets.find_or_create(name)
     end
 
     # Returns the currently visible area of the interface.

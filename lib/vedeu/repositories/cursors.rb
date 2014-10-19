@@ -28,24 +28,11 @@ module Vedeu
     end
     alias_method :update, :add
 
-    # Find cursor by named interface, registers an cursor by interface name if
-    # not found.
-    #
-    # @param name [String]
-    # @return [Cursor]
-    def find(name)
-      storage.fetch(name) do
-        Vedeu.log("Cursor not found, registering new for: '#{name}'")
-
-        storage.store(name, Cursor.new({ name: name }))
-      end
-    end
-
     # Make the cursor of this interface invisible.
     #
     # @return [Cursor]
     def hide
-      find(Focus.current).hide
+      find_or_create(Focus.current).hide
     end
 
     # Move the cursor of this interface.
@@ -54,17 +41,22 @@ module Vedeu
     # @param x [Fixnum]
     # @return [Cursor]
     def move(y, x)
-      find(Focus.current).move(y, x)
+      find_or_create(Focus.current).move(y, x)
     end
 
     # Make the cursor of this interface visible.
     #
     # @return [Cursor]
     def show
-      find(Focus.current).show
+      find_or_create(Focus.current).show
     end
 
     private
+
+    # @return [Class]
+    def entity
+      Cursor
+    end
 
     # Returns an empty collection ready for the storing of cursors by name with
     # current attributes.

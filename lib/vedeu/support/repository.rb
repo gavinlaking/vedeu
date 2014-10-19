@@ -18,6 +18,20 @@ module Vedeu
       storage.fetch(name) { not_found(name) }
     end
 
+    # Find entity by named interface, registers an entity by interface name if
+    # not found.
+    #
+    # @param name [String]
+    # @return [Cursor|Offset]
+    def find_or_create(name)
+      storage.fetch(name) do
+        Vedeu.log("Entity (#{entity.to_s}) not found, " \
+                  "registering new for: '#{name}'")
+
+        storage.store(name, entity.new({ name: name }))
+      end
+    end
+
     # Returns a collection of the names of all the registered entities.
     #
     # @return [Array]

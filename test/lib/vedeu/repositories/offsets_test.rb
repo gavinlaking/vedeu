@@ -16,12 +16,6 @@ module Vedeu
       end
     end
 
-    describe '#find' do
-      it 'returns a new instance of Offset' do
-        Offsets.find({ name: 'praseodymium' }).must_be_instance_of(Offset)
-      end
-    end
-
     describe '#move' do
       before { Focus.stubs(:current).returns('praseodymium') }
 
