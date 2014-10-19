@@ -42,7 +42,7 @@ module Vedeu
         out << interface.origin(index)
         out << line.join
       end
-      out << viewport.cursor if interface.in_focus?
+      out << interface.cursor.to_s if interface.in_focus?
       out.join
     end
 

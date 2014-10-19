@@ -66,6 +66,17 @@ module Vedeu
       self
     end
 
+    # Returns an instance of Cursor.
+    #
+    # @return [Cursor]
+    def cursor
+      @_cursor ||= Cursor.new({
+        name: name,
+        x:    area.x_position(offset.x),
+        y:    area.y_position(offset.y),
+      })
+    end
+
     # Returns a boolean indicating whether this interface is currently in focus.
     #
     # @return [Boolean]
@@ -103,6 +114,10 @@ module Vedeu
     end
 
     private
+
+    def area
+      @_area ||= Area.from_interface(self)
+    end
 
     # The default values for a new instance of Interface.
     #

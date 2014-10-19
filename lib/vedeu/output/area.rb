@@ -13,10 +13,10 @@ module Vedeu
     # @return [Area]
     def self.from_interface(interface)
       new({
-        y_min: interface.top,
+        y_min:  interface.top,
         height: interface.height,
-        x_min: interface.left,
-        width: interface.width
+        x_min:  interface.left,
+        width:  interface.width
       })
     end
 

@@ -47,6 +47,12 @@ module Vedeu
       end
     end
 
+    describe '#cursor' do
+      it 'returns a Cursor' do
+        interface.cursor.must_be_instance_of(Cursor)
+      end
+    end
+
     describe '#name' do
       it 'returns the value' do
         interface.name.must_equal('#initialize')

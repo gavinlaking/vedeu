@@ -12,6 +12,8 @@ module Vedeu
 
     def_delegators :interface, :content, :height, :offset, :width
 
+    # Returns an instance of Viewport.
+    #
     # @param interface [Interface] An instance of interface.
     # @return [Viewport]
     def initialize(interface)
@@ -20,18 +22,12 @@ module Vedeu
       @left      = 0
     end
 
-    # @return [Cursor]
-    def cursor
-      area   = Area.from_interface(interface)
-      curs_x = area.x_position(offset.x)
-      curs_y = area.y_position(offset.y)
-
-      Cursor.new({ name: interface.name, y: curs_y, x: curs_x }).to_s
-    end
-
+    # Returns the visible content for the interface.
+    #
     # @return [Array]
     def visible_content
-      set_position
+      line_adjustment
+      column_adjustment
 
       return [] unless content?
 
@@ -43,19 +39,12 @@ module Vedeu
     attr_reader :interface
 
     # @return [Fixnum]
-    def set_position
-      line_adjustment
-      column_adjustment
-    end
-
-    # @return [Fixnum]
     def line_adjustment
       if offset.y < lines.min
         set_top(offset.y)
 
       elsif offset.y > lines.max
-        new_top = offset.y - (lines.max - lines.min)
-        set_top(new_top)
+        set_top(offset.y - (lines.max - lines.min))
 
       else
         # @top does not need adjusting
@@ -65,14 +54,11 @@ module Vedeu
 
     # @return [Fixnum]
     def column_adjustment
-      if offset.x < (columns.min + 1)
-        new_left = offset.x - 5
-        set_left(new_left)
+      if offset.x < columns.min
+        set_left(offset.x)
 
-      elsif offset.x > (columns.max - 1)
-        size = columns.max - columns.min
-        new_left = offset.x - size + 1 + 5
-        set_left(new_left)
+      elsif offset.x > columns.max
+        set_left(offset.x - (columns.max - columns.min))
 
       else
         # @left does not need adjusting
@@ -83,8 +69,7 @@ module Vedeu
     # @param value [Fixnum]
     # @return [Fixnum]
     def set_top(value)
-      max_top = (content_height - height)
-      @top = [[value, max_top].min, 0].max
+      @top = [[value, (content_height - height)].min, 0].max
     end
 
     # @param value [Fixnum]
@@ -108,13 +93,9 @@ module Vedeu
     #
     # @return [Fixnum]
     def content_height
-      if content?
-        [content.size, height].max
+      return height unless content?
 
-      else
-        height
-
-      end
+      [content.size, height].max
     end
 
     # Returns the width of the content, or when no content, the visible width of
@@ -122,13 +103,9 @@ module Vedeu
     #
     # @return [Fixnum]
     def content_width
-      if content?
-        [content_maximum_line_length, width].max
+      return width unless content?
 
-      else
-        width
-
-      end
+      [content_maximum_line_length, width].max
     end
 
     # Returns the character length of the longest line for this interface.
