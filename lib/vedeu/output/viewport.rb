@@ -33,15 +33,11 @@ module Vedeu
     def visible_content
       set_position
 
-      if content?
-        content[display_lines].map do |line|
-          line.chars[display_columns]
-        end.compact
+      return [] unless content?
 
-      else
-        []
-
-      end
+      content[display_lines].map do |line|
+        line.chars[display_columns]
+      end.compact
     end
 
     private
