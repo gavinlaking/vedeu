@@ -46,19 +46,6 @@ module Vedeu
     end
     alias_method :refresh, :attributes
 
-    # Adjusts the cursor using the relative values provided, and updates the
-    # stored attributes. The values passed are -1, 0 or 1.
-    #
-    # @param relative_y [Fixnum] Move up (-1), or down (1), or no action (0).
-    # @param relative_x [Fixnum] Move left (-1), or right (1), or no action (0).
-    # @return [Cursor]
-    def move(relative_y, relative_x)
-      @y += relative_y
-      @x += relative_x
-
-      Cursors.update(attributes)
-    end
-
     # Returns the x coordinate (column/character) of the cursor. Attempts to
     # sensibly reposition the cursor if it is currently outside the interface.
     #

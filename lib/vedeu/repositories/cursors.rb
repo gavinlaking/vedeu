@@ -35,15 +35,6 @@ module Vedeu
       find_or_create(Focus.current).hide
     end
 
-    # Move the cursor of this interface.
-    #
-    # @param y [Fixnum]
-    # @param x [Fixnum]
-    # @return [Cursor]
-    def move(y, x)
-      find_or_create(Focus.current).move(y, x)
-    end
-
     # Make the cursor of this interface visible.
     #
     # @return [Cursor]
