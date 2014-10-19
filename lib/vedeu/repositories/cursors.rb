@@ -22,17 +22,11 @@ module Vedeu
     def add(attributes)
       validate_attributes!(attributes)
 
-      Vedeu.log("Registering cursor: '#{attributes[:name]}'")
+      Vedeu.log("#{action(__callee__)} cursor: '#{attributes[:name]}'")
 
-      interface = Interface.new(attributes)
-
-      storage.store(attributes[:name], Cursor.new({
-        name:     attributes[:name],
-        state:    :show,
-        x:        interface.left,
-        y:        interface.top,
-      }))
+      storage.store(attributes[:name], Cursor.new(attributes))
     end
+    alias_method :update, :add
 
     # Find cursor by named interface, registers an cursor by interface name if
     # not found.
@@ -47,11 +41,15 @@ module Vedeu
       end
     end
 
+    # Make the cursor of this interface invisible.
+    #
     # @return [Cursor]
     def hide
       find(Focus.current).hide
     end
 
+    # Move the cursor of this interface.
+    #
     # @param y [Fixnum]
     # @param x [Fixnum]
     # @return [Cursor]
@@ -59,26 +57,22 @@ module Vedeu
       find(Focus.current).move(y, x)
     end
 
+    # Make the cursor of this interface visible.
+    #
     # @return [Cursor]
     def show
       find(Focus.current).show
     end
 
-    # Saves the attributes in the repository for future use.
-    #
-    # @param attributes [Hash]
-    # @return [Hash]
-    def update(attributes)
-      return false unless defined_value?(attributes[:name])
-
-      Vedeu.log("Updating cursor: '#{attributes[:name]}'")
-
-      old = find(attributes[:name]).attributes
-
-      storage.store(attributes[:name], Cursor.new(old.merge!(attributes)))
-    end
-
     private
+
+    # @param method [Symbol]
+    # @return [String]
+    def action(method)
+      return 'Registering' if method == :add
+
+      'Updating'
+    end
 
     # Returns an empty collection ready for the storing of cursors by name with
     # current attributes.
