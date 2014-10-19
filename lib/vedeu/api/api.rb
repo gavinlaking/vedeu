@@ -214,7 +214,10 @@ module Vedeu
     #       view 'my_interface' do
     #         ...
     #
-    # @return [Array]
+    # @raise [InvalidSyntax] When the required block is not given.
+    # @return [Array] A collection of strings, each defining containing the
+    #   escape sequences and content. This data has already been sent to the
+    #   terminal to be output.
     def render(&block)
       API::Composition.render(&block)
     end

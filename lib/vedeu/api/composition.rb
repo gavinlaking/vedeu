@@ -7,13 +7,9 @@ module Vedeu
     # @api public
     class Composition < Vedeu::Composition
 
-      # Directly write a view buffer to the terminal.
-      #
       # @param block [Proc]
-      # @raise [InvalidSyntax] When the required block is not given.
-      # @return [Array] A collection of strings, each defining containing the
-      #   escape sequences and content. This data has already been sent to the
-      #   terminal to be output.
+      # @return [Array]
+      # @see Vedeu::API#render
       def self.render(&block)
         fail InvalidSyntax, '`render` requires a block.' unless block_given?
 

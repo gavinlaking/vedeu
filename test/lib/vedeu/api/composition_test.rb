@@ -5,8 +5,8 @@ module Vedeu
     describe Composition do
 
       describe '.render' do
-        it 'directly writes a view buffer to the terminal' do
-          skip
+        it 'raises an exception when a block is not given' do
+          proc { Vedeu.render }.must_raise(InvalidSyntax)
         end
       end
 
