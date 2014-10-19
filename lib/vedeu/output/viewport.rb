@@ -35,9 +35,7 @@ module Vedeu
 
       return [] unless content?
 
-      content[display_lines].map do |line|
-        line.chars[display_columns]
-      end.compact
+      content[lines].map { |line| line.chars[columns] }.compact
     end
 
     private
@@ -52,11 +50,11 @@ module Vedeu
 
     # @return [Fixnum]
     def line_adjustment
-      if offset.y < display_lines.min
+      if offset.y < lines.min
         set_top(offset.y)
 
-      elsif offset.y > display_lines.max
-        new_top = offset.y - (display_lines.max - display_lines.min)
+      elsif offset.y > lines.max
+        new_top = offset.y - (lines.max - lines.min)
         set_top(new_top)
 
       else
@@ -67,13 +65,13 @@ module Vedeu
 
     # @return [Fixnum]
     def column_adjustment
-      if offset.x < (display_columns.min + column_scroll_threshold)
-        new_left = offset.x - column_scroll_offset
+      if offset.x < (columns.min + 1)
+        new_left = offset.x - 5
         set_left(new_left)
 
-      elsif offset.x > (display_columns.max - column_scroll_threshold)
-        size = display_columns.max - display_columns.min
-        new_left = offset.x - size + 1 + column_scroll_offset
+      elsif offset.x > (columns.max - 1)
+        size = columns.max - columns.min
+        new_left = offset.x - size + 1 + 5
         set_left(new_left)
 
       else
@@ -96,12 +94,12 @@ module Vedeu
     end
 
     # @return [Range]
-    def display_lines
+    def lines
       @top..(@top + height - 1)
     end
 
     # @return [Range]
-    def display_columns
+    def columns
       @left..(@left + width - 1)
     end
 
@@ -147,22 +145,6 @@ module Vedeu
       content.any?
     end
 
-    # @return [Fixnum]
-    def column_scroll_threshold
-      options[:column_scroll_threshold]
-    end
+  end # Viewport
 
-    # @return [Fixnum]
-    def column_scroll_offset
-      options[:column_scroll_offset]
-    end
-
-    # @return [Hash]
-    def options
-      {
-        column_scroll_threshold: 1,
-        column_scroll_offset:    5,
-      }
-    end
-  end
-end
+end # Vedeu
