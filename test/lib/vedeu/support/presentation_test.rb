@@ -10,9 +10,10 @@ module Vedeu
         style:  ['bold']
       }
     end
-  end
+  end # PresentationTestClass
 
   describe Presentation do
+
     let(:receiver) { PresentationTestClass.new }
 
     describe '#colour' do
@@ -56,5 +57,7 @@ module Vedeu
         )
       end
     end
-  end
-end
+
+  end # Presentation
+
+end # Vedeu

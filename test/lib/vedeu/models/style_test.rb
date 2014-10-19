@@ -1,6 +1,7 @@
 require 'test_helper'
 
 module Vedeu
+
   describe Style do
     describe '#initialize' do
       it 'returns an instance of itself' do
@@ -53,5 +54,7 @@ module Vedeu
         end
       end
     end
-  end
-end
+
+  end # Style
+
+end # Vedeu

@@ -1,7 +1,9 @@
 require 'test_helper'
 
 module Vedeu
+
   describe Colour do
+
     describe '#initialize' do
       it 'returns an instance of itself' do
         attributes = {}
@@ -58,5 +60,7 @@ module Vedeu
         Colour.new.to_s.must_equal('')
       end
     end
-  end
-end
+
+  end # Colour
+
+end # Vedeu

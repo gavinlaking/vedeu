@@ -1,7 +1,9 @@
 require 'test_helper'
 
 module Vedeu
+
   describe KeymapValidator do
+
     let(:storage)   {
       {
         'dubnium' => {
@@ -58,5 +60,6 @@ module Vedeu
       end
     end
 
-  end
-end
+  end # KeymapValidator
+
+end # Vedeu

@@ -75,6 +75,6 @@ module Vedeu
 
     end
 
-  end
+  end # Registrar
 
-end
+end # Vedeu

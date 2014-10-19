@@ -1,6 +1,7 @@
 require 'test_helper'
 
 module Vedeu
+
   describe Offset do
     let(:offset)     { Offset.new(attributes) }
     let(:attributes) { {} }
@@ -119,5 +120,6 @@ module Vedeu
       end
     end
 
-  end
-end
+  end # Offset
+
+end # Vedeu

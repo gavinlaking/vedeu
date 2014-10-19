@@ -1,7 +1,9 @@
 require 'test_helper'
 
 module Vedeu
+
   describe Area do
+
     let(:area)   { Area.new(attributes) }
     let(:attributes) {
       {
@@ -238,5 +240,6 @@ module Vedeu
       end
     end
 
-  end
-end
+  end # Area
+
+end # Vedeu

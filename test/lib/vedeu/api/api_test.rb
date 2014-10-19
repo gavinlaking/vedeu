@@ -1,7 +1,9 @@
 require 'test_helper'
 
 module Vedeu
+
   describe API do
+
     let(:event) { mock('Event') }
 
     before { Event.stubs(:new).returns(event) }
@@ -195,5 +197,6 @@ module Vedeu
       end
     end
 
-  end
-end
+  end # API
+
+end # Vedeu

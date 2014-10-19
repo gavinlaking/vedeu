@@ -1,6 +1,7 @@
 require 'test_helper'
 
 describe Fixnum do
+
   describe '#columns' do
     it 'returns the width if the value is in range' do
       IO.console.stub :winsize, [25, 60] do
@@ -8,10 +9,13 @@ describe Fixnum do
       end
     end
   end
-end
+
+end # Fixnum
 
 module Vedeu
+
   describe Grid do
+
     describe '.columns' do
       it 'raises an exception if the value is less than 1' do
         proc { Grid.columns(0) }.must_raise(OutOfRange)
@@ -27,5 +31,7 @@ module Vedeu
         end
       end
     end
-  end
-end
+
+  end # Grid
+
+end # Vedeu

@@ -1,7 +1,9 @@
 require 'test_helper'
 
 module Vedeu
+
   describe Configuration do
+
     before { Configuration.reset }
     after  { Configuration.reset }
 
@@ -63,5 +65,6 @@ module Vedeu
       end
     end
 
-  end
-end
+  end # Configuration
+
+end # Vedeu

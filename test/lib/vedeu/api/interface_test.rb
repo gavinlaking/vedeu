@@ -1,9 +1,11 @@
 require 'test_helper'
 
 module Vedeu
+
   module API
 
     describe Interface do
+
       before { Vedeu::Buffers.reset }
 
       describe '#define' do
@@ -298,6 +300,8 @@ module Vedeu
         end
       end
 
-    end
-  end
-end
+    end # Interface
+
+  end # API
+
+end # Vedeu

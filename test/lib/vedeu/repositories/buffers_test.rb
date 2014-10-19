@@ -1,6 +1,7 @@
 require 'test_helper'
 
 module Vedeu
+
   describe Buffers do
 
     describe '.add' do
@@ -45,5 +46,6 @@ module Vedeu
       end
     end
 
-  end
-end
+  end # Buffers
+
+end # Vedeu

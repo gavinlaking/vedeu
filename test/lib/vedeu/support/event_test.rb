@@ -1,7 +1,9 @@
 require 'test_helper'
 
 module Vedeu
+
   describe Event do
+
     let(:closure) { proc { :event_triggered } }
     let(:options) { {} }
 
@@ -37,5 +39,7 @@ module Vedeu
         event.trigger.must_equal(:event_triggered)
       end
     end
-  end
-end
+
+  end # Event
+
+end # Vedeu

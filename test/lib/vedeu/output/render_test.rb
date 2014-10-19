@@ -1,7 +1,9 @@
 require 'test_helper'
 
 module Vedeu
+
   describe Render do
+
     before do
       Buffers.reset
       Cursors.reset
@@ -139,7 +141,8 @@ module Vedeu
           )
         end
       end
-
     end
-  end
-end
+
+  end # Render
+
+end # Vedeu

@@ -1,9 +1,15 @@
 require 'test_helper'
 
 module Vedeu
+
   describe Menu do
+
     let(:collection) { ['hydrogen', 'carbon', 'nitrogen', 'oxygen'] }
     let(:menu)       { Menu.new(collection) }
+
+    describe '#initialize' do
+      it { skip }
+    end
 
     describe '#current' do
       it 'returns the current index' do
@@ -229,5 +235,7 @@ module Vedeu
         menu.size.must_equal(4)
       end
     end
-  end
-end
+
+  end # Menu
+
+end # Vedeu

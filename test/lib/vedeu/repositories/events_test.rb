@@ -1,7 +1,9 @@
 require 'test_helper'
 
 module Vedeu
+
   describe Events do
+
     describe '#add' do
       it 'adds the event' do
         Events.add(:sulphur) { proc { |x| x } }
@@ -37,5 +39,7 @@ module Vedeu
         Events.use(:_not_found_).must_be_empty
       end
     end
-  end
-end
+
+  end # Events
+
+end # Vedeu

@@ -1,6 +1,7 @@
 require 'test_helper'
 
 module Vedeu
+
   describe Keymap do
 
     describe '.define' do
@@ -21,5 +22,6 @@ module Vedeu
       end
     end
 
-  end
-end
+  end # Keymap
+
+end # Vedeu

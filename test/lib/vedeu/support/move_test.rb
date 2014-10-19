@@ -1,7 +1,9 @@
 require 'test_helper'
 
 module Vedeu
+
   describe Move do
+
     before do
       Interfaces.reset
       Registrar.record({ name: 'thorium' })
@@ -31,5 +33,7 @@ module Vedeu
 
       it { Move.left.must_be_instance_of(Array) }
     end
-  end
-end
+
+  end # Move
+
+end # Vedeu

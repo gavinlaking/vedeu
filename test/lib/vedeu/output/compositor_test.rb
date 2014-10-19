@@ -1,7 +1,9 @@
 require 'test_helper'
 
 module Vedeu
+
   describe Compositor do
+
     before do
       Interfaces.reset
       Terminal.console.stubs(:print)
@@ -67,5 +69,7 @@ module Vedeu
         end
       end
     end
-  end
-end
+
+  end # Compositor
+
+end # Vedeu

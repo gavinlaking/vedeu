@@ -1,6 +1,7 @@
 require 'test_helper'
 
 module Vedeu
+
   describe Offsets do
 
     before { Offsets.reset }
@@ -28,5 +29,6 @@ module Vedeu
       end
     end
 
-  end
-end
+  end # Offsets
+
+end # Vedeu

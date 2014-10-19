@@ -1,6 +1,7 @@
 require 'test_helper'
 
 module Vedeu
+
   describe Line do
     let(:line)       { Line.new(attributes) }
     let(:attributes) {
@@ -120,5 +121,7 @@ module Vedeu
         Line.new.some_missing_method(:test).must_equal(nil)
       end
     end
-  end
-end
+
+  end # Line
+
+end # Vedeu

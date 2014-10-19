@@ -1,6 +1,7 @@
 require 'test_helper'
 
 module Vedeu
+
   describe Cursors do
 
     before do
@@ -46,5 +47,6 @@ module Vedeu
       end
     end
 
-  end
-end
+  end # Cursors
+
+end # Vedeu

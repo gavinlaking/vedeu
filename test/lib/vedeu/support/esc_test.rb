@@ -1,7 +1,9 @@
 require 'test_helper'
 
 module Vedeu
+
   describe Esc do
+
     describe 'colours defined via define_method' do
       it 'returns an escape sequence for the foreground colour' do
         Esc.magenta.must_equal("\e[35m")
@@ -111,5 +113,7 @@ module Vedeu
         Esc.string('underline_off').must_equal("\e[24m")
       end
     end
-  end
-end
+
+  end # Esc
+
+end # Vedeu

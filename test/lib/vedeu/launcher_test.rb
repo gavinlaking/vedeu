@@ -1,6 +1,17 @@
 require 'test_helper'
 
 module Vedeu
+
   describe Launcher do
-  end
-end
+
+    describe '#initialize' do
+      it { skip }
+    end
+
+    describe '#execute!' do
+      it { skip }
+    end
+
+  end # Launcher
+
+end # Vedeu

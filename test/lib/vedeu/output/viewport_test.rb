@@ -31,6 +31,6 @@ module Vedeu
       })
     }
 
-  end
+  end # Viewport
 
-end
+end # Vedeu

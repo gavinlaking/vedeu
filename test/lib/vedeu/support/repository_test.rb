@@ -14,7 +14,7 @@ module Vedeu
     def not_found(name)
       fail EntityNotFound
     end
-  end
+  end # RepositoryTestClass
 
   describe Repository do
 
@@ -66,5 +66,6 @@ module Vedeu
       end
     end
 
-  end
-end
+  end # Repository
+
+end # Vedeu

@@ -1,6 +1,7 @@
 require 'test_helper'
 
 module Vedeu
+
   describe Keymaps do
 
     describe '#add' do
@@ -227,5 +228,6 @@ module Vedeu
       end
     end
 
-  end
-end
+  end # Keymaps
+
+end # Vedeu

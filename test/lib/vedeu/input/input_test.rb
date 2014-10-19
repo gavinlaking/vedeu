@@ -1,6 +1,7 @@
 require 'test_helper'
 
 module Vedeu
+
   describe Input do
 
     describe '#initialize' do
@@ -63,5 +64,7 @@ module Vedeu
         end
       end
     end
-  end
-end
+
+  end # Input
+
+end # Vedeu

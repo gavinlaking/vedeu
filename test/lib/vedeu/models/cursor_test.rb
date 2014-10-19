@@ -1,7 +1,9 @@
 require 'test_helper'
 
 module Vedeu
+
   describe Cursor do
+
     let(:attributes) {
       {
         name:     'silver',
@@ -143,5 +145,7 @@ module Vedeu
         end.must_equal("\e[8;19H\e[?25h\e[8;19H\e[?25h")
       end
     end
-  end
-end
+
+  end # Cursor
+
+end # Vedeu

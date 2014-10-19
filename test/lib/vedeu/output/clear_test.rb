@@ -1,7 +1,9 @@
 require 'test_helper'
 
 module Vedeu
+
   describe Clear do
+
     before { Interfaces.reset }
 
     describe '#initialize' do
@@ -45,5 +47,7 @@ module Vedeu
         )
       end
     end
-  end
-end
+
+  end # Clear
+
+end # Vedeu

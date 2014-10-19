@@ -1,7 +1,9 @@
 require 'test_helper'
 
 module Vedeu
+
   module API
+
     describe Composition do
 
       describe '.render' do
@@ -22,6 +24,8 @@ module Vedeu
         end
       end
 
-    end
-  end
-end
+    end # Composition
+
+  end # API
+
+end # Vedeu

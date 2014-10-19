@@ -1,7 +1,9 @@
 require 'test_helper'
 
 module Vedeu
+
   module API
+
     class HelpersTestClass
       include Helpers
 
@@ -10,9 +12,10 @@ module Vedeu
       def initialize
         @attributes = { streams: [], style: [] }
       end
-    end
+    end # HelpersTestClass
 
     describe Helpers do
+
       describe '#colour' do
         it 'raises an exception if neither a :foreground or :background ' \
            'attribute exists' do
@@ -86,6 +89,9 @@ module Vedeu
           )
         end
       end
-    end
-  end
-end
+
+    end # Helpers
+
+  end # API
+
+end # Vedeu

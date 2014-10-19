@@ -1,6 +1,7 @@
 require 'test_helper'
 
 module Vedeu
+
   module Configuration
 
     describe CLI do
@@ -82,7 +83,8 @@ module Vedeu
       #   end
       # end
 
-    end
+    end # CLI
 
-  end
-end
+  end # Configuration
+
+end # Vedeu

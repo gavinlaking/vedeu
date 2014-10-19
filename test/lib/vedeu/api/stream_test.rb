@@ -1,8 +1,11 @@
 require 'test_helper'
 
 module Vedeu
+
   module API
+
     describe Stream do
+
       describe '#align' do
         it 'returns a Symbol' do
           Stream.new.align(:left).must_be_instance_of(Symbol)
@@ -78,6 +81,9 @@ module Vedeu
           Stream.new.text(30).must_equal(30)
         end
       end
-    end
-  end
-end
+
+    end # Stream
+
+  end # API
+
+end # Vedeu

@@ -1,7 +1,9 @@
 require 'test_helper'
 
 module Vedeu
+
   describe Groups do
+
     describe '#add' do
       before { Groups.reset }
 
@@ -21,5 +23,6 @@ module Vedeu
       end
     end
 
-  end
-end
+  end # Groups
+
+end # Vedeu

@@ -1,7 +1,9 @@
 require 'test_helper'
 
 module Vedeu
+
   describe Refresh do
+
     describe '.all' do
       it 'returns an empty collection when there are no registered ' \
          'interfaces' do
@@ -32,5 +34,7 @@ module Vedeu
         proc { Refresh.by_name('') }.must_raise(BufferNotFound)
       end
     end
-  end
-end
+
+  end # Refresh
+
+end # Vedeu

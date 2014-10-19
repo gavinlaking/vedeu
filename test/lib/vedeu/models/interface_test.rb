@@ -1,6 +1,7 @@
 require 'test_helper'
 
 module Vedeu
+
   describe Interface do
     let(:interface) { Vedeu.use('#initialize') }
 
@@ -103,5 +104,6 @@ module Vedeu
       end
     end
 
-  end
-end
+  end # Interface
+
+end # Vedeu

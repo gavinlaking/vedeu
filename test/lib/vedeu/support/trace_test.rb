@@ -1,6 +1,21 @@
 require 'test_helper'
 
 module Vedeu
+
   describe Trace do
-  end
-end
+
+    describe '.call' do
+      it { skip }
+    end
+
+    describe '#initialize' do
+      it { skip }
+    end
+
+    describe '#trace' do
+      it { skip }
+    end
+
+  end # Trace
+
+end # Vedeu
