@@ -96,7 +96,6 @@ require 'vedeu/output/viewport'
 
 require 'vedeu/support/grid'
 require 'vedeu/support/menu'
-require 'vedeu/support/move'
 
 require 'vedeu/input/input'
 
