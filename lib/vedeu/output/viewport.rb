@@ -29,6 +29,11 @@ module Vedeu
 
     # Returns the visible content for the interface.
     #
+    # @note If there are no lines of content, we return an empty array. If there
+    #   are no more columns of content we return a space enclosed in an array;
+    #   this prevents a weird line hopping bug which occurs when the current
+    #   line has no more content, but subsequent lines do.
+    #
     # @return [Array]
     def show
       line_adjustment
@@ -36,7 +41,9 @@ module Vedeu
 
       return [] unless content?
 
-      content[lines].map { |line| line.chars[columns] }.compact
+      (content[lines] || []).map do |line|
+        line.chars[columns] || [" "]
+      end.compact
     end
 
     private
@@ -77,23 +84,45 @@ module Vedeu
       end
     end
 
+    #
+    # @note
+    #   @top = [value, 0].max # this allows us to set a top that is greater than
+    #                         # the content height.
+    #
+    #   @top = [[value, (content_height - height)].min, 0].max
+    #                         # this does not allow us to have an offset greater
+    #                         # than the content height.
+    #
     # @param value [Fixnum]
     # @return [Fixnum]
     def set_top(value)
-      @top = [[value, (content_height - height)].min, 0].max
+      @top = [value, 0].max
     end
 
+    #
+    # @note
+    #   @left = [value, 0].max # this allows us to set a left that is greater
+    #                          # than the content width.
+    #
+    #   @left = [[value, (content_width - width)].min, 0].max
+    #                         # this does not allow us to have an offset greater
+    #                         # than the content width.
+    #
     # @param value [Fixnum]
     # @return [Fixnum]
     def set_left(value)
       @left = [value, 0].max
     end
 
+    # Using the current x offset, return a range of visible lines.
+    #
     # @return [Range]
     def lines
       @top..(@top + height - 1)
     end
 
+    # Using the current y offset, return a range of visible columns.
+    #
     # @return [Range]
     def columns
       @left..(@left + width - 1)
