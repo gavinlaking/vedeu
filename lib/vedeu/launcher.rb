@@ -8,16 +8,19 @@ module Vedeu
   # @api public
   class Launcher
 
+    attr_reader :exit_code
+
     # @param argv [Array]
     # @param stdin []
     # @param stdout []
     # @param stderr []
     # @param kernel []
     # @return [Launcher]
-    def initialize(argv, stdin  = STDIN,
-                         stdout = STDOUT,
-                         stderr = STDERR,
-                         kernel = Kernel)
+    def initialize(argv   = [],
+                   stdin  = STDIN,
+                   stdout = STDOUT,
+                   stderr = STDERR,
+                   kernel = Kernel)
       @argv      = argv
       @stdin     = stdin
       @stdout    = stdout
@@ -43,8 +46,7 @@ module Vedeu
       Vedeu.log("Exiting gracefully.")
 
       $stdin, $stdout, $stderr = STDIN, STDOUT, STDERR
-      @kernel.exit(@exit_code)
-
+      @kernel.exit(exit_code)
     end
 
     private
