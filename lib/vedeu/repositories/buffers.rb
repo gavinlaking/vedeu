@@ -83,14 +83,6 @@ module Vedeu
       defined_value?(back_buffer(name))
     end
 
-    # Return a boolean indicating whether the named front buffer has content.
-    #
-    # @param name [String]
-    # @return [Boolean]
-    # def old_content?(name)
-    #   defined_value?(front_buffer(name))
-    # end
-
     # Return the named back buffer.
     #
     # @param name [String]
