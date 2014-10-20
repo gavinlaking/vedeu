@@ -72,8 +72,8 @@ module Vedeu
     def cursor
       @_cursor ||= Cursor.new({
         name: name,
-        x:    area.x_position(offset.x),
-        y:    area.y_position(offset.y),
+        x:    geometry.x_position(offset.x),
+        y:    geometry.y_position(offset.y),
       })
     end
 
@@ -114,11 +114,6 @@ module Vedeu
     end
 
     private
-
-    # @return [Area]
-    def area
-      @_area ||= Area.from_interface(self)
-    end
 
     # The default values for a new instance of Interface.
     #

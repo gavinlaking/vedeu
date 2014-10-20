@@ -169,7 +169,6 @@ module Vedeu
       Set.new [
         # 'Vedeu::API',
         # 'Vedeu::Application',
-        # 'Vedeu::Area',
         # 'Vedeu::Background',
         # 'Vedeu::Buffers',
         # 'Vedeu::Clear',
