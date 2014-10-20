@@ -25,8 +25,7 @@ module Vedeu
     # @return [Cursor|Offset]
     def find_or_create(name)
       storage.fetch(name) do
-        Vedeu.log("Entity (#{entity.to_s}) not found, " \
-                  "registering new for: '#{name}'")
+        Vedeu.log("Entity (#{entity}) not found, registering: '#{name}'")
 
         storage.store(name, entity.new({ name: name }))
       end

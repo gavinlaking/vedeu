@@ -74,7 +74,7 @@ module Vedeu
     # @return [InterfaceNotFound]
     def not_found(name)
       fail InterfaceNotFound,
-        "Interface was not found with this name: #{name.to_s}."
+        "Interface was not found with this name: #{name}."
     end
 
   end # Interfaces

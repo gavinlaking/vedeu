@@ -48,7 +48,7 @@ module Vedeu
     # @return [GroupNotFound]
     def not_found(name)
       fail GroupNotFound,
-        "Cannot find interface group with this name: #{name.to_s}."
+        "Cannot find interface group with this name: #{name}."
     end
 
   end # Groups

@@ -30,7 +30,7 @@ module Vedeu
     #
     # @return []
     def trace
-      set_trace_func proc { |event, file, line, id, binding, classname|
+      set_trace_func proc { |event, _file, _line, id, binding, classname|
         if event == watched && id != :log && classes.include?(classname.to_s)
           vars = variables(binding)
 
@@ -120,7 +120,7 @@ module Vedeu
     #
     # @return [String]
     def class_count
-      @_count ||= "(#{classes.size.to_s}/#{vedeu_classes.size.to_s})"
+      @_count ||= "(#{classes.size}/#{vedeu_classes.size})"
     end
 
     # Returns the classes to be traced, without exceptions or ignored classes.

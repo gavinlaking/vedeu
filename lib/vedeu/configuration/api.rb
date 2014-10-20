@@ -60,7 +60,7 @@ module Vedeu
       # @param value [Boolean]
       # @return [Boolean]
       def interactive!(value = true)
-        Vedeu.log("Configuration::API interactive: #{value.to_s}")
+        Vedeu.log("Configuration::API interactive: #{value}")
 
         options[:interactive] = value
       end
@@ -77,7 +77,7 @@ module Vedeu
       # @param value [Boolean]
       # @return [Boolean]
       def standalone!(value = true)
-        Vedeu.log("Configuration::API interactive: #{!value.to_s}")
+        Vedeu.log("Configuration::API interactive: #{!value}")
 
         options[:interactive] = !value
       end
@@ -95,7 +95,7 @@ module Vedeu
       # @param value [Boolean]
       # @return [Boolean]
       def run_once!(value = true)
-        Vedeu.log("Configuration::API once: #{value.to_s}")
+        Vedeu.log("Configuration::API once: #{value}")
 
         options[:once] = value
       end
@@ -154,7 +154,7 @@ module Vedeu
           options[:debug] = true
 
         else
-          Vedeu.log("Configuration::API debug: #{value.to_s}")
+          Vedeu.log("Configuration::API debug: #{value}")
 
           options[:debug] = value
 
@@ -180,7 +180,7 @@ module Vedeu
       def trace!(value = true)
         options[:debug] = true if value === true
 
-        Vedeu.log("Configuration::API trace: #{value.to_s}")
+        Vedeu.log("Configuration::API trace: #{value}")
 
         options[:trace] = value
       end
@@ -201,7 +201,7 @@ module Vedeu
         fail InvalidSyntax, '`colour_mode` must be `8`, `16`, `256`, ' \
                             '`16777216`.' unless valid_colour_mode?(value)
 
-        Vedeu.log("Configuration::API colour_mode: #{value.to_s}")
+        Vedeu.log("Configuration::API colour_mode: #{value}")
 
         options[:colour_mode] = value
       end
@@ -222,7 +222,7 @@ module Vedeu
       def exit_key(value)
         return invalid_key('exit_key') unless valid_key?(value)
 
-        Vedeu.log("Configuration::API exit_key: #{value.to_s}")
+        Vedeu.log("Configuration::API exit_key: #{value}")
 
         system_key_options[:exit] = value
       end
@@ -244,7 +244,7 @@ module Vedeu
       def focus_next_key(value)
         return invalid_key('exit_key') unless valid_key?(value)
 
-        Vedeu.log("Configuration::API focus_next: #{value.to_s}")
+        Vedeu.log("Configuration::API focus_next: #{value}")
 
         system_key_options[:focus_next] = value
       end
@@ -266,7 +266,7 @@ module Vedeu
       def focus_prev_key(value)
         return invalid_key('exit_key') unless valid_key?(value)
 
-        Vedeu.log("Configuration::API focus_prev: #{value.to_s}")
+        Vedeu.log("Configuration::API focus_prev: #{value}")
 
         system_key_options[:focus_prev] = value
       end
@@ -288,7 +288,7 @@ module Vedeu
       def mode_switch_key(value)
         return invalid_key('exit_key') unless valid_key?(value)
 
-        Vedeu.log("Configuration::API mode_switch: #{value.to_s}")
+        Vedeu.log("Configuration::API mode_switch: #{value}")
 
         system_key_options[:mode_switch] = value
       end

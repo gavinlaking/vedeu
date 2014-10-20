@@ -9,7 +9,7 @@ module Vedeu
     def add(attributes)
       validate_attributes!(attributes)
 
-      Vedeu.log("#{action(__callee__)} positional (#{entity.to_s}): " \
+      Vedeu.log("#{action(__callee__)} positional (#{entity}): " \
                 "'#{attributes[:name]}'")
 
       storage.store(attributes[:name], entity.new(attributes))

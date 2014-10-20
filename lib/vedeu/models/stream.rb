@@ -120,7 +120,7 @@ module Vedeu
     # @param block [Proc] The optional block provided to the method.
     # @return []
     def method_missing(method, *args, &block)
-      Vedeu.log("Stream#method_missing '#{method.to_s}' (args: #{args.inspect})")
+      Vedeu.log("Stream#method_missing '#{method}' (args: #{args.inspect})")
 
       @self_before_instance_eval.send(method, *args, &block) if @self_before_instance_eval
     end

@@ -93,7 +93,7 @@ module Vedeu
                   'Run application in either `8`, `16`, `256` or `16777216` ' \
                   'colour mode.') do |colours|
             if [8, 16, 256, 16777216].include?(colours)
-              Vedeu.log("Configuration::CLI colour_mode: #{colours.to_s}")
+              Vedeu.log("Configuration::CLI colour_mode: #{colours}")
 
               options[:colour_mode] = colours
 
