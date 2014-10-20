@@ -114,7 +114,6 @@ require 'vedeu/support/refresh'
 
 require 'vedeu/output/compositor'
 require 'vedeu/output/output'
-require 'vedeu/output/view'
 require 'vedeu/output/viewport'
 
 require 'vedeu/support/bounding_area'
