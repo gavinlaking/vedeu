@@ -9,7 +9,7 @@ module Vedeu
     describe '#move' do
       before { Focus.stubs(:current).returns('praseodymium') }
 
-      it 'returns an instance of Offset' do
+      it 'returns an instance of itself' do
         Offsets.move(0, 1).must_be_instance_of(Offset)
       end
 
