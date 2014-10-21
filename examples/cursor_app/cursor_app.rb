@@ -11,7 +11,7 @@ require 'vedeu'
 class VedeuCursorApp
   include Vedeu
 
-  event(:_initialize_) { trigger(:_refresh_) }
+  event(:_initialize_) { Vedeu.trigger(:_refresh_) }
 
   interface 'iron' do
     centred true
@@ -29,10 +29,10 @@ class VedeuCursorApp
   end
 
   keys do
-    key(:up)    { trigger(:_cursor_up_)    }
-    key(:right) { trigger(:_cursor_right_) }
-    key(:down)  { trigger(:_cursor_down_)  }
-    key(:left)  { trigger(:_cursor_left_)  }
+    key(:up)    { Vedeu.trigger(:_cursor_up_)    }
+    key(:right) { Vedeu.trigger(:_cursor_right_) }
+    key(:down)  { Vedeu.trigger(:_cursor_down_)  }
+    key(:left)  { Vedeu.trigger(:_cursor_left_)  }
   end
 
   focus('iron')
