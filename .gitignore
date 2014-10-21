@@ -20,3 +20,5 @@ tmp
 .tags
 .tags_sorted_by_file
 logs/vedeu.log
+vedeu.sublime-project
+vedeu.sublime-workspace
