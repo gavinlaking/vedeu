@@ -124,15 +124,13 @@ module Vedeu
 
     # @return [String]
     def clear
-      [ string('fg_reset'),
-        string('bg_reset'),
+      [ colour_reset,
         "\e[2J" ].join
     end
 
     # @return [String]
     def clear_line
-      [ string('fg_reset'),
-        string('bg_reset'),
+      [ colour_reset,
         "\e[2K" ].join
     end
 

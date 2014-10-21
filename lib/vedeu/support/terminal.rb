@@ -65,7 +65,7 @@ module Vedeu
     # @param block [Proc]
     # @return []
     def initialize_screen(&block)
-      output Esc.string 'screen_init'
+      output(Esc.string('screen_init'))
 
       yield
     end
@@ -74,7 +74,7 @@ module Vedeu
     #
     # @return [String]
     def clear_screen
-      output Esc.string 'clear'
+      output(Esc.string('clear'))
     end
 
     # Attempts to tidy up the screen just before the application terminates.
@@ -92,7 +92,7 @@ module Vedeu
     #
     # @return [String]
     def set_cursor_mode
-      output Esc.string 'show_cursor' unless raw_mode?
+      output(Esc.string('show_cursor')) unless raw_mode?
     end
 
     # Returns a boolean indicating whether the terminal is currently in `cooked`
@@ -107,6 +107,8 @@ module Vedeu
     #
     # @return [Symbol]
     def cooked_mode!
+      Vedeu.log("Terminal switching to 'cooked' mode")
+
       @_mode = :cooked
     end
 
@@ -122,6 +124,8 @@ module Vedeu
     #
     # @return [Symbol]
     def raw_mode!
+      Vedeu.log("Terminal switching to 'raw' mode")
+
       @_mode = :raw
     end
 
@@ -130,17 +134,9 @@ module Vedeu
     #
     # @return [Symbol]
     def switch_mode!
-      if raw_mode?
-        Vedeu.log("Terminal switching to 'cooked' mode")
+      return cooked_mode! if raw_mode?
 
-        cooked_mode!
-
-      else
-        Vedeu.log("Terminal switching to 'raw' mode")
-
-        raw_mode!
-
-      end
+      raw_mode!
     end
 
     # Returns the mode of the terminal, either `:raw` or `:cooked`
