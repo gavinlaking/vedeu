@@ -26,10 +26,10 @@ module Vedeu
     def initialize(attributes = {})
       @attributes = defaults.merge!(attributes)
 
-      @name       = @attributes[:name]
-      @state      = @attributes[:state]
-      @x          = @attributes[:x]
-      @y          = @attributes[:y]
+      @name  = @attributes[:name]
+      @state = @attributes[:state]
+      @x     = @attributes[:x]
+      @y     = @attributes[:y]
     end
 
     # Returns an attribute hash for the current position and visibility of the
@@ -38,10 +38,10 @@ module Vedeu
     # @return [Hash]
     def attributes
       {
-        name:     name,
-        state:    state,
-        x:        x,
-        y:        y,
+        name:  name,
+        state: state,
+        x:     x,
+        y:     y,
       }
     end
     alias_method :refresh, :attributes
@@ -122,16 +122,6 @@ module Vedeu
       end
     end
 
-    # Return a boolean indicating the visibility of the cursor, invisible if
-    # the state is not defined.
-    #
-    # @return [Boolean]
-    def visible?
-      return false if state == :hide
-
-      true
-    end
-
     private
 
     # Returns the escape sequence to position the cursor and set its visibility.
@@ -152,7 +142,7 @@ module Vedeu
     #
     # @return [String]
     def visibility
-      return Esc.string('show_cursor') if visible?
+      return Esc.string('show_cursor') if state == :show
 
       Esc.string('hide_cursor')
     end
