@@ -43,9 +43,10 @@ module Vedeu
     def initialize(attributes = {}, &block)
       @attributes = defaults.merge!(attributes)
 
-      @name  = @attributes[:name]
-      @group = @attributes[:group]
+      @cursor = @attributes[:cursor]
       @delay = @attributes[:delay]
+      @group = @attributes[:group]
+      @name  = @attributes[:name]
       @parent = @attributes[:parent]
 
       if block_given?
@@ -71,9 +72,10 @@ module Vedeu
     # @return [Cursor]
     def cursor
       @_cursor ||= Cursor.new({
-        name: name,
-        x:    geometry.x_position(offset.x),
-        y:    geometry.y_position(offset.y),
+        name:  name,
+        state: attributes[:cursor],
+        x:     geometry.x_position(offset.x),
+        y:     geometry.y_position(offset.y),
       })
     end
 
@@ -120,14 +122,15 @@ module Vedeu
     # @return [Hash]
     def defaults
       {
-        name:     '',
+        colour:   {},
+        cursor:   :hide,
+        delay:    0.0,
+        geometry: {},
         group:    '',
         lines:    [],
-        colour:   {},
-        style:    '',
-        geometry: {},
-        delay:    0.0,
+        name:     '',
         parent:   nil,
+        style:    '',
       }
     end
 

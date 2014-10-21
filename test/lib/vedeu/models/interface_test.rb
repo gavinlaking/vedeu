@@ -27,6 +27,7 @@ module Vedeu
       it 'returns the value' do
         interface.attributes.must_equal(
           {
+            cursor: :hide,
             name: '#initialize',
             group: 'my_group',
             lines: [],

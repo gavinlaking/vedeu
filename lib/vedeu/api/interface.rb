@@ -29,6 +29,31 @@ module Vedeu
       end
       alias_method :centred!, :centred
 
+      # Set the cursor visibility on an interface or view.
+      #
+      # @param value [Boolean] Any value other than nil or false will evaluate
+      #   to true.
+      #
+      # @example
+      #   interface 'my_interface' do
+      #     cursor true
+      #     ...
+      #
+      #   view 'my_interface' do
+      #     cursor true
+      #     ...
+      #
+      # @return [Symbol]
+      def cursor(value = true)
+        attributes[:cursor] = if !!value
+          :show
+
+        else
+          :hide
+
+        end
+      end
+
       # To maintain performance interfaces can be delayed from refreshing too
       # often, the reduces artefacts particularly when resizing the terminal
       # screen.

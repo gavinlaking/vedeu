@@ -6,7 +6,7 @@ module Vedeu
 
     describe Interface do
 
-      before { Vedeu::Buffers.reset }
+      before { Interfaces.reset }
 
       describe '#define' do
         interface = Interface.new({ name: 'widget' })
@@ -21,6 +21,7 @@ module Vedeu
           end.must_equal(
             {
               name: '',
+              cursor: :hide,
               group: '',
               lines: [],
               colour: {
@@ -41,6 +42,7 @@ module Vedeu
           end.must_equal(
             {
               name: '',
+              cursor: :hide,
               group: '',
               lines: [],
               colour: {},
@@ -65,6 +67,7 @@ module Vedeu
               y      use('my_interface').south
             end.must_equal({
               name: "my_other_interface",
+              cursor: :hide,
               group: '',
               lines: [],
               colour: {},
@@ -85,6 +88,7 @@ module Vedeu
           end.must_equal(
             {
               name: '',
+              cursor: :hide,
               group: '',
               lines: [],
               colour: {},
@@ -102,6 +106,7 @@ module Vedeu
           end.must_equal(
             {
               name: '',
+              cursor: :hide,
               group: "my_group",
               lines: [],
               colour: {},
@@ -163,6 +168,7 @@ module Vedeu
           interface.attributes.must_equal(
             {
               name: 'carbon',
+              cursor: :hide,
               group: '',
               lines: [
                 {
@@ -191,6 +197,7 @@ module Vedeu
           interface.attributes.must_equal(
             {
               name: 'carbon',
+              cursor: :hide,
               group: '',
               lines: [
                 {
@@ -221,6 +228,7 @@ module Vedeu
           interface.attributes.must_equal(
             {
               name: "silicon",
+              cursor: :hide,
               group: '',
               lines: [
                 {

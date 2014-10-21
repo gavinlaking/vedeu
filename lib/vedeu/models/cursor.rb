@@ -19,8 +19,8 @@ module Vedeu
     #   belongs to.
     # @option attributes :state [Symbol] The visibility of the cursor, either
     #   +:hide+ or +:show+.
-    # @option attributes :x [Fixnum]
-    # @option attributes :y [Fixnum]
+    # @option attributes :x [Fixnum] The terminal x coordinate for the cursor.
+    # @option attributes :y [Fixnum] The terminal y coordinate for the cursor.
     #
     # @return [Cursor]
     def initialize(attributes = {})
@@ -47,10 +47,14 @@ module Vedeu
     alias_method :refresh, :attributes
 
     # Returns the x coordinate (column/character) of the cursor. Attempts to
-    # sensibly reposition the cursor if it is currently outside the interface.
+    # sensibly reposition the cursor if it is currently outside the interface,
+    # or outside the visible area of the terminal.
     #
     # @return [Fixnum]
     def x
+      @x = 1              if @x <= 1
+      @x = Terminal.width if @x >= Terminal.width
+
       if @x <= left
         @x = left
 
@@ -64,10 +68,14 @@ module Vedeu
     end
 
     # Returns the y coordinate (row/line) of the cursor. Attempts to sensibly
-    # reposition the cursor if it is currently outside the interface.
+    # reposition the cursor if it is currently outside the interface, or outside
+    # the visible area of the terminal.
     #
     # @return [Fixnum]
     def y
+      @y = 1               if @y <= 1
+      @y = Terminal.height if @y >= Terminal.height
+
       if @y <= top
         @y = top
 
@@ -119,7 +127,6 @@ module Vedeu
     #
     # @return [Boolean]
     def visible?
-      return false unless states.include?(state)
       return false if state == :hide
 
       true
@@ -162,22 +169,15 @@ module Vedeu
       @interface ||= Interfaces.build(name)
     end
 
-    # The valid visibility states for the cursor.
-    #
-    # @return [Array]
-    def states
-      [:show, :hide]
-    end
-
     # The default values for a new instance of Cursor.
     #
     # @return [Hash]
     def defaults
       {
-        name:     '',
-        state:    :show,
-        x:        1,
-        y:        1,
+        name:  '',
+        state: :hide,
+        x:     1,
+        y:     1,
       }
     end
 

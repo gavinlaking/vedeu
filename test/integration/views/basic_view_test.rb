@@ -22,6 +22,7 @@ module Vedeu
           end.must_equal(
             { interfaces: [{
               name:  'testing_view',
+              cursor: :hide,
               group: '',
               colour: {},
               style: '',
@@ -54,6 +55,7 @@ module Vedeu
           end.must_equal(
             { interfaces: [{
               name:  'testing_view',
+              cursor: :hide,
               group: '',
               colour: {},
               style: '',
@@ -81,6 +83,7 @@ module Vedeu
           end.must_equal(
             { interfaces: [{
               name:  'testing_view',
+              cursor: :hide,
               group: '',
               colour: {},
               style: '',
@@ -108,6 +111,7 @@ module Vedeu
           end.must_equal(
             { interfaces: [{
               name:  'testing_view',
+              cursor: :hide,
               group: '',
               colour: {},
               style: '',
@@ -136,6 +140,7 @@ module Vedeu
           end.must_equal(
             { interfaces: [{
               name:  'testing_view',
+              cursor: :hide,
               group: '',
               colour: {},
               style: '',
@@ -171,6 +176,7 @@ module Vedeu
           end.must_equal(
             { interfaces: [{
               name:  'testing_view',
+              cursor: :hide,
               group: '',
               colour: {},
               style: '',
@@ -205,6 +211,7 @@ module Vedeu
           end.must_equal(
             { interfaces: [{
               name: 'testing_view',
+              cursor: :hide,
               group: '',
               colour: {},
               style: '',
@@ -234,6 +241,7 @@ module Vedeu
           end.must_equal(
             { interfaces: [{
               name: 'testing_view',
+              cursor: :hide,
               group: '',
               colour: {},
               style: '',
@@ -264,6 +272,7 @@ module Vedeu
           end.must_equal(
             { interfaces: [{
               name: 'testing_view',
+              cursor: :hide,
               group: '',
               colour: {},
               style: '',
@@ -299,6 +308,7 @@ module Vedeu
           end.must_equal(
             { interfaces: [{
               name: 'testing_view',
+              cursor: :hide,
               group: '',
               colour: {},
               style: '',
@@ -334,6 +344,7 @@ module Vedeu
           end.must_equal(
             { interfaces: [{
               name:  'testing_view',
+              cursor: :hide,
               group: '',
               colour: {},
               style: '',
@@ -377,6 +388,7 @@ module Vedeu
           end.must_equal(
             { interfaces: [{
               name:  'testing_view',
+              cursor: :hide,
               group: '',
               colour: {},
               style: '',
@@ -426,6 +438,7 @@ module Vedeu
           end.must_equal(
             { interfaces: [{
               name: 'testing_view',
+              cursor: :hide,
               group: '',
               colour: {},
               style: '',
@@ -478,6 +491,7 @@ module Vedeu
           end.must_equal(
             { interfaces: [{
               name: 'testing_view',
+              cursor: :hide,
               group: '',
               colour: {},
               style: '',
@@ -523,6 +537,7 @@ module Vedeu
           end.must_equal(
             { interfaces: [{
               name:  'testing_view',
+              cursor: :hide,
               group: '',
               colour: {},
               style: '',
@@ -558,6 +573,7 @@ module Vedeu
           end.must_equal(
             { interfaces: [{
               name:  'testing_view',
+              cursor: :hide,
               group: '',
               colour: {},
               style: '',
@@ -593,6 +609,7 @@ module Vedeu
           end.must_equal(
             { interfaces: [{
               name:  'testing_view',
+              cursor: :hide,
               group: '',
               colour: {},
               style: '',
@@ -628,6 +645,7 @@ module Vedeu
           end.must_equal(
             { interfaces: [{
               name:  'testing_view',
+              cursor: :hide,
               group: '',
               colour: {},
               style: '',
@@ -672,6 +690,7 @@ module Vedeu
           end.must_equal(
             { interfaces: [{
               name:  'testing_view',
+              cursor: :hide,
               group: '',
               colour: {},
               style: '',

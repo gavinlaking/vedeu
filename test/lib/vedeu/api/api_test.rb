@@ -149,6 +149,7 @@ module Vedeu
         {
           interfaces: [{
             name: "some_interface",
+            cursor: :hide,
             group: '',
             lines: [],
             colour: {},
