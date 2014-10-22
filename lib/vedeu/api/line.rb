@@ -9,6 +9,40 @@ module Vedeu
 
       include Helpers
 
+      # @param value [String]
+      # @param block [Proc]
+      #
+      # @example
+      #   ...
+      #     line do
+      #       background '#0022ff' do
+      #         ... other stream directives ...
+      #
+      # @return [Array]
+      def background(value = '', &block)
+        stream = API::Stream.build({ colour: { background: value },
+                                     parent: self.view_attributes }, &block)
+
+        attributes[:streams] << stream
+      end
+
+      # @param value [String]
+      # @param block [Proc]
+      #
+      # @example
+      #   ...
+      #     line do
+      #       foreground '#00ff00' do
+      #         ... other stream directives ...
+      #
+      # @return [Array]
+      def foreground(value = '', &block)
+        stream = API::Stream.build({ colour: { foreground: value },
+                                     parent: self.view_attributes }, &block)
+
+        attributes[:streams] << stream
+      end
+
       # Define a stream (a subset of a line).
       #
       # @param block [Proc] Block contains directives relating to API::Stream.
@@ -46,40 +80,6 @@ module Vedeu
       # @return [Array]
       def text(value)
         attributes[:streams] << { text: value }
-      end
-
-      # @param value [String]
-      # @param block [Proc]
-      #
-      # @example
-      #   ...
-      #     line do
-      #       foreground '#00ff00' do
-      #         ... other stream directives ...
-      #
-      # @return [Array]
-      def foreground(value = '', &block)
-        stream = API::Stream.build({ colour: { foreground: value },
-                                     parent: self.view_attributes }, &block)
-
-        attributes[:streams] << stream
-      end
-
-      # @param value [String]
-      # @param block [Proc]
-      #
-      # @example
-      #   ...
-      #     line do
-      #       background '#0022ff' do
-      #         ... other stream directives ...
-      #
-      # @return [Array]
-      def background(value = '', &block)
-        stream = API::Stream.build({ colour: { background: value },
-                                     parent: self.view_attributes }, &block)
-
-        attributes[:streams] << stream
       end
 
     end # Line
