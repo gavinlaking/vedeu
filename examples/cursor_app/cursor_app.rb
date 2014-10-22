@@ -14,6 +14,7 @@ class VedeuCursorApp
   event(:_initialize_) { Vedeu.trigger(:_refresh_) }
 
   interface 'iron' do
+    cursor  true
     centred true
     colour  foreground: '#ff0000', background: '#000000'
     height  4
@@ -21,6 +22,7 @@ class VedeuCursorApp
   end
 
   interface 'gold' do
+    cursor false
     colour foreground: '#00ff00', background: '#001100'
     height 4
     width  15
@@ -34,8 +36,6 @@ class VedeuCursorApp
     key(:down)  { Vedeu.trigger(:_cursor_down_)  }
     key(:left)  { Vedeu.trigger(:_cursor_left_)  }
   end
-
-  focus('iron')
 
   render do
     view 'iron' do
@@ -87,7 +87,14 @@ class VedeuCursorApp
         end
       end
     end
+
+    view 'gold' do
+      cursor false
+      line 'Cursor: '
+    end
   end
+
+  focus('iron') # not working right?!
 
   def self.start
     Vedeu::Launcher.new(['--debug']).execute!
