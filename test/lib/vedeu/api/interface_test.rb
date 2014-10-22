@@ -129,6 +129,32 @@ module Vedeu
         end
       end
 
+      describe '#cursor' do
+        it 'returns :hide if the value is false or nil' do
+          API::Interface.new.cursor(false).must_equal(:hide)
+        end
+
+        it 'returns :hide if the value is false or nil' do
+          Vedeu.interface 'cobalt' do
+            cursor false
+          end
+
+          Vedeu.use('cobalt').attributes[:cursor].must_equal(:hide)
+        end
+
+        it 'returns :show if any other value' do
+          API::Interface.new.cursor.must_equal(:show)
+        end
+
+        it 'returns :show if any other value' do
+          Vedeu.interface 'cobalt' do
+            cursor true
+          end
+
+          Vedeu.use('cobalt').attributes[:cursor].must_equal(:show)
+        end
+      end
+
       describe '#delay' do
         it 'sets the delay attribute' do
           Vedeu.interface 'cobalt' do
