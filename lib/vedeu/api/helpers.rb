@@ -10,12 +10,21 @@ module Vedeu
 
       include Common
 
-      # Define the background colour for an interface, or a stream.
+      # Define the background colour for an interface, line, or a stream. When
+      # called with a block, will create a new stream with the background colour
+      # specified; see {Vedeu::API::Stream} for directives which are valid
+      # within the block. When the block terminates, the background will return
+      # to that of the parent.
       #
       # @param value [String]
+      # @param block [Proc]
       #
       # @example
       #   interface 'my_interface' do
+      #     background '#0022ff'
+      #     ...
+      #
+      #   line do
       #     background '#0022ff'
       #     ...
       #
@@ -23,14 +32,24 @@ module Vedeu
       #     background '#0022ff'
       #     ...
       #
+      #   foreground('#0022ff') { 'This will be blue.' }
+      #
       # @raise [InvalidSyntax] When the value is not defined.
       # @return [Hash]
-      def background(value = '')
+      def background(value = '', &block)
         unless defined_value?(value)
           fail InvalidSyntax, '`background` requires a value.'
         end
 
-        attributes[:colour].merge!({ background: value })
+        if block_given?
+          attributes[:streams] << API::Stream
+            .build({ colour: { background: value },
+                     parent: self.view_attributes }, &block)
+
+        else
+          attributes[:colour].merge!({ background: value })
+
+        end
       end
 
       # Define either or both foreground and background colours for an
@@ -63,18 +82,29 @@ module Vedeu
         attributes[:colour] = values
       end
 
-      # Define the foreground colour for an interface, or a stream.
+      # Define the foreground colour for an interface, line, or a stream. When
+      # called with a block, will create a new stream with the foreground colour
+      # specified; see {Vedeu::API::Stream} for directives which are valid
+      # within the block. When the block terminates, the foreground will return
+      # to that of the parent.
       #
       # @param value [String]
+      # @param block [Proc]
       #
       # @example
       #   interface 'my_interface' do
       #     foreground '#0022ff'
       #     ...
       #
+      #   line do
+      #     foreground '#0022ff'
+      #     ...
+      #
       #   stream do
       #     foreground '#0022ff'
       #     ...
+      #
+      #   foreground('#0022ff') { 'This will be blue.' }
       #
       # @raise [InvalidSyntax] When the value is not defined.
       # @return [Hash]
@@ -83,7 +113,15 @@ module Vedeu
           fail InvalidSyntax, '`foreground` requires a value.'
         end
 
-        attributes[:colour].merge!({ foreground: value })
+        if block_given?
+          attributes[:streams] << API::Stream
+            .build({ colour: { foreground: value },
+                     parent: self.view_attributes }, &block)
+
+        else
+          attributes[:colour].merge!({ foreground: value })
+
+        end
       end
 
       # Define a style or styles for an interface, line or a stream.
