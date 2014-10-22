@@ -10,6 +10,19 @@ module Vedeu
 
     attr_reader :exit_code
 
+    # @see Vedeu::Launcher#initialize
+    def self.execute!(argv = [],
+                      stdin  = STDIN,
+                      stdout = STDOUT,
+                      stderr = STDERR,
+                      kernel = Kernel)
+      new(argv,
+          stdin  = STDIN,
+          stdout = STDOUT,
+          stderr = STDERR,
+          kernel = Kernel).execute!
+    end
+
     # @param argv [Array]
     # @param stdin []
     # @param stdout []

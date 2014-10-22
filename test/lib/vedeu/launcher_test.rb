@@ -10,6 +10,10 @@ module Vedeu
       Kernel.stubs(:puts)
     end
 
+    describe '.execute' do
+      it { skip }
+    end
+
     describe '#initialize' do
       it 'returns an instance of itself' do
         Launcher.new.must_be_instance_of(Launcher)
