@@ -65,7 +65,7 @@ module Vedeu
         attributes[:delay] = value
       end
 
-      # Define a group for an interface. Interfaces of the same group can be
+      # Specify a group for an interface. Interfaces of the same group can be
       # targetted together; for example you may want to refresh multiple
       # interfaces at once.
       #
@@ -81,7 +81,7 @@ module Vedeu
         attributes[:group] = value
       end
 
-      # Define the number of characters/rows/lines tall the interface will be.
+      # Specify the number of characters/rows/lines tall the interface will be.
       #
       # @param value [Fixnum]
       #
@@ -97,7 +97,7 @@ module Vedeu
         attributes[:geometry][:height] = value
       end
 
-      # Define a single line in a view.
+      # Specify a single line in a view.
       #
       # @param value [String]
       # @param block [Proc]
@@ -151,7 +151,7 @@ module Vedeu
         Vedeu.use(value)
       end
 
-      # Define the number of characters/columns wide the interface will be.
+      # Specify the number of characters/columns wide the interface will be.
       #
       # @param value [Fixnum]
       #
@@ -167,7 +167,7 @@ module Vedeu
         attributes[:geometry][:width] = value
       end
 
-      # Define the starting x position (column) of the interface.
+      # Specify the starting x position (column) of the interface.
       #
       # @param value [Fixnum]
       # @param block [Proc]
@@ -190,7 +190,7 @@ module Vedeu
         attributes[:geometry][:x] = value
       end
 
-      # Define the starting y position (row/line) of the interface.
+      # Specify the starting y position (row/line) of the interface.
       #
       # @param value [Fixnum]
       # @param block [Proc]

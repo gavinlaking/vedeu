@@ -294,6 +294,11 @@ module Vedeu
 
     # Instruct Vedeu to treat contents of block as a single composition.
     #
+    # @note The views declared within this block are stored in their respective
+    #   interface back buffers until a refresh event occurs. When the refresh
+    #   event is triggered, the back buffers are swapped into the front buffers
+    #   and the content here will be rendered to {Terminal.output}.
+    #
     # @param block [Proc] Instructs Vedeu to treat all of the 'view' directives
     #   therein as one instruction. Useful for redrawing multiple interfaces at
     #   once.
@@ -314,7 +319,7 @@ module Vedeu
     #   ...
     #
     # @raise [InvalidSyntax] When the required block is not given.
-    # @return [Hash]
+    # @return [Array]
     def views(&block)
       fail InvalidSyntax, '`views` requires a block.' unless block_given?
 
