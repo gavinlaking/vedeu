@@ -60,6 +60,11 @@ module Vedeu
       #
       # @param value [Fixnum|Float]
       #
+      # @example
+      #   interface 'my_interface' do
+      #     delay 0.5 # interface will not update more often than every 500ms.
+      #     ...
+      #
       # @return [Fixnum|Float]
       def delay(value)
         attributes[:delay] = value
@@ -110,7 +115,7 @@ module Vedeu
       #
       #   view 'my_interface' do
       #     line do
-      #       ... some line attributes ...
+      #       ... see {API::Line} and {API::Stream}
       #     end
       #   end
       #
@@ -143,7 +148,15 @@ module Vedeu
       end
 
       # Use the specified interface; useful for sharing attributes with other
-      # interfaces.
+      # interfaces. Any public method of #{Vedeu::Interface} is available.
+      #
+      # @example
+      #   interface 'my_interface' do
+      #     use('my_other_interface').width # use the width of another interface
+      #     ...
+      #
+      #   Vedeu.use('my_other_interface').width # can be used in your code to
+      #                                         # get this value
       #
       # @param value [String]
       # @see Vedeu::API#use

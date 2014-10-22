@@ -214,6 +214,10 @@ module Vedeu
     #       view 'my_interface' do
     #         ...
     #
+    #   Vedeu.render do
+    #     view 'my_interface' do
+    #       ...
+    #
     # @raise [InvalidSyntax] When the required block is not given.
     # @return [Array] A collection of strings, each defining containing the
     #   escape sequences and content. This data has already been sent to the
