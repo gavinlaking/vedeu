@@ -4,6 +4,24 @@ module Vedeu
 
     # Provides methods to be used to define views.
     #
+    # @example
+    #   line do
+    #
+    #     background '#ffffff'
+    #
+    #     colour     background: '#222222', foreground: '#ff0000'
+    #
+    #     foreground '#000000'
+    #
+    #     stream do
+    #       # see {API::Stream} for directives
+    #     end
+    #
+    #     style 'normal' # or a collection: ['bold', 'underline']
+    #
+    #     text 'Some text...'
+    #
+    #
     # @api public
     class Line < Vedeu::Line
 
