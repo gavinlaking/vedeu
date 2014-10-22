@@ -86,10 +86,10 @@ require 'vedeu/repositories/buffers'
 require 'vedeu/repositories/cursors'
 
 require 'vedeu/support/registrar'
+require 'vedeu/support/refresh'
 
 require 'vedeu/output/clear'
 require 'vedeu/output/compositor'
-require 'vedeu/output/refresh'
 require 'vedeu/output/render'
 require 'vedeu/output/view'
 require 'vedeu/output/viewport'
