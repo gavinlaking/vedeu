@@ -136,14 +136,12 @@ module Vedeu
 
     # @return [String]
     def clear_last_line
-      [ set_position((Terminal.height - 1), 1),
-        string('clear_line') ].join
+      [set_position((Terminal.height - 1), 1), clear_line].join
     end
 
     # @return [String]
     def colour_reset
-      [ string('fg_reset'),
-        string('bg_reset') ].join
+      [fg_reset, bg_reset].join
     end
 
     # @return [String]
@@ -168,9 +166,7 @@ module Vedeu
 
     # @return [String]
     def normal
-      [ string('underline_off'),
-        string('bold_off'),
-        string('positive') ].join
+      [underline_off, bold_off, positive].join
     end
 
     # @return [String]
@@ -185,16 +181,12 @@ module Vedeu
 
     # @return [String]
     def screen_init
-      [ string('reset'),
-        string('clear'),
-        string('hide_cursor') ].join
+      [reset, clear, hide_cursor].join
     end
 
     # @return [String]
     def screen_exit
-      [ string('show_cursor'),
-        string('colour_reset'),
-        string('reset') ].join
+      [show_cursor, colour_reset, reset].join
     end
 
     # @return [String]
