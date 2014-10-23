@@ -55,6 +55,22 @@ module Vedeu
     end
     alias_method :interactive, :interactive?
 
+    # Returns the path to the log file.
+    #
+    # @return [String]
+    def log
+      options[:log]
+    end
+
+    # Returns whether a custom log filepath has been provided.
+    #
+    # @return [Boolean]
+    def log?
+      return true unless options[:log].nil? || options[:log].empty?
+
+      false
+    end
+
     # Returns whether the application will run through its main loop once or
     # not. Default is false; meaning the application will loop forever or until
     # terminated by the user.
@@ -126,6 +142,7 @@ module Vedeu
         colour_mode:   detect_colour_mode,
         debug:         detect_debug_mode,
         interactive:   true,
+        log:           '',
         once:          false,
         system_keys:   default_system_keys,
         terminal_mode: :raw,

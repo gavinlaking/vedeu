@@ -26,6 +26,28 @@ module Vedeu
       end
     end
 
+    describe '#log' do
+      it 'returns the value of the log option' do
+        Configuration.log.must_equal('')
+      end
+    end
+
+    describe '#log?' do
+      context 'when the log option is set' do
+        before { Vedeu.configure { log '/tmp/vedeu.log' } }
+
+        it 'returns true' do
+          Configuration.log?.must_equal(true)
+        end
+      end
+
+      context 'when the log option is not set' do
+        it 'returns false' do
+          Configuration.log?.must_equal(false)
+        end
+      end
+    end
+
     describe '#once?' do
       it 'returns the value of the once option' do
         Configuration.once?.must_equal(false)
@@ -51,6 +73,7 @@ module Vedeu
             colour_mode:   16777216,
             debug:         false,
             interactive:   true,
+            log:           '',
             once:          false,
             system_keys:   {
               exit:        "q",

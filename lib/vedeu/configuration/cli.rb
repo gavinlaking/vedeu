@@ -104,6 +104,11 @@ module Vedeu
 
             end
           end
+
+          opts.on('-l', '--log [FILENAME]', String,
+                  'Specify the path for the log file.') do |filename|
+            options[:log] = filename
+          end
         end
         parser.parse!(args)
 

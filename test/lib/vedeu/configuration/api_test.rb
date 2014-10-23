@@ -18,6 +18,7 @@ module Vedeu
               colour_mode: 16777216,
               debug: false,
               interactive: true,
+              log: '',
               once: false,
               system_keys: {
                 exit:        'q',
@@ -205,6 +206,13 @@ module Vedeu
         it 'sets the option to the desired value' do
           configuration = Vedeu.configure { colour_mode(256) }
           configuration[:colour_mode].must_equal(256)
+        end
+      end
+
+      describe '#log' do
+        it 'sets the options to the desired value' do
+          configuration = Vedeu.configure { log('/tmp/vedeu.log') }
+          configuration[:log].must_equal('/tmp/vedeu.log')
         end
       end
 

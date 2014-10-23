@@ -206,6 +206,19 @@ module Vedeu
         options[:colour_mode] = value
       end
 
+      # Sets the location of the log file.
+      #
+      # @example
+      #   Vedeu.configure do
+      #     log '/var/log/vedeu.log'
+      #     ...
+      #
+      # @param filename [String]
+      # @return [String]
+      def log(filename = '')
+        options[:log] = filename
+      end
+
       # Sets the key used to exit the client application. The default is `q`.
       #
       # @example

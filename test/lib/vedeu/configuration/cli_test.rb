@@ -52,6 +52,13 @@ module Vedeu
       #   end
       # end
 
+      # describe '#log' do
+      #   it '--log' do
+      #     Configuration.configure(['--log', '/tmp/vedeu.log'])
+      #     Configuration.log.must_equal('/tmp/vedeu.log')
+      #   end
+      # end
+
       # describe '#once?' do
       #   it '--run-once' do
       #     Configuration.configure(['--run-once'])
