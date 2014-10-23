@@ -185,6 +185,26 @@ module Vedeu
         end
       end
 
+      describe '#keys' do
+        before do
+          Keymaps.reset
+
+          Vedeu.interface 'iron' do
+            keys do
+              key('k') { :k_pressed }
+            end
+          end
+        end
+
+        it 'defines a keymap for the interface' do
+          Keymaps.interface_key?('k').must_equal(true)
+        end
+
+        it 'defines a keymap for the interface' do
+          Keymaps.interface_keys('iron').must_equal(['k'])
+        end
+      end
+
       describe '#line' do
         it 'adds a blank line with no arguments' do
           interface = Vedeu.interface 'carbon' do

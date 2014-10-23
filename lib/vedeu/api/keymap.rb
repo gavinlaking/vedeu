@@ -58,10 +58,15 @@ module Vedeu
       #     key('s')  { :something }
       #     ...
       #
+      #   keys do
+      #     interfaces('main', 'other')
+      #     ...
+      #
       # @return [Array]
       def interface(*name_or_names)
         attributes[:interfaces] = name_or_names
       end
+      alias_method :interfaces, :interface
 
     end # Keymap
 

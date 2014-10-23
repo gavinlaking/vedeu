@@ -19,6 +19,14 @@ class VedeuCursorApp
     colour  foreground: '#ff0000', background: '#000000'
     height  4
     width   15
+
+    # provide 'vim' direction keys
+    keys do
+      key('k') { Vedeu.trigger(:_cursor_up_)    }
+      key('l') { Vedeu.trigger(:_cursor_right_) }
+      key('j') { Vedeu.trigger(:_cursor_down_)  }
+      key('h') { Vedeu.trigger(:_cursor_left_)  }
+    end
   end
 
   interface 'gold' do
