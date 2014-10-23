@@ -95,43 +95,53 @@ module Vedeu
   # @api private
   class Log
 
-    # @return [TrueClass]
-    def self.logger
-      @logger ||= MonoLogger.new(filename).tap do |log|
-        log.formatter = proc do |_, time, _, message|
-          utc_time = time.utc.iso8601
+    class << self
 
-          [timestamp(utc_time), message, "\n"].join
+      # @return [TrueClass]
+      def logger
+        @logger ||= MonoLogger.new(filename).tap do |log|
+          log.formatter = proc do |_, time, _, message|
+            utc_time = time.utc.iso8601
+
+            [timestamp(utc_time), message, "\n"].join
+          end
         end
       end
-    end
 
-    private
+      private
 
-    def self.timestamp(utc_time)
-      return "" if @last_seen == utc_time
+      def timestamp(utc_time)
+        return "" if @last_seen == utc_time
 
-      @last_seen = utc_time
+        @last_seen = utc_time
 
-      "\n\e[4m\e[31m" + utc_time + "\e[39m\e[24m\n"
-    end
+        "\n\e[4m\e[31m" + utc_time + "\e[39m\e[24m\n"
+      end
 
-    # @return [String]
-    def self.filename
-      @_filename ||= directory + '/vedeu.log'
-    end
+      # @return [String]
+      def filename
+        @_filename ||= if Configuration.log?
+          Configuration.log
 
-    # @return [String]
-    def self.directory
-      FileUtils.mkdir_p(path) unless File.directory?(path)
+        else
+          directory + '/vedeu.log'
 
-      path
-    end
+        end
+      end
 
-    # @return [String]
-    def self.path
-      Dir.home + '/.vedeu'
-    end
+      # @return [String]
+      def directory
+        FileUtils.mkdir_p(path) unless File.directory?(path)
+
+        path
+      end
+
+      # @return [String]
+      def path
+        Dir.home + '/.vedeu'
+      end
+
+    end # Log eigenclass
 
   end # Log
 
