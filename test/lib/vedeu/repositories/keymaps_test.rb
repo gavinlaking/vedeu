@@ -148,6 +148,10 @@ module Vedeu
       it 'returns the defined keys for all interfaces' do
         Keymaps.interface_keys.must_equal(['d', 'e', 'f'])
       end
+
+      it 'returns the defined keys for the specified interface' do
+        Keymaps.interface_keys('magnesium').must_equal(['e', 'f'])
+      end
     end
 
     describe '#registered?' do

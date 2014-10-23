@@ -72,10 +72,15 @@ module Vedeu
       end
     end
 
-    # Return a collection of interface keys.
+    # Return a collection of interface keys. When the optional 'name' parameter
+    # is provided, then only the keys associated with that interface are
+    # returned.
     #
+    # @param interface [String]
     # @return [Hash]
-    def interface_keys
+    def interface_keys(interface = nil)
+      return find(interface).keys if interface
+
       storage.reject do |k, _|
         k == '_global_keymap_'
       end.map { |_, v| v.keys }.flatten.uniq
