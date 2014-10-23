@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-lib_dir = File.dirname(__FILE__) + '/../../lib'
+lib_dir = File.dirname(__FILE__) + '/../lib'
 $LOAD_PATH.unshift(lib_dir) unless $LOAD_PATH.include?(lib_dir)
 
 trap('INT') { exit! }
@@ -10,6 +10,11 @@ require 'vedeu'
 
 class HelloWorldApp
   include Vedeu
+
+  configure do
+    debug!
+    log '/tmp/hello_world_vedeu.log'
+  end
 
   event(:_initialize_) { Vedeu.trigger(:_refresh_) }
 
