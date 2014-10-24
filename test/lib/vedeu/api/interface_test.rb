@@ -203,6 +203,12 @@ module Vedeu
         it 'defines a keymap for the interface' do
           Keymaps.interface_keys('iron').must_equal(['k'])
         end
+
+        context 'when the block is not given' do
+          it 'raises an exception' do
+            proc { Vedeu.interface('iron') { keys } }.must_raise(InvalidSyntax)
+          end
+        end
       end
 
       describe '#line' do

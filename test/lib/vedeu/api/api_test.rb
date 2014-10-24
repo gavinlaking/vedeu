@@ -53,10 +53,29 @@ module Vedeu
     end
 
     describe '.keypress' do
-      before { Vedeu::Focus.stubs(:current).returns('') }
+      before do
+        Interfaces.reset
 
-      it 'returns false when the key was not registered' do
-        Vedeu.keypress('k').must_equal(false)
+        Vedeu.interface('barium') {}
+      end
+
+      context 'when the key is registered' do
+        before do
+          Vedeu.keys do
+            interface 'barium'
+            key('j') { :j_pressed }
+          end
+        end
+
+        it 'returns the result of proc stored for the keypress' do
+          Vedeu.keypress('j').must_equal(:j_pressed)
+        end
+      end
+
+      context 'when the key is not registered' do
+        it 'returns false' do
+          Vedeu.keypress('k').must_equal(false)
+        end
       end
     end
 

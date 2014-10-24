@@ -102,17 +102,9 @@ module Vedeu
         attributes[:geometry][:height] = value
       end
 
-      # @param block [Proc]
-      #
-      # @example
-      #
-      #
-      # @raise [InvalidSyntax] When the required block is not given.
-      # @return []
+      # @see Vedeu::API#keys
       def keys(&block)
-        fail InvalidSyntax, '`keys` requires a block.' unless block_given?
-
-        API::Keymap.define({ interfaces: [attributes[:name]] }, &block)
+        Keymap.keys(attributes[:name], &block)
       end
 
       # Specify a single line in a view.
