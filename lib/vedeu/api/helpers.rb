@@ -108,7 +108,7 @@ module Vedeu
       #
       # @raise [InvalidSyntax] When the value is not defined.
       # @return [Hash]
-      def foreground(value = '')
+      def foreground(value = '', &block)
         unless defined_value?(value)
           fail InvalidSyntax, '`foreground` requires a value.'
         end
