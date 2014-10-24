@@ -43,9 +43,10 @@ module Vedeu
     def initialize(attributes = {}, &block)
       @attributes = defaults.merge!(attributes)
 
-      @name  = @attributes[:name]
-      @group = @attributes[:group]
+      @cursor = @attributes[:cursor]
       @delay = @attributes[:delay]
+      @group = @attributes[:group]
+      @name  = @attributes[:name]
       @parent = @attributes[:parent]
 
       if block_given?
@@ -71,9 +72,10 @@ module Vedeu
     # @return [Cursor]
     def cursor
       @_cursor ||= Cursor.new({
-        name: name,
-        x:    area.x_position(offset.x),
-        y:    area.y_position(offset.y),
+        name:  name,
+        state: attributes[:cursor],
+        x:     geometry.x_position(offset.x),
+        y:     geometry.y_position(offset.y),
       })
     end
 
@@ -115,24 +117,20 @@ module Vedeu
 
     private
 
-    # @return [Area]
-    def area
-      @_area ||= Area.from_interface(self)
-    end
-
     # The default values for a new instance of Interface.
     #
     # @return [Hash]
     def defaults
       {
-        name:     '',
+        colour:   {},
+        cursor:   :hide,
+        delay:    0.0,
+        geometry: {},
         group:    '',
         lines:    [],
-        colour:   {},
-        style:    '',
-        geometry: {},
-        delay:    0.0,
+        name:     '',
         parent:   nil,
+        style:    '',
       }
     end
 
@@ -141,7 +139,7 @@ module Vedeu
     # @param block [Proc] The optional block provided to the method.
     # @return []
     def method_missing(method, *args, &block)
-      Vedeu.log("Interface#method_missing '#{method.to_s}' (args: #{args.inspect})")
+      Vedeu.log("Interface#method_missing '#{method}' (args: #{args.inspect})")
 
       @self_before_instance_eval.send(method, *args, &block) if @self_before_instance_eval
     end

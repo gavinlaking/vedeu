@@ -34,7 +34,7 @@ module Vedeu
     #
     # @return [Hash]
     def foreground_codes
-      codes
+      Esc.codes
     end
 
   end # Foreground

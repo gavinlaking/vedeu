@@ -1,7 +1,9 @@
 require 'test_helper'
 
 module Vedeu
+
   describe Terminal do
+
     let(:console) { IO.console }
 
     describe '.open' do
@@ -165,5 +167,7 @@ module Vedeu
         Terminal.console.must_equal(console)
       end
     end
-  end
-end
+
+  end # Terminal
+
+end # Vedeu

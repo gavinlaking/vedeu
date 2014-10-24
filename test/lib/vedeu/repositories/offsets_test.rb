@@ -1,32 +1,39 @@
 require 'test_helper'
 
 module Vedeu
+
   describe Offsets do
 
-    before { Offsets.reset }
-
-    describe '#add' do
-      it 'raises an exception if a :name attribute is not provided' do
-        proc { Offsets.add({ no_name: 'no_name' }) }
-          .must_raise(MissingRequired)
-      end
-
-      it 'returns a new instance of Offset once stored' do
-        Offsets.add({ name: 'praseodymium' }).must_be_instance_of(Offset)
-      end
+    before do
+      Interfaces.reset
+      Registrar.record({ name: 'thorium' })
+      Terminal.console.stubs(:print)
     end
 
-    describe '#move' do
-      before { Focus.stubs(:current).returns('praseodymium') }
+    context 'when no interfaces are defined' do
+      before { Interfaces.reset }
 
-      it 'returns an instance of Offset' do
-        Offsets.move(0, 1).must_be_instance_of(Offset)
-      end
+      it { proc { Offsets.down }.must_raise(NoInterfacesDefined) }
 
-      it 'alters the offset of the interface in focus' do
-        Offsets.move(0, 1).x.must_equal(1)
-      end
+      it { proc { Offsets.up }.must_raise(NoInterfacesDefined) }
+
+      it { proc { Offsets.right }.must_raise(NoInterfacesDefined) }
+
+      it { proc { Offsets.left }.must_raise(NoInterfacesDefined) }
     end
 
-  end
-end
+    context 'when there is at least one interface defined' do
+      before { Focus.stubs(:current).returns('thorium') }
+
+      it { Offsets.down.must_be_instance_of(Array) }
+
+      it { Offsets.up.must_be_instance_of(Array) }
+
+      it { Offsets.right.must_be_instance_of(Array) }
+
+      it { Offsets.left.must_be_instance_of(Array) }
+    end
+
+  end # Offsets
+
+end # Vedeu

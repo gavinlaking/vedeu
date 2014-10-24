@@ -1,6 +1,7 @@
 require 'test_helper'
 
 module Vedeu
+
   module API
 
     describe Keymap do
@@ -57,7 +58,8 @@ module Vedeu
         end
       end
 
-    end
+    end # Keymap
 
-  end
-end
+  end # API
+
+end # Vedeu

@@ -1,6 +1,7 @@
 require 'test_helper'
 
 module Vedeu
+
   module Configuration
 
     describe API do
@@ -242,7 +243,8 @@ module Vedeu
         end
       end
 
-    end
+    end # API
 
-  end
-end
+  end # Configuration
+
+end # Vedeu

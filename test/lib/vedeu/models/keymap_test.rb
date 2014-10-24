@@ -1,11 +1,12 @@
 require 'test_helper'
 
 module Vedeu
+
   describe Keymap do
 
     describe '.define' do
-      it '' do
-        skip
+      it 'returns an instance of Keymap' do
+        Keymap.define.must_be_instance_of(Keymap)
       end
     end
 
@@ -21,5 +22,6 @@ module Vedeu
       end
     end
 
-  end
-end
+  end # Keymap
+
+end # Vedeu

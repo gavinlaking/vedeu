@@ -1,7 +1,9 @@
 require 'test_helper'
 
 module Vedeu
+
   describe Render do
+
     before do
       Buffers.reset
       Cursors.reset
@@ -37,7 +39,7 @@ module Vedeu
           "\e[1;1Hthis is the first" \
           "\e[2;1Hthis is the second and it is lon" \
           "\e[3;1Hthis is the third, it is even lo" \
-          "\e[1;1H\e[?25h"
+          "\e[1;1H\e[?25l"
         )
       end
 
@@ -55,7 +57,7 @@ module Vedeu
           "\e[1;1H                                \e[1;1H" \
           "\e[2;1H                                \e[2;1H" \
           "\e[3;1H                                \e[3;1H" \
-          "\e[1;1H\e[?25h"
+          "\e[1;1H\e[?25l"
         )
       end
 
@@ -89,7 +91,7 @@ module Vedeu
           "\e[1;1Hthis is the first" \
           "\e[2;1H" \
           "\e[3;1Hthis is the third, it is even lo" \
-          "\e[1;1H\e[?25h"
+          "\e[1;1H\e[?25l"
         )
       end
 
@@ -139,7 +141,8 @@ module Vedeu
           )
         end
       end
-
     end
-  end
-end
+
+  end # Render
+
+end # Vedeu

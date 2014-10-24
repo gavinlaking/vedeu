@@ -1,13 +1,13 @@
 module Vedeu
 
-  # When the client application has defined interfaces to be used, the Registrar
-  # stores these interfaces into various repositories for later use.
+  # When the client application has defined an interface to be used, the
+  # Registrar stores the attributes into various repositories for later use.
   #
   # @api private
   class Registrar
 
     # @param attributes [Hash]
-    # @return [TrueClass|]
+    # @return [TrueClass|MissingRequired]
     def self.record(attributes = {})
       new(attributes).record
     end
@@ -22,17 +22,9 @@ module Vedeu
     #
     # @return [TrueClass|MissingRequired]
     def record
-      Vedeu::Buffers.add(attributes)
-
-      Vedeu::Offsets.add(attributes)
-
-      Vedeu::Interfaces.add(attributes)
-
-      Vedeu::Cursors.add(attributes)
-
-      Vedeu::Groups.add(attributes)
-
-      Vedeu::Focus.add(attributes)
+      [Buffers, Offsets, Interfaces, Cursors, Groups, Focus].map do |repository|
+        repository.add(attributes)
+      end
 
       true
     end

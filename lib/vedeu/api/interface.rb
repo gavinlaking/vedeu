@@ -23,11 +23,36 @@ module Vedeu
       #     centred false
       #     ...
       #
-      # @return [API::Interface]
+      # @return [Boolean]
       def centred(value = true)
         attributes[:geometry][:centred] = !!(value)
       end
       alias_method :centred!, :centred
+
+      # Set the cursor visibility on an interface or view.
+      #
+      # @param value [Boolean] Any value other than nil or false will evaluate
+      #   to true.
+      #
+      # @example
+      #   interface 'my_interface' do
+      #     cursor true
+      #     ...
+      #
+      #   view 'my_interface' do
+      #     cursor true
+      #     ...
+      #
+      # @return [Symbol]
+      def cursor(value = true)
+        attributes[:cursor] = if !!value
+          :show
+
+        else
+          :hide
+
+        end
+      end
 
       # To maintain performance interfaces can be delayed from refreshing too
       # often, the reduces artefacts particularly when resizing the terminal
@@ -35,12 +60,17 @@ module Vedeu
       #
       # @param value [Fixnum|Float]
       #
-      # @return [API::Interface]
+      # @example
+      #   interface 'my_interface' do
+      #     delay 0.5 # interface will not update more often than every 500ms.
+      #     ...
+      #
+      # @return [Fixnum|Float]
       def delay(value)
         attributes[:delay] = value
       end
 
-      # Define a group for an interface. Interfaces of the same group can be
+      # Specify a group for an interface. Interfaces of the same group can be
       # targetted together; for example you may want to refresh multiple
       # interfaces at once.
       #
@@ -51,12 +81,12 @@ module Vedeu
       #     group 'main_screen'
       #     ...
       #
-      # @return [API::Interface]
+      # @return [String]
       def group(value)
         attributes[:group] = value
       end
 
-      # Define the number of characters/rows/lines tall the interface will be.
+      # Specify the number of characters/rows/lines tall the interface will be.
       #
       # @param value [Fixnum]
       #
@@ -65,14 +95,19 @@ module Vedeu
       #     height 8
       #     ...
       #
-      # @return [API::Interface]
+      # @return [Fixnum]
       def height(value)
         Vedeu.log(out_of_bounds('height')) if y_out_of_bounds?(value)
 
         attributes[:geometry][:height] = value
       end
 
-      # Define a single line in a view.
+      # @see Vedeu::API#keys
+      def keys(&block)
+        Keymap.keys(attributes[:name], &block)
+      end
+
+      # Specify a single line in a view.
       #
       # @param value [String]
       # @param block [Proc]
@@ -85,11 +120,11 @@ module Vedeu
       #
       #   view 'my_interface' do
       #     line do
-      #       ... some line attributes ...
+      #       ... see {API::Line} and {API::Stream}
       #     end
       #   end
       #
-      # @return [API::Interface]
+      # @return [API::Line]
       def line(value = '', &block)
         if block_given?
           attributes[:lines] << API::Line
@@ -112,13 +147,21 @@ module Vedeu
       #     name 'my_interface'
       #     ...
       #
-      # @return [API::Interface]
+      # @return [String]
       def name(value)
         attributes[:name] = value
       end
 
       # Use the specified interface; useful for sharing attributes with other
-      # interfaces.
+      # interfaces. Any public method of #{Vedeu::Interface} is available.
+      #
+      # @example
+      #   interface 'my_interface' do
+      #     use('my_other_interface').width # use the width of another interface
+      #     ...
+      #
+      #   Vedeu.use('my_other_interface').width # can be used in your code to
+      #                                         # get this value
       #
       # @param value [String]
       # @see Vedeu::API#use
@@ -126,7 +169,7 @@ module Vedeu
         Vedeu.use(value)
       end
 
-      # Define the number of characters/columns wide the interface will be.
+      # Specify the number of characters/columns wide the interface will be.
       #
       # @param value [Fixnum]
       #
@@ -135,14 +178,14 @@ module Vedeu
       #     width 25
       #     ...
       #
-      # @return [API::Interface]
+      # @return [Fixnum]
       def width(value)
         Vedeu.log(out_of_bounds('width')) if x_out_of_bounds?(value)
 
         attributes[:geometry][:width] = value
       end
 
-      # Define the starting x position (column) of the interface.
+      # Specify the starting x position (column) of the interface.
       #
       # @param value [Fixnum]
       # @param block [Proc]
@@ -156,7 +199,7 @@ module Vedeu
       #                                    # `my_interface` changes position,
       #                                    # `other_interface` will too.
       #
-      # @return [API::Interface]
+      # @return [Fixnum]
       def x(value = 0, &block)
         return attributes[:geometry][:x] = block if block_given?
 
@@ -165,7 +208,7 @@ module Vedeu
         attributes[:geometry][:x] = value
       end
 
-      # Define the starting y position (row/line) of the interface.
+      # Specify the starting y position (row/line) of the interface.
       #
       # @param value [Fixnum]
       # @param block [Proc]
@@ -180,7 +223,7 @@ module Vedeu
       #     ...                              # `my_interface` changes position,
       #                                      # `other_interface` will too.
       #
-      # @return [API::Interface]
+      # @return [Fixnum]
       def y(value = 0, &block)
         return attributes[:geometry][:y] = block if block_given?
 

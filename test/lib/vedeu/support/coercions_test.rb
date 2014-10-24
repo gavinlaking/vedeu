@@ -1,6 +1,7 @@
 require 'test_helper'
 
 module Vedeu
+
   class TestClass
     include Coercions
 
@@ -10,9 +11,10 @@ module Vedeu
       @attributes = attributes
       @name       = attributes[:name]
     end
-  end
+  end # TestClass
 
   describe Coercions do
+
     describe '.coercer' do
       [nil, [], {}].each do |empty_value|
         it 'returns an empty collection when nil or empty' do
@@ -48,5 +50,7 @@ module Vedeu
         coerced.first.attributes.must_equal({ name: "test3" })
       end
     end
-  end
-end
+
+  end # Coercions
+
+end # Vedeu

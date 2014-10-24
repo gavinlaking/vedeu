@@ -12,6 +12,9 @@ module Vedeu
     # Stores the keymap attributes defined by the API.
     #
     # @param attributes [Hash]
+    # @option attributes :interfaces [Array] A list of the names of interfaces for which the
+    #   keys are active for.
+    # @option attributes :keys [Array] A collection of key/action pairs.
     # @return [TrueClass|KeyInUse|FalseClass]
     def add(attributes)
       return false unless defined_value?(attributes[:keys])
@@ -72,10 +75,15 @@ module Vedeu
       end
     end
 
-    # Return a collection of interface keys.
+    # Return a collection of interface keys. When the optional 'name' parameter
+    # is provided, then only the keys associated with that interface are
+    # returned.
     #
+    # @param interface [String]
     # @return [Hash]
-    def interface_keys
+    def interface_keys(interface = nil)
+      return find(interface).keys if interface
+
       storage.reject do |k, _|
         k == '_global_keymap_'
       end.map { |_, v| v.keys }.flatten.uniq
@@ -89,7 +97,7 @@ module Vedeu
       system_keys.include?(key)
     end
 
-    # Return a collection of system keys.
+    # Return the collection of system keys.
     #
     # @return [Array]
     def system_keys
@@ -121,10 +129,10 @@ module Vedeu
       focussed_interface = Vedeu::Focus.current
 
       if interface_key?(key, focussed_interface)
-        find(focussed_interface).fetch(key, noop).call
+        find(focussed_interface).fetch(key, noop).call(:noop_interface)
 
       elsif global_key?(key)
-        find('_global_keymap_').fetch(key, noop).call
+        find('_global_keymap_').fetch(key, noop).call(:noop_global)
 
       elsif system_key?(key)
         system_key(key)
@@ -134,13 +142,14 @@ module Vedeu
 
       end
     end
+    alias_method :keypress, :use
 
     private
 
     # Triggers the system event defined for this key.
     #
     # @param key [String|Symbol]
-    # @return []
+    # @return [] The result(s) of triggering the event.
     def system_key(key)
       action = Vedeu::Configuration.system_keys.key(key)
       event  = ['_', action, '_'].join.to_sym
@@ -153,34 +162,29 @@ module Vedeu
     # @param attributes [Hash]
     # @param interface [String]
     # @return []
-    def register(attributes, interface = '')
+    def register(attributes, interface = '_global_keymap_')
       attributes[:keys].map do |keymap|
         KeymapValidator.check(storage, keymap[:key], interface)
 
-        Vedeu.log("Registering key: '#{keymap[:key]}' with '#{namespace(interface)}'")
+        Vedeu.log("Registering key: '#{keymap[:key]}' with '#{interface}'")
 
-        storage[namespace(interface)].merge!({ keymap[:key] => keymap[:action] })
+        storage[interface].merge!({ keymap[:key] => keymap[:action] })
       end
     end
 
-    # Determine which interface to store the key with.
+    # Returns a noop proc which when called returns the argument or :noop.
     #
-    # @param interface [String]
-    # @return [String]
-    def namespace(interface = '')
-      return defined_value?(interface) ? interface : '_global_keymap_'
-    end
-
-    # Returns a noop proc which when called returns :noop.
-    #
+    # @param value [Symbol]
     # @return [Proc]
-    def noop
-      proc { :noop }
+    def noop(value = :noop)
+      proc { value }
     end
 
-    # @return [Array]
+    # @return [Hash]
     def in_memory
-      { '_global_keymap_' => {} }
+      {
+        '_global_keymap_' => {}
+      }
     end
 
   end # Keymaps

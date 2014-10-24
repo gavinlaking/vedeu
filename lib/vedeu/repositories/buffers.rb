@@ -35,6 +35,24 @@ module Vedeu
       attributes[:name]
     end
 
+    # Return the named back buffer.
+    #
+    # @param name [String]
+    # @raise [BufferNotFound] When the named buffer cannot be found.
+    # @return [Hash|Nil]
+    def back(name)
+      find(name)[:back_buffer]
+    end
+
+    # Return the named front buffer.
+    #
+    # @param name [String]
+    # @raise [BufferNotFound] When the named buffer cannot be found.
+    # @return [Hash|Nil]
+    def front(name)
+      find(name)[:front_buffer]
+    end
+
     # Returns the latest content for the named buffer. The latest content always
     # goes on to the back buffer. The content which was last output is on the
     # front buffer.
@@ -53,7 +71,7 @@ module Vedeu
     def latest(name)
       swap_buffers(name) if new_content?(name)
 
-      front_buffer(name)
+      front(name)
     end
 
     private
@@ -80,31 +98,7 @@ module Vedeu
     # @param name [String]
     # @return [Boolean]
     def new_content?(name)
-      defined_value?(back_buffer(name))
-    end
-
-    # Return a boolean indicating whether the named front buffer has content.
-    #
-    # @param name [String]
-    # @return [Boolean]
-    # def old_content?(name)
-    #   defined_value?(front_buffer(name))
-    # end
-
-    # Return the named back buffer.
-    #
-    # @param name [String]
-    # @return [Hash|Nil]
-    def back_buffer(name)
-      find(name)[:back_buffer]
-    end
-
-    # Return the named front buffer.
-    #
-    # @param name [String]
-    # @return [Hash|Nil]
-    def front_buffer(name)
-      find(name)[:front_buffer]
+      defined_value?(back(name))
     end
 
     # @return [Hash]
@@ -121,7 +115,7 @@ module Vedeu
     # @raise [BufferNotFound] When the entity cannot be found with this name.
     # @return [BufferNotFound]
     def not_found(name)
-      fail BufferNotFound, "Cannot find buffer with this name: #{name.to_s}."
+      fail BufferNotFound, "Cannot find buffer with this name: #{name}."
     end
 
   end # Buffers

@@ -1,8 +1,11 @@
 require 'test_helper'
 
 module Vedeu
+
   module API
+
     describe Line do
+
       describe '#stream' do
         it 'returns the value assigned' do
           line  = Line.new
@@ -72,6 +75,9 @@ module Vedeu
           attrs.first[:colour].must_equal({ background: '#0000ff' })
         end
       end
-    end
-  end
-end
+
+    end # Line
+
+  end # API
+
+end # Vedeu

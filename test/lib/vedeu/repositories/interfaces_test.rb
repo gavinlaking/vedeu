@@ -1,6 +1,7 @@
 require 'test_helper'
 
 module Vedeu
+
   describe Interfaces do
 
     describe '#add' do
@@ -45,5 +46,6 @@ module Vedeu
       end
     end
 
-  end
-end
+  end # Interfaces
+
+end # Vedeu

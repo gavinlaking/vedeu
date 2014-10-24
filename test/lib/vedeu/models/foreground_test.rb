@@ -1,7 +1,9 @@
 require 'test_helper'
 
 module Vedeu
+
   describe Foreground do
+
     describe '.escape_sequence' do
       describe 'when the colour is empty' do
         it 'returns an empty String' do
@@ -79,5 +81,7 @@ module Vedeu
         end
       end
     end
-  end
-end
+
+  end # Foreground
+
+end # Vedeu

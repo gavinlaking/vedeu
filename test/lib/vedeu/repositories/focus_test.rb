@@ -1,7 +1,9 @@
 require 'test_helper'
 
 module Vedeu
+
   describe Focus do
+
     before { Focus.reset }
     after  { Focus.reset }
 
@@ -113,5 +115,6 @@ module Vedeu
       end
     end
 
-  end
-end
+  end # Focus
+
+end # Vedeu

@@ -11,16 +11,26 @@ require 'vedeu'
 class VedeuCursorApp
   include Vedeu
 
-  event(:_initialize_) { trigger(:_refresh_) }
+  event(:_initialize_) { Vedeu.trigger(:_refresh_) }
 
   interface 'iron' do
+    cursor  true
     centred true
     colour  foreground: '#ff0000', background: '#000000'
     height  4
     width   15
+
+    # provide 'vim' direction keys
+    keys do
+      key('k') { Vedeu.trigger(:_cursor_up_)    }
+      key('l') { Vedeu.trigger(:_cursor_right_) }
+      key('j') { Vedeu.trigger(:_cursor_down_)  }
+      key('h') { Vedeu.trigger(:_cursor_left_)  }
+    end
   end
 
   interface 'gold' do
+    cursor false
     colour foreground: '#00ff00', background: '#001100'
     height 4
     width  15
@@ -29,13 +39,11 @@ class VedeuCursorApp
   end
 
   keys do
-    key(:up)    { trigger(:_cursor_up_)    }
-    key(:right) { trigger(:_cursor_right_) }
-    key(:down)  { trigger(:_cursor_down_)  }
-    key(:left)  { trigger(:_cursor_left_)  }
+    key(:up)    { Vedeu.trigger(:_cursor_up_)    }
+    key(:right) { Vedeu.trigger(:_cursor_right_) }
+    key(:down)  { Vedeu.trigger(:_cursor_down_)  }
+    key(:left)  { Vedeu.trigger(:_cursor_left_)  }
   end
-
-  focus('iron')
 
   render do
     view 'iron' do
@@ -87,7 +95,14 @@ class VedeuCursorApp
         end
       end
     end
+
+    view 'gold' do
+      cursor false
+      line 'Cursor: '
+    end
   end
+
+  focus('iron') # not working right?!
 
   def self.start
     Vedeu::Launcher.new(['--debug']).execute!

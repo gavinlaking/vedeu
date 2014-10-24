@@ -6,6 +6,10 @@ module Vedeu
   # @api public
   module API
 
+    extend Forwardable
+
+    def_delegators Keymap, :keys
+
     # Configure Vedeu using a simple configuration DSL.
     #
     # @param block [Proc]
@@ -119,44 +123,14 @@ module Vedeu
 
     # Simulate a keypress.
     #
+    # @todo Replace with: def_delegators Keymaps, :keypress
+    #
     # @example
     #   Vedeu.keypress('s')
     #
     # @see Vedeu::Keymaps.use
     def keypress(key)
       Vedeu::Keymaps.use(key)
-    end
-
-    # Define actions for keypresses for when specific interfaces are in focus.
-    # Unless an interface is specified, the key will be assumed to be global,
-    # meaning its action will happen regardless of the interface in focus.
-    #
-    # @api public
-    # @param name_or_names [String] The name or names of the interface(s) which
-    #   will handle these keys.
-    # @param block [Proc]
-    #
-    # @example
-    #   keys do                    # => will be global
-    #     key('s') { :something }
-    #     ...
-    #
-    #   keys 'my_interface' do     # => will only function when 'my_interface'
-    #     ...                      #    is in focus
-    #
-    #   keys('main', 'other') do   # => will function for both 'main' and
-    #     ...                      #    'other' interfaces
-    #
-    #   keys do
-    #     interface 'my_interface' # => will only function when 'my_interface'
-    #     ...                      #    is in focus
-    #
-    # @raise [InvalidSyntax] When the required block is not given.
-    # @return [API::Keymap]
-    def keys(*name_or_names, &block)
-      fail InvalidSyntax, '`keys` requires a block.' unless block_given?
-
-      API::Keymap.define({ interfaces: name_or_names }, &block)
     end
 
     # Write a message to the Vedeu log file located at `$HOME/.vedeu/vedeu.log`
@@ -213,6 +187,10 @@ module Vedeu
     #     views do
     #       view 'my_interface' do
     #         ...
+    #
+    #   Vedeu.render do
+    #     view 'my_interface' do
+    #       ...
     #
     # @raise [InvalidSyntax] When the required block is not given.
     # @return [Array] A collection of strings, each defining containing the
@@ -294,6 +272,11 @@ module Vedeu
 
     # Instruct Vedeu to treat contents of block as a single composition.
     #
+    # @note The views declared within this block are stored in their respective
+    #   interface back buffers until a refresh event occurs. When the refresh
+    #   event is triggered, the back buffers are swapped into the front buffers
+    #   and the content here will be rendered to {Terminal.output}.
+    #
     # @param block [Proc] Instructs Vedeu to treat all of the 'view' directives
     #   therein as one instruction. Useful for redrawing multiple interfaces at
     #   once.
@@ -314,7 +297,7 @@ module Vedeu
     #   ...
     #
     # @raise [InvalidSyntax] When the required block is not given.
-    # @return [Hash]
+    # @return [Array]
     def views(&block)
       fail InvalidSyntax, '`views` requires a block.' unless block_given?
 

@@ -7,10 +7,6 @@ module Vedeu
   # @api private
   class Render
 
-    extend Forwardable
-
-    def_delegators :interface, :viewport
-
     # Create a new instance of Render with the provided {Vedeu::Interface} and
     # then convert the interface into a single string of content and escape
     # sequences.
@@ -38,7 +34,7 @@ module Vedeu
 
       Vedeu.log("Rendering view: '#{interface.name}'")
 
-      viewport.each_with_index do |line, index|
+      interface.viewport.each_with_index do |line, index|
         out << interface.origin(index)
         out << line.join
       end

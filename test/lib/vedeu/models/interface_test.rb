@@ -1,6 +1,7 @@
 require 'test_helper'
 
 module Vedeu
+
   describe Interface do
     let(:interface) { Vedeu.use('#initialize') }
 
@@ -26,6 +27,7 @@ module Vedeu
       it 'returns the value' do
         interface.attributes.must_equal(
           {
+            cursor: :hide,
             name: '#initialize',
             group: 'my_group',
             lines: [],
@@ -103,5 +105,6 @@ module Vedeu
       end
     end
 
-  end
-end
+  end # Interface
+
+end # Vedeu

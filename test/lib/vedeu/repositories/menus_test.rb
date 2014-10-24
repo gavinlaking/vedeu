@@ -188,5 +188,6 @@ module Vedeu
       end
     end
 
-  end
-end
+  end # Menus
+
+end # Vedeu

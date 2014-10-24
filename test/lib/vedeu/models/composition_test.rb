@@ -3,6 +3,7 @@ require 'test_helper'
 require 'json'
 
 module Vedeu
+
   describe Composition do
 
     before { Buffers.reset }
@@ -40,5 +41,6 @@ module Vedeu
       end
     end
 
-  end
-end
+  end # Composition
+
+end # Vedeu

@@ -1,7 +1,9 @@
 require 'test_helper'
 
 module Vedeu
+
   describe Geometry do
+
     describe '#initialize' do
       it 'returns an instance of itself' do
         attributes = {}
@@ -273,5 +275,7 @@ module Vedeu
         )
       end
     end
-  end
-end
+
+  end # Geometry
+
+end # Vedeu

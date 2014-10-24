@@ -1,13 +1,15 @@
 require 'test_helper'
 
 module Vedeu
+
   describe Cursor do
+
     let(:attributes) {
       {
-        name:     'silver',
-        state:    :show,
-        x:        19,
-        y:        8
+        name:  'silver',
+        state: :show,
+        x:     19,
+        y:     8
       }
     }
 
@@ -96,16 +98,6 @@ module Vedeu
       end
     end
 
-    describe '#visible?' do
-      it 'returns false when the cursor is not visible' do
-        Cursor.new({ state: :hide }).visible?.must_equal(false)
-      end
-
-      it 'returns true when the cursor is visible' do
-        Cursor.new({ state: :show }).visible?.must_equal(true)
-      end
-    end
-
     describe '#show' do
       it 'sets the state attribute to :show' do
         cursor = Cursor.new(attributes)
@@ -127,10 +119,27 @@ module Vedeu
         cursor.attributes.must_equal(
           { name: 'silver', state: :hide, x: 19, y: 8 }
         )
+        cursor.to_s.must_equal("\e[8;19H\e[?25l")
       end
     end
 
     describe '#to_s' do
+      context 'when the cursor state is :show' do
+        it 'returns an escape sequence for showing the cursor (and position)' do
+          cursor = Cursor.new(attributes)
+          cursor.show
+          cursor.to_s.must_equal("\e[8;19H\e[?25h")
+        end
+      end
+
+      context 'when the cursor state is :hide' do
+         it 'returns an escape sequence for hiding the cursor (and position)' do
+          cursor = Cursor.new(attributes)
+          cursor.hide
+          cursor.to_s.must_equal("\e[8;19H\e[?25l")
+        end
+      end
+
       it 'returns the escape sequence to position and set the visibility of ' \
          'the cursor' do
         Cursor.new(attributes).to_s.must_equal("\e[8;19H\e[?25h")
@@ -143,5 +152,7 @@ module Vedeu
         end.must_equal("\e[8;19H\e[?25h\e[8;19H\e[?25h")
       end
     end
-  end
-end
+
+  end # Cursor
+
+end # Vedeu

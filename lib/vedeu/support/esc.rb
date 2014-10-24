@@ -8,6 +8,21 @@ module Vedeu
 
     extend self
 
+    # @return [Hash]
+    def codes
+      {
+        black:   30,
+        red:     31,
+        green:   32,
+        yellow:  33,
+        blue:    34,
+        magenta: 35,
+        cyan:    36,
+        white:   37,
+        default: 39,
+      }
+    end
+
     # Dynamically creates methods for each terminal named colour. When a block
     # is given, then the colour is reset to 'default' once the block is called.
     #
@@ -21,17 +36,7 @@ module Vedeu
     #   Esc.on_blue { 'some text' } # => "\e[44msome text\e[49m"
     #
     # @return [String]
-    {
-      black:   30,
-      red:     31,
-      green:   32,
-      yellow:  33,
-      blue:    34,
-      magenta: 35,
-      cyan:    36,
-      white:   37,
-      default: 39,
-    }.each do |key, code|
+    codes.each do |key, code|
       define_method(key) do |&blk|
         "\e[#{code}m" + (blk ? blk.call + "\e[39m" : '')
       end
@@ -119,28 +124,24 @@ module Vedeu
 
     # @return [String]
     def clear
-      [ string('fg_reset'),
-        string('bg_reset'),
+      [ colour_reset,
         "\e[2J" ].join
     end
 
     # @return [String]
     def clear_line
-      [ string('fg_reset'),
-        string('bg_reset'),
+      [ colour_reset,
         "\e[2K" ].join
     end
 
     # @return [String]
     def clear_last_line
-      [ set_position((Terminal.height - 1), 1),
-        string('clear_line') ].join
+      [set_position((Terminal.height - 1), 1), clear_line].join
     end
 
     # @return [String]
     def colour_reset
-      [ string('fg_reset'),
-        string('bg_reset') ].join
+      [fg_reset, bg_reset].join
     end
 
     # @return [String]
@@ -165,9 +166,7 @@ module Vedeu
 
     # @return [String]
     def normal
-      [ string('underline_off'),
-        string('bold_off'),
-        string('positive') ].join
+      [underline_off, bold_off, positive].join
     end
 
     # @return [String]
@@ -182,16 +181,12 @@ module Vedeu
 
     # @return [String]
     def screen_init
-      [ string('reset'),
-        string('clear'),
-        string('hide_cursor') ].join
+      [reset, clear, hide_cursor].join
     end
 
     # @return [String]
     def screen_exit
-      [ string('show_cursor'),
-        string('colour_reset'),
-        string('reset') ].join
+      [show_cursor, colour_reset, reset].join
     end
 
     # @return [String]

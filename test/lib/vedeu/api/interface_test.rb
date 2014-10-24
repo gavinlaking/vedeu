@@ -1,10 +1,12 @@
 require 'test_helper'
 
 module Vedeu
+
   module API
 
     describe Interface do
-      before { Vedeu::Buffers.reset }
+
+      before { Interfaces.reset }
 
       describe '#define' do
         interface = Interface.new({ name: 'widget' })
@@ -19,6 +21,7 @@ module Vedeu
           end.must_equal(
             {
               name: '',
+              cursor: :hide,
               group: '',
               lines: [],
               colour: {
@@ -39,6 +42,7 @@ module Vedeu
           end.must_equal(
             {
               name: '',
+              cursor: :hide,
               group: '',
               lines: [],
               colour: {},
@@ -63,6 +67,7 @@ module Vedeu
               y      use('my_interface').south
             end.must_equal({
               name: "my_other_interface",
+              cursor: :hide,
               group: '',
               lines: [],
               colour: {},
@@ -83,6 +88,7 @@ module Vedeu
           end.must_equal(
             {
               name: '',
+              cursor: :hide,
               group: '',
               lines: [],
               colour: {},
@@ -100,6 +106,7 @@ module Vedeu
           end.must_equal(
             {
               name: '',
+              cursor: :hide,
               group: "my_group",
               lines: [],
               colour: {},
@@ -119,6 +126,32 @@ module Vedeu
 
         it 'returns true' do
           API::Interface.new.centred.must_equal(true)
+        end
+      end
+
+      describe '#cursor' do
+        it 'returns :hide if the value is false or nil' do
+          API::Interface.new.cursor(false).must_equal(:hide)
+        end
+
+        it 'returns :hide if the value is false or nil' do
+          Vedeu.interface 'cobalt' do
+            cursor false
+          end
+
+          Vedeu.use('cobalt').attributes[:cursor].must_equal(:hide)
+        end
+
+        it 'returns :show if any other value' do
+          API::Interface.new.cursor.must_equal(:show)
+        end
+
+        it 'returns :show if any other value' do
+          Vedeu.interface 'cobalt' do
+            cursor true
+          end
+
+          Vedeu.use('cobalt').attributes[:cursor].must_equal(:show)
         end
       end
 
@@ -144,7 +177,37 @@ module Vedeu
 
       describe '#height' do
         it 'sets the attribute to the value' do
-          skip
+          Vedeu.interface 'iron' do
+            height 6
+          end
+
+          Vedeu.use('iron').attributes[:geometry][:height].must_equal(6)
+        end
+      end
+
+      describe '#keys' do
+        before do
+          Keymaps.reset
+
+          Vedeu.interface 'iron' do
+            keys do
+              key('k') { :k_pressed }
+            end
+          end
+        end
+
+        it 'defines a keymap for the interface' do
+          Keymaps.interface_key?('k').must_equal(true)
+        end
+
+        it 'defines a keymap for the interface' do
+          Keymaps.interface_keys('iron').must_equal(['k'])
+        end
+
+        context 'when the block is not given' do
+          it 'raises an exception' do
+            proc { Vedeu.interface('iron') { keys } }.must_raise(InvalidSyntax)
+          end
         end
       end
 
@@ -157,6 +220,7 @@ module Vedeu
           interface.attributes.must_equal(
             {
               name: 'carbon',
+              cursor: :hide,
               group: '',
               lines: [
                 {
@@ -185,6 +249,7 @@ module Vedeu
           interface.attributes.must_equal(
             {
               name: 'carbon',
+              cursor: :hide,
               group: '',
               lines: [
                 {
@@ -215,6 +280,7 @@ module Vedeu
           interface.attributes.must_equal(
             {
               name: "silicon",
+              cursor: :hide,
               group: '',
               lines: [
                 {
@@ -258,7 +324,11 @@ module Vedeu
 
       describe '#width' do
         it 'sets the attribute to the value' do
-          skip
+          Vedeu.interface 'iron' do
+            width 25
+          end
+
+          Vedeu.use('iron').attributes[:geometry][:width].must_equal(25)
         end
       end
 
@@ -268,7 +338,11 @@ module Vedeu
         end
 
         it 'sets the attribute to the value if a block is not given' do
-          skip
+          Vedeu.interface 'iron' do
+            x 7
+          end
+
+          Vedeu.use('iron').attributes[:geometry][:x].must_equal(7)
         end
       end
 
@@ -278,10 +352,16 @@ module Vedeu
         end
 
         it 'sets the attribute to the value if a block is not given' do
-          skip
+          Vedeu.interface 'iron' do
+            y 4
+          end
+
+          Vedeu.use('iron').attributes[:geometry][:y].must_equal(4)
         end
       end
 
-    end
-  end
-end
+    end # Interface
+
+  end # API
+
+end # Vedeu

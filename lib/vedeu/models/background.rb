@@ -39,7 +39,7 @@ module Vedeu
     #
     # @return [Hash]
     def background_codes
-      codes.inject({}){ |h, (k, v)| h.merge(k => v + 10) }
+      Esc.codes.inject({}) { |h, (k, v)| h.merge(k => v + 10) }
     end
 
   end # Background

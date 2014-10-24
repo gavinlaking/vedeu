@@ -68,7 +68,7 @@ module Vedeu
 
     # Returns the attributes of the latest buffer (view).
     #
-    # @return [Hash]
+    # @return [Hash|NilClass]
     def buffer
       @_buffer ||= Vedeu::Buffers.latest(name)
     end

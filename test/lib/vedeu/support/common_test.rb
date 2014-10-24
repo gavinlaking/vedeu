@@ -6,9 +6,10 @@ class VedeuCommonClass
   def defined_value_test(variable)
     defined_value?(variable)
   end
-end
+end # VedeuCommonClass
 
 module Vedeu
+
   describe Common do
 
     describe '#defined_value?' do
@@ -28,5 +29,6 @@ module Vedeu
       end
     end
 
-  end
-end
+  end # Common
+
+end # Vedeu

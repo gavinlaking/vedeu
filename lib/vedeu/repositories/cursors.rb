@@ -8,25 +8,13 @@ module Vedeu
 
     include Common
     include Repository
+    include Positional
     extend self
 
     # System events which when called will update the cursor visibility
     # accordingly for the interface in focus.
-    Vedeu.event(:_cursor_hide_)    { Cursors.hide }
-    Vedeu.event(:_cursor_show_)    { Cursors.show }
-
-    # Adds an interface to the cursors repository.
-    #
-    # @param attributes [Hash]
-    # @return [Hash]
-    def add(attributes)
-      validate_attributes!(attributes)
-
-      Vedeu.log("#{action(__callee__)} cursor: '#{attributes[:name]}'")
-
-      storage.store(attributes[:name], Cursor.new(attributes))
-    end
-    alias_method :update, :add
+    Vedeu.event(:_cursor_hide_) { Cursors.hide }
+    Vedeu.event(:_cursor_show_) { Cursors.show }
 
     # Make the cursor of this interface invisible.
     #

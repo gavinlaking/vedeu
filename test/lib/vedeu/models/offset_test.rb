@@ -1,6 +1,7 @@
 require 'test_helper'
 
 module Vedeu
+
   describe Offset do
     let(:offset)     { Offset.new(attributes) }
     let(:attributes) { {} }
@@ -14,8 +15,10 @@ module Vedeu
     end
 
     describe '#attributes' do
+      let(:attributes) { { name: 'roentgenium', y: 5, x: 12 } }
+
       it 'returns the attributes' do
-        skip
+        offset.attributes.must_equal(attributes)
       end
     end
 
@@ -117,5 +120,6 @@ module Vedeu
       end
     end
 
-  end
-end
+  end # Offset
+
+end # Vedeu

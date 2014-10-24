@@ -60,6 +60,7 @@ Note: Nesting indicates where an API method is allowed/supposed to be used.
 
 - interface
   - centred (or centred!)
+  - cursor
   - colour
   - delay
   - group
@@ -79,6 +80,7 @@ Note: Nesting indicates where an API method is allowed/supposed to be used.
     - view
   - view
     - colour
+    - cursor
     - line
       - background
       - colour

@@ -1,9 +1,11 @@
 require 'test_helper'
 
 module Vedeu
+
   module API
 
     describe Menu do
+
       describe '.define' do
         before { Menus.reset }
 
@@ -63,13 +65,15 @@ module Vedeu
           menu.attributes[:name].must_equal('elements')
         end
       end
-    end
 
-    describe '#method_missing' do
-      it 'returns nil' do
-        Menu.new.some_missing_method(:test).must_equal(nil)
+      describe '#method_missing' do
+        it 'returns nil' do
+          Menu.new.some_missing_method(:test).must_equal(nil)
+        end
       end
-    end
 
-  end
-end
+    end # Menu
+
+  end # API
+
+end # Vedeu

@@ -1,8 +1,11 @@
 require 'test_helper'
 
 module Vedeu
+
   module API
+
     describe Defined do
+
       describe '#events' do
         it 'returns all events currently registered' do
           Vedeu.event(:birthday) { :eat_too_much_cake }
@@ -68,6 +71,9 @@ module Vedeu
           Defined.menus.must_equal(['seaborgium'])
         end
       end
-    end
-  end
-end
+
+    end # Defined
+
+  end # API
+
+end # Vedeu
