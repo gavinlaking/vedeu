@@ -1,5 +1,7 @@
 module Vedeu
 
+  # Provides common methods for accessing the various repositories Vedeu uses.
+  #
   # @api private
   module Repository
 

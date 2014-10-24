@@ -1,5 +1,7 @@
 module Vedeu
 
+  # Repository helper module which reduces duplication in Offsets and Cursors.
+  #
   module Positional
 
     # Add or update the offset or cursor coordinates.
