@@ -24,9 +24,15 @@ module Vedeu
     def add(attributes)
       validate_attributes!(attributes)
 
-      return storage << attributes[:name] unless registered?(attributes[:name])
+      return storage if registered?(attributes[:name])
 
-      storage
+      if attributes[:focus]
+        storage.unshift(attributes[:name])
+
+      else
+        storage.push(attributes[:name])
+
+      end
     end
 
     # Focus an interface by name.

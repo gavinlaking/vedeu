@@ -70,6 +70,15 @@ module Vedeu
         attributes[:delay] = value
       end
 
+      # Specify this interface as being in focus when the application starts.
+      # If multiple interfaces are defined, and this is included in each, then
+      # the last defined will be the interface in focus.
+      #
+      # @return [String] The name of the interface in focus.
+      def focus!
+        attributes[:focus] = true
+      end
+
       # Specify a group for an interface. Interfaces of the same group can be
       # targetted together; for example you may want to refresh multiple
       # interfaces at once.

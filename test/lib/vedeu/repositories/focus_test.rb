@@ -8,7 +8,7 @@ module Vedeu
     after  { Focus.reset }
 
     describe '#add' do
-      it 'adds an interface to storage focussed' do
+      it 'adds an interface to storage' do
         Focus.add({ name: 'thallium' }).must_equal(['thallium'])
       end
 
@@ -16,6 +16,18 @@ module Vedeu
         Focus.add({ name: 'thallium' })
         Focus.add({ name: 'thallium' })
         Focus.registered.must_equal(['thallium'])
+      end
+
+      it 'adds the interface to storage focussed' do
+        Focus.add({ name: 'thallium' })
+        Focus.add({ name: 'lead', focus: true })
+        Focus.registered.must_equal(['lead', 'thallium'])
+      end
+
+      it 'adds the interface to storage unfocussed' do
+        Focus.add({ name: 'thallium' })
+        Focus.add({ name: 'lead' })
+        Focus.registered.must_equal(['thallium', 'lead'])
       end
 
       it 'raises an exception if the attributes does not have a :name key' do

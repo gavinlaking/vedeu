@@ -165,6 +165,33 @@ module Vedeu
         end
       end
 
+      describe '#focus!' do
+        it 'returns true' do
+          API::Interface.new({ name: 'curium' }).focus!.must_equal(true)
+        end
+
+        it 'sets the interface as current' do
+          Vedeu.interface('curium') { focus! }
+
+          Focus.current.must_equal('curium')
+        end
+
+        it 'multiple calls will set the last to being current' do
+          Vedeu.interface('curium')     { focus! }
+          Vedeu.interface('iodine')     {}
+          Vedeu.interface('dysprosium') { focus! }
+
+          Focus.current.must_equal('dysprosium')
+        end
+
+        it 'no calls will leave the first interface defined as being current' do
+          Vedeu.interface('curium')     {}
+          Vedeu.interface('dysprosium') {}
+
+          Focus.current.must_equal('curium')
+        end
+      end
+
       describe '#group' do
         it 'sets the group attribute' do
           Vedeu.interface 'iron' do
