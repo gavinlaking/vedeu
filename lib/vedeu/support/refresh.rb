@@ -22,7 +22,7 @@ module Vedeu
     #
     # @return [|NoInterfacesDefined]
     def by_focus
-      by_name(Vedeu::Focus.current)
+      by_name(Focus.current)
     end
 
     # Refresh an interface, or collection of interfaces belonging to a group.
@@ -31,7 +31,7 @@ module Vedeu
     # @return [Array|GroupNotFound] A collection of the names of interfaces
     #   refreshed, or an exception if the group was not found.
     def by_group(group_name)
-      Vedeu::Groups.find(group_name).each { |name| by_name(name) }
+      Groups.find(group_name).each { |name| by_name(name) }
     end
 
     # Refresh an interface by name.
@@ -39,7 +39,7 @@ module Vedeu
     # @param name [String] The name of the interface to be refreshed.
     # @return [Array|BufferNotFound]
     def by_name(name)
-      Vedeu::Compositor.render(name)
+      Compositor.render(name)
     end
 
     # Register a refresh event for an interface or group of interfaces by name.
@@ -61,7 +61,7 @@ module Vedeu
 
       return false if Events.registered?(event)
 
-      Events.add(event, { delay: delay }) { Vedeu::Refresh.send(type, name) }
+      Events.add(event, { delay: delay }) { Refresh.send(type, name) }
 
       true
     end
