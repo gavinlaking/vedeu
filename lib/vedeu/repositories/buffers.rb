@@ -6,7 +6,6 @@ module Vedeu
   # @api private
   module Buffers
 
-    include Common
     include Repository
     extend self
 

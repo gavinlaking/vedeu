@@ -5,7 +5,7 @@ module Vedeu
   # @api private
   module Refresh
 
-    include Vedeu::Common
+    include Common
     extend self
 
     # System event to refresh all registered interfaces.

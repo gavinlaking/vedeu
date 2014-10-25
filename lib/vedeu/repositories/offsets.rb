@@ -6,7 +6,6 @@ module Vedeu
   # @api private
   module Offsets
 
-    include Common
     include Repository
     include Positional
     extend self

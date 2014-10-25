@@ -6,7 +6,6 @@ module Vedeu
   # @api private
   module Cursors
 
-    include Common
     include Repository
     include Positional
     extend self

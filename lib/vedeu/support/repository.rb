@@ -5,6 +5,8 @@ module Vedeu
   # @api private
   module Repository
 
+    include Common
+
     # Return the whole repository.
     #
     # @return [Hash]

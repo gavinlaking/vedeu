@@ -5,7 +5,6 @@ module Vedeu
   # @api private
   module Keymaps
 
-    include Common
     include Repository
     extend self
 
