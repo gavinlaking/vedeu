@@ -70,6 +70,10 @@ module Vedeu
         Focus.add({ name: 'bismuth' })
         Focus.next_item.must_equal('lead')
       end
+
+      it 'returns false if storage is empty' do
+        Focus.next_item.must_equal(false)
+      end
     end
 
     describe '#prev_item' do
@@ -78,6 +82,10 @@ module Vedeu
         Focus.add({ name: 'lead' })
         Focus.add({ name: 'bismuth' })
         Focus.prev_item.must_equal('bismuth')
+      end
+
+      it 'returns false if storage is empty' do
+        Focus.prev_item.must_equal(false)
       end
     end
 
