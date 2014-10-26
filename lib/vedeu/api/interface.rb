@@ -29,7 +29,7 @@ module Vedeu
       end
       alias_method :centred!, :centred
 
-      # Set the cursor visibility on an interface or view.
+      # Set the cursor visibility on an interface.
       #
       # @param value [Boolean] Any value other than nil or false will evaluate
       #   to true.
