@@ -59,12 +59,17 @@ Note: Nesting indicates where an API method is allowed/supposed to be used.
 #### Interfaces
 
 - interface
+  - background
   - centred (or centred!)
   - cursor
   - colour
   - delay
+  - focus!
+  - foreground
   - group
   - height
+  - keys
+  - line
   - name
   - style
   - use

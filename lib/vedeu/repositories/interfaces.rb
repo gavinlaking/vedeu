@@ -5,7 +5,6 @@ module Vedeu
   # @api private
   module Interfaces
 
-    include Common
     include Repository
     extend self
 

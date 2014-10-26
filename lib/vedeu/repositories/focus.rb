@@ -7,7 +7,6 @@ module Vedeu
   # @api private
   module Focus
 
-    include Common
     include Repository
     extend self
 
@@ -25,9 +24,15 @@ module Vedeu
     def add(attributes)
       validate_attributes!(attributes)
 
-      return storage << attributes[:name] unless registered?(attributes[:name])
+      return storage if registered?(attributes[:name])
 
-      storage
+      if attributes[:focus]
+        storage.unshift(attributes[:name])
+
+      else
+        storage.push(attributes[:name])
+
+      end
     end
 
     # Focus an interface by name.
@@ -40,11 +45,7 @@ module Vedeu
 
       storage.rotate!(storage.index(name))
 
-      Vedeu.log("Interface in focus: '#{current}'")
-
-      refresh
-
-      current
+      update
     end
 
     # Return the interface currently focussed.
@@ -72,12 +73,9 @@ module Vedeu
     def next_item
       storage.rotate!
 
-      Vedeu.log("Interface in focus: '#{current}'")
-
-      refresh
-
-      current
+      update
     end
+    alias_method :next, :next_item
 
     # Put the previous interface relative to the current interface in focus.
     #
@@ -85,12 +83,10 @@ module Vedeu
     def prev_item
       storage.rotate!(-1)
 
-      Vedeu.log("Interface in focus: '#{current}'")
-
-      refresh
-
-      current
+      update
     end
+    alias_method :prev,     :prev_item
+    alias_method :previous, :prev_item
 
     # Refresh the interface in focus.
     #
@@ -116,6 +112,20 @@ module Vedeu
     end
 
     private
+
+    # Return the name of the interface in focus after triggering the refresh
+    # event for that interface. Returns false if the storage is empty.
+    #
+    # @return [String|FalseClass]
+    def update
+      return false if storage.empty?
+
+      Vedeu.log("Interface in focus: '#{current}'")
+
+      refresh
+
+      current
+    end
 
     # Returns an empty collection ready for the storing of interface names.
     #

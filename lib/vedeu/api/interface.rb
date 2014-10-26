@@ -29,7 +29,7 @@ module Vedeu
       end
       alias_method :centred!, :centred
 
-      # Set the cursor visibility on an interface or view.
+      # Set the cursor visibility on an interface.
       #
       # @param value [Boolean] Any value other than nil or false will evaluate
       #   to true.
@@ -68,6 +68,15 @@ module Vedeu
       # @return [Fixnum|Float]
       def delay(value)
         attributes[:delay] = value
+      end
+
+      # Specify this interface as being in focus when the application starts.
+      # If multiple interfaces are defined, and this is included in each, then
+      # the last defined will be the interface in focus.
+      #
+      # @return [String] The name of the interface in focus.
+      def focus!
+        attributes[:focus] = true
       end
 
       # Specify a group for an interface. Interfaces of the same group can be

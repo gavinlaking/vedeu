@@ -30,7 +30,7 @@ module Vedeu
     #
     # @return [String]
     def render
-      out = [ Clear.call(interface) ]
+      out = [clear]
 
       Vedeu.log("Rendering view: '#{interface.name}'")
 
@@ -38,13 +38,16 @@ module Vedeu
         out << interface.origin(index)
         out << line.join
       end
-      out << interface.cursor.to_s if interface.in_focus?
       out.join
     end
 
     private
 
     attr_reader :interface
+
+    def clear
+      Clear.call(interface)
+    end
 
   end # Render
 
