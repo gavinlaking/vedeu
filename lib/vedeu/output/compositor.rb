@@ -26,12 +26,19 @@ module Vedeu
     #
     # @return [Array]
     def render
-      Terminal.output(view)
+      Terminal.output(view, cursor)
     end
 
     private
 
     attr_reader :name
+
+    # Renders the cursor into the currently focussed interface. May be hidden.
+    #
+    # @return [String]
+    def cursor
+      Interface.new(Vedeu::Interfaces.find(Focus.current)).cursor.to_s
+    end
 
     # Renders the buffer unless empty, otherwise clears the area which the
     # interface occupies.
