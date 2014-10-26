@@ -23,7 +23,7 @@ module Vedeu
       @width   = @attributes[:width]
     end
 
-    # Returns the row/line position for the interface.
+    # Returns the row/line start position for the interface.
     #
     # @return [Fixnum]
     def y
@@ -36,7 +36,20 @@ module Vedeu
       end
     end
 
-    # Returns the column position for the interface.
+    # Returns the row/line end position for the interface.
+    #
+    # @return [Fixnum]
+    def yn
+      if attributes[:yn].is_a?(Proc)
+        attributes[:yn].call
+
+      else
+        attributes[:yn]
+
+      end
+    end
+
+    # Returns the column/character start position for the interface.
     #
     # @return [Fixnum]
     def x
@@ -45,6 +58,19 @@ module Vedeu
 
       else
         attributes[:x]
+
+      end
+    end
+
+    # Returns the column/character end position for the interface.
+    #
+    # @return [Fixnum]
+    def xn
+      if attributes[:xn].is_a?(Proc)
+        attributes[:xn].call
+
+      else
+        attributes[:xn]
 
       end
     end
@@ -481,6 +507,8 @@ module Vedeu
         width:   Terminal.width,
         height:  Terminal.height,
         centred: false,
+        yn:      nil,
+        xn:      nil,
       }
     end
 
