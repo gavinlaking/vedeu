@@ -15,7 +15,7 @@ module MiniTest
 
     class << self
       alias_method :context, :describe
-    end
+    end # Spec eigenclass
   end
 end
 

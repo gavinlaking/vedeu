@@ -137,7 +137,7 @@ module Vedeu
     #
     # @param message [String] The message you wish to emit to the log
     #   file, useful for debugging.
-    # @param force   [Boolean] When evaluates to true will
+    # @param force   [Boolean] When evaluates to true will attempt to
     #   write to the log file regardless of the Configuration setting.
     #
     # @example
