@@ -29,22 +29,29 @@ module Vedeu
       @interface = interface
     end
 
+    # Send the cleared area to the terminal.
+    #
+    # @return [Array]
+    def clear
+      Terminal.output(view)
+    end
+
+    private
+
+    attr_reader :interface
+
     # For each visible line of the interface, set the foreground and background
     # colours to those specified when the interface was defined, then starting
     # write space characters over the area which the interface occupies.
     #
     # @return [String]
-    def clear
+    def view
       Vedeu.log("Clearing view: '#{interface.name}'")
 
       rows.inject([colours]) do |line, index|
         line << interface.origin(index) { ' ' * interface.width }
       end.join
     end
-
-    private
-
-    attr_reader :interface
 
     # @return [String]
     def colours
