@@ -15,7 +15,7 @@ module Vedeu
       end
 
       context 'when the buffer is nil' do
-        it 'clears the defined area for the interface' do
+        it 'renders only the cursor (may be invisible)' do
           Vedeu.interface('xenon') do
             x      1
             y      1
@@ -26,10 +26,7 @@ module Vedeu
           Vedeu.focus('xenon')
 
           Compositor.render('xenon').must_equal([
-            "\e[1;1H     \e[1;1H" \
-            "\e[2;1H     \e[2;1H" \
-            "\e[3;1H     \e[3;1H",
-
+            '',
             "\e[1;1H\e[?25l"
           ])
         end
@@ -59,9 +56,6 @@ module Vedeu
           MyCompositorView.render
 
           Compositor.render('neon').must_equal([
-            "\e[1;1H     \e[1;1H" \
-            "\e[2;1H     \e[2;1H" \
-            "\e[3;1H     \e[3;1H" \
             "\e[1;1Hargon" \
             "\e[2;1Hboron" \
             "\e[3;1Hradon",
