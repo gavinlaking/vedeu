@@ -63,6 +63,13 @@ module Vedeu
     # @return [Hash]
     def new_interface
       combined = interface
+
+      if defined_value?(buffer[:geometry])
+        buffer[:geometry].each do |k, v|
+          combined[:geometry][k] = v if defined_value?(k)
+        end
+      end
+
       combined[:lines]  = buffer[:lines]
       combined[:colour] = buffer[:colour] if defined_value?(buffer[:colour])
       combined[:style]  = buffer[:style]  if defined_value?(buffer[:style])
