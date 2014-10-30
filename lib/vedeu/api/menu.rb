@@ -12,6 +12,8 @@ module Vedeu
 
       attr_reader :attributes
 
+      # Define a new Menu.
+      #
       # @param attributes [Hash]
       # @param block [Proc]
       # @return [API::Menu]

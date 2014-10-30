@@ -8,6 +8,9 @@ module Vedeu
 
     include Common
 
+    # Convenience method to initialize a new Compositor and call its {#render}
+    # method.
+    #
     # @param name [String] The name of the interface/buffer.
     # @return [Compositor]
     def self.render(name)

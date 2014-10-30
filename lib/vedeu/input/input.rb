@@ -16,6 +16,8 @@ module Vedeu
     # @return [Input]
     def initialize; end
 
+    # Triggers the keypress event with the key(s) pressed.
+    #
     # @return []
     def capture
       Vedeu.trigger(:_keypress_, keypress)
@@ -23,11 +25,16 @@ module Vedeu
 
     private
 
+    # Returns the input from the terminal.
+    #
     # @return [String]
     def input
       @_input ||= Terminal.input
     end
 
+    # Returns the translated (if possible) keypress(es) as either a String or a
+    # Symbol.
+    #
     # @return [String|Symbol]
     def keypress
       key = input
