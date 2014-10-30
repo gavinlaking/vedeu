@@ -25,8 +25,9 @@ module Vedeu
 
       else
         storage.store(attributes[:name], {
-          back_buffer:  attributes,
-          front_buffer: nil,
+          back_buffer:     attributes,
+          front_buffer:    nil,
+          previous_buffer: nil,
         })
 
       end
@@ -47,10 +48,11 @@ module Vedeu
     #
     # @param name [String]
     # @raise [BufferNotFound] When the named buffer cannot be found.
-    # @return [Hash|Nil]
+    # @return [Hash|NilClass]
     def front(name)
       find(name)[:front_buffer]
     end
+    alias_method :current, :front
 
     # Returns the latest content for the named buffer. The latest content always
     # goes on to the back buffer. The content which was last output is on the
@@ -73,6 +75,16 @@ module Vedeu
       front(name)
     end
 
+    # Returns the named, previous 'front' buffer; i.e. the buffer on the screen.
+    # This may be empty if nothing has previously been shown.
+    #
+    # @param name [String]
+    # @raise [BufferNotFound] When the named buffer cannot be found.
+    # @return [Hash|NilClass]
+    def previous(name)
+      find(name)[:previous_buffer]
+    end
+
     private
 
     # Swap the named back buffer into the front buffer of the same name. This is
@@ -80,6 +92,7 @@ module Vedeu
     # refresh). It also resets the offsets (i.e. scroll position)
     #
     # @param name [String]
+    # @raise [BufferNotFound] When the named buffer cannot be found.
     # @return [Hash]
     def swap_buffers(name)
       buffer = find(name)
@@ -87,8 +100,9 @@ module Vedeu
       Offsets.update({ name: name })
 
       storage.store(name, {
-        front_buffer: buffer[:back_buffer],
-        back_buffer:  nil,
+        front_buffer:    buffer[:back_buffer],
+        back_buffer:     nil,
+        previous_buffer: buffer[:front_buffer],
       })
     end
 
@@ -104,8 +118,9 @@ module Vedeu
     def in_memory
       Hash.new do |hash, interface_name|
         hash[interface_name] = {
-          front_buffer: nil,
-          back_buffer:  nil,
+          front_buffer:    nil,
+          back_buffer:     nil,
+          previous_buffer: nil,
         }
       end
     end
