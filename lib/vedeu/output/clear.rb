@@ -4,6 +4,12 @@ module Vedeu
   # class is called every time an interface is rendered to prepare the area
   # for new data.
   #
+  # @note We don't simply clear the entire terminal as this would remove the
+  #   content of other interfaces which are being displayed.
+  #
+  # @todo What if an interface 'moves' or changes shape due to the terminal
+  #   resizing?
+  #
   # @api private
   class Clear
 
