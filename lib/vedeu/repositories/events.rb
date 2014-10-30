@@ -3,6 +3,8 @@ module Vedeu
   # Provides a mechanism for storing and retrieving events by name. A single
   # name can contain many events. Also, an event can trigger other events.
   #
+  # @todo I really don't like the 'hashiness' of this. (GL 2014-10-29)
+  #
   # @api private
   module Events
 
@@ -10,13 +12,10 @@ module Vedeu
     extend self
 
     # @see Vedeu::API#event
-    def add(name, opts = {}, &block)
+    def add(name, options = {}, &block)
       Vedeu.log("Registering event: '#{name}'")
 
-      options = opts.merge!({ event_name: name })
-
-      storage[name][:events] << Event.new(block, options)
-      storage[name]
+      events(name) << Event.new(name, options, block)
     end
     alias_method :event, :add
 
@@ -25,26 +24,24 @@ module Vedeu
       return false unless registered?(name)
 
       storage.delete(name) { false }
-
-      true
     end
     alias_method :unevent, :remove
 
     # @see Vedeu::API#trigger
     def use(name, *args)
-      results = storage[name][:events].map { |event| event.trigger(*args) }
+      results = events(name).map { |event| event.trigger(*args) }
 
-      if results.one?
-        results.first
+      return results.first if results.one?
 
-      else
-        results
-
-      end
+      results
     end
     alias_method :trigger, :use
 
     private
+
+    def events(name)
+      storage[name][:events]
+    end
 
     # Returns an empty collection ready for the storing of events by name with
     # associated event instance.

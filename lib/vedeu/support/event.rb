@@ -7,12 +7,14 @@ module Vedeu
 
     # Returns a new instance of Event.
     #
-    # @param closure [Proc]
+    # @param name [Symbol]
     # @param options [Hash]
+    # @param closure [Proc] The code to be executed when the event is triggered.
     # @return [Event]
-    def initialize(closure, options = {})
-      @closure      = closure
+    def initialize(name, options = {}, closure)
+      @name         = name
       @options      = options
+      @closure      = closure
       @deadline     = 0
       @executed_at  = 0
       @now          = 0
@@ -32,7 +34,7 @@ module Vedeu
 
     private
 
-    attr_reader   :closure
+    attr_reader   :closure, :name
     attr_accessor :deadline, :executed_at, :now
 
     # Execute the code stored in the event closure.
@@ -66,7 +68,7 @@ module Vedeu
     def throttle_expired?
       return true if elapsed_time > delay
 
-      Vedeu.log("Throttling event '#{event_name}'")
+      Vedeu.log("Throttling event '#{name}'")
 
       false
     end
@@ -90,7 +92,7 @@ module Vedeu
     def debounce_expired?
       return true if set_executed > deadline
 
-      Vedeu.log("Debouncing event '#{event_name}'")
+      Vedeu.log("Debouncing event '#{name}'")
 
       false
     end
@@ -132,11 +134,6 @@ module Vedeu
       nil
     end
 
-    # @return [String]
-    def event_name
-      options[:event_name].to_s
-    end
-
     # @return [Fixnum|Float]
     def debounce
       options[:debounce] || defaults[:debounce]
@@ -157,7 +154,6 @@ module Vedeu
       {
         delay:      0.0,
         debounce:   0.0,
-        event_name: '',
       }
     end
 
