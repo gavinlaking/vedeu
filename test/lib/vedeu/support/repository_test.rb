@@ -6,8 +6,12 @@ module Vedeu
   class RepositoryTestClass
     include Repository
 
+    def add(hash)
+      @_storage = in_memory.merge!(hash)
+    end
+
     def in_memory
-      {}
+      @_storage ||= {}
     end
     alias_method :storage, :in_memory
 
@@ -53,6 +57,32 @@ module Vedeu
 
       it 'returns false when the entity is not registered' do
         RepositoryTestClass.new.registered?('terbium').must_equal(false)
+      end
+    end
+
+    describe '#remove' do
+      context 'when the entity is not registered' do
+        it 'returns false' do
+          test_repo = RepositoryTestClass.new
+          test_repo.add({
+            'gadolinium' => 'rare-earth metal',
+            'samarium'   => 'a hard silvery metal'
+          })
+          test_repo.remove('francium').must_equal(false)
+        end
+      end
+
+      context 'when the entity is registered' do
+        it 'returns the storage with the entity removed' do
+          test_repo = RepositoryTestClass.new
+          test_repo.add({
+            'gadolinium' => 'rare-earth metal',
+            'samarium'   => 'a hard silvery metal'
+          })
+          test_repo.remove('samarium').must_equal({
+            'gadolinium' => 'rare-earth metal',
+          })
+        end
       end
     end
 

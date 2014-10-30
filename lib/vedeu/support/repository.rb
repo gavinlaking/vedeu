@@ -50,6 +50,24 @@ module Vedeu
       storage.key?(name)
     end
 
+    # Returns the storage with the named entity removed, or false if the entity
+    # does not exist.
+    #
+    # @param name [String]
+    # @return [Hash|FalseClass]
+    def remove(name)
+      if registered?(name)
+        storage.delete(name)
+        storage
+
+      else
+        false
+
+      end
+    end
+    alias_method :destroy, :remove
+    alias_method :delete,  :remove
+
     # Reset the repository.
     #
     # @return [Hash]
