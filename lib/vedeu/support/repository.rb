@@ -42,6 +42,7 @@ module Vedeu
       return [] if storage.empty?
 
       return storage.keys if storage.is_a?(Hash)
+      return storage.to_a if storage.is_a?(Set)
 
       storage
     end
