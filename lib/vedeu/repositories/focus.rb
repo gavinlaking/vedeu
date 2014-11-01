@@ -95,22 +95,6 @@ module Vedeu
       Vedeu.trigger("_refresh_#{current}_".to_sym)
     end
 
-    # Returns all registered interfaces by name.
-    #
-    # @return [Array]
-    def registered
-      storage
-    end
-
-    # Returns a boolean indicating whether the named interface is registered.
-    #
-    # @return [Boolean]
-    def registered?(name)
-      return false if storage.empty?
-
-      storage.include?(name)
-    end
-
     private
 
     # Return the name of the interface in focus after triggering the refresh
