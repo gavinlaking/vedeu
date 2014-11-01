@@ -11,6 +11,9 @@ module Vedeu
     include Repository
     extend self
 
+    # @see Vedeu::API#unevent
+    alias_method :unevent, :remove
+
     # @see Vedeu::API#event
     def add(name, options = {}, &block)
       Vedeu.log("Registering event: '#{name}'")
@@ -18,14 +21,6 @@ module Vedeu
       events(name) << Event.new(name, options, block)
     end
     alias_method :event, :add
-
-    # @see Vedeu::API#unevent
-    def remove(name)
-      return false unless registered?(name)
-
-      storage.delete(name) { false }
-    end
-    alias_method :unevent, :remove
 
     # @see Vedeu::API#trigger
     def use(name, *args)

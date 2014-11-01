@@ -16,13 +16,25 @@ module Vedeu
         Events.add(:chlorine) { proc { |x| x } }
         Events.add(:argon)    { proc { |y| y } }
         Events.remove(:chlorine)
+
         Events.registered.wont_include(:chlorine)
       end
 
       it 'removes the event by name only if the name exists' do
         Events.add(:chlorine) { proc { |x| x } }
         Events.add(:argon)    { proc { |y| y } }
+
         Events.remove(:potassium).must_equal(false)
+      end
+
+      context 'alias method: #unevent' do
+        it 'removes the event by name' do
+          Events.add(:chlorine) { proc { |x| x } }
+          Events.add(:argon)    { proc { |y| y } }
+          Events.unevent(:chlorine)
+
+          Events.registered.wont_include(:chlorine)
+        end
       end
     end
 

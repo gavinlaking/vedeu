@@ -35,7 +35,31 @@ module Vedeu
     describe '#find' do
       it 'raises an exception when the entity cannot be found' do
         proc { RepositoryTestClass.new.find('terbium') }
-          .must_raise(EntityNotFound)
+        .must_raise(EntityNotFound)
+      end
+
+      context 'when the entity is found' do
+        it 'returns the stored entity' do
+          skip
+        end
+      end
+    end
+
+    describe '#find_or_create' do
+      context 'when the entity is found by name' do
+        it 'returns the storage entity' do
+          skip
+        end
+      end
+
+      context 'when the entity is not found by name' do
+        it 'stores the newly created entity' do
+          skip
+        end
+
+        it 'returns the newly created entity' do
+          skip
+        end
       end
     end
 
@@ -47,16 +71,31 @@ module Vedeu
       it 'returns a collection of the names of all the registered entities' do
         RepositoryTestClass.new.registered.must_equal([])
       end
+
+      it 'returns an empty collection when the storage is empty' do
+        RepositoryTestClass.new.registered.must_equal([])
+      end
     end
 
     describe '#registered?' do
-      it 'returns a FalseClass' do
-        RepositoryTestClass.new.registered?('terbium')
-          .must_be_instance_of(FalseClass)
+      it 'returns false when the storage is empty' do
+        RepositoryTestClass.new.registered?('terbium').must_equal(false)
       end
 
       it 'returns false when the entity is not registered' do
-        RepositoryTestClass.new.registered?('terbium').must_equal(false)
+        repo = RepositoryTestClass.new
+        repo.add({ name: 'samarium' })
+
+        repo.registered?('terbium').must_equal(false)
+      end
+
+      it 'returns true when the entity is registered' do
+        skip
+
+        repo = RepositoryTestClass.new
+        repo.add({ name: 'samarium' })
+
+        repo.registered?('samarium').must_equal(true)
       end
     end
 
@@ -80,6 +119,32 @@ module Vedeu
             'samarium'   => 'a hard silvery metal'
           })
           test_repo.remove('samarium').must_equal({
+            'gadolinium' => 'rare-earth metal',
+          })
+        end
+      end
+
+      context 'alias method: #destroy' do
+        it 'returns the storage with the entity removed' do
+          test_repo = RepositoryTestClass.new
+          test_repo.add({
+            'gadolinium' => 'rare-earth metal',
+            'samarium'   => 'a hard silvery metal'
+          })
+          test_repo.destroy('samarium').must_equal({
+            'gadolinium' => 'rare-earth metal',
+          })
+        end
+      end
+
+      context 'alias method; #delete' do
+        it 'returns the storage with the entity removed' do
+          test_repo = RepositoryTestClass.new
+          test_repo.add({
+            'gadolinium' => 'rare-earth metal',
+            'samarium'   => 'a hard silvery metal'
+          })
+          test_repo.delete('samarium').must_equal({
             'gadolinium' => 'rare-earth metal',
           })
         end
