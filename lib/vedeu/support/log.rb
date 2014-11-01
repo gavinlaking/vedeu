@@ -3,6 +3,8 @@ require 'time'
 
 module Vedeu
 
+  # Allows the creation of a lock-less log device.
+  #
   # @api private
   class MonoLogger < Logger
 
