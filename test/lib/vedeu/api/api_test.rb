@@ -127,8 +127,10 @@ module Vedeu
     end
 
     describe '.resize' do
-      it 'triggers the :_clear_, and :_refresh_ events' do
-        skip
+      before { Terminal.console.stubs(:print) }
+
+      it 'returns a TrueClass' do
+        Vedeu.resize.must_be_instance_of(TrueClass)
       end
     end
 
