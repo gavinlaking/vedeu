@@ -127,7 +127,10 @@ module Vedeu
     end
 
     describe '.resize' do
-      before { Terminal.console.stubs(:print) }
+      before do
+        Interfaces.reset
+        Terminal.console.stubs(:print)
+      end
 
       it 'returns a TrueClass' do
         Vedeu.resize.must_be_instance_of(TrueClass)
