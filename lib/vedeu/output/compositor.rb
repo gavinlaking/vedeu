@@ -7,6 +7,9 @@ module Vedeu
   class Compositor
 
     include Common
+    extend Forwardable
+
+    def_delegators Buffers, :latest?, :latest, :previous?, :previous
 
     # Convenience method to initialize a new Compositor and call its {#render}
     # method.
@@ -51,8 +54,8 @@ module Vedeu
     #
     # @return [String]
     def view
-      if latest?
-        Clear.call(Interface.new(previous)) if previous?
+      if latest?(name)
+        Clear.call(Interface.new(previous(name))) if previous?(name)
 
         Clear.call(Interface.new(new_interface))
 
@@ -72,46 +75,18 @@ module Vedeu
     # @return [Hash]
     def new_interface
       combined = interface
+      latest_attrs = latest(name)
 
-      if defined_value?(latest[:geometry])
-        latest[:geometry].each do |k, v|
+      if defined_value?(latest_attrs[:geometry])
+        latest_attrs[:geometry].each do |k, v|
           combined[:geometry][k] = v if defined_value?(k)
         end
       end
 
-      combined[:lines]  = latest[:lines]
-      combined[:colour] = latest[:colour] if defined_value?(latest[:colour])
-      combined[:style]  = latest[:style]  if defined_value?(latest[:style])
+      combined[:lines]  = latest_attrs[:lines]
+      combined[:colour] = latest_attrs[:colour] if defined_value?(latest_attrs[:colour])
+      combined[:style]  = latest_attrs[:style]  if defined_value?(latest_attrs[:style])
       combined
-    end
-
-    # Returns a boolean indicating whether there is new content available to be
-    # displayed.
-    #
-    # @return [Boolean]
-    def latest?
-      !!(latest)
-    end
-
-    # Returns the attributes of the latest buffer (view).
-    #
-    # @return [Hash|NilClass]
-    def latest
-      @_buffer ||= Buffers.latest(name)
-    end
-
-    # Returns a boolean indicating whether there is a previous buffer available.
-    #
-    # @return [Boolean]
-    def previous?
-      !!(previous)
-    end
-
-    # Returns the attributes of the previous buffer if available.
-    #
-    # @return [Hash|NilClass]
-    def previous
-      @_previous ||= Buffers.previous(name)
     end
 
     # Returns the attributes of the named interface (layout).

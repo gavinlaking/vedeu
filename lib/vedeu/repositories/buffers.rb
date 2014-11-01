@@ -79,6 +79,15 @@ module Vedeu
       front(name)
     end
 
+    # Returns a boolean indicating whether there is new content available to be
+    # displayed.
+    #
+    # @param name [String] The name of the buffer.
+    # @return [Boolean]
+    def latest?(name)
+      !!(latest(name))
+    end
+
     # Returns the named, previous 'front' buffer; i.e. the buffer on the screen.
     # This may be empty if nothing has previously been shown.
     #
@@ -87,6 +96,14 @@ module Vedeu
     # @return [Hash|NilClass]
     def previous(name)
       find(name)[:previous_buffer]
+    end
+
+    # Returns a boolean indicating whether there is a previous buffer available.
+    #
+    # @param name [String] The name of the buffer.
+    # @return [Boolean]
+    def previous?(name)
+      !!(previous(name))
     end
 
     private

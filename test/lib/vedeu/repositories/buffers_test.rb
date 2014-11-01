@@ -39,6 +39,18 @@ module Vedeu
         end
       end
 
+      context 'when the buffer exists but there is no content' do
+        # before do
+        #   Buffers.add({ name: 'actinium' })
+        #   Buffers.swap_buffers({ name: 'actinium' })
+        # end
+
+        it 'returns a NilClass' do
+          skip
+          # Buffers.back('actinium').must_be_instance_of(NilClass)
+        end
+      end
+
       context 'when the buffer exists' do
         before { Buffers.add({ name: 'mercury' }) }
 
@@ -66,6 +78,21 @@ module Vedeu
           Buffers.front('actinium').must_be_instance_of(NilClass)
         end
       end
+
+      context 'when the buffer exists' do
+        before do
+          Buffers.add({ name: 'mercury' })
+          Buffers.latest('mercury')
+        end
+
+        it 'returns a Hash' do
+          Buffers.front('mercury').must_be_instance_of(Hash)
+        end
+
+        it 'returns the stored attributes' do
+          Buffers.front('mercury').must_equal({ name: 'mercury' })
+        end
+      end
     end
 
     describe '.latest' do
@@ -80,6 +107,69 @@ module Vedeu
 
         it 'returns the stored attributes' do
           Buffers.latest('nobelium').must_equal({ name: 'nobelium' })
+        end
+      end
+
+      context 'when the buffer exists and there is no content' do
+        # before { Buffers.add({ name: 'nobelium' }) }
+
+        it 'returns the stored attributes' do
+          skip
+          # Buffers.latest('nobelium').must_equal({ name: 'nobelium' })
+        end
+      end
+    end
+
+    describe '#latest?' do
+      context 'when the buffer does not exist' do
+        it { skip }
+      end
+      context 'when the buffer exists' do
+        context 'when the buffer has no content' do
+          it { skip }
+        end
+        context 'when the buffer has content' do
+          it { skip }
+        end
+      end
+    end
+
+    describe '.previous' do
+      context 'when the buffer does not exist' do
+        it 'raises an exception' do
+          proc { Buffers.front('nobelium') }.must_raise(BufferNotFound)
+        end
+      end
+
+      context 'when the buffer exists and there is content' do
+        before { Buffers.add({ name: 'nobelium' }) }
+
+        it 'returns the stored attributes' do
+          skip
+          # Buffers.previous('nobelium').must_equal({ name: 'nobelium' })
+        end
+      end
+
+      context 'when the buffer exists and there is no content' do
+        # before { Buffers.add({ name: 'nobelium' }) }
+
+        it 'returns the stored attributes' do
+          skip
+          # Buffers.previous('nobelium').must_equal({ name: 'nobelium' })
+        end
+      end
+    end
+
+    describe '#previous?' do
+      context 'when the buffer does not exist' do
+        it { skip }
+      end
+      context 'when the buffer exists' do
+        context 'when the buffer has no content' do
+          it { skip }
+        end
+        context 'when the buffer has content' do
+          it { skip }
         end
       end
     end
