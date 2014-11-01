@@ -70,7 +70,11 @@ module Vedeu
     # @param name [String]
     # @return [Hash|NilClass]
     def latest(name)
-      swap_buffers(name) if new_content?(name)
+      if new_content?(name)
+        Vedeu.log("New content found for '#{name}'")
+
+        swap_buffers(name)
+      end
 
       front(name)
     end

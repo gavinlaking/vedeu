@@ -29,6 +29,9 @@ module Vedeu
     # Whenever this module {Vedeu::Coercions} is included in another class or
     # module, make its methods into class methods, so they may be called
     # directly.
+    #
+    # @param receiver [Class] The class in which this module is included.
+    # @return []
     def self.included(receiver)
       receiver.extend(self)
     end
