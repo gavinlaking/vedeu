@@ -151,7 +151,10 @@ Vedeu triggers this event when `:_exit_` is triggered. You can hook into this to
 
 ### `:_initialize_`
 
-Vedeu triggers this event when it is ready to enter the main loop. Client applications can listen for this event and perform some action(s), like render the first screen, interface or make a sound.
+Vedeu triggers this event when it is ready to enter the main loop. Client
+applications can listen for this event and perform some action(s), like render
+the first screen, interface or make a sound. When Vedeu triggers this event,
+the :_refresh_ event is also triggered automatically.
 
 #### How to define user events
 

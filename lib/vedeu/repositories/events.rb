@@ -47,12 +47,13 @@ module Vedeu
     end
 
     # System events needed by Vedeu to run.
-    add(:_clear_)                   { Terminal.clear_screen     }
-    add(:_exit_)                    { Vedeu::Application.stop   }
-    add(:_keypress_)                { |key| Vedeu.keypress(key) }
-    add(:_log_)                     { |msg| Vedeu.log(msg)      }
-    add(:_mode_switch_)             { fail ModeSwitch           }
-    add(:_resize_, { delay: 0.25 }) { Vedeu.resize              }
+    event(:_clear_)                   { Terminal.clear_screen     }
+    event(:_exit_)                    { Vedeu::Application.stop   }
+    event(:_initialize_)              { Vedeu.trigger(:_refresh_) }
+    event(:_keypress_)                { |key| Vedeu.keypress(key) }
+    event(:_log_)                     { |msg| Vedeu.log(msg)      }
+    event(:_mode_switch_)             { fail ModeSwitch           }
+    event(:_resize_, { delay: 0.25 }) { Vedeu.resize              }
 
   end # Events
 
