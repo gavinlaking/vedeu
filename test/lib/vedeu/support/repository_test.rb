@@ -100,6 +100,13 @@ module Vedeu
     end
 
     describe '#remove' do
+      context 'when the storage is empty' do
+        it 'returns false' do
+          test_repo = RepositoryTestClass.new
+          test_repo.remove('francium').must_equal(false)
+        end
+      end
+
       context 'when the entity is not registered' do
         it 'returns false' do
           test_repo = RepositoryTestClass.new

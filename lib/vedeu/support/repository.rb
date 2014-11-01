@@ -65,7 +65,6 @@ module Vedeu
       return false if storage.empty?
 
       if registered?(name)
-        # Vedeu.log("Removing entity (#{entity}): '#{name}'")
         storage.delete(name)
         storage unless storage.is_a?(Set)
 
