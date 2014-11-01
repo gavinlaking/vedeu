@@ -51,18 +51,18 @@ require 'vedeu/support/repository'
 require 'vedeu/support/position'
 require 'vedeu/support/esc'
 require 'vedeu/support/terminal'
-require 'vedeu/support/event'
-
-require 'vedeu/models/geometry'
-require 'vedeu/models/colour'
-require 'vedeu/models/style'
-require 'vedeu/models/interface'
-require 'vedeu/models/cursor'
 
 require 'vedeu/models/char'
+require 'vedeu/models/colour'
+require 'vedeu/models/cursor'
+require 'vedeu/models/event'
+require 'vedeu/models/geometry'
+require 'vedeu/models/interface'
 require 'vedeu/models/line'
-require 'vedeu/models/stream'
+require 'vedeu/models/menu'
 require 'vedeu/models/offset'
+require 'vedeu/models/stream'
+require 'vedeu/models/style'
 
 require 'vedeu/repositories/events'
 
@@ -96,7 +96,6 @@ require 'vedeu/output/view'
 require 'vedeu/output/viewport'
 
 require 'vedeu/support/grid'
-require 'vedeu/support/menu'
 
 require 'vedeu/input/input'
 

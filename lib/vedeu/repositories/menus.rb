@@ -35,18 +35,6 @@ module Vedeu
       storage.store(attributes[:name], attributes)
     end
 
-    # Removes the menu from the repository and associated events.
-    #
-    # @param name [String]
-    # @return [Boolean]
-    def remove(name)
-      return false unless registered?(name)
-
-      storage.delete(name) { false }
-
-      true
-    end
-
     # Access a menu by name.
     #
     # @param name [String]

@@ -8,16 +8,25 @@ module Vedeu
 
     private
 
+    # Returns an escape sequence for a named foreground colour.
+    #
+    # Valid names are: `:black`, `:red`, `:green`, `:yellow`, `:blue`,
+    # `:magenta`, `:cyan`, `:white` and `:default`.
+    #
     # @return [String]
     def named
       ["\e[", foreground_codes[colour], 'm'].join
     end
 
+    # Returns an escape sequence.
+    #
     # @return [String]
     def numbered
       ["\e[38;5;", css_to_numbered, 'm'].join
     end
 
+    # Returns an escape sequence.
+    #
     # @return [String]
     def rgb
       if Configuration.colour_mode == 16777216

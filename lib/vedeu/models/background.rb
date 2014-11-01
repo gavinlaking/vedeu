@@ -18,11 +18,15 @@ module Vedeu
       ["\e[", background_codes[colour], 'm'].join
     end
 
+    # Returns an escape sequence.
+    #
     # @return [String]
     def numbered
       ["\e[48;5;", css_to_numbered, 'm'].join
     end
 
+    # Returns an escape sequence.
+    #
     # @return [String]
     def rgb
       if Configuration.colour_mode == 16777216

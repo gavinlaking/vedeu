@@ -9,7 +9,7 @@ module Vedeu
 
     # Return the whole repository.
     #
-    # @return [Hash]
+    # @return [Array|Hash|Set]
     def all
       storage
     end
@@ -39,7 +39,11 @@ module Vedeu
     #
     # @return [Array]
     def registered
-      storage.keys
+      return [] if storage.empty?
+
+      return storage.keys if storage.is_a?(Hash)
+
+      storage
     end
 
     # Returns a boolean indicating whether the named entity is registered.
@@ -47,12 +51,34 @@ module Vedeu
     # @param name [String]
     # @return [Boolean]
     def registered?(name)
-      storage.key?(name)
+      return false if storage.empty?
+
+      storage.include?(name)
     end
+
+    # Returns the storage with the named entity removed, or false if the entity
+    # does not exist.
+    #
+    # @param name [String]
+    # @return [Hash|FalseClass]
+    def remove(name)
+      return false if storage.empty?
+
+      if registered?(name)
+        storage.delete(name)
+        storage unless storage.is_a?(Set)
+
+      else
+        false
+
+      end
+    end
+    alias_method :destroy, :remove
+    alias_method :delete,  :remove
 
     # Reset the repository.
     #
-    # @return [Hash]
+    # @return [Array|Hash|Set]
     def reset
       @_storage = in_memory
     end

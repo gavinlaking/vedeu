@@ -38,9 +38,8 @@ module Vedeu
     #   requested into either :raw or :cooked mode).
     # - The cursor visibility is then set dependent on this mode. In :raw mode,
     #   the cursor is hidden.
-    # - The `:_initialize_` event is triggered. Vedeu does not handle this
-    #   event; the client application may treat this event as Vedeu signalling
-    #   that it is now ready.
+    # - The `:_initialize_` event is triggered. The client application is
+    #   may treat this event as Vedeu signalling that it is now ready.
     # - We enter into the main sequence where the application will either run
     #   once or continuous, interactively or standalone.
     #
