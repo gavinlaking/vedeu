@@ -16,29 +16,37 @@ module Vedeu
     # Blanks the area defined by the interface.
     #
     # @param interface [Interface]
+    # @param options [Hash]
     # @return [String]
-    def self.call(interface)
-      new(interface).clear
+    # @see #initialize
+    def self.call(interface, options = {})
+      new(interface, options).clear
     end
 
     # Returns a new instance of Clear.
     #
     # @param interface [Interface]
+    # @param options [Hash]
+    # @option options :direct [Boolean] Send escape sequences to clear an area
+    #   directly to the Terminal.
     # @return [Clear]
-    def initialize(interface)
+    def initialize(interface, options = {})
       @interface = interface
+      @options   = defaults.merge!(options)
     end
 
     # Send the cleared area to the terminal.
     #
     # @return [Array]
     def clear
-      Terminal.output(view)
+      return Terminal.output(view) unless direct?
+
+      view
     end
 
     private
 
-    attr_reader :interface
+    attr_reader :interface, :options
 
     # For each visible line of the interface, set the foreground and background
     # colours to those specified when the interface was defined, then starting
@@ -61,6 +69,18 @@ module Vedeu
     # @return [Enumerator]
     def rows
       interface.height.times
+    end
+
+    # @return [Boolean]
+    def direct?
+      options[:direct]
+    end
+
+    # @return [Hash]
+    def defaults
+      {
+        direct: true
+      }
     end
 
   end # Clear
