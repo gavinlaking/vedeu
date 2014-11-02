@@ -52,6 +52,7 @@ require 'vedeu/support/position'
 require 'vedeu/support/esc'
 require 'vedeu/support/terminal'
 
+require 'vedeu/models/buffer'
 require 'vedeu/models/char'
 require 'vedeu/models/colour'
 require 'vedeu/models/cursor'

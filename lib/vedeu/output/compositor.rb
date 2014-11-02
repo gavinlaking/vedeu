@@ -7,9 +7,6 @@ module Vedeu
   class Compositor
 
     include Common
-    extend Forwardable
-
-    def_delegators Buffers, :latest?, :latest, :previous?, :previous
 
     # Convenience method to initialize a new Compositor and call its {#render}
     # method.
@@ -41,52 +38,60 @@ module Vedeu
 
     # Renders the cursor into the currently focussed interface. May be hidden.
     #
-    # @return [String]
+    # @return [String] The escape sequence to render the cursor as shown or
+    #   hidden.
     def cursor
       Interface.new(Interfaces.find(Focus.current)).cursor.to_s
     end
 
-    # Provides the latest view to the terminal.
+    # Return the content for this buffer.
     #
-    # When there is new content to be shown, we first clear the area occupied by
-    # the previous content, then clear the area for the new content, and then
-    # finally render the new content.
+    # - If we have new content (i.e. content on 'back') to be shown, we first
+    #   clear the area occupied by the previous content, then clear the area for
+    #   the new content, and then finally render the new content.
+    # - If there is no new content (i.e. 'back' is empty), check the 'front'
+    #   buffer and display that.
+    # - If there is no new content, and the front buffer is empty, display the
+    #   'previous' buffer.
+    # - If the 'previous' buffer is empty, return an empty hash.
     #
-    # @return [String]
+    # @return [Hash]
     def view
-      if latest?(name)
-        Clear.call(Interface.new(previous(name))) if previous?(name)
+      if buffer.back?
+        Clear.call(compose(buffer.previous)) if buffer.previous?
 
-        Clear.call(Interface.new(new_interface))
+        buffer.swap
 
-        Render.call(Interface.new(new_interface))
+        Render.call(compose(buffer.front))
+
+      elsif buffer.front?
+        Render.call(compose(buffer.front))
+
+      elsif buffer.previous?
+        Render.call(compose(buffer.previous))
 
       else
-        Clear.call(Interface.new(interface))
-
-        ''
+        Clear.call(compose({}), { direct: false })
 
       end
     end
 
-    # Combine the buffer attributes with the interface attributes. Buffer
-    # presentation attributes will override interface defaults.
+    # Return a new instance of Interface built by combining the buffer content
+    # attributes with the stored interface attributes.
     #
-    # @return [Hash]
-    def new_interface
-      combined = interface
-      latest_attrs = latest(name)
-
-      if defined_value?(latest_attrs[:geometry])
-        latest_attrs[:geometry].each do |k, v|
-          combined[:geometry][k] = v if defined_value?(k)
+    # @return [Interface]
+    def compose(content)
+      if defined_value?(content[:geometry])
+        content[:geometry].each do |k, v|
+          interface[:geometry][k] = v if defined_value?(k)
         end
       end
 
-      combined[:lines]  = latest_attrs[:lines]
-      combined[:colour] = latest_attrs[:colour] if defined_value?(latest_attrs[:colour])
-      combined[:style]  = latest_attrs[:style]  if defined_value?(latest_attrs[:style])
-      combined
+      interface[:lines]  = content[:lines]
+      interface[:colour] = content[:colour] if defined_value?(content[:colour])
+      interface[:style]  = content[:style]  if defined_value?(content[:style])
+
+      Interface.new(interface)
     end
 
     # Returns the attributes of the named interface (layout).
@@ -94,6 +99,13 @@ module Vedeu
     # @return [Hash]
     def interface
       @_interface ||= Interfaces.find(name)
+    end
+
+    # Return the named Buffer (view).
+    #
+    # @return [Buffer]
+    def buffer
+      @_buffer ||= Buffers.find(name)
     end
 
   end # Compositor
