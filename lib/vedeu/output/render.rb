@@ -30,9 +30,10 @@ module Vedeu
     #
     # @return [String]
     def render
+      out = [ Clear.call(interface, { direct: false }) ]
+
       Vedeu.log("Rendering view: '#{interface.name}'")
 
-      out = []
       interface.viewport.each_with_index do |line, index|
         out << interface.origin(index)
         out << line.join
