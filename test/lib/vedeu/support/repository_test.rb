@@ -6,14 +6,22 @@ module Vedeu
   class RepositoryTestClass
     include Repository
 
-    def add(hash)
-      @_storage = in_memory.merge!(hash)
+    def initialize(storage = {})
+      @storage = storage
     end
 
-    def in_memory
-      @_storage ||= {}
+    def add(entity)
+      if storage.is_a?(Hash)
+        @storage = in_memory.merge!(entity)
+
+      else
+        @storage << entity
+
+      end
     end
-    alias_method :storage, :in_memory
+
+    attr_accessor :storage
+    alias_method :in_memory, :storage
 
     def not_found(name)
       fail EntityNotFound
@@ -68,8 +76,31 @@ module Vedeu
         RepositoryTestClass.new.registered.must_be_instance_of(Array)
       end
 
-      it 'returns a collection of the names of all the registered entities' do
-        RepositoryTestClass.new.registered.must_equal([])
+      context 'when the storage is a Hash' do
+        it 'returns a collection of the names of all the registered entities' do
+          repo = RepositoryTestClass.new
+          repo.add({ 'rutherfordium' => { name: 'rutherfordium' } })
+
+          repo.registered.must_equal(['rutherfordium'])
+        end
+      end
+
+      context 'when the storage is an Array' do
+        it 'returns the registered entities' do
+          repo = RepositoryTestClass.new([])
+          repo.add('rutherfordium')
+
+          repo.registered.must_equal(['rutherfordium'])
+        end
+      end
+
+      context 'when the storage is a Set' do
+        it 'returns the registered entities' do
+          repo = RepositoryTestClass.new(Set.new)
+          repo.add('rutherfordium')
+
+          repo.registered.must_equal(['rutherfordium'])
+        end
       end
 
       it 'returns an empty collection when the storage is empty' do

@@ -109,32 +109,6 @@ module Vedeu
       end
     end
 
-    describe '#registered' do
-      it 'returns all the names of the interfaces which can be focussed' do
-        Focus.add({ name: 'thallium' })
-        Focus.add({ name: 'lead' })
-        Focus.add({ name: 'bismuth' })
-
-        Focus.registered.must_equal(['thallium', 'lead', 'bismuth'])
-      end
-    end
-
-    describe '.registered?' do
-      it 'returns false when there are no interfaces registered' do
-        Focus.registered?('thallium').must_equal(false)
-      end
-
-      it 'returns false when the named interface is not registered' do
-        Focus.add({ name: 'thallium' })
-        Focus.registered?('lead').must_equal(false)
-      end
-
-      it 'returns true if the named interface is registered' do
-        Focus.add({ name: 'lead' })
-        Focus.registered?('lead').must_equal(true)
-      end
-    end
-
   end # Focus
 
 end # Vedeu

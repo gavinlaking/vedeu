@@ -30,7 +30,7 @@ module Vedeu
     #
     # @return [String]
     def render
-      out = [clear]
+      out = [ Clear.call(interface, { direct: false }) ]
 
       Vedeu.log("Rendering view: '#{interface.name}'")
 
@@ -44,10 +44,6 @@ module Vedeu
     private
 
     attr_reader :interface
-
-    def clear
-      Clear.call(interface)
-    end
 
   end # Render
 

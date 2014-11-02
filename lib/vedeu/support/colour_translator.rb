@@ -80,11 +80,17 @@ module Vedeu
       fail NotImplemented, 'Subclasses implement this.'
     end
 
+    # Returns a boolean indicating whether the colour provided is a valid named
+    # colour.
+    #
     # @return [Boolean]
     def valid_name?
       Esc.codes.keys.include?(colour)
     end
 
+    # Returns a boolean indicating whether the colour provided is a terminal
+    # numbered colour.
+    #
     # @return [Boolean]
     def numbered?
       colour.is_a?(Fixnum) && valid_range?
@@ -97,11 +103,16 @@ module Vedeu
       fail NotImplemented, 'Subclasses implement this.'
     end
 
+    # Returns a boolean indicating whether the numbered colour is within the
+    # range of valid terminal numbered colours.
+    #
     # @return [Boolean]
     def valid_range?
       colour >= 0 && colour <= 255
     end
 
+    # Returns a boolean indicated whether the colour is an HTML/CSS colour.
+    #
     # @return [Boolean]
     def rgb?
       colour.is_a?(String) && valid_rgb?
@@ -114,11 +125,20 @@ module Vedeu
       fail NotImplemented, 'Subclasses implement this.'
     end
 
+    # Returns a boolean indicated whether the colour is a valid HTML/CSS colour.
+    #
     # @return [Boolean]
     def valid_rgb?
       !!(colour =~ /^#([A-Fa-f0-9]{6})$/)
     end
 
+    # Returns a collection of converted HTML/CSS octets as their decimal
+    # equivalents.
+    #
+    # @example
+    #   colour = '#aadd55'
+    #   css_to_rgb # => [170, 221, 85]
+    #
     # @return [Array]
     def css_to_rgb
       [
@@ -139,16 +159,25 @@ module Vedeu
       end
     end
 
+    # Takes the red component of {css_to_rgb} and converts to the correct value
+    # for setting the terminal red value.
+    #
     # @return [Fixnum]
     def red
       (css_to_rgb[0] / 51) * 36
     end
 
+    # Takes the green component of {css_to_rgb} and converts to the correct value
+    # for setting the terminal green value.
+    #
     # @return [Fixnum]
     def green
       (css_to_rgb[1] / 51) * 6
     end
 
+    # Takes the blue component of {css_to_rgb} and converts to the correct value
+    # for setting the terminal blue value.
+    #
     # @return [Fixnum]
     def blue
       (css_to_rgb[2] / 51) * 1

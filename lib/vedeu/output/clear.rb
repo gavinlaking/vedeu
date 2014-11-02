@@ -4,41 +4,62 @@ module Vedeu
   # class is called every time an interface is rendered to prepare the area
   # for new data.
   #
+  # @note We don't simply clear the entire terminal as this would remove the
+  #   content of other interfaces which are being displayed.
+  #
+  # @todo What if an interface 'moves' or changes shape due to the terminal
+  #   resizing?
+  #
   # @api private
   class Clear
 
     # Blanks the area defined by the interface.
     #
     # @param interface [Interface]
+    # @param options [Hash]
     # @return [String]
-    def self.call(interface)
-      new(interface).clear
+    # @see #initialize
+    def self.call(interface, options = {})
+      new(interface, options).clear
     end
 
     # Returns a new instance of Clear.
     #
     # @param interface [Interface]
+    # @param options [Hash]
+    # @option options :direct [Boolean] Send escape sequences to clear an area
+    #   directly to the Terminal.
     # @return [Clear]
-    def initialize(interface)
+    def initialize(interface, options = {})
       @interface = interface
+      @options   = defaults.merge!(options)
     end
+
+    # Send the cleared area to the terminal.
+    #
+    # @return [Array]
+    def clear
+      return Terminal.output(view) if direct?
+
+      view
+    end
+
+    private
+
+    attr_reader :interface, :options
 
     # For each visible line of the interface, set the foreground and background
     # colours to those specified when the interface was defined, then starting
     # write space characters over the area which the interface occupies.
     #
     # @return [String]
-    def clear
+    def view
       Vedeu.log("Clearing view: '#{interface.name}'")
 
       rows.inject([colours]) do |line, index|
         line << interface.origin(index) { ' ' * interface.width }
       end.join
     end
-
-    private
-
-    attr_reader :interface
 
     # @return [String]
     def colours
@@ -48,6 +69,18 @@ module Vedeu
     # @return [Enumerator]
     def rows
       interface.height.times
+    end
+
+    # @return [Boolean]
+    def direct?
+      options[:direct]
+    end
+
+    # @return [Hash]
+    def defaults
+      {
+        direct: true
+      }
     end
 
   end # Clear

@@ -32,56 +32,12 @@ module Vedeu
       end
     end
 
-    describe '.back' do
-      context 'when the buffer does not exist' do
-        it 'raises an exception' do
-          proc { Buffers.back('actinium') }.must_raise(BufferNotFound)
-        end
-      end
+    describe '.update' do
+      let(:buffer) { Buffer.new({ name: 'einsteinium' }) }
 
-      context 'when the buffer exists' do
-        before { Buffers.add({ name: 'mercury' }) }
+      subject { Buffers.update(buffer) }
 
-        it 'returns a Hash' do
-          Buffers.back('mercury').must_be_instance_of(Hash)
-        end
-
-        it 'returns the stored attributes' do
-          Buffers.back('mercury').must_equal({ name: 'mercury' })
-        end
-      end
-    end
-
-    describe '.front' do
-      context 'when the buffer does not exist' do
-        it 'raises an exception' do
-          proc { Buffers.front('mercury') }.must_raise(BufferNotFound)
-        end
-      end
-
-      context 'when the buffer exists but there is no content' do
-        before { Buffers.add({ name: 'actinium' }) }
-
-        it 'returns a NilClass' do
-          Buffers.front('actinium').must_be_instance_of(NilClass)
-        end
-      end
-    end
-
-    describe '.latest' do
-      context 'when the buffer does not exist' do
-        it 'raises an exception' do
-          proc { Buffers.front('nobelium') }.must_raise(BufferNotFound)
-        end
-      end
-
-      context 'when the buffer exists and there is content' do
-        before { Buffers.add({ name: 'nobelium' }) }
-
-        it 'returns the stored attributes' do
-          Buffers.latest('nobelium').must_equal({ name: 'nobelium' })
-        end
-      end
+      it { subject.must_equal(true) }
     end
 
   end # Buffers

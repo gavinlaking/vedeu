@@ -43,7 +43,7 @@ module Vedeu
     # - We enter into the main sequence where the application will either run
     #   once or continuous, interactively or standalone.
     #
-    # @return []
+    # @return [Array] The last output sent to the terminal.
     def start
       Terminal.open do
         Terminal.set_cursor_mode
