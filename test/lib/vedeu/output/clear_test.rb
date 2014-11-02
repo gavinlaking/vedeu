@@ -25,10 +25,10 @@ module Vedeu
             height: 2
           }
         })
-        Clear.call(interface).must_equal(
+        Clear.call(interface).must_equal([
           "\e[1;1H     \e[1;1H" \
           "\e[2;1H     \e[2;1H"
-        )
+        ])
       end
 
       it 'returns the escape sequence to clear the whole interface with specified colours' do
@@ -43,11 +43,11 @@ module Vedeu
             background: '#ffff00'
           }
         })
-        Clear.call(interface).must_equal(
+        Clear.call(interface).must_equal([
           "\e[38;2;0;255;0m\e[48;2;255;255;0m" \
           "\e[1;1H     \e[1;1H" \
           "\e[2;1H     \e[2;1H"
-        )
+        ])
       end
     end
 

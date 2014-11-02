@@ -39,7 +39,7 @@ module Vedeu
     #
     # @return [Array]
     def clear
-      return Terminal.output(view) unless direct?
+      return Terminal.output(view) if direct?
 
       view
     end
