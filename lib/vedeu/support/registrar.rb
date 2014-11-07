@@ -6,10 +6,21 @@ module Vedeu
   # @api private
   class Registrar
 
+    REPOSITORIES = [Buffers, Cursors, Focus, Groups, Interfaces, Offsets]
+
     # @param attributes [Hash]
     # @return [TrueClass|MissingRequired]
     def self.record(attributes = {})
       new(attributes).record
+    end
+
+    # Removes all entities from all repositories. Use with caution.
+    #
+    # @return [TrueClass]
+    def self.reset!
+      REPOSITORIES.each { |repository| repository.reset }
+
+      true
     end
 
     # @param attributes [Hash]
@@ -22,9 +33,7 @@ module Vedeu
     #
     # @return [TrueClass|MissingRequired]
     def record
-      [Buffers, Offsets, Interfaces, Cursors, Groups, Focus].map do |repository|
-        repository.add(attributes)
-      end
+      REPOSITORIES.each { |repository| repository.add(attributes) }
 
       true
     end
