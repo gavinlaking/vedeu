@@ -6,6 +6,8 @@ module Vedeu
   # @api private
   class Input
 
+    # Instantiate Input and capture keypress(es).
+    #
     # @return [String|Symbol]
     def self.capture
       new.capture
