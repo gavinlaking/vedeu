@@ -84,9 +84,9 @@ class VedeuFocusApp
     end
   end
 
-  def self.start
-    Vedeu::Launcher.new(['--debug']).execute!
+  def self.start(argv = ARGV)
+    Vedeu::Launcher.new(argv).execute!
   end
 end
 
-VedeuFocusApp.start
+VedeuFocusApp.start(ARGV)

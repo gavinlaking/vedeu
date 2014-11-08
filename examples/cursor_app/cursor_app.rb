@@ -104,9 +104,14 @@ class VedeuCursorApp
 
   focus('iron') # not working right?!
 
-  def self.start
-    Vedeu::Launcher.new(['--debug']).execute!
+  Vedeu.configure do
+    debug!
+    log '/tmp/vedeu_cursor_app.log'
+  end
+
+  def self.start(argv = ARGV)
+    Vedeu::Launcher.new(argv).execute!
   end
 end
 
-VedeuCursorApp.start
+VedeuCursorApp.start(ARGV)

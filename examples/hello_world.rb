@@ -13,7 +13,7 @@ class HelloWorldApp
 
   configure do
     debug!
-    log '/tmp/hello_world_vedeu.log'
+    log '/tmp/vedeu_hello_world.log'
   end
 
   event(:_initialize_) { Vedeu.trigger(:_refresh_) }
@@ -34,9 +34,9 @@ class HelloWorldApp
     end
   end
 
-  def self.start
-    Vedeu::Launcher.execute!(ARGV)
+  def self.start(argv = ARGV)
+    Vedeu::Launcher.new(argv).execute!
   end
 end
 
-HelloWorldApp.start
+HelloWorldApp.start(ARGV)
