@@ -49,7 +49,11 @@ module Vedeu
 
       context 'when the entity is found' do
         it 'returns the stored entity' do
-          skip
+          entity = { key: :value }
+          repo   = RepositoryTestClass.new
+          repo.add({ 'terbium' => entity })
+
+          repo.find('terbium').must_equal(entity)
         end
       end
     end
