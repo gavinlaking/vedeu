@@ -52,9 +52,14 @@ class VedeuLinesApp
 
   focus 'ruthenium'
 
-  def self.start
-    Vedeu::Launcher.new(['--debug']).execute!
+  Vedeu.configure do
+    debug!
+    log '/tmp/vedeu_lines_app.log'
+  end
+
+  def self.start(argv = ARGV)
+    Vedeu::Launcher.new(argv).execute!
   end
 end
 
-VedeuLinesApp.start
+VedeuLinesApp.start(ARGV)

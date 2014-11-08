@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-lib_dir = File.dirname(__FILE__) + '/../../lib'
+lib_dir = File.dirname(__FILE__) + '/../lib'
 $LOAD_PATH.unshift(lib_dir) unless $LOAD_PATH.include?(lib_dir)
 
 -> { its -> { a } }
@@ -15,7 +15,7 @@ require 'vedeu'
 #
 # The focus order is: copper, aluminium, boron, dubnium, status.
 #
-# Use 'space' to change focus.
+# Use 'space' to change focus, 'q' to exit.
 class VedeuFocusApp
   include Vedeu
 
@@ -84,9 +84,9 @@ class VedeuFocusApp
     end
   end
 
-  def self.start
-    Vedeu::Launcher.new(['--debug']).execute!
+  def self.start(argv = ARGV)
+    Vedeu::Launcher.new(argv).execute!
   end
 end
 
-VedeuFocusApp.start
+VedeuFocusApp.start(ARGV)

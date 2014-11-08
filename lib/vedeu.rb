@@ -26,6 +26,8 @@ require 'io/console'
 require 'logger'
 require 'optparse'
 require 'set'
+require 'singleton'
+require 'time'
 
 require 'vedeu/support/exceptions'
 require 'vedeu/support/common'

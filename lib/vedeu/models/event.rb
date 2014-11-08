@@ -134,21 +134,29 @@ module Vedeu
       nil
     end
 
+    # Return the amount of time in seconds to debounce the event by.
+    #
     # @return [Fixnum|Float]
     def debounce
       options[:debounce] || defaults[:debounce]
     end
 
+    # Return the amount of time in seconds to throttle the event by.
+    #
     # @return [Fixnum|Float]
     def delay
       options[:delay] || defaults[:delay]
     end
 
+    # Combines the options provided at instantiation with the default values.
+    #
     # @return [Hash]
     def options
       defaults.merge!(@options)
     end
 
+    # The default values for a new instance of Event.
+    #
     # @return [Hash]
     def defaults
       {

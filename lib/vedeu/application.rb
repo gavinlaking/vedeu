@@ -28,7 +28,7 @@ module Vedeu
         fail StopIteration
       end
 
-    end # self
+    end # Application eigenclass
 
     # @return [Application]
     def initialize; end

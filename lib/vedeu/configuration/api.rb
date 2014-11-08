@@ -1,6 +1,6 @@
 module Vedeu
 
-  module Configuration
+  module Config
 
     # The Configuration::API class parses client application configuration into
     # options used by Vedeu to affect certain behaviours.
@@ -36,8 +36,10 @@ module Vedeu
       #
       # @return [Hash]
       def configuration
-        if system_key_options.any?
-          options.merge({ system_keys: system_key_options })
+        if system_keys.any?
+          options.merge({
+            system_keys: Configuration.default_system_keys.merge(system_keys)
+          })
 
         else
           options
@@ -206,6 +208,19 @@ module Vedeu
         options[:colour_mode] = value
       end
 
+      # Sets the location of the log file.
+      #
+      # @example
+      #   Vedeu.configure do
+      #     log '/var/log/vedeu.log'
+      #     ...
+      #
+      # @param filename [String]
+      # @return [String]
+      def log(filename = '')
+        options[:log] = filename
+      end
+
       # Sets the key used to exit the client application. The default is `q`.
       #
       # @example
@@ -224,7 +239,7 @@ module Vedeu
 
         Vedeu.log("Configuration::API exit_key: #{value}")
 
-        system_key_options[:exit] = value
+        system_keys[:exit] = value
       end
 
       # Sets the key used to switch focus to the next defined interface. The
@@ -246,7 +261,7 @@ module Vedeu
 
         Vedeu.log("Configuration::API focus_next: #{value}")
 
-        system_key_options[:focus_next] = value
+        system_keys[:focus_next] = value
       end
 
       # Sets the key used to switch focus to the previous interface. The default
@@ -268,7 +283,7 @@ module Vedeu
 
         Vedeu.log("Configuration::API focus_prev: #{value}")
 
-        system_key_options[:focus_prev] = value
+        system_keys[:focus_prev] = value
       end
 
       # Sets the key used to switch between raw and cooked mode in Vedeu. The
@@ -290,7 +305,7 @@ module Vedeu
 
         Vedeu.log("Configuration::API mode_switch: #{value}")
 
-        system_key_options[:mode_switch] = value
+        system_keys[:mode_switch] = value
       end
 
       private
@@ -307,8 +322,8 @@ module Vedeu
       # hash if none were redefined.
       #
       # @return [Hash]
-      def system_key_options
-        @_system_key_options ||= Configuration.default_system_keys
+      def system_keys
+        @_system_keys ||= {}
       end
 
       # Checks that the value provided to {#colour_mode} is valid.

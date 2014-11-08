@@ -361,7 +361,11 @@ module Vedeu
 
       describe '#x' do
         it 'sets the attribute to the block if a block is given' do
-          skip
+          Vedeu.interface 'iron' do
+            x { 9 }
+          end
+
+          Vedeu.use('iron').geometry.x.must_equal(9)
         end
 
         it 'sets the attribute to the value if a block is not given' do
@@ -375,7 +379,11 @@ module Vedeu
 
       describe '#y' do
         it 'sets the attribute to the block if a block is given' do
-          skip
+          Vedeu.interface 'iron' do
+            y { 6 }
+          end
+
+          Vedeu.use('iron').geometry.y.must_equal(6)
         end
 
         it 'sets the attribute to the value if a block is not given' do

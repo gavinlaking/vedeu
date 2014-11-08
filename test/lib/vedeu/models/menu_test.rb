@@ -8,7 +8,9 @@ module Vedeu
     let(:menu)       { Menu.new(collection) }
 
     describe '#initialize' do
-      it { skip }
+      it 'returns a new instance of Menu' do
+        menu.must_be_instance_of(Menu)
+      end
     end
 
     describe '#current' do

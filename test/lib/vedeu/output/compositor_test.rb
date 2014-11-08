@@ -35,9 +35,8 @@ module Vedeu
           let(:back) {
             { name: 'indium', lines: [{ streams: [{ text: 'back' }] }] }
           }
-          before do
-            Buffers.add(back)
-          end
+
+          before { Buffers.add(back) }
 
           it 'returns the current/front content' do
             subject.must_equal([
@@ -57,7 +56,9 @@ module Vedeu
         end
 
         context 'when there is no new content' do
-          let(:front) { { name: 'indium', lines: [{ streams: [{ text: 'front' }] }] } }
+          let(:front) {
+            { name: 'indium', lines: [{ streams: [{ text: 'front' }] }] }
+          }
 
           before do
             Buffers.add(front)
@@ -73,12 +74,14 @@ module Vedeu
         end
 
         context 'when there is no new or current content' do
-          let(:previous) { { name: 'indium', lines: [{ streams: [{ text: 'previous' }] }] } }
+          let(:previous) {
+            { name: 'indium', lines: [{ streams: [{ text: 'previous' }] }] }
+          }
 
           before do
-            Buffers.add(previous)
-            Buffers.find('indium').swap
-            Buffers.find('indium').swap
+            Buffers.add(previous)       # puts 'previous' on to 'back'
+            Buffers.find('indium').swap # puts 'back' ('previous') on to 'front'
+            Buffers.find('indium').swap # puts 'front' ('previous') on to 'previous'
           end
 
           it 'returns the previous content' do
@@ -92,9 +95,7 @@ module Vedeu
         context 'when there is no new, current or previous content' do
           let(:clear) { { name: 'indium', lines: [] } }
 
-          before do
-            Buffers.add(clear)
-          end
+          before { Buffers.add(clear) }
 
           it 'returns the escape sequences to clear the interface' do
             subject.must_equal(["\e[1;1H          \e[1;1H", "\e[1;1H\e[?25l"])

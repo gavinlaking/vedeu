@@ -41,6 +41,8 @@ module Vedeu
 
     private
 
+    # The default values for a new instance of Colour.
+    #
     # @return [Hash]
     def defaults
       {

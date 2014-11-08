@@ -4,11 +4,11 @@ module Vedeu
 
   describe Refresh do
 
+    before { Interfaces.reset }
+
     describe '.all' do
       it 'returns an empty collection when there are no registered ' \
          'interfaces' do
-        Interfaces.reset
-
         Refresh.all.must_equal([])
       end
     end
