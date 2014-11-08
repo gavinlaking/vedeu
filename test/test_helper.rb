@@ -23,9 +23,17 @@ require 'mocha/setup'
 
 GC.disable
 
-ENV['VEDEU_TESTMODE'] = '1'
-
 require 'vedeu'
+
+def test_configuration
+  Vedeu.configure do
+    debug!
+    colour_mode 16777216
+    log         '/tmp/vedeu_test_helper.log'
+  end
+end
+
+test_configuration
 
 # commented out by default (makes tests slower)
 # require 'minitest/reporters'

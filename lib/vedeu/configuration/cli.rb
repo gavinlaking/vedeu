@@ -1,6 +1,6 @@
 module Vedeu
 
-  module Configuration
+  module Config
 
     # The Configuration::CLI class parses command-line arguments using
     # OptionParser into options used by Vedeu to affect certain behaviours.
@@ -15,7 +15,7 @@ module Vedeu
       # @param args [Array]
       # @return [Hash]
       def self.configure(args = [])
-        new(args = []).configuration
+        new(args).configuration
       end
 
       # Returns an instance of Configuration::CLI.
@@ -23,7 +23,8 @@ module Vedeu
       # @param args [Array]
       # @return [Configuration::CLI]
       def initialize(args = [])
-        @args = args
+        @args    = args
+        @options = {}
       end
 
       # Returns the configuration options set up by parsing the command-line
@@ -107,9 +108,12 @@ module Vedeu
 
           opts.on('-l', '--log [FILENAME]', String,
                   'Specify the path for the log file.') do |filename|
+            Vedeu.log("Configuration::CLI log: #{filename}")
+
             options[:log] = filename
           end
         end
+
         parser.parse!(args)
 
         options
@@ -117,15 +121,7 @@ module Vedeu
 
       private
 
-      attr_reader :args
-
-      # Returns the options set via command-line arguments parsed by
-      # OptionParser, or an empty Hash if none were set or parsed.
-      #
-      # @return [Hash]
-      def options
-        @_options ||= {}
-      end
+      attr_reader :args, :options
 
     end # CLI
 

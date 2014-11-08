@@ -2,136 +2,159 @@ module Vedeu
 
   # Allows the customisation of Vedeu's behaviour through the configuration API
   # or command-line arguments.
-
+  #
   # Provides access to Vedeu's configuration, which was set with sensible
   # defaults (influenced by environment variables), overridden by client
   # application settings (via the configuration API), or any command-line
   # arguments provided.
   #
   # @api private
-  module Configuration
+  class Configuration
 
-    extend self
+    include Singleton
 
-    # Configure Vedeu with sensible defaults. If the client application sets
-    # options, override the defaults with those, and if command-line arguments
-    # are provided at application invocation, override any options with the
-    # arguments provided.
+    class << self
+
+      # Configure Vedeu with sensible defaults. If the client application sets
+      # options, override the defaults with those, and if command-line arguments
+      # are provided at application invocation, override any options with the
+      # arguments provided.
+      #
+      # @param args [Array]
+      # @param block [Proc]
+      # @return [Hash]
+      def configure(args = [], &block)
+        instance.configure(args, &block)
+      end
+
+      # Returns the chosen colour mode.
+      #
+      # @return [Fixnum]
+      def colour_mode
+        instance.options[:colour_mode]
+      end
+
+      # Returns whether debugging is enabled or disabled. Default is false;
+      # meaning nothing apart from warnings are written to the log file.
+      #
+      # @return [Boolean]
+      def debug?
+        instance.options[:debug]
+      end
+      alias_method :debug, :debug?
+
+      # Returns whether the application is interactive (required user input) or
+      # standalone (will run until terminates of natural causes.) Default is
+      # true; meaning the application will require user input.
+      #
+      # @return [Boolean]
+      def interactive?
+        instance.options[:interactive]
+      end
+      alias_method :interactive, :interactive?
+
+      # Returns the path to the log file.
+      #
+      # @return [String]
+      def log
+        instance.options[:log]
+      end
+
+      # Returns whether the application will run through its main loop once or
+      # not. Default is false; meaning the application will loop forever or
+      # until terminated by the user.
+      #
+      # @return [Boolean]
+      def once?
+        instance.options[:once]
+      end
+      alias_method :once, :once?
+
+      # Returns
+      #
+      # @return [Hash]
+      def system_keys
+        instance.options[:system_keys]
+      end
+
+      # Returns the terminal mode for the application. Default is `:raw`.
+      #
+      # @return [Symbol]
+      def terminal_mode
+        instance.options[:terminal_mode]
+      end
+
+      # Returns whether tracing is enabled or disabled. Tracing is very noisy in
+      # the log file (logging method calls and events trigger). Default is
+      # false; meaning tracing is disabled.
+      #
+      # @return [Boolean]
+      def trace?
+        instance.options[:trace]
+      end
+      alias_method :trace, :trace?
+
+      # Vedeu's default system keys. Use {#system_keys}.
+      #
+      # @return [Hash]
+      def default_system_keys
+        {
+          exit:        'q',
+          focus_next:  :tab,
+          focus_prev:  :shift_tab,
+          mode_switch: :escape,
+        }
+      end
+
+      def options=(value)
+        instance.options = value
+      end
+
+      # Reset the configuration to the default values.
+      #
+      # @return [Hash]
+      def reset!
+        # Vedeu::Log.logger.debug('Resetting configuration.')
+
+        instance.reset!
+      end
+
+    end # Configuration eigenclass
+
+    attr_reader :options
+
+    # Create a new singleton instance of Configuration.
+    #
+    # @return [Configuration]
+    def initialize
+      @options = defaults
+    end
+
+    # Set up default configuration and then allow the client application to
+    # modify it via the configuration API. After this, process any command line
+    # arguments as potential configuration and apply that.
     #
     # @param args [Array]
     # @param block [Proc]
     # @return [Hash]
     def configure(args = [], &block)
-      options.merge!(API.configure(&block)) if block_given?
+      @options.merge!(Config::API.configure(&block)) if block_given?
 
-      options.merge!(CLI.configure(args)) if args.any?
+      @options.merge!(Config::CLI.configure(args)) if args.any?
 
-      options
+      @options
     end
 
-    # Returns the chosen colour mode.
-    #
-    # @return [Fixnum]
-    def colour_mode
-      options[:colour_mode]
-    end
-
-    # Returns whether debugging is enabled or disabled. Default is false;
-    # meaning nothing apart from warnings are written to the log file.
-    #
-    # @return [Boolean]
-    def debug?
-      options[:debug]
-    end
-    alias_method :debug, :debug?
-
-    # Returns whether the application is interactive (required user input) or
-    # standalone (will run until terminates of natural causes.) Default is true;
-    # meaning the application will require user input.
-    #
-    # @return [Boolean]
-    def interactive?
-      options[:interactive]
-    end
-    alias_method :interactive, :interactive?
-
-    # Returns the path to the log file.
-    #
-    # @return [String]
-    def log
-      options[:log]
-    end
-
-    # Returns whether a custom log filepath has been provided.
-    #
-    # @return [Boolean]
-    def log?
-      return true unless options[:log].nil? || options[:log].empty?
-
-      false
-    end
-
-    # Returns whether the application will run through its main loop once or
-    # not. Default is false; meaning the application will loop forever or until
-    # terminated by the user.
-    #
-    # @return [Boolean]
-    def once?
-      options[:once]
-    end
-    alias_method :once, :once?
-
-    # Returns
+    # Reset the configuration to the default values.
     #
     # @return [Hash]
-    def system_keys
-      options[:system_keys]
-    end
+    def reset!
+      # Vedeu::Log.logger.debug('Resetting configuration.')
 
-    # Returns the terminal mode for the application. Default is `:raw`.
-    #
-    # @return [Symbol]
-    def terminal_mode
-      options[:terminal_mode]
-    end
-
-    # Returns whether tracing is enabled or disabled. Tracing is very noisy in
-    # the log file (logging method calls and events trigger). Default is false;
-    # meaning tracing is disabled.
-    #
-    # @return [Boolean]
-    def trace?
-      options[:trace]
-    end
-    alias_method :trace, :trace?
-
-    # Resets all options to Vedeu defaults.
-    #
-    # @return [Hash]
-    def reset
       @options = defaults
     end
 
-    # Vedeu's default system keys. Use {#system_keys}.
-    #
-    # @return [Hash]
-    def default_system_keys
-      {
-        exit:        'q',
-        focus_next:  :tab,
-        focus_prev:  :shift_tab,
-        mode_switch: :escape,
-      }
-    end
-
     private
-
-    # Returns all the options current configured.
-    #
-    # @return [Hash]
-    def options
-      @options ||= defaults
-    end
 
     # The Vedeu default options, which of course are influenced by environment
     # variables also.
@@ -140,63 +163,27 @@ module Vedeu
     def defaults
       {
         colour_mode:   detect_colour_mode,
-        debug:         detect_debug_mode,
+        debug:         false,
         interactive:   true,
-        log:           '',
+        log:           '/tmp/vedeu.log',
         once:          false,
-        system_keys:   default_system_keys,
+        system_keys:   Configuration.default_system_keys,
         terminal_mode: :raw,
-        trace:         detect_trace_mode,
+        trace:         false,
       }
     end
 
-    # Attempt to determine the terminal colour mode via environment variables,
-    # or be optimistic and settle for 256 colours.
+    # Attempt to determine the terminal colour mode via $TERM environment
+    # variable, or be optimistic and settle for 256 colours.
     #
     # @return [Fixnum]
     def detect_colour_mode
-      return 16777216 if ENV['VEDEU_TESTMODE']
-
-      if ENV['VEDEU_TERM']
-        case ENV['VEDEU_TERM']
-        when /-256color$/  then 256
-        when /-truecolor$/ then 16777216
-        else 256
-        end
-
-      elsif ENV['TERM']
-        case ENV['TERM']
-        when /-256color$/, 'xterm' then 256
-        when /-color$/, 'rxvt'     then 16
-        else 256
-        end
-
-      else
-        256
-
+      case ENV['TERM']
+      when /-truecolor$/         then 16777216
+      when /-256color$/, 'xterm' then 256
+      when /-color$/, 'rxvt'     then 16
+      else 256
       end
-    end
-
-    # Determine the debug mode via an environment variable.
-    #
-    # @return [Boolean]
-    def detect_debug_mode
-      return false if ENV['VEDEU_TESTMODE']
-
-      return true if ENV['VEDEU_DEBUG']
-
-      false
-    end
-
-    # Determine the trace mode via an environment variable.
-    #
-    # @return [Boolean]
-    def detect_trace_mode
-      return false if ENV['VEDEU_TESTMODE']
-
-      return true if ENV['VEDEU_TRACE']
-
-      false
     end
 
   end # Configuration

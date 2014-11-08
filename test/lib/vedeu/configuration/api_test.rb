@@ -2,12 +2,12 @@ require 'test_helper'
 
 module Vedeu
 
-  module Configuration
+  module Config
 
     describe API do
 
-      before { Configuration.reset }
-      after  { Configuration.reset }
+      before { Configuration.reset! }
+      after  { test_configuration }
 
       describe '.configure' do
         it 'returns the default configuration' do
@@ -15,10 +15,10 @@ module Vedeu
             # ...
           end.must_equal(
             {
-              colour_mode: 16777216,
+              colour_mode: 256,
               debug: false,
               interactive: true,
-              log: '',
+              log: '/tmp/vedeu.log',
               once: false,
               system_keys: {
                 exit:        'q',
@@ -211,8 +211,8 @@ module Vedeu
 
       describe '#log' do
         it 'sets the options to the desired value' do
-          configuration = Vedeu.configure { log('/tmp/vedeu.log') }
-          configuration[:log].must_equal('/tmp/vedeu.log')
+          configuration = Vedeu.configure { log('/tmp/vedeu_api_test.log') }
+          configuration[:log].must_equal('/tmp/vedeu_api_test.log')
         end
       end
 
@@ -253,6 +253,6 @@ module Vedeu
 
     end # API
 
-  end # Configuration
+  end # Config
 
 end # Vedeu
