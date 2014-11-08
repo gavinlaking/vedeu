@@ -9,7 +9,9 @@ module Vedeu
     end
 
     describe '#initialize' do
-      it { skip }
+      it 'returns an instance of Trace' do
+        Trace.new.must_be_instance_of(Trace)
+      end
     end
 
     describe '#trace' do

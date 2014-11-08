@@ -42,8 +42,9 @@ module Vedeu
 
     describe '#find' do
       it 'raises an exception when the entity cannot be found' do
-        proc { RepositoryTestClass.new.find('terbium') }
-        .must_raise(EntityNotFound)
+        proc {
+          RepositoryTestClass.new.find('terbium')
+        }.must_raise(EntityNotFound)
       end
 
       context 'when the entity is found' do

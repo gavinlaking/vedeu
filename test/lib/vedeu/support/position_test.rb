@@ -5,7 +5,9 @@ module Vedeu
   describe Position do
 
     describe '#initialize' do
-      it { skip }
+      it 'returns an instance of Position' do
+        Position.new.must_be_instance_of(Position)
+      end
     end
 
     describe '#to_s' do
