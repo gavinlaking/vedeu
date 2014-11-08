@@ -1,7 +1,7 @@
 require 'simplecov'
 require 'pry'
 require 'minitest/autorun'
-require 'minitest/pride'
+require 'minitest/pride' unless ENV['NO_COLOR']
 require 'minitest/hell'
 
 SimpleCov.start do
