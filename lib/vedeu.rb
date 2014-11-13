@@ -94,6 +94,7 @@ require 'vedeu/api/stream'
 
 require 'vedeu/repositories/models/buffer'
 require 'vedeu/repositories/models/cursor'
+require 'vedeu/models/group'
 require 'vedeu/repositories/models/menu'
 require 'vedeu/repositories/models/offset'
 
