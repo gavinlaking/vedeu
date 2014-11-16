@@ -28,28 +28,6 @@ module Vedeu
       @previous = @attributes[:previous]
     end
 
-    # Return a boolean indicating content on the front buffer.
-    #
-    # @return [Boolean]
-    def front?
-      front.any? { |k, v| k == :lines && v.any? }
-    end
-    alias_method :current?, :front?
-
-    # Return a boolean indicating content on the back buffer.
-    #
-    # @return [Boolean]
-    def back?
-      back.any? { |k, v| k == :lines && v.any? }
-    end
-
-    # Return a boolean indicating content on the previous buffer.
-    #
-    # @return [Boolean]
-    def previous?
-      previous.any? { |k, v| k == :lines && v.any? }
-    end
-
     # Add the content to the back buffer, then update the repository. Returns
     # boolean indicating that the repository was updated.
     #
@@ -66,7 +44,7 @@ module Vedeu
     #
     # @return [Boolean]
     def swap
-      return false unless back?
+      return false unless content_for?(:back)
 
       # Offsets.update({ name: name })
 
@@ -75,6 +53,14 @@ module Vedeu
       self.back     = {}
 
       update!
+    end
+
+    # Return a boolean indicating content on the buffer type.
+    #
+    # @param buffer [Symbol] One of; :back, :current/:front or :previous.
+    # @return [Boolean] Whether the buffer targetted has content.
+    def content_for?(buffer)
+      public_send(buffer).any? { |k, v| k == :lines && v.any? }
     end
 
     private

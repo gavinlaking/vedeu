@@ -57,17 +57,17 @@ module Vedeu
     #
     # @return [Hash]
     def view
-      if buffer.back?
-        Clear.call(compose(buffer.previous)) if buffer.previous?
+      if buffer.content_for?(:back)
+        Clear.call(compose(buffer.previous)) if buffer.content_for?(:previous)
 
         buffer.swap
 
         Render.call(compose(buffer.front))
 
-      elsif buffer.front?
+      elsif buffer.content_for?(:front)
         Render.call(compose(buffer.front))
 
-      elsif buffer.previous?
+      elsif buffer.content_for?(:previous)
         Render.call(compose(buffer.previous))
 
       else
