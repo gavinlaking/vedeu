@@ -4,9 +4,9 @@ module Vedeu
 
   describe Keymaps do
 
-    describe '#add' do
-      before { Keymaps.reset }
+    before { Keymaps.reset }
 
+    describe '#add' do
       it 'returns false when there are no keys defined' do
         attributes = {}
 
@@ -28,10 +28,7 @@ module Vedeu
         }
       }
 
-      before do
-        Keymaps.reset
-        Keymaps.add(attributes)
-      end
+      before { Keymaps.add(attributes) }
 
       it 'returns false when the named keymap cannot be found' do
         Keymaps.find('vanadium').must_equal({})
@@ -43,10 +40,7 @@ module Vedeu
     end
 
     describe '#global_key?' do
-      before do
-        Keymaps.reset
-        Keymaps.stubs(:global_keys).returns(['i', 'j'])
-      end
+      before { Keymaps.stubs(:global_keys).returns(['i', 'j']) }
 
       it 'returns false when the key is not registered as a global key' do
         Keymaps.global_key?('h').must_equal(false)
@@ -72,10 +66,7 @@ module Vedeu
         }
       }
 
-      before do
-        Keymaps.reset
-        Keymaps.add(attributes)
-      end
+      before { Keymaps.add(attributes) }
 
       it 'returns the defined global keys' do
         Keymaps.global_keys.must_equal(['a', 'b', 'c'])
@@ -83,10 +74,7 @@ module Vedeu
     end
 
     describe '#interface_key?' do
-      before do
-        Keymaps.reset
-        Keymaps.stubs(:interface_keys).returns(['g', 'h'])
-      end
+      before { Keymaps.stubs(:interface_keys).returns(['g', 'h']) }
 
       it 'returns false when the key is not registered with an interface' do
         Keymaps.interface_key?('f').must_equal(false)
@@ -140,7 +128,6 @@ module Vedeu
       }
 
       before do
-        Keymaps.reset
         Keymaps.add(rhodium_attributes)
         Keymaps.add(magnesium_attributes)
       end
@@ -198,7 +185,6 @@ module Vedeu
       }
 
       before do
-        Keymaps.reset
         Keymaps.add(meitnerium_attributes)
         Keymaps.add(global_attributes)
         Vedeu::Focus.stubs(:current).returns('meitnerium')
