@@ -5,6 +5,7 @@ require 'json'
 module Vedeu
 
   describe Composition do
+
     let(:described)  { Composition.new(attributes) }
     let(:attributes) { {} }
 
@@ -31,12 +32,6 @@ module Vedeu
 
       it 'returns an empty collection when no interfaces are associated' do
         described.interfaces.must_be_empty
-      end
-    end
-
-    describe '#method_missing' do
-      it 'returns nil' do
-        described.some_missing_method(:test).must_equal(nil)
       end
     end
 

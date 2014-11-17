@@ -16,12 +16,6 @@ module Vedeu
       it { assigns(described, '@attributes', { interfaces: [], keys: [] }) }
     end
 
-    describe '#method_missing' do
-      it 'returns nil' do
-        Keymap.new.some_missing_method(:test).must_equal(nil)
-      end
-    end
-
   end # Keymap
 
 end # Vedeu

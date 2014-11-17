@@ -119,12 +119,6 @@ module Vedeu
       end
     end
 
-    describe '#method_missing' do
-      it 'returns nil' do
-        interface.some_missing_method(:test).must_equal(nil)
-      end
-    end
-
   end # Interface
 
 end # Vedeu
