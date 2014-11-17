@@ -72,6 +72,7 @@ require 'vedeu/support/coercions'
 require 'vedeu/support/esc'
 require 'vedeu/support/position'
 require 'vedeu/support/presentation'
+require 'vedeu/support/sentence'
 require 'vedeu/support/terminal'
 
 require 'vedeu/models/char'
