@@ -13,6 +13,7 @@ module Vedeu
 
     def_delegators Keymap, :keys
     def_delegators Keymaps, :keypress
+    def_delegators Vedeu::Terminal, :height, :width
 
     # Configure Vedeu using a simple configuration DSL.
     #
@@ -45,15 +46,6 @@ module Vedeu
       Vedeu.trigger(:_focus_by_name_, name)
     end
 
-    # Find out how many lines the current terminal is able to display.
-    #
-    # @example
-    #   Vedeu.height
-    #
-    # @return [Fixnum] The total height of the current terminal.
-    def height
-      Terminal.height
-    end
 
     # Register an interface by name which will display output from a event or
     # command. This provides the means for you to define your application's
@@ -236,16 +228,6 @@ module Vedeu
       API::Composition.build(&block)
     end
     alias_method :composition, :views
-
-    # Find out how many columns the current terminal is able to display.
-    #
-    # @example
-    #   Vedeu.width
-    #
-    # @return [Fixnum] The total width of the current terminal.
-    def width
-      Terminal.width
-    end
 
   end # API
 

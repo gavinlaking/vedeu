@@ -139,17 +139,37 @@ module Vedeu
     end
 
     describe '.width' do
-      it 'returns the width of the terminal' do
-        console.stub :winsize, [25, 80] do
-          Terminal.width.must_equal(80)
+      context 'via method' do
+        it 'returns the width of the terminal' do
+          console.stub :winsize, [25, 80] do
+            Terminal.width.must_equal(80)
+          end
+        end
+      end
+
+      context 'via API' do
+        it 'returns the width of the terminal' do
+          console.stub :winsize, [24, 40] do
+            Vedeu.width.must_equal(40)
+          end
         end
       end
     end
 
     describe '.height' do
-      it 'returns the height of the terminal' do
-        console.stub :winsize, [25, 80] do
-          Terminal.height.must_equal(25)
+      context 'via method' do
+        it 'returns the height of the terminal' do
+          console.stub :winsize, [25, 80] do
+            Terminal.height.must_equal(25)
+          end
+        end
+      end
+
+      context 'via API' do
+        it 'returns the height of the terminal' do
+          console.stub :winsize, [24, 40] do
+            Vedeu.height.must_equal(24)
+          end
         end
       end
     end

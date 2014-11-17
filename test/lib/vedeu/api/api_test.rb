@@ -28,14 +28,6 @@ module Vedeu
       end
     end
 
-    describe '.height' do
-      it 'returns the terminal height' do
-        IO.console.stub(:winsize, [24, 40]) do
-          Vedeu.height.must_equal(24)
-        end
-      end
-    end
-
     describe '.interface' do
       it 'creates and stores a new interface' do
         Vedeu::Buffers.reset
@@ -203,14 +195,6 @@ module Vedeu
 
       it 'raises an exception if a block was not given' do
         proc { Vedeu.views }.must_raise(InvalidSyntax)
-      end
-    end
-
-    describe '.width' do
-      it 'returns the terminal width' do
-        IO.console.stub(:winsize, [24, 40]) do
-          Vedeu.width.must_equal(40)
-        end
       end
     end
 

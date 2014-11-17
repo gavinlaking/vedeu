@@ -174,12 +174,18 @@ module Vedeu
     # Returns the total width (number of columns/characters) of the current
     # terminal.
     #
+    # @example
+    #   Vedeu.width # => provides the width via the Vedeu API.
+    #
     # @return [Fixnum]
     def width
       size.last
     end
 
     # Returns the total height (number of rows/lines) of the current terminal.
+    #
+    # @example
+    #   Vedeu.height # => provides the height via the Vedeu API.
     #
     # @return [Fixnum]
     def height
