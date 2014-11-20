@@ -20,14 +20,6 @@ module Vedeu
       end
     end
 
-    describe '.event' do
-      it 'delegates to the Events repository' do
-        Events.expects(:add)
-
-        Vedeu.event(:some_event)
-      end
-    end
-
     describe '.focus' do
       it 'sets the named interface to be focussed' do
         Vedeu.expects(:trigger).with(:_focus_by_name_, 'plutonium')

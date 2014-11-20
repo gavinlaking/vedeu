@@ -15,6 +15,21 @@ module Vedeu
     receiver.extend(API)
   end
 
+  # Write a message to the Vedeu log file.
+  #
+  # @param message [String] The message you wish to emit to the log
+  #   file, useful for debugging.
+  # @param force   [Boolean] When evaluates to true will attempt to
+  #   write to the log file regardless of the Configuration setting.
+  #
+  # @example
+  #   Vedeu.log('A useful debugging message: Error!')
+  #
+  # @return [TrueClass]
+  def self.log(message, force = false)
+    Vedeu::Log.logger.debug(message) if Configuration.debug? || force
+  end
+
 end # Vedeu
 
 $LIB_DIR = File.dirname(__FILE__) + '/../lib'
@@ -38,7 +53,11 @@ require 'vedeu/configuration/configuration'
 require 'vedeu/support/log'
 require 'vedeu/support/trace'
 
-require 'vedeu/models/keymap'
+require 'vedeu/support/repository'
+require 'vedeu/repositories/models/event'
+require 'vedeu/repositories/events'
+require 'vedeu/repositories/keymaps'
+require 'vedeu/repositories/models/keymap'
 require 'vedeu/api/keymap'
 require 'vedeu/api/api'
 
@@ -49,25 +68,20 @@ require 'vedeu/models/foreground'
 require 'vedeu/support/presentation'
 require 'vedeu/models/composition'
 
-require 'vedeu/support/repository'
+
 require 'vedeu/support/position'
 require 'vedeu/support/esc'
 require 'vedeu/support/terminal'
 
-require 'vedeu/models/buffer'
 require 'vedeu/models/char'
 require 'vedeu/models/colour'
-require 'vedeu/models/cursor'
-require 'vedeu/models/event'
 require 'vedeu/models/geometry'
-require 'vedeu/models/interface'
 require 'vedeu/models/line'
-require 'vedeu/models/menu'
-require 'vedeu/models/offset'
 require 'vedeu/models/stream'
 require 'vedeu/models/style'
 
-require 'vedeu/repositories/events'
+require 'vedeu/repositories/models/interface'
+require 'vedeu/repositories/interfaces'
 
 require 'vedeu/api/defined'
 require 'vedeu/api/composition'
@@ -77,15 +91,20 @@ require 'vedeu/api/line'
 require 'vedeu/api/menu'
 require 'vedeu/api/stream'
 
+require 'vedeu/repositories/models/buffer'
+require 'vedeu/repositories/models/cursor'
+
+require 'vedeu/repositories/models/menu'
+require 'vedeu/repositories/models/offset'
+
 require 'vedeu/support/keymap_validator'
 require 'vedeu/repositories/positional'
 require 'vedeu/repositories/offsets'
 require 'vedeu/repositories/menus'
-require 'vedeu/repositories/keymaps'
-require 'vedeu/repositories/interfaces'
+
 require 'vedeu/repositories/groups'
 require 'vedeu/repositories/focus'
-require 'vedeu/repositories/events'
+
 require 'vedeu/repositories/buffers'
 require 'vedeu/repositories/cursors'
 
