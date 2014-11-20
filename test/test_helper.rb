@@ -26,6 +26,8 @@ GC.disable
 require 'vedeu'
 
 def test_configuration
+  Vedeu::Configuration.reset!
+
   Vedeu.configure do
     debug!
     colour_mode 16777216
