@@ -24,6 +24,7 @@ require 'mocha/setup'
 GC.disable
 
 require 'vedeu'
+require 'support/test_classes/all'
 
 def test_configuration
   Vedeu::Configuration.reset!
