@@ -44,8 +44,10 @@ require 'set'
 require 'singleton'
 require 'time'
 
-require 'vedeu/support/exceptions'
 require 'vedeu/support/common'
+require 'vedeu/support/exceptions'
+require 'vedeu/support/model'
+
 require 'vedeu/configuration/cli'
 require 'vedeu/configuration/api'
 require 'vedeu/configuration/configuration'
