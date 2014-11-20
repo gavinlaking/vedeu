@@ -174,7 +174,7 @@ module Vedeu
         # 'Vedeu::Clear',
         'Vedeu::Coercions',
         'Vedeu::Colour',
-        'Vedeu::ColourTranslator',
+        'Vedeu::Translator',
         'Vedeu::Common',
         # 'Vedeu::Composition',
         # 'Vedeu::Compositor',

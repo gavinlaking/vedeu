@@ -2,16 +2,16 @@ require 'test_helper'
 
 module Vedeu
 
-  describe ColourTranslator do
+  describe Translator do
 
     describe '#initialize' do
       it 'returns an instance of itself' do
         colour = ''
 
-        ColourTranslator.new(colour).must_be_instance_of(ColourTranslator)
+        Translator.new(colour).must_be_instance_of(Translator)
       end
     end
 
-  end # ColourTranslator
+  end # Translator
 
 end # Vedeu

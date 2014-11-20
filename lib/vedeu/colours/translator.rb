@@ -20,7 +20,7 @@ module Vedeu
   #
   # @todo More documentation required (create a fancy chart!)
   # @api private
-  class ColourTranslator
+  class Translator
 
     # Convert a CSS/HTML colour string into a terminal escape sequence.
     #
@@ -30,16 +30,16 @@ module Vedeu
       new(colour).escape_sequence
     end
 
-    # Return a new instance of ColourTranslator.
+    # Return a new instance of Translator.
     #
     # @param colour [String]
-    # @return [ColourTranslator]
+    # @return [Translator]
     def initialize(colour = '')
       @colour = colour
     end
 
     # @return [String]
-    # @see Vedeu::ColourTranslator
+    # @see Vedeu::Translator
     def escape_sequence
       if no_colour?
         ''
@@ -183,6 +183,6 @@ module Vedeu
       (css_to_rgb[2] / 51) * 1
     end
 
-  end # ColourTranslator
+  end # Translator
 
 end # Vedeu

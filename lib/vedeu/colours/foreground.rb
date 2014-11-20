@@ -4,7 +4,7 @@ module Vedeu
   # {Vedeu::Background}) of a terminal colour escape sequence.
   #
   # @api private
-  class Foreground < ColourTranslator
+  class Foreground < Translator
 
     private
 
@@ -39,7 +39,7 @@ module Vedeu
     end
 
     # Produces the foreground named colour escape sequence hash from
-    # {Vedeu::ColourTranslator#codes}
+    # {Vedeu::Translator#codes}
     #
     # @return [Hash]
     def foreground_codes

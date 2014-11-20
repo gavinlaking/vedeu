@@ -61,20 +61,20 @@ require 'vedeu/repositories/models/keymap'
 require 'vedeu/api/keymap'
 require 'vedeu/api/api'
 
+require 'vedeu/colours/translator'
+require 'vedeu/colours/background'
+require 'vedeu/colours/foreground'
+require 'vedeu/colours/colour'
+
 require 'vedeu/support/coercions'
-require 'vedeu/support/colour_translator'
-require 'vedeu/models/background'
-require 'vedeu/models/foreground'
 require 'vedeu/support/presentation'
 require 'vedeu/models/composition'
-
 
 require 'vedeu/support/position'
 require 'vedeu/support/esc'
 require 'vedeu/support/terminal'
 
 require 'vedeu/models/char'
-require 'vedeu/models/colour'
 require 'vedeu/models/geometry'
 require 'vedeu/models/line'
 require 'vedeu/models/stream'
