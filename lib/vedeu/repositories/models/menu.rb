@@ -157,6 +157,13 @@ module Vedeu
       @collection.size
     end
 
+    private
+
+    # @return [Class] The repository class for this model.
+    def repository
+      Vedeu::Menus
+    end
+
   end # Menu
 
 end # Vedeu

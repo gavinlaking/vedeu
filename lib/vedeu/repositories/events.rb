@@ -60,7 +60,7 @@ module Vedeu
     def add(name, options = {}, &block)
       Vedeu.log("Registering event: '#{name}'")
 
-      events(name) << Event.new(name, options, block)
+      events(name) << model.new(name, options, block)
     end
     alias_method :event, :add
 
@@ -75,6 +75,12 @@ module Vedeu
     alias_method :trigger, :use
 
     private
+
+    # @return [Class] The model class for this repository.
+    def model
+      Vedeu::Event
+    end
+    alias_method :entity, :model
 
     def events(name)
       storage[name][:events]

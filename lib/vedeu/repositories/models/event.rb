@@ -37,6 +37,11 @@ module Vedeu
     attr_reader   :closure, :name
     attr_accessor :deadline, :executed_at, :now
 
+    # @return [Class] The repository class for this model.
+    def repository
+      Vedeu::Events
+    end
+
     # Execute the code stored in the event closure.
     #
     # @param args []

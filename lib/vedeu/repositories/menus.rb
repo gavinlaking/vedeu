@@ -30,7 +30,7 @@ module Vedeu
 
       Vedeu.log("Registering menu: '#{attributes[:name]}'")
 
-      attributes.merge!({ items: Vedeu::Menu.new(attributes[:items]) })
+      attributes.merge!({ items: model.new(attributes[:items]) })
 
       storage.store(attributes[:name], attributes)
     end
@@ -44,6 +44,12 @@ module Vedeu
     end
 
     private
+
+    # @return [Class] The model class for this repository.
+    def model
+      Vedeu::Menu
+    end
+    alias_method :entity, :model
 
     # Returns an empty collection ready for the storing of menus by name with
     # associated menu instance.

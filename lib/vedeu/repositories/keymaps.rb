@@ -145,6 +145,12 @@ module Vedeu
 
     private
 
+    # @return [Class] The model class for this repository.
+    def model
+      Vedeu::Keymap
+    end
+    alias_method :entity, :model
+
     # Triggers the system event defined for this key.
     #
     # @param key [String|Symbol]

@@ -29,7 +29,7 @@ module Vedeu
     # @param name [String]
     # @return [Interface]
     def build(name)
-      Interface.new(find(name))
+      model.new(find(name))
     end
 
     # Reset the interfaces repository; removing all registered interfaces.
@@ -52,6 +52,12 @@ module Vedeu
     end
 
     private
+
+    # @return [Class] The model class for this repository.
+    def model
+      Vedeu::Interface
+    end
+    alias_method :entity, :model
 
     # @see Vedeu::Refresh.register_event
     # @param attributes [Hash]

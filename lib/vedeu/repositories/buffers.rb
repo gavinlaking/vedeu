@@ -28,7 +28,7 @@ module Vedeu
       else
         Vedeu.log("Adding new buffer: '#{name}'")
 
-        Buffer.new({ name: name }).add(attributes)
+        model.new({ name: name }).add(attributes)
 
       end
 
@@ -47,6 +47,12 @@ module Vedeu
     end
 
     private
+
+    # @return [Class] The model class for this repository.
+    def model
+      Vedeu::Buffer
+    end
+    alias_method :entity, :model
 
     # @return [Hash]
     def in_memory

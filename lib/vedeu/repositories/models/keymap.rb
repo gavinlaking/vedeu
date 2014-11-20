@@ -73,12 +73,17 @@ module Vedeu
         instance_eval(&block)
       end
 
-      Keymaps.add(attributes)
+      repository.add(attributes)
 
       self
     end
 
     private
+
+    # @return [Class] The repository class for this model.
+    def repository
+      Vedeu::Keymaps
+    end
 
     # The default attributes of the Keymap model.
     #

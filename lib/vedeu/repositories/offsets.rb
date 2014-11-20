@@ -41,10 +41,11 @@ module Vedeu
       Focus.refresh
     end
 
-    # @return [Class]
-    def entity
-      Offset
+    # @return [Class] The model class for this repository.
+    def model
+      Vedeu::Offset
     end
+    alias_method :entity, :model
 
     # @return [Hash]
     def in_memory
@@ -54,10 +55,10 @@ module Vedeu
     # System events which when called will move in the direction specified;
     # these will update the cursor position or content offset (scrolling)
     # according to the interface in focus.
-    Vedeu.event(:_cursor_up_)    { up    }
-    Vedeu.event(:_cursor_right_) { right }
-    Vedeu.event(:_cursor_down_)  { down  }
-    Vedeu.event(:_cursor_left_)  { left  }
+    Vedeu.event(:_cursor_up_)    { Vedeu::Offsets.up    }
+    Vedeu.event(:_cursor_right_) { Vedeu::Offsets.right }
+    Vedeu.event(:_cursor_down_)  { Vedeu::Offsets.down  }
+    Vedeu.event(:_cursor_left_)  { Vedeu::Offsets.left  }
 
   end # Offsets
 

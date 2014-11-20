@@ -67,9 +67,14 @@ module Vedeu
 
     attr_writer :back, :front, :previous
 
+    # @return [Class] The repository class for this model.
+    def repository
+      Vedeu::Buffers
+    end
+
     # @see Buffers#update
     def update!
-      Buffers.update(self)
+      repository.update(self)
     end
 
     # Return the default attributes of a Buffer.

@@ -45,7 +45,7 @@ module Vedeu
       @y += relative_y
       @x += relative_x
 
-      Offsets.update(attributes)
+      repository.update(attributes)
     end
 
     # Returns the current x offset, correcting to 0 if less than 0.
@@ -67,6 +67,11 @@ module Vedeu
     end
 
     private
+
+    # @return [Class] The repository class for this model.
+    def repository
+      Vedeu::Offsets
+    end
 
     # Return the default values for an instance of Offset.
     #

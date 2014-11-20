@@ -94,7 +94,7 @@ module Vedeu
     def show
       @state = :show
 
-      Cursors.update(attributes)
+      repository.update(attributes)
     end
 
     # Make the cursor invisible.
@@ -103,7 +103,7 @@ module Vedeu
     def hide
       @state = :hide
 
-      Cursors.update(attributes)
+      repository.update(attributes)
     end
 
     # Returns an escape sequence to position the cursor and set its visibility.
@@ -123,6 +123,11 @@ module Vedeu
     end
 
     private
+
+    # @return [Class] The repository class for this model.
+    def repository
+      Vedeu::Cursors
+    end
 
     # Returns the escape sequence to position the cursor and set its visibility.
     #

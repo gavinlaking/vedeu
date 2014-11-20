@@ -117,6 +117,11 @@ module Vedeu
 
     private
 
+    # @return [Class] The repository class for this model.
+    def repository
+      Vedeu::Interfaces
+    end
+
     # The default values for a new instance of Interface.
     #
     # @return [Hash]

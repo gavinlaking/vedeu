@@ -31,10 +31,11 @@ module Vedeu
 
     private
 
-    # @return [Class]
-    def entity
-      Cursor
+    # @return [Class] The model class for this repository.
+    def model
+      Vedeu::Cursor
     end
+    alias_method :entity, :model
 
     # Returns an empty collection ready for the storing of cursors by name with
     # current attributes.
