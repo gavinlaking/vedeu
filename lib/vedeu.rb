@@ -67,14 +67,13 @@ require 'vedeu/colours/foreground'
 require 'vedeu/colours/colour'
 
 require 'vedeu/support/coercions'
-require 'vedeu/support/presentation'
-require 'vedeu/models/composition'
-
-require 'vedeu/support/position'
 require 'vedeu/support/esc'
+require 'vedeu/support/position'
+require 'vedeu/support/presentation'
 require 'vedeu/support/terminal'
 
 require 'vedeu/models/char'
+require 'vedeu/models/composition'
 require 'vedeu/models/geometry'
 require 'vedeu/models/line'
 require 'vedeu/models/stream'
@@ -93,20 +92,17 @@ require 'vedeu/api/stream'
 
 require 'vedeu/repositories/models/buffer'
 require 'vedeu/repositories/models/cursor'
-
 require 'vedeu/repositories/models/menu'
 require 'vedeu/repositories/models/offset'
 
 require 'vedeu/support/keymap_validator'
-require 'vedeu/repositories/positional'
-require 'vedeu/repositories/offsets'
-require 'vedeu/repositories/menus'
-
-require 'vedeu/repositories/groups'
-require 'vedeu/repositories/focus'
 
 require 'vedeu/repositories/buffers'
 require 'vedeu/repositories/cursors'
+require 'vedeu/repositories/focus'
+require 'vedeu/repositories/groups'
+require 'vedeu/repositories/menus'
+require 'vedeu/repositories/offsets'
 
 require 'vedeu/support/registrar'
 require 'vedeu/support/refresh'

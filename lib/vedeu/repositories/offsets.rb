@@ -7,8 +7,21 @@ module Vedeu
   module Offsets
 
     include Repository
-    include Positional
     extend self
+
+    # Add or update the offset coordinates.
+    #
+    # @param attributes [Hash]
+    # @return [Offset]
+    def add(attributes)
+      validate_attributes!(attributes)
+
+      Vedeu.log("#{action(__callee__)} positional (#{entity}): " \
+                "'#{attributes[:name]}'")
+
+      storage.store(attributes[:name], entity.new(attributes))
+    end
+    alias_method :update, :add
 
     # @return [Array]
     def down
