@@ -3,6 +3,7 @@
 [![Inline docs](http://inch-ci.org/github/gavinlaking/vedeu.svg?branch=master)](http://inch-ci.org/github/gavinlaking/vedeu)
 
 # Vedeu
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/gavinlaking/vedeu?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Vedeu is my attempt at creating a terminal based application framework without the need for Ncurses. I've tried to make Vedeu as simple and flexible as possible.
 
