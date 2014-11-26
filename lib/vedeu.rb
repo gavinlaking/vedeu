@@ -109,9 +109,8 @@ require 'vedeu/repositories/offsets'
 require 'vedeu/support/registrar'
 require 'vedeu/support/refresh'
 
-require 'vedeu/output/clear'
 require 'vedeu/output/compositor'
-require 'vedeu/output/render'
+require 'vedeu/output/output'
 require 'vedeu/output/view'
 require 'vedeu/output/viewport'
 
