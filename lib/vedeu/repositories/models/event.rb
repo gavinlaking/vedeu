@@ -5,6 +5,8 @@ module Vedeu
   # @api private
   class Event
 
+    include Model
+
     # Returns a new instance of Event.
     #
     # @param name [Symbol]

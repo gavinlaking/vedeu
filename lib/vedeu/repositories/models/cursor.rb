@@ -6,6 +6,7 @@ module Vedeu
   # @api private
   class Cursor
 
+    include Model
     extend Forwardable
 
     def_delegators :interface, :top, :right, :bottom, :left

@@ -179,6 +179,21 @@ module Vedeu
       end
     end
 
+    describe '#store' do
+      let(:attributes) {
+        {
+          name: 'hydrogen'
+        }
+      }
+      let(:model) { ModelTestClass.new(attributes) }
+
+      subject { RepositoriesTestClass.new.store(model) }
+
+      it 'returns the model' do
+        subject.must_be_instance_of(model.class)
+      end
+    end
+
   end # Repository
 
 end # Vedeu

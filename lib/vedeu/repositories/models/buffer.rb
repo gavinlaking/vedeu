@@ -12,6 +12,8 @@ module Vedeu
   #
   class Buffer
 
+    include Model
+
     attr_reader :back, :front, :name, :previous
     alias_method :current, :front
 

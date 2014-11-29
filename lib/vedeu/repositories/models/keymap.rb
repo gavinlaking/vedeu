@@ -7,6 +7,7 @@ module Vedeu
   class Keymap
 
     include Common
+    include Model
 
     attr_reader :attributes
 

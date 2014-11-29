@@ -84,6 +84,14 @@ module Vedeu
       @_storage = in_memory
     end
 
+    # Stores the model instance by name in the repository of the model.
+    #
+    # @param model [void] A model instance.
+    # @return [void] The model instance which was stored.
+    def store(model)
+      storage[model.name] = model
+    end
+
     private
 
     # @param method [Symbol]

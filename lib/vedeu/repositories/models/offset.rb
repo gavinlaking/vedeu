@@ -11,6 +11,8 @@ module Vedeu
   # @api private
   class Offset
 
+    include Model
+
     attr_reader :name
 
     # Returns a new instance of Offset.

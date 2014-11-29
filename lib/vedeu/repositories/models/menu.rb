@@ -6,6 +6,8 @@ module Vedeu
   # @api private
   class Menu
 
+    include Model
+
     # Returns a new instance of Menu.
     #
     # @param collection [Array]
