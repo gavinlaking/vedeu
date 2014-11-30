@@ -14,6 +14,13 @@ module Vedeu
       storage
     end
 
+    # Return a boolean indicating whether the storage is empty.
+    #
+    # @return [Boolean]
+    def empty?
+      storage.empty?
+    end
+
     # Find the model attributes by name.
     #
     # @param name [String]
@@ -38,7 +45,7 @@ module Vedeu
     #
     # @return [Array]
     def registered
-      return [] if storage.empty?
+      return [] if empty?
 
       return storage.keys if storage.is_a?(Hash)
       return storage.to_a if storage.is_a?(Set)
@@ -51,7 +58,7 @@ module Vedeu
     # @param name [String]
     # @return [Boolean]
     def registered?(name)
-      return false if storage.empty?
+      return false if empty?
 
       storage.include?(name)
     end
@@ -62,7 +69,7 @@ module Vedeu
     # @param name [String]
     # @return [Hash|FalseClass]
     def remove(name)
-      return false if storage.empty?
+      return false if empty?
 
       if registered?(name)
         storage.delete(name)

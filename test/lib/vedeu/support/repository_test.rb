@@ -14,6 +14,16 @@ module Vedeu
       end
     end
 
+    describe '#empty?' do
+      it 'returns true when the storage is empty' do
+        RepositoriesTestClass.new.empty?.must_equal(true)
+      end
+
+      it 'returns false when the storage is not empty' do
+        RepositoriesTestClass.new({ key: :value }).empty?.must_equal(false)
+      end
+    end
+
     describe '#find' do
       it 'raises an exception when the model cannot be found' do
         proc {

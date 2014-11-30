@@ -47,7 +47,7 @@ module Vedeu
     #   make one focussed.
     # @return [String]
     def current
-      fail NoInterfacesDefined if storage.empty?
+      fail NoInterfacesDefined if empty?
 
       storage.first
     end
@@ -95,7 +95,7 @@ module Vedeu
     #
     # @return [String|FalseClass]
     def update
-      return false if storage.empty?
+      return false if empty?
 
       Vedeu.log("Interface in focus: '#{current}'")
 
