@@ -4,25 +4,21 @@ module Vedeu
 
     include Repository
 
+    attr_accessor :storage
+    alias_method :in_memory, :storage
+
     def initialize(storage = {})
       @storage = storage
     end
 
-    def add(entity)
+    def add(model)
       if storage.is_a?(Hash)
-        @storage = in_memory.merge!(entity)
+        @storage = in_memory.merge!(model)
 
       else
-        @storage << entity
+        @storage << model
 
       end
-    end
-
-    attr_accessor :storage
-    alias_method :in_memory, :storage
-
-    def not_found(name)
-      fail EntityNotFound
     end
 
   end # RepositoriesTestClass

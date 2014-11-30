@@ -80,7 +80,6 @@ module Vedeu
     def model
       Vedeu::Event
     end
-    alias_method :entity, :model
 
     def events(name)
       storage[name][:events]

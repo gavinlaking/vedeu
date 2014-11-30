@@ -14,7 +14,7 @@ module Vedeu
       storage
     end
 
-    # Find the entity attributes by name.
+    # Find the model attributes by name.
     #
     # @param name [String]
     # @return [Hash]
@@ -22,16 +22,15 @@ module Vedeu
       storage.fetch(name) { not_found(name) }
     end
 
-    # Find entity by named interface, registers an entity by interface name if
-    # not found.
+    # Find a model by name, registers the model by name if not found.
     #
     # @param name [String]
     # @return [Cursor|Offset]
     def find_or_create(name)
       storage.fetch(name) do
-        Vedeu.log("Entity (#{entity}) not found, registering: '#{name}'")
+        Vedeu.log("Model (#{model}) not found, registering: '#{name}'")
 
-        storage.store(name, entity.new({ name: name }))
+        model.new({ name: name }).store
       end
     end
 
@@ -54,7 +53,7 @@ module Vedeu
       storage
     end
 
-    # Returns a boolean indicating whether the named entity is registered.
+    # Returns a boolean indicating whether the named model is registered.
     #
     # @param name [String]
     # @return [Boolean]
@@ -64,7 +63,7 @@ module Vedeu
       storage.include?(name)
     end
 
-    # Returns the storage with the named entity removed, or false if the entity
+    # Returns the storage with the named model removed, or false if the model
     # does not exist.
     #
     # @param name [String]

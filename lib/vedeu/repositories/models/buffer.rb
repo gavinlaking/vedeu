@@ -38,7 +38,9 @@ module Vedeu
     def add(content = {})
       self.back = content
 
-      update!
+      store
+
+      true
     end
 
     # Return a boolean indicating content was swapped between buffers. It also
@@ -54,7 +56,9 @@ module Vedeu
       self.front    = back
       self.back     = {}
 
-      update!
+      store
+
+      true
     end
 
     # Return a boolean indicating content on the buffer type.
@@ -72,11 +76,6 @@ module Vedeu
     # @return [Class] The repository class for this model.
     def repository
       Vedeu::Buffers
-    end
-
-    # @see Buffers#update
-    def update!
-      repository.update(self)
     end
 
     # Return the default attributes of a Buffer.

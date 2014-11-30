@@ -1,7 +1,6 @@
 require 'test_helper'
 
 module Vedeu
-  EntityNotFound = Class.new(StandardError)
 
   describe Repository do
 
@@ -16,36 +15,36 @@ module Vedeu
     end
 
     describe '#find' do
-      it 'raises an exception when the entity cannot be found' do
+      it 'raises an exception when the model cannot be found' do
         proc {
           RepositoriesTestClass.new.find('terbium')
-        }.must_raise(EntityNotFound)
+        }.must_raise(ModelNotFound)
       end
 
-      context 'when the entity is found' do
-        it 'returns the stored entity' do
-          entity = { key: :value }
+      context 'when the model is found' do
+        it 'returns the stored model' do
+          model = { key: :value }
           repo   = RepositoriesTestClass.new
-          repo.add({ 'terbium' => entity })
+          repo.add({ 'terbium' => model })
 
-          repo.find('terbium').must_equal(entity)
+          repo.find('terbium').must_equal(model)
         end
       end
     end
 
     describe '#find_or_create' do
-      context 'when the entity is found by name' do
-        it 'returns the storage entity' do
+      context 'when the model is found by name' do
+        it 'returns the storage model' do
           skip
         end
       end
 
-      context 'when the entity is not found by name' do
-        it 'stores the newly created entity' do
+      context 'when the model is not found by name' do
+        it 'stores the newly created model' do
           skip
         end
 
-        it 'returns the newly created entity' do
+        it 'returns the newly created model' do
           skip
         end
       end
@@ -101,14 +100,14 @@ module Vedeu
         RepositoriesTestClass.new.registered?('terbium').must_equal(false)
       end
 
-      it 'returns false when the entity is not registered' do
+      it 'returns false when the model is not registered' do
         repo = RepositoriesTestClass.new
         repo.add({ name: 'samarium' })
 
         repo.registered?('terbium').must_equal(false)
       end
 
-      it 'returns true when the entity is registered' do
+      it 'returns true when the model is registered' do
         skip
 
         repo = RepositoriesTestClass.new
@@ -126,7 +125,7 @@ module Vedeu
         end
       end
 
-      context 'when the entity is not registered' do
+      context 'when the model is not registered' do
         it 'returns false' do
           test_repo = RepositoriesTestClass.new
           test_repo.add({
@@ -137,8 +136,8 @@ module Vedeu
         end
       end
 
-      context 'when the entity is registered' do
-        it 'returns the storage with the entity removed' do
+      context 'when the model is registered' do
+        it 'returns the storage with the model removed' do
           test_repo = RepositoriesTestClass.new
           test_repo.add({
             'gadolinium' => 'rare-earth metal',
@@ -151,7 +150,7 @@ module Vedeu
       end
 
       context 'alias method: #destroy' do
-        it 'returns the storage with the entity removed' do
+        it 'returns the storage with the model removed' do
           test_repo = RepositoriesTestClass.new
           test_repo.add({
             'gadolinium' => 'rare-earth metal',
@@ -164,7 +163,7 @@ module Vedeu
       end
 
       context 'alias method; #delete' do
-        it 'returns the storage with the entity removed' do
+        it 'returns the storage with the model removed' do
           test_repo = RepositoriesTestClass.new
           test_repo.add({
             'gadolinium' => 'rare-earth metal',

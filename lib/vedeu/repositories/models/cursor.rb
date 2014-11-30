@@ -95,7 +95,7 @@ module Vedeu
     def show
       @state = :show
 
-      repository.update(attributes)
+      store
     end
 
     # Make the cursor invisible.
@@ -104,7 +104,7 @@ module Vedeu
     def hide
       @state = :hide
 
-      repository.update(attributes)
+      store
     end
 
     # Returns an escape sequence to position the cursor and set its visibility.

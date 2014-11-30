@@ -149,7 +149,6 @@ module Vedeu
     def model
       Vedeu::Keymap
     end
-    alias_method :entity, :model
 
     # Triggers the system event defined for this key.
     #

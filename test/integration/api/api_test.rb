@@ -29,11 +29,11 @@ describe 'Testing Vedeu::API methods' do
 
   describe '.focus' do
     it 'raises an exception when the interface does not exist' do
-      proc { Vedeu.focus(nil) }.must_raise(ModelNotFound)
+      proc { Vedeu.focus(nil) }.must_raise(Vedeu::ModelNotFound)
     end
 
     it 'raises an exception when the interface does not exist' do
-      proc { Vedeu.focus('not_defined') }.must_raise(ModelNotFound)
+      proc { Vedeu.focus('not_defined') }.must_raise(Vedeu::ModelNotFound)
     end
 
     it 'sets the specified interface as in focus' do

@@ -36,7 +36,6 @@ module Vedeu
     def model
       Vedeu::Menu
     end
-    alias_method :entity, :model
 
     # Returns an empty collection ready for the storing of menus by name with
     # associated menu instance.

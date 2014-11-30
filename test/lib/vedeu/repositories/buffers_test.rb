@@ -32,14 +32,6 @@ module Vedeu
       end
     end
 
-    describe '.update' do
-      let(:buffer) { Buffer.new({ name: 'einsteinium' }) }
-
-      subject { Buffers.update(buffer) }
-
-      it { subject.must_equal(true) }
-    end
-
   end # Buffers
 
 end # Vedeu

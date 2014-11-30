@@ -25,6 +25,7 @@ GC.disable
 
 require 'vedeu'
 require 'support/test_classes/all'
+require 'support/test_modules/all'
 
 def test_configuration
   Vedeu::Configuration.reset!

@@ -47,7 +47,7 @@ module Vedeu
       @y += relative_y
       @x += relative_x
 
-      repository.update(attributes)
+      store
     end
 
     # Returns the current x offset, correcting to 0 if less than 0.

@@ -57,7 +57,6 @@ module Vedeu
     def model
       Vedeu::Interface
     end
-    alias_method :entity, :model
 
     # @see Vedeu::Refresh.register_event
     # @param attributes [Hash]

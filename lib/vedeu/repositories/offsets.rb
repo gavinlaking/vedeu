@@ -16,10 +16,10 @@ module Vedeu
     def add(attributes)
       validate_attributes!(attributes)
 
-      Vedeu.log("#{action(__callee__)} positional (#{entity}): " \
+      Vedeu.log("#{action(__callee__)} positional (#{model}): " \
                 "'#{attributes[:name]}'")
 
-      storage.store(attributes[:name], entity.new(attributes))
+      model.new(attributes).store
     end
     alias_method :update, :add
 
@@ -58,7 +58,6 @@ module Vedeu
     def model
       Vedeu::Offset
     end
-    alias_method :entity, :model
 
     # @return [Hash]
     def in_memory

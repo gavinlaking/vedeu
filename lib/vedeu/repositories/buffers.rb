@@ -35,24 +35,12 @@ module Vedeu
       name
     end
 
-    # Update the repository with the provided Buffer. Returns a boolean
-    # indicating whether this was successful.
-    #
-    # @param buffer [Buffer]
-    # @return [Boolean]
-    def update(buffer)
-      storage.store(buffer.name, buffer)
-
-      true
-    end
-
     private
 
     # @return [Class] The model class for this repository.
     def model
       Vedeu::Buffer
     end
-    alias_method :entity, :model
 
     # @return [Hash]
     def in_memory
