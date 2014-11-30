@@ -9,39 +9,33 @@ module Vedeu
 
     describe '#add' do
       it 'adds an interface to storage' do
-        Focus.add({ name: 'thallium' }).must_equal(['thallium'])
+        Focus.add('thallium').must_equal(['thallium'])
       end
 
       it 'does not add it again if already exists' do
-        Focus.add({ name: 'thallium' })
-        Focus.add({ name: 'thallium' })
+        Focus.add('thallium')
+        Focus.add('thallium')
         Focus.registered.must_equal(['thallium'])
       end
 
       it 'adds the interface to storage focussed' do
-        Focus.add({ name: 'thallium' })
-        Focus.add({ name: 'lead', focus: true })
+        Focus.add('thallium')
+        Focus.add('lead', true)
         Focus.registered.must_equal(['lead', 'thallium'])
       end
 
       it 'adds the interface to storage unfocussed' do
-        Focus.add({ name: 'thallium' })
-        Focus.add({ name: 'lead' })
+        Focus.add('thallium')
+        Focus.add('lead')
         Focus.registered.must_equal(['thallium', 'lead'])
-      end
-
-      it 'raises an exception if the attributes does not have a :name key' do
-        attributes = { no_name_key: '' }
-
-        proc { Focus.add(attributes) }.must_raise(MissingRequired)
       end
     end
 
     describe '#by_name' do
       it 'the named interface is focussed when the method is called' do
-        Focus.add({ name: 'thallium' })
-        Focus.add({ name: 'lead' })
-        Focus.add({ name: 'bismuth' })
+        Focus.add('thallium')
+        Focus.add('lead')
+        Focus.add('bismuth')
         Focus.by_name('lead').must_equal('lead')
       end
 
@@ -52,9 +46,9 @@ module Vedeu
 
     describe '#current' do
       it 'returns the name of the interface currently in focus' do
-        Focus.add({ name: 'thallium' })
-        Focus.add({ name: 'lead' })
-        Focus.add({ name: 'bismuth' })
+        Focus.add('thallium')
+        Focus.add('lead')
+        Focus.add('bismuth')
         Focus.current.must_equal('thallium')
       end
 
@@ -77,9 +71,9 @@ module Vedeu
 
     describe '#next_item' do
       it 'the next interface is focussed when the method is called' do
-        Focus.add({ name: 'thallium' })
-        Focus.add({ name: 'lead' })
-        Focus.add({ name: 'bismuth' })
+        Focus.add('thallium')
+        Focus.add('lead')
+        Focus.add('bismuth')
         Focus.next_item.must_equal('lead')
       end
 
@@ -90,9 +84,9 @@ module Vedeu
 
     describe '#prev_item' do
       it 'the previous interface is focussed when the method is called' do
-        Focus.add({ name: 'thallium' })
-        Focus.add({ name: 'lead' })
-        Focus.add({ name: 'bismuth' })
+        Focus.add('thallium')
+        Focus.add('lead')
+        Focus.add('bismuth')
         Focus.prev_item.must_equal('bismuth')
       end
 
@@ -103,7 +97,7 @@ module Vedeu
 
     describe '#refresh' do
       it 'triggers the event to refresh the interface current in focus' do
-        Focus.add({ name: 'thallium' })
+        Focus.add('thallium')
 
         Focus.refresh.must_equal([])
       end

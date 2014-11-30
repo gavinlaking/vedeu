@@ -12,18 +12,18 @@ module Vedeu
 
     # Add an interface name to the focus list unless it is already registered.
     #
-    # @param attributes [String]
-    # @return [Array]
-    def add(attributes)
-      validate_attributes!(attributes)
+    # @param name [String] The name of the interface.
+    # @param focus [Boolean] When true, prepends the interface name to the
+    #   collection, making that interface the currently focussed interface.
+    # @return [Array] The collection of interface names.
+    def add(name, focus = false)
+      return storage if registered?(name)
 
-      return storage if registered?(attributes[:name])
-
-      if attributes[:focus]
-        storage.unshift(attributes[:name])
+      if focus
+        storage.unshift(name)
 
       else
-        storage.push(attributes[:name])
+        storage.push(name)
 
       end
     end
@@ -34,7 +34,7 @@ module Vedeu
     # @raise [ModelNotFound] When the interface cannot be found.
     # @return [String]
     def by_name(name)
-      fail ModelNotFound unless storage.include?(name)
+      fail ModelNotFound unless registered?(name)
 
       storage.rotate!(storage.index(name))
 
