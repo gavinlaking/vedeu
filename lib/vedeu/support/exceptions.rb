@@ -1,14 +1,7 @@
 module Vedeu
 
-  # Raised when Vedeu attempts to access a named buffer that does not exist.
-  BufferNotFound = Class.new(StandardError)
-
-  # Raised when trying to access a group of interfaces which do not exist by
-  # this name.
-  GroupNotFound = Class.new(StandardError)
-
-  # Raised when an interface cannot be found by name.
-  InterfaceNotFound = Class.new(StandardError)
+  # Raised with Vedeu attempts to access a named model that does not exist.
+  ModelNotFound = Class.new(StandardError)
 
   # Raised when Vedeu attempts to parse a {Vedeu.view} or {Vedeu.interface} and
   # encounters a problem.
@@ -16,9 +9,6 @@ module Vedeu
 
   # Raised when attempting to assign a key which is already in use.
   KeyInUse = Class.new(StandardError)
-
-  # Raised when a menu cannot be found by name.
-  MenuNotFound = Class.new(StandardError)
 
   # Raised when the attributes argument to {Vedeu::Registrar} does not contain
   # a required key or the value to that key is nil or empty.

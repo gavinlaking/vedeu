@@ -22,7 +22,7 @@ module Vedeu
 
       context 'when the buffer does not exist' do
         it 'raises an exception' do
-          proc { Compositor.render('') }.must_raise(BufferNotFound)
+          proc { Compositor.render('') }.must_raise(ModelNotFound)
         end
       end
 
@@ -110,7 +110,7 @@ module Vedeu
         end
 
         it 'raises an exception' do
-          proc { Compositor.render('indium') }.must_raise(InterfaceNotFound)
+          proc { Compositor.render('indium') }.must_raise(ModelNotFound)
         end
       end
     end

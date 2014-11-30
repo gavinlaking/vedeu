@@ -150,7 +150,7 @@ module Vedeu
 
       it 'raises an exception if the interface has not been defined' do
         proc { Vedeu.use('unknown') }
-          .must_raise(Vedeu::InterfaceNotFound)
+          .must_raise(ModelNotFound)
       end
 
       it 'returns an instance of the named interface' do

@@ -46,7 +46,7 @@ module Vedeu
       end
 
       it 'raises an exception if the interface does not exist' do
-        proc { Focus.by_name('not_found') }.must_raise(InterfaceNotFound)
+        proc { Focus.by_name('not_found') }.must_raise(ModelNotFound)
       end
     end
 

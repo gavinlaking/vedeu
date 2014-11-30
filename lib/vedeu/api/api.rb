@@ -40,7 +40,7 @@ module Vedeu
     #
     # @param name [String] The interface to focus; must be defined.
     # @return [String] The name of the interface now in focus.
-    # @raise [InterfaceNotFound] When the interface cannot be found.
+    # @raise [ModelNotFound] When the interface cannot be found.
     def focus(name)
       Vedeu.trigger(:_focus_by_name_, name)
     end

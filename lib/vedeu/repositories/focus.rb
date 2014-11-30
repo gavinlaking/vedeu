@@ -31,10 +31,10 @@ module Vedeu
     # Focus an interface by name.
     #
     # @param name [String]
-    # @raise [InterfaceNotFound] When the interface cannot be found.
+    # @raise [ModelNotFound] When the interface cannot be found.
     # @return [String]
     def by_name(name)
-      fail InterfaceNotFound unless storage.include?(name)
+      fail ModelNotFound unless storage.include?(name)
 
       storage.rotate!(storage.index(name))
 

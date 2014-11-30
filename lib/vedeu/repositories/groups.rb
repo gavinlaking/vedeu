@@ -42,14 +42,6 @@ module Vedeu
       Hash.new { |hash, key| hash[key] = Set.new }
     end
 
-    # @param name [String]
-    # @raise [GroupNotFound] When the entity cannot be found with this name.
-    # @return [GroupNotFound]
-    def not_found(name)
-      fail GroupNotFound,
-        "Cannot find interface group with this name: #{name}."
-    end
-
   end # Groups
 
 end # Vedeu
