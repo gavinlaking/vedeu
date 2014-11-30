@@ -50,14 +50,6 @@ module Vedeu
       end
     end
 
-    describe '#not_found' do
-      subject { RepositoryTestModule.find('hydrogen') }
-
-      it 'raises an exception when the model cannot be found' do
-        proc { subject }.must_raise(ModelNotFound)
-      end
-    end
-
     describe '#registered' do
       it 'returns an Array' do
         RepositoriesTestClass.new.registered.must_be_instance_of(Array)

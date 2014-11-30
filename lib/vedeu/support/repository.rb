@@ -34,13 +34,6 @@ module Vedeu
       end
     end
 
-    # @param name [String]
-    # @raise [ModelNotFound] When the model cannot be found with this name.
-    # @return [ModelNotFound]
-    def not_found(name)
-      fail ModelNotFound, "Cannot find model by name: '#{name}'"
-    end
-
     # Returns a collection of the names of all the registered entities.
     #
     # @return [Array]
@@ -106,6 +99,13 @@ module Vedeu
       return 'Registering' if method == :add
 
       'Updating'
+    end
+
+    # @param name [String]
+    # @raise [ModelNotFound] When the model cannot be found with this name.
+    # @return [ModelNotFound]
+    def not_found(name)
+      fail ModelNotFound, "Cannot find model by name: '#{name}'"
     end
 
     # Access to the storage for this repository.
