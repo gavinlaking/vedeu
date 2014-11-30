@@ -9,11 +9,6 @@ module Vedeu
     include Repository
     extend self
 
-    # System events which when called will update the cursor visibility
-    # accordingly for the interface in focus.
-    Vedeu.event(:_cursor_hide_) { Cursors.hide }
-    Vedeu.event(:_cursor_show_) { Cursors.show }
-
     # Add or update the cursor coordinates.
     #
     # @param attributes [Hash]

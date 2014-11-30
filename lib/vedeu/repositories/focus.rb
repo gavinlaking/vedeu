@@ -10,13 +10,6 @@ module Vedeu
     include Repository
     extend self
 
-    # System events which when called will change which interface is currently
-    # focussed. When the interface is brought into focus, its cursor position
-    # and visibility is restored.
-    Vedeu.event(:_focus_by_name_) { |name| Vedeu::Focus.by_name(name) }
-    Vedeu.event(:_focus_next_)    { Vedeu::Focus.next_item }
-    Vedeu.event(:_focus_prev_)    { Vedeu::Focus.prev_item }
-
     # Add an interface name to the focus list unless it is already registered.
     #
     # @param attributes [String]

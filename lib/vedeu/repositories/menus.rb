@@ -8,19 +8,6 @@ module Vedeu
     include Repository
     extend self
 
-    # System events which when called with the appropriate menu name will
-    # update the menu accordingly.
-    Vedeu.event(:_menu_current_)  { |name| Menus.use(name).current_item  }
-    Vedeu.event(:_menu_selected_) { |name| Menus.use(name).selected_item }
-    Vedeu.event(:_menu_next_)     { |name| Menus.use(name).next_item     }
-    Vedeu.event(:_menu_prev_)     { |name| Menus.use(name).prev_item     }
-    Vedeu.event(:_menu_top_)      { |name| Menus.use(name).top_item      }
-    Vedeu.event(:_menu_bottom_)   { |name| Menus.use(name).bottom_item   }
-    Vedeu.event(:_menu_select_)   { |name| Menus.use(name).select_item   }
-    Vedeu.event(:_menu_deselect_) { |name| Menus.use(name).deselect_item }
-    Vedeu.event(:_menu_items_)    { |name| Menus.use(name).items         }
-    Vedeu.event(:_menu_view_)     { |name| Menus.use(name).view          }
-
     # Stores the menu attributes defined by the API.
     #
     # @param attributes [Hash]

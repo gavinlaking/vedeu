@@ -65,14 +65,6 @@ module Vedeu
       {}
     end
 
-    # System events which when called will move in the direction specified;
-    # these will update the cursor position or content offset (scrolling)
-    # according to the interface in focus.
-    Vedeu.event(:_cursor_up_)    { Vedeu::Offsets.up    }
-    Vedeu.event(:_cursor_right_) { Vedeu::Offsets.right }
-    Vedeu.event(:_cursor_down_)  { Vedeu::Offsets.down  }
-    Vedeu.event(:_cursor_left_)  { Vedeu::Offsets.left  }
-
   end # Offsets
 
 end # Vedeu

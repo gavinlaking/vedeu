@@ -95,13 +95,53 @@ module Vedeu
     end
 
     # System events needed by Vedeu to run.
-    event(:_clear_)                   { Terminal.clear_screen     }
-    event(:_exit_)                    { Vedeu::Application.stop   }
-    event(:_initialize_)              { Vedeu.trigger(:_refresh_) }
-    event(:_keypress_)                { |key| Vedeu.keypress(key) }
-    event(:_log_)                     { |msg| Vedeu.log(msg)      }
-    event(:_mode_switch_)             { fail ModeSwitch           }
-    event(:_resize_, { delay: 0.25 }) { Vedeu.resize              }
+    event(:_clear_)                   { Vedeu::Terminal.clear_screen }
+    event(:_exit_)                    { Vedeu::Application.stop      }
+    event(:_initialize_)              { Vedeu.trigger(:_refresh_)    }
+    event(:_keypress_)                { |key| Vedeu.keypress(key)    }
+    event(:_log_)                     { |msg| Vedeu.log(msg)         }
+    event(:_mode_switch_)             { fail ModeSwitch              }
+    event(:_resize_, { delay: 0.25 }) { Vedeu.resize                 }
+
+    # System events which when called will update the cursor visibility
+    # accordingly for the interface in focus.
+    # From: Cursors (top)
+    event(:_cursor_hide_) { Vedeu::Cursors.hide }
+    event(:_cursor_show_) { Vedeu::Cursors.show }
+
+    # System events which when called will change which interface is currently
+    # focussed. When the interface is brought into focus, its cursor position
+    # and visibility is restored.
+    # From: Focus (top)
+    event(:_focus_by_name_) { |name| Vedeu::Focus.by_name(name) }
+    event(:_focus_next_)    {        Vedeu::Focus.next_item }
+    event(:_focus_prev_)    {        Vedeu::Focus.prev_item }
+
+    # System events which when called will move in the direction specified;
+    # these will update the cursor position or content offset (scrolling)
+    # according to the interface in focus.
+    # From: Offsets (bottom)
+    event(:_cursor_down_)  { Vedeu::Offsets.down  }
+    event(:_cursor_left_)  { Vedeu::Offsets.left  }
+    event(:_cursor_right_) { Vedeu::Offsets.right }
+    event(:_cursor_up_)    { Vedeu::Offsets.up    }
+
+    # System events which when called with the appropriate menu name will
+    # update the menu accordingly.
+    # From: Menus (top)
+    event(:_menu_bottom_)   { |name| Vedeu::Menus.use(name).bottom_item   }
+    event(:_menu_current_)  { |name| Vedeu::Menus.use(name).current_item  }
+    event(:_menu_deselect_) { |name| Vedeu::Menus.use(name).deselect_item }
+    event(:_menu_items_)    { |name| Vedeu::Menus.use(name).items         }
+    event(:_menu_next_)     { |name| Vedeu::Menus.use(name).next_item     }
+    event(:_menu_prev_)     { |name| Vedeu::Menus.use(name).prev_item     }
+    event(:_menu_selected_) { |name| Vedeu::Menus.use(name).selected_item }
+    event(:_menu_select_)   { |name| Vedeu::Menus.use(name).select_item   }
+    event(:_menu_top_)      { |name| Vedeu::Menus.use(name).top_item      }
+    event(:_menu_view_)     { |name| Vedeu::Menus.use(name).view          }
+
+    # System event to refresh all registered interfaces.
+    event(:_refresh_) { Vedeu::Refresh.all }
 
   end # Events
 

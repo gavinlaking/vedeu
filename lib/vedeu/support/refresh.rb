@@ -8,9 +8,6 @@ module Vedeu
     include Common
     extend self
 
-    # System event to refresh all registered interfaces.
-    Vedeu.event(:_refresh_) { Vedeu::Refresh.all }
-
     # Refresh all registered interfaces.
     #
     # @return [Array]
