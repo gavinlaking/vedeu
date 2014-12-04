@@ -94,7 +94,11 @@ module Vedeu
     #
     # @return []
     def run_many
-      loop { yield }
+      loop do
+        Vedeu.trigger(:_tick_)
+        yield
+
+      end
 
     rescue ModeSwitch
       Terminal.switch_mode!
