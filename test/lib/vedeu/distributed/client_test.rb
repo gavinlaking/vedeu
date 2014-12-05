@@ -4,20 +4,19 @@ module Vedeu
 
   module Distributed
 
-    describe Server do
-      let(:uri)     {}
-      let(:service) {}
+    describe Client do
+      let(:uri) {}
 
       describe '#initialize' do
         it 'returns an instance of itself' do
-          Server.new(uri, service).must_be_instance_of(Server)
+          Client.new(uri).must_be_instance_of(Client)
         end
       end
 
       describe '#' do
       end
 
-    end # Server
+    end # Client
 
   end # Distributed
 
