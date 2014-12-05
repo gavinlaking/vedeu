@@ -63,4 +63,3 @@ module Vedeu
 end # Vedeu
 
 require 'vedeu/all'
-
