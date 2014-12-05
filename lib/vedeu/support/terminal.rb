@@ -66,7 +66,11 @@ module Vedeu
     # @param streams [String|Array]
     # @return [Array]
     def output(*streams)
-      streams.each { |stream| console.print(stream) }
+      streams.each do |stream|
+        console.print(stream)
+
+        # Vedeu::Console.write(stream)
+      end
 
       streams
     end
