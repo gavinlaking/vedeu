@@ -51,6 +51,7 @@ module Vedeu
 
       end
     end
+    alias_method :read, :input
 
     # Prints the streams to the screen and returns the streams.
     #

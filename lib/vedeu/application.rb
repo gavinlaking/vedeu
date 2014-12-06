@@ -80,7 +80,7 @@ module Vedeu
     # @return []
     def main_sequence
       if Configuration.interactive?
-        Input.capture
+        Input.capture(Terminal)
 
       else
         Vedeu.trigger(:_standalone_)
