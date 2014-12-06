@@ -1,3 +1,5 @@
+require 'vedeu/support/terminal'
+
 module Vedeu
 
   # Provides the API to Vedeu. Methods therein, and classes belonging to this
@@ -9,10 +11,9 @@ module Vedeu
     extend Forwardable
 
     # @see Vedeu::Events#add
-    def_delegators Events, :event
-
-    def_delegators Keymap, :keys
-    def_delegators Keymaps, :keypress
+    def_delegators Events,          :event
+    def_delegators Keymap,          :keys
+    def_delegators Keymaps,         :keypress
     def_delegators Vedeu::Terminal, :height, :width
 
     # Configure Vedeu using a simple configuration DSL.
