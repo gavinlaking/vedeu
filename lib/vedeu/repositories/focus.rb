@@ -52,6 +52,14 @@ module Vedeu
       storage.first
     end
 
+    # Return the cursor for the currently focussed interface. May be hidden.
+    #
+    # @return [String] The escape sequence to render the cursor as shown or
+    #   hidden.
+    def cursor
+      Interface.new(Interfaces.find(current)).cursor.to_s
+    end
+
     # Returns a boolean indicating whether the named interface is focussed.
     #
     # @param name [String]

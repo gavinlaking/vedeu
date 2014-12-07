@@ -61,6 +61,50 @@ module Vedeu
       true
     end
 
+    # Return the content for this buffer.
+    #
+    # - If we have new content (i.e. content on 'back') to be shown, we first
+    #   clear the area occupied by the previous content, then clear the area for
+    #   the new content, and then finally render the new content.
+    # - If there is no new content (i.e. 'back' is empty), check the 'front'
+    #   buffer and display that.
+    # - If there is no new content, and the front buffer is empty, display the
+    #   'previous' buffer.
+    # - If the 'previous' buffer is empty, return an empty hash.
+    #
+    # @return [Array<Hash>]
+    def content
+      if content_for?(:back)
+        swap
+
+        [clear_if_previous, front]
+
+      elsif content_for?(:front)
+        [front]
+
+      elsif content_for?(:previous)
+        [previous]
+
+      else
+        [{}]
+
+      end
+    end
+
+    private
+
+    attr_writer :back, :front, :previous
+
+    def clear_if_previous
+      if content_for?(:previous)
+        previous
+
+      else
+        {}
+
+      end
+    end
+
     # Return a boolean indicating content on the buffer type.
     #
     # @param buffer [Symbol] One of; :back, :current/:front or :previous.
@@ -68,10 +112,6 @@ module Vedeu
     def content_for?(buffer)
       public_send(buffer).any? { |k, v| k == :lines && v.any? }
     end
-
-    private
-
-    attr_writer :back, :front, :previous
 
     # @return [Class] The repository class for this model.
     def repository

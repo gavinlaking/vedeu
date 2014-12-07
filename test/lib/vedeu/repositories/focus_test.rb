@@ -57,6 +57,18 @@ module Vedeu
       end
     end
 
+    describe '#cursor' do
+      before do
+        Interfaces.add({ name: 'thallium' })
+        Focus.add('thallium')
+      end
+
+      it 'returns the escape sequence to render the cursor for the focussed ' \
+         'interface' do
+        Focus.cursor.must_equal("\e[1;1H\e[?25l")
+      end
+    end
+
     describe '#current?' do
       before { Focus.stubs(:current).returns('lead') }
 
@@ -96,9 +108,12 @@ module Vedeu
     end
 
     describe '#refresh' do
-      it 'triggers the event to refresh the interface current in focus' do
+      before do
         Focus.add('thallium')
+        Vedeu.stubs(:trigger).returns([])
+      end
 
+      it 'triggers the event to refresh the interface current in focus' do
         Focus.refresh.must_equal([])
       end
     end

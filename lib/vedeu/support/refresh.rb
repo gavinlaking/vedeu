@@ -33,10 +33,14 @@ module Vedeu
 
     # Refresh an interface by name.
     #
-    # @param name [String] The name of the interface to be refreshed.
+    # @param name [String] The name of the interface to be refreshed using the
+    #   named buffer.
     # @return [Array|ModelNotFound]
     def by_name(name)
-      Compositor.render(name)
+      interface = Interfaces.find(name)
+      buffer    = Buffers.find(name)
+
+      Compositor.compose(interface, buffer)
     end
 
     # Register a refresh event for an interface or group of interfaces by name.

@@ -52,40 +52,40 @@ module Vedeu
       it { subject.must_be_instance_of(Hash) }
     end
 
-    describe '#content_for?' do
-      subject { Buffer.new(attributes).content_for?(buffer) }
+    describe '#content' do
+      subject { Buffer.new(attributes).content }
 
       context 'when there is content on the back buffer' do
         let(:back) { { lines: [{ streams: [{ text: 'back' }] }] } }
         let(:buffer) { :back }
 
-        it { subject.must_equal(true) }
+        it { subject.must_equal([{}, back]) }
       end
 
       context 'when there is no content on the back buffer' do
         let(:buffer) { :back }
 
-        it { subject.must_equal(false) }
+        it { subject.must_equal([{}]) }
       end
 
       context 'when there is no content on the back buffer' do
         let(:back) { { lines: [] } }
         let(:buffer) { :back }
 
-        it { subject.must_equal(false) }
+        it { subject.must_equal([{}]) }
       end
 
       context 'when there is content on the front buffer' do
         let(:buffer) { :front }
         let(:front) { { lines: [{ streams: [{ text: 'front' }] }] } }
 
-        it { subject.must_equal(true) }
+        it { subject.must_equal([front]) }
       end
 
       context 'when there is no content on the front buffer' do
         let(:buffer) { :front }
 
-        it { subject.must_equal(false) }
+        it { subject.must_equal([{}]) }
       end
 
       context 'when there is no content on the front buffer' do
@@ -93,27 +93,27 @@ module Vedeu
 
         let(:front) { { lines: [] } }
 
-        it { subject.must_equal(false) }
+        it { subject.must_equal([{}]) }
       end
 
       context 'when there is content on the previous buffer' do
         let(:buffer) { :previous }
         let(:previous) { { lines: [{ streams: [{ text: 'previous' }] }] } }
 
-        it { subject.must_equal(true) }
+        it { subject.must_equal([previous]) }
       end
 
       context 'when there is no content on the previous buffer' do
         let(:buffer) { :previous }
 
-        it { subject.must_equal(false) }
+        it { subject.must_equal([{}]) }
       end
 
       context 'when there is no content on the previous buffer' do
         let(:buffer) { :previous }
         let(:previous) { { lines: [] } }
 
-        it { subject.must_equal(false) }
+        it { subject.must_equal([{}]) }
       end
     end
 

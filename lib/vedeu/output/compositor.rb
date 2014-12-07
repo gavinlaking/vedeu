@@ -8,104 +8,58 @@ module Vedeu
 
     include Common
 
-    # Convenience method to initialize a new Compositor and call its {#render}
+    # Convenience method to initialize a new Compositor and call its {#compose}
     # method.
     #
-    # @param name [String] The name of the interface/buffer.
     # @return [Compositor]
-    def self.render(name)
-      new(name).render
+    # @see #initialize
+    def self.compose(interface, buffer)
+      new(interface, buffer).compose
     end
 
     # Initialize a new Compositor.
     #
-    # @param name [String] The name of the interface/buffer.
+    # @param interface [Hash] The attributes of the interface to be refreshed.
+    # @param buffer [Hash] The atttributes of the buffer to refresh the
+    #   interface with.
     # @return [Compositor]
-    def initialize(name)
-      @name = name
-    end
-
-    # Send the view to the terminal.
-    #
-    # @return [Array]
-    def render
-      Terminal.output(view, cursor)
-    end
-
-    private
-
-    attr_reader :name
-
-    # Renders the cursor into the currently focussed interface. May be hidden.
-    #
-    # @return [String] The escape sequence to render the cursor as shown or
-    #   hidden.
-    def cursor
-      Interface.new(Interfaces.find(Focus.current)).cursor.to_s
-    end
-
-    # Return the content for this buffer.
-    #
-    # - If we have new content (i.e. content on 'back') to be shown, we first
-    #   clear the area occupied by the previous content, then clear the area for
-    #   the new content, and then finally render the new content.
-    # - If there is no new content (i.e. 'back' is empty), check the 'front'
-    #   buffer and display that.
-    # - If there is no new content, and the front buffer is empty, display the
-    #   'previous' buffer.
-    # - If the 'previous' buffer is empty, return an empty hash.
-    #
-    # @return [Hash]
-    def view
-      if buffer.content_for?(:back)
-        Output.clear(compose(buffer.previous)) if buffer.content_for?(:previous)
-
-        buffer.swap
-
-        Output.render(compose(buffer.front))
-
-      elsif buffer.content_for?(:front)
-        Output.render(compose(buffer.front))
-
-      elsif buffer.content_for?(:previous)
-        Output.render(compose(buffer.previous))
-
-      else
-        Output.render(compose({}), { direct: false })
-
-      end
+    def initialize(interface, buffer)
+      @interface = interface
+      @buffer    = buffer
     end
 
     # Return a new instance of Interface built by combining the buffer content
     # attributes with the stored interface attributes.
     #
-    # @return [Interface]
-    def compose(content)
-      if defined_value?(content[:geometry])
-        content[:geometry].each do |k, v|
-          interface[:geometry][k] = v if defined_value?(k)
-        end
+    # @return [Array<Hash>] The updated interface attributes.
+    def compose
+      buffer.content.each do |content|
+        change_geometry(content)
+
+        interface[:lines] = content[:lines]
+        change_colour(content)
+        change_style(content)
+
+        Output.render(Interface.new(interface))
       end
+    end
 
-      interface[:lines]  = content[:lines]
+    private
+
+    attr_reader :interface, :buffer
+
+    def change_colour(content)
       interface[:colour] = content[:colour] if defined_value?(content[:colour])
-      interface[:style]  = content[:style]  if defined_value?(content[:style])
-
-      Interface.new(interface)
     end
 
-    # Returns the attributes of the named interface (layout).
-    #
-    # @return [Hash]
-    def interface
-      @_interface ||= Interfaces.find(name)
+    def change_geometry(content)
+      content[:geometry].each do |k, v|
+        interface[:geometry][k] = v if defined_value?(k)
+      end if defined_value?(content[:geometry])
     end
 
-    # Return the named Buffer (view).
-    #
-    # @return [Buffer]
-    def buffer
-      @_buffer ||= Buffers.find(name)
+    def change_style(content)
+      interface[:style] = content[:style] if defined_value?(content[:style])
     end
 
   end # Compositor
