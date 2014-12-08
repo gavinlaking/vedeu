@@ -72,4 +72,68 @@ module Vedeu
 
   end # Grid
 
+  class ConsoleGeometry
+
+    def initialize(height, width)
+      @height = height
+      @width  = width
+    end
+
+    def top(offset = 0)
+      if offset >= (height - 1)
+        height
+
+      elsif offset <= 1
+        1
+
+      else
+        1 + offset
+
+      end
+    end
+
+    def bottom(offset = 0)
+      if offset >= (height - 1)
+        1
+
+      elsif offset < 0
+        height
+
+      else
+        height - offset
+
+      end
+    end
+
+    def left(offset = 0)
+      if offset >= (width - 1)
+        width
+
+      elsif offset <= 1
+        1
+
+      else
+        1 + offset
+
+      end
+    end
+
+    def right(offset = 0)
+      if offset >= (width - 1)
+        1
+
+      elsif offset < 0
+        width
+
+      else
+        width - offset
+
+      end
+    end
+
+    private
+
+    attr_reader :height, :width
+  end
+
 end # Vedeu
