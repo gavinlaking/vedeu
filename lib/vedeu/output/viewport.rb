@@ -8,10 +8,6 @@ module Vedeu
   #
   class Viewport
 
-    extend Forwardable
-
-    def_delegators :interface, :content, :height, :offset, :width
-
     # @see Viewport#show
     def self.show(interface)
       new(interface).show
@@ -53,38 +49,6 @@ module Vedeu
     # Scrolls the content vertically when the stored y offset for the interface
     # is outside of the visible area.
     #
-    # @return [Fixnum]
-    def line_adjustment
-      if offset.y < lines.min
-        set_top(offset.y)
-
-      elsif offset.y > lines.max
-        set_top(offset.y - (lines.max - lines.min))
-
-      else
-        # @top does not need adjusting
-
-      end
-    end
-
-    # Scrolls the content horizontally when the stored x offset for the
-    # interface is outside of the visible area.
-    #
-    # @return [Fixnum]
-    def column_adjustment
-      if offset.x < columns.min
-        set_left(offset.x)
-
-      elsif offset.x > columns.max
-        set_left(offset.x - (columns.max - columns.min))
-
-      else
-        # @left does not need adjusting
-
-      end
-    end
-
-    #
     # @note
     #   @top = [value, 0].max # this allows us to set a top that is greater than
     #                         # the content height.
@@ -93,12 +57,19 @@ module Vedeu
     #                         # this does not allow us to have an offset greater
     #                         # than the content height.
     #
-    # @param value [Fixnum]
     # @return [Fixnum]
-    def set_top(value)
-      @top = [value, 0].max
+    def line_adjustment
+      if offset.y < 0
+        @top = [offset.y, 0].max
+
+      elsif offset.y > height
+        @top = [(offset.y - height), 0].max
+
+      end
     end
 
+    # Scrolls the content horizontally when the stored x offset for the
+    # interface is outside of the visible area.
     #
     # @note
     #   @left = [value, 0].max # this allows us to set a left that is greater
@@ -108,24 +79,29 @@ module Vedeu
     #                         # this does not allow us to have an offset greater
     #                         # than the content width.
     #
-    # @param value [Fixnum]
     # @return [Fixnum]
-    def set_left(value)
-      @left = [value, 0].max
+    def column_adjustment
+      if offset.x < 0
+        @left = [offset.x, 0].max
+
+      elsif offset.x > width
+        @left = [(offset.x - width), 0].max
+
+      end
     end
 
     # Using the current x offset, return a range of visible lines.
     #
     # @return [Range]
     def lines
-      @top..(@top + height - 1)
+      @top..(@top + height)
     end
 
     # Using the current y offset, return a range of visible columns.
     #
     # @return [Range]
     def columns
-      @left..(@left + width - 1)
+      @left..(@left + width)
     end
 
     # Returns the height of the content, or when no content, the visible height
@@ -160,6 +136,22 @@ module Vedeu
     # @return [Boolean]
     def content?
       content.any?
+    end
+
+    def content
+      interface.content
+    end
+
+    def offset
+      interface.offset
+    end
+
+    def width
+      interface.width - 1
+    end
+
+    def height
+      interface.height - 1
     end
 
   end # Viewport
