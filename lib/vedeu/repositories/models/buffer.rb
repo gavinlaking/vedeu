@@ -105,12 +105,14 @@ module Vedeu
       end
     end
 
-    # Return a boolean indicating content on the buffer type.
+    # Return a boolean indicating content presence on the buffer type.
     #
     # @param buffer [Symbol] One of; :back, :current/:front or :previous.
     # @return [Boolean] Whether the buffer targetted has content.
     def content_for?(buffer)
-      public_send(buffer).any? { |k, v| k == :lines && v.any? }
+      public_send(buffer).any? do |k, v|
+        k == :lines && v.any?
+      end
     end
 
     # @return [Class] The repository class for this model.
