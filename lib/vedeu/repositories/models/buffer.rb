@@ -111,7 +111,7 @@ module Vedeu
     # @return [Boolean] Whether the buffer targetted has content.
     def content_for?(buffer)
       public_send(buffer).any? do |k, v|
-        k == :lines && v.any?
+        k == :lines && v && v.any?
       end
     end
 
