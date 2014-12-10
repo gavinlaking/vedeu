@@ -27,7 +27,7 @@ module Vedeu
     # @param block [Proc]
     # @return [Line]
     def initialize(attributes = {}, &block)
-      @attributes = defaults.merge!(attributes)
+      @attributes = defaults.merge(attributes)
       @parent     = @attributes[:parent]
 
       if block_given?

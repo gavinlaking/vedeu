@@ -14,7 +14,7 @@ module Vedeu
     # @param attributes [Hash]
     # @return [Colour]
     def initialize(attributes = {})
-      @attributes = defaults.merge!(attributes)
+      @attributes = defaults.merge(attributes)
     end
 
     # Converts the `:foreground` attribute into a terminal escape sequence.

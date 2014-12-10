@@ -159,7 +159,7 @@ module Vedeu
     #
     # @return [Hash]
     def options
-      defaults.merge!(@options)
+      defaults.merge(@options)
     end
 
     # The default values for a new instance of Event.

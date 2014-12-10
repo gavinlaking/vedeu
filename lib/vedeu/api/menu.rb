@@ -26,7 +26,7 @@ module Vedeu
       # @param  attributes [Hash]
       # @return [API::Menu]
       def initialize(attributes = {})
-        @attributes = defaults.merge!(attributes)
+        @attributes = defaults.merge(attributes)
       end
 
       # @param block [Proc]

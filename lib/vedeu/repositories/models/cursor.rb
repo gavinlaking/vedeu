@@ -25,7 +25,7 @@ module Vedeu
     #
     # @return [Cursor]
     def initialize(attributes = {})
-      @attributes = defaults.merge!(attributes)
+      @attributes = defaults.merge(attributes)
 
       @name  = @attributes[:name]
       @state = @attributes[:state]

@@ -19,7 +19,7 @@ module Vedeu
     # @param attributes [Hash]
     # @return [Char]
     def initialize(attributes = {})
-      @attributes = defaults.merge!(attributes)
+      @attributes = defaults.merge(attributes)
       @parent     = @attributes[:parent]
       @value      = @attributes[:value]
     end

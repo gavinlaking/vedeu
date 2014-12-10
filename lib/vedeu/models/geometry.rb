@@ -16,7 +16,7 @@ module Vedeu
     # @param attributes [Hash]
     # @return [Geometry]
     def initialize(attributes = {})
-      @attributes = defaults.merge!(attributes)
+      @attributes = defaults.merge(attributes)
 
       @centred = @attributes[:centred]
       @height  = @attributes[:height]

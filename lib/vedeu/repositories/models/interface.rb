@@ -42,7 +42,7 @@ module Vedeu
     # @param  block [Proc]
     # @return [Interface]
     def initialize(attributes = {}, &block)
-      @attributes = defaults.merge!(attributes)
+      @attributes = defaults.merge(attributes)
 
       @cursor = @attributes[:cursor]
       @delay = @attributes[:delay]

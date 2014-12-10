@@ -93,7 +93,7 @@ module Vedeu
 
     # @return [Hash]
     def options
-      defaults.merge!(@options)
+      defaults.merge(@options)
     end
 
     # @return [Hash]
