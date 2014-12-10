@@ -52,7 +52,7 @@ module Vedeu
     end
 
     def horizontal_border
-      [on, (horizontal * width), off].join
+      ([on, horizontal, off] * width).join
     end
 
     def horizontal_space

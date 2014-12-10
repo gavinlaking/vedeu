@@ -15,13 +15,13 @@ module Vedeu
       it 'returns the escape sequences to draw a border' do
         Border.new(interface).to_s.must_equal(
           "\e(0l\e(B" \
-          "\e(0qqqqqqqq\e(B" \
+          "\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B" \
           "\e(0k\e(B" \
           "\e(0x\e(B        \e(0x\e(B" \
           "\e(0x\e(B        \e(0x\e(B" \
           "\e(0x\e(B        \e(0x\e(B" \
           "\e(0m\e(B" \
-          "\e(0qqqqqqqq\e(B" \
+          "\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B" \
           "\e(0j\e(B"
         )
       end
