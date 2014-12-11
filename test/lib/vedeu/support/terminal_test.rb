@@ -92,13 +92,19 @@ module Vedeu
     end
 
     describe '.switch_mode!' do
+      it 'returns a Symbol' do
+        Terminal.switch_mode!.must_be_instance_of(Symbol)
+      end
+
       it 'returns :cooked if previously :raw' do
         Terminal.raw_mode!
+
         Terminal.switch_mode!.must_equal(:cooked)
       end
 
       it 'returns :raw if previously :cooked' do
         Terminal.cooked_mode!
+
         Terminal.switch_mode!.must_equal(:raw)
       end
     end
@@ -110,6 +116,8 @@ module Vedeu
       end
 
       it 'returns the configured terminal mode' do
+        Terminal.mode.must_be_instance_of(Symbol)
+
         Terminal.mode.must_equal(:raw)
       end
     end
@@ -117,6 +125,8 @@ module Vedeu
     describe '.centre' do
       it 'returns the centre point on the terminal' do
         console.stub :winsize, [25, 80] do
+          Terminal.centre.must_be_instance_of(Array)
+
           Terminal.centre.must_equal([12, 40])
         end
       end
@@ -125,6 +135,8 @@ module Vedeu
     describe '.centre_y' do
       it 'returns the centre `y` point on the terminal' do
         console.stub :winsize, [25, 80] do
+          Terminal.centre_y.must_be_instance_of(Fixnum)
+
           Terminal.centre_y.must_equal(12)
         end
       end
@@ -133,23 +145,89 @@ module Vedeu
     describe '.centre_x' do
       it 'returns the centre `x` point on the terminal' do
         console.stub :winsize, [25, 80] do
+          Terminal.centre_x.must_be_instance_of(Fixnum)
+
           Terminal.centre_x.must_equal(40)
         end
       end
     end
 
-    describe '.width' do
-      it 'returns the width of the terminal' do
+    describe '.origin' do
+      it 'returns 1' do
         console.stub :winsize, [25, 80] do
-          Terminal.width.must_equal(80)
+          Terminal.origin.must_be_instance_of(Fixnum)
+
+          Terminal.origin.must_equal(1)
+        end
+      end
+
+      context 'alias_methods' do
+        it 'returns 1' do
+          console.stub :winsize, [25, 80] do
+            Terminal.x.must_equal(1)
+          end
+        end
+
+        it 'returns 1' do
+          console.stub :winsize, [25, 80] do
+            Terminal.y.must_equal(1)
+          end
+        end
+      end
+    end
+
+    describe '.width' do
+      context 'via method' do
+        it 'returns the width of the terminal' do
+          console.stub :winsize, [25, 80] do
+            Terminal.width.must_be_instance_of(Fixnum)
+
+            Terminal.width.must_equal(80)
+          end
+        end
+      end
+
+      context 'via API' do
+        it 'returns the width of the terminal' do
+          console.stub :winsize, [24, 40] do
+            Vedeu.width.must_equal(40)
+          end
+        end
+      end
+
+      context 'alias_methods' do
+        it 'returns the xn coordinate of the terminal' do
+          console.stub :winsize, [25, 80] do
+            Terminal.xn.must_equal(80)
+          end
         end
       end
     end
 
     describe '.height' do
-      it 'returns the height of the terminal' do
-        console.stub :winsize, [25, 80] do
-          Terminal.height.must_equal(25)
+      context 'via method' do
+        it 'returns the height of the terminal' do
+          console.stub :winsize, [25, 80] do
+            Terminal.height.must_be_instance_of(Fixnum)
+
+            Terminal.height.must_equal(25)
+          end
+        end
+      end
+
+      context 'via API' do
+        it 'returns the height of the terminal' do
+          console.stub :winsize, [24, 40] do
+            Vedeu.height.must_equal(24)
+          end
+        end
+      end
+
+      context 'alias_methods' do
+        it 'returns the yn coordinate of the terminal' do
+          console.stub :winsize, [25, 80] do
+            Terminal.yn.must_equal(25)
+          end
         end
       end
     end
@@ -157,6 +235,8 @@ module Vedeu
     describe '.size' do
       it 'returns the width and height of the terminal' do
         console.stub :winsize, [25, 80] do
+          Terminal.size.must_be_instance_of(Array)
+
           Terminal.size.must_equal([25, 80])
         end
       end

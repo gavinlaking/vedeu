@@ -24,8 +24,12 @@ require 'mocha/setup'
 GC.disable
 
 require 'vedeu'
+require 'support/test_classes/all'
+require 'support/test_modules/all'
 
 def test_configuration
+  Vedeu::Configuration.reset!
+
   Vedeu.configure do
     debug!
     colour_mode 16777216

@@ -7,13 +7,21 @@ module Vedeu
   module Cursors
 
     include Repository
-    include Positional
     extend self
 
-    # System events which when called will update the cursor visibility
-    # accordingly for the interface in focus.
-    Vedeu.event(:_cursor_hide_) { Cursors.hide }
-    Vedeu.event(:_cursor_show_) { Cursors.show }
+    # Add or update the cursor coordinates.
+    #
+    # @param attributes [Hash]
+    # @return [Offset]
+    def add(attributes)
+      validate_attributes!(attributes)
+
+      Vedeu.log("#{action(__callee__)} positional (#{model}): " \
+                "'#{attributes[:name]}'")
+
+      model.new(attributes).store
+    end
+    alias_method :update, :add
 
     # Make the cursor of this interface invisible.
     #
@@ -31,9 +39,9 @@ module Vedeu
 
     private
 
-    # @return [Class]
-    def entity
-      Cursor
+    # @return [Class] The model class for this repository.
+    def model
+      Vedeu::Cursor
     end
 
     # Returns an empty collection ready for the storing of cursors by name with

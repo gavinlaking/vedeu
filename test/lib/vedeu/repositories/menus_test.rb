@@ -15,12 +15,6 @@ module Vedeu
         Vedeu::Menu.stubs(:new).returns(instance)
       end
 
-      it 'raises an exception when triggered with an unregistered name' do
-        proc {
-          Vedeu.trigger(:_menu_current_, 'unknown')
-        }.must_raise(MenuNotFound)
-      end
-
       it '_menu_current_' do
         Vedeu.trigger(:_menu_current_, 'elements').must_equal(:sulphur)
       end

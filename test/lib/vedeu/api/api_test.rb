@@ -20,27 +20,11 @@ module Vedeu
       end
     end
 
-    describe '.event' do
-      it 'delegates to the Events repository' do
-        Events.expects(:add)
-
-        Vedeu.event(:some_event)
-      end
-    end
-
     describe '.focus' do
       it 'sets the named interface to be focussed' do
         Vedeu.expects(:trigger).with(:_focus_by_name_, 'plutonium')
 
         Vedeu.focus('plutonium')
-      end
-    end
-
-    describe '.height' do
-      it 'returns the terminal height' do
-        IO.console.stub(:winsize, [24, 40]) do
-          Vedeu.height.must_equal(24)
-        end
       end
     end
 
@@ -158,7 +142,7 @@ module Vedeu
 
       it 'raises an exception if the interface has not been defined' do
         proc { Vedeu.use('unknown') }
-          .must_raise(Vedeu::InterfaceNotFound)
+          .must_raise(ModelNotFound)
       end
 
       it 'returns an instance of the named interface' do
@@ -211,14 +195,6 @@ module Vedeu
 
       it 'raises an exception if a block was not given' do
         proc { Vedeu.views }.must_raise(InvalidSyntax)
-      end
-    end
-
-    describe '.width' do
-      it 'returns the terminal width' do
-        IO.console.stub(:winsize, [24, 40]) do
-          Vedeu.width.must_equal(40)
-        end
       end
     end
 

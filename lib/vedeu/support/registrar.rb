@@ -6,7 +6,7 @@ module Vedeu
   # @api private
   class Registrar
 
-    REPOSITORIES = [Buffers, Cursors, Focus, Groups, Interfaces, Offsets]
+    REPOSITORIES = [Buffers, Cursors, Groups, Interfaces, Offsets]
 
     # @param attributes [Hash]
     # @return [TrueClass|MissingRequired]
@@ -33,6 +33,8 @@ module Vedeu
     #
     # @return [TrueClass|MissingRequired]
     def record
+      focus
+
       REPOSITORIES.each { |repository| repository.add(attributes) }
 
       true
@@ -41,6 +43,10 @@ module Vedeu
     private
 
     attr_reader :attributes
+
+    def focus
+      Focus.add(attributes[:name], attributes[:focus])
+    end
 
   end # Registrar
 

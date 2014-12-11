@@ -156,6 +156,12 @@ applications can listen for this event and perform some action(s), like render
 the first screen, interface or make a sound. When Vedeu triggers this event,
 the :_refresh_ event is also triggered automatically.
 
+### `:_tick_`
+
+Each time Vedeu completes one cycle in the application loop
+(Application#run_many), it triggers the `:_tick_` event. This can be used by the
+client application for timing amongst other things.
+
 #### How to define user events
 
 ```ruby

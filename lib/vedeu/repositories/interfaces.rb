@@ -29,7 +29,7 @@ module Vedeu
     # @param name [String]
     # @return [Interface]
     def build(name)
-      Interface.new(find(name))
+      model.new(find(name))
     end
 
     # Reset the interfaces repository; removing all registered interfaces.
@@ -53,6 +53,11 @@ module Vedeu
 
     private
 
+    # @return [Class] The model class for this repository.
+    def model
+      Vedeu::Interface
+    end
+
     # @see Vedeu::Refresh.register_event
     # @param attributes [Hash]
     # @return [Boolean]
@@ -66,14 +71,6 @@ module Vedeu
     # @return [Hash]
     def in_memory
       {}
-    end
-
-    # @param name [String]
-    # @raise [InterfaceNotFound] When the entity cannot be found with this name.
-    # @return [InterfaceNotFound]
-    def not_found(name)
-      fail InterfaceNotFound,
-        "Interface was not found with this name: #{name}."
     end
 
   end # Interfaces

@@ -25,13 +25,13 @@ module Vedeu
       it 'raises an exception when the group cannot be found' do
         Groups.reset
 
-        proc { Refresh.by_group('') }.must_raise(GroupNotFound)
+        proc { Refresh.by_group('') }.must_raise(ModelNotFound)
       end
     end
 
     describe '.by_name' do
       it 'raises an exception when the buffer cannot be found' do
-        proc { Refresh.by_name('') }.must_raise(BufferNotFound)
+        proc { Refresh.by_name('') }.must_raise(ModelNotFound)
       end
     end
 

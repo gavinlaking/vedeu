@@ -119,7 +119,7 @@ module Vedeu
     # @example
     #   Vedeu.keypress('s')
     #
-    # @return [|FalseClass]
+    # @return [Array|FalseClass]
     def use(key)
       Vedeu.log("Key pressed: '#{key}'")
 
@@ -145,10 +145,15 @@ module Vedeu
 
     private
 
+    # @return [Class] The model class for this repository.
+    def model
+      Vedeu::Keymap
+    end
+
     # Triggers the system event defined for this key.
     #
     # @param key [String|Symbol]
-    # @return [] The result(s) of triggering the event.
+    # @return [Array] The result(s) of triggering the event.
     def system_key(key)
       action = Vedeu::Configuration.system_keys.key(key)
       event  = ['_', action, '_'].join.to_sym
@@ -160,7 +165,7 @@ module Vedeu
     #
     # @param attributes [Hash]
     # @param interface [String]
-    # @return []
+    # @return [Array]
     def register(attributes, interface = '_global_keymap_')
       attributes[:keys].map do |keymap|
         KeymapValidator.check(storage, keymap[:key], interface)

@@ -7,8 +7,21 @@ module Vedeu
   module Offsets
 
     include Repository
-    include Positional
     extend self
+
+    # Add or update the offset coordinates.
+    #
+    # @param attributes [Hash]
+    # @return [Offset]
+    def add(attributes)
+      validate_attributes!(attributes)
+
+      Vedeu.log("#{action(__callee__)} positional (#{model}): " \
+                "'#{attributes[:name]}'")
+
+      model.new(attributes).store
+    end
+    alias_method :update, :add
 
     # @return [Array]
     def down
@@ -41,23 +54,15 @@ module Vedeu
       Focus.refresh
     end
 
-    # @return [Class]
-    def entity
-      Offset
+    # @return [Class] The model class for this repository.
+    def model
+      Vedeu::Offset
     end
 
     # @return [Hash]
     def in_memory
       {}
     end
-
-    # System events which when called will move in the direction specified;
-    # these will update the cursor position or content offset (scrolling)
-    # according to the interface in focus.
-    Vedeu.event(:_cursor_up_)    { up    }
-    Vedeu.event(:_cursor_right_) { right }
-    Vedeu.event(:_cursor_down_)  { down  }
-    Vedeu.event(:_cursor_left_)  { left  }
 
   end # Offsets
 

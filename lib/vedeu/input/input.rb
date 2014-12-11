@@ -8,30 +8,38 @@ module Vedeu
 
     # Instantiate Input and capture keypress(es).
     #
+    # @param reader [IO] An object that responds to `#read`. Typically, this is
+    #   Vedeu::Terminal.
     # @return [String|Symbol]
-    def self.capture
-      new.capture
+    def self.capture(reader)
+      new(reader).capture
     end
 
     # Returns a new instance of Input.
     #
+    # @param reader [IO] An object that responds to `#read`. Typically, this is
+    #   Vedeu::Terminal.
     # @return [Input]
-    def initialize; end
+    def initialize(reader)
+      @reader = reader
+    end
 
     # Triggers the keypress event with the key(s) pressed.
     #
-    # @return []
+    # @return [Array|String|Symbol]
     def capture
       Vedeu.trigger(:_keypress_, keypress)
     end
 
     private
 
+    attr_reader :reader
+
     # Returns the input from the terminal.
     #
     # @return [String]
     def input
-      @_input ||= Terminal.input
+      @_input ||= reader.read
     end
 
     # Returns the translated (if possible) keypress(es) as either a String or a

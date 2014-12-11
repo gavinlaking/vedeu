@@ -146,12 +146,9 @@ module Vedeu
     # @return [Set]
     def vedeu_exceptions
       Set.new [
-        'Vedeu::BufferNotFound',
-        'Vedeu::GroupNotFound',
-        'Vedeu::InterfaceNotFound',
+        'Vedeu::ModelNotFound',
         'Vedeu::InvalidSyntax',
         'Vedeu::KeyInUse',
-        'Vedeu::MenuNotFound',
         'Vedeu::MissingRequired',
         'Vedeu::ModeSwitch',
         'Vedeu::NoInterfacesDefined',
@@ -174,7 +171,7 @@ module Vedeu
         # 'Vedeu::Clear',
         'Vedeu::Coercions',
         'Vedeu::Colour',
-        'Vedeu::ColourTranslator',
+        'Vedeu::Translator',
         'Vedeu::Common',
         # 'Vedeu::Composition',
         # 'Vedeu::Compositor',

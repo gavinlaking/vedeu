@@ -10,27 +10,20 @@ module Vedeu
     include Repository
     extend self
 
-    # System events which when called will change which interface is currently
-    # focussed. When the interface is brought into focus, its cursor position
-    # and visibility is restored.
-    Vedeu.event(:_focus_by_name_) { |name| Vedeu::Focus.by_name(name) }
-    Vedeu.event(:_focus_next_)    { Vedeu::Focus.next_item }
-    Vedeu.event(:_focus_prev_)    { Vedeu::Focus.prev_item }
-
     # Add an interface name to the focus list unless it is already registered.
     #
-    # @param attributes [String]
-    # @return [Array]
-    def add(attributes)
-      validate_attributes!(attributes)
+    # @param name [String] The name of the interface.
+    # @param focus [Boolean] When true, prepends the interface name to the
+    #   collection, making that interface the currently focussed interface.
+    # @return [Array] The collection of interface names.
+    def add(name, focus = false)
+      return storage if registered?(name)
 
-      return storage if registered?(attributes[:name])
-
-      if attributes[:focus]
-        storage.unshift(attributes[:name])
+      if focus
+        storage.unshift(name)
 
       else
-        storage.push(attributes[:name])
+        storage.push(name)
 
       end
     end
@@ -38,10 +31,10 @@ module Vedeu
     # Focus an interface by name.
     #
     # @param name [String]
-    # @raise [InterfaceNotFound] When the interface cannot be found.
+    # @raise [ModelNotFound] When the interface cannot be found.
     # @return [String]
     def by_name(name)
-      fail InterfaceNotFound unless storage.include?(name)
+      fail ModelNotFound unless registered?(name)
 
       storage.rotate!(storage.index(name))
 
@@ -54,9 +47,17 @@ module Vedeu
     #   make one focussed.
     # @return [String]
     def current
-      fail NoInterfacesDefined if storage.empty?
+      fail NoInterfacesDefined if empty?
 
       storage.first
+    end
+
+    # Return the cursor for the currently focussed interface. May be hidden.
+    #
+    # @return [String] The escape sequence to render the cursor as shown or
+    #   hidden.
+    def cursor
+      Interface.new(Interfaces.find(current)).cursor.to_s
     end
 
     # Returns a boolean indicating whether the named interface is focussed.
@@ -102,7 +103,7 @@ module Vedeu
     #
     # @return [String|FalseClass]
     def update
-      return false if storage.empty?
+      return false if empty?
 
       Vedeu.log("Interface in focus: '#{current}'")
 

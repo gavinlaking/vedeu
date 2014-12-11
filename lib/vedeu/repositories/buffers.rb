@@ -28,36 +28,23 @@ module Vedeu
       else
         Vedeu.log("Adding new buffer: '#{name}'")
 
-        Buffer.new({ name: name }).add(attributes)
+        model.new({ name: name }).add(attributes)
 
       end
 
       name
     end
 
-    # Update the repository with the provided Buffer. Returns a boolean
-    # indicating whether this was successful.
-    #
-    # @param buffer [Buffer]
-    # @return [Boolean]
-    def update(buffer)
-      storage.store(buffer.name, buffer)
-
-      true
-    end
-
     private
+
+    # @return [Class] The model class for this repository.
+    def model
+      Vedeu::Buffer
+    end
 
     # @return [Hash]
     def in_memory
       {}
-    end
-
-    # @param name [String]
-    # @raise [BufferNotFound] When the entity cannot be found with this name.
-    # @return [BufferNotFound]
-    def not_found(name)
-      fail BufferNotFound, "Cannot find buffer: '#{name}'"
     end
 
   end # Buffers

@@ -80,7 +80,7 @@ module Vedeu
     # @return []
     def main_sequence
       if Configuration.interactive?
-        Input.capture
+        Input.capture(Terminal)
 
       else
         Vedeu.trigger(:_standalone_)
@@ -94,7 +94,11 @@ module Vedeu
     #
     # @return []
     def run_many
-      loop { yield }
+      loop do
+        Vedeu.trigger(:_tick_)
+        yield
+
+      end
 
     rescue ModeSwitch
       Terminal.switch_mode!

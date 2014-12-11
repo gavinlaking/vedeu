@@ -14,7 +14,14 @@ module Vedeu
       storage
     end
 
-    # Find the entity attributes by name.
+    # Return a boolean indicating whether the storage is empty.
+    #
+    # @return [Boolean]
+    def empty?
+      storage.empty?
+    end
+
+    # Find the model attributes by name.
     #
     # @param name [String]
     # @return [Hash]
@@ -22,16 +29,15 @@ module Vedeu
       storage.fetch(name) { not_found(name) }
     end
 
-    # Find entity by named interface, registers an entity by interface name if
-    # not found.
+    # Find a model by name, registers the model by name if not found.
     #
     # @param name [String]
     # @return [Cursor|Offset]
     def find_or_create(name)
       storage.fetch(name) do
-        Vedeu.log("Entity (#{entity}) not found, registering: '#{name}'")
+        Vedeu.log("Model (#{model}) not found, registering: '#{name}'")
 
-        storage.store(name, entity.new({ name: name }))
+        model.new({ name: name }).store
       end
     end
 
@@ -39,7 +45,7 @@ module Vedeu
     #
     # @return [Array]
     def registered
-      return [] if storage.empty?
+      return [] if empty?
 
       return storage.keys if storage.is_a?(Hash)
       return storage.to_a if storage.is_a?(Set)
@@ -47,23 +53,23 @@ module Vedeu
       storage
     end
 
-    # Returns a boolean indicating whether the named entity is registered.
+    # Returns a boolean indicating whether the named model is registered.
     #
     # @param name [String]
     # @return [Boolean]
     def registered?(name)
-      return false if storage.empty?
+      return false if empty?
 
       storage.include?(name)
     end
 
-    # Returns the storage with the named entity removed, or false if the entity
+    # Returns the storage with the named model removed, or false if the model
     # does not exist.
     #
     # @param name [String]
     # @return [Hash|FalseClass]
     def remove(name)
-      return false if storage.empty?
+      return false if empty?
 
       if registered?(name)
         storage.delete(name)
@@ -84,6 +90,14 @@ module Vedeu
       @_storage = in_memory
     end
 
+    # Stores the model instance by name in the repository of the model.
+    #
+    # @param model [void] A model instance.
+    # @return [void] The model instance which was stored.
+    def store(model)
+      storage[model.name] = model
+    end
+
     private
 
     # @param method [Symbol]
@@ -92,6 +106,13 @@ module Vedeu
       return 'Registering' if method == :add
 
       'Updating'
+    end
+
+    # @param name [String]
+    # @raise [ModelNotFound] When the model cannot be found with this name.
+    # @return [ModelNotFound]
+    def not_found(name)
+      fail ModelNotFound, "Cannot find model by name: '#{name}'"
     end
 
     # Access to the storage for this repository.

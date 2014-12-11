@@ -18,6 +18,29 @@ module Vedeu
           geometry.y.must_equal(17)
         end
       end
+
+      it 'returns the value of y when just an attribute' do
+        IO.console.stub(:winsize, [25, 80]) do
+          geometry = Geometry.new({ y: 19 })
+          geometry.y.must_equal(19)
+        end
+      end
+    end
+
+    describe '#yn' do
+      it 'returns the value of yn when it is a proc' do
+        IO.console.stub(:winsize, [25, 80]) do
+          geometry = Geometry.new({ yn: proc { 17 } })
+          geometry.yn.must_equal(17)
+        end
+      end
+
+      it 'returns the value of yn when just an attribute' do
+        IO.console.stub(:winsize, [25, 80]) do
+          geometry = Geometry.new({ yn: 19 })
+          geometry.yn.must_equal(19)
+        end
+      end
     end
 
     describe '#x' do
@@ -25,6 +48,29 @@ module Vedeu
         IO.console.stub(:winsize, [25, 80]) do
           geometry = Geometry.new({ x: proc { 58 } })
           geometry.x.must_equal(58)
+        end
+      end
+
+      it 'returns the value of x when just an attribute' do
+        IO.console.stub(:winsize, [25, 80]) do
+          geometry = Geometry.new({ x: 64 })
+          geometry.x.must_equal(64)
+        end
+      end
+    end
+
+    describe '#xn' do
+      it 'returns the value of xn when it is a proc' do
+        IO.console.stub(:winsize, [25, 80]) do
+          geometry = Geometry.new({ xn: proc { 58 } })
+          geometry.xn.must_equal(58)
+        end
+      end
+
+      it 'returns the value of xn when just an attribute' do
+        IO.console.stub(:winsize, [25, 80]) do
+          geometry = Geometry.new({ xn: 64 })
+          geometry.xn.must_equal(64)
         end
       end
     end

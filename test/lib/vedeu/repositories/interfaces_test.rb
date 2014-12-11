@@ -31,7 +31,7 @@ module Vedeu
 
       context 'when the interface cannot be found' do
         it 'raises an exception' do
-          proc { Interfaces.build('manganese') }.must_raise(InterfaceNotFound)
+          proc { Interfaces.build('manganese') }.must_raise(ModelNotFound)
         end
       end
     end
