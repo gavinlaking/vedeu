@@ -116,6 +116,7 @@ require 'vedeu/output/output'
 require 'vedeu/output/view'
 require 'vedeu/output/viewport'
 
+require 'vedeu/support/bounding_area'
 require 'vedeu/support/grid'
 
 require 'vedeu/input/input'
