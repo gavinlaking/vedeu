@@ -74,11 +74,29 @@ module Vedeu
 
   class ConsoleGeometry
 
+    # Returns an instance of ConsoleGeometry.
+    #
+    # @param height [Fixnum]
+    # @param width [Fixnum]
+    # @return [ConsoleGeometry]
     def initialize(height, width)
       @height = height
       @width  = width
     end
 
+    # Returns the top line (y) coordinate for the console.
+    #
+    # @example
+    #   # height = 20
+    #
+    #   top     # => 1
+    #   top(5)  # => 6
+    #   top(-5) # => 1
+    #   top(25) # => 20
+    #
+    # @param offset [Fixnum] When provided, returns the top coordinate plus
+    #   the offset.
+    # @return [Fixnum]
     def top(offset = 0)
       if offset >= (height - 1)
         height
@@ -92,6 +110,19 @@ module Vedeu
       end
     end
 
+    # Returns the bottom line (yn) coordinate for the console.
+    #
+    # @example
+    #   # height = 20
+    #
+    #   bottom     # => 20
+    #   bottom(5)  # => 15
+    #   bottom(-5) # => 20
+    #   bottom(25) # => 1
+    #
+    # @param offset [Fixnum] When provided, returns the bottom coordinate minus
+    #   the offset.
+    # @return [Fixnum]
     def bottom(offset = 0)
       if offset >= (height - 1)
         1
@@ -105,6 +136,19 @@ module Vedeu
       end
     end
 
+    # Returns the leftmost column (x) coordinate for the console.
+    #
+    # @example
+    #   # width = 40
+    #
+    #   left     # => 1
+    #   left(5)  # => 6
+    #   left(-5) # => 1
+    #   left(45) # => 40
+    #
+    # @param offset [Fixnum] When provided, returns the left coordinate plus
+    #   the offset.
+    # @return [Fixnum]
     def left(offset = 0)
       if offset >= (width - 1)
         width
@@ -118,6 +162,19 @@ module Vedeu
       end
     end
 
+    # Returns the rightmost column (yn) coordinate for the console.
+    #
+    # @example
+    #   # width = 40
+    #
+    #   right     # => 40
+    #   right(5)  # => 35
+    #   right(-5) # => 40
+    #   right(45) # => 1
+    #
+    # @param offset [Fixnum] When provided, returns the right coordinate minus
+    #   the offset.
+    # @return [Fixnum]
     def right(offset = 0)
       if offset >= (width - 1)
         1
