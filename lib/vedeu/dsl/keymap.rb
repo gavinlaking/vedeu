@@ -1,3 +1,5 @@
+require 'vedeu/support/common'
+
 module Vedeu
 
   module DSL
@@ -12,7 +14,7 @@ module Vedeu
       # Returns an instance of DSL::Keymap.
       #
       # @param model [Keymap]
-      def initialize(model = Vedeu::Keymap.new)
+      def initialize(model = Vedeu::Keymap)
         @model = model
       end
 
@@ -63,15 +65,18 @@ module Vedeu
       #   collection, a member is undefined.
       # @return [Array] A collection containing the keypress(es).
       def key(*value_or_values, &block)
-        fail InvalidSyntax,
-          'No action defined for `key`.' unless block_given?
-        fail InvalidSyntax, 'No keypress(es) defined for `key`.' unless
-          defined_value?(value_or_values)
+        unless block_given?
+          fail InvalidSyntax, 'No action defined for `key`.'
+        end
+
+        unless defined_value?(value_or_values)
+          fail InvalidSyntax, 'No keypress(es) defined for `key`.'
+        end
 
         value_or_values.each do |value|
-          fail InvalidSyntax,
-            'An invalid value for `key` was encountered.' unless
-              defined_value?(value)
+          unless defined_value?(value)
+            fail InvalidSyntax, 'An invalid value for `key` was encountered.'
+          end
 
           model.add_keypress({ key: value, action: block })
         end
@@ -79,7 +84,9 @@ module Vedeu
 
       private
 
-      attr_reader :model
+      def model
+        @model.new
+      end
 
     end # Keymap
 
