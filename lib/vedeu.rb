@@ -46,6 +46,8 @@ require 'set'
 require 'singleton'
 require 'time'
 
+require 'vedeu/dsl/all'
+
 require 'vedeu/support/common'
 require 'vedeu/support/exceptions'
 require 'vedeu/support/model'
