@@ -72,6 +72,7 @@ require 'vedeu/colours/background'
 require 'vedeu/colours/foreground'
 require 'vedeu/colours/colour'
 
+require 'vedeu/support/align'
 require 'vedeu/support/coercions'
 require 'vedeu/support/esc'
 require 'vedeu/support/position'
