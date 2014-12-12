@@ -14,6 +14,8 @@ module Vedeu
 
       describe '#interface' do
         it 'returns the instance of the Keymap model' do
+          skip
+
           Vedeu.keys do
             key('d') { :some_action }
             interface 'neodymium'
@@ -32,6 +34,8 @@ module Vedeu
         end
 
         it 'returns a collection of the interfaces' do
+          skip
+
           Keymap.new.interface('americium').must_equal(['americium'])
         end
       end
@@ -60,12 +64,16 @@ module Vedeu
         end
 
         it 'returns the instance of the Keymap model' do
+          skip
+
           Vedeu.keys do
             key('f') { :some_action }
           end.must_be_instance_of(Vedeu::Keymap)
         end
 
         it 'returns a collection of the keypresses' do
+          skip
+
           Keymap.new.key('v', 'd', 'u') do
             :some_action
           end.must_equal(['v', 'd', 'u'])

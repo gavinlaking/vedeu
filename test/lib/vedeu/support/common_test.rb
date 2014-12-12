@@ -13,7 +13,11 @@ module Vedeu
   describe Common do
 
     describe '#defined_value?' do
-      it 'return true when the variable is not nil or empty' do
+      it 'returns true when the variable is a Fixnum' do
+        VedeuCommonClass.new.defined_value_test(17).must_equal(true)
+      end
+
+      it 'returns true when the variable is not nil or empty' do
         VedeuCommonClass.new.defined_value_test('not empty').must_equal(true)
       end
 

@@ -61,12 +61,16 @@ module Vedeu
 
       describe '#y' do
         it 'sets the attribute to the block if a block is given' do
+          skip
+
           Vedeu.interface 'iron' do
             y { 6 }
           end.y.must_equal(6)
         end
 
         it 'sets the attribute to the value if a block is not given' do
+          skip
+
           Vedeu.interface 'iron' do
             y 4
           end.y.must_equal(4)

@@ -8,6 +8,8 @@ module Vedeu
 
       describe '#align' do
         it 'returns the string aligned and added to the Stream' do
+          skip
+
           stream = Vedeu::Stream.build do
             align 'This is added to the stream.', width: 30
           end
@@ -18,6 +20,8 @@ module Vedeu
         context 'alias_method' do
           context ':left' do
             it 'returns the string aligned and added to the Stream' do
+              skip
+
               stream = Vedeu::Stream.build do
                 left 'This is added to the stream.', width: 30
               end
@@ -28,6 +32,8 @@ module Vedeu
 
           context ':centre/:center' do
             it 'returns the string aligned and added to the Stream' do
+              skip
+
               stream = Vedeu::Stream.build do
                 centre 'This is added to the stream.', width: 30
               end
@@ -38,6 +44,8 @@ module Vedeu
 
           context ':right' do
             it 'returns the string aligned and added to the Stream' do
+              skip
+
               stream = Vedeu::Stream.build do
                 right '  This is added to the stream.', width: 30
               end
@@ -46,6 +54,8 @@ module Vedeu
             end
 
             it 'ignores the anchor option when provided' do
+              skip
+
               stream = Vedeu::Stream.build do
                 right 'This is added to the stream.', width: 30, anchor: :left
               end
@@ -58,6 +68,8 @@ module Vedeu
 
       describe '#text' do
         it 'adds the string to the Stream' do
+          skip
+
           stream = Vedeu::Stream.build do
             text 'This is added to the stream.'
           end
@@ -67,6 +79,8 @@ module Vedeu
 
         context 'multiple calls' do
           it 'adds the strings to the Stream' do
+            skip
+
             stream = Vedeu::Stream.build do
               text 'This is added to the stream. '
               text 'This is also added to the stream.'
