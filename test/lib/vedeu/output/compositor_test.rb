@@ -3,6 +3,8 @@ require 'test_helper'
 module Vedeu
 
   describe Compositor do
+
+    let(:described) { Compositor.new(interface, buffer) }
     let(:interface) {
       {
         name: 'indium'
@@ -18,31 +20,14 @@ module Vedeu
     end
 
     describe '#initialize' do
-      subject { Compositor.new(interface, buffer) }
-
-      it 'returns an instance of Compositor' do
-        subject.must_be_instance_of(Compositor)
-      end
-
-      it 'assigns the interface' do
-        subject.instance_variable_get("@interface").must_equal(interface)
-      end
-
-      it 'assigns the buffer' do
-        subject.instance_variable_get("@buffer").must_equal(buffer)
-      end
+      it { return_type_for(described, Compositor) }
+      it { assigns(described, '@interface', interface) }
+      it { assigns(described, '@buffer', buffer) }
     end
 
     describe '#compose' do
-      subject { Compositor.new(interface, buffer).compose }
-
-      it 'returns an Array' do
-        subject.must_be_instance_of(Array)
-      end
-
-      it 'returns the updated interface attributes' do
-        subject.must_equal([{}])
-      end
+      it { return_type_for(described.compose, Array) }
+      it { return_value_for(described.compose, [{}]) }
     end
 
   end # Compositor

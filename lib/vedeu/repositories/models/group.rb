@@ -13,8 +13,8 @@ module Vedeu
     # @param members [String]
     # @return [Group]
     def initialize(name, *members)
-      @members = members.to_set
       @name    = name
+      @members = members.to_set
     end
 
     # Add a member to the group by name.

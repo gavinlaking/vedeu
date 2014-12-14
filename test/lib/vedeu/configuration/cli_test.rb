@@ -6,8 +6,17 @@ module Vedeu
 
     describe CLI do
 
+      let(:described) { CLI.new(args) }
+      let(:args)      { [] }
+
       before { Configuration.reset! }
       after  { test_configuration }
+
+      describe '#initialize' do
+        it { return_type_for(described, CLI) }
+        it { assigns(described, '@args', args) }
+        it { assigns(described, '@options', {}) }
+      end
 
       describe '#colour_mode' do
         it '--colour-mode' do

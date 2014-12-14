@@ -4,8 +4,15 @@ module Vedeu
 
   describe Sentence do
 
-    let(:elements)        { ['Hydrogen'] }
-    let(:label)           { 'elements' }
+    let(:described) { Sentence.new(elements, label) }
+    let(:elements)  { ['Hydrogen'] }
+    let(:label)     { 'elements' }
+
+    describe '#initialize' do
+      it { return_type_for(described, Sentence) }
+      it { assigns(described, '@elements', elements) }
+      it { assigns(described, '@label', label) }
+    end
 
     describe '.construct' do
       subject { Sentence.construct(elements, label) }

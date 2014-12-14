@@ -4,13 +4,15 @@ module Vedeu
 
   describe Key do
 
-    let(:input)  { '' }
-    let(:output) { proc { :output } }
+    let(:described) { Key.new(input, output) }
+    let(:input)     { '' }
+    let(:output)    { Proc.new { :output } }
 
     describe '#initialize' do
-      it 'returns a new instance of Key' do
-        Key.new(input, output).must_be_instance_of(Key)
-      end
+      it { return_type_for(described, Key) }
+      it { assigns(described, '@input', input) }
+
+      it { skip; assigns(described, '@output', output) }
     end
 
     describe '#input' do

@@ -3,6 +3,8 @@ require 'test_helper'
 module Vedeu
 
   describe Launcher do
+    let(:described) { Launcher.new }
+
     before do
       Configuration.stubs(:configure)
       Application.stubs(:start)
@@ -15,9 +17,13 @@ module Vedeu
     end
 
     describe '#initialize' do
-      it 'returns an instance of itself' do
-        Launcher.new.must_be_instance_of(Launcher)
-      end
+      it { return_type_for(described, Launcher) }
+      it { assigns(described, '@argv', []) }
+      it { assigns(described, '@stdin', STDIN) }
+      it { assigns(described, '@stdout', STDOUT) }
+      it { assigns(described, '@stderr', STDERR) }
+      it { assigns(described, '@kernel', Kernel) }
+      it { assigns(described, '@exit_code', 1) }
     end
 
     describe '#execute!' do

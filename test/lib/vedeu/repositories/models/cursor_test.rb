@@ -4,6 +4,7 @@ module Vedeu
 
   describe Cursor do
 
+    let(:described)  { Cursor.new(attributes) }
     let(:attributes) {
       {
         name:  'silver',
@@ -25,9 +26,12 @@ module Vedeu
     end
 
     describe '#initialize' do
-      it 'returns an instance of itself' do
-        Cursor.new(attributes).must_be_instance_of(Cursor)
-      end
+      it { return_type_for(described, Cursor) }
+      it { assigns(described, '@attributes', attributes) }
+      it { assigns(described, '@name', 'silver') }
+      it { assigns(described, '@state', :show) }
+      it { assigns(described, '@x', 19) }
+      it { assigns(described, '@y', 8) }
     end
 
     describe '#attributes' do
@@ -39,9 +43,7 @@ module Vedeu
     end
 
     describe '#x' do
-      it 'returns a Fixnum' do
-        Cursor.new(attributes).x.must_be_instance_of(Fixnum)
-      end
+      it { return_type_for(described.x, Fixnum) }
 
       context 'when the cursors position is outside the interface' do
         let(:attributes) { { name: 'silver', state: :show, x: 10, y: 8 } }
@@ -65,9 +67,7 @@ module Vedeu
     end
 
     describe '#y' do
-      it 'returns a Fixnum' do
-        Cursor.new(attributes).y.must_be_instance_of(Fixnum)
-      end
+      it { return_type_for(described.y, Fixnum) }
 
       context 'when the cursors position is outside the interface' do
         let(:attributes) { { name: 'silver', state: :show, x: 19, y: 3 } }

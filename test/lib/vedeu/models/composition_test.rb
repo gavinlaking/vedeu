@@ -5,15 +5,14 @@ require 'json'
 module Vedeu
 
   describe Composition do
+    let(:described)  { Composition.new(attributes) }
+    let(:attributes) { {} }
 
     before { Buffers.reset }
 
     describe '#initialize' do
-      it 'returns an instance of itself' do
-        attributes = {}
-
-        Composition.new(attributes).must_be_instance_of(Composition)
-      end
+      it { return_type_for(described, Composition) }
+      it { assigns(described, '@attributes', { interfaces: [] }) }
     end
 
     describe '#interfaces' do
@@ -31,13 +30,13 @@ module Vedeu
       end
 
       it 'returns an empty collection when no interfaces are associated' do
-        Composition.new.interfaces.must_be_empty
+        described.interfaces.must_be_empty
       end
     end
 
     describe '#method_missing' do
       it 'returns nil' do
-        Composition.new.some_missing_method(:test).must_equal(nil)
+        described.some_missing_method(:test).must_equal(nil)
       end
     end
 

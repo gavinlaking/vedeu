@@ -4,6 +4,7 @@ module Vedeu
 
   describe KeymapValidator do
 
+    let(:described) { KeymapValidator.new(storage, key, interface) }
     let(:storage)   {
       {
         'dubnium' => {
@@ -50,14 +51,10 @@ module Vedeu
     end
 
     describe '#initialize' do
-      it 'returns an instance of itself' do
-        storage   = {}
-        key       = ''
-        interface = ''
-
-        KeymapValidator.new(storage, key, interface)
-        .must_be_instance_of(KeymapValidator)
-      end
+      it { return_type_for(described, KeymapValidator) }
+      it { assigns(described, '@storage', storage) }
+      it { assigns(described, '@key', key) }
+      it { assigns(described, '@interface', interface) }
     end
 
   end # KeymapValidator

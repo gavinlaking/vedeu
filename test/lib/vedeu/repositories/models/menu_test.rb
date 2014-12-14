@@ -4,13 +4,16 @@ module Vedeu
 
   describe Menu do
 
+    let(:described)  { Menu.new(collection) }
     let(:collection) { ['hydrogen', 'carbon', 'nitrogen', 'oxygen'] }
     let(:menu)       { Menu.new(collection) }
 
     describe '#initialize' do
-      it 'returns a new instance of Menu' do
-        menu.must_be_instance_of(Menu)
-      end
+      it { return_type_for(described, Menu) }
+      it { assigns(described, '@collection', collection) }
+      it { assigns(described, '@name', '') }
+      it { assigns(described, '@current', 0) }
+      it { assigns(described, '@selected', nil) }
     end
 
     describe '#current' do

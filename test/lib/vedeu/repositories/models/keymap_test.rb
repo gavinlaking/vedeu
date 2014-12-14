@@ -4,16 +4,16 @@ module Vedeu
 
   describe Keymap do
 
+    let(:described)  { Keymap.new(attributes) }
+    let(:attributes) { {} }
+
     describe '.define' do
-      it 'returns an instance of Keymap' do
-        Keymap.define.must_be_instance_of(Keymap)
-      end
+      it { return_type_for(Keymap.define, Keymap) }
     end
 
     describe '#initialize' do
-      it 'returns an instance of itself' do
-        Keymap.new.must_be_instance_of(Keymap)
-      end
+      it { return_type_for(described, Keymap) }
+      it { assigns(described, '@attributes', { interfaces: [], keys: [] }) }
     end
 
     describe '#method_missing' do

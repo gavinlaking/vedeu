@@ -7,9 +7,7 @@ module Vedeu
     describe Stream do
 
       describe '#align' do
-        it 'returns a Symbol' do
-          Stream.new.align(:left).must_be_instance_of(Symbol)
-        end
+        it { return_type_for(Stream.new.align(:left), Symbol) }
 
         it 'returns the value assigned' do
           Stream.new.align(:left).must_equal(:left)

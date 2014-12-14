@@ -3,15 +3,18 @@ require 'test_helper'
 module Vedeu
 
   describe Offset do
+    let(:described)  { Offset.new(attributes) }
     let(:offset)     { Offset.new(attributes) }
     let(:attributes) { {} }
 
     before { Offsets.reset }
 
     describe '#initialize' do
-      it 'returns a new instance of Offset' do
-        offset.must_be_instance_of(Offset)
-      end
+      it { return_type_for(described, Offset) }
+      it { assigns(described, '@attributes', { name: '', x: 0, y: 0 }) }
+      it { assigns(described, '@name', '') }
+      it { assigns(described, '@y', 0) }
+      it { assigns(described, '@x', 0) }
     end
 
     describe '#attributes' do

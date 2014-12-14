@@ -4,33 +4,36 @@ module Vedeu
 
   describe Char do
 
-    let(:char)       { Char.new(attributes) }
+    let(:described) { Char.new(attributes) }
+    let(:char)   { Char.new(attributes) }
+    let(:parent) {
+      {
+        colour: {
+          foreground: '#00ff00',
+          background: '#ff00ff'
+        },
+        style: []
+      }
+    }
     let(:attributes) {
       {
         colour: { foreground: '#ffff00', background: '#0000ff' },
-        parent: {
-          colour: {
-            foreground: '#00ff00',
-            background: '#ff00ff'
-          },
-          style: []
-        },
+        parent: parent,
         style:  [],
         value:  value,
       }
     }
-    let(:value) { 'a' }
+    let(:value)   { 'a' }
 
     describe '#initialize' do
-      it 'returns a new instance of Char' do
-        char.must_be_instance_of(Char)
-      end
+      it { return_type_for(described, Char) }
+      it { assigns(described, '@attributes', attributes) }
+      it { assigns(described, '@parent', parent) }
+      it { assigns(described, '@value', value) }
     end
 
     describe '#to_s' do
-      it 'returns a String' do
-        char.to_s.must_be_instance_of(String)
-      end
+      it { return_type_for(described.to_s, String) }
 
       it 'returns the escape sequences and content' do
         # - char colours and style as set in Stream#chars.

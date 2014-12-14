@@ -3,6 +3,9 @@ require 'test_helper'
 module Vedeu
 
   describe Interface do
+    let(:described)  { Interface.new(attributes) }
+    let(:attributes) { {} }
+
     let(:interface) { Vedeu.use('#initialize') }
 
     before do
@@ -18,9 +21,24 @@ module Vedeu
     end
 
     describe '#initialize' do
-      it 'returns an instance of itself' do
-        interface.must_be_instance_of(Interface)
-      end
+      it { return_type_for(described, Interface) }
+      it { assigns(described, '@attributes', {
+          colour:   {},
+          cursor:   :hide,
+          delay:    0.0,
+          geometry: {},
+          group:    '',
+          lines:    [],
+          name:     '',
+          parent:   nil,
+          style:    ''
+        })
+      }
+      it { assigns(described, '@cursor', :hide) }
+      it { assigns(described, '@delay', 0.0) }
+      it { assigns(described, '@group', '') }
+      it { assigns(described, '@name', '') }
+      it { assigns(described, '@parent', nil) }
     end
 
     describe '#attributes' do
@@ -50,9 +68,7 @@ module Vedeu
     end
 
     describe '#cursor' do
-      it 'returns a Cursor' do
-        interface.cursor.must_be_instance_of(Cursor)
-      end
+      it { return_type_for(described.cursor, Cursor) }
     end
 
     describe '#name' do
@@ -88,9 +104,7 @@ module Vedeu
     end
 
     describe '#geometry' do
-      it 'returns the value' do
-        interface.geometry.must_be_instance_of(Geometry)
-      end
+      it { return_type_for(described.geometry, Geometry) }
     end
 
     describe '#delay' do

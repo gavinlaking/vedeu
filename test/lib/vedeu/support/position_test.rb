@@ -4,10 +4,10 @@ module Vedeu
 
   describe Position do
 
+    let(:described) { Position.new(12, 19) }
+
     describe '#initialize' do
-      it 'returns an instance of Position' do
-        Position.new.must_be_instance_of(Position)
-      end
+      it { return_type_for(described, Position) }
     end
 
     describe '#to_s' do
