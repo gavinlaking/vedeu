@@ -3,12 +3,33 @@ require 'test_helper'
 module Vedeu
 
   describe Border do
-    let(:interface) { Interface.new({ geometry: { width: 8, height: 5 } }) }
+
+    let(:described)  { Border.new(interface, attributes, options) }
+    let(:interface)  { Interface.new({ geometry: { width: 8, height: 5 } }) }
+    let(:attributes) { {  } }
+    let(:options)    { {  } }
 
     describe '#initialize' do
-      it 'returns a new instance of Border' do
-        Border.new(interface).must_be_instance_of(Border)
-      end
+      it { return_type_for(described, Border) }
+      it { assigns(described, '@interface', interface) }
+      it { assigns(described, '@attributes', {
+          bottom_right: 'j',
+          top_right:    'k',
+          top_left:     'l',
+          bottom_left:  'm',
+          horizontal:   'q',
+          colour:       {},
+          style:        [],
+          vertical:     'x'
+        })
+      }
+      it { assigns(described, '@options', {
+          show_bottom: true,
+          show_left:   true,
+          show_right:  true,
+          show_top:    true,
+        })
+      }
     end
 
     describe '#to_s' do
