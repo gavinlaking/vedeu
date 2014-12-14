@@ -5,13 +5,13 @@ module Vedeu
   module Distributed
 
     describe Uri do
-      let(:host) {}
-      let(:port) {}
+
+      let(:described) { Uri.new }
 
       describe '#initialize' do
-        it 'returns an instance of itself' do
-          Uri.new(host, port).must_be_instance_of(Uri)
-        end
+        it { return_type_for(described, Uri) }
+        it { assigns(described, '@host', 'druby://localhost') }
+        it { assigns(described, '@port', 21420) }
       end
 
       describe '#host' do
@@ -19,13 +19,13 @@ module Vedeu
           let(:host) { 'druby://myserver' }
 
           it 'returns the host' do
-            Uri.new(host, port).host.must_equal('druby://myserver')
+            Uri.new(host).host.must_equal('druby://myserver')
           end
         end
 
         context 'when the host has not been redefined' do
           it 'returns the default host' do
-            Uri.new(host, port).host.must_equal('druby://localhost')
+            Uri.new.host.must_equal('druby://localhost')
           end
         end
       end
@@ -35,13 +35,13 @@ module Vedeu
           let(:port) { 40000 }
 
           it 'returns the port' do
-            Uri.new(host, port).port.must_equal(40000)
+            Uri.new(nil, port).port.must_equal(40000)
           end
         end
 
         context 'when the port has not been redefined' do
           it 'returns the default port' do
-            Uri.new(host, port).port.must_equal(21420)
+            Uri.new.port.must_equal(21420)
           end
         end
       end

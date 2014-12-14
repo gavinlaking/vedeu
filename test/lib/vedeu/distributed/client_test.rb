@@ -5,15 +5,19 @@ module Vedeu
   module Distributed
 
     describe Client do
+
+      let(:described) { Client.new(uri) }
       let(:uri) {}
 
-      describe '#initialize' do
-        it 'returns an instance of itself' do
-          Client.new(uri).must_be_instance_of(Client)
-        end
+      describe '.connect' do
       end
 
-      describe '#' do
+      describe '#initialize' do
+        it { return_type_for(described, Client) }
+        it { assigns(described, '@uri', '') }
+      end
+
+      describe '#disconnect' do
       end
 
     end # Client
