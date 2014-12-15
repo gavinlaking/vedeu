@@ -23,6 +23,7 @@ module Vedeu
     describe '#initialize' do
       it { return_type_for(described, Interface) }
       it { assigns(described, '@attributes', {
+          border:   { attributes: {}, options: {} },
           colour:   {},
           cursor:   :hide,
           delay:    0.0,
@@ -45,23 +46,24 @@ module Vedeu
       it 'returns the value' do
         interface.attributes.must_equal(
           {
-            cursor: :hide,
-            name: '#initialize',
-            group: 'my_group',
-            lines: [],
+            border: { attributes: {}, options: {} },
             colour: {
               foreground: '#ff0000',
               background: '#000000'
             },
-            style: '',
+            cursor: :hide,
+            delay: 0.0,
             geometry: {
               y: 3,
               x: 5,
               width: 10,
-              height: 15
+              height: 15,
             },
-            delay: 0.0,
-            parent: nil
+            group: 'my_group',
+            lines: [],
+            name: '#initialize',
+            parent: nil,
+            style: '',
           }
         )
       end

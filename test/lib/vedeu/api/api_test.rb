@@ -156,15 +156,16 @@ module Vedeu
       let(:composition) {
         {
           interfaces: [{
-            name: "some_interface",
+            border: { attributes: {}, options: {} },
+            colour: {},
             cursor: :hide,
+            delay: 0.0,
+            geometry: {},
             group: '',
             lines: [],
-            colour: {},
+            name: "some_interface",
+            parent: {},
             style: '',
-            geometry: {},
-            delay: 0.0,
-            parent: {}
           }]
         }
       }

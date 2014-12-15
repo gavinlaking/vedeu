@@ -70,11 +70,10 @@ module Vedeu
 
     # Returns an instance of Border.
     #
-    # @param attrs [Hash] See {Border#initialize} for details.
-    # @param opts [Hash] See {Border#initialize} for details.
     # @return [Border]
-    def border(attrs = {}, opts = {})
-      @_border ||= Border.new(self, attrs, opts)
+    def border
+      @_border ||= Border.new(self, attributes[:border][:attributes],
+                                    attributes[:border][:options])
     end
 
     # Returns an instance of Cursor.
@@ -137,6 +136,7 @@ module Vedeu
     # @return [Hash]
     def defaults
       {
+        border:   { attributes: {}, options: {} },
         colour:   {},
         cursor:   :hide,
         delay:    0.0,
