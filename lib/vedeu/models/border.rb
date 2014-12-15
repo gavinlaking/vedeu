@@ -21,18 +21,91 @@ module Vedeu
       @options    = default_options.merge(options)
     end
 
+    def bottom?
+      options[:show_bottom]
+    end
+
+    def bottom
+      return [] unless bottom?
+
+      out = []
+
+      out << bottom_left if left?
+      horizontal_border.each do |border|
+        out << border
+      end
+      out << bottom_right if right?
+
+      out
+    end
+
+    def left?
+      options[:show_left]
+    end
+
+    def left
+      return '' unless left?
+
+      vertical_border
+    end
+
+    def right?
+      options[:show_right]
+    end
+
+    def right
+      return '' unless right?
+
+      vertical_border
+    end
+
+    def top?
+      options[:show_top]
+    end
+
+    def top
+      return [] unless top?
+
+      out = []
+      out << top_left if left?
+      horizontal_border.each do |border|
+        out << border
+      end
+      out << top_right if right?
+
+      out
+    end
+
+    def bottom_left
+      [on, bl, off].join
+    end
+
+    def bottom_right
+      [on, br, off].join
+    end
+
+    def top_left
+      [on, tl, off].join
+    end
+
+    def top_right
+      [on, tr, off].join
+    end
+
     def to_s
-      out = ""
+      to_viewport.map { |line| line.flatten.join }.join("\n")
+    end
 
-      out << top_border if show_top?
+    def to_viewport
+      out = []
 
-      height.times do
-        out << left_border if show_left?
-        out << horizontal_space
-        out << right_border if show_right?
+      out << top if top?
+
+      viewport[0...height].each do |line|
+        out << [left, line[0...width], right].flatten
       end
 
-      out << bottom_border if show_bottom?
+      out << bottom if bottom?
 
       out
     end
@@ -42,10 +115,10 @@ module Vedeu
     attr_reader :attributes, :interface, :options
 
     def width
-      if show_left? && show_right?
+      if left? && right?
         interface.width - 2
 
-      elsif show_left? || show_right?
+      elsif left? || right?
         interface.width - 1
 
       else
@@ -55,10 +128,10 @@ module Vedeu
     end
 
     def height
-      if show_top? && show_right?
+      if top? && bottom?
         interface.height - 2
 
-      elsif show_top? || show_bottom?
+      elsif top? || bottom?
         interface.height - 1
 
       else
@@ -67,57 +140,39 @@ module Vedeu
       end
     end
 
-    def bottom_border
-      out = ""
-      out << [on, bottom_left, off].join if show_left?
-      out << horizontal_border
-      out << [on, bottom_right, off].join if show_right?
-      out
-    end
-
     def horizontal_border
-      ([on, horizontal, off] * width).join
+      [[on, h, off].join] * width
     end
 
     def horizontal_space
-      ' ' * width
+      [' '] * width
     end
 
     def vertical_border
-      [on, vertical, off].join
-    end
-    alias_method :left_border,  :vertical_border
-    alias_method :right_border, :vertical_border
-
-    def top_border
-      out = ""
-      out << [on, top_left, off].join if show_left?
-      out << horizontal_border
-      out << [on, top_right, off].join if show_right?
-      out
+      [on, v, off].join
     end
 
-    def horizontal
+    def h
       attributes[:horizontal]
     end
 
-    def vertical
+    def v
       attributes[:vertical]
     end
 
-    def top_right
+    def tr
       attributes[:top_right]
     end
 
-    def top_left
+    def tl
       attributes[:top_left]
     end
 
-    def bottom_right
+    def br
       attributes[:bottom_right]
     end
 
-    def bottom_left
+    def bl
       attributes[:bottom_left]
     end
 
@@ -129,20 +184,8 @@ module Vedeu
       "\e(B"
     end
 
-    def show_bottom?
-      options[:show_bottom]
-    end
-
-    def show_left?
-      options[:show_left]
-    end
-
-    def show_right?
-      options[:show_right]
-    end
-
-    def show_top?
-      options[:show_top]
+    def viewport
+      interface.viewport
     end
 
     # The default options for the instance.
