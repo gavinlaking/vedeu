@@ -58,13 +58,13 @@ module Vedeu
       @x = 1              if @x <= 1
       @x = Terminal.width if @x >= Terminal.width
 
-      if border.left? && @x <= (left + 1)
+      if border? && border.left? && @x <= (left + 1)
         @x = (left + 1)
 
       elsif @x <= left
         @x = left
 
-      elsif border.right? && @x >= (right - 1)
+      elsif border? && border.right? && @x >= (right - 1)
         @x = (right - 2)
 
       elsif @x >= right
@@ -87,13 +87,13 @@ module Vedeu
       @y = 1               if @y <= 1
       @y = Terminal.height if @y >= Terminal.height
 
-      if border.top? && @y <= (top + 1)
+      if border? && border.top? && @y <= (top + 1)
         @y = (top + 1)
 
       elsif @y <= top
         @y = top
 
-      elsif border.bottom? && @y >= (bottom - 1)
+      elsif border? && border.bottom? && @y >= (bottom - 1)
         @y = (bottom - 2)
 
       elsif @y >= bottom
