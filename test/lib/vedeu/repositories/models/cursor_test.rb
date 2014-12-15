@@ -36,8 +36,8 @@ module Vedeu
 
     describe '#attributes' do
       it 'returns a hash containing the attributes of the instance' do
-        Cursor.new(attributes).attributes.must_equal(
-          { name: 'silver', state: :show, x: 19, y: 8 }
+        described.attributes.must_equal(
+          { name: 'silver', state: :show, x: 19, y: 7 }
         )
       end
     end
@@ -50,7 +50,7 @@ module Vedeu
 
         it 'repositions the cursor at the start of the line' do
           Cursor.new(attributes).attributes.must_equal(
-            { name: 'silver', state: :show, x: 12, y: 8 }
+            { name: 'silver', state: :show, x: 13, y: 7 }
           )
         end
       end
@@ -60,7 +60,7 @@ module Vedeu
 
         it 'repositions the cursor at the end of the line' do
           Cursor.new(attributes).attributes.must_equal(
-            { name: 'silver', state: :show, x: 21, y: 8 }
+            { name: 'silver', state: :show, x: 20, y: 7 }
           )
         end
       end
@@ -73,8 +73,8 @@ module Vedeu
         let(:attributes) { { name: 'silver', state: :show, x: 19, y: 3 } }
 
         it 'repositions the cursor at the start of the line' do
-          Cursor.new(attributes).attributes.must_equal(
-            { name: 'silver', state: :show, x: 19, y: 5 }
+          described.attributes.must_equal(
+            { name: 'silver', state: :show, x: 19, y: 6 }
           )
         end
       end
@@ -83,8 +83,8 @@ module Vedeu
         let(:attributes) { { name: 'silver', state: :show, x: 19, y: 12 } }
 
         it 'repositions the cursor at the end of the line' do
-          Cursor.new(attributes).attributes.must_equal(
-            { name: 'silver', state: :show, x: 19, y: 8 }
+          described.attributes.must_equal(
+            { name: 'silver', state: :show, x: 19, y: 7 }
           )
         end
       end
@@ -92,64 +92,64 @@ module Vedeu
 
     describe '#refresh' do
       it 'returns a hash containing the attributes of the instance' do
-        Cursor.new(attributes).refresh.must_equal(
-          { name: 'silver', state: :show, x: 19, y: 8 }
+        described.refresh.must_equal(
+          { name: 'silver', state: :show, x: 19, y: 7 }
         )
       end
     end
 
     describe '#show' do
       it 'sets the state attribute to :show' do
-        cursor = Cursor.new(attributes)
+        cursor = described
         cursor.hide
         cursor.attributes.must_equal(
-          { name: 'silver', state: :hide, x: 19, y: 8 }
+          { name: 'silver', state: :hide, x: 19, y: 7 }
         )
         cursor.show
         cursor.attributes.must_equal(
-          { name: 'silver', state: :show, x: 19, y: 8 }
+          { name: 'silver', state: :show, x: 19, y: 7 }
         )
       end
     end
 
     describe '#hide' do
       it 'sets the state attribute to :hide' do
-        cursor = Cursor.new(attributes)
+        cursor = described
         cursor.hide
         cursor.attributes.must_equal(
-          { name: 'silver', state: :hide, x: 19, y: 8 }
+          { name: 'silver', state: :hide, x: 19, y: 7 }
         )
-        cursor.to_s.must_equal("\e[8;19H\e[?25l")
+        cursor.to_s.must_equal("\e[7;19H\e[?25l")
       end
     end
 
     describe '#to_s' do
       context 'when the cursor state is :show' do
         it 'returns an escape sequence for showing the cursor (and position)' do
-          cursor = Cursor.new(attributes)
+          cursor = described
           cursor.show
-          cursor.to_s.must_equal("\e[8;19H\e[?25h")
+          cursor.to_s.must_equal("\e[7;19H\e[?25h")
         end
       end
 
       context 'when the cursor state is :hide' do
          it 'returns an escape sequence for hiding the cursor (and position)' do
-          cursor = Cursor.new(attributes)
+          cursor = described
           cursor.hide
-          cursor.to_s.must_equal("\e[8;19H\e[?25l")
+          cursor.to_s.must_equal("\e[7;19H\e[?25l")
         end
       end
 
       it 'returns the escape sequence to position and set the visibility of ' \
          'the cursor' do
-        Cursor.new(attributes).to_s.must_equal("\e[8;19H\e[?25h")
+        described.to_s.must_equal("\e[7;19H\e[?25h")
       end
 
       it 'returns the escape sequence to position and set the visibility of ' \
          'the cursor and returns to that position after yielding the block' do
-        Cursor.new(attributes).to_s do
+        described.to_s do
           # ...
-        end.must_equal("\e[8;19H\e[?25h\e[8;19H\e[?25h")
+        end.must_equal("\e[7;19H\e[?25h\e[7;19H\e[?25h")
       end
     end
 

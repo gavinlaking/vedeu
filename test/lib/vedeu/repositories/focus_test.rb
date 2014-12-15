@@ -65,7 +65,7 @@ module Vedeu
 
       it 'returns the escape sequence to render the cursor for the focussed ' \
          'interface' do
-        Focus.cursor.must_equal("\e[1;1H\e[?25l")
+        Focus.cursor.must_equal("\e[2;2H\e[?25l")
       end
     end
 
