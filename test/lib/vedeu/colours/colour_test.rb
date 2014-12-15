@@ -4,15 +4,22 @@ module Vedeu
 
   describe Colour do
 
-    describe '#initialize' do
-      it 'returns an instance of itself' do
-        attributes = {}
+    let(:described)  { Colour.new(attributes) }
+    let(:attributes) {
+      {
+        background: '',
+        foreground: ''
+      }
+    }
 
-        Colour.new(attributes).must_be_instance_of(Colour)
-      end
+    describe '#initialize' do
+      it { return_type_for(described, Colour) }
+      it { assigns(described, '@attributes', attributes) }
     end
 
     describe '#background' do
+      it { return_type_for(described.background, String) }
+
       it 'returns an escape sequence' do
         Colour.new({
           background: '#000000'
@@ -25,6 +32,8 @@ module Vedeu
     end
 
     describe '#foreground' do
+      it { return_type_for(described.foreground, String) }
+
       it 'returns an escape sequence' do
         Colour.new({
           foreground: '#ff0000'
@@ -37,6 +46,8 @@ module Vedeu
     end
 
     describe '#to_s' do
+      it { return_type_for(described.to_s, String) }
+
       it 'returns an escape sequence' do
         Colour.new({
           foreground: '#ff0000',

@@ -27,7 +27,7 @@ module Vedeu
     # @param block [Proc]
     # @return [Stream]
     def initialize(attributes = {}, &block)
-      @attributes = defaults.merge!(attributes)
+      @attributes = defaults.merge(attributes)
       @align      = @attributes[:align]
       @text       = @attributes[:text]
       @width      = @attributes[:width]

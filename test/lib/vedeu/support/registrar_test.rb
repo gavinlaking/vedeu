@@ -4,6 +4,14 @@ module Vedeu
 
   describe Registrar do
 
+    let(:described)  { Registrar.new(attributes) }
+    let(:attributes) {
+      {
+        name:  'mendelevium',
+        group: 'elements'
+      }
+    }
+
     before do
       Buffers.reset
       Interfaces.reset
@@ -12,13 +20,6 @@ module Vedeu
     end
 
     describe '.record' do
-      let(:attributes) {
-        {
-          name:  'mendelevium',
-          group: 'elements'
-        }
-      }
-
       it 'raises an exception if the attributes does not have a :name key' do
         attributes = { no_name_key: '' }
 
@@ -81,6 +82,11 @@ module Vedeu
       it 'removes all entities from all repositories' do
         skip
       end
+    end
+
+    describe '#initialize' do
+      it { return_type_for(described, Registrar) }
+      it { assigns(described, '@attributes', attributes) }
     end
 
   end # Registrar

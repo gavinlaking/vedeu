@@ -42,13 +42,13 @@ module Vedeu
     # @param  block [Proc]
     # @return [Interface]
     def initialize(attributes = {}, &block)
-      @attributes = defaults.merge!(attributes)
+      @attributes = defaults.merge(attributes)
 
-      @cursor = @attributes[:cursor]
-      @delay = @attributes[:delay]
-      @group = @attributes[:group]
-      @name  = @attributes[:name]
-      @parent = @attributes[:parent]
+      @cursor     = @attributes[:cursor]
+      @delay      = @attributes[:delay]
+      @group      = @attributes[:group]
+      @name       = @attributes[:name]
+      @parent     = @attributes[:parent]
 
       if block_given?
         @self_before_instance_eval = eval('self', block.binding)
@@ -66,6 +66,13 @@ module Vedeu
       Registrar.record(attributes)
 
       self
+    end
+
+    # Returns an instance of Border.
+    #
+    # @return [Border]
+    def border
+      @_border ||= Border.new(self, attributes[:border])
     end
 
     # Returns an instance of Cursor.
@@ -128,6 +135,7 @@ module Vedeu
     # @return [Hash]
     def defaults
       {
+        border:   {},
         colour:   {},
         cursor:   :hide,
         delay:    0.0,

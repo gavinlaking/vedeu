@@ -3,25 +3,24 @@ require 'test_helper'
 module Vedeu
 
   describe Style do
-    describe '#initialize' do
-      it 'returns an instance of itself' do
-        values = ''
 
-        Style.new(values).must_be_instance_of(Style)
-      end
+    let(:described) { Style.new(values) }
+    let(:values)    { ['bold'] }
+
+    describe '#initialize' do
+      it { described.must_be_instance_of(Style) }
+      it { assigns(described, '@values', values) }
     end
 
     describe '#attributes' do
       it 'returns an attributes hash for this instance' do
-        Style.new(['bold']).attributes.must_equal(
-          {
-            style: ['bold']
-          }
-        )
+        described.attributes.must_equal({ style: ['bold'] })
       end
     end
 
     describe '#to_s' do
+      it { return_type_for(described.to_s, String) }
+
       describe 'for a single style' do
         let(:values) { 'normal' }
 

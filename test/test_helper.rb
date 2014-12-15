@@ -16,6 +16,18 @@ module MiniTest
     class << self
       alias_method :context, :describe
     end # Spec eigenclass
+
+    def assigns(subject, instance_variable, value)
+      subject.instance_variable_get(instance_variable).must_equal(value)
+    end
+
+    def return_type_for(subject, value)
+      subject.must_be_instance_of(value)
+    end
+
+    def return_value_for(subject, value)
+      subject.must_equal(value)
+    end
   end
 end
 

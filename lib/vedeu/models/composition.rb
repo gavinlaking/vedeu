@@ -22,7 +22,7 @@ module Vedeu
     # @param block [Proc]
     # @return [Composition]
     def initialize(attributes = {}, &block)
-      @attributes = defaults.merge!(attributes)
+      @attributes = defaults.merge(attributes)
 
       if block_given?
         @self_before_instance_eval = eval('self', block.binding)

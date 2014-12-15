@@ -20,18 +20,19 @@ module Vedeu
             colour foreground: '#aadd00', background: '#222222'
           end.must_equal(
             {
-              name: '',
-              cursor: :hide,
-              group: '',
-              lines: [],
+              border: {},
               colour: {
                 foreground: '#aadd00',
                 background: '#222222'
               },
-              style: '',
-              geometry: {},
+              cursor: :hide,
               delay: 0.0,
+              geometry: {},
+              group: '',
+              lines: [],
+              name: '',
               parent: nil,
+              style: '',
             }
           )
         end
@@ -41,15 +42,16 @@ module Vedeu
             style 'underline'
           end.must_equal(
             {
-              name: '',
+              border: {},
+              colour: {},
               cursor: :hide,
+              delay: 0.0,
+              geometry: {},
               group: '',
               lines: [],
-              colour: {},
-              style: "underline",
-              geometry: {},
-              delay: 0.0,
+              name: '',
               parent: nil,
+              style: "underline",
             }
           )
         end
@@ -66,17 +68,18 @@ module Vedeu
               name   'my_other_interface'
               y      use('my_interface').south
             end.must_equal({
-              name: "my_other_interface",
-              cursor: :hide,
-              group: '',
-              lines: [],
+              border: {},
               colour: {},
-              style: '',
+              cursor: :hide,
+              delay: 0.0,
               geometry: {
                 y: 11
               },
-              delay: 0.0,
+              group: '',
+              lines: [],
+              name: "my_other_interface",
               parent: nil,
+              style: '',
             })
           end
         end
@@ -87,15 +90,16 @@ module Vedeu
             delay 1.0
           end.must_equal(
             {
-              name: '',
+              border: {},
+              colour: {},
               cursor: :hide,
+              delay: 1.0,
+              geometry: {},
               group: '',
               lines: [],
-              colour: {},
-              style: '',
-              geometry: {},
-              delay: 1.0,
+              name: '',
               parent: nil,
+              style: '',
             })
         end
 
@@ -105,15 +109,16 @@ module Vedeu
             group 'my_group'
           end.must_equal(
             {
-              name: '',
+              border: {},
+              colour: {},
               cursor: :hide,
+              delay: 0.0,
+              geometry: {},
               group: "my_group",
               lines: [],
-              colour: {},
-              style: '',
-              geometry: {},
-              delay: 0.0,
+              name: '',
               parent: nil,
+              style: '',
             }
           )
         end
@@ -246,24 +251,25 @@ module Vedeu
           interface.must_be_instance_of(API::Interface)
           interface.attributes.must_equal(
             {
-              name: 'carbon',
+              border: {},
+              colour: {},
               cursor: :hide,
+              delay: 0.0,
+              geometry: {},
               group: '',
               lines: [
                 {
                   colour: {},
+                  parent: interface.view_attributes,
                   streams: {
                     text: ''
                   },
                   style: [],
-                  parent: interface.view_attributes,
                 }
               ],
-              colour: {},
-              style: '',
-              geometry: {},
-              delay: 0.0,
+              name: 'carbon',
               parent: nil,
+              style: '',
             }
           )
         end
@@ -275,24 +281,25 @@ module Vedeu
           interface.must_be_instance_of(API::Interface)
           interface.attributes.must_equal(
             {
-              name: 'carbon',
+              border: {},
+              colour: {},
               cursor: :hide,
+              delay: 0.0,
+              geometry: {},
               group: '',
               lines: [
                 {
                   colour: {},
+                  parent: interface.view_attributes,
                   streams: {
                     text: "This is some text..."
                   },
                   style: [],
-                  parent: interface.view_attributes,
                 }
               ],
-              colour: {},
-              style: '',
-              geometry: {},
-              delay: 0.0,
+              name: 'carbon',
               parent: nil,
+              style: '',
             }
           )
         end
@@ -306,26 +313,27 @@ module Vedeu
           interface.must_be_instance_of(API::Interface)
           interface.attributes.must_equal(
             {
-              name: "silicon",
+              border: {},
+              colour: {},
               cursor: :hide,
+              delay: 0.0,
+              geometry: {},
               group: '',
               lines: [
                 {
                   colour: {},
+                  parent: interface.view_attributes,
                   streams: [
                     {
                       text: "This is different text..."
                     }
                   ],
                   style: [],
-                  parent: interface.view_attributes,
                 }
               ],
-              colour: {},
+              name: "silicon",
+              parent: nil,
               style: '',
-              geometry: {},
-              delay: 0.0,
-              parent: nil
             }
           )
         end

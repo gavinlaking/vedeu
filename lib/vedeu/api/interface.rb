@@ -9,6 +9,18 @@ module Vedeu
 
       include Helpers
 
+      # Allows the setting of a border for the interface. Via the `values`
+      # parameter, the various characters for the borders sides and corners can
+      # be set, a custom foreground and background, a custom style, and whether
+      # a particular side should be drawn or not. See {Border#initialize} for
+      # more details.
+      #
+      # @return [Hash]
+      def border(values = {})
+        auto_enable = { enabled: true }
+        attributes[:border] = auto_enable.merge(values)
+      end
+
       # Instructs Vedeu to calculate x and y geometry automatically based on the
       # centre character of the terminal, the width and the height.
       #

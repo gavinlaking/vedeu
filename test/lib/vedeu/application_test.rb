@@ -4,17 +4,15 @@ module Vedeu
 
   describe Application do
 
+    let(:described) { Application.new }
+
     before { Terminal.stubs(:open).returns(['']) }
 
     describe '.start' do
-      it 'returns an Array' do
-        Application.start.must_be_instance_of(Array)
-      end
+      it { return_type_for(Application.start, Array) }
 
       context 'alias method: .restart' do
-        it 'returns an Array' do
-          Application.restart.must_be_instance_of(Array)
-        end
+        it { return_type_for(Application.restart, Array) }
       end
     end
 
@@ -25,15 +23,11 @@ module Vedeu
     end
 
     describe '#initialize' do
-      it 'returns an Application' do
-        Application.new.must_be_instance_of(Application)
-      end
+      it { return_type_for(described, Application) }
     end
 
     describe '#start' do
-      it 'returns an Array' do
-        Application.new.start.must_be_instance_of(Array)
-      end
+      it { return_type_for(described.start, Array) }
     end
 
   end # Application

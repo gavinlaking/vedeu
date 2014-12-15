@@ -4,10 +4,13 @@ module Vedeu
 
   describe Group do
 
+    let(:described) { Group.new('organics', *members) }
+    let(:members)   { ['carbon', 'nitrogen', 'oxygen'] }
+
     describe '#initialize' do
-      it 'returns a Group' do
-        Group.new('organics').must_be_instance_of(Group)
-      end
+      it { return_type_for(described, Group) }
+      it { assigns(described, '@members', members.to_set) }
+      it { assigns(described, '@name', 'organics') }
     end
 
     describe '#add' do
@@ -33,9 +36,7 @@ module Vedeu
     end
 
     describe '#members' do
-      it 'returns an instance of Array' do
-        Group.new('organics').members.must_be_instance_of(Array)
-      end
+      it { return_type_for(described.members, Array) }
 
       context 'when the group has no members' do
         it 'returns an empty Set' do
@@ -83,9 +84,7 @@ module Vedeu
     end
 
     describe '#reset' do
-      it 'returns a Group' do
-        Group.new('organics').reset.must_be_instance_of(Group)
-      end
+      it { return_type_for(described.reset, Group) }
 
       it 'returns a Group with no members' do
         group     = Group.new('organics', 'nitrogen', 'carbon')

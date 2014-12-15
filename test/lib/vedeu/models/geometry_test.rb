@@ -4,83 +4,82 @@ module Vedeu
 
   describe Geometry do
 
+    let(:described)  { Geometry.new(attributes) }
+    let(:attributes) { {} }
+
+    before do
+      IO.console.stubs(:winsize).returns([25, 80])
+    end
+
     describe '#initialize' do
-      it 'returns an instance of itself' do
-        attributes = {}
-        Geometry.new(attributes).must_be_instance_of(Geometry)
-      end
+      it { return_type_for(described, Geometry) }
+      it { assigns(described, '@attributes', {
+          centred: false,
+          height:  25,
+          width:   80,
+          x:       1,
+          xn:      nil,
+          y:       1,
+          yn:      nil,
+        })
+      }
+      it { assigns(described, '@centred', false) }
+      it { assigns(described, '@height', 25) }
+      it { assigns(described, '@width', 80) }
     end
 
     describe '#y' do
       it 'returns the value of y when it is a proc' do
-        IO.console.stub(:winsize, [25, 80]) do
-          geometry = Geometry.new({ y: proc { 17 } })
-          geometry.y.must_equal(17)
-        end
+        geometry = Geometry.new({ y: proc { 17 } })
+        geometry.y.must_equal(17)
       end
 
       it 'returns the value of y when just an attribute' do
-        IO.console.stub(:winsize, [25, 80]) do
-          geometry = Geometry.new({ y: 19 })
-          geometry.y.must_equal(19)
-        end
+        geometry = Geometry.new({ y: 19 })
+        geometry.y.must_equal(19)
       end
     end
 
     describe '#yn' do
       it 'returns the value of yn when it is a proc' do
-        IO.console.stub(:winsize, [25, 80]) do
-          geometry = Geometry.new({ yn: proc { 17 } })
-          geometry.yn.must_equal(17)
-        end
+        geometry = Geometry.new({ yn: proc { 17 } })
+        geometry.yn.must_equal(17)
       end
 
       it 'returns the value of yn when just an attribute' do
-        IO.console.stub(:winsize, [25, 80]) do
-          geometry = Geometry.new({ yn: 19 })
-          geometry.yn.must_equal(19)
-        end
+        geometry = Geometry.new({ yn: 19 })
+        geometry.yn.must_equal(19)
       end
     end
 
     describe '#x' do
       it 'returns the value of x when it is a proc' do
-        IO.console.stub(:winsize, [25, 80]) do
-          geometry = Geometry.new({ x: proc { 58 } })
-          geometry.x.must_equal(58)
-        end
+        geometry = Geometry.new({ x: proc { 58 } })
+        geometry.x.must_equal(58)
       end
 
       it 'returns the value of x when just an attribute' do
-        IO.console.stub(:winsize, [25, 80]) do
-          geometry = Geometry.new({ x: 64 })
-          geometry.x.must_equal(64)
-        end
+        geometry = Geometry.new({ x: 64 })
+        geometry.x.must_equal(64)
       end
     end
 
     describe '#xn' do
       it 'returns the value of xn when it is a proc' do
-        IO.console.stub(:winsize, [25, 80]) do
-          geometry = Geometry.new({ xn: proc { 58 } })
-          geometry.xn.must_equal(58)
-        end
+        geometry = Geometry.new({ xn: proc { 58 } })
+        geometry.xn.must_equal(58)
       end
 
       it 'returns the value of xn when just an attribute' do
-        IO.console.stub(:winsize, [25, 80]) do
-          geometry = Geometry.new({ xn: 64 })
-          geometry.xn.must_equal(64)
-        end
+        geometry = Geometry.new({ xn: 64 })
+        geometry.xn.must_equal(64)
       end
     end
 
     describe '#width' do
       it 'returns the viewport width when the interface fits the terminal' do
-        IO.console.stub(:winsize, [25, 80]) do
-          geometry = Geometry.new({ width: 60, height: 1, x: 5, y: 1 })
-          geometry.width.must_equal(60)
-        end
+        geometry = Geometry.new({ width: 60, height: 1, x: 5, y: 1 })
+        geometry.width.must_equal(60)
       end
 
       it 'returns the viewport width when the interface does not fit the ' \
@@ -101,10 +100,8 @@ module Vedeu
 
     describe '#height' do
       it 'returns the viewport height when the interface fits the terminal' do
-        IO.console.stub(:winsize, [25, 80]) do
-          geometry = Geometry.new({ width: 5, height: 20, x: 1, y: 5 })
-          geometry.height.must_equal(20)
-        end
+        geometry = Geometry.new({ width: 5, height: 20, x: 1, y: 5 })
+        geometry.height.must_equal(20)
       end
 
       it 'returns the viewport height when the interface does not fit the ' \
@@ -130,11 +127,8 @@ module Vedeu
       end
 
       it 'returns the origin for the interface' do
-        console = IO.console
-        console.stub :winsize, [25, 80] do
-          geometry = Geometry.new({ width: 5, height: 5, centred: true })
-          geometry.origin.must_equal("\e[10;38H")
-        end
+        geometry = Geometry.new({ width: 5, height: 5, centred: true })
+        geometry.origin.must_equal("\e[10;38H")
       end
 
       it 'returns the line position relative to the origin' do

@@ -4,6 +4,7 @@ module Vedeu
 
   describe Buffer do
 
+    let(:described) { Buffer.new(attributes) }
     let(:attributes) {
       {
         name:     '',
@@ -17,42 +18,36 @@ module Vedeu
     let(:previous) { {} }
 
     describe '#initialize' do
-      it 'returns an instance of Buffer' do
-        Buffer.new(attributes).must_be_instance_of(Buffer)
-      end
+      it { return_type_for(described, Buffer) }
+      it { assigns(described, '@name', '') }
+      it { assigns(described, '@back', {}) }
+      it { assigns(described, '@front', {}) }
+      it { assigns(described, '@previous', {}) }
     end
 
     describe '#back' do
-      subject { Buffer.new(attributes).back }
-
-      it { subject.must_be_instance_of(Hash) }
+      it { return_type_for(described.back, Hash) }
     end
 
     describe '#front' do
-      subject { Buffer.new(attributes).front }
-
-      it { subject.must_be_instance_of(Hash) }
+      it { return_type_for(described.front, Hash) }
 
       context 'alias method: #current' do
-        subject { Buffer.new(attributes).current }
-
-        it { subject.must_be_instance_of(Hash) }
+        it { return_type_for(described.current, Hash) }
       end
     end
 
     describe '#name' do
-      subject { Buffer.new(attributes).name }
-
-      it { subject.must_be_instance_of(String) }
+      it { return_type_for(described.name, String) }
     end
 
     describe '#previous' do
-      subject { Buffer.new(attributes).previous }
-
-      it { subject.must_be_instance_of(Hash) }
+      it { return_type_for(described.previous, Hash) }
     end
 
     describe '#content' do
+      it { return_type_for(described.content, Array) }
+
       subject { Buffer.new(attributes).content }
 
       context 'when there is content on the back buffer' do

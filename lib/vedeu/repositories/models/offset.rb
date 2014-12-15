@@ -20,7 +20,7 @@ module Vedeu
     # @param attributes [Hash]
     # @return [Offset]
     def initialize(attributes = {})
-      @attributes = defaults.merge!(attributes)
+      @attributes = defaults.merge(attributes)
       @name       = @attributes[:name]
       @y          = @attributes[:y]
       @x          = @attributes[:x]

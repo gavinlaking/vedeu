@@ -37,6 +37,12 @@ module Vedeu
         it 'returns an instance of itself' do
           Menu.new.must_be_instance_of(Menu)
         end
+
+        it 'assigns the attributes' do
+          attributes = { name: '', items: [] }
+          subject    = Menu.new(attributes)
+          assigns(subject, '@attributes', attributes)
+        end
       end
 
       describe '#items' do

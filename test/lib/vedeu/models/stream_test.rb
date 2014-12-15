@@ -3,6 +3,18 @@ require 'test_helper'
 module Vedeu
 
   describe Stream do
+
+    let(:described) { Stream.new(attributes) }
+    let(:attributes) {
+      {
+        colour: colour,
+        parent: parent,
+        text:  text,
+        style: style,
+        width: width,
+        align: align
+      }
+    }
     let(:stream) {
       Stream.new({
         colour: colour,
@@ -26,10 +38,12 @@ module Vedeu
     let(:width)  { 9 }
 
     describe '#initialize' do
-      it 'returns an instance of itself' do
-        attributes = {}
-        Stream.new(attributes).must_be_instance_of(Stream)
-      end
+      it { described.must_be_instance_of(Stream) }
+      it { assigns(described, '@attributes', attributes) }
+      it { assigns(described, '@align', align) }
+      it { assigns(described, '@text', text) }
+      it { assigns(described, '@width', width) }
+      it { assigns(described, '@parent', parent) }
     end
 
     describe '#chars' do
@@ -43,9 +57,7 @@ module Vedeu
         }
       }
 
-      it 'returns an Array' do
-        stream.chars.must_be_instance_of(Array)
-      end
+      it { return_type_for(described.chars, Array) }
 
       context 'when there is content' do
         it 'returns a collection of strings containing escape sequences and ' \
@@ -109,9 +121,7 @@ module Vedeu
     end
 
     describe '#size' do
-      it 'returns a Fixnum' do
-        stream.size.must_be_instance_of(Fixnum)
-      end
+      it { return_type_for(described.size, Fixnum) }
 
       it 'returns the size of the stream' do
         stream.size.must_equal(9)

@@ -4,6 +4,7 @@ module Vedeu
 
   describe Viewport do
 
+    let(:described) { Viewport.new(interface) }
     let(:interface) {
       Interface.new({
         name:     'fluorine',
@@ -32,15 +33,14 @@ module Vedeu
     }
 
     describe '#initialize' do
-      it 'returns an instance of itself' do
-        Viewport.new(interface).must_be_instance_of(Viewport)
-      end
+      it { return_type_for(described, Viewport) }
+      it { assigns(described, '@interface', interface) }
+      it { assigns(described, '@top', 0) }
+      it { assigns(described, '@left', 0) }
     end
 
     describe '.show' do
-      it 'returns an Array' do
-        Viewport.show(interface).must_be_instance_of(Array)
-      end
+      it { return_type_for(Viewport.show(interface), Array) }
 
       context 'when there is no content' do
         before { interface.stubs(:content).returns([]) }

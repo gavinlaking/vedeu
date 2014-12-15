@@ -3,6 +3,8 @@ require 'test_helper'
 module Vedeu
 
   describe Line do
+
+    let(:described)  { Line.new(attributes) }
     let(:line)       { Line.new(attributes) }
     let(:attributes) {
       {
@@ -27,31 +29,29 @@ module Vedeu
     }
 
     describe '#initialize' do
-      it 'returns an instance of itself' do
-        Line.new(attributes).must_be_instance_of(Line)
-      end
+      it { return_type_for(described, Line) }
+      it { assigns(described, '@attributes', attributes) }
+      it { assigns(described, '@parent', nil) }
     end
 
     describe '#attributes' do
       it 'returns the attributes' do
-        line.attributes.must_equal(attributes)
+        described.attributes.must_equal(attributes)
       end
     end
 
     describe '#chars' do
-      it 'returns an Array' do
-        line.chars.must_be_instance_of(Array)
-      end
+      it { return_type_for(described.chars, Array) }
 
       context 'when there is no content' do
-        before { line.stubs(:size).returns(0) }
+        before { described.stubs(:size).returns(0) }
 
-        it { line.chars.must_equal([]) }
+        it { described.chars.must_equal([]) }
       end
 
       context 'when there is content' do
         it 'returns an Array' do
-          line.chars.must_equal(
+          described.chars.must_equal(
             [
               "\e[38;2;255;0;0mS", "\e[38;2;255;0;0mo", "\e[38;2;255;0;0mm",
               "\e[38;2;255;0;0me", "\e[38;2;255;0;0mt", "\e[38;2;255;0;0mh",
@@ -90,9 +90,7 @@ module Vedeu
     end
 
     describe '#size' do
-      it 'returns a Fixnum' do
-        line.size.must_be_instance_of(Fixnum)
-      end
+      it { return_type_for(described.size, Fixnum) }
 
       it 'returns the size of the line' do
         line.size.must_equal(53)
@@ -100,9 +98,7 @@ module Vedeu
     end
 
     describe '#streams' do
-      it 'has a streams attribute' do
-        line.streams.must_be_instance_of(Array)
-      end
+      it { return_type_for(described.streams, Array) }
     end
 
     describe '#to_s' do

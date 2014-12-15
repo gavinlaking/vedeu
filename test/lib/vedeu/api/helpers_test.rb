@@ -7,9 +7,7 @@ module Vedeu
     describe Helpers do
 
       describe '#background' do
-        it 'returns a Hash' do
-          HelpersTestClass.new.background('#00ff00').must_be_instance_of(Hash)
-        end
+        it { return_type_for(HelpersTestClass.new.background('#00ff00'), Hash) }
 
         it 'returns the value assigned' do
           HelpersTestClass.new.background('#00ff00').must_equal({ background: '#00ff00' })
@@ -21,9 +19,7 @@ module Vedeu
       end
 
       describe '#foreground' do
-        it 'returns a Hash' do
-          HelpersTestClass.new.foreground('#00ff00').must_be_instance_of(Hash)
-        end
+        it { return_type_for(HelpersTestClass.new.foreground('#00ff00'), Hash) }
 
         it 'returns the value assigned' do
           HelpersTestClass.new.foreground('#00ff00').must_equal({ foreground: '#00ff00' })

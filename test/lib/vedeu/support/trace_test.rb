@@ -4,14 +4,16 @@ module Vedeu
 
   describe Trace do
 
+    let(:described) { Trace.new(options) }
+    let(:options)   { {} }
+
     describe '.call' do
       it { skip }
     end
 
     describe '#initialize' do
-      it 'returns an instance of Trace' do
-        Trace.new.must_be_instance_of(Trace)
-      end
+      it { return_type_for(described, Trace) }
+      it { assigns(described, '@options', options) }
     end
 
     describe '#trace' do

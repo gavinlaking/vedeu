@@ -4,6 +4,7 @@ module Vedeu
 
   describe Cursor do
 
+    let(:described)  { Cursor.new(attributes) }
     let(:attributes) {
       {
         name:  'silver',
@@ -25,23 +26,24 @@ module Vedeu
     end
 
     describe '#initialize' do
-      it 'returns an instance of itself' do
-        Cursor.new(attributes).must_be_instance_of(Cursor)
-      end
+      it { return_type_for(described, Cursor) }
+      it { assigns(described, '@attributes', attributes) }
+      it { assigns(described, '@name', 'silver') }
+      it { assigns(described, '@state', :show) }
+      it { assigns(described, '@x', 19) }
+      it { assigns(described, '@y', 8) }
     end
 
     describe '#attributes' do
       it 'returns a hash containing the attributes of the instance' do
-        Cursor.new(attributes).attributes.must_equal(
+        described.attributes.must_equal(
           { name: 'silver', state: :show, x: 19, y: 8 }
         )
       end
     end
 
     describe '#x' do
-      it 'returns a Fixnum' do
-        Cursor.new(attributes).x.must_be_instance_of(Fixnum)
-      end
+      it { return_type_for(described.x, Fixnum) }
 
       context 'when the cursors position is outside the interface' do
         let(:attributes) { { name: 'silver', state: :show, x: 10, y: 8 } }
@@ -58,22 +60,20 @@ module Vedeu
 
         it 'repositions the cursor at the end of the line' do
           Cursor.new(attributes).attributes.must_equal(
-            { name: 'silver', state: :show, x: 21, y: 8 }
+            { name: 'silver', state: :show, x: 22, y: 8 }
           )
         end
       end
     end
 
     describe '#y' do
-      it 'returns a Fixnum' do
-        Cursor.new(attributes).y.must_be_instance_of(Fixnum)
-      end
+      it { return_type_for(described.y, Fixnum) }
 
       context 'when the cursors position is outside the interface' do
         let(:attributes) { { name: 'silver', state: :show, x: 19, y: 3 } }
 
         it 'repositions the cursor at the start of the line' do
-          Cursor.new(attributes).attributes.must_equal(
+          described.attributes.must_equal(
             { name: 'silver', state: :show, x: 19, y: 5 }
           )
         end
@@ -83,8 +83,8 @@ module Vedeu
         let(:attributes) { { name: 'silver', state: :show, x: 19, y: 12 } }
 
         it 'repositions the cursor at the end of the line' do
-          Cursor.new(attributes).attributes.must_equal(
-            { name: 'silver', state: :show, x: 19, y: 8 }
+          described.attributes.must_equal(
+            { name: 'silver', state: :show, x: 19, y: 9 }
           )
         end
       end
@@ -92,7 +92,7 @@ module Vedeu
 
     describe '#refresh' do
       it 'returns a hash containing the attributes of the instance' do
-        Cursor.new(attributes).refresh.must_equal(
+        described.refresh.must_equal(
           { name: 'silver', state: :show, x: 19, y: 8 }
         )
       end
@@ -100,7 +100,7 @@ module Vedeu
 
     describe '#show' do
       it 'sets the state attribute to :show' do
-        cursor = Cursor.new(attributes)
+        cursor = described
         cursor.hide
         cursor.attributes.must_equal(
           { name: 'silver', state: :hide, x: 19, y: 8 }
@@ -114,7 +114,7 @@ module Vedeu
 
     describe '#hide' do
       it 'sets the state attribute to :hide' do
-        cursor = Cursor.new(attributes)
+        cursor = described
         cursor.hide
         cursor.attributes.must_equal(
           { name: 'silver', state: :hide, x: 19, y: 8 }
@@ -126,7 +126,7 @@ module Vedeu
     describe '#to_s' do
       context 'when the cursor state is :show' do
         it 'returns an escape sequence for showing the cursor (and position)' do
-          cursor = Cursor.new(attributes)
+          cursor = described
           cursor.show
           cursor.to_s.must_equal("\e[8;19H\e[?25h")
         end
@@ -134,7 +134,7 @@ module Vedeu
 
       context 'when the cursor state is :hide' do
          it 'returns an escape sequence for hiding the cursor (and position)' do
-          cursor = Cursor.new(attributes)
+          cursor = described
           cursor.hide
           cursor.to_s.must_equal("\e[8;19H\e[?25l")
         end
@@ -142,12 +142,12 @@ module Vedeu
 
       it 'returns the escape sequence to position and set the visibility of ' \
          'the cursor' do
-        Cursor.new(attributes).to_s.must_equal("\e[8;19H\e[?25h")
+        described.to_s.must_equal("\e[8;19H\e[?25h")
       end
 
       it 'returns the escape sequence to position and set the visibility of ' \
          'the cursor and returns to that position after yielding the block' do
-        Cursor.new(attributes).to_s do
+        described.to_s do
           # ...
         end.must_equal("\e[8;19H\e[?25h\e[8;19H\e[?25h")
       end

@@ -62,7 +62,7 @@ module Vedeu
 
       Vedeu.log("Rendering view: '#{interface.name}'")
 
-      interface.viewport.each_with_index do |line, index|
+      interface.border.to_viewport.each_with_index do |line, index|
         out << interface.origin(index)
         out << line.join
       end

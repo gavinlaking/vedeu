@@ -75,6 +75,7 @@ require 'vedeu/support/presentation'
 require 'vedeu/support/sentence'
 require 'vedeu/support/terminal'
 
+require 'vedeu/models/border'
 require 'vedeu/models/char'
 require 'vedeu/models/composition'
 require 'vedeu/models/geometry'
@@ -114,7 +115,6 @@ require 'vedeu/support/refresh'
 
 require 'vedeu/output/compositor'
 require 'vedeu/output/output'
-require 'vedeu/output/view'
 require 'vedeu/output/viewport'
 
 require 'vedeu/support/bounding_area'

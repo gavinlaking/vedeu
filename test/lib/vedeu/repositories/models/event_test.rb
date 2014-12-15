@@ -4,15 +4,21 @@ module Vedeu
 
   describe Event do
 
+    let(:described)  { Event.new(event_name, options, closure) }
     let(:event_name) { :some_event }
     let(:options)    { {} }
     let(:closure)    { proc { :event_triggered } }
 
-
     describe '#initialize' do
-      it 'returns an instance of itself' do
-        Event.new(event_name, options, closure).must_be_instance_of(Event)
-      end
+      it { return_type_for(described, Event) }
+      it { assigns(described, '@name', :some_event) }
+      it { assigns(described, '@options', options) }
+
+      it { skip; assigns(described, '@closure', closure) }
+
+      it { assigns(described, '@deadline', 0) }
+      it { assigns(described, '@executed_at', 0) }
+      it { assigns(described, '@now', 0) }
     end
 
     describe '#trigger' do

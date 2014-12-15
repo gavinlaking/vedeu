@@ -25,7 +25,7 @@ module Vedeu
     #
     # @return [Cursor]
     def initialize(attributes = {})
-      @attributes = defaults.merge!(attributes)
+      @attributes = defaults.merge(attributes)
 
       @name  = @attributes[:name]
       @state = @attributes[:state]
@@ -49,18 +49,26 @@ module Vedeu
 
     # Returns the x coordinate (column/character) of the cursor. Attempts to
     # sensibly reposition the cursor if it is currently outside the interface,
-    # or outside the visible area of the terminal.
+    # or outside the visible area of the terminal. If the interface has either a
+    # left or right border, then the cursor will be repositioned to be inside
+    # the border not on it.
     #
     # @return [Fixnum]
     def x
       @x = 1              if @x <= 1
       @x = Terminal.width if @x >= Terminal.width
 
-      if @x <= left
+      if border? && border.left? && @x <= (left + 1)
+        @x = (left + 1)
+
+      elsif @x <= left
         @x = left
 
+      elsif border? && border.right? && @x >= (right - 1)
+        @x = (right - 2)
+
       elsif @x >= right
-        @x = right - 1
+        @x = right
 
       else
         @x
@@ -70,18 +78,26 @@ module Vedeu
 
     # Returns the y coordinate (row/line) of the cursor. Attempts to sensibly
     # reposition the cursor if it is currently outside the interface, or outside
-    # the visible area of the terminal.
+    # the visible area of the terminal. If the interface has either a top or
+    # bottom border, then the cursor will be repositioned to be inside the
+    # border not on it.
     #
     # @return [Fixnum]
     def y
       @y = 1               if @y <= 1
       @y = Terminal.height if @y >= Terminal.height
 
-      if @y <= top
+      if border? && border.top? && @y <= (top + 1)
+        @y = (top + 1)
+
+      elsif @y <= top
         @y = top
 
+      elsif border? && border.bottom? && @y >= (bottom - 1)
+        @y = (bottom - 2)
+
       elsif @y >= bottom
-        @y = bottom - 1
+        @y = bottom
 
       else
         @y
@@ -151,6 +167,17 @@ module Vedeu
       return Esc.string('show_cursor') if state == :show
 
       Esc.string('hide_cursor')
+    end
+
+    # Returns a boolean indicating whether the interface has a border.
+    #
+    # @return [Boolean]
+    def border?
+      border.enabled?
+    end
+
+    def border
+      interface.border
     end
 
     # Returns an instance of the associated interface for this cursor, used to

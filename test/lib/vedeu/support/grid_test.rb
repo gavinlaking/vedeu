@@ -16,6 +16,14 @@ module Vedeu
 
   describe Grid do
 
+    let(:described) { Grid.new(value) }
+    let(:value)     { 2 }
+
+    describe '#initialize' do
+      it { return_type_for(described, Grid) }
+      it { assigns(described, '@value', value) }
+    end
+
     describe '.columns' do
       it 'raises an exception if the value is less than 1' do
         proc { Grid.columns(0) }.must_raise(OutOfRange)
