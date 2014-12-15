@@ -156,7 +156,7 @@ module Vedeu
       let(:composition) {
         {
           interfaces: [{
-            border: { attributes: {}, options: {} },
+            border: {},
             colour: {},
             cursor: :hide,
             delay: 0.0,

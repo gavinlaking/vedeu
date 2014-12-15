@@ -20,7 +20,7 @@ module Vedeu
             colour foreground: '#aadd00', background: '#222222'
           end.must_equal(
             {
-              border: { attributes: {}, options: {} },
+              border: {},
               colour: {
                 foreground: '#aadd00',
                 background: '#222222'
@@ -42,7 +42,7 @@ module Vedeu
             style 'underline'
           end.must_equal(
             {
-              border: { attributes: {}, options: {} },
+              border: {},
               colour: {},
               cursor: :hide,
               delay: 0.0,
@@ -68,7 +68,7 @@ module Vedeu
               name   'my_other_interface'
               y      use('my_interface').south
             end.must_equal({
-              border: { attributes: {}, options: {} },
+              border: {},
               colour: {},
               cursor: :hide,
               delay: 0.0,
@@ -90,7 +90,7 @@ module Vedeu
             delay 1.0
           end.must_equal(
             {
-              border: { attributes: {}, options: {} },
+              border: {},
               colour: {},
               cursor: :hide,
               delay: 1.0,
@@ -109,7 +109,7 @@ module Vedeu
             group 'my_group'
           end.must_equal(
             {
-              border: { attributes: {}, options: {} },
+              border: {},
               colour: {},
               cursor: :hide,
               delay: 0.0,
@@ -251,7 +251,7 @@ module Vedeu
           interface.must_be_instance_of(API::Interface)
           interface.attributes.must_equal(
             {
-              border: { attributes: {}, options: {} },
+              border: {},
               colour: {},
               cursor: :hide,
               delay: 0.0,
@@ -281,7 +281,7 @@ module Vedeu
           interface.must_be_instance_of(API::Interface)
           interface.attributes.must_equal(
             {
-              border: { attributes: {}, options: {} },
+              border: {},
               colour: {},
               cursor: :hide,
               delay: 0.0,
@@ -313,7 +313,7 @@ module Vedeu
           interface.must_be_instance_of(API::Interface)
           interface.attributes.must_equal(
             {
-              border: { attributes: {}, options: {} },
+              border: {},
               colour: {},
               cursor: :hide,
               delay: 0.0,

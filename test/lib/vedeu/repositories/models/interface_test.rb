@@ -23,7 +23,7 @@ module Vedeu
     describe '#initialize' do
       it { return_type_for(described, Interface) }
       it { assigns(described, '@attributes', {
-          border:   { attributes: {}, options: {} },
+          border:   {},
           colour:   {},
           cursor:   :hide,
           delay:    0.0,
@@ -46,7 +46,7 @@ module Vedeu
       it 'returns the value' do
         interface.attributes.must_equal(
           {
-            border: { attributes: {}, options: {} },
+            border: {},
             colour: {
               foreground: '#ff0000',
               background: '#000000'

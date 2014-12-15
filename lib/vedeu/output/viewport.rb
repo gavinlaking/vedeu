@@ -50,10 +50,13 @@ module Vedeu
     # @return [Array<Array<String>>]
     def line_pad
       cl = content[lines] || []
-      if cl.size < height
-        cl + [" "] * (height - cl.size)
+
+      if cl.size < (height + 1)
+        cl + [" "] * ((height + 1) - cl.size)
+
       else
         cl
+
       end
     end
 
@@ -64,10 +67,13 @@ module Vedeu
     # @return [Array<String>]
     def column_pad(line)
       chars = line.chars[columns] || [" "]
+
       if chars.size < width
         chars + [" "] * (width - chars.size)
+
       else
         chars
+
       end
     end
 

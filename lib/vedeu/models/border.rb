@@ -11,32 +11,30 @@ module Vedeu
     #
     # @param interface [Interface]
     # @param attributes [Hash]
-    # @param options [Hash]
     # @return [Border]
-    def initialize(interface, attributes = {}, options = {})
+    def initialize(interface, attributes = {})
       @interface  = interface
       @attributes = defaults.merge(attributes)
-      @options    = default_options.merge(options)
     end
 
     def enabled?
-      options[:enabled]
+      attributes[:enabled]
     end
 
     def bottom?
-      options[:show_bottom]
+      attributes[:show_bottom]
     end
 
     def left?
-      options[:show_left]
+      attributes[:show_left]
     end
 
     def right?
-      options[:show_right]
+      attributes[:show_right]
     end
 
     def top?
-      options[:show_top]
+      attributes[:show_top]
     end
 
     def to_s
@@ -61,7 +59,7 @@ module Vedeu
 
     private
 
-    attr_reader :attributes, :interface, :options
+    attr_reader :attributes, :interface, :attributes
 
     def bottom
       return [] unless bottom?
@@ -214,24 +212,16 @@ module Vedeu
       @style ||= Style.new(attributes[:style])
     end
 
-    # The default options for the instance.
-    #
-    # @return [Hash]
-    def default_options
-      {
-        enabled:     false,
-        show_bottom: true,
-        show_left:   true,
-        show_right:  true,
-        show_top:    true,
-      }
-    end
-
     # The default values for a new instance of Border.
     #
     # @return [Hash]
     def defaults
       {
+        enabled:      false,
+        show_bottom:  true,
+        show_left:    true,
+        show_right:   true,
+        show_top:     true,
         bottom_right: "\x6A", # ┘
         top_right:    "\x6B", # ┐
         top_left:     "\x6C", # ┌

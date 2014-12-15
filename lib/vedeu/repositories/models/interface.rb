@@ -72,8 +72,7 @@ module Vedeu
     #
     # @return [Border]
     def border
-      @_border ||= Border.new(self, attributes[:border][:attributes],
-                                    attributes[:border][:options])
+      @_border ||= Border.new(self, attributes[:border])
     end
 
     # Returns an instance of Cursor.
@@ -136,7 +135,7 @@ module Vedeu
     # @return [Hash]
     def defaults
       {
-        border:   { attributes: {}, options: {} },
+        border:   {},
         colour:   {},
         cursor:   :hide,
         delay:    0.0,
