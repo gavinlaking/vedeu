@@ -37,14 +37,30 @@ module Vedeu
 
       return [] unless content?
 
-      (content[lines] || []).map do |line|
-        line.chars[columns] || [" "]
-      end.compact
+      line_pad.map { |line| column_pad(line) }.compact
     end
 
     private
 
     attr_reader :interface
+
+    def line_pad
+      cl = content[lines] || []
+      if cl.size < height
+        cl + [" "] * (height - cl.size)
+      else
+        cl
+      end
+    end
+
+    def column_pad(line)
+      chars = line.chars[columns] || [" "]
+      if chars.size < width
+        chars + [" "] * (width - chars.size)
+      else
+        chars
+      end
+    end
 
     # Scrolls the content vertically when the stored y offset for the interface
     # is outside of the visible area.
