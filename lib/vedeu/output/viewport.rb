@@ -44,6 +44,10 @@ module Vedeu
 
     attr_reader :interface
 
+    # Pad the number of rows so that we always return an Array of the same
+    # length for each viewport.
+    #
+    # @return [Array<Array<String>>]
     def line_pad
       cl = content[lines] || []
       if cl.size < height
@@ -53,6 +57,11 @@ module Vedeu
       end
     end
 
+    # Pads the number of columns so that we always return an Array of the same
+    # length for each line.
+    #
+    # @param line [Array<String>]
+    # @return [Array<String>]
     def column_pad(line)
       chars = line.chars[columns] || [" "]
       if chars.size < width
