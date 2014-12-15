@@ -7,8 +7,6 @@ module Vedeu
   #
   class Border
 
-    include Presentation
-
     # Returns a new instance of Border.
     #
     # @param interface [Interface]
@@ -21,75 +19,24 @@ module Vedeu
       @options    = default_options.merge(options)
     end
 
-    def bottom?
-      options[:show_bottom]
+    def enabled?
+      options[:enabled]
     end
 
-    def bottom
-      return [] unless bottom?
-
-      out = []
-
-      out << bottom_left if left?
-      horizontal_border.each do |border|
-        out << border
-      end
-      out << bottom_right if right?
-
-      out
+    def bottom?
+      options[:show_bottom]
     end
 
     def left?
       options[:show_left]
     end
 
-    def left
-      return '' unless left?
-
-      vertical_border
-    end
-
     def right?
       options[:show_right]
     end
 
-    def right
-      return '' unless right?
-
-      vertical_border
-    end
-
     def top?
       options[:show_top]
-    end
-
-    def top
-      return [] unless top?
-
-      out = []
-      out << top_left if left?
-      horizontal_border.each do |border|
-        out << border
-      end
-      out << top_right if right?
-
-      out
-    end
-
-    def bottom_left
-      [on, bl, off].join
-    end
-
-    def bottom_right
-      [on, br, off].join
-    end
-
-    def top_left
-      [on, tl, off].join
-    end
-
-    def top_right
-      [on, tr, off].join
     end
 
     def to_s
@@ -97,6 +44,8 @@ module Vedeu
     end
 
     def to_viewport
+      return viewport unless enabled?
+
       out = []
 
       out << top if top?
@@ -113,6 +62,61 @@ module Vedeu
     private
 
     attr_reader :attributes, :interface, :options
+
+    def bottom
+      return [] unless bottom?
+
+      out = []
+
+      out << bottom_left if left?
+      horizontal_border.each do |border|
+        out << border
+      end
+      out << bottom_right if right?
+
+      out
+    end
+
+    def left
+      return '' unless left?
+
+      vertical_border
+    end
+
+    def right
+      return '' unless right?
+
+      vertical_border
+    end
+
+    def top
+      return [] unless top?
+
+      out = []
+      out << top_left if left?
+      horizontal_border.each do |border|
+        out << border
+      end
+      out << top_right if right?
+
+      out
+    end
+
+    def bottom_left
+      [*presentation, on, bl, off, *reset].join
+    end
+
+    def bottom_right
+      [*presentation, on, br, off, *reset].join
+    end
+
+    def top_left
+      [*presentation, on, tl, off, *reset].join
+    end
+
+    def top_right
+      [*presentation, on, tr, off, *reset].join
+    end
 
     def width
       if left? && right?
@@ -141,7 +145,7 @@ module Vedeu
     end
 
     def horizontal_border
-      [[on, h, off].join] * width
+      [[*presentation, on, h, off, *reset].join] * width
     end
 
     def horizontal_space
@@ -149,7 +153,7 @@ module Vedeu
     end
 
     def vertical_border
-      [on, v, off].join
+      [*presentation, on, v, off, *reset].join
     end
 
     def h
@@ -188,11 +192,34 @@ module Vedeu
       interface.viewport
     end
 
+    def presentation
+      [colour.to_s, style.to_s]
+    end
+
+    def reset
+      [interface.colour.to_s, interface.style.to_s]
+    end
+
+    # Returns a new Colour instance.
+    #
+    # @return [Colour]
+    def colour
+      @colour ||= Colour.new(attributes[:colour])
+    end
+
+    # Returns a new Style instance.
+    #
+    # @return [Style]
+    def style
+      @style ||= Style.new(attributes[:style])
+    end
+
     # The default options for the instance.
     #
     # @return [Hash]
     def default_options
       {
+        enabled:     false,
         show_bottom: true,
         show_left:   true,
         show_right:  true,

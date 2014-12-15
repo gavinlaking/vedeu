@@ -38,6 +38,7 @@ module Vedeu
         })
       }
       it { assigns(described, '@options', {
+          enabled:     false,
           show_bottom: true,
           show_left:   true,
           show_right:  true,
@@ -50,38 +51,22 @@ module Vedeu
       it { return_type_for(described.bottom?, TrueClass) }
     end
 
-    describe '#bottom' do
-      it { return_type_for(described.bottom, Array) }
-    end
-
     describe '#left?' do
       it { return_type_for(described.left?, TrueClass) }
-    end
-
-    describe '#left' do
-      it { return_type_for(described.left, String) }
     end
 
     describe '#right?' do
       it { return_type_for(described.right?, TrueClass) }
     end
 
-    describe '#right' do
-      it { return_type_for(described.right, String) }
-    end
-
     describe '#top?' do
       it { return_type_for(described.top?, TrueClass) }
-    end
-
-    describe '#top' do
-      it { return_type_for(described.top, Array) }
     end
 
     describe '#to_s' do
       context 'when all borders should be shown' do
         it 'returns the escape sequences to draw a border' do
-          Border.new(interface).to_s.must_equal(
+          Border.new(interface, {}, { enabled: true }).to_s.must_equal(
             "\e(0l\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0k\e(B\n" \
             "\e(0x\e(BBeryll\e(0x\e(B\n" \
             "\e(0x\e(BMagnes\e(0x\e(B\n" \
@@ -93,7 +78,8 @@ module Vedeu
 
       context 'when no borders are shown' do
         it 'returns the escape sequences to draw a border' do
-          Border.new(interface, {}, { show_bottom: false,
+          Border.new(interface, {}, { enabled: true,
+                                      show_bottom: false,
                                       show_left:   false,
                                       show_right:  false,
                                       show_top:    false }).to_s.must_equal(
@@ -108,7 +94,8 @@ module Vedeu
 
       context 'when the left and right border is not shown' do
         it 'returns the escape sequences to draw a border' do
-          Border.new(interface, {}, { show_left:   false,
+          Border.new(interface, {}, { enabled:     true,
+                                      show_left:   false,
                                       show_right:  false }).to_s.must_equal(
             "\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\n" \
             "Berylliu\n" \
@@ -121,7 +108,8 @@ module Vedeu
 
       context 'when the top and bottom border is not shown' do
         it 'returns the escape sequences to draw a border' do
-          Border.new(interface, {}, { show_bottom: false,
+          Border.new(interface, {}, { enabled:     true,
+                                      show_bottom: false,
                                       show_top:    false }).to_s.must_equal(
             "\e(0x\e(BBeryll\e(0x\e(B\n" \
             "\e(0x\e(BMagnes\e(0x\e(B\n" \
@@ -134,7 +122,8 @@ module Vedeu
 
       context 'when the left border is shown, all others not shown' do
         it 'returns the escape sequences to draw a border' do
-          Border.new(interface, {}, { show_bottom: false,
+          Border.new(interface, {}, { enabled:     true,
+                                      show_bottom: false,
                                       show_right:  false,
                                       show_top:    false }).to_s.must_equal(
             "\e(0x\e(BBerylli\n" \
@@ -148,7 +137,8 @@ module Vedeu
 
       context 'when the right border is shown, all others not shown' do
         it 'returns the escape sequences to draw a border' do
-          Border.new(interface, {}, { show_bottom: false,
+          Border.new(interface, {}, { enabled:     true,
+                                      show_bottom: false,
                                       show_left:   false,
                                       show_top:    false }).to_s.must_equal(
             "Berylli\e(0x\e(B\n" \
@@ -162,7 +152,8 @@ module Vedeu
 
       context 'when the top border is shown, all others not shown' do
         it 'returns the escape sequences to draw a border' do
-          Border.new(interface, {}, { show_bottom: false,
+          Border.new(interface, {}, { enabled:     true,
+                                      show_bottom: false,
                                       show_left:   false,
                                       show_right:  false }).to_s.must_equal(
             "\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\n" \
@@ -176,7 +167,8 @@ module Vedeu
 
       context 'when the bottom border is shown, all others not shown' do
         it 'returns the escape sequences to draw a border' do
-          Border.new(interface, {}, { show_left:   false,
+          Border.new(interface, {}, { enabled:     true,
+                                      show_left:   false,
                                       show_right:  false,
                                       show_top:    false }).to_s.must_equal(
             "Berylliu\n" \
@@ -191,7 +183,7 @@ module Vedeu
 
     describe '#to_viewport' do
       it 'returns a value like Viewport#show but with borders' do
-        Border.new(interface).to_viewport.must_equal(
+        Border.new(interface, {}, { enabled: true }).to_viewport.must_equal(
           [
             ["\e(0l\e(B", "\e(0q\e(B", "\e(0q\e(B", "\e(0q\e(B", "\e(0q\e(B", "\e(0q\e(B", "\e(0q\e(B", "\e(0k\e(B"],
             ["\e(0x\e(B", "B", "e", "r", "y", "l", "l", "\e(0x\e(B"],
