@@ -67,6 +67,10 @@ module Vedeu
       end
     end
 
+    describe '#border' do
+      it { return_type_for(described.border, Border) }
+    end
+
     describe '#cursor' do
       it { return_type_for(described.cursor, Cursor) }
     end

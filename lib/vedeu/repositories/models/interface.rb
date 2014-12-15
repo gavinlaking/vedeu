@@ -68,6 +68,13 @@ module Vedeu
       self
     end
 
+    # Returns an instance of Border.
+    #
+    # @return [Border]
+    def border
+      @_border ||= Border.new(self)
+    end
+
     # Returns an instance of Cursor.
     #
     # @return [Cursor]
