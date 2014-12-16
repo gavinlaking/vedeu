@@ -17,30 +17,54 @@ module Vedeu
       @attributes = defaults.merge(attributes)
     end
 
+    # Returns a boolean indicating whether the border is to be shown for this
+    # interface.
+    #
+    # @return [Boolean]
     def enabled?
       attributes[:enabled]
     end
 
+    # Returns a boolean indicating whether the bottom border is to be shown.
+    #
+    # @return [Boolean]
     def bottom?
       attributes[:show_bottom]
     end
 
+    # Returns a boolean indicating whether the left border is to be shown.
+    #
+    # @return [Boolean]
     def left?
       attributes[:show_left]
     end
 
+    # Returns a boolean indicating whether the right border is to be shown.
+    #
+    # @return [Boolean]
     def right?
       attributes[:show_right]
     end
 
+    # Returns a boolean indicating whether the top border is to be shown.
+    #
+    # @return [Boolean]
     def top?
       attributes[:show_top]
     end
 
+    # Returns a string representation of the border for the interface without
+    # content.
+    #
+    # @return [Boolean]
     def to_s
       to_viewport.map { |line| line.flatten.join }.join("\n")
     end
 
+    # Returns the interface with border (if enabled) and the content for the
+    # interface.
+    #
+    # @return [Array<Array<String>>]
     def to_viewport
       return viewport unless enabled?
 
@@ -61,6 +85,9 @@ module Vedeu
 
     attr_reader :attributes, :interface, :attributes
 
+    # Renders the bottom border for the interface.
+    #
+    # @return [String]
     def bottom
       return [] unless bottom?
 
@@ -75,18 +102,27 @@ module Vedeu
       out
     end
 
+    # Renders the left border for the interface.
+    #
+    # @return [String]
     def left
       return '' unless left?
 
       vertical_border
     end
 
+    # Renders the right border for the interface.
+    #
+    # @return [String]
     def right
       return '' unless right?
 
       vertical_border
     end
 
+    # Renders the top border for the interface.
+    #
+    # @return [String]
     def top
       return [] unless top?
 
@@ -100,22 +136,42 @@ module Vedeu
       out
     end
 
+    # Renders the bottom left border character with escape codes for colour and
+    # style for the interface.
+    #
+    # @return [String]
     def bottom_left
       [*presentation, on, bl, off, *reset].join
     end
 
+    # Renders the bottom right border character with escape codes for colour and
+    # style for the interface.
+    #
+    # @return [String]
     def bottom_right
       [*presentation, on, br, off, *reset].join
     end
 
+    # Renders the top left border character with escape codes for colour and
+    # style for the interface.
+    #
+    # @return [String]
     def top_left
       [*presentation, on, tl, off, *reset].join
     end
 
+    # Renders the top right border character with escape codes for colour and
+    # style for the interface.
+    #
+    # @return [String]
     def top_right
       [*presentation, on, tr, off, *reset].join
     end
 
+    # Returns the width of the interface determined by whether a left, right,
+    # both or neither borders are shown.
+    #
+    # @return [Fixnum]
     def width
       if left? && right?
         interface.width - 2
@@ -129,6 +185,10 @@ module Vedeu
       end
     end
 
+    # Returns the height of the interface determined by whether a top, bottom,
+    # both or neither borders are shown.
+    #
+    # @return [Fixnum]
     def height
       if top? && bottom?
         interface.height - 2
@@ -142,6 +202,9 @@ module Vedeu
       end
     end
 
+    # Returns the horizontal border characters with colours and styles.
+    #
+    # @return [Array<String>]
     def horizontal_border
       [[*presentation, on, h, off, *reset].join] * width
     end
@@ -150,50 +213,87 @@ module Vedeu
       [' '] * width
     end
 
+    # Returns the vertical border characters with colours and styles.
+    #
+    # @return [String]
     def vertical_border
       [*presentation, on, v, off, *reset].join
     end
 
+    # Returns the horizontal border character.
+    #
+    # @return [String]
     def h
       attributes[:horizontal]
     end
 
+    # Returns the vertical border character.
+    #
+    # @return [String]
     def v
       attributes[:vertical]
     end
 
+    # Returns the top right border character.
+    #
+    # @return [String]
     def tr
       attributes[:top_right]
     end
 
+    # Returns the top left border character.
+    #
+    # @return [String]
     def tl
       attributes[:top_left]
     end
 
+    # Returns the bottom right border character.
+    #
+    # @return [String]
     def br
       attributes[:bottom_right]
     end
 
+    # Returns the bottom left border character.
+    #
+    # @return [String]
     def bl
       attributes[:bottom_left]
     end
 
+    # Returns the escape sequence to start a border.
+    #
+    # @return [String]
     def on
       "\e(0"
     end
 
+    # Returns the escape sequence to end a border.
+    #
+    # @return [String]
     def off
       "\e(B"
     end
 
+    # Returns the viewport for the interface.
+    #
+    # @return [String]
     def viewport
       interface.viewport
     end
 
+    # Returns the colour and styles for the border.
+    #
+    # @return [String]
     def presentation
       [colour.to_s, style.to_s]
     end
 
+    # Returns the colour and styles for the interface; effectively turning off
+    # the colours and styles for the border.
+    #
+    # @return [String]
     def reset
       [interface.colour.to_s, interface.style.to_s]
     end
