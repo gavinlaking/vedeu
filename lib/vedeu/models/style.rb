@@ -27,16 +27,7 @@ module Vedeu
       }
     end
 
-    # Return the terminal escape sequences for the values provided.
-    #
-    # @return [String]
-    def to_s
-      escape_sequences
-    end
-
-    private
-
-    # Converts the style or styles into terminal escape sequences.
+    # Return the terminal escape sequences after converting the style or styles.
     #
     # @return [String]
     def escape_sequences
@@ -46,6 +37,7 @@ module Vedeu
         Esc.string(value)
       end.join
     end
+    alias_method :to_s, :escape_sequences
 
   end # Style
 
