@@ -103,10 +103,12 @@ module Vedeu
     event(:_resize_, { delay: 0.25 }) { Vedeu.resize                 }
 
     # System events which when called will update the cursor visibility
-    # accordingly for the interface in focus.
+    # accordingly for the interface in focus, or the named interface.
     # From: Cursors (top)
-    event(:_cursor_hide_) { Vedeu::Cursors.hide }
-    event(:_cursor_show_) { Vedeu::Cursors.show }
+    event(:_cursor_hide_)         {        Vedeu::Cursors.hide }
+    event(:_cursor_show_)         {        Vedeu::Cursors.show }
+    event(:_cursor_hide_by_name_) { |name| Vedeu::Cursors.hide(name) }
+    event(:_cursor_show_by_name_) { |name| Vedeu::Cursors.show(name) }
 
     # System events which when called will change which interface is currently
     # focussed. When the interface is brought into focus, its cursor position

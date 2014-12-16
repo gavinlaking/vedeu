@@ -23,18 +23,20 @@ module Vedeu
     end
     alias_method :update, :add
 
-    # Make the cursor of this interface invisible.
+    # Make the cursor of this (or named) interface invisible.
     #
+    # @param name [String] Hide the cursor for the interface with this name.
     # @return [Cursor]
-    def hide
-      find_or_create(Focus.current).hide
+    def hide(name = Focus.current)
+      find_or_create(name).hide
     end
 
-    # Make the cursor of this interface visible.
+    # Make the cursor of this (or named) interface visible.
     #
+    # @param name [String] Show the cursor for the interface with this name.
     # @return [Cursor]
-    def show
-      find_or_create(Focus.current).show
+    def show(name = Focus.current)
+      find_or_create(name).show
     end
 
     private

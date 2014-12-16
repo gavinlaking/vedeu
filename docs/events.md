@@ -43,6 +43,14 @@ Hides the cursor for the focussed interface.
 
 Shows the cursor for the focussed interface.
 
+### `:_cursor_hide_by_name_`
+
+Hides the cursor for the named interface.
+
+### `:_cursor_show_by_name_`
+
+Shows the cursor for the named interface.
+
 ### `:_exit_`
 
 When triggered, Vedeu will trigger a `:_cleanup_` event which you can define (to save files, etc) and attempt to exit.
