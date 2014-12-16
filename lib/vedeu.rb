@@ -2,6 +2,8 @@
 #
 module Vedeu
 
+  DOCS_URL = 'http://www.rubydoc.info/github/gavinlaking/vedeu/master'
+
   # When Vedeu is included within one of your classes, you should have all
   # API methods at your disposal.
   #
