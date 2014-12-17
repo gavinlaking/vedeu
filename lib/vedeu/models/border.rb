@@ -1,6 +1,9 @@
 module Vedeu
 
-  #
+  # Provides the mechanism to decorate an interface with a border on all edges,
+  # or specific edges. The characters which are used for the border parts (e.g.
+  # the corners, verticals and horizontals) can be customised as can the colours
+  # and styles.
   #
   # @note Refer to UTF-8 U+2500 to U+257F for border characters. More details
   #   can be found at: http://en.wikipedia.org/wiki/Box-drawing_character
