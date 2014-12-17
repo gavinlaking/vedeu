@@ -60,6 +60,7 @@ Note: Nesting indicates where an API method is allowed/supposed to be used.
 
 - interface
   - background
+  - border
   - centred (or centred!)
   - cursor
   - colour
@@ -98,6 +99,7 @@ Note: Nesting indicates where an API method is allowed/supposed to be used.
         - style
         - text
         - width
+      - text
       - style
     - name
     - style
@@ -113,6 +115,7 @@ Note: Nesting indicates where an API method is allowed/supposed to be used.
 
 #### Miscellany
 
+- configure
 - defined
 - focus
 - height
