@@ -79,6 +79,7 @@ require 'vedeu/support/position'
 require 'vedeu/support/presentation'
 require 'vedeu/support/sentence'
 require 'vedeu/support/terminal'
+require 'vedeu/support/colour_validator'
 
 require 'vedeu/models/border'
 require 'vedeu/models/char'
