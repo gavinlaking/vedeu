@@ -68,6 +68,13 @@ module Vedeu
       self
     end
 
+    # Returns the class responsible for defining the DSL methods of this model.
+    #
+    # @return [DSL::Interface]
+    def deputy
+      Vedeu::DSL::Interface.new(self)
+    end
+
     # Returns an instance of Border.
     #
     # @return [Border]

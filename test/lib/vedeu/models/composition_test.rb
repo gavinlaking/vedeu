@@ -16,6 +16,10 @@ module Vedeu
       it { assigns(described, '@attributes', { interfaces: [] }) }
     end
 
+    describe '#deputy' do
+      it { return_type_for(described.deputy, DSL::Composition) }
+    end
+
     describe '#interfaces' do
       it 'returns a collection of interfaces' do
         Vedeu.interface('dummy') do

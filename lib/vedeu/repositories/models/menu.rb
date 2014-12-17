@@ -20,6 +20,13 @@ module Vedeu
       @selected   = nil
     end
 
+    # Returns the class responsible for defining the DSL methods of this model.
+    #
+    # @return [DSL::Interface]
+    def deputy
+      Vedeu::DSL::Menu.new(self)
+    end
+
     # Returns the index of the value in the collection which is current.
     #
     # @return [Fixnum]

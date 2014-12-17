@@ -66,6 +66,13 @@ module Vedeu
     end
     alias_method :data, :content
 
+    # Returns the class responsible for defining the DSL methods of this model.
+    #
+    # @return [DSL::Stream]
+    def deputy
+      Vedeu::DSL::Stream.new(self)
+    end
+
     # Returns a boolean indicating whether the stream has content.
     #
     # @return [Boolean]

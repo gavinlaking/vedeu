@@ -47,6 +47,13 @@ module Vedeu
       @_chars ||= streams.map(&:chars).flatten
     end
 
+    # Returns the class responsible for defining the DSL methods of this model.
+    #
+    # @return [DSL::Line]
+    def deputy
+      Vedeu::DSL::Line.new(self)
+    end
+
     # Returns a boolean indicating whether the line has content.
     #
     # @return [Boolean]

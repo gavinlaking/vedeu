@@ -79,6 +79,13 @@ module Vedeu
       self
     end
 
+    # Returns the class responsible for defining the DSL methods of this model.
+    #
+    # @return [DSL::Keymap]
+    def deputy
+      Vedeu::DSL::Keymap.new(self)
+    end
+
     private
 
     # @return [Class] The repository class for this model.

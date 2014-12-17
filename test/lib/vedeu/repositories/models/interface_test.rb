@@ -77,6 +77,10 @@ module Vedeu
       it { return_type_for(described.cursor, Cursor) }
     end
 
+    describe '#deputy' do
+      it { return_type_for(described.deputy, DSL::Interface) }
+    end
+
     describe '#name' do
       it 'returns the value' do
         interface.name.must_equal('#initialize')

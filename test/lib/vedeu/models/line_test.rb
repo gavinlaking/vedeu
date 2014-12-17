@@ -77,6 +77,10 @@ module Vedeu
       end
     end
 
+    describe '#deputy' do
+      it { return_type_for(described.deputy, DSL::Line) }
+    end
+
     describe '#empty?' do
       context 'when there is no content' do
         before { line.stubs(:size).returns(0) }

@@ -108,6 +108,10 @@ module Vedeu
       end
     end
 
+    describe '#deputy' do
+      it { return_type_for(described.deputy, DSL::Stream) }
+    end
+
     describe '#empty?' do
       context 'when there is no content' do
         before { stream.stubs(:size).returns(0) }

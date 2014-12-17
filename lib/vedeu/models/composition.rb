@@ -31,6 +31,13 @@ module Vedeu
       end
     end
 
+    # Returns the class responsible for defining the DSL methods of this model.
+    #
+    # @return [DSL::Composition]
+    def deputy
+      Vedeu::DSL::Composition.new(self)
+    end
+
     # Returns a collection of interfaces associated with this composition.
     #
     # @return [Array]

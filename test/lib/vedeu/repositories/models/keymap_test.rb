@@ -16,6 +16,10 @@ module Vedeu
       it { assigns(described, '@attributes', { interfaces: [], keys: [] }) }
     end
 
+    describe '#deputy' do
+      it { return_type_for(described.deputy, DSL::Keymap) }
+    end
+
   end # Keymap
 
 end # Vedeu

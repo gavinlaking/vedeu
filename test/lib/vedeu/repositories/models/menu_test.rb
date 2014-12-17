@@ -22,6 +22,10 @@ module Vedeu
       end
     end
 
+    describe '#deputy' do
+      it { return_type_for(described.deputy, DSL::Menu) }
+    end
+
     describe '#selected' do
       it 'returns nil when no item is selected' do
         menu.selected.must_equal(nil)

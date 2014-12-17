@@ -23,6 +23,13 @@ module Vedeu
       @width   = @attributes[:width]
     end
 
+    # Returns the class responsible for defining the DSL methods of this model.
+    #
+    # @return [DSL::Geometry]
+    def deputy
+      Vedeu::DSL::Geometry.new(self)
+    end
+
     # Returns the row/line start position for the interface.
     #
     # @return [Fixnum]

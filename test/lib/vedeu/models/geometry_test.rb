@@ -28,6 +28,10 @@ module Vedeu
       it { assigns(described, '@width', 80) }
     end
 
+    describe '#deputy' do
+      it { return_type_for(described.deputy, DSL::Geometry) }
+    end
+
     describe '#y' do
       it 'returns the value of y when it is a proc' do
         geometry = Geometry.new({ y: proc { 17 } })
