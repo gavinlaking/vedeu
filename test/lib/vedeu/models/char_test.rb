@@ -5,7 +5,6 @@ module Vedeu
   describe Char do
 
     let(:described) { Char.new(attributes) }
-    let(:char)   { Char.new(attributes) }
     let(:parent) {
       {
         colour: {
@@ -39,7 +38,7 @@ module Vedeu
         # - char colours and style as set in Stream#chars.
         # - the value.
         # - the colours and style of the line which the Char belongs to.
-        char.to_s.must_equal(
+        described.to_s.must_equal(
           "\e[38;2;255;255;0m\e[48;2;0;0;255m" \
           "a" \
           "\e[38;2;0;255;0m\e[48;2;255;0;255m"
