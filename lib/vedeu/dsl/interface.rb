@@ -69,7 +69,7 @@ module Vedeu
       #
       # @return [String] The name of the interface in focus.
       def focus!
-        set_focus
+        Vedeu::Focus.add(model.name, true) if defined_value?(model.name)
       end
 
       # Specify a group for an interface. Interfaces of the same group can be
