@@ -32,7 +32,7 @@ module Vedeu
       it 'creates and stores a new interface' do
         Vedeu::Buffers.reset
 
-        Vedeu.interface('Vedeu.interface').must_be_instance_of(API::Interface)
+        Vedeu.interface('Vedeu.interface').must_be_instance_of(Vedeu::API::Interface)
       end
     end
 
@@ -135,8 +135,7 @@ module Vedeu
       before { Vedeu::Interfaces.reset }
 
       it 'raises an exception if the interface has not been defined' do
-        proc { Vedeu.use('unknown') }
-          .must_raise(ModelNotFound)
+        proc { Vedeu.use('unknown') }.must_raise(ModelNotFound)
       end
 
       it 'returns an instance of the named interface' do
@@ -147,26 +146,9 @@ module Vedeu
     end
 
     describe '.view' do
-      let(:composition) {
-        {
-          interfaces: [{
-            border: {},
-            colour: {},
-            cursor: :hide,
-            delay: 0.0,
-            geometry: {},
-            group: '',
-            lines: [],
-            name: "some_interface",
-            parent: {},
-            style: '',
-          }]
-        }
-      }
+      subject { Vedeu.view('holmium') }
 
-      it 'returns the view attributes for an interface (see View)' do
-        Vedeu.view('some_interface').must_equal(composition)
-      end
+      it { return_type_for(subject, Hash) }
     end
 
     describe '.views' do

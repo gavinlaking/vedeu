@@ -7,7 +7,7 @@ module Vedeu
     let(:described) { Buffer.new(attributes) }
     let(:attributes) {
       {
-        name:     '',
+        name:     'krypton',
         back:     back,
         front:    front,
         previous: previous,
@@ -19,7 +19,7 @@ module Vedeu
 
     describe '#initialize' do
       it { return_type_for(described, Buffer) }
-      it { assigns(described, '@name', '') }
+      it { assigns(described, '@name', 'krypton') }
       it { assigns(described, '@back', {}) }
       it { assigns(described, '@front', {}) }
       it { assigns(described, '@previous', {}) }
@@ -115,7 +115,8 @@ module Vedeu
     describe '#add' do
       let(:attributes) {
         {
-          back: { lines: [{ streams: [{ text: 'old_back' }] }] }
+          back: { lines: [{ streams: [{ text: 'old_back' }] }] },
+          name: 'krypton'
         }
       }
       let(:buffer)  { Buffer.new(attributes) }

@@ -17,7 +17,8 @@ module Vedeu
           { streams: [{ text: 'Potassium' }] },
           { streams: [{ text: 'Lanthanum' }] },
           { streams: [{ text: 'Stront­ium' }] },
-        ]
+        ],
+        name: 'caesium'
       })
     }
     let(:attributes) { {  } }

@@ -97,6 +97,8 @@ module Vedeu
     # @param model [void] A model instance.
     # @return [void] The model instance which was stored.
     def store(model)
+      fail MissingRequired, "Cannot store model '#{model.class}' without a " \
+                            "name attribute." unless defined_value?(model.name)
       storage[model.name] = model
     end
 

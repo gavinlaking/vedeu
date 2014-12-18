@@ -4,7 +4,7 @@ module Vedeu
 
   describe Interface do
     let(:described)  { Interface.new(attributes) }
-    let(:attributes) { {} }
+    let(:attributes) { { name: 'francium' } }
 
     let(:interface) { Vedeu.use('#initialize') }
 
@@ -30,7 +30,7 @@ module Vedeu
           geometry: {},
           group:    '',
           lines:    [],
-          name:     '',
+          name:     'francium',
           parent:   nil,
           style:    ''
         })
@@ -38,7 +38,7 @@ module Vedeu
       it { assigns(described, '@cursor', :hide) }
       it { assigns(described, '@delay', 0.0) }
       it { assigns(described, '@group', '') }
-      it { assigns(described, '@name', '') }
+      it { assigns(described, '@name', 'francium') }
       it { assigns(described, '@parent', nil) }
     end
 

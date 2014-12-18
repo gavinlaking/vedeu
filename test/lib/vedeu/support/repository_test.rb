@@ -164,15 +164,23 @@ module Vedeu
     describe '#store' do
       let(:attributes) {
         {
-          name: 'hydrogen'
+          name: model_name
         }
       }
+      let(:model_name) { 'hydrogen' }
       let(:model) { ModelTestClass.new(attributes) }
 
       subject { RepositoriesTestClass.new.store(model) }
 
-      it 'returns the model' do
-        subject.must_be_instance_of(model.class)
+      context 'when a name attribute is empty or nil' do
+        let(:model_name) { '' }
+
+        it { proc { subject }.must_raise(MissingRequired) }
+      end
+
+      context 'when a name attributes is provided' do
+        it { return_type_for(subject, model.class) }
+        it { return_value_for(subject, model) }
       end
     end
 
