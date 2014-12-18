@@ -14,7 +14,7 @@ module Vedeu
       # Returns an instance of DSL::Keymap.
       #
       # @param model [Keymap]
-      def initialize(model = Vedeu::Keymap)
+      def initialize(model)
         @model = model
       end
 

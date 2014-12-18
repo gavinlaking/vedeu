@@ -12,7 +12,7 @@ module Vedeu
       #
       # @param model [Vedeu::Menu]
       # @return      [DSL::Menu]
-      def initialize(model = Vedeu::Menu.new)
+      def initialize(model)
         @model = model
       end
 

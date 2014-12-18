@@ -6,6 +6,14 @@ module Vedeu
 
     describe Geometry do
 
+      let(:described) { Vedeu::DSL::Geometry.new(model) }
+      let(:model)     { Vedeu::Geometry.new }
+
+      describe '#initialize' do
+        it { return_type_for(described, Vedeu::DSL::Geometry) }
+        it { assigns(described, '@model', model) }
+      end
+
       describe '#centred' do
         it 'returns false if the value is false or nil' do
           skip

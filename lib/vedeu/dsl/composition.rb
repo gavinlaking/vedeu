@@ -7,7 +7,7 @@ module Vedeu
       # Returns an instance of DSL::Composition.
       #
       # @param model [Composition]
-      def initialize(model = Vedeu::Composition.new)
+      def initialize(model)
         @model = model
       end
 

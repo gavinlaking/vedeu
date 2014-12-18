@@ -13,7 +13,7 @@ module Vedeu
       # Returns an instance of DSL::Line.
       #
       # @param model [Line]
-      def initialize(model = Vedeu::Line.new)
+      def initialize(model)
         @model = model
       end
 

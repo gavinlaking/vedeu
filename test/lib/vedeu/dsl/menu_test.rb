@@ -6,6 +6,11 @@ module Vedeu
 
     describe Menu do
 
+      let(:described) { Vedeu::DSL::Menu.new(model) }
+      let(:model)     { Vedeu::Menu.new(collection, menu_name) }
+      let(:collection){}
+      let(:menu_name) {}
+
       describe '.define' do
         before { Menus.reset }
 
@@ -36,11 +41,8 @@ module Vedeu
       end
 
       describe '#initialize' do
-        it 'returns an instance of itself' do
-          skip
-
-          Menu.new.must_be_instance_of(DSL::Menu)
-        end
+        it { return_type_for(described, Vedeu::DSL::Menu) }
+        it { assigns(described, '@model', model) }
       end
 
       describe '#items' do

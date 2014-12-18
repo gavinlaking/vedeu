@@ -6,6 +6,14 @@ module Vedeu
 
     describe Interface do
 
+      let(:described) { Vedeu::DSL::Interface.new(model) }
+      let(:model)     { Vedeu::Interface.new }
+
+      describe '#initialize' do
+        it { return_type_for(described, Vedeu::DSL::Interface) }
+        it { assigns(described, '@model', model) }
+      end
+
       describe '#cursor' do
         context 'via DSL' do
           it 'returns :hide if the value is false or nil' do

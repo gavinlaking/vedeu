@@ -6,10 +6,12 @@ module Vedeu
 
     describe Keymap do
 
+      let(:described) { Vedeu::DSL::Keymap.new(model) }
+      let(:model)     { Vedeu::Keymap.new }
+
       describe '#initialize' do
-        it 'returns an instance of itself' do
-          Keymap.new.must_be_instance_of(Keymap)
-        end
+        it { return_type_for(described, Vedeu::DSL::Keymap) }
+        it { assigns(described, '@model', model) }
       end
 
       describe '#interface' do

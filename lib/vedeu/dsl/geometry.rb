@@ -7,7 +7,7 @@ module Vedeu
       # Returns an instance of DSL::Geometry.
       #
       # @param model [Geometry]
-      def initialize(model = Vedeu::Geometry.new)
+      def initialize(model)
         @model = model
       end
 

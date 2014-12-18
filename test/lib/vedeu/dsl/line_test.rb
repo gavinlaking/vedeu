@@ -6,10 +6,12 @@ module Vedeu
 
     describe Line do
 
+      let(:described) { Vedeu::DSL::Line.new(model) }
+      let(:model)     { Vedeu::Line.new }
+
       describe '#initialize' do
-        it 'returns an instance of itself' do
-          Line.new.must_be_instance_of(Vedeu::DSL::Line)
-        end
+        it { return_type_for(described, Vedeu::DSL::Line) }
+        it { assigns(described, '@model', model) }
       end
 
       # describe '#stream' do

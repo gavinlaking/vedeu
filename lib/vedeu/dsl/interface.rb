@@ -10,7 +10,7 @@ module Vedeu
       # Returns an instance of DSL::Interface.
       #
       # @param model [Interface]
-      def initialize(model = Vedeu::Interface.new)
+      def initialize(model)
         @model = model
       end
 
