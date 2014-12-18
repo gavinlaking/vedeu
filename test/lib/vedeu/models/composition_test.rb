@@ -21,22 +21,41 @@ module Vedeu
     end
 
     describe '#interfaces' do
-      it 'returns a collection of interfaces' do
-        Vedeu.interface('dummy') do
-          width  5
-          height 5
-        end
-        Composition.new({
-          interfaces: {
-            name:  'dummy',
-            lines: []
-          }
-        }).interfaces.first.must_be_instance_of(Interface)
+      subject { described.interfaces }
+
+      context 'when no interfaces' do
+        let(:attributes) { { interfaces: [] } }
+
+        it { return_type_for(subject, Array) }
+        it { return_value_for(subject, []) }
       end
 
-      it 'returns an empty collection when no interfaces are associated' do
-        described.interfaces.must_be_empty
+      context 'when a single interface' do
+        let(:attributes) { { interfaces: [{ name: 'hydrogen' }] } }
+
+        it { return_type_for(subject, Array) }
+
+        it 'returns a single interface object' do
+          subject.size.must_equal(1)
+        end
       end
+
+      context 'when multiple interfaces' do
+        let(:attributes) { { interfaces: [{ name: 'hydrogen' }, { name: 'helium' }] } }
+
+        it { return_type_for(subject, Array) }
+
+        it 'returns multiple interface objects' do
+          subject.size.must_equal(2)
+        end
+      end
+    end
+
+    describe '#view_attributes' do
+      subject { described.view_attributes }
+
+      it { return_type_for(subject, Hash) }
+      it { return_value_for(subject, {}) }
     end
 
   end # Composition

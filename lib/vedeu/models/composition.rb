@@ -6,6 +6,7 @@ module Vedeu
   class Composition
 
     attr_reader :attributes
+    attr_writer :interfaces
 
     # Builds a new composition, ready to be rendered to the screen.
     #
@@ -23,6 +24,7 @@ module Vedeu
     # @return [Composition]
     def initialize(attributes = {}, &block)
       @attributes = defaults.merge(attributes)
+      @interfaces = @attributes[:interfaces]
 
       if block_given?
         @self_before_instance_eval = eval('self', block.binding)
@@ -42,7 +44,7 @@ module Vedeu
     #
     # @return [Array]
     def interfaces
-      @interfaces ||= Interface.coercer(attributes[:interfaces])
+      Vedeu::Interface.coercer(@interfaces)
     end
 
     # Returns the view attributes for a Composition, which will always be none,
