@@ -61,22 +61,23 @@ Note: Nesting indicates where an API method is allowed/supposed to be used.
 - interface
   - background
   - border
-  - centred (or centred!)
   - cursor
   - colour
   - delay
   - focus!
   - foreground
+  - geometry
+    - centred (or centred!)
+    - height
+    - width
+    - x
+    - y
   - group
-  - height
   - keys
   - line
   - name
   - style
   - use
-  - width
-  - x
-  - y
 
 
 #### Views
@@ -87,6 +88,11 @@ Note: Nesting indicates where an API method is allowed/supposed to be used.
   - view
     - colour
     - cursor
+    - geometry
+      - height
+      - width
+      - x
+      - y
     - line
       - background
       - colour
@@ -118,8 +124,17 @@ Note: Nesting indicates where an API method is allowed/supposed to be used.
 - configure
 - defined
 - focus
+
 - height
+  Usage: Vedeu.height
+  Returns the height (in lines) for the current terminal.
+
 - log
 - resize
+  Usage: Vedeu.resize
+
+
 - width
+  Usage: Vedeu.width
+  Returns the width (in characters) for the current terminal.
 

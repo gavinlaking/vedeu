@@ -87,10 +87,12 @@ Views with Vedeu are made up of simple building blocks. These blocks can be arra
 
 ```ruby
 interface 'main' do
-  y      1
-  x      1
-  width  10 # see notes below
-  height 10
+  geometry do
+    y      1
+    x      1
+    width  10 # see notes below
+    height 10
+  end
   colour foreground: '#ffffff', background: '#000000'
 end
 ```
