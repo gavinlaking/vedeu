@@ -8,6 +8,9 @@ module Vedeu
 
     include Model
 
+    attr_accessor :name
+    attr_writer   :collection
+
     # Returns a new instance of Menu.
     #
     # @param collection [Array]

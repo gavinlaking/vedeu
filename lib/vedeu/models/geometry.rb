@@ -9,7 +9,9 @@ module Vedeu
   # @api private
   class Geometry
 
-    attr_reader :attributes, :centred
+    attr_accessor :centred, :height, :width
+    attr_reader :attributes
+
 
     # Returns a new instance of Geometry.
     #

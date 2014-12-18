@@ -10,7 +10,8 @@ module Vedeu
     include Coercions
     include Presentation
 
-    attr_reader :attributes, :parent
+    attr_accessor :parent, :streams
+    attr_reader   :attributes
 
     # Builds up a new Line object and returns the attributes.
     #

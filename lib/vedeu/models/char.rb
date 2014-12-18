@@ -11,7 +11,8 @@ module Vedeu
 
     include Presentation
 
-    attr_reader :attributes, :parent, :value
+    attr_accessor :parent, :value
+    attr_reader :attributes
     alias_method :data, :value
 
     # Returns a new instance of Char.
