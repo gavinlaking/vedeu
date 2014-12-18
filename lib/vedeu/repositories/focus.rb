@@ -17,9 +17,13 @@ module Vedeu
     #   collection, making that interface the currently focussed interface.
     # @return [Array] The collection of interface names.
     def add(name, focus = false)
-      return storage if registered?(name)
+      if registered?(name)
+        return storage unless focus
 
-      if focus
+        by_name(name)
+        storage
+
+      elsif focus
         storage.unshift(name)
 
       else
