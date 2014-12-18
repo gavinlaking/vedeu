@@ -14,8 +14,6 @@ module Vedeu
       it { assigns(described, '@name', :some_event) }
       it { assigns(described, '@options', options) }
 
-      it { skip; assigns(described, '@closure', closure) }
-
       it { assigns(described, '@deadline', 0) }
       it { assigns(described, '@executed_at', 0) }
       it { assigns(described, '@now', 0) }

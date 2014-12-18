@@ -104,12 +104,6 @@ module Vedeu
       end
     end
 
-    describe '.render' do
-      it 'directly writes the view buffer to the terminal' do
-        skip
-      end
-    end
-
     describe '.resize' do
       before do
         Interfaces.reset

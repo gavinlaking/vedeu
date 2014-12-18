@@ -78,10 +78,6 @@ module Vedeu
 
     describe '.reset!' do
       it { Registrar.reset!.must_be_instance_of(TrueClass) }
-
-      it 'removes all entities from all repositories' do
-        skip
-      end
     end
 
     describe '#initialize' do

@@ -42,24 +42,6 @@ module Vedeu
       end
     end
 
-    describe '#find_or_create' do
-      context 'when the model is found by name' do
-        it 'returns the storage model' do
-          skip
-        end
-      end
-
-      context 'when the model is not found by name' do
-        it 'stores the newly created model' do
-          skip
-        end
-
-        it 'returns the newly created model' do
-          skip
-        end
-      end
-    end
-
     describe '#registered' do
       it 'returns an Array' do
         RepositoriesTestClass.new.registered.must_be_instance_of(Array)
@@ -107,15 +89,6 @@ module Vedeu
         repo.add({ name: 'samarium' })
 
         repo.registered?('terbium').must_equal(false)
-      end
-
-      it 'returns true when the model is registered' do
-        skip
-
-        repo = RepositoriesTestClass.new
-        repo.add({ name: 'samarium' })
-
-        repo.registered?('samarium').must_equal(true)
       end
     end
 

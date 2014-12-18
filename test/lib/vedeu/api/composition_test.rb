@@ -18,10 +18,6 @@ module Vedeu
             # ...
           end.must_be_instance_of(Hash)
         end
-
-        it 'allows a single view to be defined' do
-          skip
-        end
       end
 
     end # Composition

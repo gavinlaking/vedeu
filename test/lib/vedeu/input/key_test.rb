@@ -11,8 +11,6 @@ module Vedeu
     describe '#initialize' do
       it { return_type_for(described, Key) }
       it { assigns(described, '@input', input) }
-
-      it { skip; assigns(described, '@output', output) }
     end
 
     describe '#input' do

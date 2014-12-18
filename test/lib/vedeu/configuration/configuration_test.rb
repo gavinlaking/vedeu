@@ -7,14 +7,6 @@ module Vedeu
     before { Configuration.reset! }
     after  { test_configuration }
 
-    describe '#colour_mode' do
-      it 'returns the value of the colour_mode option' do
-        skip
-        Configuration.colour_mode.must_equal(16777216)
-        Configuration.colour_mode.must_equal(256)
-      end
-    end
-
     describe '#debug?' do
       it 'returns the value of the debug option' do
         Configuration.debug?.must_equal(false)
@@ -24,13 +16,6 @@ module Vedeu
     describe '#interactive?' do
       it 'returns the value of the interactive option' do
         Configuration.interactive?.must_equal(true)
-      end
-    end
-
-    describe '#log' do
-      it 'returns the value of the log option' do
-        skip
-        Configuration.log.must_match(/vedeu_test\.log/)
       end
     end
 
