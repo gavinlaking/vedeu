@@ -1,3 +1,5 @@
+require 'vedeu/support/common'
+
 module Vedeu
 
   # Provides means to convert attributes into the correct model.

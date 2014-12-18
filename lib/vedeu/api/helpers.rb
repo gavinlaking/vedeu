@@ -1,3 +1,5 @@
+require 'vedeu/support/common'
+
 module Vedeu
 
   module API
@@ -8,7 +10,7 @@ module Vedeu
     # @api public
     module Helpers
 
-      include Common
+      include Vedeu::Common
 
       # Define the background colour for an interface, line, or a stream. When
       # called with a block, will create a new stream with the background colour

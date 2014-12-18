@@ -1,3 +1,5 @@
+require 'vedeu/support/common'
+
 module Vedeu
 
   # This module is the direct interface between Vedeu and your terminal/
@@ -6,6 +8,7 @@ module Vedeu
   # @api private
   module Terminal
 
+    include Vedeu::Common
     extend self
 
     # Opens a terminal screen in either `raw` or `cooked` mode. On exit,
@@ -15,7 +18,7 @@ module Vedeu
     # @raise [InvalidSyntax] When the required block is not given.
     # @return [Array]
     def open(&block)
-      fail InvalidSyntax, '`open` requires a block.' unless block_given?
+      return requires_block(__callee__) unless block_given?
 
       if raw_mode?
         Vedeu.log("Terminal entering 'raw' mode")

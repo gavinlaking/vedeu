@@ -1,3 +1,5 @@
+require 'vedeu/support/common'
+
 module Vedeu
 
   module API
@@ -7,11 +9,13 @@ module Vedeu
     # @api public
     class Composition < Vedeu::Composition
 
+      include Vedeu::Common
+
       # @param block [Proc]
       # @return [Array]
       # @see Vedeu::API#render
       def self.render(&block)
-        fail InvalidSyntax, '`render` requires a block.' unless block_given?
+        return Vedeu.requires_block(__callee__) unless block_given?
 
         attributes = API::Composition.build({}, &block)
 

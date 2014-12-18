@@ -1,3 +1,5 @@
+require 'vedeu/support/common'
+
 module Vedeu
 
   module DSL
@@ -7,6 +9,7 @@ module Vedeu
     # @api public
     class Line
 
+      include Vedeu::Common
       include DSL::Colour
       include DSL::Style
 
@@ -30,7 +33,7 @@ module Vedeu
       # @raise [InvalidSyntax] When the required block is not given.
       # @return [Array]
       def stream(&block)
-        fail InvalidSyntax, '`stream` requires a block.' unless block_given?
+        return requires_block(__callee__) unless block_given?
 
         model.add_stream({ parent: self.view_attributes }, &block)
       end

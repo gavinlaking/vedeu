@@ -1,3 +1,5 @@
+require 'vedeu/support/common'
+
 module Vedeu
 
   # A Keymap is the binding of a keypress to one or more interfaces; or globally
@@ -6,7 +8,7 @@ module Vedeu
   # @api private
   class Keymap
 
-    include Common
+    include Vedeu::Common
     include Model
 
     attr_reader :attributes
@@ -37,7 +39,7 @@ module Vedeu
     # @raise [InvalidSyntax] When the required block is not given.
     # @return [Keymap]
     def self.keys(*name_or_names, &block)
-      fail InvalidSyntax, '`keys` requires a block.' unless block_given?
+      return Vedeu.requires_block(__callee__) unless block_given?
 
       define({ interfaces: name_or_names }, &block)
     end

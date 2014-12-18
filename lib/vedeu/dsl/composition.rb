@@ -1,8 +1,12 @@
+require 'vedeu/support/common'
+
 module Vedeu
 
   module DSL
 
     class Composition
+
+      include Vedeu::Common
 
       # Returns an instance of DSL::Composition.
       #
@@ -102,10 +106,6 @@ module Vedeu
       private
 
       attr_reader :model
-
-      def requires_block(method)
-        fail InvalidSyntax, "`#{method}` requires a block."
-      end
 
     end # Composition
 

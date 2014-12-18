@@ -1,3 +1,5 @@
+require 'vedeu/support/common'
+
 module Vedeu
 
   module API
@@ -25,6 +27,7 @@ module Vedeu
     # @api public
     class Line < Vedeu::Line
 
+      include Vedeu::Common
       include Helpers
 
       # @param value [String]
@@ -74,7 +77,7 @@ module Vedeu
       # @raise [InvalidSyntax] When the required block is not given.
       # @return [Array]
       def stream(&block)
-        fail InvalidSyntax, '`stream` requires a block.' unless block_given?
+        return requires_block(__callee__) unless block_given?
 
         attributes[:streams] << API::Stream
           .build({ parent: self.view_attributes }, &block)

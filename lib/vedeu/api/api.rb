@@ -1,3 +1,4 @@
+require 'vedeu/support/common'
 require 'vedeu/support/terminal'
 
 module Vedeu
@@ -8,6 +9,7 @@ module Vedeu
   # @api public
   module API
 
+    include Vedeu::Common
     extend Forwardable
 
     # @see Vedeu::Events#add
@@ -23,7 +25,7 @@ module Vedeu
     # @return [Hash]
     # @see Vedeu::Configuration
     def configure(&block)
-      fail InvalidSyntax, '`configure` requires a block.' unless block_given?
+      return requires_block(__callee__) unless block_given?
 
       Vedeu::Configuration.configure(&block)
     end
@@ -92,7 +94,7 @@ module Vedeu
     # @raise [InvalidSyntax] When the required block is not given.
     # @return [API::Menu]
     def menu(name = '', &block)
-      fail InvalidSyntax, '`menu` requires a block.' unless block_given?
+      return requires_block(__callee__) unless block_given?
 
       API::Menu.define({ name: name }, &block)
     end
@@ -224,7 +226,7 @@ module Vedeu
     # @raise [InvalidSyntax] When the required block is not given.
     # @return [Array]
     def views(&block)
-      fail InvalidSyntax, '`views` requires a block.' unless block_given?
+      return requires_block(__callee__) unless block_given?
 
       API::Composition.build(&block)
     end

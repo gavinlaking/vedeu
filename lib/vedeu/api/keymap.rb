@@ -1,3 +1,5 @@
+require 'vedeu/support/common'
+
 module Vedeu
 
   module API
@@ -6,6 +8,8 @@ module Vedeu
     #
     # @api public
     class Keymap < Vedeu::Keymap
+
+      include Vedeu::Common
 
       # Define keypress(es) to perform an action.
       #

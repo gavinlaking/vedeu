@@ -1,3 +1,5 @@
+require 'vedeu/support/common'
+
 module Vedeu
 
   module API
@@ -8,7 +10,7 @@ module Vedeu
     # @api public
     class Menu
 
-      include Common
+      include Vedeu::Common
 
       attr_reader :attributes
 
@@ -33,7 +35,7 @@ module Vedeu
       # @raise [InvalidSyntax] When the required block is not given.
       # @return [API::Menu]
       def define(&block)
-        fail InvalidSyntax, '`menu` requires a block.' unless block_given?
+        return requires_block('menu') unless block_given?
 
         @self_before_instance_eval = eval('self', block.binding)
 

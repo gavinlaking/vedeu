@@ -8,7 +8,6 @@ module Vedeu
   class Interface
 
     include Coercions
-    include Common
     include Model
     include Presentation
 

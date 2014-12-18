@@ -1,3 +1,5 @@
+require 'vedeu/support/common'
+
 module Vedeu
 
   # Validates that a given hash contains foreground and/or background
@@ -6,7 +8,7 @@ module Vedeu
   # @api private
   class ColourValidator
 
-    include Common
+    include Vedeu::Common
 
     def self.check(attributes = {})
       new(attributes).check

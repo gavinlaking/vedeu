@@ -1,36 +1,53 @@
 require 'test_helper'
 
-class VedeuCommonClass
-  include Vedeu::Common
-
-  def defined_value_test(variable)
-    defined_value?(variable)
-  end
-end # VedeuCommonClass
-
 module Vedeu
 
   describe Common do
 
+    let(:described) { Vedeu::VedeuCommonClass.new }
+
     describe '#defined_value?' do
-      it 'returns true when the variable is a Fixnum' do
-        VedeuCommonClass.new.defined_value_test(17).must_equal(true)
+      subject { described.defined_value_test(value) }
+
+      context 'when the variable is a Fixnum' do
+        let(:value) { 17 }
+
+        it { subject.must_equal(true) }
       end
 
-      it 'returns true when the variable is not nil or empty' do
-        VedeuCommonClass.new.defined_value_test('not empty').must_equal(true)
+      context 'when the variable is not nil or empty' do
+        let(:value) { 'not empty' }
+
+        it { subject.must_equal(true) }
       end
 
-      it 'returns false when the variable is nil or empty' do
-        VedeuCommonClass.new.defined_value_test([]).must_equal(false)
+      context 'when the variable is nil or empty' do
+        let(:value) { [] }
+
+        it { subject.must_equal(false) }
       end
 
-      it 'returns false when dealing with hash keys which may not exist or ' \
-         'have a value' do
-        attributes = {}
+      context 'when dealing with keys which may not exist or have a value' do
+        let(:attributes) { {} }
+        let(:value)      { attributes[:not_found] }
 
-        VedeuCommonClass.new.defined_value_test(attributes[:misc]).must_equal(false)
+        it { subject.must_equal(false) }
       end
+    end
+
+    describe '#requires_block' do
+      subject { described.requires_block(:some_method) }
+
+      it { proc { subject }.must_raise(InvalidSyntax) }
+    end
+
+    describe '#to_sentence' do
+      let(:array) { %w{ hydrogen helium lithium } }
+
+      subject { described.to_sentence(array) }
+
+      it { return_type_for(subject, String) }
+      it { return_value_for(subject, 'hydrogen, helium and lithium') }
     end
 
   end # Common

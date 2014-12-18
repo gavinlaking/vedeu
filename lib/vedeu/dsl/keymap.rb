@@ -9,7 +9,7 @@ module Vedeu
     # @api public
     class Keymap
 
-      include Common
+      include Vedeu::Common
 
       # Returns an instance of DSL::Keymap.
       #

@@ -1,3 +1,5 @@
+require 'vedeu/support/common'
+
 module Vedeu
 
   # Validates that a given key is can be used and is not already in-use, either
@@ -6,7 +8,7 @@ module Vedeu
   # @api private
   class KeymapValidator
 
-    include Common
+    include Vedeu::Common
 
     # Checks the key is not in use by the system, is not already defined as a
     # global key, is not already defined for the interface specified.

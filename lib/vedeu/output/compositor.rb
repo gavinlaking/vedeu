@@ -1,3 +1,5 @@
+require 'vedeu/support/common'
+
 module Vedeu
 
   # Combines stored interface layout/geometry with an interface view/buffer
@@ -6,7 +8,7 @@ module Vedeu
   # @api private
   class Compositor
 
-    include Common
+    include Vedeu::Common
 
     # Convenience method to initialize a new Compositor and call its {#compose}
     # method.

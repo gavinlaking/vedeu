@@ -1,9 +1,12 @@
+require 'vedeu/support/common'
+
 module Vedeu
 
   module DSL
 
     class Interface
 
+      include Vedeu::Common
       include DSL::Colour
       include DSL::Style
 
@@ -12,10 +15,6 @@ module Vedeu
       # @param model [Interface]
       def initialize(model)
         @model = model
-      end
-
-      def colour(*args)
-        Vedeu.log([Esc.blue { args.inspect }, Esc.green { __callee__.inspect }, Esc.red { self.class.name }].reverse.join, true)
       end
 
       # Set the cursor visibility on an interface.
@@ -60,7 +59,7 @@ module Vedeu
       #
       # @return [Fixnum|Float]
       def delay(value)
-        model.set_delay(value)
+        model.delay = value
       end
 
       # Specify this interface as being in focus when the application starts.
@@ -86,11 +85,13 @@ module Vedeu
       #
       # @return [String]
       def group(value)
-        model.set_group(value)
+        model.group = value
       end
 
       def geometry(&block)
-        model.set_geometry(&block)
+        return requires_block(__callee__) unless block_given?
+
+        model.geometry = Vedeu::Geometry.build(attributes = {}, &block)
       end
 
       # @see Vedeu::API#keys
@@ -140,7 +141,7 @@ module Vedeu
       #
       # @return [String]
       def name(value)
-        model.set_name(value)
+        model.name = value
       end
 
       # Use the specified interface; useful for sharing attributes with other
@@ -160,26 +161,42 @@ module Vedeu
         Vedeu.use(value)
       end
 
-      # @todo deprecate these methods.
+      # @deprecated
+      # @todo Remove these methods in 0.3.0 or soon thereafter.
       def centred(value = true)
-        model.geometry.set_centred(value)
+        deprecated("Vedeu::API::Interface#centred",
+                   "Vedeu::DSL::Geometry#centred",
+                   "0.3.0",
+                   "/Vedeu/DSL/Geometry#centred-instance_method)")
       end
       alias_method :centred!, :centred
 
       def height(value)
-        model.geometry.set_height(value)
+        deprecated("Vedeu::API::Interface#height",
+                   "Vedeu::DSL::Geometry#height",
+                   "0.3.0",
+                   "/Vedeu/DSL/Geometry#height-instance_method)")
       end
 
       def width(value)
-        model.geometry.set_width(value)
+        deprecated("Vedeu::API::Interface#width",
+                   "Vedeu::DSL::Geometry#width",
+                   "0.3.0",
+                   "/Vedeu/DSL/Geometry#width-instance_method)")
       end
 
       def x(value = 0, &block)
-        model.geometry.set_x(value, &block)
+        deprecated("Vedeu::API::Interface#x",
+                   "Vedeu::DSL::Geometry#x",
+                   "0.3.0",
+                   "/Vedeu/DSL/Geometry#x-instance_method)")
       end
 
       def y(value = 0, &block)
-        model.geometry.set_y(value, &block)
+        deprecated("Vedeu::API::Interface#y",
+                   "Vedeu::DSL::Geometry#y",
+                   "0.3.0",
+                   "/Vedeu/DSL/Geometry#y-instance_method)")
       end
 
       private

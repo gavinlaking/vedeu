@@ -1,3 +1,5 @@
+require 'vedeu/support/common'
+
 module Vedeu
 
   # Provides common methods for accessing the various repositories Vedeu uses.
@@ -5,7 +7,7 @@ module Vedeu
   # @api private
   module Repository
 
-    include Common
+    include Vedeu::Common
 
     # Return the whole repository.
     #

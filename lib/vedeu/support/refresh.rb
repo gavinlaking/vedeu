@@ -5,7 +5,6 @@ module Vedeu
   # @api private
   module Refresh
 
-    include Common
     extend self
 
     # Refresh all registered interfaces.
