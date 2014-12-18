@@ -35,7 +35,7 @@ module Vedeu
       def stream(&block)
         return requires_block(__callee__) unless block_given?
 
-        model.add_stream({ parent: self.view_attributes }, &block)
+        model.streams({ parent: self.view_attributes }, &block)
       end
 
       # Define text for a line. Using this directive will not allow stream

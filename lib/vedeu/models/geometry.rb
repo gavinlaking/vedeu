@@ -9,9 +9,10 @@ module Vedeu
   # @api private
   class Geometry
 
+    extend DSL
+
     attr_accessor :centred, :height, :width
     attr_reader :attributes
-
 
     # Returns a new instance of Geometry.
     #
@@ -23,6 +24,10 @@ module Vedeu
       @centred = @attributes[:centred]
       @height  = @attributes[:height]
       @width   = @attributes[:width]
+      @x       = @attributes[:x]
+      @xn      = @attributes[:xn]
+      @y       = @attributes[:y]
+      @yn      = @attributes[:yn]
     end
 
     # Returns the class responsible for defining the DSL methods of this model.
@@ -36,11 +41,11 @@ module Vedeu
     #
     # @return [Fixnum]
     def y
-      if attributes[:y].is_a?(Proc)
-        attributes[:y].call
+      if @y.is_a?(Proc)
+        @y.call
 
       else
-        attributes[:y]
+        @y
 
       end
     end
@@ -49,11 +54,11 @@ module Vedeu
     #
     # @return [Fixnum]
     def yn
-      if attributes[:yn].is_a?(Proc)
-        attributes[:yn].call
+      if @yn.is_a?(Proc)
+        @yn.call
 
       else
-        attributes[:yn]
+        @yn
 
       end
     end
@@ -62,11 +67,11 @@ module Vedeu
     #
     # @return [Fixnum]
     def x
-      if attributes[:x].is_a?(Proc)
-        attributes[:x].call
+      if @x.is_a?(Proc)
+        @x.call
 
       else
-        attributes[:x]
+        @x
 
       end
     end
@@ -75,11 +80,11 @@ module Vedeu
     #
     # @return [Fixnum]
     def xn
-      if attributes[:xn].is_a?(Proc)
-        attributes[:xn].call
+      if @xn.is_a?(Proc)
+        @xn.call
 
       else
-        attributes[:xn]
+        @xn
 
       end
     end
@@ -516,8 +521,8 @@ module Vedeu
         width:   Terminal.width,
         height:  Terminal.height,
         centred: false,
-        yn:      nil,
-        xn:      nil,
+        yn:      Terminal.height,
+        xn:      Terminal.width,
       }
     end
 

@@ -27,7 +27,7 @@ module Vedeu
       #
       # @return [Boolean]
       def centred(value = true)
-        model.set_centred(!!value)
+        model.centred = !!value
       end
       alias_method :centred!, :centred
 
@@ -44,7 +44,7 @@ module Vedeu
       def height(value)
         Vedeu.log(out_of_bounds('height')) if y_out_of_bounds?(value)
 
-        model.set_height(value)
+        model.height = value
       end
 
       # Specify the number of characters/columns wide the interface will be.
@@ -60,7 +60,7 @@ module Vedeu
       def width(value)
         Vedeu.log(out_of_bounds('width')) if x_out_of_bounds?(value)
 
-        model.set_width(value)
+        model.width = value
       end
 
       # Specify the starting x position (column) of the interface.
@@ -83,7 +83,7 @@ module Vedeu
 
         Vedeu.log(out_of_bounds('x')) if x_out_of_bounds?(value)
 
-        model.set_x(value)
+        model.x = value
       end
 
       # Specify the starting y position (row/line) of the interface.
@@ -107,7 +107,7 @@ module Vedeu
 
         Vedeu.log(out_of_bounds('y')) if y_out_of_bounds?(value)
 
-        model.set_y(value)
+        model.y = value
       end
 
       private

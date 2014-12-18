@@ -18,14 +18,18 @@ module Vedeu
           height:  25,
           width:   80,
           x:       1,
-          xn:      nil,
+          xn:      80,
           y:       1,
-          yn:      nil,
+          yn:      25,
         })
       }
       it { assigns(described, '@centred', false) }
       it { assigns(described, '@height', 25) }
       it { assigns(described, '@width', 80) }
+      it { assigns(described, '@x', 1) }
+      it { assigns(described, '@xn', 80) }
+      it { assigns(described, '@y', 1) }
+      it { assigns(described, '@yn', 25) }
     end
 
     describe '#deputy' do

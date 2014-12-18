@@ -17,6 +17,7 @@ module Vedeu
                               :bottom, :left, :width, :height, :origin
 
     attr_reader :attributes, :delay, :group, :name, :parent
+    attr_writer :geometry
 
     # Builds up a new Interface object and returns the attributes.
     #
@@ -45,6 +46,7 @@ module Vedeu
 
       @cursor     = @attributes[:cursor]
       @delay      = @attributes[:delay]
+      @geometry   = @attributes[:geometry]
       @group      = @attributes[:group]
       @name       = @attributes[:name]
       @parent     = @attributes[:parent]
@@ -112,7 +114,7 @@ module Vedeu
     #
     # @return [Geometry]
     def geometry
-      @geometry ||= Geometry.new(attributes[:geometry])
+      Geometry.new(@geometry)
     end
 
     # Returns the current offset for the content within the interface.

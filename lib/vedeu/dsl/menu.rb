@@ -35,7 +35,7 @@ module Vedeu
       #
       # @return [Array]
       def items(collection = [])
-        model.set_items(collection)
+        model.collection = collection
       end
 
       # The name of the menu. Used to reference the menu throughout your
@@ -50,7 +50,7 @@ module Vedeu
       #
       # @return [String]
       def name(value)
-        model.set_name(value)
+        model.name = value
       end
 
       private

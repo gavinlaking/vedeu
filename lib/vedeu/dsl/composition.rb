@@ -41,7 +41,7 @@ module Vedeu
 
         attributes = API::Composition.build({}, &block)
 
-        Vedeu::Composition.new(attributes).interfaces.map do |interface|
+        model.new(attributes).interfaces.map do |interface|
           Buffers.add(interface.attributes)
 
           interface.name

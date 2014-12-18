@@ -55,8 +55,8 @@ module Vedeu
       #   than the specified width.
       # @return [String]
       def align(value = '', options = {})
-        model.add_text(Vedeu::Align.with(value,
-          options.merge({ anchor: __callee__ })))
+        model.text << Vedeu::Align.with(value,
+          options.merge({ anchor: __callee__ }))
       end
       alias_method :left,   :align
       alias_method :center, :align
@@ -71,7 +71,7 @@ module Vedeu
       # @param value [String|undefined] The text to be added to this Stream.
       # @return [String] The param 'value' as a String.
       def text(value = '')
-        model.add_text(value.to_s)
+        model.text << value.to_s
       end
 
       # @deprecated
