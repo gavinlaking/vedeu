@@ -8,7 +8,8 @@ module Vedeu
 
     include Vedeu::Common
 
-    attr_reader :attributes, :values
+    attr_accessor :values
+    attr_reader   :attributes
 
     # Return a new instance of Style.
     #
@@ -30,14 +31,14 @@ module Vedeu
     # Return the terminal escape sequences after converting the style or styles.
     #
     # @return [String]
-    def escape_sequences
+    def to_s
       return '' unless defined_value?(values)
 
       @_sequences ||= Array(values).flatten.map do |value|
         Esc.string(value)
       end.join
     end
-    alias_method :to_s, :escape_sequences
+    alias_method :escape_sequences, :to_s
 
   end # Style
 
