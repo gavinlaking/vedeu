@@ -17,7 +17,7 @@ module Vedeu
                               :bottom, :left, :width, :height, :origin
 
     attr_reader :attributes, :delay, :group, :name, :parent
-    attr_writer :geometry
+    attr_writer :geometry, :group
 
     # Builds up a new Interface object and returns the attributes.
     #
