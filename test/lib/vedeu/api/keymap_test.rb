@@ -9,20 +9,20 @@ module Vedeu
       describe '#key' do
         before { Vedeu::Keymaps.reset }
 
-        it 'raises an exception when a block is not given' do
-          proc {
+        context 'when a block was not given' do
+          it { proc {
             Vedeu.keys do
               key 'q'
             end
-          }.must_raise(InvalidSyntax)
+          }.must_raise(InvalidSyntax) }
         end
 
-        it 'raises an exception when a key is not given' do
-          proc {
+        context 'when a key was not given' do
+          it { proc {
             Vedeu.keys do
               key('') { :some_action }
             end
-          }.must_raise(InvalidSyntax)
+          }.must_raise(InvalidSyntax) }
         end
 
         it 'returns the instance of API::Keymap' do

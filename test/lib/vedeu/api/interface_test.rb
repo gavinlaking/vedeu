@@ -237,9 +237,7 @@ module Vedeu
         end
 
         context 'when the block is not given' do
-          it 'raises an exception' do
-            proc { Vedeu.interface('iron') { keys } }.must_raise(InvalidSyntax)
-          end
+          it { proc { Vedeu.interface('iron') { keys } }.must_raise(InvalidSyntax) }
         end
       end
 

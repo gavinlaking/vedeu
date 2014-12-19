@@ -17,8 +17,8 @@ module Vedeu
           Stream.new.align('left').must_equal(:left)
         end
 
-        it 'raises an exception if the value is invalid' do
-          proc { Stream.new.align(:unknown) }.must_raise(InvalidSyntax)
+        context 'when the value is invalid' do
+          it { proc { Stream.new.align(:unknown) }.must_raise(InvalidSyntax) }
         end
       end
 

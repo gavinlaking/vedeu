@@ -13,9 +13,9 @@ module Vedeu
     describe '#add' do
       let(:attributes) { { name: 'chromium' } }
 
-      it 'raises an exception if a :name attribute is not provided' do
-        proc { Offsets.add({ no_name: 'no_name' }) }
-          .must_raise(MissingRequired)
+      context 'when the name attribute is not provided' do
+        it { proc { Offsets.add({ no_name: 'no_name' }) }
+          .must_raise(MissingRequired) }
       end
 
       it 'returns a new instance of Offset once stored' do
@@ -33,13 +33,9 @@ module Vedeu
       context 'when the attributes do not have the :name key' do
         let(:attributes) { { no_name_key: 'some_value' } }
 
-        it 'raises an exception' do
-          proc { Cursors.update(attributes) }.must_raise(MissingRequired)
-        end
+        it { proc { Cursors.update(attributes) }.must_raise(MissingRequired) }
 
-        it 'raises an exception' do
-          proc { Cursors.add(attributes) }.must_raise(MissingRequired)
-        end
+        it { proc { Cursors.add(attributes) }.must_raise(MissingRequired) }
       end
     end
 

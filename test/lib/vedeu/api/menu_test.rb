@@ -9,12 +9,12 @@ module Vedeu
       describe '.define' do
         before { Menus.reset }
 
-        it 'raises an exception if no block was given' do
-          proc { Menu.define }.must_raise(InvalidSyntax)
+        context 'when a block was not given' do
+          it { proc { Menu.define }.must_raise(InvalidSyntax) }
         end
 
-        it 'raises an exception if no name was specified for the menu' do
-          proc { Menu.define { } }.must_raise(MissingRequired)
+        context 'when no name was specified for the menu' do
+          it { proc { Menu.define { } }.must_raise(MissingRequired) }
         end
 
         it 'adds the menu to the menus repository' do

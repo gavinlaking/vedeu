@@ -14,24 +14,24 @@ module Vedeu
     end
 
     describe '.by_focus' do
-      it 'raises an exception when there are no registered interfaces' do
+      context 'when there are no registered interfaces' do
         Focus.reset
 
-        proc { Refresh.by_focus }.must_raise(NoInterfacesDefined)
+        it { proc { Refresh.by_focus }.must_raise(NoInterfacesDefined) }
       end
     end
 
     describe '.by_group' do
-      it 'raises an exception when the group cannot be found' do
+      context 'when the group cannot be found' do
         Groups.reset
 
-        proc { Refresh.by_group('') }.must_raise(ModelNotFound)
+        it { proc { Refresh.by_group('') }.must_raise(ModelNotFound) }
       end
     end
 
     describe '.by_name' do
-      it 'raises an exception when the buffer cannot be found' do
-        proc { Refresh.by_name('') }.must_raise(ModelNotFound)
+      context 'when the buffer cannot be found' do
+        it { proc { Refresh.by_name('') }.must_raise(ModelNotFound) }
       end
     end
 

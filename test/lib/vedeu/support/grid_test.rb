@@ -19,22 +19,24 @@ module Vedeu
     let(:described) { Grid.new(value) }
     let(:value)     { 2 }
 
+    before { IO.console.stubs(:winsize).returns([25, 80]) }
+
     describe '#initialize' do
       it { return_type_for(described, Grid) }
       it { assigns(described, '@value', value) }
     end
 
     describe '.columns' do
-      it 'raises an exception if the value is less than 1' do
-        proc { Grid.columns(0) }.must_raise(OutOfRange)
+      context 'when the value is less than 1' do
+        it { proc { Grid.columns(0) }.must_raise(OutOfRange) }
       end
 
-      it 'raises an exception if the value is greater than 12' do
-        proc { Grid.columns(13) }.must_raise(OutOfRange)
+      context 'when the value is greater than 12' do
+        it { proc { Grid.columns(13) }.must_raise(OutOfRange) }
       end
 
-      it 'returns the width if the value is in range' do
-        IO.console.stub :winsize, [25, 80] do
+      context 'when the value is in range' do
+        it 'returns the value of the column' do
           Grid.columns(7).must_equal(42)
         end
       end

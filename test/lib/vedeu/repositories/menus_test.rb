@@ -133,8 +133,8 @@ module Vedeu
         Vedeu::Menu.stubs(:new).returns(instance)
       end
 
-      it 'raises an exception if menu name is empty' do
-        proc { Menus.add({ name: '' }) }.must_raise(MissingRequired)
+      context 'when the menu name is empty' do
+        it { proc { Menus.add({ name: '' }) }.must_raise(MissingRequired) }
       end
 
       it 'adds the menu to the storage' do

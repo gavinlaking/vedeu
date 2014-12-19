@@ -20,22 +20,22 @@ module Vedeu
     end
 
     describe '.record' do
-      it 'raises an exception if the attributes does not have a :name key' do
+      context 'when the attributes do not have a :name key' do
         attributes = { no_name_key: '' }
 
-        proc { Registrar.record(attributes) }.must_raise(MissingRequired)
+        it { proc { Registrar.record(attributes) }.must_raise(MissingRequired) }
       end
 
-      it 'raises an exception if the value for :name is nil' do
+      context 'when the value for :name is nil' do
         attributes = { name: nil }
 
-        proc { Registrar.record(attributes) }.must_raise(MissingRequired)
+        it { proc { Registrar.record(attributes) }.must_raise(MissingRequired) }
       end
 
-      it 'raises an exception if the value for :name is empty' do
+      context 'when the value for :name is empty' do
         attributes = { name: '' }
 
-        proc { Registrar.record(attributes) }.must_raise(MissingRequired)
+        it { proc { Registrar.record(attributes) }.must_raise(MissingRequired) }
       end
 
       it 'sends the attributes to the Buffers repository' do
@@ -73,7 +73,6 @@ module Vedeu
 
         Focus.registered?('mendelevium').must_equal(true)
       end
-
     end
 
     describe '.reset!' do

@@ -185,22 +185,22 @@ module Vedeu
       end
 
       describe '#colour_mode' do
-        it 'raises an exception for an invalid value' do
-          proc {
+        context 'when the value is invalid (nil)' do
+          it { proc {
             Vedeu.configure { colour_mode(nil) }
-          }.must_raise(InvalidSyntax)
+          }.must_raise(InvalidSyntax) }
         end
 
-        it 'raises an exception for an invalid value' do
-          proc {
+        context 'when the value is invalid (empty)' do
+          it { proc {
             Vedeu.configure { colour_mode('') }
-          }.must_raise(InvalidSyntax)
+          }.must_raise(InvalidSyntax) }
         end
 
-        it 'raises an exception for an invalid value' do
-          proc {
+        context 'when the value is invalid' do
+          it { proc {
             Vedeu.configure { colour_mode(1234) }
-          }.must_raise(InvalidSyntax)
+          }.must_raise(InvalidSyntax) }
         end
 
         it 'sets the option to the desired value' do
@@ -229,8 +229,8 @@ module Vedeu
 
           methods_and_keys.each do |meth, _|
             invalid_params.each do |param|
-              it 'raises an exception with an invalid parameter' do
-                proc { Vedeu.configure { send(meth, param) } }.must_raise(InvalidSyntax)
+              context 'when the parameter is invalid' do
+                it { proc { Vedeu.configure { send(meth, param) } }.must_raise(InvalidSyntax) }
               end
             end
           end

@@ -9,8 +9,8 @@ module Vedeu
     before { Event.stubs(:new).returns(event) }
 
     describe '.configure' do
-      it 'raises an exception unless a block was given' do
-        proc { Vedeu.configure }.must_raise(InvalidSyntax)
+      context 'when a block was not given' do
+        it { proc { Vedeu.configure }.must_raise(InvalidSyntax) }
       end
     end
 
@@ -70,8 +70,8 @@ module Vedeu
         end.must_be_instance_of(API::Keymap)
       end
 
-      it 'raises an exception when the block is not provided' do
-        proc { Vedeu.keys }.must_raise(InvalidSyntax)
+      context 'when a block was not given' do
+        it { proc { Vedeu.keys }.must_raise(InvalidSyntax) }
       end
     end
 
@@ -134,8 +134,8 @@ module Vedeu
     describe '.use' do
       before { Vedeu::Interfaces.reset }
 
-      it 'raises an exception if the interface has not been defined' do
-        proc { Vedeu.use('unknown') }.must_raise(ModelNotFound)
+      context 'when an interface has not been defined' do
+        it { proc { Vedeu.use('unknown') }.must_raise(ModelNotFound) }
       end
 
       it 'returns an instance of the named interface' do
@@ -170,8 +170,8 @@ module Vedeu
         attrs[:interfaces].size.must_equal(2)
       end
 
-      it 'raises an exception if a block was not given' do
-        proc { Vedeu.views }.must_raise(InvalidSyntax)
+      context 'when a block was not given' do
+        it { proc { Vedeu.views }.must_raise(InvalidSyntax) }
       end
     end
 

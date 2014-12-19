@@ -9,8 +9,8 @@ module Vedeu
     describe '.open' do
       before { IO.console.stubs(:print) }
 
-      it 'raises an exception when no block is given' do
-        proc { Terminal.open }.must_raise(InvalidSyntax)
+      context 'when a block was not given' do
+        it { proc { Terminal.open }.must_raise(InvalidSyntax) }
       end
 
       it 'opens a new terminal console in raw mode' do

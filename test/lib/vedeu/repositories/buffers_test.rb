@@ -11,10 +11,10 @@ module Vedeu
         Buffers.add({ name: 'molybdenum' }).must_equal('molybdenum')
       end
 
-      it 'raises an exception if the attributes does not have a :name key' do
+      context 'when the attributes do not have a :name key' do
         attributes = { no_name_key: '' }
 
-        proc { Buffers.add(attributes) }.must_raise(MissingRequired)
+        it { proc { Buffers.add(attributes) }.must_raise(MissingRequired) }
       end
 
     end

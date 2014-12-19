@@ -39,8 +39,8 @@ module Vedeu
         Focus.by_name('lead').must_equal('lead')
       end
 
-      it 'raises an exception if the interface does not exist' do
-        proc { Focus.by_name('not_found') }.must_raise(ModelNotFound)
+      context 'when the interface does not exist' do
+        it { proc { Focus.by_name('not_found') }.must_raise(ModelNotFound) }
       end
     end
 
@@ -52,8 +52,8 @@ module Vedeu
         Focus.current.must_equal('thallium')
       end
 
-      it 'raises an exception if there are no interfaces defined' do
-        proc { Focus.current }.must_raise(NoInterfacesDefined)
+      context 'when there are no interfaces defined' do
+        it { proc { Focus.current }.must_raise(NoInterfacesDefined) }
       end
     end
 

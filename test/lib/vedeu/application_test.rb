@@ -17,9 +17,7 @@ module Vedeu
     end
 
     describe '.stop' do
-      it 'raises an exception' do
-        proc { Application.stop }.must_raise(StopIteration)
-      end
+      it { proc { Application.stop }.must_raise(StopIteration) }
     end
 
     describe '#initialize' do

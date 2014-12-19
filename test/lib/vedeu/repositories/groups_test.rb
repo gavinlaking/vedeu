@@ -16,10 +16,10 @@ module Vedeu
         Groups.all.must_equal({ 'elements' => Set['germanium'] })
       end
 
-      it 'raises an exception if the attributes does not have a :name key' do
+      context 'when the attributes do not have a :name key' do
         attributes = { no_name_key: '' }
 
-        proc { Groups.add(attributes) }.must_raise(MissingRequired)
+        it { proc { Groups.add(attributes) }.must_raise(MissingRequired) }
       end
     end
 

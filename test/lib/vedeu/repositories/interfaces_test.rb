@@ -12,10 +12,10 @@ module Vedeu
         Interfaces.all.must_equal({ 'germanium' => { name: 'germanium' } })
       end
 
-      it 'raises an exception if the attributes does not have a :name key' do
+      context 'when the attributes do not have a :name key' do
         attributes = { no_name_key: '' }
 
-        proc { Interfaces.add(attributes) }.must_raise(MissingRequired)
+        it { proc { Interfaces.add(attributes) }.must_raise(MissingRequired) }
       end
     end
 
@@ -30,9 +30,7 @@ module Vedeu
       end
 
       context 'when the interface cannot be found' do
-        it 'raises an exception' do
-          proc { Interfaces.build('manganese') }.must_raise(ModelNotFound)
-        end
+        it { proc { Interfaces.build('manganese') }.must_raise(ModelNotFound) }
       end
     end
 

@@ -7,8 +7,8 @@ module Vedeu
     describe Composition do
 
       describe '.render' do
-        it 'raises an exception when a block is not given' do
-          proc { Vedeu.render }.must_raise(InvalidSyntax)
+        context 'when a block was not given' do
+          it { proc { Vedeu.render }.must_raise(InvalidSyntax) }
         end
       end
 

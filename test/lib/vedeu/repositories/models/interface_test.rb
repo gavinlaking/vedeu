@@ -46,24 +46,24 @@ module Vedeu
       it 'returns the value' do
         interface.attributes.must_equal(
           {
-            border: {},
-            colour: {
+            border:     {},
+            colour:     {
               foreground: '#ff0000',
               background: '#000000'
             },
-            cursor: :hide,
-            delay: 0.0,
-            geometry: {
-              y: 3,
-              x: 5,
-              width: 10,
-              height: 15,
+            cursor:     :hide,
+            delay:      0.0,
+            geometry:   {
+              y:          3,
+              x:          5,
+              width:      10,
+              height:     15,
             },
-            group: 'my_group',
-            lines: [],
-            name: '#initialize',
-            parent: nil,
-            style: '',
+            group:      'my_group',
+            lines:      [],
+            name:       '#initialize',
+            parent:     nil,
+            style:      '',
           }
         )
       end

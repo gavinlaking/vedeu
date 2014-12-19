@@ -25,10 +25,10 @@ module Vedeu
     end
 
     describe '#find' do
-      it 'raises an exception when the model cannot be found' do
-        proc {
+      context 'when the model cannot be found' do
+        it { proc {
           RepositoriesTestClass.new.find('terbium')
-        }.must_raise(ModelNotFound)
+        }.must_raise(ModelNotFound) }
       end
 
       context 'when the model is found' do
@@ -168,7 +168,7 @@ module Vedeu
         }
       }
       let(:model_name) { 'hydrogen' }
-      let(:model) { ModelTestClass.new(attributes) }
+      let(:model)      { ModelTestClass.new(attributes) }
 
       subject { RepositoriesTestClass.new.store(model) }
 

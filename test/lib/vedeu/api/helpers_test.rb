@@ -13,8 +13,8 @@ module Vedeu
           HelpersTestClass.new.background('#00ff00').must_equal({ background: '#00ff00' })
         end
 
-        it 'raises an exception if the value is not defined' do
-          proc { HelpersTestClass.new.background('') }.must_raise(InvalidSyntax)
+        context 'when the value was not defined' do
+          it { proc { HelpersTestClass.new.background('') }.must_raise(InvalidSyntax) }
         end
       end
 
@@ -25,15 +25,14 @@ module Vedeu
           HelpersTestClass.new.foreground('#00ff00').must_equal({ foreground: '#00ff00' })
         end
 
-        it 'raises an exception if the value is not defined' do
-          proc { HelpersTestClass.new.foreground('') }.must_raise(InvalidSyntax)
+        context 'when the value was not defined' do
+          it { proc { HelpersTestClass.new.foreground('') }.must_raise(InvalidSyntax) }
         end
       end
 
       describe '#colour' do
-        it 'raises an exception if neither a :foreground or :background ' \
-           'attribute exists' do
-          proc { HelpersTestClass.new.colour({}) }.must_raise(InvalidSyntax)
+        context 'when the foreground or background attribute is missing' do
+          it { proc { HelpersTestClass.new.colour({}) }.must_raise(InvalidSyntax) }
         end
 
         it 'sets the attribute when a :foreground is given' do

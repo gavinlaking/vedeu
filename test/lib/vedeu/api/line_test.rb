@@ -27,14 +27,14 @@ module Vedeu
           )
         end
 
-        it 'raises an exception if a block was not given' do
-          proc {
+        context 'when a block was not given' do
+          it { proc {
             Vedeu.view 'carbon' do
               line do
                 stream
               end
             end
-          }.must_raise(InvalidSyntax)
+          }.must_raise(InvalidSyntax) }
         end
       end
 
