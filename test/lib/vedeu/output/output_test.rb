@@ -25,7 +25,9 @@ module Vedeu
           streams: [{ text: 'this is the second and it is long' }]
         },
         {
-          streams: [{ text: 'this is the third, it is even longer and still truncated' }]
+          streams: [{
+            text: 'this is the third, it is even longer and still truncated'
+          }]
         },
         {
           streams: [{ text: 'this should not render' }]
@@ -34,9 +36,19 @@ module Vedeu
     }
     let(:colour) { {} }
 
+    before do
+      IO.console.stubs(:print)
+    end
+
     describe '#initialize' do
       it { return_type_for(described, Output) }
       it { assigns(described, '@interface', interface) }
+    end
+
+    describe '.render' do
+      subject { Output.render(interface) }
+
+      it { return_type_for(subject, Array) }
     end
 
   end # Output
