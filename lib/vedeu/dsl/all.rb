@@ -1,6 +1,9 @@
+require 'vedeu/dsl/builder'
+
 require 'vedeu/dsl/colour'
 require 'vedeu/dsl/style'
 
+require 'vedeu/dsl/border'
 require 'vedeu/dsl/composition'
 require 'vedeu/dsl/dsl'
 require 'vedeu/dsl/geometry'
