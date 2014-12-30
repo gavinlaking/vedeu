@@ -1,3 +1,5 @@
+require 'vedeu/models/model'
+
 module Vedeu
 
   # Contains all the logic of an event. Handles debouncing and throttling.

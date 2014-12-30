@@ -1,3 +1,5 @@
+require 'vedeu/models/model'
+
 module Vedeu
 
   # The Buffer object represents the states of display for an interface. The
@@ -12,7 +14,7 @@ module Vedeu
   #
   class Buffer
 
-    include Model
+    include Vedeu::Model
 
     attr_reader :back, :front, :name, :previous
     alias_method :current, :front
@@ -44,13 +46,13 @@ module Vedeu
     end
 
     # Return a boolean indicating content was swapped between buffers. It also
-    # resets the offsets (i.e. scroll/cursor position).
+    # resets the cursors position.
     #
     # @return [Boolean]
     def swap
       return false unless content_for?(:back)
 
-      # Offsets.update({ name: name })
+      Vedeu.trigger(:_cursor_origin_)
 
       self.previous = front
       self.front    = back

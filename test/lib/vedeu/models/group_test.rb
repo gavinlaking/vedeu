@@ -22,7 +22,7 @@ module Vedeu
         it 'does not add the member again but returns a new Group' do
           group = Group.new('organics', 'nitrogen', 'carbon')
           new_group = group.add('nitrogen')
-          new_group.members.must_equal(['nitrogen', 'carbon'])
+          new_group.wont_equal(group)
         end
       end
 
@@ -30,13 +30,13 @@ module Vedeu
         it 'adds the member and returns a new Group' do
           group = Group.new('organics', 'carbon')
           new_group = group.add('nitrogen')
-          new_group.members.must_equal(['carbon', 'nitrogen'])
+          new_group.wont_equal(group)
         end
       end
     end
 
     describe '#members' do
-      it { return_type_for(described.members, Array) }
+      it { return_type_for(described.members, Set) }
 
       context 'when the group has no members' do
         it 'returns an empty Set' do
@@ -78,7 +78,7 @@ module Vedeu
         it 'returns a new Group' do
           group     = Group.new('organics', 'nitrogen', 'carbon')
           new_group = group.remove('oxygen')
-          new_group.members.must_equal(['nitrogen', 'carbon'])
+          new_group.wont_equal(group)
         end
       end
     end

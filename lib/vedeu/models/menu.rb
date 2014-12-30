@@ -1,3 +1,7 @@
+require 'vedeu/dsl/dsl'
+require 'vedeu/models/model'
+require 'vedeu/support/common'
+
 module Vedeu
 
   # Converts the collection passed into a list of menu items which can be
@@ -6,21 +10,62 @@ module Vedeu
   # @api private
   class Menu
 
-    include Model
+    extend  Vedeu::DSL
+    include Vedeu::Common
+    include Vedeu::Model
 
     attr_accessor :name
     attr_writer   :collection
+
+    class << self
+
+      # Register a menu by name which will display a collection of items for
+      # your users to select; and provide interactivity within your application.
+      #
+      # @param name  [String] The name of the menu. Used to reference the
+      #   menu throughout your application's execution lifetime.
+      # @param block [Proc] A set of attributes which define the features of the
+      #   menu. See {Vedeu::DSL::Menu#items} and {Vedeu::DSL::Menu#name}.
+      #
+      # @example
+      #   Vedeu.menu 'my_interface' do
+      #     items [:item_1, :item_2, :item_3]
+      #     ...
+      #
+      #   Vedeu.menu do
+      #     name 'menus_must_have_a_name'
+      #     items Track.all_my_favourites
+      #     ...
+      #
+      # @raise [InvalidSyntax] When the required block is not given.
+      # @return [API::Menu]
+      def menu(name = '', &block)
+        return requires_block(__callee__) unless block_given?
+
+        build({ name: name }, &block).store
+      end
+
+    end
 
     # Returns a new instance of Menu.
     #
     # @param collection [Array]
     # @param name [String]
     # @return [Menu]
-    def initialize(collection, name = '')
-      @collection = collection
-      @name       = name
-      @current    = 0
-      @selected   = nil
+    # def initialize(collection, name = '')
+    #   @collection = collection
+    #   @name       = name
+    #   @current    = 0
+    #   @selected   = nil
+    # end
+
+    def initialize(attributes = {})
+      @attributes = defaults.merge(attributes)
+
+      @collection = @attributes[:collection]
+      @current    = @attributes[:current]
+      @name       = @attributes[:name]
+      @selected   = @attributes[:selected]
     end
 
     # Returns the class responsible for defining the DSL methods of this model.
@@ -174,6 +219,18 @@ module Vedeu
     # @return [Class] The repository class for this model.
     def repository
       Vedeu::Menus
+    end
+
+    # The default values for a new instance of Menu.
+    #
+    # @return [Hash]
+    def defaults
+      {
+        name:       '',
+        collection: [],
+        current:    0,
+        selected:   nil
+      }
     end
 
   end # Menu

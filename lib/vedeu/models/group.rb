@@ -5,7 +5,9 @@ module Vedeu
   #
   class Group
 
-    attr_reader :name
+    include Vedeu::Model
+
+    attr_reader :name, :members
 
     # Return a new instance of Group.
     #
@@ -22,16 +24,7 @@ module Vedeu
     # @param member [String]
     # @return [Group]
     def add(member)
-      new_members = @members.add(member)
-
-      Group.new(name, *new_members)
-    end
-
-    # Returns the members as a collection.
-    #
-    # @return [Array]
-    def members
-      @members.to_a
+      Group.new(name, members.add(member)).store
     end
 
     # Remove a member from the group by name.
@@ -39,16 +32,20 @@ module Vedeu
     # @param member [String]
     # @return [Group]
     def remove(member)
-      new_members = @members.delete(member)
-
-      Group.new(name, *new_members)
+      Group.new(name, members.delete(member)).store
     end
 
     # Remove all members from the group.
     #
     # @return [Group]
     def reset
-      Group.new(name)
+      Group.new(name).store
+    end
+
+    private
+
+    def repository
+      Vedeu::Groups
     end
 
   end # Group

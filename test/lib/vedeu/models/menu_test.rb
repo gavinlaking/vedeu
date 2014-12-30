@@ -4,9 +4,9 @@ module Vedeu
 
   describe Menu do
 
-    let(:described)  { Menu.new(collection) }
+    let(:described)  { Menu.new(attributes) }
+    let(:attributes) { { collection: collection } }
     let(:collection) { ['hydrogen', 'carbon', 'nitrogen', 'oxygen'] }
-    let(:menu)       { Menu.new(collection) }
 
     describe '#initialize' do
       it { return_type_for(described, Menu) }
@@ -18,7 +18,7 @@ module Vedeu
 
     describe '#current' do
       it 'returns the current index' do
-        menu.current.must_equal(0)
+        described.current.must_equal(0)
       end
     end
 
@@ -28,43 +28,43 @@ module Vedeu
 
     describe '#selected' do
       it 'returns nil when no item is selected' do
-        menu.selected.must_equal(nil)
+        described.selected.must_equal(nil)
       end
 
       it 'returns the selected index when an item is selected' do
-        menu.next_item
-        menu.select_item
-        menu.selected.must_equal(1)
+        described.next_item
+        described.select_item
+        described.selected.must_equal(1)
       end
     end
 
     describe '#current_item' do
       it 'returns the current item from the collection' do
-        menu.current_item.must_equal('hydrogen')
+        described.current_item.must_equal('hydrogen')
       end
 
       it 'when the current item has changed' do
-        menu.next_item
-        menu.next_item
-        menu.current_item.must_equal('nitrogen')
+        described.next_item
+        described.next_item
+        described.current_item.must_equal('nitrogen')
       end
     end
 
     describe '#selected_item' do
       it 'returns nil when nothing is selected' do
-        menu.selected_item.must_equal(nil)
+        described.selected_item.must_equal(nil)
       end
 
       it 'returns the selected item from the collection' do
-        menu.next_item
-        menu.select_item
-        menu.selected_item.must_equal('carbon')
+        described.next_item
+        described.select_item
+        described.selected_item.must_equal('carbon')
       end
     end
 
     describe '#items' do
       it 'returns a collection of items' do
-        menu.items.must_equal(
+        described.items.must_equal(
           [
             [false, true,  'hydrogen'],
             [false, false, 'carbon'],
@@ -76,8 +76,8 @@ module Vedeu
 
       it 'returns a collection of items when the current has ' \
          'changed' do
-        menu.next_item
-        menu.items.must_equal(
+        described.next_item
+        described.items.must_equal(
           [
             [false, false, 'hydrogen'],
             [false, true,  'carbon'],
@@ -88,9 +88,9 @@ module Vedeu
       end
 
       it 'returns a collection of items when an item is selected' do
-        menu.next_item
-        menu.select_item
-        menu.items.must_equal(
+        described.next_item
+        described.select_item
+        described.items.must_equal(
           [
             [false, false, 'hydrogen'],
             [true,  true,  'carbon'],
@@ -102,11 +102,11 @@ module Vedeu
 
       it 'returns a collection of items when the current has ' \
          'changed and an item is selected' do
-        menu.next_item
-        menu.select_item
-        menu.next_item
-        menu.next_item
-        menu.items.must_equal(
+        described.next_item
+        described.select_item
+        described.next_item
+        described.next_item
+        described.items.must_equal(
           [
             [false, false, 'hydrogen'],
             [true,  false, 'carbon'],
@@ -120,9 +120,9 @@ module Vedeu
     describe '#view' do
       it 'returns a collection of items when the start position ' \
          'has changed' do
-        menu.top_item
-        menu.next_item
-        menu.view.must_equal(
+        described.top_item
+        described.next_item
+        described.view.must_equal(
           [
             [false, true, 'carbon'],
             [false, false, 'nitrogen'],
@@ -134,114 +134,114 @@ module Vedeu
 
     describe '#top_item' do
       it 'sets current to the index of the first item' do
-        menu.next_item
-        menu.top_item
-        menu.current.must_equal(0)
+        described.next_item
+        described.top_item
+        described.current.must_equal(0)
       end
 
       it 'returns the items' do
-        menu.top_item.must_equal(menu.items)
+        described.top_item.must_equal(described.items)
       end
     end
 
     describe '#bottom_item' do
       it 'sets current to the index of the last item' do
-        menu.bottom_item
-        menu.current.must_equal(3)
+        described.bottom_item
+        described.current.must_equal(3)
       end
 
       it 'returns the items' do
-        menu.bottom_item.must_equal(menu.items)
+        described.bottom_item.must_equal(described.items)
       end
     end
 
     describe '#next_item' do
       it 'sets the current to the index of the next item' do
-        menu.next_item
-        menu.current.must_equal(1)
+        described.next_item
+        described.current.must_equal(1)
       end
 
       it 'returns the items' do
-        menu.next_item.must_equal(menu.items)
+        described.next_item.must_equal(described.items)
       end
 
       it 'does not loop' do
-        menu.next_item
-        menu.next_item
-        menu.next_item
-        menu.next_item
-        menu.next_item
-        menu.current.must_equal(3)
+        described.next_item
+        described.next_item
+        described.next_item
+        described.next_item
+        described.next_item
+        described.current.must_equal(3)
       end
     end
 
     describe '#prev_item' do
       it 'does not loop' do
-        menu.prev_item
-        menu.current.must_equal(0)
+        described.prev_item
+        described.current.must_equal(0)
       end
 
       it 'sets the current to the index of the previous item' do
-        menu.next_item
-        menu.next_item
-        menu.prev_item
-        menu.current.must_equal(1)
+        described.next_item
+        described.next_item
+        described.prev_item
+        described.current.must_equal(1)
       end
 
       it 'returns the items' do
-        menu.prev_item.must_equal(menu.items)
+        described.prev_item.must_equal(described.items)
       end
 
       it 'does not loop' do
-        menu.next_item
-        menu.next_item
-        menu.next_item
-        menu.prev_item
-        menu.prev_item
-        menu.current.must_equal(1)
+        described.next_item
+        described.next_item
+        described.next_item
+        described.prev_item
+        described.prev_item
+        described.current.must_equal(1)
       end
     end
 
     describe '#select_item' do
       it 'sets the selected index to the current index' do
-        menu.select_item
-        menu.selected.must_equal(0)
+        described.select_item
+        described.selected.must_equal(0)
       end
 
       it 'sets the selected index to the current index' do
-        menu.next_item
-        menu.select_item
-        menu.selected.must_equal(1)
+        described.next_item
+        described.select_item
+        described.selected.must_equal(1)
       end
 
       it 'returns the items' do
-        menu.select_item.must_equal(menu.items)
+        described.select_item.must_equal(described.items)
       end
     end
 
     describe '#deselect_item' do
       it 'sets the selected index to nil' do
-        menu.next_item
-        menu.next_item
-        menu.select_item
-        menu.deselect_item
-        menu.selected.must_equal(nil)
+        described.next_item
+        described.next_item
+        described.select_item
+        described.deselect_item
+        described.selected.must_equal(nil)
       end
 
       it 'returns the items' do
-        menu.deselect_item.must_equal(menu.items)
+        described.deselect_item.must_equal(described.items)
       end
     end
 
     describe '#last' do
       it 'returns the index of the last item' do
-        menu.last.must_equal(3)
+        described.last.must_equal(3)
       end
     end
 
     describe '#size' do
       it 'returns the collection size' do
-        menu.size.must_equal(4)
+        described.size.must_equal(4)
       end
     end
 

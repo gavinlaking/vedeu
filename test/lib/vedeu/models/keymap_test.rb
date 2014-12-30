@@ -4,16 +4,14 @@ module Vedeu
 
   describe Keymap do
 
-    let(:described)  { Keymap.new(attributes) }
-    let(:attributes) { {} }
-
-    describe '.define' do
-      it { return_type_for(Keymap.define, Keymap) }
-    end
+    let(:described)  { Keymap.new(interfaces, keys) }
+    let(:interfaces) { [] }
+    let(:keys)       { [] }
 
     describe '#initialize' do
       it { return_type_for(described, Keymap) }
-      it { assigns(described, '@attributes', { interfaces: [], keys: [] }) }
+      it { assigns(described, '@interfaces', []) }
+      it { assigns(described, '@keys', []) }
     end
 
     describe '#deputy' do
