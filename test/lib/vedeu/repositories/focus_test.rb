@@ -58,14 +58,22 @@ module Vedeu
     end
 
     describe '#cursor' do
-      before do
-        Interfaces.add({ name: 'thallium' })
-        Focus.add('thallium')
-      end
+      subject { Focus.cursor }
 
-      it 'returns the escape sequence to render the cursor for the focussed ' \
-         'interface' do
-        Focus.cursor.must_equal("\e[1;1H\e[?25l")
+      it { return_type_for(subject, String) }
+
+      # before do
+      #   Interface.build({ name: 'thallium' }).store
+      #   Focus.add('thallium')
+      # end
+
+      # it 'returns the escape sequence to render the cursor for the focussed ' \
+      #    'interface' do
+      #   Focus.cursor.must_equal("\e[1;1H\e[?25l")
+      # end
+
+      context 'when no interfaces are defined' do
+        it { return_value_for(subject, '') }
       end
     end
 

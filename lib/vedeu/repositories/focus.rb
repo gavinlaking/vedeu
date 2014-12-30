@@ -56,11 +56,17 @@ module Vedeu
       storage.first
     end
 
-    # Return the cursor for the currently focussed interface. May be hidden.
+    # Return the cursor for the currently focussed interface or an empty string
+    # if no interfaces are defined.
+    #
+    # @note The client application may elect to have the cursor hidden for the
+    #   currently focussed interface.
     #
     # @return [String] The escape sequence to render the cursor as shown or
     #   hidden.
     def cursor
+      return '' if empty?
+
       Interface.new(Interfaces.find(current)).cursor.to_s
     end
 
