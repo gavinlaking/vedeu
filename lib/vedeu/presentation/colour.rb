@@ -7,8 +7,7 @@ module Vedeu
   # @api private
   class Colour
 
-    attr_reader :attributes
-    attr_writer :background, :foreground
+    attr_reader :attributes, :background, :foreground
 
     # Returns a new instance of Colour.
     #
@@ -16,22 +15,25 @@ module Vedeu
     # @return [Colour]
     def initialize(attributes = {})
       @attributes = defaults.merge(attributes)
-      @background = @attributes[:background]
-      @foreground = @attributes[:foreground]
+
+      @background = Background.escape_sequence(@attributes[:background])
+      @foreground = Foreground.escape_sequence(@attributes[:foreground])
     end
 
-    # Converts the `:foreground` attribute into a terminal escape sequence.
+    # Converts the value into a terminal escape sequence.
     #
+    # @param value [String]
     # @return [String]
-    def foreground
-      Foreground.escape_sequence(@foreground)
+    def foreground=(value)
+      @foreground = Foreground.escape_sequence(value)
     end
 
-    # Converts the `:background` attribute into a terminal escape sequence.
+    # Converts the value into a terminal escape sequence.
     #
+    # @param value [String]
     # @return [String]
-    def background
-      Background.escape_sequence(@background)
+    def background=(value)
+      @background = Background.escape_sequence(value)
     end
 
     # Returns both or either of the converted attributes into a single escape
