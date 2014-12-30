@@ -7,6 +7,7 @@ module Vedeu
     # @api public
     class Stream
 
+      include Vedeu::Common
       include DSL::Colour
       include DSL::Style
 
@@ -55,7 +56,7 @@ module Vedeu
       #   than the specified width.
       # @return [String]
       def align(value = '', options = {})
-        model.text << Vedeu::Align.with(value,
+        model.value << Vedeu::Align.with(value,
           options.merge({ anchor: __callee__ }))
       end
       alias_method :left,   :align
@@ -71,15 +72,18 @@ module Vedeu
       # @param value [String|undefined] The text to be added to this Stream.
       # @return [String] The param 'value' as a String.
       def text(value = '')
-        model.text << value.to_s
+        model.value << value.to_s
       end
 
       # @deprecated
+      # :nocov:
       def width(value)
-        warn "Vedeu::API::Stream#width is now deprecated, and will be " \
-             "removed in version 0.3.0. Use: Vedeu::DSL::Stream#align " \
-             "(#{DOCS_URL}/Vedeu/DSL/Stream#align-instance_method)"
+        deprecated('Vedeu::API::Stream#width',
+                   'Vedeu::DSL::Stream#align',
+                   '0.3.0',
+                   '/Vedeu/DSL/Stream#align-instance_method')
       end
+      # :nocov:
 
       private
 
