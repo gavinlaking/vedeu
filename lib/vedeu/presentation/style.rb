@@ -15,7 +15,7 @@ module Vedeu
 
     # Return a new instance of Style.
     #
-    # @param values [String|Array] The style value or values collection.
+    # @param values [String|Symbol] The style value or values collection.
     # @return [Style]
     def initialize(values)
       @values = values

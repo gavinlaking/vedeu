@@ -22,6 +22,7 @@ module Vedeu
       #
       # @param args [Array]
       # @param block [Proc]
+      # @raise [InvalidSyntax] When the required block is not given.
       # @return [Hash]
       def configure(args = [], &block)
         instance.configure(args, &block)

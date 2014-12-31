@@ -50,16 +50,34 @@ module Vedeu
 
     attr_reader :interface, :buffer
 
+    # Changes the colour of the interface to that requested by the view.
+    #
+    # @note The change is currently not permanent.
+    #
+    # @param content []
+    # @return []
     def change_colour(content)
       interface[:colour] = content[:colour] if defined_value?(content[:colour])
     end
 
+    # Changes the geometry of the interface to that requested by the view.
+    #
+    # @note The change is currently not permanent.
+    #
+    # @param content []
+    # @return []
     def change_geometry(content)
       content[:geometry].each do |k, v|
         interface[:geometry][k] = v if defined_value?(k)
       end if defined_value?(content[:geometry])
     end
 
+    # Changes the style of the interface to that requested by the view.
+    #
+    # @note The change is currently not permanent.
+    #
+    # @param content []
+    # @return []
     def change_style(content)
       interface[:style] = content[:style] if defined_value?(content[:style])
     end

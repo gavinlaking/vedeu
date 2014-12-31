@@ -16,7 +16,8 @@ module Vedeu
 
     # Refresh the interface which is currently focussed.
     #
-    # @return [|NoInterfacesDefined]
+    # @raise [NoInterfacesDefined]
+    # @return []
     def by_focus
       by_name(Focus.current)
     end

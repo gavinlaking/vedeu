@@ -19,11 +19,13 @@ module Vedeu
       #
       # @example
       #   interface 'my_interface' do
-      #     centred!
+      #     geometry do
+      #       centred!
       #
       #   interface 'my_interface' do
-      #     centred false
-      #     ...
+      #     geometry do
+      #       centred false
+      #       ...
       #
       # @return [Boolean]
       def centred(value = true)
@@ -37,8 +39,9 @@ module Vedeu
       #
       # @example
       #   interface 'my_interface' do
-      #     height 8
-      #     ...
+      #     geometry do
+      #       height 8
+      #       ...
       #
       # @return [Fixnum]
       def height(value)
@@ -53,8 +56,9 @@ module Vedeu
       #
       # @example
       #   interface 'my_interface' do
-      #     width 25
-      #     ...
+      #     geometry do
+      #       width 25
+      #       ...
       #
       # @return [Fixnum]
       def width(value)
@@ -70,12 +74,14 @@ module Vedeu
       #
       # @example
       #   interface 'my_interface' do
-      #     x 7 # start on column 7.
+      #     geometry do
+      #       x 7 # start on column 7.
       #
       #   interface 'other_interface' do
-      #     x { use('my_interface').east } # start on column 8, if
-      #                                    # `my_interface` changes position,
-      #                                    # `other_interface` will too.
+      #     geometry do
+      #       x { use('my_interface').east } # start on column 8, if
+      #                                      # `my_interface` changes position,
+      #                                      # `other_interface` will too.
       #
       # @return [Fixnum]
       def x(value = 0, &block)
@@ -93,13 +99,15 @@ module Vedeu
       #
       # @example
       #   interface 'my_interface' do
-      #     y  4
-      #     ...
+      #     geometry do
+      #       y  4
+      #       ...
       #
       #   interface 'other_interface' do
-      #     y  { use('my_interface').north } # start on row/line 3, if
-      #     ...                              # `my_interface` changes position,
-      #                                      # `other_interface` will too.
+      #     geometry do
+      #       y  { use('my_interface').north } # start on row/line 3, if
+      #       ...                              # `my_interface` changes position,
+      #                                        # `other_interface` will too.
       #
       # @return [Fixnum]
       def y(value = 0, &block)

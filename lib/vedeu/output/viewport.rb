@@ -77,16 +77,16 @@ module Vedeu
       end
     end
 
-    # Scrolls the content vertically when the stored y offset for the interface
-    # is outside of the visible area.
+    # Scrolls the content vertically when the stored cursor's y position for the
+    # interface is outside of the visible area.
     #
     # @note
     #   @top = [value, 0].max # this allows us to set a top that is greater than
     #                         # the content height.
     #
     #   @top = [[value, (content_height - height)].min, 0].max
-    #                         # this does not allow us to have an offset greater
-    #                         # than the content height.
+    #                         # this does not allow us to have a position
+    #                         # greater than the content height.
     #
     # @return [Fixnum]
     def line_adjustment
@@ -99,16 +99,16 @@ module Vedeu
       end
     end
 
-    # Scrolls the content horizontally when the stored x offset for the
-    # interface is outside of the visible area.
+    # Scrolls the content horizontally when the stored cursor's x position for
+    # the interface is outside of the visible area.
     #
     # @note
     #   @left = [value, 0].max # this allows us to set a left that is greater
     #                          # than the content width.
     #
     #   @left = [[value, (content_width - width)].min, 0].max
-    #                         # this does not allow us to have an offset greater
-    #                         # than the content width.
+    #                         # this does not allow us to have a position
+    #                         # greater than the content width.
     #
     # @return [Fixnum]
     def column_adjustment
@@ -121,14 +121,14 @@ module Vedeu
       end
     end
 
-    # Using the current x offset, return a range of visible lines.
+    # Using the current cursor's x position, return a range of visible lines.
     #
     # @return [Range]
     def lines
       @top..(@top + height)
     end
 
-    # Using the current y offset, return a range of visible columns.
+    # Using the current cursor's y position, return a range of visible columns.
     #
     # @return [Range]
     def columns

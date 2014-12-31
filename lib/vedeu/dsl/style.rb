@@ -8,6 +8,24 @@ module Vedeu
     # @api public
     module Style
 
+      # Define a style or styles for an interface, line or a stream.
+      #
+      # @param value [Array|Symbol|String]
+      #
+      # @example
+      #   interface 'my_interface' do
+      #     style 'normal'
+      #     ...
+      #
+      #   lines do
+      #     style ['bold', 'underline']
+      #     ...
+      #
+      #   stream do
+      #     style 'blink'
+      #     ...
+      #
+      # @return [Vedeu::Style]
       def style(*value_or_values)
         value_or_values.each { |value| set_style(value) }
       end

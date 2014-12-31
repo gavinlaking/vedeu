@@ -32,11 +32,12 @@ module Vedeu
       end
     end
 
-    # Focus an interface by name.
+    # Focus an interface by name. Used after defining an interface or interfaces
+    # to set the initially focussed interface.
     #
-    # @param name [String]
+    # @param name [String] The interface to focus; must be defined.
     # @raise [ModelNotFound] When the interface cannot be found.
-    # @return [String]
+    # @return [String] The name of the interface now in focus.
     def by_name(name)
       fail ModelNotFound unless registered?(name)
 

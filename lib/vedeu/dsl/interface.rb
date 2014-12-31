@@ -34,6 +34,10 @@ module Vedeu
       #     cursor nil   #
       #     ...
       #
+      #   view 'my_interface' do
+      #     cursor true
+      #     ...
+      #
       # @return [Symbol]
       def cursor(value = true)
         if value == :hide || !!value == false
@@ -99,9 +103,8 @@ module Vedeu
         Keymap.keys(attributes[:name], &block)
       end
 
-      # Specify a single line in a view.
+      # Specify multiple lines in a view.
       #
-      # @param value [String]
       # @param block [Proc]
       #
       # @example
