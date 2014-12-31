@@ -6,7 +6,7 @@ module Vedeu
   # attributes.
   #
   # @api private
-  class ColourValidator
+  class Validator
 
     include Vedeu::Common
 
@@ -50,6 +50,6 @@ module Vedeu
       return key_error
     end
 
-  end # ColourValidator
+  end # Validator
 
 end # Vedeu
