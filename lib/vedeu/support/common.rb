@@ -27,7 +27,8 @@ module Vedeu
     # @return [NilClass]
     def deprecated(old_method, new_method, version, hint)
       warn "#{old_method} is now deprecated, and will be removed in version " \
-           "#{version}. Use: #{new_method} (#{DOCS_URL}#{hint})"
+           "#{version}.\n" \
+           "Use: #{new_method} (#{DOCS_URL}#{hint})"
     end
 
     # Raises an exception which includes in the message the method which

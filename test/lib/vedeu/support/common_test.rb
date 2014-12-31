@@ -35,6 +35,17 @@ module Vedeu
       end
     end
 
+    describe '#deprecated' do
+      let(:old_method) { '' }
+      let(:new_method) { '' }
+      let(:version)    { '' }
+      let(:hint)       { '' }
+
+      subject { described.deprecated(old_method, new_method, version, hint) }
+
+      it { skip }
+    end
+
     describe '#requires_block' do
       subject { described.requires_block(:some_method) }
 
