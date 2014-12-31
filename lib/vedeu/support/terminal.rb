@@ -66,6 +66,19 @@ module Vedeu
       streams
     end
 
+    # When the terminal emit the 'SIGWINCH' signal, Vedeu can intercept this
+    # and attempt to redraw the current interface with varying degrees of
+    # success. Can also be used to simulate a terminal resize.
+    #
+    # @return [TrueClass]
+    def resize
+      Vedeu::Events.trigger(:_clear_)
+
+      Vedeu::Events.trigger(:_refresh_)
+
+      true
+    end
+
     # @param block [Proc]
     # @return []
     def initialize_screen(&block)

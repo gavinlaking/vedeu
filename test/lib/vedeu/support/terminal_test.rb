@@ -6,6 +6,10 @@ module Vedeu
 
     let(:console) { IO.console }
 
+    before do
+      IO.console.stubs(:winsize).returns([25, 80])
+    end
+
     describe '.open' do
       before { IO.console.stubs(:print) }
 
@@ -45,6 +49,12 @@ module Vedeu
         Terminal.output('Some output...', 'more output...', 'even more...')
           .must_equal(['Some output...', 'more output...', 'even more...'])
       end
+    end
+
+    describe '.resize' do
+      subject { Terminal.resize }
+
+      it { return_type_for(subject, TrueClass) }
     end
 
     describe '.clear_screen' do
@@ -98,13 +108,11 @@ module Vedeu
 
       it 'returns :cooked if previously :raw' do
         Terminal.raw_mode!
-
         Terminal.switch_mode!.must_equal(:cooked)
       end
 
       it 'returns :raw if previously :cooked' do
         Terminal.cooked_mode!
-
         Terminal.switch_mode!.must_equal(:raw)
       end
     end
@@ -117,61 +125,44 @@ module Vedeu
 
       it 'returns the configured terminal mode' do
         Terminal.mode.must_be_instance_of(Symbol)
-
         Terminal.mode.must_equal(:raw)
       end
     end
 
     describe '.centre' do
       it 'returns the centre point on the terminal' do
-        console.stub :winsize, [25, 80] do
-          Terminal.centre.must_be_instance_of(Array)
-
-          Terminal.centre.must_equal([12, 40])
-        end
+        Terminal.centre.must_be_instance_of(Array)
+        Terminal.centre.must_equal([12, 40])
       end
     end
 
     describe '.centre_y' do
       it 'returns the centre `y` point on the terminal' do
-        console.stub :winsize, [25, 80] do
-          Terminal.centre_y.must_be_instance_of(Fixnum)
-
-          Terminal.centre_y.must_equal(12)
-        end
+        Terminal.centre_y.must_be_instance_of(Fixnum)
+        Terminal.centre_y.must_equal(12)
       end
     end
 
     describe '.centre_x' do
       it 'returns the centre `x` point on the terminal' do
-        console.stub :winsize, [25, 80] do
-          Terminal.centre_x.must_be_instance_of(Fixnum)
-
-          Terminal.centre_x.must_equal(40)
-        end
+        Terminal.centre_x.must_be_instance_of(Fixnum)
+        Terminal.centre_x.must_equal(40)
       end
     end
 
     describe '.origin' do
       it 'returns 1' do
-        console.stub :winsize, [25, 80] do
-          Terminal.origin.must_be_instance_of(Fixnum)
-
-          Terminal.origin.must_equal(1)
-        end
+        Terminal.origin.must_be_instance_of(Fixnum)
+        Terminal.origin.must_equal(1)
       end
 
       context 'alias_methods' do
         it 'returns 1' do
-          console.stub :winsize, [25, 80] do
-            Terminal.x.must_equal(1)
-          end
+          Terminal.x.must_equal(1)
         end
 
         it 'returns 1' do
-          console.stub :winsize, [25, 80] do
-            Terminal.y.must_equal(1)
-          end
+          Terminal.y.must_equal(1)
         end
       end
     end
@@ -179,27 +170,20 @@ module Vedeu
     describe '.width' do
       context 'via method' do
         it 'returns the width of the terminal' do
-          console.stub :winsize, [25, 80] do
-            Terminal.width.must_be_instance_of(Fixnum)
-
-            Terminal.width.must_equal(80)
-          end
+          Terminal.width.must_be_instance_of(Fixnum)
+          Terminal.width.must_equal(80)
         end
       end
 
       context 'via API' do
         it 'returns the width of the terminal' do
-          console.stub :winsize, [24, 40] do
-            Vedeu.width.must_equal(40)
-          end
+          Vedeu.width.must_equal(80)
         end
       end
 
       context 'alias_methods' do
         it 'returns the xn coordinate of the terminal' do
-          console.stub :winsize, [25, 80] do
-            Terminal.xn.must_equal(80)
-          end
+          Terminal.xn.must_equal(80)
         end
       end
     end
@@ -207,38 +191,28 @@ module Vedeu
     describe '.height' do
       context 'via method' do
         it 'returns the height of the terminal' do
-          console.stub :winsize, [25, 80] do
-            Terminal.height.must_be_instance_of(Fixnum)
-
-            Terminal.height.must_equal(25)
-          end
+          Terminal.height.must_be_instance_of(Fixnum)
+          Terminal.height.must_equal(25)
         end
       end
 
       context 'via API' do
         it 'returns the height of the terminal' do
-          console.stub :winsize, [24, 40] do
-            Vedeu.height.must_equal(24)
-          end
+          Vedeu.height.must_equal(25)
         end
       end
 
       context 'alias_methods' do
         it 'returns the yn coordinate of the terminal' do
-          console.stub :winsize, [25, 80] do
-            Terminal.yn.must_equal(25)
-          end
+          Terminal.yn.must_equal(25)
         end
       end
     end
 
     describe '.size' do
       it 'returns the width and height of the terminal' do
-        console.stub :winsize, [25, 80] do
-          Terminal.size.must_be_instance_of(Array)
-
-          Terminal.size.must_equal([25, 80])
-        end
+        Terminal.size.must_be_instance_of(Array)
+        Terminal.size.must_equal([25, 80])
       end
     end
 
