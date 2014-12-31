@@ -6,7 +6,7 @@ module Vedeu
 
     # @return [void] The model instance stored in the repository.
     def store
-      repository.store(self)
+      repository.store(self) # if valid?
     end
 
   end # Model

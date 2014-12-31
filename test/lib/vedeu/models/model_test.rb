@@ -14,7 +14,7 @@ module Vedeu
       subject { ModelTestClass.new(attributes).store }
 
       it 'returns the model' do
-        subject.must_be_instance_of(ModelTestClass)
+        return_type_for(subject, ModelTestClass)
       end
     end
 
