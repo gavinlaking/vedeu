@@ -27,17 +27,9 @@ module Vedeu
       #
       # @return [Vedeu::Style]
       def style(*value_or_values)
-        value_or_values.each { |value| set_style(value) }
+        model.style = Vedeu::Style.new(*value_or_values)
       end
       alias_method :styles, :style
-
-      private
-
-      # @param value [Symbol|String]
-      # @return [Hash]
-      def set_style(value)
-        self.style << value
-      end
 
     end # Style
 
