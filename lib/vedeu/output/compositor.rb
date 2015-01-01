@@ -36,10 +36,9 @@ module Vedeu
     # @return [Array<Hash>] The updated interface attributes.
     def compose
       buffer.content.each do |content|
-        change_geometry(content)
-
-        interface[:lines] = content[:lines]
         change_colour(content)
+        change_content(content)
+        change_geometry(content)
         change_style(content)
 
         Output.render(Interface.new(interface))
@@ -58,6 +57,16 @@ module Vedeu
     # @return []
     def change_colour(content)
       interface[:colour] = content[:colour] if defined_value?(content[:colour])
+    end
+
+    # Changes the content of the interface to that requested by the view.
+    #
+    # @note The change is currently not permanent.
+    #
+    # @param content []
+    # @return []
+    def change_content(content)
+      interface[:lines] = content[:lines] if defined_value?(content[:lines])
     end
 
     # Changes the geometry of the interface to that requested by the view.
