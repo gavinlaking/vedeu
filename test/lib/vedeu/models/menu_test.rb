@@ -4,14 +4,16 @@ module Vedeu
 
   describe Menu do
 
-    let(:described)  { Menu.new(attributes) }
-    let(:attributes) { { collection: collection } }
+    let(:described)  { Menu.new(collection, menu_name, current, selected) }
     let(:collection) { ['hydrogen', 'carbon', 'nitrogen', 'oxygen'] }
+    let(:menu_name)  { 'elements' }
+    let(:current)    { 0 }
+    let(:selected)   {}
 
     describe '#initialize' do
       it { return_type_for(described, Menu) }
       it { assigns(described, '@collection', collection) }
-      it { assigns(described, '@name', '') }
+      it { assigns(described, '@name', 'elements') }
       it { assigns(described, '@current', 0) }
       it { assigns(described, '@selected', nil) }
     end

@@ -4,9 +4,9 @@ module Vedeu
 
   describe Interface do
 
-    it { skip }
+    let(:described)  { Interface.new(attributes) }
+    let(:attributes) { {} }
 
-    # let(:described)  { Interface.new(attributes) }
     # let(:attributes) {
     #   {
     #     colour: {
@@ -113,36 +113,75 @@ module Vedeu
     #   end
     # end
 
-    # describe '#border' do
-    #   it { return_type_for(described.border, Border) }
-    # end
+    describe '#border' do
+      it { return_type_for(described.border, Border) }
+    end
 
-    # describe '#delay' do
-    #   it { return_value_for(described.delay, 0.0) }
-    # end
+    describe '#cursor' do
+      it { skip }
+    end
 
-    # describe '#deputy' do
-    #   it { return_type_for(described.deputy, DSL::Interface) }
-    # end
+    describe '#delay' do
+      it { return_type_for(described.delay, Float) }
 
-    # describe '#geometry' do
-    #   it { return_type_for(described.geometry, Geometry) }
-    # end
+      context 'when the delay is set' do
+        let(:attributes) { { delay: 0.5 } }
 
-    # describe '#group' do
-    #   it { return_type_for(described.group, String) }
-    #   it { return_value_for(described.group, 'my_group') }
-    # end
+        it { return_value_for(described.delay, 0.5) }
+      end
 
-    # describe '#lines' do
-    #   it { return_type_for(described.lines, Vedeu::Model::Lines) }
-    # end
+      context 'when the delay is not set' do
+        it { return_value_for(described.delay, 0.0) }
+      end
+    end
 
-    # describe '#name' do
-    #   it { return_type_for(described.name, String) }
-    #   it { return_value_for(described.name, 'francium') }
-    # end
+    describe '#deputy' do
+      it { return_type_for(described.deputy, DSL::Interface) }
+    end
 
+    describe '#geometry' do
+      it { return_type_for(described.geometry, Geometry) }
+    end
+
+    describe '#group' do
+      it { return_type_for(described.group, String) }
+
+      context 'when the group is set' do
+        let(:attributes) { { group: 'elements' } }
+
+        it { return_value_for(described.group, 'elements') }
+      end
+
+      context 'when the group is not set' do
+        it { return_value_for(described.group, '') }
+      end
+    end
+
+    describe '#lines' do
+      it { return_type_for(described.lines, Vedeu::Model::Lines) }
+    end
+
+    describe '#name' do
+      it { return_type_for(described.name, String) }
+
+      context 'when the name is set' do
+        let(:attributes) { { name: 'francium' } }
+
+        it { return_value_for(described.name, 'francium') }
+      end
+
+      context 'when the name is not set' do
+        it { return_value_for(described.name, '') }
+      end
+    end
+
+    describe '#parent' do
+      it { skip }
+    end
+
+    describe '#style' do
+      it { skip }
+    end
 
   end # Interface
 

@@ -4,17 +4,12 @@ module Vedeu
 
   describe Translator do
 
-    colour    = '#ff0000'
-    described = Translator.new(colour)
+    let(:described) { Translator.new(colour) }
+    let(:colour)    { '#ff0000' }
 
     describe '#initialize' do
-      it 'returns an instance of itself' do
-        described.must_be_instance_of(Translator)
-      end
-
-      it 'assigns the colour' do
-        assigns(described, '@colour', colour)
-      end
+      it { return_type_for(described, Translator) }
+      it { assigns(described, '@colour', colour) }
     end
 
   end # Translator

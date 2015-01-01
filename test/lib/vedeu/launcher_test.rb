@@ -3,6 +3,7 @@ require 'test_helper'
 module Vedeu
 
   describe Launcher do
+
     let(:described) { Launcher.new }
 
     before do

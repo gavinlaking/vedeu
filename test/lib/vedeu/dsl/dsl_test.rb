@@ -4,9 +4,12 @@ module Vedeu
 
   describe DSL do
 
-    describe '' do
-      it '' do
-      end
+    describe '.build' do
+      let(:attributes) { {} }
+
+      subject { ModelTestClass.build(attributes) { } }
+
+      it { return_type_for(subject, ModelTestClass) }
     end
 
   end # DSL

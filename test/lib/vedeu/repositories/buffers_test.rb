@@ -16,7 +16,6 @@ module Vedeu
 
         it { proc { Buffers.add(attributes) }.must_raise(MissingRequired) }
       end
-
     end
 
   end # Buffers

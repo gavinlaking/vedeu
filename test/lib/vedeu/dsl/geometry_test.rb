@@ -14,31 +14,51 @@ module Vedeu
         it { assigns(described, '@model', model) }
       end
 
-      describe '#height' do
-        it 'sets the attribute to the value' do
-          Vedeu.interface 'iron' do
-            height 6
-          end
+      describe '#centred' do
+        subject { Vedeu::Geometry.build({}) { centred true } }
 
-          Vedeu.use('iron').attributes[:geometry][:height].must_equal(6)
+        it 'sets the attribute to the value' do
+          subject.centred.must_equal(true)
+        end
+      end
+
+      describe '#height' do
+        subject { Vedeu::Geometry.build({}) { height 6 } }
+
+        it 'sets the attribute to the value' do
+          subject.height.must_equal(6)
+        end
+      end
+
+      describe '#name' do
+        subject { Vedeu::Geometry.build({}) { name 'chlorine' } }
+
+        it 'sets the attribute to the value' do
+          subject.name.must_equal('chlorine')
+        end
+      end
+
+      describe '#width' do
+        subject { Vedeu::Geometry.build({}) { width 25 } }
+
+        it 'sets the attribute to the value' do
+          subject.width.must_equal(25)
         end
       end
 
       describe '#x' do
-        it 'sets the attribute to the block if a block is given' do
-          Vedeu.interface 'iron' do
-            x { 9 }
-          end
+        subject { Vedeu::Geometry.build({}) { x 2 } }
 
-          Vedeu.use('iron').geometry.x.must_equal(9)
+        it 'sets the attribute to the value' do
+          subject.x.must_equal(2)
         end
+      end
 
-        it 'sets the attribute to the value if a block is not given' do
-          Vedeu.interface 'iron' do
-            x 7
-          end
+      describe '#y' do
+        subject { Vedeu::Geometry.build({}) { y 5 } }
 
-          Vedeu.use('iron').attributes[:geometry][:x].must_equal(7)
+        it 'sets the attribute to the value' do
+          subject.y.must_equal(5)
         end
       end
 

@@ -4,12 +4,11 @@ module Vedeu
 
   describe Style do
 
-    let(:described) { Style.new(values) }
-    let(:values)    { ['bold'] }
+    let(:described) { Style.new('bold') }
 
     describe '#initialize' do
       it { described.must_be_instance_of(Style) }
-      it { assigns(described, '@values', values) }
+      it { assigns(described, '@values', ['bold']) }
     end
 
     describe '#attributes' do

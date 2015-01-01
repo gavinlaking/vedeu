@@ -2,6 +2,18 @@ require 'test_helper'
 
 module Vedeu
 
+  class CoercionsTestClass
+
+    include Coercions
+
+    attr_reader :attributes
+
+    def initialize(attributes = {})
+      @attributes = attributes
+    end
+
+  end # CoercionsTestClass
+
   describe Coercions do
 
     describe '.coercer' do

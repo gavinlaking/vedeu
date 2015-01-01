@@ -4,24 +4,7 @@ module Vedeu
 
   describe Groups do
 
-    describe '#add' do
-      before { Groups.reset }
-
-      it 'returns false if the group name is empty' do
-        Groups.add({ group: '', name: 'gallium', delay: 0.0 }).must_equal(false)
-      end
-
-      it 'adds the interface name to the group in storage' do
-        Groups.add({ group: 'elements', name: 'germanium', delay: 0.0 })
-        Groups.all.must_equal({ 'elements' => Set['germanium'] })
-      end
-
-      context 'when the attributes do not have a :name key' do
-        attributes = { no_name_key: '' }
-
-        it { proc { Groups.add(attributes) }.must_raise(MissingRequired) }
-      end
-    end
+    it { skip }
 
   end # Groups
 

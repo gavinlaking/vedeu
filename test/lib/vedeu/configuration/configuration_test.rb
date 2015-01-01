@@ -39,7 +39,9 @@ module Vedeu
 
     describe '.configure' do
       it 'returns the options configured' do
-        Configuration.configure.must_equal(
+        Configuration.configure do
+          # ...
+        end.must_equal(
           {
             colour_mode:   256,
             debug:         false,

@@ -30,8 +30,20 @@ module Vedeu
     end
 
     describe '.by_name' do
-      context 'when the buffer cannot be found' do
+      let(:interface_name) { 'aluminium' }
+
+      subject { Refresh.by_name(interface_name) }
+
+      context 'when the interface or buffer is not found' do
+        let(:interface_name) { '' }
+
         it { proc { Refresh.by_name('') }.must_raise(ModelNotFound) }
+      end
+
+      context 'when the interface or buffer is found' do
+        # it { return_type_for(subject, Array) }
+
+        it { skip }
       end
     end
 

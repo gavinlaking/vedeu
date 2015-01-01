@@ -198,8 +198,6 @@ module Vedeu
         # 'Vedeu::Menu',
         # 'Vedeu::Menus',
         'Vedeu::MonoLogger',
-        # 'Vedeu::Offset',
-        # 'Vedeu::Offsets',
         'Vedeu::Position',
         'Vedeu::Presentation',
         # 'Vedeu::Refresh',

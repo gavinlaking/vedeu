@@ -54,7 +54,9 @@ module Vedeu
         let(:back) { { lines: [{ streams: [{ text: 'back' }] }] } }
         let(:buffer) { :back }
 
-        it { skip; subject.must_equal([{}, back]) }
+        it { skip }
+
+        # it { subject.must_equal([{}, back]) }
       end
 
       context 'when there is no content on the back buffer' do

@@ -3,6 +3,7 @@ require 'test_helper'
 module Vedeu
 
   describe Align do
+
     let(:value)   { 'Testing the Align class with various options' }
     let(:options) {
       {
@@ -16,7 +17,6 @@ module Vedeu
     let(:width)  { nil }
 
     describe '.with' do
-
       context 'when a width is provided' do
         context 'when value longer than the width' do
           let(:width) { 23 }
@@ -68,7 +68,6 @@ module Vedeu
           Align.with(:some_value).must_equal('some_value')
         end
       end
-
     end
 
   end # Align
