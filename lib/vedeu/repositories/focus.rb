@@ -45,6 +45,7 @@ module Vedeu
 
       update
     end
+    alias_method :focus, :by_name
 
     # Return the interface currently focussed.
     #
