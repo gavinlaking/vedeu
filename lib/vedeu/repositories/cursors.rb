@@ -9,56 +9,38 @@ module Vedeu
     include Repository
     extend self
 
-    # Add or update the cursor coordinates.
+    # Return the Cursor for the interface by name.
     #
-    # @param attributes [Hash]
-    # @return [Offset]
-    def add(attributes)
-      validate_attributes!(attributes)
-
-      Vedeu.log("#{action(__callee__)} positional (#{model}): " \
-                "'#{attributes[:name]}'")
-
-      model.new(attributes).store
-    end
-    alias_method :update, :add
-
-    # Make the cursor of this (or named) interface invisible.
-    #
-    # @param name [String] Hide the cursor for the interface with this name.
+    # @param name [String] The name of the interface which owns this cursor.
     # @return [Cursor]
-    def hide(name = Focus.current)
-      find_or_create(name).hide
+    def by_name(name)
+      return find(name) if registered?(name)
+
+      model.new(name).store
     end
 
-    # Make the cursor of this (or named) interface visible.
+    # Return the Cursor for the interface currently in focus.
     #
-    # @param name [String] Show the cursor for the interface with this name.
     # @return [Cursor]
-    def show(name = Focus.current)
-      find_or_create(name).show
+    def current
+      return find(Focus.current) if registered?(Focus.current)
+
+      model.new(Focus.current).store
     end
 
     private
 
-    # @return [Class] The model class for this repository.
-    def model
-      Vedeu::Cursor
-    end
-
     # Returns an empty collection ready for the storing of cursors by name with
     # current attributes.
-    #
-    # @example
-    #   { 'holmium' => {
-    #                    name:     'holmium',
-    #                    state:    :show,
-    #                    x:        1,
-    #                    y:        1 } }
     #
     # @return [Hash]
     def in_memory
       {}
+    end
+
+    # @return [Class] The model class for this repository.
+    def model
+      Vedeu::Cursor
     end
 
   end # Cursors

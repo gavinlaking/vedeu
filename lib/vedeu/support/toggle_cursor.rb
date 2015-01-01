@@ -1,5 +1,5 @@
 require 'vedeu/models/cursor'
-require 'vedeu/support/terminal'
+require 'vedeu/support/visible'
 
 module Vedeu
 

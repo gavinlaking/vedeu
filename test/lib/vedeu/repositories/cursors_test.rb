@@ -4,55 +4,68 @@ module Vedeu
 
   describe Cursors do
 
-    before do
-      Cursors.reset
-      Offsets.reset
-      Registrar.record({ name: 'chromium' })
-    end
+    let(:described) { Cursors }
 
-    describe '#add' do
-      let(:attributes) { { name: 'chromium' } }
+    before { Cursors.reset }
 
-      context 'when the name attribute is not provided' do
-        it { proc { Offsets.add({ no_name: 'no_name' }) }
-          .must_raise(MissingRequired) }
+    describe '#by_name' do
+      subject { described.by_name(cursor_name) }
+
+      it { return_type_for(described.by_name('zinc'), Cursor) }
+
+      context 'when the cursor exists' do
+        let(:cursor_name) { 'niobium' }
+
+        before { Cursor.new('niobium', false, 7, 9).store }
+
+        it 'has the same attributes it was stored with' do
+          subject.x.must_equal(7)
+          subject.y.must_equal(9)
+        end
       end
 
-      it 'returns a new instance of Offset once stored' do
-        Offsets.add({ name: 'praseodymium' }).must_be_instance_of(Offset)
-      end
+      context 'when the cursor does not exist' do
+        let(:cursor_name) { 'zinc'}
 
-      it 'returns a new Cursor after registering' do
-        Cursors.add(attributes).must_be_instance_of(Cursor)
-      end
-
-      it 'returns a new Cursor after updating' do
-        Cursors.update(attributes).must_be_instance_of(Cursor)
-      end
-
-      context 'when the attributes do not have the :name key' do
-        let(:attributes) { { no_name_key: 'some_value' } }
-
-        it { proc { Cursors.update(attributes) }.must_raise(MissingRequired) }
-
-        it { proc { Cursors.add(attributes) }.must_raise(MissingRequired) }
+        it 'is created, stored and has the default attributes' do
+          subject.x.must_equal(1)
+          subject.y.must_equal(1)
+        end
       end
     end
 
-    describe '#hide' do
-      it 'sets the state attribute of the Cursor to :hide' do
-        cursor = Cursors.hide
-        cursor.state.must_equal(:hide)
-      end
-    end
+    describe '#current' do
+      before { Focus.stubs(:current).returns('francium') }
 
-    describe '#show' do
-      it 'sets the state attribute of the Cursor to :show' do
-        cursor = Cursors.show
-        cursor.state.must_equal(:show)
+      subject { described.current }
+
+      it { return_type_for(subject, Cursor) }
+
+      context 'when the cursor exists' do
+        before { Cursor.new('francium', false, 12, 4).store }
+
+        it 'has the same attributes it was stored with' do
+          subject.x.must_equal(12)
+          subject.y.must_equal(4)
+        end
+      end
+
+      context 'when the cursor does not exist' do
+        it 'is created, stored, and has the default attributes' do
+          subject.x.must_equal(1)
+          subject.y.must_equal(1)
+        end
       end
     end
 
   end # Cursors
 
 end # Vedeu
+
+# {
+#   Cursors: {
+#     'name' => Cursor[name, state, x, y],
+#     'name' => Cursor[name, state, x, y],
+#     'name' => Cursor[name, state, x, y],
+#   }
+# }
