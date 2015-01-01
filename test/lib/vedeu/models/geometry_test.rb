@@ -13,23 +13,28 @@ module Vedeu
 
     describe '#initialize' do
       it { return_type_for(described, Geometry) }
-      it { assigns(described, '@attributes', {
-          centred: false,
-          height:  25,
-          width:   80,
-          x:       1,
-          xn:      80,
-          y:       1,
-          yn:      25,
-        })
-      }
-      it { assigns(described, '@centred', false) }
-      it { assigns(described, '@height', 25) }
-      it { assigns(described, '@width', 80) }
-      it { assigns(described, '@x', 1) }
-      it { assigns(described, '@xn', 80) }
-      it { assigns(described, '@y', 1) }
-      it { assigns(described, '@yn', 25) }
+
+      context 'with default attributes' do
+        it { assigns(described, '@attributes', {
+            centred: false,
+            height:  25,
+            name:    '',
+            width:   80,
+            x:       1,
+            xn:      80,
+            y:       1,
+            yn:      25,
+          })
+        }
+        it { assigns(described, '@centred', false) }
+        it { assigns(described, '@height', 25) }
+        it { assigns(described, '@name', '') }
+        it { assigns(described, '@width', 80) }
+        it { assigns(described, '@x', 1) }
+        it { assigns(described, '@xn', 80) }
+        it { assigns(described, '@y', 1) }
+        it { assigns(described, '@yn', 25) }
+      end
     end
 
     describe '#deputy' do

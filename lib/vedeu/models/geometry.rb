@@ -21,8 +21,9 @@ module Vedeu
 
     extend DSL
 
-    attr_accessor :centred, :height, :width
-    attr_reader :attributes
+    attr_accessor :centred, :height, :name, :width
+    attr_reader   :attributes
+    attr_writer   :x, :y
 
     # Returns a new instance of Geometry.
     #
@@ -33,6 +34,7 @@ module Vedeu
 
       @centred = @attributes[:centred]
       @height  = @attributes[:height]
+      @name    = @attributes[:name]
       @width   = @attributes[:width]
       @x       = @attributes[:x]
       @xn      = @attributes[:xn]
@@ -526,13 +528,14 @@ module Vedeu
     # @return [Hash]
     def defaults
       {
-        y:       1,
-        x:       1,
-        width:   Terminal.width,
-        height:  Terminal.height,
         centred: false,
-        yn:      Terminal.height,
+        height:  Terminal.height,
+        name:    '',
+        width:   Terminal.width,
+        x:       1,
         xn:      Terminal.width,
+        y:       1,
+        yn:      Terminal.height,
       }
     end
 
