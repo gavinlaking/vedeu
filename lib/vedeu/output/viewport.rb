@@ -90,11 +90,11 @@ module Vedeu
     #
     # @return [Fixnum]
     def line_adjustment
-      if offset.y < 0
-        @top = [offset.y, 0].max
+      if cursor.y < 0
+        @top = [cursor.y, 0].max
 
-      elsif offset.y > height
-        @top = [(offset.y - height), 0].max
+      elsif cursor.y > height
+        @top = [(cursor.y - height), 0].max
 
       end
     end
@@ -112,11 +112,11 @@ module Vedeu
     #
     # @return [Fixnum]
     def column_adjustment
-      if offset.x < 0
-        @left = [offset.x, 0].max
+      if cursor.x < 0
+        @left = [cursor.x, 0].max
 
-      elsif offset.x > width
-        @left = [(offset.x - width), 0].max
+      elsif cursor.x > width
+        @left = [(cursor.x - width), 0].max
 
       end
     end
@@ -173,8 +173,8 @@ module Vedeu
       interface.content
     end
 
-    def offset
-      interface.offset
+    def cursor
+      Cursors.by_name(interface.name)
     end
 
     def width
