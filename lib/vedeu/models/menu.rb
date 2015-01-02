@@ -10,14 +10,30 @@ module Vedeu
   # @api private
   class Menu
 
-    extend  Vedeu::DSL
     include Vedeu::Common
     include Vedeu::Model
 
+    attr_accessor :collection
+
+    # Returns the index of the value in the collection which is current.
+    #
+    # @return [Fixnum]
+    attr_accessor :current
+
     attr_accessor :name
-    attr_writer   :collection
+
+    # Returns the index of the value in the collection which is selected.
+    #
+    # @return [Fixnum]
+    attr_accessor :selected
 
     class << self
+
+      def build(collection = [], name = '', current = 0, selected = nil, &block)
+        model = new(collection, name, current, selected)
+        model.deputy.instance_eval(&block) if block_given?
+        model
+      end
 
       # Register a menu by name which will display a collection of items for
       # your users to select; and provide interactivity within your application.
@@ -42,7 +58,7 @@ module Vedeu
       def menu(name = '', &block)
         return requires_block(__callee__) unless block_given?
 
-        build({ name: name }, &block).store
+        build([], name, nil, nil, &block).store
       end
 
     end
@@ -51,21 +67,14 @@ module Vedeu
     #
     # @param collection [Array]
     # @param name [String]
+    # @param current [Fixnum]
+    # @param selected [Fixnum|NilClass]
     # @return [Menu]
-    # def initialize(collection, name = '')
-    #   @collection = collection
-    #   @name       = name
-    #   @current    = 0
-    #   @selected   = nil
-    # end
-
-    def initialize(attributes = {})
-      @attributes = defaults.merge(attributes)
-
-      @collection = @attributes[:collection]
-      @current    = @attributes[:current]
-      @name       = @attributes[:name]
-      @selected   = @attributes[:selected]
+    def initialize(collection = [], name = '', current = 0, selected = nil)
+      @collection = collection
+      @name       = name
+      @current    = current
+      @selected   = selected
     end
 
     # Returns the class responsible for defining the DSL methods of this model.
@@ -73,20 +82,6 @@ module Vedeu
     # @return [DSL::Interface]
     def deputy
       Vedeu::DSL::Menu.new(self)
-    end
-
-    # Returns the index of the value in the collection which is current.
-    #
-    # @return [Fixnum]
-    def current
-      @current
-    end
-
-    # Returns the index of the value in the collection which is selected.
-    #
-    # @return [Fixnum]
-    def selected
-      @selected
     end
 
     # Returns the item from the collection which shares the same index as the
@@ -219,18 +214,6 @@ module Vedeu
     # @return [Class] The repository class for this model.
     def repository
       Vedeu::Menus
-    end
-
-    # The default values for a new instance of Menu.
-    #
-    # @return [Hash]
-    def defaults
-      {
-        name:       '',
-        collection: [],
-        current:    0,
-        selected:   nil
-      }
     end
 
   end # Menu

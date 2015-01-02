@@ -17,7 +17,7 @@ module Vedeu
     #
     # @param values [String|Symbol] The style value or values collection.
     # @return [Style]
-    def initialize(values)
+    def initialize(*values)
       @values = values
     end
 
@@ -36,7 +36,7 @@ module Vedeu
     def to_s
       return '' unless defined_value?(values)
 
-      @_sequences ||= Array(values).flatten.map do |value|
+      @_sequences ||= values.flatten.map do |value|
         Esc.string(value)
       end.join
     end

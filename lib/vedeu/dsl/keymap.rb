@@ -18,33 +18,6 @@ module Vedeu
         @model = model
       end
 
-      # The interface(s) which will handle these keys.
-      #
-      # @param name_or_names [String] The name or names of the interface(s)
-      # which will handle these keys.
-      #
-      # @example
-      #   keys do
-      #     interface 'my_interface'
-      #     key('s')  { :something }
-      #     name      'my_keymap'
-      #     ...
-      #
-      #   keys do
-      #     interface('main', 'other')
-      #     key('s')  { :something }
-      #     ...
-      #
-      #   keys do
-      #     interfaces('main', 'other')
-      #     ...
-      #
-      # @return [Array]
-      def interface(*name_or_names)
-        name_or_names.each { |name| model.add_interface(name) }
-      end
-      alias_method :interfaces, :interface
-
       # Define keypress(es) to perform an action.
       #
       # @param value_or_values [String|Symbol] The key(s) pressed. Special keys
@@ -55,9 +28,12 @@ module Vedeu
       #
       # @example
       #   keys do
-      #     key('s')        { trigger(:save) }
-      #     key('h', :left) { trigger(:left) }
-      #     key('j', :down) { trigger(:down) }
+      #     key('s')        { Vedeu.trigger(:save) }
+      #     key('h', :left) { Vedeu.trigger(:left) }
+      #     key('j', :down) { Vedeu.trigger(:down) }
+      #     key('p') do
+      #       ...
+      #     end
       #     ...
       #
       # @raise [InvalidSyntax] When the required block is not given, the
@@ -78,15 +54,13 @@ module Vedeu
             fail InvalidSyntax, 'An invalid value for `key` was encountered.'
           end
 
-          model.add_keypress({ key: value, action: block })
+          @model = model.define(value, block)
         end
       end
 
       private
 
-      def model
-        @model.new
-      end
+      attr_reader :model
 
     end # Keymap
 

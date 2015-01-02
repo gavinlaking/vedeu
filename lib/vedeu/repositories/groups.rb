@@ -8,38 +8,11 @@ module Vedeu
     include Repository
     extend self
 
-    # Add an interface name to a group, creating the group if it doesn't already
-    # exist, and rejecting the interface if it is already known.
-    #
-    # @param attributes [Hash]
-    # @return [Boolean]
-    def add(attributes)
-      validate_attributes!(attributes)
-
-      return false unless defined_value?(attributes[:group])
-
-      storage[attributes[:group]] << attributes[:name]
-
-      register_event(attributes)
-
-      true
-    end
-
     private
-
-    # @see Vedeu::Refresh.register_event
-    # @param attributes [Hash]
-    # @return [Boolean]
-    def register_event(attributes)
-      group_name = attributes[:group]
-      delay      = attributes[:delay] || 0.0
-
-      Vedeu::Refresh.register_event(:by_group, group_name, delay)
-    end
 
     # @return [Hash]
     def in_memory
-      Hash.new { |hash, key| hash[key] = Set.new }
+      {}
     end
 
   end # Groups

@@ -1,3 +1,5 @@
+require 'vedeu/dsl/dsl'
+
 module Vedeu
 
   # Provides the mechanism to decorate an interface with a border on all edges,
@@ -10,6 +12,8 @@ module Vedeu
   #
   class Border
 
+    attr_accessor :attributes
+
     # Returns a new instance of Border.
     #
     # @param interface [Interface]
@@ -18,6 +22,24 @@ module Vedeu
     def initialize(interface, attributes = {})
       @interface  = interface
       @attributes = defaults.merge(attributes)
+    end
+
+    def self.build(interface, attributes = {}, &block)
+      model = self.new(interface, attributes)
+      model.deputy.instance_eval(&block) if block_given?
+      model
+    end
+
+    def colour=(value)
+      attributes[:colour] = value
+    end
+
+    def style=(value)
+      attributes[:style] = value
+    end
+
+    def deputy
+      Vedeu::DSL::Border.new(self)
     end
 
     # Returns a boolean indicating whether the border is to be shown for this
@@ -86,7 +108,7 @@ module Vedeu
 
     private
 
-    attr_reader :attributes, :interface, :attributes
+    attr_reader :interface
 
     # Renders the bottom border for the interface.
     #
@@ -283,7 +305,7 @@ module Vedeu
     #
     # @return [String]
     def viewport
-      interface.viewport
+      @_viewport ||= Viewport.show(interface)
     end
 
     # Returns the colour and styles for the border.

@@ -27,14 +27,18 @@ class VedeuConfigurationApp
   end
 
   interface 'config' do
-    width 40
-    height 2
-    centred!
+    geometry do
+      width  40
+      height 2
+      centred!
+    end
   end
 
   render do
     view 'config' do
-      line Configuration.log.inspect + " " + Process.pid.to_s
+      lines do
+        line Configuration.log.inspect + " " + Process.pid.to_s
+      end
     end
   end
 

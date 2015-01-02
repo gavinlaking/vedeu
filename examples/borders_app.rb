@@ -14,148 +14,269 @@ class VedeuBordersApp
   event(:_initialize_) { trigger(:_refresh_) }
 
   interface 'lur' do
-    border
-    x       2
-    y       2
-    height  3
-    width   7
+    border do
+    end
+    geometry do
+      x      2
+      y      2
+      height 3
+      width  7
+    end
     colour  foreground: '#ffffff', background: '#ff0000'
   end
 
   interface 'tan' do
-    x       11
-    y       2
-    height  3
-    width   7
+    geometry do
+      x      11
+      y      2
+      height 3
+      width  7
+    end
     colour  foreground: '#ffffff', background: '#00ff00'
   end
 
   interface 'tal' do
-    border  show_top: false
-    x       20
-    y       2
-    height  3
-    width   7
+    border do
+      show_top false
+    end
+    geometry do
+      x      20
+      y      2
+      height 3
+      width  7
+    end
     colour  foreground: '#ffffff', background: '#0000ff'
   end
 
   interface 'ums' do
-    border  show_bottom: false
-    x       29
-    y       2
-    height  3
-    width   7
+    border do
+      show_bottom false
+    end
+    geometry do
+      x      29
+      y      2
+      height 3
+      width  7
+    end
     colour  foreground: '#000000', background: '#ffff00'
   end
 
   interface 'ulp' do
-    border  show_left: false
-    x       38
-    y       2
-    height  3
-    width   7
+    border do
+      show_left false
+    end
+    geometry do
+      x      38
+      y      2
+      height 3
+      width  7
+    end
     colour  foreground: '#000000', background: '#ffff00'
   end
 
   interface 'hur' do
-    border  show_right: false
-    x       47
-    y       2
-    height  3
-    width   7
+    border do
+      show_right false
+    end
+    geometry do
+      x      47
+      y      2
+      height 3
+      width  7
+    end
     colour  foreground: '#000000', background: '#ffff00'
   end
 
   interface 'sto' do
-    border  top_right: 'B', top_left: 'A', bottom_right: 'D', bottom_left: 'C'
-    x       2
-    y       7
-    height  3
-    width   7
+    border do
+      top_right    'B'
+      top_left     'A'
+      bottom_right 'D'
+      bottom_left  'C'
+    end
+    geometry do
+      x      2
+      y      7
+      height 3
+      width  7
+    end
     colour  foreground: '#ffffff', background: '#ff0000'
   end
 
   interface 'sod' do
-    border  horizontal: '*', vertical: '$'
-    x       11
-    y       7
-    height  3
-    width   7
+    border do
+      horizontal '*'
+      vertical   '$'
+    end
+    geometry do
+      x      11
+      y      7
+      height 3
+      width  7
+    end
     colour  foreground: '#ffffff', background: '#00ff00'
   end
 
   interface 'sil' do
-    border  show_right: false, show_bottom: false, show_left: false
-    x       20
-    y       7
-    height  3
-    width   7
+    border do
+      show_right  false
+      show_bottom false
+      show_left   false
+    end
+    geometry do
+      x      20
+      y      7
+      height 3
+      width  7
+    end
     colour  foreground: '#ffffff', background: '#0000ff'
   end
 
   interface 'ver' do
-    border  show_top: false, show_right: false, show_left: false
-    x       29
-    y       7
-    height  3
-    width   7
+    border do
+      show_top   false
+      show_right false
+      show_left  false
+    end
+    geometry do
+      x      29
+      y      7
+      height 3
+      width  7
+    end
     colour  foreground: '#000000', background: '#ffff00'
   end
 
   interface 'ico' do
-    border  show_top: false, show_bottom: false, show_right: false
-    x       38
-    y       7
-    height  3
-    width   7
+    border do
+      show_top    false
+      show_bottom false
+      show_right  false
+    end
+    geometry do
+      x      38
+      y      7
+      height 3
+      width  7
+    end
     colour  foreground: '#000000', background: '#ffff00'
   end
 
   interface 'sel' do
-    border  show_top: false, show_bottom: false, show_left: false
-    x       47
-    y       7
-    height  3
-    width   7
+    border do
+      show_top    false
+      show_bottom false
+      show_left   false
+    end
+    geometry do
+      x      47
+      y      7
+      height 3
+      width  7
+    end
     colour  foreground: '#000000', background: '#ffff00'
   end
 
   interface 'ens' do
-    border  colour: { foreground: '#ffff00', background: '#0000ff' }
-    x       2
-    y       12
-    height  3
-    width   7
-    colour  foreground: '#ffffff', background: '#ff0000'
+    border do
+      colour foreground: '#ffff00', background: '#0000ff'
+    end
+    geometry do
+      x      2
+      y      12
+      height 3
+      width  7
+    end
+    colour foreground: '#ffffff', background: '#ff0000'
   end
 
   interface 'eab' do
-    border  style: 'negative'
-    x       11
-    y       12
-    height  3
-    width   7
-    colour  foreground: '#000000', background: '#00ff00'
-    style   'normal'
+    border do
+      style 'negative'
+    end
+    geometry do
+      x      11
+      y      12
+      height 3
+      width  7
+    end
+    colour foreground: '#000000', background: '#00ff00'
+    style  'normal'
   end
 
   render do
-    view('lur') { line 'on'   }
-    view('tan') { line 'off'  }
-    view('tal') { line 'no t' }
-    view('ums') { line 'no b' }
-    view('ulp') { line 'no l' }
-    view('hur') { line 'no r' }
+    view('lur') do
+      lines do
+        line 'on'
+      end
+    end
+    view('tan') do
+      lines do
+        line 'off'
+      end
+    end
+    view('tal') do
+      lines do
+        line 'no t'
+      end
+    end
+    view('ums') do
+      lines do
+        line 'no b'
+      end
+    end
+    view('ulp') do
+      lines do
+        line 'no l'
+      end
+    end
+    view('hur') do
+      lines do
+        line 'no r'
+      end
+    end
 
-    view('sto') { line 'chars'; line '1' }
-    view('sod') { line 'chars'; line '2' }
-    view('sil') { line 'only';  line 't' }
-    view('ver') { line 'only';  line 'b' }
-    view('ico') { line 'only';  line 'l' }
-    view('sel') { line 'only';  line 'r' }
+    view('sto') do
+      lines do
+        line 'chars'; line '1'
+      end
+    end
+    view('sod') do
+      lines do
+        line 'chars'; line '2'
+      end
+    end
+    view('sil') do
+      lines do
+        line 'only';  line 't'
+      end
+    end
+    view('ver') do
+      lines do
+        line 'only';  line 'b'
+      end
+    end
+    view('ico') do
+      lines do
+        line 'only';  line 'l'
+      end
+    end
+    view('sel') do
+      lines do
+        line 'only';  line 'r'
+      end
+    end
 
-    view('ens') { line 'color' }
-    view('eab') { line 'style' }
+    view('ens') do
+      lines do
+        line 'color'
+      end
+    end
+    view('eab') do
+      lines do
+        line 'style'
+      end
+    end
   end
 
   Vedeu.configure do

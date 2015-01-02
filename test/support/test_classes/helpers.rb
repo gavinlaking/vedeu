@@ -4,8 +4,6 @@ module Vedeu
 
     class HelpersTestClass
 
-      include Helpers
-
       attr_accessor :attributes
 
       def initialize

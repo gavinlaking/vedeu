@@ -13,11 +13,15 @@ module Vedeu
 
       include Enumerable
 
-      attr_reader :parent
+      attr_accessor :parent
 
-      def initialize(parent, collection = [])
+      # def self.coerce(parent = nil, collection = [])
+      #   new(parent, collection).coerce
+      # end
+
+      def initialize(parent = nil, collection = [])
         @parent     = parent
-        @collection = collection || []
+        @collection = collection
       end
 
       def add(*other)
@@ -27,6 +31,15 @@ module Vedeu
       def all
         @collection
       end
+
+      # def coerce
+      #   return self if empty?
+      #   return collection if collection.kind_of?(Collection)
+
+      #   collection.each do |model|
+      #     add(model)
+      #   end
+      # end
 
       def each(&block)
         @collection.each do |element|

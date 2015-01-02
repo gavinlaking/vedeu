@@ -22,6 +22,8 @@ module Vedeu
     alias_method :key, :input
 
     # The procedure to call when the key is pressed.
+    #
+    # @return []
     def output
       @output
     end

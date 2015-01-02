@@ -16,8 +16,6 @@ module Vedeu
     # @param attributes [Hash]
     # @return [String] The name of the buffer that has been added.
     def add(attributes)
-      validate_attributes!(attributes)
-
       name = attributes[:name]
 
       if registered?(name)

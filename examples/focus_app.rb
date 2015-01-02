@@ -24,63 +24,93 @@ class VedeuFocusApp
   interface 'aluminium' do
     colour  foreground: '#ffffff', background: '#330000'
     cursor  true
-    height  2
-    width   2
-    x       3
-    y       3
+    geometry do
+      height 2
+      width  2
+      x      3
+      y      3
+    end
   end
 
   interface 'boron' do
     colour  foreground: '#ffffff', background: '#003300'
     cursor  true
-    height  2
-    width   2
-    x       6
-    y       3
+    geometry do
+      height 2
+      width  2
+      x      6
+      y      3
+    end
   end
 
   interface 'copper' do
     colour  foreground: '#ffffff', background: '#000033'
     cursor  true
     focus!
-    height  2
-    width   2
-    x       3
-    y       6
+    geometry do
+      height 2
+      width  2
+      x      3
+      y      6
+    end
   end
 
   interface 'dubnium' do
     colour  foreground: '#ffffff', background: '#333300'
     cursor  true
-    height  2
-    width   2
-    x       6
-    y       6
+    geometry do
+      height 2
+      width  2
+      x      6
+      y      6
+    end
   end
 
   interface 'status' do
     colour  foreground: '#ffffff', background: '#000000'
     cursor  false
-    height  2
-    width   10
-    x       9
-    y       3
+    geometry do
+      height 2
+      width  10
+      x      9
+      y      3
+    end
   end
 
   render do
-    view('aluminium') { line 'Al' }
-    view('boron')     { line 'B' }
-    view('copper')    { line 'Cu' }
-    view('dubnium')   { line 'Db' }
-    view('status')    { line Vedeu::Focus.current }
-
-    # Tell Vedeu that each interface can use 'space'.
-    keys('aluminium', 'boron', 'copper', 'dubnium', 'status') do
-      key(' ') do
-        Vedeu::Focus.next_item
-
-        render { view('status') { line Vedeu::Focus.current } }
+    view('aluminium') do
+      lines do
+        line 'Al'
       end
+    end
+    view('boron') do
+      lines do
+        line 'B'
+      end
+    end
+    view('copper') do
+      lines do
+        line 'Cu'
+      end
+    end
+    view('dubnium') do
+      lines do
+        line 'Db'
+      end
+    end
+    view('status') do
+      lines do
+        line Vedeu::Focus.current
+      end
+    end
+  end
+
+  # Tell Vedeu that each interface can use 'space'.
+  keys('aluminium', 'boron', 'copper', 'dubnium', 'status') do
+    key(' ') do
+      Vedeu::Focus.next_item
+
+      render { view('status') { line Vedeu::Focus.current } }
     end
   end
 

@@ -34,12 +34,13 @@ module Vedeu
     # Find a model by name, registers the model by name if not found.
     #
     # @param name [String]
+    # @param attributes [Hash]
     # @return [Cursor|Offset]
-    def find_or_create(name)
+    def find_or_create(name, attributes = {})
       storage.fetch(name) do
         Vedeu.log("Model (#{model}) not found, registering: '#{name}'")
 
-        model.new({ name: name }).store
+        model.new({ name: name }.merge(attributes)).store
       end
     end
 
@@ -99,6 +100,9 @@ module Vedeu
     def store(model)
       fail MissingRequired, "Cannot store model '#{model.class}' without a " \
                             "name attribute." unless defined_value?(model.name)
+
+      Vedeu.log("Registering #{model.class.to_s}: #{model.name}")
+
       storage[model.name] = model
     end
 
@@ -124,18 +128,6 @@ module Vedeu
     # @return [Hash]
     def storage
       @_storage ||= in_memory
-    end
-
-    # At present, validates that attributes has a `:name` key that is not nil or
-    # empty.
-    #
-    # @param attributes [Hash]
-    # @return [TrueClass|MissingRequired]
-    def validate_attributes!(attributes)
-      return missing_required unless attributes.key?(:name)
-      return missing_required unless defined_value?(attributes[:name])
-
-      true
     end
 
     # Raises the MissingRequired exception.

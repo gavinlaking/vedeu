@@ -1,3 +1,6 @@
+require 'vedeu/dsl/dsl'
+require 'vedeu/presentation/presentation'
+
 module Vedeu
 
   # A Line represents a single row of the terminal. It is a container for
@@ -7,35 +10,25 @@ module Vedeu
   # @api private
   class Line
 
-    include Coercions
-    include Presentation
+    extend  Vedeu::DSL
+    include Vedeu::Presentation
 
-    attr_accessor :parent, :streams
-    attr_reader   :attributes
-
-    # Builds up a new Line object and returns the attributes.
-    #
-    # @param attributes [Hash]
-    # @param block [Proc]
-    # @return [Hash]
-    def self.build(attributes = {}, &block)
-      new(attributes, &block).attributes
-    end
+    attr_accessor :colour, :parent, :style
 
     # Returns a new instance of Line.
     #
-    # @param attributes [Hash]
-    # @param block [Proc]
     # @return [Line]
-    def initialize(attributes = {}, &block)
-      @attributes = defaults.merge(attributes)
-      @parent     = @attributes[:parent]
+    def initialize(streams = [], parent, colour, style)
+      @streams = streams
+      @parent  = parent
+      @colour  = colour
+      @style   = style
+    end
 
-      if block_given?
-        @self_before_instance_eval = eval('self', block.binding)
-
-        instance_eval(&block)
-      end
+    def self.build(streams = [], parent, colour, style, &block)
+      model = new(streams, parent, colour, style)
+      model.deputy.instance_eval(&block) if block_given?
+      model
     end
 
     # Returns an array of all the characters with formatting for this line.
@@ -45,7 +38,7 @@ module Vedeu
     def chars
       return [] if empty?
 
-      @_chars ||= streams.map(&:chars).flatten
+      streams.all.map(&:chars).flatten
     end
 
     # Returns the class responsible for defining the DSL methods of this model.
@@ -66,32 +59,15 @@ module Vedeu
     #
     # @return [Fixnum]
     def size
-      streams.map(&:size).inject(0, :+) { |sum, x| sum += x }
+      streams.all.map(&:size).inject(0, :+) { |sum, x| sum += x }
     end
 
-    # Returns a collection of streams associated with this line. This method
-    # also has the alias_method :data, a convenience method to provide
-    # Presentation with a consistent interface.
-    #
-    # @return [Array]
     def streams
-      @streams ||= Stream.coercer(attributes[:streams])
+      # Vedeu::Model::Streams.new(self, streams)
     end
     alias_method :data, :streams
 
     private
-
-    # The default values for a new instance of Line.
-    #
-    # @return [Hash]
-    def defaults
-      {
-        colour:  {},
-        streams: [],
-        style:   [],
-        parent:  nil,
-      }
-    end
 
   end # Line
 

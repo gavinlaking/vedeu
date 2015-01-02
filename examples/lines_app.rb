@@ -14,18 +14,22 @@ class VedeuLinesApp
   event(:_initialize_) { trigger(:_refresh_) }
 
   interface 'ruthenium' do
-    centred true
+    geometry do
+      centred true
+      height  5
+      width   40
+    end
     colour  foreground: '#ffffff', background: '#000000'
-    height  5
-    width   40
   end
 
   interface 'tantalum' do
     colour  foreground: '#00aadd', background: '#000000'
-    height  1
-    width   40
-    x       use('ruthenium').left
-    y       use('ruthenium').south
+    geometry do
+      height  1
+      width   40
+      x       use('ruthenium').left
+      y       use('ruthenium').south
+    end
   end
 
   keys do

@@ -54,7 +54,7 @@ module Vedeu
     #
     # @return [Array]
     def global_keys
-      storage.fetch('_global_keymap_', {}).keys
+      storage.fetch('_global_', {}).keys
     end
 
     # Return a boolean indicating whether the key is registered as an interface
@@ -192,5 +192,13 @@ module Vedeu
     end
 
   end # Keymaps
+
+  # Keymap.new({}, '_global_').store
+
+  # system_keys = {}
+  # Configuration.system_keys.keys do |action, key|
+  #   system_keys[key] = Vedeu.trigger(['_', action, '_'].join.to_sym)
+  # end
+  # Keymap.new(system_keys, '_system_').store
 
 end # Vedeu

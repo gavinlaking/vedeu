@@ -8,28 +8,33 @@ module Vedeu
     include Repository
     extend self
 
-    # Stores the interface attributes defined by the API.
-    #
-    # @param attributes [Hash]
-    # @return [Hash|FalseClass]
-    def add(attributes)
-      validate_attributes!(attributes)
+    # # Stores the interface attributes defined by the API.
+    # #
+    # # @param attributes [Hash]
+    # # @return [Hash|FalseClass]
+    # def add(attributes)
+    #   Vedeu.log("Registering interface: '#{attributes[:name]}'")
 
-      Vedeu.log("Registering interface: '#{attributes[:name]}'")
+    #   storage.store(attributes[:name], attributes)
 
-      storage.store(attributes[:name], attributes)
+    #   register_event(attributes)
 
-      register_event(attributes)
-
-      true
-    end
+    #   true
+    # end
 
     # Create an instance of Interface from the stored attributes.
     #
     # @param name [String]
     # @return [Interface]
-    def build(name)
-      model.new(find(name))
+    # def build(name)
+    #   model.new(find(name))
+    # end
+
+    # Return the Interface currently in focus.
+    #
+    # @return [Interface]
+    def current
+      find(Focus.current)
     end
 
     # Reset the interfaces repository; removing all registered interfaces.
@@ -41,7 +46,7 @@ module Vedeu
     #
     # @return [Hash]
     def reset
-      @_storage = in_memory
+      super
 
       Vedeu::Buffers.reset
       Vedeu::Cursors.reset
@@ -51,21 +56,24 @@ module Vedeu
       @_storage
     end
 
+    # @see Vedeu::Repository#store
+    def store(model)
+      super
+
+      Vedeu::Refresh.register_event(:by_name, model.name, model.delay)
+
+      if model.group
+        Vedeu::Refresh.register_event(:by_group, model.group, model.delay)
+      end
+
+      model
+    end
+
     private
 
     # @return [Class] The model class for this repository.
     def model
       Vedeu::Interface
-    end
-
-    # @see Vedeu::Refresh.register_event
-    # @param attributes [Hash]
-    # @return [Boolean]
-    def register_event(attributes)
-      name  = attributes[:name]
-      delay = attributes[:delay] || 0.0
-
-      Vedeu::Refresh.register_event(:by_name, name, delay)
     end
 
     # @return [Hash]

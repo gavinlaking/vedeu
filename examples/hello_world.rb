@@ -20,17 +20,21 @@ class HelloWorldApp
 
   interface 'messages' do
     background '#000000'
-    centred!
     foreground '#00ff00'
-    height     3
-    width      20
+    geometry do
+      centred!
+      height   3
+      width    20
+    end
   end
 
   render do
     view 'messages' do
-      line '    Hello World!'
-      line
-      line " Press 'q' to exit. "
+      lines do
+        line '    Hello World!'
+        line
+        line " Press 'q' to exit. "
+      end
     end
   end
 

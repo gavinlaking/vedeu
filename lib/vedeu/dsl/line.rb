@@ -1,3 +1,5 @@
+require 'vedeu/dsl/colour'
+require 'vedeu/dsl/style'
 require 'vedeu/support/common'
 
 module Vedeu
@@ -10,8 +12,8 @@ module Vedeu
     class Line
 
       include Vedeu::Common
-      include DSL::Colour
-      include DSL::Style
+      include Vedeu::DSL::Colour
+      include Vedeu::DSL::Style
 
       # Returns an instance of DSL::Line.
       #
@@ -20,42 +22,67 @@ module Vedeu
         @model = model
       end
 
+      # Specify a single line in a view.
+      #
+      # @param value [String]
+      # @param block [Proc]
+      #
+      # @example
+      #   view 'my_interface' do
+      #     line 'This is a line of text...'
+      #     line 'and so is this...'
+      #     ...
+      #
+      # @return [Line]
+      def line(value = '')
+        _stream = Vedeu::Stream.new(value, nil, Vedeu::Colour.new, Vedeu::Style.new)
+        _line   = Vedeu::Line.new([], model, Vedeu::Colour.new, Vedeu::Style.new)
+        _stream.parent = _line
+        _line.streams << _stream
+
+        interface = model.parent
+        interface.lines.add(_line)
+      end
+
       # Define a stream (a subset of a line).
       #
-      # @param block [Proc] Block contains directives relating to API::Stream.
+      # @param value [String]
+      # @param block [Proc] Block contains directives relating to Vedeu::Stream.
       #
       # @example
       #   ...
-      #     line do
+      #     lines do
       #       stream do
       #         ...
       #
-      # @raise [InvalidSyntax] When the required block is not given.
-      # @return [Array]
-      def stream(&block)
-        return requires_block(__callee__) unless block_given?
-
-        model.streams({ parent: self.view_attributes }, &block)
-      end
-
-      # Define text for a line. Using this directive will not allow stream
-      # attributes for this line but is useful for adding lines straight into
-      # the interface.
+      #   ...
+      #     lines do
+      #       stream 'Some text goes here...'
+      #       ...
       #
-      # @param value [String]
+      # @return [Array]
+      def stream(value = '', &block)
+        model.streams.add(Vedeu::Stream.build(attributes.merge({
+          parent: model, value: value
+        }), &block))
+      end
+      alias_method :text, :stream
+
+      # Define multiple streams (a stream is a subset of a line).
+      #
+      # @param block [Proc]
       #
       # @example
       #   ...
-      #     line do
-      #       text 'Some text goes here...'
-      #
-      #   ...
-      #     stream do
-      #       text 'Some text goes here...'
+      #     lines do
+      #       streams do
+      #         ...
       #
       # @return [Array]
-      def text(value)
-        model.add_stream({ text: value })
+      def streams(&block)
+        return requires_block(__callee__) unless block_given?
+
+        model.streams.add(Vedeu::Stream.build({ parent: model }, &block))
       end
 
       private

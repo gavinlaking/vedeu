@@ -1,4 +1,5 @@
 require 'vedeu/dsl/builder'
+require 'vedeu/dsl/shared'
 
 require 'vedeu/dsl/colour'
 require 'vedeu/dsl/style'
@@ -12,4 +13,3 @@ require 'vedeu/dsl/keymap'
 require 'vedeu/dsl/line'
 require 'vedeu/dsl/menu'
 require 'vedeu/dsl/stream'
-

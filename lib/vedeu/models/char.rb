@@ -11,6 +11,8 @@ module Vedeu
   #
   class Char
 
+    attr_accessor :parent
+
     #
     # Returns a new instance of Char.
     #
@@ -38,7 +40,7 @@ module Vedeu
 
     private
 
-    attr_reader :parent, :position
+    attr_reader :position
 
     def colour
       return '' unless @colour

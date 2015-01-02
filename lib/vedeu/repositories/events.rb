@@ -1,3 +1,6 @@
+require 'vedeu/support/repository'
+require 'vedeu/models/event'
+
 module Vedeu
 
   # Provides a mechanism for storing and retrieving events by name. A single
@@ -11,7 +14,8 @@ module Vedeu
     include Repository
     extend self
 
-    # @see Vedeu::API#unevent
+    # Unregisters the event by name, effectively deleting the associated events
+    # bound with it also.
     alias_method :unevent, :remove
 
     # Register an event by name with optional delay (throttling) which when
@@ -64,7 +68,19 @@ module Vedeu
     end
     alias_method :event, :add
 
-    # @see Vedeu::API#trigger
+    # Trigger a registered or system event by name with arguments. If the
+    # event stored returns a value, that is returned. If multiple events are
+    # registered for a name, then the result of each event will be returned as
+    # part of a collection.
+    #
+    # @param name [Symbol] The name of the event you wish to trigger. The event
+    #   does not have to exist.
+    # @param args [Array] Any arguments the event needs to execute correctly.
+    #
+    # @example
+    #   Vedeu.trigger(:my_event, :oxidize, 'nitrogen')
+    #
+    # @return [Array|undefined]
     def use(name, *args)
       results = events(name).map { |event| event.trigger(*args) }
 
@@ -103,12 +119,54 @@ module Vedeu
     event(:_resize_, { delay: 0.25 }) { Vedeu.resize                 }
 
     # System events which when called will update the cursor visibility
-    # accordingly for the interface in focus, or the named interface.
-    # From: Cursors (top)
-    event(:_cursor_hide_)         {        Vedeu::Cursors.hide }
-    event(:_cursor_show_)         {        Vedeu::Cursors.show }
-    event(:_cursor_hide_by_name_) { |name| Vedeu::Cursors.hide(name) }
-    event(:_cursor_show_by_name_) { |name| Vedeu::Cursors.show(name) }
+    # accordingly for the interface in focus, or the named interface. Also
+    # includes events to move the cursor in the direction specified; these will
+    # update the cursor position according to the interface in focus.
+    event(:_cursor_hide_) do
+      ToggleCursor.hide(Vedeu::Cursors.current)
+    end
+
+    event(:_cursor_show_) do
+      ToggleCursor.show(Vedeu::Cursors.current)
+    end
+
+    event(:_cursor_hide_by_name_) do |name|
+      ToggleCursor.hide(Vedeu::Cursors.by_name(name))
+    end
+
+    event(:_cursor_show_by_name_) do |name|
+      ToggleCursor.show(Vedeu::Cursors.by_name(name))
+    end
+
+    event(:_cursor_down_) do
+      MoveCursor.down(Cursors.current, Interfaces.current)
+
+      Focus.refresh
+    end
+
+    event(:_cursor_left_) do
+      MoveCursor.left(Cursors.current, Interfaces.current)
+
+      Focus.refresh
+    end
+
+    event(:_cursor_right_) do
+      MoveCursor.right(Cursors.current, Interfaces.current)
+
+      Focus.refresh
+    end
+
+    event(:_cursor_up_) do
+      MoveCursor.up(Cursors.current, Interfaces.current)
+
+      Focus.refresh
+    end
+
+    event(:_cursor_origin_) do
+      MoveCursor.origin(Cursors.current, Interfaces.current)
+
+      Focus.refresh
+    end
 
     # System events which when called will change which interface is currently
     # focussed. When the interface is brought into focus, its cursor position
@@ -117,15 +175,6 @@ module Vedeu
     event(:_focus_by_name_) { |name| Vedeu::Focus.by_name(name) }
     event(:_focus_next_)    {        Vedeu::Focus.next_item }
     event(:_focus_prev_)    {        Vedeu::Focus.prev_item }
-
-    # System events which when called will move in the direction specified;
-    # these will update the cursor position or content offset (scrolling)
-    # according to the interface in focus.
-    # From: Offsets (bottom)
-    event(:_cursor_down_)  { Vedeu::Offsets.down  }
-    event(:_cursor_left_)  { Vedeu::Offsets.left  }
-    event(:_cursor_right_) { Vedeu::Offsets.right }
-    event(:_cursor_up_)    { Vedeu::Offsets.up    }
 
     # System events which when called with the appropriate menu name will
     # update the menu accordingly.

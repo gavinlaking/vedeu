@@ -1,3 +1,7 @@
+require 'vedeu/dsl/dsl'
+require 'vedeu/dsl/composition'
+require 'vedeu/models/collection'
+
 module Vedeu
 
   # A composition is a collection of interfaces.
@@ -5,32 +9,24 @@ module Vedeu
   # @api private
   class Composition
 
-    attr_reader :attributes
-    attr_writer :interfaces
+    extend Vedeu::DSL
 
-    # Builds a new composition, ready to be rendered to the screen.
-    #
-    # @param attributes [Hash]
-    # @param block [Proc]
-    # @return [Hash]
-    def self.build(attributes = {}, &block)
-      new(attributes, &block).attributes
+    attr_reader :interfaces
+
+    def self.build(interfaces = [], colour, style, &block)
+      model = new(interfaces, colour, style)
+      model.deputy.instance_eval(&block) if block_given?
+      model
     end
 
     # Returns a new instance of Composition.
     #
-    # @param attributes [Hash]
-    # @param block [Proc]
+    # @param interfaces [Interfaces]
     # @return [Composition]
-    def initialize(attributes = {}, &block)
-      @attributes = defaults.merge(attributes)
-      @interfaces = @attributes[:interfaces]
-
-      if block_given?
-        @self_before_instance_eval = eval('self', block.binding)
-
-        instance_eval(&block)
-      end
+    def initialize(interfaces = [], colour = nil, style = nil)
+      @interfaces = Vedeu::Model::Interfaces.new(self, interfaces)
+      @colour     = colour
+      @style      = style
     end
 
     # Returns the class responsible for defining the DSL methods of this model.
@@ -38,32 +34,6 @@ module Vedeu
     # @return [DSL::Composition]
     def deputy
       Vedeu::DSL::Composition.new(self)
-    end
-
-    # Returns a collection of interfaces associated with this composition.
-    #
-    # @return [Array]
-    def interfaces
-      Vedeu::Interface.coercer(@interfaces)
-    end
-
-    # Returns the view attributes for a Composition, which will always be none,
-    # as a composition is a merely a collection of interfaces.
-    #
-    # @return [Hash]
-    def view_attributes
-      {}
-    end
-
-    private
-
-    # The default values for a new instance of Composition.
-    #
-    # @return [Hash]
-    def defaults
-      {
-        interfaces: []
-      }
     end
 
   end # Composition

@@ -5,29 +5,21 @@ module Vedeu
   # @api private
   module Menus
 
-    include Repository
-    extend self
-
-    # Stores the menu attributes defined by the API.
-    #
-    # @param attributes [Hash]
-    # @return [Hash|MissingRequired]
-    def add(attributes)
-      validate_attributes!(attributes)
-
-      Vedeu.log("Registering menu: '#{attributes[:name]}'")
-
-      attributes.merge!({ items: model.new(attributes[:items]) })
-
-      storage.store(attributes[:name], attributes)
-    end
+    include Vedeu::Repository
+    extend  self
 
     # Access a menu by name.
     #
     # @param name [String]
     # @return [Vedeu::Menu]
     def use(name)
-      find(name).fetch(:items)
+      if registered?(name)
+        find(name)
+
+      else
+        nil
+
+      end
     end
 
     private

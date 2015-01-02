@@ -8,6 +8,42 @@ module Vedeu
 
       include Vedeu::Common
 
+      class << self
+
+        # Directly write a view buffer to the terminal. Using this method means
+        # that the refresh event does not need to be triggered after creating
+        # the view or views, though can be later triggered if needed.
+        #
+        # @param block [Proc] The directives you wish to send to render. Must
+        #   include `view` or `views` with associated sub-directives.
+        #
+        # @example
+        #   Vedeu.render do
+        #     views do
+        #       view 'my_interface' do
+        #         ...
+        #
+        #   Vedeu.render do
+        #     view 'my_interface' do
+        #       ...
+        #
+        # @raise [InvalidSyntax] When the required block is not given.
+        # @return [Array] A collection of strings, each defining containing the
+        #   escape sequences and content. This data has already been sent to the
+        #   terminal to be output.
+        def render(&block)
+          return requires_block(__callee__) unless block_given?
+
+          Vedeu::Composition.build([], nil, nil, &block).interfaces.map do |interface|
+            Buffers.add(interface.attributes)
+
+            interface.name
+          end.map { |name| Vedeu::Refresh.by_name(name) }
+        end
+        alias_method :renders, :render
+
+      end
+
       # Returns an instance of DSL::Composition.
       #
       # @param model [Composition]
@@ -39,9 +75,7 @@ module Vedeu
       def render(&block)
         return requires_block(__callee__) unless block_given?
 
-        attributes = API::Composition.build({}, &block)
-
-        model.new(attributes).interfaces.map do |interface|
+        Vedeu::Composition.build([], nil, nil, &block).interfaces.map do |interface|
           Buffers.add(interface.attributes)
 
           interface.name
@@ -64,8 +98,12 @@ module Vedeu
       def view(name = '', &block)
         return requires_block(__callee__) unless block_given?
 
-        model.add_interface({ name: name, parent: view_attributes }, &block)
+        new_interface      = Vedeu::Interface.build(nil, model, nil, nil, &block)
+        new_interface.name = name if defined_value?(name)
+
+        model.interfaces.add(new_interface)
       end
+      alias_method :interfaces, :view
 
       # Instruct Vedeu to treat contents of block as a single composition.
       #
@@ -99,7 +137,7 @@ module Vedeu
       def views(&block)
         return requires_block(__callee__) unless block_given?
 
-        model.add_interface(&block)
+        Vedeu::Composition.build(&block)
       end
       alias_method :composition, :views
 

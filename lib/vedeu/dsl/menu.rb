@@ -8,6 +8,15 @@ module Vedeu
     # @api public
     class Menu
 
+      # Define a new Menu.
+      #
+      # @param attributes [Hash]
+      # @param block [Proc]
+      # @return [Menu]
+      # def self.define(attributes = {}, &block)
+      #   new(attributes).define(&block)
+      # end
+
       # Return a new instance of DSL::Menu.
       #
       # @param model [Vedeu::Menu]
@@ -16,13 +25,43 @@ module Vedeu
         @model = model
       end
 
+      # @param block [Proc]
+      # @raise [InvalidSyntax] When the required block is not given.
+      # @return [Menu]
+      # def define(&block)
+      #   return requires_block('menu') unless block_given?
+
+      #   @self_before_instance_eval = eval('self', block.binding)
+
+      #   instance_eval(&block)
+
+      #   Vedeu::Menus.add(attributes)
+
+      #   self
+      # end
+
+      # Add an individual item to the menu.
+      #
+      # @param element [Object] An object you wish to add to the collection.
+      #
+      # @example
+      #   menu 'my_menu' do
+      #     item SomeClass.new
+      #     item SomeClass.new
+      #
+      # @return [Array]
+      def item(element)
+        model.collection << element
+      end
+
       # Define the items for the menu. Most powerful when used with one of your
       # model classes.
       #
       # In the 'my_playlist' example below, your `Track` model may return a
       # collection of tracks to populate the menu.
       #
-      # @param collection [Array]
+      # @param collection [Array<Object>] A collection of objects which make up
+      #   the menu items.
       #
       # @example
       #   menu 'my_menu' do
@@ -56,6 +95,17 @@ module Vedeu
       private
 
       attr_reader :model
+
+      # From API:
+      # The default values for a new instance of Menu.
+      #
+      # @return [Hash]
+      # def defaults
+      #   {
+      #     name:  '',
+      #     items: []
+      #   }
+      # end
 
     end # Menu
 

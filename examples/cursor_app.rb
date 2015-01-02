@@ -15,10 +15,13 @@ class VedeuCursorApp
 
   interface 'iron' do
     cursor  true
-    centred true
     colour  foreground: '#ff0000', background: '#000000'
-    height  4
-    width   15
+
+    geometry do
+      centred true
+      height  4
+      width   15
+    end
 
     # provide 'vim' direction keys
     keys do
@@ -32,10 +35,13 @@ class VedeuCursorApp
   interface 'gold' do
     cursor false
     colour foreground: '#00ff00', background: '#001100'
-    height 4
-    width  15
-    x      use('iron').left
-    y      use('iron').south
+
+    geometry do
+      height 4
+      width  15
+      x      use('iron').left
+      y      use('iron').south
+    end
   end
 
   keys do
@@ -47,7 +53,7 @@ class VedeuCursorApp
 
   render do
     view 'iron' do
-      line do
+      lines do
         stream do
           text 'A 23456789 '
         end
@@ -60,8 +66,10 @@ class VedeuCursorApp
           text ' helium'
         end
       end
-      line 'B 23456789 lithium beryllium boron nitrogen'
-      line do
+      lines do
+        line 'B 23456789 lithium beryllium boron nitrogen'
+      end
+      lines do
         stream do
           text 'C 23456789'
         end
@@ -74,10 +82,13 @@ class VedeuCursorApp
           text 'fluorine'
         end
       end
-      line 'D 23456789'
-      line
-      line 'E 23456789 neon sodium'
-      line do
+      lines do
+        line 'D 23456789'
+      end
+      lines do
+        line 'E 23456789 neon sodium'
+      end
+      lines do
         stream do
           text 'F 23456789 magnesium '
         end
@@ -86,8 +97,10 @@ class VedeuCursorApp
           text 'aluminium'
         end
       end
-      line 'G 23456789 silicon'
-      line do
+      lines do
+        line 'G 23456789 silicon'
+      end
+      lines do
         stream do
           background '#550000'
           foreground '#ff00ff'
@@ -98,7 +111,9 @@ class VedeuCursorApp
 
     view 'gold' do
       cursor false
-      line 'Cursor: '
+      lines do
+        line 'Cursor: '
+      end
     end
   end
 

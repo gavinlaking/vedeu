@@ -51,6 +51,10 @@ Hides the cursor for the named interface.
 
 Shows the cursor for the named interface.
 
+### `:_cursor_origin_`
+
+Moves the cursor to the top left position of the focussed interface. If this interface has a border,then this is respected.
+
 ### `:_exit_`
 
 When triggered, Vedeu will trigger a `:_cleanup_` event which you can define (to save files, etc) and attempt to exit.

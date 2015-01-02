@@ -1,3 +1,7 @@
+require 'vedeu/dsl/dsl'
+require 'vedeu/presentation/presentation'
+require 'vedeu/models/char'
+
 module Vedeu
 
   # A Stream can represent a character or collection of characters as part of a
@@ -7,37 +11,27 @@ module Vedeu
   # @api private
   class Stream
 
-    include Coercions
-    include Presentation
+    extend  Vedeu::DSL
+    include Vedeu::Presentation
 
-    attr_reader :attributes, :align, :text, :width, :parent
+    attr_accessor :colour, :parent, :style, :value
 
-    # Builds up a new Stream object and returns the attributes.
-    #
-    # @param attributes [Hash]
-    # @param block [Proc]
-    # @return [Hash]
-    def self.build(attributes = {}, &block)
-      new(attributes, &block).attributes
-    end
+    alias_method :content, :value
+    alias_method :data,    :value
+    alias_method :text,    :value
 
     # Returns a new instance of Stream.
     #
-    # @param attributes [Hash]
-    # @param block [Proc]
+    # @param value  [String]
+    # @param parent [Line]
+    # @param colour [Colour]
+    # @param style  [Style]
     # @return [Stream]
-    def initialize(attributes = {}, &block)
-      @attributes = defaults.merge(attributes)
-      @align      = @attributes[:align]
-      @text       = @attributes[:text]
-      @width      = @attributes[:width]
-      @parent     = @attributes[:parent]
-
-      if block_given?
-        @self_before_instance_eval = eval('self', block.binding)
-
-        instance_eval(&block)
-      end
+    def initialize(value, parent, colour, style)
+      @value  = value
+      @parent = parent
+      @colour = colour
+      @style  = style
     end
 
     # Returns an array of characters, each element is the escape sequences of
@@ -47,24 +41,12 @@ module Vedeu
     #
     # @return [Array]
     def chars
-      return [] if empty?
+      return [] if value.empty?
 
-      char_attrs = view_attributes.merge!({ parent: parent })
-
-      @_chars ||= content.chars.map do |c|
-        Char.new(char_attrs.merge!({ value: c })).to_s
+      value.chars.map do |char|
+        Vedeu::Char.new(char, parent, colour, style, nil).to_s
       end
     end
-
-    # Returns the text aligned if a width was set, otherwise just the text. This
-    # method also has the alias_method :data, a convenience method to provide
-    # Presentation with a consistent interface.
-    #
-    # @return [String]
-    def content
-      width? ? aligned : text
-    end
-    alias_method :data, :content
 
     # Returns the class responsible for defining the DSL methods of this model.
     #
@@ -77,50 +59,17 @@ module Vedeu
     #
     # @return [Boolean]
     def empty?
-      size == 0
+      value.empty?
     end
 
     # Returns the size of the content in characters without formatting.
     #
     # @return [Fixnum]
     def size
-      content.size
+      value.size
     end
 
     private
-
-    # Returns an aligned string if the string is shorter than the specified
-    # width; the excess area being padded by spaces.
-    #
-    # @return [String]
-    def aligned
-      case align
-      when :right  then text.rjust(width,  ' ')
-      when :centre then text.center(width, ' ')
-      else text.ljust(width, ' ')
-      end
-    end
-
-    # Returns a boolean to indicate whether this stream has a width set.
-    #
-    # @return [Boolean]
-    def width?
-      !!width
-    end
-
-    # The default values for a new instance of Stream.
-    #
-    # @return [Hash]
-    def defaults
-      {
-        colour: {},
-        style:  [],
-        text:   '',
-        width:  nil,
-        align:  :left,
-        parent: nil,
-      }
-    end
 
   end # Stream
 

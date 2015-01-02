@@ -4,6 +4,8 @@ module Vedeu
 
     class Geometry
 
+      include Vedeu::DSL::Shared
+
       # Returns an instance of DSL::Geometry.
       #
       # @param model [Geometry]
@@ -48,6 +50,20 @@ module Vedeu
         Vedeu.log(out_of_bounds('height')) if y_out_of_bounds?(value)
 
         model.height = value
+      end
+
+      # Specify the name of the interface for which the geometry belongs.
+      #
+      # @example
+      #   interface 'my_interface' do
+      #     geometry do
+      #       name 'my_interface'
+      #       ...
+      #
+      # @param value [String]
+      # @return [String]
+      def name(value)
+        model.name = value
       end
 
       # Specify the number of characters/columns wide the interface will be.
@@ -121,6 +137,31 @@ module Vedeu
       private
 
       attr_reader :model
+
+      # Returns the out of bounds error message for the given named attribute.
+      #
+      # @param name [String]
+      # @return [String]
+      def out_of_bounds(name)
+        "Note: For this terminal, the value of '#{name}' may lead to content " \
+        "that is outside the viewable area."
+      end
+
+      # Checks the value is within the terminal's confines.
+      #
+      # @param value [Fixnum]
+      # @return [Boolean]
+      def y_out_of_bounds?(value)
+        value < 1 || value > Terminal.height
+      end
+
+      # Checks the value is within the terminal's confines.
+      #
+      # @param value [Fixnum]
+      # @return [Boolean]
+      def x_out_of_bounds?(value)
+        value < 1 || value > Terminal.width
+      end
 
     end # Geometry
 

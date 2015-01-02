@@ -1,4 +1,6 @@
 require 'vedeu/dsl/dsl'
+
+require 'vedeu/support/common'
 require 'vedeu/models/model'
 require 'vedeu/presentation/presentation'
 
@@ -11,11 +13,12 @@ module Vedeu
   # @api private
   class Interface
 
-    include Vedeu::Model
-    include Vedeu::Presentation
-
     extend Vedeu::DSL
     extend Forwardable
+
+    include Vedeu::Common
+    include Vedeu::Model
+    include Vedeu::Presentation
 
     def_delegators :geometry, :north, :east,  :south,  :west,
                               :top,   :right, :bottom, :left,
@@ -28,6 +31,14 @@ module Vedeu
     alias_method :content, :lines
 
     class << self
+
+      include Vedeu::Common
+
+      def build(lines = [], parent, colour, style, &block)
+        model = new({ lines: lines, parent: parent, colour: colour, style: style })
+        model.deputy.instance_eval(&block) if block_given?
+        model
+      end
 
       # @see Vedeu::Interface.interface
       # @param attributes [Hash]
@@ -61,7 +72,9 @@ module Vedeu
       #
       # @return [Interface]
       def interface(name = '', &block)
-        build({ name: name }, &block).store
+        new_interface      = build(nil, nil, nil, nil, &block)
+        new_interface.name = name if defined_value?(name)
+        new_interface.store
       end
 
     end
@@ -76,10 +89,12 @@ module Vedeu
 
       @border   = Border.new(self, @attributes[:border])
       @colour   = @attributes[:colour]
+      @delay    = @attributes.fetch(:delay, 0.0)
       @geometry = Geometry.new(@attributes[:geometry])
+      @group    = @attributes.fetch(:group, '')
       @name     = @attributes[:name]
 
-      @lines = Vedeu::Model::Lines.new(self)
+      @lines    = Vedeu::Model::Lines.new(self, @attributes[:lines])
     end
 
     # @see Vedeu::API#interface
@@ -91,13 +106,6 @@ module Vedeu
       Registrar.record(attributes)
 
       self
-    end
-
-    # Returns the class responsible for defining the DSL methods of this model.
-    #
-    # @return [DSL::Interface]
-    def deputy
-      Vedeu::DSL::Interface.new(self)
     end
 
     # Returns an instance of Border.
@@ -123,11 +131,18 @@ module Vedeu
     end
 
     def delay
-      @delay ||= 0.0
+      @delay
     end
 
     def delay=(value)
       @delay = value
+    end
+
+    # Returns the class responsible for defining the DSL methods of this model.
+    #
+    # @return [DSL::Interface]
+    def deputy
+      Vedeu::DSL::Interface.new(self)
     end
 
     # Returns the position and size of the interface.
@@ -142,7 +157,7 @@ module Vedeu
     end
 
     def group
-      @group ||= ''
+      @group
     end
 
     def group=(value)
