@@ -18,14 +18,14 @@ module Vedeu
     # Returns a new instance of Line.
     #
     # @return [Line]
-    def initialize(streams = [], parent, colour, style)
+    def initialize(streams = [], parent = nil, colour = nil, style = nil)
       @streams = streams
       @parent  = parent
       @colour  = colour
       @style   = style
     end
 
-    def self.build(streams = [], parent, colour, style, &block)
+    def self.build(streams = [], parent = nil, colour = nil, style = nil, &block)
       model = new(streams, parent, colour, style)
       model.deputy.instance_eval(&block) if block_given?
       model
@@ -63,7 +63,7 @@ module Vedeu
     end
 
     def streams
-      # Vedeu::Model::Streams.new(self, streams)
+      Vedeu::Model::Streams.coerce(@streams, nil, self)
     end
     alias_method :data, :streams
 

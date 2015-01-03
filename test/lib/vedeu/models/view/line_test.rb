@@ -7,7 +7,7 @@ module Vedeu
     let(:described) { Line.new(streams, parent, colour, style) }
     let(:streams)   { [] }
     # let(:streams) {
-    #   Vedeu::Model::Streams.new(mock('Line'), [
+    #   Vedeu::Model::Streams.new([
     #     Stream.new('Something interesting ',
     #       mock('Line'),
     #       Colour.new({ foreground: '#ff0000' }),
@@ -20,7 +20,7 @@ module Vedeu
     #       mock('Line'),
     #       Colour.new({ foreground: '#0000ff' }),
     #       Style.new('normal'))
-    #   ])
+    #   ], nil, mock('Line'))
     # }
 
     let(:parent)    { mock('Interface') }

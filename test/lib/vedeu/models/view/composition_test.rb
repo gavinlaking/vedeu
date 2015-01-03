@@ -9,7 +9,7 @@ module Vedeu
     let(:colour)     {}
     let(:style)      {}
     let(:interface_collection) {
-      Vedeu::Model::Interfaces.new(described, interfaces)
+      Vedeu::Model::Interfaces.new(interfaces, nil, described)
     }
 
     before do

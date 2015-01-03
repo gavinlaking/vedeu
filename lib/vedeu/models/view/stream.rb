@@ -1,6 +1,6 @@
 require 'vedeu/dsl/dsl'
 require 'vedeu/presentation/presentation'
-require 'vedeu/models/char'
+require 'vedeu/models/view/char'
 
 module Vedeu
 
@@ -27,7 +27,7 @@ module Vedeu
     # @param colour [Colour]
     # @param style  [Style]
     # @return [Stream]
-    def initialize(value, parent, colour, style)
+    def initialize(value = nil, parent = nil, colour = nil, style = nil)
       @value  = value
       @parent = parent
       @colour = colour

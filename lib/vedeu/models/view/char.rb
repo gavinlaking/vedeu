@@ -23,7 +23,7 @@ module Vedeu
     # @param  position [Position]
     # @return [Char]
     #
-    def initialize(value, parent, colour, style, position)
+    def initialize(value = nil, parent = nil, colour = nil, style = nil, position = nil)
       @value    = value
       @parent   = parent
       @colour   = colour
@@ -55,7 +55,9 @@ module Vedeu
     end
 
     def value
-      @value.nil? ? '' : @value[0]
+      return '' unless @value
+
+      @value[0]
     end
 
     def parent_colour

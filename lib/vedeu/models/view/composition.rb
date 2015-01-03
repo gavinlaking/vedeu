@@ -13,7 +13,7 @@ module Vedeu
 
     attr_reader :interfaces
 
-    def self.build(interfaces = [], colour, style, &block)
+    def self.build(interfaces = [], colour = nil, style = nil, &block)
       model = new(interfaces, colour, style)
       model.deputy.instance_eval(&block) if block_given?
       model
@@ -24,7 +24,7 @@ module Vedeu
     # @param interfaces [Interfaces]
     # @return [Composition]
     def initialize(interfaces = [], colour = nil, style = nil)
-      @interfaces = Vedeu::Model::Interfaces.new(self, interfaces)
+      @interfaces = Vedeu::Model::Interfaces.new(interfaces, nil, self)
       @colour     = colour
       @style      = style
     end

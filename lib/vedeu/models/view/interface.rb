@@ -34,7 +34,7 @@ module Vedeu
 
       include Vedeu::Common
 
-      def build(lines = [], parent, colour, style, &block)
+      def build(lines = [], parent = nil, colour = nil, style = nil, &block)
         model = new({ lines: lines, parent: parent, colour: colour, style: style })
         model.deputy.instance_eval(&block) if block_given?
         model
@@ -45,7 +45,27 @@ module Vedeu
       # @param block [Proc]
       # @return [Interface]
       def define(attributes = {}, &block)
-        attrs = build(attributes, &block)
+        model = build(attributes, &block)
+
+        if model.name
+          event_name = "_refresh_#{model.name}_".to_sym
+
+          unless Vedeu.events.registered?(event_name)
+            Vedeu.event(event_name, { delay: model.delay }) do
+              Vedeu::Refresh.by_name(model.name)
+            end
+          end
+        end
+
+        if model.group
+          event_name = "_refresh_group_#{model.group}_".to_sym
+
+          unless Vedeu.events.registered?(event_name)
+            Vedeu.event(event_name, { delay: model.delay }) do
+              Vedeu::Refresh.by_group(model.group)
+            end
+          end
+        end
 
         Registrar.record(attrs)
 
@@ -94,7 +114,7 @@ module Vedeu
       @group    = @attributes.fetch(:group, '')
       @name     = @attributes[:name]
 
-      @lines    = Vedeu::Model::Lines.new(self, @attributes[:lines])
+      @lines    = Vedeu::Model::Lines.new(@attributes[:lines], nil, self)
     end
 
     # @see Vedeu::API#interface
