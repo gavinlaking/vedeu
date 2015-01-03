@@ -34,22 +34,6 @@ module Vedeu
     def_delegators Vedeu::Menu,             :menu
     def_delegators Vedeu::Terminal,         :height, :width, :resize
 
-    # Used to define interfaces etc. of the client application before launching.
-    #
-    # @example
-    #   Vedeu.define do
-    #     ...
-    #   end
-    #
-    # @param block [Proc]
-    # @return []
-    # @todo Implementation and more documentation required.
-    def define(&block)
-      return requires_block(__callee__) unless block_given?
-
-      Vedeu::DSL::Builder.build(&block)
-    end
-
   end # API
 
   extend API

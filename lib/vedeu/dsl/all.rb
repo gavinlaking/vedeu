@@ -1,4 +1,3 @@
-require 'vedeu/dsl/builder'
 require 'vedeu/dsl/shared'
 
 require 'vedeu/dsl/colour'
