@@ -15,7 +15,7 @@ module Vedeu
     #
     # @return [String]
     def named
-      ["\e[", foreground_codes[colour], 'm'].join
+      ["\e[", Esc.foreground_codes[colour], 'm'].join
     end
 
     # Returns an escape sequence.
@@ -36,14 +36,6 @@ module Vedeu
         numbered
 
       end
-    end
-
-    # Produces the foreground named colour escape sequence hash from
-    # {Vedeu::Translator#codes}
-    #
-    # @return [Hash]
-    def foreground_codes
-      Esc.codes
     end
 
   end # Foreground

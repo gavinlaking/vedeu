@@ -15,7 +15,7 @@ module Vedeu
     #
     # @return [String]
     def named
-      ["\e[", background_codes[colour], 'm'].join
+      ["\e[", Esc.background_codes[colour], 'm'].join
     end
 
     # Returns an escape sequence.
@@ -36,14 +36,6 @@ module Vedeu
         numbered
 
       end
-    end
-
-    # Produces the background named colour escape sequence hash from the
-    # foreground escape sequence hash.
-    #
-    # @return [Hash]
-    def background_codes
-      Esc.codes.inject({}) { |h, (k, v)| h.merge(k => v + 10) }
     end
 
   end # Background

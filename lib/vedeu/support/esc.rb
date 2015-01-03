@@ -8,6 +8,8 @@ module Vedeu
 
     extend self
 
+    # Produces the foreground named colour escape sequence hash.
+    #
     # @return [Hash]
     def codes
       {
@@ -21,6 +23,15 @@ module Vedeu
         white:   37,
         default: 39,
       }
+    end
+    alias_method :foreground_codes, :codes
+
+    # Produces the background named colour escape sequence hash from the
+    # foreground escape sequence hash.
+    #
+    # @return [Hash]
+    def background_codes
+      Esc.codes.inject({}) { |h, (k, v)| h.merge(k => v + 10) }
     end
 
     # Dynamically creates methods for each terminal named colour. When a block
@@ -36,12 +47,15 @@ module Vedeu
     #   Esc.on_blue { 'some text' } # => "\e[44msome text\e[49m"
     #
     # @return [String]
-    codes.each do |key, code|
+    foreground_codes.each do |key, code|
       define_method(key) do |&blk|
         "\e[#{code}m" + (blk ? blk.call + "\e[39m" : '')
       end
+    end
+
+    background_codes.each do |key, code|
       define_method('on_' + key.to_s) do |&blk|
-        "\e[#{code + 10}m" + (blk ? blk.call + "\e[49m" : '')
+        "\e[#{code}m" + (blk ? blk.call + "\e[49m" : '')
       end
     end
 
