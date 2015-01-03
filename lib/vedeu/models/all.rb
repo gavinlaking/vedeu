@@ -1,3 +1,4 @@
+require 'vedeu/models/carousel'
 require 'vedeu/models/collection'
 
 require 'vedeu/models/view/all'
