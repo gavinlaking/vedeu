@@ -1,6 +1,6 @@
-
 require 'vedeu/api/api'
 require 'vedeu/configuration/all'
+require 'vedeu/cursor/all'
 require 'vedeu/dsl/all'
 require 'vedeu/input/all'
 require 'vedeu/models/all'

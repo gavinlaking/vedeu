@@ -1,4 +1,4 @@
-require 'vedeu/models/cursor'
+require 'vedeu/cursor/cursor'
 require 'vedeu/support/terminal'
 
 module Vedeu
@@ -104,7 +104,7 @@ module Vedeu
       x = cursor.x + dx
 
       x = 1              if x <= 1
-      x = Terminal.width if x >= Terminal.width
+      x = terminal_width if x >= terminal_width
 
       if border? && border.left? && x <= (geometry.left + 1)
         x = geometry.left + 1
@@ -132,7 +132,7 @@ module Vedeu
       y = cursor.y + dy
 
       y = 1               if y <= 1
-      y = Terminal.height if y >= Terminal.height
+      y = terminal_height if y >= terminal_height
 
       if border? && border.top? && y <= (geometry.top + 1)
         y = geometry.top + 1
@@ -150,6 +150,14 @@ module Vedeu
         y
 
       end
+    end
+
+    def terminal_height
+      Terminal.height
+    end
+
+    def terminal_width
+      Terminal.width
     end
 
   end # MoveCursor

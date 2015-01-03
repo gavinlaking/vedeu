@@ -1,3 +1,5 @@
+require 'vedeu/support/esc'
+
 module Vedeu
 
   class Visible
@@ -11,6 +13,16 @@ module Vedeu
 
       else
         !!visible
+
+      end
+    end
+
+    def cursor
+      if visible?
+        Esc.string('show_cursor')
+
+      else
+        Esc.string('hide_cursor')
 
       end
     end

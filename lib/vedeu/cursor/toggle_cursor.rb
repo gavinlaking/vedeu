@@ -1,4 +1,4 @@
-require 'vedeu/models/cursor'
+require 'vedeu/cursor/cursor'
 require 'vedeu/support/visible'
 
 module Vedeu

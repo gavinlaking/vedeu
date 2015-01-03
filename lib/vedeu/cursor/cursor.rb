@@ -1,6 +1,7 @@
 require 'vedeu/models/model'
 require 'vedeu/support/esc'
-require 'vedeu/support/terminal'
+require 'vedeu/support/position'
+require 'vedeu/support/visible'
 
 module Vedeu
 
@@ -48,9 +49,9 @@ module Vedeu
 
     private
 
-    # @return [Class] The repository class for this model.
+    # @return [Repository] The repository class for this model.
     def repository
-      Vedeu::Cursors
+      Vedeu.cursors_repository
     end
 
     # Returns the escape sequence to position the cursor and set its visibility.
@@ -64,24 +65,14 @@ module Vedeu
     #
     # @return [String]
     def position
-      @_position ||= Position.new(y, x).to_s
+      Position.new(y, x).to_s
     end
 
     # Returns the escape sequence for setting the visibility of the cursor.
     #
     # @return [String]
     def visibility
-      if visible.visible?
-        Esc.string('show_cursor')
-
-      else
-        Esc.string('hide_cursor')
-
-      end
-    end
-
-    def visible
-      @visible ||= Visible.new(state)
+      Visible.new(state).cursor
     end
 
   end # Cursor

@@ -43,6 +43,20 @@ module Vedeu
       end
     end
 
+    describe '#cursor' do
+      it { return_type_for(described.cursor, String) }
+
+      context 'when visible' do
+        it { return_value_for(described.cursor, "\e[?25h") }
+      end
+
+      context 'when not visible' do
+        let(:visible) { false }
+
+        it { return_value_for(described.cursor, "\e[?25l") }
+      end
+    end
+
     describe '#visible?' do
       context 'when visible' do
         it { return_type_for(described.visible?, TrueClass) }
