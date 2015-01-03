@@ -1,3 +1,7 @@
+require 'vedeu/configuration/configuration'
+require 'vedeu/presentation/translator'
+require 'vedeu/support/esc'
+
 module Vedeu
 
   # The class represents one half (the other, can be found at

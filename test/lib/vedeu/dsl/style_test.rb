@@ -8,20 +8,11 @@ module Vedeu
 
       describe '#style' do
         let(:model) { Vedeu::ModelTestClass.new({}) }
+        let(:args)  { :bold }
 
-        subject { Vedeu::DSL::ModelTestClass.new(model) }
+        subject { Vedeu::DSL::ModelTestClass.new(model).style(args) }
 
-        context 'with no arguments' do
-          it { return_type_for(subject.style, Vedeu::Style) }
-        end
-
-        context 'with one argument' do
-          it { return_type_for(subject.style(:bold), Vedeu::Style) }
-        end
-
-        context 'with multiple arguments' do
-          it { return_type_for(subject.style(:bold, :blink), Vedeu::Style) }
-        end
+        it { return_type_for(subject, Vedeu::Style) }
       end
 
     end # Style

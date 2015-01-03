@@ -1,4 +1,5 @@
 require 'vedeu/support/common'
+require 'vedeu/support/coercions'
 
 module Vedeu
 
@@ -9,16 +10,17 @@ module Vedeu
   class Style
 
     include Vedeu::Common
+    include Vedeu::Coercions
 
-    attr_accessor :values
-    attr_reader   :attributes
+    attr_accessor :value
 
     # Return a new instance of Style.
     #
-    # @param values [String|Symbol] The style value or values collection.
+    # @param values [Array|Array<String>|Array<Symbol>|String|Symbol]
+    #   The style value or a collection of values.
     # @return [Style]
-    def initialize(*values)
-      @values = values
+    def initialize(value = nil)
+      @value = value
     end
 
     # Return an attributes hash for this class.
@@ -26,7 +28,7 @@ module Vedeu
     # @return [Hash]
     def attributes
       {
-        style: values
+        style: value
       }
     end
 
@@ -34,11 +36,9 @@ module Vedeu
     #
     # @return [String]
     def to_s
-      return '' unless defined_value?(values)
+      return '' unless defined_value?(value)
 
-      @_sequences ||= values.flatten.map do |value|
-        Esc.string(value)
-      end.join
+      @_sequences ||= Array(value).flatten.map { |v| Esc.string(v) }.join
     end
     alias_method :escape_sequences, :to_s
 

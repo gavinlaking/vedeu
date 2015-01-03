@@ -1,3 +1,5 @@
+require 'vedeu/presentation/presentation'
+
 module Vedeu
 
   #
@@ -10,6 +12,8 @@ module Vedeu
   # @api private
   #
   class Char
+
+    include Vedeu::Presentation
 
     attr_accessor :parent
 
@@ -32,26 +36,6 @@ module Vedeu
     end
 
     #
-    # @return [String] An escape sequence with value interpolated.
-    #
-    def to_s
-      render_position { render_colour { render_style { value } } }
-    end
-
-    private
-
-    attr_reader :position
-
-    def colour
-      return '' unless @colour
-
-      @colour
-    end
-
-    def style
-      return '' unless @style
-
-      @style
     end
 
     def value
@@ -60,43 +44,6 @@ module Vedeu
       @value[0]
     end
 
-    def parent_colour
-      return '' unless parent
-
-      parent.colour
-    end
-
-    def parent_style
-      return '' unless parent
-
-      parent.style
-    end
-
-    def render_colour
-      [
-        colour,
-        yield,
-        parent_colour
-      ].join
-    end
-
-    def render_position
-      if position
-        position.to_s { yield }
-
-      else
-        yield
-
-      end
-    end
-
-    def render_style
-      [
-        style,
-        yield,
-        parent_style
-      ].join
-    end
 
   end # Char
 

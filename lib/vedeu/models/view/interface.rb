@@ -24,11 +24,13 @@ module Vedeu
                               :top,   :right, :bottom, :left,
                               :width, :height, :origin
 
-    attr_reader :attributes, :delay, :parent
+    attr_reader :attributes, :delay
     attr_writer :cursor, :geometry
 
-    attr_accessor :colour, :lines, :parent
+    attr_accessor :lines
     alias_method :content, :lines
+
+    attr_accessor :parent
 
     class << self
 
@@ -114,7 +116,7 @@ module Vedeu
       @group    = @attributes.fetch(:group, '')
       @name     = @attributes[:name]
 
-      @lines    = Vedeu::Model::Lines.new(@attributes[:lines], nil, self)
+      @lines    = Vedeu::Model::Lines.new(@attributes[:lines], self)
     end
 
     # @see Vedeu::API#interface
@@ -187,6 +189,7 @@ module Vedeu
     def lines
       @lines
     end
+    alias_method :value, :lines
 
     def lines=(value)
       @lines = value
@@ -198,22 +201,6 @@ module Vedeu
 
     def name=(value)
       @name = value
-    end
-
-    def parent
-      @parent
-    end
-
-    def parent=(value)
-      @parent = value
-    end
-
-    def style
-      @style
-    end
-
-    def style=(value)
-      @style = value
     end
 
     private
@@ -234,6 +221,7 @@ module Vedeu
         geometry: {},
         lines:    [],
         parent:   nil,
+        style:    '',
       }
     end
 

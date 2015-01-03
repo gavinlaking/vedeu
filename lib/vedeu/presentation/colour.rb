@@ -1,3 +1,5 @@
+require 'vedeu/support/coercions'
+
 module Vedeu
 
   # Provides a container for terminal escape sequences controlling the
@@ -6,6 +8,8 @@ module Vedeu
   #
   # @api private
   class Colour
+
+    include Vedeu::Coercions
 
     attr_reader :attributes, :background, :foreground
 

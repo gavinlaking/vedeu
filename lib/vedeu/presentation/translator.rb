@@ -1,3 +1,5 @@
+require 'vedeu/support/coercions'
+
 module Vedeu
 
   # Convert a CSS/HTML colour string into a terminal escape sequence.
@@ -21,6 +23,8 @@ module Vedeu
   # @todo More documentation required (create a fancy chart!)
   # @api private
   class Translator
+
+    include Vedeu::Coercions
 
     # Convert a CSS/HTML colour string into a terminal escape sequence.
     #
@@ -58,6 +62,13 @@ module Vedeu
 
       end
     end
+    alias_method :to_s, :escape_sequence
+
+    # @return [String]
+    def colour
+      @colour
+    end
+    alias_method :value, :colour
 
     private
 

@@ -179,10 +179,6 @@ module Vedeu
       it { skip }
     end
 
-    describe '#style' do
-      it { skip }
-    end
-
   end # Interface
 
 end # Vedeu

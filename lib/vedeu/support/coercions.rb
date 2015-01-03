@@ -9,6 +9,21 @@ module Vedeu
 
     include Vedeu::Common
 
+    # Produces new objects of the correct class from the value, ignores objects
+    # that have already been coerced.
+    def coerce(value)
+      if value.is_a?(self)
+        value
+
+      elsif value.nil?
+        new
+
+      else
+        new(value)
+
+      end
+    end
+
     # Produces new objects of the correct class from attributes hashes,
     # ignores objects that have already been coerced.
     #

@@ -26,8 +26,8 @@ module Vedeu
       #     ...
       #
       # @return [Vedeu::Style]
-      def style(*value_or_values)
-        model.style = Vedeu::Style.new(*value_or_values)
+      def style(value)
+        model.style = Vedeu::Style.coerce(value)
       end
       alias_method :styles, :style
 

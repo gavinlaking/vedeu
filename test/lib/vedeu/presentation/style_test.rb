@@ -4,51 +4,62 @@ module Vedeu
 
   describe Style do
 
-    let(:described) { Style.new('bold') }
+    let(:described) { Style }
 
     describe '#initialize' do
-      it { described.must_be_instance_of(Style) }
-      it { assigns(described, '@values', ['bold']) }
+      subject { described.new('bold') }
+
+      it { return_type_for(subject, described) }
+      it { assigns(subject, '@value', 'bold') }
     end
 
     describe '#attributes' do
+      subject { described.new('bold').attributes }
+
+      it { return_type_for(subject, Hash) }
+
       it 'returns an attributes hash for this instance' do
-        described.attributes.must_equal({ style: ['bold'] })
+        subject.must_equal({ style: 'bold' })
       end
     end
 
     describe '#to_s' do
-      it { return_type_for(described.to_s, String) }
+      let(:value) {}
+
+      subject { described.new(value).to_s }
+
+      it { return_type_for(subject, String) }
+      it { return_value_for(subject, '') }
 
       describe 'for a single style' do
-        let(:values) { 'normal' }
+        let(:value) { 'normal' }
 
         it 'returns an escape sequence' do
-          Style.new(values).to_s.must_equal("\e[24m\e[22m\e[27m")
+          subject.must_equal("\e[24m\e[22m\e[27m")
         end
       end
 
       describe 'for multiple styles' do
-        let(:values) { ['normal', 'underline'] }
+        let(:value) { ['normal', 'underline'] }
 
         it 'returns an escape sequence for multiple styles' do
-          Style.new(values).to_s.must_equal("\e[24m\e[22m\e[27m\e[4m")
+          subject.must_equal("\e[24m\e[22m\e[27m\e[4m")
         end
       end
 
       describe 'for an unknown style' do
-        let(:values) { 'unknown' }
+        let(:value) { 'unknown' }
 
         it 'returns an empty string for an unknown style' do
-          Style.new(values).to_s.must_equal('')
+          subject.must_equal('')
         end
       end
 
       describe 'for an empty or nil' do
-        let(:values) { '' }
+        let(:value) { '' }
 
         it 'returns an empty string for empty or nil' do
-          Style.new(values).to_s.must_equal('')
+          subject.must_equal('')
         end
       end
     end

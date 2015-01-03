@@ -80,10 +80,6 @@ module Vedeu
       end
     end
 
-    describe '#to_s' do
-      it { skip }
-    end
-
   end # Stream
 
 end # Vedeu

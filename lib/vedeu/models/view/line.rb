@@ -13,7 +13,7 @@ module Vedeu
     extend  Vedeu::DSL
     include Vedeu::Presentation
 
-    attr_accessor :colour, :parent, :style
+    attr_accessor :parent
 
     # Returns a new instance of Line.
     #
@@ -63,9 +63,9 @@ module Vedeu
     end
 
     def streams
-      Vedeu::Model::Streams.coerce(@streams, nil, self)
+      Vedeu::Model::Streams.coerce(@streams, self)
     end
-    alias_method :data, :streams
+    alias_method :value, :streams
 
     private
 

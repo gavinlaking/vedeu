@@ -6,28 +6,74 @@ module Vedeu
   # @api private
   module Presentation
 
+    #
+    # @return [Colour]
+    def colour
+      Colour.coerce(@colour)
+    end
+
+    #
+    # @return [Colour]
+    def colour=(value)
+      @colour = Colour.coerce(value)
+    end
+
+    #
+    # @return [Style]
+    def style
+      Style.coerce(@style)
+    end
+
+    #
+    # @return [Colour]
+    def style=(value)
+      @style = Style.coerce(value)
+    end
+
     # Converts the colours and styles to escape sequences, and if the parent
     # model has previously set the colour and style, reverts back to that for
     # consistent formatting.
     #
-    # @return [String]
+    # @return [String] An escape sequence with value interpolated.
     def to_s
-      render_colour do
-        render_style do
-          data
-        end
-      end
+      render_position { render_colour { render_style { value } } }
     end
 
     private
+
+    def parent_colour
+      return '' unless parent
+
+      parent.colour
+    end
+
+    def parent_style
+      return '' unless parent
+
+      parent.style
+    end
 
     # Renders the colour attributes of the receiver, yields (to then render the
     # the styles) and once returned, attempts to set the colours back to the
     # those of the receiver's parent.
     #
     # @return [String]
-    def render_colour(&block)
-      [ colour.to_s, yield, parent.colour.to_s ].join
+    def render_colour
+      [
+        colour,
+        yield,
+        parent_colour
+      ].join
+    end
+
+    def render_position
+      if self.respond_to?(:position) && position.is_a?(Position)
+        position.to_s { yield }
+
+      else
+        yield
+
+      end
     end
 
     # Renders the style attributes of the receiver, yields (to then render the
@@ -35,8 +81,12 @@ module Vedeu
     # the style back to that of the receiver's parent.
     #
     # @return [String]
-    def render_style(&block)
-      [ style.to_s, yield, parent.style.to_s ].join
+    def render_style
+      [
+        style,
+        yield,
+        parent_style
+      ].join
     end
 
   end # Presentation

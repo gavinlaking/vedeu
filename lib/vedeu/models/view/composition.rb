@@ -1,6 +1,7 @@
 require 'vedeu/dsl/dsl'
 require 'vedeu/dsl/composition'
 require 'vedeu/models/collection'
+require 'vedeu/presentation/presentation'
 
 module Vedeu
 
@@ -10,8 +11,10 @@ module Vedeu
   class Composition
 
     extend Vedeu::DSL
+    include Vedeu::Presentation
 
-    attr_reader :interfaces
+    attr_reader  :interfaces
+    alias_method :value, :interfaces
 
     def self.build(interfaces = [], colour = nil, style = nil, &block)
       model = new(interfaces, colour, style)

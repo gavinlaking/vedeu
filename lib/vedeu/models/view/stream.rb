@@ -14,7 +14,7 @@ module Vedeu
     extend  Vedeu::DSL
     include Vedeu::Presentation
 
-    attr_accessor :colour, :parent, :style, :value
+    attr_accessor :parent, :value
 
     alias_method :content, :value
     alias_method :data,    :value

@@ -4,24 +4,25 @@ module Vedeu
 
   describe Line do
 
-    let(:described) { Line.new(streams, parent, colour, style) }
-    let(:streams)   { [] }
-    # let(:streams) {
-    #   Vedeu::Model::Streams.new([
-    #     Stream.new('Something interesting ',
-    #       mock('Line'),
-    #       Colour.new({ foreground: '#ff0000' }),
-    #       Style.new('normal')),
-    #     Stream.new('on this line ',
-    #       mock('Line'),
-    #       Colour.new({ foreground: '#00ff00' }),
-    #       Style.new('normal')),
-    #     Stream.new('would be cool, eh?',
-    #       mock('Line'),
-    #       Colour.new({ foreground: '#0000ff' }),
-    #       Style.new('normal'))
-    #   ], nil, mock('Line'))
-    # }
+    let(:described) { Line }
+    let(:streams)   {
+      [
+        Stream.new('Something interesting ',
+          streams_parent,
+          Colour.new({ foreground: '#ffff00' }),
+          Style.new('normal')),
+        Stream.new('on this line ',
+          streams_parent,
+          Colour.new({ foreground: '#00ff00' }),
+          Style.new('normal')),
+        Stream.new('would be cool, eh?',
+          streams_parent,
+          Colour.new({ foreground: '#0000ff' }),
+          Style.new('normal'))
+      ]
+    }
+
+    let(:streams_parent) { Line.new(nil, parent, colour, style) }
 
     let(:parent)    { mock('Interface') }
     let(:colour)    { Colour.new({ foreground: '#ff0000', background: '#000000' }) }
@@ -32,56 +33,98 @@ module Vedeu
       parent.stubs(:style)
     end
 
-
     describe '#initialize' do
-      it { return_type_for(described, Line) }
-      it { assigns(described, '@streams', streams) }
-      it { assigns(described, '@parent', parent) }
-      it { assigns(described, '@colour', colour) }
-      it { assigns(described, '@style', style) }
+      subject { described.new(streams, parent, colour, style) }
+
+      it { return_type_for(subject, Line) }
+      it { assigns(subject, '@streams', streams) }
+      it { assigns(subject, '@parent', parent) }
+      it { assigns(subject, '@colour', colour) }
+      it { assigns(subject, '@style', style) }
     end
 
     describe '#chars' do
-      it { skip; return_type_for(described.chars, Array) }
+      subject { described.new(streams, parent, colour, style).chars }
 
-      # context 'when there is no content' do
-      #   it { described.chars.must_equal([]) }
-      # end
+      it { return_type_for(subject, Array) }
 
-      # context 'when there is content' do
-      #   it 'returns an Array' do
-      #     described.chars.must_equal(
-      #       [
-      #         "\e[38;2;255;0;0mS", "\e[38;2;255;0;0mo", "\e[38;2;255;0;0mm",
-      #         "\e[38;2;255;0;0me", "\e[38;2;255;0;0mt", "\e[38;2;255;0;0mh",
-      #         "\e[38;2;255;0;0mi", "\e[38;2;255;0;0mn", "\e[38;2;255;0;0mg",
-      #         "\e[38;2;255;0;0m ", "\e[38;2;255;0;0mi", "\e[38;2;255;0;0mn",
-      #         "\e[38;2;255;0;0mt", "\e[38;2;255;0;0me", "\e[38;2;255;0;0mr",
-      #         "\e[38;2;255;0;0me", "\e[38;2;255;0;0ms", "\e[38;2;255;0;0mt",
-      #         "\e[38;2;255;0;0mi", "\e[38;2;255;0;0mn", "\e[38;2;255;0;0mg",
-      #         "\e[38;2;255;0;0m ", "\e[38;2;0;255;0mo", "\e[38;2;0;255;0mn",
-      #         "\e[38;2;0;255;0m ", "\e[38;2;0;255;0mt", "\e[38;2;0;255;0mh",
-      #         "\e[38;2;0;255;0mi", "\e[38;2;0;255;0ms", "\e[38;2;0;255;0m ",
-      #         "\e[38;2;0;255;0ml", "\e[38;2;0;255;0mi", "\e[38;2;0;255;0mn",
-      #         "\e[38;2;0;255;0me", "\e[38;2;0;255;0m ", "\e[38;2;0;0;255mw",
-      #         "\e[38;2;0;0;255mo", "\e[38;2;0;0;255mu", "\e[38;2;0;0;255ml",
-      #         "\e[38;2;0;0;255md", "\e[38;2;0;0;255m ", "\e[38;2;0;0;255mb",
-      #         "\e[38;2;0;0;255me", "\e[38;2;0;0;255m ", "\e[38;2;0;0;255mc",
-      #         "\e[38;2;0;0;255mo", "\e[38;2;0;0;255mo", "\e[38;2;0;0;255ml",
-      #         "\e[38;2;0;0;255m,", "\e[38;2;0;0;255m ", "\e[38;2;0;0;255me",
-      #         "\e[38;2;0;0;255mh", "\e[38;2;0;0;255m?"
-      #       ]
-      #     )
-      #   end
-      # end
+      context 'when there is no content' do
+        let(:streams) { [] }
+
+        it { subject.must_equal([]) }
+      end
+
+      context 'when there is content' do
+        it 'returns an Array' do
+          subject.must_equal(
+            [
+              "\e[38;2;255;255;0m\e[24m\e[22m\e[27mS\e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;255;255;0m\e[24m\e[22m\e[27mo\e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;255;255;0m\e[24m\e[22m\e[27mm\e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;255;255;0m\e[24m\e[22m\e[27me\e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;255;255;0m\e[24m\e[22m\e[27mt\e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;255;255;0m\e[24m\e[22m\e[27mh\e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;255;255;0m\e[24m\e[22m\e[27mi\e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;255;255;0m\e[24m\e[22m\e[27mn\e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;255;255;0m\e[24m\e[22m\e[27mg\e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;255;255;0m\e[24m\e[22m\e[27m \e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;255;255;0m\e[24m\e[22m\e[27mi\e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;255;255;0m\e[24m\e[22m\e[27mn\e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;255;255;0m\e[24m\e[22m\e[27mt\e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;255;255;0m\e[24m\e[22m\e[27me\e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;255;255;0m\e[24m\e[22m\e[27mr\e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;255;255;0m\e[24m\e[22m\e[27me\e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;255;255;0m\e[24m\e[22m\e[27ms\e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;255;255;0m\e[24m\e[22m\e[27mt\e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;255;255;0m\e[24m\e[22m\e[27mi\e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;255;255;0m\e[24m\e[22m\e[27mn\e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;255;255;0m\e[24m\e[22m\e[27mg\e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;255;255;0m\e[24m\e[22m\e[27m \e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;0;255;0m\e[24m\e[22m\e[27mo\e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;0;255;0m\e[24m\e[22m\e[27mn\e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;0;255;0m\e[24m\e[22m\e[27m \e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;0;255;0m\e[24m\e[22m\e[27mt\e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;0;255;0m\e[24m\e[22m\e[27mh\e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;0;255;0m\e[24m\e[22m\e[27mi\e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;0;255;0m\e[24m\e[22m\e[27ms\e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;0;255;0m\e[24m\e[22m\e[27m \e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;0;255;0m\e[24m\e[22m\e[27ml\e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;0;255;0m\e[24m\e[22m\e[27mi\e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;0;255;0m\e[24m\e[22m\e[27mn\e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;0;255;0m\e[24m\e[22m\e[27me\e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;0;255;0m\e[24m\e[22m\e[27m \e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;0;0;255m\e[24m\e[22m\e[27mw\e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;0;0;255m\e[24m\e[22m\e[27mo\e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;0;0;255m\e[24m\e[22m\e[27mu\e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;0;0;255m\e[24m\e[22m\e[27ml\e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;0;0;255m\e[24m\e[22m\e[27md\e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;0;0;255m\e[24m\e[22m\e[27m \e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;0;0;255m\e[24m\e[22m\e[27mb\e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;0;0;255m\e[24m\e[22m\e[27me\e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;0;0;255m\e[24m\e[22m\e[27m \e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;0;0;255m\e[24m\e[22m\e[27mc\e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;0;0;255m\e[24m\e[22m\e[27mo\e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;0;0;255m\e[24m\e[22m\e[27mo\e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;0;0;255m\e[24m\e[22m\e[27ml\e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;0;0;255m\e[24m\e[22m\e[27m,\e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;0;0;255m\e[24m\e[22m\e[27m \e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;0;0;255m\e[24m\e[22m\e[27me\e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;0;0;255m\e[24m\e[22m\e[27mh\e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m",
+              "\e[38;2;0;0;255m\e[24m\e[22m\e[27m?\e[24m\e[22m\e[27m\e[38;2;255;0;0m\e[48;2;0;0;0m"
+            ]
+          )
+        end
+      end
     end
 
     describe '#deputy' do
-      it { return_type_for(described.deputy, DSL::Line) }
+      subject { described.new(streams, parent, colour, style).deputy }
+
+      it { return_type_for(subject, DSL::Line) }
     end
 
     describe '#empty?' do
-      subject { described.empty? }
+      subject { described.new(streams, parent, colour, style).empty? }
 
       context 'when there is no content' do
         let(:streams) { [] }
@@ -95,7 +138,7 @@ module Vedeu
     end
 
     describe '#size' do
-      subject { described.size }
+      subject { described.new(streams, parent, colour, style).size }
 
       it { return_type_for(subject, Fixnum) }
 
@@ -105,22 +148,53 @@ module Vedeu
     end
 
     describe '#streams' do
-      subject { described.streams }
+      subject { described.new(streams, parent, colour, style).streams }
 
       it { return_type_for(subject, Vedeu::Model::Streams) }
     end
 
     describe '#to_s' do
-      subject { described.to_s }
+      subject { described.new(streams, parent, colour, style).to_s }
 
       it { return_type_for(subject, String) }
 
       it 'returns the line complete with formatting' do
+        # (starts in Line colour)
+        # (starts in Line style)
+        # Stream 1 colour
+        # Stream 1 style
+        # Stream 1 value
+        # (resets style to Line style)
+        # (resets colour to Line colour)
+        # Stream 2 colour
+        # Stream 2 style
+        # Stream 2 value
+        # (resets style to Line style)
+        # (resets colour to Line colour)
+        # Stream 3 colour
+        # Stream 3 style
+        # Stream 3 value
+        # (resets style to Line style)
+        # (resets colour to Line colour)
+
         subject.must_equal(
-          "\e[38;2;255;0;0m\e[48;2;0;0;0m" \
-          "\e[24m\e[22m\e[27m\e[38;2;255;0;0mSomething interesting "\
-          "\e[38;2;0;255;0mon this line " \
-          "\e[38;2;0;0;255mwould be cool, eh?"
+          "\e[38;2;255;0;0m\e[48;2;0;0;0m"  \
+          "\e[24m\e[22m\e[27m"              \
+          "\e[38;2;255;255;0m"              \
+          "\e[24m\e[22m\e[27m"              \
+          "Something interesting "          \
+          "\e[24m\e[22m\e[27m"              \
+          "\e[38;2;255;0;0m\e[48;2;0;0;0m"  \
+          "\e[38;2;0;255;0m"                \
+          "\e[24m\e[22m\e[27m"              \
+          "on this line "                   \
+          "\e[24m\e[22m\e[27m"              \
+          "\e[38;2;255;0;0m"                \
+          "\e[48;2;0;0;0m\e[38;2;0;0;255m"  \
+          "\e[24m\e[22m\e[27m"              \
+          "would be cool, eh?"              \
+          "\e[24m\e[22m\e[27m"              \
+          "\e[38;2;255;0;0m\e[48;2;0;0;0m"
         )
       end
     end
