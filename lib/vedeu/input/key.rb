@@ -1,16 +1,39 @@
+require 'vedeu/support/common'
+
 module Vedeu
 
+  #
   # A single keypress or combination of keypresses bound to a specific action.
+  #
   class Key
+
+    include Vedeu::Common
+
+    class << self
+
+      include Vedeu::Common
+
+      # Creates a new instance of Key.
+      #
+      # @see Vedeu::Key#initialize
+      def define(input = nil, &block)
+        return requires_block(__callee__) unless block_given?
+
+        new(input, &block)
+      end
+
+    end
 
     # Returns a new instance of Key.
     #
     # @param input [String|Symbol]
     # @param output [Proc]
     # @return [Key]
-    def initialize(input, output)
+    def initialize(input = nil, &block)
+      return requires_block(__callee__) unless block_given?
+
       @input  = input
-      @output = output
+      @output = block
     end
 
     # Returns the key defined.
@@ -21,20 +44,14 @@ module Vedeu
     end
     alias_method :key, :input
 
-    # The procedure to call when the key is pressed.
-    #
-    # @return []
-    def output
-      @output
-    end
-    alias_method :action, :output
-
     # Pressing the key will call the procedure.
     #
     # @return [|Symbol]
-    def press
-      output.is_a?(Proc) ? output.call : :noop
+    def output
+      @output.call
     end
+    alias_method :action, :output
+    alias_method :press, :output
 
   end # Key
 

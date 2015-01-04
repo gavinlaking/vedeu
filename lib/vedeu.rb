@@ -46,6 +46,10 @@ module Vedeu
     @_interfaces_repository ||= Vedeu::Interfaces.new(Vedeu::Interface)
   end
 
+  def self.keymaps_repository
+    @_keymaps_repository ||= Vedeu::Keymaps.new(Vedeu::Keymap)
+  end
+
   def self.menus_repository
     @_menus_repository ||= Vedeu::Menus.new(Vedeu::Menu)
   end

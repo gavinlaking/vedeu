@@ -4,89 +4,86 @@ module Vedeu
 
   describe Keymap do
 
-    let(:described) { Keymap.new(map_name, keymap) }
+    let(:described) { Vedeu::Keymap }
+    let(:instance)  { described.new(map_name, keys) }
     let(:map_name)  { 'zirconium' }
-    let(:keymap)    { {} }
-    let(:key)       { 'a' }
-    let(:action)    { proc { :noop } }
+    let(:keys)      { [] }
+    let(:key)       { Vedeu::Key.new('a') { :output } }
 
     describe '#initialize' do
-      subject { described }
+      subject { instance }
 
       it { return_type_for(subject, Keymap) }
       it { assigns(subject, '@name', map_name) }
-      it { assigns(subject, '@keymap', keymap) }
+      it { subject.instance_variable_get('@keys').must_be_instance_of(Vedeu::Model::Collection) }
     end
 
-    describe '#define' do
-      subject { described.define(key, action) }
+    describe '#deputy' do
+      subject { instance.deputy }
 
-      it { skip }
+      it { return_type_for(subject, Vedeu::DSL::Keymap) }
+    end
 
-      # it { return_type_for(subject, Keymap) }
+    describe '#add' do
+      subject { instance.add(key) }
 
-      context 'when the key/action pair is valid' do
-        let(:key)    { 'b' }
-        let(:action) { proc { :noop } }
+      context 'when the key is already defined' do
+        let(:keys) { Vedeu::Model::Collection.new([key]) }
+
+        it { proc { subject }.must_raise(KeyInUse) }
       end
 
-      context 'when the key/action pair is invalid' do
-        context 'the key is already in use' do
-          let(:keymap) { { 'a' => proc { :noop } } }
-
-          it { skip }
-
-          # it { proc { subject }.must_raise(KeyInUse) }
-        end
-
-        context 'the action is not callable' do
-          let(:action) {}
-
-          it { skip }
-
-          # it { proc { subject }.must_raise(InvalidSyntax) }
-        end
+      context 'when the key is not already defined' do
+        it { return_type_for(subject, Vedeu::Model::Collection) }
       end
     end
 
-    describe '#defined?' do
-      subject { described.defined?(key) }
+    describe '#key_defined?' do
+      let(:input) { 'a' }
 
-      context 'when the key is defined' do
-        let(:keymap) { { 'a' => proc { :noop } } }
+      subject { instance.key_defined?(input) }
+
+      context 'when the input is defined' do
+        let(:keys) { Vedeu::Model::Collection.new([key]) }
 
         it { return_type_for(subject, TrueClass) }
       end
 
-      context 'when the key is not defined' do
+      context 'when the input is not defined' do
         it { return_type_for(subject, FalseClass) }
       end
     end
 
-    describe '#keys' do
-      subject { described.keys }
+    describe '#use' do
+      let(:input) { 'b' }
 
-      it { return_type_for(subject, Array) }
+      subject { instance.use(input) }
 
-      context 'when keys are defined' do
-        it { skip }
+      context 'when the input is defined' do
+        let(:key_a) { Vedeu::Key.new('a') { :key_a } }
+        let(:key_b) { Vedeu::Key.new('b') { :key_b } }
+        let(:key_c) { Vedeu::Key.new('c') { :key_c } }
+        let(:keys)  { Vedeu::Model::Collection.new([key_a, key_b, key_c]) }
+
+        it { return_type_for(subject, Array) }
+        it { return_value_for(subject, [:key_b]) }
       end
 
-      context 'when no keys are defined' do
-        it { skip }
+      context 'when the input is not defined' do
+        it { return_type_for(subject, NilClass) }
       end
     end
 
-    describe '#use' do
-      subject { described.use(key) }
+    describe '#keys' do
+      subject { instance.keys }
 
-      context 'when the key is defined' do
-        it { skip }
-      end
+      it { return_type_for(subject, Vedeu::Model::Collection) }
+    end
 
-      context 'when the key is not defined' do
-        it { skip }
-      end
+    describe '#name' do
+      subject { instance.name }
+
+      it { return_type_for(subject, String) }
     end
 
   end # Keymap

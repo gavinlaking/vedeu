@@ -4,35 +4,66 @@ module Vedeu
 
   describe Key do
 
-    let(:described) { Key.new(input, output) }
-    let(:input)     { '' }
-    let(:output)    { Proc.new { :output } }
+    let(:described) { Vedeu::Key }
+    let(:instance)  { described.new(input) { :output } }
+    let(:input)     { 'a' }
+
+    describe '.define' do
+      subject { described.define(input) { :output } }
+
+      it { return_type_for(subject, Key) }
+
+      context 'when the required block is not given' do
+        subject { described.define(input) }
+
+        it { proc { subject }.must_raise(InvalidSyntax) }
+      end
+    end
 
     describe '#initialize' do
-      it { return_type_for(described, Key) }
-      it { assigns(described, '@input', input) }
+      subject { instance }
+
+      it { return_type_for(instance, Key) }
+      it { assigns(instance, '@input', input) }
+
+      context 'when the required block is not given' do
+        subject { described.new(input) }
+
+        it { proc { subject }.must_raise(InvalidSyntax) }
+      end
     end
 
     describe '#input' do
+      subject { instance.input }
+
       it 'returns the key defined' do
-        Key.new('a', output).input.must_equal('a')
+        subject.must_equal('a')
       end
 
       context 'alias method #key' do
-        it { Key.new('a', output).key.must_equal('a') }
+        subject { instance.key }
+
+        it { subject.must_equal('a') }
       end
     end
 
     describe '#output' do
-    end
+      subject { instance.output }
 
-    describe '#press' do
       it 'returns the result of calling the proc' do
-        Key.new(input, output).press.must_equal(:output)
+        subject.must_equal(:output)
       end
 
-      it 'returns a :noop when the output is not a proc' do
-        Key.new(input, :output).press.must_equal(:noop)
+      context 'alias method #action' do
+        subject { instance.action }
+
+        it { subject.must_equal(:output) }
+      end
+
+      context 'alias method #press' do
+        subject { instance.press }
+
+        it { subject.must_equal(:output) }
       end
     end
 

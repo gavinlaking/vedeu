@@ -3,9 +3,9 @@ require 'vedeu/support/terminal'
 
 require 'vedeu/events/all'
 
-require 'vedeu/repositories/keymaps'
 require 'vedeu/models/all'
 require 'vedeu/input/keymap'
+require 'vedeu/input/keymaps'
 require 'vedeu/dsl/composition'
 require 'vedeu/dsl/shared'
 

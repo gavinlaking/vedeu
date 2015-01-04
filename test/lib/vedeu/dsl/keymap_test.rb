@@ -6,25 +6,24 @@ module Vedeu
 
     describe Keymap do
 
-      let(:described) { Vedeu::DSL::Keymap.new(model) }
+      let(:described) { Vedeu::DSL::Keymap }
+      let(:instance)  { described.new(model) }
       let(:model)     { Vedeu::Keymap.new('_test_') }
 
       describe '#initialize' do
-        it { return_type_for(described, Vedeu::DSL::Keymap) }
-        it { assigns(described, '@model', model) }
+        subject { instance }
+
+        it { return_type_for(subject, described) }
+        it { assigns(subject, '@model', model) }
       end
 
       describe '#key' do
         let(:value_or_values) { ['j', :down] }
 
-        subject {
-          described.key(value_or_values) do
-            key('f') { :some_action }
-          end
-        }
+        subject { instance.key(*value_or_values) { :some_action } }
 
         context 'when a block was not given' do
-          subject { described.key(value_or_values) }
+          subject { instance.key(value_or_values) }
 
           it { proc { subject }.must_raise(InvalidSyntax) }
         end
@@ -35,17 +34,40 @@ module Vedeu
           it { proc { subject }.must_raise(InvalidSyntax) }
         end
 
-        # context 'when an invalid key was given' do
-        #   let(:value_or_values) { ['v', nil] }
+        context 'when an invalid key was given (nil)' do
+          let(:value_or_values) { ['v', nil] }
 
-        #   it { proc { subject }.must_raise(InvalidSyntax) }
-        # end
+          it { proc { subject }.must_raise(InvalidSyntax) }
+        end
 
-        # context 'when an invalid key was given' do
-        #   let(:value_or_values) { ['v', ''] }
+        context 'when an invalid key was given (empty)' do
+          let(:value_or_values) { ['v', ''] }
 
-        #   it { proc { subject }.must_raise(InvalidSyntax) }
-        # end
+          it { proc { subject }.must_raise(InvalidSyntax) }
+        end
+
+        context 'when the key is valid' do
+          before { model.stubs(:add).returns(Vedeu::Keymap) }
+
+          it { return_value_for(subject, ['j', :down]) }
+        end
+
+        context 'when the key is not valid' do
+          before { Vedeu.keymaps_repository.stubs(:valid?).raises(KeyInUse) }
+
+          it { proc { subject }.must_raise(KeyInUse) }
+        end
+      end
+
+      describe '#name' do
+        let(:value) { 'gold' }
+
+        subject { instance.name(value) }
+
+        it 'defines the name of the keymap' do
+          subject
+          model.name.must_equal(value)
+        end
       end
 
     end # Keymap

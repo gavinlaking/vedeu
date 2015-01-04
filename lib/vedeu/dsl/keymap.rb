@@ -1,3 +1,4 @@
+require 'vedeu/exceptions'
 require 'vedeu/support/common'
 
 module Vedeu
@@ -20,14 +21,15 @@ module Vedeu
 
       # Define keypress(es) to perform an action.
       #
-      # @param value_or_values [String|Symbol] The key(s) pressed. Special keys
-      #   can be found in {Vedeu::Input#specials}. When more than one key is
-      #   defined, then the extras are treated as aliases.
+      # @param value_or_values [Array<String>|Array<Symbol>|String|Symbol]
+      #   The key(s) pressed. Special keys can be found in
+      #   {Vedeu::Input#specials}. When more than one key is defined, then the
+      #   extras are treated as aliases.
       # @param block [Proc] The action to perform when this key is pressed. Can
       #   be a method call or event triggered.
       #
       # @example
-      #   keys do
+      #   Vedeu.keymap do
       #     key('s')        { Vedeu.trigger(:save) }
       #     key('h', :left) { Vedeu.trigger(:left) }
       #     key('j', :down) { Vedeu.trigger(:down) }
@@ -54,13 +56,42 @@ module Vedeu
             fail InvalidSyntax, 'An invalid value for `key` was encountered.'
           end
 
-          @model = model.define(value, block)
+          if valid?(value)
+            model.add(Key.define(value, &block))
+          end
         end
+      end
+
+      # Define the name of the keymap.
+      #
+      # To only allow certain keys to work with specific interfaces, use the
+      # same name as the interface.
+      #
+      # When the name '_global_' is used, all keys in the keymap block will be
+      # available to all interfaces. Once a key has been defined in the
+      # '_global_' keymap, it cannot be used for a specific interface.
+      #
+      # @note Using the name of a keymap that already exists will overwrite that
+      #   keymap. Do not use the name '_system_' as unexpected behaviour may
+      #   occur.
+      #
+      # @param value [String]
+      # @return [String]
+      def name(value)
+        model.name = value
       end
 
       private
 
       attr_reader :model
+
+      # @param input [String|Symbol]
+      # @raise [KeyInUse] The input is already in use by the '_global_' or
+      #   '_system_' keymap.
+      # @return [TrueClass]
+      def valid?(input)
+        Vedeu.keymaps_repository.valid?(input)
+      end
 
     end # Keymap
 

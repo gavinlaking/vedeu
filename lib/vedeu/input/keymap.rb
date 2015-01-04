@@ -10,7 +10,8 @@ module Vedeu
     include Vedeu::Common
     include Vedeu::Model
 
-    attr_reader :name
+    attr_accessor :name
+    attr_reader   :keys
 
     class << self
 
@@ -33,25 +34,18 @@ module Vedeu
 
         model = new(name)
         model.deputy.instance_eval(&block)
-        model
+        model.store
       end
       alias_method :keymap, :build
 
     end
 
-    def initialize(name, keymap = {})
-      @name   = name
-      @keymap = keymap
-    end
-
-    def define(key, action)
-      if valid?(key, action)
-        Keymap.new(name, keymap.merge({ key => action })).store
-      end
-    end
-
-    def defined?(key)
-      keymap.include?(key)
+    # @param name [String] The name of the keymap.
+    # @param keys [Vedeu::Model::Collection|Array] A collection of keys.
+    # @return [Vedeu::Keymap]
+    def initialize(name, keys = [])
+      @name = name
+      @keys = Vedeu::Model::Collection.coerce(keys)
     end
 
     # Returns the class responsible for defining the DSL methods of this model.
@@ -61,44 +55,51 @@ module Vedeu
       Vedeu::DSL::Keymap.new(self)
     end
 
-    def keys
-      keymap.keys
+    # @param key [Key]
+    # @raise [KeyInUse] The key provided is already in use for this keymap.
+    def add(key)
+      @keys << [key] if valid?(key)
+
+      # immutable Keymap version:
+      # self.new(name, @keys += [key]).store if valid?(key)
     end
 
-    def use(key)
-      if defined?(key)
-        Vedeu.log("Key pressed: '#{key}'")
+    # @param input [String|Symbol]
+    # @return [Boolean] A boolean indicating the input provided is already in
+    #   use for this keymap.
+    def key_defined?(input)
+      # keys.find_all { |key| key.input == input }.any?
 
-        Vedeu.trigger(:key, key)
+      keys.any? { |key| key.input == input }
+    end
 
-        action.call
+    # @param input [String|Symbol]
+    def use(input)
+      if key_defined?(input)
+        Vedeu.log("Key pressed: '#{input}'")
+
+        Vedeu.trigger(:key, input)
+
+        keys.find_all { |key| key.input == input }.map { |key| key.press }
       end
     end
 
     private
 
-    attr_reader :keymap
-
-    def action
-      keymap.fetch(key)
-    end
-
     def repository
       Vedeu.keymaps_repository
     end
 
-    def valid?(key, action)
-      if defined?(key)
-        fail KeyInUse, "'#{key}' is already in use for this ('#{name}') keymap."
-      end
-
-      unless action.respond_to?(:call)
-        fail InvalidSyntax "Action for '#{key}' is not callable."
+    # @param key [Vedeu::Key]
+    def valid?(key)
+      if key_defined?(key.input)
+        fail KeyInUse, "'#{key.input}' is already in use for this " \
+                       "('#{name}') keymap."
       end
 
       true
     end
 
-  end # UserKeymap
+  end # Keymap
 
 end # Vedeu
