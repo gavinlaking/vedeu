@@ -4,14 +4,17 @@ module Vedeu
 
   describe Buffers do
 
-    let(:described) { Vedeu::Buffers.new(model, storage) }
+    let(:described) { Vedeu::Buffers }
+    let(:instance)  { described.new(model, storage) }
     let(:model)     { Vedeu::Buffer }
     let(:storage)   { {} }
 
     describe '#initialize' do
-      it { return_type_for(described, Vedeu::Buffers) }
-      it { assigns(described, '@model', model) }
-      it { assigns(described, '@storage', storage) }
+      subject { instance }
+
+      it { return_type_for(subject, Vedeu::Buffers) }
+      it { assigns(subject, '@model', model) }
+      it { assigns(subject, '@storage', storage) }
     end
 
     describe '#add_content' do
@@ -21,17 +24,17 @@ module Vedeu
         }
       }
 
-      subject { described.add_content(attributes) }
+      subject { instance.add_content(attributes) }
 
-      context 'when the content was added to the buffer' do
+      context 'when the buffer is registered' do
+        let(:storage) { { 'molybdenum' => Buffer.new(attributes) } }
+
         it { return_type_for(subject, TrueClass) }
       end
 
-      # context 'when the attributes do not have a :name key' do
-      #   attributes = { no_name_key: '' }
-
-      #   it { proc { Buffers.add_content(attributes) }.must_raise(MissingRequired) }
-      # end
+      context 'when the buffer is not registered' do
+        it { return_type_for(subject, TrueClass) }
+      end
     end
 
   end # Buffers
