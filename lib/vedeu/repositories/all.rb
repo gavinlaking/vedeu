@@ -1,5 +1,4 @@
 require 'vedeu/repositories/buffers'
-require 'vedeu/repositories/events'
 require 'vedeu/repositories/focus'
 require 'vedeu/repositories/groups'
 require 'vedeu/repositories/interfaces'
