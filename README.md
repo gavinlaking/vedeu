@@ -57,8 +57,8 @@ class MyApp
   end
 
   keys do
-    key('a') { trigger(':apple') }
-    key('b') { trigger(':banana') }
+    key('a') { Vedeu.trigger(':apple') }
+    key('b') { Vedeu.trigger(':banana') }
   end
 end
 ```

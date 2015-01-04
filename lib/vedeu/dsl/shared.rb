@@ -22,8 +22,8 @@ module Vedeu
       #   Vedeu.use('my_other_interface').width # can be used in your code to
       #                                         # get this value
       #
-      # @param value [String] The name of the interface you wish to use. Typically
-      #   used when defining interfaces to share geometry.
+      # @param value [String] The name of the interface you wish to use.
+      #   Typically used when defining interfaces to share geometry.
       # @return [Vedeu::Interface]
       def use(value)
         if Vedeu::Interfaces.registered?(value) == false

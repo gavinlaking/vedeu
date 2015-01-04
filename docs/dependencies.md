@@ -12,10 +12,7 @@ Vedeu::API
 
 Vedeu::API::Defined
   Vedeu::Events
-  Vedeu::Groups
-  Vedeu::Interfaces
   Vedeu::Keymaps
-  Vedeu::Menus
 
 Vedeu::Background < Translator
   Vedeu::Configuration
