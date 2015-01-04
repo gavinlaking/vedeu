@@ -15,10 +15,6 @@ module Vedeu
   # @api private
   class Events < Repository
 
-    def initialize(model = Vedeu::Model::Collection, storage = {})
-      super
-    end
-
     def event(name, options = {}, &block)
       Vedeu.log("Registering event: '#{name}'")
 
@@ -37,8 +33,6 @@ module Vedeu
 
       true
     end
-
-
 
     # Unregisters the event by name, effectively deleting the associated events
     # bound with it also.

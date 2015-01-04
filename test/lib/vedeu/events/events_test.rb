@@ -2,8 +2,6 @@ require 'test_helper'
 
 module Vedeu
 
-  NastyException = Class.new(StandardError)
-
   describe Events do
 
     let(:described) { Events.new(model) }
