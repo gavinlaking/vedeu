@@ -69,13 +69,8 @@ module Vedeu
   # accordingly for the interface in focus, or the named interface. Also
   # includes events to move the cursor in the direction specified; these will
   # update the cursor position according to the interface in focus.
-  Vedeu.event(:_cursor_hide_) do
-    ToggleCursor.hide(Vedeu::Cursors.current)
-  end
-
-  Vedeu.event(:_cursor_show_) do
-    ToggleCursor.show(Vedeu::Cursors.current)
-  end
+  Vedeu.event(:_cursor_hide_) { ToggleCursor.hide(Vedeu::Cursors.current) }
+  Vedeu.event(:_cursor_show_) { ToggleCursor.show(Vedeu::Cursors.current) }
 
   Vedeu.event(:_cursor_hide_by_name_) do |name|
     ToggleCursor.hide(Vedeu::Cursors.by_name(name))
@@ -119,17 +114,9 @@ module Vedeu
   # focussed. When the interface is brought into focus, its cursor position
   # and visibility is restored.
   # From: Focus (top)
-  Vedeu.event(:_focus_by_name_) do |name|
-    Vedeu::Focus.by_name(name)
-  end
-
-  Vedeu.event(:_focus_next_) do
-    Vedeu::Focus.next_item
-  end
-
-  Vedeu.event(:_focus_prev_) do
-    Vedeu::Focus.prev_item
-  end
+  Vedeu.event(:_focus_by_name_) { |name| Vedeu::Focus.by_name(name) }
+  Vedeu.event(:_focus_next_)    { Vedeu::Focus.next_item }
+  Vedeu.event(:_focus_prev_)    { Vedeu::Focus.prev_item }
 
   # System events which when called with the appropriate menu name will
   # update the menu accordingly.
