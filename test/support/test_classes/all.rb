@@ -1,6 +1,0 @@
-require 'support/test_classes/dsl_model_test_class'
-require 'support/test_classes/helpers'
-require 'support/test_classes/misc'
-require 'support/test_classes/model_test_class'
-require 'support/test_classes/presentation'
-require 'support/test_classes/repositories'

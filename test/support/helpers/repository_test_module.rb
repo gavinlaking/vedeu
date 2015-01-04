@@ -2,8 +2,12 @@ module Vedeu
 
   module RepositoryTestModule
 
-    include Repository
     extend self
+
+    # The real repository stores the model and returns it.
+    def store(model)
+      model
+    end
 
     private
 
