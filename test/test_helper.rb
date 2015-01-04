@@ -75,119 +75,11 @@ end
 
 test_configuration
 
-
 # require 'minitest/reporters'
-
-# module Minitest
-#   module Reporters
-#     class VedeuReporter < DefaultReporter
-
-#       private
-
-#       def message_for(test)
-#         e = test.failure
-
-#         if test.skipped?
-#           if @detailed_skip
-#             [
-#               result_title(:skip, "\nSkipped:"),
-#               result_location(:skip, '  ' + "#{location(e)}"),
-#               ' ',
-#               result_label("Reason: ") + result_reason(e.message),
-#               ' ',
-#               result_description(test.class.to_s, test.name)
-#             ].join("\n")
-#           end
-
-#         elsif test.error?
-#           [
-#             result_title(:error, "\nError:"),
-#             result_description(test.class.to_s, test.name),
-#             ' ',
-#             result_location(:error, '  ' + "#{location(e)}"),
-#             ANSI::Code.white('  ' + e.message)
-#           ].join("\n")
-
-#         else
-#           expect_result, actual_result = e.message.split("\n")
-#           _, expect = expect_result.split(":")
-#           _, actual = actual_result.split(":")
-
-#           [
-#             result_title(:fail, "\nFailure:"),
-#             result_location(:fail, '  ' + "#{location(e)}"),
-#             ' ',
-#             result_label("Expected:") + result_expected(expect),
-#             result_label("Actual:  ") + result_actual(actual),
-#             ' ',
-#             result_description(test.class.to_s, test.name)
-#           ].join("\n")
-
-#         end
-#       rescue NoMethodError
-#         [
-#           result_title(:fail, "\nFailure:"),
-#           result_location(:fail, '  ' + "#{location(e)}"),
-#           ' ',
-#           ANSI::Code.white('  ' + e.message),
-#           ' ',
-#           result_description(test.class.to_s, test.name)
-#         ].join("\n")
-#       end
-
-#       def result_actual(actual)
-#         ANSI::Code.red(actual)
-#       end
-
-#       def result_description(klass, testcase)
-#         [
-#           ANSI::Code.white('  ' + klass),
-#           ANSI::Code.white('  ' + testcase),
-#         ].join("\n")
-#       end
-
-#       def result_expected(expected)
-#         ANSI::Code.green(expected)
-#       end
-
-#       def result_reason(reason)
-#         ANSI::Code.yellow(reason)
-#       end
-
-#       def result_title(result, string)
-#         underlined = ANSI::Code.underline(string)
-#         case result
-#         when :fail  then ANSI::Code.red(underlined)
-#         when :error then ANSI::Code.red(underlined)
-#         when :skip  then ANSI::Code.yellow(underlined)
-#         else             ANSI::Code.green(underlined)
-#         end
-#       end
-
-#       def result_label(string)
-#         ANSI::Code.white(ANSI::Code.bright('  ' + string))
-#       end
-
-#       def result_location(result, string)
-#         bright = ANSI::Code.bright(string)
-#         case result
-#         when :fail  then ANSI::Code.red(bright)
-#         when :error then ANSI::Code.red(bright)
-#         when :skip  then ANSI::Code.yellow(bright)
-#         else             ANSI::Code.green(bright)
-#         end
-#       end
-
-#     end
-#   end
-# end
-
 # Minitest::Reporters.use!(
 #   # commented out by default (makes tests slower)
 #   # Minitest::Reporters::DefaultReporter.new({ color: true, slow_count: 5 }),
 #   # Minitest::Reporters::SpecReporter.new
-
-#   Minitest::Reporters::VedeuReporter.new
 # )
 
 # trace method execution with (optionally) local variables
