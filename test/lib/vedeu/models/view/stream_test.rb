@@ -6,9 +6,16 @@ module Vedeu
 
     let(:described) { Stream.new(value, parent, colour, style) }
     let(:value)     { 'Some text' }
-    let(:parent)    { Line.new([], nil, Colour.new({ background: '#0000ff', foreground: '#ffff00' }), Style.new('normal')) }
-    let(:colour)    { mock('Colour') }
-    let(:style)     { mock('Style') }
+    let(:parent)    {
+      Line.new(
+        [],
+        nil,
+        Colour.new({ background: '#0000ff', foreground: '#ffff00' }),
+        Style.new('normal')
+      )
+    }
+    let(:colour)    { Colour.new({ background: '#ff0000', foreground: '#000000' }) }
+    let(:style)     { Style.new('normal') }
 
     describe '#initialize' do
       it { described.must_be_instance_of(Stream) }
@@ -24,22 +31,19 @@ module Vedeu
       context 'when there is content' do
         it 'returns a collection of strings containing escape sequences and ' \
            'content' do
-
-          skip
-
-          # described.chars.must_equal(
-          #   [
-          #     "\e[38;2;255;0;0m\e[48;2;0;0;0m\e[24m\e[22m\e[27mS\e[38;2;255;255;0m\e[48;2;0;0;255m",
-          #     "\e[38;2;255;0;0m\e[48;2;0;0;0m\e[24m\e[22m\e[27mo\e[38;2;255;255;0m\e[48;2;0;0;255m",
-          #     "\e[38;2;255;0;0m\e[48;2;0;0;0m\e[24m\e[22m\e[27mm\e[38;2;255;255;0m\e[48;2;0;0;255m",
-          #     "\e[38;2;255;0;0m\e[48;2;0;0;0m\e[24m\e[22m\e[27me\e[38;2;255;255;0m\e[48;2;0;0;255m",
-          #     "\e[38;2;255;0;0m\e[48;2;0;0;0m\e[24m\e[22m\e[27m \e[38;2;255;255;0m\e[48;2;0;0;255m",
-          #     "\e[38;2;255;0;0m\e[48;2;0;0;0m\e[24m\e[22m\e[27mt\e[38;2;255;255;0m\e[48;2;0;0;255m",
-          #     "\e[38;2;255;0;0m\e[48;2;0;0;0m\e[24m\e[22m\e[27me\e[38;2;255;255;0m\e[48;2;0;0;255m",
-          #     "\e[38;2;255;0;0m\e[48;2;0;0;0m\e[24m\e[22m\e[27mx\e[38;2;255;255;0m\e[48;2;0;0;255m",
-          #     "\e[38;2;255;0;0m\e[48;2;0;0;0m\e[24m\e[22m\e[27mt\e[38;2;255;255;0m\e[48;2;0;0;255m"
-          #   ]
-          # )
+          described.chars.must_equal(
+            [
+              "\e[38;2;0;0;0m\e[48;2;255;0;0m\e[24m\e[22m\e[27mS\e[24m\e[22m\e[27m\e[38;2;255;255;0m\e[48;2;0;0;255m",
+              "\e[38;2;0;0;0m\e[48;2;255;0;0m\e[24m\e[22m\e[27mo\e[24m\e[22m\e[27m\e[38;2;255;255;0m\e[48;2;0;0;255m",
+              "\e[38;2;0;0;0m\e[48;2;255;0;0m\e[24m\e[22m\e[27mm\e[24m\e[22m\e[27m\e[38;2;255;255;0m\e[48;2;0;0;255m",
+              "\e[38;2;0;0;0m\e[48;2;255;0;0m\e[24m\e[22m\e[27me\e[24m\e[22m\e[27m\e[38;2;255;255;0m\e[48;2;0;0;255m",
+              "\e[38;2;0;0;0m\e[48;2;255;0;0m\e[24m\e[22m\e[27m \e[24m\e[22m\e[27m\e[38;2;255;255;0m\e[48;2;0;0;255m",
+              "\e[38;2;0;0;0m\e[48;2;255;0;0m\e[24m\e[22m\e[27mt\e[24m\e[22m\e[27m\e[38;2;255;255;0m\e[48;2;0;0;255m",
+              "\e[38;2;0;0;0m\e[48;2;255;0;0m\e[24m\e[22m\e[27me\e[24m\e[22m\e[27m\e[38;2;255;255;0m\e[48;2;0;0;255m",
+              "\e[38;2;0;0;0m\e[48;2;255;0;0m\e[24m\e[22m\e[27mx\e[24m\e[22m\e[27m\e[38;2;255;255;0m\e[48;2;0;0;255m",
+              "\e[38;2;0;0;0m\e[48;2;255;0;0m\e[24m\e[22m\e[27mt\e[24m\e[22m\e[27m\e[38;2;255;255;0m\e[48;2;0;0;255m"
+            ]
+          )
         end
       end
 

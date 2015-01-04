@@ -6,41 +6,41 @@ module Vedeu
   # @api private
   class Registrar
 
-    REPOSITORIES = [Buffers, Cursors, Focus, Groups, Interfaces]
+    # REPOSITORIES = [Buffers, Cursors, Focus, Groups, Interfaces]
 
-    # @param attributes [Hash]
-    # @return [TrueClass|MissingRequired]
-    def self.record(attributes = {})
-      new(attributes).record
-    end
+    # # @param attributes [Hash]
+    # # @return [TrueClass|MissingRequired]
+    # def self.record(attributes = {})
+    #   new(attributes).record
+    # end
 
-    # Removes all entities from all repositories. Use with caution.
-    #
-    # @return [TrueClass]
-    def self.reset!
-      REPOSITORIES.each { |repository| repository.reset }
+    # # Removes all entities from all repositories. Use with caution.
+    # #
+    # # @return [TrueClass]
+    # def self.reset!
+    #   REPOSITORIES.each { |repository| repository.reset }
 
-      true
-    end
+    #   true
+    # end
 
-    # @param attributes [Hash]
-    # @return [Registrar]
-    def initialize(attributes = {})
-      @attributes = attributes
-    end
+    # # @param attributes [Hash]
+    # # @return [Registrar]
+    # def initialize(attributes = {})
+    #   @attributes = attributes
+    # end
 
-    # Adds the attributes to a variety of repositories to use later.
-    #
-    # @return [TrueClass|MissingRequired]
-    def record
-      REPOSITORIES.each { |repository| repository.add(attributes) }
+    # # Adds the attributes to a variety of repositories to use later.
+    # #
+    # # @return [TrueClass|MissingRequired]
+    # def record
+    #   REPOSITORIES.each { |repository| repository.add(attributes) }
 
-      true
-    end
+    #   true
+    # end
 
-    private
+    # private
 
-    attr_reader :attributes
+    # attr_reader :attributes
 
   end # Registrar
 

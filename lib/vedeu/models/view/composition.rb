@@ -27,7 +27,7 @@ module Vedeu
     # @param interfaces [Interfaces]
     # @return [Composition]
     def initialize(interfaces = [], colour = nil, style = nil)
-      @interfaces = Vedeu::Model::Interfaces.new(interfaces, nil, self)
+      @interfaces = Vedeu::Model::Interfaces.new(interfaces, self)
       @colour     = colour
       @style      = style
     end

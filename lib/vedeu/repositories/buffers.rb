@@ -4,18 +4,19 @@ module Vedeu
   # displayed.
   #
   # @api private
-  module Buffers
+  class Buffers < Repository
 
-    include Repository
-    extend self
+    def initialize(model = Vedeu::Buffer, storage = {})
+      super
+    end
 
     # Add an interface view into the back buffer. If the buffer is already
     # registered, then we preserve its front buffer. Returns the name of the
     # buffer added to storage.
     #
     # @param attributes [Hash]
-    # @return [String] The name of the buffer that has been added.
-    def add(attributes)
+    # @return [Boolean] The name of the buffer that has been added.
+    def add_content(attributes)
       name = attributes[:name]
 
       if registered?(name)
@@ -29,21 +30,9 @@ module Vedeu
         model.new({ name: name }).add(attributes)
 
       end
-
-      name
     end
 
     private
-
-    # @return [Class] The model class for this repository.
-    def model
-      Vedeu::Buffer
-    end
-
-    # @return [Hash]
-    def in_memory
-      {}
-    end
 
   end # Buffers
 

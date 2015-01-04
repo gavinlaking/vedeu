@@ -211,9 +211,9 @@ module Vedeu
 
     private
 
-    # @return [Class] The repository class for this model.
+    # @return [Repository] The repository class for this model.
     def repository
-      Vedeu::Menus
+      Vedeu.menus_repository
     end
 
   end # Menu

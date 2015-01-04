@@ -23,7 +23,7 @@ module Vedeu
     #
     # @return [Array]
     def render
-      Terminal.output(view, Focus.cursor)
+      Terminal.output(view, Cursors.current)
     end
 
     private

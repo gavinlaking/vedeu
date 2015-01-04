@@ -5,7 +5,6 @@ module Vedeu
   # @api private
   module Keymaps
 
-    include Repository
     extend self
 
     # Stores the keymap attributes defined by the API.

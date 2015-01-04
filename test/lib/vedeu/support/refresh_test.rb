@@ -4,48 +4,55 @@ module Vedeu
 
   describe Refresh do
 
-    before { Interfaces.reset }
+    # describe '.all' do
+    #   context 'when there are no registered interfaces' do
+    #     it 'returns an empty collection' do
+    #       Refresh.all.must_equal([])
+    #     end
+    #   end
 
-    describe '.all' do
-      it 'returns an empty collection when there are no registered ' \
-         'interfaces' do
-        Refresh.all.must_equal([])
-      end
-    end
+    #   context 'when there are registered interfaces' do
+    #     it { return_value_for(Refresh.all.must_equal([]), []) }
+    #   end
+    # end
 
-    describe '.by_focus' do
-      context 'when there are no registered interfaces' do
-        Focus.reset
+    # describe '.by_focus' do
+    #   context 'when there are no registered interfaces' do
+    #     it { proc { Refresh.by_focus }.must_raise(NoInterfacesDefined) }
+    #   end
 
-        it { proc { Refresh.by_focus }.must_raise(NoInterfacesDefined) }
-      end
-    end
+    #   context 'when there are registered interfaces' do
+    #   end
+    # end
 
-    describe '.by_group' do
-      context 'when the group cannot be found' do
-        Groups.reset
+    # describe '.by_group' do
+    #   context 'when there are no registered groups' do
+    #     Groups.reset
 
-        it { proc { Refresh.by_group('') }.must_raise(ModelNotFound) }
-      end
-    end
+    #     it { proc { Refresh.by_group('') }.must_raise(ModelNotFound) }
+    #   end
 
-    describe '.by_name' do
-      let(:interface_name) { 'aluminium' }
+    #   context 'when there are registered groups' do
+    #   end
+    # end
 
-      subject { Refresh.by_name(interface_name) }
+    # describe '.by_name' do
+    #   let(:interface_name) { 'aluminium' }
 
-      context 'when the interface or buffer is not found' do
-        let(:interface_name) { '' }
+    #   subject { Refresh.by_name(interface_name) }
 
-        it { proc { Refresh.by_name('') }.must_raise(ModelNotFound) }
-      end
+    #   context 'when the interface or buffer is not found' do
+    #     let(:interface_name) { '' }
 
-      context 'when the interface or buffer is found' do
-        # it { return_type_for(subject, Array) }
+    #     it { proc { Refresh.by_name('') }.must_raise(ModelNotFound) }
+    #   end
 
-        it { skip }
-      end
-    end
+    #   context 'when the interface or buffer is found' do
+    #     # it { return_type_for(subject, Array) }
+
+    #     it { skip }
+    #   end
+    # end
 
   end # Refresh
 

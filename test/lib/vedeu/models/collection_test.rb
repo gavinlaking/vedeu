@@ -6,22 +6,29 @@ module Vedeu
 
     describe Collection do
 
-      let(:described)  { Collection.new(parent, collection) }
+      let(:described)  { Collection }
+      let(:instance)   { described.new(collection, parent, model_name) }
+      let(:collection) { [] }
+      let(:model_name) { 'elements' }
       let(:parent)     { Vedeu::ModelTestClass.new }
-      let(:collection) {}
 
       describe '#initialize' do
-        it { return_type_for(described, Collection) }
-        it { assigns(described, '@parent', parent) }
-        it { assigns(described, '@collection', []) }
+        subject { instance }
+
+        it { return_type_for(subject, Collection) }
+        it { assigns(subject, '@collection', []) }
+        it { assigns(subject, '@name', model_name) }
+        it { assigns(subject, '@parent', parent) }
       end
 
       describe '#add' do
-        it { return_type_for(described.add(:hydrogen), Collection) }
-        it { return_value_for(described.add(:hydrogen).all, [:hydrogen]) }
+        subject { instance.add(:hydrogen) }
+
+        it { return_type_for(subject, Collection) }
+        it { return_value_for(subject.all, [:hydrogen]) }
 
         context 'with multiple objects' do
-          subject { described.add(:hydrogen, :helium) }
+          subject { instance.add(:hydrogen, :helium) }
 
           it 'adds all the objects to the collection' do
             return_value_for(subject.all, [:hydrogen, :helium])
@@ -30,54 +37,63 @@ module Vedeu
       end
 
       describe '#all' do
-        it { return_type_for(described.all, Array) }
-        it { return_value_for(described.all, []) }
+        subject { instance.all }
 
-        context 'when models have been added to the collection' do
+        it { return_type_for(subject, Array) }
+        it { return_value_for(subject, []) }
+
+        context 'when the collection is not empty' do
+          before { instance.add(:hydrogen) }
+
           it 'returns the populated collection' do
-            described.add(:hydrogen)
-            return_value_for(described.all, [:hydrogen])
+            return_value_for(subject, [:hydrogen])
           end
         end
       end
 
       describe '#empty?' do
+        subject { instance.empty? }
+
         context 'when the collection is empty' do
-          it { return_type_for(described.empty?, TrueClass) }
+          it { return_type_for(subject, TrueClass) }
         end
 
         context 'when the collection is not empty' do
-          before { described.add(:hydrogen) }
+          before { instance.add(:hydrogen) }
 
-          it { return_type_for(described.empty?, FalseClass) }
+          it { return_type_for(subject, FalseClass) }
         end
       end
 
       describe '#size' do
-        it { return_type_for(described.size, Fixnum) }
+        subject { instance.size }
+
+        it { return_type_for(subject, Fixnum) }
 
         context 'when the collection is empty' do
-          it { return_value_for(described.size, 0) }
+          it { return_value_for(subject, 0) }
         end
 
         context 'when the collection is not empty' do
-          before { described.add(:hydrogen) }
+          before { instance.add(:hydrogen) }
 
-          it { return_value_for(described.size, 1) }
+          it { return_value_for(subject, 1) }
         end
       end
 
       describe '#to_s' do
-        it { return_type_for(described.to_s, String) }
+        subject { instance.to_s }
+
+        it { return_type_for(subject, String) }
 
         context 'when the collection is empty' do
-          it { return_value_for(described.to_s, '') }
+          it { return_value_for(subject, '') }
         end
 
         context 'when the collection is not empty' do
-          before { described.add(:hydrogen) }
+          before { instance.add(:hydrogen) }
 
-          it { return_value_for(described.to_s, 'hydrogen') }
+          it { return_value_for(subject, 'hydrogen') }
         end
       end
 

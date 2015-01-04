@@ -4,18 +4,34 @@ module Vedeu
 
   describe Buffers do
 
-    before { Buffers.reset }
+    let(:described) { Vedeu::Buffers.new(model, storage) }
+    let(:model)     { Vedeu::Buffer }
+    let(:storage)   { {} }
 
-    describe '.add' do
-      it 'returns the name of the buffer added to storage' do
-        Buffers.add({ name: 'molybdenum' }).must_equal('molybdenum')
+    describe '#initialize' do
+      it { return_type_for(described, Vedeu::Buffers) }
+      it { assigns(described, '@model', model) }
+      it { assigns(described, '@storage', storage) }
+    end
+
+    describe '#add_content' do
+      let(:attributes) {
+        {
+          name: 'molybdenum'
+        }
+      }
+
+      subject { described.add_content(attributes) }
+
+      context 'when the content was added to the buffer' do
+        it { return_type_for(subject, TrueClass) }
       end
 
-      context 'when the attributes do not have a :name key' do
-        attributes = { no_name_key: '' }
+      # context 'when the attributes do not have a :name key' do
+      #   attributes = { no_name_key: '' }
 
-        it { proc { Buffers.add(attributes) }.must_raise(MissingRequired) }
-      end
+      #   it { proc { Buffers.add_content(attributes) }.must_raise(MissingRequired) }
+      # end
     end
 
   end # Buffers

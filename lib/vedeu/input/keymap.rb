@@ -1,3 +1,8 @@
+require 'vedeu/exceptions'
+require 'vedeu/support/common'
+require 'vedeu/models/model'
+require 'vedeu/dsl/keymap'
+
 module Vedeu
 
   class Keymap
@@ -41,7 +46,7 @@ module Vedeu
 
     def define(key, action)
       if valid?(key, action)
-        Keymap.new(keymap.merge({ key => action }), name).store
+        Keymap.new(name, keymap.merge({ key => action })).store
       end
     end
 
@@ -79,7 +84,7 @@ module Vedeu
     end
 
     def repository
-      Vedeu::Keymaps
+      Vedeu.keymaps_repository
     end
 
     def valid?(key, action)

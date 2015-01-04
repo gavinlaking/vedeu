@@ -18,7 +18,6 @@ module Vedeu
     #   Buffers.reset
     #   Interfaces.reset
     #   Groups.reset
-    #   Focus.reset
     # end
 
     # describe '.record' do

@@ -35,7 +35,7 @@ module Vedeu
           return requires_block(__callee__) unless block_given?
 
           Vedeu::Composition.build([], nil, nil, &block).interfaces.map do |interface|
-            Buffers.add(interface.attributes)
+            Buffers.add_content(interface.attributes)
 
             interface.name
           end.map { |name| Vedeu::Refresh.by_name(name) }
@@ -76,7 +76,7 @@ module Vedeu
         return requires_block(__callee__) unless block_given?
 
         Vedeu::Composition.build([], nil, nil, &block).interfaces.map do |interface|
-          Buffers.add(interface.attributes)
+          Buffers.add_content(interface.attributes)
 
           interface.name
         end.map { |name| Vedeu::Refresh.by_name(name) }

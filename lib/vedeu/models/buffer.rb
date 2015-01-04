@@ -117,9 +117,9 @@ module Vedeu
       end
     end
 
-    # @return [Class] The repository class for this model.
+    # @return [Repository] The repository class for this model.
     def repository
-      Vedeu::Buffers
+      Vedeu.buffers_repository
     end
 
     # Return the default attributes of a Buffer.

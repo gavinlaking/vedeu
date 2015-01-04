@@ -1,6 +1,8 @@
 require 'singleton'
 
 require 'vedeu/support/common'
+require 'vedeu/configuration/api'
+require 'vedeu/configuration/cli'
 
 module Vedeu
 

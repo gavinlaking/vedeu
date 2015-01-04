@@ -69,6 +69,11 @@ module Vedeu
       value.size
     end
 
+    def value
+      # Char.coerce(@value, parent, colour, style)
+      @value
+    end
+
     private
 
   end # Stream

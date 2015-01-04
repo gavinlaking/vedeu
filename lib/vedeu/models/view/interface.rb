@@ -205,9 +205,9 @@ module Vedeu
 
     private
 
-    # @return [Class] The repository class for this model.
+    # @return [Repository] The repository class for this model.
     def repository
-      Vedeu::Interfaces
+      Vedeu.interfaces_repository
     end
 
     # The default values for a new instance of Interface.

@@ -11,7 +11,7 @@ module Vedeu
     #
     # @return [Array]
     def all
-      Vedeu::Interfaces.registered.each { |name| by_name(name) }
+      Vedeu.interfaces_repository.registered.each { |name| by_name(name) }
     end
 
     # Refresh the interface which is currently focussed.
@@ -41,30 +41,6 @@ module Vedeu
       buffer    = Buffers.find(name)
 
       Compositor.compose(interface, buffer)
-    end
-
-    # Register a refresh event for an interface or group of interfaces by name.
-    # When the event is called, the interface, or all interfaces belonging to
-    # the group with this name will be refreshed.
-    #
-    # @param type [Symbol]
-    # @param name [String]
-    # @param delay [Float]
-    # @return [Boolean]
-    def register_event(type, name, delay = 0.0)
-      event = if type == :by_group
-        "_refresh_group_#{name}_".to_sym
-
-      else
-        "_refresh_#{name}_".to_sym
-
-      end
-
-      return false if Events.registered?(event)
-
-      Events.add(event, { delay: delay }) { Refresh.send(type, name) }
-
-      true
     end
 
   end # Refresh

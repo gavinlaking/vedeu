@@ -45,7 +45,7 @@ module Vedeu
     private
 
     def repository
-      Vedeu::Groups
+      Vedeu.groups_repository
     end
 
   end # Group

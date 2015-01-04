@@ -2,188 +2,234 @@ require 'test_helper'
 
 module Vedeu
 
-  describe Repository do
+  # class TestModel
+  #   attr_reader :name
 
-    describe '#all' do
-      it 'returns a Hash' do
-        RepositoriesTestClass.new.all.must_be_instance_of(Hash)
-      end
+  #   def initialize(name = nil)
+  #     @name = name
+  #   end
+  # end
 
-      it 'returns the whole repository' do
-        RepositoriesTestClass.new.all.must_equal({})
-      end
-    end
+  # describe Repository do
 
-    describe '#empty?' do
-      it 'returns true when the storage is empty' do
-        RepositoriesTestClass.new.empty?.must_equal(true)
-      end
+  #   let(:described)  { Vedeu::Repository.new(model, storage) }
+  #   let(:model)      { TestModel.new(model_name) }
+  #   let(:model_name) { 'terbium' }
+  #   let(:storage)    { {} }
 
-      it 'returns false when the storage is not empty' do
-        RepositoriesTestClass.new({ key: :value }).empty?.must_equal(false)
-      end
-    end
+  #   describe '#initialize' do
+  #     it { return_type_for(described, Vedeu::Repository) }
+  #     it { assigns(described, '@model', model) }
+  #     it { assigns(described, '@storage', storage) }
+  #   end
 
-    describe '#find' do
-      context 'when the model cannot be found' do
-        it { proc {
-          RepositoriesTestClass.new.find('terbium')
-        }.must_raise(ModelNotFound) }
-      end
+  #   describe '#all' do
+  #     subject { described.all }
 
-      context 'when the model is found' do
-        it 'returns the stored model' do
-          model = { key: :value }
-          repo   = RepositoriesTestClass.new
-          repo.add({ 'terbium' => model })
+  #     it 'returns the whole repository' do
+  #       subject.must_equal(storage)
+  #     end
+  #   end
 
-          repo.find('terbium').must_equal(model)
-        end
-      end
-    end
+  #   describe '#current' do
+  #     before { Focus.stubs(:current).returns('francium') }
 
-    describe '#registered' do
-      it 'returns an Array' do
-        RepositoriesTestClass.new.registered.must_be_instance_of(Array)
-      end
+  #     subject { described.current }
 
-      context 'when the storage is a Hash' do
-        it 'returns a collection of the names of all the registered entities' do
-          repo = RepositoriesTestClass.new
-          repo.add({ 'rutherfordium' => { name: 'rutherfordium' } })
+  #     it { return_type_for(subject, Cursor) }
 
-          repo.registered.must_equal(['rutherfordium'])
-        end
-      end
+  #     context 'when the cursor exists' do
+  #       before { Cursor.new('francium', false, 12, 4).store }
 
-      context 'when the storage is an Array' do
-        it 'returns the registered entities' do
-          repo = RepositoriesTestClass.new([])
-          repo.add('rutherfordium')
+  #       it 'has the same attributes it was stored with' do
+  #         subject.x.must_equal(12)
+  #         subject.y.must_equal(4)
+  #       end
+  #     end
 
-          repo.registered.must_equal(['rutherfordium'])
-        end
-      end
+  #     context 'when the cursor does not exist' do
+  #       it 'is created, stored, and has the default attributes' do
+  #         subject.x.must_equal(1)
+  #         subject.y.must_equal(1)
+  #       end
+  #     end
+  #   end
 
-      context 'when the storage is a Set' do
-        it 'returns the registered entities' do
-          repo = RepositoriesTestClass.new(Set.new)
-          repo.add('rutherfordium')
+  #   describe '#empty?' do
+  #     subject { described.empty? }
 
-          repo.registered.must_equal(['rutherfordium'])
-        end
-      end
+  #     context 'when the storage is empty' do
+  #       it { subject.must_equal(true) }
+  #     end
 
-      it 'returns an empty collection when the storage is empty' do
-        RepositoriesTestClass.new.registered.must_equal([])
-      end
-    end
+  #     context 'when the storage is not empty' do
+  #       let(:storage) { [mock] }
 
-    describe '#registered?' do
-      it 'returns false when the storage is empty' do
-        RepositoriesTestClass.new.registered?('terbium').must_equal(false)
-      end
+  #       it { subject.must_equal(false) }
+  #     end
+  #   end
 
-      it 'returns false when the model is not registered' do
-        repo = RepositoriesTestClass.new
-        repo.add({ name: 'samarium' })
+  #   describe '#find' do
+  #     subject { described.find(model_name) }
 
-        repo.registered?('terbium').must_equal(false)
-      end
-    end
+  #     context 'when the model cannot be found' do
+  #       let(:model_name) { 'not_found' }
 
-    describe '#remove' do
-      context 'when the storage is empty' do
-        it 'returns false' do
-          test_repo = RepositoriesTestClass.new
-          test_repo.remove('francium').must_equal(false)
-        end
-      end
+  #       it { proc { subject }.must_raise(ModelNotFound) }
+  #     end
 
-      context 'when the model is not registered' do
-        it 'returns false' do
-          test_repo = RepositoriesTestClass.new
-          test_repo.add({
-            'gadolinium' => 'rare-earth metal',
-            'samarium'   => 'a hard silvery metal'
-          })
-          test_repo.remove('francium').must_equal(false)
-        end
-      end
+  #     context 'when the model is found' do
+  #       before { described.store(model) }
 
-      context 'when the model is registered' do
-        it 'returns the storage with the model removed' do
-          test_repo = RepositoriesTestClass.new
-          test_repo.add({
-            'gadolinium' => 'rare-earth metal',
-            'samarium'   => 'a hard silvery metal'
-          })
-          test_repo.remove('samarium').must_equal({
-            'gadolinium' => 'rare-earth metal',
-          })
-        end
-      end
+  #       it 'returns the stored model' do
+  #         subject.must_equal(model)
+  #       end
+  #     end
+  #   end
 
-      context 'alias method: #destroy' do
-        it 'returns the storage with the model removed' do
-          test_repo = RepositoriesTestClass.new
-          test_repo.add({
-            'gadolinium' => 'rare-earth metal',
-            'samarium'   => 'a hard silvery metal'
-          })
-          test_repo.destroy('samarium').must_equal({
-            'gadolinium' => 'rare-earth metal',
-          })
-        end
-      end
+  #   describe '#find_or_create' do
+  #     subject { described.find_or_create(cursor_name) }
 
-      context 'alias method; #delete' do
-        it 'returns the storage with the model removed' do
-          test_repo = RepositoriesTestClass.new
-          test_repo.add({
-            'gadolinium' => 'rare-earth metal',
-            'samarium'   => 'a hard silvery metal'
-          })
-          test_repo.delete('samarium').must_equal({
-            'gadolinium' => 'rare-earth metal',
-          })
-        end
-      end
-    end
+  #     it { return_type_for(described.find_or_create('zinc'), Cursor) }
 
-    describe '#reset' do
-      it 'returns a Hash' do
-        RepositoriesTestClass.new.reset.must_be_instance_of(Hash)
-      end
+  #     context 'when the cursor exists' do
+  #       let(:cursor_name) { 'niobium' }
 
-      it 'resets the repository' do
-        RepositoriesTestClass.new.reset.must_equal({})
-      end
-    end
+  #       before { Cursor.new('niobium', false, 7, 9).store }
 
-    describe '#store' do
-      let(:attributes) {
-        {
-          name: model_name
-        }
-      }
-      let(:model_name) { 'hydrogen' }
-      let(:model)      { ModelTestClass.new(attributes) }
+  #       it 'has the same attributes it was stored with' do
+  #         subject.x.must_equal(7)
+  #         subject.y.must_equal(9)
+  #       end
+  #     end
 
-      subject { RepositoriesTestClass.new.store(model) }
+  #     context 'when the cursor does not exist' do
+  #       let(:cursor_name) { 'zinc'}
 
-      context 'when a name attribute is empty or nil' do
-        let(:model_name) { '' }
+  #       it 'is created, stored and has the default attributes' do
+  #         subject.x.must_equal(1)
+  #         subject.y.must_equal(1)
+  #       end
+  #     end
+  #   end
 
-        it { proc { subject }.must_raise(MissingRequired) }
-      end
+  #   describe '#registered' do
+  #     it 'returns an Array' do
+  #       RepositoriesTestClass.new.registered.must_be_instance_of(Array)
+  #     end
 
-      context 'when a name attributes is provided' do
-        it { return_type_for(subject, model.class) }
-        it { return_value_for(subject, model) }
-      end
-    end
+  #     context 'when the storage is a Hash' do
+  #       it 'returns a collection of the names of all the registered entities' do
+  #         repo = RepositoriesTestClass.new
+  #         repo.add({ 'rutherfordium' => { name: 'rutherfordium' } })
 
-  end # Repository
+  #         repo.registered.must_equal(['rutherfordium'])
+  #       end
+  #     end
+
+  #     context 'when the storage is an Array' do
+  #       it 'returns the registered entities' do
+  #         repo = RepositoriesTestClass.new([])
+  #         repo.add('rutherfordium')
+
+  #         repo.registered.must_equal(['rutherfordium'])
+  #       end
+  #     end
+
+  #     context 'when the storage is a Set' do
+  #       it 'returns the registered entities' do
+  #         repo = RepositoriesTestClass.new(Set.new)
+  #         repo.add('rutherfordium')
+
+  #         repo.registered.must_equal(['rutherfordium'])
+  #       end
+  #     end
+
+  #     it 'returns an empty collection when the storage is empty' do
+  #       RepositoriesTestClass.new.registered.must_equal([])
+  #     end
+  #   end
+
+  #   describe '#registered?' do
+  #     it 'returns false when the storage is empty' do
+  #       RepositoriesTestClass.new.registered?('terbium').must_equal(false)
+  #     end
+
+  #     it 'returns false when the model is not registered' do
+  #       repo = RepositoriesTestClass.new
+  #       repo.add({ name: 'samarium' })
+
+  #       repo.registered?('terbium').must_equal(false)
+  #     end
+  #   end
+
+  #   describe '#remove' do
+  #     subject { described.remove('francium') }
+
+  #     context 'when the storage is empty' do
+  #       it { return_type_for(subject, FalseClass) }
+  #     end
+
+  #     context 'when the model is not registered' do
+  #       it { return_type_for(subject, FalseClass) }
+  #     end
+
+  #     context 'when the model is registered' do
+  #       before do
+  #         described.add(mock('Model', name: 'gadolinium'))
+  #         described.add(mock('Model', name: 'francium'))
+  #       end
+
+  #       it 'returns the storage with the model removed' do
+  #         subject.must_equal([mock('Model', name: 'gadolinium')])
+  #       end
+  #     end
+  #   end
+
+  #   describe '#reset' do
+  #     it 'returns a Hash' do
+  #       described.reset.must_be_instance_of(Hash)
+  #     end
+
+  #     it 'resets the repository' do
+  #       described.reset.must_equal({})
+  #     end
+  #   end
+
+  #   describe '#store' do
+  #     let(:model_name) { '' }
+  #     let(:model)      { mock('Model', name: model_name) }
+
+  #     subject { described.store(model) }
+
+  #     context 'when a name attribute is empty or nil' do
+  #       it { proc { subject }.must_raise(MissingRequired) }
+  #     end
+
+  #     context 'when a name attributes is provided' do
+  #       let(:model_name) { 'hydrogen' }
+
+  #       it { return_type_for(subject, model.class) }
+  #       it { return_value_for(subject, model) }
+  #     end
+  #   end
+
+  #   describe '#use' do
+  #     subject { described.use(model_name) }
+
+  #     context 'when the model exists' do
+  #       before { Repository.new.store(model) }
+
+  #       it { return_value_for(subject, model) }
+  #     end
+
+  #     context 'when the model does not exist' do
+  #       let(:model_name) { 'not_found' }
+
+  #       it { return_type_for(subject, NilClass) }
+  #     end
+  #   end
+
+  # end # Repository
 
 end # Vedeu

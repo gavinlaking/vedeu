@@ -38,7 +38,7 @@ module Vedeu
     def chars
       return [] if empty?
 
-      streams.all.map(&:chars).flatten
+      streams.map(&:chars).flatten
     end
 
     # Returns the class responsible for defining the DSL methods of this model.
@@ -52,14 +52,14 @@ module Vedeu
     #
     # @return [Boolean]
     def empty?
-      size == 0
+      streams.empty?
     end
 
     # Returns the size of the content in characters without formatting.
     #
     # @return [Fixnum]
     def size
-      streams.all.map(&:size).inject(0, :+) { |sum, x| sum += x }
+      streams.map(&:size).inject(0, :+) { |sum, x| sum += x }
     end
 
     def streams

@@ -24,6 +24,35 @@ module Vedeu
   extend self
 
   def_delegators Vedeu::Log, :log
+  # def_delegators Vedeu::Event, :event
+
+  def self.buffers_repository
+    @_buffers_repository ||= Vedeu::Buffers.new(Vedeu::Buffer)
+  end
+
+  def self.cursors_repository
+    @_cursors_repository ||= Vedeu::Cursors.new(Vedeu::Cursor)
+  end
+
+  def self.events_repository
+    @_events_repository ||= Vedeu::Events.new(Vedeu::Model::Collection)
+  end
+
+  def self.groups_repository
+    @_groups_repository ||= Vedeu::Groups.new(Vedeu::Group)
+  end
+
+  def self.interfaces_repository
+    @_interfaces_repository ||= Vedeu::Interfaces.new(Vedeu::Interface)
+  end
+
+  def self.menus_repository
+    @_menus_repository ||= Vedeu::Menus.new(Vedeu::Menu)
+  end
+
+  def self.event(name, options = {}, &block)
+    events_repository.event(name, options, &block)
+  end
 
   # When Vedeu is included within one of your classes, you should have all
   # API methods at your disposal.
@@ -38,6 +67,9 @@ module Vedeu
     receiver.extend(API)
   end
 
+  private
+
 end # Vedeu
 
 require 'vedeu/all'
+

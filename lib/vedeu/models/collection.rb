@@ -6,33 +6,35 @@ module Vedeu
 
       include Enumerable
 
-      attr_accessor :parent
+      attr_accessor :parent, :name
 
-      # def self.coerce(parent = nil, collection = [])
-      #   new(parent, collection).coerce
-      # end
+      def self.coerce(collection = [], parent = nil, name = nil)
+        if collection.kind_of?(Vedeu::Model::Collection)
+          collection
 
-      def initialize(parent = nil, collection = [])
-        @parent     = parent
+        elsif collection.is_a?(Array)
+          new(collection, parent, name)
+
+        else
+          new(Array(collection), parent, name)
+
+        end
+      end
+
+      def initialize(collection = [], parent = nil, name = nil)
         @collection = collection
+        @parent     = parent
+        @name       = name
       end
 
       def add(*other)
-        Collection.new(parent, @collection += other)
+        Collection.new(@collection += other, parent, name)
       end
+      alias_method :<<, :add
 
       def all
         @collection
       end
-
-      # def coerce
-      #   return self if empty?
-      #   return collection if collection.kind_of?(Collection)
-
-      #   collection.each do |model|
-      #     add(model)
-      #   end
-      # end
 
       def each(&block)
         @collection.each do |element|
@@ -63,6 +65,7 @@ module Vedeu
     Interfaces = Class.new(Collection)
     Lines      = Class.new(Collection)
     Streams    = Class.new(Collection)
+    Chars      = Class.new(Collection)
 
   end # Model
 

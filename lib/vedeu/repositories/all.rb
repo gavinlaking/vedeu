@@ -1,6 +1,2 @@
 require 'vedeu/repositories/buffers'
-require 'vedeu/repositories/focus'
-require 'vedeu/repositories/groups'
-require 'vedeu/repositories/interfaces'
 require 'vedeu/repositories/keymaps'
-require 'vedeu/repositories/menus'

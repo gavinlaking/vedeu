@@ -72,9 +72,9 @@ module Vedeu
     #
     # @return [TrueClass]
     def resize
-      Vedeu::Events.trigger(:_clear_)
+      Vedeu.trigger(:_clear_)
 
-      Vedeu::Events.trigger(:_refresh_)
+      Vedeu.trigger(:_refresh_)
 
       true
     end

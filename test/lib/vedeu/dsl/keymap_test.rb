@@ -7,18 +7,11 @@ module Vedeu
     describe Keymap do
 
       let(:described) { Vedeu::DSL::Keymap.new(model) }
-      let(:model)     { Vedeu::Keymap.new }
+      let(:model)     { Vedeu::Keymap.new('_test_') }
 
       describe '#initialize' do
         it { return_type_for(described, Vedeu::DSL::Keymap) }
         it { assigns(described, '@model', model) }
-      end
-
-      describe '#interface' do
-        subject { described.interface('hydrogen', 'helium') }
-
-        it { return_type_for(subject, Array) }
-        it { return_value_for(subject, ['hydrogen', 'helium']) }
       end
 
       describe '#key' do
@@ -42,8 +35,17 @@ module Vedeu
           it { proc { subject }.must_raise(InvalidSyntax) }
         end
 
-        it { skip }
-        # it { return_type_for(subject, Vedeu::Keymap) }
+        # context 'when an invalid key was given' do
+        #   let(:value_or_values) { ['v', nil] }
+
+        #   it { proc { subject }.must_raise(InvalidSyntax) }
+        # end
+
+        # context 'when an invalid key was given' do
+        #   let(:value_or_values) { ['v', ''] }
+
+        #   it { proc { subject }.must_raise(InvalidSyntax) }
+        # end
       end
 
     end # Keymap
