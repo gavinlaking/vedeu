@@ -4,17 +4,21 @@ module Vedeu
 
   describe Refresh do
 
-    # describe '.all' do
-    #   context 'when there are no registered interfaces' do
-    #     it 'returns an empty collection' do
-    #       Refresh.all.must_equal([])
-    #     end
-    #   end
+    let(:described) { Vedeu::Refresh }
 
-    #   context 'when there are registered interfaces' do
-    #     it { return_value_for(Refresh.all.must_equal([]), []) }
-    #   end
-    # end
+    describe '.all' do
+      subject { described.all }
+
+      it { return_type_for(subject, Array) }
+
+      context 'when there are no registered interfaces' do
+        it { return_value_for(subject, []) }
+      end
+
+      # context 'when there are registered interfaces' do
+      #   it { return_value_for(subject, ['hydrogen', 'helium']) }
+      # end
+    end
 
     # describe '.by_focus' do
     #   context 'when there are no registered interfaces' do
@@ -27,7 +31,7 @@ module Vedeu
 
     # describe '.by_group' do
     #   context 'when there are no registered groups' do
-    #     Groups.reset
+    #     before { Vedeu.groups_repository.reset }
 
     #     it { proc { Refresh.by_group('') }.must_raise(ModelNotFound) }
     #   end

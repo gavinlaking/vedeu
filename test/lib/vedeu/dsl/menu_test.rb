@@ -6,13 +6,11 @@ module Vedeu
 
     describe Menu do
 
-      it { skip }
-
-      # let(:described)  { Vedeu::DSL::Menu.new(model) }
-      # let(:model)      { Vedeu::Menu.new(attributes) }
-      # let(:attributes) { { collection: menu_items, name: menu_name }}
-      # let(:menu_items) { [:sodium, :magnesium, :aluminium, :silicon] }
-      # let(:menu_name)  { 'elements' }
+      let(:described)  { Vedeu::DSL::Menu.new(model) }
+      let(:model)      { Vedeu::Menu.new(attributes) }
+      let(:attributes) { { collection: menu_items, name: menu_name }}
+      let(:menu_items) { [:sodium, :magnesium, :aluminium, :silicon] }
+      let(:menu_name)  { 'elements' }
 
       # describe '.define' do
       #   before { Menus.reset }
@@ -35,10 +33,10 @@ module Vedeu
       #   end
       # end
 
-      # describe '#initialize' do
-      #   it { return_type_for(described, Vedeu::DSL::Menu) }
-      #   it { assigns(described, '@model', model) }
-      # end
+      describe '#initialize' do
+        it { return_type_for(described, Vedeu::DSL::Menu) }
+        it { assigns(described, '@model', model) }
+      end
 
 # describe '.define' do
 #         before { Menus.reset }
@@ -105,8 +103,6 @@ module Vedeu
 #           menu.attributes[:name].must_equal('elements')
 #         end
 #       end
-
-
 
     end # Menu
 

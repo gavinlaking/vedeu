@@ -2,24 +2,28 @@ require 'test_helper'
 
 module Vedeu
 
+  NastyException = Class.new(StandardError)
+
   describe Trigger do
 
-    # describe '#trigger' do
-    #   let(:event_name) { :_testing_event_ }
+    let(:described) { Vedeu::Trigger }
 
-    #   before { described.event(:_nasty_exception_) { fail NastyException } }
-    #   after  { described.unevent(:_nasty_exception_) }
+    describe '#trigger' do
+      let(:event_name) { :_testing_event_ }
 
-    #   subject { described.trigger(event_name) }
+      before { Vedeu.event(:_nasty_exception_) { fail NastyException } }
+      # after  { Vedeu.unevent(:_nasty_exception_) }
 
-    #   it 'returns the result of triggering the event' do
-    #     proc { described.trigger(:_nasty_exception_) }.must_raise(NastyException)
-    #   end
+      subject { described.trigger(event_name) }
 
-    #   it 'returns an empty collection when the event has not been registered' do
-    #     described.trigger(:_not_found_).must_be_empty
-    #   end
-    # end
+      it 'returns the result of triggering the event' do
+        proc { described.trigger(:_nasty_exception_) }.must_raise(NastyException)
+      end
+
+      it 'returns an empty collection when the event has not been registered' do
+        described.trigger(:_not_found_).must_be_empty
+      end
+    end
 
   end # Trigger
 

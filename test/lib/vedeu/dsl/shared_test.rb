@@ -6,21 +6,19 @@ module Vedeu
 
     describe Shared do
 
-      describe '.use' do
-        it { skip }
+      # describe '.use' do
+      #   before { Vedeu::Interfaces.reset }
 
-        # before { Vedeu::Interfaces.reset }
+      #   context 'when an interface has not been defined' do
+      #     it { proc { Vedeu.use('unknown') }.must_raise(ModelNotFound) }
+      #   end
 
-        # context 'when an interface has not been defined' do
-        #   it { proc { Vedeu.use('unknown') }.must_raise(ModelNotFound) }
-        # end
+      #   it 'returns an instance of the named interface' do
+      #     Vedeu.interface('aluminium')
 
-        # it 'returns an instance of the named interface' do
-        #   Vedeu.interface('aluminium')
-
-        #   Vedeu.use('aluminium').must_be_instance_of(Vedeu::Interface)
-        # end
-      end
+      #     Vedeu.use('aluminium').must_be_instance_of(Vedeu::Interface)
+      #   end
+      # end
 
     end # Shared
 

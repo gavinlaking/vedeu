@@ -4,11 +4,9 @@ module Vedeu
 
   describe API do
 
-    it { skip }
+    let(:event) { mock('Event') }
 
-    # let(:event) { mock('Event') }
-
-    # before { Event.stubs(:new).returns(event) }
+    before { Event.stubs(:new).returns(event) }
 
     # describe '.focus' do
     #   it 'sets the named interface to be focussed' do
@@ -75,34 +73,34 @@ module Vedeu
     #   end
     # end
 
-    # describe '.log' do
-    #   it 'writes the message to the log file when debugging is enabled' do
-    #     Configuration.stub(:debug?, true) do
-    #       Vedeu.log('Testing debugging to log').must_equal(true)
-    #     end
-    #   end
+    describe '.log' do
+      it 'writes the message to the log file when debugging is enabled' do
+        Configuration.stub(:debug?, true) do
+          Vedeu.log('Testing debugging to log').must_equal(true)
+        end
+      end
 
-    #   it 'returns nil when debugging is disabled' do
-    #     Configuration.stub(:debug?, false) do
-    #       Vedeu.log('some message not logged...').must_equal(nil)
-    #     end
-    #   end
+      it 'returns nil when debugging is disabled' do
+        Configuration.stub(:debug?, false) do
+          Vedeu.log('some message not logged...').must_equal(nil)
+        end
+      end
 
-    #   it 'write the message to the log file when the `force` argument ' \
-    #      'evaluates to true' do
-    #     Configuration.stub(:debug?, false) do
-    #       Vedeu.log('Testing forced debugging to log', true).must_equal(true)
-    #     end
-    #   end
-    # end
+      it 'write the message to the log file when the `force` argument ' \
+         'evaluates to true' do
+        Configuration.stub(:debug?, false) do
+          Vedeu.log('Testing forced debugging to log', true).must_equal(true)
+        end
+      end
+    end
 
-    # describe '.menu' do
-    #   it 'creates and stores a new menu' do
-    #     Vedeu.menu('Vedeu.menu') do
-    #       # ...
-    #     end.must_be_instance_of(Vedeu::Menu)
-    #   end
-    # end
+    describe '.menu' do
+      it 'creates and stores a new menu' do
+        Vedeu.menu('Vedeu.menu') do
+          # ...
+        end.must_be_instance_of(Vedeu::Menu)
+      end
+    end
 
     # describe '.resize' do
     #   before do
@@ -115,19 +113,20 @@ module Vedeu
     #   end
     # end
 
-    # describe '.trigger' do
-    #   it 'triggers the specifed event and returns the collection of events' \
-    #      ' which this trigger triggers' do
-    #     Vedeu.trigger(:vedeu_trigger_event, :event_arguments).must_equal([])
-    #   end
-    # end
+    describe '.trigger' do
+      it 'triggers the specifed event and returns the collection of events' \
+         ' which this trigger triggers' do
+        Vedeu.trigger(:vedeu_trigger_event, :event_arguments).must_equal([])
+      end
+    end
 
     # describe '.unevent' do
     #   it 'unregister the event by name' do
     #     Vedeu.event(:calcium) { proc { |x| x } }
-    #     Events.registered.must_include(:calcium)
+    #     Vedeu.events_repository.registered.must_include(:calcium)
+
     #     Vedeu.unevent(:calcium)
-    #     Events.registered.wont_include(:calcium)
+    #     Vedeu.events_repository.registered.wont_include(:calcium)
     #   end
     # end
 
