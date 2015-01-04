@@ -4,19 +4,23 @@ module Vedeu
 
   describe MoveCursor do
 
+    let(:described) { Vedeu::MoveCursor }
+    let(:instance)  { described.new(cursor, interface, dy, dx) }
     let(:cursor)    { Cursor.new('MoveCursor', :show, x, y) }
     let(:x)         { 1 }
     let(:y)         { 1 }
 
-    let(:interface) { Interface.new }
+    let(:interface) { Interface.new({ name: 'magnesium' }) }
     let(:interface_with_border) {
       Interface.new({
+        name: 'manganese',
         border: { enabled: true },
         geometry: { y: 5, height: 5, x: 5, width: 5 }
       })
     }
     let(:interface_without_border) {
       Interface.new({
+        name: 'meitnerium',
         geometry: { y: 5, height: 5, x: 5, width: 5 }
       })
     }
@@ -27,7 +31,7 @@ module Vedeu
     before { IO.console.stubs(:winsize).returns([25, 80]) }
 
     describe '#initialize' do
-      subject { MoveCursor.new(cursor, interface, dy, dx) }
+      subject { instance }
 
       it { return_type_for(subject, Vedeu::MoveCursor) }
       it { assigns(subject, '@cursor', cursor) }
