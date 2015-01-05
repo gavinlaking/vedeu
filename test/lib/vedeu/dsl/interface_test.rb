@@ -24,7 +24,7 @@ module Vedeu
       describe '#cursor!' do
       end
 
-      # before { Interfaces.reset }
+      before { Vedeu.interfaces_repository.reset }
 
       # describe '#define' do
       #   interface = Interface.new({ name: 'widget' })
@@ -146,49 +146,49 @@ module Vedeu
 
       # describe '#centred' do
       #   it 'returns false if the value is false or nil' do
-      #     API::Interface.new.centred(false).must_equal(false)
+      #     DSL::Interface.new.centred(false).must_equal(false)
       #   end
 
       #   it 'returns true' do
-      #     API::Interface.new.centred.must_equal(true)
+      #     DSL::Interface.new.centred.must_equal(true)
       #   end
       # end
 
-      # describe '#cursor' do
-      #   it 'returns :hide if the value is false or nil' do
-      #     API::Interface.new.cursor(false).must_equal(:hide)
-      #   end
+      describe '#cursor' do
+        # it 'returns :hide if the value is false or nil' do
+        #   DSL::Interface.new.cursor(false).must_equal(:hide)
+        # end
 
-      #   it 'returns :hide if the value is false or nil' do
-      #     Vedeu.interface 'cobalt' do
-      #       cursor false
-      #     end
+        # it 'returns :hide if the value is false or nil' do
+        #   Vedeu.interface 'cobalt' do
+        #     cursor false
+        #   end
 
-      #     Vedeu.use('cobalt').attributes[:cursor].must_equal(:hide)
-      #   end
+        #   Vedeu.use('cobalt').attributes[:cursor].must_equal(:hide)
+        # end
 
-      #   it 'returns :show if any other value' do
-      #     API::Interface.new.cursor.must_equal(:show)
-      #   end
+        # it 'returns :show if any other value' do
+        #   DSL::Interface.new.cursor.must_equal(:show)
+        # end
 
-      #   it 'returns :show if any other value' do
-      #     Vedeu.interface 'cobalt' do
-      #       cursor true
-      #     end
+        # it 'returns :show if any other value' do
+        #   Vedeu.interface 'cobalt' do
+        #     cursor true
+        #   end
 
-      #     Vedeu.use('cobalt').attributes[:cursor].must_equal(:show)
-      #   end
-      # end
+        #   Vedeu.use('cobalt').attributes[:cursor].must_equal(:show)
+        # end
+      end
 
-      # describe '#delay' do
-      #   it 'sets the delay attribute' do
-      #     Vedeu.interface 'cobalt' do
-      #       delay 0.25
-      #     end
+      describe '#delay' do
+        it 'sets the delay attribute' do
+          Vedeu.interface 'cobalt' do
+            delay 0.25
+          end
 
-      #     Vedeu.use('cobalt').attributes[:delay].must_equal(0.25)
-      #   end
-      # end
+          Vedeu.use('cobalt').delay.must_equal(0.25)
+        end
+      end
 
       # describe '#focus!' do
       #   it 'returns true' do
@@ -217,15 +217,15 @@ module Vedeu
       #   end
       # end
 
-      # describe '#group' do
-      #   it 'sets the group attribute' do
-      #     Vedeu.interface 'iron' do
-      #       group 'elements'
-      #     end
+      describe '#group' do
+        it 'sets the group attribute' do
+          Vedeu.interface 'iron' do
+            group 'elements'
+          end
 
-      #     Vedeu.use('iron').attributes[:group].must_equal('elements')
-      #   end
-      # end
+          Vedeu.use('iron').group.must_equal('elements')
+        end
+      end
 
       # describe '#keys' do
       #   before do
@@ -346,15 +346,15 @@ module Vedeu
       #   end
       # end
 
-      # describe '#name' do
-      #   it 'sets the name attribute' do
-      #     Vedeu.interface do
-      #       name 'nickel'
-      #     end
+      describe '#name' do
+        it 'sets the name attribute' do
+          Vedeu.interface do
+            name 'nickel'
+          end
 
-      #     Vedeu.use('nickel').attributes[:name].must_equal('nickel')
-      #   end
-      # end
+          Vedeu.use('nickel').name.must_equal('nickel')
+        end
+      end
 
     end # Interface
 

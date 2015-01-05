@@ -102,16 +102,16 @@ module Vedeu
       end
     end
 
-    # describe '.resize' do
-    #   before do
-    #     Interfaces.reset
-    #     Terminal.console.stubs(:print)
-    #   end
+    describe '.resize' do
+      before do
+        Vedeu.interfaces_repository.reset
+        Terminal.console.stubs(:print)
+      end
 
-    #   it 'returns a TrueClass' do
-    #     Vedeu.resize.must_be_instance_of(TrueClass)
-    #   end
-    # end
+      it 'returns a TrueClass' do
+        Vedeu.resize.must_be_instance_of(TrueClass)
+      end
+    end
 
     describe '.trigger' do
       it 'triggers the specifed event and returns the collection of events' \

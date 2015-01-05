@@ -3,6 +3,7 @@ require 'test_helper'
 module Vedeu
 
   describe ToggleCursor do
+
     let(:described) { ToggleCursor.new(cursor) }
     let(:cursor)    { Cursor.new('vanadium', true, 1, 1) }
 
