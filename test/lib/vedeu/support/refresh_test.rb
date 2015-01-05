@@ -6,6 +6,8 @@ module Vedeu
 
     let(:described) { Vedeu::Refresh }
 
+    before { Vedeu.interfaces_repository.reset }
+
     describe '.all' do
       subject { described.all }
 

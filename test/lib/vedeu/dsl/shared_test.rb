@@ -12,7 +12,9 @@ module Vedeu
         end
 
         it 'returns an instance of the named interface' do
-          Vedeu.interface('aluminium')
+          Vedeu.interface('aluminium') do
+            # ...
+          end
 
           Vedeu.use('aluminium').must_be_instance_of(Vedeu::Interface)
         end
