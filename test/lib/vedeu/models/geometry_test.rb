@@ -304,6 +304,60 @@ module Vedeu
       end
     end
 
+    describe '#y_position' do
+      let(:instance) { Geometry.new({ height: 6, width: 6, x: 7, y: 5 }) }
+      let(:index)    { 0 }
+
+      subject { instance.y_position(index) }
+
+      it { return_type_for(subject, Fixnum) }
+
+      context 'with a negative index' do
+        let(:index) { -3 }
+
+        it { subject.must_equal(5) }
+      end
+
+      context 'with an index greater than the maximum index for y' do
+        let(:index) { 9 }
+
+        it { subject.must_equal(11) }
+      end
+
+      context 'with an index within range' do
+        let(:index) { 3 }
+
+        it { subject.must_equal(8) }
+      end
+    end
+
+    describe '#x_position' do
+      let(:instance) { Geometry.new({ height: 6, width: 6, x: 7, y: 5 }) }
+      let(:index)    { 0 }
+
+      subject { instance.x_position(index) }
+
+      it { return_type_for(subject, Fixnum) }
+
+      context 'with a negative index' do
+        let(:index) { -3 }
+
+        it { subject.must_equal(7) }
+      end
+
+      context 'with an index greater than the maximum index for x' do
+        let(:index) { 9 }
+
+        it { subject.must_equal(13) }
+      end
+
+      context 'with an index within range' do
+        let(:index) { 3 }
+
+        it { subject.must_equal(10) }
+      end
+    end
+
   end # Geometry
 
 end # Vedeu
