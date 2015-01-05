@@ -24,10 +24,10 @@ module Vedeu
                               :top,   :right, :bottom, :left,
                               :width, :height, :origin
 
-    attr_reader :attributes, :delay
-    attr_writer :cursor, :geometry
+    attr_reader :attributes
+    attr_writer :cursor
 
-    attr_accessor :lines
+    attr_accessor :border, :delay, :geometry, :group, :lines, :name
     alias_method :content, :lines
 
     attr_accessor :parent
@@ -130,34 +130,11 @@ module Vedeu
       self
     end
 
-    # Returns an instance of Border.
-    #
-    # @return [Border]
-    def border
-      @border
-    end
-
-    def border=(value)
-      @border = value
-    end
-
     # Returns an instance of Cursor.
     #
     # @return [Cursor]
     def cursor
       @_cursor ||= Cursors.find_or_create(name, { visible: @cursor })
-    end
-
-    def cursor=(value)
-      @cursor = value
-    end
-
-    def delay
-      @delay
-    end
-
-    def delay=(value)
-      @delay = value
     end
 
     # Returns the class responsible for defining the DSL methods of this model.
@@ -167,25 +144,6 @@ module Vedeu
       Vedeu::DSL::Interface.new(self)
     end
 
-    # Returns the position and size of the interface.
-    #
-    # @return [Geometry]
-    def geometry
-      @geometry
-    end
-
-    def geometry=(value)
-      @geometry = value
-    end
-
-    def group
-      @group
-    end
-
-    def group=(value)
-      @group = value
-    end
-
     def lines
       @lines
     end
@@ -193,14 +151,6 @@ module Vedeu
 
     def lines=(value)
       @lines = value
-    end
-
-    def name
-      @name ||= ''
-    end
-
-    def name=(value)
-      @name = value
     end
 
     private
@@ -220,6 +170,7 @@ module Vedeu
         cursor:   false,
         geometry: {},
         lines:    [],
+        name:     '',
         parent:   nil,
         style:    '',
       }
