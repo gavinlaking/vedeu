@@ -34,7 +34,9 @@ module Vedeu
         def render(&block)
           return requires_block(__callee__) unless block_given?
 
-          Vedeu::Composition.build([], nil, nil, &block).interfaces.map do |interface|
+          composition = Vedeu::Composition.build([], nil, nil, &block)
+
+          composition.interfaces.map do |interface|
             Buffers.add_content(interface.attributes)
 
             interface.name
