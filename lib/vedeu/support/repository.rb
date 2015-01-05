@@ -117,7 +117,7 @@ module Vedeu
     #
     # @return [Array|Hash|Set]
     def reset
-      @_storage = in_memory
+      @storage = in_memory
     end
 
     # Stores the model instance by name in the repository of the model.
@@ -144,6 +144,12 @@ module Vedeu
         nil
 
       end
+    end
+
+    private
+
+    def in_memory
+      {}
     end
 
   end # Repository
