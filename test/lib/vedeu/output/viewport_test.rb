@@ -40,17 +40,15 @@ module Vedeu
     end
 
     describe '.show' do
-      it { skip }
-
       # it { return_type_for(Viewport.show(interface), Array) }
 
-      # context 'when there is no content' do
-      #   before { interface.stubs(:content).returns([]) }
+      context 'when there is no content' do
+        before { interface.stubs(:content).returns([]) }
 
-      #   it 'returns an empty collection' do
-      #     Viewport.show(interface).must_equal([])
-      #   end
-      # end
+        it 'returns an empty collection' do
+          Viewport.show(interface).must_equal([])
+        end
+      end
 
       # context 'when there is content, it returns only the visible content '  \
       #         'determined by the geometry of the interface and the current ' \
