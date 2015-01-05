@@ -4,50 +4,51 @@ module Vedeu
 
   describe Viewport do
 
-    let(:described) { Viewport.new(interface) }
+    let(:described) { Vedeu::Viewport }
+    let(:instance)  { described.new(interface) }
     let(:interface) {
       Interface.new({
         name:     'fluorine',
         geometry: {
           width:  30,
           height: 2,
-        },
-        lines: [
-          {
-            streams: [{
-              text: 'Something interesting ',
-            },{
-              text: 'on this line ',
-            },{
-              text: 'would be cool, eh?'
-            }]
-          }, {
-            streams: [{
-              text: 'Maybe a lyric, a little ditty ',
-            },{
-              text: 'to help you unwind.',
-            }]
-          }
-        ]
+        }
+        # lines: [
+        #   {
+        #     streams: [{
+        #       text: 'Something interesting ',
+        #     },{
+        #       text: 'on this line ',
+        #     },{
+        #       text: 'would be cool, eh?'
+        #     }]
+        #   }, {
+        #     streams: [{
+        #       text: 'Maybe a lyric, a little ditty ',
+        #     },{
+        #       text: 'to help you unwind.',
+        #     }]
+        #   }
+        # ]
       })
     }
 
     describe '#initialize' do
-      it { return_type_for(described, Viewport) }
-      it { assigns(described, '@interface', interface) }
-      it { assigns(described, '@top', 0) }
-      it { assigns(described, '@left', 0) }
+      subject { instance }
+
+      it { return_type_for(subject, Viewport) }
+      it { assigns(subject, '@interface', interface) }
+      it { assigns(subject, '@top', 0) }
+      it { assigns(subject, '@left', 0) }
     end
 
     describe '.show' do
-      # it { return_type_for(Viewport.show(interface), Array) }
+      subject { described.show(interface) }
+
+      it { return_type_for(subject, Array) }
 
       context 'when there is no content' do
-        before { interface.stubs(:content).returns([]) }
-
-        it 'returns an empty collection' do
-          Viewport.show(interface).must_equal([])
-        end
+        it { return_value_for(subject, []) }
       end
 
       # context 'when there is content, it returns only the visible content '  \
