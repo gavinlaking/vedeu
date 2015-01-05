@@ -15,32 +15,13 @@ module Vedeu
   # @api private
   class Events < Repository
 
-    def event(name, options = {}, &block)
-      Vedeu.log("Registering event: '#{name}'")
-
-      model = [Vedeu::Event.new(name, options, block)]
-
-      if registered?(name)
-        collection     = find(name)
-        new_collection = collection.add(model)
-
-      else
-        new_collection = Vedeu::Model::Collection.new(model, nil, name)
-
-      end
-
-      store(new_collection)
-
-      true
-    end
-
     # Unregisters the event by name, effectively deleting the associated events
     # bound with it also.
     #
     # @param name [String]
     # @return [Boolean]
     def unevent(name)
-      if registered?(name)
+      if Vedeu.events_repository.registered?(name)
         remove(name)
         true
 

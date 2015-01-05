@@ -55,7 +55,7 @@ module Vedeu
       #     ... some code here ...
       #   end
       #
-      # @return [Hash]
+      # @return [TrueClass]
       def register(name, options = {}, &block)
         Vedeu.log("Registering event: '#{name}'")
 

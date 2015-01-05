@@ -127,6 +127,7 @@ module Vedeu
     def store(model)
       fail MissingRequired, "Cannot store model '#{model.class}' without a " \
                             "name attribute." unless defined_value?(model.name)
+
       storage[model.name] = model
     end
     alias_method :register, :store

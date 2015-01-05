@@ -4,37 +4,31 @@ module Vedeu
 
   describe Events do
 
-    let(:described) { Events.new(model) }
+    let(:described) { Vedeu::Events }
+    let(:instance)  { described.new(model) }
     let(:model)     { Vedeu::Model::Collection }
 
     describe '#initialize' do
-      it { return_type_for(described, Vedeu::Events) }
-    end
+      subject { instance }
 
-    describe '#event' do
-      subject { described.event(:sulphur) { proc { |x| x } } }
-
-      context 'when the event is added' do
-        it { return_type_for(subject, TrueClass) }
-      end
+      it { return_type_for(subject, Vedeu::Events) }
     end
 
     describe '#unevent' do
       let(:event_name) { :chlorine }
 
       before do
-        described.event(:chlorine) { proc { |x| x } }
-        described.event(:argon)    { proc { |y| y } }
+        Vedeu::Event.register(:chlorine) { :some_event }
       end
 
-      subject { described.unevent(event_name) }
+      subject { instance.unevent(event_name) }
 
       context 'when the event exists' do
         it { return_type_for(subject, TrueClass) }
       end
 
       context 'when the event does not exist' do
-        let(:event_name) { :potassium }
+        let(:event_name) { :does_not_exist }
 
         it { return_type_for(subject, FalseClass) }
       end

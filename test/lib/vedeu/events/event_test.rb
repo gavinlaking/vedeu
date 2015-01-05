@@ -4,19 +4,42 @@ module Vedeu
 
   describe Event do
 
-    let(:described)  { Event.new(event_name, options, closure) }
+    let(:described)  { Vedeu::Event }
+    let(:instance)   { described.new(event_name, options, closure) }
     let(:event_name) { :some_event }
     let(:options)    { {} }
     let(:closure)    { proc { :event_triggered } }
 
-    describe '#initialize' do
-      it { return_type_for(described, Event) }
-      it { assigns(described, '@name', :some_event) }
-      it { assigns(described, '@options', options) }
+    describe '.register' do
+      subject { described.register(event_name, options) { :event_triggered } }
 
-      it { assigns(described, '@deadline', 0) }
-      it { assigns(described, '@executed_at', 0) }
-      it { assigns(described, '@now', 0) }
+      it { return_type_for(subject, TrueClass) }
+    end
+
+    describe '#initialize' do
+      subject { instance }
+
+      it { return_type_for(subject, Event) }
+      it { assigns(subject, '@name', event_name) }
+      it { assigns(subject, '@options', options) }
+      # it { assigns(subject, '@closure', closure) }
+      it { assigns(subject, '@deadline', 0) }
+      it { assigns(subject, '@executed_at', 0) }
+      it { assigns(subject, '@now', 0) }
+    end
+
+    describe '#register' do
+      subject { instance.register }
+
+      context 'when the event name is already registered' do
+        before { Vedeu.event(:some_event) { :already_registered } }
+
+        it { return_type_for(subject, TrueClass) }
+      end
+
+      context 'when the event name is not already registered' do
+        it { return_type_for(subject, TrueClass) }
+      end
     end
 
     describe '#trigger' do

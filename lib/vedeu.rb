@@ -55,7 +55,7 @@ module Vedeu
   end
 
   def self.event(name, options = {}, &block)
-    events_repository.event(name, options, &block)
+    Vedeu::Event.register(name, options, &block)
   end
 
   # When Vedeu is included within one of your classes, you should have all

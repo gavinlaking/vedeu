@@ -33,16 +33,17 @@ module Vedeu
     # @see Vedeu::Trigger.trigger
     # @return [Array]
     def trigger
-      if repository.registered?(name)
-        collection = repository.find(name)
-        results    = collection.map { |event| event.trigger(*args) }
+      return [] unless repository.registered?(name)
 
-        return results.first if results.one?
+      collection = repository.find(name)
 
-        results
+      results = collection.map do |event|
+        event.trigger(*args)
       end
 
-      []
+      return results.first if results.one?
+
+      results
     end
 
     private
