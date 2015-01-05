@@ -27,6 +27,10 @@ module Vedeu
         @name       = name
       end
 
+      def [](value)
+        @collection[value]
+      end
+
       def add(*other)
         Collection.new(@collection += other, parent, name)
       end

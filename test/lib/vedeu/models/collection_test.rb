@@ -21,6 +21,16 @@ module Vedeu
         it { assigns(subject, '@parent', parent) }
       end
 
+      describe '#[]' do
+        let(:collection) { [:hydrogen, :helium, :lithium, :beryllium] }
+        let(:value) { 1..2 }
+
+        subject { instance[value] }
+
+        it { return_type_for(subject, Array) }
+        it { return_value_for(subject, [:helium, :lithium]) }
+      end
+
       describe '#add' do
         subject { instance.add(:hydrogen) }
 
