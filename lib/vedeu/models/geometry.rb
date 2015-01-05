@@ -334,29 +334,6 @@ module Vedeu
       end
     end
 
-    # Provides all the geometry in a convenient hash.
-    #
-    # @return [Hash]
-    def to_h
-      {
-        centred:         centred,
-        height:          height,
-        width:           width,
-        x:               x,
-        y:               y,
-        top:             top,
-        right:           right,
-        bottom:          bottom,
-        left:            left,
-        north:           north,
-        east:            east,
-        south:           south,
-        west:            west,
-        virtual_x:       virtual_x,
-        virtual_y:       virtual_y,
-      }
-    end
-
     private
 
     # Returns the y coordinate as an offset index in the area's y range. When a

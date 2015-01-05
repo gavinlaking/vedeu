@@ -304,31 +304,6 @@ module Vedeu
       end
     end
 
-    describe '#to_h' do
-      it 'returns all the values within the instance as a hash' do
-        geometry = Geometry.new({ height: 6, width: 6, x: 3, y: 3 })
-        geometry.to_h.must_equal(
-          {
-            centred:         false,
-            height:          6,
-            width:           6,
-            x:               3,
-            y:               3,
-            top:             3,
-            right:           9,
-            bottom:          9,
-            left:            3,
-            north:           2,
-            east:            10,
-            south:           10,
-            west:            2,
-            virtual_x:       [3, 4, 5, 6, 7, 8],
-            virtual_y:       [3, 4, 5, 6, 7, 8]
-          }
-        )
-      end
-    end
-
   end # Geometry
 
 end # Vedeu
