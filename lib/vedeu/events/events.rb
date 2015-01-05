@@ -37,6 +37,8 @@ module Vedeu
 
   def_delegators Vedeu::Events, :event, :trigger, :unevent
 
+  # :nocov:
+
   # System events needed by Vedeu to run.
   Vedeu.event(:_clear_)                   { Vedeu::Terminal.clear_screen }
   Vedeu.event(:_exit_)                    { Vedeu::Application.stop      }
@@ -115,5 +117,7 @@ module Vedeu
 
   # System event to refresh all registered interfaces.
   Vedeu.event(:_refresh_) { Vedeu::Refresh.all }
+
+  # :nocov:
 
 end # Vedeu
