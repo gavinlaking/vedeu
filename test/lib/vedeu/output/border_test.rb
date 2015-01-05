@@ -4,31 +4,34 @@ module Vedeu
 
   describe Border do
 
-    let(:described)  { Border.new(interface, attributes) }
-    let(:interface)  { Interface.new({ name: 'caesium' }) }
-    # let(:interface)  {
-    #   Interface.build do
-    #     geometry do
-    #       width  8
-    #       height 5
-    #     end
-    #     lines do
-    #       line 'Beryllium'
-    #       line 'Magnesium'
-    #       line 'Plutonium'
-    #       line 'Potassium'
-    #       line 'Lanthanum'
-    #       line 'Stront­ium'
-    #     end
-    #     name 'caesium'
-    #   end
-    # }
+    let(:described)  { Vedeu::Border }
+    let(:instance)   { described.new(interface, attributes) }
+    # let(:interface)  { Interface.new({ name: 'caesium' }) }
+    let(:interface)  {
+      Interface.build do
+        geometry do
+          width  8
+          height 5
+        end
+        lines do
+          line 'Beryllium'
+          line 'Magnesium'
+          line 'Plutonium'
+          line 'Potassium'
+          line 'Lanthanum'
+          line 'Stront­ium'
+        end
+        name 'caesium'
+      end
+    }
     let(:attributes) { {} }
 
     describe '#initialize' do
-      it { return_type_for(described, Border) }
-      it { assigns(described, '@interface', interface) }
-      it { assigns(described, '@attributes', {
+      subject { instance }
+
+      it { return_type_for(subject, Border) }
+      it { assigns(subject, '@interface', interface) }
+      it { assigns(subject, '@attributes', {
           enabled:      false,
           show_bottom:  true,
           show_left:    true,
@@ -46,53 +49,73 @@ module Vedeu
       }
     end
 
+    describe '.build' do
+      subject {
+        described.build(interface, attributes) do
+          horizontal '~'
+        end
+      }
+
+      it { return_type_for(subject, described) }
+    end
+
     describe '#enabled?' do
-      it { return_type_for(described.enabled?, FalseClass) }
+      subject { instance.enabled? }
+
+      it { return_type_for(subject, FalseClass) }
 
       context 'when true' do
         let(:attributes) { { enabled: true } }
 
-        it { return_type_for(described.enabled?, TrueClass) }
+        it { return_type_for(subject, TrueClass) }
       end
     end
 
     describe '#bottom?' do
-      it { return_type_for(described.bottom?, TrueClass) }
+      subject { instance.bottom? }
+
+      it { return_type_for(subject, TrueClass) }
 
       context 'when false' do
         let(:attributes) { { show_bottom: false } }
 
-        it { return_type_for(described.bottom?, FalseClass) }
+        it { return_type_for(subject, FalseClass) }
       end
     end
 
     describe '#left?' do
-      it { return_type_for(described.left?, TrueClass) }
+      subject { instance.left? }
+
+      it { return_type_for(subject, TrueClass) }
 
       context 'when false' do
         let(:attributes) { { show_left: false } }
 
-        it { return_type_for(described.left?, FalseClass) }
+        it { return_type_for(subject, FalseClass) }
       end
     end
 
     describe '#right?' do
-      it { return_type_for(described.right?, TrueClass) }
+      subject { instance.right? }
+
+      it { return_type_for(subject, TrueClass) }
 
       context 'when false' do
         let(:attributes) { { show_right: false } }
 
-        it { return_type_for(described.right?, FalseClass) }
+        it { return_type_for(subject, FalseClass) }
       end
     end
 
     describe '#top?' do
-      it { return_type_for(described.top?, TrueClass) }
+      subject { instance.top? }
+
+      it { return_type_for(subject, TrueClass) }
 
       context 'when false' do
         let(:attributes) { { show_top: false } }
 
-        it { return_type_for(described.top?, FalseClass) }
+        it { return_type_for(subject, FalseClass) }
       end
     end
 
