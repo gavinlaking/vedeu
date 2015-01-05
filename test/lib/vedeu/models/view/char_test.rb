@@ -4,7 +4,8 @@ module Vedeu
 
   describe Char do
 
-    let(:described)     { Char.new(value, parent, colour, style, position) }
+    let(:described)     { Vedeu::Char }
+    let(:instance)      { described.new(value, parent, colour, style, position) }
     let(:value)         { 'a' }
     let(:parent)        { Line.new([], nil, parent_colour, parent_style) }
     let(:colour)        { nil }
@@ -13,18 +14,75 @@ module Vedeu
     let(:parent_colour) { nil }
     let(:parent_style)  { nil }
 
+    describe '.coerce' do
+      subject { described.coerce(value, parent, colour, style, position) }
+
+      context 'when the value is already a Char' do
+        let(:value) { described.new('b') }
+
+        it { return_value_for(subject, value) }
+      end
+
+      context 'when the value is an Array' do
+        context 'and the Array contains instances of Char' do
+          let(:value) { [described.new('b')] }
+
+          it { return_value_for(subject, value) }
+        end
+
+        context 'and the Array contains instances of String' do
+          let(:value) { ['carbon'] }
+
+          it { return_type_for(subject, Array) }
+        end
+
+        context 'and the Array contains instances of NilClass' do
+          let(:value) { [] }
+
+          it { return_type_for(subject, NilClass) }
+        end
+      end
+
+      context 'when the value is not a Char or Array' do
+        let(:value) { {} }
+
+        it { return_type_for(subject, NilClass) }
+      end
+    end
 
     describe '#initialize' do
-      it { return_type_for(described, Char) }
-      it { assigns(described, '@colour', colour) }
-      it { assigns(described, '@parent', parent) }
-      it { assigns(described, '@style', style) }
-      it { assigns(described, '@value', value) }
-      it { assigns(described, '@position', position) }
+      subject { instance }
+
+      it { return_type_for(subject, Char) }
+      it { assigns(subject, '@colour', colour) }
+      it { assigns(subject, '@parent', parent) }
+      it { assigns(subject, '@style', style) }
+      it { assigns(subject, '@value', value) }
+      it { assigns(subject, '@position', position) }
+    end
+
+    describe '#value' do
+      subject { instance.value }
+
+      context 'when the value is not set' do
+        let(:value) {}
+
+        it { return_value_for(subject, '') }
+      end
+
+      context 'when the value is set' do
+        it { return_value_for(subject, 'a') }
+
+        context 'and the value is more than one character' do
+          let(:value) { 'multi' }
+
+          it { return_value_for(subject, 'm') }
+        end
+      end
     end
 
     describe '#to_s' do
-      subject { Char.new(value, parent, colour, style, position).to_s }
+      subject { instance.to_s }
 
       it { return_type_for(subject, String) }
 

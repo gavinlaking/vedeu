@@ -16,6 +16,7 @@ module Vedeu
     include Vedeu::Presentation
 
     attr_accessor :parent
+    attr_reader :position
 
     def self.coerce(value = nil, parent = nil, colour = nil, style = nil, position = nil)
       if value.is_a?(self)
@@ -54,12 +55,6 @@ module Vedeu
       @colour   = colour
       @style    = style
       @position = position
-    end
-
-    #
-    # @return [NilClass|Position]
-    def position
-      @position
     end
 
     #
