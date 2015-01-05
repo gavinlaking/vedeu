@@ -37,8 +37,8 @@ module Vedeu
     #   named buffer.
     # @return [Array|ModelNotFound]
     def by_name(name)
-      interface = Interfaces.find(name)
-      buffer    = Buffers.find(name)
+      interface = Vedeu.interfaces_repository.find(name)
+      buffer    = Vedeu.buffers_repository.find(name)
 
       Compositor.compose(interface, buffer)
     end
