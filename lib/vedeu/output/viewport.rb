@@ -174,7 +174,7 @@ module Vedeu
     end
 
     def cursor
-      Cursors.by_name(interface.name)
+      Vedeu.cursors_repository.by_name(interface.name)
     end
 
     def width
