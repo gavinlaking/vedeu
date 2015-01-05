@@ -8,11 +8,10 @@ module Vedeu
 
     before do
       IO.console.stubs(:winsize).returns([25, 80])
+      IO.console.stubs(:print)
     end
 
     describe '.open' do
-      before { IO.console.stubs(:print) }
-
       context 'when a block was not given' do
         it { proc { Terminal.open }.must_raise(InvalidSyntax) }
       end
@@ -39,8 +38,6 @@ module Vedeu
     end
 
     describe '.output' do
-      before { IO.console.stubs(:print) }
-
       it 'returns the output' do
         Terminal.output('Some output...').must_equal(['Some output...'])
       end
@@ -52,6 +49,8 @@ module Vedeu
     end
 
     describe '.resize' do
+      before { Vedeu.interfaces_repository.reset }
+
       subject { Terminal.resize }
 
       it { return_type_for(subject, TrueClass) }
@@ -59,9 +58,7 @@ module Vedeu
 
     describe '.clear_screen' do
       it 'clears the screen' do
-        console.stub :print, nil do
-          Terminal.clear_screen.must_equal(["\e[38;2;39m\e[48;2;49m\e[2J"])
-        end
+        Terminal.clear_screen.must_equal(["\e[38;2;39m\e[48;2;49m\e[2J"])
       end
     end
 
