@@ -25,7 +25,6 @@ module Vedeu
                               :width, :height, :origin
 
     attr_reader :attributes
-    attr_writer :cursor
 
     attr_accessor :border, :delay, :geometry, :group, :lines, :name
     alias_method :content, :lines
@@ -130,13 +129,6 @@ module Vedeu
       self
     end
 
-    # Returns an instance of Cursor.
-    #
-    # @return [Cursor]
-    def cursor
-      @_cursor ||= Cursors.find_or_create(name, { visible: @cursor })
-    end
-
     # Returns the class responsible for defining the DSL methods of this model.
     #
     # @return [DSL::Interface]
@@ -167,7 +159,6 @@ module Vedeu
       {
         border:   {},
         colour:   {},
-        cursor:   false,
         geometry: {},
         lines:    [],
         name:     '',

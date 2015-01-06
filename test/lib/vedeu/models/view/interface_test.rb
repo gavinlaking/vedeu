@@ -46,7 +46,6 @@ module Vedeu
     #         background: '#000000',
     #         foreground: '#ff0000',
     #       },
-    #       cursor:   :hide,
     #       delay:    0.0,
     #       geometry: {
     #         x:      5,
@@ -61,7 +60,6 @@ module Vedeu
     #       style:    ''
     #     })
     #   }
-    #   it { assigns(described, '@cursor', :hide) }
     #   it { assigns(described, '@delay', 0.0) }
     #   it { assigns(described, '@group', 'my_group') }
     #   it { assigns(described, '@name', 'francium') }
@@ -73,7 +71,6 @@ module Vedeu
     #     it { assigns(described, '@attributes', {
     #         border:   {},
     #         colour:   {},
-    #         cursor:   :hide,
     #         delay:    0.0,
     #         geometry: {},
     #         group:    '',
@@ -95,7 +92,6 @@ module Vedeu
     #           foreground: '#ff0000',
     #           background: '#000000'
     #         },
-    #         cursor:     :hide,
     #         delay:      0.0,
     #         geometry:   {
     #           y:          3,
@@ -115,10 +111,6 @@ module Vedeu
 
     describe '#border' do
       it { return_type_for(described.border, Border) }
-    end
-
-    describe '#cursor' do
-      it { skip }
     end
 
     describe '#delay' do
