@@ -6,25 +6,22 @@ module Vedeu
 
     describe Interface do
 
-      let(:described) { Vedeu::DSL::Interface.new(model) }
-      let(:model)     { mock('Interface') }
+      let(:described) { Vedeu::DSL::Interface }
+      let(:instance)  { described.new(model) }
+      let(:model)     { Vedeu::Interface.new({ name: 'actinium' }) }
+
+      before { Vedeu.interfaces_repository.reset }
 
       describe '#initialize' do
-        it { return_type_for(described, Vedeu::DSL::Interface) }
-        it { assigns(described, '@model', model) }
+        subject { instance }
+
+        it { return_type_for(subject, Vedeu::DSL::Interface) }
+        it { assigns(subject, '@model', model) }
       end
 
       describe '#border' do
         it { skip }
       end
-
-      describe '#cursor' do
-      end
-
-      describe '#cursor!' do
-      end
-
-      before { Vedeu.interfaces_repository.reset }
 
       # describe '#define' do
       #   interface = Interface.new({ name: 'widget' })
@@ -155,29 +152,68 @@ module Vedeu
       # end
 
       describe '#cursor' do
-        # it 'returns :hide if the value is false or nil' do
-        #   DSL::Interface.new.cursor(false).must_equal(:hide)
-        # end
+        let(:value) {}
 
-        # it 'returns :hide if the value is false or nil' do
-        #   Vedeu.interface 'cobalt' do
-        #     cursor false
-        #   end
+        subject { instance.cursor(value) }
 
-        #   Vedeu.use('cobalt').attributes[:cursor].must_equal(:hide)
-        # end
+        it {
+          subject
+          Vedeu.cursors_repository.find('actinium').state.visible?.must_equal(false)
+        }
 
-        # it 'returns :show if any other value' do
-        #   DSL::Interface.new.cursor.must_equal(:show)
-        # end
+        context 'when the value is false' do
+          let(:value) { false }
 
-        # it 'returns :show if any other value' do
-        #   Vedeu.interface 'cobalt' do
-        #     cursor true
-        #   end
+          it {
+            subject
+            Vedeu.cursors_repository.find('actinium').state.visible?.must_equal(false)
+          }
+        end
 
-        #   Vedeu.use('cobalt').attributes[:cursor].must_equal(:show)
-        # end
+        context 'when the value is :hide' do
+          let(:value) { :hide }
+
+          it {
+            subject
+            Vedeu.cursors_repository.find('actinium').state.visible?.must_equal(false)
+          }
+        end
+
+        context 'when the value is :show' do
+          let(:value) { :show }
+
+          it {
+            subject
+            Vedeu.cursors_repository.find('actinium').state.visible?.must_equal(true)
+          }
+        end
+
+        context 'when the value is true' do
+          let(:value) { true }
+
+          it {
+            subject
+            Vedeu.cursors_repository.find('actinium').state.visible?.must_equal(true)
+          }
+        end
+
+        context 'when the value is :yes' do
+          let(:value) { :yes }
+
+          it {
+            subject
+            Vedeu.cursors_repository.find('actinium').state.visible?.must_equal(true)
+          }
+        end
+      end
+
+      describe '#cursor!' do
+        subject { instance.cursor! }
+
+        it {
+          subject
+          Vedeu.cursors_repository.find('actinium').state.visible?.must_equal(true)
+        }
       end
 
       describe '#delay' do
@@ -217,6 +253,22 @@ module Vedeu
       #   end
       # end
 
+      describe '#geometry' do
+        subject {
+          instance.geometry do
+            # ...
+          end
+        }
+
+        it { return_type_for(subject, Vedeu::Geometry) }
+
+        context 'when the require block is not provided' do
+          subject { instance.geometry }
+
+          it { proc { subject }.must_raise(InvalidSyntax) }
+        end
+      end
+
       describe '#group' do
         it 'sets the group attribute' do
           Vedeu.interface 'iron' do
@@ -227,124 +279,152 @@ module Vedeu
         end
       end
 
-      # describe '#keys' do
-      #   before do
-      #     Keymaps.reset
+      describe '#keys' do
+        subject {
+          instance.keys do
+            # ...
+          end
+        }
 
-      #     Vedeu.interface 'iron' do
-      #       keys do
-      #         key('k') { :k_pressed }
-      #       end
-      #     end
-      #   end
+        it { return_type_for(subject, Vedeu::Keymap) }
 
-      #   it 'defines a keymap for the interface' do
-      #     Keymaps.interface_key?('k').must_equal(true)
-      #   end
+        context 'when the required block is not provided' do
+          subject { instance.keys }
 
-      #   it 'defines a keymap for the interface' do
-      #     Keymaps.interface_keys('iron').must_equal(['k'])
-      #   end
+          it { proc { subject }.must_raise(InvalidSyntax) }
+        end
 
-      #   context 'when the block is not given' do
-      #     it { proc { Vedeu.interface('iron') { keys } }.must_raise(InvalidSyntax) }
-      #   end
-      # end
+        # before do
+        #   Keymaps.reset
 
-      # describe '#line' do
-      #   it 'adds a blank line with no arguments' do
-      #     interface = Vedeu.interface 'carbon' do
-      #       line
-      #     end
-      #     interface.must_be_instance_of(API::Interface)
-      #     interface.attributes.must_equal(
-      #       {
-      #         border: {},
-      #         colour: {},
-      #         cursor: :hide,
-      #         delay: 0.0,
-      #         geometry: {},
-      #         group: '',
-      #         lines: [
-      #           {
-      #             colour: {},
-      #             streams: {
-      #               text: ''
-      #             },
-      #             style: [],
-      #           }
-      #         ],
-      #         name: 'carbon',
-      #         parent: nil,
-      #         style: '',
-      #       }
-      #     )
-      #   end
+        #   Vedeu.interface 'iron' do
+        #     keys do
+        #       key('k') { :k_pressed }
+        #     end
+        #   end
+        # end
 
-      #   it 'adds a line directly with a value and no block' do
-      #     interface = Vedeu.interface 'carbon' do
-      #       line 'This is some text...'
-      #     end
-      #     interface.must_be_instance_of(API::Interface)
-      #     interface.attributes.must_equal(
-      #       {
-      #         border: {},
-      #         colour: {},
-      #         cursor: :hide,
-      #         delay: 0.0,
-      #         geometry: {},
-      #         group: '',
-      #         lines: [
-      #           {
-      #             colour: {},
-      #             parent: composition,
-      #             streams: {
-      #               text: "This is some text..."
-      #             },
-      #             style: [],
-      #           }
-      #         ],
-      #         name: 'carbon',
-      #         parent: nil,
-      #         style: '',
-      #       }
-      #     )
-      #   end
+        # it 'defines a keymap for the interface' do
+        #   Keymaps.interface_key?('k').must_equal(true)
+        # end
 
-      #   it 'allows the addition of more attributes with a block' do
-      #     interface = Vedeu.interface 'silicon' do
-      #       lines do
-      #         text 'This is different text...'
-      #       end
-      #     end
-      #     interface.must_be_instance_of(API::Interface)
-      #     interface.attributes.must_equal(
-      #       {
-      #         border: {},
-      #         colour: {},
-      #         cursor: :hide,
-      #         delay: 0.0,
-      #         geometry: {},
-      #         group: '',
-      #         lines: [
-      #           {
-      #             colour: {},
-      #             parent: composition,
-      #             streams: [
-      #               {
-      #                 text: "This is different text..."
-      #               }
-      #             ],
-      #             style: [],
-      #           }
-      #         ],
-      #         name: "silicon",
-      #         parent: nil,
-      #         style: '',
-      #       }
-      #     )
-      #   end
-      # end
+        # it 'defines a keymap for the interface' do
+        #   Keymaps.interface_keys('iron').must_equal(['k'])
+        # end
+
+        # context 'when the block is not given' do
+        #   it { proc { Vedeu.interface('iron') { keys } }.must_raise(InvalidSyntax) }
+        # end
+      end
+
+      describe '#lines' do
+        subject {
+          instance.lines do
+            # ...
+          end
+        }
+
+        it { return_type_for(subject, Vedeu::Model::Collection) }
+
+        context 'when the required block is not provided' do
+          subject { instance.lines }
+
+          it { proc { subject }.must_raise(InvalidSyntax) }
+        end
+
+        # it 'adds a blank line with no arguments' do
+        #   interface = Vedeu.interface 'carbon' do
+        #     line
+        #   end
+        #   interface.must_be_instance_of(API::Interface)
+        #   interface.attributes.must_equal(
+        #     {
+        #       border: {},
+        #       colour: {},
+        #       cursor: :hide,
+        #       delay: 0.0,
+        #       geometry: {},
+        #       group: '',
+        #       lines: [
+        #         {
+        #           colour: {},
+        #           streams: {
+        #             text: ''
+        #           },
+        #           style: [],
+        #         }
+        #       ],
+        #       name: 'carbon',
+        #       parent: nil,
+        #       style: '',
+        #     }
+        #   )
+        # end
+
+        # it 'adds a line directly with a value and no block' do
+        #   interface = Vedeu.interface 'carbon' do
+        #     line 'This is some text...'
+        #   end
+        #   interface.must_be_instance_of(API::Interface)
+        #   interface.attributes.must_equal(
+        #     {
+        #       border: {},
+        #       colour: {},
+        #       cursor: :hide,
+        #       delay: 0.0,
+        #       geometry: {},
+        #       group: '',
+        #       lines: [
+        #         {
+        #           colour: {},
+        #           parent: composition,
+        #           streams: {
+        #             text: "This is some text..."
+        #           },
+        #           style: [],
+        #         }
+        #       ],
+        #       name: 'carbon',
+        #       parent: nil,
+        #       style: '',
+        #     }
+        #   )
+        # end
+
+        # it 'allows the addition of more attributes with a block' do
+        #   interface = Vedeu.interface 'silicon' do
+        #     lines do
+        #       text 'This is different text...'
+        #     end
+        #   end
+        #   interface.must_be_instance_of(API::Interface)
+        #   interface.attributes.must_equal(
+        #     {
+        #       border: {},
+        #       colour: {},
+        #       cursor: :hide,
+        #       delay: 0.0,
+        #       geometry: {},
+        #       group: '',
+        #       lines: [
+        #         {
+        #           colour: {},
+        #           parent: composition,
+        #           streams: [
+        #             {
+        #               text: "This is different text..."
+        #             }
+        #           ],
+        #           style: [],
+        #         }
+        #       ],
+        #       name: "silicon",
+        #       parent: nil,
+        #       style: '',
+        #     }
+        #   )
+        # end
+      end
 
       describe '#name' do
         it 'sets the name attribute' do

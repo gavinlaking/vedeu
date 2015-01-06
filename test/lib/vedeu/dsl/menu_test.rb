@@ -6,10 +6,10 @@ module Vedeu
 
     describe Menu do
 
-      let(:described)  { Vedeu::DSL::Menu.new(model) }
-      let(:model)      { Vedeu::Menu.new(attributes) }
-      let(:attributes) { { collection: menu_items, name: menu_name }}
-      let(:menu_items) { [:sodium, :magnesium, :aluminium, :silicon] }
+      let(:described)  { Vedeu::DSL::Menu }
+      let(:instance)   { described.new(model) }
+      let(:model)      { Vedeu::Menu.new(collection, menu_name) }
+      let(:collection) { [:sodium, :magnesium, :aluminium, :silicon] }
       let(:menu_name)  { 'elements' }
 
       # describe '.define' do
@@ -34,8 +34,10 @@ module Vedeu
       # end
 
       describe '#initialize' do
-        it { return_type_for(described, Vedeu::DSL::Menu) }
-        it { assigns(described, '@model', model) }
+        subject { instance }
+
+        it { return_type_for(subject, Vedeu::DSL::Menu) }
+        it { assigns(subject, '@model', model) }
       end
 
       # describe '.define' do
@@ -65,44 +67,46 @@ module Vedeu
       #   end
       # end
 
-      # describe '#initialize' do
-      #   it 'returns an instance of itself' do
-      #     Menu.new.must_be_instance_of(Menu)
-      #   end
+      describe '#item' do
+        let(:value) { :platinum }
 
-      #   it 'assigns the attributes' do
-      #     attributes = { name: '', items: [] }
-      #     subject    = Menu.new(attributes)
-      #     assigns(subject, '@attributes', attributes)
-      #   end
-      # end
+        subject { instance.item(value) }
 
-      # describe '#items' do
-      #   it 'returns an empty collection when no items are provided' do
-      #     Menu.new.items.must_equal([])
-      #   end
+        context 'when items are provided' do
+          it { return_value_for(subject, [:sodium,
+                                          :magnesium,
+                                          :aluminium,
+                                          :silicon,
+                                          :platinum])}
+        end
+      end
 
-      #   it 'assigns the instance of Vedeu::Menu to the attributes' do
-      #     items = [:sodium, :magnesium, :aluminium, :silicon]
+      describe '#items' do
+        let(:value) { [] }
 
-      #     menu = Menu.new
-      #     menu.items(items)
-      #     menu.attributes[:items].must_equal(items)
-      #   end
-      # end
+        subject { instance.items(value) }
 
-      # describe '#name' do
-      #   it 'returns the name of the menu' do
-      #     menu = Menu.new
-      #     menu.name('elements').must_equal('elements')
-      #   end
+        context 'when no items are provided' do
+          it { return_value_for(subject, []) }
+        end
 
-      #   it 'assigns the name to the attributes' do
-      #     menu = Menu.new
-      #     menu.name('elements')
-      #     menu.attributes[:name].must_equal('elements')
-      #   end
-      # end
+        context 'when items are provided' do
+          let(:value) { [:gold, :silver, :tin] }
+
+          it { return_value_for(subject, value)}
+        end
+      end
+
+      describe '#name' do
+        let(:value) { 'metals' }
+
+        subject { instance.name(value) }
+
+        it 'returns the name of the menu' do
+          subject
+          model.name.must_equal('metals')
+        end
+      end
 
     end # Menu
 

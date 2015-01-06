@@ -52,16 +52,19 @@ module Vedeu
       # @return [Symbol]
       def cursor(value = true)
         if value == :hide || !!value == false
-          model.cursor = false
+          Cursor.new(model.name, Visible.new(false)).store
 
         elsif value == :show || !!value == true
-          model.cursor = true
+          Cursor.new(model.name, Visible.new(true)).store
+
+        else
+          # should never here
 
         end
       end
 
       def cursor!
-        model.cursor = true
+        cursor(true)
       end
 
       # To maintain performance interfaces can be delayed from refreshing too
@@ -87,23 +90,7 @@ module Vedeu
       #
       # @return [String] The name of the interface in focus.
       def focus!
-        Vedeu::Focus.add(model.name, true) if defined_value?(model.name)
-      end
-
-      # Specify a group for an interface. Interfaces of the same group can be
-      # targetted together; for example you may want to refresh multiple
-      # interfaces at once.
-      #
-      # @param value [String]
-      #
-      # @example
-      #   interface 'my_interface' do
-      #     group 'main_screen'
-      #     ...
-      #
-      # @return [String]
-      def group(value)
-        model.group = value
+        Vedeu::Focus.add(model.name, true)
       end
 
       # Define the geometry for an interface.
@@ -123,9 +110,28 @@ module Vedeu
         model.geometry = Vedeu::Geometry.build({}, &block)
       end
 
+      # Specify a group for an interface. Interfaces of the same group can be
+      # targetted together; for example you may want to refresh multiple
+      # interfaces at once.
+      #
+      # @param value [String]
+      #
+      # @example
+      #   interface 'my_interface' do
+      #     group 'main_screen'
+      #     ...
+      #
+      # @return [String]
+      def group(value)
+        model.group = value
+      end
+
       # @see Vedeu::API#keys
       def keys(&block)
-        Keymap.keys(model.name, &block)
+        return requires_block(__callee__) unless block_given?
+
+        # Keymap.keys(model.name, &block)
+        Vedeu::Keymap.build(model.name, &block).store
       end
 
       # Specify multiple lines in a view.
