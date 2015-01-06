@@ -237,10 +237,6 @@ module Vedeu
       [[*presentation, on, h, off, *reset].join] * width
     end
 
-    def horizontal_space
-      [' '] * width
-    end
-
     # Returns the vertical border characters with colours and styles.
     #
     # @return [String]
