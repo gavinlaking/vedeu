@@ -12,33 +12,19 @@ module Vedeu
           width:  32,
           height: 3,
         },
-        lines:    lines,
-        colour:   colour
+        lines:    lines
       })
     }
     let(:lines) {
       [
-        {
-          streams: [{ text: 'this is the first' }]
-        },
-        {
-          streams: [{ text: 'this is the second and it is long' }]
-        },
-        {
-          streams: [{
-            text: 'this is the third, it is even longer and still truncated'
-          }]
-        },
-        {
-          streams: [{ text: 'this should not render' }]
-        }
+        Line.new([Stream.new('this is the first')]),
+        Line.new([Stream.new('this is the second and it is long')]),
+        Line.new([Stream.new('this is the third, it is even longer and still truncated')]),
+        Line.new([Stream.new('this should not render')]),
       ]
     }
-    let(:colour) { {} }
 
-    before do
-      IO.console.stubs(:print)
-    end
+    before { IO.console.stubs(:print) }
 
     describe '#initialize' do
       it { return_type_for(described, Output) }
@@ -48,9 +34,7 @@ module Vedeu
     describe '.render' do
       subject { Output.render(interface) }
 
-      # it { return_type_for(subject, Array) }
-
-      it { skip }
+      it { return_type_for(subject, Array) }
     end
 
   end # Output

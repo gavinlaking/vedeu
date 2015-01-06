@@ -37,6 +37,38 @@ module Vedeu
       end
     end
 
+    describe '.input' do
+      context 'when the terminal is in cooked mode' do
+        let(:mode)  { :cooked }
+        let(:input) { "Some input\r\n" }
+
+        before do
+          Terminal.stubs(:mode).returns(mode)
+          IO.console.stubs(:gets).returns(input)
+        end
+
+        subject { Terminal.input }
+
+        it { return_value_for(subject, 'Some input') }
+      end
+
+      context 'when the terminal is in raw mode' do
+        let(:mode)  { :raw }
+        let(:input) { "\e" }
+
+        before do
+          Terminal.stubs(:mode).returns(mode)
+          IO.console.stubs(:getch).returns(input)
+          input.stubs(:ord).returns(27)
+          IO.console.stubs(:read_nonblock)
+        end
+
+        subject { Terminal.input }
+
+        it { return_type_for(subject, String) }
+      end
+    end
+
     describe '.output' do
       it 'returns the output' do
         Terminal.output('Some output...').must_equal(['Some output...'])
