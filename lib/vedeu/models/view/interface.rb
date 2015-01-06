@@ -141,10 +141,6 @@ module Vedeu
     end
     alias_method :value, :lines
 
-    def lines=(value)
-      @lines = value
-    end
-
     private
 
     # @return [Repository] The repository class for this model.
