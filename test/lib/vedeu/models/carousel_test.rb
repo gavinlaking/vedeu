@@ -15,6 +15,8 @@ module Vedeu
     describe '#add' do
       let(:focus) { false }
 
+      before { described.reset }
+
       subject { described.add('thallium', focus) }
 
       it 'adds an element to storage' do
@@ -26,6 +28,14 @@ module Vedeu
 
         it 'does not add it again' do
           subject.all.must_equal(['thallium'])
+        end
+
+        context 'but focus is true' do
+          let(:focus) { true }
+
+          it 'does not add it again' do
+            subject.all.must_equal(['thallium'])
+          end
         end
       end
 
@@ -93,6 +103,24 @@ module Vedeu
 
       context 'when the element is not current' do
         it { described.current?('bismuth').must_equal(false) }
+      end
+    end
+
+    describe '#each' do
+      let(:storage) { ['thallium', 'lead', 'bismuth'] }
+
+      subject {
+        described.each do |element|
+          # ...
+        end
+      }
+
+      it { subject.must_equal(['thallium', 'lead', 'bismuth']) }
+
+      context 'without a block given' do
+        subject { described.each }
+
+        it { return_type_for(subject, Enumerator) }
       end
     end
 

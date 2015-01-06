@@ -67,15 +67,7 @@ module Vedeu
     end
 
     def each(&block)
-      storage.each do |element|
-        if block_given?
-          block.call(element)
-
-        else
-          yield element
-
-        end
-      end
+      storage.each(&block)
     end
 
     # Returns a boolean indicating whether the carousel is empty.

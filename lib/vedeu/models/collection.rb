@@ -41,15 +41,7 @@ module Vedeu
       end
 
       def each(&block)
-        @collection.each do |element|
-          if block_given?
-            block.call(element)
-
-          else
-            yield element
-
-          end
-        end
+        @collection.each(&block)
       end
 
       def empty?
