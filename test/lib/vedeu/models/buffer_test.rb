@@ -48,15 +48,15 @@ module Vedeu
     describe '#content' do
       it { return_type_for(described.content, Array) }
 
+      before { Vedeu.stubs(:trigger) }
+
       subject { Buffer.new(attributes).content }
 
       context 'when there is content on the back buffer' do
         let(:back) { { lines: [{ streams: [{ text: 'back' }] }] } }
         let(:buffer) { :back }
 
-        it { skip }
-
-        # it { subject.must_equal([{}, back]) }
+        it { subject.must_equal([{}, back]) }
       end
 
       context 'when there is no content on the back buffer' do
@@ -137,40 +137,42 @@ module Vedeu
       end
     end
 
-    # describe '#swap' do
-    #   let(:buffer) { Buffer.new(attributes) }
+    describe '#swap' do
+      let(:buffer) { Buffer.new(attributes) }
 
-    #   subject { buffer.swap }
+      before { Vedeu.stubs(:trigger) }
 
-    #   context 'when there is new content on the back buffer' do
-    #     let(:back)     { { lines: [{ streams: [{ text: 'back' }] }] } }
-    #     let(:front)    { { lines: [{ streams: [{ text: 'front' }] }] } }
-    #     let(:previous) { { lines: [{ streams: [{ text: 'previous' }] }] } }
+      subject { buffer.swap }
 
-    #     context 'when the buffer was updated successfully' do
-    #       it { subject.must_equal(true) }
-    #     end
+      context 'when there is new content on the back buffer' do
+        let(:back)     { { lines: [Line.new(Stream.new('back'))] } }
+        let(:front)    { { lines: [Line.new(Stream.new('front'))] } }
+        let(:previous) { { lines: [Line.new(Stream.new('previous'))] } }
 
-    #     it 'replaces the previous buffer with the front buffer' do
-    #       subject
-    #       buffer.previous.must_equal(front)
-    #     end
+        context 'when the buffer was updated successfully' do
+          it { subject.must_equal(true) }
+        end
 
-    #     it 'replaces the front buffer with the back buffer' do
-    #       subject
-    #       buffer.front.must_equal(back)
-    #     end
+        it 'replaces the previous buffer with the front buffer' do
+          subject
+          buffer.previous.must_equal(front)
+        end
 
-    #     it 'replaces the back buffer with an empty buffer' do
-    #       subject
-    #       buffer.back.must_equal({})
-    #     end
-    #   end
+        it 'replaces the front buffer with the back buffer' do
+          subject
+          buffer.front.must_equal(back)
+        end
 
-    #   context 'when there is no new content on the back buffer' do
-    #     it { subject.must_equal(false) }
-    #   end
-    # end
+        it 'replaces the back buffer with an empty buffer' do
+          subject
+          buffer.back.must_equal({})
+        end
+      end
+
+      context 'when there is no new content on the back buffer' do
+        it { subject.must_equal(false) }
+      end
+    end
 
   end # Buffer
 

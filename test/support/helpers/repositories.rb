@@ -1,6 +1,6 @@
 module Vedeu
 
-  class RepositoriesTestClass
+  class RepositoriesTestClass < Repository
 
     attr_accessor :storage
     alias_method :in_memory, :storage

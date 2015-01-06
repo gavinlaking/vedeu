@@ -30,6 +30,8 @@ module Vedeu
 
     end # Application eigenclass
 
+    # :nocov:
+
     # @return [Application]
     def initialize; end
 
@@ -106,6 +108,8 @@ module Vedeu
       Application.restart
 
     end
+
+    # :nocov:
 
   end # Application
 

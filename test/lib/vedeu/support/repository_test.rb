@@ -113,55 +113,55 @@ module Vedeu
     #   end
     # end
 
-    # describe '#registered' do
-    #   it 'returns an Array' do
-    #     RepositoriesTestClass.new.registered.must_be_instance_of(Array)
-    #   end
+    describe '#registered' do
+      it 'returns an Array' do
+        RepositoriesTestClass.new.registered.must_be_instance_of(Array)
+      end
 
-    #   context 'when the storage is a Hash' do
-    #     it 'returns a collection of the names of all the registered entities' do
-    #       repo = RepositoriesTestClass.new
-    #       repo.add({ 'rutherfordium' => { name: 'rutherfordium' } })
+      context 'when the storage is a Hash' do
+        it 'returns a collection of the names of all the registered entities' do
+          repo = RepositoriesTestClass.new
+          repo.add({ 'rutherfordium' => { name: 'rutherfordium' } })
 
-    #       repo.registered.must_equal(['rutherfordium'])
-    #     end
-    #   end
+          repo.registered.must_equal(['rutherfordium'])
+        end
+      end
 
-    #   context 'when the storage is an Array' do
-    #     it 'returns the registered entities' do
-    #       repo = RepositoriesTestClass.new([])
-    #       repo.add('rutherfordium')
+      context 'when the storage is an Array' do
+        it 'returns the registered entities' do
+          repo = RepositoriesTestClass.new([])
+          repo.add('rutherfordium')
 
-    #       repo.registered.must_equal(['rutherfordium'])
-    #     end
-    #   end
+          repo.registered.must_equal(['rutherfordium'])
+        end
+      end
 
-    #   context 'when the storage is a Set' do
-    #     it 'returns the registered entities' do
-    #       repo = RepositoriesTestClass.new(Set.new)
-    #       repo.add('rutherfordium')
+      context 'when the storage is a Set' do
+        it 'returns the registered entities' do
+          repo = RepositoriesTestClass.new(Set.new)
+          repo.add('rutherfordium')
 
-    #       repo.registered.must_equal(['rutherfordium'])
-    #     end
-    #   end
+          repo.registered.must_equal(['rutherfordium'])
+        end
+      end
 
-    #   it 'returns an empty collection when the storage is empty' do
-    #     RepositoriesTestClass.new.registered.must_equal([])
-    #   end
-    # end
+      it 'returns an empty collection when the storage is empty' do
+        RepositoriesTestClass.new.registered.must_equal([])
+      end
+    end
 
-    # describe '#registered?' do
-    #   it 'returns false when the storage is empty' do
-    #     RepositoriesTestClass.new.registered?('terbium').must_equal(false)
-    #   end
+    describe '#registered?' do
+      it 'returns false when the storage is empty' do
+        RepositoriesTestClass.new.registered?('terbium').must_equal(false)
+      end
 
-    #   it 'returns false when the model is not registered' do
-    #     repo = RepositoriesTestClass.new
-    #     repo.add({ name: 'samarium' })
+      it 'returns false when the model is not registered' do
+        repo = RepositoriesTestClass.new
+        repo.add({ name: 'samarium' })
 
-    #     repo.registered?('terbium').must_equal(false)
-    #   end
-    # end
+        repo.registered?('terbium').must_equal(false)
+      end
+    end
 
     describe '#remove' do
       subject { described.remove('francium') }
