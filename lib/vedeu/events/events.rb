@@ -52,43 +52,71 @@ module Vedeu
   # accordingly for the interface in focus, or the named interface. Also
   # includes events to move the cursor in the direction specified; these will
   # update the cursor position according to the interface in focus.
-  Vedeu.event(:_cursor_hide_) { ToggleCursor.hide(Vedeu::Cursors.current) }
-  Vedeu.event(:_cursor_show_) { ToggleCursor.show(Vedeu::Cursors.current) }
+  Vedeu.event(:_cursor_hide_) do
+    current = Vedeu.cursors_repository.current
+
+    ToggleCursor.hide(current)
+  end
+
+  Vedeu.event(:_cursor_show_) do
+    current = Vedeu.cursors_repository.current
+
+    ToggleCursor.show(current)
+  end
 
   Vedeu.event(:_cursor_hide_by_name_) do |name|
-    ToggleCursor.hide(Vedeu::Cursors.by_name(name))
+    named = Vedeu.cursors_repository.by_name(name)
+
+    ToggleCursor.hide(named)
   end
 
   Vedeu.event(:_cursor_show_by_name_) do |name|
-    ToggleCursor.show(Vedeu::Cursors.by_name(name))
+    named = Vedeu.cursors_repository.by_name(name)
+
+    ToggleCursor.show(named)
   end
 
   Vedeu.event(:_cursor_down_) do
-    MoveCursor.down(Cursors.current, Interfaces.current)
+    cursor    = Vedeu.cursors_repository.current
+    interface = Vedeu.interfaces_repository.current
+
+    MoveCursor.down(cursor, nterface)
 
     Refresh.by_focus
   end
 
   Vedeu.event(:_cursor_left_) do
-    MoveCursor.left(Cursors.current, Interfaces.current)
+    cursor = Vedeu.cursors_repository.current
+    interface = Vedeu.interfaces_repository.current
+
+    MoveCursor.left(cursor, interface)
 
     Refresh.by_focus
   end
 
   Vedeu.event(:_cursor_right_) do
-    MoveCursor.right(Cursors.current, Interfaces.current)
+    cursor = Vedeu.cursors_repository.current
+    interface = Vedeu.interfaces_repository.current
+
+    MoveCursor.right(cursor, interface)
 
     Refresh.by_focus
   end
 
   Vedeu.event(:_cursor_up_) do
-    MoveCursor.up(Cursors.current, Interfaces.current)
+    cursor = Vedeu.cursors_repository.current
+    interface = Vedeu.interfaces_repository.current
+
+    MoveCursor.up(cursor, interface)
 
     Refresh.by_focus
   end
 
   Vedeu.event(:_cursor_origin_) do
-    MoveCursor.origin(Cursors.current, Interfaces.current)
+    cursor = Vedeu.cursors_repository.current
+    interface = Vedeu.interfaces_repository.current
+
+    MoveCursor.origin(cursor, interface)
 
     Refresh.by_focus
   end
