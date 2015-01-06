@@ -19,7 +19,7 @@ module Vedeu
         new
 
       else
-        new(value)
+        self.new(value)
 
       end
     end

@@ -1,4 +1,4 @@
-require 'vedeu/dsl/dsl'
+# require 'vedeu/dsl/dsl'
 require 'vedeu/dsl/border'
 
 module Vedeu
@@ -15,6 +15,12 @@ module Vedeu
 
     attr_accessor :attributes
 
+    def self.build(interface, attributes = {}, &block)
+      model = self.new(interface, attributes)
+      model.deputy.instance_eval(&block) if block_given?
+      model
+    end
+
     # Returns a new instance of Border.
     #
     # @param interface [Interface]
@@ -23,20 +29,16 @@ module Vedeu
     def initialize(interface, attributes = {})
       @interface  = interface
       @attributes = defaults.merge(attributes)
-    end
-
-    def self.build(interface, attributes = {}, &block)
-      model = self.new(interface, attributes)
-      model.deputy.instance_eval(&block) if block_given?
-      model
+      @colour     = Colour.coerce(@attributes[:colour])
+      @style      = Style.coerce(@attributes[:style])
     end
 
     def colour=(value)
-      attributes[:colour] = value
+      @colour = Colour.coerce(value)
     end
 
     def style=(value)
-      attributes[:style] = value
+      @style = Style.coerce(value)
     end
 
     def deputy
@@ -109,7 +111,7 @@ module Vedeu
 
     private
 
-    attr_reader :interface
+    attr_reader :colour, :interface, :style
 
     # Renders the bottom border for the interface.
     #
@@ -311,31 +313,17 @@ module Vedeu
 
     # Returns the colour and styles for the border.
     #
-    # @return [String]
+    # @return [Array]
     def presentation
-      [colour.to_s, style.to_s]
+      [colour, style]
     end
 
     # Returns the colour and styles for the interface; effectively turning off
     # the colours and styles for the border.
     #
-    # @return [String]
+    # @return [Array]
     def reset
-      [interface.colour.to_s, interface.style.to_s]
-    end
-
-    # Returns a new Colour instance.
-    #
-    # @return [Colour]
-    def colour
-      @colour ||= Colour.new(attributes[:colour])
-    end
-
-    # Returns a new Style instance.
-    #
-    # @return [Style]
-    def style
-      @style ||= Style.new(attributes[:style])
+      [interface.colour, interface.style]
     end
 
     # The default values for a new instance of Border.

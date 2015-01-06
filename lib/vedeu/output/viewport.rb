@@ -68,8 +68,8 @@ module Vedeu
     def column_pad(line)
       chars = line.chars[columns] || [" "]
 
-      if chars.size < width
-        chars + [" "] * (width - chars.size)
+      if chars.size < (width + 1)
+        chars + [" "] * ((width + 1) - chars.size)
 
       else
         chars
@@ -138,6 +138,9 @@ module Vedeu
     # Returns the height of the content, or when no content, the visible height
     # of the interface.
     #
+    # @note This method is not used at the moment as the interface content area
+    #   is made infinite by the cursors last known position.
+    #
     # @return [Fixnum]
     def content_height
       return height unless content?
@@ -147,6 +150,9 @@ module Vedeu
 
     # Returns the width of the content, or when no content, the visible width of
     # the interface.
+    #
+    # @note This method is not used at the moment as the interface content area
+    #   is made infinite by the cursors last known position.
     #
     # @return [Fixnum]
     def content_width
