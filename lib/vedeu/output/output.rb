@@ -23,7 +23,7 @@ module Vedeu
     #
     # @return [Array]
     def render
-      Terminal.output(view, Cursors.current)
+      Terminal.output(view, Vedeu.cursors_repository.by_name(interface.name))
     end
 
     private
@@ -38,14 +38,9 @@ module Vedeu
     def clear
       Vedeu.log("Clearing view: '#{interface.name}'")
 
-      rows.inject([colours]) do |line, index|
+      rows.inject([interface.colour]) do |line, index|
         line << interface.origin(index) { ' ' * interface.width }
       end.join
-    end
-
-    # @return [String]
-    def colours
-      interface.colour.to_s
     end
 
     # @return [Enumerator]
