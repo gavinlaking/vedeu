@@ -24,11 +24,11 @@ module Vedeu
     # @param new_method [String] e.g. Vedeu::DSL::Geometry#width
     # @param version [String] e.g. 0.3.0
     # @param hint [String] e.g. /Vedeu/DSL/Geometry#width-instance-method
+    # @raise DeprecationError
     # @return [NilClass]
     def deprecated(old_method, new_method, version, hint)
-      warn "#{old_method} is now deprecated, and will be removed in version " \
-           "#{version}.\n" \
-           "Use: #{new_method} (#{DOCS_URL}#{hint})"
+      raise DeprecationError, "#{old_method} is now deprecated, and will be
+        removed in version #{version}.\nUse: #{new_method} (#{DOCS_URL}#{hint})"
     end
 
     # Raises an exception which includes in the message the method which

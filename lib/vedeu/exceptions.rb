@@ -1,5 +1,8 @@
 module Vedeu
 
+  # Raised when a method that is now deprecated is used.
+  DeprecationError = Class.new(StandardError)
+
   # Raised with Vedeu attempts to access a named model that does not exist.
   ModelNotFound = Class.new(StandardError)
 

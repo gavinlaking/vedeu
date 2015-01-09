@@ -43,7 +43,7 @@ module Vedeu
 
       subject { described.deprecated(old_method, new_method, version, hint) }
 
-      it { skip }
+      it { proc { subject }.must_raise(DeprecationError) }
     end
 
     describe '#requires_block' do
