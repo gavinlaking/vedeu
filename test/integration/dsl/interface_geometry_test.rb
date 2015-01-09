@@ -1,4 +1,5 @@
 require 'test_helper'
+
 describe 'Interface Geometry' do
 
   describe '#centred' do
@@ -9,6 +10,8 @@ describe 'Interface Geometry' do
         end
       end
     }
+
+    it { return_type_for(subject, Vedeu::Interface) }
 
     it 'allows the use of centred within geometry' do
       skip
@@ -24,6 +27,8 @@ describe 'Interface Geometry' do
       end
     }
 
+    it { return_type_for(subject, Vedeu::Interface) }
+
     it 'allows the use of height within geometry' do
       skip
     end
@@ -37,6 +42,8 @@ describe 'Interface Geometry' do
         end
       end
     }
+
+    it { return_type_for(subject, Vedeu::Interface) }
 
     it 'allows the use of name within geometry' do
       skip
@@ -52,6 +59,8 @@ describe 'Interface Geometry' do
       end
     }
 
+    it { return_type_for(subject, Vedeu::Interface) }
+
     it 'allows the use of width within geometry' do
       skip
     end
@@ -66,6 +75,8 @@ describe 'Interface Geometry' do
       end
     }
 
+    it { return_type_for(subject, Vedeu::Interface) }
+
     it 'allows the use of x within geometry' do
       skip
     end
@@ -79,6 +90,8 @@ describe 'Interface Geometry' do
         end
       end
     }
+
+    it { return_type_for(subject, Vedeu::Interface) }
 
     it 'allows the use of y within geometry' do
       skip

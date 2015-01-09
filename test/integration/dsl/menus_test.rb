@@ -5,36 +5,42 @@ describe 'Menus' do
   describe '#item' do
     subject {
       Vedeu.menu 'menus' do
-        item ''
+        item 'hydrogen'
       end
     }
 
+    it { return_type_for(subject, Vedeu::Menu) }
+
     it 'allows the use of item within Vedeu.menu' do
-      skip
+      subject.collection.must_equal(['hydrogen'])
     end
   end
 
   describe '#items' do
     subject {
       Vedeu.menu 'menus' do
-        items []
+        items ['lithium', 'beryllium']
       end
     }
 
-    it 'allows the use of items within Vedeu.menu' do
-      skip
+    it { return_type_for(subject, Vedeu::Menu) }
+
+    it 'allows the use of item within Vedeu.menu' do
+      subject.collection.must_equal(['lithium', 'beryllium'])
     end
   end
 
   describe '#name' do
     subject {
       Vedeu.menu 'menus' do
-        name ''
+        name 'elements'
       end
     }
 
+    it { return_type_for(subject, Vedeu::Menu) }
+
     it 'allows the use of name within Vedeu.menu' do
-      skip
+      subject.name.must_equal('elements')
     end
   end
 

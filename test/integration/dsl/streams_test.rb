@@ -7,7 +7,7 @@ describe 'Streams' do
       Vedeu.interface 'streams' do
         lines do
           streams do
-            align ''
+            align 'Some text...'
           end
         end
       end
@@ -15,6 +15,7 @@ describe 'Streams' do
 
     it 'allows the use of align within stream(s)' do
       skip
+      subject.must_equal('Some text')
     end
   end
 
@@ -71,7 +72,7 @@ describe 'Streams' do
       Vedeu.interface 'streams' do
         lines do
           streams do
-            text ''
+            text 'Some text...'
           end
         end
       end
@@ -79,6 +80,7 @@ describe 'Streams' do
 
     it 'allows the use of text within stream(s)' do
       skip
+      subject.must_equal('Some text...')
     end
   end
 

@@ -11,6 +11,8 @@ describe 'Lines' do
       end
     }
 
+    #it { return_type_for(subject, Vedeu::Line) }
+
     it 'allows the use of background within lines' do
       skip
     end
@@ -24,6 +26,8 @@ describe 'Lines' do
         end
       end
     }
+
+    #it { return_type_for(subject, Vedeu::Line) }
 
     it 'allows the use of colour within lines' do
       skip
@@ -39,6 +43,8 @@ describe 'Lines' do
       end
     }
 
+    #it { return_type_for(subject, Vedeu::Line) }
+
     it 'allows the use of foreground within lines' do
       skip
     end
@@ -53,6 +59,8 @@ describe 'Lines' do
       end
     }
 
+    #it { return_type_for(subject, Vedeu::Line) }
+
     it 'allows the use of line within lines' do
       skip
     end
@@ -66,6 +74,8 @@ describe 'Lines' do
         end
       end
     }
+
+    #it { return_type_for(subject, Vedeu::Line) }
 
     it 'allows the use of stream within lines' do
       skip
@@ -82,6 +92,8 @@ describe 'Lines' do
       end
     }
 
+    #it { return_type_for(subject, Vedeu::Line) }
+
     it 'allows the use of streams within lines' do
       skip
     end
@@ -95,6 +107,8 @@ describe 'Lines' do
         end
       end
     }
+
+    #it { return_type_for(subject, Vedeu::Line) }
 
     it 'allows the use of style within lines' do
       skip

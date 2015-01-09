@@ -9,6 +9,8 @@ describe 'Compositions' do
       end
     }
 
+    #it { return_type_for(subject, Vedeu::Composition) }
+
     it 'allows the use of Vedeu.render' do
       skip
     end
@@ -21,6 +23,8 @@ describe 'Compositions' do
       end
     }
 
+    #it { return_type_for(subject, Vedeu::Composition) }
+
     it 'allows the use of Vedeu.view' do
       skip
     end
@@ -32,6 +36,8 @@ describe 'Compositions' do
 
       end
     }
+
+    #it { return_type_for(subject, Vedeu::Composition) }
 
     it 'allows the use of Vedeu.views' do
       skip

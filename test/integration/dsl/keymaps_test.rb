@@ -10,6 +10,8 @@ describe 'Keymaps' do
       end
     }
 
+    #it { return_type_for(subject, Vedeu::Keymap) }
+
     it 'allows the use of ... within Vedeu.keymap' do
       skip
     end
@@ -21,6 +23,8 @@ describe 'Keymaps' do
         name ''
       end
     }
+
+    #it { return_type_for(subject, Vedeu::Keymap) }
 
     it 'allows the use of ... within Vedeu.keymap' do
       skip

@@ -1,6 +1,6 @@
 require 'test_helper'
 
-describe 'Border' do
+describe 'Interface' do
 
   describe '#bottom_left' do
     subject {
@@ -10,6 +10,8 @@ describe 'Border' do
         end
       end
     }
+
+    it { return_type_for(subject, Vedeu::Interface) }
 
     it 'allows the use of bottom_left within border' do
       skip
@@ -25,6 +27,8 @@ describe 'Border' do
       end
     }
 
+    it { return_type_for(subject, Vedeu::Interface) }
+
     it 'allows the use of bottom_right within border' do
       skip
     end
@@ -38,6 +42,8 @@ describe 'Border' do
         end
       end
     }
+
+    it { return_type_for(subject, Vedeu::Interface) }
 
     it 'allows the use of horizontal within border' do
       skip
@@ -53,6 +59,8 @@ describe 'Border' do
       end
     }
 
+    it { return_type_for(subject, Vedeu::Interface) }
+
     it 'allows the use of show_bottom within border' do
       skip
     end
@@ -66,6 +74,8 @@ describe 'Border' do
         end
       end
     }
+
+    it { return_type_for(subject, Vedeu::Interface) }
 
     it 'allows the use of show_left within border' do
       skip
@@ -81,6 +91,8 @@ describe 'Border' do
       end
     }
 
+    it { return_type_for(subject, Vedeu::Interface) }
+
     it 'allows the use of show_right within border' do
       skip
     end
@@ -94,6 +106,8 @@ describe 'Border' do
         end
       end
     }
+
+    it { return_type_for(subject, Vedeu::Interface) }
 
     it 'allows the use of show_top within border' do
       skip
@@ -109,6 +123,8 @@ describe 'Border' do
       end
     }
 
+    it { return_type_for(subject, Vedeu::Interface) }
+
     it 'allows the use of top_left within border' do
       skip
     end
@@ -123,6 +139,8 @@ describe 'Border' do
       end
     }
 
+    it { return_type_for(subject, Vedeu::Interface) }
+
     it 'allows the use of top_right within border' do
       skip
     end
@@ -136,6 +154,8 @@ describe 'Border' do
         end
       end
     }
+
+    it { return_type_for(subject, Vedeu::Interface) }
 
     it 'allows the use of top_vertical within border' do
       skip
