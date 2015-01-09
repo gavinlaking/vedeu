@@ -96,17 +96,6 @@ module Vedeu
 
       attr_reader :model
 
-      # From API:
-      # The default values for a new instance of Menu.
-      #
-      # @return [Hash]
-      # def defaults
-      #   {
-      #     name:  '',
-      #     items: []
-      #   }
-      # end
-
     end # Menu
 
   end # DSL
