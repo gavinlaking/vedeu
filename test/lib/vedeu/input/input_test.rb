@@ -3,15 +3,19 @@ require 'test_helper'
 module Vedeu
 
   describe Input do
+
     let(:reader)    { mock }
     let(:keypress)  { 'a' }
-    let(:described) { Input.new(reader) }
+    let(:described) { Vedeu::Input }
+    let(:instance)  { described.new(reader) }
 
     before { reader.stubs(:read).returns(keypress) }
 
     describe '#initialize' do
-      it { return_type_for(described, Input) }
-      it { assigns(described, '@reader', reader) }
+      subject { instance }
+
+      it { return_type_for(subject, Input) }
+      it { assigns(subject, '@reader', reader) }
     end
 
     describe '.capture' do
