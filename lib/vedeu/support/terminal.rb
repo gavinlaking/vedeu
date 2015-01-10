@@ -1,4 +1,7 @@
+require 'vedeu/configuration/configuration'
 require 'vedeu/support/common'
+require 'vedeu/support/esc'
+require 'vedeu/support/log'
 
 module Vedeu
 

@@ -1,3 +1,7 @@
+require 'vedeu/configuration/configuration'
+require 'vedeu/support/esc'
+require 'vedeu/support/log'
+
 module Vedeu
 
   # This class currently provides the means to trace each method call which

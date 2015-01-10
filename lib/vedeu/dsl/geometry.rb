@@ -1,3 +1,5 @@
+require 'vedeu/dsl/shared'
+
 module Vedeu
 
   module DSL

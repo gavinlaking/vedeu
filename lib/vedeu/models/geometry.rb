@@ -1,3 +1,8 @@
+require 'vedeu/dsl/dsl'
+require 'vedeu/dsl/geometry'
+require 'vedeu/support/esc'
+require 'vedeu/support/terminal'
+
 module Vedeu
 
   # Calculates and provides interface geometry determined by both the client's
