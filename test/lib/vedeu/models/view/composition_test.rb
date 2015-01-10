@@ -4,12 +4,14 @@ module Vedeu
 
   describe Composition do
 
-    let(:described)  { Composition.new(interfaces) }
+    let(:described) { Vedeu::Composition }
+    let(:instance)  { described.new(interfaces) }
+
     let(:interfaces) { [] }
     let(:colour)     {}
     let(:style)      {}
     let(:interface_collection) {
-      Vedeu::Model::Interfaces.new(interfaces, described)
+      Vedeu::Model::Interfaces.new(interfaces, instance)
     }
 
     before do
@@ -18,7 +20,7 @@ module Vedeu
 
     describe '.build' do
       subject {
-        Composition.build(interfaces, colour, style) do
+        described.build(interfaces, colour, style) do
           # ...
         end
       }
@@ -27,14 +29,18 @@ module Vedeu
     end
 
     describe '#initialize' do
-      it { return_type_for(described, Composition) }
-      it { assigns(described, '@interfaces', interface_collection) }
-      it { assigns(described, '@colour', colour) }
-      it { assigns(described, '@style', style) }
+      subject { instance }
+
+      it { return_type_for(subject, described) }
+      it { assigns(subject, '@interfaces', interface_collection) }
+      it { assigns(subject, '@colour', colour) }
+      it { assigns(subject, '@style', style) }
     end
 
     describe '#deputy' do
-      it { return_type_for(described.deputy, DSL::Composition) }
+      subject { instance.deputy }
+
+      it { return_type_for(subject, DSL::Composition) }
     end
 
   end # Composition
