@@ -6,22 +6,25 @@ module Vedeu
 
     describe Border do
 
-      let(:described)  { Vedeu::DSL::Border.new(model) }
+      let(:described)  { Vedeu::DSL::Border }
+      let(:instance)   { described.new(model) }
       let(:model)      { Vedeu::Border.new(interface, attributes) }
       let(:interface)  { mock('Interface') }
       let(:attributes) { {} }
       let(:boolean)    { true }
 
       describe '#initialize' do
-        it { return_type_for(described, Vedeu::DSL::Border) }
+        subject { instance }
 
-        it { assigns(described, '@model', model) }
+        it { return_type_for(subject, Vedeu::DSL::Border) }
+
+        it { assigns(subject, '@model', model) }
       end
 
       describe '#bottom_left' do
         let(:char) { 'C' }
 
-        subject { described.bottom_left(char) }
+        subject { instance.bottom_left(char) }
 
         it { return_type_for(subject, String) }
         it { return_value_for(subject, 'C') }
@@ -30,7 +33,7 @@ module Vedeu
       describe '#bottom_right' do
         let(:char) { 'D' }
 
-        subject { described.bottom_right(char) }
+        subject { instance.bottom_right(char) }
 
         it { return_type_for(subject, String) }
         it { return_value_for(subject, 'D') }
@@ -39,14 +42,14 @@ module Vedeu
       describe '#horizontal' do
         let(:char) { 'H' }
 
-        subject { described.horizontal(char) }
+        subject { instance.horizontal(char) }
 
         it { return_type_for(subject, String) }
         it { return_value_for(subject, 'H') }
       end
 
       describe '#show_bottom' do
-        subject { described.show_bottom(boolean) }
+        subject { instance.show_bottom(boolean) }
 
         it { return_type_for(subject, TrueClass) }
 
@@ -58,7 +61,7 @@ module Vedeu
       end
 
       describe '#show_left' do
-        subject { described.show_left(boolean) }
+        subject { instance.show_left(boolean) }
 
         it { return_type_for(subject, TrueClass) }
 
@@ -70,7 +73,7 @@ module Vedeu
       end
 
       describe '#show_right' do
-        subject { described.show_right(boolean) }
+        subject { instance.show_right(boolean) }
 
         it { return_type_for(subject, TrueClass) }
 
@@ -82,7 +85,7 @@ module Vedeu
       end
 
       describe '#show_top' do
-        subject { described.show_top(boolean) }
+        subject { instance.show_top(boolean) }
 
         it { return_type_for(subject, TrueClass) }
 
@@ -96,7 +99,7 @@ module Vedeu
       describe '#top_left' do
         let(:char) { 'A' }
 
-        subject { described.top_left(char) }
+        subject { instance.top_left(char) }
 
         it { return_type_for(subject, String) }
         it { return_value_for(subject, 'A') }
@@ -105,7 +108,7 @@ module Vedeu
       describe '#top_right' do
         let(:char) { 'B' }
 
-        subject { described.top_right(char) }
+        subject { instance.top_right(char) }
 
         it { return_type_for(subject, String) }
         it { return_value_for(subject, 'B') }
@@ -114,7 +117,7 @@ module Vedeu
       describe '#vertical' do
         let(:char) { 'V' }
 
-        subject { described.vertical(char) }
+        subject { instance.vertical(char) }
 
         it { return_type_for(subject, String) }
         it { return_value_for(subject, 'V') }

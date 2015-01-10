@@ -108,7 +108,7 @@ module Vedeu
     def initialize(attributes = {})
       @attributes = defaults.merge(attributes)
 
-      @border   = Border.new(self, @attributes[:border])
+      @border   = nil
       @colour   = @attributes[:colour]
       @delay    = @attributes.fetch(:delay, 0.0)
       @geometry = Geometry.new(@attributes[:geometry])
@@ -153,7 +153,6 @@ module Vedeu
     # @return [Hash]
     def defaults
       {
-        border:   {},
         colour:   {},
         geometry: {},
         lines:    [],

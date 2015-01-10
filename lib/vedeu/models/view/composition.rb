@@ -2,8 +2,29 @@ require 'vedeu/dsl/dsl'
 require 'vedeu/dsl/composition'
 require 'vedeu/models/collection'
 require 'vedeu/presentation/presentation'
+require 'vedeu/support/common'
 
 module Vedeu
+
+  # class << self
+
+  #   def render(&block)
+  #     fail StandardError, 'Vedeu.render'
+
+  #     return requires_block(__callee__) unless block_given?
+  #   end
+
+  #   def view(&block)
+  #     fail StandardError, 'Vedeu.render'
+
+  #     return requires_block(__callee__) unless block_given?
+  #   end
+
+  #   private
+
+  #   include Vedeu::Common
+
+  # end
 
   # A composition is a collection of interfaces.
   #

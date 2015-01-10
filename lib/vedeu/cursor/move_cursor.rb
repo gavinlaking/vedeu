@@ -82,7 +82,7 @@ module Vedeu
     #
     # @return [Boolean]
     def border?
-      border.enabled?
+      !!(interface.border)
     end
 
     # Returns the geometry of the interface.

@@ -10,19 +10,33 @@ module Vedeu
     let(:x)         { 1 }
     let(:y)         { 1 }
 
-    let(:interface) { Interface.new({ name: 'magnesium' }) }
+    let(:interface) {
+      Vedeu::Interface.build do
+        name 'magnesium'
+      end
+    }
     let(:interface_with_border) {
-      Interface.new({
-        name: 'manganese',
-        border: { enabled: true },
-        geometry: { y: 5, height: 5, x: 5, width: 5 }
-      })
+      Vedeu::Interface.build do
+        name 'manganese'
+        border {}
+        geometry do
+          height 5
+          width 5
+          x 5
+          y 5
+        end
+      end
     }
     let(:interface_without_border) {
-      Interface.new({
-        name: 'meitnerium',
-        geometry: { y: 5, height: 5, x: 5, width: 5 }
-      })
+      Vedeu::Interface.build do
+        name 'meitnerium'
+        geometry do
+          height 5
+          width 5
+          x 5
+          y 5
+        end
+      end
     }
 
     let(:dy)        { 0 }
