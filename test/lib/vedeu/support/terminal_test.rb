@@ -4,6 +4,8 @@ module Vedeu
 
   describe Terminal do
 
+    let(:described) { Vedeu::Terminal }
+
     let(:console) { IO.console }
 
     before do

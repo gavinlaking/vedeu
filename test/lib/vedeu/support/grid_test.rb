@@ -16,14 +16,17 @@ module Vedeu
 
   describe Grid do
 
-    let(:described) { Grid.new(value) }
+    let(:described) { Vedeu::Grid }
+    let(:instance)  { described.new(value) }
     let(:value)     { 2 }
 
     before { IO.console.stubs(:winsize).returns([25, 80]) }
 
     describe '#initialize' do
-      it { return_type_for(described, Grid) }
-      it { assigns(described, '@value', value) }
+      subject { instance }
+
+      it { return_type_for(subject, Grid) }
+      it { assigns(subject, '@value', value) }
     end
 
     describe '.columns' do

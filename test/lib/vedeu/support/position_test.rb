@@ -4,12 +4,15 @@ module Vedeu
 
   describe Position do
 
-    let(:described) { Position.new(12, 19) }
+    let(:described) { Vedeu::Position }
+    let(:instance)  { described.new(12, 19) }
+
 
     describe '#initialize' do
-      it { return_type_for(described, Position) }
-      it { assigns(described, '@y', 12) }
-      it { assigns(described, '@x', 19) }
+      subject { instance }
+      it { return_type_for(subject, Position) }
+      it { assigns(subject, '@y', 12) }
+      it { assigns(subject, '@x', 19) }
     end
 
     describe '#to_s' do

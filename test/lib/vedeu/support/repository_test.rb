@@ -12,19 +12,22 @@ module Vedeu
 
   describe Repository do
 
-    let(:described)  { Vedeu::Repository.new(model, storage) }
+    let(:described)  { Vedeu::Repository }
+    let(:instance)   { described.new(model, storage) }
     let(:model)      { TestModel.new(model_name) }
     let(:model_name) { 'terbium' }
     let(:storage)    { {} }
 
     describe '#initialize' do
-      it { return_type_for(described, Vedeu::Repository) }
-      it { assigns(described, '@model', model) }
-      it { assigns(described, '@storage', storage) }
+      subject { instance }
+
+      it { return_type_for(instance, Vedeu::Repository) }
+      it { assigns(instance, '@model', model) }
+      it { assigns(instance, '@storage', storage) }
     end
 
     describe '#all' do
-      subject { described.all }
+      subject { instance.all }
 
       it 'returns the whole repository' do
         subject.must_equal(storage)
@@ -34,7 +37,7 @@ module Vedeu
     # describe '#current' do
     #   before { Focus.stubs(:current).returns('francium') }
 
-    #   subject { described.current }
+    #   subject { instance.current }
 
     #   it { return_type_for(subject, Cursor) }
 
@@ -56,7 +59,7 @@ module Vedeu
     # end
 
     describe '#empty?' do
-      subject { described.empty? }
+      subject { instance.empty? }
 
       context 'when the storage is empty' do
         it { subject.must_equal(true) }
@@ -70,7 +73,7 @@ module Vedeu
     end
 
     describe '#find' do
-      subject { described.find(model_name) }
+      subject { instance.find(model_name) }
 
       context 'when the model cannot be found' do
         let(:model_name) { 'not_found' }
@@ -79,7 +82,7 @@ module Vedeu
       end
 
       context 'when the model is found' do
-        before { described.store(model) }
+        before { instance.store(model) }
 
         it 'returns the stored model' do
           subject.must_equal(model)
@@ -88,9 +91,9 @@ module Vedeu
     end
 
     # describe '#find_or_create' do
-    #   subject { described.find_or_create(cursor_name) }
+    #   subject { instance.find_or_create(cursor_name) }
 
-    #   it { return_type_for(described.find_or_create('zinc'), Cursor) }
+    #   it { return_type_for(instance.find_or_create('zinc'), Cursor) }
 
     #   context 'when the cursor exists' do
     #     let(:cursor_name) { 'niobium' }
@@ -164,7 +167,7 @@ module Vedeu
     end
 
     describe '#remove' do
-      subject { described.remove('francium') }
+      subject { instance.remove('francium') }
 
       context 'when the storage is empty' do
         it { return_type_for(subject, FalseClass) }
@@ -176,8 +179,8 @@ module Vedeu
 
       # context 'when the model is registered' do
       #   before do
-      #     described.add(mock('Model', name: 'gadolinium'))
-      #     described.add(mock('Model', name: 'francium'))
+      #     instance.add(mock('Model', name: 'gadolinium'))
+      #     instance.add(mock('Model', name: 'francium'))
       #   end
 
       #   it 'returns the storage with the model removed' do
@@ -188,11 +191,11 @@ module Vedeu
 
     describe '#reset' do
       it 'returns a Hash' do
-        described.reset.must_be_instance_of(Hash)
+        instance.reset.must_be_instance_of(Hash)
       end
 
       it 'resets the repository' do
-        described.reset.must_equal({})
+        instance.reset.must_equal({})
       end
     end
 
@@ -200,7 +203,7 @@ module Vedeu
     #   let(:model_name) { '' }
     #   let(:model)      { mock('Model', name: model_name) }
 
-    #   subject { described.store(model) }
+    #   subject { instance.store(model) }
 
     #   context 'when a name attribute is empty or nil' do
     #     it { proc { subject }.must_raise(MissingRequired) }
@@ -215,7 +218,7 @@ module Vedeu
     # end
 
     describe '#use' do
-      subject { described.use(model_name) }
+      subject { instance.use(model_name) }
 
       # context 'when the model exists' do
       #   before { Repository.new.store(model) }
