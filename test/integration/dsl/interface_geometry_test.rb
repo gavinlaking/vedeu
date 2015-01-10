@@ -16,6 +16,10 @@ describe 'Interface Geometry' do
     it 'allows the use of centred within geometry' do
       skip
     end
+
+    context 'when no value is given' do
+
+    end
   end
 
   describe '#height' do
@@ -31,6 +35,10 @@ describe 'Interface Geometry' do
 
     it 'allows the use of height within geometry' do
       skip
+    end
+
+    context 'when no value is given' do
+
     end
   end
 
@@ -48,6 +56,10 @@ describe 'Interface Geometry' do
     it 'allows the use of name within geometry' do
       skip
     end
+
+    context 'when no value is given' do
+
+    end
   end
 
   describe '#width' do
@@ -63,6 +75,10 @@ describe 'Interface Geometry' do
 
     it 'allows the use of width within geometry' do
       skip
+    end
+
+    context 'when no value is given' do
+
     end
   end
 
@@ -80,6 +96,10 @@ describe 'Interface Geometry' do
     it 'allows the use of x within geometry' do
       skip
     end
+
+    context 'when no value is given' do
+
+    end
   end
 
   describe '#y' do
@@ -95,6 +115,10 @@ describe 'Interface Geometry' do
 
     it 'allows the use of y within geometry' do
       skip
+    end
+
+    context 'when no value is given' do
+
     end
   end
 

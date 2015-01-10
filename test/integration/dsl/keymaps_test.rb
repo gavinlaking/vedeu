@@ -15,6 +15,10 @@ describe 'Keymaps' do
     it 'allows the use of ... within Vedeu.keymap' do
       skip
     end
+
+    context 'when no value is provided' do
+
+    end
   end
 
   describe '#name' do
@@ -28,6 +32,10 @@ describe 'Keymaps' do
 
     it 'allows the use of ... within Vedeu.keymap' do
       skip
+    end
+
+    context 'when no value is provided' do
+
     end
   end
 

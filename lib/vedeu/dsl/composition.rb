@@ -10,6 +10,8 @@ module Vedeu
 
       class << self
 
+        include Vedeu::Common
+
         # Directly write a view buffer to the terminal. Using this method means
         # that the refresh event does not need to be triggered after creating
         # the view or views, though can be later triggered if needed.

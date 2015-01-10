@@ -14,6 +14,12 @@ describe 'Compositions' do
     it 'allows the use of Vedeu.render' do
       skip
     end
+
+    context 'when no block is given' do
+      subject { Vedeu.render }
+
+      it { proc { subject }.must_raise(Vedeu::InvalidSyntax) }
+    end
   end
 
   describe '#view' do
@@ -28,6 +34,12 @@ describe 'Compositions' do
     it 'allows the use of Vedeu.view' do
       skip
     end
+
+    context 'when no block is given' do
+      subject { Vedeu.view }
+
+      #it { proc { subject }.must_raise(Vedeu::InvalidSyntax) }
+    end
   end
 
   describe '#views' do
@@ -41,6 +53,12 @@ describe 'Compositions' do
 
     it 'allows the use of Vedeu.views' do
       skip
+    end
+
+    context 'when no block is given' do
+      subject { Vedeu.views }
+
+      #it { proc { subject }.must_raise(Vedeu::InvalidSyntax) }
     end
   end
 

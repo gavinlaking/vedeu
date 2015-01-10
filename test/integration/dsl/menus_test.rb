@@ -14,6 +14,10 @@ describe 'Menus' do
     it 'allows the use of item within Vedeu.menu' do
       subject.collection.must_equal(['hydrogen'])
     end
+
+    context 'when no value is provided' do
+
+    end
   end
 
   describe '#items' do
@@ -28,6 +32,10 @@ describe 'Menus' do
     it 'allows the use of item within Vedeu.menu' do
       subject.collection.must_equal(['lithium', 'beryllium'])
     end
+
+    context 'when no value is provided' do
+
+    end
   end
 
   describe '#name' do
@@ -41,6 +49,10 @@ describe 'Menus' do
 
     it 'allows the use of name within Vedeu.menu' do
       subject.name.must_equal('elements')
+    end
+
+    context 'when no value is provided' do
+
     end
   end
 

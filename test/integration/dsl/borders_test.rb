@@ -1,6 +1,6 @@
 require 'test_helper'
 
-describe 'Interface' do
+describe 'Interface Borders' do
 
   describe '#bottom_left' do
     subject {

@@ -16,6 +16,10 @@ describe 'Lines' do
     it 'allows the use of background within lines' do
       skip
     end
+
+    context 'when no value is provided' do
+
+    end
   end
 
   describe '#colour' do
@@ -31,6 +35,10 @@ describe 'Lines' do
 
     it 'allows the use of colour within lines' do
       skip
+    end
+
+    context 'when no value is provided' do
+
     end
   end
 
@@ -48,6 +56,10 @@ describe 'Lines' do
     it 'allows the use of foreground within lines' do
       skip
     end
+
+    context 'when no value is provided' do
+
+    end
   end
 
   describe '#line' do
@@ -64,6 +76,10 @@ describe 'Lines' do
     it 'allows the use of line within lines' do
       skip
     end
+
+    context 'when no value is provided' do
+
+    end
   end
 
   describe '#stream' do
@@ -79,6 +95,10 @@ describe 'Lines' do
 
     it 'allows the use of stream within lines' do
       skip
+    end
+
+    context 'when no value is provided' do
+
     end
   end
 
@@ -97,6 +117,10 @@ describe 'Lines' do
     it 'allows the use of streams within lines' do
       skip
     end
+
+    context 'when no value is provided' do
+
+    end
   end
 
   describe '#style' do
@@ -112,6 +136,10 @@ describe 'Lines' do
 
     it 'allows the use of style within lines' do
       skip
+    end
+
+    context 'when no value is provided' do
+
     end
   end
 
