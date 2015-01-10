@@ -83,6 +83,28 @@ describe 'Streams' do
     end
   end
 
+  describe '#style' do
+    let(:value) { '' }
+
+    subject {
+      Vedeu.interface 'lines' do
+        lines do
+          streams do
+            style value
+          end
+        end
+      end
+    }
+
+    it 'allows the use of style within stream(s)' do
+      skip
+    end
+
+    context 'when no value is provided' do
+      let(:value) {}
+    end
+  end
+
   describe '#text' do
     subject {
       Vedeu.interface 'streams' do
