@@ -41,63 +41,6 @@ module Vedeu
         model
       end
 
-      # @see Vedeu::Interface.interface
-      # @param attributes [Hash]
-      # @param block [Proc]
-      # @return [Interface]
-      def define(attributes = {}, &block)
-        model = build(attributes, &block)
-
-        if model.name
-          event_name = "_refresh_#{model.name}_".to_sym
-
-          unless Vedeu.events.registered?(event_name)
-            Vedeu.event(event_name, { delay: model.delay }) do
-              Vedeu::Refresh.by_name(model.name)
-            end
-          end
-        end
-
-        if model.group
-          event_name = "_refresh_group_#{model.group}_".to_sym
-
-          unless Vedeu.events.registered?(event_name)
-            Vedeu.event(event_name, { delay: model.delay }) do
-              Vedeu::Refresh.by_group(model.group)
-            end
-          end
-        end
-
-        Registrar.record(attrs)
-
-        self
-      end
-
-      # Register an interface by name which will display output from a event or
-      # command. This provides the means for you to define your application's
-      # views without their content.
-      #
-      # @todo More documentation required.
-      # @param name  [String] The name of the interface. Used to reference the
-      #   interface throughout your application's execution lifetime.
-      # @param block [Proc] A set of attributes which define the features of the
-      #   interface.
-      #
-      # @example
-      #   Vedeu.interface 'my_interface' do
-      #     ...
-      #
-      #   Vedeu.interface do
-      #     name 'interfaces_must_have_a_name'
-      #     ...
-      #
-      # @return [Interface]
-      def interface(name = '', &block)
-        new_interface      = build(nil, nil, nil, nil, &block)
-        new_interface.name = name if defined_value?(name)
-        new_interface.store
-      end
-
     end
 
     # Return a new instance of Interface.
@@ -118,17 +61,6 @@ module Vedeu
       @lines    = Vedeu::Model::Lines.new(@attributes[:lines], self)
     end
 
-    # @see Vedeu::API#interface
-    # @param block [Proc]
-    # @return [Interface]
-    def define(&block)
-      instance_eval(&block) if block_given?
-
-      Registrar.record(attributes)
-
-      self
-    end
-
     # Returns the class responsible for defining the DSL methods of this model.
     #
     # @return [DSL::Interface]
@@ -140,6 +72,31 @@ module Vedeu
       @lines
     end
     alias_method :value, :lines
+
+    # @return [Interface]
+    def store
+      if name
+        event_name = "_refresh_#{name}_".to_sym
+
+        unless Vedeu.events_repository.registered?(event_name)
+          Vedeu.event(event_name, { delay: delay }) do
+            Vedeu::Refresh.by_name(name)
+          end
+        end
+      end
+
+      if group
+        event_name = "_refresh_group_#{group}_".to_sym
+
+        unless Vedeu.events_repository.registered?(event_name)
+          Vedeu.event(event_name, { delay: delay }) do
+            Vedeu::Refresh.by_group(group)
+          end
+        end
+      end
+
+      super
+    end
 
     private
 

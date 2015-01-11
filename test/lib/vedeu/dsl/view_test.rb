@@ -6,7 +6,23 @@ module Vedeu
 
     describe View do
 
-      let(:described)   { Vedeu::DSL::View }
+      let(:described) { Vedeu::DSL::View }
+
+      describe '.interface' do
+        subject {
+          described.interface('flourine') do
+            # ...
+          end
+        }
+
+        it { return_type_for(subject, Vedeu::Interface) }
+
+        context 'when the block is not given' do
+          subject { described.renders }
+
+          it { proc { subject }.must_raise(InvalidSyntax) }
+        end
+      end
 
       describe '.renders' do
         subject {

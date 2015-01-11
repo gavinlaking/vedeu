@@ -22,15 +22,7 @@ module Vedeu
     #   end
     # end
 
-    # describe '.interface' do
-    #   before { Vedeu::Buffers.reset }
 
-    #   subject { Vedeu.interface('flourine') }
-
-    #   it 'creates and stores a new interface' do
-    #     return_type_for(subject, Vedeu::Interface)
-    #   end
-    # end
 
     # describe '.keypress' do
     #   before do

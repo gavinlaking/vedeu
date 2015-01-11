@@ -23,10 +23,9 @@ module Vedeu
     extend  self
 
     def_delegators Vedeu::Configuration, :configure
-    def_delegators Vedeu::DSL::View,     :renders, :views
+    def_delegators Vedeu::DSL::View,     :interface, :renders, :views
     def_delegators Vedeu::DSL::Shared,   :use
     def_delegators Vedeu::Focus,         :focus
-    def_delegators Vedeu::Interface,     :interface
     def_delegators Vedeu::Keymap,        :keymap
     def_delegators Vedeu::Menu,          :menu
     def_delegators Vedeu::Terminal,      :height, :width, :resize

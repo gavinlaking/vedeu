@@ -12,6 +12,36 @@ module Vedeu
 
         include Vedeu::Common
 
+        # Register an interface by name which will display output from a event
+        # or command. This provides the means for you to define your the views
+        # of your application without their content.
+        #
+        # @todo More documentation required.
+        #
+        # @param interface_name [String] The name of the interface. Used to
+        #   reference the interface throughout your application's execution
+        #   lifetime.
+        # @param block [Proc] A set of attributes which define the features of
+        #   the interface.
+        #
+        # @example
+        #   Vedeu.interface 'my_interface' do
+        #     ...
+        #
+        #   Vedeu.interface do
+        #     name 'interfaces_must_have_a_name'
+        #     ...
+        #
+        # @raise [InvalidSyntax] When the required block is not given.
+        # @return [Interface]
+        def interface(interface_name = '', &block)
+          return requires_block(__callee__) unless block_given?
+
+          interface      = Vedeu::Interface.build(&block)
+          interface.name = interface_name if defined_value?(interface_name)
+          interface.store
+        end
+
         # Immediate render
         #
         # Directly write a view buffer to the terminal. Using this method means
