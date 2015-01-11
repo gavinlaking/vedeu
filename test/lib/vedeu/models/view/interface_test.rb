@@ -128,10 +128,6 @@ module Vedeu
       it { return_type_for(instance.deputy, DSL::Interface) }
     end
 
-    describe '#geometry' do
-      it { return_type_for(instance.geometry, Geometry) }
-    end
-
     describe '#group' do
       it { return_type_for(instance.group, String) }
 

@@ -8,6 +8,7 @@ require 'vedeu/input/keymap'
 require 'vedeu/input/keymaps'
 require 'vedeu/dsl/composition'
 require 'vedeu/dsl/shared'
+require 'vedeu/dsl/view'
 
 module Vedeu
 
@@ -21,15 +22,15 @@ module Vedeu
     extend  Forwardable
     extend  self
 
-    def_delegators Vedeu::Configuration,    :configure
-    def_delegators Vedeu::DSL::Composition, :composition, :render, :view, :views
-    def_delegators Vedeu::DSL::Shared,      :use
-    def_delegators Vedeu::Focus,            :focus
-    def_delegators Vedeu::Interface,        :interface
-    def_delegators Vedeu::Keymap,           :keymap
-    def_delegators Vedeu::Menu,             :menu
-    def_delegators Vedeu::Terminal,         :height, :width, :resize
-    def_delegators Vedeu::Keymaps,          :keypress
+    def_delegators Vedeu::Configuration, :configure
+    def_delegators Vedeu::DSL::View,     :renders, :views
+    def_delegators Vedeu::DSL::Shared,   :use
+    def_delegators Vedeu::Focus,         :focus
+    def_delegators Vedeu::Interface,     :interface
+    def_delegators Vedeu::Keymap,        :keymap
+    def_delegators Vedeu::Menu,          :menu
+    def_delegators Vedeu::Terminal,      :height, :width, :resize
+    def_delegators Vedeu::Keymaps,       :keypress
 
     def_delegators Vedeu::Event,   :event
     def_delegators Vedeu::Trigger, :trigger

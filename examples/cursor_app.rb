@@ -51,7 +51,7 @@ class VedeuCursorApp
     key(:left)  { Vedeu.trigger(:_cursor_left_)  }
   end
 
-  render do
+  renders do
     view 'iron' do
       lines do
         stream do

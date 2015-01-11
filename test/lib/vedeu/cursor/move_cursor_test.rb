@@ -13,6 +13,9 @@ module Vedeu
     let(:interface) {
       Vedeu::Interface.build do
         name 'magnesium'
+        geometry do
+
+        end
       end
     }
     let(:interface_with_border) {

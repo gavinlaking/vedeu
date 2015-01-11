@@ -204,7 +204,7 @@ class VedeuBordersApp
     style  'normal'
   end
 
-  render do
+  renders do
     view('lur') do
       lines do
         line 'on'

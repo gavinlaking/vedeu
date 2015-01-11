@@ -15,12 +15,33 @@ module Vedeu
         },
         lines: lines
       })
+      # Vedeu::Interface.build do
+      #   geometry do
+      #     width 3
+      #     height 3
+      #   end
+      #   name 'lithium'
+      #   lines do
+      #     line 'Beryllium'
+      #     line 'Magnesium'
+      #     line 'Plutonium'
+      #     line 'Potassium'
+      #     line 'Lanthanum'
+      #     line 'Stront­ium'
+      #   end
+      # end
     }
     let(:lines) { [] }
     let(:x)     { 1 }
     let(:y)     { 1 }
 
-    before { Cursor.new('lithium', true, x, y).store }
+    before do
+      interface.geometry = Vedeu::Geometry.build do
+        height 3
+        width  3
+      end
+      Cursor.new('lithium', true, x, y).store
+    end
 
     describe '#initialize' do
       subject { instance }

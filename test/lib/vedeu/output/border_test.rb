@@ -8,14 +8,18 @@ module Vedeu
     let(:instance)   { described.new(interface, attributes) }
     # let(:interface)  { Interface.new({ name: 'caesium' }) }
     let(:interface)  {
-      Interface.new({
-        geometry: { width: 8, height: 5 },
-        name: 'caesium',
-        lines: lines
-      })
+      Vedeu::Interface.build do
+        geometry do
+          height 5
+          width  8
+        end
+        name 'caesium'
+      end
     }
-    let(:lines) {
-      [
+    let(:attributes) { {} }
+
+    before do
+      interface.lines = [
         Line.new([Stream.new('Beryllium')]),
         Line.new([Stream.new('Magnesium')]),
         Line.new([Stream.new('Plutonium')]),
@@ -23,8 +27,7 @@ module Vedeu
         Line.new([Stream.new('Lanthanum')]),
         Line.new([Stream.new('Stront­ium')])
       ]
-    }
-    let(:attributes) { {} }
+    end
 
     describe '.build' do
       subject {

@@ -39,7 +39,7 @@ class VedeuLinesApp
     key(:left)  { trigger(:_cursor_left_)  }
   end
 
-  render do
+  renders do
     view 'ruthenium' do
       line 'Ruthenium is a chemical element with'
       line 'symbol Ru and atomic number 44. It is a'

@@ -6,26 +6,6 @@ require 'vedeu/support/common'
 
 module Vedeu
 
-  # class << self
-
-  #   def render(&block)
-  #     fail StandardError, 'Vedeu.render'
-
-  #     return requires_block(__callee__) unless block_given?
-  #   end
-
-  #   def view(&block)
-  #     fail StandardError, 'Vedeu.render'
-
-  #     return requires_block(__callee__) unless block_given?
-  #   end
-
-  #   private
-
-  #   include Vedeu::Common
-
-  # end
-
   # A composition is a collection of interfaces.
   #
   # @api private

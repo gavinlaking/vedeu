@@ -28,7 +28,7 @@ class HelloWorldApp
     end
   end
 
-  render do
+  renders do
     view 'messages' do
       lines do
         line '    Hello World!'

@@ -77,7 +77,7 @@ class VedeuFocusApp
     end
   end
 
-  render do
+  renders do
     view('aluminium') do
       lines do
         line 'Al'

@@ -52,30 +52,27 @@ refresh).
 
 ### Immediate Render
 
-The immediate render DSL for Vedeu is accessed via `Vedeu.render` or
-`Vedeu.renders`. When this approach is used, the content defined is written
-directly to the 'front' buffer(s) for the interface(s) concerned. Take a glance at
-the example below:
+The immediate render DSL for Vedeu is accessed via `Vedeu.renders`. When this
+approach is used, the content defined is written directly to the 'front'
+buffer(s) for the interface(s) concerned. Take a glance at the example below:
 
 ```ruby
-  Vedeu.render do
-    views do
-      view 'title' do
-        line do
-          stream do
-            left 'Title goes here', width: 35
-          end
-          stream do
-            right Time.now.strftime('%H:%m'), width: 7
-          end
+  Vedeu.renders do
+    view 'title' do
+      line do
+        stream do
+          left 'Title goes here', width: 35
+        end
+        stream do
+          right Time.now.strftime('%H:%m'), width: 7
         end
       end
-      view 'main' do
-        lines do
-          line 'This is content for the main interface.'
-          line ''
-          line 'Pretty easy eh?'
-        end
+    end
+    view 'main' do
+      lines do
+        line 'This is content for the main interface.'
+        line ''
+        line 'Pretty easy eh?'
       end
     end
   end
@@ -83,10 +80,10 @@ the example below:
 
 ### Deferred View
 
-The deferred view DSL for Vedeu is accessed via `Vedeu.view` or `Vedeu.views`.
-This approach writes the content defined to the 'back' buffer(s) for the
-interface(s) concerned. It will become the front when your application triggers
-the refresh event for the interface(s).
+The deferred view DSL for Vedeu is accessed via `Vedeu.views`. This approach
+writes the content defined to the 'back' buffer(s) for the interface(s)
+concerned. It will become the front when your application triggers the refresh
+event for the interface(s).
 
 As you can see by comparing the examples above to these below, the immediate
 render simply wraps what is already here in the deferred view. Again, more

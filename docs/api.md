@@ -82,37 +82,38 @@ Note: Nesting indicates where an API method is allowed/supposed to be used.
 
 #### Views
 
-- render
-  - views
-    - view
+- renders
+  - view
+    - colour
+    - cursor
+    - geometry
+      - height
+      - width
+      - x
+      - y
+    - line
+      - background
       - colour
-      - cursor
-      - geometry
-        - height
-        - width
-        - x
-        - y
-      - line
+      - foreground
+      - stream
+        - align
         - background
         - colour
         - foreground
-        - stream
-          - align
-          - background
-          - colour
-          - foreground
-          - style
-          - text
-          - width
-        - streams
-          - stream
-        - text
         - style
-      - lines
-        - line
-      - name
+        - text
+        - width
+      - streams
+        - stream
+      - text
       - style
-    - use
+    - lines
+      - line
+    - name
+    - style
+  - use
+- views
+  - ... as #renders
 
 
 #### Menus

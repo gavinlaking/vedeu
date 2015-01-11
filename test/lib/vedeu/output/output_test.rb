@@ -6,14 +6,13 @@ module Vedeu
 
     let(:described) { Output.new(interface) }
     let(:interface) {
-      Interface.new({
-        name:   'flourine',
-        geometry: {
-          width:  32,
-          height: 3,
-        },
-        lines:    lines
-      })
+      Interface.build do
+        geometry do
+          height 3
+          width  32
+        end
+        name 'flourine'
+      end
     }
     let(:lines) {
       [
@@ -24,7 +23,10 @@ module Vedeu
       ]
     }
 
-    before { IO.console.stubs(:print) }
+    before do
+      interface.lines = lines
+      IO.console.stubs(:print)
+    end
 
     describe '#initialize' do
       it { return_type_for(described, Output) }
