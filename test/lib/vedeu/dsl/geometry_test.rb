@@ -52,6 +52,18 @@ module Vedeu
         it 'sets the attribute to the value' do
           subject.x.must_equal(2)
         end
+
+        context 'when a block is given' do
+          subject {
+            Vedeu::Geometry.build({}) do
+              x do
+                3 + 4
+              end
+            end
+          }
+
+          it { subject.x.must_equal(7) }
+        end
       end
 
       describe '#y' do
@@ -59,6 +71,18 @@ module Vedeu
 
         it 'sets the attribute to the value' do
           subject.y.must_equal(5)
+        end
+
+        context 'when a block is given' do
+          subject {
+            Vedeu::Geometry.build({}) do
+              y do
+                2 + 7
+              end
+            end
+          }
+
+          it { subject.y.must_equal(9) }
         end
       end
 
