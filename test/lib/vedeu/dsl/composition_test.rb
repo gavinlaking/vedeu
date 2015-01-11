@@ -18,7 +18,21 @@ module Vedeu
       end
 
       describe '#view' do
-        it { skip }
+        let(:interface_name) { 'dysprosium' }
+
+        subject {
+          instance.view(interface_name) do
+            name 'calcium'
+          end
+        }
+
+        it { return_type_for(subject, Vedeu::Model::Collection) }
+
+        it { return_type_for(subject.first, Vedeu::Interface) }
+
+        it 'overrides the DSL given name with the method argument name' do
+          return_value_for(subject.first.name, 'dysprosium')
+        end
 
         context 'when the block is not given' do
           subject { instance.view }

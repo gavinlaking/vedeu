@@ -6,45 +6,48 @@ module Vedeu
 
     describe Line do
 
-      let(:described) { Vedeu::DSL::Line.new(model) }
+      let(:described) { Vedeu::DSL::Line }
+      let(:instance)  { described.new(model) }
       let(:model)     { Vedeu::Line.new(streams, parent, colour, style) }
       let(:streams)   { [] }
-      let(:parent)    { mock('Interface') }
-      let(:colour)    { mock('Colour') }
-      let(:style)     { mock('Style') }
+      let(:parent)    { Vedeu::Interface.new }
+      let(:colour)    { Vedeu::Colour.new }
+      let(:style)     { Vedeu::Style.new }
 
       describe '#initialize' do
-        it { return_type_for(described, Vedeu::DSL::Line) }
-        it { assigns(described, '@model', model) }
+        subject { instance }
+
+        it { return_type_for(subject, Vedeu::DSL::Line) }
+        it { assigns(subject, '@model', model) }
       end
 
       describe '#line' do
-        it { skip }
-      end
+        let(:value) { '' }
 
-      describe '#stream' do
-        # subject { described.stream }
-
-        # it { return_type_for(subject, Array) }
+        subject { instance.line(value) }
 
         it { skip }
+
+        it { return_type_for(subject, Vedeu::Model::Collection) }
+
+        it { return_type_for(subject.first, Vedeu::Line) }
       end
 
       describe '#streams' do
         context 'when the block is given' do
           subject {
-            described.streams do
+            instance.streams do
               # ...
             end
           }
 
-          # it { return_type_for(subject, Vedeu::Model::Streams) }
+          it { return_type_for(subject, Vedeu::Model::Collection) }
 
-          it { skip }
+          it { return_type_for(subject.first, Vedeu::Stream) }
         end
 
         context 'when the block is not given' do
-          subject { described.streams }
+          subject { instance.streams }
 
           it { proc { subject }.must_raise(InvalidSyntax) }
         end

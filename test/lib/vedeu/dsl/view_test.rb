@@ -6,7 +6,7 @@ module Vedeu
 
     describe View do
 
-      let(:described) { Vedeu::DSL::View }
+      let(:described)   { Vedeu::DSL::View }
 
       describe '.renders' do
         subject {

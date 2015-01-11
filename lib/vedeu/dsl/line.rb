@@ -8,6 +8,33 @@ module Vedeu
 
     # Provides methods to be used to define views.
     #
+    # @example
+    #   Vedeu.renders do
+    #     view 'my_interface' do
+    #       lines do
+    #         background '#000000'
+    #         foreground '#ffffff'
+    #         line 'This is white text on a black background.'
+    #         line 'Next is a blank line:'
+    #         line ''
+    #
+    #         streams { stream 'We can define ' }
+    #
+    #         streams do
+    #           foreground '#ff0000'
+    #           stream 'parts of a line '
+    #         end
+    #
+    #         streams { stream 'independently using ' }
+    #
+    #         streams do
+    #           foreground '#00ff00'
+    #           stream 'streams.'
+    #         end
+    #       end
+    #     end
+    #   end
+    #
     # @api public
     class Line
 
@@ -28,57 +55,39 @@ module Vedeu
       # @param block [Proc]
       #
       # @example
-      #   view 'my_interface' do
-      #     line 'This is a line of text...'
-      #     line 'and so is this...'
-      #     ...
+      #   Vedeu.renders do
+      #     view 'my_interface' do
+      #       lines do
+      #         line 'This is an uninteresting line of text.'
+      #         line 'This is also a line of text.'
+      #         ...
+      #         text 'This is an alias for `line`, if you prefer.'
       #
       # @return [Line]
       def line(value = '')
-        _stream = Vedeu::Stream.new(value, nil, Vedeu::Colour.new, Vedeu::Style.new)
-        _line   = Vedeu::Line.new([], model, Vedeu::Colour.new, Vedeu::Style.new)
-        _stream.parent = _line
-        _line.streams << _stream
-
         interface = model.parent
-        interface.lines.add(_line)
-      end
+        new_line  = Vedeu::Line.new([], interface, Vedeu::Colour.new, Vedeu::Style.new)
+        stream    = Vedeu::Stream.new(value, new_line, Vedeu::Colour.new, Vedeu::Style.new)
 
-      # Define a stream (a subset of a line).
-      #
-      # @param value [String]
-      # @param block [Proc] Block contains directives relating to Vedeu::Stream.
-      #
-      # @example
-      #   ...
-      #     lines do
-      #       stream do
-      #         ...
-      #
-      #   ...
-      #     lines do
-      #       stream 'Some text goes here...'
-      #       ...
-      #
-      # @return [Array]
-      def stream(value = '', &block)
-        model.streams.add(Vedeu::Stream.build({
-          parent: model, value: value
-        }), &block)
+        new_line.streams << stream
+
+        interface.lines.add(new_line)
       end
-      alias_method :text, :stream
+      alias_method :text, :line
 
       # Define multiple streams (a stream is a subset of a line).
       #
       # @param block [Proc]
       #
       # @example
-      #   ...
-      #     lines do
-      #       streams do
-      #         ...
+      #   Vedeu.renders do
+      #     view 'my_interface' do
+      #       lines do
+      #         streams do
+      #           # ...
       #
-      # @return [Array]
+      # @return [Vedeu::Model::Collection<Vedeu::Stream>]
+      # @see Vedeu::DSL::Stream for subdirectives.
       def streams(&block)
         return requires_block(__callee__) unless block_given?
 

@@ -71,9 +71,10 @@ module Vedeu
       #
       # @param value [String|undefined] The text to be added to this Stream.
       # @return [String] The param 'value' as a String.
-      def text(value = '')
+      def stream(value = '')
         model.value << value.to_s
       end
+      alias_method :text, :stream
 
       # @deprecated
       # :nocov:

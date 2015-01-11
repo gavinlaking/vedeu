@@ -20,22 +20,23 @@ module Vedeu
       # A view is just an Interface object.
       #
       # @todo More documentation required.
-      # @param name [String] The name of the interface you are targetting for
-      #   this view.
+      # @param interface_name [String] The name of the interface you are
+      #   targetting for this view.
       # @param block [Proc] The directives you wish to send to this interface.
       #
       # @example
       #   view 'my_interface' do
       #     ...
       #
-      # @return [Hash]
-      def view(name = '', &block)
+      # @return [Vedeu::Model::Collection<Vedeu::Interface>]
+      def view(interface_name = '', &block)
         return requires_block(__callee__) unless block_given?
 
-        new_interface      = Vedeu::Interface.build(nil, model, nil, nil, &block)
-        new_interface.name = name if defined_value?(name)
+        interface = Vedeu::Interface.build(nil, model, nil, nil) do
+          name interface_name
+        end
 
-        model.interfaces.add(new_interface)
+        model.interfaces.add(interface)
       end
 
       private
