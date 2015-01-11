@@ -49,8 +49,6 @@ module Vedeu
       #
       # @return [Fixnum]
       def height(value)
-        Vedeu.log(out_of_bounds('height')) if y_out_of_bounds?(value)
-
         model.height = value
       end
 
@@ -80,7 +78,7 @@ module Vedeu
       #
       # @return [Fixnum]
       def width(value)
-        Vedeu.log(out_of_bounds('width')) if x_out_of_bounds?(value)
+
 
         model.width = value
       end
@@ -104,8 +102,6 @@ module Vedeu
       # @return [Fixnum]
       def x(value = 0, &block)
         return model.x = block if block_given?
-
-        Vedeu.log(out_of_bounds('x')) if x_out_of_bounds?(value)
 
         model.x = value
       end
@@ -131,39 +127,12 @@ module Vedeu
       def y(value = 0, &block)
         return model.y = block if block_given?
 
-        Vedeu.log(out_of_bounds('y')) if y_out_of_bounds?(value)
-
         model.y = value
       end
 
       private
 
       attr_reader :model
-
-      # Returns the out of bounds error message for the given named attribute.
-      #
-      # @param name [String]
-      # @return [String]
-      def out_of_bounds(name)
-        "Note: For this terminal, the value of '#{name}' may lead to content " \
-        "that is outside the viewable area."
-      end
-
-      # Checks the value is within the terminal's confines.
-      #
-      # @param value [Fixnum]
-      # @return [Boolean]
-      def y_out_of_bounds?(value)
-        value < 1 || value > Terminal.height
-      end
-
-      # Checks the value is within the terminal's confines.
-      #
-      # @param value [Fixnum]
-      # @return [Boolean]
-      def x_out_of_bounds?(value)
-        value < 1 || value > Terminal.width
-      end
 
     end # Geometry
 
