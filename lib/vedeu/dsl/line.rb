@@ -62,9 +62,9 @@ module Vedeu
       #
       # @return [Array]
       def stream(value = '', &block)
-        model.streams.add(Vedeu::Stream.build(attributes.merge({
+        model.streams.add(Vedeu::Stream.build({
           parent: model, value: value
-        }), &block))
+        }), &block)
       end
       alias_method :text, :stream
 
