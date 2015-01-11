@@ -110,53 +110,41 @@ module Vedeu
     #   end
     # end
 
-    describe '#delay' do
-      it { return_type_for(instance.delay, Float) }
-
-      context 'when the delay is set' do
-        before { instance.delay = 0.5 }
-
-        it { return_value_for(instance.delay, 0.5) }
-      end
-
-      context 'when the delay is not set' do
-        it { return_value_for(instance.delay, 0.0) }
-      end
-    end
-
     describe '#deputy' do
       it { return_type_for(instance.deputy, DSL::Interface) }
-    end
-
-    describe '#group' do
-      it { return_type_for(instance.group, String) }
-
-      context 'when the group is set' do
-        before { instance.group = 'elements' }
-
-        it { return_value_for(instance.group, 'elements') }
-      end
-
-      context 'when the group is not set' do
-        it { return_value_for(instance.group, '') }
-      end
     end
 
     describe '#lines' do
       it { return_type_for(instance.lines, Vedeu::Model::Lines) }
     end
 
-    describe '#name' do
-      it { return_type_for(instance.name, String) }
+    describe '#store' do
+      subject { instance.store }
 
-      context 'when the name is set' do
-        before { instance.name = 'francium' }
-
-        it { return_value_for(instance.name, 'francium') }
+      context 'when the interface has no name' do
+        it { proc { subject }.must_raise(InvalidSyntax) }
       end
 
-      context 'when the name is not set' do
-        it { return_value_for(instance.name, '') }
+      context 'when the interface has a name' do
+        context 'when a buffer exists' do
+          it { skip }
+        end
+
+        context 'when a buffer does not exist' do
+          it { skip }
+        end
+
+        context 'when a refresh event exists' do
+          it { skip }
+        end
+
+        context 'when a refresh event does not exist' do
+          it { skip }
+        end
+
+        context 'when the interface has a group' do
+          it { skip }
+        end
       end
     end
 

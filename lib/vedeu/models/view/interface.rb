@@ -76,14 +76,19 @@ module Vedeu
 
     # @return [Interface]
     def store
+      unless defined_value?(name)
+        fail InvalidSyntax, 'Cannot store an interface without a name.'
+      end
+
+      unless Vedeu.buffers_repository.registered?(name)
+        Vedeu::Buffer.new({ name: name }).store
+      end
+
       options = { delay: delay }
+      event   = "_refresh_#{name}_".to_sym
 
-      if name
-        event = "_refresh_#{name}_".to_sym
-
-        unless Vedeu.events_repository.registered?(event)
-          Vedeu.event(event, options) { Vedeu::Refresh.by_name(name) }
-        end
+      unless Vedeu.events_repository.registered?(event)
+        Vedeu.event(event, options) { Vedeu::Refresh.by_name(name) }
       end
 
       if group
