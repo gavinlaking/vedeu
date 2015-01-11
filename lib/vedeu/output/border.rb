@@ -304,7 +304,9 @@ module Vedeu
     #
     # @return [String]
     def viewport
-      @_viewport ||= Viewport.show(interface)
+      cursor = Vedeu.cursors_repository.by_name(interface.name)
+
+      @_viewport ||= Viewport.show(interface, cursor)
     end
 
     # Returns the colour and styles for the border.

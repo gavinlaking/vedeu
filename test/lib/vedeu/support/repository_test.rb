@@ -2,28 +2,40 @@ require 'test_helper'
 
 module Vedeu
 
+  class TestRepository < Repository
+  end
+
   class TestModel
-    attr_reader :name
+    include Vedeu::Model
+
+    attr_accessor :name
 
     def initialize(name = nil)
       @name = name
+    end
+
+    private
+
+    def repository
+      Vedeu::TestRepository.new(self.class)
     end
   end
 
   describe Repository do
 
-    let(:described)  { Vedeu::Repository }
-    let(:instance)   { described.new(model, storage) }
-    let(:model)      { TestModel.new(model_name) }
-    let(:model_name) { 'terbium' }
-    let(:storage)    { {} }
+    let(:described)      { Vedeu::Repository }
+    let(:instance)       { described.new(model, storage) }
+    let(:model)          { Vedeu::TestModel }
+    let(:model_instance) { model.new(model_name) }
+    let(:model_name)     { 'terbium' }
+    let(:storage)        { {} }
 
     describe '#initialize' do
       subject { instance }
 
-      it { return_type_for(instance, Vedeu::Repository) }
-      it { assigns(instance, '@model', model) }
-      it { assigns(instance, '@storage', storage) }
+      it { return_type_for(subject, Vedeu::Repository) }
+      it { assigns(subject, '@model', model) }
+      it { assigns(subject, '@storage', storage) }
     end
 
     describe '#all' do
@@ -35,26 +47,26 @@ module Vedeu
     end
 
     # describe '#current' do
-    #   before { Focus.stubs(:current).returns('francium') }
+    #   # before { Focus.stubs(:current).returns('francium') }
 
     #   subject { instance.current }
 
-    #   it { return_type_for(subject, Cursor) }
+    #   it { return_type_for(Focus.current, NilClass) }
 
-    #   context 'when the cursor exists' do
-    #     before { Cursor.new('francium', false, 12, 4).store }
+    #   context 'when the model exists' do
+    #     # before { Cursor.new('francium', false, 12, 4).store }
 
-    #     it 'has the same attributes it was stored with' do
-    #       subject.x.must_equal(12)
-    #       subject.y.must_equal(4)
-    #     end
+    #     # it 'has the same attributes it was stored with' do
+    #     #   subject.x.must_equal(12)
+    #     #   subject.y.must_equal(4)
+    #     # end
     #   end
 
-    #   context 'when the cursor does not exist' do
-    #     it 'is created, stored, and has the default attributes' do
-    #       subject.x.must_equal(1)
-    #       subject.y.must_equal(1)
-    #     end
+    #   context 'when the model does not exist' do
+    #     # it 'is created, stored, and has the default attributes' do
+    #     #   subject.x.must_equal(1)
+    #     #   subject.y.must_equal(1)
+    #     # end
     #   end
     # end
 
@@ -82,39 +94,39 @@ module Vedeu
       end
 
       context 'when the model is found' do
-        before { instance.store(model) }
+        let(:model_instance) { model.new('terbium') }
+
+        before { instance.store(model_instance) }
 
         it 'returns the stored model' do
-          subject.must_equal(model)
+          subject.must_equal(model_instance)
         end
       end
     end
 
-    # describe '#find_or_create' do
-    #   subject { instance.find_or_create(cursor_name) }
+    describe '#find_or_create' do
+      let(:model_instance) { TestModel.new('niobium') }
 
-    #   it { return_type_for(instance.find_or_create('zinc'), Cursor) }
+      subject { instance.find_or_create(model_name) }
 
-    #   context 'when the cursor exists' do
-    #     let(:cursor_name) { 'niobium' }
+      it { return_type_for(instance.find_or_create('zinc'), Vedeu::TestModel) }
 
-    #     before { Cursor.new('niobium', false, 7, 9).store }
+      context 'when the model exists' do
+        let(:model_name) { 'niobium' }
 
-    #     it 'has the same attributes it was stored with' do
-    #       subject.x.must_equal(7)
-    #       subject.y.must_equal(9)
-    #     end
-    #   end
+        before { instance.store(model_instance) }
 
-    #   context 'when the cursor does not exist' do
-    #     let(:cursor_name) { 'zinc'}
+        it { return_value_for(subject, model_instance) }
+      end
 
-    #     it 'is created, stored and has the default attributes' do
-    #       subject.x.must_equal(1)
-    #       subject.y.must_equal(1)
-    #     end
-    #   end
-    # end
+      context 'when the model does not exist' do
+        let(:model_name) { 'zinc'}
+
+        it 'creates and stores a new instance of the model' do
+          return_type_for(subject, Vedeu::TestModel)
+        end
+      end
+    end
 
     describe '#registered' do
       it 'returns an Array' do
@@ -170,23 +182,31 @@ module Vedeu
       subject { instance.remove('francium') }
 
       context 'when the storage is empty' do
+        before { instance.reset }
+
         it { return_type_for(subject, FalseClass) }
       end
 
       context 'when the model is not registered' do
+        before do
+          instance.reset
+          instance.store(Vedeu::TestModel.new('zinc'))
+        end
+
         it { return_type_for(subject, FalseClass) }
       end
 
-      # context 'when the model is registered' do
-      #   before do
-      #     instance.add(mock('Model', name: 'gadolinium'))
-      #     instance.add(mock('Model', name: 'francium'))
-      #   end
+      context 'when the model is registered' do
+        before do
+          instance.reset
+          instance.store(Vedeu::TestModel.new('gadolinium'))
+          instance.store(Vedeu::TestModel.new('francium'))
+        end
 
-      #   it 'returns the storage with the model removed' do
-      #     subject.must_equal([mock('Model', name: 'gadolinium')])
-      #   end
-      # end
+        it 'returns the storage with the model removed' do
+          subject.size.must_equal(1)
+        end
+      end
     end
 
     describe '#reset' do
@@ -199,32 +219,30 @@ module Vedeu
       end
     end
 
-    # describe '#store' do
-    #   let(:model_name) { '' }
-    #   let(:model)      { mock('Model', name: model_name) }
+    describe '#store' do
+      subject { instance.store(model_instance) }
 
-    #   subject { instance.store(model) }
+      context 'when a name attribute is empty or nil' do
+        before { model_instance.name = '' }
 
-    #   context 'when a name attribute is empty or nil' do
-    #     it { proc { subject }.must_raise(MissingRequired) }
-    #   end
+        it { proc { subject }.must_raise(MissingRequired) }
+      end
 
-    #   context 'when a name attributes is provided' do
-    #     let(:model_name) { 'hydrogen' }
+      context 'when a name attributes is provided' do
+        let(:model_name) { 'hydrogen' }
 
-    #     it { return_type_for(subject, model.class) }
-    #     it { return_value_for(subject, model) }
-    #   end
-    # end
+        it { return_type_for(subject, Vedeu::TestModel) }
+      end
+    end
 
     describe '#use' do
       subject { instance.use(model_name) }
 
-      # context 'when the model exists' do
-      #   before { Repository.new.store(model) }
+      context 'when the model exists' do
+        before { instance.store(model_instance) }
 
-      #   it { return_value_for(subject, model) }
-      # end
+        it { return_value_for(subject, model_instance) }
+      end
 
       context 'when the model does not exist' do
         let(:model_name) { 'not_found' }

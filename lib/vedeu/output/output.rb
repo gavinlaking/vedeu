@@ -61,7 +61,9 @@ module Vedeu
         interface.border.to_viewport
 
       else
-        Vedeu::Viewport.show(interface)
+        cursor = Vedeu.cursors_repository.by_name(interface.name)
+
+        Vedeu::Viewport.show(interface, cursor)
 
       end
 

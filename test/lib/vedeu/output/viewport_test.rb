@@ -5,7 +5,7 @@ module Vedeu
   describe Viewport do
 
     let(:described) { Vedeu::Viewport }
-    let(:instance)  { described.new(interface) }
+    let(:instance)  { described.new(interface, cursor) }
     let(:interface) {
       Interface.new({
         name:     'lithium',
@@ -20,7 +20,6 @@ module Vedeu
       #     width 3
       #     height 3
       #   end
-      #   name 'lithium'
       #   lines do
       #     line 'Beryllium'
       #     line 'Magnesium'
@@ -29,18 +28,19 @@ module Vedeu
       #     line 'Lanthanum'
       #     line 'Stront­ium'
       #   end
+      #   name 'lithium'
       # end
     }
-    let(:lines) { [] }
-    let(:x)     { 1 }
-    let(:y)     { 1 }
+    let(:cursor) { Cursor.new('lithium', true, x, y) }
+    let(:lines)  { [] }
+    let(:x)      { 1 }
+    let(:y)      { 1 }
 
     before do
       interface.geometry = Vedeu::Geometry.build do
         height 3
         width  3
       end
-      Cursor.new('lithium', true, x, y).store
     end
 
     describe '#initialize' do
@@ -48,12 +48,13 @@ module Vedeu
 
       it { return_type_for(subject, Viewport) }
       it { assigns(subject, '@interface', interface) }
+      it { assigns(subject, '@cursor', cursor) }
       it { assigns(subject, '@top', 0) }
       it { assigns(subject, '@left', 0) }
     end
 
     describe '.show' do
-      subject { described.show(interface) }
+      subject { described.show(interface, cursor) }
 
       it { return_type_for(subject, Array) }
 

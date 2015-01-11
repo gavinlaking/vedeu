@@ -18,9 +18,8 @@ module Vedeu
         #
         # @todo More documentation required.
         #
-        # @param interface_name [String] The name of the interface. Used to
-        #   reference the interface throughout your application's execution
-        #   lifetime.
+        # @param name [String] The name of the interface. Used to reference the
+        #   interface throughout your application's execution lifetime.
         # @param block [Proc] A set of attributes which define the features of
         #   the interface.
         #
@@ -34,11 +33,11 @@ module Vedeu
         #
         # @raise [InvalidSyntax] When the required block is not given.
         # @return [Interface]
-        def interface(interface_name = '', &block)
+        def interface(name = '', &block)
           return requires_block(__callee__) unless block_given?
 
           interface      = Vedeu::Interface.build(&block)
-          interface.name = interface_name if defined_value?(interface_name)
+          interface.name = name if defined_value?(name)
           interface.store
         end
 
@@ -102,9 +101,7 @@ module Vedeu
         end
 
         def store(method, &block)
-          composition(&block).interfaces.map do |interface|
-            interface.public_send(method)
-          end
+          composition(&block).interfaces.map { |i| i.public_send(method) }
         end
 
       end

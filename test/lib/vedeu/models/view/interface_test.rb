@@ -114,7 +114,7 @@ module Vedeu
       it { return_type_for(instance.delay, Float) }
 
       context 'when the delay is set' do
-        let(:attributes) { { delay: 0.5 } }
+        before { instance.delay = 0.5 }
 
         it { return_value_for(instance.delay, 0.5) }
       end
@@ -132,7 +132,7 @@ module Vedeu
       it { return_type_for(instance.group, String) }
 
       context 'when the group is set' do
-        let(:attributes) { { group: 'elements' } }
+        before { instance.group = 'elements' }
 
         it { return_value_for(instance.group, 'elements') }
       end
@@ -150,7 +150,7 @@ module Vedeu
       it { return_type_for(instance.name, String) }
 
       context 'when the name is set' do
-        let(:attributes) { { name: 'francium' } }
+        before { instance.name = 'francium' }
 
         it { return_value_for(instance.name, 'francium') }
       end

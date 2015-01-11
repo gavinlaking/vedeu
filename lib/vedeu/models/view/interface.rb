@@ -52,11 +52,11 @@ module Vedeu
       @attributes = defaults.merge(attributes)
 
       @border   = nil
-      @colour   = @attributes[:colour]
-      @delay    = @attributes.fetch(:delay, 0.0)
+      @colour   = nil
+      @delay    = 0.0
       @geometry = Geometry.new(@attributes[:geometry])
-      @group    = @attributes.fetch(:group, '')
-      @name     = @attributes[:name]
+      @group    = ''
+      @name     = ''
 
       @lines    = Vedeu::Model::Lines.new(@attributes[:lines], self)
     end
@@ -75,23 +75,21 @@ module Vedeu
 
     # @return [Interface]
     def store
-      if name
-        event_name = "_refresh_#{name}_".to_sym
+      options = { delay: delay }
 
-        unless Vedeu.events_repository.registered?(event_name)
-          Vedeu.event(event_name, { delay: delay }) do
-            Vedeu::Refresh.by_name(name)
-          end
+      if name
+        event = "_refresh_#{name}_".to_sym
+
+        unless Vedeu.events_repository.registered?(event)
+          Vedeu.event(event, options) { Vedeu::Refresh.by_name(name) }
         end
       end
 
       if group
-        event_name = "_refresh_group_#{group}_".to_sym
+        event = "_refresh_group_#{group}_".to_sym
 
-        unless Vedeu.events_repository.registered?(event_name)
-          Vedeu.event(event_name, { delay: delay }) do
-            Vedeu::Refresh.by_group(group)
-          end
+        unless Vedeu.events_repository.registered?(event)
+          Vedeu.event(event, options) { Vedeu::Refresh.by_group(group) }
         end
       end
 
@@ -110,10 +108,8 @@ module Vedeu
     # @return [Hash]
     def defaults
       {
-        colour:   {},
         geometry: {},
         lines:    [],
-        name:     '',
         parent:   nil,
         style:    '',
       }

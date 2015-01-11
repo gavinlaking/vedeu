@@ -1,3 +1,5 @@
+require 'singleton'
+
 require 'vedeu/models/carousel'
 
 module Vedeu
@@ -7,11 +9,13 @@ module Vedeu
   # focussed.
   #
   # @api private
-  class Focus
+  module Focus
 
-    def initialize(carousel = nil)
-      @carousel = carousel || Carousel.new
-    end
+    extend self
+
+    # def initialize(carousel = nil)
+    #   @carousel = carousel || Carousel.new
+    # end
 
     # Add an interface name to the focus list unless it is already registered.
     #
@@ -20,7 +24,7 @@ module Vedeu
     #   collection, making that interface the currently focussed interface.
     # @return [Array] The collection of interface names.
     def add(name, focus = false)
-      @carousel = @carousel.add(name, focus)
+      @carousel = carousel.add(name, focus)
 
       update
     end
@@ -32,7 +36,7 @@ module Vedeu
     # @raise [ModelNotFound] When the interface cannot be found.
     # @return [String] The name of the interface now in focus.
     def by_name(name)
-      @carousel = @carousel.by_element(name)
+      @carousel = carousel.by_element(name)
 
       update
     end
@@ -44,7 +48,7 @@ module Vedeu
     #   make one focussed.
     # @return [String]
     def current
-      @carousel.current
+      carousel.current
     end
 
     # Returns a boolean indicating whether the named interface is focussed.
@@ -52,14 +56,14 @@ module Vedeu
     # @param name [String]
     # @return [Boolean]
     def current?(name)
-      @carousel.current?(name)
+      carousel.current?(name)
     end
 
     # Put the next interface relative to the current interfaces in focus.
     #
     # @return [String]
     def next_item
-      @carousel = @carousel.next_item
+      @carousel = carousel.next_item
 
       update
     end
@@ -69,28 +73,12 @@ module Vedeu
     #
     # @return [String]
     def prev_item
-      @carousel = @carousel.prev_item
+      @carousel = carousel.prev_item
 
       update
     end
     alias_method :prev,     :prev_item
     alias_method :previous, :prev_item
-
-    private
-
-    # Return the name of the interface in focus after triggering the refresh
-    # event for that interface. Returns false if the storage is empty.
-    #
-    # @return [String|FalseClass]
-    def update
-      return false if empty?
-
-      Vedeu.log("Interface in focus: '#{current}'")
-
-      refresh
-
-      current
-    end
 
     # Refresh the interface in focus.
     #
@@ -99,8 +87,32 @@ module Vedeu
       Vedeu.trigger("_refresh_#{current}_".to_sym)
     end
 
+    def registered
+      carousel.registered
+    end
+
     def reset
       @carousel = Carousel.new
+    end
+
+    private
+
+    # Return the name of the interface in focus after triggering the refresh
+    # event for that interface. Returns false if the storage is empty.
+    #
+    # @return [String|FalseClass]
+    def update
+      return false if carousel.empty?
+
+      Vedeu.log("Interface in focus: '#{current}'")
+
+      refresh
+
+      current
+    end
+
+    def carousel
+      @carousel ||= Carousel.new
     end
 
   end # Focus

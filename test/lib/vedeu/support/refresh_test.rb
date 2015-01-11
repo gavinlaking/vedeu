@@ -22,25 +22,25 @@ module Vedeu
       # end
     end
 
-    # describe '.by_focus' do
-    #   context 'when there are no registered interfaces' do
-    #     it { proc { Refresh.by_focus }.must_raise(NoInterfacesDefined) }
-    #   end
+    describe '.by_focus' do
+      context 'when there are no registered interfaces' do
+        it { proc { Refresh.by_focus }.must_raise(ModelNotFound) }
+      end
 
-    #   context 'when there are registered interfaces' do
-    #   end
-    # end
+      context 'when there are registered interfaces' do
+      end
+    end
 
-    # describe '.by_group' do
-    #   context 'when there are no registered groups' do
-    #     before { Vedeu.groups_repository.reset }
+    describe '.by_group' do
+      context 'when there are no registered groups' do
+        before { Vedeu.groups_repository.reset }
 
-    #     it { proc { Refresh.by_group('') }.must_raise(ModelNotFound) }
-    #   end
+        it { proc { Refresh.by_group('') }.must_raise(ModelNotFound) }
+      end
 
-    #   context 'when there are registered groups' do
-    #   end
-    # end
+      context 'when there are registered groups' do
+      end
+    end
 
     describe '.by_name' do
       let(:interface_name) { 'aluminium' }

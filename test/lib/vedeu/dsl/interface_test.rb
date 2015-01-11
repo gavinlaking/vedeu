@@ -8,7 +8,11 @@ module Vedeu
 
       let(:described) { Vedeu::DSL::Interface }
       let(:instance)  { described.new(model) }
-      let(:model)     { Vedeu::Interface.new({ name: 'actinium' }) }
+      let(:model)     {
+        Vedeu::Interface.build do
+          name 'actinium'
+        end
+      }
 
       before { Vedeu.interfaces_repository.reset }
 
@@ -20,7 +24,19 @@ module Vedeu
       end
 
       describe '#border' do
-        it { skip }
+        subject {
+          instance.border do
+            # ...
+          end
+        }
+
+        it { return_type_for(subject, Vedeu::Border) }
+
+        context 'when the block is not given' do
+          subject { instance.border }
+
+          it { proc { subject }.must_raise(InvalidSyntax) }
+        end
       end
 
       # describe '#define' do
@@ -227,6 +243,20 @@ module Vedeu
       end
 
       # describe '#focus!' do
+      #   before { Vedeu::Focus.reset }
+
+      #   subject {
+      #     Vedeu.interface 'cobalt' do
+      #       name 'cobalt'
+      #       focus!
+      #     end
+      #   }
+
+      #   it do
+      #     subject
+      #     Vedeu::Focus.current.must_equal('cobalt')
+      #   end
+
       #   it 'returns true' do
       #     API::Interface.new({ name: 'curium' }).focus!.must_equal(true)
       #   end
