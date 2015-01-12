@@ -21,42 +21,26 @@ module Vedeu
 
     # Return a new instance of Buffer.
     #
-    # @param attributes [Hash]
+    # @param name [String] The name of the interface for which the buffer
+    #   belongs.
+    # @param back [Interface]
+    # @param front [Interface]
+    # @param previous [Interface]
     # @return [Buffer]
-    def initialize(attributes = {})
-      @attributes = defaults.merge(attributes)
-
-      @name     = @attributes[:name]
-      @back     = @attributes[:back]
-      @front    = @attributes[:front]
-      @previous = @attributes[:previous]
+    def initialize(name, back = nil, front = nil, previous = nil)
+      @name     = name
+      @back     = back
+      @front    = front
+      @previous = previous
     end
 
     # Add the content to the back buffer, then update the repository. Returns
     # boolean indicating that the repository was updated.
     #
-    # @param content [Hash]
+    # @param content [Interface]
     # @return [Boolean]
-    def add(content = {})
+    def add(content)
       self.back = content
-
-      store
-
-      true
-    end
-
-    # Return a boolean indicating content was swapped between buffers. It also
-    # resets the cursors position.
-    #
-    # @return [Boolean]
-    def swap
-      return false unless content_for?(:back)
-
-      Vedeu.trigger(:_cursor_origin_)
-
-      self.previous = front
-      self.front    = back
-      self.back     = {}
 
       store
 
@@ -88,9 +72,27 @@ module Vedeu
         [previous]
 
       else
-        [{}]
+        []
 
       end
+    end
+
+    # Return a boolean indicating content was swapped between buffers. It also
+    # resets the cursors position.
+    #
+    # @return [Boolean]
+    def swap
+      return false unless content_for?(:back)
+
+      Vedeu.trigger(:_cursor_origin_)
+
+      self.previous = front
+      self.front    = back
+      self.back     = nil
+
+      store
+
+      true
     end
 
     private
@@ -102,36 +104,26 @@ module Vedeu
         previous
 
       else
-        {}
+        nil
 
       end
     end
 
     # Return a boolean indicating content presence on the buffer type.
     #
-    # @param buffer [Symbol] One of; :back, :current/:front or :previous.
+    # @param buffer [Symbol] One of; :back, :front or :previous.
     # @return [Boolean] Whether the buffer targetted has content.
     def content_for?(buffer)
-      public_send(buffer).any? do |k, v|
-        k == :lines && v && v.any?
-      end
+      return false if public_send(buffer).nil?
+
+      return false if public_send(buffer).lines.empty?
+
+      true
     end
 
     # @return [Repository] The repository class for this model.
     def repository
       Vedeu.buffers_repository
-    end
-
-    # Return the default attributes of a Buffer.
-    #
-    # @return [Hash]
-    def defaults
-      {
-        name:     '',
-        back:     {},
-        front:    {},
-        previous: {},
-      }
     end
 
   end # Buffer

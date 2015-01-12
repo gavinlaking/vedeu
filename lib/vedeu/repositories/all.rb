@@ -1,1 +1,0 @@
-require 'vedeu/repositories/buffers'

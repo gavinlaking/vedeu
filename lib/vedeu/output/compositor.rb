@@ -2,6 +2,12 @@ require 'vedeu/support/common'
 
 module Vedeu
 
+  # Before the content of the buffer can be output to the terminal, if there are
+  # any changes to the geometry of the interface (stored in the buffer), then
+  # these need to be stored; replacing those already stored. This is our last
+  # chance to do this as the terminal may have resized, or the client
+  # application may have specified this this view should move to a new location.
+
   # Combines stored interface layout/geometry with an interface view/buffer
   # to create a single view to be sent to the terminal for output.
   #

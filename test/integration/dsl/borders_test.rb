@@ -6,7 +6,7 @@ describe 'Interface Borders' do
     subject {
       Vedeu.interface 'borders' do
         border do
-          bottom_left ''
+          bottom_left '<'
         end
       end
     }
@@ -22,7 +22,7 @@ describe 'Interface Borders' do
     subject {
       Vedeu.interface 'borders' do
         border do
-          bottom_right ''
+          bottom_right '>'
         end
       end
     }
@@ -38,7 +38,7 @@ describe 'Interface Borders' do
     subject {
       Vedeu.interface 'borders' do
         border do
-          horizontal ''
+          horizontal '~'
         end
       end
     }
@@ -118,7 +118,7 @@ describe 'Interface Borders' do
     subject {
       Vedeu.interface 'borders' do
         border do
-          top_left ''
+          top_left '{'
         end
       end
     }
@@ -134,7 +134,7 @@ describe 'Interface Borders' do
     subject {
       Vedeu.interface 'borders' do
         border do
-          top_right ''
+          top_right '}'
         end
       end
     }
@@ -146,18 +146,18 @@ describe 'Interface Borders' do
     end
   end
 
-  describe '#top_vertical' do
+  describe '#vertical' do
     subject {
       Vedeu.interface 'borders' do
         border do
-          vertical ''
+          vertical ':'
         end
       end
     }
 
     it { return_type_for(subject, Vedeu::Interface) }
 
-    it 'allows the use of top_vertical within border' do
+    it 'allows the use of vertical within border' do
       skip
     end
   end

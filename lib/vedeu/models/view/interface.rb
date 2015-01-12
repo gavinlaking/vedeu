@@ -1,6 +1,7 @@
 require 'vedeu/dsl/dsl'
 
 require 'vedeu/support/common'
+require 'vedeu/buffers/display_buffer'
 require 'vedeu/models/model'
 require 'vedeu/presentation/presentation'
 
@@ -19,6 +20,7 @@ module Vedeu
     include Vedeu::Common
     include Vedeu::Model
     include Vedeu::Presentation
+    include Vedeu::DisplayBuffer
 
     def_delegators :geometry, :north, :east,  :south,  :west,
                               :top,   :right, :bottom, :left,
