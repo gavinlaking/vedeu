@@ -160,10 +160,6 @@ module Vedeu
       end
     end
 
-    describe '#parent' do
-      it { skip }
-    end
-
   end # Interface
 
 end # Vedeu

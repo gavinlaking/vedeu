@@ -26,8 +26,6 @@ module Vedeu
 
         subject { instance.line(value) }
 
-        it { skip }
-
         it { return_type_for(subject, Vedeu::Model::Collection) }
 
         it { return_type_for(subject.first, Vedeu::Line) }
