@@ -154,6 +154,12 @@ module Vedeu
 
   end # Repository
 
+  class Buffers < Repository
+  end
+
+  class Geometries < Repository
+  end
+
   class Groups < Repository
   end
 
