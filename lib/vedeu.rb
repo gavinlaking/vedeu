@@ -38,6 +38,10 @@ module Vedeu
     @_events_repository ||= Vedeu::Events.new(Vedeu::Model::Collection)
   end
 
+  def self.geometries_repository
+    @_geometries_repository ||= Vedeu::Geometries.new(Vedeu::Geometry)
+  end
+
   def self.groups_repository
     @_groups_repository ||= Vedeu::Groups.new(Vedeu::Group)
   end

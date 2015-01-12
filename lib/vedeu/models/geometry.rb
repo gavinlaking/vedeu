@@ -1,5 +1,6 @@
 require 'vedeu/dsl/dsl'
 require 'vedeu/dsl/geometry'
+require 'vedeu/models/model'
 require 'vedeu/support/esc'
 require 'vedeu/support/terminal'
 
@@ -25,6 +26,8 @@ module Vedeu
   class Geometry
 
     extend DSL
+
+    include Vedeu::Model
 
     attr_accessor :centred, :height, :name, :width
     attr_reader   :attributes
@@ -340,6 +343,11 @@ module Vedeu
     end
 
     private
+
+    # @return [Repository] The repository class for this model.
+    def repository
+      Vedeu.geometries_repository
+    end
 
     # Returns the y coordinate as an offset index in the area's y range. When a
     # value is provided, the y coordinate is overridden. Crudely corrects out of

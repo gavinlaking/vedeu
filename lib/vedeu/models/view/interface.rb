@@ -54,10 +54,9 @@ module Vedeu
       @border   = nil
       @colour   = nil
       @delay    = 0.0
-      @geometry = Geometry.new(@attributes[:geometry])
+      @geometry = nil
       @group    = ''
       @name     = ''
-
       @lines    = Vedeu::Model::Lines.new(@attributes[:lines], self)
     end
 
@@ -108,7 +107,6 @@ module Vedeu
     # @return [Hash]
     def defaults
       {
-        geometry: {},
         lines:    [],
         parent:   nil,
         style:    '',
