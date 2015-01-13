@@ -17,11 +17,11 @@ module Vedeu
       # triggered will execute the code contained within the passed block.
       #
       # @param name  [Symbol] The name of the event which will be triggered later.
-      # @param [Hash] opts The options to register the event with.
-      # @option opts :delay [Fixnum|Float] Limits the execution of the
+      # @param [Hash] options The options to register the event with.
+      # @option options :delay [Fixnum|Float] Limits the execution of the
       #   triggered event to only execute when first triggered, with subsequent
       #   triggering being ignored until the delay has expired.
-      # @option opts :debounce [Fixnum|Float] Limits the execution of the
+      # @option options :debounce [Fixnum|Float] Limits the execution of the
       #   triggered event to only execute once the debounce has expired.
       #   Subsequent triggers before debounce expiry are ignored.
       # @param block [Proc] The event to be executed when triggered. This block

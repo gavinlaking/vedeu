@@ -27,7 +27,7 @@ module Vedeu
     # Returns a new instance of Key.
     #
     # @param input [String|Symbol]
-    # @param output [Proc]
+    # @param block [Proc]
     # @return [Key]
     def initialize(input = nil, &block)
       return requires_block(__callee__) unless block_given?

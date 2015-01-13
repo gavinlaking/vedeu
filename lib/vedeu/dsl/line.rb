@@ -52,7 +52,6 @@ module Vedeu
       # Specify a single line in a view.
       #
       # @param value [String]
-      # @param block [Proc]
       #
       # @example
       #   Vedeu.renders do

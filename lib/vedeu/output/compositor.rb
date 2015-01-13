@@ -37,7 +37,7 @@ module Vedeu
     # the stored geometry and when the terminal returns to original size not also
     # return the interface back to its originally prescribed dimensions.
     #
-    # @notes
+    # @note
     # If the buffer has geometry stored, we should check whether this is different
     # to the geometries repository- the client application is wanting to resize
     # or move the interface.

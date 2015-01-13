@@ -48,8 +48,7 @@ module Vedeu
 
     # Return a new instance of Interface.
     #
-    # @param  attributes [Hash]
-    # @param  block [Proc]
+    # @param attributes [Hash]
     # @return [Interface]
     def initialize(attributes = {})
       @attributes = defaults.merge(attributes)
