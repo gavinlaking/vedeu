@@ -6,9 +6,18 @@ module Vedeu
 
     let(:described) { Vedeu::Compositor }
     let(:instance)  { described.new(buffer) }
-    let(:buffer)    { mock('Buffer') }
-
-    before { buffer.stubs(:geometry) }
+    let(:buffer)    { Buffer.new(interface.name, interface) }
+    let(:interface) {
+      Vedeu.interface('compositor') do
+        geometry do
+          height 5
+          width  10
+        end
+        lines do
+          line 'Some text...'
+        end
+      end
+    }
 
     describe '#initialize' do
       subject { instance }

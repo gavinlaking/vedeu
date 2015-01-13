@@ -50,7 +50,7 @@ module Vedeu
     #
     # @return [Array<Interface>]
     def compose
-      interface = if buffer.geometry
+      if interface && interface.geometry
         # client provided geometry
 
       else
@@ -64,6 +64,10 @@ module Vedeu
     private
 
     attr_reader :buffer
+
+    def interface
+      buffer.current
+    end
 
   end # Compositor
 
