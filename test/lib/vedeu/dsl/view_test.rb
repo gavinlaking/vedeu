@@ -22,6 +22,16 @@ module Vedeu
 
           it { proc { subject }.must_raise(InvalidSyntax) }
         end
+
+        context 'when the name was not set' do
+          subject {
+            described.interface('') do
+              # ...
+            end
+          }
+
+          it { proc { subject }.must_raise(InvalidSyntax) }
+        end
       end
 
       describe '.renders' do

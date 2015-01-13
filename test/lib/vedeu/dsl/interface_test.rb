@@ -242,46 +242,43 @@ module Vedeu
         end
       end
 
-      # describe '#focus!' do
-      #   before { Vedeu::Focus.reset }
+      describe '#focus!' do
+        context 'when a single call is made' do
+          before do
+            Vedeu::Focus.reset
+            Vedeu.interface('curium') { focus! }
+          end
 
-      #   subject {
-      #     Vedeu.interface 'cobalt' do
-      #       name 'cobalt'
-      #       focus!
-      #     end
-      #   }
+          it 'sets the interface as current' do
+            Vedeu::Focus.current.must_equal('curium')
+          end
+        end
 
-      #   it do
-      #     subject
-      #     Vedeu::Focus.current.must_equal('cobalt')
-      #   end
+        # context 'when multiple calls are made' do
+        #   before do
+        #     Vedeu::Focus.reset
+        #     Vedeu.interface('curium')     { focus! }
+        #     Vedeu.interface('iodine')     {}
+        #     Vedeu.interface('dysprosium') { focus! }
+        #   end
 
-      #   it 'returns true' do
-      #     API::Interface.new({ name: 'curium' }).focus!.must_equal(true)
-      #   end
+        #   it 'the last call will set that interface to be current' do
+        #     Vedeu::Focus.current.must_equal('dysprosium')
+        #   end
+        # end
 
-      #   it 'sets the interface as current' do
-      #     Vedeu.interface('curium') { focus! }
+        context 'when no calls are made' do
+          before do
+            Vedeu::Focus.reset
+            Vedeu.interface('curium')     {}
+            Vedeu.interface('dysprosium') {}
+          end
 
-      #     Focus.current.must_equal('curium')
-      #   end
-
-      #   it 'multiple calls will set the last to being current' do
-      #     Vedeu.interface('curium')     { focus! }
-      #     Vedeu.interface('iodine')     {}
-      #     Vedeu.interface('dysprosium') { focus! }
-
-      #     Focus.current.must_equal('dysprosium')
-      #   end
-
-      #   it 'no calls will leave the first interface defined as being current' do
-      #     Vedeu.interface('curium')     {}
-      #     Vedeu.interface('dysprosium') {}
-
-      #     Focus.current.must_equal('curium')
-      #   end
-      # end
+          it 'the first interface defined will be current' do
+            Vedeu::Focus.current.must_equal('curium')
+          end
+        end
+      end
 
       describe '#geometry' do
         subject {

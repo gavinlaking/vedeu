@@ -4,11 +4,12 @@ module Vedeu
 
   describe Focus do
 
-    before { Vedeu::Focus.reset }
+    before { Focus.reset }
+    after  { Focus.reset }
 
     describe '#add' do
-      it 'adds an interface to storage and returns the current' do
-        Focus.add('thallium').must_equal('thallium')
+      it 'adds an interface to storage' do
+        Focus.add('thallium').must_equal(['thallium'])
       end
 
       it 'does not add it again if already exists' do
@@ -38,8 +39,8 @@ module Vedeu
         Focus.by_name('lead').must_equal('lead')
       end
 
-      context 'when the interface does not exist' do
-        it { proc { Focus.by_name('not_found') }.must_raise(ModelNotFound) }
+      it 'raises an exception if the interface does not exist' do
+        proc { Focus.by_name('not_found') }.must_raise(ModelNotFound)
       end
     end
 
@@ -51,13 +52,13 @@ module Vedeu
         Focus.current.must_equal('thallium')
       end
 
-      context 'when there are no interfaces defined' do
-        it { Focus.current.must_equal(nil) }
+      it 'raises an exception if there are no interfaces defined' do
+        proc { Focus.current }.must_raise(NoInterfacesDefined)
       end
     end
 
     describe '#current?' do
-      before { Focus.add('lead') }
+      before { Focus.stubs(:current).returns('lead') }
 
       context 'when the interface is currently in focus' do
         it { Focus.current?('lead').must_equal(true) }
@@ -91,6 +92,17 @@ module Vedeu
 
       it 'returns false if storage is empty' do
         Focus.prev_item.must_equal(false)
+      end
+    end
+
+    describe '#refresh' do
+      before do
+        Focus.add('thallium')
+        Vedeu.stubs(:trigger).returns([])
+      end
+
+      it 'triggers the event to refresh the interface current in focus' do
+        Focus.refresh.must_equal([])
       end
     end
 

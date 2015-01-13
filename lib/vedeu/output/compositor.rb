@@ -21,81 +21,49 @@ module Vedeu
     #
     # @return [Compositor]
     # @see #initialize
-    def self.compose(interface, buffer)
-      new(interface, buffer).compose
+    def self.compose(buffer)
+      new(buffer).compose
     end
 
     # Initialize a new Compositor.
     #
-    # @param interface [Hash] The attributes of the interface to be refreshed.
-    # @param buffer [Hash] The atttributes of the buffer to refresh the
-    #   interface with.
+    # @param buffer [Inteface]
     # @return [Compositor]
-    def initialize(interface, buffer)
-      @interface = interface
-      @buffer    = buffer
+    def initialize(buffer)
+      @buffer = buffer
     end
 
-    # Return a new instance of Interface built by combining the buffer content
-    # attributes with the stored interface attributes.
+    # @todo What do we do about resizing terminals. I don't want to overwrite
+    # the stored geometry and when the terminal returns to original size not also
+    # return the interface back to its originally prescribed dimensions.
     #
-    # @return [Array<Hash>] The updated interface attributes.
+    # @notes
+    # If the buffer has geometry stored, we should check whether this is different
+    # to the geometries repository- the client application is wanting to resize
+    # or move the interface.
+    #
+    # If it is different, overwrite the old geometry with the new.
+    #
+    # If the buffer does not have geometry stored, retrieve the geometry for this
+    # interface from the geometries repository so we can draw this buffer in the
+    # correct place.
+    #
+    # @return [Array<Interface>]
     def compose
-      buffer.content.each do |content|
-        change_colour(content)
-        change_content(content)
-        change_geometry(content)
-        change_style(content)
+      interface = if buffer.geometry
+        # client provided geometry
 
-        Output.render(Interface.new(interface))
+      else
+        # retrieve stored geometry
+
       end
+
+      Output.render(interface)
     end
 
     private
 
-    attr_reader :interface, :buffer
-
-    # Changes the colour of the interface to that requested by the view.
-    #
-    # @note The change is currently not permanent.
-    #
-    # @param content []
-    # @return []
-    def change_colour(content)
-      interface[:colour] = content[:colour] if defined_value?(content[:colour])
-    end
-
-    # Changes the content of the interface to that requested by the view.
-    #
-    # @note The change is currently not permanent.
-    #
-    # @param content []
-    # @return []
-    def change_content(content)
-      interface[:lines] = content[:lines] if defined_value?(content[:lines])
-    end
-
-    # Changes the geometry of the interface to that requested by the view.
-    #
-    # @note The change is currently not permanent.
-    #
-    # @param content []
-    # @return []
-    def change_geometry(content)
-      content[:geometry].each do |k, v|
-        interface[:geometry][k] = v if defined_value?(k)
-      end if defined_value?(content[:geometry])
-    end
-
-    # Changes the style of the interface to that requested by the view.
-    #
-    # @note The change is currently not permanent.
-    #
-    # @param content []
-    # @return []
-    def change_style(content)
-      interface[:style] = content[:style] if defined_value?(content[:style])
-    end
+    attr_reader :buffer
 
   end # Compositor
 

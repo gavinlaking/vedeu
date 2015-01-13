@@ -128,6 +128,8 @@ module Vedeu
       fail MissingRequired, "Cannot store model '#{model.class}' without a " \
                             "name attribute." unless defined_value?(model.name)
 
+      Vedeu.log("Storing #{model.class}: '#{model.name}'")
+
       storage[model.name] = model
     end
     alias_method :register, :store

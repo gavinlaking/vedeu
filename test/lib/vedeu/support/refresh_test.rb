@@ -24,7 +24,7 @@ module Vedeu
 
     describe '.by_focus' do
       context 'when there are no registered interfaces' do
-        it { proc { Refresh.by_focus }.must_raise(ModelNotFound) }
+        it { proc { Refresh.by_focus }.must_raise(NoInterfacesDefined) }
       end
 
       context 'when there are registered interfaces' do

@@ -1,10 +1,6 @@
-require 'singleton'
-
-require 'vedeu/models/carousel'
-
 module Vedeu
 
-  # The Focus repository is simply a collection of interface names, this class
+  # The Focus repository is simply a collection of interface names, this module
   # serving to store and manipulate the which interface is currently being
   # focussed.
   #
@@ -13,10 +9,6 @@ module Vedeu
 
     extend self
 
-    # def initialize(carousel = nil)
-    #   @carousel = carousel || Carousel.new
-    # end
-
     # Add an interface name to the focus list unless it is already registered.
     #
     # @param name [String] The name of the interface.
@@ -24,9 +16,19 @@ module Vedeu
     #   collection, making that interface the currently focussed interface.
     # @return [Array] The collection of interface names.
     def add(name, focus = false)
-      @carousel = carousel.add(name, focus)
+      if registered?(name)
+        return storage unless focus
 
-      update
+        by_name(name)
+        storage
+
+      elsif focus
+        storage.unshift(name)
+
+      else
+        storage.push(name)
+
+      end
     end
 
     # Focus an interface by name. Used after defining an interface or interfaces
@@ -36,7 +38,9 @@ module Vedeu
     # @raise [ModelNotFound] When the interface cannot be found.
     # @return [String] The name of the interface now in focus.
     def by_name(name)
-      @carousel = carousel.by_element(name)
+      fail ModelNotFound unless registered?(name)
+
+      storage.rotate!(storage.index(name))
 
       update
     end
@@ -48,7 +52,9 @@ module Vedeu
     #   make one focussed.
     # @return [String]
     def current
-      carousel.current
+      fail NoInterfacesDefined if empty?
+
+      storage.first
     end
 
     # Returns a boolean indicating whether the named interface is focussed.
@@ -56,14 +62,21 @@ module Vedeu
     # @param name [String]
     # @return [Boolean]
     def current?(name)
-      carousel.current?(name)
+      current == name
+    end
+
+    # Return a boolean indicating whether the storage is empty.
+    #
+    # @return [Boolean]
+    def empty?
+      storage.empty?
     end
 
     # Put the next interface relative to the current interfaces in focus.
     #
     # @return [String]
     def next_item
-      @carousel = carousel.next_item
+      storage.rotate!
 
       update
     end
@@ -73,7 +86,7 @@ module Vedeu
     #
     # @return [String]
     def prev_item
-      @carousel = carousel.prev_item
+      storage.rotate!(-1)
 
       update
     end
@@ -87,12 +100,30 @@ module Vedeu
       Vedeu.trigger("_refresh_#{current}_".to_sym)
     end
 
+    # Returns a collection of the names of all the registered entities.
+    #
+    # @return [Array]
     def registered
-      carousel.registered
+      return [] if empty?
+
+      storage
     end
 
+    # Returns a boolean indicating whether the named model is registered.
+    #
+    # @param name [String]
+    # @return [Boolean]
+    def registered?(name)
+      return false if empty?
+
+      storage.include?(name)
+    end
+
+    # Reset the repository.
+    #
+    # @return [Array|Hash|Set]
     def reset
-      @carousel = Carousel.new
+      @_storage = in_memory
     end
 
     private
@@ -102,7 +133,7 @@ module Vedeu
     #
     # @return [String|FalseClass]
     def update
-      return false if carousel.empty?
+      return false if empty?
 
       Vedeu.log("Interface in focus: '#{current}'")
 
@@ -111,8 +142,18 @@ module Vedeu
       current
     end
 
-    def carousel
-      @carousel ||= Carousel.new
+    # Access to the storage for this repository.
+    #
+    # @return [Hash]
+    def storage
+      @_storage ||= in_memory
+    end
+
+    # Returns an empty collection ready for the storing of interface names.
+    #
+    # @return [Array]
+    def in_memory
+      []
     end
 
   end # Focus

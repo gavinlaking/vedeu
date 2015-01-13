@@ -1,9 +1,10 @@
 require 'vedeu/dsl/dsl'
 
 require 'vedeu/support/common'
-require 'vedeu/buffers/display_buffer'
 require 'vedeu/models/model'
 require 'vedeu/presentation/presentation'
+require 'vedeu/buffers/display_buffer'
+require 'vedeu/buffers/buffer'
 
 module Vedeu
 
@@ -80,10 +81,31 @@ module Vedeu
         fail InvalidSyntax, 'Cannot store an interface without a name.'
       end
 
-      unless Vedeu.buffers_repository.registered?(name)
-        Vedeu::Buffer.new({ name: name }).store
-      end
+      super
 
+      store_deferred
+
+      register_as_focussable
+
+      register_refresh_events
+
+      self
+    end
+
+    private
+
+    # @return [Repository] The repository class for this model.
+    def repository
+      Vedeu.interfaces_repository
+    end
+
+    def register_as_focussable
+      unless Vedeu.focus_repository.registered?(name)
+        Vedeu.focus_repository.add(name)
+      end
+    end
+
+    def register_refresh_events
       options = { delay: delay }
       event   = "_refresh_#{name}_".to_sym
 
@@ -98,15 +120,6 @@ module Vedeu
           Vedeu.event(event, options) { Vedeu::Refresh.by_group(group) }
         end
       end
-
-      super
-    end
-
-    private
-
-    # @return [Repository] The repository class for this model.
-    def repository
-      Vedeu.interfaces_repository
     end
 
     # The default values for a new instance of Interface.

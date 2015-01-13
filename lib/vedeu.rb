@@ -34,6 +34,10 @@ module Vedeu
     @_cursors_repository ||= Vedeu::Cursors.new(Vedeu::Cursor)
   end
 
+  def self.focus_repository
+    @_focus_repository ||= Vedeu::Focus
+  end
+
   def self.events_repository
     @_events_repository ||= Vedeu::Events.new(Vedeu::Model::Collection)
   end

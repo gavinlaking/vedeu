@@ -53,8 +53,6 @@ module Vedeu
     end
 
     describe '#content' do
-
-
       subject { instance.content }
 
       it { return_type_for(subject, Array) }
@@ -69,7 +67,7 @@ module Vedeu
         }
         let(:buffer) { :back }
 
-        it { subject.must_equal([nil, back]) }
+        it { subject.must_equal([back]) }
       end
 
       context 'when there is no content on the back buffer' do

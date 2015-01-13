@@ -2,67 +2,50 @@ require 'vedeu/support/repository'
 
 module Vedeu
 
-  # class BufferRepository# < Repository
-
-  #   def store(model)
-
-  #   end
-
-  #   def update(name)
-  #     return find(name).update! if Vedeu.buffers_repository.registered?(name)
-  #   end
-
-  #   private
-
-
-
-  # end
-
   module DisplayBuffer
 
-    # def store_immediate
-    #   store_geometry
+    def store_immediate
+      store_deferred
 
-    #   store_deferred
+      Vedeu::Refresh.by_name(name)
 
-    #   Vedeu::Refresh.by_name(name)
+      self
+    end
 
-    #   self
-    # end
+    def store_deferred
+      return store_new_buffer unless Vedeu.buffers_repository.registered?(name)
 
-    # def store_deferred
-    #   store_geometry
+      Vedeu.log("Updating buffer: '#{name}'")
 
-    #   if Vedeu.buffers_repository.registered?(name)
-    #     # Vedeu.buffers_repository.update(name)
+      Vedeu.buffers_repository.find(name).add(self)
 
-    #     BufferModel.new(self).store # store on back buffer
+      self
+    end
 
-    #   else
-    #     BufferModel.new(self).store # store on back buffer
+    private
 
-    #   end
+    def store_new_buffer
+      store_new_interface
 
-    #   self
-    # end
+      unless Vedeu.buffers_repository.registered?(name)
+        Vedeu.log("Registering buffer: '#{name}'")
 
-    # private
+        Buffer.new(name, self).store
+      end
 
-    # # @todo Consider that storing the geometry for a deferred view would overwrite
-    # # the geometry for all buffers; leading to undesirable effects. Perhaps a buffer
-    # # should store the geometry?
-    # def store_geometry
-    #   if geometry
-    #     if Vedeu.geometries_repository.registered?(name)
-    #       # update geometry
-    #     else
-    #       # store geometry
-    #     end
-    #   else
-    #     geometry.name = name
-    #     geometry.store
-    #   end
-    # end
+      self
+    end
+
+    def store_new_interface
+
+      unless Vedeu.interfaces_repository.registered?(name)
+        Vedeu.log("Registering interface: '#{name}'")
+
+        self.store
+      end
+
+      self
+    end
 
   end # DisplayBuffer
 

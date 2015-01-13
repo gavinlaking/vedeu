@@ -4,32 +4,17 @@ module Vedeu
 
   describe Compositor do
 
-    let(:described) { Compositor.new(interface, buffer) }
-    let(:interface) { mock('Interface') }
+    let(:described) { Vedeu::Compositor }
+    let(:instance)  { described.new(buffer) }
     let(:buffer)    { mock('Buffer') }
 
-    # before do
-    #   buffer.stubs(:content).returns([{}])
-    # end
-
-    # let(:interface) {
-    #   {
-    #     name: 'indium'
-    #   }
-    # }
-    # let(:buffer) {
-    #   Buffer.new({ name: 'indium' })
-    # }
-
-    # before do
-    #   Focus.stubs(:cursor).returns("\e[?25l")
-    #   Terminal.console.stubs(:print)
-    # end
+    before { buffer.stubs(:geometry) }
 
     describe '#initialize' do
-      it { return_type_for(described, Compositor) }
-      it { assigns(described, '@interface', interface) }
-      it { assigns(described, '@buffer', buffer) }
+      subject { instance }
+
+      it { return_type_for(subject, Compositor) }
+      it { assigns(subject, '@buffer', buffer) }
     end
 
     describe '#compose' do

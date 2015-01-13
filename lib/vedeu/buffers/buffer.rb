@@ -56,14 +56,14 @@ module Vedeu
     #   buffer and display that.
     # - If there is no new content, and the front buffer is empty, display the
     #   'previous' buffer.
-    # - If the 'previous' buffer is empty, return an empty hash.
+    # - If the 'previous' buffer is empty, return an empty collection.
     #
     # @return [Array<Hash>]
     def content
       if content_for?(:back)
         swap
 
-        [clear_if_previous, front]
+        [clear_if_previous, front].compact
 
       elsif content_for?(:front)
         [front]

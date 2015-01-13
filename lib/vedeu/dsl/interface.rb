@@ -90,7 +90,7 @@ module Vedeu
       #
       # @return [String] The name of the interface in focus.
       def focus!
-        Vedeu::Focus.add(model.name, true)
+        Vedeu::Focus.add(model.name, true) if defined_value?(model.name)
       end
 
       # Define the geometry for an interface.
