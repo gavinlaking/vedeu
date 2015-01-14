@@ -13,8 +13,8 @@ module Vedeu
   # Raised when attempting to assign a key which is already in use.
   KeyInUse = Class.new(StandardError)
 
-  # Raised when the attributes argument to {Vedeu::Registrar} does not contain
-  # a required key or the value to that key is nil or empty.
+  # Raised when a name is not provided for a model when attempting to store it
+  # in a repository.
   MissingRequired = Class.new(StandardError)
 
   # Raised intentionally when the client application wishes to switch between

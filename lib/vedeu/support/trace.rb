@@ -205,7 +205,6 @@ module Vedeu
         'Vedeu::Position',
         'Vedeu::Presentation',
         # 'Vedeu::Refresh',
-        # 'Vedeu::Registrar',
         # 'Vedeu::Render',
         'Vedeu::Repository',
         'Vedeu::Stream',
