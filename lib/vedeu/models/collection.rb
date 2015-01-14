@@ -2,6 +2,10 @@ module Vedeu
 
   module Model
 
+    # Convert an Array into an object which has some meaning in the context it
+    # is being used.
+    #
+    # @private
     class Collection
 
       include Enumerable

@@ -1,5 +1,7 @@
 module Vedeu
 
+  # Provide a user-friendly interface to configure and use Vedeu.
+  #
   module DSL
 
     # Build models using a simple DSL when a block is given, otherwise returns a

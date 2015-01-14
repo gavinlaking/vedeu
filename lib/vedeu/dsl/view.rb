@@ -5,6 +5,8 @@ module Vedeu
 
   module DSL
 
+    # DSL for creating views.
+    #
     # @api public
     class View
 

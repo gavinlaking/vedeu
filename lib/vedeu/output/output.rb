@@ -1,5 +1,7 @@
 module Vedeu
 
+  # Sends the interface to the terminal or output device.
+  #
   class Output
 
     # Writes content (the provided interface object with associated lines,

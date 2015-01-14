@@ -4,6 +4,8 @@ module Vedeu
 
   module DSL
 
+    # Provide DSL methods for configuring the geometry of an interface.
+    #
     class Geometry
 
       include Vedeu::DSL::Shared

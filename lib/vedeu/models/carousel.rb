@@ -1,8 +1,8 @@
 module Vedeu
 
-  #
   # A Carousel is a special array-like data structure.
   #
+  # @api private
   class Carousel
 
     include Enumerable

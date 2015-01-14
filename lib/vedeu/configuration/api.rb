@@ -364,6 +364,6 @@ module Vedeu
 
     end # API
 
-  end # Configuration
+  end # Config
 
 end # Vedeu

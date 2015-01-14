@@ -2,7 +2,6 @@ require 'vedeu/presentation/presentation'
 
 module Vedeu
 
-  #
   # A Char represents a single character of the terminal. It is a container for
   # the a single character in a {Vedeu::Stream}.
   #
@@ -10,7 +9,6 @@ module Vedeu
   # character is returned in the escape sequence.
   #
   # @api private
-  #
   class Char
 
     include Vedeu::Presentation

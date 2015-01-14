@@ -6,6 +6,11 @@ require 'vedeu/configuration/cli'
 
 module Vedeu
 
+  # Namespace for the API configuration and CLI configuration classes.
+  #
+  module Config
+  end
+
   # Allows the customisation of Vedeu's behaviour through the configuration API
   # or command-line arguments.
   #

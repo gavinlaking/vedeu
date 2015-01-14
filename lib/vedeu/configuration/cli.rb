@@ -127,6 +127,6 @@ module Vedeu
 
     end # CLI
 
-  end # Configuration
+  end # Config
 
 end # Vedeu

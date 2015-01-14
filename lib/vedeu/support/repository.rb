@@ -156,6 +156,9 @@ module Vedeu
 
   end # Repository
 
+  class Cursors < Repository
+  end
+
   class Buffers < Repository
   end
 

@@ -2,6 +2,8 @@ module Vedeu
 
   module DSL
 
+    # Provide shared functionality for various aspects of the DSL.
+    #
     module Shared
 
       extend self
