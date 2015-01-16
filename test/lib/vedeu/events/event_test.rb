@@ -89,6 +89,20 @@ module Vedeu
       end
     end
 
+    describe '#unbind' do
+      context 'when the event exists' do
+        before do
+          Vedeu.bind(:gallium) { :some_action }
+        end
+
+        it { Vedeu.unbind(:gallium).must_equal(true) }
+      end
+
+      context 'when the event does not exist' do
+        it { Vedeu.unbind(:gallium).must_equal(false) }
+      end
+    end
+
   end # Event
 
 end # Vedeu

@@ -28,8 +28,12 @@ module Vedeu
         Position.new(12).to_s.must_equal("\e[12;1H")
       end
 
-      it 'returns an escape sequence if a coordinate is negative' do
+      it 'returns an escape sequence if the x coordinate is negative' do
         Position.new(12, -5).to_s.must_equal("\e[12;1H")
+      end
+
+      it 'returns an escape sequence if the y coordinate is negative' do
+        Position.new(-12, 5).to_s.must_equal("\e[1;5H")
       end
 
       it 'resets to starting position when a block is given' do
