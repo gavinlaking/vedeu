@@ -250,7 +250,7 @@ module Vedeu
           end
 
           it 'sets the interface as current' do
-            Vedeu::Focus.current.must_equal('curium')
+            Vedeu.focus.must_equal('curium')
           end
         end
 
@@ -263,7 +263,7 @@ module Vedeu
         #   end
 
         #   it 'the last call will set that interface to be current' do
-        #     Vedeu::Focus.current.must_equal('dysprosium')
+        #     Vedeu.focus.must_equal('dysprosium')
         #   end
         # end
 
@@ -275,7 +275,7 @@ module Vedeu
           end
 
           it 'the first interface defined will be current' do
-            Vedeu::Focus.current.must_equal('curium')
+            Vedeu.focus.must_equal('curium')
           end
         end
       end

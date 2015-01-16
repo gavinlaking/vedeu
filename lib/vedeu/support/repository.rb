@@ -34,7 +34,7 @@ module Vedeu
     #
     # @return []
     def current
-      find_or_create(Focus.current)
+      find_or_create(Vedeu.focus)
     end
 
     # Return a boolean indicating whether the storage is empty.

@@ -4,8 +4,9 @@ module Vedeu
 
   describe Focus do
 
+    let(:described) { Vedeu::Focus }
+
     before { Focus.reset }
-    after  { Focus.reset }
 
     describe '#add' do
       it 'adds an interface to storage' do
@@ -42,18 +43,46 @@ module Vedeu
       it 'raises an exception if the interface does not exist' do
         proc { Focus.by_name('not_found') }.must_raise(ModelNotFound)
       end
+
+      context 'API methods' do
+        it 'the named interface is focussed when the method is called' do
+          Focus.add('thallium')
+          Focus.add('lead')
+          Focus.add('bismuth')
+          Vedeu.focus_by_name('lead').must_equal('lead')
+        end
+
+        it 'raises an exception if the interface does not exist' do
+          proc { Vedeu.focus_by_name('not_found') }.must_raise(ModelNotFound)
+        end
+      end
     end
 
     describe '#current' do
+      subject { described.current }
+
       it 'returns the name of the interface currently in focus' do
         Focus.add('thallium')
         Focus.add('lead')
         Focus.add('bismuth')
-        Focus.current.must_equal('thallium')
+        subject.must_equal('thallium')
       end
 
       it 'raises an exception if there are no interfaces defined' do
-        proc { Focus.current }.must_raise(NoInterfacesDefined)
+        proc { subject }.must_raise(NoInterfacesDefined)
+      end
+
+      context 'API methods' do
+        it 'returns the name of the interface currently in focus' do
+          Focus.add('thallium')
+          Focus.add('lead')
+          Focus.add('bismuth')
+          Vedeu.focus.must_equal('thallium')
+        end
+
+        it 'raises an exception if there are no interfaces defined' do
+          proc { Vedeu.focus }.must_raise(NoInterfacesDefined)
+        end
       end
     end
 
@@ -66,6 +95,16 @@ module Vedeu
 
       context 'when the interface is not currently in focus' do
         it { Focus.current?('bismuth').must_equal(false) }
+      end
+
+      context 'API methods' do
+        context 'when the interface is currently in focus' do
+          it { Vedeu.focussed?('lead').must_equal(true) }
+        end
+
+        context 'when the interface is not currently in focus' do
+          it { Vedeu.focussed?('bismuth').must_equal(false) }
+        end
       end
     end
 

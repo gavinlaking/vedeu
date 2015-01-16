@@ -100,7 +100,7 @@ class VedeuFocusApp
     end
     view('status') do
       lines do
-        line Vedeu::Focus.current
+        line Vedeu.focus
       end
     end
   end
@@ -108,9 +108,9 @@ class VedeuFocusApp
   # Tell Vedeu that each interface can use 'space'.
   keys('aluminium', 'boron', 'copper', 'dubnium', 'status') do
     key(' ') do
-      Vedeu::Focus.next_item
+      Vedeu.focus_next
 
-      render { view('status') { line Vedeu::Focus.current } }
+      render { view('status') { line Vedeu.focus } }
     end
   end
 

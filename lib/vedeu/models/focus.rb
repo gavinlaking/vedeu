@@ -38,13 +38,14 @@ module Vedeu
     # @raise [ModelNotFound] When the interface cannot be found.
     # @return [String] The name of the interface now in focus.
     def by_name(name)
-      fail ModelNotFound unless registered?(name)
+      fail ModelNotFound, "Cannot focus '#{name}' as this interface has not " \
+                          "been registered." unless registered?(name)
 
       storage.rotate!(storage.index(name))
 
       update
     end
-    alias_method :focus, :by_name
+    alias_method :focus_by_name, :by_name
 
     # Return the interface currently focussed.
     #
@@ -56,6 +57,7 @@ module Vedeu
 
       storage.first
     end
+    alias_method :focus, :current
 
     # Returns a boolean indicating whether the named interface is focussed.
     #
@@ -64,6 +66,8 @@ module Vedeu
     def current?(name)
       current == name
     end
+    alias_method :focussed?, :current?
+
 
     # Return a boolean indicating whether the storage is empty.
     #
@@ -81,6 +85,7 @@ module Vedeu
       update
     end
     alias_method :next, :next_item
+    alias_method :focus_next, :next_item
 
     # Put the previous interface relative to the current interface in focus.
     #
@@ -92,6 +97,7 @@ module Vedeu
     end
     alias_method :prev,     :prev_item
     alias_method :previous, :prev_item
+    alias_method :focus_previous, :prev_item
 
     # Refresh the interface in focus.
     #
@@ -157,5 +163,8 @@ module Vedeu
     end
 
   end # Focus
+
+  def_delegators Vedeu::Focus, :focus, :focus_by_name, :focussed?,
+                               :focus_next, :focus_previous
 
 end # Vedeu

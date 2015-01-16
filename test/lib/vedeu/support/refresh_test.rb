@@ -23,11 +23,18 @@ module Vedeu
     end
 
     describe '.by_focus' do
+      subject { described.by_focus }
+
       context 'when there are no registered interfaces' do
+        before { Vedeu.focus_repository.reset }
+
         it { proc { Refresh.by_focus }.must_raise(NoInterfacesDefined) }
       end
 
       context 'when there are registered interfaces' do
+        # before { Vedeu.focus_repository.add('lead') }
+
+        # it { subject.must_equal('lead') }
       end
     end
 

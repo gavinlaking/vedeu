@@ -97,9 +97,9 @@ module Vedeu
     # System events which when called will change which interface is currently
     # focussed. When the interface is brought into focus, its cursor position
     # and visibility is restored.
-    Vedeu.bind(:_focus_by_name_) { |name| Vedeu::Focus.by_name(name) }
-    Vedeu.bind(:_focus_next_)    { Vedeu::Focus.next_item }
-    Vedeu.bind(:_focus_prev_)    { Vedeu::Focus.prev_item }
+    Vedeu.bind(:_focus_by_name_) { |name| Vedeu.focus_by_name(name) }
+    Vedeu.bind(:_focus_next_)    {        Vedeu.focus_next          }
+    Vedeu.bind(:_focus_prev_)    {        Vedeu.focus_previous      }
 
     # System events which when called with the appropriate menu name will
     # update the menu accordingly.

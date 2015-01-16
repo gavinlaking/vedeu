@@ -19,7 +19,7 @@ module Vedeu
     # @raise [NoInterfacesDefined]
     # @return []
     def by_focus
-      by_name(Focus.current)
+      by_name(Vedeu.focus)
     end
 
     # Refresh an interface, or collection of interfaces belonging to a group.
@@ -42,6 +42,8 @@ module Vedeu
       Vedeu.log("Refreshing: '#{name}'")
 
       buffer = Vedeu.buffers_repository.find(name)
+
+      puts buffer.inspect + " " + name.inspect
 
       Vedeu::Compositor.compose(buffer)
     end

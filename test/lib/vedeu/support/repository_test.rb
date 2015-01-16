@@ -51,7 +51,7 @@ module Vedeu
 
     #   subject { instance.current }
 
-    #   it { return_type_for(Focus.current, NilClass) }
+    #   it { return_type_for(Vedeu.focus, NilClass) }
 
     #   context 'when the model exists' do
     #     # before { Cursor.new('francium', false, 12, 4).store }
