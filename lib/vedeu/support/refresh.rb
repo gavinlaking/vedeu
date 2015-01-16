@@ -43,8 +43,6 @@ module Vedeu
 
       buffer = Vedeu.buffers_repository.find(name)
 
-      puts buffer.inspect + " " + name.inspect
-
       Vedeu::Compositor.compose(buffer)
     end
 
