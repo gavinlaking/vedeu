@@ -162,6 +162,9 @@ module Vedeu
   class Buffers < Repository
   end
 
+  class Events < Repository
+  end
+
   class Geometries < Repository
   end
 

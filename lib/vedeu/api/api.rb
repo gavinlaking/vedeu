@@ -31,14 +31,8 @@ module Vedeu
     def_delegators Vedeu::Terminal,      :height, :width, :resize
     def_delegators Vedeu::Keymaps,       :keypress
 
-    def_delegators Vedeu::Event,   :event
-    def_delegators Vedeu::Trigger, :trigger
-    def_delegators Vedeu::Events,  :unevent
-
   end # API
 
   extend API
-
-  trap('SIGWINCH') { Vedeu.trigger(:_resize_) }
 
 end # Vedeu

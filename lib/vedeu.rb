@@ -24,7 +24,6 @@ module Vedeu
   extend self
 
   def_delegators Vedeu::Log, :log
-  # def_delegators Vedeu::Event, :event
 
   def self.buffers_repository
     @_buffers_repository ||= Vedeu::Buffers.new(Vedeu::Buffer)
@@ -60,10 +59,6 @@ module Vedeu
 
   def self.menus_repository
     @_menus_repository ||= Vedeu::Menus.new(Vedeu::Menu)
-  end
-
-  def self.event(name, options = {}, &block)
-    Vedeu::Event.register(name, options, &block)
   end
 
   # When Vedeu is included within one of your classes, you should have all

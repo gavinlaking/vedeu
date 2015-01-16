@@ -11,7 +11,7 @@ require 'vedeu'
 class VedeuLinesApp
   include Vedeu
 
-  event(:_initialize_) { trigger(:_refresh_) }
+  bind(:_initialize_) { trigger(:_refresh_) }
 
   interface 'ruthenium' do
     geometry do

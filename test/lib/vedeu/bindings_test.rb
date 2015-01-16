@@ -2,8 +2,10 @@ require 'test_helper'
 
 module Vedeu
 
-  describe Cursors do
+  describe Bindings do
 
-  end # Cursors
+
+
+  end # Bindings
 
 end # Vedeu

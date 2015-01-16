@@ -16,7 +16,7 @@ class HelloWorldApp
     log '/tmp/vedeu_hello_world.log'
   end
 
-  event(:_initialize_) { Vedeu.trigger(:_refresh_) }
+  bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
 
   interface 'messages' do
     background '#000000'

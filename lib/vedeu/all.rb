@@ -1,5 +1,13 @@
-require 'vedeu/api/api'
 
+# load order is important
+
+require 'vedeu/exceptions'
+require 'vedeu/bindings'
+require 'vedeu/traps'
+
+# load order has not been fully established beyond this point
+
+require 'vedeu/api/api'
 require 'vedeu/buffers/all'
 require 'vedeu/configuration/all'
 require 'vedeu/cursor/all'
@@ -12,5 +20,4 @@ require 'vedeu/presentation/all'
 require 'vedeu/support/all'
 
 require 'vedeu/application'
-require 'vedeu/exceptions'
 require 'vedeu/launcher'

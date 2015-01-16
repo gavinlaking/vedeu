@@ -43,9 +43,9 @@ Note: Nesting indicates where an API method is allowed/supposed to be used.
 
 #### Events
 
-- event
+- bind
 - trigger
-- unevent
+- unbind
 
 
 #### Input

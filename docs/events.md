@@ -177,7 +177,7 @@ client application for timing amongst other things.
 #### How to define user events
 
 ```ruby
-event :event_name do |arg1, arg2|
+bind :event_name do |arg1, arg2|
   ...
 
   # Things that should happen when the event is triggered; these can be method

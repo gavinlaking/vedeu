@@ -11,7 +11,7 @@ require 'vedeu'
 class VedeuCursorApp
   include Vedeu
 
-  event(:_initialize_) { Vedeu.trigger(:_refresh_) }
+  bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
 
   interface 'iron' do
     cursor  true

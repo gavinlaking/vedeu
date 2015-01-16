@@ -10,7 +10,7 @@ module Vedeu
     let(:args)       {}
 
     describe '.trigger' do
-      before { Vedeu.event(event_name) { :_only_one_result_ } }
+      before { Vedeu.bind(event_name) { :_only_one_result_ } }
 
       subject { described.trigger(event_name) }
 
@@ -31,7 +31,7 @@ module Vedeu
       context 'when only one result occurs from triggering the event' do
         let(:event_name) { :_one_result_ }
 
-        before { Vedeu::Event.register(event_name) { :_only_one_result_ } }
+        before { Vedeu.bind(event_name) { :_only_one_result_ } }
 
         it { return_value_for(subject, :_only_one_result_) }
       end

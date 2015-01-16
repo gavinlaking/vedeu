@@ -112,12 +112,12 @@ module Vedeu
       end
     end
 
-    # describe '.unevent' do
+    # describe '.unbind' do
     #   it 'unregister the event by name' do
-    #     Vedeu.event(:calcium) { proc { |x| x } }
+    #     Vedeu.bind(:calcium) { proc { |x| x } }
     #     Vedeu.events_repository.registered.must_include(:calcium)
 
-    #     Vedeu.unevent(:calcium)
+    #     Vedeu.unbind(:calcium)
     #     Vedeu.events_repository.registered.wont_include(:calcium)
     #   end
     # end

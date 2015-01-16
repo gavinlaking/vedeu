@@ -19,7 +19,7 @@ require 'vedeu'
 class VedeuFocusApp
   include Vedeu
 
-  event(:_initialize_) { Vedeu.trigger(:_refresh_) }
+  bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
 
   interface 'aluminium' do
     colour  foreground: '#ffffff', background: '#330000'

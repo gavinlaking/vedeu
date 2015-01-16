@@ -48,11 +48,11 @@ class MyApp
     ...
   end
 
-  event :some_event do
+  bind :some_event do
     # ...
   end
 
-  event :other_event do |hash_args, array_args, args|
+  bind :other_event do |hash_args, array_args, args|
     # ...
   end
 

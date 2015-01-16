@@ -10,11 +10,31 @@ module Vedeu
     let(:options)    { {} }
     let(:closure)    { proc { :event_triggered } }
 
-    describe '.register' do
-      subject { described.register(event_name, options) { :event_triggered } }
+    describe '.bind' do
+      subject { described.bind(event_name, options) { :event_triggered } }
 
       it { return_type_for(subject, TrueClass) }
     end
+
+    # describe '.unbind' do
+    #   let(:event_name) { :chlorine }
+
+    #   before do
+    #     Vedeu.bind(:chlorine) { :some_event }
+    #   end
+
+    #   subject { instance.unbind(event_name) }
+
+    #   context 'when the event exists' do
+    #     it { return_type_for(subject, TrueClass) }
+    #   end
+
+    #   context 'when the event does not exist' do
+    #     let(:event_name) { :does_not_exist }
+
+    #     it { return_type_for(subject, FalseClass) }
+    #   end
+    # end
 
     describe '#initialize' do
       subject { instance }
@@ -28,11 +48,11 @@ module Vedeu
       it { assigns(subject, '@now', 0) }
     end
 
-    describe '#register' do
-      subject { instance.register }
+    describe '#bind' do
+      subject { instance.bind }
 
       context 'when the event name is already registered' do
-        before { Vedeu.event(:some_event) { :already_registered } }
+        before { Vedeu.bind(:some_event) { :already_registered } }
 
         it { return_type_for(subject, TrueClass) }
       end

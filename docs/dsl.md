@@ -49,9 +49,9 @@ DSL
       √ *composition
 
   Events
-    √ event
+    √ bind
     √ trigger
-    √ unevent
+    √ unbind
 
   Focus
     ~ focus

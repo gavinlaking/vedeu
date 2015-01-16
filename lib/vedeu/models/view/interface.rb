@@ -109,14 +109,14 @@ module Vedeu
       event   = "_refresh_#{name}_".to_sym
 
       unless Vedeu.events_repository.registered?(event)
-        Vedeu.event(event, options) { Vedeu::Refresh.by_name(name) }
+        Vedeu.bind(event, options) { Vedeu::Refresh.by_name(name) }
       end
 
       if group
         event = "_refresh_group_#{group}_".to_sym
 
         unless Vedeu.events_repository.registered?(event)
-          Vedeu.event(event, options) { Vedeu::Refresh.by_group(group) }
+          Vedeu.bind(event, options) { Vedeu::Refresh.by_group(group) }
         end
       end
     end

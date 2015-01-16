@@ -1,5 +1,7 @@
 require 'vedeu/dsl/dsl'
 require 'vedeu/models/model'
+require 'vedeu/support/repository'
+require 'vedeu/events/trigger'
 
 module Vedeu
 
@@ -29,7 +31,7 @@ module Vedeu
       #   of either/both.
       #
       # @example
-      #   Vedeu.event :my_event do |some, args|
+      #   Vedeu.bind :my_event do |some, args|
       #     ... some code here ...
       #
       #     Vedeu.trigger(:my_other_event)
@@ -41,7 +43,7 @@ module Vedeu
       #   .T...T...T...T...T...T...T...T...T...T...T...T...T...T...T...T...T...T
       #   .X...i...i...i...i...X...i...i...i...i...X...i...i...i...i...i...i...i
       #
-      #   Vedeu.event(:my_delayed_event, { delay: 0.5 })
+      #   Vedeu.bind(:my_delayed_event, { delay: 0.5 })
       #     ... some code here ...
       #   end
       #
@@ -51,17 +53,37 @@ module Vedeu
       #   .T...T...T...T...T...T...T...T...T...T...T...T...T...T...T...T...T...T
       #   .i...i...i...i...i...i...i...X...i...i...i...i...i...i...X...i...i...i
       #
-      #   Vedeu.event(:my_debounced_event, { debounce: 0.7 })
+      #   Vedeu.bind(:my_debounced_event, { debounce: 0.7 })
       #     ... some code here ...
       #   end
       #
       # @return [TrueClass]
-      def register(name, options = {}, &block)
-        Vedeu.log("Registering event: '#{name}'")
+      def bind(name, options = {}, &block)
+        Vedeu.log("Binding event: '#{name}'")
 
-        new(name, options, block).register
+        new(name, options, block).bind
       end
-      alias_method :event, :register
+      alias_method :event, :bind
+      alias_method :register, :bind
+
+      # @see Vedeu::Trigger.trigger
+      def trigger(name, *args)
+        Vedeu::Trigger.trigger(name, *args)
+      end
+
+      # Unbind events from a named handler.
+      #
+      # @param name [String]
+      # @return [Boolean]
+      def unbind(name)
+        return false unless Vedeu.events_repository.registered?(name)
+
+        Vedeu.log("Unbinding event: '#{name}")
+
+        Vedeu.events_repository.remove(name)
+        true
+      end
+      alias_method :unevent, :unbind
 
     end
 
@@ -80,7 +102,7 @@ module Vedeu
       @now          = 0
     end
 
-    def register
+    def bind
       if repository.registered?(name)
         collection     = repository.find(name)
         new_collection = collection.add(self)
@@ -96,7 +118,7 @@ module Vedeu
     end
 
     # Triggers the event based on debouncing and throttling conditions.
-    #
+
     # @param args [Array]
     # @return []
     def trigger(*args)
@@ -246,5 +268,10 @@ module Vedeu
     end
 
   end # Event
+
+  def_delegators Vedeu::Event, :bind, :trigger, :unbind
+
+  # deprecated heathen
+  def_delegators Vedeu::Event, :event, :unevent
 
 end # Vedeu

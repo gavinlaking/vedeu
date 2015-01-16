@@ -11,7 +11,7 @@ require 'vedeu'
 class VedeuBordersApp
   include Vedeu
 
-  event(:_initialize_) { trigger(:_refresh_) }
+  bind(:_initialize_) { trigger(:_refresh_) }
 
   interface 'lur' do
     border do
