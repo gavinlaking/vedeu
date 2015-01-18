@@ -1,4 +1,3 @@
-# require 'vedeu/dsl/dsl'
 require 'vedeu/dsl/border'
 
 module Vedeu

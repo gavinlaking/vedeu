@@ -37,7 +37,6 @@ module Vedeu
       end
     end
 
-    #
     # Returns a new instance of Char.
     #
     # @param  value    [String]
@@ -46,7 +45,6 @@ module Vedeu
     # @param  style    [Style]
     # @param  position [Position]
     # @return [Char]
-    #
     def initialize(value = nil, parent = nil, colour = nil, style = nil, position = nil)
       @value    = value
       @parent   = parent
@@ -55,7 +53,6 @@ module Vedeu
       @position = position
     end
 
-    #
     # @return [String] The character.
     def value
       return '' unless @value

@@ -1,4 +1,3 @@
-require 'vedeu/dsl/dsl'
 require 'vedeu/dsl/geometry'
 require 'vedeu/models/model'
 require 'vedeu/support/esc'
@@ -28,8 +27,6 @@ module Vedeu
   #
   # @api private
   class Geometry
-
-    extend DSL
 
     include Vedeu::Model
 

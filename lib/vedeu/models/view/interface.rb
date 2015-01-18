@@ -1,5 +1,3 @@
-require 'vedeu/dsl/dsl'
-
 require 'vedeu/support/common'
 require 'vedeu/models/model'
 require 'vedeu/presentation/presentation'
@@ -15,7 +13,6 @@ module Vedeu
   # @api private
   class Interface
 
-    extend Vedeu::DSL
     extend Forwardable
 
     include Vedeu::Common

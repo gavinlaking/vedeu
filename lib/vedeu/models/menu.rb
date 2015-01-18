@@ -1,4 +1,3 @@
-require 'vedeu/dsl/dsl'
 require 'vedeu/models/model'
 require 'vedeu/support/common'
 

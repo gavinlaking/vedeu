@@ -1,4 +1,3 @@
-require 'vedeu/dsl/dsl'
 require 'vedeu/presentation/presentation'
 
 module Vedeu
@@ -10,7 +9,6 @@ module Vedeu
   # @api private
   class Line
 
-    extend  Vedeu::DSL
     include Vedeu::Presentation
 
     attr_accessor :parent

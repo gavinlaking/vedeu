@@ -1,4 +1,3 @@
-require 'vedeu/dsl/dsl'
 require 'vedeu/models/model'
 require 'vedeu/support/repository'
 require 'vedeu/events/trigger'
@@ -10,7 +9,6 @@ module Vedeu
   # @api private
   class Event
 
-    include Vedeu::DSL
     include Vedeu::Model
 
     class << self

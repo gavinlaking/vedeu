@@ -73,6 +73,7 @@ module Vedeu
         out << interface.origin(index)
         out << line.join
       end
+
       out.join
     end
 

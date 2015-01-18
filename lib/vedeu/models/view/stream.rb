@@ -1,4 +1,3 @@
-require 'vedeu/dsl/dsl'
 require 'vedeu/presentation/presentation'
 require 'vedeu/models/view/char'
 
@@ -11,7 +10,6 @@ module Vedeu
   # @api private
   class Stream
 
-    extend  Vedeu::DSL
     include Vedeu::Presentation
 
     attr_accessor :parent, :value

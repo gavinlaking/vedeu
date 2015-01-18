@@ -2,7 +2,6 @@ module Vedeu
 
   class ModelTestClass
 
-    extend  Vedeu::DSL
     include Vedeu::Model
     include Vedeu::Presentation
 
