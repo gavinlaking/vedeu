@@ -1,10 +1,11 @@
 
 # load order is important
 
+require 'vedeu/traps'
 require 'vedeu/exceptions'
+
 require 'vedeu/api'
 require 'vedeu/bindings'
-require 'vedeu/traps'
 
 # load order has not been fully established beyond this point
 
