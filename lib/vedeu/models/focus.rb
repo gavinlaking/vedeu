@@ -22,12 +22,16 @@ module Vedeu
         by_name(name)
         storage
 
-      elsif focus
-        storage.unshift(name)
-
       else
-        storage.push(name)
+        Vedeu.log("Storing focus entry: '#{name}'")
 
+        if focus
+          storage.unshift(name)
+
+        else
+          storage.push(name)
+
+        end
       end
     end
 
