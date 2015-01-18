@@ -16,7 +16,7 @@ class VedeuBordersApp
     log '/tmp/vedeu_borders_app.log'
   end
 
-  bind(:_initialize_) { trigger(:_refresh_) }
+  bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
 
   interface 'apple' do
     border do
@@ -240,38 +240,42 @@ class VedeuBordersApp
         line 'no r'
       end
     end
-
     view('girl') do
       lines do
-        line 'chars'; line '1'
+        line 'chars'
+        line '1'
       end
     end
     view('hat') do
       lines do
-        line 'chars'; line '2'
+        line 'chars'
+        line '2'
       end
     end
     view('ice') do
       lines do
-        line 'only';  line 't'
+        line 'only'
+        line 't'
       end
     end
     view('jug') do
       lines do
-        line 'only';  line 'b'
+        line 'only'
+        line 'b'
       end
     end
     view('kite') do
       lines do
-        line 'only';  line 'l'
+        line 'only'
+        line 'l'
       end
     end
     view('leaf') do
       lines do
-        line 'only';  line 'r'
+        line 'only'
+        line 'r'
       end
     end
-
     view('moon') do
       lines do
         line 'color'

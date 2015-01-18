@@ -11,10 +11,15 @@ require 'vedeu'
 class VedeuCursorApp
   include Vedeu
 
+  configure do
+    debug!
+    log '/tmp/vedeu_cursor_app.log'
+  end
+
   bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
 
   interface 'iron' do
-    cursor  true
+    #cursor  true
     colour  foreground: '#ff0000', background: '#000000'
 
     geometry do
@@ -44,7 +49,7 @@ class VedeuCursorApp
     end
   end
 
-  keys do
+  keymap do
     key(:up)    { Vedeu.trigger(:_cursor_up_)    }
     key(:right) { Vedeu.trigger(:_cursor_right_) }
     key(:down)  { Vedeu.trigger(:_cursor_down_)  }
@@ -54,15 +59,15 @@ class VedeuCursorApp
   renders do
     view 'iron' do
       lines do
-        stream do
+        streams do
           text 'A 23456789 '
         end
-        stream do
+        streams do
           background '#550000'
           foreground '#ffff00'
           text 'hydrogen'
         end
-        stream do
+        streams do
           text ' helium'
         end
       end
@@ -70,13 +75,11 @@ class VedeuCursorApp
         line 'B 23456789 lithium beryllium boron nitrogen'
       end
       lines do
-        stream do
+        streams do
           text 'C 23456789'
-        end
-        stream do
           text ' carbon oxygen '
         end
-        stream do
+        streams do
           background '#aadd00'
           foreground '#000000'
           text 'fluorine'
@@ -89,10 +92,10 @@ class VedeuCursorApp
         line 'E 23456789 neon sodium'
       end
       lines do
-        stream do
+        streams do
           text 'F 23456789 magnesium '
         end
-        stream do
+        streams do
           foreground '#00aaff'
           text 'aluminium'
         end
@@ -101,7 +104,7 @@ class VedeuCursorApp
         line 'G 23456789 silicon'
       end
       lines do
-        stream do
+        streams do
           background '#550000'
           foreground '#ff00ff'
           text 'H 234'
@@ -117,12 +120,7 @@ class VedeuCursorApp
     end
   end
 
-  focus('iron') # not working right?!
-
-  Vedeu.configure do
-    debug!
-    log '/tmp/vedeu_cursor_app.log'
-  end
+  # focus('iron') # not working right?!
 
   def self.start(argv = ARGV)
     Vedeu::Launcher.new(argv).execute!

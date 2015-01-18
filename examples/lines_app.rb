@@ -11,6 +11,11 @@ require 'vedeu'
 class VedeuLinesApp
   include Vedeu
 
+  configure do
+    debug!
+    log '/tmp/vedeu_lines_app.log'
+  end
+
   bind(:_initialize_) { trigger(:_refresh_) }
 
   interface 'ruthenium' do
@@ -55,11 +60,6 @@ class VedeuLinesApp
   end
 
   focus 'ruthenium'
-
-  Vedeu.configure do
-    debug!
-    log '/tmp/vedeu_lines_app.log'
-  end
 
   def self.start(argv = ARGV)
     Vedeu::Launcher.new(argv).execute!
