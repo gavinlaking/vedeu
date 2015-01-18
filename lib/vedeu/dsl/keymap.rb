@@ -1,5 +1,6 @@
 require 'vedeu/exceptions'
 require 'vedeu/support/common'
+require 'vedeu/input/key'
 
 module Vedeu
 
@@ -57,7 +58,7 @@ module Vedeu
           end
 
           if valid?(value)
-            model.add(Key.define(value, &block))
+            model.add(Vedeu::Key.define(value, &block))
           end
         end
       end

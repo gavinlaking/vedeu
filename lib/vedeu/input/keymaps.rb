@@ -2,11 +2,17 @@ module Vedeu
 
   class Keymaps < Repository
 
+    # @raise [KeyInUse] The key is already defined.
+    # @return [TrueClass] The key is not already defined.
     def valid?(key)
-      return true unless key_defined?('_global_', key) || key_defined?('_system_', key)
+      return true unless global_key?(key) || system_key?(key)
     end
 
     private
+
+    def global_key?(key)
+      key_defined?('_global_', key)
+    end
 
     def key_defined?(keymap, key)
       return false unless registered?(keymap)
@@ -20,12 +26,10 @@ module Vedeu
       end
     end
 
+    def system_key?(key)
+      key_defined?('_global_', key)
+    end
+
   end # Keymaps
-
-  Vedeu::Keymap.build('_global_') do
-  end
-
-  Vedeu::Keymap.build('_system_') do
-  end
 
 end # Vedeu

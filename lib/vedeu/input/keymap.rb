@@ -2,6 +2,7 @@ require 'vedeu/exceptions'
 require 'vedeu/support/common'
 require 'vedeu/models/model'
 require 'vedeu/dsl/keymap'
+require 'vedeu/input/keymaps'
 
 module Vedeu
 
@@ -44,8 +45,8 @@ module Vedeu
     # @param keys [Vedeu::Model::Collection|Array] A collection of keys.
     # @return [Vedeu::Keymap]
     def initialize(name, keys = [])
-      @name = name
-      @keys = Vedeu::Model::Collection.coerce(keys)
+      @name       = name
+      @keys       = Vedeu::Model::Collection.coerce(keys)
       @repository = Vedeu.keymaps
     end
 
@@ -59,7 +60,7 @@ module Vedeu
     # @param key [Key]
     # @raise [KeyInUse] The key provided is already in use for this keymap.
     def add(key)
-      @keys << [key] if valid?(key)
+      @keys << key if valid?(key)
 
       # immutable Keymap version:
       # self.new(name, @keys += [key]).store if valid?(key)
@@ -69,20 +70,19 @@ module Vedeu
     # @return [Boolean] A boolean indicating the input provided is already in
     #   use for this keymap.
     def key_defined?(input)
-      # keys.find_all { |key| key.input == input }.any?
-
       keys.any? { |key| key.input == input }
     end
 
     # @param input [String|Symbol]
+    # @return [Array|FalseClass]
     def use(input)
-      if key_defined?(input)
-        Vedeu.log("Key pressed: '#{input}'")
+      return false unless key_defined?(input)
 
-        Vedeu.trigger(:key, input)
+      Vedeu.log("Key pressed: '#{input}'")
 
-        keys.find_all { |key| key.input == input }.map { |key| key.press }
-      end
+      Vedeu.trigger(:key, input)
+
+      keys.select { |key| key.input == input }.map(&:press)
     end
 
     private

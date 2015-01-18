@@ -71,7 +71,7 @@ module Vedeu
       end
 
       context 'when the input is not defined' do
-        it { return_type_for(subject, NilClass) }
+        it { return_type_for(subject, FalseClass) }
       end
     end
 
