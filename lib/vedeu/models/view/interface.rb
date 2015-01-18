@@ -60,12 +60,6 @@ module Vedeu
       @repository = Vedeu.interfaces
     end
 
-    # Returns the class responsible for defining the DSL methods of this model.
-    #
-    # @return [DSL::Interface]
-    def deputy
-      Vedeu::DSL::Interface.new(self)
-    end
 
     def lines
       @lines

@@ -37,12 +37,6 @@ module Vedeu
       it { assigns(subject, '@style', style) }
     end
 
-    describe '#deputy' do
-      subject { instance.deputy }
-
-      it { return_type_for(subject, DSL::Composition) }
-    end
-
   end # Composition
 
 end # Vedeu

@@ -56,10 +56,6 @@ module Vedeu
       end
     end
 
-    describe '#deputy' do
-      it { return_type_for(described.deputy, DSL::Stream) }
-    end
-
     describe '#empty?' do
       subject { described.empty? }
 

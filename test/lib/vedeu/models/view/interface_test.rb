@@ -111,10 +111,6 @@ module Vedeu
     #   end
     # end
 
-    describe '#deputy' do
-      it { return_type_for(instance.deputy, DSL::Interface) }
-    end
-
     describe '#lines' do
       it { return_type_for(instance.lines, Vedeu::Model::Lines) }
     end

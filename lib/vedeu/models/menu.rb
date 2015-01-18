@@ -77,13 +77,6 @@ module Vedeu
       @repository = Vedeu.menus
     end
 
-    # Returns the class responsible for defining the DSL methods of this model.
-    #
-    # @return [DSL::Interface]
-    def deputy
-      Vedeu::DSL::Menu.new(self)
-    end
-
     # Returns the item from the collection which shares the same index as the
     # value of {Vedeu::Menu#current}.
     #

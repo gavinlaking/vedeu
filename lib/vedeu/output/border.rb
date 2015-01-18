@@ -12,6 +12,8 @@ module Vedeu
   #
   class Border
 
+    include Vedeu::Model
+
     attr_accessor :attributes
 
     def self.build(interface, attributes = {}, &block)
@@ -38,10 +40,6 @@ module Vedeu
 
     def style=(value)
       @style = Style.coerce(value)
-    end
-
-    def deputy
-      Vedeu::DSL::Border.new(self)
     end
 
     # Returns a boolean indicating whether the border is to be shown for this

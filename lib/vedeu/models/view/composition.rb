@@ -11,6 +11,7 @@ module Vedeu
   class Composition
 
     include Vedeu::Presentation
+    include Vedeu::Model
 
     attr_reader  :interfaces
     alias_method :value, :interfaces
@@ -29,13 +30,6 @@ module Vedeu
       @interfaces = Vedeu::Model::Interfaces.new(interfaces, self)
       @colour     = colour
       @style      = style
-    end
-
-    # Returns the class responsible for defining the DSL methods of this model.
-    #
-    # @return [DSL::Composition]
-    def deputy
-      Vedeu::DSL::Composition.new(self)
     end
 
   end # Composition

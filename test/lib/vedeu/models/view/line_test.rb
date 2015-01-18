@@ -37,7 +37,7 @@ module Vedeu
       subject { described.new(streams, parent, colour, style) }
 
       it { return_type_for(subject, Line) }
-      it { assigns(subject, '@streams', streams) }
+      it { subject.instance_variable_get('@streams').must_be_instance_of(Vedeu::Model::Streams) }
       it { assigns(subject, '@parent', parent) }
       it { assigns(subject, '@colour', colour) }
       it { assigns(subject, '@style', style) }
@@ -115,12 +115,6 @@ module Vedeu
           )
         end
       end
-    end
-
-    describe '#deputy' do
-      subject { described.new(streams, parent, colour, style).deputy }
-
-      it { return_type_for(subject, DSL::Line) }
     end
 
     describe '#empty?' do

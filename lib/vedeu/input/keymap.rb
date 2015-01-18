@@ -50,13 +50,6 @@ module Vedeu
       @repository = Vedeu.keymaps
     end
 
-    # Returns the class responsible for defining the DSL methods of this model.
-    #
-    # @return [DSL::Keymap]
-    def deputy
-      Vedeu::DSL::Keymap.new(self)
-    end
-
     # @param key [Key]
     # @raise [KeyInUse] The key provided is already in use for this keymap.
     def add(key)

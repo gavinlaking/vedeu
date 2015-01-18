@@ -10,6 +10,7 @@ module Vedeu
   # @api private
   class Stream
 
+    include Vedeu::Model
     include Vedeu::Presentation
 
     attr_accessor :parent, :value
@@ -44,13 +45,6 @@ module Vedeu
       value.chars.map do |char|
         Vedeu::Char.new(char, parent, colour, style, nil).to_s
       end
-    end
-
-    # Returns the class responsible for defining the DSL methods of this model.
-    #
-    # @return [DSL::Stream]
-    def deputy
-      Vedeu::DSL::Stream.new(self)
     end
 
     # Returns a boolean indicating whether the stream has content.

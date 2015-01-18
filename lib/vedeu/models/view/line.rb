@@ -9,6 +9,7 @@ module Vedeu
   # @api private
   class Line
 
+    include Vedeu::Model
     include Vedeu::Presentation
 
     attr_accessor :parent
@@ -37,13 +38,6 @@ module Vedeu
       return [] if empty?
 
       streams.map(&:chars).flatten
-    end
-
-    # Returns the class responsible for defining the DSL methods of this model.
-    #
-    # @return [DSL::Line]
-    def deputy
-      Vedeu::DSL::Line.new(self)
     end
 
     # Returns a boolean indicating whether the line has content.

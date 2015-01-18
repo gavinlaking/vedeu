@@ -16,10 +16,6 @@ module Vedeu
       @repository = Vedeu::RepositoryTestModule
     end
 
-    def deputy
-      Vedeu::DSL::ModelTestClass
-    end
-
     private
 
     def defaults

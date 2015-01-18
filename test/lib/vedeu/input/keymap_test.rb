@@ -19,12 +19,6 @@ module Vedeu
       it { assigns(subject, '@repository', Vedeu.keymaps) }
     end
 
-    describe '#deputy' do
-      subject { instance.deputy }
-
-      it { return_type_for(subject, Vedeu::DSL::Keymap) }
-    end
-
     describe '#add' do
       subject { instance.add(key) }
 
