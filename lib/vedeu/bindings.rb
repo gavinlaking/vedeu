@@ -2,6 +2,12 @@ require 'vedeu/events/event'
 
 module Vedeu
 
+  module API
+
+    def_delegators Vedeu::Event, :bind, :trigger, :unbind
+
+  end
+
   # Creates system events which when called provide a variety of core functions
   # and behaviours.
   #
@@ -9,8 +15,9 @@ module Vedeu
   #   Unbinding any of these events is likely to cause problems, so I would
   #   advise leaving them alone. A safe rule: if the name starts with an
   #   underscore, it's probably used by Vedeu internally.
+  #
+  # :nocov:
   module Bindings
-    # :nocov:
 
     # System events needed by Vedeu to run.
     Vedeu.bind(:_clear_)                   { Vedeu::Terminal.clear_screen }
