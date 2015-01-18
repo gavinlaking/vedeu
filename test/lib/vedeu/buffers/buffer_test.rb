@@ -21,7 +21,7 @@ module Vedeu
       it { assigns(subject, '@back', back) }
       it { assigns(subject, '@front', front) }
       it { assigns(subject, '@previous', previous) }
-      it { assigns(subject, '@repository', Vedeu.buffers_repository) }
+      it { assigns(subject, '@repository', Vedeu.buffers) }
     end
 
     describe '#add' do

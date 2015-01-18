@@ -18,7 +18,7 @@ module Vedeu
     def initialize(name, *members)
       @name    = name
       @members = members.to_set
-      @repository = Vedeu.groups_repository
+      @repository = Vedeu.groups
     end
 
     # Add a member to the group by name.

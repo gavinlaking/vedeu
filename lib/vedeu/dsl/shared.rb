@@ -28,13 +28,13 @@ module Vedeu
       #   Typically used when defining interfaces to share geometry.
       # @return [Vedeu::Interface]
       def use(value)
-        if Vedeu.interfaces_repository.registered?(value) == false
+        if Vedeu.interfaces.registered?(value) == false
           fail ModelNotFound, "The properties of this interface (#{value}) " \
                               "cannot be used, since the interface has not " \
                               "been defined."
         end
 
-        Vedeu.interfaces_repository.find(value)
+        Vedeu.interfaces.find(value)
       end
 
     end # Shared

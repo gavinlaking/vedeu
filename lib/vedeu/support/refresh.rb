@@ -11,7 +11,7 @@ module Vedeu
     #
     # @return [Array]
     def all
-      Vedeu.interfaces_repository.registered.each { |name| by_name(name) }
+      Vedeu.interfaces.registered.each { |name| by_name(name) }
     end
 
     # Refresh the interface which is currently focussed.
@@ -29,7 +29,7 @@ module Vedeu
     def by_group(group_name)
       Vedeu.log("Refreshing group: '#{group_name}'")
 
-      Vedeu.groups_repository.find(group_name).each { |name| by_name(name) }
+      Vedeu.groups.find(group_name).each { |name| by_name(name) }
     end
 
     # Refresh an interface by name.
@@ -40,7 +40,7 @@ module Vedeu
     def by_name(name)
       Vedeu.log("Refreshing: '#{name}'")
 
-      buffer = Vedeu.buffers_repository.find(name)
+      buffer = Vedeu.buffers.find(name)
 
       Vedeu::Compositor.compose(buffer)
     end

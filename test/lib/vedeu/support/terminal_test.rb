@@ -83,7 +83,7 @@ module Vedeu
     end
 
     describe '.resize' do
-      before { Vedeu.interfaces_repository.reset }
+      before { Vedeu.interfaces.reset }
 
       subject { Terminal.resize }
 

@@ -23,7 +23,7 @@ module Vedeu
       it { return_type_for(subject, Vedeu::Trigger) }
       it { assigns(subject, '@name', event_name) }
       it { assigns(subject, '@args', [args]) }
-      it { assigns(subject, '@repository', Vedeu.events_repository) }
+      it { assigns(subject, '@repository', Vedeu.events) }
     end
 
     describe '#trigger' do

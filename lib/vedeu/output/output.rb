@@ -25,7 +25,7 @@ module Vedeu
     #
     # @return [Array]
     def render
-      Terminal.output(view, Vedeu.cursors_repository.by_name(interface.name))
+      Terminal.output(view, Vedeu.cursors.by_name(interface.name))
     end
 
     private
@@ -63,7 +63,7 @@ module Vedeu
         interface.border.to_viewport
 
       else
-        cursor = Vedeu.cursors_repository.by_name(interface.name)
+        cursor = Vedeu.cursors.by_name(interface.name)
 
         Vedeu::Viewport.show(interface, cursor)
 

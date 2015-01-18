@@ -91,7 +91,7 @@ module Vedeu
       #   '_system_' keymap.
       # @return [TrueClass]
       def valid?(input)
-        Vedeu.keymaps_repository.valid?(input)
+        Vedeu.keymaps.valid?(input)
       end
 
     end # Keymap

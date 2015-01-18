@@ -65,7 +65,7 @@ module Vedeu
     #   it { assigns(described, '@group', 'my_group') }
     #   it { assigns(described, '@name', 'francium') }
     #   it { assigns(described, '@parent', nil) }
-    #   it { assigns(described, '@repository', Vedeu.interfaces_repository) }
+    #   it { assigns(described, '@repository', Vedeu.interfaces) }
 
     #   context 'with default attributes' do
     #     let(:attributes) { {} }

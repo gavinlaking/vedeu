@@ -24,11 +24,11 @@ module Vedeu
     #
     # @return [Interface]
     def store_deferred
-      return store_new_buffer unless Vedeu.buffers_repository.registered?(name)
+      return store_new_buffer unless Vedeu.buffers.registered?(name)
 
       Vedeu.log("Updating buffer: '#{name}'")
 
-      Vedeu.buffers_repository.find(name).add(self)
+      Vedeu.buffers.find(name).add(self)
 
       self
     end
@@ -45,7 +45,7 @@ module Vedeu
 
       Vedeu::Focus.add(name)
 
-      unless Vedeu.buffers_repository.registered?(name)
+      unless Vedeu.buffers.registered?(name)
         Vedeu.log("Registering buffer: '#{name}'")
 
         Buffer.new(name, self).store
@@ -58,7 +58,7 @@ module Vedeu
     #
     # @return [Interface]
     def store_new_interface
-      unless Vedeu.interfaces_repository.registered?(name)
+      unless Vedeu.interfaces.registered?(name)
         Vedeu.log("Registering interface: '#{name}'")
 
         self.store

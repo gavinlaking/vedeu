@@ -34,7 +34,7 @@ module Vedeu
         it { assigns(described, '@xn', 80) }
         it { assigns(described, '@y', 1) }
         it { assigns(described, '@yn', 25) }
-        it { assigns(described, '@repository', Vedeu.geometries_repository) }
+        it { assigns(described, '@repository', Vedeu.geometries) }
       end
     end
 

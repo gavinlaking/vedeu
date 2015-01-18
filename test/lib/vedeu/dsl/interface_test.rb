@@ -14,7 +14,7 @@ module Vedeu
         end
       }
 
-      before { Vedeu.interfaces_repository.reset }
+      before { Vedeu.interfaces.reset }
 
       describe '#initialize' do
         subject { instance }
@@ -174,7 +174,7 @@ module Vedeu
 
         it {
           subject
-          Vedeu.cursors_repository.find('actinium').state.visible?.must_equal(false)
+          Vedeu.cursors.find('actinium').state.visible?.must_equal(false)
         }
 
         context 'when the value is false' do
@@ -182,7 +182,7 @@ module Vedeu
 
           it {
             subject
-            Vedeu.cursors_repository.find('actinium').state.visible?.must_equal(false)
+            Vedeu.cursors.find('actinium').state.visible?.must_equal(false)
           }
         end
 
@@ -191,7 +191,7 @@ module Vedeu
 
           it {
             subject
-            Vedeu.cursors_repository.find('actinium').state.visible?.must_equal(false)
+            Vedeu.cursors.find('actinium').state.visible?.must_equal(false)
           }
         end
 
@@ -200,7 +200,7 @@ module Vedeu
 
           it {
             subject
-            Vedeu.cursors_repository.find('actinium').state.visible?.must_equal(true)
+            Vedeu.cursors.find('actinium').state.visible?.must_equal(true)
           }
         end
 
@@ -209,7 +209,7 @@ module Vedeu
 
           it {
             subject
-            Vedeu.cursors_repository.find('actinium').state.visible?.must_equal(true)
+            Vedeu.cursors.find('actinium').state.visible?.must_equal(true)
           }
         end
 
@@ -218,7 +218,7 @@ module Vedeu
 
           it {
             subject
-            Vedeu.cursors_repository.find('actinium').state.visible?.must_equal(true)
+            Vedeu.cursors.find('actinium').state.visible?.must_equal(true)
           }
         end
       end
@@ -228,7 +228,7 @@ module Vedeu
 
         it {
           subject
-          Vedeu.cursors_repository.find('actinium').state.visible?.must_equal(true)
+          Vedeu.cursors.find('actinium').state.visible?.must_equal(true)
         }
       end
 

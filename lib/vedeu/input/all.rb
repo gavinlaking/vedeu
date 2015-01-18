@@ -7,13 +7,8 @@ require 'vedeu/input/keymap'
 
 module Vedeu
 
-  class << self
-
-    def keymaps_repository
-      @_keymaps_repository ||= Vedeu::Keymaps.new(Vedeu::Keymap)
-    end
-    alias_method :keymaps, :keymaps_repository
-
+  def self.keymaps
+    @_keymaps ||= Vedeu::Keymaps.new(Vedeu::Keymap)
   end
 
   def_delegators Vedeu::Keymap, :keymap

@@ -32,7 +32,7 @@ module Vedeu
       @back     = back
       @front    = front
       @previous = previous
-      @repository = Vedeu.buffers_repository
+      @repository = Vedeu.buffers
     end
 
     # Add the content to the back buffer, then update the repository. Returns

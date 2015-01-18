@@ -75,7 +75,7 @@ module Vedeu
       @name       = name
       @current    = current
       @selected   = selected
-      @repository = Vedeu.menus_repository
+      @repository = Vedeu.menus
     end
 
     # Returns the class responsible for defining the DSL methods of this model.

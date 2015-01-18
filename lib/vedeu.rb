@@ -25,36 +25,24 @@ module Vedeu
 
   def_delegators Vedeu::Log, :log
 
-  def self.buffers_repository
-    @_buffers_repository ||= Vedeu::Buffers.new(Vedeu::Buffer)
+  def self.focusable
+    @_focusable ||= Vedeu::Focus
   end
 
-  def self.cursors_repository
-    @_cursors_repository ||= Vedeu::Cursors.new(Vedeu::Cursor)
+  def self.geometries
+    @_geometries ||= Vedeu::Geometries.new(Vedeu::Geometry)
   end
 
-  def self.focus_repository
-    @_focus_repository ||= Vedeu::Focus
+  def self.groups
+    @_groups ||= Vedeu::Groups.new(Vedeu::Group)
   end
 
-  def self.events_repository
-    @_events_repository ||= Vedeu::Events.new(Vedeu::Model::Collection)
+  def self.interfaces
+    @_interfaces ||= Vedeu::Interfaces.new(Vedeu::Interface)
   end
 
-  def self.geometries_repository
-    @_geometries_repository ||= Vedeu::Geometries.new(Vedeu::Geometry)
-  end
-
-  def self.groups_repository
-    @_groups_repository ||= Vedeu::Groups.new(Vedeu::Group)
-  end
-
-  def self.interfaces_repository
-    @_interfaces_repository ||= Vedeu::Interfaces.new(Vedeu::Interface)
-  end
-
-  def self.menus_repository
-    @_menus_repository ||= Vedeu::Menus.new(Vedeu::Menu)
+  def self.menus
+    @_menus ||= Vedeu::Menus.new(Vedeu::Menu)
   end
 
   # When Vedeu is included within one of your classes, you should have all

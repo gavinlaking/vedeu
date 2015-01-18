@@ -52,7 +52,7 @@ module Vedeu
       @xn      = @attributes[:xn]
       @y       = @attributes[:y]
       @yn      = @attributes[:yn]
-      @repository = Vedeu.geometries_repository
+      @repository = Vedeu.geometries
     end
 
     # Returns the class responsible for defining the DSL methods of this model.

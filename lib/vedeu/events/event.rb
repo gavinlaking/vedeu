@@ -76,11 +76,11 @@ module Vedeu
       # @param name [String]
       # @return [Boolean]
       def unbind(name)
-        return false unless Vedeu.events_repository.registered?(name)
+        return false unless Vedeu.events.registered?(name)
 
         Vedeu.log("Unbinding event: '#{name}")
 
-        Vedeu.events_repository.remove(name)
+        Vedeu.events.remove(name)
         true
       end
       alias_method :unevent, :unbind
@@ -100,7 +100,7 @@ module Vedeu
       @deadline     = 0
       @executed_at  = 0
       @now          = 0
-      @repository   = Vedeu.events_repository
+      @repository   = Vedeu.events
     end
 
     def bind

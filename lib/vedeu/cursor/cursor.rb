@@ -29,7 +29,7 @@ module Vedeu
       @state   = state
       @x       = x
       @y       = y
-      @repository = Vedeu.cursors_repository
+      @repository = Vedeu.cursors
     end
 
     # Returns an escape sequence to position the cursor and set its visibility.

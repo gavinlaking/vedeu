@@ -96,7 +96,7 @@ module Vedeu
 
     describe '.resize' do
       before do
-        Vedeu.interfaces_repository.reset
+        Vedeu.interfaces.reset
         Terminal.console.stubs(:print)
       end
 
@@ -115,10 +115,10 @@ module Vedeu
     # describe '.unbind' do
     #   it 'unregister the event by name' do
     #     Vedeu.bind(:calcium) { proc { |x| x } }
-    #     Vedeu.events_repository.registered.must_include(:calcium)
+    #     Vedeu.events.registered.must_include(:calcium)
 
     #     Vedeu.unbind(:calcium)
-    #     Vedeu.events_repository.registered.wont_include(:calcium)
+    #     Vedeu.events.registered.wont_include(:calcium)
     #   end
     # end
 

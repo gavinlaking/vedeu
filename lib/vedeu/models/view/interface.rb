@@ -60,7 +60,7 @@ module Vedeu
       @group    = ''
       @name     = ''
       @lines    = Vedeu::Model::Lines.new(@attributes[:lines], self)
-      @repository = Vedeu.interfaces_repository
+      @repository = Vedeu.interfaces
     end
 
     # Returns the class responsible for defining the DSL methods of this model.
@@ -95,8 +95,8 @@ module Vedeu
     private
 
     def register_as_focussable
-      unless Vedeu.focus_repository.registered?(name)
-        Vedeu.focus_repository.add(name)
+      unless Vedeu.focusable.registered?(name)
+        Vedeu.focusable.add(name)
       end
     end
 
@@ -104,14 +104,14 @@ module Vedeu
       options = { delay: delay }
       event   = "_refresh_#{name}_".to_sym
 
-      unless Vedeu.events_repository.registered?(event)
+      unless Vedeu.events.registered?(event)
         Vedeu.bind(event, options) { Vedeu::Refresh.by_name(name) }
       end
 
       if group
         event = "_refresh_group_#{group}_".to_sym
 
-        unless Vedeu.events_repository.registered?(event)
+        unless Vedeu.events.registered?(event)
           Vedeu.bind(event, options) { Vedeu::Refresh.by_group(group) }
         end
       end

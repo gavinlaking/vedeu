@@ -53,7 +53,7 @@ module Vedeu
         end
 
         context 'when the key is not valid' do
-          before { Vedeu.keymaps_repository.stubs(:valid?).raises(KeyInUse) }
+          before { Vedeu.keymaps.stubs(:valid?).raises(KeyInUse) }
 
           it { proc { subject }.must_raise(KeyInUse) }
         end

@@ -13,7 +13,7 @@ module Vedeu
     private
 
     def repository
-      Vedeu.interfaces_repository
+      Vedeu.interfaces
     end
   end
 

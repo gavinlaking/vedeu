@@ -6,7 +6,7 @@ module Vedeu
 
     let(:described) { Vedeu::Refresh }
 
-    before { Vedeu.interfaces_repository.reset }
+    before { Vedeu.interfaces.reset }
 
     describe '.all' do
       subject { described.all }
@@ -26,13 +26,13 @@ module Vedeu
       subject { described.by_focus }
 
       context 'when there are no registered interfaces' do
-        before { Vedeu.focus_repository.reset }
+        before { Vedeu.focusable.reset }
 
         it { Refresh.by_focus.must_equal(nil) }
       end
 
       context 'when there are registered interfaces' do
-        # before { Vedeu.focus_repository.add('lead') }
+        # before { Vedeu.focusable.add('lead') }
 
         # it { subject.must_equal('lead') }
       end
@@ -40,7 +40,7 @@ module Vedeu
 
     describe '.by_group' do
       context 'when there are no registered groups' do
-        before { Vedeu.groups_repository.reset }
+        before { Vedeu.groups.reset }
 
         it { proc { Refresh.by_group('') }.must_raise(ModelNotFound) }
       end

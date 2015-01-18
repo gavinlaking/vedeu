@@ -46,7 +46,7 @@ module Vedeu
       it { assigns(subject, '@deadline', 0) }
       it { assigns(subject, '@executed_at', 0) }
       it { assigns(subject, '@now', 0) }
-      it { assigns(subject, '@repository', Vedeu.events_repository) }
+      it { assigns(subject, '@repository', Vedeu.events) }
     end
 
     describe '#bind' do

@@ -28,7 +28,7 @@ module Vedeu
     def initialize(name, *args)
       @name = name
       @args = args
-      @repository = Vedeu.events_repository
+      @repository = Vedeu.events
     end
 
     # @see Vedeu::Trigger.trigger

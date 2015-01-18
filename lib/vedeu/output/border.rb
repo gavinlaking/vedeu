@@ -304,7 +304,7 @@ module Vedeu
     #
     # @return [String]
     def viewport
-      cursor = Vedeu.cursors_repository.by_name(interface.name)
+      cursor = Vedeu.cursors.by_name(interface.name)
 
       @_viewport ||= Viewport.show(interface, cursor)
     end
