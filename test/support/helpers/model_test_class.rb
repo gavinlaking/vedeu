@@ -14,6 +14,7 @@ module Vedeu
       @colour = @attributes[:colour]
       @name   = @attributes[:name]
       @style  = @attributes[:style]
+      @repository = Vedeu::RepositoryTestModule
     end
 
     def deputy
@@ -28,10 +29,6 @@ module Vedeu
         name:   '',
         style:  [],
       }
-    end
-
-    def repository
-      Vedeu::RepositoryTestModule
     end
 
   end # ModelTestClass

@@ -16,6 +16,7 @@ module Vedeu
       it { assigns(described, '@name', 'elements') }
       it { assigns(described, '@current', 0) }
       it { assigns(described, '@selected', nil) }
+      it { assigns(described, '@repository', Vedeu.menus_repository) }
     end
 
     describe '#current' do

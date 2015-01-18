@@ -12,12 +12,7 @@ module Vedeu
 
     def initialize(name = nil)
       @name = name
-    end
-
-    private
-
-    def repository
-      Vedeu::TestRepository.new(self.class)
+      @repository = Vedeu::TestRepository.new(self.class)
     end
   end
 

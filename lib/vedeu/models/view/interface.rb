@@ -60,6 +60,7 @@ module Vedeu
       @group    = ''
       @name     = ''
       @lines    = Vedeu::Model::Lines.new(@attributes[:lines], self)
+      @repository = Vedeu.interfaces_repository
     end
 
     # Returns the class responsible for defining the DSL methods of this model.
@@ -92,11 +93,6 @@ module Vedeu
     end
 
     private
-
-    # @return [Repository] The repository class for this model.
-    def repository
-      Vedeu.interfaces_repository
-    end
 
     def register_as_focussable
       unless Vedeu.focus_repository.registered?(name)

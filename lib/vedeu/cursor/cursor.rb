@@ -29,6 +29,7 @@ module Vedeu
       @state   = state
       @x       = x
       @y       = y
+      @repository = Vedeu.cursors_repository
     end
 
     # Returns an escape sequence to position the cursor and set its visibility.
@@ -48,11 +49,6 @@ module Vedeu
     end
 
     private
-
-    # @return [Repository] The repository class for this model.
-    def repository
-      Vedeu.cursors_repository
-    end
 
     # Returns the escape sequence to position the cursor and set its visibility.
     #

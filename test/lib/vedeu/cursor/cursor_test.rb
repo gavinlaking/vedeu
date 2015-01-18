@@ -17,6 +17,7 @@ module Vedeu
       it { assigns(described, '@state', :show) }
       it { assigns(described, '@x', 19) }
       it { assigns(described, '@y', 8) }
+      it { assigns(described, '@repository', Vedeu.cursors_repository) }
     end
 
     describe '#name' do

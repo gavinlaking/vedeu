@@ -32,6 +32,7 @@ module Vedeu
       @back     = back
       @front    = front
       @previous = previous
+      @repository = Vedeu.buffers_repository
     end
 
     # Add the content to the back buffer, then update the repository. Returns
@@ -119,11 +120,6 @@ module Vedeu
       return false if public_send(buffer).lines.empty?
 
       true
-    end
-
-    # @return [Repository] The repository class for this model.
-    def repository
-      Vedeu.buffers_repository
     end
 
   end # Buffer

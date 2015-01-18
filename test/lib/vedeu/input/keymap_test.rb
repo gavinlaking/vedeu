@@ -16,6 +16,7 @@ module Vedeu
       it { return_type_for(subject, Keymap) }
       it { assigns(subject, '@name', map_name) }
       it { subject.instance_variable_get('@keys').must_be_instance_of(Vedeu::Model::Collection) }
+      it { assigns(subject, '@repository', Vedeu.keymaps) }
     end
 
     describe '#deputy' do

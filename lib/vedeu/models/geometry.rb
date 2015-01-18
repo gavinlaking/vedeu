@@ -52,6 +52,7 @@ module Vedeu
       @xn      = @attributes[:xn]
       @y       = @attributes[:y]
       @yn      = @attributes[:yn]
+      @repository = Vedeu.geometries_repository
     end
 
     # Returns the class responsible for defining the DSL methods of this model.
@@ -347,11 +348,6 @@ module Vedeu
     end
 
     private
-
-    # @return [Repository] The repository class for this model.
-    def repository
-      Vedeu.geometries_repository
-    end
 
     # Returns the y coordinate as an offset index in the area's y range. When a
     # value is provided, the y coordinate is overridden. Crudely corrects out of

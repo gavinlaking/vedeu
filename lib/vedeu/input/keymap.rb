@@ -46,6 +46,7 @@ module Vedeu
     def initialize(name, keys = [])
       @name = name
       @keys = Vedeu::Model::Collection.coerce(keys)
+      @repository = Vedeu.keymaps
     end
 
     # Returns the class responsible for defining the DSL methods of this model.
@@ -85,10 +86,6 @@ module Vedeu
     end
 
     private
-
-    def repository
-      Vedeu.keymaps_repository
-    end
 
     # @param key [Vedeu::Key]
     def valid?(key)

@@ -11,6 +11,7 @@ module Vedeu
       it { return_type_for(described, Group) }
       it { assigns(described, '@members', members.to_set) }
       it { assigns(described, '@name', 'organics') }
+      it { assigns(described, '@repository', Vedeu.groups_repository) }
     end
 
     describe '#add' do

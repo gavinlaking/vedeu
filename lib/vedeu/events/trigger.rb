@@ -28,6 +28,7 @@ module Vedeu
     def initialize(name, *args)
       @name = name
       @args = args
+      @repository = Vedeu.events_repository
     end
 
     # @see Vedeu::Trigger.trigger
@@ -48,12 +49,7 @@ module Vedeu
 
     private
 
-    attr_reader :name, :args
-
-    # @return [Vedeu::Events]
-    def repository
-      Vedeu.events_repository
-    end
+    attr_reader :name, :args, :repository
 
   end # Trigger
 

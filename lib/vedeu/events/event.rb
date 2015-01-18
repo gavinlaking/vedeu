@@ -100,6 +100,7 @@ module Vedeu
       @deadline     = 0
       @executed_at  = 0
       @now          = 0
+      @repository   = Vedeu.events_repository
     end
 
     def bind
@@ -133,11 +134,6 @@ module Vedeu
 
     attr_reader   :closure, :name
     attr_accessor :deadline, :executed_at, :now
-
-    # @return [Repository] The repository class for this model.
-    def repository
-      Vedeu.events_repository
-    end
 
     # Execute the code stored in the event closure.
     #
