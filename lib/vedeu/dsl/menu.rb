@@ -26,10 +26,10 @@ module Vedeu
       end
 
       # @param block [Proc]
-      # @raise [InvalidSyntax] When the required block is not given.
+      # @raise [InvalidSyntax] The required block was not given.
       # @return [Menu]
       # def define(&block)
-      #   return requires_block('menu') unless block_given?
+      #   fail InvalidSyntax, "'#{__callee__}' requires a block." unless block_given?
 
       #   @self_before_instance_eval = eval('self', block.binding)
 

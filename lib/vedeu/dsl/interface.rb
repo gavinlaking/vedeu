@@ -23,9 +23,10 @@ module Vedeu
       # Allows the setting of a border for the interface.
       #
       # @param block [Proc]
+      # @raise [InvalidSyntax] The required block was not given.
       # @return [Hash]
       def border(&block)
-        return requires_block(__callee__) unless block_given?
+        fail InvalidSyntax, "'#{__callee__}' requires a block." unless block_given?
 
         model.border = Vedeu::Border.build(model, { enabled: true }, &block)
       end
@@ -104,10 +105,11 @@ module Vedeu
       #     geometry do
       #       ...
       #
+      # @raise [InvalidSyntax] The required block was not given.
       # @return [Geometry]
       # @see Vedeu::DSL::Geometry
       def geometry(&block)
-        return requires_block(__callee__) unless block_given?
+        fail InvalidSyntax, "'#{__callee__}' requires a block." unless block_given?
 
         model.geometry = Vedeu::Geometry.build({}, &block)
       end
@@ -128,12 +130,13 @@ module Vedeu
         model.group = value
       end
 
+      # @raise [InvalidSyntax] The required block was not given.
       # @see Vedeu::API#keys
       def keys(&block)
-        return requires_block(__callee__) unless block_given?
+        fail InvalidSyntax, "'#{__callee__}' requires a block." unless block_given?
 
         # Keymap.keys(model.name, &block)
-        Vedeu::Keymap.build(model.name, &block).store
+        Vedeu.keymap(model.name, &block).store
       end
 
       # Specify multiple lines in a view.
@@ -147,9 +150,10 @@ module Vedeu
       #     end
       #   end
       #
+      # @raise [InvalidSyntax] The required block was not given.
       # @return [Line]
       def lines(&block)
-        return requires_block(__callee__) unless block_given?
+        fail InvalidSyntax, "'#{__callee__}' requires a block." unless block_given?
 
         model.lines.add(Vedeu::Line.build([], model, nil, nil, &block))
       end

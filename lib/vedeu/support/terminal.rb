@@ -18,10 +18,10 @@ module Vedeu
     # attempts to restore the screen. See {Vedeu::Terminal#restore_screen}.
     #
     # @param block [Proc]
-    # @raise [InvalidSyntax] When the required block is not given.
+    # @raise [InvalidSyntax] The required block was not given.
     # @return [Array]
     def open(&block)
-      return requires_block(__callee__) unless block_given?
+      fail InvalidSyntax, "'#{__callee__}' requires a block." unless block_given?
 
       if raw_mode?
         Vedeu.log("Terminal entering 'raw' mode")

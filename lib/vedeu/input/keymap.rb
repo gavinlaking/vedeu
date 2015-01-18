@@ -27,10 +27,10 @@ module Vedeu
       #   keymap 'my_interface' do
       #     ...
       #
-      # @raise [InvalidSyntax] When the required block is not given.
+      # @raise [InvalidSyntax] The required block was not given.
       # @return [Keymap]
       def build(name = '_global_', &block)
-        return requires_block(__callee__) unless block_given?
+        fail InvalidSyntax, "'#{__callee__}' requires a block." unless block_given?
 
         model = new(name)
         model.deputy.instance_eval(&block)

@@ -33,10 +33,10 @@ module Vedeu
         #     name 'interfaces_must_have_a_name'
         #     ...
         #
-        # @raise [InvalidSyntax] When the required block is not given.
+        # @raise [InvalidSyntax] The required block was not given.
         # @return [Interface]
         def interface(name = '', &block)
-          return requires_block(__callee__) unless block_given?
+          fail InvalidSyntax, "'#{__callee__}' requires a block." unless block_given?
 
           interface      = Vedeu::Interface.build(&block)
           interface.name = name if defined_value?(name)
@@ -57,10 +57,10 @@ module Vedeu
         #     view 'my_interface' do
         #       ...
         #
-        # @raise [InvalidSyntax] When the required block is not given.
+        # @raise [InvalidSyntax] The required block was not given.
         # @return [Array<Interface>]
         def renders(&block)
-          return requires_block(__callee__) unless block_given?
+          fail InvalidSyntax, "'#{__callee__}' requires a block." unless block_given?
 
           store(:store_immediate, &block)
         end
@@ -88,10 +88,10 @@ module Vedeu
         #     end
         #     ...
         #
-        # @raise [InvalidSyntax] When the required block is not given.
+        # @raise [InvalidSyntax] The required block was not given.
         # @return [Array<Interface>]
         def views(&block)
-          return requires_block(__callee__) unless block_given?
+          fail InvalidSyntax, "'#{__callee__}' requires a block." unless block_given?
 
           store(:store_deferred, &block)
         end

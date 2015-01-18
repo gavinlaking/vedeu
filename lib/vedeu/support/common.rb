@@ -31,15 +31,6 @@ module Vedeu
         removed in version #{version}.\nUse: #{new_method} (#{DOCS_URL}#{hint})"
     end
 
-    # Raises an exception which includes in the message the method which
-    # requires a block to be passed to it.
-    #
-    # @param method [String|Symbol] The method which requires a block.
-    # @raise [InvalidSyntax]
-    def requires_block(method)
-      fail InvalidSyntax, "`#{method}` requires a block."
-    end
-
     # Returns the array as a sentence.
     #
     # @param array [Array]

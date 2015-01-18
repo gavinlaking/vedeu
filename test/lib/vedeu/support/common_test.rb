@@ -46,12 +46,6 @@ module Vedeu
       it { proc { subject }.must_raise(DeprecationError) }
     end
 
-    describe '#requires_block' do
-      subject { described.requires_block(:some_method) }
-
-      it { proc { subject }.must_raise(InvalidSyntax) }
-    end
-
     describe '#to_sentence' do
       let(:array) { %w{ hydrogen helium lithium } }
 

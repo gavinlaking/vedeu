@@ -53,10 +53,10 @@ module Vedeu
       #     items Track.all_my_favourites
       #     ...
       #
-      # @raise [InvalidSyntax] When the required block is not given.
+      # @raise [InvalidSyntax] The required block was not given.
       # @return [API::Menu]
       def menu(name = '', &block)
-        return requires_block(__callee__) unless block_given?
+        fail InvalidSyntax, "'#{__callee__}' requires a block." unless block_given?
 
         build([], name, nil, nil, &block).store
       end

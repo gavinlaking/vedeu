@@ -49,12 +49,8 @@ module Vedeu
 
     # Return the interface currently focussed.
     #
-    # @raise [NoInterfacesDefined] When no interfaces are defined, we cannot
-    #   make one focussed.
     # @return [String]
     def current
-      fail NoInterfacesDefined if empty?
-
       storage.first
     end
     alias_method :focus, :current
