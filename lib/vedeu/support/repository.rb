@@ -33,11 +33,10 @@ module Vedeu
 
     # Return the model for the interface currently in focus.
     #
-    # @return []
+    # @return [String|NilClass]
     def current
-      find_or_create(Vedeu.focus)
+      find_or_create(Vedeu.focus) if Vedeu.focus
     end
-
 
     def each(&block)
       storage.each(&block)
