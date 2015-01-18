@@ -68,8 +68,10 @@ module Vedeu
         subject.must_equal('thallium')
       end
 
-      it 'raises an exception if there are no interfaces defined' do
-        proc { subject }.must_raise(NoInterfacesDefined)
+      context 'when no interfaces are defined' do
+        before { Focus.reset }
+
+        it { subject.must_equal(nil) }
       end
 
       context 'API methods' do
@@ -78,10 +80,6 @@ module Vedeu
           Focus.add('lead')
           Focus.add('bismuth')
           Vedeu.focus.must_equal('thallium')
-        end
-
-        it 'raises an exception if there are no interfaces defined' do
-          proc { Vedeu.focus }.must_raise(NoInterfacesDefined)
         end
       end
     end

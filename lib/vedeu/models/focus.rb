@@ -164,7 +164,4 @@ module Vedeu
 
   end # Focus
 
-  def_delegators Vedeu::Focus, :focus, :focus_by_name, :focussed?,
-                               :focus_next, :focus_previous
-
 end # Vedeu

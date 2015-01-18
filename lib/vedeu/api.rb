@@ -1,8 +1,6 @@
 require 'vedeu/support/common'
 require 'vedeu/support/terminal'
-
 require 'vedeu/events/all'
-
 require 'vedeu/models/all'
 require 'vedeu/input/keymap'
 require 'vedeu/input/keymaps'
@@ -18,17 +16,20 @@ module Vedeu
   # @api public
   module API
 
-    include Vedeu::Common
-    extend  Forwardable
-    extend  self
+    extend Forwardable
+    extend self
 
+    def_delegators Vedeu::Event,         :bind, :trigger, :unbind
     def_delegators Vedeu::Configuration, :configure
     def_delegators Vedeu::DSL::View,     :interface, :renders, :views
+    def_delegators Vedeu::Focus,         :focus, :focus_by_name, :focussed?,
+                                         :focus_next, :focus_previous
     def_delegators Vedeu::DSL::Shared,   :use
-    def_delegators Vedeu::Keymap,        :keymap
     def_delegators Vedeu::Menu,          :menu
     def_delegators Vedeu::Terminal,      :height, :width, :resize
-    def_delegators Vedeu::Keymaps,       :keypress
+
+    # deprecated heathen
+    def_delegators Vedeu::Event, :event, :unevent
 
   end # API
 

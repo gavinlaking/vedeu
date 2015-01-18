@@ -28,7 +28,7 @@ module Vedeu
       context 'when there are no registered interfaces' do
         before { Vedeu.focus_repository.reset }
 
-        it { proc { Refresh.by_focus }.must_raise(NoInterfacesDefined) }
+        it { Refresh.by_focus.must_equal(nil) }
       end
 
       context 'when there are registered interfaces' do

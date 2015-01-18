@@ -16,10 +16,9 @@ module Vedeu
 
     # Refresh the interface which is currently focussed.
     #
-    # @raise [NoInterfacesDefined]
     # @return []
     def by_focus
-      by_name(Vedeu.focus)
+      by_name(Vedeu.focus) if Vedeu.focus
     end
 
     # Refresh an interface, or collection of interfaces belonging to a group.

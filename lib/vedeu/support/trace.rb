@@ -155,7 +155,6 @@ module Vedeu
         'Vedeu::KeyInUse',
         'Vedeu::MissingRequired',
         'Vedeu::ModeSwitch',
-        'Vedeu::NoInterfacesDefined',
         'Vedeu::NotImplemented',
         'Vedeu::OutOfRange',
       ]

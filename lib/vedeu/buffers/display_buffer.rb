@@ -35,12 +35,15 @@ module Vedeu
 
     private
 
-    # Registers a set of buffers for the interface.
+    # Registers a set of buffers for the interface, also adds interface's name
+    # to list of focussable interfaces.
     #
     # @see Vedeu::Buffer
     # @return [Interface]
     def store_new_buffer
       store_new_interface
+
+      Vedeu::Focus.add(name)
 
       unless Vedeu.buffers_repository.registered?(name)
         Vedeu.log("Registering buffer: '#{name}'")

@@ -265,9 +265,4 @@ module Vedeu
 
   end # Event
 
-  def_delegators Vedeu::Event, :bind, :trigger, :unbind
-
-  # deprecated heathen
-  def_delegators Vedeu::Event, :event, :unevent
-
 end # Vedeu
