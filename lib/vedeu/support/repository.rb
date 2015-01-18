@@ -15,6 +15,7 @@ module Vedeu
   class Repository
 
     include Vedeu::Common
+    include Enumerable
 
     attr_reader :model, :storage
 
@@ -35,6 +36,11 @@ module Vedeu
     # @return []
     def current
       find_or_create(Vedeu.focus)
+    end
+
+
+    def each(&block)
+      storage.each(&block)
     end
 
     # Return a boolean indicating whether the storage is empty.
