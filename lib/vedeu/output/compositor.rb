@@ -58,7 +58,7 @@ module Vedeu
 
       end
 
-      Output.render(interface)
+      Output.render(interface) if interface
     end
 
     private
