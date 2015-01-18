@@ -13,3 +13,6 @@ require 'vedeu/support/sentence'
 require 'vedeu/support/terminal'
 require 'vedeu/support/trace'
 require 'vedeu/support/visible'
+
+module Vedeu
+end # Vedeu

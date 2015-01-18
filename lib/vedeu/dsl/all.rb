@@ -11,3 +11,6 @@ require 'vedeu/dsl/line'
 require 'vedeu/dsl/menu'
 require 'vedeu/dsl/stream'
 require 'vedeu/dsl/view'
+
+module Vedeu
+end # Vedeu
