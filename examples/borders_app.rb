@@ -11,9 +11,14 @@ require 'vedeu'
 class VedeuBordersApp
   include Vedeu
 
+  configure do
+    debug!
+    log '/tmp/vedeu_borders_app.log'
+  end
+
   bind(:_initialize_) { trigger(:_refresh_) }
 
-  interface 'lur' do
+  interface 'apple' do
     border do
     end
     geometry do
@@ -25,7 +30,7 @@ class VedeuBordersApp
     colour  foreground: '#ffffff', background: '#ff0000'
   end
 
-  interface 'tan' do
+  interface 'ball' do
     geometry do
       x      11
       y      2
@@ -35,7 +40,7 @@ class VedeuBordersApp
     colour  foreground: '#ffffff', background: '#00ff00'
   end
 
-  interface 'tal' do
+  interface 'chair' do
     border do
       show_top false
     end
@@ -48,7 +53,7 @@ class VedeuBordersApp
     colour  foreground: '#ffffff', background: '#0000ff'
   end
 
-  interface 'ums' do
+  interface 'door' do
     border do
       show_bottom false
     end
@@ -61,7 +66,7 @@ class VedeuBordersApp
     colour  foreground: '#000000', background: '#ffff00'
   end
 
-  interface 'ulp' do
+  interface 'egg' do
     border do
       show_left false
     end
@@ -74,7 +79,7 @@ class VedeuBordersApp
     colour  foreground: '#000000', background: '#ffff00'
   end
 
-  interface 'hur' do
+  interface 'fish' do
     border do
       show_right false
     end
@@ -87,7 +92,7 @@ class VedeuBordersApp
     colour  foreground: '#000000', background: '#ffff00'
   end
 
-  interface 'sto' do
+  interface 'girl' do
     border do
       top_right    'B'
       top_left     'A'
@@ -103,7 +108,7 @@ class VedeuBordersApp
     colour  foreground: '#ffffff', background: '#ff0000'
   end
 
-  interface 'sod' do
+  interface 'hat' do
     border do
       horizontal '*'
       vertical   '$'
@@ -117,7 +122,7 @@ class VedeuBordersApp
     colour  foreground: '#ffffff', background: '#00ff00'
   end
 
-  interface 'sil' do
+  interface 'ice' do
     border do
       show_right  false
       show_bottom false
@@ -132,7 +137,7 @@ class VedeuBordersApp
     colour  foreground: '#ffffff', background: '#0000ff'
   end
 
-  interface 'ver' do
+  interface 'jug' do
     border do
       show_top   false
       show_right false
@@ -147,7 +152,7 @@ class VedeuBordersApp
     colour  foreground: '#000000', background: '#ffff00'
   end
 
-  interface 'ico' do
+  interface 'kite' do
     border do
       show_top    false
       show_bottom false
@@ -162,7 +167,7 @@ class VedeuBordersApp
     colour  foreground: '#000000', background: '#ffff00'
   end
 
-  interface 'sel' do
+  interface 'leaf' do
     border do
       show_top    false
       show_bottom false
@@ -177,7 +182,7 @@ class VedeuBordersApp
     colour  foreground: '#000000', background: '#ffff00'
   end
 
-  interface 'ens' do
+  interface 'moon' do
     border do
       colour foreground: '#ffff00', background: '#0000ff'
     end
@@ -190,7 +195,7 @@ class VedeuBordersApp
     colour foreground: '#ffffff', background: '#ff0000'
   end
 
-  interface 'eab' do
+  interface 'net' do
     border do
       style 'negative'
     end
@@ -205,83 +210,78 @@ class VedeuBordersApp
   end
 
   renders do
-    view('lur') do
+    view('apple') do
       lines do
         line 'on'
       end
     end
-    view('tan') do
+    view('ball') do
       lines do
         line 'off'
       end
     end
-    view('tal') do
+    view('chair') do
       lines do
         line 'no t'
       end
     end
-    view('ums') do
+    view('door') do
       lines do
         line 'no b'
       end
     end
-    view('ulp') do
+    view('egg') do
       lines do
         line 'no l'
       end
     end
-    view('hur') do
+    view('fish') do
       lines do
         line 'no r'
       end
     end
 
-    view('sto') do
+    view('girl') do
       lines do
         line 'chars'; line '1'
       end
     end
-    view('sod') do
+    view('hat') do
       lines do
         line 'chars'; line '2'
       end
     end
-    view('sil') do
+    view('ice') do
       lines do
         line 'only';  line 't'
       end
     end
-    view('ver') do
+    view('jug') do
       lines do
         line 'only';  line 'b'
       end
     end
-    view('ico') do
+    view('kite') do
       lines do
         line 'only';  line 'l'
       end
     end
-    view('sel') do
+    view('leaf') do
       lines do
         line 'only';  line 'r'
       end
     end
 
-    view('ens') do
+    view('moon') do
       lines do
         line 'color'
       end
     end
-    view('eab') do
+    view('net') do
       lines do
         line 'style'
       end
     end
-  end
-
-  Vedeu.configure do
-    debug!
-    log '/tmp/vedeu_borders_app.log'
   end
 
   def self.start(argv = ARGV)
