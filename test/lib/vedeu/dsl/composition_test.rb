@@ -30,8 +30,8 @@ module Vedeu
 
         it { return_type_for(subject.first, Vedeu::Interface) }
 
-        it 'overrides the DSL given name with the method argument name' do
-          return_value_for(subject.first.name, 'dysprosium')
+        it 'overrides the method argument name with the DSL given name' do
+          return_value_for(subject.first.name, 'calcium')
         end
 
         context 'when the block is not given' do

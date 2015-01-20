@@ -7,41 +7,34 @@ module Vedeu
     let(:described) { Vedeu::Viewport }
     let(:instance)  { described.new(interface, cursor) }
     let(:interface) {
-      Interface.new({
-        name:     'lithium',
-        geometry: {
-          width:  3,
-          height: 3,
-        },
-        lines: lines
-      })
-      # Vedeu::Interface.build do
-      #   geometry do
-      #     width 3
-      #     height 3
-      #   end
-      #   lines do
-      #     line 'Beryllium'
-      #     line 'Magnesium'
-      #     line 'Plutonium'
-      #     line 'Potassium'
-      #     line 'Lanthanum'
-      #     line 'Stront­ium'
-      #   end
-      #   name 'lithium'
-      # end
+      # Interface.new({
+      #   name:     'lithium',
+      #   geometry: {
+      #     width:  3,
+      #     height: 3,
+      #   },
+      #   lines: lines
+      # })
+      Vedeu::Interface.build do
+        geometry do
+          height 3
+          width 3
+        end
+        lines do
+          line 'barium'
+          line 'carbon'
+          line 'helium'
+          line 'iodine'
+          line 'nickel'
+          line 'osmium'
+        end
+        name 'lithium'
+      end
     }
     let(:cursor) { Cursor.new('lithium', true, x, y) }
     let(:lines)  { [] }
     let(:x)      { 1 }
     let(:y)      { 1 }
-
-    before do
-      interface.geometry = Vedeu::Geometry.build do
-        height 3
-        width  3
-      end
-    end
 
     describe '#initialize' do
       subject { instance }
@@ -58,22 +51,13 @@ module Vedeu
 
       it { return_type_for(subject, Array) }
 
-      context 'when there is no content' do
-        it { return_value_for(subject, []) }
-      end
+      # context 'when there is no content' do
+      #   before { interface.stubs(:lines).returns([]) }
+
+      #   it { return_value_for(subject, []) }
+      # end
 
       context 'when there is content' do
-        let(:lines) {
-          [
-            Line.new([Stream.new("barium")]),
-            Line.new([Stream.new("carbon")]),
-            Line.new([Stream.new("helium")]),
-            Line.new([Stream.new("iodine")]),
-            Line.new([Stream.new("nickel")]),
-            Line.new([Stream.new("osmium")])
-          ]
-        }
-
         context "when the cursor's y position is outside the viewable area - negative" do
           let(:x) { -4 }
           let(:y) { -4 }

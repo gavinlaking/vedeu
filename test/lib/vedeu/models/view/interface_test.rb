@@ -119,7 +119,7 @@ module Vedeu
       subject { instance.store }
 
       context 'when the interface has no name' do
-        it { proc { subject }.must_raise(InvalidSyntax) }
+        it { proc { subject }.must_raise(MissingRequired) }
       end
 
       context 'when the interface has a name' do

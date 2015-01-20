@@ -224,8 +224,8 @@ describe 'Interfaces' do
 
   describe '#name' do
     subject {
-      Vedeu.interface 'interfaces' do
-        name ''
+      Vedeu.interface do
+        name 'interfaces'
       end
     }
 

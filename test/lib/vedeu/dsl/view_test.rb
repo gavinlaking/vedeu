@@ -30,7 +30,7 @@ module Vedeu
             end
           }
 
-          it { proc { subject }.must_raise(InvalidSyntax) }
+          it { proc { subject }.must_raise(MissingRequired) }
         end
       end
 

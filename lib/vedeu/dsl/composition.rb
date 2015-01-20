@@ -33,11 +33,12 @@ module Vedeu
       # @raise [InvalidSyntax] The required block was not given.
       # @return [Vedeu::Model::Collection<Vedeu::Interface>]
       def view(interface_name = '', &block)
-        fail InvalidSyntax, "'#{__callee__}' requires a block." unless block_given?
-
-        interface = Vedeu::Interface.build(nil, model, nil, nil) do
-          name interface_name
+        unless block_given?
+          fail InvalidSyntax, "'#{__callee__}' requires a block."
         end
+
+        interface = Vedeu::Interface
+          .build({ name: interface_name, parent: model }, &block)
 
         model.interfaces.add(interface)
       end

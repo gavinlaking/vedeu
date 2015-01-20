@@ -153,9 +153,13 @@ module Vedeu
       # @raise [InvalidSyntax] The required block was not given.
       # @return [Line]
       def lines(&block)
-        fail InvalidSyntax, "'#{__callee__}' requires a block." unless block_given?
+        unless block_given?
+          fail InvalidSyntax, "'#{__callee__}' requires a block."
+        end
 
-        model.lines.add(Vedeu::Line.build([], model, nil, nil, &block))
+        attributes = { streams: [], parent: model }
+
+        model.lines.add(Vedeu::Line.build(attributes, &block))
       end
 
       # The name of the interface. Used to reference the interface throughout

@@ -2,8 +2,7 @@ require 'vedeu/support/common'
 require 'vedeu/support/terminal'
 require 'vedeu/events/all'
 require 'vedeu/models/all'
-require 'vedeu/input/keymap'
-require 'vedeu/input/keymaps'
+require 'vedeu/input/all'
 require 'vedeu/dsl/composition'
 require 'vedeu/dsl/shared'
 require 'vedeu/dsl/view'
@@ -22,9 +21,11 @@ module Vedeu
     def_delegators Vedeu::Event,         :bind, :trigger, :unbind
     def_delegators Vedeu::Configuration, :configure
     def_delegators Vedeu::DSL::View,     :interface, :renders, :views
+    def_delegators Vedeu::DSL::Shared,   :use
     def_delegators Vedeu::Focus,         :focus, :focus_by_name, :focussed?,
                                          :focus_next, :focus_previous
-    def_delegators Vedeu::DSL::Shared,   :use
+    def_delegators Vedeu::Keymap,        :keymap
+    def_delegators Vedeu::Keypress,      :keypress
     def_delegators Vedeu::Menu,          :menu
     def_delegators Vedeu::Terminal,      :height, :width, :resize
 

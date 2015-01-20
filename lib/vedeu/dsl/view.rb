@@ -38,9 +38,7 @@ module Vedeu
         def interface(name = '', &block)
           fail InvalidSyntax, "'#{__callee__}' requires a block." unless block_given?
 
-          interface      = Vedeu::Interface.build(&block)
-          interface.name = name if defined_value?(name)
-          interface.store
+          Vedeu::Interface.build({ name: name }, &block).store
         end
 
         # Immediate render

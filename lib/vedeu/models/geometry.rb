@@ -34,6 +34,18 @@ module Vedeu
     attr_reader   :attributes
     attr_writer   :x, :y
 
+    # Build models using a simple DSL when a block is given, otherwise returns a
+    # new instance of the class including this module.
+    #
+    # @param attributes [Hash]
+    # @param block [Proc]
+    # @return [Class]
+    def self.build(attributes = {}, &block)
+      model = self.new(attributes)
+      model.deputy.instance_eval(&block) if block_given?
+      model
+    end
+
     # Returns a new instance of Geometry.
     #
     # @param attributes [Hash]

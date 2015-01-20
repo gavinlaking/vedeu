@@ -20,53 +20,71 @@ module Vedeu
     include Vedeu::Presentation
     include Vedeu::DisplayBuffer
 
+    attr_accessor :border, :colour, :delay, :geometry, :group, :lines, :name,
+                  :parent, :style
+    alias_method :content, :lines
+    alias_method :value, :lines
+
     def_delegators :geometry, :north, :east,  :south,  :west,
                               :top,   :right, :bottom, :left,
                               :width, :height, :origin
 
-    attr_reader :attributes
-
-    attr_accessor :border, :delay, :geometry, :group, :lines, :name
-    alias_method :content, :lines
-
-    attr_accessor :parent
-
     class << self
 
-      include Vedeu::Common
+      # Build models using a simple DSL when a block is given, otherwise returns a
+      # new instance of the class including this module.
+      #
+      # @param attributes [Hash]
+      # @param block [Proc]
+      # @return [Class]
+      def build(attributes = {}, &block)
+        attrs = defaults.merge!(attributes)
 
-      def build(lines = [], parent = nil, colour = nil, style = nil, &block)
-        model = new({ lines: lines, parent: parent, colour: colour, style: style })
+        model = new(attrs[:name],
+                    attrs[:lines],
+                    attrs[:parent],
+                    attrs[:colour],
+                    attrs[:style])
         model.deputy.instance_eval(&block) if block_given?
         model
       end
 
+      private
+
+      def defaults
+        {
+          colour: nil,
+          lines:  [],
+          name:   '',
+          parent: nil,
+          style:  nil,
+        }
+      end
     end
 
     # Return a new instance of Interface.
     #
-    # @param attributes [Hash]
+    # @param name [String]
+    # @param lines []
+    # @param parent []
+    # @param colour []
+    # @param style []
     # @return [Interface]
-    def initialize(attributes = {})
-      @attributes = defaults.merge(attributes)
+    def initialize(name = '', lines = [], parent = nil, colour = nil, style = nil)
+      @name   = name
+      @lines  = Vedeu::Model::Lines.new(lines, self)
+      @parent = parent
+      @colour = colour
+      @style  = style
 
       @border   = nil
-      @colour   = nil
       @delay    = 0.0
-      @geometry = nil
+      @geometry = false
       @group    = ''
-      @name     = ''
-      @lines    = Vedeu::Model::Lines.new(@attributes[:lines], self)
+
       @repository = Vedeu.interfaces
     end
 
-
-    def lines
-      @lines
-    end
-    alias_method :value, :lines
-
-    # @return [Interface]
     def store
       super
 
@@ -78,18 +96,6 @@ module Vedeu
     end
 
     private
-
-
-    # The default values for a new instance of Interface.
-    #
-    # @return [Hash]
-    def defaults
-      {
-        lines:    [],
-        parent:   nil,
-        style:    '',
-      }
-    end
 
   end # Interface
 

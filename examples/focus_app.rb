@@ -19,6 +19,11 @@ require 'vedeu'
 class VedeuFocusApp
   include Vedeu
 
+  configure do
+    debug!
+    log '/tmp/vedeu_focus_app.log'
+  end
+
   bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
 
   interface 'aluminium' do
@@ -106,11 +111,11 @@ class VedeuFocusApp
   end
 
   # Tell Vedeu that each interface can use 'space'.
-  keys('aluminium', 'boron', 'copper', 'dubnium', 'status') do
+  keymap('aluminium', 'boron', 'copper', 'dubnium', 'status') do
     key(' ') do
       Vedeu.focus_next
 
-      render { view('status') { line Vedeu.focus } }
+      Vedeu.render { views { view('status') { lines { line Vedeu.focus } } } }
     end
   end
 

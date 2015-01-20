@@ -12,22 +12,41 @@ module Vedeu
     include Vedeu::Model
     include Vedeu::Presentation
 
-    attr_accessor :parent
+    attr_accessor :parent, :streams
+    alias_method :value, :streams
+
+    class << self
+      def build(attributes = {}, &block)
+        attributes = defaults.merge(attributes)
+
+        model = new(attributes[:streams],
+                    attributes[:parent],
+                    attributes[:colour],
+                    attributes[:style])
+        model.deputy.instance_eval(&block) if block_given?
+        model
+      end
+
+      private
+
+      def defaults
+        {
+          colour:  nil,
+          parent:  nil,
+          streams: [],
+          style:   nil
+        }
+      end
+    end
 
     # Returns a new instance of Line.
     #
     # @return [Line]
     def initialize(streams = [], parent = nil, colour = nil, style = nil)
-      @streams = streams
-      @parent  = parent
       @colour  = colour
+      @parent  = parent
+      @streams = Vedeu::Model::Streams.coerce(streams, self)
       @style   = style
-    end
-
-    def self.build(streams = [], parent = nil, colour = nil, style = nil, &block)
-      model = new(streams, parent, colour, style)
-      model.deputy.instance_eval(&block) if block_given?
-      model
     end
 
     # Returns an array of all the characters with formatting for this line.
@@ -53,11 +72,6 @@ module Vedeu
     def size
       streams.map(&:size).inject(0, :+) { |sum, x| sum += x }
     end
-
-    def streams
-      Vedeu::Model::Streams.coerce(@streams, self)
-    end
-    alias_method :value, :streams
 
     private
 

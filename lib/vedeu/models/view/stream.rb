@@ -19,6 +19,30 @@ module Vedeu
     alias_method :data,    :value
     alias_method :text,    :value
 
+    class << self
+      def build(attributes, &block)
+        attributes = defaults.merge(attributes)
+
+        model = new(attributes[:streams],
+                    attributes[:parent],
+                    attributes[:colour],
+                    attributes[:style])
+        model.deputy.instance_eval(&block) if block_given?
+        model
+      end
+
+      private
+
+      def defaults
+        {
+          colour:  nil,
+          parent:  nil,
+          streams: nil,
+          style:   nil,
+        }
+      end
+    end
+
     # Returns a new instance of Stream.
     #
     # @param value  [String]

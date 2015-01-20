@@ -17,7 +17,6 @@ module Vedeu
     include Vedeu::Model
 
     attr_reader :back, :front, :name, :previous
-    alias_method :current, :front
 
     # Return a new instance of Buffer.
     #
@@ -85,7 +84,8 @@ module Vedeu
     def swap
       return false unless content_for?(:back)
 
-      Vedeu.trigger(:_cursor_origin_)
+      # TODO: Investigate if this is needed. (GL: 2015-01-20 19:43)
+      # Vedeu.trigger(:_cursor_origin_)
 
       self.previous = front
       self.front    = back
