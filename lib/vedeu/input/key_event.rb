@@ -21,10 +21,12 @@ module Vedeu
     # @return [Boolean]
     def trigger
       if exists?
-        use
+        keymap(name).use(key)
+
+        true
 
       else
-        discard
+        false
 
       end
     end
@@ -32,18 +34,6 @@ module Vedeu
     private
 
     attr_reader :name, :key, :repository
-
-    # @return [FalseClass]
-    def discard
-      false
-    end
-
-    # @return [TrueClass]
-    def use
-      keymap(name).use(key)
-
-      true
-    end
 
     # @return []
     def exists?
