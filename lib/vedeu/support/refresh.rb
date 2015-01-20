@@ -16,7 +16,7 @@ module Vedeu
 
     # Refresh the interface which is currently focussed.
     #
-    # @return []
+    # @return [|NilClass]
     def by_focus
       by_name(Vedeu.focus) if Vedeu.focus
     end
@@ -38,7 +38,7 @@ module Vedeu
     #   named buffer.
     # @return [Array|ModelNotFound]
     def by_name(name)
-      Vedeu.log("Refreshing: '#{name}'")
+      Vedeu.log("Refreshing interface: '#{name}'")
 
       buffer = Vedeu.buffers.find(name)
 

@@ -68,45 +68,17 @@ module Vedeu
 
     # @return [Interface]
     def store
-      unless defined_value?(name)
-        fail InvalidSyntax, 'Cannot store an interface without a name.'
-      end
-
       super
 
-      store_deferred
+      store_refresh_events
 
-      register_as_focussable
+      store_focusable
 
-      register_refresh_events
-
-      self
+      store_cursor
     end
 
     private
 
-    def register_as_focussable
-      unless Vedeu.focusable.registered?(name)
-        Vedeu.focusable.add(name)
-      end
-    end
-
-    def register_refresh_events
-      options = { delay: delay }
-      event   = "_refresh_#{name}_".to_sym
-
-      unless Vedeu.events.registered?(event)
-        Vedeu.bind(event, options) { Vedeu::Refresh.by_name(name) }
-      end
-
-      if group
-        event = "_refresh_group_#{group}_".to_sym
-
-        unless Vedeu.events.registered?(event)
-          Vedeu.bind(event, options) { Vedeu::Refresh.by_group(group) }
-        end
-      end
-    end
 
     # The default values for a new instance of Interface.
     #

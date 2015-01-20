@@ -7,6 +7,8 @@ module Vedeu
   #
   module DisplayBuffer
 
+    include Vedeu::Common
+
     # Store the view and immediate refresh it; causing to be pushed to the
     # Terminal.
     #
@@ -19,11 +21,15 @@ module Vedeu
       self
     end
 
-    # Store the view. This view will be shown next time the refresh event is
-    # triggered for the interface.
+    # Store the view if it has a name. This view will be shown next time the
+    # refresh event is triggered for the interface.
     #
     # @return [Interface]
     def store_deferred
+      unless defined_value?(name)
+        fail InvalidSyntax, 'Cannot store an interface without a name.'
+      end
+
       return store_new_buffer unless Vedeu.buffers.registered?(name)
 
       Vedeu.log("Updating buffer: '#{name}'")
@@ -35,16 +41,12 @@ module Vedeu
 
     private
 
-    # Registers a set of buffers for the interface, also adds interface's name
-    # to list of focussable interfaces.
+    # Registers a set of buffers for the interface unless already registered,
+    # and also adds interface's name to list of focussable interfaces.
     #
     # @see Vedeu::Buffer
     # @return [Interface]
     def store_new_buffer
-      store_new_interface
-
-      Vedeu::Focus.add(name)
-
       unless Vedeu.buffers.registered?(name)
         Vedeu.log("Registering buffer: '#{name}'")
 
@@ -54,14 +56,45 @@ module Vedeu
       self
     end
 
-    # Registers the interface.
+    # Registers refresh events for the interface unless already registered.
     #
     # @return [Interface]
-    def store_new_interface
-      unless Vedeu.interfaces.registered?(name)
-        Vedeu.log("Registering interface: '#{name}'")
+    def store_refresh_events
+      options = { delay: delay }
+      event   = "_refresh_#{name}_".to_sym
 
-        self.store
+      unless Vedeu.events.registered?(event)
+        Vedeu.bind(event, options) { Vedeu::Refresh.by_name(name) }
+      end
+
+      if group
+        event = "_refresh_group_#{group}_".to_sym
+
+        unless Vedeu.events.registered?(event)
+          Vedeu.bind(event, options) { Vedeu::Refresh.by_group(group) }
+        end
+      end
+
+      self
+    end
+
+    # Registers interface name in focus list unless already registered.
+    #
+    # @return [Interface]
+    def store_focusable
+      unless Vedeu.focusable.registered?(name)
+        Vedeu.focusable.add(name)
+      end
+
+      self
+    end
+
+    # Registers a new cursor for the interface unless already registered.
+    #
+    # @return [Interface]
+    def store_cursor
+      unless Vedeu.cursors.registered?(name)
+        Vedeu::Cursor.new(name).store
       end
 
       self
