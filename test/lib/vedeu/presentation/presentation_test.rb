@@ -6,6 +6,22 @@ module Vedeu
 
     let(:receiver) { PresentationTestClass.new }
 
+    describe '#colour=' do
+      let(:colour) { Colour.new({ foreground: '#00ff00', background: '#000000' }) }
+
+      subject { receiver.colour=(colour) }
+
+      it { subject.must_be_instance_of(Colour) }
+    end
+
+    describe '#style=' do
+      let(:style) { Style.new('normal') }
+
+      subject { receiver.style=(style) }
+
+      it { subject.must_be_instance_of(Style) }
+    end
+
     describe '#to_s' do
       let(:line) { Line.new(
           [],

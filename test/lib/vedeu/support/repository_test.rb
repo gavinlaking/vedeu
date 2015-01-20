@@ -65,6 +65,12 @@ module Vedeu
     #   end
     # end
 
+    describe '#each' do
+      subject { instance.each }
+
+      it { return_type_for(subject, Enumerator) }
+    end
+
     describe '#empty?' do
       subject { instance.empty? }
 

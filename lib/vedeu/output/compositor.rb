@@ -52,7 +52,7 @@ module Vedeu
     def compose
       content.each do |view|
         unless view.geometry
-          view.geometry = Vedeu.interfaces.find(view.name).geometry unless view.geometry
+          view.geometry = Vedeu.interfaces.find(view.name).geometry
         end
 
         Output.render(view)

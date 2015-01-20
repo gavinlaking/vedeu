@@ -365,6 +365,7 @@ module Vedeu
     #
     # @param value [Fixnum]
     # @return [Fixnum]
+    # :nocov:
     def y_index(value = y)
       if height <= 0 || value <= y_min
         0
@@ -377,6 +378,7 @@ module Vedeu
 
       end
     end
+    # :nocov:
 
     # Returns the x coordinate as an offset index in the area's x range. When a
     # value is provided, the x coordinate is overridden. Crudely corrects out of
@@ -392,6 +394,7 @@ module Vedeu
     #
     # @param value [Fixnum]
     # @return [Fixnum]
+    # :nocov:
     def x_index(value = x)
       if width <= 0 || value <= x_min
         0
@@ -404,6 +407,7 @@ module Vedeu
 
       end
     end
+    # :nocov:
 
     # Returns the maximum y index for an area.
     #

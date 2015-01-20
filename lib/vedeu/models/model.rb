@@ -31,11 +31,8 @@ module Vedeu
     # @param klass [Class|String]
     def demodulize(klass)
       klass = klass.to_s
-      if namespace = klass.rindex('::')
-        klass[(namespace + 2)..-1]
-      else
-        klass
-      end
+
+      klass[(klass.rindex('::') + 2)..-1]
     end
 
     # Returns the DSL class name responsible for this model.

@@ -26,34 +26,6 @@ module Vedeu
       end
     end
 
-    # describe '#demodulize' do
-    #   let(:klass) {}
-
-    #   subject { described.demodulize(klass) }
-
-    #   context 'with nil' do
-    #     it { subject.must_equal('') }
-    #   end
-
-    #   context 'with an empty string' do
-    #     let(:klass) { '' }
-
-    #     it { subject.must_equal('') }
-    #   end
-
-    #   context 'with a namespaced class' do
-    #     let(:klass) { Vedeu::DSL::Interface }
-
-    #     it { subject.must_equal('Interface') }
-    #   end
-
-    #   context 'with a non-namespaced class' do
-    #     let(:klass) { Composition }
-
-    #     it { subject.must_equal('Composition') }
-    #   end
-    # end
-
   end # Model
 
 end # Vedeu

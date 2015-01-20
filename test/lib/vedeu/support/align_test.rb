@@ -43,6 +43,15 @@ module Vedeu
             end
           end
 
+          context 'and the anchor is set to :align' do
+            let(:anchor) { :align }
+
+            it 'returns the value left aligned' do
+              Align.with(value, options)
+                .must_equal('Testing the Align class with various options    ')
+            end
+          end
+
           context 'and the anchor is set to centre' do
             let(:anchor) { :centre }
 

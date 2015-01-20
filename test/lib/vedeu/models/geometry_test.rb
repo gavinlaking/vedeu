@@ -302,8 +302,9 @@ module Vedeu
     end
 
     describe '#y_position' do
-      let(:instance) { Geometry.new({ height: 6, width: 6, x: 7, y: 5 }) }
+      let(:instance) { Geometry.new({ height: height, width: 6, x: 7, y: 5 }) }
       let(:index)    { 0 }
+      let(:height)   { 6 }
 
       subject { instance.y_position(index) }
 
@@ -319,6 +320,12 @@ module Vedeu
         let(:index) { 9 }
 
         it { subject.must_equal(11) }
+
+        context 'but the height is negative' do
+          let(:height) { -2 }
+
+          it { subject.must_equal(0) }
+        end
       end
 
       context 'with an index within range' do
@@ -329,8 +336,9 @@ module Vedeu
     end
 
     describe '#x_position' do
-      let(:instance) { Geometry.new({ height: 6, width: 6, x: 7, y: 5 }) }
+      let(:instance) { Geometry.new({ height: 6, width: width, x: 7, y: 5 }) }
       let(:index)    { 0 }
+      let(:width)    { 6 }
 
       subject { instance.x_position(index) }
 
@@ -346,6 +354,12 @@ module Vedeu
         let(:index) { 9 }
 
         it { subject.must_equal(13) }
+
+        context 'but the width is negative' do
+          let(:width) { -2 }
+
+          it { subject.must_equal(0) }
+        end
       end
 
       context 'with an index within range' do

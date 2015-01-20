@@ -144,11 +144,13 @@ module Vedeu
     #   is made infinite by the cursors last known position.
     #
     # @return [Fixnum]
+    # :nocov:
     def content_height
       return height unless content?
 
       [content.size, height].max
     end
+    # :nocov:
 
     # Returns the width of the content, or when no content, the visible width of
     # the interface.
@@ -157,18 +159,25 @@ module Vedeu
     #   is made infinite by the cursors last known position.
     #
     # @return [Fixnum]
+    # :nocov:
     def content_width
       return width unless content?
 
       [content_maximum_line_length, width].max
     end
+    # :nocov:
 
     # Returns the character length of the longest line for this interface.
     #
+    # @note This method is not used at the moment as the interface content area
+    #   is made infinite by the cursors last known position.
+    #
     # @return [Fixnum]
+    # :nocov:
     def content_maximum_line_length
       content.map { |line| line.size }.max
     end
+    # :nocov:
 
     # Return a boolean indicating whether this interface currently has content.
     #

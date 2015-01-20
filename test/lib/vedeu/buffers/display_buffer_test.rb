@@ -40,6 +40,12 @@ module Vedeu
 
       it { return_type_for(subject, example_model) }
 
+      context 'when the name is not defined' do
+        before { example_instance.stubs(:name) }
+
+        it { proc { subject }.must_raise(InvalidSyntax) }
+      end
+
       context 'when the buffer is not already registered' do
       end
 

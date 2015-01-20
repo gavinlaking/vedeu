@@ -19,6 +19,14 @@ module Vedeu
         Focus.registered.must_equal(['thallium'])
       end
 
+      it 'does not add it again if already exists' do
+        Focus.add('thallium')
+        Focus.add('lead')
+        Focus.add('bismuth')
+        Focus.add('bismuth', true)
+        Focus.registered.must_equal(['bismuth', 'thallium', 'lead'])
+      end
+
       it 'adds the interface to storage focussed' do
         Focus.add('thallium')
         Focus.add('lead', true)

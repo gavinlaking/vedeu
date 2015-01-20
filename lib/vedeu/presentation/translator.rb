@@ -26,6 +26,9 @@ module Vedeu
 
     include Vedeu::Coercions
 
+    attr_reader :colour
+    alias_method :value, :colour
+
     # Convert a CSS/HTML colour string into a terminal escape sequence.
     #
     # @param colour [Fixnum|String|Symbol]
@@ -64,15 +67,7 @@ module Vedeu
     end
     alias_method :to_s, :escape_sequence
 
-    # @return [String]
-    def colour
-      @colour
-    end
-    alias_method :value, :colour
-
     private
-
-    attr_reader :colour
 
     # @return [Boolean]
     def no_colour?
