@@ -50,23 +50,21 @@ module Vedeu
     #
     # @return [Array<Interface>]
     def compose
-      if interface && interface.geometry
-        # client provided geometry
+      content.each do |view|
+        unless view.geometry
+          view.geometry = Vedeu.interfaces.find(view.name).geometry unless view.geometry
+        end
 
-      else
-        # retrieve stored geometry
-
+        Output.render(view)
       end
-
-      Output.render(interface) if interface
     end
 
     private
 
     attr_reader :buffer
 
-    def interface
-      buffer.current
+    def content
+      buffer.content
     end
 
   end # Compositor
