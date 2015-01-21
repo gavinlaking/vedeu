@@ -23,7 +23,7 @@ module Vedeu
       def build(attributes = {}, &block)
         attributes = defaults.merge(attributes)
 
-        model = new(attributes[:streams],
+        model = new(attributes[:value],
                     attributes[:parent],
                     attributes[:colour],
                     attributes[:style])
@@ -37,8 +37,8 @@ module Vedeu
         {
           colour:  nil,
           parent:  nil,
-          streams: nil,
           style:   nil,
+          value:   '',
         }
       end
     end
@@ -50,7 +50,7 @@ module Vedeu
     # @param colour [Colour]
     # @param style  [Style]
     # @return [Stream]
-    def initialize(value = nil, parent = nil, colour = nil, style = nil)
+    def initialize(value = '', parent = nil, colour = nil, style = nil)
       @value  = value
       @parent = parent
       @colour = colour
