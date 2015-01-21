@@ -16,24 +16,50 @@ module Vedeu
     attr_accessor :parent
     attr_reader :position
 
-    def self.coerce(value = nil, parent = nil, colour = nil, style = nil, position = nil)
-      if value.is_a?(self)
-        value
+    class << self
+      def build(attributes = {}, &block)
+        attributes = defaults.merge(attributes)
 
-      elsif value.is_a?(Array)
-        if value.first.is_a?(self)
+        model = new(attributes[:value],
+                    attributes[:parent],
+                    attributes[:colour],
+                    attributes[:style],
+                    attributes[:position])
+        model.deputy.instance_eval(&block) if block_given?
+        model
+      end
+
+      def coerce(value = nil, parent = nil, colour = nil, style = nil, position = nil)
+        if value.is_a?(self)
           value
 
-        elsif value.first.is_a?(String)
-          value.map { |char| new(char, parent, colour, style, position) }
+        elsif value.is_a?(Array)
+          if value.first.is_a?(self)
+            value
 
+          elsif value.first.is_a?(String)
+            value.map { |char| new(char, parent, colour, style, position) }
+
+          else
+            # ...
+
+          end
         else
           # ...
 
         end
-      else
-        # ...
+      end
 
+      private
+
+      def defaults
+        {
+          colour:   nil,
+          parent:   nil,
+          position: nil,
+          style:    nil,
+          value:    nil,
+        }
       end
     end
 

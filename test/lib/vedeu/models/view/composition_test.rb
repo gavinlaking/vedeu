@@ -20,7 +20,7 @@ module Vedeu
 
     describe '.build' do
       subject {
-        described.build(interfaces, colour, style) do
+        described.build({}) do
           # ...
         end
       }

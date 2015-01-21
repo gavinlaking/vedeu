@@ -97,7 +97,7 @@ module Vedeu
         private
 
         def composition(&block)
-          Vedeu::Composition.build([], nil, nil, &block)
+          Vedeu::Composition.build({}, &block)
         end
 
         def store(method, &block)

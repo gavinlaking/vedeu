@@ -28,8 +28,13 @@ module Vedeu
 
     class << self
 
-      def build(collection = [], name = '', current = 0, selected = nil, &block)
-        model = new(collection, name, current, selected)
+      def build(attributes = {}, &block)
+        attributes = defaults.merge(attributes)
+
+        model = new(attributes[:collection],
+                    attributes[:name],
+                    attributes[:current],
+                    attributes[:selected])
         model.deputy.instance_eval(&block) if block_given?
         model
       end
@@ -55,9 +60,22 @@ module Vedeu
       # @raise [InvalidSyntax] The required block was not given.
       # @return [API::Menu]
       def menu(name = '', &block)
-        fail InvalidSyntax, "'#{__callee__}' requires a block." unless block_given?
+        unless block_given?
+          fail InvalidSyntax, "'#{__callee__}' requires a block."
+        end
 
-        build([], name, nil, nil, &block).store
+        build({ name: name }, &block).store
+      end
+
+      private
+
+      def defaults
+        {
+          collection: [],
+          current:    0,
+          name:       '',
+          selected:   nil,
+        }
       end
 
     end

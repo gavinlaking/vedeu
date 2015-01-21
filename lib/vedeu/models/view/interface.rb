@@ -38,13 +38,13 @@ module Vedeu
       # @param block [Proc]
       # @return [Class]
       def build(attributes = {}, &block)
-        attrs = defaults.merge!(attributes)
+        attributes = defaults.merge(attributes)
 
-        model = new(attrs[:name],
-                    attrs[:lines],
-                    attrs[:parent],
-                    attrs[:colour],
-                    attrs[:style])
+        model = new(attributes[:name],
+                    attributes[:lines],
+                    attributes[:parent],
+                    attributes[:colour],
+                    attributes[:style])
         model.deputy.instance_eval(&block) if block_given?
         model
       end

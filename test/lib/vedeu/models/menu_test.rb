@@ -10,6 +10,14 @@ module Vedeu
     let(:current)    { 0 }
     let(:selected)   {}
 
+    describe '.build' do
+      it { skip }
+    end
+
+    describe '.menu' do
+      it { skip }
+    end
+
     describe '#initialize' do
       it { return_type_for(described, Menu) }
       it { assigns(described, '@collection', collection) }

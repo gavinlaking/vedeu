@@ -20,7 +20,7 @@ module Vedeu
     alias_method :text,    :value
 
     class << self
-      def build(attributes, &block)
+      def build(attributes = {}, &block)
         attributes = defaults.merge(attributes)
 
         model = new(attributes[:streams],

@@ -16,10 +16,29 @@ module Vedeu
     attr_reader  :interfaces
     alias_method :value, :interfaces
 
-    def self.build(interfaces = [], colour = nil, style = nil, &block)
-      model = new(interfaces, colour, style)
-      model.deputy.instance_eval(&block) if block_given?
-      model
+    class << self
+
+      # @param attributes [Hash]
+      # @param block [Proc]
+      # @return [Class]
+      def build(attributes = {}, &block)
+        attrs = defaults.merge(attributes)
+
+        model = new(attrs[:interfaces], attrs[:colour], attrs[:style])
+        model.deputy.instance_eval(&block) if block_given?
+        model
+      end
+
+      private
+
+      def defaults
+        {
+          colour:     nil,
+          interfaces: [],
+          style:      nil,
+        }
+      end
+
     end
 
     # Returns a new instance of Composition.
@@ -31,6 +50,8 @@ module Vedeu
       @colour     = colour
       @style      = style
     end
+
+    private
 
   end # Composition
 
