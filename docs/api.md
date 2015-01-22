@@ -51,8 +51,9 @@ Note: Nesting indicates where an API method is allowed/supposed to be used.
 #### Input
 
 - keypress
-- keys
+- keymap
   - key
+  - name
   - interface
 
 
@@ -73,7 +74,10 @@ Note: Nesting indicates where an API method is allowed/supposed to be used.
     - x
     - y
   - group
-  - keys
+  - keymap
+    - key
+    - name
+    - interface
   - line
   - name
   - style
@@ -126,8 +130,11 @@ Note: Nesting indicates where an API method is allowed/supposed to be used.
 #### Miscellany
 
 - configure
-- defined
 - focus
+- focus_by_name
+- focussed?
+- focus_next
+- focus_previous
 
 - height
   Usage: Vedeu.height

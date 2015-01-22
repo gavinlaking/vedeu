@@ -57,7 +57,7 @@ module Vedeu
             fail InvalidSyntax, 'An invalid value for `key` was encountered.'
           end
 
-          if valid?(value)
+          unless model.key_defined?(value)
             model.add(Vedeu::Key.define(value, &block))
           end
         end
@@ -85,18 +85,6 @@ module Vedeu
       private
 
       attr_reader :model
-
-      # @param input [String|Symbol]
-      # @return [TrueClass]
-      def valid?(input)
-        if model.name
-          Vedeu::Mapper.valid?(input, model.name)
-
-        else
-          return false if model.key_defined?(input)
-
-        end
-      end
 
     end # Keymap
 

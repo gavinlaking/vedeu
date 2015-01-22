@@ -26,7 +26,9 @@ module Vedeu
       # @raise [InvalidSyntax] The required block was not given.
       # @return [Hash]
       def border(&block)
-        fail InvalidSyntax, "'#{__callee__}' requires a block." unless block_given?
+        unless block_given?
+          fail InvalidSyntax, "'#{__callee__}' requires a block."
+        end
 
         model.border = Vedeu::Border.build(model, { enabled: true }, &block)
       end
@@ -109,7 +111,9 @@ module Vedeu
       # @return [Geometry]
       # @see Vedeu::DSL::Geometry
       def geometry(&block)
-        fail InvalidSyntax, "'#{__callee__}' requires a block." unless block_given?
+        unless block_given?
+          fail InvalidSyntax, "'#{__callee__}' requires a block."
+        end
 
         model.geometry = Vedeu::Geometry.build({}, &block)
       end
@@ -130,14 +134,11 @@ module Vedeu
         model.group = value
       end
 
-      # @raise [InvalidSyntax] The required block was not given.
-      # @see Vedeu::API#keys
-      def keys(&block)
-        fail InvalidSyntax, "'#{__callee__}' requires a block." unless block_given?
-
-        # Keymap.keys(model.name, &block)
-        Vedeu.keymap(model.name, &block).store
+      # @see Vedeu::Keymap#keymap
+      def keymap(name = model.name, &block)
+        Vedeu.keymap(name, &block)
       end
+      alias_method :keys, :keymap
 
       # Specify multiple lines in a view.
       #

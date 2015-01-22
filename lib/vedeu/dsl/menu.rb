@@ -29,7 +29,9 @@ module Vedeu
       # @raise [InvalidSyntax] The required block was not given.
       # @return [Menu]
       # def define(&block)
-      #   fail InvalidSyntax, "'#{__callee__}' requires a block." unless block_given?
+      #   unless block_given?
+      #     fail InvalidSyntax, "'#{__callee__}' requires a block."
+      #   end
 
       #   @self_before_instance_eval = eval('self', block.binding)
 

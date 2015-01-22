@@ -11,13 +11,35 @@ module Vedeu
     include Vedeu::Model
 
     attr_accessor :name
-    attr_reader   :keys
+    attr_reader   :keys, :repository
 
     class << self
+
+      def build(attributes = {}, &block)
+        unless block_given?
+          fail InvalidSyntax, "'#{__callee__}' requires a block."
+        end
+
+        attributes = defaults.merge(attributes)
+
+        model = new(attributes[:name],
+                    attributes[:keys],
+                    attributes[:repository])
+        model.deputy.instance_eval(&block)
+        model.store
+      end
 
       # Define actions for keypresses for when specific interfaces are in focus.
       # Unless an interface is specified, the key will be assumed to be global,
       # meaning its action will happen regardless of the interface in focus.
+      #
+      # @note
+      #   When defining an interface, there is no need to provide a name since
+      #   this can be discerned from the interface itself, e.g:
+      #
+      #   Vedeu.interface 'my_interface' do
+      #     keymap do
+      #       ...
       #
       # @param name [String] The name of the interface which this keymap relates
       #   to.
@@ -29,23 +51,28 @@ module Vedeu
       #
       # @raise [InvalidSyntax] The required block was not given.
       # @return [Keymap]
-      def build(name, &block)
-        unless block_given?
-          fail InvalidSyntax, "'#{__callee__}' requires a block."
-        end
+      def keymap(name, &block)
+        new(name).store
 
-        model = new(name)
-        model.deputy.instance_eval(&block)
-        model.store
+        build({ name: name }, &block)
       end
-      alias_method :keymap, :build
+
+      private
+
+      def defaults
+        {
+          keys:       [],
+          name:       '',
+          repository: Vedeu.keymaps,
+        }
+      end
 
     end
 
     # @param name [String] The name of the keymap.
     # @param keys [Vedeu::Model::Collection|Array] A collection of keys.
     # @return [Vedeu::Keymap]
-    def initialize(name, keys = [], repository = nil)
+    def initialize(name = '', keys = [], repository = nil)
       @name       = name
       @keys       = Vedeu::Model::Collection.coerce(keys)
       @repository = repository || Vedeu.keymaps

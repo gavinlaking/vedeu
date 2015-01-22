@@ -13,21 +13,18 @@ module Vedeu
   end
 
   def_delegators Vedeu::Keymap, :keymap
+  def_delegators Vedeu::Keymap, :keypress
 
-end # Vedeu
-
-Vedeu.keymap('_system_') do |keymap|
-  Vedeu::Configuration.system_keys.each do |label, keypress|
-    keymap.key(keypress) do
-      Vedeu.trigger(("_" + label.to_s + "_").to_sym)
+  Vedeu.keymap('_system_') do |keymap|
+    Vedeu::Configuration.system_keys.each do |label, keypress|
+      keymap.key(keypress) do
+        Vedeu.trigger(("_" + label.to_s + "_").to_sym)
+      end
     end
-    #nil
+  end
+
+  Vedeu.keymap('_global_') do
 
   end
-  #nil
 
-end
-
-Vedeu.keymap('_global_') do
-
-end
+end # Vedeu

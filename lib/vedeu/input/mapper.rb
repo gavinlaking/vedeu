@@ -36,9 +36,9 @@ module Vedeu
 
       return true if key_defined? && keymap.use(key)
 
-      return true if key_defined?(global) && keymap(global).use(key)
+      return true if global_key? && keymap(global).use(key)
 
-      return true if key_defined?(system) && keymap(system).use(key)
+      return true if system_key? && keymap(system).use(key)
 
       false
     end
@@ -49,16 +49,26 @@ module Vedeu
 
       return false if key_defined?
 
-      return false if key_defined?(global)
+      return false if global_key?
 
-      return false if key_defined?(system)
+      return false if system_key?
 
       true
     end
 
     private
 
-    attr_reader :key, :name, :repository
+    attr_reader :key, :repository
+
+    # @return [Boolean]
+    def global_key?
+      key_defined?(global)
+    end
+
+    # @return [Boolean]
+    def system_key?
+      key_defined?(system)
+    end
 
     # @param named [NilClass|String]
     # @return [Boolean]
@@ -69,7 +79,7 @@ module Vedeu
     # @param named [NilClass|String]
     # @return [Keymap]
     def keymap(named = name)
-      @keymap ||= repository.find(named)
+      repository.find(named)
     end
 
     # @param named [NilClass|String]
@@ -99,9 +109,10 @@ module Vedeu
     # name of the interface currently in focus.
     #
     # @return [String|NilClass]
-    def interface
-      name || Vedeu.focus
+    def name
+      @name || Vedeu.focus
     end
+    alias_method :interface, :name
 
     # @return [String]
     def global

@@ -26,6 +26,12 @@ class VedeuFocusApp
 
   bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
 
+  update = Proc.new do
+    Vedeu.focus_next
+
+    Vedeu.renders { view('status') { lines { line(Vedeu.focus) } } }
+  end
+
   interface 'aluminium' do
     colour  foreground: '#ffffff', background: '#330000'
     cursor  true
@@ -35,6 +41,7 @@ class VedeuFocusApp
       x      3
       y      3
     end
+    keymap { key(' ') { update.call } }
   end
 
   interface 'boron' do
@@ -46,6 +53,7 @@ class VedeuFocusApp
       x      6
       y      3
     end
+    keymap { key(' ') { update.call } }
   end
 
   interface 'copper' do
@@ -58,6 +66,7 @@ class VedeuFocusApp
       x      3
       y      6
     end
+    keymap { key(' ') { update.call } }
   end
 
   interface 'dubnium' do
@@ -69,6 +78,7 @@ class VedeuFocusApp
       x      6
       y      6
     end
+    keymap { key(' ') { update.call } }
   end
 
   interface 'status' do
@@ -80,6 +90,7 @@ class VedeuFocusApp
       x      9
       y      3
     end
+    keymap { key(' ') { update.call } }
   end
 
   renders do
@@ -107,15 +118,6 @@ class VedeuFocusApp
       lines do
         line Vedeu.focus
       end
-    end
-  end
-
-  # Tell Vedeu that each interface can use 'space'.
-  keymap('aluminium', 'boron', 'copper', 'dubnium', 'status') do
-    key(' ') do
-      Vedeu.focus_next
-
-      Vedeu.render { views { view('status') { lines { line Vedeu.focus } } } }
     end
   end
 

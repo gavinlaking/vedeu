@@ -21,7 +21,9 @@ module Vedeu
     # @raise [InvalidSyntax] The required block was not given.
     # @return [Array]
     def open(&block)
-      fail InvalidSyntax, "'#{__callee__}' requires a block." unless block_given?
+      unless block_given?
+        fail InvalidSyntax, "'#{__callee__}' requires a block."
+      end
 
       if raw_mode?
         Vedeu.log("Terminal entering 'raw' mode")

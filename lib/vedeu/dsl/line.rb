@@ -89,7 +89,9 @@ module Vedeu
       # @return [Vedeu::Model::Collection<Vedeu::Stream>]
       # @see Vedeu::DSL::Stream for subdirectives.
       def streams(&block)
-        fail InvalidSyntax, "'#{__callee__}' requires a block." unless block_given?
+        unless block_given?
+          fail InvalidSyntax, "'#{__callee__}' requires a block."
+        end
 
         model.streams.add(Vedeu::Stream.build({ parent: model }, &block))
       end

@@ -95,7 +95,7 @@ module Vedeu
         "\u0006"  => :ctrl_f,
         "\u0007"  => :ctrl_g,
         "\u0008"  => :ctrl_h,
-        # "\u0009"  => :ctrl_i, # duplicates "\t" ???
+        # "\u0009"  => :ctrl_i, # duplicates tab
         "\u0010"  => :ctrl_j,
         "\u0011"  => :ctrl_k,
         "\u0012"  => :ctrl_l,
@@ -106,7 +106,7 @@ module Vedeu
         "\u0017"  => :ctrl_q,
         "\u0018"  => :ctrl_r,
         "\u0019"  => :ctrl_s,
-        "\u0020"  => :ctrl_t,
+        # "\u0020"  => :ctrl_t, # duplicates spacebar
         "\u0021"  => :ctrl_u,
         "\u0022"  => :ctrl_v,
         "\u0023"  => :ctrl_w,
