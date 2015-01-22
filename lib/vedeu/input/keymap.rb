@@ -2,7 +2,6 @@ require 'vedeu/exceptions'
 require 'vedeu/support/common'
 require 'vedeu/models/model'
 require 'vedeu/dsl/keymap'
-require 'vedeu/input/keymaps'
 
 module Vedeu
 
@@ -30,8 +29,10 @@ module Vedeu
       #
       # @raise [InvalidSyntax] The required block was not given.
       # @return [Keymap]
-      def build(name = '_global_', &block)
-        fail InvalidSyntax, "'#{__callee__}' requires a block." unless block_given?
+      def build(name, &block)
+        unless block_given?
+          fail InvalidSyntax, "'#{__callee__}' requires a block."
+        end
 
         model = new(name)
         model.deputy.instance_eval(&block)
@@ -44,14 +45,13 @@ module Vedeu
     # @param name [String] The name of the keymap.
     # @param keys [Vedeu::Model::Collection|Array] A collection of keys.
     # @return [Vedeu::Keymap]
-    def initialize(name, keys = [])
+    def initialize(name, keys = [], repository = nil)
       @name       = name
       @keys       = Vedeu::Model::Collection.coerce(keys)
-      @repository = Vedeu.keymaps
+      @repository = repository || Vedeu.keymaps
     end
 
     # @param key [Key]
-    # @raise [KeyInUse] The key provided is already in use for this keymap.
     def add(key)
       @keys << key if valid?(key)
 
@@ -83,8 +83,9 @@ module Vedeu
     # @param key [Vedeu::Key]
     def valid?(key)
       if key_defined?(key.input)
-        fail KeyInUse, "'#{key.input}' is already in use for this " \
-                       "('#{name}') keymap."
+        Vedeu.log("Keymap '#{name}' already defines '#{key.input}'.")
+
+        false
       end
 
       true

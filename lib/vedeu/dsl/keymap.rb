@@ -87,11 +87,15 @@ module Vedeu
       attr_reader :model
 
       # @param input [String|Symbol]
-      # @raise [KeyInUse] The input is already in use by the '_global_' or
-      #   '_system_' keymap.
       # @return [TrueClass]
       def valid?(input)
-        Vedeu.keymaps.valid?(input)
+        if model.name
+          Vedeu::Mapper.valid?(input, model.name)
+
+        else
+          return false if model.key_defined?(input)
+
+        end
       end
 
     end # Keymap

@@ -152,7 +152,6 @@ module Vedeu
       Set.new [
         'Vedeu::ModelNotFound',
         'Vedeu::InvalidSyntax',
-        'Vedeu::KeyInUse',
         'Vedeu::MissingRequired',
         'Vedeu::ModeSwitch',
         'Vedeu::NotImplemented',
@@ -194,7 +193,6 @@ module Vedeu
         # 'Vedeu::Interfaces',
         # 'Vedeu::Keymap',
         # 'Vedeu::Keymaps',
-        # 'Vedeu::KeymapValidator',
         # 'Vedeu::Launcher',
         # 'Vedeu::Line',
         'Vedeu::Log',

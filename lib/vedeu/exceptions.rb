@@ -10,9 +10,6 @@ module Vedeu
   # encounters a problem.
   InvalidSyntax = Class.new(StandardError)
 
-  # Raised when attempting to assign a key which is already in use.
-  KeyInUse = Class.new(StandardError)
-
   # Raised when a name is not provided for a model when attempting to store it
   # in a repository.
   MissingRequired = Class.new(StandardError)

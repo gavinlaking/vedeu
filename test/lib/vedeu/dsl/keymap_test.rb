@@ -46,16 +46,19 @@ module Vedeu
           it { proc { subject }.must_raise(InvalidSyntax) }
         end
 
-        context 'when the key is valid' do
+        context 'when the key is valid (not already defined)' do
           before { model.stubs(:add).returns(Vedeu::Keymap) }
 
           it { return_value_for(subject, ['j', :down]) }
         end
 
-        context 'when the key is not valid' do
-          before { Vedeu.keymaps.stubs(:valid?).raises(KeyInUse) }
+        context 'when the key is not valid (already defined)' do
+          # let(:key_j) { Key.new('j') { :do_something } }
+          # let(:key_down) { Key.new(:down) { :do_something } }
 
-          it { proc { subject }.must_raise(KeyInUse) }
+          # before { model.stubs(:keys).returns([key_j, key_down]) }
+
+          # it { return_value_for(subject, false) }
         end
       end
 

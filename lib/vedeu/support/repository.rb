@@ -179,6 +179,9 @@ module Vedeu
   class Interfaces < Repository
   end
 
+  class Keymaps < Repository
+  end
+
   class Menus < Repository
   end
 

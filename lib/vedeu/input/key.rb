@@ -9,7 +9,9 @@ module Vedeu
     #
     # @see Vedeu::Key#initialize
     def self.define(input = nil, &block)
-      fail InvalidSyntax, "'#{__callee__}' requires a block." unless block_given?
+      unless block_given?
+        fail InvalidSyntax, "'#{__callee__}' requires a block."
+      end
 
       new(input, &block)
     end
@@ -21,7 +23,9 @@ module Vedeu
     # @raise [InvalidSyntax] The required block was not given.
     # @return [Key]
     def initialize(input = nil, &block)
-      fail InvalidSyntax, "'#{__callee__}' requires a block." unless block_given?
+      unless block_given?
+        fail InvalidSyntax, "'#{__callee__}' requires a block."
+      end
 
       @input  = input
       @output = block
