@@ -50,7 +50,7 @@ module Vedeu
     #
     # @return [Array<Interface>]
     def compose
-      content.each do |view|
+      content.map do |view|
         unless view.geometry
           view.geometry = Vedeu.interfaces.find(view.name).geometry
         end

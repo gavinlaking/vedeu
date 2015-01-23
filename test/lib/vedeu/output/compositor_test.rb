@@ -19,6 +19,8 @@ module Vedeu
       end
     }
 
+    before { IO.console.stubs(:print) }
+
     describe '#initialize' do
       subject { instance }
 
@@ -27,6 +29,8 @@ module Vedeu
     end
 
     describe '.compose' do
+      subject { described.compose(buffer) }
+
       it { skip }
 
       context 'when there is no content' do
@@ -39,7 +43,26 @@ module Vedeu
         end
 
         context 'when the view has not redefined the geometry' do
-          it { skip }
+          it 'returns the escape sequences and content sent to the console' do
+            subject.must_equal(
+              [
+                [
+                  "\e[1;1H          \e[1;1H" \
+                  "\e[2;1H          \e[2;1H" \
+                  "\e[3;1H          \e[3;1H" \
+                  "\e[4;1H          \e[4;1H" \
+                  "\e[5;1H          \e[5;1H" \
+                  "\e[1;1HSome text." \
+                  "\e[2;1H          " \
+                  "\e[3;1H          " \
+                  "\e[4;1H          " \
+                  "\e[5;1H          ",
+
+                  "\e[1;1H\e[?25l"
+                ]
+              ]
+            )
+          end
         end
       end
     end
