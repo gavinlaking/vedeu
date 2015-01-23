@@ -17,9 +17,12 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ['lib']
 
+  spec.add_development_dependency 'aruba',              '0.6.2'
   spec.add_development_dependency 'bundler',            '~> 1.6'
+  spec.add_development_dependency 'cucumber',           '1.3.18'
   spec.add_development_dependency 'guard',              '2.11.1'
   spec.add_development_dependency 'guard-bundler',      '2.1.0'
+  spec.add_development_dependency 'guard-cucumber',     '1.5.3'
   spec.add_development_dependency 'guard-minitest',     '2.4.2'
   spec.add_development_dependency 'minitest',           '5.5.1'
   spec.add_development_dependency 'minitest-reporters', '1.0.8'
