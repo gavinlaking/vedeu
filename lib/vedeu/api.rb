@@ -19,7 +19,7 @@ module Vedeu
     extend self
 
     def_delegators Vedeu::Event,         :bind, :trigger, :unbind
-    def_delegators Vedeu::Configuration, :configure
+    def_delegators Vedeu::Configuration, :configure, :configuration
     def_delegators Vedeu::DSL::View,     :interface, :renders, :views
     def_delegators Vedeu::DSL::Shared,   :use
     def_delegators Vedeu::Focus,         :focus, :focus_by_name, :focussed?,

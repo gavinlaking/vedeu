@@ -4,28 +4,39 @@ module Vedeu
 
   describe Application do
 
-    let(:described) { Application.new }
+    let(:described)     { Vedeu::Application }
+    let(:instance)      { described.new(configuration) }
+    let(:configuration) { }
 
     before { Terminal.stubs(:open).returns(['']) }
 
+    describe '#initialize' do
+      subject { instance }
+
+      it { return_type_for(subject, described) }
+      it { assigns(subject, '@configuration', configuration) }
+    end
+
     describe '.start' do
-      it { return_type_for(Application.start, Array) }
+      subject { described.start(configuration) }
+
+      it { return_type_for(subject, Array) }
 
       context 'alias method: .restart' do
-        it { return_type_for(Application.restart, Array) }
+        it { return_type_for(subject, Array) }
       end
     end
 
     describe '.stop' do
-      it { proc { Application.stop }.must_raise(StopIteration) }
-    end
+      subject { described.stop }
 
-    describe '#initialize' do
-      it { return_type_for(described, Application) }
+      it { proc { subject }.must_raise(StopIteration) }
     end
 
     describe '#start' do
-      it { return_type_for(described.start, Array) }
+      subject { instance.start }
+
+      it { return_type_for(subject, Array) }
     end
 
   end # Application

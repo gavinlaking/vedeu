@@ -52,23 +52,7 @@ module Vedeu
       it 'returns the options configured' do
         Configuration.configure do
           # ...
-        end.must_equal(
-          {
-            colour_mode:   256,
-            debug:         false,
-            interactive:   true,
-            log:           '/tmp/vedeu.log',
-            once:          false,
-            system_keys:   {
-              exit:        'q',
-              focus_next:  :tab,
-              focus_prev:  :shift_tab,
-              mode_switch: :escape
-            },
-            terminal_mode: :raw,
-            trace:         false
-          }
-        )
+        end.must_equal(Vedeu::Configuration)
       end
     end
 

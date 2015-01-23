@@ -10,128 +10,112 @@ module Vedeu
       after  { test_configuration }
 
       describe '.configure' do
-        it 'returns the default configuration' do
+        it 'returns the configuration singleton' do
           Vedeu.configure do
             # ...
-          end.must_equal(
-            {
-              colour_mode: 256,
-              debug: false,
-              interactive: true,
-              log: '/tmp/vedeu.log',
-              once: false,
-              system_keys: {
-                exit:        'q',
-                focus_next:  :tab,
-                focus_prev:  :shift_tab,
-                mode_switch: :escape
-              },
-              terminal_mode: :raw,
-              trace: false
-            }
-          )
+          end.must_equal(Vedeu::Configuration)
         end
       end
 
       describe '#interactive!' do
         it 'sets the option to the desired value' do
           configuration = Vedeu.configure { interactive! }
-          configuration[:interactive].must_equal(true)
+          configuration.interactive?.must_equal(true)
         end
 
         it 'sets the option to the desired value' do
           configuration = Vedeu.configure { interactive(false) }
-          configuration[:interactive].must_equal(false)
+          configuration.interactive?.must_equal(false)
         end
 
         it 'sets the option to the desired value' do
           configuration = Vedeu.configure { interactive(true) }
-          configuration[:interactive].must_equal(true)
+          configuration.interactive?.must_equal(true)
         end
 
         it 'sets the option to the desired value' do
           configuration = Vedeu.configure { interactive }
-          configuration[:interactive].must_equal(true)
+          configuration.interactive?.must_equal(true)
         end
       end
 
       describe '#standalone!' do
         it 'sets the option to the desired value' do
           configuration = Vedeu.configure { standalone! }
-          configuration[:interactive].must_equal(false)
+          configuration.interactive?.must_equal(false)
         end
 
         it 'sets the option to the desired value' do
           configuration = Vedeu.configure { standalone(false) }
-          configuration[:interactive].must_equal(true)
+          configuration.interactive?.must_equal(true)
         end
 
         it 'sets the option to the desired value' do
           configuration = Vedeu.configure { standalone(true) }
-          configuration[:interactive].must_equal(false)
+          configuration.interactive?.must_equal(false)
         end
 
         it 'sets the option to the desired value' do
           configuration = Vedeu.configure { standalone }
-          configuration[:interactive].must_equal(false)
+          configuration.interactive?.must_equal(false)
         end
       end
 
       describe '#run_once!' do
         it 'sets the option to the desired value' do
           configuration = Vedeu.configure { run_once! }
-          configuration[:once].must_equal(true)
+          configuration.once.must_equal(true)
         end
 
         it 'sets the option to the desired value' do
           configuration = Vedeu.configure { run_once(false) }
-          configuration[:once].must_equal(false)
+          configuration.once.must_equal(false)
         end
 
         it 'sets the option to the desired value' do
           configuration = Vedeu.configure { run_once(true) }
-          configuration[:once].must_equal(true)
+          configuration.once.must_equal(true)
         end
 
         it 'sets the option to the desired value' do
           configuration = Vedeu.configure { run_once }
-          configuration[:once].must_equal(true)
+          configuration.once.must_equal(true)
         end
       end
 
       describe '#cooked!' do
         it 'sets the option to the desired value' do
           configuration = Vedeu.configure { cooked! }
-          configuration[:terminal_mode].must_equal(:cooked)
+          configuration.terminal_mode.must_equal(:cooked)
         end
       end
 
       describe '#raw!' do
         it 'sets the option to the desired value' do
           configuration = Vedeu.configure { raw! }
-          configuration[:terminal_mode].must_equal(:raw)
+          configuration.terminal_mode.must_equal(:raw)
         end
       end
 
       describe '#debug!' do
         it 'sets the option to the desired value' do
           configuration = Vedeu.configure { debug! }
-          configuration[:debug].must_equal(true)
+          configuration.debug.must_equal(true)
         end
 
         it 'sets the option to the desired value' do
           configuration = Vedeu.configure { debug(true) }
-          configuration[:debug].must_equal(true)
+          configuration.debug.must_equal(true)
         end
 
         it 'sets the option to the desired value' do
           configuration = Vedeu.configure { debug(false) }
-          configuration[:debug].must_equal(false)
+          configuration.debug.must_equal(false)
         end
 
         it 'sets the option to the desired value' do
           configuration = Vedeu.configure { trace(true) }
-          configuration[:debug].must_equal(true)
+          configuration.debug.must_equal(true)
         end
 
         it 'sets the option to the desired value' do
@@ -140,7 +124,7 @@ module Vedeu
             trace(true)
           end
 
-          configuration[:debug].must_equal(true)
+          configuration.debug.must_equal(true)
         end
 
         it 'sets the option to the desired value' do
@@ -149,7 +133,7 @@ module Vedeu
             trace(false)
           end
 
-          configuration[:debug].must_equal(true)
+          configuration.debug.must_equal(true)
         end
 
         it 'sets the option to the desired value' do
@@ -158,7 +142,7 @@ module Vedeu
             trace(false)
           end
 
-          configuration[:debug].must_equal(false)
+          configuration.debug.must_equal(false)
         end
       end
 
@@ -166,21 +150,21 @@ module Vedeu
         it 'sets the option to the desired value' do
           configuration = Vedeu.configure { trace! }
 
-          configuration[:trace].must_equal(true)
+          configuration.trace.must_equal(true)
         end
 
         it 'sets the option to the desired value' do
           configuration = Vedeu.configure { trace(false) }
 
-          configuration[:trace].must_equal(false)
-          configuration[:debug].must_equal(false)
+          configuration.trace.must_equal(false)
+          configuration.debug.must_equal(false)
         end
 
         it 'sets the option to the desired value' do
           configuration = Vedeu.configure { trace(true) }
 
-          configuration[:trace].must_equal(true)
-          configuration[:debug].must_equal(true)
+          configuration.trace.must_equal(true)
+          configuration.debug.must_equal(true)
         end
       end
 
@@ -205,14 +189,14 @@ module Vedeu
 
         it 'sets the option to the desired value' do
           configuration = Vedeu.configure { colour_mode(256) }
-          configuration[:colour_mode].must_equal(256)
+          configuration.colour_mode.must_equal(256)
         end
       end
 
       describe '#log' do
         it 'sets the options to the desired value' do
           configuration = Vedeu.configure { log('/tmp/vedeu_api_test.log') }
-          configuration[:log].must_equal('/tmp/vedeu_api_test.log')
+          configuration.log.must_equal('/tmp/vedeu_api_test.log')
         end
       end
 
@@ -244,7 +228,7 @@ module Vedeu
               it 'sets the system key to the desired value' do
                 configuration = Vedeu.configure { send(meth, param) }
 
-                configuration[:system_keys][key].must_equal(param)
+                configuration.system_keys[key].must_equal(param)
               end
             end
           end

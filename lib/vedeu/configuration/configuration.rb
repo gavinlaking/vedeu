@@ -41,6 +41,13 @@ module Vedeu
         instance.configure(args, &block)
       end
 
+      # Returns the configuration singleton.
+      #
+      # @return [Vedeu::Configuration]
+      def configuration
+        instance
+      end
+
       # Returns the chosen colour mode.
       #
       # @return [Fixnum]
@@ -156,7 +163,7 @@ module Vedeu
 
       @options.merge!(Config::CLI.configure(args)) if args.any?
 
-      @options
+      Configuration
     end
 
     # Reset the configuration to the default values.

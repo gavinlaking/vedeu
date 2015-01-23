@@ -8,8 +8,8 @@ module Vedeu
     class << self
 
       # @return []
-      def start
-        new.start
+      def start(configuration)
+        new(configuration).start
       end
       alias_method :restart, :start
 
@@ -33,7 +33,9 @@ module Vedeu
     # :nocov:
 
     # @return [Application]
-    def initialize; end
+    def initialize(configuration)
+      @configuration = configuration
+    end
 
     # Starts the application!
     # - A new terminal screen is opened (or rather the current terminal is
@@ -58,12 +60,14 @@ module Vedeu
 
     private
 
+    attr_reader :configuration
+
     # Runs the application loop either once, or forever (exceptions and signals
     # permitting).
     #
     # @return []
     def runner
-      if Configuration.once?
+      if configuration.once?
         yield
 
       else
@@ -81,7 +85,7 @@ module Vedeu
     #
     # @return []
     def main_sequence
-      if Configuration.interactive?
+      if configuration.interactive?
         Input.capture(Terminal)
 
       else
