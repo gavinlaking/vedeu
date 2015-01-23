@@ -80,8 +80,6 @@ module Vedeu
       #
       # @return [Fixnum]
       def width(value)
-
-
         model.width = value
       end
 
