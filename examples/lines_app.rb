@@ -37,7 +37,7 @@ class VedeuLinesApp
     end
   end
 
-  keys do
+  keymap('_global_') do
     key(:up)    { trigger(:_cursor_up_)    }
     key(:right) { trigger(:_cursor_right_) }
     key(:down)  { trigger(:_cursor_down_)  }
@@ -46,16 +46,20 @@ class VedeuLinesApp
 
   renders do
     view 'ruthenium' do
-      line 'Ruthenium is a chemical element with'
-      line 'symbol Ru and atomic number 44. It is a'
-      line 'rare transition metal belonging to the'
-      line 'platinum group of the periodic table.'
-      line 'Like the other metals of the platinum'
-      line 'group, ruthenium is inert to most other'
-      line 'chemicals.'
+      lines do
+        line 'Ruthenium is a chemical element with'
+        line 'symbol Ru and atomic number 44. It is a'
+        line 'rare transition metal belonging to the'
+        line 'platinum group of the periodic table.'
+        line 'Like the other metals of the platinum'
+        line 'group, ruthenium is inert to most other'
+        line 'chemicals.'
+      end
     end
     view 'tantalum' do
-      line 'Use cursor keys to navigate, Q to quit.'
+      lines do
+        line 'Use cursor keys to navigate, Q to quit.'
+      end
     end
   end
 
