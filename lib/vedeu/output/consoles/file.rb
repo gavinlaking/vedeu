@@ -2,7 +2,7 @@ module Vedeu
 
   module Consoles
 
-    # The File console takes output from the terminal and sends it to a file.
+    # The File console takes output and sends it to a file.
     class File
 
       def write

@@ -2,7 +2,7 @@ module Vedeu
 
   module Consoles
 
-    # The Null console takes output from the terminal and sends it nowhere.
+    # The Null console takes output and sends it nowhere and returns nothing.
     class Null
 
       def write
