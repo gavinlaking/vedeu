@@ -9,9 +9,9 @@ module Vedeu
 
     describe '#initialize' do
       it { return_type_for(described, Group) }
-      it { assigns(described, '@members', members.to_set) }
-      it { assigns(described, '@name', 'organics') }
-      it { assigns(described, '@repository', Vedeu.groups) }
+      it { described.instance_variable_get('@members').must_equal(members.to_set) }
+      it { described.instance_variable_get('@name').must_equal('organics') }
+      it { described.instance_variable_get('@repository').must_equal(Vedeu.groups) }
     end
 
     describe '#add' do

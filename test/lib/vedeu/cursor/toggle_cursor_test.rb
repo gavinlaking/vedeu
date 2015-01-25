@@ -9,7 +9,7 @@ module Vedeu
 
     describe '#initialize' do
       it { return_type_for(described, ToggleCursor) }
-      it { assigns(described, '@cursor', cursor) }
+      it { described.instance_variable_get('@cursor').must_equal(cursor) }
     end
 
     describe '.hide' do

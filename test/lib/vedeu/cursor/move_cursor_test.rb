@@ -51,10 +51,10 @@ module Vedeu
       subject { instance }
 
       it { return_type_for(subject, Vedeu::MoveCursor) }
-      it { assigns(subject, '@cursor', cursor) }
-      it { assigns(subject, '@interface', interface) }
-      it { assigns(subject, '@dy', dy) }
-      it { assigns(subject, '@dx', dx) }
+      it { subject.instance_variable_get('@cursor').must_equal(cursor) }
+      it { subject.instance_variable_get('@interface').must_equal(interface) }
+      it { subject.instance_variable_get('@dy').must_equal(dy) }
+      it { subject.instance_variable_get('@dx').must_equal(dx) }
     end
 
     describe '.down' do

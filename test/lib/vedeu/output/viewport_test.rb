@@ -40,10 +40,10 @@ module Vedeu
       subject { instance }
 
       it { return_type_for(subject, Viewport) }
-      it { assigns(subject, '@interface', interface) }
-      it { assigns(subject, '@cursor', cursor) }
-      it { assigns(subject, '@top', 0) }
-      it { assigns(subject, '@left', 0) }
+      it { subject.instance_variable_get('@interface').must_equal(interface) }
+      it { subject.instance_variable_get('@cursor').must_equal(cursor) }
+      it { subject.instance_variable_get('@top').must_equal(0) }
+      it { subject.instance_variable_get('@left').must_equal(0) }
     end
 
     describe '.show' do

@@ -18,7 +18,7 @@ module Vedeu
 
         it { return_type_for(subject, Vedeu::DSL::Border) }
 
-        it { assigns(subject, '@model', model) }
+        it { subject.instance_variable_get('@model').must_equal(model) }
       end
 
       describe '#bottom_left' do

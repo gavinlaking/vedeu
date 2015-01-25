@@ -14,9 +14,9 @@ module Vedeu
       subject { instance }
 
       it { return_type_for(subject, Keymap) }
-      it { assigns(subject, '@name', map_name) }
+      it { subject.instance_variable_get('@name').must_equal(map_name) }
       it { subject.instance_variable_get('@keys').must_be_instance_of(Vedeu::Model::Collection) }
-      it { assigns(subject, '@repository', Vedeu.keymaps) }
+      it { subject.instance_variable_get('@repository').must_equal(Vedeu.keymaps) }
     end
 
     describe '#add' do

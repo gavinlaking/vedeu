@@ -16,9 +16,9 @@ module Vedeu
         subject { instance }
 
         it { return_type_for(subject, Collection) }
-        it { assigns(subject, '@collection', []) }
-        it { assigns(subject, '@name', model_name) }
-        it { assigns(subject, '@parent', parent) }
+        it { subject.instance_variable_get('@collection').must_equal([]) }
+        it { subject.instance_variable_get('@name').must_equal(model_name) }
+        it { subject.instance_variable_get('@parent').must_equal(parent) }
       end
 
       describe '#[]' do

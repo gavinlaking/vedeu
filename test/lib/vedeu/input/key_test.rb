@@ -24,7 +24,7 @@ module Vedeu
       subject { instance }
 
       it { return_type_for(instance, Key) }
-      it { assigns(instance, '@input', input) }
+      it { instance.instance_variable_get('@input').must_equal(input) }
 
       context 'when the required block is not given' do
         subject { described.new(input) }

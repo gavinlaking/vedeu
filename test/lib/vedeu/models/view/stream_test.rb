@@ -19,10 +19,10 @@ module Vedeu
 
     describe '#initialize' do
       it { described.must_be_instance_of(Stream) }
-      it { assigns(described, '@value', value) }
-      it { assigns(described, '@parent', parent) }
-      it { assigns(described, '@colour', colour) }
-      it { assigns(described, '@style', style) }
+      it { described.instance_variable_get('@value').must_equal(value) }
+      it { described.instance_variable_get('@parent').must_equal(parent) }
+      it { described.instance_variable_get('@colour').must_equal(colour) }
+      it { described.instance_variable_get('@style').must_equal(style) }
     end
 
     describe '#chars' do

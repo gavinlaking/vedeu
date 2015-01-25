@@ -17,11 +17,11 @@ module Vedeu
       subject { instance }
 
       it { return_type_for(subject, described) }
-      it { assigns(subject, '@name', buffer_name) }
-      it { assigns(subject, '@back', back) }
-      it { assigns(subject, '@front', front) }
-      it { assigns(subject, '@previous', previous) }
-      it { assigns(subject, '@repository', Vedeu.buffers) }
+      it { subject.instance_variable_get('@name').must_equal(buffer_name) }
+      it { subject.instance_variable_get('@back').must_equal(back) }
+      it { subject.instance_variable_get('@front').must_equal(front) }
+      it { subject.instance_variable_get('@previous').must_equal(previous) }
+      it { subject.instance_variable_get('@repository').must_equal(Vedeu.buffers) }
     end
 
     describe '#add' do

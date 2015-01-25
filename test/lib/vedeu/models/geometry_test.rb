@@ -5,6 +5,7 @@ module Vedeu
   describe Geometry do
 
     let(:described)  { Geometry.new(attributes) }
+    let(:instance)   { Geometry.new(attributes) }
     let(:attributes) { {} }
 
     before do
@@ -12,10 +13,12 @@ module Vedeu
     end
 
     describe '#initialize' do
-      it { return_type_for(described, Geometry) }
+      subject { instance }
+
+      it { return_type_for(subject, Geometry) }
 
       context 'with default attributes' do
-        it { assigns(described, '@attributes', {
+        it { subject.instance_variable_get('@attributes').must_equal({
             centred: false,
             height:  25,
             name:    '',
@@ -26,15 +29,15 @@ module Vedeu
             yn:      25,
           })
         }
-        it { assigns(described, '@centred', false) }
-        it { assigns(described, '@height', 25) }
-        it { assigns(described, '@name', '') }
-        it { assigns(described, '@width', 80) }
-        it { assigns(described, '@x', 1) }
-        it { assigns(described, '@xn', 80) }
-        it { assigns(described, '@y', 1) }
-        it { assigns(described, '@yn', 25) }
-        it { assigns(described, '@repository', Vedeu.geometries) }
+        it { subject.instance_variable_get('@centred').must_equal(false) }
+        it { subject.instance_variable_get('@height').must_equal(25) }
+        it { subject.instance_variable_get('@name').must_equal('') }
+        it { subject.instance_variable_get('@width').must_equal(80) }
+        it { subject.instance_variable_get('@x').must_equal(1) }
+        it { subject.instance_variable_get('@xn').must_equal(80) }
+        it { subject.instance_variable_get('@y').must_equal(1) }
+        it { subject.instance_variable_get('@yn').must_equal(25) }
+        it { subject.instance_variable_get('@repository').must_equal(Vedeu.geometries) }
       end
     end
 

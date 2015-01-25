@@ -14,7 +14,7 @@ module Vedeu
       subject { instance }
 
       it { return_type_for(subject, described) }
-      it { assigns(subject, '@configuration', configuration) }
+      it { subject.instance_variable_get('@configuration').must_equal(configuration) }
     end
 
     describe '.start' do

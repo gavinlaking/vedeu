@@ -15,7 +15,7 @@ module Vedeu
 
       describe '#initialize' do
         it { return_type_for(described, Vedeu::DSL::Stream) }
-        it { assigns(described, '@model', model) }
+        it { described.instance_variable_get('@model').must_equal(model) }
       end
 
       describe '#align' do

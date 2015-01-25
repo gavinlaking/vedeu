@@ -18,14 +18,14 @@ module Vedeu
       subject { instance }
 
       it { return_type_for(subject, described) }
-      it { assigns(subject, '@key', key) }
-      it { assigns(subject, '@name', keymap) }
-      it { assigns(subject, '@repository', Vedeu.keymaps) }
+      it { subject.instance_variable_get('@key').must_equal(key) }
+      it { subject.instance_variable_get('@name').must_equal(keymap) }
+      it { subject.instance_variable_get('@repository').must_equal(Vedeu.keymaps) }
 
       context 'when the repository is provided' do
         let(:repository) { Vedeu::Repository.new }
 
-        it { assigns(subject, '@repository', repository) }
+        it { subject.instance_variable_get('@repository').must_equal(repository) }
       end
     end
 

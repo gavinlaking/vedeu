@@ -9,7 +9,7 @@ module Vedeu
 
     describe '#initialize' do
       it { return_type_for(described, Vedeu::Carousel) }
-      it { assigns(described, '@storage', storage) }
+      it { described.instance_variable_get('@storage').must_equal(storage) }
     end
 
     describe '#add' do

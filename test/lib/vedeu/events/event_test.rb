@@ -40,13 +40,13 @@ module Vedeu
       subject { instance }
 
       it { return_type_for(subject, Event) }
-      it { assigns(subject, '@name', event_name) }
-      it { assigns(subject, '@options', options) }
-      # it { assigns(subject, '@closure', closure) }
-      it { assigns(subject, '@deadline', 0) }
-      it { assigns(subject, '@executed_at', 0) }
-      it { assigns(subject, '@now', 0) }
-      it { assigns(subject, '@repository', Vedeu.events) }
+      it { subject.instance_variable_get('@name').must_equal(event_name) }
+      it { subject.instance_variable_get('@options').must_equal(options) }
+      # it { subject.instance_variable_get('@closure').must_equal(closure) }
+      it { subject.instance_variable_get('@deadline').must_equal(0) }
+      it { subject.instance_variable_get('@executed_at').must_equal(0) }
+      it { subject.instance_variable_get('@now').must_equal(0) }
+      it { subject.instance_variable_get('@repository').must_equal(Vedeu.events) }
     end
 
     describe '#bind' do

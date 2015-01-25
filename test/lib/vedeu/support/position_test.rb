@@ -10,12 +10,15 @@ module Vedeu
 
     describe '#initialize' do
       subject { instance }
+
       it { return_type_for(subject, Position) }
-      it { assigns(subject, '@y', 12) }
-      it { assigns(subject, '@x', 19) }
+      it { subject.instance_variable_get('@y').must_equal(12) }
+      it { subject.instance_variable_get('@x').must_equal(19) }
     end
 
     describe '#to_s' do
+      # subject { described.new.to_s }
+
       it 'returns an escape sequence when no coordinates are provided' do
         Position.new.to_s.must_equal("\e[1;1H")
       end

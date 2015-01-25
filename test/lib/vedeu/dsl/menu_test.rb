@@ -37,7 +37,7 @@ module Vedeu
         subject { instance }
 
         it { return_type_for(subject, Vedeu::DSL::Menu) }
-        it { assigns(subject, '@model', model) }
+        it { subject.instance_variable_get('@model').must_equal(model) }
       end
 
       # describe '.define' do

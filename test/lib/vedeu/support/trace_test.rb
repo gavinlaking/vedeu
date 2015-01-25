@@ -12,7 +12,7 @@ module Vedeu
       subject { instance }
 
       it { return_type_for(subject, Trace) }
-      it { assigns(subject, '@options', options) }
+      it { subject.instance_variable_get('@options').must_equal(options) }
     end
 
   end # Trace

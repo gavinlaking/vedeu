@@ -13,11 +13,11 @@ module Vedeu
     describe '#initialize' do
       it { return_type_for(described, Cursor) }
 
-      it { assigns(described, '@name', 'silver') }
-      it { assigns(described, '@state', :show) }
-      it { assigns(described, '@x', 19) }
-      it { assigns(described, '@y', 8) }
-      it { assigns(described, '@repository', Vedeu.cursors) }
+      it { described.instance_variable_get('@name').must_equal('silver') }
+      it { described.instance_variable_get('@state').must_equal(:show) }
+      it { described.instance_variable_get('@x').must_equal(19) }
+      it { described.instance_variable_get('@y').must_equal(8) }
+      it { described.instance_variable_get('@repository').must_equal(Vedeu.cursors) }
     end
 
     describe '#name' do

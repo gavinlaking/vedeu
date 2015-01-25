@@ -41,7 +41,7 @@ module Vedeu
 
     # describe '#initialize' do
     #   it { return_type_for(described, Interface) }
-    #   it { assigns(described, '@attributes', {
+    #   it { subject.instance_variable_get('@attributes').must_equal({
     #       border:   {},
     #       colour:   {
     #         background: '#000000',
@@ -61,16 +61,16 @@ module Vedeu
     #       style:    ''
     #     })
     #   }
-    #   it { assigns(described, '@delay', 0.0) }
-    #   it { assigns(described, '@group', 'my_group') }
-    #   it { assigns(described, '@name', 'francium') }
-    #   it { assigns(described, '@parent', nil) }
-    #   it { assigns(described, '@repository', Vedeu.interfaces) }
+    #   it { described.instance_variable_get('@delay').must_equal(0.0) }
+    #   it { described.instance_variable_get('@group').must_equal('my_group') }
+    #   it { described.instance_variable_get('@name').must_equal('francium') }
+    #   it { described.instance_variable_get('@parent').must_equal(nil) }
+    #   it { described.instance_variable_get('@repository').must_equal(Vedeu.interfaces) }
 
     #   context 'with default attributes' do
     #     let(:attributes) { {} }
 
-    #     it { assigns(described, '@attributes', {
+    #     it { subject.instance_variable_get('@attributes').must_equal({
     #         border:   {},
     #         colour:   {},
     #         delay:    0.0,

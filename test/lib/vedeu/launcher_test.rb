@@ -15,12 +15,12 @@ module Vedeu
 
     describe '#initialize' do
       it { return_type_for(described, Launcher) }
-      it { assigns(described, '@argv', []) }
-      it { assigns(described, '@stdin', STDIN) }
-      it { assigns(described, '@stdout', STDOUT) }
-      it { assigns(described, '@stderr', STDERR) }
-      it { assigns(described, '@kernel', Kernel) }
-      it { assigns(described, '@exit_code', 1) }
+      it { described.instance_variable_get('@argv').must_equal([]) }
+      it { described.instance_variable_get('@stdin').must_equal(STDIN) }
+      it { described.instance_variable_get('@stdout').must_equal(STDOUT) }
+      it { described.instance_variable_get('@stderr').must_equal(STDERR) }
+      it { described.instance_variable_get('@kernel').must_equal(Kernel) }
+      it { described.instance_variable_get('@exit_code').must_equal(1) }
     end
 
     describe '#execute!' do

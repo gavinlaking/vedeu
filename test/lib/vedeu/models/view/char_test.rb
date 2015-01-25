@@ -64,11 +64,11 @@ module Vedeu
       subject { instance }
 
       it { return_type_for(subject, Char) }
-      it { assigns(subject, '@colour', colour) }
-      it { assigns(subject, '@parent', parent) }
-      it { assigns(subject, '@style', style) }
-      it { assigns(subject, '@value', value) }
-      it { assigns(subject, '@position', position) }
+      it { subject.instance_variable_get('@colour').must_equal(colour) }
+      it { subject.instance_variable_get('@parent').must_equal(parent) }
+      it { subject.instance_variable_get('@style').must_equal(style) }
+      it { subject.instance_variable_get('@value').must_equal(value) }
+      it { subject.instance_variable_get('@position').must_equal(position) }
     end
 
     describe '#value' do

@@ -15,7 +15,7 @@ module Vedeu
       subject { instance }
 
       it { return_type_for(subject, Input) }
-      it { assigns(subject, '@reader', reader) }
+      it { subject.instance_variable_get('@reader').must_equal(reader) }
     end
 
     describe '.capture' do

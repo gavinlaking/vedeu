@@ -43,8 +43,9 @@ module Vedeu
       subject { instance }
 
       it { return_type_for(subject, Border) }
-      it { assigns(subject, '@interface', interface) }
-      it { assigns(subject, '@attributes', {
+      it { subject.instance_variable_get('@interface').must_equal(interface) }
+      it { subject.instance_variable_get('@attributes').must_equal(
+        {
           enabled:      false,
           show_bottom:  true,
           show_left:    true,

@@ -18,7 +18,7 @@ module Vedeu
         subject { instance }
 
         it { return_type_for(subject, Vedeu::DSL::Line) }
-        it { assigns(subject, '@model', model) }
+        it { subject.instance_variable_get('@model').must_equal(model) }
       end
 
       describe '#line' do

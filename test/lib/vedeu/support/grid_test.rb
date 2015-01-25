@@ -26,7 +26,7 @@ module Vedeu
       subject { instance }
 
       it { return_type_for(subject, Grid) }
-      it { assigns(subject, '@value', value) }
+      it { subject.instance_variable_get('@value').must_equal(value) }
     end
 
     describe '.columns' do

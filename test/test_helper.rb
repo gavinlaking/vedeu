@@ -53,10 +53,6 @@ module MiniTest
 
     end # Spec eigenclass
 
-    def assigns(subject, instance_variable, value)
-      subject.instance_variable_get(instance_variable).must_equal(value)
-    end
-
     def return_type_for(subject, value)
       fail StandardError, 'value must be a class' unless value.is_a?(Class)
 
@@ -70,9 +66,6 @@ module MiniTest
 end
 
 require 'mocha/setup'
-
-GC.disable
-
 require 'vedeu'
 require 'support/helpers/all'
 

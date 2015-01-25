@@ -30,7 +30,7 @@ module Vedeu
 
     describe '#initialize' do
       it { return_type_for(described, Output) }
-      it { assigns(described, '@interface', interface) }
+      it { described.instance_variable_get('@interface').must_equal(interface) }
     end
 
     describe '.render' do

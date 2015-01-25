@@ -12,8 +12,8 @@ module Vedeu
     describe '#initialize' do
       subject { instance }
       it { return_type_for(subject, Sentence) }
-      it { assigns(subject, '@elements', elements) }
-      it { assigns(subject, '@label', label) }
+      it { subject.instance_variable_get('@elements').must_equal(elements) }
+      it { subject.instance_variable_get('@label').must_equal(label) }
     end
 
     describe '.construct' do

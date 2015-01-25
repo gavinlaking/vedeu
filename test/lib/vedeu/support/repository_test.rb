@@ -29,8 +29,8 @@ module Vedeu
       subject { instance }
 
       it { return_type_for(subject, Vedeu::Repository) }
-      it { assigns(subject, '@model', model) }
-      it { assigns(subject, '@storage', storage) }
+      it { subject.instance_variable_get('@model').must_equal(model) }
+      it { subject.instance_variable_get('@storage').must_equal(storage) }
     end
 
     describe '#all' do

@@ -20,11 +20,11 @@ module Vedeu
 
     describe '#initialize' do
       it { return_type_for(described, Menu) }
-      it { assigns(described, '@collection', collection) }
-      it { assigns(described, '@name', 'elements') }
-      it { assigns(described, '@current', 0) }
-      it { assigns(described, '@selected', nil) }
-      it { assigns(described, '@repository', Vedeu.menus) }
+      it { described.instance_variable_get('@collection').must_equal(collection) }
+      it { described.instance_variable_get('@name').must_equal('elements') }
+      it { described.instance_variable_get('@current').must_equal(0) }
+      it { described.instance_variable_get('@selected').must_equal(nil) }
+      it { described.instance_variable_get('@repository').must_equal(Vedeu.menus) }
     end
 
     describe '#current' do

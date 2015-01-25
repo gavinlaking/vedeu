@@ -10,7 +10,7 @@ module Vedeu
       subject { described.new('bold') }
 
       it { return_type_for(subject, described) }
-      it { assigns(subject, '@value', 'bold') }
+      it { subject.instance_variable_get('@value').must_equal('bold') }
     end
 
     describe '#attributes' do

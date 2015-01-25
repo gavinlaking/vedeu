@@ -32,9 +32,9 @@ module Vedeu
       subject { instance }
 
       it { return_type_for(subject, described) }
-      it { assigns(subject, '@interfaces', interface_collection) }
-      it { assigns(subject, '@colour', colour) }
-      it { assigns(subject, '@style', style) }
+      it { subject.instance_variable_get('@interfaces').must_equal(interface_collection) }
+      it { subject.instance_variable_get('@colour').must_equal(colour) }
+      it { subject.instance_variable_get('@style').must_equal(style) }
     end
 
   end # Composition

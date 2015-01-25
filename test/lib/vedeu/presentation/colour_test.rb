@@ -14,7 +14,7 @@ module Vedeu
 
     describe '#initialize' do
       it { return_type_for(described, Colour) }
-      it { assigns(described, '@attributes', attributes) }
+      it { described.instance_variable_get('@attributes').must_equal(attributes) }
     end
 
     describe '#background' do

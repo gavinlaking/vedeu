@@ -21,9 +21,9 @@ module Vedeu
       subject { instance }
 
       it { return_type_for(subject, Vedeu::Trigger) }
-      it { assigns(subject, '@name', event_name) }
-      it { assigns(subject, '@args', [args]) }
-      it { assigns(subject, '@repository', Vedeu.events) }
+      it { subject.instance_variable_get('@name').must_equal(event_name) }
+      it { subject.instance_variable_get('@args').must_equal([args]) }
+      it { subject.instance_variable_get('@repository').must_equal(Vedeu.events) }
     end
 
     describe '#trigger' do

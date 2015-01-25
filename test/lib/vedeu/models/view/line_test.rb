@@ -38,9 +38,9 @@ module Vedeu
 
       it { return_type_for(subject, Line) }
       it { subject.instance_variable_get('@streams').must_be_instance_of(Vedeu::Model::Streams) }
-      it { assigns(subject, '@parent', parent) }
-      it { assigns(subject, '@colour', colour) }
-      it { assigns(subject, '@style', style) }
+      it { subject.instance_variable_get('@parent').must_equal(parent) }
+      it { subject.instance_variable_get('@colour').must_equal(colour) }
+      it { subject.instance_variable_get('@style').must_equal(style) }
     end
 
     describe '#chars' do

@@ -25,7 +25,7 @@ module Vedeu
       subject { instance }
 
       it { return_type_for(subject, Compositor) }
-      it { assigns(subject, '@buffer', buffer) }
+      it { subject.instance_variable_get('@buffer').must_equal(buffer) }
     end
 
     describe '.compose' do
