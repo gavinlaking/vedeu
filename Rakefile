@@ -3,9 +3,11 @@ require 'rake/testtask'
 require 'cucumber'
 require 'cucumber/rake/task'
 
-Cucumber::Rake::Task.new(:cucumber) do |t|
-  t.cucumber_opts = "features --format progress"
-end
+# Don't run cukes for the time being.
+# Cucumber::Rake::Task.new(:cucumber) do |t|
+#   t.cucumber_opts = "features --format progress"
+# end
+# Rake::Task['cucumber'].execute
 
 Rake::TestTask.new do |t|
   t.libs.push 'lib'
@@ -15,5 +17,3 @@ Rake::TestTask.new do |t|
 end
 
 task :default => :test
-
-Rake::Task['cucumber'].execute
