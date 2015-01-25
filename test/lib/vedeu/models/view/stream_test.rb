@@ -26,7 +26,7 @@ module Vedeu
     end
 
     describe '#chars' do
-      it { return_type_for(described.chars, Array) }
+      it { described.chars.must_be_instance_of(Array) }
 
       context 'when there is content' do
         it 'returns a collection of strings containing escape sequences and ' \
@@ -73,7 +73,7 @@ module Vedeu
     describe '#size' do
       subject { described.size }
 
-      it { return_type_for(subject, Fixnum) }
+      it { subject.must_be_instance_of(Fixnum) }
 
       it 'returns the size of the stream' do
         subject.must_equal(9)

@@ -39,7 +39,7 @@ module Vedeu
     describe '#initialize' do
       subject { instance }
 
-      it { return_type_for(subject, Viewport) }
+      it { subject.must_be_instance_of(Viewport) }
       it { subject.instance_variable_get('@interface').must_equal(interface) }
       it { subject.instance_variable_get('@cursor').must_equal(cursor) }
       it { subject.instance_variable_get('@top').must_equal(0) }
@@ -49,12 +49,12 @@ module Vedeu
     describe '.show' do
       subject { described.show(interface, cursor) }
 
-      it { return_type_for(subject, Array) }
+      it { subject.must_be_instance_of(Array) }
 
       # context 'when there is no content' do
       #   before { interface.stubs(:lines).returns([]) }
 
-      #   it { return_value_for(subject, []) }
+      #   it { subject.must_equal([]) }
       # end
 
       context 'when there is content' do

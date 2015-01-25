@@ -17,7 +17,7 @@ module Vedeu
       describe '#initialize' do
         subject { instance }
 
-        it { return_type_for(subject, Vedeu::DSL::Line) }
+        it { subject.must_be_instance_of(Vedeu::DSL::Line) }
         it { subject.instance_variable_get('@model').must_equal(model) }
       end
 
@@ -26,9 +26,9 @@ module Vedeu
 
         subject { instance.line(value) }
 
-        it { return_type_for(subject, Vedeu::Model::Collection) }
+        it { subject.must_be_instance_of(Vedeu::Model::Collection) }
 
-        it { return_type_for(subject.first, Vedeu::Line) }
+        it { subject.first.must_be_instance_of(Vedeu::Line) }
       end
 
       describe '#streams' do
@@ -39,9 +39,9 @@ module Vedeu
             end
           }
 
-          it { return_type_for(subject, Vedeu::Model::Collection) }
+          it { subject.must_be_instance_of(Vedeu::Model::Collection) }
 
-          it { return_type_for(subject.first, Vedeu::Stream) }
+          it { subject.first.must_be_instance_of(Vedeu::Stream) }
         end
 
         context 'when the block is not given' do

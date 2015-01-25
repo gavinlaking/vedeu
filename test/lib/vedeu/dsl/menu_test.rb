@@ -36,7 +36,7 @@ module Vedeu
       describe '#initialize' do
         subject { instance }
 
-        it { return_type_for(subject, Vedeu::DSL::Menu) }
+        it { subject.must_be_instance_of(Vedeu::DSL::Menu) }
         it { subject.instance_variable_get('@model').must_equal(model) }
       end
 
@@ -73,11 +73,11 @@ module Vedeu
         subject { instance.item(value) }
 
         context 'when items are provided' do
-          it { return_value_for(subject, [:sodium,
-                                          :magnesium,
-                                          :aluminium,
-                                          :silicon,
-                                          :platinum])}
+          it { subject.must_equal([:sodium,
+                                    :magnesium,
+                                    :aluminium,
+                                    :silicon,
+                                    :platinum]) }
         end
       end
 
@@ -87,13 +87,13 @@ module Vedeu
         subject { instance.items(value) }
 
         context 'when no items are provided' do
-          it { return_value_for(subject, []) }
+          it { subject.must_equal([]) }
         end
 
         context 'when items are provided' do
           let(:value) { [:gold, :silver, :tin] }
 
-          it { return_value_for(subject, value)}
+          it { subject.must_equal(value)}
         end
       end
 

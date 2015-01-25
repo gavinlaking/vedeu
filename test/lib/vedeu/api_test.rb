@@ -61,7 +61,7 @@ module Vedeu
     #   context 'when a block was given' do
     #     subject { Vedeu.keys { :some_dsl_methods } }
 
-    #     it { return_type_for(subject, Vedeu::Keymap) }
+    #     it { subject.must_be_instance_of(Vedeu::Keymap) }
     #   end
     # end
 
@@ -125,7 +125,7 @@ module Vedeu
     # describe '.view' do
     #   subject { Vedeu.view('holmium') }
 
-    #   it { return_type_for(subject, Hash) }
+    #   it { subject.must_be_instance_of(Hash) }
     # end
 
     # describe '.views' do

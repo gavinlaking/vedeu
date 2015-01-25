@@ -11,7 +11,7 @@ module Vedeu
     describe '#initialize' do
       subject { instance }
 
-      it { return_type_for(subject, Position) }
+      it { subject.must_be_instance_of(Position) }
       it { subject.instance_variable_get('@y').must_equal(12) }
       it { subject.instance_variable_get('@x').must_equal(19) }
     end

@@ -30,40 +30,40 @@ module Vedeu
       context 'when the value is already a Char' do
         let(:value) { described.new('b') }
 
-        it { return_value_for(subject, value) }
+        it { subject.must_equal(value) }
       end
 
       context 'when the value is an Array' do
         context 'and the Array contains instances of Char' do
           let(:value) { [described.new('b')] }
 
-          it { return_value_for(subject, value) }
+          it { subject.must_equal(value) }
         end
 
         context 'and the Array contains instances of String' do
           let(:value) { ['carbon'] }
 
-          it { return_type_for(subject, Array) }
+          it { subject.must_be_instance_of(Array) }
         end
 
         context 'and the Array contains instances of NilClass' do
           let(:value) { [] }
 
-          it { return_type_for(subject, NilClass) }
+          it { subject.must_be_instance_of(NilClass) }
         end
       end
 
       context 'when the value is not a Char or Array' do
         let(:value) { {} }
 
-        it { return_type_for(subject, NilClass) }
+        it { subject.must_be_instance_of(NilClass) }
       end
     end
 
     describe '#initialize' do
       subject { instance }
 
-      it { return_type_for(subject, Char) }
+      it { subject.must_be_instance_of(Char) }
       it { subject.instance_variable_get('@colour').must_equal(colour) }
       it { subject.instance_variable_get('@parent').must_equal(parent) }
       it { subject.instance_variable_get('@style').must_equal(style) }
@@ -77,16 +77,16 @@ module Vedeu
       context 'when the value is not set' do
         let(:value) {}
 
-        it { return_value_for(subject, '') }
+        it { subject.must_equal('') }
       end
 
       context 'when the value is set' do
-        it { return_value_for(subject, 'a') }
+        it { subject.must_equal('a') }
 
         context 'and the value is more than one character' do
           let(:value) { 'multi' }
 
-          it { return_value_for(subject, 'm') }
+          it { subject.must_equal('m') }
         end
       end
     end
@@ -94,18 +94,18 @@ module Vedeu
     describe '#to_s' do
       subject { instance.to_s }
 
-      it { return_type_for(subject, String) }
+      it { subject.must_be_instance_of(String) }
 
       context 'when a position is specified' do
         let(:position) { Position.new(17, 2) }
 
-        it { return_value_for(subject, "\e[17;2Ha\e[17;2H") }
+        it { subject.must_equal("\e[17;2Ha\e[17;2H") }
       end
 
       context 'when a position is not specified' do
         let(:position) {}
 
-        it { return_value_for(subject, "a") }
+        it { subject.must_equal("a") }
       end
 
       context 'when a colour is specified' do
@@ -114,20 +114,20 @@ module Vedeu
         context 'when a parent colour is specified' do
           let(:parent_colour) { Colour.new({ foreground: '#ff0000', background: '#550000' }) }
 
-          it { return_value_for(subject, "\e[38;2;0;255;0m\e[48;2;0;85;0ma\e[38;2;255;0;0m\e[48;2;85;0;0m") }
+          it { subject.must_equal("\e[38;2;0;255;0m\e[48;2;0;85;0ma\e[38;2;255;0;0m\e[48;2;85;0;0m") }
         end
 
         context 'when a parent colour is not specified' do
           let(:parent_colour) {}
 
-          it { return_value_for(subject, "\e[38;2;0;255;0m\e[48;2;0;85;0ma") }
+          it { subject.must_equal("\e[38;2;0;255;0m\e[48;2;0;85;0ma") }
         end
       end
 
       context 'when a colour is not specified' do
         let(:colour) {}
 
-        it { return_value_for(subject, "a") }
+        it { subject.must_equal("a") }
       end
 
       context 'when a style is specified' do
@@ -136,32 +136,32 @@ module Vedeu
         context 'when a parent style is specified' do
           let(:parent_style) { Style.new('bold') }
 
-          it { return_value_for(subject, "\e[4ma\e[1m") }
+          it { subject.must_equal("\e[4ma\e[1m") }
         end
 
         context 'when a parent style is not specified' do
           let(:parent_style) {}
 
-          it { return_value_for(subject, "\e[4ma") }
+          it { subject.must_equal("\e[4ma") }
         end
       end
 
       context 'when a style is not specified' do
         let(:style) {}
 
-        it { return_value_for(subject, "a") }
+        it { subject.must_equal("a") }
       end
 
       context 'when the value is nil' do
         let(:value) {}
 
-        it { return_value_for(subject, "") }
+        it { subject.must_equal("") }
       end
 
       context 'when the value is more than one character' do
         let(:value) { 'multi' }
 
-        it { return_value_for(subject, "m") }
+        it { subject.must_equal("m") }
       end
     end
 

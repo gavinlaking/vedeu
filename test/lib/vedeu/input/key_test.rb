@@ -11,7 +11,7 @@ module Vedeu
     describe '.define' do
       subject { described.define(input) { :output } }
 
-      it { return_type_for(subject, Key) }
+      it { subject.must_be_instance_of(Key) }
 
       context 'when the required block is not given' do
         subject { described.define(input) }
@@ -23,7 +23,7 @@ module Vedeu
     describe '#initialize' do
       subject { instance }
 
-      it { return_type_for(instance, Key) }
+      it { instance.must_be_instance_of(Key) }
       it { instance.instance_variable_get('@input').must_equal(input) }
 
       context 'when the required block is not given' do

@@ -11,7 +11,7 @@ describe 'Compositions' do
       end
     }
 
-    #it { return_type_for(subject, Vedeu::Composition) }
+    #it { subject.must_be_instance_of(Vedeu::Composition) }
 
     it 'allows the use of Vedeu.view' do
       skip

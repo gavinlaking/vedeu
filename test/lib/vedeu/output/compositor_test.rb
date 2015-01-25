@@ -24,7 +24,7 @@ module Vedeu
     describe '#initialize' do
       subject { instance }
 
-      it { return_type_for(subject, Compositor) }
+      it { subject.must_be_instance_of(Compositor) }
       it { subject.instance_variable_get('@buffer').must_equal(buffer) }
     end
 

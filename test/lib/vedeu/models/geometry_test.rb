@@ -15,7 +15,7 @@ module Vedeu
     describe '#initialize' do
       subject { instance }
 
-      it { return_type_for(subject, Geometry) }
+      it { subject.must_be_instance_of(Geometry) }
 
       context 'with default attributes' do
         it { subject.instance_variable_get('@attributes').must_equal({
@@ -311,7 +311,7 @@ module Vedeu
 
       subject { instance.y_position(index) }
 
-      it { return_type_for(subject, Fixnum) }
+      it { subject.must_be_instance_of(Fixnum) }
 
       context 'with a negative index' do
         let(:index) { -3 }
@@ -345,7 +345,7 @@ module Vedeu
 
       subject { instance.x_position(index) }
 
-      it { return_type_for(subject, Fixnum) }
+      it { subject.must_be_instance_of(Fixnum) }
 
       context 'with a negative index' do
         let(:index) { -3 }

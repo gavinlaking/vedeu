@@ -13,7 +13,7 @@ module Vedeu
       describe '#initialize' do
         subject { instance }
 
-        it { return_type_for(subject, Vedeu::DSL::Composition) }
+        it { subject.must_be_instance_of(Vedeu::DSL::Composition) }
         it { subject.instance_variable_get('@model').must_equal(model) }
       end
 
@@ -26,12 +26,12 @@ module Vedeu
           end
         }
 
-        it { return_type_for(subject, Vedeu::Model::Collection) }
+        it { subject.must_be_instance_of(Vedeu::Model::Collection) }
 
-        it { return_type_for(subject.first, Vedeu::Interface) }
+        it { subject.first.must_be_instance_of(Vedeu::Interface) }
 
         it 'overrides the method argument name with the DSL given name' do
-          return_value_for(subject.first.name, 'calcium')
+          subject.first.name.must_equal('calcium')
         end
 
         context 'when the block is not given' do

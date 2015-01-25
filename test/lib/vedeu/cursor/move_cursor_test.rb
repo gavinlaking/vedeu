@@ -50,7 +50,7 @@ module Vedeu
     describe '#initialize' do
       subject { instance }
 
-      it { return_type_for(subject, Vedeu::MoveCursor) }
+      it { subject.must_be_instance_of(Vedeu::MoveCursor) }
       it { subject.instance_variable_get('@cursor').must_equal(cursor) }
       it { subject.instance_variable_get('@interface').must_equal(interface) }
       it { subject.instance_variable_get('@dy').must_equal(dy) }
@@ -60,16 +60,16 @@ module Vedeu
     describe '.down' do
       subject { MoveCursor.down(cursor, interface) }
 
-      it { return_type_for(subject, Vedeu::Cursor) }
+      it { subject.must_be_instance_of(Vedeu::Cursor) }
 
-      it { return_value_for(subject.y, 2) }
+      it { subject.y.must_equal(2) }
 
       context 'when moving, the cursor must be within the visible area for ' \
               'the console' do
         let(:y) { 26 }
 
         it 'does not move past the bottom of the screen' do
-          return_value_for(subject.y, 25)
+          subject.y.must_equal(25)
         end
       end
 
@@ -79,7 +79,7 @@ module Vedeu
         let(:y)         { 15 }
 
         it 'does not move past the bottom of the interface' do
-          return_value_for(subject.y, 10)
+          subject.y.must_equal(10)
         end
       end
 
@@ -89,7 +89,7 @@ module Vedeu
         let(:y)         { 15 }
 
         it 'does not move past the bottom border' do
-          return_value_for(subject.y, 8)
+          subject.y.must_equal(8)
         end
       end
     end
@@ -97,16 +97,16 @@ module Vedeu
     describe '.left' do
       subject { MoveCursor.left(cursor, interface) }
 
-      it { return_type_for(subject, Vedeu::Cursor) }
+      it { subject.must_be_instance_of(Vedeu::Cursor) }
 
-      it { return_value_for(subject.x, 1) }
+      it { subject.x.must_equal(1) }
 
       context 'when moving, the cursor must be within the visible area for ' \
               'the console' do
         let(:x) { -5 }
 
         it 'does not move past the left of the screen' do
-          return_value_for(subject.x, 1)
+          subject.x.must_equal(1)
         end
       end
 
@@ -116,7 +116,7 @@ module Vedeu
         let(:x)         { 3 }
 
         it 'does not move past the left of the interface' do
-          return_value_for(subject.x, 5)
+          subject.x.must_equal(5)
         end
       end
 
@@ -126,7 +126,7 @@ module Vedeu
         let(:x)         { 4 }
 
         it 'does not move past the left border' do
-          return_value_for(subject.x, 6)
+          subject.x.must_equal(6)
         end
       end
     end
@@ -134,16 +134,16 @@ module Vedeu
     describe '.right' do
       subject { MoveCursor.right(cursor, interface) }
 
-      it { return_type_for(subject, Vedeu::Cursor) }
+      it { subject.must_be_instance_of(Vedeu::Cursor) }
 
-      it { return_value_for(subject.x, 2) }
+      it { subject.x.must_equal(2) }
 
       context 'when moving, the cursor must be within the visible area for ' \
               'the console' do
         let(:x) { 85 }
 
         it 'does not move past the right of the screen' do
-          return_value_for(subject.x, 80)
+          subject.x.must_equal(80)
         end
       end
 
@@ -153,7 +153,7 @@ module Vedeu
         let(:x)         { 14 }
 
         it 'does not move past the right of the interface' do
-          return_value_for(subject.x, 10)
+          subject.x.must_equal(10)
         end
       end
 
@@ -164,7 +164,7 @@ module Vedeu
         let(:x)         { 14 }
 
         it 'does not move past the right border' do
-          return_value_for(subject.x, 8)
+          subject.x.must_equal(8)
         end
       end
     end
@@ -172,16 +172,16 @@ module Vedeu
     describe '.up' do
       subject { MoveCursor.up(cursor, interface) }
 
-      it { return_type_for(subject, Vedeu::Cursor) }
+      it { subject.must_be_instance_of(Vedeu::Cursor) }
 
-      it { return_value_for(subject.y, 1) }
+      it { subject.y.must_equal(1) }
 
       context 'when moving, the cursor must be within the visible area for ' \
               'the console' do
         let(:y) { -5 }
 
         it 'does not move past the top of the screen' do
-          return_value_for(subject.y, 1)
+          subject.y.must_equal(1)
         end
       end
 
@@ -192,7 +192,7 @@ module Vedeu
         let(:y)         { 3 }
 
         it 'does not move past the top of the interface' do
-          return_value_for(subject.y, 5)
+          subject.y.must_equal(5)
         end
       end
 
@@ -203,7 +203,7 @@ module Vedeu
         let(:y)         { 3 }
 
         it 'does not move past the top border' do
-          return_value_for(subject.y, 6)
+          subject.y.must_equal(6)
         end
       end
     end
@@ -211,32 +211,32 @@ module Vedeu
     describe '#origin' do
       subject { MoveCursor.origin(cursor, interface) }
 
-      it { return_type_for(subject, Vedeu::Cursor) }
+      it { subject.must_be_instance_of(Vedeu::Cursor) }
 
       context 'within the visible area for the console' do
-        it { return_value_for(subject.x, 1) }
-        it { return_value_for(subject.y, 1) }
+        it { subject.x.must_equal(1) }
+        it { subject.y.must_equal(1) }
       end
 
       context 'within the boundary of the interface' do
         subject { MoveCursor.origin(cursor, interface_without_border) }
 
-        it { return_value_for(subject.x, 5) }
-        it { return_value_for(subject.y, 5) }
+        it { subject.x.must_equal(5) }
+        it { subject.y.must_equal(5) }
       end
 
       context 'within the border of the interface' do
         subject { MoveCursor.origin(cursor, interface_with_border) }
 
-        it { return_value_for(subject.x, 6) }
-        it { return_value_for(subject.y, 6) }
+        it { subject.x.must_equal(6) }
+        it { subject.y.must_equal(6) }
       end
     end
 
     describe '#move' do
       subject { MoveCursor.new(cursor, interface, dy, dx).move }
 
-      it { return_type_for(subject, Vedeu::Cursor) }
+      it { subject.must_be_instance_of(Vedeu::Cursor) }
     end
 
   end # MoveCursor

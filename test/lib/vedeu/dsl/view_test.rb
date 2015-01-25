@@ -15,7 +15,7 @@ module Vedeu
           end
         }
 
-        it { return_type_for(subject, Vedeu::Interface) }
+        it { subject.must_be_instance_of(Vedeu::Interface) }
 
         context 'when the block is not given' do
           subject { described.renders }
@@ -41,7 +41,7 @@ module Vedeu
           end
         }
 
-        it { return_type_for(subject, Array) }
+        it { subject.must_be_instance_of(Array) }
 
         context 'when the block is not given' do
           subject { described.renders }
@@ -57,7 +57,7 @@ module Vedeu
           end
         }
 
-        it { return_type_for(subject, Array) }
+        it { subject.must_be_instance_of(Array) }
 
         context 'when the block is not given' do
           subject { described.views }

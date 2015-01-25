@@ -9,7 +9,7 @@ describe 'Interfaces' do
       end
     }
 
-    it { return_type_for(subject, Vedeu::Interface) }
+    it { subject.must_be_instance_of(Vedeu::Interface) }
 
     it 'allows the use of background within Vedeu.interface' do
       skip
@@ -28,7 +28,7 @@ describe 'Interfaces' do
       end
     }
 
-    it { return_type_for(subject, Vedeu::Interface) }
+    it { subject.must_be_instance_of(Vedeu::Interface) }
 
     it 'allows the use of border within Vedeu.interface' do
       skip
@@ -46,7 +46,7 @@ describe 'Interfaces' do
       end
     }
 
-    #it { return_type_for(subject, Vedeu::Interface) }
+    #it { subject.must_be_instance_of(Vedeu::Interface) }
 
     it 'allows the use of colour within Vedeu.interface' do
       skip
@@ -64,7 +64,7 @@ describe 'Interfaces' do
       end
     }
 
-    it { return_type_for(subject, Vedeu::Interface) }
+    it { subject.must_be_instance_of(Vedeu::Interface) }
 
     it 'allows the use of foreground within Vedeu.interface' do
       skip
@@ -82,7 +82,7 @@ describe 'Interfaces' do
       end
     }
 
-    #it { return_type_for(subject, Vedeu::Interface) }
+    #it { subject.must_be_instance_of(Vedeu::Interface) }
 
     it 'allows the use of cursor within Vedeu.interface' do
       skip
@@ -100,7 +100,7 @@ describe 'Interfaces' do
       end
     }
 
-    #it { return_type_for(subject, Vedeu::Interface) }
+    #it { subject.must_be_instance_of(Vedeu::Interface) }
 
     it 'allows the use of cursor! within Vedeu.interface' do
       skip
@@ -118,7 +118,7 @@ describe 'Interfaces' do
       end
     }
 
-    it { return_type_for(subject, Vedeu::Interface) }
+    it { subject.must_be_instance_of(Vedeu::Interface) }
 
     it 'allows the use of delay within Vedeu.interface' do
       skip
@@ -136,7 +136,7 @@ describe 'Interfaces' do
       end
     }
 
-    #it { return_type_for(subject, Vedeu::Interface) }
+    #it { subject.must_be_instance_of(Vedeu::Interface) }
 
     it 'allows the use of focus! within Vedeu.interface' do
       skip
@@ -155,7 +155,7 @@ describe 'Interfaces' do
       end
     }
 
-    it { return_type_for(subject, Vedeu::Interface) }
+    it { subject.must_be_instance_of(Vedeu::Interface) }
 
     it 'allows the use of geometry within Vedeu.interface' do
       skip
@@ -173,7 +173,7 @@ describe 'Interfaces' do
       end
     }
 
-    it { return_type_for(subject, Vedeu::Interface) }
+    it { subject.must_be_instance_of(Vedeu::Interface) }
 
     it 'allows the use of group within Vedeu.interface' do
       skip
@@ -192,7 +192,7 @@ describe 'Interfaces' do
       end
     }
 
-    #it { return_type_for(subject, Vedeu::Interface) }
+    #it { subject.must_be_instance_of(Vedeu::Interface) }
 
     it 'allows the use of keys within Vedeu.interface' do
       skip
@@ -211,7 +211,7 @@ describe 'Interfaces' do
       end
     }
 
-    #it { return_type_for(subject, Vedeu::Interface) }
+    #it { subject.must_be_instance_of(Vedeu::Interface) }
 
     it 'allows the use of lines within Vedeu.interface' do
       skip
@@ -229,7 +229,7 @@ describe 'Interfaces' do
       end
     }
 
-    it { return_type_for(subject, Vedeu::Interface) }
+    it { subject.must_be_instance_of(Vedeu::Interface) }
 
     it 'allows the use of name within Vedeu.interface' do
       skip
@@ -247,7 +247,7 @@ describe 'Interfaces' do
       end
     }
 
-    it { return_type_for(subject, Vedeu::Interface) }
+    it { subject.must_be_instance_of(Vedeu::Interface) }
 
     it 'allows the use of style within Vedeu.interface' do
       skip

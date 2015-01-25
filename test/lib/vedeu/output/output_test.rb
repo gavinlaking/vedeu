@@ -29,14 +29,14 @@ module Vedeu
     end
 
     describe '#initialize' do
-      it { return_type_for(described, Output) }
+      it { described.must_be_instance_of(Output) }
       it { described.instance_variable_get('@interface').must_equal(interface) }
     end
 
     describe '.render' do
       subject { Output.render(interface) }
 
-      it { return_type_for(subject, Array) }
+      it { subject.must_be_instance_of(Array) }
     end
 
   end # Output

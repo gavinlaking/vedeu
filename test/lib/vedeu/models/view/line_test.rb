@@ -36,7 +36,7 @@ module Vedeu
     describe '#initialize' do
       subject { described.new(streams, parent, colour, style) }
 
-      it { return_type_for(subject, Line) }
+      it { subject.must_be_instance_of(Line) }
       it { subject.instance_variable_get('@streams').must_be_instance_of(Vedeu::Model::Streams) }
       it { subject.instance_variable_get('@parent').must_equal(parent) }
       it { subject.instance_variable_get('@colour').must_equal(colour) }
@@ -46,7 +46,7 @@ module Vedeu
     describe '#chars' do
       subject { described.new(streams, parent, colour, style).chars }
 
-      it { return_type_for(subject, Array) }
+      it { subject.must_be_instance_of(Array) }
 
       context 'when there is no content' do
         let(:streams) { [] }
@@ -123,18 +123,18 @@ module Vedeu
       context 'when there is no content' do
         let(:streams) { [] }
 
-        it { return_type_for(subject, TrueClass) }
+        it { subject.must_be_instance_of(TrueClass) }
       end
 
       context 'when there is content' do
-        it { return_type_for(subject, FalseClass) }
+        it { subject.must_be_instance_of(FalseClass) }
       end
     end
 
     describe '#size' do
       subject { described.new(streams, parent, colour, style).size }
 
-      it { return_type_for(subject, Fixnum) }
+      it { subject.must_be_instance_of(Fixnum) }
 
       it 'returns the size of the line' do
         subject.must_equal(53)
@@ -144,13 +144,13 @@ module Vedeu
     describe '#streams' do
       subject { described.new(streams, parent, colour, style).streams }
 
-      it { return_type_for(subject, Vedeu::Model::Streams) }
+      it { subject.must_be_instance_of(Vedeu::Model::Streams) }
     end
 
     describe '#to_s' do
       subject { described.new(streams, parent, colour, style).to_s }
 
-      it { return_type_for(subject, String) }
+      it { subject.must_be_instance_of(String) }
 
       it 'returns the line complete with formatting' do
         # (starts in Line colour)

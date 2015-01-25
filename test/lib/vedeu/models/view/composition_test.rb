@@ -25,13 +25,13 @@ module Vedeu
         end
       }
 
-      it { return_type_for(subject, Composition) }
+      it { subject.must_be_instance_of(Composition) }
     end
 
     describe '#initialize' do
       subject { instance }
 
-      it { return_type_for(subject, described) }
+      it { subject.must_be_instance_of(described) }
       it { subject.instance_variable_get('@interfaces').must_equal(interface_collection) }
       it { subject.instance_variable_get('@colour').must_equal(colour) }
       it { subject.instance_variable_get('@style').must_equal(style) }

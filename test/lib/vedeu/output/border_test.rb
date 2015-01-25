@@ -36,13 +36,13 @@ module Vedeu
         end
       }
 
-      it { return_type_for(subject, described) }
+      it { subject.must_be_instance_of(described) }
     end
 
     describe '#initialize' do
       subject { instance }
 
-      it { return_type_for(subject, Border) }
+      it { subject.must_be_instance_of(Border) }
       it { subject.instance_variable_get('@interface').must_equal(interface) }
       it { subject.instance_variable_get('@attributes').must_equal(
         {
@@ -82,60 +82,60 @@ module Vedeu
     describe '#enabled?' do
       subject { instance.enabled? }
 
-      it { return_type_for(subject, FalseClass) }
+      it { subject.must_be_instance_of(FalseClass) }
 
       context 'when true' do
         let(:attributes) { { enabled: true } }
 
-        it { return_type_for(subject, TrueClass) }
+        it { subject.must_be_instance_of(TrueClass) }
       end
     end
 
     describe '#bottom?' do
       subject { instance.bottom? }
 
-      it { return_type_for(subject, TrueClass) }
+      it { subject.must_be_instance_of(TrueClass) }
 
       context 'when false' do
         let(:attributes) { { show_bottom: false } }
 
-        it { return_type_for(subject, FalseClass) }
+        it { subject.must_be_instance_of(FalseClass) }
       end
     end
 
     describe '#left?' do
       subject { instance.left? }
 
-      it { return_type_for(subject, TrueClass) }
+      it { subject.must_be_instance_of(TrueClass) }
 
       context 'when false' do
         let(:attributes) { { show_left: false } }
 
-        it { return_type_for(subject, FalseClass) }
+        it { subject.must_be_instance_of(FalseClass) }
       end
     end
 
     describe '#right?' do
       subject { instance.right? }
 
-      it { return_type_for(subject, TrueClass) }
+      it { subject.must_be_instance_of(TrueClass) }
 
       context 'when false' do
         let(:attributes) { { show_right: false } }
 
-        it { return_type_for(subject, FalseClass) }
+        it { subject.must_be_instance_of(FalseClass) }
       end
     end
 
     describe '#top?' do
       subject { instance.top? }
 
-      it { return_type_for(subject, TrueClass) }
+      it { subject.must_be_instance_of(TrueClass) }
 
       context 'when false' do
         let(:attributes) { { show_top: false } }
 
-        it { return_type_for(subject, FalseClass) }
+        it { subject.must_be_instance_of(FalseClass) }
       end
     end
 

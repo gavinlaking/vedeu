@@ -13,7 +13,7 @@ module Vedeu
     describe '#initialize' do
       subject { instance }
 
-      it { return_type_for(subject, Keymap) }
+      it { subject.must_be_instance_of(Keymap) }
       it { subject.instance_variable_get('@name').must_equal(map_name) }
       it { subject.instance_variable_get('@keys').must_be_instance_of(Vedeu::Model::Collection) }
       it { subject.instance_variable_get('@repository').must_equal(Vedeu.keymaps) }
@@ -29,7 +29,7 @@ module Vedeu
       end
 
       context 'when the key is not already defined' do
-        it { return_type_for(subject, Vedeu::Model::Collection) }
+        it { subject.must_be_instance_of(Vedeu::Model::Collection) }
       end
     end
 
@@ -41,11 +41,11 @@ module Vedeu
       context 'when the input is defined' do
         let(:keys) { Vedeu::Model::Collection.new([key]) }
 
-        it { return_type_for(subject, TrueClass) }
+        it { subject.must_be_instance_of(TrueClass) }
       end
 
       context 'when the input is not defined' do
-        it { return_type_for(subject, FalseClass) }
+        it { subject.must_be_instance_of(FalseClass) }
       end
     end
 
@@ -60,25 +60,25 @@ module Vedeu
         let(:key_c) { Vedeu::Key.new('c') { :key_c } }
         let(:keys)  { Vedeu::Model::Collection.new([key_a, key_b, key_c]) }
 
-        it { return_type_for(subject, Array) }
-        it { return_value_for(subject, [:key_b]) }
+        it { subject.must_be_instance_of(Array) }
+        it { subject.must_equal([:key_b]) }
       end
 
       context 'when the input is not defined' do
-        it { return_type_for(subject, FalseClass) }
+        it { subject.must_be_instance_of(FalseClass) }
       end
     end
 
     describe '#keys' do
       subject { instance.keys }
 
-      it { return_type_for(subject, Vedeu::Model::Collection) }
+      it { subject.must_be_instance_of(Vedeu::Model::Collection) }
     end
 
     describe '#name' do
       subject { instance.name }
 
-      it { return_type_for(subject, String) }
+      it { subject.must_be_instance_of(String) }
     end
 
   end # Keymap

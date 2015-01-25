@@ -8,7 +8,7 @@ module Vedeu
     let(:members)   { ['carbon', 'nitrogen', 'oxygen'] }
 
     describe '#initialize' do
-      it { return_type_for(described, Group) }
+      it { described.must_be_instance_of(Group) }
       it { described.instance_variable_get('@members').must_equal(members.to_set) }
       it { described.instance_variable_get('@name').must_equal('organics') }
       it { described.instance_variable_get('@repository').must_equal(Vedeu.groups) }
@@ -37,7 +37,7 @@ module Vedeu
     end
 
     describe '#members' do
-      it { return_type_for(described.members, Set) }
+      it { described.members.must_be_instance_of(Set) }
 
       context 'when the group has no members' do
         it 'returns an empty Set' do
@@ -85,7 +85,7 @@ module Vedeu
     end
 
     describe '#reset' do
-      it { return_type_for(described.reset, Group) }
+      it { described.reset.must_be_instance_of(Group) }
 
       it 'returns a Group with no members' do
         group     = Group.new('organics', 'nitrogen', 'carbon')

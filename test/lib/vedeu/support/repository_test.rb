@@ -28,7 +28,7 @@ module Vedeu
     describe '#initialize' do
       subject { instance }
 
-      it { return_type_for(subject, Vedeu::Repository) }
+      it { subject.must_be_instance_of(Vedeu::Repository) }
       it { subject.instance_variable_get('@model').must_equal(model) }
       it { subject.instance_variable_get('@storage').must_equal(storage) }
     end
@@ -46,7 +46,7 @@ module Vedeu
 
     #   subject { instance.current }
 
-    #   it { return_type_for(Vedeu.focus, NilClass) }
+    #   it { Vedeu.focus.must_be_instance_of(NilClass) }
 
     #   context 'when the model exists' do
     #     # before { Cursor.new('francium', false, 12, 4).store }
@@ -68,7 +68,7 @@ module Vedeu
     describe '#each' do
       subject { instance.each }
 
-      it { return_type_for(subject, Enumerator) }
+      it { subject.must_be_instance_of(Enumerator) }
     end
 
     describe '#empty?' do
@@ -110,21 +110,21 @@ module Vedeu
 
       subject { instance.find_or_create(model_name) }
 
-      it { return_type_for(instance.find_or_create('zinc'), Vedeu::TestModel) }
+      it { instance.find_or_create('zinc').must_be_instance_of(Vedeu::TestModel) }
 
       context 'when the model exists' do
         let(:model_name) { 'niobium' }
 
         before { instance.store(model_instance) }
 
-        it { return_value_for(subject, model_instance) }
+        it { subject.must_equal(model_instance) }
       end
 
       context 'when the model does not exist' do
         let(:model_name) { 'zinc'}
 
         it 'creates and stores a new instance of the model' do
-          return_type_for(subject, Vedeu::TestModel)
+          subject.must_be_instance_of(Vedeu::TestModel)
         end
       end
     end
@@ -185,7 +185,7 @@ module Vedeu
       context 'when the storage is empty' do
         before { instance.reset }
 
-        it { return_type_for(subject, FalseClass) }
+        it { subject.must_be_instance_of(FalseClass) }
       end
 
       context 'when the model is not registered' do
@@ -194,7 +194,7 @@ module Vedeu
           instance.store(Vedeu::TestModel.new('zinc'))
         end
 
-        it { return_type_for(subject, FalseClass) }
+        it { subject.must_be_instance_of(FalseClass) }
       end
 
       context 'when the model is registered' do
@@ -232,7 +232,7 @@ module Vedeu
       context 'when a name attributes is provided' do
         let(:model_name) { 'hydrogen' }
 
-        it { return_type_for(subject, Vedeu::TestModel) }
+        it { subject.must_be_instance_of(Vedeu::TestModel) }
       end
     end
 
@@ -242,13 +242,13 @@ module Vedeu
       context 'when the model exists' do
         before { instance.store(model_instance) }
 
-        it { return_value_for(subject, model_instance) }
+        it { subject.must_equal(model_instance) }
       end
 
       context 'when the model does not exist' do
         let(:model_name) { 'not_found' }
 
-        it { return_type_for(subject, NilClass) }
+        it { subject.must_be_instance_of(NilClass) }
       end
     end
 

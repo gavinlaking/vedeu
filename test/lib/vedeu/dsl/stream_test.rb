@@ -14,7 +14,7 @@ module Vedeu
       let(:style)     { mock('Style') }
 
       describe '#initialize' do
-        it { return_type_for(described, Vedeu::DSL::Stream) }
+        it { described.must_be_instance_of(Vedeu::DSL::Stream) }
         it { described.instance_variable_get('@model').must_equal(model) }
       end
 
@@ -24,10 +24,10 @@ module Vedeu
 
         subject { described.align(value, options) }
 
-        it { return_type_for(subject, String) }
+        it { subject.must_be_instance_of(String) }
 
         it 'aligns the value according to the options provided' do
-          return_value_for(subject, 'siliconsilicon')
+          subject.must_equal('siliconsilicon')
         end
       end
 
@@ -36,8 +36,8 @@ module Vedeu
 
         subject { described.text(value) }
 
-        it { return_type_for(subject, String) }
-        it { return_value_for(subject, 'galliumgallium') }
+        it { subject.must_be_instance_of(String) }
+        it { subject.must_equal('galliumgallium') }
       end
 
     end # Stream

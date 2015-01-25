@@ -51,7 +51,7 @@ module Vedeu
 
         subject { Terminal.input }
 
-        it { return_value_for(subject, 'Some input') }
+        it { subject.must_equal('Some input') }
       end
 
       context 'when the terminal is in raw mode' do
@@ -67,7 +67,7 @@ module Vedeu
 
         subject { Terminal.input }
 
-        it { return_type_for(subject, String) }
+        it { subject.must_be_instance_of(String) }
       end
     end
 
@@ -87,7 +87,7 @@ module Vedeu
 
       subject { Terminal.resize }
 
-      it { return_type_for(subject, TrueClass) }
+      it { subject.must_be_instance_of(TrueClass) }
     end
 
     describe '.clear_screen' do

@@ -13,7 +13,7 @@ module Vedeu
       after  { test_configuration }
 
       describe '#initialize' do
-        it { return_type_for(described, CLI) }
+        it { described.must_be_instance_of(CLI) }
         it { described.instance_variable_get('@args').must_equal(args) }
         it { described.instance_variable_get('@options').must_equal({}) }
       end

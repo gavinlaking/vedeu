@@ -19,7 +19,7 @@ module Vedeu
     end
 
     describe '#initialize' do
-      it { return_type_for(described, Menu) }
+      it { described.must_be_instance_of(Menu) }
       it { described.instance_variable_get('@collection').must_equal(collection) }
       it { described.instance_variable_get('@name').must_equal('elements') }
       it { described.instance_variable_get('@current').must_equal(0) }

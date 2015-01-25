@@ -11,7 +11,7 @@ module Vedeu
     describe '#initialize' do
       subject { instance }
 
-      it { return_type_for(subject, Trace) }
+      it { subject.must_be_instance_of(Trace) }
       it { subject.instance_variable_get('@options').must_equal(options) }
     end
 

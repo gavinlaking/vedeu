@@ -12,15 +12,15 @@ module Vedeu
       describe '#background' do
         subject { Vedeu::DSL::Interface.new(model).background(background) }
 
-        it { return_type_for(subject, String) }
-        it { return_value_for(subject, '#00ff00') }
+        it { subject.must_be_instance_of(String) }
+        it { subject.must_equal('#00ff00') }
       end
 
       describe '#foreground' do
         subject { Vedeu::DSL::Interface.new(model).foreground(foreground) }
 
-        it { return_type_for(subject, String) }
-        it { return_value_for(subject, '#ff00ff') }
+        it { subject.must_be_instance_of(String) }
+        it { subject.must_equal('#ff00ff') }
       end
 
       describe '#colour' do
@@ -28,7 +28,7 @@ module Vedeu
 
         subject { Vedeu::DSL::Interface.new(model).colour(attributes) }
 
-        it { return_type_for(subject, Vedeu::Colour) }
+        it { subject.must_be_instance_of(Vedeu::Colour) }
 
         context 'with an invalid attribute' do
           let(:attributes) { { invalid: background, foreground: foreground } }

@@ -22,12 +22,12 @@ module Vedeu
 
       subject { described.coerce(value) }
 
-      it { return_type_for(subject, described) }
+      it { subject.must_be_instance_of(described) }
 
       context 'when the value is nil' do
         let(:value) { nil }
 
-        it { return_type_for(subject, described) }
+        it { subject.must_be_instance_of(described) }
       end
 
       context 'when the value is a Style already' do

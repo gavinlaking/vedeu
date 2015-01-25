@@ -11,14 +11,14 @@ module Vedeu
     describe '.all' do
       subject { described.all }
 
-      it { return_type_for(subject, Array) }
+      it { subject.must_be_instance_of(Array) }
 
       context 'when there are no registered interfaces' do
-        it { return_value_for(subject, []) }
+        it { subject.must_equal([]) }
       end
 
       # context 'when there are registered interfaces' do
-      #   it { return_value_for(subject, ['hydrogen', 'helium']) }
+      #   it { subject, ['hydrogen'.must_equal('helium']) }
       # end
     end
 
@@ -61,7 +61,7 @@ module Vedeu
       end
 
       context 'when the interface or buffer is found' do
-        # it { return_type_for(subject, Array) }
+        # it { subject.must_be_instance_of(Array) }
 
         it { skip }
       end

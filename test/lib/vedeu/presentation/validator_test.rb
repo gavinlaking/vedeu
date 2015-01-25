@@ -8,7 +8,7 @@ module Vedeu
     let(:attributes) { {} }
 
     describe '#initialize' do
-      it { return_type_for(described, Validator) }
+      it { described.must_be_instance_of(Validator) }
       it { described.instance_variable_get('@attributes').must_equal(attributes) }
     end
 

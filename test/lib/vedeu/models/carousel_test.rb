@@ -8,7 +8,7 @@ module Vedeu
     let(:storage)   { [] }
 
     describe '#initialize' do
-      it { return_type_for(described, Vedeu::Carousel) }
+      it { described.must_be_instance_of(Vedeu::Carousel) }
       it { described.instance_variable_get('@storage').must_equal(storage) }
     end
 
@@ -90,7 +90,7 @@ module Vedeu
       context 'when there are no elements defined' do
         let(:storage) { [] }
 
-        it { return_type_for(subject, NilClass) }
+        it { subject.must_be_instance_of(NilClass) }
       end
     end
 
@@ -120,7 +120,7 @@ module Vedeu
       context 'without a block given' do
         subject { described.each }
 
-        it { return_type_for(subject, Enumerator) }
+        it { subject.must_be_instance_of(Enumerator) }
       end
     end
 
@@ -136,7 +136,7 @@ module Vedeu
       context 'when the storage is empty' do
         let(:storage) { [] }
 
-        it { return_type_for(subject, Carousel) }
+        it { subject.must_be_instance_of(Carousel) }
       end
     end
 
@@ -152,7 +152,7 @@ module Vedeu
       context 'when the storage is empty' do
         let(:storage) { [] }
 
-        it { return_type_for(subject, Carousel) }
+        it { subject.must_be_instance_of(Carousel) }
       end
     end
 

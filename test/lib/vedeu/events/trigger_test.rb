@@ -14,13 +14,13 @@ module Vedeu
 
       subject { described.trigger(event_name) }
 
-      it { return_value_for(subject, :_only_one_result_) }
+      it { subject.must_equal(:_only_one_result_) }
     end
 
     describe '#initialize' do
       subject { instance }
 
-      it { return_type_for(subject, Vedeu::Trigger) }
+      it { subject.must_be_instance_of(Vedeu::Trigger) }
       it { subject.instance_variable_get('@name').must_equal(event_name) }
       it { subject.instance_variable_get('@args').must_equal([args]) }
       it { subject.instance_variable_get('@repository').must_equal(Vedeu.events) }
@@ -34,7 +34,7 @@ module Vedeu
 
         before { Vedeu.bind(event_name) { :_only_one_result_ } }
 
-        it { return_value_for(subject, :_only_one_result_) }
+        it { subject.must_equal(:_only_one_result_) }
       end
 
       context 'when multiple results occur from triggering an event' do
@@ -45,13 +45,13 @@ module Vedeu
           Vedeu::Event.register(event_name) { :_result_two_ }
         end
 
-        it { return_value_for(subject, [:_result_one_, :_result_two_]) }
+        it { subject.must_equal([:_result_one_, :_result_two_]) }
       end
 
       context 'when the event has not been registered' do
         let(:event_name) { :_not_found_ }
 
-        it { return_value_for(subject, []) }
+        it { subject.must_equal([]) }
       end
     end
 

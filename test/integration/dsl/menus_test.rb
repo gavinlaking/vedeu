@@ -9,7 +9,7 @@ describe 'Menus' do
       end
     }
 
-    it { return_type_for(subject, Vedeu::Menu) }
+    it { subject.must_be_instance_of(Vedeu::Menu) }
 
     it 'allows the use of item within Vedeu.menu' do
       subject.collection.must_equal(['hydrogen'])
@@ -27,7 +27,7 @@ describe 'Menus' do
       end
     }
 
-    it { return_type_for(subject, Vedeu::Menu) }
+    it { subject.must_be_instance_of(Vedeu::Menu) }
 
     it 'allows the use of item within Vedeu.menu' do
       subject.collection.must_equal(['lithium', 'beryllium'])
@@ -45,7 +45,7 @@ describe 'Menus' do
       end
     }
 
-    it { return_type_for(subject, Vedeu::Menu) }
+    it { subject.must_be_instance_of(Vedeu::Menu) }
 
     it 'allows the use of name within Vedeu.menu' do
       subject.name.must_equal('elements')

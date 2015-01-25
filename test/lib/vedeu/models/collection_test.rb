@@ -15,7 +15,7 @@ module Vedeu
       describe '#initialize' do
         subject { instance }
 
-        it { return_type_for(subject, Collection) }
+        it { subject.must_be_instance_of(Collection) }
         it { subject.instance_variable_get('@collection').must_equal([]) }
         it { subject.instance_variable_get('@name').must_equal(model_name) }
         it { subject.instance_variable_get('@parent').must_equal(parent) }
@@ -27,21 +27,21 @@ module Vedeu
 
         subject { instance[value] }
 
-        it { return_type_for(subject, Array) }
-        it { return_value_for(subject, [:helium, :lithium]) }
+        it { subject.must_be_instance_of(Array) }
+        it { subject.must_equal([:helium, :lithium]) }
       end
 
       describe '#add' do
         subject { instance.add(:hydrogen) }
 
-        it { return_type_for(subject, Collection) }
-        it { return_value_for(subject.all, [:hydrogen]) }
+        it { subject.must_be_instance_of(Collection) }
+        it { subject.all.must_equal([:hydrogen]) }
 
         context 'with multiple objects' do
           subject { instance.add(:hydrogen, :helium) }
 
           it 'adds all the objects to the collection' do
-            return_value_for(subject.all, [:hydrogen, :helium])
+            subject.all.must_equal([:hydrogen, :helium])
           end
         end
       end
@@ -49,14 +49,14 @@ module Vedeu
       describe '#all' do
         subject { instance.all }
 
-        it { return_type_for(subject, Array) }
-        it { return_value_for(subject, []) }
+        it { subject.must_be_instance_of(Array) }
+        it { subject.must_equal([]) }
 
         context 'when the collection is not empty' do
           before { instance.add(:hydrogen) }
 
           it 'returns the populated collection' do
-            return_value_for(subject, [:hydrogen])
+            subject.must_equal([:hydrogen])
           end
         end
       end
@@ -65,45 +65,45 @@ module Vedeu
         subject { instance.empty? }
 
         context 'when the collection is empty' do
-          it { return_type_for(subject, TrueClass) }
+          it { subject.must_be_instance_of(TrueClass) }
         end
 
         context 'when the collection is not empty' do
           before { instance.add(:hydrogen) }
 
-          it { return_type_for(subject, FalseClass) }
+          it { subject.must_be_instance_of(FalseClass) }
         end
       end
 
       describe '#size' do
         subject { instance.size }
 
-        it { return_type_for(subject, Fixnum) }
+        it { subject.must_be_instance_of(Fixnum) }
 
         context 'when the collection is empty' do
-          it { return_value_for(subject, 0) }
+          it { subject.must_equal(0) }
         end
 
         context 'when the collection is not empty' do
           before { instance.add(:hydrogen) }
 
-          it { return_value_for(subject, 1) }
+          it { subject.must_equal(1) }
         end
       end
 
       describe '#to_s' do
         subject { instance.to_s }
 
-        it { return_type_for(subject, String) }
+        it { subject.must_be_instance_of(String) }
 
         context 'when the collection is empty' do
-          it { return_value_for(subject, '') }
+          it { subject.must_equal('') }
         end
 
         context 'when the collection is not empty' do
           before { instance.add(:hydrogen) }
 
-          it { return_value_for(subject, 'hydrogen') }
+          it { subject.must_equal('hydrogen') }
         end
       end
 

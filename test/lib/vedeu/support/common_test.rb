@@ -51,8 +51,8 @@ module Vedeu
 
       subject { described.to_sentence(array) }
 
-      it { return_type_for(subject, String) }
-      it { return_value_for(subject, 'hydrogen, helium and lithium') }
+      it { subject.must_be_instance_of(String) }
+      it { subject.must_equal('hydrogen, helium and lithium') }
     end
 
   end # Common

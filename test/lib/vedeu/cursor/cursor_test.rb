@@ -11,7 +11,7 @@ module Vedeu
     let(:y)           { 8 }
 
     describe '#initialize' do
-      it { return_type_for(described, Cursor) }
+      it { described.must_be_instance_of(Cursor) }
 
       it { described.instance_variable_get('@name').must_equal('silver') }
       it { described.instance_variable_get('@state').must_equal(:show) }
@@ -21,9 +21,9 @@ module Vedeu
     end
 
     describe '#name' do
-      it { return_type_for(described.name, String) }
+      it { described.name.must_be_instance_of(String) }
 
-      it { return_value_for(described.name, 'silver') }
+      it { described.name.must_equal('silver') }
     end
 
     describe '#to_s' do
@@ -31,7 +31,7 @@ module Vedeu
 
       subject { Cursor.new('silver', visible, 19, 8).to_s }
 
-      it { return_type_for(subject, String) }
+      it { subject.must_be_instance_of(String) }
 
       context 'when the cursor is visible' do
         it 'returns an visible cursor escape sequence with position' do

@@ -16,7 +16,7 @@ module Vedeu
     describe '#initialize' do
       subject { instance }
 
-      it { return_type_for(subject, described) }
+      it { subject.must_be_instance_of(described) }
       it { subject.instance_variable_get('@name').must_equal(buffer_name) }
       it { subject.instance_variable_get('@back').must_equal(back) }
       it { subject.instance_variable_get('@front').must_equal(front) }
@@ -56,7 +56,7 @@ module Vedeu
     describe '#content' do
       subject { instance.content }
 
-      it { return_type_for(subject, Array) }
+      it { subject.must_be_instance_of(Array) }
 
       context 'when there is content on the back buffer' do
         let(:back) {

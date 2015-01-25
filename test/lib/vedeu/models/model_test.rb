@@ -14,7 +14,7 @@ module Vedeu
       subject { model_instance.deputy }
 
       it 'returns the DSL instance' do
-        return_type_for(subject, DSL::ModelTestClass)
+        subject.must_be_instance_of(DSL::ModelTestClass)
       end
     end
 
@@ -22,7 +22,7 @@ module Vedeu
       subject { model_instance.store }
 
       it 'returns the model' do
-        return_type_for(subject, ModelTestClass)
+        subject.must_be_instance_of(ModelTestClass)
       end
     end
 

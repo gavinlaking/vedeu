@@ -13,12 +13,12 @@ module Vedeu
     }
 
     describe '#initialize' do
-      it { return_type_for(described, Colour) }
+      it { described.must_be_instance_of(Colour) }
       it { described.instance_variable_get('@attributes').must_equal(attributes) }
     end
 
     describe '#background' do
-      it { return_type_for(described.background, String) }
+      it { described.background.must_be_instance_of(String) }
 
       it 'returns an escape sequence' do
         Colour.new({
@@ -32,7 +32,7 @@ module Vedeu
     end
 
     describe '#foreground' do
-      it { return_type_for(described.foreground, String) }
+      it { described.foreground.must_be_instance_of(String) }
 
       it 'returns an escape sequence' do
         Colour.new({
@@ -46,7 +46,7 @@ module Vedeu
     end
 
     describe '#to_s' do
-      it { return_type_for(described.to_s, String) }
+      it { described.to_s.must_be_instance_of(String) }
 
       it 'returns an escape sequence' do
         Colour.new({

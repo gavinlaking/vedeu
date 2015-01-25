@@ -40,7 +40,7 @@ module Vedeu
     # # end
 
     # describe '#initialize' do
-    #   it { return_type_for(described, Interface) }
+    #   it { described.must_be_instance_of(Interface) }
     #   it { subject.instance_variable_get('@attributes').must_equal({
     #       border:   {},
     #       colour:   {
@@ -112,7 +112,7 @@ module Vedeu
     # end
 
     describe '#lines' do
-      it { return_type_for(instance.lines, Vedeu::Model::Lines) }
+      it { instance.lines.must_be_instance_of(Vedeu::Model::Lines) }
     end
 
     describe '#store' do

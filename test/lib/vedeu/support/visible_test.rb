@@ -13,7 +13,7 @@ module Vedeu
     describe '#initialize' do
       subject { instance }
 
-      it { return_type_for(subject, Visible) }
+      it { subject.must_be_instance_of(Visible) }
 
       context 'when visible is :hide' do
         let(:visible) { :hide }
@@ -49,16 +49,16 @@ module Vedeu
     describe '#cursor' do
       subject { instance.cursor }
 
-      it { return_type_for(subject, String) }
+      it { subject.must_be_instance_of(String) }
 
       context 'when visible' do
-        it { return_value_for(subject, "\e[?25h") }
+        it { subject.must_equal("\e[?25h") }
       end
 
       context 'when not visible' do
         let(:visible) { false }
 
-        it { return_value_for(subject, "\e[?25l") }
+        it { subject.must_equal("\e[?25l") }
       end
     end
 
@@ -66,13 +66,13 @@ module Vedeu
       subject { instance.visible? }
 
       context 'when visible' do
-        it { return_type_for(subject, TrueClass) }
+        it { subject.must_be_instance_of(TrueClass) }
       end
 
       context 'when not visible' do
         let(:visible) { false }
 
-        it { return_type_for(subject, FalseClass) }
+        it { subject.must_be_instance_of(FalseClass) }
       end
     end
 
@@ -82,40 +82,40 @@ module Vedeu
       context 'when not visible' do
         let(:visible) { false }
 
-        it { return_type_for(subject, TrueClass) }
+        it { subject.must_be_instance_of(TrueClass) }
       end
 
       context 'when visible' do
-        it { return_type_for(subject, FalseClass) }
+        it { subject.must_be_instance_of(FalseClass) }
       end
     end
 
     describe '#hide' do
       subject { instance.hide }
 
-      it { return_type_for(subject, Visible) }
-      it { return_value_for(subject.visible?, false) }
+      it { subject.must_be_instance_of(Visible) }
+      it { subject.visible?.must_equal(false) }
     end
 
     describe '#show' do
       subject { instance.show }
-      it { return_type_for(subject, Visible) }
-      it { return_value_for(subject.visible?, true) }
+      it { subject.must_be_instance_of(Visible) }
+      it { subject.visible?.must_equal(true) }
     end
 
     describe '#toggle' do
       subject { instance.toggle }
 
-      it { return_type_for(subject, Visible) }
+      it { subject.must_be_instance_of(Visible) }
 
       context 'when visible' do
-        it { return_type_for(subject.visible?, FalseClass) }
+        it { subject.visible?.must_be_instance_of(FalseClass) }
       end
 
       context 'when not visible' do
         let(:visible) { false }
 
-        it { return_type_for(subject.visible?, TrueClass) }
+        it { subject.visible?.must_be_instance_of(TrueClass) }
       end
     end
 

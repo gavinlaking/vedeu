@@ -25,7 +25,7 @@ module Vedeu
     describe '#initialize' do
       subject { instance }
 
-      it { return_type_for(subject, Grid) }
+      it { subject.must_be_instance_of(Grid) }
       it { subject.instance_variable_get('@value').must_equal(value) }
     end
 

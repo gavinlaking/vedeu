@@ -32,13 +32,13 @@ module Vedeu
     describe '#store_immediate' do
       subject { example_instance.store_immediate }
 
-      it { return_type_for(subject, example_model) }
+      it { subject.must_be_instance_of(example_model) }
     end
 
     describe '#store_deferred' do
       subject { example_instance.store_deferred }
 
-      it { return_type_for(subject, example_model) }
+      it { subject.must_be_instance_of(example_model) }
 
       context 'when the name is not defined' do
         before { example_instance.stubs(:name) }

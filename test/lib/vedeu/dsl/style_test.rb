@@ -12,7 +12,7 @@ module Vedeu
 
         subject { Vedeu::DSL::ModelTestClass.new(model).style(args) }
 
-        it { return_type_for(subject, Vedeu::Style) }
+        it { subject.must_be_instance_of(Vedeu::Style) }
       end
 
     end # Style

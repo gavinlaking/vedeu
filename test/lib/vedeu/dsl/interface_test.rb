@@ -19,7 +19,7 @@ module Vedeu
       describe '#initialize' do
         subject { instance }
 
-        it { return_type_for(subject, Vedeu::DSL::Interface) }
+        it { subject.must_be_instance_of(Vedeu::DSL::Interface) }
         it { subject.instance_variable_get('@model').must_equal(model) }
       end
 
@@ -30,7 +30,7 @@ module Vedeu
           end
         }
 
-        it { return_type_for(subject, Vedeu::Border) }
+        it { subject.must_be_instance_of(Vedeu::Border) }
 
         context 'when the block is not given' do
           subject { instance.border }
@@ -287,7 +287,7 @@ module Vedeu
           end
         }
 
-        it { return_type_for(subject, Vedeu::Geometry) }
+        it { subject.must_be_instance_of(Vedeu::Geometry) }
 
         context 'when the require block is not provided' do
           subject { instance.geometry }
@@ -313,7 +313,7 @@ module Vedeu
           end
         }
 
-        it { return_type_for(subject, Vedeu::Keymap) }
+        it { subject.must_be_instance_of(Vedeu::Keymap) }
 
         context 'when the required block is not provided' do
           subject { instance.keys }
@@ -351,7 +351,7 @@ module Vedeu
           end
         }
 
-        it { return_type_for(subject, Vedeu::Model::Collection) }
+        it { subject.must_be_instance_of(Vedeu::Model::Collection) }
 
         context 'when the required block is not provided' do
           subject { instance.lines }

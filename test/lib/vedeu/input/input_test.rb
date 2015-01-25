@@ -14,7 +14,7 @@ module Vedeu
     describe '#initialize' do
       subject { instance }
 
-      it { return_type_for(subject, Input) }
+      it { subject.must_be_instance_of(Input) }
       it { subject.instance_variable_get('@reader').must_equal(reader) }
     end
 

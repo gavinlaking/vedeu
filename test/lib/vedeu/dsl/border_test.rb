@@ -16,7 +16,7 @@ module Vedeu
       describe '#initialize' do
         subject { instance }
 
-        it { return_type_for(subject, Vedeu::DSL::Border) }
+        it { subject.must_be_instance_of(Vedeu::DSL::Border) }
 
         it { subject.instance_variable_get('@model').must_equal(model) }
       end
@@ -26,8 +26,8 @@ module Vedeu
 
         subject { instance.bottom_left(char) }
 
-        it { return_type_for(subject, String) }
-        it { return_value_for(subject, 'C') }
+        it { subject.must_be_instance_of(String) }
+        it { subject.must_equal('C') }
       end
 
       describe '#bottom_right' do
@@ -35,8 +35,8 @@ module Vedeu
 
         subject { instance.bottom_right(char) }
 
-        it { return_type_for(subject, String) }
-        it { return_value_for(subject, 'D') }
+        it { subject.must_be_instance_of(String) }
+        it { subject.must_equal('D') }
       end
 
       describe '#horizontal' do
@@ -44,55 +44,55 @@ module Vedeu
 
         subject { instance.horizontal(char) }
 
-        it { return_type_for(subject, String) }
-        it { return_value_for(subject, 'H') }
+        it { subject.must_be_instance_of(String) }
+        it { subject.must_equal('H') }
       end
 
       describe '#show_bottom' do
         subject { instance.show_bottom(boolean) }
 
-        it { return_type_for(subject, TrueClass) }
+        it { subject.must_be_instance_of(TrueClass) }
 
         context 'when false' do
           let(:boolean) { false }
 
-          it { return_type_for(subject, FalseClass) }
+          it { subject.must_be_instance_of(FalseClass) }
         end
       end
 
       describe '#show_left' do
         subject { instance.show_left(boolean) }
 
-        it { return_type_for(subject, TrueClass) }
+        it { subject.must_be_instance_of(TrueClass) }
 
         context 'when false' do
           let(:boolean) { false }
 
-          it { return_type_for(subject, FalseClass) }
+          it { subject.must_be_instance_of(FalseClass) }
         end
       end
 
       describe '#show_right' do
         subject { instance.show_right(boolean) }
 
-        it { return_type_for(subject, TrueClass) }
+        it { subject.must_be_instance_of(TrueClass) }
 
         context 'when false' do
           let(:boolean) { false }
 
-          it { return_type_for(subject, FalseClass) }
+          it { subject.must_be_instance_of(FalseClass) }
         end
       end
 
       describe '#show_top' do
         subject { instance.show_top(boolean) }
 
-        it { return_type_for(subject, TrueClass) }
+        it { subject.must_be_instance_of(TrueClass) }
 
         context 'when false' do
           let(:boolean) { false }
 
-          it { return_type_for(subject, FalseClass) }
+          it { subject.must_be_instance_of(FalseClass) }
         end
       end
 
@@ -101,8 +101,8 @@ module Vedeu
 
         subject { instance.top_left(char) }
 
-        it { return_type_for(subject, String) }
-        it { return_value_for(subject, 'A') }
+        it { subject.must_be_instance_of(String) }
+        it { subject.must_equal('A') }
       end
 
       describe '#top_right' do
@@ -110,8 +110,8 @@ module Vedeu
 
         subject { instance.top_right(char) }
 
-        it { return_type_for(subject, String) }
-        it { return_value_for(subject, 'B') }
+        it { subject.must_be_instance_of(String) }
+        it { subject.must_equal('B') }
       end
 
       describe '#vertical' do
@@ -119,8 +119,8 @@ module Vedeu
 
         subject { instance.vertical(char) }
 
-        it { return_type_for(subject, String) }
-        it { return_value_for(subject, 'V') }
+        it { subject.must_be_instance_of(String) }
+        it { subject.must_equal('V') }
       end
 
     end # Border

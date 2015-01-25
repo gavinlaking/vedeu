@@ -14,7 +14,7 @@ module Vedeu
     end
 
     describe '#initialize' do
-      it { return_type_for(described, Launcher) }
+      it { described.must_be_instance_of(Launcher) }
       it { described.instance_variable_get('@argv').must_equal([]) }
       it { described.instance_variable_get('@stdin').must_equal(STDIN) }
       it { described.instance_variable_get('@stdout').must_equal(STDOUT) }

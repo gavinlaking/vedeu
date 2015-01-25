@@ -9,14 +9,14 @@ module Vedeu
     describe '#initialize' do
       subject { described.new('bold') }
 
-      it { return_type_for(subject, described) }
+      it { subject.must_be_instance_of(described) }
       it { subject.instance_variable_get('@value').must_equal('bold') }
     end
 
     describe '#attributes' do
       subject { described.new('bold').attributes }
 
-      it { return_type_for(subject, Hash) }
+      it { subject.must_be_instance_of(Hash) }
 
       it 'returns an attributes hash for this instance' do
         subject.must_equal({ style: 'bold' })
@@ -28,8 +28,8 @@ module Vedeu
 
       subject { described.new(value).to_s }
 
-      it { return_type_for(subject, String) }
-      it { return_value_for(subject, '') }
+      it { subject.must_be_instance_of(String) }
+      it { subject.must_equal('') }
 
       describe 'for a single style' do
         let(:value) { 'normal' }

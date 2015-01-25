@@ -13,7 +13,7 @@ module Vedeu
       describe '#initialize' do
         subject { instance }
 
-        it { return_type_for(subject, described) }
+        it { subject.must_be_instance_of(described) }
         it { subject.instance_variable_get('@model').must_equal(model) }
       end
 
@@ -49,7 +49,7 @@ module Vedeu
         context 'when the key is valid (not already defined)' do
           before { model.stubs(:add).returns(Vedeu::Keymap) }
 
-          it { return_value_for(subject, ['j', :down]) }
+          it { subject.must_equal(['j', :down]) }
         end
 
         context 'when the key is not valid (already defined)' do
@@ -58,7 +58,7 @@ module Vedeu
 
           # before { model.stubs(:keys).returns([key_j, key_down]) }
 
-          # it { return_value_for(subject, false) }
+          # it { subject.must_equal(false) }
         end
       end
 

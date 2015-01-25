@@ -13,17 +13,17 @@ module Vedeu
     describe '#initialize' do
       subject { instance }
 
-      it { return_type_for(subject, described) }
+      it { subject.must_be_instance_of(described) }
       it { subject.instance_variable_get('@configuration').must_equal(configuration) }
     end
 
     describe '.start' do
       subject { described.start(configuration) }
 
-      it { return_type_for(subject, Array) }
+      it { subject.must_be_instance_of(Array) }
 
       context 'alias method: .restart' do
-        it { return_type_for(subject, Array) }
+        it { subject.must_be_instance_of(Array) }
       end
     end
 
@@ -36,7 +36,7 @@ module Vedeu
     describe '#start' do
       subject { instance.start }
 
-      it { return_type_for(subject, Array) }
+      it { subject.must_be_instance_of(Array) }
     end
 
   end # Application

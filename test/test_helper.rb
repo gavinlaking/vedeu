@@ -27,40 +27,7 @@ module MiniTest
     # parallelize_me! # uncomment to unleash hell
 
     class << self
-      private
-
-      def describe(desc, *additional_desc, &block)
-        stack = Minitest::Spec.describe_stack
-        # name  = [stack.last, desc, *additional_desc].compact.join("::")
-
-        klass = [stack.last, desc].join
-        name  = [klass, ' ', *additional_desc].compact.join
-
-        sclas = stack.last || if Class === self && is_a?(Minitest::Spec::DSL) then
-                                self
-                              else
-                                Minitest::Spec.spec_type desc, *additional_desc
-                              end
-
-        cls = sclas.create name, desc
-
-        stack.push cls
-        cls.class_eval(&block)
-        stack.pop
-        cls
-      end
       alias_method :context, :describe
-
-    end # Spec eigenclass
-
-    def return_type_for(subject, value)
-      fail StandardError, 'value must be a class' unless value.is_a?(Class)
-
-      subject.must_be_instance_of(value)
-    end
-
-    def return_value_for(subject, value)
-      subject.must_equal(value)
     end
   end
 end

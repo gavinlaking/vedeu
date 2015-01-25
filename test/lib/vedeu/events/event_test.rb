@@ -13,7 +13,7 @@ module Vedeu
     describe '.bind' do
       subject { described.bind(event_name, options) { :event_triggered } }
 
-      it { return_type_for(subject, TrueClass) }
+      it { subject.must_be_instance_of(TrueClass) }
     end
 
     # describe '.unbind' do
@@ -26,20 +26,20 @@ module Vedeu
     #   subject { instance.unbind(event_name) }
 
     #   context 'when the event exists' do
-    #     it { return_type_for(subject, TrueClass) }
+    #     it { subject.must_be_instance_of(TrueClass) }
     #   end
 
     #   context 'when the event does not exist' do
     #     let(:event_name) { :does_not_exist }
 
-    #     it { return_type_for(subject, FalseClass) }
+    #     it { subject.must_be_instance_of(FalseClass) }
     #   end
     # end
 
     describe '#initialize' do
       subject { instance }
 
-      it { return_type_for(subject, Event) }
+      it { subject.must_be_instance_of(Event) }
       it { subject.instance_variable_get('@name').must_equal(event_name) }
       it { subject.instance_variable_get('@options').must_equal(options) }
       # it { subject.instance_variable_get('@closure').must_equal(closure) }
@@ -55,11 +55,11 @@ module Vedeu
       context 'when the event name is already registered' do
         before { Vedeu.bind(:some_event) { :already_registered } }
 
-        it { return_type_for(subject, TrueClass) }
+        it { subject.must_be_instance_of(TrueClass) }
       end
 
       context 'when the event name is not already registered' do
-        it { return_type_for(subject, TrueClass) }
+        it { subject.must_be_instance_of(TrueClass) }
       end
     end
 

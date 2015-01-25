@@ -17,7 +17,7 @@ module Vedeu
     describe '#initialize' do
       subject { instance }
 
-      it { return_type_for(subject, described) }
+      it { subject.must_be_instance_of(described) }
       it { subject.instance_variable_get('@key').must_equal(key) }
       it { subject.instance_variable_get('@name').must_equal(keymap) }
       it { subject.instance_variable_get('@repository').must_equal(Vedeu.keymaps) }
