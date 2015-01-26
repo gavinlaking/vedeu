@@ -14,6 +14,9 @@ module Vedeu
       @data    = data
     end
 
+    def print(string)
+    end
+
     # @return [Array<Array>|Array<String>|String]
     def write
       processed

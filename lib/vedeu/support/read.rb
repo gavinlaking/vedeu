@@ -18,6 +18,15 @@ module Vedeu
       @data    = data
     end
 
+    def getch
+    end
+
+    def gets
+    end
+
+    def read_nonblock(bytes = 1)
+    end
+
     # @return [String]
     def read
       if data
