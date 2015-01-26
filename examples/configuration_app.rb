@@ -22,6 +22,7 @@ class VedeuConfigurationApp
   include Vedeu
 
   configure do
+    colour_mode 16777216
     debug!
     log '/tmp/vedeu_configuration_app.log'
   end

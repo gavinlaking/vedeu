@@ -12,6 +12,7 @@ class VedeuLinesApp
   include Vedeu
 
   configure do
+    colour_mode 16777216
     debug!
     log '/tmp/vedeu_lines_app.log'
   end

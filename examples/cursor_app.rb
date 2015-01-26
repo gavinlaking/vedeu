@@ -12,6 +12,7 @@ class VedeuCursorApp
   include Vedeu
 
   configure do
+    colour_mode 16777216
     debug!
     log '/tmp/vedeu_cursor_app.log'
   end

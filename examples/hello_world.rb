@@ -12,6 +12,7 @@ class HelloWorldApp
   include Vedeu
 
   configure do
+    colour_mode 16777216
     debug!
     log '/tmp/vedeu_hello_world.log'
   end
