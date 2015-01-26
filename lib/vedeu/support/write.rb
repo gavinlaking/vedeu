@@ -1,16 +1,20 @@
 module Vedeu
 
+  # The basis of a fake output device.
   class Write
 
+    # @see Vedeu::Write#write
     def self.to(console, data = nil)
       new(console, data).write
     end
 
+    # @return [Vedeu::Write]
     def initialize(console, data = nil)
       @console = console
       @data    = data
     end
 
+    # @return [Array<Array>|Array<String>|String]
     def write
       processed
     end
@@ -19,6 +23,7 @@ module Vedeu
 
     attr_reader :console, :data
 
+    # @return [Array<Array>|Array<String>|String]
     def processed
       if data
         if data.is_a?(Array)
@@ -52,10 +57,12 @@ module Vedeu
       end
     end
 
+    # @return [Array<Array>|Array<String>]
     def lines(content)
       truncate_lines(content)
     end
 
+    # @return [Array<Char>|Array<String>|NilClass]
     def streams(lines)
       lines.map do |line|
         if line.is_a?(Array)
@@ -72,6 +79,7 @@ module Vedeu
       end.compact
     end
 
+    # @return [Array<Char>|Array<String>|String]
     def truncate_columns(line)
       if line.size > visible_columns
         line[0, visible_columns]
@@ -82,6 +90,7 @@ module Vedeu
       end
     end
 
+    # @return [Array<Array>|Array<String>]
     def truncate_lines(lines)
       if lines.size > visible_lines
         lines[0, visible_lines]
@@ -92,10 +101,12 @@ module Vedeu
       end
     end
 
+    # @return [Fixnum]
     def visible_columns
       console.width - 1
     end
 
+    # @return [Fixnum]
     def visible_lines
       console.height - 1
     end
