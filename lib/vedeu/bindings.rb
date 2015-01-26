@@ -20,7 +20,7 @@ module Vedeu
   module Bindings
 
     # System events needed by Vedeu to run.
-    Vedeu.bind(:_clear_)                   { Vedeu::Terminal.clear_screen }
+    Vedeu.bind(:_clear_)                   { Vedeu::Terminal.clear        }
     Vedeu.bind(:_exit_)                    { Vedeu::Application.stop      }
     Vedeu.bind(:_initialize_)              { Vedeu.trigger(:_refresh_)    }
     Vedeu.bind(:_keypress_)                { |key| Vedeu.keypress(key)    }

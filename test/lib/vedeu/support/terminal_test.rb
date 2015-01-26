@@ -90,9 +90,11 @@ module Vedeu
       it { subject.must_be_instance_of(TrueClass) }
     end
 
-    describe '.clear_screen' do
+    describe '.clear' do
+      subject { Terminal.clear }
+
       it 'clears the screen' do
-        Terminal.clear_screen.must_equal(["\e[38;2;39m\e[48;2;49m\e[2J"])
+        subject.must_equal(["\e[38;2;39m\e[48;2;49m\e[2J"])
       end
     end
 

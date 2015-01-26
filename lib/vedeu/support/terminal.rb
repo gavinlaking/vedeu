@@ -74,6 +74,7 @@ module Vedeu
 
       streams
     end
+    alias_method :write, :output
 
     # When the terminal emit the 'SIGWINCH' signal, Vedeu can intercept this
     # and attempt to redraw the current interface with varying degrees of
@@ -99,7 +100,7 @@ module Vedeu
     # Clears the entire terminal space.
     #
     # @return [String]
-    def clear_screen
+    def clear
       output(Esc.string('clear'))
     end
 
