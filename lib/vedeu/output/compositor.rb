@@ -51,9 +51,12 @@ module Vedeu
     # @return [Array<Interface>]
     def compose
       content.map do |view|
-        unless view.geometry
-          view.geometry = Vedeu.interfaces.find(view.name).geometry
-        end
+        interface = Vedeu.interfaces.find(view.name)
+
+        view.border   = interface.border   unless view.border
+        view.colour   = interface.colour   unless view.colour
+        view.style    = interface.style    unless view.style
+        view.geometry = interface.geometry unless view.geometry
 
         Output.render(view)
       end
