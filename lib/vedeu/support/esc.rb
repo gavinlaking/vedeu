@@ -59,6 +59,19 @@ module Vedeu
       end
     end
 
+    # Return the stream with the escape sequences escaped so that they can be
+    # printed to the terminal instead of being interpreted by the terminal which
+    # will render them. This way we can see what escape sequences are being sent
+    # along with the content.
+    #
+    # @param stream [String]
+    # @return [String]
+    def escape(stream = '')
+      return stream if stream.nil? || stream.empty?
+
+      stream.gsub(/\e/, '\\e')
+    end
+
     # Return the escape sequence required to position the cursor at a particular
     # point on the screen. When passed a block, will do the aforementioned,
     # call the block and then reposition to this location.

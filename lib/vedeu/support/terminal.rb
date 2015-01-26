@@ -67,6 +67,8 @@ module Vedeu
     # @return [Array]
     def output(*streams)
       streams.each do |stream|
+        Vedeu.log(Esc.escape(stream))
+
         console.print(stream)
 
         # Vedeu::Console.write(stream)
