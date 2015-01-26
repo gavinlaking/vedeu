@@ -11,6 +11,10 @@ module Vedeu
 
     # Returns a new instance of Align.
     #
+    # @opts value [String]
+    # @opts width [Integer]
+    # @opts anchor [Symbol]
+    # @opts pad [String]
     # @return [Align]
     def initialize(value = '', options = {})
       @value   = value
@@ -26,7 +30,7 @@ module Vedeu
       return truncated if truncate?
 
       case anchor
-      when :align           then left
+      when :align, :left    then left
       when :centre, :center then centre
       when :right           then right
       else left
@@ -81,6 +85,6 @@ module Vedeu
       options[:width]
     end
 
-  end # Alignment
+  end # Align
 
 end # Vedeu

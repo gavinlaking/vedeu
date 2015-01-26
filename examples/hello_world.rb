@@ -31,9 +31,9 @@ class HelloWorldApp
   renders do
     view 'messages' do
       lines do
-        line '    Hello World!'
+        centre 'Hello World!', width: 20
         line
-        line " Press 'q' to exit. "
+        centre "Press 'q' to exit.", width: 20
       end
     end
   end

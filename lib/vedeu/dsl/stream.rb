@@ -1,3 +1,8 @@
+require 'vedeu/dsl/colour'
+require 'vedeu/dsl/style'
+require 'vedeu/support/alignment'
+require 'vedeu/support/common'
+
 module Vedeu
 
   module DSL
@@ -7,6 +12,7 @@ module Vedeu
     # @api public
     class Stream
 
+      include Vedeu::Alignment
       include Vedeu::Common
       include DSL::Colour
       include DSL::Style
@@ -17,52 +23,6 @@ module Vedeu
       def initialize(model)
         @model = model
       end
-
-      # Align a string (or object responding to `to_s`), and add it to the
-      # Stream.
-      #
-      # @note If using the convenience methods; {left}, {centre}, {center} or
-      #   {right}, then a specified anchor will be ignored.
-      #
-      # @example
-      #   left 'This will be left aligned.', width: 35
-      #   # => 'This will be left aligned.         '
-      #
-      #   centre 'This will be aligned centrally.', width: 35
-      #   # => '  This will be aligned centrally.  '
-      #   # centre is also aliased to center
-      #
-      #   right 'This will be right aligned.', width: 35
-      #   # => '        This will be right aligned.'
-
-      #   right 'This will be right aligned.', width: 35, anchor: centre
-      #   # => '        This will be right aligned.'
-      #
-      #   align 'This will be truncated here. More text here.', width: 28
-      #   # => 'This will be truncated here.'
-      #
-      #   align 'Padded with hyphens.', width: 25, pad: '-', anchor: :right
-      #   # => '-----Padded with hyphens.'
-      #
-      # @param value [String|Object] A string or object that responds to `to_s`.
-      # @param options [Hash] Alignment options.
-      # @option options :anchor [Symbol] One of `:left`, `:centre`/`:center`, or
-      #   `:right`.
-      # @option options :width [Integer|NilClass] The width of the text stream
-      #   to add. If the `string` provided is longer than this value, the string
-      #   will be truncated.
-      # @option options :pad [String] The character to use to pad the width, by
-      #   default uses an empty space (0x20). Only when the string is shorter
-      #   than the specified width.
-      # @return [String]
-      def align(value = '', options = {})
-        model.value << Vedeu::Align.with(value,
-          options.merge({ anchor: __callee__ }))
-      end
-      alias_method :left,   :align
-      alias_method :center, :align
-      alias_method :centre, :align
-      alias_method :right,  :align
 
       # Add textual data to the stream via this method.
       #
@@ -80,9 +40,9 @@ module Vedeu
       # :nocov:
       def width(value)
         deprecated('Vedeu::API::Stream#width',
-                   'Vedeu::DSL::Stream#align',
+                   'Vedeu::Alignment#align',
                    '0.3.0',
-                   '/Vedeu/DSL/Stream#align-instance_method')
+                   '/Vedeu/Alignment#align-instance_method')
       end
       # :nocov:
 

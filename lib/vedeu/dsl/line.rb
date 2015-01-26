@@ -1,6 +1,7 @@
+require 'vedeu/support/alignment'
+require 'vedeu/support/common'
 require 'vedeu/dsl/colour'
 require 'vedeu/dsl/style'
-require 'vedeu/support/common'
 
 module Vedeu
 
@@ -38,6 +39,7 @@ module Vedeu
     # @api public
     class Line
 
+      include Vedeu::Alignment
       include Vedeu::Common
       include Vedeu::DSL::Colour
       include Vedeu::DSL::Style
