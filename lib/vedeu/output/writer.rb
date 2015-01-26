@@ -1,6 +1,6 @@
 module Vedeu
 
-  class Console
+  class Writer
 
     attr_reader :writers
 
@@ -17,7 +17,7 @@ module Vedeu
     end
 
     def +(other)
-      Console[*(writers + other.writers)]
+      Writer[*(writers + other.writers)]
     end
 
     def write(stream)

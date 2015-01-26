@@ -2,11 +2,11 @@ require 'test_helper'
 
 module Vedeu
 
-  describe Console do
+  describe Writer do
 
     describe '.[]' do
-      it 'returns a new instance of Console' do
-        Console[:null, :file, :screen].must_be_instance_of(Console)
+      it 'returns a new instance of Writer' do
+        Writer[:null, :file, :screen].must_be_instance_of(Writer)
       end
     end
 
@@ -14,7 +14,7 @@ module Vedeu
       it 'returns an instance of itself' do
         writers = :null
 
-        Console.new(writers).must_be_instance_of(Console)
+        Writer.new(writers).must_be_instance_of(Writer)
       end
     end
 
@@ -40,6 +40,6 @@ module Vedeu
       end
     end
 
-  end # Console
+  end # Writer
 
 end # Vedeu
