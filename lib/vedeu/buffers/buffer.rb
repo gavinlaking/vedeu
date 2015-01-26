@@ -16,7 +16,7 @@ module Vedeu
 
     include Vedeu::Model
 
-    attr_reader :back, :front, :name, :previous
+    attr_reader :back, :front, :name, :previous, :repository
 
     # Return a new instance of Buffer.
     #
@@ -26,12 +26,12 @@ module Vedeu
     # @param front [Interface]
     # @param previous [Interface]
     # @return [Buffer]
-    def initialize(name, back = nil, front = nil, previous = nil)
-      @name     = name
-      @back     = back
-      @front    = front
-      @previous = previous
-      @repository = Vedeu.buffers
+    def initialize(name, back = nil, front = nil, previous = nil, repository = nil)
+      @name       = name
+      @back       = back
+      @front      = front
+      @previous   = previous
+      @repository = repository || Vedeu.buffers
     end
 
     # Add the content to the back buffer, then update the repository. Returns

@@ -5,11 +5,12 @@ module Vedeu
   describe Buffer do
 
     let(:described)   { Vedeu::Buffer }
-    let(:instance)    { described.new(buffer_name, back, front, previous) }
+    let(:instance)    { described.new(buffer_name, back, front, previous, repository) }
     let(:buffer_name) { 'krypton' }
     let(:back)        {}
     let(:front)       {}
     let(:previous)    {}
+    let(:repository)  {}
 
     before { Vedeu.stubs(:trigger) }
 

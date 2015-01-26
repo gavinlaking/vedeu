@@ -4,11 +4,12 @@ module Vedeu
 
   describe Cursor do
 
-    let(:described)   { Cursor.new(cursor_name, state, x, y) }
+    let(:described)   { Cursor.new(cursor_name, state, x, y, repository) }
     let(:cursor_name) { 'silver' }
     let(:state)       { :show }
     let(:x)           { 19 }
     let(:y)           { 8 }
+    let(:repository)  {}
 
     describe '#initialize' do
       it { described.must_be_instance_of(Cursor) }

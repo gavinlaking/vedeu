@@ -13,7 +13,7 @@ module Vedeu
 
     include Vedeu::Model
 
-    attr_reader :name, :state, :x, :y
+    attr_reader :name, :state, :x, :y, :repository
 
     # Provides a new instance of Cursor.
     #
@@ -24,12 +24,12 @@ module Vedeu
     # @param y     [Fixnum] The terminal y coordinate for the cursor.
     #
     # @return [Cursor]
-    def initialize(name = '', state = false, x = 1, y = 1)
-      @name    = name
-      @state   = state
-      @x       = x
-      @y       = y
-      @repository = Vedeu.cursors
+    def initialize(name = '', state = false, x = 1, y = 1, repository = nil)
+      @name       = name
+      @state      = state
+      @x          = x
+      @y          = y
+      @repository = repository || Vedeu.cursors
     end
 
     # Returns an escape sequence to position the cursor and set its visibility.
