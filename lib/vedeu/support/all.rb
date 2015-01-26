@@ -14,6 +14,7 @@ require 'vedeu/support/sentence'
 require 'vedeu/support/terminal'
 require 'vedeu/support/trace'
 require 'vedeu/support/visible'
+require 'vedeu/support/write'
 
 module Vedeu
 end # Vedeu
