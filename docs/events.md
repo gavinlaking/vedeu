@@ -57,7 +57,7 @@ Moves the cursor to the top left position of the focussed interface. If this int
 
 ### `:_exit_`
 
-When triggered, Vedeu will trigger a `:_cleanup_` event which you can define (to save files, etc) and attempt to exit.
+When triggered, Vedeu will trigger a `:cleanup` event which you can define (to save files, etc) and attempt to exit.
 
 ### `:_focus_by_name_`
 
@@ -142,7 +142,7 @@ When triggered will cause Vedeu to trigger the `:_clear_` and `:_refresh_` event
 
 ##### Notes:
 
-System events can be handled or triggered by your application also, but overriding or adding additional events to the Vedeu system event namespace may cause unpredictable results. It is recommended to only to hook into events like :_cleanup_, :_initialize_ and :key if you need to do something respective to those events.
+System events can be handled or triggered by your application also, but overriding or adding additional events to the Vedeu system event namespace may cause unpredictable results. It is recommended to only to hook into events like :cleanup, :_initialize_ and :key if you need to do something respective to those events.
 
 ... TODO ... What about events in Vedeu::Menu?
 
@@ -157,7 +157,7 @@ User events allow you to orchestrate behaviour within your application, ie. the 
 
 Vedeu pre-defines a few user events, which client applications can listen for, or trigger themselves.
 
-### `:_cleanup_`
+### `:cleanup`
 
 Vedeu triggers this event when `:_exit_` is triggered. You can hook into this to perform a special action before the application terminates. Saving the user's work, session or preferences might be popular here.
 

@@ -14,7 +14,7 @@ module Vedeu
       alias_method :restart, :start
 
       # Stops the application!
-      # - The `:_cleanup_` event is triggered. Vedeu does not handle this event;
+      # - The `:cleanup` event is triggered. Vedeu does not handle this event;
       #   the client application may treat this event as Vedeu signalling that it
       #   is about to terminate. Client applications are encouraged to use this
       #   event to close any open buffers, save files, empty trash, etc.
@@ -23,7 +23,7 @@ module Vedeu
       #   terminate the application.
       # @return [StopIteration]
       def stop
-        Vedeu.trigger(:_cleanup_)
+        Vedeu.trigger(:cleanup)
 
         fail StopIteration
       end
