@@ -43,7 +43,7 @@ class VedeuConfigurationApp
     end
   end
 
-  keys('config') do
+  keymap('config') do
     key(' ') { Vedeu.trigger(:_refresh_config_) }
   end
 

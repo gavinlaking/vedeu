@@ -17,7 +17,7 @@ class VedeuLinesApp
     log '/tmp/vedeu_lines_app.log'
   end
 
-  bind(:_initialize_) { trigger(:_refresh_) }
+  bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
 
   interface 'ruthenium' do
     geometry do
@@ -39,10 +39,10 @@ class VedeuLinesApp
   end
 
   keymap('_global_') do
-    key(:up)    { trigger(:_cursor_up_)    }
-    key(:right) { trigger(:_cursor_right_) }
-    key(:down)  { trigger(:_cursor_down_)  }
-    key(:left)  { trigger(:_cursor_left_)  }
+    key(:up)    { Vedeu.trigger(:_cursor_up_)    }
+    key(:right) { Vedeu.trigger(:_cursor_right_) }
+    key(:down)  { Vedeu.trigger(:_cursor_down_)  }
+    key(:left)  { Vedeu.trigger(:_cursor_left_)  }
   end
 
   renders do
@@ -64,7 +64,7 @@ class VedeuLinesApp
     end
   end
 
-  focus 'ruthenium'
+  focus_by_name 'ruthenium'
 
   def self.start(argv = ARGV)
     Vedeu::Launcher.new(argv).execute!

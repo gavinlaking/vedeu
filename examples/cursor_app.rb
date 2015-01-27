@@ -30,7 +30,7 @@ class VedeuCursorApp
     end
 
     # provide 'vim' direction keys
-    keys do
+    keymap do
       key('k') { Vedeu.trigger(:_cursor_up_)    }
       key('l') { Vedeu.trigger(:_cursor_right_) }
       key('j') { Vedeu.trigger(:_cursor_down_)  }
@@ -50,7 +50,7 @@ class VedeuCursorApp
     end
   end
 
-  keymap do
+  keymap('_global_') do
     key(:up)    { Vedeu.trigger(:_cursor_up_)    }
     key(:right) { Vedeu.trigger(:_cursor_right_) }
     key(:down)  { Vedeu.trigger(:_cursor_down_)  }
@@ -121,7 +121,7 @@ class VedeuCursorApp
     end
   end
 
-  # focus('iron') # not working right?!
+  focus_by_name 'iron'
 
   def self.start(argv = ARGV)
     Vedeu::Launcher.new(argv).execute!

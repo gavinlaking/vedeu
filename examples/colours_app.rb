@@ -23,7 +23,7 @@ class VedeuColoursApp
     border do
     end
     geometry do
-      centre
+      centred!
       height 8
       width  8
     end
