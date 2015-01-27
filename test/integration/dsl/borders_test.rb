@@ -2,6 +2,19 @@ require 'test_helper'
 
 describe 'Interface Borders' do
 
+  before do
+    Vedeu.interfaces.reset
+    Vedeu.interface 'borders' do
+      geometry do
+        height 3
+        width  3
+      end
+      lines do
+        line ''
+      end
+    end
+  end
+
   describe '#bottom_left' do
     subject {
       Vedeu.interface 'borders' do
@@ -14,7 +27,11 @@ describe 'Interface Borders' do
     it { subject.must_be_instance_of(Vedeu::Interface) }
 
     it 'allows the use of bottom_left within border' do
-      skip
+      subject.border.to_s.must_equal(
+        "\e(0l\e(B\e(0q\e(B\e(0k\e(B\n" \
+        "\e(0x\e(B \e(0x\e(B\n" \
+        "\e(0<\e(B\e(0q\e(B\e(0j\e(B"
+      )
     end
   end
 
@@ -30,7 +47,11 @@ describe 'Interface Borders' do
     it { subject.must_be_instance_of(Vedeu::Interface) }
 
     it 'allows the use of bottom_right within border' do
-      skip
+      subject.border.to_s.must_equal(
+        "\e(0l\e(B\e(0q\e(B\e(0k\e(B\n" \
+        "\e(0x\e(B \e(0x\e(B\n" \
+        "\e(0m\e(B\e(0q\e(B\e(0>\e(B"
+      )
     end
   end
 
@@ -46,7 +67,11 @@ describe 'Interface Borders' do
     it { subject.must_be_instance_of(Vedeu::Interface) }
 
     it 'allows the use of horizontal within border' do
-      skip
+      subject.border.to_s.must_equal(
+        "\e(0l\e(B\e(0~\e(B\e(0k\e(B\n" \
+        "\e(0x\e(B \e(0x\e(B\n" \
+        "\e(0m\e(B\e(0~\e(B\e(0j\e(B"
+      )
     end
   end
 
@@ -62,7 +87,11 @@ describe 'Interface Borders' do
     it { subject.must_be_instance_of(Vedeu::Interface) }
 
     it 'allows the use of show_bottom within border' do
-      skip
+      subject.border.to_s.must_equal(
+        "\e(0l\e(B\e(0q\e(B\e(0k\e(B\n" \
+        "\e(0x\e(B \e(0x\e(B\n" \
+        "\e(0m\e(B\e(0q\e(B\e(0j\e(B"
+      )
     end
   end
 
@@ -78,7 +107,11 @@ describe 'Interface Borders' do
     it { subject.must_be_instance_of(Vedeu::Interface) }
 
     it 'allows the use of show_left within border' do
-      skip
+      subject.border.to_s.must_equal(
+        "\e(0l\e(B\e(0q\e(B\e(0k\e(B\n" \
+        "\e(0x\e(B \e(0x\e(B\n" \
+        "\e(0m\e(B\e(0q\e(B\e(0j\e(B"
+      )
     end
   end
 
@@ -94,7 +127,11 @@ describe 'Interface Borders' do
     it { subject.must_be_instance_of(Vedeu::Interface) }
 
     it 'allows the use of show_right within border' do
-      skip
+      subject.border.to_s.must_equal(
+        "\e(0l\e(B\e(0q\e(B\e(0k\e(B\n" \
+        "\e(0x\e(B \e(0x\e(B\n" \
+        "\e(0m\e(B\e(0q\e(B\e(0j\e(B"
+      )
     end
   end
 
@@ -110,7 +147,11 @@ describe 'Interface Borders' do
     it { subject.must_be_instance_of(Vedeu::Interface) }
 
     it 'allows the use of show_top within border' do
-      skip
+      subject.border.to_s.must_equal(
+        "\e(0l\e(B\e(0q\e(B\e(0k\e(B\n" \
+        "\e(0x\e(B \e(0x\e(B\n" \
+        "\e(0m\e(B\e(0q\e(B\e(0j\e(B"
+      )
     end
   end
 
@@ -126,7 +167,11 @@ describe 'Interface Borders' do
     it { subject.must_be_instance_of(Vedeu::Interface) }
 
     it 'allows the use of top_left within border' do
-      skip
+      subject.border.to_s.must_equal(
+        "\e(0{\e(B\e(0q\e(B\e(0k\e(B\n" \
+        "\e(0x\e(B \e(0x\e(B\n" \
+        "\e(0m\e(B\e(0q\e(B\e(0j\e(B"
+      )
     end
   end
 
@@ -142,7 +187,11 @@ describe 'Interface Borders' do
     it { subject.must_be_instance_of(Vedeu::Interface) }
 
     it 'allows the use of top_right within border' do
-      skip
+      subject.border.to_s.must_equal(
+        "\e(0l\e(B\e(0q\e(B\e(0}\e(B\n" \
+        "\e(0x\e(B \e(0x\e(B\n" \
+        "\e(0m\e(B\e(0q\e(B\e(0j\e(B"
+      )
     end
   end
 
@@ -158,7 +207,11 @@ describe 'Interface Borders' do
     it { subject.must_be_instance_of(Vedeu::Interface) }
 
     it 'allows the use of vertical within border' do
-      skip
+      subject.border.to_s.must_equal(
+        "\e(0l\e(B\e(0q\e(B\e(0k\e(B\n" \
+        "\e(0:\e(B \e(0:\e(B\n" \
+        "\e(0m\e(B\e(0q\e(B\e(0j\e(B"
+      )
     end
   end
 
