@@ -79,6 +79,14 @@ module Vedeu
       @position = position
     end
 
+    def ==(other)
+      eql?(other)
+    end
+
+    def eql?(other)
+      self.class == other.class && value == other.value
+    end
+
     # @return [String] The character.
     def value
       return '' unless @value
