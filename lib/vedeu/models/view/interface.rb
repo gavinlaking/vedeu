@@ -31,8 +31,10 @@ module Vedeu
 
     class << self
 
-      # Build models using a simple DSL when a block is given, otherwise returns a
-      # new instance of the class including this module.
+      # Build interfaces using a simple DSL.
+      # If a name is provided as part of the attributes, we check the repository
+      # for an interface of the same name and update it from the new attributes
+      # provided, or if a block is given, new parameters set via the DSL.
       #
       # @param attributes [Hash]
       # @param block [Proc]
@@ -40,11 +42,18 @@ module Vedeu
       def build(attributes = {}, &block)
         attributes = defaults.merge(attributes)
 
-        model = new(attributes[:name],
-                    attributes[:lines],
-                    attributes[:parent],
-                    attributes[:colour],
-                    attributes[:style])
+        model = if not_registered?(attributes[:name])
+          new(attributes[:name],
+              attributes[:lines],
+              attributes[:parent],
+              attributes[:colour],
+              attributes[:style])
+
+        else
+          Vedeu.interfaces.find(attributes[:name])
+
+        end
+
         model.deputy.instance_eval(&block) if block_given?
         model
       end
@@ -59,6 +68,17 @@ module Vedeu
           parent: nil,
           style:  nil,
         }
+      end
+
+      def not_registered?(name)
+        return true if undefined?(name)
+        return true unless Vedeu.interfaces.registered?(name)
+
+        false
+      end
+
+      def undefined?(value)
+        value.nil? || value.empty?
       end
     end
 
@@ -79,7 +99,7 @@ module Vedeu
 
       @border   = nil
       @delay    = 0.0
-      @geometry = false
+      @geometry = nil
       @group    = ''
 
       @repository = Vedeu.interfaces
