@@ -34,10 +34,16 @@ module Vedeu
       @style      = Style.coerce(@attributes[:style])
     end
 
+    # Set the border colour.
+    #
+    # @return []
     def colour=(value)
       @colour = Colour.coerce(value)
     end
 
+    # Set the border style.
+    #
+    # @return []
     def style=(value)
       @style = Style.coerce(value)
     end
@@ -118,11 +124,11 @@ module Vedeu
 
       out = []
 
-      out << bottom_left if left?
+      out << bottom_left
       horizontal_border.each do |border|
         out << border
       end
-      out << bottom_right if right?
+      out << bottom_right
 
       out
     end
@@ -152,11 +158,11 @@ module Vedeu
       return [] unless top?
 
       out = []
-      out << top_left if left?
+      out << top_left
       horizontal_border.each do |border|
         out << border
       end
-      out << top_right if right?
+      out << top_right
 
       out
     end
@@ -166,6 +172,8 @@ module Vedeu
     #
     # @return [String]
     def bottom_left
+      return '' unless left?
+
       [*presentation, on, bl, off, *reset].join
     end
 
@@ -174,6 +182,8 @@ module Vedeu
     #
     # @return [String]
     def bottom_right
+      return '' unless right?
+
       [*presentation, on, br, off, *reset].join
     end
 
@@ -182,6 +192,8 @@ module Vedeu
     #
     # @return [String]
     def top_left
+      return '' unless left?
+
       [*presentation, on, tl, off, *reset].join
     end
 
@@ -190,6 +202,8 @@ module Vedeu
     #
     # @return [String]
     def top_right
+      return '' unless right?
+
       [*presentation, on, tr, off, *reset].join
     end
 
