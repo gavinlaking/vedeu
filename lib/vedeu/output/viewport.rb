@@ -186,14 +186,23 @@ module Vedeu
       content.any?
     end
 
+    # Return the content of the interface.
+    #
+    # @return [Array<Line>]
     def content
       interface.content
     end
 
+    # Return the width of the interface for a zero-indexed array.
+    #
+    # @return [Fixnum]
     def width
       interface.width - 1
     end
 
+    # Return the height of the interface for a zero-indexed array.
+    #
+    # @return [Fixnum]
     def height
       interface.height - 1
     end
