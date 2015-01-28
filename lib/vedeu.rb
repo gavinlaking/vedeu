@@ -1,8 +1,6 @@
 $LIB_DIR = File.dirname(__FILE__) + '/../lib'
 $LOAD_PATH.unshift($LIB_DIR) unless $LOAD_PATH.include?($LIB_DIR)
 
-# Vedeu::Trace.call({ trace: true })
-
 require 'date'
 require 'forwardable'
 require 'io/console'
@@ -13,6 +11,9 @@ require 'singleton'
 require 'time'
 
 require 'vedeu/support/log'
+
+# require 'vedeu/support/trace'
+# Vedeu::Trace.call({ trace: true })
 
 # Vedeu is a GUI framework for terminal/console applications written in Ruby.
 #
