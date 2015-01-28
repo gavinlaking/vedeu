@@ -17,18 +17,6 @@ module Vedeu
     attr_reader :position
 
     class << self
-      def build(attributes = {}, &block)
-        attributes = defaults.merge(attributes)
-
-        model = new(attributes[:value],
-                    attributes[:parent],
-                    attributes[:colour],
-                    attributes[:style],
-                    attributes[:position])
-        model.deputy.instance_eval(&block) if block_given?
-        model
-      end
-
       def coerce(value = nil, parent = nil, colour = nil, style = nil, position = nil)
         if value.is_a?(self)
           value
@@ -48,18 +36,6 @@ module Vedeu
           # ...
 
         end
-      end
-
-      private
-
-      def defaults
-        {
-          colour:   nil,
-          parent:   nil,
-          position: nil,
-          style:    nil,
-          value:    nil,
-        }
       end
     end
 

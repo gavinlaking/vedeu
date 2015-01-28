@@ -88,23 +88,6 @@ module Vedeu
       repository.registered?(named)
     end
 
-    # @note
-    #   With no name or a lack of interface in focus, we remove this entry and
-    #   only check the global and system keymaps.
-    #
-    # @return [Array]
-    def keymaps
-      [interface, global, system].compact
-    end
-
-    # Return a boolean indicating that a named keymap was provided, or there is
-    # an interface currently in focus.
-    #
-    # @return [Boolean]
-    def interface?
-      !!(interface)
-    end
-
     # With a name, we check the keymap with that name, otherwise we use the
     # name of the interface currently in focus.
     #

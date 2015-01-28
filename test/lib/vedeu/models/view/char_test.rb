@@ -14,16 +14,6 @@ module Vedeu
     let(:parent_colour) { nil }
     let(:parent_style)  { nil }
 
-    describe '.build' do
-      subject {
-        described.build({}) do
-          # ...
-        end
-      }
-
-      it { skip }
-    end
-
     describe '.coerce' do
       subject { described.coerce(value, parent, colour, style, position) }
 
