@@ -133,7 +133,7 @@ module Vedeu
       fail MissingRequired, "Cannot store model '#{model.class}' without a " \
                             "name attribute." unless defined_value?(model.name)
 
-      Vedeu.log("Storing #{model.class.name}: '#{model.name}'")
+      Vedeu.log(_log_store(model))
 
       storage[model.name] = model
     end
@@ -142,7 +142,7 @@ module Vedeu
     # Access a model by name.
     #
     # @param name [String]
-    # @return []
+    # @return [|NilClass]
     def use(name)
       if registered?(name)
         find(name)
@@ -157,6 +157,18 @@ module Vedeu
 
     def in_memory
       {}
+    end
+
+    def _log_store(model)
+      message = "Storing #{model.class.name}: '#{model.name}' "
+
+      if registered?(model.name)
+        message + '(updating)'
+
+      else
+        message + '(creating)'
+
+      end
     end
 
   end # Repository
