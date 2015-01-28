@@ -40,7 +40,7 @@ module Vedeu
     # @param content [Interface]
     # @return [Boolean]
     def add(content)
-      self.back = content
+      @back = content
 
       store
 
@@ -82,14 +82,12 @@ module Vedeu
     #
     # @return [Boolean]
     def swap
-      return false unless content_for?(:back)
-
       # TODO: Investigate if this is needed. (GL: 2015-01-20 19:43)
       # Vedeu.trigger(:_cursor_origin_)
 
-      self.previous = front
-      self.front    = back
-      self.back     = nil
+      @previous = front
+      @front    = back
+      @back     = nil
 
       store
 
@@ -97,8 +95,6 @@ module Vedeu
     end
 
     private
-
-    attr_writer :back, :front, :previous
 
     def clear_if_previous
       if content_for?(:previous)

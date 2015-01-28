@@ -183,10 +183,6 @@ module Vedeu
           instance.back.must_equal(nil)
         end
       end
-
-      context 'when there is no new content on the back buffer' do
-        it { subject.must_equal(false) }
-      end
     end
 
   end # Buffer
