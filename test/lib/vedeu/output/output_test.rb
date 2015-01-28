@@ -37,6 +37,12 @@ module Vedeu
       subject { Output.render(interface) }
 
       it { subject.must_be_instance_of(Array) }
+
+      context 'when a border is defined for the interface' do
+      end
+
+      context 'when a border is not defined for the interface' do
+      end
     end
 
   end # Output
