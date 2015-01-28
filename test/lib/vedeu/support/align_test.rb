@@ -69,6 +69,15 @@ module Vedeu
                 .must_equal('    Testing the Align class with various options')
             end
           end
+
+          context 'and the anchor is invalid' do
+            let(:anchor) { :invalid }
+
+            it 'returns the value left aligned' do
+              Align.with(value, options)
+                .must_equal('Testing the Align class with various options    ')
+            end
+          end
         end
       end
 

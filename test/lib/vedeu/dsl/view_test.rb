@@ -18,7 +18,7 @@ module Vedeu
         it { subject.must_be_instance_of(Vedeu::Interface) }
 
         context 'when the block is not given' do
-          subject { described.renders }
+          subject { described.interface }
 
           it { proc { subject }.must_raise(InvalidSyntax) }
         end

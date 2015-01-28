@@ -15,6 +15,8 @@ module Vedeu
     end
 
     # Provides IO.console emulation of #print.
+    #
+    # @return [Array]
     def print(string = nil)
       @data = string unless string.nil?
 

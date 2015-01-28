@@ -29,6 +29,22 @@ module Vedeu
       end
     end
 
+    describe '#input' do
+      let(:data) {}
+
+      subject { instance.input(data) }
+
+      it { subject.must_be_instance_of(String) }
+    end
+
+    describe '#output' do
+      let(:data) {}
+
+      subject { instance.output(data) }
+
+      it { subject.must_be_instance_of(Array) }
+    end
+
     describe '#centre' do
       subject { instance.centre }
 

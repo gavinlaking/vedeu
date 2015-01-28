@@ -24,7 +24,7 @@ module Vedeu
     alias_method :read, :input
 
     # @param data [Array<Array<Char>>|Array<String>|String|NilClass]
-    # @return [String]
+    # @return [Array]
     def output(data = nil)
       Vedeu::Write.to(self, data)
     end

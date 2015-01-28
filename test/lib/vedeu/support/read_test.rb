@@ -14,22 +14,72 @@ module Vedeu
     describe '#initialize' do
       subject { instance }
 
-      it { skip; subject.must_be_instance_of(described) }
-      it { skip; subject.instance_variable_get('@console').must_equal(console) }
-      it { skip; subject.instance_variable_get('@data').must_equal(data) }
+      it { subject.must_be_instance_of(described) }
+      it { subject.instance_variable_get('@console').must_equal(console) }
+      it { subject.instance_variable_get('@data').must_equal(data) }
     end
 
     describe '.from' do
       subject { described.from(console, data) }
 
-      it { skip; subject.must_be_instance_of(String) }
+      it { subject.must_be_instance_of(String) }
 
       context 'when no data is given' do
-        it { skip; subject.must_equal('') }
+        it { subject.must_equal('') }
       end
 
       context 'when data is given' do
-        it { skip; subject.must_equal('') }
+        let(:data) { 'a' }
+
+        it { subject.must_equal('a') }
+      end
+    end
+
+    describe '#getch' do
+      let(:string) {}
+
+      subject { instance.getch(string) }
+
+      it { subject.must_be_instance_of(String) }
+
+      context 'when no string is given' do
+        it { subject.must_equal('') }
+      end
+
+      context 'when a multi-character string is given' do
+        let(:string) { 'Some text...' }
+
+        it { subject.must_equal('S') }
+      end
+
+      context 'when a single character string is given' do
+        let(:string) { 'a' }
+
+        it { subject.must_equal('a') }
+      end
+    end
+
+    describe '#gets' do
+      let(:string) {}
+
+      subject { instance.gets(string) }
+
+      it { subject.must_be_instance_of(String) }
+
+      context 'when no string is given' do
+        it { subject.must_equal('') }
+      end
+
+      context 'when a string with line feed is given' do
+        let(:string) { "Some text...\n" }
+
+        it { subject.must_equal('Some text...') }
+      end
+
+      context 'when a string without line feed is given' do
+        let(:string) { 'Some text...' }
+
+        it { subject.must_equal('Some text...') }
       end
     end
 

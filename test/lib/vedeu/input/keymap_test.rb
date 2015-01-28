@@ -25,7 +25,9 @@ module Vedeu
       context 'when the key is already defined' do
         # let(:keys) { Vedeu::Model::Collection.new([key]) }
 
-        # it { proc { subject }.must_raise(KeyInUse) }
+        # before { Vedeu.keymaps.reset }
+
+        # it { subject.must_equal(false) }
       end
 
       context 'when the key is not already defined' do

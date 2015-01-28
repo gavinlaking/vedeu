@@ -33,7 +33,8 @@ module Vedeu
       when :align, :left    then left
       when :centre, :center then centre
       when :right           then right
-      else left
+      else
+        left
       end
     end
 

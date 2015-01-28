@@ -32,7 +32,7 @@ module Vedeu
     #
     # @todo Deprecate, and use TracePoint instead.
     #
-    # @return []
+    # @return [NilClass|String]
     def trace
       set_trace_func proc { |event, _file, _line, id, binding, classname|
         if event == watched && id != :log && classes.include?(classname.to_s)
@@ -56,9 +56,11 @@ module Vedeu
     # Writes the message to the log file.
     #
     # @param message [String]
-    # @return [Boolean]
+    # @return [String]
     def log_this(message)
       Vedeu::Log.logger.debug(message)
+
+      message
     end
 
     # Provides inspection of the local variables set within the method being

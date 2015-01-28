@@ -2,6 +2,8 @@ require 'test_helper'
 
 module Vedeu
 
+  # TODO: Leak detected. (GL 2015-01-28)
+
   describe Compositor do
 
     let(:described) { Vedeu::Compositor }
@@ -14,7 +16,7 @@ module Vedeu
           width  10
         end
         lines do
-          line 'Some text...'
+          line 'Some text.'
         end
       end
     }

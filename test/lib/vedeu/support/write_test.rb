@@ -123,6 +123,14 @@ module Vedeu
       end
     end
 
+    describe '#print' do
+      let(:string) {}
+
+      subject { instance.print(string) }
+
+      it { subject.must_be_instance_of(Array) }
+    end
+
   end # Write
 
 end # Vedeu

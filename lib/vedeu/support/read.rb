@@ -19,20 +19,26 @@ module Vedeu
     end
 
     # Provides IO.console emulation of #getch.
+    #
+    # @return [String]
     def getch(string = nil)
-      @data = string unless string.nil?
+      @data = string[0] unless string.nil?
 
       read
     end
 
     # Provides IO.console emulation of #gets.
+    #
+    # @return [String]
     def gets(string = nil)
-      @data = string unless string.nil?
+      @data = string.chomp unless string.nil?
 
       read
     end
 
     # Provides IO.console emulation of #read_nonblock.
+    #
+    # @return [String]
     def read_nonblock(bytes = 1, string = nil)
       @data = string unless string.nil?
 
