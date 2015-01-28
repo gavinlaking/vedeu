@@ -14,8 +14,9 @@ module Vedeu
       @data    = data
     end
 
-    def print(string)
-      @data = string
+    # Provides IO.console emulation of #print.
+    def print(string = nil)
+      @data = string unless string.nil?
 
       write
     end
@@ -53,6 +54,7 @@ module Vedeu
       end
     end
 
+    # @return [Array|Array<String>|Array<Array>]
     def content
       if data.nil? || data.empty?
         []

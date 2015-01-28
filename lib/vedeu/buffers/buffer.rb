@@ -111,9 +111,8 @@ module Vedeu
     # @param buffer [Symbol] One of; :back, :front or :previous.
     # @return [Boolean] Whether the buffer targetted has content.
     def content_for?(buffer)
-      return false if public_send(buffer).nil?
-
-      return false if public_send(buffer).lines.empty?
+      return false if public_send(buffer).nil?          ||
+                      public_send(buffer).lines.empty?
 
       true
     end

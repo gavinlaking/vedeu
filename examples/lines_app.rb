@@ -33,8 +33,8 @@ class VedeuLinesApp
     geometry do
       height  1
       width   40
-      x       use('ruthenium').left
-      y       use('ruthenium').south
+      x       Vedeu.use('ruthenium').left
+      y       Vedeu.use('ruthenium').south
     end
   end
 
