@@ -2,11 +2,15 @@ require 'test_helper'
 
 describe 'Interface Geometry' do
 
+  before do
+    Vedeu.interfaces.reset
+  end
+
   describe '#centred' do
     subject {
       Vedeu.interface 'geometry' do
         geometry do
-          centred ''
+          centred false
         end
       end
     }
@@ -14,11 +18,19 @@ describe 'Interface Geometry' do
     it { subject.must_be_instance_of(Vedeu::Interface) }
 
     it 'allows the use of centred within geometry' do
-      skip
+      subject.geometry.centred.must_equal(false)
     end
 
     context 'when no value is given' do
+      subject {
+        Vedeu.interface 'geometry' do
+          geometry do
+            centred
+          end
+        end
+      }
 
+      it { subject.geometry.centred.must_equal(true) }
     end
   end
 
@@ -34,11 +46,7 @@ describe 'Interface Geometry' do
     it { subject.must_be_instance_of(Vedeu::Interface) }
 
     it 'allows the use of height within geometry' do
-      skip
-    end
-
-    context 'when no value is given' do
-
+      subject.geometry.height.must_equal(17)
     end
   end
 
@@ -46,7 +54,7 @@ describe 'Interface Geometry' do
     subject {
       Vedeu.interface 'geometry' do
         geometry do
-          name ''
+          name 'other_name'
         end
       end
     }
@@ -54,11 +62,7 @@ describe 'Interface Geometry' do
     it { subject.must_be_instance_of(Vedeu::Interface) }
 
     it 'allows the use of name within geometry' do
-      skip
-    end
-
-    context 'when no value is given' do
-
+      subject.geometry.name.must_equal('other_name')
     end
   end
 
@@ -74,11 +78,7 @@ describe 'Interface Geometry' do
     it { subject.must_be_instance_of(Vedeu::Interface) }
 
     it 'allows the use of width within geometry' do
-      skip
-    end
-
-    context 'when no value is given' do
-
+      subject.geometry.width.must_equal(29)
     end
   end
 
@@ -94,11 +94,22 @@ describe 'Interface Geometry' do
     it { subject.must_be_instance_of(Vedeu::Interface) }
 
     it 'allows the use of x within geometry' do
-      skip
+      subject.geometry.x.must_equal(7)
     end
 
     context 'when no value is given' do
+      subject {
+        Vedeu.interface 'geometry' do
+          geometry do
+            x
+          end
+        end
+      }
 
+      it { subject.geometry.x.must_equal(0) }
+    end
+
+    context 'when a block is given' do
     end
   end
 
@@ -114,11 +125,22 @@ describe 'Interface Geometry' do
     it { subject.must_be_instance_of(Vedeu::Interface) }
 
     it 'allows the use of y within geometry' do
-      skip
+      subject.geometry.y.must_equal(4)
     end
 
     context 'when no value is given' do
+      subject {
+        Vedeu.interface 'geometry' do
+          geometry do
+            y
+          end
+        end
+      }
 
+      it { subject.geometry.y.must_equal(0) }
+    end
+
+    context 'when a block is given' do
     end
   end
 
