@@ -111,8 +111,20 @@ module Vedeu
     #   end
     # end
 
+    describe '#cursor' do
+      subject { instance.cursor }
+
+      it { skip }
+    end
+
     describe '#lines' do
       it { instance.lines.must_be_instance_of(Vedeu::Model::Lines) }
+    end
+
+    describe '#render' do
+      subject { instance.render }
+
+      it { skip }
     end
 
     describe '#store' do
@@ -143,6 +155,12 @@ module Vedeu
           it { skip }
         end
       end
+    end
+
+    describe '#viewport' do
+      subject { instance.viewport }
+
+      it { skip }
     end
 
   end # Interface

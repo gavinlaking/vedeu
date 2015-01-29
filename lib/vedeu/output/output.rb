@@ -25,7 +25,7 @@ module Vedeu
     #
     # @return [Array]
     def render
-      Terminal.output(view, cursor.to_s)
+      Terminal.output(view, interface.cursor.to_s)
     end
 
     private
@@ -59,24 +59,12 @@ module Vedeu
 
       Vedeu.log("Rendering view: '#{interface.name}'")
 
-      viewport = if interface.border
-        interface.border.to_viewport
-
-      else
-        Vedeu::Viewport.show(interface, cursor)
-
-      end
-
-      viewport.each_with_index do |line, index|
+      interface.render.each_with_index do |line, index|
         out << interface.origin(index)
         out << line.join
       end
 
       out.join
-    end
-
-    def cursor
-      Vedeu.cursors.by_name(interface.name)
     end
 
   end # Output

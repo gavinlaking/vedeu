@@ -34,6 +34,24 @@ module Vedeu
       @style      = Style.coerce(@attributes[:style])
     end
 
+    # Returns the interface with border (if enabled) and the content for the
+    # interface.
+    #
+    # @return [Array<Array<String>>]
+    def render
+      out = []
+
+      out << top if top?
+
+      interface.viewport[0...height].each do |line|
+        out << [left, line[0...width], right].flatten
+      end
+
+      out << bottom if bottom?
+
+      out
+    end
+
     # Set the border colour.
     #
     # @return []
@@ -89,27 +107,7 @@ module Vedeu
     #
     # @return [Boolean]
     def to_s
-      to_viewport.map { |line| line.flatten.join }.join("\n")
-    end
-
-    # Returns the interface with border (if enabled) and the content for the
-    # interface.
-    #
-    # @return [Array<Array<String>>]
-    def to_viewport
-      return viewport unless enabled?
-
-      out = []
-
-      out << top if top?
-
-      viewport[0...height].each do |line|
-        out << [left, line[0...width], right].flatten
-      end
-
-      out << bottom if bottom?
-
-      out
+      render.map { |line| line.flatten.join }.join("\n")
     end
 
     private
@@ -309,15 +307,6 @@ module Vedeu
     # @return [String]
     def off
       "\e(B"
-    end
-
-    # Returns the viewport for the interface.
-    #
-    # @return [String]
-    def viewport
-      cursor = Vedeu.cursors.by_name(interface.name)
-
-      @_viewport ||= Viewport.show(interface, cursor)
     end
 
     # Returns the colour and styles for the border.

@@ -5,7 +5,7 @@ module Vedeu
   describe Viewport do
 
     let(:described) { Vedeu::Viewport }
-    let(:instance)  { described.new(interface, cursor) }
+    let(:instance)  { described.new(interface) }
     let(:interface) {
       # Interface.new({
       #   name:     'lithium',
@@ -36,18 +36,21 @@ module Vedeu
     let(:x)      { 1 }
     let(:y)      { 1 }
 
+    before do
+      interface.stubs(:cursor).returns(cursor)
+    end
+
     describe '#initialize' do
       subject { instance }
 
       it { subject.must_be_instance_of(Viewport) }
       it { subject.instance_variable_get('@interface').must_equal(interface) }
-      it { subject.instance_variable_get('@cursor').must_equal(cursor) }
       it { subject.instance_variable_get('@top').must_equal(0) }
       it { subject.instance_variable_get('@left').must_equal(0) }
     end
 
     describe '.show' do
-      subject { described.show(interface, cursor) }
+      subject { described.show(interface) }
 
       it { subject.must_be_instance_of(Array) }
 

@@ -9,18 +9,16 @@ module Vedeu
   class Viewport
 
     # @see Viewport#show
-    def self.show(interface, cursor)
-      new(interface, cursor).show
+    def self.show(interface)
+      new(interface).show
     end
 
     # Returns an instance of Viewport.
     #
     # @param interface [Interface] An instance of interface.
-    # @param cursor [Cursor]
     # @return [Viewport]
-    def initialize(interface, cursor)
+    def initialize(interface)
       @interface = interface
-      @cursor    = cursor
       @top       = 0
       @left      = 0
     end
@@ -44,7 +42,7 @@ module Vedeu
 
     private
 
-    attr_reader :interface, :cursor
+    attr_reader :interface
 
     # Pad the number of rows so that we always return an Array of the same
     # length for each viewport.
@@ -205,6 +203,13 @@ module Vedeu
     # @return [Fixnum]
     def height
       interface.height - 1
+    end
+
+    # Return the cursor of the interface.
+    #
+    # @return [Vedeu::Cursor]
+    def cursor
+      interface.cursor
     end
 
   end # Viewport

@@ -105,6 +105,20 @@ module Vedeu
       @repository = Vedeu.interfaces
     end
 
+    def cursor
+      Vedeu.cursors.by_name(name)
+    end
+
+    def render
+      if border
+        border.render
+
+      else
+        viewport
+
+      end
+    end
+
     def store
       super
 
@@ -113,6 +127,10 @@ module Vedeu
       store_focusable
 
       store_cursor
+    end
+
+    def viewport
+      Vedeu::Viewport.show(self)
     end
 
     private
