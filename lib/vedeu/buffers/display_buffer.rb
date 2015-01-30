@@ -67,7 +67,7 @@ module Vedeu
         Vedeu.bind(event, options) { Vedeu::Refresh.by_name(name) }
       end
 
-      if group
+      unless group.nil? || group.empty?
         event = "_refresh_group_#{group}_".to_sym
 
         unless Vedeu.events.registered?(event)
