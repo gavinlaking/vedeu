@@ -55,10 +55,12 @@ module Vedeu
       @position = position
     end
 
+    # @return [Boolean]
     def ==(other)
       eql?(other)
     end
 
+    # @return [Boolean]
     def eql?(other)
       self.class == other.class && value == other.value
     end
