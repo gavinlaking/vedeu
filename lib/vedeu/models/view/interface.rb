@@ -60,6 +60,7 @@ module Vedeu
 
       private
 
+      # @return [Hash]
       def defaults
         {
           colour: nil,
@@ -70,6 +71,7 @@ module Vedeu
         }
       end
 
+      # @return [Boolean]
       def not_registered?(name)
         return true if undefined?(name)
         return true unless Vedeu.interfaces.registered?(name)
@@ -77,6 +79,7 @@ module Vedeu
         false
       end
 
+      # @return [Boolean]
       def undefined?(value)
         value.nil? || value.empty?
       end
@@ -105,6 +108,7 @@ module Vedeu
       @repository = Vedeu.interfaces
     end
 
+    # @return [Vedeu::Cursor]
     def cursor
       Vedeu.cursors.by_name(name)
     end
@@ -129,6 +133,7 @@ module Vedeu
       store_cursor
     end
 
+    # return [Array]
     def viewport
       Vedeu::Viewport.show(self)
     end

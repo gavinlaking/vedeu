@@ -16,6 +16,7 @@ module Vedeu
 
     attr_accessor :attributes
 
+    # @see Vedeu::Border#initialize
     def self.build(interface, attributes = {}, &block)
       model = self.new(interface, attributes)
       model.deputy.instance_eval(&block) if block_given?
