@@ -72,13 +72,17 @@ module Vedeu
     end
 
     describe '.output' do
-      it 'returns the output' do
-        Terminal.output('Some output...').must_equal(['Some output...'])
-      end
+      subject { described.output(*value) }
 
-      it 'returns the output collection' do
-        Terminal.output('Some output...', 'more output...', 'even more...')
-          .must_equal(['Some output...', 'more output...', 'even more...'])
+      context 'when the value is a String' do
+        let(:value) { 'Some output...' }
+
+        it { subject.must_equal(['Some output...']) }
+      end
+      context 'when there are multiple values' do
+        let(:value) { ['Some output...', 'more output...', 'even more...'] }
+
+        it { subject.must_equal(['Some output...', 'more output...', 'even more...']) }
       end
     end
 
