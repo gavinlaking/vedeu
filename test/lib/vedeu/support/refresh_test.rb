@@ -63,7 +63,7 @@ module Vedeu
       context 'when the interface or buffer is found' do
         # it { subject.must_be_instance_of(Array) }
 
-        it { skip }
+        # it { skip }
       end
     end
 

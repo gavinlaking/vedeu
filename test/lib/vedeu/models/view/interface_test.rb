@@ -38,21 +38,21 @@ module Vedeu
     end
 
     # TODO: when the interface does not have any geometry defined?
-    describe '#render' do
-      subject { instance.render }
+    # describe '#render' do
+    #   subject { instance.render }
 
-      context 'when the interface has a border' do
-        let(:border) { Vedeu::Border.new(instance, { enabled: true }) }
+    #   context 'when the interface has a border' do
+    #     let(:border) { Vedeu::Border.new(instance, { enabled: true }) }
 
-        before { instance.stubs(:border).returns(border) }
+    #     before { instance.stubs(:border).returns(border) }
 
-        it { skip }
-      end
+    #     it { skip }
+    #   end
 
-      context 'when the interface does not have a border' do
-        it { skip }
-      end
-    end
+    #   context 'when the interface does not have a border' do
+    #     it { skip }
+    #   end
+    # end
 
     describe '#store' do
       subject { instance.store }
@@ -63,34 +63,34 @@ module Vedeu
         it { proc { subject }.must_raise(MissingRequired) }
       end
 
-      context 'when the interface has a name' do
-        context 'when a buffer exists' do
-          it { skip }
-        end
+      # context 'when the interface has a name' do
+      #   context 'when a buffer exists' do
+      #     it { skip }
+      #   end
 
-        context 'when a buffer does not exist' do
-          it { skip }
-        end
+      #   context 'when a buffer does not exist' do
+      #     it { skip }
+      #   end
 
-        context 'when a refresh event exists' do
-          it { skip }
-        end
+      #   context 'when a refresh event exists' do
+      #     it { skip }
+      #   end
 
-        context 'when a refresh event does not exist' do
-          it { skip }
-        end
+      #   context 'when a refresh event does not exist' do
+      #     it { skip }
+      #   end
 
-        context 'when the interface has a group' do
-          it { skip }
-        end
-      end
+      #   context 'when the interface has a group' do
+      #     it { skip }
+      #   end
+      # end
     end
 
     # TODO: when the interface does not have any geometry defined?
     describe '#viewport' do
       subject { instance.viewport }
 
-      it { skip }
+      # it { skip }
     end
 
   end # Interface

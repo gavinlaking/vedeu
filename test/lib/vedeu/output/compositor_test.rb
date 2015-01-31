@@ -33,15 +33,15 @@ module Vedeu
     describe '.compose' do
       subject { described.compose(buffer) }
 
-      it { skip }
+      # it { skip }
 
       context 'when there is no content' do
-        it { skip }
+        # it { skip }
       end
 
       context 'when there is content' do
         context 'when the view has redefined the geometry' do
-          it { skip }
+          # it { skip }
         end
 
         context 'when the view has not redefined the geometry' do

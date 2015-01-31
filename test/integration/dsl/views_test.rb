@@ -11,9 +11,9 @@ describe 'Views' do
 
     #it { subject.must_be_instance_of(Vedeu::Composition) }
 
-    it 'allows the use of ... within Vedeu.interface' do
-      skip
-    end
+    # it 'allows the use of ... within Vedeu.interface' do
+    #   skip
+    # end
 
     context 'when no value is provided' do
 
@@ -29,9 +29,9 @@ describe 'Views' do
 
     #it { subject.must_be_instance_of(Vedeu::Composition) }
 
-    it 'allows the use of ... within Vedeu.renders' do
-      skip
-    end
+    # it 'allows the use of ... within Vedeu.renders' do
+    #   skip
+    # end
 
     context 'when no block is given' do
       subject { Vedeu.renders }
@@ -49,9 +49,9 @@ describe 'Views' do
 
     #it { subject.must_be_instance_of(Vedeu::Composition) }
 
-    it 'allows the use of ... within Vedeu.views' do
-      skip
-    end
+    # it 'allows the use of ... within Vedeu.views' do
+    #   skip
+    # end
 
     context 'when no block is given' do
       subject { Vedeu.views }

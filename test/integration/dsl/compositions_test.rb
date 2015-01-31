@@ -13,9 +13,9 @@ describe 'Compositions' do
 
     #it { subject.must_be_instance_of(Vedeu::Composition) }
 
-    it 'allows the use of Vedeu.view' do
-      skip
-    end
+    # it 'allows the use of Vedeu.view' do
+    #   skip
+    # end
 
     context 'when no block is given' do
       subject { Vedeu.view }

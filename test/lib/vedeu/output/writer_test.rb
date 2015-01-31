@@ -18,27 +18,27 @@ module Vedeu
       end
     end
 
-    describe '#==' do
-      context 'when the two objects are the same' do
-        it { skip;subject.must_equal(true) }
-      end
+    # describe '#==' do
+    #   context 'when the two objects are the same' do
+    #     it { skip;subject.must_equal(true) }
+    #   end
 
-      context 'when the two objects are not the same' do
-        it { skip;subject.must_equal(false) }
-      end
-    end
+    #   context 'when the two objects are not the same' do
+    #     it { skip;subject.must_equal(false) }
+    #   end
+    # end
 
-    describe '#+' do
-      it 'returns the collection of writers' do
-        skip
-      end
-    end
+    # describe '#+' do
+    #   it 'returns the collection of writers' do
+    #     skip
+    #   end
+    # end
 
-    describe '.write' do
-      it 'not sure if this should be here' do
-        skip
-      end
-    end
+    # describe '.write' do
+    #   it 'not sure if this should be here' do
+    #     skip
+    #   end
+    # end
 
   end # Writer
 

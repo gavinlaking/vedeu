@@ -4,7 +4,7 @@ module Vedeu
 
   describe Log do
 
-    it { skip }
+    # it { skip }
 
   end # Log
 
