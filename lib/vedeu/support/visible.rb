@@ -27,6 +27,10 @@ module Vedeu
       end
     end
 
+    def inspect
+      "<#{self.class.name} (#{@visible.to_s})>"
+    end
+
     def cursor
       if visible?
         Esc.string('show_cursor')

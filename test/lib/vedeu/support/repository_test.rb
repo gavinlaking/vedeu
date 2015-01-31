@@ -33,6 +33,12 @@ module Vedeu
       it { subject.instance_variable_get('@storage').must_equal(storage) }
     end
 
+    describe '#inspect' do
+      subject { instance.inspect }
+
+      it { subject.must_equal('<Vedeu::Repository (0)>') }
+    end
+
     describe '#all' do
       subject { instance.all }
 

@@ -24,6 +24,10 @@ module Vedeu
       @storage = storage
     end
 
+    def inspect
+      "<#{self.class.name} (#{storage.size})>"
+    end
+
     # Return the whole repository.
     #
     # @return [Array|Hash|Set]

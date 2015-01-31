@@ -38,6 +38,12 @@ module Vedeu
       it { instance.instance_variable_get('@y').must_equal(8) }
     end
 
+    describe '#inspect' do
+      subject { instance.inspect }
+
+      it { subject.must_equal('<Vedeu::Cursor (silver: x:19 y:8 ox:3 oy:2)>') }
+    end
+
     describe '#to_s' do
       let(:state) { true }
 
