@@ -1,6 +1,3 @@
-require 'vedeu/cursor/cursor'
-require 'vedeu/support/visible'
-
 module Vedeu
 
   # Adjusts the visibility of the cursor.
@@ -18,6 +15,8 @@ module Vedeu
     # @param cursor [Cursor]
     # @return [Cursor]
     def self.hide(cursor)
+      return cursor if cursor.invisible?
+
       new(cursor).hide
     end
 
@@ -26,6 +25,8 @@ module Vedeu
     # @param cursor [Cursor]
     # @return [Cursor]
     def self.show(cursor)
+      return cursor if cursor.visible?
+
       new(cursor).show
     end
 
@@ -33,24 +34,14 @@ module Vedeu
     #
     # @return [Cursor]
     def hide
-      Cursor.new({ name:  cursor.name,
-                   ox:    cursor.ox,
-                   oy:    cursor.oy,
-                   state: Visible.new(false),
-                   x:     cursor.x,
-                   y:     cursor.y }).store
+      cursor.class.new(cursor.attributes.merge({ state: false })).store
     end
 
     # Shows the cursor.
     #
     # @return [Cursor]
     def show
-      Cursor.new({ name:  cursor.name,
-                   ox:    cursor.ox,
-                   oy:    cursor.oy,
-                   state: Visible.new(true),
-                   x:     cursor.x,
-                   y:     cursor.y }).store
+      cursor.class.new(cursor.attributes.merge({ state: true })).store
     end
 
     private

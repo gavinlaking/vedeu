@@ -11,9 +11,13 @@ module Vedeu
   # @api private
   class Cursor
 
+    extend Forwardable
+
+    def_delegators :state, :visible?, :invisible?
+
     include Vedeu::Model
 
-    attr_reader :name, :ox, :oy, :repository, :state, :x, :y
+    attr_reader :attributes, :name, :ox, :oy, :repository, :state, :x, :y
 
     # Provides a new instance of Cursor.
     #
