@@ -40,9 +40,9 @@ def test_configuration
   Vedeu::Configuration.reset!
 
   Vedeu.configure do
-    debug!
     colour_mode 16777216
-    log         '/tmp/vedeu_test_helper.log'
+    # debug!
+    # log         '/tmp/vedeu_test_helper.log'
   end
 end
 
