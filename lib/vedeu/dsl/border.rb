@@ -54,21 +54,21 @@ module Vedeu
       #   false.
       # @return [Boolean]
       def show_left(boolean)
-        model.attributes[:show_bottom] = !!boolean
+        model.attributes[:show_left] = !!boolean
       end
 
       # @param boolean [Boolean] All values evaluate as true except nil and
       #   false.
       # @return [Boolean]
       def show_right(boolean)
-        model.attributes[:show_bottom] = !!boolean
+        model.attributes[:show_right] = !!boolean
       end
 
       # @param boolean [Boolean] All values evaluate as true except nil and
       #   false.
       # @return [Boolean]
       def show_top(boolean)
-        model.attributes[:show_bottom] = !!boolean
+        model.attributes[:show_top] = !!boolean
       end
 
       # @param char [String] Character to be used as the top left border
