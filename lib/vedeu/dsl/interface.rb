@@ -57,10 +57,10 @@ module Vedeu
       # @return [Symbol]
       def cursor(value = true)
         if value == :hide || !!value == false
-          Cursor.new(model.name, Visible.new(false)).store
+          Cursor.new({ name: model.name, state: Visible.new(false) }).store
 
         elsif value == :show || !!value == true
-          Cursor.new(model.name, Visible.new(true)).store
+          Cursor.new({ name: model.name, state: Visible.new(true) }).store
 
         else
           # should never here

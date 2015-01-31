@@ -31,8 +31,10 @@ module Vedeu
         name 'lithium'
       end
     }
-    let(:cursor) { Cursor.new('lithium', true, x, y) }
+    let(:cursor) { Cursor.new({ name: 'lithium', ox: ox, oy: oy, state: true, x: x, y: y }) }
     let(:lines)  { [] }
+    let(:ox)     { 0 }
+    let(:oy)     { 0 }
     let(:x)      { 1 }
     let(:y)      { 1 }
 
@@ -62,8 +64,8 @@ module Vedeu
 
       context 'when there is content' do
         context "when the cursor's y position is outside the viewable area - negative" do
-          let(:x) { -4 }
-          let(:y) { -4 }
+          let(:ox) { -4 }
+          let(:oy) { -4 }
 
           it "scrolls the content the correct position" do
             subject.must_equal(
@@ -78,8 +80,8 @@ module Vedeu
 
         context "when the cursor's y position is inside the viewable area" do
           context "when there is not enough content to fill the height" do
-            let(:x) { 3 }
-            let(:y) { 7 }
+            let(:ox) { 3 }
+            let(:oy) { 7 }
 
             it "is padded with spaces" do
               subject.must_equal(
@@ -93,8 +95,8 @@ module Vedeu
           end
 
           context "when there is more content than the height" do
-            let(:x) { 3 }
-            let(:y) { 3 }
+            let(:ox) { 3 }
+            let(:oy) { 3 }
 
             it "is cropped to show only that which fits" do
               subject.must_equal(
@@ -110,8 +112,8 @@ module Vedeu
 
         context "when the cursor's x position is outside the viewable area" do
           context "but inside the content" do
-            let(:x) { 6 }
-            let(:y) { 6 }
+            let(:ox) { 6 }
+            let(:oy) { 6 }
 
             it "scrolls the content the correct position" do
               subject.must_equal(
@@ -125,8 +127,8 @@ module Vedeu
           end
 
           context "and outside the content" do
-            let(:x) { 7 }
-            let(:y) { 7 }
+            let(:ox) { 7 }
+            let(:oy) { 7 }
 
             it "scrolls the content the correct position" do
               subject.must_equal(
@@ -142,8 +144,8 @@ module Vedeu
 
         context "when the cursor's x position is inside the viewable area" do
           context "when there is not enough content to fill the width" do
-            let(:x) { 7 }
-            let(:y) { 3 }
+            let(:ox) { 7 }
+            let(:oy) { 3 }
 
             it "is padded with spaces" do
               subject.must_equal(
@@ -157,8 +159,8 @@ module Vedeu
           end
 
           context "when there is more content than the width" do
-            let(:x) { 3 }
-            let(:y) { 3 }
+            let(:ox) { 3 }
+            let(:oy) { 3 }
 
             it "is cropped to show only that which fits" do
               subject.must_equal(

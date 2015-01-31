@@ -40,14 +40,9 @@ module Vedeu
     def clear
       Vedeu.log("Clearing view: '#{interface.name}'")
 
-      rows.inject([interface.colour]) do |line, index|
+      interface.height.times.inject([interface.colour]) do |line, index|
         line << interface.origin(index) { ' ' * interface.width }
       end.join
-    end
-
-    # @return [Enumerator]
-    def rows
-      interface.height.times
     end
 
     # Produces a single string which contains all content and escape sequences

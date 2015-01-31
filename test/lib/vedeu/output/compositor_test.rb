@@ -7,10 +7,11 @@ module Vedeu
   describe Compositor do
 
     let(:described) { Vedeu::Compositor }
-    let(:instance)  { described.new(buffer) }
-    let(:buffer)    { Buffer.new(interface.name, interface) }
+    let(:instance)  { described.new(_name) }
+    let(:_name)     { 'compositor' }
+    let(:buffer)    { Buffer.new(_name, interface) }
     let(:interface) {
-      Vedeu.interface('compositor') do
+      Vedeu.interface(_name) do
         geometry do
           height 5
           width  10
@@ -21,17 +22,23 @@ module Vedeu
       end
     }
 
-    before { IO.console.stubs(:print) }
+    before do
+      IO.console.stubs(:print)
+
+      Vedeu.buffers.reset
+      Vedeu.interfaces.reset
+      Buffer.new(_name, interface).store
+    end
 
     describe '#initialize' do
       subject { instance }
 
       it { subject.must_be_instance_of(Compositor) }
-      it { subject.instance_variable_get('@buffer').must_equal(buffer) }
+      it { subject.instance_variable_get('@name').must_equal(_name) }
     end
 
     describe '.compose' do
-      subject { described.compose(buffer) }
+      subject { described.compose(_name) }
 
       # it { skip }
 

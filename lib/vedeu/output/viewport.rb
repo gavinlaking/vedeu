@@ -8,6 +8,10 @@ module Vedeu
   #
   class Viewport
 
+    extend Forwardable
+
+    def_delegators :interface, :content, :content?, :cursor, :height, :width
+
     # @see Viewport#show
     def self.show(interface)
       new(interface).show
@@ -51,8 +55,8 @@ module Vedeu
     def line_pad
       rows = content[lines] || []
 
-      if rows.size < (height + 1)
-        rows + [" "] * ((height + 1) - rows.size)
+      if rows.size < height
+        rows + [" "] * (height - rows.size)
 
       else
         rows
@@ -68,8 +72,8 @@ module Vedeu
     def column_pad(line)
       stream = line.chars[columns] || [" "]
 
-      if stream.size < (width + 1)
-        stream + [" "] * ((width + 1) - stream.size)
+      if stream.size < width
+        stream + [" "] * (width - stream.size)
 
       else
         stream
@@ -90,11 +94,14 @@ module Vedeu
     #
     # @return [Fixnum]
     def line_adjustment
-      if cursor.y < 0
-        @top = [cursor.y, 0].max
+      Vedeu.log("Viewport#line_adjustment: #{cursor.inspect}")
 
-      elsif cursor.y > height
-        @top = [(cursor.y - height), 0].max
+
+      if cursor.oy < 0
+        @top = [cursor.oy, 0].max
+
+      elsif cursor.oy > (height - 1)
+        @top = [(cursor.oy - (height - 1)), 0].max
 
       end
     end
@@ -112,11 +119,11 @@ module Vedeu
     #
     # @return [Fixnum]
     def column_adjustment
-      if cursor.x < 0
-        @left = [cursor.x, 0].max
+      if cursor.ox < 0
+        @left = [cursor.ox, 0].max
 
-      elsif cursor.x > width
-        @left = [(cursor.x - width), 0].max
+      elsif cursor.ox > (width - 1)
+        @left = [(cursor.ox - (width - 1)), 0].max
 
       end
     end
@@ -125,91 +132,14 @@ module Vedeu
     #
     # @return [Range]
     def lines
-      @top..(@top + height)
+      @top..(@top + (height - 1))
     end
 
     # Using the current cursor's y position, return a range of visible columns.
     #
     # @return [Range]
     def columns
-      @left..(@left + width)
-    end
-
-    # Returns the height of the content, or when no content, the visible height
-    # of the interface.
-    #
-    # @note This method is not used at the moment as the interface content area
-    #   is made infinite by the cursors last known position.
-    #
-    # @return [Fixnum]
-    # :nocov:
-    def content_height
-      return height unless content?
-
-      [content.size, height].max
-    end
-    # :nocov:
-
-    # Returns the width of the content, or when no content, the visible width of
-    # the interface.
-    #
-    # @note This method is not used at the moment as the interface content area
-    #   is made infinite by the cursors last known position.
-    #
-    # @return [Fixnum]
-    # :nocov:
-    def content_width
-      return width unless content?
-
-      [content_maximum_line_length, width].max
-    end
-    # :nocov:
-
-    # Returns the character length of the longest line for this interface.
-    #
-    # @note This method is not used at the moment as the interface content area
-    #   is made infinite by the cursors last known position.
-    #
-    # @return [Fixnum]
-    # :nocov:
-    def content_maximum_line_length
-      content.map { |line| line.size }.max
-    end
-    # :nocov:
-
-    # Return a boolean indicating whether this interface currently has content.
-    #
-    # @return [Boolean]
-    def content?
-      content.any?
-    end
-
-    # Return the content of the interface.
-    #
-    # @return [Array<Line>]
-    def content
-      interface.content
-    end
-
-    # Return the width of the interface for a zero-indexed array.
-    #
-    # @return [Fixnum]
-    def width
-      interface.width - 1
-    end
-
-    # Return the height of the interface for a zero-indexed array.
-    #
-    # @return [Fixnum]
-    def height
-      interface.height - 1
-    end
-
-    # Return the cursor of the interface.
-    #
-    # @return [Vedeu::Cursor]
-    def cursor
-      interface.cursor
+      @left..(@left + (width - 1))
     end
 
   end # Viewport

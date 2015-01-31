@@ -49,7 +49,7 @@ module Vedeu
     #   it { Vedeu.focus.must_be_instance_of(NilClass) }
 
     #   context 'when the model exists' do
-    #     # before { Cursor.new('francium', false, 12, 4).store }
+    #     # before { Cursor.new({ name: 'francium', state: false, x: 12, y: 4 }).store }
 
     #     # it 'has the same attributes it was stored with' do
     #     #   subject.x.must_equal(12)

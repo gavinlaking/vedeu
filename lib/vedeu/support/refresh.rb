@@ -40,9 +40,7 @@ module Vedeu
     def by_name(name)
       Vedeu.log("Refreshing interface: '#{name}'")
 
-      buffer = Vedeu.buffers.find(name)
-
-      Vedeu::Compositor.compose(buffer)
+      Vedeu::Compositor.compose(name)
     end
 
   end # Refresh

@@ -27,6 +27,34 @@ module Vedeu
       it { subject.instance_variable_get('@repository').must_equal(Vedeu.interfaces) }
     end
 
+    describe '#border?' do
+      subject { instance.border? }
+
+      context 'when the interface has a border' do
+        before { instance.stubs(:border).returns(mock('Border')) }
+
+        it { subject.must_equal(true) }
+      end
+
+      context 'when the interface does not have a border' do
+        it { subject.must_equal(false) }
+      end
+    end
+
+    describe '#content?' do
+      subject { instance.content? }
+
+      context 'when the interface has content' do
+        let(:lines) { [:line] }
+
+        it { subject.must_equal(true) }
+      end
+
+      context 'when the interface does not have content' do
+        it { subject.must_equal(false) }
+      end
+    end
+
     describe '#cursor' do
       subject { instance.cursor }
 

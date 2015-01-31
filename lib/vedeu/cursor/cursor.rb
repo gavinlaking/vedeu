@@ -13,7 +13,7 @@ module Vedeu
 
     include Vedeu::Model
 
-    attr_reader :name, :state, :x, :y, :repository
+    attr_reader :name, :ox, :oy, :repository, :state, :x, :y
 
     # Provides a new instance of Cursor.
     #
@@ -24,12 +24,22 @@ module Vedeu
     # @param y     [Fixnum] The terminal y coordinate for the cursor.
     #
     # @return [Cursor]
-    def initialize(name = '', state = false, x = 1, y = 1, repository = nil)
-      @name       = name
-      @state      = state
-      @x          = x
-      @y          = y
-      @repository = repository || Vedeu.cursors
+    def initialize(attributes = {})
+      # Hack because Repository#by_name creates Cursor objects with just a
+      # name.
+      if attributes.is_a?(String)
+        attributes = { name: attributes }
+      end
+
+      @attributes = default_attributes.merge(attributes)
+
+      @name       = @attributes.fetch(:name)
+      @ox         = @attributes.fetch(:ox)
+      @oy         = @attributes.fetch(:oy)
+      @repository = @attributes.fetch(:repository)
+      @state      = Vedeu::Visible.coerce(@attributes.fetch(:state))
+      @x          = @attributes.fetch(:x)
+      @y          = @attributes.fetch(:y)
     end
 
     # Returns an escape sequence to position the cursor and set its visibility.
@@ -50,6 +60,18 @@ module Vedeu
 
     private
 
+    def default_attributes
+      {
+        name:       '',
+        ox:         0,
+        oy:         0,
+        repository: Vedeu.cursors,
+        state:      Vedeu::Visible.new(false),
+        x:          1,
+        y:          1,
+      }
+    end
+
     # Returns the escape sequence to position the cursor and set its visibility.
     #
     # @return [String]
@@ -61,14 +83,14 @@ module Vedeu
     #
     # @return [String]
     def position
-      Position.new(y, x).to_s
+      Vedeu::Position.new(y, x).to_s
     end
 
     # Returns the escape sequence for setting the visibility of the cursor.
     #
     # @return [String]
     def visibility
-      Visible.new(state).cursor
+      state.cursor
     end
 
   end # Cursor

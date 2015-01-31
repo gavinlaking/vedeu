@@ -5,7 +5,12 @@ module Vedeu
   describe ToggleCursor do
 
     let(:described) { ToggleCursor.new(cursor) }
-    let(:cursor)    { Cursor.new('vanadium', true, 1, 1) }
+    let(:cursor)    { Cursor.new({ name: 'vanadium',
+                                   ox: 1,
+                                   oy: 1,
+                                   state: true,
+                                   x: 1,
+                                   y: 1 }) }
 
     describe '#initialize' do
       it { described.must_be_instance_of(ToggleCursor) }

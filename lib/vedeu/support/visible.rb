@@ -4,11 +4,21 @@ module Vedeu
 
   class Visible
 
+    def self.coerce(value)
+      if value.is_a?(self)
+        value
+
+      else
+        new(value)
+
+      end
+    end
+
     def initialize(visible = nil)
-      @visible = if visible == :hide
+      @visible = if visible == :hide || visible == false
         false
 
-      elsif visible == :show
+      elsif visible == :show || visible == true
         true
 
       else

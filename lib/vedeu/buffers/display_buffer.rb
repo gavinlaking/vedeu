@@ -94,7 +94,7 @@ module Vedeu
     # @return [Interface]
     def store_cursor
       unless Vedeu.cursors.registered?(name)
-        Vedeu::Cursor.new(name).store
+        Vedeu::Cursor.new({ name: name }).store
       end
 
       self

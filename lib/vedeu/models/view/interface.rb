@@ -1,4 +1,5 @@
 require 'vedeu/support/common'
+require 'vedeu/support/content_geometry'
 require 'vedeu/models/model'
 require 'vedeu/presentation/presentation'
 require 'vedeu/buffers/display_buffer'
@@ -106,6 +107,24 @@ module Vedeu
       @group    = ''
 
       @repository = Vedeu.interfaces
+    end
+
+    # Returns a boolean indicating whether the interface has a border.
+    #
+    # @return [Boolean]
+    def border?
+      !!(border)
+    end
+
+    # Returns a boolean indicating whether the interface has content.
+    #
+    # @return [Boolean]
+    def content?
+      content.any?
+    end
+
+    def content_geometry
+      Vedeu::ContentGeometry.new(self)
     end
 
     # @return [Vedeu::Cursor]

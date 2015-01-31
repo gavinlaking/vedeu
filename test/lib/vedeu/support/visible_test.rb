@@ -46,6 +46,24 @@ module Vedeu
       end
     end
 
+    describe '.coerce' do
+      subject { described.coerce(value) }
+
+      context 'when the value is a Visible' do
+        let(:value) { described.new }
+
+        it { subject.must_be_instance_of(Visible) }
+        it { subject.visible?.must_equal(false) }
+      end
+
+      context 'when the value is not a Visible' do
+        let(:value) { :show }
+
+        it { subject.must_be_instance_of(Visible) }
+        it { subject.visible?.must_equal(true) }
+      end
+    end
+
     describe '#cursor' do
       subject { instance.cursor }
 

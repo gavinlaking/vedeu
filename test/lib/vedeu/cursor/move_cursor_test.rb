@@ -6,7 +6,9 @@ module Vedeu
 
     let(:described) { Vedeu::MoveCursor }
     let(:instance)  { described.new(cursor, interface, dy, dx) }
-    let(:cursor)    { Cursor.new('MoveCursor', :show, x, y) }
+    let(:cursor)    { Cursor.new({ name: 'MoveCursor', ox: ox, oy: oy, state: :show, x: x, y: y }) }
+    let(:ox)        { 0 }
+    let(:oy)        { 0 }
     let(:x)         { 1 }
     let(:y)         { 1 }
 

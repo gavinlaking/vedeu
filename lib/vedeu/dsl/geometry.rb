@@ -10,6 +10,18 @@ module Vedeu
 
       include Vedeu::DSL::Shared
 
+      class << self
+
+        def geometry(name, &block)
+          unless block_given?
+            fail InvalidSyntax, "'#{__callee__}' requires a block."
+          end
+
+          Vedeu::Geometry.build({ name: name }, &block).store
+        end
+
+      end
+
       # Returns an instance of DSL::Geometry.
       #
       # @param model [Geometry]

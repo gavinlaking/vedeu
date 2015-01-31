@@ -21,16 +21,16 @@ module Vedeu
     #
     # @return [Compositor]
     # @see #initialize
-    def self.compose(buffer)
-      new(buffer).compose
+    def self.compose(name)
+      new(name).compose
     end
 
     # Initialize a new Compositor.
     #
-    # @param buffer [Inteface]
+    # @param name [String] The name of the buffer.
     # @return [Compositor]
-    def initialize(buffer)
-      @buffer = buffer
+    def initialize(name)
+      @name = name
     end
 
     # @todo What do we do about resizing terminals. I don't want to overwrite
@@ -50,9 +50,7 @@ module Vedeu
     #
     # @return [Array<Interface>]
     def compose
-      content.map do |view|
-        interface = Vedeu.interfaces.find(view.name)
-
+      buffer.map do |view|
         view.border   = interface.border   unless view.border
         view.colour   = interface.colour   unless view.colour
         view.style    = interface.style    unless view.style
@@ -64,10 +62,14 @@ module Vedeu
 
     private
 
-    attr_reader :buffer
+    attr_reader :name
 
-    def content
-      buffer.content
+    def buffer
+      Vedeu.buffers.find(name).content
+    end
+
+    def interface
+      @interface ||= Vedeu.interfaces.find(name)
     end
 
   end # Compositor

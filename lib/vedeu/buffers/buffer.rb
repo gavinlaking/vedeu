@@ -16,7 +16,8 @@ module Vedeu
 
     include Vedeu::Model
 
-    attr_reader :back, :front, :name, :previous, :repository
+    attr_accessor :back, :front, :previous
+    attr_reader   :name, :repository
 
     # Return a new instance of Buffer.
     #
@@ -77,14 +78,10 @@ module Vedeu
       end
     end
 
-    # Return a boolean indicating content was swapped between buffers. It also
-    # resets the cursors position.
+    # Return a boolean indicating content was swapped between buffers.
     #
     # @return [Boolean]
     def swap
-      # TODO: Investigate if this is needed. (GL: 2015-01-20 19:43)
-      # Vedeu.trigger(:_cursor_origin_)
-
       @previous = front
       @front    = back
       @back     = nil
@@ -111,10 +108,10 @@ module Vedeu
     # @param buffer [Symbol] One of; :back, :front or :previous.
     # @return [Boolean] Whether the buffer targetted has content.
     def content_for?(buffer)
-      return false if public_send(buffer).nil?          ||
-                      public_send(buffer).lines.empty?
+      return true unless public_send(buffer).nil? ||
+                         public_send(buffer).content.empty?
 
-      true
+      false
     end
 
   end # Buffer

@@ -7,10 +7,10 @@ module Vedeu
   #
   class ToggleCursor
 
-    # @param cursor  [Cursor]
+    # @param cursor [Cursor]
     # @return [ToggleCursor]
     def initialize(cursor)
-      @cursor  = cursor
+      @cursor = cursor
     end
 
     # Hides the cursor.
@@ -33,14 +33,24 @@ module Vedeu
     #
     # @return [Cursor]
     def hide
-      Cursor.new(cursor.name, Visible.new(false), cursor.x, cursor.y).store
+      Cursor.new({ name:  cursor.name,
+                   ox:    cursor.ox,
+                   oy:    cursor.oy,
+                   state: Visible.new(false),
+                   x:     cursor.x,
+                   y:     cursor.y }).store
     end
 
     # Shows the cursor.
     #
     # @return [Cursor]
     def show
-      Cursor.new(cursor.name, Visible.new(true), cursor.x, cursor.y).store
+      Cursor.new({ name:  cursor.name,
+                   ox:    cursor.ox,
+                   oy:    cursor.oy,
+                   state: Visible.new(true),
+                   x:     cursor.x,
+                   y:     cursor.y }).store
     end
 
     private

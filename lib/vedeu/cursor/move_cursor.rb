@@ -7,11 +7,16 @@ module Vedeu
   #
   class MoveCursor
 
-    # extend Forwardable
-    # def_delegators Terminal,   :height, :width
-    # def_delegators :interface, :border, :geometry
-    # def_delegators :geometry,  :top, :right, :bottom, :left
-    # def_delegators :border,    :top?, :right?, :bottom?, :left?
+    extend Forwardable
+
+    def_delegators :@interface, :border,
+                                :border?,
+                                :content,
+                                :content?,
+                                :content_geometry,
+                                :geometry
+    def_delegators Terminal, :height,
+                             :width
 
     # @param cursor    [Cursor]
     # @param interface [Interface]
@@ -64,33 +69,17 @@ module Vedeu
     #
     # @return [Cursor]
     def move
-      Cursor.new(cursor.name, cursor.state, new_x, new_y).store
+      Cursor.new({ name:  cursor.name,
+                   ox:    new_ox,
+                   oy:    new_oy,
+                   state: cursor.state,
+                   x:     new_x,
+                   y:     new_y }).store
     end
 
     private
 
     attr_reader :cursor, :dx, :dy, :interface
-
-    # Returns the border of the interface.
-    #
-    # @return [Border]
-    def border
-      interface.border
-    end
-
-    # Returns a boolean indicating whether the interface has a border.
-    #
-    # @return [Boolean]
-    def border?
-      !!(interface.border)
-    end
-
-    # Returns the geometry of the interface.
-    #
-    # @return [Geometry]
-    def geometry
-      interface.geometry
-    end
 
     # Returns the x coordinate (column/character) of the cursor. Attempts to
     # sensibly reposition the cursor if it is currently outside the interface,
@@ -103,8 +92,8 @@ module Vedeu
     def new_x
       x = cursor.x + dx
 
-      x = 1              if x <= 1
-      x = terminal_width if x >= terminal_width
+      x = 1     if x <= 1
+      x = width if x >= width
 
       if border? && border.left? && x <= (geometry.left + 1)
         x = geometry.left + 1
@@ -131,8 +120,8 @@ module Vedeu
     def new_y
       y = cursor.y + dy
 
-      y = 1               if y <= 1
-      y = terminal_height if y >= terminal_height
+      y = 1      if y <= 1
+      y = height if y >= height
 
       if border? && border.top? && y <= (geometry.top + 1)
         y = geometry.top + 1
@@ -152,12 +141,22 @@ module Vedeu
       end
     end
 
-    def terminal_height
-      Terminal.height
+    def new_ox
+      ox = cursor.ox + dx
+
+      ox = 0                      if ox <= 0
+      ox = content_geometry.width if ox >= content_geometry.width
+
+      ox
     end
 
-    def terminal_width
-      Terminal.width
+    def new_oy
+      oy = cursor.oy + dy
+
+      oy = 0                       if oy <= 0
+      oy = content_geometry.height if oy >= content_geometry.height
+
+      oy
     end
 
   end # MoveCursor
