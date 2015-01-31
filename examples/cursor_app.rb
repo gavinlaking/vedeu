@@ -20,13 +20,17 @@ class VedeuCursorApp
   bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
 
   interface 'main_interface' do
+    border do
+      # adds default border
+    end
+
     cursor true
     colour foreground: '#ff0000', background: '#000000'
 
     geometry do
       centred true
-      height  4
-      width   5
+      height  7
+      width   7
     end
   end
 
@@ -53,7 +57,9 @@ class VedeuCursorApp
         end
       end
       lines do
-        line 'B.3456789 lithium beryllium boron nitrogen'
+        streams do
+          text 'B.3456789 lithium beryllium boron nitrogen'
+        end
       end
       lines do
         streams do
@@ -67,10 +73,14 @@ class VedeuCursorApp
         end
       end
       lines do
-        line 'D.3456789'
+        streams do
+          text 'D.3456789'
+        end
       end
       lines do
-        line 'E.3456789 neon sodium'
+        streams do
+          text 'E.3456789 neon sodium'
+        end
       end
       lines do
         streams do
@@ -82,7 +92,9 @@ class VedeuCursorApp
         end
       end
       lines do
-        line 'G.3456789 silicon'
+        streams do
+          text 'G.3456789 silicon'
+        end
       end
       lines do
         streams do
