@@ -94,9 +94,6 @@ module Vedeu
     #
     # @return [Fixnum]
     def line_adjustment
-      Vedeu.log("Viewport#line_adjustment: #{cursor.inspect}")
-
-
       if cursor.oy < 0
         @top = [cursor.oy, 0].max
 
