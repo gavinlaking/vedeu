@@ -19,49 +19,29 @@ class VedeuCursorApp
 
   bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
 
-  interface 'iron' do
-    #cursor  true
-    colour  foreground: '#ff0000', background: '#000000'
+  interface 'main_interface' do
+    cursor true
+    colour foreground: '#ff0000', background: '#000000'
 
     geometry do
       centred true
       height  4
-      width   15
-    end
-
-    # provide 'vim' direction keys
-    keymap do
-      key('k') { Vedeu.trigger(:_cursor_up_)    }
-      key('l') { Vedeu.trigger(:_cursor_right_) }
-      key('j') { Vedeu.trigger(:_cursor_down_)  }
-      key('h') { Vedeu.trigger(:_cursor_left_)  }
-    end
-  end
-
-  interface 'gold' do
-    cursor false
-    colour foreground: '#00ff00', background: '#001100'
-
-    geometry do
-      height 4
-      width  15
-      x      use('iron').left
-      y      use('iron').south
+      width   5
     end
   end
 
   keymap('_global_') do
-    key(:up)    { Vedeu.trigger(:_cursor_up_)    }
-    key(:right) { Vedeu.trigger(:_cursor_right_) }
-    key(:down)  { Vedeu.trigger(:_cursor_down_)  }
-    key(:left)  { Vedeu.trigger(:_cursor_left_)  }
+    key(:up,    'k') { Vedeu.trigger(:_cursor_up_)    }
+    key(:right, 'l') { Vedeu.trigger(:_cursor_right_) }
+    key(:down,  'j') { Vedeu.trigger(:_cursor_down_)  }
+    key(:left,  'h') { Vedeu.trigger(:_cursor_left_)  }
   end
 
   renders do
-    view 'iron' do
+    view 'main_interface' do
       lines do
         streams do
-          text 'A 23456789 '
+          text 'A.3456789 '
         end
         streams do
           background '#550000'
@@ -73,11 +53,11 @@ class VedeuCursorApp
         end
       end
       lines do
-        line 'B 23456789 lithium beryllium boron nitrogen'
+        line 'B.3456789 lithium beryllium boron nitrogen'
       end
       lines do
         streams do
-          text 'C 23456789'
+          text 'C.3456789'
           text ' carbon oxygen '
         end
         streams do
@@ -87,14 +67,14 @@ class VedeuCursorApp
         end
       end
       lines do
-        line 'D 23456789'
+        line 'D.3456789'
       end
       lines do
-        line 'E 23456789 neon sodium'
+        line 'E.3456789 neon sodium'
       end
       lines do
         streams do
-          text 'F 23456789 magnesium '
+          text 'F.3456789 magnesium '
         end
         streams do
           foreground '#00aaff'
@@ -102,26 +82,19 @@ class VedeuCursorApp
         end
       end
       lines do
-        line 'G 23456789 silicon'
+        line 'G.3456789 silicon'
       end
       lines do
         streams do
           background '#550000'
           foreground '#ff00ff'
-          text 'H 234'
+          text 'H.34'
         end
-      end
-    end
-
-    view 'gold' do
-      cursor false
-      lines do
-        line 'Cursor: '
       end
     end
   end
 
-  focus_by_name 'iron'
+  focus_by_name 'main_interface'
 
   def self.start(argv = ARGV)
     Vedeu::Launcher.new(argv).execute!
