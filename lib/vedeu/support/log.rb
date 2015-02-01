@@ -21,7 +21,9 @@ module Vedeu
       #
       # @return [TrueClass]
       def log(message, force = false)
-        logger.debug(message) if enabled? || force
+        colour = [:red, :green, :yellow, :blue, :magenta, :cyan, :white].sample
+
+        logger.debug(Esc.send(colour) { message }) if enabled? || force
       end
 
       # @return [TrueClass]
