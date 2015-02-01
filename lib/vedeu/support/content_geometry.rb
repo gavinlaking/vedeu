@@ -19,6 +19,13 @@ module Vedeu
         [content.size, interface.height].max
 
       else
+    # Returns log friendly output.
+    #
+    # @return [String]
+    def inspect
+      "<#{self.class.name} (y:#{y} x:#{x} yn:#{yn} xn:#{xn})>"
+    end
+
         interface.height
 
       end

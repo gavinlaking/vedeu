@@ -46,6 +46,9 @@ module Vedeu
       @y          = @attributes.fetch(:y)
     end
 
+    # Returns log friendly output.
+    #
+    # @return [String]
     def inspect
       "<#{self.class.name} (#{@name}: x:#{@x} y:#{@y} ox:#{@ox} oy:#{@oy})>"
     end

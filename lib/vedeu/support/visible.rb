@@ -27,6 +27,9 @@ module Vedeu
       end
     end
 
+    # Returns log friendly output.
+    #
+    # @return [String]
     def inspect
       "<#{self.class.name} (#{@visible.to_s})>"
     end

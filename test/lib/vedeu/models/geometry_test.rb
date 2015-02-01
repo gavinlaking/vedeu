@@ -41,6 +41,14 @@ module Vedeu
       end
     end
 
+    describe '#inspect' do
+      subject { instance.inspect }
+
+      it { subject.must_equal(
+        '<Vedeu::Geometry (height:(25/24) width:(80/79) top:1 bottom:25 left:1 right:80)>'
+      ) }
+    end
+
     describe '#y' do
       it 'returns the value of y when it is a proc' do
         geometry = Geometry.new({ y: proc { 17 } })

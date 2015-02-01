@@ -64,6 +64,21 @@ module Vedeu
       @repository = Vedeu.geometries
     end
 
+    # Returns log friendly output.
+    #
+    # @note
+    #   The attribute format is (specified/calculated).
+    #
+    # @return [String]
+    def inspect
+      "<#{self.class.name} (height:(#{@height}/#{height}) " \
+                           "width:(#{@width}/#{width}) " \
+                           "top:#{top} " \
+                           "bottom:#{bottom} " \
+                           "left:#{left} " \
+                           "right:#{right})>"
+    end
+
     # Returns the row/line start position for the interface.
     #
     # @return [Fixnum]
