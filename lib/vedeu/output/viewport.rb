@@ -82,7 +82,7 @@ module Vedeu
     # @param line [Array<String>]
     # @return [Array<String>]
     def column_pad(line)
-      stream = line.chars[columns] || [" "]
+      stream = line.chars[columns] || []
 
       if stream.size < width
         stream + [" "] * (width - stream.size)
