@@ -23,7 +23,9 @@ module Vedeu
     let(:interface_with_border) {
       Vedeu::Interface.build do
         name 'manganese'
-        border {}
+        border do
+          # ...
+        end
         geometry do
           height 5
           width 5
@@ -66,22 +68,13 @@ module Vedeu
 
       it { subject.y.must_equal(2) }
 
-      context 'when moving, the cursor must be within the visible area for ' \
-              'the console' do
-        let(:y) { 26 }
-
-        it 'does not move past the bottom of the screen' do
-          subject.y.must_equal(25)
-        end
-      end
-
       context 'when moving, the cursor must be within the boundary of the ' \
               'interface' do
         subject { MoveCursor.down(cursor, interface_without_border) }
-        let(:y)         { 15 }
+        let(:y) { 15 }
 
         it 'does not move past the bottom of the interface' do
-          subject.y.must_equal(10)
+          subject.y.must_equal(6)
         end
       end
 
@@ -91,7 +84,7 @@ module Vedeu
         let(:y)         { 15 }
 
         it 'does not move past the bottom border' do
-          subject.y.must_equal(8)
+          subject.y.must_equal(6)
         end
       end
     end
@@ -103,22 +96,13 @@ module Vedeu
 
       it { subject.x.must_equal(1) }
 
-      context 'when moving, the cursor must be within the visible area for ' \
-              'the console' do
-        let(:x) { -5 }
-
-        it 'does not move past the left of the screen' do
-          subject.x.must_equal(1)
-        end
-      end
-
       context 'when moving, the cursor must be within the boundary of the ' \
               'interface' do
         subject { MoveCursor.left(cursor, interface_without_border) }
         let(:x)         { 3 }
 
         it 'does not move past the left of the interface' do
-          subject.x.must_equal(5)
+          subject.x.must_equal(3)
         end
       end
 
@@ -128,7 +112,7 @@ module Vedeu
         let(:x)         { 4 }
 
         it 'does not move past the left border' do
-          subject.x.must_equal(6)
+          subject.x.must_equal(4)
         end
       end
     end
@@ -140,22 +124,13 @@ module Vedeu
 
       it { subject.x.must_equal(2) }
 
-      context 'when moving, the cursor must be within the visible area for ' \
-              'the console' do
-        let(:x) { 85 }
-
-        it 'does not move past the right of the screen' do
-          subject.x.must_equal(80)
-        end
-      end
-
       context 'when moving, the cursor must be within the boundary of the ' \
               'interface' do
         subject { MoveCursor.right(cursor, interface_without_border) }
         let(:x)         { 14 }
 
         it 'does not move past the right of the interface' do
-          subject.x.must_equal(10)
+          subject.x.must_equal(6)
         end
       end
 
@@ -166,7 +141,7 @@ module Vedeu
         let(:x)         { 14 }
 
         it 'does not move past the right border' do
-          subject.x.must_equal(8)
+          subject.x.must_equal(6)
         end
       end
     end
@@ -178,15 +153,6 @@ module Vedeu
 
       it { subject.y.must_equal(1) }
 
-      context 'when moving, the cursor must be within the visible area for ' \
-              'the console' do
-        let(:y) { -5 }
-
-        it 'does not move past the top of the screen' do
-          subject.y.must_equal(1)
-        end
-      end
-
       context 'when moving, the cursor must be within the boundary of the ' \
               'interface' do
         subject { MoveCursor.up(cursor, interface_without_border) }
@@ -194,7 +160,7 @@ module Vedeu
         let(:y)         { 3 }
 
         it 'does not move past the top of the interface' do
-          subject.y.must_equal(5)
+          subject.y.must_equal(3)
         end
       end
 
@@ -205,7 +171,7 @@ module Vedeu
         let(:y)         { 3 }
 
         it 'does not move past the top border' do
-          subject.y.must_equal(6)
+          subject.y.must_equal(3)
         end
       end
     end

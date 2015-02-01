@@ -7,14 +7,6 @@ module Vedeu
     let(:described) { Vedeu::Viewport }
     let(:instance)  { described.new(interface) }
     let(:interface) {
-      # Interface.new({
-      #   name:     'lithium',
-      #   geometry: {
-      #     width:  3,
-      #     height: 3,
-      #   },
-      #   lines: lines
-      # })
       Vedeu::Interface.build do
         geometry do
           height 3
@@ -31,7 +23,10 @@ module Vedeu
         name 'lithium'
       end
     }
-    let(:cursor) { Cursor.new({ name: 'lithium', ox: ox, oy: oy, state: true, x: x, y: y }) }
+    let(:cursor) { Cursor.new(cursor_attributes) }
+    let(:cursor_attributes) {
+      { name: 'lithium', ox: ox, oy: oy, state: true, x: x, y: y }
+    }
     let(:lines)  { [] }
     let(:ox)     { 0 }
     let(:oy)     { 0 }
@@ -86,8 +81,8 @@ module Vedeu
             it "is padded with spaces" do
               subject.must_equal(
                 [
-                  ["s", "m", "i"],
-                  [" ", " ", " "],
+                  ["n", "i", "c"],
+                  ["o", "s", "m"],
                   [" ", " ", " "]
                 ]
               )
@@ -101,9 +96,9 @@ module Vedeu
             it "is cropped to show only that which fits" do
               subject.must_equal(
                 [
-                  ["a", "r", "b"],
-                  ["e", "l", "i"],
-                  ["o", "d", "i"]
+                  ["b", "a", "r"],
+                  ["c", "a", "r"],
+                  ["h", "e", "l"]
                 ]
               )
             end
@@ -118,9 +113,9 @@ module Vedeu
             it "scrolls the content the correct position" do
               subject.must_equal(
                 [
-                  ["e", "l", " "],
-                  ["u", "m", " "],
-                  [" ", " ", " "]
+                  ["i", "n", "e"],
+                  ["k", "e", "l"],
+                  ["i", "u", "m"]
                 ]
               )
             end
@@ -133,8 +128,8 @@ module Vedeu
             it "scrolls the content the correct position" do
               subject.must_equal(
                 [
-                  ["m", " ", " "],
-                  [" ", " ", " "],
+                  ["e", "l", " "],
+                  ["u", "m", " "],
                   [" ", " ", " "]
                 ]
               )
@@ -150,9 +145,9 @@ module Vedeu
             it "is padded with spaces" do
               subject.must_equal(
                 [
-                  ["n", " ", " "],
-                  ["m", " ", " "],
-                  ["e", " ", " "]
+                  ["u", "m", " "],
+                  ["o", "n", " "],
+                  ["u", "m", " "]
                 ]
               )
             end
@@ -165,9 +160,9 @@ module Vedeu
             it "is cropped to show only that which fits" do
               subject.must_equal(
                 [
-                  ["a", "r", "b"],
-                  ["e", "l", "i"],
-                  ["o", "d", "i"]
+                  ["b", "a", "r"],
+                  ["c", "a", "r"],
+                  ["h", "e", "l"]
                 ]
               )
             end

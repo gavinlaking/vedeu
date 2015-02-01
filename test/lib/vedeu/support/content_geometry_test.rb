@@ -35,8 +35,8 @@ module Vedeu
       it { subject.must_equal('<Vedeu::ContentGeometry (y:1 x:1 yn:3 xn:5)>') }
     end
 
-    describe '#height' do
-      subject { instance.height }
+    describe '#yn' do
+      subject { instance.yn }
 
       it { subject.must_be_instance_of(Fixnum) }
 
@@ -64,8 +64,8 @@ module Vedeu
       end
     end
 
-    describe '#width' do
-      subject { instance.width }
+    describe '#xn' do
+      subject { instance.xn }
 
       it { subject.must_be_instance_of(Fixnum) }
 
