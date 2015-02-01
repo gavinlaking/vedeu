@@ -1,5 +1,5 @@
 require 'vedeu/cursor/cursor'
-require 'vedeu/support/terminal'
+require 'vedeu/support/position_validator'
 
 module Vedeu
 
@@ -11,8 +11,6 @@ module Vedeu
 
     def_delegators :@interface, :border,
                                 :border?,
-                                :content,
-                                :content?,
                                 :geometry
 
     def_delegators :border, :left?,
@@ -52,6 +50,8 @@ module Vedeu
     #
     # @return [Cursor]
     def self.left(cursor, interface)
+      return cursor unless cursor.ox > 0
+
       new(cursor, interface, 0, -1).move
     end
 
@@ -66,6 +66,8 @@ module Vedeu
     #
     # @return [Cursor]
     def self.up(cursor, interface)
+      return cursor unless cursor.oy > 0
+
       new(cursor, interface, -1, 0).move
     end
 
@@ -80,24 +82,38 @@ module Vedeu
     #
     # @return [Cursor]
     def move
-      Cursor.new(cursor.attributes.merge({
-        x:  coordinate.x_position(ox),
-        y:  coordinate.y_position(oy),
-        ox: ox,
-        oy: oy,
-      })).store
+      Cursor.new(cursor.attributes.merge(moved_attributes)).store
     end
 
     private
 
     attr_reader :cursor, :dx, :dy, :interface
 
+    def moved_attributes
+      {
+        x:  validator.x,
+        y:  validator.y,
+        ox: ox,
+        oy: oy,
+      }
+    end
+
+    def validator
+      @validator ||= Vedeu::PositionValidator.validate(interface,
+                                   coordinate.x_position(ox),
+                                   coordinate.y_position(oy))
+    end
+
     def ox
-      cursor.ox + dx
+      ox = cursor.ox + dx
+      ox = 0 if ox < 0
+      ox
     end
 
     def oy
-      cursor.oy + dy
+      oy = cursor.oy + dy
+      oy = 0 if oy < 0
+      oy
     end
 
     def coordinate
@@ -135,15 +151,23 @@ module Vedeu
     end
 
     def oleft
-      return left unless border? && left?
+      if border? && left?
+        left# + 1
 
-      left + 1
+      else
+        left
+
+      end
     end
 
     def otop
-      return top unless border? && top?
+      if border? && top?
+        top# + 1
 
-      top + 1
+      else
+        top
+
+      end
     end
 
   end # MoveCursor
