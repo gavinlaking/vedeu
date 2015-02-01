@@ -1,3 +1,6 @@
+require 'vedeu/dsl/colour'
+require 'vedeu/dsl/style'
+
 module Vedeu
 
   module DSL

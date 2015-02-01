@@ -1,3 +1,5 @@
+require 'vedeu/support/repository'
+
 module Vedeu
 
   class RepositoriesTestClass < Repository

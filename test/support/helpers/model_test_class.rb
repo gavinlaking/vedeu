@@ -1,3 +1,6 @@
+require 'vedeu/models/model'
+require 'vedeu/presentation/presentation'
+
 module Vedeu
 
   class ModelTestClass
@@ -5,7 +8,7 @@ module Vedeu
     include Vedeu::Model
     include Vedeu::Presentation
 
-    attr_accessor :backgroud, :colour, :name, :style
+    attr_accessor :background, :colour, :name, :style
 
     def initialize(attributes = {})
       @attributes = defaults.merge(attributes)

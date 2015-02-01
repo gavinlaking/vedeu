@@ -1,5 +1,5 @@
+require 'vedeu/cursor/all'
 require 'vedeu/models/model'
-require 'vedeu/support/esc'
 require 'vedeu/support/position'
 require 'vedeu/support/visible'
 

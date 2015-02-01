@@ -1,17 +1,23 @@
+require 'vedeu/support/repository'
 require 'vedeu/cursor/cursor'
 require 'vedeu/cursor/move_cursor'
 require 'vedeu/cursor/toggle_cursor'
 
 module Vedeu
 
-  # @return [Cursor|NilClass]
-  def self.cursor
-    cursors.current
+  class Cursors < Repository
   end
 
+  extend self
+
   # @return [Cursors]
-  def self.cursors
+  def cursors
     @_cursors ||= Vedeu::Cursors.new(Vedeu::Cursor)
+  end
+
+  # @return [Cursor|NilClass]
+  def cursor
+    cursors.current
   end
 
 end # Vedeu

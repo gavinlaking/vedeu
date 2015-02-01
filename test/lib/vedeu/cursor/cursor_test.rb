@@ -1,4 +1,5 @@
 require 'test_helper'
+require 'vedeu/cursor/cursor'
 
 module Vedeu
 
