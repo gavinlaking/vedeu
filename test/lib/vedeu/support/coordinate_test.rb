@@ -24,7 +24,9 @@ module Vedeu
     describe '#inspect' do
       subject { instance.inspect }
 
-      it { subject.must_equal('<Vedeu::Coordinate (height:6 width:6 x:7 y:5)>') }
+      it { subject.must_equal(
+        '<Vedeu::Coordinate ( height:6 width:6 x:7 xn:13 y:5 yn:11 )>'
+      ) }
     end
 
     describe '#y_position' do

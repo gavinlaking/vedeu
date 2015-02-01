@@ -19,7 +19,50 @@ module Vedeu
     #
     # @return [String]
     def inspect
-      "<#{self.class.name} (height:#{@height} width:#{@width} x:#{@x} y:#{@y})>"
+      "<#{self.class.name} ( " \
+        "height:#{height} " \
+        "width:#{width} " \
+        "x:#{x} " \
+        "xn:#{xn} " \
+        "y:#{y} " \
+        "yn:#{yn} " \
+        ")>"
+    end
+
+    # Returns the maximum y coordinate for an area.
+    #
+    # @example
+    #   # y = 2
+    #   # height = 4
+    #   yn # => 6
+    #
+    # @return [Fixnum]
+    def yn
+      if height <= 0
+        0
+
+      else
+        y + height
+
+      end
+    end
+
+    # Returns the maximum x coordinate for an area.
+    #
+    # @example
+    #   # x = 5
+    #   # width = 20
+    #   xn # => 25
+    #
+    # @return [Fixnum]
+    def xn
+      if width <= 0
+        0
+
+      else
+        x + width
+
+      end
     end
 
     # Returns the index for a given y position.
@@ -87,7 +130,7 @@ module Vedeu
       if index <= 0
         y
 
-      elsif index >= yn_index
+      elsif index > yn_index
         yn
 
       else
@@ -111,7 +154,7 @@ module Vedeu
       if index <= 0
         x
 
-      elsif index >= xn_index
+      elsif index > xn_index
         xn
 
       else
@@ -123,42 +166,6 @@ module Vedeu
     private
 
     attr_reader :height, :width
-
-    # Returns the maximum y coordinate for an area.
-    #
-    # @example
-    #   # y = 2
-    #   # height = 4
-    #   yn # => 6
-    #
-    # @return [Fixnum]
-    def yn
-      if height <= 0
-        0
-
-      else
-        y + height
-
-      end
-    end
-
-    # Returns the maximum x coordinate for an area.
-    #
-    # @example
-    #   # x = 5
-    #   # width = 20
-    #   xn # => 25
-    #
-    # @return [Fixnum]
-    def xn
-      if width <= 0
-        0
-
-      else
-        x + width
-
-      end
-    end
 
     # Returns the maximum y index for an area.
     #
