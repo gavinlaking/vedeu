@@ -25,6 +25,12 @@ module Vedeu
       it { subject.instance_variable_get('@repository').must_equal(Vedeu.buffers) }
     end
 
+    describe '#inspect' do
+      subject { instance.inspect }
+
+      it { subject.must_equal('<Vedeu::Buffer ( back?:false front?:false previous?:false )>') }
+    end
+
     describe '#add' do
       let(:back) {
         Vedeu::Interface.build do
