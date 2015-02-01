@@ -21,14 +21,31 @@ module Vedeu
     include Vedeu::Presentation
     include Vedeu::DisplayBuffer
 
-    attr_accessor :border, :colour, :delay, :geometry, :group, :lines, :name,
-                  :parent, :style
+    attr_accessor :border,
+      :colour,
+      :delay,
+      :geometry,
+      :group,
+      :lines,
+      :name,
+      :parent,
+      :style
+
     alias_method :content, :lines
     alias_method :value, :lines
 
-    def_delegators :geometry, :north, :east,  :south,  :west,
-                              :top,   :right, :bottom, :left,
-                              :width, :height, :origin
+    def_delegators :geometry,
+      :north,
+      :east,
+      :south,
+      :west,
+      :top,
+      :right,
+      :bottom,
+      :left,
+      :width,
+      :height,
+      :origin
 
     class << self
 
