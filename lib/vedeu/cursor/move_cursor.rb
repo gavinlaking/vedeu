@@ -117,7 +117,7 @@ module Vedeu
     end
 
     def coordinate
-      @coordinate ||= Coordinate.new(oheight, owidth, oleft, otop)
+      @coordinate ||= Coordinate.new(oheight, owidth, left, top)
     end
 
     def oheight
@@ -146,26 +146,6 @@ module Vedeu
 
       else
         width
-
-      end
-    end
-
-    def oleft
-      if border? && left?
-        left# + 1
-
-      else
-        left
-
-      end
-    end
-
-    def otop
-      if border? && top?
-        top# + 1
-
-      else
-        top
 
       end
     end
