@@ -4,21 +4,21 @@ module Vedeu
 
     extend Forwardable
 
-    def_delegators :interface, :content?, :content
+    def_delegators :interface,
+      :content?,
+      :content,
+      :geometry
+
+    def_delegators :geometry,
+      :height,
+      :width,
+      :x,
+      :y
 
     def initialize(interface)
       @interface = interface
     end
 
-    # Returns the height of the content, or when no content, the visible height
-    # of the interface.
-    #
-    # @return [Fixnum]
-    def height
-      if content?
-        [content.size, interface.height].max
-
-      else
     # Returns log friendly output.
     #
     # @return [String]
@@ -26,33 +26,41 @@ module Vedeu
       "<#{self.class.name} (y:#{y} x:#{x} yn:#{yn} xn:#{xn})>"
     end
 
-        interface.height
-
-      end
+    # Returns the height of the content, or when no content, the visible height
+    # of the interface.
+    #
+    # @return [Fixnum]
+    def yn
+      [lines, height].max
     end
 
     # Returns the width of the content, or when no content, the visible width of
     # the interface.
     #
     # @return [Fixnum]
-    def width
-      if content?
-        [maximum_line_length, interface.width].max
-
-      else
-        interface.width
-
-      end
+    def xn
+      [columns, width].max
     end
 
     private
 
     attr_reader :interface
 
+    # Returns the number of lines of content for this interface.
+    #
+    # @return [Fixnum]
+    def lines
+      return height unless content?
+
+      content.size
+    end
+
     # Returns the character length of the longest line for this interface.
     #
     # @return [Fixnum]
-    def maximum_line_length
+    def columns
+      return width unless content?
+
       content.map { |line| line.size }.max
     end
 
