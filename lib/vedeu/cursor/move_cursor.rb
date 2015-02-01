@@ -13,10 +13,21 @@ module Vedeu
                                 :border?,
                                 :content,
                                 :content?,
-                                :content_geometry,
                                 :geometry
-    def_delegators Terminal, :height,
-                             :width
+
+    def_delegators :border, :left?,
+                            :right?,
+                            :top?,
+                            :bottom?
+
+    def_delegators :geometry, :left,
+                              :right,
+                              :top,
+                              :bottom,
+                              :height,
+                              :width,
+                              :x,
+                              :y
 
     # @param cursor    [Cursor]
     # @param interface [Interface]
@@ -69,94 +80,70 @@ module Vedeu
     #
     # @return [Cursor]
     def move
-      Cursor.new({ name:  cursor.name,
-                   ox:    new_ox,
-                   oy:    new_oy,
-                   state: cursor.state,
-                   x:     new_x,
-                   y:     new_y }).store
+      Cursor.new(cursor.attributes.merge({
+        x:  coordinate.x_position(ox),
+        y:  coordinate.y_position(oy),
+        ox: ox,
+        oy: oy,
+      })).store
     end
 
     private
 
     attr_reader :cursor, :dx, :dy, :interface
 
-    # Returns the x coordinate (column/character) of the cursor. Attempts to
-    # sensibly reposition the cursor if it is currently outside the interface,
-    # or outside the visible area of the terminal.
-    #
-    # When the interface has a top, right, bottom or left border, then the
-    # cursor will be repositioned to be inside the border not on it.
-    #
-    # @return [Fixnum]
-    def new_x
-      x = cursor.x + dx
+    def ox
+      cursor.ox + dx
+    end
 
-      x = 1     if x <= 1
-      x = width if x >= width
+    def oy
+      cursor.oy + dy
+    end
 
-      if border? && border.left? && x <= (geometry.left + 1)
-        x = geometry.left + 1
+    def coordinate
+      @coordinate ||= Coordinate.new(oheight, owidth, oleft, otop)
+    end
 
-      elsif x <= geometry.left
-        x = geometry.left
+    def oheight
+      return height unless border?
 
-      elsif border? && border.right? && x >= (geometry.right - 1)
-        x = geometry.right - 2 # TODO: can't remember why this is 2 and not 1
+      if top? && bottom?
+        height - 2
 
-      elsif x >= geometry.right
-        x = geometry.right
+      elsif top? || bottom?
+        height - 1
 
       else
-        x
+        height
 
       end
     end
 
-    # Returns the y coordinate (row/line) of the cursor.
-    #
-    # @see MoveCursor#new_x for more details on behaviour.
-    # @return [Fixnum]
-    def new_y
-      y = cursor.y + dy
+    def owidth
+      return width unless border?
 
-      y = 1      if y <= 1
-      y = height if y >= height
+      if left? && right?
+        width - 2
 
-      if border? && border.top? && y <= (geometry.top + 1)
-        y = geometry.top + 1
-
-      elsif y <= geometry.top
-        y = geometry.top
-
-      elsif border? && border.bottom? && y >= (geometry.bottom - 1)
-        y = geometry.bottom - 2 # TODO: can't remember why this is 2 and not 1
-
-      elsif y >= geometry.bottom
-        y = geometry.bottom
+      elsif left? || right?
+        width - 1
 
       else
-        y
+        width
 
       end
     end
 
-    def new_ox
-      ox = cursor.ox + dx
+    def oleft
+      return left unless border? && left?
 
-      ox = 0                      if ox <= 0
-      ox = content_geometry.width if ox >= content_geometry.width
-
-      ox
+      left + 1
     end
 
-    def new_oy
-      oy = cursor.oy + dy
+    def otop
+      return top unless border? && top?
 
-      oy = 0                       if oy <= 0
-      oy = content_geometry.height if oy >= content_geometry.height
-
-      oy
+      top + 1
     end
 
   end # MoveCursor
