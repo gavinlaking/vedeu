@@ -42,8 +42,6 @@ module Vedeu
 
       it { subject.must_be_instance_of(Viewport) }
       it { subject.instance_variable_get('@interface').must_equal(interface) }
-      it { subject.instance_variable_get('@top').must_equal(0) }
-      it { subject.instance_variable_get('@left').must_equal(0) }
     end
 
     describe '.show' do

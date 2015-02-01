@@ -10,7 +10,24 @@ module Vedeu
 
     extend Forwardable
 
-    def_delegators :interface, :content, :content?, :cursor, :height, :width
+    def_delegators :interface,
+      :border,
+      :border?,
+      :content,
+      :content?,
+      :cursor,
+      :height,
+      :width
+
+    def_delegators :border,
+      :bottom?,
+      :left?,
+      :right?,
+      :top?
+
+    def_delegators :cursor,
+      :ox,
+      :oy
 
     # @see Viewport#show
     def self.show(interface)
@@ -23,8 +40,6 @@ module Vedeu
     # @return [Viewport]
     def initialize(interface)
       @interface = interface
-      @top       = 0
-      @left      = 0
     end
 
     # Returns the visible content for the interface.
@@ -36,9 +51,6 @@ module Vedeu
     #
     # @return [Array]
     def show
-      line_adjustment
-      column_adjustment
-
       return [] unless content?
 
       line_pad.map { |line| column_pad(line) }.compact
@@ -81,86 +93,86 @@ module Vedeu
       end
     end
 
-    # Scrolls the content vertically when the stored cursor's y position for the
-    # interface is outside of the visible area.
+    # Using the current cursor's x position, return a range of visible lines.
     #
-    # @note
-    #   @top = [value, 0].max # this allows us to set a top that is greater than
-    #                         # the content height.
-    #
-    #   @top = [[value, (content_height - height)].min, 0].max
-    #                         # this does not allow us to have a position
-    #                         # greater than the content height.
-    #
-    # @return [Fixnum]
-    def line_adjustment
-      if cursor.oy < 0
-        @top = 0
-
-      elsif cursor.oy >= bordered_height
-        @top = [(cursor.oy - bordered_height), 0].max
-
-      end
-    end
-
     # Scrolls the content horizontally when the stored cursor's x position for
     # the interface is outside of the visible area.
     #
     # @note
-    #   @left = [value, 0].max # this allows us to set a left that is greater
-    #                          # than the content width.
+    #   [value, 0].max # this allows us to set a left that is greater
+    #                  # than the content width.
     #
-    #   @left = [[value, (content_width - width)].min, 0].max
-    #                         # this does not allow us to have a position
-    #                         # greater than the content width.
-    #
-    # @return [Fixnum]
-    def column_adjustment
-      if cursor.ox < 0
-        @left = 0
-
-      elsif cursor.ox >= bordered_width
-        @left = [(cursor.ox - bordered_width), 0].max
-
-      end
-    end
-
-    def bordered_width
-      return width unless interface.border?
-
-      if interface.border.left? && interface.border.right?
-        width - 2
-      elsif interface.border.left? || interface.border.right?
-        width - 1
-      else
-        width
-      end
-    end
-
-    def bordered_height
-      return height unless interface.border?
-
-      if interface.border.top? && interface.border.bottom?
-        height - 2
-      elsif interface.border.top? || interface.border.bottom?
-        height - 1
-      else
-        height
-      end
-    end
-
-    # Using the current cursor's x position, return a range of visible lines.
+    #   [[value, (content_width - width)].min, 0].max
+    #                  # this does not allow us to have a position
+    #                  # greater than the content width.
     #
     # @return [Range]
     def lines
-      @top..(@top + (height - 1))
+      top = if oy >= bordered_height
+        [(oy - bordered_height), 0].max
+
+      else
+        0
+
+      end
+
+      top..(top + (height - 1))
     end
 
     # Using the current cursor's y position, return a range of visible columns.
     #
+    # Scrolls the content vertically when the stored cursor's y position for the
+    # interface is outside of the visible area.
+    #
+    # @note
+    #   [value, 0].max # this allows us to set a top that is greater than
+    #                  # the content height.
+    #
+    #   [[value, (content_height - height)].min, 0].max
+    #                  # this does not allow us to have a position
+    #                  # greater than the content height.
+    #
     # @return [Range]
     def columns
-      @left..(@left + (width - 1))
+      left = if ox >= bordered_width
+        [(ox - bordered_width), 0].max
+
+      else
+        0
+
+      end
+
+      left..(left + (width - 1))
+    end
+
+    def bordered_width
+      return width unless border?
+
+      if left? && right?
+        width - 2
+
+      elsif left? || right?
+        width - 1
+
+      else
+        width
+
+      end
+    end
+
+    def bordered_height
+      return height unless border?
+
+      if top? && bottom?
+        height - 2
+
+      elsif top? || bottom?
+        height - 1
+
+      else
+        height
+
+      end
     end
 
   end # Viewport
