@@ -140,10 +140,6 @@ module Vedeu
       content.any?
     end
 
-    def content_geometry
-      Vedeu::ContentGeometry.new(self)
-    end
-
     # @return [Vedeu::Cursor]
     def cursor
       Vedeu.cursors.by_name(name)
