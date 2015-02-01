@@ -95,10 +95,10 @@ module Vedeu
     # @return [Fixnum]
     def line_adjustment
       if cursor.oy < 0
-        @top = [cursor.oy, 0].max
+        @top = 0
 
-      elsif cursor.oy > (height - 1)
-        @top = [(cursor.oy - (height - 1)), 0].max
+      elsif cursor.oy >= bordered_height
+        @top = [(cursor.oy - bordered_height), 0].max
 
       end
     end
@@ -117,11 +117,35 @@ module Vedeu
     # @return [Fixnum]
     def column_adjustment
       if cursor.ox < 0
-        @left = [cursor.ox, 0].max
+        @left = 0
 
-      elsif cursor.ox > (width - 1)
-        @left = [(cursor.ox - (width - 1)), 0].max
+      elsif cursor.ox >= bordered_width
+        @left = [(cursor.ox - bordered_width), 0].max
 
+      end
+    end
+
+    def bordered_width
+      return width unless interface.border?
+
+      if interface.border.left? && interface.border.right?
+        width - 2
+      elsif interface.border.left? || interface.border.right?
+        width - 1
+      else
+        width
+      end
+    end
+
+    def bordered_height
+      return height unless interface.border?
+
+      if interface.border.top? && interface.border.bottom?
+        height - 2
+      elsif interface.border.top? || interface.border.bottom?
+        height - 1
+      else
+        height
       end
     end
 
