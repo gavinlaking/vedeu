@@ -67,7 +67,7 @@ module Vedeu
     # @return [Array]
     def output(*streams)
       streams.each do |stream|
-        Vedeu.log(Esc.escape(stream))
+        # Vedeu.log(Esc.escape(stream))
 
         console.print(stream)
 
@@ -208,6 +208,8 @@ module Vedeu
     end
     alias_method :x, :origin
     alias_method :y, :origin
+    alias_method :tx, :origin
+    alias_method :ty, :origin
 
     # Returns the total width (number of columns/characters) of the current
     # terminal.
@@ -220,6 +222,7 @@ module Vedeu
       size.last
     end
     alias_method :xn, :width
+    alias_method :txn, :width
 
     # Returns the total height (number of rows/lines) of the current terminal.
     #
@@ -231,6 +234,7 @@ module Vedeu
       size.first
     end
     alias_method :yn, :height
+    alias_method :tyn, :height
 
     # Returns a tuple containing the height and width of the current terminal.
     #
