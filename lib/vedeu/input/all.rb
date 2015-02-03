@@ -17,9 +17,7 @@ module Vedeu
 
   Vedeu.keymap('_system_') do |keymap|
     Vedeu::Configuration.system_keys.each do |label, keypress|
-      keymap.key(keypress) do
-        Vedeu.trigger(("_" + label.to_s + "_").to_sym)
-      end
+      keymap.key(keypress) { Vedeu.trigger(("_" + label.to_s + "_").to_sym) }
     end
   end
 
