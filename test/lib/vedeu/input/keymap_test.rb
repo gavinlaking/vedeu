@@ -23,11 +23,12 @@ module Vedeu
       subject { instance.add(key) }
 
       context 'when the key is already defined' do
-        # let(:keys) { Vedeu::Model::Collection.new([key]) }
+        before do
+          Vedeu.keymaps.reset
+          instance.add(key)
+        end
 
-        # before { Vedeu.keymaps.reset }
-
-        # it { subject.must_equal(false) }
+        it { subject.must_equal(false) }
       end
 
       context 'when the key is not already defined' do

@@ -80,7 +80,9 @@ module Vedeu
 
     # @param key [Key]
     def add(key)
-      @keys << key if valid?(key)
+      return false unless valid?(key)
+
+      @keys << key
 
       # immutable Keymap version:
       # self.new(name, @keys += [key]).store if valid?(key)
@@ -109,13 +111,11 @@ module Vedeu
 
     # @param key [Vedeu::Key]
     def valid?(key)
-      if key_defined?(key.input)
-        Vedeu.log("Keymap '#{name}' already defines '#{key.input}'.")
+      return true unless key_defined?(key.input)
 
-        false
-      end
+      Vedeu.log("Keymap '#{name}' already defines '#{key.input}'.")
 
-      true
+      false
     end
 
   end # Keymap
