@@ -12,9 +12,6 @@ require 'time'
 
 require 'vedeu/support/log'
 
-# require 'vedeu/support/trace'
-# Vedeu::Trace.call({ trace: true })
-
 # Vedeu is a GUI framework for terminal/console applications written in Ruby.
 #
 module Vedeu
@@ -64,3 +61,8 @@ module Vedeu
 end # Vedeu
 
 require 'vedeu/all'
+
+require 'vedeu/support/trace'
+Vedeu::Trace.call
+# force tracing
+# Vedeu::Trace.call({ trace: true })

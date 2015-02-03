@@ -151,14 +151,7 @@ module Vedeu
     #
     # @return [Set]
     def vedeu_exceptions
-      Set.new [
-        'Vedeu::ModelNotFound',
-        'Vedeu::InvalidSyntax',
-        'Vedeu::MissingRequired',
-        'Vedeu::ModeSwitch',
-        'Vedeu::NotImplemented',
-        'Vedeu::OutOfRange',
-      ]
+      Vedeu::Exceptions.to_set
     end
 
     # Returns a set of classes to ignore during tracing.
