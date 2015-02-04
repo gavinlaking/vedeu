@@ -39,10 +39,6 @@ module Vedeu
     @_interfaces ||= Vedeu::Interfaces.new(Vedeu::Interface)
   end
 
-  def self.menus
-    @_menus ||= Vedeu::Menus.new(Vedeu::Menu)
-  end
-
   # When Vedeu is included within one of your classes, you should have all
   # API methods at your disposal.
   #

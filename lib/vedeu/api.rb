@@ -28,6 +28,7 @@ module Vedeu
     def_delegators Vedeu::Log,           :log
     def_delegators Vedeu::Mapper,        :keypress
     def_delegators Vedeu::Menu,          :menu
+    def_delegators Vedeu::Menus,         :menus
     def_delegators Vedeu::Terminal,      :height, :width, :resize
 
     # deprecated heathen

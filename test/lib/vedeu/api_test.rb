@@ -94,6 +94,12 @@ module Vedeu
       end
     end
 
+    describe '.menus' do
+      it 'accesses the menus repository' do
+        Vedeu.menus.must_be_instance_of(Vedeu::Menus)
+      end
+    end
+
     describe '.resize' do
       before do
         Vedeu.interfaces.reset

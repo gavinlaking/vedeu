@@ -180,25 +180,4 @@ module Vedeu
 
   end # Repository
 
-  class Buffers < Repository
-  end
-
-  class Events < Repository
-  end
-
-  class Geometries < Repository
-  end
-
-  class Groups < Repository
-  end
-
-  class Interfaces < Repository
-  end
-
-  class Keymaps < Repository
-  end
-
-  class Menus < Repository
-  end
-
 end # Vedeu

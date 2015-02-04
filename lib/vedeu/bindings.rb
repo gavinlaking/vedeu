@@ -101,16 +101,16 @@ module Vedeu
 
     # System events which when called with the appropriate menu name will
     # update the menu accordingly.
-    Vedeu.bind(:_menu_bottom_)   { |name| Vedeu::Menus.use(name).bottom_item   }
-    Vedeu.bind(:_menu_current_)  { |name| Vedeu::Menus.use(name).current_item  }
-    Vedeu.bind(:_menu_deselect_) { |name| Vedeu::Menus.use(name).deselect_item }
-    Vedeu.bind(:_menu_items_)    { |name| Vedeu::Menus.use(name).items         }
-    Vedeu.bind(:_menu_next_)     { |name| Vedeu::Menus.use(name).next_item     }
-    Vedeu.bind(:_menu_prev_)     { |name| Vedeu::Menus.use(name).prev_item     }
-    Vedeu.bind(:_menu_selected_) { |name| Vedeu::Menus.use(name).selected_item }
-    Vedeu.bind(:_menu_select_)   { |name| Vedeu::Menus.use(name).select_item   }
-    Vedeu.bind(:_menu_top_)      { |name| Vedeu::Menus.use(name).top_item      }
-    Vedeu.bind(:_menu_view_)     { |name| Vedeu::Menus.use(name).view          }
+    Vedeu.bind(:_menu_bottom_)   { |name| Vedeu.menus.find(name).bottom_item   }
+    Vedeu.bind(:_menu_current_)  { |name| Vedeu.menus.find(name).current_item  }
+    Vedeu.bind(:_menu_deselect_) { |name| Vedeu.menus.find(name).deselect_item }
+    Vedeu.bind(:_menu_items_)    { |name| Vedeu.menus.find(name).items         }
+    Vedeu.bind(:_menu_next_)     { |name| Vedeu.menus.find(name).next_item     }
+    Vedeu.bind(:_menu_prev_)     { |name| Vedeu.menus.find(name).prev_item     }
+    Vedeu.bind(:_menu_selected_) { |name| Vedeu.menus.find(name).selected_item }
+    Vedeu.bind(:_menu_select_)   { |name| Vedeu.menus.find(name).select_item   }
+    Vedeu.bind(:_menu_top_)      { |name| Vedeu.menus.find(name).top_item      }
+    Vedeu.bind(:_menu_view_)     { |name| Vedeu.menus.find(name).view          }
 
     # System event to refresh all registered interfaces.
     Vedeu.bind(:_refresh_) { Vedeu::Refresh.all }

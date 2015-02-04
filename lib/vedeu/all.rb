@@ -4,6 +4,8 @@
 require 'vedeu/traps'
 require 'vedeu/exceptions'
 
+require 'vedeu/repositories/all'
+
 require 'vedeu/api'
 require 'vedeu/bindings'
 

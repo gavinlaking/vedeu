@@ -1,4 +1,4 @@
-require 'vedeu/support/repository'
+require 'vedeu/repositories/repository'
 require 'vedeu/input/mapper'
 require 'vedeu/input/key'
 require 'vedeu/input/input'

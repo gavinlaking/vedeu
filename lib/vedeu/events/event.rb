@@ -1,5 +1,5 @@
 require 'vedeu/models/model'
-require 'vedeu/support/repository'
+require 'vedeu/repositories/repository'
 require 'vedeu/events/trigger'
 
 module Vedeu
