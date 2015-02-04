@@ -158,6 +158,8 @@ module Vedeu
     def store
       super
 
+      store_new_buffer
+
       store_refresh_events
 
       store_focusable

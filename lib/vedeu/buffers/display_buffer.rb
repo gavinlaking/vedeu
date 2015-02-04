@@ -30,11 +30,7 @@ module Vedeu
         fail InvalidSyntax, 'Cannot store an interface without a name.'
       end
 
-      return store_new_buffer unless Vedeu.buffers.registered?(name)
-
-      Vedeu.log("Updating buffer: '#{name}'")
-
-      Vedeu.buffers.find(name).add(self)
+      store_new_buffer
 
       self
     end
@@ -47,10 +43,16 @@ module Vedeu
     # @see Vedeu::Buffer
     # @return [Interface]
     def store_new_buffer
-      unless Vedeu.buffers.registered?(name)
+      if Vedeu.buffers.registered?(name)
+        Vedeu.log("Updating buffer: '#{name}'")
+
+        Vedeu.buffers.find(name).add(self)
+
+      else
         Vedeu.log("Registering buffer: '#{name}'")
 
         Buffer.new(name, self).store
+
       end
 
       self
