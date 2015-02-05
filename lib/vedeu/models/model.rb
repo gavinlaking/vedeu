@@ -23,6 +23,10 @@ module Vedeu
 
     private
 
+    def client_binding(&block)
+      eval('self', block.binding) if block_given?
+    end
+
     # Removes the module part from the expression in the string.
     #
     # @example

@@ -9,8 +9,9 @@ module Vedeu
       include Vedeu::DSL::Colour
       include Vedeu::DSL::Style
 
-      def initialize(model)
+      def initialize(model, client_binding = nil)
         @model = model
+        @client_binding = client_binding
       end
 
       private

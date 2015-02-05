@@ -16,8 +16,9 @@ module Vedeu
       # Returns an instance of DSL::Keymap.
       #
       # @param model [Keymap]
-      def initialize(model)
+      def initialize(model, client_binding = nil)
         @model = model
+        @client_binding = client_binding
       end
 
       # Define keypress(es) to perform an action.
@@ -85,6 +86,17 @@ module Vedeu
       private
 
       attr_reader :model
+
+      # @param method [Symbol] The name of the method sought.
+      # @param args [Array] The arguments which the method was to be invoked
+      #   with.
+      # @param block [Proc] The optional block provided to the method.
+      # @return []
+      def method_missing(method, *args, &block)
+        Vedeu.log("!!!method_missing '#{method}' (args: #{args.inspect})")
+
+        @client_binding.send(method, *args, &block) if @client_binding
+      end
 
     end # Keymap
 

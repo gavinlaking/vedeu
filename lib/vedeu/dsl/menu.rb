@@ -21,8 +21,9 @@ module Vedeu
       #
       # @param model [Vedeu::Menu]
       # @return      [DSL::Menu]
-      def initialize(model)
+      def initialize(model, client_binding = nil)
         @model = model
+        @client_binding = client_binding
       end
 
       # @param block [Proc]
@@ -97,6 +98,17 @@ module Vedeu
       private
 
       attr_reader :model
+
+      # @param method [Symbol] The name of the method sought.
+      # @param args [Array] The arguments which the method was to be invoked
+      #   with.
+      # @param block [Proc] The optional block provided to the method.
+      # @return []
+      def method_missing(method, *args, &block)
+        Vedeu.log("!!!method_missing '#{method}' (args: #{args.inspect})")
+
+        @client_binding.send(method, *args, &block) if @client_binding
+      end
 
     end # Menu
 

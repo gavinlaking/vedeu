@@ -110,6 +110,17 @@ module Vedeu
           composition(&block).interfaces.map { |i| i.public_send(method) }
         end
 
+        # @param method [Symbol] The name of the method sought.
+        # @param args [Array] The arguments which the method was to be invoked
+        #   with.
+        # @param block [Proc] The optional block provided to the method.
+        # @return []
+        def method_missing(method, *args, &block)
+          Vedeu.log("!!!method_missing '#{method}' (args: #{args.inspect})")
+
+          @client_binding.send(method, *args, &block) if @client_binding
+        end
+
       end
 
     end # View
