@@ -17,9 +17,9 @@ module Vedeu
       # Returns an instance of DSL::Border.
       #
       # @param model [Border]
-      def initialize(model, client_binding = nil)
+      def initialize(model, client = nil)
         @model = model
-        @client_binding = client_binding
+        @client = client
       end
 
       # @param char [String] Character to be used as the bottom left border
@@ -104,7 +104,7 @@ module Vedeu
       def method_missing(method, *args, &block)
         Vedeu.log("!!!method_missing '#{method}' (args: #{args.inspect})")
 
-        @client_binding.send(method, *args, &block) if @client_binding
+        @client.send(method, *args, &block) if @client
       end
 
     end # Border

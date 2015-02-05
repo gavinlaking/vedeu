@@ -40,7 +40,7 @@ module Vedeu
             fail InvalidSyntax, "'#{__callee__}' requires a block."
           end
 
-          Vedeu::Interface.build({ name: name }, &block).store
+          Vedeu::Interface.build({ client: client(&block), name: name }, &block).store
         end
 
         # Immediate render
@@ -102,23 +102,16 @@ module Vedeu
 
         private
 
-        def composition(&block)
-          Vedeu::Composition.build({}, &block)
+        def client(&block)
+          eval('self', block.binding)
+        end
+
+        def composition(client, &block)
+          Vedeu::Composition.build({ client: client }, &block)
         end
 
         def store(method, &block)
-          composition(&block).interfaces.map { |i| i.public_send(method) }
-        end
-
-        # @param method [Symbol] The name of the method sought.
-        # @param args [Array] The arguments which the method was to be invoked
-        #   with.
-        # @param block [Proc] The optional block provided to the method.
-        # @return []
-        def method_missing(method, *args, &block)
-          Vedeu.log("!!!method_missing '#{method}' (args: #{args.inspect})")
-
-          @client_binding.send(method, *args, &block) if @client_binding
+          composition(client(&block), &block).interfaces.map { |i| i.public_send(method) }
         end
 
       end

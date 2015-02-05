@@ -16,11 +16,26 @@ module Vedeu
 
     attr_accessor :attributes
 
-    # @see Vedeu::Border#initialize
-    def self.build(interface, attributes = {}, &block)
-      model = self.new(interface, attributes)
-      model.deputy.instance_eval(&block) if block_given?
-      model
+    class << self
+
+      # @see Vedeu::Border#initialize
+      def build(attributes = {}, &block)
+        attributes = defaults.merge(attributes)
+
+        model = new(attributes[:interface], attributes)
+        model.deputy(attributes[:client]).instance_eval(&block) if block_given?
+        model
+      end
+
+      private
+
+      def defaults
+        {
+          client:    nil,
+          interface: nil,
+        }
+      end
+
     end
 
     # Returns a new instance of Border.
@@ -343,6 +358,7 @@ module Vedeu
         colour:       {},
         style:        [],
         vertical:     "\x78", # │
+        interface:    nil,
       }
     end
 

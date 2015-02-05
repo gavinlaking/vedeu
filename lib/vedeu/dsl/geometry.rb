@@ -25,9 +25,9 @@ module Vedeu
       # Returns an instance of DSL::Geometry.
       #
       # @param model [Geometry]
-      def initialize(model, client_binding = nil)
+      def initialize(model, client = nil)
         @model = model
-        @client_binding = client_binding
+        @client = client
       end
 
       # Instructs Vedeu to calculate x and y geometry automatically based on the
@@ -155,7 +155,7 @@ module Vedeu
       def method_missing(method, *args, &block)
         Vedeu.log("!!!method_missing '#{method}' (args: #{args.inspect})")
 
-        @client_binding.send(method, *args, &block) if @client_binding
+        @client.send(method, *args, &block) if @client
       end
 
     end # Geometry

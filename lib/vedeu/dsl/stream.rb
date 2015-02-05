@@ -18,22 +18,10 @@ module Vedeu
       # Returns an instance of DSL::Stream.
       #
       # @param model [Stream]
-      def initialize(model, client_binding = nil)
+      def initialize(model, client = nil)
         @model = model
-        @client_binding = client_binding
+        @client = client
       end
-
-      # Add textual data to the stream via this method.
-      #
-      # @note Calls `to_s` on the 'value' param; meaning any object which
-      #   responds to `to_s` can be provided.
-      #
-      # @param value [String|undefined] The text to be added to this Stream.
-      # @return [String] The param 'value' as a String.
-      def stream(value = '')
-        model.value << value.to_s
-      end
-      alias_method :text, :stream
 
       # @deprecated
       # :nocov:
@@ -57,7 +45,7 @@ module Vedeu
       def method_missing(method, *args, &block)
         Vedeu.log("!!!method_missing '#{method}' (args: #{args.inspect})")
 
-        @client_binding.send(method, *args, &block) if @client_binding
+        @client.send(method, *args, &block) if @client
       end
 
     end # Stream

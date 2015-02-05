@@ -25,7 +25,7 @@ module Vedeu
         attrs = defaults.merge(attributes)
 
         model = new(attrs[:interfaces], attrs[:colour], attrs[:style])
-        model.deputy.instance_eval(&block) if block_given?
+        model.deputy(attributes[:client]).instance_eval(&block) if block_given?
         model
       end
 
@@ -33,6 +33,7 @@ module Vedeu
 
       def defaults
         {
+          client:     nil,
           colour:     nil,
           interfaces: [],
           style:      nil,

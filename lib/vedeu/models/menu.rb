@@ -35,7 +35,7 @@ module Vedeu
                     attributes[:name],
                     attributes[:current],
                     attributes[:selected])
-        model.deputy.instance_eval(&block) if block_given?
+        model.deputy(attributes[:client]).instance_eval(&block) if block_given?
         model
       end
 
@@ -71,6 +71,7 @@ module Vedeu
 
       def defaults
         {
+          client:     nil,
           collection: [],
           current:    0,
           name:       '',

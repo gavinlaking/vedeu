@@ -30,12 +30,16 @@ module Vedeu
       def logger
         Logger.new(log_file).tap do |log|
           log.formatter = proc do |_, time, _, message|
-            [timestamp(time.utc.iso8601), message, "\n"].join
+            formatted_message(message, time)
           end
         end
       end
 
       private
+
+      def formatted_message(message, time = Time.now)
+        [timestamp(time.utc.iso8601), message, "\n"].join
+      end
 
       # @return [Boolean]
       def enabled?

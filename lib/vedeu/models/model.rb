@@ -11,9 +11,13 @@ module Vedeu
     # Returns a DSL instance responsible for defining the DSL methods of this
     # model.
     #
+    # @params client [Object|NilClass] The client binding represents
+    #   the client application object that is currently invoking a DSL method.
+    #   It is required so that we can send messages to the client application
+    #   object should we need to.
     # @return [void] The DSL instance for this model.
-    def deputy
-      Object.const_get(dsl_class).new(self)
+    def deputy(client = nil)
+      Object.const_get(dsl_class).new(self, client)
     end
 
     # @return [void] The model instance stored in the repository.
@@ -22,10 +26,6 @@ module Vedeu
     end
 
     private
-
-    def client_binding(&block)
-      eval('self', block.binding) if block_given?
-    end
 
     # Removes the module part from the expression in the string.
     #

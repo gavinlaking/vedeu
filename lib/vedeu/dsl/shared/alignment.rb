@@ -70,6 +70,7 @@ module Vedeu
       alias_method :centre, :align
       alias_method :right,  :align
       alias_method :text,   :align
+      alias_method :stream, :align
 
       private
 

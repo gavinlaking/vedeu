@@ -31,7 +31,7 @@ module Vedeu
 
     describe '.build' do
       subject {
-        described.build(interface, attributes) do
+        described.build(attributes) do
           horizontal '~'
         end
       }
@@ -58,7 +58,8 @@ module Vedeu
           horizontal:   'q',
           colour:       {},
           style:        [],
-          vertical:     'x'
+          vertical:     'x',
+          interface:    nil,
         })
       }
     end

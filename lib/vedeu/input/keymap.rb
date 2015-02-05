@@ -25,7 +25,7 @@ module Vedeu
         model = new(attributes[:name],
                     attributes[:keys],
                     attributes[:repository])
-        model.deputy.instance_eval(&block)
+        model.deputy(attributes[:client]).instance_eval(&block)
         model.store
       end
 
@@ -61,6 +61,7 @@ module Vedeu
 
       def defaults
         {
+          client:     nil,
           keys:       [],
           name:       '',
           repository: Vedeu.keymaps,

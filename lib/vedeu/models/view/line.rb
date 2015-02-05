@@ -23,7 +23,7 @@ module Vedeu
                     attributes[:parent],
                     attributes[:colour],
                     attributes[:style])
-        model.deputy.instance_eval(&block) if block_given?
+        model.deputy(attributes[:client]).instance_eval(&block) if block_given?
         model
       end
 
@@ -31,10 +31,11 @@ module Vedeu
 
       def defaults
         {
+          client:  nil,
           colour:  nil,
           parent:  nil,
           streams: [],
-          style:   nil
+          style:   nil,
         }
       end
     end

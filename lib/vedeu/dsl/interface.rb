@@ -16,9 +16,9 @@ module Vedeu
       # Returns an instance of DSL::Interface.
       #
       # @param model [Interface]
-      def initialize(model, client_binding = nil)
+      def initialize(model, client = nil)
         @model = model
-        @client_binding = client_binding
+        @client = client
       end
 
       # Allows the setting of a border for the interface.
@@ -31,7 +31,9 @@ module Vedeu
           fail InvalidSyntax, "'#{__callee__}' requires a block."
         end
 
-        model.border = Vedeu::Border.build(model, { enabled: true }, &block)
+        attributes = { client: @client, enabled: true, interface: model }
+
+        model.border = Vedeu::Border.build(attributes, &block)
       end
 
       # Set the cursor visibility on an interface.
@@ -116,7 +118,7 @@ module Vedeu
           fail InvalidSyntax, "'#{__callee__}' requires a block."
         end
 
-        model.geometry = Vedeu::Geometry.build({}, &block)
+        model.geometry = Vedeu::Geometry.build({ client: @client }, &block)
       end
 
       # Specify a group for an interface. Interfaces of the same group can be
@@ -159,7 +161,7 @@ module Vedeu
           fail InvalidSyntax, "'#{__callee__}' requires a block."
         end
 
-        attributes = { streams: [], parent: model }
+        attributes = { client: @client, streams: [], parent: model }
 
         model.lines.add(Vedeu::Line.build(attributes, &block))
       end
@@ -238,7 +240,7 @@ module Vedeu
       def method_missing(method, *args, &block)
         Vedeu.log("!!!method_missing '#{method}' (args: #{args.inspect})")
 
-        @client_binding.send(method, *args, &block) if @client_binding
+        @client.send(method, *args, &block) if @client
       end
 
     end # Interface

@@ -72,7 +72,7 @@ module Vedeu
 
         end
 
-        model.deputy.instance_eval(&block) if block_given?
+        model.deputy(attributes[:client]).instance_eval(&block) if block_given?
         model
       end
 
@@ -81,6 +81,7 @@ module Vedeu
       # @return [Hash]
       def defaults
         {
+          client: nil,
           colour: nil,
           lines:  [],
           name:   '',

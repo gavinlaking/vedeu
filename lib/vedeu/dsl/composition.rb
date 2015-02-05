@@ -9,9 +9,9 @@ module Vedeu
       # Returns an instance of DSL::Composition.
       #
       # @param model [Composition]
-      def initialize(model, client_binding = nil)
+      def initialize(model, client = nil)
         @model = model
-        @client_binding = client_binding
+        @client = client
       end
 
       # Define a view.
@@ -34,7 +34,7 @@ module Vedeu
           fail InvalidSyntax, "'#{__callee__}' requires a block."
         end
 
-        view = Vedeu::Interface.build({ name: name, parent: model }, &block)
+        view = Vedeu::Interface.build({ client: @client, name: name, parent: model }, &block)
 
         model.interfaces.add(view)
       end
@@ -51,7 +51,7 @@ module Vedeu
       def method_missing(method, *args, &block)
         Vedeu.log("!!!method_missing '#{method}' (args: #{args.inspect})")
 
-        @client_binding.send(method, *args, &block) if @client_binding
+        @client.send(method, *args, &block) if @client
       end
 
     end # Composition
