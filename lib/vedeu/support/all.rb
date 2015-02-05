@@ -1,5 +1,4 @@
 require 'vedeu/support/align'
-require 'vedeu/support/alignment'
 require 'vedeu/support/bounding_area'
 require 'vedeu/support/coercions'
 require 'vedeu/support/common'

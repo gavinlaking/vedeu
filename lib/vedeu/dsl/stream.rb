@@ -1,6 +1,4 @@
-require 'vedeu/dsl/colour'
-require 'vedeu/dsl/style'
-require 'vedeu/support/alignment'
+require 'vedeu/dsl/shared/all'
 require 'vedeu/support/common'
 
 module Vedeu
@@ -12,7 +10,7 @@ module Vedeu
     # @api public
     class Stream
 
-      include Vedeu::Alignment
+      include Vedeu::DSL::Alignment
       include Vedeu::Common
       include DSL::Colour
       include DSL::Style
@@ -40,9 +38,9 @@ module Vedeu
       # :nocov:
       def width(value)
         deprecated('Vedeu::API::Stream#width',
-                   'Vedeu::Alignment#align',
+                   'Vedeu::DSL::Alignment#align',
                    '0.3.0',
-                   '/Vedeu/Alignment#align-instance_method')
+                   '/Vedeu/DSL/Alignment#align-instance_method')
       end
       # :nocov:
 

@@ -1,5 +1,4 @@
-require 'vedeu/dsl/colour'
-require 'vedeu/dsl/style'
+require 'vedeu/dsl/shared/all'
 
 module Vedeu
 

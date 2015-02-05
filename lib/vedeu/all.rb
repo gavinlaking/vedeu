@@ -14,7 +14,10 @@ require 'vedeu/bindings'
 require 'vedeu/buffers/all'
 require 'vedeu/configuration/all'
 require 'vedeu/cursor/all'
+
+require 'vedeu/dsl/shared/all'
 require 'vedeu/dsl/all'
+
 require 'vedeu/events/all'
 require 'vedeu/input/all'
 require 'vedeu/models/all'
