@@ -74,6 +74,10 @@ module Vedeu
       streams.map(&:size).inject(0, :+) { |sum, x| sum += x }
     end
 
+    def width
+      parent.width if parent
+    end
+
     private
 
   end # Line

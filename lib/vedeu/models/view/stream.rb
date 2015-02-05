@@ -91,6 +91,10 @@ module Vedeu
       @value
     end
 
+    def width
+      parent.width if parent
+    end
+
     private
 
   end # Stream
