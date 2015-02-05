@@ -62,19 +62,32 @@ module Vedeu
       #         ...
       #         text 'This is an alias for `line`, if you prefer.'
       #
+      #   Vedeu.renders do
+      #     view 'my_interface' do
+      #       lines do
+      #         line do
+      #           # ...
+      #
       # @return [Line]
-      def line(value = '')
-        interface = model.parent
-        new_line  = Vedeu::Line.new([], interface, Vedeu::Colour.new, Vedeu::Style.new)
-        stream    = Vedeu::Stream.new(value, new_line, Vedeu::Colour.new, Vedeu::Style.new)
+      def line(value = '', &block)
+        if block_given?
+          streams(&block)
 
-        new_line.streams << stream
+        else
+          interface = model.parent
+          new_line  = Vedeu::Line.new([], interface, Vedeu::Colour.new, Vedeu::Style.new)
+          stream    = Vedeu::Stream.new(value, new_line, Vedeu::Colour.new, Vedeu::Style.new)
 
-        interface.lines.add(new_line)
+          new_line.streams << stream
+
+          interface.lines.add(new_line)
+
+        end
       end
       alias_method :text, :line
 
       # Define multiple streams (a stream is a subset of a line).
+      # Uses Vedeu::DSL::Stream for all directives within the required block.
       #
       # @param block [Proc]
       #
