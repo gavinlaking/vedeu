@@ -33,8 +33,6 @@ module Vedeu
       #         background '#22ff00'
       #         ...
       #
-      #   background('#0022ff') { 'This will be blue.' }
-      #
       # @return [String]
       def background(value = '')
         colour.background = value

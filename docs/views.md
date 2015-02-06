@@ -119,6 +119,35 @@ specific information is available in the Rubydoc.
 
 ... TODO
 
+### Notes on Building Views
+
+The basic view DSL methods look like this:
+
+renders/views
+  |-- view
+        |-- lines
+        |     |-- line
+        |           |-- streams
+        |           |     |-- stream
+        |           |           |-- char
+        |           |
+        |           |-- stream
+        |                 |-- char
+        |
+        |-- line
+              |-- streams
+              |     |-- stream
+              |           |-- char
+              |
+              |-- stream
+                    |-- char
+
+renders/views
+  |-- view
+        |-- lines/line
+              |-- streams/stream
+                    |-- char
+
 #### Authors Notes
 
 The Rubydoc documentation has more specific information about the DSL methods

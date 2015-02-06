@@ -164,6 +164,12 @@ module Vedeu
       #     end
       #   end
       #
+      #   view 'my_interface' do
+      #     line do
+      #       ... see {DSL::Line} and {DSL::Stream}
+      #     end
+      #   end
+      #
       # @raise [InvalidSyntax] The required block was not given.
       # @return [Line]
       def lines(&block)
