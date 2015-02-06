@@ -125,7 +125,7 @@ module Vedeu
       # targetted together; for example you may want to refresh multiple
       # interfaces at once.
       #
-      # @param value [String]
+      # @param value [String] The name for the group of interfaces.
       #
       # @example
       #   interface 'my_interface' do
@@ -134,6 +134,16 @@ module Vedeu
       #
       # @return [String]
       def group(value)
+        if defined_value?(model.name)
+          if Vedeu.groups.registered?(value)
+            Vedeu.groups.find(value).add(model.name)
+
+          else
+            Vedeu::Group.new(value, model.name).store
+
+          end
+        end
+
         model.group = value
       end
 

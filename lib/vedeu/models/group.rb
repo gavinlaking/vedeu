@@ -8,16 +8,16 @@ module Vedeu
 
     include Vedeu::Model
 
-    attr_reader :name, :members
+    attr_reader :name
 
     # Return a new instance of Group.
     #
     # @param name [String] The name of the group.
-    # @param members [String]
+    # @param members [Array]
     # @return [Group]
-    def initialize(name, *members)
-      @name    = name
-      @members = members.to_set
+    def initialize(name, members = [])
+      @name       = name
+      @members    = Array(members)
       @repository = Vedeu.groups
     end
 
@@ -27,6 +27,13 @@ module Vedeu
     # @return [Group]
     def add(member)
       Group.new(name, members.add(member)).store
+    end
+
+    # Return the members as a Set.
+    #
+    # @return [Set]
+    def members
+      @members.to_set
     end
 
     # Remove a member from the group by name.

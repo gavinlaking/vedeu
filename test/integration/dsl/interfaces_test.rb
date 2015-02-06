@@ -169,7 +169,7 @@ describe 'Interfaces' do
   describe '#group' do
     subject {
       Vedeu.interface 'interfaces' do
-        group ''
+        group 'compounds'
       end
     }
 

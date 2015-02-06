@@ -102,6 +102,17 @@ module Vedeu
       self
     end
 
+    # Registers a new group for the interface unless already registered.
+    #
+    # @return [Interface]
+    def store_group
+      unless group.nil? || group.empty? || Vedeu.groups.registered?(group)
+        Vedeu::Group.new(name, group).store
+      end
+
+      self
+    end
+
   end # DisplayBuffer
 
 end # Vedeu

@@ -166,6 +166,8 @@ module Vedeu
       store_focusable
 
       store_cursor
+
+      store_group
     end
 
     # return [Array]

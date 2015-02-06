@@ -297,13 +297,9 @@ module Vedeu
       end
 
       describe '#group' do
-        it 'sets the group attribute' do
-          Vedeu.interface 'iron' do
-            group 'elements'
-          end
+        subject { instance.group('elements') }
 
-          Vedeu.use('iron').group.must_equal('elements')
-        end
+        it { subject.must_be_instance_of(String) }
       end
 
       describe '#keys' do
