@@ -1,7 +1,7 @@
 require 'vedeu/exceptions'
 require 'vedeu/support/common'
 require 'vedeu/models/model'
-require 'vedeu/dsl/keymap'
+require 'vedeu/dsl/components/keymap'
 
 module Vedeu
 

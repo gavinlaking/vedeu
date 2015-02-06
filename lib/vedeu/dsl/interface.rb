@@ -197,56 +197,10 @@ module Vedeu
         model.name = value
       end
 
-      # @deprecated
-      # @todo Remove these methods in 0.3.0 or soon thereafter.
-      # :nocov:
-      def centred(value = true)
-        deprecated("Vedeu::API::Interface#centred",
-                   "Vedeu::DSL::Geometry#centred",
-                   "0.3.0",
-                   "/Vedeu/DSL/Geometry#centred-instance_method)")
+
+
+
       end
-      alias_method :centred!, :centred
-
-      def height(value)
-        deprecated("Vedeu::API::Interface#height",
-                   "Vedeu::DSL::Geometry#height",
-                   "0.3.0",
-                   "/Vedeu/DSL/Geometry#height-instance_method)")
-      end
-
-      def line(value = '')
-        deprecated("Vedeu::DSL::Interface#line",
-                   "Vedeu::DSL::Interface#lines",
-                   "0.3.0",
-                   "/Vedeu/DSL/Interface#lines-instance_method)")
-      end
-
-      def width(value)
-        deprecated("Vedeu::API::Interface#width",
-                   "Vedeu::DSL::Geometry#width",
-                   "0.3.0",
-                   "/Vedeu/DSL/Geometry#width-instance_method)")
-      end
-
-      def x(value = 0, &block)
-        deprecated("Vedeu::API::Interface#x",
-                   "Vedeu::DSL::Geometry#x",
-                   "0.3.0",
-                   "/Vedeu/DSL/Geometry#x-instance_method)")
-      end
-
-      def y(value = 0, &block)
-        deprecated("Vedeu::API::Interface#y",
-                   "Vedeu::DSL::Geometry#y",
-                   "0.3.0",
-                   "/Vedeu/DSL/Geometry#y-instance_method)")
-      end
-      # :nocov:
-
-      private
-
-      attr_reader :model
 
       # @param method [Symbol] The name of the method sought.
       # @param args [Array] The arguments which the method was to be invoked

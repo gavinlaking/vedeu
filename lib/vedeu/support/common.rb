@@ -16,21 +16,6 @@ module Vedeu
       false
     end
 
-    # Sends a warning to STDOUT indicating that a Vedeu method being used by the
-    # client application is being deprecated and an alternative should be
-    # sought.
-    #
-    # @param old_method [String] e.g. Vedeu::API::Interface#width
-    # @param new_method [String] e.g. Vedeu::DSL::Geometry#width
-    # @param version [String] e.g. 0.3.0
-    # @param hint [String] e.g. /Vedeu/DSL/Geometry#width-instance-method
-    # @raise DeprecationError
-    # @return [NilClass]
-    def deprecated(old_method, new_method, version, hint)
-      raise DeprecationError, "#{old_method} is now deprecated, and will be
-        removed in version #{version}.\nUse: #{new_method} (#{DOCS_URL}#{hint})"
-    end
-
     # Returns the array as a sentence.
     #
     # @param array [Array]

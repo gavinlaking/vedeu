@@ -35,17 +35,6 @@ module Vedeu
       end
     end
 
-    describe '#deprecated' do
-      let(:old_method) { '' }
-      let(:new_method) { '' }
-      let(:version)    { '' }
-      let(:hint)       { '' }
-
-      subject { described.deprecated(old_method, new_method, version, hint) }
-
-      it { proc { subject }.must_raise(DeprecationError) }
-    end
-
     describe '#to_sentence' do
       let(:array) { %w{ hydrogen helium lithium } }
 

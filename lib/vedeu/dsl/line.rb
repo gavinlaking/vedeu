@@ -46,7 +46,7 @@ module Vedeu
       #
       # @param model [Line]
       def initialize(model, client = nil)
-        @model = model
+        @model  = model
         @client = client
       end
 

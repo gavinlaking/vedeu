@@ -5,4 +5,7 @@ require 'vedeu/models/view/line'
 require 'vedeu/models/view/stream'
 
 module Vedeu
+
+
+
 end # Vedeu

@@ -102,16 +102,36 @@ module Vedeu
 
         private
 
+        # Returns the client object which called the DSL method.
+        #
+        # @param block [Proc]
+        # @return [Object]
         def client(&block)
           eval('self', block.binding)
         end
 
+        # Creates a new Composition which may contain one or more views
+        # (Interface objects).
+        #
+        # @param client [Object]
+        # @param block [Proc]
+        # @return [Vedeu::Composition]
         def composition(client, &block)
           Vedeu::Composition.build({ client: client }, &block)
         end
 
+        # Stores each of the views defined in their respective buffers ready to
+        # be rendered on next refresh.
+        #
+        # @param method [Symbol] An instruction; `:store_immediate` or
+        #   `:store_deferred` which determines whether the view will be shown
+        #   immediately or later respectively.
+        # @param block [Proc]
+        # @return [Array]
         def store(method, &block)
-          composition(client(&block), &block).interfaces.map { |i| i.public_send(method) }
+          composition(client(&block), &block).interfaces.map do |interface|
+            interface.public_send(method)
+          end
         end
 
       end

@@ -1,4 +1,4 @@
-require 'vedeu/dsl/border'
+require 'vedeu/dsl/components/border'
 
 module Vedeu
 

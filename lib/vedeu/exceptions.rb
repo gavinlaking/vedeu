@@ -1,7 +1,5 @@
 module Vedeu
 
-  # DeprecationError: Raised when a method that is now deprecated is used.
-  #
   # ModelNotFound: Raised with Vedeu attempts to access a named model that does
   #   not exist.
   #
@@ -24,7 +22,6 @@ module Vedeu
   #   being.
 
   Exceptions = %w[
-    DeprecationError
     ModelNotFound
     InvalidSyntax
     MissingRequired

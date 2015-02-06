@@ -1,4 +1,4 @@
-require 'vedeu/dsl/geometry'
+require 'vedeu/dsl/components/geometry'
 require 'vedeu/models/model'
 require 'vedeu/support/esc'
 require 'vedeu/support/terminal'

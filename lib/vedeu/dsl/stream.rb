@@ -19,19 +19,11 @@ module Vedeu
       #
       # @param model [Stream]
       def initialize(model, client = nil)
-        @model = model
+        @model  = model
         @client = client
       end
 
-      # @deprecated
-      # :nocov:
-      def width(value)
-        deprecated('Vedeu::API::Stream#width',
-                   'Vedeu::DSL::Alignment#align',
-                   '0.3.0',
-                   '/Vedeu/DSL/Alignment#align-instance_method')
       end
-      # :nocov:
 
       private
 

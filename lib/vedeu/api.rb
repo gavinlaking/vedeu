@@ -31,9 +31,6 @@ module Vedeu
     def_delegators Vedeu::Menus,         :menus
     def_delegators Vedeu::Terminal,      :height, :width, :resize
 
-    # deprecated heathen
-    def_delegators Vedeu::Event, :event, :unevent
-
   end # API
 
   extend API
