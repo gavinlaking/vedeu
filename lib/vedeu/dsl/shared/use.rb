@@ -2,9 +2,7 @@ module Vedeu
 
   module DSL
 
-    # Provide shared functionality for various aspects of the DSL.
-    #
-    module Shared
+    module Use
 
       extend self
 
@@ -37,7 +35,7 @@ module Vedeu
         Vedeu.interfaces.find(value)
       end
 
-    end # Shared
+    end # Use
 
   end # DSL
 

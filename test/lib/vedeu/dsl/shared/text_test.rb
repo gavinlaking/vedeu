@@ -4,7 +4,7 @@ module Vedeu
 
   module DSL
 
-    describe Alignment do
+    describe Text do
 
       # describe '#align' do
       #   let(:value)   { 'silicon' }
@@ -19,7 +19,7 @@ module Vedeu
       #   end
       # end
 
-    end # Alignment
+    end # Text
 
   end # DSL
 

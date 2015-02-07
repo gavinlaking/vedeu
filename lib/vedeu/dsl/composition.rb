@@ -6,11 +6,13 @@ module Vedeu
     #
     class Composition
 
+      include Vedeu::DSL
+
       # Returns an instance of DSL::Composition.
       #
       # @param model [Composition]
       def initialize(model, client = nil)
-        @model = model
+        @model  = model
         @client = client
       end
 
@@ -41,17 +43,9 @@ module Vedeu
 
       private
 
-      attr_reader :model
+      attr_reader :client, :model
 
-      # @param method [Symbol] The name of the method sought.
-      # @param args [Array] The arguments which the method was to be invoked
-      #   with.
-      # @param block [Proc] The optional block provided to the method.
-      # @return []
-      def method_missing(method, *args, &block)
-        Vedeu.log("!!!method_missing '#{method}' (args: #{args.inspect})")
 
-        @client.send(method, *args, &block) if @client
       end
 
     end # Composition

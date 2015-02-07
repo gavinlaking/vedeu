@@ -1,4 +1,4 @@
-require 'vedeu/dsl/shared'
+require 'vedeu/dsl/shared/use'
 
 module Vedeu
 
@@ -8,7 +8,8 @@ module Vedeu
     #
     class Geometry
 
-      include Vedeu::DSL::Shared
+      include Vedeu::DSL
+      include Vedeu::DSL::Use
 
       class << self
 
@@ -26,7 +27,7 @@ module Vedeu
       #
       # @param model [Geometry]
       def initialize(model, client = nil)
-        @model = model
+        @model  = model
         @client = client
       end
 
@@ -145,18 +146,7 @@ module Vedeu
 
       private
 
-      attr_reader :model
-
-      # @param method [Symbol] The name of the method sought.
-      # @param args [Array] The arguments which the method was to be invoked
-      #   with.
-      # @param block [Proc] The optional block provided to the method.
-      # @return []
-      def method_missing(method, *args, &block)
-        Vedeu.log("!!!method_missing '#{method}' (args: #{args.inspect})")
-
-        @client.send(method, *args, &block) if @client
-      end
+      attr_reader :client, :model
 
     end # Geometry
 

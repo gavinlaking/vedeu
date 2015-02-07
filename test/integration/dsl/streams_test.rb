@@ -126,22 +126,4 @@ describe 'Streams' do
     end
   end
 
-  describe 'Deprecated' do
-    describe '#width' do
-      subject {
-        Vedeu.interface 'streams' do
-          lines do
-            streams do
-              width 20
-            end
-          end
-        end
-      }
-
-      it 'disallows the use of width within stream(s)' do
-        proc { subject }.must_raise(Vedeu::DeprecationError)
-      end
-    end
-  end
-
 end

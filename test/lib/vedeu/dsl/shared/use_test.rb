@@ -4,7 +4,7 @@ module Vedeu
 
   module DSL
 
-    describe Shared do
+    describe Use do
 
       describe '.use' do
         context 'when an interface has not been defined' do
@@ -20,7 +20,7 @@ module Vedeu
         end
       end
 
-    end # Shared
+    end # Use
 
   end # DSL
 

@@ -8,16 +8,19 @@ module Vedeu
     #
     class Interface
 
+      include Vedeu::DSL
       include Vedeu::Common
-      include DSL::Colour
-      include DSL::Shared
-      include DSL::Style
+      include Vedeu::DSL::Colour
+      include Vedeu::DSL::Style
+      include Vedeu::DSL::Use
 
       # Returns an instance of DSL::Interface.
       #
       # @param model [Interface]
+      # @param client [Object]
+      # @return [Vedeu::DSL::Interface]
       def initialize(model, client = nil)
-        @model = model
+        @model  = model
         @client = client
       end
 
@@ -60,10 +63,10 @@ module Vedeu
       # @return [Symbol]
       def cursor(value = true)
         if value == :hide || !!value == false
-          Cursor.new({ name: model.name, state: Visible.new(false) }).store
+          Vedeu::Cursor.new({ name: model.name, state: Vedeu::Visible.new(false) }).store
 
         elsif value == :show || !!value == true
-          Cursor.new({ name: model.name, state: Visible.new(true) }).store
+          Vedeu::Cursor.new({ name: model.name, state: Vedeu::Visible.new(true) }).store
 
         else
           # should never here
@@ -198,19 +201,12 @@ module Vedeu
       end
 
 
+      private
 
+      attr_reader :client, :model
 
       end
 
-      # @param method [Symbol] The name of the method sought.
-      # @param args [Array] The arguments which the method was to be invoked
-      #   with.
-      # @param block [Proc] The optional block provided to the method.
-      # @return []
-      def method_missing(method, *args, &block)
-        Vedeu.log("!!!method_missing '#{method}' (args: #{args.inspect})")
-
-        @client.send(method, *args, &block) if @client
       end
 
     end # Interface

@@ -10,7 +10,7 @@ module Vedeu
       include Vedeu::DSL::Style
 
       def initialize(model, client = nil)
-        @model = model
+        @model  = model
         @client = client
       end
 

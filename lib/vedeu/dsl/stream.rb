@@ -10,10 +10,11 @@ module Vedeu
     # @api public
     class Stream
 
-      include Vedeu::DSL::Alignment
       include Vedeu::Common
-      include DSL::Colour
-      include DSL::Style
+      include Vedeu::DSL
+      include Vedeu::DSL::Colour
+      include Vedeu::DSL::Style
+      include Vedeu::DSL::Text
 
       # Returns an instance of DSL::Stream.
       #
@@ -27,18 +28,7 @@ module Vedeu
 
       private
 
-      attr_reader :model
-
-      # @param method [Symbol] The name of the method sought.
-      # @param args [Array] The arguments which the method was to be invoked
-      #   with.
-      # @param block [Proc] The optional block provided to the method.
-      # @return []
-      def method_missing(method, *args, &block)
-        Vedeu.log("!!!method_missing '#{method}' (args: #{args.inspect})")
-
-        @client.send(method, *args, &block) if @client
-      end
+      attr_reader :client, :model
 
     end # Stream
 
