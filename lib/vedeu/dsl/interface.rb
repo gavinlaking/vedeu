@@ -8,10 +8,11 @@ module Vedeu
     #
     class Interface
 
-      include Vedeu::DSL
       include Vedeu::Common
+      include Vedeu::DSL
       include Vedeu::DSL::Colour
       include Vedeu::DSL::Style
+      include Vedeu::DSL::Text
       include Vedeu::DSL::Use
 
       # Returns an instance of DSL::Interface.
