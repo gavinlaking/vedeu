@@ -46,9 +46,7 @@ module Vedeu
       #   collection, a member is undefined.
       # @return [Array] A collection containing the keypress(es).
       def key(*value_or_values, &block)
-        unless block_given?
-          fail InvalidSyntax, 'No action defined for `key`.'
-        end
+        fail InvalidSyntax, 'No action defined for `key`.' unless block_given?
 
         unless defined_value?(value_or_values)
           fail InvalidSyntax, 'No keypress(es) defined for `key`.'

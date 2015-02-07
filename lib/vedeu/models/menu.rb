@@ -60,9 +60,7 @@ module Vedeu
       # @raise [InvalidSyntax] The required block was not given.
       # @return [API::Menu]
       def menu(name = '', &block)
-        unless block_given?
-          fail InvalidSyntax, "'#{__callee__}' requires a block."
-        end
+        fail InvalidSyntax, 'block not given' unless block_given?
 
         build({ name: name }, &block).store
       end

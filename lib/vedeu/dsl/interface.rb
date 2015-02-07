@@ -30,9 +30,7 @@ module Vedeu
       # @raise [InvalidSyntax] The required block was not given.
       # @return [Hash]
       def border(&block)
-        unless block_given?
-          fail InvalidSyntax, "'#{__callee__}' requires a block."
-        end
+        fail InvalidSyntax, 'block not given' unless block_given?
 
         attributes = { client: @client, enabled: true, interface: model }
 
@@ -117,9 +115,7 @@ module Vedeu
       # @return [Geometry]
       # @see Vedeu::DSL::Geometry
       def geometry(&block)
-        unless block_given?
-          fail InvalidSyntax, "'#{__callee__}' requires a block."
-        end
+        fail InvalidSyntax, 'block not given' unless block_given?
 
         model.geometry = Vedeu::Geometry.build({ client: @client }, &block)
       end

@@ -36,9 +36,7 @@ module Vedeu
         # @raise [InvalidSyntax] The required block was not given.
         # @return [Interface]
         def interface(name = '', &block)
-          unless block_given?
-            fail InvalidSyntax, "'#{__callee__}' requires a block."
-          end
+          fail InvalidSyntax, 'block not given' unless block_given?
 
           Vedeu::Interface.build({ client: client(&block), name: name }, &block).store
         end
@@ -60,9 +58,7 @@ module Vedeu
         # @raise [InvalidSyntax] The required block was not given.
         # @return [Array<Interface>]
         def renders(&block)
-          unless block_given?
-            fail InvalidSyntax, "'#{__callee__}' requires a block."
-          end
+          fail InvalidSyntax, 'block not given' unless block_given?
 
           store(:store_immediate, &block)
         end
@@ -93,9 +89,7 @@ module Vedeu
         # @raise [InvalidSyntax] The required block was not given.
         # @return [Array<Interface>]
         def views(&block)
-          unless block_given?
-            fail InvalidSyntax, "'#{__callee__}' requires a block."
-          end
+          fail InvalidSyntax, 'block not given' unless block_given?
 
           store(:store_deferred, &block)
         end

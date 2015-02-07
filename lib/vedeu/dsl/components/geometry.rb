@@ -14,9 +14,7 @@ module Vedeu
       class << self
 
         def geometry(name, &block)
-          unless block_given?
-            fail InvalidSyntax, "'#{__callee__}' requires a block."
-          end
+          fail InvalidSyntax, 'block not given' unless block_given?
 
           Vedeu::Geometry.build({ name: name }, &block).store
         end

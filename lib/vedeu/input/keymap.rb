@@ -16,9 +16,7 @@ module Vedeu
     class << self
 
       def build(attributes = {}, &block)
-        unless block_given?
-          fail InvalidSyntax, "'#{__callee__}' requires a block."
-        end
+        fail InvalidSyntax, 'block not given' unless block_given?
 
         attributes = defaults.merge(attributes)
 

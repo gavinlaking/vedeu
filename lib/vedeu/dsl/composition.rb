@@ -32,9 +32,7 @@ module Vedeu
       # @raise [InvalidSyntax] The required block was not given.
       # @return [Vedeu::Model::Collection<Vedeu::Interface>]
       def view(name = '', &block)
-        unless block_given?
-          fail InvalidSyntax, "'#{__callee__}' requires a block."
-        end
+        fail InvalidSyntax, 'block not given' unless block_given?
 
         view = Vedeu::Interface.build({ client: @client, name: name, parent: model }, &block)
 
