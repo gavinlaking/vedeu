@@ -9,7 +9,7 @@ module Vedeu
   extend self
 
   def keymaps
-    @_keymaps ||= Vedeu::Keymaps.new(Vedeu::Keymap)
+    @_keymaps ||= Vedeu::Repository.new(Vedeu::Keymap)
   end
 
   def_delegators Vedeu::Keymap, :keymap

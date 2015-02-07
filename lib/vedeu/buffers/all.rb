@@ -4,7 +4,7 @@ require 'vedeu/buffers/display_buffer'
 module Vedeu
 
   def self.buffers
-    @_buffers ||= Vedeu::Buffers.new(Vedeu::Buffer)
+    @_buffers ||= Vedeu::Repository.new(Vedeu::Buffer)
   end
 
 end # Vedeu

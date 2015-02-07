@@ -28,15 +28,15 @@ module Vedeu
   end
 
   def self.geometries
-    @_geometries ||= Vedeu::Geometries.new(Vedeu::Geometry)
+    @_geometries ||= Vedeu::Repository.new(Vedeu::Geometry)
   end
 
   def self.groups
-    @_groups ||= Vedeu::Groups.new(Vedeu::Group)
+    @_groups ||= Vedeu::Repository.new(Vedeu::Group)
   end
 
   def self.interfaces
-    @_interfaces ||= Vedeu::Interfaces.new(Vedeu::Interface)
+    @_interfaces ||= Vedeu::Repository.new(Vedeu::Interface)
   end
 
   # When Vedeu is included within one of your classes, you should have all
