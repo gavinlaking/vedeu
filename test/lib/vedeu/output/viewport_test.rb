@@ -23,19 +23,6 @@ module Vedeu
         name 'lithium'
       end
     }
-    let(:cursor) { Cursor.new(cursor_attributes) }
-    let(:cursor_attributes) {
-      { name: 'lithium', ox: ox, oy: oy, state: true, x: x, y: y }
-    }
-    let(:lines)  { [] }
-    let(:ox)     { 0 }
-    let(:oy)     { 0 }
-    let(:x)      { 1 }
-    let(:y)      { 1 }
-
-    before do
-      interface.stubs(:cursor).returns(cursor)
-    end
 
     describe '#initialize' do
       subject { instance }
@@ -45,6 +32,20 @@ module Vedeu
     end
 
     describe '.show' do
+      let(:cursor) { Cursor.new(cursor_attributes) }
+      let(:cursor_attributes) {
+        { name: 'lithium', ox: ox, oy: oy, state: true, x: x, y: y }
+      }
+      let(:lines)  { [] }
+      let(:ox)     { 0 }
+      let(:oy)     { 0 }
+      let(:x)      { 1 }
+      let(:y)      { 1 }
+
+      before do
+        interface.stubs(:cursor).returns(cursor)
+      end
+
       subject { described.show(interface) }
 
       it { subject.must_be_instance_of(Array) }

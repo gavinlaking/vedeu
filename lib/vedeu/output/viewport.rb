@@ -13,8 +13,8 @@ module Vedeu
     def_delegators :interface,
       :border,
       :border?,
-      :content,
-      :content?,
+      :lines,
+      :lines?,
       :cursor,
       :height,
       :width
@@ -51,7 +51,7 @@ module Vedeu
     #
     # @return [Array]
     def show
-      return [] unless content?
+      return [] unless lines?
 
       line_pad.map { |line| column_pad(line) }.compact
     end
@@ -65,13 +65,13 @@ module Vedeu
     #
     # @return [Array<Array<String>>]
     def line_pad
-      rows = content[lines] || []
+      visible_lines = lines[rows] || []
 
-      if rows.size < height
-        rows + [" "] * (height - rows.size)
+      if visible_lines.size < height
+        visible_lines + [" "] * (height - visible_lines.size)
 
       else
-        rows
+        visible_lines
 
       end
     end
@@ -82,13 +82,13 @@ module Vedeu
     # @param line [Array<String>]
     # @return [Array<String>]
     def column_pad(line)
-      stream = line.chars[columns] || []
+      visible_columns = line.chars[columns] || []
 
-      if stream.size < width
-        stream + [" "] * (width - stream.size)
+      if visible_columns.size < width
+        visible_columns + [" "] * (width - visible_columns.size)
 
       else
-        stream
+        visible_columns
 
       end
     end
@@ -107,7 +107,7 @@ module Vedeu
     #                  # greater than the content width.
     #
     # @return [Range]
-    def lines
+    def rows
       top = if oy >= bordered_height
         [(oy - bordered_height), 0].max
 

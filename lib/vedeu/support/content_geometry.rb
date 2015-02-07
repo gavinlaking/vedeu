@@ -5,8 +5,8 @@ module Vedeu
     extend Forwardable
 
     def_delegators :interface,
-      :content?,
-      :content,
+      :lines?,
+      :lines,
       :geometry
 
     def_delegators :geometry,
@@ -31,7 +31,7 @@ module Vedeu
     #
     # @return [Fixnum]
     def yn
-      [lines, height].max
+      [rows, height].max
     end
 
     # Returns the width of the content, or when no content, the visible width of
@@ -49,19 +49,19 @@ module Vedeu
     # Returns the number of lines of content for this interface.
     #
     # @return [Fixnum]
-    def lines
-      return height unless content?
+    def rows
+      return height unless lines?
 
-      content.size
+      lines.size
     end
 
     # Returns the character length of the longest line for this interface.
     #
     # @return [Fixnum]
     def columns
-      return width unless content?
+      return width unless lines?
 
-      content.map { |line| line.size }.max
+      lines.map { |line| line.size }.max
     end
 
   end # ContentGeometry

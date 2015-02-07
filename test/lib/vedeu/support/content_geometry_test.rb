@@ -5,7 +5,7 @@ module Vedeu
   describe ContentGeometry do
 
     let(:described) { Vedeu::ContentGeometry }
-    let(:instance) { described.new(interface) }
+    let(:instance)  { described.new(interface) }
     let(:interface) {
       Vedeu::Interface.build do
         geometry do
@@ -15,11 +15,11 @@ module Vedeu
         name 'content_geometry'
       end
     }
-    let(:content) { [] }
+    let(:lines) { [] }
 
     before do
       Vedeu.interfaces.reset
-      interface.stubs(:content).returns(content)
+      interface.stubs(:lines).returns(lines)
     end
 
     describe '#initialize' do
@@ -42,7 +42,7 @@ module Vedeu
 
       context 'when the interface has content' do
         context 'when there is more lines than height' do
-          let(:content) {
+          let(:lines) {
             [
               [:line_1],
               [:line_2],
@@ -71,7 +71,7 @@ module Vedeu
 
       context 'when the interface has content' do
         context 'when there are more characters than width' do
-          let(:content) {
+          let(:lines) {
             [
               ['S', 'o', 'm', 'e', ' ', 't', 'e', 'x', 't', '.'],
               ['S', 'o', 'm', 'e'],
@@ -84,7 +84,7 @@ module Vedeu
         end
 
         context 'when there are less characters than width' do
-          let(:content) {
+          let(:lines) {
             [
               ['S', 'o', 'm', 'e'],
               ['S', 'o', 'm', 'e'],

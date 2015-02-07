@@ -28,13 +28,11 @@ module Vedeu
       :delay,
       :geometry,
       :group,
-      :lines,
       :name,
       :parent,
       :style
 
-    alias_method :content, :lines
-    alias_method :value, :lines
+    attr_writer :lines
 
     def_delegators :geometry,
       :north,
@@ -136,13 +134,6 @@ module Vedeu
       !!(border)
     end
 
-    # Returns a boolean indicating whether the interface has content.
-    #
-    # @return [Boolean]
-    def content?
-      content.any?
-    end
-
     # @return [Vedeu::Cursor]
     def cursor
       Vedeu.cursors.by_name(name)
@@ -154,6 +145,20 @@ module Vedeu
     def inspect
       "<#{self.class.name} (lines:#{lines.size})>"
     end
+
+    def lines
+      children.coerce(@lines, self)
+    end
+    alias_method :content, :lines
+    alias_method :value, :lines
+
+    # Returns a boolean indicating whether the interface has content.
+    #
+    # @return [Boolean]
+    def lines?
+      lines.any?
+    end
+
     def render
       if border
         border.render

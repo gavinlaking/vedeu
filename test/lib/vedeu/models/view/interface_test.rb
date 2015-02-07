@@ -41,8 +41,8 @@ module Vedeu
       end
     end
 
-    describe '#content?' do
-      subject { instance.content? }
+    describe '#lines?' do
+      subject { instance.lines? }
 
       context 'when the interface has content' do
         let(:lines) { [:line] }
