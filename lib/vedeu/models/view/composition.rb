@@ -57,6 +57,14 @@ module Vedeu
 
     private
 
+    def child
+      Vedeu::Interface
+    end
+
+    def children
+      Vedeu::Interfaces
+    end
+
   end # Composition
 
 end # Vedeu

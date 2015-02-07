@@ -24,8 +24,6 @@ module Vedeu
         @client = client
       end
 
-      end
-
       private
 
       attr_reader :client, :model

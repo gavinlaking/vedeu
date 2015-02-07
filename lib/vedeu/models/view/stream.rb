@@ -97,6 +97,14 @@ module Vedeu
 
     private
 
+    def child
+      Vedeu::Char
+    end
+
+    def children
+      Vedeu::Chars
+    end
+
   end # Stream
 
 end # Vedeu

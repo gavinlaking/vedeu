@@ -43,7 +43,15 @@ module Vedeu
 
       attr_reader :client, :model
 
+      def attributes
+        {
+          client: client,
+          parent: model,
+        }
+      end
 
+      def child
+        Vedeu::Interface
       end
 
     end # Composition

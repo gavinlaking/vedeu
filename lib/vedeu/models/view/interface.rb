@@ -179,6 +179,14 @@ module Vedeu
 
     private
 
+    def child
+      Vedeu::Line
+    end
+
+    def children
+      Vedeu::Lines
+    end
+
   end # Interface
 
 end # Vedeu

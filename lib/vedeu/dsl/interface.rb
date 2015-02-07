@@ -201,8 +201,15 @@ module Vedeu
 
       attr_reader :client, :model
 
+      def child
+        Vedeu::Line
       end
 
+      def attributes
+        {
+          client: client,
+          parent: model,
+        }
       end
 
     end # Interface

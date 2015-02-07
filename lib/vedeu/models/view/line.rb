@@ -83,6 +83,14 @@ module Vedeu
 
     private
 
+    def child
+      Vedeu::Stream
+    end
+
+    def children
+      Vedeu::Streams
+    end
+
   end # Line
 
 end # Vedeu

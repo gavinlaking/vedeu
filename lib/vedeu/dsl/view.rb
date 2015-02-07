@@ -38,7 +38,9 @@ module Vedeu
         def interface(name = '', &block)
           fail InvalidSyntax, 'block not given' unless block_given?
 
-          Vedeu::Interface.build({ client: client(&block), name: name }, &block).store
+          attributes = { client: client(&block), name: name }
+
+          Vedeu::Interface.build(attributes, &block).store
         end
 
         # Immediate render
