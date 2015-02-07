@@ -55,6 +55,13 @@ module Vedeu
       @position = position
     end
 
+    # Returns log friendly output.
+    #
+    # @return [String]
+    def inspect
+      "<#{self.class.name} (value:#{@value})>"
+    end
+
     # @return [Boolean]
     def ==(other)
       eql?(other)

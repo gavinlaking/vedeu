@@ -4,7 +4,8 @@ module Vedeu
 
   describe Line do
 
-    let(:described) { Line }
+    let(:described) { Vedeu::Line }
+    let(:instance)  { described.new(streams, parent, colour, style) }
     let(:streams)   {
       [
         Stream.new('Something interesting ',
@@ -34,7 +35,7 @@ module Vedeu
     end
 
     describe '#initialize' do
-      subject { described.new(streams, parent, colour, style) }
+      subject { instance }
 
       it { subject.must_be_instance_of(Line) }
       it { subject.instance_variable_get('@streams').must_equal(streams) }
@@ -44,7 +45,7 @@ module Vedeu
     end
 
     describe '#chars' do
-      subject { described.new(streams, parent, colour, style).chars }
+      subject { instance.chars }
 
       it { subject.must_be_instance_of(Array) }
 
@@ -118,7 +119,7 @@ module Vedeu
     end
 
     describe '#empty?' do
-      subject { described.new(streams, parent, colour, style).empty? }
+      subject { instance.empty? }
 
       context 'when there is no content' do
         let(:streams) { [] }
@@ -131,8 +132,14 @@ module Vedeu
       end
     end
 
+    describe '#inspect' do
+      subject { instance.inspect }
+
+      it { subject.must_equal('<Vedeu::Line (streams:3)>') }
+    end
+
     describe '#size' do
-      subject { described.new(streams, parent, colour, style).size }
+      subject { instance.size }
 
       it { subject.must_be_instance_of(Fixnum) }
 
@@ -142,13 +149,13 @@ module Vedeu
     end
 
     describe '#streams' do
-      subject { described.new(streams, parent, colour, style).streams }
+      subject { instance.streams }
 
       it { subject.must_be_instance_of(Vedeu::Streams) }
     end
 
     describe '#to_s' do
-      subject { described.new(streams, parent, colour, style).to_s }
+      subject { instance.to_s }
 
       it { subject.must_be_instance_of(String) }
 

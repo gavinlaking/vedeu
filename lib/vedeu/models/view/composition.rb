@@ -55,6 +55,12 @@ module Vedeu
       @style      = style
     end
 
+    # Returns log friendly output.
+    #
+    # @return [String]
+    def inspect
+      "<#{self.class.name} (interfaces:#{interfaces.size})>"
+    end
     private
 
     def child

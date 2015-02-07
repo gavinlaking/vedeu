@@ -148,6 +148,12 @@ module Vedeu
       Vedeu.cursors.by_name(name)
     end
 
+    # Returns log friendly output.
+    #
+    # @return [String]
+    def inspect
+      "<#{self.class.name} (lines:#{lines.size})>"
+    end
     def render
       if border
         border.render
@@ -162,13 +168,9 @@ module Vedeu
       super
 
       store_new_buffer
-
       store_refresh_events
-
       store_focusable
-
       store_cursor
-
       store_group
     end
 

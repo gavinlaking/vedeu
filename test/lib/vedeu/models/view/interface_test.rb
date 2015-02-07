@@ -78,6 +78,12 @@ module Vedeu
     #   end
     # end
 
+    describe '#inspect' do
+      subject { instance.inspect }
+
+      it { subject.must_equal('<Vedeu::Interface (lines:0)>') }
+    end
+
     describe '#store' do
       subject { instance.store }
 

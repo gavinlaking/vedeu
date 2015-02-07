@@ -4,7 +4,8 @@ module Vedeu
 
   describe Stream do
 
-    let(:described) { Stream.new(value, parent, colour, style) }
+    let(:described) { Vedeu::Stream }
+    let(:instance)  { described.new(value, parent, colour, style) }
     let(:value)     { 'Some text' }
     let(:parent)    {
       Line.new(
@@ -18,20 +19,24 @@ module Vedeu
     let(:style)     { Style.new('normal') }
 
     describe '#initialize' do
-      it { described.must_be_instance_of(Stream) }
-      it { described.instance_variable_get('@value').must_equal(value) }
-      it { described.instance_variable_get('@parent').must_equal(parent) }
-      it { described.instance_variable_get('@colour').must_equal(colour) }
-      it { described.instance_variable_get('@style').must_equal(style) }
+      subject { instance }
+
+      it { subject.must_be_instance_of(Stream) }
+      it { subject.instance_variable_get('@value').must_equal(value) }
+      it { subject.instance_variable_get('@parent').must_equal(parent) }
+      it { subject.instance_variable_get('@colour').must_equal(colour) }
+      it { subject.instance_variable_get('@style').must_equal(style) }
     end
 
     describe '#chars' do
-      it { described.chars.must_be_instance_of(Array) }
+      subject { instance.chars }
+
+      it { subject.must_be_instance_of(Array) }
 
       context 'when there is content' do
         it 'returns a collection of strings containing escape sequences and ' \
            'content' do
-          described.chars.must_equal(
+          subject.must_equal(
             [
               "\e[38;2;0;0;0m\e[48;2;255;0;0m\e[24m\e[22m\e[27mS\e[24m\e[22m\e[27m\e[38;2;255;255;0m\e[48;2;0;0;255m",
               "\e[38;2;0;0;0m\e[48;2;255;0;0m\e[24m\e[22m\e[27mo\e[24m\e[22m\e[27m\e[38;2;255;255;0m\e[48;2;0;0;255m",
@@ -51,13 +56,13 @@ module Vedeu
         let(:value) { '' }
 
         it 'returns an empty collection' do
-          described.chars.must_equal([])
+          subject.must_equal([])
         end
       end
     end
 
     describe '#empty?' do
-      subject { described.empty? }
+      subject { instance.empty? }
 
       context 'when there is no content' do
         let(:value) { '' }
@@ -70,8 +75,14 @@ module Vedeu
       end
     end
 
+    describe '#inspect' do
+      subject { instance.inspect }
+
+      it { subject.must_equal('<Vedeu::Stream (value:Some text, size:9)>') }
+    end
+
     describe '#size' do
-      subject { described.size }
+      subject { instance.size }
 
       it { subject.must_be_instance_of(Fixnum) }
 
