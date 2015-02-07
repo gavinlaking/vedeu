@@ -6,25 +6,17 @@ module Vedeu
 
     describe Stream do
 
-      let(:described) { Vedeu::DSL::Stream.new(model) }
-      let(:model)     { Vedeu::Stream.new(value, parent, colour, style) }
-      let(:value)     {}
-      let(:parent)    { mock('Line') }
-      let(:colour)    { mock('Colour') }
-      let(:style)     { mock('Style') }
+      let(:described) { Vedeu::DSL::Stream }
+      let(:instance)  { described.new(model) }
+      let(:model)     { mock('Vedeu::Stream') }
+      let(:client)    {}
 
       describe '#initialize' do
-        it { described.must_be_instance_of(Vedeu::DSL::Stream) }
-        it { described.instance_variable_get('@model').must_equal(model) }
-      end
+        subject { instance }
 
-      describe '#text' do
-        let(:value) { 'gallium' }
-
-        subject { described.text(value) }
-
-        it { subject.must_be_instance_of(String) }
-        it { subject.must_equal('galliumgallium') }
+        it { subject.must_be_instance_of(Vedeu::DSL::Stream) }
+        it { subject.instance_variable_get('@model').must_equal(model) }
+        it { subject.instance_variable_get('@client').must_equal(client) }
       end
 
     end # Stream

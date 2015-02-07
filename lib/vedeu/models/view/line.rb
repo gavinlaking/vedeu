@@ -1,5 +1,8 @@
 require 'vedeu/presentation/presentation'
 
+require 'vedeu/models/view/streams'
+require 'vedeu/models/view/stream'
+
 module Vedeu
 
   # A Line represents a single row of the terminal. It is a container for

@@ -9,6 +9,7 @@ module Vedeu
       let(:described) { Vedeu::DSL::Line }
       let(:instance)  { described.new(model) }
       let(:model)     { Vedeu::Line.new(streams, parent, colour, style) }
+      let(:client)    {}
       let(:streams)   { [] }
       let(:parent)    { Vedeu::Interface.new }
       let(:colour)    { Vedeu::Colour.new }
@@ -19,12 +20,17 @@ module Vedeu
 
         it { subject.must_be_instance_of(Vedeu::DSL::Line) }
         it { subject.instance_variable_get('@model').must_equal(model) }
+        it { subject.instance_variable_get('@client').must_equal(client) }
       end
 
       describe '#line' do
         let(:value) { '' }
 
-        subject { instance.line(value) }
+        subject {
+          instance.line do
+            # ...
+          end
+        }
 
         it { subject.must_be_instance_of(Vedeu::Model::Collection) }
 

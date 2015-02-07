@@ -16,7 +16,7 @@ module Vedeu
       subject { instance }
 
       it { subject.instance_variable_get('@name').must_equal(_name) }
-      it { subject.instance_variable_get('@lines').must_be_instance_of(Vedeu::Model::Lines) }
+      it { subject.instance_variable_get('@lines').must_equal(lines) }
       it { subject.instance_variable_get('@parent').must_equal(parent) }
       it { subject.instance_variable_get('@colour').must_equal(colour) }
       it { subject.instance_variable_get('@style').must_equal(style) }

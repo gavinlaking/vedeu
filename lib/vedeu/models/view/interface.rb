@@ -5,6 +5,8 @@ require 'vedeu/presentation/presentation'
 require 'vedeu/buffers/display_buffer'
 require 'vedeu/buffers/buffer'
 
+require 'vedeu/models/view/lines'
+
 module Vedeu
 
   # An Interface represents a portion of the terminal defined by

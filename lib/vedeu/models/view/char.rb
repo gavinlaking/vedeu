@@ -72,8 +72,6 @@ module Vedeu
       @value[0]
     end
 
-    private
-
   end # Char
 
 end # Vedeu

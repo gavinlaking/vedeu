@@ -13,6 +13,7 @@ module Vedeu
           name 'actinium'
         end
       }
+      let(:client) {}
 
       before { Vedeu.interfaces.reset }
 
@@ -21,6 +22,7 @@ module Vedeu
 
         it { subject.must_be_instance_of(Vedeu::DSL::Interface) }
         it { subject.instance_variable_get('@model').must_equal(model) }
+        it { subject.instance_variable_get('@client').must_equal(client) }
       end
 
       describe '#border' do

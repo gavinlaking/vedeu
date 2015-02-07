@@ -37,7 +37,7 @@ module Vedeu
       subject { described.new(streams, parent, colour, style) }
 
       it { subject.must_be_instance_of(Line) }
-      it { subject.instance_variable_get('@streams').must_be_instance_of(Vedeu::Model::Streams) }
+      it { subject.instance_variable_get('@streams').must_equal(streams) }
       it { subject.instance_variable_get('@parent').must_equal(parent) }
       it { subject.instance_variable_get('@colour').must_equal(colour) }
       it { subject.instance_variable_get('@style').must_equal(style) }
@@ -144,7 +144,7 @@ module Vedeu
     describe '#streams' do
       subject { described.new(streams, parent, colour, style).streams }
 
-      it { subject.must_be_instance_of(Vedeu::Model::Streams) }
+      it { subject.must_be_instance_of(Vedeu::Streams) }
     end
 
     describe '#to_s' do

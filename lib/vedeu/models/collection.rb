@@ -62,11 +62,6 @@ module Vedeu
 
     end # Collection
 
-    Interfaces = Class.new(Collection)
-    Lines      = Class.new(Collection)
-    Streams    = Class.new(Collection)
-    Chars      = Class.new(Collection)
-
   end # Model
 
 end # Vedeu
