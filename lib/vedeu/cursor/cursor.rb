@@ -21,11 +21,15 @@ module Vedeu
 
     # Provides a new instance of Cursor.
     #
-    # @param name  [String] The name of the interface this cursor belongs to.
-    # @param state [Boolean|Symbol] The visibility of the cursor, either +true+
+    # @param attributes [Hash]
+    # @option attributes name [String] The name of the interface this cursor belongs to.
+    # @option attributes ox [Fixnum] The offset x coordinate.
+    # @option attributes oy [Fixnum] The offset y coordinate.
+    # @option attributes repository [Vedeu::Repository]
+    # @option attributes state [Boolean|Symbol] The visibility of the cursor, either +true+
     #   or +false+, +:hide+ or +:show+.
-    # @param x     [Fixnum] The terminal x coordinate for the cursor.
-    # @param y     [Fixnum] The terminal y coordinate for the cursor.
+    # @option attributes x [Fixnum] The terminal x coordinate for the cursor.
+    # @option attributes y [Fixnum] The terminal y coordinate for the cursor.
     #
     # @return [Cursor]
     def initialize(attributes = {})
@@ -35,7 +39,7 @@ module Vedeu
         attributes = { name: attributes }
       end
 
-      @attributes = default_attributes.merge(attributes)
+      @attributes = defaults.merge(attributes)
 
       @name       = @attributes.fetch(:name)
       @ox         = @attributes.fetch(:ox)
@@ -71,7 +75,10 @@ module Vedeu
 
     private
 
-    def default_attributes
+    # The default values for a new instance of this class.
+    #
+    # @return [Hash]
+    def defaults
       {
         name:       '',
         ox:         0,

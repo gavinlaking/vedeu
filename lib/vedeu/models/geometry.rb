@@ -52,6 +52,9 @@ module Vedeu
 
       private
 
+      # The default values for a new instance of this class.
+      #
+      # @return [Hash]
       def defaults
         {
           client: nil
@@ -63,6 +66,14 @@ module Vedeu
     # Returns a new instance of Geometry.
     #
     # @param attributes [Hash]
+    # @option attributes centred [Boolean]
+    # @option attributes height [Fixnum]
+    # @option attributes name [String]
+    # @option attributes width [Fixnum]
+    # @option attributes x [Fixnum]
+    # @option attributes xn [Fixnum]
+    # @option attributes y [Fixnum]
+    # @option attributes yn [Fixnum]
     # @return [Geometry]
     def initialize(attributes = {})
       @attributes = defaults.merge(attributes)
@@ -328,7 +339,7 @@ module Vedeu
 
     private
 
-    # The default geometry of an interface- full screen.
+    # The default values for a new instance of this class.
     #
     # @return [Hash]
     def defaults

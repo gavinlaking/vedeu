@@ -102,6 +102,8 @@ module Vedeu
       defaults.merge(@options)
     end
 
+    # The default values for a new instance of this class.
+    #
     # @return [Hash]
     def defaults
       {

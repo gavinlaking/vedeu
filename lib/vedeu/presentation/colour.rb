@@ -16,6 +16,8 @@ module Vedeu
     # Returns a new instance of Colour.
     #
     # @param attributes [Hash]
+    # @option attributes background [String]
+    # @option attributes foreground [String]
     # @return [Colour]
     def initialize(attributes = {})
       @attributes = defaults.merge(attributes)
@@ -50,7 +52,7 @@ module Vedeu
 
     private
 
-    # The default values for a new instance of Colour.
+    # The default values for a new instance of this class.
     #
     # @return [Hash]
     def defaults

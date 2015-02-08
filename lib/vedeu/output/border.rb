@@ -29,6 +29,9 @@ module Vedeu
 
       private
 
+      # The default values for a new instance of this class.
+      #
+      # @return [Hash]
       def defaults
         {
           client:    nil,
@@ -42,6 +45,19 @@ module Vedeu
     #
     # @param interface [Interface]
     # @param attributes [Hash]
+    # @option attributes colour
+    # @option attributes style
+    # @option attributes enabled [Boolean]
+    # @option attributes show_bottom [Boolean]
+    # @option attributes show_left [Boolean]
+    # @option attributes show_right [Boolean]
+    # @option attributes show_top [Boolean]
+    # @option attributes horizontal [String]
+    # @option attributes vertical [String]
+    # @option attributes bottom_left [String]
+    # @option attributes bottom_right [String]
+    # @option attributes top_left [String]
+    # @option attributes top_right [String]
     # @return [Border]
     def initialize(interface, attributes = {})
       @interface  = interface
@@ -340,7 +356,7 @@ module Vedeu
       [interface.colour, interface.style]
     end
 
-    # The default values for a new instance of Border.
+    # The default values for a new instance of this class.
     #
     # @return [Hash]
     def defaults

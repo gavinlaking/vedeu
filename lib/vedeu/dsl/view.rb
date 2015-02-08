@@ -73,7 +73,7 @@ module Vedeu
         #   respective interface back buffers until a refresh event occurs. When
         #   the refresh event is triggered, the back buffers are swapped into the
         #   front buffers and the content here will be rendered to
-        #   {Terminal.output}.
+        #   {Vedeu::Terminal.output}.
         #
         # @param block [Proc] The directives you wish to send to render. Typically
         #   includes `view` with associated sub-directives.

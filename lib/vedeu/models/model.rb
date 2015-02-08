@@ -11,7 +11,7 @@ module Vedeu
     # Returns a DSL instance responsible for defining the DSL methods of this
     # model.
     #
-    # @params client [Object|NilClass] The client binding represents
+    # @param client [Object|NilClass] The client binding represents
     #   the client application object that is currently invoking a DSL method.
     #   It is required so that we can send messages to the client application
     #   object should we need to.

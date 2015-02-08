@@ -11,10 +11,11 @@ module Vedeu
 
     # Returns a new instance of Align.
     #
-    # @opts value [String]
-    # @opts width [Integer]
-    # @opts anchor [Symbol]
-    # @opts pad [String]
+    # @param value [String]
+    # @param options [Hash]
+    # @option options width [Integer]
+    # @option options anchor [Symbol] See {Align#anchor}
+    # @option options pad [String]
     # @return [Align]
     def initialize(value = '', options = {})
       @value   = value
@@ -42,6 +43,7 @@ module Vedeu
 
     attr_reader :value, :options
 
+    # @return [Symbol] One of :align, :centre, :center, :left, :right, :text
     def anchor
       options[:anchor]
     end
@@ -50,6 +52,9 @@ module Vedeu
       string.center(width, pad)
     end
 
+    # The default values for a new instance of this class.
+    #
+    # @return [Hash]
     def defaults
       {
         anchor: :left,
