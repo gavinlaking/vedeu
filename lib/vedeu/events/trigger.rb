@@ -49,7 +49,9 @@ module Vedeu
 
     private
 
-    attr_reader :name, :args, :repository
+    attr_reader :name,
+      :args,
+      :repository
 
   end # Trigger
 

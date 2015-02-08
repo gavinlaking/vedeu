@@ -162,10 +162,12 @@ module Vedeu
 
     private
 
+    # @return [Hash]
     def in_memory
       {}
     end
 
+    # @return [String]
     def _log_store(model)
       message = "Storing #{model.class.name}: '#{model.name}' "
 

@@ -34,6 +34,7 @@ module Vedeu
 
       attr_reader :client, :model
 
+      # @return [Hash]
       def attributes
         {
           client: client,

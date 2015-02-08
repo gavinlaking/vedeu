@@ -23,18 +23,22 @@ module Vedeu
 
   def_delegators Vedeu::Log, :log
 
+  # @return [Vedeu::Focus]
   def self.focusable
     @_focusable ||= Vedeu::Focus
   end
 
+  # @return [Vedeu::Repository]
   def self.geometries
     @_geometries ||= Vedeu::Repository.new(Vedeu::Geometry)
   end
 
+  # @return [Vedeu::Repository]
   def self.groups
     @_groups ||= Vedeu::Repository.new(Vedeu::Group)
   end
 
+  # @return [Vedeu::Repository]
   def self.interfaces
     @_interfaces ||= Vedeu::Repository.new(Vedeu::Interface)
   end

@@ -57,7 +57,7 @@ module Vedeu
       #     cursor true
       #     ...
       #
-      # @return [Symbol]
+      # @return [Cursor]
       def cursor(value = true)
         Vedeu::Cursor.new({ name: model.name, state: value }).store
       end
@@ -196,6 +196,7 @@ module Vedeu
         Vedeu::Line
       end
 
+      # @return [Hash]
       def attributes
         {
           client: client,

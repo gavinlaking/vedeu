@@ -35,6 +35,7 @@ module Vedeu
         @collection[value]
       end
 
+      # @return [Vedeu::Model::Collection]
       def add(*other)
         self.class.new(@collection += other, parent, name)
       end
@@ -48,14 +49,17 @@ module Vedeu
         @collection.each(&block)
       end
 
+      # @return [Boolean]
       def empty?
         @collection.empty?
       end
 
+      # @return [Fixnum]
       def size
         @collection.size
       end
 
+      # @return [String]
       def to_s
         @collection.map(&:to_s).join
       end

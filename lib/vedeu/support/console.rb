@@ -5,7 +5,9 @@ module Vedeu
 
   class Console
 
-    attr_reader :height, :width
+    attr_reader :height,
+      :width
+
     alias_method :yn, :height
     alias_method :xn, :width
 

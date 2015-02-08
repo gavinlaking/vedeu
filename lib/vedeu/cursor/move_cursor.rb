@@ -89,6 +89,7 @@ module Vedeu
 
     attr_reader :cursor, :dx, :dy, :interface
 
+    # @return [Hash]
     def moved_attributes
       {
         x:  validator.x,

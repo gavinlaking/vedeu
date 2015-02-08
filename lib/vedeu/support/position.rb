@@ -5,7 +5,9 @@ module Vedeu
   # @api private
   class Position
 
-    attr_reader  :y, :x
+    attr_reader  :y,
+      :x
+
     alias_method :first, :y
     alias_method :last, :x
 

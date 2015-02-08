@@ -4,6 +4,7 @@ module Vedeu
 
   class Visible
 
+    # @return [Visible]
     def self.coerce(value)
       if value.is_a?(self)
         value
@@ -14,6 +15,7 @@ module Vedeu
       end
     end
 
+    # @return [Visible]
     def initialize(visible = nil)
       @visible = if visible == :hide || visible == false
         false
@@ -34,6 +36,7 @@ module Vedeu
       "<#{self.class.name} (#{@visible.to_s})>"
     end
 
+    # @return [String]
     def cursor
       if visible?
         Esc.string('show_cursor')
@@ -52,14 +55,17 @@ module Vedeu
       !@visible
     end
 
+    # @return [Visible]
     def hide
       Visible.new(false)
     end
 
+    # @return [Visible]
     def show
       Visible.new(true)
     end
 
+    # @return [Visible]
     def toggle
       visible? ? hide : show
     end

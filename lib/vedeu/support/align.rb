@@ -48,6 +48,7 @@ module Vedeu
       options[:anchor]
     end
 
+    # @return [String]
     def centre
       string.center(width, pad)
     end
@@ -63,30 +64,37 @@ module Vedeu
       }
     end
 
+    # @return [String]
     def left
       string.ljust(width, pad)
     end
 
+    # @return [String]
     def pad
       options[:pad]
     end
 
+    # @return [String]
     def right
       string.rjust(width, pad)
     end
 
+    # @return [String]
     def string
       value.to_s
     end
 
+    # @return [Boolean]
     def truncate?
       string.size > width
     end
 
+    # @return [String]
     def truncated
       string.slice(0, width)
     end
 
+    # @return [Fixnum]
     def width
       options[:width]
     end

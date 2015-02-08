@@ -68,6 +68,7 @@ module Vedeu
       Vedeu.buffers.find(name).content
     end
 
+    # @return [Interface]
     def interface
       @interface ||= Vedeu.interfaces.find(name)
     end

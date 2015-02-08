@@ -6,25 +6,21 @@ module Vedeu
   # @api private
   module Presentation
 
-    #
     # @return [Colour]
     def colour
       Colour.coerce(@colour)
     end
 
-    #
     # @return [Colour]
     def colour=(value)
       @colour = Colour.coerce(value)
     end
 
-    #
     # @return [Style]
     def style
       Style.coerce(@style)
     end
 
-    #
     # @return [Colour]
     def style=(value)
       @style = Style.coerce(value)

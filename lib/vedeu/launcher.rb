@@ -64,6 +64,7 @@ module Vedeu
 
     attr_reader :argv
 
+    # @return []
     def configuration
       Configuration.configure(argv)
     end

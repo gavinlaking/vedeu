@@ -68,7 +68,6 @@ module Vedeu
     end
     alias_method :focussed?, :current?
 
-
     # Return a boolean indicating whether the storage is empty.
     #
     # @return [Boolean]

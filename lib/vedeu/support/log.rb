@@ -37,6 +37,7 @@ module Vedeu
 
       private
 
+      # @return [String]
       def formatted_message(message, time = Time.now)
         [timestamp(time.utc.iso8601), message, "\n"].join
       end

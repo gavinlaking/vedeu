@@ -152,6 +152,7 @@ module Vedeu
       left..(left + (width - 1))
     end
 
+    # @return [Fixnum]
     def bordered_width
       return width unless border?
 
@@ -167,6 +168,7 @@ module Vedeu
       end
     end
 
+    # @return [Fixnum]
     def bordered_height
       return height unless border?
 

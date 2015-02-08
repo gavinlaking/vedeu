@@ -120,6 +120,7 @@ module Vedeu
         Vedeu::Stream
       end
 
+      # @return [Hash]
       def attributes
         {
           client: client,

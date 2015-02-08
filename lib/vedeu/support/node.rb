@@ -2,7 +2,9 @@ module Vedeu
 
   class Node
 
-    attr_accessor :name, :parent
+    attr_accessor :name,
+      :parent
+
     attr_reader   :children
 
     def initialize(name)

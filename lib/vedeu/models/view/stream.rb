@@ -13,7 +13,8 @@ module Vedeu
     include Vedeu::Model
     include Vedeu::Presentation
 
-    attr_accessor :parent, :value
+    attr_accessor :parent,
+      :value
 
     alias_method :content, :value
     alias_method :data,    :value
@@ -100,6 +101,7 @@ module Vedeu
       value.size
     end
 
+    # @return [String]
     def value
       # Char.coerce(@value, parent, colour, style)
       @value

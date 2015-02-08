@@ -175,6 +175,7 @@ module Vedeu
       end
     end
 
+    # @return [Interface]
     def store
       super
 
