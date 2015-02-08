@@ -13,11 +13,10 @@ module Vedeu
     def_delegators :interface,
       :border,
       :border?,
+      :geometry,
       :lines,
       :lines?,
-      :cursor,
-      :height,
-      :width
+      :cursor
 
     def_delegators :border,
       :bottom?,
@@ -28,6 +27,10 @@ module Vedeu
     def_delegators :cursor,
       :ox,
       :oy
+
+    def_delegators :geometry,
+      :height,
+      :width
 
     # @see Viewport#show
     def self.show(interface)
@@ -154,34 +157,16 @@ module Vedeu
 
     # @return [Fixnum]
     def bordered_width
-      return width unless border?
+      return border.width if border?
 
-      if left? && right?
-        width - 2
-
-      elsif left? || right?
-        width - 1
-
-      else
-        width
-
-      end
+      width
     end
 
     # @return [Fixnum]
     def bordered_height
-      return height unless border?
+      return border.height if border?
 
-      if top? && bottom?
-        height - 2
-
-      elsif top? || bottom?
-        height - 1
-
-      else
-        height
-
-      end
+      height
     end
 
   end # Viewport

@@ -66,6 +66,44 @@ module Vedeu
       @style      = Style.coerce(@attributes[:style])
     end
 
+    # Returns the width of the interface determined by whether a left, right,
+    # both or neither borders are shown.
+    #
+    # @return [Fixnum]
+    def width
+      return interface.width unless enabled?
+
+      if left? && right?
+        interface.width - 2
+
+      elsif left? || right?
+        interface.width - 1
+
+      else
+        interface.width
+
+      end
+    end
+
+    # Returns the height of the interface determined by whether a top, bottom,
+    # both or neither borders are shown.
+    #
+    # @return [Fixnum]
+    def height
+      return interface.height unless enabled?
+
+      if top? && bottom?
+        interface.height - 2
+
+      elsif top? || bottom?
+        interface.height - 1
+
+      else
+        interface.height
+
+      end
+    end
+
     # Returns the interface with border (if enabled) and the content for the
     # interface.
     #
@@ -235,40 +273,6 @@ module Vedeu
       return '' unless right?
 
       [*presentation, on, tr, off, *reset].join
-    end
-
-    # Returns the width of the interface determined by whether a left, right,
-    # both or neither borders are shown.
-    #
-    # @return [Fixnum]
-    def width
-      if left? && right?
-        interface.width - 2
-
-      elsif left? || right?
-        interface.width - 1
-
-      else
-        interface.width
-
-      end
-    end
-
-    # Returns the height of the interface determined by whether a top, bottom,
-    # both or neither borders are shown.
-    #
-    # @return [Fixnum]
-    def height
-      if top? && bottom?
-        interface.height - 2
-
-      elsif top? || bottom?
-        interface.height - 1
-
-      else
-        interface.height
-
-      end
     end
 
     # Returns the horizontal border characters with colours and styles.

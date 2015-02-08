@@ -13,15 +13,8 @@ module Vedeu
                                 :border?,
                                 :geometry
 
-    def_delegators :border, :left?,
-                            :right?,
-                            :top?,
-                            :bottom?
-
     def_delegators :geometry, :left,
-                              :right,
                               :top,
-                              :bottom,
                               :height,
                               :width,
                               :x,
@@ -99,56 +92,44 @@ module Vedeu
       }
     end
 
+    # @return [PositionValidator]
     def validator
       @validator ||= Vedeu::PositionValidator.validate(interface,
                                    coordinate.x_position(ox),
                                    coordinate.y_position(oy))
     end
 
+    # @return [Fixnum]
     def ox
       ox = cursor.ox + dx
       ox = 0 if ox < 0
       ox
     end
 
+    # @return [Fixnum]
     def oy
       oy = cursor.oy + dy
       oy = 0 if oy < 0
       oy
     end
 
+    # @return [Coordinate]
     def coordinate
-      @coordinate ||= Coordinate.new(oheight, owidth, left, top)
+      @coordinate ||= Coordinate.new(bordered_height, bordered_width, left, top)
     end
 
-    def oheight
-      return height unless border?
+    # @return [Fixnum]
+    def bordered_height
+      return border.height if border?
 
-      if top? && bottom?
-        height - 2
-
-      elsif top? || bottom?
-        height - 1
-
-      else
-        height
-
-      end
+      height
     end
 
-    def owidth
-      return width unless border?
+    # @return [Fixnum]
+    def bordered_width
+      return border.width if border?
 
-      if left? && right?
-        width - 2
-
-      elsif left? || right?
-        width - 1
-
-      else
-        width
-
-      end
+      width
     end
 
   end # MoveCursor

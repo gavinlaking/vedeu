@@ -64,6 +64,66 @@ module Vedeu
       }
     end
 
+    describe '#width' do
+      subject { instance.width }
+
+      context 'when the border is not enabled' do
+        it 'returns the interface width' do
+          subject.must_equal(8)
+        end
+      end
+
+      context 'when the border is enabled' do
+        context 'when both left and right borders are shown' do
+          let(:attributes) { { enabled: true } }
+
+          it { subject.must_equal(6) }
+        end
+
+        context 'when either the left or right border is shown' do
+          let(:attributes) { { enabled: true, show_left: false } }
+
+          it { subject.must_equal(7) }
+        end
+
+        context 'when neither left nor right borders are shown' do
+          let(:attributes) { { enabled: true, show_left: false, show_right: false } }
+
+          it { subject.must_equal(8) }
+        end
+      end
+    end
+
+    describe '#height' do
+      subject { instance.height }
+
+      context 'when the border is not enabled' do
+        it 'returns the interface height' do
+          subject.must_equal(5)
+        end
+      end
+
+      context 'when the border is enabled' do
+        context 'when both top and bottom borders are shown' do
+          let(:attributes) { { enabled: true } }
+
+          it { subject.must_equal(3) }
+        end
+
+        context 'when either the top or bottom border is shown' do
+          let(:attributes) { { enabled: true, show_top: false } }
+
+          it { subject.must_equal(4) }
+        end
+
+        context 'when neither top nor bottom borders are shown' do
+          let(:attributes) { { enabled: true, show_top: false, show_bottom: false } }
+
+          it { subject.must_equal(5) }
+        end
+      end
+    end
+
     describe '#colour=' do
       let(:value) { { foreground: '#00ff00' } }
 
