@@ -56,6 +56,13 @@ module Vedeu
       line_pad.map { |line| column_pad(line) }.compact
     end
 
+    # Returns a string representation of the viewport.
+    #
+    # @return [String]
+    def to_s
+      show.map(&:join).join("\n")
+    end
+
     private
 
     attr_reader :interface

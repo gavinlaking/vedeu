@@ -32,6 +32,12 @@ module Vedeu
     end
 
     describe '.show' do
+      subject { described.show(interface) }
+
+      it { subject.must_be_instance_of(Array) }
+    end
+
+    describe '#show' do
       let(:cursor) { Cursor.new(cursor_attributes) }
       let(:cursor_attributes) {
         { name: 'lithium', ox: ox, oy: oy, state: true, x: x, y: y }
@@ -46,7 +52,7 @@ module Vedeu
         interface.stubs(:cursor).returns(cursor)
       end
 
-      subject { described.show(interface) }
+      subject { instance.show }
 
       it { subject.must_be_instance_of(Array) }
 
@@ -70,6 +76,8 @@ module Vedeu
               ]
             )
           end
+
+          it { instance.to_s.must_equal("bar\ncar\nhel") }
         end
 
         context "when the cursor's y position is inside the viewable area" do
@@ -86,6 +94,8 @@ module Vedeu
                 ]
               )
             end
+
+            it { instance.to_s.must_equal("nic\nosm\n   ") }
           end
 
           context "when there is more content than the height" do
@@ -101,6 +111,8 @@ module Vedeu
                 ]
               )
             end
+
+            it { instance.to_s.must_equal("bar\ncar\nhel") }
           end
         end
 
@@ -118,6 +130,8 @@ module Vedeu
                 ]
               )
             end
+
+            it { instance.to_s.must_equal("ine\nkel\nium") }
           end
 
           context "and outside the content" do
@@ -133,6 +147,8 @@ module Vedeu
                 ]
               )
             end
+
+            it { instance.to_s.must_equal("el \num \n   ") }
           end
         end
 
@@ -150,6 +166,8 @@ module Vedeu
                 ]
               )
             end
+
+            it { instance.to_s.must_equal("um \non \num ") }
           end
 
           context "when there is more content than the width" do
@@ -165,6 +183,8 @@ module Vedeu
                 ]
               )
             end
+
+            it { instance.to_s.must_equal("bar\ncar\nhel") }
           end
         end
       end
