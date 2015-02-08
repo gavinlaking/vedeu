@@ -7,6 +7,7 @@ describe 'building views' do
   }
 
   before do
+    Vedeu.buffers.reset
     Vedeu.interfaces.reset
     Vedeu.interface 'my_interface' do
       geometry do
