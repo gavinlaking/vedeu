@@ -115,7 +115,7 @@ module Vedeu
       end
       alias_method :trace, :trace?
 
-      # Vedeu's default system keys. Use {#system_keys}.
+      # Vedeu's default system keys. Use {Vedeu::Configuration.system_keys}.
       #
       # @return [Hash]
       def default_system_keys

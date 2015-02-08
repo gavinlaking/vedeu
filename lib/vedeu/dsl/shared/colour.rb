@@ -2,8 +2,8 @@ module Vedeu
 
   module DSL
 
-    # Provides colour helpers for use in the {DSL::Interface}, {DSL::Line} and
-    # {DSL::Stream} classes.
+    # Provides colour helpers for use in the {Vedeu::DSL::Interface},
+    # {Vedeu::DSL::Line} and {Vedeu::DSL::Stream} classes.
     #
     # @api public
     module Colour

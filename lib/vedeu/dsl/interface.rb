@@ -5,7 +5,6 @@ module Vedeu
   module DSL
 
     # DSL for creating interfaces.
-    #
     class Interface
 
       include Vedeu::Common
@@ -15,9 +14,9 @@ module Vedeu
       include Vedeu::DSL::Text
       include Vedeu::DSL::Use
 
-      # Returns an instance of DSL::Interface.
+      # Returns an instance of Vedeu::DSL::Interface.
       #
-      # @param model [Interface]
+      # @param model [Vedeu::DSL::Interface]
       # @param client [Object]
       # @return [Vedeu::DSL::Interface]
       def initialize(model, client = nil)
@@ -136,7 +135,7 @@ module Vedeu
         model.group = value
       end
 
-      # @see Vedeu::Keymap#keymap
+      # @see Vedeu::Keymap.keymap
       def keymap(name = model.name, &block)
         Vedeu.keymap(name, &block)
       end
@@ -149,13 +148,13 @@ module Vedeu
       # @example
       #   view 'my_interface' do
       #     lines do
-      #       ... see {DSL::Line} and {DSL::Stream}
+      #       ... see {Vedeu::DSL::Line} and {Vedeu::DSL::Stream}
       #     end
       #   end
       #
       #   view 'my_interface' do
       #     line do
-      #       ... see {DSL::Line} and {DSL::Stream}
+      #       ... see {Vedeu::DSL::Line} and {Vedeu::DSL::Stream}
       #     end
       #   end
       #
