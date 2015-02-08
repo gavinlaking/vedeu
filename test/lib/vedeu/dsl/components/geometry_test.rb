@@ -20,6 +20,34 @@ module Vedeu
         it 'sets the attribute to the value' do
           subject.centred.must_equal(true)
         end
+
+        context 'DSL #centred' do
+          subject {
+            Vedeu.interface 'geometry' do
+              geometry do
+                centred false
+              end
+            end
+          }
+
+          it { subject.must_be_instance_of(Vedeu::Interface) }
+
+          it 'allows the use of centred within geometry' do
+            subject.geometry.centred.must_equal(false)
+          end
+
+          context 'when no value is given' do
+            subject {
+              Vedeu.interface 'geometry' do
+                geometry do
+                  centred
+                end
+              end
+            }
+
+            it { subject.geometry.centred.must_equal(true) }
+          end
+        end
       end
 
       describe '#height' do
@@ -27,6 +55,22 @@ module Vedeu
 
         it 'sets the attribute to the value' do
           subject.height.must_equal(6)
+        end
+
+        context 'DSL #height' do
+          subject {
+            Vedeu.interface 'geometry' do
+              geometry do
+                height 17
+              end
+            end
+          }
+
+          it { subject.must_be_instance_of(Vedeu::Interface) }
+
+          it 'allows the use of height within geometry' do
+            subject.geometry.height.must_equal(17)
+          end
         end
       end
 
@@ -36,6 +80,22 @@ module Vedeu
         it 'sets the attribute to the value' do
           subject.name.must_equal('chlorine')
         end
+
+        context 'DSL #name' do
+          subject {
+            Vedeu.interface 'geometry' do
+              geometry do
+                name 'other_name'
+              end
+            end
+          }
+
+          it { subject.must_be_instance_of(Vedeu::Interface) }
+
+          it 'allows the use of name within geometry' do
+            subject.geometry.name.must_equal('other_name')
+          end
+        end
       end
 
       describe '#width' do
@@ -43,6 +103,22 @@ module Vedeu
 
         it 'sets the attribute to the value' do
           subject.width.must_equal(25)
+        end
+
+        context 'DSL #width' do
+          subject {
+            Vedeu.interface 'geometry' do
+              geometry do
+                width 29
+              end
+            end
+          }
+
+          it { subject.must_be_instance_of(Vedeu::Interface) }
+
+          it 'allows the use of width within geometry' do
+            subject.geometry.width.must_equal(29)
+          end
         end
       end
 
@@ -64,6 +140,37 @@ module Vedeu
 
           it { subject.x.must_equal(7) }
         end
+
+        context 'DSL #x' do
+          subject {
+            Vedeu.interface 'geometry' do
+              geometry do
+                x 7
+              end
+            end
+          }
+
+          it { subject.must_be_instance_of(Vedeu::Interface) }
+
+          it 'allows the use of x within geometry' do
+            subject.geometry.x.must_equal(7)
+          end
+
+          context 'when no value is given' do
+            subject {
+              Vedeu.interface 'geometry' do
+                geometry do
+                  x
+                end
+              end
+            }
+
+            it { subject.geometry.x.must_equal(0) }
+          end
+
+          context 'when a block is given' do
+          end
+        end
       end
 
       describe '#y' do
@@ -83,6 +190,37 @@ module Vedeu
           }
 
           it { subject.y.must_equal(9) }
+        end
+
+        context 'DSL #y' do
+          subject {
+            Vedeu.interface 'geometry' do
+              geometry do
+                y 4
+              end
+            end
+          }
+
+          it { subject.must_be_instance_of(Vedeu::Interface) }
+
+          it 'allows the use of y within geometry' do
+            subject.geometry.y.must_equal(4)
+          end
+
+          context 'when no value is given' do
+            subject {
+              Vedeu.interface 'geometry' do
+                geometry do
+                  y
+                end
+              end
+            }
+
+            it { subject.geometry.y.must_equal(0) }
+          end
+
+          context 'when a block is given' do
+          end
         end
       end
 
