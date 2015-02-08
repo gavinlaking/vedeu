@@ -172,6 +172,8 @@ module Vedeu
       describe '#cursor' do
         let(:value) {}
 
+        before { Vedeu.cursors.reset }
+
         subject { instance.cursor(value) }
 
         it {
