@@ -30,9 +30,9 @@ module Vedeu
       return truncated if truncate?
 
       case anchor
-      when :align, :left    then left
-      when :centre, :center then centre
-      when :right           then right
+      when :align, :left, :text then left
+      when :centre, :center     then centre
+      when :right               then right
       else
         left
       end

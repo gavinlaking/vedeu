@@ -162,14 +162,13 @@ module Vedeu
       # @raise [InvalidSyntax] The required block was not given.
       # @return [Line]
       def lines(&block)
-        unless block_given?
-          fail InvalidSyntax, "'#{__callee__}' requires a block."
-        end
+        fail InvalidSyntax, 'block not given' unless block_given?
 
-        attributes = { client: @client, streams: [], parent: model }
+        content = child.build(attributes, &block)
 
-        model.lines.add(Vedeu::Line.build(attributes, &block))
+        model.add(content)
       end
+      alias_method :line, :lines
 
       # The name of the interface. Used to reference the interface throughout
       # your application's execution lifetime.
@@ -185,7 +184,6 @@ module Vedeu
       def name(value)
         model.name = value
       end
-
 
       private
 

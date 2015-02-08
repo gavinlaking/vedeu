@@ -58,6 +58,10 @@ module Vedeu
       @style  = style
     end
 
+    def add(child)
+      parent.add(child)
+    end
+
     # Returns an array of characters, each element is the escape sequences of
     # colours and styles for this stream, the character itself, and the escape
     # sequences of colours and styles for the parent of the stream
@@ -68,7 +72,7 @@ module Vedeu
       return [] if value.empty?
 
       value.chars.map do |char|
-        Vedeu::Char.new(char, parent, colour, style, nil).to_s
+        child.new(char, parent, colour, style, nil).to_s
       end
     end
 
@@ -98,6 +102,9 @@ module Vedeu
       @value
     end
 
+    # Delegate to Vedeu::Line#width if available.
+    #
+    # @return [Fixnum]
     def width
       parent.width if parent
     end

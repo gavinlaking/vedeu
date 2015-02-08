@@ -50,9 +50,13 @@ module Vedeu
     # @param interfaces [Interfaces]
     # @return [Composition]
     def initialize(interfaces = [], colour = nil, style = nil)
-      @interfaces = Vedeu::Model::Interfaces.new(interfaces, self)
+      @interfaces = interfaces
       @colour     = colour
       @style      = style
+    end
+
+    def add(child)
+      @interfaces = interfaces.add(child)
     end
 
     # Returns log friendly output.
@@ -61,6 +65,11 @@ module Vedeu
     def inspect
       "<#{self.class.name} (interfaces:#{interfaces.size})>"
     end
+
+    def interfaces
+      children.coerce(@interfaces, self)
+    end
+
     private
 
     def child

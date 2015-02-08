@@ -34,9 +34,7 @@ module Vedeu
       def view(name = '', &block)
         fail InvalidSyntax, 'block not given' unless block_given?
 
-        view = Vedeu::Interface.build({ client: @client, name: name, parent: model }, &block)
-
-        model.interfaces.add(view)
+        model.add(child.build(attributes.merge({ name: name }), &block))
       end
 
       private

@@ -26,7 +26,7 @@ module Vedeu
           end
         }
 
-        it { subject.must_be_instance_of(Vedeu::Model::Collection) }
+        it { subject.must_be_instance_of(Vedeu::Interfaces) }
         it { subject.first.must_be_instance_of(Vedeu::Interface) }
 
         context 'when the block is not given' do

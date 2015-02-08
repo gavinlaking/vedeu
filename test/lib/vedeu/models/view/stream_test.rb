@@ -10,13 +10,14 @@ module Vedeu
     let(:parent)    {
       Line.new(
         [],
-        nil,
+        line_parent,
         Colour.new({ background: '#0000ff', foreground: '#ffff00' }),
         Style.new('normal')
       )
     }
-    let(:colour)    { Colour.new({ background: '#ff0000', foreground: '#000000' }) }
-    let(:style)     { Style.new('normal') }
+    let(:colour)      { Colour.new({ background: '#ff0000', foreground: '#000000' }) }
+    let(:style)       { Style.new('normal') }
+    let(:line_parent) { mock('Vedeu::Interface') }
 
     describe '#initialize' do
       subject { instance }
@@ -89,6 +90,15 @@ module Vedeu
       it 'returns the size of the stream' do
         subject.must_equal(9)
       end
+    end
+
+    describe '#width' do
+      before { line_parent.stubs(:width).returns(25) }
+
+      subject { instance.width }
+
+      it { subject.must_be_instance_of(Fixnum) }
+      it { subject.must_equal(25) }
     end
 
   end # Stream

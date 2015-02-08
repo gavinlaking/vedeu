@@ -57,6 +57,7 @@ module Vedeu
           it 'allows the use of bottom_left within border' do
             subject.border.to_s.must_equal(
               "\e(0l\e(B\e(0q\e(B\e(0k\e(B\n" \
+              "\e(0x\e(B \e(0x\e(B\n" \
               "\e(0<\e(B\e(0q\e(B\e(0j\e(B"
             )
           end
@@ -85,6 +86,7 @@ module Vedeu
           it 'allows the use of bottom_right within border' do
             subject.border.to_s.must_equal(
               "\e(0l\e(B\e(0q\e(B\e(0k\e(B\n" \
+              "\e(0x\e(B \e(0x\e(B\n" \
               "\e(0m\e(B\e(0q\e(B\e(0>\e(B"
             )
           end
@@ -113,6 +115,7 @@ module Vedeu
           it 'allows the use of horizontal within border' do
             subject.border.to_s.must_equal(
               "\e(0l\e(B\e(0~\e(B\e(0k\e(B\n" \
+              "\e(0x\e(B \e(0x\e(B\n" \
               "\e(0m\e(B\e(0~\e(B\e(0j\e(B"
             )
           end
@@ -144,6 +147,7 @@ module Vedeu
           it 'allows the use of show_bottom within border' do
             subject.border.to_s.must_equal(
               "\e(0l\e(B\e(0q\e(B\e(0k\e(B\n" \
+              "\e(0x\e(B \e(0x\e(B\n" \
               "\e(0m\e(B\e(0q\e(B\e(0j\e(B"
             )
           end
@@ -175,6 +179,7 @@ module Vedeu
           it 'allows the use of show_left within border' do
             subject.border.to_s.must_equal(
               "\e(0l\e(B\e(0q\e(B\e(0k\e(B\n" \
+              "\e(0x\e(B \e(0x\e(B\n" \
               "\e(0m\e(B\e(0q\e(B\e(0j\e(B"
             )
           end
@@ -206,6 +211,7 @@ module Vedeu
           it 'allows the use of show_right within border' do
             subject.border.to_s.must_equal(
               "\e(0l\e(B\e(0q\e(B\e(0k\e(B\n" \
+              "\e(0x\e(B \e(0x\e(B\n" \
               "\e(0m\e(B\e(0q\e(B\e(0j\e(B"
             )
           end
@@ -237,6 +243,7 @@ module Vedeu
           it 'allows the use of show_top within border' do
             subject.border.to_s.must_equal(
               "\e(0l\e(B\e(0q\e(B\e(0k\e(B\n" \
+              "\e(0x\e(B \e(0x\e(B\n" \
               "\e(0m\e(B\e(0q\e(B\e(0j\e(B"
             )
           end
@@ -265,6 +272,7 @@ module Vedeu
           it 'allows the use of top_left within border' do
             subject.border.to_s.must_equal(
               "\e(0{\e(B\e(0q\e(B\e(0k\e(B\n" \
+              "\e(0x\e(B \e(0x\e(B\n" \
               "\e(0m\e(B\e(0q\e(B\e(0j\e(B"
             )
           end
@@ -293,6 +301,7 @@ module Vedeu
           it 'allows the use of top_right within border' do
             subject.border.to_s.must_equal(
               "\e(0l\e(B\e(0q\e(B\e(0}\e(B\n" \
+              "\e(0x\e(B \e(0x\e(B\n" \
               "\e(0m\e(B\e(0q\e(B\e(0j\e(B"
             )
           end
@@ -321,6 +330,7 @@ module Vedeu
           it 'allows the use of vertical within border' do
             subject.border.to_s.must_equal(
               "\e(0l\e(B\e(0q\e(B\e(0k\e(B\n" \
+              "\e(0:\e(B \e(0:\e(B\n" \
               "\e(0m\e(B\e(0q\e(B\e(0j\e(B"
             )
           end

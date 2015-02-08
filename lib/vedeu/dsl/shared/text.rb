@@ -45,36 +45,37 @@ module Vedeu
       # @option options :width [Integer|NilClass] The width of the text stream
       #   to add. If the `string` provided is longer than this value, the string
       #   will be truncated. If no width is provided in the context of 'lines',
-      #   then the interface width is used. If no width is provided in the context
-      #   of a 'stream', then no alignment will occur.
+      #   then the interface width is used. If no width is provided in the
+      #   context of a 'stream', then no alignment will occur.
       # @option options :pad [String] The character to use to pad the width, by
       #   default uses an empty space (0x20). Only when the string is shorter
       #   than the specified width.
       # @return [String]
-      def value(value = '', options = {})
+      def text(value = '', options = {})
         aligned = Vedeu::Align.with(value, options.merge({ anchor: __callee__ }))
 
-        if model.is_a?(Vedeu::Interface)
-          model.add(aligned)
+        content = if model.is_a?(Vedeu::Interface)
+          stream = Vedeu::Stream.build({ value: aligned })
+          Vedeu::Line.build({ streams: [stream], parent: model })
 
         elsif model.is_a?(Vedeu::Line)
-          model.add(aligned)
-          # line(aligned)
+          Vedeu::Stream.build({ value: aligned, parent: model })
 
         elsif model.is_a?(Vedeu::Stream)
-          model.add(aligned)
-          # model.value << aligned
+          Vedeu::Stream.build({ value: aligned, parent: model.parent })
 
         else
-          # not supported
+          fail InvalidSyntax, "I don't know what I'm doing..."
 
         end
+
+        model.add(content)
       end
-      alias_method :left,   :value
-      alias_method :center, :value
-      alias_method :centre, :value
-      alias_method :right,  :value
-      alias_method :text,   :value
+      alias_method :align,  :text
+      alias_method :center, :text
+      alias_method :centre, :text
+      alias_method :left,   :text
+      alias_method :right,  :text
 
     end # Text
 

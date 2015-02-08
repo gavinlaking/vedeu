@@ -53,40 +53,36 @@ module Vedeu
 
       # Specify a single line in a view.
       #
-      # @param value [String]
-      #
       # @example
       #   Vedeu.renders do
       #     view 'my_interface' do
-      #       lines do
-      #         line 'This is an uninteresting line of text.'
-      #         line 'This is also a line of text.'
-      #         ...
-      #         text 'This is an alias for `line`, if you prefer.'
+      #       line 'some text...'
+      #       ...
       #
-      #   Vedeu.renders do
-      #     view 'my_interface' do
-      #       lines do
-      #         line do
-      #           # ...
+      #       line do
+      #         # ...
       #
       # @return [Line]
       def line(value = '', &block)
-        if block_given?
-          streams(&block)
+        content = if block_given?
+          Vedeu::Line.build({ client: client,
+                              parent: model.parent }, &block)
+
+        elsif value
+          stream = Vedeu::Stream.build({ client: client,
+                                         parent: model,
+                                         value: value })
+          Vedeu::Line.build({ client:  client,
+                              parent:  model.parent,
+                              streams: [stream] })
 
         else
-          interface = model.parent
-          new_line  = Vedeu::Line.new([], interface, Vedeu::Colour.new, Vedeu::Style.new)
-          stream    = Vedeu::Stream.new(value, new_line, Vedeu::Colour.new, Vedeu::Style.new)
-
-          new_line.streams << stream
-
-          interface.lines.add(new_line)
+          fail InvalidSyntax, 'block not given'
 
         end
+
+        model.parent.add(content)
       end
-      alias_method :text, :line
 
       # Define multiple streams (a stream is a subset of a line).
       # Uses Vedeu::DSL::Stream for all directives within the required block.
@@ -96,20 +92,22 @@ module Vedeu
       # @example
       #   Vedeu.renders do
       #     view 'my_interface' do
-      #       lines do
+      #       line do
       #         streams do
+      #           # ...
+      #
+      #         stream do
       #           # ...
       #
       # @raise [InvalidSyntax] The required block was not given.
       # @return [Vedeu::Model::Collection<Vedeu::Stream>]
       # @see Vedeu::DSL::Stream for subdirectives.
       def streams(&block)
-        unless block_given?
-          fail InvalidSyntax, "'#{__callee__}' requires a block."
-        end
+        fail InvalidSyntax, 'block not given' unless block_given?
 
-        model.streams.add(Vedeu::Stream.build({ parent: model }, &block))
+        model.add(child.build(attributes, &block))
       end
+      alias_method :stream, :streams
 
       private
 

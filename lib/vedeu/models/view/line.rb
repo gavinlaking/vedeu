@@ -49,8 +49,12 @@ module Vedeu
     def initialize(streams = [], parent = nil, colour = nil, style = nil)
       @colour  = colour
       @parent  = parent
-      @streams = Vedeu::Model::Streams.coerce(streams, self)
+      @streams = streams
       @style   = style
+    end
+
+    def add(child)
+      @streams = streams.add(child)
     end
 
     # Returns an array of all the characters with formatting for this line.
@@ -84,6 +88,13 @@ module Vedeu
       streams.map(&:size).inject(0, :+) { |sum, x| sum += x }
     end
 
+    def streams
+      children.coerce(@streams, self)
+    end
+
+    # Delegate to Vedeu::Interface#width if available.
+    #
+    # @return [Fixnum]
     def width
       parent.width if parent
     end

@@ -32,8 +32,7 @@ module Vedeu
           end
         }
 
-        it { subject.must_be_instance_of(Vedeu::Model::Collection) }
-
+        it { subject.must_be_instance_of(Vedeu::Lines) }
         it { subject.first.must_be_instance_of(Vedeu::Line) }
       end
 
@@ -45,8 +44,7 @@ module Vedeu
             end
           }
 
-          it { subject.must_be_instance_of(Vedeu::Model::Collection) }
-
+          it { subject.must_be_instance_of(Vedeu::Streams) }
           it { subject.first.must_be_instance_of(Vedeu::Stream) }
         end
 

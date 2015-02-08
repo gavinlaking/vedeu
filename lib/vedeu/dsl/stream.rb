@@ -24,9 +24,22 @@ module Vedeu
         @client = client
       end
 
+      def stream(&block)
+        fail InvalidSyntax, 'block not given' unless block_given?
+
+        model.add(model.build(attributes, &block))
+      end
+
       private
 
       attr_reader :client, :model
+
+      def attributes
+        {
+          client: client,
+          parent: model.parent,
+        }
+      end
 
     end # Stream
 

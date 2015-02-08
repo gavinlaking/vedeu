@@ -36,7 +36,7 @@ module Vedeu
       end
 
       def add(*other)
-        Collection.new(@collection += other, parent, name)
+        self.class.new(@collection += other, parent, name)
       end
       alias_method :<<, :add
 

@@ -114,7 +114,7 @@ module Vedeu
     # @return [Interface]
     def initialize(name = '', lines = [], parent = nil, colour = nil, style = nil)
       @name   = name
-      @lines  = Vedeu::Model::Lines.new(lines, self)
+      @lines  = lines
       @parent = parent
       @colour = colour
       @style  = style
@@ -125,6 +125,10 @@ module Vedeu
       @group    = ''
 
       @repository = Vedeu.interfaces
+    end
+
+    def add(child)
+      @lines = lines.add(child)
     end
 
     # Returns a boolean indicating whether the interface has a border.

@@ -200,6 +200,15 @@ module Vedeu
       end
     end
 
+    describe '#width' do
+      before { parent.stubs(:width).returns(25) }
+
+      subject { instance.width }
+
+      it { subject.must_be_instance_of(Fixnum) }
+      it { subject.must_equal(25) }
+    end
+
   end # Line
 
 end # Vedeu

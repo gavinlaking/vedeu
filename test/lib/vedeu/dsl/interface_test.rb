@@ -351,7 +351,7 @@ module Vedeu
           end
         }
 
-        it { subject.must_be_instance_of(Vedeu::Model::Collection) }
+        it { subject.must_be_instance_of(Vedeu::Lines) }
 
         context 'when the required block is not provided' do
           subject { instance.lines }
