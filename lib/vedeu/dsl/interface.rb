@@ -33,9 +33,7 @@ module Vedeu
       def border(&block)
         fail InvalidSyntax, 'block not given' unless block_given?
 
-        attributes = { client: @client, enabled: true, interface: model }
-
-        model.border = Vedeu::Border.build(attributes, &block)
+        model.border = Vedeu::Border.build(attributes.merge({ enabled: true, interface: model }), &block)
       end
 
       # Set the cursor visibility on an interface.
@@ -109,7 +107,7 @@ module Vedeu
       def geometry(&block)
         fail InvalidSyntax, 'block not given' unless block_given?
 
-        model.geometry = Vedeu::Geometry.build({ client: @client }, &block)
+        model.geometry = Vedeu::Geometry.build(attributes, &block)
       end
 
       # Specify a group for an interface. Interfaces of the same group can be
