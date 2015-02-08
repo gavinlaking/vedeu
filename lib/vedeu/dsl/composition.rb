@@ -48,6 +48,9 @@ module Vedeu
         }
       end
 
+      # Return the class name for the children on this model.
+      #
+      # @return [Class]
       def child
         Vedeu::Interface
       end

@@ -189,6 +189,9 @@ module Vedeu
 
       attr_reader :client, :model
 
+      # Return the class name for the children on this model.
+      #
+      # @return [Class]
       def child
         Vedeu::Line
       end

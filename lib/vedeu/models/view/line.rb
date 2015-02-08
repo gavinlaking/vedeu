@@ -101,10 +101,16 @@ module Vedeu
 
     private
 
+    # Return the class name for the children on this model.
+    #
+    # @return [Class]
     def child
       Vedeu::Stream
     end
 
+    # Return the class name for the children on this model.
+    #
+    # @return [Class]
     def children
       Vedeu::Streams
     end
