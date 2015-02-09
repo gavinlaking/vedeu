@@ -19,7 +19,7 @@ module Vedeu
         new
 
       else
-        self.new(value)
+        new(value)
 
       end
     end
@@ -37,7 +37,7 @@ module Vedeu
           value
 
         else
-          self.new(value)
+          new(value)
 
         end
       end

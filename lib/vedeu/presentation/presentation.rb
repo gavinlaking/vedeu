@@ -8,22 +8,22 @@ module Vedeu
 
     # @return [Vedeu::Colour]
     def colour
-      Colour.coerce(@colour)
+      Vedeu::Colour.coerce(@colour)
     end
 
     # @return [Vedeu::Colour]
     def colour=(value)
-      @colour = Colour.coerce(value)
+      @colour = Vedeu::Colour.coerce(value)
     end
 
     # @return [Vedeu::Style]
     def style
-      Style.coerce(@style)
+      Vedeu::Style.coerce(@style)
     end
 
     # @return [Vedeu::Style]
     def style=(value)
-      @style = Style.coerce(value)
+      @style = Vedeu::Style.coerce(value)
     end
 
     # Converts the colours and styles to escape sequences, and if the parent

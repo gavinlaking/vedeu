@@ -15,7 +15,9 @@ module Vedeu
     include Vedeu::Model
     include Vedeu::Presentation
 
-    attr_accessor :parent, :streams
+    attr_accessor :parent,
+      :streams
+
     alias_method :value, :streams
 
     class << self

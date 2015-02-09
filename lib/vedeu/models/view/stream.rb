@@ -21,6 +21,7 @@ module Vedeu
     alias_method :text,    :value
 
     class << self
+
       def build(attributes = {}, &block)
         attributes = defaults.merge(attributes)
 
@@ -106,7 +107,7 @@ module Vedeu
 
     # @return [String]
     def value
-      # Char.coerce(@value, parent, colour, style)
+      # Vedeu::Char.coerce(@value, parent, colour, style)
       @value
     end
 
