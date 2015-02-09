@@ -52,20 +52,20 @@ module Vedeu
       #   than the specified width.
       # @return [String]
       def text(value = '', options = {})
-        aligned = Vedeu::Text.with(value, options.merge({ anchor: __callee__ }))
+        output = Vedeu::Text.with(value, options.merge({ anchor: __callee__ }))
 
         content = if model.is_a?(Vedeu::Interface)
-          stream = Vedeu::Stream.build({ value: aligned })
+          stream = stream_builder({ value: output })
           Vedeu::Line.build({ streams: [stream], parent: model })
 
         elsif model.is_a?(Vedeu::Line)
-          Vedeu::Stream.build({ value: aligned, parent: model })
+          stream_builder({ value: output })
 
         elsif model.is_a?(Vedeu::Stream)
-          Vedeu::Stream.build({ value: aligned, parent: model.parent })
+          stream_builder({ value: output, parent: model.parent })
 
         else
-          fail InvalidSyntax, "I don't know what I'm doing..."
+          # should never get here
 
         end
 
@@ -76,6 +76,24 @@ module Vedeu
       alias_method :centre, :text
       alias_method :left,   :text
       alias_method :right,  :text
+
+      private
+
+      # @param attrs [Hash]
+      # @return [Vedeu::Stream]
+      def stream_builder(attrs)
+        Vedeu::Stream.build(stream_attributes(attrs))
+      end
+
+      # @param attrs [Hash]
+      # @return [Hash]
+      def stream_attributes(attrs)
+        {
+          colour: model.colour,
+          parent: model,
+          style:  model.style,
+        }.merge(attrs)
+      end
 
     end # Text
 
