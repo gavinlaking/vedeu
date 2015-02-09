@@ -152,6 +152,7 @@ module Vedeu
       "<#{self.class.name} (lines:#{lines.size})>"
     end
 
+    # @return [Vedeu::Lines]
     def lines
       children.coerce(@lines, self)
     end

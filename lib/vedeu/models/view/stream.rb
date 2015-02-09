@@ -46,15 +46,16 @@ module Vedeu
           value:  '',
         }
       end
+
     end
 
     # Returns a new instance of Stream.
     #
-    # @param value  [String]
-    # @param parent [Line]
-    # @param colour [Colour]
-    # @param style  [Style]
-    # @return [Stream]
+    # @param value [String]
+    # @param parent [Vedeu::Line]
+    # @param colour [Vedeu::Colour]
+    # @param style [Vedeu::Style]
+    # @return [Vedeu::Stream]
     def initialize(value = '', parent = nil, colour = nil, style = nil)
       @value  = value
       @parent = parent
@@ -62,6 +63,8 @@ module Vedeu
       @style  = style
     end
 
+    # @param child [Vedeu::Stream]
+    # @return [Vedeu::Line]
     def add(child)
       parent.add(child)
     end

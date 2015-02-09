@@ -69,6 +69,7 @@ module Vedeu
       "<#{self.class.name} (interfaces:#{interfaces.size})>"
     end
 
+    # @return [Vedeu::Interfaces]
     def interfaces
       children.coerce(@interfaces, self)
     end

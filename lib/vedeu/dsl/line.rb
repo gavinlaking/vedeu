@@ -45,7 +45,7 @@ module Vedeu
 
       # Returns an instance of DSL::Line.
       #
-      # @param model [Line]
+      # @param model [Vedeu::Line]
       def initialize(model, client = nil)
         @model  = model
         @client = client
@@ -57,12 +57,12 @@ module Vedeu
       #   Vedeu.renders do
       #     view 'my_interface' do
       #       line 'some text...'
-      #       ...
+      #       # ...
       #
       #       line do
       #         # ...
       #
-      # @return [Line]
+      # @return [Vedeu::Line]
       def line(value = '', &block)
         content = if block_given?
           Vedeu::Line.build({ client: client,
@@ -85,7 +85,7 @@ module Vedeu
       end
 
       # Define multiple streams (a stream is a subset of a line).
-      # Uses Vedeu::DSL::Stream for all directives within the required block.
+      # Uses {Vedeu::DSL::Stream} for all directives within the required block.
       #
       # @param block [Proc]
       #
@@ -100,7 +100,7 @@ module Vedeu
       #           # ...
       #
       # @raise [InvalidSyntax] The required block was not given.
-      # @return [Vedeu::Model::Collection<Vedeu::Stream>]
+      # @return [Vedeu::Streams<Vedeu::Stream>]
       # @see Vedeu::DSL::Stream for subdirectives.
       def streams(&block)
         fail InvalidSyntax, 'block not given' unless block_given?

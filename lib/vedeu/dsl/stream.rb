@@ -18,7 +18,7 @@ module Vedeu
 
       # Returns an instance of DSL::Stream.
       #
-      # @param model [Stream]
+      # @param model [Vedeu::Stream]
       def initialize(model, client = nil)
         @model  = model
         @client = client

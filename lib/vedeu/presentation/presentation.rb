@@ -6,22 +6,22 @@ module Vedeu
   # @api private
   module Presentation
 
-    # @return [Colour]
+    # @return [Vedeu::Colour]
     def colour
       Colour.coerce(@colour)
     end
 
-    # @return [Colour]
+    # @return [Vedeu::Colour]
     def colour=(value)
       @colour = Colour.coerce(value)
     end
 
-    # @return [Style]
+    # @return [Vedeu::Style]
     def style
       Style.coerce(@style)
     end
 
-    # @return [Colour]
+    # @return [Vedeu::Style]
     def style=(value)
       @style = Style.coerce(value)
     end
@@ -62,6 +62,7 @@ module Vedeu
       ].join
     end
 
+    # @return [String]
     def render_position
       if self.respond_to?(:position) && position.is_a?(Position)
         position.to_s { yield }

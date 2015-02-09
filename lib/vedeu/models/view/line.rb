@@ -91,6 +91,7 @@ module Vedeu
       streams.map(&:size).inject(0, :+) { |sum, x| sum += x }
     end
 
+    # @return [Vedeu::Streams]
     def streams
       children.coerce(@streams, self)
     end
