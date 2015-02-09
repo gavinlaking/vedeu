@@ -2,9 +2,9 @@ require 'test_helper'
 
 module Vedeu
 
-  describe Align do
+  describe Text do
 
-    let(:value)   { 'Testing the Align class with various options' }
+    let(:value)   { 'Testing the Text class with various options' }
     let(:options) {
       {
         anchor: anchor,
@@ -22,7 +22,7 @@ module Vedeu
           let(:width) { 23 }
 
           it 'returns the value truncated' do
-            Align.with(value, options).must_equal('Testing the Align class')
+            Text.with(value, options).must_equal('Testing the Text class ')
           end
         end
 
@@ -31,15 +31,15 @@ module Vedeu
 
           context 'and an anchor is not set' do
             it 'returns the value left aligned' do
-              Align.with(value, options)
-                .must_equal('Testing the Align class with various options    ')
+              Text.with(value, options)
+                .must_equal('Testing the Text class with various options     ')
             end
           end
 
           context 'and the anchor is set to :left' do
             it 'returns the value left aligned' do
-              Align.with(value, options)
-                .must_equal('Testing the Align class with various options    ')
+              Text.with(value, options)
+                .must_equal('Testing the Text class with various options     ')
             end
           end
 
@@ -47,8 +47,8 @@ module Vedeu
             let(:anchor) { :align }
 
             it 'returns the value left aligned' do
-              Align.with(value, options)
-                .must_equal('Testing the Align class with various options    ')
+              Text.with(value, options)
+                .must_equal('Testing the Text class with various options     ')
             end
           end
 
@@ -56,8 +56,8 @@ module Vedeu
             let(:anchor) { :centre }
 
             it 'returns the value centre aligned' do
-              Align.with(value, options)
-                .must_equal('  Testing the Align class with various options  ')
+              Text.with(value, options)
+                .must_equal('  Testing the Text class with various options   ')
             end
           end
 
@@ -65,8 +65,8 @@ module Vedeu
             let(:anchor) { :right }
 
             it 'returns the value right aligned' do
-              Align.with(value, options)
-                .must_equal('    Testing the Align class with various options')
+              Text.with(value, options)
+                .must_equal('     Testing the Text class with various options')
             end
           end
 
@@ -74,8 +74,8 @@ module Vedeu
             let(:anchor) { :invalid }
 
             it 'returns the value left aligned' do
-              Align.with(value, options)
-                .must_equal('Testing the Align class with various options    ')
+              Text.with(value, options)
+                .must_equal('Testing the Text class with various options     ')
             end
           end
         end
@@ -83,11 +83,11 @@ module Vedeu
 
       context 'when a width is not provided' do
         it 'returns the value as a string' do
-          Align.with(:some_value).must_equal('some_value')
+          Text.with(:some_value).must_equal('some_value')
         end
       end
     end
 
-  end # Align
+  end # Text
 
 end # Vedeu

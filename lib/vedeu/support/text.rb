@@ -1,22 +1,22 @@
 module Vedeu
 
-  # Align a string (or object responding to `to_s`).
+  # Present a string (or object responding to `to_s`).
   #
-  class Align
+  class Text
 
-    # @see Vedeu::DSL::Stream#align
+    # @see Vedeu::DSL::Text#text
     def self.with(value = '', options = {})
       new(value, options).aligned
     end
 
-    # Returns a new instance of Align.
+    # Returns a new instance of Text.
     #
     # @param value [String]
     # @param options [Hash]
     # @option options width [Integer]
-    # @option options anchor [Symbol] See {Align#anchor}
+    # @option options anchor [Symbol] See {Text#anchor}
     # @option options pad [String]
-    # @return [Align]
+    # @return [Text]
     def initialize(value = '', options = {})
       @value   = value
       @options = defaults.merge(options)

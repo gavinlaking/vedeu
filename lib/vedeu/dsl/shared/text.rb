@@ -1,4 +1,4 @@
-require 'vedeu/support/align'
+require 'vedeu/support/text'
 
 module Vedeu
 
@@ -52,7 +52,7 @@ module Vedeu
       #   than the specified width.
       # @return [String]
       def text(value = '', options = {})
-        aligned = Vedeu::Align.with(value, options.merge({ anchor: __callee__ }))
+        aligned = Vedeu::Text.with(value, options.merge({ anchor: __callee__ }))
 
         content = if model.is_a?(Vedeu::Interface)
           stream = Vedeu::Stream.build({ value: aligned })
