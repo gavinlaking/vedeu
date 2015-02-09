@@ -13,9 +13,6 @@ module Vedeu
     #
     # @param value [String]
     # @param options [Hash]
-    # @option options background [String]
-    # @option options colour [Hash]
-    # @option options foreground [String]
     # @option options width [Integer]
     # @option options anchor [Symbol] See {Text#anchor}
     # @option options pad [String]
