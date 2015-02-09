@@ -5,28 +5,70 @@ module Vedeu
   module DSL
 
     describe Colour do
-      let(:model) { Vedeu::Interface.new }
+
+      let(:described)  { Vedeu::DSL::Colour }
+
+      let(:dsl_klass)  { Vedeu::DSL::Interface.new(model) }
+      let(:model)      { Vedeu::Interface.new }
       let(:background) { '#00ff00' }
       let(:foreground) { '#ff00ff' }
 
       describe '#background' do
-        subject { Vedeu::DSL::Interface.new(model).background(background) }
+        subject { dsl_klass.background(background) }
 
-        it { subject.must_be_instance_of(String) }
-        it { subject.must_equal('#00ff00') }
+        it { subject.must_be_instance_of(Vedeu::Colour) }
+
+        it 'sets the background' do
+          subject.attributes.must_equal(
+            { background: '#00ff00', foreground: '' }
+          )
+        end
+
+        context 'alias method #bg' do
+          subject { dsl_klass.bg(background) }
+
+          it { subject.attributes.
+                must_equal({ background: '#00ff00', foreground: '' }) }
+        end
+
+        context 'alias method #bgcolor' do
+          subject { dsl_klass.bgcolor(background) }
+
+          it { subject.attributes.
+                must_equal({ background: '#00ff00', foreground: '' }) }
+        end
       end
 
       describe '#foreground' do
-        subject { Vedeu::DSL::Interface.new(model).foreground(foreground) }
+        subject { dsl_klass.foreground(foreground) }
 
-        it { subject.must_be_instance_of(String) }
-        it { subject.must_equal('#ff00ff') }
+        it { subject.must_be_instance_of(Vedeu::Colour) }
+
+        it 'sets the foreground' do
+          subject.attributes.must_equal(
+            { background: '', foreground: '#ff00ff' }
+          )
+        end
+
+        context 'alias method #fg' do
+          subject { dsl_klass.fg(foreground) }
+
+          it { subject.attributes.
+                must_equal({ background: '', foreground: '#ff00ff' }) }
+        end
+
+        context 'alias method #fgcolor' do
+          subject { dsl_klass.fgcolor(foreground) }
+
+          it { subject.attributes.
+                must_equal({ background: '', foreground: '#ff00ff' }) }
+        end
       end
 
       describe '#colour' do
         let(:attributes) { { background: background, foreground: foreground } }
 
-        subject { Vedeu::DSL::Interface.new(model).colour(attributes) }
+        subject { dsl_klass.colour(attributes) }
 
         it { subject.must_be_instance_of(Vedeu::Colour) }
 
