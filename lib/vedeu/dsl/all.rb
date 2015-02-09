@@ -11,6 +11,8 @@ module Vedeu
 
   module DSL
 
+    # Attempts to find the missing method on the client object.
+    #
     # @param method [Symbol] The name of the method sought.
     # @param args [Array] The arguments which the method was to be invoked with.
     # @param block [Proc] The optional block provided to the method.
