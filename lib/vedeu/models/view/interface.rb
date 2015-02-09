@@ -59,19 +59,11 @@ module Vedeu
       # @return [Class]
       def build(attributes = {}, &block)
         attributes = defaults.merge(attributes)
-
-        model = if not_registered?(attributes[:name])
-          new(attributes[:name],
-              attributes[:lines],
-              attributes[:parent],
-              attributes[:colour],
-              attributes[:style])
-
-        else
-          Vedeu.interfaces.find(attributes[:name])
-
-        end
-
+        model = new(attributes[:name],
+                    attributes[:lines],
+                    attributes[:parent],
+                    attributes[:colour],
+                    attributes[:style])
         model.deputy(attributes[:client]).instance_eval(&block) if block_given?
         model
       end
