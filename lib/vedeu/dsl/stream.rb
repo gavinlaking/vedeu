@@ -27,7 +27,7 @@ module Vedeu
       def stream(&block)
         fail InvalidSyntax, 'block not given' unless block_given?
 
-        model.add(model.build(attributes, &block))
+        model.add(model.class.build(attributes, &block))
       end
 
       private
