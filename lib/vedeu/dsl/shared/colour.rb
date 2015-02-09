@@ -23,15 +23,15 @@ module Vedeu
       #     background '#0022ff' # /or/ (blue)
       #     bgcolor    '#22ff00' # /or/ (blue is overridden to green)
       #     bg         '#ff0022' #      (green is overridden to red)
-      #     ...
+      #     # ...
       #
       #     lines do
       #       background '#2200ff'
-      #       ...
+      #       # ...
       #
       #       stream do
       #         background '#22ff00'
-      #         ...
+      #         # ...
       #
       # @return [String]
       def background(value = '')
@@ -59,15 +59,15 @@ module Vedeu
       # @example
       #   interface 'my_interface' do
       #     colour background: '#ff00ff', foreground: '#ffff00'
-      #     ...
+      #     # ...
       #
       #     lines do
       #       colour background: '#000000', foreground: '#ffffff'
-      #       ...
+      #       # ...
       #
       #       stream do
       #         colour background: '#000000', foreground: '#ffffff'
-      #         ...
+      #         # ...
       #
       # @return [Hash]
       def colour(attributes = {})
@@ -77,8 +77,6 @@ module Vedeu
 
         model.colour = Vedeu::Colour.new(attributes)
       end
-
-      private
 
     end # Colour
 

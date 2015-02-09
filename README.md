@@ -45,7 +45,7 @@ class MyApp
   include Vedeu
 
   interface 'main' do
-    ...
+    # ...
   end
 
   bind :some_event do

@@ -45,16 +45,16 @@ module Vedeu
       #     cursor  true  # => show the cursor for this interface
       #     cursor  :show # => both of these are equivalent to line above
       #     cursor!       #
-      #     ...
+      #     # ...
       #
       #     cursor false # => hide the cursor for this interface
       #     cursor :hide # => both of these are equivalent to line above
       #     cursor nil   #
-      #     ...
+      #     # ...
       #
       #   view 'my_interface' do
       #     cursor true
-      #     ...
+      #     # ...
       #
       # @return [Cursor]
       def cursor(value = true)
@@ -74,7 +74,7 @@ module Vedeu
       # @example
       #   interface 'my_interface' do
       #     delay 0.5 # interface will not update more often than every 500ms.
-      #     ...
+      #     # ...
       #
       # @return [Fixnum|Float]
       def delay(value)
@@ -98,7 +98,7 @@ module Vedeu
       # @example
       #   interface 'my_interface' do
       #     geometry do
-      #       ...
+      #       # ...
       #
       # @raise [InvalidSyntax] The required block was not given.
       # @return [Geometry]
@@ -118,7 +118,7 @@ module Vedeu
       # @example
       #   interface 'my_interface' do
       #     group 'main_screen'
-      #     ...
+      #     # ...
       #
       # @return [String]
       def group(value)
@@ -148,13 +148,13 @@ module Vedeu
       # @example
       #   view 'my_interface' do
       #     lines do
-      #       ... see {Vedeu::DSL::Line} and {Vedeu::DSL::Stream}
+      #       # ... see {Vedeu::DSL::Line} and {Vedeu::DSL::Stream}
       #     end
       #   end
       #
       #   view 'my_interface' do
       #     line do
-      #       ... see {Vedeu::DSL::Line} and {Vedeu::DSL::Stream}
+      #       # ... see {Vedeu::DSL::Line} and {Vedeu::DSL::Stream}
       #     end
       #   end
       #
@@ -177,7 +177,7 @@ module Vedeu
       # @example
       #   interface do
       #     name 'my_interface'
-      #     ...
+      #     # ...
       #
       # @return [String]
       def name(value)

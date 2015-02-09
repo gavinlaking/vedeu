@@ -15,7 +15,7 @@ Doing it this way will mean you can use any API method without the `Vedeu.` pref
 class SomeClassInYourApplication
   include Vedeu
 
-  ...
+  # ...
 ```
 
 
@@ -25,13 +25,13 @@ Doing it this way means you need to use the `Vedeu.` prefix.
 
 ```ruby
 class OtherClassInYourApplication
-  ...
+  # ...
 
   def some_method
     Vedeu.some_api_method
   end
 
-  ...
+  # ...
 ```
 
 ... TODO ...

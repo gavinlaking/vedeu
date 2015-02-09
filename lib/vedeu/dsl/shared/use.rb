@@ -7,17 +7,22 @@ module Vedeu
       extend self
 
       # Use the specified interface; useful for sharing attributes with other
-      # interfaces. Any public method of #{Vedeu::Interface} is available.
+      # interfaces. Any public method of {Vedeu::Interface} is available.
       #
       # @example
-      #   interface 'my_interface' do
-      #     delay use('my_other_interface').delay # use the delay of another
-      #     ...                                   # interface
+      #   Vedeu.interface 'my_interface' do
+      #     # use the delay of another interface
+      #     delay Vedeu.use('my_other_interface').delay
+      #     # ...
+      #   end
       #
-      #   interface 'my_interface' do
+      #   Vedeu.interface 'my_interface' do
       #     geometry do
-      #       width use('my_other_interface').width # use the width of another
-      #       ...                                   # interface
+      #       # use the width of another interface
+      #       width Vedeu.use('my_other_interface').width
+      #       # ...
+      #     end
+      #   end
       #
       #   Vedeu.use('my_other_interface').width # can be used in your code to
       #                                         # get this value

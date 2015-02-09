@@ -5,10 +5,10 @@ Vedeu provides an event mechanism to facilitate the functionality of your applic
 Events described in this document assume that you have included Vedeu in your class:
 
 ```ruby
-  class SomeClassInYourApplication
-    include Vedeu
+class SomeClassInYourApplication
+  include Vedeu
 
-    ...
+  # ...
 ```
 
 ## System Events
@@ -178,12 +178,12 @@ client application for timing amongst other things.
 
 ```ruby
 bind :event_name do |arg1, arg2|
-  ...
+  # ...
 
   # Things that should happen when the event is triggered; these can be method
   # calls or the triggering of another event or events.
 
-  ...
+  # ...
 end
 ```
 
