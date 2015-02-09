@@ -75,7 +75,7 @@ module Vedeu
       if content_for?(:back)
         swap
 
-        [clear_if_previous, front].compact
+        [front]
 
       elsif content_for?(:front)
         [front]
@@ -104,25 +104,15 @@ module Vedeu
 
     private
 
-    def clear_if_previous
-      if content_for?(:previous)
-        previous
-
-      else
-        nil
-
-      end
-    end
-
     # Return a boolean indicating content presence on the buffer type.
     #
     # @param buffer [Symbol] One of; :back, :front or :previous.
     # @return [Boolean] Whether the buffer targetted has content.
     def content_for?(buffer)
-      return true unless public_send(buffer).nil? ||
-                         public_send(buffer).content.empty?
+      return false if public_send(buffer).nil? ||
+                      public_send(buffer).content.empty?
 
-      false
+      true
     end
 
   end # Buffer
