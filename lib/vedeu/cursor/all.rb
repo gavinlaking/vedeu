@@ -5,17 +5,14 @@ require 'vedeu/cursor/toggle_cursor'
 
 module Vedeu
 
-  class Cursors < Repository
-  end
-
   extend self
 
-  # @return [Cursors]
+  # @return [Vedeu::Repository]
   def cursors
-    @_cursors ||= Vedeu::Cursors.new(Vedeu::Cursor)
+    @_cursors ||= Vedeu::Repository.new(Vedeu::Cursor)
   end
 
-  # @return [Cursor|NilClass]
+  # @return [Vedeu::Cursor|NilClass]
   def cursor
     cursors.current
   end

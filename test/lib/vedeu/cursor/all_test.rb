@@ -27,7 +27,7 @@ module Vedeu
   describe '.cursors' do
     subject { Vedeu.cursors }
 
-    it { subject.must_be_instance_of(Vedeu::Cursors) }
+    it { subject.must_be_instance_of(Vedeu::Repository) }
   end
 
 end # Vedeu
