@@ -49,6 +49,13 @@ module Vedeu
               border do
                 bottom_left '<'
               end
+              geometry do
+                height 3
+                width  3
+              end
+              lines do
+                line ''
+              end
             end
           }
 
@@ -78,6 +85,13 @@ module Vedeu
               border do
                 bottom_right '>'
               end
+              geometry do
+                height 3
+                width  3
+              end
+              lines do
+                line ''
+              end
             end
           }
 
@@ -106,6 +120,13 @@ module Vedeu
             Vedeu.interface 'borders' do
               border do
                 horizontal '~'
+              end
+              geometry do
+                height 3
+                width  3
+              end
+              lines do
+                line ''
               end
             end
           }
@@ -139,6 +160,13 @@ module Vedeu
               border do
                 show_bottom ''
               end
+              geometry do
+                height 3
+                width  3
+              end
+              lines do
+                line ''
+              end
             end
           }
 
@@ -170,6 +198,13 @@ module Vedeu
             Vedeu.interface 'borders' do
               border do
                 show_left ''
+              end
+              geometry do
+                height 3
+                width  3
+              end
+              lines do
+                line ''
               end
             end
           }
@@ -203,6 +238,13 @@ module Vedeu
               border do
                 show_right ''
               end
+              geometry do
+                height 3
+                width  3
+              end
+              lines do
+                line ''
+              end
             end
           }
 
@@ -235,6 +277,13 @@ module Vedeu
               border do
                 show_top ''
               end
+              geometry do
+                height 3
+                width  3
+              end
+              lines do
+                line ''
+              end
             end
           }
 
@@ -263,6 +312,13 @@ module Vedeu
             Vedeu.interface 'borders' do
               border do
                 top_left '{'
+              end
+              geometry do
+                height 3
+                width  3
+              end
+              lines do
+                line ''
               end
             end
           }
@@ -293,6 +349,13 @@ module Vedeu
               border do
                 top_right '}'
               end
+              geometry do
+                height 3
+                width  3
+              end
+              lines do
+                line ''
+              end
             end
           }
 
@@ -321,6 +384,13 @@ module Vedeu
             Vedeu.interface 'borders' do
               border do
                 vertical ':'
+              end
+              geometry do
+                height 3
+                width  3
+              end
+              lines do
+                line ''
               end
             end
           }
