@@ -1,5 +1,4 @@
 require 'vedeu/exceptions'
-require 'vedeu/support/common'
 require 'vedeu/models/model'
 require 'vedeu/dsl/components/keymap'
 
@@ -7,7 +6,6 @@ module Vedeu
 
   class Keymap
 
-    include Vedeu::Common
     include Vedeu::Model
 
     attr_accessor :name

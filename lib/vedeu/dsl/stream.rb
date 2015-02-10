@@ -1,5 +1,4 @@
 require 'vedeu/dsl/shared/all'
-require 'vedeu/support/common'
 
 module Vedeu
 
@@ -10,7 +9,6 @@ module Vedeu
     # @api public
     class Stream
 
-      include Vedeu::Common
       include Vedeu::DSL
       include Vedeu::DSL::Colour
       include Vedeu::DSL::Style

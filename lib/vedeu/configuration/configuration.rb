@@ -1,6 +1,5 @@
 require 'singleton'
 
-require 'vedeu/support/common'
 require 'vedeu/configuration/api'
 require 'vedeu/configuration/cli'
 
@@ -25,8 +24,6 @@ module Vedeu
     include Singleton
 
     class << self
-
-      include Vedeu::Common
 
       # Configure Vedeu with sensible defaults. If the client application sets
       # options, override the defaults with those, and if command-line arguments

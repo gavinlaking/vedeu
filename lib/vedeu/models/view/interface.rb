@@ -1,4 +1,3 @@
-require 'vedeu/support/common'
 require 'vedeu/support/content_geometry'
 require 'vedeu/models/model'
 require 'vedeu/presentation/presentation'
@@ -18,7 +17,6 @@ module Vedeu
 
     extend Forwardable
 
-    include Vedeu::Common
     include Vedeu::Model
     include Vedeu::Presentation
     include Vedeu::DisplayBuffer
