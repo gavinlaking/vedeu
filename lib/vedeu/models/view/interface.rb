@@ -89,19 +89,6 @@ module Vedeu
           style:  nil,
         }
       end
-
-      # @return [Boolean]
-      def not_registered?(name)
-        return true if undefined?(name)
-        return true unless Vedeu.interfaces.registered?(name)
-
-        false
-      end
-
-      # @return [Boolean]
-      def undefined?(value)
-        value.nil? || value.empty?
-      end
     end
 
     # Return a new instance of Interface.
