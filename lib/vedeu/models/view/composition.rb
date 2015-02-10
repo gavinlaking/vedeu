@@ -22,6 +22,10 @@ module Vedeu
     class << self
 
       # @param attributes [Hash]
+      # @option attributes client []
+      # @option attributes colour []
+      # @option attributes interfaces []
+      # @option attributes style []
       # @param block [Proc]
       # @return [Class]
       def build(attributes = {}, &block)
@@ -58,6 +62,8 @@ module Vedeu
       @style      = style
     end
 
+    # @param child []
+    # @return []
     def add(child)
       @interfaces = interfaces.add(child)
     end

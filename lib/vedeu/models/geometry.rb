@@ -39,9 +39,7 @@ module Vedeu
       # Build models using a simple DSL when a block is given, otherwise returns
       # a new instance of the class including this module.
       #
-      # @param attributes [Hash]
-      # @param block [Proc]
-      # @return [Class]
+      # @see Vedeu::Geometry#initialize
       def build(attributes = {}, &block)
         attributes = defaults.merge(attributes)
 

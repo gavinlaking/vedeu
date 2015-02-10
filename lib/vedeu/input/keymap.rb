@@ -15,6 +15,11 @@ module Vedeu
 
     class << self
 
+
+      # @option attributes client []
+      # @option attributes keys []
+      # @option attributes name []
+      # @option attributes repository []
       def build(attributes = {}, &block)
         fail InvalidSyntax, 'block not given' unless block_given?
 

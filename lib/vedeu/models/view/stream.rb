@@ -22,6 +22,11 @@ module Vedeu
 
     class << self
 
+      # @option attributes value []
+      # @option attributes parent []
+      # @option attributes colour []
+      # @option attributes style []
+      # @option attributes client []
       def build(attributes = {}, &block)
         attributes = defaults.merge(attributes)
 

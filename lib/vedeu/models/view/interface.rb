@@ -55,6 +55,12 @@ module Vedeu
       # provided, or if a block is given, new parameters set via the DSL.
       #
       # @param attributes [Hash]
+      # @option attributes client []
+      # @option attributes colour []
+      # @option attributes lines []
+      # @option attributes name []
+      # @option attributes parent []
+      # @option attributes style []
       # @param block [Proc]
       # @return [Class]
       def build(attributes = {}, &block)
@@ -101,10 +107,10 @@ module Vedeu
     # Return a new instance of Interface.
     #
     # @param name [String]
-    # @param lines []
-    # @param parent []
-    # @param colour []
-    # @param style []
+    # @param lines [Vedeu::Lines]
+    # @param parent [Vedeu::Composition]
+    # @param colour [Vedeu::Colour]
+    # @param style [Vedeu::Style]
     # @return [Interface]
     def initialize(name = '', lines = [], parent = nil, colour = nil, style = nil)
       @name   = name
@@ -121,6 +127,8 @@ module Vedeu
       @repository = Vedeu.interfaces
     end
 
+    # @param child []
+    # @return []
     def add(child)
       @lines = lines.add(child)
     end
@@ -158,6 +166,7 @@ module Vedeu
       lines.any?
     end
 
+    # @return []
     def render
       if border
         border.render

@@ -21,6 +21,12 @@ module Vedeu
     alias_method :value, :streams
 
     class << self
+
+      # @option attributes streams []
+      # @option attributes parent []
+      # @option attributes colour []
+      # @option attributes style []
+      # @option attributes client []
       def build(attributes = {}, &block)
         attributes = defaults.merge(attributes)
 
@@ -58,6 +64,8 @@ module Vedeu
       @style   = style
     end
 
+    # @param child []
+    # @return []
     def add(child)
       @streams = streams.add(child)
     end
