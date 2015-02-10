@@ -4,7 +4,4 @@ require 'vedeu/dsl/shared/style'
 require 'vedeu/dsl/shared/use'
 
 module Vedeu
-
-
-
 end # Vedeu

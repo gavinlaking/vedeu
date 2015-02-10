@@ -4,7 +4,4 @@ require 'vedeu/dsl/components/keymap'
 require 'vedeu/dsl/components/menu'
 
 module Vedeu
-
-
-
 end # Vedeu

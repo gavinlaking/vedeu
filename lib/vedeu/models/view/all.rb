@@ -9,7 +9,4 @@ require 'vedeu/models/view/streams'
 require 'vedeu/models/view/stream'
 
 module Vedeu
-
-
-
 end # Vedeu
