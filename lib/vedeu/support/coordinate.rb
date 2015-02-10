@@ -4,10 +4,15 @@ module Vedeu
   class Coordinate
 
     attr_reader :height,
-                :width,
-                :x,
-                :y
+      :width,
+      :x,
+      :y
 
+    # @param height [Fixnum]
+    # @param width [Fixnum]
+    # @param x [Fixnum]
+    # @param y [Fixnum]
+    # @return [Vedeu::Coordinate]
     def initialize(height, width, x, y)
       @height = height
       @width  = width

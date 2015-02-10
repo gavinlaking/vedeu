@@ -29,20 +29,29 @@ module Vedeu
 
     attr_accessor :x, :y
 
+    # @param interface [Interface]
+    # @param x [Fixnum]
+    # @param y [Fixnum]
+    # @return [PositionValidator]
     def self.validate(interface, x, y)
       new(interface, x, y).validate
     end
 
+    # @param interface [Interface]
+    # @param x [Fixnum]
+    # @param y [Fixnum]
+    # @return [PositionValidator]
     def initialize(interface, x, y)
       @interface = interface
       @x         = x
       @y         = y
     end
 
+    # @return [PositionValidator]
     def validate
       terminal_validation
       interface_validation
-      border_validation
+      border_validation if border?
 
       self
     end
@@ -66,12 +75,10 @@ module Vedeu
     end
 
     def border_validation
-      if border?
-        @x = left + 1   if left?   && x < (left + 1)
-        @x = right - 2  if right?  && x > (right - 1)
-        @y = top + 1    if top?    && y < (top + 1)
-        @y = bottom - 2 if bottom? && y > (bottom - 1)
-      end
+      @x = left + 1   if left?   && x < (left + 1)
+      @x = right - 2  if right?  && x > (right - 1)
+      @y = top + 1    if top?    && y < (top + 1)
+      @y = bottom - 2 if bottom? && y > (bottom - 1)
     end
 
   end # PositionValidator
