@@ -32,7 +32,9 @@ module Vedeu
       def border(&block)
         fail InvalidSyntax, 'block not given' unless block_given?
 
-        model.border = Vedeu::Border.build(attributes.merge({ enabled: true, interface: model }), &block)
+        border_attrs = attributes.merge({ enabled: true, interface: model })
+
+        model.border = Vedeu::Border.build(border_attrs, &block)
       end
 
       # Set the cursor visibility on an interface.
@@ -163,9 +165,7 @@ module Vedeu
       def lines(&block)
         fail InvalidSyntax, 'block not given' unless block_given?
 
-        content = child.build(attributes, &block)
-
-        model.add(content)
+        model.add(child.build(attributes, &block))
       end
       alias_method :line, :lines
 
