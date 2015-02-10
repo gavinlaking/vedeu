@@ -19,7 +19,7 @@ class VedeuBordersApp
 
   bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
 
-  interface 'apple' do
+  interface 'default_border' do
     border do
     end
     geometry do
@@ -31,7 +31,7 @@ class VedeuBordersApp
     colour  foreground: '#ffffff', background: '#ff0000'
   end
 
-  interface 'ball' do
+  interface 'border_off' do
     geometry do
       x      11
       y      2
@@ -41,7 +41,7 @@ class VedeuBordersApp
     colour  foreground: '#ffffff', background: '#00ff00'
   end
 
-  interface 'chair' do
+  interface 'no_top' do
     border do
       show_top false
     end
@@ -54,7 +54,7 @@ class VedeuBordersApp
     colour  foreground: '#ffffff', background: '#0000ff'
   end
 
-  interface 'door' do
+  interface 'no_bottom' do
     border do
       show_bottom false
     end
@@ -67,7 +67,7 @@ class VedeuBordersApp
     colour  foreground: '#000000', background: '#ffff00'
   end
 
-  interface 'egg' do
+  interface 'no_left' do
     border do
       show_left false
     end
@@ -80,7 +80,7 @@ class VedeuBordersApp
     colour  foreground: '#000000', background: '#ffff00'
   end
 
-  interface 'fish' do
+  interface 'no_right' do
     border do
       show_right false
     end
@@ -93,7 +93,7 @@ class VedeuBordersApp
     colour  foreground: '#000000', background: '#ffff00'
   end
 
-  interface 'girl' do
+  interface 'custom_corners' do
     border do
       top_right    'B'
       top_left     'A'
@@ -109,7 +109,7 @@ class VedeuBordersApp
     colour  foreground: '#ffffff', background: '#ff0000'
   end
 
-  interface 'hat' do
+  interface 'custom_horizontal_and_vertical' do
     border do
       horizontal '*'
       vertical   '$'
@@ -123,7 +123,7 @@ class VedeuBordersApp
     colour  foreground: '#ffffff', background: '#00ff00'
   end
 
-  interface 'ice' do
+  interface 'only_top' do
     border do
       show_right  false
       show_bottom false
@@ -138,7 +138,7 @@ class VedeuBordersApp
     colour  foreground: '#ffffff', background: '#0000ff'
   end
 
-  interface 'jug' do
+  interface 'only_bottom' do
     border do
       show_top   false
       show_right false
@@ -153,7 +153,7 @@ class VedeuBordersApp
     colour  foreground: '#000000', background: '#ffff00'
   end
 
-  interface 'kite' do
+  interface 'only_left' do
     border do
       show_top    false
       show_bottom false
@@ -168,7 +168,7 @@ class VedeuBordersApp
     colour  foreground: '#000000', background: '#ffff00'
   end
 
-  interface 'leaf' do
+  interface 'only_right' do
     border do
       show_top    false
       show_bottom false
@@ -183,7 +183,7 @@ class VedeuBordersApp
     colour  foreground: '#000000', background: '#ffff00'
   end
 
-  interface 'moon' do
+  interface 'custom_colour' do
     border do
       colour foreground: '#ffff00', background: '#0000ff'
     end
@@ -196,7 +196,7 @@ class VedeuBordersApp
     colour foreground: '#ffffff', background: '#ff0000'
   end
 
-  interface 'net' do
+  interface 'negative' do
     border do
       style 'negative'
     end
@@ -211,78 +211,78 @@ class VedeuBordersApp
   end
 
   renders do
-    view('apple') do
+    view('default_border') do
       lines do
         line 'on'
       end
     end
-    view('ball') do
+    view('border_off') do
       lines do
         line 'off'
       end
     end
-    view('chair') do
+    view('no_top') do
       lines do
         line 'no t'
       end
     end
-    view('door') do
+    view('no_bottom') do
       lines do
         line 'no b'
       end
     end
-    view('egg') do
+    view('no_left') do
       lines do
         line 'no l'
       end
     end
-    view('fish') do
+    view('no_right') do
       lines do
         line 'no r'
       end
     end
-    view('girl') do
+    view('custom_corners') do
       lines do
         line 'chars'
         line '1'
       end
     end
-    view('hat') do
+    view('custom_horizontal_and_vertical') do
       lines do
         line 'chars'
         line '2'
       end
     end
-    view('ice') do
+    view('only_top') do
       lines do
         line 'only'
         line 't'
       end
     end
-    view('jug') do
+    view('only_bottom') do
       lines do
         line 'only'
         line 'b'
       end
     end
-    view('kite') do
+    view('only_left') do
       lines do
         line 'only'
         line 'l'
       end
     end
-    view('leaf') do
+    view('only_right') do
       lines do
         line 'only'
         line 'r'
       end
     end
-    view('moon') do
+    view('custom_colour') do
       lines do
         line 'color'
       end
     end
-    view('net') do
+    view('negative') do
       lines do
         line 'style'
       end
