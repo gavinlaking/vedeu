@@ -120,6 +120,20 @@ module Vedeu
       @lines = lines.add(child)
     end
 
+    # @return [Hash]
+    def attributes
+      {
+        border:   border,
+        colour:   colour,
+        delay:    delay,
+        geometry: geometry,
+        group:    group,
+        name:     name,
+        parent:   parent,
+        style:    style,
+      }
+    end
+
     # Returns a boolean indicating whether the interface has a border.
     #
     # @return [Boolean]
