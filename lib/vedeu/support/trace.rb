@@ -1,3 +1,7 @@
+require 'vedeu/configuration/configuration'
+require 'vedeu/support/esc'
+require 'vedeu/support/log'
+
 module Vedeu
 
   # This class currently provides the means to trace each method call which
@@ -28,7 +32,7 @@ module Vedeu
     #
     # @todo Deprecate, and use TracePoint instead.
     #
-    # @return []
+    # @return [NilClass|String]
     def trace
       set_trace_func proc { |event, _file, _line, id, binding, classname|
         if event == watched && id != :log && classes.include?(classname.to_s)
@@ -52,9 +56,11 @@ module Vedeu
     # Writes the message to the log file.
     #
     # @param message [String]
-    # @return [Boolean]
+    # @return [String]
     def log_this(message)
       Vedeu::Log.logger.debug(message)
+
+      message
     end
 
     # Provides inspection of the local variables set within the method being
@@ -96,6 +102,8 @@ module Vedeu
       defaults.merge(@options)
     end
 
+    # The default values for a new instance of this class.
+    #
     # @return [Hash]
     def defaults
       {
@@ -145,16 +153,7 @@ module Vedeu
     #
     # @return [Set]
     def vedeu_exceptions
-      Set.new [
-        'Vedeu::ModelNotFound',
-        'Vedeu::InvalidSyntax',
-        'Vedeu::KeyInUse',
-        'Vedeu::MissingRequired',
-        'Vedeu::ModeSwitch',
-        'Vedeu::NoInterfacesDefined',
-        'Vedeu::NotImplemented',
-        'Vedeu::OutOfRange',
-      ]
+      Vedeu::Exceptions.to_set
     end
 
     # Returns a set of classes to ignore during tracing.
@@ -167,8 +166,6 @@ module Vedeu
         # 'Vedeu::API',
         # 'Vedeu::Application',
         # 'Vedeu::Background',
-        # 'Vedeu::Buffers',
-        # 'Vedeu::Clear',
         'Vedeu::Coercions',
         'Vedeu::Colour',
         'Vedeu::Translator',
@@ -180,30 +177,21 @@ module Vedeu
         # 'Vedeu::Cursors',
         'Vedeu::Esc',
         'Vedeu::Event',
-        # 'Vedeu::Events',
         # 'Vedeu::Focus',
         # 'Vedeu::Foreground',
         'Vedeu::Geometry',
         # 'Vedeu::Grid',
-        # 'Vedeu::Groups',
         # 'Vedeu::Input',
         # 'Vedeu::Interface',
-        # 'Vedeu::Interfaces',
         # 'Vedeu::Keymap',
-        # 'Vedeu::Keymaps',
-        # 'Vedeu::KeymapValidator',
         # 'Vedeu::Launcher',
         # 'Vedeu::Line',
         'Vedeu::Log',
         # 'Vedeu::Menu',
         # 'Vedeu::Menus',
-        'Vedeu::MonoLogger',
-        # 'Vedeu::Offset',
-        # 'Vedeu::Offsets',
         'Vedeu::Position',
         'Vedeu::Presentation',
         # 'Vedeu::Refresh',
-        # 'Vedeu::Registrar',
         # 'Vedeu::Render',
         'Vedeu::Repository',
         'Vedeu::Stream',

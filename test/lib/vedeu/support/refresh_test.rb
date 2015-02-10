@@ -4,34 +4,66 @@ module Vedeu
 
   describe Refresh do
 
-    before { Interfaces.reset }
+    let(:described) { Vedeu::Refresh }
+
+    before { Vedeu.interfaces.reset }
 
     describe '.all' do
-      it 'returns an empty collection when there are no registered ' \
-         'interfaces' do
-        Refresh.all.must_equal([])
+      subject { described.all }
+
+      it { subject.must_be_instance_of(Array) }
+
+      context 'when there are no registered interfaces' do
+        it { subject.must_equal([]) }
       end
+
+      # context 'when there are registered interfaces' do
+      #   it { subject, ['hydrogen'.must_equal('helium']) }
+      # end
     end
 
     describe '.by_focus' do
-      it 'raises an exception when there are no registered interfaces' do
-        Focus.reset
+      subject { described.by_focus }
 
-        proc { Refresh.by_focus }.must_raise(NoInterfacesDefined)
+      context 'when there are no registered interfaces' do
+        before { Vedeu.focusable.reset }
+
+        it { Refresh.by_focus.must_equal(nil) }
+      end
+
+      context 'when there are registered interfaces' do
+        # before { Vedeu.focusable.add('lead') }
+
+        # it { subject.must_equal('lead') }
       end
     end
 
     describe '.by_group' do
-      it 'raises an exception when the group cannot be found' do
-        Groups.reset
+      context 'when there are no registered groups' do
+        before { Vedeu.groups.reset }
 
-        proc { Refresh.by_group('') }.must_raise(ModelNotFound)
+        it { proc { Refresh.by_group('') }.must_raise(ModelNotFound) }
+      end
+
+      context 'when there are registered groups' do
       end
     end
 
     describe '.by_name' do
-      it 'raises an exception when the buffer cannot be found' do
-        proc { Refresh.by_name('') }.must_raise(ModelNotFound)
+      let(:interface_name) { 'aluminium' }
+
+      subject { Refresh.by_name(interface_name) }
+
+      context 'when the interface or buffer is not found' do
+        let(:interface_name) { '' }
+
+        it { proc { Refresh.by_name('') }.must_raise(ModelNotFound) }
+      end
+
+      context 'when the interface or buffer is found' do
+        # it { subject.must_be_instance_of(Array) }
+
+        # it { skip }
       end
     end
 

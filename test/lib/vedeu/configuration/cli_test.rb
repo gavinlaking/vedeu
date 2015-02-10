@@ -13,14 +13,14 @@ module Vedeu
       after  { test_configuration }
 
       describe '#initialize' do
-        it { return_type_for(described, CLI) }
-        it { assigns(described, '@args', args) }
-        it { assigns(described, '@options', {}) }
+        it { described.must_be_instance_of(CLI) }
+        it { described.instance_variable_get('@args').must_equal(args) }
+        it { described.instance_variable_get('@options').must_equal({}) }
       end
 
       describe '#colour_mode' do
         it '--colour-mode' do
-          Configuration.configure(['--colour-mode', '16777216'])
+          Configuration.configure(['--colour-mode', '16777216']) {}
           Configuration.colour_mode.must_equal(16777216)
         end
 

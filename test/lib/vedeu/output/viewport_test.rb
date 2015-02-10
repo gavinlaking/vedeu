@@ -4,62 +4,188 @@ module Vedeu
 
   describe Viewport do
 
-    let(:described) { Viewport.new(interface) }
+    let(:described) { Vedeu::Viewport }
+    let(:instance)  { described.new(interface) }
     let(:interface) {
-      Interface.new({
-        name:     'fluorine',
-        geometry: {
-          width:  30,
-          height: 2,
-        },
-        lines: [
-          {
-            streams: [{
-              text: 'Something interesting ',
-            },{
-              text: 'on this line ',
-            },{
-              text: 'would be cool, eh?'
-            }]
-          }, {
-            streams: [{
-              text: 'Maybe a lyric, a little ditty ',
-            },{
-              text: 'to help you unwind.',
-            }]
-          }
-        ]
-      })
+      Vedeu::Interface.build do
+        geometry do
+          height 3
+          width 3
+        end
+        lines do
+          line 'barium'
+          line 'carbon'
+          line 'helium'
+          line 'iodine'
+          line 'nickel'
+          line 'osmium'
+        end
+        name 'lithium'
+      end
     }
 
     describe '#initialize' do
-      it { return_type_for(described, Viewport) }
-      it { assigns(described, '@interface', interface) }
-      it { assigns(described, '@top', 0) }
-      it { assigns(described, '@left', 0) }
+      subject { instance }
+
+      it { subject.must_be_instance_of(Viewport) }
+      it { subject.instance_variable_get('@interface').must_equal(interface) }
     end
 
     describe '.show' do
-      it { return_type_for(Viewport.show(interface), Array) }
+      subject { described.show(interface) }
 
-      context 'when there is no content' do
-        before { interface.stubs(:content).returns([]) }
+      it { subject.must_be_instance_of(Array) }
+    end
 
-        it 'returns an empty collection' do
-          Viewport.show(interface).must_equal([])
-        end
+    describe '#show' do
+      let(:cursor) { Cursor.new(cursor_attributes) }
+      let(:cursor_attributes) {
+        { name: 'lithium', ox: ox, oy: oy, state: true, x: x, y: y }
+      }
+      let(:lines)  { [] }
+      let(:ox)     { 0 }
+      let(:oy)     { 0 }
+      let(:x)      { 1 }
+      let(:y)      { 1 }
+
+      before do
+        interface.stubs(:cursor).returns(cursor)
       end
 
-      context 'when there is content, it returns only the visible content '  \
-              'determined by the geometry of the interface and the current ' \
-              'offset stored' do
-        it 'returns a collection of lines, each a collection of characters' do
-          Viewport.show(interface).must_equal(
-            [
-              ['S', 'o', 'm', 'e', 't', 'h', 'i', 'n', 'g', ' ', 'i', 'n', 't', 'e', 'r', 'e', 's', 't', 'i', 'n', 'g', ' ', 'o', 'n', ' ', 't', 'h', 'i', 's', ' '],
-              ['M', 'a', 'y', 'b', 'e', ' ', 'a', ' ', 'l', 'y', 'r', 'i', 'c', ',', ' ', 'a', ' ', 'l', 'i', 't', 't', 'l', 'e', ' ', 'd', 'i', 't', 't', 'y', ' ']
-            ]
-          )
+      subject { instance.show }
+
+      it { subject.must_be_instance_of(Array) }
+
+      # context 'when there is no content' do
+      #   before { interface.stubs(:lines).returns([]) }
+
+      #   it { subject.must_equal([]) }
+      # end
+
+      context 'when there is content' do
+        context "when the cursor's y position is outside the viewable area - negative" do
+          let(:ox) { -4 }
+          let(:oy) { -4 }
+
+          it "scrolls the content the correct position" do
+            subject.must_equal(
+              [
+                ["b", "a", "r"],
+                ["c", "a", "r"],
+                ["h", "e", "l"]
+              ]
+            )
+          end
+
+          it { instance.to_s.must_equal("bar\ncar\nhel") }
+        end
+
+        context "when the cursor's y position is inside the viewable area" do
+          context "when there is not enough content to fill the height" do
+            let(:ox) { 3 }
+            let(:oy) { 7 }
+
+            it "is padded with spaces" do
+              subject.must_equal(
+                [
+                  ["n", "i", "c"],
+                  ["o", "s", "m"],
+                  [" ", " ", " "]
+                ]
+              )
+            end
+
+            it { instance.to_s.must_equal("nic\nosm\n   ") }
+          end
+
+          context "when there is more content than the height" do
+            let(:ox) { 3 }
+            let(:oy) { 3 }
+
+            it "is cropped to show only that which fits" do
+              subject.must_equal(
+                [
+                  ["b", "a", "r"],
+                  ["c", "a", "r"],
+                  ["h", "e", "l"]
+                ]
+              )
+            end
+
+            it { instance.to_s.must_equal("bar\ncar\nhel") }
+          end
+        end
+
+        context "when the cursor's x position is outside the viewable area" do
+          context "but inside the content" do
+            let(:ox) { 6 }
+            let(:oy) { 6 }
+
+            it "scrolls the content the correct position" do
+              subject.must_equal(
+                [
+                  ["i", "n", "e"],
+                  ["k", "e", "l"],
+                  ["i", "u", "m"]
+                ]
+              )
+            end
+
+            it { instance.to_s.must_equal("ine\nkel\nium") }
+          end
+
+          context "and outside the content" do
+            let(:ox) { 7 }
+            let(:oy) { 7 }
+
+            it "scrolls the content the correct position" do
+              subject.must_equal(
+                [
+                  ["e", "l", " "],
+                  ["u", "m", " "],
+                  [" ", " ", " "]
+                ]
+              )
+            end
+
+            it { instance.to_s.must_equal("el \num \n   ") }
+          end
+        end
+
+        context "when the cursor's x position is inside the viewable area" do
+          context "when there is not enough content to fill the width" do
+            let(:ox) { 7 }
+            let(:oy) { 3 }
+
+            it "is padded with spaces" do
+              subject.must_equal(
+                [
+                  ["u", "m", " "],
+                  ["o", "n", " "],
+                  ["u", "m", " "]
+                ]
+              )
+            end
+
+            it { instance.to_s.must_equal("um \non \num ") }
+          end
+
+          context "when there is more content than the width" do
+            let(:ox) { 3 }
+            let(:oy) { 3 }
+
+            it "is cropped to show only that which fits" do
+              subject.must_equal(
+                [
+                  ["b", "a", "r"],
+                  ["c", "a", "r"],
+                  ["h", "e", "l"]
+                ]
+              )
+            end
+
+            it { instance.to_s.must_equal("bar\ncar\nhel") }
+          end
         end
       end
     end

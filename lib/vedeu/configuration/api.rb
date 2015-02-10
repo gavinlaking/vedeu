@@ -1,3 +1,5 @@
+require 'vedeu/support/common'
+
 module Vedeu
 
   module Config
@@ -362,6 +364,6 @@ module Vedeu
 
     end # API
 
-  end # Configuration
+  end # Config
 
 end # Vedeu

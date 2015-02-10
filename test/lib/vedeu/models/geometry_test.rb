@@ -5,6 +5,7 @@ module Vedeu
   describe Geometry do
 
     let(:described)  { Geometry.new(attributes) }
+    let(:instance)   { Geometry.new(attributes) }
     let(:attributes) { {} }
 
     before do
@@ -12,20 +13,40 @@ module Vedeu
     end
 
     describe '#initialize' do
-      it { return_type_for(described, Geometry) }
-      it { assigns(described, '@attributes', {
-          centred: false,
-          height:  25,
-          width:   80,
-          x:       1,
-          xn:      nil,
-          y:       1,
-          yn:      nil,
-        })
-      }
-      it { assigns(described, '@centred', false) }
-      it { assigns(described, '@height', 25) }
-      it { assigns(described, '@width', 80) }
+      subject { instance }
+
+      it { subject.must_be_instance_of(Geometry) }
+
+      context 'with default attributes' do
+        it { subject.instance_variable_get('@attributes').must_equal({
+            centred: false,
+            height:  25,
+            name:    '',
+            width:   80,
+            x:       1,
+            xn:      80,
+            y:       1,
+            yn:      25,
+          })
+        }
+        it { subject.instance_variable_get('@centred').must_equal(false) }
+        it { subject.instance_variable_get('@height').must_equal(25) }
+        it { subject.instance_variable_get('@name').must_equal('') }
+        it { subject.instance_variable_get('@width').must_equal(80) }
+        it { subject.instance_variable_get('@x').must_equal(1) }
+        it { subject.instance_variable_get('@xn').must_equal(80) }
+        it { subject.instance_variable_get('@y').must_equal(1) }
+        it { subject.instance_variable_get('@yn').must_equal(25) }
+        it { subject.instance_variable_get('@repository').must_equal(Vedeu.geometries) }
+      end
+    end
+
+    describe '#inspect' do
+      subject { instance.inspect }
+
+      it { subject.must_equal(
+        '<Vedeu::Geometry (height:(25/24) width:(80/79) top:1 bottom:25 left:1 right:80)>'
+      ) }
     end
 
     describe '#y' do
@@ -288,31 +309,6 @@ module Vedeu
       it 'returns the virtual x positions within the interfaces dimensions' do
         geometry = Geometry.new({ height: 6, width: 6, x: 7, y: 5 })
         geometry.virtual_x.must_equal([7, 8, 9, 10, 11, 12])
-      end
-    end
-
-    describe '#to_h' do
-      it 'returns all the values within the instance as a hash' do
-        geometry = Geometry.new({ height: 6, width: 6, x: 3, y: 3 })
-        geometry.to_h.must_equal(
-          {
-            centred:         false,
-            height:          6,
-            width:           6,
-            x:               3,
-            y:               3,
-            top:             3,
-            right:           9,
-            bottom:          9,
-            left:            3,
-            north:           2,
-            east:            10,
-            south:           10,
-            west:            2,
-            virtual_x:       [3, 4, 5, 6, 7, 8],
-            virtual_y:       [3, 4, 5, 6, 7, 8]
-          }
-        )
       end
     end
 

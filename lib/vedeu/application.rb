@@ -8,13 +8,13 @@ module Vedeu
     class << self
 
       # @return []
-      def start
-        new.start
+      def start(configuration)
+        new(configuration).start
       end
       alias_method :restart, :start
 
       # Stops the application!
-      # - The `:_cleanup_` event is triggered. Vedeu does not handle this event;
+      # - The `:cleanup` event is triggered. Vedeu does not handle this event;
       #   the client application may treat this event as Vedeu signalling that it
       #   is about to terminate. Client applications are encouraged to use this
       #   event to close any open buffers, save files, empty trash, etc.
@@ -23,15 +23,19 @@ module Vedeu
       #   terminate the application.
       # @return [StopIteration]
       def stop
-        Vedeu.trigger(:_cleanup_)
+        Vedeu.trigger(:cleanup)
 
         fail StopIteration
       end
 
     end # Application eigenclass
 
+    # :nocov:
+
     # @return [Application]
-    def initialize; end
+    def initialize(configuration)
+      @configuration = configuration
+    end
 
     # Starts the application!
     # - A new terminal screen is opened (or rather the current terminal is
@@ -56,12 +60,14 @@ module Vedeu
 
     private
 
+    attr_reader :configuration
+
     # Runs the application loop either once, or forever (exceptions and signals
     # permitting).
     #
     # @return []
     def runner
-      if Configuration.once?
+      if configuration.once?
         yield
 
       else
@@ -79,7 +85,7 @@ module Vedeu
     #
     # @return []
     def main_sequence
-      if Configuration.interactive?
+      if configuration.interactive?
         Input.capture(Terminal)
 
       else
@@ -106,6 +112,8 @@ module Vedeu
       Application.restart
 
     end
+
+    # :nocov:
 
   end # Application
 

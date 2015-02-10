@@ -6,7 +6,20 @@ require 'minitest/hell'
 
 SimpleCov.start do
   command_name 'MiniTest::Spec'
-  add_filter   '/test/'
+  add_filter '/test/'
+  add_group  'api',           'vedeu/api'
+  add_group  'buffers',       'vedeu/buffers'
+  add_group  'configuration', 'vedeu/configuration'
+  add_group  'cursor',        'vedeu/cursor'
+  add_group  'dsl',           'vedeu/dsl'
+  add_group  'events',        'vedeu/events'
+  add_group  'input',         'vedeu/input'
+  add_group  'models/view',   'vedeu/models/view'
+  add_group  'models',        'vedeu/models'
+  add_group  'output',        'vedeu/output'
+  add_group  'presentation',  'vedeu/presentation'
+  add_group  'repositories',  'vedeu/repositories'
+  add_group  'support',       'vedeu/support'
 end unless ENV['no_simplecov']
 
 module MiniTest
@@ -15,47 +28,31 @@ module MiniTest
 
     class << self
       alias_method :context, :describe
-    end # Spec eigenclass
-
-    def assigns(subject, instance_variable, value)
-      subject.instance_variable_get(instance_variable).must_equal(value)
-    end
-
-    def return_type_for(subject, value)
-      subject.must_be_instance_of(value)
-    end
-
-    def return_value_for(subject, value)
-      subject.must_equal(value)
     end
   end
 end
 
 require 'mocha/setup'
-
-GC.disable
-
 require 'vedeu'
-require 'support/test_classes/all'
-require 'support/test_modules/all'
+require 'support/helpers/all'
 
 def test_configuration
   Vedeu::Configuration.reset!
 
   Vedeu.configure do
-    debug!
     colour_mode 16777216
+    debug!
     log         '/tmp/vedeu_test_helper.log'
   end
 end
 
 test_configuration
 
-# commented out by default (makes tests slower)
 # require 'minitest/reporters'
 # Minitest::Reporters.use!(
-  # Minitest::Reporters::DefaultReporter.new({ color: true, slow_count: 5 }),
-  # Minitest::Reporters::SpecReporter.new
+#   # commented out by default (makes tests slower)
+#   # Minitest::Reporters::DefaultReporter.new({ color: true, slow_count: 5 }),
+#   # Minitest::Reporters::SpecReporter.new
 # )
 
 # trace method execution with (optionally) local variables

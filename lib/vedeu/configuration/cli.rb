@@ -1,3 +1,5 @@
+require 'optparse'
+
 module Vedeu
 
   module Config
@@ -125,6 +127,6 @@ module Vedeu
 
     end # CLI
 
-  end # Configuration
+  end # Config
 
 end # Vedeu

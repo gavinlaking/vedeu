@@ -4,30 +4,39 @@ module Vedeu
 
   describe Application do
 
-    let(:described) { Application.new }
+    let(:described)     { Vedeu::Application }
+    let(:instance)      { described.new(configuration) }
+    let(:configuration) { }
 
     before { Terminal.stubs(:open).returns(['']) }
 
+    describe '#initialize' do
+      subject { instance }
+
+      it { subject.must_be_instance_of(described) }
+      it { subject.instance_variable_get('@configuration').must_equal(configuration) }
+    end
+
     describe '.start' do
-      it { return_type_for(Application.start, Array) }
+      subject { described.start(configuration) }
+
+      it { subject.must_be_instance_of(Array) }
 
       context 'alias method: .restart' do
-        it { return_type_for(Application.restart, Array) }
+        it { subject.must_be_instance_of(Array) }
       end
     end
 
     describe '.stop' do
-      it 'raises an exception' do
-        proc { Application.stop }.must_raise(StopIteration)
-      end
-    end
+      subject { described.stop }
 
-    describe '#initialize' do
-      it { return_type_for(described, Application) }
+      it { proc { subject }.must_raise(StopIteration) }
     end
 
     describe '#start' do
-      it { return_type_for(described.start, Array) }
+      subject { instance.start }
+
+      it { subject.must_be_instance_of(Array) }
     end
 
   end # Application

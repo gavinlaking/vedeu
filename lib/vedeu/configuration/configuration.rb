@@ -1,4 +1,15 @@
+require 'singleton'
+
+require 'vedeu/support/common'
+require 'vedeu/configuration/api'
+require 'vedeu/configuration/cli'
+
 module Vedeu
+
+  # Namespace for the API configuration and CLI configuration classes.
+  #
+  module Config
+  end
 
   # Allows the customisation of Vedeu's behaviour through the configuration API
   # or command-line arguments.
@@ -15,6 +26,8 @@ module Vedeu
 
     class << self
 
+      include Vedeu::Common
+
       # Configure Vedeu with sensible defaults. If the client application sets
       # options, override the defaults with those, and if command-line arguments
       # are provided at application invocation, override any options with the
@@ -22,9 +35,17 @@ module Vedeu
       #
       # @param args [Array]
       # @param block [Proc]
+      # @raise [InvalidSyntax] When the required block is not given.
       # @return [Hash]
       def configure(args = [], &block)
         instance.configure(args, &block)
+      end
+
+      # Returns the configuration singleton.
+      #
+      # @return [Vedeu::Configuration]
+      def configuration
+        instance
       end
 
       # Returns the chosen colour mode.
@@ -94,7 +115,7 @@ module Vedeu
       end
       alias_method :trace, :trace?
 
-      # Vedeu's default system keys. Use {#system_keys}.
+      # Vedeu's default system keys. Use {Vedeu::Configuration.system_keys}.
       #
       # @return [Hash]
       def default_system_keys
@@ -142,7 +163,7 @@ module Vedeu
 
       @options.merge!(Config::CLI.configure(args)) if args.any?
 
-      @options
+      Configuration
     end
 
     # Reset the configuration to the default values.

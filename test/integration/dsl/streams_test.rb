@@ -1,0 +1,129 @@
+require 'test_helper'
+
+describe 'Streams' do
+
+  describe '#align' do
+    subject {
+      Vedeu.interface 'streams' do
+        lines do
+          streams do
+            align 'Some text...'
+          end
+        end
+      end
+    }
+
+    # it 'allows the use of align within stream(s)' do
+    #   skip
+    #   subject.must_equal('Some text')
+    # end
+
+    context 'when no value is provided' do
+
+    end
+  end
+
+  describe '#background' do
+    subject {
+      Vedeu.interface 'streams' do
+        lines do
+          streams do
+            background ''
+          end
+        end
+      end
+    }
+
+    # it 'allows the use of background within stream(s)' do
+    #   skip
+    # end
+
+    context 'when no value is provided' do
+
+    end
+  end
+
+  describe '#colour' do
+    subject {
+      Vedeu.interface 'streams' do
+        lines do
+          streams do
+            colour ''
+          end
+        end
+      end
+    }
+
+    # it 'allows the use of colour within stream(s)' do
+    #   skip
+    # end
+
+    context 'when no value is provided' do
+
+    end
+  end
+
+  describe '#foreground' do
+    subject {
+      Vedeu.interface 'streams' do
+        lines do
+          streams do
+            foreground ''
+          end
+        end
+      end
+    }
+
+    # it 'allows the use of foreground within stream(s)' do
+    #   skip
+    # end
+
+    context 'when no value is provided' do
+
+    end
+  end
+
+  describe '#style' do
+    let(:value) { '' }
+
+    subject {
+      Vedeu.interface 'lines' do
+        lines do
+          streams do
+            style value
+          end
+        end
+      end
+    }
+
+    # it 'allows the use of style within stream(s)' do
+    #   skip
+    # end
+
+    context 'when no value is provided' do
+      let(:value) {}
+    end
+  end
+
+  describe '#text' do
+    subject {
+      Vedeu.interface 'streams' do
+        lines do
+          streams do
+            text 'Some text...'
+          end
+        end
+      end
+    }
+
+    # it 'allows the use of text within stream(s)' do
+    #   skip
+    #   subject.must_equal('Some text...')
+    # end
+
+    context 'when no value is provided' do
+
+    end
+  end
+
+end

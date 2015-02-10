@@ -6,103 +6,44 @@ module Vedeu
 
     let(:described) { Output.new(interface) }
     let(:interface) {
-      Interface.new({
-        name:   'flourine',
-        geometry: {
-          width:  32,
-          height: 3,
-        },
-        lines:    lines,
-        colour:   colour
-      })
+      Interface.build do
+        geometry do
+          height 3
+          width  32
+        end
+        name 'flourine'
+      end
     }
     let(:lines) {
       [
-        {
-          streams: [{ text: 'this is the first' }]
-        },
-        {
-          streams: [{ text: 'this is the second and it is long' }]
-        },
-        {
-          streams: [{ text: 'this is the third, it is even longer and still truncated' }]
-        },
-        {
-          streams: [{ text: 'this should not render' }]
-        }
+        Line.new([Stream.new('this is the first')]),
+        Line.new([Stream.new('this is the second and it is long')]),
+        Line.new([Stream.new('this is the third, it is even longer and still truncated')]),
+        Line.new([Stream.new('this should not render')]),
       ]
     }
-    let(:colour) { {} }
 
-    # before do
-    #   Buffers.reset
-    #   Cursors.reset
-    #   Interfaces.reset
-
-    #   Terminal.console.stubs(:winsize).returns([5, 40])
-    #   Terminal.console.stubs(:print)
-    # end
-
-    describe '#initialize' do
-      it { return_type_for(described, Output) }
-      it { assigns(described, '@interface', interface) }
+    before do
+      interface.lines = lines
+      IO.console.stubs(:print)
     end
 
-    # describe '.render' do
-    #   it 'returns the content for the interface' do
-    #     Output.render(interface).must_equal(
-    #       "\e[1;1H                                \e[1;1H" \
-    #       "\e[2;1H                                \e[2;1H" \
-    #       "\e[3;1H                                \e[3;1H" \
-    #       "\e[1;1Hthis is the first" \
-    #       "\e[2;1Hthis is the second and it is lon" \
-    #       "\e[3;1Hthis is the third, it is even lo"
-    #     )
-    #   end
+    describe '#initialize' do
+      it { described.must_be_instance_of(Output) }
+      it { described.instance_variable_get('@interface').must_equal(interface) }
+    end
 
-    #   context 'when there are no streams of text' do
-    #     let(:lines) { [] }
+    describe '.render' do
+      subject { Output.render(interface) }
 
-    #     it 'returns a blank interface' do
-    #       Output.render(interface).must_equal(
-    #         "\e[1;1H                                \e[1;1H" \
-    #         "\e[2;1H                                \e[2;1H" \
-    #         "\e[3;1H                                \e[3;1H"
-    #       )
-    #     end
-    #   end
+      it { subject.must_be_instance_of(Array) }
 
-    #   context 'when lines have streams which are empty' do
-    #     let(:lines) {
-    #       [
-    #         {
-    #           streams: [{ text: 'this is the first' }]
-    #         }, {
-    #           streams: { text: '' }
-    #         }, {
-    #           streams: [
-    #             { text: 'this is the third, ' },
-    #             { text: 'it is even longer '  },
-    #             { text: 'and still truncated' }
-    #           ]
-    #         }, {
-    #           streams: [{ text: 'this should not render' }]
-    #         }
-    #       ]
-    #     }
+      context 'when a border is defined for the interface' do
+      end
 
-    #     it 'skips lines' do
-    #       Output.render(interface).must_equal(
-    #         "\e[1;1H                                \e[1;1H" \
-    #         "\e[2;1H                                \e[2;1H" \
-    #         "\e[3;1H                                \e[3;1H" \
-    #         "\e[1;1Hthis is the first" \
-    #         "\e[2;1H" \
-    #         "\e[3;1Hthis is the third, it is even lo"
-    #       )
-    #     end
-    #   end
-    # end
+      context 'when a border is not defined for the interface' do
+      end
+    end
 
   end # Output
 

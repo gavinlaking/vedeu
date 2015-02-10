@@ -11,51 +11,60 @@ require 'vedeu'
 class VedeuLinesApp
   include Vedeu
 
-  event(:_initialize_) { trigger(:_refresh_) }
+  configure do
+    colour_mode 16777216
+    debug!
+    log '/tmp/vedeu_lines_app.log'
+  end
+
+  bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
 
   interface 'ruthenium' do
-    centred true
+    geometry do
+      centred true
+      height  5
+      width   40
+    end
     colour  foreground: '#ffffff', background: '#000000'
-    height  5
-    width   40
   end
 
   interface 'tantalum' do
     colour  foreground: '#00aadd', background: '#000000'
-    height  1
-    width   40
-    x       use('ruthenium').left
-    y       use('ruthenium').south
+    geometry do
+      height  1
+      width   40
+      x       Vedeu.use('ruthenium').left
+      y       Vedeu.use('ruthenium').south
+    end
   end
 
-  keys do
-    key(:up)    { trigger(:_cursor_up_)    }
-    key(:right) { trigger(:_cursor_right_) }
-    key(:down)  { trigger(:_cursor_down_)  }
-    key(:left)  { trigger(:_cursor_left_)  }
+  keymap('_global_') do
+    key(:up)    { Vedeu.trigger(:_cursor_up_)    }
+    key(:right) { Vedeu.trigger(:_cursor_right_) }
+    key(:down)  { Vedeu.trigger(:_cursor_down_)  }
+    key(:left)  { Vedeu.trigger(:_cursor_left_)  }
   end
 
-  render do
+  renders do
     view 'ruthenium' do
-      line 'Ruthenium is a chemical element with'
-      line 'symbol Ru and atomic number 44. It is a'
-      line 'rare transition metal belonging to the'
-      line 'platinum group of the periodic table.'
-      line 'Like the other metals of the platinum'
-      line 'group, ruthenium is inert to most other'
-      line 'chemicals.'
+      lines do
+        line 'Ruthenium is a chemical element with'
+        line 'symbol Ru and atomic number 44. It is a'
+        line 'rare transition metal belonging to the'
+        line 'platinum group of the periodic table.'
+        line 'Like the other metals of the platinum'
+        line 'group, ruthenium is inert to most other'
+        line 'chemicals.'
+      end
     end
     view 'tantalum' do
-      line 'Use cursor keys to navigate, Q to quit.'
+      lines do
+        line 'Use cursor keys to navigate, Q to quit.'
+      end
     end
   end
 
-  focus 'ruthenium'
-
-  Vedeu.configure do
-    debug!
-    log '/tmp/vedeu_lines_app.log'
-  end
+  focus_by_name 'ruthenium'
 
   def self.start(argv = ARGV)
     Vedeu::Launcher.new(argv).execute!

@@ -1,3 +1,8 @@
+require 'vedeu/configuration/configuration'
+require 'vedeu/support/common'
+require 'vedeu/support/esc'
+require 'vedeu/support/log'
+
 module Vedeu
 
   # This module is the direct interface between Vedeu and your terminal/
@@ -6,16 +11,17 @@ module Vedeu
   # @api private
   module Terminal
 
+    include Vedeu::Common
     extend self
 
     # Opens a terminal screen in either `raw` or `cooked` mode. On exit,
     # attempts to restore the screen. See {Vedeu::Terminal#restore_screen}.
     #
     # @param block [Proc]
-    # @raise [InvalidSyntax] When the required block is not given.
+    # @raise [InvalidSyntax] The required block was not given.
     # @return [Array]
     def open(&block)
-      fail InvalidSyntax, '`open` requires a block.' unless block_given?
+      fail InvalidSyntax, 'block not given' unless block_given?
 
       if raw_mode?
         Vedeu.log("Terminal entering 'raw' mode")
@@ -58,9 +64,29 @@ module Vedeu
     # @param streams [String|Array]
     # @return [Array]
     def output(*streams)
-      streams.each { |stream| console.print(stream) }
+      streams.each do |stream|
+        # Vedeu.log(Esc.escape(stream))
+
+        console.print(stream)
+
+        # Vedeu::Console.write(stream)
+      end
 
       streams
+    end
+    alias_method :write, :output
+
+    # When the terminal emit the 'SIGWINCH' signal, Vedeu can intercept this
+    # and attempt to redraw the current interface with varying degrees of
+    # success. Can also be used to simulate a terminal resize.
+    #
+    # @return [TrueClass]
+    def resize
+      Vedeu.trigger(:_clear_)
+
+      Vedeu.trigger(:_refresh_)
+
+      true
     end
 
     # @param block [Proc]
@@ -74,7 +100,7 @@ module Vedeu
     # Clears the entire terminal space.
     #
     # @return [String]
-    def clear_screen
+    def clear
       output(Esc.string('clear'))
     end
 
@@ -180,6 +206,8 @@ module Vedeu
     end
     alias_method :x, :origin
     alias_method :y, :origin
+    alias_method :tx, :origin
+    alias_method :ty, :origin
 
     # Returns the total width (number of columns/characters) of the current
     # terminal.
@@ -192,6 +220,7 @@ module Vedeu
       size.last
     end
     alias_method :xn, :width
+    alias_method :txn, :width
 
     # Returns the total height (number of rows/lines) of the current terminal.
     #
@@ -203,6 +232,7 @@ module Vedeu
       size.first
     end
     alias_method :yn, :height
+    alias_method :tyn, :height
 
     # Returns a tuple containing the height and width of the current terminal.
     #

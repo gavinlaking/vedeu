@@ -15,7 +15,7 @@ Doing it this way will mean you can use any API method without the `Vedeu.` pref
 class SomeClassInYourApplication
   include Vedeu
 
-  ...
+  # ...
 ```
 
 
@@ -25,13 +25,13 @@ Doing it this way means you need to use the `Vedeu.` prefix.
 
 ```ruby
 class OtherClassInYourApplication
-  ...
+  # ...
 
   def some_method
     Vedeu.some_api_method
   end
 
-  ...
+  # ...
 ```
 
 ... TODO ...
@@ -43,16 +43,17 @@ Note: Nesting indicates where an API method is allowed/supposed to be used.
 
 #### Events
 
-- event
+- bind
 - trigger
-- unevent
+- unbind
 
 
 #### Input
 
 - keypress
-- keys
+- keymap
   - key
+  - name
   - interface
 
 
@@ -60,32 +61,40 @@ Note: Nesting indicates where an API method is allowed/supposed to be used.
 
 - interface
   - background
-  - centred (or centred!)
+  - border
   - cursor
   - colour
   - delay
   - focus!
   - foreground
+  - geometry
+    - centred (or centred!)
+    - height
+    - width
+    - x
+    - y
   - group
-  - height
-  - keys
+  - keymap
+    - key
+    - name
+    - interface
   - line
   - name
   - style
   - use
-  - width
-  - x
-  - y
 
 
 #### Views
 
-- render
-  - views
-    - view
+- renders
   - view
     - colour
     - cursor
+    - geometry
+      - height
+      - width
+      - x
+      - y
     - line
       - background
       - colour
@@ -98,10 +107,17 @@ Note: Nesting indicates where an API method is allowed/supposed to be used.
         - style
         - text
         - width
+      - streams
+        - stream
+      - text
       - style
+    - lines
+      - line
     - name
     - style
   - use
+- views
+  - ... as #renders
 
 
 #### Menus
@@ -113,10 +129,23 @@ Note: Nesting indicates where an API method is allowed/supposed to be used.
 
 #### Miscellany
 
-- defined
+- configure
 - focus
+- focus_by_name
+- focussed?
+- focus_next
+- focus_previous
+
 - height
+  Usage: Vedeu.height
+  Returns the height (in lines) for the current terminal.
+
 - log
 - resize
+  Usage: Vedeu.resize
+
+
 - width
+  Usage: Vedeu.width
+  Returns the width (in characters) for the current terminal.
 

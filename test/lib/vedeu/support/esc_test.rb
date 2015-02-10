@@ -28,6 +28,24 @@ module Vedeu
       end
     end
 
+    describe '.escape' do
+      let(:stream) { "\e[0m\e[38;2;39m\e[48;2;49m\e[2J\e[?25l" }
+
+      subject { Esc.escape(stream) }
+
+      it { subject.must_be_instance_of(String) }
+
+      it 'escapes the escape sequences' do
+        subject.must_equal('\e[0m\e[38;2;39m\e[48;2;49m\e[2J\e[?25l')
+      end
+
+      context 'when a stream is not given' do
+        let(:stream) { '' }
+
+        it { Esc.escape(stream).must_equal('') }
+      end
+    end
+
     describe '.string' do
       it 'returns an empty string when the style is not provided' do
         Esc.string.must_equal('')

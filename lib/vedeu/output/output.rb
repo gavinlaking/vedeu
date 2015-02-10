@@ -1,5 +1,7 @@
 module Vedeu
 
+  # Sends the interface to the terminal or output device.
+  #
   class Output
 
     # Writes content (the provided interface object with associated lines,
@@ -23,7 +25,7 @@ module Vedeu
     #
     # @return [Array]
     def render
-      Terminal.output(view, Focus.cursor)
+      Terminal.output(view, interface.cursor.to_s)
     end
 
     private
@@ -38,19 +40,9 @@ module Vedeu
     def clear
       Vedeu.log("Clearing view: '#{interface.name}'")
 
-      rows.inject([colours]) do |line, index|
+      interface.height.times.inject([interface.colour]) do |line, index|
         line << interface.origin(index) { ' ' * interface.width }
       end.join
-    end
-
-    # @return [String]
-    def colours
-      interface.colour.to_s
-    end
-
-    # @return [Enumerator]
-    def rows
-      interface.height.times
     end
 
     # Produces a single string which contains all content and escape sequences
@@ -62,10 +54,11 @@ module Vedeu
 
       Vedeu.log("Rendering view: '#{interface.name}'")
 
-      interface.border.to_viewport.each_with_index do |line, index|
+      interface.render.each_with_index do |line, index|
         out << interface.origin(index)
         out << line.join
       end
+
       out.join
     end
 

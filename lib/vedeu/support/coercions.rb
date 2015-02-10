@@ -1,3 +1,5 @@
+require 'vedeu/support/common'
+
 module Vedeu
 
   # Provides means to convert attributes into the correct model.
@@ -6,6 +8,21 @@ module Vedeu
   module Coercions
 
     include Vedeu::Common
+
+    # Produces new objects of the correct class from the value, ignores objects
+    # that have already been coerced.
+    def coerce(value)
+      if value.is_a?(self)
+        value
+
+      elsif value.nil?
+        new
+
+      else
+        new(value)
+
+      end
+    end
 
     # Produces new objects of the correct class from attributes hashes,
     # ignores objects that have already been coerced.
@@ -20,7 +37,7 @@ module Vedeu
           value
 
         else
-          self.new(value)
+          new(value)
 
         end
       end

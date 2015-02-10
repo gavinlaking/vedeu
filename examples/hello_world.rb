@@ -12,25 +12,30 @@ class HelloWorldApp
   include Vedeu
 
   configure do
+    colour_mode 16777216
     debug!
     log '/tmp/vedeu_hello_world.log'
   end
 
-  event(:_initialize_) { Vedeu.trigger(:_refresh_) }
+  bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
 
   interface 'messages' do
     background '#000000'
-    centred!
     foreground '#00ff00'
-    height     3
-    width      20
+    geometry do
+      centred!
+      height   3
+      width    20
+    end
   end
 
-  render do
+  renders do
     view 'messages' do
-      line '    Hello World!'
-      line
-      line " Press 'q' to exit. "
+      lines do
+        centre 'Hello World!', width: 20
+        line
+        centre "Press 'q' to exit.", width: 20
+      end
     end
   end
 

@@ -9,9 +9,9 @@ module Vedeu
     let(:width)     { 40 }
 
     describe '#initialize' do
-      it { return_type_for(described, BoundingArea) }
-      it { assigns(described, '@height', height) }
-      it { assigns(described, '@width', width) }
+      it { described.must_be_instance_of(BoundingArea) }
+      it { described.instance_variable_get('@height').must_equal(height) }
+      it { described.instance_variable_get('@width').must_equal(width) }
     end
 
     describe '#height' do

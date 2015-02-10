@@ -4,14 +4,16 @@ module Vedeu
 
   describe Sentence do
 
-    let(:described) { Sentence.new(elements, label) }
+    let(:described) { Vedeu::Sentence }
+    let(:instance)  { described.new(elements, label) }
     let(:elements)  { ['Hydrogen'] }
     let(:label)     { 'elements' }
 
     describe '#initialize' do
-      it { return_type_for(described, Sentence) }
-      it { assigns(described, '@elements', elements) }
-      it { assigns(described, '@label', label) }
+      subject { instance }
+      it { subject.must_be_instance_of(Sentence) }
+      it { subject.instance_variable_get('@elements').must_equal(elements) }
+      it { subject.instance_variable_get('@label').must_equal(label) }
     end
 
     describe '.construct' do

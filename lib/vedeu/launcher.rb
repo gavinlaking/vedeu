@@ -46,14 +46,12 @@ module Vedeu
     def execute!
       $stdin, $stdout, $stderr = @stdin, @stdout, @stderr
 
-      Configuration.configure(argv)
-
-      Application.start
+      Application.start(configuration)
 
       @exit_code = 0
     rescue StandardError => uncaught_exception
       puts uncaught_exception.message
-      puts uncaught_exception.backtrace.join("\n")
+      puts uncaught_exception.backtrace.join("\n") if configuration.debug?
 
     ensure
       Vedeu.log("Exiting gracefully.")
@@ -65,6 +63,11 @@ module Vedeu
     private
 
     attr_reader :argv
+
+    # @return []
+    def configuration
+      Configuration.configure(argv)
+    end
 
   end # Launcher
 

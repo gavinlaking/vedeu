@@ -2,7 +2,46 @@ require 'test_helper'
 
 module Vedeu
 
+  class CoercionsTestClass
+
+    include Coercions
+
+    attr_reader :attributes
+
+    def initialize(attributes = {})
+      @attributes = attributes
+    end
+
+  end # CoercionsTestClass
+
   describe Coercions do
+
+    describe '.coerce' do
+      let(:described) { Vedeu::Style }
+      let(:value)     { 'bold' }
+
+      subject { described.coerce(value) }
+
+      it { subject.must_be_instance_of(described) }
+
+      context 'when the value is nil' do
+        let(:value) { nil }
+
+        it { subject.must_be_instance_of(described) }
+      end
+
+      context 'when the value is a Style already' do
+        let(:value) { Vedeu::Style.new('bold') }
+
+        it { subject.must_equal(value) }
+      end
+
+      context 'when the value is an Array' do
+        let(:value)  { [:bold, :blink] }
+
+        it { subject.value.must_equal([:bold, :blink]) }
+      end
+    end
 
     describe '.coercer' do
       [nil, [], {}].each do |empty_value|

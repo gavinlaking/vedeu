@@ -2,7 +2,8 @@ module Vedeu
 
   class BoundingArea
 
-    attr_reader :height, :width
+    attr_reader :height,
+      :width
 
     # Returns an instance of BoundingArea.
     #

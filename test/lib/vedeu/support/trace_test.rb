@@ -4,20 +4,32 @@ module Vedeu
 
   describe Trace do
 
-    let(:described) { Trace.new(options) }
+    let(:described) { Vedeu::Trace }
+    let(:instance)  { described.new(options) }
     let(:options)   { {} }
 
-    describe '.call' do
-      it { skip }
-    end
-
     describe '#initialize' do
-      it { return_type_for(described, Trace) }
-      it { assigns(described, '@options', options) }
+      subject { instance }
+
+      it { subject.must_be_instance_of(Trace) }
+      it { subject.instance_variable_get('@options').must_equal(options) }
     end
 
-    describe '#trace' do
-      it { skip }
+    describe '.call' do
+      subject { described.call(options) }
+
+      context 'when trace is enabled in the configuration' do
+      end
+
+      context 'when trace is disabled in the configuration' do
+        context 'and not enabled via the options' do
+
+        end
+        context 'but enabled via the options' do
+          let(:options) { { trace: true } }
+
+        end
+      end
     end
 
   end # Trace

@@ -22,23 +22,28 @@ class VedeuConfigurationApp
   include Vedeu
 
   configure do
+    colour_mode 16777216
     debug!
     log '/tmp/vedeu_configuration_app.log'
   end
 
   interface 'config' do
-    width 40
-    height 2
-    centred!
-  end
-
-  render do
-    view 'config' do
-      line Configuration.log.inspect + " " + Process.pid.to_s
+    geometry do
+      width  40
+      height 2
+      centred!
     end
   end
 
-  keys('config') do
+  renders do
+    view 'config' do
+      lines do
+        line Configuration.log.inspect + " " + Process.pid.to_s
+      end
+    end
+  end
+
+  keymap('config') do
     key(' ') { Vedeu.trigger(:_refresh_config_) }
   end
 

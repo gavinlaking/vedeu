@@ -8,6 +8,30 @@ module Vedeu
   #
   class Viewport
 
+    extend Forwardable
+
+    def_delegators :interface,
+      :border,
+      :border?,
+      :geometry,
+      :lines,
+      :lines?,
+      :cursor
+
+    def_delegators :border,
+      :bottom?,
+      :left?,
+      :right?,
+      :top?
+
+    def_delegators :cursor,
+      :ox,
+      :oy
+
+    def_delegators :geometry,
+      :height,
+      :width
+
     # @see Viewport#show
     def self.show(interface)
       new(interface).show
@@ -19,8 +43,6 @@ module Vedeu
     # @return [Viewport]
     def initialize(interface)
       @interface = interface
-      @top       = 0
-      @left      = 0
     end
 
     # Returns the visible content for the interface.
@@ -32,12 +54,16 @@ module Vedeu
     #
     # @return [Array]
     def show
-      line_adjustment
-      column_adjustment
-
-      return [] unless content?
+      return [] unless lines?
 
       line_pad.map { |line| column_pad(line) }.compact
+    end
+
+    # Returns a string representation of the viewport.
+    #
+    # @return [String]
+    def to_s
+      show.map(&:join).join("\n")
     end
 
     private
@@ -49,13 +75,13 @@ module Vedeu
     #
     # @return [Array<Array<String>>]
     def line_pad
-      cl = content[lines] || []
+      visible_lines = lines[rows] || []
 
-      if cl.size < (height + 1)
-        cl + [" "] * ((height + 1) - cl.size)
+      if visible_lines.size < height
+        visible_lines + [" "] * (height - visible_lines.size)
 
       else
-        cl
+        visible_lines
 
       end
     end
@@ -66,123 +92,81 @@ module Vedeu
     # @param line [Array<String>]
     # @return [Array<String>]
     def column_pad(line)
-      chars = line.chars[columns] || [" "]
+      visible_columns = line.chars[columns] || []
 
-      if chars.size < width
-        chars + [" "] * (width - chars.size)
+      if visible_columns.size < width
+        visible_columns + [" "] * (width - visible_columns.size)
 
       else
-        chars
+        visible_columns
 
       end
     end
 
-    # Scrolls the content vertically when the stored y offset for the interface
-    # is outside of the visible area.
+    # Using the current cursor's x position, return a range of visible lines.
+    #
+    # Scrolls the content horizontally when the stored cursor's x position for
+    # the interface is outside of the visible area.
     #
     # @note
-    #   @top = [value, 0].max # this allows us to set a top that is greater than
-    #                         # the content height.
+    #   [value, 0].max # this allows us to set a left that is greater
+    #                  # than the content width.
     #
-    #   @top = [[value, (content_height - height)].min, 0].max
-    #                         # this does not allow us to have an offset greater
-    #                         # than the content height.
+    #   [[value, (content_width - width)].min, 0].max
+    #                  # this does not allow us to have a position
+    #                  # greater than the content width.
     #
-    # @return [Fixnum]
-    def line_adjustment
-      if offset.y < 0
-        @top = [offset.y, 0].max
+    # @return [Range]
+    def rows
+      top = if oy >= bordered_height
+        [(oy - bordered_height), 0].max
 
-      elsif offset.y > height
-        @top = [(offset.y - height), 0].max
+      else
+        0
 
       end
+
+      top..(top + (height - 1))
     end
 
-    # Scrolls the content horizontally when the stored x offset for the
+    # Using the current cursor's y position, return a range of visible columns.
+    #
+    # Scrolls the content vertically when the stored cursor's y position for the
     # interface is outside of the visible area.
     #
     # @note
-    #   @left = [value, 0].max # this allows us to set a left that is greater
-    #                          # than the content width.
+    #   [value, 0].max # this allows us to set a top that is greater than
+    #                  # the content height.
     #
-    #   @left = [[value, (content_width - width)].min, 0].max
-    #                         # this does not allow us to have an offset greater
-    #                         # than the content width.
-    #
-    # @return [Fixnum]
-    def column_adjustment
-      if offset.x < 0
-        @left = [offset.x, 0].max
-
-      elsif offset.x > width
-        @left = [(offset.x - width), 0].max
-
-      end
-    end
-
-    # Using the current x offset, return a range of visible lines.
-    #
-    # @return [Range]
-    def lines
-      @top..(@top + height)
-    end
-
-    # Using the current y offset, return a range of visible columns.
+    #   [[value, (content_height - height)].min, 0].max
+    #                  # this does not allow us to have a position
+    #                  # greater than the content height.
     #
     # @return [Range]
     def columns
-      @left..(@left + width)
+      left = if ox >= bordered_width
+        [(ox - bordered_width), 0].max
+
+      else
+        0
+
+      end
+
+      left..(left + (width - 1))
     end
 
-    # Returns the height of the content, or when no content, the visible height
-    # of the interface.
-    #
     # @return [Fixnum]
-    def content_height
-      return height unless content?
+    def bordered_width
+      return border.width if border?
 
-      [content.size, height].max
+      width
     end
 
-    # Returns the width of the content, or when no content, the visible width of
-    # the interface.
-    #
     # @return [Fixnum]
-    def content_width
-      return width unless content?
+    def bordered_height
+      return border.height if border?
 
-      [content_maximum_line_length, width].max
-    end
-
-    # Returns the character length of the longest line for this interface.
-    #
-    # @return [Fixnum]
-    def content_maximum_line_length
-      content.map { |line| line.size }.max
-    end
-
-    # Return a boolean indicating whether this interface currently has content.
-    #
-    # @return [Boolean]
-    def content?
-      content.any?
-    end
-
-    def content
-      interface.content
-    end
-
-    def offset
-      interface.offset
-    end
-
-    def width
-      interface.width - 1
-    end
-
-    def height
-      interface.height - 1
+      height
     end
 
   end # Viewport

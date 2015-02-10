@@ -7,11 +7,14 @@ module Vedeu
     before { Configuration.reset! }
     after  { test_configuration }
 
-    describe '#colour_mode' do
-      it 'returns the value of the colour_mode option' do
-        skip
-        Configuration.colour_mode.must_equal(16777216)
-        Configuration.colour_mode.must_equal(256)
+    describe '.default_system_keys' do
+      it 'returns the default system keys' do
+        Configuration.default_system_keys.must_equal({
+          exit:        'q',
+          focus_next:  :tab,
+          focus_prev:  :shift_tab,
+          mode_switch: :escape,
+        })
       end
     end
 
@@ -24,13 +27,6 @@ module Vedeu
     describe '#interactive?' do
       it 'returns the value of the interactive option' do
         Configuration.interactive?.must_equal(true)
-      end
-    end
-
-    describe '#log' do
-      it 'returns the value of the log option' do
-        skip
-        Configuration.log.must_match(/vedeu_test\.log/)
       end
     end
 
@@ -54,23 +50,9 @@ module Vedeu
 
     describe '.configure' do
       it 'returns the options configured' do
-        Configuration.configure.must_equal(
-          {
-            colour_mode:   256,
-            debug:         false,
-            interactive:   true,
-            log:           '/tmp/vedeu.log',
-            once:          false,
-            system_keys:   {
-              exit:        'q',
-              focus_next:  :tab,
-              focus_prev:  :shift_tab,
-              mode_switch: :escape
-            },
-            terminal_mode: :raw,
-            trace:         false
-          }
-        )
+        Configuration.configure do
+          # ...
+        end.must_equal(Vedeu::Configuration)
       end
     end
 
