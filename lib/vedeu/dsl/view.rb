@@ -1,4 +1,3 @@
-require 'vedeu/support/common'
 require 'vedeu/models/view/composition'
 
 module Vedeu
@@ -11,8 +10,6 @@ module Vedeu
     class View
 
       class << self
-
-        include Vedeu::Common
 
         # Register an interface by name which will display output from a event
         # or command. This provides the means for you to define your the views
