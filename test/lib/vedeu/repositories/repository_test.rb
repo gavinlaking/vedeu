@@ -173,6 +173,14 @@ module Vedeu
     end
 
     describe '#registered?' do
+      it 'returns false with no name' do
+        RepositoriesTestClass.new.registered?('').must_equal(false)
+      end
+
+      it 'returns false with no name' do
+        RepositoriesTestClass.new.registered?(nil).must_equal(false)
+      end
+
       it 'returns false when the storage is empty' do
         RepositoriesTestClass.new.registered?('terbium').must_equal(false)
       end
