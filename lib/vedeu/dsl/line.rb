@@ -113,19 +113,19 @@ module Vedeu
 
       attr_reader :client, :model
 
-      # Return the class name for the children on this model.
-      #
-      # @return [Class]
-      def child
-        Vedeu::Stream
-      end
-
       # @return [Hash]
       def attributes
         {
           client: client,
           parent: model,
         }
+      end
+
+      # Return the class name for the children on this model.
+      #
+      # @return [Class]
+      def child
+        Vedeu::Stream
       end
 
     end # Line
