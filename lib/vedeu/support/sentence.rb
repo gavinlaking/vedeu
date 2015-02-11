@@ -8,12 +8,16 @@ module Vedeu
         new(elements, label).construct
       end
 
-    end # Sentence eigenclass
+    end
 
+    # @param elements [Array]
+    # @param label [String]
+    # @return [Vedeu::Sentence]
     def initialize(elements, label)
       @elements, @label = elements, label
     end
 
+    # @return [String]
     def construct
       if one?
         first
@@ -34,14 +38,17 @@ module Vedeu
 
     attr_reader :elements, :label
 
+    # @return [Boolean]
     def one?
       count == 1
     end
 
+    # @return [Boolean]
     def two?
       count == 2
     end
 
+    # @return [Boolean]
     def many?
       count > 2
     end
@@ -58,6 +65,7 @@ module Vedeu
       elements[-1]
     end
 
+    # @return [Fixnum]
     def count
       elements.size
     end

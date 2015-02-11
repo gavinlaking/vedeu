@@ -15,6 +15,8 @@ module Vedeu
       :x,
       :y
 
+    # @param interface [Vedeu::Interface]
+    # @return [Vedeu::ContentGeometry]
     def initialize(interface)
       @interface = interface
     end
