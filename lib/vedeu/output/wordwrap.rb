@@ -55,7 +55,7 @@ module Vedeu
 
       processed.reduce([]) do |output, line|
         output << line.join(' ')
-      end.join("\n")
+      end
     end
 
     # @return [Vedeu::Lines]
@@ -72,6 +72,14 @@ module Vedeu
 
     # @todo
     def wrap_as_lines
+      line_objects = Array(wrap).map do |text_line|
+        stream        = Vedeu::Stream.new(text_line)
+        line          = Vedeu::Line.new
+        stream.parent = line
+        line.streams << stream
+        line
+      end
+      Vedeu::Lines.new(line_objects)
     end
 
     private

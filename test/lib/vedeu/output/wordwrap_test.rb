@@ -112,57 +112,62 @@ module Vedeu
       context 'with a single line of text' do
         let(:text) { text_line }
 
-        it { subject.must_equal(
-          "Krypton (from Greek: κρυπτός\nkryptos 'the hidden one')."
-        ) }
+        it { subject.must_equal([
+            "Krypton (from Greek: κρυπτός",
+            "kryptos 'the hidden one')."
+          ])
+        }
       end
 
       context 'with a text block' do
         let(:text) { text_block }
 
-        it { subject.must_equal(
-          "Krypton (from Greek: κρυπτός\n" \
-          "kryptos 'the hidden one') is\n" \
-          "a chemical element with\n"      \
-          "symbol Kr and atomic number\n"  \
-          "36. It is a member of group\n"  \
+        it { subject.must_equal([
+          "Krypton (from Greek: κρυπτός",
+          "kryptos 'the hidden one') is",
+          "a chemical element with",
+          "symbol Kr and atomic number",
+          "36. It is a member of group",
           "18 (noble gases) elements."
-        ) }
+          ])
+        }
       end
 
       context 'with a text block containing newlines' do
         let(:text) { text_newlines }
 
-        it { subject.must_equal(
-          "Krypton is a colorless,\n"    \
-          "odorless, tasteless noble\n"  \
-          "gas.\n"                       \
-          "It occurs in trace amounts\n" \
-          "in the atmosphere.\n"         \
-          "It is isolated by\n"          \
-          "fractionally distilling\n"    \
-          "liquefied air.\n"             \
-          "Krypton is often used with\n" \
-          "other rare gases in\n"        \
+        it { subject.must_equal([
+          "Krypton is a colorless,",
+          "odorless, tasteless noble",
+          "gas.",
+          "It occurs in trace amounts",
+          "in the atmosphere.",
+          "It is isolated by",
+          "fractionally distilling",
+          "liquefied air.",
+          "Krypton is often used with",
+          "other rare gases in",
           "fluorescent lamps."
-        ) }
+          ])
+        }
       end
 
       context 'with a text block containing newlines and blank lines' do
         let(:text) { text_blanklines }
 
-        it { subject.must_equal(
-          "Krypton (from Greek: κρυπτός\n" \
-          "kryptos 'the hidden one').\n"   \
-          "\n"                             \
-          "It is a chemical element\n"     \
-          "with symbol Kr and atomic\n"    \
-          "number 36.\n"                   \
-          "It is a member of group 18\n"   \
-          "(noble gases) elements.\n"      \
-          "\n"                             \
+        it { subject.must_equal([
+          "Krypton (from Greek: κρυπτός",
+          "kryptos 'the hidden one').",
+          "",
+          "It is a chemical element",
+          "with symbol Kr and atomic",
+          "number 36.",
+          "It is a member of group 18",
+          "(noble gases) elements.",
+          "",
           "-- Wikipedia"
-        ) }
+          ])
+        }
       end
     end
 
@@ -199,36 +204,30 @@ module Vedeu
     describe '#wrap_as_lines' do
       subject { instance.wrap_as_lines }
 
+      it { subject.must_be_instance_of(Vedeu::Lines) }
+
       context 'with a single line of text' do
         let(:text) { text_line }
 
-        it { skip; subject.must_equal(
-          ""
-        ) }
+        it { subject.size.must_equal(2) }
       end
 
       context 'with a text block' do
         let(:text) { text_block }
 
-        it { skip; subject.must_equal(
-          ""
-        ) }
+        it { subject.size.must_equal(6) }
       end
 
       context 'with a text block containing newlines' do
         let(:text) { text_newlines }
 
-        it { skip; subject.must_equal(
-          ""
-        ) }
+        it { subject.size.must_equal(11) }
       end
 
       context 'with a text block containing newlines and blank lines' do
         let(:text) { text_blanklines }
 
-        it { skip; subject.must_equal(
-          ""
-        ) }
+        it { subject.size.must_equal(10) }
       end
     end
 
