@@ -8,6 +8,20 @@ module Vedeu
 
     attr_reader :repository
 
+    module ClassMethods
+      def member(klass)
+        send(:define_method, :member) { klass }
+      end
+
+      def collection(klass)
+        send(:define_method, :collection) { klass }
+      end
+    end # ClassMethods
+
+    def self.included(klass)
+      klass.send :extend, ClassMethods
+    end
+
     # Returns a DSL instance responsible for defining the DSL methods of this
     # model.
     #
