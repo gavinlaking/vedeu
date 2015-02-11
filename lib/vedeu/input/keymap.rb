@@ -8,11 +8,13 @@ module Vedeu
 
     include Vedeu::Model
 
+    collection Vedeu::Keys
+    member     Vedeu::Key
+
     attr_accessor :name
-    attr_reader   :keys, :repository
+    attr_reader   :repository
 
     class << self
-
 
       # @option attributes client []
       # @option attributes keys []
@@ -79,7 +81,7 @@ module Vedeu
     # @return [Vedeu::Keymap]
     def initialize(name = '', keys = [], repository = nil)
       @name       = name
-      @keys       = Vedeu::Model::Collection.coerce(keys)
+      @keys       = keys
       @repository = repository || Vedeu.keymaps
     end
 
@@ -87,10 +89,12 @@ module Vedeu
     def add(key)
       return false unless valid?(key)
 
-      @keys << key
+      @keys = keys.add(key)
+    end
 
-      # immutable Keymap version:
-      # self.new(name, @keys += [key]).store if valid?(key)
+    # @return [Vedeu::Keys]
+    def keys
+      collection.coerce(@keys,  self)
     end
 
     # @param input [String|Symbol]
