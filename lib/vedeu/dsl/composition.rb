@@ -38,7 +38,7 @@ module Vedeu
 
         new_member = if Vedeu.interfaces.registered?(name)
           existing_member = Vedeu.interfaces.find(name)
-          model.member.build(attributes.merge(interface.attributes), &block)
+          model.member.build(attributes.merge(existing_member.attributes), &block)
 
         else
           model.member.build(attributes.merge({ name: name }), &block)
