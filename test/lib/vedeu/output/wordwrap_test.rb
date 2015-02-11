@@ -103,15 +103,6 @@ module Vedeu
             ])
           }
         end
-
-        context 'with a text block made up of Vedeu::Line objects' do
-          let(:text) { text_line_objects }
-
-          it { skip; subject.must_equal(
-            ""
-          ) }
-        end
-
       end
     end
 
@@ -173,55 +164,35 @@ module Vedeu
           "-- Wikipedia"
         ) }
       end
-
-      context 'with a text block made up of Vedeu::Line objects' do
-        let(:text) { text_line_objects }
-
-        it { skip; subject.must_equal("") }
-      end
     end
 
     describe '#prune_as_lines' do
       subject { instance.prune_as_lines }
 
+      it { subject.must_be_instance_of(Vedeu::Lines) }
+
       context 'with a single line of text' do
         let(:text) { text_line }
 
-        it { skip; subject.must_equal(
-          ""
-        ) }
+        it { subject.size.must_equal(1) }
       end
 
       context 'with a text block' do
         let(:text) { text_block }
 
-        it { skip; subject.must_equal(
-          ""
-        ) }
+        it { subject.size.must_equal(1) }
       end
 
       context 'with a text block containing newlines' do
         let(:text) { text_newlines }
 
-        it { skip; subject.must_equal(
-          ""
-        ) }
+        it { subject.size.must_equal(4) }
       end
 
       context 'with a text block containing newlines and blank lines' do
         let(:text) { text_blanklines }
 
-        it { skip; subject.must_equal(
-          ""
-        ) }
-      end
-
-      context 'with a text block made up of Vedeu::Line objects' do
-        let(:text) { text_line_objects }
-
-        it { skip; subject.must_equal(
-          ""
-        ) }
+        it { subject.size.must_equal(6) }
       end
     end
 
@@ -254,14 +225,6 @@ module Vedeu
 
       context 'with a text block containing newlines and blank lines' do
         let(:text) { text_blanklines }
-
-        it { skip; subject.must_equal(
-          ""
-        ) }
-      end
-
-      context 'with a text block made up of Vedeu::Line objects' do
-        let(:text) { text_line_objects }
 
         it { skip; subject.must_equal(
           ""

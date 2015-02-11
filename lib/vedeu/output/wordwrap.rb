@@ -18,8 +18,8 @@ module Vedeu
 
       processed = []
 
-      if text_as_lines.size > 1
-        processed = text_as_lines.reduce([]) do |acc, line|
+      if split_lines.size > 1
+        processed = split_lines.reduce([]) do |acc, line|
           acc << ellipsis_string(line)
         end
 
@@ -58,9 +58,16 @@ module Vedeu
       end.join("\n")
     end
 
-    # @todo
+    # @return [Vedeu::Lines]
     def prune_as_lines
-
+      line_objects = Array(prune).map do |text_line|
+        stream        = Vedeu::Stream.new(text_line)
+        line          = Vedeu::Line.new
+        stream.parent = line
+        line.streams << stream
+        line
+      end
+      Vedeu::Lines.new(line_objects)
     end
 
     # @todo
@@ -72,7 +79,7 @@ module Vedeu
     attr_reader :text, :options
 
     # @return [Array<String>]
-    def text_as_lines
+    def split_lines
       text.split(/\n/)
     end
 
