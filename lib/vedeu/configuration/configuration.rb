@@ -124,6 +124,8 @@ module Vedeu
         }
       end
 
+      # @param value []
+      # @return []
       def options=(value)
         instance.options = value
       end

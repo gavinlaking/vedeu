@@ -47,10 +47,12 @@ module Vedeu
       end
     end
 
+    # @return [Boolean]
     def visible?
       @visible
     end
 
+    # @return [Boolean]
     def invisible?
       !@visible
     end

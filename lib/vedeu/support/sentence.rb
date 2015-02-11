@@ -1,9 +1,18 @@
 module Vedeu
 
+  # Take a collection of words (elements) and form a sentence from them.
+  #
+  # @example
+  #   elements = ['Hydrogen', 'Helium', 'Lithium']
+  #   Vedeu::Sentence.construct(elements) # => 'Hydrogen, Helium and Lithium'
+  #
   class Sentence
 
     class << self
 
+      # @param elements [Array]
+      # @param label [String]
+      # @return [String]
       def construct(elements, label = 'elements')
         new(elements, label).construct
       end
@@ -53,14 +62,17 @@ module Vedeu
       count > 2
     end
 
+    # @return [String]
     def but_last
       elements[0...-1].join(', ')
     end
 
+    # @return [String]
     def first
       elements.first
     end
 
+    # @return [String]
     def last
       elements[-1]
     end
