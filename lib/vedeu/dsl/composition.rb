@@ -1,3 +1,5 @@
+require 'vedeu/models/view/interface'
+
 module Vedeu
 
   module DSL

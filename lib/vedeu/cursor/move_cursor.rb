@@ -1,4 +1,5 @@
 require 'vedeu/cursor/cursor'
+require 'vedeu/support/coordinate'
 require 'vedeu/support/position_validator'
 
 module Vedeu
