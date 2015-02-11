@@ -58,7 +58,7 @@ module Vedeu
           end
 
           unless model.key_defined?(value)
-            model.add(Vedeu::Key.define(value, &block))
+            model.add(model.member.build(value, &block))
           end
         end
       end

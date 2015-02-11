@@ -8,13 +8,13 @@ module Vedeu
     let(:instance)  { described.new(input) { :output } }
     let(:input)     { 'a' }
 
-    describe '.define' do
-      subject { described.define(input) { :output } }
+    describe '.build' do
+      subject { described.build(input) { :output } }
 
       it { subject.must_be_instance_of(Key) }
 
       context 'when the required block is not given' do
-        subject { described.define(input) }
+        subject { described.build(input) }
 
         it { proc { subject }.must_raise(InvalidSyntax) }
       end
