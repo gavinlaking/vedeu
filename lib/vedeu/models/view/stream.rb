@@ -13,6 +13,9 @@ module Vedeu
     include Vedeu::Model
     include Vedeu::Presentation
 
+    collection Vedeu::Chars
+    member     Vedeu::Char
+
     attr_accessor :parent,
       :value
 
@@ -85,7 +88,7 @@ module Vedeu
       return [] if value.empty?
 
       value.chars.map do |char|
-        child.new(char, parent, colour, style, nil).to_s
+        member.new(char, parent, colour, style, nil).to_s
       end
     end
 
@@ -121,22 +124,6 @@ module Vedeu
     # @return [Fixnum]
     def width
       parent.width if parent
-    end
-
-    private
-
-    # Return the class name for the children on this model.
-    #
-    # @return [Class]
-    def child
-      Vedeu::Char
-    end
-
-    # Return the class name for the collection of children on this model.
-    #
-    # @return [Class]
-    def children
-      Vedeu::Chars
     end
 
   end # Stream

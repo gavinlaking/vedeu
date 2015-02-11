@@ -36,16 +36,16 @@ module Vedeu
       def view(name = '', &block)
         fail InvalidSyntax, 'block not given' unless block_given?
 
-        child_model = if Vedeu.interfaces.registered?(name)
-          interface = Vedeu.interfaces.find(name)
-          child.build(attributes.merge(interface.attributes), &block)
+        new_member = if Vedeu.interfaces.registered?(name)
+          existing_member = Vedeu.interfaces.find(name)
+          model.member.build(attributes.merge(interface.attributes), &block)
 
         else
-          child.build(attributes.merge({ name: name }), &block)
+          model.member.build(attributes.merge({ name: name }), &block)
 
         end
 
-        model.add(child_model)
+        model.add(new_member)
       end
 
       private
@@ -58,13 +58,6 @@ module Vedeu
           client: client,
           parent: model,
         }
-      end
-
-      # Return the class name for the children on this model.
-      #
-      # @return [Class]
-      def child
-        Vedeu::Interface
       end
 
     end # Composition
