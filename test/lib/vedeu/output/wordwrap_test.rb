@@ -24,15 +24,15 @@ module Vedeu
       "18 (noble gases) elements."
     }
     let(:text_newlines) {
-      "Krypton is a colorless, odorless, tasteless noble gas.\n" \
-      "It occurs in trace amounts in the atmosphere.\n" \
-      "It is isolated by fractionally distilling liquefied air.\n" \
+      "Krypton is a colorless, odorless, tasteless noble gas.\n"            \
+      "It occurs in trace amounts in the atmosphere.\n"                     \
+      "It is isolated by fractionally distilling liquefied air.\n"          \
       "Krypton is often used with other rare gases in fluorescent lamps.\n"
     }
     let(:text_blanklines) {
-      "Krypton (from Greek: κρυπτός kryptos 'the hidden one').\n\n" \
+      "Krypton (from Greek: κρυπτός kryptos 'the hidden one').\n\n"     \
       "It is a chemical element with symbol Kr and atomic number 36.\n" \
-      "It is a member of group 18 (noble gases) elements.\n\n" \
+      "It is a member of group 18 (noble gases) elements.\n\n"          \
       "-- Wikipedia"
     }
     let(:text_line_objects) {
@@ -60,13 +60,58 @@ module Vedeu
       context 'when the text is <= the pruning width' do
         let(:width) { 80 }
 
+        it { subject.must_be_instance_of(String) }
+
         it { subject.must_equal(
           "Krypton (from Greek: κρυπτός kryptos 'the hidden one')."
         ) }
       end
 
       context 'when the text is > the pruning width' do
-        it { subject.must_equal("Krypton (from Greek: κρυπτός...") }
+        context 'with a single line of text' do
+          it { subject.must_equal("Krypton (from Greek: κρυπτός...") }
+        end
+
+        context 'with a text block' do
+          let(:text) { text_block }
+
+          it { subject.must_equal("Krypton (from Greek: κρυπτός...") }
+        end
+
+        context 'with a text block containing newlines' do
+          let(:text) { text_newlines }
+
+          it { subject.must_equal([
+              "Krypton is a colorless, odor...",
+              "It occurs in trace amounts i...",
+              "It is isolated by fractional...",
+              "Krypton is often used with o..."
+            ])
+          }
+        end
+
+        context 'with a text block containing newlines and blank lines' do
+          let(:text) { text_blanklines }
+
+          it { subject.must_equal([
+            "Krypton (from Greek: κρυπτός...",
+            "",
+            "It is a chemical element wit...",
+            "It is a member of group 18 (...",
+            "",
+            "-- Wikipedia..."
+            ])
+          }
+        end
+
+        context 'with a text block made up of Vedeu::Line objects' do
+          let(:text) { text_line_objects }
+
+          it { skip; subject.must_equal(
+            ""
+          ) }
+        end
+
       end
     end
 
@@ -87,9 +132,9 @@ module Vedeu
         it { subject.must_equal(
           "Krypton (from Greek: κρυπτός\n" \
           "kryptos 'the hidden one') is\n" \
-          "a chemical element with\n" \
-          "symbol Kr and atomic number\n" \
-          "36. It is a member of group\n" \
+          "a chemical element with\n"      \
+          "symbol Kr and atomic number\n"  \
+          "36. It is a member of group\n"  \
           "18 (noble gases) elements."
         ) }
       end
@@ -98,16 +143,16 @@ module Vedeu
         let(:text) { text_newlines }
 
         it { subject.must_equal(
-          "Krypton is a colorless,\n" \
-          "odorless, tasteless noble\n" \
-          "gas.\n" \
+          "Krypton is a colorless,\n"    \
+          "odorless, tasteless noble\n"  \
+          "gas.\n"                       \
           "It occurs in trace amounts\n" \
-          "in the atmosphere.\n" \
-          "It is isolated by\n" \
-          "fractionally distilling\n" \
-          "liquefied air.\n" \
+          "in the atmosphere.\n"         \
+          "It is isolated by\n"          \
+          "fractionally distilling\n"    \
+          "liquefied air.\n"             \
           "Krypton is often used with\n" \
-          "other rare gases in\n" \
+          "other rare gases in\n"        \
           "fluorescent lamps."
         ) }
       end
