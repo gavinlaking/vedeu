@@ -81,6 +81,20 @@ module Vedeu
       @y = bottom - 2 if bottom? && y > (bottom - 1)
     end
 
+    # def x
+    #   @x = [[[[@x, tx].max, txn].min, left].max, right].min
+    #   @x = border? && left?  ? [@x, (left + 1)].max  : @x
+    #   @x = border? && right? ? [@x, (right - 2)].min : @x
+    #   @x
+    # end
+
+    # def y
+    #   @y = [[[[@y, ty].max, tyn].min, top].max, bottom].min
+    #   @y = border? && top?    ? [@y, (top + 1)].max    : @y
+    #   @y = border? && bottom? ? [@y, (bottom - 2)].min : @y
+    #   @y
+    # end
+
   end # PositionValidator
 
 end # Vedeu
