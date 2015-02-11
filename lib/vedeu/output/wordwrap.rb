@@ -58,33 +58,37 @@ module Vedeu
       end
     end
 
-    # @return [Vedeu::Lines]
-    def prune_as_lines
-      line_objects = Array(prune).map do |text_line|
-        stream        = Vedeu::Stream.new(text_line)
-        line          = Vedeu::Line.new
-        stream.parent = line
-        line.streams << stream
-        line
-      end
-      Vedeu::Lines.new(line_objects)
-    end
+    def as_lines
+      if __callee__ == :prune_as_lines
+        to_line_objects(prune)
 
-    # @todo
-    def wrap_as_lines
-      line_objects = Array(wrap).map do |text_line|
-        stream        = Vedeu::Stream.new(text_line)
-        line          = Vedeu::Line.new
-        stream.parent = line
-        line.streams << stream
-        line
+      elsif __callee__ == :wrap_as_lines
+        to_line_objects(wrap)
+
+      else
+        to_line_objects(split_lines)
+
       end
-      Vedeu::Lines.new(line_objects)
     end
+    alias_method :prune_as_lines, :as_lines
+    alias_method :wrap_as_lines, :as_lines
 
     private
 
     attr_reader :text, :options
+
+    # @param text_as_lines [Array<String>]
+    # @return [Vedeu::Lines]
+    def to_line_objects(text_as_lines)
+      line_objects = Array(text_as_lines).map do |text_line|
+        stream        = Vedeu::Stream.new(text_line)
+        line          = Vedeu::Line.new
+        stream.parent = line
+        line.add(stream)
+        line
+      end
+      Vedeu::Lines.new(line_objects)
+    end
 
     # @return [Array<String>]
     def split_lines

@@ -171,8 +171,8 @@ module Vedeu
       end
     end
 
-    describe '#prune_as_lines' do
-      subject { instance.prune_as_lines }
+    describe '#as_lines' do
+      subject { instance.as_lines }
 
       it { subject.must_be_instance_of(Vedeu::Lines) }
 
@@ -199,35 +199,65 @@ module Vedeu
 
         it { subject.size.must_equal(6) }
       end
-    end
 
-    describe '#wrap_as_lines' do
-      subject { instance.wrap_as_lines }
+      context 'alias method #prune_as_lines' do
+        subject { instance.prune_as_lines }
 
-      it { subject.must_be_instance_of(Vedeu::Lines) }
+        it { subject.must_be_instance_of(Vedeu::Lines) }
 
-      context 'with a single line of text' do
-        let(:text) { text_line }
+        context 'with a single line of text' do
+          let(:text) { text_line }
 
-        it { subject.size.must_equal(2) }
+          it { subject.size.must_equal(1) }
+        end
+
+        context 'with a text block' do
+          let(:text) { text_block }
+
+          it { subject.size.must_equal(1) }
+        end
+
+        context 'with a text block containing newlines' do
+          let(:text) { text_newlines }
+
+          it { subject.size.must_equal(4) }
+        end
+
+        context 'with a text block containing newlines and blank lines' do
+          let(:text) { text_blanklines }
+
+          it { subject.size.must_equal(6) }
+        end
       end
 
-      context 'with a text block' do
-        let(:text) { text_block }
+      context 'alias method #wrap_as_lines' do
+        subject { instance.wrap_as_lines }
 
-        it { subject.size.must_equal(6) }
-      end
+        it { subject.must_be_instance_of(Vedeu::Lines) }
 
-      context 'with a text block containing newlines' do
-        let(:text) { text_newlines }
+        context 'with a single line of text' do
+          let(:text) { text_line }
 
-        it { subject.size.must_equal(11) }
-      end
+          it { subject.size.must_equal(2) }
+        end
 
-      context 'with a text block containing newlines and blank lines' do
-        let(:text) { text_blanklines }
+        context 'with a text block' do
+          let(:text) { text_block }
 
-        it { subject.size.must_equal(10) }
+          it { subject.size.must_equal(6) }
+        end
+
+        context 'with a text block containing newlines' do
+          let(:text) { text_newlines }
+
+          it { subject.size.must_equal(11) }
+        end
+
+        context 'with a text block containing newlines and blank lines' do
+          let(:text) { text_blanklines }
+
+          it { subject.size.must_equal(10) }
+        end
       end
     end
 
