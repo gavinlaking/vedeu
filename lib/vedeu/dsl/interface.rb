@@ -130,6 +130,8 @@ module Vedeu
       #
       # @return [String]
       def group(value)
+        return false unless defined_value?(value)
+
         if defined_value?(model.name)
           if Vedeu.groups.registered?(value)
             Vedeu.groups.find(value).add(model.name)

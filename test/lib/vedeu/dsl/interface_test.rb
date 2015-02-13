@@ -301,9 +301,17 @@ module Vedeu
       end
 
       describe '#group' do
-        subject { instance.group('elements') }
+        let(:value) { 'elements' }
+
+        subject { instance.group(value) }
 
         it { subject.must_be_instance_of(String) }
+
+        context 'when the value is empty or nil' do
+          let(:value) { '' }
+
+          it { subject.must_equal(false) }
+        end
       end
 
       describe '#keys' do
