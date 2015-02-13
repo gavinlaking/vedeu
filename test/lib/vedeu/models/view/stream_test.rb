@@ -29,6 +29,14 @@ module Vedeu
       it { subject.instance_variable_get('@style').must_equal(style) }
     end
 
+    describe '#add' do
+      let(:child) { instance }
+
+      subject { instance.add(child) }
+
+      it { subject.must_be_instance_of(Vedeu::Streams) }
+    end
+
     describe '#chars' do
       subject { instance.chars }
 
