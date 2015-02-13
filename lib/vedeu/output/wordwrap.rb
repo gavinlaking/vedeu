@@ -58,6 +58,7 @@ module Vedeu
       end
     end
 
+    # @return [Vedeu::Lines]
     def as_lines
       if __callee__ == :prune_as_lines
         to_line_objects(prune)

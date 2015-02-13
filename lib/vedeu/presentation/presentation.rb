@@ -37,12 +37,14 @@ module Vedeu
 
     private
 
+    # @return [String]
     def parent_colour
       return '' unless parent
 
       parent.colour
     end
 
+    # @return [String]
     def parent_style
       return '' unless parent
 

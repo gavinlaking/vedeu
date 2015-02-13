@@ -60,11 +60,12 @@ module Vedeu
 
     attr_reader :name
 
+    # @return [Vedeu::Interface]
     def buffer
       Vedeu.buffers.find(name).content
     end
 
-    # @return [Interface]
+    # @return [Vedeu::Interface]
     def interface
       @interface ||= Vedeu.interfaces.find(name)
     end

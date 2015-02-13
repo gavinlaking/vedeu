@@ -60,25 +60,43 @@ module Vedeu
 
     attr_reader :interface
 
+    # Validate the x and y coordinates are within the dimensions of the
+    # terminal.
+    #
+    # @return [PositionValidator]
     def terminal_validation
       @x = tx  if x < tx
       @x = txn if x > txn
       @y = ty  if y < ty
       @y = tyn if y > tyn
+
+      self
     end
 
+    # Validate the x and y coordinates are within the dimensions of the
+    # interface.
+    #
+    # @return [PositionValidator]
     def interface_validation
       @x = left   if x < left
       @x = right  if x > right
       @y = top    if y < top
       @y = bottom if y > bottom
+
+      self
     end
 
+    # Validate the x and y coordinates are within the dimensions of an interface
+    # with a border.
+    #
+    # @return [PositionValidator]
     def border_validation
       @x = left + 1   if left?   && x < (left + 1)
       @x = right - 2  if right?  && x > (right - 1)
       @y = top + 1    if top?    && y < (top + 1)
       @y = bottom - 2 if bottom? && y > (bottom - 1)
+
+      self
     end
 
     # def x

@@ -17,6 +17,7 @@ module Vedeu
     attr_reader :position
 
     class << self
+
       def coerce(value = nil, parent = nil, colour = nil, style = nil, position = nil)
         if value.is_a?(self)
           value
@@ -37,6 +38,7 @@ module Vedeu
 
         end
       end
+
     end
 
     # Returns a new instance of Char.

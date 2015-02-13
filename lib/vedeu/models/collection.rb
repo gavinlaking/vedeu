@@ -12,6 +12,7 @@ module Vedeu
 
       attr_accessor :parent, :name
 
+      # @return [Vedeu::Model::Collection]
       def self.coerce(collection = [], parent = nil, name = nil)
         if collection.kind_of?(Vedeu::Model::Collection)
           collection
@@ -25,6 +26,7 @@ module Vedeu
         end
       end
 
+      # @return [Vedeu::Model::Collection]
       def initialize(collection = [], parent = nil, name = nil)
         @collection = collection
         @parent     = parent
@@ -45,6 +47,7 @@ module Vedeu
         @collection
       end
 
+      # @return [Enumerator]
       def each(&block)
         @collection.each(&block)
       end
