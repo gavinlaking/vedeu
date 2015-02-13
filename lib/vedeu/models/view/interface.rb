@@ -169,9 +169,11 @@ module Vedeu
       lines.any?
     end
 
-    # @return []
+    # Renders the interface with a border if one is defined.
+    #
+    # @return [Array]
     def render
-      if border
+      if border?
         border.render
 
       else
