@@ -16,26 +16,6 @@ module Vedeu
       it { subject.must_be_instance_of(TrueClass) }
     end
 
-    # describe '.unbind' do
-    #   let(:event_name) { :chlorine }
-
-    #   before do
-    #     Vedeu.bind(:chlorine) { :some_event }
-    #   end
-
-    #   subject { instance.unbind(event_name) }
-
-    #   context 'when the event exists' do
-    #     it { subject.must_be_instance_of(TrueClass) }
-    #   end
-
-    #   context 'when the event does not exist' do
-    #     let(:event_name) { :does_not_exist }
-
-    #     it { subject.must_be_instance_of(FalseClass) }
-    #   end
-    # end
-
     describe '#initialize' do
       subject { instance }
 
@@ -65,7 +45,7 @@ module Vedeu
 
     describe '#trigger' do
       it 'returns the result of calling the closure when debouncing' do
-        event = Event.new(event_name, { debounce: 0.002 }, closure)
+        event = Event.new(event_name, { debounce: 0.0025 }, closure)
         event.trigger.must_equal(nil)
         sleep 0.001
         event.trigger.must_equal(nil)
