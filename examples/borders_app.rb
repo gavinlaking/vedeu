@@ -20,8 +20,6 @@ class VedeuBordersApp
   bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
 
   interface 'default_border' do
-    border do
-    end
     geometry do
       x      2
       y      2
@@ -38,26 +36,20 @@ class VedeuBordersApp
       height 3
       width  7
     end
-    colour  foreground: '#ffffff', background: '#00ff00'
+    colour  foreground: '#ffffff', background: '#ff0000'
   end
 
   interface 'no_top' do
-    border do
-      show_top false
-    end
     geometry do
       x      20
       y      2
       height 3
       width  7
     end
-    colour  foreground: '#ffffff', background: '#0000ff'
+    colour  foreground: '#000000', background: '#ffff00'
   end
 
   interface 'no_bottom' do
-    border do
-      show_bottom false
-    end
     geometry do
       x      29
       y      2
@@ -68,9 +60,6 @@ class VedeuBordersApp
   end
 
   interface 'no_left' do
-    border do
-      show_left false
-    end
     geometry do
       x      38
       y      2
@@ -81,9 +70,6 @@ class VedeuBordersApp
   end
 
   interface 'no_right' do
-    border do
-      show_right false
-    end
     geometry do
       x      47
       y      2
@@ -94,12 +80,6 @@ class VedeuBordersApp
   end
 
   interface 'custom_corners' do
-    border do
-      top_right    'B'
-      top_left     'A'
-      bottom_right 'D'
-      bottom_left  'C'
-    end
     geometry do
       x      2
       y      7
@@ -110,25 +90,16 @@ class VedeuBordersApp
   end
 
   interface 'custom_horizontal_and_vertical' do
-    border do
-      horizontal '*'
-      vertical   '$'
-    end
     geometry do
       x      11
       y      7
       height 3
       width  7
     end
-    colour  foreground: '#ffffff', background: '#00ff00'
+    colour  foreground: '#ffffff', background: '#ff0000'
   end
 
   interface 'only_top' do
-    border do
-      show_right  false
-      show_bottom false
-      show_left   false
-    end
     geometry do
       x      20
       y      7
@@ -139,54 +110,36 @@ class VedeuBordersApp
   end
 
   interface 'only_bottom' do
-    border do
-      show_top   false
-      show_right false
-      show_left  false
-    end
     geometry do
       x      29
       y      7
       height 3
       width  7
     end
-    colour  foreground: '#000000', background: '#ffff00'
+    colour  foreground: '#ffffff', background: '#0000ff'
   end
 
   interface 'only_left' do
-    border do
-      show_top    false
-      show_bottom false
-      show_right  false
-    end
     geometry do
       x      38
       y      7
       height 3
       width  7
     end
-    colour  foreground: '#000000', background: '#ffff00'
+    colour  foreground: '#ffffff', background: '#0000ff'
   end
 
   interface 'only_right' do
-    border do
-      show_top    false
-      show_bottom false
-      show_left   false
-    end
     geometry do
       x      47
       y      7
       height 3
       width  7
     end
-    colour  foreground: '#000000', background: '#ffff00'
+    colour  foreground: '#ffffff', background: '#0000ff'
   end
 
   interface 'custom_colour' do
-    border do
-      colour foreground: '#ffff00', background: '#0000ff'
-    end
     geometry do
       x      2
       y      12
@@ -197,9 +150,6 @@ class VedeuBordersApp
   end
 
   interface 'negative' do
-    border do
-      style 'negative'
-    end
     geometry do
       x      11
       y      12
@@ -210,8 +160,14 @@ class VedeuBordersApp
     style  'normal'
   end
 
+  keymap '_global_' do
+    key('r') { Vedeu.trigger(:_refresh_) }
+  end
+
   renders do
     view('default_border') do
+      border do
+      end
       lines do
         line 'on'
       end
@@ -222,67 +178,115 @@ class VedeuBordersApp
       end
     end
     view('no_top') do
+      border do
+        show_top false
+      end
       lines do
         line 'no t'
       end
     end
     view('no_bottom') do
+      border do
+        show_bottom false
+      end
       lines do
         line 'no b'
       end
     end
     view('no_left') do
+      border do
+        show_left false
+      end
       lines do
         line 'no l'
       end
     end
     view('no_right') do
+      border do
+        show_right false
+      end
       lines do
         line 'no r'
       end
     end
     view('custom_corners') do
+      border do
+        top_right    'B'
+        top_left     'A'
+        bottom_right 'D'
+        bottom_left  'C'
+      end
       lines do
         line 'chars'
         line '1'
       end
     end
     view('custom_horizontal_and_vertical') do
+      border do
+        horizontal '*'
+        vertical   '$'
+      end
       lines do
         line 'chars'
         line '2'
       end
     end
     view('only_top') do
+      border do
+        show_right  false
+        show_bottom false
+        show_left   false
+      end
       lines do
         line 'only'
         line 't'
       end
     end
     view('only_bottom') do
+      border do
+        show_top   false
+        show_right false
+        show_left  false
+      end
       lines do
         line 'only'
         line 'b'
       end
     end
     view('only_left') do
+      border do
+        show_top    false
+        show_bottom false
+        show_right  false
+      end
       lines do
         line 'only'
         line 'l'
       end
     end
     view('only_right') do
+      border do
+        show_top    false
+        show_bottom false
+        show_left   false
+      end
       lines do
         line 'only'
         line 'r'
       end
     end
     view('custom_colour') do
+      border do
+        colour foreground: '#ffff00', background: '#0000ff'
+      end
       lines do
         line 'color'
       end
     end
     view('negative') do
+      border do
+        style 'negative'
+      end
       lines do
         line 'style'
       end

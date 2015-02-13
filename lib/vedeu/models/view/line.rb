@@ -15,6 +15,9 @@ module Vedeu
     include Vedeu::Model
     include Vedeu::Presentation
 
+    collection Vedeu::Streams
+    member     Vedeu::Stream
+
     attr_accessor :parent,
       :streams
 
@@ -103,7 +106,7 @@ module Vedeu
 
     # @return [Vedeu::Streams]
     def streams
-      children.coerce(@streams, self)
+      collection.coerce(@streams, self)
     end
 
     # Delegate to Vedeu::Interface#width if available.
@@ -111,22 +114,6 @@ module Vedeu
     # @return [Fixnum]
     def width
       parent.width if parent
-    end
-
-    private
-
-    # Return the class name for the children on this model.
-    #
-    # @return [Class]
-    def child
-      Vedeu::Stream
-    end
-
-    # Return the class name for the children on this model.
-    #
-    # @return [Class]
-    def children
-      Vedeu::Streams
     end
 
   end # Line

@@ -1,7 +1,6 @@
 module Vedeu
 
   # Adjusts the visibility of the cursor.
-  #
   class ToggleCursor
 
     # @param cursor [Cursor]

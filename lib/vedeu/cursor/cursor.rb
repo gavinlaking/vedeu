@@ -22,12 +22,13 @@ module Vedeu
     # Provides a new instance of Cursor.
     #
     # @param attributes [Hash]
-    # @option attributes name [String] The name of the interface this cursor belongs to.
+    # @option attributes name [String] The name of the interface this cursor
+    #   belongs to.
     # @option attributes ox [Fixnum] The offset x coordinate.
     # @option attributes oy [Fixnum] The offset y coordinate.
     # @option attributes repository [Vedeu::Repository]
-    # @option attributes state [Boolean|Symbol] The visibility of the cursor, either +true+
-    #   or +false+, +:hide+ or +:show+.
+    # @option attributes state [Boolean|Symbol] The visibility of the cursor,
+    #   either +true+ or +false+, +:hide+ or +:show+.
     # @option attributes x [Fixnum] The terminal x coordinate for the cursor.
     # @option attributes y [Fixnum] The terminal y coordinate for the cursor.
     #

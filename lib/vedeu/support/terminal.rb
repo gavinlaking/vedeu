@@ -1,5 +1,4 @@
 require 'vedeu/configuration/configuration'
-require 'vedeu/support/common'
 require 'vedeu/support/esc'
 require 'vedeu/support/log'
 
@@ -11,7 +10,6 @@ module Vedeu
   # @api private
   module Terminal
 
-    include Vedeu::Common
     extend self
 
     # Opens a terminal screen in either `raw` or `cooked` mode. On exit,

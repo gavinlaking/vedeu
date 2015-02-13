@@ -1,5 +1,4 @@
 require 'vedeu/models/model'
-require 'vedeu/support/common'
 
 module Vedeu
 
@@ -9,7 +8,6 @@ module Vedeu
   # @api private
   class Menu
 
-    include Vedeu::Common
     include Vedeu::Model
 
     attr_accessor :collection

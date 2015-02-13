@@ -124,14 +124,14 @@ module Vedeu
 
     # Set the border colour.
     #
-    # @return []
+    # @return [Vedeu::Colour]
     def colour=(value)
       @colour = Colour.coerce(value)
     end
 
     # Set the border style.
     #
-    # @return []
+    # @return [Vedeu::Style]
     def style=(value)
       @style = Style.coerce(value)
     end

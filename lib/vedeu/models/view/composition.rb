@@ -16,6 +16,9 @@ module Vedeu
     include Vedeu::Presentation
     include Vedeu::Model
 
+    collection Vedeu::Interfaces
+    member     Vedeu::Interface
+
     attr_reader  :interfaces
     alias_method :value, :interfaces
 
@@ -77,23 +80,7 @@ module Vedeu
 
     # @return [Vedeu::Interfaces]
     def interfaces
-      children.coerce(@interfaces, self)
-    end
-
-    private
-
-    # Return the class name for the children on this model.
-    #
-    # @return [Class]
-    def child
-      Vedeu::Interface
-    end
-
-    # Return the class name for the children on this model.
-    #
-    # @return [Class]
-    def children
-      Vedeu::Interfaces
+      collection.coerce(@interfaces, self)
     end
 
   end # Composition

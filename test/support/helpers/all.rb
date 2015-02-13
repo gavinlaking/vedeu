@@ -1,6 +1,5 @@
 require 'support/helpers/dsl_model_test_class'
 require 'support/helpers/helpers'
-require 'support/helpers/misc'
 require 'support/helpers/model_test_class'
 require 'support/helpers/presentation'
 require 'support/helpers/repositories'

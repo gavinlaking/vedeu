@@ -5,12 +5,6 @@ module Vedeu
 
   class Console
 
-    attr_reader :height,
-      :width
-
-    alias_method :yn, :height
-    alias_method :xn, :width
-
     # @param height [Fixnum]
     # @param width [Fixnum]
     def initialize(height = 25, width = 80)
@@ -56,17 +50,46 @@ module Vedeu
       centre.last
     end
 
+    # @param block [Proc]
+    # @return [Proc]
+    def cooked(&block)
+      yield
+    end
+
+    # @return [Fixnum]
+    def height
+      @height
+    end
+    alias_method :tyn, :height
+    alias_method :yn, :height
+
     # @return [Fixnum]
     def origin
       1
     end
     alias_method :x, :origin
     alias_method :y, :origin
+    alias_method :tx, :origin
+    alias_method :ty, :origin
+
+    # @param block [Proc]
+    # @return [Proc]
+    def raw(&block)
+      yield
+    end
 
     # @return [Array]
     def size
       [height, width]
     end
+    alias_method :winsize, :size
+
+    # @return [Fixnum]
+    def width
+      @width
+    end
+    alias_method :txn, :width
+    alias_method :xn, :width
 
   end # Console
 

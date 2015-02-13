@@ -4,7 +4,8 @@ module Vedeu
 
   describe Colour do
 
-    let(:described)  { Colour.new(attributes) }
+    let(:described)  { Vedeu::Colour }
+    let(:instance)   { described.new(attributes) }
     let(:attributes) {
       {
         background: '',
@@ -13,62 +14,96 @@ module Vedeu
     }
 
     describe '#initialize' do
-      it { described.must_be_instance_of(Colour) }
-      it { described.instance_variable_get('@attributes').must_equal(attributes) }
+      subject { instance }
+
+      it { instance.must_be_instance_of(described) }
+      it { instance.instance_variable_get('@attributes').must_equal(attributes) }
     end
 
     describe '#background' do
-      it { described.background.must_be_instance_of(String) }
+      subject { instance.background }
 
-      it 'returns an escape sequence' do
-        Colour.new({
-          background: '#000000'
-        }).background.must_equal("\e[48;2;0;0;0m")
+      it { subject.must_be_instance_of(String) }
+
+      context 'with a background' do
+        let(:attributes) {
+          {
+            background: '#000000'
+          }
+        }
+
+        it { subject.must_equal("\e[48;2;0;0;0m") }
       end
 
-      it 'returns an empty string when the value is empty' do
-        Colour.new.background.must_equal('')
+      context 'without a background' do
+        let(:attributes) { {} }
+
+        it { subject.must_equal('') }
       end
     end
 
     describe '#foreground' do
-      it { described.foreground.must_be_instance_of(String) }
+      subject { instance.foreground }
 
-      it 'returns an escape sequence' do
-        Colour.new({
-          foreground: '#ff0000'
-        }).foreground.must_equal("\e[38;2;255;0;0m")
+      it { subject.must_be_instance_of(String) }
+
+      context 'with a foreground' do
+        let(:attributes) {
+          {
+            foreground: '#ff0000'
+          }
+        }
+
+        it { subject.must_equal("\e[38;2;255;0;0m") }
       end
 
-      it 'returns an empty string when the value is empty' do
-        Colour.new.foreground.must_equal('')
+      context 'without a foreground' do
+        let(:attributes) { {} }
+
+        it { subject.must_equal('') }
       end
     end
 
     describe '#to_s' do
-      it { described.to_s.must_be_instance_of(String) }
+      subject { instance.to_s }
 
-      it 'returns an escape sequence' do
-        Colour.new({
-          foreground: '#ff0000',
-          background: '#000000'
-        }).to_s.must_equal("\e[38;2;255;0;0m\e[48;2;0;0;0m")
+      it { subject.must_be_instance_of(String) }
+
+      context 'with both background and foreground' do
+        let(:attributes) {
+          {
+            foreground: '#ff0000',
+            background: '#000000'
+          }
+        }
+
+        it { subject.must_equal("\e[38;2;255;0;0m\e[48;2;0;0;0m") }
       end
 
-      it 'returns an escape sequence when the foreground is missing' do
-        Colour.new({
-          background: '#000000'
-        }).to_s.must_equal("\e[48;2;0;0;0m")
+      context 'when the foreground is missing' do
+        let(:attributes) {
+          {
+            background: '#000000'
+          }
+        }
+
+        it { subject.must_equal("\e[48;2;0;0;0m") }
       end
 
-      it 'returns an escape sequence when the background is missing' do
-        Colour.new({
-          foreground: '#ff0000',
-        }).to_s.must_equal("\e[38;2;255;0;0m")
+      context 'when the background is missing' do
+        let(:attributes) {
+          {
+            foreground: '#ff0000',
+          }
+        }
+
+        it { subject.must_equal("\e[38;2;255;0;0m") }
       end
 
-      it 'returns an empty string when both are missing' do
-        Colour.new.to_s.must_equal('')
+      context 'when both are missing' do
+        let(:attributes) { {} }
+
+        it { subject.must_equal('') }
       end
     end
 

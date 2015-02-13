@@ -123,8 +123,9 @@ module Vedeu
 
       end
     end
-    alias_method :destroy, :remove
-    alias_method :delete,  :remove
+    alias_method :destroy,    :remove
+    alias_method :delete,     :remove
+    alias_method :deregister, :remove
 
     # Reset the repository.
     #

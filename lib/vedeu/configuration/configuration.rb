@@ -1,13 +1,11 @@
 require 'singleton'
 
-require 'vedeu/support/common'
 require 'vedeu/configuration/api'
 require 'vedeu/configuration/cli'
 
 module Vedeu
 
   # Namespace for the API configuration and CLI configuration classes.
-  #
   module Config
   end
 
@@ -25,8 +23,6 @@ module Vedeu
     include Singleton
 
     class << self
-
-      include Vedeu::Common
 
       # Configure Vedeu with sensible defaults. If the client application sets
       # options, override the defaults with those, and if command-line arguments
@@ -127,6 +123,8 @@ module Vedeu
         }
       end
 
+      # @param value []
+      # @return []
       def options=(value)
         instance.options = value
       end

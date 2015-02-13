@@ -1,5 +1,3 @@
-require 'vedeu/support/common'
-
 module Vedeu
 
   # Before the content of the buffer can be output to the terminal, if there are
@@ -13,8 +11,6 @@ module Vedeu
   #
   # @api private
   class Compositor
-
-    include Vedeu::Common
 
     # Convenience method to initialize a new Compositor and call its {#compose}
     # method.

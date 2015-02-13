@@ -66,11 +66,69 @@ module Vedeu
       it { subject.must_equal(16) }
     end
 
+    describe '#cooked' do
+      subject { instance.cooked }
+
+      context 'when the block is not given' do
+        it { proc { subject }.must_raise(LocalJumpError) }
+      end
+    end
+
+    describe '#height' do
+      subject { instance.height }
+
+      it { subject.must_be_instance_of(Fixnum) }
+
+      context 'alias method #tyn' do
+        subject { instance.tyn }
+
+        it { subject.must_be_instance_of(Fixnum) }
+      end
+
+      context 'alias method #yn' do
+        subject { instance.yn }
+
+        it { subject.must_be_instance_of(Fixnum) }
+      end
+    end
+
     describe '#origin' do
       subject { instance.origin }
 
       it { subject.must_be_instance_of(Fixnum) }
       it { subject.must_equal(1) }
+
+      context 'alias method #x' do
+        subject { instance.x }
+
+        it { subject.must_be_instance_of(Fixnum) }
+      end
+
+      context 'alias method #y' do
+        subject { instance.y }
+
+        it { subject.must_be_instance_of(Fixnum) }
+      end
+
+      context 'alias method #tx' do
+        subject { instance.tx }
+
+        it { subject.must_be_instance_of(Fixnum) }
+      end
+
+      context 'alias method #ty' do
+        subject { instance.ty }
+
+        it { subject.must_be_instance_of(Fixnum) }
+      end
+    end
+
+    describe '#raw' do
+      subject { instance.raw }
+
+      context 'when the block is not given' do
+        it { proc { subject }.must_raise(LocalJumpError) }
+      end
     end
 
     describe '#size' do
@@ -78,6 +136,30 @@ module Vedeu
 
       it { subject.must_be_instance_of(Array) }
       it { subject.must_equal([24, 32]) }
+
+      context 'alias method #winsize' do
+        subject { instance.winsize }
+
+        it { subject.must_be_instance_of(Array) }
+      end
+    end
+
+    describe '#width' do
+      subject { instance.width }
+
+      it { subject.must_be_instance_of(Fixnum) }
+
+      context 'alias method #txn' do
+        subject { instance.txn }
+
+        it { subject.must_be_instance_of(Fixnum) }
+      end
+
+      context 'alias method #xn' do
+        subject { instance.xn }
+
+        it { subject.must_be_instance_of(Fixnum) }
+      end
     end
 
   end # Console

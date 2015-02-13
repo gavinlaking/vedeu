@@ -1,5 +1,4 @@
 require 'vedeu/dsl/shared/all'
-require 'vedeu/support/common'
 
 module Vedeu
 
@@ -37,7 +36,6 @@ module Vedeu
     # @api public
     class Line
 
-      include Vedeu::Common
       include Vedeu::DSL
       include Vedeu::DSL::Colour
       include Vedeu::DSL::Style
@@ -105,7 +103,7 @@ module Vedeu
       def streams(&block)
         fail InvalidSyntax, 'block not given' unless block_given?
 
-        model.add(child.build(attributes, &block))
+        model.add(model.member.build(attributes, &block))
       end
       alias_method :stream, :streams
 
@@ -119,13 +117,6 @@ module Vedeu
           client: client,
           parent: model,
         }
-      end
-
-      # Return the class name for the children on this model.
-      #
-      # @return [Class]
-      def child
-        Vedeu::Stream
       end
 
     end # Line

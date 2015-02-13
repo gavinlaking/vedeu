@@ -5,13 +5,17 @@ module Vedeu
   #
   class Key
 
-    # Creates a new instance of Key.
-    #
-    # @see Vedeu::Key#initialize
-    def self.define(input = nil, &block)
-      fail InvalidSyntax, 'block not given' unless block_given?
+    class << self
 
-      new(input, &block)
+      # Creates a new instance of Key.
+      #
+      # @see Vedeu::Key#initialize
+      def build(input = nil, &block)
+        fail InvalidSyntax, 'block not given' unless block_given?
+
+        new(input, &block)
+      end
+
     end
 
     # Returns a new instance of Key.

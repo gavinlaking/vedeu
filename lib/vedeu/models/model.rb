@@ -8,6 +8,25 @@ module Vedeu
 
     attr_reader :repository
 
+    module ClassMethods
+
+      # Provide a convenient way to define the child or children of a model.
+      #
+      # @param klass [Class] The member (singular) or collection (multiple)
+      #   class name for the respective model.
+      # @return []
+      def child(klass)
+        send(:define_method, __callee__) { klass }
+      end
+      alias_method :member,     :child
+      alias_method :collection, :child
+
+    end # ClassMethods
+
+    def self.included(klass)
+      klass.send :extend, ClassMethods
+    end
+
     # Returns a DSL instance responsible for defining the DSL methods of this
     # model.
     #
@@ -20,6 +39,7 @@ module Vedeu
       Object.const_get(dsl_class).new(self, client)
     end
 
+    # @todo Perhaps some validation could be added here?
     # @return [void] The model instance stored in the repository.
     def store
       repository.store(self) # if valid?

@@ -1,19 +1,32 @@
 module Vedeu
 
+  # Take a collection of words (elements) and form a sentence from them.
+  #
+  # @example
+  #   elements = ['Hydrogen', 'Helium', 'Lithium']
+  #   Vedeu::Sentence.construct(elements) # => 'Hydrogen, Helium and Lithium'
+  #
   class Sentence
 
     class << self
 
+      # @param elements [Array]
+      # @param label [String]
+      # @return [String]
       def construct(elements, label = 'elements')
         new(elements, label).construct
       end
 
-    end # Sentence eigenclass
+    end
 
+    # @param elements [Array]
+    # @param label [String]
+    # @return [Vedeu::Sentence]
     def initialize(elements, label)
       @elements, @label = elements, label
     end
 
+    # @return [String]
     def construct
       if one?
         first
@@ -34,30 +47,37 @@ module Vedeu
 
     attr_reader :elements, :label
 
+    # @return [Boolean]
     def one?
       count == 1
     end
 
+    # @return [Boolean]
     def two?
       count == 2
     end
 
+    # @return [Boolean]
     def many?
       count > 2
     end
 
+    # @return [String]
     def but_last
       elements[0...-1].join(', ')
     end
 
+    # @return [String]
     def first
       elements.first
     end
 
+    # @return [String]
     def last
       elements[-1]
     end
 
+    # @return [Fixnum]
     def count
       elements.size
     end

@@ -15,7 +15,7 @@ module Vedeu
 
       it { subject.must_be_instance_of(Keymap) }
       it { subject.instance_variable_get('@name').must_equal(map_name) }
-      it { subject.instance_variable_get('@keys').must_be_instance_of(Vedeu::Model::Collection) }
+      it { subject.instance_variable_get('@keys').must_be_instance_of(Array) }
       it { subject.instance_variable_get('@repository').must_equal(Vedeu.keymaps) }
     end
 
@@ -32,7 +32,7 @@ module Vedeu
       end
 
       context 'when the key is not already defined' do
-        it { subject.must_be_instance_of(Vedeu::Model::Collection) }
+        it { subject.must_be_instance_of(Vedeu::Keys) }
       end
     end
 
@@ -75,7 +75,7 @@ module Vedeu
     describe '#keys' do
       subject { instance.keys }
 
-      it { subject.must_be_instance_of(Vedeu::Model::Collection) }
+      it { subject.must_be_instance_of(Vedeu::Keys) }
     end
 
     describe '#name' do

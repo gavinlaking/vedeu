@@ -16,26 +16,6 @@ module Vedeu
       it { subject.must_be_instance_of(TrueClass) }
     end
 
-    # describe '.unbind' do
-    #   let(:event_name) { :chlorine }
-
-    #   before do
-    #     Vedeu.bind(:chlorine) { :some_event }
-    #   end
-
-    #   subject { instance.unbind(event_name) }
-
-    #   context 'when the event exists' do
-    #     it { subject.must_be_instance_of(TrueClass) }
-    #   end
-
-    #   context 'when the event does not exist' do
-    #     let(:event_name) { :does_not_exist }
-
-    #     it { subject.must_be_instance_of(FalseClass) }
-    #   end
-    # end
-
     describe '#initialize' do
       subject { instance }
 
@@ -67,20 +47,20 @@ module Vedeu
       it 'returns the result of calling the closure when debouncing' do
         event = Event.new(event_name, { debounce: 0.0025 }, closure)
         event.trigger.must_equal(nil)
-        sleep 0.0015
+        sleep 0.001
         event.trigger.must_equal(nil)
-        sleep 0.0015
+        sleep 0.001
         event.trigger.must_equal(:event_triggered)
-        sleep 0.0015
+        sleep 0.001
         event.trigger.must_equal(nil)
       end
 
       it 'returns the result of calling the closure when throttling' do
-        event = Event.new(event_name, { delay: 0.0025 }, closure)
+        event = Event.new(event_name, { delay: 0.002 }, closure)
         event.trigger.must_equal(:event_triggered)
-        sleep 0.0015
+        sleep 0.001
         event.trigger.must_equal(nil)
-        sleep 0.0015
+        sleep 0.001
         event.trigger.must_equal(:event_triggered)
       end
 
@@ -92,9 +72,7 @@ module Vedeu
 
     describe '#unbind' do
       context 'when the event exists' do
-        before do
-          Vedeu.bind(:gallium) { :some_action }
-        end
+        before { Vedeu.bind(:gallium) { :some_action } }
 
         it { Vedeu.unbind(:gallium).must_equal(true) }
       end

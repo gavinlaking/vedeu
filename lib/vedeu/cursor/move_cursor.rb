@@ -1,10 +1,10 @@
 require 'vedeu/cursor/cursor'
+require 'vedeu/support/coordinate'
 require 'vedeu/support/position_validator'
 
 module Vedeu
 
   # Adjusts the position of the cursor.
-  #
   class MoveCursor
 
     extend Forwardable
@@ -95,8 +95,8 @@ module Vedeu
     # @return [PositionValidator]
     def validator
       @validator ||= Vedeu::PositionValidator.validate(interface,
-                                   coordinate.x_position(ox),
-                                   coordinate.y_position(oy))
+                                                      coordinate.x_position(ox),
+                                                      coordinate.y_position(oy))
     end
 
     # @return [Fixnum]
@@ -115,7 +115,10 @@ module Vedeu
 
     # @return [Coordinate]
     def coordinate
-      @coordinate ||= Coordinate.new(bordered_height, bordered_width, left, top)
+      @coordinate ||= Vedeu::Coordinate.new(bordered_height,
+                                            bordered_width,
+                                            left,
+                                            top)
     end
 
     # @return [Fixnum]

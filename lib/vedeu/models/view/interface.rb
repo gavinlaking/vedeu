@@ -1,4 +1,3 @@
-require 'vedeu/support/common'
 require 'vedeu/support/content_geometry'
 require 'vedeu/models/model'
 require 'vedeu/presentation/presentation'
@@ -6,6 +5,7 @@ require 'vedeu/buffers/display_buffer'
 require 'vedeu/buffers/buffer'
 
 require 'vedeu/models/view/lines'
+require 'vedeu/models/view/line'
 
 module Vedeu
 
@@ -18,10 +18,12 @@ module Vedeu
 
     extend Forwardable
 
-    include Vedeu::Common
     include Vedeu::Model
     include Vedeu::Presentation
     include Vedeu::DisplayBuffer
+
+    collection Vedeu::Lines
+    member     Vedeu::Line
 
     attr_accessor :border,
       :colour,
@@ -155,7 +157,7 @@ module Vedeu
 
     # @return [Vedeu::Lines]
     def lines
-      children.coerce(@lines, self)
+      collection.coerce(@lines, self)
     end
     alias_method :content, :lines
     alias_method :value, :lines
@@ -167,9 +169,11 @@ module Vedeu
       lines.any?
     end
 
-    # @return []
+    # Renders the interface with a border if one is defined.
+    #
+    # @return [Array]
     def render
-      if border
+      if border?
         border.render
 
       else
@@ -192,22 +196,6 @@ module Vedeu
     # return [Array]
     def viewport
       Vedeu::Viewport.show(self)
-    end
-
-    private
-
-    # Return the class name for the children on this model.
-    #
-    # @return [Class]
-    def child
-      Vedeu::Line
-    end
-
-    # Return the class name for the children on this model.
-    #
-    # @return [Class]
-    def children
-      Vedeu::Lines
     end
 
   end # Interface
