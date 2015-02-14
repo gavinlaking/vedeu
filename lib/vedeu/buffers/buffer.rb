@@ -16,8 +16,11 @@ module Vedeu
 
     include Vedeu::Model
 
-    attr_accessor :back, :front, :previous
-    attr_reader   :name, :repository
+    attr_accessor :back,
+      :front,
+      :previous
+
+    attr_reader :name
 
     # Return a new instance of Buffer.
     #

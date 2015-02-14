@@ -12,7 +12,6 @@ module Vedeu
     member     Vedeu::Key
 
     attr_accessor :name
-    attr_reader   :repository
 
     class << self
 
