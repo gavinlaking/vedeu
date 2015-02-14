@@ -30,13 +30,7 @@ module Vedeu
       it { subject.instance_variable_get('@interface').must_equal(interface) }
     end
 
-    describe '.show' do
-      subject { described.show(interface) }
-
-      it { subject.must_be_instance_of(Array) }
-    end
-
-    describe '#show' do
+    describe '#render' do
       let(:cursor) { Cursor.new(cursor_attributes) }
       let(:cursor_attributes) {
         { name: 'lithium', ox: ox, oy: oy, state: true, x: x, y: y }
@@ -51,7 +45,7 @@ module Vedeu
         interface.stubs(:cursor).returns(cursor)
       end
 
-      subject { instance.show }
+      subject { instance.render }
 
       it { subject.must_be_instance_of(Array) }
 
