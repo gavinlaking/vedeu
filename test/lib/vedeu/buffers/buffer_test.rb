@@ -33,14 +33,14 @@ module Vedeu
 
     describe '#add' do
       let(:back) {
-        Vedeu::Interface.build do
+        Vedeu.interface 'buffer' do
           lines do
             line 'old_back'
           end
         end
       }
       let(:content) {
-        Vedeu::Interface.build do
+        Vedeu.interface 'buffer' do
           lines do
             line 'new_back'
           end
@@ -67,7 +67,7 @@ module Vedeu
 
       context 'when there is content on the back buffer' do
         let(:back) {
-        Vedeu::Interface.build do
+        Vedeu.interface 'buffer' do
           lines do
             line 'old_back'
           end
@@ -94,7 +94,7 @@ module Vedeu
       context 'when there is content on the front buffer' do
         let(:buffer) { :front }
         let(:front) {
-          Vedeu::Interface.build do
+          Vedeu.interface 'buffer' do
             lines do
               line 'front'
             end
@@ -120,7 +120,7 @@ module Vedeu
       context 'when there is content on the previous buffer' do
         let(:buffer) { :previous }
         let(:previous) {
-          Vedeu::Interface.build do
+          Vedeu.interface 'buffer' do
             lines do
               line 'old_back'
             end
@@ -149,21 +149,21 @@ module Vedeu
 
       context 'when there is new content on the back buffer' do
         let(:back) {
-          Vedeu::Interface.build do
+          Vedeu.interface 'buffer' do
             lines do
               line 'back'
             end
           end
         }
         let(:front) {
-          Vedeu::Interface.build do
+          Vedeu.interface 'buffer' do
             lines do
               line 'front'
             end
           end
         }
         let(:previous) {
-          Vedeu::Interface.build do
+          Vedeu.interface 'buffer' do
             lines do
               line 'previous'
             end

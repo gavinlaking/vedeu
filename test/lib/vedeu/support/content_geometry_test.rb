@@ -7,12 +7,11 @@ module Vedeu
     let(:described) { Vedeu::ContentGeometry }
     let(:instance)  { described.new(interface) }
     let(:interface) {
-      Vedeu::Interface.build do
+      Vedeu.interface 'content_geometry' do
         geometry do
           height 3
           width  5
         end
-        name 'content_geometry'
       end
     }
     let(:lines) { [] }

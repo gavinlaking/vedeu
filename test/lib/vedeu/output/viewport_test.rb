@@ -7,7 +7,7 @@ module Vedeu
     let(:described) { Vedeu::Viewport }
     let(:instance)  { described.new(interface) }
     let(:interface) {
-      Vedeu::Interface.build do
+      Vedeu.interface 'lithium' do
         geometry do
           height 3
           width 3
@@ -20,7 +20,6 @@ module Vedeu
           line 'nickel'
           line 'osmium'
         end
-        name 'lithium'
       end
     }
 

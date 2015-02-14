@@ -9,8 +9,8 @@ module Vedeu
       let(:described) { Vedeu::DSL::Interface }
       let(:instance)  { described.new(model) }
       let(:model)     {
-        Vedeu::Interface.build do
-          name 'actinium'
+        Vedeu.interface 'actinium' do
+          # ...
         end
       }
       let(:client) {}

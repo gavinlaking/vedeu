@@ -74,30 +74,6 @@ module Vedeu
         end
       end
 
-      describe '#name' do
-        subject { Vedeu::Geometry.build({}) { name 'chlorine' } }
-
-        it 'sets the attribute to the value' do
-          subject.name.must_equal('chlorine')
-        end
-
-        context 'DSL #name' do
-          subject {
-            Vedeu.interface 'geometry' do
-              geometry do
-                name 'other_name'
-              end
-            end
-          }
-
-          it { subject.must_be_instance_of(Vedeu::Interface) }
-
-          it 'allows the use of name within geometry' do
-            subject.geometry.name.must_equal('other_name')
-          end
-        end
-      end
-
       describe '#width' do
         subject { Vedeu::Geometry.build({}) { width 25 } }
 

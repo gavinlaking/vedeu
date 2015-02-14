@@ -28,7 +28,6 @@ module Vedeu
     attr_accessor :border,
       :colour,
       :delay,
-      :geometry,
       :group,
       :name,
       :parent,
@@ -110,7 +109,6 @@ module Vedeu
 
       @border   = nil
       @delay    = 0.0
-      @geometry = nil
       @group    = ''
 
       @repository = Vedeu.interfaces
@@ -128,7 +126,6 @@ module Vedeu
         border:   border,
         colour:   colour,
         delay:    delay,
-        geometry: geometry,
         group:    group,
         name:     name,
         parent:   parent,
@@ -146,6 +143,11 @@ module Vedeu
     # @return [Vedeu::Cursor]
     def cursor
       Vedeu.cursors.by_name(name)
+    end
+
+    # @return [Vedeu::Geometry]
+    def geometry
+      Vedeu.geometries.find(name)
     end
 
     # Returns log friendly output.

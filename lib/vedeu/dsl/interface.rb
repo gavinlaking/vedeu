@@ -114,7 +114,7 @@ module Vedeu
       def geometry(&block)
         fail InvalidSyntax, 'block not given' unless block_given?
 
-        model.geometry = Vedeu::Geometry.build(attributes, &block)
+        Vedeu::Geometry.build({ name: model.name }, &block).store
       end
 
       # Specify a group for an interface. Interfaces of the same group can be

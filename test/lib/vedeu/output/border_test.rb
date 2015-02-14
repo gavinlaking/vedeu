@@ -8,12 +8,11 @@ module Vedeu
     let(:instance)   { described.new(interface, attributes) }
     # let(:interface)  { Interface.new({ name: 'caesium' }) }
     let(:interface)  {
-      Vedeu::Interface.build do
+      Vedeu.interface 'caesium' do
         geometry do
           height 5
           width  8
         end
-        name 'caesium'
       end
     }
     let(:attributes) { {} }

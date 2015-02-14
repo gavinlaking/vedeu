@@ -20,6 +20,7 @@ module Vedeu
 
     def_delegators Vedeu::Event,         :bind, :trigger, :unbind
     def_delegators Vedeu::Configuration, :configure, :configuration
+    def_delegators Vedeu::DSL::Geometry, :geometry
     def_delegators Vedeu::DSL::Use,      :use
     def_delegators Vedeu::DSL::View,     :interface, :renders, :views
 

@@ -13,16 +13,14 @@ module Vedeu
     let(:y)         { 1 }
 
     let(:interface) {
-      Vedeu::Interface.build do
-        name 'magnesium'
+      Vedeu.interface 'magnesium' do
         geometry do
 
         end
       end
     }
     let(:interface_with_border) {
-      Vedeu::Interface.build do
-        name 'manganese'
+      Vedeu.interface 'manganese' do
         border do
           # ...
         end
@@ -35,8 +33,7 @@ module Vedeu
       end
     }
     let(:interface_without_border) {
-      Vedeu::Interface.build do
-        name 'meitnerium'
+      Vedeu.interface 'meitnerium' do
         geometry do
           height 5
           width 5

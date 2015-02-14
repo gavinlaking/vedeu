@@ -55,7 +55,8 @@ module Vedeu
       # @return [Hash]
       def defaults
         {
-          client: nil
+          client: nil,
+          name:   '',
         }
       end
 
