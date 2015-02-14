@@ -1,5 +1,7 @@
 module Vedeu
 
+  # Wrap or prune text.
+  #
   class Wordwrap
 
     # @param text [String]
@@ -76,7 +78,8 @@ module Vedeu
 
     private
 
-    attr_reader :text, :options
+    attr_reader :text,
+      :options
 
     # @param text_as_lines [Array<String>]
     # @return [Vedeu::Lines]
@@ -103,6 +106,7 @@ module Vedeu
       end.join("\n")
     end
 
+    # @param string [String]
     # @return [String]
     def ellipsis_string(string)
       if string.size < ellipsis.size
@@ -114,6 +118,7 @@ module Vedeu
       end
     end
 
+    # @param string [String]
     # @return [String]
     def prune_string(string)
       string.chomp.slice(0..pruned_width)

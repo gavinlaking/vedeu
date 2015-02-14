@@ -22,6 +22,8 @@ module Vedeu
         @client = client
       end
 
+      # @param block [Proc]
+      # @return []
       def stream(&block)
         fail InvalidSyntax, 'block not given' unless block_given?
 

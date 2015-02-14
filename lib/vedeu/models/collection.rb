@@ -43,6 +43,7 @@ module Vedeu
       end
       alias_method :<<, :add
 
+      # @return [Array]
       def all
         @collection
       end

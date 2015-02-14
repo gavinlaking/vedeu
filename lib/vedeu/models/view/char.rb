@@ -18,6 +18,12 @@ module Vedeu
 
     class << self
 
+      # @param value []
+      # @param parent []
+      # @param colour []
+      # @param style []
+      # @param position []
+      # @return [Vedeu::Char]
       def coerce(value = nil, parent = nil, colour = nil, style = nil, position = nil)
         if value.is_a?(self)
           value
@@ -64,11 +70,13 @@ module Vedeu
       "<#{self.class.name} (value:#{@value})>"
     end
 
+    # @param other []
     # @return [Boolean]
     def ==(other)
       eql?(other)
     end
 
+    # @param other []
     # @return [Boolean]
     def eql?(other)
       self.class == other.class && value == other.value
