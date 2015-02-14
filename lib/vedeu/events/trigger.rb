@@ -38,9 +38,7 @@ module Vedeu
 
       collection = repository.find(name)
 
-      results = collection.map do |event|
-        event.trigger(*args)
-      end
+      results = collection.map { |event| event.trigger(*args) }
 
       return results.first if results.one?
 
