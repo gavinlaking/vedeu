@@ -1,5 +1,5 @@
 require 'vedeu/models/geometry'
-require 'vedeu/dsl/shared/use'
+require 'vedeu/dsl/shared/all'
 
 module Vedeu
 

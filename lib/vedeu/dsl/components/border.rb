@@ -1,3 +1,4 @@
+require 'vedeu/output/border'
 require 'vedeu/dsl/shared/all'
 
 module Vedeu
@@ -11,16 +12,41 @@ module Vedeu
     # drawn or not.
     #
     # @example
+    #   # Borders can be defined as part of a view definition...
     #   Vedeu.renders do
     #     view 'border_demo' do
     #       border do
     #         # ...
+    #
+    #   # ...or standalone; referencing the target interface or view.
+    #   Vedeu.border 'some_interface' do
+    #     # ...
     #
     class Border
 
       include Vedeu::DSL
       include Vedeu::DSL::Colour
       include Vedeu::DSL::Style
+
+      class << self
+
+        # Specify the border of an interface or view with a simple DSL.
+        #
+        # @example
+        #   Vedeu.border 'some_interface' do
+        #     # ...
+        #
+        # @param name [String] The name of the interface or view to which this
+        #   border belongs.
+        # @param block [Proc]
+        # @return [Vedeu::Border]
+        def border(name, &block)
+          fail InvalidSyntax, 'block not given' unless block_given?
+
+          Vedeu::Border.build({ enabled: true, name: name }, &block).store
+        end
+
+      end
 
       # Returns an instance of DSL::Border.
       #

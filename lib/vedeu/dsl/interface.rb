@@ -34,13 +34,14 @@ module Vedeu
       #
       # @param block [Proc]
       # @raise [InvalidSyntax] The required block was not given.
-      # @return [Hash]
+      # @return [Vedeu::Border]
       def border(&block)
         fail InvalidSyntax, 'block not given' unless block_given?
 
-        border_attrs = attributes.merge({ enabled: true, interface: model })
+        border_attrs = attributes.merge({ enabled: true,
+                                          name:    model.name })
 
-        model.border = Vedeu::Border.build(border_attrs, &block)
+        Vedeu::Border.build(border_attrs, &block).store
       end
 
       # Applies the default border to the interface.

@@ -47,10 +47,8 @@ module Vedeu
     # @return [Array<Interface>]
     def compose
       buffer.map do |view|
-        view.border   = interface.border   unless view.border
         view.colour   = interface.colour   unless view.colour
         view.style    = interface.style    unless view.style
-        view.geometry = interface.geometry unless view.geometry
 
         Output.render(view)
       end

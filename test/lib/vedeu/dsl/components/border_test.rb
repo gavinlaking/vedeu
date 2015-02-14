@@ -7,14 +7,15 @@ module Vedeu
     describe Border do
 
       let(:described)  { Vedeu::DSL::Border }
-      let(:instance)   { described.new(model) }
-      let(:model)      { Vedeu::Border.new(interface, attributes) }
+      let(:instance)   { described.new(model, client) }
+      let(:model)      { Vedeu::Border.new(attributes) }
       let(:client)     {}
-      let(:interface)  { mock('Interface') }
-      let(:attributes) { {} }
+      let(:attributes) { { name: 'borders' } }
       let(:boolean)    { true }
 
       before do
+        Vedeu.borders.reset
+        Vedeu.buffers.reset
         Vedeu.interfaces.reset
         Vedeu.interface 'borders' do
           geometry do

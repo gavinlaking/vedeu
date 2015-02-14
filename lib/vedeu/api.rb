@@ -3,6 +3,7 @@ require 'vedeu/support/terminal'
 require 'vedeu/events/all'
 require 'vedeu/models/all'
 require 'vedeu/input/all'
+require 'vedeu/dsl/components/border'
 require 'vedeu/dsl/composition'
 require 'vedeu/dsl/shared/all'
 require 'vedeu/dsl/view'
@@ -18,8 +19,10 @@ module Vedeu
     extend Forwardable
     extend self
 
+    def_delegators Vedeu::Borders,       :borders
     def_delegators Vedeu::Event,         :bind, :trigger, :unbind
     def_delegators Vedeu::Configuration, :configure, :configuration
+    def_delegators Vedeu::DSL::Border,   :border
     def_delegators Vedeu::DSL::Geometry, :geometry
     def_delegators Vedeu::DSL::Use,      :use
     def_delegators Vedeu::DSL::View,     :interface, :renders, :views
