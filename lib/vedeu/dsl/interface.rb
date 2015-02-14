@@ -43,6 +43,15 @@ module Vedeu
         model.border = Vedeu::Border.build(border_attrs, &block)
       end
 
+      # Applies the default border to the interface.
+      #
+      # @return [Vedeu::Border]
+      def border!
+        border do
+          # adds default border
+        end
+      end
+
       # Set the cursor visibility on an interface.
       #
       # @param value [Boolean] Any value other than nil or false will evaluate
@@ -69,6 +78,9 @@ module Vedeu
         Vedeu::Cursor.new({ name: model.name, state: value }).store
       end
 
+      # Set the cursor to visible for the interface.
+      #
+      # @return [Vedeu::Cursor]
       def cursor!
         cursor(true)
       end

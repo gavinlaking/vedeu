@@ -20,12 +20,8 @@ class VedeuCursorApp
   bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
 
   interface 'main_interface' do
-    border do
-      # adds default border
-    end
-
-    cursor true
     colour foreground: '#ff0000', background: '#000000'
+    cursor!
 
     geometry do
       centred true
@@ -43,6 +39,7 @@ class VedeuCursorApp
 
   renders do
     view 'main_interface' do
+      border!
       lines do
         streams do
           text 'A.3456789 '

@@ -20,8 +20,6 @@ class VedeuColoursApp
   bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
 
   interface 'colours' do
-    border do
-    end
     geometry do
       centred!
       height 8
@@ -32,6 +30,7 @@ class VedeuColoursApp
 
   renders do
     view('colours') do
+      border!
       lines do
 
       end
