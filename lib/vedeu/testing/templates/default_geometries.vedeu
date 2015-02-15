@@ -1,0 +1,6 @@
+Vedeu.geometry 'test_interface' do
+  height 6
+  width  26
+  x      4
+  y      4
+end

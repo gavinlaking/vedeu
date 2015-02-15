@@ -1,0 +1,9 @@
+Vedeu.border 'test_interface' do
+  colour foreground: '#ffff00', background: '#0000ff'
+  bottom_right '+'
+  bottom_left  '+'
+  horizontal   '-'
+  top_right    '+'
+  top_left     '+'
+  vertical     '|'
+end
