@@ -158,7 +158,7 @@ module Vedeu
         model.group = value
       end
 
-      # @see Vedeu::Keymap.keymap
+      # @see Vedeu::DSL::Keymap.keymap
       def keymap(name = model.name, &block)
         Vedeu.keymap(name, &block)
       end

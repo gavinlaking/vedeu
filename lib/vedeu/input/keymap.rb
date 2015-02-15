@@ -15,10 +15,13 @@ module Vedeu
 
     class << self
 
+      # @param attributes [Hash]
+      # @param block [Proc]
       # @option attributes client []
       # @option attributes keys []
       # @option attributes name []
       # @option attributes repository []
+      # @return [Vedeu::Keymap]
       def build(attributes = {}, &block)
         fail InvalidSyntax, 'block not given' unless block_given?
 
@@ -31,34 +34,6 @@ module Vedeu
         model.store
       end
 
-      # Define actions for keypresses for when specific interfaces are in focus.
-      # Unless an interface is specified, the key will be assumed to be global,
-      # meaning its action will happen regardless of the interface in focus.
-      #
-      # @note
-      #   When defining an interface, there is no need to provide a name since
-      #   this can be discerned from the interface itself, e.g:
-      #
-      #   Vedeu.interface 'my_interface' do
-      #     keymap do
-      #       ...
-      #
-      # @param name [String] The name of the interface which this keymap relates
-      #   to.
-      # @param block [Proc]
-      #
-      # @example
-      #   keymap 'my_interface' do
-      #     ...
-      #
-      # @raise [InvalidSyntax] The required block was not given.
-      # @return [Keymap]
-      def keymap(name, &block)
-        new(name).store
-
-        build({ name: name }, &block)
-      end
-
       private
 
       # The default values for a new instance of this class.
@@ -69,7 +44,7 @@ module Vedeu
           client:     nil,
           keys:       [],
           name:       '',
-          repository: Vedeu.keymaps,
+          repository: Vedeu::Keymaps.keymaps,
         }
       end
 
@@ -81,10 +56,11 @@ module Vedeu
     def initialize(name = '', keys = [], repository = nil)
       @name       = name
       @keys       = keys
-      @repository = repository || Vedeu.keymaps
+      @repository = repository || Vedeu::Keymaps.keymaps
     end
 
     # @param key [Key]
+    # @return []
     def add(key)
       return false unless valid?(key)
 
@@ -93,7 +69,7 @@ module Vedeu
 
     # @return [Vedeu::Keys]
     def keys
-      collection.coerce(@keys,  self)
+      collection.coerce(@keys, self)
     end
 
     # @param input [String|Symbol]
@@ -118,6 +94,7 @@ module Vedeu
     private
 
     # @param key [Vedeu::Key]
+    # @return [Boolean]
     def valid?(key)
       return true unless key_defined?(key.input)
 
