@@ -4,6 +4,6 @@ module Vedeu
 
   # A collection of {Vedeu::Char} instances.
   class Chars < Vedeu::Model::Collection
-  end
+  end # Chars
 
-end
+end # Vedeu

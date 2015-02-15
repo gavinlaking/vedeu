@@ -4,6 +4,6 @@ module Vedeu
 
   # A collection of {Vedeu::Line} instances.
   class Lines < Vedeu::Model::Collection
-  end
+  end # Lines
 
-end
+end # Vedeu

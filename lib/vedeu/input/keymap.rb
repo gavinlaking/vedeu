@@ -19,8 +19,8 @@ module Vedeu
       # @param block [Proc]
       # @option attributes client []
       # @option attributes keys []
-      # @option attributes name []
-      # @option attributes repository []
+      # @option attributes name [String]
+      # @option attributes repository [Vedeu::Repository]
       # @return [Vedeu::Keymap]
       def build(attributes = {}, &block)
         fail InvalidSyntax, 'block not given' unless block_given?
