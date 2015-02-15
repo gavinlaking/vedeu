@@ -16,8 +16,6 @@ require 'vedeu/support/log'
 #
 module Vedeu
 
-  DOCS_URL = 'http://www.rubydoc.info/github/gavinlaking/vedeu/master'
-
   extend Forwardable
   extend self
 
