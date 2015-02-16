@@ -4,9 +4,15 @@ module Vedeu
 
   describe Composition do
 
-    let(:described) { Vedeu::Composition }
-    let(:instance)  { described.new(interfaces) }
-
+    let(:described)  { Vedeu::Composition }
+    let(:instance)   { described.new(attributes) }
+    let(:attributes) {
+      {
+        interfaces: interfaces,
+        colour:     colour,
+        style:      style,
+      }
+    }
     let(:interfaces) { [] }
     let(:colour)     {}
     let(:style)      {}
@@ -18,7 +24,7 @@ module Vedeu
         end
       }
 
-      it { subject.must_be_instance_of(Composition) }
+      it { subject.must_be_instance_of(described) }
     end
 
     describe '#initialize' do
@@ -26,8 +32,8 @@ module Vedeu
 
       it { subject.must_be_instance_of(described) }
       it { subject.instance_variable_get('@interfaces').must_equal(interfaces) }
-      it { subject.instance_variable_get('@colour').must_equal(colour) }
-      it { subject.instance_variable_get('@style').must_equal(style) }
+      it { subject.instance_variable_get('@colour').must_be_instance_of(Vedeu::Colour) }
+      it { subject.instance_variable_get('@style').must_be_instance_of(Vedeu::Style) }
     end
 
     describe '#inspect' do
