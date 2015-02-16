@@ -23,53 +23,21 @@ module Vedeu
     alias_method :data,    :value
     alias_method :text,    :value
 
-    class << self
-
-      # @option attributes value []
-      # @option attributes parent []
-      # @option attributes colour []
-      # @option attributes style []
-      # @option attributes client []
-      def build(attributes = {}, &block)
-        attributes = defaults.merge(attributes)
-
-        model = new(attributes[:value],
-                    attributes[:parent],
-                    attributes[:colour],
-                    attributes[:style])
-        model.deputy(attributes[:client]).instance_eval(&block) if block_given?
-        model
-      end
-
-      private
-
-      # The default values for a new instance of this class.
-      #
-      # @return [Hash]
-      def defaults
-        {
-          client: nil,
-          colour: nil,
-          parent: nil,
-          style:  nil,
-          value:  '',
-        }
-      end
-
-    end
-
     # Returns a new instance of Stream.
     #
-    # @param value [String]
-    # @param parent [Vedeu::Line]
-    # @param colour [Vedeu::Colour]
-    # @param style [Vedeu::Style]
+    # @param attributes [Hash]
+    # @option attributes value [String]
+    # @option attributes parent [Vedeu::Line]
+    # @option attributes colour [Vedeu::Colour]
+    # @option attributes style [Vedeu::Style]
+    # @option attributes client [Object]
     # @return [Vedeu::Stream]
-    def initialize(value = '', parent = nil, colour = nil, style = nil)
-      @value  = value
-      @parent = parent
-      @colour = colour
-      @style  = style
+    def initialize(attributes = {})
+      @attributes = defaults.merge(attributes)
+      @colour     = Colour.coerce(@attributes[:colour])
+      @parent     = @attributes[:parent]
+      @style      = Style.coerce(@attributes[:style])
+      @value      = @attributes[:value]
     end
 
     # @param child [Vedeu::Stream]
@@ -124,6 +92,21 @@ module Vedeu
     # @return [Fixnum]
     def width
       parent.width if parent
+    end
+
+    private
+
+    # The default values for a new instance of this class.
+    #
+    # @return [Hash]
+    def defaults
+      {
+        client: nil,
+        colour: nil,
+        parent: nil,
+        style:  nil,
+        value:  '',
+      }
     end
 
   end # Stream

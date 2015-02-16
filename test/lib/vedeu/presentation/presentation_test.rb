@@ -30,7 +30,7 @@ module Vedeu
           Style.new('normal')
         )
       }
-      let(:stream) { Stream.new(stream_value, line, stream_colour, stream_style) }
+      let(:stream) { Stream.new({ value: stream_value, parent: line, colour: stream_colour, style: stream_style }) }
       let(:stream_value)  { 'Some text' }
       let(:stream_colour) { Colour.new({ foreground: '#ff0000', background: '#000000' }) }
       let(:stream_style)  { Style.new(:underline) }
