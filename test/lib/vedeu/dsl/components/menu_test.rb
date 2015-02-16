@@ -8,7 +8,13 @@ module Vedeu
 
       let(:described)  { Vedeu::DSL::Menu }
       let(:instance)   { described.new(model) }
-      let(:model)      { Vedeu::Menu.new(collection, menu_name) }
+      let(:model)      { Vedeu::Menu.new(attributes) }
+      let(:attributes) {
+        {
+          collection: collection,
+          name:       menu_name,
+        }
+      }
       let(:collection) { [:sodium, :magnesium, :aluminium, :silicon] }
       let(:menu_name)  { 'elements' }
 
