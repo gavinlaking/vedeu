@@ -30,11 +30,15 @@ module Vedeu
       # arguments provided.
       #
       # @param args [Array]
+      # @param opts [Hash]
+      # @option opts stdin [File|IO]
+      # @option opts stdout [File|IO]
+      # @option opts stderr [File|IO]
       # @param block [Proc]
       # @raise [InvalidSyntax] When the required block is not given.
       # @return [Hash]
-      def configure(args = [], &block)
-        instance.configure(args, &block)
+      def configure(args = [], opts = {}, &block)
+        instance.configure(args, opts, &block)
       end
 
       # Returns the configuration singleton.
@@ -109,7 +113,28 @@ module Vedeu
       end
       alias_method :once, :once?
 
-      # Returns
+      # Returns the redefined setting for STDIN.
+      #
+      # @return [File|IO]
+      def stdin
+        instance.options[:stdin]
+      end
+
+      # Returns the redefined setting for STDOUT.
+      #
+      # @return [File|IO]
+      def stdout
+        instance.options[:stdout]
+      end
+
+      # Returns the redefined setting for STDERR.
+      #
+      # @return [File|IO]
+      def stderr
+        instance.options[:stderr]
+      end
+
+      # Returns the redefined system keys for vital Vedeu functions.
       #
       # @return [Hash]
       def system_keys
@@ -178,7 +203,9 @@ module Vedeu
     # @param args [Array]
     # @param block [Proc]
     # @return [Hash]
-    def configure(args = [], &block)
+    def configure(args = [], opts = {}, &block)
+      @options.merge!(opts)
+
       @options.merge!(Config::API.configure(&block)) if block_given?
 
       @options.merge!(Config::CLI.configure(args)) if args.any?
@@ -211,6 +238,9 @@ module Vedeu
         interactive:   true,
         log:           '/tmp/vedeu.log',
         once:          false,
+        stdin:         nil,
+        stdout:        nil,
+        stderr:        nil,
         system_keys:   Configuration.default_system_keys,
         terminal_mode: :raw,
         trace:         false,

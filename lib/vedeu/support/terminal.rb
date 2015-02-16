@@ -243,7 +243,13 @@ module Vedeu
     #
     # @return [File]
     def console
-      IO.console
+      if Configuration.stdin # && Configuration.stdout && Configuration.stderr
+        Configuration.stdin
+
+      else
+        IO.console
+
+      end
     end
 
   end # Terminal

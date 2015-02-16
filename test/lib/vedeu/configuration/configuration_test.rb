@@ -42,6 +42,24 @@ module Vedeu
       end
     end
 
+    describe '#stdin' do
+      it 'returns the value of the redefined STDIN' do
+        Configuration.stdin.must_equal(nil)
+      end
+    end
+
+    describe '#stdout' do
+      it 'returns the value of the redefined STDOUT' do
+        Configuration.stdout.must_equal(nil)
+      end
+    end
+
+    describe '#stderr' do
+      it 'returns the value of the redefined STDERR' do
+        Configuration.stderr.must_equal(nil)
+      end
+    end
+
     describe '#terminal_mode' do
       it 'returns the value of the mode option' do
         Configuration.terminal_mode.must_equal(:raw)

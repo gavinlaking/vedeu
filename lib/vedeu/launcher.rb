@@ -67,6 +67,10 @@ module Vedeu
     # @return []
     def configuration
       Vedeu::Configuration.configure(argv)
+
+      # Configuration.configure(argv, { stdin:  @stdin,
+      #                                 stdout: @stdout,
+      #                                 stderr: @stderr })
     end
 
   end # Launcher

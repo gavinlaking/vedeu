@@ -265,6 +265,45 @@ module Vedeu
         options[:log] = filename
       end
 
+      # Sets the value of STDIN.
+      #
+      # @example
+      #   Vedeu.configure do
+      #     stdin IO.console
+      #     ...
+      #
+      # @param io [File|IO]
+      # @return [File|IO]
+      def stdin(io)
+        options[:stdin] = io
+      end
+
+      # Sets the value of STDOUT.
+      #
+      # @example
+      #   Vedeu.configure do
+      #     stdout IO.console
+      #     ...
+      #
+      # @param io [File|IO]
+      # @return [File|IO]
+      def stdout(io)
+        options[:stdout] = io
+      end
+
+      # Sets the value of STDERR.
+      #
+      # @example
+      #   Vedeu.configure do
+      #     stderr IO.console
+      #     ...
+      #
+      # @param io [File|IO]
+      # @return [File|IO]
+      def stderr(io)
+        options[:stderr] = io
+      end
+
       # Sets the key used to exit the client application. The default is `q`.
       #
       # @example

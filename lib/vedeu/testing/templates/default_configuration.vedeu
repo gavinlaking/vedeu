@@ -2,4 +2,7 @@ Vedeu.configure do
   colour_mode 16777216
   debug!
   log '/tmp/vedeu_test_helper.log'
+  # stdin  File.open("/dev/tty", "r")
+  # stdout File.open("/dev/tty", "w")
+  # stderr File.open("/tmp/vedeu_error.log", "w+")
 end
