@@ -1,7 +1,12 @@
 module Vedeu
 
+  # Maps keys to keymaps.
   class Mapper
 
+    # Takes a key as a keypress and sends it to registered keymaps. If found,
+    # the associated action is fired, if not, we move to the next keymap or
+    # return false.
+    #
     # @param key [NilClass|String|Symbol]
     # @param name [NilClass|String]
     # @return [Boolean]
@@ -11,6 +16,9 @@ module Vedeu
       new(key, name).keypress
     end
 
+    # Checks a key is valid; i.e. not already registered to a keymap. If the
+    # key is registered, then the key is invalid and cannot be used again.
+    #
     # @param key [NilClass|String|Symbol]
     # @param name [NilClass|String]
     # @return [Boolean]
@@ -93,11 +101,15 @@ module Vedeu
     end
     alias_method :interface, :name
 
+    # Return the name of the global keymap.
+    #
     # @return [String]
     def global
       '_global_'
     end
 
+    # Return the name of the system keymap.
+    #
     # @return [String]
     def system
       '_system_'
