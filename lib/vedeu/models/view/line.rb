@@ -23,48 +23,19 @@ module Vedeu
 
     alias_method :value, :streams
 
-    class << self
-
-      # @option attributes streams []
-      # @option attributes parent []
-      # @option attributes colour []
-      # @option attributes style []
-      # @option attributes client []
-      def build(attributes = {}, &block)
-        attributes = defaults.merge(attributes)
-
-        model = new(attributes[:streams],
-                    attributes[:parent],
-                    attributes[:colour],
-                    attributes[:style])
-        model.deputy(attributes[:client]).instance_eval(&block) if block_given?
-        model
-      end
-
-      private
-
-      # The default values for a new instance of this class.
-      #
-      # @return [Hash]
-      def defaults
-        {
-          client:  nil,
-          colour:  nil,
-          parent:  nil,
-          streams: [],
-          style:   nil,
-        }
-      end
-    end
-
     # Returns a new instance of Line.
     #
+    # @option attributes streams [Vedeu::Streams]
+    # @option attributes parent [Vedeu::Interface]
+    # @option attributes colour [Vedeu::Colour]
+    # @option attributes style [Vedeu::Style]
     # @return [Line]
-    def initialize(streams = [], parent = nil, colour = nil, style = nil)
-      @colour  = colour
-      @parent  = parent
-      @streams = streams
-      @style   = style
+    def initialize(attributes = {})
+      @attributes = defaults.merge(attributes)
+      @colour     = Colour.coerce(@attributes[:colour])
+      @parent     = @attributes[:parent]
+      @streams    = @attributes[:streams]
+      @style      = Style.coerce(@attributes[:style])
     end
 
     # @param child []
@@ -114,6 +85,21 @@ module Vedeu
     # @return [Fixnum]
     def width
       parent.width if parent
+    end
+
+    private
+
+    # The default values for a new instance of this class.
+    #
+    # @return [Hash]
+    def defaults
+      {
+        client:  nil,
+        colour:  nil,
+        parent:  nil,
+        streams: [],
+        style:   nil,
+      }
     end
 
   end # Line

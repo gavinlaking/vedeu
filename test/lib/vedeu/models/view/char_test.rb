@@ -7,7 +7,15 @@ module Vedeu
     let(:described)     { Vedeu::Char }
     let(:instance)      { described.new(value, parent, colour, style, position) }
     let(:value)         { 'a' }
-    let(:parent)        { Line.new([], nil, parent_colour, parent_style) }
+    let(:parent)        { Line.new(parent_attributes) }
+    let(:parent_attributes) {
+      {
+        streams: [],
+        parent:  nil,
+        colour:  parent_colour,
+        style:   parent_style,
+      }
+    }
     let(:colour)        { nil }
     let(:style)         { nil }
     let(:position)      { nil }

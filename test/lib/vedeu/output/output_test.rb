@@ -15,10 +15,10 @@ module Vedeu
     }
     let(:lines) {
       [
-        Line.new([Stream.new({ value: 'this is the first' })]),
-        Line.new([Stream.new({ value: 'this is the second and it is long' })]),
-        Line.new([Stream.new({ value: 'this is the third, it is even longer and still truncated' })]),
-        Line.new([Stream.new({ value: 'this should not render' })]),
+        Line.new({ streams: [Stream.new({ value: 'this is the first' })] }),
+        Line.new({ streams: [Stream.new({ value: 'this is the second and it is long' })] }),
+        Line.new({ streams: [Stream.new({ value: 'this is the third, it is even longer and still truncated' })] }),
+        Line.new({ streams: [Stream.new({ value: 'this should not render' })] }),
       ]
     }
 

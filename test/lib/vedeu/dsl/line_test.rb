@@ -8,7 +8,15 @@ module Vedeu
 
       let(:described) { Vedeu::DSL::Line }
       let(:instance)  { described.new(model) }
-      let(:model)     { Vedeu::Line.new(streams, parent, colour, style) }
+      let(:model)     { Vedeu::Line.new(attributes) }
+      let(:attributes){
+        {
+          streams: streams,
+          parent:  parent,
+          colour:  colour,
+          style:   style,
+        }
+      }
       let(:client)    {}
       let(:streams)   { [] }
       let(:parent)    { Vedeu::Interface.new }
@@ -18,7 +26,7 @@ module Vedeu
       describe '#initialize' do
         subject { instance }
 
-        it { subject.must_be_instance_of(Vedeu::DSL::Line) }
+        it { subject.must_be_instance_of(described) }
         it { subject.instance_variable_get('@model').must_equal(model) }
         it { subject.instance_variable_get('@client').must_equal(client) }
       end
