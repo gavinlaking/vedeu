@@ -7,14 +7,15 @@ module Vedeu
     describe Border do
 
       let(:described)  { Vedeu::DSL::Border }
-      let(:instance)   { described.new(model) }
-      let(:model)      { Vedeu::Border.new(interface, attributes) }
+      let(:instance)   { described.new(model, client) }
+      let(:model)      { Vedeu::Border.new(attributes) }
       let(:client)     {}
-      let(:interface)  { mock('Interface') }
-      let(:attributes) { {} }
+      let(:attributes) { { name: 'borders' } }
       let(:boolean)    { true }
 
       before do
+        Vedeu.borders.reset
+        Vedeu.buffers.reset
         Vedeu.interfaces.reset
         Vedeu.interface 'borders' do
           geometry do
@@ -182,6 +183,18 @@ module Vedeu
         end
       end
 
+      describe '#hide_bottom!' do
+        subject { instance.hide_bottom! }
+
+        it { subject.must_be_instance_of(FalseClass) }
+      end
+
+      describe '#show_bottom!' do
+        subject { instance.show_bottom! }
+
+        it { subject.must_be_instance_of(TrueClass) }
+      end
+
       describe '#show_left' do
         subject { instance.show_left(boolean) }
 
@@ -219,6 +232,18 @@ module Vedeu
             )
           end
         end
+      end
+
+      describe '#hide_left!' do
+        subject { instance.hide_left! }
+
+        it { subject.must_be_instance_of(FalseClass) }
+      end
+
+      describe '#show_left!' do
+        subject { instance.show_left! }
+
+        it { subject.must_be_instance_of(TrueClass) }
       end
 
       describe '#show_right' do
@@ -260,6 +285,18 @@ module Vedeu
         end
       end
 
+      describe '#hide_right!' do
+        subject { instance.hide_right! }
+
+        it { subject.must_be_instance_of(FalseClass) }
+      end
+
+      describe '#show_right!' do
+        subject { instance.show_right! }
+
+        it { subject.must_be_instance_of(TrueClass) }
+      end
+
       describe '#show_top' do
         subject { instance.show_top(boolean) }
 
@@ -297,6 +334,18 @@ module Vedeu
             )
           end
         end
+      end
+
+      describe '#hide_top!' do
+        subject { instance.hide_top! }
+
+        it { subject.must_be_instance_of(FalseClass) }
+      end
+
+      describe '#show_top!' do
+        subject { instance.show_top! }
+
+        it { subject.must_be_instance_of(TrueClass) }
       end
 
       describe '#top_left' do

@@ -47,11 +47,7 @@ module Vedeu
     def valid?
       return false unless key
 
-      return false if key_defined?
-
-      return false if global_key?
-
-      return false if system_key?
+      return false if key_defined? || global_key? || system_key?
 
       true
     end

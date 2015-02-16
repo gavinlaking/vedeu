@@ -16,8 +16,6 @@ require 'vedeu/support/log'
 #
 module Vedeu
 
-  DOCS_URL = 'http://www.rubydoc.info/github/gavinlaking/vedeu/master'
-
   extend Forwardable
   extend self
 
@@ -26,21 +24,6 @@ module Vedeu
   # @return [Vedeu::Focus]
   def self.focusable
     @_focusable ||= Vedeu::Focus
-  end
-
-  # @return [Vedeu::Repository]
-  def self.geometries
-    @_geometries ||= Vedeu::Repository.new(Vedeu::Geometry)
-  end
-
-  # @return [Vedeu::Repository]
-  def self.groups
-    @_groups ||= Vedeu::Repository.new(Vedeu::Group)
-  end
-
-  # @return [Vedeu::Repository]
-  def self.interfaces
-    @_interfaces ||= Vedeu::Repository.new(Vedeu::Interface)
   end
 
   # When Vedeu is included within one of your classes, you should have all

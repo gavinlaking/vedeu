@@ -4,10 +4,12 @@ module Vedeu
 
     attr_reader :writers
 
+    # @return [Vedeu::Writer]
     def self.[](*args)
       new(args)
     end
 
+    # @return [Vedeu::Writer]
     def initialize(writers)
       @writers = writers
     end
@@ -16,6 +18,7 @@ module Vedeu
       writers == other.writers
     end
 
+    # @return [Vedeu::Writer]
     def +(other)
       Writer[*(writers + other.writers)]
     end

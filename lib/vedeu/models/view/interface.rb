@@ -25,10 +25,8 @@ module Vedeu
     collection Vedeu::Lines
     member     Vedeu::Line
 
-    attr_accessor :border,
-      :colour,
+    attr_accessor :colour,
       :delay,
-      :geometry,
       :group,
       :name,
       :parent,
@@ -108,10 +106,8 @@ module Vedeu
       @colour = colour
       @style  = style
 
-      @border   = nil
-      @delay    = 0.0
-      @geometry = nil
-      @group    = ''
+      @delay  = 0.0
+      @group  = ''
 
       @repository = Vedeu.interfaces
     end
@@ -125,10 +121,8 @@ module Vedeu
     # @return [Hash]
     def attributes
       {
-        border:   border,
         colour:   colour,
         delay:    delay,
-        geometry: geometry,
         group:    group,
         name:     name,
         parent:   parent,
@@ -140,12 +134,26 @@ module Vedeu
     #
     # @return [Boolean]
     def border?
-      !!(border)
+      Vedeu.borders.registered?(name)
+    end
+
+    # Returns the border object belonging to the interface.
+    #
+    # @return [Vedeu::Border|NilClass]
+    def border
+      if border?
+        Vedeu.borders.find(name)
+      end
     end
 
     # @return [Vedeu::Cursor]
     def cursor
       Vedeu.cursors.by_name(name)
+    end
+
+    # @return [Vedeu::Geometry]
+    def geometry
+      Vedeu.geometries.find(name)
     end
 
     # Returns log friendly output.
@@ -169,19 +177,6 @@ module Vedeu
       lines.any?
     end
 
-    # Renders the interface with a border if one is defined.
-    #
-    # @return [Array]
-    def render
-      if border?
-        border.render
-
-      else
-        viewport
-
-      end
-    end
-
     # @return [Interface]
     def store
       super
@@ -191,11 +186,6 @@ module Vedeu
       store_focusable
       store_cursor
       store_group
-    end
-
-    # return [Array]
-    def viewport
-      Vedeu::Viewport.show(self)
     end
 
   end # Interface

@@ -9,8 +9,8 @@ module Vedeu
       let(:described) { Vedeu::DSL::Interface }
       let(:instance)  { described.new(model) }
       let(:model)     {
-        Vedeu::Interface.build do
-          name 'actinium'
+        Vedeu.interface 'actinium' do
+          # ...
         end
       }
       let(:client) {}
@@ -301,9 +301,17 @@ module Vedeu
       end
 
       describe '#group' do
-        subject { instance.group('elements') }
+        let(:value) { 'elements' }
+
+        subject { instance.group(value) }
 
         it { subject.must_be_instance_of(String) }
+
+        context 'when the value is empty or nil' do
+          let(:value) { '' }
+
+          it { subject.must_equal(false) }
+        end
       end
 
       describe '#keys' do

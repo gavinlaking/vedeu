@@ -19,6 +19,9 @@ module Vedeu
 
     attr_reader :model, :storage
 
+    # @param model [Class]
+    # @param storage [Class|Hash]
+    # @return [Vedeu::Repository]
     def initialize(model = nil, storage = {})
       @model   = model
       @storage = storage
@@ -45,6 +48,7 @@ module Vedeu
       find_or_create(Vedeu.focus) if Vedeu.focus
     end
 
+    # @return [Enumerator]
     def each(&block)
       storage.each(&block)
     end

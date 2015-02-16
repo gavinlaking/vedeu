@@ -9,7 +9,7 @@ module Vedeu
     #
     # @param height [Fixnum]
     # @param width [Fixnum]
-    # @return [ConsoleGeometry]
+    # @return [Vedeu::BoundingArea]
     def initialize(height, width)
       @height = height
       @width  = width

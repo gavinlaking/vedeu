@@ -17,7 +17,7 @@ module Vedeu
 
     include Vedeu::Model
 
-    attr_reader :attributes, :name, :ox, :oy, :repository, :state, :x, :y
+    attr_reader :attributes, :name, :ox, :oy, :state, :x, :y
 
     # Provides a new instance of Cursor.
     #

@@ -8,13 +8,13 @@ trap('INT') { exit! }
 
 require 'vedeu'
 
-class VedeuCursorApp
+class VedeuGeometryApp
   include Vedeu
 
   configure do
     colour_mode 16777216
     debug!
-    log '/tmp/vedeu_cursor_app.log'
+    log '/tmp/vedeu_geometry_app.log'
   end
 
   bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
@@ -23,11 +23,26 @@ class VedeuCursorApp
     colour foreground: '#ff0000', background: '#000000'
     cursor!
 
+    # Geometry can be defined within the interface.
     geometry do
-      centred true
       height  8
       width   8
+      x       2
+      y       2
     end
+  end
+
+  interface 'second' do
+    colour foreground: '#0000ff', background: '#000000'
+    cursor!
+  end
+
+  # Geometry can be defined either before or after the interface.
+  geometry 'second' do
+    height  8
+    width   8
+    x       12
+    y       2
   end
 
   keymap('_global_') do
@@ -38,6 +53,19 @@ class VedeuCursorApp
   end
 
   renders do
+    view 'second' do
+      border!
+      lines do
+        line 'A.987654321'
+        line 'B.987654321'
+        line 'C.987654321'
+        line 'D.987654321'
+        line 'E.987654321'
+        line 'F.987654321'
+        line 'G.987654321'
+        line 'H.987654321'
+      end
+    end
     view 'main_interface' do
       border!
       lines do
@@ -110,4 +138,4 @@ class VedeuCursorApp
   end
 end
 
-VedeuCursorApp.start(ARGV)
+VedeuGeometryApp.start(ARGV)

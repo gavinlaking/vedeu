@@ -15,6 +15,7 @@ module Vedeu
     include Vedeu::Model
 
     attr_accessor :attributes
+    attr_reader   :name
 
     class << self
 
@@ -22,7 +23,7 @@ module Vedeu
       def build(attributes = {}, &block)
         attributes = defaults.merge(attributes)
 
-        model = new(attributes[:interface], attributes)
+        model = new(attributes)
         model.deputy(attributes[:client]).instance_eval(&block) if block_given?
         model
       end
@@ -35,7 +36,7 @@ module Vedeu
       def defaults
         {
           client:    nil,
-          interface: nil,
+          name:      '',
         }
       end
 
@@ -43,26 +44,27 @@ module Vedeu
 
     # Returns a new instance of Border.
     #
-    # @param interface [Interface]
     # @param attributes [Hash]
+    # @option attributes bottom_left [String]
+    # @option attributes bottom_right [String]
     # @option attributes colour
-    # @option attributes style
     # @option attributes enabled [Boolean]
+    # @option attributes horizontal [String]
+    # @option attributes name [String]
+    # @option attributes style
     # @option attributes show_bottom [Boolean]
     # @option attributes show_left [Boolean]
     # @option attributes show_right [Boolean]
     # @option attributes show_top [Boolean]
-    # @option attributes horizontal [String]
-    # @option attributes vertical [String]
-    # @option attributes bottom_left [String]
-    # @option attributes bottom_right [String]
     # @option attributes top_left [String]
     # @option attributes top_right [String]
+    # @option attributes vertical [String]
     # @return [Border]
-    def initialize(interface, attributes = {})
-      @interface  = interface
+    def initialize(attributes = {})
       @attributes = defaults.merge(attributes)
+      @name       = @attributes[:name]
       @colour     = Colour.coerce(@attributes[:colour])
+      @repository = Vedeu.borders
       @style      = Style.coerce(@attributes[:style])
     end
 
@@ -177,12 +179,9 @@ module Vedeu
     #
     # @return [Boolean]
     def to_s
+      render = Vedeu::Viewport.new(interface).render
       render.map { |line| line.flatten.join }.join("\n")
     end
-
-    private
-
-    attr_reader :colour, :interface, :style
 
     # Renders the bottom border for the interface.
     #
@@ -234,6 +233,10 @@ module Vedeu
 
       out
     end
+
+    private
+
+    attr_reader :colour, :style
 
     # Renders the bottom left border character with escape codes for colour and
     # style for the interface.
@@ -360,25 +363,30 @@ module Vedeu
       [interface.colour, interface.style]
     end
 
+    # @return [Vedeu::Interface]
+    def interface
+      @_interface ||= Vedeu.interfaces.find(name)
+    end
+
     # The default values for a new instance of this class.
     #
     # @return [Hash]
     def defaults
       {
+        bottom_left:  "\x6D", # └
+        bottom_right: "\x6A", # ┘
+        colour:       {},
         enabled:      false,
+        horizontal:   "\x71", # ─
+        name:         '',
         show_bottom:  true,
         show_left:    true,
         show_right:   true,
         show_top:     true,
-        bottom_right: "\x6A", # ┘
-        top_right:    "\x6B", # ┐
-        top_left:     "\x6C", # ┌
-        bottom_left:  "\x6D", # └
-        horizontal:   "\x71", # ─
-        colour:       {},
         style:        [],
+        top_left:     "\x6C", # ┌
+        top_right:    "\x6B", # ┐
         vertical:     "\x78", # │
-        interface:    nil,
       }
     end
 

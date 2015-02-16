@@ -34,13 +34,23 @@ module Vedeu
       #
       # @param block [Proc]
       # @raise [InvalidSyntax] The required block was not given.
-      # @return [Hash]
+      # @return [Vedeu::Border]
       def border(&block)
         fail InvalidSyntax, 'block not given' unless block_given?
 
-        border_attrs = attributes.merge({ enabled: true, interface: model })
+        border_attrs = attributes.merge({ enabled: true,
+                                          name:    model.name })
 
-        model.border = Vedeu::Border.build(border_attrs, &block)
+        Vedeu::Border.build(border_attrs, &block).store
+      end
+
+      # Applies the default border to the interface.
+      #
+      # @return [Vedeu::Border]
+      def border!
+        border do
+          # adds default border
+        end
       end
 
       # Set the cursor visibility on an interface.
@@ -69,6 +79,9 @@ module Vedeu
         Vedeu::Cursor.new({ name: model.name, state: value }).store
       end
 
+      # Set the cursor to visible for the interface.
+      #
+      # @return [Vedeu::Cursor]
       def cursor!
         cursor(true)
       end
@@ -114,7 +127,7 @@ module Vedeu
       def geometry(&block)
         fail InvalidSyntax, 'block not given' unless block_given?
 
-        model.geometry = Vedeu::Geometry.build(attributes, &block)
+        Vedeu::Geometry.build({ name: model.name }, &block).store
       end
 
       # Specify a group for an interface. Interfaces of the same group can be
@@ -130,6 +143,8 @@ module Vedeu
       #
       # @return [String]
       def group(value)
+        return false unless defined_value?(value)
+
         if defined_value?(model.name)
           if Vedeu.groups.registered?(value)
             Vedeu.groups.find(value).add(model.name)
@@ -143,7 +158,7 @@ module Vedeu
         model.group = value
       end
 
-      # @see Vedeu::Keymap.keymap
+      # @see Vedeu::DSL::Keymap.keymap
       def keymap(name = model.name, &block)
         Vedeu.keymap(name, &block)
       end

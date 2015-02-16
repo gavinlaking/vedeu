@@ -11,18 +11,10 @@ module Vedeu
     extend Forwardable
 
     def_delegators :interface,
-      :border,
-      :border?,
       :geometry,
       :lines,
       :lines?,
       :cursor
-
-    def_delegators :border,
-      :bottom?,
-      :left?,
-      :right?,
-      :top?
 
     def_delegators :cursor,
       :ox,
@@ -32,11 +24,6 @@ module Vedeu
       :height,
       :width
 
-    # @see Viewport#show
-    def self.show(interface)
-      new(interface).show
-    end
-
     # Returns an instance of Viewport.
     #
     # @param interface [Interface] An instance of interface.
@@ -44,6 +31,41 @@ module Vedeu
     def initialize(interface)
       @interface = interface
     end
+
+    # Returns the interface with border (if enabled) and the content for the
+    # interface.
+    #
+    # @return [Array<Array<String>>]
+    def render
+      if border?
+        out = []
+
+        out << border.top if border.top?
+
+        show[0...bordered_height].each do |line|
+          out << [border.left, line[0...bordered_width], border.right].flatten
+        end
+
+        out << border.bottom if border.bottom?
+
+        out
+
+      else
+        show
+
+      end
+    end
+
+    # Returns a string representation of the viewport.
+    #
+    # @return [String]
+    def to_s
+      render.map(&:join).join("\n")
+    end
+
+    private
+
+    attr_reader :interface
 
     # Returns the visible content for the interface.
     #
@@ -58,17 +80,6 @@ module Vedeu
 
       line_pad.map { |line| column_pad(line) }.compact
     end
-
-    # Returns a string representation of the viewport.
-    #
-    # @return [String]
-    def to_s
-      show.map(&:join).join("\n")
-    end
-
-    private
-
-    attr_reader :interface
 
     # Pad the number of rows so that we always return an Array of the same
     # length for each viewport.
@@ -167,6 +178,16 @@ module Vedeu
       return border.height if border?
 
       height
+    end
+
+    # @return [Vedeu::Border]
+    def border
+      @_border ||= Vedeu.borders.find(interface.name)
+    end
+
+    # @return [Boolean]
+    def border?
+      Vedeu.borders.registered?(interface.name)
     end
 
   end # Viewport

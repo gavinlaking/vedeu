@@ -54,12 +54,16 @@ module Vedeu
 
       Vedeu.log("Rendering view: '#{interface.name}'")
 
-      interface.render.each_with_index do |line, index|
+      viewport.each_with_index do |line, index|
         out << interface.origin(index)
         out << line.join
       end
 
       out.join
+    end
+
+    def viewport
+      @_viewport ||= Vedeu::Viewport.new(interface).render
     end
 
   end # Output

@@ -6,12 +6,11 @@ module Vedeu
 
     let(:described) { Output.new(interface) }
     let(:interface) {
-      Interface.build do
+      Vedeu.interface 'flourine' do
         geometry do
           height 3
           width  32
         end
-        name 'flourine'
       end
     }
     let(:lines) {

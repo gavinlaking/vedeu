@@ -23,6 +23,10 @@ module Vedeu
 
     end # ClassMethods
 
+    # When this module is included in a class, provide ClassMethods as class
+    # methods for the class.
+    #
+    # @param klass [Class]
     def self.included(klass)
       klass.send :extend, ClassMethods
     end

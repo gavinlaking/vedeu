@@ -5,28 +5,29 @@ module Vedeu
   describe Border do
 
     let(:described)  { Vedeu::Border }
-    let(:instance)   { described.new(interface, attributes) }
-    # let(:interface)  { Interface.new({ name: 'caesium' }) }
-    let(:interface)  {
-      Vedeu::Interface.build do
+    let(:instance)   { described.new(attributes) }
+    let(:attributes) {
+      {
+        name: 'borders'
+      }
+    }
+
+    before do
+      Vedeu.interfaces.reset
+      Vedeu.interface 'borders' do
         geometry do
           height 5
           width  8
         end
-        name 'caesium'
+        lines do
+          line 'Beryllium'
+          line 'Magnesium'
+          line 'Plutonium'
+          line 'Potassium'
+          line 'Lanthanum'
+          line 'Stront­ium'
+        end
       end
-    }
-    let(:attributes) { {} }
-
-    before do
-      interface.lines = [
-        Line.new([Stream.new('Beryllium')]),
-        Line.new([Stream.new('Magnesium')]),
-        Line.new([Stream.new('Plutonium')]),
-        Line.new([Stream.new('Potassium')]),
-        Line.new([Stream.new('Lanthanum')]),
-        Line.new([Stream.new('Stront­ium')])
-      ]
     end
 
     describe '.build' do
@@ -42,26 +43,29 @@ module Vedeu
     describe '#initialize' do
       subject { instance }
 
-      it { subject.must_be_instance_of(Border) }
-      it { subject.instance_variable_get('@interface').must_equal(interface) }
+      it { subject.must_be_instance_of(described) }
       it { subject.instance_variable_get('@attributes').must_equal(
         {
+          bottom_left:  'm',
+          bottom_right: 'j',
+          colour:       {},
           enabled:      false,
+          horizontal:   'q',
+          name:         'borders',
           show_bottom:  true,
           show_left:    true,
           show_right:   true,
           show_top:     true,
-          bottom_right: 'j',
-          top_right:    'k',
-          top_left:     'l',
-          bottom_left:  'm',
-          horizontal:   'q',
-          colour:       {},
           style:        [],
+          top_left:     'l',
+          top_right:    'k',
           vertical:     'x',
-          interface:    nil,
         })
       }
+      it { subject.instance_variable_get('@colour').must_be_instance_of(Vedeu::Colour) }
+      it { subject.instance_variable_get('@name').must_equal('borders') }
+      it { subject.instance_variable_get('@repository').must_be_instance_of(Vedeu::Borders) }
+      it { subject.instance_variable_get('@style').must_be_instance_of(Vedeu::Style) }
     end
 
     describe '#width' do
@@ -75,19 +79,37 @@ module Vedeu
 
       context 'when the border is enabled' do
         context 'when both left and right borders are shown' do
-          let(:attributes) { { enabled: true } }
+          let(:attributes) {
+            {
+              enabled: true,
+              name:    'borders',
+            }
+          }
 
           it { subject.must_equal(6) }
         end
 
         context 'when either the left or right border is shown' do
-          let(:attributes) { { enabled: true, show_left: false } }
+          let(:attributes) {
+            {
+              enabled:   true,
+              name:      'borders',
+              show_left: false
+            }
+          }
 
           it { subject.must_equal(7) }
         end
 
         context 'when neither left nor right borders are shown' do
-          let(:attributes) { { enabled: true, show_left: false, show_right: false } }
+          let(:attributes) {
+            {
+              enabled:    true,
+              name:       'borders',
+              show_left:  false,
+              show_right: false
+            }
+          }
 
           it { subject.must_equal(8) }
         end
@@ -105,19 +127,37 @@ module Vedeu
 
       context 'when the border is enabled' do
         context 'when both top and bottom borders are shown' do
-          let(:attributes) { { enabled: true } }
+          let(:attributes) {
+            {
+              enabled: true,
+              name:    'borders',
+            }
+          }
 
           it { subject.must_equal(3) }
         end
 
         context 'when either the top or bottom border is shown' do
-          let(:attributes) { { enabled: true, show_top: false } }
+          let(:attributes) {
+            {
+              enabled:  true,
+              name:     'borders',
+              show_top: false
+            }
+          }
 
           it { subject.must_equal(4) }
         end
 
         context 'when neither top nor bottom borders are shown' do
-          let(:attributes) { { enabled: true, show_top: false, show_bottom: false } }
+          let(:attributes) {
+            {
+              enabled:     true,
+              name:        'borders',
+              show_top:    false,
+              show_bottom: false
+            }
+          }
 
           it { subject.must_equal(5) }
         end
@@ -146,7 +186,12 @@ module Vedeu
       it { subject.must_be_instance_of(FalseClass) }
 
       context 'when true' do
-        let(:attributes) { { enabled: true } }
+        let(:attributes) {
+          {
+            enabled: true,
+            name:    'borders',
+          }
+        }
 
         it { subject.must_be_instance_of(TrueClass) }
       end
@@ -158,7 +203,13 @@ module Vedeu
       it { subject.must_be_instance_of(TrueClass) }
 
       context 'when false' do
-        let(:attributes) { { show_bottom: false } }
+        let(:attributes) {
+          {
+            enabled:     true,
+            name:        'borders',
+            show_bottom: false,
+          }
+        }
 
         it { subject.must_be_instance_of(FalseClass) }
       end
@@ -170,7 +221,13 @@ module Vedeu
       it { subject.must_be_instance_of(TrueClass) }
 
       context 'when false' do
-        let(:attributes) { { show_left: false } }
+        let(:attributes) {
+          {
+            enabled:   true,
+            name:      'borders',
+            show_left: false,
+          }
+        }
 
         it { subject.must_be_instance_of(FalseClass) }
       end
@@ -182,7 +239,13 @@ module Vedeu
       it { subject.must_be_instance_of(TrueClass) }
 
       context 'when false' do
-        let(:attributes) { { show_right: false } }
+        let(:attributes) {
+          {
+            enabled:    true,
+            name:       'borders',
+            show_right: false,
+          }
+        }
 
         it { subject.must_be_instance_of(FalseClass) }
       end
@@ -194,7 +257,13 @@ module Vedeu
       it { subject.must_be_instance_of(TrueClass) }
 
       context 'when false' do
-        let(:attributes) { { show_top: false } }
+        let(:attributes) {
+          {
+            enabled:  true,
+            name:     'borders',
+            show_top: false,
+          }
+        }
 
         it { subject.must_be_instance_of(FalseClass) }
       end
@@ -204,9 +273,11 @@ module Vedeu
       subject { instance.to_s }
 
       context 'when all borders should be shown' do
-        let(:attributes) {
-          { enabled: true }
-        }
+        before do
+          Vedeu.border 'borders' do
+            # ...
+          end
+        end
 
         it 'returns the escape sequences to draw a border' do
           subject.must_equal(
@@ -220,13 +291,14 @@ module Vedeu
       end
 
       context 'when no borders are shown' do
-        let(:attributes) {
-          { enabled:     true,
-            show_bottom: false,
-            show_left:   false,
-            show_right:  false,
-            show_top:    false }
-        }
+        before do
+          Vedeu.border 'borders' do
+            show_bottom false
+            show_left   false
+            show_right  false
+            show_top    false
+          end
+        end
 
         it 'returns the escape sequences to draw a border' do
           subject.must_equal(
@@ -240,11 +312,12 @@ module Vedeu
       end
 
       context 'when the left and right border is not shown' do
-        let(:attributes) {
-          { enabled:     true,
-            show_left:   false,
-            show_right:  false }
-        }
+        before do
+          Vedeu.border 'borders' do
+            show_left   false
+            show_right  false
+          end
+        end
 
         it 'returns the escape sequences to draw a border' do
           subject.must_equal(
@@ -258,11 +331,12 @@ module Vedeu
       end
 
       context 'when the top and bottom border is not shown' do
-        let(:attributes) {
-          { enabled:     true,
-            show_bottom: false,
-            show_top:    false }
-        }
+        before do
+          Vedeu.border 'borders' do
+            show_bottom false
+            show_top    false
+          end
+        end
 
         it 'returns the escape sequences to draw a border' do
           subject.must_equal(
@@ -276,12 +350,13 @@ module Vedeu
       end
 
       context 'when the left border is shown, all others not shown' do
-        let(:attributes) {
-          { enabled:     true,
-            show_bottom: false,
-            show_right:  false,
-            show_top:    false }
-        }
+        before do
+          Vedeu.border 'borders' do
+            show_bottom false
+            show_right  false
+            show_top    false
+          end
+        end
 
         it 'returns the escape sequences to draw a border' do
           subject.must_equal(
@@ -295,12 +370,13 @@ module Vedeu
       end
 
       context 'when the right border is shown, all others not shown' do
-        let(:attributes) {
-          { enabled:     true,
-            show_bottom: false,
-            show_left:   false,
-            show_top:    false }
-        }
+        before do
+          Vedeu.border 'borders' do
+            show_bottom false
+            show_left   false
+            show_top    false
+          end
+        end
 
         it 'returns the escape sequences to draw a border' do
           subject.must_equal(
@@ -314,12 +390,13 @@ module Vedeu
       end
 
       context 'when the top border is shown, all others not shown' do
-        let(:attributes) {
-          { enabled:     true,
-            show_bottom: false,
-            show_left:   false,
-            show_right:  false }
-        }
+        before do
+          Vedeu.border 'borders' do
+            show_bottom false
+            show_left   false
+            show_right  false
+          end
+        end
 
         it 'returns the escape sequences to draw a border' do
           subject.must_equal(
@@ -333,12 +410,13 @@ module Vedeu
       end
 
       context 'when the bottom border is shown, all others not shown' do
-        let(:attributes) {
-          { enabled:     true,
-            show_left:   false,
-            show_right:  false,
-            show_top:    false }
-        }
+        before do
+          Vedeu.border 'borders' do
+            show_left   false
+            show_right  false
+            show_top    false
+          end
+        end
 
         it 'returns the escape sequences to draw a border' do
           subject.must_equal(

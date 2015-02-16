@@ -47,10 +47,8 @@ module Vedeu
     # @return [Array<Interface>]
     def compose
       buffer.map do |view|
-        view.border   = interface.border   unless view.border
         view.colour   = interface.colour   unless view.colour
         view.style    = interface.style    unless view.style
-        view.geometry = interface.geometry unless view.geometry
 
         Output.render(view)
       end
@@ -60,11 +58,12 @@ module Vedeu
 
     attr_reader :name
 
+    # @return [Vedeu::Interface]
     def buffer
       Vedeu.buffers.find(name).content
     end
 
-    # @return [Interface]
+    # @return [Vedeu::Interface]
     def interface
       @interface ||= Vedeu.interfaces.find(name)
     end

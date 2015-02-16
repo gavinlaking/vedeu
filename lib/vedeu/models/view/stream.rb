@@ -73,7 +73,7 @@ module Vedeu
     end
 
     # @param child [Vedeu::Stream]
-    # @return [Vedeu::Line]
+    # @return [Vedeu::Streams]
     def add(child)
       parent.add(child)
     end

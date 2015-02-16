@@ -164,10 +164,23 @@ class VedeuBordersApp
     key('r') { Vedeu.trigger(:_refresh_) }
   end
 
+  # Borders can be defined as part of a view (see below), or standalone.
+  border 'no_bottom' do
+    show_bottom false
+  end
+  border 'no_left' do
+    show_left false
+  end
+  border 'no_right' do
+    show_right false
+  end
+  border 'no_top' do
+    show_top false
+  end
+
   renders do
     view('default_border') do
-      border do
-      end
+      border!
       lines do
         line 'on'
       end
@@ -178,33 +191,21 @@ class VedeuBordersApp
       end
     end
     view('no_top') do
-      border do
-        show_top false
-      end
       lines do
         line 'no t'
       end
     end
     view('no_bottom') do
-      border do
-        show_bottom false
-      end
       lines do
         line 'no b'
       end
     end
     view('no_left') do
-      border do
-        show_left false
-      end
       lines do
         line 'no l'
       end
     end
     view('no_right') do
-      border do
-        show_right false
-      end
       lines do
         line 'no r'
       end

@@ -31,7 +31,7 @@ module Vedeu
       subject { instance.border? }
 
       context 'when the interface has a border' do
-        before { instance.stubs(:border).returns(mock('Border')) }
+        before { Vedeu.borders.stubs(:registered?).with(_name).returns(true) }
 
         it { subject.must_equal(true) }
       end
@@ -60,23 +60,6 @@ module Vedeu
 
       it { subject.must_be_instance_of(Vedeu::Cursor) }
     end
-
-    # TODO: when the interface does not have any geometry defined?
-    # describe '#render' do
-    #   subject { instance.render }
-
-    #   context 'when the interface has a border' do
-    #     let(:border) { Vedeu::Border.new(instance, { enabled: true }) }
-
-    #     before { instance.stubs(:border).returns(border) }
-
-    #     it { skip }
-    #   end
-
-    #   context 'when the interface does not have a border' do
-    #     it { skip }
-    #   end
-    # end
 
     describe '#inspect' do
       subject { instance.inspect }
@@ -114,13 +97,6 @@ module Vedeu
       #     it { skip }
       #   end
       # end
-    end
-
-    # TODO: when the interface does not have any geometry defined?
-    describe '#viewport' do
-      subject { instance.viewport }
-
-      # it { skip }
     end
 
   end # Interface

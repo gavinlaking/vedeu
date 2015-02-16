@@ -101,6 +101,7 @@ module Vedeu
       @repository   = Vedeu.events
     end
 
+    # @see Vedeu::Event.bind
     def bind
       if repository.registered?(name)
         collection     = repository.find(name)
@@ -117,7 +118,7 @@ module Vedeu
     end
 
     # Triggers the event based on debouncing and throttling conditions.
-
+    #
     # @param args [Array]
     # @return []
     def trigger(*args)
