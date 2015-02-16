@@ -34,34 +34,6 @@ module Vedeu
     attr_reader   :attributes
     attr_writer   :x, :y
 
-    class << self
-
-      # Build models using a simple DSL when a block is given, otherwise returns
-      # a new instance of the class including this module.
-      #
-      # @see Vedeu::Geometry#initialize
-      def build(attributes = {}, &block)
-        attributes = defaults.merge(attributes)
-
-        model = new(attributes)
-        model.deputy(attributes[:client]).instance_eval(&block) if block_given?
-        model
-      end
-
-      private
-
-      # The default values for a new instance of this class.
-      #
-      # @return [Hash]
-      def defaults
-        {
-          client: nil,
-          name:   '',
-        }
-      end
-
-    end
-
     # Returns a new instance of Geometry.
     #
     # @param attributes [Hash]
@@ -344,6 +316,7 @@ module Vedeu
     def defaults
       {
         centred: false,
+        client:  nil,
         height:  Terminal.height,
         name:    '',
         width:   Terminal.width,
