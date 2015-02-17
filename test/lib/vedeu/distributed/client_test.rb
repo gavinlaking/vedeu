@@ -6,18 +6,21 @@ module Vedeu
 
     describe Client do
 
-      let(:described) { Client.new(uri) }
-      let(:uri) {}
+      let(:described) { Vedeu::Distributed::Client }
+      let(:instance)  { described.new(uri) }
+      let(:uri)       {}
+
+      describe '#initialize' do
+        subject { instance }
+
+        it { subject.must_be_instance_of(described) }
+        it { subject.instance_variable_get('@uri').must_equal('') }
+      end
 
       describe '.connect' do
       end
 
-      describe '#initialize' do
-        it { return_type_for(described, Client) }
-        it { assigns(described, '@uri', '') }
-      end
-
-      describe '#disconnect' do
+      describe '.disconnect' do
       end
 
     end # Client

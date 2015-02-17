@@ -6,14 +6,17 @@ module Vedeu
 
     describe Server do
 
-      let(:described) { Server.new(uri, service) }
-      let(:uri)     {}
-      let(:service) {}
+      let(:described) { Vedeu::Distributed::Server }
+      let(:instance)  { described.new(uri, service) }
+      let(:uri)       {}
+      let(:service)   {}
 
       describe '#initialize' do
-        it { return_type_for(described, Server) }
-        it { assigns(described, '@uri', uri) }
-        it { assigns(described, '@service', service) }
+        subject { instance }
+
+        it { subject.must_be_instance_of(described) }
+        it { subject.instance_variable_get('@uri').must_equal(uri) }
+        it { subject.instance_variable_get('@service').must_equal(service) }
       end
 
       describe '#start' do
