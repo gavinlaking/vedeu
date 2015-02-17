@@ -32,3 +32,13 @@ module Vedeu
   end # Distributed
 
 end # Vedeu
+
+# client.rb
+# require 'drb'
+# URI = "druby://127.0.0.1:12345"
+# log_server = DRbObject.new_with_uri(URI)
+# 5.times do |x|
+#   log_server.write_to_logfile("The time is: #{Time.now}\n")
+#   sleep 1
+# end
+# log_server.shutdown_server

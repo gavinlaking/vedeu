@@ -29,3 +29,19 @@ module Vedeu
   end # Distributed
 
 end # Vedeu
+
+# require 'drb'
+# URI = "druby://127.0.0.1:12345"
+# LOG_FILE = 'mylog.log'
+# class LogService
+#   def write_to_logfile(msg)
+#     puts msg
+#     File.open(LOG_FILE, 'a') {|file| file.write(msg)}
+#   end
+#   def shutdown_server
+#     DRb.stop_service
+#   end
+# end
+# DRb.start_service(URI, LogService.new)
+# DRb.thread.join
+# puts 'server has stopped.'
