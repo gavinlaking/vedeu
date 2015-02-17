@@ -120,6 +120,20 @@ module Vedeu
 
             options[:drb] = true
           end
+
+          opts.on('-h', '--drb-host', 'Set the hostname/IP for the DRb server.') do |hostname|
+            Vedeu.log("Configuration::CLI drb_host: #{hostname}")
+
+            #options[:drb]      = true
+            options[:drb_host] = hostname
+          end
+
+          opts.on('-p', '--drb-port', 'Set the port for the DRb server.') do |port|
+            Vedeu.log("Configuration::CLI drb_port: #{port}")
+
+            #options[:drb]      = true
+            options[:drb_port] = port
+          end
         end
 
         parser.parse!(args)

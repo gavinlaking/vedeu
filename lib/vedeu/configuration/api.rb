@@ -121,6 +121,32 @@ module Vedeu
       end
       alias_method :drb, :drb!
 
+      # Sets the hostname or IP address of the DRb server.
+      #
+      # @example
+      #   Vedeu.configure do
+      #     drb_host 'localhost'
+      #     ...
+      #
+      # @param hostname [String]
+      # @return [String]
+      def drb_host(hostname = '')
+        options[:drb_host] = hostname
+      end
+
+      # Sets the port of the DRb server.
+      #
+      # @example
+      #   Vedeu.configure do
+      #     drb_port 12345
+      #     ...
+      #
+      # @param port [Fixnum|String]
+      # @return [String]
+      def drb_port(port = '')
+        options[:drb_port] = port
+      end
+
       # Sets the terminal mode to `cooked`. Default terminal mode is `raw`.
       #
       # @example

@@ -105,6 +105,20 @@ module Vedeu
         end
       end
 
+      describe '#drb_host' do
+        it 'sets the options to the desired value' do
+          configuration = Vedeu.configure { drb_host('localhost') }
+          configuration.drb_host.must_equal('localhost')
+        end
+      end
+
+      describe '#drb_port' do
+        it 'sets the options to the desired value' do
+          configuration = Vedeu.configure { drb_port('12345') }
+          configuration.drb_port.must_equal('12345')
+        end
+      end
+
       describe '#cooked!' do
         it 'sets the option to the desired value' do
           configuration = Vedeu.configure { cooked! }

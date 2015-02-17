@@ -54,6 +54,20 @@ module Vedeu
         end
       end
 
+      # describe '#drb_host' do
+      #   it '--drb-host' do
+      #     Configuration.configure(['--drb-host', 'localhost'])
+      #     Configuration.drb_host.must_equal('localhost')
+      #   end
+      # end
+
+      # describe '#drb_port' do
+      #   it '--drb-port' do
+      #     Configuration.configure(['--drb-port', '12345'])
+      #     Configuration.drb_port.must_equal('12345')
+      #   end
+      # end
+
       describe '#interactive?' do
         it '--interactive' do
           Configuration.configure(['--interactive'])

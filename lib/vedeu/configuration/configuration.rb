@@ -68,6 +68,20 @@ module Vedeu
       end
       alias_method :drb, :drb?
 
+      # Returns the hostname for the DRb server.
+      #
+      # @return [String]
+      def drb_host
+        instance.options[:drb_host]
+      end
+
+      # Returns the port for the DRb server.
+      #
+      # @return [String]
+      def drb_port
+        instance.options[:drb_port]
+      end
+
       # Returns whether the application is interactive (required user input) or
       # standalone (will run until terminates of natural causes.) Default is
       # true; meaning the application will require user input.
@@ -192,6 +206,8 @@ module Vedeu
         colour_mode:   detect_colour_mode,
         debug:         false,
         drb:           false,
+        drb_host:      nil,
+        drb_port:      nil,
         interactive:   true,
         log:           '/tmp/vedeu.log',
         once:          false,
