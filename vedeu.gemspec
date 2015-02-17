@@ -24,7 +24,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'guard-bundler',      '2.1.0'
   spec.add_development_dependency 'guard-cucumber',     '1.5.3'
   spec.add_development_dependency 'guard-minitest',     '2.4.3'
-  spec.add_development_dependency 'guard-yard',         '2.1.4'
   spec.add_development_dependency 'minitest',           '5.5.1'
   spec.add_development_dependency 'minitest-reporters', '1.0.10'
   spec.add_development_dependency 'mocha',              '1.1.0'

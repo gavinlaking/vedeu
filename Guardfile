@@ -18,8 +18,3 @@ guard :bundler do
   watch('Gemfile')
   watch(/^.+\.gemspec/)
 end
-
-guard 'yard' do
-  watch(%r{docs/.+\.md})
-  watch(%r{lib/.+\.rb})
-end
