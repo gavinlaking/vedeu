@@ -12,8 +12,8 @@ module Vedeu
       # @param port [Fixnum|String]
       # @return [Uri]
       def initialize(host = 'druby://localhost', port = 21420)
-        @host = host
-        @port = port
+        @host = host || 'druby://localhost'
+        @port = port || 21420
       end
 
       # @return [String] The host and port as a single value.
