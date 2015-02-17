@@ -15,7 +15,7 @@ module Vedeu
         subject { instance }
 
         it { subject.must_be_instance_of(described) }
-        it { subject.instance_variable_get('@host').must_equal('druby://localhost') }
+        it { subject.instance_variable_get('@host').must_equal('localhost') }
         it { subject.instance_variable_get('@port').must_equal(21420) }
       end
 
@@ -23,16 +23,16 @@ module Vedeu
         subject { instance.host }
 
         context 'when the host has been defined by the client application' do
-          let(:host) { 'druby://myserver' }
+          let(:host) { 'myserver' }
 
           it 'returns the host' do
-            subject.must_equal('druby://myserver')
+            subject.must_equal('myserver')
           end
         end
 
         context 'when the host has not been redefined' do
           it 'returns the default host' do
-            subject.must_equal('druby://localhost')
+            subject.must_equal('localhost')
           end
         end
       end
@@ -56,7 +56,7 @@ module Vedeu
       end
 
       describe '#to_s' do
-        let(:host) { 'druby://myserver' }
+        let(:host) { 'myserver' }
         let(:port) { 40000 }
 
         subject { instance.to_s }
