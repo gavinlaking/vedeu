@@ -169,6 +169,35 @@ module Vedeu
       end
     end
 
+    describe '#raw_origin' do
+      it 'returns the origin for the interface' do
+        geometry = Geometry.new({ width: 5, height: 5 })
+        geometry.raw_origin.must_equal([1, 1])
+      end
+
+      it 'returns the origin for the interface' do
+        geometry = Geometry.new({ width: 5, height: 5, centred: true })
+        geometry.raw_origin.must_equal([10, 38])
+      end
+
+      it 'returns the line position relative to the origin' do
+        geometry = Geometry.new({ width: 5, height: 5 })
+        geometry.raw_origin(3).must_equal([4, 1])
+      end
+
+      it 'returns the origin for the interface when the interface' \
+         ' is at a custom position' do
+        geometry = Geometry.new({ width: 5, height: 5, x: 3, y: 6 })
+        geometry.raw_origin.must_equal([6, 3])
+      end
+
+      it 'returns the line position relative to the origin when the' \
+         ' interface is at a custom position' do
+        geometry = Geometry.new({ width: 5, height: 5, x: 3, y: 6 })
+        geometry.raw_origin(3).must_equal([9, 3])
+      end
+    end
+
     describe '#top' do
       it 'centred is true' do
         console = IO.console

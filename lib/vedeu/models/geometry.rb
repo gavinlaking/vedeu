@@ -153,7 +153,16 @@ module Vedeu
     # @param block [Proc]
     # @return [String]
     def origin(index = 0, &block)
-      Esc.set_position(virtual_y[index], left, &block)
+      Esc.set_position(*raw_origin(index), &block)
+    end
+
+    # Returns a tuple which positions the cursor at the top-left coordinate,
+    # relative to the interface's position.
+    #
+    # @param index [Fixnum]
+    # @return [Array<Fixnum>]
+    def raw_origin(index = 0)
+      [virtual_y[index], left]
     end
 
     # Returns the top coordinate of the interface, a fixed or dynamic value
