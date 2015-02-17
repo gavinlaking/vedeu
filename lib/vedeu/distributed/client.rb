@@ -7,40 +7,40 @@ module Vedeu
     class Client
 
       # @param uri [String]
-      def self.connect(uri)
-        new(uri).connect
-      end
-
-      # @param uri [String]
       # @return [Client]
       def initialize(uri)
         @uri = uri.to_s
       end
 
-      def connect
-        DRbObject.new_with_uri(uri)
+      def input(data)
+        server.input(data)
+      end
+      alias_method :read, :input
+
+      def output
+        server.output
+      end
+      alias_method :write, :output
+
+      def start
+        # client should be able to start a server, but what if one already
+        # exists?
       end
 
-      def disconnect
-        DRb.stop_service
+      def stop
+        server.stop
       end
 
       private
 
       attr_reader :uri
 
+      def server
+        @server ||= DRbObject.new_with_uri(uri)
+      end
+
     end # Client
 
   end # Distributed
 
 end # Vedeu
-
-# client.rb
-# require 'drb'
-# URI = "druby://127.0.0.1:12345"
-# log_server = DRbObject.new_with_uri(URI)
-# 5.times do |x|
-#   log_server.write_to_logfile("The time is: #{Time.now}\n")
-#   sleep 1
-# end
-# log_server.shutdown_server

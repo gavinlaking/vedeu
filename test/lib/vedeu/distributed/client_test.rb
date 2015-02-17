@@ -17,10 +17,16 @@ module Vedeu
         it { subject.instance_variable_get('@uri').must_equal('') }
       end
 
-      describe '.connect' do
+      describe '#input' do
       end
 
-      describe '.disconnect' do
+      describe '#output' do
+      end
+
+      describe '#start' do
+      end
+
+      describe '#stop' do
       end
 
     end # Client
