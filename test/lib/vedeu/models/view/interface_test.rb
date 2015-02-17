@@ -4,13 +4,22 @@ module Vedeu
 
   describe Interface do
 
-    let(:described) { Vedeu::Interface }
-    let(:instance)  { described.new(_name, lines, parent, colour, style) }
-    let(:_name)     { 'hydrogen' }
-    let(:lines)     { [] }
-    let(:parent)    {}
-    let(:colour)    {}
-    let(:style)     {}
+    let(:described)  { Vedeu::Interface }
+    let(:instance)   { described.new(attributes) }
+    let(:attributes) {
+      {
+        name:   _name,
+        lines:  lines,
+        parent: parent,
+        colour: colour,
+        style:  style,
+      }
+    }
+    let(:_name)      { 'hydrogen' }
+    let(:lines)      { [] }
+    let(:parent)     {}
+    let(:colour)     {}
+    let(:style)      {}
 
     describe '#initialize' do
       subject { instance }
@@ -18,8 +27,8 @@ module Vedeu
       it { subject.instance_variable_get('@name').must_equal(_name) }
       it { subject.instance_variable_get('@lines').must_equal(lines) }
       it { subject.instance_variable_get('@parent').must_equal(parent) }
-      it { subject.instance_variable_get('@colour').must_equal(colour) }
-      it { subject.instance_variable_get('@style').must_equal(style) }
+      it { subject.instance_variable_get('@colour').must_be_instance_of(Vedeu::Colour) }
+      it { subject.instance_variable_get('@style').must_be_instance_of(Vedeu::Style) }
       it { subject.instance_variable_get('@border').must_equal(nil) }
       it { subject.instance_variable_get('@delay').must_equal(0.0) }
       it { subject.instance_variable_get('@geometry').must_equal(nil) }
