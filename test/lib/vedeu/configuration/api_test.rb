@@ -83,6 +83,28 @@ module Vedeu
         end
       end
 
+      describe '#drb!' do
+        it 'sets the option to the desired value' do
+          configuration = Vedeu.configure { drb! }
+          configuration.drb.must_equal(true)
+        end
+
+        it 'sets the option to the desired value' do
+          configuration = Vedeu.configure { drb(false) }
+          configuration.drb.must_equal(false)
+        end
+
+        it 'sets the option to the desired value' do
+          configuration = Vedeu.configure { drb(true) }
+          configuration.drb.must_equal(true)
+        end
+
+        it 'sets the option to the desired value' do
+          configuration = Vedeu.configure { drb }
+          configuration.drb.must_equal(true)
+        end
+      end
+
       describe '#cooked!' do
         it 'sets the option to the desired value' do
           configuration = Vedeu.configure { cooked! }

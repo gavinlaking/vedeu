@@ -105,6 +105,22 @@ module Vedeu
       end
       alias_method :run_once, :run_once!
 
+      # Sets boolean to run a DRb server.
+      #
+      # @example
+      #   Vedeu.configure do
+      #     drb!
+      #     ...
+      #
+      # @param value [Boolean]
+      # @return [Boolean]
+      def drb!(value = true)
+        Vedeu.log("Configuration::API drb: #{value}")
+
+        options[:drb] = value
+      end
+      alias_method :drb, :drb!
+
       # Sets the terminal mode to `cooked`. Default terminal mode is `raw`.
       #
       # @example
