@@ -58,9 +58,9 @@ module Vedeu
     def initialize(value = nil, parent = nil, colour = nil, style = nil, position = nil)
       @value    = value
       @parent   = parent
-      @colour   = colour
+      @colour   = Vedeu::Colour.coerce(colour)
       @style    = style
-      @position = position
+      @position = Vedeu::Position.coerce(position)
     end
 
     # Returns log friendly output.
