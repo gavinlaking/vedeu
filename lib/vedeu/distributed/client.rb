@@ -1,3 +1,5 @@
+require 'drb'
+
 module Vedeu
 
   module Distributed
