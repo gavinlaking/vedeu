@@ -20,6 +20,7 @@ module Vedeu
       context 'with default attributes' do
         it { subject.instance_variable_get('@attributes').must_equal({
             centred: false,
+            client:  nil,
             height:  25,
             name:    '',
             width:   80,

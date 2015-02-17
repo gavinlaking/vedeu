@@ -4,26 +4,34 @@ module Vedeu
 
   describe Line do
 
-    let(:described) { Vedeu::Line }
-    let(:instance)  { described.new(streams, parent, colour, style) }
+    let(:described)  { Vedeu::Line }
+    let(:instance)   { described.new(attributes) }
+    let(:attributes) {
+      {
+        streams: streams,
+        parent:  parent,
+        colour:  colour,
+        style:   style,
+      }
+    }
     let(:streams)   {
       [
-        Stream.new('Something interesting ',
-          streams_parent,
-          Colour.new({ foreground: '#ffff00' }),
-          Style.new('normal')),
-        Stream.new('on this line ',
-          streams_parent,
-          Colour.new({ foreground: '#00ff00' }),
-          Style.new('normal')),
-        Stream.new('would be cool, eh?',
-          streams_parent,
-          Colour.new({ foreground: '#0000ff' }),
-          Style.new('normal'))
+        Stream.new({ value: 'Something interesting ',
+          parent: streams_parent,
+          colour: Colour.new({ foreground: '#ffff00' }),
+          style:  Style.new('normal') }),
+        Stream.new({ value: 'on this line ',
+          parent: streams_parent,
+          colour: Colour.new({ foreground: '#00ff00' }),
+          style:  Style.new('normal') }),
+        Stream.new({ value: 'would be cool, eh?',
+          parent: streams_parent,
+          colour: Colour.new({ foreground: '#0000ff' }),
+          style:  Style.new('normal') })
       ]
     }
 
-    let(:streams_parent) { Line.new(nil, parent, colour, style) }
+    let(:streams_parent) { Line.new({ streams: nil, parent: parent, colour: colour, style: style }) }
 
     let(:parent)    { mock('Interface') }
     let(:colour)    { Colour.new({ foreground: '#ff0000', background: '#000000' }) }
@@ -37,7 +45,7 @@ module Vedeu
     describe '#initialize' do
       subject { instance }
 
-      it { subject.must_be_instance_of(Line) }
+      it { subject.must_be_instance_of(described) }
       it { subject.instance_variable_get('@streams').must_equal(streams) }
       it { subject.instance_variable_get('@parent').must_equal(parent) }
       it { subject.instance_variable_get('@colour').must_equal(colour) }

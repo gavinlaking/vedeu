@@ -4,16 +4,24 @@ module Vedeu
 
   describe Stream do
 
-    let(:described) { Vedeu::Stream }
-    let(:instance)  { described.new(value, parent, colour, style) }
-    let(:value)     { 'Some text' }
-    let(:parent)    {
-      Line.new(
-        [],
-        line_parent,
-        Colour.new({ background: '#0000ff', foreground: '#ffff00' }),
-        Style.new('normal')
-      )
+    let(:described)  { Vedeu::Stream }
+    let(:instance)   { described.new(attributes) }
+    let(:attributes) {
+      {
+        value:  value,
+        parent: parent,
+        colour: colour,
+        style:  style
+      }
+    }
+    let(:value)      { 'Some text' }
+    let(:parent)     {
+      Line.new({
+        streams: [],
+        parent:  line_parent,
+        colour:  Colour.new({ background: '#0000ff', foreground: '#ffff00' }),
+        style:   Style.new('normal')
+      })
     }
     let(:colour)      { Colour.new({ background: '#ff0000', foreground: '#000000' }) }
     let(:style)       { Style.new('normal') }
@@ -22,7 +30,8 @@ module Vedeu
     describe '#initialize' do
       subject { instance }
 
-      it { subject.must_be_instance_of(Stream) }
+      it { subject.must_be_instance_of(described) }
+      # it { subject.instance_variable_get('@attributes').must_equal(attributes) }
       it { subject.instance_variable_get('@value').must_equal(value) }
       it { subject.instance_variable_get('@parent').must_equal(parent) }
       it { subject.instance_variable_get('@colour').must_equal(colour) }

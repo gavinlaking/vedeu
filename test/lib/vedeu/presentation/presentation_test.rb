@@ -23,14 +23,15 @@ module Vedeu
     end
 
     describe '#to_s' do
-      let(:line) { Line.new(
-          [],
-          mock('Interface'),
-          Colour.new({ foreground: '#00ff00', background: '#000000' }),
-          Style.new('normal')
-        )
+      let(:line) {
+        Vedeu::Line.new({
+          streams: [],
+          parent:  mock('Interface'),
+          colour:  Colour.new({ foreground: '#00ff00', background: '#000000' }),
+          style:   Style.new('normal')
+        })
       }
-      let(:stream) { Stream.new(stream_value, line, stream_colour, stream_style) }
+      let(:stream) { Stream.new({ value: stream_value, parent: line, colour: stream_colour, style: stream_style }) }
       let(:stream_value)  { 'Some text' }
       let(:stream_colour) { Colour.new({ foreground: '#ff0000', background: '#000000' }) }
       let(:stream_style)  { Style.new(:underline) }

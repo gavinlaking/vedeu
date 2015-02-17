@@ -10,6 +10,21 @@ module Vedeu
 
     module ClassMethods
 
+      # Build models using a simple DSL when a block is given, otherwise returns
+      # a new instance of the class including this module.
+      #
+      # @param attributes [Hash] A collection of attributes specific to the
+      #   model.
+      # @param block [Proc] The block passed to the build method.
+      # @return [Object] An instance of the model.
+      def build(attributes = {}, &block)
+        attributes = defaults.merge(attributes)
+
+        model = new(attributes)
+        model.deputy(attributes[:client]).instance_eval(&block) if block_given?
+        model
+      end
+
       # Provide a convenient way to define the child or children of a model.
       #
       # @param klass [Class] The member (singular) or collection (multiple)
@@ -20,6 +35,18 @@ module Vedeu
       end
       alias_method :member,     :child
       alias_method :collection, :child
+
+      private
+
+      # The default values for a new instance of this class.
+      #
+      # @return [Hash]
+      def defaults
+        {
+          client:    nil,
+          name:      '',
+        }
+      end
 
     end # ClassMethods
 

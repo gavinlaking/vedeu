@@ -4,17 +4,19 @@ module Vedeu
 
   describe Style do
 
-    let(:described) { Style }
+    let(:described) { Vedeu::Style }
+    let(:instance)  { described.new(value) }
+    let(:value)     { 'bold' }
 
     describe '#initialize' do
-      subject { described.new('bold') }
+      subject { instance }
 
       it { subject.must_be_instance_of(described) }
       it { subject.instance_variable_get('@value').must_equal('bold') }
     end
 
     describe '#attributes' do
-      subject { described.new('bold').attributes }
+      subject { instance.attributes }
 
       it { subject.must_be_instance_of(Hash) }
 
@@ -26,7 +28,7 @@ module Vedeu
     describe '#to_s' do
       let(:value) {}
 
-      subject { described.new(value).to_s }
+      subject { instance.to_s }
 
       it { subject.must_be_instance_of(String) }
       it { subject.must_equal('') }

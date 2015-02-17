@@ -17,31 +17,6 @@ module Vedeu
     attr_accessor :attributes
     attr_reader   :name
 
-    class << self
-
-      # @see Vedeu::Border#initialize
-      def build(attributes = {}, &block)
-        attributes = defaults.merge(attributes)
-
-        model = new(attributes)
-        model.deputy(attributes[:client]).instance_eval(&block) if block_given?
-        model
-      end
-
-      private
-
-      # The default values for a new instance of this class.
-      #
-      # @return [Hash]
-      def defaults
-        {
-          client:    nil,
-          name:      '',
-        }
-      end
-
-    end
-
     # Returns a new instance of Border.
     #
     # @param attributes [Hash]
@@ -375,6 +350,7 @@ module Vedeu
       {
         bottom_left:  "\x6D", # └
         bottom_right: "\x6A", # ┘
+        client:       nil,
         colour:       {},
         enabled:      false,
         horizontal:   "\x71", # ─

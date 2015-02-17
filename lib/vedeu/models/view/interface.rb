@@ -47,69 +47,28 @@ module Vedeu
       :height,
       :origin
 
-    class << self
-
-      # Build interfaces using a simple DSL.
-      # If a name is provided as part of the attributes, we check the repository
-      # for an interface of the same name and update it from the new attributes
-      # provided, or if a block is given, new parameters set via the DSL.
-      #
-      # @param attributes [Hash]
-      # @option attributes client []
-      # @option attributes colour []
-      # @option attributes lines []
-      # @option attributes name []
-      # @option attributes parent []
-      # @option attributes style []
-      # @param block [Proc]
-      # @return [Class]
-      def build(attributes = {}, &block)
-        attributes = defaults.merge(attributes)
-        model = new(attributes[:name],
-                    attributes[:lines],
-                    attributes[:parent],
-                    attributes[:colour],
-                    attributes[:style])
-        model.deputy(attributes[:client]).instance_eval(&block) if block_given?
-        model
-      end
-
-      private
-
-      # The default values for a new instance of this class.
-      #
-      # @return [Hash]
-      def defaults
-        {
-          client: nil,
-          colour: nil,
-          lines:  [],
-          name:   '',
-          parent: nil,
-          style:  nil,
-        }
-      end
-    end
-
     # Return a new instance of Interface.
     #
-    # @param name [String]
-    # @param lines [Vedeu::Lines]
-    # @param parent [Vedeu::Composition]
-    # @param colour [Vedeu::Colour]
-    # @param style [Vedeu::Style]
-    # @return [Interface]
-    def initialize(name = '', lines = [], parent = nil, colour = nil, style = nil)
-      @name   = name
-      @lines  = lines
-      @parent = parent
-      @colour = colour
-      @style  = style
+    # @param attributes [Hash]
+    # @option attributes colour [Vedeu::Colour]
+    # @option attributes delay [Float]
+    # @option attributes group [String]
+    # @option attributes lines [Vedeu::Lines]
+    # @option attributes name [String]
+    # @option attributes parent [Vedeu::Composition]
+    # @option attributes style [Vedeu::Style]
+    # @return [Vedeu::Interface]
+    def initialize(attributes = {})
+      @attributes = defaults.merge(attributes)
 
-      @delay  = 0.0
-      @group  = ''
-
+      @colour     = Colour.coerce(@attributes[:colour])
+      @delay      = @attributes[:delay]
+      @group      = @attributes[:group]
+      @lines      = @attributes[:lines]
+      @name       = @attributes[:name]
+      @parent     = @attributes[:parent]
       @repository = Vedeu.interfaces
+      @style      = Style.coerce(@attributes[:style])
     end
 
     # @param child []
@@ -186,6 +145,24 @@ module Vedeu
       store_focusable
       store_cursor
       store_group
+    end
+
+    private
+
+    # The default values for a new instance of this class.
+    #
+    # @return [Hash]
+    def defaults
+      {
+        client: nil,
+        colour: nil,
+        delay:  0.0,
+        group:  '',
+        lines:  [],
+        name:   '',
+        parent: nil,
+        style:  nil,
+      }
     end
 
   end # Interface

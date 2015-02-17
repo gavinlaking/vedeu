@@ -66,7 +66,7 @@ module Vedeu
 
     # @return []
     def configuration
-      Configuration.configure(argv)
+      Vedeu::Configuration.configure(argv)
     end
 
   end # Launcher

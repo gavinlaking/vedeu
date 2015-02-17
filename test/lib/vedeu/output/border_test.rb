@@ -48,6 +48,7 @@ module Vedeu
         {
           bottom_left:  'm',
           bottom_right: 'j',
+          client:       nil,
           colour:       {},
           enabled:      false,
           horizontal:   'q',

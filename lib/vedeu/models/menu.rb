@@ -26,22 +26,6 @@ module Vedeu
 
     class << self
 
-      # @option attributes collection []
-      # @option attributes client []
-      # @option attributes name []
-      # @option attributes current []
-      # @option attributes selected []
-      def build(attributes = {}, &block)
-        attributes = defaults.merge(attributes)
-
-        model = new(attributes[:collection],
-                    attributes[:name],
-                    attributes[:current],
-                    attributes[:selected])
-        model.deputy(attributes[:client]).instance_eval(&block) if block_given?
-        model
-      end
-
       # Register a menu by name which will display a collection of items for
       # your users to select; and provide interactivity within your application.
       #
@@ -68,36 +52,23 @@ module Vedeu
         build({ name: name }, &block).store
       end
 
-      private
-
-      # The default values for a new instance of this class.
-      #
-      # @return [Hash]
-      def defaults
-        {
-          client:     nil,
-          collection: [],
-          current:    0,
-          name:       '',
-          selected:   nil,
-        }
-      end
-
     end
 
     # Returns a new instance of Menu.
     #
-    # @param collection [Array]
-    # @param name [String]
-    # @param current [Fixnum]
-    # @param selected [Fixnum|NilClass]
+    # @param attributes [Hash]
+    # @option attributes collection [Array]
+    # @option attributes name [String]
+    # @option attributes current [Fixnum]
+    # @option attributes selected [Fixnum|NilClass]
     # @return [Menu]
-    def initialize(collection = [], name = '', current = 0, selected = nil)
-      @collection = collection
-      @name       = name
-      @current    = current
-      @selected   = selected
+    def initialize(attributes = {})
+      @attributes = defaults.merge(attributes)
+      @collection = @attributes[:collection]
+      @current    = @attributes[:current]
+      @name       = @attributes[:name]
       @repository = Vedeu.menus
+      @selected   = @attributes[:selected]
     end
 
     # Returns the item from the collection which shares the same index as the
@@ -226,6 +197,19 @@ module Vedeu
     end
 
     private
+
+    # The default values for a new instance of this class.
+    #
+    # @return [Hash]
+    def defaults
+      {
+        client:     nil,
+        collection: [],
+        current:    0,
+        name:       '',
+        selected:   nil,
+      }
+    end
 
   end # Menu
 

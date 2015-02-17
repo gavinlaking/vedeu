@@ -4,28 +4,33 @@ module Vedeu
 
   describe Launcher do
 
-    let(:described) { Launcher.new }
+    let(:described) { Vedeu::Launcher }
+    let(:instance)  { described.new }
 
     before do
-      Configuration.stubs(:configure)
+      Configuration.stubs(:configure)#.returns(test_configuration)
       Application.stubs(:start)
       Kernel.stubs(:exit)
       Kernel.stubs(:puts)
     end
 
     describe '#initialize' do
-      it { described.must_be_instance_of(Launcher) }
-      it { described.instance_variable_get('@argv').must_equal([]) }
-      it { described.instance_variable_get('@stdin').must_equal(STDIN) }
-      it { described.instance_variable_get('@stdout').must_equal(STDOUT) }
-      it { described.instance_variable_get('@stderr').must_equal(STDERR) }
-      it { described.instance_variable_get('@kernel').must_equal(Kernel) }
-      it { described.instance_variable_get('@exit_code').must_equal(1) }
+      subject { instance }
+
+      it { subject.must_be_instance_of(described) }
+      it { subject.instance_variable_get('@argv').must_equal([]) }
+      it { subject.instance_variable_get('@stdin').must_equal(STDIN) }
+      it { subject.instance_variable_get('@stdout').must_equal(STDOUT) }
+      it { subject.instance_variable_get('@stderr').must_equal(STDERR) }
+      it { subject.instance_variable_get('@kernel').must_equal(Kernel) }
+      it { subject.instance_variable_get('@exit_code').must_equal(1) }
     end
 
     describe '#execute!' do
+      subject { instance.execute! }
+
       it 'returns 0 for successful execution' do
-        Launcher.new.execute!.must_equal(0)
+        subject.must_equal(0)
       end
 
       # context 'when an exception is raised' do

@@ -4,6 +4,7 @@ require 'vedeu/dsl/components/keymap'
 
 module Vedeu
 
+  # A container class for keys associated with a particular interface.
   class Keymap
 
     include Vedeu::Model
@@ -79,6 +80,9 @@ module Vedeu
       keys.any? { |key| key.input == input }
     end
 
+    # Triggers the action associated with the key, if it is registered with this
+    # keymap.
+    #
     # @param input [String|Symbol]
     # @return [Array|FalseClass]
     def use(input)
@@ -93,6 +97,8 @@ module Vedeu
 
     private
 
+    # Checks that the provided key is not already registered with this keymap.
+    #
     # @param key [Vedeu::Key]
     # @return [Boolean]
     def valid?(key)

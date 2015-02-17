@@ -22,50 +22,21 @@ module Vedeu
     attr_reader  :interfaces
     alias_method :value, :interfaces
 
-    class << self
-
-      # @param attributes [Hash]
-      # @option attributes client []
-      # @option attributes colour []
-      # @option attributes interfaces []
-      # @option attributes style []
-      # @param block [Proc]
-      # @return [Class]
-      def build(attributes = {}, &block)
-        attrs = defaults.merge(attributes)
-
-        model = new(attrs[:interfaces], attrs[:colour], attrs[:style])
-        model.deputy(attributes[:client]).instance_eval(&block) if block_given?
-        model
-      end
-
-      private
-
-      # The default values for a new instance of this class.
-      #
-      # @return [Hash]
-      def defaults
-        {
-          client:     nil,
-          colour:     nil,
-          interfaces: [],
-          style:      nil,
-        }
-      end
-
-    end
-
     # Returns a new instance of Composition.
     #
-    # @param interfaces [Interfaces]
+    # @param attributes [Hash]
+    # @option attributes colour []
+    # @option attributes interfaces []
+    # @option attributes style []
     # @return [Composition]
-    def initialize(interfaces = [], colour = nil, style = nil)
-      @interfaces = interfaces
-      @colour     = colour
-      @style      = style
+    def initialize(attributes = {})
+      @attributes = defaults.merge(attributes)
+      @interfaces = @attributes[:interfaces]
+      @colour     = Colour.coerce(@attributes[:colour])
+      @style      = Style.coerce(@attributes[:style])
     end
 
-    # @param child []
+    # @param child [Vedeu::Interface]
     # @return []
     def add(child)
       @interfaces = interfaces.add(child)
@@ -81,6 +52,20 @@ module Vedeu
     # @return [Vedeu::Interfaces]
     def interfaces
       collection.coerce(@interfaces, self)
+    end
+
+    private
+
+    # The default values for a new instance of this class.
+    #
+    # @return [Hash]
+    def defaults
+      {
+        client:     nil,
+        colour:     nil,
+        interfaces: [],
+        style:      nil,
+      }
     end
 
   end # Composition

@@ -5,15 +5,16 @@ module Vedeu
   describe Position do
 
     let(:described) { Vedeu::Position }
-    let(:instance)  { described.new(12, 19) }
-
+    let(:instance)  { described.new(y, x) }
+    let(:y)         { 12 }
+    let(:x)         { 19 }
 
     describe '#initialize' do
       subject { instance }
 
-      it { subject.must_be_instance_of(Position) }
-      it { subject.instance_variable_get('@y').must_equal(12) }
-      it { subject.instance_variable_get('@x').must_equal(19) }
+      it { subject.must_be_instance_of(described) }
+      it { subject.instance_variable_get('@y').must_equal(y) }
+      it { subject.instance_variable_get('@x').must_equal(x) }
     end
 
     describe '#to_s' do

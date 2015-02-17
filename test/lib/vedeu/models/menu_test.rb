@@ -5,19 +5,21 @@ module Vedeu
   describe Menu do
 
     let(:described)  { Vedeu::Menu }
-    let(:instance)   { described.new(collection, menu_name, current, selected) }
+    let(:instance)   { described.new(attributes) }
+    let(:attributes) {
+      {
+        collection: collection,
+        name:       menu_name,
+        current:    current,
+        selected:   selected,
+      }
+    }
     let(:collection) { ['hydrogen', 'carbon', 'nitrogen', 'oxygen'] }
     let(:menu_name)  { 'elements' }
     let(:current)    { 0 }
     let(:selected)   {}
 
     before { Vedeu.menus.reset }
-
-    describe '.build' do
-      subject { described.build }
-
-      it { subject.must_be_instance_of(described) }
-    end
 
     describe '.menu' do
       subject {
