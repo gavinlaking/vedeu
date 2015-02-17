@@ -114,6 +114,12 @@ module Vedeu
 
             options[:log] = filename
           end
+
+          opts.on('-s', '--drb', 'Run application with DRb on.') do
+            Vedeu.log("Configuration::CLI drb: true")
+
+            options[:drb] = true
+          end
         end
 
         parser.parse!(args)

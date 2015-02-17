@@ -24,6 +24,12 @@ module Vedeu
       end
     end
 
+    describe '#drb?' do
+      it 'returns the value of the drb option' do
+        Configuration.drb?.must_equal(false)
+      end
+    end
+
     describe '#interactive?' do
       it 'returns the value of the interactive option' do
         Configuration.interactive?.must_equal(true)

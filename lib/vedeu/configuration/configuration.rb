@@ -60,6 +60,14 @@ module Vedeu
       end
       alias_method :debug, :debug?
 
+      # Returns whether the DRb server is enabled or disabled. Default is false.
+      #
+      # @return [Boolean]
+      def drb?
+        instance.options[:drb]
+      end
+      alias_method :drb, :drb?
+
       # Returns whether the application is interactive (required user input) or
       # standalone (will run until terminates of natural causes.) Default is
       # true; meaning the application will require user input.
@@ -183,6 +191,7 @@ module Vedeu
       {
         colour_mode:   detect_colour_mode,
         debug:         false,
+        drb:           false,
         interactive:   true,
         log:           '/tmp/vedeu.log',
         once:          false,

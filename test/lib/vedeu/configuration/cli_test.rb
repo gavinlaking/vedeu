@@ -47,6 +47,13 @@ module Vedeu
         end
       end
 
+      describe '#drb' do
+        it '--drb' do
+          Configuration.configure(['--drb'])
+          Configuration.drb?.must_equal(true)
+        end
+      end
+
       describe '#interactive?' do
         it '--interactive' do
           Configuration.configure(['--interactive'])
