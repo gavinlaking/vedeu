@@ -15,6 +15,12 @@ module Vedeu
       it { instance.instance_variable_get('@x').must_equal(x) }
     end
 
+    describe '#inspect' do
+      subject { instance.inspect }
+
+      it { subject.must_equal("<Vedeu::Position (y:12 x:19)>") }
+    end
+
     describe '#to_s' do
       # subject { described.new.to_s }
 
