@@ -38,6 +38,18 @@ module Vedeu
       "<#{self.class.name} (y:#{@y} x:#{@x})>"
     end
 
+    # @param other []
+    # @return [Boolean]
+    def ==(other)
+      eql?(other)
+    end
+
+    # @param other []
+    # @return [Boolean]
+    def eql?(other)
+      self.class == other.class && (x == other.x && y == other.y)
+    end
+
     # Returns an escape sequence to position the cursor. When passed a block,
     # will position the cursor, yield and return the original position.
     #
