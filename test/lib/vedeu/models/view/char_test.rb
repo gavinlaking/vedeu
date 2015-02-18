@@ -70,7 +70,7 @@ module Vedeu
     describe '#inspect' do
       subject { instance.inspect }
 
-      it { subject.must_equal('<Vedeu::Char (value:a)>') }
+      it { subject.must_equal("<Vedeu::Char (value:'a')>") }
     end
 
     describe '#value' do
