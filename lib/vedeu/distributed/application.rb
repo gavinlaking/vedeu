@@ -6,6 +6,12 @@ module Vedeu
 
     # Orchestrates the running of the main application loop via the DRb server.
     #
+    # @example
+    #   app = Vedeu::Distributed::Application.start(configuration)
+    #   app.input('a')
+    #   app.output # => some output
+    #   app.stop
+    #
     # @api private
     class Application
 
