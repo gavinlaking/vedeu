@@ -25,6 +25,10 @@ module Vedeu
 
       def start
         DRb.start_service(uri, self)
+
+        Vedeu.bind(:_output_) { |data| self.output(data) }
+
+        self
       end
 
       def input(data)
@@ -32,9 +36,10 @@ module Vedeu
       end
       alias_method :read, :input
 
-      def output
-        # we need a way to collect the output generated, mix that with a virtual
-        # terminal of predefined size, render, and return that as the output.
+      # we need a way to collect the output generated, mix that with a virtual
+      # terminal of predefined size, render, and return that as the output.
+      def output(data = nil)
+        data
       end
       alias_method :write, :output
 

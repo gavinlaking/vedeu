@@ -25,6 +25,8 @@ module Vedeu
     #
     # @return [Array]
     def render
+      Vedeu.trigger(:_output_, virtual_view)
+
       Terminal.output(view, interface.cursor.to_s)
     end
 
