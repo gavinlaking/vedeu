@@ -4,7 +4,8 @@ module Vedeu
 
   describe Output do
 
-    let(:described) { Output.new(interface) }
+    let(:described) { Vedeu::Output }
+    let(:instance)  { described.new(interface) }
     let(:interface) {
       Vedeu.interface 'flourine' do
         geometry do
@@ -28,12 +29,12 @@ module Vedeu
     end
 
     describe '#initialize' do
-      it { described.must_be_instance_of(Output) }
-      it { described.instance_variable_get('@interface').must_equal(interface) }
+      it { instance.must_be_instance_of(described) }
+      it { instance.instance_variable_get('@interface').must_equal(interface) }
     end
 
     describe '.render' do
-      subject { Output.render(interface) }
+      subject { described.render(interface) }
 
       it { subject.must_be_instance_of(Array) }
 
