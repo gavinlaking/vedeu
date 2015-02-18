@@ -12,11 +12,9 @@ module Vedeu
       let(:client)    {}
 
       describe '#initialize' do
-        subject { instance }
-
-        it { subject.must_be_instance_of(Vedeu::DSL::Composition) }
-        it { subject.instance_variable_get('@model').must_equal(model) }
-        it { subject.instance_variable_get('@client').must_equal(client) }
+        it { instance.must_be_instance_of(Vedeu::DSL::Composition) }
+        it { instance.instance_variable_get('@model').must_equal(model) }
+        it { instance.instance_variable_get('@client').must_equal(client) }
       end
 
       describe '#view' do

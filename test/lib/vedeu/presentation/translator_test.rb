@@ -9,10 +9,8 @@ module Vedeu
     let(:colour)    { '#ff0000' }
 
     describe '#initialize' do
-      subject { instance }
-
-      it { subject.must_be_instance_of(Translator) }
-      it { subject.instance_variable_get('@colour').must_equal(colour) }
+      it { instance.must_be_instance_of(Translator) }
+      it { instance.instance_variable_get('@colour').must_equal(colour) }
     end
 
     describe '#escape_sequence' do

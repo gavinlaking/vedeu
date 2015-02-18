@@ -11,12 +11,10 @@ module Vedeu
     let(:key)       { Vedeu::Key.new('a') { :output } }
 
     describe '#initialize' do
-      subject { instance }
-
-      it { subject.must_be_instance_of(Keymap) }
-      it { subject.instance_variable_get('@name').must_equal(map_name) }
-      it { subject.instance_variable_get('@keys').must_be_instance_of(Array) }
-      it { subject.instance_variable_get('@repository').must_equal(Vedeu.keymaps) }
+      it { instance.must_be_instance_of(Keymap) }
+      it { instance.instance_variable_get('@name').must_equal(map_name) }
+      it { instance.instance_variable_get('@keys').must_be_instance_of(Array) }
+      it { instance.instance_variable_get('@repository').must_equal(Vedeu.keymaps) }
     end
 
     describe '#add' do

@@ -28,12 +28,10 @@ module Vedeu
     end
 
     describe '#initialize' do
-      subject { instance }
-
-      it { subject.must_be_instance_of(described) }
-      it { subject.instance_variable_get('@interfaces').must_equal(interfaces) }
-      it { subject.instance_variable_get('@colour').must_be_instance_of(Vedeu::Colour) }
-      it { subject.instance_variable_get('@style').must_be_instance_of(Vedeu::Style) }
+      it { instance.must_be_instance_of(described) }
+      it { instance.instance_variable_get('@interfaces').must_equal(interfaces) }
+      it { instance.instance_variable_get('@colour').must_be_instance_of(Vedeu::Colour) }
+      it { instance.instance_variable_get('@style').must_be_instance_of(Vedeu::Style) }
     end
 
     describe '#inspect' do

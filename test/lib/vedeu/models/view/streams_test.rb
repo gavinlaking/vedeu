@@ -8,9 +8,7 @@ module Vedeu
     let(:instance)  { described.new }
 
     describe '#initialize' do
-      subject { instance }
-
-      it { subject.must_be_instance_of(Vedeu::Streams) }
+      it { instance.must_be_instance_of(Vedeu::Streams) }
     end
 
   end # Streams

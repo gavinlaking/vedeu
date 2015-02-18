@@ -12,10 +12,8 @@ module Vedeu
     before { reader.stubs(:read).returns(keypress) }
 
     describe '#initialize' do
-      subject { instance }
-
-      it { subject.must_be_instance_of(Input) }
-      it { subject.instance_variable_get('@reader').must_equal(reader) }
+      it { instance.must_be_instance_of(Input) }
+      it { instance.instance_variable_get('@reader').must_equal(reader) }
     end
 
     describe '.capture' do

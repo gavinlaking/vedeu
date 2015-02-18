@@ -11,12 +11,10 @@ module Vedeu
     let(:y)         {}
 
     describe '#initialize' do
-      subject { instance }
-
-      it { subject.must_be_instance_of(described) }
-      it { subject.instance_variable_get('@interface').must_equal(interface) }
-      it { subject.instance_variable_get('@x').must_equal(x) }
-      it { subject.instance_variable_get('@y').must_equal(y) }
+      it { instance.must_be_instance_of(described) }
+      it { instance.instance_variable_get('@interface').must_equal(interface) }
+      it { instance.instance_variable_get('@x').must_equal(x) }
+      it { instance.instance_variable_get('@y').must_equal(y) }
     end
 
   end # PositionValidator

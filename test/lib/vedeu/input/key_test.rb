@@ -21,8 +21,6 @@ module Vedeu
     end
 
     describe '#initialize' do
-      subject { instance }
-
       it { instance.must_be_instance_of(Key) }
       it { instance.instance_variable_get('@input').must_equal(input) }
 

@@ -12,18 +12,16 @@ module Vedeu
     let(:min)       { 2 }
 
     describe '#initialize' do
-      subject { instance }
-
-      it { subject.must_be_instance_of(Vedeu::Limit) }
-      it { subject.instance_variable_get('@v').must_equal(v) }
-      it { subject.instance_variable_get('@vn').must_equal(vn) }
-      it { subject.instance_variable_get('@max').must_equal(max) }
-      it { subject.instance_variable_get('@min').must_equal(min) }
+      it { instance.must_be_instance_of(Vedeu::Limit) }
+      it { instance.instance_variable_get('@v').must_equal(v) }
+      it { instance.instance_variable_get('@vn').must_equal(vn) }
+      it { instance.instance_variable_get('@max').must_equal(max) }
+      it { instance.instance_variable_get('@min').must_equal(min) }
 
       context 'when min is nil' do
         let(:min) {}
 
-        it { subject.instance_variable_get('@min').must_equal(1) }
+        it { instance.instance_variable_get('@min').must_equal(1) }
       end
     end
 

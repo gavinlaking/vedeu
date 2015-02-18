@@ -24,11 +24,9 @@ module Vedeu
       let(:style)     { Vedeu::Style.new }
 
       describe '#initialize' do
-        subject { instance }
-
-        it { subject.must_be_instance_of(described) }
-        it { subject.instance_variable_get('@model').must_equal(model) }
-        it { subject.instance_variable_get('@client').must_equal(client) }
+        it { instance.must_be_instance_of(described) }
+        it { instance.instance_variable_get('@model').must_equal(model) }
+        it { instance.instance_variable_get('@client').must_equal(client) }
       end
 
       describe '#line' do

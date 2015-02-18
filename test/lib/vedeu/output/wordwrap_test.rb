@@ -45,11 +45,9 @@ module Vedeu
     }
 
     describe '#initialize' do
-      subject { instance }
-
-      it { subject.must_be_instance_of(described) }
-      it { subject.instance_variable_get('@text').must_equal(text) }
-      it { subject.instance_variable_get('@options').must_equal(options) }
+      it { instance.must_be_instance_of(described) }
+      it { instance.instance_variable_get('@text').must_equal(text) }
+      it { instance.instance_variable_get('@options').must_equal(options) }
     end
 
     describe '#prune' do

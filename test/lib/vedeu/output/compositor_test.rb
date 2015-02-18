@@ -31,10 +31,8 @@ module Vedeu
     end
 
     describe '#initialize' do
-      subject { instance }
-
-      it { subject.must_be_instance_of(Compositor) }
-      it { subject.instance_variable_get('@name').must_equal(_name) }
+      it { instance.must_be_instance_of(Compositor) }
+      it { instance.instance_variable_get('@name').must_equal(_name) }
     end
 
     describe '.compose' do

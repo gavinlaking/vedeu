@@ -13,12 +13,10 @@ module Vedeu
     end
 
     describe '#initialize' do
-      subject { instance }
-
-      it { subject.must_be_instance_of(Geometry) }
+      it { instance.must_be_instance_of(Geometry) }
 
       context 'with default attributes' do
-        it { subject.instance_variable_get('@attributes').must_equal({
+        it { instance.instance_variable_get('@attributes').must_equal({
             centred: false,
             client:  nil,
             height:  25,
@@ -30,15 +28,15 @@ module Vedeu
             yn:      25,
           })
         }
-        it { subject.instance_variable_get('@centred').must_equal(false) }
-        it { subject.instance_variable_get('@height').must_equal(25) }
-        it { subject.instance_variable_get('@name').must_equal('') }
-        it { subject.instance_variable_get('@width').must_equal(80) }
-        it { subject.instance_variable_get('@x').must_equal(1) }
-        it { subject.instance_variable_get('@xn').must_equal(80) }
-        it { subject.instance_variable_get('@y').must_equal(1) }
-        it { subject.instance_variable_get('@yn').must_equal(25) }
-        it { subject.instance_variable_get('@repository').must_equal(Vedeu.geometries) }
+        it { instance.instance_variable_get('@centred').must_equal(false) }
+        it { instance.instance_variable_get('@height').must_equal(25) }
+        it { instance.instance_variable_get('@name').must_equal('') }
+        it { instance.instance_variable_get('@width').must_equal(80) }
+        it { instance.instance_variable_get('@x').must_equal(1) }
+        it { instance.instance_variable_get('@xn').must_equal(80) }
+        it { instance.instance_variable_get('@y').must_equal(1) }
+        it { instance.instance_variable_get('@yn').must_equal(25) }
+        it { instance.instance_variable_get('@repository').must_equal(Vedeu.geometries) }
       end
     end
 

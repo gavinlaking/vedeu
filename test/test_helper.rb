@@ -41,8 +41,9 @@ def test_configuration
 
   Vedeu.configure do
     colour_mode 16777216
-    debug!
-    log         '/tmp/vedeu_test_helper.log'
+     # adds ~40ms to test run speed
+     # debug!
+     # log    '/tmp/vedeu_test_helper.log'
   end
 end
 

@@ -9,10 +9,8 @@ module Vedeu
     let(:value)     { 'bold' }
 
     describe '#initialize' do
-      subject { instance }
-
-      it { subject.must_be_instance_of(described) }
-      it { subject.instance_variable_get('@value').must_equal('bold') }
+      it { instance.must_be_instance_of(described) }
+      it { instance.instance_variable_get('@value').must_equal('bold') }
     end
 
     describe '#attributes' do

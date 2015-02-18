@@ -12,11 +12,9 @@ module Vedeu
     let(:width)     { 40 }
 
     describe '#initialize' do
-      subject { instance }
-
-      it { subject.must_be_instance_of(described) }
-      it { subject.instance_variable_get('@console').must_equal(console) }
-      it { subject.instance_variable_get('@data').must_equal(data) }
+      it { instance.must_be_instance_of(described) }
+      it { instance.instance_variable_get('@console').must_equal(console) }
+      it { instance.instance_variable_get('@data').must_equal(data) }
     end
 
     describe '.to' do

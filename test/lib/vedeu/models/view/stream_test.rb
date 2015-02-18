@@ -28,14 +28,12 @@ module Vedeu
     let(:line_parent) { mock('Vedeu::Interface') }
 
     describe '#initialize' do
-      subject { instance }
-
-      it { subject.must_be_instance_of(described) }
-      # it { subject.instance_variable_get('@attributes').must_equal(attributes) }
-      it { subject.instance_variable_get('@value').must_equal(value) }
-      it { subject.instance_variable_get('@parent').must_equal(parent) }
-      it { subject.instance_variable_get('@colour').must_equal(colour) }
-      it { subject.instance_variable_get('@style').must_equal(style) }
+      it { instance.must_be_instance_of(described) }
+      # it { instance.instance_variable_get('@attributes').must_equal(attributes) }
+      it { instance.instance_variable_get('@value').must_equal(value) }
+      it { instance.instance_variable_get('@parent').must_equal(parent) }
+      it { instance.instance_variable_get('@colour').must_equal(colour) }
+      it { instance.instance_variable_get('@style').must_equal(style) }
     end
 
     describe '#add' do

@@ -11,10 +11,8 @@ module Vedeu
       let(:model)     { Vedeu::Keymap.new('_test_') }
 
       describe '#initialize' do
-        subject { instance }
-
-        it { subject.must_be_instance_of(described) }
-        it { subject.instance_variable_get('@model').must_equal(model) }
+        it { instance.must_be_instance_of(described) }
+        it { instance.instance_variable_get('@model').must_equal(model) }
       end
 
       describe '#key' do

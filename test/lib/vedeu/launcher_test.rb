@@ -15,15 +15,13 @@ module Vedeu
     end
 
     describe '#initialize' do
-      subject { instance }
-
-      it { subject.must_be_instance_of(described) }
-      it { subject.instance_variable_get('@argv').must_equal([]) }
-      it { subject.instance_variable_get('@stdin').must_equal(STDIN) }
-      it { subject.instance_variable_get('@stdout').must_equal(STDOUT) }
-      it { subject.instance_variable_get('@stderr').must_equal(STDERR) }
-      it { subject.instance_variable_get('@kernel').must_equal(Kernel) }
-      it { subject.instance_variable_get('@exit_code').must_equal(1) }
+      it { instance.must_be_instance_of(described) }
+      it { instance.instance_variable_get('@argv').must_equal([]) }
+      it { instance.instance_variable_get('@stdin').must_equal(STDIN) }
+      it { instance.instance_variable_get('@stdout').must_equal(STDOUT) }
+      it { instance.instance_variable_get('@stderr').must_equal(STDERR) }
+      it { instance.instance_variable_get('@kernel').must_equal(Kernel) }
+      it { instance.instance_variable_get('@exit_code').must_equal(1) }
     end
 
     describe '#execute!' do

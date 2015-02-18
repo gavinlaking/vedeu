@@ -40,10 +40,8 @@ module Vedeu
       # end
 
       describe '#initialize' do
-        subject { instance }
-
-        it { subject.must_be_instance_of(Vedeu::DSL::Menu) }
-        it { subject.instance_variable_get('@model').must_equal(model) }
+        it { instance.must_be_instance_of(Vedeu::DSL::Menu) }
+        it { instance.instance_variable_get('@model').must_equal(model) }
       end
 
       # describe '.define' do

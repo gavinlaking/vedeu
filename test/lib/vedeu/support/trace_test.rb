@@ -9,10 +9,8 @@ module Vedeu
     let(:options)   { {} }
 
     describe '#initialize' do
-      subject { instance }
-
-      it { subject.must_be_instance_of(Trace) }
-      it { subject.instance_variable_get('@options').must_equal(options) }
+      it { instance.must_be_instance_of(Trace) }
+      it { instance.instance_variable_get('@options').must_equal(options) }
     end
 
     describe '.call' do

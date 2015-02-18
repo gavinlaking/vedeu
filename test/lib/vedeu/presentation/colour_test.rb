@@ -14,8 +14,6 @@ module Vedeu
     }
 
     describe '#initialize' do
-      subject { instance }
-
       it { instance.must_be_instance_of(described) }
       it { instance.instance_variable_get('@attributes').must_equal(attributes) }
     end

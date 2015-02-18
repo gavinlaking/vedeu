@@ -10,11 +10,9 @@ module Vedeu
     let(:x)         { 19 }
 
     describe '#initialize' do
-      subject { instance }
-
-      it { subject.must_be_instance_of(described) }
-      it { subject.instance_variable_get('@y').must_equal(y) }
-      it { subject.instance_variable_get('@x').must_equal(x) }
+      it { instance.must_be_instance_of(described) }
+      it { instance.instance_variable_get('@y').must_equal(y) }
+      it { instance.instance_variable_get('@x').must_equal(x) }
     end
 
     describe '#to_s' do
