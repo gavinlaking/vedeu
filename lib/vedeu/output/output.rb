@@ -66,6 +66,44 @@ module Vedeu
       @_viewport ||= Vedeu::Viewport.new(interface).render
     end
 
+    # omg!
+    def virtual_clear
+      out = []
+      interface.height.times do |hi|
+        row = []
+        interface.width.times do |wi|
+          v   = interface.raw_origin(hi)
+          pos = Vedeu::Position.new(v.first, (v.last + wi))
+          row << Vedeu::Char.new(' ', nil, interface.colour, nil, pos)
+        end
+        out << row
+      end
+      out
+    end
+
+    # omg!
+    def virtual_view
+      out = [ virtual_clear ]
+
+      viewport.each_with_index do |line, line_index|
+        row = []
+        line.each_with_index do |char, char_index|
+          v   = interface.raw_origin(line_index)
+          pos = Vedeu::Position.new(v.first, (v.last + char_index))
+          row << if char.is_a?(Vedeu::Char)
+            char.position=(pos)
+            char
+
+          else
+            Vedeu::Char.new(char, nil, interface.colour, nil, pos)
+
+          end
+        end
+        out << row
+      end
+      out
+    end
+
   end # Output
 
 end # Vedeu
