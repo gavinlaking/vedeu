@@ -1,6 +1,9 @@
 Vedeu.configure do
   colour_mode 16777216
   debug!
+  drb!
+  drb_host 'localhost'
+  drb_port  21420
   log '/tmp/vedeu_test_helper.log'
   # stdin  File.open("/dev/tty", "r")
   # stdout File.open("/dev/tty", "w")
