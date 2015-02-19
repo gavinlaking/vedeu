@@ -1,37 +1,26 @@
 require 'pty'
-require 'tempfile'
 
 require_relative 'test_application'
 
 app_config = TestApplication.build
+timestamp = Time.now.to_i
+file = File.new("/tmp/foo_#{timestamp}", "w")
+file.write(app_config)
+file.close
 
-file = Tempfile.new('foo')
-
+cmd = "ruby #{file.path}"
 begin
-  file.write(app_config)
-  file.close
-
-  # argv   = []
-  # fd0    = nil # File.open("/dev/tty", "r")              # stdin
-  # fd1    = nil # File.open("/dev/tty", "w")              # stdout
-  # fd2    = nil # File.open("/tmp/vedeu_error.log", "w+") # stderr
-  # kernel = nil # Kernel
-
-  # app_exec = "VedeuTestApplication.start(#{argv}, #{fd0}, #{fd1}, #{fd2}, #{kernel})"
-  # app_exec = ""
-
-  # PTY.spawn("ruby #{file.path} -e '#{app_exec}'") do |output, input, pid|
-  PTY.spawn("ruby #{file.path}") do |output, input, pid|
-    sleep 2
-    # buffer = ""
-    # output.readpartial(1024, buffer) until buffer =~ /DONE/
-    # buffer.split("\n").each do |line|
-    #   puts "[parent] output: #{line}"
-    # end
-    input.write("q\n")
+  PTY.spawn(cmd) do |stdin, stdout, pid|
+    begin
+      # Do stuff with the output here. Just printing to show it works
+      stdin.each { |line| print line }
+    rescue Errno::EIO
+      puts "Errno:EIO error, but this probably just means " +
+            "that the process has finished giving output"
+    end
   end
-  puts "---"
+rescue PTY::ChildExited
+  puts "The child process exited!"
 ensure
-  file.close
-  file.unlink
+  File.unlink("/tmp/foo_#{timestamp}")
 end
