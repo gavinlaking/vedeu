@@ -6,9 +6,12 @@ module Vedeu
 
     let(:described)     { Vedeu::Application }
     let(:instance)      { described.new(configuration) }
-    let(:configuration) { }
+    let(:configuration) { mock('Vedeu::Configuration') }
 
-    before { Terminal.stubs(:open).returns(['']) }
+    before do
+      configuration.stubs(:drb?).returns(false)
+      Terminal.stubs(:open).returns([''])
+    end
 
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }

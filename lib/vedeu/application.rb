@@ -51,7 +51,7 @@ module Vedeu
     def start
       distributed_start
 
-      Terminal.open do
+      output = Terminal.open do
         Terminal.set_cursor_mode
 
         Vedeu.trigger(:_initialize_)
@@ -60,6 +60,8 @@ module Vedeu
       end
 
       distributed_stop
+
+      output
     end
 
     private
