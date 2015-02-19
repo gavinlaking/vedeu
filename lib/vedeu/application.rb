@@ -49,6 +49,8 @@ module Vedeu
     #
     # @return [Array] The last output sent to the terminal.
     def start
+      distributed_start
+
       Terminal.open do
         Terminal.set_cursor_mode
 
@@ -56,6 +58,8 @@ module Vedeu
 
         runner { main_sequence }
       end
+
+      distributed_stop
     end
 
     private
@@ -109,8 +113,25 @@ module Vedeu
     rescue ModeSwitch
       Terminal.switch_mode!
 
+      distributed_stop
+
       Application.restart
 
+    end
+
+    # @return []
+    def distributed_start
+      distributed.start if configuration.drb?
+    end
+
+    # @return []
+    def distributed_stop
+      distributed.stop if configuration.drb?
+    end
+
+    # @return [Vedeu::Distributed::Application]
+    def distributed
+      @distributed ||= Vedeu::Distributed::Application.new(configuration)
     end
 
     # :nocov:
