@@ -1,10 +1,12 @@
 Vedeu.configure do
   colour_mode 16777216
+  log         '/tmp/vedeu_test_helper.log'
   debug!
   drb!
-  drb_host 'localhost'
-  drb_port  21420
-  log '/tmp/vedeu_test_helper.log'
+  drb_host    'localhost'
+  drb_port    21420
+  drb_width   80
+  drb_height  25
 
   # cooked!
   # raw!

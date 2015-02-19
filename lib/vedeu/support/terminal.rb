@@ -215,7 +215,13 @@ module Vedeu
     #
     # @return [Fixnum]
     def width
-      size.last
+      if Configuration.drb?
+        Configuration.drb_width
+
+      else
+        size.last
+
+      end
     end
     alias_method :xn, :width
     alias_method :txn, :width
@@ -227,7 +233,13 @@ module Vedeu
     #
     # @return [Fixnum]
     def height
-      size.first
+      if Configuration.drb?
+        Configuration.drb_height
+
+      else
+        size.first
+
+      end
     end
     alias_method :yn, :height
     alias_method :tyn, :height
@@ -243,13 +255,7 @@ module Vedeu
     #
     # @return [File]
     def console
-      if Configuration.stdin # && Configuration.stdout && Configuration.stderr
-        Configuration.stdin
-
-      else
-        IO.console
-
-      end
+      IO.console
     end
 
   end # Terminal

@@ -119,6 +119,20 @@ module Vedeu
         end
       end
 
+      describe '#drb_height' do
+        it 'sets the options to the desired value' do
+          configuration = Vedeu.configure { drb_height(15) }
+          configuration.drb_height.must_equal(15)
+        end
+      end
+
+      describe '#drb_width' do
+        it 'sets the options to the desired value' do
+          configuration = Vedeu.configure { drb_width(40) }
+          configuration.drb_width.must_equal(40)
+        end
+      end
+
       describe '#cooked!' do
         it 'sets the option to the desired value' do
           configuration = Vedeu.configure { cooked! }

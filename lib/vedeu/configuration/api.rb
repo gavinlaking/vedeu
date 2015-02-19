@@ -147,6 +147,32 @@ module Vedeu
         options[:drb_port] = port
       end
 
+      # Sets the height of the fake terminal in the DRb server.
+      #
+      # @example
+      #   Vedeu.configure do
+      #     drb_height 25
+      #     ...
+      #
+      # @param height [Fixnum]
+      # @return [Fixnum]
+      def drb_height(height = 25)
+        options[:drb_height] = height
+      end
+
+      # Sets the width of the fake terminal in the DRb server.
+      #
+      # @example
+      #   Vedeu.configure do
+      #     drb_width 80
+      #     ...
+      #
+      # @param width [Fixnum]
+      # @return [Fixnum]
+      def drb_width(width = 80)
+        options[:drb_width] = width
+      end
+
       # Sets the terminal mode to `cooked`. Default terminal mode is `raw`.
       #
       # @example

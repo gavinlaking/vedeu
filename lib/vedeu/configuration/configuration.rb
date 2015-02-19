@@ -86,6 +86,20 @@ module Vedeu
         instance.options[:drb_port]
       end
 
+      # Returns the height for the fake terminal in the DRb server.
+      #
+      # @return [Fixnum]
+      def drb_height
+        instance.options[:drb_height]
+      end
+
+      # Returns the width for the fake terminal in the DRb server.
+      #
+      # @return [Fixnum]
+      def drb_width
+        instance.options[:drb_width]
+      end
+
       # Returns whether the application is interactive (required user input) or
       # standalone (will run until terminates of natural causes.) Default is
       # true; meaning the application will require user input.
@@ -235,6 +249,8 @@ module Vedeu
         drb:           false,
         drb_host:      nil,
         drb_port:      nil,
+        drb_height:    25,
+        drb_width:     80,
         interactive:   true,
         log:           '/tmp/vedeu.log',
         once:          false,
