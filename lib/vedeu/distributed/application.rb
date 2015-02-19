@@ -17,41 +17,61 @@ module Vedeu
 
       class << self
 
+        # @param configuration [Vedeu::Configuration]
+        # @return []
         def start(configuration)
           new(configuration).start
         end
 
       end
 
+      # @param configuration [Vedeu::Configuration]
+      # @return []
       def initialize(configuration)
         @configuration = configuration
 
         # $SAFE = 1 # stop eval and friends
       end
 
+      # @return []
       def start
-        DRb.start_service(uri, self)
-
         Vedeu.bind(:_output_) { |data| self.output(data) }
+
+        Vedeu.log("Started distributed server: '#{uri}'")
+
+        DRb.start_service(uri, self)
 
         self
       end
 
+      # @param data []
+      # @return []
       def input(data)
+        Vedeu.log("<<< DRb Input")
+
         Vedeu.trigger(:_keypress_, data)
       end
       alias_method :read, :input
 
-      # we need a way to collect the output generated, mix that with a virtual
-      # terminal of predefined size, render, and return that as the output.
+      # @param data []
+      # @return []
       def output(data = nil)
+        Vedeu.log(">>> DRb Output")
+
         data
       end
       alias_method :write, :output
 
+      # @return []
       def stop
+        Vedeu.log("Stopping distributed server: '#{uri}'")
+
         DRb.stop_service
+
         DRb.thread.join
+      rescue NoMethodError # raised when #join is called on NilClass.
+        # ...
+
       end
 
       private
@@ -69,19 +89,3 @@ module Vedeu
   end # Distributed
 
 end # Vedeu
-
-# require 'drb'
-# URI = "druby://127.0.0.1:12345"
-# LOG_FILE = 'mylog.log'
-# class LogService
-#   def write_to_logfile(msg)
-#     puts msg
-#     File.open(LOG_FILE, 'a') {|file| file.write(msg)}
-#   end
-#   def shutdown_server
-#     DRb.stop_service
-#   end
-# end
-# DRb.start_service(URI, LogService.new)
-# DRb.thread.join
-# puts 'server has stopped.'
