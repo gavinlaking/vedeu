@@ -32,6 +32,16 @@ module Vedeu
       new(attributes).build(&block)
     end
 
+    # @param attributes [Hash]
+    # @option attributes borders [String]
+    # @option attributes configuration [String]
+    # @option attributes events [String]
+    # @option attributes geometries [String]
+    # @option attributes interfaces [String]
+    # @option attributes keymaps [String]
+    # @option attributes menus [String]
+    # @option attributes views [String]
+    # @param block [Proc]
     # @return [TestApplication]
     def initialize(attributes = {})
       @attributes = defaults.merge(attributes)
@@ -41,6 +51,7 @@ module Vedeu
       end
     end
 
+    # @param block [Proc]
     # @return [String]
     def build(&block)
       self.instance_eval(&block) if block_given?

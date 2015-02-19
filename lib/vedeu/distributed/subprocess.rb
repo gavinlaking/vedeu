@@ -1,5 +1,4 @@
 require 'pty'
-
 require 'vedeu/distributed/test_application'
 
 # app_config = Vedeu::TestApplication.build
@@ -27,11 +26,24 @@ require 'vedeu/distributed/test_application'
 
 module Vedeu
 
+  # @example
+  #   Vedeu::TestApplication.build
+  #
   class Subprocess
 
-    def initialize()
+    # @param application [Vedeu::TestApplication]
+    # @return []
+    def self.execute!(application)
+      new(application).execute!
     end
 
+    # @param application [Vedeu::TestApplication]
+    # @return [Vedeu::Subprocess]
+    def initialize(application)
+      @application = application
+    end
+
+    # @return []
     def execute!
       file_open && file_write && file_close
 
@@ -56,19 +68,24 @@ module Vedeu
 
     private
 
+    attr_reader :application
+
     # @return [String]
     def command
       "ruby #{file_path}"
     end
 
+    # @return []
     def write
       file.write(application)
     end
 
+    # @return []
     def file_close
       file.close
     end
 
+    # @return []
     def file_unlink
       File.unlink("/tmp/foo_#{timestamp}")
     end
@@ -78,14 +95,11 @@ module Vedeu
       file.path
     end
 
+    # @return []
     def file_open
       @file ||= File.new("/tmp/foo_#{timestamp}", "w")
     end
     alias_method :file, :file_open
-
-    def application
-      @application ||= Vedeu::TestApplication.build
-    end
 
     # return [Fixnum]
     def timestamp
