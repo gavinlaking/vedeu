@@ -48,12 +48,14 @@ class TestApplication
     ERB.new(application, nil, '-').result(binding)
   end
 
+  # @return [String]
   def lib_dir
     File.dirname(__FILE__) + "/../../../lib"
   end
 
   private
 
+  # @return [String]
   def application
     @application ||= read('default_application.vedeu')
   end
@@ -78,4 +80,5 @@ class TestApplication
   def read(filename)
     File.read(File.dirname(__FILE__) + '/templates/' + filename)
   end
-end
+
+end # TestApplication
