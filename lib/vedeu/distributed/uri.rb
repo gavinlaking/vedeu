@@ -26,6 +26,7 @@ module Vedeu
 
       private
 
+      # @return [String]
       def scheme
         'druby://'
       end
