@@ -39,6 +39,12 @@ module Vedeu
         end
       end
 
+      describe '#border!' do
+        subject { instance.border! }
+
+        it { subject.must_be_instance_of(Vedeu::Border) }
+      end
+
       # describe '#define' do
       #   interface = Interface.new({ name: 'widget' })
 
