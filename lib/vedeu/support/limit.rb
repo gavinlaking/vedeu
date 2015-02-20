@@ -2,10 +2,16 @@ module Vedeu
 
   class Limit
 
+    # @see #new, #apply
     def self.apply(v, vn, max, min = 1)
       new(v, vn, max, min).apply
     end
 
+    # @param v [Fixnum]
+    # @param vn [Fixnum]
+    # @param max [Fixnum]
+    # @param min [Fixnum]
+    # @return [Vedeu::Limit]
     def initialize(v, vn, max, min = 1)
       @v   = v
       @vn  = vn
@@ -13,6 +19,7 @@ module Vedeu
       @min = min || 1
     end
 
+    # @return [Fixnum]
     def apply
       if (v + vn) > max
         applied = vn - ((v + vn) - max)

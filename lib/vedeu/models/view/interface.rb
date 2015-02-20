@@ -78,6 +78,9 @@ module Vedeu
       @lines = lines.add(child)
     end
 
+    # @note
+    #   This may be unused. (GL 2015-02-20)
+    #
     # @return [Hash]
     def attributes
       {

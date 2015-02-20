@@ -11,6 +11,8 @@ module Vedeu
     alias_method :first, :y
     alias_method :last, :x
 
+    # @param value []
+    # @return []
     def self.coerce(value)
       if value.is_a?(self)
         value
@@ -34,6 +36,7 @@ module Vedeu
       @x = x
     end
 
+    # @return [String]
     def inspect
       "<#{self.class.name} (y:#{@y} x:#{@x})>"
     end

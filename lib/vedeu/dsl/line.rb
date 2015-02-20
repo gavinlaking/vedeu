@@ -60,7 +60,7 @@ module Vedeu
       #       line do
       #         # ...
       #
-      # @return [Vedeu::Line]
+      # @return [Vedeu::Lines]
       def line(value = '', &block)
         content = if block_given?
           Vedeu::Line.build({ client: client,

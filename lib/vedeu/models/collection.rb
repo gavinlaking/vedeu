@@ -12,6 +12,9 @@ module Vedeu
 
       attr_accessor :parent, :name
 
+      # @param collection []
+      # @param parent []
+      # @param name []
       # @return [Vedeu::Model::Collection]
       def self.coerce(collection = [], parent = nil, name = nil)
         if collection.kind_of?(Vedeu::Model::Collection)
@@ -26,6 +29,9 @@ module Vedeu
         end
       end
 
+      # @param collection []
+      # @param parent []
+      # @param name []
       # @return [Vedeu::Model::Collection]
       def initialize(collection = [], parent = nil, name = nil)
         @collection = collection
@@ -33,10 +39,13 @@ module Vedeu
         @name       = name
       end
 
+      # @param value [Fixnum]
+      # @return []
       def [](value)
         @collection[value]
       end
 
+      # @param other [Vedeu::Model::Collection]
       # @return [Vedeu::Model::Collection]
       def add(*other)
         self.class.new(@collection += other, parent, name)
@@ -48,6 +57,7 @@ module Vedeu
         @collection
       end
 
+      # @param block [Proc]
       # @return [Enumerator]
       def each(&block)
         @collection.each(&block)

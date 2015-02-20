@@ -7,11 +7,13 @@ module Vedeu
 
     attr_reader   :children
 
+    # @return []
     def initialize(name)
       @name     = name
       @children = []
     end
 
+    # @return []
     def add_child(node)
       children << node
 
@@ -19,14 +21,17 @@ module Vedeu
     end
     alias :<< :add_child
 
+    # @return []
     def remove_child(node)
       children.delete(node)
     end
 
+    # @return []
     def [](index)
       children[index]
     end
 
+    # @return []
     def []=(index, node)
       replaced_child        = @children[index]
       children[index]       = node
@@ -34,28 +39,11 @@ module Vedeu
       node.parent           = self
     end
 
+    # @return []
     def leaf?
       children.empty?
     end
 
   end # Node
-
-  class Task < Node
-
-    def initialize(name, time_required = nil)
-      super(name)
-      @time_required = time_required
-    end
-    def time_required
-      if leaf?
-        @time_required
-      else
-        time = 0.0
-        children.each { |child_task| time += child_task.time_required }
-        time
-      end
-    end
-
-  end # Task
 
 end # Vedeu

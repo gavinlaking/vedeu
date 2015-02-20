@@ -64,11 +64,15 @@ module Vedeu
       out.join
     end
 
+    # @return []
     def viewport
       @_viewport ||= Vedeu::Viewport.new(interface).render
     end
 
-    # omg!
+    # @note
+    #   omg!
+    #
+    # @return []
     def virtual_clear
       out = []
       interface.height.times do |hi|
@@ -83,7 +87,10 @@ module Vedeu
       out
     end
 
-    # omg!
+    # @note
+    #   omg!
+    #
+    # @return []
     def virtual_view
       out = [ virtual_clear ]
 

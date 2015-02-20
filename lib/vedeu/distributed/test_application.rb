@@ -27,6 +27,8 @@ module Vedeu
       :menus,
       :views
 
+    # @param attributes [Hash]
+    # @param block [Proc]
     # @return [String]
     def self.build(attributes = {}, &block)
       new(attributes).build(&block)
@@ -41,7 +43,6 @@ module Vedeu
     # @option attributes keymaps [String]
     # @option attributes menus [String]
     # @option attributes views [String]
-    # @param block [Proc]
     # @return [TestApplication]
     def initialize(attributes = {})
       @attributes = defaults.merge(attributes)

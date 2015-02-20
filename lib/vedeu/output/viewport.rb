@@ -114,18 +114,18 @@ module Vedeu
       end
     end
 
-    # Using the current cursor's x position, return a range of visible lines.
+    # Using the current cursor's y position, return a range of visible lines.
     #
-    # Scrolls the content horizontally when the stored cursor's x position for
-    # the interface is outside of the visible area.
+    # Scrolls the content vertically when the stored cursor's y position for the
+    # interface is outside of the visible area.
     #
     # @note
-    #   [value, 0].max # this allows us to set a left that is greater
-    #                  # than the content width.
+    #   [value, 0].max # this allows us to set a top that is greater than
+    #                  # the content height.
     #
-    #   [[value, (content_width - width)].min, 0].max
+    #   [[value, (content_height - height)].min, 0].max
     #                  # this does not allow us to have a position
-    #                  # greater than the content width.
+    #                  # greater than the content height.
     #
     # @return [Range]
     def rows
@@ -140,18 +140,18 @@ module Vedeu
       top..(top + (height - 1))
     end
 
-    # Using the current cursor's y position, return a range of visible columns.
+    # Using the current cursor's x position, return a range of visible columns.
     #
-    # Scrolls the content vertically when the stored cursor's y position for the
-    # interface is outside of the visible area.
+    # Scrolls the content horizontally when the stored cursor's x position for
+    # the interface is outside of the visible area.
     #
     # @note
-    #   [value, 0].max # this allows us to set a top that is greater than
-    #                  # the content height.
+    #   [value, 0].max # this allows us to set a left that is greater
+    #                  # than the content width.
     #
-    #   [[value, (content_height - height)].min, 0].max
+    #   [[value, (content_width - width)].min, 0].max
     #                  # this does not allow us to have a position
-    #                  # greater than the content height.
+    #                  # greater than the content width.
     #
     # @return [Range]
     def columns

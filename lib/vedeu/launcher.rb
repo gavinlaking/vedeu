@@ -24,10 +24,10 @@ module Vedeu
     end
 
     # @param argv [Array]
-    # @param stdin []
-    # @param stdout []
-    # @param stderr []
-    # @param kernel []
+    # @param stdin [IO]
+    # @param stdout [IO]
+    # @param stderr [IO]
+    # @param kernel [Kernel]
     # @return [Launcher]
     def initialize(argv   = [],
                    stdin  = STDIN,
@@ -64,7 +64,7 @@ module Vedeu
 
     attr_reader :argv
 
-    # @return []
+    # @return [Vedeu::Configuration]
     def configuration
       Vedeu::Configuration.configure(argv)
 
