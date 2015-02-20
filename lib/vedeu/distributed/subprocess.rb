@@ -76,7 +76,7 @@ module Vedeu
     end
 
     # @return []
-    def write
+    def file_write
       file.write(application)
     end
 
