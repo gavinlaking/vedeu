@@ -18,7 +18,7 @@ module Vedeu
       class << self
 
         # @param configuration [Vedeu::Configuration]
-        # @return []
+        # @return [Vedeu::Distributed::Application]
         def start(configuration)
           new(configuration).start
         end
@@ -26,14 +26,14 @@ module Vedeu
       end
 
       # @param configuration [Vedeu::Configuration]
-      # @return []
+      # @return [Vedeu::Distributed::Application]
       def initialize(configuration)
         @configuration = configuration
 
         # $SAFE = 1 # stop eval and friends
       end
 
-      # @return []
+      # @return [Vedeu::Distributed::Application]
       def start
         Vedeu.bind(:_output_) { |data| self.output(data) }
 

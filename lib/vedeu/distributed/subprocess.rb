@@ -32,7 +32,7 @@ module Vedeu
   class Subprocess
 
     # @param application [Vedeu::TestApplication]
-    # @return []
+    # @return [Array]
     def self.execute!(application)
       new(application).execute!
     end
@@ -43,7 +43,7 @@ module Vedeu
       @application = application
     end
 
-    # @return []
+    # @return [Array]
     def execute!
       file_open && file_write && file_close
 
@@ -75,17 +75,17 @@ module Vedeu
       "ruby #{file_path}"
     end
 
-    # @return []
+    # @return [Fixnum] The number of bytes written.
     def file_write
       file.write(application)
     end
 
-    # @return []
+    # @return [NilClass]
     def file_close
       file.close
     end
 
-    # @return []
+    # @return [Fixnum] The number of files removed; 1.
     def file_unlink
       File.unlink("/tmp/foo_#{timestamp}")
     end
@@ -95,7 +95,7 @@ module Vedeu
       file.path
     end
 
-    # @return []
+    # @return [File]
     def file_open
       @file ||= File.new("/tmp/foo_#{timestamp}", "w")
     end
