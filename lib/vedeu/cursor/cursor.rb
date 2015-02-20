@@ -49,6 +49,8 @@ module Vedeu
       @state      = Vedeu::Visible.coerce(@attributes.fetch(:state))
       @x          = @attributes.fetch(:x)
       @y          = @attributes.fetch(:y)
+
+      @position   = Vedeu::Position.new(@y, @x)
     end
 
     # Returns log friendly output.
@@ -76,6 +78,8 @@ module Vedeu
 
     private
 
+    attr_reader :position
+
     # The default values for a new instance of this class.
     #
     # @return [Hash]
@@ -85,7 +89,7 @@ module Vedeu
         ox:         0,
         oy:         0,
         repository: Vedeu.cursors,
-        state:      Vedeu::Visible.new(false),
+        state:      false,
         x:          1,
         y:          1,
       }
@@ -96,13 +100,6 @@ module Vedeu
     # @return [String]
     def sequence
       [ position, visibility ].join
-    end
-
-    # Returns the escape sequence for setting the position of the cursor.
-    #
-    # @return [String]
-    def position
-      Vedeu::Position.new(y, x).to_s
     end
 
     # Returns the escape sequence for setting the visibility of the cursor.

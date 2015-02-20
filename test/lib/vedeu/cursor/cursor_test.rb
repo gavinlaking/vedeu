@@ -37,6 +37,8 @@ module Vedeu
       it { instance.instance_variable_get('@state').must_be_instance_of(Vedeu::Visible) }
       it { instance.instance_variable_get('@x').must_equal(19) }
       it { instance.instance_variable_get('@y').must_equal(8) }
+
+      it { instance.instance_variable_get('@position').must_be_instance_of(Vedeu::Position) }
     end
 
     describe '#inspect' do
