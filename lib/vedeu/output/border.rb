@@ -81,24 +81,6 @@ module Vedeu
       end
     end
 
-    # Returns the interface with border (if enabled) and the content for the
-    # interface.
-    #
-    # @return [Array<Array<String>>]
-    def render
-      out = []
-
-      out << top if top?
-
-      interface.viewport[0...height].each do |line|
-        out << [left, line[0...width], right].flatten
-      end
-
-      out << bottom if bottom?
-
-      out
-    end
-
     # Set the border colour.
     #
     # @return [Vedeu::Colour]
