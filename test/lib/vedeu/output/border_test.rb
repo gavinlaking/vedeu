@@ -41,10 +41,8 @@ module Vedeu
     end
 
     describe '#initialize' do
-      subject { instance }
-
-      it { subject.must_be_instance_of(described) }
-      it { subject.instance_variable_get('@attributes').must_equal(
+      it { instance.must_be_instance_of(described) }
+      it { instance.instance_variable_get('@attributes').must_equal(
         {
           bottom_left:  'm',
           bottom_right: 'j',
@@ -63,10 +61,10 @@ module Vedeu
           vertical:     'x',
         })
       }
-      it { subject.instance_variable_get('@colour').must_be_instance_of(Vedeu::Colour) }
-      it { subject.instance_variable_get('@name').must_equal('borders') }
-      it { subject.instance_variable_get('@repository').must_be_instance_of(Vedeu::Borders) }
-      it { subject.instance_variable_get('@style').must_be_instance_of(Vedeu::Style) }
+      it { instance.instance_variable_get('@colour').must_be_instance_of(Vedeu::Colour) }
+      it { instance.instance_variable_get('@name').must_equal('borders') }
+      it { instance.instance_variable_get('@repository').must_be_instance_of(Vedeu::Borders) }
+      it { instance.instance_variable_get('@style').must_be_instance_of(Vedeu::Style) }
     end
 
     describe '#width' do

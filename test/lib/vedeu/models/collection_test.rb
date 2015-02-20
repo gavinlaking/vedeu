@@ -13,12 +13,10 @@ module Vedeu
       let(:parent)     { Vedeu::ModelTestClass.new }
 
       describe '#initialize' do
-        subject { instance }
-
-        it { subject.must_be_instance_of(Collection) }
-        it { subject.instance_variable_get('@collection').must_equal([]) }
-        it { subject.instance_variable_get('@name').must_equal(model_name) }
-        it { subject.instance_variable_get('@parent').must_equal(parent) }
+        it { instance.must_be_instance_of(Collection) }
+        it { instance.instance_variable_get('@collection').must_equal([]) }
+        it { instance.instance_variable_get('@name').must_equal(model_name) }
+        it { instance.instance_variable_get('@parent').must_equal(parent) }
       end
 
       describe '#[]' do

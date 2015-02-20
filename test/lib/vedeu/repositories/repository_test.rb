@@ -26,11 +26,9 @@ module Vedeu
     let(:storage)        { {} }
 
     describe '#initialize' do
-      subject { instance }
-
-      it { subject.must_be_instance_of(Vedeu::Repository) }
-      it { subject.instance_variable_get('@model').must_equal(model) }
-      it { subject.instance_variable_get('@storage').must_equal(storage) }
+      it { instance.must_be_instance_of(Vedeu::Repository) }
+      it { instance.instance_variable_get('@model').must_equal(model) }
+      it { instance.instance_variable_get('@storage').must_equal(storage) }
     end
 
     describe '#inspect' do

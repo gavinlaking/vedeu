@@ -114,6 +114,40 @@ module Vedeu
 
             options[:log] = filename
           end
+
+          opts.on('--drb', 'Run application with DRb on.') do
+            Vedeu.log("Configuration::CLI drb: true")
+
+            options[:drb] = true
+          end
+
+          opts.on('--drb-host', 'Set the hostname/IP for the DRb server.') do |hostname|
+            Vedeu.log("Configuration::CLI drb_host: #{hostname}")
+
+            #options[:drb]      = true
+            options[:drb_host] = hostname
+          end
+
+          opts.on('--drb-port', 'Set the port for the DRb server.') do |port|
+            Vedeu.log("Configuration::CLI drb_port: #{port}")
+
+            #options[:drb]      = true
+            options[:drb_port] = port
+          end
+
+          opts.on('--drb-height', 'Set the height for fake terminal of the DRb server.') do |height|
+            Vedeu.log("Configuration::CLI drb_height: #{height}")
+
+            #options[:drb]      = true
+            options[:drb_height] = height
+          end
+
+          opts.on('--drb-width', 'Set the width for fake terminal of the DRb server.') do |width|
+            Vedeu.log("Configuration::CLI drb_width: #{width}")
+
+            #options[:drb]      = true
+            options[:drb_width] = width
+          end
         end
 
         parser.parse!(args)

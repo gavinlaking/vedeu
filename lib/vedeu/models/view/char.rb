@@ -13,8 +13,8 @@ module Vedeu
 
     include Vedeu::Presentation
 
-    attr_accessor :parent
-    attr_reader :position
+    attr_accessor :parent,
+      :position
 
     class << self
 
@@ -58,16 +58,16 @@ module Vedeu
     def initialize(value = nil, parent = nil, colour = nil, style = nil, position = nil)
       @value    = value
       @parent   = parent
-      @colour   = colour
+      @colour   = Vedeu::Colour.coerce(colour)
       @style    = style
-      @position = position
+      @position = Vedeu::Position.coerce(position)
     end
 
     # Returns log friendly output.
     #
     # @return [String]
     def inspect
-      "<#{self.class.name} (value:#{@value})>"
+      "<#{self.class.name} (value:'#{@value}')>"
     end
 
     # @param other []

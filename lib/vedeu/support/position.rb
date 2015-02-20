@@ -11,6 +11,19 @@ module Vedeu
     alias_method :first, :y
     alias_method :last, :x
 
+    def self.coerce(value)
+      if value.is_a?(self)
+        value
+
+      elsif value.is_a?(Array)
+        new(*value)
+
+      else
+        # not sure how to proceed
+
+      end
+    end
+
     # Initializes a new instance of Position.
     #
     # @param y [Fixnum]
@@ -19,6 +32,22 @@ module Vedeu
     def initialize(y = 1, x = 1)
       @y = y
       @x = x
+    end
+
+    def inspect
+      "<#{self.class.name} (y:#{@y} x:#{@x})>"
+    end
+
+    # @param other []
+    # @return [Boolean]
+    def ==(other)
+      eql?(other)
+    end
+
+    # @param other []
+    # @return [Boolean]
+    def eql?(other)
+      self.class == other.class && (x == other.x && y == other.y)
     end
 
     # Returns an escape sequence to position the cursor. When passed a block,

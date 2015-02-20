@@ -10,10 +10,9 @@ module Vedeu
     let(:label)     { 'elements' }
 
     describe '#initialize' do
-      subject { instance }
-      it { subject.must_be_instance_of(Sentence) }
-      it { subject.instance_variable_get('@elements').must_equal(elements) }
-      it { subject.instance_variable_get('@label').must_equal(label) }
+      it { instance.must_be_instance_of(Sentence) }
+      it { instance.instance_variable_get('@elements').must_equal(elements) }
+      it { instance.instance_variable_get('@label').must_equal(label) }
     end
 
     describe '.construct' do

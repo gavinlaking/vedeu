@@ -105,6 +105,74 @@ module Vedeu
       end
       alias_method :run_once, :run_once!
 
+      # Sets boolean to run a DRb server.
+      #
+      # @example
+      #   Vedeu.configure do
+      #     drb!
+      #     ...
+      #
+      # @param value [Boolean]
+      # @return [Boolean]
+      def drb!(value = true)
+        Vedeu.log("Configuration::API drb: #{value}")
+
+        options[:drb] = value
+      end
+      alias_method :drb, :drb!
+
+      # Sets the hostname or IP address of the DRb server.
+      #
+      # @example
+      #   Vedeu.configure do
+      #     drb_host 'localhost'
+      #     ...
+      #
+      # @param hostname [String]
+      # @return [String]
+      def drb_host(hostname = '')
+        options[:drb_host] = hostname
+      end
+
+      # Sets the port of the DRb server.
+      #
+      # @example
+      #   Vedeu.configure do
+      #     drb_port 12345
+      #     ...
+      #
+      # @param port [Fixnum|String]
+      # @return [String]
+      def drb_port(port = '')
+        options[:drb_port] = port
+      end
+
+      # Sets the height of the fake terminal in the DRb server.
+      #
+      # @example
+      #   Vedeu.configure do
+      #     drb_height 25
+      #     ...
+      #
+      # @param height [Fixnum]
+      # @return [Fixnum]
+      def drb_height(height = 25)
+        options[:drb_height] = height
+      end
+
+      # Sets the width of the fake terminal in the DRb server.
+      #
+      # @example
+      #   Vedeu.configure do
+      #     drb_width 80
+      #     ...
+      #
+      # @param width [Fixnum]
+      # @return [Fixnum]
+      def drb_width(width = 80)
+        options[:drb_width] = width
+      end
+
       # Sets the terminal mode to `cooked`. Default terminal mode is `raw`.
       #
       # @example
@@ -221,6 +289,45 @@ module Vedeu
       # @return [String]
       def log(filename = '')
         options[:log] = filename
+      end
+
+      # Sets the value of STDIN.
+      #
+      # @example
+      #   Vedeu.configure do
+      #     stdin IO.console
+      #     ...
+      #
+      # @param io [File|IO]
+      # @return [File|IO]
+      def stdin(io)
+        options[:stdin] = io
+      end
+
+      # Sets the value of STDOUT.
+      #
+      # @example
+      #   Vedeu.configure do
+      #     stdout IO.console
+      #     ...
+      #
+      # @param io [File|IO]
+      # @return [File|IO]
+      def stdout(io)
+        options[:stdout] = io
+      end
+
+      # Sets the value of STDERR.
+      #
+      # @example
+      #   Vedeu.configure do
+      #     stderr IO.console
+      #     ...
+      #
+      # @param io [File|IO]
+      # @return [File|IO]
+      def stderr(io)
+        options[:stderr] = io
       end
 
       # Sets the key used to exit the client application. The default is `q`.

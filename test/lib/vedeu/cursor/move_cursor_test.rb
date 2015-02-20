@@ -49,13 +49,11 @@ module Vedeu
     before { IO.console.stubs(:winsize).returns([25, 80]) }
 
     describe '#initialize' do
-      subject { instance }
-
-      it { subject.must_be_instance_of(Vedeu::MoveCursor) }
-      it { subject.instance_variable_get('@cursor').must_equal(cursor) }
-      it { subject.instance_variable_get('@interface').must_equal(interface) }
-      it { subject.instance_variable_get('@dy').must_equal(dy) }
-      it { subject.instance_variable_get('@dx').must_equal(dx) }
+      it { instance.must_be_instance_of(Vedeu::MoveCursor) }
+      it { instance.instance_variable_get('@cursor').must_equal(cursor) }
+      it { instance.instance_variable_get('@interface').must_equal(interface) }
+      it { instance.instance_variable_get('@dy').must_equal(dy) }
+      it { instance.instance_variable_get('@dx').must_equal(dx) }
     end
 
     describe '.down' do

@@ -17,16 +17,14 @@ module Vedeu
     end
 
     describe '#initialize' do
-      subject { instance }
-
-      it { subject.must_be_instance_of(Event) }
-      it { subject.instance_variable_get('@name').must_equal(event_name) }
-      it { subject.instance_variable_get('@options').must_equal(options) }
-      # it { subject.instance_variable_get('@closure').must_equal(closure) }
-      it { subject.instance_variable_get('@deadline').must_equal(0) }
-      it { subject.instance_variable_get('@executed_at').must_equal(0) }
-      it { subject.instance_variable_get('@now').must_equal(0) }
-      it { subject.instance_variable_get('@repository').must_equal(Vedeu.events) }
+      it { instance.must_be_instance_of(Event) }
+      it { instance.instance_variable_get('@name').must_equal(event_name) }
+      it { instance.instance_variable_get('@options').must_equal(options) }
+      # it { instance.instance_variable_get('@closure').must_equal(closure) }
+      it { instance.instance_variable_get('@deadline').must_equal(0) }
+      it { instance.instance_variable_get('@executed_at').must_equal(0) }
+      it { instance.instance_variable_get('@now').must_equal(0) }
+      it { instance.instance_variable_get('@repository').must_equal(Vedeu.events) }
     end
 
     describe '#bind' do

@@ -1,0 +1,1 @@
+Vedeu.bind(:_initialize_) { Vedeu.trigger(:_refresh_) }

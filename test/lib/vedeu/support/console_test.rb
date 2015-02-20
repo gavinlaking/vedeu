@@ -10,22 +10,20 @@ module Vedeu
     let(:width) { 32 }
 
     describe '#initialize' do
-      subject { instance }
-
-      it { subject.must_be_instance_of(described) }
-      it { subject.instance_variable_get('@height').must_equal(height) }
-      it { subject.instance_variable_get('@width').must_equal(width) }
+      it { instance.must_be_instance_of(described) }
+      it { instance.instance_variable_get('@height').must_equal(height) }
+      it { instance.instance_variable_get('@width').must_equal(width) }
 
       context 'when the height is not given' do
         let(:height) {}
 
-        it { subject.instance_variable_get('@height').must_equal(25) }
+        it { instance.instance_variable_get('@height').must_equal(25) }
       end
 
       context 'when the width is not given' do
         let(:width) {}
 
-        it { subject.instance_variable_get('@width').must_equal(80) }
+        it { instance.instance_variable_get('@width').must_equal(80) }
       end
     end
 

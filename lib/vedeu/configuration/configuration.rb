@@ -30,11 +30,15 @@ module Vedeu
       # arguments provided.
       #
       # @param args [Array]
+      # @param opts [Hash]
+      # @option opts stdin [File|IO]
+      # @option opts stdout [File|IO]
+      # @option opts stderr [File|IO]
       # @param block [Proc]
       # @raise [InvalidSyntax] When the required block is not given.
       # @return [Hash]
-      def configure(args = [], &block)
-        instance.configure(args, &block)
+      def configure(args = [], opts = {}, &block)
+        instance.configure(args, opts, &block)
       end
 
       # Returns the configuration singleton.
@@ -59,6 +63,42 @@ module Vedeu
         instance.options[:debug]
       end
       alias_method :debug, :debug?
+
+      # Returns whether the DRb server is enabled or disabled. Default is false.
+      #
+      # @return [Boolean]
+      def drb?
+        instance.options[:drb]
+      end
+      alias_method :drb, :drb?
+
+      # Returns the hostname for the DRb server.
+      #
+      # @return [String]
+      def drb_host
+        instance.options[:drb_host]
+      end
+
+      # Returns the port for the DRb server.
+      #
+      # @return [String]
+      def drb_port
+        instance.options[:drb_port]
+      end
+
+      # Returns the height for the fake terminal in the DRb server.
+      #
+      # @return [Fixnum]
+      def drb_height
+        instance.options[:drb_height]
+      end
+
+      # Returns the width for the fake terminal in the DRb server.
+      #
+      # @return [Fixnum]
+      def drb_width
+        instance.options[:drb_width]
+      end
 
       # Returns whether the application is interactive (required user input) or
       # standalone (will run until terminates of natural causes.) Default is
@@ -87,7 +127,28 @@ module Vedeu
       end
       alias_method :once, :once?
 
-      # Returns
+      # Returns the redefined setting for STDIN.
+      #
+      # @return [File|IO]
+      def stdin
+        instance.options[:stdin]
+      end
+
+      # Returns the redefined setting for STDOUT.
+      #
+      # @return [File|IO]
+      def stdout
+        instance.options[:stdout]
+      end
+
+      # Returns the redefined setting for STDERR.
+      #
+      # @return [File|IO]
+      def stderr
+        instance.options[:stderr]
+      end
+
+      # Returns the redefined system keys for vital Vedeu functions.
       #
       # @return [Hash]
       def system_keys
@@ -156,7 +217,9 @@ module Vedeu
     # @param args [Array]
     # @param block [Proc]
     # @return [Hash]
-    def configure(args = [], &block)
+    def configure(args = [], opts = {}, &block)
+      @options.merge!(opts)
+
       @options.merge!(Config::API.configure(&block)) if block_given?
 
       @options.merge!(Config::CLI.configure(args)) if args.any?
@@ -183,9 +246,17 @@ module Vedeu
       {
         colour_mode:   detect_colour_mode,
         debug:         false,
+        drb:           false,
+        drb_host:      nil,
+        drb_port:      nil,
+        drb_height:    25,
+        drb_width:     80,
         interactive:   true,
         log:           '/tmp/vedeu.log',
         once:          false,
+        stdin:         nil,
+        stdout:        nil,
+        stderr:        nil,
         system_keys:   Configuration.default_system_keys,
         terminal_mode: :raw,
         trace:         false,

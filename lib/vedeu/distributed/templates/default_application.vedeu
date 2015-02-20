@@ -1,0 +1,34 @@
+lib_dir = "<%= @object.lib_dir %>"
+$LOAD_PATH.unshift(lib_dir) unless $LOAD_PATH.include?(lib_dir)
+
+require 'vedeu'
+
+class VedeuTestApplication
+  # include Vedeu
+
+<%= @object.configuration -%>
+
+<%= @object.events -%>
+
+<%= @object.borders -%>
+
+<%= @object.geometries -%>
+
+<%= @object.interfaces -%>
+
+<%= @object.keymaps -%>
+
+<%= @object.menus -%>
+
+<%= @object.views -%>
+
+  def self.start(argv   = ARGV,
+                 stdin  = STDIN,
+                 stdout = STDOUT,
+                 stderr = STDERR,
+                 kernel = Kernel)
+    Vedeu::Launcher.new(argv, stdin, stdout, stderr, kernel).execute!
+  end
+end
+
+VedeuTestApplication.start(ARGV)

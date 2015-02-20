@@ -24,10 +24,8 @@ module Vedeu
     }
 
     describe '#initialize' do
-      subject { instance }
-
-      it { subject.must_be_instance_of(Viewport) }
-      it { subject.instance_variable_get('@interface').must_equal(interface) }
+      it { instance.must_be_instance_of(Viewport) }
+      it { instance.instance_variable_get('@interface').must_equal(interface) }
     end
 
     describe '#render' do

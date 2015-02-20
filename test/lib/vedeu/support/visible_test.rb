@@ -11,38 +11,36 @@ module Vedeu
     let(:visible)   { true }
 
     describe '#initialize' do
-      subject { instance }
-
-      it { subject.must_be_instance_of(Visible) }
+      it { instance.must_be_instance_of(Visible) }
 
       context 'when visible is :hide' do
         let(:visible) { :hide }
 
-        it { subject.instance_variable_get('@visible').must_equal(false) }
+        it { instance.instance_variable_get('@visible').must_equal(false) }
       end
 
       context 'when visible is :show' do
         let(:visible) { :show }
 
-        it { subject.instance_variable_get('@visible').must_equal(true) }
+        it { instance.instance_variable_get('@visible').must_equal(true) }
       end
 
       context 'when visible is nil' do
         let(:visible) { nil }
 
-        it { subject.instance_variable_get('@visible').must_equal(false) }
+        it { instance.instance_variable_get('@visible').must_equal(false) }
       end
 
       context 'when visible is false' do
         let(:visible) { false }
 
-        it { subject.instance_variable_get('@visible').must_equal(false) }
+        it { instance.instance_variable_get('@visible').must_equal(false) }
       end
 
       context 'when visible is anything else that evaluates to true' do
         let(:visible) { 'yeah show it!' }
 
-        it { subject.instance_variable_get('@visible').must_equal(true) }
+        it { instance.instance_variable_get('@visible').must_equal(true) }
       end
     end
 

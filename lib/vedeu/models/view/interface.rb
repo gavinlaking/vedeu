@@ -45,7 +45,8 @@ module Vedeu
       :left,
       :width,
       :height,
-      :origin
+      :origin,
+      :raw_origin
 
     # Return a new instance of Interface.
     #

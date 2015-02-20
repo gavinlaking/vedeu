@@ -15,14 +15,12 @@ module Vedeu
     before { Vedeu.stubs(:trigger) }
 
     describe '#initialize' do
-      subject { instance }
-
-      it { subject.must_be_instance_of(described) }
-      it { subject.instance_variable_get('@name').must_equal(buffer_name) }
-      it { subject.instance_variable_get('@back').must_equal(back) }
-      it { subject.instance_variable_get('@front').must_equal(front) }
-      it { subject.instance_variable_get('@previous').must_equal(previous) }
-      it { subject.instance_variable_get('@repository').must_equal(Vedeu.buffers) }
+      it { instance.must_be_instance_of(described) }
+      it { instance.instance_variable_get('@name').must_equal(buffer_name) }
+      it { instance.instance_variable_get('@back').must_equal(back) }
+      it { instance.instance_variable_get('@front').must_equal(front) }
+      it { instance.instance_variable_get('@previous').must_equal(previous) }
+      it { instance.instance_variable_get('@repository').must_equal(Vedeu.buffers) }
     end
 
     describe '#inspect' do

@@ -64,28 +64,38 @@ module Vedeu
 
     attr_reader :key, :repository
 
+    # Is the key a global key?
+    #
     # @return [Boolean]
     def global_key?
       key_defined?(global)
     end
 
+    # Is the key a system key?
+    #
     # @return [Boolean]
     def system_key?
       key_defined?(system)
     end
 
+    # Is the key defined in the named keymap?
+    #
     # @param named [NilClass|String]
     # @return [Boolean]
     def key_defined?(named = name)
       keymap?(named) && keymap(named).key_defined?(key)
     end
 
+    # Fetch the named keymap from the repository.
+    #
     # @param named [NilClass|String]
     # @return [Keymap]
     def keymap(named = name)
       repository.find(named)
     end
 
+    # Does the keymaps repository have the named keymap already registered?
+    #
     # @param named [NilClass|String]
     # @return [Boolean]
     def keymap?(named = name)

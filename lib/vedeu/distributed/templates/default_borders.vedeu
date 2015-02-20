@@ -1,0 +1,19 @@
+Vedeu.border 'test_interface' do
+  # Define colour and style of border
+  colour foreground: '#ffff00', background: '#0000ff'
+  style  'normal'
+
+  # Define visibility of border
+  show_bottom!
+  show_left!
+  show_right!
+  show_top!
+
+  # Define characters used to draw border
+  bottom_right '+'
+  bottom_left  '+'
+  horizontal   '-'
+  top_right    '+'
+  top_left     '+'
+  vertical     '|'
+end

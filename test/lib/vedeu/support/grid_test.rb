@@ -23,10 +23,8 @@ module Vedeu
     before { IO.console.stubs(:winsize).returns([25, 80]) }
 
     describe '#initialize' do
-      subject { instance }
-
-      it { subject.must_be_instance_of(Grid) }
-      it { subject.instance_variable_get('@value').must_equal(value) }
+      it { instance.must_be_instance_of(Grid) }
+      it { instance.instance_variable_get('@value').must_equal(value) }
     end
 
     describe '.columns' do

@@ -8,9 +8,7 @@ module Vedeu
     let(:instance)  { described.new }
 
     describe '#initialize' do
-      subject { instance }
-
-      it { subject.must_be_instance_of(Vedeu::Interfaces) }
+      it { instance.must_be_instance_of(Vedeu::Interfaces) }
     end
 
   end # Interfaces

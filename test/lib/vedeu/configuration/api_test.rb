@@ -83,6 +83,56 @@ module Vedeu
         end
       end
 
+      describe '#drb!' do
+        it 'sets the option to the desired value' do
+          configuration = Vedeu.configure { drb! }
+          configuration.drb.must_equal(true)
+        end
+
+        it 'sets the option to the desired value' do
+          configuration = Vedeu.configure { drb(false) }
+          configuration.drb.must_equal(false)
+        end
+
+        it 'sets the option to the desired value' do
+          configuration = Vedeu.configure { drb(true) }
+          configuration.drb.must_equal(true)
+        end
+
+        it 'sets the option to the desired value' do
+          configuration = Vedeu.configure { drb }
+          configuration.drb.must_equal(true)
+        end
+      end
+
+      describe '#drb_host' do
+        it 'sets the options to the desired value' do
+          configuration = Vedeu.configure { drb_host('localhost') }
+          configuration.drb_host.must_equal('localhost')
+        end
+      end
+
+      describe '#drb_port' do
+        it 'sets the options to the desired value' do
+          configuration = Vedeu.configure { drb_port('12345') }
+          configuration.drb_port.must_equal('12345')
+        end
+      end
+
+      describe '#drb_height' do
+        it 'sets the options to the desired value' do
+          configuration = Vedeu.configure { drb_height(15) }
+          configuration.drb_height.must_equal(15)
+        end
+      end
+
+      describe '#drb_width' do
+        it 'sets the options to the desired value' do
+          configuration = Vedeu.configure { drb_width(40) }
+          configuration.drb_width.must_equal(40)
+        end
+      end
+
       describe '#cooked!' do
         it 'sets the option to the desired value' do
           configuration = Vedeu.configure { cooked! }

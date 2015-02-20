@@ -22,18 +22,16 @@ module Vedeu
     let(:style)      {}
 
     describe '#initialize' do
-      subject { instance }
-
-      it { subject.instance_variable_get('@name').must_equal(_name) }
-      it { subject.instance_variable_get('@lines').must_equal(lines) }
-      it { subject.instance_variable_get('@parent').must_equal(parent) }
-      it { subject.instance_variable_get('@colour').must_be_instance_of(Vedeu::Colour) }
-      it { subject.instance_variable_get('@style').must_be_instance_of(Vedeu::Style) }
-      it { subject.instance_variable_get('@border').must_equal(nil) }
-      it { subject.instance_variable_get('@delay').must_equal(0.0) }
-      it { subject.instance_variable_get('@geometry').must_equal(nil) }
-      it { subject.instance_variable_get('@group').must_equal('') }
-      it { subject.instance_variable_get('@repository').must_equal(Vedeu.interfaces) }
+      it { instance.instance_variable_get('@name').must_equal(_name) }
+      it { instance.instance_variable_get('@lines').must_equal(lines) }
+      it { instance.instance_variable_get('@parent').must_equal(parent) }
+      it { instance.instance_variable_get('@colour').must_be_instance_of(Vedeu::Colour) }
+      it { instance.instance_variable_get('@style').must_be_instance_of(Vedeu::Style) }
+      it { instance.instance_variable_get('@border').must_equal(nil) }
+      it { instance.instance_variable_get('@delay').must_equal(0.0) }
+      it { instance.instance_variable_get('@geometry').must_equal(nil) }
+      it { instance.instance_variable_get('@group').must_equal('') }
+      it { instance.instance_variable_get('@repository').must_equal(Vedeu.interfaces) }
     end
 
     describe '#border?' do

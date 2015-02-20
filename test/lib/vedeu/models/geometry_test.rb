@@ -13,12 +13,10 @@ module Vedeu
     end
 
     describe '#initialize' do
-      subject { instance }
-
-      it { subject.must_be_instance_of(Geometry) }
+      it { instance.must_be_instance_of(Geometry) }
 
       context 'with default attributes' do
-        it { subject.instance_variable_get('@attributes').must_equal({
+        it { instance.instance_variable_get('@attributes').must_equal({
             centred: false,
             client:  nil,
             height:  25,
@@ -30,15 +28,15 @@ module Vedeu
             yn:      25,
           })
         }
-        it { subject.instance_variable_get('@centred').must_equal(false) }
-        it { subject.instance_variable_get('@height').must_equal(25) }
-        it { subject.instance_variable_get('@name').must_equal('') }
-        it { subject.instance_variable_get('@width').must_equal(80) }
-        it { subject.instance_variable_get('@x').must_equal(1) }
-        it { subject.instance_variable_get('@xn').must_equal(80) }
-        it { subject.instance_variable_get('@y').must_equal(1) }
-        it { subject.instance_variable_get('@yn').must_equal(25) }
-        it { subject.instance_variable_get('@repository').must_equal(Vedeu.geometries) }
+        it { instance.instance_variable_get('@centred').must_equal(false) }
+        it { instance.instance_variable_get('@height').must_equal(25) }
+        it { instance.instance_variable_get('@name').must_equal('') }
+        it { instance.instance_variable_get('@width').must_equal(80) }
+        it { instance.instance_variable_get('@x').must_equal(1) }
+        it { instance.instance_variable_get('@xn').must_equal(80) }
+        it { instance.instance_variable_get('@y').must_equal(1) }
+        it { instance.instance_variable_get('@yn').must_equal(25) }
+        it { instance.instance_variable_get('@repository').must_equal(Vedeu.geometries) }
       end
     end
 
@@ -168,6 +166,35 @@ module Vedeu
          ' interface is at a custom position' do
         geometry = Geometry.new({ width: 5, height: 5, x: 3, y: 6 })
         geometry.origin(3).must_equal("\e[9;3H")
+      end
+    end
+
+    describe '#raw_origin' do
+      it 'returns the origin for the interface' do
+        geometry = Geometry.new({ width: 5, height: 5 })
+        geometry.raw_origin.must_equal([1, 1])
+      end
+
+      it 'returns the origin for the interface' do
+        geometry = Geometry.new({ width: 5, height: 5, centred: true })
+        geometry.raw_origin.must_equal([10, 38])
+      end
+
+      it 'returns the line position relative to the origin' do
+        geometry = Geometry.new({ width: 5, height: 5 })
+        geometry.raw_origin(3).must_equal([4, 1])
+      end
+
+      it 'returns the origin for the interface when the interface' \
+         ' is at a custom position' do
+        geometry = Geometry.new({ width: 5, height: 5, x: 3, y: 6 })
+        geometry.raw_origin.must_equal([6, 3])
+      end
+
+      it 'returns the line position relative to the origin when the' \
+         ' interface is at a custom position' do
+        geometry = Geometry.new({ width: 5, height: 5, x: 3, y: 6 })
+        geometry.raw_origin(3).must_equal([9, 3])
       end
     end
 

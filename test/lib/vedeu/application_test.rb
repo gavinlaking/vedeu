@@ -6,15 +6,16 @@ module Vedeu
 
     let(:described)     { Vedeu::Application }
     let(:instance)      { described.new(configuration) }
-    let(:configuration) { }
+    let(:configuration) { mock('Vedeu::Configuration') }
 
-    before { Terminal.stubs(:open).returns(['']) }
+    before do
+      configuration.stubs(:drb?).returns(false)
+      Terminal.stubs(:open).returns([''])
+    end
 
     describe '#initialize' do
-      subject { instance }
-
-      it { subject.must_be_instance_of(described) }
-      it { subject.instance_variable_get('@configuration').must_equal(configuration) }
+      it { instance.must_be_instance_of(described) }
+      it { instance.instance_variable_get('@configuration').must_equal(configuration) }
     end
 
     describe '.start' do

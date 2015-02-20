@@ -24,6 +24,12 @@ module Vedeu
       end
     end
 
+    describe '#drb?' do
+      it 'returns the value of the drb option' do
+        Configuration.drb?.must_equal(false)
+      end
+    end
+
     describe '#interactive?' do
       it 'returns the value of the interactive option' do
         Configuration.interactive?.must_equal(true)
@@ -33,6 +39,24 @@ module Vedeu
     describe '#once?' do
       it 'returns the value of the once option' do
         Configuration.once?.must_equal(false)
+      end
+    end
+
+    describe '#stdin' do
+      it 'returns the value of the redefined STDIN' do
+        Configuration.stdin.must_equal(nil)
+      end
+    end
+
+    describe '#stdout' do
+      it 'returns the value of the redefined STDOUT' do
+        Configuration.stdout.must_equal(nil)
+      end
+    end
+
+    describe '#stderr' do
+      it 'returns the value of the redefined STDERR' do
+        Configuration.stderr.must_equal(nil)
       end
     end
 

@@ -127,30 +127,8 @@ module Vedeu
       end
     end
 
-    # Returns a dynamic value calculated from the current terminal width,
-    # combined with the desired column start point.
-    #
-    # If the interface is `centred` then if the terminal resizes, this value
-    # should attempt to accommodate that.
-    #
-    # For uncentred interfaces, when the terminal resizes, then this will help
-    # Vedeu render the view to ensure no row/line overruns or that the content
-    # is not off-screen.
-    #
-    # @return [Fixnum]
-    def width
-      if (x + @width) > Terminal.width
-        new_width = @width - ((x + @width) - Terminal.width)
-        return new_width < 1 ? 1 : new_width
-
-      else
-        @width
-
-      end
-    end
-
-    # Returns a dynamic value calculated from the current terminal height,
-    # combined with the desired row start point.
+    # Returns a dynamic value calculated from the current terminal dimensions,
+    # combined with the desired start point.
     #
     # If the interface is `centred` then if the terminal resizes, this value
     # should attempt to accommodate that.
@@ -159,15 +137,13 @@ module Vedeu
     # Vedeu render the view to ensure the content is not off-screen.
     #
     # @return [Fixnum]
+    def width
+      Vedeu::Limit.apply(x, @width, Terminal.width, Terminal.origin)
+    end
+
+    # @see Vedeu::Geometry#width
     def height
-      if (y + @height) > Terminal.height
-        new_height = @height - ((y + @height) - Terminal.height)
-        return new_height < 1 ? 1 : new_height
-
-      else
-        @height
-
-      end
+      Vedeu::Limit.apply(y, @height, Terminal.height, Terminal.origin)
     end
 
     # Returns an escape sequence to position the cursor at the top-left
@@ -177,7 +153,16 @@ module Vedeu
     # @param block [Proc]
     # @return [String]
     def origin(index = 0, &block)
-      Esc.set_position(virtual_y[index], left, &block)
+      Esc.set_position(*raw_origin(index), &block)
+    end
+
+    # Returns a tuple which positions the cursor at the top-left coordinate,
+    # relative to the interface's position.
+    #
+    # @param index [Fixnum]
+    # @return [Array<Fixnum>]
+    def raw_origin(index = 0)
+      [virtual_y[index], left]
     end
 
     # Returns the top coordinate of the interface, a fixed or dynamic value
