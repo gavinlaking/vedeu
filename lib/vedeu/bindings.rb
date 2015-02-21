@@ -22,6 +22,41 @@ module Vedeu
 
     # System events needed by Vedeu to run.
     Vedeu.bind(:_clear_)                   { Vedeu::Terminal.clear        }
+    Vedeu.bind(:_cleanup_) do
+      Vedeu.trigger(:_drb_stop_)
+      Vedeu.trigger(:cleanup)
+    end
+
+    Vedeu.bind(:_drb_input_)   do |data|
+      Vedeu.drb_log('Sending input')
+      Vedeu::Distributed::Server.input(data)
+    end
+
+    Vedeu.bind(:_drb_output_)  do |data|
+      Vedeu.drb_log('Sending output')
+      Vedeu::Distributed::Server.output(data)
+    end
+
+    Vedeu.bind(:_drb_restart_) do
+      Vedeu.drb_log('Attempting to restart')
+      Vedeu::Distributed::Server.restart
+    end
+
+    Vedeu.bind(:_drb_start_)   do
+      Vedeu.drb_log('Attempting to start')
+      Vedeu::Distributed::Server.start
+    end
+
+    Vedeu.bind(:_drb_status_)  do
+      Vedeu.drb_log('Fetching status')
+      Vedeu::Distributed::Server.status
+    end
+
+    Vedeu.bind(:_drb_stop_)    do
+      Vedeu.drb_log('Attempting to stop')
+      Vedeu::Distributed::Server.stop
+    end
+
     Vedeu.bind(:_exit_)                    { Vedeu::Application.stop      }
     Vedeu.bind(:_initialize_)              { Vedeu.trigger(:_refresh_)    }
     Vedeu.bind(:_keypress_)                { |key| Vedeu.keypress(key)    }
