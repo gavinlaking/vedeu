@@ -22,9 +22,11 @@ module Vedeu
       #
       # @return [TrueClass]
       def log(message, force = false)
-        colour = [:red, :green, :yellow, :blue, :magenta, :cyan, :white].sample
+        logger.debug(message) if enabled? || force
+      end
 
-        logger.debug(Esc.send(colour) { message }) if enabled? || force
+      def drb_log(message, force = false)
+        log([Esc.blue { 'DRb: ' }, message].join, force)
       end
 
       # @return [TrueClass]
