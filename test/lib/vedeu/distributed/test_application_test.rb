@@ -9,9 +9,7 @@ module Vedeu
     let(:attributes) { {} }
 
     describe '#initialize' do
-      subject { instance }
-
-      it { subject.must_be_instance_of(Vedeu::TestApplication) }
+      it { instance.must_be_instance_of(Vedeu::TestApplication) }
       # it { subject.instance_variable_get('@attributes').must_equal(attributes) }
     end
 
