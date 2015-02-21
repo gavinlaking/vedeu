@@ -81,6 +81,12 @@ module Vedeu
       end
     end
 
+    describe '#reset' do
+      subject { instance.reset }
+
+      it { subject.must_be_instance_of(Array) }
+    end
+
     describe '#write' do
       let(:data) { Vedeu::Char.new('a') }
 

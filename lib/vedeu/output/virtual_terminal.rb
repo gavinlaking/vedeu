@@ -42,9 +42,9 @@ module Vedeu
       @width  = width
     end
 
-    # @return [Array<Vedeu::Char>]
+    # @return [Array<Array<Vedeu::Char>>]
     def cells
-      Array.new(cell_height) { Array.new(cell_width) { Vedeu::Char.new } }
+      @cells ||= new_virtual_terminal
     end
 
     # @param y [Fixnum]
@@ -57,6 +57,11 @@ module Vedeu
       cell = fetch(row, cx)
 
       cell
+    end
+
+    # @return [Array<Array<Vedeu::Char>>]
+    def reset
+      @cells = new_virtual_terminal
     end
 
     # @param y [Fixnum]
@@ -79,6 +84,11 @@ module Vedeu
     # @return [Array<Vedeu::Char>|Array]
     def fetch(from, which)
       from[which] || []
+    end
+
+    # @return [Array<Array<Vedeu::Char>>]
+    def new_virtual_terminal
+      Array.new(cell_height) { Array.new(cell_width) { Vedeu::Char.new } }
     end
 
   end # VirtualTerminal
