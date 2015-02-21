@@ -16,13 +16,27 @@ module Vedeu
       # @param uri [String]
       # @return [Client]
       def self.connect(uri)
-        new(uri)
+        new(uri).connect
       end
 
       # @param uri [String]
       # @return [Client]
       def initialize(uri)
         @uri = uri.to_s
+      end
+
+      # Simulate connecting to the DRb server by requesting its status.
+      #
+      # @return [Symbol]
+      def connect
+        server.status
+
+      rescue DRb::DRbConnError
+        puts "Could not connect to DRb server."
+
+      ensure
+        self
+
       end
 
       # Send input to the DRb server.
