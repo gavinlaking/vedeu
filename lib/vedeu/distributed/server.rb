@@ -5,13 +5,7 @@ module Vedeu
 
   module Distributed
 
-    # Orchestrates the running of the main application loop via the DRb server.
-    #
-    # @example
-    #   app = Vedeu::Distributed::Server.start(configuration)
-    #   app.input('a')
-    #   app.output # => some output
-    #   app.stop
+    # A class for the server side of the DRb server/client relationship.
     #
     # @api private
     #
@@ -34,6 +28,14 @@ module Vedeu
       # @return []
       def self.restart
         instance.restart
+      end
+
+      # When called will stop the DRb server and attempt to terminate the client
+      # application.
+      #
+      # @return []
+      def self.shutdown
+        instance.shutdown
       end
 
       # @return []
@@ -66,6 +68,16 @@ module Vedeu
           start
 
         end
+      end
+
+      # @return []
+      def shutdown
+        if drb_running?
+          stop
+
+        end
+
+        Vedeu.trigger(:_exit_)
       end
 
       # @return [Vedeu::Distributed::Server]

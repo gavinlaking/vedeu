@@ -4,8 +4,10 @@ module Vedeu
 
   module Distributed
 
+    # A class for the client side of the DRb server/client relationship.
+    #
     # @example
-    #   client = Vedeu::Distributed::Client.new("druby://localhost:21420")
+    #   client = Vedeu::Distributed::Client.connect("druby://localhost:21420")
     #   client.input('a')
     #   client.output # => 'some content...'
     #
