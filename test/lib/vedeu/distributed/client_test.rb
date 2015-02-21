@@ -17,16 +17,24 @@ module Vedeu
         it { subject.instance_variable_get('@uri').must_equal('') }
       end
 
+      describe '.connect' do
+        subject { described.connect(uri) }
+
+        it { subject.must_be_instance_of(described) }
+      end
+
       describe '#input' do
+        let(:data) {}
+
+        subject { instance.input(data) }
       end
 
       describe '#output' do
+        subject { instance.output }
       end
 
-      describe '#start' do
-      end
-
-      describe '#stop' do
+      describe '#shutdown' do
+        subject { instance.shutdown }
       end
 
     end # Client

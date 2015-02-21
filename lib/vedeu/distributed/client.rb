@@ -50,6 +50,17 @@ module Vedeu
       end
       alias_method :write, :output
 
+      # Shutdown the DRb server and the client application.
+      #
+      # @return []
+      def shutdown
+        server.shutdown
+
+      rescue DRb::DRbConnError
+        puts "Could not connect to DRb server."
+
+      end
+
       private
 
       attr_reader :uri
