@@ -4,6 +4,7 @@ module Vedeu
   # special characters into symbols.
   #
   # @api private
+  #
   class Input
 
     # Instantiate Input and capture keypress(es).

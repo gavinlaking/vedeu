@@ -3,6 +3,7 @@ module Vedeu
   # Refreshes the terminal.
   #
   # @api private
+  #
   module Refresh
 
     extend self

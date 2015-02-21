@@ -8,6 +8,7 @@ module Vedeu
   # console, via Ruby's IO core library.
   #
   # @api private
+  #
   module Terminal
 
     extend self

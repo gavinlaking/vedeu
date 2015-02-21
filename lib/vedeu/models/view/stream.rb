@@ -8,6 +8,7 @@ module Vedeu
   # characters in that line.
   #
   # @api private
+  #
   class Stream
 
     include Vedeu::Model

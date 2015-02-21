@@ -12,6 +12,7 @@ module Vedeu
   #   { 'models' => [Model] }
   #
   # @api private
+  #
   class Repository
 
     include Vedeu::Common

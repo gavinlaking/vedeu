@@ -8,6 +8,7 @@ module Vedeu
     # options used by Vedeu to affect certain behaviours.
     #
     # @api private
+    #
     class API
 
       include Vedeu::Common

@@ -22,6 +22,7 @@ module Vedeu
   #
   # @todo More documentation required (create a fancy chart!)
   # @api private
+  #
   class Translator
 
     include Vedeu::Coercions

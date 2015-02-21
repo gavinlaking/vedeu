@@ -6,6 +6,7 @@ module Vedeu
   # navigated using the instance methods or events provided.
   #
   # @api private
+  #
   class Menu
 
     include Vedeu::Model

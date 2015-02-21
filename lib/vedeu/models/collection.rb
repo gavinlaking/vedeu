@@ -6,6 +6,7 @@ module Vedeu
     # is being used.
     #
     # @private
+    #
     class Collection
 
       include Enumerable

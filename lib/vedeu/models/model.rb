@@ -4,6 +4,7 @@ module Vedeu
   # repository for later retrieval.
   #
   # @api private
+  #
   module Model
 
     attr_reader :repository

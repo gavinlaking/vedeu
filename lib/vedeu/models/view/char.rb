@@ -9,6 +9,7 @@ module Vedeu
   # character is returned in the escape sequence.
   #
   # @api private
+  #
   class Char
 
     include Vedeu::Presentation

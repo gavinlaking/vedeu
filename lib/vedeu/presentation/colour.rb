@@ -7,6 +7,7 @@ module Vedeu
   # characters.
   #
   # @api private
+  #
   class Colour
 
     include Vedeu::Coercions

@@ -13,6 +13,7 @@ module Vedeu
     #   app.stop
     #
     # @api private
+    #
     class Application
 
       class << self

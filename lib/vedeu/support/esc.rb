@@ -4,6 +4,7 @@ module Vedeu
   # display related functions.
   #
   # @api private
+  #
   module Esc
 
     extend self

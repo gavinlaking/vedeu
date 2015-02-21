@@ -14,6 +14,7 @@ module Vedeu
   # module expose Vedeu's core functionality.
   #
   # @api public
+  #
   module API
 
     extend Forwardable

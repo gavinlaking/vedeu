@@ -17,6 +17,7 @@ module Vedeu
   #   underscore, it's probably used by Vedeu internally.
   #
   # :nocov:
+  #
   module Bindings
 
     # System events needed by Vedeu to run.

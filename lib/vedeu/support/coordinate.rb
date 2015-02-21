@@ -1,6 +1,7 @@
 module Vedeu
 
   # Crudely corrects out of range values.
+  #
   class Coordinate
 
     attr_reader :height,

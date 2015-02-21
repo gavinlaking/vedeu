@@ -5,6 +5,7 @@ module Vedeu
   # Provides means to convert attributes into the correct model.
   #
   # @api private
+  #
   module Coercions
 
     include Vedeu::Common

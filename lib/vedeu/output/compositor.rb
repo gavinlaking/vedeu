@@ -10,6 +10,7 @@ module Vedeu
   # to create a single view to be sent to the terminal for output.
   #
   # @api private
+  #
   class Compositor
 
     # Convenience method to initialize a new Compositor and call its {#compose}

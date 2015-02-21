@@ -5,6 +5,7 @@ module Vedeu
   # Provides the ability to log anything to the Vedeu log file.
   #
   # @api private
+  #
   class Log
 
     class << self

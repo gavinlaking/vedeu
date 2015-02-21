@@ -26,6 +26,7 @@ module Vedeu
   #            south
   #
   # @api private
+  #
   class Geometry
 
     include Vedeu::Model

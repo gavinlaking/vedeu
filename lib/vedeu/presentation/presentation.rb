@@ -4,6 +4,7 @@ module Vedeu
   # Interface, Line and Stream.
   #
   # @api private
+  #
   module Presentation
 
     # @return [Vedeu::Colour]

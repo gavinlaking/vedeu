@@ -25,6 +25,7 @@ module Vedeu
   # the remainder.
   #
   # @api private
+  #
   class Grid
 
     # @param value [Fixnum]

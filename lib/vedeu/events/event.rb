@@ -7,6 +7,7 @@ module Vedeu
   # Contains all the logic of an event. Handles debouncing and throttling.
   #
   # @api private
+  #
   class Event
 
     include Vedeu::Model

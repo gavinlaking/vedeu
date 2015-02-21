@@ -2,6 +2,8 @@ module Vedeu
 
   module DSL
 
+    # Provides helper methods for building views.
+    #
     module Use
 
       extend self

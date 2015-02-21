@@ -1,6 +1,5 @@
 module Vedeu
 
-  #
   # A single keypress or combination of keypresses bound to a specific action.
   #
   class Key

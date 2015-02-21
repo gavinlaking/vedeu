@@ -10,6 +10,7 @@ module Vedeu
   # excruciatingly slow to run.
   #
   # @api private
+  #
   class Trace
 
     # @param options [Hash]

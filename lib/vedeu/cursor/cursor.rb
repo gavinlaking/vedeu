@@ -9,6 +9,7 @@ module Vedeu
   # visibility of the cursor within that interface.
   #
   # @api private
+  #
   class Cursor
 
     extend Forwardable

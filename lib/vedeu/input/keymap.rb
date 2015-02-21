@@ -5,6 +5,7 @@ require 'vedeu/dsl/components/keymap'
 module Vedeu
 
   # A container class for keys associated with a particular interface.
+  #
   class Keymap
 
     include Vedeu::Model

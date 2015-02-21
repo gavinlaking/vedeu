@@ -10,6 +10,7 @@ module Vedeu
   # {Vedeu::Interface} it belongs to.
   #
   # @api private
+  #
   class Line
 
     include Vedeu::Model
