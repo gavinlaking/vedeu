@@ -41,34 +41,32 @@ module Vedeu
     # @return [Vedeu::Subprocess]
     def initialize(application)
       @application = application
+      @pid         = nil
     end
 
     # @return [Array]
     def execute!
       file_open && file_write && file_close
 
-      begin
-        PTY.spawn(command) do |stdin, stdout, pid|
-          begin
-            stdin.each { |line| print line }
-
-          rescue Errno::EIO
-            puts 'Errno::EIO: Process may have stopped giving output.'
-
-          end
-        end
-      rescue PTY::ChildExited
-        puts 'PTY::ChildExited: Process exited.'
-
-      ensure
-        file_unlink
-
+      @pid = fork do
+        exec(file_path)
       end
+
+      Process.detach(@pid)
+
+      self
+    end
+
+    def kill
+      Process.kill('TERM', pid)
+
+      file_unlink
     end
 
     private
 
-    attr_reader :application
+    attr_reader   :application
+    attr_accessor :pid
 
     # @return [String]
     def command
