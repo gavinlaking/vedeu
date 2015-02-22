@@ -1,5 +1,7 @@
 module Vedeu
 
+  # Forces the value within defined limits.
+  #
   class Limit
 
     # @see #new, #apply

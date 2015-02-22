@@ -1,5 +1,7 @@
 module Vedeu
 
+  # A composition class.
+  #
   class Node
 
     attr_accessor :name,

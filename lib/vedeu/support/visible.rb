@@ -2,6 +2,8 @@ require 'vedeu/support/esc'
 
 module Vedeu
 
+  # Represents the concept of a visible or invisible attribute.
+  #
   class Visible
 
     # @return [Visible]

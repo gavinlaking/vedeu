@@ -3,6 +3,8 @@ require 'vedeu/support/write'
 
 module Vedeu
 
+  # An abstract terminal class.
+  #
   class Console
 
     # @param height [Fixnum]

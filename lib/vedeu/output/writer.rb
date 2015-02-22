@@ -1,5 +1,10 @@
 module Vedeu
 
+  # Provides access to all possible mechanisms to write content.
+  #
+  # @note
+  #   Will be used to translate output into HTML, etc.
+  #
   class Writer
 
     attr_reader :writers

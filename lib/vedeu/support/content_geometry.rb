@@ -1,5 +1,7 @@
 module Vedeu
 
+  # Provides information about the content within an interface or view.
+  #
   class ContentGeometry
 
     extend Forwardable
