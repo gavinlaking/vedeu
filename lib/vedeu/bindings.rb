@@ -24,44 +24,44 @@ module Vedeu
     Vedeu.bind(:_clear_) { Vedeu::Terminal.clear }
 
     Vedeu.bind(:_cleanup_) do
-      Vedeu.trigger(:_drb_stop_)
+      Vedeu.trigger(:_drb_stop_, 'via :cleanup')
       Vedeu.trigger(:cleanup)
     end
 
     Vedeu.bind(:_drb_retrieve_output_)  do
-      Vedeu.drb_log('Retrieving output')
+      Vedeu.log(type: :drb, message: 'Retrieving output')
       Vedeu::VirtualBuffer.retrieve
     end
 
     Vedeu.bind(:_drb_store_output_)  do |data|
-      Vedeu.drb_log('Storing output')
+      Vedeu.log(type: :drb, message: 'Storing output')
       Vedeu::VirtualBuffer.store(data)
     end
 
     Vedeu.bind(:_drb_restart_) do
-      Vedeu.drb_log('Attempting to restart')
+      Vedeu.log(type: :drb, message: 'Attempting to restart')
       Vedeu::Distributed::Server.restart
     end
 
     Vedeu.bind(:_drb_start_)   do
-      Vedeu.drb_log('Attempting to start')
+      Vedeu.log(type: :drb, message: 'Attempting to start')
       Vedeu::Distributed::Server.start
     end
 
     Vedeu.bind(:_drb_status_)  do
-      Vedeu.drb_log('Fetching status')
+      Vedeu.log(type: :drb, message: 'Fetching status')
       Vedeu::Distributed::Server.status
     end
 
-    Vedeu.bind(:_drb_stop_)    do
-      Vedeu.drb_log('Attempting to stop')
+    Vedeu.bind(:_drb_stop_) do |message|
+      Vedeu.log(type: :drb, message: "Attempting to stop (#{message})")
       Vedeu::Distributed::Server.stop
     end
 
     Vedeu.bind(:_exit_)                    { Vedeu::Application.stop      }
     Vedeu.bind(:_initialize_)              { Vedeu.trigger(:_refresh_)    }
     Vedeu.bind(:_keypress_)                { |key| Vedeu.keypress(key)    }
-    Vedeu.bind(:_log_)                     { |msg| Vedeu.log(msg)         }
+    Vedeu.bind(:_log_)                     { |msg| Vedeu.log(type: :debug, message: msg) }
     Vedeu.bind(:_mode_switch_)             { fail ModeSwitch              }
     Vedeu.bind(:_resize_, { delay: 0.25 }) { Vedeu.resize                 }
 

@@ -89,7 +89,7 @@ module Vedeu
     def use(input)
       return false unless key_defined?(input)
 
-      Vedeu.log("Key pressed: '#{input}'")
+      Vedeu.log(type: :input, message: "Key pressed: '#{input}'")
 
       Vedeu.trigger(:key, input)
 
@@ -105,7 +105,7 @@ module Vedeu
     def valid?(key)
       return true unless key_defined?(key.input)
 
-      Vedeu.log("Keymap '#{name}' already defines '#{key.input}'.")
+      Vedeu.log(type: :debug, message: "Keymap '#{name}' already defines '#{key.input}'.")
 
       false
     end

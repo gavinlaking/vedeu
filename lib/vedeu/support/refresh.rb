@@ -28,7 +28,7 @@ module Vedeu
     # @return [Array|ModelNotFound] A collection of the names of interfaces
     #   refreshed, or an exception if the group was not found.
     def by_group(group_name)
-      Vedeu.log("Refreshing group: '#{group_name}'")
+      Vedeu.log(type: :info, message: "Refreshing group: '#{group_name}'")
 
       Vedeu.groups.find(group_name).members.each { |name| by_name(name) }
     end
@@ -39,7 +39,7 @@ module Vedeu
     #   named buffer.
     # @return [Array|ModelNotFound]
     def by_name(name)
-      Vedeu.log("Refreshing interface: '#{name}'")
+      Vedeu.log(type: :info, message: "Refreshing interface: '#{name}'")
 
       Vedeu::Compositor.compose(name)
     end

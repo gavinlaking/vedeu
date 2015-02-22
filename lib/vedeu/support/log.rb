@@ -12,21 +12,19 @@ module Vedeu
 
       # Write a message to the Vedeu log file.
       #
-      # @param message [String] The message you wish to emit to the log
-      #   file, useful for debugging.
-      # @param force   [Boolean] When evaluates to true will attempt to
-      #   write to the log file regardless of the Configuration setting.
+      # @param message [String] The message you wish to emit to the log file,
+      #   useful for debugging.
+      # @param force   [Boolean] When evaluates to true will attempt to write to
+      #   the log file regardless of the Configuration setting.
+      # @param type    [Symbol] Colour code messages in the log file depending
+      #   on their source.
       #
       # @example
-      #   Vedeu.log('A useful debugging message: Error!')
+      #   Vedeu.log(message: 'A useful debugging message: Error!')
       #
       # @return [TrueClass]
-      def log(message, force = false)
-        logger.debug(message) if enabled? || force
-      end
-
-      def drb_log(message, force = false)
-        log([Esc.blue { 'DRb: ' }, message].join, force)
+      def log(message:, force: false, type: :info)
+        logger.debug([message_type(type), message]) if enabled? || force
       end
 
       # @return [TrueClass]
@@ -53,6 +51,25 @@ module Vedeu
       # @return [String]
       def log_file
         Vedeu::Configuration.log
+      end
+
+      # @return [String]
+      def message_type(type)
+        Esc.send(message_types.fetch(type, :default)) { "[#{type}]".ljust(9) }
+      end
+
+      # @return [Hash]
+      def message_types
+        {
+          debug:  :red,
+          drb:    :blue,
+          event:  :magenta,
+          info:   :default,
+          input:  :yellow,
+          output: :green,
+          store:  :cyan,
+          test:   :white,
+        }
       end
 
       # Returns a formatted (red, underlined) UTC timestamp,

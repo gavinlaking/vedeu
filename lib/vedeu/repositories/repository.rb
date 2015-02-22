@@ -81,7 +81,7 @@ module Vedeu
         find(name)
 
       else
-        Vedeu.log("Model (#{model}) not found, registering: '#{name}'")
+        Vedeu.log(type: :store, message: "Model (#{model}) not found, registering: '#{name}'")
 
         model.new(name).store
       end
@@ -147,7 +147,7 @@ module Vedeu
       fail MissingRequired, "Cannot store model '#{model.class}' without a " \
                             "name attribute." unless defined_value?(model.name)
 
-      Vedeu.log(_log_store(model))
+      Vedeu.log(type: :store, message: _log_store(model))
 
       storage[model.name] = model
     end

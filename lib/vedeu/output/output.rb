@@ -40,7 +40,7 @@ module Vedeu
     #
     # @return [String]
     def clear
-      Vedeu.log("Clearing view: '#{interface.name}'")
+      Vedeu.log(type: :output, message: "Clearing view: '#{interface.name}'")
 
       interface.height.times.inject([interface.colour]) do |line, index|
         line << interface.origin(index) { ' ' * interface.width }
@@ -54,7 +54,7 @@ module Vedeu
     def view
       out = [ clear ]
 
-      Vedeu.log("Rendering view: '#{interface.name}'")
+      Vedeu.log(type: :output, message: "Rendering view: '#{interface.name}'")
 
       viewport.each_with_index do |line, index|
         out << interface.origin(index)

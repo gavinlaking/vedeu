@@ -46,8 +46,9 @@ def test_configuration
      # adds ~40ms to test run speed
      # debug!
 
-     # if debug! above is commented out, then only Vedeu.log('...', true) will
-     # be logged, otherwise every Vedeu.log('...') will be logged.
+     # if debug! above is commented out, then only
+     # `Vedeu.log(type: <any type>, message: '...', force: true)`
+     # will be logged, otherwise every `Vedeu.log` will be logged.
      log '/tmp/vedeu_test_helper.log'
   end
 end

@@ -44,12 +44,12 @@ module Vedeu
     # @return [Interface]
     def store_new_buffer
       if Vedeu.buffers.registered?(name)
-        Vedeu.log("Updating buffer: '#{name}'")
+        Vedeu.log(type: :store, message: "Updating buffer: '#{name}'")
 
         Vedeu.buffers.find(name).add(self)
 
       else
-        Vedeu.log("Registering buffer: '#{name}'")
+        Vedeu.log(type: :store, message: "Registering buffer: '#{name}'")
 
         Buffer.new(name, self).store
 

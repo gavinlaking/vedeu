@@ -76,7 +76,7 @@ module Vedeu
     # Terminates the application after resetting $stdin, $stdout and $stderr.
     #
     def terminate!
-      Vedeu.log("Exiting gracefully.")
+      Vedeu.log(type: :info, message: "Exiting gracefully.")
 
       $stdin, $stdout, $stderr = STDIN, STDOUT, STDERR
 

@@ -23,7 +23,7 @@ module Vedeu
         storage
 
       else
-        Vedeu.log("Storing focus entry: '#{name}'")
+        Vedeu.log(type: :store, message: "Storing focus entry: '#{name}'")
 
         if focus
           storage.unshift(name)
@@ -140,7 +140,7 @@ module Vedeu
     def update
       return false if empty?
 
-      Vedeu.log("Interface in focus: '#{current}'")
+      Vedeu.log(type: :info, message: "Interface in focus: '#{current}'")
 
       refresh
 

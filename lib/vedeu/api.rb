@@ -44,7 +44,7 @@ module Vedeu
     def_delegators Vedeu::Focus,         :focus, :focus_by_name, :focussed?,
                                          :focus_next, :focus_previous
 
-    def_delegators Vedeu::Log,           :log, :drb_log
+    def_delegators Vedeu::Log,           :log
     def_delegators Vedeu::Menu,          :menu
     def_delegators Vedeu::Terminal,      :height, :width, :resize
 

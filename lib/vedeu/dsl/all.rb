@@ -18,7 +18,7 @@ module Vedeu
     # @param block [Proc] The optional block provided to the method.
     # @return []
     def method_missing(method, *args, &block)
-      Vedeu.log("!!!method_missing '#{method}'")
+      Vedeu.log(type: :debug, message: "!!!method_missing '#{method}'")
 
       client.send(method, *args, &block) if client
     end

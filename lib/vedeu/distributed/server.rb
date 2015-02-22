@@ -74,14 +74,14 @@ module Vedeu
       # @return []
       def restart
         if drb_running?
-          Vedeu.drb_log("Restarting: '#{uri}'")
+          Vedeu.log(type: :drb, message: "Restarting: '#{uri}'")
 
           stop
 
           start
 
         else
-          Vedeu.drb_log("Not running")
+          Vedeu.log(type: :drb, message: "Not running")
 
           start
 
@@ -106,17 +106,17 @@ module Vedeu
       def start
         if drb?
           if drb_running?
-            Vedeu.drb_log("Already started: '#{uri}'")
+            Vedeu.log(type: :drb, message: "Already started: '#{uri}'")
 
           else
-            Vedeu.drb_log("Starting: '#{uri}'")
+            Vedeu.log(type: :drb, message: "Starting: '#{uri}'")
 
             DRb.start_service(uri, self)
 
             # DRb.thread.join # not convinced this is needed here
           end
         else
-          Vedeu.drb_log("Not enabled")
+          Vedeu.log(type: :drb, message: "Not enabled")
 
         end
       end
@@ -124,12 +124,12 @@ module Vedeu
       # @return [Symbol]
       def status
         if drb_running?
-          Vedeu.drb_log("Running")
+          Vedeu.log(type: :drb, message: "Running")
 
           :running
 
         else
-          Vedeu.drb_log("Stopped")
+          Vedeu.log(type: :drb, message: "Stopped")
 
           :stopped
 
@@ -140,18 +140,18 @@ module Vedeu
       def stop
         if drb?
           if drb_running?
-            Vedeu.drb_log("Stopping: '#{uri}'")
+            Vedeu.log(type: :drb, message: "Stopping: '#{uri}'")
 
             DRb.stop_service
 
             DRb.thread.join
 
           else
-            Vedeu.drb_log("Already stopped: '#{uri}'")
+            Vedeu.log(type: :drb, message: "Already stopped: '#{uri}'")
 
           end
         else
-          Vedeu.drb_log("Not enabled")
+          Vedeu.log(type: :drb, message: "Not enabled")
 
         end
       rescue NoMethodError # raised when #join is called on NilClass.
