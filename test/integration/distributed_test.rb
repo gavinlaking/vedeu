@@ -7,11 +7,10 @@ describe 'Running a distributed app' do
     app    = Vedeu::TestApplication.build
     server = Vedeu::Subprocess.execute!(app)
 
-    client = Vedeu::Distributed::Client.new("druby://localhost:21420")
+    client = Vedeu::Distributed::Client.connect("druby://localhost:21420")
     client.input('q')
     client.output.must_equal('')
-    client.stop
-    server.kill
+    client.shutdown
   end
 
 end

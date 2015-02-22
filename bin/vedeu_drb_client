@@ -7,4 +7,4 @@ require 'vedeu'
 
 client = Vedeu::Distributed::Client.new("druby://localhost:21420")
 client.input('l')
-client.output
+client.shutdown

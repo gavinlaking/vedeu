@@ -66,12 +66,19 @@ module Vedeu
 
       # Shutdown the DRb server and the client application.
       #
+      # @note
+      #   {Vedeu::Application} will raise StopIteration when its `.stop` method
+      #   is called. Here we rescue that to give a clean client exit.
+      #
       # @return []
       def shutdown
         server.shutdown
 
       rescue DRb::DRbConnError
         puts "Could not connect to DRb server."
+
+      rescue StopIteration
+        puts "Client application exited."
 
       end
 

@@ -50,6 +50,7 @@ module Vedeu
       Application.start(configuration)
 
       @exit_code = 0
+
     rescue StandardError => uncaught_exception
       puts uncaught_exception.message
       puts uncaught_exception.backtrace.join("\n") if configuration.debug?

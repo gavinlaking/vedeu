@@ -69,6 +69,10 @@ module Vedeu
         end
       end
 
+      # @note
+      #   :_exit_ never gets triggered as when the DRb server goes away, no
+      #   further methods will be called.
+      #
       # @return []
       def shutdown
         if drb_running?
