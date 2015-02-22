@@ -54,6 +54,23 @@ module Vedeu
         instance.stop
       end
 
+      # @param data [String|Symbol]
+      # @return []
+      def input(data)
+        Vedeu.log(type: :drb, message: "<<< input")
+
+        Vedeu.trigger(:_keypress_, data)
+      end
+      alias_method :read, :input
+
+      # @return []
+      def output
+        Vedeu.log(type: :drb, message: ">>> output")
+
+        Vedeu.trigger(:_drb_retrieve_output_)
+      end
+      alias_method :write, :output
+
       # @return []
       def restart
         if drb_running?
@@ -95,6 +112,8 @@ module Vedeu
             Vedeu.drb_log("Starting: '#{uri}'")
 
             DRb.start_service(uri, self)
+
+            # DRb.thread.join # not convinced this is needed here
           end
         else
           Vedeu.drb_log("Not enabled")
@@ -116,23 +135,6 @@ module Vedeu
 
         end
       end
-
-      # @param data [String|Symbol]
-      # @return []
-      def input(data)
-        Vedeu.drb_log("<<< input")
-
-        Vedeu.trigger(:_keypress_, data)
-      end
-      alias_method :read, :input
-
-      # @return []
-      def output
-        Vedeu.drb_log(">>> output")
-
-        Vedeu.trigger(:_drb_retrieve_output_)
-      end
-      alias_method :write, :output
 
       # @return []
       def stop
