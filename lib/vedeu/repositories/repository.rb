@@ -147,7 +147,7 @@ module Vedeu
       fail MissingRequired, "Cannot store model '#{model.class}' without a " \
                             "name attribute." unless defined_value?(model.name)
 
-      Vedeu.log(type: :store, message: _log_store(model))
+      Vedeu.log(type: log_type(model), message: "#{model.class.name}: '#{model.name}'")
 
       storage[model.name] = model
     end
@@ -175,14 +175,12 @@ module Vedeu
     end
 
     # @return [String]
-    def _log_store(model)
-      message = "Storing #{model.class.name}: '#{model.name}' "
-
+    def log_type(model)
       if registered?(model.name)
-        message + '(updating)'
+        :update
 
       else
-        message + '(creating)'
+        :create
 
       end
     end
