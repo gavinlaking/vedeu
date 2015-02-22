@@ -87,6 +87,9 @@ module Vedeu
       out
     end
 
+    # Builds up a virtual view; a grid of Vedeu::Char objects- each one holding
+    # one character along with its colour, style and position attributes.
+    #
     # @note
     #   omg!
     #

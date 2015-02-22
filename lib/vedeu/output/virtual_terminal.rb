@@ -47,6 +47,8 @@ module Vedeu
       @cells ||= new_virtual_terminal
     end
 
+    # Read a single cell from the virtual terminal.
+    #
     # @param y [Fixnum]
     # @param x [Fixnum]
     # @return [Vedeu::Char]
@@ -59,11 +61,15 @@ module Vedeu
       cell
     end
 
+    # Removes all content from the virtual terminal; effectively clearing it.
+    #
     # @return [Array<Array<Vedeu::Char>>]
     def reset
       @cells = new_virtual_terminal
     end
 
+    # Write a single cell to the virtual terminal.
+    #
     # @param y [Fixnum]
     # @param x [Fixnum]
     # @param data [Vedeu::Char]
