@@ -21,7 +21,7 @@ module Vedeu
           stdin  = STDIN,
           stdout = STDOUT,
           stderr = STDERR,
-          kernel = Kernel).execute!
+          kernel = Kernel).debug_execute!
     end
 
     # @param argv [Array]
@@ -43,6 +43,18 @@ module Vedeu
       @exit_code = 1
     end
 
+    def debug_execute!
+      if configuration.debug?
+        Vedeu.debug { execute! }
+
+      else
+        execute!
+
+      end
+
+      terminate!
+    end
+
     # @return []
     def execute!
       $stdin, $stdout, $stderr = @stdin, @stdout, @stderr
@@ -55,16 +67,21 @@ module Vedeu
       puts uncaught_exception.message
       puts uncaught_exception.backtrace.join("\n") if configuration.debug?
 
-    ensure
-      Vedeu.log("Exiting gracefully.")
-
-      $stdin, $stdout, $stderr = STDIN, STDOUT, STDERR
-      @kernel.exit(exit_code)
     end
 
     private
 
     attr_reader :argv
+
+    # Terminates the application after resetting $stdin, $stdout and $stderr.
+    #
+    def terminate!
+      Vedeu.log("Exiting gracefully.")
+
+      $stdin, $stdout, $stderr = STDIN, STDOUT, STDERR
+
+      @kernel.exit(exit_code)
+    end
 
     # @return [Vedeu::Configuration]
     def configuration
