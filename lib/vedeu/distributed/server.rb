@@ -19,10 +19,9 @@ module Vedeu
         instance.input(data)
       end
 
-      # @param data [String]
       # @return []
-      def self.output(data)
-        instance.output(data)
+      def self.output
+        instance.output
       end
 
       # @return []
@@ -125,6 +124,7 @@ module Vedeu
       def output
         Vedeu.drb_log(">>> output")
 
+        Vedeu.trigger(:_drb_retrieve_output_)
       end
       alias_method :write, :output
 

@@ -149,7 +149,7 @@ module Vedeu
 
     # Access to the storage for this repository.
     #
-    # @return [Hash]
+    # @return [Array]
     def storage
       @_storage ||= in_memory
     end

@@ -21,20 +21,21 @@ module Vedeu
   module Bindings
 
     # System events needed by Vedeu to run.
-    Vedeu.bind(:_clear_)                   { Vedeu::Terminal.clear        }
+    Vedeu.bind(:_clear_) { Vedeu::Terminal.clear }
+
     Vedeu.bind(:_cleanup_) do
       Vedeu.trigger(:_drb_stop_)
       Vedeu.trigger(:cleanup)
     end
 
-    Vedeu.bind(:_drb_input_)   do |data|
-      Vedeu.drb_log('Sending input')
-      Vedeu::Distributed::Server.input(data)
+    Vedeu.bind(:_drb_retrieve_output_)  do
+      Vedeu.drb_log('Retrieving output')
+      Vedeu::VirtualBuffer.retrieve
     end
 
-    Vedeu.bind(:_drb_output_)  do |data|
-      Vedeu.drb_log('Sending output')
-      Vedeu::Distributed::Server.output(data)
+    Vedeu.bind(:_drb_store_output_)  do |data|
+      Vedeu.drb_log('Storing output')
+      Vedeu::VirtualBuffer.store(data)
     end
 
     Vedeu.bind(:_drb_restart_) do
