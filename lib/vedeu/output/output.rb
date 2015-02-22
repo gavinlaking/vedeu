@@ -64,11 +64,6 @@ module Vedeu
       out.join
     end
 
-    # @return []
-    def viewport
-      @_viewport ||= Vedeu::Viewport.new(interface).render
-    end
-
     # @note
     #   omg!
     #
@@ -114,6 +109,11 @@ module Vedeu
         out << row
       end
       out
+    end
+
+    # @return []
+    def viewport
+      @_viewport ||= Vedeu::Viewport.new(interface).render
     end
 
   end # Output
