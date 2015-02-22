@@ -6,7 +6,8 @@ module Vedeu
 
     describe Text do
 
-
+      describe '#text' do
+      end
 
     end # Text
 

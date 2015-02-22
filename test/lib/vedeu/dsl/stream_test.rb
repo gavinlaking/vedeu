@@ -17,6 +17,16 @@ module Vedeu
         it { instance.instance_variable_get('@client').must_equal(client) }
       end
 
+      describe '#stream' do
+        subject { instance.stream { } }
+
+        context 'when the block is not given' do
+          subject { instance.stream }
+
+          it { proc { subject }.must_raise(InvalidSyntax) }
+        end
+      end
+
     end # Stream
 
   end # DSL

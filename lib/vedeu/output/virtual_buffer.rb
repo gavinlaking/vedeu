@@ -8,7 +8,7 @@ module Vedeu
 
     # Fetch the oldest stored virtual buffer first.
     #
-    # @return [Array<Array<Vedeu::Char>>]
+    # @return [Array<Array<Vedeu::Char>>|NilClass]
     def retrieve
       storage.pop
     end
