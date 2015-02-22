@@ -81,6 +81,14 @@ module Vedeu
       end
     end
 
+    describe '#output' do
+      let(:data) {}
+
+      subject { instance.output(data) }
+
+      it { subject.must_be_instance_of(Array) }
+    end
+
     describe '#reset' do
       subject { instance.reset }
 

@@ -61,12 +61,25 @@ module Vedeu
       cell
     end
 
+    # Write a collection of cells to the virtual terminal.
+    #
+    # @param data [Array<Array<Vedeu::Char>>]
+    # @return [Array<Array<Vedeu::Char>>]
+    def output(data)
+      Array(data).flatten.each do |char|
+        write(char.position.y, char.position.x, char) if char.is_a?(Vedeu::Char)
+      end
+
+      cells
+    end
+
     # Removes all content from the virtual terminal; effectively clearing it.
     #
     # @return [Array<Array<Vedeu::Char>>]
     def reset
       @cells = new_virtual_terminal
     end
+    alias_method :clear, :reset
 
     # Write a single cell to the virtual terminal.
     #
