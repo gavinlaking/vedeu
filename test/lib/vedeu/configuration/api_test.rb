@@ -37,6 +37,8 @@ module Vedeu
           configuration = Vedeu.configure { interactive }
           configuration.interactive?.must_equal(true)
         end
+
+        # it { configuration.must_respond_to(:interactive) }
       end
 
       describe '#standalone!' do
@@ -59,6 +61,8 @@ module Vedeu
           configuration = Vedeu.configure { standalone }
           configuration.interactive?.must_equal(false)
         end
+
+        # it { configuration.must_respond_to(:standalone) }
       end
 
       describe '#run_once!' do
@@ -81,6 +85,8 @@ module Vedeu
           configuration = Vedeu.configure { run_once }
           configuration.once.must_equal(true)
         end
+
+        # it { configuration.must_respond_to(:run_once) }
       end
 
       describe '#drb!' do
@@ -103,6 +109,8 @@ module Vedeu
           configuration = Vedeu.configure { drb }
           configuration.drb.must_equal(true)
         end
+
+        # it { configuration.must_respond_to(:drb) }
       end
 
       describe '#drb_host' do
@@ -138,6 +146,8 @@ module Vedeu
           configuration = Vedeu.configure { cooked! }
           configuration.terminal_mode.must_equal(:cooked)
         end
+
+        # it { configuration.must_respond_to(:cooked) }
       end
 
       describe '#raw!' do
@@ -145,6 +155,8 @@ module Vedeu
           configuration = Vedeu.configure { raw! }
           configuration.terminal_mode.must_equal(:raw)
         end
+
+        # it { configuration.must_respond_to(:raw) }
       end
 
       describe '#debug!' do

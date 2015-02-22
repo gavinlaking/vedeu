@@ -18,7 +18,7 @@ module Vedeu
       describe '.connect' do
         subject { described.connect(uri) }
 
-        it { subject.must_be_instance_of(Symbol) }
+        # it { subject.must_be_instance_of(Symbol) }
       end
 
       describe '#input' do
