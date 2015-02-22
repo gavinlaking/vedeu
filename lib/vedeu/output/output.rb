@@ -25,7 +25,7 @@ module Vedeu
     #
     # @return [Array]
     def render
-      Vedeu.trigger(:_drb_store_output_, virtual_view)
+      Vedeu.trigger(:_drb_store_output_, virtual_view) if Vedeu::Configuration.drb?
 
       Terminal.output(view, interface.cursor.to_s)
     end
