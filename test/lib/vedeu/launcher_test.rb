@@ -38,7 +38,7 @@ module Vedeu
 
       #   it 'displays the exception' do
       #     capture_io do
-      #       Launcher.new.execute!
+      #       Launcher.execute!
       #     end.must_equal(["", ""])
       #   end
       # end

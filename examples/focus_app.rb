@@ -123,7 +123,7 @@ class VedeuFocusApp
   end
 
   def self.start(argv = ARGV)
-    Vedeu::Launcher.new(argv).execute!
+    Vedeu::Launcher.execute!(argv)
   end
 end
 

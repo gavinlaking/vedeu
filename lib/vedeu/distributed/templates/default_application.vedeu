@@ -29,7 +29,7 @@ class VedeuTestApplication
                  stdout = STDOUT,
                  stderr = STDERR,
                  kernel = Kernel)
-    Vedeu::Launcher.new(argv, stdin, stdout, stderr, kernel).execute!
+    Vedeu::Launcher.execute!(argv, stdin, stdout, stderr, kernel)
   end
 end
 
