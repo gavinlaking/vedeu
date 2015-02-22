@@ -5,7 +5,16 @@ module Vedeu
   describe Char do
 
     let(:described)     { Vedeu::Char }
-    let(:instance)      { described.new(value, parent, colour, style, position) }
+    let(:instance)      { described.new(attributes) }
+    let(:attributes)    {
+      {
+        colour: colour,
+        parent: parent,
+        position: position,
+        style: style,
+        value: value,
+      }
+    }
     let(:value)         { 'a' }
     let(:parent)        { Line.new(parent_attributes) }
     let(:parent_attributes) {
@@ -21,42 +30,6 @@ module Vedeu
     let(:position)      { nil }
     let(:parent_colour) { nil }
     let(:parent_style)  { nil }
-
-    describe '.coerce' do
-      subject { described.coerce(value, parent, colour, style, position) }
-
-      context 'when the value is already a Char' do
-        let(:value) { described.new('b') }
-
-        it { subject.must_equal(value) }
-      end
-
-      context 'when the value is an Array' do
-        context 'and the Array contains instances of Char' do
-          let(:value) { [described.new('b')] }
-
-          it { subject.must_equal(value) }
-        end
-
-        context 'and the Array contains instances of String' do
-          let(:value) { ['carbon'] }
-
-          it { subject.must_be_instance_of(Array) }
-        end
-
-        context 'and the Array contains instances of NilClass' do
-          let(:value) { [] }
-
-          it { subject.must_be_instance_of(NilClass) }
-        end
-      end
-
-      context 'when the value is not a Char or Array' do
-        let(:value) { {} }
-
-        it { subject.must_be_instance_of(NilClass) }
-      end
-    end
 
     describe '#initialize' do
       it { instance.must_be_instance_of(Char) }

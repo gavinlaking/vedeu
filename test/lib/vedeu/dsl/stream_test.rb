@@ -8,7 +8,7 @@ module Vedeu
 
       let(:described) { Vedeu::DSL::Stream }
       let(:instance)  { described.new(model) }
-      let(:model)     { mock('Vedeu::Stream') }
+      let(:model)     { Vedeu::Stream.new }
       let(:client)    {}
 
       describe '#initialize' do
@@ -19,6 +19,8 @@ module Vedeu
 
       describe '#stream' do
         subject { instance.stream { } }
+
+        # it { subject.must_be_instance_of(Vedeu::Stream) }
 
         context 'when the block is not given' do
           subject { instance.stream }

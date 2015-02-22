@@ -75,7 +75,7 @@ module Vedeu
         interface.width.times do |wi|
           v   = interface.raw_origin(hi)
           pos = Vedeu::Position.new(v.first, (v.last + wi))
-          row << Vedeu::Char.new(' ', nil, interface.colour, nil, pos)
+          row << Vedeu::Char.new({ value: ' ', parent: nil, colour: interface.colour, style: nil, position: pos })
         end
         out << row
       end
@@ -102,7 +102,7 @@ module Vedeu
             char
 
           else
-            Vedeu::Char.new(char, nil, interface.colour, nil, pos)
+            Vedeu::Char.new({ value: char, parent: nil, colour: interface.colour, style: nil, position: pos })
 
           end
         end

@@ -48,21 +48,37 @@ module Vedeu
           let(:data) {
             [
               [
-                Vedeu::Char.new('Z'),Vedeu::Char.new('i'),Vedeu::Char.new('n'),
-                Vedeu::Char.new('c'),Vedeu::Char.new('.'),Vedeu::Char.new('.'),
-                Vedeu::Char.new('.')
+                Vedeu::Char.new({ value: 'Z' }),
+                Vedeu::Char.new({ value: 'i' }),
+                Vedeu::Char.new({ value: 'n' }),
+                Vedeu::Char.new({ value: 'c' }),
+                Vedeu::Char.new({ value: '.' }),
+                Vedeu::Char.new({ value: '.' }),
+                Vedeu::Char.new({ value: '.' })
               ],[
-                Vedeu::Char.new('-'),Vedeu::Char.new('.'),Vedeu::Char.new('Z'),
-                Vedeu::Char.new('n'),Vedeu::Char.new('.'),Vedeu::Char.new('1'),
-                Vedeu::Char.new('2')
+                Vedeu::Char.new({ value: '-' }),
+                Vedeu::Char.new({ value: '.' }),
+                Vedeu::Char.new({ value: 'Z' }),
+                Vedeu::Char.new({ value: 'n' }),
+                Vedeu::Char.new({ value: '.' }),
+                Vedeu::Char.new({ value: '1' }),
+                Vedeu::Char.new({ value: '2' })
               ],[
-                Vedeu::Char.new('S'),Vedeu::Char.new('p'),Vedeu::Char.new('e'),
-                Vedeu::Char.new('l'),Vedeu::Char.new('t'),Vedeu::Char.new('e'),
-                Vedeu::Char.new('r')
+                Vedeu::Char.new({ value: 'S' }),
+                Vedeu::Char.new({ value: 'p' }),
+                Vedeu::Char.new({ value: 'e' }),
+                Vedeu::Char.new({ value: 'l' }),
+                Vedeu::Char.new({ value: 't' }),
+                Vedeu::Char.new({ value: 'e' }),
+                Vedeu::Char.new({ value: 'r' })
               ],[
-                Vedeu::Char.new('.'),Vedeu::Char.new('.'),Vedeu::Char.new('M'),
-                Vedeu::Char.new('e'),Vedeu::Char.new('t'),Vedeu::Char.new('a'),
-                Vedeu::Char.new('l')
+                Vedeu::Char.new({ value: '.' }),
+                Vedeu::Char.new({ value: '.' }),
+                Vedeu::Char.new({ value: 'M' }),
+                Vedeu::Char.new({ value: 'e' }),
+                Vedeu::Char.new({ value: 't' }),
+                Vedeu::Char.new({ value: 'a' }),
+                Vedeu::Char.new({ value: 'l' })
               ],
             ]
           }
@@ -97,13 +113,21 @@ module Vedeu
           let(:data) {
             [
               [
-                Vedeu::Char.new('G'),Vedeu::Char.new('a'),Vedeu::Char.new('l'),
-                Vedeu::Char.new('l'),Vedeu::Char.new('i'),Vedeu::Char.new('u'),
-                Vedeu::Char.new('m')
+                Vedeu::Char.new({ value: 'G' }),
+                Vedeu::Char.new({ value: 'a' }),
+                Vedeu::Char.new({ value: 'l' }),
+                Vedeu::Char.new({ value: 'l' }),
+                Vedeu::Char.new({ value: 'i' }),
+                Vedeu::Char.new({ value: 'u' }),
+                Vedeu::Char.new({ value: 'm' })
               ], [
-                Vedeu::Char.new('-'),Vedeu::Char.new('.'),Vedeu::Char.new('G'),
-                Vedeu::Char.new('a'),Vedeu::Char.new('.'),Vedeu::Char.new('3'),
-                Vedeu::Char.new('1')
+                Vedeu::Char.new({ value: '-' }),
+                Vedeu::Char.new({ value: '.' }),
+                Vedeu::Char.new({ value: 'G' }),
+                Vedeu::Char.new({ value: 'a' }),
+                Vedeu::Char.new({ value: '.' }),
+                Vedeu::Char.new({ value: '3' }),
+                Vedeu::Char.new({ value: '1' })
               ]
             ]
           }
