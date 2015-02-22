@@ -23,9 +23,7 @@ module Vedeu
 
       it { subject.must_be_instance_of(Array) }
 
-      context 'alias method: .restart' do
-        it { subject.must_be_instance_of(Array) }
-      end
+      it { described.must_respond_to(:restart) }
     end
 
     describe '.stop' do

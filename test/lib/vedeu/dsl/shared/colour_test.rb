@@ -24,19 +24,8 @@ module Vedeu
           )
         end
 
-        context 'alias method #bg' do
-          subject { dsl_klass.bg(background) }
-
-          it { subject.attributes.
-                must_equal({ background: '#00ff00', foreground: '' }) }
-        end
-
-        context 'alias method #bgcolor' do
-          subject { dsl_klass.bgcolor(background) }
-
-          it { subject.attributes.
-                must_equal({ background: '#00ff00', foreground: '' }) }
-        end
+        it { dsl_klass.must_respond_to(:bg) }
+        it { dsl_klass.must_respond_to(:bgcolor) }
       end
 
       describe '#foreground' do
@@ -50,19 +39,8 @@ module Vedeu
           )
         end
 
-        context 'alias method #fg' do
-          subject { dsl_klass.fg(foreground) }
-
-          it { subject.attributes.
-                must_equal({ background: '', foreground: '#ff00ff' }) }
-        end
-
-        context 'alias method #fgcolor' do
-          subject { dsl_klass.fgcolor(foreground) }
-
-          it { subject.attributes.
-                must_equal({ background: '', foreground: '#ff00ff' }) }
-        end
+        it { dsl_klass.must_respond_to(:fg) }
+        it { dsl_klass.must_respond_to(:fgcolor) }
       end
 
       describe '#colour' do

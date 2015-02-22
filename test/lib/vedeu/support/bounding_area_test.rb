@@ -47,9 +47,7 @@ module Vedeu
         it { described.top.must_equal(1) }
       end
 
-      context 'alias_method #y' do
-        it { described.y.must_equal(1) }
-      end
+      it { described.must_respond_to(:y) }
     end
 
     describe '#bottom' do
@@ -71,9 +69,7 @@ module Vedeu
         it { described.bottom.must_equal(15) }
       end
 
-      context 'alias_method #yn' do
-        it { described.yn.must_equal(15) }
-      end
+      it { described.must_respond_to(:yn) }
     end
 
     describe '#left' do
@@ -97,9 +93,7 @@ module Vedeu
         it { described.left.must_equal(1) }
       end
 
-      context 'alias_method #x' do
-        it { described.x.must_equal(1) }
-      end
+      it { described.must_respond_to(:x) }
     end
 
     describe '#right' do
@@ -121,9 +115,7 @@ module Vedeu
         it { described.right.must_equal(40) }
       end
 
-      context 'alias_method #xn' do
-        it { described.xn.must_equal(40) }
-      end
+      it { described.must_respond_to(:xn) }
     end
 
   end # BoundingArea
