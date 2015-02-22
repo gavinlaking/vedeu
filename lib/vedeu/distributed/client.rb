@@ -31,11 +31,11 @@ module Vedeu
       def connect
         server.status
 
+      rescue DRb::DRbBadURI
+        puts "Could not connect to DRb server, URI may be bad."
+
       rescue DRb::DRbConnError
         puts "Could not connect to DRb server."
-
-      ensure
-        self
 
       end
 
