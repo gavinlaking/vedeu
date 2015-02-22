@@ -4,6 +4,8 @@ require 'minitest/autorun'
 require 'minitest/pride' unless ENV['NO_COLOR']
 require 'minitest/hell'
 
+# GC.disable # uncomment to remove ~20ms from test run speed
+
 SimpleCov.start do
   command_name 'MiniTest::Spec'
   add_filter '/test/'
