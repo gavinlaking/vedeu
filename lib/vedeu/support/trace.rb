@@ -13,6 +13,18 @@ module Vedeu
   #
   class Trace
 
+    # @todo
+    #   Replace this class with this:
+    #
+    # def self.trace
+    #   trace = TracePoint.new(:call) do |tp|
+    #     if tp.defined_class.to_s.match(/Troo/)
+    #       Vedeu.log [tp.defined_class.to_s, tp.method_id.to_s].join(' ')
+    #     end
+    #   end
+    #   trace.enable
+    # end
+
     # @param options [Hash]
     # @return []
     def self.call(options = {})

@@ -1,5 +1,36 @@
 module Vedeu
 
+  class MainLoop
+
+    trap('SIGTERM') { stop! }
+    trap('TERM')    { stop! }
+    trap('INT')     { stop! }
+
+    def self.start!(&block)
+      @started = true
+      @loop    = true
+
+      while(@loop) do
+        Vedeu.trigger(:_tick_)
+
+        yield
+
+        safe_exit_point!
+      end
+    end
+
+    def self.stop!
+      @loop = false
+    end
+
+    def self.safe_exit_point!
+      if @started && !@loop
+        raise Interrupt
+      end
+    end
+
+  end # MainLoop
+
   # Orchestrates the running of the main application loop.
   #
   # @api private
@@ -27,7 +58,8 @@ module Vedeu
       def stop
         Vedeu.trigger(:_cleanup_)
 
-        fail StopIteration
+        # fail StopIteration
+        Vedeu::MainLoop.stop!
       end
 
     end # Application eigenclass
@@ -61,7 +93,7 @@ module Vedeu
         runner { main_sequence }
       end
 
-      Vedeu.trigger(:_drb_stop_)
+      Vedeu.trigger(:_drb_stop_, 'via Vedeu::Application#start')
 
       output
     end
@@ -108,11 +140,7 @@ module Vedeu
     #
     # @return []
     def run_many
-      loop do
-        Vedeu.trigger(:_tick_)
-        yield
-
-      end
+      MainLoop.start! { yield }
 
     rescue ModeSwitch
       Terminal.switch_mode!
