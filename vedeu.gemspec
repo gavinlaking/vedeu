@@ -4,11 +4,11 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = 'vedeu'
-  spec.version       = '0.3.4'
+  spec.version       = '0.3.5'
   spec.authors       = ['Gavin Laking']
   spec.email         = ['gavinlaking@gmail.com']
   spec.summary       = %q{A terminal case of wonderland.}
-  spec.description   = %q{A GUI framework for terminal/console applications.}
+  spec.description   = %q{A GUI framework written in Ruby for building terminal/console applications.}
   spec.homepage      = 'https://github.com/gavinlaking/vedeu'
   spec.license       = 'MIT'
 
