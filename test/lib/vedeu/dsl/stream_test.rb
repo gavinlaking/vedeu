@@ -20,8 +20,6 @@ module Vedeu
       describe '#stream' do
         subject { instance.stream { } }
 
-        # it { subject.must_be_instance_of(Vedeu::Stream) }
-
         context 'when the block is not given' do
           subject { instance.stream }
 

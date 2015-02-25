@@ -10,7 +10,6 @@ module Vedeu
 
     describe '#initialize' do
       it { instance.must_be_instance_of(Vedeu::TestApplication) }
-      # it { subject.instance_variable_get('@attributes').must_equal(attributes) }
     end
 
     describe '.build' do

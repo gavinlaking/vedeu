@@ -40,18 +40,6 @@ module Vedeu
       it 'returns 0 for successful execution' do
         subject.must_equal(0)
       end
-
-      # context 'when an exception is raised' do
-      #   before do
-      #     Application.stubs(:start).raises(StandardError)
-      #   end
-
-      #   it 'displays the exception' do
-      #     capture_io do
-      #       Launcher.execute!
-      #     end.must_equal(["", ""])
-      #   end
-      # end
     end
 
   end # Launcher

@@ -51,12 +51,6 @@ module Vedeu
         end
 
         context 'when the key is not valid (already defined)' do
-          # let(:key_j) { Key.new('j') { :do_something } }
-          # let(:key_down) { Key.new(:down) { :do_something } }
-
-          # before { model.stubs(:keys).returns([key_j, key_down]) }
-
-          # it { subject.must_equal(false) }
         end
       end
 

@@ -28,8 +28,6 @@ module Vedeu
 
     describe '#initialize' do
       it { instance.must_be_instance_of(Cursor) }
-
-      # it { instance.instance_variable_get('@attributes').must_equal() }
       it { instance.instance_variable_get('@name').must_equal('silver') }
       it { instance.instance_variable_get('@ox').must_equal(3) }
       it { instance.instance_variable_get('@oy').must_equal(2) }

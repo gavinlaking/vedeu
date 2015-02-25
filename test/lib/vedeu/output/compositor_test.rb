@@ -39,19 +39,14 @@ module Vedeu
     describe '.compose' do
       subject { described.compose(_name) }
 
-      # it { skip }
-
       context 'when there is no content' do
-        # it { skip }
       end
 
       context 'when there is content' do
         context 'when the view has redefined the geometry' do
-          # it { skip }
         end
 
         context 'when the view has not redefined the geometry' do
-          # it { skip }
         end
       end
     end

@@ -45,134 +45,6 @@ module Vedeu
         it { subject.must_be_instance_of(Vedeu::Border) }
       end
 
-      # describe '#define' do
-      #   interface = Interface.new({ name: 'widget' })
-
-      #   it 'creates and stores a new interface' do
-      #     interface.define.must_be_instance_of(API::Interface)
-      #   end
-
-      #   it 'allows the setting of colours' do
-      #     Interface.build do
-      #       colour foreground: '#aadd00', background: '#222222'
-      #     end.must_equal(
-      #       {
-      #         border: {},
-      #         colour: {
-      #           foreground: '#aadd00',
-      #           background: '#222222'
-      #         },
-      #         cursor: :hide,
-      #         delay: 0.0,
-      #         geometry: {},
-      #         group: '',
-      #         lines: [],
-      #         name: '',
-      #         parent: nil,
-      #         style: '',
-      #       }
-      #     )
-      #   end
-
-      #   it 'allows the setting of styles' do
-      #     Interface.build do
-      #       style 'underline'
-      #     end.must_equal(
-      #       {
-      #         border: {},
-      #         colour: {},
-      #         cursor: :hide,
-      #         delay: 0.0,
-      #         geometry: {},
-      #         group: '',
-      #         lines: [],
-      #         name: '',
-      #         parent: nil,
-      #         style: "underline",
-      #       }
-      #     )
-      #   end
-
-      #   it 'allows the use of other interfaces for attributes like geometry' do
-      #     IO.console.stub(:winsize, [25, 40]) do
-      #       interface = Vedeu.interface 'my_interface' do
-      #         geometry do
-      #           x      5
-      #           y      5
-      #           width  5
-      #           height 5
-      #         end
-      #       end
-      #       Interface.build do
-      #         name   'my_other_interface'
-      #         y      use('my_interface').south
-      #       end.must_equal({
-      #         border: {},
-      #         colour: {},
-      #         cursor: :hide,
-      #         delay: 0.0,
-      #         geometry: {
-      #           y: 11
-      #         },
-      #         group: '',
-      #         lines: [],
-      #         name: "my_other_interface",
-      #         parent: nil,
-      #         style: '',
-      #       })
-      #     end
-      #   end
-
-      #   it 'allows the setting of a delay for events triggered for this ' \
-      #      'interface' do
-      #     Interface.build do
-      #       delay 1.0
-      #     end.must_equal(
-      #       {
-      #         border: {},
-      #         colour: {},
-      #         cursor: :hide,
-      #         delay: 1.0,
-      #         geometry: {},
-      #         group: '',
-      #         lines: [],
-      #         name: '',
-      #         parent: nil,
-      #         style: '',
-      #       })
-      #   end
-
-      #   it 'allows the interface to be part of a group- useful for creating ' \
-      #      'separate views' do
-      #     Interface.build do
-      #       group 'my_group'
-      #     end.must_equal(
-      #       {
-      #         border: {},
-      #         colour: {},
-      #         cursor: :hide,
-      #         delay: 0.0,
-      #         geometry: {},
-      #         group: "my_group",
-      #         lines: [],
-      #         name: '',
-      #         parent: nil,
-      #         style: '',
-      #       }
-      #     )
-      #   end
-      # end
-
-      # describe '#centred' do
-      #   it 'returns false if the value is false or nil' do
-      #     DSL::Interface.new.centred(false).must_equal(false)
-      #   end
-
-      #   it 'returns true' do
-      #     DSL::Interface.new.centred.must_equal(true)
-      #   end
-      # end
-
       describe '#cursor' do
         let(:value) {}
 
@@ -262,19 +134,6 @@ module Vedeu
           end
         end
 
-        # context 'when multiple calls are made' do
-        #   before do
-        #     Vedeu::Focus.reset
-        #     Vedeu.interface('curium')     { focus! }
-        #     Vedeu.interface('iodine')     {}
-        #     Vedeu.interface('dysprosium') { focus! }
-        #   end
-
-        #   it 'the last call will set that interface to be current' do
-        #     Vedeu.focus.must_equal('dysprosium')
-        #   end
-        # end
-
         context 'when no calls are made' do
           before do
             Vedeu::Focus.reset
@@ -318,7 +177,7 @@ module Vedeu
         end
       end
 
-      describe '#keys' do
+      describe '#keymap' do
         subject {
           instance.keys do
             # ...
@@ -326,34 +185,6 @@ module Vedeu
         }
 
         it { subject.must_be_instance_of(Vedeu::Keymap) }
-
-        context 'when the required block is not provided' do
-          subject { instance.keys }
-
-          it { proc { subject }.must_raise(InvalidSyntax) }
-        end
-
-        # before do
-        #   Keymaps.reset
-
-        #   Vedeu.interface 'iron' do
-        #     keys do
-        #       key('k') { :k_pressed }
-        #     end
-        #   end
-        # end
-
-        # it 'defines a keymap for the interface' do
-        #   Keymaps.interface_key?('k').must_equal(true)
-        # end
-
-        # it 'defines a keymap for the interface' do
-        #   Keymaps.interface_keys('iron').must_equal(['k'])
-        # end
-
-        # context 'when the block is not given' do
-        #   it { proc { Vedeu.interface('iron') { keys } }.must_raise(InvalidSyntax) }
-        # end
       end
 
       describe '#lines' do
@@ -370,99 +201,6 @@ module Vedeu
 
           it { proc { subject }.must_raise(InvalidSyntax) }
         end
-
-        # it 'adds a blank line with no arguments' do
-        #   interface = Vedeu.interface 'carbon' do
-        #     line
-        #   end
-        #   interface.must_be_instance_of(API::Interface)
-        #   interface.attributes.must_equal(
-        #     {
-        #       border: {},
-        #       colour: {},
-        #       cursor: :hide,
-        #       delay: 0.0,
-        #       geometry: {},
-        #       group: '',
-        #       lines: [
-        #         {
-        #           colour: {},
-        #           streams: {
-        #             text: ''
-        #           },
-        #           style: [],
-        #         }
-        #       ],
-        #       name: 'carbon',
-        #       parent: nil,
-        #       style: '',
-        #     }
-        #   )
-        # end
-
-        # it 'adds a line directly with a value and no block' do
-        #   interface = Vedeu.interface 'carbon' do
-        #     line 'This is some text...'
-        #   end
-        #   interface.must_be_instance_of(API::Interface)
-        #   interface.attributes.must_equal(
-        #     {
-        #       border: {},
-        #       colour: {},
-        #       cursor: :hide,
-        #       delay: 0.0,
-        #       geometry: {},
-        #       group: '',
-        #       lines: [
-        #         {
-        #           colour: {},
-        #           parent: composition,
-        #           streams: {
-        #             text: "This is some text..."
-        #           },
-        #           style: [],
-        #         }
-        #       ],
-        #       name: 'carbon',
-        #       parent: nil,
-        #       style: '',
-        #     }
-        #   )
-        # end
-
-        # it 'allows the addition of more attributes with a block' do
-        #   interface = Vedeu.interface 'silicon' do
-        #     lines do
-        #       text 'This is different text...'
-        #     end
-        #   end
-        #   interface.must_be_instance_of(API::Interface)
-        #   interface.attributes.must_equal(
-        #     {
-        #       border: {},
-        #       colour: {},
-        #       cursor: :hide,
-        #       delay: 0.0,
-        #       geometry: {},
-        #       group: '',
-        #       lines: [
-        #         {
-        #           colour: {},
-        #           parent: composition,
-        #           streams: [
-        #             {
-        #               text: "This is different text..."
-        #             }
-        #           ],
-        #           style: [],
-        #         }
-        #       ],
-        #       name: "silicon",
-        #       parent: nil,
-        #       style: '',
-        #     }
-        #   )
-        # end
       end
 
       describe '#name' do

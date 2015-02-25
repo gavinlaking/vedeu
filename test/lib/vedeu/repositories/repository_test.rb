@@ -45,30 +45,6 @@ module Vedeu
       end
     end
 
-    # describe '#current' do
-    #   # before { Focus.stubs(:current).returns('francium') }
-
-    #   subject { instance.current }
-
-    #   it { Vedeu.focus.must_be_instance_of(NilClass) }
-
-    #   context 'when the model exists' do
-    #     # before { Cursor.new({ name: 'francium', state: false, x: 12, y: 4 }).store }
-
-    #     # it 'has the same attributes it was stored with' do
-    #     #   subject.x.must_equal(12)
-    #     #   subject.y.must_equal(4)
-    #     # end
-    #   end
-
-    #   context 'when the model does not exist' do
-    #     # it 'is created, stored, and has the default attributes' do
-    #     #   subject.x.must_equal(1)
-    #     #   subject.y.must_equal(1)
-    #     # end
-    #   end
-    # end
-
     describe '#each' do
       subject { instance.each }
 

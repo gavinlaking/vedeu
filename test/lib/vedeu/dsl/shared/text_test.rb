@@ -7,12 +7,6 @@ module Vedeu
     describe Text do
 
       describe '#text' do
-
-        # it { described.must_respond_to(:align) }
-        # it { described.must_respond_to(:center) }
-        # it { described.must_respond_to(:centre) }
-        # it { described.must_respond_to(:left) }
-        # it { described.must_respond_to(:right) }
       end
 
     end # Text

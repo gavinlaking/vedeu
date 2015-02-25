@@ -10,12 +10,6 @@ describe 'Keymaps' do
       end
     }
 
-    #it { subject.must_be_instance_of(Vedeu::Keymap) }
-
-    # it 'allows the use of ... within Vedeu.keymap' do
-    #   skip
-    # end
-
     context 'when no value is provided' do
 
     end
@@ -27,12 +21,6 @@ describe 'Keymaps' do
         name ''
       end
     }
-
-    #it { subject.must_be_instance_of(Vedeu::Keymap) }
-
-    # it 'allows the use of ... within Vedeu.keymap' do
-    #   skip
-    # end
 
     context 'when no value is provided' do
 

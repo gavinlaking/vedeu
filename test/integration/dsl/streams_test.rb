@@ -13,11 +13,6 @@ describe 'Streams' do
       end
     }
 
-    # it 'allows the use of align within stream(s)' do
-    #   skip
-    #   subject.must_equal('Some text')
-    # end
-
     context 'when no value is provided' do
 
     end
@@ -33,10 +28,6 @@ describe 'Streams' do
         end
       end
     }
-
-    # it 'allows the use of background within stream(s)' do
-    #   skip
-    # end
 
     context 'when no value is provided' do
 
@@ -54,10 +45,6 @@ describe 'Streams' do
       end
     }
 
-    # it 'allows the use of colour within stream(s)' do
-    #   skip
-    # end
-
     context 'when no value is provided' do
 
     end
@@ -73,10 +60,6 @@ describe 'Streams' do
         end
       end
     }
-
-    # it 'allows the use of foreground within stream(s)' do
-    #   skip
-    # end
 
     context 'when no value is provided' do
 
@@ -96,10 +79,6 @@ describe 'Streams' do
       end
     }
 
-    # it 'allows the use of style within stream(s)' do
-    #   skip
-    # end
-
     context 'when no value is provided' do
       let(:value) {}
     end
@@ -115,11 +94,6 @@ describe 'Streams' do
         end
       end
     }
-
-    # it 'allows the use of text within stream(s)' do
-    #   skip
-    #   subject.must_equal('Some text...')
-    # end
 
     context 'when no value is provided' do
 

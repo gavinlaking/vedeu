@@ -8,15 +8,9 @@ module Vedeu
 
     describe '.start!' do
       before do
-        # subject.expects(:while).yields do
-        #   String.expects(:new).returns("samantha")
-        # end
       end
 
       subject { described.start! { } }
-
-      # it { subject; described.instance_variable_get('@started').must_equal(true) }
-      # it { subject; described.instance_variable_get('@loop').must_equal(true) }
     end
 
     describe '.stop!' do

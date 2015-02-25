@@ -16,10 +16,6 @@ module Vedeu
       context 'when there are no registered interfaces' do
         it { subject.must_equal([]) }
       end
-
-      # context 'when there are registered interfaces' do
-      #   it { subject, ['hydrogen'.must_equal('helium']) }
-      # end
     end
 
     describe '.by_focus' do
@@ -32,9 +28,6 @@ module Vedeu
       end
 
       context 'when there are registered interfaces' do
-        # before { Vedeu.focusable.add('lead') }
-
-        # it { subject.must_equal('lead') }
       end
     end
 
@@ -61,9 +54,6 @@ module Vedeu
       end
 
       context 'when the interface or buffer is found' do
-        # it { subject.must_be_instance_of(Array) }
-
-        # it { skip }
       end
     end
 

@@ -83,33 +83,6 @@ module Vedeu
         it { proc { subject }.must_raise(MissingRequired) }
       end
 
-      # context 'when the interface has a name' do
-      #   context 'when a buffer exists' do
-      #     it { skip }
-      #   end
-
-      #   context 'when a buffer does not exist' do
-      #     it { skip }
-      #   end
-
-      #   context 'when a refresh event exists' do
-      #     it { skip }
-      #   end
-
-      #   context 'when a refresh event does not exist' do
-      #     it { skip }
-      #   end
-
-      #   context 'when the interface has a group' do
-      #     it { skip }
-      #
-      #     context 'when the group exists' do
-      #     end
-      #
-      #     context 'when the group does not exist' do
-      #     end
-      #   end
-      # end
     end
 
   end # Interface

@@ -11,12 +11,6 @@ describe 'Lines' do
       end
     }
 
-    #it { subject.must_be_instance_of(Vedeu::Line) }
-
-    # it 'allows the use of background within lines' do
-    #   skip
-    # end
-
     context 'when no value is provided' do
 
     end
@@ -30,12 +24,6 @@ describe 'Lines' do
         end
       end
     }
-
-    #it { subject.must_be_instance_of(Vedeu::Line) }
-
-    # it 'allows the use of colour within lines' do
-    #   skip
-    # end
 
     context 'when no value is provided' do
 
@@ -51,12 +39,6 @@ describe 'Lines' do
       end
     }
 
-    #it { subject.must_be_instance_of(Vedeu::Line) }
-
-    # it 'allows the use of foreground within lines' do
-    #   skip
-    # end
-
     context 'when no value is provided' do
 
     end
@@ -71,12 +53,6 @@ describe 'Lines' do
       end
     }
 
-    #it { subject.must_be_instance_of(Vedeu::Line) }
-
-    # it 'allows the use of line within lines' do
-    #   skip
-    # end
-
     context 'when no value is provided' do
 
     end
@@ -90,12 +66,6 @@ describe 'Lines' do
         end
       end
     }
-
-    #it { subject.must_be_instance_of(Vedeu::Line) }
-
-    # it 'allows the use of stream within lines' do
-    #   skip
-    # end
 
     context 'when no value is provided' do
 
@@ -112,12 +82,6 @@ describe 'Lines' do
       end
     }
 
-    #it { subject.must_be_instance_of(Vedeu::Line) }
-
-    # it 'allows the use of streams within lines' do
-    #   skip
-    # end
-
     context 'when no value is provided' do
 
     end
@@ -131,12 +95,6 @@ describe 'Lines' do
         end
       end
     }
-
-    #it { subject.must_be_instance_of(Vedeu::Line) }
-
-    # it 'allows the use of style within lines' do
-    #   skip
-    # end
 
     context 'when no value is provided' do
 
