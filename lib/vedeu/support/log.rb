@@ -61,6 +61,7 @@ module Vedeu
       # @return [Hash]
       def message_types
         {
+          config: :yellow,
           create: :green,
           debug:  :red,
           drb:    :blue,

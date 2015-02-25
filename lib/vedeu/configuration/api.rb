@@ -39,14 +39,12 @@ module Vedeu
       #
       # @return [Hash]
       def configuration
-        if system_keys.any?
-          options.merge({
-            system_keys: Configuration.default_system_keys.merge(system_keys)
-          })
+        options.merge!({
+          system_keys: Configuration.default_system_keys.merge(system_keys)
+        }) if system_keys.any?
 
-        else
-          options
-
+        options.each do |option, value|
+          Vedeu.log(type: :config, message: "API #{option.to_s}: #{value.to_s}")
         end
       end
 
@@ -65,8 +63,6 @@ module Vedeu
       # @param value [Boolean]
       # @return [Boolean]
       def interactive!(value = true)
-        api_log('interactive', value)
-
         options[:interactive] = value
       end
       alias_method :interactive, :interactive!
@@ -82,8 +78,6 @@ module Vedeu
       # @param value [Boolean]
       # @return [Boolean]
       def standalone!(value = true)
-        api_log('interactive', !value)
-
         options[:interactive] = !value
       end
       alias_method :standalone, :standalone!
@@ -100,8 +94,6 @@ module Vedeu
       # @param value [Boolean]
       # @return [Boolean]
       def run_once!(value = true)
-        api_log('once', value)
-
         options[:once] = value
       end
       alias_method :run_once, :run_once!
@@ -116,8 +108,6 @@ module Vedeu
       # @param value [Boolean]
       # @return [Boolean]
       def drb!(value = true)
-        api_log('drb', value)
-
         options[:drb] = value
       end
       alias_method :drb, :drb!
@@ -183,8 +173,6 @@ module Vedeu
       #
       # @return [Boolean]
       def cooked!
-        api_log('terminal_mode', 'cooked')
-
         options[:terminal_mode] = :cooked
       end
       alias_method :cooked, :cooked!
@@ -198,8 +186,6 @@ module Vedeu
       #
       # @return [Boolean]
       def raw!
-        api_log('terminal_mode', 'raw')
-
         options[:terminal_mode] = :raw
       end
       alias_method :raw, :raw!
@@ -222,13 +208,9 @@ module Vedeu
       # @return [Boolean]
       def debug!(value = true)
         if options.key?(:trace) && options[:trace] != false
-          api_log('debug', 'true')
-
           options[:debug] = true
 
         else
-          api_log('debug', value)
-
           options[:debug] = value
 
         end
@@ -252,9 +234,6 @@ module Vedeu
       # @return [Boolean]
       def trace!(value = true)
         options[:debug] = true if value === true
-
-        api_log('trace', value)
-
         options[:trace] = value
       end
       alias_method :trace, :trace!
@@ -273,9 +252,6 @@ module Vedeu
       def colour_mode(value = nil)
         fail InvalidSyntax, '`colour_mode` must be `8`, `16`, `256`, ' \
                             '`16777216`.' unless valid_colour_mode?(value)
-
-        api_log('colour_mode', value)
-
         options[:colour_mode] = value
       end
 
@@ -346,9 +322,6 @@ module Vedeu
       # @return [String|Symbol]
       def exit_key(value)
         return invalid_key('exit_key') unless valid_key?(value)
-
-        api_log('exit_key', value)
-
         system_keys[:exit] = value
       end
 
@@ -368,9 +341,6 @@ module Vedeu
       # @return [String|Symbol]
       def focus_next_key(value)
         return invalid_key('focus_next_key') unless valid_key?(value)
-
-        api_log('focus_next_key', value)
-
         system_keys[:focus_next] = value
       end
 
@@ -390,9 +360,6 @@ module Vedeu
       # @return [String|Symbol]
       def focus_prev_key(value)
         return invalid_key('focus_prev_key') unless valid_key?(value)
-
-        api_log('focus_prev_key', value)
-
         system_keys[:focus_prev] = value
       end
 
@@ -412,9 +379,6 @@ module Vedeu
       # @return [String|Symbol]
       def mode_switch_key(value)
         return invalid_key('mode_switch_key') unless valid_key?(value)
-
-        api_log('mode_switch_key', value)
-
         system_keys[:mode_switch] = value
       end
 
@@ -468,14 +432,6 @@ module Vedeu
       # @return [InvalidSyntax]
       def invalid_key(system_key)
         fail InvalidSyntax, "`#{system_key}` must be a String or a Symbol."
-      end
-
-      # @param option [String] The option being configured.
-      # @param value [String] The value of the option.
-      # @return [void]
-      def api_log(option, value)
-        Vedeu.log(type:    :info,
-                  message: "Configuration::API #{option}: #{value}")
       end
 
     end # API

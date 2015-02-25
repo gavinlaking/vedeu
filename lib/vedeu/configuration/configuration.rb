@@ -196,8 +196,6 @@ module Vedeu
       #
       # @return [Hash]
       def reset!
-        # Vedeu::Log.logger.debug('Resetting configuration.')
-
         instance.reset!
       end
 
@@ -233,8 +231,6 @@ module Vedeu
     #
     # @return [Hash]
     def reset!
-      # Vedeu::Log.logger.debug('Resetting configuration.')
-
       @options = defaults
     end
 
