@@ -41,7 +41,7 @@ module Vedeu
 
         context 'and the key is defined' do
           let(:key_test) { Key.new('a') { :do_something } }
-          let(:keymap_test) { Keymap.new('test', [key_test]) }
+          let(:keymap_test) { Keymap.new({ name: 'test', keys: [key_test] }) }
 
           before do
             Vedeu.keymaps.reset
@@ -71,7 +71,7 @@ module Vedeu
 
         context 'and the key is defined' do
           let(:key_test) { Key.new('a') { :do_something } }
-          let(:keymap_test) { Keymap.new('test', [key_test]) }
+          let(:keymap_test) { Keymap.new({ name: 'test', keys: [key_test] }) }
 
           before do
             Vedeu.keymaps.reset

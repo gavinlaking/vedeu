@@ -39,12 +39,10 @@ module Vedeu
         #
         # @raise [InvalidSyntax] The required block was not given.
         # @return [Keymap]
+        # @todo Try to remember why we need to pre-create the keymap in the
+        #   repository.
         def keymap(name, &block)
-          # fail InvalidSyntax, 'block not given' unless block_given?
-
-          # @todo Try to remember why we need to pre-create the keymap in the
-          #   repository.
-          Vedeu::Keymap.new(name).store
+          Vedeu::Keymap.new({ name: name }).store
 
           Vedeu::Keymap.build({ name: name }, &block).store
         end

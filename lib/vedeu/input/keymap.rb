@@ -15,51 +15,18 @@ module Vedeu
 
     attr_accessor :name
 
-    class << self
-
-      # @param attributes [Hash]
-      # @param block [Proc]
-      # @option attributes client []
-      # @option attributes keys []
-      # @option attributes name [String]
-      # @option attributes repository [Vedeu::Repository]
-      # @raise [InvalidSyntax] The required block was not given.
-      # @return [Vedeu::Keymap]
-      def build(attributes = {}, &block)
-        fail InvalidSyntax, 'block not given' unless block_given?
-
-        attributes = defaults.merge(attributes)
-
-        model = new(attributes[:name],
-                    attributes[:keys],
-                    attributes[:repository])
-        model.deputy(attributes[:client]).instance_eval(&block)
-        model.store
-      end
-
-      private
-
-      # The default values for a new instance of this class.
-      #
-      # @return [Hash]
-      def defaults
-        {
-          client:     nil,
-          keys:       [],
-          name:       '',
-          repository: Vedeu::Keymaps.keymaps,
-        }
-      end
-
-    end
-
-    # @param name [String] The name of the keymap.
-    # @param keys [Vedeu::Model::Collection|Array] A collection of keys.
+    # @param attributes [Hash]
+    # @option attributes name [String] The name of the keymap.
+    # @option attributes keys [Vedeu::Model::Collection|Array] A collection of
+    #   keys.
+    # @option attributes repository [Vedeu::Repository] This model's storage.
     # @return [Vedeu::Keymap]
-    def initialize(name = '', keys = [], repository = nil)
-      @name       = name
-      @keys       = keys
-      @repository = repository || Vedeu::Keymaps.keymaps
+    def initialize(attributes = {})
+      @attributes = defaults.merge(attributes)
+
+      @name       = @attributes[:name]
+      @keys       = @attributes[:keys]
+      @repository = @attributes[:repository]
     end
 
     # @param key [Key]
@@ -99,6 +66,15 @@ module Vedeu
 
     private
 
+    # @return [Hash]
+    def defaults
+      {
+        name:       '',
+        keys:       [],
+        repository: Vedeu::Keymaps.keymaps,
+      }
+    end
+
     # Checks that the provided key is not already registered with this keymap.
     #
     # @param key [Vedeu::Key]
@@ -106,7 +82,8 @@ module Vedeu
     def valid?(key)
       return true unless key_defined?(key.input)
 
-      Vedeu.log(type: :debug, message: "Keymap '#{name}' already defines '#{key.input}'.")
+      Vedeu.log(type:    :debug,
+                message: "Keymap '#{name}' already defines '#{key.input}'.")
 
       false
     end

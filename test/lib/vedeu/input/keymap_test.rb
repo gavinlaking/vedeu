@@ -4,8 +4,14 @@ module Vedeu
 
   describe Keymap do
 
-    let(:described) { Vedeu::Keymap }
-    let(:instance)  { described.new(map_name, keys) }
+    let(:described)  { Vedeu::Keymap }
+    let(:instance)   { described.new(attributes) }
+    let(:attributes) {
+      {
+        name: map_name,
+        keys: keys
+      }
+    }
     let(:map_name)  { 'zirconium' }
     let(:keys)      { [] }
     let(:key)       { Vedeu::Key.new('a') { :output } }
