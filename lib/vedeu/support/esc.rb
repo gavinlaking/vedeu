@@ -4,6 +4,7 @@ module Vedeu
   # display related functions.
   #
   # @api private
+  #
   module Esc
 
     extend self
@@ -13,15 +14,23 @@ module Vedeu
     # @return [Hash]
     def codes
       {
-        black:   30,
-        red:     31,
-        green:   32,
-        yellow:  33,
-        blue:    34,
-        magenta: 35,
-        cyan:    36,
-        white:   37,
-        default: 39,
+        black:         30,
+        red:           31,
+        green:         32,
+        yellow:        33,
+        blue:          34,
+        magenta:       35,
+        cyan:          36,
+        light_grey:    37,
+        default:       39,
+        dark_grey:     90,
+        light_red:     91,
+        light_green:   92,
+        light_yellow:  93,
+        light_blue:    94,
+        light_magenta: 95,
+        light_cyan:    96,
+        white:         97,
       }
     end
     alias_method :foreground_codes, :codes
@@ -72,18 +81,6 @@ module Vedeu
       stream.gsub(/\e/, '\\e')
     end
 
-    # Return the escape sequence required to position the cursor at a particular
-    # point on the screen. When passed a block, will do the aforementioned,
-    # call the block and then reposition to this location.
-    #
-    # @param y     [Fixnum] The row/line position.
-    # @param x     [Fixnum] The column/character position.
-    # @param block [Proc]
-    # @return      [String]
-    def set_position(y = 1, x = 1, &block)
-      Position.new(y, x).to_s(&block)
-    end
-
     # Return the escape sequence string from the list of recognised sequence
     # 'commands', or an empty string if the 'command' cannot be found.
     #
@@ -93,6 +90,16 @@ module Vedeu
       return '' if value.to_sym.empty?
 
       sequences.fetch(value.to_sym, proc { '' }).call
+    end
+
+    # Return the escape sequence to render a border character.
+    #
+    # @param block [Proc]
+    # @return [String]
+    def border(&block)
+      return '' unless block_given?
+
+      [ border_on, yield, border_off ].join
     end
 
     private
@@ -126,7 +133,7 @@ module Vedeu
 
     # @return [String]
     def bg_reset
-      "\e[48;2;49m"
+      "\e[49m"
     end
 
     # @return [String]
@@ -149,21 +156,39 @@ module Vedeu
       "\e[22m"
     end
 
+    # Returns the escape sequence to start a border.
+    #
+    # @return [String]
+    def border_on
+      "\e(0"
+    end
+
+    # Returns the escape sequence to end a border.
+    #
+    # @return [String]
+    def border_off
+      "\e(B"
+    end
+
     # @return [String]
     def clear
-      [ colour_reset,
-        "\e[2J" ].join
+      [
+        colour_reset,
+        "\e[2J"
+      ].join
     end
 
     # @return [String]
     def clear_line
-      [ colour_reset,
-        "\e[2K" ].join
+      [
+        colour_reset,
+        "\e[2K"
+      ].join
     end
 
     # @return [String]
     def clear_last_line
-      [set_position((Terminal.height - 1), 1), clear_line].join
+      Vedeu::Position.new((Terminal.height - 1), 1).to_s { clear_line }
     end
 
     # @return [String]
@@ -178,7 +203,7 @@ module Vedeu
 
     # @return [String]
     def fg_reset
-      "\e[38;2;39m"
+      "\e[39m"
     end
 
     # @return [String]
@@ -213,7 +238,11 @@ module Vedeu
 
     # @return [String]
     def screen_exit
-      [show_cursor, colour_reset, reset].join
+      [
+        show_cursor,
+        colour_reset,
+        reset
+      ].join
     end
 
     # @return [String]

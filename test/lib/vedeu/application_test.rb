@@ -6,7 +6,7 @@ module Vedeu
 
     let(:described)     { Vedeu::Application }
     let(:instance)      { described.new(configuration) }
-    let(:configuration) { mock('Vedeu::Configuration') }
+    let(:configuration) { test_configuration }
 
     before do
       configuration.stubs(:drb?).returns(false)
@@ -23,15 +23,12 @@ module Vedeu
 
       it { subject.must_be_instance_of(Array) }
 
-      context 'alias method: .restart' do
-        it { subject.must_be_instance_of(Array) }
-      end
+      it { described.must_respond_to(:restart) }
     end
 
     describe '.stop' do
       subject { described.stop }
 
-      it { proc { subject }.must_raise(StopIteration) }
     end
 
     describe '#start' do

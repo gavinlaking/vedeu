@@ -1,6 +1,7 @@
 module Vedeu
 
   # The basis of a fake output device.
+  #
   class Write
 
     # @see Vedeu::Write#write

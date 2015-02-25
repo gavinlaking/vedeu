@@ -6,6 +6,7 @@ module Vedeu
     # {Vedeu::DSL::Line} and {Vedeu::DSL::Stream} classes.
     #
     # @api public
+    #
     module Colour
 
       # Define the background colour for an interface, line, or a stream. When

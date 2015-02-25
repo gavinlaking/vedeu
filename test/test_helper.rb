@@ -4,6 +4,8 @@ require 'minitest/autorun'
 require 'minitest/pride' unless ENV['NO_COLOR']
 require 'minitest/hell'
 
+# GC.disable # uncomment to remove ~20ms from test run speed
+
 SimpleCov.start do
   command_name 'MiniTest::Spec'
   add_filter '/test/'
@@ -44,8 +46,9 @@ def test_configuration
      # adds ~40ms to test run speed
      # debug!
 
-     # if debug! above is commented out, then only Vedeu.log('...', true) will
-     # be logged, otherwise every Vedeu.log('...') will be logged.
+     # if debug! above is commented out, then only
+     # `Vedeu.log(type: <any type>, message: '...', force: true)`
+     # will be logged, otherwise every `Vedeu.log` will be logged.
      log '/tmp/vedeu_test_helper.log'
   end
 end

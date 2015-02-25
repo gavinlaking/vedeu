@@ -38,11 +38,7 @@ module Vedeu
         subject.must_equal('a')
       end
 
-      context 'alias method #key' do
-        subject { instance.key }
-
-        it { subject.must_equal('a') }
-      end
+      it { instance.must_respond_to(:key) }
     end
 
     describe '#output' do
@@ -52,17 +48,8 @@ module Vedeu
         subject.must_equal(:output)
       end
 
-      context 'alias method #action' do
-        subject { instance.action }
-
-        it { subject.must_equal(:output) }
-      end
-
-      context 'alias method #press' do
-        subject { instance.press }
-
-        it { subject.must_equal(:output) }
-      end
+      it { instance.must_respond_to(:action) }
+      it { instance.must_respond_to(:press) }
     end
 
   end # Key

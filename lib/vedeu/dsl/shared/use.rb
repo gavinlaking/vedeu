@@ -2,6 +2,8 @@ module Vedeu
 
   module DSL
 
+    # Provides helper methods for building views.
+    #
     module Use
 
       extend self
@@ -29,6 +31,7 @@ module Vedeu
       #
       # @param value [String] The name of the interface you wish to use.
       #   Typically used when defining interfaces to share geometry.
+      # @raise [ModelNotFound] The interface has not yet been defined.
       # @return [Vedeu::Interface]
       def use(value)
         if Vedeu.interfaces.registered?(value) == false

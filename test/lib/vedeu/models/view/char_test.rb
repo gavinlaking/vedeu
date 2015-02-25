@@ -5,7 +5,16 @@ module Vedeu
   describe Char do
 
     let(:described)     { Vedeu::Char }
-    let(:instance)      { described.new(value, parent, colour, style, position) }
+    let(:instance)      { described.new(attributes) }
+    let(:attributes)    {
+      {
+        colour: colour,
+        parent: parent,
+        position: position,
+        style: style,
+        value: value,
+      }
+    }
     let(:value)         { 'a' }
     let(:parent)        { Line.new(parent_attributes) }
     let(:parent_attributes) {
@@ -21,42 +30,6 @@ module Vedeu
     let(:position)      { nil }
     let(:parent_colour) { nil }
     let(:parent_style)  { nil }
-
-    describe '.coerce' do
-      subject { described.coerce(value, parent, colour, style, position) }
-
-      context 'when the value is already a Char' do
-        let(:value) { described.new('b') }
-
-        it { subject.must_equal(value) }
-      end
-
-      context 'when the value is an Array' do
-        context 'and the Array contains instances of Char' do
-          let(:value) { [described.new('b')] }
-
-          it { subject.must_equal(value) }
-        end
-
-        context 'and the Array contains instances of String' do
-          let(:value) { ['carbon'] }
-
-          it { subject.must_be_instance_of(Array) }
-        end
-
-        context 'and the Array contains instances of NilClass' do
-          let(:value) { [] }
-
-          it { subject.must_be_instance_of(NilClass) }
-        end
-      end
-
-      context 'when the value is not a Char or Array' do
-        let(:value) { {} }
-
-        it { subject.must_be_instance_of(NilClass) }
-      end
-    end
 
     describe '#initialize' do
       it { instance.must_be_instance_of(Char) }
@@ -84,13 +57,13 @@ module Vedeu
 
       context 'when the value is set' do
         it { subject.must_equal('a') }
-
-        context 'and the value is more than one character' do
-          let(:value) { 'multi' }
-
-          it { subject.must_equal('m') }
-        end
       end
+    end
+
+    describe '#to_html' do
+      subject { instance.to_html }
+
+      it { subject.must_be_instance_of(String) }
     end
 
     describe '#to_s' do
@@ -159,11 +132,37 @@ module Vedeu
 
         it { subject.must_equal("") }
       end
+    end
 
-      context 'when the value is more than one character' do
-        let(:value) { 'multi' }
+    describe '#x' do
+      let(:position) { Position.new(17, 2) }
 
-        it { subject.must_equal("m") }
+      subject { instance.x }
+
+      context 'when a position is set' do
+        it { subject.must_equal(2) }
+      end
+
+      context 'when a position is not set' do
+        let(:position) {}
+
+        it { subject.must_equal(nil) }
+      end
+    end
+
+    describe '#y' do
+      let(:position) { Position.new(17, 2) }
+
+      subject { instance.y }
+
+      context 'when a position is set' do
+        it { subject.must_equal(17) }
+      end
+
+      context 'when a position is not set' do
+        let(:position) {}
+
+        it { subject.must_equal(nil) }
       end
     end
 

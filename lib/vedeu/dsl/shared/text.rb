@@ -4,6 +4,8 @@ module Vedeu
 
   module DSL
 
+    # Provides helper methods for building views.
+    #
     module Text
 
       # Specify the content for a view. Provides the means to align a string

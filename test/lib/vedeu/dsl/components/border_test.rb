@@ -179,6 +179,8 @@ module Vedeu
             )
           end
         end
+
+        it { instance.must_respond_to(:bottom) }
       end
 
       describe '#hide_bottom!' do
@@ -198,6 +200,8 @@ module Vedeu
 
         it { subject.must_be_instance_of(TrueClass) }
 
+        it { instance.must_respond_to(:left) }
+
         context 'when false' do
           let(:boolean) { false }
 
@@ -208,7 +212,7 @@ module Vedeu
           subject {
             Vedeu.interface 'borders' do
               border do
-                show_left ''
+                show_left!
               end
               geometry do
                 height 3
@@ -249,6 +253,8 @@ module Vedeu
 
         it { subject.must_be_instance_of(TrueClass) }
 
+        it { instance.must_respond_to(:right) }
+
         context 'when false' do
           let(:boolean) { false }
 
@@ -259,7 +265,7 @@ module Vedeu
           subject {
             Vedeu.interface 'borders' do
               border do
-                show_right ''
+                show_right!
               end
               geometry do
                 height 3
@@ -299,6 +305,8 @@ module Vedeu
         subject { instance.show_top(boolean) }
 
         it { subject.must_be_instance_of(TrueClass) }
+
+        it { instance.must_respond_to(:top) }
 
         context 'when false' do
           let(:boolean) { false }

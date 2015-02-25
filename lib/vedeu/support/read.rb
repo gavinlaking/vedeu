@@ -1,6 +1,7 @@
 module Vedeu
 
   # The basis of a fake input device.
+  #
   class Read
 
     # @param console []

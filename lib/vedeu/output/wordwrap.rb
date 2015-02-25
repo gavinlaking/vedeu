@@ -99,6 +99,9 @@ module Vedeu
       text.split(/\n/)
     end
 
+    # @note
+    #   This may be unused. (GL 2015-02-20)
+    #
     # @return [String]
     def output
       processed.reduce([]) do |output, line|

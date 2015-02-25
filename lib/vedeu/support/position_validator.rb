@@ -1,5 +1,8 @@
 module Vedeu
 
+  # Validates that the provided coordinates are within the terminal and
+  # interface (with or without a border).
+  #
   class PositionValidator
 
     extend Forwardable

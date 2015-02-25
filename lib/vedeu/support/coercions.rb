@@ -5,6 +5,7 @@ module Vedeu
   # Provides means to convert attributes into the correct model.
   #
   # @api private
+  #
   module Coercions
 
     include Vedeu::Common
@@ -48,7 +49,7 @@ module Vedeu
     # directly.
     #
     # @param receiver [Class] The class in which this module is included.
-    # @return []
+    # @return [void]
     def self.included(receiver)
       receiver.extend(self)
     end

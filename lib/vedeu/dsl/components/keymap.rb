@@ -9,6 +9,7 @@ module Vedeu
     # Provides methods to be used to define keypress mapped to actions.
     #
     # @api public
+    #
     class Keymap
 
       include Vedeu::Common

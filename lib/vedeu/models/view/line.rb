@@ -10,6 +10,7 @@ module Vedeu
   # {Vedeu::Interface} it belongs to.
   #
   # @api private
+  #
   class Line
 
     include Vedeu::Model
@@ -39,7 +40,7 @@ module Vedeu
     end
 
     # @param child []
-    # @return []
+    # @return [void]
     def add(child)
       @streams = streams.add(child)
     end

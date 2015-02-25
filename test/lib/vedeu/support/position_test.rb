@@ -15,10 +15,52 @@ module Vedeu
       it { instance.instance_variable_get('@x').must_equal(x) }
     end
 
+    describe '.coerce' do
+      let(:value) {}
+
+      subject { described.coerce(value) }
+
+      context 'when the value is already a Position' do
+        let(:value) { instance }
+
+        it { subject.must_equal(instance) }
+      end
+
+      context 'when the value is an Array' do
+        let(:value) { [2, 8] }
+
+        it { subject.must_be_instance_of(described) }
+        it { subject.y.must_equal(2) }
+        it { subject.x.must_equal(8) }
+      end
+
+      context 'when the value is something unhandled' do
+        it { subject.must_be_instance_of(NilClass) }
+      end
+    end
+
     describe '#inspect' do
       subject { instance.inspect }
 
       it { subject.must_equal("<Vedeu::Position (y:12 x:19)>") }
+    end
+
+    describe '#==' do
+      let(:other) {}
+
+      subject { instance == other }
+
+      context 'when they are equal' do
+        let(:other) { described.new(12, 19) }
+
+        it { subject.must_equal(true) }
+      end
+
+      context 'when they are not equal' do
+        let(:other) { described.new(2, 9) }
+
+        it { subject.must_equal(false) }
+      end
     end
 
     describe '#to_s' do

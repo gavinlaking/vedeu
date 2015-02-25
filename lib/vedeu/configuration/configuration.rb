@@ -6,6 +6,7 @@ require 'vedeu/configuration/cli'
 module Vedeu
 
   # Namespace for the API configuration and CLI configuration classes.
+  #
   module Config
   end
 
@@ -18,6 +19,7 @@ module Vedeu
   # arguments provided.
   #
   # @api private
+  #
   class Configuration
 
     include Singleton
@@ -185,7 +187,7 @@ module Vedeu
       end
 
       # @param value []
-      # @return []
+      # @return [void]
       def options=(value)
         instance.options = value
       end

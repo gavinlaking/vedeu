@@ -77,17 +77,8 @@ module Vedeu
 
       it { subject.must_be_instance_of(Fixnum) }
 
-      context 'alias method #tyn' do
-        subject { instance.tyn }
-
-        it { subject.must_be_instance_of(Fixnum) }
-      end
-
-      context 'alias method #yn' do
-        subject { instance.yn }
-
-        it { subject.must_be_instance_of(Fixnum) }
-      end
+      it { instance.must_respond_to(:tyn) }
+      it { instance.must_respond_to(:yn) }
     end
 
     describe '#origin' do
@@ -96,29 +87,10 @@ module Vedeu
       it { subject.must_be_instance_of(Fixnum) }
       it { subject.must_equal(1) }
 
-      context 'alias method #x' do
-        subject { instance.x }
-
-        it { subject.must_be_instance_of(Fixnum) }
-      end
-
-      context 'alias method #y' do
-        subject { instance.y }
-
-        it { subject.must_be_instance_of(Fixnum) }
-      end
-
-      context 'alias method #tx' do
-        subject { instance.tx }
-
-        it { subject.must_be_instance_of(Fixnum) }
-      end
-
-      context 'alias method #ty' do
-        subject { instance.ty }
-
-        it { subject.must_be_instance_of(Fixnum) }
-      end
+      it { instance.must_respond_to(:x) }
+      it { instance.must_respond_to(:y) }
+      it { instance.must_respond_to(:tx) }
+      it { instance.must_respond_to(:ty) }
     end
 
     describe '#raw' do
@@ -135,11 +107,7 @@ module Vedeu
       it { subject.must_be_instance_of(Array) }
       it { subject.must_equal([24, 32]) }
 
-      context 'alias method #winsize' do
-        subject { instance.winsize }
-
-        it { subject.must_be_instance_of(Array) }
-      end
+      it { instance.must_respond_to(:winsize) }
     end
 
     describe '#width' do
@@ -147,17 +115,8 @@ module Vedeu
 
       it { subject.must_be_instance_of(Fixnum) }
 
-      context 'alias method #txn' do
-        subject { instance.txn }
-
-        it { subject.must_be_instance_of(Fixnum) }
-      end
-
-      context 'alias method #xn' do
-        subject { instance.xn }
-
-        it { subject.must_be_instance_of(Fixnum) }
-      end
+      it { instance.must_respond_to(:txn) }
+      it { instance.must_respond_to(:xn) }
     end
 
   end # Console

@@ -4,6 +4,7 @@ module Vedeu
   # Group. A Group is a collection of interface names.
   #
   # @api private
+  #
   class Group
 
     include Vedeu::Model

@@ -8,6 +8,7 @@ module Vedeu
   # characters in that line.
   #
   # @api private
+  #
   class Stream
 
     include Vedeu::Model
@@ -56,7 +57,7 @@ module Vedeu
       return [] if value.empty?
 
       value.chars.map do |char|
-        member.new(char, parent, colour, style, nil).to_s
+        member.new({ value: char, parent: parent, colour: colour, style: style, position: nil }).to_s
       end
     end
 

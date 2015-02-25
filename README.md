@@ -4,7 +4,7 @@
 
 # Vedeu
 
-Vedeu is my attempt at creating a terminal based application framework without the need for Ncurses. I've tried to make Vedeu as simple and flexible as possible.
+Vedeu (vee-dee-you; aka VDU) is my attempt at creating a terminal based application framework without the need for Ncurses. I've tried to make Vedeu as simple and flexible as possible.
 
 
 ## Requirements

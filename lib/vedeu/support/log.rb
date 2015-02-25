@@ -5,25 +5,26 @@ module Vedeu
   # Provides the ability to log anything to the Vedeu log file.
   #
   # @api private
+  #
   class Log
 
     class << self
 
       # Write a message to the Vedeu log file.
       #
-      # @param message [String] The message you wish to emit to the log
-      #   file, useful for debugging.
-      # @param force   [Boolean] When evaluates to true will attempt to
-      #   write to the log file regardless of the Configuration setting.
+      # @param message [String] The message you wish to emit to the log file,
+      #   useful for debugging.
+      # @param force   [Boolean] When evaluates to true will attempt to write to
+      #   the log file regardless of the Configuration setting.
+      # @param type    [Symbol] Colour code messages in the log file depending
+      #   on their source.
       #
       # @example
-      #   Vedeu.log('A useful debugging message: Error!')
+      #   Vedeu.log(message: 'A useful debugging message: Error!')
       #
       # @return [TrueClass]
-      def log(message, force = false)
-        colour = [:red, :green, :yellow, :blue, :magenta, :cyan, :white].sample
-
-        logger.debug(Esc.send(colour) { message }) if enabled? || force
+      def log(message:, force: false, type: :info)
+        logger.debug([message_type(type), message]) if enabled? || force
       end
 
       # @return [TrueClass]
@@ -50,6 +51,27 @@ module Vedeu
       # @return [String]
       def log_file
         Vedeu::Configuration.log
+      end
+
+      # @return [String]
+      def message_type(type)
+        Esc.send(message_types.fetch(type, :default)) { "[#{type}]".ljust(9) }
+      end
+
+      # @return [Hash]
+      def message_types
+        {
+          create: :green,
+          debug:  :red,
+          drb:    :blue,
+          event:  :magenta,
+          info:   :default,
+          input:  :yellow,
+          output: :green,
+          store:  :cyan,
+          test:   :white,
+          update: :cyan,
+        }
       end
 
       # Returns a formatted (red, underlined) UTC timestamp,

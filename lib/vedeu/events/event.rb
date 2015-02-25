@@ -7,6 +7,7 @@ module Vedeu
   # Contains all the logic of an event. Handles debouncing and throttling.
   #
   # @api private
+  #
   class Event
 
     include Vedeu::Model
@@ -57,7 +58,7 @@ module Vedeu
       #
       # @return [TrueClass]
       def bind(name, options = {}, &block)
-        Vedeu.log("Binding event: '#{name}'")
+        Vedeu.log(type: :event, message: "Binding: '#{name}'")
 
         new(name, options, block).bind
       end
@@ -76,7 +77,7 @@ module Vedeu
       def unbind(name)
         return false unless Vedeu.events.registered?(name)
 
-        Vedeu.log("Unbinding event: '#{name}")
+        Vedeu.log(type: :event, message: "Unbinding: '#{name}")
 
         Vedeu.events.remove(name)
         true
@@ -120,7 +121,7 @@ module Vedeu
     # Triggers the event based on debouncing and throttling conditions.
     #
     # @param args [Array]
-    # @return []
+    # @return [void]
     def trigger(*args)
       return execute(*args) unless debouncing? || throttling?
 
@@ -137,13 +138,15 @@ module Vedeu
     # Execute the code stored in the event closure.
     #
     # @param args []
-    # @return []
+    # @return [void]
     def execute(*args)
       reset_deadline
 
       set_executed
 
       reset_time
+
+      Vedeu.log(type: :event, message: "Triggering: '#{name}'")
 
       closure.call(*args)
     end
@@ -165,7 +168,7 @@ module Vedeu
     def throttle_expired?
       return true if elapsed_time > delay
 
-      Vedeu.log("Throttling event '#{name}'")
+      Vedeu.log(type: :event, message: "Throttling: '#{name}'")
 
       false
     end
@@ -189,7 +192,7 @@ module Vedeu
     def debounce_expired?
       return true if set_executed > deadline
 
-      Vedeu.log("Debouncing event '#{name}'")
+      Vedeu.log(type: :event, message: "Debouncing: '#{name}'")
 
       false
     end

@@ -9,6 +9,8 @@ require 'vedeu/dsl/view'
 
 module Vedeu
 
+  # Provides a mechanism to help configure and use Vedeu.
+  #
   module DSL
 
     # Attempts to find the missing method on the client object.
@@ -16,9 +18,9 @@ module Vedeu
     # @param method [Symbol] The name of the method sought.
     # @param args [Array] The arguments which the method was to be invoked with.
     # @param block [Proc] The optional block provided to the method.
-    # @return []
+    # @return [void]
     def method_missing(method, *args, &block)
-      Vedeu.log("!!!method_missing '#{method}'")
+      Vedeu.log(type: :debug, message: "!!!method_missing '#{method}'")
 
       client.send(method, *args, &block) if client
     end

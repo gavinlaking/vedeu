@@ -5,6 +5,7 @@ require 'vedeu/dsl/components/keymap'
 module Vedeu
 
   # A container class for keys associated with a particular interface.
+  #
   class Keymap
 
     include Vedeu::Model
@@ -22,6 +23,7 @@ module Vedeu
       # @option attributes keys []
       # @option attributes name [String]
       # @option attributes repository [Vedeu::Repository]
+      # @raise [InvalidSyntax] The required block was not given.
       # @return [Vedeu::Keymap]
       def build(attributes = {}, &block)
         fail InvalidSyntax, 'block not given' unless block_given?
@@ -61,7 +63,7 @@ module Vedeu
     end
 
     # @param key [Key]
-    # @return []
+    # @return [void]
     def add(key)
       return false unless valid?(key)
 
@@ -88,7 +90,7 @@ module Vedeu
     def use(input)
       return false unless key_defined?(input)
 
-      Vedeu.log("Key pressed: '#{input}'")
+      Vedeu.log(type: :input, message: "Key pressed: '#{input}'")
 
       Vedeu.trigger(:key, input)
 
@@ -104,7 +106,7 @@ module Vedeu
     def valid?(key)
       return true unless key_defined?(key.input)
 
-      Vedeu.log("Keymap '#{name}' already defines '#{key.input}'.")
+      Vedeu.log(type: :debug, message: "Keymap '#{name}' already defines '#{key.input}'.")
 
       false
     end

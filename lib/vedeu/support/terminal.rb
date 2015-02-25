@@ -8,6 +8,7 @@ module Vedeu
   # console, via Ruby's IO core library.
   #
   # @api private
+  #
   module Terminal
 
     extend self
@@ -22,12 +23,12 @@ module Vedeu
       fail InvalidSyntax, 'block not given' unless block_given?
 
       if raw_mode?
-        Vedeu.log("Terminal entering 'raw' mode")
+        Vedeu.log(type: :info, message: "Terminal entering 'raw' mode")
 
         console.raw    { initialize_screen { yield } }
 
       else
-        Vedeu.log("Terminal entering 'cooked' mode")
+        Vedeu.log(type: :info, message: "Terminal entering 'cooked' mode")
 
         console.cooked { initialize_screen { yield } }
 
@@ -88,7 +89,7 @@ module Vedeu
     end
 
     # @param block [Proc]
-    # @return []
+    # @return [void]
     def initialize_screen(&block)
       output(Esc.string('screen_init'))
 
@@ -132,7 +133,7 @@ module Vedeu
     #
     # @return [Symbol]
     def cooked_mode!
-      Vedeu.log("Terminal switching to 'cooked' mode")
+      Vedeu.log(type: :info, message: "Terminal switching to 'cooked' mode")
 
       @_mode = :cooked
     end
@@ -149,7 +150,7 @@ module Vedeu
     #
     # @return [Symbol]
     def raw_mode!
-      Vedeu.log("Terminal switching to 'raw' mode")
+      Vedeu.log(type: :info, message: "Terminal switching to 'raw' mode")
 
       @_mode = :raw
     end
@@ -256,6 +257,11 @@ module Vedeu
     # @return [File]
     def console
       IO.console
+    end
+
+    # @return [VirtualTerminal]
+    def virtual
+      @virtual ||= VirtualTerminal.new(height, width)
     end
 
   end # Terminal

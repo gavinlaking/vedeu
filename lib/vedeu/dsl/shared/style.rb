@@ -6,6 +6,7 @@ module Vedeu
     # {DSL::Stream} classes.
     #
     # @api public
+    #
     module Style
 
       # Define a style or styles for an interface, line or a stream.

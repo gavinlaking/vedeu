@@ -8,25 +8,35 @@ module Vedeu
 
       let(:described) { Vedeu::Distributed::Client }
       let(:instance)  { described.new(uri) }
-      let(:uri)       {}
+      let(:uri)       { 'druby://localhost:21420' }
 
       describe '#initialize' do
-        subject { instance }
+        it { instance.must_be_instance_of(described) }
+        it { instance.instance_variable_get('@uri').must_equal('druby://localhost:21420') }
+      end
 
-        it { subject.must_be_instance_of(described) }
-        it { subject.instance_variable_get('@uri').must_equal('') }
+      describe '.connect' do
+        subject { described.connect(uri) }
+
+        # it { subject.must_be_instance_of(Symbol) }
       end
 
       describe '#input' do
+        let(:data) {}
+
+        subject { instance.input(data) }
+
+        it { instance.must_respond_to(:read) }
       end
 
       describe '#output' do
+        subject { instance.output }
+
+        it { instance.must_respond_to(:write) }
       end
 
-      describe '#start' do
-      end
-
-      describe '#stop' do
+      describe '#shutdown' do
+        subject { instance.shutdown }
       end
 
     end # Client

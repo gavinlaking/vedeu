@@ -39,7 +39,9 @@ class VedeuCursorApp
 
   renders do
     view 'main_interface' do
-      border!
+      border do
+        colour foreground: '#aadd00', background: '#000000'
+      end
       lines do
         streams do
           text 'A.3456789 '
@@ -106,7 +108,7 @@ class VedeuCursorApp
   focus_by_name 'main_interface'
 
   def self.start(argv = ARGV)
-    Vedeu::Launcher.new(argv).execute!
+    Vedeu::Launcher.execute!(argv)
   end
 end
 

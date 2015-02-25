@@ -9,6 +9,7 @@ module Vedeu
   #   Vedeu.trigger(:my_event, :oxidize, 'nitrogen')
   #
   # @api private
+  #
   class Trigger
 
     class << self
@@ -34,15 +35,13 @@ module Vedeu
     # @see Vedeu::Trigger.trigger
     # @return [Array]
     def trigger
-      return [] unless repository.registered?(name)
+      if results.one?
+        results.first
 
-      collection = repository.find(name)
+      else
+        results
 
-      results = collection.map { |event| event.trigger(*args) }
-
-      return results.first if results.one?
-
-      results
+      end
     end
 
     private
@@ -50,6 +49,18 @@ module Vedeu
     attr_reader :name,
       :args,
       :repository
+
+    # @return [Array<void>|void]
+    def results
+      @results ||= registered_events.map { |event| event.trigger(*args) }
+    end
+
+    # @return [Array|Array<Vedeu::Event>]
+    def registered_events
+      return [] unless repository.registered?(name)
+
+      repository.find(name)
+    end
 
   end # Trigger
 

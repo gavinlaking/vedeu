@@ -1,5 +1,7 @@
 module Vedeu
 
+  # Provides coordinates based on the height and width provided.
+  #
   class BoundingArea
 
     attr_reader :height,

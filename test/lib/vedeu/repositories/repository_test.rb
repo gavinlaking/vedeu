@@ -83,7 +83,7 @@ module Vedeu
       end
 
       context 'when the storage is not empty' do
-        let(:storage) { [mock] }
+        let(:storage) { [:item] }
 
         it { subject.must_equal(false) }
       end

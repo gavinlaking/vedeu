@@ -34,6 +34,7 @@ module Vedeu
     #   end
     #
     # @api public
+    #
     class Line
 
       include Vedeu::DSL
@@ -60,7 +61,8 @@ module Vedeu
       #       line do
       #         # ...
       #
-      # @return [Vedeu::Line]
+      # @raise [InvalidSyntax] When no block or value is provided.
+      # @return [Vedeu::Lines]
       def line(value = '', &block)
         content = if block_given?
           Vedeu::Line.build({ client: client,

@@ -26,6 +26,7 @@ module Vedeu
   #            south
   #
   # @api private
+  #
   class Geometry
 
     include Vedeu::Model
@@ -146,23 +147,14 @@ module Vedeu
       Vedeu::Limit.apply(y, @height, Terminal.height, Terminal.origin)
     end
 
-    # Returns an escape sequence to position the cursor at the top-left
-    # coordinate, relative to the interface's position.
+    # Returns the position of the cursor at the top-left coordinate, relative to
+    # the interface's position.
     #
-    # @param index [Fixnum]
-    # @param block [Proc]
-    # @return [String]
-    def origin(index = 0, &block)
-      Esc.set_position(*raw_origin(index), &block)
-    end
-
-    # Returns a tuple which positions the cursor at the top-left coordinate,
-    # relative to the interface's position.
-    #
-    # @param index [Fixnum]
-    # @return [Array<Fixnum>]
-    def raw_origin(index = 0)
-      [virtual_y[index], left]
+    # @param y_index [Fixnum]
+    # @param x_index [Fixnum]
+    # @return [Vedeu::Position]
+    def origin(y_index = 0, x_index = 0)
+      Vedeu::Position.new(virtual_y[y_index], virtual_x[x_index])
     end
 
     # Returns the top coordinate of the interface, a fixed or dynamic value

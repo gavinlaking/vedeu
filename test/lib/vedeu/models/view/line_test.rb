@@ -33,7 +33,7 @@ module Vedeu
 
     let(:streams_parent) { Line.new({ streams: nil, parent: parent, colour: colour, style: style }) }
 
-    let(:parent)    { mock('Interface') }
+    let(:parent)    { Vedeu::Interface.new }
     let(:colour)    { Colour.new({ foreground: '#ff0000', background: '#000000' }) }
     let(:style)     { Style.new('normal') }
 

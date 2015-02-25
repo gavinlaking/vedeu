@@ -25,9 +25,11 @@ module Vedeu
     #
     # @return [Array]
     def render
-      Vedeu.trigger(:_output_, virtual_view)
+      if Vedeu::Configuration.drb?
+        Vedeu.trigger(:_drb_store_output_, virtual_view)
+      end
 
-      Terminal.output(view, interface.cursor.to_s)
+      Terminal.output(Renderer.render(virtual_view, interface.cursor))
     end
 
     private
@@ -38,72 +40,74 @@ module Vedeu
     # colours to those specified when the interface was defined, then starting
     # write space characters over the area which the interface occupies.
     #
-    # @return [String]
-    def clear
-      Vedeu.log("Clearing view: '#{interface.name}'")
-
-      interface.height.times.inject([interface.colour]) do |line, index|
-        line << interface.origin(index) { ' ' * interface.width }
-      end.join
-    end
-
-    # Produces a single string which contains all content and escape sequences
-    # required to render this interface in the terminal window.
+    # @note
+    #   omg!
     #
-    # @return [String]
-    def view
-      out = [ clear ]
-
-      Vedeu.log("Rendering view: '#{interface.name}'")
-
-      viewport.each_with_index do |line, index|
-        out << interface.origin(index)
-        out << line.join
-      end
-
-      out.join
-    end
-
-    def viewport
-      @_viewport ||= Vedeu::Viewport.new(interface).render
-    end
-
-    # omg!
+    # @return [Array<Array<Vedeu::Char>>]
     def virtual_clear
+      Vedeu.log(type: :output, message: "Clearing: '#{interface.name}'")
+
       out = []
-      interface.height.times do |hi|
+      interface.height.times do |iy|
         row = []
-        interface.width.times do |wi|
-          v   = interface.raw_origin(hi)
-          pos = Vedeu::Position.new(v.first, (v.last + wi))
-          row << Vedeu::Char.new(' ', nil, interface.colour, nil, pos)
+        interface.width.times do |ix|
+          row << char_builder(' ', iy, ix)
         end
         out << row
       end
       out
     end
 
-    # omg!
+    # Builds up a virtual view; a grid of Vedeu::Char objects- each one holding
+    # one character along with its colour, style and position attributes.
+    #
+    # @note
+    #   omg!
+    #
+    # @return [Array<Array<Vedeu::Char>>]
     def virtual_view
       out = [ virtual_clear ]
 
-      viewport.each_with_index do |line, line_index|
+      Vedeu.log(type: :output, message: "Rendering: '#{interface.name}'")
+
+      viewport.each_with_index do |line, iy|
         row = []
-        line.each_with_index do |char, char_index|
-          v   = interface.raw_origin(line_index)
-          pos = Vedeu::Position.new(v.first, (v.last + char_index))
+        line.each_with_index do |char, ix|
           row << if char.is_a?(Vedeu::Char)
-            char.position=(pos)
+            char.position = position(iy, ix)
             char
 
           else
-            Vedeu::Char.new(char, nil, interface.colour, nil, pos)
+            char_builder(char, iy, ix)
 
           end
         end
         out << row
       end
       out
+    end
+
+    # @return [void]
+    def viewport
+      @_viewport ||= Vedeu::Viewport.new(interface).render
+    end
+
+    # @param iy [Fixnum]
+    # @param ix [Fixnum]
+    # @return [Vedeu::Position]
+    def position(iy, ix)
+      interface.origin(iy, ix)
+    end
+
+    # @param value [String]
+    # @param iy [Fixnum]
+    # @param ix [Fixnum]
+    # @return [Vedeu::Char]
+    def char_builder(value, iy, ix)
+      Vedeu::Char.new({ value:    value,
+                        colour:   interface.colour,
+                        style:    interface.style,
+                        position: position(iy, ix) })
     end
 
   end # Output

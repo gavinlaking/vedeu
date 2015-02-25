@@ -6,6 +6,7 @@ module Vedeu
   # finally the exiting of the application with the correct exit code.
   #
   # @api public
+  #
   class Launcher
 
     attr_reader :exit_code
@@ -20,14 +21,14 @@ module Vedeu
           stdin  = STDIN,
           stdout = STDOUT,
           stderr = STDERR,
-          kernel = Kernel).execute!
+          kernel = Kernel).debug_execute!
     end
 
     # @param argv [Array]
-    # @param stdin []
-    # @param stdout []
-    # @param stderr []
-    # @param kernel []
+    # @param stdin [IO]
+    # @param stdout [IO]
+    # @param stderr [IO]
+    # @param kernel [Kernel]
     # @return [Launcher]
     def initialize(argv   = [],
                    stdin  = STDIN,
@@ -42,29 +43,51 @@ module Vedeu
       @exit_code = 1
     end
 
-    # @return []
+    # @return [void]
+    def debug_execute!
+      if configuration.debug?
+        Vedeu.debug { execute! }
+
+      else
+        execute!
+
+      end
+
+      terminate!
+    end
+
+    # @return [void]
     def execute!
       $stdin, $stdout, $stderr = @stdin, @stdout, @stderr
 
       Application.start(configuration)
 
       @exit_code = 0
+
     rescue StandardError => uncaught_exception
       puts uncaught_exception.message
       puts uncaught_exception.backtrace.join("\n") if configuration.debug?
 
-    ensure
-      Vedeu.log("Exiting gracefully.")
-
-      $stdin, $stdout, $stderr = STDIN, STDOUT, STDERR
-      @kernel.exit(exit_code)
     end
 
     private
 
+    # @!attribute [r] argv
+    # @return [Array<String>] The command line arguments provided.
     attr_reader :argv
 
-    # @return []
+    # Terminates the application after resetting $stdin, $stdout and $stderr.
+    #
+    # @return [void]
+    def terminate!
+      Vedeu.log(type: :info, message: "Exiting gracefully.")
+
+      $stdin, $stdout, $stderr = STDIN, STDOUT, STDERR
+
+      @kernel.exit(exit_code)
+    end
+
+    # @return [Vedeu::Configuration]
     def configuration
       Vedeu::Configuration.configure(argv)
 

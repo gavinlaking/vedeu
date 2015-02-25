@@ -1,5 +1,7 @@
 module Vedeu
 
+  # A composition class.
+  #
   class Node
 
     attr_accessor :name,
@@ -7,11 +9,13 @@ module Vedeu
 
     attr_reader   :children
 
+    # @return [void]
     def initialize(name)
       @name     = name
       @children = []
     end
 
+    # @return [void]
     def add_child(node)
       children << node
 
@@ -19,14 +23,17 @@ module Vedeu
     end
     alias :<< :add_child
 
+    # @return [void]
     def remove_child(node)
       children.delete(node)
     end
 
+    # @return [void]
     def [](index)
       children[index]
     end
 
+    # @return [void]
     def []=(index, node)
       replaced_child        = @children[index]
       children[index]       = node
@@ -34,28 +41,11 @@ module Vedeu
       node.parent           = self
     end
 
+    # @return [void]
     def leaf?
       children.empty?
     end
 
   end # Node
-
-  class Task < Node
-
-    def initialize(name, time_required = nil)
-      super(name)
-      @time_required = time_required
-    end
-    def time_required
-      if leaf?
-        @time_required
-      else
-        time = 0.0
-        children.each { |child_task| time += child_task.time_required }
-        time
-      end
-    end
-
-  end # Task
 
 end # Vedeu

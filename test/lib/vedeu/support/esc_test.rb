@@ -52,7 +52,7 @@ module Vedeu
       end
 
       it 'returns an escape sequence when the style is bg_reset' do
-        Esc.string('bg_reset').must_equal("\e[48;2;49m")
+        Esc.string('bg_reset').must_equal("\e[49m")
       end
 
       it 'returns an escape sequence when the style is blink' do
@@ -72,19 +72,19 @@ module Vedeu
       end
 
       it 'returns an escape sequence when the style is clear' do
-        Esc.string('clear').must_equal("\e[38;2;39m\e[48;2;49m\e[2J")
+        Esc.string('clear').must_equal("\e[39m\e[49m\e[2J")
       end
 
       it 'returns an escape sequence when the style is clear_line' do
-        Esc.string('clear_line').must_equal("\e[38;2;39m\e[48;2;49m\e[2K")
+        Esc.string('clear_line').must_equal("\e[39m\e[49m\e[2K")
       end
 
       it 'returns an escape sequence when the style is colour_reset' do
-        Esc.string('colour_reset').must_equal("\e[38;2;39m\e[48;2;49m")
+        Esc.string('colour_reset').must_equal("\e[39m\e[49m")
       end
 
       it 'returns an escape sequence when the style is fg_reset' do
-        Esc.string('fg_reset').must_equal("\e[38;2;39m")
+        Esc.string('fg_reset').must_equal("\e[39m")
       end
 
       it 'returns an escape sequence when the style is hide_cursor' do
@@ -92,11 +92,11 @@ module Vedeu
       end
 
       it 'returns an escape sequence when the style is screen_init' do
-        Esc.string('screen_init').must_equal("\e[0m\e[38;2;39m\e[48;2;49m\e[2J\e[?25l")
+        Esc.string('screen_init').must_equal("\e[0m\e[39m\e[49m\e[2J\e[?25l")
       end
 
       it 'returns an escape sequence when the style is screen_exit' do
-        Esc.string('screen_exit').must_equal("\e[?25h\e[38;2;39m\e[48;2;49m\e[0m")
+        Esc.string('screen_exit').must_equal("\e[?25h\e[39m\e[49m\e[0m")
       end
 
       it 'returns an escape sequence when the style is negative' do

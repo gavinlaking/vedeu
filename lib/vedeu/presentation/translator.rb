@@ -22,6 +22,7 @@ module Vedeu
   #
   # @todo More documentation required (create a fancy chart!)
   # @api private
+  #
   class Translator
 
     include Vedeu::Coercions
@@ -66,6 +67,17 @@ module Vedeu
       end
     end
     alias_method :to_s, :escape_sequence
+
+    # @return [String]
+    def to_html
+      if rgb?
+        colour
+
+      else
+        ''
+
+      end
+    end
 
     private
 

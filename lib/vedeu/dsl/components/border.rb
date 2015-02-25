@@ -39,6 +39,7 @@ module Vedeu
         # @param name [String] The name of the interface or view to which this
         #   border belongs.
         # @param block [Proc]
+        # @raise [InvalidSyntax] The required block was not given.
         # @return [Vedeu::Border]
         def border(name, &block)
           fail InvalidSyntax, 'block not given' unless block_given?
@@ -70,7 +71,7 @@ module Vedeu
       #   character.
       # @return [String]
       def bottom_left(char)
-        model.attributes[:bottom_left] = char
+        model.bottom_left = char
       end
 
       # Set the character to be used to draw the bottom right corner of the
@@ -87,7 +88,7 @@ module Vedeu
       #   character.
       # @return [String]
       def bottom_right(char)
-        model.attributes[:bottom_right] = char
+        model.bottom_right = char
       end
 
       # Set the character to be used to draw a horizontal part of the border.
@@ -103,7 +104,7 @@ module Vedeu
       #   character.
       # @return [String]
       def horizontal(char)
-        model.attributes[:horizontal] = char
+        model.horizontal = char
       end
 
       # Enable/disable the bottom border.
@@ -122,7 +123,7 @@ module Vedeu
       #   false.
       # @return [Boolean]
       def bottom(boolean)
-        model.attributes[:show_bottom] = !!boolean
+        model.show_bottom = !!boolean
       end
       alias_method :show_bottom, :bottom
 
@@ -152,7 +153,7 @@ module Vedeu
       #   false.
       # @return [Boolean]
       def left(boolean)
-        model.attributes[:show_left] = !!boolean
+        model.show_left = !!boolean
       end
       alias_method :show_left, :left
 
@@ -182,7 +183,7 @@ module Vedeu
       #   false.
       # @return [Boolean]
       def right(boolean)
-        model.attributes[:show_right] = !!boolean
+        model.show_right = !!boolean
       end
       alias_method :show_right, :right
 
@@ -212,7 +213,7 @@ module Vedeu
       #   false.
       # @return [Boolean]
       def top(boolean)
-        model.attributes[:show_top] = !!boolean
+        model.show_top = !!boolean
       end
       alias_method :show_top, :top
 
@@ -239,7 +240,7 @@ module Vedeu
       #   character.
       # @return [String]
       def top_left(char)
-        model.attributes[:top_left] = char
+        model.top_left = char
       end
 
       # Set the character to be used to draw the top right corner of the border.
@@ -255,7 +256,7 @@ module Vedeu
       #   character.
       # @return [String]
       def top_right(char)
-        model.attributes[:top_right] = char
+        model.top_right = char
       end
 
       # Set the character to be used to draw a vertical part of the border.
@@ -271,7 +272,7 @@ module Vedeu
       #   character.
       # @return [String]
       def vertical(char)
-        model.attributes[:vertical] = char
+        model.vertical = char
       end
 
       private

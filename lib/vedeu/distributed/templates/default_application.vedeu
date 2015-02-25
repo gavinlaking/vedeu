@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 lib_dir = "<%= @object.lib_dir %>"
 $LOAD_PATH.unshift(lib_dir) unless $LOAD_PATH.include?(lib_dir)
 
@@ -27,7 +29,7 @@ class VedeuTestApplication
                  stdout = STDOUT,
                  stderr = STDERR,
                  kernel = Kernel)
-    Vedeu::Launcher.new(argv, stdin, stdout, stderr, kernel).execute!
+    Vedeu::Launcher.execute!(argv, stdin, stdout, stderr, kernel)
   end
 end
 

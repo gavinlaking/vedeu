@@ -24,6 +24,7 @@ module Vedeu
     # Store the view if it has a name. This view will be shown next time the
     # refresh event is triggered for the interface.
     #
+    # @raise [InvalidSyntax] The name is not defined.
     # @return [Interface]
     def store_deferred
       unless defined_value?(name)
@@ -44,13 +45,9 @@ module Vedeu
     # @return [Interface]
     def store_new_buffer
       if Vedeu.buffers.registered?(name)
-        Vedeu.log("Updating buffer: '#{name}'")
-
         Vedeu.buffers.find(name).add(self)
 
       else
-        Vedeu.log("Registering buffer: '#{name}'")
-
         Buffer.new(name, self).store
 
       end

@@ -23,6 +23,7 @@ module Vedeu
         # @param name [String] The name of the interface or view to which this
         #   geometry belongs.
         # @param block [Proc]
+        # @raise [InvalidSyntax] The required block was not given.
         # @return [Vedeu::Geometry]
         def geometry(name, &block)
           fail InvalidSyntax, 'block not given' unless block_given?

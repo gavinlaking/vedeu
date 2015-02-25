@@ -12,6 +12,7 @@ module Vedeu
   #   { 'models' => [Model] }
   #
   # @api private
+  #
   class Repository
 
     include Vedeu::Common
@@ -74,13 +75,13 @@ module Vedeu
     # Find a model by name, registers the model by name if not found.
     #
     # @param name [String]
-    # @return []
+    # @return [void]
     def find_or_create(name)
       if registered?(name)
         find(name)
 
       else
-        Vedeu.log("Model (#{model}) not found, registering: '#{name}'")
+        Vedeu.log(type: :store, message: "Model (#{model}) not found, registering: '#{name}'")
 
         model.new(name).store
       end
@@ -141,12 +142,13 @@ module Vedeu
     # Stores the model instance by name in the repository of the model.
     #
     # @param model [void] A model instance.
+    # @raise [MissingRequired] When the name attribute is not defined.
     # @return [void] The model instance which was stored.
     def store(model)
       fail MissingRequired, "Cannot store model '#{model.class}' without a " \
                             "name attribute." unless defined_value?(model.name)
 
-      Vedeu.log(_log_store(model))
+      Vedeu.log(type: log_type(model), message: "#{model.class.name}: '#{model.name}'")
 
       storage[model.name] = model
     end
@@ -174,14 +176,12 @@ module Vedeu
     end
 
     # @return [String]
-    def _log_store(model)
-      message = "Storing #{model.class.name}: '#{model.name}' "
-
+    def log_type(model)
       if registered?(model.name)
-        message + '(updating)'
+        :update
 
       else
-        message + '(creating)'
+        :create
 
       end
     end

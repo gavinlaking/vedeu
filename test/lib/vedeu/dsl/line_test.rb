@@ -40,6 +40,23 @@ module Vedeu
 
         it { subject.must_be_instance_of(Vedeu::Lines) }
         it { subject.first.must_be_instance_of(Vedeu::Line) }
+
+        context 'when the block is given' do
+        end
+
+        context 'when the block is not given' do
+          context 'when the value is given' do
+            subject { instance.line(value) }
+          end
+
+          context 'when the value is not given' do
+            let(:value) {}
+
+            subject { instance.line(value) }
+
+            it { proc { subject }.must_raise(InvalidSyntax) }
+          end
+        end
       end
 
       describe '#streams' do
@@ -57,6 +74,8 @@ module Vedeu
         context 'when the block is not given' do
           it { proc { instance.streams }.must_raise(InvalidSyntax) }
         end
+
+        it { instance.must_respond_to(:stream) }
       end
 
     end # Line

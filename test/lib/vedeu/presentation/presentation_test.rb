@@ -2,9 +2,46 @@ require 'test_helper'
 
 module Vedeu
 
+  class PresentationTestClass
+    include Presentation
+
+    def attributes
+      {
+        colour: { background: '#000033', foreground: '#aadd00' },
+        style:  ['bold']
+      }
+    end
+  end # PresentationTestClass
+
   describe Presentation do
 
     let(:receiver) { PresentationTestClass.new }
+
+    describe '#background' do
+      subject { receiver.background }
+
+      it { subject.must_be_instance_of(Vedeu::Background) }
+    end
+
+    describe '#foreground' do
+      subject { receiver.foreground }
+
+      it { subject.must_be_instance_of(Vedeu::Foreground) }
+    end
+
+    describe '#parent_background' do
+      subject { receiver.parent_background }
+    end
+
+    describe '#parent_foreground' do
+      subject { receiver.parent_foreground }
+    end
+
+    describe '#colour' do
+      subject { receiver.colour }
+
+      it { subject.must_be_instance_of(Vedeu::Colour) }
+    end
 
     describe '#colour=' do
       let(:colour) { Colour.new({ foreground: '#00ff00', background: '#000000' }) }
@@ -12,6 +49,12 @@ module Vedeu
       subject { receiver.colour=(colour) }
 
       it { subject.must_be_instance_of(Colour) }
+    end
+
+    describe '#style' do
+      subject { receiver.style }
+
+      it { subject.must_be_instance_of(Vedeu::Style) }
     end
 
     describe '#style=' do
@@ -26,7 +69,7 @@ module Vedeu
       let(:line) {
         Vedeu::Line.new({
           streams: [],
-          parent:  mock('Interface'),
+          parent:  Vedeu::Interface.new,
           colour:  Colour.new({ foreground: '#00ff00', background: '#000000' }),
           style:   Style.new('normal')
         })

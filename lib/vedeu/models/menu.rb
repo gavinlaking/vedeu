@@ -6,6 +6,7 @@ module Vedeu
   # navigated using the instance methods or events provided.
   #
   # @api private
+  #
   class Menu
 
     include Vedeu::Model
@@ -74,7 +75,7 @@ module Vedeu
     # Returns the item from the collection which shares the same index as the
     # value of {Vedeu::Menu#current}.
     #
-    # @return []
+    # @return [void]
     def current_item
       @collection[@current]
     end

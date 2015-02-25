@@ -8,6 +8,7 @@ module Vedeu
     # options used by Vedeu to affect certain behaviours.
     #
     # @api private
+    #
     class API
 
       include Vedeu::Common
@@ -64,7 +65,7 @@ module Vedeu
       # @param value [Boolean]
       # @return [Boolean]
       def interactive!(value = true)
-        Vedeu.log("Configuration::API interactive: #{value}")
+        Vedeu.log(type: :info, message: "Configuration::API interactive: #{value}")
 
         options[:interactive] = value
       end
@@ -81,7 +82,7 @@ module Vedeu
       # @param value [Boolean]
       # @return [Boolean]
       def standalone!(value = true)
-        Vedeu.log("Configuration::API interactive: #{!value}")
+        Vedeu.log(type: :info, message: "Configuration::API interactive: #{!value}")
 
         options[:interactive] = !value
       end
@@ -99,7 +100,7 @@ module Vedeu
       # @param value [Boolean]
       # @return [Boolean]
       def run_once!(value = true)
-        Vedeu.log("Configuration::API once: #{value}")
+        Vedeu.log(type: :info, message: "Configuration::API once: #{value}")
 
         options[:once] = value
       end
@@ -115,7 +116,7 @@ module Vedeu
       # @param value [Boolean]
       # @return [Boolean]
       def drb!(value = true)
-        Vedeu.log("Configuration::API drb: #{value}")
+        Vedeu.log(type: :info, message: "Configuration::API drb: #{value}")
 
         options[:drb] = value
       end
@@ -182,7 +183,7 @@ module Vedeu
       #
       # @return [Boolean]
       def cooked!
-        Vedeu.log("Configuration::API terminal_mode: :cooked")
+        Vedeu.log(type: :info, message: "Configuration::API terminal_mode: :cooked")
 
         options[:terminal_mode] = :cooked
       end
@@ -197,7 +198,7 @@ module Vedeu
       #
       # @return [Boolean]
       def raw!
-        Vedeu.log("Configuration::API terminal_mode: :raw")
+        Vedeu.log(type: :info, message: "Configuration::API terminal_mode: :raw")
 
         options[:terminal_mode] = :raw
       end
@@ -221,12 +222,12 @@ module Vedeu
       # @return [Boolean]
       def debug!(value = true)
         if options.key?(:trace) && options[:trace] != false
-          Vedeu.log("Configuration::API debug: true")
+          Vedeu.log(type: :info, message: "Configuration::API debug: true")
 
           options[:debug] = true
 
         else
-          Vedeu.log("Configuration::API debug: #{value}")
+          Vedeu.log(type: :info, message: "Configuration::API debug: #{value}")
 
           options[:debug] = value
 
@@ -252,7 +253,7 @@ module Vedeu
       def trace!(value = true)
         options[:debug] = true if value === true
 
-        Vedeu.log("Configuration::API trace: #{value}")
+        Vedeu.log(type: :info, message: "Configuration::API trace: #{value}")
 
         options[:trace] = value
       end
@@ -273,7 +274,7 @@ module Vedeu
         fail InvalidSyntax, '`colour_mode` must be `8`, `16`, `256`, ' \
                             '`16777216`.' unless valid_colour_mode?(value)
 
-        Vedeu.log("Configuration::API colour_mode: #{value}")
+        Vedeu.log(type: :info, message: "Configuration::API colour_mode: #{value}")
 
         options[:colour_mode] = value
       end
@@ -346,7 +347,7 @@ module Vedeu
       def exit_key(value)
         return invalid_key('exit_key') unless valid_key?(value)
 
-        Vedeu.log("Configuration::API exit_key: #{value}")
+        Vedeu.log(type: :info, message: "Configuration::API exit_key: #{value}")
 
         system_keys[:exit] = value
       end
@@ -368,7 +369,7 @@ module Vedeu
       def focus_next_key(value)
         return invalid_key('exit_key') unless valid_key?(value)
 
-        Vedeu.log("Configuration::API focus_next: #{value}")
+        Vedeu.log(type: :info, message: "Configuration::API focus_next: #{value}")
 
         system_keys[:focus_next] = value
       end
@@ -390,7 +391,7 @@ module Vedeu
       def focus_prev_key(value)
         return invalid_key('exit_key') unless valid_key?(value)
 
-        Vedeu.log("Configuration::API focus_prev: #{value}")
+        Vedeu.log(type: :info, message: "Configuration::API focus_prev: #{value}")
 
         system_keys[:focus_prev] = value
       end
@@ -412,7 +413,7 @@ module Vedeu
       def mode_switch_key(value)
         return invalid_key('exit_key') unless valid_key?(value)
 
-        Vedeu.log("Configuration::API mode_switch: #{value}")
+        Vedeu.log(type: :info, message: "Configuration::API mode_switch: #{value}")
 
         system_keys[:mode_switch] = value
       end

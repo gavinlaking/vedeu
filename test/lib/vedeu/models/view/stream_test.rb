@@ -25,7 +25,7 @@ module Vedeu
     }
     let(:colour)      { Colour.new({ background: '#ff0000', foreground: '#000000' }) }
     let(:style)       { Style.new('normal') }
-    let(:line_parent) { mock('Vedeu::Interface') }
+    let(:line_parent) { Vedeu::Interface.new }
 
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }

@@ -102,6 +102,12 @@ module Vedeu
 
       #   context 'when the interface has a group' do
       #     it { skip }
+      #
+      #     context 'when the group exists' do
+      #     end
+      #
+      #     context 'when the group does not exist' do
+      #     end
       #   end
       # end
     end

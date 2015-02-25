@@ -1,52 +1,28 @@
 module Vedeu
 
-  # class Cell < Struct.new(:value)
-  #   def initialize(value = [])
-  #     super
-  #   end
-  # end
-
-  # class Cells
-  #   attr_reader :size, :value
-
-  #   def initialize(size = 0, &block)
-  #     @size  = size
-  #     @value = if block_given?
-  #       [instance_eval(&block)] * size
-
-  #     else
-  #       [Cell.new] * size
-
-  #     end
-  #   end
-
-  #   def [](index)
-  #     value[index] || self
-  #   end
-
-  #   private
-
-  #   attr_reader :size, :value
-  # end
-
   class VirtualTerminal
 
+    attr_accessor :renderer
     attr_reader :cell_height, :cell_width, :height, :width
 
     # @param height [Fixnum]
     # @param width [Fixnum]
+    # @param renderer [Object|HTMLRenderer] An object responding to .render.
     # @return [Vedeu::VirtualTerminal]
-    def initialize(height, width)
+    def initialize(height, width, renderer = HTMLRenderer)
       @cell_height, @cell_width = Vedeu::PositionIndex[height, width]
-      @height = height
-      @width  = width
+      @height   = height
+      @width    = width
+      @renderer = renderer
     end
 
-    # @return [Array<Vedeu::Char>]
+    # @return [Array<Array<Vedeu::Char>>]
     def cells
-      Array.new(cell_height) { Array.new(cell_width) { Vedeu::Char.new } }
+      @cells ||= new_virtual_terminal
     end
 
+    # Read a single cell from the virtual terminal.
+    #
     # @param y [Fixnum]
     # @param x [Fixnum]
     # @return [Vedeu::Char]
@@ -59,6 +35,33 @@ module Vedeu
       cell
     end
 
+    # Write a collection of cells to the virtual terminal.
+    #
+    # @param data [Array<Array<Vedeu::Char>>]
+    # @return [Array<Array<Vedeu::Char>>]
+    def output(data)
+      Array(data).flatten.each do |char|
+        write(char.y, char.x, char) if char.is_a?(Vedeu::Char)
+      end
+
+      cells
+    end
+
+    # @return [void]
+    def render
+      renderer.render(cells)
+    end
+
+    # Removes all content from the virtual terminal; effectively clearing it.
+    #
+    # @return [Array<Array<Vedeu::Char>>]
+    def reset
+      @cells = new_virtual_terminal
+    end
+    alias_method :clear, :reset
+
+    # Write a single cell to the virtual terminal.
+    #
     # @param y [Fixnum]
     # @param x [Fixnum]
     # @param data [Vedeu::Char]
@@ -79,6 +82,11 @@ module Vedeu
     # @return [Array<Vedeu::Char>|Array]
     def fetch(from, which)
       from[which] || []
+    end
+
+    # @return [Array<Array<Vedeu::Char>>]
+    def new_virtual_terminal
+      Array.new(cell_height) { Array.new(cell_width) { Vedeu::Char.new } }
     end
 
   end # VirtualTerminal

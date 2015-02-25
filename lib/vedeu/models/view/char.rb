@@ -1,3 +1,4 @@
+require 'vedeu/output/html_char'
 require 'vedeu/presentation/presentation'
 
 module Vedeu
@@ -9,58 +10,34 @@ module Vedeu
   # character is returned in the escape sequence.
   #
   # @api private
+  #
   class Char
 
     include Vedeu::Presentation
 
-    attr_accessor :parent,
+    attr_accessor :border,
+      :parent,
       :position
-
-    class << self
-
-      # @param value []
-      # @param parent []
-      # @param colour []
-      # @param style []
-      # @param position []
-      # @return [Vedeu::Char]
-      def coerce(value = nil, parent = nil, colour = nil, style = nil, position = nil)
-        if value.is_a?(self)
-          value
-
-        elsif value.is_a?(Array)
-          if value.first.is_a?(self)
-            value
-
-          elsif value.first.is_a?(String)
-            value.map { |char| new(char, parent, colour, style, position) }
-
-          else
-            # ...
-
-          end
-        else
-          # ...
-
-        end
-      end
-
-    end
 
     # Returns a new instance of Char.
     #
-    # @param  value    [String]
-    # @param  parent   [Line]
-    # @param  colour   [Colour]
-    # @param  style    [Style]
-    # @param  position [Position]
+    # @param attributes [Hash]
+    # @option attributes value    [String]
+    # @option attributes parent   [Line]
+    # @option attributes colour   [Colour]
+    # @option attributes style    [Style]
+    # @option attributes position [Position]
+    # @option attributes border   [Boolean]
     # @return [Char]
-    def initialize(value = nil, parent = nil, colour = nil, style = nil, position = nil)
-      @value    = value
-      @parent   = parent
-      @colour   = Vedeu::Colour.coerce(colour)
-      @style    = style
-      @position = Vedeu::Position.coerce(position)
+    def initialize(attributes = {})
+      @attributes = defaults.merge(attributes)
+
+      @border   = @attributes[:border]
+      @colour   = Vedeu::Colour.coerce(@attributes[:colour])
+      @parent   = @attributes[:parent]
+      @position = Vedeu::Position.coerce(@attributes[:position])
+      @style    = @attributes[:style]
+      @value    = @attributes[:value]
     end
 
     # Returns log friendly output.
@@ -86,7 +63,38 @@ module Vedeu
     def value
       return '' unless @value
 
-      @value[0]
+      @value
+    end
+
+    # @return [Fixnum|NilClass]
+    def x
+      position.x if position
+    end
+
+    # @return [Fixnum|NilClass]
+    def y
+      position.y if position
+    end
+
+    # @return [String]
+    def to_html
+      @to_html ||= HTMLChar.render(self)
+    end
+
+    private
+
+    # The default values for a new instance of this class.
+    #
+    # @return [Hash]
+    def defaults
+      {
+        border:   nil,
+        colour:   nil,
+        parent:   nil,
+        position: nil,
+        style:    nil,
+        value:    nil,
+      }
     end
 
   end # Char

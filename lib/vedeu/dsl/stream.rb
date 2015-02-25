@@ -7,6 +7,7 @@ module Vedeu
     # Provides methods to be used to define views.
     #
     # @api public
+    #
     class Stream
 
       include Vedeu::DSL
@@ -23,7 +24,8 @@ module Vedeu
       end
 
       # @param block [Proc]
-      # @return []
+      # @raise [InvalidSyntax] The required block was not given.
+      # @return [void]
       def stream(&block)
         fail InvalidSyntax, 'block not given' unless block_given?
 

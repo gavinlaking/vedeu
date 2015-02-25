@@ -5,6 +5,7 @@ require 'vedeu/support/position_validator'
 module Vedeu
 
   # Adjusts the position of the cursor.
+  #
   class MoveCursor
 
     extend Forwardable

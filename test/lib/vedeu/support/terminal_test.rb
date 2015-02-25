@@ -98,7 +98,7 @@ module Vedeu
       subject { Terminal.clear }
 
       it 'clears the screen' do
-        subject.must_equal(["\e[38;2;39m\e[48;2;49m\e[2J"])
+        subject.must_equal(["\e[39m\e[49m\e[2J"])
       end
     end
 
@@ -193,15 +193,8 @@ module Vedeu
         Terminal.origin.must_equal(1)
       end
 
-      context 'alias_methods' do
-        it 'returns 1' do
-          Terminal.x.must_equal(1)
-        end
-
-        it 'returns 1' do
-          Terminal.y.must_equal(1)
-        end
-      end
+      it { Terminal.must_respond_to(:x) }
+      it { Terminal.must_respond_to(:y) }
     end
 
     describe '.width' do
@@ -218,11 +211,7 @@ module Vedeu
         end
       end
 
-      context 'alias_methods' do
-        it 'returns the xn coordinate of the terminal' do
-          Terminal.xn.must_equal(80)
-        end
-      end
+      it { Terminal.must_respond_to(:xn) }
     end
 
     describe '.height' do
@@ -239,11 +228,7 @@ module Vedeu
         end
       end
 
-      context 'alias_methods' do
-        it 'returns the yn coordinate of the terminal' do
-          Terminal.yn.must_equal(25)
-        end
-      end
+      it { Terminal.must_respond_to(:yn) }
     end
 
     describe '.size' do

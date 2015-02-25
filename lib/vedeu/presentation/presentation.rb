@@ -4,7 +4,36 @@ module Vedeu
   # Interface, Line and Stream.
   #
   # @api private
+  #
   module Presentation
+
+    # @return [Vedeu::Background|NilClass]
+    def background
+      if colour
+        colour.background
+      end
+    end
+
+    # @return [Vedeu::Foreground|NilClass]
+    def foreground
+      if colour
+        colour.foreground
+      end
+    end
+
+    # @return [Vedeu::Background|NilClass]
+    def parent_background
+      if parent_colour
+        parent_colour.background
+      end
+    end
+
+    # @return [Vedeu::Foreground|NilClass]
+    def parent_foreground
+      if parent_colour
+        parent_colour.foreground
+      end
+    end
 
     # @return [Vedeu::Colour]
     def colour
@@ -32,23 +61,30 @@ module Vedeu
     #
     # @return [String] An escape sequence with value interpolated.
     def to_s
-      render_position { render_colour { render_style { value } } }
+      render_position { render_colour { render_style { render_border { value } } } }
     end
 
     private
 
-    # @return [String]
+    # @return [String|NilClass]
     def parent_colour
-      return '' unless parent
+      parent.colour if parent
+    end
 
-      parent.colour
+    # @return [String|NilClass]
+    def parent_style
+      parent.style if parent
     end
 
     # @return [String]
-    def parent_style
-      return '' unless parent
+    def render_border
+      if self.respond_to?(:border) && !border.nil?
+        Esc.border { yield }
 
-      parent.style
+      else
+        yield
+
+      end
     end
 
     # Renders the colour attributes of the receiver, yields (to then render the

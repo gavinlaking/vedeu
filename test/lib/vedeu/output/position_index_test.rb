@@ -47,11 +47,7 @@ module Vedeu
 
         it { subject.must_equal(5) }
 
-        context 'alias method: first' do
-          subject { instance.first }
-
-          it { subject.must_equal(5) }
-        end
+        it { instance.must_respond_to(:first) }
       end
 
       context '#x' do
@@ -59,11 +55,7 @@ module Vedeu
 
         it { subject.must_equal(16) }
 
-        context 'alias method: last' do
-          subject { instance.last }
-
-          it { subject.must_equal(16) }
-        end
+        it { instance.must_respond_to(:last) }
       end
     end
 

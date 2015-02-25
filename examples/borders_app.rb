@@ -46,7 +46,7 @@ class VedeuBordersApp
       height 3
       width  7
     end
-    colour  foreground: '#000000', background: '#ffff00'
+    colour  foreground: '#000000', background: '#ff5500'
   end
 
   interface 'no_bottom' do
@@ -56,7 +56,7 @@ class VedeuBordersApp
       height 3
       width  7
     end
-    colour  foreground: '#000000', background: '#ffff00'
+    colour  foreground: '#000000', background: '#ff5500'
   end
 
   interface 'no_left' do
@@ -66,7 +66,7 @@ class VedeuBordersApp
       height 3
       width  7
     end
-    colour  foreground: '#000000', background: '#ffff00'
+    colour  foreground: '#000000', background: '#ff5500'
   end
 
   interface 'no_right' do
@@ -76,7 +76,7 @@ class VedeuBordersApp
       height 3
       width  7
     end
-    colour  foreground: '#000000', background: '#ffff00'
+    colour  foreground: '#000000', background: '#ff5500'
   end
 
   interface 'custom_corners' do
@@ -166,21 +166,27 @@ class VedeuBordersApp
 
   # Borders can be defined as part of a view (see below), or standalone.
   border 'no_bottom' do
+    foreground  '#ffffff'
     show_bottom false
   end
   border 'no_left' do
+    foreground  '#ffffff'
     show_left false
   end
   border 'no_right' do
+    foreground  '#ffffff'
     show_right false
   end
   border 'no_top' do
+    foreground  '#ffffff'
     show_top false
   end
 
   renders do
     view('default_border') do
-      border!
+      border do
+        foreground '#ffffff'
+      end
       lines do
         line 'on'
       end
@@ -234,6 +240,7 @@ class VedeuBordersApp
     end
     view('only_top') do
       border do
+        foreground  '#ffffff'
         show_right  false
         show_bottom false
         show_left   false
@@ -245,6 +252,7 @@ class VedeuBordersApp
     end
     view('only_bottom') do
       border do
+        foreground  '#ffffff'
         show_top   false
         show_right false
         show_left  false
@@ -256,6 +264,7 @@ class VedeuBordersApp
     end
     view('only_left') do
       border do
+        foreground  '#ffffff'
         show_top    false
         show_bottom false
         show_right  false
@@ -267,6 +276,7 @@ class VedeuBordersApp
     end
     view('only_right') do
       border do
+        foreground  '#ffffff'
         show_top    false
         show_bottom false
         show_left   false
@@ -278,7 +288,7 @@ class VedeuBordersApp
     end
     view('custom_colour') do
       border do
-        colour foreground: '#ffff00', background: '#0000ff'
+        colour foreground: '#ff5500', background: '#0000ff'
       end
       lines do
         line 'color'
@@ -295,7 +305,7 @@ class VedeuBordersApp
   end
 
   def self.start(argv = ARGV)
-    Vedeu::Launcher.new(argv).execute!
+    Vedeu::Launcher.execute!(argv)
   end
 end
 
