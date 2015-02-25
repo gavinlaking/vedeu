@@ -11,18 +11,6 @@ class SomeClassInYourApplication
   # ...
 ```
 
-## System Events
-
-System events generally control the internal state of Vedeu with respects to your application. They are soft-namespaced using underscores.
-
-### `:_refresh_group_(group_name)_`
-
-Will refresh all interfaces belonging to this group. E.g. `_refresh_group_home_` will refresh all interfaces with the group of `home`.
-
-### `:_refresh_(interface_name)_`
-
-Will refresh the interface with this name. E.g. `_refresh_widget_` will refresh the interface `widget`.
-
 
 ##### Notes:
 

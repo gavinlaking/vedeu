@@ -6,17 +6,37 @@ module Vedeu
 
     let(:described) { Vedeu::Focus }
 
-    before { Focus.reset }
+    before do
+      Focus.reset
+      Vedeu.interfaces.reset
+      Vedeu.interface('thallium') {}
+      Vedeu.interface('lead')     {}
+      Vedeu.interface('bismuth')  {}
+    end
 
     describe '#add' do
-      it 'adds an interface to storage' do
-        Focus.add('thallium').must_equal(['thallium'])
+      context 'adds an interface to storage' do
+        before do
+          Focus.reset
+          Vedeu.interfaces.reset
+        end
+
+        it {
+          Focus.add('thallium').must_equal(['thallium'])
+        }
       end
 
-      it 'does not add it again if already exists' do
-        Focus.add('thallium')
-        Focus.add('thallium')
-        Focus.registered.must_equal(['thallium'])
+      context 'does not add it again if already exists' do
+        before do
+          Focus.reset
+          Vedeu.interfaces.reset
+          Vedeu.interface('thallium') {}
+        end
+
+        it {
+          Focus.add('thallium')
+          Focus.registered.must_equal(['thallium'])
+        }
       end
 
       it 'does not add it again if already exists' do
@@ -27,16 +47,32 @@ module Vedeu
         Focus.registered.must_equal(['bismuth', 'thallium', 'lead'])
       end
 
-      it 'adds the interface to storage focussed' do
-        Focus.add('thallium')
-        Focus.add('lead', true)
-        Focus.registered.must_equal(['lead', 'thallium'])
+      context 'adds the interface to storage focussed' do
+        before do
+          Focus.reset
+          Vedeu.interfaces.reset
+          Vedeu.interface('thallium') {}
+        end
+
+        it {
+          Focus.add('thallium')
+          Focus.add('lead', true)
+          Focus.registered.must_equal(['lead', 'thallium'])
+        }
       end
 
-      it 'adds the interface to storage unfocussed' do
-        Focus.add('thallium')
-        Focus.add('lead')
-        Focus.registered.must_equal(['thallium', 'lead'])
+      context 'adds the interface to storage unfocussed' do
+        before do
+          Focus.reset
+          Vedeu.interfaces.reset
+          Vedeu.interface('thallium') {}
+        end
+
+        it {
+          Focus.add('thallium')
+          Focus.add('lead')
+          Focus.registered.must_equal(['thallium', 'lead'])
+        }
       end
     end
 
@@ -122,8 +158,10 @@ module Vedeu
         Focus.next_item.must_equal('lead')
       end
 
-      it 'returns false if storage is empty' do
-        Focus.next_item.must_equal(false)
+      context 'returns false if storage is empty' do
+        before { Focus.reset }
+
+        it { Focus.next_item.must_equal(false) }
       end
     end
 
@@ -135,8 +173,10 @@ module Vedeu
         Focus.prev_item.must_equal('bismuth')
       end
 
-      it 'returns false if storage is empty' do
-        Focus.prev_item.must_equal(false)
+      context 'returns false if storage is empty' do
+        before { Focus.reset }
+
+        it { Focus.prev_item.must_equal(false) }
       end
     end
 

@@ -9,7 +9,7 @@ module Vedeu
   end
 
   # Creates system events which when called provide a variety of core functions
-  # and behaviours.
+  # and behaviours. They are soft-namespaced using underscores.
   #
   # @note
   #   Unbinding any of these events is likely to cause problems, so I would
@@ -219,8 +219,23 @@ module Vedeu
     # starting at the current item to the last item.
     Vedeu.bind(:_menu_view_) { |name| Vedeu.menus.find(name).view }
 
-    # Triggering this event will cause all interfaces to refresh.
-    Vedeu.bind(:_refresh_) { Vedeu::Refresh.all }
+    # Triggering this event will cause all interfaces to refresh, or the named
+    # interface if one is given.
+    Vedeu.bind(:_refresh_) do |name|
+      if name
+        Vedeu::Refresh.by_name(name)
+
+      else
+        Vedeu::Refresh.all
+
+      end
+    end
+
+    # Triggering this event will cause all interfaces in the named group to
+    # refresh.
+    Vedeu.bind(:_refresh_group_) do |name|
+      Vedeu::Refresh.by_group(name)
+    end
 
   end # Bindings
   # :nocov:

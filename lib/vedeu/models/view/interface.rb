@@ -147,7 +147,6 @@ module Vedeu
       super
 
       store_new_buffer
-      store_refresh_events
       store_focusable
       store_cursor
       store_group

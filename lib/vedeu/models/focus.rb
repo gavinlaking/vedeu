@@ -102,7 +102,7 @@ module Vedeu
     #
     # @return [Array]
     def refresh
-      Vedeu.trigger("_refresh_#{current}_".to_sym)
+      Vedeu.trigger(:_refresh_, current)
     end
 
     # Returns a collection of the names of all the registered entities.

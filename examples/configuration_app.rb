@@ -44,7 +44,7 @@ class VedeuConfigurationApp
   end
 
   keymap('config') do
-    key(' ') { Vedeu.trigger(:_refresh_config_) }
+    key(' ') { Vedeu.trigger(:_refresh_, 'config') }
   end
 
   def self.start(argv = ARGV)

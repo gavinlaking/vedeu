@@ -55,28 +55,6 @@ module Vedeu
       self
     end
 
-    # Registers refresh events for the interface unless already registered.
-    #
-    # @return [Interface]
-    def store_refresh_events
-      options = { delay: delay }
-      event   = "_refresh_#{name}_".to_sym
-
-      unless Vedeu.events.registered?(event)
-        Vedeu.bind(event, options) { Vedeu::Refresh.by_name(name) }
-      end
-
-      unless group.nil? || group.empty?
-        event = "_refresh_group_#{group}_".to_sym
-
-        unless Vedeu.events.registered?(event)
-          Vedeu.bind(event, options) { Vedeu::Refresh.by_group(group) }
-        end
-      end
-
-      self
-    end
-
     # Registers interface name in focus list unless already registered.
     #
     # @return [Interface]
