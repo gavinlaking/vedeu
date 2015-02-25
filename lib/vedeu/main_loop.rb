@@ -34,6 +34,8 @@ module Vedeu
       @loop = false
     end
 
+    private
+
     # Check the application has started and we wish to continue running.
     #
     # @raise [VedeuInterrupt] When we wish to terminate the running application.

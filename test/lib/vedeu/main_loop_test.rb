@@ -25,17 +25,6 @@ module Vedeu
       it { subject; described.instance_variable_get('@loop').must_equal(false) }
     end
 
-    describe '.safe_exit_point!' do
-      subject { described.safe_exit_point! }
-
-      context 'when we wish to continue' do
-      end
-
-      context 'when we wish to stop' do
-        # it { proc { subject }.must_raise(VedeuInterrupt) }
-      end
-    end
-
   end # MainLoop
 
 end # Vedeu

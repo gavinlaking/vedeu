@@ -1,6 +1,6 @@
 require 'vedeu/dsl/composition'
 require 'vedeu/models/collection'
-require 'vedeu/presentation/presentation'
+require 'vedeu/output/presentation'
 require 'vedeu/support/common'
 
 require 'vedeu/models/view/interfaces'

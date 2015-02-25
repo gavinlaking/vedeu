@@ -1,6 +1,6 @@
 require 'vedeu/support/content_geometry'
 require 'vedeu/models/model'
-require 'vedeu/presentation/presentation'
+require 'vedeu/output/presentation'
 require 'vedeu/buffers/display_buffer'
 require 'vedeu/buffers/buffer'
 
@@ -108,6 +108,9 @@ module Vedeu
       end
     end
 
+    # Fetch the cursor belonging to this interface (by name), if one does not
+    # exist, it will be created, stored and returned.
+    #
     # @return [Vedeu::Cursor]
     def cursor
       Vedeu.cursors.by_name(name)

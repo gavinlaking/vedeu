@@ -261,6 +261,8 @@ module Vedeu
       right + value
     end
 
+    private
+
     # Provides a virtual y position within the interface's dimensions.
     #
     # @example
@@ -284,8 +286,6 @@ module Vedeu
     def virtual_x
       (left...right).to_a
     end
-
-    private
 
     # The default values for a new instance of this class.
     #

@@ -73,19 +73,13 @@ module Vedeu
       def restart
         return not_enabled unless drb?
 
-        if drb_running?
-          log('Restarting')
+        log('Not running') unless drb_running?
 
-          stop
+        log('Restarting')
 
-          start
+        stop
 
-        else
-          log('Not running')
-
-          start
-
-        end
+        start
       end
 
       # When called will stop the DRb server and attempt to terminate the client

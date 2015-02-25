@@ -49,26 +49,34 @@ module Vedeu
     end
 
     describe '#y' do
-      it 'returns the value of y when it is a proc' do
-        geometry = Geometry.new({ y: proc { 17 } })
-        geometry.y.must_equal(17)
+      subject { instance.y }
+
+      context 'when it is a proc' do
+        let(:attributes) { { y: proc { 17 } } }
+
+        it { subject.must_equal(17) }
       end
 
-      it 'returns the value of y when just an attribute' do
-        geometry = Geometry.new({ y: 19 })
-        geometry.y.must_equal(19)
+      context 'when just an attribute' do
+        let(:attributes) { { y: 19 } }
+
+        it { subject.must_equal(19) }
       end
     end
 
     describe '#yn' do
-      it 'returns the value of yn when it is a proc' do
-        geometry = Geometry.new({ yn: proc { 17 } })
-        geometry.yn.must_equal(17)
+      subject { instance.yn }
+
+      context 'when it is a proc' do
+        let(:attributes) { { yn: proc { 17 } } }
+
+        it { subject.must_equal(17) }
       end
 
-      it 'returns the value of yn when just an attribute' do
-        geometry = Geometry.new({ yn: 19 })
-        geometry.yn.must_equal(19)
+      context 'when just an attribute' do
+        let(:attributes) { { yn: 19 } }
+
+        it { subject.must_equal(19) }
       end
     end
 
@@ -304,20 +312,6 @@ module Vedeu
       it 'returns the right plus 1 without a value' do
         geometry = Geometry.new({ height: 6, width: 18, x: 7 })
         geometry.east.must_equal(26)
-      end
-    end
-
-    describe '#virtual_y' do
-      it 'returns the virtual y positions within the interfaces dimensions' do
-        geometry = Geometry.new({ height: 6, width: 6, x: 7, y: 5 })
-        geometry.virtual_y.must_equal([5, 6, 7, 8, 9, 10])
-      end
-    end
-
-    describe '#virtual_x' do
-      it 'returns the virtual x positions within the interfaces dimensions' do
-        geometry = Geometry.new({ height: 6, width: 6, x: 7, y: 5 })
-        geometry.virtual_x.must_equal([7, 8, 9, 10, 11, 12])
       end
     end
 

@@ -1,4 +1,4 @@
-require 'vedeu/presentation/presentation'
+require 'vedeu/output/presentation'
 require 'vedeu/models/view/char'
 
 module Vedeu

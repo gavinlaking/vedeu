@@ -1,5 +1,13 @@
+require 'vedeu/output/translator'
+require 'vedeu/output/background'
+require 'vedeu/output/foreground'
+
 require 'vedeu/output/border'
+require 'vedeu/output/colour'
 require 'vedeu/output/compositor'
+
+require 'vedeu/output/presentation'
+require 'vedeu/output/style'
 require 'vedeu/output/position_index'
 require 'vedeu/output/virtual_buffer'
 require 'vedeu/output/html_char'

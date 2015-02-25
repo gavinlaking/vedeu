@@ -1,5 +1,4 @@
-require 'vedeu/presentation/presentation'
-
+require 'vedeu/output/presentation'
 require 'vedeu/models/view/streams'
 require 'vedeu/models/view/stream'
 
