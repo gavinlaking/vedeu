@@ -4,10 +4,6 @@ module Vedeu
 
   describe API do
 
-    let(:event) { mock('Event') }
-
-    before { Event.stubs(:new).returns(event) }
-
     # describe '.focus' do
     #   it 'sets the named interface to be focussed' do
     #     Interface.build({ name: 'plutonium' }).store

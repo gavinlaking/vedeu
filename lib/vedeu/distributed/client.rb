@@ -42,7 +42,7 @@ module Vedeu
       # Send input to the DRb server.
       #
       # @param data [String|Symbol]
-      # @return []
+      # @return [void]
       def input(data)
         server.input(data)
 
@@ -54,7 +54,7 @@ module Vedeu
 
       # Fetch output from the DRb server.
       #
-      # @return []
+      # @return [void]
       def output
         server.output
 
@@ -70,14 +70,16 @@ module Vedeu
       #   {Vedeu::Application} will raise StopIteration when its `.stop` method
       #   is called. Here we rescue that to give a clean client exit.
       #
-      # @return []
+      # @return [void]
       def shutdown
         server.shutdown
+
+        Process.kill("KILL", server.pid)
 
       rescue DRb::DRbConnError
         puts "Could not connect to DRb server."
 
-      rescue StopIteration
+      rescue Interrupt
         puts "Client application exited."
 
       end
@@ -86,7 +88,7 @@ module Vedeu
 
       attr_reader :uri
 
-      # @return []
+      # @return [void]
       def server
         @server ||= DRbObject.new_with_uri(uri)
       end

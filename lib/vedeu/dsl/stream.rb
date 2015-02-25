@@ -24,7 +24,8 @@ module Vedeu
       end
 
       # @param block [Proc]
-      # @return []
+      # @raise [InvalidSyntax] The required block was not given.
+      # @return [void]
       def stream(&block)
         fail InvalidSyntax, 'block not given' unless block_given?
 

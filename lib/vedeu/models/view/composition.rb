@@ -38,7 +38,7 @@ module Vedeu
     end
 
     # @param child [Vedeu::Interface]
-    # @return []
+    # @return [void]
     def add(child)
       @interfaces = interfaces.add(child)
     end

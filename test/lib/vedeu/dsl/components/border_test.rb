@@ -212,7 +212,7 @@ module Vedeu
           subject {
             Vedeu.interface 'borders' do
               border do
-                show_left ''
+                show_left!
               end
               geometry do
                 height 3
@@ -265,7 +265,7 @@ module Vedeu
           subject {
             Vedeu.interface 'borders' do
               border do
-                show_right ''
+                show_right!
               end
               geometry do
                 height 3

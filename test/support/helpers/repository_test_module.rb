@@ -11,6 +11,7 @@ module Vedeu
 
     private
 
+    # A storage solution that uses memory to persist models.
     def in_memory
       {}
     end

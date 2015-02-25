@@ -89,7 +89,7 @@ module Vedeu
     end
 
     # @param block [Proc]
-    # @return []
+    # @return [void]
     def initialize_screen(&block)
       output(Esc.string('screen_init'))
 
@@ -257,6 +257,11 @@ module Vedeu
     # @return [File]
     def console
       IO.console
+    end
+
+    # @return [VirtualTerminal]
+    def virtual
+      @virtual ||= VirtualTerminal.new(height, width)
     end
 
   end # Terminal

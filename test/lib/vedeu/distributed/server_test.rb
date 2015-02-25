@@ -7,25 +7,46 @@ module Vedeu
     describe Server do
 
       let(:described)     { Vedeu::Distributed::Server }
-      # let(:instance)      { described.new(configuration) }
+      let(:instance)      { described.instance }
       let(:configuration) {}
 
-      describe '#restart' do
+      describe '.input' do
+        let(:data) {}
+
+        subject { described.input(data) }
       end
 
-      describe '#start' do
+      describe '.output' do
+        subject { described.output }
       end
 
-      describe '#status' do
+      describe '#pid' do
+        before { Process.stubs(:pid).returns(9876) }
+
+        subject { instance.pid }
+
+        it { subject.must_be_instance_of(Fixnum) }
+        it { subject.must_equal(9876) }
       end
 
-      describe '#stop' do
+      describe '.restart' do
+        subject { described.restart }
       end
 
-      describe '#input' do
+      describe '.shutdown' do
+        subject { described.shutdown }
       end
 
-      describe '#output' do
+      describe '.start' do
+        subject { described.start }
+      end
+
+      describe '.status' do
+        subject { described.status }
+      end
+
+      describe '.stop' do
+        subject { described.stop }
       end
 
     end # Server

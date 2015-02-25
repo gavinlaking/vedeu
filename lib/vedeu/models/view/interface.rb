@@ -45,8 +45,7 @@ module Vedeu
       :left,
       :width,
       :height,
-      :origin,
-      :raw_origin
+      :origin
 
     # Return a new instance of Interface.
     #
@@ -73,7 +72,7 @@ module Vedeu
     end
 
     # @param child []
-    # @return []
+    # @return [void]
     def add(child)
       @lines = lines.add(child)
     end

@@ -16,30 +16,27 @@ module Vedeu
       include Singleton
 
       # @param data [String|Symbol]
-      # @return []
+      # @return [void]
       def self.input(data)
         instance.input(data)
       end
 
-      # @return []
+      # @return [void]
       def self.output
         instance.output
       end
 
-      # @return []
+      # @return [void]
       def self.restart
         instance.restart
       end
 
-      # When called will stop the DRb server and attempt to terminate the client
-      # application.
-      #
-      # @return []
+      # @return [void]
       def self.shutdown
         instance.shutdown
       end
 
-      # @return []
+      # @return [void]
       def self.start
         instance.start
       end
@@ -49,109 +46,112 @@ module Vedeu
         instance.status
       end
 
-      # @return []
+      # @return [void]
       def self.stop
         instance.stop
       end
 
       # @param data [String|Symbol]
-      # @return []
+      # @return [void]
       def input(data)
-        Vedeu.log(type: :drb, message: "<<< input")
-
-        Vedeu.trigger(:_keypress_, data)
+        Vedeu.trigger(:_drb_input_, data)
       end
       alias_method :read, :input
 
-      # @return []
+      # @return [void]
       def output
-        Vedeu.log(type: :drb, message: ">>> output")
-
         Vedeu.trigger(:_drb_retrieve_output_)
       end
       alias_method :write, :output
 
-      # @return []
+      # @return [Fixnum] The PID of the currently running application.
+      def pid
+        Process.pid
+      end
+
+      # @return [void]
       def restart
+        return not_enabled unless drb?
+
         if drb_running?
-          Vedeu.log(type: :drb, message: "Restarting: '#{uri}'")
+          log('Restarting')
 
           stop
 
           start
 
         else
-          Vedeu.log(type: :drb, message: "Not running")
+          log('Not running')
 
           start
 
         end
       end
 
+      # When called will stop the DRb server and attempt to terminate the client
+      # application.
+      #
       # @note
       #   :_exit_ never gets triggered as when the DRb server goes away, no
       #   further methods will be called.
       #
-      # @return []
+      # @return [void]
       def shutdown
-        if drb_running?
-          stop
+        return not_enabled unless drb?
 
-        end
+        stop if drb_running?
 
         Vedeu.trigger(:_exit_)
+
+        Terminal.restore_screen
       end
 
       # @return [Vedeu::Distributed::Server]
       def start
-        if drb?
-          if drb_running?
-            Vedeu.log(type: :drb, message: "Already started: '#{uri}'")
+        return not_enabled unless drb?
 
-          else
-            Vedeu.log(type: :drb, message: "Starting: '#{uri}'")
+        if drb_running?
+          log('Already started')
 
-            DRb.start_service(uri, self)
-
-            # DRb.thread.join # not convinced this is needed here
-          end
         else
-          Vedeu.log(type: :drb, message: "Not enabled")
+          log('Starting')
 
+          DRb.start_service(uri, self)
+
+          # DRb.thread.join # not convinced this is needed here
         end
       end
 
       # @return [Symbol]
       def status
+        return not_enabled unless drb?
+
         if drb_running?
-          Vedeu.log(type: :drb, message: "Running")
+          log('Running')
 
           :running
 
         else
-          Vedeu.log(type: :drb, message: "Stopped")
+          log('Stopped')
 
           :stopped
 
         end
       end
 
-      # @return []
+      # @return [void]
       def stop
-        if drb?
-          if drb_running?
-            Vedeu.log(type: :drb, message: "Stopping: '#{uri}'")
+        return not_enabled unless drb?
 
-            DRb.stop_service
+        if drb_running?
+          log('Stopping')
 
-            DRb.thread.join
+          DRb.stop_service
 
-          else
-            Vedeu.log(type: :drb, message: "Already stopped: '#{uri}'")
+          DRb.thread.join
 
-          end
         else
-          Vedeu.log(type: :drb, message: "Not enabled")
+          log('Already stopped')
 
         end
       rescue NoMethodError # raised when #join is called on NilClass.
@@ -181,6 +181,18 @@ module Vedeu
       # @return [Fixnum|String]
       def drb_port
         Vedeu::Configuration.drb_port
+      end
+
+      # @return [void]
+      def log(message)
+        Vedeu.log(type: :drb, message: "#{message}: '#{uri}'")
+      end
+
+      # @return [Symbol]
+      def not_enabled
+        log('Not enabled')
+
+        :drb_not_enabled
       end
 
       # @return [String]

@@ -20,12 +20,20 @@ module Vedeu
   #
   module Bindings
 
-    # System events needed by Vedeu to run.
+    # Clears the whole terminal space.
     Vedeu.bind(:_clear_) { Vedeu::Terminal.clear }
 
+    # Vedeu triggers this event when `:_exit_` is triggered. You can hook into
+    # this to perform a special action before the application terminates. Saving
+    # the user's work, session or preferences might be popular here.
     Vedeu.bind(:_cleanup_) do
       Vedeu.trigger(:_drb_stop_, 'via :cleanup')
       Vedeu.trigger(:cleanup)
+    end
+
+    Vedeu.bind(:_drb_input_) do |data|
+      Vedeu.log(type: :drb, message: 'Sending input')
+      Vedeu.trigger(:_keypress_, data)
     end
 
     Vedeu.bind(:_drb_retrieve_output_)  do
@@ -35,7 +43,7 @@ module Vedeu
 
     Vedeu.bind(:_drb_store_output_)  do |data|
       Vedeu.log(type: :drb, message: 'Storing output')
-      Vedeu::VirtualBuffer.store(data)
+      Vedeu::VirtualBuffer.store(Vedeu::Terminal.virtual.output(data))
     end
 
     Vedeu.bind(:_drb_restart_) do
@@ -58,37 +66,62 @@ module Vedeu
       Vedeu::Distributed::Server.stop
     end
 
+    # When triggered, Vedeu will trigger a `:cleanup` event which you can define
+    # (to save files, etc) and attempt to exit.
     Vedeu.bind(:_exit_)                    { Vedeu::Application.stop      }
-    Vedeu.bind(:_initialize_)              { Vedeu.trigger(:_refresh_)    }
-    Vedeu.bind(:_keypress_)                { |key| Vedeu.keypress(key)    }
-    Vedeu.bind(:_log_)                     { |msg| Vedeu.log(type: :debug, message: msg) }
-    Vedeu.bind(:_mode_switch_)             { fail ModeSwitch              }
-    Vedeu.bind(:_resize_, { delay: 0.25 }) { Vedeu.resize                 }
 
-    # System events which when called will update the cursor visibility
-    # accordingly for the interface in focus, or the named interface. Also
-    # includes events to move the cursor in the direction specified; these will
-    # update the cursor position according to the interface in focus.
+    # Vedeu triggers this event when it is ready to enter the main loop. Client
+    # applications can listen for this event and perform some action(s), like
+    # render the first screen, interface or make a sound. When Vedeu triggers
+    # this event, the :_refresh_ event is also triggered automatically.
+    Vedeu.bind(:_initialize_)              { Vedeu.trigger(:_refresh_)    }
+
+    # Triggering this event will cause the triggering of the `:key` event; which
+    # you should define to 'do things'. If the `escape` key is pressed, then
+    # `key` is triggered with the argument `:escape`, also an internal event
+    # `_mode_switch_` is triggered.
+    Vedeu.bind(:_keypress_) { |key| Vedeu.keypress(key) }
+
+    # When triggered with a message will cause Vedeu to log the message if
+    # logging is enabled in the configuration.
+    Vedeu.bind(:_log_) { |msg| Vedeu.log(type: :debug, message: msg) }
+
+    # When triggered (after the user presses `escape`), Vedeu switches from a
+    # "raw mode" terminal to a "cooked mode" terminal. The idea here being that
+    # the raw mode is for single keypress actions, whilst cooked mode allows the
+    # user to enter more elaborate commands- such as commands with arguments.
+    Vedeu.bind(:_mode_switch_) { fail ModeSwitch }
+
+    # When triggered will cause Vedeu to trigger the `:_clear_` and `:_refresh_`
+    # events. Please see those events for their behaviour.
+    Vedeu.bind(:_resize_, { delay: 0.25 }) { Vedeu.resize }
+
+    # Hide the cursor of the interface currently in focus.
     Vedeu.bind(:_cursor_hide_) do
       ToggleCursor.hide(Vedeu.cursor)
     end
 
+    # Show the cursor of the interface currently in focus.
     Vedeu.bind(:_cursor_show_) do
       ToggleCursor.show(Vedeu.cursor)
     end
 
+    # Hide the cursor of the named interface.
     Vedeu.bind(:_cursor_hide_by_name_) do |name|
       named = Vedeu.cursors.by_name(name)
 
       ToggleCursor.hide(named)
     end
 
+    # Show the cursor of the named interface.
     Vedeu.bind(:_cursor_show_by_name_) do |name|
       named = Vedeu.cursors.by_name(name)
 
       ToggleCursor.show(named)
     end
 
+    # Move the cursor down one character in the interface currently in focus.
+    # Will not exceed the border or boundary of the interface.
     Vedeu.bind(:_cursor_down_) do
       interface = Vedeu.interfaces.current
 
@@ -97,6 +130,8 @@ module Vedeu
       Refresh.by_focus
     end
 
+    # Move the cursor left one character in the interface currently in focus.
+    # Will not exceed the border or boundary of the interface.
     Vedeu.bind(:_cursor_left_) do
       interface = Vedeu.interfaces.current
 
@@ -105,6 +140,8 @@ module Vedeu
       Refresh.by_focus
     end
 
+    # Move the cursor right one character in the interface currently in focus.
+    # Will not exceed the border or boundary of the interface.
     Vedeu.bind(:_cursor_right_) do
       interface = Vedeu.interfaces.current
 
@@ -113,6 +150,8 @@ module Vedeu
       Refresh.by_focus
     end
 
+    # Move the cursor up one character in the interface currently in focus.
+    # Will not exceed the border or boundary of the interface.
     Vedeu.bind(:_cursor_up_) do
       interface = Vedeu.interfaces.current
 
@@ -121,6 +160,8 @@ module Vedeu
       Refresh.by_focus
     end
 
+    # Moves the cursor to the top left position of the interface currently in
+    # focus; respecting a border if present.
     Vedeu.bind(:_cursor_origin_) do
       interface = Vedeu.interfaces.current
 
@@ -129,27 +170,56 @@ module Vedeu
       Refresh.by_focus
     end
 
-    # System events which when called will change which interface is currently
-    # focussed. When the interface is brought into focus, its cursor position
-    # and visibility is restored.
+    # When triggered with an interface name will focus that interface and
+    # restore the cursor position and visibility.
     Vedeu.bind(:_focus_by_name_) { |name| Vedeu.focus_by_name(name) }
-    Vedeu.bind(:_focus_next_)    {        Vedeu.focus_next          }
-    Vedeu.bind(:_focus_prev_)    {        Vedeu.focus_previous      }
 
-    # System events which when called with the appropriate menu name will
-    # update the menu accordingly.
-    Vedeu.bind(:_menu_bottom_)   { |name| Vedeu.menus.find(name).bottom_item   }
-    Vedeu.bind(:_menu_current_)  { |name| Vedeu.menus.find(name).current_item  }
+    # When triggered will focus the next interface and restore the cursor
+    # position and visibility.
+    Vedeu.bind(:_focus_next_) { Vedeu.focus_next }
+
+    # When triggered will focus the previous interface and restore the cursor
+    # position and visibility.
+    Vedeu.bind(:_focus_prev_) { Vedeu.focus_previous }
+
+    # Requires target menu name as argument. Makes the last menu item the
+    # current menu item.
+    Vedeu.bind(:_menu_bottom_) { |name| Vedeu.menus.find(name).bottom_item }
+
+    # Requires target menu name as argument. Returns the current menu item.
+    Vedeu.bind(:_menu_current_) { |name| Vedeu.menus.find(name).current_item }
+
+    # Requires target menu name as argument. Deselects all menu items.
     Vedeu.bind(:_menu_deselect_) { |name| Vedeu.menus.find(name).deselect_item }
-    Vedeu.bind(:_menu_items_)    { |name| Vedeu.menus.find(name).items         }
-    Vedeu.bind(:_menu_next_)     { |name| Vedeu.menus.find(name).next_item     }
-    Vedeu.bind(:_menu_prev_)     { |name| Vedeu.menus.find(name).prev_item     }
-    Vedeu.bind(:_menu_selected_) { |name| Vedeu.menus.find(name).selected_item }
-    Vedeu.bind(:_menu_select_)   { |name| Vedeu.menus.find(name).select_item   }
-    Vedeu.bind(:_menu_top_)      { |name| Vedeu.menus.find(name).top_item      }
-    Vedeu.bind(:_menu_view_)     { |name| Vedeu.menus.find(name).view          }
 
-    # System event to refresh all registered interfaces.
+    # Requires target menu name as argument. Returns all the menu items with
+    # respective `current` or `selected` boolean indicators.
+    Vedeu.bind(:_menu_items_) { |name| Vedeu.menus.find(name).items }
+
+    # Requires target menu name as argument. Makes the next menu item the
+    # current menu item, until it reaches the last item.
+    Vedeu.bind(:_menu_next_) { |name| Vedeu.menus.find(name).next_item }
+
+    # Requires target menu name as argument. Makes the previous menu item the
+    # current menu item, until it reaches the first item.
+    Vedeu.bind(:_menu_prev_) { |name| Vedeu.menus.find(name).prev_item }
+
+    # Requires target menu name as argument. Returns the selected menu item.
+    Vedeu.bind(:_menu_selected_) { |name| Vedeu.menus.find(name).selected_item }
+
+    # Requires target menu name as argument. Makes the current menu item also
+    # the selected menu item.
+    Vedeu.bind(:_menu_select_) { |name| Vedeu.menus.find(name).select_item }
+
+    # Requires target menu name as argument. Makes the first menu item the
+    # current menu item.
+    Vedeu.bind(:_menu_top_) { |name| Vedeu.menus.find(name).top_item }
+
+    # Requires target menu name as argument. Returns a subset of the menu items;
+    # starting at the current item to the last item.
+    Vedeu.bind(:_menu_view_) { |name| Vedeu.menus.find(name).view }
+
+    # Triggering this event will cause all interfaces to refresh.
     Vedeu.bind(:_refresh_) { Vedeu::Refresh.all }
 
   end # Bindings

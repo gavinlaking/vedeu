@@ -34,6 +34,8 @@ module Vedeu
   #     include Vedeu
   #     ...
   #
+  # @param receiver []
+  # @return [void]
   def included(receiver)
     receiver.send(:include, API)
     receiver.extend(API)

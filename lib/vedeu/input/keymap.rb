@@ -23,6 +23,7 @@ module Vedeu
       # @option attributes keys []
       # @option attributes name [String]
       # @option attributes repository [Vedeu::Repository]
+      # @raise [InvalidSyntax] The required block was not given.
       # @return [Vedeu::Keymap]
       def build(attributes = {}, &block)
         fail InvalidSyntax, 'block not given' unless block_given?
@@ -62,7 +63,7 @@ module Vedeu
     end
 
     # @param key [Key]
-    # @return []
+    # @return [void]
     def add(key)
       return false unless valid?(key)
 

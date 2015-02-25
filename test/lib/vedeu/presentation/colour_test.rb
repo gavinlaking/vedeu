@@ -21,7 +21,7 @@ module Vedeu
     describe '#background' do
       subject { instance.background }
 
-      it { subject.must_be_instance_of(String) }
+      it { subject.must_be_instance_of(Vedeu::Background) }
 
       context 'with a background' do
         let(:attributes) {
@@ -30,20 +30,22 @@ module Vedeu
           }
         }
 
-        it { subject.must_equal("\e[48;2;0;0;0m") }
+        it { subject.to_s.must_equal("\e[48;2;0;0;0m") }
+        it { subject.to_html.must_equal('#000000') }
       end
 
       context 'without a background' do
         let(:attributes) { {} }
 
-        it { subject.must_equal('') }
+        it { subject.to_s.must_equal('') }
+        it { subject.to_html.must_equal('') }
       end
     end
 
     describe '#foreground' do
       subject { instance.foreground }
 
-      it { subject.must_be_instance_of(String) }
+      it { subject.must_be_instance_of(Vedeu::Foreground) }
 
       context 'with a foreground' do
         let(:attributes) {
@@ -52,13 +54,15 @@ module Vedeu
           }
         }
 
-        it { subject.must_equal("\e[38;2;255;0;0m") }
+        it { subject.to_s.must_equal("\e[38;2;255;0;0m") }
+        it { subject.to_html.must_equal('#ff0000') }
       end
 
       context 'without a foreground' do
         let(:attributes) { {} }
 
-        it { subject.must_equal('') }
+        it { subject.to_s.must_equal('') }
+        it { subject.to_html.must_equal('') }
       end
     end
 

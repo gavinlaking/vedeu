@@ -40,7 +40,7 @@ module Vedeu
     end
 
     # @param child []
-    # @return []
+    # @return [void]
     def add(child)
       @streams = streams.add(child)
     end

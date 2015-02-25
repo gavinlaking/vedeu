@@ -14,6 +14,7 @@ module Vedeu
 
     before do
       Vedeu.interfaces.reset
+      Vedeu.borders.reset
       Vedeu.interface 'borders' do
         geometry do
           height 5
@@ -280,11 +281,11 @@ module Vedeu
 
         it 'returns the escape sequences to draw a border' do
           subject.must_equal(
-            "\e(0l\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0k\e(B\n" \
-            "\e(0x\e(BBeryll\e(0x\e(B\n" \
-            "\e(0x\e(BMagnes\e(0x\e(B\n" \
-            "\e(0x\e(BPluton\e(0x\e(B\n" \
-            "\e(0m\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0j\e(B"
+            "\e(0l\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0k\e(B
+\e(0x\e(BBeryll\e(0x\e(B
+\e(0x\e(BMagnes\e(0x\e(B
+\e(0x\e(BPluton\e(0x\e(B
+\e(0m\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0j\e(B"
           )
         end
       end

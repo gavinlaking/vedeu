@@ -7,11 +7,26 @@ module Vedeu
   #
   class Console
 
+    attr_reader :height,
+      :origin,
+      :width
+
+    alias_method :tyn, :height
+    alias_method :yn, :height
+    alias_method :x, :origin
+    alias_method :y, :origin
+    alias_method :tx, :origin
+    alias_method :ty, :origin
+    alias_method :txn, :width
+    alias_method :xn, :width
+
     # @param height [Fixnum]
     # @param width [Fixnum]
+    # @return [Vedeu::Console]
     def initialize(height = 25, width = 80)
       @height = height || 25
       @width  = width  || 80
+      @origin = 1
     end
 
     # @param data [String|NilClass]
@@ -58,22 +73,6 @@ module Vedeu
       yield
     end
 
-    # @return [Fixnum]
-    def height
-      @height
-    end
-    alias_method :tyn, :height
-    alias_method :yn, :height
-
-    # @return [Fixnum]
-    def origin
-      1
-    end
-    alias_method :x, :origin
-    alias_method :y, :origin
-    alias_method :tx, :origin
-    alias_method :ty, :origin
-
     # @param block [Proc]
     # @return [Proc]
     def raw(&block)
@@ -85,13 +84,6 @@ module Vedeu
       [height, width]
     end
     alias_method :winsize, :size
-
-    # @return [Fixnum]
-    def width
-      @width
-    end
-    alias_method :txn, :width
-    alias_method :xn, :width
 
   end # Console
 

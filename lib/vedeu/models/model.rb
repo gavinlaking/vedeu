@@ -9,6 +9,9 @@ module Vedeu
 
     attr_reader :repository
 
+    # When {Vedeu::Model} is included in a class, the methods within this module
+    # are included as class methods on that class.
+    #
     module ClassMethods
 
       # Build models using a simple DSL when a block is given, otherwise returns
@@ -30,7 +33,7 @@ module Vedeu
       #
       # @param klass [Class] The member (singular) or collection (multiple)
       #   class name for the respective model.
-      # @return []
+      # @return [void]
       def child(klass)
         send(:define_method, __callee__) { klass }
       end
@@ -55,6 +58,7 @@ module Vedeu
     # methods for the class.
     #
     # @param klass [Class]
+    # @return [void]
     def self.included(klass)
       klass.send :extend, ClassMethods
     end
@@ -85,6 +89,7 @@ module Vedeu
     #   demodulize('Vedeu::DSL::Interface') # => "Interface"
     #
     # @param klass [Class|String]
+    # @return [void]
     def demodulize(klass)
       klass = klass.to_s
 

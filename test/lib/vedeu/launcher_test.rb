@@ -24,6 +24,16 @@ module Vedeu
       it { instance.instance_variable_get('@exit_code').must_equal(1) }
     end
 
+    describe '#debug_execute!' do
+      subject { instance.debug_execute! }
+
+      context 'when debugging is enabled in the configuration' do
+      end
+
+      context 'when debugging is not enabled in the configuration' do
+      end
+    end
+
     describe '#execute!' do
       subject { instance.execute! }
 

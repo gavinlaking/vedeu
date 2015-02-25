@@ -2,12 +2,15 @@ require 'test_helper'
 
 module Vedeu
 
+  class FakeRenderer; end
+
   describe VirtualTerminal do
 
     let(:described) { Vedeu::VirtualTerminal }
-    let(:instance)  { described.new(height, width) }
+    let(:instance)  { described.new(height, width, renderer) }
     let(:height)    { 5 }
     let(:width)     { 10 }
+    let(:renderer)  { Vedeu::HTMLRenderer }
 
     describe '#initialize' do
       it { instance.must_be_instance_of(Vedeu::VirtualTerminal) }
@@ -15,8 +18,21 @@ module Vedeu
       it { instance.instance_variable_get('@cell_width').must_equal(9) }
       it { instance.instance_variable_get('@height').must_equal(5) }
       it { instance.instance_variable_get('@width').must_equal(10) }
+      it { instance.instance_variable_get('@renderer').must_equal(Vedeu::HTMLRenderer) }
     end
 
+    describe 'attr_accessor' do
+      context '#renderer' do
+        subject { instance.renderer }
+
+        it { subject.must_equal(Vedeu::HTMLRenderer) }
+      end
+      context '#renderer=' do
+        subject { instance.renderer=(Vedeu::FakeRenderer) }
+
+        it { subject.must_equal(Vedeu::FakeRenderer) }
+      end
+    end
     describe 'attr_reader' do
       context '#cell_height' do
         subject { instance.cell_height }

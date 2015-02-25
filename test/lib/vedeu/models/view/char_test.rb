@@ -57,13 +57,13 @@ module Vedeu
 
       context 'when the value is set' do
         it { subject.must_equal('a') }
-
-        context 'and the value is more than one character' do
-          let(:value) { 'multi' }
-
-          it { subject.must_equal('m') }
-        end
       end
+    end
+
+    describe '#to_html' do
+      subject { instance.to_html }
+
+      it { subject.must_be_instance_of(String) }
     end
 
     describe '#to_s' do
@@ -132,11 +132,37 @@ module Vedeu
 
         it { subject.must_equal("") }
       end
+    end
 
-      context 'when the value is more than one character' do
-        let(:value) { 'multi' }
+    describe '#x' do
+      let(:position) { Position.new(17, 2) }
 
-        it { subject.must_equal("m") }
+      subject { instance.x }
+
+      context 'when a position is set' do
+        it { subject.must_equal(2) }
+      end
+
+      context 'when a position is not set' do
+        let(:position) {}
+
+        it { subject.must_equal(nil) }
+      end
+    end
+
+    describe '#y' do
+      let(:position) { Position.new(17, 2) }
+
+      subject { instance.y }
+
+      context 'when a position is set' do
+        it { subject.must_equal(17) }
+      end
+
+      context 'when a position is not set' do
+        let(:position) {}
+
+        it { subject.must_equal(nil) }
       end
     end
 

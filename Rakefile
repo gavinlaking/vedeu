@@ -2,6 +2,7 @@ require 'bundler/gem_tasks'
 require 'rake/testtask'
 require 'cucumber'
 require 'cucumber/rake/task'
+require 'inch/rake'
 
 # Don't run cukes for the time being.
 # Cucumber::Rake::Task.new(:cucumber) do |t|
@@ -14,6 +15,11 @@ Rake::TestTask.new do |t|
   t.libs.push 'test'
   t.pattern = 'test/**/*_test.rb'
   t.verbose = false
+end
+
+Inch::Rake::Suggest.new do |suggest|
+  suggest.args << "--pedantic"
+  suggest.args << "--all"
 end
 
 task :default => :test

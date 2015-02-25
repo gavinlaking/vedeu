@@ -12,8 +12,8 @@ module Vedeu
     alias_method :first, :y
     alias_method :last, :x
 
-    # @param value []
-    # @return []
+    # @param value [Array<Fixnum>|Vedeu::Position]
+    # @return [void]
     def self.coerce(value)
       if value.is_a?(self)
         value
@@ -29,12 +29,12 @@ module Vedeu
 
     # Initializes a new instance of Position.
     #
-    # @param y [Fixnum]
-    # @param x [Fixnum]
+    # @param y [Fixnum] The row/line position.
+    # @param x [Fixnum] The column/character position.
     # @return [Position]
     def initialize(y = 1, x = 1)
-      @y = y
-      @x = x
+      @y = (y.nil? || y < 1) ? 1 : y
+      @x = (x.nil? || x < 1) ? 1 : x
     end
 
     # @return [String]
@@ -42,20 +42,21 @@ module Vedeu
       "<#{self.class.name} (y:#{@y} x:#{@x})>"
     end
 
-    # @param other []
+    # @param other [Vedeu::Position]
     # @return [Boolean]
     def ==(other)
       eql?(other)
     end
 
-    # @param other []
+    # @param other [Vedeu::Position]
     # @return [Boolean]
     def eql?(other)
       self.class == other.class && (x == other.x && y == other.y)
     end
 
-    # Returns an escape sequence to position the cursor. When passed a block,
-    # will position the cursor, yield and return the original position.
+    # Return the escape sequence required to position the cursor at a particular
+    # point on the screen. When passed a block, will do the aforementioned,
+    # call the block and then reposition to this location.
     #
     # @param block [Proc]
     # @return [String]
@@ -77,32 +78,6 @@ module Vedeu
     # @return [String]
     def sequence
       ["\e[", y, ';', x, 'H'].join
-    end
-
-    # Returns the y coordinate.
-    #
-    # @return [Fixnum]
-    def y
-      if @y < 1 || @y.nil?
-        1
-
-      else
-        @y
-
-      end
-    end
-
-    # Returns the x coordinate.
-    #
-    # @return [Fixnum]
-    def x
-      if @x < 1 || @x.nil?
-        1
-
-      else
-        @x
-
-      end
     end
 
   end # Position

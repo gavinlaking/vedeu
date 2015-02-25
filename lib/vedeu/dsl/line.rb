@@ -61,6 +61,7 @@ module Vedeu
       #       line do
       #         # ...
       #
+      # @raise [InvalidSyntax] When no block or value is provided.
       # @return [Vedeu::Lines]
       def line(value = '', &block)
         content = if block_given?

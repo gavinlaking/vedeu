@@ -4,7 +4,7 @@ module Vedeu
 
   describe Input do
 
-    let(:reader)    { mock }
+    let(:reader)    { Vedeu::Terminal }
     let(:keypress)  { 'a' }
     let(:described) { Vedeu::Input }
     let(:instance)  { described.new(reader) }

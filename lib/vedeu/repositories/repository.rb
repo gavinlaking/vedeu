@@ -75,7 +75,7 @@ module Vedeu
     # Find a model by name, registers the model by name if not found.
     #
     # @param name [String]
-    # @return []
+    # @return [void]
     def find_or_create(name)
       if registered?(name)
         find(name)
@@ -142,6 +142,7 @@ module Vedeu
     # Stores the model instance by name in the repository of the model.
     #
     # @param model [void] A model instance.
+    # @raise [MissingRequired] When the name attribute is not defined.
     # @return [void] The model instance which was stored.
     def store(model)
       fail MissingRequired, "Cannot store model '#{model.class}' without a " \

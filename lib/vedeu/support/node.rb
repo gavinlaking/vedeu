@@ -9,13 +9,13 @@ module Vedeu
 
     attr_reader   :children
 
-    # @return []
+    # @return [void]
     def initialize(name)
       @name     = name
       @children = []
     end
 
-    # @return []
+    # @return [void]
     def add_child(node)
       children << node
 
@@ -23,17 +23,17 @@ module Vedeu
     end
     alias :<< :add_child
 
-    # @return []
+    # @return [void]
     def remove_child(node)
       children.delete(node)
     end
 
-    # @return []
+    # @return [void]
     def [](index)
       children[index]
     end
 
-    # @return []
+    # @return [void]
     def []=(index, node)
       replaced_child        = @children[index]
       children[index]       = node
@@ -41,7 +41,7 @@ module Vedeu
       node.parent           = self
     end
 
-    # @return []
+    # @return [void]
     def leaf?
       children.empty?
     end

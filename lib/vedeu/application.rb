@@ -1,36 +1,5 @@
 module Vedeu
 
-  class MainLoop
-
-    trap('SIGTERM') { stop! }
-    trap('TERM')    { stop! }
-    trap('INT')     { stop! }
-
-    def self.start!(&block)
-      @started = true
-      @loop    = true
-
-      while(@loop) do
-        Vedeu.trigger(:_tick_)
-
-        yield
-
-        safe_exit_point!
-      end
-    end
-
-    def self.stop!
-      @loop = false
-    end
-
-    def self.safe_exit_point!
-      if @started && !@loop
-        raise Interrupt
-      end
-    end
-
-  end # MainLoop
-
   # Orchestrates the running of the main application loop.
   #
   # @api private
@@ -39,7 +8,7 @@ module Vedeu
 
     class << self
 
-      # @return []
+      # @return [void]
       def start(configuration)
         new(configuration).start
       end
@@ -52,13 +21,10 @@ module Vedeu
       #   encouraged to use this event to close any open buffers, save files,
       #   empty trash, etc.
       #
-      # @raise [StopIteration] Will cause {#start} to exit its loop and
-      #   terminate the application.
-      # @return [StopIteration]
+      # @return [void]
       def stop
         Vedeu.trigger(:_cleanup_)
 
-        # fail StopIteration
         Vedeu::MainLoop.stop!
       end
 
@@ -105,7 +71,7 @@ module Vedeu
     # Runs the application loop either once, or forever (exceptions and signals
     # permitting).
     #
-    # @return []
+    # @return [void]
     def runner
       if configuration.once?
         yield
@@ -123,7 +89,7 @@ module Vedeu
     # and 'do something useful'. When the client application has finished, it
     # should trigger the `:_exit_` event.
     #
-    # @return []
+    # @return [void]
     def main_sequence
       if configuration.interactive?
         Input.capture(Terminal)
@@ -138,7 +104,7 @@ module Vedeu
     # uncaught exception occurs or when either the `:_mode_switch_` or `:_exit_`
     # event is triggered.
     #
-    # @return []
+    # @return [void]
     def run_many
       MainLoop.start! { yield }
 

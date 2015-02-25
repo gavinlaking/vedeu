@@ -25,24 +25,24 @@ module Vedeu
     def initialize(attributes = {})
       @attributes = defaults.merge(attributes)
 
-      @background = Background.escape_sequence(@attributes[:background])
-      @foreground = Foreground.escape_sequence(@attributes[:foreground])
+      @background = Background.coerce(@attributes[:background])
+      @foreground = Foreground.coerce(@attributes[:foreground])
     end
 
-    # Converts the value into a terminal escape sequence.
+    # Converts the value into a Vedeu::Foreground.
     #
     # @param value [String]
     # @return [String]
     def foreground=(value)
-      @foreground = Foreground.escape_sequence(value)
+      @foreground = Foreground.coerce(value)
     end
 
-    # Converts the value into a terminal escape sequence.
+    # Converts the value into a Vedeu::Background.
     #
     # @param value [String]
     # @return [String]
     def background=(value)
-      @background = Background.escape_sequence(value)
+      @background = Background.coerce(value)
     end
 
     # Returns both or either of the converted attributes into a single escape
@@ -50,7 +50,7 @@ module Vedeu
     #
     # @return [String]
     def to_s
-      foreground + background
+      foreground.to_s + background.to_s
     end
 
     private

@@ -43,6 +43,7 @@ module Vedeu
       @exit_code = 1
     end
 
+    # @return [void]
     def debug_execute!
       if configuration.debug?
         Vedeu.debug { execute! }
@@ -55,7 +56,7 @@ module Vedeu
       terminate!
     end
 
-    # @return []
+    # @return [void]
     def execute!
       $stdin, $stdout, $stderr = @stdin, @stdout, @stderr
 
@@ -71,10 +72,13 @@ module Vedeu
 
     private
 
+    # @!attribute [r] argv
+    # @return [Array<String>] The command line arguments provided.
     attr_reader :argv
 
     # Terminates the application after resetting $stdin, $stdout and $stderr.
     #
+    # @return [void]
     def terminate!
       Vedeu.log(type: :info, message: "Exiting gracefully.")
 

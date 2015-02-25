@@ -57,8 +57,11 @@ module Vedeu
       self
     end
 
+    # Sends the KILL signal to the process.
+    #
+    # @return [void]
     def kill
-      Process.kill('TERM', pid)
+      Process.kill('KILL', pid)
 
       file_unlink
     end

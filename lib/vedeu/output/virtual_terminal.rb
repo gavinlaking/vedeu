@@ -1,45 +1,19 @@
 module Vedeu
 
-  # class Cell < Struct.new(:value)
-  #   def initialize(value = [])
-  #     super
-  #   end
-  # end
-
-  # class Cells
-  #   attr_reader :size, :value
-
-  #   def initialize(size = 0, &block)
-  #     @size  = size
-  #     @value = if block_given?
-  #       [instance_eval(&block)] * size
-
-  #     else
-  #       [Cell.new] * size
-
-  #     end
-  #   end
-
-  #   def [](index)
-  #     value[index] || self
-  #   end
-
-  #   private
-
-  #   attr_reader :size, :value
-  # end
-
   class VirtualTerminal
 
+    attr_accessor :renderer
     attr_reader :cell_height, :cell_width, :height, :width
 
     # @param height [Fixnum]
     # @param width [Fixnum]
+    # @param renderer [Object|HTMLRenderer] An object responding to .render.
     # @return [Vedeu::VirtualTerminal]
-    def initialize(height, width)
+    def initialize(height, width, renderer = HTMLRenderer)
       @cell_height, @cell_width = Vedeu::PositionIndex[height, width]
-      @height = height
-      @width  = width
+      @height   = height
+      @width    = width
+      @renderer = renderer
     end
 
     # @return [Array<Array<Vedeu::Char>>]
@@ -67,10 +41,15 @@ module Vedeu
     # @return [Array<Array<Vedeu::Char>>]
     def output(data)
       Array(data).flatten.each do |char|
-        write(char.position.y, char.position.x, char) if char.is_a?(Vedeu::Char)
+        write(char.y, char.x, char) if char.is_a?(Vedeu::Char)
       end
 
       cells
+    end
+
+    # @return [void]
+    def render
+      renderer.render(cells)
     end
 
     # Removes all content from the virtual terminal; effectively clearing it.

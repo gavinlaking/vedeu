@@ -13,16 +13,13 @@ module Vedeu
 
       attr_accessor :parent, :name
 
-      # @param collection []
+      # @param collection [Array|Vedeu::Model::Collection]
       # @param parent []
-      # @param name []
+      # @param name [String|NilClass]
       # @return [Vedeu::Model::Collection]
       def self.coerce(collection = [], parent = nil, name = nil)
         if collection.kind_of?(Vedeu::Model::Collection)
           collection
-
-        elsif collection.is_a?(Array)
-          new(collection, parent, name)
 
         else
           new(Array(collection), parent, name)
@@ -41,7 +38,7 @@ module Vedeu
       end
 
       # @param value [Fixnum]
-      # @return []
+      # @return [void]
       def [](value)
         @collection[value]
       end

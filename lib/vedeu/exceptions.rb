@@ -20,7 +20,9 @@ module Vedeu
   # OutOfRange: Raised when trying to access an interface column less than 1 or
   #   greater than 12. Vedeu is hard-wired to a 12-column layout for the time
   #   being.
-
+  #
+  # VedeuInterrupt: Raised when Vedeu wishes to exit.
+  #
   Exceptions = %w[
     ModelNotFound
     InvalidSyntax
@@ -28,6 +30,7 @@ module Vedeu
     ModeSwitch
     NotImplemented
     OutOfRange
+    VedeuInterrupt
   ]
   Exceptions.each { |e| const_set(e, Class.new(StandardError)) }
 

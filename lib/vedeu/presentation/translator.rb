@@ -68,6 +68,17 @@ module Vedeu
     end
     alias_method :to_s, :escape_sequence
 
+    # @return [String]
+    def to_html
+      if rgb?
+        colour
+
+      else
+        ''
+
+      end
+    end
+
     private
 
     # @return [Boolean]

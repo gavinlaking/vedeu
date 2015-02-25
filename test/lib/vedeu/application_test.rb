@@ -6,7 +6,7 @@ module Vedeu
 
     let(:described)     { Vedeu::Application }
     let(:instance)      { described.new(configuration) }
-    let(:configuration) { mock('Vedeu::Configuration') }
+    let(:configuration) { test_configuration }
 
     before do
       configuration.stubs(:drb?).returns(false)
@@ -29,7 +29,6 @@ module Vedeu
     describe '.stop' do
       subject { described.stop }
 
-      it { proc { subject }.must_raise(StopIteration) }
     end
 
     describe '#start' do

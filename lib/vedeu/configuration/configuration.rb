@@ -187,7 +187,7 @@ module Vedeu
       end
 
       # @param value []
-      # @return []
+      # @return [void]
       def options=(value)
         instance.options = value
       end

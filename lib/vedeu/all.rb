@@ -27,5 +27,6 @@ require 'vedeu/output/all'
 require 'vedeu/presentation/all'
 require 'vedeu/support/all'
 
+require 'vedeu/main_loop'
 require 'vedeu/application'
 require 'vedeu/launcher'

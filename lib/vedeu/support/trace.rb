@@ -26,7 +26,9 @@ module Vedeu
     # end
 
     # @param options [Hash]
-    # @return []
+    # @option option event [Symbol]
+    # @option option trace [Boolean]
+    # @return [void]
     def self.call(options = {})
       new(options).trace
     end

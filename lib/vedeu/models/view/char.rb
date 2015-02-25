@@ -1,3 +1,4 @@
+require 'vedeu/output/html_char'
 require 'vedeu/presentation/presentation'
 
 module Vedeu
@@ -14,7 +15,8 @@ module Vedeu
 
     include Vedeu::Presentation
 
-    attr_accessor :parent,
+    attr_accessor :border,
+      :parent,
       :position
 
     # Returns a new instance of Char.
@@ -25,10 +27,12 @@ module Vedeu
     # @option attributes colour   [Colour]
     # @option attributes style    [Style]
     # @option attributes position [Position]
+    # @option attributes border   [Boolean]
     # @return [Char]
     def initialize(attributes = {})
       @attributes = defaults.merge(attributes)
 
+      @border   = @attributes[:border]
       @colour   = Vedeu::Colour.coerce(@attributes[:colour])
       @parent   = @attributes[:parent]
       @position = Vedeu::Position.coerce(@attributes[:position])
@@ -59,7 +63,22 @@ module Vedeu
     def value
       return '' unless @value
 
-      @value[0]
+      @value
+    end
+
+    # @return [Fixnum|NilClass]
+    def x
+      position.x if position
+    end
+
+    # @return [Fixnum|NilClass]
+    def y
+      position.y if position
+    end
+
+    # @return [String]
+    def to_html
+      @to_html ||= HTMLChar.render(self)
     end
 
     private
@@ -69,6 +88,7 @@ module Vedeu
     # @return [Hash]
     def defaults
       {
+        border:   nil,
         colour:   nil,
         parent:   nil,
         position: nil,

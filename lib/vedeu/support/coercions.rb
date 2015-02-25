@@ -49,7 +49,7 @@ module Vedeu
     # directly.
     #
     # @param receiver [Class] The class in which this module is included.
-    # @return []
+    # @return [void]
     def self.included(receiver)
       receiver.extend(self)
     end
