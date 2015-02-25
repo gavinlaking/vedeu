@@ -11,12 +11,13 @@ module Vedeu
     # @param output [Array<Array<Vedeu::Char>>]
     # @return [Vedeu::HTMLRenderer]
     def initialize(output)
-      @output  = output
+      @output = output
+      @object = self
     end
 
     # @return [String]
     def render
-      html_header + html_body + html_footer
+      ERB.new(html_output, nil, '-').result(binding)
     end
 
     # @param path [String]
@@ -28,10 +29,6 @@ module Vedeu
 
       content
     end
-
-    private
-
-    attr_reader :output
 
     # @return [String]
     def html_body
@@ -47,31 +44,12 @@ module Vedeu
       out
     end
 
-    # @return [String]
-    def html_header
-      <<-HTML
-        <html>
-          <head>
-            <style type='text/css'>
-              body { background:#000; }
-              td { border:1px #171717 solid;
-                font-size:12px;
-                font-family:monospace;
-                height:18px;
-                margin:1px;
-                text-align:center;
-                vertical-align:center;
-                width:18px; }
-            </style>
-          </head>
-          <body>
-            <table>
-      HTML
-    end
+    private
 
-    # @return [String]
-    def html_footer
-      "</table></body></html>"
+    attr_reader :output
+
+    def html_output
+      @html_output ||= read('html_renderer.vedeu')
     end
 
     # @return [String]
@@ -82,6 +60,11 @@ module Vedeu
     # return [Fixnum]
     def timestamp
       @timestamp ||= Time.now.to_i
+    end
+
+    # @return [String]
+    def read(filename)
+      File.read(File.dirname(__FILE__) + '/templates/' + filename)
     end
 
   end # HTMLRenderer
