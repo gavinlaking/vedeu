@@ -96,26 +96,28 @@ module Vedeu
     # events. Please see those events for their behaviour.
     Vedeu.bind(:_resize_, { delay: 0.25 }) { Vedeu.resize }
 
-    # Hide the cursor of the interface currently in focus.
-    Vedeu.bind(:_cursor_hide_) do
-      ToggleCursor.hide(Vedeu.cursor)
-    end
+    # Hide the cursor of the named interface or interface currently in focus.
+    Vedeu.bind(:_cursor_hide_) do |name|
+      named = if name
+        Vedeu.cursors.by_name(name)
 
-    # Show the cursor of the interface currently in focus.
-    Vedeu.bind(:_cursor_show_) do
-      ToggleCursor.show(Vedeu.cursor)
-    end
+      else
+        Vedeu.cursor
 
-    # Hide the cursor of the named interface.
-    Vedeu.bind(:_cursor_hide_by_name_) do |name|
-      named = Vedeu.cursors.by_name(name)
+      end
 
       ToggleCursor.hide(named)
     end
 
-    # Show the cursor of the named interface.
-    Vedeu.bind(:_cursor_show_by_name_) do |name|
-      named = Vedeu.cursors.by_name(name)
+    # Show the cursor of the named interface or interface currently in focus.
+    Vedeu.bind(:_cursor_show_) do |name|
+      named = if name
+        Vedeu.cursors.by_name(name)
+
+      else
+        Vedeu.cursor
+
+      end
 
       ToggleCursor.show(named)
     end

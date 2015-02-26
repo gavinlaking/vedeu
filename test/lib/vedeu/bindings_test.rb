@@ -17,8 +17,6 @@ module Vedeu
     context 'the cursor specific events are defined' do
       it { Vedeu.events.registered?(:_cursor_hide_).must_equal(true) }
       it { Vedeu.events.registered?(:_cursor_show_).must_equal(true) }
-      it { Vedeu.events.registered?(:_cursor_hide_by_name_).must_equal(true) }
-      it { Vedeu.events.registered?(:_cursor_show_by_name_).must_equal(true) }
       it { Vedeu.events.registered?(:_cursor_down_).must_equal(true) }
       it { Vedeu.events.registered?(:_cursor_left_).must_equal(true) }
       it { Vedeu.events.registered?(:_cursor_right_).must_equal(true) }
