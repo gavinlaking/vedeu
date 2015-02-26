@@ -8,18 +8,6 @@ module Vedeu
     let(:instance)  { described.new(input) { :output } }
     let(:input)     { 'a' }
 
-    describe '.build' do
-      subject { described.build(input) { :output } }
-
-      it { subject.must_be_instance_of(Key) }
-
-      context 'when the required block is not given' do
-        subject { described.build(input) }
-
-        it { proc { subject }.must_raise(InvalidSyntax) }
-      end
-    end
-
     describe '#initialize' do
       it { instance.must_be_instance_of(Key) }
       it { instance.instance_variable_get('@input').must_equal(input) }
