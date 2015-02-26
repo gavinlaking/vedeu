@@ -6,6 +6,32 @@ module Vedeu
 
   # Contains all the logic of an event. Handles debouncing and throttling.
   #
+  # Vedeu provides an event mechanism to facilitate the functionality of your
+  # application. The events are either Vedeu defined, ie. system events or user
+  # defined, ie. user events. User events allow you to orchestrate behaviour
+  # within your application, ie. the user presses a specific key, you trigger an
+  # event to make something happen. Eg. pressing 'p' instructs the player to
+  # play.
+  #
+  # Events described here assume that you have either included Vedeu in your
+  # class:
+  #
+  # class SomeClassInYourApplication
+  #   include Vedeu
+  #
+  #   bind :event_name do |arg1, arg2|
+  #     # Things that should happen when the event is triggered; these can be
+  #     # method calls or the triggering of another event or events.
+  #   end
+  #
+  # or, you are prepared to use the `Vedeu` prefix:
+  #
+  # class SomeClassInYourApplication
+  #   Vedeu.bind(:event_name) do
+  #     # Not all events you define will have arguments; like methods.
+  #     :do_stuff
+  #   end
+  #
   # @api private
   #
   class Event
@@ -31,7 +57,7 @@ module Vedeu
       #
       # @example
       #   Vedeu.bind :my_event do |some, args|
-      #     ... some code here ...
+      #     # ... some code here ...
       #
       #     Vedeu.trigger(:my_other_event)
       #   end
@@ -43,7 +69,7 @@ module Vedeu
       #   .X...i...i...i...i...X...i...i...i...i...X...i...i...i...i...i...i...i
       #
       #   Vedeu.bind(:my_delayed_event, { delay: 0.5 })
-      #     ... some code here ...
+      #     # ... some code here ...
       #   end
       #
       #   T = Triggered, X = Executed, i = Ignored.
@@ -53,7 +79,7 @@ module Vedeu
       #   .i...i...i...i...i...i...i...X...i...i...i...i...i...i...X...i...i...i
       #
       #   Vedeu.bind(:my_debounced_event, { debounce: 0.7 })
-      #     ... some code here ...
+      #     # ... some code here ...
       #   end
       #
       # @return [TrueClass]

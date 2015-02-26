@@ -9,9 +9,9 @@ Vedeu (vee-dee-you; aka VDU) is my attempt at creating a terminal based applicat
 
 ## Requirements
 
-Vedeu has been built on MacOSX 10.9 (Mavericks) with Ruby v2.1.2.
+Vedeu has been built on MacOSX 10.9/10.10 (Mavericks/Yosemite) with Ruby v2.1.
 
-Note: You may have trouble running Vedeu with Windows installations.
+Note: You may have trouble running Vedeu with Windows installations. (Pull requests welcome!)
 
 
 ## Installation
@@ -113,7 +113,7 @@ Note: not setting a width or height will set the values to the terminal's report
 
 ### Events
 
-More information about events can be found here: [Vedeu Events](http://www.rubydoc.info/github/gavinlaking/vedeu/file/docs/events.md)
+More information about events can be found in the [RubyDoc](http://rubydoc.info/github/gavinlaking/vedeu/master/frames).
 
 
 ### Geometry

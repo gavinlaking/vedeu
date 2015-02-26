@@ -2,6 +2,10 @@ module Vedeu
 
   # Provides the main loop for a Vedeu application.
   #
+  # Each time Vedeu starts one cycle in the application loop, it triggers the
+  # `:tick` event. A completion of that cycle will trigger `:tock`. This can be
+  # used by the client application for timing amongst other things.
+  #
   class MainLoop
 
     trap('SIGTERM') { stop! }
@@ -17,7 +21,7 @@ module Vedeu
       @loop    = true
 
       while(@loop) do
-        Vedeu.trigger(:_tick_)
+        Vedeu.trigger(:tick)
 
         yield
 
@@ -45,7 +49,7 @@ module Vedeu
         fail VedeuInterrupt
 
       else
-        Vedeu.trigger(:_tock_)
+        Vedeu.trigger(:tock)
 
       end
     end
