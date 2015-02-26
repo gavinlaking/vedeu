@@ -1,4 +1,4 @@
-require 'vedeu/support/content_geometry'
+require 'vedeu/geometry/content_geometry'
 require 'vedeu/models/model'
 require 'vedeu/output/presentation'
 require 'vedeu/buffers/display_buffer'

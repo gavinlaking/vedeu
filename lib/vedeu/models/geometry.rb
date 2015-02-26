@@ -1,6 +1,8 @@
 require 'vedeu/dsl/components/geometry'
 require 'vedeu/models/model'
-require 'vedeu/support/esc'
+
+require 'vedeu/geometry/limit'
+require 'vedeu/geometry/position'
 require 'vedeu/support/terminal'
 
 module Vedeu

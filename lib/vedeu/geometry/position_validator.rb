@@ -1,3 +1,5 @@
+require 'vedeu/support/terminal'
+
 module Vedeu
 
   # Validates that the provided coordinates are within the terminal and

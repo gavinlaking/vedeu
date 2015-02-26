@@ -40,7 +40,7 @@ module Vedeu
         fail InvalidSyntax, 'block not given' unless block_given?
 
         border_attrs = attributes.merge!({ enabled: true,
-                                          name:    model.name })
+                                           name:    model.name })
 
         Vedeu::Border.build(border_attrs, &block).store
       end

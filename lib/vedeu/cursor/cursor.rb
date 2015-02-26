@@ -1,6 +1,6 @@
 require 'vedeu/cursor/all'
 require 'vedeu/models/model'
-require 'vedeu/support/position'
+require 'vedeu/geometry/position'
 require 'vedeu/support/visible'
 
 module Vedeu
