@@ -143,21 +143,21 @@ module Vedeu
     #
     # @return [String]
     def class_count
-      @_count ||= "(#{classes.size}/#{vedeu_classes.size})"
+      @count ||= "(#{classes.size}/#{vedeu_classes.size})"
     end
 
     # Returns the classes to be traced, without exceptions or ignored classes.
     #
     # @return [Set]
     def classes
-      @_classes ||= vedeu_classes - vedeu_exceptions - ignored_classes
+      @classes ||= vedeu_classes - vedeu_exceptions - ignored_classes
     end
 
     # Returns all the classes defined within Vedeu.
     #
     # @return [Set]
     def vedeu_classes
-      @_vedeu_classes ||= Vedeu.constants.collect do |c|
+      @vedeu_classes ||= Vedeu.constants.collect do |c|
         Vedeu.const_get(c).to_s
       end.to_set
     end

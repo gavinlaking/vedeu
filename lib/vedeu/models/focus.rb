@@ -128,7 +128,7 @@ module Vedeu
     #
     # @return [Array|Hash|Set]
     def reset
-      @_storage = in_memory
+      @storage = in_memory
     end
 
     private
@@ -151,7 +151,7 @@ module Vedeu
     #
     # @return [Array]
     def storage
-      @_storage ||= in_memory
+      @storage ||= in_memory
     end
 
     # Returns an empty collection ready for the storing of interface names.

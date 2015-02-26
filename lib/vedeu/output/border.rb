@@ -208,7 +208,7 @@ module Vedeu
 
     # @return [Vedeu::Interface]
     def interface
-      @_interface ||= Vedeu.interfaces.find(name)
+      @interface ||= Vedeu.interfaces.find(name)
     end
 
     # The default values for a new instance of this class.

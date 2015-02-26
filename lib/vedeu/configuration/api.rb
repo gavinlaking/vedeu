@@ -387,7 +387,7 @@ module Vedeu
       #
       # @return [Hash]
       def options
-        @_options ||= {}
+        @options ||= {}
       end
 
       # Returns the system keys set via the configuration API DSL or an empty
@@ -395,7 +395,7 @@ module Vedeu
       #
       # @return [Hash]
       def system_keys
-        @_system_keys ||= {}
+        @system_keys ||= {}
       end
 
       # Checks that the value provided to {#colour_mode} is valid.

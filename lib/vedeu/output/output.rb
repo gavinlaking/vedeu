@@ -89,7 +89,7 @@ module Vedeu
 
     # @return [void]
     def viewport
-      @_viewport ||= Vedeu::Viewport.new(interface).render
+      @viewport ||= Vedeu::Viewport.new(interface).render
     end
 
     # @param iy [Fixnum]
