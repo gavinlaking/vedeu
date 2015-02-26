@@ -92,9 +92,7 @@ module Vedeu
             fail InvalidSyntax, 'An invalid value for `key` was encountered.'
           end
 
-          unless model.key_defined?(value)
-            model.add(model.member.build(value, &block))
-          end
+          model.add(model.member.new(value, &block))
         end
       end
 
