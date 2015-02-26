@@ -43,9 +43,7 @@ module Vedeu
           system_keys: Configuration.default_system_keys.merge!(system_keys)
         }) if system_keys.any?
 
-        options.each do |option, value|
-          Vedeu.log(type: :config, message: "API #{option.to_s}: #{value.to_s}")
-        end
+        Vedeu::Config.log('API', options)
       end
 
       # Sets boolean to allow user input. The default behaviour of Vedeu is to
