@@ -62,7 +62,7 @@ module Vedeu
     # @option attributes vertical [String] The vertical border character.
     # @return [Border]
     def initialize(attributes = {})
-      @attributes   = defaults.merge(attributes)
+      @attributes   = defaults.merge!(attributes)
       @enabled      = @attributes[:enabled]
       @bottom_left  = @attributes[:bottom_left]
       @bottom_right = @attributes[:bottom_right]

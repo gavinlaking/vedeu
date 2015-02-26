@@ -40,7 +40,7 @@ module Vedeu
       # @return [Hash]
       def configuration
         options.merge!({
-          system_keys: Configuration.default_system_keys.merge(system_keys)
+          system_keys: Configuration.default_system_keys.merge!(system_keys)
         }) if system_keys.any?
 
         options.each do |option, value|

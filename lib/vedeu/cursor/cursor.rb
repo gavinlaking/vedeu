@@ -41,7 +41,7 @@ module Vedeu
         attributes = { name: attributes }
       end
 
-      @attributes = defaults.merge(attributes)
+      @attributes = defaults.merge!(attributes)
 
       @name       = @attributes.fetch(:name)
       @ox         = @attributes.fetch(:ox)

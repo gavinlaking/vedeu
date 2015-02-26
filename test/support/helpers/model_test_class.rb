@@ -11,7 +11,7 @@ module Vedeu
     attr_accessor :background, :colour, :name, :style
 
     def initialize(attributes = {})
-      @attributes = defaults.merge(attributes)
+      @attributes = defaults.merge!(attributes)
 
       @colour = @attributes[:colour]
       @name   = @attributes[:name]

@@ -64,7 +64,7 @@ module Vedeu
     # @option attributes selected [Fixnum|NilClass]
     # @return [Menu]
     def initialize(attributes = {})
-      @attributes = defaults.merge(attributes)
+      @attributes = defaults.merge!(attributes)
       @collection = @attributes[:collection]
       @current    = @attributes[:current]
       @name       = @attributes[:name]

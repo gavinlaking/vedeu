@@ -31,7 +31,7 @@ module Vedeu
     # @option attributes style []
     # @return [Composition]
     def initialize(attributes = {})
-      @attributes = defaults.merge(attributes)
+      @attributes = defaults.merge!(attributes)
       @interfaces = @attributes[:interfaces]
       @colour     = Colour.coerce(@attributes[:colour])
       @style      = Style.coerce(@attributes[:style])

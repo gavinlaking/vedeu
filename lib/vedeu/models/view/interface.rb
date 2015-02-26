@@ -59,7 +59,7 @@ module Vedeu
     # @option attributes style [Vedeu::Style]
     # @return [Vedeu::Interface]
     def initialize(attributes = {})
-      @attributes = defaults.merge(attributes)
+      @attributes = defaults.merge!(attributes)
 
       @colour     = Colour.coerce(@attributes[:colour])
       @delay      = @attributes[:delay]

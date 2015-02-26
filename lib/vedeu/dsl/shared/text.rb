@@ -54,7 +54,7 @@ module Vedeu
       #   than the specified width.
       # @return [String]
       def text(value = '', options = {})
-        output = Vedeu::Text.with(value, options.merge({ anchor: __callee__ }))
+        output = Vedeu::Text.with(value, options.merge!({ anchor: __callee__ }))
 
         content = if model.is_a?(Vedeu::Interface)
           stream = stream_builder({ value: output })
@@ -94,7 +94,7 @@ module Vedeu
           colour: model.colour,
           parent: model,
           style:  model.style,
-        }.merge(attrs)
+        }.merge!(attrs)
       end
 
     end # Text

@@ -48,7 +48,7 @@ module Vedeu
     # @option attributes yn [Fixnum]
     # @return [Geometry]
     def initialize(attributes = {})
-      @attributes = defaults.merge(attributes)
+      @attributes = defaults.merge!(attributes)
 
       @centred = @attributes[:centred]
       @height  = @attributes[:height]

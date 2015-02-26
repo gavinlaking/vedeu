@@ -43,7 +43,7 @@ module Vedeu
     # @option attributes views [String]
     # @return [TestApplication]
     def initialize(attributes = {})
-      @attributes = defaults.merge(attributes)
+      @attributes = defaults.merge!(attributes)
 
       @attributes.each do |k, v|
         instance_variable_set("@#{k.to_s}", @attributes[k])

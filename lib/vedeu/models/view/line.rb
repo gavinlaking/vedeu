@@ -31,7 +31,7 @@ module Vedeu
     # @option attributes style [Vedeu::Style]
     # @return [Line]
     def initialize(attributes = {})
-      @attributes = defaults.merge(attributes)
+      @attributes = defaults.merge!(attributes)
       @colour     = Colour.coerce(@attributes[:colour])
       @parent     = @attributes[:parent]
       @streams    = @attributes[:streams]

@@ -30,7 +30,7 @@ module Vedeu
     # @option attributes border   [Boolean]
     # @return [Char]
     def initialize(attributes = {})
-      @attributes = defaults.merge(attributes)
+      @attributes = defaults.merge!(attributes)
 
       @border   = @attributes[:border]
       @colour   = Vedeu::Colour.coerce(@attributes[:colour])

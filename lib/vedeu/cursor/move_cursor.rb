@@ -76,7 +76,7 @@ module Vedeu
     #
     # @return [Cursor]
     def move
-      Cursor.new(cursor.attributes.merge(moved_attributes)).store
+      Cursor.new(cursor.attributes.merge!(moved_attributes)).store
     end
 
     private

@@ -71,7 +71,7 @@ module Vedeu
     #
     # @return [Hash]
     def background_codes
-      Esc.codes.inject({}) { |h, (k, v)| h.merge(k => v + 10) }
+      Esc.codes.inject({}) { |h, (k, v)| h.merge!(k => v + 10) }
     end
 
     # Dynamically creates methods for each terminal named colour. When a block
