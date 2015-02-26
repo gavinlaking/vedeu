@@ -91,11 +91,14 @@ module Vedeu
       colour.is_a?(Symbol) && valid_name?
     end
 
-    # @raise [NotImplemented] Subclasses of this class must implement this
-    #   method.
-    # @return [Exception]
+    # Returns an escape sequence for a named background colour.
+    #
+    # @note
+    #   Valid names can be found at {Vedeu::Esc#codes}
+    #
+    # @return [String]
     def named
-      fail NotImplemented, 'Subclasses implement this.'
+      ["\e[", named_codes, 'm'].join
     end
 
     # Returns a boolean indicating whether the colour provided is a valid named
@@ -114,11 +117,24 @@ module Vedeu
       colour.is_a?(Fixnum) && valid_range?
     end
 
-    # @raise [NotImplemented] Subclasses of this class must implement this
-    #   method.
-    # @return [NotImplemented]
+    # Returns an escape sequence.
+    #
+    # @return [String]
     def numbered
-      fail NotImplemented, 'Subclasses implement this.'
+      [numbered_prefix, css_to_numbered, 'm'].join
+    end
+
+    # Returns an escape sequence.
+    #
+    # @return [String]
+    def rgb
+      if Configuration.colour_mode == 16777216
+        sprintf(rgb_prefix, *css_to_rgb)
+
+      else
+        numbered
+
+      end
     end
 
     # Returns a boolean indicating whether the numbered colour is within the
@@ -134,13 +150,6 @@ module Vedeu
     # @return [Boolean]
     def rgb?
       colour.is_a?(String) && valid_rgb?
-    end
-
-    # @raise [NotImplemented] Subclasses of this class must implement this
-    #   method.
-    # @return [NotImplemented]
-    def rgb
-      fail NotImplemented, 'Subclasses implement this.'
     end
 
     # Returns a boolean indicated whether the colour is a valid HTML/CSS colour.
@@ -199,6 +208,27 @@ module Vedeu
     # @return [Fixnum]
     def blue
       (css_to_rgb[2] / 51) * 1
+    end
+
+    # @raise [NotImplemented] Subclasses of this class must implement this
+    #   method.
+    # @return [Exception]
+    def named_codes
+      fail NotImplemented, 'Subclasses implement this.'
+    end
+
+    # @raise [NotImplemented] Subclasses of this class must implement this
+    #   method.
+    # @return [NotImplemented]
+    def numbered_prefix
+      fail NotImplemented, 'Subclasses implement this.'
+    end
+
+    # @raise [NotImplemented] Subclasses of this class must implement this
+    #   method.
+    # @return [NotImplemented]
+    def rgb_prefix
+      fail NotImplemented, 'Subclasses implement this.'
     end
 
   end # Translator

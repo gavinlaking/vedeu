@@ -9,7 +9,38 @@ module Vedeu
 
     extend self
 
-    # Produces the foreground named colour escape sequence hash.
+    # Produces the foreground named colour escape sequence hash. The background
+    # escape sequences are also generated from this by adding 10 to the values.
+    # This hash gives rise to methods you can call directly on `Esc` to produce
+    # the desired colours:
+    #
+    # @example
+    #   Esc.red                     # => "\e[31m"
+    #
+    #   Esc.red { 'some text' }     # => "\e[31msome text\e[39m"
+    #
+    #   Esc.on_blue                 # => "\e[44m"
+    #
+    #   Esc.on_blue { 'some text' } # => "\e[44msome text\e[49m"
+    #
+    #   # Valid names:
+    #   :black
+    #   :red
+    #   :green
+    #   :yellow
+    #   :blue
+    #   :magenta
+    #   :cyan
+    #   :light_grey
+    #   :default
+    #   :dark_grey
+    #   :light_red
+    #   :light_green
+    #   :light_yellow
+    #   :light_blue
+    #   :light_magenta
+    #   :light_cyan
+    #   :white
     #
     # @return [Hash]
     def codes
@@ -45,15 +76,6 @@ module Vedeu
 
     # Dynamically creates methods for each terminal named colour. When a block
     # is given, then the colour is reset to 'default' once the block is called.
-    #
-    # @example
-    #   Esc.red                     # => "\e[31m"
-    #
-    #   Esc.red { 'some text' }     # => "\e[31msome text\e[39m"
-    #
-    #   Esc.on_blue                 # => "\e[44m"
-    #
-    #   Esc.on_blue { 'some text' } # => "\e[44msome text\e[49m"
     #
     # @return [String]
     foreground_codes.each do |key, code|
