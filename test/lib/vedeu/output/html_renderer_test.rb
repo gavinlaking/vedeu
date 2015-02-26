@@ -11,7 +11,6 @@ module Vedeu
     describe '#initialize' do
       it { instance.must_be_instance_of(Vedeu::HTMLRenderer) }
       it { instance.instance_variable_get('@output').must_equal(output) }
-      it { instance.instance_variable_get('@object').must_be_instance_of(Vedeu::HTMLRenderer) }
     end
 
     describe '#render' do

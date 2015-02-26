@@ -12,12 +12,11 @@ module Vedeu
     # @return [Vedeu::HTMLRenderer]
     def initialize(output)
       @output = output
-      @object = self
     end
 
     # @return [String]
     def render
-      ERB.new(html_output, nil, '-').result(binding)
+      Template.parse(self, template)
     end
 
     # @param path [String]
@@ -48,8 +47,8 @@ module Vedeu
 
     attr_reader :output
 
-    def html_output
-      @html_output ||= read('html_renderer.vedeu')
+    def template
+      File.dirname(__FILE__) + '/templates/html_renderer.vedeu'
     end
 
     # @return [String]
@@ -60,11 +59,6 @@ module Vedeu
     # return [Fixnum]
     def timestamp
       @timestamp ||= Time.now.to_i
-    end
-
-    # @return [String]
-    def read(filename)
-      File.read(File.dirname(__FILE__) + '/templates/' + filename)
     end
 
   end # HTMLRenderer
