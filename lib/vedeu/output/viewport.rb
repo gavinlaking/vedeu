@@ -88,13 +88,9 @@ module Vedeu
     def line_pad
       visible_lines = lines[rows] || []
 
-      if visible_lines.size < height
-        visible_lines + [" "] * (height - visible_lines.size)
+      return visible_lines unless visible_lines.size < height
 
-      else
-        visible_lines
-
-      end
+      visible_lines + [" "] * (height - visible_lines.size)
     end
 
     # Pads the number of columns so that we always return an Array of the same
@@ -105,13 +101,9 @@ module Vedeu
     def column_pad(line)
       visible_columns = line.chars[columns] || []
 
-      if visible_columns.size < width
-        visible_columns + [" "] * (width - visible_columns.size)
+      return visible_columns unless visible_columns.size < width
 
-      else
-        visible_columns
-
-      end
+      visible_columns + [" "] * (width - visible_columns.size)
     end
 
     # Using the current cursor's y position, return a range of visible lines.
@@ -129,14 +121,6 @@ module Vedeu
     #
     # @return [Range]
     def rows
-      top = if oy >= bordered_height
-        [(oy - bordered_height), 0].max
-
-      else
-        0
-
-      end
-
       top..(top + (height - 1))
     end
 
@@ -155,17 +139,58 @@ module Vedeu
     #
     # @return [Range]
     def columns
-      left = if ox >= bordered_width
-        [(ox - bordered_width), 0].max
-
-      else
-        0
-
-      end
-
       left..(left + (width - 1))
     end
 
+    # Returns the offset for the content based on the offset.
+    #
+    # @return [Fixnum]
+    def left
+      @left ||= reposition_x? ? reposition_x : 0
+    end
+
+    # Returns the offset for the content based on the offset.
+    #
+    # @return [Fixnum]
+    def top
+      @top ||= reposition_y? ? reposition_y : 0
+    end
+
+    # Returns a boolean indicating whether the x offset is greater than or equal
+    # to the bordered width.
+    #
+    # @return [Boolean]
+    def reposition_x?
+      ox >= bordered_width
+    end
+
+    # Returns a boolean indicating whether the y offset is greater than or equal
+    # to the bordered height.
+    #
+    # @return [Boolean]
+    def reposition_y?
+      oy >= bordered_height
+    end
+
+    # Returns the number of columns to change the viewport by on the x axis,
+    # determined by the position of the x offset.
+    #
+    # @return [Fixnum]
+    def reposition_x
+      [(ox - bordered_width), 0].max
+    end
+
+    # Returns the number of rows to change the viewport by on the y axis,
+    # determined by the position of the y offset.
+    #
+    # @return [Fixnum]
+    def reposition_y
+      [(oy - bordered_height), 0].max
+    end
+
+    # When the viewport has a border, we need to account for that in our
+    # redrawing.
+    #
     # @return [Fixnum]
     def bordered_width
       return border.width if border?
@@ -173,6 +198,9 @@ module Vedeu
       width
     end
 
+    # When the viewport has a border, we need to account for that in our
+    # redrawing.
+    #
     # @return [Fixnum]
     def bordered_height
       return border.height if border?
@@ -180,11 +208,15 @@ module Vedeu
       height
     end
 
+    # Return the border associated with the interface we are drawing.
+    #
     # @return [Vedeu::Border]
     def border
       @border ||= Vedeu.borders.find(interface.name)
     end
 
+    # Returns a boolean indicating the interface we are drawing has a border.
+    #
     # @return [Boolean]
     def border?
       Vedeu.borders.registered?(interface.name)
