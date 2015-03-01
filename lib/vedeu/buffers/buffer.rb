@@ -38,17 +38,6 @@ module Vedeu
       @repository = repository || Vedeu.buffers
     end
 
-    # Returns log friendly output.
-    #
-    # @return [String]
-    def inspect
-      "<#{self.class.name} ( " \
-      "back?:#{content_for?(:back)} " \
-      "front?:#{content_for?(:front)} " \
-      "previous?:#{content_for?(:previous)} " \
-      ")>"
-    end
-
     # Add the content to the back buffer, then update the repository. Returns
     # boolean indicating that the repository was updated.
     #

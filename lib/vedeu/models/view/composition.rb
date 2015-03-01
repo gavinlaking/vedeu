@@ -43,13 +43,6 @@ module Vedeu
       @interfaces = interfaces.add(child)
     end
 
-    # Returns log friendly output.
-    #
-    # @return [String]
-    def inspect
-      "<#{self.class.name} (interfaces:#{interfaces.size})>"
-    end
-
     # @return [Vedeu::Interfaces]
     def interfaces
       collection.coerce(@interfaces, self)

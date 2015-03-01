@@ -40,12 +40,6 @@ module Vedeu
       it { instance.instance_variable_get('@position').must_equal(position) }
     end
 
-    describe '#inspect' do
-      subject { instance.inspect }
-
-      it { subject.must_equal("<Vedeu::Char (value:'a')>") }
-    end
-
     describe '#value' do
       subject { instance.value }
 

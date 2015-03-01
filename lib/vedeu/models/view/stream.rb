@@ -68,13 +68,6 @@ module Vedeu
       value.empty?
     end
 
-    # Returns log friendly output.
-    #
-    # @return [String]
-    def inspect
-      "<#{self.class.name} (value:#{value}, size:#{size})>"
-    end
-
     # Returns the size of the content in characters without formatting.
     #
     # @return [Fixnum]

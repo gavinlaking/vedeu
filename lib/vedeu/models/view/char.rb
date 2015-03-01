@@ -40,13 +40,6 @@ module Vedeu
       @value    = @attributes[:value]
     end
 
-    # Returns log friendly output.
-    #
-    # @return [String]
-    def inspect
-      "<#{self.class.name} (value:'#{@value}')>"
-    end
-
     # @param other []
     # @return [Boolean]
     def ==(other)

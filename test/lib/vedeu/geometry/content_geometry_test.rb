@@ -26,12 +26,6 @@ module Vedeu
       it { instance.instance_variable_get('@interface').must_equal(interface) }
     end
 
-    describe '#inspect' do
-      subject { instance.inspect }
-
-      it { subject.must_equal('<Vedeu::ContentGeometry (y:1 x:1 yn:3 xn:5)>') }
-    end
-
     describe '#yn' do
       subject { instance.yn }
 

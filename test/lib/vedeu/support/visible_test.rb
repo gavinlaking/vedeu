@@ -62,12 +62,6 @@ module Vedeu
       end
     end
 
-    describe '#inspect' do
-      subject { instance.inspect }
-
-      it { subject.must_equal('<Vedeu::Visible (true)>') }
-    end
-
     describe '#cursor' do
       subject { instance.cursor }
 

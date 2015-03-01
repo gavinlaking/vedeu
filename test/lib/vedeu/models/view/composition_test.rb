@@ -34,12 +34,6 @@ module Vedeu
       it { instance.instance_variable_get('@style').must_be_instance_of(Vedeu::Style) }
     end
 
-    describe '#inspect' do
-      subject { instance.inspect }
-
-      it { subject.must_equal('<Vedeu::Composition (interfaces:0)>') }
-    end
-
   end # Composition
 
 end # Vedeu

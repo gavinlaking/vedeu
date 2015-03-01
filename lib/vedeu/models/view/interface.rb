@@ -120,13 +120,6 @@ module Vedeu
       Vedeu.geometries.find(name)
     end
 
-    # Returns log friendly output.
-    #
-    # @return [String]
-    def inspect
-      "<#{self.class.name} (lines:#{lines.size})>"
-    end
-
     # @return [Vedeu::Lines]
     def lines
       collection.coerce(@lines, self)

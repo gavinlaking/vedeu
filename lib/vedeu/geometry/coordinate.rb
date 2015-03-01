@@ -21,20 +21,6 @@ module Vedeu
       @y      = y
     end
 
-    # Returns log friendly output.
-    #
-    # @return [String]
-    def inspect
-      "<#{self.class.name} ( " \
-        "height:#{height} " \
-        "width:#{width} " \
-        "x:#{x} " \
-        "xn:#{xn} " \
-        "y:#{y} " \
-        "yn:#{yn} " \
-        ")>"
-    end
-
     # Returns the maximum y coordinate for an area.
     #
     # @example

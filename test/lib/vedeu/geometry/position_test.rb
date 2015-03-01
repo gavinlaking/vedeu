@@ -39,12 +39,6 @@ module Vedeu
       end
     end
 
-    describe '#inspect' do
-      subject { instance.inspect }
-
-      it { subject.must_equal("<Vedeu::Position (y:12 x:19)>") }
-    end
-
     describe '#==' do
       let(:other) {}
 

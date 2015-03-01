@@ -37,11 +37,6 @@ module Vedeu
       @x = (x.nil? || x < 1) ? 1 : x
     end
 
-    # @return [String]
-    def inspect
-      "<#{self.class.name} (y:#{@y} x:#{@x})>"
-    end
-
     # @param other [Vedeu::Position]
     # @return [Boolean]
     def ==(other)
