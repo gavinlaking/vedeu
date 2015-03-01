@@ -60,14 +60,14 @@ module Vedeu
     def initialize(attributes = {})
       @attributes = defaults.merge!(attributes)
 
-      @colour     = Colour.coerce(@attributes[:colour])
+      @colour     = @attributes[:colour]
       @delay      = @attributes[:delay]
       @group      = @attributes[:group]
       @lines      = @attributes[:lines]
       @name       = @attributes[:name]
       @parent     = @attributes[:parent]
       @repository = Vedeu.interfaces
-      @style      = Style.coerce(@attributes[:style])
+      @style      = @attributes[:style]
     end
 
     # @param child []

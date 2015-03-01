@@ -33,7 +33,7 @@ module Vedeu
       @attributes = defaults.merge!(attributes)
 
       @border   = @attributes[:border]
-      @colour   = Vedeu::Colour.coerce(@attributes[:colour])
+      @colour   = @attributes[:colour]
       @parent   = @attributes[:parent]
       @position = Vedeu::Position.coerce(@attributes[:position])
       @style    = @attributes[:style]

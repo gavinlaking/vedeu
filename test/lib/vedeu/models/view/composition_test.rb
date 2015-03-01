@@ -30,8 +30,8 @@ module Vedeu
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }
       it { instance.instance_variable_get('@interfaces').must_equal(interfaces) }
-      it { instance.instance_variable_get('@colour').must_be_instance_of(Vedeu::Colour) }
-      it { instance.instance_variable_get('@style').must_be_instance_of(Vedeu::Style) }
+      it { instance.instance_variable_get('@colour').must_equal(colour) }
+      it { instance.instance_variable_get('@style').must_equal(style) }
     end
 
   end # Composition

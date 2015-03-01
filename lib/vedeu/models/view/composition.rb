@@ -33,8 +33,8 @@ module Vedeu
     def initialize(attributes = {})
       @attributes = defaults.merge!(attributes)
       @interfaces = @attributes[:interfaces]
-      @colour     = Colour.coerce(@attributes[:colour])
-      @style      = Style.coerce(@attributes[:style])
+      @colour     = @attributes[:colour]
+      @style      = @attributes[:style]
     end
 
     # @param child [Vedeu::Interface]

@@ -32,10 +32,10 @@ module Vedeu
     # @return [Line]
     def initialize(attributes = {})
       @attributes = defaults.merge!(attributes)
-      @colour     = Colour.coerce(@attributes[:colour])
+      @colour     = @attributes[:colour]
       @parent     = @attributes[:parent]
       @streams    = @attributes[:streams]
-      @style      = Style.coerce(@attributes[:style])
+      @style      = @attributes[:style]
     end
 
     # @param child []
