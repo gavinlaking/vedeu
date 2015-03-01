@@ -33,17 +33,11 @@ module Vedeu
 
     describe '#initialize' do
       it { instance.must_be_instance_of(Char) }
-      it { instance.instance_variable_get('@colour').must_be_instance_of(Vedeu::Colour) }
+      it { instance.instance_variable_get('@colour').must_equal(colour) }
       it { instance.instance_variable_get('@parent').must_equal(parent) }
       it { instance.instance_variable_get('@style').must_equal(style) }
       it { instance.instance_variable_get('@value').must_equal(value) }
       it { instance.instance_variable_get('@position').must_equal(position) }
-    end
-
-    describe '#inspect' do
-      subject { instance.inspect }
-
-      it { subject.must_equal("<Vedeu::Char (value:'a')>") }
     end
 
     describe '#value' do
@@ -84,10 +78,12 @@ module Vedeu
       end
 
       context 'when a colour is specified' do
-        let(:colour) { Colour.new({ foreground: '#00ff00', background: '#005500' }) }
+        let(:colour) { Colour.new({ foreground: '#00ff00',
+                                    background: '#005500' }) }
 
         context 'when a parent colour is specified' do
-          let(:parent_colour) { Colour.new({ foreground: '#ff0000', background: '#550000' }) }
+          let(:parent_colour) { Colour.new({ foreground: '#ff0000',
+                                             background: '#550000' }) }
 
           it { subject.must_equal("\e[38;2;0;255;0m\e[48;2;0;85;0ma\e[38;2;255;0;0m\e[48;2;85;0;0m") }
         end

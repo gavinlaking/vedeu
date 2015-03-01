@@ -34,14 +34,14 @@ module Vedeu
     #
     # @return [Cursor]
     def hide
-      cursor.class.new(cursor.attributes.merge({ state: false })).store
+      cursor.class.new(cursor.attributes.merge!({ state: false })).store
     end
 
     # Shows the cursor.
     #
     # @return [Cursor]
     def show
-      cursor.class.new(cursor.attributes.merge({ state: true })).store
+      cursor.class.new(cursor.attributes.merge!({ state: true })).store
     end
 
     private

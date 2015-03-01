@@ -138,12 +138,6 @@ module Vedeu
       end
     end
 
-    describe '#inspect' do
-      subject { instance.inspect }
-
-      it { subject.must_equal('<Vedeu::Line (streams:3)>') }
-    end
-
     describe '#size' do
       subject { instance.size }
 

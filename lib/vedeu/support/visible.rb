@@ -6,6 +6,7 @@ module Vedeu
   #
   class Visible
 
+    # @param visible [Boolean|Symbol]
     # @return [Visible]
     def self.coerce(value)
       if value.is_a?(self)
@@ -17,6 +18,7 @@ module Vedeu
       end
     end
 
+    # @param visible [Boolean|Symbol]
     # @return [Visible]
     def initialize(visible = nil)
       @visible = if visible == :hide || visible == false
@@ -29,13 +31,6 @@ module Vedeu
         !!visible
 
       end
-    end
-
-    # Returns log friendly output.
-    #
-    # @return [String]
-    def inspect
-      "<#{self.class.name} (#{@visible.to_s})>"
     end
 
     # @return [String]

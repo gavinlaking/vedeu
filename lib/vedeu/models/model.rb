@@ -22,7 +22,7 @@ module Vedeu
       # @param block [Proc] The block passed to the build method.
       # @return [Object] An instance of the model.
       def build(attributes = {}, &block)
-        attributes = defaults.merge(attributes)
+        attributes = defaults.merge!(attributes)
 
         model = new(attributes)
         model.deputy(attributes[:client]).instance_eval(&block) if block_given?

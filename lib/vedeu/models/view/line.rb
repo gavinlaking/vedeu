@@ -31,11 +31,11 @@ module Vedeu
     # @option attributes style [Vedeu::Style]
     # @return [Line]
     def initialize(attributes = {})
-      @attributes = defaults.merge(attributes)
-      @colour     = Colour.coerce(@attributes[:colour])
+      @attributes = defaults.merge!(attributes)
+      @colour     = @attributes[:colour]
       @parent     = @attributes[:parent]
       @streams    = @attributes[:streams]
-      @style      = Style.coerce(@attributes[:style])
+      @style      = @attributes[:style]
     end
 
     # @param child []
@@ -59,13 +59,6 @@ module Vedeu
     # @return [Boolean]
     def empty?
       streams.empty?
-    end
-
-    # Returns log friendly output.
-    #
-    # @return [String]
-    def inspect
-      "<#{self.class.name} (streams:#{streams.size})>"
     end
 
     # Returns the size of the content in characters without formatting.

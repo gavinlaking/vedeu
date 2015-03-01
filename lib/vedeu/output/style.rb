@@ -38,7 +38,7 @@ module Vedeu
     def to_s
       return '' unless defined_value?(value)
 
-      @_sequences ||= Array(value).flatten.map { |v| Esc.string(v) }.join
+      @sequences ||= Array(value).flatten.map { |v| Esc.string(v) }.join
     end
     alias_method :escape_sequences, :to_s
 

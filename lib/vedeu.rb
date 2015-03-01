@@ -23,7 +23,7 @@ module Vedeu
 
   # @return [Vedeu::Focus]
   def self.focusable
-    @_focusable ||= Vedeu::Focus
+    @focusable ||= Vedeu::Focus
   end
 
   # When Vedeu is included within one of your classes, you should have all

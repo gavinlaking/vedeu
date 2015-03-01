@@ -62,10 +62,10 @@ module Vedeu
           vertical:     'x',
         })
       }
-      it { instance.instance_variable_get('@colour').must_be_instance_of(Vedeu::Colour) }
+      it { instance.instance_variable_get('@colour').must_equal({}) }
       it { instance.instance_variable_get('@name').must_equal('borders') }
       it { instance.instance_variable_get('@repository').must_be_instance_of(Vedeu::Borders) }
-      it { instance.instance_variable_get('@style').must_be_instance_of(Vedeu::Style) }
+      it { instance.instance_variable_get('@style').must_equal([]) }
     end
 
     describe '#width' do

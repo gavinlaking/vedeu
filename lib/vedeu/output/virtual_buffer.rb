@@ -31,7 +31,7 @@ module Vedeu
     #
     # @return [Array]
     def clear
-      @_storage = in_memory
+      @storage = in_memory
     end
     alias_method :reset, :clear
 
@@ -41,7 +41,7 @@ module Vedeu
     #
     # @return [Array]
     def storage
-      @_storage ||= in_memory
+      @storage ||= in_memory
     end
 
     # Returns an empty collection ready for the storing of virtual buffers.

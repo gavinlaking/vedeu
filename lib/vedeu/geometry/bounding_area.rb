@@ -1,6 +1,7 @@
 module Vedeu
 
   # Provides coordinates based on the height and width provided.
+  # Coordinates always start from 1, 1.
   #
   class BoundingArea
 

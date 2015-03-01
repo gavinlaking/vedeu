@@ -40,7 +40,7 @@ module Vedeu
     #
     # @return [String]
     def input
-      @_input ||= reader.read
+      @input ||= reader.read
     end
 
     # Returns the translated (if possible) keypress(es) as either a String or a

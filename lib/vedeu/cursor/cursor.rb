@@ -1,6 +1,6 @@
 require 'vedeu/cursor/all'
 require 'vedeu/models/model'
-require 'vedeu/support/position'
+require 'vedeu/geometry/position'
 require 'vedeu/support/visible'
 
 module Vedeu
@@ -41,7 +41,7 @@ module Vedeu
         attributes = { name: attributes }
       end
 
-      @attributes = defaults.merge(attributes)
+      @attributes = defaults.merge!(attributes)
 
       @name       = @attributes.fetch(:name)
       @ox         = @attributes.fetch(:ox)
@@ -52,13 +52,6 @@ module Vedeu
       @y          = @attributes.fetch(:y)
 
       @position   = Vedeu::Position.new(@y, @x)
-    end
-
-    # Returns log friendly output.
-    #
-    # @return [String]
-    def inspect
-      "<#{self.class.name} (#{@name}: x:#{@x} y:#{@y} ox:#{@ox} oy:#{@oy})>"
     end
 
     # Returns an escape sequence to position the cursor and set its visibility.

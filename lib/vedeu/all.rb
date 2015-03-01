@@ -7,6 +7,8 @@ require 'vedeu/exceptions'
 
 require 'vedeu/repositories/all'
 
+require 'vedeu/geometry/all'
+
 require 'vedeu/api'
 require 'vedeu/bindings'
 

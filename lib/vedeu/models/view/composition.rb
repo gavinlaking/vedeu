@@ -31,23 +31,16 @@ module Vedeu
     # @option attributes style []
     # @return [Composition]
     def initialize(attributes = {})
-      @attributes = defaults.merge(attributes)
+      @attributes = defaults.merge!(attributes)
       @interfaces = @attributes[:interfaces]
-      @colour     = Colour.coerce(@attributes[:colour])
-      @style      = Style.coerce(@attributes[:style])
+      @colour     = @attributes[:colour]
+      @style      = @attributes[:style]
     end
 
     # @param child [Vedeu::Interface]
     # @return [void]
     def add(child)
       @interfaces = interfaces.add(child)
-    end
-
-    # Returns log friendly output.
-    #
-    # @return [String]
-    def inspect
-      "<#{self.class.name} (interfaces:#{interfaces.size})>"
     end
 
     # @return [Vedeu::Interfaces]

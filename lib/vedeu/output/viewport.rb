@@ -182,7 +182,7 @@ module Vedeu
 
     # @return [Vedeu::Border]
     def border
-      @_border ||= Vedeu.borders.find(interface.name)
+      @border ||= Vedeu.borders.find(interface.name)
     end
 
     # @return [Boolean]

@@ -40,12 +40,10 @@ module Vedeu
       # @return [Hash]
       def configuration
         options.merge!({
-          system_keys: Configuration.default_system_keys.merge(system_keys)
+          system_keys: Configuration.default_system_keys.merge!(system_keys)
         }) if system_keys.any?
 
-        options.each do |option, value|
-          Vedeu.log(type: :config, message: "API #{option.to_s}: #{value.to_s}")
-        end
+        Vedeu::Config.log('API', options)
       end
 
       # Sets boolean to allow user input. The default behaviour of Vedeu is to
@@ -389,7 +387,7 @@ module Vedeu
       #
       # @return [Hash]
       def options
-        @_options ||= {}
+        @options ||= {}
       end
 
       # Returns the system keys set via the configuration API DSL or an empty
@@ -397,7 +395,7 @@ module Vedeu
       #
       # @return [Hash]
       def system_keys
-        @_system_keys ||= {}
+        @system_keys ||= {}
       end
 
       # Checks that the value provided to {#colour_mode} is valid.

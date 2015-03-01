@@ -1,5 +1,3 @@
-require 'erb'
-
 module Vedeu
 
   # Create a test application as a string.
@@ -45,7 +43,7 @@ module Vedeu
     # @option attributes views [String]
     # @return [TestApplication]
     def initialize(attributes = {})
-      @attributes = defaults.merge(attributes)
+      @attributes = defaults.merge!(attributes)
 
       @attributes.each do |k, v|
         instance_variable_set("@#{k.to_s}", @attributes[k])
@@ -57,9 +55,7 @@ module Vedeu
     def build(&block)
       self.instance_eval(&block) if block_given?
 
-      @object = self
-
-      ERB.new(application, nil, '-').result(binding)
+      Template.parse(self, template)
     end
 
     # @return [String]
@@ -70,8 +66,8 @@ module Vedeu
     private
 
     # @return [String]
-    def application
-      @application ||= read('default_application.vedeu')
+    def template
+      File.dirname(__FILE__) + '/templates/default_application.vedeu'
     end
 
     # @todo Don't like all this file reading.

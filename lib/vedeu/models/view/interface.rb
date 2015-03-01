@@ -1,4 +1,4 @@
-require 'vedeu/support/content_geometry'
+require 'vedeu/geometry/content_geometry'
 require 'vedeu/models/model'
 require 'vedeu/output/presentation'
 require 'vedeu/buffers/display_buffer'
@@ -44,8 +44,7 @@ module Vedeu
       :bottom,
       :left,
       :width,
-      :height,
-      :origin
+      :height
 
     # Return a new instance of Interface.
     #
@@ -59,16 +58,16 @@ module Vedeu
     # @option attributes style [Vedeu::Style]
     # @return [Vedeu::Interface]
     def initialize(attributes = {})
-      @attributes = defaults.merge(attributes)
+      @attributes = defaults.merge!(attributes)
 
-      @colour     = Colour.coerce(@attributes[:colour])
+      @colour     = @attributes[:colour]
       @delay      = @attributes[:delay]
       @group      = @attributes[:group]
       @lines      = @attributes[:lines]
       @name       = @attributes[:name]
       @parent     = @attributes[:parent]
       @repository = Vedeu.interfaces
-      @style      = Style.coerce(@attributes[:style])
+      @style      = @attributes[:style]
     end
 
     # @param child []
@@ -119,13 +118,6 @@ module Vedeu
     # @return [Vedeu::Geometry]
     def geometry
       Vedeu.geometries.find(name)
-    end
-
-    # Returns log friendly output.
-    #
-    # @return [String]
-    def inspect
-      "<#{self.class.name} (lines:#{lines.size})>"
     end
 
     # @return [Vedeu::Lines]

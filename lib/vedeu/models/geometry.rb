@@ -1,6 +1,8 @@
 require 'vedeu/dsl/components/geometry'
 require 'vedeu/models/model'
-require 'vedeu/support/esc'
+
+require 'vedeu/geometry/limit'
+require 'vedeu/geometry/position'
 require 'vedeu/support/terminal'
 
 module Vedeu
@@ -48,7 +50,7 @@ module Vedeu
     # @option attributes yn [Fixnum]
     # @return [Geometry]
     def initialize(attributes = {})
-      @attributes = defaults.merge(attributes)
+      @attributes = defaults.merge!(attributes)
 
       @centred = @attributes[:centred]
       @height  = @attributes[:height]
@@ -59,21 +61,6 @@ module Vedeu
       @y       = @attributes[:y]
       @yn      = @attributes[:yn]
       @repository = Vedeu.geometries
-    end
-
-    # Returns log friendly output.
-    #
-    # @note
-    #   The attribute format is (specified/calculated).
-    #
-    # @return [String]
-    def inspect
-      "<#{self.class.name} (height:(#{@height}/#{height}) " \
-                           "width:(#{@width}/#{width}) " \
-                           "top:#{top} " \
-                           "bottom:#{bottom} " \
-                           "left:#{left} " \
-                           "right:#{right})>"
     end
 
     # Returns the row/line start position for the interface.
@@ -145,16 +132,6 @@ module Vedeu
     # @see Vedeu::Geometry#width
     def height
       Vedeu::Limit.apply(y, @height, Terminal.height, Terminal.origin)
-    end
-
-    # Returns the position of the cursor at the top-left coordinate, relative to
-    # the interface's position.
-    #
-    # @param y_index [Fixnum]
-    # @param x_index [Fixnum]
-    # @return [Vedeu::Position]
-    def origin(y_index = 0, x_index = 0)
-      Vedeu::Position.new(virtual_y[y_index], virtual_x[x_index])
     end
 
     # Returns the top coordinate of the interface, a fixed or dynamic value
@@ -262,30 +239,6 @@ module Vedeu
     end
 
     private
-
-    # Provides a virtual y position within the interface's dimensions.
-    #
-    # @example
-    #   # top = 3
-    #   # bottom = 6
-    #   # virtual_y # => [3, 4, 5]
-    #
-    # @return [Array]
-    def virtual_y
-      (top...bottom).to_a
-    end
-
-    # Provides a virtual x position within the interface's dimensions.
-    #
-    # @example
-    #   # left = 9
-    #   # right = 13
-    #   # virtual_x # => [9, 10, 11, 12]
-    #
-    # @return [Array]
-    def virtual_x
-      (left...right).to_a
-    end
 
     # The default values for a new instance of this class.
     #

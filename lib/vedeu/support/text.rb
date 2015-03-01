@@ -19,7 +19,7 @@ module Vedeu
     # @return [Text]
     def initialize(value = '', options = {})
       @value   = value
-      @options = defaults.merge(options)
+      @options = defaults.merge!(options)
     end
 
     # Aligns the value.

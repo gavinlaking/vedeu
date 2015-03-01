@@ -23,7 +23,7 @@ module Vedeu
     # @option attributes foreground [String]
     # @return [Colour]
     def initialize(attributes = {})
-      @attributes = defaults.merge(attributes)
+      @attributes = defaults.merge!(attributes)
 
       @background = Background.coerce(@attributes[:background])
       @foreground = Foreground.coerce(@attributes[:foreground])

@@ -30,21 +30,14 @@ module Vedeu
     # @option attributes border   [Boolean]
     # @return [Char]
     def initialize(attributes = {})
-      @attributes = defaults.merge(attributes)
+      @attributes = defaults.merge!(attributes)
 
       @border   = @attributes[:border]
-      @colour   = Vedeu::Colour.coerce(@attributes[:colour])
+      @colour   = @attributes[:colour]
       @parent   = @attributes[:parent]
       @position = Vedeu::Position.coerce(@attributes[:position])
       @style    = @attributes[:style]
       @value    = @attributes[:value]
-    end
-
-    # Returns log friendly output.
-    #
-    # @return [String]
-    def inspect
-      "<#{self.class.name} (value:'#{@value}')>"
     end
 
     # @param other []

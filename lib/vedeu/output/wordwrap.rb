@@ -11,7 +11,7 @@ module Vedeu
     # @return [Vedeu::Wordwrap]
     def initialize(text, options = {})
       @text    = text
-      @options = defaults.merge(options)
+      @options = defaults.merge!(options)
     end
 
     # @return [Array<String>|String]

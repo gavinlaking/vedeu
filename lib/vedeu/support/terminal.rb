@@ -135,7 +135,7 @@ module Vedeu
     def cooked_mode!
       Vedeu.log(type: :info, message: "Terminal switching to 'cooked' mode")
 
-      @_mode = :cooked
+      @mode = :cooked
     end
 
     # Returns a boolean indicating whether the terminal is currently in `raw`
@@ -152,7 +152,7 @@ module Vedeu
     def raw_mode!
       Vedeu.log(type: :info, message: "Terminal switching to 'raw' mode")
 
-      @_mode = :raw
+      @mode = :raw
     end
 
     # Toggles the terminal's mode between `cooked` and `raw`, depending on its
@@ -169,7 +169,7 @@ module Vedeu
     #
     # @return [Symbol]
     def mode
-      @_mode ||= Configuration.terminal_mode
+      @mode ||= Configuration.terminal_mode
     end
 
     # Returns a coordinate tuple of the format [y, x], where `y` is the row/line

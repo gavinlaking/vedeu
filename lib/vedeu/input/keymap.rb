@@ -22,7 +22,7 @@ module Vedeu
     # @option attributes repository [Vedeu::Repository] This model's storage.
     # @return [Vedeu::Keymap]
     def initialize(attributes = {})
-      @attributes = defaults.merge(attributes)
+      @attributes = defaults.merge!(attributes)
 
       @name       = @attributes[:name]
       @keys       = @attributes[:keys]

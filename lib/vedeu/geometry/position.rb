@@ -21,6 +21,9 @@ module Vedeu
       elsif value.is_a?(Array)
         new(*value)
 
+      elsif value.is_a?(Hash)
+        new(value.fetch(:y, 1), value.fetch(:x, 1))
+
       else
         # not sure how to proceed
 
@@ -35,11 +38,6 @@ module Vedeu
     def initialize(y = 1, x = 1)
       @y = (y.nil? || y < 1) ? 1 : y
       @x = (x.nil? || x < 1) ? 1 : x
-    end
-
-    # @return [String]
-    def inspect
-      "<#{self.class.name} (y:#{@y} x:#{@x})>"
     end
 
     # @param other [Vedeu::Position]

@@ -1,6 +1,6 @@
 require 'vedeu/cursor/cursor'
-require 'vedeu/support/coordinate'
-require 'vedeu/support/position_validator'
+require 'vedeu/geometry/coordinate'
+require 'vedeu/geometry/position_validator'
 
 module Vedeu
 
@@ -17,19 +17,17 @@ module Vedeu
     def_delegators :geometry, :left,
                               :top,
                               :height,
-                              :width,
-                              :x,
-                              :y
+                              :width
 
     # @param cursor    [Cursor]
     # @param interface [Interface]
     # @param dy        [Fixnum] Move up (-1), or down (1), or no action (0).
     # @param dx        [Fixnum] Move left (-1), or right (1), or no action (0).
     # @return [MoveCursor]
-    def initialize(cursor, interface, dy, dx)
+    def initialize(cursor, interface, dy = 0, dx = 0)
       @cursor    = cursor
-      @dy        = dy
-      @dx        = dx
+      @dy        = dy || 0
+      @dx        = dx || 0
       @interface = interface
     end
 
@@ -76,7 +74,7 @@ module Vedeu
     #
     # @return [Cursor]
     def move
-      Cursor.new(cursor.attributes.merge(moved_attributes)).store
+      Cursor.new(cursor.attributes.merge!(moved_attributes)).store
     end
 
     private

@@ -121,9 +121,7 @@ module Vedeu
 
         parser.parse!(args)
 
-        options.each do |option, value|
-          Vedeu.log(type: :config, message: "CLI #{option.to_s}: #{value.to_s}")
-        end
+        Vedeu::Config.log('CLI', options)
       end
 
       private

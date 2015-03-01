@@ -8,6 +8,21 @@ module Vedeu
   # Namespace for the API configuration and CLI configuration classes.
   #
   module Config
+
+    extend self
+
+    # Custom log for configuration.
+    #
+    # @param from [String] Which configuration set the options ('API' or 'CLI').
+    # @param options [Hash] The configuration options set.
+    # @return [Hash] The options param.
+    def log(from, options)
+      options.each do |option, value|
+        Vedeu.log(type:    :config,
+                  message: "#{from} #{option.to_s}: #{value.to_s}")
+      end
+    end
+
   end
 
   # Allows the customisation of Vedeu's behaviour through the configuration API

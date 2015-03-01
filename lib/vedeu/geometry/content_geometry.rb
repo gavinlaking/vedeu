@@ -23,13 +23,6 @@ module Vedeu
       @interface = interface
     end
 
-    # Returns log friendly output.
-    #
-    # @return [String]
-    def inspect
-      "<#{self.class.name} (y:#{y} x:#{x} yn:#{yn} xn:#{xn})>"
-    end
-
     # Returns the height of the content, or when no content, the visible height
     # of the interface.
     #

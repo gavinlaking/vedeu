@@ -90,12 +90,6 @@ module Vedeu
       end
     end
 
-    describe '#inspect' do
-      subject { instance.inspect }
-
-      it { subject.must_equal('<Vedeu::Stream (value:Some text, size:9)>') }
-    end
-
     describe '#size' do
       subject { instance.size }
 

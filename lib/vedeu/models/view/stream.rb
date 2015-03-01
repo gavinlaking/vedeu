@@ -34,10 +34,10 @@ module Vedeu
     # @option attributes client [Object]
     # @return [Vedeu::Stream]
     def initialize(attributes = {})
-      @attributes = defaults.merge(attributes)
-      @colour     = Colour.coerce(@attributes[:colour])
+      @attributes = defaults.merge!(attributes)
+      @colour     = @attributes[:colour]
       @parent     = @attributes[:parent]
-      @style      = Style.coerce(@attributes[:style])
+      @style      = @attributes[:style]
       @value      = @attributes[:value]
     end
 
@@ -57,7 +57,11 @@ module Vedeu
       return [] if value.empty?
 
       value.chars.map do |char|
-        member.new({ value: char, parent: parent, colour: colour, style: style, position: nil }).to_s
+        member.new({ value:    char,
+                     parent:   parent,
+                     colour:   colour,
+                     style:    style,
+                     position: nil }).to_s
       end
     end
 
@@ -66,13 +70,6 @@ module Vedeu
     # @return [Boolean]
     def empty?
       value.empty?
-    end
-
-    # Returns log friendly output.
-    #
-    # @return [String]
-    def inspect
-      "<#{self.class.name} (value:#{value}, size:#{size})>"
     end
 
     # Returns the size of the content in characters without formatting.
@@ -85,6 +82,16 @@ module Vedeu
     # @return [String]
     def value
       # Vedeu::Char.coerce(@value, parent, colour, style)
+      # @value ||= if @value.size > 1
+      #   @value.chars.map do |char|
+      #     Vedeu::Char.new(char, parent, colour, style)
+      #   end
+      # elsif @value.size == 1
+      #   Vedeu::Char.new(@value, parent, colour, style)
+      # else
+      #   # ???
+      # end
+
       @value
     end
 

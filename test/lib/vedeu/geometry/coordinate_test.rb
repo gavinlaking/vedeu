@@ -19,14 +19,6 @@ module Vedeu
       it { instance.instance_variable_get('@y').must_equal(y) }
     end
 
-    describe '#inspect' do
-      subject { instance.inspect }
-
-      it { subject.must_equal(
-        '<Vedeu::Coordinate ( height:6 width:6 x:7 xn:13 y:5 yn:11 )>'
-      ) }
-    end
-
     describe '#yn' do
       subject { instance.yn }
 

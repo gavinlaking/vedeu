@@ -62,23 +62,22 @@ module Vedeu
     # @option attributes vertical [String] The vertical border character.
     # @return [Border]
     def initialize(attributes = {})
-      @attributes = defaults.merge(attributes)
-
-      @enabled    = @attributes[:enabled]
-      @bottom_left = @attributes[:bottom_left]
+      @attributes   = defaults.merge!(attributes)
+      @enabled      = @attributes[:enabled]
+      @bottom_left  = @attributes[:bottom_left]
       @bottom_right = @attributes[:bottom_right]
-      @show_bottom = @attributes[:show_bottom]
-      @show_left   = @attributes[:show_left]
-      @show_right  = @attributes[:show_right]
-      @show_top    = @attributes[:show_top]
-      @top_left = @attributes[:top_left]
-      @top_right = @attributes[:top_right]
-      @horizontal  = @attributes[:horizontal]
-      @vertical    = @attributes[:vertical]
-      @name       = @attributes[:name]
-      @colour     = Colour.coerce(@attributes[:colour])
-      @repository = Vedeu.borders
-      @style      = Style.coerce(@attributes[:style])
+      @show_bottom  = @attributes[:show_bottom]
+      @show_left    = @attributes[:show_left]
+      @show_right   = @attributes[:show_right]
+      @show_top     = @attributes[:show_top]
+      @top_left     = @attributes[:top_left]
+      @top_right    = @attributes[:top_right]
+      @horizontal   = @attributes[:horizontal]
+      @vertical     = @attributes[:vertical]
+      @name         = @attributes[:name]
+      @colour       = @attributes[:colour]
+      @repository   = Vedeu.borders
+      @style        = @attributes[:style]
     end
 
     # Returns the width of the interface determined by whether a left, right,
@@ -119,11 +118,21 @@ module Vedeu
       end
     end
 
+    # @return [Vedeu::Colour]
+    def colour
+      Colour.coerce(@colour)
+    end
+
     # Set the border colour.
     #
     # @return [Vedeu::Colour]
     def colour=(value)
       @colour = Colour.coerce(value)
+    end
+
+    # @return [Vedeu::Style]
+    def style
+      Style.coerce(@style)
     end
 
     # Set the border style.
@@ -209,7 +218,7 @@ module Vedeu
 
     # @return [Vedeu::Interface]
     def interface
-      @_interface ||= Vedeu.interfaces.find(name)
+      @interface ||= Vedeu.interfaces.find(name)
     end
 
     # The default values for a new instance of this class.

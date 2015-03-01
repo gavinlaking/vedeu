@@ -9,7 +9,7 @@ module Vedeu
 
     # @return [Vedeu::Borders]
     def self.borders
-      @_borders ||= Vedeu::Borders.new(Vedeu::Border)
+      @borders ||= Vedeu::Borders.new(Vedeu::Border)
     end
 
   end # Borders
@@ -20,7 +20,7 @@ module Vedeu
 
     # @return [Vedeu::Buffers]
     def self.buffers
-      @_buffers ||= Vedeu::Buffers.new(Vedeu::Buffer)
+      @buffers ||= Vedeu::Buffers.new(Vedeu::Buffer)
     end
 
   end # Buffers
@@ -31,7 +31,7 @@ module Vedeu
 
     # @return [Vedeu::Cursors]
     def self.cursors
-      @_cursors ||= Vedeu::Cursors.new(Vedeu::Cursor)
+      @cursors ||= Vedeu::Cursors.new(Vedeu::Cursor)
     end
 
     # @return [Vedeu::Cursor]
@@ -47,7 +47,7 @@ module Vedeu
 
     # @return [Vedeu::Events]
     def self.events
-      @_events ||= Vedeu::Events.new(Vedeu::Model::Collection)
+      @events ||= Vedeu::Events.new(Vedeu::Model::Collection)
     end
 
   end # Events
@@ -59,7 +59,7 @@ module Vedeu
 
     # @return [Vedeu::Geometries]
     def self.geometries
-      @_geometries ||= Vedeu::Geometries.new(Vedeu::Geometry)
+      @geometries ||= Vedeu::Geometries.new(Vedeu::Geometry)
     end
 
   end # Geometries
@@ -70,7 +70,7 @@ module Vedeu
 
     # @return [Vedeu::Groups]
     def self.groups
-      @_groups ||= Vedeu::Groups.new(Vedeu::Group)
+      @groups ||= Vedeu::Groups.new(Vedeu::Group)
     end
 
   end # Groups
@@ -81,7 +81,7 @@ module Vedeu
 
     # @return [Vedeu::InterfacesRepository]
     def self.interfaces
-      @_interfaces ||= Vedeu::InterfacesRepository.new(Vedeu::Interface)
+      @interfaces ||= Vedeu::InterfacesRepository.new(Vedeu::Interface)
     end
 
   end # InterfacesRepository
@@ -92,7 +92,7 @@ module Vedeu
 
     # @return [Vedeu::Keymaps]
     def self.keymaps
-      @_keymaps ||= Vedeu::Keymaps.new(Vedeu::Keymap)
+      @keymaps ||= Vedeu::Keymaps.new(Vedeu::Keymap)
     end
 
   end # Keymaps
@@ -103,7 +103,7 @@ module Vedeu
 
     # @return [Vedeu::Menus]
     def self.menus
-      @_menus ||= Vedeu::Menus.new(Vedeu::Menu)
+      @menus ||= Vedeu::Menus.new(Vedeu::Menu)
     end
 
   end # Menus
