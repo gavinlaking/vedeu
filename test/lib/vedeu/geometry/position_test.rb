@@ -34,6 +34,14 @@ module Vedeu
         it { subject.x.must_equal(8) }
       end
 
+      context 'when the value is a Hash' do
+        let(:value) { { y: 3, x: 9 } }
+
+        it { subject.must_be_instance_of(described) }
+        it { subject.y.must_equal(3) }
+        it { subject.x.must_equal(9) }
+      end
+
       context 'when the value is something unhandled' do
         it { subject.must_be_instance_of(NilClass) }
       end
