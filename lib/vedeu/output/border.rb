@@ -75,9 +75,9 @@ module Vedeu
       @horizontal   = @attributes[:horizontal]
       @vertical     = @attributes[:vertical]
       @name         = @attributes[:name]
-      @colour       = Colour.coerce(@attributes[:colour])
+      @colour       = @attributes[:colour]
       @repository   = Vedeu.borders
-      @style        = Style.coerce(@attributes[:style])
+      @style        = @attributes[:style]
     end
 
     # Returns the width of the interface determined by whether a left, right,
@@ -118,11 +118,21 @@ module Vedeu
       end
     end
 
+    # @return [Vedeu::Colour]
+    def colour
+      Colour.coerce(@colour)
+    end
+
     # Set the border colour.
     #
     # @return [Vedeu::Colour]
     def colour=(value)
       @colour = Colour.coerce(value)
+    end
+
+    # @return [Vedeu::Style]
+    def style
+      Style.coerce(@style)
     end
 
     # Set the border style.
