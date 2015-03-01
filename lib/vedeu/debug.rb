@@ -17,6 +17,9 @@ module Vedeu
 
     File.open('/tmp/' + filename, 'w') do |file|
       RubyProf::CallStackPrinter.new(result).print(file)
+
+      # Used with QTCacheGrind to analyse performance.
+      # RubyProf::CallTreePrinter.new(result).print(file)
     end
   end
 
