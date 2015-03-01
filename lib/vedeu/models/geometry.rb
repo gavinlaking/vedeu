@@ -149,16 +149,6 @@ module Vedeu
       Vedeu::Limit.apply(y, @height, Terminal.height, Terminal.origin)
     end
 
-    # Returns the position of the cursor at the top-left coordinate, relative to
-    # the interface's position.
-    #
-    # @param y_index [Fixnum]
-    # @param x_index [Fixnum]
-    # @return [Vedeu::Position]
-    def origin(y_index = 0, x_index = 0)
-      Vedeu::Position.new(virtual_y[y_index], virtual_x[x_index])
-    end
-
     # Returns the top coordinate of the interface, a fixed or dynamic value
     # depending on whether the interface is centred or not.
     #
@@ -264,30 +254,6 @@ module Vedeu
     end
 
     private
-
-    # Provides a virtual y position within the interface's dimensions.
-    #
-    # @example
-    #   # top = 3
-    #   # bottom = 6
-    #   # virtual_y # => [3, 4, 5]
-    #
-    # @return [Array]
-    def virtual_y
-      (top...bottom).to_a
-    end
-
-    # Provides a virtual x position within the interface's dimensions.
-    #
-    # @example
-    #   # left = 9
-    #   # right = 13
-    #   # virtual_x # => [9, 10, 11, 12]
-    #
-    # @return [Array]
-    def virtual_x
-      (left...right).to_a
-    end
 
     # The default values for a new instance of this class.
     #

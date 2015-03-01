@@ -73,8 +73,8 @@ module Vedeu
       viewport.each_with_index do |line, iy|
         row = []
         line.each_with_index do |char, ix|
-          row << if char.is_a?(Vedeu::Char)
-            char.position = position(iy, ix)
+          row << if char.is_a?(Vedeu::Char) && char.position.nil?
+            char.position = origin(iy, ix)
             char
 
           else
@@ -92,13 +92,6 @@ module Vedeu
       @viewport ||= Vedeu::Viewport.new(interface).render
     end
 
-    # @param iy [Fixnum]
-    # @param ix [Fixnum]
-    # @return [Vedeu::Position]
-    def position(iy, ix)
-      interface.origin(iy, ix)
-    end
-
     # @param value [String]
     # @param iy [Fixnum]
     # @param ix [Fixnum]
@@ -107,7 +100,41 @@ module Vedeu
       Vedeu::Char.new({ value:    value,
                         colour:   interface.colour,
                         style:    interface.style,
-                        position: position(iy, ix) })
+                        position: origin(iy, ix) })
+    end
+
+    # Returns the position of the cursor at the top-left coordinate, relative to
+    # the interface's position.
+    #
+    # @param y_index [Fixnum]
+    # @param x_index [Fixnum]
+    # @return [Vedeu::Position]
+    def origin(y_index = 0, x_index = 0)
+      Vedeu::Position.new(virtual_y[y_index], virtual_x[x_index])
+    end
+
+    # Provides a virtual y position within the interface's dimensions.
+    #
+    # @example
+    #   # top = 3
+    #   # bottom = 6
+    #   # virtual_y # => [3, 4, 5]
+    #
+    # @return [Array]
+    def virtual_y
+      @virtual_y ||= (interface.top...interface.bottom).to_a
+    end
+
+    # Provides a virtual x position within the interface's dimensions.
+    #
+    # @example
+    #   # left = 9
+    #   # right = 13
+    #   # virtual_x # => [9, 10, 11, 12]
+    #
+    # @return [Array]
+    def virtual_x
+      @virtual_x ||= (interface.left...interface.right).to_a
     end
 
   end # Output
