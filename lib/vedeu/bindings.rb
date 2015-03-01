@@ -2,12 +2,6 @@ require 'vedeu/events/event'
 
 module Vedeu
 
-  module API
-
-    def_delegators Vedeu::Event, :bind, :trigger, :unbind
-
-  end
-
   # Creates system events which when called provide a variety of core functions
   # and behaviours. They are soft-namespaced using underscores.
   #
