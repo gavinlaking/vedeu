@@ -31,7 +31,6 @@ module Vedeu
     # @option attributes parent [Vedeu::Line]
     # @option attributes colour [Vedeu::Colour]
     # @option attributes style [Vedeu::Style]
-    # @option attributes client [Object]
     # @return [Vedeu::Stream]
     def initialize(attributes = {})
       @attributes = defaults.merge!(attributes)
