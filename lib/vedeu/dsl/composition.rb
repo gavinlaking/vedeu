@@ -22,6 +22,10 @@ module Vedeu
       #
       # A view is just an Interface object.
       #
+      # When a view already exists, we take its attributes and use them as the
+      # basis for the newly defined view. This way we don't need to specify
+      # everything again.
+      #
       # @todo More documentation required.
       # @param name [String] The name of the interface you are targetting for
       #   this view.
