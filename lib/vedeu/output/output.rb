@@ -73,7 +73,7 @@ module Vedeu
       viewport.each_with_index do |line, iy|
         row = []
         line.each_with_index do |char, ix|
-          row << if char.is_a?(Vedeu::Char) && char.position.nil?
+          row << if char.is_a?(Vedeu::Char) && (char.x != ix || char.y != iy)
             char.position = origin(iy, ix)
             char
 

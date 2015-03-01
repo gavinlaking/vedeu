@@ -16,8 +16,7 @@ module Vedeu
     include Vedeu::Presentation
 
     attr_accessor :border,
-      :parent,
-      :position
+      :parent
 
     # Returns a new instance of Char.
     #
@@ -35,7 +34,7 @@ module Vedeu
       @border   = @attributes[:border]
       @colour   = @attributes[:colour]
       @parent   = @attributes[:parent]
-      @position = Vedeu::Position.coerce(@attributes[:position])
+      @position = @attributes[:position]
       @style    = @attributes[:style]
       @value    = @attributes[:value]
     end
@@ -50,6 +49,17 @@ module Vedeu
     # @return [Boolean]
     def eql?(other)
       self.class == other.class && value == other.value
+    end
+
+    # @return [Vedeu::Position]
+    def position
+      @position ||= Vedeu::Position.coerce(@position)
+    end
+
+    # @param value [Vedeu::Position]
+    # @return [Vedeu::Position]
+    def position=(value)
+      @position = Vedeu::Position.coerce(value)
     end
 
     # @return [String] The character.
