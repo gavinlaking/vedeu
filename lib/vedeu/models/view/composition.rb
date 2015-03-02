@@ -10,8 +10,6 @@ module Vedeu
 
   # A composition is a collection of interfaces.
   #
-  # @api private
-  #
   class Composition
 
     include Vedeu::Presentation

@@ -8,8 +8,6 @@ module Vedeu
   # @example
   #   Vedeu.trigger(:my_event, :oxidize, 'nitrogen')
   #
-  # @api private
-  #
   class Trigger
 
     class << self

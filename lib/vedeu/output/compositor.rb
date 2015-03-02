@@ -9,8 +9,6 @@ module Vedeu
   # Combines stored interface layout/geometry with an interface view/buffer
   # to create a single view to be sent to the terminal for output.
   #
-  # @api private
-  #
   class Compositor
 
     # Convenience method to initialize a new Compositor and call its {#compose}

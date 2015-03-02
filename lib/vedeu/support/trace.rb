@@ -9,8 +9,6 @@ module Vedeu
   # this will make your application less responsive, and the tests
   # excruciatingly slow to run.
   #
-  # @api private
-  #
   class Trace
 
     # @todo

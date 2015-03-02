@@ -8,8 +8,6 @@ module Vedeu
   # {Vedeu::Stream} objects. A line's width is determined by the
   # {Vedeu::Interface} it belongs to.
   #
-  # @api private
-  #
   class Line
 
     include Vedeu::Model

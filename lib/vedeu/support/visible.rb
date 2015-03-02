@@ -6,7 +6,7 @@ module Vedeu
   #
   class Visible
 
-    # @param visible [Boolean|Symbol]
+    # @param value [Boolean|Symbol]
     # @return [Visible]
     def self.coerce(value)
       if value.is_a?(self)

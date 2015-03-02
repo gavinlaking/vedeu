@@ -7,8 +7,6 @@ module Vedeu
     # The Configuration::API class parses client application configuration into
     # options used by Vedeu to affect certain behaviours.
     #
-    # @api private
-    #
     class API
 
       include Vedeu::Common
