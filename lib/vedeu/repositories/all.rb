@@ -43,14 +43,14 @@ module Vedeu
 
   # Allows the storing of events.
   #
-  class Events < Repository
+  class EventsRepository < Repository
 
-    # @return [Vedeu::Events]
+    # @return [Vedeu::EventsRepository]
     def self.events
-      @events ||= Vedeu::Events.new(Vedeu::Model::Collection)
+      @events ||= Vedeu::EventsRepository.new(Vedeu::Events)
     end
 
-  end # Events
+  end # EventsRepository
 
   # Allows the storing of interface/view geometry independent of the interface
   # instance.

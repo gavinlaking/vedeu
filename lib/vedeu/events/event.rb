@@ -135,7 +135,7 @@ module Vedeu
         new_collection = collection.add(self)
 
       else
-        new_collection = Vedeu::Model::Collection.new([self], nil, name)
+        new_collection = Vedeu::Events.new([self], nil, name)
 
       end
 
