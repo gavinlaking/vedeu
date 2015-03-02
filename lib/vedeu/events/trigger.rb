@@ -10,16 +10,12 @@ module Vedeu
   #
   class Trigger
 
-    class << self
-
-      # @param name [Symbol] The name of the event you wish to trigger. The event
-      #   does not have to exist.
-      # @param args [Array] Any arguments the event needs to execute correctly.
-      # @return [Array]
-      def trigger(name, *args)
-        new(name, *args).trigger
-      end
-
+    # @param name [Symbol] The name of the event you wish to trigger. The event
+    #   does not have to exist.
+    # @param args [Array] Any arguments the event needs to execute correctly.
+    # @return [Array]
+    def self.trigger(name, *args)
+      new(name, *args).trigger
     end
 
     # @see Vedeu::Trigger.trigger

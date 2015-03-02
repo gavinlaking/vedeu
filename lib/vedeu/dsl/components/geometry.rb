@@ -12,25 +12,21 @@ module Vedeu
       include Vedeu::DSL
       include Vedeu::DSL::Use
 
-      class << self
+      # Specify the geometry of an interface or view with a simple DSL.
+      #
+      # @example
+      #   Vedeu.geometry 'some_interface' do
+      #     # ...
+      #
+      # @param name [String] The name of the interface or view to which this
+      #   geometry belongs.
+      # @param block [Proc]
+      # @raise [InvalidSyntax] The required block was not given.
+      # @return [Vedeu::Geometry]
+      def self.geometry(name, &block)
+        fail InvalidSyntax, 'block not given' unless block_given?
 
-        # Specify the geometry of an interface or view with a simple DSL.
-        #
-        # @example
-        #   Vedeu.geometry 'some_interface' do
-        #     # ...
-        #
-        # @param name [String] The name of the interface or view to which this
-        #   geometry belongs.
-        # @param block [Proc]
-        # @raise [InvalidSyntax] The required block was not given.
-        # @return [Vedeu::Geometry]
-        def geometry(name, &block)
-          fail InvalidSyntax, 'block not given' unless block_given?
-
-          Vedeu::Geometry.build({ name: name }, &block).store
-        end
-
+        Vedeu::Geometry.build({ name: name }, &block).store
       end
 
       # Returns an instance of DSL::Geometry.

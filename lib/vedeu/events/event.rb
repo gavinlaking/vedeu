@@ -89,10 +89,7 @@ module Vedeu
       alias_method :event, :bind
       alias_method :register, :bind
 
-      # @see Vedeu::Trigger.trigger
-      def trigger(name, *args)
-        Vedeu::Trigger.trigger(name, *args)
-      end
+
 
       # Unbind events from a named handler.
       #
@@ -108,6 +105,11 @@ module Vedeu
       end
       alias_method :unevent, :unbind
 
+    end
+
+    # @see Vedeu::Trigger.trigger
+    def self.trigger(name, *args)
+      Vedeu::Trigger.trigger(name, *args)
     end
 
     # Returns a new instance of Event.

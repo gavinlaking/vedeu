@@ -8,15 +8,11 @@ module Vedeu
   #
   class Sentence
 
-    class << self
-
-      # @param elements [Array]
-      # @param label [String]
-      # @return [String]
-      def construct(elements, label = 'elements')
-        new(elements, label).construct
-      end
-
+    # @param elements [Array]
+    # @param label [String]
+    # @return [String]
+    def self.construct(elements, label = 'elements')
+      new(elements, label).construct
     end
 
     # @param elements [Array]
