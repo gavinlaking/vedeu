@@ -12,26 +12,25 @@ module Vedeu
   #
   class Composition
 
-    include Vedeu::Presentation
     include Vedeu::Model
+    include Vedeu::Presentation
 
     collection Vedeu::Interfaces
     member     Vedeu::Interface
 
-    attr_reader  :interfaces
-    alias_method :value, :interfaces
-
     # Returns a new instance of Composition.
     #
     # @param attributes [Hash]
-    # @option attributes colour []
+    # @option attributes colour [Vedeu::Colour]
     # @option attributes interfaces []
-    # @option attributes style []
+    # @option attributes style [Vedeu::Style]
     # @return [Composition]
     def initialize(attributes = {})
       @attributes = defaults.merge!(attributes)
-      @interfaces = @attributes[:interfaces]
+
       @colour     = @attributes[:colour]
+      @interfaces = @attributes[:interfaces]
+      @repository = Vedeu.interfaces
       @style      = @attributes[:style]
     end
 
@@ -45,6 +44,7 @@ module Vedeu
     def interfaces
       collection.coerce(@interfaces, self)
     end
+    alias_method :value, :interfaces
 
     private
 
