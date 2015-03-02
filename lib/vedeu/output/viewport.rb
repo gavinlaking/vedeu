@@ -78,32 +78,41 @@ module Vedeu
     def show
       return [] unless lines?
 
-      line_pad.map { |line| column_pad(line) }.compact
+      padded_lines.map { |line| padded_columns(line) }.compact
     end
 
-    # Pad the number of rows so that we always return an Array of the same
-    # length for each viewport.
+    # Returns the lines, padded where necessary for the viewport.
     #
     # @return [Array<Array<String>>]
-    def line_pad
-      visible_lines = lines[rows] || []
+    def padded_lines
+      visible = lines[rows] || []
 
-      return visible_lines unless visible_lines.size < height
-
-      visible_lines + [" "] * (height - visible_lines.size)
+      pad(visible, :height)
     end
 
-    # Pads the number of columns so that we always return an Array of the same
-    # length for each line.
+    # Returns the columns, padded where necessary for the given line.
     #
     # @param line [Array<String>]
     # @return [Array<String>]
-    def column_pad(line)
-      visible_columns = line.chars[columns] || []
+    def padded_columns(line)
+      visible = line.chars[columns] || []
 
-      return visible_columns unless visible_columns.size < width
+      pad(visible, :width)
+    end
 
-      visible_columns + [" "] * (width - visible_columns.size)
+    # Pads the number of rows or columns to always return an Array of the same
+    # length for each viewport or line respectively.
+    #
+    # @param visible [Array<Array<String>>|Array<String>]
+    # @param dimension [Symbol] The dimension to pad (:height or :width).
+    # @return [Array<Array<String>>|Array<String>]
+    def pad(visible, dimension)
+      dim  = send(dimension)
+      size = visible.size
+
+      return visible unless size < dim
+
+      visible + [" "] * (dim - size)
     end
 
     # Using the current cursor's y position, return a range of visible lines.
