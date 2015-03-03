@@ -27,6 +27,8 @@ module Vedeu
     def render
       if Vedeu::Configuration.drb?
         Vedeu.trigger(:_drb_store_output_, virtual_view)
+
+        HTMLRenderer.to_file(VirtualBuffer.retrieve)
       end
 
       Terminal.output(Renderer.render(virtual_view, interface.cursor))
