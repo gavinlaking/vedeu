@@ -16,6 +16,8 @@ module Vedeu
     attr_accessor :border,
       :parent
 
+    attr_reader :value
+
     # Returns a new instance of Char.
     #
     # @param attributes [Hash]
@@ -32,7 +34,6 @@ module Vedeu
       @border   = @attributes[:border]
       @colour   = @attributes[:colour]
       @parent   = @attributes[:parent]
-      @position = @attributes[:position]
       @style    = @attributes[:style]
       @value    = @attributes[:value]
     end
@@ -51,20 +52,13 @@ module Vedeu
 
     # @return [Vedeu::Position]
     def position
-      @position ||= Vedeu::Position.coerce(@position)
+      @position ||= Vedeu::Position.coerce(attributes[:position])
     end
 
     # @param value [Vedeu::Position]
     # @return [Vedeu::Position]
     def position=(value)
       @position = Vedeu::Position.coerce(value)
-    end
-
-    # @return [String] The character.
-    def value
-      return '' unless @value
-
-      @value
     end
 
     # @return [Fixnum|NilClass]
@@ -84,6 +78,8 @@ module Vedeu
 
     private
 
+    attr_reader :attributes
+
     # The default values for a new instance of this class.
     #
     # @return [Hash]
@@ -94,7 +90,7 @@ module Vedeu
         parent:   nil,
         position: nil,
         style:    nil,
-        value:    nil,
+        value:    '',
       }
     end
 
