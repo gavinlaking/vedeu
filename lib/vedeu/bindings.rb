@@ -15,7 +15,11 @@ module Vedeu
   module Bindings
 
     # Clears the whole terminal space.
-    Vedeu.bind(:_clear_) { Vedeu::Terminal.clear }
+    Vedeu.bind(:_clear_) do
+      Vedeu::Terminal.virtual.clear if Vedeu::Configuration.drb?
+
+      Vedeu::Terminal.clear
+    end
 
     # Vedeu triggers this event when `:_exit_` is triggered. You can hook into
     # this to perform a special action before the application terminates. Saving
