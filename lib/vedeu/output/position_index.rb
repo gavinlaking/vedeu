@@ -21,8 +21,8 @@ module Vedeu
     # @param x [Fixnum]
     # @return [Vedeu::PositionIndex]
     def initialize(y, x)
-      @y = [(y - 1), 1].max
-      @x = [(x - 1), 1].max
+      @y = ((y - 1) <= 1) ? 1 : (y - 1)
+      @x = ((x - 1) <= 1) ? 1 : (x - 1)
     end
 
     # @return [Array]

@@ -120,14 +120,6 @@ module Vedeu
     # Scrolls the content vertically when the stored cursor's y position for the
     # interface is outside of the visible area.
     #
-    # @note
-    #   [value, 0].max # this allows us to set a top that is greater than
-    #                  # the content height.
-    #
-    #   [[value, (content_height - height)].min, 0].max
-    #                  # this does not allow us to have a position
-    #                  # greater than the content height.
-    #
     # @return [Range]
     def rows
       top..(top + (height - 1))
@@ -137,14 +129,6 @@ module Vedeu
     #
     # Scrolls the content horizontally when the stored cursor's x position for
     # the interface is outside of the visible area.
-    #
-    # @note
-    #   [value, 0].max # this allows us to set a left that is greater
-    #                  # than the content width.
-    #
-    #   [[value, (content_width - width)].min, 0].max
-    #                  # this does not allow us to have a position
-    #                  # greater than the content width.
     #
     # @return [Range]
     def columns
@@ -186,7 +170,7 @@ module Vedeu
     #
     # @return [Fixnum]
     def reposition_x
-      [(ox - bordered_width), 0].max
+      ((ox - bordered_width) <= 0) ? 0 : (ox - bordered_width)
     end
 
     # Returns the number of rows to change the viewport by on the y axis,
@@ -194,7 +178,7 @@ module Vedeu
     #
     # @return [Fixnum]
     def reposition_y
-      [(oy - bordered_height), 0].max
+      ((oy - bordered_height) <= 0) ? 0 : (oy - bordered_height)
     end
 
     # When the viewport has a border, we need to account for that in our
