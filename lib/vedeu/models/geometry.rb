@@ -135,6 +135,9 @@ module Vedeu
     # Returns the top coordinate of the interface, a fixed or dynamic value
     # depending on whether the interface is centred or not.
     #
+    # @note
+    #   Division which results in a non-integer will be rounded down.
+    #
     # @return [Fixnum]
     def top
       if centred
@@ -163,6 +166,9 @@ module Vedeu
 
     # Returns the left coordinate of the interface, a fixed or dynamic value
     # depending on whether the interface is centred or not.
+    #
+    # @note
+    #   Division which results in a non-integer will be rounded down.
     #
     # @return [Fixnum]
     def left
