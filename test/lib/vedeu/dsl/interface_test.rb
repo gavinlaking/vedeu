@@ -17,6 +17,11 @@ module Vedeu
 
       before { Vedeu.interfaces.reset }
 
+      describe 'alias methods' do
+        it { instance.must_respond_to(:keys) }
+        it { instance.must_respond_to(:line) }
+      end
+
       describe '#initialize' do
         it { instance.must_be_instance_of(Vedeu::DSL::Interface) }
         it { instance.instance_variable_get('@model').must_equal(model) }

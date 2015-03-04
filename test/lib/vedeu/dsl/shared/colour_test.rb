@@ -7,11 +7,17 @@ module Vedeu
     describe Colour do
 
       let(:described)  { Vedeu::DSL::Colour }
-
       let(:dsl_klass)  { Vedeu::DSL::Interface.new(model) }
       let(:model)      { Vedeu::Interface.new }
       let(:background) { '#00ff00' }
       let(:foreground) { '#ff00ff' }
+
+      describe 'alias methods' do
+        it { dsl_klass.must_respond_to(:bg) }
+        it { dsl_klass.must_respond_to(:bgcolor) }
+        it { dsl_klass.must_respond_to(:fg) }
+        it { dsl_klass.must_respond_to(:fgcolor) }
+      end
 
       describe '#background' do
         subject { dsl_klass.background(background) }
@@ -23,9 +29,6 @@ module Vedeu
             { background: '#00ff00', foreground: '' }
           )
         end
-
-        it { dsl_klass.must_respond_to(:bg) }
-        it { dsl_klass.must_respond_to(:bgcolor) }
       end
 
       describe '#foreground' do
@@ -38,9 +41,6 @@ module Vedeu
             { background: '', foreground: '#ff00ff' }
           )
         end
-
-        it { dsl_klass.must_respond_to(:fg) }
-        it { dsl_klass.must_respond_to(:fgcolor) }
       end
 
       describe '#colour' do

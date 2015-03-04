@@ -89,8 +89,6 @@ module Vedeu
       alias_method :event, :bind
       alias_method :register, :bind
 
-
-
       # Unbind events from a named handler.
       #
       # @param name [String]

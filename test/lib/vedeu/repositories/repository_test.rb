@@ -25,6 +25,14 @@ module Vedeu
     let(:model_name)     { 'terbium' }
     let(:storage)        { {} }
 
+    describe 'alias methods' do
+      it { instance.must_respond_to(:by_name) }
+      it { instance.must_respond_to(:destroy) }
+      it { instance.must_respond_to(:delete) }
+      it { instance.must_respond_to(:deregister) }
+      it { instance.must_respond_to(:register) }
+    end
+
     describe '#initialize' do
       it { instance.must_be_instance_of(Vedeu::Repository) }
       it { instance.instance_variable_get('@model').must_equal(model) }

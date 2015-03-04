@@ -6,8 +6,22 @@ module Vedeu
 
     describe API do
 
+      let(:described) { Vedeu::Config::API }
+      let(:instance)  { described.new }
+
       before { Configuration.reset! }
       after  { test_configuration }
+
+      describe 'alias_methods' do
+        it { instance.must_respond_to(:interactive) }
+        it { instance.must_respond_to(:standalone) }
+        it { instance.must_respond_to(:run_once) }
+        it { instance.must_respond_to(:drb) }
+        it { instance.must_respond_to(:cooked) }
+        it { instance.must_respond_to(:raw) }
+        it { instance.must_respond_to(:debug) }
+        it { instance.must_respond_to(:trace) }
+      end
 
       describe '.configure' do
         it 'returns the configuration singleton' do

@@ -8,6 +8,10 @@ module Vedeu
     let(:instance)  { described.new(colour) }
     let(:colour)    { '#ff0000' }
 
+    describe 'alias methods' do
+      it { instance.must_respond_to(:value) }
+    end
+
     describe '#initialize' do
       it { instance.must_be_instance_of(Translator) }
       it { instance.instance_variable_get('@colour').must_equal(colour) }

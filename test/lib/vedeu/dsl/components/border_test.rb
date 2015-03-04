@@ -28,6 +28,13 @@ module Vedeu
         end
       end
 
+      describe 'alias methods' do
+        it { instance.must_respond_to(:show_bottom) }
+        it { instance.must_respond_to(:show_left) }
+        it { instance.must_respond_to(:show_right) }
+        it { instance.must_respond_to(:show_top) }
+      end
+
       describe '#initialize' do
         it { instance.must_be_instance_of(Vedeu::DSL::Border) }
         it { instance.instance_variable_get('@model').must_equal(model) }
