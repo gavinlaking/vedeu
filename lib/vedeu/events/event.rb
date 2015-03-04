@@ -32,8 +32,6 @@ module Vedeu
   #     :do_stuff
   #   end
   #
-  # @api private
-  #
   class Event
 
     include Vedeu::Model
@@ -91,11 +89,6 @@ module Vedeu
       alias_method :event, :bind
       alias_method :register, :bind
 
-      # @see Vedeu::Trigger.trigger
-      def trigger(name, *args)
-        Vedeu::Trigger.trigger(name, *args)
-      end
-
       # Unbind events from a named handler.
       #
       # @param name [String]
@@ -110,6 +103,11 @@ module Vedeu
       end
       alias_method :unevent, :unbind
 
+    end
+
+    # @see Vedeu::Trigger.trigger
+    def self.trigger(name, *args)
+      Vedeu::Trigger.trigger(name, *args)
     end
 
     # Returns a new instance of Event.
@@ -135,7 +133,7 @@ module Vedeu
         new_collection = collection.add(self)
 
       else
-        new_collection = Vedeu::Model::Collection.new([self], nil, name)
+        new_collection = Vedeu::Events.new([self], nil, name)
 
       end
 

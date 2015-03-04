@@ -1,5 +1,3 @@
-require 'ruby-prof'
-
 module Vedeu
 
   # Helps to debug a running application by providing a stack trace of its
@@ -8,6 +6,8 @@ module Vedeu
   # @param filename [String]
   # @param block [Proc]
   def self.debug(filename = 'profile.html', &block)
+    require 'ruby-prof'
+
     RubyProf.start
 
     yield

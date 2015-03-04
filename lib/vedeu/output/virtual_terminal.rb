@@ -69,9 +69,10 @@ module Vedeu
     def write(y, x, data)
       cy, cx = Vedeu::PositionIndex[y, x]
 
-      return false unless read(y, x).is_a?(Vedeu::Char)
+      return false unless read(cy, cx).is_a?(Vedeu::Char)
 
       cells[cy][cx] = data
+
       true
     end
 

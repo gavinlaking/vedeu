@@ -24,7 +24,7 @@ module Vedeu
     def_delegators Vedeu::Buffers,       :buffers
     def_delegators Vedeu::Cursors,       :cursors
     def_delegators Vedeu::Cursors,       :cursor
-    def_delegators Vedeu::Events,        :events
+    def_delegators Vedeu::EventsRepository, :events
     def_delegators Vedeu::Geometries,    :geometries
     def_delegators Vedeu::Groups,        :groups
     def_delegators Vedeu::InterfacesRepository, :interfaces

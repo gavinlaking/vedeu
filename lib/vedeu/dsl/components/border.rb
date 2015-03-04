@@ -28,25 +28,21 @@ module Vedeu
       include Vedeu::DSL::Colour
       include Vedeu::DSL::Style
 
-      class << self
+      # Specify the border of an interface or view with a simple DSL.
+      #
+      # @example
+      #   Vedeu.border 'some_interface' do
+      #     # ...
+      #
+      # @param name [String] The name of the interface or view to which this
+      #   border belongs.
+      # @param block [Proc]
+      # @raise [InvalidSyntax] The required block was not given.
+      # @return [Vedeu::Border]
+      def self.border(name, &block)
+        fail InvalidSyntax, 'block not given' unless block_given?
 
-        # Specify the border of an interface or view with a simple DSL.
-        #
-        # @example
-        #   Vedeu.border 'some_interface' do
-        #     # ...
-        #
-        # @param name [String] The name of the interface or view to which this
-        #   border belongs.
-        # @param block [Proc]
-        # @raise [InvalidSyntax] The required block was not given.
-        # @return [Vedeu::Border]
-        def border(name, &block)
-          fail InvalidSyntax, 'block not given' unless block_given?
-
-          Vedeu::Border.build({ enabled: true, name: name }, &block).store
-        end
-
+        Vedeu::Border.build({ enabled: true, name: name }, &block).store
       end
 
       # Returns an instance of DSL::Border.

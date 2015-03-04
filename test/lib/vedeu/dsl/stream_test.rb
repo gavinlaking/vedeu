@@ -8,8 +8,9 @@ module Vedeu
 
       let(:described) { Vedeu::DSL::Stream }
       let(:instance)  { described.new(model) }
-      let(:model)     { Vedeu::Stream.new }
+      let(:model)     { Vedeu::Stream.new({ parent: parent }) }
       let(:client)    {}
+      let(:parent)    { Vedeu::Line.new }
 
       describe '#initialize' do
         it { instance.must_be_instance_of(Vedeu::DSL::Stream) }
@@ -19,6 +20,8 @@ module Vedeu
 
       describe '#stream' do
         subject { instance.stream { } }
+
+        it { subject.must_be_instance_of(Vedeu::Streams) }
 
         context 'when the block is not given' do
           subject { instance.stream }

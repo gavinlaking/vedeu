@@ -4,6 +4,12 @@ module Vedeu
 
   describe Esc do
 
+    let(:described) { Vedeu::Esc }
+
+    describe 'alias methods' do
+      it { described.must_respond_to(:foreground_codes) }
+    end
+
     describe 'colours defined via define_method' do
       it 'returns an escape sequence for the foreground colour' do
         Esc.magenta.must_equal("\e[35m")

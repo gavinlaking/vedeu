@@ -37,21 +37,8 @@ module Vedeu
       it { instance.instance_variable_get('@parent').must_equal(parent) }
       it { instance.instance_variable_get('@style').must_equal(style) }
       it { instance.instance_variable_get('@value').must_equal(value) }
-      it { instance.instance_variable_get('@position').must_equal(position) }
-    end
 
-    describe '#value' do
-      subject { instance.value }
-
-      context 'when the value is not set' do
-        let(:value) {}
-
-        it { subject.must_equal('') }
-      end
-
-      context 'when the value is set' do
-        it { subject.must_equal('a') }
-      end
+      it { instance.must_respond_to(:value) }
     end
 
     describe '#to_html' do

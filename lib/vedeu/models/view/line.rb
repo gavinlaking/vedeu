@@ -8,8 +8,6 @@ module Vedeu
   # {Vedeu::Stream} objects. A line's width is determined by the
   # {Vedeu::Interface} it belongs to.
   #
-  # @api private
-  #
   class Line
 
     include Vedeu::Model
@@ -25,11 +23,12 @@ module Vedeu
 
     # Returns a new instance of Line.
     #
+    # @param attributes [Hash]
     # @option attributes streams [Vedeu::Streams]
     # @option attributes parent [Vedeu::Interface]
     # @option attributes colour [Vedeu::Colour]
     # @option attributes style [Vedeu::Style]
-    # @return [Line]
+    # @return [Vedeu::Line]
     def initialize(attributes = {})
       @attributes = defaults.merge!(attributes)
       @colour     = @attributes[:colour]

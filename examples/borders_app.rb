@@ -23,58 +23,58 @@ class VedeuBordersApp
     geometry do
       x      2
       y      2
-      height 3
-      width  7
+      height 4
+      width  10
     end
     colour  foreground: '#ffffff', background: '#ff0000'
   end
 
   interface 'border_off' do
     geometry do
-      x      11
+      x      13
       y      2
-      height 3
-      width  7
+      height 4
+      width  10
     end
     colour  foreground: '#ffffff', background: '#ff0000'
   end
 
   interface 'no_top' do
     geometry do
-      x      20
+      x      24
       y      2
-      height 3
-      width  7
+      height 4
+      width  10
     end
     colour  foreground: '#000000', background: '#ff5500'
   end
 
   interface 'no_bottom' do
     geometry do
-      x      29
+      x      35
       y      2
-      height 3
-      width  7
+      height 4
+      width  10
     end
     colour  foreground: '#000000', background: '#ff5500'
   end
 
   interface 'no_left' do
     geometry do
-      x      38
+      x      46
       y      2
-      height 3
-      width  7
+      height 4
+      width  10
     end
     colour  foreground: '#000000', background: '#ff5500'
   end
 
   interface 'no_right' do
     geometry do
-      x      47
+      x      57
       y      2
-      height 3
-      width  7
+      height 4
+      width  10
     end
     colour  foreground: '#000000', background: '#ff5500'
   end
@@ -83,58 +83,58 @@ class VedeuBordersApp
     geometry do
       x      2
       y      7
-      height 3
-      width  7
+      height 4
+      width  10
     end
     colour  foreground: '#ffffff', background: '#ff0000'
   end
 
-  interface 'custom_horizontal_and_vertical' do
+  interface 'custom_sides' do
     geometry do
-      x      11
+      x      13
       y      7
-      height 3
-      width  7
+      height 4
+      width  10
     end
     colour  foreground: '#ffffff', background: '#ff0000'
   end
 
   interface 'only_top' do
     geometry do
-      x      20
+      x      24
       y      7
-      height 3
-      width  7
+      height 4
+      width  10
     end
     colour  foreground: '#ffffff', background: '#0000ff'
   end
 
   interface 'only_bottom' do
     geometry do
-      x      29
+      x      35
       y      7
-      height 3
-      width  7
+      height 4
+      width  10
     end
     colour  foreground: '#ffffff', background: '#0000ff'
   end
 
   interface 'only_left' do
     geometry do
-      x      38
+      x      46
       y      7
-      height 3
-      width  7
+      height 4
+      width  10
     end
     colour  foreground: '#ffffff', background: '#0000ff'
   end
 
   interface 'only_right' do
     geometry do
-      x      47
+      x      57
       y      7
-      height 3
-      width  7
+      height 4
+      width  10
     end
     colour  foreground: '#ffffff', background: '#0000ff'
   end
@@ -143,18 +143,18 @@ class VedeuBordersApp
     geometry do
       x      2
       y      12
-      height 3
-      width  7
+      height 4
+      width  10
     end
     colour foreground: '#ffffff', background: '#ff0000'
   end
 
   interface 'negative' do
     geometry do
-      x      11
+      x      13
       y      12
-      height 3
-      width  7
+      height 4
+      width  10
     end
     colour foreground: '#000000', background: '#00ff00'
     style  'normal'
@@ -188,32 +188,33 @@ class VedeuBordersApp
         foreground '#ffffff'
       end
       lines do
-        line 'on'
+        line 'all on'
       end
     end
     view('border_off') do
       lines do
-        line 'off'
+        line 'all off'
       end
     end
     view('no_top') do
       lines do
-        line 'no t'
+        line 'no top'
       end
     end
     view('no_bottom') do
       lines do
-        line 'no b'
+        line 'no'
+        line 'bottom'
       end
     end
     view('no_left') do
       lines do
-        line 'no l'
+        line 'no left'
       end
     end
     view('no_right') do
       lines do
-        line 'no r'
+        line 'no right'
       end
     end
     view('custom_corners') do
@@ -224,18 +225,18 @@ class VedeuBordersApp
         bottom_left  'C'
       end
       lines do
-        line 'chars'
-        line '1'
+        line 'custom'
+        line 'corners'
       end
     end
-    view('custom_horizontal_and_vertical') do
+    view('custom_sides') do
       border do
         horizontal '*'
         vertical   '$'
       end
       lines do
-        line 'chars'
-        line '2'
+        line 'custom'
+        line 'sides'
       end
     end
     view('only_top') do
@@ -247,7 +248,7 @@ class VedeuBordersApp
       end
       lines do
         line 'only'
-        line 't'
+        line 'top'
       end
     end
     view('only_bottom') do
@@ -259,7 +260,7 @@ class VedeuBordersApp
       end
       lines do
         line 'only'
-        line 'b'
+        line 'bottom'
       end
     end
     view('only_left') do
@@ -271,7 +272,7 @@ class VedeuBordersApp
       end
       lines do
         line 'only'
-        line 'l'
+        line 'left'
       end
     end
     view('only_right') do
@@ -283,7 +284,7 @@ class VedeuBordersApp
       end
       lines do
         line 'only'
-        line 'r'
+        line 'right'
       end
     end
     view('custom_colour') do
@@ -291,6 +292,7 @@ class VedeuBordersApp
         colour foreground: '#ff5500', background: '#0000ff'
       end
       lines do
+        line 'custom'
         line 'color'
       end
     end
@@ -299,6 +301,7 @@ class VedeuBordersApp
         style 'negative'
       end
       lines do
+        line 'custom'
         line 'style'
       end
     end

@@ -4,118 +4,118 @@ module Vedeu
 
   describe BoundingArea do
 
-    let(:described) { BoundingArea.new(height, width) }
+    let(:described) { Vedeu::BoundingArea }
+    let(:instance)  { described.new(height, width) }
     let(:height)    { 15 }
     let(:width)     { 40 }
 
+    describe 'alias methods' do
+      it { instance.must_respond_to(:y) }
+      it { instance.must_respond_to(:yn) }
+      it { instance.must_respond_to(:x) }
+      it { instance.must_respond_to(:xn) }
+    end
+
     describe '#initialize' do
-      it { described.must_be_instance_of(BoundingArea) }
-      it { described.instance_variable_get('@height').must_equal(height) }
-      it { described.instance_variable_get('@width').must_equal(width) }
+      it { instance.must_be_instance_of(BoundingArea) }
+      it { instance.instance_variable_get('@height').must_equal(height) }
+      it { instance.instance_variable_get('@width').must_equal(width) }
     end
 
     describe '#height' do
       it 'returns the height' do
-        described.height.must_equal(height)
+        instance.height.must_equal(height)
       end
     end
 
     describe '#width' do
       it 'returns the width' do
-        described.width.must_equal(width)
+        instance.width.must_equal(width)
       end
     end
 
     describe '#top' do
       context 'when an offset is provided' do
         it 'returns the new top with the offset applied' do
-          described.top(5).must_equal(6)
+          instance.top(5).must_equal(6)
         end
 
         context 'when the offset is greater or equal to the height' do
           it 'returns the height' do
-            described.top(20).must_equal(15)
+            instance.top(20).must_equal(15)
           end
         end
 
         context 'when the offset is less than or equal to 1' do
-          it { described.top(-1).must_equal(1) }
+          it { instance.top(-1).must_equal(1) }
         end
       end
 
       context 'when an offset is not provided' do
-        it { described.top.must_equal(1) }
+        it { instance.top.must_equal(1) }
       end
-
-      it { described.must_respond_to(:y) }
     end
 
     describe '#bottom' do
       context 'when an offset is provided' do
         it 'returns the new bottom with the offset applied' do
-          described.bottom(5).must_equal(10)
+          instance.bottom(5).must_equal(10)
         end
 
         context 'when the offset is greater or equal to the height' do
-          it { described.bottom(30).must_equal(1) }
+          it { instance.bottom(30).must_equal(1) }
         end
 
         context 'when the offset is less than 0' do
-          it { described.bottom(-1).must_equal(height) }
+          it { instance.bottom(-1).must_equal(height) }
         end
       end
 
       context 'when an offset is not provided' do
-        it { described.bottom.must_equal(15) }
+        it { instance.bottom.must_equal(15) }
       end
-
-      it { described.must_respond_to(:yn) }
     end
 
     describe '#left' do
       context 'when an offset is provided' do
         it 'returns the new left with the offset applied' do
-          described.left(5).must_equal(6)
+          instance.left(5).must_equal(6)
         end
 
         context 'when the offset is greater or equal to the width' do
           it 'returns the width' do
-            described.left(50).must_equal(40)
+            instance.left(50).must_equal(40)
           end
         end
 
         context 'when the offset is less than or equal to 1' do
-          it { described.left(-1).must_equal(1) }
+          it { instance.left(-1).must_equal(1) }
         end
       end
 
       context 'when an offset is not provided' do
-        it { described.left.must_equal(1) }
+        it { instance.left.must_equal(1) }
       end
-
-      it { described.must_respond_to(:x) }
     end
 
     describe '#right' do
       context 'when an offset is provided' do
         it 'returns the new right with the offset applied' do
-          described.right(5).must_equal(35)
+          instance.right(5).must_equal(35)
         end
 
         context 'when the offset is greater or equal to the width' do
-          it { described.right(50).must_equal(1) }
+          it { instance.right(50).must_equal(1) }
         end
 
         context 'when the offset is less than 0' do
-          it { described.right(-1).must_equal(40) }
+          it { instance.right(-1).must_equal(40) }
         end
       end
 
       context 'when an offset is not provided' do
-        it { described.right.must_equal(40) }
+        it { instance.right.must_equal(40) }
       end
-
-      it { described.must_respond_to(:xn) }
     end
 
   end # BoundingArea

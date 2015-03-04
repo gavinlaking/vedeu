@@ -2,36 +2,36 @@ module Vedeu
 
   # Orchestrates the running of the main application loop.
   #
-  # @api private
-  #
   class Application
 
-    class << self
+    # @param configuration [Vedeu::Configuration]
+    # @return [void]
+    def self.start(configuration)
+      new(configuration).start
+    end
 
-      # @return [void]
-      def start(configuration)
-        new(configuration).start
-      end
-      alias_method :restart, :start
+    # @param configuration [Vedeu::Configuration]
+    # @return [void]
+    def self.restart(configuration)
+      new(configuration).start
+    end
 
-      # Stops the application!
-      # - The `:_cleanup_` event is triggered, which in turn triggers the client
-      #   event `:cleanup`; the client application may treat this event as Vedeu
-      #   signalling that it is about to terminate. Client applications are
-      #   encouraged to use this event to close any open buffers, save files,
-      #   empty trash, etc.
-      #
-      # @return [void]
-      def stop
-        Vedeu.trigger(:_cleanup_)
+    # Stops the application!
+    # - The `:_cleanup_` event is triggered, which in turn triggers the client
+    #   event `:cleanup`; the client application may treat this event as Vedeu
+    #   signalling that it is about to terminate. Client applications are
+    #   encouraged to use this event to close any open buffers, save files,
+    #   empty trash, etc.
+    #
+    # @return [void]
+    def self.stop
+      Vedeu.trigger(:_cleanup_)
 
-        Vedeu::MainLoop.stop!
-      end
-
-    end # Application eigenclass
+      Vedeu::MainLoop.stop!
+    end
 
     # :nocov:
-
+    # @param configuration [Vedeu::Configuration]
     # @return [Application]
     def initialize(configuration)
       @configuration = configuration
@@ -113,7 +113,7 @@ module Vedeu
 
       Vedeu.trigger(:_drb_restart_)
 
-      Application.restart
+      Application.restart(configuration)
 
     end
 

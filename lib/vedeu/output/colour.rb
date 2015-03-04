@@ -6,8 +6,6 @@ module Vedeu
   # foreground and background colours of a character or collection of
   # characters.
   #
-  # @api private
-  #
   class Colour
 
     include Vedeu::Coercions

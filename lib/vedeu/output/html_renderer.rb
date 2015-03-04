@@ -9,6 +9,12 @@ module Vedeu
     end
 
     # @param output [Array<Array<Vedeu::Char>>]
+    # @return [String]
+    def self.to_file(output)
+      new(output).to_file
+    end
+
+    # @param output [Array<Array<Vedeu::Char>>]
     # @return [Vedeu::HTMLRenderer]
     def initialize(output)
       @output = output

@@ -9,6 +9,20 @@ module Vedeu
     let(:height) { 24 }
     let(:width) { 32 }
 
+    describe 'alias methods' do
+      it { instance.must_respond_to(:tyn) }
+      it { instance.must_respond_to(:yn) }
+      it { instance.must_respond_to(:x) }
+      it { instance.must_respond_to(:y) }
+      it { instance.must_respond_to(:tx) }
+      it { instance.must_respond_to(:ty) }
+      it { instance.must_respond_to(:txn) }
+      it { instance.must_respond_to(:xn) }
+      it { instance.must_respond_to(:read) }
+      it { instance.must_respond_to(:write) }
+      it { instance.must_respond_to(:winsize) }
+    end
+
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }
       it { instance.instance_variable_get('@height').must_equal(height) }

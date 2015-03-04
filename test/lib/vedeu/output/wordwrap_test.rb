@@ -44,6 +44,11 @@ module Vedeu
       ]
     }
 
+    describe 'alias methods' do
+      it { instance.must_respond_to(:prune_as_lines) }
+      it { instance.must_respond_to(:wrap_as_lines) }
+    end
+
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }
       it { instance.instance_variable_get('@text').must_equal(text) }

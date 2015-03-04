@@ -4,8 +4,18 @@ module Vedeu
 
   describe Configuration do
 
+    let(:described) { Vedeu::Configuration }
+
     before { Configuration.reset! }
     after  { test_configuration }
+
+    describe 'alias_methods' do
+      it { described.must_respond_to(:debug) }
+      it { described.must_respond_to(:drb) }
+      it { described.must_respond_to(:interactive) }
+      it { described.must_respond_to(:once) }
+      it { described.must_respond_to(:trace) }
+    end
 
     describe '.default_system_keys' do
       it 'returns the default system keys' do

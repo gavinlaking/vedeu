@@ -6,11 +6,14 @@ module Vedeu
 
     describe Style do
 
+      let(:described) { Vedeu::DSL::Style }
+      let(:instance)  { Vedeu::DSL::ModelTestClass.new(model) }
+      let(:model)     { Vedeu::ModelTestClass.new({}) }
+
       describe '#style' do
-        let(:model) { Vedeu::ModelTestClass.new({}) }
         let(:args)  { :bold }
 
-        subject { Vedeu::DSL::ModelTestClass.new(model).style(args) }
+        subject { instance.style(args) }
 
         it { subject.must_be_instance_of(Vedeu::Style) }
       end

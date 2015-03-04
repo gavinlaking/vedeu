@@ -2,8 +2,6 @@ module Vedeu
 
   # A module for common methods used throughout Vedeu.
   #
-  # @api private
-  #
   module Common
 
     # Returns a boolean indicating whether a variable has a useful value.

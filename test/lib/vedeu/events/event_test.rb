@@ -10,6 +10,12 @@ module Vedeu
     let(:options)    { {} }
     let(:closure)    { proc { :event_triggered } }
 
+    describe 'alias methods' do
+      it { described.must_respond_to(:event) }
+      it { described.must_respond_to(:register) }
+      it { described.must_respond_to(:unevent) }
+    end
+
     describe '.bind' do
       subject { described.bind(event_name, options) { :event_triggered } }
 

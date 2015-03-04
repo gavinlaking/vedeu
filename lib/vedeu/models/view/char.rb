@@ -9,15 +9,14 @@ module Vedeu
   # Though a multi-character String can be passed as a value, only the first
   # character is returned in the escape sequence.
   #
-  # @api private
-  #
   class Char
 
     include Vedeu::Presentation
 
     attr_accessor :border,
-      :parent,
-      :position
+      :parent
+
+    attr_reader :value
 
     # Returns a new instance of Char.
     #
@@ -35,7 +34,6 @@ module Vedeu
       @border   = @attributes[:border]
       @colour   = @attributes[:colour]
       @parent   = @attributes[:parent]
-      @position = Vedeu::Position.coerce(@attributes[:position])
       @style    = @attributes[:style]
       @value    = @attributes[:value]
     end
@@ -52,11 +50,15 @@ module Vedeu
       self.class == other.class && value == other.value
     end
 
-    # @return [String] The character.
-    def value
-      return '' unless @value
+    # @return [Vedeu::Position]
+    def position
+      @position ||= Vedeu::Position.coerce(attributes[:position])
+    end
 
-      @value
+    # @param value [Vedeu::Position]
+    # @return [Vedeu::Position]
+    def position=(value)
+      @position = Vedeu::Position.coerce(value)
     end
 
     # @return [Fixnum|NilClass]
@@ -76,6 +78,8 @@ module Vedeu
 
     private
 
+    attr_reader :attributes
+
     # The default values for a new instance of this class.
     #
     # @return [Hash]
@@ -86,7 +90,7 @@ module Vedeu
         parent:   nil,
         position: nil,
         style:    nil,
-        value:    nil,
+        value:    '',
       }
     end
 

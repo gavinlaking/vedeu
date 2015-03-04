@@ -7,8 +7,6 @@ module Vedeu
   # {Vedeu::Line} which you wish to colour and style independently of the other
   # characters in that line.
   #
-  # @api private
-  #
   class Stream
 
     include Vedeu::Model
@@ -31,7 +29,6 @@ module Vedeu
     # @option attributes parent [Vedeu::Line]
     # @option attributes colour [Vedeu::Colour]
     # @option attributes style [Vedeu::Style]
-    # @option attributes client [Object]
     # @return [Vedeu::Stream]
     def initialize(attributes = {})
       @attributes = defaults.merge!(attributes)

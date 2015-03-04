@@ -5,8 +5,6 @@ module Vedeu
   # Converts the collection passed into a list of menu items which can be
   # navigated using the instance methods or events provided.
   #
-  # @api private
-  #
   class Menu
 
     include Vedeu::Model
@@ -25,34 +23,30 @@ module Vedeu
     # @return [Fixnum]
     attr_accessor :selected
 
-    class << self
+    # Register a menu by name which will display a collection of items for
+    # your users to select; and provide interactivity within your application.
+    #
+    # @param name  [String] The name of the menu. Used to reference the
+    #   menu throughout your application's execution lifetime.
+    # @param block [Proc] A set of attributes which define the features of the
+    #   menu. See {Vedeu::DSL::Menu#items} and {Vedeu::DSL::Menu#name}.
+    #
+    # @example
+    #   Vedeu.menu 'my_interface' do
+    #     items [:item_1, :item_2, :item_3]
+    #     ...
+    #
+    #   Vedeu.menu do
+    #     name 'menus_must_have_a_name'
+    #     items Track.all_my_favourites
+    #     ...
+    #
+    # @raise [InvalidSyntax] The required block was not given.
+    # @return [API::Menu]
+    def self.menu(name = '', &block)
+      fail InvalidSyntax, 'block not given' unless block_given?
 
-      # Register a menu by name which will display a collection of items for
-      # your users to select; and provide interactivity within your application.
-      #
-      # @param name  [String] The name of the menu. Used to reference the
-      #   menu throughout your application's execution lifetime.
-      # @param block [Proc] A set of attributes which define the features of the
-      #   menu. See {Vedeu::DSL::Menu#items} and {Vedeu::DSL::Menu#name}.
-      #
-      # @example
-      #   Vedeu.menu 'my_interface' do
-      #     items [:item_1, :item_2, :item_3]
-      #     ...
-      #
-      #   Vedeu.menu do
-      #     name 'menus_must_have_a_name'
-      #     items Track.all_my_favourites
-      #     ...
-      #
-      # @raise [InvalidSyntax] The required block was not given.
-      # @return [API::Menu]
-      def menu(name = '', &block)
-        fail InvalidSyntax, 'block not given' unless block_given?
-
-        build({ name: name }, &block).store
-      end
-
+      build({ name: name }, &block).store
     end
 
     # Returns a new instance of Menu.

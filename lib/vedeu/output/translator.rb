@@ -21,8 +21,6 @@ module Vedeu
   # a 24-bit representation.
   #
   # @todo More documentation required (create a fancy chart!)
-  # @api private
-  #
   class Translator
 
     include Vedeu::Coercions
@@ -52,14 +50,14 @@ module Vedeu
       if no_colour?
         ''
 
-      elsif named?
-        named
+      elsif rgb?
+        rgb
 
       elsif numbered?
         numbered
 
-      elsif rgb?
-        rgb
+      elsif named?
+        named
 
       else
         ''
@@ -124,6 +122,20 @@ module Vedeu
       [numbered_prefix, css_to_numbered, 'm'].join
     end
 
+    # Returns a boolean indicated whether the colour is an HTML/CSS colour.
+    #
+    # @return [Boolean]
+    def rgb?
+      colour.is_a?(String) && valid_rgb?
+    end
+
+    # Returns a boolean indicated whether the colour is a valid HTML/CSS colour.
+    #
+    # @return [Boolean]
+    def valid_rgb?
+      !!(colour =~ /^#([A-Fa-f0-9]{6})$/)
+    end
+
     # Returns an escape sequence.
     #
     # @return [String]
@@ -143,20 +155,6 @@ module Vedeu
     # @return [Boolean]
     def valid_range?
       colour >= 0 && colour <= 255
-    end
-
-    # Returns a boolean indicated whether the colour is an HTML/CSS colour.
-    #
-    # @return [Boolean]
-    def rgb?
-      colour.is_a?(String) && valid_rgb?
-    end
-
-    # Returns a boolean indicated whether the colour is a valid HTML/CSS colour.
-    #
-    # @return [Boolean]
-    def valid_rgb?
-      !!(colour =~ /^#([A-Fa-f0-9]{6})$/)
     end
 
     # Returns a collection of converted HTML/CSS octets as their decimal

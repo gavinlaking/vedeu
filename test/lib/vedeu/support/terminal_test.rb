@@ -13,6 +13,19 @@ module Vedeu
       IO.console.stubs(:print)
     end
 
+    describe 'alias methods' do
+      it { described.must_respond_to(:read) }
+      it { described.must_respond_to(:write) }
+      it { described.must_respond_to(:x) }
+      it { described.must_respond_to(:y) }
+      it { described.must_respond_to(:tx) }
+      it { described.must_respond_to(:ty) }
+      it { described.must_respond_to(:xn) }
+      it { described.must_respond_to(:txn) }
+      it { described.must_respond_to(:yn) }
+      it { described.must_respond_to(:tyn) }
+    end
+
     describe '.open' do
       context 'when a block was not given' do
         it { proc { Terminal.open }.must_raise(InvalidSyntax) }

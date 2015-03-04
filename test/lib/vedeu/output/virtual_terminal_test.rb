@@ -109,6 +109,8 @@ module Vedeu
       subject { instance.reset }
 
       it { subject.must_be_instance_of(Array) }
+
+      it { instance.must_respond_to(:clear) }
     end
 
     describe '#write' do

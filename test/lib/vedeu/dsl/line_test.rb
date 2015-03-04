@@ -23,6 +23,10 @@ module Vedeu
       let(:colour)    { Vedeu::Colour.new }
       let(:style)     { Vedeu::Style.new }
 
+      describe 'alias methods' do
+        it { instance.must_respond_to(:stream) }
+      end
+
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
         it { instance.instance_variable_get('@model').must_equal(model) }

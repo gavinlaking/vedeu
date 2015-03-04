@@ -10,6 +10,11 @@ module Vedeu
       let(:instance)      { described.instance }
       let(:configuration) {}
 
+      describe 'alias_methods' do
+        it { instance.must_respond_to(:read) }
+        it { instance.must_respond_to(:write) }
+      end
+
       describe '.input' do
         let(:data) {}
 

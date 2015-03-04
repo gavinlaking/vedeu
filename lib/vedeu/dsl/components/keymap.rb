@@ -15,38 +15,34 @@ module Vedeu
       include Vedeu::Common
       include Vedeu::DSL
 
-      class << self
+      # Define actions for keypresses for when specific interfaces are in focus.
+      # Unless an interface is specified, the key will be assumed to be global,
+      # meaning its action will happen regardless of the interface in focus.
+      #
+      # @note
+      #   When defining an interface, there is no need to provide a name since
+      #   this can be discerned from the interface itself, e.g:
+      #
+      #   Vedeu.interface 'my_interface' do
+      #     keymap do
+      #       ...
+      #
+      # @param name [String] The name of the interface which this keymap relates
+      #   to.
+      # @param block [Proc]
+      #
+      # @example
+      #   keymap 'my_interface' do
+      #     ...
+      #
+      # @raise [InvalidSyntax] The required block was not given.
+      # @return [Keymap]
+      # @todo Try to remember why we need to pre-create the keymap in the
+      #   repository.
+      def self.keymap(name, &block)
+        Vedeu::Keymap.new({ name: name }).store
 
-        # Define actions for keypresses for when specific interfaces are in focus.
-        # Unless an interface is specified, the key will be assumed to be global,
-        # meaning its action will happen regardless of the interface in focus.
-        #
-        # @note
-        #   When defining an interface, there is no need to provide a name since
-        #   this can be discerned from the interface itself, e.g:
-        #
-        #   Vedeu.interface 'my_interface' do
-        #     keymap do
-        #       ...
-        #
-        # @param name [String] The name of the interface which this keymap relates
-        #   to.
-        # @param block [Proc]
-        #
-        # @example
-        #   keymap 'my_interface' do
-        #     ...
-        #
-        # @raise [InvalidSyntax] The required block was not given.
-        # @return [Keymap]
-        # @todo Try to remember why we need to pre-create the keymap in the
-        #   repository.
-        def keymap(name, &block)
-          Vedeu::Keymap.new({ name: name }).store
-
-          Vedeu::Keymap.build({ name: name }, &block).store
-        end
-
+        Vedeu::Keymap.build({ name: name }, &block).store
       end
 
       # Returns an instance of DSL::Keymap.

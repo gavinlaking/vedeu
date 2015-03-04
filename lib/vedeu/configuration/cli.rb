@@ -7,8 +7,6 @@ module Vedeu
     # The Configuration::CLI class parses command-line arguments using
     # OptionParser into options used by Vedeu to affect certain behaviours.
     #
-    # @api private
-    #
     class CLI
 
       # Configure Vedeu via command-line arguments. Options set here via

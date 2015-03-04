@@ -8,6 +8,10 @@ module Vedeu
     let(:instance)  { described.new(value) }
     let(:value)     { 'bold' }
 
+    describe 'alias methods' do
+      it { instance.must_respond_to(:escape_sequences) }
+    end
+
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }
       it { instance.instance_variable_get('@value').must_equal('bold') }

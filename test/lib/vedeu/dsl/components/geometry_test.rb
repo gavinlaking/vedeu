@@ -6,12 +6,17 @@ module Vedeu
 
     describe Geometry do
 
-      let(:described) { Vedeu::DSL::Geometry.new(model) }
+      let(:described) { Vedeu::DSL::Geometry }
+      let(:instance)  { described.new(model) }
       let(:model)     { Vedeu::Geometry.new }
 
+      describe 'alias methods' do
+        it { instance.must_respond_to(:centred!) }
+      end
+
       describe '#initialize' do
-        it { described.must_be_instance_of(Vedeu::DSL::Geometry) }
-        it { described.instance_variable_get('@model').must_equal(model) }
+        it { instance.must_be_instance_of(Vedeu::DSL::Geometry) }
+        it { instance.instance_variable_get('@model').must_equal(model) }
       end
 
       describe '#centred' do

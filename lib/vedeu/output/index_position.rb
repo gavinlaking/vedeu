@@ -1,8 +1,8 @@
 module Vedeu
 
-  # Converts a position into an index for the terminal.
+  # Converts an index into a position for the terminal.
   #
-  class PositionIndex
+  class IndexPosition
 
     attr_reader :y,
       :x
@@ -19,10 +19,10 @@ module Vedeu
 
     # @param y [Fixnum]
     # @param x [Fixnum]
-    # @return [Vedeu::PositionIndex]
+    # @return [Vedeu::IndexPosition]
     def initialize(y, x)
-      @y = ((y - 1) <= 1) ? 1 : (y - 1)
-      @x = ((x - 1) <= 1) ? 1 : (x - 1)
+      @y = (y <= 0) ? 1 : (y + 1)
+      @x = (x <= 0) ? 1 : (x + 1)
     end
 
     # @return [Array]
@@ -30,6 +30,6 @@ module Vedeu
       [y, x]
     end
 
-  end # PositionIndex
+  end # IndexPosition
 
 end # Vedeu

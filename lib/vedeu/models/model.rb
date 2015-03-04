@@ -3,8 +3,6 @@ module Vedeu
   # When included into a class, provides the mechanism to store the class in a
   # repository for later retrieval.
   #
-  # @api private
-  #
   module Model
 
     attr_reader :repository

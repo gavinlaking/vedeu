@@ -9,6 +9,11 @@ module Vedeu
     let(:y)         { 12 }
     let(:x)         { 19 }
 
+    describe 'alias methods' do
+      it { instance.must_respond_to(:first) }
+      it { instance.must_respond_to(:last) }
+    end
+
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }
       it { instance.instance_variable_get('@y').must_equal(y) }

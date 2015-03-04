@@ -13,6 +13,8 @@ module Vedeu
       # Returns an instance of DSL::Composition.
       #
       # @param model [Composition]
+      # @param client [Object]
+      # @return [Vedeu::DSL::Composition]
       def initialize(model, client = nil)
         @model  = model
         @client = client
@@ -21,6 +23,10 @@ module Vedeu
       # Define a view.
       #
       # A view is just an Interface object.
+      #
+      # When a view already exists, we take its attributes and use them as the
+      # basis for the newly defined view. This way we don't need to specify
+      # everything again.
       #
       # @todo More documentation required.
       # @param name [String] The name of the interface you are targetting for
@@ -36,21 +42,33 @@ module Vedeu
       def view(name = '', &block)
         fail InvalidSyntax, 'block not given' unless block_given?
 
-        new_member = if Vedeu.interfaces.registered?(name)
-          existing_member = Vedeu.interfaces.find(name)
-          model.member.build(attributes.merge!(existing_member.attributes), &block)
+        new_model = model.member.build(new_attributes(name), &block)
 
-        else
-          model.member.build(attributes.merge!({ name: name }), &block)
-
-        end
-
-        model.add(new_member)
+        model.add(new_model)
       end
 
       private
 
       attr_reader :client, :model
+
+      # @param name [String] The name of the interface.
+      # @return [Hash]
+      def new_attributes(name)
+        attributes.merge!(existing_interface_attributes(name))
+      end
+
+      # @param name [String] The name of the interface.
+      # @return [Hash]
+      def existing_interface_attributes(name)
+        if model.repository.registered?(name)
+          stored = model.repository.find(name)
+          stored.attributes
+
+        else
+          { name: name }
+
+        end
+      end
 
       # @return [Hash]
       def attributes

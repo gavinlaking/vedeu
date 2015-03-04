@@ -60,9 +60,9 @@ module Vedeu
 
   end # Cursors
 
-  describe Events do
+  describe EventsRepository do
 
-    let(:described) { Vedeu::Events }
+    let(:described) { Vedeu::EventsRepository }
 
     describe '.events' do
       subject { described.events }
@@ -70,7 +70,7 @@ module Vedeu
       it { subject.must_be_instance_of(described) }
     end
 
-  end # Events
+  end # EventsRepository
 
   describe Geometries do
 

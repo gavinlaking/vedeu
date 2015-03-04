@@ -78,40 +78,41 @@ module Vedeu
     def show
       return [] unless lines?
 
-      line_pad.map { |line| column_pad(line) }.compact
+      padded_lines.map { |line| padded_columns(line) }.compact
     end
 
-    # Pad the number of rows so that we always return an Array of the same
-    # length for each viewport.
+    # Returns the lines, padded where necessary for the viewport.
     #
     # @return [Array<Array<String>>]
-    def line_pad
-      visible_lines = lines[rows] || []
+    def padded_lines
+      visible = lines[rows] || []
 
-      if visible_lines.size < height
-        visible_lines + [" "] * (height - visible_lines.size)
-
-      else
-        visible_lines
-
-      end
+      pad(visible, :height)
     end
 
-    # Pads the number of columns so that we always return an Array of the same
-    # length for each line.
+    # Returns the columns, padded where necessary for the given line.
     #
     # @param line [Array<String>]
     # @return [Array<String>]
-    def column_pad(line)
-      visible_columns = line.chars[columns] || []
+    def padded_columns(line)
+      visible = line.chars[columns] || []
 
-      if visible_columns.size < width
-        visible_columns + [" "] * (width - visible_columns.size)
+      pad(visible, :width)
+    end
 
-      else
-        visible_columns
+    # Pads the number of rows or columns to always return an Array of the same
+    # length for each viewport or line respectively.
+    #
+    # @param visible [Array<Array<String>>|Array<String>]
+    # @param dimension [Symbol] The dimension to pad (:height or :width).
+    # @return [Array<Array<String>>|Array<String>]
+    def pad(visible, dimension)
+      dim  = send(dimension)
+      size = visible.size
 
-      end
+      return visible unless size < dim
+
+      visible + [" "] * (dim - size)
     end
 
     # Using the current cursor's y position, return a range of visible lines.
@@ -119,24 +120,8 @@ module Vedeu
     # Scrolls the content vertically when the stored cursor's y position for the
     # interface is outside of the visible area.
     #
-    # @note
-    #   [value, 0].max # this allows us to set a top that is greater than
-    #                  # the content height.
-    #
-    #   [[value, (content_height - height)].min, 0].max
-    #                  # this does not allow us to have a position
-    #                  # greater than the content height.
-    #
     # @return [Range]
     def rows
-      top = if oy >= bordered_height
-        [(oy - bordered_height), 0].max
-
-      else
-        0
-
-      end
-
       top..(top + (height - 1))
     end
 
@@ -145,27 +130,60 @@ module Vedeu
     # Scrolls the content horizontally when the stored cursor's x position for
     # the interface is outside of the visible area.
     #
-    # @note
-    #   [value, 0].max # this allows us to set a left that is greater
-    #                  # than the content width.
-    #
-    #   [[value, (content_width - width)].min, 0].max
-    #                  # this does not allow us to have a position
-    #                  # greater than the content width.
-    #
     # @return [Range]
     def columns
-      left = if ox >= bordered_width
-        [(ox - bordered_width), 0].max
-
-      else
-        0
-
-      end
-
       left..(left + (width - 1))
     end
 
+    # Returns the offset for the content based on the offset.
+    #
+    # @return [Fixnum]
+    def left
+      @left ||= reposition_x? ? reposition_x : 0
+    end
+
+    # Returns the offset for the content based on the offset.
+    #
+    # @return [Fixnum]
+    def top
+      @top ||= reposition_y? ? reposition_y : 0
+    end
+
+    # Returns a boolean indicating whether the x offset is greater than or equal
+    # to the bordered width.
+    #
+    # @return [Boolean]
+    def reposition_x?
+      ox >= bordered_width
+    end
+
+    # Returns a boolean indicating whether the y offset is greater than or equal
+    # to the bordered height.
+    #
+    # @return [Boolean]
+    def reposition_y?
+      oy >= bordered_height
+    end
+
+    # Returns the number of columns to change the viewport by on the x axis,
+    # determined by the position of the x offset.
+    #
+    # @return [Fixnum]
+    def reposition_x
+      ((ox - bordered_width) <= 0) ? 0 : (ox - bordered_width)
+    end
+
+    # Returns the number of rows to change the viewport by on the y axis,
+    # determined by the position of the y offset.
+    #
+    # @return [Fixnum]
+    def reposition_y
+      ((oy - bordered_height) <= 0) ? 0 : (oy - bordered_height)
+    end
+
+    # When the viewport has a border, we need to account for that in our
+    # redrawing.
+    #
     # @return [Fixnum]
     def bordered_width
       return border.width if border?
@@ -173,6 +191,9 @@ module Vedeu
       width
     end
 
+    # When the viewport has a border, we need to account for that in our
+    # redrawing.
+    #
     # @return [Fixnum]
     def bordered_height
       return border.height if border?
@@ -180,11 +201,15 @@ module Vedeu
       height
     end
 
+    # Return the border associated with the interface we are drawing.
+    #
     # @return [Vedeu::Border]
     def border
       @border ||= Vedeu.borders.find(interface.name)
     end
 
+    # Returns a boolean indicating the interface we are drawing has a border.
+    #
     # @return [Boolean]
     def border?
       Vedeu.borders.registered?(interface.name)

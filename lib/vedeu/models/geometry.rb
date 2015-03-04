@@ -10,7 +10,7 @@ module Vedeu
   # @todo Consider storing the Terminal size at the time of first creation,
   # this allows us to return the interface to its original dimensions if
   # the terminal resizes back to normal size.
-
+  #
   # Calculates and provides interface geometry determined by both the client's
   # requirements and the terminal's current viewing area.
   #
@@ -26,8 +26,6 @@ module Vedeu
   #       |    bottom    |           # bottom: yn
   #    yn +--------------+           # south:  yn + 1
   #            south
-  #
-  # @api private
   #
   class Geometry
 
@@ -137,6 +135,9 @@ module Vedeu
     # Returns the top coordinate of the interface, a fixed or dynamic value
     # depending on whether the interface is centred or not.
     #
+    # @note
+    #   Division which results in a non-integer will be rounded down.
+    #
     # @return [Fixnum]
     def top
       if centred
@@ -165,6 +166,9 @@ module Vedeu
 
     # Returns the left coordinate of the interface, a fixed or dynamic value
     # depending on whether the interface is centred or not.
+    #
+    # @note
+    #   Division which results in a non-integer will be rounded down.
     #
     # @return [Fixnum]
     def left
