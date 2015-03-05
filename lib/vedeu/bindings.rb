@@ -197,6 +197,13 @@ module Vedeu
       end
     end
 
+    # Clears the spaces occupied by the interfaces belonging to the named group.
+    Vedeu.bind(:_clear_group_) do |name|
+      Vedeu.groups.find(name).members.each do |group_name|
+        Vedeu.trigger(:_clear_, group_name)
+      end
+    end
+
     # Triggering this event will cause all interfaces to refresh, or the named
     # interface if given.
     Vedeu.bind(:_refresh_) do |name|
