@@ -31,6 +31,35 @@ module Vedeu
       @interface = interface
     end
 
+    # Move the named cursor, or that which is currently in focus in the
+    # specified direction.
+    #
+    # @note
+    #   Will not exceed the border or boundary of the interface.
+    #
+    # @param direction [Symbol] The direction of travel.
+    #   (:down, :left, :right, :up)
+    # @param name [String|NilClass] The name of the interface/cursor to be
+    #   moved; when not given, the interface currently in focus determines which
+    #   cursor instance to move.
+    # @return [Cursor]
+    def self.by_name(direction, name = nil)
+      if name
+        cursor     = Vedeu.cursors.by_name(name)
+        interface  = Vedeu.interfaces.find(name)
+        new_cursor = MoveCursor.send(direction, cursor, interface)
+        Refresh.by_name(name)
+
+      else
+        cursor     = Vedeu.cursor
+        interface  = Vedeu.interfaces.current
+        new_cursor = MoveCursor.send(direction, cursor, interface)
+        Refresh.by_focus
+
+      end
+      new_cursor
+    end
+
     # Moves the cursor down by one row.
     #
     # @return [Cursor]

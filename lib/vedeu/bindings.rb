@@ -113,45 +113,17 @@ module Vedeu
       ToggleCursor.show(named)
     end
 
-    # Move the cursor down one character in the interface currently in focus.
-    # Will not exceed the border or boundary of the interface.
-    Vedeu.bind(:_cursor_down_) do
-      interface = Vedeu.interfaces.current
+    # @see {Vedeu::MoveCursor.by_name}
+    Vedeu.bind(:_cursor_down_)  { |name| MoveCursor.by_name(:down, name) }
 
-      MoveCursor.down(Vedeu.cursor, interface)
+    # @see {Vedeu::MoveCursor.by_name}
+    Vedeu.bind(:_cursor_left_)  { |name| MoveCursor.by_name(:left, name) }
 
-      Refresh.by_focus
-    end
+    # @see {Vedeu::MoveCursor.by_name}
+    Vedeu.bind(:_cursor_right_) { |name| MoveCursor.by_name(:right, name) }
 
-    # Move the cursor left one character in the interface currently in focus.
-    # Will not exceed the border or boundary of the interface.
-    Vedeu.bind(:_cursor_left_) do
-      interface = Vedeu.interfaces.current
-
-      MoveCursor.left(Vedeu.cursor, interface)
-
-      Refresh.by_focus
-    end
-
-    # Move the cursor right one character in the interface currently in focus.
-    # Will not exceed the border or boundary of the interface.
-    Vedeu.bind(:_cursor_right_) do
-      interface = Vedeu.interfaces.current
-
-      MoveCursor.right(Vedeu.cursor, interface)
-
-      Refresh.by_focus
-    end
-
-    # Move the cursor up one character in the interface currently in focus.
-    # Will not exceed the border or boundary of the interface.
-    Vedeu.bind(:_cursor_up_) do
-      interface = Vedeu.interfaces.current
-
-      MoveCursor.up(Vedeu.cursor, interface)
-
-      Refresh.by_focus
-    end
+    # @see {Vedeu::MoveCursor.by_name}
+    Vedeu.bind(:_cursor_up_)    { |name| MoveCursor.by_name(:up, name) }
 
     # Moves the cursor to the top left position of the interface currently in
     # focus; respecting a border if present.
