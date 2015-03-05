@@ -22,6 +22,11 @@ module Vedeu
   #   Vedeu.trigger(:_cursor_right_)
   #   Vedeu.trigger(:_cursor_up_)
   #
+  #   Vedeu.trigger(:_cursor_origin_)                 # /or/
+  #   Vedeu.trigger(:_cursor_origin_, 'my_interface')
+  #                                 # Moves the cursor to the top left of the
+  #                                 # named or current interface in focus.
+  #
   # @note
   #   The cursor may not be visible, but it will still move if requested.
   #   The cursor will not exceed the border or boundary of the interface.
@@ -58,8 +63,9 @@ module Vedeu
     # Move the named cursor, or that which is currently in focus in the
     # specified direction.
     #
-    # @param direction [Symbol] The direction of travel.
-    #   (:down, :left, :right, :up)
+    # @param direction [Symbol] The direction of travel. Directions include:
+    #   (:down, :left, :right, :up, :origin). When ':origin' the cursor is moved
+    #   to the top left of the interface.
     # @param name [String|NilClass] The name of the interface/cursor to be
     #   moved; when not given, the interface currently in focus determines which
     #   cursor instance to move.

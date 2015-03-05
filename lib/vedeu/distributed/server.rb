@@ -69,6 +69,8 @@ module Vedeu
 
       # @return [void]
       def restart
+        Vedeu.log(type: :drb, message: 'Attempting to restart')
+
         return not_enabled unless drb?
 
         log('Not running') unless drb_running?
@@ -100,6 +102,8 @@ module Vedeu
 
       # @return [Vedeu::Distributed::Server]
       def start
+        Vedeu.log(type: :drb, message: 'Attempting to start')
+
         return not_enabled unless drb?
 
         if drb_running?
@@ -116,6 +120,8 @@ module Vedeu
 
       # @return [Symbol]
       def status
+        Vedeu.log(type: :drb, message: 'Fetching status')
+
         return not_enabled unless drb?
 
         if drb_running?

@@ -27,30 +27,19 @@ module Vedeu
       Vedeu.trigger(:_keypress_, data)
     end
 
-    Vedeu.bind(:_drb_retrieve_output_)  do
+    Vedeu.bind(:_drb_retrieve_output_) do
       Vedeu.log(type: :drb, message: 'Retrieving output')
       Vedeu::VirtualBuffer.retrieve
     end
 
-    Vedeu.bind(:_drb_store_output_)  do |data|
+    Vedeu.bind(:_drb_store_output_) do |data|
       Vedeu.log(type: :drb, message: 'Storing output')
       Vedeu::VirtualBuffer.store(Vedeu::Terminal.virtual.output(data))
     end
 
-    Vedeu.bind(:_drb_restart_) do
-      Vedeu.log(type: :drb, message: 'Attempting to restart')
-      Vedeu::Distributed::Server.restart
-    end
-
-    Vedeu.bind(:_drb_start_)   do
-      Vedeu.log(type: :drb, message: 'Attempting to start')
-      Vedeu::Distributed::Server.start
-    end
-
-    Vedeu.bind(:_drb_status_)  do
-      Vedeu.log(type: :drb, message: 'Fetching status')
-      Vedeu::Distributed::Server.status
-    end
+    Vedeu.bind(:_drb_restart_) { Vedeu::Distributed::Server.restart }
+    Vedeu.bind(:_drb_start_)   { Vedeu::Distributed::Server.start }
+    Vedeu.bind(:_drb_status_)  { Vedeu::Distributed::Server.status }
 
     Vedeu.bind(:_drb_stop_) do |message|
       Vedeu.log(type: :drb, message: "Attempting to stop (#{message})")
@@ -125,15 +114,11 @@ module Vedeu
     # @see {Vedeu::MoveCursor}
     Vedeu.bind(:_cursor_up_) { |name| MoveCursor.by_name(:up, name) }
 
-    # Moves the cursor to the top left position of the interface currently in
-    # focus; respecting a border if present.
-    Vedeu.bind(:_cursor_origin_) do
-      interface = Vedeu.interfaces.current
+    # @see {Vedeu::MoveCursor}
+    Vedeu.bind(:_cursor_origin_) { |name| MoveCursor.by_name(:origin, name) }
 
-      MoveCursor.origin(Vedeu.cursor, interface)
-
-      Refresh.by_focus
-    end
+    # @see {Vedeu::MoveCursor}
+    Vedeu.bind(:_cursor_reset_) { |name| Vedeu.trigger(:_cursor_origin_, name) }
 
     # When triggered with an interface name will focus that interface and
     # restore the cursor position and visibility.
