@@ -1,4 +1,6 @@
-require 'vedeu/support/text'
+require 'vedeu/output/text'
+require 'vedeu/models/view/line'
+require 'vedeu/models/view/stream'
 
 module Vedeu
 
