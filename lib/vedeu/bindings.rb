@@ -14,13 +14,6 @@ module Vedeu
   #
   module Bindings
 
-    # Clears the whole terminal space.
-    Vedeu.bind(:_clear_) do
-      Vedeu::Terminal.virtual.clear if Vedeu::Configuration.drb?
-
-      Vedeu::Terminal.clear
-    end
-
     # Vedeu triggers this event when `:_exit_` is triggered. You can hook into
     # this to perform a special action before the application terminates. Saving
     # the user's work, session or preferences might be popular here.
@@ -66,13 +59,13 @@ module Vedeu
 
     # When triggered, Vedeu will trigger a `:cleanup` event which you can define
     # (to save files, etc) and attempt to exit.
-    Vedeu.bind(:_exit_)                    { Vedeu::Application.stop      }
+    Vedeu.bind(:_exit_) { Vedeu::Application.stop      }
 
     # Vedeu triggers this event when it is ready to enter the main loop. Client
     # applications can listen for this event and perform some action(s), like
     # render the first screen, interface or make a sound. When Vedeu triggers
     # this event, the :_refresh_ event is also triggered automatically.
-    Vedeu.bind(:_initialize_)              { Vedeu.trigger(:_refresh_)    }
+    Vedeu.bind(:_initialize_) { Vedeu.trigger(:_refresh_)    }
 
     # Triggering this event will cause the triggering of the `:key` event; which
     # you should define to 'do things'. If the `escape` key is pressed, then
@@ -219,8 +212,21 @@ module Vedeu
     # starting at the current item to the last item.
     Vedeu.bind(:_menu_view_) { |name| Vedeu.menus.find(name).view }
 
+    # Clears the whole terminal space, or the named interface area to be cleared
+    # if given.
+    Vedeu.bind(:_clear_) do |name|
+      if name && Vedeu.interfaces.registered?(name)
+        Vedeu::Output.clear(Vedeu.interfaces.find(name))
+
+      else
+        Vedeu::Terminal.virtual.clear if Vedeu::Configuration.drb?
+
+        Vedeu::Terminal.clear
+      end
+    end
+
     # Triggering this event will cause all interfaces to refresh, or the named
-    # interface if one is given.
+    # interface if given.
     Vedeu.bind(:_refresh_) do |name|
       if name
         Vedeu::Refresh.by_name(name)

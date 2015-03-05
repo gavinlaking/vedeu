@@ -4,6 +4,14 @@ module Vedeu
   #
   class Output
 
+    # Clears the area defined by the interface.
+    #
+    # @return [Array|String]
+    # @see #initialize
+    def self.clear(interface)
+      new(interface).clear
+    end
+
     # Writes content (the provided interface object with associated lines,
     # streams, colours and styles) to the area defined by the interface.
     #
@@ -19,6 +27,19 @@ module Vedeu
     # @return [Output]
     def initialize(interface)
       @interface = interface
+    end
+
+    # Clear the view and send to the terminal.
+    #
+    # @return [Array]
+    def clear
+      if Vedeu::Configuration.drb?
+        Vedeu.trigger(:_drb_store_output_, virtual_clear)
+
+        HTMLRenderer.to_file(VirtualBuffer.retrieve)
+      end
+
+      Terminal.output(Renderer.render(virtual_clear))
     end
 
     # Send the view to the terminal.
