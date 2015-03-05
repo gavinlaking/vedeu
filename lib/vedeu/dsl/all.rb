@@ -13,6 +13,8 @@ module Vedeu
   #
   module DSL
 
+    private
+
     # Attempts to find the missing method on the client object.
     #
     # @param method [Symbol] The name of the method sought.
