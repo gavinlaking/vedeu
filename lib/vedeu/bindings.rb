@@ -113,17 +113,17 @@ module Vedeu
       ToggleCursor.show(named)
     end
 
-    # @see {Vedeu::MoveCursor.by_name}
-    Vedeu.bind(:_cursor_down_)  { |name| MoveCursor.by_name(:down, name) }
+    # @see {Vedeu::MoveCursor}
+    Vedeu.bind(:_cursor_down_) { |name| MoveCursor.by_name(:down, name) }
 
-    # @see {Vedeu::MoveCursor.by_name}
-    Vedeu.bind(:_cursor_left_)  { |name| MoveCursor.by_name(:left, name) }
+    # @see {Vedeu::MoveCursor}
+    Vedeu.bind(:_cursor_left_) { |name| MoveCursor.by_name(:left, name) }
 
-    # @see {Vedeu::MoveCursor.by_name}
+    # @see {Vedeu::MoveCursor}
     Vedeu.bind(:_cursor_right_) { |name| MoveCursor.by_name(:right, name) }
 
-    # @see {Vedeu::MoveCursor.by_name}
-    Vedeu.bind(:_cursor_up_)    { |name| MoveCursor.by_name(:up, name) }
+    # @see {Vedeu::MoveCursor}
+    Vedeu.bind(:_cursor_up_) { |name| MoveCursor.by_name(:up, name) }
 
     # Moves the cursor to the top left position of the interface currently in
     # focus; respecting a border if present.

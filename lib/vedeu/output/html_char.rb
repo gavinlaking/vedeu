@@ -2,6 +2,8 @@ require 'vedeu/support/common'
 
 module Vedeu
 
+  # Represents a {Vedeu::Char} as a HTML table cell.
+  #
   class HTMLChar
 
     include Vedeu::Common

@@ -10,6 +10,9 @@ module Vedeu
 
     # Produces new objects of the correct class from the value, ignores objects
     # that have already been coerced.
+    #
+    # @param value [Object|NilClass]
+    # @return [Object]
     def coerce(value)
       if value.is_a?(self)
         value

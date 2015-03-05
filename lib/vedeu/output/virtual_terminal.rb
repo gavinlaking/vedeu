@@ -1,5 +1,7 @@
 module Vedeu
 
+  # Represents a {Vedeu::Terminal} view.
+  #
   class VirtualTerminal
 
     attr_accessor :renderer

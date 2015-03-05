@@ -4,7 +4,29 @@ require 'vedeu/geometry/position_validator'
 
 module Vedeu
 
-  # Adjusts the position of the cursor.
+  # Adjusts the position of the cursor. To use this class, call the appropriate
+  # event:
+  #
+  # @example
+  #   Vedeu.trigger(:_cursor_down_)
+  #
+  #   Vedeu.trigger(:_cursor_left_) # When a name is not given, the cursor in
+  #                                 # the interface which is currently in focus
+  #                                 # should move to the left.
+  #
+  #   Vedeu.trigger(:_cursor_left_, 'my_interface')
+  #                                 # When a name is given, the cursor instance
+  #                                 # belonging to this interface moves to the
+  #                                 # left.
+  #
+  #   Vedeu.trigger(:_cursor_right_)
+  #   Vedeu.trigger(:_cursor_up_)
+  #
+  # @note
+  #   The cursor may not be visible, but it will still move if requested.
+  #   The cursor will not exceed the border or boundary of the interface.
+  #   The cursor will move freely within the bounds of the interface,
+  #     irrespective of content.
   #
   class MoveCursor
 
@@ -19,6 +41,8 @@ module Vedeu
                               :height,
                               :width
 
+    # Returns an instance of MoveCursor.
+    #
     # @param cursor    [Cursor]
     # @param interface [Interface]
     # @param dy        [Fixnum] Move up (-1), or down (1), or no action (0).
@@ -33,9 +57,6 @@ module Vedeu
 
     # Move the named cursor, or that which is currently in focus in the
     # specified direction.
-    #
-    # @note
-    #   Will not exceed the border or boundary of the interface.
     #
     # @param direction [Symbol] The direction of travel.
     #   (:down, :left, :right, :up)
@@ -62,6 +83,8 @@ module Vedeu
 
     # Moves the cursor down by one row.
     #
+    # @param cursor    [Cursor]
+    # @param interface [Interface]
     # @return [Cursor]
     def self.down(cursor, interface)
       new(cursor, interface, 1, 0).move
@@ -69,6 +92,8 @@ module Vedeu
 
     # Moves the cursor left by one column.
     #
+    # @param cursor    [Cursor]
+    # @param interface [Interface]
     # @return [Cursor]
     def self.left(cursor, interface)
       return cursor unless cursor.ox > 0
@@ -78,6 +103,8 @@ module Vedeu
 
     # Moves the cursor right by one column.
     #
+    # @param cursor    [Cursor]
+    # @param interface [Interface]
     # @return [Cursor]
     def self.right(cursor, interface)
       new(cursor, interface, 0, 1).move
@@ -85,6 +112,8 @@ module Vedeu
 
     # Moves the cursor up by one row.
     #
+    # @param cursor    [Cursor]
+    # @param interface [Interface]
     # @return [Cursor]
     def self.up(cursor, interface)
       return cursor unless cursor.oy > 0
@@ -94,6 +123,8 @@ module Vedeu
 
     # Moves the cursor to the top left coordinate of the interface.
     #
+    # @param cursor    [Cursor]
+    # @param interface [Interface]
     # @return [Cursor]
     def self.origin(cursor, interface)
       new(cursor, interface, (0 - cursor.y), (0 - cursor.x)).move
@@ -127,6 +158,9 @@ module Vedeu
                                                       coordinate.y_position(oy))
     end
 
+    # Apply the direction amount to the cursor offset. If the offset is less
+    # than 0, correct to 0.
+    #
     # @return [Fixnum]
     def ox
       ox = cursor.ox + dx
@@ -134,6 +168,9 @@ module Vedeu
       ox
     end
 
+    # Apply the direction amount to the cursor offset. If the offset is less
+    # than 0, correct to 0.
+    #
     # @return [Fixnum]
     def oy
       oy = cursor.oy + dy
@@ -149,6 +186,8 @@ module Vedeu
                                             top)
     end
 
+    # Return the height of the interface, minus any borders.
+    #
     # @return [Fixnum]
     def bordered_height
       return border.height if border?
@@ -156,6 +195,8 @@ module Vedeu
       height
     end
 
+    # Return the width of the interface, minus any borders.
+    #
     # @return [Fixnum]
     def bordered_width
       return border.width if border?
