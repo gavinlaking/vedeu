@@ -19,7 +19,7 @@ module Vedeu
         new(uri).connect
       end
 
-      # @param uri [String]
+      # @param uri [Vedeu::Distributed::Uri|String]
       # @return [Client]
       def initialize(uri)
         @uri = uri.to_s
@@ -31,35 +31,37 @@ module Vedeu
       def connect
         server.status
 
-      rescue DRb::DRbBadURI
-        puts "Could not connect to DRb server, URI may be bad."
-
       rescue DRb::DRbConnError
-        puts "Could not connect to DRb server."
+        drb_connection_error
+
+      rescue DRb::DRbBadURI
+        puts 'Could not connect to DRb server, URI may be bad.'
+
+        :drb_bad_uri
 
       end
 
       # Send input to the DRb server.
       #
       # @param data [String|Symbol]
-      # @return [void]
+      # @return [void|Symbol]
       def input(data)
         server.input(data)
 
       rescue DRb::DRbConnError
-        puts "Could not connect to DRb server."
+        drb_connection_error
 
       end
       alias_method :read, :input
 
       # Fetch output from the DRb server.
       #
-      # @return [void]
+      # @return [void|Symbol]
       def output
         server.output
 
       rescue DRb::DRbConnError
-        puts "Could not connect to DRb server."
+        drb_connection_error
 
       end
       alias_method :write, :output
@@ -70,17 +72,20 @@ module Vedeu
       #   {Vedeu::Application} will raise StopIteration when its `.stop` method
       #   is called. Here we rescue that to give a clean client exit.
       #
-      # @return [void]
+      # @return [void|Symbol]
       def shutdown
         server.shutdown
 
         Process.kill("KILL", server.pid)
 
       rescue DRb::DRbConnError
-        puts "Could not connect to DRb server."
+        drb_connection_error
 
       rescue Interrupt
-        puts "Client application exited."
+        puts 'Client application exited.'
+
+      ensure
+        :shutdown
 
       end
 
@@ -91,6 +96,13 @@ module Vedeu
       # @return [void]
       def server
         @server ||= DRbObject.new_with_uri(uri)
+      end
+
+      # @return [Symbol]
+      def drb_connection_error
+        puts 'Could not connect to DRb server.'
+
+        :drb_connection_error
       end
 
     end # Client
