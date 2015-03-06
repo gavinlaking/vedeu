@@ -56,7 +56,11 @@ module Vedeu
     # you should define to 'do things'. If the `escape` key is pressed, then
     # `key` is triggered with the argument `:escape`, also an internal event
     # `_mode_switch_` is triggered.
-    Vedeu.bind(:_keypress_) { |key| Vedeu.keypress(key) }
+    Vedeu.bind(:_keypress_) do |key|
+      Vedeu.trigger(:key, key)
+
+      Vedeu.keypress(key)
+    end
 
     # When triggered with a message will cause Vedeu to log the message if
     # logging is enabled in the configuration.
