@@ -32,6 +32,8 @@ module Vedeu
       # Returns an instance of DSL::Geometry.
       #
       # @param model [Geometry]
+      # @param client [Object]
+      # @return [Vedeu::DSL::Geometry]
       def initialize(model, client = nil)
         @model  = model
         @client = client

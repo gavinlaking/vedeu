@@ -1,5 +1,7 @@
 module Vedeu
 
+  # Renders a {Vedeu::VirtualBuffer} or {Vedeu::Output} as a HTML table.
+  #
   class HTMLRenderer
 
     # @param output [Array<Array<Vedeu::Char>>]
@@ -25,6 +27,9 @@ module Vedeu
       Template.parse(self, template)
     end
 
+    # Writes the parsed template to a file (at the given path) and returns the
+    # contents.
+    #
     # @param path [String]
     # @return [String]
     def to_file(path = file_path)
@@ -53,6 +58,7 @@ module Vedeu
 
     attr_reader :output
 
+    # @return [String]
     def template
       File.dirname(__FILE__) + '/templates/html_renderer.vedeu'
     end

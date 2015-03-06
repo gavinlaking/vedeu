@@ -14,18 +14,11 @@ module Vedeu
   #
   module Bindings
 
-    # Clears the whole terminal space.
-    Vedeu.bind(:_clear_) do
-      Vedeu::Terminal.virtual.clear if Vedeu::Configuration.drb?
-
-      Vedeu::Terminal.clear
-    end
-
     # Vedeu triggers this event when `:_exit_` is triggered. You can hook into
     # this to perform a special action before the application terminates. Saving
     # the user's work, session or preferences might be popular here.
     Vedeu.bind(:_cleanup_) do
-      Vedeu.trigger(:_drb_stop_, 'via :cleanup')
+      Vedeu.trigger(:_drb_stop_)
       Vedeu.trigger(:cleanup)
     end
 
@@ -34,51 +27,40 @@ module Vedeu
       Vedeu.trigger(:_keypress_, data)
     end
 
-    Vedeu.bind(:_drb_retrieve_output_)  do
+    Vedeu.bind(:_drb_retrieve_output_) do
       Vedeu.log(type: :drb, message: 'Retrieving output')
       Vedeu::VirtualBuffer.retrieve
     end
 
-    Vedeu.bind(:_drb_store_output_)  do |data|
+    Vedeu.bind(:_drb_store_output_) do |data|
       Vedeu.log(type: :drb, message: 'Storing output')
       Vedeu::VirtualBuffer.store(Vedeu::Terminal.virtual.output(data))
     end
 
-    Vedeu.bind(:_drb_restart_) do
-      Vedeu.log(type: :drb, message: 'Attempting to restart')
-      Vedeu::Distributed::Server.restart
-    end
-
-    Vedeu.bind(:_drb_start_)   do
-      Vedeu.log(type: :drb, message: 'Attempting to start')
-      Vedeu::Distributed::Server.start
-    end
-
-    Vedeu.bind(:_drb_status_)  do
-      Vedeu.log(type: :drb, message: 'Fetching status')
-      Vedeu::Distributed::Server.status
-    end
-
-    Vedeu.bind(:_drb_stop_) do |message|
-      Vedeu.log(type: :drb, message: "Attempting to stop (#{message})")
-      Vedeu::Distributed::Server.stop
-    end
+    Vedeu.bind(:_drb_restart_) { Vedeu::Distributed::Server.restart }
+    Vedeu.bind(:_drb_start_)   { Vedeu::Distributed::Server.start }
+    Vedeu.bind(:_drb_status_)  { Vedeu::Distributed::Server.status }
+    Vedeu.bind(:_drb_stop_)    { Vedeu::Distributed::Server.stop }
 
     # When triggered, Vedeu will trigger a `:cleanup` event which you can define
     # (to save files, etc) and attempt to exit.
-    Vedeu.bind(:_exit_)                    { Vedeu::Application.stop      }
+    Vedeu.bind(:_exit_) { Vedeu::Application.stop }
 
     # Vedeu triggers this event when it is ready to enter the main loop. Client
     # applications can listen for this event and perform some action(s), like
     # render the first screen, interface or make a sound. When Vedeu triggers
     # this event, the :_refresh_ event is also triggered automatically.
-    Vedeu.bind(:_initialize_)              { Vedeu.trigger(:_refresh_)    }
+    Vedeu.bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
 
-    # Triggering this event will cause the triggering of the `:key` event; which
+    # Will cause the triggering of the `:key` event; which
     # you should define to 'do things'. If the `escape` key is pressed, then
     # `key` is triggered with the argument `:escape`, also an internal event
     # `_mode_switch_` is triggered.
-    Vedeu.bind(:_keypress_) { |key| Vedeu.keypress(key) }
+    Vedeu.bind(:_keypress_) do |key|
+      Vedeu.trigger(:key, key)
+
+      Vedeu.keypress(key)
+    end
 
     # When triggered with a message will cause Vedeu to log the message if
     # logging is enabled in the configuration.
@@ -96,79 +78,35 @@ module Vedeu
 
     # Hide the cursor of the named interface or interface currently in focus.
     Vedeu.bind(:_cursor_hide_) do |name|
-      named = if name
-        Vedeu.cursors.by_name(name)
-
-      else
-        Vedeu.cursor
-
-      end
+      named = name ? Vedeu.cursors.by_name(name) : Vedeu.cursor
 
       ToggleCursor.hide(named)
     end
 
     # Show the cursor of the named interface or interface currently in focus.
     Vedeu.bind(:_cursor_show_) do |name|
-      named = if name
-        Vedeu.cursors.by_name(name)
-
-      else
-        Vedeu.cursor
-
-      end
+      named = name ? Vedeu.cursors.by_name(name) : Vedeu.cursor
 
       ToggleCursor.show(named)
     end
 
-    # Move the cursor down one character in the interface currently in focus.
-    # Will not exceed the border or boundary of the interface.
-    Vedeu.bind(:_cursor_down_) do
-      interface = Vedeu.interfaces.current
+    # @see {Vedeu::MoveCursor}
+    Vedeu.bind(:_cursor_down_) { |name| MoveCursor.by_name(:down, name) }
 
-      MoveCursor.down(Vedeu.cursor, interface)
+    # @see {Vedeu::MoveCursor}
+    Vedeu.bind(:_cursor_left_) { |name| MoveCursor.by_name(:left, name) }
 
-      Refresh.by_focus
-    end
+    # @see {Vedeu::MoveCursor}
+    Vedeu.bind(:_cursor_right_) { |name| MoveCursor.by_name(:right, name) }
 
-    # Move the cursor left one character in the interface currently in focus.
-    # Will not exceed the border or boundary of the interface.
-    Vedeu.bind(:_cursor_left_) do
-      interface = Vedeu.interfaces.current
+    # @see {Vedeu::MoveCursor}
+    Vedeu.bind(:_cursor_up_) { |name| MoveCursor.by_name(:up, name) }
 
-      MoveCursor.left(Vedeu.cursor, interface)
+    # @see {Vedeu::MoveCursor}
+    Vedeu.bind(:_cursor_origin_) { |name| MoveCursor.by_name(:origin, name) }
 
-      Refresh.by_focus
-    end
-
-    # Move the cursor right one character in the interface currently in focus.
-    # Will not exceed the border or boundary of the interface.
-    Vedeu.bind(:_cursor_right_) do
-      interface = Vedeu.interfaces.current
-
-      MoveCursor.right(Vedeu.cursor, interface)
-
-      Refresh.by_focus
-    end
-
-    # Move the cursor up one character in the interface currently in focus.
-    # Will not exceed the border or boundary of the interface.
-    Vedeu.bind(:_cursor_up_) do
-      interface = Vedeu.interfaces.current
-
-      MoveCursor.up(Vedeu.cursor, interface)
-
-      Refresh.by_focus
-    end
-
-    # Moves the cursor to the top left position of the interface currently in
-    # focus; respecting a border if present.
-    Vedeu.bind(:_cursor_origin_) do
-      interface = Vedeu.interfaces.current
-
-      MoveCursor.origin(Vedeu.cursor, interface)
-
-      Refresh.by_focus
-    end
+    # @see {Vedeu::MoveCursor}
+    Vedeu.bind(:_cursor_reset_) { |name| Vedeu.trigger(:_cursor_origin_, name) }
 
     # When triggered with an interface name will focus that interface and
     # restore the cursor position and visibility.
@@ -219,22 +157,51 @@ module Vedeu
     # starting at the current item to the last item.
     Vedeu.bind(:_menu_view_) { |name| Vedeu.menus.find(name).view }
 
-    # Triggering this event will cause all interfaces to refresh, or the named
-    # interface if one is given.
-    Vedeu.bind(:_refresh_) do |name|
-      if name
-        Vedeu::Refresh.by_name(name)
+    # Clears the whole terminal space, or the named interface area to be cleared
+    # if given.
+    Vedeu.bind(:_clear_) do |name|
+      if name && Vedeu.interfaces.registered?(name)
+        Vedeu::Output.clear(Vedeu.interfaces.find(name))
 
       else
-        Vedeu::Refresh.all
+        Vedeu::Terminal.virtual.clear if Vedeu::Configuration.drb?
 
+        Vedeu::Terminal.clear
       end
     end
 
-    # Triggering this event will cause all interfaces in the named group to
-    # refresh.
-    Vedeu.bind(:_refresh_group_) do |name|
-      Vedeu::Refresh.by_group(name)
+    # Clears the spaces occupied by the interfaces belonging to the named group.
+    Vedeu.bind(:_clear_group_) do |name|
+      Vedeu.groups.find(name).members.each do |group_name|
+        Vedeu.trigger(:_clear_, group_name)
+      end
+    end
+
+    # Will cause all interfaces to refresh, or the named interface if given.
+    Vedeu.bind(:_refresh_) do |name|
+      name ? Vedeu::Refresh.by_name(name) : Vedeu::Refresh.all
+    end
+
+    # Will cause all interfaces in the named group to refresh.
+    Vedeu.bind(:_refresh_group_) { |name| Vedeu::Refresh.by_group(name) }
+
+    # Will clear the terminal and then show all of the interfaces belonging to
+    # the named group.
+    Vedeu.bind(:_show_group_) do |name|
+      Vedeu.trigger(:_clear_)
+
+      Vedeu.trigger(:_refresh_group_, name)
+    end
+
+    # Will hide all of the interfaces belonging to the named group. Useful for
+    # hiding part of that which is currently displaying in the terminal.
+    #
+    # @note
+    #   This may be rarely used, since the action of showing a group using
+    #   `Vedeu.trigger(:_show_group_, group_name)` will effectively clear the
+    #   terminal and show the new group.
+    Vedeu.bind(:_hide_group_) do |name|
+      Vedeu.trigger(:_clear_group_, name)
     end
 
   end # Bindings

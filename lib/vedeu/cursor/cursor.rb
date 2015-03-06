@@ -18,7 +18,7 @@ module Vedeu
 
     attr_reader :attributes, :name, :ox, :oy, :state, :x, :y
 
-    # Provides a new instance of Cursor.
+    # Returns a new instance of Cursor.
     #
     # @param attributes [Hash]
     # @option attributes name [String] The name of the interface this cursor

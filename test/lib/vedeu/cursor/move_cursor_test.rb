@@ -6,7 +6,14 @@ module Vedeu
 
     let(:described) { Vedeu::MoveCursor }
     let(:instance)  { described.new(cursor, interface, dy, dx) }
-    let(:cursor)    { Cursor.new({ name: 'MoveCursor', ox: ox, oy: oy, state: :show, x: x, y: y }) }
+    let(:cursor)    {
+      Cursor.new({ name: 'MoveCursor',
+                   ox:    ox,
+                   oy:    oy,
+                   state: :show,
+                   x:     x,
+                   y:     y })
+    }
     let(:ox)        { 0 }
     let(:oy)        { 0 }
     let(:x)         { 1 }
@@ -54,6 +61,58 @@ module Vedeu
       it { instance.instance_variable_get('@interface').must_equal(interface) }
       it { instance.instance_variable_get('@dy').must_equal(dy) }
       it { instance.instance_variable_get('@dx').must_equal(dx) }
+    end
+
+    describe '.by_name' do
+      let(:direction) { :down }
+      let(:_name)     { 'manganese' }
+
+      before do
+        Vedeu.interfaces.reset
+        Vedeu.cursors.reset
+
+        interface_with_border
+        Vedeu::Cursor.new({ name: 'manganese', oy: 2, ox: 3, x: 8, y: 7 }).store
+      end
+
+      subject { MoveCursor.by_name(direction, _name) }
+
+      it { subject.must_be_instance_of(Vedeu::Cursor) }
+
+      context 'when the name is not specified' do
+        let(:_name) {}
+
+      end
+
+      context 'when the name is specified' do
+        let(:_name) { 'manganese' }
+
+        context 'and the direction is down' do
+          let(:direction) { :down }
+
+          it { subject.oy.must_equal(3) }
+        end
+        context 'and the direction is left' do
+          let(:direction) { :left }
+
+          it { subject.ox.must_equal(2) }
+        end
+        context 'and the direction is right' do
+          let(:direction) { :right }
+
+          it { subject.ox.must_equal(4) }
+        end
+        context 'and the direction is up' do
+          let(:direction) { :up }
+
+          it { subject.oy.must_equal(1) }
+        end
+
+        context 'but the interface does not exist' do
+          before { Vedeu.interfaces.stubs(:find).with(_name).returns(nil) }
+
+        end
+      end
     end
 
     describe '.down' do

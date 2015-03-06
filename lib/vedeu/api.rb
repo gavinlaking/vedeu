@@ -3,9 +3,10 @@ require 'vedeu/support/terminal'
 require 'vedeu/events/all'
 require 'vedeu/models/all'
 require 'vedeu/input/all'
-require 'vedeu/dsl/components/border'
+require 'vedeu/dsl/components/all'
 require 'vedeu/dsl/composition'
 require 'vedeu/dsl/shared/all'
+require 'vedeu/dsl/group'
 require 'vedeu/dsl/view'
 
 module Vedeu
@@ -38,6 +39,7 @@ module Vedeu
     def_delegators Vedeu::DSL::Border,   :border
     def_delegators Vedeu::DSL::Geometry, :geometry
     def_delegators Vedeu::DSL::Keymap,   :keymap
+    def_delegators Vedeu::DSL::Group,    :group
     def_delegators Vedeu::DSL::Use,      :use
     def_delegators Vedeu::DSL::View,     :interface, :renders, :views
 

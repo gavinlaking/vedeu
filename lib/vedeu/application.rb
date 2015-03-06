@@ -59,7 +59,7 @@ module Vedeu
         runner { main_sequence }
       end
 
-      Vedeu.trigger(:_drb_stop_, 'via Vedeu::Application#start')
+      Vedeu.trigger(:_drb_stop_)
 
       output
     end

@@ -1,6 +1,6 @@
 require 'vedeu/configuration/configuration'
 require 'vedeu/output/translator'
-require 'vedeu/support/esc'
+require 'vedeu/output/esc'
 
 module Vedeu
 

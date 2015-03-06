@@ -4,6 +4,8 @@ module Vedeu
   #
   class ToggleCursor
 
+    # Returns an instance of ToggleCursor.
+    #
     # @param cursor [Cursor]
     # @return [ToggleCursor]
     def initialize(cursor)

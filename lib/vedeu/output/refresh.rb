@@ -15,7 +15,7 @@ module Vedeu
 
     # Refresh the interface which is currently focussed.
     #
-    # @return [|NilClass]
+    # @return [Array|ModelNotFound|NilClass]
     def by_focus
       by_name(Vedeu.focus) if Vedeu.focus
     end

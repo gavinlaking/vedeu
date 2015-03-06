@@ -41,8 +41,8 @@ module Vedeu
       # Register an event by name with optional delay (throttling) which when
       # triggered will execute the code contained within the passed block.
       #
-      # @param name  [Symbol] The name of the event which will be triggered later.
-      # @param [Hash] options The options to register the event with.
+      # @param name [Symbol] The name of the event which will be triggered later.
+      # @param options [Hash] The options to register the event with.
       # @option options :delay [Fixnum|Float] Limits the execution of the
       #   triggered event to only execute when first triggered, with subsequent
       #   triggering being ignored until the delay has expired.

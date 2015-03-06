@@ -2,6 +2,7 @@ require 'vedeu/dsl/components/all'
 require 'vedeu/dsl/shared/all'
 
 require 'vedeu/dsl/composition'
+require 'vedeu/dsl/group'
 require 'vedeu/dsl/interface'
 require 'vedeu/dsl/line'
 require 'vedeu/dsl/stream'
@@ -12,6 +13,8 @@ module Vedeu
   # Provides a mechanism to help configure and use Vedeu.
   #
   module DSL
+
+    private
 
     # Attempts to find the missing method on the client object.
     #

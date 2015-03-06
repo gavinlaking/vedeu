@@ -1,5 +1,5 @@
 require 'vedeu/configuration/configuration'
-require 'vedeu/support/esc'
+require 'vedeu/output/esc'
 require 'vedeu/support/log'
 
 module Vedeu

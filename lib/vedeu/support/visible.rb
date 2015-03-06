@@ -1,4 +1,4 @@
-require 'vedeu/support/esc'
+require 'vedeu/output/esc'
 
 module Vedeu
 

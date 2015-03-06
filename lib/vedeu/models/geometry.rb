@@ -1,4 +1,4 @@
-require 'vedeu/dsl/components/geometry'
+require 'vedeu/dsl/components/all'
 require 'vedeu/models/model'
 
 require 'vedeu/geometry/limit'

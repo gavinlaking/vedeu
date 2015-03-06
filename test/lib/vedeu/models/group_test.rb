@@ -4,13 +4,20 @@ module Vedeu
 
   describe Group do
 
-    let(:described) { Vedeu::Group }
-    let(:instance)  { described.new(_name, members) }
-    let(:_name)     { 'organics' }
-    let(:members)   { ['carbon', 'nitrogen', 'oxygen'] }
+    let(:described)  { Vedeu::Group }
+    let(:instance)   { described.new(attributes) }
+    let(:attributes) {
+      {
+        name:    _name,
+        members: members,
+      }
+    }
+    let(:_name)      { 'organics' }
+    let(:members)    { ['carbon', 'nitrogen', 'oxygen'] }
 
     describe '#initialize' do
       it { instance.must_be_instance_of(Group) }
+      it { instance.instance_variable_get('@attributes').must_be_instance_of(Hash) }
       it { instance.instance_variable_get('@members').must_equal(members) }
       it { instance.instance_variable_get('@name').must_equal(_name) }
       it { instance.instance_variable_get('@repository').must_equal(Vedeu.groups) }

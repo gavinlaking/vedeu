@@ -25,15 +25,26 @@ module Vedeu
       #
       #   Vedeu.interface 'my_interface' do
       #     keymap do
-      #       ...
+      #       # ...
       #
       # @param name [String] The name of the interface which this keymap relates
       #   to.
       # @param block [Proc]
       #
       # @example
-      #   keymap 'my_interface' do
-      #     ...
+      #   Vedeu.keymap 'my_interface' do
+      #     # ...
+      #
+      #   Vedeu.keys 'my_interface' do
+      #     # ...
+      #
+      #   Vedeu.interface 'my_interface' do
+      #     keymap do
+      #       # ...
+      #
+      #   Vedeu.interface 'my_interface' do
+      #     keys do
+      #       # ...
       #
       # @raise [InvalidSyntax] The required block was not given.
       # @return [Keymap]

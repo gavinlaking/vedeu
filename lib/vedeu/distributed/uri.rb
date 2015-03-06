@@ -22,14 +22,7 @@ module Vedeu
       #
       # @return [String] The host and port as a single value.
       def to_s
-        [scheme, host, ':', port].join
-      end
-
-      private
-
-      # @return [String]
-      def scheme
-        'druby://'
+        ['druby://', host, ':', port].join
       end
 
     end # Uri

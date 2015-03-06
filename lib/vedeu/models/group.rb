@@ -7,17 +7,23 @@ module Vedeu
 
     include Vedeu::Model
 
-    attr_reader :name
+    attr_accessor :name
 
     # Return a new instance of Group.
     #
-    # @param name [String] The name of the group.
-    # @param members [Array]
+    # @param attributes [Hash]
+    # @option attributes members [Array] A collection of names of interfaces
+    #   belonging to this group.
+    # @option attributes name [String] The name of the group.
+    # @option attributes repository [Vedeu::Repository] The storage for all
+    #   Group models.
     # @return [Group]
-    def initialize(name, members = [])
-      @name       = name
-      @members    = Array(members)
-      @repository = Vedeu.groups
+    def initialize(attributes = {})
+      @attributes = defaults.merge!(attributes)
+
+      @members    = Array(@attributes[:members])
+      @name       = @attributes[:name]
+      @repository = @attributes[:repository]
     end
 
     # Add a member to the group by name.
@@ -25,7 +31,7 @@ module Vedeu
     # @param member [String]
     # @return [Group]
     def add(member)
-      Group.new(name, members.add(member)).store
+      Group.new({ name: name, members: members.add(member) }).store
     end
 
     # Return the members as a Set.
@@ -40,17 +46,25 @@ module Vedeu
     # @param member [String]
     # @return [Group]
     def remove(member)
-      Group.new(name, members.delete(member)).store
+      Group.new({ name: name, members: members.delete(member) }).store
     end
 
     # Remove all members from the group.
     #
     # @return [Group]
     def reset
-      Group.new(name).store
+      Group.new(defaults.merge!({ name: name })).store
     end
 
     private
+
+    def defaults
+      {
+        members:    [],
+        name:       '',
+        repository: Vedeu.groups,
+      }
+    end
 
   end # Group
 
