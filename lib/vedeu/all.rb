@@ -27,7 +27,6 @@ require 'vedeu/input/all'
 require 'vedeu/models/all'
 require 'vedeu/output/all'
 require 'vedeu/support/all'
-require 'vedeu/xx/all'
 
 require 'vedeu/main_loop'
 require 'vedeu/application'
