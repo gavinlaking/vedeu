@@ -56,7 +56,7 @@ module Vedeu
     # this event, the :_refresh_ event is also triggered automatically.
     Vedeu.bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
 
-    # Triggering this event will cause the triggering of the `:key` event; which
+    # Will cause the triggering of the `:key` event; which
     # you should define to 'do things'. If the `escape` key is pressed, then
     # `key` is triggered with the argument `:escape`, also an internal event
     # `_mode_switch_` is triggered.
@@ -177,16 +177,31 @@ module Vedeu
       end
     end
 
-    # Triggering this event will cause all interfaces to refresh, or the named
-    # interface if given.
+    # Will cause all interfaces to refresh, or the named interface if given.
     Vedeu.bind(:_refresh_) do |name|
       name ? Vedeu::Refresh.by_name(name) : Vedeu::Refresh.all
     end
 
-    # Triggering this event will cause all interfaces in the named group to
-    # refresh.
-    Vedeu.bind(:_refresh_group_) do |name|
-      Vedeu::Refresh.by_group(name)
+    # Will cause all interfaces in the named group to refresh.
+    Vedeu.bind(:_refresh_group_) { |name| Vedeu::Refresh.by_group(name) }
+
+    # Will clear the terminal and then show all of the interfaces belonging to
+    # the named group.
+    Vedeu.bind(:_show_group_) do |name|
+      Vedeu.trigger(:_clear_)
+
+      Vedeu.trigger(:_refresh_group_, name)
+    end
+
+    # Will hide all of the interfaces belonging to the named group. Useful for
+    # hiding part of that which is currently displaying in the terminal.
+    #
+    # @note
+    #   This may be rarely used, since the action of showing a group using
+    #   `Vedeu.trigger(:_show_group_, group_name)` will effectively clear the
+    #   terminal and show the new group.
+    Vedeu.bind(:_hide_group_) do |name|
+      Vedeu.trigger(:_clear_group_, name)
     end
 
   end # Bindings

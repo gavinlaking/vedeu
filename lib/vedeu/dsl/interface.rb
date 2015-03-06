@@ -135,28 +135,29 @@ module Vedeu
       # targetted together; for example you may want to refresh multiple
       # interfaces at once.
       #
-      # @param value [String] The name for the group of interfaces.
-      #
       # @example
       #   interface 'my_interface' do
       #     group 'main_screen'
       #     # ...
       #
+      # @param name [String] The name of the group to which this interface
+      #   should belong.
       # @return [String]
-      def group(value)
-        return false unless defined_value?(value)
+      def group(name)
+        return false unless defined_value?(name)
 
         if defined_value?(model.name)
-          if Vedeu.groups.registered?(value)
-            Vedeu.groups.find(value).add(model.name)
+          if Vedeu.groups.registered?(name)
+            Vedeu.groups.find(name).add(model.name)
 
           else
-            Vedeu::Group.new(value, model.name).store
+            new_group = Vedeu::Group.new({ name: name })
+            new_group.add(model.name)
 
           end
         end
 
-        model.group = value
+        model.group = name
       end
 
       # @see Vedeu::DSL::Keymap.keymap

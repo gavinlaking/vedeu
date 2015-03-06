@@ -2,6 +2,7 @@ require 'vedeu/dsl/components/all'
 require 'vedeu/dsl/shared/all'
 
 require 'vedeu/dsl/composition'
+require 'vedeu/dsl/group'
 require 'vedeu/dsl/interface'
 require 'vedeu/dsl/line'
 require 'vedeu/dsl/stream'
