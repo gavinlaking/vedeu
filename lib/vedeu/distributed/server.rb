@@ -139,6 +139,8 @@ module Vedeu
 
       # @return [void]
       def stop
+        Vedeu.log(type: :drb, message: 'Attempting to stop')
+
         return not_enabled unless drb?
 
         if drb_running?

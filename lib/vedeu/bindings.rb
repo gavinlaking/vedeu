@@ -18,7 +18,7 @@ module Vedeu
     # this to perform a special action before the application terminates. Saving
     # the user's work, session or preferences might be popular here.
     Vedeu.bind(:_cleanup_) do
-      Vedeu.trigger(:_drb_stop_, 'via :cleanup')
+      Vedeu.trigger(:_drb_stop_)
       Vedeu.trigger(:cleanup)
     end
 
@@ -40,11 +40,7 @@ module Vedeu
     Vedeu.bind(:_drb_restart_) { Vedeu::Distributed::Server.restart }
     Vedeu.bind(:_drb_start_)   { Vedeu::Distributed::Server.start }
     Vedeu.bind(:_drb_status_)  { Vedeu::Distributed::Server.status }
-
-    Vedeu.bind(:_drb_stop_) do |message|
-      Vedeu.log(type: :drb, message: "Attempting to stop (#{message})")
-      Vedeu::Distributed::Server.stop
-    end
+    Vedeu.bind(:_drb_stop_)    { Vedeu::Distributed::Server.stop }
 
     # When triggered, Vedeu will trigger a `:cleanup` event which you can define
     # (to save files, etc) and attempt to exit.
