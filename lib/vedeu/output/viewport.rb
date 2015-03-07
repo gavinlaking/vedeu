@@ -78,7 +78,7 @@ module Vedeu
     def show
       return [] unless lines?
 
-      padded_lines.map { |line| padded_columns(line) }.compact
+      padded_lines.map { |line| padded_columns(line) }
     end
 
     # Returns the lines, padded where necessary for the viewport.
@@ -112,7 +112,7 @@ module Vedeu
 
       return visible unless size < dim
 
-      visible + [" "] * (dim - size)
+      visible + [Vedeu::Char.new({ value: ' ' })] * (dim - size)
     end
 
     # Using the current cursor's y position, return a range of visible lines.

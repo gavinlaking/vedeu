@@ -51,10 +51,26 @@ module Vedeu
       eql?(other)
     end
 
+    # When {Vedeu::Viewport#padded_lines} has less lines that required to fill
+    # the visible area of the interface, it creates a line that contains a
+    # single {Vedeu::Char} containing a space (0x20); later,
+    # {Vedeu::Viewport#padded_columns} will attempts to call `#chars` on an
+    # expected {Vedeu::Line} and fail; this method fixes that.
+    #
+    # @return [Array]
+    def chars
+      []
+    end
+
     # @param other [Vedeu::Char]
     # @return [Boolean]
     def eql?(other)
       self.class == other.class && value == other.value
+    end
+
+    # @return [String]
+    def inspect
+      "<Vedeu::Char '#{Esc.escape(self.to_s)}'>"
     end
 
     # @return [Vedeu::Position]

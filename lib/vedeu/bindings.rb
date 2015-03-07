@@ -161,7 +161,7 @@ module Vedeu
     # if given.
     Vedeu.bind(:_clear_) do |name|
       if name && Vedeu.interfaces.registered?(name)
-        Vedeu::Output.clear(Vedeu.interfaces.find(name))
+        Vedeu::Clear.clear(Vedeu.interfaces.find(name))
 
       else
         Vedeu::Terminal.virtual.clear if Vedeu::Configuration.drb?

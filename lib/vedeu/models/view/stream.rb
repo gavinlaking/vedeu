@@ -63,7 +63,7 @@ module Vedeu
                      parent:   parent,
                      colour:   colour,
                      style:    style,
-                     position: nil }).to_s
+                     position: nil })
       end
     end
 

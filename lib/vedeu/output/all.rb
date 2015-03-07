@@ -8,6 +8,9 @@ require 'vedeu/output/border'
 require 'vedeu/output/colour'
 require 'vedeu/output/compositor'
 
+require 'vedeu/output/char_builder'
+require 'vedeu/output/clear'
+
 require 'vedeu/output/presentation'
 require 'vedeu/output/style'
 require 'vedeu/output/text'
