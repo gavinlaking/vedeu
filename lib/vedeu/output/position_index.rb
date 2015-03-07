@@ -30,6 +30,11 @@ module Vedeu
       [y, x]
     end
 
+    # @return [Vedeu::Position]
+    def to_position
+      Vedeu::Position.new(y, x)
+    end
+
   end # PositionIndex
 
 end # Vedeu
