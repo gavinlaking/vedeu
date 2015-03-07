@@ -48,6 +48,8 @@ module Vedeu
       # Returns an instance of DSL::Border.
       #
       # @param model [Border]
+      # @param client [Object]
+      # @return [Vedeu::DSL::Border]
       def initialize(model, client = nil)
         @model  = model
         @client = client
@@ -273,7 +275,11 @@ module Vedeu
 
       private
 
-      attr_reader :client, :model
+      # @return [Object]
+      attr_reader :client
+
+      # @return [Border]
+      attr_reader :model
 
     end # Border
 

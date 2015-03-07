@@ -66,6 +66,7 @@ module Vedeu
 
     private
 
+    # @return [Configuration]
     attr_reader :configuration
 
     # Runs the application loop either once, or forever (exceptions and signals

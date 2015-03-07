@@ -62,6 +62,7 @@ module Vedeu
 
     private
 
+    # @return [Hash]
     def defaults
       {
         members:    [],

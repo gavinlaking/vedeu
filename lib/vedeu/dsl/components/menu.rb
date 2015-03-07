@@ -14,7 +14,8 @@ module Vedeu
       # Return a new instance of DSL::Menu.
       #
       # @param model [Vedeu::Menu]
-      # @return      [DSL::Menu]
+      # @param client [Object]
+      # @return [Vedeu::DSL::Menu]
       def initialize(model, client = nil)
         @model  = model
         @client = client
@@ -74,7 +75,11 @@ module Vedeu
 
       private
 
-      attr_reader :client, :model
+      # @return [Object]
+      attr_reader :client
+
+      # @return [Menu]
+      attr_reader :model
 
     end # Menu
 

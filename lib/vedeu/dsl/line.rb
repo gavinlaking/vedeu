@@ -45,6 +45,8 @@ module Vedeu
       # Returns an instance of DSL::Line.
       #
       # @param model [Vedeu::Line]
+      # @param client [Object]
+      # @return [Vedeu::DSL::Line]
       def initialize(model, client = nil)
         @model  = model
         @client = client
@@ -111,7 +113,11 @@ module Vedeu
 
       private
 
-      attr_reader :client, :model
+      # @return [Object]
+      attr_reader :client
+
+      # @return [Line]
+      attr_reader :model
 
       # @return [Hash]
       def attributes

@@ -28,21 +28,6 @@ module Vedeu
       @name = name
     end
 
-    # @todo What do we do about resizing terminals. I don't want to overwrite
-    # the stored geometry and when the terminal returns to original size not also
-    # return the interface back to its originally prescribed dimensions.
-    #
-    # @note
-    # If the buffer has geometry stored, we should check whether this is different
-    # to the geometries repository- the client application is wanting to resize
-    # or move the interface.
-    #
-    # If it is different, overwrite the old geometry with the new.
-    #
-    # If the buffer does not have geometry stored, retrieve the geometry for this
-    # interface from the geometries repository so we can draw this buffer in the
-    # correct place.
-    #
     # @return [Array<Interface>]
     def compose
       buffer.map do |view|
