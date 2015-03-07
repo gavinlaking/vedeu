@@ -209,9 +209,11 @@ module Vedeu
 
       private
 
+      # @!attribute [r] client
       # @return [Object]
       attr_reader :client
 
+      # @!attribute [r] model
       # @return [Interface]
       attr_reader :model
 

@@ -10,9 +10,17 @@ module Vedeu
 
     include Vedeu::Coercions
 
-    attr_reader :attributes,
-      :background,
-      :foreground
+    # @!attribute [r] attributes
+    # @return [Hash]
+    attr_reader :attributes
+
+    # @!attribute [r] background
+    # @return [Background|String]
+    attr_reader :background
+
+    # @!attribute [r] foreground
+    # @return [Foreground|String]
+    attr_reader :foreground
 
     # Returns a new instance of Colour.
     #

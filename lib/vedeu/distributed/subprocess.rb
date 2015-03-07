@@ -46,7 +46,7 @@ module Vedeu
 
     # @!attribute [r] application
     # @return [Vedeu::TestApplication]
-    attr_reader   :application
+    attr_reader :application
 
     # @!attribute [rw] pid
     # @return [Fixnum]

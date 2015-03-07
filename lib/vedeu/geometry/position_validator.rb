@@ -69,6 +69,8 @@ module Vedeu
 
     private
 
+    # @!attribute [r] interface
+    # @return [Vedeu::Interface]
     attr_reader :interface
 
     # Validate the x and y coordinates are within the dimensions of the

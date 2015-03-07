@@ -1,5 +1,8 @@
 module Vedeu
 
+  # Included in {Vedeu::Clear} and {Vedeu::Output}, this module builds
+  # {Vedeu::Char} objects.
+  #
   module CharBuilder
 
     # Builds a new Vedeu::Char object.

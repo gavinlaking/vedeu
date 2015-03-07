@@ -41,6 +41,8 @@ module Vedeu
 
     private
 
+    # @!attribute [r] interface
+    # @return [Vedeu::Interface]
     attr_reader :interface
 
     # Returns the number of lines of content for this interface.

@@ -56,6 +56,8 @@ module Vedeu
 
     private
 
+    # @!attribute [r] output
+    # @return [Array<Array<Vedeu::Char>>]
     attr_reader :output
 
     # @return [String]

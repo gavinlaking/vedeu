@@ -27,6 +27,8 @@ module Vedeu
 
     private
 
+    # @!attribute [r] char
+    # @return [Vedeu::Char]
     attr_reader :char
 
     # @return [String]

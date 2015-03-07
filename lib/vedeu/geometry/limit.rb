@@ -35,7 +35,21 @@ module Vedeu
 
     private
 
-    attr_reader :v, :vn, :min, :max
+    # @!attribute [r] v
+    # @return [Fixnum]
+    attr_reader :v
+
+    # @!attribute [r] vn
+    # @return [Fixnum]
+    attr_reader :vn
+
+    # @!attribute [r] min
+    # @return [Fixnum]
+    attr_reader :min
+
+    # @!attribute [r] max
+    # @return [Fixnum]
+    attr_reader :max
 
   end # Limit
 

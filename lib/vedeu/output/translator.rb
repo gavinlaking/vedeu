@@ -25,6 +25,8 @@ module Vedeu
 
     include Vedeu::Coercions
 
+    # @!attribute [r] colour
+    # @return [String]
     attr_reader :colour
     alias_method :value, :colour
 

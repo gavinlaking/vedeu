@@ -1,5 +1,7 @@
 module Vedeu
 
+  # Clears the area defined by an interface.
+  #
   class Clear
 
     include Vedeu::CharBuilder

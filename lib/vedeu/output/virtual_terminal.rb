@@ -8,19 +8,19 @@ module Vedeu
     # @return [void]
     attr_accessor :renderer
 
-    # @!attribute [rw] cell_height
+    # @!attribute [r] cell_height
     # @return [Fixnum]
     attr_reader :cell_height
 
-    # @!attribute [rw] cell_width
+    # @!attribute [r] cell_width
     # @return [Fixnum]
     attr_reader :cell_width
 
-    # @!attribute [rw] height
+    # @!attribute [r] height
     # @return [Fixnum]
     attr_reader :height
 
-    # @!attribute [rw] width
+    # @!attribute [r] width
     # @return [Fixnum]
     attr_reader :width
 

@@ -65,6 +65,8 @@ module Vedeu
 
     private
 
+    # @!attribute [r] interface
+    # @return [Vedeu::Interface]
     attr_reader :interface
 
     # Returns the visible content for the interface.

@@ -27,7 +27,13 @@ module Vedeu
 
     private
 
-    attr_reader :object, :path
+    # @!attribute [r] object
+    # @return [Class]
+    attr_reader :object
+
+    # @!attribute [r] path
+    # @return [String]
+    attr_reader :path
 
     # @return [String]
     def load

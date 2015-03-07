@@ -78,8 +78,13 @@ module Vedeu
 
     private
 
-    attr_reader :text,
-      :options
+    # @!attribute [r] text
+    # @return [String]
+    attr_reader :text
+
+    # @!attribute [r] options
+    # @return [Hash]
+    attr_reader :options
 
     # @param text_as_lines [Array<String>]
     # @return [Vedeu::Lines]

@@ -5,6 +5,8 @@ module Vedeu
   #
   module Model
 
+    # @!attribute [r] repository
+    # @return [Vedeu::Repository]
     attr_reader :repository
 
     # When {Vedeu::Model} is included in a class, the methods within this module

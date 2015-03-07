@@ -4,8 +4,13 @@ module Vedeu
   #
   class PositionIndex
 
-    attr_reader :y,
-      :x
+    # @!attribute [r] y
+    # @return [Fixnum]
+    attr_reader :y
+
+    # @!attribute [r] x
+    # @return [Fixnum]
+    attr_reader :x
 
     alias_method :first, :y
     alias_method :last, :x

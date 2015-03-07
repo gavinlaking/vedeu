@@ -14,22 +14,65 @@ module Vedeu
 
     include Vedeu::Model
 
-    attr_accessor :attributes,
-      :bottom_left,
-      :bottom_right,
-      :horizontal,
-      :show_bottom,
-      :show_left,
-      :show_right,
-      :show_top,
-      :top_left,
-      :top_right,
-      :vertical
+    # @!attribute [rw] attributes
+    # @return [Hash]
+    attr_accessor :attributes
 
-    attr_reader :name,
-      :colour,
-      :enabled,
-      :style
+    # @!attribute [rw] bottom_left
+    # @return [String]
+    attr_accessor :bottom_left
+
+    # @!attribute [rw] bottom_right
+    # @return [String]
+    attr_accessor :bottom_right
+
+    # @!attribute [rw] horizontal
+    # @return [String]
+    attr_accessor :horizontal
+
+    # @!attribute [rw] show_bottom
+    # @return [Boolean]
+    attr_accessor :show_bottom
+
+    # @!attribute [rw] show_left
+    # @return [Boolean]
+    attr_accessor :show_left
+
+    # @!attribute [rw] show_right
+    # @return [Boolean]
+    attr_accessor :show_right
+
+    # @!attribute [rw] show_top
+    # @return [Boolean]
+    attr_accessor :show_top
+
+    # @!attribute [rw] top_left
+    # @return [String]
+    attr_accessor :top_left
+
+    # @!attribute [rw] top_right
+    # @return [String]
+    attr_accessor :top_right
+
+    # @!attribute [rw] vertical
+    # @return [String]
+    attr_accessor :vertical
+
+    # @!attribute [r] name
+    # @return [String]
+    attr_reader :name
+
+    # @!attribute [r] colour
+    # @return [Vedeu::Colour]
+    attr_reader :colour
+
+    # @!attribute [r] enabled
+    # @return [Boolean]
+    attr_reader :enabled
+
+    # @!attribute [r] style
+    # @return [Style]
+    attr_reader :style
 
     alias_method :enabled?, :enabled
     alias_method :bottom?,  :show_bottom
@@ -43,12 +86,12 @@ module Vedeu
     # @option attributes bottom_left [String] The bottom left border character.
     # @option attributes bottom_right [String] The bottom right border
     #   character.
-    # @option attributes colour
+    # @option attributes colour []
     # @option attributes enabled [Boolean] Indicate whether the border is to be
     #   shown for this interface.
     # @option attributes horizontal [String] The horizontal border character.
     # @option attributes name [String]
-    # @option attributes style
+    # @option attributes style []
     # @option attributes show_bottom [Boolean] Indicate whether the bottom
     #   border is to be shown.
     # @option attributes show_left [Boolean] Indicate whether the left border

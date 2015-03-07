@@ -41,7 +41,13 @@ module Vedeu
 
     private
 
-    attr_reader :value, :options
+    # @!attribute [r] value
+    # @return [String]
+    attr_reader :value
+
+    # @!attribute [r] options
+    # @return [Hash]
+    attr_reader :options
 
     # @return [Symbol] One of :align, :centre, :center, :left, :right, :text
     def anchor

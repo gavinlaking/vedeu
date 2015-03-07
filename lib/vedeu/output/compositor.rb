@@ -40,6 +40,8 @@ module Vedeu
 
     private
 
+    # @!attribute [r] name
+    # @return [String]
     attr_reader :name
 
     # @return [Vedeu::Interface]
