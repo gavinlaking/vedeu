@@ -43,9 +43,57 @@ module Vedeu
         }
 
         it { subject.must_be_instance_of(Vedeu::Group) }
+
+        it { subject.members.must_equal(Set['editor_interface']) }
       end
 
     end # Group
+
+    describe 'integration' do
+
+      context 'it does not work without a name' do
+        subject {
+          Vedeu.group('') do
+            add('main_interface')
+          end
+        }
+
+        it { proc { subject }.must_raise(MissingRequired) }
+      end
+
+      context 'it adds interface names to the group' do
+        subject {
+          Vedeu.group('my_group') do
+            add('main_interface')
+            add('status_interface')
+            add('command_interface')
+          end
+        }
+
+        it { subject.members.size.must_equal(3) }
+
+        it { subject.members.must_equal(
+          Set['main_interface', 'status_interface', 'command_interface']
+        ) }
+      end
+
+      context 'it does not add duplicate names to the group' do
+        subject {
+          Vedeu.group('my_group') do
+            add('main_interface')
+            add('status_interface')
+            add('main_interface')
+          end
+        }
+
+        it { subject.members.size.must_equal(2) }
+
+        it { subject.members.must_equal(
+          Set['main_interface', 'status_interface']
+        ) }
+      end
+
+    end
 
   end # DSL
 
