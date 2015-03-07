@@ -107,9 +107,11 @@ module Vedeu
     # @param value [String|Symbol]
     # @return [String]
     def string(value = '')
-      return '' if value.to_sym.empty?
+      name = value.to_sym
 
-      sequences.fetch(value.to_sym, proc { '' }).call
+      return '' if name.empty?
+
+      send(name) rescue ''
     end
 
     # Return the escape sequence to render a border character.
@@ -123,33 +125,6 @@ module Vedeu
     end
 
     private
-
-    # @return [Hash]
-    def sequences
-      {
-        bg_reset:        proc { bg_reset },
-        blink:           proc { blink },
-        blink_off:       proc { blink_off },
-        bold:            proc { bold },
-        bold_off:        proc { bold_off },
-        clear:           proc { clear },
-        clear_line:      proc { clear_line },
-        clear_last_line: proc { clear_last_line },
-        colour_reset:    proc { colour_reset },
-        dim:             proc { dim },
-        fg_reset:        proc { fg_reset },
-        hide_cursor:     proc { hide_cursor },
-        negative:        proc { negative },
-        normal:          proc { normal },
-        positive:        proc { positive },
-        reset:           proc { reset },
-        screen_init:     proc { screen_init },
-        screen_exit:     proc { screen_exit },
-        show_cursor:     proc { show_cursor },
-        underline:       proc { underline },
-        underline_off:   proc { underline_off },
-      }
-    end
 
     # @return [String]
     def bg_reset

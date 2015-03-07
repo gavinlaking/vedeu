@@ -49,7 +49,11 @@ module Vedeu
 
       private
 
-      attr_reader :client, :model
+      # @return [Object]
+      attr_reader :client
+
+      # @return [Composition]
+      attr_reader :model
 
       # @param name [String] The name of the interface.
       # @return [Hash]

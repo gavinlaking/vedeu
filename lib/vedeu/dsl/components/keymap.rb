@@ -59,6 +59,8 @@ module Vedeu
       # Returns an instance of DSL::Keymap.
       #
       # @param model [Keymap]
+      # @param client [Object]
+      # @return [Vedeu::DSL::Keymap]
       def initialize(model, client = nil)
         @model  = model
         @client = client
@@ -124,7 +126,11 @@ module Vedeu
 
       private
 
-      attr_reader :client, :model
+      # @return [Object]
+      attr_reader :client
+
+      # @return [Keymap]
+      attr_reader :model
 
     end # Keymap
 

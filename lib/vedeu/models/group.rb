@@ -31,7 +31,9 @@ module Vedeu
     # @param member [String]
     # @return [Group]
     def add(member)
-      Group.new({ name: name, members: members.add(member) }).store
+      @members = members.add(member)
+
+      Group.new({ name: name, members: @members }).store
     end
 
     # Return the members as a Set.
@@ -46,7 +48,9 @@ module Vedeu
     # @param member [String]
     # @return [Group]
     def remove(member)
-      Group.new({ name: name, members: members.delete(member) }).store
+      @members = members.delete(member)
+
+      Group.new({ name: name, members: @members }).store
     end
 
     # Remove all members from the group.
@@ -58,6 +62,7 @@ module Vedeu
 
     private
 
+    # @return [Hash]
     def defaults
       {
         members:    [],

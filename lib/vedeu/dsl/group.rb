@@ -60,7 +60,11 @@ module Vedeu
 
       private
 
-      attr_reader :client, :model
+      # @return [Object]
+      attr_reader :client
+
+      # @return [Group]
+      attr_reader :model
 
     end # Group
 

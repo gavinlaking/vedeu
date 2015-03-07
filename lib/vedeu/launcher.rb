@@ -9,6 +9,9 @@ module Vedeu
   #
   class Launcher
 
+    # @!attribute [r] exit_code
+    # @return [Fixnum] Return value indicating successful execution (0) or an
+    #   error occurred (1).
     attr_reader :exit_code
 
     # @see Vedeu::Launcher#initialize
