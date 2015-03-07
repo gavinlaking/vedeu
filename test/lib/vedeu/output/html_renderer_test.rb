@@ -19,16 +19,21 @@ module Vedeu
       it { subject.must_be_instance_of(String) }
     end
 
-    describe '#to_file' do
-      let(:path) {}
+    describe '.to_file' do
+      before { File.stubs(:open) }
 
-      subject { instance.to_file(path) }
+      subject { described.to_file(output, path) }
 
       context 'when a path is given' do
         let(:path) { '/tmp/test_vedeu_html_renderer.html' }
+
+        #it { subject.must_equal('') }
       end
 
       context 'when a path is not given' do
+        let(:path) {}
+
+
       end
     end
 

@@ -11,9 +11,10 @@ module Vedeu
     end
 
     # @param output [Array<Array<Vedeu::Char>>]
+    # @param path [String]
     # @return [String]
-    def self.to_file(output)
-      new(output).to_file
+    def self.to_file(output, path = nil)
+      new(output).to_file(path)
     end
 
     # @param output [Array<Array<Vedeu::Char>>]
