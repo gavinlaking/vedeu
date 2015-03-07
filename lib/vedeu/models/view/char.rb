@@ -13,9 +13,16 @@ module Vedeu
 
     include Vedeu::Presentation
 
-    attr_accessor :border,
-      :parent
+    # @!attribute [rw] border
+    # @return [Border]
+    attr_accessor :border
 
+    # @!attribute [rw] parent
+    # @return [Line]
+    attr_accessor :parent
+
+    # @!attribute [r] value
+    # @return [String]
     attr_reader :value
 
     # Returns a new instance of Char.
@@ -38,13 +45,13 @@ module Vedeu
       @value    = @attributes[:value]
     end
 
-    # @param other []
+    # @param other [Vedeu::Char]
     # @return [Boolean]
     def ==(other)
       eql?(other)
     end
 
-    # @param other []
+    # @param other [Vedeu::Char]
     # @return [Boolean]
     def eql?(other)
       self.class == other.class && value == other.value
@@ -55,17 +62,23 @@ module Vedeu
       @position ||= Vedeu::Position.coerce(attributes[:position])
     end
 
+    # Sets the position of the Char.
+    #
     # @param value [Vedeu::Position]
     # @return [Vedeu::Position]
     def position=(value)
       @position = Vedeu::Position.coerce(value)
     end
 
+    # Returns the x position for the Char if set.
+    #
     # @return [Fixnum|NilClass]
     def x
       position.x if position
     end
 
+    # Returns the y position for the Char if set.
+    #
     # @return [Fixnum|NilClass]
     def y
       position.y if position
@@ -78,6 +91,8 @@ module Vedeu
 
     private
 
+    # @!attribute [r] attributes
+    # @return [Hash]
     attr_reader :attributes
 
     # The default values for a new instance of this class.

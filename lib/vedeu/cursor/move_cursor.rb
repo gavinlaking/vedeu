@@ -145,7 +145,21 @@ module Vedeu
 
     private
 
-    attr_reader :cursor, :dx, :dy, :interface
+    # @!attribute [r] cursor
+    # @return [Vedeu::Cursor]
+    attr_reader :cursor
+
+    # @!attribute [r] dx
+    # @return [Fixnum]
+    attr_reader :dx
+
+    # @!attribute [r] dy
+    # @return [Fixnum]
+    attr_reader :dy
+
+    # @!attribute [r] interface
+    # @return [Vedeu::Interface]
+    attr_reader :interface
 
     # @return [Hash]
     def moved_attributes

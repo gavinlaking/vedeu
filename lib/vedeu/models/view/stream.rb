@@ -15,8 +15,13 @@ module Vedeu
     collection Vedeu::Chars
     member     Vedeu::Char
 
-    attr_accessor :parent,
-      :value
+    # @!attribute [rw] parent
+    # @return [Line]
+    attr_accessor :parent
+
+    # @!attribute [rw] value
+    # @return [String]
+    attr_accessor :value
 
     alias_method :content, :value
     alias_method :data,    :value

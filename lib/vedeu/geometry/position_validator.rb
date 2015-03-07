@@ -32,7 +32,13 @@ module Vedeu
       :top,
       :bottom
 
-    attr_accessor :x, :y
+    # @!attribute [rw] x
+    # @return [Fixnum]
+    attr_accessor :x
+
+    # @!attribute [rw] x
+    # @return [Fixnum]
+    attr_accessor :y
 
     # @param interface [Interface]
     # @param x [Fixnum]

@@ -9,10 +9,16 @@ module Vedeu
 
       include Enumerable
 
-      attr_accessor :parent, :name
+      # @!attribute [rw] parent
+      # @return [Fixnum]
+      attr_accessor :parent
+
+      # @!attribute [rw] name
+      # @return [String]
+      attr_accessor :name
 
       # @param collection [Array|Vedeu::Model::Collection]
-      # @param parent []
+      # @param parent [void]
       # @param name [String|NilClass]
       # @return [Vedeu::Model::Collection]
       def self.coerce(collection = [], parent = nil, name = nil)
@@ -26,8 +32,8 @@ module Vedeu
       end
 
       # @param collection []
-      # @param parent []
-      # @param name []
+      # @param parent [void]
+      # @param name [String|NilClass]
       # @return [Vedeu::Model::Collection]
       def initialize(collection = [], parent = nil, name = nil)
         @collection = collection

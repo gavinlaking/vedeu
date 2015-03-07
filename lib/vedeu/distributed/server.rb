@@ -161,6 +161,8 @@ module Vedeu
 
       private
 
+      # @!attribute [r] configuration
+      # @return [Configuration]
       attr_reader :configuration
 
       # @return [Boolean]

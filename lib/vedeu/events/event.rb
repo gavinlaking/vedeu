@@ -156,8 +156,25 @@ module Vedeu
 
     private
 
-    attr_reader   :closure, :name
-    attr_accessor :deadline, :executed_at, :now
+    # @!attribute [r] closure
+    # @return [String]
+    attr_reader :closure
+
+    # @!attribute [r] name
+    # @return [String]
+    attr_reader :name
+
+    # @!attribute [rw] deadline
+    # @return [String]
+    attr_accessor :deadline
+
+    # @!attribute [rw] executed_at
+    # @return [String]
+    attr_accessor :executed_at
+
+    # @!attribute [rw] now
+    # @return [String]
+    attr_accessor :now
 
     # Execute the code stored in the event closure.
     #

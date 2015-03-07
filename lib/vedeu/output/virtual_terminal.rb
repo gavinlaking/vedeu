@@ -4,8 +4,25 @@ module Vedeu
   #
   class VirtualTerminal
 
+    # @!attribute [rw] renderer
+    # @return [void]
     attr_accessor :renderer
-    attr_reader :cell_height, :cell_width, :height, :width
+
+    # @!attribute [rw] cell_height
+    # @return [Fixnum]
+    attr_reader :cell_height
+
+    # @!attribute [rw] cell_width
+    # @return [Fixnum]
+    attr_reader :cell_width
+
+    # @!attribute [rw] height
+    # @return [Fixnum]
+    attr_reader :height
+
+    # @!attribute [rw] width
+    # @return [Fixnum]
+    attr_reader :width
 
     # @param height [Fixnum]
     # @param width [Fixnum]

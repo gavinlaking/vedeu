@@ -124,7 +124,13 @@ module Vedeu
 
       private
 
-      attr_reader :args, :options
+      # @!attribute [r] args
+      # @return [Array<String>]
+      attr_reader :args
+
+      # @!attribute [r] options
+      # @return [Hash]
+      attr_reader :options
 
     end # CLI
 

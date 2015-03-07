@@ -13,6 +13,8 @@ module Vedeu
     collection Vedeu::Keys
     member     Vedeu::Key
 
+    # @!attribute [rw] name
+    # @return [String]
     attr_accessor :name
 
     # @param attributes [Hash]

@@ -31,9 +31,33 @@ module Vedeu
 
     include Vedeu::Model
 
-    attr_accessor :centred, :height, :name, :width
-    attr_reader   :attributes
-    attr_writer   :x, :y
+    # @!attribute [rw] centred
+    # @return [Boolean]
+    attr_accessor :centred
+
+    # @!attribute [rw] height
+    # @return [Fixnum]
+    attr_accessor :height
+
+    # @!attribute [rw] name
+    # @return [String]
+    attr_accessor :name
+
+    # @!attribute [rw] width
+    # @return [Fixnum]
+    attr_accessor :width
+
+    # @!attribute [r] attributes
+    # @return [Hash]
+    attr_reader :attributes
+
+    # @!attribute [w] x
+    # @return [Fixnum]
+    attr_writer :x
+
+    # @!attribute [w] y
+    # @return [Fixnum]
+    attr_writer :y
 
     # Returns a new instance of Geometry.
     #

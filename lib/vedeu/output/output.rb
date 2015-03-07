@@ -57,6 +57,8 @@ module Vedeu
 
     private
 
+    # @!attribute [r] interface
+    # @return [Interface]
     attr_reader :interface
 
     # For each visible line of the interface, set the foreground and background

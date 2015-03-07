@@ -16,7 +16,33 @@ module Vedeu
 
     include Vedeu::Model
 
-    attr_reader :attributes, :name, :ox, :oy, :state, :x, :y
+    # @!attribute [r] attributes
+    # @return [Hash]
+    attr_reader :attributes
+
+    # @!attribute [r] name
+    # @return [String]
+    attr_reader :name
+
+    # @!attribute [r] ox
+    # @return [Fixnum]
+    attr_reader :ox
+
+    # @!attribute [r] oy
+    # @return [Fixnum]
+    attr_reader :oy
+
+    # @!attribute [r] state
+    # @return [Boolean|Symbol]
+    attr_reader :state
+
+    # @!attribute [r] x
+    # @return [Fixnum]
+    attr_reader :x
+
+    # @!attribute [r] y
+    # @return [Fixnum]
+    attr_reader :y
 
     # Returns a new instance of Cursor.
     #
@@ -70,6 +96,8 @@ module Vedeu
 
     private
 
+    # @!attribute [r] position
+    # @return [Vedeu::Position]
     attr_reader :position
 
     # The default values for a new instance of this class.

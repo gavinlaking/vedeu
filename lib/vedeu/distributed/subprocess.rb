@@ -44,7 +44,12 @@ module Vedeu
 
     private
 
+    # @!attribute [r] application
+    # @return [Vedeu::TestApplication]
     attr_reader   :application
+
+    # @!attribute [rw] pid
+    # @return [Fixnum]
     attr_accessor :pid
 
     # @return [String]

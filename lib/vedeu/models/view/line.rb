@@ -16,8 +16,13 @@ module Vedeu
     collection Vedeu::Streams
     member     Vedeu::Stream
 
-    attr_accessor :parent,
-      :streams
+    # @!attribute [rw] parent
+    # @return [Interface]
+    attr_accessor :parent
+
+    # @!attribute [rw] streams
+    # @return [Streams]
+    attr_accessor :streams
 
     alias_method :value, :streams
 

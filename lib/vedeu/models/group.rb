@@ -7,6 +7,8 @@ module Vedeu
 
     include Vedeu::Model
 
+    # @!attribute [rw] name
+    # @return [String]
     attr_accessor :name
 
     # Return a new instance of Group.

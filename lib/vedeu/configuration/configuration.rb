@@ -214,6 +214,8 @@ module Vedeu
 
     end # Configuration eigenclass
 
+    # @!attribute [r] options
+    # @return [Hash]
     attr_reader :options
 
     # Create a new singleton instance of Configuration.

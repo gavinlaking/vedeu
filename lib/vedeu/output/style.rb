@@ -11,6 +11,8 @@ module Vedeu
     include Vedeu::Common
     include Vedeu::Coercions
 
+    # @!attribute [rw] value
+    # @return [String|Symbol]
     attr_accessor :value
 
     # Return a new instance of Style.
