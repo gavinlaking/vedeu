@@ -1,15 +1,18 @@
 #!/usr/bin/env ruby
 
-lib_dir = File.dirname(__FILE__) + '/../lib'
-$LOAD_PATH.unshift(lib_dir) unless $LOAD_PATH.include?(lib_dir)
+require 'rake'
+require 'bundler'
 
-require 'vedeu/version'
+unless defined?(Bundler)
+  raise "Bundler is required. Please install bundler with 'gem install bundler'"
+end
 
-puts "Vedeu (#{Vedeu::VERSION})"
-puts ''
-puts 'Vedeu is a Ruby gem. This executable serves for a future in which ' \
-     'Vedeu can generate a starting point for your terminal-based GUI '   \
-     'application.'
-puts ''
-puts 'Please see: https://github.com/gavinlaking/vedeu for more details.'
-puts ''
+Bundler.setup
+
+Rake.application.init
+
+gem_dir = File.expand_path('..', File.dirname(__FILE__))
+$LOAD_PATH.unshift(gem_dir) unless $LOAD_PATH.include?(gem_dir)
+load "#{gem_dir}/lib/vedeu/tasks/vedeu.rake"
+
+Rake.application.invoke_task(ARGV[0]) unless ARGV.empty?
