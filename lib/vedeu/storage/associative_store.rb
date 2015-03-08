@@ -1,12 +1,6 @@
 module Vedeu
 
-  # save unless saved
-  # save if saved
-  # load if saved
-  # save_or_load # find_or_create
-  # load_or_save # find_or_create
-
-  # Name/Value storage
+  # Name/Value storage.
   #
   #   name: [value]
   #

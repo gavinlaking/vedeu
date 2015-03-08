@@ -1,5 +1,7 @@
 module Vedeu
 
+  # Provides generic repository related behaviour.
+  #
   module Store
 
     include Enumerable

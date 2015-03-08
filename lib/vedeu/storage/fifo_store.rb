@@ -1,6 +1,6 @@
 module Vedeu
 
-  # First-in first-out storage
+  # First-in first-out storage.
   #
   #   in -> [3] -> [2] -> [1] -> out
   #
