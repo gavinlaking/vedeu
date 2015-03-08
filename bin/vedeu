@@ -13,6 +13,12 @@ Rake.application.init
 
 gem_dir = File.expand_path('..', File.dirname(__FILE__))
 $LOAD_PATH.unshift(gem_dir) unless $LOAD_PATH.include?(gem_dir)
+
+# Initialize vedeu
+require 'vedeu'
+
+# Load the rake tasks of vedeu
 load "#{gem_dir}/lib/vedeu/tasks/vedeu.rake"
 
-Rake.application.invoke_task(ARGV[0]) unless ARGV.empty?
+# Let's go!
+Rake.application.invoke_task(ARGV.shift)
