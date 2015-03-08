@@ -63,7 +63,7 @@ module Vedeu
     def execute!
       $stdin, $stdout, $stderr = @stdin, @stdout, @stderr
 
-      Application.start(configuration)
+      Vedeu::Application.start(configuration)
 
       @exit_code = 0
 

@@ -35,7 +35,7 @@ module Vedeu
     def add(member)
       @members = members.add(member)
 
-      Group.new({ name: name, members: @members }).store
+      Vedeu::Group.new({ name: name, members: @members }).store
     end
 
     # Return the members as a Set.
@@ -52,14 +52,14 @@ module Vedeu
     def remove(member)
       @members = members.delete(member)
 
-      Group.new({ name: name, members: @members }).store
+      Vedeu::Group.new({ name: name, members: @members }).store
     end
 
     # Remove all members from the group.
     #
     # @return [Group]
     def reset
-      Group.new(defaults.merge!({ name: name })).store
+      Vedeu::Group.new(defaults.merge!({ name: name })).store
     end
 
     private

@@ -25,7 +25,7 @@ module Vedeu
 
     # @return [String]
     def render
-      Template.parse(self, template)
+      Vedeu::Template.parse(self, template)
     end
 
     # Writes the parsed template to a file (at the given path) and returns the

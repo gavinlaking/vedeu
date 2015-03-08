@@ -106,7 +106,7 @@ module Vedeu
     #
     # @return [Boolean]
     def valid_name?
-      Esc.codes.keys.include?(colour)
+      Vedeu::Esc.codes.keys.include?(colour)
     end
 
     # Returns a boolean indicating whether the colour provided is a terminal
@@ -142,7 +142,7 @@ module Vedeu
     #
     # @return [String]
     def rgb
-      if Configuration.colour_mode == 16777216
+      if Vedeu::Configuration.colour_mode == 16777216
         sprintf(rgb_prefix, *css_to_rgb)
 
       else

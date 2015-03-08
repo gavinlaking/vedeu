@@ -148,12 +148,12 @@ module Vedeu
     #
     # @return [Fixnum]
     def width
-      Vedeu::Limit.apply(x, @width, Terminal.width, Terminal.origin)
+      Vedeu::Limit.apply(x, @width, Vedeu::Terminal.width, Vedeu::Terminal.origin)
     end
 
     # @see Vedeu::Geometry#width
     def height
-      Vedeu::Limit.apply(y, @height, Terminal.height, Terminal.origin)
+      Vedeu::Limit.apply(y, @height, Vedeu::Terminal.height, Vedeu::Terminal.origin)
     end
 
     # Returns the top coordinate of the interface, a fixed or dynamic value
@@ -165,7 +165,7 @@ module Vedeu
     # @return [Fixnum]
     def top
       if centred
-        Terminal.centre_y - (height / 2)
+        Vedeu::Terminal.centre_y - (height / 2)
 
       else
         y
@@ -197,7 +197,7 @@ module Vedeu
     # @return [Fixnum]
     def left
       if centred
-        Terminal.centre_x - (width / 2)
+        Vedeu::Terminal.centre_x - (width / 2)
 
       else
         x
@@ -275,13 +275,13 @@ module Vedeu
       {
         centred: false,
         client:  nil,
-        height:  Terminal.height,
+        height:  Vedeu::Terminal.height,
         name:    '',
-        width:   Terminal.width,
+        width:   Vedeu::Terminal.width,
         x:       1,
-        xn:      Terminal.width,
+        xn:      Vedeu::Terminal.width,
         y:       1,
-        yn:      Terminal.height,
+        yn:      Vedeu::Terminal.height,
       }
     end
 

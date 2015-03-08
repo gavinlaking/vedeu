@@ -80,30 +80,30 @@ module Vedeu
     Vedeu.bind(:_cursor_hide_) do |name|
       named = name ? Vedeu.cursors.by_name(name) : Vedeu.cursor
 
-      ToggleCursor.hide(named)
+      Vedeu::ToggleCursor.hide(named)
     end
 
     # Show the cursor of the named interface or interface currently in focus.
     Vedeu.bind(:_cursor_show_) do |name|
       named = name ? Vedeu.cursors.by_name(name) : Vedeu.cursor
 
-      ToggleCursor.show(named)
+      Vedeu::ToggleCursor.show(named)
     end
 
     # @see {Vedeu::MoveCursor}
-    Vedeu.bind(:_cursor_down_) { |name| MoveCursor.by_name(:down, name) }
+    Vedeu.bind(:_cursor_down_) { |name| Vedeu::MoveCursor.by_name(:down, name) }
 
     # @see {Vedeu::MoveCursor}
-    Vedeu.bind(:_cursor_left_) { |name| MoveCursor.by_name(:left, name) }
+    Vedeu.bind(:_cursor_left_) { |name| Vedeu::MoveCursor.by_name(:left, name) }
 
     # @see {Vedeu::MoveCursor}
-    Vedeu.bind(:_cursor_right_) { |name| MoveCursor.by_name(:right, name) }
+    Vedeu.bind(:_cursor_right_) { |name| Vedeu::MoveCursor.by_name(:right, name) }
 
     # @see {Vedeu::MoveCursor}
-    Vedeu.bind(:_cursor_up_) { |name| MoveCursor.by_name(:up, name) }
+    Vedeu.bind(:_cursor_up_) { |name| Vedeu::MoveCursor.by_name(:up, name) }
 
     # @see {Vedeu::MoveCursor}
-    Vedeu.bind(:_cursor_origin_) { |name| MoveCursor.by_name(:origin, name) }
+    Vedeu.bind(:_cursor_origin_) { |name| Vedeu::MoveCursor.by_name(:origin, name) }
 
     # @see {Vedeu::MoveCursor}
     Vedeu.bind(:_cursor_reset_) { |name| Vedeu.trigger(:_cursor_origin_, name) }

@@ -28,7 +28,7 @@ module Vedeu
     # @param width [Fixnum]
     # @param renderer [Object|HTMLRenderer] An object responding to .render.
     # @return [Vedeu::VirtualTerminal]
-    def initialize(height, width, renderer = HTMLRenderer)
+    def initialize(height, width, renderer = Vedeu::HTMLRenderer)
       @cell_height, @cell_width = Vedeu::PositionIndex[height, width]
       @height   = height
       @width    = width

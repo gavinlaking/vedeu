@@ -3,13 +3,13 @@ module Vedeu
   # The class represents one half (the other, can be found at
   # {Vedeu::Foreground}) of a terminal colour escape sequence.
   #
-  class Background < Translator
+  class Background < Vedeu::Translator
 
     private
 
     # @return [String]
     def named_codes
-      Esc.background_codes[colour]
+      Vedeu::Esc.background_codes[colour]
     end
 
     # @return [String]

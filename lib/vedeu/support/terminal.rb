@@ -167,7 +167,7 @@ module Vedeu
     #
     # @return [Symbol]
     def mode
-      @mode ||= Configuration.terminal_mode
+      @mode ||= Vedeu::Configuration.terminal_mode
     end
 
     # Returns a coordinate tuple of the format [y, x], where `y` is the row/line
@@ -214,8 +214,8 @@ module Vedeu
     #
     # @return [Fixnum]
     def width
-      if Configuration.drb?
-        Configuration.drb_width
+      if Vedeu::Configuration.drb?
+        Vedeu::Configuration.drb_width
 
       else
         size.last
@@ -232,8 +232,8 @@ module Vedeu
     #
     # @return [Fixnum]
     def height
-      if Configuration.drb?
-        Configuration.drb_height
+      if Vedeu::Configuration.drb?
+        Vedeu::Configuration.drb_height
 
       else
         size.first
@@ -259,7 +259,7 @@ module Vedeu
 
     # @return [VirtualTerminal]
     def virtual
-      @virtual ||= VirtualTerminal.new(height, width)
+      @virtual ||= Vedeu::VirtualTerminal.new(height, width)
     end
 
   end # Terminal

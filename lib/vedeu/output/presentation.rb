@@ -77,7 +77,7 @@ module Vedeu
     # @return [String]
     def render_border
       if self.respond_to?(:border) && !border.nil?
-        Esc.border { yield }
+        Vedeu::Esc.border { yield }
 
       else
         yield

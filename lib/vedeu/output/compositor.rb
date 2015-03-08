@@ -34,7 +34,7 @@ module Vedeu
         view.colour   = interface.colour   unless view.colour
         view.style    = interface.style    unless view.style
 
-        Output.render(view)
+        Vedeu::Output.render(view)
       end
     end
 

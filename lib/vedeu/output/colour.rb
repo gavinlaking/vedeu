@@ -31,8 +31,8 @@ module Vedeu
     def initialize(attributes = {})
       @attributes = defaults.merge!(attributes)
 
-      @background = Background.coerce(@attributes[:background])
-      @foreground = Foreground.coerce(@attributes[:foreground])
+      @background = Vedeu::Background.coerce(@attributes[:background])
+      @foreground = Vedeu::Foreground.coerce(@attributes[:foreground])
     end
 
     # Converts the value into a Vedeu::Foreground.
@@ -40,7 +40,7 @@ module Vedeu
     # @param value [String]
     # @return [String]
     def foreground=(value)
-      @foreground = Foreground.coerce(value)
+      @foreground = Vedeu::Foreground.coerce(value)
     end
 
     # Converts the value into a Vedeu::Background.
@@ -48,7 +48,7 @@ module Vedeu
     # @param value [String]
     # @return [String]
     def background=(value)
-      @background = Background.coerce(value)
+      @background = Vedeu::Background.coerce(value)
     end
 
     # Returns both or either of the converted attributes into a single escape

@@ -74,14 +74,14 @@ module Vedeu
       if name
         cursor     = Vedeu.cursors.by_name(name)
         interface  = Vedeu.interfaces.find(name)
-        new_cursor = MoveCursor.send(direction, cursor, interface)
-        Refresh.by_name(name)
+        new_cursor = Vedeu::MoveCursor.send(direction, cursor, interface)
+        Vedeu::Refresh.by_name(name)
 
       else
         cursor     = Vedeu.cursor
         interface  = Vedeu.interfaces.current
-        new_cursor = MoveCursor.send(direction, cursor, interface)
-        Refresh.by_focus
+        new_cursor = Vedeu::MoveCursor.send(direction, cursor, interface)
+        Vedeu::Refresh.by_focus
 
       end
       new_cursor
@@ -140,7 +140,7 @@ module Vedeu
     #
     # @return [Cursor]
     def move
-      Cursor.new(cursor.attributes.merge!(moved_attributes)).store
+      Vedeu::Cursor.new(cursor.attributes.merge!(moved_attributes)).store
     end
 
     private

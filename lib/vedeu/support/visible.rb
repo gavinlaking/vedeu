@@ -36,10 +36,10 @@ module Vedeu
     # @return [String]
     def cursor
       if visible?
-        Esc.string('show_cursor')
+        Vedeu::Esc.string('show_cursor')
 
       else
-        Esc.string('hide_cursor')
+        Vedeu::Esc.string('hide_cursor')
 
       end
     end
@@ -56,12 +56,12 @@ module Vedeu
 
     # @return [Visible]
     def hide
-      Visible.new(false)
+      Vedeu::Visible.new(false)
     end
 
     # @return [Visible]
     def show
-      Visible.new(true)
+      Vedeu::Visible.new(true)
     end
 
     # @return [Visible]

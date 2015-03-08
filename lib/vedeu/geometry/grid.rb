@@ -63,7 +63,7 @@ module Vedeu
 
     # @return [Fixnum]
     def actual
-      Terminal.width
+      Vedeu::Terminal.width
     end
 
     # @return [Boolean]

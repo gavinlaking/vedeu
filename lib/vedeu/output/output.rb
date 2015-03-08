@@ -30,10 +30,10 @@ module Vedeu
       if Vedeu::Configuration.drb?
         Vedeu.trigger(:_drb_store_output_, virtual_view)
 
-        HTMLRenderer.to_file(VirtualBuffer.retrieve)
+        Vedeu::HTMLRenderer.to_file(Vedeu::VirtualBuffer.retrieve)
       end
 
-      Terminal.output(Renderer.render(virtual_view, interface.cursor))
+      Vedeu::Terminal.output(Vedeu::Renderer.render(virtual_view, interface.cursor))
     end
 
     private

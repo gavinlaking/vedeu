@@ -138,7 +138,7 @@ module Vedeu
 
       # @return [String]
       def message_type(type)
-        Esc.send(message_types.fetch(type, :default)) { "[#{type}]".ljust(9) }
+        Vedeu::Esc.send(message_types.fetch(type, :default)) { "[#{type}]".ljust(9) }
       end
 
       # @return [Hash]
