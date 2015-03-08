@@ -40,3 +40,7 @@ RuboCop::RakeTask.new(:rubocop) do |task|
 end
 
 task default: :test
+
+Dir[File.expand_path('../lib/vedeu/tasks/*.rake', __FILE__)].each do |task|
+  load task
+end
