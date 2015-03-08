@@ -1,5 +1,6 @@
 require 'vedeu/exceptions'
 require 'vedeu/models/all'
+require 'vedeu/storage/store'
 require 'vedeu/support/common'
 
 module Vedeu
@@ -14,7 +15,7 @@ module Vedeu
   class Repository
 
     include Vedeu::Common
-    include Enumerable
+    include Vedeu::Store
 
     # @!attribute [r] model
     # @return [void]
@@ -44,30 +45,11 @@ module Vedeu
       self.class#.name
     end
 
-    # Return the whole repository.
-    #
-    # @return [Array|Hash|Set]
-    def all
-      storage
-    end
-
     # Return the model for the interface currently in focus.
     #
     # @return [String|NilClass]
     def current
       find_or_create(Vedeu.focus) if Vedeu.focus
-    end
-
-    # @return [Enumerator]
-    def each(&block)
-      storage.each(&block)
-    end
-
-    # Return a boolean indicating whether the storage is empty.
-    #
-    # @return [Boolean]
-    def empty?
-      storage.empty?
     end
 
     # Find the model attributes by name.
@@ -147,13 +129,6 @@ module Vedeu
     alias_method :destroy,    :remove
     alias_method :delete,     :remove
     alias_method :deregister, :remove
-
-    # Reset the repository.
-    #
-    # @return [Array|Hash|Set]
-    def reset
-      @storage = in_memory
-    end
 
     # Stores the model instance by name in the repository of the model.
     #

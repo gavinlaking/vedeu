@@ -39,34 +39,6 @@ module Vedeu
       it { instance.instance_variable_get('@storage').must_equal(storage) }
     end
 
-    describe '#all' do
-      subject { instance.all }
-
-      it 'returns the whole repository' do
-        subject.must_equal(storage)
-      end
-    end
-
-    describe '#each' do
-      subject { instance.each }
-
-      it { subject.must_be_instance_of(Enumerator) }
-    end
-
-    describe '#empty?' do
-      subject { instance.empty? }
-
-      context 'when the storage is empty' do
-        it { subject.must_equal(true) }
-      end
-
-      context 'when the storage is not empty' do
-        let(:storage) { [:item] }
-
-        it { subject.must_equal(false) }
-      end
-    end
-
     describe '#find' do
       subject { instance.find(model_name) }
 
@@ -217,16 +189,6 @@ module Vedeu
         it 'returns the storage with the model removed' do
           subject.size.must_equal(1)
         end
-      end
-    end
-
-    describe '#reset' do
-      it 'returns a Hash' do
-        instance.reset.must_be_instance_of(Hash)
-      end
-
-      it 'resets the repository' do
-        instance.reset.must_equal({})
       end
     end
 
