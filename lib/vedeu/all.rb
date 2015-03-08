@@ -6,6 +6,7 @@ require 'vedeu/traps'
 require 'vedeu/exceptions'
 
 require 'vedeu/geometry/all'
+require 'vedeu/storage/all'
 require 'vedeu/repositories/all'
 
 require 'vedeu/api'
