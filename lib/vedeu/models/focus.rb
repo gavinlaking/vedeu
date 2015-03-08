@@ -82,7 +82,7 @@ module Vedeu
 
       update
     end
-    alias_method :next, :next_item
+    alias_method :next,       :next_item
     alias_method :focus_next, :next_item
 
     # Put the previous interface relative to the current interface in focus.
@@ -93,8 +93,8 @@ module Vedeu
 
       update
     end
-    alias_method :prev,     :prev_item
-    alias_method :previous, :prev_item
+    alias_method :prev,           :prev_item
+    alias_method :previous,       :prev_item
     alias_method :focus_previous, :prev_item
 
     # Refresh the interface in focus.
