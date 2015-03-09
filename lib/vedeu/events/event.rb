@@ -82,7 +82,7 @@ module Vedeu
       #
       # @return [TrueClass]
       def bind(name, options = {}, &block)
-        Vedeu.log(type: :event, message: "Binding: '#{name}'")
+        Vedeu.log(type: :event, message: "Binding: '#{name.inspect}'")
 
         new(name, options, block).bind
       end
@@ -96,7 +96,7 @@ module Vedeu
       def unbind(name)
         return false unless Vedeu.events.registered?(name)
 
-        Vedeu.log(type: :event, message: "Unbinding: '#{name}")
+        Vedeu.log(type: :event, message: "Unbinding: '#{name.inspect}'")
 
         Vedeu.events.remove(name)
         true
@@ -187,7 +187,7 @@ module Vedeu
 
       reset_time
 
-      Vedeu.log(type: :event, message: "Triggering: '#{name}'")
+      Vedeu.log(type: :event, message: "Triggering: '#{name.inspect}'")
 
       closure.call(*args)
     end
@@ -209,7 +209,7 @@ module Vedeu
     def throttle_expired?
       return true if elapsed_time > delay
 
-      Vedeu.log(type: :event, message: "Throttling: '#{name}'")
+      Vedeu.log(type: :event, message: "Throttling: '#{name.inspect}'")
 
       false
     end
@@ -233,7 +233,7 @@ module Vedeu
     def debounce_expired?
       return true if set_executed > deadline
 
-      Vedeu.log(type: :event, message: "Debouncing: '#{name}'")
+      Vedeu.log(type: :event, message: "Debouncing: '#{name.inspect}'")
 
       false
     end
