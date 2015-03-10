@@ -17,7 +17,7 @@ module Vedeu
     # @param path [String]
     # @return [Template]
     def initialize(object, path)
-      @object, @path = object, path
+      @object, @path = object, path.to_s
     end
 
     # @return [void]
@@ -31,13 +31,19 @@ module Vedeu
     # @return [Class]
     attr_reader :object
 
-    # @!attribute [r] path
-    # @return [String]
-    attr_reader :path
-
     # @return [String]
     def load
       File.read(path)
+    end
+
+    # @raise [MissingRequired] when the path is empty.
+    # @raise [MissingRequired] when the path does not exist.
+    # @return [String]
+    def path
+      fail MissingRequired, 'No path to template specified.' if @path.empty?
+      fail MissingRequired, 'Template file cannot be found.' unless File.exist?(@path)
+
+      @path
     end
 
   end # Template
