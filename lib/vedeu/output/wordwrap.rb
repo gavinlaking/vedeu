@@ -4,6 +4,21 @@ module Vedeu
   #
   class Wordwrap
 
+    # @see {Vedeu::Wordwrap#initialize}
+    def self.as_lines(text, options = {})
+      new(text, options).as_lines
+    end
+
+    # @see {Vedeu::Wordwrap#initialize}
+    def self.prune_as_lines(text, options = {})
+      new(text, options).prune_as_lines
+    end
+
+    # @see {Vedeu::Wordwrap#initialize}
+    def self.wrap_as_lines(text, options = {})
+      new(text, options).wrap_as_lines
+    end
+
     # @param text [String]
     # @param options [Hash]
     # @option options ellipsis [String]
