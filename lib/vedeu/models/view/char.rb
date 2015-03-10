@@ -103,6 +103,30 @@ module Vedeu
       position.y if position
     end
 
+    # Returns a Hash of all the values before coercion.
+    #
+    # @note
+    #   From this hash we should be able to construct a new instance of
+    #   Vedeu::Char, however, at the moment, `:parent` cannot be coerced.
+    #
+    # @return [Hash]
+    def to_hash
+      {
+        parent:     {
+          background: parent_background,
+          foreground: parent_foreground,
+          style:      parent_style,
+        },
+        background: '',
+        border:     '',
+        foreground: '',
+        style:      '',
+        value:      value,
+        x:          x,
+        y:          y,
+      }
+    end
+
     # @return [String]
     def to_html
       @to_html ||= Vedeu::HTMLChar.render(self)
