@@ -1,3 +1,10 @@
+require 'vedeu/output/clear'
+require 'vedeu/output/html_renderer'
+require 'vedeu/output/renderer'
+require 'vedeu/output/viewport'
+require 'vedeu/output/virtual_buffer'
+require 'vedeu/support/terminal'
+
 module Vedeu
 
   # Sends the interface to the terminal or output device.

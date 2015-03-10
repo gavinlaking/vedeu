@@ -1,3 +1,5 @@
+require 'vedeu/geometry/position'
+require 'vedeu/output/esc'
 require 'vedeu/output/html_char'
 require 'vedeu/output/presentation'
 
@@ -14,26 +16,27 @@ module Vedeu
     include Vedeu::Presentation
 
     # @!attribute [rw] border
-    # @return [Border]
+    # @return [NilClass|Symbol]
     attr_accessor :border
 
     # @!attribute [rw] parent
-    # @return [Line]
+    # @return [Vedeu::Line]
     attr_accessor :parent
 
     # @!attribute [r] value
     # @return [String]
     attr_reader :value
 
-    # Returns a new instance of Char.
+    # Returns a new instance of Vedeu::Char.
     #
     # @param attributes [Hash]
     # @option attributes value    [String]
-    # @option attributes parent   [Line]
-    # @option attributes colour   [Colour]
-    # @option attributes style    [Style]
-    # @option attributes position [Position]
-    # @option attributes border   [Boolean]
+    # @option attributes parent   [Vedeu::Line]
+    # @option attributes colour   [Vedeu::Colour]
+    # @option attributes style    [Vedeu::Style]
+    # @option attributes position [Vedeu::Position]
+    # @option attributes border   [NilClass|Symbol] A symbol representing the
+    #   border 'piece' this Char represents.
     # @return [Char]
     def initialize(attributes = {})
       @attributes = defaults.merge!(attributes)
@@ -70,7 +73,7 @@ module Vedeu
 
     # @return [String]
     def inspect
-      "<Vedeu::Char '#{Esc.escape(self.to_s)}'>"
+      "<Vedeu::Char '#{Vedeu::Esc.escape(self.to_s)}'>"
     end
 
     # @return [Vedeu::Position]
@@ -102,7 +105,7 @@ module Vedeu
 
     # @return [String]
     def to_html
-      @to_html ||= HTMLChar.render(self)
+      @to_html ||= Vedeu::HTMLChar.render(self)
     end
 
     private

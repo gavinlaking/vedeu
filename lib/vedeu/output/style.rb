@@ -15,7 +15,7 @@ module Vedeu
     # @return [String|Symbol]
     attr_accessor :value
 
-    # Return a new instance of Style.
+    # Return a new instance of Vedeu::Style.
     #
     # @param value [Array|Array<String>|Array<Symbol>|String|Symbol]
     #   The style value or a collection of values.
@@ -39,7 +39,7 @@ module Vedeu
     def to_s
       return '' unless defined_value?(value)
 
-      @sequences ||= Array(value).flatten.map { |v| Esc.string(v) }.join
+      @sequences ||= Array(value).flatten.map { |v| Vedeu::Esc.string(v) }.join
     end
     alias_method :escape_sequences, :to_s
 
