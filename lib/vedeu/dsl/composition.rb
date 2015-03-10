@@ -38,7 +38,7 @@ module Vedeu
       #     ...
       #
       # @raise [InvalidSyntax] The required block was not given.
-      # @return [Vedeu::Model::Collection<Vedeu::Interface>]
+      # @return [Vedeu::Interfaces<Vedeu::Interface>]
       def view(name = '', &block)
         fail InvalidSyntax, 'block not given' unless block_given?
 

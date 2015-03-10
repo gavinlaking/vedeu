@@ -28,9 +28,9 @@ module Vedeu
     #
     # @return [Array<Array<Vedeu::Char>>]
     def clear
-      out = rows.times.inject([]) do |row, iy|
-        row << columns.times.inject([]) do |col, ix|
-          col << char_builder(' ', iy, ix)
+      out = interface.height.times.inject([]) do |row, iy|
+        row << interface.width.times.inject([]) do |column, ix|
+          column << char_builder(' ', iy, ix)
         end
       end
     end
@@ -55,16 +55,6 @@ module Vedeu
     # @!attribute [r] interface
     # @return [Interface]
     attr_reader :interface
-
-    # @return [Fixnum]
-    def rows
-      interface.height
-    end
-
-    # @return [Fixnum]
-    def columns
-      interface.width
-    end
 
   end # Clear
 

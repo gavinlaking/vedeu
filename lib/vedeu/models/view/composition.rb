@@ -3,7 +3,7 @@ require 'vedeu/models/collection'
 require 'vedeu/output/presentation'
 require 'vedeu/support/common'
 
-require 'vedeu/models/view/interfaces'
+require 'vedeu/models/view/collections'
 require 'vedeu/models/view/interface'
 
 module Vedeu

@@ -1,7 +1,7 @@
 require 'vedeu/exceptions'
 require 'vedeu/models/model'
 require 'vedeu/dsl/components/all'
-require 'vedeu/input/keys'
+require 'vedeu/models/view/collections'
 require 'vedeu/input/key'
 
 module Vedeu
@@ -21,8 +21,7 @@ module Vedeu
 
     # @param attributes [Hash]
     # @option attributes name [String] The name of the keymap.
-    # @option attributes keys [Vedeu::Model::Collection|Array] A collection of
-    #   keys.
+    # @option attributes keys [Vedeu::Keys|Array] A collection of keys.
     # @option attributes repository [Vedeu::Repository] This model's storage.
     # @return [Vedeu::Keymap]
     def initialize(attributes = {})
