@@ -14,8 +14,6 @@ module Vedeu
 
     describe '#initialize' do
       it { instance.must_be_instance_of(Vedeu::VirtualTerminal) }
-      it { instance.instance_variable_get('@cell_height').must_equal(4) }
-      it { instance.instance_variable_get('@cell_width').must_equal(9) }
       it { instance.instance_variable_get('@height').must_equal(5) }
       it { instance.instance_variable_get('@width').must_equal(10) }
       it { instance.instance_variable_get('@renderer').must_equal(Vedeu::HTMLRenderer) }
@@ -33,19 +31,8 @@ module Vedeu
         it { subject.must_equal(Vedeu::FakeRenderer) }
       end
     end
+
     describe 'attr_reader' do
-      context '#cell_height' do
-        subject { instance.cell_height }
-
-        it { subject.must_equal(4) }
-      end
-
-      context '#cell_width' do
-        subject { instance.cell_width }
-
-        it { subject.must_equal(9) }
-      end
-
       context '#height' do
         subject { instance.height }
 
@@ -63,6 +50,8 @@ module Vedeu
       subject { instance.cells }
 
       it { subject.must_be_instance_of(Array) }
+      it { subject.size.must_equal(5) }
+      it { subject.flatten.size.must_equal(50) }
     end
 
     describe '#read' do
