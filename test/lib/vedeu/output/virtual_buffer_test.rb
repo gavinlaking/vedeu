@@ -16,9 +16,19 @@ module Vedeu
       end
 
       context 'when buffers are stored' do
-        before { described.store([[Vedeu::Char.new]]) }
+        let(:buffer) { [[Vedeu::Char.new]] }
+
+        before { described.store(buffer) }
 
         it { subject.must_be_instance_of(Array) }
+
+        it { subject.must_equal(buffer) }
+
+        it 'removes the stored buffer from the storage' do
+          described.size.must_equal(1)
+          subject
+          described.size.must_equal(0)
+        end
       end
     end
 
@@ -29,7 +39,13 @@ module Vedeu
 
       it { subject.must_be_instance_of(Array) }
 
-      it { subject.wont_be_empty }
+      it { subject.must_equal([:data]) }
+
+      it 'adds the buffer (data) to the storage' do
+        described.size.must_equal(0)
+        subject
+        described.size.must_equal(1)
+      end
     end
 
     describe '#size' do
