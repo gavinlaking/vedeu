@@ -12,6 +12,16 @@ module Vedeu
       end
     end
 
+    # @return [Vedeu::Colour]
+    def colour
+      @colour ||= Vedeu::Colour.coerce(@colour)
+    end
+
+    # @return [Vedeu::Colour]
+    def colour=(value)
+      @colour = Vedeu::Colour.coerce(value)
+    end
+
     # @return [Vedeu::Foreground|NilClass]
     def foreground
       if colour
@@ -26,6 +36,11 @@ module Vedeu
       end
     end
 
+    # @return [String|NilClass]
+    def parent_colour
+      parent.colour if parent
+    end
+
     # @return [Vedeu::Foreground|NilClass]
     def parent_foreground
       if parent_colour
@@ -33,19 +48,14 @@ module Vedeu
       end
     end
 
-    # @return [Vedeu::Colour]
-    def colour
-      Vedeu::Colour.coerce(@colour)
-    end
-
-    # @return [Vedeu::Colour]
-    def colour=(value)
-      @colour = Vedeu::Colour.coerce(value)
+    # @return [String|NilClass]
+    def parent_style
+      parent.style if parent
     end
 
     # @return [Vedeu::Style]
     def style
-      Vedeu::Style.coerce(@style)
+      @style ||= Vedeu::Style.coerce(@style)
     end
 
     # @return [Vedeu::Style]
@@ -63,16 +73,6 @@ module Vedeu
     end
 
     private
-
-    # @return [String|NilClass]
-    def parent_colour
-      parent.colour if parent
-    end
-
-    # @return [String|NilClass]
-    def parent_style
-      parent.style if parent
-    end
 
     # @return [String]
     def render_border
@@ -100,7 +100,7 @@ module Vedeu
 
     # @return [String]
     def render_position
-      if self.respond_to?(:position) && position.is_a?(Position)
+      if self.respond_to?(:position) && self.position.is_a?(Vedeu::Position)
         position.to_s { yield }
 
       else
