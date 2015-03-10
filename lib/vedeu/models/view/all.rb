@@ -1,5 +1,4 @@
-require 'vedeu/models/collection'
-require 'vedeu/models/view/collections'
+require 'vedeu/repositories/collections'
 
 require 'vedeu/models/view/char'
 require 'vedeu/models/view/composition'

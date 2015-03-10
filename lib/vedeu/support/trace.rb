@@ -232,7 +232,7 @@ module Vedeu
         # 'Vedeu::Menu',
         # 'Vedeu::Menus',
         # 'Vedeu::Model',
-        # 'Vedeu::Model::Collection',
+        # 'Vedeu::Collection',
         # 'Vedeu::MoveCursor',
         # 'Vedeu::Node',
         # 'Vedeu::Output',

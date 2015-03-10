@@ -1,4 +1,4 @@
-require 'vedeu/repositories/repository'
+require 'vedeu/repositories/all'
 
 module Vedeu
 

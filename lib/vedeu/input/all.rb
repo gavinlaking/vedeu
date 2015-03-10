@@ -1,6 +1,5 @@
 require 'vedeu/repositories/all'
 require 'vedeu/input/mapper'
-require 'vedeu/models/view/collections'
 require 'vedeu/input/key'
 require 'vedeu/input/input'
 require 'vedeu/input/keymap'

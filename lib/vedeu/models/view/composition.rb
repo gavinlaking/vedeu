@@ -1,9 +1,7 @@
 require 'vedeu/dsl/composition'
-require 'vedeu/models/collection'
+require 'vedeu/repositories/collections'
 require 'vedeu/output/presentation'
 require 'vedeu/support/common'
-
-require 'vedeu/models/view/collections'
 require 'vedeu/models/view/interface'
 
 module Vedeu

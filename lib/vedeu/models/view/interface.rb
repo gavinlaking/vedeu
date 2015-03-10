@@ -1,10 +1,8 @@
 require 'vedeu/geometry/content_geometry'
-require 'vedeu/models/model'
+require 'vedeu/repositories/all'
 require 'vedeu/output/presentation'
 require 'vedeu/buffers/display_buffer'
 require 'vedeu/buffers/buffer'
-
-require 'vedeu/models/view/collections'
 require 'vedeu/models/view/line'
 
 module Vedeu

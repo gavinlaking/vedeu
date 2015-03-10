@@ -1,7 +1,6 @@
 require 'vedeu/exceptions'
-require 'vedeu/models/model'
+require 'vedeu/repositories/all'
 require 'vedeu/dsl/components/all'
-require 'vedeu/models/view/collections'
 require 'vedeu/input/key'
 
 module Vedeu

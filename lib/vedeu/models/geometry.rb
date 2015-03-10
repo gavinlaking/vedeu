@@ -1,5 +1,5 @@
 require 'vedeu/dsl/components/all'
-require 'vedeu/models/model'
+require 'vedeu/repositories/model'
 
 require 'vedeu/geometry/limit'
 require 'vedeu/geometry/position'
