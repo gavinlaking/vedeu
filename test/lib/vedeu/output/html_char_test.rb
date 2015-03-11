@@ -59,6 +59,29 @@ module Vedeu
         end
       end
 
+      {
+        top_horizontal:    "border-top:1px #222 solid;",
+        left_vertical:     "border-left:1px #222 solid;",
+        right_vertical:    "border-right:1px #222 solid;",
+        bottom_horizontal: "border-bottom:1px #222 solid;",
+        top_left:          "border-top:1px #222 solid;border-left:1px #222 solid;",
+        top_right:         "border-top:1px #222 solid;border-right:1px #222 solid;",
+        bottom_left:       "border-bottom:1px #222 solid;border-left:1px #222 solid;",
+        bottom_right:      "border-bottom:1px #222 solid;border-right:1px #222 solid;",
+        horizontal:        '',
+        vertical:          ''
+      }.each do |border_style, result|
+        context "when there is a border (#{border_style.inspect})" do
+          let(:border) { border_style }
+
+          it { subject.must_equal(
+            "<td style='background:#000;color:#222;border:1px #000 solid;" +
+            result +
+            "'>&nbsp;</td>"
+          ) }
+        end
+      end
+
       context 'when there is no border' do
         context 'when there is no value' do
           it { subject.must_equal("<td>&nbsp;</td>") }

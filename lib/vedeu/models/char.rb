@@ -113,14 +113,14 @@ module Vedeu
     def to_hash
       {
         parent:     {
-          background: parent_background,
-          foreground: parent_foreground,
-          style:      parent_style,
+          background: parent_background.to_s,
+          foreground: parent_foreground.to_s,
+          style:      parent_style.to_s,
         },
-        background: '',
-        border:     '',
-        foreground: '',
-        style:      '',
+        background: background.to_s,
+        border:     border.to_s,
+        foreground: foreground.to_s,
+        style:      style.to_s,
         value:      value,
         x:          x,
         y:          y,
