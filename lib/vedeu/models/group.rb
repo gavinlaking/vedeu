@@ -1,3 +1,5 @@
+require 'vedeu/repositories/model'
+
 module Vedeu
 
   # Interfaces can be associated with one another by being members of the same

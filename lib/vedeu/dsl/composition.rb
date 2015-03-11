@@ -1,4 +1,4 @@
-require 'vedeu/models/view/interface'
+require 'vedeu/models/interface'
 
 module Vedeu
 

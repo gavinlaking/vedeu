@@ -1,6 +1,5 @@
 require 'vedeu/output/text'
-require 'vedeu/models/view/line'
-require 'vedeu/models/view/stream'
+require 'vedeu/models/all'
 
 module Vedeu
 

@@ -18,7 +18,6 @@ SimpleCov.start do
   add_group  'dsl',           'vedeu/dsl'
   add_group  'events',        'vedeu/events'
   add_group  'input',         'vedeu/input'
-  add_group  'models/view',   'vedeu/models/view'
   add_group  'models',        'vedeu/models'
   add_group  'output',        'vedeu/output'
   add_group  'presentation',  'vedeu/presentation'

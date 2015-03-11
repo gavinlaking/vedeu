@@ -2,7 +2,7 @@ require 'vedeu/cursor/cursor'
 require 'vedeu/models/focus'
 require 'vedeu/models/geometry'
 require 'vedeu/models/group'
-require 'vedeu/models/view/line'
+require 'vedeu/models/line'
 require 'vedeu/output/border'
 require 'vedeu/support/common'
 

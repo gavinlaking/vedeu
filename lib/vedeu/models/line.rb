@@ -1,6 +1,5 @@
 require 'vedeu/output/presentation'
-require 'vedeu/repositories/collections'
-require 'vedeu/models/view/stream'
+require 'vedeu/models/all'
 
 module Vedeu
 

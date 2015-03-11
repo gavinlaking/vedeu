@@ -1,5 +1,5 @@
 require 'vedeu/output/presentation'
-require 'vedeu/models/view/char'
+require 'vedeu/models/all'
 
 module Vedeu
 
