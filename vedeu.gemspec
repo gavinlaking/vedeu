@@ -33,6 +33,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rake',               '10.4.2'
   spec.add_development_dependency 'ruby-prof',          '0.15.6'
   spec.add_development_dependency 'simplecov',          '0.9.2'
-  spec.add_development_dependency 'simplecov-console',  '0.2.0'
   spec.add_development_dependency 'yard',               '0.8.7.6'
 end
