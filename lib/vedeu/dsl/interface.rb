@@ -145,19 +145,16 @@ module Vedeu
       # @return [String]
       def group(name)
         return false unless defined_value?(name)
-
-        if defined_value?(model.name)
-          if Vedeu.groups.registered?(name)
-            Vedeu.groups.find(name).add(model.name)
-
-          else
-            new_group = Vedeu::Group.new({ name: name })
-            new_group.add(model.name)
-
-          end
-        end
-
         model.group = name
+
+        if Vedeu.groups.registered?(name)
+          Vedeu.groups.find(name).add(model.name)
+
+        else
+          new_group = Vedeu::Group.new({ name: name })
+          new_group.add(model.name)
+
+        end
       end
 
       # @see Vedeu::DSL::Keymap.keymap
