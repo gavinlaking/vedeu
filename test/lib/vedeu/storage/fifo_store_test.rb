@@ -24,6 +24,12 @@ module Vedeu
         let(:storage) { [:lithium, :helium, :hydrogen] }
 
         it { subject.must_equal(:hydrogen) }
+
+        it 'removes the item from storage on retrieval' do
+          instance.size.must_equal(3)
+          subject
+          instance.size.must_equal(2)
+        end
       end
     end
 
