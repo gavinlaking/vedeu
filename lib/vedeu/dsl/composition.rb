@@ -47,8 +47,15 @@ module Vedeu
         model.add(new_model)
       end
 
-      # @note
-      #   I think this should be extracted to its own object.
+      # Load content from an ERb template.
+      #
+      # @example
+      #   Vedeu.renders do
+      #     template_for('my_interface',
+      #                  '/path/to/template.erb',
+      #                  @some_object, options)
+      #
+      # @todo More documentation required.
       #
       # @param name [String] The name of interface for which this template's
       #   content belongs to.
