@@ -22,7 +22,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'cucumber',           '1.3.19'
   spec.add_development_dependency 'guard',              '2.12.4'
   spec.add_development_dependency 'guard-bundler',      '2.1.0'
-  spec.add_development_dependency 'guard-cucumber',     '1.5.3'
+  spec.add_development_dependency 'guard-cucumber',     '1.5.4'
   spec.add_development_dependency 'guard-minitest',     '2.4.4'
   spec.add_development_dependency 'inch',               '0.5.10'
   spec.add_development_dependency 'minitest',           '5.5.1'
