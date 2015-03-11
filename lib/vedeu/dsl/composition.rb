@@ -47,6 +47,26 @@ module Vedeu
         model.add(new_model)
       end
 
+      # @note
+      #   I think this should be extracted to its own object.
+      #
+      # @param name [String] The name of interface for which this template's
+      #   content belongs to.
+      # @param filename [String] The filename (including path) to the template
+      #   to be used.
+      # @param object [Object] The object for which the values of template's
+      #   variables can be obtained.
+      # @param options [Hash] See {Vedeu::Wordwrap}
+      # @return [Vedeu::Interfaces<Vedeu::Interface>]
+      def template_for(name, filename, object = nil, options = {})
+        content = Vedeu::Template.parse(object, filename)
+        lines   = Vedeu::Wordwrap.for(content, options)
+
+        new_model = model.member.build(new_attributes(name).merge!({ lines: lines }))
+
+        model.add(new_model)
+      end
+
       private
 
       # @!attribute [r] client

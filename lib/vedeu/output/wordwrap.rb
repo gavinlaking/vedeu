@@ -5,28 +5,29 @@ module Vedeu
   class Wordwrap
 
     # @see {Vedeu::Wordwrap#initialize}
-    def self.as_lines(text, options = {})
-      new(text, options).as_lines
-    end
-
-    # @see {Vedeu::Wordwrap#initialize}
-    def self.prune_as_lines(text, options = {})
-      new(text, options).prune_as_lines
-    end
-
-    # @see {Vedeu::Wordwrap#initialize}
-    def self.wrap_as_lines(text, options = {})
-      new(text, options).wrap_as_lines
+    def self.for(text, options = {})
+      new(text, options).content
     end
 
     # @param text [String]
     # @param options [Hash]
-    # @option options ellipsis [String]
-    # @option options width [Fixnum]
+    # @option options ellipsis [String] For when using mode `:prune`.
+    # @option options mode [Symbol] One of :default, :prune, :wrap
+    # @option options width [Fixnum] The width in characters to prune or wrap to.
     # @return [Vedeu::Wordwrap]
     def initialize(text, options = {})
       @text    = text
       @options = defaults.merge!(options)
+    end
+
+    # @return [Vedeu::Lines]
+    def content
+      case(mode)
+      when :prune then to_line_objects(prune)
+      when :wrap  then to_line_objects(wrap)
+      else
+        to_line_objects(split_lines)
+      end
     end
 
     # @return [Array<String>|String]
@@ -74,22 +75,6 @@ module Vedeu
         output << line.join(' ')
       end
     end
-
-    # @return [Vedeu::Lines]
-    def as_lines
-      if __callee__ == :prune_as_lines
-        to_line_objects(prune)
-
-      elsif __callee__ == :wrap_as_lines
-        to_line_objects(wrap)
-
-      else
-        to_line_objects(split_lines)
-
-      end
-    end
-    alias_method :prune_as_lines, :as_lines
-    alias_method :wrap_as_lines, :as_lines
 
     private
 
@@ -157,6 +142,11 @@ module Vedeu
       options.fetch(:ellipsis)
     end
 
+    # @return [Symbol]
+    def mode
+      options.fetch(:mode)
+    end
+
     # @return [Fixnum]
     def width
       options.fetch(:width)
@@ -166,6 +156,7 @@ module Vedeu
     def defaults
       {
         ellipsis: '...',
+        mode:     :default,
         width:    70,
       }
     end
