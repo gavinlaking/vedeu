@@ -69,12 +69,20 @@ class VedeuViewTemplateApp
     y      use('prune').south(1)
   end
 
+  def self.default_template
+    File.dirname(__FILE__) + '/default.erb'
+  end
+  def self.prune_template
+    File.dirname(__FILE__) + '/prune.erb'
+  end
+  def self.wrap_template
+    File.dirname(__FILE__) + '/wrap.erb'
+  end
+
   renders do
-    template_for('default', (File.dirname(__FILE__) + '/template.erb'), nil)
-    template_for('prune', (File.dirname(__FILE__) + '/template.erb'), nil,
-                 mode: :prune, width: 22)
-    template_for('wrap', (File.dirname(__FILE__) + '/template.erb'), nil,
-                 mode: :wrap, width: 25)
+    template_for('default', default_template, nil)
+    template_for('prune', prune_template, nil, { mode: :prune, width: 22 })
+    template_for('wrap', wrap_template, nil, { mode: :wrap, width: 25 })
   end
 
   def self.start(argv = ARGV)
