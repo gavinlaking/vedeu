@@ -1,3 +1,5 @@
+require 'vedeu/repositories/model'
+
 module Vedeu
 
   # Interfaces can be associated with one another by being members of the same
@@ -7,6 +9,8 @@ module Vedeu
 
     include Vedeu::Model
 
+    # @!attribute [rw] name
+    # @return [String]
     attr_accessor :name
 
     # Return a new instance of Group.
@@ -33,7 +37,7 @@ module Vedeu
     def add(member)
       @members = members.add(member)
 
-      Group.new({ name: name, members: @members }).store
+      Vedeu::Group.new({ name: name, members: @members }).store
     end
 
     # Return the members as a Set.
@@ -50,14 +54,14 @@ module Vedeu
     def remove(member)
       @members = members.delete(member)
 
-      Group.new({ name: name, members: @members }).store
+      Vedeu::Group.new({ name: name, members: @members }).store
     end
 
     # Remove all members from the group.
     #
     # @return [Group]
     def reset
-      Group.new(defaults.merge!({ name: name })).store
+      Vedeu::Group.new(defaults.merge!({ name: name })).store
     end
 
     private

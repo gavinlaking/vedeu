@@ -32,7 +32,13 @@ module Vedeu
       :top,
       :bottom
 
-    attr_accessor :x, :y
+    # @!attribute [rw] x
+    # @return [Fixnum]
+    attr_accessor :x
+
+    # @!attribute [rw] x
+    # @return [Fixnum]
+    attr_accessor :y
 
     # @param interface [Interface]
     # @param x [Fixnum]
@@ -63,6 +69,8 @@ module Vedeu
 
     private
 
+    # @!attribute [r] interface
+    # @return [Vedeu::Interface]
     attr_reader :interface
 
     # Validate the x and y coordinates are within the dimensions of the

@@ -4,10 +4,21 @@ module Vedeu
   #
   class Coordinate
 
-    attr_reader :height,
-      :width,
-      :x,
-      :y
+    # @!attribute [r] height
+    # @return [Fixnum]
+    attr_reader :height
+
+    # @!attribute [r] width
+    # @return [Fixnum]
+    attr_reader :width
+
+    # @!attribute [r] x
+    # @return [Fixnum]
+    attr_reader :x
+
+    # @!attribute [r] y
+    # @return [Fixnum]
+    attr_reader :y
 
     # @param height [Fixnum]
     # @param width [Fixnum]
@@ -156,8 +167,6 @@ module Vedeu
     end
 
     private
-
-    attr_reader :height, :width
 
     # Returns the maximum y index for an area.
     #

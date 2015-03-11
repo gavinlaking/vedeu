@@ -11,7 +11,7 @@ module Vedeu
 
       # Define a style or styles for an interface, line or a stream.
       #
-      # @param value [Array|Symbol|String]
+      # @param value [Array<Symbol>|Array<String>|Symbol|String]
       #
       # @example
       #   interface 'my_interface' do

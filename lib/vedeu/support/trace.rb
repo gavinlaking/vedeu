@@ -90,11 +90,11 @@ module Vedeu
         valclass = value.class.to_s
         output   = (value.is_a?(Proc)) ? '#<Proc:...' : value.inspect
 
-        content  = Esc.send(class_colour.fetch(valclass, :white)) { output }
+        content  = Vedeu::Esc.send(class_colour.fetch(valclass, :white)) { output }
 
         entries << sprintf("%33s %-10s = %s %s", " ",
-                                                 Esc.green { variable },
-                                                 Esc.magenta { valclass },
+                                                 Vedeu::Esc.green { variable },
+                                                 Vedeu::Esc.magenta { valclass },
                                                  content)
       end
       entries.join("\n")
@@ -232,7 +232,7 @@ module Vedeu
         # 'Vedeu::Menu',
         # 'Vedeu::Menus',
         # 'Vedeu::Model',
-        # 'Vedeu::Model::Collection',
+        # 'Vedeu::Collection',
         # 'Vedeu::MoveCursor',
         # 'Vedeu::Node',
         # 'Vedeu::Output',

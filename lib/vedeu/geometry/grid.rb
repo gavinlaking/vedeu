@@ -50,6 +50,8 @@ module Vedeu
 
     private
 
+    # @!attribute [r] value
+    # @return [Fixnum]
     attr_reader :value
 
     # Returns the width of a single column in characters.
@@ -61,7 +63,7 @@ module Vedeu
 
     # @return [Fixnum]
     def actual
-      Terminal.width
+      Vedeu::Terminal.width
     end
 
     # @return [Boolean]

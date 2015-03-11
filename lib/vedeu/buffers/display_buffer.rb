@@ -1,4 +1,4 @@
-require 'vedeu/repositories/repository'
+require 'vedeu/repositories/all'
 
 module Vedeu
 
@@ -48,7 +48,7 @@ module Vedeu
         Vedeu.buffers.find(name).add(self)
 
       else
-        Buffer.new(name, self).store
+        Vedeu::Buffer.new(name, self).store
 
       end
 

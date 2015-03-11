@@ -91,6 +91,8 @@ module Vedeu
 
       private
 
+      # @!attribute [r] uri
+      # @return [String]
       attr_reader :uri
 
       # @return [void]

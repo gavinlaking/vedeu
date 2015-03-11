@@ -5,8 +5,13 @@ module Vedeu
   #
   class BoundingArea
 
-    attr_reader :height,
-      :width
+    # @!attribute [r] height
+    # @return [Fixnum]
+    attr_reader :height
+
+    # @!attribute [r] width
+    # @return [Fixnum]
+    attr_reader :width
 
     # Returns an instance of BoundingArea.
     #

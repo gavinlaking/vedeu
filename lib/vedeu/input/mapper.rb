@@ -63,7 +63,13 @@ module Vedeu
 
     private
 
-    attr_reader :key, :repository
+    # @!attribute [r] key
+    # @return [String|Symbol]
+    attr_reader :key
+
+    # @!attribute [r] repository
+    # @return [Vedeu::Repository]
+    attr_reader :repository
 
     # Is the key a global key?
     #

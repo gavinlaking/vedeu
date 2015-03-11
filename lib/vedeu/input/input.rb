@@ -32,6 +32,8 @@ module Vedeu
 
     private
 
+    # @!attribute [r] reader
+    # @return [IO]
     attr_reader :reader
 
     # Returns the input from the terminal.

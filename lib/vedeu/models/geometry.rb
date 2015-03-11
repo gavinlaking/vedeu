@@ -1,5 +1,5 @@
 require 'vedeu/dsl/components/all'
-require 'vedeu/models/model'
+require 'vedeu/repositories/model'
 
 require 'vedeu/geometry/limit'
 require 'vedeu/geometry/position'
@@ -31,9 +31,33 @@ module Vedeu
 
     include Vedeu::Model
 
-    attr_accessor :centred, :height, :name, :width
-    attr_reader   :attributes
-    attr_writer   :x, :y
+    # @!attribute [rw] centred
+    # @return [Boolean]
+    attr_accessor :centred
+
+    # @!attribute [rw] height
+    # @return [Fixnum]
+    attr_accessor :height
+
+    # @!attribute [rw] name
+    # @return [String]
+    attr_accessor :name
+
+    # @!attribute [rw] width
+    # @return [Fixnum]
+    attr_accessor :width
+
+    # @!attribute [r] attributes
+    # @return [Hash]
+    attr_reader :attributes
+
+    # @!attribute [w] x
+    # @return [Fixnum]
+    attr_writer :x
+
+    # @!attribute [w] y
+    # @return [Fixnum]
+    attr_writer :y
 
     # Returns a new instance of Geometry.
     #
@@ -124,12 +148,12 @@ module Vedeu
     #
     # @return [Fixnum]
     def width
-      Vedeu::Limit.apply(x, @width, Terminal.width, Terminal.origin)
+      Vedeu::Limit.apply(x, @width, Vedeu::Terminal.width, Vedeu::Terminal.origin)
     end
 
     # @see Vedeu::Geometry#width
     def height
-      Vedeu::Limit.apply(y, @height, Terminal.height, Terminal.origin)
+      Vedeu::Limit.apply(y, @height, Vedeu::Terminal.height, Vedeu::Terminal.origin)
     end
 
     # Returns the top coordinate of the interface, a fixed or dynamic value
@@ -141,7 +165,7 @@ module Vedeu
     # @return [Fixnum]
     def top
       if centred
-        Terminal.centre_y - (height / 2)
+        Vedeu::Terminal.centre_y - (height / 2)
 
       else
         y
@@ -173,7 +197,7 @@ module Vedeu
     # @return [Fixnum]
     def left
       if centred
-        Terminal.centre_x - (width / 2)
+        Vedeu::Terminal.centre_x - (width / 2)
 
       else
         x
@@ -251,13 +275,13 @@ module Vedeu
       {
         centred: false,
         client:  nil,
-        height:  Terminal.height,
+        height:  Vedeu::Terminal.height,
         name:    '',
-        width:   Terminal.width,
+        width:   Vedeu::Terminal.width,
         x:       1,
-        xn:      Terminal.width,
+        xn:      Vedeu::Terminal.width,
         y:       1,
-        yn:      Terminal.height,
+        yn:      Vedeu::Terminal.height,
       }
     end
 

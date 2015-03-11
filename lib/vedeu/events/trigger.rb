@@ -40,9 +40,17 @@ module Vedeu
 
     private
 
-    attr_reader :name,
-      :args,
-      :repository
+    # @!attribute [r] name
+    # @return [Symbol]
+    attr_reader :name
+
+    # @!attribute [r] args
+    # @return [Array]
+    attr_reader :args
+
+    # @!attribute [r]
+    # @return [Vedeu::Repository]
+    attr_reader :repository
 
     # @return [Array<void>|void]
     def results

@@ -7,7 +7,13 @@ module Vedeu
     #
     class Uri
 
-      attr_reader :host, :port
+      # @!attribute [r] host
+      # @return [String]
+      attr_reader :host
+
+      # @!attribute [r] port
+      # @return [Fixnum|String]
+      attr_reader :port
 
       # @param host [String] Hostname or IP address.
       # @param port [Fixnum|String]

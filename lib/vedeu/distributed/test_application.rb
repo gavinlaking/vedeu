@@ -16,14 +16,37 @@ module Vedeu
   #
   class TestApplication
 
-    attr_accessor :borders,
-      :configuration,
-      :events,
-      :geometries,
-      :interfaces,
-      :keymaps,
-      :menus,
-      :views
+    # @!attribute [rw] borders
+    # @return [String]
+    attr_accessor :borders
+
+    # @!attribute [rw] configuration
+    # @return [String]
+    attr_accessor :configuration
+
+    # @!attribute [rw] events
+    # @return [String]
+    attr_accessor :events
+
+    # @!attribute [rw] geometries
+    # @return [String]
+    attr_accessor :geometries
+
+    # @!attribute [rw] interfaces
+    # @return [String]
+    attr_accessor :interfaces
+
+    # @!attribute [rw] keymaps
+    # @return [String]
+    attr_accessor :keymaps
+
+    # @!attribute [rw] menus
+    # @return [String]
+    attr_accessor :menus
+
+    # @!attribute [rw] views
+    # @return [String]
+    attr_accessor :views
 
     # @param attributes [Hash]
     # @param block [Proc]
@@ -55,7 +78,7 @@ module Vedeu
     def build(&block)
       self.instance_eval(&block) if block_given?
 
-      Template.parse(self, template)
+      Vedeu::Template.parse(self, template)
     end
 
     # @return [String]

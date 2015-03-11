@@ -48,6 +48,8 @@ module Vedeu
 
     private
 
+    # @!attribute [r] cursor
+    # @return [Vedeu::Cursor]
     attr_reader :cursor
 
   end # ToggleCursor

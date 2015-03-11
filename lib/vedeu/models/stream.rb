@@ -1,5 +1,5 @@
 require 'vedeu/output/presentation'
-require 'vedeu/models/view/char'
+require 'vedeu/models/all'
 
 module Vedeu
 
@@ -15,8 +15,13 @@ module Vedeu
     collection Vedeu::Chars
     member     Vedeu::Char
 
-    attr_accessor :parent,
-      :value
+    # @!attribute [rw] parent
+    # @return [Line]
+    attr_accessor :parent
+
+    # @!attribute [rw] value
+    # @return [String]
+    attr_accessor :value
 
     alias_method :content, :value
     alias_method :data,    :value
@@ -58,7 +63,7 @@ module Vedeu
                      parent:   parent,
                      colour:   colour,
                      style:    style,
-                     position: nil }).to_s
+                     position: nil })
       end
     end
 

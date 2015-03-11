@@ -1,4 +1,4 @@
-require 'vedeu/models/model'
+require 'vedeu/repositories/model'
 require 'vedeu/output/presentation'
 
 module Vedeu

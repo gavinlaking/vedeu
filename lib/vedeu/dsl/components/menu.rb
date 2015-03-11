@@ -75,10 +75,12 @@ module Vedeu
 
       private
 
+      # @!attribute [r] client
       # @return [Object]
       attr_reader :client
 
-      # @return [Menu]
+      # @!attribute [r] model
+      # @return [Vedeu::Menu]
       attr_reader :model
 
     end # Menu

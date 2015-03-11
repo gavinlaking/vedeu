@@ -136,9 +136,11 @@ module Vedeu
 
       private
 
+      # @!attribute [r] client
       # @return [Object]
       attr_reader :client
 
+      # @!attribute [r] model
       # @return [Geometry]
       attr_reader :model
 

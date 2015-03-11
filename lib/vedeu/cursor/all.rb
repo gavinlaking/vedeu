@@ -1,4 +1,4 @@
-require 'vedeu/repositories/repository'
+require 'vedeu/repositories/all'
 require 'vedeu/cursor/cursor'
 require 'vedeu/cursor/move_cursor'
 require 'vedeu/cursor/toggle_cursor'

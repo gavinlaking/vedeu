@@ -1,3 +1,6 @@
+require 'vedeu/repositories/collection'
+require 'vedeu/repositories/collections'
+require 'vedeu/repositories/model'
 require 'vedeu/repositories/repository'
 
 module Vedeu

@@ -1,4 +1,4 @@
-require 'vedeu/models/model'
+require 'vedeu/repositories/model'
 
 module Vedeu
 
@@ -9,25 +9,33 @@ module Vedeu
 
     include Vedeu::Model
 
+    # @!attribute [rw] collection
+    # @return [Array]
     attr_accessor :collection
 
     # Returns the index of the value in the collection which is current.
     #
+    # @!attribute [rw] current
     # @return [Fixnum]
     attr_accessor :current
 
+    # The name of the menu. Used to reference the menu throughout the
+    # application's execution lifetime.
+    #
+    # @!attribute [rw] name
+    # @return [String]
     attr_accessor :name
 
     # Returns the index of the value in the collection which is selected.
     #
+    # @!attribute [rw] selected
     # @return [Fixnum]
     attr_accessor :selected
 
     # Register a menu by name which will display a collection of items for
     # your users to select; and provide interactivity within your application.
     #
-    # @param name  [String] The name of the menu. Used to reference the
-    #   menu throughout your application's execution lifetime.
+    # @param name [String]
     # @param block [Proc] A set of attributes which define the features of the
     #   menu. See {Vedeu::DSL::Menu#items} and {Vedeu::DSL::Menu#name}.
     #

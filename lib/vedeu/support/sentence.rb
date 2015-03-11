@@ -41,7 +41,13 @@ module Vedeu
 
     private
 
-    attr_reader :elements, :label
+    # @!attribute [r] elements
+    # @return [Array]
+    attr_reader :elements
+
+    # @!attribute [r] label
+    # @return [String]
+    attr_reader :label
 
     # @return [Boolean]
     def one?

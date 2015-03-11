@@ -11,9 +11,10 @@ module Vedeu
     end
 
     # @param output [Array<Array<Vedeu::Char>>]
+    # @param path [String]
     # @return [String]
-    def self.to_file(output)
-      new(output).to_file
+    def self.to_file(output, path = nil)
+      new(output).to_file(path)
     end
 
     # @param output [Array<Array<Vedeu::Char>>]
@@ -24,7 +25,7 @@ module Vedeu
 
     # @return [String]
     def render
-      Template.parse(self, template)
+      Vedeu::Template.parse(self, template)
     end
 
     # Writes the parsed template to a file (at the given path) and returns the
@@ -56,6 +57,8 @@ module Vedeu
 
     private
 
+    # @!attribute [r] output
+    # @return [Array<Array<Vedeu::Char>>]
     attr_reader :output
 
     # @return [String]

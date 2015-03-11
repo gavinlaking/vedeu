@@ -97,7 +97,7 @@ module Vedeu
 
         Vedeu.trigger(:_exit_)
 
-        Terminal.restore_screen
+        Vedeu::Terminal.restore_screen
       end
 
       # @return [Vedeu::Distributed::Server]
@@ -161,6 +161,8 @@ module Vedeu
 
       private
 
+      # @!attribute [r] configuration
+      # @return [Configuration]
       attr_reader :configuration
 
       # @return [Boolean]

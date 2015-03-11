@@ -51,8 +51,8 @@ module Vedeu
     def start
       Vedeu.trigger(:_drb_start_)
 
-      output = Terminal.open do
-        Terminal.set_cursor_mode
+      output = Vedeu::Terminal.open do
+        Vedeu::Terminal.set_cursor_mode
 
         Vedeu.trigger(:_initialize_)
 
@@ -66,6 +66,7 @@ module Vedeu
 
     private
 
+    # @!attribute [r] configuration
     # @return [Configuration]
     attr_reader :configuration
 
@@ -93,7 +94,7 @@ module Vedeu
     # @return [void]
     def main_sequence
       if configuration.interactive?
-        Input.capture(Terminal)
+        Vedeu::Input.capture(Terminal)
 
       else
         Vedeu.trigger(:_standalone_)
@@ -107,14 +108,14 @@ module Vedeu
     #
     # @return [void]
     def run_many
-      MainLoop.start! { yield }
+      Vedeu::MainLoop.start! { yield }
 
     rescue ModeSwitch
-      Terminal.switch_mode!
+      Vedeu::Terminal.switch_mode!
 
       Vedeu.trigger(:_drb_restart_)
 
-      Application.restart(configuration)
+      Vedeu::Application.restart(configuration)
 
     end
 

@@ -10,9 +10,11 @@ module Vedeu
     let(:options)   {
       {
         ellipsis: '...',
+        mode:     mode,
         width:    width,
       }
     }
+    let(:mode)      { :default }
     let(:width)     { 30 }
 
     let(:text_line) {
@@ -43,11 +45,6 @@ module Vedeu
         Vedeu::Line.new({ streams: [Vedeu::Stream.new({ value: "Krypton is often used with other rare gases in fluorescent lamps." })] })
       ]
     }
-
-    describe 'alias methods' do
-      it { instance.must_respond_to(:prune_as_lines) }
-      it { instance.must_respond_to(:wrap_as_lines) }
-    end
 
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }
@@ -174,8 +171,8 @@ module Vedeu
       end
     end
 
-    describe '#as_lines' do
-      subject { instance.as_lines }
+    describe '#content' do
+      subject { instance.content }
 
       it { subject.must_be_instance_of(Vedeu::Lines) }
 
@@ -203,10 +200,8 @@ module Vedeu
         it { subject.size.must_equal(6) }
       end
 
-      context 'alias method #prune_as_lines' do
-        subject { instance.prune_as_lines }
-
-        it { subject.must_be_instance_of(Vedeu::Lines) }
+      context 'when mode: :prune' do
+        let(:mode) { :prune }
 
         context 'with a single line of text' do
           let(:text) { text_line }
@@ -233,10 +228,8 @@ module Vedeu
         end
       end
 
-      context 'alias method #wrap_as_lines' do
-        subject { instance.wrap_as_lines }
-
-        it { subject.must_be_instance_of(Vedeu::Lines) }
+      context 'when mode: :wrap' do
+        let(:mode) { :wrap }
 
         context 'with a single line of text' do
           let(:text) { text_line }

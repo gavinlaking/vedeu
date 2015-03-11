@@ -49,22 +49,7 @@ module Vedeu
       it { subject.must_be_instance_of(Array) }
 
       context 'when there is content' do
-        it 'returns a collection of strings containing escape sequences and ' \
-           'content' do
-          subject.must_equal(
-            [
-              "\e[38;2;0;0;0m\e[48;2;255;0;0m\e[24m\e[22m\e[27mS\e[24m\e[22m\e[27m\e[38;2;255;255;0m\e[48;2;0;0;255m",
-              "\e[38;2;0;0;0m\e[48;2;255;0;0m\e[24m\e[22m\e[27mo\e[24m\e[22m\e[27m\e[38;2;255;255;0m\e[48;2;0;0;255m",
-              "\e[38;2;0;0;0m\e[48;2;255;0;0m\e[24m\e[22m\e[27mm\e[24m\e[22m\e[27m\e[38;2;255;255;0m\e[48;2;0;0;255m",
-              "\e[38;2;0;0;0m\e[48;2;255;0;0m\e[24m\e[22m\e[27me\e[24m\e[22m\e[27m\e[38;2;255;255;0m\e[48;2;0;0;255m",
-              "\e[38;2;0;0;0m\e[48;2;255;0;0m\e[24m\e[22m\e[27m \e[24m\e[22m\e[27m\e[38;2;255;255;0m\e[48;2;0;0;255m",
-              "\e[38;2;0;0;0m\e[48;2;255;0;0m\e[24m\e[22m\e[27mt\e[24m\e[22m\e[27m\e[38;2;255;255;0m\e[48;2;0;0;255m",
-              "\e[38;2;0;0;0m\e[48;2;255;0;0m\e[24m\e[22m\e[27me\e[24m\e[22m\e[27m\e[38;2;255;255;0m\e[48;2;0;0;255m",
-              "\e[38;2;0;0;0m\e[48;2;255;0;0m\e[24m\e[22m\e[27mx\e[24m\e[22m\e[27m\e[38;2;255;255;0m\e[48;2;0;0;255m",
-              "\e[38;2;0;0;0m\e[48;2;255;0;0m\e[24m\e[22m\e[27mt\e[24m\e[22m\e[27m\e[38;2;255;255;0m\e[48;2;0;0;255m"
-            ]
-          )
-        end
+        it { subject.size.must_equal(9) }
       end
 
       context 'when there is no content' do

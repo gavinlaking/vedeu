@@ -16,7 +16,13 @@ module Vedeu
     include Vedeu::Common
     include Enumerable
 
-    attr_reader :model, :storage
+    # @!attribute [r] model
+    # @return [void]
+    attr_reader :model
+
+    # @!attribute [r] storage
+    # @return [void]
+    attr_reader :storage
 
     # @param model [Class]
     # @param storage [Class|Hash]

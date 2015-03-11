@@ -1,4 +1,4 @@
-require 'vedeu/models/view/composition'
+require 'vedeu/models/composition'
 
 module Vedeu
 

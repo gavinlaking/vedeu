@@ -1,11 +1,8 @@
 require 'vedeu/geometry/content_geometry'
-require 'vedeu/models/model'
+require 'vedeu/models/all'
 require 'vedeu/output/presentation'
 require 'vedeu/buffers/display_buffer'
 require 'vedeu/buffers/buffer'
-
-require 'vedeu/models/view/lines'
-require 'vedeu/models/view/line'
 
 module Vedeu
 
@@ -24,13 +21,32 @@ module Vedeu
     collection Vedeu::Lines
     member     Vedeu::Line
 
-    attr_accessor :colour,
-      :delay,
-      :group,
-      :name,
-      :parent,
-      :style
+    # @!attribute [rw] colour
+    # @return [void]
+    attr_accessor :colour
 
+    # @!attribute [rw] delay
+    # @return [Fixnum|Float]
+    attr_accessor :delay
+
+    # @!attribute [rw] group
+    # @return [void]
+    attr_accessor :group
+
+    # @!attribute [rw] name
+    # @return [String]
+    attr_accessor :name
+
+    # @!attribute [rw] parent
+    # @return [Vedeu::Composition]
+    attr_accessor :parent
+
+    # @!attribute [rw] style
+    # @return [String|Symbol]
+    attr_accessor :style
+
+    # @!attribute [w] lines
+    # @return [Array<Vedeu::Line>]
     attr_writer :lines
 
     def_delegators :geometry,

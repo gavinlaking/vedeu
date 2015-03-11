@@ -58,17 +58,9 @@ module Vedeu
           let(:ox) { -4 }
           let(:oy) { -4 }
 
-          it "scrolls the content the correct position" do
-            subject.must_equal(
-              [
-                ["b", "a", "r"],
-                ["c", "a", "r"],
-                ["h", "e", "l"]
-              ]
-            )
+          it 'scrolls the content the correct position' do
+            instance.to_s.must_equal("bar\ncar\nhel")
           end
-
-          it { instance.to_s.must_equal("bar\ncar\nhel") }
         end
 
         context "when the cursor's y position is inside the viewable area" do
@@ -76,17 +68,9 @@ module Vedeu
             let(:ox) { 3 }
             let(:oy) { 7 }
 
-            it "is padded with spaces" do
-              subject.must_equal(
-                [
-                  ["n", "i", "c"],
-                  ["o", "s", "m"],
-                  [" ", " ", " "]
-                ]
-              )
+            it 'is padded with spaces' do
+              instance.to_s.must_equal("nic\nosm\n   ")
             end
-
-            it { instance.to_s.must_equal("nic\nosm\n   ") }
           end
 
           context "when there is more content than the height" do
@@ -94,16 +78,8 @@ module Vedeu
             let(:oy) { 3 }
 
             it "is cropped to show only that which fits" do
-              subject.must_equal(
-                [
-                  ["b", "a", "r"],
-                  ["c", "a", "r"],
-                  ["h", "e", "l"]
-                ]
-              )
+              instance.to_s.must_equal("bar\ncar\nhel")
             end
-
-            it { instance.to_s.must_equal("bar\ncar\nhel") }
           end
         end
 
@@ -112,17 +88,9 @@ module Vedeu
             let(:ox) { 6 }
             let(:oy) { 6 }
 
-            it "scrolls the content the correct position" do
-              subject.must_equal(
-                [
-                  ["i", "n", "e"],
-                  ["k", "e", "l"],
-                  ["i", "u", "m"]
-                ]
-              )
+            it 'scrolls the content the correct position' do
+              instance.to_s.must_equal("ine\nkel\nium")
             end
-
-            it { instance.to_s.must_equal("ine\nkel\nium") }
           end
 
           context "and outside the content" do
@@ -130,16 +98,8 @@ module Vedeu
             let(:oy) { 7 }
 
             it "scrolls the content the correct position" do
-              subject.must_equal(
-                [
-                  ["e", "l", " "],
-                  ["u", "m", " "],
-                  [" ", " ", " "]
-                ]
-              )
+              instance.to_s.must_equal("el \num \n   ")
             end
-
-            it { instance.to_s.must_equal("el \num \n   ") }
           end
         end
 
@@ -149,16 +109,8 @@ module Vedeu
             let(:oy) { 3 }
 
             it "is padded with spaces" do
-              subject.must_equal(
-                [
-                  ["u", "m", " "],
-                  ["o", "n", " "],
-                  ["u", "m", " "]
-                ]
-              )
+              instance.to_s.must_equal("um \non \num ")
             end
-
-            it { instance.to_s.must_equal("um \non \num ") }
           end
 
           context "when there is more content than the width" do
@@ -166,16 +118,8 @@ module Vedeu
             let(:oy) { 3 }
 
             it "is cropped to show only that which fits" do
-              subject.must_equal(
-                [
-                  ["b", "a", "r"],
-                  ["c", "a", "r"],
-                  ["h", "e", "l"]
-                ]
-              )
+              instance.to_s.must_equal("bar\ncar\nhel")
             end
-
-            it { instance.to_s.must_equal("bar\ncar\nhel") }
           end
         end
       end

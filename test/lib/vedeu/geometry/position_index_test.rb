@@ -41,6 +41,12 @@ module Vedeu
       it { subject.must_equal([5, 16]) }
     end
 
+    describe '#to_position' do
+      subject { instance.to_position }
+
+      it { subject.must_be_instance_of(Vedeu::Position) }
+    end
+
     describe 'attr_reader' do
       context '#y' do
         subject { instance.y }

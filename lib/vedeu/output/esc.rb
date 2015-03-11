@@ -69,7 +69,7 @@ module Vedeu
     #
     # @return [Hash]
     def background_codes
-      Esc.codes.inject({}) { |h, (k, v)| h.merge!(k => v + 10) }
+      Vedeu::Esc.codes.inject({}) { |h, (k, v)| h.merge!(k => v + 10) }
     end
 
     # Dynamically creates methods for each terminal named colour. When a block
@@ -183,7 +183,7 @@ module Vedeu
 
     # @return [String]
     def clear_last_line
-      Vedeu::Position.new((Terminal.height - 1), 1).to_s { clear_line }
+      Vedeu::Position.new((Vedeu::Terminal.height - 1), 1).to_s { clear_line }
     end
 
     # @return [String]

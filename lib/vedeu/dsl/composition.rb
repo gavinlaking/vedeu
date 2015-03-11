@@ -1,4 +1,4 @@
-require 'vedeu/models/view/interface'
+require 'vedeu/models/interface'
 
 module Vedeu
 
@@ -38,7 +38,7 @@ module Vedeu
       #     ...
       #
       # @raise [InvalidSyntax] The required block was not given.
-      # @return [Vedeu::Model::Collection<Vedeu::Interface>]
+      # @return [Vedeu::Interfaces<Vedeu::Interface>]
       def view(name = '', &block)
         fail InvalidSyntax, 'block not given' unless block_given?
 
@@ -47,11 +47,40 @@ module Vedeu
         model.add(new_model)
       end
 
+      # Load content from an ERb template.
+      #
+      # @example
+      #   Vedeu.renders do
+      #     template_for('my_interface',
+      #                  '/path/to/template.erb',
+      #                  @some_object, options)
+      #
+      # @todo More documentation required.
+      #
+      # @param name [String] The name of interface for which this template's
+      #   content belongs to.
+      # @param filename [String] The filename (including path) to the template
+      #   to be used.
+      # @param object [Object] The object for which the values of template's
+      #   variables can be obtained.
+      # @param options [Hash] See {Vedeu::Wordwrap}
+      # @return [Vedeu::Interfaces<Vedeu::Interface>]
+      def template_for(name, filename, object = nil, options = {})
+        content = Vedeu::Template.parse(object, filename)
+        lines   = Vedeu::Wordwrap.for(content, options)
+
+        new_model = model.member.build(new_attributes(name).merge!({ lines: lines }))
+
+        model.add(new_model)
+      end
+
       private
 
+      # @!attribute [r] client
       # @return [Object]
       attr_reader :client
 
+      # @!attribute [r] model
       # @return [Composition]
       attr_reader :model
 

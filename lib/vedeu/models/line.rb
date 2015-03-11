@@ -1,6 +1,5 @@
 require 'vedeu/output/presentation'
-require 'vedeu/models/view/streams'
-require 'vedeu/models/view/stream'
+require 'vedeu/models/all'
 
 module Vedeu
 
@@ -16,8 +15,13 @@ module Vedeu
     collection Vedeu::Streams
     member     Vedeu::Stream
 
-    attr_accessor :parent,
-      :streams
+    # @!attribute [rw] parent
+    # @return [Interface]
+    attr_accessor :parent
+
+    # @!attribute [rw] streams
+    # @return [Streams]
+    attr_accessor :streams
 
     alias_method :value, :streams
 

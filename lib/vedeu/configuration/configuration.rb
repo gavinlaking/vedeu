@@ -214,6 +214,8 @@ module Vedeu
 
     end # Configuration eigenclass
 
+    # @!attribute [r] options
+    # @return [Hash]
     attr_reader :options
 
     # Create a new singleton instance of Configuration.
@@ -237,7 +239,7 @@ module Vedeu
 
       @options.merge!(Config::CLI.configure(args)) if args.any?
 
-      Configuration
+      Vedeu::Configuration
     end
 
     # Reset the configuration to the default values.
@@ -268,7 +270,7 @@ module Vedeu
         stdin:         nil,
         stdout:        nil,
         stderr:        nil,
-        system_keys:   Configuration.default_system_keys,
+        system_keys:   Vedeu::Configuration.default_system_keys,
         terminal_mode: :raw,
         trace:         false,
       }

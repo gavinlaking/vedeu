@@ -32,6 +32,29 @@ module Vedeu
         end
       end
 
+      describe '#template_for' do
+        let(:_name)    {}
+        let(:filename) {}
+        let(:object)   {}
+        let(:content)  { "Hydrogen\nCarbon\nOxygen\nNitrogen" }
+        let(:as_lines) {
+          [
+            Vedeu::Line.new({ streams: [Vedeu::Stream.new({ value: 'Hydrogen' })] }),
+            Vedeu::Line.new({ streams: [Vedeu::Stream.new({ value: 'Carbon' })] }),
+            Vedeu::Line.new({ streams: [Vedeu::Stream.new({ value: 'Oxygen' })] }),
+            Vedeu::Line.new({ streams: [Vedeu::Stream.new({ value: 'Nitrogen' })] })
+          ]
+        }
+
+        before do
+          Vedeu::Template.expects(:parse).with(object, filename).returns(content)
+        end
+
+        subject { instance.template_for(_name, filename, object) }
+
+        it { subject.must_be_instance_of(Vedeu::Interfaces) }
+      end
+
     end # Composition
 
   end # DSL
