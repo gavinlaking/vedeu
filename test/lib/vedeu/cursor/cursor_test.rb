@@ -39,6 +39,13 @@ module Vedeu
       it { instance.instance_variable_get('@position').must_be_instance_of(Vedeu::Position) }
     end
 
+    describe '#inspect' do
+      subject { instance.inspect }
+
+      it { subject.must_be_instance_of(String) }
+      it { subject.must_equal("<Vedeu::Cursor (silver, visible, x:19, y:8, ox:3, oy:2)>") }
+    end
+
     describe '#to_s' do
       let(:state) { true }
 
