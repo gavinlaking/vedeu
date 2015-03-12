@@ -22,9 +22,13 @@ module Vedeu
       Vedeu.trigger(:cleanup)
     end
 
-    Vedeu.bind(:_drb_input_) do |data|
-      Vedeu.log(type: :drb, message: 'Sending input')
-      Vedeu.trigger(:_keypress_, data)
+    Vedeu.bind(:_drb_input_) do |data, type|
+      Vedeu.log(type: :drb, message: "Sending input (#{type})")
+
+      case type
+      when :command then Vedeu.trigger(:_command_, data)
+      else Vedeu.trigger(:_keypress_, data)
+      end
     end
 
     Vedeu.bind(:_drb_retrieve_output_) do
