@@ -62,6 +62,22 @@ module Vedeu
       end
     end
 
+    describe '#to_s' do
+      subject { instance.to_s }
+
+      it { subject.must_be_instance_of(String) }
+
+      context 'when visible' do
+        it { subject.must_equal('visible') }
+      end
+
+      context 'when not visible' do
+        let(:visible) { false }
+
+        it { subject.must_equal('invisible') }
+      end
+    end
+
     describe '#cursor' do
       subject { instance.cursor }
 
