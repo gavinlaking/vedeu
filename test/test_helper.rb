@@ -1,5 +1,4 @@
 require 'simplecov'
-require 'simplecov-console'
 require 'pry'
 require 'minitest/autorun'
 require 'minitest/pride' unless ENV['NO_COLOR']
@@ -8,7 +7,6 @@ require 'minitest/hell'
 # GC.disable # uncomment to remove ~20ms from test run speed
 
 SimpleCov.start do
-  formatter    SimpleCov::Formatter::Console
   command_name 'MiniTest::Spec'
   add_filter '/test/'
   add_group  'api',           'vedeu/api'

@@ -22,7 +22,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'cucumber',           '1.3.19'
   spec.add_development_dependency 'guard',              '2.12.4'
   spec.add_development_dependency 'guard-bundler',      '2.1.0'
-  spec.add_development_dependency 'guard-cucumber',     '1.5.3'
+  spec.add_development_dependency 'guard-cucumber',     '1.5.4'
   spec.add_development_dependency 'guard-minitest',     '2.4.4'
   spec.add_development_dependency 'inch',               '0.5.10'
   spec.add_development_dependency 'minitest',           '5.5.1'
@@ -33,6 +33,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rake',               '10.4.2'
   spec.add_development_dependency 'ruby-prof',          '0.15.6'
   spec.add_development_dependency 'simplecov',          '0.9.2'
-  spec.add_development_dependency 'simplecov-console',  '0.2.0'
   spec.add_development_dependency 'yard',               '0.8.7.6'
 end

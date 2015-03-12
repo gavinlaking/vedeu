@@ -34,6 +34,19 @@ module Vedeu
       it { instance.instance_variable_get('@repository').must_equal(Vedeu.interfaces) }
     end
 
+    describe '#attributes' do
+      subject { instance.attributes }
+
+      it { subject.must_be_instance_of(Hash) }
+
+      it { subject.must_equal({ colour: nil,
+                                delay:  0.0,
+                                group:  '',
+                                name:   'hydrogen',
+                                parent: nil,
+                                style:  nil }) }
+    end
+
     describe '#border?' do
       subject { instance.border? }
 

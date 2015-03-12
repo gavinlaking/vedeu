@@ -53,7 +53,10 @@ module Vedeu
     let(:dy)        { 0 }
     let(:dx)        { 0 }
 
-    before { IO.console.stubs(:winsize).returns([25, 80]) }
+    before do
+      IO.console.stubs(:winsize).returns([25, 80])
+      IO.console.stubs(:print)
+    end
 
     describe '#initialize' do
       it { instance.must_be_instance_of(Vedeu::MoveCursor) }

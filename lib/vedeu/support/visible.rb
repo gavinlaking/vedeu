@@ -34,6 +34,11 @@ module Vedeu
     end
 
     # @return [String]
+    def to_s
+      visible? ? 'visible' : 'invisible'
+    end
+
+    # @return [String]
     def cursor
       if visible?
         Vedeu::Esc.string('show_cursor')

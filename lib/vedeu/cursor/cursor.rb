@@ -77,6 +77,11 @@ module Vedeu
       @position   = Vedeu::Position.new(@y, @x)
     end
 
+    # @return [String]
+    def inspect
+      "<Vedeu::Cursor (#{name}, #{state}, x:#{x}, y:#{y}, ox:#{ox}, oy:#{oy})>"
+    end
+
     # Returns an escape sequence to position the cursor and set its visibility.
     # When passed a block, will position the cursor, yield and return the
     # original position.

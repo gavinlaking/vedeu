@@ -22,9 +22,13 @@ module Vedeu
       Vedeu.trigger(:cleanup)
     end
 
-    Vedeu.bind(:_drb_input_) do |data|
-      Vedeu.log(type: :drb, message: 'Sending input')
-      Vedeu.trigger(:_keypress_, data)
+    Vedeu.bind(:_drb_input_) do |data, type|
+      Vedeu.log(type: :drb, message: "Sending input (#{type})")
+
+      case type
+      when :command then Vedeu.trigger(:_command_, data)
+      else Vedeu.trigger(:_keypress_, data)
+      end
     end
 
     Vedeu.bind(:_drb_retrieve_output_) do
@@ -61,6 +65,10 @@ module Vedeu
 
       Vedeu.keypress(key)
     end
+
+    # Will cause the triggering of the `:command` event; which you should define
+    # to 'do things'.
+    Vedeu.bind(:_command_) { |command| Vedeu.trigger(:command, command) }
 
     # When triggered with a message will cause Vedeu to log the message if
     # logging is enabled in the configuration.
@@ -181,6 +189,10 @@ module Vedeu
     Vedeu.bind(:_refresh_) do |name|
       name ? Vedeu::Refresh.by_name(name) : Vedeu::Refresh.all
     end
+
+    # Will cause the named cursor to refresh, or the cursor of the interface
+    # which is currently in focus.
+    Vedeu.bind(:_refresh_cursor_) { |name| Vedeu::Refresh.cursor(name) }
 
     # Will cause all interfaces in the named group to refresh.
     Vedeu.bind(:_refresh_group_) { |name| Vedeu::Refresh.by_group(name) }

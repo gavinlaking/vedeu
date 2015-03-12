@@ -13,10 +13,9 @@ module Vedeu
 
       include Singleton
 
-      # @param data [String|Symbol]
-      # @return [void]
-      def self.input(data)
-        instance.input(data)
+      # @see Vedeu::Distributed::Server#input
+      def self.input(data, type = :key)
+        instance.input(data, type)
       end
 
       # @return [void]
@@ -50,9 +49,10 @@ module Vedeu
       end
 
       # @param data [String|Symbol]
+      # @param type [Symbol] Either :keypress or :command.
       # @return [void]
-      def input(data)
-        Vedeu.trigger(:_drb_input_, data)
+      def input(data, type = :keypress)
+        Vedeu.trigger(:_drb_input_, data, type)
       end
       alias_method :read, :input
 

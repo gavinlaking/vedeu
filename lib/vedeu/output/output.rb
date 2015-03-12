@@ -40,7 +40,7 @@ module Vedeu
         Vedeu::HTMLRenderer.to_file(Vedeu::VirtualBuffer.retrieve)
       end
 
-      Vedeu::Terminal.output(Vedeu::Renderer.render(virtual_view, interface.cursor))
+      Vedeu::Terminal.output(Vedeu::Renderer.render(virtual_view))
     end
 
     private

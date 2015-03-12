@@ -171,14 +171,34 @@ module Vedeu
       describe '#group' do
         let(:value) { 'elements' }
 
+        before { Vedeu.groups.reset }
+
         subject { instance.group(value) }
 
-        it { subject.must_be_instance_of(String) }
+        it { subject.must_be_instance_of(Vedeu::Group) }
 
         context 'when the value is empty or nil' do
           let(:value) { '' }
 
           it { subject.must_equal(false) }
+        end
+
+        context 'when the named group exists' do
+          before do
+            Vedeu::Group.new({ name: 'elements', members: ['lanthanum'] }).store
+          end
+
+          it {
+            subject
+            Vedeu.groups.find('elements').members.must_equal(Set['actinium', 'lanthanum'])
+          }
+        end
+
+        context 'when the named group does not exist' do
+          it {
+            subject
+            Vedeu.groups.find('elements').members.must_equal(Set['actinium'])
+          }
         end
       end
 

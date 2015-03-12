@@ -42,6 +42,17 @@ module Vedeu
       Vedeu::Compositor.compose(name)
     end
 
+    # Refresh a cursor by name.
+    #
+    # @param name [String]
+    # @return [Array]
+    def cursor(name = Vedeu.focus)
+      if name
+        Vedeu.log(type: :info, message: "Refreshing cursor: '#{name}'")
+        Vedeu::RefreshCursor.render(name)
+      end
+    end
+
   end # Refresh
 
 end # Vedeu
