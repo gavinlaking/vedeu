@@ -8,8 +8,12 @@ module Vedeu
     let(:keypress)  { 'a' }
     let(:described) { Vedeu::Input }
     let(:instance)  { described.new(reader) }
+    let(:raw_mode)  { true }
 
-    before { reader.stubs(:read).returns(keypress) }
+    before do
+      reader.stubs(:raw_mode?).returns(raw_mode)
+      Vedeu.stubs(:trigger).returns([false])
+    end
 
     describe '#initialize' do
       it { instance.must_be_instance_of(Input) }
@@ -17,21 +21,40 @@ module Vedeu
     end
 
     describe '.capture' do
-      context 'when the key is not special' do
-        before { Vedeu.stubs(:trigger).returns([false]) }
+      subject { instance.capture }
 
-        it 'triggers an event associated with the key pressed' do
-          Input.capture(reader).must_equal([false])
+      context 'when in cooked mode' do
+        let(:raw_mode) { false }
+        let(:command)  { 'help' }
+
+        before { reader.stubs(:read).returns(command) }
+
+        it 'triggers an event with the command' do
+          Vedeu.expects(:trigger).with(:_command_, command)
+          subject
         end
       end
 
-      context 'when the key is special' do
-        let(:keypress) { "\e" }
+      context 'when in raw mode' do
+        let(:raw_mode) { true }
+        let(:keypress) { 'a' }
 
-        before { Vedeu.stubs(:trigger).raises(ModeSwitch) }
+        before { reader.stubs(:read).returns(keypress) }
 
-        it 'switches the terminal mode when escape is pressed' do
-          proc { Input.capture(reader) }.must_raise(ModeSwitch)
+        context 'when the key is not special' do
+          it 'triggers an event with the keypress' do
+            Vedeu.expects(:trigger).with(:_keypress_, keypress)
+            subject
+          end
+        end
+
+        context 'when the key is special' do
+          let(:keypress) { "\e[A" }
+
+          it 'triggers an event with the keypress' do
+            Vedeu.expects(:trigger).with(:_keypress_, :up)
+            subject
+          end
         end
       end
     end

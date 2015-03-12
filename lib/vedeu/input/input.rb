@@ -23,11 +23,18 @@ module Vedeu
       @reader = reader
     end
 
-    # Triggers the keypress event with the key(s) pressed.
+    # Triggers either a ':_command_' event with the command if the reader is in
+    # cooked mode, or if raw mode, the keypress event with the key(s) pressed.
     #
     # @return [Array|String|Symbol]
     def capture
-      Vedeu.trigger(:_keypress_, keypress)
+      if reader.raw_mode?
+        Vedeu.trigger(:_keypress_, keypress)
+
+      else
+        Vedeu.trigger(:_command_, command)
+
+      end
     end
 
     private
@@ -42,6 +49,7 @@ module Vedeu
     def input
       @input ||= reader.read
     end
+    alias_method :command, :input
 
     # Returns the translated (if possible) keypress(es) as either a String or a
     # Symbol.
