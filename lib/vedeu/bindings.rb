@@ -62,6 +62,10 @@ module Vedeu
       Vedeu.keypress(key)
     end
 
+    # Will cause the triggering of the `:command` event; which you should define
+    # to 'do things'.
+    Vedeu.bind(:_command_) { |command| Vedeu.trigger(:command, command) }
+
     # When triggered with a message will cause Vedeu to log the message if
     # logging is enabled in the configuration.
     Vedeu.bind(:_log_) { |msg| Vedeu.log(type: :debug, message: msg) }
