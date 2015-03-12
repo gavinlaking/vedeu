@@ -74,16 +74,17 @@ module Vedeu
       if name
         cursor     = Vedeu.cursors.by_name(name)
         interface  = Vedeu.interfaces.find(name)
-        new_cursor = Vedeu::MoveCursor.send(direction, cursor, interface)
-        Vedeu::Refresh.by_name(name)
 
       else
         cursor     = Vedeu.cursor
         interface  = Vedeu.interfaces.current
-        new_cursor = Vedeu::MoveCursor.send(direction, cursor, interface)
-        Vedeu::Refresh.by_focus
 
       end
+
+      new_cursor = Vedeu::MoveCursor.send(direction, cursor, interface)
+
+      Vedeu.trigger(:_refresh_cursor_, new_cursor.name)
+
       new_cursor
     end
 

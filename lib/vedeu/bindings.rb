@@ -182,6 +182,10 @@ module Vedeu
       name ? Vedeu::Refresh.by_name(name) : Vedeu::Refresh.all
     end
 
+    # Will cause the named cursor to refresh, or the cursor of the interface
+    # which is currently in focus.
+    Vedeu.bind(:_refresh_cursor_) { |name| Vedeu::Refresh.cursor(name) }
+
     # Will cause all interfaces in the named group to refresh.
     Vedeu.bind(:_refresh_group_) { |name| Vedeu::Refresh.by_group(name) }
 
