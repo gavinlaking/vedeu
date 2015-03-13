@@ -2,12 +2,12 @@ require 'test_helper'
 
 module Vedeu
 
-  describe MoveCursor do
+  describe Move do
 
-    let(:described) { Vedeu::MoveCursor }
+    let(:described) { Vedeu::Move }
     let(:instance)  { described.new(cursor, interface, dy, dx) }
     let(:cursor)    {
-      Cursor.new({ name: 'MoveCursor',
+      Cursor.new({ name: 'Move',
                    ox:    ox,
                    oy:    oy,
                    state: :show,
@@ -59,7 +59,7 @@ module Vedeu
     end
 
     describe '#initialize' do
-      it { instance.must_be_instance_of(Vedeu::MoveCursor) }
+      it { instance.must_be_instance_of(Vedeu::Move) }
       it { instance.instance_variable_get('@cursor').must_equal(cursor) }
       it { instance.instance_variable_get('@interface').must_equal(interface) }
       it { instance.instance_variable_get('@dy').must_equal(dy) }
@@ -78,7 +78,7 @@ module Vedeu
         Vedeu::Cursor.new({ name: 'manganese', oy: 2, ox: 3, x: 8, y: 7 }).store
       end
 
-      subject { MoveCursor.by_name(direction, _name) }
+      subject { Move.by_name(direction, _name) }
 
       it { subject.must_be_instance_of(Vedeu::Cursor) }
 
@@ -119,7 +119,7 @@ module Vedeu
     end
 
     describe '.down' do
-      subject { MoveCursor.down(cursor, interface) }
+      subject { Move.down(cursor, interface) }
 
       it { subject.must_be_instance_of(Vedeu::Cursor) }
 
@@ -127,7 +127,7 @@ module Vedeu
 
       context 'when moving, the cursor must be within the boundary of the ' \
               'interface' do
-        subject { MoveCursor.down(cursor, interface_without_border) }
+        subject { Move.down(cursor, interface_without_border) }
         let(:y) { 15 }
 
         it 'does not move past the bottom of the interface' do
@@ -137,7 +137,7 @@ module Vedeu
 
       context 'when moving, the cursor must be within the border of the ' \
               'interface' do
-        subject { MoveCursor.down(cursor, interface_with_border) }
+        subject { Move.down(cursor, interface_with_border) }
         let(:y)         { 15 }
 
         it 'does not move past the bottom border' do
@@ -147,7 +147,7 @@ module Vedeu
     end
 
     describe '.left' do
-      subject { MoveCursor.left(cursor, interface) }
+      subject { Move.left(cursor, interface) }
 
       it { subject.must_be_instance_of(Vedeu::Cursor) }
 
@@ -155,7 +155,7 @@ module Vedeu
 
       context 'when moving, the cursor must be within the boundary of the ' \
               'interface' do
-        subject { MoveCursor.left(cursor, interface_without_border) }
+        subject { Move.left(cursor, interface_without_border) }
         let(:x)         { 3 }
 
         it 'does not move past the left of the interface' do
@@ -165,7 +165,7 @@ module Vedeu
 
       context 'when moving, the cursor must be within the border of the ' \
               'interface' do
-        subject { MoveCursor.left(cursor, interface_with_border) }
+        subject { Move.left(cursor, interface_with_border) }
         let(:x)         { 4 }
 
         it 'does not move past the left border' do
@@ -175,7 +175,7 @@ module Vedeu
     end
 
     describe '.right' do
-      subject { MoveCursor.right(cursor, interface) }
+      subject { Move.right(cursor, interface) }
 
       it { subject.must_be_instance_of(Vedeu::Cursor) }
 
@@ -183,7 +183,7 @@ module Vedeu
 
       context 'when moving, the cursor must be within the boundary of the ' \
               'interface' do
-        subject { MoveCursor.right(cursor, interface_without_border) }
+        subject { Move.right(cursor, interface_without_border) }
         let(:x)         { 14 }
 
         it 'does not move past the right of the interface' do
@@ -193,7 +193,7 @@ module Vedeu
 
       context 'when moving, the cursor must be within the border of the ' \
               'interface' do
-        subject { MoveCursor.right(cursor, interface_with_border) }
+        subject { Move.right(cursor, interface_with_border) }
 
         let(:x)         { 14 }
 
@@ -204,7 +204,7 @@ module Vedeu
     end
 
     describe '.up' do
-      subject { MoveCursor.up(cursor, interface) }
+      subject { Move.up(cursor, interface) }
 
       it { subject.must_be_instance_of(Vedeu::Cursor) }
 
@@ -212,7 +212,7 @@ module Vedeu
 
       context 'when moving, the cursor must be within the boundary of the ' \
               'interface' do
-        subject { MoveCursor.up(cursor, interface_without_border) }
+        subject { Move.up(cursor, interface_without_border) }
 
         let(:y)         { 3 }
 
@@ -223,7 +223,7 @@ module Vedeu
 
       context 'when moving, the cursor must be within the border of the ' \
               'interface' do
-        subject { MoveCursor.up(cursor, interface_with_border) }
+        subject { Move.up(cursor, interface_with_border) }
 
         let(:y)         { 3 }
 
@@ -234,7 +234,7 @@ module Vedeu
     end
 
     describe '#origin' do
-      subject { MoveCursor.origin(cursor, interface) }
+      subject { Move.origin(cursor, interface) }
 
       it { subject.must_be_instance_of(Vedeu::Cursor) }
 
@@ -244,14 +244,14 @@ module Vedeu
       end
 
       context 'within the boundary of the interface' do
-        subject { MoveCursor.origin(cursor, interface_without_border) }
+        subject { Move.origin(cursor, interface_without_border) }
 
         it { subject.x.must_equal(5) }
         it { subject.y.must_equal(5) }
       end
 
       context 'within the border of the interface' do
-        subject { MoveCursor.origin(cursor, interface_with_border) }
+        subject { Move.origin(cursor, interface_with_border) }
 
         it { subject.x.must_equal(6) }
         it { subject.y.must_equal(6) }
@@ -259,11 +259,11 @@ module Vedeu
     end
 
     describe '#move' do
-      subject { MoveCursor.new(cursor, interface, dy, dx).move }
+      subject { Move.new(cursor, interface, dy, dx).move }
 
       it { subject.must_be_instance_of(Vedeu::Cursor) }
     end
 
-  end # MoveCursor
+  end # Move
 
 end # Vedeu
