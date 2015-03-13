@@ -124,17 +124,10 @@ module Vedeu
       [numbered_prefix, css_to_numbered, 'm'].join
     end
 
-    # Returns a boolean indicated whether the colour is an HTML/CSS colour.
-    #
-    # @return [Boolean]
-    def rgb?
-      colour.is_a?(String) && valid_rgb?
-    end
-
     # Returns a boolean indicated whether the colour is a valid HTML/CSS colour.
     #
     # @return [Boolean]
-    def valid_rgb?
+    def rgb?
       !!(colour =~ /^#([A-Fa-f0-9]{6})$/)
     end
 
