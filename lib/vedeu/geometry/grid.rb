@@ -26,8 +26,7 @@ module Vedeu
   #
   class Grid
 
-    # @param value [Fixnum]
-    # @return [Fixnum]
+    # @see (#initialize)
     def self.columns(value)
       new(value).columns
     end

@@ -15,21 +15,21 @@ module Vedeu
   # Events described here assume that you have either included Vedeu in your
   # class:
   #
-  # class SomeClassInYourApplication
-  #   include Vedeu
+  #   class SomeClassInYourApplication
+  #     include Vedeu
   #
-  #   bind :event_name do |arg1, arg2|
-  #     # Things that should happen when the event is triggered; these can be
-  #     # method calls or the triggering of another event or events.
-  #   end
+  #     bind :event_name do |arg1, arg2|
+  #       # Things that should happen when the event is triggered; these can be
+  #       # method calls or the triggering of another event or events.
+  #     end
   #
   # or, you are prepared to use the `Vedeu` prefix:
   #
-  # class SomeClassInYourApplication
-  #   Vedeu.bind(:event_name) do
-  #     # Not all events you define will have arguments; like methods.
-  #     :do_stuff
-  #   end
+  #   class SomeClassInYourApplication
+  #     Vedeu.bind(:event_name) do
+  #       # Not all events you define will have arguments; like methods.
+  #       :do_stuff
+  #     end
   #
   class Event
 
@@ -112,9 +112,7 @@ module Vedeu
 
     # Returns a new instance of Event.
     #
-    # @param name [Symbol]
-    # @param options [Hash]
-    # @param closure [Proc] The code to be executed when the event is triggered.
+    # @param (see Vedeu::Event.bind)
     # @return [Event]
     def initialize(name, options = {}, closure)
       @name         = name
