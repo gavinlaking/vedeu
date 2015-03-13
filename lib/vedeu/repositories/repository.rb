@@ -52,7 +52,7 @@ module Vedeu
       find_or_create(Vedeu.focus) if Vedeu.focus
     end
 
-    # Find the model attributes by name.
+    # Find the model by name.
     #
     # @param name [String]
     # @return [Hash<String => Object>|NilClass]
@@ -68,6 +68,15 @@ module Vedeu
     # @return [Hash<String => Object>]
     def find!(name)
       find(name) or fail ModelNotFound, "Cannot find model by name: '#{name}'"
+    end
+
+    # Find the model by name.
+    #
+    # @param name [String]
+    # @raise [ModelNotFound] When the model cannot be found with this name.
+    # @return [Hash]
+    def find(name)
+      storage[name]
     end
 
     # Find a model by name, registers the model by name if not found.

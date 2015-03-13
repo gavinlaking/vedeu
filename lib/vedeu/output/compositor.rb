@@ -49,7 +49,7 @@ module Vedeu
 
     # @return [Vedeu::Interface]
     def buffer
-      Vedeu.buffers.find(name).content
+      Vedeu.buffers.find!(name).content
     end
 
     # @return [Vedeu::Interface]
