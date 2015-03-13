@@ -26,6 +26,8 @@ module Vedeu
       @repository = Vedeu.events
     end
 
+    # Trigger the event and return the result (if one) or an array of results.
+    #
     # @return [Array]
     def trigger
       if results.one?
@@ -56,6 +58,8 @@ module Vedeu
       @results ||= registered_events.map { |event| event.trigger(*args) }
     end
 
+    # Return all of the registered events for this name.
+    #
     # @return [Array|Array<Vedeu::Event>]
     def registered_events
       return [] unless repository.registered?(name)

@@ -236,6 +236,8 @@ module Vedeu
       false
     end
 
+    # Returns the time in seconds since the last triggering of this event.
+    #
     # @return [Float]
     def elapsed_time
       now - @executed_at
@@ -256,16 +258,23 @@ module Vedeu
       @now = 0
     end
 
+    # Returns a boolean indicating if this event has a deadline.
+    #
     # @return [Boolean]
     def has_deadline?
       @deadline > 0
     end
 
+    # Resets the deadline of this event.
+    #
     # @return [Fixnum]
     def reset_deadline
       @deadline = 0
     end
 
+    # Sets the deadline for when this event can be executed to a point in the
+    # future determined by the amount of debounce time left.
+    #
     # @return [NilClass]
     def set_deadline
       @deadline = now + debounce

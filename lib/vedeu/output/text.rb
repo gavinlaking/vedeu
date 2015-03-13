@@ -54,6 +54,8 @@ module Vedeu
       options[:anchor]
     end
 
+    # The string padded to width, centralized.
+    #
     # @return [String]
     def centre
       string.center(width, pad)
@@ -70,36 +72,50 @@ module Vedeu
       }
     end
 
+    # The string padded to width, left justified.
+    #
     # @return [String]
     def left
       string.ljust(width, pad)
     end
 
+    # The character to use for padding the string.
+    #
     # @return [String]
     def pad
       options[:pad]
     end
 
+    # The string padded to width, right justified.
+    #
     # @return [String]
     def right
       string.rjust(width, pad)
     end
 
+    # The string, coerced.
+    #
     # @return [String]
     def string
       value.to_s
     end
 
+    # Return a boolean indicating that the string is greater than the width.
+    #
     # @return [Boolean]
     def truncate?
       string.size > width
     end
 
+    # Return the string truncated to the width.
+    #
     # @return [String]
     def truncated
       string.slice(0, width)
     end
 
+    # Return the width.
+    #
     # @return [Fixnum]
     def width
       options[:width]
