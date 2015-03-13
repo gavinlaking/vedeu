@@ -1,4 +1,5 @@
 require 'vedeu/geometry/bounding_area'
+require 'vedeu/geometry/centre'
 require 'vedeu/geometry/content_geometry'
 require 'vedeu/geometry/coordinate'
 require 'vedeu/geometry/grid'
