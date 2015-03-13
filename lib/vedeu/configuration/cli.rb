@@ -9,17 +9,14 @@ module Vedeu
     #
     class CLI
 
-      # Configure Vedeu via command-line arguments. Options set here via
-      # arguments override the client application configuration set via
-      # {Vedeu::API#configure}.
-      #
-      # @param args [Array]
-      # @return [Hash]
+      # @param (see #initialize)
       def self.configure(args = [])
         new(args).configuration
       end
 
-      # Returns an instance of Configuration::CLI.
+      # Configure Vedeu via command-line arguments. Options set here via
+      # arguments override the client application configuration set via
+      # {Vedeu::API#configure}.
       #
       # @param args [Array]
       # @return [Configuration::CLI]

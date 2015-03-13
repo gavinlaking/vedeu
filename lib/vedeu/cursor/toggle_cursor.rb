@@ -14,8 +14,7 @@ module Vedeu
 
     # Hides the cursor.
     #
-    # @param cursor [Cursor]
-    # @return [Cursor]
+    # @param (see #initialize)
     def self.hide(cursor)
       return cursor if cursor.invisible?
 
@@ -24,8 +23,7 @@ module Vedeu
 
     # Shows the cursor.
     #
-    # @param cursor [Cursor]
-    # @return [Cursor]
+    # @param (see #initialize)
     def self.show(cursor)
       return cursor if cursor.visible?
 

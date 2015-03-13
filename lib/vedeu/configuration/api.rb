@@ -11,6 +11,11 @@ module Vedeu
 
       include Vedeu::Common
 
+      # @param (see #initialize)
+      def self.configure(&block)
+        new(&block).configuration
+      end
+
       # Configure Vedeu via a simple configuration API DSL. Options set here
       # override the default Vedeu configuration set in
       # {Vedeu::Configuration#defaults}.
@@ -20,14 +25,6 @@ module Vedeu
       #     ...
       #
       # @param block [Proc]
-      # @return [Hash]
-      def self.configure(&block)
-        new(&block).configuration
-      end
-
-      # Returns an instance of Configuration::API.
-      #
-      # @param block [Proc]
       # @return [Configuration::API]
       def initialize(&block)
         instance_eval(&block) if block_given?
@@ -35,7 +32,7 @@ module Vedeu
 
       # Returns the configuration options set up by the API DSL.
       #
-      # @return [Hash]
+      # @return [Hash<Symbol => Boolean, Fixnum, String>]
       def configuration
         options.merge!({
           system_keys: Configuration.default_system_keys.merge!(system_keys)

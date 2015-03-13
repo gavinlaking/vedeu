@@ -18,15 +18,14 @@ module Vedeu
       new(name, *args).trigger
     end
 
-    # @see Vedeu::Trigger.trigger
-    # @return [Trigger]
+    # @param (see .trigger)
+    # @return [Vedeu::Trigger]
     def initialize(name, *args)
       @name = name
       @args = args
       @repository = Vedeu.events
     end
 
-    # @see Vedeu::Trigger.trigger
     # @return [Array]
     def trigger
       if results.one?

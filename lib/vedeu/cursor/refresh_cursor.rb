@@ -2,8 +2,7 @@ module Vedeu
 
   class RefreshCursor
 
-    # @param name [String] The name of the cursor.
-    # @return [Array]
+    # @param (see #initialize)
     def self.render(name)
       new(name).render
     end
@@ -37,7 +36,7 @@ module Vedeu
       @new_cursor ||= Vedeu::Cursor.new(cursor.attributes.merge(position))
     end
 
-    # @return [Hash]
+    # @return [Hash<Symbol => Fixnum>]
     def position
       {
         x: validated_position.x,

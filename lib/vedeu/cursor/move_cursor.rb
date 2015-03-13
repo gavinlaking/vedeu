@@ -162,7 +162,7 @@ module Vedeu
     # @return [Vedeu::Interface]
     attr_reader :interface
 
-    # @return [Hash]
+    # @return [Hash<Symbol => Fixnum>]
     def moved_attributes
       {
         x:  validator.x,

@@ -104,6 +104,7 @@ module Vedeu
 
     end
 
+    # @param (see Vedeu::Trigger.trigger)
     # @see Vedeu::Trigger.trigger
     def self.trigger(name, *args)
       Vedeu::Trigger.trigger(name, *args)

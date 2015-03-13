@@ -14,7 +14,7 @@ module Vedeu
     #   error occurred (1).
     attr_reader :exit_code
 
-    # @see Vedeu::Launcher#initialize
+    # @param (see #initialize)
     def self.execute!(argv = [],
                       stdin  = STDIN,
                       stdout = STDOUT,

@@ -7,8 +7,7 @@ module Vedeu
 
     # Instantiate Input and capture keypress(es).
     #
-    # @param reader [IO] An object that responds to `#read`. Typically, this is
-    #   Vedeu::Terminal.
+    # @param (see #initialize)
     # @return [String|Symbol]
     def self.capture(reader)
       new(reader).capture

@@ -7,11 +7,7 @@ module Vedeu
   #
   class IndexPosition
 
-    # @param iy [Fixnum]
-    # @param ix [Fixnum]
-    # @param oy [Fixnum]
-    # @param ox [Fixnum]
-    # @return [Array]
+    # @param (see #initialize)
     def self.[](iy, ix, oy = 1, ox = 1)
       new(iy, ix, oy, ox).[]
     end
