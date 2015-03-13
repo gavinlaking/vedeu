@@ -249,7 +249,7 @@ module Vedeu
         'Vedeu::Style',
         'Vedeu::Terminal',
         # 'Vedeu::Text',
-        # 'Vedeu::ToggleCursor',
+        # 'Vedeu::Toggle',
         'Vedeu::Trace',
         'Vedeu::Translator',
         # 'Vedeu::Traps',

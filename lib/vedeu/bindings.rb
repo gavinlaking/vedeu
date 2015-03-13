@@ -88,14 +88,14 @@ module Vedeu
     Vedeu.bind(:_cursor_hide_) do |name|
       named = name ? Vedeu.cursors.by_name(name) : Vedeu.cursor
 
-      Vedeu::ToggleCursor.hide(named)
+      Vedeu::Toggle.hide(named)
     end
 
     # Show the cursor of the named interface or interface currently in focus.
     Vedeu.bind(:_cursor_show_) do |name|
       named = name ? Vedeu.cursors.by_name(name) : Vedeu.cursor
 
-      Vedeu::ToggleCursor.show(named)
+      Vedeu::Toggle.show(named)
     end
 
     # @see {Vedeu::Move}
