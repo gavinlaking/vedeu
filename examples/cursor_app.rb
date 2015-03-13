@@ -38,6 +38,7 @@ class VedeuCursorApp
     view 'main_interface' do
       border do
         colour foreground: '#aadd00', background: '#000000'
+        title 'Wut!'
       end
       lines do
         streams do

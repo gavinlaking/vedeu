@@ -13,6 +13,7 @@ module Vedeu
   #
   class Border
 
+    include Vedeu::Common
     include Vedeu::Model
 
     # @!attribute [rw] attributes
@@ -50,6 +51,10 @@ module Vedeu
     # @return [Boolean]
     attr_accessor :show_top
     alias_method :top?, :show_top
+
+    # @!attribute [rw] title
+    # @return [String]
+    attr_accessor :title
 
     # @!attribute [rw] top_left
     # @return [String]
@@ -90,7 +95,8 @@ module Vedeu
     # @option attributes enabled [Boolean] Indicate whether the border is to be
     #   shown for this interface.
     # @option attributes horizontal [String] The horizontal border character.
-    # @option attributes name [String]
+    # @option attributes name [String] The name of the interface to which this
+    #   border relates.
     # @option attributes style []
     # @option attributes show_bottom [Boolean] Indicate whether the bottom
     #   border is to be shown.
@@ -99,6 +105,8 @@ module Vedeu
     # @option attributes show_right [Boolean] Indicate whether the right border
     #   is to be shown.
     # @option attributes show_top [Boolean] Indicate whether the top border is
+    #   to be shown.
+    # @option attributes title [String] A title bar for when the top border is
     #   to be shown.
     # @option attributes top_left [String] The top left border character.
     # @option attributes top_right [String] The top right border character.
@@ -113,6 +121,7 @@ module Vedeu
       @show_left    = @attributes[:show_left]
       @show_right   = @attributes[:show_right]
       @show_top     = @attributes[:show_top]
+      @title        = @attributes[:title]
       @top_left     = @attributes[:top_left]
       @top_right    = @attributes[:top_right]
       @horizontal   = @attributes[:horizontal]
@@ -270,9 +279,9 @@ module Vedeu
       out << border(send(_left), _left) if left?
       width.times do |ix|
         out << border(horizontal, _horizontal, nil, ix)
+        # out << titleize
       end
       out << border(send(_right), _right) if right?
-      out.flatten
     end
 
     # @param value [String]
@@ -287,6 +296,33 @@ module Vedeu
                         style:    style,
                         position: position(type, iy, ix),
                         border:   type })
+    end
+
+    def titleize
+      out = []
+
+      if defined_value?(title)
+        truncated_title = title.chomp.slice(0..(width - 3))
+        border_chars    = width - truncated_title.size
+
+        out << border(horizontal, :top_horizontal, nil, 0)
+        out << border(horizontal, :top_horizontal, nil, 1)
+        [' ', truncated_title.chars, ' '].flatten.each_with_index do |char, ix|
+          out << border(char, :none, nil, (ix + 2))
+        end
+        out << border_chars.times { out << border(horizontal, :top_horizontal) }
+
+      else
+        width.times { out << border(horizontal, :top_horizontal) }
+
+      end
+
+      out
+    end
+
+    # @return [Vedeu::Interface]
+    def interface
+      @interface ||= Vedeu.interfaces.find(name)
     end
 
     # The default values for a new instance of this class.
@@ -306,6 +342,7 @@ module Vedeu
         show_right:   true,
         show_top:     true,
         style:        [],
+        title:        '',
         top_left:     "\x6C", # ┌
         top_right:    "\x6B", # ┐
         vertical:     "\x78", # │
