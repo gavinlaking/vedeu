@@ -28,7 +28,8 @@ module Vedeu
 
     # @return [Boolean]
     def refresh_view?
-      new_cursor.ox >= interface_width || new_cursor.oy >= interface_height
+      new_cursor.ox >= interface_width ||
+      new_cursor.oy >= interface_height
     end
 
     # @return [Vedeu::Cursor]
