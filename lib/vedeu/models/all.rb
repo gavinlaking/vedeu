@@ -1,5 +1,6 @@
 require 'vedeu/repositories/all'
 
+require 'vedeu/models/cell'
 require 'vedeu/models/char'
 require 'vedeu/models/stream'
 require 'vedeu/models/line'
