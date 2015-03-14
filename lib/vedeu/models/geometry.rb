@@ -29,6 +29,7 @@ module Vedeu
   #
   class Geometry
 
+    extend Forwardable
     include Vedeu::Model
 
     # @!attribute [rw] centred
@@ -266,7 +267,67 @@ module Vedeu
       right + value
     end
 
+    # def_delegators :area, :north, :east, :south, :west
+
     private
+
+    def area
+      @area ||= Vedeu::Area.from_points(y: y1, yn: y2, x: x1, xn: x2)
+    end
+
+    def x1
+      x_xn.first
+    end
+
+    def x2
+      x_xn.last
+    end
+
+    def y1
+      y_yn.first
+    end
+
+    def y2
+      y_yn.last
+    end
+
+    def x_xn
+      @x_xn ||= if @x && @xn
+        [@x, @xn]
+
+      elsif @x && @width
+        [@x, (@x + @width)]
+
+      elsif @width
+        [1, @width]
+
+      elsif @x
+        [@x, Vedeu::Terminal.width]
+
+      else
+        [1, Vedeu::Terminal.width]
+
+      end
+    end
+
+    def y_yn
+      @y_yn ||= if @y && @yn
+        [@y, @yn]
+
+      elsif @y && @height
+        [@y, (@y + @height)]
+
+      elsif @height
+        [1, @height]
+
+      elsif @y
+        [@y, Vedeu::Terminal.height]
+
+      else
+        [1, Vedeu::Terminal.height]
+
+      end
+    end
 
     # The default values for a new instance of this class.
     #
