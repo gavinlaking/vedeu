@@ -60,6 +60,14 @@ module Vedeu
     # @return [Fixnum]
     attr_writer :y
 
+    # @!attribute [w] xn
+    # @return [Fixnum]
+    attr_writer :xn
+
+    # @!attribute [w] yn
+    # @return [Fixnum]
+    attr_writer :yn
+
     # Returns a new instance of Geometry.
     #
     # @param attributes [Hash]

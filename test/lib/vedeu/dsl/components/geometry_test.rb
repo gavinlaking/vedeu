@@ -146,7 +146,7 @@ module Vedeu
               end
             }
 
-            it { subject.geometry.x.must_equal(0) }
+            it { subject.geometry.x.must_equal(1) }
           end
 
           context 'when a block is given' do
@@ -197,12 +197,24 @@ module Vedeu
               end
             }
 
-            it { subject.geometry.y.must_equal(0) }
+            it { subject.geometry.y.must_equal(1) }
           end
 
           context 'when a block is given' do
           end
         end
+      end
+
+      describe '#xn' do
+        subject { Vedeu::Geometry.build({}) { xn 15 } }
+
+        it { subject.xn.must_equal(15) }
+      end
+
+      describe '#yn' do
+        subject { Vedeu::Geometry.build({}) { yn 8 } }
+
+        it { subject.yn.must_equal(8) }
       end
 
     end # Geometry
