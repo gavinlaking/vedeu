@@ -1,4 +1,4 @@
-require 'vedeu/models/geometry'
+require 'vedeu/geometry/geometry'
 require 'vedeu/dsl/shared/all'
 
 module Vedeu

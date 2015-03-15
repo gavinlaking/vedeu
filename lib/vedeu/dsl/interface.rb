@@ -1,6 +1,6 @@
 require 'vedeu/cursor/cursor'
 require 'vedeu/models/focus'
-require 'vedeu/models/geometry'
+require 'vedeu/geometry/geometry'
 require 'vedeu/models/group'
 require 'vedeu/models/line'
 require 'vedeu/output/border'
