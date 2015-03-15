@@ -281,26 +281,23 @@ module Vedeu
 
     # @return [Vedeu::Area]
     def area
-      @area ||= Vedeu::Area.from_points(y:  y_yn.d1,
-                                        yn: y_yn.d2,
-                                        x:  x_xn.d1,
-                                        xn: x_xn.d2)
+      @area ||= Vedeu::Area.from_dimensions(y_yn, x_xn)
     end
 
-    # @return [Vedeu::Dimension]
+    # @return [Array<Fixnum>]
     def x_xn
-      @x_xn ||= Vedeu::Dimension.new({ v:       @x,
-                                       vn:      @xn,
-                                       v_vn:    @width,
-                                       default: Vedeu::Terminal.width })
+      @x_xn ||= Vedeu::Dimension.pair({ v:       @x,
+                                        vn:      @xn,
+                                        v_vn:    @width,
+                                        default: Vedeu::Terminal.width })
     end
 
-    # @return [Vedeu::Dimension]
+    # @return [Array<Fixnum>]
     def y_yn
-      @y_yn ||= Vedeu::Dimension.new({ v:       @y,
-                                       vn:      @yn,
-                                       v_vn:    @height,
-                                       default: Vedeu::Terminal.height })
+      @y_yn ||= Vedeu::Dimension.pair({ v:       @y,
+                                        vn:      @yn,
+                                        v_vn:    @height,
+                                        default: Vedeu::Terminal.height })
     end
 
     # The default values for a new instance of this class.

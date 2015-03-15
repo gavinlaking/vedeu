@@ -4,6 +4,12 @@ module Vedeu
   #
   class Dimension
 
+    # @param (see #initialize)
+    # @return [Array<Fixnum>]
+    def self.pair(attributes = {})
+      new(attributes).pair
+    end
+
     # @param attributes [Hash<Symbol => Fixnum, NilClass>]
     # @options attributes d       [Fixnum|NilClass] The starting value (y or x).
     # @options attributes dn      [Fixnum|NilClass] The ending value (yn or xn).
@@ -27,9 +33,14 @@ module Vedeu
       dimension.last
     end
 
+    # @return [Array<Fixnum>]
+    def pair
+      dimension
+    end
+
     private
 
-    # @return [Array]
+    # @return [Array<Fixnum>]
     def dimension
       @dimension ||= if @d && @dn
         [@d, @dn]

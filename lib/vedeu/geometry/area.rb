@@ -24,10 +24,17 @@ module Vedeu
     attr_reader :xn
     alias_method :right, :xn
 
+    # @param y_yn [Array<Fixnum>]
+    # @param x_xn [Array<Fixnum>]
+    # @return [Vedeu::Area]
+    def self.from_dimensions(y_yn:, x_xn:)
+      new(y: y_yn.first, yn: y_yn.last, x: x_xn.first, xn: x_xn.last)
+    end
+
     # @param height [Fixnum]
     # @param width [Fixnum]
     # @return [Vedeu::Area]
-    def self.from_dimensions(height:, width:)
+    def self.from_height_and_width(height:, width:)
       new(y: 1, yn: height, x: 1, xn: width)
     end
 

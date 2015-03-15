@@ -31,10 +31,23 @@ module Vedeu
     end
 
     describe '.from_dimensions' do
+      let(:y_yn) { [5, 8] }
+      let(:x_xn) { [15, 25] }
+
+      subject { described.from_dimensions(y_yn: y_yn, x_xn: x_xn) }
+
+      it { subject.must_be_instance_of(Vedeu::Area) }
+      it { subject.instance_variable_get('@y').must_equal(5) }
+      it { subject.instance_variable_get('@yn').must_equal(8) }
+      it { subject.instance_variable_get('@x').must_equal(15) }
+      it { subject.instance_variable_get('@xn').must_equal(25) }
+    end
+
+    describe '.from_height_and_width' do
       let(:height) { 5 }
       let(:width)  { 15 }
 
-      subject { described.from_dimensions(height: height, width: width) }
+      subject { described.from_height_and_width(height: height, width: width) }
 
       it { subject.must_be_instance_of(Vedeu::Area) }
       it { subject.instance_variable_get('@y').must_equal(1) }

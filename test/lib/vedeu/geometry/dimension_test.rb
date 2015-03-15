@@ -27,6 +27,16 @@ module Vedeu
       it { instance.instance_variable_get('@default').must_equal(default) }
     end
 
+    describe '.pair' do
+      let(:d)  { 5 }
+      let(:dn) { 8 }
+
+      subject { described.pair(attributes) }
+
+      it { subject.must_be_instance_of(Array) }
+      it { subject.must_equal([5, 8]) }
+    end
+
     describe '#d1' do
       subject { instance.d1 }
 
