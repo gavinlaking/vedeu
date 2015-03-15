@@ -8,6 +8,7 @@ module Vedeu
   class IndexPosition
 
     # @param (see #initialize)
+    # @return [Vedeu::Position]
     def self.[](iy, ix, oy = 1, ox = 1)
       new(iy, ix, oy, ox).[]
     end
@@ -24,13 +25,8 @@ module Vedeu
       @ox = ox
     end
 
-    # @return [Array]
-    def []
-      [y, x]
-    end
-
     # @return [Vedeu::Position]
-    def to_position
+    def []
       Vedeu::Position.new(y, x)
     end
 

@@ -27,21 +27,15 @@ module Vedeu
     describe '.[]' do
       subject { described[iy, ix] }
 
-      it { subject.must_be_instance_of(Array) }
-      it { subject.must_equal([7, 18]) }
+      it { subject.must_be_instance_of(Vedeu::Position) }
     end
 
     describe '#[]' do
       subject { instance.[] }
 
-      it { subject.must_be_instance_of(Array) }
-      it { subject.must_equal([9, 22]) }
-    end
-
-    describe '#to_position' do
-      subject { instance.to_position }
-
       it { subject.must_be_instance_of(Vedeu::Position) }
+      it { subject.y.must_equal(9) }
+      it { subject.x.must_equal(22) }
     end
 
     describe '#y' do
