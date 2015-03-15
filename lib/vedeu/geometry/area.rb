@@ -1,5 +1,7 @@
 module Vedeu
 
+  # Define an area from dimensions or points.
+  #
   class Area
 
     # @!attribute [r] y

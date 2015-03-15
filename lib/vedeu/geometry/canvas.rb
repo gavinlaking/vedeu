@@ -2,6 +2,9 @@ require 'singleton'
 
 module Vedeu
 
+  # The size of the terminal is a limitation. Defining a canvas means we have
+  # more space to 'do stuff'.
+  #
   class Canvas
 
     include Singleton
