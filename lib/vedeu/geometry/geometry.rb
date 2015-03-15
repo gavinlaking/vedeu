@@ -279,62 +279,28 @@ module Vedeu
 
     private
 
+    # @return [Vedeu::Area]
     def area
-      @area ||= Vedeu::Area.from_points(y: y1, yn: y2, x: x1, xn: x2)
+      @area ||= Vedeu::Area.from_points(y:  y_yn.d1,
+                                        yn: y_yn.d2,
+                                        x:  x_xn.d1,
+                                        xn: x_xn.d2)
     end
 
-    def x1
-      x_xn.first
-    end
-
-    def x2
-      x_xn.last
-    end
-
-    def y1
-      y_yn.first
-    end
-
-    def y2
-      y_yn.last
-    end
-
+    # @return [Vedeu::Dimension]
     def x_xn
-      @x_xn ||= if @x && @xn
-        [@x, @xn]
-
-      elsif @x && @width
-        [@x, (@x + @width)]
-
-      elsif @width
-        [1, @width]
-
-      elsif @x
-        [@x, Vedeu::Terminal.width]
-
-      else
-        [1, Vedeu::Terminal.width]
-
-      end
+      @x_xn ||= Vedeu::Dimension.new({ v:       @x,
+                                       vn:      @xn,
+                                       v_vn:    @width,
+                                       default: Vedeu::Terminal.width })
     end
 
+    # @return [Vedeu::Dimension]
     def y_yn
-      @y_yn ||= if @y && @yn
-        [@y, @yn]
-
-      elsif @y && @height
-        [@y, (@y + @height)]
-
-      elsif @height
-        [1, @height]
-
-      elsif @y
-        [@y, Vedeu::Terminal.height]
-
-      else
-        [1, Vedeu::Terminal.height]
-
-      end
+      @y_yn ||= Vedeu::Dimension.new({ v:       @y,
+                                       vn:      @yn,
+                                       v_vn:    @height,
+                                       default: Vedeu::Terminal.height })
     end
 
     # The default values for a new instance of this class.
