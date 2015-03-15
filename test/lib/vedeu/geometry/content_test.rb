@@ -2,9 +2,9 @@ require 'test_helper'
 
 module Vedeu
 
-  describe ContentGeometry do
+  describe Content do
 
-    let(:described) { Vedeu::ContentGeometry }
+    let(:described) { Vedeu::Content }
     let(:instance)  { described.new(interface) }
     let(:interface) {
       Vedeu.interface 'content_geometry' do
@@ -93,6 +93,6 @@ module Vedeu
       end
     end
 
-  end # ContentGeometry
+  end # Content
 
 end # Vedeu

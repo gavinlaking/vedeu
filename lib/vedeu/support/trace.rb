@@ -194,7 +194,7 @@ module Vedeu
         # 'Vedeu::Config::CLI',
         'Vedeu::Configuration',
         # 'Vedeu::Console',
-        # 'Vedeu::ContentGeometry',
+        # 'Vedeu::Content',
         # 'Vedeu::Coordinate',
         # 'Vedeu::Cursor',
         # 'Vedeu::DisplayBuffer',

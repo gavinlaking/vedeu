@@ -2,7 +2,7 @@ module Vedeu
 
   # Provides information about the content within an interface or view.
   #
-  class ContentGeometry
+  class Content
 
     extend Forwardable
 
@@ -18,7 +18,7 @@ module Vedeu
       :y
 
     # @param interface [Vedeu::Interface]
-    # @return [Vedeu::ContentGeometry]
+    # @return [Vedeu::Content]
     def initialize(interface)
       @interface = interface
     end
@@ -63,6 +63,6 @@ module Vedeu
       lines.map { |line| line.size }.max
     end
 
-  end # ContentGeometry
+  end # Content
 
 end # Vedeu
