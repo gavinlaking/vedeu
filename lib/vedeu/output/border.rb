@@ -1,3 +1,4 @@
+require 'vedeu/repositories/all'
 require 'vedeu/dsl/components/all'
 
 module Vedeu
