@@ -28,10 +28,8 @@ module Vedeu
     #
     # @return [Array<Array<Vedeu::Char>>]
     def clear
-      out = interface.height.times.inject([]) do |row, iy|
-        row << interface.width.times.inject([]) do |column, ix|
-          column << char_builder(' ', iy, ix)
-        end
+      Array.new(interface.height) do |iy|
+        Array.new(interface.width) { |ix| char_builder(' ', iy, ix) }
       end
     end
 

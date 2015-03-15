@@ -21,14 +21,11 @@ module Vedeu
     # Returns the position of the cursor at the top-left coordinate, relative to
     # the interface's position.
     #
-    # @param y_index [Fixnum]
-    # @param x_index [Fixnum]
+    # @param iy [Fixnum]
+    # @param ix [Fixnum]
     # @return [Vedeu::Position]
-    def origin(y_index = 0, x_index = 0)
-      Vedeu::IndexPosition.new(y_index,
-                               x_index,
-                               interface.top,
-                               interface.left).to_position
+    def origin(iy = 0, ix = 0)
+      Vedeu::IndexPosition[iy, ix, interface.top, interface.left]
     end
 
   end # CharBuilder
