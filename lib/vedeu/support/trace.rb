@@ -4,6 +4,7 @@ require 'vedeu/support/log'
 
 module Vedeu
 
+  # :nocov:
   # This class currently provides the means to trace each method call which
   # occurs inside Vedeu. This is very useful (to me!) for debugging. Running
   # this will make your application less responsive, and the tests
@@ -263,5 +264,6 @@ module Vedeu
     end
 
   end # Trace
+  # :nocov:
 
 end # Vedeu

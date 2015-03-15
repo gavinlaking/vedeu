@@ -19,6 +19,7 @@ module Vedeu
       @pid         = nil
     end
 
+    # :nocov:
     # @return [Array]
     def execute!
       file_open && file_write && file_close
@@ -31,6 +32,7 @@ module Vedeu
 
       self
     end
+    # :nocov:
 
     # Sends the KILL signal to the process.
     #

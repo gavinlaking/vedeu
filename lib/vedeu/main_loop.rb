@@ -12,6 +12,7 @@ module Vedeu
     trap('TERM')    { stop! }
     trap('INT')     { stop! }
 
+    # :nocov:
     # Start the main loop.
     #
     # @param block [Proc]
@@ -30,6 +31,7 @@ module Vedeu
     rescue VedeuInterrupt
 
     end
+    # :nocov:
 
     # Signal that we wish to terminate the running application.
     #

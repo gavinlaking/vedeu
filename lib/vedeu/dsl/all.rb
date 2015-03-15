@@ -16,6 +16,7 @@ module Vedeu
 
     private
 
+    # :nocov:
     # Attempts to find the missing method on the client object.
     #
     # @param method [Symbol] The name of the method sought.
@@ -27,6 +28,7 @@ module Vedeu
 
       client.send(method, *args, &block) if client
     end
+    # :nocov:
 
   end # DSL
 
