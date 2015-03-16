@@ -5,25 +5,27 @@ module Vedeu
   # The Buffer object represents the states of display for an interface. The
   # states are 'front', 'back' and 'previous'.
   #
-  # - 'front':    The currently displayed buffer; contains the content which was
-  #               last output.
-  # - 'back':     The next buffer to be displayed; contains the content which
-  #               will be shown on next refresh.
-  # - 'previous': The previous buffer which was displayed; contains the content
-  #               that was shown before 'front'.
-  #
   class Buffer
 
     include Vedeu::Model
 
+    # The next buffer to be displayed; contains the content which will be shown
+    # on next refresh.
+    #
     # @!attribute [rw] back
     # @return [Interface]
     attr_accessor :back
 
+    # The currently displayed buffer, contains the content which was last
+    # output.
+    #
     # @!attribute [rw] front
     # @return [Interface]
     attr_accessor :front
 
+    # The previous buffer which was displayed; contains the content that was
+    # shown before 'front'.
+    #
     # @!attribute [rw] previous
     # @return [Interface]
     attr_accessor :previous
@@ -32,7 +34,8 @@ module Vedeu
     # @return [String]
     attr_reader :name
 
-    # Return a new instance of Buffer.
+    # Return a new instance of Buffer. Generally a Buffer is initialized with
+    # only a 'name' and 'back' parameter.
     #
     # @param name [String] The name of the interface for which the buffer
     #   belongs.
