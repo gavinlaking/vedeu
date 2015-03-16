@@ -4,8 +4,6 @@ module Vedeu
   #
   class Clear
 
-    include Vedeu::CharBuilder
-
     # Clears the area defined by the interface.
     #
     # @return [Array|String]
@@ -29,7 +27,12 @@ module Vedeu
     # @return [Array<Array<Vedeu::Char>>]
     def clear
       Array.new(interface.height) do |iy|
-        Array.new(interface.width) { |ix| char_builder(' ', iy, ix) }
+        Array.new(interface.width) do |ix|
+          Vedeu::Char.new({ value:    ' ',
+                            colour:   interface.colour,
+                            style:    interface.style,
+                            position: Vedeu::IndexPosition[iy, ix, interface.top, interface.left] })
+        end
       end
     end
 

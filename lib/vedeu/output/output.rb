@@ -11,8 +11,6 @@ module Vedeu
   #
   class Output
 
-    include Vedeu::CharBuilder
-
     # Writes content (the provided interface object with associated lines,
     # streams, colours and styles) to the area defined by the interface.
     #
@@ -65,7 +63,7 @@ module Vedeu
         row = []
         line.each_with_index do |char, ix|
           row << if char.x != ix || char.y != iy
-            char.position = origin(iy, ix)
+            char.position = Vedeu::IndexPosition[iy, ix, interface.top, interface.left]
             char
 
           else
