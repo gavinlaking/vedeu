@@ -50,15 +50,10 @@ module Vedeu
 
     # @param other [Vedeu::Position]
     # @return [Boolean]
-    def ==(other)
-      eql?(other)
-    end
-
-    # @param other [Vedeu::Position]
-    # @return [Boolean]
     def eql?(other)
       self.class == other.class && (x == other.x && y == other.y)
     end
+    alias_method :==, :eql?
 
     # Return the escape sequence required to position the cursor at a particular
     # point on the screen. When passed a block, will do the aforementioned,

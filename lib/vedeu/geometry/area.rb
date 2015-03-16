@@ -55,12 +55,6 @@ module Vedeu
 
     # @param other [Vedeu::Area]
     # @return [Boolean]
-    def ==(other)
-      eql?(other)
-    end
-
-    # @param other [Vedeu::Area]
-    # @return [Boolean]
     def eql?(other)
       self.class == other.class &&
       y          == other.y     &&
@@ -68,6 +62,7 @@ module Vedeu
       x          == other.x     &&
       xn         == other.xn
     end
+    alias_method :==, :eql?
 
     # @return [Array<Fixnum>]
     def centre

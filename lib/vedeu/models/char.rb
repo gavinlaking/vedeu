@@ -48,12 +48,6 @@ module Vedeu
       @value    = @attributes[:value]
     end
 
-    # @param other [Vedeu::Char]
-    # @return [Boolean]
-    def ==(other)
-      eql?(other)
-    end
-
     # When {Vedeu::Viewport#padded_lines} has less lines that required to fill
     # the visible area of the interface, it creates a line that contains a
     # single {Vedeu::Char} containing a space (0x20); later,
@@ -70,6 +64,7 @@ module Vedeu
     def eql?(other)
       self.class == other.class && value == other.value
     end
+    alias_method :==, :eql?
 
     # @return [String]
     def inspect

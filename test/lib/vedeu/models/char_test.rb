@@ -43,6 +43,20 @@ module Vedeu
       it { instance.must_respond_to(:value) }
     end
 
+    describe '#eql?' do
+      let(:other) { instance }
+
+      subject { instance.eql?(other) }
+
+      it { subject.must_equal(true) }
+
+      context 'when different to other' do
+        let(:other) { described.new({ value: 'b' }) }
+
+        it { subject.must_equal(false) }
+      end
+    end
+
     describe '#inspect' do
       let(:colour)   { Vedeu::Colour.new({ foreground: '#00ff00',
                                            background: '#005500' }) }

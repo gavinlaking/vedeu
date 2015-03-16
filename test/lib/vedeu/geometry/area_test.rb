@@ -66,6 +66,20 @@ module Vedeu
       it { subject.instance_variable_get('@xn').must_equal(xn) }
     end
 
+    describe '#eql?' do
+      let(:other) { described.new(y: 4, yn: 9, x: 6, xn: 21) }
+
+      subject { instance.eql?(other) }
+
+      it { subject.must_equal(true) }
+
+      context 'when different to other' do
+        let(:other) { described.new(y: 1, yn: 25, x: 1, xn: 40) }
+
+        it { subject.must_equal(false) }
+      end
+    end
+
     describe '#centre' do
       subject { instance.centre }
 
