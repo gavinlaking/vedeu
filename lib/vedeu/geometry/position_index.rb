@@ -15,9 +15,7 @@ module Vedeu
     alias_method :first, :y
     alias_method :last, :x
 
-    # @param y [Fixnum]
-    # @param x [Fixnum]
-    # @return [Array]
+    # @param (see #initialize)
     def self.[](y, x)
       new(y, x).[]
     end
@@ -26,8 +24,8 @@ module Vedeu
     # @param x [Fixnum]
     # @return [Vedeu::PositionIndex]
     def initialize(y, x)
-      @y = ((y - 1) <= 1) ? 1 : (y - 1)
-      @x = ((x - 1) <= 1) ? 1 : (x - 1)
+      @y = ((y - 1) <= 1) ? 0 : (y - 1)
+      @x = ((x - 1) <= 1) ? 0 : (x - 1)
     end
 
     # @return [Array]

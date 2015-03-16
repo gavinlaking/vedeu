@@ -2,20 +2,19 @@ module Vedeu
 
   # Adjusts the visibility of the cursor.
   #
-  class ToggleCursor
+  class Toggle
 
-    # Returns an instance of ToggleCursor.
+    # Returns an instance of Toggle.
     #
     # @param cursor [Cursor]
-    # @return [ToggleCursor]
+    # @return [Toggle]
     def initialize(cursor)
       @cursor = cursor
     end
 
     # Hides the cursor.
     #
-    # @param cursor [Cursor]
-    # @return [Cursor]
+    # @param (see #initialize)
     def self.hide(cursor)
       return cursor if cursor.invisible?
 
@@ -24,8 +23,7 @@ module Vedeu
 
     # Shows the cursor.
     #
-    # @param cursor [Cursor]
-    # @return [Cursor]
+    # @param (see #initialize)
     def self.show(cursor)
       return cursor if cursor.visible?
 
@@ -52,6 +50,6 @@ module Vedeu
     # @return [Vedeu::Cursor]
     attr_reader :cursor
 
-  end # ToggleCursor
+  end # Toggle
 
 end # Vedeu

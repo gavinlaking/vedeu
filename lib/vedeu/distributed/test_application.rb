@@ -48,14 +48,12 @@ module Vedeu
     # @return [String]
     attr_accessor :views
 
-    # @param attributes [Hash]
-    # @param block [Proc]
-    # @return [String]
+    # @param (see #initialize)
     def self.build(attributes = {}, &block)
       new(attributes).build(&block)
     end
 
-    # @param attributes [Hash]
+    # @param attributes [Hash<Symbol => String>]
     # @option attributes borders [String]
     # @option attributes configuration [String]
     # @option attributes events [String]

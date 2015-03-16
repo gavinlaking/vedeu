@@ -1,5 +1,6 @@
 module Vedeu
 
+  # :nocov:
   # Helps to debug a running application by providing a stack trace of its
   # execution upon exiting.
   #
@@ -22,5 +23,6 @@ module Vedeu
       # RubyProf::CallTreePrinter.new(result).print(file)
     end
   end
+  # :nocov:
 
 end # Vedeu

@@ -1,4 +1,4 @@
-require 'vedeu/geometry/content_geometry'
+require 'vedeu/geometry/content'
 require 'vedeu/models/all'
 require 'vedeu/output/presentation'
 require 'vedeu/buffers/display_buffer'
@@ -132,7 +132,7 @@ module Vedeu
 
     # @return [Vedeu::Geometry]
     def geometry
-      Vedeu.geometries.find(name)
+      @geometry ||= Vedeu.geometries.find(name)
     end
 
     # @return [Vedeu::Lines]
@@ -148,6 +148,8 @@ module Vedeu
     def lines?
       lines.any?
     end
+    alias_method :content?, :lines?
+    alias_method :value?, :lines?
 
     # @return [Interface]
     def store

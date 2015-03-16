@@ -13,7 +13,7 @@ module Vedeu
 
       include Singleton
 
-      # @see Vedeu::Distributed::Server#input
+      # @param (see #input)
       def self.input(data, type = :key)
         instance.input(data, type)
       end

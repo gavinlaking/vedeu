@@ -7,8 +7,7 @@ module Vedeu
   #
   class Subprocess
 
-    # @param application [Vedeu::TestApplication]
-    # @return [Array]
+    # @param (see #initialize)
     def self.execute!(application)
       new(application).execute!
     end
@@ -20,6 +19,7 @@ module Vedeu
       @pid         = nil
     end
 
+    # :nocov:
     # @return [Array]
     def execute!
       file_open && file_write && file_close
@@ -32,6 +32,7 @@ module Vedeu
 
       self
     end
+    # :nocov:
 
     # Sends the KILL signal to the process.
     #

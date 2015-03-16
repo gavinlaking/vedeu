@@ -5,9 +5,8 @@ require 'vedeu/debug'
 require 'vedeu/traps'
 require 'vedeu/exceptions'
 
-require 'vedeu/repositories/all'
-
 require 'vedeu/geometry/all'
+require 'vedeu/repositories/all'
 
 require 'vedeu/api'
 require 'vedeu/bindings'

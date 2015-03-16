@@ -4,6 +4,7 @@ require 'vedeu/support/log'
 
 module Vedeu
 
+  # :nocov:
   # This class currently provides the means to trace each method call which
   # occurs inside Vedeu. This is very useful (to me!) for debugging. Running
   # this will make your application less responsive, and the tests
@@ -194,7 +195,7 @@ module Vedeu
         # 'Vedeu::Config::CLI',
         'Vedeu::Configuration',
         # 'Vedeu::Console',
-        # 'Vedeu::ContentGeometry',
+        # 'Vedeu::Content',
         # 'Vedeu::Coordinate',
         # 'Vedeu::Cursor',
         # 'Vedeu::DisplayBuffer',
@@ -233,7 +234,7 @@ module Vedeu
         # 'Vedeu::Menus',
         # 'Vedeu::Model',
         # 'Vedeu::Collection',
-        # 'Vedeu::MoveCursor',
+        # 'Vedeu::Move',
         # 'Vedeu::Node',
         # 'Vedeu::Output',
         'Vedeu::Position',
@@ -249,7 +250,7 @@ module Vedeu
         'Vedeu::Style',
         'Vedeu::Terminal',
         # 'Vedeu::Text',
-        # 'Vedeu::ToggleCursor',
+        # 'Vedeu::Toggle',
         'Vedeu::Trace',
         'Vedeu::Translator',
         # 'Vedeu::Traps',
@@ -263,5 +264,6 @@ module Vedeu
     end
 
   end # Trace
+  # :nocov:
 
 end # Vedeu

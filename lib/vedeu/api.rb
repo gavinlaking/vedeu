@@ -23,6 +23,7 @@ module Vedeu
 
     def_delegators Vedeu::Borders,       :borders
     def_delegators Vedeu::Buffers,       :buffers
+    def_delegators Vedeu::Canvas,        :canvas
     def_delegators Vedeu::Cursors,       :cursors
     def_delegators Vedeu::Cursors,       :cursor
     def_delegators Vedeu::EventsRepository, :events

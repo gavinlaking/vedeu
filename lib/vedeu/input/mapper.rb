@@ -8,8 +8,7 @@ module Vedeu
     # the associated action is fired, if not, we move to the next keymap or
     # return false.
     #
-    # @param key [NilClass|String|Symbol]
-    # @param name [NilClass|String]
+    # @param (see #initialize)
     # @return [Boolean]
     def self.keypress(key = nil, name = nil)
       return false unless key
@@ -20,8 +19,7 @@ module Vedeu
     # Checks a key is valid; i.e. not already registered to a keymap. If the
     # key is registered, then the key is invalid and cannot be used again.
     #
-    # @param key [NilClass|String|Symbol]
-    # @param name [NilClass|String]
+    # @param (see #initialize)
     # @return [Boolean]
     def self.valid?(key = nil, name = nil)
       return false unless key

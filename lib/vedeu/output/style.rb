@@ -17,7 +17,7 @@ module Vedeu
 
     # Return a new instance of Vedeu::Style.
     #
-    # @param value [Array|Array<String>|Array<Symbol>|String|Symbol]
+    # @param value [Array<String|Symbol>|String|Symbol]
     #   The style value or a collection of values.
     # @return [Style]
     def initialize(value = nil)
@@ -26,7 +26,7 @@ module Vedeu
 
     # Return an attributes hash for this class.
     #
-    # @return [Hash]
+    # @return [Array<String|Symbol>|String|Symbol]
     def attributes
       {
         style: value

@@ -62,7 +62,7 @@ module Vedeu
     #
     # @param name [String]
     # @raise [ModelNotFound] When the model cannot be found with this name.
-    # @return [Hash]
+    # @return [Hash<String => Object>]
     def find(name)
       storage.fetch(name) do
         fail ModelNotFound, "Cannot find model by name: '#{name}'"

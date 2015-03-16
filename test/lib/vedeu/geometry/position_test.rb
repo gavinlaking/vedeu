@@ -20,6 +20,12 @@ module Vedeu
       it { instance.instance_variable_get('@x').must_equal(x) }
     end
 
+    describe '.[]' do
+      subject { described.[](y, x) }
+
+      it { instance.must_be_instance_of(described) }
+    end
+
     describe '.coerce' do
       let(:value) {}
 

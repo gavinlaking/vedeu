@@ -1,4 +1,4 @@
-require 'vedeu/models/geometry'
+require 'vedeu/geometry/geometry'
 require 'vedeu/dsl/shared/all'
 
 module Vedeu
@@ -62,13 +62,15 @@ module Vedeu
 
       # Specify the number of characters/rows/lines tall the interface will be.
       #
-      # @param value [Fixnum]
-      #
       # @example
       #   geometry 'some_interface' do
       #     height 8
       #     # ...
       #
+      # @note
+      #   This value will be ignored if by `y` and `yn` are set.
+      #
+      # @param value [Fixnum]
       # @return [Fixnum]
       def height(value)
         model.height = value
@@ -83,15 +85,15 @@ module Vedeu
       #     width 25
       #     # ...
       #
+      # @note
+      #   This value will be ignored if by `x` and `xn` are set.
+      #
       # @return [Fixnum]
       def width(value)
         model.width = value
       end
 
       # Specify the starting x position (column) of the interface.
-      #
-      # @param value [Fixnum]
-      # @param block [Proc]
       #
       # @example
       #   geometry 'some_interface' do
@@ -104,17 +106,32 @@ module Vedeu
       #                                       # position, `some_interface` will
       #                                       # too.
       #
+      # @param value [Fixnum]
+      # @param block [Proc]
       # @return [Fixnum]
-      def x(value = 0, &block)
+      def x(value = 1, &block)
         return model.x = block if block_given?
 
         model.x = value
       end
 
-      # Specify the starting y position (row/line) of the interface.
+      # Specify the ending x position (column) of the interface.
+      #
+      # @example
+      #   geometry 'some_interface' do
+      #     xn 37 # end at column 37.
+      #     # ...
+      #
+      # @note
+      #   This value will override `width`.
       #
       # @param value [Fixnum]
-      # @param block [Proc]
+      # @return [Fixnum]
+      def xn(value)
+        model.xn = value
+      end
+
+      # Specify the starting y position (row/line) of the interface.
       #
       # @example
       #   geometry 'some_interface' do
@@ -127,11 +144,29 @@ module Vedeu
       #                                         # position, `some_interface`
       #                                         # will too.
       #
+      # @param value [Fixnum]
+      # @param block [Proc]
       # @return [Fixnum]
-      def y(value = 0, &block)
+      def y(value = 1, &block)
         return model.y = block if block_given?
 
         model.y = value
+      end
+
+      # Specify the ending y position (row/line) of the interface.
+      #
+      # @example
+      #   geometry 'some_interface' do
+      #     yn 24 # end at row 24.
+      #     # ...
+      #
+      # @note
+      #   This value will override `height`.
+      #
+      # @param value [Fixnum]
+      # @return [Fixnum]
+      def yn(value)
+        model.yn = value
       end
 
       private

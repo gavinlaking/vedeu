@@ -18,15 +18,16 @@ module Vedeu
       new(name, *args).trigger
     end
 
-    # @see Vedeu::Trigger.trigger
-    # @return [Trigger]
+    # @param (see .trigger)
+    # @return [Vedeu::Trigger]
     def initialize(name, *args)
       @name = name
       @args = args
       @repository = Vedeu.events
     end
 
-    # @see Vedeu::Trigger.trigger
+    # Trigger the event and return the result (if one) or an array of results.
+    #
     # @return [Array]
     def trigger
       if results.one?
@@ -57,6 +58,8 @@ module Vedeu
       @results ||= registered_events.map { |event| event.trigger(*args) }
     end
 
+    # Return all of the registered events for this name.
+    #
     # @return [Array|Array<Vedeu::Event>]
     def registered_events
       return [] unless repository.registered?(name)

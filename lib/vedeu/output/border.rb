@@ -1,3 +1,4 @@
+require 'vedeu/repositories/all'
 require 'vedeu/dsl/components/all'
 
 module Vedeu
@@ -33,18 +34,22 @@ module Vedeu
     # @!attribute [rw] show_bottom
     # @return [Boolean]
     attr_accessor :show_bottom
+    alias_method :bottom?, :show_bottom
 
     # @!attribute [rw] show_left
     # @return [Boolean]
     attr_accessor :show_left
+    alias_method :left?, :show_left
 
     # @!attribute [rw] show_right
     # @return [Boolean]
     attr_accessor :show_right
+    alias_method :right?, :show_right
 
     # @!attribute [rw] show_top
     # @return [Boolean]
     attr_accessor :show_top
+    alias_method :top?, :show_top
 
     # @!attribute [rw] top_left
     # @return [String]
@@ -69,16 +74,11 @@ module Vedeu
     # @!attribute [r] enabled
     # @return [Boolean]
     attr_reader :enabled
+    alias_method :enabled?, :enabled
 
     # @!attribute [r] style
     # @return [Style]
     attr_reader :style
-
-    alias_method :enabled?, :enabled
-    alias_method :bottom?,  :show_bottom
-    alias_method :left?,    :show_left
-    alias_method :right?,   :show_right
-    alias_method :top?,     :show_top
 
     # Returns a new instance of Border.
     #

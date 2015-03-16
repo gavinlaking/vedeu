@@ -141,7 +141,7 @@ module Vedeu
         Vedeu::Esc.send(message_types.fetch(type, :default)) { "[#{type}]".ljust(9) }
       end
 
-      # @return [Hash]
+      # @return [Hash<Symbol => Symbol>]
       def message_types
         {
           config: :yellow,

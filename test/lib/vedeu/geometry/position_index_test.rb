@@ -17,13 +17,13 @@ module Vedeu
       context 'when y is less than 1' do
         let(:y) { -3 }
 
-        it { instance.instance_variable_get('@y').must_equal(1) }
+        it { instance.instance_variable_get('@y').must_equal(0) }
       end
 
       context 'when x is less than 1' do
         let(:x) { -9 }
 
-        it { instance.instance_variable_get('@x').must_equal(1) }
+        it { instance.instance_variable_get('@x').must_equal(0) }
       end
     end
 

@@ -15,21 +15,21 @@ module Vedeu
   # Events described here assume that you have either included Vedeu in your
   # class:
   #
-  # class SomeClassInYourApplication
-  #   include Vedeu
+  #   class SomeClassInYourApplication
+  #     include Vedeu
   #
-  #   bind :event_name do |arg1, arg2|
-  #     # Things that should happen when the event is triggered; these can be
-  #     # method calls or the triggering of another event or events.
-  #   end
+  #     bind :event_name do |arg1, arg2|
+  #       # Things that should happen when the event is triggered; these can be
+  #       # method calls or the triggering of another event or events.
+  #     end
   #
   # or, you are prepared to use the `Vedeu` prefix:
   #
-  # class SomeClassInYourApplication
-  #   Vedeu.bind(:event_name) do
-  #     # Not all events you define will have arguments; like methods.
-  #     :do_stuff
-  #   end
+  #   class SomeClassInYourApplication
+  #     Vedeu.bind(:event_name) do
+  #       # Not all events you define will have arguments; like methods.
+  #       :do_stuff
+  #     end
   #
   class Event
 
@@ -104,6 +104,7 @@ module Vedeu
 
     end
 
+    # @param (see Vedeu::Trigger.trigger)
     # @see Vedeu::Trigger.trigger
     def self.trigger(name, *args)
       Vedeu::Trigger.trigger(name, *args)
@@ -111,9 +112,7 @@ module Vedeu
 
     # Returns a new instance of Event.
     #
-    # @param name [Symbol]
-    # @param options [Hash]
-    # @param closure [Proc] The code to be executed when the event is triggered.
+    # @param (see Vedeu::Event.bind)
     # @return [Event]
     def initialize(name, options = {}, closure)
       @name         = name
@@ -237,6 +236,8 @@ module Vedeu
       false
     end
 
+    # Returns the time in seconds since the last triggering of this event.
+    #
     # @return [Float]
     def elapsed_time
       now - @executed_at
@@ -257,16 +258,23 @@ module Vedeu
       @now = 0
     end
 
+    # Returns a boolean indicating if this event has a deadline.
+    #
     # @return [Boolean]
     def has_deadline?
       @deadline > 0
     end
 
+    # Resets the deadline of this event.
+    #
     # @return [Fixnum]
     def reset_deadline
       @deadline = 0
     end
 
+    # Sets the deadline for when this event can be executed to a point in the
+    # future determined by the amount of debounce time left.
+    #
     # @return [NilClass]
     def set_deadline
       @deadline = now + debounce

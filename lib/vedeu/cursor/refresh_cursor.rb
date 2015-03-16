@@ -1,9 +1,11 @@
 module Vedeu
 
+  # Handle the refreshing (redrawing) of a cursor, without redrawing the whole
+  # interface; unless the cursor's offset has caused the view to change.
+  #
   class RefreshCursor
 
-    # @param name [String] The name of the cursor.
-    # @return [Array]
+    # @param (see #initialize)
     def self.render(name)
       new(name).render
     end
@@ -29,7 +31,8 @@ module Vedeu
 
     # @return [Boolean]
     def refresh_view?
-      new_cursor.ox >= interface_width || new_cursor.oy >= interface_height
+      new_cursor.ox >= interface_width ||
+      new_cursor.oy >= interface_height
     end
 
     # @return [Vedeu::Cursor]
@@ -37,7 +40,7 @@ module Vedeu
       @new_cursor ||= Vedeu::Cursor.new(cursor.attributes.merge(position))
     end
 
-    # @return [Hash]
+    # @return [Hash<Symbol => Fixnum>]
     def position
       {
         x: validated_position.x,

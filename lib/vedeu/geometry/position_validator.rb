@@ -40,10 +40,7 @@ module Vedeu
     # @return [Fixnum]
     attr_accessor :y
 
-    # @param interface [Interface]
-    # @param x [Fixnum]
-    # @param y [Fixnum]
-    # @return [PositionValidator]
+    # @param (see #initialize)
     def self.validate(interface, x, y)
       new(interface, x, y).validate
     end

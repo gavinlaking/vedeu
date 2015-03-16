@@ -91,7 +91,7 @@ module Vedeu
     # @param data [Vedeu::Char]
     # @return [Vedeu::Char]
     def write(y, x, data)
-      return false unless read(y, x).is_a?(Vedeu::Char)
+      return false unless read(y, x).is_a?(Vedeu::Cell)
 
       cy, cx = Vedeu::PositionIndex[y, x]
       cells[cy][cx] = data
@@ -109,10 +109,10 @@ module Vedeu
       from[which] || []
     end
 
-    # @return [Array<Array<Vedeu::Char>>]
+    # @return [Array<Array<Vedeu::Cell>>]
     # @see {Vedeu::VirtualTerminal#cells}
     def new_virtual_terminal
-      Array.new(height) { Array.new(width) { Vedeu::Char.new } }
+      Array.new(height) { Array.new(width) { Vedeu::Cell.new } }
     end
 
   end # VirtualTerminal

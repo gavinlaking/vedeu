@@ -4,14 +4,12 @@ module Vedeu
   #
   class Application
 
-    # @param configuration [Vedeu::Configuration]
-    # @return [void]
+    # @param (see #initialize)
     def self.start(configuration)
       new(configuration).start
     end
 
-    # @param configuration [Vedeu::Configuration]
-    # @return [void]
+    # @param (see #initialize)
     def self.restart(configuration)
       new(configuration).start
     end

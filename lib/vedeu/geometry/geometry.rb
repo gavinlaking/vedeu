@@ -29,6 +29,7 @@ module Vedeu
   #
   class Geometry
 
+    extend Forwardable
     include Vedeu::Model
 
     # @!attribute [rw] centred
@@ -58,6 +59,14 @@ module Vedeu
     # @!attribute [w] y
     # @return [Fixnum]
     attr_writer :y
+
+    # @!attribute [w] xn
+    # @return [Fixnum]
+    attr_writer :xn
+
+    # @!attribute [w] yn
+    # @return [Fixnum]
+    attr_writer :yn
 
     # Returns a new instance of Geometry.
     #
@@ -266,7 +275,30 @@ module Vedeu
       right + value
     end
 
+    # def_delegators :area, :north, :east, :south, :west
+
     private
+
+    # @return [Vedeu::Area]
+    def area
+      @area ||= Vedeu::Area.from_dimensions(y_yn, x_xn)
+    end
+
+    # @return [Array<Fixnum>]
+    def x_xn
+      @x_xn ||= Vedeu::Dimension.pair({ v:       @x,
+                                        vn:      @xn,
+                                        v_vn:    @width,
+                                        default: Vedeu::Terminal.width })
+    end
+
+    # @return [Array<Fixnum>]
+    def y_yn
+      @y_yn ||= Vedeu::Dimension.pair({ v:       @y,
+                                        vn:      @yn,
+                                        v_vn:    @height,
+                                        default: Vedeu::Terminal.height })
+    end
 
     # The default values for a new instance of this class.
     #

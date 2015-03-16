@@ -13,8 +13,7 @@ module Vedeu
     #
     class Client
 
-      # @param uri [String]
-      # @return [Client]
+      # @param (see #initialize)
       def self.connect(uri)
         new(uri).connect
       end

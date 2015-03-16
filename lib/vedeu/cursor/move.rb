@@ -33,7 +33,7 @@ module Vedeu
   #   The cursor will move freely within the bounds of the interface,
   #     irrespective of content.
   #
-  class MoveCursor
+  class Move
 
     extend Forwardable
 
@@ -46,13 +46,13 @@ module Vedeu
                               :height,
                               :width
 
-    # Returns an instance of MoveCursor.
+    # Returns an instance of Move.
     #
     # @param cursor    [Cursor]
     # @param interface [Interface]
     # @param dy        [Fixnum] Move up (-1), or down (1), or no action (0).
     # @param dx        [Fixnum] Move left (-1), or right (1), or no action (0).
-    # @return [MoveCursor]
+    # @return [Move]
     def initialize(cursor, interface, dy = 0, dx = 0)
       @cursor    = cursor
       @dy        = dy || 0
@@ -81,7 +81,7 @@ module Vedeu
 
       end
 
-      new_cursor = Vedeu::MoveCursor.send(direction, cursor, interface)
+      new_cursor = Vedeu::Move.send(direction, cursor, interface)
 
       Vedeu.trigger(:_refresh_cursor_, new_cursor.name)
 
@@ -162,7 +162,7 @@ module Vedeu
     # @return [Vedeu::Interface]
     attr_reader :interface
 
-    # @return [Hash]
+    # @return [Hash<Symbol => Fixnum>]
     def moved_attributes
       {
         x:  validator.x,
@@ -225,6 +225,6 @@ module Vedeu
       width
     end
 
-  end # MoveCursor
+  end # Move
 
 end # Vedeu

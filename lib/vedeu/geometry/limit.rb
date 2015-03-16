@@ -4,7 +4,7 @@ module Vedeu
   #
   class Limit
 
-    # @see #new, #apply
+    # @param (see #initialize)
     def self.apply(v, vn, max, min = 1)
       new(v, vn, max, min).apply
     end

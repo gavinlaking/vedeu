@@ -15,6 +15,11 @@ module Vedeu
     alias_method :first, :y
     alias_method :last, :x
 
+    # @param (see #initialize)
+    def self.[](y, x)
+      new(y, x)
+    end
+
     # @param value [Array<Fixnum>|Vedeu::Position]
     # @return [void]
     def self.coerce(value)

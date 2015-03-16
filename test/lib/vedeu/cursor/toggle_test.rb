@@ -2,9 +2,9 @@ require 'test_helper'
 
 module Vedeu
 
-  describe ToggleCursor do
+  describe Toggle do
 
-    let(:described) { ToggleCursor.new(cursor) }
+    let(:described) { Toggle.new(cursor) }
     let(:cursor)    { Cursor.new({ name: 'vanadium',
                                    ox: 1,
                                    oy: 1,
@@ -14,12 +14,12 @@ module Vedeu
     let(:state)     { true }
 
     describe '#initialize' do
-      it { described.must_be_instance_of(ToggleCursor) }
+      it { described.must_be_instance_of(Toggle) }
       it { described.instance_variable_get('@cursor').must_equal(cursor) }
     end
 
     describe '.hide' do
-      subject { ToggleCursor.hide(cursor) }
+      subject { Toggle.hide(cursor) }
 
       it { subject.must_be_instance_of(Cursor) }
 
@@ -39,7 +39,7 @@ module Vedeu
     end
 
     describe '.show' do
-      subject { ToggleCursor.show(cursor) }
+      subject { Toggle.show(cursor) }
 
       it { subject.must_be_instance_of(Cursor) }
 
@@ -58,6 +58,6 @@ module Vedeu
       end
     end
 
-  end # ToggleCursor
+  end # Toggle
 
 end # Vedeu
