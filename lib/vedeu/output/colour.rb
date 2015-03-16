@@ -63,7 +63,7 @@ module Vedeu
 
     # The default values for a new instance of this class.
     #
-    # @return [Hash]
+    # @return [Hash<Symbol => String>]
     def defaults
       {
         foreground: '',

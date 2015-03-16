@@ -40,7 +40,7 @@ module Vedeu
     #   :light_cyan
     #   :white
     #
-    # @return [Hash]
+    # @return [Hash<Symbol => Fixnum>]
     def codes
       {
         black:         30,
@@ -67,7 +67,7 @@ module Vedeu
     # Produces the background named colour escape sequence hash from the
     # foreground escape sequence hash.
     #
-    # @return [Hash]
+    # @return [Hash<Symbol => Fixnum>]
     def background_codes
       Vedeu::Esc.codes.inject({}) { |h, (k, v)| h.merge!(k => v + 10) }
     end

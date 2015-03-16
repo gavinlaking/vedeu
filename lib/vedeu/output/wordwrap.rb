@@ -142,7 +142,7 @@ module Vedeu
       options.fetch(:width)
     end
 
-    # @return [Hash]
+    # @return [Hash<Symbol => Fixnum, String, Symbol>]
     def defaults
       {
         ellipsis: '...',

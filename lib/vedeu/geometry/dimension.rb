@@ -11,10 +11,10 @@ module Vedeu
     end
 
     # @param attributes [Hash<Symbol => Fixnum, NilClass>]
-    # @options attributes d       [Fixnum|NilClass] The starting value (y or x).
-    # @options attributes dn      [Fixnum|NilClass] The ending value (yn or xn).
-    # @options attributes d_dn    [Fixnum|NilClass] A width or a height.
-    # @options attributes default [Fixnum|NilClass] The terminal width or height.
+    # @option attributes d [Fixnum|NilClass] The starting value (y or x).
+    # @option attributes dn [Fixnum|NilClass] The ending value (yn or xn).
+    # @option attributes d_dn [Fixnum|NilClass] A width or a height.
+    # @option attributes default [Fixnum|NilClass] The terminal width or height.
     # @return [Vedeu::Dimension]
     def initialize(attributes = {})
       @d       = attributes[:d]
