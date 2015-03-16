@@ -281,7 +281,7 @@ module Vedeu
 
     # @return [Vedeu::Area]
     def area
-      @area ||= Vedeu::Area.from_dimensions(y_yn, x_xn)
+      @area ||= Vedeu::Area.from_dimensions(y_yn: y_yn, x_xn: x_xn)
     end
 
     # @return [Array<Fixnum>]
@@ -289,7 +289,9 @@ module Vedeu
       @x_xn ||= Vedeu::Dimension.pair({ v:       @x,
                                         vn:      @xn,
                                         v_vn:    @width,
-                                        default: Vedeu::Terminal.width })
+                                        default: Vedeu::Terminal.width,
+                                        options: { centred: centred }
+                                      })
     end
 
     # @return [Array<Fixnum>]
@@ -297,7 +299,9 @@ module Vedeu
       @y_yn ||= Vedeu::Dimension.pair({ v:       @y,
                                         vn:      @yn,
                                         v_vn:    @height,
-                                        default: Vedeu::Terminal.height })
+                                        default: Vedeu::Terminal.height,
+                                        options: { centred: centred }
+                                      })
     end
 
     # The default values for a new instance of this class.
