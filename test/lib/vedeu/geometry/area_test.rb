@@ -10,6 +10,7 @@ module Vedeu
     let(:yn)        { 9 }
     let(:x)         { 6 }
     let(:xn)        { 21 }
+    let(:offset)    { 1 }
 
     describe 'accessors and aliases' do
       it { instance.must_respond_to(:y) }
@@ -84,28 +85,101 @@ module Vedeu
       subject { instance.centre }
 
       it { subject.must_be_instance_of(Array) }
-      it { subject.must_equal([6, 13]) }
-    end
-
-    describe '#centre' do
-      subject { instance.centre }
-
-      it { subject.must_be_instance_of(Array) }
-      it { subject.must_equal([6, 13]) }
+      it { subject.must_equal([7, 14]) }
     end
 
     describe '#centre_y' do
       subject { instance.centre_y }
 
       it { subject.must_be_instance_of(Fixnum) }
-      it { subject.must_equal(6) }
+      it { subject.must_equal(7) }
     end
 
     describe '#centre_x' do
       subject { instance.centre_x }
 
       it { subject.must_be_instance_of(Fixnum) }
-      it { subject.must_equal(13) }
+      it { subject.must_equal(14) }
+    end
+
+    describe '#north' do
+      subject { instance.north(offset) }
+
+      context 'with the default offset' do
+        it { subject.must_equal(3) }
+      end
+
+      context 'with a negative offset' do
+        let(:offset) { -2 }
+
+        it { subject.must_equal(6) }
+      end
+
+      context 'with a positive offset' do
+        let(:offset) { 2 }
+
+        it { subject.must_equal(2) }
+      end
+    end
+
+    describe '#east' do
+      subject { instance.east(offset) }
+
+      context 'with the default offset' do
+        it { subject.must_equal(22) }
+      end
+
+      context 'with a negative offset' do
+        let(:offset) { -2 }
+
+        it { subject.must_equal(19) }
+      end
+
+      context 'with a positive offset' do
+        let(:offset) { 2 }
+
+        it { subject.must_equal(23) }
+      end
+    end
+
+    describe '#south' do
+      subject { instance.south(offset) }
+
+      context 'with the default offset' do
+        it { subject.must_equal(10) }
+      end
+
+      context 'with a negative offset' do
+        let(:offset) { -2 }
+
+        it { subject.must_equal(7) }
+      end
+
+      context 'with a positive offset' do
+        let(:offset) { 2 }
+
+        it { subject.must_equal(11) }
+      end
+    end
+
+    describe '#west' do
+      subject { instance.west(offset) }
+
+      context 'with the default offset' do
+        it { subject.must_equal(5) }
+      end
+
+      context 'with a negative offset' do
+        let(:offset) { -2 }
+
+        it { subject.must_equal(8) }
+      end
+
+      context 'with a positive offset' do
+        let(:offset) { 2 }
+
+        it { subject.must_equal(4) }
+      end
     end
 
   end # Area
