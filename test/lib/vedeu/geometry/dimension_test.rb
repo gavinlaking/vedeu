@@ -53,11 +53,11 @@ module Vedeu
         context 'when only a d_dn is given' do
           let(:d_dn) { 30 }
 
-          it { subject.must_equal([29, 51]) }
+          it { subject.must_equal([28, 52]) }
         end
 
         context 'when only a default is given' do
-          it { subject.must_equal([29, 51]) }
+          it { subject.must_equal([28, 52]) }
         end
       end
     end
@@ -124,6 +124,12 @@ module Vedeu
           let(:d_dn) { 6 }
 
           it { subject.must_equal(6) }
+        end
+
+        context 'when only dn is given' do
+          let(:dn) { 8 }
+
+          it { subject.must_equal(8) }
         end
 
         context 'when d and a default is given' do

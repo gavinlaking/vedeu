@@ -75,6 +75,9 @@ module Vedeu
       elsif d
         [d, default]
 
+      elsif dn
+        [1, dn]
+
       else
         [1, default]
 
@@ -89,7 +92,7 @@ module Vedeu
     # @return [Fixnum|NilClass]
     def length
       if d && dn
-        dn - d
+        (d..dn).size
 
       elsif d_dn
         d_dn
