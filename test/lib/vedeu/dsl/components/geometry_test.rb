@@ -206,12 +206,16 @@ module Vedeu
       end
 
       describe '#xn' do
+        before { Terminal.stubs(:size).returns([25, 80]) }
+
         subject { Vedeu::Geometry.build({}) { xn 15 } }
 
         it { subject.xn.must_equal(15) }
       end
 
       describe '#yn' do
+        before { Terminal.stubs(:size).returns([25, 80]) }
+
         subject { Vedeu::Geometry.build({}) { yn 8 } }
 
         it { subject.yn.must_equal(8) }
