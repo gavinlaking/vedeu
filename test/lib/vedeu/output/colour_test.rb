@@ -42,6 +42,14 @@ module Vedeu
       end
     end
 
+    describe '#background=' do
+      let(:value) { '#000000' }
+
+      subject { instance.background=(value) }
+
+      it { subject.must_equal(value) }
+    end
+
     describe '#foreground' do
       subject { instance.foreground }
 
@@ -64,6 +72,14 @@ module Vedeu
         it { subject.to_s.must_equal('') }
         it { subject.to_html.must_equal('') }
       end
+    end
+
+    describe '#foreground=' do
+      let(:value) { '#ff0000' }
+
+      subject { instance.foreground=(value) }
+
+      it { subject.must_equal(value) }
     end
 
     describe '#to_s' do
