@@ -28,7 +28,7 @@ class VedeuBordersApp
 
   interface 'border_off' do
     geometry do
-      x      13
+      x      14
       y      2
       height 4
       width  10
@@ -38,7 +38,7 @@ class VedeuBordersApp
 
   interface 'no_top' do
     geometry do
-      x      24
+      x      26
       y      2
       height 4
       width  10
@@ -48,7 +48,7 @@ class VedeuBordersApp
 
   interface 'no_bottom' do
     geometry do
-      x      35
+      x      38
       y      2
       height 4
       width  10
@@ -58,7 +58,7 @@ class VedeuBordersApp
 
   interface 'no_left' do
     geometry do
-      x      46
+      x      50
       y      2
       height 4
       width  10
@@ -68,7 +68,7 @@ class VedeuBordersApp
 
   interface 'no_right' do
     geometry do
-      x      57
+      x      62
       y      2
       height 4
       width  10
@@ -79,7 +79,7 @@ class VedeuBordersApp
   interface 'custom_corners' do
     geometry do
       x      2
-      y      7
+      y      8
       height 4
       width  10
     end
@@ -88,8 +88,8 @@ class VedeuBordersApp
 
   interface 'custom_sides' do
     geometry do
-      x      13
-      y      7
+      x      14
+      y      8
       height 4
       width  10
     end
@@ -98,8 +98,8 @@ class VedeuBordersApp
 
   interface 'only_top' do
     geometry do
-      x      24
-      y      7
+      x      26
+      y      8
       height 4
       width  10
     end
@@ -108,8 +108,8 @@ class VedeuBordersApp
 
   interface 'only_bottom' do
     geometry do
-      x      35
-      y      7
+      x      38
+      y      8
       height 4
       width  10
     end
@@ -118,8 +118,8 @@ class VedeuBordersApp
 
   interface 'only_left' do
     geometry do
-      x      46
-      y      7
+      x      50
+      y      8
       height 4
       width  10
     end
@@ -128,8 +128,8 @@ class VedeuBordersApp
 
   interface 'only_right' do
     geometry do
-      x      57
-      y      7
+      x      62
+      y      8
       height 4
       width  10
     end
@@ -139,7 +139,7 @@ class VedeuBordersApp
   interface 'custom_colour' do
     geometry do
       x      2
-      y      12
+      y      14
       height 4
       width  10
     end
@@ -148,8 +148,8 @@ class VedeuBordersApp
 
   interface 'negative' do
     geometry do
-      x      13
-      y      12
+      x      14
+      y      14
       height 4
       width  10
     end
