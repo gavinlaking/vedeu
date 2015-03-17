@@ -32,13 +32,13 @@ module Vedeu
 
     # @return [Fixnum]
     def cy
-      ((yn - y) / 2) + y
+      (height / 2) + y
     end
     alias_method :centre_y, :cy
 
     # @return [Fixnum]
     def cx
-      ((xn - x) / 2) + x
+      (width / 2) + x
     end
     alias_method :centre_x, :cx
 
@@ -47,6 +47,16 @@ module Vedeu
       1
     end
     alias_method :origin, :o
+
+    # @return [Fixnum]
+    def height
+      (y..yn).size
+    end
+
+    # @return [Fixnum]
+    def width
+      (x..xn).size
+    end
 
     # @return [Fixnum]
     def y
