@@ -33,22 +33,8 @@ module Vedeu
       it { instance.instance_variable_get('@y').must_equal(y) }
     end
 
-    describe '#==' do
-      let(:other) { instance }
-
-      subject { instance.==(other) }
-
-      it { subject.must_equal(true) }
-
-      context 'when different to other' do
-        let(:other) { described.new({}) }
-
-        it { subject.must_equal(false) }
-      end
-    end
-
     describe '#eql?' do
-      let(:other) { instance }
+      let(:other) { described.new({ background: '#000000' }) }
 
       subject { instance.eql?(other) }
 

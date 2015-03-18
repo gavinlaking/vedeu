@@ -122,6 +122,9 @@ module Vedeu
     # Scrolls the content vertically when the stored cursor's y position for the
     # interface is outside of the visible area.
     #
+    # @note
+    #   The height is reduced by one as #rows is a range of Array elements.
+    #
     # @return [Range]
     def rows
       top..(top + (height - 1))
@@ -131,6 +134,9 @@ module Vedeu
     #
     # Scrolls the content horizontally when the stored cursor's x position for
     # the interface is outside of the visible area.
+    #
+    # @note
+    #   The width is reduced by one as #columns is a range of Array elements.
     #
     # @return [Range]
     def columns

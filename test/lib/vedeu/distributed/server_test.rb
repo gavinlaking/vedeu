@@ -19,10 +19,14 @@ module Vedeu
         let(:data) {}
 
         subject { described.input(data) }
+
+        it { Vedeu.expects(:trigger); subject }
       end
 
       describe '.output' do
         subject { described.output }
+
+        it { Vedeu.expects(:trigger); subject }
       end
 
       describe '#pid' do

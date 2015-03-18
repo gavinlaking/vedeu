@@ -20,7 +20,7 @@ module Vedeu
     end
 
     describe '#c' do
-      it { instance.c.must_equal([13, 40]) }
+      it { instance.c.must_equal([13, 41]) }
       it { instance.must_respond_to(:centre) }
     end
 
@@ -30,13 +30,21 @@ module Vedeu
     end
 
     describe '#cx' do
-      it { instance.cx.must_equal(40) }
+      it { instance.cx.must_equal(41) }
       it { instance.must_respond_to(:centre_x) }
     end
 
     describe '#o' do
       it { instance.o.must_equal(1) }
       it { instance.must_respond_to(:origin) }
+    end
+
+    describe '#height' do
+      it { instance.height.must_equal(25) }
+    end
+
+    describe '#width' do
+      it { instance.width.must_equal(80) }
     end
 
     describe '#y' do

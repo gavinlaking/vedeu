@@ -11,7 +11,8 @@ module Vedeu
 
     extend Forwardable
 
-    def_delegators :state, :visible?, :invisible?
+    def_delegators :state, :visible?,
+      :invisible?
 
     include Vedeu::Model
 

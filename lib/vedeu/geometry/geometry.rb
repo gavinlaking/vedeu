@@ -1,8 +1,8 @@
 require 'vedeu/dsl/components/all'
 require 'vedeu/repositories/model'
 
-require 'vedeu/geometry/limit'
-require 'vedeu/geometry/position'
+require 'vedeu/geometry/area'
+require 'vedeu/geometry/dimension'
 require 'vedeu/support/terminal'
 
 module Vedeu
@@ -32,37 +32,52 @@ module Vedeu
     extend Forwardable
     include Vedeu::Model
 
+    def_delegators :area, :north,
+      :east,
+      :south,
+      :west,
+      :top,
+      :right,
+      :bottom,
+      :left,
+      :y,
+      :xn,
+      :yn,
+      :x,
+      :height,
+      :width
+
     # @!attribute [rw] centred
     # @return [Boolean]
     attr_accessor :centred
-
-    # @!attribute [rw] height
-    # @return [Fixnum]
-    attr_accessor :height
 
     # @!attribute [rw] name
     # @return [String]
     attr_accessor :name
 
-    # @!attribute [rw] width
-    # @return [Fixnum]
-    attr_accessor :width
-
     # @!attribute [r] attributes
     # @return [Hash]
     attr_reader :attributes
+
+    # @!attribute [w] height
+    # @return [Fixnum]
+    attr_writer :height
+
+    # @!attribute [w] width
+    # @return [Fixnum]
+    attr_writer :width
 
     # @!attribute [w] x
     # @return [Fixnum]
     attr_writer :x
 
-    # @!attribute [w] y
-    # @return [Fixnum]
-    attr_writer :y
-
     # @!attribute [w] xn
     # @return [Fixnum]
     attr_writer :xn
+
+    # @!attribute [w] y
+    # @return [Fixnum]
+    attr_writer :y
 
     # @!attribute [w] yn
     # @return [Fixnum]
@@ -81,240 +96,71 @@ module Vedeu
     # @option attributes yn [Fixnum]
     # @return [Geometry]
     def initialize(attributes = {})
-      @attributes = defaults.merge!(attributes)
-
-      @centred = @attributes[:centred]
-      @height  = @attributes[:height]
-      @name    = @attributes[:name]
-      @width   = @attributes[:width]
-      @x       = @attributes[:x]
-      @xn      = @attributes[:xn]
-      @y       = @attributes[:y]
-      @yn      = @attributes[:yn]
+      @attributes = attributes
+      @centred    = @attributes[:centred]
+      @height     = @attributes[:height]
+      @name       = @attributes[:name]
+      @width      = @attributes[:width]
+      @x          = @attributes[:x]
+      @xn         = @attributes[:xn]
+      @y          = @attributes[:y]
+      @yn         = @attributes[:yn]
       @repository = Vedeu.geometries
     end
-
-    # Returns the row/line start position for the interface.
-    #
-    # @return [Fixnum]
-    def y
-      if @y.is_a?(Proc)
-        @y.call
-
-      else
-        @y
-
-      end
-    end
-
-    # Returns the row/line end position for the interface.
-    #
-    # @return [Fixnum]
-    def yn
-      if @yn.is_a?(Proc)
-        @yn.call
-
-      else
-        @yn
-
-      end
-    end
-
-    # Returns the column/character start position for the interface.
-    #
-    # @return [Fixnum]
-    def x
-      if @x.is_a?(Proc)
-        @x.call
-
-      else
-        @x
-
-      end
-    end
-
-    # Returns the column/character end position for the interface.
-    #
-    # @return [Fixnum]
-    def xn
-      if @xn.is_a?(Proc)
-        @xn.call
-
-      else
-        @xn
-
-      end
-    end
-
-    # Returns a dynamic value calculated from the current terminal dimensions,
-    # combined with the desired start point.
-    #
-    # If the interface is `centred` then if the terminal resizes, this value
-    # should attempt to accommodate that.
-    #
-    # For uncentred interfaces, when the terminal resizes, then this will help
-    # Vedeu render the view to ensure the content is not off-screen.
-    #
-    # @return [Fixnum]
-    def width
-      Vedeu::Limit.apply(x, @width, Vedeu::Terminal.width, Vedeu::Terminal.origin)
-    end
-
-    # @see Vedeu::Geometry#width
-    def height
-      Vedeu::Limit.apply(y, @height, Vedeu::Terminal.height, Vedeu::Terminal.origin)
-    end
-
-    # Returns the top coordinate of the interface, a fixed or dynamic value
-    # depending on whether the interface is centred or not.
-    #
-    # @note
-    #   Division which results in a non-integer will be rounded down.
-    #
-    # @return [Fixnum]
-    def top
-      if centred
-        Vedeu::Terminal.centre_y - (height / 2)
-
-      else
-        y
-
-      end
-    end
-
-    # Returns the row above the top by default.
-    #
-    # @example
-    #   `top` is 4.
-    #
-    #   north     # => 3
-    #   north(2)  # => 2
-    #   north(-4) # => 8
-    #
-    # @param value [Fixnum]
-    # @return [Fixnum]
-    def north(value = 1)
-      top - value
-    end
-
-    # Returns the left coordinate of the interface, a fixed or dynamic value
-    # depending on whether the interface is centred or not.
-    #
-    # @note
-    #   Division which results in a non-integer will be rounded down.
-    #
-    # @return [Fixnum]
-    def left
-      if centred
-        Vedeu::Terminal.centre_x - (width / 2)
-
-      else
-        x
-
-      end
-    end
-
-    # Returns the column before left by default.
-    #
-    # @example
-    #   `left` is 8.
-    #
-    #   west      # => 7
-    #   west(2)   # => 6
-    #   west(-4)  # => 12
-    #
-    # @param value [Fixnum]
-    # @return [Fixnum]
-    def west(value = 1)
-      left - value
-    end
-
-    # Returns the bottom coordinate of the interface, a fixed or dynamic value
-    # depending on the value of {#top}.
-    #
-    # @return [Fixnum]
-    def bottom
-      top + height
-    end
-
-    # Returns the row below the bottom by default.
-    #
-    # @example
-    #   `bottom` is 12.
-    #
-    #   south     # => 13
-    #   south(2)  # => 14
-    #   south(-4) # => 8
-    #
-    # @param value [Fixnum]
-    # @return [Fixnum]
-    def south(value = 1)
-      bottom + value
-    end
-
-    # Returns the right coordinate of the interface, a fixed or dynamic value
-    # depending on the value of {#left}.
-    #
-    # @return [Fixnum]
-    def right
-      left + width
-    end
-
-    # Returns the column after right by default.
-    #
-    # @example
-    #   `right` is 19.
-    #
-    #   east     # => 20
-    #   east(2)  # => 21
-    #   east(-4) # => 15
-    #
-    # @param value [Fixnum]
-    # @return [Fixnum]
-    def east(value = 1)
-      right + value
-    end
-
-    # def_delegators :area, :north, :east, :south, :west
 
     private
 
     # @return [Vedeu::Area]
     def area
-      @area ||= Vedeu::Area.from_dimensions(y_yn, x_xn)
+      @area ||= Vedeu::Area.from_dimensions(y_yn: y_yn, x_xn: x_xn)
     end
 
     # @return [Array<Fixnum>]
     def x_xn
-      @x_xn ||= Vedeu::Dimension.pair({ v:       @x,
-                                        vn:      @xn,
-                                        v_vn:    @width,
-                                        default: Vedeu::Terminal.width })
+      @x_xn ||= Vedeu::Dimension.pair({ d:        _x,
+                                        dn:      _xn,
+                                        d_dn:    @width,
+                                        default: Vedeu::Terminal.width,
+                                        options: { centred: centred }
+                                      })
     end
 
     # @return [Array<Fixnum>]
     def y_yn
-      @y_yn ||= Vedeu::Dimension.pair({ v:       @y,
-                                        vn:      @yn,
-                                        v_vn:    @height,
-                                        default: Vedeu::Terminal.height })
+      @y_yn ||= Vedeu::Dimension.pair({ d:       _y,
+                                        dn:      _yn,
+                                        d_dn:    @height,
+                                        default: Vedeu::Terminal.height,
+                                        options: { centred: centred }
+                                      })
     end
 
-    # The default values for a new instance of this class.
+    # Returns the row/line start position for the interface.
     #
-    # @return [Hash]
-    def defaults
-      {
-        centred: false,
-        client:  nil,
-        height:  Vedeu::Terminal.height,
-        name:    '',
-        width:   Vedeu::Terminal.width,
-        x:       1,
-        xn:      Vedeu::Terminal.width,
-        y:       1,
-        yn:      Vedeu::Terminal.height,
-      }
+    # @return [Fixnum]
+    def _y
+      @y.is_a?(Proc) ? @y.call : @y
+    end
+
+    # Returns the row/line end position for the interface.
+    #
+    # @return [Fixnum]
+    def _yn
+      @yn.is_a?(Proc) ? @yn.call : @yn
+    end
+
+    # Returns the column/character start position for the interface.
+    #
+    # @return [Fixnum]
+    def _x
+      @x.is_a?(Proc) ? @x.call : @x
+    end
+
+    # Returns the column/character end position for the interface.
+    #
+    # @return [Fixnum]
+    def _xn
+      @xn.is_a?(Proc) ? @xn.call : @xn
     end
 
   end # Geometry

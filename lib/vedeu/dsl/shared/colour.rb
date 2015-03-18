@@ -17,7 +17,7 @@ module Vedeu
       # @note The last defined background colour for a particular interface,
       #   line or stream overrides previously defined entries in the same block.
       #
-      # @param value [String]
+      # @param value [String] A HTML/CSS value.
       #
       # @example
       #   interface 'my_interface' do

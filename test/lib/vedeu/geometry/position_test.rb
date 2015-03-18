@@ -58,18 +58,14 @@ module Vedeu
       end
     end
 
-    describe '#==' do
-      let(:other) {}
+    describe '#eql?' do
+      let(:other) { described.new(12, 19) }
 
-      subject { instance == other }
+      subject { instance.eql?(other) }
 
-      context 'when they are equal' do
-        let(:other) { described.new(12, 19) }
+      it { subject.must_equal(true) }
 
-        it { subject.must_equal(true) }
-      end
-
-      context 'when they are not equal' do
+      context 'when different to other' do
         let(:other) { described.new(2, 9) }
 
         it { subject.must_equal(false) }
