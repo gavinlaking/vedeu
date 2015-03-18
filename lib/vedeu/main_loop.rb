@@ -22,8 +22,6 @@ module Vedeu
       @loop    = true
 
       while(@loop) do
-        Vedeu.trigger(:tick)
-
         yield
 
         safe_exit_point!
@@ -51,7 +49,7 @@ module Vedeu
         fail VedeuInterrupt
 
       else
-        Vedeu.trigger(:tock)
+        Vedeu.trigger(:tock, Time.now.to_f)
 
       end
     end
