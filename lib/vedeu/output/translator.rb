@@ -52,6 +52,9 @@ module Vedeu
       if no_colour?
         ''
 
+      elsif registered?(colour)
+        retrieve(colour)
+
       elsif rgb?
         rgb
 
@@ -136,7 +139,7 @@ module Vedeu
     # @return [String]
     def rgb
       if Vedeu::Configuration.colour_mode == 16777216
-        sprintf(rgb_prefix, *css_to_rgb)
+        register(colour, sprintf(rgb_prefix, *css_to_rgb))
 
       else
         numbered

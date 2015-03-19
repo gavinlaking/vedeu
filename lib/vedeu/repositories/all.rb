@@ -28,6 +28,71 @@ module Vedeu
 
   end # Buffers
 
+
+  # Allows the storing of HTML/CSS colours and their respective escape
+  # sequences.
+  #
+  class Colours
+
+    # @!attribute [r] storage
+    # @return [Hash<String => String>]
+    attr_reader :storage
+
+    # @return [Vedeu::Colours]
+    def initialize
+      @storage = {}
+    end
+
+    # @return [String]
+    def register(colour, escape_sequence)
+      storage.store(colour, escape_sequence)
+    end
+
+    # @return [Boolean]
+    def registered?(colour)
+      storage.key?(colour)
+    end
+
+    # @return [String]
+    def retrieve(colour)
+      storage.fetch(colour, '')
+    end
+
+    # @return [String]
+    def retrieve_or_register(colour, escape_sequence)
+      if registered?(colour)
+        retrieve(colour)
+
+      else
+        register(colour, escape_sequence)
+
+      end
+    end
+
+  end # Colours
+
+  # Store background colour escape sequences by HTML/CSS code.
+  #
+  class BackgroundColours < Colours
+
+    # @return [Vedeu::BackgroundColours]
+    def self.background_colours
+      @background_colours ||= new
+    end
+
+  end # BackgroundColours
+
+  # Store foreground colour escape sequences by HTML/CSS code.
+  #
+  class ForegroundColours < Colours
+
+    # @return [Vedeu::ForegroundColours]
+    def self.foreground_colours
+      @foreground_colours ||= new
+    end
+
+  end # ForegroundColours
+
   # Allows the storing of each interface's cursor.
   #
   class Cursors < Repository

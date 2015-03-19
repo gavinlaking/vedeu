@@ -46,6 +46,14 @@ module Vedeu
     #   @see Vedeu::Canvas.canvas
     def_delegators Vedeu::Canvas, :canvas
 
+    # @!method background_colours
+    #   @see Vedeu::BackgroundColours.background_colours
+    def_delegators Vedeu::BackgroundColours, :background_colours
+
+    # @!method foreground_colours
+    #   @see Vedeu::ForegroundColours.foreground_colours
+    def_delegators Vedeu::ForegroundColours, :foreground_colours
+
     # @!method cursors
     #   @see Vedeu::Cursors.cursors
     def_delegators Vedeu::Cursors, :cursors
