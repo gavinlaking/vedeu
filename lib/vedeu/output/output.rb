@@ -38,7 +38,10 @@ module Vedeu
         Vedeu::HTMLRenderer.to_file(Vedeu::VirtualBuffer.retrieve)
       end
 
-      Vedeu::Terminal.output(Vedeu::Renderer.render(virtual_view))
+      Vedeu::Terminal.output(Vedeu::Esc.string(:hide_cursor))
+      output = Vedeu::Terminal.output(Vedeu::Renderer.render(virtual_view))
+      Vedeu::Terminal.output(Vedeu::Esc.string(:show_cursor))
+      output
     end
 
     private
