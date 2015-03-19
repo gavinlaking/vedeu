@@ -26,13 +26,32 @@ module Vedeu
     #
     # @return [Array<Array<Vedeu::Char>>]
     def clear
-      Array.new(interface.height) do |iy|
-        Array.new(interface.width) do |ix|
-          Vedeu::Char.new({ value:    ' ',
-                            colour:   interface.colour,
-                            style:    interface.style,
-                            position: Vedeu::IndexPosition[iy, ix, interface.top, interface.left] })
+      if interface.height == Terminal.height &&
+         interface.width == Terminal.width
+
+        [
+          [
+            interface.colour.to_s,
+            "\e[2J",
+            "\e[1;1H"
+          ]
+        ]
+
+      else
+        rows = [interface.colour.to_s]
+        interface.height.times do |iy|
+          cols = []
+          interface.width.times do |ix|
+            cols << Vedeu::IndexPosition[iy, ix, interface.top, interface.left].to_s { ' ' }
+
+            # Vedeu::Char.new({ value:    ' ',
+            #                   colour:   interface.colour,
+            #                   style:    interface.style,
+            #                   position: Vedeu::IndexPosition[iy, ix, interface.top, interface.left] })
+          end
+          rows << cols
         end
+        rows
       end
     end
 
