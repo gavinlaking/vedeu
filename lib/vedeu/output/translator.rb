@@ -84,6 +84,22 @@ module Vedeu
 
     private
 
+    # Subclasses implement this method.
+    #
+    # @param colour [String]
+    # @return [String]
+    def retrieve(colour)
+      ''
+    end
+
+    # Subclasses implement this method.
+    #
+    # @param colour [String]
+    # @return [FalseClass]
+    def registered?(colour)
+      false
+    end
+
     # @return [Boolean]
     def no_colour?
       colour.nil? || colour.to_s.empty?
