@@ -163,11 +163,11 @@ module Vedeu
 
     # @return [Array<Array<Vedeu::Char>>|Array]
     def to_char
-      ls = []
-      lines.each_with_index do |l, i|
-        ls << l.to_char(i)
+      chars = []
+      lines.each_with_index do |line, index|
+        chars << line.to_char(index)
       end
-      ls
+      chars
     end
 
     private

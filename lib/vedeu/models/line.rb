@@ -77,12 +77,12 @@ module Vedeu
     end
 
     # @return [Array<Array<Vedeu::Char>>|Array]
-    def to_char(li)
-      ss = []
-      streams.each_with_index do |s, i|
-        ss << s.to_char(li, i)
+    def to_char(line_index)
+      chars = []
+      streams.each_with_index do |stream, index|
+        chars << stream.to_char(line_index, index)
       end
-      ss.flatten
+      chars.flatten
     end
 
     # Delegate to Vedeu::Interface#width if available.

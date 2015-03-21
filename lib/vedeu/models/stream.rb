@@ -81,12 +81,15 @@ module Vedeu
       value.size
     end
 
-    def to_char(li, si)
-      cs = chars.each_with_index do |c, i|
-        c.position = IndexPosition[li, i, parent.parent.top, parent.parent.left]
-        c
+    # @param line_index [Fixnum]
+    # @param stream_ndex [Fixnum]
+    # @return [Array<Vedeu::Char>]
+    def to_char(line_index, stream_index)
+      out = chars.each_with_index do |char, index|
+        char.position = IndexPosition[line_index, index, parent.parent.top, parent.parent.left]
+        char
       end
-      cs.flatten
+      out.flatten
     end
 
     # @return [String]
