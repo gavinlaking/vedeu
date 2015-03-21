@@ -87,7 +87,7 @@ module Vedeu
     #
     # @return [Array<Array<String>>]
     def padded_lines
-      visible = lines[rows] || []
+      visible = interface.to_char[rows] || []
 
       pad(visible, :height)
     end
@@ -97,9 +97,10 @@ module Vedeu
     # @param line [Array<String>]
     # @return [Array<String>]
     def padded_columns(line)
-      visible = line.chars[columns] || []
-
-      pad(visible, :width)
+      if line.is_a?(Array)
+        visible = line[columns] || []
+        pad(visible, :width)
+      end
     end
 
     # Pads the number of rows or columns to always return an Array of the same
@@ -114,7 +115,7 @@ module Vedeu
 
       return visible unless size < dim
 
-      visible + [Vedeu::Char.new({ value: ' ' })] * (dim - size)
+      visible + ([Vedeu::Char.new({ value: ' ' })] * (dim - size))
     end
 
     # Using the current cursor's y position, return a range of visible lines.

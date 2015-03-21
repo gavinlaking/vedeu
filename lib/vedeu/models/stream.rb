@@ -81,6 +81,14 @@ module Vedeu
       value.size
     end
 
+    def to_char(li, si)
+      cs = chars.each_with_index do |c, i|
+        c.position = IndexPosition[li, i, parent.parent.top, parent.parent.left]
+        c
+      end
+      cs.flatten
+    end
+
     # @return [String]
     def value
       # Vedeu::Char.coerce(@value, parent, colour, style)

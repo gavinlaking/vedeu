@@ -161,6 +161,15 @@ module Vedeu
       store_group
     end
 
+    # @return [Array<Array<Vedeu::Char>>|Array]
+    def to_char
+      ls = []
+      lines.each_with_index do |l, i|
+        ls << l.to_char(i)
+      end
+      ls
+    end
+
     private
 
     # The default values for a new instance of this class.
