@@ -5,8 +5,10 @@ module Vedeu
   describe Foreground do
 
     let(:described) { Vedeu::Foreground }
-    let(:instance) { described.new(colour) }
-    let(:colour) {}
+    let(:instance)  { described.new(colour) }
+    let(:colour)    {}
+
+    before { Vedeu.foreground_colours.reset! }
 
     describe '.escape_sequence' do
       context 'when the colour is empty' do
