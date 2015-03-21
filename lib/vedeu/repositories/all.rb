@@ -53,6 +53,11 @@ module Vedeu
       storage.key?(colour)
     end
 
+    # @return [Hash]
+    def reset!
+      storage.clear
+    end
+
     # @return [String]
     def retrieve(colour)
       storage.fetch(colour, '')
