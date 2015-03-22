@@ -59,7 +59,11 @@ module Vedeu
       :bottom,
       :left,
       :width,
-      :height
+      :height,
+      :top_left,
+      :top_right,
+      :bottom_left,
+      :bottom_right
 
     # Return a new instance of Interface.
     #
