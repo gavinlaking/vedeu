@@ -135,6 +135,11 @@ module Vedeu
       end
     end
 
+    # @return [Array<Array<Vedeu::Char>>]
+    def clear
+      Vedeu::Clear.render(self)
+    end
+
     # Fetch the cursor belonging to this interface (by name), if one does not
     # exist, it will be created, stored and returned.
     #
@@ -164,6 +169,15 @@ module Vedeu
     alias_method :content?, :lines?
     alias_method :value?, :lines?
 
+    # @return [Array<Array<Vedeu::Char>>]
+    def render
+      [
+        clear,
+        border.render,
+        viewport
+      ]
+    end
+
     # @return [Interface]
     def store
       super
@@ -181,6 +195,11 @@ module Vedeu
         chars << line.to_char(index)
       end
       chars
+    end
+
+    # @return [Array<Array<Vedeu::Char>>]
+    def viewport
+      Vedeu::Viewport.render(self)
     end
 
     private

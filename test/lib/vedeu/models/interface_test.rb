@@ -81,6 +81,15 @@ module Vedeu
       end
     end
 
+    describe '#clear' do
+      subject { instance.clear }
+
+      it {
+        Vedeu::Clear.expects(:render).with(instance)
+        subject
+      }
+    end
+
     describe '#lines?' do
       subject { instance.lines? }
 
@@ -99,6 +108,10 @@ module Vedeu
       subject { instance.cursor }
 
       it { subject.must_be_instance_of(Vedeu::Cursor) }
+    end
+
+    describe '#render' do
+      subject { instance.render }
     end
 
     describe '#store' do
@@ -120,6 +133,15 @@ module Vedeu
 
       context 'when there is content' do
       end
+    end
+
+    describe '#viewport' do
+      subject { instance.viewport }
+
+      it {
+        Vedeu::Viewport.expects(:render).with(instance)
+        subject
+      }
     end
 
   end # Interface
