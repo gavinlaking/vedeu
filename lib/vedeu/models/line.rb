@@ -64,6 +64,11 @@ module Vedeu
       streams.empty?
     end
 
+    # @return [NilClass|String]
+    def name
+      parent.name if parent
+    end
+
     # Returns the size of the content in characters without formatting.
     #
     # @return [Fixnum]

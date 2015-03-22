@@ -25,7 +25,7 @@ module Vedeu
     }
     let(:colour)      { Colour.new({ background: '#ff0000', foreground: '#000000' }) }
     let(:style)       { Style.new('normal') }
-    let(:line_parent) { Vedeu::Interface.new }
+    let(:line_parent) { Vedeu::Interface.new({ name: 'Vedeu::Stream' }) }
 
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }
@@ -72,6 +72,20 @@ module Vedeu
 
       context 'when there is content' do
         it { subject.must_equal(false) }
+      end
+    end
+
+    describe '#name' do
+      subject { instance.name }
+
+      context 'when a parent is defined' do
+        it { subject.must_be_instance_of(String) }
+      end
+
+      context 'when a parent is not defined' do
+        before { instance.stubs(:parent) }
+
+        it { subject.must_be_instance_of(NilClass) }
       end
     end
 
