@@ -5,6 +5,7 @@ require 'vedeu/output/background'
 require 'vedeu/output/foreground'
 
 require 'vedeu/output/border'
+require 'vedeu/output/null_border'
 require 'vedeu/output/colour'
 require 'vedeu/output/compositor'
 

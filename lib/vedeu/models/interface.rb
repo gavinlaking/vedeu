@@ -1,5 +1,6 @@
 require 'vedeu/geometry/content'
 require 'vedeu/models/all'
+require 'vedeu/output/null_border'
 require 'vedeu/output/presentation'
 require 'vedeu/buffers/display_buffer'
 require 'vedeu/buffers/buffer'
@@ -125,8 +126,12 @@ module Vedeu
     #
     # @return [Vedeu::Border|NilClass]
     def border
-      if border?
+      @border ||= if border?
         Vedeu.borders.find(name)
+
+      else
+        Vedeu::NullBorder.new(self)
+
       end
     end
 
