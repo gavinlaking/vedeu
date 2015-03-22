@@ -24,6 +24,12 @@ module Vedeu
       :height,
       :width
 
+    # @param interface [Vedeu::Interface]
+    # @return [Array<Array<Vedeu::Char>>]
+    def self.render(interface)
+      new(interface).render
+    end
+
     # Returns an instance of Viewport.
     #
     # @param interface [Interface] An instance of interface.
@@ -37,16 +43,17 @@ module Vedeu
     #
     # @return [Array<Array<String>>]
     def render
-      if border?
+      Vedeu.log(type: :output, message: "Rendering: '#{interface.name}'")
+
+     if border?
         out = []
 
-        out << border.top if border.top?
-
-        show[0...bordered_height].each do |line|
-          out << [border.left, line[0...bordered_width], border.right].flatten
+        show[0...bordered_height].each_with_index do |line, iy|
+          line[0...bordered_width].each_with_index do |column, ix|
+            column.position = IndexPosition[iy, ix, interface.border.by, interface.border.bx]
+            out << column
+          end
         end
-
-        out << border.bottom if border.bottom?
 
         out
 
@@ -80,42 +87,7 @@ module Vedeu
     def show
       return [] unless lines?
 
-      padded_lines.map { |line| padded_columns(line) }
-    end
-
-    # Returns the lines, padded where necessary for the viewport.
-    #
-    # @return [Array<Array<String>>]
-    def padded_lines
-      visible = interface.to_char[rows] || []
-
-      pad(visible, :height)
-    end
-
-    # Returns the columns, padded where necessary for the given line.
-    #
-    # @param line [Array<String>]
-    # @return [Array<String>]
-    def padded_columns(line)
-      if line.is_a?(Array)
-        visible = line[columns] || []
-        pad(visible, :width)
-      end
-    end
-
-    # Pads the number of rows or columns to always return an Array of the same
-    # length for each viewport or line respectively.
-    #
-    # @param visible [Array<Array<String>>|Array<String>]
-    # @param dimension [Symbol] The dimension to pad (:height or :width).
-    # @return [Array<Array<String>>|Array<String>]
-    def pad(visible, dimension)
-      dim  = send(dimension)
-      size = visible.size
-
-      return visible unless size < dim
-
-      visible + ([Vedeu::Char.new({ value: ' ' })] * (dim - size))
+      (lines[rows] || []).map { |line| (line.chars[columns] || []) }
     end
 
     # Using the current cursor's y position, return a range of visible lines.

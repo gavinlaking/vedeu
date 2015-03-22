@@ -47,11 +47,11 @@ module Vedeu
 
       it { subject.must_be_instance_of(Array) }
 
-      # context 'when there is no content' do
-      #   before { interface.stubs(:lines).returns([]) }
+      context 'when there is no content' do
+        before { interface.stubs(:lines).returns([]) }
 
-      #   it { subject.must_equal([]) }
-      # end
+        it { subject.must_equal([]) }
+      end
 
       context 'when there is content' do
         context "when the cursor's y position is outside the viewable area - negative" do
@@ -68,8 +68,8 @@ module Vedeu
             let(:ox) { 3 }
             let(:oy) { 7 }
 
-            it 'is padded with spaces' do
-              instance.to_s.must_equal("nic\nosm\n   ")
+            it "renders the visible content" do
+              instance.to_s.must_equal("nic\nosm\n")
             end
           end
 
@@ -98,7 +98,7 @@ module Vedeu
             let(:oy) { 7 }
 
             it "scrolls the content the correct position" do
-              instance.to_s.must_equal("el \num \n   ")
+              instance.to_s.must_equal("el\num\n")
             end
           end
         end
@@ -108,8 +108,8 @@ module Vedeu
             let(:ox) { 7 }
             let(:oy) { 3 }
 
-            it "is padded with spaces" do
-              instance.to_s.must_equal("um \non \num ")
+            it "renders the visible content" do
+              instance.to_s.must_equal("um\non\num")
             end
           end
 
