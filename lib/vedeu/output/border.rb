@@ -352,10 +352,10 @@ module Vedeu
         Vedeu::Position[interface.yn, (bx + ix)]
 
       when :left_vertical
-        Vedeu::Position[(interface.y + iy), interface.x]
+        Vedeu::Position[(by + iy), interface.x]
 
       when :right_vertical
-        Vedeu::Position[(interface.y + iy), interface.xn]
+        Vedeu::Position[(by + iy), interface.xn]
 
       when :bottom_left  then interface.bottom_left
       when :bottom_right then interface.bottom_right
