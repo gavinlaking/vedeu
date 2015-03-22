@@ -395,163 +395,139 @@ module Vedeu
       end
     end
 
-    describe '#to_s' do
-      subject { instance.to_s }
+    describe '#render' do
+      let(:attributes) {
+        {
+          bottom_left:  'C',
+          bottom_right: 'D',
+          enabled:      enabled,
+          horizontal:   'H',
+          name:         'Border#render',
+          show_top:     top,
+          show_bottom:  bottom,
+          show_left:    left,
+          show_right:   right,
+          top_left:     'A',
+          top_right:    'B',
+          vertical:     'V'
+        }
+      }
+      let(:enabled) { false }
+      let(:top)     { false }
+      let(:bottom)  { false }
+      let(:left)    { false }
+      let(:right)   { false }
 
-      context 'when all borders should be shown' do
-        before do
-          Vedeu.border 'borders' do
-            # ...
+      before do
+        Vedeu.interfaces.reset
+        Vedeu.borders.reset
+
+        Vedeu.interface('Border#render') do
+          geometry do
+            x      1
+            xn     4
+            y      1
+            yn     4
           end
-        end
-
-        it 'returns the escape sequences to draw a border' do
-          subject.must_equal(
-            "\e(0l\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0k\e(B
-\e(0x\e(BBeryll\e(0x\e(B
-\e(0x\e(BMagnes\e(0x\e(B
-\e(0x\e(BPluton\e(0x\e(B
-\e(0m\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0j\e(B"
-          )
         end
       end
 
-      context 'when no borders are shown' do
-        before do
-          Vedeu.border 'borders' do
-            show_bottom false
-            show_left   false
-            show_right  false
-            show_top    false
-          end
-        end
+      subject { instance.render }
 
-        it 'returns the escape sequences to draw a border' do
-          subject.must_equal(
-            "Berylliu\n" \
-            "Magnesiu\n" \
-            "Plutoniu\n" \
-            "Potassiu\n" \
-            "Lanthanu"
-          )
-        end
+      it { subject.must_be_instance_of(Array) }
+
+      context 'when the border is not enabled' do
+        it { subject.must_equal([]) }
       end
 
-      context 'when the left and right border is not shown' do
-        before do
-          Vedeu.border 'borders' do
-            show_left   false
-            show_right  false
-          end
+      context 'when the border is enabled' do
+        let(:enabled) { true }
+
+        context 'top' do
+          let(:top) { true }
+
+          it { subject.size.must_equal(4) }
         end
 
-        it 'returns the escape sequences to draw a border' do
-          subject.must_equal(
-            "\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\n" \
-            "Berylliu\n" \
-            "Magnesiu\n" \
-            "Plutoniu\n" \
-            "\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B"
-          )
-        end
-      end
+        context 'right' do
+          let(:right) { true }
 
-      context 'when the top and bottom border is not shown' do
-        before do
-          Vedeu.border 'borders' do
-            show_bottom false
-            show_top    false
-          end
+          it { subject.size.must_equal(4) }
         end
 
-        it 'returns the escape sequences to draw a border' do
-          subject.must_equal(
-            "\e(0x\e(BBeryll\e(0x\e(B\n" \
-            "\e(0x\e(BMagnes\e(0x\e(B\n" \
-            "\e(0x\e(BPluton\e(0x\e(B\n" \
-            "\e(0x\e(BPotass\e(0x\e(B\n" \
-            "\e(0x\e(BLantha\e(0x\e(B"
-          )
-        end
-      end
+        context 'bottom' do
+          let(:bottom) { true }
 
-      context 'when the left border is shown, all others not shown' do
-        before do
-          Vedeu.border 'borders' do
-            show_bottom false
-            show_right  false
-            show_top    false
-          end
+          it { subject.size.must_equal(4) }
         end
 
-        it 'returns the escape sequences to draw a border' do
-          subject.must_equal(
-            "\e(0x\e(BBerylli\n" \
-            "\e(0x\e(BMagnesi\n" \
-            "\e(0x\e(BPlutoni\n" \
-            "\e(0x\e(BPotassi\n" \
-            "\e(0x\e(BLanthan"
-          )
-        end
-      end
+        context 'left' do
+          let(:left) { true }
 
-      context 'when the right border is shown, all others not shown' do
-        before do
-          Vedeu.border 'borders' do
-            show_bottom false
-            show_left   false
-            show_top    false
-          end
+          it { subject.size.must_equal(4) }
         end
 
-        it 'returns the escape sequences to draw a border' do
-          subject.must_equal(
-            "Berylli\e(0x\e(B\n" \
-            "Magnesi\e(0x\e(B\n" \
-            "Plutoni\e(0x\e(B\n" \
-            "Potassi\e(0x\e(B\n" \
-            "Lanthan\e(0x\e(B" \
-          )
-        end
-      end
+        context 'top and right' do
+          let(:top)   { true }
+          let(:right) { true }
 
-      context 'when the top border is shown, all others not shown' do
-        before do
-          Vedeu.border 'borders' do
-            show_bottom false
-            show_left   false
-            show_right  false
-          end
+          it { subject.size.must_equal(7) }
         end
 
-        it 'returns the escape sequences to draw a border' do
-          subject.must_equal(
-            "\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\n" \
-            "Berylliu\n" \
-            "Magnesiu\n" \
-            "Plutoniu\n" \
-            "Potassiu"
-          )
-        end
-      end
+        context 'top and right and bottom' do
+          let(:top)    { true }
+          let(:right)  { true }
+          let(:bottom) { true }
 
-      context 'when the bottom border is shown, all others not shown' do
-        before do
-          Vedeu.border 'borders' do
-            show_left   false
-            show_right  false
-            show_top    false
-          end
+          it { subject.size.must_equal(10) }
         end
 
-        it 'returns the escape sequences to draw a border' do
-          subject.must_equal(
-            "Berylliu\n" \
-            "Magnesiu\n" \
-            "Plutoniu\n" \
-            "Potassiu\n" \
-            "\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B\e(0q\e(B"
-          )
+        context 'top and bottom' do
+          let(:top)    { true }
+          let(:bottom) { true }
+
+          it { subject.size.must_equal(8) }
+        end
+
+        context 'top and left' do
+          let(:top)  { true }
+          let(:left) { true }
+
+          it { subject.size.must_equal(7) }
+        end
+
+        context 'right and bottom' do
+          let(:right)  { true }
+          let(:bottom) { true }
+
+          it { subject.size.must_equal(7) }
+        end
+
+        context 'right and left' do
+          let(:right) { true }
+          let(:left)  { true }
+
+          it { subject.size.must_equal(8) }
+        end
+
+        context 'bottom and left' do
+          let(:bottom) { true }
+          let(:left)   { true }
+
+          it { subject.size.must_equal(7) }
+        end
+
+        context 'all' do
+          let(:top)    { true }
+          let(:right)  { true }
+          let(:bottom) { true }
+          let(:left)   { true }
+
+          it { subject.size.must_equal(12) }
+        end
+
+        context 'none' do
+          it { subject.size.must_equal(0) }
         end
       end
     end
