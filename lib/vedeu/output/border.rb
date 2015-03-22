@@ -123,6 +123,50 @@ module Vedeu
       @style        = @attributes[:style]
     end
 
+    # @return [Fixnum]
+    def bx
+      if enabled? && left?
+        interface.x + 1
+
+      else
+        interface.x
+
+      end
+    end
+
+    # @return [Fixnum]
+    def bxn
+      if enabled? && right?
+        interface.xn - 1
+
+      else
+        interface.xn
+
+      end
+    end
+
+    # @return [Fixnum]
+    def by
+      if enabled? && top?
+        interface.y + 1
+
+      else
+        interface.y
+
+      end
+    end
+
+    # @return [Fixnum]
+    def byn
+      if enabled? && bottom?
+        interface.yn - 1
+
+      else
+        interface.yn
+
+      end
+    end
+
     # Returns the width of the interface determined by whether a left, right,
     # both or neither borders are shown.
     #

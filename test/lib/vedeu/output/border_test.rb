@@ -68,6 +68,132 @@ module Vedeu
       it { instance.instance_variable_get('@style').must_equal([]) }
     end
 
+    describe 'border offset methods; bx, bxn, by, byn' do
+      let(:attributes) {
+        {
+          bottom_left:  'C',
+          bottom_right: 'D',
+          enabled:      enabled,
+          horizontal:   'H',
+          name:         'Border#bxbxnbybyn',
+          show_top:     top,
+          show_bottom:  bottom,
+          show_left:    left,
+          show_right:   right,
+          top_left:     'A',
+          top_right:    'B',
+          vertical:     'V'
+        }
+      }
+      let(:enabled) { false }
+      let(:top)     { false }
+      let(:bottom)  { false }
+      let(:left)    { false }
+      let(:right)   { false }
+
+      before do
+        Vedeu.interfaces.reset
+        Vedeu.borders.reset
+
+        Vedeu.interface('Border#bxbxnbybyn') do
+          geometry do
+            x      2
+            xn     6
+            y      2
+            yn     6
+          end
+        end
+      end
+
+      describe '#bx' do
+        subject { instance.bx }
+
+        context 'when enabled' do
+          let(:enabled) { true }
+
+          context 'with left' do
+            let(:left) { true }
+
+            it { subject.must_equal(3) }
+          end
+
+          context 'without left' do
+            it { subject.must_equal(2) }
+          end
+        end
+
+        context 'when not enabled' do
+          it { subject.must_equal(2) }
+        end
+      end
+
+      describe '#bxn' do
+        subject { instance.bxn }
+
+        context 'when enabled' do
+          let(:enabled) { true }
+
+          context 'with right' do
+            let(:right) { true }
+
+            it { subject.must_equal(5) }
+          end
+
+          context 'without right' do
+            it { subject.must_equal(6) }
+          end
+        end
+
+        context 'when not enabled' do
+          it { subject.must_equal(6) }
+        end
+      end
+
+      describe '#by' do
+        subject { instance.by }
+
+        context 'when enabled' do
+          let(:enabled) { true }
+
+          context 'with top' do
+            let(:top) { true }
+
+            it { subject.must_equal(3) }
+          end
+
+          context 'without top' do
+            it { subject.must_equal(2) }
+          end
+        end
+
+        context 'when not enabled' do
+          it { subject.must_equal(2) }
+        end
+      end
+
+      describe '#byn' do
+        subject { instance.byn }
+
+        context 'when enabled' do
+          let(:enabled) { true }
+
+          context 'with bottom' do
+            let(:bottom) { true }
+
+            it { subject.must_equal(5) }
+          end
+
+          context 'without bottom' do
+            it { subject.must_equal(6) }
+          end
+        end
+
+        context 'when not enabled' do
+          it { subject.must_equal(6) }
+        end
+      end
+    end
+
     describe '#width' do
       subject { instance.width }
 
