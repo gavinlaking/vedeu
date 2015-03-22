@@ -91,7 +91,7 @@ module Vedeu
     # @return [Array<Vedeu::Char>]
     def to_char(line_index, stream_index)
       out = chars.each_with_index do |char, index|
-        char.position = IndexPosition[line_index, index, parent.parent.top, parent.parent.left]
+        char.position = IndexPosition.from_interface(name, line_index, index)
         char
       end
       out.flatten
