@@ -9,7 +9,7 @@ module Vedeu
       new(value, options).aligned
     end
 
-    # Returns a new instance of Text.
+    # Returns a new instance of Vedeu::Text.
     #
     # @param value [String]
     # @param options [Hash]

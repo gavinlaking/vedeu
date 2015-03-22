@@ -32,6 +32,8 @@ module Vedeu
       new(iy, ix, oy, ox).[]
     end
 
+    # Returns a new instance of Vedeu::IndexPosition.
+    #
     # @param iy [Fixnum]
     # @param ix [Fixnum]
     # @param oy [Fixnum]

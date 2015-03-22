@@ -13,7 +13,7 @@ module Vedeu
     # @return [Fixnum]
     attr_reader :width
 
-    # Returns an instance of BoundingArea.
+    # Returns an instance of Vedeu::BoundingArea.
     #
     # @param height [Fixnum]
     # @param width [Fixnum]

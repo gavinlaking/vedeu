@@ -15,6 +15,8 @@ module Vedeu
       # @return [Fixnum|String]
       attr_reader :port
 
+      # Returns a new instance of Vedeu::Distributed::Uri.
+      #
       # @param host [String] Hostname or IP address.
       # @param port [Fixnum|String]
       # @return [Uri]

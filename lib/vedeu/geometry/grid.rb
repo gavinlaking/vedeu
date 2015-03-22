@@ -31,6 +31,8 @@ module Vedeu
       new(value).columns
     end
 
+    # Returns a new instance of Vedeu::Grid.
+    #
     # @param value [Fixnum]
     # @return [Grid]
     def initialize(value)

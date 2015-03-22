@@ -38,7 +38,7 @@ module Vedeu
       end
     end
 
-    # Initializes a new instance of Position.
+    # Initializes a new instance of Vedeu::Position.
     #
     # @param y [Fixnum] The row/line position.
     # @param x [Fixnum] The column/character position.

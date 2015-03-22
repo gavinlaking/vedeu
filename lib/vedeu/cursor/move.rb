@@ -46,7 +46,7 @@ module Vedeu
                               :height,
                               :width
 
-    # Returns an instance of Move.
+    # Returns an instance of Vedeu::Move.
     #
     # @param cursor    [Cursor]
     # @param interface [Interface]

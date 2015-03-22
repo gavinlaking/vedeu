@@ -13,7 +13,7 @@ module Vedeu
       new(reader).capture
     end
 
-    # Returns a new instance of Input.
+    # Returns a new instance of Vedeu::Input.
     #
     # @param reader [IO] An object that responds to `#read`. Typically, this is
     #   Vedeu::Terminal.

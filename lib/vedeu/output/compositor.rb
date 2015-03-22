@@ -20,7 +20,7 @@ module Vedeu
       new(name).compose
     end
 
-    # Initialize a new Compositor.
+    # Initialize a new Vedeu::Compositor.
     #
     # @param name [String] The name of the buffer.
     # @return [Compositor]

@@ -38,7 +38,7 @@ module Vedeu
       new(colour).escape_sequence
     end
 
-    # Return a new instance of Translator.
+    # Return a new instance of Vedeu::Translator.
     #
     # @param colour [Fixnum|String|Symbol]
     # @return [Translator]

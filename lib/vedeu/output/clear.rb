@@ -17,10 +17,10 @@ module Vedeu
 
     end
 
-    # Return a new instance of Output.
+    # Return a new instance of Vedeu::Clear.
     #
     # @param interface [Interface]
-    # @return [Output]
+    # @return [Vedeu::Clear]
     def initialize(interface)
       @interface = interface
     end

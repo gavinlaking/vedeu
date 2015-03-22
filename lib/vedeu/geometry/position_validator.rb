@@ -45,6 +45,8 @@ module Vedeu
       new(interface, x, y).validate
     end
 
+    # Returns a new instance of Vedeu::PositionValidator.
+    #
     # @param interface [Interface]
     # @param x [Fixnum]
     # @param y [Fixnum]

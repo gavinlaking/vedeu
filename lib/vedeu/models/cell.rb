@@ -28,6 +28,8 @@ module Vedeu
     # @return [NilClass|Fixnum]
     attr_reader :y
 
+    # Returns a new instance of Vedeu::Cell.
+    #
     # @param attributes [Hash<Symbol => Array<Symbol|String>, Fixnum, String, Symbol]
     # @option attributes background [NilClass|String]
     # @option attributes foreground [NilClass|String]

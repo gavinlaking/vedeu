@@ -29,6 +29,8 @@ module Vedeu
       end
     end
 
+    # Returns a new instance of Vedeu::Collection.
+    #
     # @param collection []
     # @param parent [void]
     # @param name [String|NilClass]
@@ -39,12 +41,16 @@ module Vedeu
       @name       = name
     end
 
+    # Fetch an entry from the collection via index.
+    #
     # @param value [Fixnum]
     # @return [void]
     def [](value)
       @collection[value]
     end
 
+    # Adds an entry to the collection.
+    #
     # @param other [Vedeu::Collection]
     # @return [Vedeu::Collection]
     def add(*other)
@@ -52,27 +58,37 @@ module Vedeu
     end
     alias_method :<<, :add
 
+    # Returns the whole collection.
+    #
     # @return [Array]
     def all
       @collection
     end
 
+    # Provides iteration over the collection.
+    #
     # @param block [Proc]
     # @return [Enumerator]
     def each(&block)
       @collection.each(&block)
     end
 
+    # Returns a boolean indicating whether the collection is empty.
+    #
     # @return [Boolean]
     def empty?
       @collection.empty?
     end
 
+    # Returns the size of the collection.
+    #
     # @return [Fixnum]
     def size
       @collection.size
     end
 
+    # Returns the collection as a String.
+    #
     # @return [String]
     def to_s
       @collection.map(&:to_s).join

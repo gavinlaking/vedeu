@@ -70,7 +70,7 @@ module Vedeu
       :bottom_left,
       :bottom_right
 
-    # Return a new instance of Interface.
+    # Return a new instance of Vedeu::Interface.
     #
     # @param attributes [Hash]
     # @option attributes colour [Vedeu::Colour]

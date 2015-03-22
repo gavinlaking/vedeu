@@ -30,7 +30,7 @@ module Vedeu
       new(interface).render
     end
 
-    # Returns an instance of Viewport.
+    # Returns an instance of Vedeu::Viewport.
     #
     # @param interface [Interface] An instance of interface.
     # @return [Viewport]

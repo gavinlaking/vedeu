@@ -110,7 +110,7 @@ module Vedeu
       Vedeu::Trigger.trigger(name, *args)
     end
 
-    # Returns a new instance of Event.
+    # Returns a new instance of Vedeu::Event.
     #
     # @param (see Vedeu::Event.bind)
     # @return [Event]

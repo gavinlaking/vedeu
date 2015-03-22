@@ -29,6 +29,8 @@ module Vedeu
     end
 
     # :nocov:
+    # Returns a new instance of Vedeu::Application.
+    #
     # @param configuration [Vedeu::Configuration]
     # @return [Application]
     def initialize(configuration)

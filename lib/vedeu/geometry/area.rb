@@ -44,6 +44,8 @@ module Vedeu
       new(y: y, yn: yn, x: x, xn: xn)
     end
 
+    # Returns a new instance of Vedeu::Area.
+    #
     # @param y [Fixnum]
     # @param yn [Fixnum]
     # @param x [Fixnum]

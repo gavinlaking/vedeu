@@ -18,7 +18,7 @@ module Vedeu
       new(interface).render
     end
 
-    # Return a new instance of Output.
+    # Return a new instance of Vedeu::Output.
     #
     # @param interface [Interface]
     # @return [Output]

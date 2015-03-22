@@ -10,6 +10,8 @@ module Vedeu
       new(name).render
     end
 
+    # Returns a new instance of Vedeu::RefreshCursor.
+    #
     # @param name [String] The name of the cursor.
     # @return [Vedeu::RefreshCursor]
     def initialize(name)

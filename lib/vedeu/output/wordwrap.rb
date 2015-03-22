@@ -9,6 +9,8 @@ module Vedeu
       new(text, options).content
     end
 
+    # Returns a new instance of Vedeu::Wordwrap.
+    #
     # @param text [String]
     # @param options [Hash]
     # @option options ellipsis [String] For when using mode `:prune`.

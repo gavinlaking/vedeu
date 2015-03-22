@@ -5,6 +5,8 @@ module Vedeu
   #
   class NullBorder
 
+    # Returns a new instance of Vedeu::NullBorder.
+    #
     # @param interface [Vedeu::Interface]
     # @return [Vedeu::NullBorder]
     def initialize(interface)

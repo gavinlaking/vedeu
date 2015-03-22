@@ -27,7 +27,7 @@ module Vedeu
     alias_method :data,    :value
     alias_method :text,    :value
 
-    # Returns a new instance of Stream.
+    # Returns a new instance of Vedeu::Stream.
     #
     # @param attributes [Hash]
     # @option attributes value [String]
@@ -87,7 +87,7 @@ module Vedeu
     end
 
     # @param line_index [Fixnum]
-    # @param stream_ndex [Fixnum]
+    # @param stream_index [Fixnum]
     # @return [Array<Vedeu::Char>]
     def to_char(line_index, stream_index)
       out = chars.each_with_index do |char, index|

@@ -18,6 +18,8 @@ module Vedeu
       end
     end
 
+    # Returns a new instance of Vedeu::Visible
+    #
     # @param visible [Boolean|Symbol]
     # @return [Visible]
     def initialize(visible = nil)
@@ -49,11 +51,15 @@ module Vedeu
       end
     end
 
+    # Returns a boolean indicating whether the instance is visible.
+    #
     # @return [Boolean]
     def visible?
       @visible
     end
 
+    # Returns a boolean indicating whether the instance is invisible.
+    #
     # @return [Boolean]
     def invisible?
       !@visible

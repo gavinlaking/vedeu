@@ -88,7 +88,7 @@ module Vedeu
     # @return [Fixnum]
     attr_writer :yn
 
-    # Returns a new instance of Geometry.
+    # Returns a new instance of Vedeu::Geometry.
     #
     # @param attributes [Hash]
     # @option attributes centred [Boolean]

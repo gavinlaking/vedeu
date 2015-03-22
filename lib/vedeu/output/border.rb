@@ -80,7 +80,7 @@ module Vedeu
     # @return [Style]
     attr_reader :style
 
-    # Returns a new instance of Border.
+    # Returns a new instance of Vedeu::Border.
     #
     # @param attributes [Hash]
     # @option attributes bottom_left [String] The bottom left border character.

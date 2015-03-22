@@ -17,6 +17,8 @@ module Vedeu
       :x,
       :y
 
+    # Returns a new instance of Vedeu::Content.
+    #
     # @param interface [Vedeu::Interface]
     # @return [Vedeu::Content]
     def initialize(interface)

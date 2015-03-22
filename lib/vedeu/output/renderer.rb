@@ -11,6 +11,8 @@ module Vedeu
       new(*output).render
     end
 
+    # Returns a new instance of Vedeu::Renderer.
+    #
     # @param output [Array<Array<Vedeu::Char>>]
     # @return [Vedeu::Renderer]
     def initialize(*output)

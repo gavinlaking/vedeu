@@ -22,7 +22,7 @@ module Vedeu
     # @return [Foreground|String]
     attr_reader :foreground
 
-    # Returns a new instance of Colour.
+    # Returns a new instance of Vedeu::Colour.
     #
     # @param attributes [Hash]
     # @option attributes background [String]

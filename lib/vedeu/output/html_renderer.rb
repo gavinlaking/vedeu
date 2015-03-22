@@ -17,6 +17,8 @@ module Vedeu
       new(output).to_file(path)
     end
 
+    # Returns a new instance of Vedeu::HTMLRenderer.
+    #
     # @param output [Array<Array<Vedeu::Char>>]
     # @return [Vedeu::HTMLRenderer]
     def initialize(output)

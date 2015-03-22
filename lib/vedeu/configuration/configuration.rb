@@ -218,7 +218,7 @@ module Vedeu
     # @return [Hash]
     attr_reader :options
 
-    # Create a new singleton instance of Configuration.
+    # Create a new singleton instance of Vedeu::Configuration.
     #
     # @return [Configuration]
     def initialize

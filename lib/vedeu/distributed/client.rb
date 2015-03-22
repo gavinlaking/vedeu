@@ -18,6 +18,8 @@ module Vedeu
         new(uri).connect
       end
 
+      # Returns a new instance of Vedeu::Distributed::Client.
+      #
       # @param uri [Vedeu::Distributed::Uri|String]
       # @return [Client]
       def initialize(uri)

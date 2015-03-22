@@ -18,6 +18,8 @@ module Vedeu
       new(name, *args).trigger
     end
 
+    # Returns a new instance of Vedeu::Trigger.
+    #
     # @param (see .trigger)
     # @return [Vedeu::Trigger]
     def initialize(name, *args)

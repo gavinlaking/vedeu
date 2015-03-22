@@ -27,6 +27,8 @@ module Vedeu
           kernel = Kernel).debug_execute!
     end
 
+    # Returns a new instance of Vedeu::Launcher.
+    #
     # @param argv [Array]
     # @param stdin [IO]
     # @param stdout [IO]
