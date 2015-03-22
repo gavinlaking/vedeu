@@ -13,6 +13,10 @@ module Vedeu
       it { instance.instance_variable_get('@interface').must_equal(interface) }
     end
 
+    describe 'alias methods' do
+      it { described.must_respond_to(:render) }
+    end
+
     describe '.clear' do
       subject { described.clear(interface) }
     end

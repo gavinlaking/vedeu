@@ -4,12 +4,17 @@ module Vedeu
   #
   class Clear
 
-    # Clears the area defined by the interface.
-    #
-    # @return [Array|String]
-    # @see #initialize
-    def self.clear(interface)
-      new(interface).write
+    class << self
+
+      # Clears the area defined by the interface.
+      #
+      # @return [Array|String]
+      # @see #initialize
+      def clear(interface)
+        new(interface).write
+      end
+      alias_method :render, :clear
+
     end
 
     # Return a new instance of Output.
@@ -44,6 +49,7 @@ module Vedeu
           interface.width.times do |ix|
             cols << Vedeu::IndexPosition[iy, ix, interface.top, interface.left].to_s { ' ' }
 
+            # Build Char objects for VirtualTerminal/VirtualBuffer.
             # Vedeu::Char.new({ value:    ' ',
             #                   colour:   interface.colour,
             #                   style:    interface.style,
@@ -51,6 +57,7 @@ module Vedeu
           end
           rows << cols
         end
+        rows << interface.top_left.to_s
         rows
       end
     end
