@@ -18,6 +18,8 @@ module Vedeu
     # @return [String]
     attr_accessor :name
 
+    # Returns a new instance of Vedeu::Keymap.
+    #
     # @param attributes [Hash]
     # @option attributes name [String] The name of the keymap.
     # @option attributes keys [Vedeu::Keys|Array] A collection of keys.

@@ -51,14 +51,43 @@ module Vedeu
       subject { instance.border? }
 
       context 'when the interface has a border' do
-        before { Vedeu.borders.stubs(:registered?).with(_name).returns(true) }
+        before { Vedeu.border('hydrogen') { } }
+        after  { Vedeu.borders.reset }
 
         it { subject.must_equal(true) }
       end
 
       context 'when the interface does not have a border' do
+        before { Vedeu.borders.reset }
+
         it { subject.must_equal(false) }
       end
+    end
+
+    describe '#border' do
+      subject { instance.border }
+
+      context 'when the interface has a border' do
+        before { Vedeu.border('hydrogen') { } }
+        after  { Vedeu.borders.reset }
+
+        it { subject.must_be_instance_of(Vedeu::Border) }
+      end
+
+      context 'when the interface does not have a border' do
+        before { Vedeu.borders.reset }
+
+        it { subject.must_be_instance_of(Vedeu::NullBorder) }
+      end
+    end
+
+    describe '#clear' do
+      subject { instance.clear }
+
+      it {
+        Vedeu::Clear.expects(:render).with(instance)
+        subject
+      }
     end
 
     describe '#lines?' do
@@ -81,6 +110,10 @@ module Vedeu
       it { subject.must_be_instance_of(Vedeu::Cursor) }
     end
 
+    describe '#render' do
+      subject { instance.render }
+    end
+
     describe '#store' do
       subject { instance.store }
 
@@ -89,7 +122,15 @@ module Vedeu
 
         it { proc { subject }.must_raise(MissingRequired) }
       end
+    end
 
+    describe '#viewport' do
+      subject { instance.viewport }
+
+      it {
+        Vedeu::Viewport.expects(:render).with(instance)
+        subject
+      }
     end
 
   end # Interface

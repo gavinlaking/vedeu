@@ -10,6 +10,8 @@ module Vedeu
       new(attributes).pair
     end
 
+    # Returns a new instance of Vedeu::Dimension.
+    #
     # @param attributes [Hash<Symbol => Fixnum, NilClass>]
     # @option attributes d [Fixnum|NilClass] The starting value (y or x).
     # @option attributes dn [Fixnum|NilClass] The ending value (yn or xn).

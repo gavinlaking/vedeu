@@ -20,6 +20,8 @@ module Vedeu
       new(y, x).[]
     end
 
+    # Returns a new instance of Vedeu::PositionIndex.
+    #
     # @param y [Fixnum]
     # @param x [Fixnum]
     # @return [Vedeu::PositionIndex]

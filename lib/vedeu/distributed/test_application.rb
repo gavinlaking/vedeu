@@ -53,6 +53,8 @@ module Vedeu
       new(attributes).build(&block)
     end
 
+    # Returns a new instance of Vedeu::TestApplication.
+    #
     # @param attributes [Hash<Symbol => String>]
     # @option attributes borders [String]
     # @option attributes configuration [String]

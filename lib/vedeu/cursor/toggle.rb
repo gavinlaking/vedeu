@@ -4,7 +4,7 @@ module Vedeu
   #
   class Toggle
 
-    # Returns an instance of Toggle.
+    # Returns an instance of Vedeu::Toggle.
     #
     # @param cursor [Cursor]
     # @return [Toggle]

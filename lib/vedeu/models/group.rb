@@ -13,7 +13,7 @@ module Vedeu
     # @return [String]
     attr_accessor :name
 
-    # Return a new instance of Group.
+    # Return a new instance of Vedeu::Group.
     #
     # @param attributes [Hash]
     # @option attributes members [Array] A collection of names of interfaces

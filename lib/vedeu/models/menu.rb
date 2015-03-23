@@ -57,7 +57,7 @@ module Vedeu
       build({ name: name }, &block).store
     end
 
-    # Returns a new instance of Menu.
+    # Returns a new instance of Vedeu::Menu.
     #
     # @param attributes [Hash]
     # @option attributes collection [Array]

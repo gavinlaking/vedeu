@@ -13,6 +13,8 @@ module Vedeu
       new(object, path).parse
     end
 
+    # Returns a new instance of Vedeu::Template.
+    #
     # @param object [Class]
     # @param path [String]
     # @return [Template]

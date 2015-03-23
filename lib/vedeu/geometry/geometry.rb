@@ -32,7 +32,8 @@ module Vedeu
     extend Forwardable
     include Vedeu::Model
 
-    def_delegators :area, :north,
+    def_delegators :area,
+      :north,
       :east,
       :south,
       :west,
@@ -45,7 +46,11 @@ module Vedeu
       :yn,
       :x,
       :height,
-      :width
+      :width,
+      :top_left,
+      :top_right,
+      :bottom_left,
+      :bottom_right
 
     # @!attribute [rw] centred
     # @return [Boolean]
@@ -83,7 +88,7 @@ module Vedeu
     # @return [Fixnum]
     attr_writer :yn
 
-    # Returns a new instance of Geometry.
+    # Returns a new instance of Vedeu::Geometry.
     #
     # @param attributes [Hash]
     # @option attributes centred [Boolean]

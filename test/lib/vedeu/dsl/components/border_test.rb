@@ -48,33 +48,6 @@ module Vedeu
 
         it { subject.must_be_instance_of(String) }
         it { subject.must_equal('C') }
-
-        context 'DSL #bottom_left' do
-          subject {
-            Vedeu.interface 'borders' do
-              border do
-                bottom_left '<'
-              end
-              geometry do
-                height 3
-                width  3
-              end
-              lines do
-                line ''
-              end
-            end
-          }
-
-          it { subject.must_be_instance_of(Vedeu::Interface) }
-
-          it 'allows the use of bottom_left within border' do
-            subject.border.to_s.must_equal(
-              "\e(0l\e(B\e(0q\e(B\e(0k\e(B\n" \
-              "\e(0x\e(B \e(0x\e(B\n" \
-              "\e(0<\e(B\e(0q\e(B\e(0j\e(B"
-            )
-          end
-        end
       end
 
       describe '#bottom_right' do
@@ -84,33 +57,6 @@ module Vedeu
 
         it { subject.must_be_instance_of(String) }
         it { subject.must_equal('D') }
-
-        context 'DSL #bottom_right' do
-          subject {
-            Vedeu.interface 'borders' do
-              border do
-                bottom_right '>'
-              end
-              geometry do
-                height 3
-                width  3
-              end
-              lines do
-                line ''
-              end
-            end
-          }
-
-          it { subject.must_be_instance_of(Vedeu::Interface) }
-
-          it 'allows the use of bottom_right within border' do
-            subject.border.to_s.must_equal(
-              "\e(0l\e(B\e(0q\e(B\e(0k\e(B\n" \
-              "\e(0x\e(B \e(0x\e(B\n" \
-              "\e(0m\e(B\e(0q\e(B\e(0>\e(B"
-            )
-          end
-        end
       end
 
       describe '#horizontal' do
@@ -120,33 +66,6 @@ module Vedeu
 
         it { subject.must_be_instance_of(String) }
         it { subject.must_equal('H') }
-
-        context 'DSL #horizontal' do
-          subject {
-            Vedeu.interface 'borders' do
-              border do
-                horizontal '~'
-              end
-              geometry do
-                height 3
-                width  3
-              end
-              lines do
-                line ''
-              end
-            end
-          }
-
-          it { subject.must_be_instance_of(Vedeu::Interface) }
-
-          it 'allows the use of horizontal within border' do
-            subject.border.to_s.must_equal(
-              "\e(0l\e(B\e(0~\e(B\e(0k\e(B\n" \
-              "\e(0x\e(B \e(0x\e(B\n" \
-              "\e(0m\e(B\e(0~\e(B\e(0j\e(B"
-            )
-          end
-        end
       end
 
       describe '#show_bottom' do
@@ -158,33 +77,6 @@ module Vedeu
           let(:boolean) { false }
 
           it { subject.must_be_instance_of(FalseClass) }
-        end
-
-        context 'DSL #show_bottom' do
-          subject {
-            Vedeu.interface 'borders' do
-              border do
-                show_bottom ''
-              end
-              geometry do
-                height 3
-                width  3
-              end
-              lines do
-                line ''
-              end
-            end
-          }
-
-          it { subject.must_be_instance_of(Vedeu::Interface) }
-
-          it 'allows the use of show_bottom within border' do
-            subject.border.to_s.must_equal(
-              "\e(0l\e(B\e(0q\e(B\e(0k\e(B\n" \
-              "\e(0x\e(B \e(0x\e(B\n" \
-              "\e(0m\e(B\e(0q\e(B\e(0j\e(B"
-            )
-          end
         end
 
         it { instance.must_respond_to(:bottom) }
@@ -214,33 +106,6 @@ module Vedeu
 
           it { subject.must_be_instance_of(FalseClass) }
         end
-
-        context 'DSL #show_left' do
-          subject {
-            Vedeu.interface 'borders' do
-              border do
-                show_left!
-              end
-              geometry do
-                height 3
-                width  3
-              end
-              lines do
-                line ''
-              end
-            end
-          }
-
-          it { subject.must_be_instance_of(Vedeu::Interface) }
-
-          it 'allows the use of show_left within border' do
-            subject.border.to_s.must_equal(
-              "\e(0l\e(B\e(0q\e(B\e(0k\e(B\n" \
-              "\e(0x\e(B \e(0x\e(B\n" \
-              "\e(0m\e(B\e(0q\e(B\e(0j\e(B"
-            )
-          end
-        end
       end
 
       describe '#hide_left!' do
@@ -266,33 +131,6 @@ module Vedeu
           let(:boolean) { false }
 
           it { subject.must_be_instance_of(FalseClass) }
-        end
-
-        context 'DSL #show_right' do
-          subject {
-            Vedeu.interface 'borders' do
-              border do
-                show_right!
-              end
-              geometry do
-                height 3
-                width  3
-              end
-              lines do
-                line ''
-              end
-            end
-          }
-
-          it { subject.must_be_instance_of(Vedeu::Interface) }
-
-          it 'allows the use of show_right within border' do
-            subject.border.to_s.must_equal(
-              "\e(0l\e(B\e(0q\e(B\e(0k\e(B\n" \
-              "\e(0x\e(B \e(0x\e(B\n" \
-              "\e(0m\e(B\e(0q\e(B\e(0j\e(B"
-            )
-          end
         end
       end
 
@@ -320,33 +158,6 @@ module Vedeu
 
           it { subject.must_be_instance_of(FalseClass) }
         end
-
-        context 'DSL #show_top' do
-          subject {
-            Vedeu.interface 'borders' do
-              border do
-                show_top ''
-              end
-              geometry do
-                height 3
-                width  3
-              end
-              lines do
-                line ''
-              end
-            end
-          }
-
-          it { subject.must_be_instance_of(Vedeu::Interface) }
-
-          it 'allows the use of show_top within border' do
-            subject.border.to_s.must_equal(
-              "\e(0l\e(B\e(0q\e(B\e(0k\e(B\n" \
-              "\e(0x\e(B \e(0x\e(B\n" \
-              "\e(0m\e(B\e(0q\e(B\e(0j\e(B"
-            )
-          end
-        end
       end
 
       describe '#hide_top!' do
@@ -368,33 +179,6 @@ module Vedeu
 
         it { subject.must_be_instance_of(String) }
         it { subject.must_equal('A') }
-
-        context 'DSL #top_left' do
-          subject {
-            Vedeu.interface 'borders' do
-              border do
-                top_left '{'
-              end
-              geometry do
-                height 3
-                width  3
-              end
-              lines do
-                line ''
-              end
-            end
-          }
-
-          it { subject.must_be_instance_of(Vedeu::Interface) }
-
-          it 'allows the use of top_left within border' do
-            subject.border.to_s.must_equal(
-              "\e(0{\e(B\e(0q\e(B\e(0k\e(B\n" \
-              "\e(0x\e(B \e(0x\e(B\n" \
-              "\e(0m\e(B\e(0q\e(B\e(0j\e(B"
-            )
-          end
-        end
       end
 
       describe '#top_right' do
@@ -404,33 +188,6 @@ module Vedeu
 
         it { subject.must_be_instance_of(String) }
         it { subject.must_equal('B') }
-
-        context 'DSL #top_right' do
-          subject {
-            Vedeu.interface 'borders' do
-              border do
-                top_right '}'
-              end
-              geometry do
-                height 3
-                width  3
-              end
-              lines do
-                line ''
-              end
-            end
-          }
-
-          it { subject.must_be_instance_of(Vedeu::Interface) }
-
-          it 'allows the use of top_right within border' do
-            subject.border.to_s.must_equal(
-              "\e(0l\e(B\e(0q\e(B\e(0}\e(B\n" \
-              "\e(0x\e(B \e(0x\e(B\n" \
-              "\e(0m\e(B\e(0q\e(B\e(0j\e(B"
-            )
-          end
-        end
       end
 
       describe '#vertical' do
@@ -440,33 +197,6 @@ module Vedeu
 
         it { subject.must_be_instance_of(String) }
         it { subject.must_equal('V') }
-
-        context 'DSL #vertical' do
-          subject {
-            Vedeu.interface 'borders' do
-              border do
-                vertical ':'
-              end
-              geometry do
-                height 3
-                width  3
-              end
-              lines do
-                line ''
-              end
-            end
-          }
-
-          it { subject.must_be_instance_of(Vedeu::Interface) }
-
-          it 'allows the use of vertical within border' do
-            subject.border.to_s.must_equal(
-              "\e(0l\e(B\e(0q\e(B\e(0k\e(B\n" \
-              "\e(0:\e(B \e(0:\e(B\n" \
-              "\e(0m\e(B\e(0q\e(B\e(0j\e(B"
-            )
-          end
-        end
       end
 
     end # Border

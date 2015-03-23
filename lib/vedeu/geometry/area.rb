@@ -44,6 +44,8 @@ module Vedeu
       new(y: y, yn: yn, x: x, xn: xn)
     end
 
+    # Returns a new instance of Vedeu::Area.
+    #
     # @param y [Fixnum]
     # @param yn [Fixnum]
     # @param x [Fixnum]
@@ -147,6 +149,26 @@ module Vedeu
     # @return [Fixnum]
     def west(offset = 1)
       x - offset
+    end
+
+    # @return [Vedeu::Position]
+    def top_left
+      Vedeu::Position[y, x]
+    end
+
+    # @return [Vedeu::Position]
+    def bottom_left
+      Vedeu::Position[yn, x]
+    end
+
+    # @return [Vedeu::Position]
+    def top_right
+      Vedeu::Position[y, xn]
+    end
+
+    # @return [Vedeu::Position]
+    def bottom_right
+      Vedeu::Position[yn, xn]
     end
 
     private

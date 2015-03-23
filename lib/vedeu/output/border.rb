@@ -80,7 +80,7 @@ module Vedeu
     # @return [Style]
     attr_reader :style
 
-    # Returns a new instance of Border.
+    # Returns a new instance of Vedeu::Border.
     #
     # @param attributes [Hash]
     # @option attributes bottom_left [String] The bottom left border character.
@@ -121,6 +121,50 @@ module Vedeu
       @colour       = @attributes[:colour]
       @repository   = Vedeu.borders
       @style        = @attributes[:style]
+    end
+
+    # @return [Fixnum]
+    def bx
+      if enabled? && left?
+        interface.x + 1
+
+      else
+        interface.x
+
+      end
+    end
+
+    # @return [Fixnum]
+    def bxn
+      if enabled? && right?
+        interface.xn - 1
+
+      else
+        interface.xn
+
+      end
+    end
+
+    # @return [Fixnum]
+    def by
+      if enabled? && top?
+        interface.y + 1
+
+      else
+        interface.y
+
+      end
+    end
+
+    # @return [Fixnum]
+    def byn
+      if enabled? && bottom?
+        interface.yn - 1
+
+      else
+        interface.yn
+
+      end
     end
 
     # Returns the width of the interface determined by whether a left, right,
@@ -173,6 +217,19 @@ module Vedeu
       @colour = Vedeu::Colour.coerce(value)
     end
 
+    # @return [Array<Array<Vedeu::Char>>]
+    def render
+      return [] unless enabled?
+
+      out = [top, bottom]
+
+      height.times do |y|
+        out << [left(y), right(y)]
+      end
+
+      out.flatten
+    end
+
     # @return [Vedeu::Style]
     def style
       Vedeu::Style.coerce(@style)
@@ -185,15 +242,6 @@ module Vedeu
       @style = Vedeu::Style.coerce(value)
     end
 
-    # Returns a string representation of the border for the interface without
-    # content.
-    #
-    # @return [Boolean]
-    def to_s
-      render = Vedeu::Viewport.new(interface).render
-      render.map { |line| line.flatten.join }.join("\n")
-    end
-
     # Renders the bottom border for the interface.
     #
     # @return [String]
@@ -203,8 +251,8 @@ module Vedeu
       out = []
 
       out << border(bottom_left, :bottom_left) if left?
-      width.times do
-        out << border(horizontal, :bottom_horizontal)
+      width.times do |ix|
+        out << border(horizontal, :bottom_horizontal, nil, ix)
       end
       out << border(bottom_right, :bottom_right) if right?
 
@@ -213,20 +261,22 @@ module Vedeu
 
     # Renders the left border for the interface.
     #
+    # @param iy [Fixnum]
     # @return [String]
-    def left
+    def left(iy = 0)
       return [] unless left?
 
-      border(vertical, :left_vertical)
+      border(vertical, :left_vertical, iy)
     end
 
     # Renders the right border for the interface.
     #
+    # @param iy [Fixnum]
     # @return [String]
-    def right
+    def right(iy = 0)
       return [] unless right?
 
-      border(vertical, :right_vertical)
+      border(vertical, :right_vertical, iy)
     end
 
     # Renders the top border for the interface.
@@ -237,8 +287,8 @@ module Vedeu
 
       out = []
       out << border(top_left, :top_left) if left?
-      width.times do
-        out << border(horizontal, :top_horizontal)
+      width.times do |ix|
+        out << border(horizontal, :top_horizontal, nil, ix)
       end
       out << border(top_right, :top_right) if right?
 
@@ -249,19 +299,16 @@ module Vedeu
 
     # @param value [String]
     # @param type [Symbol|NilClass]
+    # @param iy [Fixnum]
+    # @param ix [Fixnum]
     # @return [Vedeu::Char]
-    def border(value, type = :border)
+    def border(value, type = :border, iy = 0, ix = 0)
       Vedeu::Char.new({ value:    value,
                         parent:   interface,
                         colour:   colour,
                         style:    style,
-                        position: nil,
+                        position: position(type, iy, ix),
                         border:   type })
-    end
-
-    # @return [Vedeu::Interface]
-    def interface
-      @interface ||= Vedeu.interfaces.find(name)
     end
 
     # The default values for a new instance of this class.
@@ -285,6 +332,39 @@ module Vedeu
         top_right:    "\x6B", # ┐
         vertical:     "\x78", # │
       }
+    end
+
+    # @return [Vedeu::Interface]
+    def interface
+      @interface ||= Vedeu.interfaces.find(name)
+    end
+
+    # @param name [Symbol]
+    # @param iy [Fixnum]
+    # @param ix [Fixnum]
+    # @return [Vedeu::Position]
+    def position(name, iy = 0, ix = 0)
+      case name
+      when :top_horizontal
+        Vedeu::Position[interface.y, (bx + ix)]
+
+      when :bottom_horizontal
+        Vedeu::Position[interface.yn, (bx + ix)]
+
+      when :left_vertical
+        Vedeu::Position[(by + iy), interface.x]
+
+      when :right_vertical
+        Vedeu::Position[(by + iy), interface.xn]
+
+      when :bottom_left  then interface.bottom_left
+      when :bottom_right then interface.bottom_right
+      when :top_left     then interface.top_left
+      when :top_right    then interface.top_right
+      else
+        nil
+
+      end
     end
 
   end # Border

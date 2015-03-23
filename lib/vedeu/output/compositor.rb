@@ -20,7 +20,7 @@ module Vedeu
       new(name).compose
     end
 
-    # Initialize a new Compositor.
+    # Initialize a new Vedeu::Compositor.
     #
     # @param name [String] The name of the buffer.
     # @return [Compositor]
@@ -28,6 +28,9 @@ module Vedeu
       @name = name
     end
 
+    # Applies any overridden colours or styles in the buffered view to the
+    # stored interface.
+    #
     # @return [Array<Interface>]
     def compose
       buffer.each do |view|

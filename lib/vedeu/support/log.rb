@@ -31,8 +31,11 @@ module Vedeu
 
     # Ensures we can always write to the log file by creating a lock-less
     # log device.
+    #
     class LocklessLogDevice < LogDevice
 
+      # Returns a new instance of Vedeu::LocklessLogDevice.
+      #
       # @param log []
       # @return []
       def initialize(log = nil)

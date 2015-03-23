@@ -1,5 +1,6 @@
 require 'vedeu/geometry/content'
 require 'vedeu/models/all'
+require 'vedeu/output/null_border'
 require 'vedeu/output/presentation'
 require 'vedeu/buffers/display_buffer'
 require 'vedeu/buffers/buffer'
@@ -58,10 +59,18 @@ module Vedeu
       :right,
       :bottom,
       :left,
+      :y,
+      :yn,
+      :x,
+      :xn,
       :width,
-      :height
+      :height,
+      :top_left,
+      :top_right,
+      :bottom_left,
+      :bottom_right
 
-    # Return a new instance of Interface.
+    # Return a new instance of Vedeu::Interface.
     #
     # @param attributes [Hash]
     # @option attributes colour [Vedeu::Colour]
@@ -117,9 +126,18 @@ module Vedeu
     #
     # @return [Vedeu::Border|NilClass]
     def border
-      if border?
+      @border ||= if border?
         Vedeu.borders.find(name)
+
+      else
+        Vedeu::NullBorder.new(self)
+
       end
+    end
+
+    # @return [Array<Array<Vedeu::Char>>]
+    def clear
+      Vedeu::Clear.render(self)
     end
 
     # Fetch the cursor belonging to this interface (by name), if one does not
@@ -151,6 +169,15 @@ module Vedeu
     alias_method :content?, :lines?
     alias_method :value?, :lines?
 
+    # @return [Array<Array<Vedeu::Char>>]
+    def render
+      [
+        clear,
+        border.render,
+        viewport
+      ]
+    end
+
     # @return [Interface]
     def store
       super
@@ -159,6 +186,11 @@ module Vedeu
       store_focusable
       store_cursor
       store_group
+    end
+
+    # @return [Array<Array<Vedeu::Char>>]
+    def viewport
+      Vedeu::Viewport.render(self)
     end
 
     private

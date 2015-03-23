@@ -17,6 +17,8 @@ module Vedeu
       new(output).to_file(path)
     end
 
+    # Returns a new instance of Vedeu::HTMLRenderer.
+    #
     # @param output [Array<Array<Vedeu::Char>>]
     # @return [Vedeu::HTMLRenderer]
     def initialize(output)
@@ -63,7 +65,7 @@ module Vedeu
 
     # @return [String]
     def template
-      File.dirname(__FILE__) + '/templates/html_renderer.vedeu'
+      File.dirname(__FILE__) + '/../templates/html_renderer.vedeu'
     end
 
     # @return [String]

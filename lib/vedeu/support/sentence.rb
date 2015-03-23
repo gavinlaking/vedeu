@@ -15,6 +15,8 @@ module Vedeu
       new(elements, label).construct
     end
 
+    # Returns a new instance of Vedeu::Sentence.
+    #
     # @param elements [Array]
     # @param label [String]
     # @return [Vedeu::Sentence]

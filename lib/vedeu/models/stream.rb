@@ -27,7 +27,7 @@ module Vedeu
     alias_method :data,    :value
     alias_method :text,    :value
 
-    # Returns a new instance of Stream.
+    # Returns a new instance of Vedeu::Stream.
     #
     # @param attributes [Hash]
     # @option attributes value [String]
@@ -74,27 +74,16 @@ module Vedeu
       value.empty?
     end
 
+    # @return [NilClass|String]
+    def name
+      parent.name if parent
+    end
+
     # Returns the size of the content in characters without formatting.
     #
     # @return [Fixnum]
     def size
       value.size
-    end
-
-    # @return [String]
-    def value
-      # Vedeu::Char.coerce(@value, parent, colour, style)
-      # @value ||= if @value.size > 1
-      #   @value.chars.map do |char|
-      #     Vedeu::Char.new(char, parent, colour, style)
-      #   end
-      # elsif @value.size == 1
-      #   Vedeu::Char.new(@value, parent, colour, style)
-      # else
-      #   # ???
-      # end
-
-      @value
     end
 
     # Delegate to Vedeu::Line#width if available.

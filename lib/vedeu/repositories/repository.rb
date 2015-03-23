@@ -24,6 +24,8 @@ module Vedeu
     # @return [void]
     attr_reader :storage
 
+    # Returns a new instance of Vedeu::Repository.
+    #
     # @param model [Class]
     # @param storage [Class|Hash]
     # @return [Vedeu::Repository]

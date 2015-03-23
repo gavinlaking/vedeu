@@ -32,6 +32,8 @@ module Vedeu
       new(options).trace
     end
 
+    # Returns a new instance of Vedeu::Trace
+    #
     # @param options [Hash]
     # @return [Trace]
     def initialize(options = {})

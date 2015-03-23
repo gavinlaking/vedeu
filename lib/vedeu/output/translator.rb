@@ -38,7 +38,7 @@ module Vedeu
       new(colour).escape_sequence
     end
 
-    # Return a new instance of Translator.
+    # Return a new instance of Vedeu::Translator.
     #
     # @param colour [Fixnum|String|Symbol]
     # @return [Translator]
@@ -51,6 +51,9 @@ module Vedeu
     def escape_sequence
       if no_colour?
         ''
+
+      elsif registered?(colour)
+        retrieve(colour)
 
       elsif rgb?
         rgb
@@ -80,6 +83,22 @@ module Vedeu
     end
 
     private
+
+    # Subclasses implement this method.
+    #
+    # @param colour [String]
+    # @return [String]
+    def retrieve(colour)
+      ''
+    end
+
+    # Subclasses implement this method.
+    #
+    # @param colour [String]
+    # @return [FalseClass]
+    def registered?(colour)
+      false
+    end
 
     # @return [Boolean]
     def no_colour?
@@ -136,7 +155,7 @@ module Vedeu
     # @return [String]
     def rgb
       if Vedeu::Configuration.colour_mode == 16777216
-        sprintf(rgb_prefix, *css_to_rgb)
+        register(colour, sprintf(rgb_prefix, *css_to_rgb))
 
       else
         numbered

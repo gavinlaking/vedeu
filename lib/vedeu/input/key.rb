@@ -4,7 +4,7 @@ module Vedeu
   #
   class Key
 
-    # Returns a new instance of Key.
+    # Returns a new instance of Vedeu::Key.
     #
     # @param input [String|Symbol]
     # @param block [Proc]

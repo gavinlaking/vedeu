@@ -25,7 +25,7 @@ module Vedeu
 
     alias_method :value, :streams
 
-    # Returns a new instance of Line.
+    # Returns a new instance of Vedeu::Line.
     #
     # @param attributes [Hash]
     # @option attributes streams [Vedeu::Streams]
@@ -62,6 +62,11 @@ module Vedeu
     # @return [Boolean]
     def empty?
       streams.empty?
+    end
+
+    # @return [NilClass|String]
+    def name
+      parent.name if parent
     end
 
     # Returns the size of the content in characters without formatting.

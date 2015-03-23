@@ -9,6 +9,8 @@ module Vedeu
       new(v, vn, max, min).apply
     end
 
+    # Returns a new instance of Vedeu::Limit.
+    #
     # @param v [Fixnum]
     # @param vn [Fixnum]
     # @param max [Fixnum]

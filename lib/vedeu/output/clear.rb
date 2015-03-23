@@ -4,18 +4,23 @@ module Vedeu
   #
   class Clear
 
-    # Clears the area defined by the interface.
-    #
-    # @return [Array|String]
-    # @see #initialize
-    def self.clear(interface)
-      new(interface).write
+    class << self
+
+      # Clears the area defined by the interface.
+      #
+      # @return [Array|String]
+      # @see #initialize
+      def clear(interface)
+        new(interface).write
+      end
+      alias_method :render, :clear
+
     end
 
-    # Return a new instance of Output.
+    # Return a new instance of Vedeu::Clear.
     #
     # @param interface [Interface]
-    # @return [Output]
+    # @return [Vedeu::Clear]
     def initialize(interface)
       @interface = interface
     end
@@ -26,7 +31,7 @@ module Vedeu
     #
     # @return [Array<Array<Vedeu::Char>>]
     def clear
-      Array.new(interface.height) do |iy|
+      @clear ||= Array.new(interface.height) do |iy|
         Array.new(interface.width) do |ix|
           Vedeu::Char.new({ value:    ' ',
                             colour:   interface.colour,
@@ -48,7 +53,9 @@ module Vedeu
         Vedeu::HTMLRenderer.to_file(Vedeu::VirtualBuffer.retrieve)
       end
 
-      Vedeu::Terminal.output(Vedeu::Renderer.render(clear))
+      # Vedeu::FileRenderer.render(clear)
+
+      Vedeu::TerminalRenderer.render(clear)
     end
 
     private

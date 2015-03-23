@@ -33,7 +33,7 @@ module Vedeu
 
     let(:streams_parent) { Line.new({ streams: nil, parent: parent, colour: colour, style: style }) }
 
-    let(:parent)    { Vedeu::Interface.new }
+    let(:parent)    { Vedeu::Interface.new({ name: 'Vedeu::Line' }) }
     let(:colour)    { Colour.new({ foreground: '#ff0000', background: '#000000' }) }
     let(:style)     { Style.new('normal') }
 
@@ -77,6 +77,20 @@ module Vedeu
 
       context 'when there is content' do
         it { subject.must_be_instance_of(FalseClass) }
+      end
+    end
+
+    describe '#name' do
+      subject { instance.name }
+
+      context 'when a parent is defined' do
+        it { subject.must_be_instance_of(String) }
+      end
+
+      context 'when a parent is not defined' do
+        before { instance.stubs(:parent) }
+
+        it { subject.must_be_instance_of(NilClass) }
       end
     end
 

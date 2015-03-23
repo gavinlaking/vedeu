@@ -16,6 +16,8 @@ module Vedeu
     # @return [Fixnum]
     attr_reader :width
 
+    # Returns a new instance of Vedeu::VirtualTerminal.
+    #
     # @param height [Fixnum]
     # @param width [Fixnum]
     # @param renderer [Object|HTMLRenderer] An object responding to .render.

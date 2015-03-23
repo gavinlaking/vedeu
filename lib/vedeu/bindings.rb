@@ -84,6 +84,9 @@ module Vedeu
     # events. Please see those events for their behaviour.
     Vedeu.bind(:_resize_, { delay: 0.25 }) { Vedeu.resize }
 
+    Vedeu.bind(:tick) { |time| Vedeu.log(type: :debug, message: "Tick: #{time}") }
+    Vedeu.bind(:tock) { |time| Vedeu.log(type: :debug, message: "Tock: #{time}") }
+
     # Hide the cursor of the named interface or interface currently in focus.
     Vedeu.bind(:_cursor_hide_) do |name|
       named = name ? Vedeu.cursors.by_name(name) : Vedeu.cursor

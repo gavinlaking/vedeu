@@ -15,7 +15,7 @@ module Vedeu
     collection Vedeu::Interfaces
     member     Vedeu::Interface
 
-    # Returns a new instance of Composition.
+    # Returns a new instance of Vedeu::Composition.
     #
     # @param attributes [Hash]
     # @option attributes colour [Vedeu::Colour]

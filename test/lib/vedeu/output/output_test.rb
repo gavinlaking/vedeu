@@ -34,6 +34,8 @@ module Vedeu
     end
 
     describe '.render' do
+      before { Vedeu::FileRenderer.stubs(:render) }
+
       subject { described.render(interface) }
 
       it { subject.must_be_instance_of(Array) }

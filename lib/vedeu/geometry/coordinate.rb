@@ -20,6 +20,8 @@ module Vedeu
     # @return [Fixnum]
     attr_reader :y
 
+    # Returns a new instance of Vedeu::Coordinate.
+    #
     # @param height [Fixnum]
     # @param width [Fixnum]
     # @param x [Fixnum]

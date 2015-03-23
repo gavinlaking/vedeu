@@ -1,7 +1,4 @@
-require 'vedeu/output/clear'
-require 'vedeu/output/html_renderer'
-require 'vedeu/output/renderer'
-require 'vedeu/output/viewport'
+require 'vedeu/output/renderers/all'
 require 'vedeu/output/virtual_buffer'
 require 'vedeu/support/terminal'
 
@@ -20,7 +17,7 @@ module Vedeu
       new(interface).render
     end
 
-    # Return a new instance of Output.
+    # Return a new instance of Vedeu::Output.
     #
     # @param interface [Interface]
     # @return [Output]
@@ -33,12 +30,14 @@ module Vedeu
     # @return [Array]
     def render
       if Vedeu::Configuration.drb?
-        Vedeu.trigger(:_drb_store_output_, virtual_view)
+        Vedeu.trigger(:_drb_store_output_, rendered)
 
         Vedeu::HTMLRenderer.to_file(Vedeu::VirtualBuffer.retrieve)
       end
 
-      Vedeu::Terminal.output(Vedeu::Renderer.render(virtual_view))
+      # Vedeu::FileRenderer.render(rendered)
+
+      Vedeu::TerminalRenderer.render(rendered)
     end
 
     private
@@ -47,43 +46,8 @@ module Vedeu
     # @return [Interface]
     attr_reader :interface
 
-    # Builds up a virtual view; a grid of Vedeu::Char objects- each one holding
-    # one character along with its colour, style and position attributes.
-    #
-    # @note
-    #   omg!
-    #
-    # @return [Array<Array<Vedeu::Char>>]
-    def virtual_view
-      out = [ clear_area_first! ]
-
-      Vedeu.log(type: :output, message: "Rendering: '#{interface.name}'")
-
-      viewport.each_with_index do |line, iy|
-        row = []
-        line.each_with_index do |char, ix|
-          row << if char.x != ix || char.y != iy
-            char.position = Vedeu::IndexPosition[iy, ix, interface.top, interface.left]
-            char
-
-          else
-            char
-
-          end
-        end
-        out << row
-      end
-      out
-    end
-
-    # @return [Array<Array<Vedeu::Char>>]
-    def clear_area_first!
-      Vedeu::Clear.new(interface).clear
-    end
-
-    # @return [void]
-    def viewport
-      @viewport ||= Vedeu::Viewport.new(interface).render
+    def rendered
+      @rendered ||= interface.render
     end
 
   end # Output

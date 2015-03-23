@@ -44,7 +44,7 @@ module Vedeu
     # @return [Fixnum]
     attr_reader :y
 
-    # Returns a new instance of Cursor.
+    # Returns a new instance of Vedeu::Cursor.
     #
     # @param attributes [Hash]
     # @option attributes name [String] The name of the interface this cursor

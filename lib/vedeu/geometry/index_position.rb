@@ -13,6 +13,27 @@ module Vedeu
       new(iy, ix, oy, ox).[]
     end
 
+    # @param name [String] The name of the interface.
+    # @param iy [Fixnum]
+    # @param ix [Fixnum]
+    # @return [Vedeu::Position]
+    def self.from_interface(name, iy, ix)
+      if Vedeu.interfaces.registered?(name)
+        interface = Vedeu.interfaces.find(name)
+        oy        = interface.border.by
+        ox        = interface.border.bx
+
+      else
+        oy = 1
+        ox = 1
+
+      end
+
+      new(iy, ix, oy, ox).[]
+    end
+
+    # Returns a new instance of Vedeu::IndexPosition.
+    #
     # @param iy [Fixnum]
     # @param ix [Fixnum]
     # @param oy [Fixnum]

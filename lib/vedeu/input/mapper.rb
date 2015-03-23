@@ -27,6 +27,8 @@ module Vedeu
       new(key, name).valid?
     end
 
+    # Returns a new instance of Vedeu::Mapper.
+    #
     # @param key [NilClass|String|Symbol]
     # @param name [NilClass|String]
     # @param repository [NilClass|Repository]
@@ -37,6 +39,9 @@ module Vedeu
       @repository = repository || Vedeu.keymaps
     end
 
+    # Returns a boolean indicating that the key is registered to the current
+    # keymap or the global or system keymap.
+    #
     # @return [Boolean]
     def keypress
       return false unless key
@@ -50,6 +55,9 @@ module Vedeu
       false
     end
 
+    # Returns a boolean indicating that the key is not registered to the current
+    # keymap, the global keymap or the system keymap.
+    #
     # @return [Boolean]
     def valid?
       return false unless key

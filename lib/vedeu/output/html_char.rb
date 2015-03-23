@@ -14,6 +14,8 @@ module Vedeu
       new(char).render
     end
 
+    # Returns a new instance of Vedeu::HTMLChar.
+    #
     # @param char [Vedeu::Char]
     # @return [Vedeu::HTMLChar]
     def initialize(char)

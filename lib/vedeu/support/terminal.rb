@@ -41,7 +41,7 @@ module Vedeu
     #
     # @return [String]
     def input
-      if raw_mode?
+      keys_or_cmd = if raw_mode?
         keys = console.getch
         if keys.ord == 27
           keys << console.read_nonblock(3) rescue nil
@@ -53,6 +53,10 @@ module Vedeu
         console.gets.chomp
 
       end
+
+      Vedeu.trigger(:tick, Time.now.to_f)
+
+      keys_or_cmd
     end
     alias_method :read, :input
 
@@ -62,6 +66,7 @@ module Vedeu
     # @return [Array]
     def output(*streams)
       streams.each do |stream|
+        # Write the stream to the log file.
         # Vedeu.log(Esc.escape(stream))
 
         console.print(stream)

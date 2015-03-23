@@ -27,6 +27,8 @@ module Vedeu
       new({ v: v, vn: vn }).centre
     end
 
+    # Returns a new instance of Vedeu::Centre.
+    #
     # @param attributes [Hash<Symbol => Fixnum>]
     # @option attributes v [Fixnum] The starting coordinate value.
     # @option attributes vn [Fixnum] The ending coordinate value.

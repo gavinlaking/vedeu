@@ -12,6 +12,8 @@ module Vedeu
       new(application).execute!
     end
 
+    # Returns a new instance of Vedeu::Subprocess.
+    #
     # @param application [Vedeu::TestApplication]
     # @return [Vedeu::Subprocess]
     def initialize(application)
