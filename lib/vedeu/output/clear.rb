@@ -31,7 +31,7 @@ module Vedeu
     #
     # @return [Array<Array<Vedeu::Char>>]
     def clear
-      Array.new(interface.height) do |iy|
+      @clear ||= Array.new(interface.height) do |iy|
         Array.new(interface.width) do |ix|
           Vedeu::Char.new({ value:    ' ',
                             colour:   interface.colour,
