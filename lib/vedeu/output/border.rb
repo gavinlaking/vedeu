@@ -246,17 +246,7 @@ module Vedeu
     #
     # @return [String]
     def bottom
-      return [] unless bottom?
-
-      out = []
-
-      out << border(bottom_left, :bottom_left) if left?
-      width.times do |ix|
-        out << border(horizontal, :bottom_horizontal, nil, ix)
-      end
-      out << border(bottom_right, :bottom_right) if right?
-
-      out.flatten
+      top_or_bottom('bottom')
     end
 
     # Renders the left border for the interface.
@@ -283,19 +273,29 @@ module Vedeu
     #
     # @return [String]
     def top
-      return [] unless top?
-
-      out = []
-      out << border(top_left, :top_left) if left?
-      width.times do |ix|
-        out << border(horizontal, :top_horizontal, nil, ix)
-      end
-      out << border(top_right, :top_right) if right?
-
-      out.flatten
+      top_or_bottom('top')
     end
 
     private
+
+    # @param prefix [String]
+    # @return [String]
+    def top_or_bottom(prefix)
+      predicate   = (prefix + '?').to_sym
+      _left       = (prefix + '_left').to_sym
+      _right      = (prefix + '_right').to_sym
+      _horizontal = (prefix + '_horizontal').to_sym
+
+      return [] unless send(predicate)
+
+      out = []
+      out << border(send(_left), _left) if left?
+      width.times do |ix|
+        out << border(horizontal, _horizontal, nil, ix)
+      end
+      out << border(send(_right), _right) if right?
+      out.flatten
+    end
 
     # @param value [String]
     # @param type [Symbol|NilClass]
