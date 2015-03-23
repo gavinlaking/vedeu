@@ -81,15 +81,6 @@ module Vedeu
       collection.coerce(@streams, self)
     end
 
-    # @return [Array<Array<Vedeu::Char>>|Array]
-    def to_char(line_index)
-      chars = []
-      streams.each_with_index do |stream, index|
-        chars << stream.to_char(line_index, index)
-      end
-      chars.flatten
-    end
-
     # Delegate to Vedeu::Interface#width if available.
     #
     # @return [Fixnum]

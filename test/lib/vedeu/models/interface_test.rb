@@ -124,17 +124,6 @@ module Vedeu
       end
     end
 
-    describe '#to_char' do
-      subject { instance.to_char }
-
-      context 'when there is no content' do
-        it { subject.must_equal([]) }
-      end
-
-      context 'when there is content' do
-      end
-    end
-
     describe '#viewport' do
       subject { instance.viewport }
 

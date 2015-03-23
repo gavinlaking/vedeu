@@ -188,15 +188,6 @@ module Vedeu
       store_group
     end
 
-    # @return [Array<Array<Vedeu::Char>>|Array]
-    def to_char
-      chars = []
-      lines.each_with_index do |line, index|
-        chars << line.to_char(index)
-      end
-      chars
-    end
-
     # @return [Array<Array<Vedeu::Char>>]
     def viewport
       Vedeu::Viewport.render(self)

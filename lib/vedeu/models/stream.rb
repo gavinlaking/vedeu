@@ -86,17 +86,6 @@ module Vedeu
       value.size
     end
 
-    # @param line_index [Fixnum]
-    # @param stream_index [Fixnum]
-    # @return [Array<Vedeu::Char>]
-    def to_char(line_index, stream_index)
-      out = chars.each_with_index do |char, index|
-        char.position = IndexPosition.from_interface(name, line_index, index)
-        char
-      end
-      out.flatten
-    end
-
     # @return [String]
     def value
       # Vedeu::Char.coerce(@value, parent, colour, style)

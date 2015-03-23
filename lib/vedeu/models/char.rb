@@ -98,11 +98,6 @@ module Vedeu
       position.y if position
     end
 
-    # @return [Vedeu::Char]
-    def to_char
-      self
-    end
-
     # Returns a Hash of all the values before coercion.
     #
     # @note
