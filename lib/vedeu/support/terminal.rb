@@ -70,7 +70,7 @@ module Vedeu
         # Vedeu.log(Esc.escape(stream))
 
         # Write the stream to a temporary file.
-        File.open("/tmp/out_#{Time.now.to_f}", 'w') { |f| f.write(stream) }
+        # File.open("/tmp/out_#{Time.now.to_f}", 'w') { |f| f.write(stream) }
 
         console.print(stream)
 
