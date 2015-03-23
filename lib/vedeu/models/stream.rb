@@ -86,22 +86,6 @@ module Vedeu
       value.size
     end
 
-    # @return [String]
-    def value
-      # Vedeu::Char.coerce(@value, parent, colour, style)
-      # @value ||= if @value.size > 1
-      #   @value.chars.map do |char|
-      #     Vedeu::Char.new(char, parent, colour, style)
-      #   end
-      # elsif @value.size == 1
-      #   Vedeu::Char.new(@value, parent, colour, style)
-      # else
-      #   # ???
-      # end
-
-      @value
-    end
-
     # Delegate to Vedeu::Line#width if available.
     #
     # @return [Fixnum]
