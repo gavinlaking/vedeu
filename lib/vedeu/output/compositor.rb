@@ -28,6 +28,9 @@ module Vedeu
       @name = name
     end
 
+    # Applies any overridden colours or styles in the buffered view to the
+    # stored interface.
+    #
     # @return [Array<Interface>]
     def compose
       buffer.each do |view|
