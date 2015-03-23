@@ -4,6 +4,7 @@ require 'cucumber'
 require 'cucumber/rake/task'
 require 'inch/rake'
 require 'yard'
+require 'rubocop/rake_task'
 
 Cucumber::Rake::Task.new(:cucumber) do |t|
   t.cucumber_opts = "features --format progress"
@@ -29,6 +30,12 @@ end
 Inch::Rake::Suggest.new(:inch) do |suggest|
   suggest.args << "--pedantic"
   suggest.args << "--all"
+end
+
+RuboCop::RakeTask.new(:rubocop) do |task|
+  task.patterns = ['lib/**/*.rb']
+  task.formatters = ['progress']
+  task.fail_on_error = false
 end
 
 task :default => :test
