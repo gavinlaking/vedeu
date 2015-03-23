@@ -21,8 +21,7 @@ module Vedeu
 
     # @return [Array<String>]
     def render
-      # Vedeu::Terminal.output(hide_cursor, parsed, show_cursor)
-      Vedeu::Terminal.output(parsed)
+      Vedeu::Terminal.output(hide_cursor, parsed, show_cursor)
     end
 
     private
@@ -31,14 +30,17 @@ module Vedeu
     # @return [Array<Array<Vedeu::Char>>]
     attr_reader :output
 
+    # @return [String]
     def show_cursor
       Vedeu::Esc.string(:show_cursor)
     end
 
+    # @return [String]
     def parsed
       Array(output).flatten.map(&:to_s).join
     end
 
+    # @return [String]
     def hide_cursor
       Vedeu::Esc.string(:hide_cursor)
     end
