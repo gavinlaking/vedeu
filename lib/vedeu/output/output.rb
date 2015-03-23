@@ -1,5 +1,4 @@
-require 'vedeu/output/html_renderer'
-require 'vedeu/output/renderer'
+require 'vedeu/output/renderers/all'
 require 'vedeu/output/virtual_buffer'
 require 'vedeu/support/terminal'
 
@@ -28,18 +27,17 @@ module Vedeu
 
     # Send the view to the terminal.
     #
-    # @return [Array<Array<Vedeu::Char>>]
+    # @return [Array]
     def render
       if Vedeu::Configuration.drb?
-        Vedeu.trigger(:_drb_store_output_, interface.render)
+        Vedeu.trigger(:_drb_store_output_, rendered)
 
         Vedeu::HTMLRenderer.to_file(Vedeu::VirtualBuffer.retrieve)
       end
 
-      Vedeu::Terminal.output(Vedeu::Esc.string(:hide_cursor))
-      output = Vedeu::Terminal.output(Vedeu::Renderer.render(interface.render))
-      Vedeu::Terminal.output(Vedeu::Esc.string(:show_cursor))
-      output
+      # Vedeu::FileRenderer.render(rendered)
+
+      Vedeu::TerminalRenderer.render(rendered)
     end
 
     private
@@ -47,6 +45,10 @@ module Vedeu
     # @!attribute [r] interface
     # @return [Interface]
     attr_reader :interface
+
+    def rendered
+      @rendered ||= interface.render
+    end
 
   end # Output
 

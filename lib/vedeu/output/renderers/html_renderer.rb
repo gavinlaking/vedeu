@@ -65,7 +65,7 @@ module Vedeu
 
     # @return [String]
     def template
-      File.dirname(__FILE__) + '/templates/html_renderer.vedeu'
+      File.dirname(__FILE__) + '/../templates/html_renderer.vedeu'
     end
 
     # @return [String]

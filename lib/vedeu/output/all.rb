@@ -16,10 +16,10 @@ require 'vedeu/output/style'
 require 'vedeu/output/text'
 require 'vedeu/output/virtual_buffer'
 require 'vedeu/output/html_char'
-require 'vedeu/output/html_renderer'
 require 'vedeu/output/refresh'
 
-require 'vedeu/output/renderer'
+require 'vedeu/output/renderers/all'
+
 require 'vedeu/output/output'
 
 require 'vedeu/output/viewport'

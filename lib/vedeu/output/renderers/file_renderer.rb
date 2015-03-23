@@ -3,7 +3,7 @@ module Vedeu
   # Converts a grid of {Vedeu::Char} objects into a stream of escape sequences
   # and content suitable for a terminal.
   #
-  class Renderer
+  class FileRenderer
 
     # @param output [Array<Array<Vedeu::Char>>]
     # @return [String]
@@ -11,17 +11,17 @@ module Vedeu
       new(*output).render
     end
 
-    # Returns a new instance of Vedeu::Renderer.
+    # Returns a new instance of Vedeu::FileRenderer.
     #
     # @param output [Array<Array<Vedeu::Char>>]
-    # @return [Vedeu::Renderer]
+    # @return [Vedeu::FileRenderer]
     def initialize(*output)
-      @output = output
+      @output  = output
     end
 
     # @return [String]
     def render
-      Array(output).flatten.map(&:to_s).join
+      File.open("/tmp/out_#{Time.now.to_f}", 'w') { |f| f.write(parsed) }
     end
 
     private
@@ -30,6 +30,11 @@ module Vedeu
     # @return [Array<Array<Vedeu::Char>>]
     attr_reader :output
 
-  end # Renderer
+    # @return [String]
+    def parsed
+      Array(output).flatten.map(&:to_s).join
+    end
+
+  end # FileRenderer
 
 end # Vedeu
