@@ -45,29 +45,23 @@ module Vedeu
     def render
       Vedeu.log(type: :output, message: "Rendering: '#{interface.name}'")
 
-     if border?
-        out = []
+      out = []
 
-        show[0...bordered_height].each_with_index do |line, iy|
-          line[0...bordered_width].each_with_index do |column, ix|
-            column.position = IndexPosition[iy, ix, interface.border.by, interface.border.bx]
-            out << column
-          end
+      show[0...bordered_height].each_with_index do |line, iy|
+        line[0...bordered_width].each_with_index do |column, ix|
+          column.position = IndexPosition[iy, ix, interface.border.by, interface.border.bx]
+          out << column
         end
-
-        out
-
-      else
-        show
-
       end
+
+      out
     end
 
     # Returns a string representation of the viewport.
     #
     # @return [String]
     def to_s
-      render.map(&:join).join("\n")
+      render.map(&:to_s).join("\n")
     end
 
     private
