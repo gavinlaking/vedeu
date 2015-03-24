@@ -8,9 +8,9 @@ module Vedeu
 
     Signal.trap('TERM') { exit! }
 
-    #TTIN
-    #USR1
-    #USR2
+    Signal.trap('TTIN') {}
+    Signal.trap('USR1') {}
+    Signal.trap('USR2') {}
 
     Signal.trap('SIGWINCH') { Vedeu.trigger(:_resize_) }
 
