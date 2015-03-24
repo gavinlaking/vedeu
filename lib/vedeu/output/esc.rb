@@ -121,7 +121,7 @@ module Vedeu
     def border(&block)
       return '' unless block_given?
 
-      [ border_on, yield, border_off ].join
+      [border_on, yield, border_off].join
     end
 
     private

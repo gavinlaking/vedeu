@@ -63,7 +63,7 @@ module Vedeu
     # @return [String]
     def to_s(&block)
       if block_given?
-        [ sequence, yield, sequence ].join
+        [sequence, yield, sequence].join
 
       else
         sequence

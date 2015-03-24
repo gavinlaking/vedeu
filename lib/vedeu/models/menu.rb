@@ -95,7 +95,7 @@ module Vedeu
     # Returns a new collection of items.
     # Each element of the collection is of the format:
     #
-    #   [ selected, current, item ]
+    #   [selected, current, item]
     #
     # `selected` is a boolean indicating whether the item is selected.
     # `current`  is a boolean indicating whether the item is current.
