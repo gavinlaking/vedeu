@@ -33,8 +33,7 @@ module Vedeu
 
     # @return [Boolean]
     def refresh_view?
-      new_cursor.ox >= interface_width ||
-      new_cursor.oy >= interface_height
+      new_cursor.ox >= interface_width || new_cursor.oy >= interface_height
     end
 
     # @return [Vedeu::Cursor]
@@ -64,24 +63,12 @@ module Vedeu
 
     # @return [Fixnum]
     def interface_height
-      if interface.border?
-        interface.border.height
-
-      else
-        interface.height
-
-      end
+      interface.border.height
     end
 
     # @return [Fixnum]
     def interface_width
-      if interface.border?
-        interface.border.width
-
-      else
-        interface.width
-
-      end
+      interface.border.width
     end
 
     # @return [Vedeu::Interface]

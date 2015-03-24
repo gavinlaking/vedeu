@@ -172,18 +172,7 @@ module Vedeu
     #
     # @return [Fixnum]
     def width
-      return interface.width unless enabled?
-
-      if left? && right?
-        interface.width - 2
-
-      elsif left? || right?
-        interface.width - 1
-
-      else
-        interface.width
-
-      end
+      (bx..bxn).size
     end
 
     # Returns the height of the interface determined by whether a top, bottom,
@@ -191,18 +180,7 @@ module Vedeu
     #
     # @return [Fixnum]
     def height
-      return interface.height unless enabled?
-
-      if top? && bottom?
-        interface.height - 2
-
-      elsif top? || bottom?
-        interface.height - 1
-
-      else
-        interface.height
-
-      end
+      (by..byn).size
     end
 
     # @return [Vedeu::Colour]
