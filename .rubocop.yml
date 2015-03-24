@@ -138,7 +138,7 @@ Style/BarePercentLiterals:
     - bare_percent
 
 Style/BracesAroundHashParameters:
-  EnforcedStyle: no_braces
+  EnforcedStyle: braces
   SupportedStyles:
     # The `braces` style enforces braces around all method parameters that are
     # hashes.
@@ -501,7 +501,7 @@ Style/TrailingBlankLines:
 Style/TrailingComma:
   # If EnforcedStyleForMultiline is comma, the cop allows a comma after the
   # last item of a list, but only for lists where each item is on its own line.
-  EnforcedStyleForMultiline: no_comma
+  EnforcedStyleForMultiline: comma
   SupportedStyles:
     - comma
     - no_comma
