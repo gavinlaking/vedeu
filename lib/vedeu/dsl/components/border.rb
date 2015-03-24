@@ -195,6 +195,24 @@ module Vedeu
         right(true)
       end
 
+      # If you have you are showing a top border, you could add a title.
+      #
+      # @example
+      #   Vedeu.renders do
+      #     view 'border_demo' do
+      #       geometry { width: 50 }
+      #       border do
+      #         title 'My Cool Title'
+      #         # ...
+      #
+      #   +- My Cool Title --------------------------------+
+      #
+      # @param value [String] The title.
+      # @return [String]
+      def title(value)
+        model.title = value
+      end
+
       # Enable/disable the top border.
       #
       # @example

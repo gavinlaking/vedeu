@@ -57,6 +57,7 @@ module Vedeu
           show_right:   true,
           show_top:     true,
           style:        [],
+          title:        '',
           top_left:     'l',
           top_right:    'k',
           vertical:     'x',
