@@ -134,46 +134,30 @@ module Vedeu
 
     # @return [Fixnum]
     def bx
-      if enabled? && left?
-        interface.x + 1
+      bo = (enabled? && left?) ? 1 : 0
 
-      else
-        interface.x
-
-      end
+      interface.x + bo
     end
 
     # @return [Fixnum]
     def bxn
-      if enabled? && right?
-        interface.xn - 1
+      bo = (enabled? && right?) ? 1 : 0
 
-      else
-        interface.xn
-
-      end
+      interface.xn - bo
     end
 
     # @return [Fixnum]
     def by
-      if enabled? && top?
-        interface.y + 1
+      bo = (enabled? && top?) ? 1 : 0
 
-      else
-        interface.y
-
-      end
+      interface.y + bo
     end
 
     # @return [Fixnum]
     def byn
-      if enabled? && bottom?
-        interface.yn - 1
+      bo = (enabled? && bottom?) ? 1 : 0
 
-      else
-        interface.yn
-
-      end
+      interface.yn - bo
     end
 
     # Returns the width of the interface determined by whether a left, right,
