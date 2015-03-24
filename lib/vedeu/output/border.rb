@@ -277,11 +277,31 @@ module Vedeu
 
       out = []
       out << border(send(_left), _left) if left?
-      width.times do |ix|
-        out << border(horizontal, _horizontal, nil, ix)
-        # out << titleize
+
+      if prefix == 'top' && defined_value?(title)
+        title_out = []
+        width.times do |ix|
+          title_out << border(horizontal, _horizontal, nil, ix)
+        end
+
+        truncate = title.chomp.slice(0..(width - 5))
+        pad      = truncate.center(truncate.size + 2).chars
+        out << title_out.each_with_index do |b, i|
+          if i >= 1 && i <= pad.size
+            b.border = nil
+            b.value  = pad[(i - 1)]
+          end
+        end
+
+      else
+        width.times do |ix|
+          out << border(horizontal, _horizontal, nil, ix)
+        end
+
       end
+
       out << border(send(_right), _right) if right?
+      out
     end
 
     # @param value [String]
@@ -296,28 +316,6 @@ module Vedeu
                         style:    style,
                         position: position(type, iy, ix),
                         border:   type })
-    end
-
-    def titleize
-      out = []
-
-      if defined_value?(title)
-        truncated_title = title.chomp.slice(0..(width - 3))
-        border_chars    = width - truncated_title.size
-
-        out << border(horizontal, :top_horizontal, nil, 0)
-        out << border(horizontal, :top_horizontal, nil, 1)
-        [' ', truncated_title.chars, ' '].flatten.each_with_index do |char, ix|
-          out << border(char, :none, nil, (ix + 2))
-        end
-        out << border_chars.times { out << border(horizontal, :top_horizontal) }
-
-      else
-        width.times { out << border(horizontal, :top_horizontal) }
-
-      end
-
-      out
     end
 
     # @return [Vedeu::Interface]

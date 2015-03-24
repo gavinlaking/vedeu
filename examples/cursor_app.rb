@@ -22,8 +22,8 @@ class VedeuCursorApp
 
     geometry do
       centred true
-      height  8
-      width   8
+      height  10
+      width   10
     end
   end
 
@@ -38,7 +38,7 @@ class VedeuCursorApp
     view 'main_interface' do
       border do
         colour foreground: '#aadd00', background: '#000000'
-        title 'Wut!'
+        title 'Move!'
       end
       lines do
         streams do

@@ -23,9 +23,9 @@ module Vedeu
     # @return [Vedeu::Line]
     attr_accessor :parent
 
-    # @!attribute [r] value
+    # @!attribute [rw] value
     # @return [String]
-    attr_reader :value
+    attr_accessor :value
 
     # Returns a new instance of Vedeu::Char.
     #
