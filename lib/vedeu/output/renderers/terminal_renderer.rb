@@ -37,7 +37,7 @@ module Vedeu
 
     # @return [String]
     def parsed
-      Array(output).flatten.map(&:to_s).join
+      output.flatten.map(&:to_s).join
     end
 
     # @return [String]

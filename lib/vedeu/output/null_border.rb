@@ -33,9 +33,19 @@ module Vedeu
       interface.yn
     end
 
+    # @return [Fixnum]
+    def height
+      (by..byn).size
+    end
+
     # @return [Array]
     def render
       []
+    end
+
+    # @return [Fixnum]
+    def width
+      (bx..bxn).size
     end
 
     private

@@ -49,7 +49,10 @@ module Vedeu
 
       show[0...bordered_height].each_with_index do |line, iy|
         line[0...bordered_width].each_with_index do |column, ix|
-          column.position = IndexPosition[iy, ix, interface.border.by, interface.border.bx]
+          column.position = IndexPosition[iy,
+                                          ix,
+                                          interface.border.by,
+                                          interface.border.bx]
           out << column
         end
       end
