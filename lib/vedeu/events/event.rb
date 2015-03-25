@@ -102,12 +102,10 @@ module Vedeu
       end
       alias_method :unevent, :unbind
 
-    end
+      extend Forwardable
 
-    # @param (see Vedeu::Trigger.trigger)
-    # @see Vedeu::Trigger.trigger
-    def self.trigger(name, *args)
-      Vedeu::Trigger.trigger(name, *args)
+      def_delegators Vedeu::Trigger, :trigger
+
     end
 
     # Returns a new instance of Vedeu::Event.
