@@ -309,15 +309,19 @@ module Vedeu
 
     # The default values for a new instance of this class.
     #
+    # @note
+    #   Using the '\uXXXX' variant produces gaps in the border, whilst the
+    #   '\xXX' renders 'nicely'.
+    #
     # @return [Hash]
     def defaults
       {
-        bottom_left:  "\x6D", # └
-        bottom_right: "\x6A", # ┘
+        bottom_left:  "\x6D", # └ # \u2514
+        bottom_right: "\x6A", # ┘ # \u2518
         client:       nil,
         colour:       {},
         enabled:      false,
-        horizontal:   "\x71", # ─
+        horizontal:   "\x71", # ─ # \u2500
         name:         '',
         show_bottom:  true,
         show_left:    true,
@@ -325,9 +329,9 @@ module Vedeu
         show_top:     true,
         style:        [],
         title:        '',
-        top_left:     "\x6C", # ┌
-        top_right:    "\x6B", # ┐
-        vertical:     "\x78", # │
+        top_left:     "\x6C", # ┌ # \u250C
+        top_right:    "\x6B", # ┐ # \u2510
+        vertical:     "\x78", # │ # \u2502
       }
     end
 
