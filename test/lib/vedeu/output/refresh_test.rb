@@ -57,27 +57,6 @@ module Vedeu
       end
     end
 
-    describe '.cursor' do
-      let(:_name) {}
-
-      subject { described.cursor(_name) }
-
-      before { Vedeu::RefreshCursor.stubs(:render) }
-
-      context 'when there is a name' do
-        let(:_name) { 'refresh_cursor' }
-
-        it {
-          Vedeu::RefreshCursor.expects(:render).with(_name)
-          subject
-        }
-      end
-
-      context 'when there is no name' do
-        it { subject.must_equal(nil) }
-      end
-    end
-
   end # Refresh
 
 end # Vedeu
