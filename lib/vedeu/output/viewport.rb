@@ -11,18 +11,18 @@ module Vedeu
     extend Forwardable
 
     def_delegators :interface,
-      :geometry,
-      :lines,
-      :lines?,
-      :cursor
+                   :geometry,
+                   :lines,
+                   :lines?,
+                   :cursor
 
     def_delegators :cursor,
-      :ox,
-      :oy
+                   :ox,
+                   :oy
 
     def_delegators :geometry,
-      :height,
-      :width
+                   :height,
+                   :width
 
     # @param interface [Vedeu::Interface]
     # @return [Array<Array<Vedeu::Char>>]

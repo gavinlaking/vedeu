@@ -57,23 +57,23 @@ module Vedeu
       end
 
       it 'returns a collection of models when a single hash' do
-        coerced = CoercionsTestClass.coercer({ :name => 'test1' })
+        coerced = CoercionsTestClass.coercer({ name: 'test1' })
         coerced.must_be_instance_of(Array)
-        coerced.first.attributes.must_equal({ name: "test1" })
+        coerced.first.attributes.must_equal({ name: 'test1' })
       end
 
       it 'returns a collection of models when multiple hashes' do
         coerced = CoercionsTestClass.coercer([
-          { :name => 'test1' }, { :name => 'test2' }
+          { name: 'test1' }, { name: 'test2' }
         ])
         coerced.size.must_equal(2)
         coerced.map(&:attributes).must_equal(
-          [{ name: "test1" }, { name: "test2" }]
+          [{ name: 'test1' }, { name: 'test2' }]
         )
       end
 
       it 'returns a collection of models when a single array' do
-        coerced = CoercionsTestClass.coercer([{ :name => 'test3' }])
+        coerced = CoercionsTestClass.coercer([{ name: 'test3' }])
         coerced.size.must_equal(1)
         coerced.first.attributes.must_equal({ name: "test3" })
       end

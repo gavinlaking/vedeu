@@ -167,18 +167,12 @@ module Vedeu
 
     # @return [String]
     def clear
-      [
-        colour_reset,
-        "\e[2J"
-      ].join
+      [colour_reset, "\e[2J"].join
     end
 
     # @return [String]
     def clear_line
-      [
-        colour_reset,
-        "\e[2K"
-      ].join
+      [colour_reset, "\e[2K"].join
     end
 
     # @return [String]
@@ -233,11 +227,7 @@ module Vedeu
 
     # @return [String]
     def screen_exit
-      [
-        show_cursor,
-        colour_reset,
-        reset
-      ].join
+      [show_cursor, colour_reset, reset].join
     end
 
     # @return [String]

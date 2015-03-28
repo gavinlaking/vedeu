@@ -1,15 +1,12 @@
 require 'vedeu/repositories/all'
 
-require 'vedeu/models/cell'
-require 'vedeu/models/char'
-require 'vedeu/models/stream'
-require 'vedeu/models/line'
-require 'vedeu/models/interface'
-require 'vedeu/models/composition'
+require_relative 'cell'
+require_relative 'char'
+require_relative 'stream'
+require_relative 'line'
+require_relative 'interface'
+require_relative 'composition'
 
-require 'vedeu/models/focus'
-require 'vedeu/models/group'
-require 'vedeu/models/menu'
-
-module Vedeu
-end # Vedeu
+require_relative 'focus'
+require_relative 'group'
+require_relative 'menu'
