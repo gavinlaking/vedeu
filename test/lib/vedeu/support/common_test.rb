@@ -46,7 +46,7 @@ module Vedeu
     end
 
     describe '#to_sentence' do
-      let(:array) { %w{ hydrogen helium lithium } }
+      let(:array) { ['hydrogen', 'helium', 'lithium'] }
 
       subject { described.to_sentence(array) }
 

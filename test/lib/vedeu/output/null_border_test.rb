@@ -41,11 +41,25 @@ module Vedeu
       it { subject.must_equal(12) }
     end
 
+    describe '#height' do
+      subject { instance.height }
+
+      it { subject.must_be_instance_of(Fixnum) }
+      it { subject.must_equal(7) }
+    end
+
     describe '#render' do
       subject { instance.render }
 
       it { subject.must_be_instance_of(Array) }
       it { subject.must_equal([]) }
+    end
+
+    describe '#width' do
+      subject { instance.width }
+
+      it { subject.must_be_instance_of(Fixnum) }
+      it { subject.must_equal(7) }
     end
 
   end # NullBorder

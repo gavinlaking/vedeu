@@ -8,11 +8,13 @@ trap('INT') { exit! }
 # require 'bundler/setup' # uncomment to remove the need to do `bundle exec`.
 require 'vedeu'
 
+# An example application to demonstrate 'Hello World'.
+#
 class HelloWorldApp
   include Vedeu
 
   configure do
-    colour_mode 16777216
+    colour_mode 16_777_216
     debug!
     log '/tmp/vedeu_hello_world.log'
   end

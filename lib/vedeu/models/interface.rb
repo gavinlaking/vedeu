@@ -172,8 +172,8 @@ module Vedeu
     # @return [Array<Array<Vedeu::Char>>]
     def render
       [
-        clear,
         border.render,
+        clear,
         viewport
       ]
     end

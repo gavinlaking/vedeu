@@ -23,16 +23,7 @@ module Vedeu
     # @param visible [Boolean|Symbol]
     # @return [Visible]
     def initialize(visible = nil)
-      @visible = if visible == :hide || visible == false
-        false
-
-      elsif visible == :show || visible == true
-        true
-
-      else
-        !!visible
-
-      end
+      @visible = visible
     end
 
     # @return [String]
@@ -55,14 +46,14 @@ module Vedeu
     #
     # @return [Boolean]
     def visible?
-      @visible
+      visible
     end
 
     # Returns a boolean indicating whether the instance is invisible.
     #
     # @return [Boolean]
     def invisible?
-      !@visible
+      !visible
     end
 
     # @return [Visible]
@@ -78,6 +69,20 @@ module Vedeu
     # @return [Visible]
     def toggle
       visible? ? hide : show
+    end
+
+    # @return [Boolean]
+    def visible
+      if @visible == :hide || @visible == false
+        false
+
+      elsif @visible == :show || @visible == true
+        true
+
+      else
+        !!@visible
+
+      end
     end
 
   end # Visible

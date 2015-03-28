@@ -6,7 +6,7 @@ module Vedeu
   class RefreshCursor
 
     # @param (see #initialize)
-    def self.render(name)
+    def self.render(name = Vedeu.focus)
       new(name).render
     end
 
@@ -20,6 +20,8 @@ module Vedeu
 
     # @return [Array]
     def render
+      Vedeu.log(type: :info, message: "Refreshing cursor: '#{name}'")
+
       Vedeu::Refresh.by_name(name) if refresh_view?
 
       Vedeu::Terminal.output(new_cursor.to_s)

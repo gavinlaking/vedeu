@@ -5,11 +5,13 @@ $LOAD_PATH.unshift(lib_dir) unless $LOAD_PATH.include?(lib_dir)
 
 require 'vedeu'
 
+# An example application to demonstrate the DRb server.
+#
 class VedeuTestApplication
   # include Vedeu
 
 Vedeu.configure do
-  colour_mode 16777216
+  colour_mode 16_777_216
   log         '/tmp/vedeu_test_helper.log'
   debug!
   drb!

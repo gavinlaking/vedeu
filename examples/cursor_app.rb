@@ -5,11 +5,14 @@ $LOAD_PATH.unshift(lib_dir) unless $LOAD_PATH.include?(lib_dir)
 
 require 'vedeu'
 
+# An example application to demonstrate cursors; their movement and effect on
+# the viewport of the interface in focus.
+#
 class VedeuCursorApp
   include Vedeu
 
   configure do
-    colour_mode 16777216
+    colour_mode 16_777_216
     debug!
     log '/tmp/vedeu_cursor_app.log'
   end

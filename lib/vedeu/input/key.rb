@@ -4,6 +4,11 @@ module Vedeu
   #
   class Key
 
+    # @!attribute [r] input
+    # @return [String|Symbol] Returns the key defined.
+    attr_reader :input
+    alias_method :key, :input
+
     # Returns a new instance of Vedeu::Key.
     #
     # @param input [String|Symbol]
@@ -16,14 +21,6 @@ module Vedeu
       @input  = input
       @output = block
     end
-
-    # Returns the key defined.
-    #
-    # @return [String|Symbol]
-    def input
-      @input
-    end
-    alias_method :key, :input
 
     # Pressing the key will call the procedure.
     #

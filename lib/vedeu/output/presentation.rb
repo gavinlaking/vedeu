@@ -7,9 +7,7 @@ module Vedeu
 
     # @return [Vedeu::Background|NilClass]
     def background
-      if colour
-        colour.background
-      end
+      colour.background if colour
     end
 
     # @return [Vedeu::Colour]
@@ -24,16 +22,12 @@ module Vedeu
 
     # @return [Vedeu::Foreground|NilClass]
     def foreground
-      if colour
-        colour.foreground
-      end
+      colour.foreground if colour
     end
 
     # @return [Vedeu::Background|NilClass]
     def parent_background
-      if parent_colour
-        parent_colour.background
-      end
+      parent_colour.background if parent_colour
     end
 
     # @return [String|NilClass]
@@ -43,9 +37,7 @@ module Vedeu
 
     # @return [Vedeu::Foreground|NilClass]
     def parent_foreground
-      if parent_colour
-        parent_colour.foreground
-      end
+      parent_colour.foreground if parent_colour
     end
 
     # @return [String|NilClass]
@@ -91,11 +83,7 @@ module Vedeu
     #
     # @return [String]
     def render_colour
-      [
-        colour,
-        yield,
-        parent_colour
-      ].join
+      [colour, yield, parent_colour].join
     end
 
     # @return [String]
@@ -115,11 +103,7 @@ module Vedeu
     #
     # @return [String]
     def render_style
-      [
-        style,
-        yield,
-        parent_style
-      ].join
+      [style, yield, parent_style].join
     end
 
   end # Presentation

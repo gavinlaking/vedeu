@@ -37,7 +37,11 @@ module Vedeu
     def td_style
       return '' unless border || defined_value?(value)
 
-      " style='background:#{bg};color:#{fg};border:1px #{bg} solid;#{border_style}'"
+      " style='" \
+      "background:#{bg};" \
+      "color:#{fg};" \
+      "border:1px #{bg} solid;" \
+      "#{border_style}'"
     end
 
     # @return [String]
@@ -55,12 +59,12 @@ module Vedeu
       when :left_vertical     then border_css('left')
       when :right_vertical    then border_css('right')
       when :bottom_horizontal then border_css('bottom')
-      when :top_left          then [border_css('top'), border_css('left')].join
-      when :top_right         then [border_css('top'), border_css('right')].join
-      when :bottom_left       then [border_css('bottom'), border_css('left')].join
-      when :bottom_right      then [border_css('bottom'), border_css('right')].join
-      when :horizontal        then ''
-      when :vertical          then ''
+      when :top_left     then [border_css('top'), border_css('left')].join
+      when :top_right    then [border_css('top'), border_css('right')].join
+      when :bottom_left  then [border_css('bottom'), border_css('left')].join
+      when :bottom_right then [border_css('bottom'), border_css('right')].join
+      when :horizontal   then ''
+      when :vertical     then ''
       else
         # ... should not get here
         ''

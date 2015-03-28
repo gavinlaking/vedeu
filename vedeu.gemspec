@@ -19,7 +19,7 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency 'aruba',              '0.6.2'
   spec.add_development_dependency 'bundler',            '~> 1.7'
-  spec.add_development_dependency 'cucumber',           '1.3.19'
+  spec.add_development_dependency 'cucumber',           '2.0.0'
   spec.add_development_dependency 'guard',              '2.12.5'
   spec.add_development_dependency 'guard-bundler',      '2.1.0'
   spec.add_development_dependency 'guard-cucumber',     '1.5.4'
@@ -31,6 +31,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'pry',                '0.10.1'
   spec.add_development_dependency 'pry-byebug',         '3.1.0'
   spec.add_development_dependency 'rake',               '10.4.2'
+  spec.add_development_dependency 'rubocop'
   spec.add_development_dependency 'ruby-prof',          '0.15.6'
   spec.add_development_dependency 'simplecov',          '0.9.2'
   spec.add_development_dependency 'yard',               '0.8.7.6'

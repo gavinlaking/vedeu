@@ -31,12 +31,12 @@ module Vedeu
     #
     # @return [Array<Array<Vedeu::Char>>]
     def clear
-      @clear ||= Array.new(interface.height) do |iy|
-        Array.new(interface.width) do |ix|
+      @clear ||= Array.new(interface.border.height) do |iy|
+        Array.new(interface.border.width) do |ix|
           Vedeu::Char.new({ value:    ' ',
                             colour:   interface.colour,
                             style:    interface.style,
-                            position: Vedeu::IndexPosition[iy, ix, interface.top, interface.left] })
+                            position: position(iy, ix) })
         end
       end
     end
@@ -63,6 +63,13 @@ module Vedeu
     # @!attribute [r] interface
     # @return [Interface]
     attr_reader :interface
+
+    # @param iy [Fixnum]
+    # @param ix [Fixnum]
+    # @return [Vedeu::IndexPosition]
+    def position(iy, ix)
+      Vedeu::IndexPosition[iy, ix, interface.border.by, interface.border.bx]
+    end
 
   end # Clear
 

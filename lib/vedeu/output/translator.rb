@@ -154,7 +154,7 @@ module Vedeu
     #
     # @return [String]
     def rgb
-      if Vedeu::Configuration.colour_mode == 16777216
+      if Vedeu::Configuration.colour_mode == 16_777_216
         register(colour, sprintf(rgb_prefix, *css_to_rgb))
 
       else
@@ -206,16 +206,16 @@ module Vedeu
       (css_to_rgb[0] / 51) * 36
     end
 
-    # Takes the green component of {#css_to_rgb} and converts to the correct value
-    # for setting the terminal green value.
+    # Takes the green component of {#css_to_rgb} and converts to the correct
+    # value for setting the terminal green value.
     #
     # @return [Fixnum]
     def green
       (css_to_rgb[1] / 51) * 6
     end
 
-    # Takes the blue component of {#css_to_rgb} and converts to the correct value
-    # for setting the terminal blue value.
+    # Takes the blue component of {#css_to_rgb} and converts to the correct
+    # value for setting the terminal blue value.
     #
     # @return [Fixnum]
     def blue

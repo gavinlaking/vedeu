@@ -75,7 +75,7 @@ module Vedeu
           opts.on('-C', '--colour-mode [COLOURS]', Integer,
                   'Run application in either `8`, `16`, `256` or `16777216` ' \
                   'colour mode.') do |colours|
-            if [8, 16, 256, 16777216].include?(colours)
+            if [8, 16, 256, 16_777_216].include?(colours)
               options[:colour_mode] = colours
 
             else
@@ -93,7 +93,8 @@ module Vedeu
             options[:drb] = true
           end
 
-          opts.on('--drb-host', 'Set the hostname/IP for the DRb server.') do |hostname|
+          opts.on('--drb-host',
+            'Set the hostname/IP for the DRb server.') do |hostname|
             #options[:drb]      = true
             options[:drb_host] = hostname
           end

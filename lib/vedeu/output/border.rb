@@ -252,20 +252,20 @@ module Vedeu
     # @param prefix [String]
     # @return [String]
     def top_or_bottom(prefix)
-      predicate   = (prefix + '?').to_sym
-      _left       = (prefix + '_left').to_sym
-      _right      = (prefix + '_right').to_sym
-      _horizontal = (prefix + '_horizontal').to_sym
+      predicate         = (prefix + '?').to_sym
+      prefix_left       = (prefix + '_left').to_sym
+      prefix_right      = (prefix + '_right').to_sym
+      prefix_horizontal = (prefix + '_horizontal').to_sym
 
       return [] unless send(predicate)
 
       out = []
-      out << border(send(_left), _left) if left?
+      out << border(send(prefix_left), prefix_left) if left?
 
       if prefix == 'top' && defined_value?(title)
         title_out = []
         width.times do |ix|
-          title_out << border(horizontal, _horizontal, nil, ix)
+          title_out << border(horizontal, prefix_horizontal, nil, ix)
         end
 
         truncate = title.chomp.slice(0..(width - 5))
@@ -279,12 +279,12 @@ module Vedeu
 
       else
         width.times do |ix|
-          out << border(horizontal, _horizontal, nil, ix)
+          out << border(horizontal, prefix_horizontal, nil, ix)
         end
 
       end
 
-      out << border(send(_right), _right) if right?
+      out << border(send(prefix_right), prefix_right) if right?
       out
     end
 
@@ -309,15 +309,19 @@ module Vedeu
 
     # The default values for a new instance of this class.
     #
+    # @note
+    #   Using the '\uXXXX' variant produces gaps in the border, whilst the
+    #   '\xXX' renders 'nicely'.
+    #
     # @return [Hash]
     def defaults
       {
-        bottom_left:  "\x6D", # └
-        bottom_right: "\x6A", # ┘
+        bottom_left:  "\x6D", # └ # \u2514
+        bottom_right: "\x6A", # ┘ # \u2518
         client:       nil,
         colour:       {},
         enabled:      false,
-        horizontal:   "\x71", # ─
+        horizontal:   "\x71", # ─ # \u2500
         name:         '',
         show_bottom:  true,
         show_left:    true,
@@ -325,9 +329,9 @@ module Vedeu
         show_top:     true,
         style:        [],
         title:        '',
-        top_left:     "\x6C", # ┌
-        top_right:    "\x6B", # ┐
-        vertical:     "\x78", # │
+        top_left:     "\x6C", # ┌ # \u250C
+        top_right:    "\x6B", # ┐ # \u2510
+        vertical:     "\x78", # │ # \u2502
       }
     end
 

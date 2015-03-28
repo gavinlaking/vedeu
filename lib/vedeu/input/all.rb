@@ -10,7 +10,7 @@ module Vedeu
   # Vedeu to run effectively.
   Vedeu::DSL::Keymap.keymap('_system_') do |keymap|
     Vedeu::Configuration.system_keys.each do |label, keypress|
-      keymap.key(keypress) { Vedeu.trigger(("_" + label.to_s + "_").to_sym) }
+      keymap.key(keypress) { Vedeu.trigger(("_#{label}_").to_sym) }
     end
   end
 

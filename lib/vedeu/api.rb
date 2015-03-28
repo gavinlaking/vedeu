@@ -92,13 +92,14 @@ module Vedeu
 
     # @!method bind
     #   @see Vedeu::Event.bind
-    # @!method trigger
-    #   @see Vedeu::Event.trigger
     # @!method unbind
     #   @see Vedeu::Event.unbind
     def_delegators Vedeu::Event, :bind,
-      :trigger,
       :unbind
+
+    # @!method trigger
+    #   @see Vedeu::Trigger.trigger
+    def_delegators Vedeu::Trigger, :trigger
 
     # @!method configure
     #   @see Vedeu::Configuration.configure
