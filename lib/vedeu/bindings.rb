@@ -14,14 +14,6 @@ module Vedeu
   #
   module Bindings
 
-    # Vedeu triggers this event when `:_exit_` is triggered. You can hook into
-    # this to perform a special action before the application terminates. Saving
-    # the user's work, session or preferences might be popular here.
-    Vedeu.bind(:_cleanup_) do
-      Vedeu.trigger(:_drb_stop_)
-      Vedeu.trigger(:cleanup)
-    end
-
     Vedeu.bind(:_drb_input_) do |data, type|
       Vedeu.log(type: :drb, message: "Sending input (#{type})")
 
@@ -45,6 +37,14 @@ module Vedeu
     Vedeu.bind(:_drb_start_)   { Vedeu::Distributed::Server.start }
     Vedeu.bind(:_drb_status_)  { Vedeu::Distributed::Server.status }
     Vedeu.bind(:_drb_stop_)    { Vedeu::Distributed::Server.stop }
+
+    # Vedeu triggers this event when `:_exit_` is triggered. You can hook into
+    # this to perform a special action before the application terminates. Saving
+    # the user's work, session or preferences might be popular here.
+    Vedeu.bind(:_cleanup_) do
+      Vedeu.trigger(:_drb_stop_)
+      Vedeu.trigger(:cleanup)
+    end
 
     # When triggered, Vedeu will trigger a `:cleanup` event which you can define
     # (to save files, etc) and attempt to exit.

@@ -53,16 +53,25 @@ module Vedeu
 
       it { subject.must_be_instance_of(Vedeu::Position) }
 
-      context 'when the interface has a border' do
-        before { Vedeu.border('IndexPosition.from_interface') {} }
+      context 'when the interface is registered' do
+        context 'when the interface has a border' do
+          before { Vedeu.border('IndexPosition.from_interface') {} }
 
-        it { subject.x.must_equal(8) }
-        it { subject.y.must_equal(10) }
+          it { subject.x.must_equal(8) }
+          it { subject.y.must_equal(10) }
+        end
+
+        context 'when the interface does not have a border' do
+          it { subject.x.must_equal(7) }
+          it { subject.y.must_equal(9) }
+        end
       end
 
-      context 'when the interface does not have a border' do
-        it { subject.x.must_equal(7) }
-        it { subject.y.must_equal(9) }
+      context 'when the interface is not registered' do
+        before { Vedeu.interfaces.reset }
+
+        it { subject.x.must_equal(4) }
+        it { subject.y.must_equal(4) }
       end
     end
 

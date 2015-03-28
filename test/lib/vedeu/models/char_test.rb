@@ -43,6 +43,12 @@ module Vedeu
       it { instance.must_respond_to(:value) }
     end
 
+    describe '#chars' do
+      subject { instance.chars }
+
+      it { subject.must_be_instance_of(Array) }
+    end
+
     describe '#eql?' do
       let(:other) { instance }
 

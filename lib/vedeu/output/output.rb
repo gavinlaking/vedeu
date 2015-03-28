@@ -27,6 +27,9 @@ module Vedeu
 
     # Send the view to the terminal.
     #
+    # @todo
+    #   HTMLRenderer should use a .render method?
+    #
     # @return [Array]
     def render
       if Vedeu::Configuration.drb?

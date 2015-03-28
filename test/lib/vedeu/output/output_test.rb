@@ -34,16 +34,25 @@ module Vedeu
     end
 
     describe '.render' do
-      before { Vedeu::FileRenderer.stubs(:render) }
+      let(:rendered) { interface.render }
+
+      before do
+        Vedeu::FileRenderer.stubs(:render)
+        Vedeu::HTMLRenderer.stubs(:to_file)
+        Vedeu::TerminalRenderer.stubs(:render).returns(rendered)
+      end
 
       subject { described.render(interface) }
 
-      it { subject.must_be_instance_of(Array) }
-
-      context 'when a border is defined for the interface' do
+      context 'when DRb is enabled' do
+        it { }
       end
 
-      context 'when a border is not defined for the interface' do
+      context 'when DRb is not enabled' do
+        it 'sends the rendered interface to the Terminal' do
+          Vedeu::TerminalRenderer.expects(:render)
+          subject.must_be_instance_of(Array)
+        end
       end
     end
 
