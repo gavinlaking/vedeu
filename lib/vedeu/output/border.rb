@@ -252,20 +252,20 @@ module Vedeu
     # @param prefix [String]
     # @return [String]
     def top_or_bottom(prefix)
-      predicate   = (prefix + '?').to_sym
-      _left       = (prefix + '_left').to_sym
-      _right      = (prefix + '_right').to_sym
-      _horizontal = (prefix + '_horizontal').to_sym
+      predicate         = (prefix + '?').to_sym
+      prefix_left       = (prefix + '_left').to_sym
+      prefix_right      = (prefix + '_right').to_sym
+      prefix_horizontal = (prefix + '_horizontal').to_sym
 
       return [] unless send(predicate)
 
       out = []
-      out << border(send(_left), _left) if left?
+      out << border(send(prefix_left), prefix_left) if left?
 
       if prefix == 'top' && defined_value?(title)
         title_out = []
         width.times do |ix|
-          title_out << border(horizontal, _horizontal, nil, ix)
+          title_out << border(horizontal, prefix_horizontal, nil, ix)
         end
 
         truncate = title.chomp.slice(0..(width - 5))
@@ -279,12 +279,12 @@ module Vedeu
 
       else
         width.times do |ix|
-          out << border(horizontal, _horizontal, nil, ix)
+          out << border(horizontal, prefix_horizontal, nil, ix)
         end
 
       end
 
-      out << border(send(_right), _right) if right?
+      out << border(send(prefix_right), prefix_right) if right?
       out
     end
 

@@ -149,7 +149,7 @@ Style/BarePercentLiterals:
     - bare_percent
 
 Style/BracesAroundHashParameters:
-  EnforcedStyle: braces
+  EnforcedStyle: context_dependent
   SupportedStyles:
     # The `braces` style enforces braces around all method parameters that are
     # hashes.
@@ -642,7 +642,7 @@ Metrics/LineLength:
 
 Metrics/MethodLength:
   CountComments: false  # count full line comments?
-  Max: 10
+  Max: 15
 
 Metrics/ParameterLists:
   Max: 5
