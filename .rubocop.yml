@@ -1,3 +1,10 @@
+# This is the default configuration file. Enabling and disabling is configured
+# in separate files. This file adds all other parameters apart from Enabled.
+
+inherit_from:
+  - config/rubocop_enabled.yml
+  - config/rubocop_disabled.yml
+
 # Common configuration.
 AllCops:
   # Include gemspec and Rakefile
@@ -26,6 +33,10 @@ AllCops:
   # by overriding DisplayCopNames, or by giving the -D/--display-cop-names
   # option.
   DisplayCopNames: true
+  # Style guide URLs are not displayed in offense messages by default. Change
+  # behavior by overriding DisplayStyleGuide, or by giving the
+  # -S/--display-style-guide option.
+  DisplayStyleGuide: false
   # Additional cops that do not reference a style guide rule may be enabled by
   # default. Change behavior by overriding StyleGuideCopsOnly, or by giving
   # the --only-guide-cops option.
@@ -201,6 +212,20 @@ Style/CollectionMethods:
     detect: 'find'
     find_all: 'select'
 
+# Use ` or %x around command literals.
+Style/CommandLiteral:
+  EnforcedStyle: backticks
+  # backticks: Always use backticks.
+  # percent_x: Always use %x.
+  # mixed: Use backticks on single-line commands, and %x on multi-line commands.
+  SupportedStyles:
+    - backticks
+    - percent_x
+    - mixed
+  # If false, the cop will always recommend using %x if one or more backticks
+  # are found in the command string.
+  AllowInnerBackticks: false
+
 # Checks formatting of special comments
 Style/CommentAnnotation:
   Keywords:
@@ -216,6 +241,17 @@ Style/DotPosition:
   SupportedStyles:
     - leading
     - trailing
+
+# Warn on empty else statements
+# empty - warn only on empty else
+# nil - warn on else with nil in it
+# both - warn on empty else and else with nil in it
+Style/EmptyElse:
+  EnforcedStyle: both
+  SupportedStyles:
+    - empty
+    - nil
+    - both
 
 # Use empty lines between defs.
 Style/EmptyLineBetweenDefs:
@@ -242,11 +278,14 @@ Style/EmptyLinesAroundModuleBody:
     - no_empty_lines
 
 # Checks whether the source file has a utf-8 encoding comment or not
+# AutoCorrectEncodingComment must match the regex
+# /#.*coding\s?[:=]\s?(?:UTF|utf)-8/
 Style/Encoding:
   EnforcedStyle: always
   SupportedStyles:
     - when_needed
     - always
+  AutoCorrectEncodingComment: '# encoding: utf-8'
 
 Style/FileName:
   # File names listed in AllCops:Include are excluded by default. Add extra
@@ -285,7 +324,7 @@ Style/FormatString:
 
 # Built-in global variables are allowed by default.
 Style/GlobalVars:
-  AllowedVariables: []
+  AllowedVariables: [$LIB_DIR]
 
 # `MinBodyLength` defines the number of lines of the a body of an if / unless
 # needs to have to trigger this cop
@@ -296,7 +335,10 @@ Style/HashSyntax:
   EnforcedStyle: ruby19
   SupportedStyles:
     - ruby19
+    - ruby19_no_mixed_keys
     - hash_rockets
+# Force hashes that have a symbol value to use hash rockets
+  UseHashRocketsWithSymbolValues: false
 
 Style/IfUnlessModifier:
   MaxLineLength: 80
@@ -411,10 +453,19 @@ Style/RedundantReturn:
   # When true allows code like `return x, y`.
   AllowMultipleReturnValues: false
 
+# Use / or %r around regular expressions.
 Style/RegexpLiteral:
-  # The maximum number of (escaped) slashes that a slash-delimited regexp is
-  # allowed to have. If there are more slashes, a %r regexp shall be used.
-  MaxSlashes: 1
+  EnforcedStyle: slashes
+  # slashes: Always use slashes.
+  # percent_r: Always use %r.
+  # mixed: Use slashes on single-line regexes, and %r on multi-line regexes.
+  SupportedStyles:
+    - slashes
+    - percent_r
+    - mixed
+  # If false, the cop will always recommend using %r if one or more slashes
+  # are found in the regexp string.
+  AllowInnerSlashes: false
 
 Style/Semicolon:
   # Allow ; to separate several expressions on the same line.
@@ -463,6 +514,11 @@ Style/SpaceAroundEqualsInParameterDefault:
     - space
     - no_space
 
+Style/SpaceAroundOperators:
+  MultiSpaceAllowedForOperators:
+    - '='
+    - '=>'
+
 Style/SpaceBeforeBlockBraces:
   EnforcedStyle: space
   SupportedStyles:
@@ -499,11 +555,14 @@ Style/TrailingBlankLines:
     - final_blank_line
 
 Style/TrailingComma:
-  # If EnforcedStyleForMultiline is comma, the cop allows a comma after the
+  # If EnforcedStyleForMultiline is comma, the cop requires a comma after the
   # last item of a list, but only for lists where each item is on its own line.
+  # If EnforcedStyleForMultiline is consistent_comma, the cop requires a comma
+  # after the last item of a list, for all lists.
   EnforcedStyleForMultiline: comma
   SupportedStyles:
     - comma
+    - consistent_comma
     - no_comma
 
 # TrivialAccessors doesn't require exact name matches and doesn't allow
@@ -520,6 +579,7 @@ Style/TrivialAccessors:
   #
   # Commonly used in DSLs
   AllowDSLWriters: false
+  IgnoreClassMethods: false
   Whitelist:
     - to_ary
     - to_a
@@ -629,6 +689,17 @@ Rails/ActionFilter:
   Include:
     - app/controllers/**/*.rb
 
+Rails/Date:
+  # The value `always` disallows usage of `Date.today`, `Date.current`,
+  # `Date#to_time` etc.
+  # The value `acceptable` allows usage of `Date.current`, `Date.yesterday`, etc
+  # (but not `Date.today`) which are overriden by ActiveSupport to handle current
+  # time zone.
+  EnforcedStyle: always
+  SupportedStyles:
+    - always
+    - acceptable
+
 Rails/DefaultScope:
   Include:
     - app/models/**/*.rb
@@ -651,6 +722,14 @@ Rails/ReadWriteAttribute:
 Rails/ScopeArgs:
   Include:
     - app/models/**/*.rb
+
+Rails/TimeZone:
+  # The value `always` means that `Time` should be used with `zone`.
+  # The value `acceptable` allows usage of `in_time_zone` instead of `zone`.
+  EnforcedStyle: always
+  SupportedStyles:
+    - always
+    - acceptable
 
 Rails/Validation:
   Include:
