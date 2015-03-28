@@ -4,25 +4,32 @@ module Vedeu
 
   describe Text do
 
-    let(:value)   { 'Testing the Text class with various options' }
-    let(:options) {
+    let(:described) { Vedeu::Text }
+    let(:value)     { 'Testing the Text class with various options' }
+    let(:options)   {
       {
         anchor: anchor,
+        colour: colour,
+        model:  model,
         pad:    pad,
         width:  width,
       }
     }
     let(:anchor) { :left }
+    let(:colour) { nil }
+    let(:model)  { nil }
     let(:pad)    { ' ' }
     let(:width)  { nil }
 
     describe '.with' do
+      subject { described.with(value, options) }
+
       context 'when a width is provided' do
         context 'when value longer than the width' do
           let(:width) { 23 }
 
           it 'returns the value truncated' do
-            Text.with(value, options).must_equal('Testing the Text class ')
+            subject.must_equal('Testing the Text class ')
           end
         end
 
@@ -31,14 +38,14 @@ module Vedeu
 
           context 'and an anchor is not set' do
             it 'returns the value left aligned' do
-              Text.with(value, options)
+              subject
                 .must_equal('Testing the Text class with various options     ')
             end
           end
 
           context 'and the anchor is set to :left' do
             it 'returns the value left aligned' do
-              Text.with(value, options)
+              subject
                 .must_equal('Testing the Text class with various options     ')
             end
           end
@@ -47,7 +54,7 @@ module Vedeu
             let(:anchor) { :align }
 
             it 'returns the value left aligned' do
-              Text.with(value, options)
+              subject
                 .must_equal('Testing the Text class with various options     ')
             end
           end
@@ -56,7 +63,7 @@ module Vedeu
             let(:anchor) { :centre }
 
             it 'returns the value centre aligned' do
-              Text.with(value, options)
+              subject
                 .must_equal('  Testing the Text class with various options   ')
             end
           end
@@ -65,7 +72,7 @@ module Vedeu
             let(:anchor) { :right }
 
             it 'returns the value right aligned' do
-              Text.with(value, options)
+              subject
                 .must_equal('     Testing the Text class with various options')
             end
           end
@@ -74,7 +81,7 @@ module Vedeu
             let(:anchor) { :invalid }
 
             it 'returns the value left aligned' do
-              Text.with(value, options)
+              subject
                 .must_equal('Testing the Text class with various options     ')
             end
           end
@@ -82,10 +89,54 @@ module Vedeu
       end
 
       context 'when a width is not provided' do
+        let(:width) {}
+        let(:value) { 'some value' }
+
         it 'returns the value as a string' do
-          Text.with(:some_value).must_equal('some_value')
+          subject.must_equal('some value')
         end
       end
+    end
+
+    describe '.add' do
+      subject { described.add(value, options) }
+
+      context 'when the model is a Vedeu::Interface' do
+        let(:model) { Vedeu::Interface.new }
+
+        it { subject.must_be_instance_of(Vedeu::Lines) }
+      end
+
+      context 'when the model is a Vedeu::Line' do
+        let(:model) { Vedeu::Line.new }
+
+        it { subject.must_be_instance_of(Vedeu::Streams) }
+      end
+
+      context 'when the model is a Vedeu::Stream' do
+        let(:parent) { Vedeu::Line.new }
+        let(:model)  { Vedeu::Stream.new({ parent: parent }) }
+
+        it { subject.must_be_instance_of(Vedeu::Streams) }
+      end
+
+      context 'when the model is not given' do
+        let(:model) {}
+
+        it { subject.must_be_instance_of(NilClass) }
+      end
+
+      context 'when the colour option is given' do
+        let(:colour) {}
+      end
+
+      context 'when the background and/or foreground options are given' do
+        let(:background) { '#111111' }
+        let(:foreground) { '#aadd00' }
+
+
+      end
+
     end
 
   end # Text

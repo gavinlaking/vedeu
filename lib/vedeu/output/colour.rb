@@ -1,5 +1,3 @@
-require 'vedeu/support/coercions'
-
 module Vedeu
 
   # Provides a container for terminal escape sequences controlling the
@@ -7,8 +5,6 @@ module Vedeu
   # characters.
   #
   class Colour
-
-    include Vedeu::Coercions
 
     # @!attribute [r] attributes
     # @return [Hash]
@@ -21,6 +17,33 @@ module Vedeu
     # @!attribute [r] foreground
     # @return [Foreground|String]
     attr_reader :foreground
+
+    # @param value []
+    # @return [Object]
+    def self.coerce(value)
+      if value.nil?
+        new
+
+      elsif value.is_a?(self)
+        value
+
+      elsif value.is_a?(Hash)
+        if value.key?(:colour) && value[:colour].is_a?(self)
+          value
+
+        elsif value.key?(:background) || value.key?(:foreground)
+          new(value)
+
+        else
+          new
+
+        end
+
+      else
+        new(value)
+
+      end
+    end
 
     # Returns a new instance of Vedeu::Colour.
     #
@@ -35,20 +58,20 @@ module Vedeu
       @foreground = Vedeu::Foreground.coerce(@attributes[:foreground])
     end
 
-    # Converts the value into a Vedeu::Foreground.
-    #
-    # @param value [String]
-    # @return [String]
-    def foreground=(value)
-      @foreground = Vedeu::Foreground.coerce(value)
-    end
-
     # Converts the value into a Vedeu::Background.
     #
     # @param value [String]
     # @return [String]
     def background=(value)
       @background = Vedeu::Background.coerce(value)
+    end
+
+    # Converts the value into a Vedeu::Foreground.
+    #
+    # @param value [String]
+    # @return [String]
+    def foreground=(value)
+      @foreground = Vedeu::Foreground.coerce(value)
     end
 
     # Returns both or either of the converted attributes into a single escape
@@ -63,11 +86,11 @@ module Vedeu
 
     # The default values for a new instance of this class.
     #
-    # @return [Hash<Symbol => String>]
+    # @return [Hash<Symbol => NilClass>]
     def defaults
       {
+        background: '',
         foreground: '',
-        background: ''
       }
     end
 
