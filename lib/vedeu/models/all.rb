@@ -1,5 +1,6 @@
 require 'vedeu/repositories/all'
 
+require_relative 'null'
 require_relative 'cell'
 require_relative 'char'
 require_relative 'stream'
