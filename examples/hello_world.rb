@@ -8,6 +8,8 @@ trap('INT') { exit! }
 # require 'bundler/setup' # uncomment to remove the need to do `bundle exec`.
 require 'vedeu'
 
+# An example application to demonstrate 'Hello World'.
+#
 class HelloWorldApp
   include Vedeu
 
