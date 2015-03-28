@@ -398,7 +398,7 @@ module Vedeu
       # @param value [Fixnum]
       # @return [Boolean]
       def valid_colour_mode?(value)
-        value.is_a?(Fixnum) && [8, 16, 256, 16777216].include?(value)
+        value.is_a?(Fixnum) && [8, 16, 256, 16_777_216].include?(value)
       end
 
       # Checks that the value provided to {#exit_key}, {#focus_next_key},

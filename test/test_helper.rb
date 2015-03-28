@@ -41,7 +41,7 @@ def test_configuration
   Vedeu::Configuration.reset!
 
   Vedeu.configure do
-    colour_mode 16777216
+    colour_mode 16_777_216
      # adds ~40ms to test run speed
      # debug!
 

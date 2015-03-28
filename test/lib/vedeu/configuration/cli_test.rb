@@ -21,7 +21,7 @@ module Vedeu
       describe '#colour_mode' do
         it '--colour-mode' do
           Configuration.configure(['--colour-mode', '16777216']) {}
-          Configuration.colour_mode.must_equal(16777216)
+          Configuration.colour_mode.must_equal(16_777_216)
         end
 
         it '--colour-mode' do
