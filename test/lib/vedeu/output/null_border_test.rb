@@ -6,7 +6,8 @@ module Vedeu
 
     let(:described) { Vedeu::NullBorder }
     let(:instance)  { described.new(interface) }
-    let(:interface) { stub('Interface', x: 4, y: 6, xn: 10, yn: 12) }
+    let(:interface) { stub('Interface', geometry: geometry) }
+    let(:geometry)  { stub('Geometry', x: 4, y: 6, xn: 10, yn: 12) }
 
     describe '#initialize' do
       it { instance.must_be_instance_of(Vedeu::NullBorder) }

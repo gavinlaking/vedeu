@@ -136,28 +136,28 @@ module Vedeu
     def bx
       bo = (enabled? && left?) ? 1 : 0
 
-      interface.x + bo
+      geometry.x + bo
     end
 
     # @return [Fixnum]
     def bxn
       bo = (enabled? && right?) ? 1 : 0
 
-      interface.xn - bo
+      geometry.xn - bo
     end
 
     # @return [Fixnum]
     def by
       bo = (enabled? && top?) ? 1 : 0
 
-      interface.y + bo
+      geometry.y + bo
     end
 
     # @return [Fixnum]
     def byn
       bo = (enabled? && bottom?) ? 1 : 0
 
-      interface.yn - bo
+      geometry.yn - bo
     end
 
     # Returns the width of the interface determined by whether a left, right,
@@ -302,6 +302,12 @@ module Vedeu
                         border:   type })
     end
 
+    # @return [Vedeu::Geometry]
+    def geometry
+      # @geometry ||= Vedeu.geometry.find(name)
+      interface.geometry
+    end
+
     # @return [Vedeu::Interface]
     def interface
       @interface ||= Vedeu.interfaces.find(name)
@@ -335,11 +341,6 @@ module Vedeu
       }
     end
 
-    # @return [Vedeu::Interface]
-    def interface
-      @interface ||= Vedeu.interfaces.find(name)
-    end
-
     # @param name [Symbol]
     # @param iy [Fixnum]
     # @param ix [Fixnum]
@@ -347,21 +348,21 @@ module Vedeu
     def position(name, iy = 0, ix = 0)
       case name
       when :top_horizontal
-        Vedeu::Position[interface.y, (bx + ix)]
+        Vedeu::Position[geometry.y, (bx + ix)]
 
       when :bottom_horizontal
-        Vedeu::Position[interface.yn, (bx + ix)]
+        Vedeu::Position[geometry.yn, (bx + ix)]
 
       when :left_vertical
-        Vedeu::Position[(by + iy), interface.x]
+        Vedeu::Position[(by + iy), geometry.x]
 
       when :right_vertical
-        Vedeu::Position[(by + iy), interface.xn]
+        Vedeu::Position[(by + iy), geometry.xn]
 
-      when :bottom_left  then interface.bottom_left
-      when :bottom_right then interface.bottom_right
-      when :top_left     then interface.top_left
-      when :top_right    then interface.top_right
+      when :bottom_left  then geometry.bottom_left
+      when :bottom_right then geometry.bottom_right
+      when :top_left     then geometry.top_left
+      when :top_right    then geometry.top_right
       else
         nil
 

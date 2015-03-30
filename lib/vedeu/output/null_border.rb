@@ -15,22 +15,22 @@ module Vedeu
 
     # @return [Fixnum]
     def bx
-      interface.x
+      geometry.x
     end
 
     # @return [Fixnum]
     def bxn
-      interface.xn
+      geometry.xn
     end
 
     # @return [Fixnum]
     def by
-      interface.y
+      geometry.y
     end
 
     # @return [Fixnum]
     def byn
-      interface.yn
+      geometry.yn
     end
 
     # @return [Fixnum]
@@ -53,6 +53,13 @@ module Vedeu
     # @!attribute [r] interface
     # @return [Vedeu::Interface]
     attr_reader :interface
+
+    # Returns the geometry for the interface.
+    #
+    # @return [Vedeu::Geometry]
+    def geometry
+      interface.geometry
+    end
 
   end # NullBorder
 
