@@ -37,6 +37,17 @@ require 'mocha/setup'
 require 'vedeu'
 require 'support/helpers/all'
 
+# require 'minitest/reporters'
+# Minitest::Reporters.use!(
+#  # commented out by default (makes tests slower)
+#  # Minitest::Reporters::DefaultReporter.new({ color: true, slow_count: 5 }),
+#  # Minitest::Reporters::SpecReporter.new
+# )
+
+# trace method execution with (optionally) local variables
+# require 'vedeu/support/log'
+# Vedeu::Trace.call({ watched: 'call', klass: /^Vedeu/ })
+
 def test_configuration
   Vedeu::Configuration.reset!
 
@@ -53,14 +64,3 @@ def test_configuration
 end
 
 test_configuration
-
-# require 'minitest/reporters'
-# Minitest::Reporters.use!(
-#   # commented out by default (makes tests slower)
-#   # Minitest::Reporters::DefaultReporter.new({ color: true, slow_count: 5 }),
-#   # Minitest::Reporters::SpecReporter.new
-# )
-
-# trace method execution with (optionally) local variables
-# require 'vedeu/support/log'
-# Vedeu::Trace.call({ watched: 'call', klass: /^Vedeu/ })
