@@ -5,6 +5,31 @@ require 'vedeu/repositories/repository'
 
 module Vedeu
 
+  module Repositories
+
+    extend self
+
+    def register(klass)
+      storage.add(klass)
+    end
+
+    def reset!
+      storage.map(&:repository).map { |repository| repository.send(:reset) }
+
+      true
+    end
+
+    private
+
+    # Access to the storage for this repository.
+    #
+    # @return [Array]
+    def storage
+      @storage ||= Set.new
+    end
+
+  end
+
   # Allows the storing of interface/view borders independent of the interface
   # instance.
   #
@@ -12,7 +37,15 @@ module Vedeu
 
     # @return [Vedeu::Borders]
     def self.borders
-      @borders ||= Vedeu::Borders.new(Vedeu::Border)
+      @borders ||= reset! # Vedeu::Borders.new(Vedeu::Border)
+    end
+
+    def self.repository
+      Vedeu.borders
+    end
+
+    def self.reset!
+      @borders = Vedeu::Borders.register_repository(Vedeu::Border)
     end
 
   end # Borders
@@ -23,7 +56,15 @@ module Vedeu
 
     # @return [Vedeu::Buffers]
     def self.buffers
-      @buffers ||= Vedeu::Buffers.new(Vedeu::Buffer)
+      @buffers ||= reset!
+    end
+
+    def self.repository
+      Vedeu.buffers
+    end
+
+    def self.reset!
+      @buffers = Vedeu::Buffers.register_repository(Vedeu::Buffer)
     end
 
   end # Buffers
@@ -116,12 +157,20 @@ module Vedeu
 
     # @return [Vedeu::Cursors]
     def self.cursors
-      @cursors ||= Vedeu::Cursors.new(Vedeu::Cursor)
+      @cursors ||= reset!
     end
 
     # @return [Vedeu::Cursor]
     def self.cursor
       cursors.current
+    end
+
+    def self.repository
+      Vedeu.cursors
+    end
+
+    def self.reset!
+      @cursors = Vedeu::Cursors.register_repository(Vedeu::Cursor)
     end
 
   end # Cursors
@@ -132,7 +181,15 @@ module Vedeu
 
     # @return [Vedeu::EventsRepository]
     def self.events
-      @events ||= Vedeu::EventsRepository.new(Vedeu::Events)
+      @events ||= reset!
+    end
+
+    def self.repository
+      Vedeu.events
+    end
+
+    def self.reset!
+      @events = Vedeu::EventsRepository.new(Vedeu::Events)
     end
 
   end # EventsRepository
@@ -144,7 +201,15 @@ module Vedeu
 
     # @return [Vedeu::Geometries]
     def self.geometries
-      @geometries ||= Vedeu::Geometries.new(Vedeu::Geometry)
+      @geometries ||= reset!
+    end
+
+    def self.repository
+      Vedeu.geometries
+    end
+
+    def self.reset!
+      @geometries = Vedeu::Geometries.new(Vedeu::Geometry)
     end
 
   end # Geometries
@@ -155,7 +220,15 @@ module Vedeu
 
     # @return [Vedeu::Groups]
     def self.groups
-      @groups ||= Vedeu::Groups.new(Vedeu::Group)
+      @groups ||= reset!
+    end
+
+    def self.repository
+      Vedeu.groups
+    end
+
+    def self.reset!
+      @groups = Vedeu::Groups.new(Vedeu::Group)
     end
 
   end # Groups
@@ -166,7 +239,15 @@ module Vedeu
 
     # @return [Vedeu::InterfacesRepository]
     def self.interfaces
-      @interfaces ||= Vedeu::InterfacesRepository.new(Vedeu::Interface)
+      @interfaces ||= reset!
+    end
+
+    def self.repository
+      Vedeu.interfaces
+    end
+
+    def self.reset!
+      @interfaces = Vedeu::InterfacesRepository.new(Vedeu::Interface)
     end
 
   end # InterfacesRepository
@@ -177,7 +258,15 @@ module Vedeu
 
     # @return [Vedeu::Keymaps]
     def self.keymaps
-      @keymaps ||= Vedeu::Keymaps.new(Vedeu::Keymap)
+      @keymaps ||= reset!
+    end
+
+    def self.repository
+      Vedeu.keymaps
+    end
+
+    def self.reset!
+      @keymaps = Vedeu::Keymaps.new(Vedeu::Keymap)
     end
 
   end # Keymaps
@@ -188,7 +277,15 @@ module Vedeu
 
     # @return [Vedeu::Menus]
     def self.menus
-      @menus ||= Vedeu::Menus.new(Vedeu::Menu)
+      @menus ||= reset!
+    end
+
+    def self.repository
+      Vedeu.menus
+    end
+
+    def self.reset!
+      @menus = Vedeu::Menus.new(Vedeu::Menu)
     end
 
   end # Menus

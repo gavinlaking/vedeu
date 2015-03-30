@@ -24,14 +24,24 @@ module Vedeu
     # @return [void]
     attr_reader :storage
 
+    def self.register_repository(model = nil, storage = {})
+      new(model, storage).tap do |klass|
+        Vedeu::Repositories.register(klass.repository)
+      end
+    end
+
     # Returns a new instance of Vedeu::Repository.
     #
     # @param model [Class]
     # @param storage [Class|Hash]
     # @return [Vedeu::Repository]
     def initialize(model = nil, storage = {})
-      @model   = model
-      @storage = storage
+      @model      = model
+      @storage    = storage
+    end
+
+    def repository
+      self.class#.name
     end
 
     # Return the whole repository.

@@ -61,6 +61,8 @@ def test_configuration
      # will be logged, otherwise every `Vedeu.log` will be logged.
     log '/tmp/vedeu_test_helper.log'
   end
+
+  Vedeu::Repositories.reset!
 end
 
 test_configuration
