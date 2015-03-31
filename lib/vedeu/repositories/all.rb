@@ -1,5 +1,5 @@
 require 'vedeu/repositories/collection'
-require 'vedeu/repositories/collections'
+require 'vedeu/repositories/collections/all'
 require 'vedeu/repositories/model'
 require 'vedeu/repositories/repository'
 

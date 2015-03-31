@@ -1,4 +1,4 @@
-require 'vedeu/repositories/collections'
+require 'vedeu/repositories/collections/all'
 require 'vedeu/events/event'
 require 'vedeu/events/trigger'
 
