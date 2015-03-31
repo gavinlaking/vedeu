@@ -28,7 +28,7 @@ module Vedeu
     def by_group(group_name)
       Vedeu.log(type: :info, message: "Refreshing group: '#{group_name}'")
 
-      Vedeu.groups.find(group_name).members.each { |name| by_name(name) }
+      Vedeu.groups.find!(group_name).members.each { |name| by_name(name) }
     end
 
     # Refresh an interface by name.

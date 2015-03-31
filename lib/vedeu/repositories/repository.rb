@@ -73,12 +73,19 @@ module Vedeu
     # Find the model attributes by name.
     #
     # @param name [String]
+    # @return [Hash<String => Object>|NilClass]
+    def find(name)
+      storage[name]
+    end
+
+    # Find the model attributes by name, raises an exception if the model cannot
+    # be found.
+    #
+    # @param name [String]
     # @raise [ModelNotFound] When the model cannot be found with this name.
     # @return [Hash<String => Object>]
-    def find(name)
-      storage.fetch(name) do
-        fail ModelNotFound, "Cannot find model by name: '#{name}'"
-      end
+    def find!(name)
+      find(name) or fail ModelNotFound, "Cannot find model by name: '#{name}'"
     end
 
     # Find a model by name, registers the model by name if not found.

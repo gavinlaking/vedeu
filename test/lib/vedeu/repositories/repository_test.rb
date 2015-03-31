@@ -73,6 +73,26 @@ module Vedeu
       context 'when the model cannot be found' do
         let(:model_name) { 'not_found' }
 
+        it { subject.must_be_instance_of(NilClass) }
+      end
+
+      context 'when the model is found' do
+        let(:model_instance) { model.new('terbium') }
+
+        before { instance.store(model_instance) }
+
+        it 'returns the stored model' do
+          subject.must_equal(model_instance)
+        end
+      end
+    end
+
+    describe '#find!' do
+      subject { instance.find!(model_name) }
+
+      context 'when the model cannot be found' do
+        let(:model_name) { 'not_found' }
+
         it { proc { subject }.must_raise(ModelNotFound) }
       end
 
