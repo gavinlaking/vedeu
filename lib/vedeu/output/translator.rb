@@ -1,5 +1,3 @@
-require 'vedeu/support/coercions'
-
 module Vedeu
 
   # Convert a CSS/HTML colour string into a terminal escape sequence.
@@ -23,12 +21,28 @@ module Vedeu
   # @todo More documentation required (create a fancy chart!)
   class Translator
 
-    include Vedeu::Coercions
-
     # @!attribute [r] colour
     # @return [String]
     attr_reader :colour
     alias_method :value, :colour
+
+    # Produces new objects of the correct class from the value, ignores objects
+    # that have already been coerced.
+    #
+    # @param value [Object|NilClass]
+    # @return [Object]
+    def self.coerce(value)
+      if value.nil?
+        new
+
+      elsif value.is_a?(self)
+        value
+
+      else
+        new(value)
+
+      end
+    end
 
     # Convert a CSS/HTML colour string into a terminal escape sequence.
     #

@@ -17,6 +17,32 @@ module Vedeu
       it { instance.instance_variable_get('@value').must_equal('bold') }
     end
 
+    describe '.coerce' do
+      let(:value) { 'bold' }
+
+      subject { described.coerce(value) }
+
+      it { subject.must_be_instance_of(described) }
+
+      context 'when the value is nil' do
+        let(:value) { nil }
+
+        it { subject.must_be_instance_of(described) }
+      end
+
+      context 'when the value is a Style already' do
+        let(:value) { Vedeu::Style.new('bold') }
+
+        it { subject.must_equal(value) }
+      end
+
+      context 'when the value is an Array' do
+        let(:value)  { [:bold, :blink] }
+
+        it { subject.value.must_equal([:bold, :blink]) }
+      end
+    end
+
     describe '#attributes' do
       subject { instance.attributes }
 

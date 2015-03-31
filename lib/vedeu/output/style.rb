@@ -1,5 +1,4 @@
 require 'vedeu/support/common'
-require 'vedeu/support/coercions'
 
 module Vedeu
 
@@ -9,11 +8,28 @@ module Vedeu
   class Style
 
     include Vedeu::Common
-    include Vedeu::Coercions
 
     # @!attribute [rw] value
     # @return [String|Symbol]
     attr_accessor :value
+
+    # Produces new objects of the correct class from the value, ignores objects
+    # that have already been coerced.
+    #
+    # @param value [Object|NilClass]
+    # @return [Object]
+    def self.coerce(value)
+      if value.nil?
+        new
+
+      elsif value.is_a?(self)
+        value
+
+      else
+        new(value)
+
+      end
+    end
 
     # Return a new instance of Vedeu::Style.
     #

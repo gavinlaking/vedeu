@@ -1,4 +1,3 @@
-require 'vedeu/support/coercions'
 require 'vedeu/support/common'
 require 'vedeu/support/template'
 require 'vedeu/support/terminal'
