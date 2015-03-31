@@ -1,8 +1,8 @@
-require 'vedeu/repositories/collection'
-require 'vedeu/repositories/collections/all'
-require 'vedeu/repositories/model'
-require 'vedeu/repositories/repositories/all'
-require 'vedeu/repositories/repository'
+require_relative 'collection'
+require_relative 'collections/all'
+require_relative 'model'
+require_relative 'repositories/all'
+require_relative 'repository'
 
 module Vedeu
 

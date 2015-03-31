@@ -3,7 +3,6 @@ require 'vedeu/repositories/repository'
 require_relative 'colours'
 require_relative 'background_colours'
 require_relative 'foreground_colours'
-
 require_relative 'borders'
 require_relative 'buffers'
 require_relative 'cursors'

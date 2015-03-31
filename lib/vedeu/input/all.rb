@@ -1,8 +1,9 @@
 require 'vedeu/repositories/all'
-require 'vedeu/input/mapper'
-require 'vedeu/input/key'
-require 'vedeu/input/input'
-require 'vedeu/input/keymap'
+
+require_relative 'mapper'
+require_relative 'key'
+require_relative 'input'
+require_relative 'keymap'
 
 module Vedeu
 

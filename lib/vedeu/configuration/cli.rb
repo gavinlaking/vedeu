@@ -1,5 +1,3 @@
-require 'optparse'
-
 module Vedeu
 
   module Config

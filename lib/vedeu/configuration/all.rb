@@ -1,6 +1,3 @@
-require 'vedeu/configuration/cli'
-require 'vedeu/configuration/api'
-require 'vedeu/configuration/configuration'
-
-module Vedeu
-end # Vedeu
+require_relative 'cli'
+require_relative 'api'
+require_relative 'configuration'

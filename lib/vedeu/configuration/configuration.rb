@@ -1,8 +1,3 @@
-require 'singleton'
-
-require 'vedeu/configuration/api'
-require 'vedeu/configuration/cli'
-
 module Vedeu
 
   # Namespace for the API configuration and CLI configuration classes.

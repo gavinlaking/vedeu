@@ -1,7 +1,5 @@
 require 'vedeu/repositories/all'
-require 'vedeu/cursor/cursor'
-require 'vedeu/cursor/move'
-require 'vedeu/cursor/refresh_cursor'
 
-module Vedeu
-end # Vedeu
+require_relative 'cursor'
+require_relative 'move'
+require_relative 'refresh_cursor'

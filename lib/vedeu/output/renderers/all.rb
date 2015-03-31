@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 module Vedeu
 
   module Renderers

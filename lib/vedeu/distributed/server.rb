@@ -1,6 +1,3 @@
-require 'drb'
-require 'singleton'
-
 module Vedeu
 
   module Distributed

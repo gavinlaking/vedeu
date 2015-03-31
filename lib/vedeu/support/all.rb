@@ -1,8 +1,5 @@
-require 'vedeu/support/common'
-require 'vedeu/support/template'
-require 'vedeu/support/terminal'
-require 'vedeu/support/trace'
-require 'vedeu/support/visibility'
-
-module Vedeu
-end # Vedeu
+require_relative 'common'
+require_relative 'template'
+require_relative 'terminal'
+require_relative 'trace'
+require_relative 'visibility'

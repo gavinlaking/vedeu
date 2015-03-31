@@ -1,5 +1,2 @@
-require 'vedeu/buffers/buffer'
-require 'vedeu/buffers/display_buffer'
-
-module Vedeu
-end # Vedeu
+require_relative 'buffer'
+require_relative 'display_buffer'

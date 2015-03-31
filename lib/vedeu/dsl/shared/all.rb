@@ -1,7 +1,4 @@
-require 'vedeu/dsl/shared/text'
-require 'vedeu/dsl/shared/colour'
-require 'vedeu/dsl/shared/style'
-require 'vedeu/dsl/shared/use'
-
-module Vedeu
-end # Vedeu
+require_relative 'colour'
+require_relative 'style'
+require_relative 'text'
+require_relative 'use'
