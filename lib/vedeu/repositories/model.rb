@@ -5,9 +5,9 @@ module Vedeu
   #
   module Model
 
-    # @!attribute [r] repository
+    # @!attribute [rw] repository
     # @return [Vedeu::Repository]
-    attr_reader :repository
+    attr_accessor :repository
 
     # When {Vedeu::Model} is included in a class, the methods within this module
     # are included as class methods on that class.
@@ -39,6 +39,11 @@ module Vedeu
       end
       alias_method :member,     :child
       alias_method :collection, :child
+
+      def repository(klass, as:)
+        self.repository = as
+        klass.register(as, self)
+      end
 
       private
 
