@@ -204,6 +204,44 @@ module Vedeu
         model.name = value
       end
 
+      # Set the interface to visible.
+      #
+      # @return [void]
+      def show!
+        visible(true)
+      end
+
+      # Set the interface to invisible.
+      #
+      # @return [void]
+      def hide!
+        visible(false)
+      end
+
+      # Set the visibility of the interface.
+      #
+      # @param value [Boolean] Any value other than nil or false will evaluate
+      #   to true.
+      #
+      # @example
+      #   interface 'my_interface' do
+      #     visible true  # => show the interface
+      #     show!         # => as above
+      #     # ...
+      #
+      #     visible false # => hide the interface
+      #     hide!         # => as above
+      #     # ...
+      #
+      #   view 'my_interface' do
+      #     visible false
+      #     # ...
+      #
+      # @return [void]
+      def visible(value = true)
+        model.visible = !!(value)
+      end
+
       private
 
       # @!attribute [r] client

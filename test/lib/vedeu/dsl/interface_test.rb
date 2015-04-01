@@ -238,6 +238,33 @@ module Vedeu
         end
       end
 
+      describe '#show!' do
+        subject {
+          Vedeu.interface 'xenon' do
+            show!
+          end
+        }
+
+        it { subject.visible.must_equal(true) }
+      end
+
+      describe '#hide!' do
+        subject {
+          Vedeu.interface 'xenon' do
+            hide!
+          end
+        }
+
+        it { subject.visible.must_equal(false) }
+      end
+
+      describe '#visible' do
+        it { instance.visible(false).must_equal(false) }
+        it { instance.visible(true).must_equal(true) }
+        it { instance.visible(nil).must_equal(false) }
+        it { instance.visible(:show).must_equal(true) }
+      end
+
     end # Interface
 
   end # DSL
