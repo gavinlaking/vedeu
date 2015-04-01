@@ -418,6 +418,7 @@ module Vedeu
       let(:bottom)  { false }
       let(:left)    { false }
       let(:right)   { false }
+      let(:visibility) { true }
 
       before do
         Vedeu.interfaces.reset
@@ -430,12 +431,19 @@ module Vedeu
             y      1
             yn     4
           end
+          visible(visibility)
         end
       end
 
       subject { instance.render }
 
       it { subject.must_be_instance_of(Array) }
+
+      context 'when the interface is not visible' do
+        let(:visibility) { false }
+
+        it { subject.must_equal([]) }
+      end
 
       context 'when the border is not enabled' do
         it { subject.must_equal([]) }

@@ -6,8 +6,9 @@ module Vedeu
 
     let(:described) { Vedeu::Clear }
     let(:instance)  { described.new(interface) }
-    let(:interface) { Vedeu::Interface.new({ name: 'xenon' }) }
+    let(:interface) { Vedeu::Interface.new({ name: 'xenon', visible: visible }) }
     let(:geometry)  { Vedeu::Geometry.new({ x: 1, y: 1, xn: 3, yn: 3 })}
+    let(:visible)   { true }
 
     before { interface.stubs(:geometry).returns(geometry) }
 
@@ -22,6 +23,18 @@ module Vedeu
 
     describe '.clear' do
       subject { described.clear(interface) }
+
+      context 'when the interface is visible' do
+
+      end
+
+      context 'when the interface is not visible' do
+        let(:visible) { false }
+
+        it { subject.must_be_instance_of(Array) }
+
+        it { subject.must_equal([]) }
+      end
     end
 
     describe '#clear' do

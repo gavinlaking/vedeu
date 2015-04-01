@@ -11,7 +11,13 @@ module Vedeu
       # @return [Array|String]
       # @see #initialize
       def clear(interface)
-        new(interface).write
+        if interface.visible?
+          new(interface).write
+
+        else
+          []
+
+        end
       end
       alias_method :render, :clear
 

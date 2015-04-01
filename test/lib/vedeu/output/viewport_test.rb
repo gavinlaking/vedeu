@@ -20,12 +20,30 @@ module Vedeu
           line 'nickel'
           line 'osmium'
         end
+        visible(visibility)
       end
     }
+    let(:visibility) { true }
 
     describe '#initialize' do
       it { instance.must_be_instance_of(Viewport) }
       it { instance.instance_variable_get('@interface').must_equal(interface) }
+    end
+
+    describe '.render' do
+      subject { described.render(interface) }
+
+      context 'when the interface is visible' do
+
+      end
+
+      context 'when the interface is not visible' do
+        let(:visibility) { false }
+
+        it { subject.must_be_instance_of(Array) }
+
+        it { subject.must_equal([]) }
+      end
     end
 
     describe '#render' do

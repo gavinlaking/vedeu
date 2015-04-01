@@ -190,6 +190,7 @@ module Vedeu
 
     # @return [Array<Array<Vedeu::Char>>]
     def render
+      return [] unless interface.visible?
       return [] unless enabled?
 
       out = [top, bottom]

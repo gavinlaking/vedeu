@@ -27,7 +27,13 @@ module Vedeu
     # @param interface [Vedeu::Interface]
     # @return [Array<Array<Vedeu::Char>>]
     def self.render(interface)
-      new(interface).render
+      if interface.visible?
+        new(interface).render
+
+      else
+        []
+
+      end
     end
 
     # Returns an instance of Vedeu::Viewport.
