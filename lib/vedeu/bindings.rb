@@ -189,6 +189,9 @@ module Vedeu
     end
 
     # Will cause all interfaces to refresh, or the named interface if given.
+    #
+    # @note
+    #   Hidden interfaces will be still refreshed in memory but not shown.
     Vedeu.bind(:_refresh_) do |name|
       name ? Vedeu::Refresh.by_name(name) : Vedeu::Refresh.all
     end
@@ -217,6 +220,32 @@ module Vedeu
     #   terminal and show the new group.
     Vedeu.bind(:_hide_group_) do |name|
       Vedeu.trigger(:_clear_group_, name)
+    end
+
+    # Will hide the named interface. If the interface is currently visible, it
+    # will be cleared- rendered blank. To show the interface, the
+    # ':_show_interface_' event should be triggered.
+    # Triggering the ':_hide_group_' event to which this named interface belongs
+    # will also hide the interface.
+    Vedeu.bind(:_hide_interface_) do |name|
+      if name && Vedeu.interfaces.registered?(name)
+        interface = Vedeu.interfaces.find(name)
+        interface.clear
+        interface = Vedeu::Visibility.hide(interface)
+      end
+    end
+
+    # Will show the named interface. If the interface is currently invisible, it
+    # will be shown- rendered with its latest content. To hide the interface,
+    # the ':_hide_interface_' event should be triggered.
+    # Triggering the ':_show_group_' event to which this named interface belongs
+    # will also show the interface.
+    Vedeu.bind(:_show_interface_) do |name|
+      if name && Vedeu.interfaces.registered?(name)
+        interface = Vedeu.interfaces.find(name)
+        interface = Vedeu::Visibility.show(interface)
+        interface.render
+      end
     end
 
   end # Bindings
