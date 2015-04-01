@@ -82,22 +82,36 @@ module Vedeu
 
       it { subject.must_be_instance_of(Hash) }
 
-      it { subject.must_equal({ parent:     {
-                                  background: '',
-                                  foreground: '',
-                                  style:      '',
-                                },
-                                background: '',
-                                border:     '',
-                                foreground: '',
-                                style:      '',
-                                value:      value,
-                                x:          nil,
-                                y:          nil }) }
+      it { subject.must_equal(
+        {
+          border: '',
+          colour: {
+            background: '',
+            foreground: '',
+          },
+          parent: {
+            background: '',
+            foreground: '',
+            style: '',
+          },
+          position: {
+            y: nil,
+            x: nil
+          },
+          style: '',
+          value: 'a',
+        }
+      ) }
     end
 
     describe '#to_html' do
       subject { instance.to_html }
+
+      it { subject.must_be_instance_of(String) }
+    end
+
+    describe '#to_json' do
+      subject { instance.to_json }
 
       it { subject.must_be_instance_of(String) }
     end

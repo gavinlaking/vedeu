@@ -107,24 +107,33 @@ module Vedeu
     # @return [Hash]
     def to_hash
       {
-        parent:     {
+        border: border.to_s,
+        colour: {
+          background: background.to_s,
+          foreground: foreground.to_s,
+        },
+        parent: {
           background: parent_background.to_s,
           foreground: parent_foreground.to_s,
           style:      parent_style.to_s,
         },
-        background: background.to_s,
-        border:     border.to_s,
-        foreground: foreground.to_s,
-        style:      style.to_s,
-        value:      value,
-        x:          x,
-        y:          y,
+        position: {
+          y: y,
+          x: x,
+        },
+        style: style.to_s,
+        value: value,
       }
     end
 
     # @return [String]
     def to_html
       @to_html ||= Vedeu::HTMLChar.render(self)
+    end
+
+    # @return [String]
+    def to_json
+      @to_json ||= JSON.generate(to_hash)
     end
 
     private
