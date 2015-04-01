@@ -83,6 +83,20 @@ module Vedeu
       it { subject.x.must_equal(22) }
     end
 
+    describe '#eql?' do
+      let(:other) { described.new(8, 21) }
+
+      subject { instance.eql?(other) }
+
+      it { subject.must_equal(true) }
+
+      context 'when different to other' do
+        let(:other) { described.new(2, 9) }
+
+        it { subject.must_equal(false) }
+      end
+    end
+
     describe '#y' do
       subject { instance.y }
 
