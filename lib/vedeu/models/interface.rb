@@ -46,6 +46,11 @@ module Vedeu
     # @return [String|Symbol]
     attr_accessor :style
 
+    # @!attribute [rw] visible
+    # @return [String|Symbol]
+    attr_accessor :visible
+    alias_method :visible?, :visible
+
     # @!attribute [w] lines
     # @return [Array<Vedeu::Line>]
     attr_writer :lines
@@ -80,6 +85,7 @@ module Vedeu
     # @option attributes name [String]
     # @option attributes parent [Vedeu::Composition]
     # @option attributes style [Vedeu::Style]
+    # @option attributes visible [Vedeu::Visible]
     # @return [Vedeu::Interface]
     def initialize(attributes = {})
       @attributes = defaults.merge!(attributes)
@@ -92,6 +98,7 @@ module Vedeu
       @parent     = @attributes[:parent]
       @repository = Vedeu.interfaces
       @style      = @attributes[:style]
+      @visible    = @attributes[:visible]
     end
 
     # @param child []
@@ -112,6 +119,7 @@ module Vedeu
         name:     name,
         parent:   parent,
         style:    style,
+        visible: true,
       }
     end
 
@@ -171,11 +179,17 @@ module Vedeu
 
     # @return [Array<Array<Vedeu::Char>>]
     def render
-      [
-        border.render,
-        clear,
-        viewport
-      ]
+      if visible?
+        [
+          border.render,
+          clear,
+          viewport
+        ]
+
+      else
+        []
+
+      end
     end
 
     # @return [Interface]
@@ -208,6 +222,7 @@ module Vedeu
         name:   '',
         parent: nil,
         style:  nil,
+        visible: true,
       }
     end
 

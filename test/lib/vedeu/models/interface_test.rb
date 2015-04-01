@@ -13,6 +13,7 @@ module Vedeu
         parent: parent,
         colour: colour,
         style:  style,
+        visible: visible,
       }
     }
     let(:_name)      { 'hydrogen' }
@@ -20,6 +21,7 @@ module Vedeu
     let(:parent)     {}
     let(:colour)     {}
     let(:style)      {}
+    let(:visible)    {}
 
     describe '#initialize' do
       it { instance.instance_variable_get('@name').must_equal(_name) }
@@ -27,6 +29,7 @@ module Vedeu
       it { instance.instance_variable_get('@parent').must_equal(parent) }
       it { instance.instance_variable_get('@colour').must_equal(colour) }
       it { instance.instance_variable_get('@style').must_equal(style) }
+      it { instance.instance_variable_get('@visible').must_equal(visible) }
       it { instance.instance_variable_get('@border').must_equal(nil) }
       it { instance.instance_variable_get('@delay').must_equal(0.0) }
       it { instance.instance_variable_get('@geometry').must_equal(nil) }
@@ -44,7 +47,8 @@ module Vedeu
                                 group:  '',
                                 name:   'hydrogen',
                                 parent: nil,
-                                style:  nil }) }
+                                style:  nil,
+                                visible: true }) }
     end
 
     describe '#border?' do
