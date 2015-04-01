@@ -49,7 +49,7 @@ module Vedeu
     describe '#render' do
       let(:cursor) { Cursor.new(cursor_attributes) }
       let(:cursor_attributes) {
-        { name: 'lithium', ox: ox, oy: oy, state: true, x: x, y: y }
+        { name: 'lithium', ox: ox, oy: oy, visible: true, x: x, y: y }
       }
       let(:lines)  { [] }
       let(:ox)     { 0 }
@@ -75,7 +75,7 @@ module Vedeu
     # describe '#to_s' do
     #   let(:cursor) { Cursor.new(cursor_attributes) }
     #   let(:cursor_attributes) {
-    #     { name: 'lithium', ox: ox, oy: oy, state: true, x: x, y: y }
+    #     { name: 'lithium', ox: ox, oy: oy, visible: true, x: x, y: y }
     #   }
     #   let(:lines)  { [] }
     #   let(:ox)     { 0 }

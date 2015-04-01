@@ -10,7 +10,7 @@ module Vedeu
       Cursor.new({ name: 'Move',
                    ox:    ox,
                    oy:    oy,
-                   state: :show,
+                   visible: true,
                    x:     x,
                    y:     y })
     }

@@ -4,7 +4,6 @@ require 'vedeu/support/sentence'
 require 'vedeu/support/template'
 require 'vedeu/support/terminal'
 require 'vedeu/support/trace'
-require 'vedeu/support/visible'
 require 'vedeu/support/visibility'
 
 module Vedeu

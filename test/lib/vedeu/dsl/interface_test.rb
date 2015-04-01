@@ -59,7 +59,7 @@ module Vedeu
 
         it {
           subject
-          Vedeu.cursors.find('actinium').state.visible?.must_equal(false)
+          Vedeu.cursors.find('actinium').visible?.must_equal(false)
         }
 
         context 'when the value is false' do
@@ -67,16 +67,16 @@ module Vedeu
 
           it {
             subject
-            Vedeu.cursors.find('actinium').state.visible?.must_equal(false)
+            Vedeu.cursors.find('actinium').visible?.must_equal(false)
           }
         end
 
-        context 'when the value is :hide' do
-          let(:value) { :hide }
+        context 'when the value is nil' do
+          let(:value) {}
 
           it {
             subject
-            Vedeu.cursors.find('actinium').state.visible?.must_equal(false)
+            Vedeu.cursors.find('actinium').visible?.must_equal(false)
           }
         end
 
@@ -85,7 +85,7 @@ module Vedeu
 
           it {
             subject
-            Vedeu.cursors.find('actinium').state.visible?.must_equal(true)
+            Vedeu.cursors.find('actinium').visible?.must_equal(true)
           }
         end
 
@@ -94,7 +94,7 @@ module Vedeu
 
           it {
             subject
-            Vedeu.cursors.find('actinium').state.visible?.must_equal(true)
+            Vedeu.cursors.find('actinium').visible?.must_equal(true)
           }
         end
 
@@ -103,7 +103,7 @@ module Vedeu
 
           it {
             subject
-            Vedeu.cursors.find('actinium').state.visible?.must_equal(true)
+            Vedeu.cursors.find('actinium').visible?.must_equal(true)
           }
         end
       end
@@ -113,7 +113,7 @@ module Vedeu
 
         it {
           subject
-          Vedeu.cursors.find('actinium').state.visible?.must_equal(true)
+          Vedeu.cursors.find('actinium').visible?.must_equal(true)
         }
       end
 

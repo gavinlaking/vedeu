@@ -85,7 +85,7 @@ module Vedeu
     # @option attributes name [String]
     # @option attributes parent [Vedeu::Composition]
     # @option attributes style [Vedeu::Style]
-    # @option attributes visible [Vedeu::Visible]
+    # @option attributes visible [Boolean]
     # @return [Vedeu::Interface]
     def initialize(attributes = {})
       @attributes = defaults.merge!(attributes)

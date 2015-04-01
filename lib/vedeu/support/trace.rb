@@ -252,16 +252,12 @@ module Vedeu
         'Vedeu::Style',
         'Vedeu::Terminal',
         # 'Vedeu::Text',
-        # 'Vedeu::Toggle',
         'Vedeu::Trace',
         'Vedeu::Translator',
         # 'Vedeu::Traps',
         # 'Vedeu::Trigger',
         # 'Vedeu::View',
         # 'Vedeu::Viewport',
-        # 'Vedeu::Visible',
-        # 'Vedeu::Write',
-        # 'Vedeu::Writer',
       ]
     end
 

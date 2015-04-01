@@ -67,8 +67,7 @@ module Vedeu
       #     # ...
       #
       #     cursor false # => hide the cursor for this interface
-      #     cursor :hide # => both of these are equivalent to line above
-      #     cursor nil   #
+      #     cursor nil   # => as above
       #     # ...
       #
       #   view 'my_interface' do
@@ -77,7 +76,7 @@ module Vedeu
       #
       # @return [Cursor]
       def cursor(value = true)
-        Vedeu::Cursor.new({ name: model.name, state: value }).store
+        Vedeu::Cursor.new({ name: model.name, visible: !!(value) }).store
       end
 
       # Set the cursor to visible for the interface.
