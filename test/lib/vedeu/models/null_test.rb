@@ -7,6 +7,10 @@ module Vedeu
     let(:described) { Vedeu::Null }
     let(:instance)  { described.new }
 
+    describe 'alias methods' do
+      it { instance.must_respond_to(:visible?) }
+    end
+
     describe '#initialize' do
       it { instance.must_be_instance_of(Vedeu::Null) }
     end
@@ -29,11 +33,33 @@ module Vedeu
       it { subject.must_be_instance_of(NilClass) }
     end
 
+    describe '#store' do
+      subject { instance.store }
+
+      it { subject.must_be_instance_of(Vedeu::Null) }
+    end
+
     describe '#style' do
       subject { instance.style }
 
       it { subject.must_be_instance_of(NilClass) }
     end
+
+    describe '#visible' do
+      subject { instance.visible }
+
+      it { subject.must_be_instance_of(FalseClass) }
+    end
+
+    describe '#visible=' do
+      let(:value) { :ignored }
+
+      subject { instance.visible=(value) }
+
+      # This should be FalseClass, I'm explicitly returning false in the method.
+      it { subject.must_be_instance_of(Symbol) }
+    end
+
 
   end # Null
 

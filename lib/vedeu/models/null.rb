@@ -23,9 +23,26 @@ module Vedeu
       nil
     end
 
+    # @return [Vedeu::Null]
+    def store
+      self
+    end
+
     # @return [NilClass]
     def style
       nil
+    end
+
+    # @return [FalseClass]
+    def visible?
+      false
+    end
+    alias_method :visible, :visible?
+
+    # @param value [void]
+    # @return [FalseClass]
+    def visible=(value)
+      return false
     end
 
   end # Null
