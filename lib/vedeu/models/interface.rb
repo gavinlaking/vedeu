@@ -1,4 +1,3 @@
-require 'vedeu/geometry/content'
 require 'vedeu/models/all'
 require 'vedeu/output/null_border'
 require 'vedeu/output/presentation'
