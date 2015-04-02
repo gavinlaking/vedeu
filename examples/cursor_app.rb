@@ -25,8 +25,8 @@ class VedeuCursorApp
 
     geometry do
       centred true
-      height  10
-      width   10
+      height  20
+      width   20
     end
   end
 
@@ -45,7 +45,7 @@ class VedeuCursorApp
       end
       lines do
         streams do
-          text 'A.3456789 '
+          text 'A.3 '
         end
         streams do
           background '#550000'
@@ -58,33 +58,37 @@ class VedeuCursorApp
       end
       lines do
         streams do
-          text 'B.3456789 lithium beryllium boron nitrogen'
+          text 'B.34 '
+          text 'lithium ', colour: { foreground: '#63d48e' }
+          text 'beryllium '
+          text 'boron', colour: { background: '#770033' }
+          text ' nitrogen'
         end
       end
       lines do
         streams do
-          text 'C.3456789'
+          text 'C.345'
           text ' carbon oxygen '
         end
         streams do
           background '#aadd00'
-          foreground '#000000'
+          foreground '#00ddaa'
           text 'fluorine'
         end
       end
       lines do
         streams do
-          text 'D.3456789'
+          text 'D.3456'
         end
       end
       lines do
         streams do
-          text 'E.3456789 neon sodium'
+          text 'E.34567 neon sodium', colour: { foreground: '#ffffff' }
         end
       end
       lines do
         streams do
-          text 'F.3456789 magnesium '
+          text 'F.345678 magnesium '
         end
         streams do
           foreground '#00aaff'
@@ -100,7 +104,7 @@ class VedeuCursorApp
         streams do
           background '#550000'
           foreground '#ff00ff'
-          text 'H.34'
+          text 'H.34567890'
         end
       end
     end
