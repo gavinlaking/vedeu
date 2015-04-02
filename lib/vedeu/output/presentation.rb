@@ -12,7 +12,16 @@ module Vedeu
 
     # @return [Vedeu::Colour]
     def colour
-      @colour ||= Vedeu::Colour.coerce(@colour)
+      if @colour
+        @colour ||= Vedeu::Colour.coerce(@colour)
+
+      elsif parent && parent.colour
+        @colour ||= Vedeu::Colour.coerce(parent.colour)
+
+      else
+        Vedeu::Colour.coerce(nil)
+
+      end
     end
 
     # @return [Vedeu::Colour]
@@ -47,7 +56,16 @@ module Vedeu
 
     # @return [Vedeu::Style]
     def style
-      @style ||= Vedeu::Style.coerce(@style)
+      if @style
+        @style ||= Vedeu::Style.coerce(@style)
+
+      elsif parent && parent.style
+        @style ||= Vedeu::Style.coerce(parent.style)
+
+      else
+        Vedeu::Style.coerce(nil)
+
+      end
     end
 
     # @return [Vedeu::Style]

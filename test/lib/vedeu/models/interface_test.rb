@@ -42,12 +42,12 @@ module Vedeu
 
       it { subject.must_be_instance_of(Hash) }
 
-      it { subject.must_equal({ colour: nil,
+      it { subject.must_equal({ colour: Vedeu::Colour.coerce(colour),
                                 delay:  0.0,
                                 group:  '',
                                 name:   'hydrogen',
                                 parent: nil,
-                                style:  nil,
+                                style:  Vedeu::Style.coerce(style),
                                 visible: true }) }
     end
 

@@ -21,10 +21,6 @@ module Vedeu
     collection Vedeu::Lines
     member     Vedeu::Line
 
-    # @!attribute [rw] colour
-    # @return [void]
-    attr_accessor :colour
-
     # @!attribute [rw] delay
     # @return [Fixnum|Float]
     attr_accessor :delay
@@ -40,10 +36,6 @@ module Vedeu
     # @!attribute [rw] parent
     # @return [Vedeu::Composition]
     attr_accessor :parent
-
-    # @!attribute [rw] style
-    # @return [String|Symbol]
-    attr_accessor :style
 
     # @!attribute [rw] visible
     # @return [String|Symbol]

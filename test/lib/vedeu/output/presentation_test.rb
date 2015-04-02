@@ -2,8 +2,27 @@ require 'test_helper'
 
 module Vedeu
 
+  class ParentPresentationTestClass
+    include Presentation
+
+    def parent
+      nil
+    end
+
+    def attributes
+      {
+        colour: { background: '#330000', foreground: '#00aadd' },
+        style:  ['bold']
+      }
+    end
+  end
+
   class PresentationTestClass
     include Presentation
+
+    def parent
+      ParentPresentationTestClass.new
+    end
 
     def attributes
       {
