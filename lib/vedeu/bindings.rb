@@ -182,9 +182,9 @@ module Vedeu
     end
 
     # Clears the spaces occupied by the interfaces belonging to the named group.
-    Vedeu.bind(:_clear_group_) do |name|
-      Vedeu.groups.find(name).members.each do |group_name|
-        Vedeu.trigger(:_clear_, group_name)
+    Vedeu.bind(:_clear_group_) do |group_name|
+      Vedeu.groups.find(group_name).members.each do |interface_name|
+        Vedeu.trigger(:_clear_, interface_name)
       end
     end
 
@@ -245,6 +245,31 @@ module Vedeu
         interface = Vedeu.interfaces.find(name)
         interface = Vedeu::Visibility.show(interface)
         interface.render
+      end
+    end
+
+    # Will toggle the visibility of the named interface. If the interface is
+    # currently visible, the area it occupies will be clears and the interface
+    # will be marked invisible. If the interface is invisible, then the
+    # interface will be marked visible and rendered in the area it occupies.
+    #
+    # @note
+    #   If an interface is marked visible whilst another view is occupying some
+    #   or all of the interface's current position, the interface will overwrite
+    #   this area- this may cause visual corruption.
+    Vedeu.bind(:_toggle_interface_) do |name|
+      if name && Vedeu.interfaces.registered?(name)
+        interface = Vedeu.interfaces.find(name)
+
+        if interface.visible?
+          interface.clear
+          interface = Vedeu::Visibility.hide(interface)
+
+        else
+          interface = Vedeu::Visibility.show(interface)
+          interface.render
+
+        end
       end
     end
 
