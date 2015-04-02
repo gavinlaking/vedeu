@@ -45,15 +45,6 @@ module Vedeu
       end
     end
 
-    describe '#to_sentence' do
-      let(:array) { ['hydrogen', 'helium', 'lithium'] }
-
-      subject { described.to_sentence(array) }
-
-      it { subject.must_be_instance_of(String) }
-      it { subject.must_equal('hydrogen, helium and lithium') }
-    end
-
   end # Common
 
 end # Vedeu
