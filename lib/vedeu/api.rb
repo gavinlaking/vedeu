@@ -1,5 +1,6 @@
 require 'vedeu/support/common'
 require 'vedeu/support/terminal'
+require 'vedeu/output/renderers/all'
 require 'vedeu/events/all'
 require 'vedeu/models/all'
 require 'vedeu/input/all'
@@ -171,6 +172,13 @@ module Vedeu
     def_delegators Vedeu::Terminal, :height,
       :width,
       :resize
+
+    # @!method renderer
+    #   @see Vedeu::Renderers#renderer
+    # @!method renderers
+    #   @see Vedeu::Renderers#renderers
+    def_delegators Vedeu::Renderers, :renderer,
+      :renderers
 
   end # API
 

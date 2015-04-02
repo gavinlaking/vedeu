@@ -9,6 +9,7 @@ require 'logger'
 require 'optparse'
 require 'set'
 require 'singleton'
+require 'thread'
 require 'time'
 
 require 'vedeu/support/log'

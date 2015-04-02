@@ -7,7 +7,7 @@ module Vedeu
     # @param output [Array<Array<Vedeu::Char>>]
     # @return [String]
     def self.render(output)
-      new(output).render
+      new(output).to_file
     end
 
     # @param output [Array<Array<Vedeu::Char>>]
@@ -49,8 +49,10 @@ module Vedeu
       Array(output).each do |line|
         out << "<tr>\n"
         line.each do |char|
-          out << char.to_html
-          out << "\n"
+          if char.is_a?(Vedeu::Char)
+            out << char.to_html
+            out << "\n"
+          end
         end
         out << "</tr>\n"
       end

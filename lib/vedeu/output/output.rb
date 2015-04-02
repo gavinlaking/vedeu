@@ -38,9 +38,7 @@ module Vedeu
         Vedeu::HTMLRenderer.to_file(Vedeu::VirtualBuffer.retrieve)
       end
 
-      # Vedeu::FileRenderer.render(rendered)
-
-      Vedeu::TerminalRenderer.render(rendered)
+      Vedeu.renderers.render(rendered)
     end
 
     private
