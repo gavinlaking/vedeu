@@ -27,6 +27,20 @@ module Vedeu
       end
     end
 
+    describe '#eql?' do
+      let(:other) { instance }
+
+      subject { instance.eql?(other) }
+
+      it { subject.must_equal(true) }
+
+      context 'when different to other' do
+        let(:other) { described.new('underline') }
+
+        it { subject.must_equal(false) }
+      end
+    end
+
     describe '#to_s' do
       let(:value) {}
 

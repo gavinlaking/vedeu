@@ -66,6 +66,15 @@ module Vedeu
       @background = Vedeu::Background.coerce(value)
     end
 
+    # @param other [Vedeu::Char]
+    # @return [Boolean]
+    def eql?(other)
+      self.class == other.class      &&
+      background == other.background &&
+      foreground == other.foreground
+    end
+    alias_method :==, :eql?
+
     # Converts the value into a Vedeu::Foreground.
     #
     # @param value [String]

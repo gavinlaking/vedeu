@@ -46,6 +46,13 @@ module Vedeu
       @colour = colour
     end
 
+    # @param other [Vedeu::Char]
+    # @return [Boolean]
+    def eql?(other)
+      self.class == other.class && colour == other.colour
+    end
+    alias_method :==, :eql?
+
     # @return [String]
     # @see Vedeu::Translator
     def escape_sequence

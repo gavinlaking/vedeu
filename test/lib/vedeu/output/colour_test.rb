@@ -50,6 +50,20 @@ module Vedeu
       it { subject.must_equal(value) }
     end
 
+    describe '#eql?' do
+      let(:other) { instance }
+
+      subject { instance.eql?(other) }
+
+      it { subject.must_equal(true) }
+
+      context 'when different to other' do
+        let(:other) { described.new({ background: '#ff0000' }) }
+
+        it { subject.must_equal(false) }
+      end
+    end
+
     describe '#foreground' do
       subject { instance.foreground }
 

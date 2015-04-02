@@ -33,6 +33,13 @@ module Vedeu
       }
     end
 
+    # @param other [Vedeu::Char]
+    # @return [Boolean]
+    def eql?(other)
+      self.class == other.class && value == other.value
+    end
+    alias_method :==, :eql?
+
     # Return the terminal escape sequences after converting the style or styles.
     #
     # @return [String]
