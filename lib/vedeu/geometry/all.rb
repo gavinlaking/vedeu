@@ -1,6 +1,5 @@
 require 'vedeu/geometry/area'
 require 'vedeu/geometry/canvas'
-require 'vedeu/geometry/centre'
 require 'vedeu/geometry/coordinate'
 require 'vedeu/geometry/dimension'
 require 'vedeu/geometry/geometry'
