@@ -9,7 +9,7 @@ module Vedeu
 
     extend Forwardable
 
-    def_delegators Vedeu::Terminal,
+    def_delegators :terminal,
       :tx,
       :ty,
       :txn,
@@ -71,6 +71,11 @@ module Vedeu
     # @!attribute [r] interface
     # @return [Vedeu::Interface]
     attr_reader :interface
+
+    # @return [Vedeu::Terminal]
+    def terminal
+      Vedeu::Terminal
+    end
 
     # Validate the x and y coordinates are within the dimensions of the
     # terminal.

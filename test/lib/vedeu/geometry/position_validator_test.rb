@@ -17,6 +17,12 @@ module Vedeu
       it { instance.instance_variable_get('@y').must_equal(y) }
     end
 
+    describe '.validate' do
+      subject { described.validate(interface, x, y) }
+
+      it { instance.must_be_instance_of(described) }
+    end
+
   end # PositionValidator
 
 end # Vedeu
