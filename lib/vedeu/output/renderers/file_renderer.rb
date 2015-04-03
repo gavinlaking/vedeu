@@ -32,6 +32,7 @@ module Vedeu
     # @return [Array<Array<Vedeu::Char>>]
     attr_reader :output
 
+    # @return [String]
     def filename
       if timestamp?
         "out_#{timestamp}"
@@ -47,18 +48,22 @@ module Vedeu
       Vedeu::Compressor.new(output).render
     end
 
+    # @return [Float]
     def timestamp
       Time.now.to_f
     end
 
+    # @return [Boolean]
     def timestamp?
-      options[:timestamp]
+      !!(options[:timestamp])
     end
 
+    # @return [Hash]
     def options
       defaults.merge!(@options)
     end
 
+    # @return [Hash]
     def defaults
       {
         timestamp: false
