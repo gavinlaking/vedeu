@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 module Vedeu
 
   module Renderers
@@ -69,7 +68,6 @@ module Vedeu
 
 end # Vedeu
 
-require_relative 'compressor'
 require_relative 'file_renderer'
 require_relative 'html_renderer'
 require_relative 'json_renderer'
