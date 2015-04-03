@@ -79,21 +79,10 @@ module Vedeu
     #
     # @return [String] An escape sequence with value interpolated.
     def to_s
-      render_position { render_colour { render_style { render_border { value } } } }
+      render_position { render_colour { render_style { value } } }
     end
 
     private
-
-    # @return [String]
-    def render_border
-      if self.respond_to?(:border) && !border.nil?
-        Vedeu::Esc.border { yield }
-
-      else
-        yield
-
-      end
-    end
 
     # Renders the colour attributes of the receiver and yields (to then render the
     # the styles).

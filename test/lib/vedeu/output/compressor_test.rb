@@ -17,6 +17,23 @@ module Vedeu
       subject { instance.render }
 
       it { subject.must_be_instance_of(String) }
+
+      context 'when the output is all Vedeu::Char elements' do
+
+      end
+
+      context 'when the output is not all Vedeu::Char elements' do
+        let(:output) {
+          [
+            Vedeu::Char.new({ value: 'N'}),
+            'o',
+            Vedeu::Char.new({ value: 't'}),
+          ]
+        }
+        it 'converts the non-Vedeu::Char elements into String elements' do
+          subject.must_equal('Not')
+        end
+      end
     end
 
   end # Compressor

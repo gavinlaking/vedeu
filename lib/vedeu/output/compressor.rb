@@ -29,13 +29,7 @@ module Vedeu
             out << @style.to_s
           end
 
-          if char.respond_to?(:border) && !char.border.nil?
-            out << Vedeu::Esc.border { char.value }
-
-          else
-            out << char.value
-
-          end
+          out << char.value
 
           out
 

@@ -23,9 +23,9 @@ module Vedeu
     # @return [Vedeu::Line]
     attr_accessor :parent
 
-    # @!attribute [rw] value
+    # @!attribute [w] value
     # @return [String]
-    attr_accessor :value
+    attr_writer :value
 
     # Returns a new instance of Vedeu::Char.
     #
@@ -82,6 +82,17 @@ module Vedeu
     # @return [Vedeu::Position]
     def position=(value)
       @position = Vedeu::Position.coerce(value)
+    end
+
+    # @return [String]
+    def value
+      if border
+        Vedeu::Esc.border { @value }
+
+      else
+        @value
+
+      end
     end
 
     # Returns the x position for the Char if set.
