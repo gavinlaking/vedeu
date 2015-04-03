@@ -55,12 +55,10 @@ module Vedeu
           vars = variables(binding)
 
           if vars.empty?
-            log_this(sprintf("%s %-25s #%-20s",
-              class_count, classname, id))
+            log_this(sprintf("%s %-25s #%-20s", class_count, classname, id))
 
           else
-            log_this(sprintf("%s %-25s #%-20s\n%s\n",
-              class_count, classname, id, vars))
+            log_this(sprintf("%s %-25s #%-20s\n%s\n", class_count, classname, id, vars))
 
           end
         end
@@ -95,10 +93,7 @@ module Vedeu
 
         content  = Vedeu::Esc.send(class_colour.fetch(valclass, :white)) { output }
 
-        entries << sprintf("%33s %-10s = %s %s", " ",
-                                                 Vedeu::Esc.green { variable },
-                                                 Vedeu::Esc.magenta { valclass },
-                                                 content)
+        entries << sprintf("%33s %-10s = %s %s", " ", Vedeu::Esc.green { variable }, Vedeu::Esc.magenta { valclass }, content)
       end
       entries.join("\n")
     end
@@ -179,84 +174,22 @@ module Vedeu
     # @return [Set]
     def ignored_classes
       Set.new [
-        # 'Vedeu::API',
-        # 'Vedeu::Application',
-        # 'Vedeu::Background',
-        # 'Vedeu::Bindings',
-        # 'Vedeu::Border',
-        # 'Vedeu::BoundingArea',
-        # 'Vedeu::Buffer',
-        # 'Vedeu::Char',
-        # 'Vedeu::Chars',
         'Vedeu::Coercions',
         'Vedeu::Colour',
         'Vedeu::Common',
-        # 'Vedeu::Composition',
-        # 'Vedeu::Compositor',
-        # 'Vedeu::Config::API',
-        # 'Vedeu::Config::CLI',
         'Vedeu::Configuration',
-        # 'Vedeu::Console',
-        # 'Vedeu::Coordinate',
-        # 'Vedeu::Cursor',
-        # 'Vedeu::DisplayBuffer',
-        # 'Vedeu::DSL::Border',
-        # 'Vedeu::DSL::Colour',
-        # 'Vedeu::DSL::Composition',
-        # 'Vedeu::DSL::Geometry',
-        # 'Vedeu::DSL::Interface',
-        # 'Vedeu::DSL::Keymap',
-        # 'Vedeu::DSL::Line',
-        # 'Vedeu::DSL::Menu',
-        # 'Vedeu::DSL::Stream',
-        # 'Vedeu::DSL::Style',
-        # 'Vedeu::DSL::Text',
-        # 'Vedeu::DSL::Use',
-        # 'Vedeu::DSL::View',
         'Vedeu::Esc',
         'Vedeu::Event',
-        # 'Vedeu::Focus',
-        # 'Vedeu::Foreground',
         'Vedeu::Geometry',
-        # 'Vedeu::Grid',
-        # 'Vedeu::Group',
-        # 'Vedeu::Input',
-        # 'Vedeu::Interface',
-        # 'Vedeu::Interfaces',
-        # 'Vedeu::Keymap',
-        # 'Vedeu::Keys',
-        # 'Vedeu::Key',
-        # 'Vedeu::Launcher',
-        # 'Vedeu::Line',
-        # 'Vedeu::Lines',
         'Vedeu::Log',
-        # 'Vedeu::Mapper',
-        # 'Vedeu::Menu',
-        # 'Vedeu::Menus',
-        # 'Vedeu::Model',
-        # 'Vedeu::Collection',
-        # 'Vedeu::Move',
-        # 'Vedeu::Node',
-        # 'Vedeu::Output',
         'Vedeu::Position',
-        # 'Vedeu::PositionValidator',
         'Vedeu::Presentation',
-        # 'Vedeu::Read',
-        # 'Vedeu::Refresh',
-        # 'Vedeu::Render',
         'Vedeu::Repository',
-        # 'Vedeu::Sentence',
         'Vedeu::Stream',
-        # 'Vedeu::Streams',
         'Vedeu::Style',
         'Vedeu::Terminal',
-        # 'Vedeu::Text',
         'Vedeu::Trace',
         'Vedeu::Translator',
-        # 'Vedeu::Traps',
-        # 'Vedeu::Trigger',
-        # 'Vedeu::View',
-        # 'Vedeu::Viewport',
       ]
     end
 
