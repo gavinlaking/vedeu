@@ -172,9 +172,11 @@ module Vedeu
     def render
       if visible?
         [
+          hide_cursor,
           border.render,
           clear.render,
-          viewport.render
+          viewport.render,
+          show_cursor,
         ]
 
       else
@@ -215,6 +217,20 @@ module Vedeu
         style:  nil,
         visible: true,
       }
+    end
+
+    # @return [String]
+    def hide_cursor
+      return Vedeu::Esc.string(:hide_cursor) if cursor.visible?
+
+      ''
+    end
+
+    # @return [String]
+    def show_cursor
+      return Vedeu::Esc.string(:show_cursor) if cursor.visible?
+
+      ''
     end
 
   end # Interface

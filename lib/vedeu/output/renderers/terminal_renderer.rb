@@ -21,7 +21,7 @@ module Vedeu
 
     # @return [Array<String>]
     def render
-      Vedeu::Terminal.output(hide_cursor, parsed, show_cursor)
+      Vedeu::Terminal.output(parsed)
     end
 
     private
@@ -31,18 +31,8 @@ module Vedeu
     attr_reader :output
 
     # @return [String]
-    def show_cursor
-      Vedeu::Esc.string(:show_cursor)
-    end
-
-    # @return [String]
     def parsed
       Vedeu::Compressor.new(output).render
-    end
-
-    # @return [String]
-    def hide_cursor
-      Vedeu::Esc.string(:hide_cursor)
     end
 
   end # TerminalRenderer
