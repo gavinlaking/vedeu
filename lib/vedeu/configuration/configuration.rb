@@ -137,6 +137,13 @@ module Vedeu
       end
       alias_method :once, :once?
 
+      # Returns the renderers which should receive output.
+      #
+      # @return [Array<Class>]
+      def renderers
+        instance.options[:renderers]
+      end
+
       # Returns the redefined setting for STDIN.
       #
       # @return [File|IO]
@@ -231,8 +238,9 @@ module Vedeu
       @options.merge!(opts)
 
       @options.merge!(Config::API.configure(&block)) if block_given?
-
       @options.merge!(Config::CLI.configure(args)) if args.any?
+
+      Vedeu::Renderers.renderer(*@options[:renderers])
 
       Vedeu::Configuration
     end
@@ -262,6 +270,7 @@ module Vedeu
         interactive:   true,
         log:           '/tmp/vedeu.log',
         once:          false,
+        renderers:     [Vedeu::TerminalRenderer],
         stdin:         nil,
         stdout:        nil,
         stderr:        nil,

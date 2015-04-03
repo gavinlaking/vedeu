@@ -115,7 +115,7 @@ module Vedeu
 
         parser.parse!(args)
 
-        Vedeu::Config.log('CLI', options)
+        Vedeu::Config.log(Esc.blue { '[cli]' }, options)
       end
 
       private

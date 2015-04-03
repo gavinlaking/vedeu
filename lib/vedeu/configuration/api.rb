@@ -38,7 +38,7 @@ module Vedeu
           system_keys: Configuration.default_system_keys.merge!(system_keys)
         }) if system_keys.any?
 
-        Vedeu::Config.log('API', options)
+        Vedeu::Config.log(Esc.green { '[api]' }, options)
       end
 
       # Sets boolean to allow user input. The default behaviour of Vedeu is to
@@ -260,6 +260,25 @@ module Vedeu
       def log(filename = '')
         options[:log] = filename
       end
+
+      # Sets the renderers for Vedeu. Each renderer added must have the class
+      # method '.render' defined as this will be called when rendering content.
+      #
+      # @example
+      #   Vedeu.configure do
+      #     renderer MyRenderer
+      #     ...
+      #
+      #   Vedeu.configure do
+      #     renderers MyRenderer, MyOtherRenderer
+      #     ...
+      #
+      # @param renderer [Array<Class>|Class]
+      # @return [Array<Class>]
+      def renderer(*renderer)
+        options[:renderers] = Vedeu::Configuration.renderers + renderer
+      end
+      alias_method :renderers, :renderer
 
       # Sets the value of STDIN.
       #
