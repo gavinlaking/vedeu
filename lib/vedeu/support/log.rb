@@ -10,16 +10,8 @@ module Vedeu
     #
     # @param logdev [String|IO] The filename (String) or IO object (typically
     #   STDOUT, STDERR or an open file).
-    # @param shift_age [] Number of old log files to keep, or frequency of
-    #   rotation (daily, weekly, monthly).
-    # @param shift_size [] Maximum log file size (only applies when shift_age
-    #   is a number).
     #
-    # @example
-    #   Logger.new(name, shift_age = 7, shift_size = 1048576)
-    #   Logger.new(name, shift_age = 'weekly')
-    #
-    def initialize(logdev, shift_age=nil, shift_size=nil)
+    def initialize(logdev)
       @level = DEBUG
       @default_formatter = Formatter.new
       @formatter = nil
@@ -41,8 +33,6 @@ module Vedeu
       def initialize(log = nil)
         @dev = nil
         @filename = nil
-        @shift_age = nil
-        @shift_size = nil
 
         if log.respond_to?(:write) && log.respond_to?(:close)
           @dev = log
