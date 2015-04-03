@@ -49,21 +49,27 @@ module Vedeu
     #
     # @return [Array<Array<String>>]
     def render
-      Vedeu.log(type: :output, message: "Rendering: '#{interface.name}'")
+      if interface.visible?
+        Vedeu.log(type: :output, message: "Rendering: '#{interface.name}'")
 
-      out = []
+        out = []
 
-      show[0...bordered_height].each_with_index do |line, iy|
-        line[0...bordered_width].each_with_index do |column, ix|
-          column.position = IndexPosition[iy,
-                                          ix,
-                                          interface.border.by,
-                                          interface.border.bx]
-          out << column
+        show[0...bordered_height].each_with_index do |line, iy|
+          line[0...bordered_width].each_with_index do |column, ix|
+            column.position = IndexPosition[iy,
+                                            ix,
+                                            interface.border.by,
+                                            interface.border.bx]
+            out << column
+          end
         end
-      end
 
-      out
+        out
+
+      else
+        []
+
+      end
     end
 
     # Returns a string representation of the viewport.

@@ -136,7 +136,7 @@ module Vedeu
 
     # @return [Array<Array<Vedeu::Char>>]
     def clear
-      Vedeu::Clear.render(self)
+      Vedeu::Clear.new(self)
     end
 
     # Fetch the cursor belonging to this interface (by name), if one does not
@@ -173,8 +173,8 @@ module Vedeu
       if visible?
         [
           border.render,
-          clear,
-          viewport
+          clear.render,
+          viewport.render
         ]
 
       else
@@ -195,7 +195,7 @@ module Vedeu
 
     # @return [Array<Array<Vedeu::Char>>]
     def viewport
-      Vedeu::Viewport.render(self)
+      Vedeu::Viewport.new(self)
     end
 
     private

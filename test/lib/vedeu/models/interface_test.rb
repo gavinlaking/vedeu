@@ -89,7 +89,7 @@ module Vedeu
       subject { instance.clear }
 
       it {
-        Vedeu::Clear.expects(:render).with(instance)
+        Vedeu::Clear.expects(:new).with(instance)
         subject
       }
     end
@@ -132,7 +132,7 @@ module Vedeu
       subject { instance.viewport }
 
       it {
-        Vedeu::Viewport.expects(:render).with(instance)
+        Vedeu::Viewport.expects(:new).with(instance)
         subject
       }
     end

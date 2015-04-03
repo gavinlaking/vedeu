@@ -37,15 +37,22 @@ module Vedeu
     #
     # @return [Array<Array<Vedeu::Char>>]
     def clear
-      @clear ||= Array.new(interface.border.height) do |iy|
-        Array.new(interface.border.width) do |ix|
-          Vedeu::Char.new({ value:    ' ',
-                            colour:   interface.colour,
-                            style:    interface.style,
-                            position: position(iy, ix) })
+      if interface.visible?
+        @clear ||= Array.new(interface.border.height) do |iy|
+          Array.new(interface.border.width) do |ix|
+            Vedeu::Char.new({ value:    ' ',
+                              colour:   interface.colour,
+                              style:    interface.style,
+                              position: position(iy, ix) })
+          end
         end
+      else
+        []
+
       end
     end
+    alias_method :render, :clear
+    alias_method :rendered, :clear
 
     # Clear the view and send to the terminal.
     #
