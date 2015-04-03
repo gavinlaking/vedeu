@@ -37,7 +37,7 @@ module Vedeu
 
     # @return [String]
     def parsed
-      output.flatten.map(&:to_s).join
+      Vedeu::Compressor.new(output).render
     end
 
     # @return [String]

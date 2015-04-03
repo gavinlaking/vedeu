@@ -18,11 +18,12 @@ module Vedeu
     # @return [Vedeu::FileRenderer]
     def initialize(*output)
       @output  = output
+      @options = {}
     end
 
     # @return [String]
     def render
-      File.open("/tmp/out_#{Time.now.to_f}", 'w') { |f| f.write(parsed) }
+      File.open("/tmp/#{filename}", 'w') { |f| f.write(parsed) }
     end
 
     private
@@ -31,9 +32,37 @@ module Vedeu
     # @return [Array<Array<Vedeu::Char>>]
     attr_reader :output
 
+    def filename
+      if timestamp?
+        "out_#{timestamp}"
+
+      else
+        'out'
+
+      end
+    end
+
     # @return [String]
     def parsed
-      Array(output).flatten.map(&:to_s).join
+      Vedeu::Compressor.new(output).render
+    end
+
+    def timestamp
+      Time.now.to_f
+    end
+
+    def timestamp?
+      options[:timestamp]
+    end
+
+    def options
+      defaults.merge!(@options)
+    end
+
+    def defaults
+      {
+        timestamp: false
+      }
     end
 
   end # FileRenderer
