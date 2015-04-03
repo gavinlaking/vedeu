@@ -1,3 +1,9 @@
+require_relative 'file_renderer'
+require_relative 'html_renderer'
+require_relative 'json_renderer'
+require_relative 'null_renderer'
+require_relative 'terminal_renderer'
+
 module Vedeu
 
   module Renderers
@@ -18,6 +24,7 @@ module Vedeu
       threads = storage.map do |renderer|
         Thread.new(renderer) do
           mutex.synchronize do
+            Vedeu.log(type: :debug, message: "Sending to renderer: '#{renderer}'")
             # acc << renderer.render(*args)
             renderer.render(*args)
           end
@@ -60,6 +67,7 @@ module Vedeu
 
     private
 
+    # @return [Mutex]
     def mutex
       @mutex ||= Mutex.new
     end
@@ -67,11 +75,3 @@ module Vedeu
   end # Renderers
 
 end # Vedeu
-
-require_relative 'file_renderer'
-require_relative 'html_renderer'
-require_relative 'json_renderer'
-require_relative 'null_renderer'
-require_relative 'terminal_renderer'
-
-Vedeu::Renderers.renderer(Vedeu::TerminalRenderer) #, Vedeu::HTMLRenderer)
