@@ -61,14 +61,12 @@ module Vedeu
       Vedeu.log(type: :output, message: "Clearing: '#{interface.name}'")
 
       if Vedeu::Configuration.drb?
-        Vedeu.trigger(:_drb_store_output_, clear)
+        Vedeu.trigger(:_drb_store_output_, rendered)
 
         Vedeu::HTMLRenderer.to_file(Vedeu::VirtualBuffer.retrieve)
       end
 
-      # Vedeu::FileRenderer.render(clear)
-
-      Vedeu::TerminalRenderer.render(clear)
+      Vedeu.renderers.render(rendered)
     end
 
     private
