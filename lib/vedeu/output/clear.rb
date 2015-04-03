@@ -38,6 +38,8 @@ module Vedeu
     # @return [Array<Array<Vedeu::Char>>]
     def clear
       if interface.visible?
+        Vedeu.log(type: :output, message: "Clearing: '#{interface.name}'")
+
         @clear ||= Array.new(interface.border.height) do |iy|
           Array.new(interface.border.width) do |ix|
             Vedeu::Char.new({ value:    ' ',
@@ -58,8 +60,6 @@ module Vedeu
     #
     # @return [Array]
     def write
-      Vedeu.log(type: :output, message: "Clearing: '#{interface.name}'")
-
       if Vedeu::Configuration.drb?
         Vedeu.trigger(:_drb_store_output_, rendered)
 
