@@ -103,13 +103,9 @@ module Vedeu
           # - stream colour
           # - stream style
           # - stream content
-          # - line style
-          # - line colour
           "\e[38;2;255;0;0m\e[48;2;0;0;0m"  \
           "\e[4m"                           \
-          "Some text"                       \
-          "\e[24m\e[22m\e[27m"              \
-          "\e[38;2;0;255;0m\e[48;2;0;0;0m"
+          "Some text"
         )
       end
     end

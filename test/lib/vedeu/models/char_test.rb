@@ -137,14 +137,14 @@ module Vedeu
         let(:colour) { Vedeu::Colour.new({ foreground: '#00ff00',
                                            background: '#005500' }) }
 
-        context 'when a parent colour is specified' do
+        context 'and a parent colour is specified' do
           let(:parent_colour) { Vedeu::Colour.new({ foreground: '#ff0000',
                                                     background: '#550000' }) }
 
-          it { subject.must_equal("\e[38;2;0;255;0m\e[48;2;0;85;0ma\e[38;2;255;0;0m\e[48;2;85;0;0m") }
+          it { subject.must_equal("\e[38;2;0;255;0m\e[48;2;0;85;0ma") }
         end
 
-        context 'when a parent colour is not specified' do
+        context 'and a parent colour is not specified' do
           let(:parent_colour) {}
 
           it { subject.must_equal("\e[38;2;0;255;0m\e[48;2;0;85;0ma") }
@@ -163,7 +163,7 @@ module Vedeu
         context 'when a parent style is specified' do
           let(:parent_style) { Vedeu::Style.new('bold') }
 
-          it { subject.must_equal("\e[4ma\e[1m") }
+          it { subject.must_equal("\e[4ma") }
         end
 
         context 'when a parent style is not specified' do

@@ -95,13 +95,12 @@ module Vedeu
       end
     end
 
-    # Renders the colour attributes of the receiver, yields (to then render the
-    # the styles) and once returned, attempts to set the colours back to the
-    # those of the receiver's parent.
+    # Renders the colour attributes of the receiver and yields (to then render the
+    # the styles).
     #
     # @return [String]
     def render_colour
-      [colour, yield, parent_colour].join
+      [colour, yield].join
     end
 
     # @return [String]
@@ -115,13 +114,12 @@ module Vedeu
       end
     end
 
-    # Renders the style attributes of the receiver, yields (to then render the
-    # next model, or finally, the content) and once returned, attempts to set
-    # the style back to that of the receiver's parent.
+    # Renders the style attributes of the receiver and yields (to then render
+    # the next model, or finally, the content).
     #
     # @return [String]
     def render_style
-      [style, yield, parent_style].join
+      [style, yield].join
     end
 
   end # Presentation
