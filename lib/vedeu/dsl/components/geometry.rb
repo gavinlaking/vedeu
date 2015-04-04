@@ -76,6 +76,53 @@ module Vedeu
         model.height = value
       end
 
+      # Use the geometry of another interface as the basis for the geometry you
+      # are creating.
+      #
+      # @example
+      #   geometry 'some_interface' do
+      #     use 'other_interface' # will fetch the geometry of 'other_interface'
+      #     # ...
+      #
+      #   geometry 'other_interface' do
+      #     centred!
+      #     height 4
+      #     # ...
+      #
+      #   geometry 'some_interface' do
+      #     use 'other_interface' # will fetch the geometry of 'other_interface'
+      #     centred false
+      #     # ...
+      #
+      # @note
+      #   - When using 'use', the 'other_interface' (from the example) must
+      #     already exist.
+      #   - When using 'use', note that geometry defined before it's invocation
+      #     will be overwritten by 'other_interface',
+      #   - and geometry defined after will overwrite the inherited geometry.
+      #   - Special geometry settings, like 'centred' also cause unexpected
+      #     behaviour. If 'other_interface' was centred, then 'some_interface'
+      #     will also be centred, to disable this, declare 'some_interface' to
+      #     not be centred.
+      #
+      # @param name [String] The name of the interface you wish to use the
+      #   geometry of.
+      # @raise [ModelNotFound] When the geometry to be used does not exist yet.
+      # @return [Vedeu::Geometry]
+      # def use(name)
+      #   if Vedeu.geometries.registered?(name)
+      #     other = Vedeu.geometries.find(name).dup
+      #     other.name = name
+      #     @model = other
+      #     @model.store
+
+      #   else
+      #     fail ModelNotFound, "Cannot use the geometry of '#{name}', as it " \
+      #                         "is not yet defined."
+
+      #   end
+      # end
+
       # Specify the number of characters/columns wide the interface will be.
       #
       # @param value [Fixnum]

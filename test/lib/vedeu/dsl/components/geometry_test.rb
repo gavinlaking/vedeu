@@ -79,6 +79,23 @@ module Vedeu
         end
       end
 
+      # describe '#use' do
+      #   subject { Vedeu::Geometry.build({ name: 'hydrogen' }) { use 'helium' } }
+
+      #   context 'when the named geometry does not exist' do
+      #   end
+
+      #   context 'when the named geometry exists' do
+      #     before do
+      #       Vedeu::Geometry.build({ name: 'helium', x: 5 }).store
+      #     end
+
+      #     it { subject.must_be_instance_of(Vedeu::Geometry) }
+      #     it { subject.name.must_equal('hydrogen') }
+      #     it { subject.x.must_equal(5) }
+      #   end
+      # end
+
       describe '#width' do
         subject { Vedeu::Geometry.build({}) { width 25 } }
 
