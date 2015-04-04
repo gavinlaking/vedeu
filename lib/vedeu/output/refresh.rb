@@ -39,7 +39,7 @@ module Vedeu
     def by_name(name)
       Vedeu.log(type: :info, message: "Refreshing interface: '#{name}'")
 
-      Vedeu::Compositor.compose(name)
+      Vedeu.buffers.render(name)
     end
 
   end # Refresh

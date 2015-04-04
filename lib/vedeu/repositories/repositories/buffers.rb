@@ -17,6 +17,10 @@ module Vedeu
       @buffers = Vedeu::Buffers.register_repository(Vedeu::Buffer)
     end
 
+    def render(name)
+      find!(name).render
+    end
+
   end # Buffers
 
 end # Vedeu

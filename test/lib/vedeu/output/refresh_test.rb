@@ -49,7 +49,7 @@ module Vedeu
           Vedeu::Group.new({ name: group_name, members: 'aluminium' }).store
         end
 
-        it { Vedeu::Compositor.expects(:compose).with('aluminium'); subject }
+        it { Vedeu.buffers.expects(:render).with('aluminium'); subject }
       end
     end
 
@@ -58,7 +58,7 @@ module Vedeu
 
       subject { described.by_name(interface_name) }
 
-      it { Vedeu::Compositor.expects(:compose).with(interface_name); subject }
+      it { Vedeu.buffers.expects(:render).with(interface_name); subject }
     end
 
   end # Refresh

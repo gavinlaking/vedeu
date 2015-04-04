@@ -52,11 +52,15 @@ module Vedeu
     end
 
     # Add the content to the back buffer, then update the repository. Returns
-    # boolean indicating that the repository was updated.
+    # boolean indicating that the repository was updated. Here we also apply any
+    # overridden colours or styles in the buffered view to the stored interface.
     #
     # @param content [Interface]
     # @return [Boolean]
     def add(content)
+      content.colour = interface.colour unless content.colour
+      content.style  = interface.style  unless content.style
+
       @back = content
 
       store
@@ -77,7 +81,7 @@ module Vedeu
     #
     # @return [Array<Hash>]
     def content
-      if content_for?(:back)
+      buffer = if content_for?(:back)
         swap
 
         [front]
@@ -92,7 +96,14 @@ module Vedeu
         []
 
       end
+
+      Vedeu::Output.render(buffer.first) unless buffer.empty?
+
+      buffer
     end
+    alias_method :render, :content
+
+    private
 
     # Return a boolean indicating content was swapped between buffers.
     #
@@ -107,8 +118,6 @@ module Vedeu
       true
     end
 
-    private
-
     # Return a boolean indicating content presence on the buffer type.
     #
     # @param buffer [Symbol] One of; :back, :front or :previous.
@@ -118,6 +127,11 @@ module Vedeu
                       public_send(buffer).content.empty?
 
       true
+    end
+
+    # @return [Vedeu::Interface]
+    def interface
+      @interface ||= Vedeu.interfaces.find(name)
     end
 
   end # Buffer

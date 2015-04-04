@@ -58,32 +58,57 @@ module Vedeu
       it { subject.must_be_instance_of(Array) }
 
       context 'when there is content on the back buffer' do
+        before { Vedeu::Output.expects(:render) }
+
         let(:back) {
-        Vedeu.interface 'buffer' do
-          lines do
-            line 'old_back'
+          Vedeu.interface 'buffer' do
+            lines do
+              line 'old_back'
+            end
           end
-        end
+        }
+        let(:front) {
+          Vedeu.interface 'buffer' do
+            lines do
+              line 'front'
+            end
+          end
+        }
+        let(:previous) {
+          Vedeu.interface 'buffer' do
+            lines do
+              line 'previous'
+            end
+          end
         }
         let(:buffer) { :back }
 
         it { subject.must_equal([back]) }
+
+        it 'replaces the previous buffer with the front buffer' do
+          subject
+          instance.previous.must_equal(front)
+        end
+
+        it 'replaces the front buffer with the back buffer' do
+          subject
+          instance.front.must_equal(back)
+        end
+
+        it 'replaces the back buffer with an empty buffer' do
+          subject
+          instance.back.must_equal(nil)
+        end
       end
 
       context 'when there is no content on the back buffer' do
-        let(:buffer) { :back }
-
-        it { subject.must_equal([]) }
-      end
-
-      context 'when there is no content on the back buffer' do
-        let(:back) {}
         let(:buffer) { :back }
 
         it { subject.must_equal([]) }
       end
 
       context 'when there is content on the front buffer' do
+        before { Vedeu::Output.expects(:render) }
         let(:buffer) { :front }
         let(:front) {
           Vedeu.interface 'buffer' do
@@ -102,14 +127,8 @@ module Vedeu
         it { subject.must_equal([]) }
       end
 
-      context 'when there is no content on the front buffer' do
-        let(:buffer) { :front }
-        let(:front)  {}
-
-        it { subject.must_equal([]) }
-      end
-
       context 'when there is content on the previous buffer' do
+        before { Vedeu::Output.expects(:render) }
         let(:buffer) { :previous }
         let(:previous) {
           Vedeu.interface 'buffer' do
@@ -126,60 +145,6 @@ module Vedeu
         let(:buffer) { :previous }
 
         it { subject.must_equal([]) }
-      end
-
-      context 'when there is no content on the previous buffer' do
-        let(:buffer)   { :previous }
-        let(:previous) {}
-
-        it { subject.must_equal([]) }
-      end
-    end
-
-    describe '#swap' do
-      subject { instance.swap }
-
-      context 'when there is new content on the back buffer' do
-        let(:back) {
-          Vedeu.interface 'buffer' do
-            lines do
-              line 'back'
-            end
-          end
-        }
-        let(:front) {
-          Vedeu.interface 'buffer' do
-            lines do
-              line 'front'
-            end
-          end
-        }
-        let(:previous) {
-          Vedeu.interface 'buffer' do
-            lines do
-              line 'previous'
-            end
-          end
-        }
-
-        context 'when the buffer was updated successfully' do
-          it { subject.must_equal(true) }
-        end
-
-        it 'replaces the previous buffer with the front buffer' do
-          subject
-          instance.previous.must_equal(front)
-        end
-
-        it 'replaces the front buffer with the back buffer' do
-          subject
-          instance.front.must_equal(back)
-        end
-
-        it 'replaces the back buffer with an empty buffer' do
-          subject
-          instance.back.must_equal(nil)
-        end
       end
     end
 
