@@ -117,7 +117,7 @@ module Vedeu
           let(:d)    { 5 }
           let(:d_dn) { 2 }
 
-          it { subject.must_equal(7) }
+          it { subject.must_equal(6) }
         end
 
         context 'when only d_dn is given' do

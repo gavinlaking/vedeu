@@ -85,7 +85,7 @@ module Vedeu
 
         it { instance.top.must_equal(4) }
         it { instance.right.must_equal(18) }
-        it { instance.bottom.must_equal(10) }
+        it { instance.bottom.must_equal(9) }
         it { instance.left.must_equal(1) }
       end
 
@@ -93,7 +93,7 @@ module Vedeu
         let(:attributes) { { height: 6, width: 18, x: 4 } }
 
         it { instance.top.must_equal(1) }
-        it { instance.right.must_equal(22) }
+        it { instance.right.must_equal(21) }
         it { instance.bottom.must_equal(6) }
         it { instance.left.must_equal(4) }
       end

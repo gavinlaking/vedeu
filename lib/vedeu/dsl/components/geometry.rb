@@ -122,12 +122,20 @@ module Vedeu
       #     xn 37 # end at column 37.
       #     # ...
       #
+      #   geometry 'some_interface' do
+      #     xn  { use('other_interface').right } # if `other_interface` changes
+      #     # ...                                # position, `some_interface`
+      #                                          # will too.
+      #
       # @note
       #   This value will override `width`.
       #
       # @param value [Fixnum]
+      # @param block [Proc]
       # @return [Fixnum]
-      def xn(value)
+      def xn(value = 1, &block)
+        return model.xn = block if block_given?
+
         model.xn = value
       end
 
@@ -160,12 +168,20 @@ module Vedeu
       #     yn 24 # end at row 24.
       #     # ...
       #
+      #   geometry 'some_interface' do
+      #     yn { use('other_interface').bottom } # if `other_interface` changes
+      #     # ...                                # position, `some_interface`
+      #                                          # will too.
+      #
       # @note
       #   This value will override `height`.
       #
       # @param value [Fixnum]
+      # @param block [Proc]
       # @return [Fixnum]
-      def yn(value)
+      def yn(value = 1, &block)
+        return model.yn = block if block_given?
+
         model.yn = value
       end
 

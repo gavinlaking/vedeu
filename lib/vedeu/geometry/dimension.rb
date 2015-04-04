@@ -69,7 +69,7 @@ module Vedeu
         [d, dn]
 
       elsif d && d_dn
-        [d, (d + d_dn)]
+        [d, ((d + d_dn) - 1)]
 
       elsif d_dn
         [1, d_dn]
