@@ -27,6 +27,8 @@ module Vedeu
 
     # @return [String]
     def render
+      return '' if output.nil? || output.empty?
+
       out = ''
       Array(output).each do |line|
         out << ""
