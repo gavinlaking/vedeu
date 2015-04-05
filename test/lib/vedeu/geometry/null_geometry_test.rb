@@ -1,0 +1,57 @@
+require 'test_helper'
+
+module Vedeu
+
+  describe NullGeometry do
+
+    let(:described) { Vedeu::NullGeometry }
+    let(:instance)  { described.new }
+
+    before do
+      Vedeu::Terminal.stubs(:height).returns(25)
+      Vedeu::Terminal.stubs(:width).returns(40)
+    end
+
+    describe '#initialize' do
+      it { instance.must_be_instance_of(described) }
+    end
+
+    describe '#centred' do
+      subject { instance.centred }
+
+      it { subject.must_equal(false) }
+    end
+
+    describe '#store' do
+      subject { instance.store }
+
+      it { subject.must_be_instance_of(described) }
+    end
+
+    describe '#height' do
+      it { instance.height.must_equal(25) }
+    end
+
+    describe '#width' do
+      it { instance.width.must_equal(40) }
+    end
+
+    describe '#x' do
+      it { instance.x.must_equal(1) }
+    end
+
+    describe '#xn' do
+      it { instance.xn.must_equal(40) }
+    end
+
+    describe '#y' do
+      it { instance.y.must_equal(1) }
+    end
+
+    describe '#yn' do
+      it { instance.yn.must_equal(25) }
+    end
+
+  end # NullGeometry
+
+end # Vedeu
