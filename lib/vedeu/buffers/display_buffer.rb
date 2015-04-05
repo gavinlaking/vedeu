@@ -48,7 +48,7 @@ module Vedeu
         Vedeu.buffers.find(name).add(self)
 
       else
-        Vedeu::Buffer.new(name, self).store
+        Vedeu::Buffer.new({ name: name, back: self }).store
 
       end
 

@@ -230,8 +230,11 @@ module Vedeu
     Vedeu.bind(:_hide_interface_) do |name|
       if name && Vedeu.interfaces.registered?(name)
         interface = Vedeu.interfaces.find(name)
-        interface.clear
-        interface = Vedeu::Visibility.hide(interface)
+
+        if interface.visible?
+          interface = Vedeu::Visibility.hide(interface)
+          Vedeu.buffers.clear(interface.name)
+        end
       end
     end
 
@@ -243,8 +246,10 @@ module Vedeu
     Vedeu.bind(:_show_interface_) do |name|
       if name && Vedeu.interfaces.registered?(name)
         interface = Vedeu.interfaces.find(name)
-        interface = Vedeu::Visibility.show(interface)
-        interface.render
+
+        interface = Vedeu::Visibility.show(interface) unless interface.visible?
+
+        Vedeu.buffers.render(interface.name)
       end
     end
 
@@ -262,12 +267,10 @@ module Vedeu
         interface = Vedeu.interfaces.find(name)
 
         if interface.visible?
-          interface.clear
-          interface = Vedeu::Visibility.hide(interface)
+          Vedeu.trigger(:_hide_interface_, name)
 
         else
-          interface = Vedeu::Visibility.show(interface)
-          interface.render
+          Vedeu.trigger(:_show_interface_, name)
 
         end
       end

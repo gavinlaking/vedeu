@@ -10,9 +10,9 @@ module Vedeu
       #
       # @return [Array|String]
       # @see #initialize
-      def clear(interface)
+      def clear(interface, options = {})
         if interface.visible?
-          new(interface).write
+          new(interface, options).write
 
         else
           []
@@ -26,9 +26,14 @@ module Vedeu
     # Return a new instance of Vedeu::Clear.
     #
     # @param interface [Interface]
+    # @param options [Hash]
+    # @option options clear_border [Boolean] see {#clear_border?}
+    # @option options use_terminal_colours [Boolean] see
+    #   {#use_terminal_colours?}
     # @return [Vedeu::Clear]
-    def initialize(interface)
+    def initialize(interface, options = {})
       @interface = interface
+      @options   = options
     end
 
     # For each visible line of the interface, set the foreground and background
@@ -40,10 +45,10 @@ module Vedeu
       if interface.visible?
         Vedeu.log(type: :output, message: "Clearing: '#{interface.name}'")
 
-        @clear ||= Array.new(interface.border.height) do |iy|
-          Array.new(interface.border.width) do |ix|
+        @clear ||= Array.new(height) do |iy|
+          Array.new(width) do |ix|
             Vedeu::Char.new({ value:    ' ',
-                              colour:   interface.colour,
+                              colour:   colour,
                               style:    interface.style,
                               position: position(iy, ix) })
           end
@@ -75,11 +80,80 @@ module Vedeu
     # @return [Interface]
     attr_reader :interface
 
+    # @return [Boolean] Indicates whether the area occupied by the border of the
+    #   interface should be cleared also.
+    def clear_border?
+      options[:clear_border]
+    end
+
+    # @return [Vedeu::Colour] The default background and foreground colours for
+    #   the terminal, or the colours of the interface.
+    def colour
+      if use_terminal_colours?
+        Colour.new({ background: :default, foreground: :default })
+
+      else
+        interface.colour
+
+      end
+    end
+
+    # @return [Hash<Symbol => Boolean>]
+    def defaults
+      {
+        clear_border:         true,
+        use_terminal_colours: true,
+      }
+    end
+
+    # Returns the height of the area to be cleared.
+    #
+    # @return [Fixnum]
+    def height
+      if clear_border?
+        interface.height
+
+      else
+        interface.border.height
+
+      end
+    end
+
+    # @return [Hash<Symbol => Boolean>]
+    def options
+      @_options ||= defaults.merge!(@options)
+    end
+
     # @param iy [Fixnum]
     # @param ix [Fixnum]
     # @return [Vedeu::IndexPosition]
     def position(iy, ix)
-      Vedeu::IndexPosition[iy, ix, interface.border.by, interface.border.bx]
+      if clear_border?
+        Vedeu::IndexPosition[iy, ix, interface.y, interface.x]
+
+      else
+        Vedeu::IndexPosition[iy, ix, interface.border.by, interface.border.bx]
+
+      end
+    end
+
+    # @return [Boolean] Indicates whether the default terminal colours should be
+    #   used to clear the area.
+    def use_terminal_colours?
+      options[:use_terminal_colours]
+    end
+
+    # Returns the width of the area to be cleared.
+    #
+    # @return [Fixnum]
+    def width
+      if clear_border?
+        interface.width
+
+      else
+        interface.border.width
+
+      end
     end
 
   end # Clear

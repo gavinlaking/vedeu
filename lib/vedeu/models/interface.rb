@@ -186,8 +186,8 @@ module Vedeu
       if visible?
         [
           hide_cursor,
-          border.render,
           clear.render,
+          border.render,
           viewport.render,
           show_cursor,
         ]

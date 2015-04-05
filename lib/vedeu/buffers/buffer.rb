@@ -37,18 +37,21 @@ module Vedeu
     # Return a new instance of Buffer. Generally a Buffer is initialized with
     # only a 'name' and 'back' parameter.
     #
-    # @param name [String] The name of the interface for which the buffer
-    #   belongs.
-    # @param back [Interface]
-    # @param front [Interface]
-    # @param previous [Interface]
+    # @option attributes name [String] The name of the interface for which the
+    #   buffer belongs.
+    # @option attributes back [Interface]
+    # @option attributes front [Interface]
+    # @option attributes previous [Interface]
+    # @option attributes repository [Vedeu::Buffers]
     # @return [Buffer]
-    def initialize(name, back = nil, front = nil, previous = nil, repository = nil)
-      @name       = name
-      @back       = back
-      @front      = front
-      @previous   = previous
-      @repository = repository || Vedeu.buffers
+    def initialize(attributes = {})
+      @attributes = defaults.merge!(attributes)
+
+      @name       = @attributes[:name]
+      @back       = @attributes[:back]
+      @front      = @attributes[:front]
+      @previous   = @attributes[:previous]
+      @repository = @attributes[:repository] || Vedeu.buffers
     end
 
     # Add the content to the back buffer, then update the repository. Returns
@@ -80,30 +83,57 @@ module Vedeu
     # - If the 'previous' buffer is empty, return an empty collection.
     #
     # @return [Array<Hash>]
-    def content
+    def render
       buffer = if content_for?(:back)
         swap
 
-        [front]
+        [front.render]
 
       elsif content_for?(:front)
-        [front]
+        [front.render]
 
       elsif content_for?(:previous)
-        [previous]
+        [previous.render]
 
       else
         []
 
       end
 
-      Vedeu::Output.render(buffer.first) unless buffer.empty?
+      Vedeu::Output.render(buffer) unless buffer.empty?
 
       buffer
     end
-    alias_method :render, :content
+    alias_method :content, :render
+
+    # Returns the front buffer or, if that is empty, the interface cleared.
+    #
+    # @return [void]
+    def clear
+      buffer = if content_for?(:front)
+        front.clear.clear
+
+      else
+        interface.clear.clear
+
+      end
+
+      Vedeu::Output.render(buffer) unless buffer.empty?
+
+      buffer
+    end
 
     private
+
+    # @return [Hash<Symbol => NilClass, String>]
+    def defaults
+      {
+        back:     nil,
+        front:    nil,
+        name:     '',
+        previous: nil,
+      }
+    end
 
     # Return a boolean indicating content was swapped between buffers.
     #
