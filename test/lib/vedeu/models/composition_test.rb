@@ -34,6 +34,26 @@ module Vedeu
       it { instance.instance_variable_get('@style').must_equal(style) }
     end
 
+    describe '#add' do
+      let(:child) { Vedeu::Interface.new }
+
+      subject { instance.add(child) }
+
+      it { subject.must_be_instance_of(Vedeu::Interfaces) }
+    end
+
+    describe '#interfaces' do
+      subject { instance.interfaces }
+
+      it { subject.must_be_instance_of(Vedeu::Interfaces) }
+    end
+
+    describe '#parent' do
+      subject { instance.parent }
+
+      it { subject.must_be_instance_of(NilClass) }
+    end
+
   end # Composition
 
 end # Vedeu
