@@ -33,14 +33,19 @@ module Vedeu
 
       # Allows the setting of a border for the interface.
       #
+      # @param name [String] The name of the interface; this is already provided
+      #   when we define the interface or view, setting it here is just
+      #   mirroring functionality of {Vedeu.border}.
       # @param block [Proc]
       # @raise [InvalidSyntax] The required block was not given.
       # @return [Vedeu::Border]
-      def border(&block)
+      def border(name = nil, &block)
         fail InvalidSyntax, 'block not given' unless block_given?
 
+        model_name = name ? name : model.name
+
         border_attrs = attributes.merge!({ enabled: true,
-                                           name:    model.name })
+                                           name:    model_name })
 
         Vedeu::Border.build(border_attrs, &block).store
       end
@@ -114,20 +119,24 @@ module Vedeu
 
       # Define the geometry for an interface.
       #
-      # @param block [Proc]
-      #
       # @example
       #   interface 'my_interface' do
       #     geometry do
       #       # ...
       #
+      # @param name [String] The name of the interface; this is already provided
+      #   when we define the interface or view, setting it here is just
+      #   mirroring functionality of {Vedeu.geometry}.
+      # @param block [Proc]
       # @raise [InvalidSyntax] The required block was not given.
       # @return [Geometry]
       # @see Vedeu::DSL::Geometry
-      def geometry(&block)
+      def geometry(name = nil, &block)
         fail InvalidSyntax, 'block not given' unless block_given?
 
-        Vedeu::Geometry.build({ name: model.name }, &block).store
+        model_name = name ? name : model.name
+
+        Vedeu::Geometry.build({ name: model_name }, &block).store
       end
 
       # Specify a group for an interface. Interfaces of the same group can be

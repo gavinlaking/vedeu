@@ -35,12 +35,30 @@ module Vedeu
           end
         }
 
-        it { subject.must_be_instance_of(Vedeu::Border) }
-
         context 'when the block is not given' do
           subject { instance.border }
 
           it { proc { subject }.must_raise(InvalidSyntax) }
+        end
+
+        context 'when the block is given' do
+          subject { instance.border { } }
+
+          it { subject.must_be_instance_of(Vedeu::Border) }
+
+          context 'when the name is not given' do
+            it 'uses the interface name for storing the border' do
+              subject.name.must_equal('actinium')
+            end
+          end
+
+          context 'when the name is given' do
+            subject { instance.border('magnesium') { } }
+
+            it 'uses the name for storing the border' do
+              subject.name.must_equal('magnesium')
+            end
+          end
         end
       end
 
@@ -159,12 +177,30 @@ module Vedeu
           end
         }
 
-        it { subject.must_be_instance_of(Vedeu::Geometry) }
-
-        context 'when the require block is not provided' do
+        context 'when the required block is not provided' do
           subject { instance.geometry }
 
           it { proc { subject }.must_raise(InvalidSyntax) }
+        end
+
+        context 'when the block is given' do
+          subject { instance.geometry { } }
+
+          it { subject.must_be_instance_of(Vedeu::Geometry) }
+
+          context 'when the name is not given' do
+            it 'uses the interface name for storing the geometry' do
+              subject.name.must_equal('actinium')
+            end
+          end
+
+          context 'when the name is given' do
+            subject { instance.geometry('magnesium') { } }
+
+            it 'uses the name for storing the geometry' do
+              subject.name.must_equal('magnesium')
+            end
+          end
         end
       end
 
