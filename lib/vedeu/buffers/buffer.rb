@@ -85,20 +85,20 @@ module Vedeu
     # @return [Array<Hash>]
     def render
       buffer = if content_for?(:back)
-        swap
+                 swap
 
-        [front.render]
+                 [front.render]
 
                elsif content_for?(:front)
-        [front.render]
+                 [front.render]
 
                elsif content_for?(:previous)
-        [previous.render]
+                 [previous.render]
 
                else
-        []
+                 []
 
-      end
+               end
 
       Vedeu::Output.render(buffer) unless buffer.empty?
 
@@ -111,12 +111,12 @@ module Vedeu
     # @return [void]
     def clear
       buffer = if content_for?(:front)
-        front.clear.clear
+                 front.clear.clear
 
                else
-        interface.clear.clear
+                 interface.clear.clear
 
-      end
+               end
 
       Vedeu::Output.render(buffer) unless buffer.empty?
 

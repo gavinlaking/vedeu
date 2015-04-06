@@ -42,17 +42,18 @@ module Vedeu
     # @return [String]
     def input
       keys_or_cmd = if raw_mode?
-        keys = console.getch
-        if keys.ord == 27
-          keys << console.read_nonblock(3) rescue nil
-          keys << console.read_nonblock(2) rescue nil
-        end
-        keys
+                      keys = console.getch
+
+                      if keys.ord == 27
+                        keys << console.read_nonblock(3) rescue nil
+                        keys << console.read_nonblock(2) rescue nil
+                      end
+                      keys
 
                     else
-        console.gets.chomp
+                      console.gets.chomp
 
-      end
+                    end
 
       Vedeu.trigger(:tick, Time.now.to_f)
 

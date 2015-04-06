@@ -104,12 +104,12 @@ module Vedeu
     # @return [Hash]
     def attributes
       {
-        colour:   colour,
-        delay:    delay,
-        group:    group,
-        name:     name,
-        parent:   parent,
-        style:    style,
+        colour:  colour,
+        delay:   delay,
+        group:   group,
+        name:    name,
+        parent:  parent,
+        style:   style,
         visible: true,
       }
     end
@@ -126,12 +126,12 @@ module Vedeu
     # @return [Vedeu::Border|NilClass]
     def border
       @border ||= if border?
-        Vedeu.borders.find(name)
+                    Vedeu.borders.find(name)
 
                   else
-        Vedeu::NullBorder.new(self)
+                    Vedeu::NullBorder.new(self)
 
-      end
+                  end
     end
 
     # @return [Array<Array<Vedeu::Char>>]
@@ -157,12 +157,12 @@ module Vedeu
     # @return [Vedeu::Geometry]
     def geometry
       @geometry ||= if geometry?
-        Vedeu.geometries.find(name)
+                      Vedeu.geometries.find(name)
 
                     else
-        Vedeu::NullGeometry.new
+                      Vedeu::NullGeometry.new
 
-      end
+                    end
     end
 
     # @return [Vedeu::Lines]
