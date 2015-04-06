@@ -6,7 +6,7 @@ module Vedeu
 
     let(:described)     { Vedeu::Application }
     let(:instance)      { described.new(configuration) }
-    let(:configuration) { test_configuration }
+    let(:configuration) { Vedeu.configuration }
 
     before do
       configuration.stubs(:drb?).returns(false)
@@ -29,6 +29,7 @@ module Vedeu
     describe '.stop' do
       subject { described.stop }
 
+      it { subject.must_equal(false) }
     end
 
     describe '#start' do
