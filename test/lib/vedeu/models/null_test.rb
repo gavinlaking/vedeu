@@ -54,7 +54,7 @@ module Vedeu
     describe '#visible=' do
       let(:value) { :ignored }
 
-      subject { instance.visible=(value) }
+      subject { instance.visible = (value) }
 
       # This should be FalseClass, I'm explicitly returning false in the method.
       it { subject.must_be_instance_of(Symbol) }

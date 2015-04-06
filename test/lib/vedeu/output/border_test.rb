@@ -292,7 +292,7 @@ module Vedeu
     describe '#colour=' do
       let(:value) { { foreground: '#00ff00' } }
 
-      subject { instance.colour=(value) }
+      subject { instance.colour = (value) }
 
       it { subject; instance.instance_variable_get('@colour').must_be_instance_of(Colour) }
     end
@@ -300,7 +300,7 @@ module Vedeu
     describe '#style=' do
       let(:value) { 'normal' }
 
-      subject { instance.style=(value) }
+      subject { instance.style = (value) }
 
       it { subject; instance.instance_variable_get('@style').must_be_instance_of(Style) }
     end

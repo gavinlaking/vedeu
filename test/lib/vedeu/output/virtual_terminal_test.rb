@@ -26,7 +26,7 @@ module Vedeu
         it { subject.must_equal(Vedeu::HTMLRenderer) }
       end
       context '#renderer=' do
-        subject { instance.renderer=(Vedeu::FakeRenderer) }
+        subject { instance.renderer = (Vedeu::FakeRenderer) }
 
         it { subject.must_equal(Vedeu::FakeRenderer) }
       end

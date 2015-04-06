@@ -65,7 +65,7 @@ module Vedeu
     describe '#colour=' do
       let(:colour) { Colour.new(foreground: '#00ff00', background: '#000000') }
 
-      subject { receiver.colour=(colour) }
+      subject { receiver.colour = (colour) }
 
       it { subject.must_be_instance_of(Colour) }
     end
@@ -79,7 +79,7 @@ module Vedeu
     describe '#style=' do
       let(:style) { Style.new('normal') }
 
-      subject { receiver.style=(style) }
+      subject { receiver.style = (style) }
 
       it { subject.must_be_instance_of(Style) }
     end

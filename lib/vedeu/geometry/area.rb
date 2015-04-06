@@ -59,10 +59,7 @@ module Vedeu
     # @return [Boolean]
     def eql?(other)
       self.class == other.class &&
-      y          == other.y     &&
-      yn         == other.yn    &&
-      x          == other.x     &&
-      xn         == other.xn
+      y == other.y && yn == other.yn && x == other.x && xn == other.xn
     end
     alias_method :==, :eql?
 

@@ -108,9 +108,9 @@ module Vedeu
     #
     # @return [PositionValidator]
     def border_validation
-      @x = left + 1   if left?   && x < (left + 1)
-      @x = right - 2  if right?  && x > (right - 1)
-      @y = top + 1    if top?    && y < (top + 1)
+      @x = left + 1   if left? && x < (left + 1)
+      @x = right - 2  if right? && x > (right - 1)
+      @y = top + 1    if top? && y < (top + 1)
       @y = bottom - 2 if bottom? && y > (bottom - 1)
 
       self

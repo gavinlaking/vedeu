@@ -63,7 +63,7 @@ module Vedeu
 
           if (line_length += word_length) >= width
             line_length = word_length
-            processed   << reformatted
+            processed << reformatted
             reformatted = []
           end
 

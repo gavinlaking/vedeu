@@ -50,13 +50,9 @@ module Vedeu
     # @param other [Vedeu::Cell]
     # @return [Boolean]
     def eql?(other)
-      self.class == other.class      &&
-      background == other.background &&
+      self.class == other.class && background == other.background &&
       foreground == other.foreground &&
-      style      == other.style      &&
-      value      == other.value      &&
-      x          == other.x          &&
-      y          == other.y
+      style == other.style && value == other.value && x == other.x && y == other.y
     end
     alias_method :==, :eql?
 
