@@ -47,24 +47,24 @@ module Vedeu
     attr_writer :lines
 
     def_delegators :geometry,
-      :north,
-      :east,
-      :south,
-      :west,
-      :top,
-      :right,
-      :bottom,
-      :left,
-      :y,
-      :yn,
-      :x,
-      :xn,
-      :width,
-      :height,
-      :top_left,
-      :top_right,
-      :bottom_left,
-      :bottom_right
+                   :north,
+                   :east,
+                   :south,
+                   :west,
+                   :top,
+                   :right,
+                   :bottom,
+                   :left,
+                   :y,
+                   :yn,
+                   :x,
+                   :xn,
+                   :width,
+                   :height,
+                   :top_left,
+                   :top_right,
+                   :bottom_left,
+                   :bottom_right
 
     # Return a new instance of Vedeu::Interface.
     #

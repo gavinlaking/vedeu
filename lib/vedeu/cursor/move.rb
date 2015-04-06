@@ -38,13 +38,13 @@ module Vedeu
     extend Forwardable
 
     def_delegators :@interface, :border,
-                                :border?,
-                                :geometry
+                   :border?,
+                   :geometry
 
     def_delegators :geometry, :left,
-                              :top,
-                              :height,
-                              :width
+                   :top,
+                   :height,
+                   :width
 
     # Returns an instance of Vedeu::Move.
     #
@@ -175,8 +175,8 @@ module Vedeu
     # @return [PositionValidator]
     def validator
       @validator ||= Vedeu::PositionValidator.validate(interface,
-                                                      coordinate.x_position(ox),
-                                                      coordinate.y_position(oy))
+                                                       coordinate.x_position(ox),
+                                                       coordinate.y_position(oy))
     end
 
     # Apply the direction amount to the cursor offset. If the offset is less

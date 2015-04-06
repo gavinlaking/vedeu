@@ -44,7 +44,7 @@ module Vedeu
     # @return [Fixnum|OutOfRange]
     def columns
       fail OutOfRange,
-        'Valid value between 1 and 12 inclusive.' if out_of_range?
+           'Valid value between 1 and 12 inclusive.' if out_of_range?
 
       column * value
     end

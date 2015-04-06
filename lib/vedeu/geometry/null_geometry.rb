@@ -5,24 +5,24 @@ module Vedeu
     extend Forwardable
 
     def_delegators :area,
-      :north,
-      :east,
-      :south,
-      :west,
-      :top,
-      :right,
-      :bottom,
-      :left,
-      :y,
-      :xn,
-      :yn,
-      :x,
-      :height,
-      :width,
-      :top_left,
-      :top_right,
-      :bottom_left,
-      :bottom_right
+                   :north,
+                   :east,
+                   :south,
+                   :west,
+                   :top,
+                   :right,
+                   :bottom,
+                   :left,
+                   :y,
+                   :xn,
+                   :yn,
+                   :x,
+                   :height,
+                   :width,
+                   :top_left,
+                   :top_right,
+                   :bottom_left,
+                   :bottom_right
 
     def initialize; end
 

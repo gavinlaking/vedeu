@@ -10,27 +10,27 @@ module Vedeu
     extend Forwardable
 
     def_delegators :terminal,
-      :tx,
-      :ty,
-      :txn,
-      :tyn
+                   :tx,
+                   :ty,
+                   :txn,
+                   :tyn
 
     def_delegators :interface,
-      :border?,
-      :border,
-      :geometry
+                   :border?,
+                   :border,
+                   :geometry
 
     def_delegators :border,
-      :left?,
-      :right?,
-      :top?,
-      :bottom?
+                   :left?,
+                   :right?,
+                   :top?,
+                   :bottom?
 
     def_delegators :geometry,
-      :left,
-      :right,
-      :top,
-      :bottom
+                   :left,
+                   :right,
+                   :top,
+                   :bottom
 
     # @!attribute [rw] x
     # @return [Fixnum]

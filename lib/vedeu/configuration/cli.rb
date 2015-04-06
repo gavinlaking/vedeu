@@ -92,7 +92,7 @@ module Vedeu
           end
 
           opts.on('--drb-host',
-            'Set the hostname/IP for the DRb server.') do |hostname|
+                  'Set the hostname/IP for the DRb server.') do |hostname|
             #options[:drb]      = true
             options[:drb_host] = hostname
           end
