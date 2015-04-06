@@ -20,7 +20,7 @@ module Vedeu
     # @param name [String|NilClass]
     # @return [Vedeu::Collection]
     def self.coerce(collection = [], parent = nil, name = nil)
-      if collection.kind_of?(Vedeu::Collection)
+      if collection.is_a?(Vedeu::Collection)
         collection
 
       else
