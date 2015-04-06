@@ -8,11 +8,11 @@ module Vedeu
     let(:instance)  { described.new(cursor, interface, dy, dx) }
     let(:cursor)    {
       Cursor.new(name: 'Move',
-                   ox:    ox,
-                   oy:    oy,
-                   visible: true,
-                   x:     x,
-                   y:     y)
+                 ox:    ox,
+                 oy:    oy,
+                 visible: true,
+                 x:     x,
+                 y:     y)
     }
     let(:ox)        { 0 }
     let(:oy)        { 0 }

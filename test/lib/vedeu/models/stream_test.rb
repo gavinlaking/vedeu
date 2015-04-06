@@ -17,9 +17,9 @@ module Vedeu
     let(:value)      { 'Some text' }
     let(:parent)     {
       Line.new(        streams: [],
-        parent:  line_parent,
-        colour:  Colour.new(background: '#0000ff', foreground: '#ffff00'),
-        style:   Style.new('normal'))
+                       parent:  line_parent,
+                       colour:  Colour.new(background: '#0000ff', foreground: '#ffff00'),
+                       style:   Style.new('normal'))
     }
     let(:colour)      { Colour.new(background: '#ff0000', foreground: '#000000') }
     let(:style)       { Style.new('normal') }

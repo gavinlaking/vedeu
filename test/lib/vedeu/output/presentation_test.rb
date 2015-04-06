@@ -87,9 +87,9 @@ module Vedeu
     describe '#to_s' do
       let(:line) {
         Vedeu::Line.new(          streams: [],
-          parent:  Vedeu::Interface.new,
-          colour:  Colour.new(foreground: '#00ff00', background: '#000000'),
-          style:   Style.new('normal'))
+                                  parent:  Vedeu::Interface.new,
+                                  colour:  Colour.new(foreground: '#00ff00', background: '#000000'),
+                                  style:   Style.new('normal'))
       }
       let(:stream) { Stream.new(value: stream_value, parent: line, colour: stream_colour, style: stream_style) }
       let(:stream_value)  { 'Some text' }

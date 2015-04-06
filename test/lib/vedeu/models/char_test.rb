@@ -65,7 +65,7 @@ module Vedeu
 
     describe '#inspect' do
       let(:colour)   { Vedeu::Colour.new(foreground: '#00ff00',
-                                           background: '#005500') }
+                                         background: '#005500') }
       let(:position) { Vedeu::Position.new(17, 2) }
       let(:style)    { Vedeu::Style.new('underline') }
 
@@ -84,21 +84,21 @@ module Vedeu
 
       it { subject.must_equal(
                   border: '',
-          colour: {
+                  colour: {
             background: '',
             foreground: '',
           },
-          parent: {
+                  parent: {
             background: '',
             foreground: '',
             style: '',
           },
-          position: {
+                  position: {
             y: nil,
             x: nil
           },
-          style: '',
-          value: 'a',
+                  style: '',
+                  value: 'a',
       ) }
     end
 
@@ -133,11 +133,11 @@ module Vedeu
 
       context 'when a colour is specified' do
         let(:colour) { Vedeu::Colour.new(foreground: '#00ff00',
-                                           background: '#005500') }
+                                         background: '#005500') }
 
         context 'and a parent colour is specified' do
           let(:parent_colour) { Vedeu::Colour.new(foreground: '#ff0000',
-                                                    background: '#550000') }
+                                                  background: '#550000') }
 
           it { subject.must_equal("\e[38;2;0;255;0m\e[48;2;0;85;0ma") }
         end

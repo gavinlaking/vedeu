@@ -45,21 +45,21 @@ module Vedeu
       it { instance.must_be_instance_of(described) }
       it { instance.instance_variable_get('@attributes').must_equal(
                   bottom_left:  'm',
-          bottom_right: 'j',
-          client:       nil,
-          colour:       {},
-          enabled:      false,
-          horizontal:   'q',
-          name:         'borders',
-          show_bottom:  true,
-          show_left:    true,
-          show_right:   true,
-          show_top:     true,
-          style:        [],
-          title:        '',
-          top_left:     'l',
-          top_right:    'k',
-          vertical:     'x',)
+                  bottom_right: 'j',
+                  client:       nil,
+                  colour:       {},
+                  enabled:      false,
+                  horizontal:   'q',
+                  name:         'borders',
+                  show_bottom:  true,
+                  show_left:    true,
+                  show_right:   true,
+                  show_top:     true,
+                  style:        [],
+                  title:        '',
+                  top_left:     'l',
+                  top_right:    'k',
+                  vertical:     'x',)
       }
       it { instance.instance_variable_get('@colour').must_equal({}) }
       it { instance.instance_variable_get('@name').must_equal('borders') }

@@ -48,9 +48,9 @@ module Vedeu
         @clear ||= Array.new(height) do |iy|
           Array.new(width) do |ix|
             Vedeu::Char.new(value:    ' ',
-                              colour:   colour,
-                              style:    interface.style,
-                              position: position(iy, ix))
+                            colour:   colour,
+                            style:    interface.style,
+                            position: position(iy, ix))
           end
         end
       else

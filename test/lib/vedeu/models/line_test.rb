@@ -17,17 +17,17 @@ module Vedeu
     let(:streams)   {
       [
         Stream.new(value: 'Something interesting ',
-          parent: streams_parent,
-          colour: Colour.new(foreground: '#ffff00'),
-          style:  Style.new('normal')),
+                   parent: streams_parent,
+                   colour: Colour.new(foreground: '#ffff00'),
+                   style:  Style.new('normal')),
         Stream.new(value: 'on this line ',
-          parent: streams_parent,
-          colour: Colour.new(foreground: '#00ff00'),
-          style:  Style.new('normal')),
+                   parent: streams_parent,
+                   colour: Colour.new(foreground: '#00ff00'),
+                   style:  Style.new('normal')),
         Stream.new(value: 'would be cool, eh?',
-          parent: streams_parent,
-          colour: Colour.new(foreground: '#0000ff'),
-          style:  Style.new('normal'))
+                   parent: streams_parent,
+                   colour: Colour.new(foreground: '#0000ff'),
+                   style:  Style.new('normal'))
       ]
     }
 

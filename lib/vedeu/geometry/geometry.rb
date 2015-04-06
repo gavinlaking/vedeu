@@ -123,19 +123,19 @@ module Vedeu
     # @return [Array<Fixnum>]
     def x_xn
       @x_xn ||= Vedeu::Dimension.pair(d:        _x,
-                                        dn:      _xn,
-                                        d_dn:    @width,
-                                        default: Vedeu::Terminal.width,
-                                        options: { centred: centred })
+                                      dn:      _xn,
+                                      d_dn:    @width,
+                                      default: Vedeu::Terminal.width,
+                                      options: { centred: centred })
     end
 
     # @return [Array<Fixnum>]
     def y_yn
       @y_yn ||= Vedeu::Dimension.pair(d:       _y,
-                                        dn:      _yn,
-                                        d_dn:    @height,
-                                        default: Vedeu::Terminal.height,
-                                        options: { centred: centred })
+                                      dn:      _yn,
+                                      d_dn:    @height,
+                                      default: Vedeu::Terminal.height,
+                                      options: { centred: centred })
     end
 
     # Returns the row/line start position for the interface.

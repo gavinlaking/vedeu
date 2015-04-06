@@ -60,10 +60,10 @@ module Vedeu
 
       value.chars.map do |char|
         member.new(value:    char,
-                     parent:   parent,
-                     colour:   colour,
-                     style:    style,
-                     position: nil)
+                   parent:   parent,
+                   colour:   colour,
+                   style:    style,
+                   position: nil)
       end
     end
 

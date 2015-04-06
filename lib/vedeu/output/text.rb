@@ -177,9 +177,9 @@ module Vedeu
     # @return [void]
     def stream
       @stream ||= Vedeu::Stream.build(colour: colour,
-                                        parent: parent,
-                                        style:  style,
-                                        value:  aligned)
+                                      parent: parent,
+                                      style:  style,
+                                      value:  aligned)
     end
 
     # The string, coerced.

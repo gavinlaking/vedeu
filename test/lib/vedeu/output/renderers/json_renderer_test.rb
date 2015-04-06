@@ -30,8 +30,8 @@ module Vedeu
           [
             [
               Vedeu::Char.new(                value: 'a',
-                colour: colour,
-                position: Vedeu::Position[5, 3])
+                                              colour: colour,
+                                              position: Vedeu::Position[5, 3])
             ]
           ]
         }

@@ -45,7 +45,7 @@ module Vedeu
         model_name = name ? name : model.name
 
         border_attrs = attributes.merge!(enabled: true,
-                                           name:    model_name)
+                                         name:    model_name)
 
         Vedeu::Border.build(border_attrs, &block).store
       end
