@@ -49,7 +49,7 @@ module Vedeu
         end
         keys
 
-      else
+                    else
         console.gets.chomp
 
       end

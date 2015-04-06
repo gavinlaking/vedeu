@@ -70,7 +70,7 @@ module Vedeu
           Vedeu::Line.build({ client: client,
                               parent: model.parent }, &block)
 
-        elsif value
+                  elsif value
           stream = Vedeu::Stream.build(client: client,
                                        parent: model,
                                        value: value)
@@ -78,7 +78,7 @@ module Vedeu
                             parent:  model.parent,
                             streams: [stream])
 
-        else
+                  else
           fail InvalidSyntax, 'block not given'
 
         end

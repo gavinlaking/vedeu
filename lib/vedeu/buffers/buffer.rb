@@ -89,13 +89,13 @@ module Vedeu
 
         [front.render]
 
-      elsif content_for?(:front)
+               elsif content_for?(:front)
         [front.render]
 
-      elsif content_for?(:previous)
+               elsif content_for?(:previous)
         [previous.render]
 
-      else
+               else
         []
 
       end
@@ -113,7 +113,7 @@ module Vedeu
       buffer = if content_for?(:front)
         front.clear.clear
 
-      else
+               else
         interface.clear.clear
 
       end

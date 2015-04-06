@@ -128,7 +128,7 @@ module Vedeu
       @border ||= if border?
         Vedeu.borders.find(name)
 
-      else
+                  else
         Vedeu::NullBorder.new(self)
 
       end
@@ -159,7 +159,7 @@ module Vedeu
       @geometry ||= if geometry?
         Vedeu.geometries.find(name)
 
-      else
+                    else
         Vedeu::NullGeometry.new
 
       end

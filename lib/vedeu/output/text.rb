@@ -86,12 +86,12 @@ module Vedeu
         attrs = if options[:colour] && options[:colour].is_a?(Hash)
           options[:colour]
 
-        elsif options[:background] || options[:foreground]
+                elsif options[:background] || options[:foreground]
           {
             background: options[:background],
             foreground: options[:foreground],
           }
-        else
+                else
           {}
 
         end

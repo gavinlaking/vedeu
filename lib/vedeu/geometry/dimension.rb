@@ -65,22 +65,22 @@ module Vedeu
       @dimension ||= if centred? && length?
         [(default / 2) - (length / 2), (default / 2) + (length / 2)]
 
-      elsif d && dn
+                     elsif d && dn
         [d, dn]
 
-      elsif d && d_dn
+                     elsif d && d_dn
         [d, ((d + d_dn) - 1)]
 
-      elsif d_dn
+                     elsif d_dn
         [1, d_dn]
 
-      elsif d
+                     elsif d
         [d, default]
 
-      elsif dn
+                     elsif dn
         [1, dn]
 
-      else
+                     else
         [1, default]
 
       end
