@@ -17,7 +17,7 @@ module Vedeu
     }
     let(:border) {}
     let(:colour) {}
-    let(:parent) { Vedeu::Line.new({ colour: parent_colour }) }
+    let(:parent) { Vedeu::Line.new(colour: parent_colour) }
     let(:parent_colour) {}
     let(:value) {}
 
@@ -35,7 +35,7 @@ module Vedeu
         let(:border) { :top_left }
 
         context 'when there is a colour' do
-          let(:colour) { Vedeu::Colour.new({ background: '#220022', foreground: '#aadd00' }) }
+          let(:colour) { Vedeu::Colour.new(background: '#220022', foreground: '#aadd00') }
 
           it { subject.must_equal(
             "<td style='background:#220022;color:#aadd00;border:1px #220022 solid;border-top:1px #aadd00 solid;border-left:1px #aadd00 solid;'>&nbsp;</td>"
@@ -44,7 +44,7 @@ module Vedeu
 
         context 'when there is no colour' do
           context 'when there is a parent colour' do
-            let(:parent_colour) { Vedeu::Colour.new({ background: '#002222', foreground: '#dd2200' }) }
+            let(:parent_colour) { Vedeu::Colour.new(background: '#002222', foreground: '#dd2200') }
 
             it { subject.must_equal(
               "<td style='background:#002222;color:#dd2200;border:1px #002222 solid;border-top:1px #dd2200 solid;border-left:1px #dd2200 solid;'>&nbsp;</td>"

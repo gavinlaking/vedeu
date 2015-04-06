@@ -57,15 +57,15 @@ module Vedeu
       it { subject.must_equal(true) }
 
       context 'when different to other' do
-        let(:other) { described.new({ value: 'b' }) }
+        let(:other) { described.new(value: 'b') }
 
         it { subject.must_equal(false) }
       end
     end
 
     describe '#inspect' do
-      let(:colour)   { Vedeu::Colour.new({ foreground: '#00ff00',
-                                           background: '#005500' }) }
+      let(:colour)   { Vedeu::Colour.new(foreground: '#00ff00',
+                                           background: '#005500') }
       let(:position) { Vedeu::Position.new(17, 2) }
       let(:style)    { Vedeu::Style.new('underline') }
 
@@ -83,8 +83,7 @@ module Vedeu
       it { subject.must_be_instance_of(Hash) }
 
       it { subject.must_equal(
-        {
-          border: '',
+                  border: '',
           colour: {
             background: '',
             foreground: '',
@@ -100,7 +99,6 @@ module Vedeu
           },
           style: '',
           value: 'a',
-        }
       ) }
     end
 
@@ -134,12 +132,12 @@ module Vedeu
       end
 
       context 'when a colour is specified' do
-        let(:colour) { Vedeu::Colour.new({ foreground: '#00ff00',
-                                           background: '#005500' }) }
+        let(:colour) { Vedeu::Colour.new(foreground: '#00ff00',
+                                           background: '#005500') }
 
         context 'and a parent colour is specified' do
-          let(:parent_colour) { Vedeu::Colour.new({ foreground: '#ff0000',
-                                                    background: '#550000' }) }
+          let(:parent_colour) { Vedeu::Colour.new(foreground: '#ff0000',
+                                                    background: '#550000') }
 
           it { subject.must_equal("\e[38;2;0;255;0m\e[48;2;0;85;0ma") }
         end

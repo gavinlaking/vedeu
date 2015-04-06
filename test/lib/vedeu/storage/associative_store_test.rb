@@ -48,12 +48,12 @@ module Vedeu
       context 'when a name is given' do
         let(:_name) { :hydrogen }
 
-        it { subject.must_equal({ hydrogen: [:some_data] }) }
+        it { subject.must_equal(hydrogen: [:some_data]) }
       end
 
       context 'when a name is not given' do
         context 'when the data respond to name' do
-          let(:data) { ModelTestClass.new({ name: 'helium' })}
+          let(:data) { ModelTestClass.new(name: 'helium')}
 
           it { subject.key?('helium').must_equal(true) }
         end

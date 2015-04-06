@@ -44,8 +44,8 @@ module Vedeu
 
         model_name = name ? name : model.name
 
-        border_attrs = attributes.merge!({ enabled: true,
-                                           name:    model_name })
+        border_attrs = attributes.merge!(enabled: true,
+                                           name:    model_name)
 
         Vedeu::Border.build(border_attrs, &block).store
       end
@@ -81,7 +81,7 @@ module Vedeu
       #
       # @return [Cursor]
       def cursor(value = true)
-        Vedeu::Cursor.new({ name: model.name, visible: !!(value) }).store
+        Vedeu::Cursor.new(name: model.name, visible: !!(value)).store
       end
 
       # Set the cursor to visible for the interface.
@@ -159,7 +159,7 @@ module Vedeu
           Vedeu.groups.find(name).add(model.name)
 
         else
-          new_group = Vedeu::Group.new({ name: name })
+          new_group = Vedeu::Group.new(name: name)
           new_group.add(model.name)
 
         end

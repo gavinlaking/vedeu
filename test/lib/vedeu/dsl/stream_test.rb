@@ -8,7 +8,7 @@ module Vedeu
 
       let(:described) { Vedeu::DSL::Stream }
       let(:instance)  { described.new(model) }
-      let(:model)     { Vedeu::Stream.new({ parent: parent }) }
+      let(:model)     { Vedeu::Stream.new(parent: parent) }
       let(:client)    {}
       let(:parent)    { Vedeu::Line.new }
 

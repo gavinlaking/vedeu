@@ -39,10 +39,10 @@ module Vedeu
         let(:content)  { "Hydrogen\nCarbon\nOxygen\nNitrogen" }
         let(:as_lines) {
           [
-            Vedeu::Line.new({ streams: [Vedeu::Stream.new({ value: 'Hydrogen' })] }),
-            Vedeu::Line.new({ streams: [Vedeu::Stream.new({ value: 'Carbon' })] }),
-            Vedeu::Line.new({ streams: [Vedeu::Stream.new({ value: 'Oxygen' })] }),
-            Vedeu::Line.new({ streams: [Vedeu::Stream.new({ value: 'Nitrogen' })] })
+            Vedeu::Line.new(streams: [Vedeu::Stream.new(value: 'Hydrogen')]),
+            Vedeu::Line.new(streams: [Vedeu::Stream.new(value: 'Carbon')]),
+            Vedeu::Line.new(streams: [Vedeu::Stream.new(value: 'Oxygen')]),
+            Vedeu::Line.new(streams: [Vedeu::Stream.new(value: 'Nitrogen')])
           ]
         }
 

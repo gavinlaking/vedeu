@@ -46,7 +46,7 @@ module Vedeu
         let(:group_name) { 'elements' }
 
         before do
-          Vedeu::Group.new({ name: group_name, members: 'aluminium' }).store
+          Vedeu::Group.new(name: group_name, members: 'aluminium').store
         end
 
         it { Vedeu.buffers.expects(:render).with('aluminium'); subject }

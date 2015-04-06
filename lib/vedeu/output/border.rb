@@ -295,12 +295,12 @@ module Vedeu
     # @param ix [Fixnum]
     # @return [Vedeu::Char]
     def border(value, type = :border, iy = 0, ix = 0)
-      Vedeu::Char.new({ value:    value,
+      Vedeu::Char.new(value:    value,
                         parent:   interface,
                         colour:   colour,
                         style:    style,
                         position: position(type, iy, ix),
-                        border:   type })
+                        border:   type)
     end
 
     # @return [Vedeu::Geometry]

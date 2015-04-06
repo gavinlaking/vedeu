@@ -47,10 +47,10 @@ module Vedeu
 
         @clear ||= Array.new(height) do |iy|
           Array.new(width) do |ix|
-            Vedeu::Char.new({ value:    ' ',
+            Vedeu::Char.new(value:    ' ',
                               colour:   colour,
                               style:    interface.style,
-                              position: position(iy, ix) })
+                              position: position(iy, ix))
           end
         end
       else
@@ -90,7 +90,7 @@ module Vedeu
     #   the terminal, or the colours of the interface.
     def colour
       if use_terminal_colours?
-        Colour.new({ background: :default, foreground: :default })
+        Colour.new(background: :default, foreground: :default)
 
       else
         interface.colour

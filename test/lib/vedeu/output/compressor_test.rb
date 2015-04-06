@@ -25,9 +25,9 @@ module Vedeu
       context 'when the output is not all Vedeu::Char elements' do
         let(:output) {
           [
-            Vedeu::Char.new({ value: 'N'}),
+            Vedeu::Char.new(value: 'N'),
             'o',
-            Vedeu::Char.new({ value: 't'}),
+            Vedeu::Char.new(value: 't'),
           ]
         }
         it 'converts the non-Vedeu::Char elements into String elements' do

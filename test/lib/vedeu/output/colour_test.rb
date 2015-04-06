@@ -58,7 +58,7 @@ module Vedeu
       it { subject.must_equal(true) }
 
       context 'when different to other' do
-        let(:other) { described.new({ background: '#ff0000' }) }
+        let(:other) { described.new(background: '#ff0000') }
 
         it { subject.must_equal(false) }
       end

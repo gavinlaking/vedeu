@@ -18,7 +18,7 @@ module Vedeu
       context 'when there are cursors are defined' do
         before do
           Vedeu::Focus.add('Vedeu.cursor')
-          Vedeu::Cursor.new({ name: 'Vedeu.cursor' }).store
+          Vedeu::Cursor.new(name: 'Vedeu.cursor').store
         end
 
         it { subject.must_be_instance_of(Vedeu::Cursor) }

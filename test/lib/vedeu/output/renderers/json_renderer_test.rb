@@ -24,16 +24,14 @@ module Vedeu
 
       context 'when the output is not empty' do
         let(:colour) {
-          Vedeu::Colour.new({ foreground: '#ff0000', background: '#ffffff' })
+          Vedeu::Colour.new(foreground: '#ff0000', background: '#ffffff')
         }
         let(:output) {
           [
             [
-              Vedeu::Char.new({
-                value: 'a',
+              Vedeu::Char.new(                value: 'a',
                 colour: colour,
-                position: Vedeu::Position[5, 3]
-              })
+                position: Vedeu::Position[5, 3])
             ]
           ]
         }

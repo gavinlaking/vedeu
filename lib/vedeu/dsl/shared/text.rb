@@ -55,7 +55,7 @@ module Vedeu
       #   than the specified width.
       # @return [String]
       def text(value = '', options = {})
-        options.merge!({ anchor: __callee__, model: model })
+        options.merge!(anchor: __callee__, model: model)
 
         Vedeu::Text.add(value, options)
       end

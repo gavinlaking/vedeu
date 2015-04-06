@@ -34,7 +34,7 @@ module Vedeu
     end
 
     describe '#eql?' do
-      let(:other) { described.new({ background: '#000000' }) }
+      let(:other) { described.new(background: '#000000') }
 
       subject { instance.eql?(other) }
 

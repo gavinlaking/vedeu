@@ -82,7 +82,7 @@ module Vedeu
 
     # When triggered will cause Vedeu to trigger the `:_clear_` and `:_refresh_`
     # events. Please see those events for their behaviour.
-    Vedeu.bind(:_resize_, { delay: 0.25 }) { Vedeu.resize }
+    Vedeu.bind(:_resize_, delay: 0.25) { Vedeu.resize }
 
     Vedeu.bind(:tick) { |time| Vedeu.log(type: :debug, message: "Tick: #{time}") }
     Vedeu.bind(:tock) { |time| Vedeu.log(type: :debug, message: "Tock: #{time}") }

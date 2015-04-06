@@ -63,7 +63,7 @@ module Vedeu
     end
 
     describe '#colour=' do
-      let(:colour) { Colour.new({ foreground: '#00ff00', background: '#000000' }) }
+      let(:colour) { Colour.new(foreground: '#00ff00', background: '#000000') }
 
       subject { receiver.colour=(colour) }
 
@@ -86,16 +86,14 @@ module Vedeu
 
     describe '#to_s' do
       let(:line) {
-        Vedeu::Line.new({
-          streams: [],
+        Vedeu::Line.new(          streams: [],
           parent:  Vedeu::Interface.new,
-          colour:  Colour.new({ foreground: '#00ff00', background: '#000000' }),
-          style:   Style.new('normal')
-        })
+          colour:  Colour.new(foreground: '#00ff00', background: '#000000'),
+          style:   Style.new('normal'))
       }
-      let(:stream) { Stream.new({ value: stream_value, parent: line, colour: stream_colour, style: stream_style }) }
+      let(:stream) { Stream.new(value: stream_value, parent: line, colour: stream_colour, style: stream_style) }
       let(:stream_value)  { 'Some text' }
-      let(:stream_colour) { Colour.new({ foreground: '#ff0000', background: '#000000' }) }
+      let(:stream_colour) { Colour.new(foreground: '#ff0000', background: '#000000') }
       let(:stream_style)  { Style.new(:underline) }
 
       it 'returns output' do

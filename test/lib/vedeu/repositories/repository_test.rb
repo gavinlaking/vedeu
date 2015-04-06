@@ -111,7 +111,7 @@ module Vedeu
       context 'when the storage is a Hash' do
         it 'returns a collection of the names of all the registered entities' do
           repo = RepositoriesTestClass.new
-          repo.add({ 'rutherfordium' => { name: 'rutherfordium' } })
+          repo.add('rutherfordium' => { name: 'rutherfordium' })
 
           repo.registered.must_equal(['rutherfordium'])
         end
@@ -155,7 +155,7 @@ module Vedeu
 
       it 'returns false when the model is not registered' do
         repo = RepositoriesTestClass.new
-        repo.add({ name: 'samarium' })
+        repo.add(name: 'samarium')
 
         repo.registered?('terbium').must_equal(false)
       end

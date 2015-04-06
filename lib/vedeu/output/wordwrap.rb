@@ -92,7 +92,7 @@ module Vedeu
     # @return [Vedeu::Lines]
     def to_line_objects(text_as_lines)
       line_objects = Array(text_as_lines).map do |text_line|
-        stream        = Vedeu::Stream.new({ value: text_line })
+        stream        = Vedeu::Stream.new(value: text_line)
         line          = Vedeu::Line.new
         stream.parent = line
         line.add(stream)

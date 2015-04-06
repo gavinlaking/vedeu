@@ -19,12 +19,10 @@ module Vedeu
 
     describe '.default_system_keys' do
       it 'returns the default system keys' do
-        Configuration.default_system_keys.must_equal({
-          exit:        'q',
+        Configuration.default_system_keys.must_equal(          exit:        'q',
           focus_next:  :tab,
           focus_prev:  :shift_tab,
-          mode_switch: :escape,
-        })
+          mode_switch: :escape,)
       end
     end
 

@@ -47,7 +47,7 @@ module Vedeu
 
         context 'when the model is a Vedeu::Stream' do
           let(:parent)   { Vedeu::Line.new }
-          let(:model)    { Vedeu::Stream.new({ parent: parent }) }
+          let(:model)    { Vedeu::Stream.new(parent: parent) }
           let(:instance) { Vedeu::DSL::Stream.new(model) }
 
           it { subject.must_be_instance_of(Vedeu::Streams) }

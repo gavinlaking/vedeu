@@ -221,7 +221,7 @@ module Vedeu
 
         context 'when the named group exists' do
           before do
-            Vedeu::Group.new({ name: 'elements', members: ['lanthanum'] }).store
+            Vedeu::Group.new(name: 'elements', members: ['lanthanum']).store
           end
 
           it {

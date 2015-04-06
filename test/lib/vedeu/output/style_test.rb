@@ -49,7 +49,7 @@ module Vedeu
       it { subject.must_be_instance_of(Hash) }
 
       it 'returns an attributes hash for this instance' do
-        subject.must_equal({ style: 'bold' })
+        subject.must_equal(style: 'bold')
       end
     end
 

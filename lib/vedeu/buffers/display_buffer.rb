@@ -48,7 +48,7 @@ module Vedeu
         Vedeu.buffers.find(name).add(self)
 
       else
-        Vedeu::Buffer.new({ name: name, back: self }).store
+        Vedeu::Buffer.new(name: name, back: self).store
 
       end
 
@@ -71,7 +71,7 @@ module Vedeu
     # @return [Interface]
     def store_cursor
       unless Vedeu.cursors.registered?(name)
-        Vedeu::Cursor.new({ name: name }).store
+        Vedeu::Cursor.new(name: name).store
       end
 
       self

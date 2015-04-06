@@ -7,7 +7,7 @@ module Vedeu
     include Vedeu::DisplayBuffer
 
     def colour
-      Vedeu::Colour.new({ background: '#000000', foreground: '#ffffff' })
+      Vedeu::Colour.new(background: '#000000', foreground: '#ffffff')
     end
 
     def name

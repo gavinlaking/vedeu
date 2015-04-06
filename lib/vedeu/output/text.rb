@@ -141,7 +141,7 @@ module Vedeu
 
     # @return [Vedeu::Line]
     def line
-      @line ||= Vedeu::Line.build({ parent: parent })
+      @line ||= Vedeu::Line.build(parent: parent)
     end
 
     # Returns the model option if set.
@@ -176,10 +176,10 @@ module Vedeu
     #
     # @return [void]
     def stream
-      @stream ||= Vedeu::Stream.build({ colour: colour,
+      @stream ||= Vedeu::Stream.build(colour: colour,
                                         parent: parent,
                                         style:  style,
-                                        value:  aligned })
+                                        value:  aligned)
     end
 
     # The string, coerced.

@@ -16,25 +16,25 @@ module Vedeu
     }
     let(:streams)   {
       [
-        Stream.new({ value: 'Something interesting ',
+        Stream.new(value: 'Something interesting ',
           parent: streams_parent,
-          colour: Colour.new({ foreground: '#ffff00' }),
-          style:  Style.new('normal') }),
-        Stream.new({ value: 'on this line ',
+          colour: Colour.new(foreground: '#ffff00'),
+          style:  Style.new('normal')),
+        Stream.new(value: 'on this line ',
           parent: streams_parent,
-          colour: Colour.new({ foreground: '#00ff00' }),
-          style:  Style.new('normal') }),
-        Stream.new({ value: 'would be cool, eh?',
+          colour: Colour.new(foreground: '#00ff00'),
+          style:  Style.new('normal')),
+        Stream.new(value: 'would be cool, eh?',
           parent: streams_parent,
-          colour: Colour.new({ foreground: '#0000ff' }),
-          style:  Style.new('normal') })
+          colour: Colour.new(foreground: '#0000ff'),
+          style:  Style.new('normal'))
       ]
     }
 
-    let(:streams_parent) { Line.new({ streams: nil, parent: parent, colour: colour, style: style }) }
+    let(:streams_parent) { Line.new(streams: nil, parent: parent, colour: colour, style: style) }
 
-    let(:parent)    { Vedeu::Interface.new({ name: 'Vedeu::Line' }) }
-    let(:colour)    { Colour.new({ foreground: '#ff0000', background: '#000000' }) }
+    let(:parent)    { Vedeu::Interface.new(name: 'Vedeu::Line') }
+    let(:colour)    { Colour.new(foreground: '#ff0000', background: '#000000') }
     let(:style)     { Style.new('normal') }
 
     before do

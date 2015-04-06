@@ -6,13 +6,13 @@ module Vedeu
 
     let(:described) { Vedeu::Clear }
     let(:instance)  { described.new(interface, options) }
-    let(:interface) { Vedeu::Interface.new({ name: 'xenon', visible: visible }) }
+    let(:interface) { Vedeu::Interface.new(name: 'xenon', visible: visible) }
     let(:options)   {
       {
 
       }
     }
-    let(:geometry)  { Vedeu::Geometry.new({ x: 1, y: 1, xn: 3, yn: 3 })}
+    let(:geometry)  { Vedeu::Geometry.new(x: 1, y: 1, xn: 3, yn: 3)}
     let(:visible)   { true }
 
     before { interface.stubs(:geometry).returns(geometry) }
