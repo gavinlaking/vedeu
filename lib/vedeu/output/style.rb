@@ -5,6 +5,13 @@ module Vedeu
   # Converts the style value or value collection into a terminal escape
   # sequence. Unrecognised values are discarded- an empty string is returned.
   #
+  # Vedeu has a range of symbol styles which are compatible with most terminals
+  # which are ANSI compatible. Like colours, they can be defined in either
+  # interfaces, for specific lines or within streams.
+  # Styles are applied as encountered.
+  #
+  # @see Vedeu::Esc
+  #
   class Style
 
     include Vedeu::Common

@@ -11,7 +11,6 @@ class VedeuViewTemplateApp
   include Vedeu
 
   configure do
-    colour_mode 16_777_216
     debug!
     log '/tmp/vedeu_view_templates_app.log'
   end

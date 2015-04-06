@@ -11,7 +11,6 @@ class VedeuTestApplication
   # include Vedeu
 
 Vedeu.configure do
-  colour_mode 16_777_216
   log         '/tmp/vedeu_test_helper.log'
   debug!
   drb!

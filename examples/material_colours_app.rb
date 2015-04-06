@@ -11,7 +11,6 @@ class VedeuMaterialColoursApp
   include Vedeu
 
   configure do
-    colour_mode 16_777_216
     # debug!
     log '/tmp/vedeu_material_colours_app.log'
     renderers Vedeu::FileRenderer

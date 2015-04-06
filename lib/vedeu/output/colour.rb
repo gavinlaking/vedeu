@@ -4,6 +4,19 @@ module Vedeu
   # foreground and background colours of a character or collection of
   # characters.
   #
+  # Vedeu uses HTML/CSS style notation (i.e. '#aadd00'), they can be used at the
+  # stream level, the line level or for the whole interface. Terminals generally
+  # support either 8, 16 or 256 colours, with few supporting full 24-bit colour.
+  #
+  # Vedeu attempts to detect the colour depth using the `$TERM` environment
+  # variable.
+  #
+  # To set your `$TERM` variable to allow 256 colour support:
+  #
+  # ```bash
+  # echo "export TERM=xterm-256color" >> ~/.bashrc
+  # ```
+  #
   class Colour
 
     # @!attribute [r] attributes
