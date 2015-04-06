@@ -38,7 +38,7 @@ module Vedeu
     def to_file(path = file_path)
       content = render
 
-      File.open(path, "w", 0644) { |file| file.write(content) }
+      File.open(path, 'w', 0644) { |file| file.write(content) }
 
       content
     end

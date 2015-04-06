@@ -34,7 +34,7 @@ class VedeuConfigurationApp
   renders do
     view 'config' do
       lines do
-        line Configuration.log.inspect + " " + Process.pid.to_s
+        line Configuration.log.inspect + ' ' + Process.pid.to_s
       end
     end
   end

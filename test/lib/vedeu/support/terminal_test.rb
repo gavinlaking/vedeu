@@ -35,7 +35,7 @@ module Vedeu
         Configuration.stub(:terminal_mode, :raw) do
           capture_io do
             Terminal.open do
-              print "Hello from raw mode!"
+              print 'Hello from raw mode!'
             end
           end.must_equal(['Hello from raw mode!', ''])
         end
@@ -45,7 +45,7 @@ module Vedeu
         Configuration.stub(:terminal_mode, :cooked) do
           capture_io do
             Terminal.open do
-              print "Hello from cooked mode!"
+              print 'Hello from cooked mode!'
             end
           end.must_equal(['Hello from cooked mode!', ''])
         end

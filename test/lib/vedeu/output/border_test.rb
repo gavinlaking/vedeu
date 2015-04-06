@@ -294,7 +294,7 @@ module Vedeu
 
       subject { instance.colour=(value) }
 
-      it { subject; instance.instance_variable_get("@colour").must_be_instance_of(Colour) }
+      it { subject; instance.instance_variable_get('@colour').must_be_instance_of(Colour) }
     end
 
     describe '#style=' do
@@ -302,7 +302,7 @@ module Vedeu
 
       subject { instance.style=(value) }
 
-      it { subject; instance.instance_variable_get("@style").must_be_instance_of(Style) }
+      it { subject; instance.instance_variable_get('@style').must_be_instance_of(Style) }
     end
 
     describe '#enabled?' do

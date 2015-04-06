@@ -83,7 +83,7 @@ module Vedeu
 
     # @return [String]
     def lib_dir
-      File.dirname(__FILE__) + "/../../../lib"
+      File.dirname(__FILE__) + '/../../../lib'
     end
 
     private

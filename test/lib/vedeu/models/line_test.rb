@@ -139,13 +139,13 @@ module Vedeu
           "\e[24m\e[22m\e[27m"              \
           "\e[38;2;255;255;0m"              \
           "\e[24m\e[22m\e[27m"              \
-          "Something interesting "          \
+          'Something interesting '          \
           "\e[38;2;0;255;0m"                \
           "\e[24m\e[22m\e[27m"              \
-          "on this line "                   \
+          'on this line '                   \
           "\e[38;2;0;0;255m"                \
           "\e[24m\e[22m\e[27m"              \
-          "would be cool, eh?"
+          'would be cool, eh?'
         )
       end
     end

@@ -55,7 +55,7 @@ module Vedeu
           vars = variables(binding)
 
           if vars.empty?
-            log_this(sprintf("%s %-25s #%-20s", class_count, classname, id))
+            log_this(sprintf('%s %-25s #%-20s', class_count, classname, id))
 
           else
             log_this(sprintf("%s %-25s #%-20s\n%s\n", class_count, classname, id, vars))
@@ -93,7 +93,7 @@ module Vedeu
 
         content  = Vedeu::Esc.send(class_colour.fetch(valclass, :white)) { output }
 
-        entries << sprintf("%33s %-10s = %s %s", " ", Vedeu::Esc.green { variable }, Vedeu::Esc.magenta { valclass }, content)
+        entries << sprintf('%33s %-10s = %s %s', ' ', Vedeu::Esc.green { variable }, Vedeu::Esc.magenta { valclass }, content)
       end
       entries.join("\n")
     end

@@ -22,8 +22,8 @@ module Vedeu
     }
     let(:text_block) {
       "Krypton (from Greek: κρυπτός kryptos 'the hidden one') is a chemical " \
-      "element with symbol Kr and atomic number 36. It is a member of group " \
-      "18 (noble gases) elements."
+      'element with symbol Kr and atomic number 36. It is a member of group ' \
+      '18 (noble gases) elements.'
     }
     let(:text_newlines) {
       "Krypton is a colorless, odorless, tasteless noble gas.\n"            \
@@ -35,14 +35,14 @@ module Vedeu
       "Krypton (from Greek: κρυπτός kryptos 'the hidden one').\n\n"     \
       "It is a chemical element with symbol Kr and atomic number 36.\n" \
       "It is a member of group 18 (noble gases) elements.\n\n"          \
-      "-- Wikipedia"
+      '-- Wikipedia'
     }
     let(:text_line_objects) {
       [
-        Vedeu::Line.new(streams: [Vedeu::Stream.new(value: "Krypton is a colorless, odorless, tasteless noble gas.")]),
-        Vedeu::Line.new(streams: [Vedeu::Stream.new(value: "It occurs in trace amounts in the atmosphere.")]),
-        Vedeu::Line.new(streams: [Vedeu::Stream.new(value: "It is isolated by fractionally distilling liquefied air.")]),
-        Vedeu::Line.new(streams: [Vedeu::Stream.new(value: "Krypton is often used with other rare gases in fluorescent lamps.")])
+        Vedeu::Line.new(streams: [Vedeu::Stream.new(value: 'Krypton is a colorless, odorless, tasteless noble gas.')]),
+        Vedeu::Line.new(streams: [Vedeu::Stream.new(value: 'It occurs in trace amounts in the atmosphere.')]),
+        Vedeu::Line.new(streams: [Vedeu::Stream.new(value: 'It is isolated by fractionally distilling liquefied air.')]),
+        Vedeu::Line.new(streams: [Vedeu::Stream.new(value: 'Krypton is often used with other rare gases in fluorescent lamps.')])
       ]
     }
 
@@ -69,23 +69,23 @@ module Vedeu
 
       context 'when the text is > the pruning width' do
         context 'with a single line of text' do
-          it { subject.must_equal("Krypton (from Greek: κρυπτός...") }
+          it { subject.must_equal('Krypton (from Greek: κρυπτός...') }
         end
 
         context 'with a text block' do
           let(:text) { text_block }
 
-          it { subject.must_equal("Krypton (from Greek: κρυπτός...") }
+          it { subject.must_equal('Krypton (from Greek: κρυπτός...') }
         end
 
         context 'with a text block containing newlines' do
           let(:text) { text_newlines }
 
           it { subject.must_equal([
-              "Krypton is a colorless, odor...",
-              "It occurs in trace amounts i...",
-              "It is isolated by fractional...",
-              "Krypton is often used with o..."
+              'Krypton is a colorless, odor...',
+              'It occurs in trace amounts i...',
+              'It is isolated by fractional...',
+              'Krypton is often used with o...'
             ])
           }
         end
@@ -94,12 +94,12 @@ module Vedeu
           let(:text) { text_blanklines }
 
           it { subject.must_equal([
-            "Krypton (from Greek: κρυπτός...",
-            "",
-            "It is a chemical element wit...",
-            "It is a member of group 18 (...",
-            "",
-            "-- Wikipedia..."
+            'Krypton (from Greek: κρυπτός...',
+            '',
+            'It is a chemical element wit...',
+            'It is a member of group 18 (...',
+            '',
+            '-- Wikipedia...'
             ])
           }
         end
@@ -113,7 +113,7 @@ module Vedeu
         let(:text) { text_line }
 
         it { subject.must_equal([
-            "Krypton (from Greek: κρυπτός",
+            'Krypton (from Greek: κρυπτός',
             "kryptos 'the hidden one')."
           ])
         }
@@ -123,12 +123,12 @@ module Vedeu
         let(:text) { text_block }
 
         it { subject.must_equal([
-          "Krypton (from Greek: κρυπτός",
+          'Krypton (from Greek: κρυπτός',
           "kryptos 'the hidden one') is",
-          "a chemical element with",
-          "symbol Kr and atomic number",
-          "36. It is a member of group",
-          "18 (noble gases) elements."
+          'a chemical element with',
+          'symbol Kr and atomic number',
+          '36. It is a member of group',
+          '18 (noble gases) elements.'
           ])
         }
       end
@@ -137,17 +137,17 @@ module Vedeu
         let(:text) { text_newlines }
 
         it { subject.must_equal([
-          "Krypton is a colorless,",
-          "odorless, tasteless noble",
-          "gas.",
-          "It occurs in trace amounts",
-          "in the atmosphere.",
-          "It is isolated by",
-          "fractionally distilling",
-          "liquefied air.",
-          "Krypton is often used with",
-          "other rare gases in",
-          "fluorescent lamps."
+          'Krypton is a colorless,',
+          'odorless, tasteless noble',
+          'gas.',
+          'It occurs in trace amounts',
+          'in the atmosphere.',
+          'It is isolated by',
+          'fractionally distilling',
+          'liquefied air.',
+          'Krypton is often used with',
+          'other rare gases in',
+          'fluorescent lamps.'
           ])
         }
       end
@@ -156,16 +156,16 @@ module Vedeu
         let(:text) { text_blanklines }
 
         it { subject.must_equal([
-          "Krypton (from Greek: κρυπτός",
+          'Krypton (from Greek: κρυπτός',
           "kryptos 'the hidden one').",
-          "",
-          "It is a chemical element",
-          "with symbol Kr and atomic",
-          "number 36.",
-          "It is a member of group 18",
-          "(noble gases) elements.",
-          "",
-          "-- Wikipedia"
+          '',
+          'It is a chemical element',
+          'with symbol Kr and atomic',
+          'number 36.',
+          'It is a member of group 18',
+          '(noble gases) elements.',
+          '',
+          '-- Wikipedia'
           ])
         }
       end

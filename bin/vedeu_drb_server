@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-lib_dir = "/Users/gavinlaking/Source/vedeu/lib/vedeu/distributed/../../../lib"
+lib_dir = '/Users/gavinlaking/Source/vedeu/lib/vedeu/distributed/../../../lib'
 $LOAD_PATH.unshift(lib_dir) unless $LOAD_PATH.include?(lib_dir)
 
 require 'vedeu'

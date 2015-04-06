@@ -75,7 +75,7 @@ module Vedeu
       def shutdown
         server.shutdown
 
-        Process.kill("KILL", server.pid)
+        Process.kill('KILL', server.pid)
 
       rescue DRb::DRbConnError
         drb_connection_error

@@ -103,7 +103,7 @@ module Vedeu
           # - stream content
           "\e[38;2;255;0;0m\e[48;2;0;0;0m"  \
           "\e[4m"                           \
-          "Some text"
+          'Some text'
         )
       end
     end

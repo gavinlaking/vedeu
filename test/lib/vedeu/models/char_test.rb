@@ -128,7 +128,7 @@ module Vedeu
       context 'when a position is not specified' do
         let(:position) {}
 
-        it { subject.must_equal("a") }
+        it { subject.must_equal('a') }
       end
 
       context 'when a colour is specified' do
@@ -152,7 +152,7 @@ module Vedeu
       context 'when a colour is not specified' do
         let(:colour) {}
 
-        it { subject.must_equal("a") }
+        it { subject.must_equal('a') }
       end
 
       context 'when a style is specified' do
@@ -174,13 +174,13 @@ module Vedeu
       context 'when a style is not specified' do
         let(:style) {}
 
-        it { subject.must_equal("a") }
+        it { subject.must_equal('a') }
       end
 
       context 'when the value is nil' do
         let(:value) {}
 
-        it { subject.must_equal("") }
+        it { subject.must_equal('') }
       end
     end
 

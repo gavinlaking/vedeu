@@ -31,7 +31,7 @@ module Vedeu
 
       out = ''
       Array(output).each do |line|
-        out << ""
+        out << ''
         line.each do |char|
           out << char.to_json
           out << "\n"

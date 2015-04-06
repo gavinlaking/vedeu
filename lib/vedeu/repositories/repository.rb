@@ -137,7 +137,7 @@ module Vedeu
     # @return [void] The model instance which was stored.
     def store(model)
       fail MissingRequired, "Cannot store model '#{model.class}' without a " \
-                            "name attribute." unless defined_value?(model.name)
+                            'name attribute.' unless defined_value?(model.name)
 
       log_store(model)
 

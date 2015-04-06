@@ -42,7 +42,7 @@ module Vedeu
     # @return [String] The name of the interface now in focus.
     def by_name(name)
       fail ModelNotFound, "Cannot focus '#{name}' as this interface has not " \
-                          "been registered." unless registered?(name)
+                          'been registered.' unless registered?(name)
 
       storage.rotate!(storage.index(name))
 
