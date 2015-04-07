@@ -5,6 +5,8 @@ $LOAD_PATH.unshift(lib_dir) unless $LOAD_PATH.include?(lib_dir)
 
 require 'vedeu'
 
+# A simple test application for Vedeu.
+#
 class VedeuTestApplication
   # include Vedeu
 

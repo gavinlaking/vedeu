@@ -1,8 +1,11 @@
 module Vedeu
 
+  # A renderer which returns nothing.
+  #
   class NullRenderer
 
-    def self.render(*args)
+    # @return [NilClass]
+    def self.render(*)
       nil
     end
 

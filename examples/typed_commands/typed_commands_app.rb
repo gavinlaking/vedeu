@@ -5,6 +5,9 @@ $LOAD_PATH.unshift(lib_dir) unless $LOAD_PATH.include?(lib_dir)
 
 require 'vedeu'
 
+# A simple example application to test the input of commands. This will test
+# the functionality of 'cooked' mode.
+#
 class VedeuTypedCommands
   include Vedeu
 

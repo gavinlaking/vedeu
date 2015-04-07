@@ -6,14 +6,19 @@ require_relative 'repository'
 
 module Vedeu
 
+  # Provides all registered repositories.
+  #
   module Repositories
 
     extend self
 
+    # @param klass [Class]
+    # @return [Set]
     def register(klass)
       storage.add(klass)
     end
 
+    # @return [TrueClass]
     def reset!
       storage.map(&:repository).map { |repository| repository.send(:reset) }
 

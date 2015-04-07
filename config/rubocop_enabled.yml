@@ -74,6 +74,9 @@ Style/BlockComments:
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-block-comments'
   Enabled: true
 
+Style/BlockDelimiters:
+  Enabled: false
+
 Style/BlockEndNewline:
   Description: 'Put end statement of multiline block on its own line.'
   Enabled: true

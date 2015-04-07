@@ -1,5 +1,9 @@
 module Vedeu
 
+  # During the conversion of a Vedeu::Char object into a string of escape
+  # sequences, this class removes multiple occurences of the same escape
+  # sequence, resulting in a smaller payload being sent to the renderer.
+  #
   class Compressor
 
     # @param output [Array<Array<Vedeu::Char>>]

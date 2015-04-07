@@ -6,6 +6,8 @@ require_relative 'terminal_renderer'
 
 module Vedeu
 
+  # Provides a single interface to all registered renderers.
+  #
   module Renderers
 
     extend Enumerable

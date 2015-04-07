@@ -1,5 +1,7 @@
 module Vedeu
 
+  # Provides geometry for interfaces that do not have geometry defined.
+  #
   class NullGeometry
 
     extend Forwardable
@@ -24,12 +26,15 @@ module Vedeu
                    :bottom_left,
                    :bottom_right
 
+    # @return [Vedeu::NullGeometry]
     def initialize; end
 
+    # @return [FalseClass]
     def centred
       false
     end
 
+    # @return [Vedeu::NullGeometry]
     def store
       self
     end
