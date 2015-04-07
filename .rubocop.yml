@@ -643,7 +643,7 @@ Metrics/LineLength:
 
 Metrics/MethodLength:
   CountComments: false  # count full line comments?
-  Max: 15
+  Max: 70
 
 Metrics/ParameterLists:
   Max: 5
