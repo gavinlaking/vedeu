@@ -9,7 +9,7 @@ module Vedeu
 
     # @params args [NilClass]
     # @return [NilClass]
-    def add(*args)
+    def add(*)
       nil
     end
 
@@ -41,8 +41,8 @@ module Vedeu
 
     # @param value [void]
     # @return [FalseClass]
-    def visible=(value)
-      return false
+    def visible=(*)
+      false
     end
 
   end # Null
