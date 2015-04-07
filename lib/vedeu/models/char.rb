@@ -68,7 +68,7 @@ module Vedeu
 
     # @return [String]
     def inspect
-      "<Vedeu::Char '#{Vedeu::Esc.escape(self.to_s)}'>"
+      "<Vedeu::Char '#{Vedeu::Esc.escape(to_s)}'>"
     end
 
     # @return [Vedeu::Position]

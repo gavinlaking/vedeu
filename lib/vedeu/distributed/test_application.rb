@@ -76,7 +76,7 @@ module Vedeu
     # @param block [Proc]
     # @return [String]
     def build(&block)
-      self.instance_eval(&block) if block_given?
+      instance_eval(&block) if block_given?
 
       Vedeu::Template.parse(self, template)
     end
