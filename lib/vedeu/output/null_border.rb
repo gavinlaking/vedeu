@@ -33,6 +33,11 @@ module Vedeu
       geometry.yn
     end
 
+    # @return [FalseClass]
+    def enabled?
+      false
+    end
+
     # @return [Fixnum]
     def height
       (by..byn).size

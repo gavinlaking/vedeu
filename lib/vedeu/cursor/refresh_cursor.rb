@@ -53,7 +53,7 @@ module Vedeu
 
     # @return [Vedeu::PositionValidator]
     def validated_position
-      @position ||= Vedeu::PositionValidator.validate(interface,
+      @position ||= Vedeu::PositionValidator.validate(interface.name,
                                                       cursor.x,
                                                       cursor.y)
     end

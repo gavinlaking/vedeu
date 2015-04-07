@@ -18,6 +18,18 @@ module Vedeu
       @geometries = Vedeu::Geometries.new(Vedeu::Geometry)
     end
 
+    # @param name [String] The name of the stored geometry.
+    # @return [Vedeu::Geometry|Vedeu::NullGeometry]
+    def by_name(name)
+      if registered?(name)
+        find(name)
+
+      else
+        Vedeu::NullGeometry.new
+
+      end
+    end
+
   end # Geometries
 
 end # Vedeu

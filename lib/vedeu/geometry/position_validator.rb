@@ -3,7 +3,7 @@ require 'vedeu/support/terminal'
 module Vedeu
 
   # Validates that the provided coordinates are within the terminal and
-  # interface (with or without a border).
+  # interface's geometry (with or without a border).
   #
   class PositionValidator
 
@@ -15,12 +15,8 @@ module Vedeu
                    :txn,
                    :tyn
 
-    def_delegators :interface,
-                   :border?,
-                   :border,
-                   :geometry
-
     def_delegators :border,
+                   :enabled?,
                    :left?,
                    :right?,
                    :top?,
@@ -41,36 +37,36 @@ module Vedeu
     attr_accessor :y
 
     # @param (see #initialize)
-    def self.validate(interface, x, y)
-      new(interface, x, y).validate
+    def self.validate(name, x, y)
+      new(name, x, y).validate
     end
 
     # Returns a new instance of Vedeu::PositionValidator.
     #
-    # @param interface [Interface]
+    # @param name [String]
     # @param x [Fixnum]
     # @param y [Fixnum]
     # @return [PositionValidator]
-    def initialize(interface, x, y)
-      @interface = interface
-      @x         = x
-      @y         = y
+    def initialize(name, x, y)
+      @name = name
+      @x    = x
+      @y    = y
     end
 
     # @return [PositionValidator]
     def validate
       terminal_validation
       interface_validation
-      border_validation if border?
+      border_validation if enabled?
 
       self
     end
 
     private
 
-    # @!attribute [r] interface
-    # @return [Vedeu::Interface]
-    attr_reader :interface
+    # @!attribute [r] name
+    # @return [String]
+    attr_reader :name
 
     # @return [Vedeu::Terminal]
     def terminal
@@ -114,6 +110,16 @@ module Vedeu
       @y = bottom - 2 if bottom? && y > (bottom - 1)
 
       self
+    end
+
+    # @return [Vedeu::Border|Vedeu::NullBorder|NilClass]
+    def border
+      @border ||= Vedeu.borders.by_name(name)
+    end
+
+    # @return [Vedeu::Geometry|Vedeu::NullGeometry]
+    def geometry
+      @geometry ||= Vedeu.geometries.by_name(name)
     end
 
   end # PositionValidator

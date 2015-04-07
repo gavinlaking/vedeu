@@ -18,6 +18,19 @@ module Vedeu
       @borders = Vedeu::Borders.register_repository(Vedeu::Border)
     end
 
+    # @param name [String] The name of the stored border.
+    # @return [Vedeu::Border|Vedeu::NullBorder|NilClass]
+    def by_name(name)
+      if registered?(name)
+        find(name)
+
+      elsif Vedeu.interfaces.registered?(name)
+        interface = Vedeu.interfaces.find(name)
+        Vedeu::NullBorder.new(interface)
+
+      end
+    end
+
   end # Borders
 
 end # Vedeu

@@ -174,7 +174,7 @@ module Vedeu
 
     # @return [PositionValidator]
     def validator
-      @validator ||= Vedeu::PositionValidator.validate(interface,
+      @validator ||= Vedeu::PositionValidator.validate(interface.name,
                                                        x_position,
                                                        y_position)
     end
