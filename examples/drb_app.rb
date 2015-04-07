@@ -8,6 +8,7 @@ require 'vedeu'
 # An example application to demonstrate the DRb server.
 #
 class VedeuTestApplication
+
   # include Vedeu
 
 Vedeu.configure do
@@ -109,6 +110,7 @@ end
                  kernel = Kernel)
     Vedeu::Launcher.execute!(argv, stdin, stdout, stderr, kernel)
   end
+
 end
 
 VedeuTestApplication.start(ARGV)

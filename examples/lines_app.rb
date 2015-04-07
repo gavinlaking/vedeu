@@ -8,6 +8,7 @@ require 'vedeu'
 # An example application to demonstrate interface lines.
 #
 class VedeuLinesApp
+
   include Vedeu
 
   configure do
@@ -67,6 +68,7 @@ class VedeuLinesApp
   def self.start(argv = ARGV)
     Vedeu::Launcher.execute!(argv)
   end
+
 end
 
 VedeuLinesApp.start(ARGV)

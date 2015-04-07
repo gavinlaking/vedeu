@@ -11,6 +11,7 @@ require 'vedeu'
 # An example application to demonstrate 'Hello World'.
 #
 class HelloWorldApp
+
   include Vedeu
 
   configure do
@@ -43,6 +44,7 @@ class HelloWorldApp
   def self.start(argv = ARGV)
     Vedeu::Launcher.execute!(argv)
   end
+
 end
 
 HelloWorldApp.start(ARGV)

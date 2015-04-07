@@ -8,6 +8,7 @@ require 'vedeu'
 # An example application to demonstrate borders.
 #
 class VedeuBordersApp
+
   include Vedeu
 
   configure do
@@ -308,6 +309,7 @@ class VedeuBordersApp
   def self.start(argv = ARGV)
     Vedeu::Launcher.execute!(argv)
   end
+
 end
 
 VedeuBordersApp.start(ARGV)

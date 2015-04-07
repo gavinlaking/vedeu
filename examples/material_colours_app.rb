@@ -8,6 +8,7 @@ require 'vedeu'
 # An example application to demonstrate colours.
 #
 class VedeuMaterialColoursApp
+
   include Vedeu
 
   configure do
@@ -114,6 +115,7 @@ class VedeuMaterialColoursApp
   def self.start(argv = ARGV)
     Vedeu::Launcher.execute!(argv)
   end
+
 end
 
 VedeuMaterialColoursApp.start(ARGV)

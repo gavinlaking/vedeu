@@ -9,6 +9,7 @@ require 'vedeu'
 # the functionality of 'cooked' mode.
 #
 class VedeuTypedCommands
+
   include Vedeu
 
   configure do
@@ -85,6 +86,7 @@ class VedeuTypedCommands
   def self.start(argv = ARGV)
     Vedeu::Launcher.execute!(argv)
   end
+
 end
 
 VedeuTypedCommands.start(ARGV)

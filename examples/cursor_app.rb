@@ -9,6 +9,7 @@ require 'vedeu'
 # the viewport of the interface in focus.
 #
 class VedeuCursorApp
+
   include Vedeu
 
   configure do
@@ -114,6 +115,7 @@ class VedeuCursorApp
   def self.start(argv = ARGV)
     Vedeu::Launcher.execute!(argv)
   end
+
 end
 
 VedeuCursorApp.start(ARGV)

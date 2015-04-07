@@ -14,6 +14,7 @@ require 'vedeu'
 #
 # Use 'space' to change focus, 'q' to exit.
 class VedeuFocusApp
+
   include Vedeu
 
   configure do
@@ -121,6 +122,7 @@ class VedeuFocusApp
   def self.start(argv = ARGV)
     Vedeu::Launcher.execute!(argv)
   end
+
 end
 
 VedeuFocusApp.start(ARGV)

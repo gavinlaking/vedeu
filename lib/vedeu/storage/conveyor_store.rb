@@ -4,6 +4,7 @@ module Vedeu
   # backwards (`load_previous`), or a named entry can be retrieved.
   #
   class ConveyorStore
+
     include Vedeu::Store
 
     # @param storage [Array]

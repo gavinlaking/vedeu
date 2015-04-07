@@ -16,6 +16,7 @@ require 'vedeu'
 #
 # Use 'space' to refresh, 'q' to exit.
 class VedeuConfigurationApp
+
   include Vedeu
 
   configure do
@@ -46,6 +47,7 @@ class VedeuConfigurationApp
   def self.start(argv = ARGV)
     Vedeu::Launcher.execute!(argv)
   end
+
 end
 
 VedeuConfigurationApp.start(ARGV)

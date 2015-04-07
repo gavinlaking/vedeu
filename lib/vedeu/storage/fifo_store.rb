@@ -5,6 +5,7 @@ module Vedeu
   #   in -> [3] -> [2] -> [1] -> out
   #
   class FifoStore
+
     include Vedeu::Store
 
     # @param storage [Array]

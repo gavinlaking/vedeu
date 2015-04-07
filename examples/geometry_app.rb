@@ -8,6 +8,7 @@ require 'vedeu'
 # An example application to demonstrate geometry.
 #
 class VedeuGeometryApp
+
   include Vedeu
 
   configure do
@@ -134,6 +135,7 @@ class VedeuGeometryApp
   def self.start(argv = ARGV)
     Vedeu::Launcher.execute!(argv)
   end
+
 end
 
 VedeuGeometryApp.start(ARGV)

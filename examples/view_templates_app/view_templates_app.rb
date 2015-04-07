@@ -8,6 +8,7 @@ require 'vedeu'
 # An example application to demonstrate templates.
 #
 class VedeuViewTemplateApp
+
   include Vedeu
 
   configure do
@@ -80,6 +81,7 @@ class VedeuViewTemplateApp
   def self.start(argv = ARGV)
     Vedeu::Launcher.execute!(argv)
   end
+
 end
 
 VedeuViewTemplateApp.start(ARGV)

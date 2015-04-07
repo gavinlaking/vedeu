@@ -8,6 +8,7 @@ require 'vedeu'
 # An example application to demonstrate colours.
 #
 class VedeuColoursApp
+
   include Vedeu
 
   configure do

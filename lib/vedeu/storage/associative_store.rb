@@ -5,6 +5,7 @@ module Vedeu
   #   name: [value]
   #
   class AssociativeStore
+
     include Vedeu::Store
 
     # @param storage [Hash]
