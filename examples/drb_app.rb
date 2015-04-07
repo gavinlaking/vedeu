@@ -15,7 +15,7 @@ Vedeu.configure do
   debug!
   drb!
   drb_host    'localhost'
-  drb_port    21420
+  drb_port    21_420
   drb_width   80
   drb_height  25
 

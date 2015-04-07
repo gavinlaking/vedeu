@@ -20,9 +20,9 @@ module Vedeu
       # @param host [String] Hostname or IP address.
       # @param port [Fixnum|String]
       # @return [Uri]
-      def initialize(host = 'localhost', port = 21420)
+      def initialize(host = 'localhost', port = 21_420)
         @host = host || 'localhost'
-        @port = port || 21420
+        @port = port || 21_420
       end
 
       # @example

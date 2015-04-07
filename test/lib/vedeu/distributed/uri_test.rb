@@ -16,7 +16,7 @@ module Vedeu
 
         it { subject.must_be_instance_of(described) }
         it { subject.instance_variable_get('@host').must_equal('localhost') }
-        it { subject.instance_variable_get('@port').must_equal(21420) }
+        it { subject.instance_variable_get('@port').must_equal(21_420) }
       end
 
       describe '#host' do
@@ -41,23 +41,23 @@ module Vedeu
         subject { instance.port }
 
         context 'when the port has been defined by the client application' do
-          let(:port) { 40000 }
+          let(:port) { 40_000 }
 
           it 'returns the port' do
-            subject.must_equal(40000)
+            subject.must_equal(40_000)
           end
         end
 
         context 'when the port has not been redefined' do
           it 'returns the default port' do
-            subject.must_equal(21420)
+            subject.must_equal(21_420)
           end
         end
       end
 
       describe '#to_s' do
         let(:host) { 'myserver' }
-        let(:port) { 40000 }
+        let(:port) { 40_000 }
 
         subject { instance.to_s }
 
