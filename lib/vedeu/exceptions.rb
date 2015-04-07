@@ -23,7 +23,7 @@ module Vedeu
   #
   # VedeuInterrupt: Raised when Vedeu wishes to exit.
   #
-  Exceptions = %w[
+  Exceptions = %w(
     ModelNotFound
     InvalidSyntax
     MissingRequired
@@ -31,7 +31,7 @@ module Vedeu
     NotImplemented
     OutOfRange
     VedeuInterrupt
-  ]
+  )
   Exceptions.each { |e| const_set(e, Class.new(StandardError)) }
 
 end # Vedeu
