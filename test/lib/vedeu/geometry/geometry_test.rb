@@ -31,7 +31,8 @@ module Vedeu
 
     describe '#initialize' do
       it { instance.must_be_instance_of(Geometry) }
-      it { instance.instance_variable_get('@attributes').must_equal(attributes) }
+      it { instance.instance_variable_get('@attributes').
+                    must_equal(attributes) }
       it { instance.instance_variable_get('@centred').must_equal(centred) }
       it { instance.instance_variable_get('@height').must_equal(height) }
       it { instance.instance_variable_get('@name').must_equal(_name) }
@@ -40,7 +41,8 @@ module Vedeu
       it { instance.instance_variable_get('@xn').must_equal(xn) }
       it { instance.instance_variable_get('@y').must_equal(y) }
       it { instance.instance_variable_get('@yn').must_equal(yn) }
-      it { instance.instance_variable_get('@repository').must_equal(Vedeu.geometries) }
+      it { instance.instance_variable_get('@repository').
+                    must_equal(Vedeu.geometries) }
     end
 
     describe '#top, #right, #bottom, #left' do

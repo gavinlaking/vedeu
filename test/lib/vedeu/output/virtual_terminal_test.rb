@@ -16,7 +16,7 @@ module Vedeu
       it { instance.must_be_instance_of(Vedeu::VirtualTerminal) }
       it { instance.instance_variable_get('@height').must_equal(3) }
       it { instance.instance_variable_get('@width').must_equal(3) }
-      it { instance.instance_variable_get('@renderer').must_equal(Vedeu::HTMLRenderer) }
+      it { instance.instance_variable_get('@renderer').must_equal(renderer) }
     end
 
     describe 'attr_accessor' do

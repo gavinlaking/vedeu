@@ -29,13 +29,21 @@ module Vedeu
         let(:output) {
           [
             [
-              Vedeu::Char.new(                value: 'a',
-                                              colour: colour,
-                                              position: Vedeu::Position[5, 3])
+              Vedeu::Char.new(value: 'a',
+                              colour: colour,
+                              position: Vedeu::Position[5, 3])
             ]
           ]
         }
-        it { subject.must_equal("{\"border\":\"\",\"colour\":{\"background\":\"\\u001b[48;2;255;255;255m\",\"foreground\":\"\\u001b[38;2;255;0;0m\"},\"parent\":{\"background\":\"\",\"foreground\":\"\",\"style\":\"\"},\"position\":{\"y\":5,\"x\":3},\"style\":\"\",\"value\":\"a\"}\n\n") }
+        it { subject.must_equal(
+          "{\"border\":\"\",\"colour\":{\""                        \
+          "background\":\"\\u001b[48;2;255;255;255m\","            \
+          "\"foreground\":\"\\u001b[38;2;255;0;0m\"},"             \
+          "\"parent\":{\""                                         \
+          "background\":\"\",\"foreground\":\"\",\"style\":\"\"}," \
+          "\"position\":{\"y\":5,\"x\":3},\"style\":\"\","         \
+          "\"value\":\"a\"}\n\n"
+        ) }
       end
     end
 

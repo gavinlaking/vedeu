@@ -18,7 +18,9 @@ module Vedeu
     # def self.trace
     #   trace = TracePoint.new(:call) do |tp|
     #     if tp.defined_class.to_s.match(/Troo/)
-    #       Vedeu.log(type: :debug, message: [tp.defined_class.to_s, tp.method_id.to_s].join(' '))
+    #       Vedeu.log(type: :debug,
+    #                 message: [tp.defined_class.to_s,
+    #                           tp.method_id.to_s].join(' '))
     #     end
     #   end
     #   trace.enable
@@ -58,7 +60,11 @@ module Vedeu
             log_this(sprintf('%s %-25s #%-20s', class_count, classname, id))
 
           else
-            log_this(sprintf("%s %-25s #%-20s\n%s\n", class_count, classname, id, vars))
+            log_this(sprintf("%s %-25s #%-20s\n%s\n",
+                             class_count,
+                             classname,
+                             id,
+                             vars))
 
           end
         end
@@ -91,9 +97,15 @@ module Vedeu
         valclass = value.class.to_s
         output   = (value.is_a?(Proc)) ? '#<Proc:...' : value.inspect
 
-        content  = Vedeu::Esc.send(class_colour.fetch(valclass, :white)) { output }
+        content  = Vedeu::Esc.send(class_colour.fetch(valclass, :white)) do
+          output
+        end
 
-        entries << sprintf('%33s %-10s = %s %s', ' ', Vedeu::Esc.green { variable }, Vedeu::Esc.magenta { valclass }, content)
+        entries << sprintf('%33s %-10s = %s %s',
+                           ' ',
+                           Vedeu::Esc.green { variable },
+                           Vedeu::Esc.magenta { valclass },
+                           content)
       end
       entries.join("\n")
     end

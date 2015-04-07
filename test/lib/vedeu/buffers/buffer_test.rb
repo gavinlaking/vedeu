@@ -29,7 +29,8 @@ module Vedeu
       it { instance.instance_variable_get('@back').must_equal(back) }
       it { instance.instance_variable_get('@front').must_equal(front) }
       it { instance.instance_variable_get('@previous').must_equal(previous) }
-      it { instance.instance_variable_get('@repository').must_equal(Vedeu.buffers) }
+      it { instance.instance_variable_get('@repository').
+                    must_equal(Vedeu.buffers) }
     end
 
     describe '#add' do

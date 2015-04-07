@@ -15,7 +15,7 @@ module Vedeu
     # @param options [Hash]
     # @option options ellipsis [String] For when using mode `:prune`.
     # @option options mode [Symbol] One of :default, :prune, :wrap
-    # @option options width [Fixnum] The width in characters to prune or wrap to.
+    # @option options width [Fixnum] The width to prune or wrap to.
     # @return [Vedeu::Wordwrap]
     def initialize(text, options = {})
       @text    = text

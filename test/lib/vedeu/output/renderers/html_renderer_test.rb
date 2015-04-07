@@ -58,10 +58,14 @@ module Vedeu
 
         it { subject.must_equal(
           "<tr>\n" \
-          "<td style='background:#000;color:#222;border:1px #000 solid;'>t</td>\n" \
-          "<td style='background:#000;color:#222;border:1px #000 solid;'>e</td>\n" \
-          "<td style='background:#000;color:#222;border:1px #000 solid;'>s</td>\n" \
-          "<td style='background:#000;color:#222;border:1px #000 solid;'>t</td>\n" \
+          "<td style='background:#000;color:#222;border:1px #000 solid;'>"   \
+          "t</td>\n" \
+            "<td style='background:#000;color:#222;border:1px #000 solid;'>" \
+          "e</td>\n" \
+            "<td style='background:#000;color:#222;border:1px #000 solid;'>" \
+          "s</td>\n" \
+            "<td style='background:#000;color:#222;border:1px #000 solid;'>" \
+          "t</td>\n" \
           "</tr>\n") }
       end
     end

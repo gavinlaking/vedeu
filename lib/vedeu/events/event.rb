@@ -40,7 +40,7 @@ module Vedeu
       # Register an event by name with optional delay (throttling) which when
       # triggered will execute the code contained within the passed block.
       #
-      # @param name [Symbol] The name of the event which will be triggered later.
+      # @param name [Symbol] The name of the event to be triggered later.
       # @param options [Hash] The options to register the event with.
       # @option options :delay [Fixnum|Float] Limits the execution of the
       #   triggered event to only execute when first triggered, with subsequent
@@ -49,8 +49,8 @@ module Vedeu
       #   triggered event to only execute once the debounce has expired.
       #   Subsequent triggers before debounce expiry are ignored.
       # @param block [Proc] The event to be executed when triggered. This block
-      #   could be a method call, or the triggering of another event, or sequence
-      #   of either/both.
+      #   could be a method call, or the triggering of another event, or
+      #   sequence of either/both.
       #
       # @example
       #   Vedeu.bind :my_event do |some, args|

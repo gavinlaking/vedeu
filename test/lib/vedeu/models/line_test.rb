@@ -31,7 +31,9 @@ module Vedeu
       ]
     }
 
-    let(:streams_parent) { Line.new(streams: nil, parent: parent, colour: colour, style: style) }
+    let(:streams_parent) {
+      Line.new(streams: nil, parent: parent, colour: colour, style: style)
+    }
 
     let(:parent)    { Vedeu::Interface.new(name: 'Vedeu::Line') }
     let(:colour)    { Colour.new(foreground: '#ff0000', background: '#000000') }

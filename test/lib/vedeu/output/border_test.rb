@@ -63,7 +63,8 @@ module Vedeu
       }
       it { instance.instance_variable_get('@colour').must_equal({}) }
       it { instance.instance_variable_get('@name').must_equal('borders') }
-      it { instance.instance_variable_get('@repository').must_be_instance_of(Vedeu::Borders) }
+      it { instance.instance_variable_get('@repository').
+                    must_be_instance_of(Vedeu::Borders) }
       it { instance.instance_variable_get('@style').must_equal([]) }
     end
 
@@ -294,7 +295,9 @@ module Vedeu
 
       subject { instance.colour = (value) }
 
-      it { subject; instance.instance_variable_get('@colour').must_be_instance_of(Colour) }
+      it { subject
+           instance.instance_variable_get('@colour').
+                    must_be_instance_of(Colour) }
     end
 
     describe '#style=' do
@@ -302,7 +305,8 @@ module Vedeu
 
       subject { instance.style = (value) }
 
-      it { subject; instance.instance_variable_get('@style').must_be_instance_of(Style) }
+      it { subject
+           instance.instance_variable_get('@style').must_be_instance_of(Style) }
     end
 
     describe '#enabled?' do

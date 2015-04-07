@@ -220,13 +220,15 @@ module Vedeu
         end
 
         context 'when the named group exists' do
+          let(:members) { Set['actinium', 'lanthanum'] }
+
           before do
             Vedeu::Group.new(name: 'elements', members: ['lanthanum']).store
           end
 
           it {
             subject
-            Vedeu.groups.find('elements').members.must_equal(Set['actinium', 'lanthanum'])
+            Vedeu.groups.find('elements').members.must_equal(members)
           }
         end
 

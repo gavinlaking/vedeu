@@ -18,10 +18,13 @@ module Vedeu
     end
 
     describe '#initialize' do
-      it { instance.must_be_instance_of(Vedeu::Trigger) }
-      it { instance.instance_variable_get('@name').must_equal(event_name) }
-      it { instance.instance_variable_get('@args').must_equal([args]) }
-      it { instance.instance_variable_get('@repository').must_equal(Vedeu.events) }
+      subject { instance }
+
+      it { subject.must_be_instance_of(Vedeu::Trigger) }
+      it { subject.instance_variable_get('@name').must_equal(event_name) }
+      it { subject.instance_variable_get('@args').must_equal([args]) }
+      it { subject.instance_variable_get('@repository').
+                   must_equal(Vedeu.events) }
     end
 
     describe '#trigger' do

@@ -15,7 +15,8 @@ module Vedeu
 
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }
-      it { instance.instance_variable_get('@configuration').must_equal(configuration) }
+      it { instance.instance_variable_get('@configuration').
+             must_equal(configuration) }
     end
 
     describe '.start' do

@@ -174,9 +174,10 @@ module Vedeu
 
     # @return [PositionValidator]
     def validator
-      @validator ||= Vedeu::PositionValidator.validate(interface,
-                                                       coordinate.x_position(ox),
-                                                       coordinate.y_position(oy))
+      @validator ||= Vedeu::PositionValidator.
+                       validate(interface,
+                                coordinate.x_position(ox),
+                                coordinate.y_position(oy))
     end
 
     # Apply the direction amount to the cursor offset. If the offset is less

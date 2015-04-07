@@ -98,7 +98,8 @@ module Vedeu
     #   end
 
     #   context 'when there is content' do
-    #     context "when the cursor's y position is outside the viewable area - negative" do
+    #     context "when the cursor's y position is outside the viewable " \
+    #             "area - negative" do
     #       let(:ox) { -4 }
     #       let(:oy) { -4 }
 

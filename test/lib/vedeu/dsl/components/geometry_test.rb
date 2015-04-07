@@ -80,7 +80,9 @@ module Vedeu
       end
 
       # describe '#use' do
-      #   subject { Vedeu::Geometry.build({ name: 'hydrogen' }) { use 'helium' } }
+      #   subject { 
+      #     Vedeu::Geometry.build({ name: 'hydrogen' }) { use 'helium' }
+      #   }
 
       #   context 'when the named geometry does not exist' do
       #   end

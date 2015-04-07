@@ -63,7 +63,8 @@ module Vedeu
     # @return [Array<Fixnum>]
     def dimension
       @dimension ||= if centred? && length?
-                       [(default / 2) - (length / 2), (default / 2) + (length / 2)]
+                       [(default / 2) - (length / 2),
+                        (default / 2) + (length / 2)]
 
                      elsif d && dn
                        [d, dn]

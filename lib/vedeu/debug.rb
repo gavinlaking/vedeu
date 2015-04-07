@@ -45,7 +45,8 @@ module Vedeu
       # - Creates a call graph report in HTML (separate files per thread)
       # RubyProf::GraphHtmlPrinter
 
-      # - Creates a call graph report in GraphViz's DOT format which can be converted to an image
+      # - Creates a call graph report in GraphViz's DOT format which can be
+      #   converted to an image
       # RubyProf::DotPrinter
 
       # - Creates a call tree report compatible with KCachegrind.

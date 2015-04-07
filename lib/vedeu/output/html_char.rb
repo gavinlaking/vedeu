@@ -102,14 +102,16 @@ module Vedeu
 
     # @return [String|NilClass]
     def parent_bg
-      if char.parent_background && defined_value?(char.parent_background.to_html)
+      if char.parent_background &&
+         defined_value?(char.parent_background.to_html)
         char.parent_background.to_html
       end
     end
 
     # @return [String|NilClass]
     def parent_fg
-      if char.parent_foreground && defined_value?(char.parent_foreground.to_html)
+      if char.parent_foreground &&
+         defined_value?(char.parent_foreground.to_html)
         char.parent_foreground.to_html
       end
     end

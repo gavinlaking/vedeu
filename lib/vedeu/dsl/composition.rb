@@ -69,7 +69,8 @@ module Vedeu
         content = Vedeu::Template.parse(object, filename)
         lines   = Vedeu::Wordwrap.for(content, options)
 
-        new_model = model.member.build(new_attributes(name).merge!(lines: lines))
+        new_model = model.member.
+                          build(new_attributes(name).merge!(lines: lines))
 
         model.add(new_model)
       end

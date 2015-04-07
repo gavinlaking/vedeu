@@ -131,7 +131,9 @@ module Vedeu
 
       # @return [String]
       def message_type(type)
-        Vedeu::Esc.send(message_types.fetch(type, :default)) { "[#{type}]".ljust(9) }
+        Vedeu::Esc.send(message_types.fetch(type, :default)) do
+          "[#{type}]".ljust(9)
+        end
       end
 
       # @return [Hash<Symbol => Symbol>]

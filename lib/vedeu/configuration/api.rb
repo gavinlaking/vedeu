@@ -34,7 +34,8 @@ module Vedeu
       #
       # @return [Hash<Symbol => Boolean, Fixnum, String>]
       def configuration
-        options.merge!(          system_keys: Configuration.default_system_keys.merge!(system_keys)) if system_keys.any?
+        new_system_keys = Configuration.default_system_keys.merge!(system_keys)
+        options.merge!(system_keys: new_system_keys) if system_keys.any?
 
         Vedeu::Config.log(Esc.green { '[api]' }, options)
       end

@@ -79,7 +79,12 @@ module Vedeu
 
     # @return [String]
     def inspect
-      "<Vedeu::Cursor (#{name}, #{visible}, x:#{x}, y:#{y}, ox:#{ox}, oy:#{oy})>"
+      "<Vedeu::Cursor (#{name}, " \
+      "#{visible}, "              \
+      "x:#{x}, "                  \
+      "y:#{y}, "                  \
+      "ox:#{ox}, "                \
+      "oy:#{oy})>"
     end
 
     # Returns an escape sequence to position the cursor and set its visibility.

@@ -93,7 +93,9 @@ module Vedeu
       context 'when there are multiple values' do
         let(:value) { ['Some output...', 'more output...', 'even more...'] }
 
-        it { subject.must_equal(['Some output...', 'more output...', 'even more...']) }
+        it { subject.must_equal(['Some output...',
+                                 'more output...',
+                                 'even more...']) }
       end
     end
 

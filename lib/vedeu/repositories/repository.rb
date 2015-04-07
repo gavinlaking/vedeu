@@ -79,7 +79,8 @@ module Vedeu
         find(name)
 
       else
-        Vedeu.log(type: :store, message: "Model (#{model}) not found, registering: '#{name}'")
+        Vedeu.log(type: :store,
+                  message: "Model (#{model}) not found, registering: '#{name}'")
 
         model.new(name).store
       end

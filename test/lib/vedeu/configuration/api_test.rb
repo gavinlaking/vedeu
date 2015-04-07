@@ -279,7 +279,11 @@ module Vedeu
           methods_and_keys.each do |meth, _|
             invalid_params.each do |param|
               context 'when the parameter is invalid' do
-                it { proc { Vedeu.configure { send(meth, param) } }.must_raise(InvalidSyntax) }
+                it {
+                  proc {
+                    Vedeu.configure { send(meth, param) }
+                  }.must_raise(InvalidSyntax)
+                }
               end
             end
           end

@@ -31,19 +31,23 @@ module Vedeu
       it { instance.instance_variable_get('@name').must_equal('silver') }
       it { instance.instance_variable_get('@ox').must_equal(3) }
       it { instance.instance_variable_get('@oy').must_equal(2) }
-      it { instance.instance_variable_get('@repository').must_equal(Vedeu.cursors) }
+      it { instance.instance_variable_get('@repository').
+                    must_equal(Vedeu.cursors) }
       it { instance.instance_variable_get('@visible').must_equal(true) }
       it { instance.instance_variable_get('@x').must_equal(19) }
       it { instance.instance_variable_get('@y').must_equal(8) }
 
-      it { instance.instance_variable_get('@position').must_be_instance_of(Vedeu::Position) }
+      it { instance.instance_variable_get('@position').
+                    must_be_instance_of(Vedeu::Position) }
     end
 
     describe '#inspect' do
       subject { instance.inspect }
 
       it { subject.must_be_instance_of(String) }
-      it { subject.must_equal('<Vedeu::Cursor (silver, true, x:19, y:8, ox:3, oy:2)>') }
+      it { subject.must_equal(
+        '<Vedeu::Cursor (silver, true, x:19, y:8, ox:3, oy:2)>'
+      ) }
     end
 
     describe '#to_s' do
@@ -74,8 +78,9 @@ module Vedeu
           end
         }
 
-        it 'returns the escape sequence to position and set the visibility of ' \
-           'the cursor and returns to that position after yielding the block' do
+        it 'returns the escape sequence to position and set the visibility ' \
+           'of the cursor and returns to that position after yielding the '  \
+           'block' do
           subject.must_equal("\e[8;19H\e[?25h\e[8;19H\e[?25h")
         end
       end

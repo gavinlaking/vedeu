@@ -15,7 +15,8 @@ module Vedeu
 
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }
-      it { instance.instance_variable_get('@attributes').must_equal(attributes) }
+      it { instance.instance_variable_get('@attributes').
+                    must_equal(attributes) }
     end
 
     describe '#background' do

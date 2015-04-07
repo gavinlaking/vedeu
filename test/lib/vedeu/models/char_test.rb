@@ -73,7 +73,13 @@ module Vedeu
       subject { instance.inspect }
 
       it { subject.must_equal(
-        "<Vedeu::Char '\\e[17;2H\\e[38;2;0;255;0m\\e[48;2;0;85;0m\\e[4ma\\e[17;2H'>"
+        "<Vedeu::Char '"    \
+        "\\e[17;2H"         \
+        "\\e[38;2;0;255;0m" \
+        "\\e[48;2;0;85;0m"  \
+        "\\e[4ma"           \
+        "\\e[17;2H"         \
+        "'>"
       ) }
     end
 

@@ -37,8 +37,8 @@ module Vedeu
           end
 
           opts.on('-I', '--noninteractive', '--standalone',
-                  'Run the application non-interactively; i.e. not requiring ' \
-                  'intervention from the user.') do
+                  'Run the application non-interactively; ' \
+                  'i.e. not requiring intervention from the user.') do
             options[:interactive] = false
           end
 
@@ -102,12 +102,14 @@ module Vedeu
             options[:drb_port] = port
           end
 
-          opts.on('--drb-height', 'Set the height for fake terminal of the DRb server.') do |height|
+          opts.on('--drb-height',
+                  'Set the height for fake terminal.') do |height|
             # options[:drb]      = true
             options[:drb_height] = height
           end
 
-          opts.on('--drb-width', 'Set the width for fake terminal of the DRb server.') do |width|
+          opts.on('--drb-width',
+                  'Set the width for fake terminal.') do |width|
             # options[:drb]     = true
             options[:drb_width] = width
           end

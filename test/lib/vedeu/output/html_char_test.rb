@@ -35,39 +35,50 @@ module Vedeu
         let(:border) { :top_left }
 
         context 'when there is a colour' do
-          let(:colour) { Vedeu::Colour.new(background: '#220022', foreground: '#aadd00') }
+          let(:colour) {
+            Vedeu::Colour.new(background: '#220022', foreground: '#aadd00')
+          }
 
           it { subject.must_equal(
-            "<td style='background:#220022;color:#aadd00;border:1px #220022 solid;border-top:1px #aadd00 solid;border-left:1px #aadd00 solid;'>&nbsp;</td>"
+            "<td style='background:#220022;color:#aadd00;"           \
+            "border:1px #220022 solid;border-top:1px #aadd00 solid;" \
+            "border-left:1px #aadd00 solid;'>&nbsp;</td>"
           ) }
         end
 
         context 'when there is no colour' do
           context 'when there is a parent colour' do
-            let(:parent_colour) { Vedeu::Colour.new(background: '#002222', foreground: '#dd2200') }
+            let(:parent_colour) {
+              Vedeu::Colour.new(background: '#002222', foreground: '#dd2200')
+            }
 
             it { subject.must_equal(
-              "<td style='background:#002222;color:#dd2200;border:1px #002222 solid;border-top:1px #dd2200 solid;border-left:1px #dd2200 solid;'>&nbsp;</td>"
+              "<td style='background:#002222;color:#dd2200;"           \
+              "border:1px #002222 solid;border-top:1px #dd2200 solid;" \
+              "border-left:1px #dd2200 solid;'>&nbsp;</td>"
             ) }
           end
 
           context 'when there is no parent colour' do
             it { subject.must_equal(
-              "<td style='background:#000;color:#222;border:1px #000 solid;border-top:1px #222 solid;border-left:1px #222 solid;'>&nbsp;</td>"
+              "<td style='background:#000;color:#222;border:1px #000 solid;" \
+              "border-top:1px #222 solid;border-left:1px #222 solid;'>"      \
+              "&nbsp;</td>"
             ) }
           end
         end
       end
 
+      grey = '1px #222 solid'
       {
-        top_horizontal:    'border-top:1px #222 solid;',
-        left_vertical:     'border-left:1px #222 solid;',
-        right_vertical:    'border-right:1px #222 solid;',
-        bottom_horizontal: 'border-bottom:1px #222 solid;',
-        top_left:          'border-top:1px #222 solid;border-left:1px #222 solid;',
-        top_right:         'border-top:1px #222 solid;border-right:1px #222 solid;',
-        bottom_left:       'border-bottom:1px #222 solid;border-left:1px #222 solid;',
-        bottom_right:      'border-bottom:1px #222 solid;border-right:1px #222 solid;',
+        top_horizontal:    "border-top:#{grey};",
+        left_vertical:     "border-left:#{grey};",
+        right_vertical:    "border-right:#{grey};",
+        bottom_horizontal: "border-bottom:#{grey};",
+        top_left:     "border-top:#{grey};border-left:#{grey};",
+        top_right:    "border-top:#{grey};border-right:#{grey};",
+        bottom_left:  "border-bottom:#{grey};border-left:#{grey};",
+        bottom_right: "border-bottom:#{grey};border-right:#{grey};",
         horizontal:        '',
         vertical:          ''
       }.each do |border_style, result|
@@ -97,7 +108,8 @@ module Vedeu
           let(:value) { 'a' }
 
           it { subject.must_equal(
-            "<td style='background:#000;color:#222;border:1px #000 solid;'>a</td>"
+            "<td style='background:#000;color:#222;" \
+            "border:1px #000 solid;'>a</td>"
           ) }
         end
       end

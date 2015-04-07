@@ -84,7 +84,7 @@ module Vedeu
 
     private
 
-    # Renders the colour attributes of the receiver and yields (to then render the
+    # Renders the colour attributes of the receiver and yields (to then render
     # the styles).
     #
     # @return [String]
