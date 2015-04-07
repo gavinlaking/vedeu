@@ -56,7 +56,9 @@ module Vedeu
       #
       # @return [Boolean]
       def centred(value = true)
-        model.centred = !!value
+        boolean = value ? true : false
+
+        model.centred = boolean
       end
       alias_method :centred!, :centred
 

@@ -168,7 +168,9 @@ module Vedeu
     #
     # @return [Boolean]
     def rgb?
-      !!(colour =~ /^#([A-Fa-f0-9]{6})$/)
+      return true if colour =~ /^#([A-Fa-f0-9]{6})$/
+
+      false
     end
 
     # Returns an escape sequence.

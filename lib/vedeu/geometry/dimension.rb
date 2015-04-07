@@ -89,7 +89,7 @@ module Vedeu
 
     # @return [Boolean]
     def length?
-      !!(default) && !!(length)
+      default && length
     end
 
     # @return [Fixnum|NilClass]

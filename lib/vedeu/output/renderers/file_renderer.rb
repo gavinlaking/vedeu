@@ -55,7 +55,9 @@ module Vedeu
 
     # @return [Boolean]
     def timestamp?
-      !!(options[:timestamp])
+      return true if options[:timestamp]
+
+      false
     end
 
     # @return [Hash]

@@ -81,7 +81,9 @@ module Vedeu
       #
       # @return [Cursor]
       def cursor(value = true)
-        Vedeu::Cursor.new(name: model.name, visible: !!(value)).store
+        boolean = value ? true : false
+
+        Vedeu::Cursor.new(name: model.name, visible: boolean).store
       end
 
       # Set the cursor to visible for the interface.
@@ -247,7 +249,9 @@ module Vedeu
       #
       # @return [void]
       def visible(value = true)
-        model.visible = !!(value)
+        boolean = value ? true : false
+
+        model.visible = boolean
       end
 
       private
