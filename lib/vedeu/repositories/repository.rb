@@ -42,7 +42,7 @@ module Vedeu
     end
 
     def repository
-      self.class#.name
+      self.class# .name
     end
 
     # Return the model for the interface currently in focus.

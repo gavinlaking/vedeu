@@ -27,7 +27,7 @@ module Vedeu
       context 'when a path is given' do
         let(:path) { '/tmp/test_vedeu_html_renderer.html' }
 
-        #it { subject.must_equal('') }
+        # it { subject.must_equal('') }
       end
 
       context 'when a path is not given' do

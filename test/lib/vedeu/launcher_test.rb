@@ -8,7 +8,7 @@ module Vedeu
     let(:instance)  { described.new }
 
     before do
-      Configuration.stubs(:configure)#.returns(test_configuration)
+      Configuration.stubs(:configure)# .returns(test_configuration)
       Application.stubs(:start)
       Kernel.stubs(:exit)
       Kernel.stubs(:puts)
