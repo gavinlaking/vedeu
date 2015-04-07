@@ -10,31 +10,19 @@ module Vedeu
     # @return [Vedeu::Compressor]
     def initialize(output)
       @output = output
+      @colour = ''
+      @style  = ''
     end
 
     # @return [String]
     def render
-      @colour = ''
-      @style  = ''
-
       Array(output).flatten.map do |char|
         if char.is_a?(Vedeu::Char)
           out = ''
-
           out << char.position.to_s
-
-          unless char.colour == @colour
-            @colour = char.colour
-            out << @colour.to_s
-          end
-
-          unless char.style == @style
-            @style = char.style
-            out << @style.to_s
-          end
-
+          out << colour_for(char)
+          out << style_for(char)
           out << char.value
-
           out
 
         else
@@ -47,6 +35,24 @@ module Vedeu
     private
 
     attr_reader :output
+
+    # @param char [Vedeu::Char]
+    # @return [String]
+    def colour_for(char)
+      return '' if char.colour == @colour
+
+      @colour = char.colour
+      @colour.to_s
+    end
+
+    # @param char [Vedeu::Char]
+    # @return [String]
+    def style_for(char)
+      return '' if char.style == @style
+
+      @style = char.style
+      @style.to_s
+    end
 
   end # Compressor
 
