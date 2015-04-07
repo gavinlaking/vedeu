@@ -218,7 +218,7 @@ module Vedeu
     def debouncing?
       set_time
 
-      set_deadline unless has_deadline?
+      set_deadline unless deadline?
 
       options[:debounce] > 0
     end
@@ -259,7 +259,7 @@ module Vedeu
     # Returns a boolean indicating if this event has a deadline.
     #
     # @return [Boolean]
-    def has_deadline?
+    def deadline?
       @deadline > 0
     end
 
