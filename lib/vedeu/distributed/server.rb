@@ -153,7 +153,6 @@ module Vedeu
         end
       rescue NoMethodError # raised when #join is called on NilClass.
         # ...
-
       end
 
       private

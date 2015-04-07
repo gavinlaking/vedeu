@@ -33,7 +33,6 @@ module Vedeu
       end
     ensure
       restore_screen
-
     end
 
     # Takes input from the user via the keyboard. Accepts special keys like

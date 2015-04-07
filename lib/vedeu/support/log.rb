@@ -52,7 +52,6 @@ module Vedeu
 
       rescue Exception => ignored
         warn("log writing failed. #{ignored}")
-
       end
 
       # @return []

@@ -37,7 +37,6 @@ module Vedeu
         puts 'Could not connect to DRb server, URI may be bad.'
 
         :drb_bad_uri
-
       end
 
       # Send input to the DRb server.
@@ -49,7 +48,6 @@ module Vedeu
 
       rescue DRb::DRbConnError
         drb_connection_error
-
       end
       alias_method :read, :input
 
@@ -61,7 +59,6 @@ module Vedeu
 
       rescue DRb::DRbConnError
         drb_connection_error
-
       end
       alias_method :write, :output
 
@@ -85,7 +82,6 @@ module Vedeu
 
       ensure
         :shutdown
-
       end
 
       private

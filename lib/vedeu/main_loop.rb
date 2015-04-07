@@ -27,7 +27,6 @@ module Vedeu
         safe_exit_point!
       end
     rescue VedeuInterrupt
-
     end
     # :nocov:
 

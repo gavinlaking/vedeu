@@ -72,7 +72,6 @@ module Vedeu
     rescue StandardError => uncaught_exception
       puts uncaught_exception.message
       puts uncaught_exception.backtrace.join("\n") if configuration.debug?
-
     end
 
     private
