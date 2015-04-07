@@ -69,8 +69,7 @@ module Vedeu
         content = Vedeu::Template.parse(object, filename)
         lines   = Vedeu::Wordwrap.for(content, options)
 
-        new_model = model.member.
-                          build(new_attributes(name).merge!(lines: lines))
+        new_model = model.member.build(template_attributes(name, lines))
 
         model.add(new_model)
       end
@@ -84,6 +83,13 @@ module Vedeu
       # @!attribute [r] model
       # @return [Composition]
       attr_reader :model
+
+      # @param name [String]
+      # @param lines [Vedeu::Lines]
+      # @return [Hash]
+      def template_attributes(name, lines)
+        new_attributes(name).merge!(lines: lines)
+      end
 
       # @param name [String] The name of the interface.
       # @return [Hash]

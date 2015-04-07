@@ -29,8 +29,9 @@ module Vedeu
       it { instance.instance_variable_get('@deadline').must_equal(0) }
       it { instance.instance_variable_get('@executed_at').must_equal(0) }
       it { instance.instance_variable_get('@now').must_equal(0) }
-      it { instance.instance_variable_get('@repository').
-                    must_equal(Vedeu.events) }
+      it do
+        instance.instance_variable_get('@repository').must_equal(Vedeu.events)
+      end
     end
 
     describe '#bind' do

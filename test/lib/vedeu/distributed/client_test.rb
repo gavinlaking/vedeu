@@ -19,8 +19,7 @@ module Vedeu
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
-        it { instance.instance_variable_get('@uri').
-                      must_equal('druby://localhost:21420') }
+        it { instance.instance_variable_get('@uri').must_equal(uri) }
       end
 
       describe '.connect' do

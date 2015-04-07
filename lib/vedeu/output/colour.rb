@@ -83,7 +83,7 @@ module Vedeu
     # @return [Boolean]
     def eql?(other)
       self.class == other.class && background == other.background &&
-      foreground == other.foreground
+        foreground == other.foreground
     end
     alias_method :==, :eql?
 

@@ -42,29 +42,37 @@ module Vedeu
     end
 
     describe '#initialize' do
-      it { instance.must_be_instance_of(described) }
-      it { instance.instance_variable_get('@attributes').must_equal(
-                  bottom_left:  'm',
-                  bottom_right: 'j',
-                  client:       nil,
-                  colour:       {},
-                  enabled:      false,
-                  horizontal:   'q',
-                  name:         'borders',
-                  show_bottom:  true,
-                  show_left:    true,
-                  show_right:   true,
-                  show_top:     true,
-                  style:        [],
-                  title:        '',
-                  top_left:     'l',
-                  top_right:    'k',
-                  vertical:     'x',)
+      let(:default_attributes) {
+        {
+          bottom_left:  'm',
+          bottom_right: 'j',
+          client:       nil,
+          colour:       {},
+          enabled:      false,
+          horizontal:   'q',
+          name:         'borders',
+          show_bottom:  true,
+          show_left:    true,
+          show_right:   true,
+          show_top:     true,
+          style:        [],
+          title:        '',
+          top_left:     'l',
+          top_right:    'k',
+          vertical:     'x',
+        }
       }
+      it { instance.must_be_instance_of(described) }
+      it do
+        instance.instance_variable_get('@attributes').
+          must_equal(default_attributes)
+      end
       it { instance.instance_variable_get('@colour').must_equal({}) }
       it { instance.instance_variable_get('@name').must_equal('borders') }
-      it { instance.instance_variable_get('@repository').
-                    must_be_instance_of(Vedeu::Borders) }
+      it do
+        instance.instance_variable_get('@repository').
+          must_be_instance_of(Vedeu::Borders)
+      end
       it { instance.instance_variable_get('@style').must_equal([]) }
     end
 
@@ -295,9 +303,10 @@ module Vedeu
 
       subject { instance.colour = (value) }
 
-      it { subject
-           instance.instance_variable_get('@colour').
-                    must_be_instance_of(Colour) }
+      it do
+        subject
+        instance.instance_variable_get('@colour').must_be_instance_of(Colour)
+      end
     end
 
     describe '#style=' do
@@ -305,8 +314,10 @@ module Vedeu
 
       subject { instance.style = (value) }
 
-      it { subject
-           instance.instance_variable_get('@style').must_be_instance_of(Style) }
+      it do
+        subject
+        instance.instance_variable_get('@style').must_be_instance_of(Style)
+      end
     end
 
     describe '#enabled?' do

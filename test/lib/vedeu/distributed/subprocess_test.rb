@@ -12,8 +12,9 @@ module Vedeu
       subject { instance }
 
       it { subject.must_be_instance_of(Vedeu::Subprocess) }
-      it { subject.instance_variable_get('@application').
-                   must_equal(application) }
+      it do
+        subject.instance_variable_get('@application').must_equal(application)
+      end
     end
 
   end # Subprocess

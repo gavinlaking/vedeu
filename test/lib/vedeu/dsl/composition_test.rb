@@ -47,8 +47,8 @@ module Vedeu
         }
 
         before do
-          Vedeu::Template.expects(:parse).with(object, filename).
-                                          returns(content)
+          Vedeu::Template.expects(:parse).
+            with(object, filename).returns(content)
         end
 
         subject { instance.template_for(_name, filename, object) }

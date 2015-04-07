@@ -84,9 +84,6 @@ module Vedeu
 
       subject { instance.find_or_create(model_name) }
 
-      it { instance.find_or_create('zinc').
-                    must_be_instance_of(Vedeu::TestModel) }
-
       context 'when the model exists' do
         let(:model_name) { 'niobium' }
 

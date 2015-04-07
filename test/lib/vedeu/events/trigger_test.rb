@@ -23,8 +23,9 @@ module Vedeu
       it { subject.must_be_instance_of(Vedeu::Trigger) }
       it { subject.instance_variable_get('@name').must_equal(event_name) }
       it { subject.instance_variable_get('@args').must_equal([args]) }
-      it { subject.instance_variable_get('@repository').
-                   must_equal(Vedeu.events) }
+      it do
+        subject.instance_variable_get('@repository').must_equal(Vedeu.events)
+      end
     end
 
     describe '#trigger' do
