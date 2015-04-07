@@ -32,9 +32,6 @@ module Vedeu
       elsif value.is_a?(Hash)
         new(value.fetch(:y, 1), value.fetch(:x, 1))
 
-      else
-        # not sure how to proceed
-
       end
     end
 

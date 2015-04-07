@@ -103,9 +103,6 @@ module Vedeu
       elsif default
         default
 
-      else
-        nil
-
       end
     end
 

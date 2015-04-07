@@ -364,9 +364,6 @@ module Vedeu
       when :bottom_right then geometry.bottom_right
       when :top_left     then geometry.top_left
       when :top_right    then geometry.top_right
-      else
-        nil
-
       end
     end
 

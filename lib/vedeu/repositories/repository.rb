@@ -153,10 +153,6 @@ module Vedeu
     def use(name)
       if registered?(name)
         find(name)
-
-      else
-        nil
-
       end
     end
 
