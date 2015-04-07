@@ -125,13 +125,7 @@ module Vedeu
     #
     # @return [Vedeu::Border|NilClass]
     def border
-      @border ||= if border?
-                    Vedeu.borders.find(name)
-
-                  else
-                    Vedeu::NullBorder.new(self)
-
-                  end
+      @border ||= Vedeu.borders.by_name(name)
     end
 
     # @return [Array<Array<Vedeu::Char>>]
@@ -156,13 +150,7 @@ module Vedeu
 
     # @return [Vedeu::Geometry]
     def geometry
-      @geometry ||= if geometry?
-                      Vedeu.geometries.find(name)
-
-                    else
-                      Vedeu::NullGeometry.new
-
-                    end
+      @geometry ||= Vedeu.geometries.by_name(name)
     end
 
     # @return [Vedeu::Lines]

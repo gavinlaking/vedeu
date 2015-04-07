@@ -82,7 +82,13 @@ module Vedeu
       end
 
       context 'when the interface does not have a border' do
-        before { Vedeu.borders.reset }
+        before do
+          Vedeu.interface 'hydrogen' do
+          end
+
+          Vedeu.borders.reset
+        end
+        after { Vedeu.interfaces.reset }
 
         it { subject.must_be_instance_of(Vedeu::NullBorder) }
       end
