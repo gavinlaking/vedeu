@@ -20,11 +20,7 @@ module Vedeu
                       stdout = STDOUT,
                       stderr = STDERR,
                       kernel = Kernel)
-      new(argv,
-          stdin  = STDIN,
-          stdout = STDOUT,
-          stderr = STDERR,
-          kernel = Kernel).debug_execute!
+      new(argv, stdin, stdout, stderr, kernel).debug_execute!
     end
 
     # Returns a new instance of Vedeu::Launcher.
@@ -91,6 +87,10 @@ module Vedeu
       @kernel.exit(exit_code)
     end
 
+    # Use the arguments passed on the command-line along with those defined by
+    # the client application and Vedeu's defaults to configure the client
+    # application.
+    #
     # @return [Vedeu::Configuration]
     def configuration
       Vedeu::Configuration.configure(argv)
