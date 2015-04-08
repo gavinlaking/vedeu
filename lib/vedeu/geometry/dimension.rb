@@ -45,19 +45,19 @@ module Vedeu
     private
 
     # @!attribute [r] d
-    # @return [Fixnum]
+    # @return [Fixnum|NilClass]
     attr_reader :d
 
     # @!attribute [r] dn
-    # @return [Fixnum]
+    # @return [Fixnum|NilClass]
     attr_reader :dn
 
     # @!attribute [r] d_dn
-    # @return [Fixnum]
+    # @return [Fixnum|NilClass]
     attr_reader :d_dn
 
     # @!attribute [r] default
-    # @return [Fixnum]
+    # @return [Fixnum|NilClass]
     attr_reader :default
 
     # @return [Array<Fixnum>]

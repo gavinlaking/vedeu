@@ -60,9 +60,7 @@ module Vedeu
     #
     # @return [Boolean]
     def valid?
-      return false unless key
-
-      return false if key_defined? || global_key? || system_key?
+      return false if !key || key_defined? || global_key? || system_key?
 
       true
     end

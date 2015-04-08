@@ -49,24 +49,18 @@ module Vedeu
     #
     # @return [Array<Array<String>>]
     def render
-      if interface.visible?
-        Vedeu.log(type: :output, message: "Rendering: '#{interface.name}'")
+      return [] unless interface.visible?
 
-        out = []
+      Vedeu.log(type: :output, message: "Rendering: '#{interface.name}'")
 
-        show[0...bordered_height].each_with_index do |line, iy|
-          line[0...bordered_width].each_with_index do |column, ix|
-            column.position = IndexPosition[iy, ix, by, bx]
-            out << column
-          end
+      out = []
+      show[0...bordered_height].each_with_index do |line, iy|
+        line[0...bordered_width].each_with_index do |column, ix|
+          column.position = IndexPosition[iy, ix, by, bx]
+          out << column
         end
-
-        out
-
-      else
-        []
-
       end
+      out
     end
 
     # Returns a string representation of the viewport.
@@ -173,9 +167,7 @@ module Vedeu
     #
     # @return [Fixnum]
     def bordered_width
-      return border.width if border?
-
-      width
+      border.width
     end
 
     # When the viewport has a border, we need to account for that in our
@@ -183,9 +175,7 @@ module Vedeu
     #
     # @return [Fixnum]
     def bordered_height
-      return border.height if border?
-
-      height
+      border.height
     end
 
     # @return [Fixnum]
@@ -200,9 +190,9 @@ module Vedeu
 
     # Return the border associated with the interface we are drawing.
     #
-    # @return [Vedeu::Border]
+    # @return [Vedeu::Border|Vedeu::NullBorder]
     def border
-      @border ||= Vedeu.borders.find(interface.name)
+      @border ||= Vedeu.borders.by_name(interface.name)
     end
 
     # Returns a boolean indicating the interface we are drawing has a border.
@@ -210,6 +200,13 @@ module Vedeu
     # @return [Boolean]
     def border?
       Vedeu.borders.registered?(interface.name)
+    end
+
+    # Return the geometry associated with the interface we are drawing.
+    #
+    # @return [Vedeu::Geometry|Vedeu::NullGeometry]
+    def geometry
+      @geometry || Vedeu.geometries.by_name(interface.name)
     end
 
   end # Viewport

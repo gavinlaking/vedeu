@@ -263,20 +263,8 @@ module Vedeu
       out = []
       out << border(send(prefix_left), prefix_left) if left?
 
-      if prefix == 'top' && defined_value?(title)
-        title_out = []
-        width.times do |ix|
-          title_out << border(horizontal, prefix_horizontal, nil, ix)
-        end
-
-        truncate = title.chomp.slice(0..(width - 5))
-        pad      = truncate.center(truncate.size + 2).chars
-        out << title_out.each_with_index do |b, i|
-          if i >= 1 && i <= pad.size
-            b.border = nil
-            b.value  = pad[(i - 1)]
-          end
-        end
+      if prefix == 'top' && title?
+        out << titlebar
 
       else
         width.times do |ix|
@@ -287,6 +275,72 @@ module Vedeu
 
       out << border(send(prefix_right), prefix_right) if right?
       out
+    end
+
+    # @return [Array<Vedeu::Char>]
+    def horizontal_border
+      width.times.inject([]) do |a, ix|
+        a << border(horizontal, :top_horizontal, nil, ix)
+        a
+      end
+    end
+
+    # From the second element of {#title_characters} remove the border from each
+    # {#horizontal_border} Vedeu::Char, and add the title character.
+    #
+    # @return [Array<Vedeu::Char>]
+    def titlebar
+      horizontal_border.each_with_index do |char, index|
+        if index >= 1 && index <= title_characters.size
+          char.border = nil
+          char.value  = title_characters[(index - 1)]
+        end
+      end
+    end
+
+    # @return [Array<String>]
+    def title_characters
+      @title_characters ||= padded_title.chars
+    end
+
+    # Pads the title with a single whitespace either side.
+    # 
+    # @example
+    #   title = 'Truncated!'
+    #   width = 20
+    #   # => ' Truncated! '
+    #
+    #   width = 10
+    #   # => ' Trunca '
+    #
+    # @return [String]
+    # @see #truncated_title
+    def padded_title
+      truncated_title.center(truncated_title.size + 2)
+    end
+
+    # Truncates the title to the width of the interface, minus characters needed
+    # to ensure there is at least a single character of horizontal border and a
+    # whitespace on either side of the title.
+    #
+    # @example
+    #   title = 'Truncated!'
+    #   width = 20
+    #   # => 'Truncated!'
+    #
+    #   width = 10
+    #   # => 'Trunca'
+    #
+    # @return [String]
+    def truncated_title
+      title.chomp.slice(0..(width - 5))
+    end
+
+    # Return boolean indicating whether this border has a non-empty title.
+    #
+    # @return [Boolean]
+    def title?
+      defined_value?(title)
     end
 
     # @param value [String]
