@@ -16,7 +16,7 @@ module Vedeu
     describe '.render' do
       subject { described.render }
 
-      # it { subject.must_be_instance_of(String) }
+      # it { subject.must_be_instance_of(Fixnum) }
     end
 
   end # FileRenderer
