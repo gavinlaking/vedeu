@@ -141,13 +141,6 @@ module Vedeu
       Vedeu.cursors.by_name(name)
     end
 
-    # Returns a boolean indicating whether the interface has geometry.
-    #
-    # @return [Boolean]
-    def geometry?
-      Vedeu.geometries.registered?(name)
-    end
-
     # @return [Vedeu::Geometry]
     def geometry
       @geometry ||= Vedeu.geometries.by_name(name)
