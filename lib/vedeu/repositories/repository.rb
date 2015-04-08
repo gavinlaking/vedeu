@@ -151,9 +151,7 @@ module Vedeu
     # @param name [String]
     # @return [|NilClass]
     def use(name)
-      if registered?(name)
-        find(name)
-      end
+      find(name) if registered?(name)
     end
 
     private

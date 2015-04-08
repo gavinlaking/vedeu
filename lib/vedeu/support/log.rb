@@ -16,9 +16,7 @@ module Vedeu
       @default_formatter = Formatter.new
       @formatter = nil
       @logdev = nil
-      if logdev
-        @logdev = LocklessLogDevice.new(logdev)
-      end
+      @logdev = LocklessLogDevice.new(logdev) if logdev
     end
 
     # Ensures we can always write to the log file by creating a lock-less

@@ -60,9 +60,7 @@ module Vedeu
     def initialize(attributes = {})
       # Hack because Repository#by_name creates Cursor objects with just a
       # name.
-      if attributes.is_a?(String)
-        attributes = { name: attributes }
-      end
+      attributes = { name: attributes } if attributes.is_a?(String)
 
       @attributes = defaults.merge!(attributes)
 

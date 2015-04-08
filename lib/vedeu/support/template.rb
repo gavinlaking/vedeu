@@ -42,9 +42,7 @@ module Vedeu
     # @raise [MissingRequired] when the path does not exist.
     # @return [String]
     def path
-      if @path.empty?
-        fail MissingRequired, 'No path to template specified.'
-      end
+      fail MissingRequired, 'No path to template specified.' if @path.empty?
 
       unless File.exist?(@path)
         fail MissingRequired, 'Template file cannot be found.'
