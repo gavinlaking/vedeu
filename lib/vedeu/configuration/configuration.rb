@@ -14,7 +14,7 @@ module Vedeu
     def log(from, options)
       options.each do |option, value|
         Vedeu.log(type:    :config,
-                  message: "#{from} #{option.to_s}: #{value.to_s}")
+                  message: "#{from} #{option}: #{value}")
       end
     end
 

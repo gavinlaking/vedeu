@@ -69,7 +69,7 @@ module Vedeu
       @attributes = defaults.merge!(attributes)
 
       @attributes.each do |k, v|
-        instance_variable_set("@#{k.to_s}", @attributes[k])
+        instance_variable_set("@#{k}", @attributes[k])
       end
     end
 
