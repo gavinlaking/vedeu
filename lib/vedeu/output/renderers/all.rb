@@ -33,7 +33,7 @@ module Vedeu
           end
         end
       end
-      threads.each { |t| t.join }
+      threads.each(&:join)
       # acc
 
       # storage.inject([]) do |acc, renderer|
