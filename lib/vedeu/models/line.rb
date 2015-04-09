@@ -73,7 +73,7 @@ module Vedeu
     #
     # @return [Fixnum]
     def size
-      streams.map(&:size).inject(0, :+) { |sum, x| sum += x }
+      streams.map(&:size).inject(0, :+)
     end
 
     # @return [Vedeu::Streams]
