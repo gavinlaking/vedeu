@@ -68,9 +68,7 @@ module Vedeu
     def initialize(attributes = {})
       @attributes = defaults.merge!(attributes)
 
-      @attributes.each do |k, v|
-        instance_variable_set("@#{k}", @attributes[k])
-      end
+      @attributes.each { |k, _| instance_variable_set("@#{k}", @attributes[k]) }
     end
 
     # @param block [Proc]
