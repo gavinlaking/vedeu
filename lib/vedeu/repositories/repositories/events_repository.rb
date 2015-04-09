@@ -9,10 +9,12 @@ module Vedeu
       @events ||= reset!
     end
 
+    # @return [Vedeu::EventsRepository]
     def self.repository
       Vedeu.events
     end
 
+    # @return [Vedeu::EventsRepository]
     def self.reset!
       @events = Vedeu::EventsRepository.new(Vedeu::Events)
     end

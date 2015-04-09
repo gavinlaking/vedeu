@@ -10,10 +10,12 @@ module Vedeu
       @borders ||= reset! # Vedeu::Borders.new(Vedeu::Border)
     end
 
+    # @return [Vedeu::Borders]
     def self.repository
       Vedeu.borders
     end
 
+    # @return [Vedeu::Borders]
     def self.reset!
       @borders = Vedeu::Borders.register_repository(Vedeu::Border)
     end

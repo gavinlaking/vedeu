@@ -9,10 +9,12 @@ module Vedeu
       @keymaps ||= reset!
     end
 
+    # @return [Vedeu::Keymaps]
     def self.repository
       Vedeu.keymaps
     end
 
+    # @return [Vedeu::Keymaps]
     def self.reset!
       @keymaps = Vedeu::Keymaps.new(Vedeu::Keymap)
     end

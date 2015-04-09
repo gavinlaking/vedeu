@@ -9,10 +9,12 @@ module Vedeu
       @groups ||= reset!
     end
 
+    # @return [Vedeu::Groups]
     def self.repository
       Vedeu.groups
     end
 
+    # @return [Vedeu::Groups]
     def self.reset!
       @groups = Vedeu::Groups.new(Vedeu::Group)
     end

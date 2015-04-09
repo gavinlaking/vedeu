@@ -9,6 +9,7 @@ module Vedeu
       @buffers ||= reset!
     end
 
+    # @return [Vedeu::Buffers]
     def self.repository
       Vedeu.buffers
     end

@@ -14,10 +14,12 @@ module Vedeu
       cursors.current
     end
 
+    # @return [Vedeu::Cursors]
     def self.repository
       Vedeu.cursors
     end
 
+    # @return [Vedeu::Cursors]
     def self.reset!
       @cursors = Vedeu::Cursors.register_repository(Vedeu::Cursor)
     end

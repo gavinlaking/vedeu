@@ -9,10 +9,12 @@ module Vedeu
       @menus ||= reset!
     end
 
+    # @return [Vedeu::Menus]
     def self.repository
       Vedeu.menus
     end
 
+    # @return [Vedeu::Menus]
     def self.reset!
       @menus = Vedeu::Menus.new(Vedeu::Menu)
     end

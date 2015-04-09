@@ -10,10 +10,12 @@ module Vedeu
       @geometries ||= reset!
     end
 
+    # @return [Vedeu::Geometries]
     def self.repository
       Vedeu.geometries
     end
 
+    # @return [Vedeu::Geometries]
     def self.reset!
       @geometries = Vedeu::Geometries.new(Vedeu::Geometry)
     end
