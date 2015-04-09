@@ -206,7 +206,7 @@ module Vedeu
       [
         colour[1..2].to_i(16),
         colour[3..4].to_i(16),
-        colour[5..6].to_i(16)
+        colour[5..6].to_i(16),
       ]
     end
 

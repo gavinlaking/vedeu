@@ -68,7 +68,7 @@ module Vedeu
     # @return [Hash]
     def defaults
       {
-        timestamp: false
+        timestamp: false,
       }
     end
 

@@ -52,7 +52,7 @@ module Vedeu
     # @return [Array<String|Symbol>|String|Symbol]
     def attributes
       {
-        style: value
+        style: value,
       }
     end
 
