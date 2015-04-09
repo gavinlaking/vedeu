@@ -52,19 +52,15 @@ module Vedeu
     #
     # @return [NilClass|String]
     def trace
-      set_trace_func proc { |event, _file, _line, id, binding, classname|
-        if event == watched && id != :log && classes.include?(classname.to_s)
+      set_trace_func proc { |event, _file, _line, id, binding, name|
+        if event == watched && id != :log && classes.include?(name.to_s)
           vars = variables(binding)
 
           if vars.empty?
-            log_this(sprintf('%s %-25s #%-20s', class_count, classname, id))
+            log_this(format('%s %-25s #%-20s', count, name, id))
 
           else
-            log_this(sprintf("%s %-25s #%-20s\n%s\n",
-                             class_count,
-                             classname,
-                             id,
-                             vars))
+            log_this(format("%s %-25s #%-20s\n%s\n", count, name, id, vars))
 
           end
         end
@@ -90,24 +86,15 @@ module Vedeu
     # @param binding [Class]
     # @return [String]
     def variables(binding)
-      entries = []
       binding.eval('local_variables').each do |var|
-        variable = var.to_s
+        variable = Vedeu::Esc.green { var.to_s }
         value    = binding.local_variable_get(var)
-        valclass = value.class.to_s
+        klass    = Vedeu::Esc.magenta { value.class.to_s }
         output   = (value.is_a?(Proc)) ? '#<Proc:...' : value.inspect
+        content  = colour(value.class.to_s, output)
 
-        content  = Vedeu::Esc.send(class_colour.fetch(valclass, :white)) do
-          output
-        end
-
-        entries << sprintf('%33s %-10s = %s %s',
-                           ' ',
-                           Vedeu::Esc.green { variable },
-                           Vedeu::Esc.magenta { valclass },
-                           content)
-      end
-      entries.join("\n")
+        format('%33s %-10s = %s %s', ' ', variable, klass, content)
+      end.join("\n")
     end
 
     # @return [String]
@@ -136,7 +123,7 @@ module Vedeu
     end
 
     # @return [Hash]
-    def class_colour
+    def colour(klass, output)
       {
         'Array'    => :yellow,
         'Fixnum'   => :cyan,
@@ -144,13 +131,13 @@ module Vedeu
         'NilClass' => :red,
         'String'   => :green,
         'Symbol'   => :magenta,
-      }
+      }.fetch(klass, :white) { |colour| Vedeu::Esc.send(colour) { output } }
     end
 
     # Returns the number of Vedeu classes/modules. (Useful for debugging.)
     #
     # @return [String]
-    def class_count
+    def count
       @count ||= "(#{classes.size}/#{vedeu_classes.size})"
     end
 

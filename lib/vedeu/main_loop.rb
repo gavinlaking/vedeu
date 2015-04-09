@@ -21,7 +21,7 @@ module Vedeu
       @started = true
       @loop    = true
 
-      while(@loop) do
+      while @loop
         yield
 
         safe_exit_point!

@@ -1,4 +1,3 @@
-require 'vedeu/exceptions'
 require 'vedeu/support/common'
 require 'vedeu/input/key'
 

@@ -304,7 +304,7 @@ module Vedeu
     end
 
     # Pads the title with a single whitespace either side.
-    # 
+    #
     # @example
     #   title = 'Truncated!'
     #   width = 20

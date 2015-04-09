@@ -24,7 +24,7 @@ module Vedeu
 
     # @return [Vedeu::Lines]
     def content
-      case(mode)
+      case mode
       when :prune then to_line_objects(prune)
       when :wrap  then to_line_objects(wrap)
       else

@@ -1,4 +1,3 @@
-require 'vedeu/exceptions'
 require 'vedeu/models/all'
 require 'vedeu/storage/store'
 require 'vedeu/support/common'

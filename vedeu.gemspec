@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.version       = '0.4.13'
   spec.authors       = ['Gavin Laking']
   spec.email         = ['gavinlaking@gmail.com']
-  spec.summary       = %q(A terminal case of wonderland.)
+  spec.summary       = 'A terminal case of wonderland.'
   spec.description   = 'A GUI framework written in Ruby for building ' \
                        'terminal/console applications.'
   spec.homepage      = 'https://github.com/gavinlaking/vedeu'

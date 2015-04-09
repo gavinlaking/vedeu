@@ -15,101 +15,99 @@ require 'vedeu'
 # Use 'space' to change focus, 'q' to exit.
 class VedeuFocusApp
 
-  include Vedeu
-
-  configure do
+  Vedeu.configure do
     debug!
     log '/tmp/vedeu_focus_app.log'
   end
 
-  bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
+  Vedeu.bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
 
-  update = Proc.new do
+  update = proc do
     Vedeu.focus_next
 
     Vedeu.renders { view('status') { lines { line(Vedeu.focus) } } }
   end
 
-  interface 'aluminium' do
+  Vedeu.interface 'aluminium' do
     colour  foreground: '#ffffff', background: '#330000'
     cursor  true
     geometry do
-      height 2
-      width  2
+      height 3
+      width  10
       x      3
       y      3
     end
     keymap { key(' ') { update.call } }
   end
 
-  interface 'boron' do
-    colour  foreground: '#ffffff', background: '#003300'
-    cursor  true
+  Vedeu.interface 'boron' do
+    colour   foreground: '#ffffff', background: '#003300'
+    cursor   true
     geometry do
-      height 2
-      width  2
-      x      6
+      height 3
+      width  10
+      x      15
       y      3
     end
     keymap { key(' ') { update.call } }
   end
 
-  interface 'copper' do
+  Vedeu.interface 'copper' do
     colour  foreground: '#ffffff', background: '#000033'
     cursor  true
     focus!
     geometry do
-      height 2
-      width  2
+      height 3
+      width  10
       x      3
-      y      6
+      y      8
     end
     keymap { key(' ') { update.call } }
   end
 
-  interface 'dubnium' do
+  Vedeu.interface 'dubnium' do
     colour  foreground: '#ffffff', background: '#333300'
     cursor  true
     geometry do
-      height 2
-      width  2
-      x      6
-      y      6
+      height 3
+      width  10
+      x      15
+      y      8
     end
     keymap { key(' ') { update.call } }
   end
 
-  interface 'status' do
+  Vedeu.interface 'status' do
     colour  foreground: '#ffffff', background: '#000000'
     cursor  false
     geometry do
-      height 2
+      height 3
       width  10
-      x      9
-      y      3
+      x      3
+      y      13
     end
     keymap { key(' ') { update.call } }
   end
 
-  renders do
+  Vedeu.renders do
     view('aluminium') do
       lines do
-        line 'Al'
+        line 'Aluminium'
       end
     end
     view('boron') do
       lines do
-        line 'B'
+        line 'Boron'
       end
     end
     view('copper') do
       lines do
-        line 'Cu'
+        line 'Copper'
       end
     end
     view('dubnium') do
       lines do
-        line 'Db'
+        line 'Dubnium'
       end
     end
     view('status') do

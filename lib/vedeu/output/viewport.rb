@@ -118,50 +118,22 @@ module Vedeu
       left..(left + (geometry.width - 1))
     end
 
-    # Returns the offset for the content based on the offset.
+    # Returns the offset for the content (the number of columns to change the
+    # viewport by on the x axis) determined by the offset (the cursor's x
+    # offset position).
     #
     # @return [Fixnum]
     def left
-      @left ||= reposition_x? ? reposition_x : 0
+      @left ||= (ox >= width && ((ox - width) > 0)) ? ox - width : 0
     end
 
-    # Returns the offset for the content based on the offset.
+    # Returns the offset for the content (the number of rows to change the
+    # viewport by on the y axis) determined by the offset (the cursor's y offset
+    # position.
     #
     # @return [Fixnum]
     def top
-      @top ||= reposition_y? ? reposition_y : 0
-    end
-
-    # Returns a boolean indicating whether the x offset is greater than or equal
-    # to the bordered width.
-    #
-    # @return [Boolean]
-    def reposition_x?
-      ox >= width
-    end
-
-    # Returns a boolean indicating whether the y offset is greater than or equal
-    # to the bordered height.
-    #
-    # @return [Boolean]
-    def reposition_y?
-      oy >= height
-    end
-
-    # Returns the number of columns to change the viewport by on the x axis,
-    # determined by the position of the x offset.
-    #
-    # @return [Fixnum]
-    def reposition_x
-      ((ox - width) <= 0) ? 0 : (ox - width)
-    end
-
-    # Returns the number of rows to change the viewport by on the y axis,
-    # determined by the position of the y offset.
-    #
-    # @return [Fixnum]
-    def reposition_y
-      ((oy - height) <= 0) ? 0 : (oy - height)
+      @top ||= (oy >= height && ((oy - height) > 0)) ? oy - height : 0
     end
 
     # Return the border associated with the interface we are drawing.

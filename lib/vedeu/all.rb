@@ -3,7 +3,6 @@
 
 require 'vedeu/debug'
 require 'vedeu/traps'
-require 'vedeu/exceptions'
 
 require 'vedeu/geometry/all'
 require 'vedeu/storage/all'

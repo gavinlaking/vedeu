@@ -48,8 +48,8 @@ module Vedeu
       def write(message)
         @dev.write(message)
 
-      rescue Exception => ignored
-        warn("log writing failed. #{ignored}")
+      rescue StandardError => exception
+        warn("log writing failed. #{exception}")
       end
 
       # @return []
