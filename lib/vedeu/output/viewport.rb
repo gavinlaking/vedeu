@@ -11,18 +11,20 @@ module Vedeu
     extend Forwardable
 
     def_delegators :interface,
-                   :geometry,
                    :lines,
                    :lines?,
-                   :cursor
+                   :name,
+                   :visible?
+
+    def_delegators :border,
+                   :bx,
+                   :by,
+                   :height,
+                   :width
 
     def_delegators :cursor,
                    :ox,
                    :oy
-
-    def_delegators :geometry,
-                   :height,
-                   :width
 
     # @param interface [Vedeu::Interface]
     # @return [Array<Array<Vedeu::Char>>]
@@ -49,13 +51,13 @@ module Vedeu
     #
     # @return [Array<Array<String>>]
     def render
-      return [] unless interface.visible?
+      return [] unless visible?
 
-      Vedeu.log(type: :output, message: "Rendering: '#{interface.name}'")
+      Vedeu.log(type: :output, message: "Rendering: '#{name}'")
 
       out = []
-      show[0...bordered_height].each_with_index do |line, iy|
-        line[0...bordered_width].each_with_index do |column, ix|
+      show[0...height].each_with_index do |line, iy|
+        line[0...width].each_with_index do |column, ix|
           column.position = IndexPosition[iy, ix, by, bx]
           out << column
         end
@@ -100,7 +102,7 @@ module Vedeu
     #
     # @return [Range]
     def rows
-      top..(top + (height - 1))
+      top..(top + (geometry.height - 1))
     end
 
     # Using the current cursor's x position, return a range of visible columns.
@@ -113,7 +115,7 @@ module Vedeu
     #
     # @return [Range]
     def columns
-      left..(left + (width - 1))
+      left..(left + (geometry.width - 1))
     end
 
     # Returns the offset for the content based on the offset.
@@ -135,7 +137,7 @@ module Vedeu
     #
     # @return [Boolean]
     def reposition_x?
-      ox >= bordered_width
+      ox >= width
     end
 
     # Returns a boolean indicating whether the y offset is greater than or equal
@@ -143,7 +145,7 @@ module Vedeu
     #
     # @return [Boolean]
     def reposition_y?
-      oy >= bordered_height
+      oy >= height
     end
 
     # Returns the number of columns to change the viewport by on the x axis,
@@ -151,7 +153,7 @@ module Vedeu
     #
     # @return [Fixnum]
     def reposition_x
-      ((ox - bordered_width) <= 0) ? 0 : (ox - bordered_width)
+      ((ox - width) <= 0) ? 0 : (ox - width)
     end
 
     # Returns the number of rows to change the viewport by on the y axis,
@@ -159,54 +161,28 @@ module Vedeu
     #
     # @return [Fixnum]
     def reposition_y
-      ((oy - bordered_height) <= 0) ? 0 : (oy - bordered_height)
-    end
-
-    # When the viewport has a border, we need to account for that in our
-    # redrawing.
-    #
-    # @return [Fixnum]
-    def bordered_width
-      border.width
-    end
-
-    # When the viewport has a border, we need to account for that in our
-    # redrawing.
-    #
-    # @return [Fixnum]
-    def bordered_height
-      border.height
-    end
-
-    # @return [Fixnum]
-    def bx
-      interface.border.bx
-    end
-
-    # @return [Fixnum]
-    def by
-      interface.border.by
+      ((oy - height) <= 0) ? 0 : (oy - height)
     end
 
     # Return the border associated with the interface we are drawing.
     #
     # @return [Vedeu::Border|Vedeu::NullBorder]
     def border
-      @border ||= Vedeu.borders.by_name(interface.name)
+      @border ||= Vedeu.borders.by_name(name)
     end
 
-    # Returns a boolean indicating the interface we are drawing has a border.
+    # Fetch the cursor associated with the interface we are drawing.
     #
-    # @return [Boolean]
-    def border?
-      Vedeu.borders.registered?(interface.name)
+    # @return [Vedeu::Cursor]
+    def cursor
+      @cursor ||= Vedeu.cursors.by_name(name)
     end
 
     # Return the geometry associated with the interface we are drawing.
     #
     # @return [Vedeu::Geometry|Vedeu::NullGeometry]
     def geometry
-      @geometry || Vedeu.geometries.by_name(interface.name)
+      @geometry || Vedeu.geometries.by_name(name)
     end
 
   end # Viewport
