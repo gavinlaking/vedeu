@@ -1,5 +1,3 @@
-require 'vedeu/support/coercions'
-
 module Vedeu
 
   # Convert a CSS/HTML colour string into a terminal escape sequence.
@@ -23,12 +21,28 @@ module Vedeu
   # @todo More documentation required (create a fancy chart!)
   class Translator
 
-    include Vedeu::Coercions
-
     # @!attribute [r] colour
     # @return [String]
     attr_reader :colour
     alias_method :value, :colour
+
+    # Produces new objects of the correct class from the value, ignores objects
+    # that have already been coerced.
+    #
+    # @param value [Object|NilClass]
+    # @return [Object]
+    def self.coerce(value)
+      if value.nil?
+        new
+
+      elsif value.is_a?(self)
+        value
+
+      else
+        new(value)
+
+      end
+    end
 
     # Convert a CSS/HTML colour string into a terminal escape sequence.
     #
@@ -45,6 +59,13 @@ module Vedeu
     def initialize(colour = '')
       @colour = colour
     end
+
+    # @param other [Vedeu::Char]
+    # @return [Boolean]
+    def eql?(other)
+      self.class == other.class && colour == other.colour
+    end
+    alias_method :==, :eql?
 
     # @return [String]
     # @see Vedeu::Translator
@@ -147,7 +168,9 @@ module Vedeu
     #
     # @return [Boolean]
     def rgb?
-      !!(colour =~ /^#([A-Fa-f0-9]{6})$/)
+      return true if colour =~ /^#([A-Fa-f0-9]{6})$/
+
+      false
     end
 
     # Returns an escape sequence.
@@ -155,7 +178,7 @@ module Vedeu
     # @return [String]
     def rgb
       if Vedeu::Configuration.colour_mode == 16_777_216
-        register(colour, sprintf(rgb_prefix, *css_to_rgb))
+        register(colour, format(rgb_prefix, *css_to_rgb))
 
       else
         numbered
@@ -183,7 +206,7 @@ module Vedeu
       [
         colour[1..2].to_i(16),
         colour[3..4].to_i(16),
-        colour[5..6].to_i(16)
+        colour[5..6].to_i(16),
       ]
     end
 

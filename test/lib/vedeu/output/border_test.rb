@@ -42,8 +42,7 @@ module Vedeu
     end
 
     describe '#initialize' do
-      it { instance.must_be_instance_of(described) }
-      it { instance.instance_variable_get('@attributes').must_equal(
+      let(:default_attributes) {
         {
           bottom_left:  'm',
           bottom_right: 'j',
@@ -61,11 +60,19 @@ module Vedeu
           top_left:     'l',
           top_right:    'k',
           vertical:     'x',
-        })
+        }
       }
+      it { instance.must_be_instance_of(described) }
+      it do
+        instance.instance_variable_get('@attributes').
+          must_equal(default_attributes)
+      end
       it { instance.instance_variable_get('@colour').must_equal({}) }
       it { instance.instance_variable_get('@name').must_equal('borders') }
-      it { instance.instance_variable_get('@repository').must_be_instance_of(Vedeu::Borders) }
+      it do
+        instance.instance_variable_get('@repository').
+          must_be_instance_of(Vedeu::Borders)
+      end
       it { instance.instance_variable_get('@style').must_equal([]) }
     end
 
@@ -294,17 +301,23 @@ module Vedeu
     describe '#colour=' do
       let(:value) { { foreground: '#00ff00' } }
 
-      subject { instance.colour=(value) }
+      subject { instance.colour = (value) }
 
-      it { subject; instance.instance_variable_get("@colour").must_be_instance_of(Colour) }
+      it do
+        subject
+        instance.instance_variable_get('@colour').must_be_instance_of(Colour)
+      end
     end
 
     describe '#style=' do
       let(:value) { 'normal' }
 
-      subject { instance.style=(value) }
+      subject { instance.style = (value) }
 
-      it { subject; instance.instance_variable_get("@style").must_be_instance_of(Style) }
+      it do
+        subject
+        instance.instance_variable_get('@style').must_be_instance_of(Style)
+      end
     end
 
     describe '#enabled?' do
@@ -418,6 +431,7 @@ module Vedeu
       let(:bottom)  { false }
       let(:left)    { false }
       let(:right)   { false }
+      let(:visibility) { true }
 
       before do
         Vedeu.interfaces.reset
@@ -430,12 +444,19 @@ module Vedeu
             y      1
             yn     4
           end
+          visible(visibility)
         end
       end
 
       subject { instance.render }
 
       it { subject.must_be_instance_of(Array) }
+
+      context 'when the interface is not visible' do
+        let(:visibility) { false }
+
+        it { subject.must_equal([]) }
+      end
 
       context 'when the border is not enabled' do
         it { subject.must_equal([]) }

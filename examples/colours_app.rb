@@ -8,30 +8,35 @@ require 'vedeu'
 # An example application to demonstrate colours.
 #
 class VedeuColoursApp
+
   include Vedeu
 
   configure do
-    colour_mode 16_777_216
     debug!
     log '/tmp/vedeu_colours_app.log'
   end
 
   bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
 
-  interface 'colours' do
+  interface 'colours_256' do
     geometry do
       centred!
-      height 8
-      width  8
+      height 16
+      width  80
     end
-    colour foreground: '#000000', background: '#000000'
   end
 
   renders do
-    view('colours') do
-      border!
+    view('colours_256') do
       lines do
-
+        0.upto(16) do |row|
+          line do
+            0.upto(15) do |column|
+              code = (row * 15) + column
+              right "#{code}", width: 5, background: code, foreground: '#ffffff'
+            end
+          end
+        end
       end
     end
   end

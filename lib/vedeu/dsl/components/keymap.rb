@@ -1,4 +1,3 @@
-require 'vedeu/exceptions'
 require 'vedeu/support/common'
 require 'vedeu/input/key'
 
@@ -51,7 +50,7 @@ module Vedeu
       # @todo Try to remember why we need to pre-create the keymap in the
       #   repository.
       def self.keymap(name, &block)
-        Vedeu::Keymap.new({ name: name }).store
+        Vedeu::Keymap.new(name: name).store
 
         Vedeu::Keymap.build({ name: name }, &block).store
       end

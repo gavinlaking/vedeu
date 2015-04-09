@@ -24,7 +24,7 @@ module Vedeu
       context 'when there are no registered interfaces' do
         before { Vedeu.focusable.reset }
 
-        it { described.by_focus.must_equal(nil) }
+        it { subject.must_equal(nil) }
       end
 
       context 'when there are registered interfaces' do
@@ -32,13 +32,24 @@ module Vedeu
     end
 
     describe '.by_group' do
+      subject { described.by_group(group_name) }
+
       context 'when there are no registered groups' do
+        let(:group_name) { '' }
+
         before { Vedeu.groups.reset }
 
-        it { proc { described.by_group('') }.must_raise(ModelNotFound) }
+        it { proc { subject }.must_raise(ModelNotFound) }
       end
 
       context 'when there are registered groups' do
+        let(:group_name) { 'elements' }
+
+        before do
+          Vedeu::Group.new(name: group_name, members: 'aluminium').store
+        end
+
+        it { Vedeu.buffers.expects(:render).with('aluminium'); subject }
       end
     end
 
@@ -47,14 +58,7 @@ module Vedeu
 
       subject { described.by_name(interface_name) }
 
-      context 'when the interface or buffer is not found' do
-        let(:interface_name) { '' }
-
-        it { proc { described.by_name('') }.must_raise(ModelNotFound) }
-      end
-
-      context 'when the interface or buffer is found' do
-      end
+      it { Vedeu.buffers.expects(:render).with(interface_name); subject }
     end
 
   end # Refresh

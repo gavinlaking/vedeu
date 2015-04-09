@@ -59,11 +59,11 @@ module Vedeu
       return [] if value.empty?
 
       value.chars.map do |char|
-        member.new({ value:    char,
-                     parent:   parent,
-                     colour:   colour,
-                     style:    style,
-                     position: nil })
+        member.new(value:    char,
+                   parent:   parent,
+                   colour:   colour,
+                   style:    style,
+                   position: nil)
       end
     end
 

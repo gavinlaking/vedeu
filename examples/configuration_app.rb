@@ -16,10 +16,10 @@ require 'vedeu'
 #
 # Use 'space' to refresh, 'q' to exit.
 class VedeuConfigurationApp
+
   include Vedeu
 
   configure do
-    colour_mode 16_777_216
     debug!
     log '/tmp/vedeu_configuration_app.log'
   end
@@ -35,7 +35,7 @@ class VedeuConfigurationApp
   renders do
     view 'config' do
       lines do
-        line Configuration.log.inspect + " " + Process.pid.to_s
+        line Configuration.log.inspect + ' ' + Process.pid.to_s
       end
     end
   end
@@ -47,6 +47,7 @@ class VedeuConfigurationApp
   def self.start(argv = ARGV)
     Vedeu::Launcher.execute!(argv)
   end
+
 end
 
 VedeuConfigurationApp.start(ARGV)

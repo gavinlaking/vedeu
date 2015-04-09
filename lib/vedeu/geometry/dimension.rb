@@ -45,50 +45,51 @@ module Vedeu
     private
 
     # @!attribute [r] d
-    # @return [Fixnum]
+    # @return [Fixnum|NilClass]
     attr_reader :d
 
     # @!attribute [r] dn
-    # @return [Fixnum]
+    # @return [Fixnum|NilClass]
     attr_reader :dn
 
     # @!attribute [r] d_dn
-    # @return [Fixnum]
+    # @return [Fixnum|NilClass]
     attr_reader :d_dn
 
     # @!attribute [r] default
-    # @return [Fixnum]
+    # @return [Fixnum|NilClass]
     attr_reader :default
 
     # @return [Array<Fixnum>]
     def dimension
       @dimension ||= if centred? && length?
-        [(default / 2) - (length / 2), (default / 2) + (length / 2)]
+                       [(default / 2) - (length / 2),
+                        (default / 2) + (length / 2)]
 
-      elsif d && dn
-        [d, dn]
+                     elsif d && dn
+                       [d, dn]
 
-      elsif d && d_dn
-        [d, (d + d_dn)]
+                     elsif d && d_dn
+                       [d, ((d + d_dn) - 1)]
 
-      elsif d_dn
-        [1, d_dn]
+                     elsif d_dn
+                       [1, d_dn]
 
-      elsif d
-        [d, default]
+                     elsif d
+                       [d, default]
 
-      elsif dn
-        [1, dn]
+                     elsif dn
+                       [1, dn]
 
-      else
-        [1, default]
+                     else
+                       [1, default]
 
-      end
+                     end
     end
 
     # @return [Boolean]
     def length?
-      !!(default) && !!(length)
+      default && length
     end
 
     # @return [Fixnum|NilClass]
@@ -101,9 +102,6 @@ module Vedeu
 
       elsif default
         default
-
-      else
-        nil
 
       end
     end

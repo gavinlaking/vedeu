@@ -7,7 +7,7 @@ require 'yard'
 require 'rubocop/rake_task'
 
 Cucumber::Rake::Task.new(:cucumber) do |t|
-  t.cucumber_opts = "features --format progress"
+  t.cucumber_opts = 'features --format progress'
 end
 
 Rake::TestTask.new(:test) do |t|
@@ -23,13 +23,13 @@ YARD::Rake::YardocTask.new(:yard) do |t|
     '-',
     'docs/api.md',
     'docs/getting_started.md',
-    'docs/views.md'
+    'docs/views.md',
   ]
 end
 
 Inch::Rake::Suggest.new(:inch) do |suggest|
-  suggest.args << "--pedantic"
-  suggest.args << "--all"
+  suggest.args << '--pedantic'
+  suggest.args << '--all'
 end
 
 RuboCop::RakeTask.new(:rubocop) do |task|
@@ -38,4 +38,4 @@ RuboCop::RakeTask.new(:rubocop) do |task|
   task.fail_on_error = false
 end
 
-task :default => :test
+task default: :test

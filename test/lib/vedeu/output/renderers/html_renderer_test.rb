@@ -27,7 +27,7 @@ module Vedeu
       context 'when a path is given' do
         let(:path) { '/tmp/test_vedeu_html_renderer.html' }
 
-        #it { subject.must_equal('') }
+        # it { subject.must_equal('') }
       end
 
       context 'when a path is not given' do
@@ -48,20 +48,24 @@ module Vedeu
         let(:output) {
           [
             [
-              Vedeu::Char.new({ value: 't' }),
-              Vedeu::Char.new({ value: 'e' }),
-              Vedeu::Char.new({ value: 's' }),
-              Vedeu::Char.new({ value: 't' }),
+              Vedeu::Char.new(value: 't'),
+              Vedeu::Char.new(value: 'e'),
+              Vedeu::Char.new(value: 's'),
+              Vedeu::Char.new(value: 't'),
             ]
           ]
         }
 
         it { subject.must_equal(
           "<tr>\n" \
-          "<td style='background:#000;color:#222;border:1px #000 solid;'>t</td>\n" \
-          "<td style='background:#000;color:#222;border:1px #000 solid;'>e</td>\n" \
-          "<td style='background:#000;color:#222;border:1px #000 solid;'>s</td>\n" \
-          "<td style='background:#000;color:#222;border:1px #000 solid;'>t</td>\n" \
+          "<td style='background:#000;color:#222;border:1px #000 solid;'>"   \
+          "t</td>\n" \
+            "<td style='background:#000;color:#222;border:1px #000 solid;'>" \
+          "e</td>\n" \
+            "<td style='background:#000;color:#222;border:1px #000 solid;'>" \
+          "s</td>\n" \
+            "<td style='background:#000;color:#222;border:1px #000 solid;'>" \
+          "t</td>\n" \
           "</tr>\n") }
       end
     end

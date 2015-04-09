@@ -23,9 +23,9 @@ module Vedeu
     # @return [Vedeu::Line]
     attr_accessor :parent
 
-    # @!attribute [rw] value
+    # @!attribute [w] value
     # @return [String]
-    attr_accessor :value
+    attr_writer :value
 
     # Returns a new instance of Vedeu::Char.
     #
@@ -68,7 +68,7 @@ module Vedeu
 
     # @return [String]
     def inspect
-      "<Vedeu::Char '#{Vedeu::Esc.escape(self.to_s)}'>"
+      "<Vedeu::Char '#{Vedeu::Esc.escape(to_s)}'>"
     end
 
     # @return [Vedeu::Position]
@@ -82,6 +82,17 @@ module Vedeu
     # @return [Vedeu::Position]
     def position=(value)
       @position = Vedeu::Position.coerce(value)
+    end
+
+    # @return [String]
+    def value
+      if border
+        Vedeu::Esc.border { @value }
+
+      else
+        @value
+
+      end
     end
 
     # Returns the x position for the Char if set.
@@ -107,18 +118,12 @@ module Vedeu
     # @return [Hash]
     def to_hash
       {
-        parent:     {
-          background: parent_background.to_s,
-          foreground: parent_foreground.to_s,
-          style:      parent_style.to_s,
-        },
-        background: background.to_s,
-        border:     border.to_s,
-        foreground: foreground.to_s,
-        style:      style.to_s,
-        value:      value,
-        x:          x,
-        y:          y,
+        border:   border.to_s,
+        colour:   colour_to_hash,
+        parent:   parent_to_hash,
+        position: position_to_hash,
+        style:    style.to_s,
+        value:    value,
       }
     end
 
@@ -127,11 +132,24 @@ module Vedeu
       @to_html ||= Vedeu::HTMLChar.render(self)
     end
 
+    # @return [String]
+    def to_json
+      @to_json ||= JSON.generate(to_hash)
+    end
+
     private
 
     # @!attribute [r] attributes
     # @return [Hash]
     attr_reader :attributes
+
+    # @return [Hash]
+    def colour_to_hash
+      {
+        background: background.to_s,
+        foreground: foreground.to_s,
+      }
+    end
 
     # The default values for a new instance of this class.
     #
@@ -144,6 +162,23 @@ module Vedeu
         position: nil,
         style:    nil,
         value:    '',
+      }
+    end
+
+    # @return [Hash]
+    def parent_to_hash
+      {
+        background: parent_background.to_s,
+        foreground: parent_foreground.to_s,
+        style:      parent_style.to_s,
+      }
+    end
+
+    # @return [Hash]
+    def position_to_hash
+      {
+        y: y,
+        x: x,
       }
     end
 

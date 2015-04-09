@@ -30,7 +30,8 @@ module Vedeu
 
     # Returns a new instance of Vedeu::Cell.
     #
-    # @param attributes [Hash<Symbol => Array<Symbol|String>, Fixnum, String, Symbol]
+    # @param attributes [Hash<Symbol => Array<Symbol|String>,
+    #                                   Fixnum, String, Symbol]
     # @option attributes background [NilClass|String]
     # @option attributes foreground [NilClass|String]
     # @option attributes style [NilClass|Array<Symbol|String>|Symbol|String]
@@ -50,13 +51,9 @@ module Vedeu
     # @param other [Vedeu::Cell]
     # @return [Boolean]
     def eql?(other)
-      self.class == other.class      &&
-      background == other.background &&
-      foreground == other.foreground &&
-      style      == other.style      &&
-      value      == other.value      &&
-      x          == other.x          &&
-      y          == other.y
+      self.class == other.class && background == other.background &&
+        foreground == other.foreground && style == other.style &&
+        value == other.value && x == other.x && y == other.y
     end
     alias_method :==, :eql?
 

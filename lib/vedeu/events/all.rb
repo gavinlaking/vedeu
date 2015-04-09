@@ -1,6 +1,4 @@
-require 'vedeu/repositories/collections'
-require 'vedeu/events/event'
-require 'vedeu/events/trigger'
+require 'vedeu/repositories/collections/all'
 
-module Vedeu
-end # Vedeu
+require_relative 'event'
+require_relative 'trigger'

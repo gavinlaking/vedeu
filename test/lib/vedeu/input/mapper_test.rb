@@ -18,12 +18,16 @@ module Vedeu
       it { instance.must_be_instance_of(described) }
       it { instance.instance_variable_get('@key').must_equal(key) }
       it { instance.instance_variable_get('@name').must_equal(keymap) }
-      it { instance.instance_variable_get('@repository').must_equal(Vedeu.keymaps) }
+      it do
+        instance.instance_variable_get('@repository').must_equal(Vedeu.keymaps)
+      end
 
       context 'when the repository is provided' do
         let(:repository) { Vedeu::Repository.new }
 
-        it { instance.instance_variable_get('@repository').must_equal(repository) }
+        it do
+          instance.instance_variable_get('@repository').must_equal(repository)
+        end
       end
     end
 
@@ -41,7 +45,7 @@ module Vedeu
 
         context 'and the key is defined' do
           let(:key_test) { Key.new('a') { :do_something } }
-          let(:keymap_test) { Keymap.new({ name: 'test', keys: [key_test] }) }
+          let(:keymap_test) { Keymap.new(name: 'test', keys: [key_test]) }
 
           before do
             Vedeu.keymaps.reset
@@ -71,7 +75,7 @@ module Vedeu
 
         context 'and the key is defined' do
           let(:key_test) { Key.new('a') { :do_something } }
-          let(:keymap_test) { Keymap.new({ name: 'test', keys: [key_test] }) }
+          let(:keymap_test) { Keymap.new(name: 'test', keys: [key_test]) }
 
           before do
             Vedeu.keymaps.reset

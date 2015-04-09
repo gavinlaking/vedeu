@@ -1,5 +1,3 @@
-require 'drb'
-
 module Vedeu
 
   module Distributed
@@ -39,7 +37,6 @@ module Vedeu
         puts 'Could not connect to DRb server, URI may be bad.'
 
         :drb_bad_uri
-
       end
 
       # Send input to the DRb server.
@@ -51,7 +48,6 @@ module Vedeu
 
       rescue DRb::DRbConnError
         drb_connection_error
-
       end
       alias_method :read, :input
 
@@ -63,7 +59,6 @@ module Vedeu
 
       rescue DRb::DRbConnError
         drb_connection_error
-
       end
       alias_method :write, :output
 
@@ -77,7 +72,7 @@ module Vedeu
       def shutdown
         server.shutdown
 
-        Process.kill("KILL", server.pid)
+        Process.kill('KILL', server.pid)
 
       rescue DRb::DRbConnError
         drb_connection_error
@@ -87,7 +82,6 @@ module Vedeu
 
       ensure
         :shutdown
-
       end
 
       private

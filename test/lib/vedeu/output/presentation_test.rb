@@ -2,8 +2,27 @@ require 'test_helper'
 
 module Vedeu
 
+  class ParentPresentationTestClass
+    include Presentation
+
+    def parent
+      nil
+    end
+
+    def attributes
+      {
+        colour: { background: '#330000', foreground: '#00aadd' },
+        style:  ['bold']
+      }
+    end
+  end
+
   class PresentationTestClass
     include Presentation
+
+    def parent
+      ParentPresentationTestClass.new
+    end
 
     def attributes
       {
@@ -44,9 +63,9 @@ module Vedeu
     end
 
     describe '#colour=' do
-      let(:colour) { Colour.new({ foreground: '#00ff00', background: '#000000' }) }
+      let(:colour) { Colour.new(foreground: '#00ff00', background: '#000000') }
 
-      subject { receiver.colour=(colour) }
+      subject { receiver.colour = (colour) }
 
       it { subject.must_be_instance_of(Colour) }
     end
@@ -60,23 +79,31 @@ module Vedeu
     describe '#style=' do
       let(:style) { Style.new('normal') }
 
-      subject { receiver.style=(style) }
+      subject { receiver.style = (style) }
 
       it { subject.must_be_instance_of(Style) }
     end
 
     describe '#to_s' do
       let(:line) {
-        Vedeu::Line.new({
-          streams: [],
-          parent:  Vedeu::Interface.new,
-          colour:  Colour.new({ foreground: '#00ff00', background: '#000000' }),
-          style:   Style.new('normal')
-        })
+        Vedeu::Line.new(streams: [],
+                        parent:  Vedeu::Interface.new,
+                        colour:  line_colour,
+                        style:   Style.new('normal'))
       }
-      let(:stream) { Stream.new({ value: stream_value, parent: line, colour: stream_colour, style: stream_style }) }
+      let(:line_colour) {
+        Colour.new(foreground: '#00ff00', background: '#000000')
+      }
+      let(:stream) {
+        Stream.new(value: stream_value,
+                   parent: line,
+                   colour: stream_colour,
+                   style: stream_style)
+      }
       let(:stream_value)  { 'Some text' }
-      let(:stream_colour) { Colour.new({ foreground: '#ff0000', background: '#000000' }) }
+      let(:stream_colour) {
+        Colour.new(foreground: '#ff0000', background: '#000000')
+      }
       let(:stream_style)  { Style.new(:underline) }
 
       it 'returns output' do
@@ -84,13 +111,9 @@ module Vedeu
           # - stream colour
           # - stream style
           # - stream content
-          # - line style
-          # - line colour
           "\e[38;2;255;0;0m\e[48;2;0;0;0m"  \
           "\e[4m"                           \
-          "Some text"                       \
-          "\e[24m\e[22m\e[27m"              \
-          "\e[38;2;0;255;0m\e[48;2;0;0;0m"
+          'Some text'
         )
       end
     end

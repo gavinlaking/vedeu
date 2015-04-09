@@ -6,7 +6,7 @@ module Vedeu
 
     let(:described)     { Vedeu::Application }
     let(:instance)      { described.new(configuration) }
-    let(:configuration) { test_configuration }
+    let(:configuration) { Vedeu.configuration }
 
     before do
       configuration.stubs(:drb?).returns(false)
@@ -14,8 +14,13 @@ module Vedeu
     end
 
     describe '#initialize' do
-      it { instance.must_be_instance_of(described) }
-      it { instance.instance_variable_get('@configuration').must_equal(configuration) }
+      subject { instance }
+
+      it { subject.must_be_instance_of(described) }
+      it do
+        subject.instance_variable_get('@configuration').
+          must_equal(configuration)
+      end
     end
 
     describe '.start' do
@@ -29,6 +34,7 @@ module Vedeu
     describe '.stop' do
       subject { described.stop }
 
+      it { subject.must_equal(false) }
     end
 
     describe '#start' do

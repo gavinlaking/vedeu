@@ -8,10 +8,10 @@ require 'vedeu'
 # An example application to demonstrate borders.
 #
 class VedeuBordersApp
+
   include Vedeu
 
   configure do
-    colour_mode 16_777_216
     debug!
     log '/tmp/vedeu_borders_app.log'
   end
@@ -309,6 +309,7 @@ class VedeuBordersApp
   def self.start(argv = ARGV)
     Vedeu::Launcher.execute!(argv)
   end
+
 end
 
 VedeuBordersApp.start(ARGV)

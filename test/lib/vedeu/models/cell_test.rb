@@ -24,17 +24,19 @@ module Vedeu
     let(:y)          {}
 
     describe '#initialize' do
-      it { instance.must_be_instance_of(Vedeu::Cell) }
-      it { instance.instance_variable_get('@background').must_equal(background) }
-      it { instance.instance_variable_get('@foreground').must_equal(foreground) }
-      it { instance.instance_variable_get('@style').must_equal(style) }
-      it { instance.instance_variable_get('@value').must_equal(value) }
-      it { instance.instance_variable_get('@x').must_equal(x) }
-      it { instance.instance_variable_get('@y').must_equal(y) }
+      subject { instance }
+
+      it { subject.must_be_instance_of(described) }
+      it { subject.instance_variable_get('@background').must_equal(background) }
+      it { subject.instance_variable_get('@foreground').must_equal(foreground) }
+      it { subject.instance_variable_get('@style').must_equal(style) }
+      it { subject.instance_variable_get('@value').must_equal(value) }
+      it { subject.instance_variable_get('@x').must_equal(x) }
+      it { subject.instance_variable_get('@y').must_equal(y) }
     end
 
     describe '#eql?' do
-      let(:other) { described.new({ background: '#000000' }) }
+      let(:other) { described.new(background: '#000000') }
 
       subject { instance.eql?(other) }
 

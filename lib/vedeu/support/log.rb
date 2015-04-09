@@ -10,23 +10,13 @@ module Vedeu
     #
     # @param logdev [String|IO] The filename (String) or IO object (typically
     #   STDOUT, STDERR or an open file).
-    # @param shift_age [] Number of old log files to keep, or frequency of
-    #   rotation (daily, weekly, monthly).
-    # @param shift_size [] Maximum log file size (only applies when shift_age
-    #   is a number).
     #
-    # @example
-    #   Logger.new(name, shift_age = 7, shift_size = 1048576)
-    #   Logger.new(name, shift_age = 'weekly')
-    #
-    def initialize(logdev, shift_age=nil, shift_size=nil)
+    def initialize(logdev)
       @level = DEBUG
       @default_formatter = Formatter.new
       @formatter = nil
       @logdev = nil
-      if logdev
-        @logdev = LocklessLogDevice.new(logdev)
-      end
+      @logdev = LocklessLogDevice.new(logdev) if logdev
     end
 
     # Ensures we can always write to the log file by creating a lock-less
@@ -41,8 +31,6 @@ module Vedeu
       def initialize(log = nil)
         @dev = nil
         @filename = nil
-        @shift_age = nil
-        @shift_size = nil
 
         if log.respond_to?(:write) && log.respond_to?(:close)
           @dev = log
@@ -60,9 +48,8 @@ module Vedeu
       def write(message)
         @dev.write(message)
 
-      rescue Exception => ignored
-        warn("log writing failed. #{ignored}")
-
+      rescue StandardError => exception
+        warn("log writing failed. #{exception}")
       end
 
       # @return []
@@ -75,7 +62,7 @@ module Vedeu
       # @param filename []
       # @return []
       def open_logfile(filename)
-        if (FileTest.exist?(filename))
+        if FileTest.exist?(filename)
           open(filename, (File::WRONLY | File::APPEND))
 
         else
@@ -98,15 +85,15 @@ module Vedeu
 
       # Write a message to the Vedeu log file.
       #
-      # @param message [String] The message you wish to emit to the log file,
-      #   useful for debugging.
-      # @param force   [Boolean] When evaluates to true will attempt to write to
-      #   the log file regardless of the Configuration setting.
-      # @param type    [Symbol] Colour code messages in the log file depending
-      #   on their source.
-      #
       # @example
       #   Vedeu.log(message: 'A useful debugging message: Error!')
+      #
+      # @param message [String] The message you wish to emit to the log file,
+      #   useful for debugging.
+      # @param force [Boolean] When evaluates to true will attempt to write to
+      #   the log file regardless of the Configuration setting.
+      # @param type [Symbol] Colour code messages in the log file depending
+      #   on their source.
       #
       # @return [TrueClass]
       def log(message:, force: false, type: :info)
@@ -141,7 +128,9 @@ module Vedeu
 
       # @return [String]
       def message_type(type)
-        Vedeu::Esc.send(message_types.fetch(type, :default)) { "[#{type}]".ljust(9) }
+        Vedeu::Esc.send(message_types.fetch(type, :default)) do
+          "[#{type}]".ljust(9)
+        end
       end
 
       # @return [Hash<Symbol => Symbol>]

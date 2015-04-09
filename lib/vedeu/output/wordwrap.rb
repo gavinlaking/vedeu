@@ -15,7 +15,7 @@ module Vedeu
     # @param options [Hash]
     # @option options ellipsis [String] For when using mode `:prune`.
     # @option options mode [Symbol] One of :default, :prune, :wrap
-    # @option options width [Fixnum] The width in characters to prune or wrap to.
+    # @option options width [Fixnum] The width to prune or wrap to.
     # @return [Vedeu::Wordwrap]
     def initialize(text, options = {})
       @text    = text
@@ -24,7 +24,7 @@ module Vedeu
 
     # @return [Vedeu::Lines]
     def content
-      case(mode)
+      case mode
       when :prune then to_line_objects(prune)
       when :wrap  then to_line_objects(wrap)
       else
@@ -63,7 +63,7 @@ module Vedeu
 
           if (line_length += word_length) >= width
             line_length = word_length
-            processed   << reformatted
+            processed << reformatted
             reformatted = []
           end
 
@@ -92,7 +92,7 @@ module Vedeu
     # @return [Vedeu::Lines]
     def to_line_objects(text_as_lines)
       line_objects = Array(text_as_lines).map do |text_line|
-        stream        = Vedeu::Stream.new({ value: text_line })
+        stream        = Vedeu::Stream.new(value: text_line)
         line          = Vedeu::Line.new
         stream.parent = line
         line.add(stream)

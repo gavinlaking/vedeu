@@ -8,10 +8,10 @@ require 'vedeu'
 # An example application to demonstrate interface lines.
 #
 class VedeuLinesApp
+
   include Vedeu
 
   configure do
-    colour_mode 16_777_216
     debug!
     log '/tmp/vedeu_lines_app.log'
   end
@@ -68,6 +68,7 @@ class VedeuLinesApp
   def self.start(argv = ARGV)
     Vedeu::Launcher.execute!(argv)
   end
+
 end
 
 VedeuLinesApp.start(ARGV)

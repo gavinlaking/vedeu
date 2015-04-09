@@ -68,22 +68,20 @@ module Vedeu
     def initialize(attributes = {})
       @attributes = defaults.merge!(attributes)
 
-      @attributes.each do |k, v|
-        instance_variable_set("@#{k.to_s}", @attributes[k])
-      end
+      @attributes.each { |k, _| instance_variable_set("@#{k}", @attributes[k]) }
     end
 
     # @param block [Proc]
     # @return [String]
     def build(&block)
-      self.instance_eval(&block) if block_given?
+      instance_eval(&block) if block_given?
 
       Vedeu::Template.parse(self, template)
     end
 
     # @return [String]
     def lib_dir
-      File.dirname(__FILE__) + "/../../../lib"
+      File.dirname(__FILE__) + '/../../../lib'
     end
 
     private

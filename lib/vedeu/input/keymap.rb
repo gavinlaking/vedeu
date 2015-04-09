@@ -1,4 +1,3 @@
-require 'vedeu/exceptions'
 require 'vedeu/repositories/all'
 require 'vedeu/dsl/components/all'
 require 'vedeu/input/key'

@@ -14,18 +14,21 @@ module Vedeu
         style:  style
       }
     }
-    let(:value)      { 'Some text' }
-    let(:parent)     {
-      Line.new({
-        streams: [],
-        parent:  line_parent,
-        colour:  Colour.new({ background: '#0000ff', foreground: '#ffff00' }),
-        style:   Style.new('normal')
-      })
+    let(:value)  { 'Some text' }
+    let(:parent) {
+      Line.new(streams: [],
+               parent:  line_parent,
+               colour:  parent_colour,
+               style:   Style.new('normal'))
     }
-    let(:colour)      { Colour.new({ background: '#ff0000', foreground: '#000000' }) }
+    let(:parent_colour) {
+      Colour.new(background: '#0000ff', foreground: '#ffff00')
+    }
+    let(:colour)      {
+      Colour.new(background: '#ff0000', foreground: '#000000')
+    }
     let(:style)       { Style.new('normal') }
-    let(:line_parent) { Vedeu::Interface.new({ name: 'Vedeu::Stream' }) }
+    let(:line_parent) { Vedeu::Interface.new(name: 'Vedeu::Stream') }
 
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }

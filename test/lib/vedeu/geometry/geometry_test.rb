@@ -40,7 +40,9 @@ module Vedeu
       it { instance.instance_variable_get('@xn').must_equal(xn) }
       it { instance.instance_variable_get('@y').must_equal(y) }
       it { instance.instance_variable_get('@yn').must_equal(yn) }
-      it { instance.instance_variable_get('@repository').must_equal(Vedeu.geometries) }
+      it do
+        instance.instance_variable_get('@repository').must_equal(Vedeu.geometries)
+      end
     end
 
     describe '#top, #right, #bottom, #left' do
@@ -85,7 +87,7 @@ module Vedeu
 
         it { instance.top.must_equal(4) }
         it { instance.right.must_equal(18) }
-        it { instance.bottom.must_equal(10) }
+        it { instance.bottom.must_equal(9) }
         it { instance.left.must_equal(1) }
       end
 
@@ -93,7 +95,7 @@ module Vedeu
         let(:attributes) { { height: 6, width: 18, x: 4 } }
 
         it { instance.top.must_equal(1) }
-        it { instance.right.must_equal(22) }
+        it { instance.right.must_equal(21) }
         it { instance.bottom.must_equal(6) }
         it { instance.left.must_equal(4) }
       end

@@ -33,24 +33,24 @@ module Vedeu
     include Vedeu::Model
 
     def_delegators :area,
-      :north,
-      :east,
-      :south,
-      :west,
-      :top,
-      :right,
-      :bottom,
-      :left,
-      :y,
-      :xn,
-      :yn,
-      :x,
-      :height,
-      :width,
-      :top_left,
-      :top_right,
-      :bottom_left,
-      :bottom_right
+                   :north,
+                   :east,
+                   :south,
+                   :west,
+                   :top,
+                   :right,
+                   :bottom,
+                   :left,
+                   :y,
+                   :xn,
+                   :yn,
+                   :x,
+                   :height,
+                   :width,
+                   :top_left,
+                   :top_right,
+                   :bottom_left,
+                   :bottom_right
 
     # @!attribute [rw] centred
     # @return [Boolean]
@@ -122,22 +122,20 @@ module Vedeu
 
     # @return [Array<Fixnum>]
     def x_xn
-      @x_xn ||= Vedeu::Dimension.pair({ d:        _x,
-                                        dn:      _xn,
-                                        d_dn:    @width,
-                                        default: Vedeu::Terminal.width,
-                                        options: { centred: centred }
-                                      })
+      @x_xn ||= Vedeu::Dimension.pair(d:        _x,
+                                      dn:      _xn,
+                                      d_dn:    @width,
+                                      default: Vedeu::Terminal.width,
+                                      options: { centred: centred })
     end
 
     # @return [Array<Fixnum>]
     def y_yn
-      @y_yn ||= Vedeu::Dimension.pair({ d:       _y,
-                                        dn:      _yn,
-                                        d_dn:    @height,
-                                        default: Vedeu::Terminal.height,
-                                        options: { centred: centred }
-                                      })
+      @y_yn ||= Vedeu::Dimension.pair(d:       _y,
+                                      dn:      _yn,
+                                      d_dn:    @height,
+                                      default: Vedeu::Terminal.height,
+                                      options: { centred: centred })
     end
 
     # Returns the row/line start position for the interface.

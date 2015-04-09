@@ -47,7 +47,7 @@ Style/ArrayJoin:
 Style/AsciiComments:
   Description: 'Use only ascii symbols in comments.'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#english-comments'
-  Enabled: true
+  Enabled: false
 
 Style/AsciiIdentifiers:
   Description: 'Use only ascii symbols in identifiers.'
@@ -74,16 +74,11 @@ Style/BlockComments:
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-block-comments'
   Enabled: true
 
+Style/BlockDelimiters:
+  Enabled: false
+
 Style/BlockEndNewline:
   Description: 'Put end statement of multiline block on its own line.'
-  Enabled: true
-
-Style/Blocks:
-  Description: >-
-                Avoid using {...} for multi-line blocks (multiline chaining is
-                always ugly).
-                Prefer {...} over do...end for single-line blocks.
-  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#single-line-blocks'
   Enabled: true
 
 Style/BracesAroundHashParameters:
@@ -759,7 +754,7 @@ Metrics/BlockNesting:
 
 Metrics/ClassLength:
   Description: 'Avoid classes longer than 100 lines of code.'
-  Enabled: true
+  Enabled: false
 
 Metrics/CyclomaticComplexity:
   Description: >-

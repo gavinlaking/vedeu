@@ -32,7 +32,7 @@ module Vedeu
     end
 
     # @param child [Vedeu::Interface]
-    # @return [void]
+    # @return [Vedeu::Interfaces]
     def add(child)
       @interfaces = interfaces.add(child)
     end
@@ -42,6 +42,13 @@ module Vedeu
       collection.coerce(@interfaces, self)
     end
     alias_method :value, :interfaces
+
+    # Composition objects do not have a parent.
+    #
+    # @return [NilClass]
+    def parent
+      nil
+    end
 
     private
 

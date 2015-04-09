@@ -1,8 +1,3 @@
-require 'singleton'
-
-require 'vedeu/configuration/api'
-require 'vedeu/configuration/cli'
-
 module Vedeu
 
   # Namespace for the API configuration and CLI configuration classes.
@@ -19,7 +14,7 @@ module Vedeu
     def log(from, options)
       options.each do |option, value|
         Vedeu.log(type:    :config,
-                  message: "#{from} #{option.to_s}: #{value.to_s}")
+                  message: "#{from} #{option}: #{value}")
       end
     end
 
@@ -142,6 +137,13 @@ module Vedeu
       end
       alias_method :once, :once?
 
+      # Returns the renderers which should receive output.
+      #
+      # @return [Array<Class>]
+      def renderers
+        instance.options[:renderers]
+      end
+
       # Returns the redefined setting for STDIN.
       #
       # @return [File|IO]
@@ -236,8 +238,9 @@ module Vedeu
       @options.merge!(opts)
 
       @options.merge!(Config::API.configure(&block)) if block_given?
-
       @options.merge!(Config::CLI.configure(args)) if args.any?
+
+      Vedeu::Renderers.renderer(*@options[:renderers])
 
       Vedeu::Configuration
     end
@@ -267,6 +270,7 @@ module Vedeu
         interactive:   true,
         log:           '/tmp/vedeu.log',
         once:          false,
+        renderers:     [Vedeu::TerminalRenderer],
         stdin:         nil,
         stdout:        nil,
         stderr:        nil,

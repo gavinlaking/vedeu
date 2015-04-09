@@ -16,7 +16,7 @@ module Vedeu
       it { instance.must_be_instance_of(Vedeu::VirtualTerminal) }
       it { instance.instance_variable_get('@height').must_equal(3) }
       it { instance.instance_variable_get('@width').must_equal(3) }
-      it { instance.instance_variable_get('@renderer').must_equal(Vedeu::HTMLRenderer) }
+      it { instance.instance_variable_get('@renderer').must_equal(renderer) }
     end
 
     describe 'attr_accessor' do
@@ -26,7 +26,7 @@ module Vedeu
         it { subject.must_equal(Vedeu::HTMLRenderer) }
       end
       context '#renderer=' do
-        subject { instance.renderer=(Vedeu::FakeRenderer) }
+        subject { instance.renderer = (Vedeu::FakeRenderer) }
 
         it { subject.must_equal(Vedeu::FakeRenderer) }
       end
@@ -103,7 +103,7 @@ module Vedeu
     end
 
     describe '#write' do
-      let(:data) { Vedeu::Char.new({ value: 'a' }) }
+      let(:data) { Vedeu::Char.new(value: 'a') }
 
       subject { instance.write(y, x, data) }
 

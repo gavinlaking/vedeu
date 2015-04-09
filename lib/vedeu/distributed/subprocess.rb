@@ -82,7 +82,7 @@ module Vedeu
 
     # @return [File]
     def file_open
-      @file ||= File.new("/tmp/foo_#{timestamp}", "w", 0755)
+      @file ||= File.new("/tmp/foo_#{timestamp}", 'w', 0755)
     end
     alias_method :file, :file_open
 

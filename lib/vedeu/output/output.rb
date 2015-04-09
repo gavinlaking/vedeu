@@ -1,54 +1,46 @@
 require 'vedeu/output/renderers/all'
 require 'vedeu/output/virtual_buffer'
-require 'vedeu/support/terminal'
 
 module Vedeu
 
-  # Sends the interface to the terminal or output device.
+  # Sends the content to the renderers.
   #
   class Output
 
-    # Writes content (the provided interface object with associated lines,
-    # streams, colours and styles) to the area defined by the interface.
+    # Writes content to the defined renderers.
     #
     # @return [Array|String]
     # @see #initialize
-    def self.render(interface)
-      new(interface).render
+    def self.render(content)
+      new(content).render
     end
 
     # Return a new instance of Vedeu::Output.
     #
-    # @param interface [Interface]
+    # @param content [Array<Array<Vedeu::Char>>]
     # @return [Output]
-    def initialize(interface)
-      @interface = interface
+    def initialize(content)
+      @content = content
     end
 
-    # Send the view to the terminal.
+    # Send the view to the renderers.
     #
     # @return [Array]
     def render
       if Vedeu::Configuration.drb?
-        Vedeu.trigger(:_drb_store_output_, rendered)
+        Vedeu.trigger(:_drb_store_output_, content)
 
         Vedeu::HTMLRenderer.to_file(Vedeu::VirtualBuffer.retrieve)
       end
 
-      # Vedeu::FileRenderer.render(rendered)
-
-      Vedeu::TerminalRenderer.render(rendered)
+      Vedeu.renderers.render(content)
     end
 
     private
 
-    # @!attribute [r] interface
-    # @return [Interface]
-    attr_reader :interface
-
-    def rendered
-      @rendered ||= interface.render
-    end
+    # @!attribute [r] content
+    # @return [Array<Array<Vedeu::Char>>]
+    attr_reader :content
 
   end # Output
 

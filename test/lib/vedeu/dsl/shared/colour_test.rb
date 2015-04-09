@@ -26,7 +26,7 @@ module Vedeu
 
         it 'sets the background' do
           subject.attributes.must_equal(
-            { background: '#00ff00', foreground: '' }
+            background: '#00ff00', foreground: ''
           )
         end
       end
@@ -38,7 +38,7 @@ module Vedeu
 
         it 'sets the foreground' do
           subject.attributes.must_equal(
-            { background: '', foreground: '#ff00ff' }
+            background: '', foreground: '#ff00ff'
           )
         end
       end
@@ -55,7 +55,7 @@ module Vedeu
 
           it 'sets only the valid attributes' do
             subject.attributes.must_equal(
-              { background: '', foreground: '#ff00ff' }
+              background: '', foreground: '#ff00ff'
             )
           end
         end
@@ -65,7 +65,7 @@ module Vedeu
 
           it 'sets only the valid attributes' do
             subject.attributes.must_equal(
-              { background: '#00ff00', foreground: '' }
+              background: '#00ff00', foreground: ''
             )
           end
         end

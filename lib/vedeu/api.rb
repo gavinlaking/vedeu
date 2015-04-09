@@ -1,5 +1,6 @@
 require 'vedeu/support/common'
 require 'vedeu/support/terminal'
+require 'vedeu/output/renderers/all'
 require 'vedeu/events/all'
 require 'vedeu/models/all'
 require 'vedeu/input/all'
@@ -95,7 +96,7 @@ module Vedeu
     # @!method unbind
     #   @see Vedeu::Event.unbind
     def_delegators Vedeu::Event, :bind,
-      :unbind
+                   :unbind
 
     # @!method trigger
     #   @see Vedeu::Trigger.trigger
@@ -106,7 +107,7 @@ module Vedeu
     # @!method configuration
     #   @see Vedeu::Configuration.configuration
     def_delegators Vedeu::Configuration, :configure,
-      :configuration
+                   :configuration
 
     # @!method border
     #   @see Vedeu::DSL::Border.border
@@ -135,8 +136,8 @@ module Vedeu
     # @!method views
     #   @see Vedeu::DSL::View.views
     def_delegators Vedeu::DSL::View, :interface,
-      :renders,
-      :views
+                   :renders,
+                   :views
 
     # @!method focus
     #   @see Vedeu::Focus#focus
@@ -149,10 +150,10 @@ module Vedeu
     # @!method focus_previous
     #   @see Vedeu::Focus#focus_previous
     def_delegators Vedeu::Focus, :focus,
-      :focus_by_name,
-      :focussed?,
-      :focus_next,
-      :focus_previous
+                   :focus_by_name,
+                   :focussed?,
+                   :focus_next,
+                   :focus_previous
 
     # @!method log
     #   @see Vedeu::Log.log
@@ -169,8 +170,15 @@ module Vedeu
     # @!method resize
     #   @see Vedeu::Terminal#resize
     def_delegators Vedeu::Terminal, :height,
-      :width,
-      :resize
+                   :width,
+                   :resize
+
+    # @!method renderer
+    #   @see Vedeu::Renderers#renderer
+    # @!method renderers
+    #   @see Vedeu::Renderers#renderers
+    def_delegators Vedeu::Renderers, :renderer,
+                   :renderers
 
   end # API
 

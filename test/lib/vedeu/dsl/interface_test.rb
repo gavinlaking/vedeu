@@ -35,12 +35,30 @@ module Vedeu
           end
         }
 
-        it { subject.must_be_instance_of(Vedeu::Border) }
-
         context 'when the block is not given' do
           subject { instance.border }
 
           it { proc { subject }.must_raise(InvalidSyntax) }
+        end
+
+        context 'when the block is given' do
+          subject { instance.border { } }
+
+          it { subject.must_be_instance_of(Vedeu::Border) }
+
+          context 'when the name is not given' do
+            it 'uses the interface name for storing the border' do
+              subject.name.must_equal('actinium')
+            end
+          end
+
+          context 'when the name is given' do
+            subject { instance.border('magnesium') { } }
+
+            it 'uses the name for storing the border' do
+              subject.name.must_equal('magnesium')
+            end
+          end
         end
       end
 
@@ -59,7 +77,7 @@ module Vedeu
 
         it {
           subject
-          Vedeu.cursors.find('actinium').state.visible?.must_equal(false)
+          Vedeu.cursors.find('actinium').visible?.must_equal(false)
         }
 
         context 'when the value is false' do
@@ -67,16 +85,16 @@ module Vedeu
 
           it {
             subject
-            Vedeu.cursors.find('actinium').state.visible?.must_equal(false)
+            Vedeu.cursors.find('actinium').visible?.must_equal(false)
           }
         end
 
-        context 'when the value is :hide' do
-          let(:value) { :hide }
+        context 'when the value is nil' do
+          let(:value) {}
 
           it {
             subject
-            Vedeu.cursors.find('actinium').state.visible?.must_equal(false)
+            Vedeu.cursors.find('actinium').visible?.must_equal(false)
           }
         end
 
@@ -85,7 +103,7 @@ module Vedeu
 
           it {
             subject
-            Vedeu.cursors.find('actinium').state.visible?.must_equal(true)
+            Vedeu.cursors.find('actinium').visible?.must_equal(true)
           }
         end
 
@@ -94,7 +112,7 @@ module Vedeu
 
           it {
             subject
-            Vedeu.cursors.find('actinium').state.visible?.must_equal(true)
+            Vedeu.cursors.find('actinium').visible?.must_equal(true)
           }
         end
 
@@ -103,7 +121,7 @@ module Vedeu
 
           it {
             subject
-            Vedeu.cursors.find('actinium').state.visible?.must_equal(true)
+            Vedeu.cursors.find('actinium').visible?.must_equal(true)
           }
         end
       end
@@ -113,7 +131,7 @@ module Vedeu
 
         it {
           subject
-          Vedeu.cursors.find('actinium').state.visible?.must_equal(true)
+          Vedeu.cursors.find('actinium').visible?.must_equal(true)
         }
       end
 
@@ -159,12 +177,30 @@ module Vedeu
           end
         }
 
-        it { subject.must_be_instance_of(Vedeu::Geometry) }
-
-        context 'when the require block is not provided' do
+        context 'when the required block is not provided' do
           subject { instance.geometry }
 
           it { proc { subject }.must_raise(InvalidSyntax) }
+        end
+
+        context 'when the block is given' do
+          subject { instance.geometry { } }
+
+          it { subject.must_be_instance_of(Vedeu::Geometry) }
+
+          context 'when the name is not given' do
+            it 'uses the interface name for storing the geometry' do
+              subject.name.must_equal('actinium')
+            end
+          end
+
+          context 'when the name is given' do
+            subject { instance.geometry('magnesium') { } }
+
+            it 'uses the name for storing the geometry' do
+              subject.name.must_equal('magnesium')
+            end
+          end
         end
       end
 
@@ -184,13 +220,15 @@ module Vedeu
         end
 
         context 'when the named group exists' do
+          let(:members) { Set['actinium', 'lanthanum'] }
+
           before do
-            Vedeu::Group.new({ name: 'elements', members: ['lanthanum'] }).store
+            Vedeu::Group.new(name: 'elements', members: ['lanthanum']).store
           end
 
           it {
             subject
-            Vedeu.groups.find('elements').members.must_equal(Set['actinium', 'lanthanum'])
+            Vedeu.groups.find('elements').members.must_equal(members)
           }
         end
 
@@ -236,6 +274,33 @@ module Vedeu
 
           Vedeu.use('nickel').name.must_equal('nickel')
         end
+      end
+
+      describe '#show!' do
+        subject {
+          Vedeu.interface 'xenon' do
+            show!
+          end
+        }
+
+        it { subject.visible.must_equal(true) }
+      end
+
+      describe '#hide!' do
+        subject {
+          Vedeu.interface 'xenon' do
+            hide!
+          end
+        }
+
+        it { subject.visible.must_equal(false) }
+      end
+
+      describe '#visible' do
+        it { instance.visible(false).must_equal(false) }
+        it { instance.visible(true).must_equal(true) }
+        it { instance.visible(nil).must_equal(false) }
+        it { instance.visible(:show).must_equal(true) }
       end
 
     end # Interface

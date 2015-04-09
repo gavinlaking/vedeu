@@ -13,7 +13,7 @@ module Vedeu
         ox:         ox,
         oy:         oy,
         repository: repository,
-        state:      state,
+        visible:    visible,
         x:          x,
         y:          y,
       }
@@ -22,32 +22,39 @@ module Vedeu
     let(:ox)         { 3 }
     let(:oy)         { 2 }
     let(:repository) { Vedeu.cursors }
-    let(:state)      { :show }
+    let(:visible)    { true }
     let(:x)          { 19 }
     let(:y)          { 8 }
 
     describe '#initialize' do
-      it { instance.must_be_instance_of(Cursor) }
-      it { instance.instance_variable_get('@name').must_equal('silver') }
-      it { instance.instance_variable_get('@ox').must_equal(3) }
-      it { instance.instance_variable_get('@oy').must_equal(2) }
-      it { instance.instance_variable_get('@repository').must_equal(Vedeu.cursors) }
-      it { instance.instance_variable_get('@state').must_be_instance_of(Vedeu::Visible) }
-      it { instance.instance_variable_get('@x').must_equal(19) }
-      it { instance.instance_variable_get('@y').must_equal(8) }
+      subject { instance }
 
-      it { instance.instance_variable_get('@position').must_be_instance_of(Vedeu::Position) }
+      it { subject.must_be_instance_of(Cursor) }
+      it { subject.instance_variable_get('@name').must_equal('silver') }
+      it { subject.instance_variable_get('@ox').must_equal(3) }
+      it { subject.instance_variable_get('@oy').must_equal(2) }
+      it { subject.instance_variable_get('@repository').must_equal(repository) }
+      it { subject.instance_variable_get('@visible').must_equal(true) }
+      it { subject.instance_variable_get('@x').must_equal(19) }
+      it { subject.instance_variable_get('@y').must_equal(8) }
+
+      it do
+        subject.instance_variable_get('@position').
+          must_be_instance_of(Vedeu::Position)
+      end
     end
 
     describe '#inspect' do
       subject { instance.inspect }
 
       it { subject.must_be_instance_of(String) }
-      it { subject.must_equal("<Vedeu::Cursor (silver, visible, x:19, y:8, ox:3, oy:2)>") }
+      it { subject.must_equal(
+        '<Vedeu::Cursor (silver, true, x:19, y:8, ox:3, oy:2)>'
+      ) }
     end
 
     describe '#to_s' do
-      let(:state) { true }
+      let(:visible) { true }
 
       subject { instance.to_s }
 
@@ -60,7 +67,7 @@ module Vedeu
       end
 
       context 'when the cursor is invisible' do
-        let(:state) { false }
+        let(:visible) { false }
 
         it 'returns the invisible cursor escape sequence with position' do
           subject.must_equal("\e[8;19H\e[?25l")
@@ -74,8 +81,9 @@ module Vedeu
           end
         }
 
-        it 'returns the escape sequence to position and set the visibility of ' \
-           'the cursor and returns to that position after yielding the block' do
+        it 'returns the escape sequence to position and set the visibility ' \
+           'of the cursor and returns to that position after yielding the '  \
+           'block' do
           subject.must_equal("\e[8;19H\e[?25h\e[8;19H\e[?25h")
         end
       end

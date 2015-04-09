@@ -38,13 +38,13 @@ module Vedeu
     extend Forwardable
 
     def_delegators :@interface, :border,
-                                :border?,
-                                :geometry
+                   :border?,
+                   :geometry
 
     def_delegators :geometry, :left,
-                              :top,
-                              :height,
-                              :width
+                   :top,
+                   :height,
+                   :width
 
     # Returns an instance of Vedeu::Move.
     #
@@ -174,29 +174,19 @@ module Vedeu
 
     # @return [PositionValidator]
     def validator
-      @validator ||= Vedeu::PositionValidator.validate(interface,
-                                                      coordinate.x_position(ox),
-                                                      coordinate.y_position(oy))
+      @validator ||= Vedeu::PositionValidator.validate(interface.name,
+                                                       x_position,
+                                                       y_position)
     end
 
-    # Apply the direction amount to the cursor offset. If the offset is less
-    # than 0, correct to 0.
-    #
     # @return [Fixnum]
-    def ox
-      ox = cursor.ox + dx
-      ox = 0 if ox < 0
-      ox
+    def x_position
+      coordinate.x_position(ox)
     end
 
-    # Apply the direction amount to the cursor offset. If the offset is less
-    # than 0, correct to 0.
-    #
     # @return [Fixnum]
-    def oy
-      oy = cursor.oy + dy
-      oy = 0 if oy < 0
-      oy
+    def y_position
+      coordinate.y_position(oy)
     end
 
     # @return [Coordinate]
@@ -223,6 +213,26 @@ module Vedeu
       return border.width if border?
 
       width
+    end
+
+    # Apply the direction amount to the cursor offset. If the offset is less
+    # than 0, correct to 0.
+    #
+    # @return [Fixnum]
+    def ox
+      ox = cursor.ox + dx
+      ox = 0 if ox < 0
+      ox
+    end
+
+    # Apply the direction amount to the cursor offset. If the offset is less
+    # than 0, correct to 0.
+    #
+    # @return [Fixnum]
+    def oy
+      oy = cursor.oy + dy
+      oy = 0 if oy < 0
+      oy
     end
 
   end # Move

@@ -20,11 +20,7 @@ module Vedeu
                       stdout = STDOUT,
                       stderr = STDERR,
                       kernel = Kernel)
-      new(argv,
-          stdin  = STDIN,
-          stdout = STDOUT,
-          stderr = STDERR,
-          kernel = Kernel).debug_execute!
+      new(argv, stdin, stdout, stderr, kernel).debug_execute!
     end
 
     # Returns a new instance of Vedeu::Launcher.
@@ -72,7 +68,6 @@ module Vedeu
     rescue StandardError => uncaught_exception
       puts uncaught_exception.message
       puts uncaught_exception.backtrace.join("\n") if configuration.debug?
-
     end
 
     private
@@ -85,13 +80,17 @@ module Vedeu
     #
     # @return [void]
     def terminate!
-      Vedeu.log(type: :info, message: "Exiting gracefully.")
+      Vedeu.log(type: :info, message: 'Exiting gracefully.')
 
       $stdin, $stdout, $stderr = STDIN, STDOUT, STDERR
 
       @kernel.exit(exit_code)
     end
 
+    # Use the arguments passed on the command-line along with those defined by
+    # the client application and Vedeu's defaults to configure the client
+    # application.
+    #
     # @return [Vedeu::Configuration]
     def configuration
       Vedeu::Configuration.configure(argv)

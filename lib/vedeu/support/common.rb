@@ -15,14 +15,6 @@ module Vedeu
       false
     end
 
-    # Returns the array as a sentence.
-    #
-    # @param array [Array]
-    # @return [String]
-    def to_sentence(array)
-      Vedeu::Sentence.construct(array)
-    end
-
   end # Common
 
 end # Vedeu

@@ -9,7 +9,8 @@ Vedeu (vee-dee-you; aka VDU) is my attempt at creating a terminal based applicat
 
 ## Requirements
 
-Vedeu has been built on MacOSX 10.9/10.10 (Mavericks/Yosemite) with Ruby v2.1.
+Vedeu has been built primarily on MacOSX 10.9/10.10 (Mavericks/Yosemite) with
+ Ruby v2.1.
 
 Note: You may have trouble running Vedeu with Windows installations. (Pull requests welcome!)
 
@@ -107,7 +108,7 @@ Referring to the above example, interfaces have a name, and various default attr
 
 Note: not setting a width or height will set the values to the terminal's reported width and height.
 
-- `foreground` sets the default foreground colour. (See Colours)
+- `foreground` sets the default foreground colour.
 - `background` sets the default background colour.
 
 
@@ -119,34 +120,6 @@ More information about events can be found in the [RubyDoc](http://rubydoc.info/
 ### Geometry
 
 Geometry for Vedeu, as the same for ANSI terminals, is set top-left, which is cell/point 1, 1. Interfaces themselves have internal geometry which is handled automatically. Unless you are doing something special, you will probably only set it on a per-interface basis.
-
-
-### Colours
-
-Vedeu uses HTML/CSS style notation (i.e. '#aadd00'), they can be used at the stream level, the line level or for the whole interface. Terminals generally support either 8, 16 or 256 colours, with few supporting full 24-bit colour. Vedeu attempts to detect the colour depth using the `$TERM` environment variable.
-
-To set your `$TERM` variable to allow 256 colour support:
-
-```bash
-echo "export TERM=xterm-256color" >> ~/.bashrc
-```
-
-or, if you wish not to tamper with `$TERM`:
-
-```bash
-echo "export VEDEU_TERM=xterm-256color" >> ~/.bashrc
-```
-
-If you know your terminal supports full 24-bit colour, set the `$VEDEU_TERM` environment variable:
-
-```bash
-echo "export VEDEU_TERM=xterm-truecolor" >> ~/.bashrc
-```
-
-
-### Styles
-
-Vedeu has a range of symbol styles which are compatible with most terminals which are ANSI compatible. Like colours, they can be defined in either interfaces, for specific lines or within streams. Styles are applied as encountered.
 
 
 ## Debugging & Environment Variables

@@ -7,12 +7,12 @@ module Vedeu
     let(:described) { Vedeu::Move }
     let(:instance)  { described.new(cursor, interface, dy, dx) }
     let(:cursor)    {
-      Cursor.new({ name: 'Move',
-                   ox:    ox,
-                   oy:    oy,
-                   state: :show,
-                   x:     x,
-                   y:     y })
+      Cursor.new(name: 'Move',
+                 ox:    ox,
+                 oy:    oy,
+                 visible: true,
+                 x:     x,
+                 y:     y)
     }
     let(:ox)        { 0 }
     let(:oy)        { 0 }
@@ -75,7 +75,7 @@ module Vedeu
         Vedeu.cursors.reset
 
         interface_with_border
-        Vedeu::Cursor.new({ name: 'manganese', oy: 2, ox: 3, x: 8, y: 7 }).store
+        Vedeu::Cursor.new(name: 'manganese', oy: 2, ox: 3, x: 8, y: 7).store
       end
 
       subject { Move.by_name(direction, _name) }

@@ -35,6 +35,13 @@ module Vedeu
       [y, x]
     end
 
+    # @param other [Vedeu::PositionIndex]
+    # @return [Boolean]
+    def eql?(other)
+      self.class == other.class && (x == other.x && y == other.y)
+    end
+    alias_method :==, :eql?
+
     # @return [Vedeu::Position]
     def to_position
       Vedeu::Position.new(y, x)

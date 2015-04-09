@@ -1,6 +1,3 @@
-require 'drb'
-require 'singleton'
-
 module Vedeu
 
   module Distributed
@@ -156,7 +153,6 @@ module Vedeu
         end
       rescue NoMethodError # raised when #join is called on NilClass.
         # ...
-
       end
 
       private

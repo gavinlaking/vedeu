@@ -5,11 +5,14 @@ $LOAD_PATH.unshift(lib_dir) unless $LOAD_PATH.include?(lib_dir)
 
 require 'vedeu'
 
+# A simple example application to test the input of commands. This will test
+# the functionality of 'cooked' mode.
+#
 class VedeuTypedCommands
+
   include Vedeu
 
   configure do
-    colour_mode 16_777_216
     debug!
     log '/tmp/vedeu_typed_commands_app.log'
   end
@@ -83,6 +86,7 @@ class VedeuTypedCommands
   def self.start(argv = ARGV)
     Vedeu::Launcher.execute!(argv)
   end
+
 end
 
 VedeuTypedCommands.start(ARGV)

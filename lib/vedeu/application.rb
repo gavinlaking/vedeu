@@ -116,7 +116,6 @@ module Vedeu
       Vedeu.trigger(:_drb_restart_)
 
       Vedeu::Application.restart(configuration)
-
     end
 
     # :nocov:

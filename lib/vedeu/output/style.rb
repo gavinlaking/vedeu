@@ -1,19 +1,42 @@
 require 'vedeu/support/common'
-require 'vedeu/support/coercions'
 
 module Vedeu
 
   # Converts the style value or value collection into a terminal escape
   # sequence. Unrecognised values are discarded- an empty string is returned.
   #
+  # Vedeu has a range of symbol styles which are compatible with most terminals
+  # which are ANSI compatible. Like colours, they can be defined in either
+  # interfaces, for specific lines or within streams.
+  # Styles are applied as encountered.
+  #
+  # @see Vedeu::Esc
+  #
   class Style
 
     include Vedeu::Common
-    include Vedeu::Coercions
 
     # @!attribute [rw] value
     # @return [String|Symbol]
     attr_accessor :value
+
+    # Produces new objects of the correct class from the value, ignores objects
+    # that have already been coerced.
+    #
+    # @param value [Object|NilClass]
+    # @return [Object]
+    def self.coerce(value)
+      if value.nil?
+        new
+
+      elsif value.is_a?(self)
+        value
+
+      else
+        new(value)
+
+      end
+    end
 
     # Return a new instance of Vedeu::Style.
     #
@@ -29,9 +52,16 @@ module Vedeu
     # @return [Array<String|Symbol>|String|Symbol]
     def attributes
       {
-        style: value
+        style: value,
       }
     end
+
+    # @param other [Vedeu::Char]
+    # @return [Boolean]
+    def eql?(other)
+      self.class == other.class && value == other.value
+    end
+    alias_method :==, :eql?
 
     # Return the terminal escape sequences after converting the style or styles.
     #

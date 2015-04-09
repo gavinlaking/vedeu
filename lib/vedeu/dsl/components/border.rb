@@ -117,11 +117,13 @@ module Vedeu
       #         # ... or
       #         show_bottom!
       #
-      # @param boolean [Boolean] All values evaluate as true except nil and
+      # @param value [Boolean] All values evaluate as true except nil and
       #   false.
       # @return [Boolean]
-      def bottom(boolean)
-        model.show_bottom = !!boolean
+      def bottom(value)
+        boolean = value ? true : false
+
+        model.show_bottom = boolean
       end
       alias_method :show_bottom, :bottom
 
@@ -147,11 +149,13 @@ module Vedeu
       #         # ... or
       #         show_left!
       #
-      # @param boolean [Boolean] All values evaluate as true except nil and
+      # @param value [Boolean] All values evaluate as true except nil and
       #   false.
       # @return [Boolean]
-      def left(boolean)
-        model.show_left = !!boolean
+      def left(value)
+        boolean = value ? true : false
+
+        model.show_left = boolean
       end
       alias_method :show_left, :left
 
@@ -177,11 +181,13 @@ module Vedeu
       #         # ... or
       #         show_right!
       #
-      # @param boolean [Boolean] All values evaluate as true except nil and
+      # @param value [Boolean] All values evaluate as true except nil and
       #   false.
       # @return [Boolean]
-      def right(boolean)
-        model.show_right = !!boolean
+      def right(value)
+        boolean = value ? true : false
+
+        model.show_right = boolean
       end
       alias_method :show_right, :right
 
@@ -225,11 +231,13 @@ module Vedeu
       #         # ... or
       #         show_top!
       #
-      # @param boolean [Boolean] All values evaluate as true except nil and
+      # @param value [Boolean] All values evaluate as true except nil and
       #   false.
       # @return [Boolean]
-      def top(boolean)
-        model.show_top = !!boolean
+      def top(value)
+        boolean = value ? true : false
+
+        model.show_top = boolean
       end
       alias_method :show_top, :top
 

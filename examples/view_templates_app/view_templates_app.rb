@@ -8,10 +8,10 @@ require 'vedeu'
 # An example application to demonstrate templates.
 #
 class VedeuViewTemplateApp
+
   include Vedeu
 
   configure do
-    colour_mode 16_777_216
     debug!
     log '/tmp/vedeu_view_templates_app.log'
   end
@@ -72,13 +72,16 @@ class VedeuViewTemplateApp
 
   renders do
     template_for('default', (File.dirname(__FILE__) + '/template.erb'), nil)
-    template_for('prune', (File.dirname(__FILE__) + '/template.erb'), nil, { mode: :prune, width: 22 })
-    template_for('wrap', (File.dirname(__FILE__) + '/template.erb'), nil, { mode: :wrap, width: 25 })
+    template_for('prune', (File.dirname(__FILE__) + '/template.erb'), nil,
+                 mode: :prune, width: 22)
+    template_for('wrap', (File.dirname(__FILE__) + '/template.erb'), nil,
+                 mode: :wrap, width: 25)
   end
 
   def self.start(argv = ARGV)
     Vedeu::Launcher.execute!(argv)
   end
+
 end
 
 VedeuViewTemplateApp.start(ARGV)

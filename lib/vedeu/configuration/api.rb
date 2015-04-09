@@ -34,11 +34,10 @@ module Vedeu
       #
       # @return [Hash<Symbol => Boolean, Fixnum, String>]
       def configuration
-        options.merge!({
-          system_keys: Configuration.default_system_keys.merge!(system_keys)
-        }) if system_keys.any?
+        new_system_keys = Configuration.default_system_keys.merge!(system_keys)
+        options.merge!(system_keys: new_system_keys) if system_keys.any?
 
-        Vedeu::Config.log('API', options)
+        Vedeu::Config.log(Esc.green { '[api]' }, options)
       end
 
       # Sets boolean to allow user input. The default behaviour of Vedeu is to
@@ -238,6 +237,12 @@ module Vedeu
       #     colour_mode 256
       #     ...
       #
+      # @note
+      #   iTerm 2 on Mac OSX will handle the true colour setting (16777216),
+      #   whereas Terminator on Linux will not display colours correctly. For
+      #   compatibility across platforms, it is recommended to either not set
+      #   the colour mode at all and allow it to be detected, or use 256 here.
+      #
       # @param value [Fixnum]
       # @raise [InvalidSyntax] When the value parameter is not one of +8+, +16+,
       #   +256+ or +16777216+.
@@ -260,6 +265,25 @@ module Vedeu
       def log(filename = '')
         options[:log] = filename
       end
+
+      # Sets the renderers for Vedeu. Each renderer added must have the class
+      # method '.render' defined as this will be called when rendering content.
+      #
+      # @example
+      #   Vedeu.configure do
+      #     renderer MyRenderer
+      #     ...
+      #
+      #   Vedeu.configure do
+      #     renderers MyRenderer, MyOtherRenderer
+      #     ...
+      #
+      # @param renderer [Array<Class>|Class]
+      # @return [Array<Class>]
+      def renderer(*renderer)
+        options[:renderers] = Vedeu::Configuration.renderers + renderer
+      end
+      alias_method :renderers, :renderer
 
       # Sets the value of STDIN.
       #

@@ -1,30 +1,20 @@
-require 'vedeu/output/esc'
-
-require 'vedeu/output/translator'
-require 'vedeu/output/background'
-require 'vedeu/output/foreground'
-
-require 'vedeu/output/border'
-require 'vedeu/output/null_border'
-require 'vedeu/output/colour'
-require 'vedeu/output/compositor'
-
-require 'vedeu/output/clear'
-
-require 'vedeu/output/presentation'
-require 'vedeu/output/style'
-require 'vedeu/output/text'
-require 'vedeu/output/virtual_buffer'
-require 'vedeu/output/html_char'
-require 'vedeu/output/refresh'
-
-require 'vedeu/output/renderers/all'
-
-require 'vedeu/output/output'
-
-require 'vedeu/output/viewport'
-require 'vedeu/output/virtual_terminal'
-require 'vedeu/output/wordwrap'
-
-module Vedeu
-end # Vedeu
+require_relative 'esc'
+require_relative 'translator'
+require_relative 'background'
+require_relative 'foreground'
+require_relative 'border'
+require_relative 'null_border'
+require_relative 'colour'
+require_relative 'compressor'
+require_relative 'clear'
+require_relative 'presentation'
+require_relative 'style'
+require_relative 'text'
+require_relative 'virtual_buffer'
+require_relative 'html_char'
+require_relative 'refresh'
+require_relative 'renderers/all'
+require_relative 'output'
+require_relative 'viewport'
+require_relative 'virtual_terminal'
+require_relative 'wordwrap'

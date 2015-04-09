@@ -136,28 +136,28 @@ module Vedeu
     def bx
       bo = (enabled? && left?) ? 1 : 0
 
-      interface.x + bo
+      geometry.x + bo
     end
 
     # @return [Fixnum]
     def bxn
       bo = (enabled? && right?) ? 1 : 0
 
-      interface.xn - bo
+      geometry.xn - bo
     end
 
     # @return [Fixnum]
     def by
       bo = (enabled? && top?) ? 1 : 0
 
-      interface.y + bo
+      geometry.y + bo
     end
 
     # @return [Fixnum]
     def byn
       bo = (enabled? && bottom?) ? 1 : 0
 
-      interface.yn - bo
+      geometry.yn - bo
     end
 
     # Returns the width of the interface determined by whether a left, right,
@@ -190,6 +190,7 @@ module Vedeu
 
     # @return [Array<Array<Vedeu::Char>>]
     def render
+      return [] unless interface.visible?
       return [] unless enabled?
 
       out = [top, bottom]
@@ -262,20 +263,8 @@ module Vedeu
       out = []
       out << border(send(prefix_left), prefix_left) if left?
 
-      if prefix == 'top' && defined_value?(title)
-        title_out = []
-        width.times do |ix|
-          title_out << border(horizontal, prefix_horizontal, nil, ix)
-        end
-
-        truncate = title.chomp.slice(0..(width - 5))
-        pad      = truncate.center(truncate.size + 2).chars
-        out << title_out.each_with_index do |b, i|
-          if i >= 1 && i <= pad.size
-            b.border = nil
-            b.value  = pad[(i - 1)]
-          end
-        end
+      if prefix == 'top' && title?
+        out << titlebar
 
       else
         width.times do |ix|
@@ -288,18 +277,90 @@ module Vedeu
       out
     end
 
+    # @return [Array<Vedeu::Char>]
+    def horizontal_border
+      width.times.inject([]) do |a, ix|
+        a << border(horizontal, :top_horizontal, nil, ix)
+        a
+      end
+    end
+
+    # From the second element of {#title_characters} remove the border from each
+    # {#horizontal_border} Vedeu::Char, and add the title character.
+    #
+    # @return [Array<Vedeu::Char>]
+    def titlebar
+      horizontal_border.each_with_index do |char, index|
+        if index >= 1 && index <= title_characters.size
+          char.border = nil
+          char.value  = title_characters[(index - 1)]
+        end
+      end
+    end
+
+    # @return [Array<String>]
+    def title_characters
+      @title_characters ||= padded_title.chars
+    end
+
+    # Pads the title with a single whitespace either side.
+    #
+    # @example
+    #   title = 'Truncated!'
+    #   width = 20
+    #   # => ' Truncated! '
+    #
+    #   width = 10
+    #   # => ' Trunca '
+    #
+    # @return [String]
+    # @see #truncated_title
+    def padded_title
+      truncated_title.center(truncated_title.size + 2)
+    end
+
+    # Truncates the title to the width of the interface, minus characters needed
+    # to ensure there is at least a single character of horizontal border and a
+    # whitespace on either side of the title.
+    #
+    # @example
+    #   title = 'Truncated!'
+    #   width = 20
+    #   # => 'Truncated!'
+    #
+    #   width = 10
+    #   # => 'Trunca'
+    #
+    # @return [String]
+    def truncated_title
+      title.chomp.slice(0..(width - 5))
+    end
+
+    # Return boolean indicating whether this border has a non-empty title.
+    #
+    # @return [Boolean]
+    def title?
+      defined_value?(title)
+    end
+
     # @param value [String]
     # @param type [Symbol|NilClass]
     # @param iy [Fixnum]
     # @param ix [Fixnum]
     # @return [Vedeu::Char]
     def border(value, type = :border, iy = 0, ix = 0)
-      Vedeu::Char.new({ value:    value,
-                        parent:   interface,
-                        colour:   colour,
-                        style:    style,
-                        position: position(type, iy, ix),
-                        border:   type })
+      Vedeu::Char.new(value:    value,
+                      parent:   interface,
+                      colour:   colour,
+                      style:    style,
+                      position: position(type, iy, ix),
+                      border:   type)
+    end
+
+    # @return [Vedeu::Geometry]
+    def geometry
+      # @geometry ||= Vedeu.geometry.find(name)
+      interface.geometry
     end
 
     # @return [Vedeu::Interface]
@@ -335,11 +396,6 @@ module Vedeu
       }
     end
 
-    # @return [Vedeu::Interface]
-    def interface
-      @interface ||= Vedeu.interfaces.find(name)
-    end
-
     # @param name [Symbol]
     # @param iy [Fixnum]
     # @param ix [Fixnum]
@@ -347,24 +403,21 @@ module Vedeu
     def position(name, iy = 0, ix = 0)
       case name
       when :top_horizontal
-        Vedeu::Position[interface.y, (bx + ix)]
+        Vedeu::Position[geometry.y, (bx + ix)]
 
       when :bottom_horizontal
-        Vedeu::Position[interface.yn, (bx + ix)]
+        Vedeu::Position[geometry.yn, (bx + ix)]
 
       when :left_vertical
-        Vedeu::Position[(by + iy), interface.x]
+        Vedeu::Position[(by + iy), geometry.x]
 
       when :right_vertical
-        Vedeu::Position[(by + iy), interface.xn]
+        Vedeu::Position[(by + iy), geometry.xn]
 
-      when :bottom_left  then interface.bottom_left
-      when :bottom_right then interface.bottom_right
-      when :top_left     then interface.top_left
-      when :top_right    then interface.top_right
-      else
-        nil
-
+      when :bottom_left  then geometry.bottom_left
+      when :bottom_right then geometry.bottom_right
+      when :top_left     then geometry.top_left
+      when :top_right    then geometry.top_right
       end
     end
 

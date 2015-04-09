@@ -5,6 +5,11 @@ module Vedeu
   class Text
 
     # @see Vedeu::DSL::Text#text
+    def self.add(value = '', options = {})
+      new(value, options).add
+    end
+
+    # @see Vedeu::DSL::Text#text
     def self.with(value = '', options = {})
       new(value, options).aligned
     end
@@ -13,9 +18,13 @@ module Vedeu
     #
     # @param value [String]
     # @param options [Hash]
-    # @option options width [Integer]
     # @option options anchor [Symbol] See {Text#anchor}
+    # @option options background [String]
+    # @option options colour [Hash|NilClass]
+    # @option options foreground [String]
+    # @option options model [Vedeu::Interface|Vedeu::Line|Vedeu::Stream]
     # @option options pad [String]
+    # @option options width [Integer]
     # @return [Text]
     def initialize(value = '', options = {})
       @value   = value
@@ -37,6 +46,13 @@ module Vedeu
       else
         left
       end
+    end
+
+    # Adds the content to the model.
+    #
+    # @return [void]
+    def add
+      model.add(content)
     end
 
     private
@@ -61,12 +77,57 @@ module Vedeu
       string.center(width, pad)
     end
 
+    # If a colour, background or foreground option is set, use them as the
+    # colour settings for the new Vedeu::Stream.
+    #
+    # @return [void]
+    def colour
+      if options[:colour] || options[:background] || options[:foreground]
+        attrs = if options[:colour] && options[:colour].is_a?(Hash)
+                  options[:colour]
+
+                elsif options[:background] || options[:foreground]
+                  {
+                    background: options[:background],
+                    foreground: options[:foreground],
+                  }
+
+                else
+                  {}
+
+                end
+
+        Vedeu::Colour.coerce(attrs)
+
+      else
+        model.colour
+
+      end
+    end
+
+    # Returns either a Vedeu::Line or Vedeu::Stream containing the text value.
+    #
+    # @return [Vedeu::Line|Vedeu::Stream]
+    def content
+      if model.is_a?(Vedeu::Interface)
+        stream.parent = line
+        line.add(stream)
+        line
+
+      else
+        stream
+
+      end
+    end
+
     # The default values for a new instance of this class.
     #
     # @return [Hash<Symbol => NilClass, String, Symbol>]
     def defaults
       {
         anchor: :left,
+        colour: nil,
+        model:  nil,
         pad:    ' ',
         width:  nil,
       }
@@ -79,11 +140,30 @@ module Vedeu
       string.ljust(width, pad)
     end
 
+    # @return [Vedeu::Line]
+    def line
+      @line ||= Vedeu::Line.build(parent: parent)
+    end
+
+    # Returns the model option if set.
+    #
+    # @return [Vedeu::Interface|Vedeu::Line|Vedeu::Null|Vedeu::Stream]
+    def model
+      @model ||= options[:model] || Vedeu::Null.new
+    end
+
     # The character to use for padding the string.
     #
     # @return [String]
     def pad
       options[:pad]
+    end
+
+    # Returns the parent for the new Vedeu::Stream.
+    #
+    # @return [void]
+    def parent
+      model.is_a?(Vedeu::Stream) ? model.parent : model
     end
 
     # The string padded to width, right justified.
@@ -93,11 +173,28 @@ module Vedeu
       string.rjust(width, pad)
     end
 
+    # Builds and returns a new Vedeu::Stream.
+    #
+    # @return [void]
+    def stream
+      @stream ||= Vedeu::Stream.build(colour: colour,
+                                      parent: parent,
+                                      style:  style,
+                                      value:  aligned)
+    end
+
     # The string, coerced.
     #
     # @return [String]
     def string
       value.to_s
+    end
+
+    # Returns the model's styles.
+    #
+    # @return [void]
+    def style
+      model.style
     end
 
     # Return a boolean indicating that the string is greater than the width.

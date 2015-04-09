@@ -20,18 +20,36 @@ module Vedeu
           line 'nickel'
           line 'osmium'
         end
+        visible(visibility)
       end
     }
+    let(:visibility) { true }
 
     describe '#initialize' do
       it { instance.must_be_instance_of(Viewport) }
       it { instance.instance_variable_get('@interface').must_equal(interface) }
     end
 
+    describe '.render' do
+      subject { described.render(interface) }
+
+      context 'when the interface is visible' do
+
+      end
+
+      context 'when the interface is not visible' do
+        let(:visibility) { false }
+
+        it { subject.must_be_instance_of(Array) }
+
+        it { subject.must_equal([]) }
+      end
+    end
+
     describe '#render' do
       let(:cursor) { Cursor.new(cursor_attributes) }
       let(:cursor_attributes) {
-        { name: 'lithium', ox: ox, oy: oy, state: true, x: x, y: y }
+        { name: 'lithium', ox: ox, oy: oy, visible: true, x: x, y: y }
       }
       let(:lines)  { [] }
       let(:ox)     { 0 }
@@ -57,7 +75,7 @@ module Vedeu
     # describe '#to_s' do
     #   let(:cursor) { Cursor.new(cursor_attributes) }
     #   let(:cursor_attributes) {
-    #     { name: 'lithium', ox: ox, oy: oy, state: true, x: x, y: y }
+    #     { name: 'lithium', ox: ox, oy: oy, visible: true, x: x, y: y }
     #   }
     #   let(:lines)  { [] }
     #   let(:ox)     { 0 }
@@ -80,7 +98,8 @@ module Vedeu
     #   end
 
     #   context 'when there is content' do
-    #     context "when the cursor's y position is outside the viewable area - negative" do
+    #     context "when the cursor's y position is outside the viewable " \
+    #             "area - negative" do
     #       let(:ox) { -4 }
     #       let(:oy) { -4 }
 

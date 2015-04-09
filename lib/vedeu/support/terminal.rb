@@ -33,7 +33,6 @@ module Vedeu
       end
     ensure
       restore_screen
-
     end
 
     # Takes input from the user via the keyboard. Accepts special keys like
@@ -42,17 +41,18 @@ module Vedeu
     # @return [String]
     def input
       keys_or_cmd = if raw_mode?
-        keys = console.getch
-        if keys.ord == 27
-          keys << console.read_nonblock(3) rescue nil
-          keys << console.read_nonblock(2) rescue nil
-        end
-        keys
+                      keys = console.getch
 
-      else
-        console.gets.chomp
+                      if keys.ord == 27
+                        keys << console.read_nonblock(3) rescue nil
+                        keys << console.read_nonblock(2) rescue nil
+                      end
+                      keys
 
-      end
+                    else
+                      console.gets.chomp
+
+                    end
 
       Vedeu.trigger(:tick, Time.now.to_f)
 

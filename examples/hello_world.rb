@@ -11,10 +11,10 @@ require 'vedeu'
 # An example application to demonstrate 'Hello World'.
 #
 class HelloWorldApp
+
   include Vedeu
 
   configure do
-    colour_mode 16_777_216
     debug!
     log '/tmp/vedeu_hello_world.log'
   end
@@ -44,6 +44,7 @@ class HelloWorldApp
   def self.start(argv = ARGV)
     Vedeu::Launcher.execute!(argv)
   end
+
 end
 
 HelloWorldApp.start(ARGV)

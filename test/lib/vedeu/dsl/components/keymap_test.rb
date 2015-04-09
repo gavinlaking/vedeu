@@ -8,7 +8,7 @@ module Vedeu
 
       let(:described) { Vedeu::DSL::Keymap }
       let(:instance)  { described.new(model) }
-      let(:model)     { Vedeu::Keymap.new({ name: '_test_' }) }
+      let(:model)     { Vedeu::Keymap.new(name: '_test_') }
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }

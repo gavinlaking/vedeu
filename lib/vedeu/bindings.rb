@@ -14,14 +14,6 @@ module Vedeu
   #
   module Bindings
 
-    # Vedeu triggers this event when `:_exit_` is triggered. You can hook into
-    # this to perform a special action before the application terminates. Saving
-    # the user's work, session or preferences might be popular here.
-    Vedeu.bind(:_cleanup_) do
-      Vedeu.trigger(:_drb_stop_)
-      Vedeu.trigger(:cleanup)
-    end
-
     Vedeu.bind(:_drb_input_) do |data, type|
       Vedeu.log(type: :drb, message: "Sending input (#{type})")
 
@@ -45,6 +37,14 @@ module Vedeu
     Vedeu.bind(:_drb_start_)   { Vedeu::Distributed::Server.start }
     Vedeu.bind(:_drb_status_)  { Vedeu::Distributed::Server.status }
     Vedeu.bind(:_drb_stop_)    { Vedeu::Distributed::Server.stop }
+
+    # Vedeu triggers this event when `:_exit_` is triggered. You can hook into
+    # this to perform a special action before the application terminates. Saving
+    # the user's work, session or preferences might be popular here.
+    Vedeu.bind(:_cleanup_) do
+      Vedeu.trigger(:_drb_stop_)
+      Vedeu.trigger(:cleanup)
+    end
 
     # When triggered, Vedeu will trigger a `:cleanup` event which you can define
     # (to save files, etc) and attempt to exit.
@@ -82,23 +82,27 @@ module Vedeu
 
     # When triggered will cause Vedeu to trigger the `:_clear_` and `:_refresh_`
     # events. Please see those events for their behaviour.
-    Vedeu.bind(:_resize_, { delay: 0.25 }) { Vedeu.resize }
+    Vedeu.bind(:_resize_, delay: 0.25) { Vedeu.resize }
 
-    Vedeu.bind(:tick) { |time| Vedeu.log(type: :debug, message: "Tick: #{time}") }
-    Vedeu.bind(:tock) { |time| Vedeu.log(type: :debug, message: "Tock: #{time}") }
+    Vedeu.bind(:tick) do |time|
+      Vedeu.log(type: :debug, message: "Tick: #{time}")
+    end
+    Vedeu.bind(:tock) do |time|
+      Vedeu.log(type: :debug, message: "Tock: #{time}")
+    end
 
     # Hide the cursor of the named interface or interface currently in focus.
     Vedeu.bind(:_cursor_hide_) do |name|
       named = name ? Vedeu.cursors.by_name(name) : Vedeu.cursor
 
-      Vedeu::Toggle.hide(named)
+      Vedeu::Visibility.hide(named)
     end
 
     # Show the cursor of the named interface or interface currently in focus.
     Vedeu.bind(:_cursor_show_) do |name|
       named = name ? Vedeu.cursors.by_name(name) : Vedeu.cursor
 
-      Vedeu::Toggle.show(named)
+      Vedeu::Visibility.show(named)
     end
 
     # @see {Vedeu::Move}
@@ -182,13 +186,16 @@ module Vedeu
     end
 
     # Clears the spaces occupied by the interfaces belonging to the named group.
-    Vedeu.bind(:_clear_group_) do |name|
-      Vedeu.groups.find(name).members.each do |group_name|
-        Vedeu.trigger(:_clear_, group_name)
+    Vedeu.bind(:_clear_group_) do |group_name|
+      Vedeu.groups.find(group_name).members.each do |interface_name|
+        Vedeu.trigger(:_clear_, interface_name)
       end
     end
 
     # Will cause all interfaces to refresh, or the named interface if given.
+    #
+    # @note
+    #   Hidden interfaces will be still refreshed in memory but not shown.
     Vedeu.bind(:_refresh_) do |name|
       name ? Vedeu::Refresh.by_name(name) : Vedeu::Refresh.all
     end
@@ -217,6 +224,60 @@ module Vedeu
     #   terminal and show the new group.
     Vedeu.bind(:_hide_group_) do |name|
       Vedeu.trigger(:_clear_group_, name)
+    end
+
+    # Will hide the named interface. If the interface is currently visible, it
+    # will be cleared- rendered blank. To show the interface, the
+    # ':_show_interface_' event should be triggered.
+    # Triggering the ':_hide_group_' event to which this named interface belongs
+    # will also hide the interface.
+    Vedeu.bind(:_hide_interface_) do |name|
+      if name && Vedeu.interfaces.registered?(name)
+        interface = Vedeu.interfaces.find(name)
+
+        if interface.visible?
+          interface = Vedeu::Visibility.hide(interface)
+          Vedeu.buffers.clear(interface.name)
+        end
+      end
+    end
+
+    # Will show the named interface. If the interface is currently invisible, it
+    # will be shown- rendered with its latest content. To hide the interface,
+    # the ':_hide_interface_' event should be triggered.
+    # Triggering the ':_show_group_' event to which this named interface belongs
+    # will also show the interface.
+    Vedeu.bind(:_show_interface_) do |name|
+      if name && Vedeu.interfaces.registered?(name)
+        interface = Vedeu.interfaces.find(name)
+
+        interface = Vedeu::Visibility.show(interface) unless interface.visible?
+
+        Vedeu.buffers.render(interface.name)
+      end
+    end
+
+    # Will toggle the visibility of the named interface. If the interface is
+    # currently visible, the area it occupies will be clears and the interface
+    # will be marked invisible. If the interface is invisible, then the
+    # interface will be marked visible and rendered in the area it occupies.
+    #
+    # @note
+    #   If an interface is marked visible whilst another view is occupying some
+    #   or all of the interface's current position, the interface will overwrite
+    #   this area- this may cause visual corruption.
+    Vedeu.bind(:_toggle_interface_) do |name|
+      if name && Vedeu.interfaces.registered?(name)
+        interface = Vedeu.interfaces.find(name)
+
+        if interface.visible?
+          Vedeu.trigger(:_hide_interface_, name)
+
+        else
+          Vedeu.trigger(:_show_interface_, name)
+
+        end
+      end
     end
 
   end # Bindings

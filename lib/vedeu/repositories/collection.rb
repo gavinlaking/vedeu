@@ -7,6 +7,11 @@ module Vedeu
 
     include Enumerable
 
+    # @!attribute [r] collection
+    # @return [Array|Vedeu::Collection]
+    attr_reader :collection
+    alias_method :all, :collection
+
     # @!attribute [rw] parent
     # @return [Fixnum]
     attr_accessor :parent
@@ -20,7 +25,7 @@ module Vedeu
     # @param name [String|NilClass]
     # @return [Vedeu::Collection]
     def self.coerce(collection = [], parent = nil, name = nil)
-      if collection.kind_of?(Vedeu::Collection)
+      if collection.is_a?(Vedeu::Collection)
         collection
 
       else
@@ -46,7 +51,7 @@ module Vedeu
     # @param value [Fixnum]
     # @return [void]
     def [](value)
-      @collection[value]
+      collection[value]
     end
 
     # Adds an entry to the collection.
@@ -58,40 +63,33 @@ module Vedeu
     end
     alias_method :<<, :add
 
-    # Returns the whole collection.
-    #
-    # @return [Array]
-    def all
-      @collection
-    end
-
     # Provides iteration over the collection.
     #
     # @param block [Proc]
     # @return [Enumerator]
     def each(&block)
-      @collection.each(&block)
+      collection.each(&block)
     end
 
     # Returns a boolean indicating whether the collection is empty.
     #
     # @return [Boolean]
     def empty?
-      @collection.empty?
+      collection.empty?
     end
 
     # Returns the size of the collection.
     #
     # @return [Fixnum]
     def size
-      @collection.size
+      collection.size
     end
 
     # Returns the collection as a String.
     #
     # @return [String]
     def to_s
-      @collection.map(&:to_s).join
+      collection.map(&:to_s).join
     end
 
   end # Collection

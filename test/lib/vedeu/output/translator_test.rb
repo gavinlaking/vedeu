@@ -17,6 +17,20 @@ module Vedeu
       it { instance.instance_variable_get('@colour').must_equal(colour) }
     end
 
+    describe '#eql?' do
+      let(:other) { instance }
+
+      subject { instance.eql?(other) }
+
+      it { subject.must_equal(true) }
+
+      context 'when different to other' do
+        let(:other) { described.new('#ff00ff') }
+
+        it { subject.must_equal(false) }
+      end
+    end
+
     describe '#escape_sequence' do
       subject { instance.escape_sequence }
 

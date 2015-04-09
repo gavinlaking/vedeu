@@ -36,8 +36,8 @@ module Vedeu
       def use(value)
         if Vedeu.interfaces.registered?(value) == false
           fail ModelNotFound, "The properties of this interface (#{value}) " \
-                              "cannot be used, since the interface has not " \
-                              "been defined."
+                              'cannot be used, since the interface has not ' \
+                              'been defined.'
         end
 
         Vedeu.interfaces.find(value)

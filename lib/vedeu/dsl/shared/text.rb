@@ -55,48 +55,15 @@ module Vedeu
       #   than the specified width.
       # @return [String]
       def text(value = '', options = {})
-        output = Vedeu::Text.with(value, options.merge!({ anchor: __callee__ }))
+        options.merge!(anchor: __callee__, model: model)
 
-        content = if model.is_a?(Vedeu::Interface)
-          stream = stream_builder({ value: output })
-          Vedeu::Line.build({ streams: [stream], parent: model })
-
-        elsif model.is_a?(Vedeu::Line)
-          stream_builder({ value: output })
-
-        elsif model.is_a?(Vedeu::Stream)
-          stream_builder({ value: output, parent: model.parent })
-
-        else
-          # should never get here
-
-        end
-
-        model.add(content)
+        Vedeu::Text.add(value, options)
       end
       alias_method :align,  :text
       alias_method :center, :text
       alias_method :centre, :text
       alias_method :left,   :text
       alias_method :right,  :text
-
-      private
-
-      # @param attrs [Hash]
-      # @return [Vedeu::Stream]
-      def stream_builder(attrs)
-        Vedeu::Stream.build(stream_attributes(attrs))
-      end
-
-      # @param attrs [Hash]
-      # @return [Hash]
-      def stream_attributes(attrs)
-        {
-          colour: model.colour,
-          parent: model,
-          style:  model.style,
-        }.merge!(attrs)
-      end
 
     end # Text
 

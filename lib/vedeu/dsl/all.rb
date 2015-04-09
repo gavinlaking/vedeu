@@ -1,12 +1,12 @@
 require 'vedeu/dsl/components/all'
 require 'vedeu/dsl/shared/all'
 
-require 'vedeu/dsl/composition'
-require 'vedeu/dsl/group'
-require 'vedeu/dsl/interface'
-require 'vedeu/dsl/line'
-require 'vedeu/dsl/stream'
-require 'vedeu/dsl/view'
+require_relative 'composition'
+require_relative 'group'
+require_relative 'interface'
+require_relative 'line'
+require_relative 'stream'
+require_relative 'view'
 
 module Vedeu
 

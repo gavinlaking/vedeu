@@ -8,10 +8,10 @@ require 'vedeu'
 # An example application to demonstrate geometry.
 #
 class VedeuGeometryApp
+
   include Vedeu
 
   configure do
-    colour_mode 16_777_216
     debug!
     log '/tmp/vedeu_geometry_app.log'
   end
@@ -135,6 +135,7 @@ class VedeuGeometryApp
   def self.start(argv = ARGV)
     Vedeu::Launcher.execute!(argv)
   end
+
 end
 
 VedeuGeometryApp.start(ARGV)

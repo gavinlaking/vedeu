@@ -1,4 +1,3 @@
-require 'vedeu/geometry/content'
 require 'vedeu/models/all'
 require 'vedeu/output/null_border'
 require 'vedeu/output/presentation'
@@ -22,10 +21,6 @@ module Vedeu
     collection Vedeu::Lines
     member     Vedeu::Line
 
-    # @!attribute [rw] colour
-    # @return [void]
-    attr_accessor :colour
-
     # @!attribute [rw] delay
     # @return [Fixnum|Float]
     attr_accessor :delay
@@ -42,33 +37,34 @@ module Vedeu
     # @return [Vedeu::Composition]
     attr_accessor :parent
 
-    # @!attribute [rw] style
+    # @!attribute [rw] visible
     # @return [String|Symbol]
-    attr_accessor :style
+    attr_accessor :visible
+    alias_method :visible?, :visible
 
     # @!attribute [w] lines
     # @return [Array<Vedeu::Line>]
     attr_writer :lines
 
     def_delegators :geometry,
-      :north,
-      :east,
-      :south,
-      :west,
-      :top,
-      :right,
-      :bottom,
-      :left,
-      :y,
-      :yn,
-      :x,
-      :xn,
-      :width,
-      :height,
-      :top_left,
-      :top_right,
-      :bottom_left,
-      :bottom_right
+                   :north,
+                   :east,
+                   :south,
+                   :west,
+                   :top,
+                   :right,
+                   :bottom,
+                   :left,
+                   :y,
+                   :yn,
+                   :x,
+                   :xn,
+                   :width,
+                   :height,
+                   :top_left,
+                   :top_right,
+                   :bottom_left,
+                   :bottom_right
 
     # Return a new instance of Vedeu::Interface.
     #
@@ -80,6 +76,7 @@ module Vedeu
     # @option attributes name [String]
     # @option attributes parent [Vedeu::Composition]
     # @option attributes style [Vedeu::Style]
+    # @option attributes visible [Boolean]
     # @return [Vedeu::Interface]
     def initialize(attributes = {})
       @attributes = defaults.merge!(attributes)
@@ -92,6 +89,7 @@ module Vedeu
       @parent     = @attributes[:parent]
       @repository = Vedeu.interfaces
       @style      = @attributes[:style]
+      @visible    = @attributes[:visible]
     end
 
     # @param child []
@@ -106,12 +104,13 @@ module Vedeu
     # @return [Hash]
     def attributes
       {
-        colour:   colour,
-        delay:    delay,
-        group:    group,
-        name:     name,
-        parent:   parent,
-        style:    style,
+        colour:  colour,
+        delay:   delay,
+        group:   group,
+        name:    name,
+        parent:  parent,
+        style:   style,
+        visible: true,
       }
     end
 
@@ -126,18 +125,12 @@ module Vedeu
     #
     # @return [Vedeu::Border|NilClass]
     def border
-      @border ||= if border?
-        Vedeu.borders.find(name)
-
-      else
-        Vedeu::NullBorder.new(self)
-
-      end
+      @border ||= Vedeu.borders.by_name(name)
     end
 
     # @return [Array<Array<Vedeu::Char>>]
     def clear
-      Vedeu::Clear.render(self)
+      Vedeu::Clear.new(self)
     end
 
     # Fetch the cursor belonging to this interface (by name), if one does not
@@ -150,7 +143,7 @@ module Vedeu
 
     # @return [Vedeu::Geometry]
     def geometry
-      @geometry ||= Vedeu.geometries.find(name)
+      @geometry ||= Vedeu.geometries.by_name(name)
     end
 
     # @return [Vedeu::Lines]
@@ -171,11 +164,19 @@ module Vedeu
 
     # @return [Array<Array<Vedeu::Char>>]
     def render
-      [
-        border.render,
-        clear,
-        viewport
-      ]
+      if visible?
+        [
+          hide_cursor,
+          clear.render,
+          border.render,
+          viewport.render,
+          show_cursor,
+        ]
+
+      else
+        []
+
+      end
     end
 
     # @return [Interface]
@@ -190,7 +191,7 @@ module Vedeu
 
     # @return [Array<Array<Vedeu::Char>>]
     def viewport
-      Vedeu::Viewport.render(self)
+      Vedeu::Viewport.new(self)
     end
 
     private
@@ -208,7 +209,22 @@ module Vedeu
         name:   '',
         parent: nil,
         style:  nil,
+        visible: true,
       }
+    end
+
+    # @return [String]
+    def hide_cursor
+      return Vedeu::Esc.string(:hide_cursor) if cursor.visible?
+
+      ''
+    end
+
+    # @return [String]
+    def show_cursor
+      return Vedeu::Esc.string(:show_cursor) if cursor.visible?
+
+      ''
     end
 
   end # Interface

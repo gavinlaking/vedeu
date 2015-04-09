@@ -1,5 +1,3 @@
-require 'singleton'
-
 module Vedeu
 
   # The size of the terminal is a limitation. Defining a canvas means we have
@@ -8,6 +6,18 @@ module Vedeu
   class Canvas
 
     include Singleton
+
+    # @!attribute [r] yn
+    # @return [Fixnum]
+    attr_reader :yn
+    alias_method :bottom, :yn
+    alias_method :height, :yn
+
+    # @!attribute [r] xn
+    # @return [Fixnum]
+    attr_reader :xn
+    alias_method :right, :xn
+    alias_method :width, :xn
 
     # @return [Vedeu::Canvas]
     def self.canvas
@@ -65,24 +75,10 @@ module Vedeu
     alias_method :top, :y
 
     # @return [Fixnum]
-    def yn
-      @yn
-    end
-    alias_method :bottom, :yn
-    alias_method :height, :yn
-
-    # @return [Fixnum]
     def x
       1
     end
     alias_method :left, :x
-
-    # @return [Fixnum]
-    def xn
-      @xn
-    end
-    alias_method :right, :xn
-    alias_method :width, :xn
 
   end # Canvas
 

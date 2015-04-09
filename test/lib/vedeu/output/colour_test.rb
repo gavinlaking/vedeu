@@ -14,8 +14,10 @@ module Vedeu
     }
 
     describe '#initialize' do
-      it { instance.must_be_instance_of(described) }
-      it { instance.instance_variable_get('@attributes').must_equal(attributes) }
+      subject { instance }
+
+      it { subject.must_be_instance_of(described) }
+      it { subject.instance_variable_get('@attributes').must_equal(attributes) }
     end
 
     describe '#background' do
@@ -45,9 +47,23 @@ module Vedeu
     describe '#background=' do
       let(:value) { '#000000' }
 
-      subject { instance.background=(value) }
+      subject { instance.background = (value) }
 
       it { subject.must_equal(value) }
+    end
+
+    describe '#eql?' do
+      let(:other) { instance }
+
+      subject { instance.eql?(other) }
+
+      it { subject.must_equal(true) }
+
+      context 'when different to other' do
+        let(:other) { described.new(background: '#ff0000') }
+
+        it { subject.must_equal(false) }
+      end
     end
 
     describe '#foreground' do
@@ -77,7 +93,7 @@ module Vedeu
     describe '#foreground=' do
       let(:value) { '#ff0000' }
 
-      subject { instance.foreground=(value) }
+      subject { instance.foreground = (value) }
 
       it { subject.must_equal(value) }
     end

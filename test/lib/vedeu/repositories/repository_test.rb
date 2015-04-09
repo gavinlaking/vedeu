@@ -39,36 +39,28 @@ module Vedeu
       it { instance.instance_variable_get('@storage').must_equal(storage) }
     end
 
-    describe '#all' do
-      subject { instance.all }
-
-      it 'returns the whole repository' do
-        subject.must_equal(storage)
-      end
-    end
-
-    describe '#each' do
-      subject { instance.each }
-
-      it { subject.must_be_instance_of(Enumerator) }
-    end
-
-    describe '#empty?' do
-      subject { instance.empty? }
-
-      context 'when the storage is empty' do
-        it { subject.must_equal(true) }
-      end
-
-      context 'when the storage is not empty' do
-        let(:storage) { [:item] }
-
-        it { subject.must_equal(false) }
-      end
-    end
-
     describe '#find' do
       subject { instance.find(model_name) }
+
+      context 'when the model cannot be found' do
+        let(:model_name) { 'not_found' }
+
+        it { subject.must_be_instance_of(NilClass) }
+      end
+
+      context 'when the model is found' do
+        let(:model_instance) { model.new('terbium') }
+
+        before { instance.store(model_instance) }
+
+        it 'returns the stored model' do
+          subject.must_equal(model_instance)
+        end
+      end
+    end
+
+    describe '#find!' do
+      subject { instance.find!(model_name) }
 
       context 'when the model cannot be found' do
         let(:model_name) { 'not_found' }
@@ -91,8 +83,6 @@ module Vedeu
       let(:model_instance) { TestModel.new('niobium') }
 
       subject { instance.find_or_create(model_name) }
-
-      it { instance.find_or_create('zinc').must_be_instance_of(Vedeu::TestModel) }
 
       context 'when the model exists' do
         let(:model_name) { 'niobium' }
@@ -119,7 +109,7 @@ module Vedeu
       context 'when the storage is a Hash' do
         it 'returns a collection of the names of all the registered entities' do
           repo = RepositoriesTestClass.new
-          repo.add({ 'rutherfordium' => { name: 'rutherfordium' } })
+          repo.add('rutherfordium' => { name: 'rutherfordium' })
 
           repo.registered.must_equal(['rutherfordium'])
         end
@@ -163,7 +153,7 @@ module Vedeu
 
       it 'returns false when the model is not registered' do
         repo = RepositoriesTestClass.new
-        repo.add({ name: 'samarium' })
+        repo.add(name: 'samarium')
 
         repo.registered?('terbium').must_equal(false)
       end
@@ -197,16 +187,6 @@ module Vedeu
         it 'returns the storage with the model removed' do
           subject.size.must_equal(1)
         end
-      end
-    end
-
-    describe '#reset' do
-      it 'returns a Hash' do
-        instance.reset.must_be_instance_of(Hash)
-      end
-
-      it 'resets the repository' do
-        instance.reset.must_equal({})
       end
     end
 

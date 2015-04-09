@@ -18,7 +18,9 @@ module Vedeu
     # def self.trace
     #   trace = TracePoint.new(:call) do |tp|
     #     if tp.defined_class.to_s.match(/Troo/)
-    #       Vedeu.log(type: :debug, message: [tp.defined_class.to_s, tp.method_id.to_s].join(' '))
+    #       Vedeu.log(type: :debug,
+    #                 message: [tp.defined_class.to_s,
+    #                           tp.method_id.to_s].join(' '))
     #     end
     #   end
     #   trace.enable
@@ -50,17 +52,15 @@ module Vedeu
     #
     # @return [NilClass|String]
     def trace
-      set_trace_func proc { |event, _file, _line, id, binding, classname|
-        if event == watched && id != :log && classes.include?(classname.to_s)
+      set_trace_func proc { |event, _file, _line, id, binding, name|
+        if event == watched && id != :log && classes.include?(name.to_s)
           vars = variables(binding)
 
           if vars.empty?
-            log_this(sprintf("%s %-25s #%-20s",
-              class_count, classname, id))
+            log_this(format('%s %-25s #%-20s', count, name, id))
 
           else
-            log_this(sprintf("%s %-25s #%-20s\n%s\n",
-              class_count, classname, id, vars))
+            log_this(format("%s %-25s #%-20s\n%s\n", count, name, id, vars))
 
           end
         end
@@ -86,21 +86,15 @@ module Vedeu
     # @param binding [Class]
     # @return [String]
     def variables(binding)
-      entries = []
       binding.eval('local_variables').each do |var|
-        variable = var.to_s
+        variable = Vedeu::Esc.green { var.to_s }
         value    = binding.local_variable_get(var)
-        valclass = value.class.to_s
+        klass    = Vedeu::Esc.magenta { value.class.to_s }
         output   = (value.is_a?(Proc)) ? '#<Proc:...' : value.inspect
+        content  = colour(value.class.to_s, output)
 
-        content  = Vedeu::Esc.send(class_colour.fetch(valclass, :white)) { output }
-
-        entries << sprintf("%33s %-10s = %s %s", " ",
-                                                 Vedeu::Esc.green { variable },
-                                                 Vedeu::Esc.magenta { valclass },
-                                                 content)
-      end
-      entries.join("\n")
+        format('%33s %-10s = %s %s', ' ', variable, klass, content)
+      end.join("\n")
     end
 
     # @return [String]
@@ -129,7 +123,7 @@ module Vedeu
     end
 
     # @return [Hash]
-    def class_colour
+    def colour(klass, output)
       {
         'Array'    => :yellow,
         'Fixnum'   => :cyan,
@@ -137,13 +131,13 @@ module Vedeu
         'NilClass' => :red,
         'String'   => :green,
         'Symbol'   => :magenta,
-      }
+      }.fetch(klass, :white) { |colour| Vedeu::Esc.send(colour) { output } }
     end
 
     # Returns the number of Vedeu classes/modules. (Useful for debugging.)
     #
     # @return [String]
-    def class_count
+    def count
       @count ||= "(#{classes.size}/#{vedeu_classes.size})"
     end
 
@@ -179,89 +173,22 @@ module Vedeu
     # @return [Set]
     def ignored_classes
       Set.new [
-        # 'Vedeu::API',
-        # 'Vedeu::Application',
-        # 'Vedeu::Background',
-        # 'Vedeu::Bindings',
-        # 'Vedeu::Border',
-        # 'Vedeu::BoundingArea',
-        # 'Vedeu::Buffer',
-        # 'Vedeu::Char',
-        # 'Vedeu::Chars',
         'Vedeu::Coercions',
         'Vedeu::Colour',
         'Vedeu::Common',
-        # 'Vedeu::Composition',
-        # 'Vedeu::Compositor',
-        # 'Vedeu::Config::API',
-        # 'Vedeu::Config::CLI',
         'Vedeu::Configuration',
-        # 'Vedeu::Console',
-        # 'Vedeu::Content',
-        # 'Vedeu::Coordinate',
-        # 'Vedeu::Cursor',
-        # 'Vedeu::DisplayBuffer',
-        # 'Vedeu::DSL::Border',
-        # 'Vedeu::DSL::Colour',
-        # 'Vedeu::DSL::Composition',
-        # 'Vedeu::DSL::Geometry',
-        # 'Vedeu::DSL::Interface',
-        # 'Vedeu::DSL::Keymap',
-        # 'Vedeu::DSL::Line',
-        # 'Vedeu::DSL::Menu',
-        # 'Vedeu::DSL::Stream',
-        # 'Vedeu::DSL::Style',
-        # 'Vedeu::DSL::Text',
-        # 'Vedeu::DSL::Use',
-        # 'Vedeu::DSL::View',
         'Vedeu::Esc',
         'Vedeu::Event',
-        # 'Vedeu::Focus',
-        # 'Vedeu::Foreground',
         'Vedeu::Geometry',
-        # 'Vedeu::Grid',
-        # 'Vedeu::Group',
-        # 'Vedeu::Input',
-        # 'Vedeu::Interface',
-        # 'Vedeu::Interfaces',
-        # 'Vedeu::Keymap',
-        # 'Vedeu::Keys',
-        # 'Vedeu::Key',
-        # 'Vedeu::Launcher',
-        # 'Vedeu::Line',
-        # 'Vedeu::Lines',
         'Vedeu::Log',
-        # 'Vedeu::Mapper',
-        # 'Vedeu::Menu',
-        # 'Vedeu::Menus',
-        # 'Vedeu::Model',
-        # 'Vedeu::Collection',
-        # 'Vedeu::Move',
-        # 'Vedeu::Node',
-        # 'Vedeu::Output',
         'Vedeu::Position',
-        # 'Vedeu::PositionValidator',
         'Vedeu::Presentation',
-        # 'Vedeu::Read',
-        # 'Vedeu::Refresh',
-        # 'Vedeu::Render',
         'Vedeu::Repository',
-        # 'Vedeu::Sentence',
         'Vedeu::Stream',
-        # 'Vedeu::Streams',
         'Vedeu::Style',
         'Vedeu::Terminal',
-        # 'Vedeu::Text',
-        # 'Vedeu::Toggle',
         'Vedeu::Trace',
         'Vedeu::Translator',
-        # 'Vedeu::Traps',
-        # 'Vedeu::Trigger',
-        # 'Vedeu::View',
-        # 'Vedeu::Viewport',
-        # 'Vedeu::Visible',
-        # 'Vedeu::Write',
-        # 'Vedeu::Writer',
       ]
     end
 

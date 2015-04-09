@@ -12,7 +12,16 @@ module Vedeu
 
     # @return [Vedeu::Colour]
     def colour
-      @colour ||= Vedeu::Colour.coerce(@colour)
+      if @colour
+        @colour ||= Vedeu::Colour.coerce(@colour)
+
+      elsif parent && parent.colour
+        @colour ||= Vedeu::Colour.coerce(parent.colour)
+
+      else
+        Vedeu::Colour.coerce(nil)
+
+      end
     end
 
     # @return [Vedeu::Colour]
@@ -47,7 +56,16 @@ module Vedeu
 
     # @return [Vedeu::Style]
     def style
-      @style ||= Vedeu::Style.coerce(@style)
+      if @style
+        @style ||= Vedeu::Style.coerce(@style)
+
+      elsif parent && parent.style
+        @style ||= Vedeu::Style.coerce(parent.style)
+
+      else
+        Vedeu::Style.coerce(nil)
+
+      end
     end
 
     # @return [Vedeu::Style]
@@ -61,34 +79,22 @@ module Vedeu
     #
     # @return [String] An escape sequence with value interpolated.
     def to_s
-      render_position { render_colour { render_style { render_border { value } } } }
+      render_position { render_colour { render_style { value } } }
     end
 
     private
 
-    # @return [String]
-    def render_border
-      if self.respond_to?(:border) && !border.nil?
-        Vedeu::Esc.border { yield }
-
-      else
-        yield
-
-      end
-    end
-
-    # Renders the colour attributes of the receiver, yields (to then render the
-    # the styles) and once returned, attempts to set the colours back to the
-    # those of the receiver's parent.
+    # Renders the colour attributes of the receiver and yields (to then render
+    # the styles).
     #
     # @return [String]
     def render_colour
-      [colour, yield, parent_colour].join
+      [colour, yield].join
     end
 
     # @return [String]
     def render_position
-      if self.respond_to?(:position) && self.position.is_a?(Vedeu::Position)
+      if self.respond_to?(:position) && position.is_a?(Vedeu::Position)
         position.to_s { yield }
 
       else
@@ -97,13 +103,12 @@ module Vedeu
       end
     end
 
-    # Renders the style attributes of the receiver, yields (to then render the
-    # next model, or finally, the content) and once returned, attempts to set
-    # the style back to that of the receiver's parent.
+    # Renders the style attributes of the receiver and yields (to then render
+    # the next model, or finally, the content).
     #
     # @return [String]
     def render_style
-      [style, yield, parent_style].join
+      [style, yield].join
     end
 
   end # Presentation

@@ -6,8 +6,16 @@ module Vedeu
     include Vedeu::Model
     include Vedeu::DisplayBuffer
 
+    def colour
+      Vedeu::Colour.new(background: '#000000', foreground: '#ffffff')
+    end
+
     def name
       'test_interface_model'
+    end
+
+    def style
+      Vedeu::Style.new(:normal)
     end
 
     private

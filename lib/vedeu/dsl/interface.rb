@@ -33,14 +33,19 @@ module Vedeu
 
       # Allows the setting of a border for the interface.
       #
+      # @param name [String] The name of the interface; this is already provided
+      #   when we define the interface or view, setting it here is just
+      #   mirroring functionality of {Vedeu::DSL::Border.border}.
       # @param block [Proc]
       # @raise [InvalidSyntax] The required block was not given.
       # @return [Vedeu::Border]
-      def border(&block)
+      def border(name = nil, &block)
         fail InvalidSyntax, 'block not given' unless block_given?
 
-        border_attrs = attributes.merge!({ enabled: true,
-                                           name:    model.name })
+        model_name = name ? name : model.name
+
+        border_attrs = attributes.merge!(enabled: true,
+                                         name:    model_name)
 
         Vedeu::Border.build(border_attrs, &block).store
       end
@@ -67,8 +72,7 @@ module Vedeu
       #     # ...
       #
       #     cursor false # => hide the cursor for this interface
-      #     cursor :hide # => both of these are equivalent to line above
-      #     cursor nil   #
+      #     cursor nil   # => as above
       #     # ...
       #
       #   view 'my_interface' do
@@ -77,7 +81,9 @@ module Vedeu
       #
       # @return [Cursor]
       def cursor(value = true)
-        Vedeu::Cursor.new({ name: model.name, state: value }).store
+        boolean = value ? true : false
+
+        Vedeu::Cursor.new(name: model.name, visible: boolean).store
       end
 
       # Set the cursor to visible for the interface.
@@ -115,20 +121,24 @@ module Vedeu
 
       # Define the geometry for an interface.
       #
-      # @param block [Proc]
-      #
       # @example
       #   interface 'my_interface' do
       #     geometry do
       #       # ...
       #
+      # @param name [String] The name of the interface; this is already provided
+      #   when we define the interface or view, setting it here is just
+      #   mirroring functionality of {Vedeu::DSL::Geometry.geometry}.
+      # @param block [Proc]
       # @raise [InvalidSyntax] The required block was not given.
       # @return [Geometry]
       # @see Vedeu::DSL::Geometry
-      def geometry(&block)
+      def geometry(name = nil, &block)
         fail InvalidSyntax, 'block not given' unless block_given?
 
-        Vedeu::Geometry.build({ name: model.name }, &block).store
+        model_name = name ? name : model.name
+
+        Vedeu::Geometry.build({ name: model_name }, &block).store
       end
 
       # Specify a group for an interface. Interfaces of the same group can be
@@ -151,7 +161,7 @@ module Vedeu
           Vedeu.groups.find(name).add(model.name)
 
         else
-          new_group = Vedeu::Group.new({ name: name })
+          new_group = Vedeu::Group.new(name: name)
           new_group.add(model.name)
 
         end
@@ -202,6 +212,46 @@ module Vedeu
       # @return [String]
       def name(value)
         model.name = value
+      end
+
+      # Set the interface to visible.
+      #
+      # @return [void]
+      def show!
+        visible(true)
+      end
+
+      # Set the interface to invisible.
+      #
+      # @return [void]
+      def hide!
+        visible(false)
+      end
+
+      # Set the visibility of the interface.
+      #
+      # @param value [Boolean] Any value other than nil or false will evaluate
+      #   to true.
+      #
+      # @example
+      #   interface 'my_interface' do
+      #     visible true  # => show the interface
+      #     show!         # => as above
+      #     # ...
+      #
+      #     visible false # => hide the interface
+      #     hide!         # => as above
+      #     # ...
+      #
+      #   view 'my_interface' do
+      #     visible false
+      #     # ...
+      #
+      # @return [void]
+      def visible(value = true)
+        boolean = value ? true : false
+
+        model.visible = boolean
       end
 
       private

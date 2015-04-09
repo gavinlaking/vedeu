@@ -25,6 +25,7 @@ AllCops:
     - '**/Cheffile'
     - '**/Vagabondfile'
   Exclude:
+    - 'test/**/*'
     - 'vendor/**/*'
   # By default, the rails cops are not run. Override in project or home
   # directory .rubocop.yml files, or by giving the -R/--rails option.
@@ -642,7 +643,7 @@ Metrics/LineLength:
 
 Metrics/MethodLength:
   CountComments: false  # count full line comments?
-  Max: 15
+  Max: 70
 
 Metrics/ParameterLists:
   Max: 5

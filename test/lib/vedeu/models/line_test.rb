@@ -16,25 +16,27 @@ module Vedeu
     }
     let(:streams)   {
       [
-        Stream.new({ value: 'Something interesting ',
-          parent: streams_parent,
-          colour: Colour.new({ foreground: '#ffff00' }),
-          style:  Style.new('normal') }),
-        Stream.new({ value: 'on this line ',
-          parent: streams_parent,
-          colour: Colour.new({ foreground: '#00ff00' }),
-          style:  Style.new('normal') }),
-        Stream.new({ value: 'would be cool, eh?',
-          parent: streams_parent,
-          colour: Colour.new({ foreground: '#0000ff' }),
-          style:  Style.new('normal') })
+        Stream.new(value: 'Something interesting ',
+                   parent: streams_parent,
+                   colour: Colour.new(foreground: '#ffff00'),
+                   style:  Style.new('normal')),
+        Stream.new(value: 'on this line ',
+                   parent: streams_parent,
+                   colour: Colour.new(foreground: '#00ff00'),
+                   style:  Style.new('normal')),
+        Stream.new(value: 'would be cool, eh?',
+                   parent: streams_parent,
+                   colour: Colour.new(foreground: '#0000ff'),
+                   style:  Style.new('normal'))
       ]
     }
 
-    let(:streams_parent) { Line.new({ streams: nil, parent: parent, colour: colour, style: style }) }
+    let(:streams_parent) {
+      Line.new(streams: nil, parent: parent, colour: colour, style: style)
+    }
 
-    let(:parent)    { Vedeu::Interface.new({ name: 'Vedeu::Line' }) }
-    let(:colour)    { Colour.new({ foreground: '#ff0000', background: '#000000' }) }
+    let(:parent)    { Vedeu::Interface.new(name: 'Vedeu::Line') }
+    let(:colour)    { Colour.new(foreground: '#ff0000', background: '#000000') }
     let(:style)     { Style.new('normal') }
 
     before do
@@ -139,19 +141,13 @@ module Vedeu
           "\e[24m\e[22m\e[27m"              \
           "\e[38;2;255;255;0m"              \
           "\e[24m\e[22m\e[27m"              \
-          "Something interesting "          \
-          "\e[24m\e[22m\e[27m"              \
-          "\e[38;2;255;0;0m\e[48;2;0;0;0m"  \
+          'Something interesting '          \
           "\e[38;2;0;255;0m"                \
           "\e[24m\e[22m\e[27m"              \
-          "on this line "                   \
+          'on this line '                   \
+          "\e[38;2;0;0;255m"                \
           "\e[24m\e[22m\e[27m"              \
-          "\e[38;2;255;0;0m"                \
-          "\e[48;2;0;0;0m\e[38;2;0;0;255m"  \
-          "\e[24m\e[22m\e[27m"              \
-          "would be cool, eh?"              \
-          "\e[24m\e[22m\e[27m"              \
-          "\e[38;2;255;0;0m\e[48;2;0;0;0m"
+          'would be cool, eh?'
         )
       end
     end
