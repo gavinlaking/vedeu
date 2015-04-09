@@ -7,7 +7,6 @@ module Vedeu
     # @return [Vedeu::Null]
     def initialize; end
 
-    # @params args [NilClass]
     # @return [NilClass]
     def add(*)
       nil
@@ -39,7 +38,6 @@ module Vedeu
     end
     alias_method :visible, :visible?
 
-    # @param value [void]
     # @return [FalseClass]
     def visible=(*)
       false

@@ -35,7 +35,7 @@ module Vedeu
       #
       # @param name [String] The name of the interface; this is already provided
       #   when we define the interface or view, setting it here is just
-      #   mirroring functionality of {Vedeu.border}.
+      #   mirroring functionality of {Vedeu::DSL::Border.border}.
       # @param block [Proc]
       # @raise [InvalidSyntax] The required block was not given.
       # @return [Vedeu::Border]
@@ -128,7 +128,7 @@ module Vedeu
       #
       # @param name [String] The name of the interface; this is already provided
       #   when we define the interface or view, setting it here is just
-      #   mirroring functionality of {Vedeu.geometry}.
+      #   mirroring functionality of {Vedeu::DSL::Geometry.geometry}.
       # @param block [Proc]
       # @raise [InvalidSyntax] The required block was not given.
       # @return [Geometry]
