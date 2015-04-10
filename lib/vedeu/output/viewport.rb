@@ -118,22 +118,31 @@ module Vedeu
       left..(left + (geometry.width - 1))
     end
 
-    # Returns the offset for the content (the number of columns to change the
-    # viewport by on the x axis) determined by the offset (the cursor's x
-    # offset position).
-    #
     # @return [Fixnum]
     def left
-      @left ||= (ox >= width && ((ox - width) > 0)) ? ox - width : 0
+      @left ||= content_offset(ox, width)
     end
 
-    # Returns the offset for the content (the number of rows to change the
-    # viewport by on the y axis) determined by the offset (the cursor's y offset
-    # position.
-    #
     # @return [Fixnum]
     def top
-      @top ||= (oy >= height && ((oy - height) > 0)) ? oy - height : 0
+      @top ||= content_offset(oy, height)
+    end
+
+    # Returns the offset for the content (the number of rows or columns to
+    # change the viewport by on either the y or x axis) determined by the offset
+    # (the cursor's y or x offset position.
+    #
+    # @param offset [Fixnum] The cursor's {oy} or {ox} values.
+    # @param dimension [Fixnum] Either the height or width.
+    # @return [Fixnum]
+    def content_offset(offset, dimension)
+      if (offset >= dimension && ((offset - dimension) > 0))
+        offset - dimension
+
+      else
+        0
+
+      end
     end
 
     # Return the border associated with the interface we are drawing.
