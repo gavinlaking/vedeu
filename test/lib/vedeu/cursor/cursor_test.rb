@@ -37,11 +37,6 @@ module Vedeu
       it { subject.instance_variable_get('@visible').must_equal(true) }
       it { subject.instance_variable_get('@x').must_equal(19) }
       it { subject.instance_variable_get('@y').must_equal(8) }
-
-      it do
-        subject.instance_variable_get('@position').
-          must_be_instance_of(Vedeu::Position)
-      end
     end
 
     describe '#inspect' do

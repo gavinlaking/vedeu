@@ -8,7 +8,6 @@ module Vedeu
   #
   class Cursor
 
-    extend Forwardable
     include Vedeu::Model
 
     # @!attribute [r] attributes
@@ -103,9 +102,10 @@ module Vedeu
 
     private
 
-    # @!attribute [r] position
     # @return [Vedeu::Position]
-    attr_reader :position
+    def position
+      @position ||= Vedeu::Position.new(y, x)
+    end
 
     # The default values for a new instance of this class.
     #
