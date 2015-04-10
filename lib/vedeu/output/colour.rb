@@ -23,21 +23,10 @@ module Vedeu
     # @return [Hash]
     attr_reader :attributes
 
-    # @!attribute [r] background
-    # @return [Background|String]
-    attr_reader :background
-
-    # @!attribute [r] foreground
-    # @return [Foreground|String]
-    attr_reader :foreground
-
     # @param value []
     # @return [Object]
     def self.coerce(value)
-      if value.nil?
-        new
-
-      elsif value.is_a?(self)
+      if value.is_a?(self)
         value
 
       elsif value.is_a?(Hash)
@@ -53,7 +42,7 @@ module Vedeu
         end
 
       else
-        new(value)
+        new
 
       end
     end
@@ -66,9 +55,13 @@ module Vedeu
     # @return [Colour]
     def initialize(attributes = {})
       @attributes = defaults.merge!(attributes)
+    end
 
-      @background = Vedeu::Background.coerce(@attributes[:background])
-      @foreground = Vedeu::Foreground.coerce(@attributes[:foreground])
+    # Returns the background colour as a Vedeu::Background.
+    #
+    # @return [Vedeu::Background]
+    def background
+      @background ||= Vedeu::Background.coerce(attributes[:background])
     end
 
     # Converts the value into a Vedeu::Background.
@@ -86,6 +79,13 @@ module Vedeu
         foreground == other.foreground
     end
     alias_method :==, :eql?
+
+    # Returns the foreground colour as a Vedeu::Foreground.
+    #
+    # @return [Vedeu::Foreground]
+    def foreground
+      @foreground ||= Vedeu::Foreground.coerce(attributes[:foreground])
+    end
 
     # Converts the value into a Vedeu::Foreground.
     #
