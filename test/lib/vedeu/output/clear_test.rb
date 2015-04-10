@@ -12,10 +12,12 @@ module Vedeu
 
       }
     }
-    let(:geometry)  { Vedeu::Geometry.new(x: 1, y: 1, xn: 3, yn: 3)}
     let(:visible)   { true }
 
-    before { interface.stubs(:geometry).returns(geometry) }
+    before do
+      Vedeu::Border.new(name: 'xenon').store
+      Vedeu::Geometry.new(name: 'xenon', x: 1, y: 1, xn: 3, yn: 3).store
+    end
 
     describe '#initialize' do
       it { instance.must_be_instance_of(Vedeu::Clear) }
