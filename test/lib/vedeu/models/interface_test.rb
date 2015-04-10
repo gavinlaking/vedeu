@@ -54,23 +54,6 @@ module Vedeu
                               visible: true) }
     end
 
-    describe '#border?' do
-      subject { instance.border? }
-
-      context 'when the interface has a border' do
-        before { Vedeu.border('hydrogen') { } }
-        after  { Vedeu.borders.reset }
-
-        it { subject.must_equal(true) }
-      end
-
-      context 'when the interface does not have a border' do
-        before { Vedeu.borders.reset }
-
-        it { subject.must_equal(false) }
-      end
-    end
-
     describe '#border' do
       subject { instance.border }
 
