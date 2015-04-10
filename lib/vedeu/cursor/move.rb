@@ -37,27 +37,22 @@ module Vedeu
 
     extend Forwardable
 
-    def_delegators :@interface, :border,
-                   :border?,
-                   :geometry
-
-    def_delegators :geometry, :left,
-                   :top,
+    def_delegators :border,
                    :height,
-                   :width
+                   :width,
+                   :x,
+                   :y
 
     # Returns an instance of Vedeu::Move.
     #
-    # @param cursor    [Cursor]
-    # @param interface [Interface]
-    # @param dy        [Fixnum] Move up (-1), or down (1), or no action (0).
-    # @param dx        [Fixnum] Move left (-1), or right (1), or no action (0).
+    # @param name [String] The name of the cursor.
+    # @param dy [Fixnum] Move up (-1), or down (1), or no action (0).
+    # @param dx [Fixnum] Move left (-1), or right (1), or no action (0).
     # @return [Move]
-    def initialize(cursor, interface, dy = 0, dx = 0)
-      @cursor    = cursor
-      @dy        = dy || 0
-      @dx        = dx || 0
-      @interface = interface
+    def initialize(name, dy = 0, dx = 0)
+      @name = name
+      @dy   = dy
+      @dx   = dx
     end
 
     # Move the named cursor, or that which is currently in focus in the
@@ -71,84 +66,63 @@ module Vedeu
     #   cursor instance to move.
     # @return [Cursor]
     def self.by_name(direction, name = nil)
-      if name
-        cursor     = Vedeu.cursors.by_name(name)
-        interface  = Vedeu.interfaces.find(name)
+      name = name ? name : Vedeu.focus
 
-      else
-        cursor     = Vedeu.cursor
-        interface  = Vedeu.interfaces.current
-
-      end
-
-      new_cursor = Vedeu::Move.send(direction, cursor, interface)
-
-      Vedeu.trigger(:_refresh_cursor_, new_cursor.name)
-
-      new_cursor
+      Vedeu::Move.send(direction, name)
     end
 
     # Moves the cursor down by one row.
     #
-    # @param cursor    [Cursor]
-    # @param interface [Interface]
+    # @param name [String]
     # @return [Cursor]
-    def self.down(cursor, interface)
-      new(cursor, interface, 1, 0).move
+    def self.down(name)
+      new(name, 1, 0).move
     end
 
     # Moves the cursor left by one column.
     #
-    # @param cursor    [Cursor]
-    # @param interface [Interface]
+    # @param name [String]
     # @return [Cursor]
-    def self.left(cursor, interface)
-      return cursor unless cursor.ox > 0
-
-      new(cursor, interface, 0, -1).move
+    def self.left(name)
+      new(name, 0, -1).move
     end
 
     # Moves the cursor right by one column.
     #
-    # @param cursor    [Cursor]
-    # @param interface [Interface]
+    # @param name [String]
     # @return [Cursor]
-    def self.right(cursor, interface)
-      new(cursor, interface, 0, 1).move
+    def self.right(name)
+      new(name, 0, 1).move
     end
 
     # Moves the cursor up by one row.
     #
-    # @param cursor    [Cursor]
-    # @param interface [Interface]
+    # @param name [String]
     # @return [Cursor]
-    def self.up(cursor, interface)
-      return cursor unless cursor.oy > 0
-
-      new(cursor, interface, -1, 0).move
+    def self.up(name)
+      new(name, -1, 0).move
     end
 
     # Moves the cursor to the top left coordinate of the interface.
     #
-    # @param cursor    [Cursor]
-    # @param interface [Interface]
+    # @param name [String]
     # @return [Cursor]
-    def self.origin(cursor, interface)
-      new(cursor, interface, (0 - cursor.y), (0 - cursor.x)).move
+    def self.origin(name)
+      new(name, -2000, -2000).move
     end
 
     # Returns a newly positioned and stored Cursor.
     #
     # @return [Cursor]
     def move
-      Vedeu::Cursor.new(cursor.attributes.merge!(moved_attributes)).store
+      cursor = Vedeu::Cursor.new(attributes.merge!(new_attributes)).store
+
+      Vedeu.trigger(:_refresh_cursor_, name)
+
+      cursor
     end
 
     private
-
-    # @!attribute [r] cursor
-    # @return [Vedeu::Cursor]
-    attr_reader :cursor
 
     # @!attribute [r] dx
     # @return [Fixnum]
@@ -158,12 +132,17 @@ module Vedeu
     # @return [Fixnum]
     attr_reader :dy
 
-    # @!attribute [r] interface
-    # @return [Vedeu::Interface]
-    attr_reader :interface
+    # @!attribute [r] name
+    # @return [String]
+    attr_reader :name
+
+    # @return [Hash<Symbol => Fixnum, String>]
+    def attributes
+      cursor.attributes
+    end
 
     # @return [Hash<Symbol => Fixnum>]
-    def moved_attributes
+    def new_attributes
       {
         x:  validator.x,
         y:  validator.y,
@@ -174,7 +153,7 @@ module Vedeu
 
     # @return [PositionValidator]
     def validator
-      @validator ||= Vedeu::PositionValidator.validate(interface.name,
+      @validator ||= Vedeu::PositionValidator.validate(name,
                                                        x_position,
                                                        y_position)
     end
@@ -189,30 +168,19 @@ module Vedeu
       coordinate.y_position(oy)
     end
 
+    # @return (see Vedeu::Borders#by_name)
+    def border
+      @border ||= Vedeu.borders.by_name(name)
+    end
+
     # @return [Coordinate]
     def coordinate
-      @coordinate ||= Vedeu::Coordinate.new(bordered_height,
-                                            bordered_width,
-                                            left,
-                                            top)
+      @coordinate ||= Vedeu::Coordinate.new(height, width, x, y)
     end
 
-    # Return the height of the interface, minus any borders.
-    #
-    # @return [Fixnum]
-    def bordered_height
-      return border.height if border?
-
-      height
-    end
-
-    # Return the width of the interface, minus any borders.
-    #
-    # @return [Fixnum]
-    def bordered_width
-      return border.width if border?
-
-      width
+    # @return (see Vedeu::Cursors#by_name)
+    def cursor
+      @cursor ||= Vedeu.cursors.by_name(name)
     end
 
     # Apply the direction amount to the cursor offset. If the offset is less

@@ -27,7 +27,7 @@ module Vedeu
         find(name)
 
       else
-        Vedeu::NullGeometry.new
+        Vedeu::NullGeometry.new(name)
 
       end
     end

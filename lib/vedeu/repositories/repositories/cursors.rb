@@ -11,7 +11,7 @@ module Vedeu
 
     # @return [Vedeu::Cursor]
     def self.cursor
-      cursors.current
+      cursors.by_name(Vedeu.focus) if Vedeu.focus
     end
 
     # @return [Vedeu::Cursors]
@@ -22,6 +22,18 @@ module Vedeu
     # @return [Vedeu::Cursors]
     def self.reset!
       @cursors = Vedeu::Cursors.register_repository(Vedeu::Cursor)
+    end
+
+    # @param name [String] The name of the stored cursor.
+    # @return [Vedeu::Cursor]
+    def by_name(name)
+      if registered?(name)
+        find(name)
+
+      else
+        Vedeu::Cursor.new(name: name).store
+
+      end
     end
 
   end # Cursors

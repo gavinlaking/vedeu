@@ -26,8 +26,17 @@ module Vedeu
                    :bottom_left,
                    :bottom_right
 
+    # @!attribute [r] name
+    # @return [String|NilClass]
+    attr_reader :name
+
+    # Returns a new instance of Vedeu::NullGeometry.
+    #
+    # @param name [String|NilClass]
     # @return [Vedeu::NullGeometry]
-    def initialize; end
+    def initialize(name = nil)
+      @name = name
+    end
 
     # @return [FalseClass]
     def centred

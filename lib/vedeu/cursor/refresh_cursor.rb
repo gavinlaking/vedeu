@@ -5,6 +5,12 @@ module Vedeu
   #
   class RefreshCursor
 
+    extend Forwardable
+
+    def_delegators :border,
+                   :height,
+                   :width
+
     # @param (see #initialize)
     def self.render(name = Vedeu.focus)
       new(name).render
@@ -35,7 +41,7 @@ module Vedeu
 
     # @return [Boolean]
     def refresh_view?
-      new_cursor.ox >= interface_width || new_cursor.oy >= interface_height
+      new_cursor.ox >= width || new_cursor.oy >= height
     end
 
     # @return [Vedeu::Cursor]
@@ -53,29 +59,17 @@ module Vedeu
 
     # @return [Vedeu::PositionValidator]
     def validated_position
-      @position ||= Vedeu::PositionValidator.validate(interface.name,
-                                                      cursor.x,
-                                                      cursor.y)
+      @position ||= Vedeu::PositionValidator.validate(name, cursor.x, cursor.y)
     end
 
     # @return [Vedeu::Cursor]
     def cursor
-      @cursor ||= Vedeu.cursors.find(name)
+      @cursor ||= Vedeu.cursors.by_name(name)
     end
 
-    # @return [Fixnum]
-    def interface_height
-      interface.border.height
-    end
-
-    # @return [Fixnum]
-    def interface_width
-      interface.border.width
-    end
-
-    # @return [Vedeu::Interface]
-    def interface
-      @interface ||= Vedeu.interfaces.find(name)
+    # @return (see Vedeu::Borders#by_name)
+    def border
+      @border ||= Vedeu.borders.by_name(name)
     end
 
   end # RefreshCursor
