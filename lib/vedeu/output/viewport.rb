@@ -147,21 +147,21 @@ module Vedeu
 
     # Return the border associated with the interface we are drawing.
     #
-    # @return [Vedeu::Border|Vedeu::NullBorder]
+    # @return (see Vedeu::Borders#by_name)
     def border
       @border ||= Vedeu.borders.by_name(name)
     end
 
     # Fetch the cursor associated with the interface we are drawing.
     #
-    # @return [Vedeu::Cursor]
+    # @return (see Vedeu::Cursors#by_name)
     def cursor
       @cursor ||= Vedeu.cursors.by_name(name)
     end
 
     # Return the geometry associated with the interface we are drawing.
     #
-    # @return [Vedeu::Geometry|Vedeu::NullGeometry]
+    # @return (see Vedeu::Geometries#by_name)
     def geometry
       @geometry || Vedeu.geometries.by_name(name)
     end
