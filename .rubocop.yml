@@ -619,7 +619,7 @@ Style/WordArray:
 Metrics/AbcSize:
   # The ABC size is a calculated magnitude, so this number can be a Fixnum or
   # a Float.
-  Max: 15
+  Max: 20
 
 Metrics/BlockNesting:
   Max: 3
@@ -630,7 +630,7 @@ Metrics/ClassLength:
 
 # Avoid complex methods.
 Metrics/CyclomaticComplexity:
-  Max: 6
+  Max: 10
 
 Metrics/LineLength:
   Max: 80
@@ -650,7 +650,7 @@ Metrics/ParameterLists:
   CountKeywordArgs: true
 
 Metrics/PerceivedComplexity:
-  Max: 7
+  Max: 10
 
 ##################### Lint ##################################
 
