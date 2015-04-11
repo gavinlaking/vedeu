@@ -10,16 +10,16 @@ module Vedeu
     # @return [Array<Symbol>]
     attr_reader :_defined
 
-    # @param _options [Hash]
+    # @param options [Hash]
     # @return [Vedeu::Options]
-    def self.build(_options = {})
-      new(_options)._build
+    def self.build(options = {})
+      new(options)._build
     end
 
-    # @param _options [Hash]
+    # @param options [Hash]
     # @return [Vedeu::Options]
-    def initialize(_options = {})
-      @_options = _options
+    def initialize(options = {})
+      @_options = options
       @_defined = []
     end
 
@@ -48,7 +48,7 @@ module Vedeu
     def _create_alias(alias_name, method_name)
       @_defined << alias_name.to_sym
 
-      self.define_singleton_method(alias_name, method(method_name))
+      define_singleton_method(alias_name, method(method_name))
     end
 
     # @param name [String|Symbol]
