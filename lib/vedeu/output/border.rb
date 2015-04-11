@@ -250,9 +250,7 @@ module Vedeu
         out << titlebar
 
       else
-        width.times do |ix|
-          out << border(horizontal, prefix_horizontal, nil, ix)
-        end
+        out << horizontal_border(prefix_horizontal)
 
       end
 
@@ -260,10 +258,11 @@ module Vedeu
       out
     end
 
+    # @param position [Symbol] Either :top_horizontal, or :bottom_horizontal.
     # @return [Array<Vedeu::Char>]
-    def horizontal_border
+    def horizontal_border(position)
       width.times.inject([]) do |a, ix|
-        a << border(horizontal, :top_horizontal, nil, ix)
+        a << border(horizontal, position, nil, ix)
         a
       end
     end
@@ -273,7 +272,7 @@ module Vedeu
     #
     # @return [Array<Vedeu::Char>]
     def titlebar
-      horizontal_border.each_with_index do |char, index|
+      horizontal_border(:top_horizontal).each_with_index do |char, index|
         if index >= 1 && index <= title_characters.size
           char.border = nil
           char.value  = title_characters[(index - 1)]
