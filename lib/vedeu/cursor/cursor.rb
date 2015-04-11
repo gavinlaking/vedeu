@@ -88,9 +88,8 @@ module Vedeu
     # When passed a block, will position the cursor, yield and return the
     # original position.
     #
-    # @param block [Proc]
     # @return [String]
-    def to_s(&block)
+    def to_s
       if block_given?
         [sequence, yield, sequence].join
 

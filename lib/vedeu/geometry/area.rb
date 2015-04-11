@@ -168,8 +168,6 @@ module Vedeu
       Vedeu::Position[yn, xn]
     end
 
-    private
-
   end # Area
 
 end # Vedeu

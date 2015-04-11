@@ -6,16 +6,19 @@ module Vedeu
 
     extend Forwardable
 
-    def_delegators :border, :bx,
-                            :by
+    def_delegators :border,
+                   :bx,
+                   :by
 
-    def_delegators :geometry, :x,
-                              :y
+    def_delegators :geometry,
+                   :x,
+                   :y
 
-    def_delegators :interface, :colour,
-                               :name,
-                               :style,
-                               :visible?
+    def_delegators :interface,
+                   :colour,
+                   :name,
+                   :style,
+                   :visible?
 
     class << self
 

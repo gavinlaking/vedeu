@@ -18,10 +18,11 @@ module Vedeu
     include Vedeu::Model
     include Vedeu::Presentation
 
-    def_delegators :geometry, :x,
-                              :xn,
-                              :y,
-                              :yn
+    def_delegators :geometry,
+                   :x,
+                   :xn,
+                   :y,
+                   :yn
 
     def_delegators :interface, :visible?
 

@@ -107,17 +107,15 @@ module Vedeu
 
     # Subclasses implement this method.
     #
-    # @param colour [String]
     # @return [String]
-    def retrieve(colour)
+    def retrieve(*)
       ''
     end
 
     # Subclasses implement this method.
     #
-    # @param colour [String]
     # @return [FalseClass]
-    def registered?(colour)
+    def registered?(*)
       false
     end
 
