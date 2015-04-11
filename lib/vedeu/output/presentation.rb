@@ -5,9 +5,15 @@ module Vedeu
   #
   module Presentation
 
-    # @return [Vedeu::Background|NilClass]
+    # @return [Vedeu::Background]
     def background
-      colour.background if colour
+      if colour
+        colour.background
+
+      else
+        Vedeu::Background.new
+
+      end
     end
 
     # @return [Vedeu::Colour]
@@ -29,14 +35,26 @@ module Vedeu
       @colour = Vedeu::Colour.coerce(value)
     end
 
-    # @return [Vedeu::Foreground|NilClass]
+    # @return [Vedeu::Foreground]
     def foreground
-      colour.foreground if colour
+      if colour
+        colour.foreground
+
+      else
+        Vedeu::Foreground.new
+
+      end
     end
 
-    # @return [Vedeu::Background|NilClass]
+    # @return [Vedeu::Background]
     def parent_background
-      parent_colour.background if parent_colour
+      if parent_colour
+        parent_colour.background
+
+      else
+        Vedeu::Background.new
+
+      end
     end
 
     # @return [String|NilClass]
@@ -44,9 +62,15 @@ module Vedeu
       parent.colour if parent
     end
 
-    # @return [Vedeu::Foreground|NilClass]
+    # @return [Vedeu::Foreground]
     def parent_foreground
-      parent_colour.foreground if parent_colour
+      if parent_colour
+        parent_colour.foreground
+
+      else
+        Vedeu::Foreground.new
+
+      end
     end
 
     # @return [String|NilClass]

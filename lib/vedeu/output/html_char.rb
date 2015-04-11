@@ -54,7 +54,6 @@ module Vedeu
     # @return [String]
     def border_style
       case border
-      when nil                then ''
       when :top_horizontal    then border_css('top')
       when :left_vertical     then border_css('left')
       when :right_vertical    then border_css('right')
@@ -63,10 +62,7 @@ module Vedeu
       when :top_right    then [border_css('top'), border_css('right')].join
       when :bottom_left  then [border_css('bottom'), border_css('left')].join
       when :bottom_right then [border_css('bottom'), border_css('right')].join
-      when :horizontal   then ''
-      when :vertical     then ''
       else
-        # ... should not get here
         ''
       end
     end
@@ -78,41 +74,39 @@ module Vedeu
 
     # @return [String]
     def fg
-      @fg ||= colour_fg || parent_fg || '#222'
+      @fg ||= colour_fg
     end
 
     # @return [String]
     def bg
-      @bg ||= colour_bg || parent_bg || '#000'
+      @bg ||= colour_bg
     end
 
-    # @return [String|NilClass]
+    # @return [String]
     def colour_bg
-      if char.background && defined_value?(char.background.to_html)
+      if defined_value?(char.background.to_html)
         char.background.to_html
-      end
-    end
 
-    # @return [String|NilClass]
-    def colour_fg
-      if char.foreground && defined_value?(char.foreground.to_html)
-        char.foreground.to_html
-      end
-    end
-
-    # @return [String|NilClass]
-    def parent_bg
-      if char.parent_background &&
-         defined_value?(char.parent_background.to_html)
+      elsif defined_value?(char.parent_background.to_html)
         char.parent_background.to_html
+
+      else
+        '#000'
+
       end
     end
 
-    # @return [String|NilClass]
-    def parent_fg
-      if char.parent_foreground &&
-         defined_value?(char.parent_foreground.to_html)
+    # @return [String]
+    def colour_fg
+      if defined_value?(char.foreground.to_html)
+        char.foreground.to_html
+
+      elsif defined_value?(char.parent_foreground.to_html)
         char.parent_foreground.to_html
+
+      else
+        '#222'
+
       end
     end
 
