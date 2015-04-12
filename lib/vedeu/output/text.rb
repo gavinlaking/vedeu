@@ -83,21 +83,7 @@ module Vedeu
     # @return [void]
     def colour
       if options[:colour] || options[:background] || options[:foreground]
-        attrs = if options[:colour] && options[:colour].is_a?(Hash)
-                  options[:colour]
-
-                elsif options[:background] || options[:foreground]
-                  {
-                    background: options[:background],
-                    foreground: options[:foreground],
-                  }
-
-                else
-                  {}
-
-                end
-
-        Vedeu::Colour.coerce(attrs)
+        Vedeu::Colour.coerce(options)
 
       else
         model.colour

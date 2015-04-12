@@ -26,20 +26,26 @@ module Vedeu
     # @param value []
     # @return [Object]
     def self.coerce(value)
-      if value.is_a?(self)
-        value
+      return value if value.is_a?(self)
+      return new unless value.is_a?(Hash)
+      return new unless value[:colour] ||
+                        value[:background] ||
+                        value[:foreground]
 
-      elsif value.is_a?(Hash)
-        if value.key?(:colour) && value[:colour].is_a?(self)
-          value
+      if value[:colour]
+        return value[:colour] if value[:colour].is_a?(self)
 
-        elsif value.key?(:background) || value.key?(:foreground)
-          new(value)
+        if value[:colour].is_a?(Hash) && (value[:colour][:background] ||
+                                          value[:colour][:foreground])
+          new(value[:colour])
 
         else
           new
 
         end
+
+      elsif value[:background] || value[:foreground]
+        new(value)
 
       else
         new
