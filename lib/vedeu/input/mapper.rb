@@ -48,9 +48,9 @@ module Vedeu
 
       return true if key_defined? && keymap.use(key)
 
-      return true if global_key? && keymap(global).use(key)
+      return true if global_key? && keymap('_global_').use(key)
 
-      return true if system_key? && keymap(system).use(key)
+      return true if system_key? && keymap('_system_').use(key)
 
       false
     end
@@ -79,14 +79,14 @@ module Vedeu
     #
     # @return [Boolean]
     def global_key?
-      key_defined?(global)
+      key_defined?('_global_')
     end
 
     # Is the key a system key?
     #
     # @return [Boolean]
     def system_key?
-      key_defined?(system)
+      key_defined?('_system_')
     end
 
     # Is the key defined in the named keymap?
@@ -121,20 +121,6 @@ module Vedeu
       @name || Vedeu.focus
     end
     alias_method :interface, :name
-
-    # Return the name of the global keymap.
-    #
-    # @return [String]
-    def global
-      '_global_'
-    end
-
-    # Return the name of the system keymap.
-    #
-    # @return [String]
-    def system
-      '_system_'
-    end
 
   end # Mapper
 

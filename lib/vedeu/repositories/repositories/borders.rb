@@ -21,14 +21,13 @@ module Vedeu
     end
 
     # @param name [String] The name of the stored border.
-    # @return [Vedeu::Border|Vedeu::NullBorder|NilClass]
+    # @return [Vedeu::Border|Vedeu::NullBorder]
     def by_name(name)
       if registered?(name)
         find(name)
 
-      elsif Vedeu.interfaces.registered?(name)
-        interface = Vedeu.interfaces.find(name)
-        Vedeu::NullBorder.new(interface)
+      else
+        Vedeu::NullBorder.new(name)
 
       end
     end

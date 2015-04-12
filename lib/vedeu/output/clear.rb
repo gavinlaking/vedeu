@@ -4,6 +4,22 @@ module Vedeu
   #
   class Clear
 
+    extend Forwardable
+
+    def_delegators :border,
+                   :bx,
+                   :by
+
+    def_delegators :geometry,
+                   :x,
+                   :y
+
+    def_delegators :interface,
+                   :colour,
+                   :name,
+                   :style,
+                   :visible?
+
     class << self
 
       # Clears the area defined by the interface.
@@ -42,14 +58,14 @@ module Vedeu
     #
     # @return [Array<Array<Vedeu::Char>>]
     def clear
-      if interface.visible?
-        Vedeu.log(type: :output, message: "Clearing: '#{interface.name}'")
+      if visible?
+        Vedeu.log(type: :output, message: "Clearing: '#{name}'")
 
         @clear ||= Array.new(height) do |iy|
           Array.new(width) do |ix|
             Vedeu::Char.new(value:    ' ',
-                            colour:   colour,
-                            style:    interface.style,
+                            colour:   clear_colour,
+                            style:    style,
                             position: position(iy, ix))
           end
         end
@@ -80,6 +96,11 @@ module Vedeu
     # @return [Interface]
     attr_reader :interface
 
+    # @return (see Vedeu::Borders#by_name)
+    def border
+      @border ||= Vedeu.borders.by_name(name)
+    end
+
     # @return [Boolean] Indicates whether the area occupied by the border of the
     #   interface should be cleared also.
     def clear_border?
@@ -88,12 +109,12 @@ module Vedeu
 
     # @return [Vedeu::Colour] The default background and foreground colours for
     #   the terminal, or the colours of the interface.
-    def colour
+    def clear_colour
       if use_terminal_colours?
-        Colour.new(background: :default, foreground: :default)
+        Vedeu::Colour.new(background: :default, foreground: :default)
 
       else
-        interface.colour
+        colour
 
       end
     end
@@ -106,15 +127,20 @@ module Vedeu
       }
     end
 
+    # @return (see Vedeu::Geometries#by_name)
+    def geometry
+      @geometry ||= Vedeu.geometries.by_name(name)
+    end
+
     # Returns the height of the area to be cleared.
     #
     # @return [Fixnum]
     def height
       if clear_border?
-        interface.height
+        geometry.height
 
       else
-        interface.border.height
+        border.height
 
       end
     end
@@ -129,10 +155,10 @@ module Vedeu
     # @return [Vedeu::IndexPosition]
     def position(iy, ix)
       if clear_border?
-        Vedeu::IndexPosition[iy, ix, interface.y, interface.x]
+        Vedeu::IndexPosition[iy, ix, y, x]
 
       else
-        Vedeu::IndexPosition[iy, ix, interface.border.by, interface.border.bx]
+        Vedeu::IndexPosition[iy, ix, by, bx]
 
       end
     end
@@ -148,10 +174,10 @@ module Vedeu
     # @return [Fixnum]
     def width
       if clear_border?
-        interface.width
+        geometry.width
 
       else
-        interface.border.width
+        border.width
 
       end
     end
@@ -159,4 +185,3 @@ module Vedeu
   end # Clear
 
 end # Vedeu
-

@@ -63,26 +63,10 @@ module Vedeu
     # @return [Array<Fixnum>]
     def dimension
       @dimension ||= if centred? && length?
-                       [(default / 2) - (length / 2),
-                        (default / 2) + (length / 2)]
-
-                     elsif d && dn
-                       [d, dn]
-
-                     elsif d && d_dn
-                       [d, ((d + d_dn) - 1)]
-
-                     elsif d_dn
-                       [1, d_dn]
-
-                     elsif d
-                       [d, default]
-
-                     elsif dn
-                       [1, dn]
+                       [centred_d, centred_dn]
 
                      else
-                       [1, default]
+                       [_d, _dn]
 
                      end
     end
@@ -109,6 +93,38 @@ module Vedeu
     # @return [Boolean]
     def centred?
       options[:centred]
+    end
+
+    # @return [Fixnum]
+    def centred_d
+      (default / 2) - (length / 2)
+    end
+
+    # @return [Fixnum]
+    def centred_dn
+      (default / 2) + (length / 2)
+    end
+
+    # @return [Fixnum]
+    def _d
+      d || 1
+    end
+
+    # @return [Fixnum]
+    def _dn
+      if dn
+        dn
+
+      elsif d.nil? && d_dn
+        d_dn
+
+      elsif d && d_dn
+        (d + d_dn) - 1
+
+      else
+        default
+
+      end
     end
 
     # @return [Hash<Symbol => Boolean>]

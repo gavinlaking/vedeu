@@ -298,28 +298,6 @@ module Vedeu
       end
     end
 
-    describe '#colour=' do
-      let(:value) { { foreground: '#00ff00' } }
-
-      subject { instance.colour = (value) }
-
-      it do
-        subject
-        instance.instance_variable_get('@colour').must_be_instance_of(Colour)
-      end
-    end
-
-    describe '#style=' do
-      let(:value) { 'normal' }
-
-      subject { instance.style = (value) }
-
-      it do
-        subject
-        instance.instance_variable_get('@style').must_be_instance_of(Style)
-      end
-    end
-
     describe '#enabled?' do
       subject { instance.enabled? }
 

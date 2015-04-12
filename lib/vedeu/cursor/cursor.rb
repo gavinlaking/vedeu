@@ -8,7 +8,6 @@ module Vedeu
   #
   class Cursor
 
-    extend Forwardable
     include Vedeu::Model
 
     # @!attribute [r] attributes
@@ -89,9 +88,8 @@ module Vedeu
     # When passed a block, will position the cursor, yield and return the
     # original position.
     #
-    # @param block [Proc]
     # @return [String]
-    def to_s(&block)
+    def to_s
       if block_given?
         [sequence, yield, sequence].join
 
@@ -103,9 +101,10 @@ module Vedeu
 
     private
 
-    # @!attribute [r] position
     # @return [Vedeu::Position]
-    attr_reader :position
+    def position
+      @position ||= Vedeu::Position.new(y, x)
+    end
 
     # The default values for a new instance of this class.
     #

@@ -14,10 +14,9 @@ module Vedeu
     # Opens a terminal screen in either `raw` or `cooked` mode. On exit,
     # attempts to restore the screen. See {Vedeu::Terminal#restore_screen}.
     #
-    # @param block [Proc]
     # @raise [InvalidSyntax] The required block was not given.
     # @return [Array]
-    def open(&block)
+    def open
       fail InvalidSyntax, 'block not given' unless block_given?
 
       if raw_mode?
@@ -91,12 +90,11 @@ module Vedeu
       true
     end
 
-    # @param block [Proc]
     # @return [void]
-    def initialize_screen(&block)
+    def initialize_screen
       output(Esc.string('screen_init'))
 
-      yield
+      yield if block_given?
     end
 
     # Clears the entire terminal space.

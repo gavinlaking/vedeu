@@ -4,13 +4,9 @@ module Vedeu
   #
   class Cell
 
-    # @!attribute [r] background
+    # @!attribute [r] colour
     # @return [NilClass|String]
-    attr_reader :background
-
-    # @!attribute [r] foreground
-    # @return [NilClass|String]
-    attr_reader :foreground
+    attr_reader :colour
 
     # @!attribute [r] style
     # @return [NilClass|Array<Symbol|String>|Symbol|String]
@@ -32,28 +28,26 @@ module Vedeu
     #
     # @param attributes [Hash<Symbol => Array<Symbol|String>,
     #                                   Fixnum, String, Symbol]
-    # @option attributes background [NilClass|String]
-    # @option attributes foreground [NilClass|String]
+    # @option attributes colour [NilClass|String]
     # @option attributes style [NilClass|Array<Symbol|String>|Symbol|String]
     # @option attributes value [NilClass|String]
     # @option attributes x [NilClass|Fixnum]
     # @option attributes y [NilClass|Fixnum]
     # @return [Vedeu::Cell]
     def initialize(attributes = {})
-      @background = attributes[:background]
-      @foreground = attributes[:foreground]
-      @style      = attributes[:style]
-      @value      = attributes[:value]
-      @x          = attributes[:x]
-      @y          = attributes[:y]
+      @colour = attributes[:colour]
+      @style  = attributes[:style]
+      @value  = attributes[:value]
+      @x      = attributes[:x]
+      @y      = attributes[:y]
     end
 
     # @param other [Vedeu::Cell]
     # @return [Boolean]
     def eql?(other)
-      self.class == other.class && background == other.background &&
-        foreground == other.foreground && style == other.style &&
-        value == other.value && x == other.x && y == other.y
+      self.class == other.class && colour == other.colour &&
+        style == other.style && value == other.value && x == other.x &&
+        y == other.y
     end
     alias_method :==, :eql?
 

@@ -244,6 +244,16 @@ module Vedeu
       (y...yn).to_a
     end
 
+    private
+
+    # @!attribute [r] name
+    # @return [String]
+    attr_reader :name
+
+    def border
+      @border ||= Vedeu.borders.by_name(name)
+    end
+
   end # Coordinate
 
 end # Vedeu

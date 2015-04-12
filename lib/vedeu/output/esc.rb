@@ -118,7 +118,7 @@ module Vedeu
     #
     # @param block [Proc]
     # @return [String]
-    def border(&block)
+    def border
       return '' unless block_given?
 
       [border_on, yield, border_off].join

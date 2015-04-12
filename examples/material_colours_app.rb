@@ -119,8 +119,3 @@ class VedeuMaterialColoursApp
 end
 
 VedeuMaterialColoursApp.start(ARGV)
-
-
-
-
-

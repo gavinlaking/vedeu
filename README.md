@@ -33,7 +33,7 @@ And then execute:
 
 Have a look at: [Playa](https://github.com/gavinlaking/playa). Please browse the
  source of Playa and Vedeu to get a feel for how it all works. The
- [RubyDoc](http://rubydoc.info/github/gavinlaking/vedeu) may also help!
+ [RubyDoc](http://rubydoc.info/gems/vedeu) may also help!
 
 
 ## Usage
@@ -134,7 +134,7 @@ Note: not setting a width or height will set the values to the terminal's
 ### Events
 
 More information about events can be found in the
- [RubyDoc](http://rubydoc.info/github/gavinlaking/vedeu).
+ [RubyDoc](http://rubydoc.info/gems/vedeu).
 
 
 ### Geometry
@@ -147,7 +147,7 @@ Geometry for Vedeu, as the same for ANSI terminals, is set top-left, which is
 
 ## Development / Contributing
 
-* Documentation hosted at [RubyDoc](http://rubydoc.info/github/gavinlaking/vedeu).
+* Documentation hosted at [RubyDoc](http://rubydoc.info/gems/vedeu).
 * Source hosted at [GitHub](https://github.com/gavinlaking/vedeu).
 
 Pull requests are very welcome! Please try to follow these simple rules if

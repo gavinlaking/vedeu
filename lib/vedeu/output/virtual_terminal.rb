@@ -120,4 +120,3 @@ module Vedeu
   end # VirtualTerminal
 
 end # Vedeu
-

@@ -5,13 +5,17 @@ module Vedeu
   describe NullBorder do
 
     let(:described) { Vedeu::NullBorder }
-    let(:instance)  { described.new(interface) }
-    let(:interface) { stub('Interface', geometry: geometry) }
-    let(:geometry)  { stub('Geometry', x: 4, y: 6, xn: 10, yn: 12) }
+    let(:instance)  { described.new(_name) }
+    let(:_name)     { 'null_border' }
+
+    before do
+      Vedeu::Geometry.new(name: _name, x: 4, y: 6, xn: 10, yn: 12).store
+    end
+    after { Vedeu.geometries.reset }
 
     describe '#initialize' do
       it { instance.must_be_instance_of(Vedeu::NullBorder) }
-      it { instance.instance_variable_get('@interface').must_equal(interface) }
+      it { instance.instance_variable_get('@name').must_equal(_name) }
     end
 
     describe '#bx' do

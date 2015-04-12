@@ -5,7 +5,8 @@ module Vedeu
   describe NullGeometry do
 
     let(:described) { Vedeu::NullGeometry }
-    let(:instance)  { described.new }
+    let(:instance)  { described.new(_name) }
+    let(:_name)     { 'null_geometry' }
 
     before do
       Vedeu::Terminal.stubs(:height).returns(25)
@@ -14,6 +15,7 @@ module Vedeu
 
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }
+      it { instance.instance_variable_get('@name').must_equal(_name) }
     end
 
     describe '#centred' do

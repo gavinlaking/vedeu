@@ -17,7 +17,7 @@ module Vedeu
     #
     # @param block [Proc]
     # @return [void]
-    def self.start!(&block)
+    def self.start!
       @started = true
       @loop    = true
 
@@ -36,8 +36,6 @@ module Vedeu
     def self.stop!
       @loop = false
     end
-
-    private
 
     # Check the application has started and we wish to continue running.
     #

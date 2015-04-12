@@ -151,7 +151,7 @@ renders/views
 #### Authors Notes
 
 The Rubydoc documentation has more specific information about the DSL methods
-demonstrated above; it can be accessed here.
+demonstrated above: [RubyDoc](http://rubydoc.info/gems/vedeu).
 
 I've tried to write the DSL in a way which makes it read nice; believing that
 this will make it easier to use. I hope this is the case for you.

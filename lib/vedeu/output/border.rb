@@ -13,8 +13,18 @@ module Vedeu
   #
   class Border
 
+    extend Forwardable
     include Vedeu::Common
     include Vedeu::Model
+    include Vedeu::Presentation
+
+    def_delegators :geometry,
+                   :x,
+                   :xn,
+                   :y,
+                   :yn
+
+    def_delegators :interface, :visible?
 
     # @!attribute [rw] attributes
     # @return [Hash]
@@ -91,7 +101,7 @@ module Vedeu
     # @option attributes bottom_left [String] The bottom left border character.
     # @option attributes bottom_right [String] The bottom right border
     #   character.
-    # @option attributes colour []
+    # @option attributes colour [Hash]
     # @option attributes enabled [Boolean] Indicate whether the border is to be
     #   shown for this interface.
     # @option attributes horizontal [String] The horizontal border character.
@@ -127,37 +137,29 @@ module Vedeu
       @horizontal   = @attributes[:horizontal]
       @vertical     = @attributes[:vertical]
       @name         = @attributes[:name]
-      @colour       = @attributes[:colour]
       @repository   = Vedeu.borders
+      @colour       = @attributes[:colour]
       @style        = @attributes[:style]
     end
 
     # @return [Fixnum]
     def bx
-      bo = (enabled? && left?) ? 1 : 0
-
-      geometry.x + bo
+      (enabled? && left?) ? x + 1 : x
     end
 
     # @return [Fixnum]
     def bxn
-      bo = (enabled? && right?) ? 1 : 0
-
-      geometry.xn - bo
+      (enabled? && right?) ? xn - 1 : xn
     end
 
     # @return [Fixnum]
     def by
-      bo = (enabled? && top?) ? 1 : 0
-
-      geometry.y + bo
+      (enabled? && top?) ? y + 1 : y
     end
 
     # @return [Fixnum]
     def byn
-      bo = (enabled? && bottom?) ? 1 : 0
-
-      geometry.yn - bo
+      (enabled? && bottom?) ? yn - 1 : yn
     end
 
     # Returns the width of the interface determined by whether a left, right,
@@ -176,21 +178,9 @@ module Vedeu
       (by..byn).size
     end
 
-    # @return [Vedeu::Colour]
-    def colour
-      Vedeu::Colour.coerce(@colour)
-    end
-
-    # Set the border colour.
-    #
-    # @return [Vedeu::Colour]
-    def colour=(value)
-      @colour = Vedeu::Colour.coerce(value)
-    end
-
     # @return [Array<Array<Vedeu::Char>>]
     def render
-      return [] unless interface.visible?
+      return [] unless visible?
       return [] unless enabled?
 
       out = [top, bottom]
@@ -202,16 +192,9 @@ module Vedeu
       out.flatten
     end
 
-    # @return [Vedeu::Style]
-    def style
-      Vedeu::Style.coerce(@style)
-    end
-
-    # Set the border style.
-    #
-    # @return [Vedeu::Style]
-    def style=(value)
-      @style = Vedeu::Style.coerce(value)
+    # @return [String]
+    def to_s
+      Vedeu::TextRenderer.render(render)
     end
 
     # Renders the bottom border for the interface.
@@ -267,9 +250,7 @@ module Vedeu
         out << titlebar
 
       else
-        width.times do |ix|
-          out << border(horizontal, prefix_horizontal, nil, ix)
-        end
+        out << horizontal_border(prefix_horizontal)
 
       end
 
@@ -277,10 +258,11 @@ module Vedeu
       out
     end
 
+    # @param position [Symbol] Either :top_horizontal, or :bottom_horizontal.
     # @return [Array<Vedeu::Char>]
-    def horizontal_border
+    def horizontal_border(position)
       width.times.inject([]) do |a, ix|
-        a << border(horizontal, :top_horizontal, nil, ix)
+        a << border(horizontal, position, nil, ix)
         a
       end
     end
@@ -290,7 +272,7 @@ module Vedeu
     #
     # @return [Array<Vedeu::Char>]
     def titlebar
-      horizontal_border.each_with_index do |char, index|
+      horizontal_border(:top_horizontal).each_with_index do |char, index|
         if index >= 1 && index <= title_characters.size
           char.border = nil
           char.value  = title_characters[(index - 1)]
@@ -359,8 +341,7 @@ module Vedeu
 
     # @return [Vedeu::Geometry]
     def geometry
-      # @geometry ||= Vedeu.geometry.find(name)
-      interface.geometry
+      @geometry ||= Vedeu.geometries.by_name(name)
     end
 
     # @return [Vedeu::Interface]
@@ -402,22 +383,14 @@ module Vedeu
     # @return [Vedeu::Position]
     def position(name, iy = 0, ix = 0)
       case name
-      when :top_horizontal
-        Vedeu::Position[geometry.y, (bx + ix)]
-
-      when :bottom_horizontal
-        Vedeu::Position[geometry.yn, (bx + ix)]
-
-      when :left_vertical
-        Vedeu::Position[(by + iy), geometry.x]
-
-      when :right_vertical
-        Vedeu::Position[(by + iy), geometry.xn]
-
-      when :bottom_left  then geometry.bottom_left
-      when :bottom_right then geometry.bottom_right
-      when :top_left     then geometry.top_left
-      when :top_right    then geometry.top_right
+      when :top_horizontal    then Vedeu::Position[y, (bx + ix)]
+      when :bottom_horizontal then Vedeu::Position[yn, (bx + ix)]
+      when :left_vertical     then Vedeu::Position[(by + iy), x]
+      when :right_vertical    then Vedeu::Position[(by + iy), xn]
+      when :bottom_left       then geometry.bottom_left
+      when :bottom_right      then geometry.bottom_right
+      when :top_left          then geometry.top_left
+      when :top_right         then geometry.top_right
       end
     end
 

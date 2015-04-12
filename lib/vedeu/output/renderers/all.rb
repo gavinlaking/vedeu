@@ -3,6 +3,7 @@ require_relative 'html_renderer'
 require_relative 'json_renderer'
 require_relative 'null_renderer'
 require_relative 'terminal_renderer'
+require_relative 'text_renderer'
 
 module Vedeu
 

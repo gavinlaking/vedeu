@@ -114,13 +114,6 @@ module Vedeu
       }
     end
 
-    # Returns a boolean indicating whether the interface has a border.
-    #
-    # @return [Boolean]
-    def border?
-      Vedeu.borders.registered?(name)
-    end
-
     # Returns the border object belonging to the interface.
     #
     # @return [Vedeu::Border|NilClass]
