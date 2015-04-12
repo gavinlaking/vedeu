@@ -17,8 +17,6 @@ class VedeuMaterialColoursApp
     renderers Vedeu::FileRenderer
   end
 
-  # bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
-
   interface 'main_interface' do
     border 'main_interface' do
       colour foreground: '#ffffff', background: '#000000'

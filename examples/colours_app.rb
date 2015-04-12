@@ -16,8 +16,6 @@ class VedeuColoursApp
     log '/tmp/vedeu_colours_app.log'
   end
 
-  bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
-
   interface 'colours_256' do
     geometry do
       centred!

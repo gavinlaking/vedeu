@@ -17,8 +17,6 @@ class VedeuCursorApp
     log '/tmp/vedeu_cursor_app.log'
   end
 
-  bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
-
   interface 'main_interface' do
     colour foreground: '#ff0000', background: '#000000'
     cursor!

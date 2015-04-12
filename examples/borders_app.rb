@@ -16,8 +16,6 @@ class VedeuBordersApp
     log '/tmp/vedeu_borders_app.log'
   end
 
-  bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
-
   interface 'default_border' do
     geometry do
       x      2

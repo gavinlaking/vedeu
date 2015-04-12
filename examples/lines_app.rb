@@ -16,8 +16,6 @@ class VedeuLinesApp
     log '/tmp/vedeu_lines_app.log'
   end
 
-  bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
-
   interface 'ruthenium' do
     geometry do
       centred true

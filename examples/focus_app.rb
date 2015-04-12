@@ -20,8 +20,6 @@ class VedeuFocusApp
     log '/tmp/vedeu_focus_app.log'
   end
 
-  Vedeu.bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
-
   update = proc do
     Vedeu.focus_next
 

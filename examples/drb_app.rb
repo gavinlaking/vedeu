@@ -40,8 +40,6 @@ class VedeuTestApplication
     # stderr File.open("/tmp/vedeu_error.log", "w+")
   end
 
-  Vedeu.bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
-
   Vedeu.border 'test_interface' do
     # Define colour and style of border
     colour foreground: '#ffff00', background: '#0000ff'
