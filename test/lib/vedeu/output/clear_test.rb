@@ -50,6 +50,15 @@ module Vedeu
 
       it { subject.must_be_instance_of(Array) }
       it { subject.flatten.size.must_equal(9) }
+
+      context 'when the interface is visible' do
+      end
+
+      context 'when the interface is not visible' do
+        let(:visible) { false }
+
+        it { subject.must_equal([]) }
+      end
     end
 
     describe '#write' do

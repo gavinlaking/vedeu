@@ -13,8 +13,10 @@ module Vedeu
       it { instance.instance_variable_get('@output').must_equal(output) }
     end
 
-    describe '#render' do
-      subject { instance.render }
+    describe '.render' do
+      before { File.stubs(:open) }
+
+      subject { described.render(output) }
 
       it { subject.must_be_instance_of(String) }
     end
@@ -27,13 +29,22 @@ module Vedeu
       context 'when a path is given' do
         let(:path) { '/tmp/test_vedeu_html_renderer.html' }
 
-        # it { subject.must_equal('') }
+        it do
+          File.expects(:open)
+          subject
+        end
       end
 
       context 'when a path is not given' do
         let(:path) {}
+        let(:_time) { Time.new(2015, 4, 12, 16, 55) }
 
+        before { Time.stubs(:now).returns(_time) }
 
+        it do
+          File.expects(:open)#.with('/tmp/vedeu_html_1428854100.html', 'w')
+          subject
+        end
       end
     end
 

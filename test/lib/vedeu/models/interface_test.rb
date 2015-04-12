@@ -21,7 +21,7 @@ module Vedeu
     let(:parent)     {}
     let(:colour)     {}
     let(:style)      {}
-    let(:visible)    {}
+    let(:visible)    { true }
     let(:repository) { Vedeu.interfaces }
 
     describe '#initialize' do
@@ -92,6 +92,17 @@ module Vedeu
 
     describe '#render' do
       subject { instance.render }
+
+      it { subject.must_be_instance_of(Array) }
+
+      context 'when the interface is visible' do
+      end
+
+      context 'when the interface is not visible' do
+        let(:visible) { false }
+
+        it { subject.must_equal([]) }
+      end
     end
 
     describe '#store' do
