@@ -6,7 +6,9 @@ module Vedeu
   #
   # @param filename [String]
   # @param block [Proc]
-  def self.debug(filename = 'profile.html', &block)
+  def self.debug(filename = 'profile.html')
+    return nil unless block_given?
+
     require 'ruby-prof'
 
     RubyProf.measure_mode = RubyProf::WALL_TIME

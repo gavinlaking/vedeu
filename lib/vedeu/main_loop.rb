@@ -17,7 +17,7 @@ module Vedeu
     #
     # @param block [Proc]
     # @return [void]
-    def self.start!(&block)
+    def self.start!
       @started = true
       @loop    = true
 
