@@ -35,9 +35,7 @@ module Vedeu
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }
       it { instance.instance_variable_get('@border').must_equal(border) }
-      it { instance.instance_variable_get('@colour').must_equal(colour) }
       it { instance.instance_variable_get('@parent').must_equal(parent) }
-      it { instance.instance_variable_get('@style').must_equal(style) }
       it { instance.instance_variable_get('@value').must_equal(value) }
 
       it { instance.must_respond_to(:value) }

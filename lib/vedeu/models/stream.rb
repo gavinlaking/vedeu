@@ -22,10 +22,13 @@ module Vedeu
     # @!attribute [rw] value
     # @return [String]
     attr_accessor :value
-
     alias_method :content, :value
     alias_method :data,    :value
     alias_method :text,    :value
+
+    # @!attribute [r] attributes
+    # @return [Hash]
+    attr_reader :attributes
 
     # Returns a new instance of Vedeu::Stream.
     #
@@ -37,9 +40,7 @@ module Vedeu
     # @return [Vedeu::Stream]
     def initialize(attributes = {})
       @attributes = defaults.merge!(attributes)
-      @colour     = @attributes[:colour]
       @parent     = @attributes[:parent]
-      @style      = @attributes[:style]
       @value      = @attributes[:value]
     end
 

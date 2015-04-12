@@ -23,6 +23,10 @@ module Vedeu
     # @return [Vedeu::Line]
     attr_accessor :parent
 
+    # @!attribute [r] attributes
+    # @return [Hash]
+    attr_reader :attributes
+
     # @!attribute [w] value
     # @return [String]
     attr_writer :value
@@ -42,9 +46,7 @@ module Vedeu
       @attributes = defaults.merge!(attributes)
 
       @border   = @attributes[:border]
-      @colour   = @attributes[:colour]
       @parent   = @attributes[:parent]
-      @style    = @attributes[:style]
       @value    = @attributes[:value]
     end
 
@@ -138,10 +140,6 @@ module Vedeu
     end
 
     private
-
-    # @!attribute [r] attributes
-    # @return [Hash]
-    attr_reader :attributes
 
     # @return [Hash]
     def colour_to_hash

@@ -47,7 +47,7 @@ module Vedeu
           bottom_left:  'm',
           bottom_right: 'j',
           client:       nil,
-          colour:       {},
+          colour:       nil,
           enabled:      false,
           horizontal:   'q',
           name:         'borders',
@@ -55,7 +55,7 @@ module Vedeu
           show_left:    true,
           show_right:   true,
           show_top:     true,
-          style:        [],
+          style:        nil,
           title:        '',
           top_left:     'l',
           top_right:    'k',
@@ -67,13 +67,11 @@ module Vedeu
         instance.instance_variable_get('@attributes').
           must_equal(default_attributes)
       end
-      it { instance.instance_variable_get('@colour').must_equal({}) }
       it { instance.instance_variable_get('@name').must_equal('borders') }
       it do
         instance.instance_variable_get('@repository').
           must_be_instance_of(Vedeu::Borders)
       end
-      it { instance.instance_variable_get('@style').must_equal([]) }
     end
 
     describe 'border offset methods; bx, bxn, by, byn' do
