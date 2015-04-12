@@ -66,17 +66,23 @@ module Vedeu
 
       # @return [void]
       def restart
-        Vedeu.log(type: :drb, message: 'Attempting to restart')
+       log('Attempting to restart')
 
         return not_enabled unless drb?
 
-        log('Not running') unless drb_running?
+        if drb_running?
+          log('Restarting')
 
-        log('Restarting')
+          stop
 
-        stop
+          start
 
-        start
+        else
+          log('Not running')
+
+          start
+
+        end
       end
 
       # When called will stop the DRb server and attempt to terminate the client
@@ -99,7 +105,7 @@ module Vedeu
 
       # @return [Vedeu::Distributed::Server]
       def start
-        Vedeu.log(type: :drb, message: 'Attempting to start')
+        log('Attempting to start')
 
         return not_enabled unless drb?
 
@@ -117,7 +123,7 @@ module Vedeu
 
       # @return [Symbol]
       def status
-        Vedeu.log(type: :drb, message: 'Fetching status')
+        log('Fetching status')
 
         return not_enabled unless drb?
 
@@ -136,7 +142,7 @@ module Vedeu
 
       # @return [void]
       def stop
-        Vedeu.log(type: :drb, message: 'Attempting to stop')
+        log('Attempting to stop')
 
         return not_enabled unless drb?
 

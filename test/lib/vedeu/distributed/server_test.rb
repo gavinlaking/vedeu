@@ -9,6 +9,13 @@ module Vedeu
       let(:described)     { Vedeu::Distributed::Server }
       let(:instance)      { described.instance }
       let(:configuration) {}
+      let(:enabled)       { false }
+      let(:running)       { false }
+
+      before do
+        Vedeu::Configuration.stubs(:drb?).returns(enabled)
+        DRb.stubs(:thread).returns(running)
+      end
 
       describe 'alias_methods' do
         it { instance.must_respond_to(:read) }
@@ -17,16 +24,17 @@ module Vedeu
 
       describe '.input' do
         let(:data) {}
+        let(:type) { :keypress }
 
-        subject { described.input(data) }
+        subject { described.input(data, type) }
 
-        it { Vedeu.expects(:trigger); subject }
+        it { Vedeu.expects(:trigger).with(:_drb_input_, nil, :keypress); subject }
       end
 
       describe '.output' do
         subject { described.output }
 
-        it { Vedeu.expects(:trigger); subject }
+        it { Vedeu.expects(:trigger).with(:_drb_retrieve_output_); subject }
       end
 
       describe '#pid' do
@@ -40,22 +48,112 @@ module Vedeu
 
       describe '.restart' do
         subject { described.restart }
+
+        # it { subject.must_be_instance_of(NilClass) }
+        context 'when the server is not enabled' do
+          it { subject.must_equal(:drb_not_enabled) }
+        end
+
+        context 'when the server is enabled' do
+
+          context 'and the server is running' do
+            # it { subject.must_equal(:running) }
+          end
+
+          context 'and the server is not running' do
+            # it { subject.must_equal(:stopped) }
+          end
+
+        end
       end
 
       describe '.shutdown' do
         subject { described.shutdown }
+
+        context 'when the server is not enabled' do
+          it { subject.must_equal(:drb_not_enabled) }
+        end
+
+        context 'when the server is enabled' do
+          let(:enabled) { true }
+
+          before do
+            Vedeu::Terminal.stubs(:restore_screen)
+          end
+
+          context 'and the server is running' do
+            # it { subject.must_equal(:running) }
+          end
+
+          context 'and the server is not running' do
+            # it { subject.must_equal(:stopped) }
+          end
+
+          it { Vedeu.expects(:trigger).with(:_exit_); subject }
+
+        end
       end
 
       describe '.start' do
         subject { described.start }
+
+        context 'when the server is not enabled' do
+          it { subject.must_equal(:drb_not_enabled) }
+        end
+
+        context 'when the server is enabled' do
+
+          context 'and the server is running' do
+            # it { subject.must_equal(:running) }
+          end
+
+          context 'and the server is not running' do
+            # it { subject.must_equal(:stopped) }
+          end
+
+        end
       end
 
       describe '.status' do
         subject { described.status }
+
+        context 'when the server is not enabled' do
+          it { subject.must_equal(:drb_not_enabled) }
+        end
+
+        context 'when the server is enabled' do
+          let(:enabled) { true }
+
+          context 'and the server is running' do
+            let(:running) { true }
+
+            it { subject.must_equal(:running) }
+          end
+
+          context 'and the server is not running' do
+            it { subject.must_equal(:stopped) }
+          end
+        end
       end
 
       describe '.stop' do
         subject { described.stop }
+
+        context 'when the server is not enabled' do
+          it { subject.must_equal(:drb_not_enabled) }
+        end
+
+        context 'when the server is enabled' do
+
+          context 'and the server is running' do
+            # it { subject.must_equal(:running) }
+          end
+
+          context 'and the server is not running' do
+            # it { subject.must_equal(:stopped) }
+          end
+
+        end
       end
 
     end # Server
