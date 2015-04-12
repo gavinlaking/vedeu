@@ -188,6 +188,23 @@ module Vedeu
       end
     end
 
+    describe '#value' do
+      subject { instance.value }
+
+      it { subject.must_be_instance_of(String) }
+
+      context 'when the border attribute is defined' do
+        let(:border) { :top_left }
+        let(:value)  { "\x6C" }
+
+        it { subject.must_equal("l") }
+      end
+
+      context 'when the border attributes is not defined' do
+        it { subject.must_equal('a') }
+      end
+    end
+
     describe '#x' do
       let(:position) { Vedeu::Position.new(17, 2) }
 

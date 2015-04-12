@@ -66,22 +66,19 @@ module Vedeu
       # @raise [InvalidSyntax] When no block or value is provided.
       # @return [Vedeu::Lines]
       def line(value = '', &block)
-        content = if block_given?
-                    Vedeu::Line.build({ client: client,
+        if block_given?
+          content = Vedeu::Line.build({ client: client,
                                         parent: model.parent }, &block)
 
-                  elsif value
-                    stream = Vedeu::Stream.build(client: client,
-                                                 parent: model,
-                                                 value: value)
-                    Vedeu::Line.build(client:  client,
+        elsif value
+          content = Vedeu::Line.build(client:  client,
                                       parent:  model.parent,
-                                      streams: [stream])
+                                      streams: [build_stream(value)])
 
-                  else
-                    fail InvalidSyntax, 'block not given'
+        else
+          fail InvalidSyntax, 'block not given'
 
-                  end
+        end
 
         model.parent.add(content)
       end
@@ -127,6 +124,12 @@ module Vedeu
           client: client,
           parent: model,
         }
+      end
+
+      # @param value [String]
+      # @return [Vedeu::Stream]
+      def build_stream(value)
+        Vedeu::Stream.build(client: client, parent: model, value: value)
       end
 
     end # Line

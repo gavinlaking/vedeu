@@ -110,20 +110,17 @@ module Vedeu
     #
     # @return [void]
     def clear
-      buffer = if content_for?(:front)
-                 front.clear.clear
+      Vedeu::Output.render(clear_buffer) unless clear_buffer.empty?
 
-               else
-                 interface.clear.clear
-
-               end
-
-      Vedeu::Output.render(buffer) unless buffer.empty?
-
-      buffer
+      clear_buffer
     end
 
     private
+
+    # @return [void]
+    def clear_buffer
+      @clear_buffer ||= Vedeu::Clear.new(view).clear
+    end
 
     # @return [Hash<Symbol => NilClass, String>]
     def defaults
@@ -162,6 +159,17 @@ module Vedeu
     # @return [Vedeu::Interface]
     def interface
       @interface ||= Vedeu.interfaces.find(name)
+    end
+
+    # @return [Vedeu::Interface]
+    def view
+      if content_for?(:front)
+        front
+
+      else
+        interface
+
+      end
     end
 
   end # Buffer
