@@ -94,20 +94,13 @@ module Vedeu
       # @param name [String] The name of the interface.
       # @return [Hash]
       def new_attributes(name)
-        attributes.merge!(existing_interface_attributes(name))
+        attributes.merge!(existing_attributes(name))
       end
 
       # @param name [String] The name of the interface.
       # @return [Hash]
-      def existing_interface_attributes(name)
-        if model.repository.registered?(name)
-          stored = model.repository.find(name)
-          stored.attributes
-
-        else
-          { name: name }
-
-        end
+      def existing_attributes(name)
+        Vedeu.interfaces.by_name(name).attributes
       end
 
       # @return [Hash]

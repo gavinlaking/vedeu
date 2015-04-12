@@ -20,6 +20,18 @@ module Vedeu
 
     end
 
+    # @param name [String]
+    # @return [Vedeu::Interface|Vedeu::NullInterface]
+    def by_name(name)
+      if registered?(name)
+        find(name)
+
+      else
+        Vedeu::NullInterface.new(name: name)
+
+      end
+    end
+
   end # InterfacesRepository
 
 end # Vedeu
