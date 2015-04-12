@@ -21,7 +21,7 @@ module Vedeu
     end
 
     describe '.capture' do
-      subject { instance.capture }
+      subject { described.capture(reader) }
 
       context 'when in cooked mode' do
         let(:raw_mode) { false }

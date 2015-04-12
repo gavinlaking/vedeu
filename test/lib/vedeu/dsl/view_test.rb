@@ -48,6 +48,9 @@ module Vedeu
 
           it { proc { subject }.must_raise(InvalidSyntax) }
         end
+
+        context 'when the block is given' do
+        end
       end
 
       describe '.views' do
@@ -63,6 +66,9 @@ module Vedeu
           subject { described.views }
 
           it { proc { subject }.must_raise(InvalidSyntax) }
+        end
+
+        context 'when the block is given' do
         end
       end
 

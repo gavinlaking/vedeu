@@ -7,23 +7,27 @@ module Vedeu
   class FileRenderer
 
     # @param output [Array<Array<Vedeu::Char>>]
+    # @param options [Hash]
     # @return [String]
-    def self.render(*output)
-      new(*output).render
+    def self.render(output, options = {})
+      new(output, options).render
     end
 
     # Returns a new instance of Vedeu::FileRenderer.
     #
     # @param output [Array<Array<Vedeu::Char>>]
+    # @param options [Hash]
     # @return [Vedeu::FileRenderer]
-    def initialize(*output)
+    def initialize(output, options = {})
       @output  = output
-      @options = {}
+      @options = options
     end
 
     # @return [String]
     def render
       File.open("/tmp/#{filename}", 'w') { |f| f.write(parsed) }
+
+      parsed
     end
 
     private
@@ -45,7 +49,7 @@ module Vedeu
 
     # @return [String]
     def parsed
-      Vedeu::Compressor.new(output).render
+      @parsed ||= Vedeu::Compressor.new(output).render
     end
 
     # @return [Float]

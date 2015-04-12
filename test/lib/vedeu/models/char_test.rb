@@ -8,6 +8,7 @@ module Vedeu
     let(:instance)      { described.new(attributes) }
     let(:attributes)    {
       {
+        border:   border,
         colour:   colour,
         parent:   parent,
         position: position,
@@ -197,7 +198,7 @@ module Vedeu
         let(:border) { :top_left }
         let(:value)  { "\x6C" }
 
-        it { subject.must_equal("l") }
+        it { subject.must_equal("\e(0l\e(B") }
       end
 
       context 'when the border attributes is not defined' do
