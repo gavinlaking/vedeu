@@ -15,7 +15,7 @@ module Vedeu
 
       # @return [Vedeu::Geometries]
       def reset!
-        @geometries = Vedeu::Geometries.new(Vedeu::Geometry)
+        @geometries = Vedeu::Geometries.register_repository(Vedeu::Geometry)
       end
 
     end

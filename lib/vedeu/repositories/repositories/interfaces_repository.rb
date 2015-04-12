@@ -14,7 +14,8 @@ module Vedeu
 
       # @return [Vedeu::InterfacesRepository]
       def reset!
-        @interfaces = Vedeu::InterfacesRepository.new(Vedeu::Interface)
+        @interfaces = Vedeu::InterfacesRepository.
+          register_repository(Vedeu::Interface)
       end
 
     end
