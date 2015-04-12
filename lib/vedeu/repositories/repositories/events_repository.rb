@@ -4,19 +4,19 @@ module Vedeu
   #
   class EventsRepository < Repository
 
-    # @return [Vedeu::EventsRepository]
-    def self.events
-      @events ||= reset!
-    end
+    class << self
 
-    # @return [Vedeu::EventsRepository]
-    def self.repository
-      Vedeu.events
-    end
+      # @return [Vedeu::EventsRepository]
+      def events
+        @events ||= reset!
+      end
+      alias_method :repository, :events
 
-    # @return [Vedeu::EventsRepository]
-    def self.reset!
-      @events = Vedeu::EventsRepository.new(Vedeu::Events)
+      # @return [Vedeu::EventsRepository]
+      def reset!
+        @events = Vedeu::EventsRepository.new(Vedeu::Events)
+      end
+
     end
 
   end # EventsRepository

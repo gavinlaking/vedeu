@@ -4,19 +4,19 @@ module Vedeu
   #
   class Keymaps < Repository
 
-    # @return [Vedeu::Keymaps]
-    def self.keymaps
-      @keymaps ||= reset!
-    end
+    class << self
 
-    # @return [Vedeu::Keymaps]
-    def self.repository
-      Vedeu.keymaps
-    end
+      # @return [Vedeu::Keymaps]
+      def keymaps
+        @keymaps ||= reset!
+      end
+      alias_method :repository, :keymaps
 
-    # @return [Vedeu::Keymaps]
-    def self.reset!
-      @keymaps = Vedeu::Keymaps.new(Vedeu::Keymap)
+      # @return [Vedeu::Keymaps]
+      def reset!
+        @keymaps = Vedeu::Keymaps.new(Vedeu::Keymap)
+      end
+
     end
 
   end # Keymaps
