@@ -7,6 +7,11 @@ module Vedeu
     let(:described) { Vedeu::Output }
     let(:instance)  { described.new(content) }
     let(:content)   {}
+    let(:drb)       { false }
+
+    before do
+      Vedeu::Configuration.stubs(:drb?).returns(drb)
+    end
 
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }
@@ -14,27 +19,24 @@ module Vedeu
     end
 
     describe '.render' do
-      let(:rendered) { interface.render }
-
-      before do
-        Vedeu.renderers.stubs(:render)
-        # Vedeu::FileRenderer.stubs(:render)
-        # Vedeu::HTMLRenderer.stubs(:to_file)
-        # Vedeu::TerminalRenderer.stubs(:render).returns(rendered)
-      end
+      before { Vedeu.renderers.stubs(:render) }
 
       subject { described.render(content) }
 
-      # context 'when DRb is enabled' do
-      #   it { }
-      # end
+      context 'when DRb is enabled' do
+        let(:drb) { true }
 
-      # context 'when DRb is not enabled' do
+        it { }
+      end
+
+      context 'when DRb is not enabled' do
       #   it 'sends the rendered interface to the Terminal' do
       #     Vedeu::TerminalRenderer.expects(:render)
       #     subject.must_be_instance_of(Array)
       #   end
-      # end
+      end
+
+      it { Vedeu.renderers.expects(:render).with(content); subject }
     end
 
   end # Output
