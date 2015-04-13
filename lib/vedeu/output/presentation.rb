@@ -16,6 +16,12 @@ module Vedeu
       end
     end
 
+    # @return [Vedeu::Background]
+    def background=(value)
+      attributes[:background] = value
+      colour.background = value
+    end
+
     # @return [Vedeu::Colour]
     def colour
       @colour ||= Vedeu::Colour.coerce(_colour)
@@ -23,6 +29,7 @@ module Vedeu
 
     # @return [Vedeu::Colour]
     def colour=(value)
+      attributes[:colour] = value
       @colour = Vedeu::Colour.coerce(value)
     end
 
@@ -35,6 +42,12 @@ module Vedeu
         Vedeu::Foreground.new
 
       end
+    end
+
+    # @return [Vedeu::Foreground]
+    def foreground=(value)
+      attributes[:foreground] = value
+      colour.foreground = value
     end
 
     # @return [Vedeu::Background]
