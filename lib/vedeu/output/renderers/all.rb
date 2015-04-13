@@ -1,3 +1,4 @@
+require_relative 'escape_sequence_renderer'
 require_relative 'file_renderer'
 require_relative 'html_renderer'
 require_relative 'json_renderer'
