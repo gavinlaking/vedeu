@@ -4,6 +4,14 @@ module Vedeu
   #
   class Visibility
 
+    # @param name [String]
+    # @return [Vedeu::Visibility]
+    def self.for_cursor(name = nil)
+      named = name ? Vedeu.cursors.by_name(name) : Vedeu.cursor
+
+      new(named)
+    end
+
     # @param model [void]
     # @return [void]
     def self.show(model)

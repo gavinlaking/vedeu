@@ -93,16 +93,12 @@ module Vedeu
 
     # Hide the cursor of the named interface or interface currently in focus.
     Vedeu.bind(:_cursor_hide_) do |name|
-      named = name ? Vedeu.cursors.by_name(name) : Vedeu.cursor
-
-      Vedeu::Visibility.hide(named)
+      Vedeu::Visibility.for_cursor(name).hide
     end
 
     # Show the cursor of the named interface or interface currently in focus.
     Vedeu.bind(:_cursor_show_) do |name|
-      named = name ? Vedeu.cursors.by_name(name) : Vedeu.cursor
-
-      Vedeu::Visibility.show(named)
+      Vedeu::Visibility.for_cursor(name).show
     end
 
     # @see {Vedeu::Move}
