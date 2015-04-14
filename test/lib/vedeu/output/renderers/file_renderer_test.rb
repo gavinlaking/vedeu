@@ -23,16 +23,15 @@ module Vedeu
     describe '.render' do
       let(:_time) { Time.new(2015, 4, 12, 20, 05) }
 
-      before do
-        Time.stubs(:now).returns(_time)
-        File.stubs(:open)
-      end
+      before { File.stubs(:open) }
 
       subject { described.render(output, options) }
 
       it { subject.must_be_instance_of(String) }
 
       context 'when the timestamp option is true' do
+        before { Time.stubs(:now).returns(_time) }
+
         it { File.expects(:open).with('/tmp/out_1428865500.0', 'w'); subject }
       end
 
