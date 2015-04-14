@@ -20,6 +20,145 @@ module Vedeu
       it { subject.instance_variable_get('@attributes').must_equal(attributes) }
     end
 
+    describe '.coerce' do
+      let(:value) {}
+
+      subject { described.coerce(value) }
+
+      it { subject.must_be_instance_of(described) }
+
+      context 'when the value is nil' do
+        it { subject.must_be_instance_of(described) }
+        it { subject.attributes.must_equal({ background: '', foreground: '' }) }
+      end
+
+      context 'when the value is a Vedeu::Colour' do
+        let(:attributes) {
+          {
+            background: '#ff00ff',
+            foreground: '#220022',
+          }
+        }
+        let(:value) { Vedeu::Colour.new(attributes) }
+
+        it { subject.must_be_instance_of(described) }
+        it { subject.attributes.must_equal(attributes) }
+      end
+
+      context 'when the value is a Hash' do
+        context 'when the hash has a :colour defined' do
+          context 'when the value of :colour is a Vedeu::Colour' do
+            let(:attributes) {
+              {
+                background: '#002200',
+                foreground: '#00ff00',
+              }
+            }
+            let(:value) {
+              {
+                colour: Vedeu::Colour.new(attributes),
+              }
+            }
+
+            it { subject.must_be_instance_of(described) }
+            it { subject.attributes.must_equal(attributes) }
+          end
+
+          context 'when the value of :colour is a Hash' do
+            context 'and a :background is defined' do
+              let(:value) {
+                {
+                  colour: {
+                    background: '#7700ff'
+                  }
+                }
+              }
+
+              it { subject.must_be_instance_of(described) }
+              it { subject.attributes.must_equal({
+                background: '#7700ff',
+                foreground: '',
+              }) }
+            end
+
+            context 'and a :foreground is defined' do
+              let(:value) {
+                {
+                  colour: {
+                    foreground: '#220077'
+                  }
+                }
+              }
+
+              it { subject.must_be_instance_of(described) }
+              it { subject.attributes.must_equal({
+                background: '',
+                foreground: '#220077',
+              }) }
+            end
+
+            context 'and neither a :background or :foreground is defined' do
+              let(:value) {
+                {
+                  colour: 'wrong'
+                }
+              }
+
+              it { subject.must_be_instance_of(described) }
+              it { subject.attributes.must_equal({
+                background: '',
+                foreground: '',
+              }) }
+            end
+          end
+        end
+
+        context 'when the hash does not have a :colour defined' do
+          context 'when the hash has a :background defined' do
+            let(:value) {
+              {
+                background: '#000022'
+              }
+            }
+
+            it { subject.must_be_instance_of(described) }
+            it { subject.attributes.must_equal({
+              background: '#000022',
+              foreground: '',
+            }) }
+          end
+
+          context 'when the hash has a :foreground defined' do
+            let(:value) {
+              {
+                foreground: '#aadd00'
+              }
+            }
+
+            it { subject.must_be_instance_of(described) }
+            it { subject.attributes.must_equal({
+              background: '',
+              foreground: '#aadd00',
+            }) }
+          end
+
+          context 'when neither a :background or :foreground is defined' do
+            let(:value) {
+              {
+                irrelevant: true
+              }
+            }
+
+            it { subject.must_be_instance_of(described) }
+            it { subject.attributes.must_equal({
+              background: '',
+              foreground: '',
+            }) }
+          end
+        end
+      end
+    end
+
     describe '#background' do
       subject { instance.background }
 

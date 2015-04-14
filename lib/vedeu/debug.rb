@@ -5,7 +5,8 @@ module Vedeu
   # execution upon exiting.
   #
   # @param filename [String]
-  # @param block [Proc]
+  # @return [void]
+  # @yieldreturn [void] The section of the application to debug.
   def self.debug(filename = 'profile.html')
     return nil unless block_given?
 

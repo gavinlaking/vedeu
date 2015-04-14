@@ -4,24 +4,24 @@ module Vedeu
   #
   class Cursors < Repository
 
-    # @return [Vedeu::Cursors]
-    def self.cursors
-      @cursors ||= reset!
-    end
+    class << self
 
-    # @return [Vedeu::Cursor]
-    def self.cursor
-      cursors.by_name(Vedeu.focus) if Vedeu.focus
-    end
+      # @return [Vedeu::Cursors]
+      def cursors
+        @cursors ||= reset!
+      end
+      alias_method :repository, :cursors
 
-    # @return [Vedeu::Cursors]
-    def self.repository
-      Vedeu.cursors
-    end
+      # @return [Vedeu::Cursor]
+      def cursor
+        cursors.by_name(Vedeu.focus) if Vedeu.focus
+      end
 
-    # @return [Vedeu::Cursors]
-    def self.reset!
-      @cursors = Vedeu::Cursors.register_repository(Vedeu::Cursor)
+      # @return [Vedeu::Cursors]
+      def reset!
+        @cursors = Vedeu::Cursors.register_repository(Vedeu::Cursor)
+      end
+
     end
 
     # @param name [String] The name of the stored cursor.

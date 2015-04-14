@@ -42,6 +42,10 @@ module Vedeu
     attr_accessor :visible
     alias_method :visible?, :visible
 
+    # @!attribute [r] attributes
+    # @return [Hash]
+    attr_reader :attributes
+
     # @!attribute [w] lines
     # @return [Array<Vedeu::Line>]
     attr_writer :lines
@@ -81,14 +85,12 @@ module Vedeu
     def initialize(attributes = {})
       @attributes = defaults.merge!(attributes)
 
-      @colour     = @attributes[:colour]
       @delay      = @attributes[:delay]
       @group      = @attributes[:group]
       @lines      = @attributes[:lines]
       @name       = @attributes[:name]
       @parent     = @attributes[:parent]
       @repository = Vedeu.interfaces
-      @style      = @attributes[:style]
       @visible    = @attributes[:visible]
     end
 
@@ -96,22 +98,6 @@ module Vedeu
     # @return [void]
     def add(child)
       @lines = lines.add(child)
-    end
-
-    # @note
-    #   This may be unused. (GL 2015-02-20)
-    #
-    # @return [Hash]
-    def attributes
-      {
-        colour:  colour,
-        delay:   delay,
-        group:   group,
-        name:    name,
-        parent:  parent,
-        style:   style,
-        visible: true,
-      }
     end
 
     # Returns the border object belonging to the interface.

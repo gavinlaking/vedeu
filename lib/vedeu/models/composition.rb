@@ -15,6 +15,10 @@ module Vedeu
     collection Vedeu::Interfaces
     member     Vedeu::Interface
 
+    # @!attribute [r] attributes
+    # @return [Hash]
+    attr_reader :attributes
+
     # Returns a new instance of Vedeu::Composition.
     #
     # @param attributes [Hash]
@@ -25,10 +29,8 @@ module Vedeu
     def initialize(attributes = {})
       @attributes = defaults.merge!(attributes)
 
-      @colour     = @attributes[:colour]
       @interfaces = @attributes[:interfaces]
       @repository = Vedeu.interfaces
-      @style      = @attributes[:style]
     end
 
     # @param child [Vedeu::Interface]

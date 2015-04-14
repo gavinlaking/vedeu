@@ -82,18 +82,10 @@ module Vedeu
     # @return [String]
     attr_reader :name
 
-    # @!attribute [r] colour
-    # @return [Vedeu::Colour]
-    attr_reader :colour
-
     # @!attribute [r] enabled
     # @return [Boolean]
     attr_reader :enabled
     alias_method :enabled?, :enabled
-
-    # @!attribute [r] style
-    # @return [Style]
-    attr_reader :style
 
     # Returns a new instance of Vedeu::Border.
     #
@@ -138,8 +130,6 @@ module Vedeu
       @vertical     = @attributes[:vertical]
       @name         = @attributes[:name]
       @repository   = Vedeu.borders
-      @colour       = @attributes[:colour]
-      @style        = @attributes[:style]
     end
 
     # @return [Fixnum]
@@ -229,6 +219,13 @@ module Vedeu
     # @return [String]
     def top
       top_or_bottom('top')
+    end
+
+    # The parent of a border is always an interface.
+    #
+    # @return [Vedeu::Interface]
+    def parent
+      interface
     end
 
     private
@@ -361,7 +358,7 @@ module Vedeu
         bottom_left:  "\x6D", # └ # \u2514
         bottom_right: "\x6A", # ┘ # \u2518
         client:       nil,
-        colour:       {},
+        colour:       nil,
         enabled:      false,
         horizontal:   "\x71", # ─ # \u2500
         name:         '',
@@ -369,7 +366,7 @@ module Vedeu
         show_left:    true,
         show_right:   true,
         show_top:     true,
-        style:        [],
+        style:        nil,
         title:        '',
         top_left:     "\x6C", # ┌ # \u250C
         top_right:    "\x6B", # ┐ # \u2510

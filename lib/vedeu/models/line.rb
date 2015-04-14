@@ -22,8 +22,11 @@ module Vedeu
     # @!attribute [rw] streams
     # @return [Streams]
     attr_accessor :streams
-
     alias_method :value, :streams
+
+    # @!attribute [r] attributes
+    # @return [Hash]
+    attr_reader :attributes
 
     # Returns a new instance of Vedeu::Line.
     #
@@ -35,10 +38,8 @@ module Vedeu
     # @return [Vedeu::Line]
     def initialize(attributes = {})
       @attributes = defaults.merge!(attributes)
-      @colour     = @attributes[:colour]
       @parent     = @attributes[:parent]
       @streams    = @attributes[:streams]
-      @style      = @attributes[:style]
     end
 
     # @param child []

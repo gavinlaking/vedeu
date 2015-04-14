@@ -4,19 +4,19 @@ module Vedeu
   #
   class Buffers < Repository
 
-    # @return [Vedeu::Buffers]
-    def self.buffers
-      @buffers ||= reset!
-    end
+    class << self
 
-    # @return [Vedeu::Buffers]
-    def self.repository
-      Vedeu.buffers
-    end
+      # @return [Vedeu::Buffers]
+      def buffers
+        @buffers ||= reset!
+      end
+      alias_method :repository, :buffers
 
-    # @return [Vedeu::Buffers]
-    def self.reset!
-      @buffers = Vedeu::Buffers.register_repository(Vedeu::Buffer)
+      # @return [Vedeu::Buffers]
+      def reset!
+        @buffers = Vedeu::Buffers.register_repository(Vedeu::Buffer)
+      end
+
     end
 
     # @param name [String] The name of buffer to clear.

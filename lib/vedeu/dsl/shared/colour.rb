@@ -70,13 +70,12 @@ module Vedeu
       #         colour background: '#000000', foreground: '#ffffff'
       #         # ...
       #
-      # @return [Hash]
+      # @return [Vedeu::Colour]
       def colour(attributes = {})
         attributes.delete_if do |k, v|
           [:background, :foreground].include?(k) == false || v.nil? || v.empty?
         end
-
-        model.colour = Vedeu::Colour.new(attributes)
+        model.colour = Vedeu::Colour.coerce(attributes)
       end
 
     end # Colour

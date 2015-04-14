@@ -4,19 +4,32 @@ module Vedeu
   #
   class InterfacesRepository < Repository
 
-    # @return [Vedeu::InterfacesRepository]
-    def self.interfaces
-      @interfaces ||= reset!
+    class << self
+
+      # @return [Vedeu::InterfacesRepository]
+      def interfaces
+        @interfaces ||= reset!
+      end
+      alias_method :repository, :interfaces
+
+      # @return [Vedeu::InterfacesRepository]
+      def reset!
+        @interfaces = Vedeu::InterfacesRepository.
+          register_repository(Vedeu::Interface)
+      end
+
     end
 
-    # @return [Vedeu::InterfacesRepository]
-    def self.repository
-      Vedeu.interfaces
-    end
+    # @param name [String]
+    # @return [Vedeu::Interface|Vedeu::NullInterface]
+    def by_name(name)
+      if registered?(name)
+        find(name)
 
-    # @return [Vedeu::InterfacesRepository]
-    def self.reset!
-      @interfaces = Vedeu::InterfacesRepository.new(Vedeu::Interface)
+      else
+        Vedeu::NullInterface.new(name: name)
+
+      end
     end
 
   end # InterfacesRepository

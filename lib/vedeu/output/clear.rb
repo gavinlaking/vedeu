@@ -122,8 +122,8 @@ module Vedeu
     # @return [Hash<Symbol => Boolean>]
     def defaults
       {
-        clear_border:         true,
-        use_terminal_colours: true,
+        clear_border:         false,
+        use_terminal_colours: false,
       }
     end
 

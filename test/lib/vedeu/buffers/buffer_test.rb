@@ -63,14 +63,14 @@ module Vedeu
       end
     end
 
-    # describe '#content' do
-    #   subject { instance.content }
+    # describe '#render' do
+    #   before { Vedeu::Output.stubs(:render) }
+
+    #   subject { instance.render }
 
     #   it { subject.must_be_instance_of(Array) }
 
     #   context 'when there is content on the back buffer' do
-    #     before { Vedeu::Output.stubs(:render) }
-
     #     let(:back) {
     #       Vedeu.interface 'buffer' do
     #         lines do
@@ -119,7 +119,6 @@ module Vedeu
     #   end
 
     #   context 'when there is content on the front buffer' do
-    #     before { Vedeu::Output.stubs(:render) }
     #     let(:buffer) { :front }
     #     let(:front) {
     #       Vedeu.interface 'buffer' do
@@ -139,7 +138,6 @@ module Vedeu
     #   end
 
     #   context 'when there is content on the previous buffer' do
-    #     before { Vedeu::Output.stubs(:render) }
     #     let(:buffer) { :previous }
     #     let(:previous) {
     #       Vedeu.interface 'buffer' do

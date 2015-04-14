@@ -34,8 +34,6 @@ module Vedeu
       it { instance.must_be_instance_of(described) }
       it { instance.instance_variable_get('@value').must_equal(value) }
       it { instance.instance_variable_get('@parent').must_equal(parent) }
-      it { instance.instance_variable_get('@colour').must_equal(colour) }
-      it { instance.instance_variable_get('@style').must_equal(style) }
     end
 
     describe '#add' do

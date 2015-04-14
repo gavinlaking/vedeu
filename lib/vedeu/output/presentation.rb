@@ -16,22 +16,20 @@ module Vedeu
       end
     end
 
+    # @return [Vedeu::Background]
+    def background=(value)
+      attributes[:background] = value
+      colour.background = value
+    end
+
     # @return [Vedeu::Colour]
     def colour
-      if @colour
-        @colour ||= Vedeu::Colour.coerce(@colour)
-
-      elsif parent && parent.colour
-        @colour ||= Vedeu::Colour.coerce(parent.colour)
-
-      else
-        Vedeu::Colour.coerce(nil)
-
-      end
+      @colour ||= Vedeu::Colour.coerce(_colour)
     end
 
     # @return [Vedeu::Colour]
     def colour=(value)
+      attributes[:colour] = value
       @colour = Vedeu::Colour.coerce(value)
     end
 
@@ -44,6 +42,12 @@ module Vedeu
         Vedeu::Foreground.new
 
       end
+    end
+
+    # @return [Vedeu::Foreground]
+    def foreground=(value)
+      attributes[:foreground] = value
+      colour.foreground = value
     end
 
     # @return [Vedeu::Background]
@@ -80,16 +84,7 @@ module Vedeu
 
     # @return [Vedeu::Style]
     def style
-      if @style
-        @style ||= Vedeu::Style.coerce(@style)
-
-      elsif parent && parent.style
-        @style ||= Vedeu::Style.coerce(parent.style)
-
-      else
-        Vedeu::Style.coerce(nil)
-
-      end
+      @style ||= Vedeu::Style.coerce(_style)
     end
 
     # @return [Vedeu::Style]
@@ -107,6 +102,17 @@ module Vedeu
     end
 
     private
+
+    # @return [void]
+    def _colour
+      if attributes[:colour]
+        attributes[:colour]
+
+      elsif parent_colour
+        parent_colour
+
+      end
+    end
 
     # Renders the colour attributes of the receiver and yields (to then render
     # the styles).
@@ -133,6 +139,17 @@ module Vedeu
     # @return [String]
     def render_style
       [style, yield].join
+    end
+
+    # @return [void]
+    def _style
+      if attributes[:style]
+        attributes[:style]
+
+      elsif parent_style
+        parent_style
+
+      end
     end
 
   end # Presentation

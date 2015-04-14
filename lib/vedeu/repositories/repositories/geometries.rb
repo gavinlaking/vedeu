@@ -5,19 +5,19 @@ module Vedeu
   #
   class Geometries < Repository
 
-    # @return [Vedeu::Geometries]
-    def self.geometries
-      @geometries ||= reset!
-    end
+    class << self
 
-    # @return [Vedeu::Geometries]
-    def self.repository
-      Vedeu.geometries
-    end
+      # @return [Vedeu::Geometries]
+      def geometries
+        @geometries ||= reset!
+      end
+      alias_method :repository, :geometries
 
-    # @return [Vedeu::Geometries]
-    def self.reset!
-      @geometries = Vedeu::Geometries.new(Vedeu::Geometry)
+      # @return [Vedeu::Geometries]
+      def reset!
+        @geometries = Vedeu::Geometries.register_repository(Vedeu::Geometry)
+      end
+
     end
 
     # @param name [String] The name of the stored geometry.

@@ -21,7 +21,7 @@ module Vedeu
     let(:parent)     {}
     let(:colour)     {}
     let(:style)      {}
-    let(:visible)    {}
+    let(:visible)    { true }
     let(:repository) { Vedeu.interfaces }
 
     describe '#initialize' do
@@ -30,28 +30,12 @@ module Vedeu
       it { subject.instance_variable_get('@name').must_equal(_name) }
       it { subject.instance_variable_get('@lines').must_equal(lines) }
       it { subject.instance_variable_get('@parent').must_equal(parent) }
-      it { subject.instance_variable_get('@colour').must_equal(colour) }
-      it { subject.instance_variable_get('@style').must_equal(style) }
       it { subject.instance_variable_get('@visible').must_equal(visible) }
       it { subject.instance_variable_get('@border').must_equal(nil) }
       it { subject.instance_variable_get('@delay').must_equal(0.0) }
       it { subject.instance_variable_get('@geometry').must_equal(nil) }
       it { subject.instance_variable_get('@group').must_equal('') }
       it { subject.instance_variable_get('@repository').must_equal(repository) }
-    end
-
-    describe '#attributes' do
-      subject { instance.attributes }
-
-      it { subject.must_be_instance_of(Hash) }
-
-      it { subject.must_equal(colour: Vedeu::Colour.coerce(colour),
-                              delay:  0.0,
-                              group:  '',
-                              name:   'hydrogen',
-                              parent: nil,
-                              style:  Vedeu::Style.coerce(style),
-                              visible: true) }
     end
 
     describe '#border' do
@@ -108,6 +92,17 @@ module Vedeu
 
     describe '#render' do
       subject { instance.render }
+
+      it { subject.must_be_instance_of(Array) }
+
+      context 'when the interface is visible' do
+      end
+
+      context 'when the interface is not visible' do
+        let(:visible) { false }
+
+        it { subject.must_equal([]) }
+      end
     end
 
     describe '#store' do

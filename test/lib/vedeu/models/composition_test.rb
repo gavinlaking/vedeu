@@ -32,8 +32,6 @@ module Vedeu
 
       it { subject.must_be_instance_of(described) }
       it { subject.instance_variable_get('@interfaces').must_equal(interfaces) }
-      it { subject.instance_variable_get('@colour').must_equal(colour) }
-      it { subject.instance_variable_get('@style').must_equal(style) }
     end
 
     describe '#add' do

@@ -13,10 +13,13 @@ module Vedeu
       }
     }
     let(:visible)   { true }
+    let(:drb)       { false }
 
     before do
       Vedeu::Border.new(name: 'xenon').store
       Vedeu::Geometry.new(name: 'xenon', x: 1, y: 1, xn: 3, yn: 3).store
+      Vedeu::Configuration.stubs(:drb?).returns(drb)
+      Vedeu.renderers.stubs(:render)
     end
 
     describe '#initialize' do
@@ -33,7 +36,12 @@ module Vedeu
       subject { described.clear(interface, options) }
 
       context 'when the interface is visible' do
+        context 'when DRb is enabled' do
+          let(:drb) { true }
+        end
 
+        context 'when DRb is not enabled' do
+        end
       end
 
       context 'when the interface is not visible' do
@@ -50,6 +58,15 @@ module Vedeu
 
       it { subject.must_be_instance_of(Array) }
       it { subject.flatten.size.must_equal(9) }
+
+      context 'when the interface is visible' do
+      end
+
+      context 'when the interface is not visible' do
+        let(:visible) { false }
+
+        it { subject.must_equal([]) }
+      end
     end
 
     describe '#write' do
