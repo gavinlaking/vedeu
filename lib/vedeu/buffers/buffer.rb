@@ -47,11 +47,9 @@ module Vedeu
     def initialize(attributes = {})
       @attributes = defaults.merge!(attributes)
 
-      @name       = @attributes[:name]
-      @back       = @attributes[:back]
-      @front      = @attributes[:front]
-      @previous   = @attributes[:previous]
-      @repository = @attributes[:repository] || Vedeu.buffers
+      @attributes.each do |key, value|
+        instance_variable_set("@#{key}", value)
+      end
     end
 
     # Add the content to the back buffer, then update the repository. Returns
@@ -125,10 +123,11 @@ module Vedeu
     # @return [Hash<Symbol => NilClass, String>]
     def defaults
       {
-        back:     nil,
-        front:    nil,
-        name:     '',
-        previous: nil,
+        back:       nil,
+        front:      nil,
+        name:       '',
+        previous:   nil,
+        repository: Vedeu.buffers,
       }
     end
 

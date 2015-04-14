@@ -12,14 +12,12 @@ module Vedeu
         back:       back,
         front:      front,
         previous:   previous,
-        repository: repository,
       }
     }
     let(:_name) { 'krypton' }
     let(:back)        {}
     let(:front)       {}
     let(:previous)    {}
-    let(:repository)  {}
 
     before { Vedeu.stubs(:trigger) }
 
