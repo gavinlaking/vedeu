@@ -15,8 +15,8 @@ module Vedeu
     # :nocov:
     # Start the main loop.
     #
-    # @param block [Proc]
     # @return [void]
+    # @yieldreturn [void] The client application.
     def self.start!
       @started = true
       @loop    = true

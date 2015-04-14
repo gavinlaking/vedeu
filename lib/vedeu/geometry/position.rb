@@ -56,8 +56,9 @@ module Vedeu
     # point on the screen. When passed a block, will do the aforementioned,
     # call the block and then reposition to this location.
     #
-    # @param block [Proc]
     # @return [String]
+    # @yieldreturn [void] Returns the block wrapped in position escape
+    #   sequences.
     def to_s
       if block_given?
         [sequence, yield, sequence].join

@@ -132,7 +132,7 @@ module Vedeu
     # change the viewport by on either the y or x axis) determined by the offset
     # (the cursor's y or x offset position.
     #
-    # @param offset [Fixnum] The cursor's {oy} or {ox} values.
+    # @param offset [Fixnum] The cursor's oy or ox values.
     # @param dimension [Fixnum] Either the height or width.
     # @return [Fixnum]
     def content_offset(offset, dimension)
