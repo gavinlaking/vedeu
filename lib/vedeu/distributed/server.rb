@@ -66,7 +66,7 @@ module Vedeu
 
       # @return [void]
       def restart
-       log('Attempting to restart')
+        log('Attempting to restart')
 
         return not_enabled unless drb?
 
