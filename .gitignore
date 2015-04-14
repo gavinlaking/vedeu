@@ -16,6 +16,7 @@ spec/reports
 test/tmp
 test/version_tmp
 tmp
+vendor/bundle
 .gemtags
 .tags
 .tags_sorted_by_file
