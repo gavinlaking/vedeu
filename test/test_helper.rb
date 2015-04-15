@@ -36,7 +36,7 @@ end
 
 require 'mocha/setup'
 require 'vedeu'
-require 'support/helpers/all'
+require 'support/helpers/model_test_class'
 
 # require 'minitest/reporters'
 # Minitest::Reporters.use!(

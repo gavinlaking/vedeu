@@ -2,6 +2,25 @@ require 'test_helper'
 
 module Vedeu
 
+  module DSL
+
+    class ModelTestClass
+
+      include Vedeu::DSL::Style
+
+      def initialize(model, client = nil)
+        @model  = model
+        @client = client
+      end
+
+      private
+
+      attr_reader :model
+
+    end # ModelTestClass
+
+  end # DSL
+
   describe Model do
     let(:model_instance) { ModelTestClass.new(attributes) }
     let(:attributes) {
