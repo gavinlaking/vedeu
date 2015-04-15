@@ -81,13 +81,7 @@ module Vedeu
     #
     # @return [Array]
     def write
-      if Vedeu::Configuration.drb?
-        Vedeu.trigger(:_drb_store_output_, rendered)
-
-        Vedeu::HTMLRenderer.to_file(Vedeu::VirtualBuffer.retrieve)
-      end
-
-      Vedeu.renderers.render(rendered)
+      Vedeu::Output.render(rendered)
     end
 
     private
