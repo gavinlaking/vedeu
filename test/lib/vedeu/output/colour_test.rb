@@ -21,9 +21,9 @@ module Vedeu
     end
 
     describe '.coerce' do
-      let(:value) {}
+      let(:_value) {}
 
-      subject { described.coerce(value) }
+      subject { described.coerce(_value) }
 
       it { subject.must_be_instance_of(described) }
 
@@ -39,7 +39,7 @@ module Vedeu
             foreground: '#220022',
           }
         }
-        let(:value) { Vedeu::Colour.new(attributes) }
+        let(:_value) { Vedeu::Colour.new(attributes) }
 
         it { subject.must_be_instance_of(described) }
         it { subject.attributes.must_equal(attributes) }
@@ -54,7 +54,7 @@ module Vedeu
                 foreground: '#00ff00',
               }
             }
-            let(:value) {
+            let(:_value) {
               {
                 colour: Vedeu::Colour.new(attributes),
               }
@@ -66,7 +66,7 @@ module Vedeu
 
           context 'when the value of :colour is a Hash' do
             context 'and a :background is defined' do
-              let(:value) {
+              let(:_value) {
                 {
                   colour: {
                     background: '#7700ff'
@@ -82,7 +82,7 @@ module Vedeu
             end
 
             context 'and a :foreground is defined' do
-              let(:value) {
+              let(:_value) {
                 {
                   colour: {
                     foreground: '#220077'
@@ -98,7 +98,7 @@ module Vedeu
             end
 
             context 'and neither a :background or :foreground is defined' do
-              let(:value) {
+              let(:_value) {
                 {
                   colour: 'wrong'
                 }
@@ -115,7 +115,7 @@ module Vedeu
 
         context 'when the hash does not have a :colour defined' do
           context 'when the hash has a :background defined' do
-            let(:value) {
+            let(:_value) {
               {
                 background: '#000022'
               }
@@ -129,7 +129,7 @@ module Vedeu
           end
 
           context 'when the hash has a :foreground defined' do
-            let(:value) {
+            let(:_value) {
               {
                 foreground: '#aadd00'
               }
@@ -143,7 +143,7 @@ module Vedeu
           end
 
           context 'when neither a :background or :foreground is defined' do
-            let(:value) {
+            let(:_value) {
               {
                 irrelevant: true
               }
@@ -184,11 +184,11 @@ module Vedeu
     end
 
     describe '#background=' do
-      let(:value) { '#000000' }
+      let(:_value) { '#000000' }
 
-      subject { instance.background = (value) }
+      subject { instance.background = (_value) }
 
-      it { subject.must_equal(value) }
+      it { subject.must_equal(_value) }
     end
 
     describe '#eql?' do
@@ -230,11 +230,11 @@ module Vedeu
     end
 
     describe '#foreground=' do
-      let(:value) { '#ff0000' }
+      let(:_value) { '#ff0000' }
 
-      subject { instance.foreground = (value) }
+      subject { instance.foreground = (_value) }
 
-      it { subject.must_equal(value) }
+      it { subject.must_equal(_value) }
     end
 
     describe '#to_s' do

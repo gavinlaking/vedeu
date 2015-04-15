@@ -12,14 +12,14 @@ module Vedeu
         border: border,
         colour: colour,
         parent: parent,
-        value:  value
+        value:  _value
       }
     }
     let(:border) {}
     let(:colour) {}
     let(:parent) { Vedeu::Line.new(colour: parent_colour) }
     let(:parent_colour) {}
-    let(:value) {}
+    let(:_value) {}
 
     describe '#initialize' do
       it { instance.must_be_instance_of(Vedeu::HTMLChar) }
@@ -99,13 +99,13 @@ module Vedeu
         end
 
         context 'when the value is empty' do
-          let(:value) { '' }
+          let(:_value) { '' }
 
           it { subject.must_equal('<td>&nbsp;</td>') }
         end
 
         context 'when there is a value' do
-          let(:value) { 'a' }
+          let(:_value) { 'a' }
 
           it { subject.must_equal(
             "<td style='background:#000;color:#222;" \

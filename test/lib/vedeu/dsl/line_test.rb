@@ -34,7 +34,7 @@ module Vedeu
       end
 
       describe '#line' do
-        let(:value) { '' }
+        let(:_value) { '' }
 
         subject {
           instance.line do
@@ -50,13 +50,13 @@ module Vedeu
 
         context 'when the block is not given' do
           context 'when the value is given' do
-            subject { instance.line(value) }
+            subject { instance.line(_value) }
           end
 
           context 'when the value is not given' do
-            let(:value) {}
+            let(:_value) {}
 
-            subject { instance.line(value) }
+            subject { instance.line(_value) }
 
             it { proc { subject }.must_raise(InvalidSyntax) }
           end

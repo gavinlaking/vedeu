@@ -13,10 +13,10 @@ module Vedeu
         parent:   parent,
         position: position,
         style:    style,
-        value:    value,
+        value:    _value,
       }
     }
-    let(:value)         { 'a' }
+    let(:_value)         { 'a' }
     let(:parent)        { Vedeu::Line.new(parent_attributes) }
     let(:parent_attributes) {
       {
@@ -37,7 +37,7 @@ module Vedeu
       it { instance.must_be_instance_of(described) }
       it { instance.instance_variable_get('@border').must_equal(border) }
       it { instance.instance_variable_get('@parent').must_equal(parent) }
-      it { instance.instance_variable_get('@value').must_equal(value) }
+      it { instance.instance_variable_get('@value').must_equal(_value) }
 
       it { instance.must_respond_to(:value) }
     end
@@ -183,7 +183,7 @@ module Vedeu
       end
 
       context 'when the value is nil' do
-        let(:value) {}
+        let(:_value) {}
 
         it { subject.must_equal('') }
       end
@@ -196,7 +196,7 @@ module Vedeu
 
       context 'when the border attribute is defined' do
         let(:border) { :top_left }
-        let(:value)  { "\x6C" }
+        let(:_value)  { "\x6C" }
 
         it { subject.must_equal("\e(0l\e(B") }
       end

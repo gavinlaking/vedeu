@@ -83,15 +83,15 @@ module Vedeu
     end
 
     describe '.output' do
-      subject { described.output(*value) }
+      subject { described.output(*_value) }
 
       context 'when the value is a String' do
-        let(:value) { 'Some output...' }
+        let(:_value) { 'Some output...' }
 
         it { subject.must_equal(['Some output...']) }
       end
       context 'when there are multiple values' do
-        let(:value) { ['Some output...', 'more output...', 'even more...'] }
+        let(:_value) { ['Some output...', 'more output...', 'even more...'] }
 
         it { subject.must_equal(['Some output...',
                                  'more output...',

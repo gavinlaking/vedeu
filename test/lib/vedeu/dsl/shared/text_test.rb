@@ -7,7 +7,7 @@ module Vedeu
     describe Text do
 
       describe '#text' do
-        let(:value)   {}
+        let(:_value)  {}
         let(:options) { {} }
         let(:modified_options) {
           {
@@ -19,7 +19,7 @@ module Vedeu
         let(:model)    { Vedeu::Line.new }
         let(:instance) { Vedeu::DSL::Line.new(model) }
 
-        subject { instance.text(value, options) }
+        subject { instance.text(_value, options) }
 
         context 'when the model is a Vedeu::Interface' do
           let(:model)    { Vedeu::Interface.new }
@@ -28,7 +28,7 @@ module Vedeu
           it { subject.must_be_instance_of(Vedeu::Lines) }
 
           it 'adds the text to the model' do
-            Vedeu::Text.expects(:add).with(value, modified_options)
+            Vedeu::Text.expects(:add).with(_value, modified_options)
             subject
           end
         end
@@ -40,7 +40,7 @@ module Vedeu
           it { subject.must_be_instance_of(Vedeu::Streams) }
 
           it 'adds the text to the model' do
-            Vedeu::Text.expects(:add).with(value, modified_options)
+            Vedeu::Text.expects(:add).with(_value, modified_options)
             subject
           end
         end
@@ -53,7 +53,7 @@ module Vedeu
           it { subject.must_be_instance_of(Vedeu::Streams) }
 
           it 'adds the text to the model' do
-            Vedeu::Text.expects(:add).with(value, modified_options)
+            Vedeu::Text.expects(:add).with(_value, modified_options)
             subject
           end
         end
@@ -63,8 +63,8 @@ module Vedeu
             let(:anchor) { :align }
 
             it 'adds the text to the model' do
-              Vedeu::Text.expects(:add).with(value, modified_options)
-              instance.align(value, options)
+              Vedeu::Text.expects(:add).with(_value, modified_options)
+              instance.align(_value, options)
             end
           end
 
@@ -72,8 +72,8 @@ module Vedeu
             let(:anchor) { :center }
 
             it 'adds the text to the model' do
-              Vedeu::Text.expects(:add).with(value, modified_options)
-              instance.center(value, options)
+              Vedeu::Text.expects(:add).with(_value, modified_options)
+              instance.center(_value, options)
             end
           end
 
@@ -81,8 +81,8 @@ module Vedeu
             let(:anchor) { :centre }
 
             it 'adds the text to the model' do
-              Vedeu::Text.expects(:add).with(value, modified_options)
-              instance.centre(value, options)
+              Vedeu::Text.expects(:add).with(_value, modified_options)
+              instance.centre(_value, options)
             end
           end
 
@@ -90,8 +90,8 @@ module Vedeu
             let(:anchor) { :left }
 
             it 'adds the text to the model' do
-              Vedeu::Text.expects(:add).with(value, modified_options)
-              instance.left(value, options)
+              Vedeu::Text.expects(:add).with(_value, modified_options)
+              instance.left(_value, options)
             end
           end
 
@@ -99,8 +99,8 @@ module Vedeu
             let(:anchor) { :right }
 
             it 'adds the text to the model' do
-              Vedeu::Text.expects(:add).with(value, modified_options)
-              instance.right(value, options)
+              Vedeu::Text.expects(:add).with(_value, modified_options)
+              instance.right(_value, options)
             end
           end
         end

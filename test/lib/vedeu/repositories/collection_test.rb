@@ -19,9 +19,9 @@ module Vedeu
 
     describe '#[]' do
       let(:collection) { [:hydrogen, :helium, :lithium, :beryllium] }
-      let(:value) { 1..2 }
+      let(:_value) { 1..2 }
 
-      subject { instance[value] }
+      subject { instance[_value] }
 
       it { subject.must_be_instance_of(Array) }
       it { subject.must_equal([:helium, :lithium]) }
