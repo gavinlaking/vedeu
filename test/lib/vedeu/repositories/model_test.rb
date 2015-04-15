@@ -6,7 +6,7 @@ module Vedeu
 
     class ModelTestClass
 
-      include Vedeu::DSL::Style
+      include Vedeu::DSL::Presentation
 
       def initialize(model, client = nil)
         @model  = model

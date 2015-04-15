@@ -16,8 +16,7 @@ module Vedeu
 
       include Vedeu::Common
       include Vedeu::DSL
-      include Vedeu::DSL::Colour
-      include Vedeu::DSL::Style
+      include Vedeu::DSL::Presentation
       include Vedeu::DSL::Text
       include Vedeu::DSL::Use
 

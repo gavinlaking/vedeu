@@ -25,8 +25,7 @@ module Vedeu
     class Border
 
       include Vedeu::DSL
-      include Vedeu::DSL::Colour
-      include Vedeu::DSL::Style
+      include Vedeu::DSL::Presentation
 
       # Specify the border of an interface or view with a simple DSL.
       #
