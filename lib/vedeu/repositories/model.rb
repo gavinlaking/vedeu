@@ -40,6 +40,12 @@ module Vedeu
       alias_method :member,     :child
       alias_method :collection, :child
 
+      # @note
+      #   Not current used.
+      #
+      # @param klass [void]
+      # @param as [void]
+      # @return [void]
       def repository(klass, as:)
         self.repository = as
         klass.register(as, self)

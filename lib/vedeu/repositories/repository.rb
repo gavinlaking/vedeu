@@ -24,6 +24,9 @@ module Vedeu
     # @return [void]
     attr_reader :storage
 
+    # @param model [Class]
+    # @param storage [Class|Hash]
+    # @return [Vedeu::Repository]
     def self.register_repository(model = nil, storage = {})
       new(model, storage).tap do |klass|
         Vedeu::Repositories.register(klass.repository)
@@ -40,6 +43,9 @@ module Vedeu
       @storage    = storage
     end
 
+    # Returns the repository class.
+    #
+    # @return [Class]
     def repository
       self.class # .name
     end
