@@ -151,19 +151,13 @@ module Vedeu
       #
       # @param name [String] The name of the group to which this interface
       #   should belong.
-      # @return [String]
+      # @return [Vedeu::Group]
       def group(name)
         return false unless defined_value?(name)
+
         model.group = name
 
-        if Vedeu.groups.registered?(name)
-          Vedeu.groups.find(name).add(model.name)
-
-        else
-          new_group = Vedeu::Group.new(name: name)
-          new_group.add(model.name)
-
-        end
+        Vedeu.groups.by_name(name).add(model.name)
       end
 
       # @see Vedeu::DSL::Keymap.keymap
