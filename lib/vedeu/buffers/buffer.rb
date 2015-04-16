@@ -43,7 +43,7 @@ module Vedeu
     # @option attributes front [Interface]
     # @option attributes previous [Interface]
     # @option attributes repository [Vedeu::Buffers]
-    # @return [Buffer]
+    # @return [Vedeu::Buffer]
     def initialize(attributes = {})
       @attributes = defaults.merge!(attributes)
 
