@@ -148,26 +148,6 @@ module Vedeu
       x - offset
     end
 
-    # @return [Vedeu::Position]
-    def top_left
-      Vedeu::Position[y, x]
-    end
-
-    # @return [Vedeu::Position]
-    def bottom_left
-      Vedeu::Position[yn, x]
-    end
-
-    # @return [Vedeu::Position]
-    def top_right
-      Vedeu::Position[y, xn]
-    end
-
-    # @return [Vedeu::Position]
-    def bottom_right
-      Vedeu::Position[yn, xn]
-    end
-
   end # Area
 
 end # Vedeu

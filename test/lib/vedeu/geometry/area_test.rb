@@ -182,38 +182,6 @@ module Vedeu
       end
     end
 
-    describe '#top_left' do
-      subject { instance.top_left }
-
-      it { subject.must_be_instance_of(Vedeu::Position) }
-      it { subject.y.must_equal(4) }
-      it { subject.x.must_equal(6) }
-    end
-
-    describe '#bottom_left' do
-      subject { instance.bottom_left }
-
-      it { subject.must_be_instance_of(Vedeu::Position) }
-      it { subject.y.must_equal(9) }
-      it { subject.x.must_equal(6) }
-    end
-
-    describe '#top_right' do
-      subject { instance.top_right }
-
-      it { subject.must_be_instance_of(Vedeu::Position) }
-      it { subject.y.must_equal(4) }
-      it { subject.x.must_equal(21) }
-    end
-
-    describe '#bottom_right' do
-      subject { instance.bottom_right }
-
-      it { subject.must_be_instance_of(Vedeu::Position) }
-      it { subject.y.must_equal(9) }
-      it { subject.x.must_equal(21) }
-    end
-
   end # Area
 
 end # Vedeu
