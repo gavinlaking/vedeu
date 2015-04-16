@@ -52,16 +52,12 @@ module Vedeu
       end
     end
 
-    # Add the content to the back buffer, then update the repository. Returns
-    # boolean indicating that the repository was updated. Here we also apply any
-    # overridden colours or styles in the buffered view to the stored interface.
+    # Add the content to the back buffer, then update the repository.
+    # Returns boolean indicating that the repository was updated.
     #
-    # @param content [Interface]
+    # @param content [Vedeu::Interface]
     # @return [Boolean]
     def add(content)
-      content.colour = interface.colour unless content.colour
-      content.style  = interface.style  unless content.style
-
       @back = content
 
       store
@@ -80,24 +76,8 @@ module Vedeu
     #   'previous' buffer.
     # - If the 'previous' buffer is empty, return an empty collection.
     #
-    # @return [Array<Hash>]
+    # @return [Array<Array<Array<Vedeu::Char>>>]
     def render
-      buffer = if content_for?(:back)
-                 swap
-
-                 [front.render]
-
-               elsif content_for?(:front)
-                 [front.render]
-
-               elsif content_for?(:previous)
-                 [previous.render]
-
-               else
-                 []
-
-               end
-
       Vedeu::Output.render(buffer) unless buffer.empty?
 
       buffer
@@ -114,6 +94,22 @@ module Vedeu
     end
 
     private
+
+    # @return [Array<Array<Array<Vedeu::Char>>>]
+    def buffer
+      swap if content_for?(:back)
+
+      if content_for?(:front)
+        [front.render]
+
+      elsif content_for?(:previous)
+        [previous.render]
+
+      else
+        []
+
+      end
+    end
 
     # @return [void]
     def clear_buffer
