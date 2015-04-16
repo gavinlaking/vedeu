@@ -8,13 +8,13 @@ module Vedeu
     let(:instance)   { described.new(attributes) }
     let(:attributes) {
       {
-        value:  value,
+        value:  _value,
         parent: parent,
         colour: colour,
         style:  style
       }
     }
-    let(:value)  { 'Some text' }
+    let(:_value)  { 'Some text' }
     let(:parent) {
       Line.new(streams: [],
                parent:  line_parent,
@@ -32,7 +32,7 @@ module Vedeu
 
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }
-      it { instance.instance_variable_get('@value').must_equal(value) }
+      it { instance.instance_variable_get('@value').must_equal(_value) }
       it { instance.instance_variable_get('@parent').must_equal(parent) }
     end
 
@@ -54,7 +54,7 @@ module Vedeu
       end
 
       context 'when there is no content' do
-        let(:value) { '' }
+        let(:_value) { '' }
 
         it 'returns an empty collection' do
           subject.must_equal([])
@@ -66,7 +66,7 @@ module Vedeu
       subject { instance.empty? }
 
       context 'when there is no content' do
-        let(:value) { '' }
+        let(:_value) { '' }
 
         it { subject.must_equal(true) }
       end

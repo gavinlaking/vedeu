@@ -10,14 +10,14 @@ module Vedeu
       {
         colour: colour,
         style:  style,
-        value:  value,
+        value:  _value,
         x:      x,
         y:      y,
       }
     }
     let(:colour) { Colour.new(background: '#000000') }
     let(:style)  {}
-    let(:value)  {}
+    let(:_value) {}
     let(:x)      {}
     let(:y)      {}
 
@@ -27,7 +27,7 @@ module Vedeu
       it { subject.must_be_instance_of(described) }
       it { subject.instance_variable_get('@colour').must_equal(colour) }
       it { subject.instance_variable_get('@style').must_equal(style) }
-      it { subject.instance_variable_get('@value').must_equal(value) }
+      it { subject.instance_variable_get('@value').must_equal(_value) }
       it { subject.instance_variable_get('@x').must_equal(x) }
       it { subject.instance_variable_get('@y').must_equal(y) }
     end

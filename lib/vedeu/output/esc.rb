@@ -101,6 +101,16 @@ module Vedeu
       stream.gsub(/\e/, '\\e')
     end
 
+    # @return [String]
+    def hide_cursor
+      "\e[?25l"
+    end
+
+    # @return [String]
+    def show_cursor
+      "\e[?25h"
+    end
+
     # Return the escape sequence string from the list of recognised sequence
     # 'commands', or an empty string if the 'command' cannot be found.
     #
@@ -197,11 +207,6 @@ module Vedeu
     end
 
     # @return [String]
-    def hide_cursor
-      "\e[?25l"
-    end
-
-    # @return [String]
     def negative
       "\e[7m"
     end
@@ -229,11 +234,6 @@ module Vedeu
     # @return [String]
     def screen_exit
       [show_cursor, colour_reset, reset].join
-    end
-
-    # @return [String]
-    def show_cursor
-      "\e[?25h"
     end
 
     # @return [String]

@@ -5,8 +5,8 @@ module Vedeu
   describe Style do
 
     let(:described) { Vedeu::Style }
-    let(:instance)  { described.new(value) }
-    let(:value)     { 'bold' }
+    let(:instance)  { described.new(_value) }
+    let(:_value)     { 'bold' }
 
     describe 'alias methods' do
       it { instance.must_respond_to(:escape_sequences) }
@@ -18,26 +18,28 @@ module Vedeu
     end
 
     describe '.coerce' do
-      let(:value) { 'bold' }
+      let(:_value) { 'bold' }
 
-      subject { described.coerce(value) }
+      subject { described.coerce(_value) }
 
       it { subject.must_be_instance_of(described) }
 
       context 'when the value is nil' do
-        let(:value) { nil }
+        let(:_value) { nil }
 
         it { subject.must_be_instance_of(described) }
       end
 
       context 'when the value is a Style already' do
-        let(:value) { Vedeu::Style.new('bold') }
+        let(:_value) { Vedeu::Style.new('bold') }
 
-        it { subject.must_equal(value) }
+        it 'returns the value' do
+          subject.must_equal(_value)
+        end
       end
 
       context 'when the value is an Array' do
-        let(:value)  { [:bold, :blink] }
+        let(:_value)  { [:bold, :blink] }
 
         it { subject.value.must_equal([:bold, :blink]) }
       end
@@ -68,7 +70,7 @@ module Vedeu
     end
 
     describe '#to_s' do
-      let(:value) {}
+      let(:_value) {}
 
       subject { instance.to_s }
 
@@ -76,7 +78,7 @@ module Vedeu
       it { subject.must_equal('') }
 
       describe 'for a single style' do
-        let(:value) { 'normal' }
+        let(:_value) { 'normal' }
 
         it 'returns an escape sequence' do
           subject.must_equal("\e[24m\e[22m\e[27m")
@@ -84,7 +86,7 @@ module Vedeu
       end
 
       describe 'for multiple styles' do
-        let(:value) { ['normal', 'underline'] }
+        let(:_value) { ['normal', 'underline'] }
 
         it 'returns an escape sequence for multiple styles' do
           subject.must_equal("\e[24m\e[22m\e[27m\e[4m")
@@ -92,7 +94,7 @@ module Vedeu
       end
 
       describe 'for an unknown style' do
-        let(:value) { 'unknown' }
+        let(:_value) { 'unknown' }
 
         it 'returns an empty string for an unknown style' do
           subject.must_equal('')
@@ -100,7 +102,7 @@ module Vedeu
       end
 
       describe 'for an empty or nil' do
-        let(:value) { '' }
+        let(:_value) { '' }
 
         it 'returns an empty string for empty or nil' do
           subject.must_equal('')

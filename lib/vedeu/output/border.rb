@@ -116,20 +116,10 @@ module Vedeu
     # @return [Border]
     def initialize(attributes = {})
       @attributes   = defaults.merge!(attributes)
-      @enabled      = @attributes[:enabled]
-      @bottom_left  = @attributes[:bottom_left]
-      @bottom_right = @attributes[:bottom_right]
-      @show_bottom  = @attributes[:show_bottom]
-      @show_left    = @attributes[:show_left]
-      @show_right   = @attributes[:show_right]
-      @show_top     = @attributes[:show_top]
-      @title        = @attributes[:title]
-      @top_left     = @attributes[:top_left]
-      @top_right    = @attributes[:top_right]
-      @horizontal   = @attributes[:horizontal]
-      @vertical     = @attributes[:vertical]
-      @name         = @attributes[:name]
-      @repository   = Vedeu.borders
+
+      @attributes.each do |key, value|
+        instance_variable_set("@#{key}", value)
+      end
     end
 
     # @return [Fixnum]
@@ -191,7 +181,13 @@ module Vedeu
     #
     # @return [String]
     def bottom
-      top_or_bottom('bottom')
+      return [] unless bottom?
+
+      out = []
+      out << border(bottom_left, :bottom_left) if left?
+      out << horizontal_border(:bottom_horizontal)
+      out << border(bottom_right, :bottom_right) if right?
+      out
     end
 
     # Renders the left border for the interface.
@@ -218,7 +214,19 @@ module Vedeu
     #
     # @return [String]
     def top
-      top_or_bottom('top')
+      return [] unless top?
+
+      out = []
+      out << border(top_left, :top_left) if left?
+      if title?
+        out << titlebar
+
+      else
+        out << horizontal_border(:top_horizontal)
+
+      end
+      out << border(top_right, :top_right) if right?
+      out
     end
 
     # The parent of a border is always an interface.
@@ -229,31 +237,6 @@ module Vedeu
     end
 
     private
-
-    # @param prefix [String]
-    # @return [String]
-    def top_or_bottom(prefix)
-      predicate         = (prefix + '?').to_sym
-      prefix_left       = (prefix + '_left').to_sym
-      prefix_right      = (prefix + '_right').to_sym
-      prefix_horizontal = (prefix + '_horizontal').to_sym
-
-      return [] unless send(predicate)
-
-      out = []
-      out << border(send(prefix_left), prefix_left) if left?
-
-      if prefix == 'top' && title?
-        out << titlebar
-
-      else
-        out << horizontal_border(prefix_horizontal)
-
-      end
-
-      out << border(send(prefix_right), prefix_right) if right?
-      out
-    end
 
     # @param position [Symbol] Either :top_horizontal, or :bottom_horizontal.
     # @return [Array<Vedeu::Char>]
@@ -362,6 +345,7 @@ module Vedeu
         enabled:      false,
         horizontal:   "\x71", # ─ # \u2500
         name:         '',
+        repository:   Vedeu.borders,
         show_bottom:  true,
         show_left:    true,
         show_right:   true,

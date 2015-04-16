@@ -173,9 +173,9 @@ module Vedeu
       end
 
       describe '#title' do
-        let(:value) { 'Some title'}
+        let(:_value) { 'Some title'}
 
-        subject { instance.title(value) }
+        subject { instance.title(_value) }
 
         it { subject.must_be_instance_of(String) }
         it { subject.must_equal('Some title') }

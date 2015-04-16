@@ -27,6 +27,14 @@ module Vedeu
       it { instance.instance_variable_get('@model').must_equal(model) }
     end
 
+    describe '.for_cursor' do
+      let(:_name) {}
+
+      subject { described.for_cursor(_name) }
+
+      it { subject.must_be_instance_of(Vedeu::Visibility) }
+    end
+
     describe '.show' do
       subject { described.show(model) }
 

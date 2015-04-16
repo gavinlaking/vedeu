@@ -29,6 +29,9 @@ module Vedeu
     # @return [Array<Array<Vedeu::Char>>]
     attr_reader :output
 
+    # Escapes the escape sequences.
+    #
+    # @return [String]
     def parsed
       @parsed ||= Array(output).flatten.map do |char|
         Esc.escape(char.to_s) + "\n"

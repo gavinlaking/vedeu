@@ -12,6 +12,7 @@ module Vedeu
 
       else
         Vedeu::Background.new
+        # @todo: Should this be: parent_background
 
       end
     end
@@ -40,6 +41,7 @@ module Vedeu
 
       else
         Vedeu::Foreground.new
+        # @todo: Should this be: parent_foreground
 
       end
     end

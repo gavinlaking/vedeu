@@ -6,41 +6,62 @@ module Vedeu
     #
     module Use
 
-      extend self
-
-      # Use the specified interface; useful for sharing attributes with other
-      # interfaces. Any public method of {Vedeu::Interface} is available.
+      # Duplicate a stored model.
+      #
+      # This DSL method copies the attributes of a stored model, changes the
+      # name to that of the current model, and stores the duplicate as a new
+      # model in model's repository.
       #
       # @example
-      #   Vedeu.interface 'my_interface' do
-      #     # use the delay of another interface
-      #     delay Vedeu.use('my_other_interface').delay
-      #     # ...
+      #   # Here the attributes of 'my_geometry' are used to create the
+      #   # new model 'my_other_geometry'.
+      #   Vedeu.geometry 'my_other_geometry' do
+      #     duplicate('my_geometry')
       #   end
       #
-      #   Vedeu.interface 'my_interface' do
-      #     geometry do
-      #       # use the width of another interface
-      #       width Vedeu.use('my_other_interface').width
-      #       # ...
-      #     end
-      #   end
+      # @note
+      #   - Only models of the same repository can be used in this way.
+      #   - If the stored model cannot be found, the duplicate may not have
+      #     the values you required.
+      #   - Values defined before will be overwritten by the new values from
+      #     the stored model.
+      #   - Values defined after will overwrite the values of the new
+      #     duplicate model.
       #
-      #   Vedeu.use('my_other_interface').width # can be used in your code to
-      #                                         # get this value
-      #
-      # @param value [String] The name of the interface you wish to use.
-      #   Typically used when defining interfaces to share geometry.
-      # @raise [ModelNotFound] The interface has not yet been defined.
-      # @return [Vedeu::Interface]
-      def use(value)
-        if Vedeu.interfaces.registered?(value) == false
-          fail ModelNotFound, "The properties of this interface (#{value}) " \
-                              'cannot be used, since the interface has not ' \
-                              'been defined.'
-        end
+      # @param name [String] The name of the model to duplicate.
+      # @return [void] The new model based on the original.
+      def duplicate(name)
+        duplicated      = model.repository.by_name(name).dup
+        duplicated.name = model.name
+        duplicated.store
+      end
 
-        Vedeu.interfaces.find(value)
+      # Use the attribute of stored model.
+      #
+      # This DSL method provides access to a stored model by name. You can
+      # then request an attribute of that model for use within the current
+      # model.
+      #
+      # @example
+      #   # Here the character used for 'my_border' is used in
+      #   # 'my_other_border'.
+      #   Vedeu.border 'my_other_border' do
+      #     top_right use('my_border').top_right
+      #   end
+      #
+      # @note
+      #   - Only models of the same repository can be used in this way.
+      #   - If the stored model cannot be found, a ModelNotFound exception may
+      #     be raised, or the request for an attribute may raise a
+      #     NoMethodError exception.
+      #
+      # @param name [String] The name of the model with the value you wish to
+      #   use.
+      # @raise [ModelNotFound|NoMethodError] The model or attribute cannot be
+      #   found.
+      # @return [void] The stored model.
+      def use(name)
+        model.repository.by_name(name)
       end
 
     end # Use

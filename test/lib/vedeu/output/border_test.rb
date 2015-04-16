@@ -51,6 +51,7 @@ module Vedeu
           enabled:      false,
           horizontal:   'q',
           name:         'borders',
+          repository:   Vedeu.borders,
           show_bottom:  true,
           show_left:    true,
           show_right:   true,

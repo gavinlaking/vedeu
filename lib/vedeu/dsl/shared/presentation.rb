@@ -2,12 +2,12 @@ module Vedeu
 
   module DSL
 
-    # Provides colour helpers for use in the {Vedeu::DSL::Interface},
+    # Provides colour and style helpers for use in the {Vedeu::DSL::Interface},
     # {Vedeu::DSL::Line} and {Vedeu::DSL::Stream} classes.
     #
     # @api public
     #
-    module Colour
+    module Presentation
 
       # Define the background colour for an interface, line, or a stream. When
       # called with a block, will create a new stream with the background colour
@@ -41,7 +41,7 @@ module Vedeu
       alias_method :bg,      :background
       alias_method :bgcolor, :background
 
-      # @see Vedeu::DSL::Colour#background
+      # @see Vedeu::DSL::Presentation#background
       def foreground(value = '')
         colour(foreground: value)
       end
@@ -78,7 +78,30 @@ module Vedeu
         model.colour = Vedeu::Colour.coerce(attributes)
       end
 
-    end # Colour
+      # Define a style or styles for an interface, line or a stream.
+      #
+      # @param value [Array<Symbol>|Array<String>|Symbol|String]
+      #
+      # @example
+      #   interface 'my_interface' do
+      #     style 'normal'
+      #     ...
+      #
+      #   lines do
+      #     style ['bold', 'underline']
+      #     ...
+      #
+      #   stream do
+      #     style 'blink'
+      #     ...
+      #
+      # @return [Vedeu::Style]
+      def style(value)
+        model.style = Vedeu::Style.coerce(value)
+      end
+      alias_method :styles, :style
+
+    end # Presentation
 
   end # DSL
 

@@ -95,8 +95,7 @@ module Vedeu
     #   @see Vedeu::Event.bind
     # @!method unbind
     #   @see Vedeu::Event.unbind
-    def_delegators Vedeu::Event, :bind,
-                   :unbind
+    def_delegators Vedeu::Event, :bind, :unbind
 
     # @!method trigger
     #   @see Vedeu::Trigger.trigger
@@ -106,8 +105,7 @@ module Vedeu
     #   @see Vedeu::Configuration.configure
     # @!method configuration
     #   @see Vedeu::Configuration.configuration
-    def_delegators Vedeu::Configuration, :configure,
-                   :configuration
+    def_delegators Vedeu::Configuration, :configure, :configuration
 
     # @!method border
     #   @see Vedeu::DSL::Border.border
@@ -125,19 +123,13 @@ module Vedeu
     #   @see Vedeu::DSL::Group.group
     def_delegators Vedeu::DSL::Group, :group
 
-    # @!method use
-    #   @see Vedeu::DSL::Use#use
-    def_delegators Vedeu::DSL::Use, :use
-
     # @!method interface
     #   @see Vedeu::DSL::View.interface
     # @!method renders
     #   @see Vedeu::DSL::View.renders
     # @!method views
     #   @see Vedeu::DSL::View.views
-    def_delegators Vedeu::DSL::View, :interface,
-                   :renders,
-                   :views
+    def_delegators Vedeu::DSL::View, :interface, :renders, :views
 
     # @!method focus
     #   @see Vedeu::Focus#focus
@@ -149,11 +141,8 @@ module Vedeu
     #   @see Vedeu::Focus#focus_next
     # @!method focus_previous
     #   @see Vedeu::Focus#focus_previous
-    def_delegators Vedeu::Focus, :focus,
-                   :focus_by_name,
-                   :focussed?,
-                   :focus_next,
-                   :focus_previous
+    def_delegators Vedeu::Focus, :focus, :focus_by_name, :focussed?,
+                   :focus_next, :focus_previous
 
     # @!method log
     #   @see Vedeu::Log.log
@@ -169,16 +158,13 @@ module Vedeu
     #   @see Vedeu::Terminal#width
     # @!method resize
     #   @see Vedeu::Terminal#resize
-    def_delegators Vedeu::Terminal, :height,
-                   :width,
-                   :resize
+    def_delegators Vedeu::Terminal, :height, :width, :resize
 
     # @!method renderer
     #   @see Vedeu::Renderers#renderer
     # @!method renderers
     #   @see Vedeu::Renderers#renderers
-    def_delegators Vedeu::Renderers, :renderer,
-                   :renderers
+    def_delegators Vedeu::Renderers, :renderer, :renderers
 
   end # API
 

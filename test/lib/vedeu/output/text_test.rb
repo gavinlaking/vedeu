@@ -5,7 +5,7 @@ module Vedeu
   describe Text do
 
     let(:described) { Vedeu::Text }
-    let(:value)     { 'Testing the Text class with various options' }
+    let(:_value)    { 'Testing the Text class with various options' }
     let(:options)   {
       {
         anchor: anchor,
@@ -22,7 +22,7 @@ module Vedeu
     let(:width)  { nil }
 
     describe '.with' do
-      subject { described.with(value, options) }
+      subject { described.with(_value, options) }
 
       context 'when a width is provided' do
         context 'when value longer than the width' do
@@ -90,7 +90,7 @@ module Vedeu
 
       context 'when a width is not provided' do
         let(:width) {}
-        let(:value) { 'some value' }
+        let(:_value) { 'some value' }
 
         it 'returns the value as a string' do
           subject.must_equal('some value')

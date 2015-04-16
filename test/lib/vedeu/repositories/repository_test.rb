@@ -2,6 +2,27 @@ require 'test_helper'
 
 module Vedeu
 
+  class RepositoriesTestClass < Repository
+
+    attr_accessor :storage
+    alias_method :in_memory, :storage
+
+    def initialize(storage = {})
+      @storage = storage
+    end
+
+    def add(model)
+      if storage.is_a?(Hash)
+        @storage = in_memory.merge!(model)
+
+      else
+        @storage << model
+
+      end
+    end
+
+  end # RepositoriesTestClass
+
   class TestRepository < Repository
   end
 
@@ -98,6 +119,35 @@ module Vedeu
         it 'creates and stores a new instance of the model' do
           subject.must_be_instance_of(Vedeu::TestModel)
         end
+      end
+    end
+
+    describe '#inspect' do
+      subject { instance.inspect }
+
+      it { subject.must_be_instance_of(String) }
+
+      context 'when there are no models stored in the repository' do
+        before { instance.reset }
+
+        it { subject.must_equal("<Vedeu::Repository: []>") }
+      end
+
+      context 'when there are models stored in the repository' do
+        before do
+          Vedeu.interfaces.reset
+          Vedeu.interface('hydrogen') {}
+          Vedeu.interface('helium') {}
+        end
+        after do
+          Vedeu.interfaces.reset
+        end
+
+        subject { Vedeu.interfaces.inspect }
+
+        it { subject.must_equal(
+          "<Vedeu::InterfacesRepository: [\"hydrogen\", \"helium\"]>"
+        ) }
       end
     end
 
@@ -203,22 +253,6 @@ module Vedeu
         let(:model_name) { 'hydrogen' }
 
         it { subject.must_be_instance_of(Vedeu::TestModel) }
-      end
-    end
-
-    describe '#use' do
-      subject { instance.use(model_name) }
-
-      context 'when the model exists' do
-        before { instance.store(model_instance) }
-
-        it { subject.must_equal(model_instance) }
-      end
-
-      context 'when the model does not exist' do
-        let(:model_name) { 'not_found' }
-
-        it { subject.must_be_instance_of(NilClass) }
       end
     end
 

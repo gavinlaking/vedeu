@@ -10,6 +10,8 @@ module Vedeu
       let(:instance)  { described.new(model) }
       let(:model)     { Vedeu::Geometry.new }
 
+      before { Terminal.stubs(:size).returns([25, 80]) }
+
       describe 'alias methods' do
         it { instance.must_respond_to(:centred!) }
       end
@@ -20,113 +22,86 @@ module Vedeu
       end
 
       describe '#centred' do
-        subject { Vedeu::Geometry.build({}) { centred true } }
+        subject { instance.centred(true) }
 
         it 'sets the attribute to the value' do
-          subject.centred.must_equal(true)
+          subject.must_equal(true)
         end
 
         context 'DSL #centred' do
           subject {
-            Vedeu.interface 'geometry' do
-              geometry do
-                centred false
-              end
+            Vedeu.geometry 'geometry' do
+              centred false
             end
           }
 
-          it { subject.must_be_instance_of(Vedeu::Interface) }
+          it { subject.must_be_instance_of(Vedeu::Geometry) }
 
           it 'allows the use of centred within geometry' do
-            subject.geometry.centred.must_equal(false)
+            subject.centred.must_equal(false)
           end
 
           context 'when no value is given' do
             subject {
-              Vedeu.interface 'geometry' do
-                geometry do
-                  centred
-                end
+              Vedeu.geometry 'geometry' do
+                centred
               end
             }
 
-            it { subject.geometry.centred.must_equal(true) }
+            it { subject.centred.must_equal(true) }
           end
         end
       end
 
       describe '#height' do
-        subject { Vedeu::Geometry.build({}) { height 6 } }
+        subject { instance.height(6) }
 
         it 'sets the attribute to the value' do
-          subject.height.must_equal(6)
+          subject.must_equal(6)
         end
 
         context 'DSL #height' do
           subject {
-            Vedeu.interface 'geometry' do
-              geometry do
-                height 17
-              end
+            Vedeu.geometry 'geometry' do
+              height 17
             end
           }
 
-          it { subject.must_be_instance_of(Vedeu::Interface) }
+          it { subject.must_be_instance_of(Vedeu::Geometry) }
 
           it 'allows the use of height within geometry' do
-            subject.geometry.height.must_equal(17)
+            subject.height.must_equal(17)
           end
         end
       end
 
-      # describe '#use' do
-      #   subject { 
-      #     Vedeu::Geometry.build({ name: 'hydrogen' }) { use 'helium' }
-      #   }
-
-      #   context 'when the named geometry does not exist' do
-      #   end
-
-      #   context 'when the named geometry exists' do
-      #     before do
-      #       Vedeu::Geometry.build({ name: 'helium', x: 5 }).store
-      #     end
-
-      #     it { subject.must_be_instance_of(Vedeu::Geometry) }
-      #     it { subject.name.must_equal('hydrogen') }
-      #     it { subject.x.must_equal(5) }
-      #   end
-      # end
-
       describe '#width' do
-        subject { Vedeu::Geometry.build({}) { width 25 } }
+        subject { instance.width(25) }
 
         it 'sets the attribute to the value' do
-          subject.width.must_equal(25)
+          subject.must_equal(25)
         end
 
         context 'DSL #width' do
           subject {
-            Vedeu.interface 'geometry' do
-              geometry do
-                width 29
-              end
+            Vedeu.geometry 'geometry' do
+              width 29
             end
           }
 
-          it { subject.must_be_instance_of(Vedeu::Interface) }
+          it { subject.must_be_instance_of(Vedeu::Geometry) }
 
           it 'allows the use of width within geometry' do
-            subject.geometry.width.must_equal(29)
+            subject.width.must_equal(29)
           end
         end
       end
 
       describe '#x' do
-        subject { Vedeu::Geometry.build({}) { x 2 } }
+        subject { instance.x(2) }
 
         it 'sets the attribute to the value' do
-          subject.x.must_equal(2)
+          subject.must_equal(2)
         end
 
         context 'when a block is given' do
@@ -143,41 +118,46 @@ module Vedeu
 
         context 'DSL #x' do
           subject {
-            Vedeu.interface 'geometry' do
-              geometry do
-                x 7
-              end
+            Vedeu.geometry 'geometry' do
+              x 7
             end
           }
 
-          it { subject.must_be_instance_of(Vedeu::Interface) }
+          it { subject.must_be_instance_of(Vedeu::Geometry) }
 
           it 'allows the use of x within geometry' do
-            subject.geometry.x.must_equal(7)
+            subject.x.must_equal(7)
           end
 
           context 'when no value is given' do
             subject {
-              Vedeu.interface 'geometry' do
-                geometry do
-                  x
+              Vedeu.geometry 'geometry' do
+                x
+              end
+            }
+
+            it { subject.x.must_equal(1) }
+          end
+
+          context 'when a block is given' do
+            subject {
+              Vedeu::Geometry.build({}) do
+                x do
+                  8 + 8
                 end
               end
             }
 
-            it { subject.geometry.x.must_equal(1) }
-          end
-
-          context 'when a block is given' do
+            it { subject.x.must_equal(16) }
           end
         end
       end
 
       describe '#y' do
-        subject { Vedeu::Geometry.build({}) { y 5 } }
+        subject { instance.y(5) }
 
         it 'sets the attribute to the value' do
-          subject.y.must_equal(5)
+          subject.must_equal(5)
         end
 
         context 'when a block is given' do
@@ -194,42 +174,45 @@ module Vedeu
 
         context 'DSL #y' do
           subject {
-            Vedeu.interface 'geometry' do
-              geometry do
-                y 4
-              end
+            Vedeu.geometry 'geometry' do
+              y 4
             end
           }
 
-          it { subject.must_be_instance_of(Vedeu::Interface) }
+          it { subject.must_be_instance_of(Vedeu::Geometry) }
 
           it 'allows the use of y within geometry' do
-            subject.geometry.y.must_equal(4)
+            subject.y.must_equal(4)
           end
 
           context 'when no value is given' do
             subject {
-              Vedeu.interface 'geometry' do
-                geometry do
-                  y
+              Vedeu.geometry 'geometry' do
+                y
+              end
+            }
+
+            it { subject.y.must_equal(1) }
+          end
+
+          context 'when a block is given' do
+            subject {
+              Vedeu::Geometry.build({}) do
+                y do
+                  8 + 8
                 end
               end
             }
 
-            it { subject.geometry.y.must_equal(1) }
-          end
-
-          context 'when a block is given' do
+            it { subject.y.must_equal(16) }
           end
         end
       end
 
       describe '#xn' do
-        before { Terminal.stubs(:size).returns([25, 80]) }
+        subject { instance.xn(15) }
 
-        subject { Vedeu::Geometry.build({}) { xn 15 } }
-
-        it { subject.xn.must_equal(15) }
+        it { subject.must_equal(15) }
 
         context 'when a block is given' do
           subject {
@@ -245,11 +228,9 @@ module Vedeu
       end
 
       describe '#yn' do
-        before { Terminal.stubs(:size).returns([25, 80]) }
+        subject { instance.yn(8) }
 
-        subject { Vedeu::Geometry.build({}) { yn 8 } }
-
-        it { subject.yn.must_equal(8) }
+        it { subject.must_equal(8) }
 
         context 'when a block is given' do
           subject {

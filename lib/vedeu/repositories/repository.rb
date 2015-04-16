@@ -24,6 +24,9 @@ module Vedeu
     # @return [void]
     attr_reader :storage
 
+    # @param model [Class]
+    # @param storage [Class|Hash]
+    # @return [Vedeu::Repository]
     def self.register_repository(model = nil, storage = {})
       new(model, storage).tap do |klass|
         Vedeu::Repositories.register(klass.repository)
@@ -40,6 +43,9 @@ module Vedeu
       @storage    = storage
     end
 
+    # Returns the repository class.
+    #
+    # @return [Class]
     def repository
       self.class # .name
     end
@@ -85,6 +91,11 @@ module Vedeu
       end
     end
     alias_method :by_name, :find_or_create
+
+    # @return [String]
+    def inspect
+      "<#{self.class.name}: #{registered.inspect}>"
+    end
 
     # Returns a collection of the names of all the registered entities.
     #
@@ -144,14 +155,6 @@ module Vedeu
       storage[model.name] = model
     end
     alias_method :register, :store
-
-    # Access a model by name.
-    #
-    # @param name [String]
-    # @return [|NilClass]
-    def use(name)
-      find(name) if registered?(name)
-    end
 
     private
 

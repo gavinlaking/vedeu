@@ -8,7 +8,10 @@ module Vedeu
   #
   class Cursor
 
+    extend Forwardable
     include Vedeu::Model
+
+    def_delegators Vedeu::Esc, :hide_cursor, :show_cursor
 
     # @!attribute [r] attributes
     # @return [Hash]
@@ -133,10 +136,10 @@ module Vedeu
     # @return [String]
     def visibility
       if visible?
-        Vedeu::Esc.string('show_cursor')
+        show_cursor
 
       else
-        Vedeu::Esc.string('hide_cursor')
+        hide_cursor
 
       end
     end

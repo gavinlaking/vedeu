@@ -57,7 +57,7 @@ module Vedeu
     #
     # @return [Array]
     def chars
-      return [] if value.empty?
+      return [] if empty?
 
       value.chars.map do |char|
         member.new(value:    char,

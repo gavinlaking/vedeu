@@ -24,9 +24,9 @@ module Vedeu
       end
 
       describe '#item' do
-        let(:value) { :platinum }
+        let(:_value) { :platinum }
 
-        subject { instance.item(value) }
+        subject { instance.item(_value) }
 
         context 'when items are provided' do
           it { subject.must_equal([:sodium,
@@ -38,25 +38,25 @@ module Vedeu
       end
 
       describe '#items' do
-        let(:value) { [] }
+        let(:_value) { [] }
 
-        subject { instance.items(value) }
+        subject { instance.items(_value) }
 
         context 'when no items are provided' do
           it { subject.must_equal([]) }
         end
 
         context 'when items are provided' do
-          let(:value) { [:gold, :silver, :tin] }
+          let(:_value) { [:gold, :silver, :tin] }
 
-          it { subject.must_equal(value)}
+          it { subject.must_equal(_value)}
         end
       end
 
       describe '#name' do
-        let(:value) { 'metals' }
+        let(:_value) { 'metals' }
 
-        subject { instance.name(value) }
+        subject { instance.name(_value) }
 
         it 'returns the name of the menu' do
           subject

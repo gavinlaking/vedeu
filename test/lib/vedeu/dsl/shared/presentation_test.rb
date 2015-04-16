@@ -4,23 +4,23 @@ module Vedeu
 
   module DSL
 
-    describe Colour do
+    describe Presentation do
 
-      let(:described)  { Vedeu::DSL::Colour }
-      let(:dsl_klass)  { Vedeu::DSL::Interface.new(model) }
+      let(:described)  { Vedeu::DSL::Presentation }
+      let(:instance)   { Vedeu::DSL::Interface.new(model) }
       let(:model)      { Vedeu::Interface.new }
       let(:background) { '#00ff00' }
       let(:foreground) { '#ff00ff' }
 
       describe 'alias methods' do
-        it { dsl_klass.must_respond_to(:bg) }
-        it { dsl_klass.must_respond_to(:bgcolor) }
-        it { dsl_klass.must_respond_to(:fg) }
-        it { dsl_klass.must_respond_to(:fgcolor) }
+        it { instance.must_respond_to(:bg) }
+        it { instance.must_respond_to(:bgcolor) }
+        it { instance.must_respond_to(:fg) }
+        it { instance.must_respond_to(:fgcolor) }
       end
 
       describe '#background' do
-        subject { dsl_klass.background(background) }
+        subject { instance.background(background) }
 
         it { subject.must_be_instance_of(Vedeu::Colour) }
 
@@ -32,7 +32,7 @@ module Vedeu
       end
 
       describe '#foreground' do
-        subject { dsl_klass.foreground(foreground) }
+        subject { instance.foreground(foreground) }
 
         it { subject.must_be_instance_of(Vedeu::Colour) }
 
@@ -46,7 +46,7 @@ module Vedeu
       describe '#colour' do
         let(:attributes) { { background: background, foreground: foreground } }
 
-        subject { dsl_klass.colour(attributes) }
+        subject { instance.colour(attributes) }
 
         it { subject.must_be_instance_of(Vedeu::Colour) }
 
@@ -71,7 +71,15 @@ module Vedeu
         end
       end
 
-    end # Colour
+      describe '#style' do
+        let(:args)  { :bold }
+
+        subject { instance.style(args) }
+
+        it { subject.must_be_instance_of(Vedeu::Style) }
+      end
+
+    end # Presentation
 
   end # DSL
 

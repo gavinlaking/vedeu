@@ -6,17 +6,34 @@ module Vedeu
 
     describe Use do
 
-      describe '.use' do
-        context 'when an interface has not been defined' do
-          it { proc { Vedeu.use('unknown') }.must_raise(ModelNotFound) }
+      # before do
+      #   Vedeu.interfaces.reset
+      #   Vedeu.interface('hydrogen') do
+      #     delay 0.75
+      #   end
+      #   Vedeu.interface('helium') do
+      #     duplicate('hydrogen')
+      #   end
+      # end
+
+      describe '#duplicate' do
+        context 'when the model exists' do
         end
 
-        it 'returns an instance of the named interface' do
-          Vedeu.interface('aluminium') do
-            # ...
+        context 'when the model does not exist' do
+        end
+      end
+
+      describe '.use' do
+        context 'when the model exists' do
+          context 'and the attribute exists' do
           end
 
-          Vedeu.use('aluminium').must_be_instance_of(Vedeu::Interface)
+          context 'but the attribute does not exist' do
+          end
+        end
+
+        context 'when the model does not exist' do
         end
       end
 

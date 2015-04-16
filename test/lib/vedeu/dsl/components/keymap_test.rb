@@ -55,13 +55,13 @@ module Vedeu
       end
 
       describe '#name' do
-        let(:value) { 'gold' }
+        let(:_value) { 'gold' }
 
-        subject { instance.name(value) }
+        subject { instance.name(_value) }
 
         it 'defines the name of the keymap' do
           subject
-          model.name.must_equal(value)
+          model.name.must_equal(_value)
         end
       end
 

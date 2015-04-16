@@ -17,10 +17,10 @@ module Vedeu
 
     def_delegators :border,
                    :enabled?,
-                   :left?,
-                   :right?,
-                   :top?,
-                   :bottom?
+                   :bx,
+                   :bxn,
+                   :by,
+                   :byn
 
     def_delegators :geometry,
                    :left,
@@ -104,10 +104,10 @@ module Vedeu
     #
     # @return [PositionValidator]
     def border_validation
-      @x = left + 1   if left? && x < (left + 1)
-      @x = right - 2  if right? && x > (right - 1)
-      @y = top + 1    if top? && y < (top + 1)
-      @y = bottom - 2 if bottom? && y > (bottom - 1)
+      @x = bx  if x < bx
+      @x = bxn if x > bxn
+      @y = by  if y < by
+      @y = byn if y > byn
 
       self
     end

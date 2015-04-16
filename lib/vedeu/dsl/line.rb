@@ -38,8 +38,7 @@ module Vedeu
     class Line
 
       include Vedeu::DSL
-      include Vedeu::DSL::Colour
-      include Vedeu::DSL::Style
+      include Vedeu::DSL::Presentation
       include Vedeu::DSL::Text
 
       # Returns an instance of DSL::Line.

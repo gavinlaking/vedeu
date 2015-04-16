@@ -27,18 +27,18 @@ module Vedeu
     end
 
     describe '.coerce' do
-      let(:value) {}
+      let(:_value) {}
 
-      subject { described.coerce(value) }
+      subject { described.coerce(_value) }
 
       context 'when the value is already a Position' do
-        let(:value) { instance }
+        let(:_value) { instance }
 
         it { subject.must_equal(instance) }
       end
 
       context 'when the value is an Array' do
-        let(:value) { [2, 8] }
+        let(:_value) { [2, 8] }
 
         it { subject.must_be_instance_of(described) }
         it { subject.y.must_equal(2) }
@@ -46,7 +46,7 @@ module Vedeu
       end
 
       context 'when the value is a Hash' do
-        let(:value) { { y: 3, x: 9 } }
+        let(:_value) { { y: 3, x: 9 } }
 
         it { subject.must_be_instance_of(described) }
         it { subject.y.must_equal(3) }

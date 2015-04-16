@@ -69,11 +69,11 @@ module Vedeu
       end
 
       describe '#cursor' do
-        let(:value) {}
+        let(:_value) {}
 
         before { Vedeu.cursors.reset }
 
-        subject { instance.cursor(value) }
+        subject { instance.cursor(_value) }
 
         it {
           subject
@@ -81,7 +81,7 @@ module Vedeu
         }
 
         context 'when the value is false' do
-          let(:value) { false }
+          let(:_value) { false }
 
           it {
             subject
@@ -90,7 +90,7 @@ module Vedeu
         end
 
         context 'when the value is nil' do
-          let(:value) {}
+          let(:_value) {}
 
           it {
             subject
@@ -99,7 +99,7 @@ module Vedeu
         end
 
         context 'when the value is :show' do
-          let(:value) { :show }
+          let(:_value) { :show }
 
           it {
             subject
@@ -108,7 +108,7 @@ module Vedeu
         end
 
         context 'when the value is true' do
-          let(:value) { true }
+          let(:_value) { true }
 
           it {
             subject
@@ -117,7 +117,7 @@ module Vedeu
         end
 
         context 'when the value is :yes' do
-          let(:value) { :yes }
+          let(:_value) { :yes }
 
           it {
             subject
@@ -136,13 +136,9 @@ module Vedeu
       end
 
       describe '#delay' do
-        it 'sets the delay attribute' do
-          Vedeu.interface 'cobalt' do
-            delay 0.25
-          end
+        subject { instance.delay(0.25) }
 
-          Vedeu.use('cobalt').delay.must_equal(0.25)
-        end
+        it { subject; model.delay.must_equal(0.25) }
       end
 
       describe '#focus!' do
@@ -205,16 +201,16 @@ module Vedeu
       end
 
       describe '#group' do
-        let(:value) { 'elements' }
+        let(:_value) { 'elements' }
 
         before { Vedeu.groups.reset }
 
-        subject { instance.group(value) }
+        subject { instance.group(_value) }
 
         it { subject.must_be_instance_of(Vedeu::Group) }
 
         context 'when the value is empty or nil' do
-          let(:value) { '' }
+          let(:_value) { '' }
 
           it { subject.must_equal(false) }
         end
@@ -267,13 +263,9 @@ module Vedeu
       end
 
       describe '#name' do
-        it 'sets the name attribute' do
-          Vedeu.interface do
-            name 'nickel'
-          end
+        subject { instance.name('nickel') }
 
-          Vedeu.use('nickel').name.must_equal('nickel')
-        end
+        it { subject; model.name.must_equal('nickel') }
       end
 
       describe '#show!' do

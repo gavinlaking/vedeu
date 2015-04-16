@@ -8,14 +8,15 @@ module Vedeu
     let(:instance)   { described.new(attributes) }
     let(:attributes) {
       {
-        centred: centred,
-        height:  height,
-        name:    _name,
-        width:   width,
-        x:       x,
-        xn:      xn,
-        y:       y,
-        yn:      yn,
+        centred:    centred,
+        height:     height,
+        name:       _name,
+        repository: Vedeu.geometries,
+        width:      width,
+        x:          x,
+        xn:         xn,
+        y:          y,
+        yn:         yn,
       }
     }
     let(:centred) {}
@@ -30,18 +31,20 @@ module Vedeu
     before { Terminal.stubs(:size).returns([12, 40]) }
 
     describe '#initialize' do
-      it { instance.must_be_instance_of(Geometry) }
-      it { instance.instance_variable_get('@attributes').must_equal(attributes) }
-      it { instance.instance_variable_get('@centred').must_equal(centred) }
-      it { instance.instance_variable_get('@height').must_equal(height) }
-      it { instance.instance_variable_get('@name').must_equal(_name) }
-      it { instance.instance_variable_get('@width').must_equal(width) }
-      it { instance.instance_variable_get('@x').must_equal(x) }
-      it { instance.instance_variable_get('@xn').must_equal(xn) }
-      it { instance.instance_variable_get('@y').must_equal(y) }
-      it { instance.instance_variable_get('@yn').must_equal(yn) }
+      subject { instance }
+
+      it { subject.must_be_instance_of(Geometry) }
+      it { subject.instance_variable_get('@attributes').must_equal(attributes) }
+      it { subject.instance_variable_get('@centred').must_equal(centred) }
+      it { subject.instance_variable_get('@height').must_equal(height) }
+      it { subject.instance_variable_get('@name').must_equal(_name) }
+      it { subject.instance_variable_get('@width').must_equal(width) }
+      it { subject.instance_variable_get('@x').must_equal(x) }
+      it { subject.instance_variable_get('@xn').must_equal(xn) }
+      it { subject.instance_variable_get('@y').must_equal(y) }
+      it { subject.instance_variable_get('@yn').must_equal(yn) }
       it do
-        instance.instance_variable_get('@repository').must_equal(Vedeu.geometries)
+        subject.instance_variable_get('@repository').must_equal(Vedeu.geometries)
       end
     end
 

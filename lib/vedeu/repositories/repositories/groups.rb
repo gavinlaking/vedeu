@@ -19,6 +19,18 @@ module Vedeu
 
     end
 
+    # @param name [String] The name of the stored group.
+    # @return [Vedeu::Group]
+    def by_name(name)
+      if registered?(name)
+        find(name)
+
+      else
+        Vedeu::Group.new(name: name).store
+
+      end
+    end
+
   end # Groups
 
 end # Vedeu

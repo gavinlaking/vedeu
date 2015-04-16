@@ -94,23 +94,19 @@ module Vedeu
     # @option attributes centred [Boolean]
     # @option attributes height [Fixnum]
     # @option attributes name [String]
+    # @option attributes repository [Vedeu::Geometries]
     # @option attributes width [Fixnum]
     # @option attributes x [Fixnum]
     # @option attributes xn [Fixnum]
     # @option attributes y [Fixnum]
     # @option attributes yn [Fixnum]
-    # @return [Geometry]
+    # @return [Vedeu::Geometry]
     def initialize(attributes = {})
-      @attributes = attributes
-      @centred    = @attributes[:centred]
-      @height     = @attributes[:height]
-      @name       = @attributes[:name]
-      @width      = @attributes[:width]
-      @x          = @attributes[:x]
-      @xn         = @attributes[:xn]
-      @y          = @attributes[:y]
-      @yn         = @attributes[:yn]
-      @repository = Vedeu.geometries
+      @attributes = defaults.merge!(attributes)
+
+      @attributes.each do |key, value|
+        instance_variable_set("@#{key}", value)
+      end
     end
 
     private
@@ -164,6 +160,21 @@ module Vedeu
     # @return [Fixnum]
     def _xn
       @xn.is_a?(Proc) ? @xn.call : @xn
+    end
+
+    # @return [Hash]
+    def defaults
+      {
+        centred:    nil,
+        height:     nil,
+        name:       nil,
+        repository: Vedeu.geometries,
+        width:      nil,
+        x:          nil,
+        xn:         nil,
+        y:          nil,
+        yn:         nil,
+      }
     end
 
   end # Geometry

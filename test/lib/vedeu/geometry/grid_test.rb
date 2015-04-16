@@ -17,14 +17,14 @@ module Vedeu
   describe Grid do
 
     let(:described) { Vedeu::Grid }
-    let(:instance)  { described.new(value) }
-    let(:value)     { 2 }
+    let(:instance)  { described.new(_value) }
+    let(:_value)    { 2 }
 
     before { IO.console.stubs(:winsize).returns([25, 80]) }
 
     describe '#initialize' do
       it { instance.must_be_instance_of(Grid) }
-      it { instance.instance_variable_get('@value').must_equal(value) }
+      it { instance.instance_variable_get('@value').must_equal(_value) }
     end
 
     describe '.columns' do

@@ -1,8 +1,8 @@
-require 'vedeu/distributed/uri'
-require 'vedeu/distributed/server'
-require 'vedeu/distributed/client'
-require 'vedeu/distributed/subprocess'
-require 'vedeu/distributed/test_application'
+require_relative 'uri'
+require_relative 'server'
+require_relative 'client'
+require_relative 'subprocess'
+require_relative 'test_application'
 
 module Vedeu
 
