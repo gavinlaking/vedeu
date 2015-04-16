@@ -39,6 +39,13 @@ module Vedeu
       it { subject.instance_variable_get('@y').must_equal(8) }
     end
 
+    describe '#hide_cursor' do
+      subject { instance.hide_cursor }
+
+      it { subject.must_be_instance_of(String) }
+      it { subject.must_equal("\e[?25l") }
+    end
+
     describe '#inspect' do
       subject { instance.inspect }
 
@@ -46,6 +53,13 @@ module Vedeu
       it { subject.must_equal(
         '<Vedeu::Cursor (silver, true, x:19, y:8, ox:3, oy:2)>'
       ) }
+    end
+
+    describe '#show_cursor' do
+      subject { instance.show_cursor }
+
+      it { subject.must_be_instance_of(String) }
+      it { subject.must_equal("\e[?25h") }
     end
 
     describe '#to_s' do

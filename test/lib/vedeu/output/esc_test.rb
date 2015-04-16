@@ -48,8 +48,22 @@ module Vedeu
       context 'when a stream is not given' do
         let(:stream) { '' }
 
-        it { Esc.escape(stream).must_equal('') }
+        it { subject.must_equal('') }
       end
+    end
+
+    describe '.hide_cursor' do
+      subject { described.hide_cursor }
+
+      it { subject.must_be_instance_of(String) }
+      it { subject.must_equal("\e[?25l") }
+    end
+
+    describe '.show_cursor' do
+      subject { described.show_cursor }
+
+      it { subject.must_be_instance_of(String) }
+      it { subject.must_equal("\e[?25h") }
     end
 
     describe '.string' do
