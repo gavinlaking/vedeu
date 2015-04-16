@@ -92,6 +92,11 @@ module Vedeu
     end
     alias_method :by_name, :find_or_create
 
+    # @return [String]
+    def inspect
+      "<#{self.class.name}: #{registered.inspect}>"
+    end
+
     # Returns a collection of the names of all the registered entities.
     #
     # @return [Array]
