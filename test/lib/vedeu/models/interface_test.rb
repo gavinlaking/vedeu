@@ -8,6 +8,7 @@ module Vedeu
     let(:instance)   { described.new(attributes) }
     let(:attributes) {
       {
+        client: client,
         name:   _name,
         lines:  lines,
         parent: parent,
@@ -16,6 +17,7 @@ module Vedeu
         visible: visible,
       }
     }
+    let(:client)     {}
     let(:_name)      { 'hydrogen' }
     let(:lines)      { [] }
     let(:parent)     {}
@@ -27,47 +29,14 @@ module Vedeu
     describe '#initialize' do
       subject { instance }
 
-      it { subject.instance_variable_get('@name').must_equal(_name) }
-      it { subject.instance_variable_get('@lines').must_equal(lines) }
-      it { subject.instance_variable_get('@parent').must_equal(parent) }
-      it { subject.instance_variable_get('@visible').must_equal(visible) }
-      it { subject.instance_variable_get('@border').must_equal(nil) }
+      it { subject.instance_variable_get('@client').must_equal(client) }
       it { subject.instance_variable_get('@delay').must_equal(0.0) }
-      it { subject.instance_variable_get('@geometry').must_equal(nil) }
       it { subject.instance_variable_get('@group').must_equal('') }
+      it { subject.instance_variable_get('@lines').must_equal(lines) }
+      it { subject.instance_variable_get('@name').must_equal(_name) }
+      it { subject.instance_variable_get('@parent').must_equal(parent) }
       it { subject.instance_variable_get('@repository').must_equal(repository) }
-    end
-
-    describe '#border' do
-      subject { instance.border }
-
-      context 'when the interface has a border' do
-        before { Vedeu.border('hydrogen') { } }
-        after  { Vedeu.borders.reset }
-
-        it { subject.must_be_instance_of(Vedeu::Border) }
-      end
-
-      context 'when the interface does not have a border' do
-        before do
-          Vedeu.interface 'hydrogen' do
-          end
-
-          Vedeu.borders.reset
-        end
-        after { Vedeu.interfaces.reset }
-
-        it { subject.must_be_instance_of(Vedeu::NullBorder) }
-      end
-    end
-
-    describe '#clear' do
-      subject { instance.clear }
-
-      it {
-        Vedeu::Clear.expects(:new).with(instance)
-        subject
-      }
+      it { subject.instance_variable_get('@visible').must_equal(visible) }
     end
 
     describe '#lines?' do
@@ -82,12 +51,6 @@ module Vedeu
       context 'when the interface does not have content' do
         it { subject.must_equal(false) }
       end
-    end
-
-    describe '#cursor' do
-      subject { instance.cursor }
-
-      it { subject.must_be_instance_of(Vedeu::Cursor) }
     end
 
     describe '#render' do
@@ -113,15 +76,6 @@ module Vedeu
 
         it { proc { subject }.must_raise(MissingRequired) }
       end
-    end
-
-    describe '#viewport' do
-      subject { instance.viewport }
-
-      it {
-        Vedeu::Viewport.expects(:new).with(instance)
-        subject
-      }
     end
 
   end # Interface
