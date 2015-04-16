@@ -136,13 +136,9 @@ module Vedeu
       end
 
       describe '#delay' do
-        it 'sets the delay attribute' do
-          Vedeu.interface 'cobalt' do
-            delay 0.25
-          end
+        subject { instance.delay(0.25) }
 
-          Vedeu.use('cobalt').delay.must_equal(0.25)
-        end
+        it { subject; model.delay.must_equal(0.25) }
       end
 
       describe '#focus!' do
@@ -267,13 +263,9 @@ module Vedeu
       end
 
       describe '#name' do
-        it 'sets the name attribute' do
-          Vedeu.interface do
-            name 'nickel'
-          end
+        subject { instance.name('nickel') }
 
-          Vedeu.use('nickel').name.must_equal('nickel')
-        end
+        it { subject; model.name.must_equal('nickel') }
       end
 
       describe '#show!' do
