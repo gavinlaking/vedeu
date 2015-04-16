@@ -156,14 +156,6 @@ module Vedeu
     end
     alias_method :register, :store
 
-    # Access a model by name.
-    #
-    # @param name [String]
-    # @return [|NilClass]
-    def use(name)
-      find(name) if registered?(name)
-    end
-
     private
 
     # @return [Hash]

@@ -256,22 +256,6 @@ module Vedeu
       end
     end
 
-    describe '#use' do
-      subject { instance.use(model_name) }
-
-      context 'when the model exists' do
-        before { instance.store(model_instance) }
-
-        it { subject.must_equal(model_instance) }
-      end
-
-      context 'when the model does not exist' do
-        let(:model_name) { 'not_found' }
-
-        it { subject.must_be_instance_of(NilClass) }
-      end
-    end
-
   end # Repository
 
 end # Vedeu

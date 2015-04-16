@@ -10,6 +10,8 @@ module Vedeu
       let(:instance)  { described.new(model) }
       let(:model)     { Vedeu::Geometry.new }
 
+      before { Terminal.stubs(:size).returns([25, 80]) }
+
       describe 'alias methods' do
         it { instance.must_respond_to(:centred!) }
       end
