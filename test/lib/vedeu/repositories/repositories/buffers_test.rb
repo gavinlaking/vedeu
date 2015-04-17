@@ -13,37 +13,25 @@ module Vedeu
       it { subject.must_be_instance_of(described) }
     end
 
-    describe '#clear' do
-      let(:_name)  { 'silicon' }
-      let(:buffer) { Vedeu::Buffer.new }
+    describe '#by_name' do
+      let(:_name) { 'carbon' }
 
-      subject { instance.clear(_name) }
+      subject { described.buffers.by_name(_name) }
 
       context 'when the buffer exists' do
-        before { instance.stubs(:find!).returns(buffer) }
+        before do
+          Vedeu.interface 'carbon' do
+          end
+        end
+        after { Vedeu.buffers.reset }
 
-        it { buffer.expects(:clear); subject }
+        it { subject.must_be_instance_of(Vedeu::Buffer) }
       end
 
       context 'when the buffer does not exist' do
-        it { proc { subject }.must_raise(ModelNotFound) }
-      end
-    end
+        let(:_name) { 'nitrogen' }
 
-    describe '#render' do
-      let(:_name) { 'silicon' }
-      let(:buffer) { Vedeu::Buffer.new }
-
-      subject { instance.render(_name) }
-
-      context 'when the buffer exists' do
-        before { instance.stubs(:find!).returns(buffer) }
-
-        it { buffer.expects(:render); subject }
-      end
-
-      context 'when the buffer does not exist' do
-        it { proc { subject }.must_raise(ModelNotFound) }
+        it { subject.must_be_instance_of(Vedeu::Null::Buffer) }
       end
     end
 

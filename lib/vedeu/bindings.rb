@@ -229,14 +229,7 @@ module Vedeu
     # Triggering the ':_hide_group_' event to which this named interface belongs
     # will also hide the interface.
     Vedeu.bind(:_hide_interface_) do |name|
-      if name && Vedeu.interfaces.registered?(name)
-        interface = Vedeu.interfaces.find(name)
-
-        if interface.visible?
-          interface = Vedeu::Visibility.hide(interface)
-          Vedeu.buffers.clear(interface.name)
-        end
-      end
+      Vedeu.buffers.by_name(name).hide
     end
 
     # Will show the named interface. If the interface is currently invisible, it
@@ -245,13 +238,7 @@ module Vedeu
     # Triggering the ':_show_group_' event to which this named interface belongs
     # will also show the interface.
     Vedeu.bind(:_show_interface_) do |name|
-      if name && Vedeu.interfaces.registered?(name)
-        interface = Vedeu.interfaces.find(name)
-
-        interface = Vedeu::Visibility.show(interface) unless interface.visible?
-
-        Vedeu.buffers.render(interface.name)
-      end
+      Vedeu.buffers.by_name(name).show
     end
 
     # Will toggle the visibility of the named interface. If the interface is

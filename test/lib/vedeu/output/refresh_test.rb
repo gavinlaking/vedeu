@@ -32,6 +32,9 @@ module Vedeu
     end
 
     describe '.by_group' do
+      let(:_name)  { 'aluminium' }
+      let(:buffer) { Vedeu::Null::Buffer.new(_name) }
+
       subject { described.by_group(group_name) }
 
       context 'when there are no registered groups' do
@@ -46,19 +49,28 @@ module Vedeu
         let(:group_name) { 'elements' }
 
         before do
-          Vedeu::Group.new(name: group_name, members: 'aluminium').store
+          Vedeu::Group.new(name: group_name, members: _name).store
         end
 
-        it { Vedeu.buffers.expects(:render).with('aluminium'); subject }
+        it do
+          Vedeu.buffers.expects(:by_name).with(_name).returns(buffer)
+          buffer.expects(:render)
+          subject
+        end
       end
     end
 
     describe '.by_name' do
-      let(:interface_name) { 'aluminium' }
+      let(:_name)  { 'aluminium' }
+      let(:buffer) { Vedeu::Null::Buffer.new(_name) }
 
-      subject { described.by_name(interface_name) }
+      subject { described.by_name(_name) }
 
-      it { Vedeu.buffers.expects(:render).with(interface_name); subject }
+      it {
+        Vedeu.buffers.expects(:by_name).with(_name).returns(buffer)
+        buffer.expects(:render)
+        subject
+      }
     end
 
   end # Refresh
