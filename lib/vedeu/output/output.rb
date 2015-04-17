@@ -30,7 +30,7 @@ module Vedeu
       if Vedeu::Configuration.drb?
         Vedeu.trigger(:_drb_store_output_, content)
 
-        Vedeu::HTMLRenderer.to_file(Vedeu::VirtualBuffer.retrieve)
+        Vedeu::Renderers::HTML.to_file(Vedeu::VirtualBuffer.retrieve)
       end
 
       Vedeu.renderers.render(content)

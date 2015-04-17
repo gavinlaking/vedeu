@@ -2,14 +2,14 @@ require 'test_helper'
 
 module Vedeu
 
-  describe HTMLRenderer do
+  describe Renderers::HTML do
 
-    let(:described) { Vedeu::HTMLRenderer }
+    let(:described) { Vedeu::Renderers::HTML }
     let(:instance)  { described.new(output) }
     let(:output)    {}
 
     describe '#initialize' do
-      it { instance.must_be_instance_of(Vedeu::HTMLRenderer) }
+      it { instance.must_be_instance_of(described) }
       it { instance.instance_variable_get('@output').must_equal(output) }
     end
 
@@ -81,6 +81,6 @@ module Vedeu
       end
     end
 
-  end # HTMLRenderer
+  end # Renderers::HTML
 
 end # Vedeu

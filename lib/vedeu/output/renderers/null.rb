@@ -2,13 +2,13 @@ module Vedeu
 
   # A renderer which returns nothing.
   #
-  class NullRenderer
+  class Renderers::Null
 
     # @return [NilClass]
     def self.render(*)
       nil
     end
 
-  end # NullRenderer
+  end # Renderers::Null
 
 end # Vedeu

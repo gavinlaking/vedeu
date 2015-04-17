@@ -2,7 +2,7 @@ module Vedeu
 
   # Renders a {Vedeu::VirtualBuffer} or {Vedeu::Output} as JSON.
   #
-  class JSONRenderer
+  class Renderers::JSON
 
     # @param output [Array<Array<Vedeu::Char>>]
     # @return [String]
@@ -17,10 +17,10 @@ module Vedeu
     #   new(output).to_file(path)
     # end
 
-    # Returns a new instance of Vedeu::JSONRenderer.
+    # Returns a new instance of Vedeu::Renderers::JSON.
     #
     # @param output [Array<Array<Vedeu::Char>>]
-    # @return [Vedeu::JSONRenderer]
+    # @return [Vedeu::Renderers::JSON]
     def initialize(output)
       @output = output
     end
@@ -47,6 +47,6 @@ module Vedeu
     # @return [Array<Array<Vedeu::Char>>]
     attr_reader :output
 
-  end # JSONRenderer
+  end # Renderers::JSON
 
 end # Vedeu

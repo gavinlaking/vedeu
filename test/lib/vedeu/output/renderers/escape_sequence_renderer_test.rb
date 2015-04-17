@@ -1,10 +1,10 @@
 require 'test_helper'
 
-module Vedeu
+module Vedeu::Renderers
 
-  describe EscapeSequenceRenderer do
+  describe EscapeSequence do
 
-    let(:described) { Vedeu::EscapeSequenceRenderer }
+    let(:described) { Vedeu::Renderers::EscapeSequence }
     let(:instance)  { described.new(output) }
     let(:output)    {}
 
@@ -41,6 +41,6 @@ module Vedeu
       end
     end
 
-  end # EscapeSequenceRenderer
+  end # EscapeSequence
 
 end # Vedeu

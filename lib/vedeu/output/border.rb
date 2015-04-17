@@ -174,7 +174,7 @@ module Vedeu
 
     # @return [String]
     def to_s
-      Vedeu::TextRenderer.render(render)
+      Vedeu::Renderers::Text.render(render)
     end
 
     # Renders the bottom border for the interface.

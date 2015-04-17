@@ -4,7 +4,7 @@ module Vedeu
   # and content suitable for a terminal, and writes them to a file in the /tmp
   # directory.
   #
-  class FileRenderer
+  class Renderers::File
 
     # @param output [Array<Array<Vedeu::Char>>]
     # @param options [Hash]
@@ -13,11 +13,11 @@ module Vedeu
       new(output, options).render
     end
 
-    # Returns a new instance of Vedeu::FileRenderer.
+    # Returns a new instance of Vedeu::Renderers::File.
     #
     # @param output [Array<Array<Vedeu::Char>>]
     # @param options [Hash]
-    # @return [Vedeu::FileRenderer]
+    # @return [Vedeu::Renderers::File]
     def initialize(output, options = {})
       @output  = output
       @options = options
@@ -76,6 +76,6 @@ module Vedeu
       }
     end
 
-  end # FileRenderer
+  end # Renderers::File
 
 end # Vedeu

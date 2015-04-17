@@ -2,9 +2,9 @@ require 'test_helper'
 
 module Vedeu
 
-  describe NullRenderer do
+  describe Renderers::Null do
 
-    let(:described) { Vedeu::NullRenderer }
+    let(:described) { Vedeu::Renderers::Null }
 
     describe '.render' do
       let(:args) {}
@@ -14,6 +14,6 @@ module Vedeu
       it { subject.must_be_instance_of(NilClass) }
     end
 
-  end # NullRenderer
+  end # Renderers::Null
 
 end # Vedeu

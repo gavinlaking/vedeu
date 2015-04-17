@@ -10,7 +10,7 @@ module Vedeu
     let(:instance)  { described.new(height, width, renderer) }
     let(:height)    { 3 }
     let(:width)     { 3 }
-    let(:renderer)  { Vedeu::HTMLRenderer }
+    let(:renderer)  { Vedeu::Renderers::HTML }
 
     describe '#initialize' do
       it { instance.must_be_instance_of(Vedeu::VirtualTerminal) }
@@ -23,7 +23,7 @@ module Vedeu
       context '#renderer' do
         subject { instance.renderer }
 
-        it { subject.must_equal(Vedeu::HTMLRenderer) }
+        it { subject.must_equal(Vedeu::Renderers::HTML) }
       end
       context '#renderer=' do
         subject { instance.renderer = (Vedeu::FakeRenderer) }
