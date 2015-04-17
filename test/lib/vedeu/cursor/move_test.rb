@@ -62,7 +62,7 @@ module Vedeu
     end
 
     describe '#initialize' do
-      it { instance.must_be_instance_of(Vedeu::Move) }
+      it { instance.must_be_instance_of(described) }
       it { instance.instance_variable_get('@name').must_equal(_name) }
       it { instance.instance_variable_get('@dy').must_equal(dy) }
       it { instance.instance_variable_get('@dx').must_equal(dx) }

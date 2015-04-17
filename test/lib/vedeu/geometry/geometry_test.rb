@@ -33,7 +33,7 @@ module Vedeu
     describe '#initialize' do
       subject { instance }
 
-      it { subject.must_be_instance_of(Geometry) }
+      it { subject.must_be_instance_of(described) }
       it { subject.instance_variable_get('@attributes').must_equal(attributes) }
       it { subject.instance_variable_get('@centred').must_equal(centred) }
       it { subject.instance_variable_get('@height').must_equal(height) }

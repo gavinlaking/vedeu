@@ -6,8 +6,6 @@ module Vedeu
 
     describe Interface do
 
-      it { skip }
-
     end # Interface
 
   end # Null
