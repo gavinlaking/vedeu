@@ -27,9 +27,9 @@ module Vedeu
     def initialize(attributes = {})
       @attributes = defaults.merge!(attributes)
 
-      @name       = @attributes[:name]
-      @keys       = @attributes[:keys]
-      @repository = @attributes[:repository]
+      @attributes.each do |key, value|
+        instance_variable_set("@#{key}", value)
+      end
     end
 
     # @param key [Key]
