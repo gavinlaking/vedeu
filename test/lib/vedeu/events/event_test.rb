@@ -50,22 +50,22 @@ module Vedeu
 
     describe '#trigger' do
       it 'returns the result of calling the closure when debouncing' do
-        event = Event.new(event_name, { debounce: 0.002 }, closure)
+        event = Event.new(event_name, { debounce: 0.001 }, closure)
         event.trigger.must_equal(nil)
-        sleep 0.001
+        sleep 0.0005
         event.trigger.must_equal(nil)
-        sleep 0.0015
+        sleep 0.0009
         event.trigger.must_equal(:event_triggered)
-        sleep 0.001
+        sleep 0.0001
         event.trigger.must_equal(nil)
       end
 
       it 'returns the result of calling the closure when throttling' do
-        event = Event.new(event_name, { delay: 0.002 }, closure)
+        event = Event.new(event_name, { delay: 0.001 }, closure)
         event.trigger.must_equal(:event_triggered)
-        sleep 0.001
+        sleep 0.0005
         event.trigger.must_equal(nil)
-        sleep 0.001
+        sleep 0.0005
         event.trigger.must_equal(:event_triggered)
       end
 
