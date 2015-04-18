@@ -61,6 +61,16 @@ module Vedeu
       end
     end
 
+    describe '#clear' do
+      subject { instance.clear }
+
+      context 'when the clear buffer is empty' do
+      end
+
+      context 'when the clear buffer is not empty' do
+      end
+    end
+
     # describe '#render' do
     #   before { Vedeu::Output.stubs(:render) }
 
