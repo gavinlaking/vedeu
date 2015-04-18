@@ -147,6 +147,8 @@ module Vedeu
     #
     # @return [Boolean]
     def swap
+      Vedeu.log(type: :output, message: "Buffer swapping: '#{name}'")
+
       @previous = front
       @front    = back
       @back     = nil
