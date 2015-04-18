@@ -38,7 +38,3 @@ RuboCop::RakeTask.new(:rubocop) do |task|
   task.formatters = ['progress']
   task.fail_on_error = false
 end
-
-Dir[File.expand_path('../lib/vedeu/tasks/*.rake', __FILE__)].each do |task|
-  load task
-end
