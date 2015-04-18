@@ -21,4 +21,14 @@ require 'vedeu'
 load "#{gem_dir}/lib/vedeu/tasks/vedeu.rake"
 
 # Let's go!
-Rake.application.invoke_task(ARGV.shift)
+begin
+  Rake.application.invoke_task(ARGV.shift)
+
+rescue RuntimeError => exception
+  puts 'Vedeu Error: Either the task you specified failed, or the task could ' \
+       "not be built.\n"
+  puts "Exception: #{exception.class.name}"
+  puts "Message: #{exception.message}"
+
+end
+
