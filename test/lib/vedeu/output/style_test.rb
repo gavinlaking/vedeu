@@ -6,7 +6,7 @@ module Vedeu
 
     let(:described) { Vedeu::Style }
     let(:instance)  { described.new(_value) }
-    let(:_value)     { 'bold' }
+    let(:_value)    { 'bold' }
 
     describe 'alias methods' do
       it { instance.must_respond_to(:escape_sequences) }
