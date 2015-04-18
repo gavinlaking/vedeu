@@ -13,6 +13,8 @@ module Vedeu
       end
       alias_method :repository, :geometries
 
+      # Remove all stored models from the repository.
+      #
       # @return [Vedeu::Geometries]
       def reset!
         @geometries = Vedeu::Geometries.register_repository(Vedeu::Geometry)

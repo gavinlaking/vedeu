@@ -18,6 +18,8 @@ module Vedeu
       storage.add(klass)
     end
 
+    # Remove all stored models from the repository.
+    #
     # @return [TrueClass]
     def reset!
       storage.map(&:repository).map { |repository| repository.send(:reset) }

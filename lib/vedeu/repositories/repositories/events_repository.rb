@@ -12,6 +12,8 @@ module Vedeu
       end
       alias_method :repository, :events
 
+      # Remove all stored models from the repository.
+      #
       # @return [Vedeu::EventsRepository]
       def reset!
         @events = Vedeu::EventsRepository.new(Vedeu::Events)

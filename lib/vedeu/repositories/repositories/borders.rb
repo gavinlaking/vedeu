@@ -13,6 +13,8 @@ module Vedeu
       end
       alias_method :repository, :borders
 
+      # Remove all stored models from the repository.
+      #
       # @return [Vedeu::Borders]
       def reset!
         @borders = Vedeu::Borders.register_repository(Vedeu::Border)

@@ -4,6 +4,8 @@ module Vedeu
   #
   class PositionIndex
 
+    # Convenience constructor for Vedeu::Position.
+    #
     # @param (see #initialize)
     def self.[](y, x)
       new(y, x).[]
@@ -19,7 +21,9 @@ module Vedeu
       @x = x
     end
 
-    # @return [Array]
+    # Returns a tuple containing the y and x coordinates.
+    #
+    # @return [Array<Fixnum>]
     def []
       [y, x]
     end
