@@ -25,7 +25,7 @@ module Vedeu
 
     # @return [String]
     def render
-      File.open("/tmp/#{filename}", 'w') { |f| f.write(parsed) }
+      File.open(path, 'w') { |f| f.write(parsed) }
 
       parsed
     end
@@ -35,6 +35,11 @@ module Vedeu
     # @!attribute [r] output
     # @return [Array<Array<Vedeu::Char>>]
     attr_reader :output
+
+    # @return [String]
+    def path
+      "/tmp/#{filename}"
+    end
 
     # @return [String]
     def filename
