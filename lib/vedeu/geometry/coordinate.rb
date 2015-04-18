@@ -70,56 +70,6 @@ module Vedeu
       end
     end
 
-    # Returns the index for a given y position.
-    #
-    # @example
-    #   # y_range  = [7, 8, 9, 10]
-    #   # y = 8
-    #   y_index     # => 1 # because (y_range[1] = 8)
-    #   y_index(10) # => 3
-    #   y_index(5)  # => 0
-    #   y_index(15) # => 3
-    #
-    # @param position [Fixnum]
-    # @return [Fixnum]
-    def y_index(position = y)
-      if height <= 0 || position <= y
-        0
-
-      elsif position >= yn
-        yn_index
-
-      else
-        y_range.index(position)
-
-      end
-    end
-
-    # Returns the index for a given x position.
-    #
-    # @example
-    #   # x_range = [4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
-    #   # x = 8
-    #   x_index     # => 4 # because (x_range[4] = 8)
-    #   x_index(11) # => 7
-    #   x_index(2)  # => 0
-    #   x_index(15) # => 9
-    #
-    # @param position [Fixnum]
-    # @return [Fixnum]
-    def x_index(position = x)
-      if width <= 0 || position <= x
-        0
-
-      elsif position >= xn
-        xn_index
-
-      else
-        x_range.index(position)
-
-      end
-    end
-
     # Returns the y coordinate for a given index.
     #
     # @example
