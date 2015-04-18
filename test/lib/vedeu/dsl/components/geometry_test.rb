@@ -119,14 +119,14 @@ module Vedeu
         context 'DSL #x' do
           subject {
             Vedeu.geometry 'geometry' do
-              x 7
+              x 9
             end
           }
 
           it { subject.must_be_instance_of(Vedeu::Geometry) }
 
           it 'allows the use of x within geometry' do
-            subject.x.must_equal(7)
+            subject.x.must_equal(9)
           end
 
           context 'when no value is given' do
@@ -236,12 +236,12 @@ module Vedeu
           subject {
             Vedeu::Geometry.build({}) do
               yn do
-                5 + 3
+                5 + 4
               end
             end
           }
 
-          it { subject.yn.must_equal(8) }
+          it { subject.yn.must_equal(9) }
         end
       end
 
