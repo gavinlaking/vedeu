@@ -14,7 +14,7 @@ module Vedeu
       end
 
       describe '#initialize' do
-        it { instance.must_be_instance_of(Vedeu::Null::Generic) }
+        it { instance.must_be_instance_of(described) }
       end
 
       describe '#add' do
@@ -38,7 +38,7 @@ module Vedeu
       describe '#store' do
         subject { instance.store }
 
-        it { subject.must_be_instance_of(Vedeu::Null::Generic) }
+        it { subject.must_be_instance_of(described) }
       end
 
       describe '#style' do

@@ -23,7 +23,7 @@ module Vedeu
     end
 
     describe '#initialize' do
-      it { instance.must_be_instance_of(Event) }
+      it { instance.must_be_instance_of(described) }
       it { instance.instance_variable_get('@name').must_equal(event_name) }
       it { instance.instance_variable_get('@options').must_equal(options) }
       it { instance.instance_variable_get('@deadline').must_equal(0) }

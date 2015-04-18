@@ -13,7 +13,7 @@ module Vedeu
     end
 
     describe '#initialize' do
-      it { instance.must_be_instance_of(Vedeu::ConveyorStore) }
+      it { instance.must_be_instance_of(described) }
       it { instance.instance_variable_get('@storage').must_equal(storage) }
     end
 

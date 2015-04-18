@@ -23,7 +23,7 @@ module Vedeu
     end
 
     describe '#initialize' do
-      it { instance.must_be_instance_of(Vedeu::Clear) }
+      it { instance.must_be_instance_of(described) }
       it { instance.instance_variable_get('@interface').must_equal(interface) }
       it { instance.instance_variable_get('@options').must_equal(options) }
     end

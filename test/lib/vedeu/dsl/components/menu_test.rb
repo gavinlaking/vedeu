@@ -19,7 +19,7 @@ module Vedeu
       let(:menu_name)  { 'elements' }
 
       describe '#initialize' do
-        it { instance.must_be_instance_of(Vedeu::DSL::Menu) }
+        it { instance.must_be_instance_of(described) }
         it { instance.instance_variable_get('@model').must_equal(model) }
       end
 

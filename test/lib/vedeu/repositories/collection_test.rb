@@ -4,14 +4,14 @@ module Vedeu
 
   describe Collection do
 
-    let(:described)  { Collection }
+    let(:described)  { Vedeu::Collection }
     let(:instance)   { described.new(collection, parent, model_name) }
     let(:collection) { [] }
     let(:model_name) { 'elements' }
     let(:parent)     { Vedeu::ModelTestClass.new }
 
     describe '#initialize' do
-      it { instance.must_be_instance_of(Collection) }
+      it { instance.must_be_instance_of(described) }
       it { instance.instance_variable_get('@collection').must_equal([]) }
       it { instance.instance_variable_get('@name').must_equal(model_name) }
       it { instance.instance_variable_get('@parent').must_equal(parent) }

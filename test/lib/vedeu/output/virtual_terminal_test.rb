@@ -13,7 +13,7 @@ module Vedeu
     let(:renderer)  { Vedeu::Renderers::HTML }
 
     describe '#initialize' do
-      it { instance.must_be_instance_of(Vedeu::VirtualTerminal) }
+      it { instance.must_be_instance_of(described) }
       it { instance.instance_variable_get('@height').must_equal(3) }
       it { instance.instance_variable_get('@width').must_equal(3) }
       it { instance.instance_variable_get('@renderer').must_equal(renderer) }

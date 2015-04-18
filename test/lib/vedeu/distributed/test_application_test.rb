@@ -9,7 +9,7 @@ module Vedeu
     let(:attributes) { {} }
 
     describe '#initialize' do
-      it { instance.must_be_instance_of(Vedeu::TestApplication) }
+      it { instance.must_be_instance_of(described) }
     end
 
     describe '.build' do

@@ -9,7 +9,7 @@ module Vedeu
     let(:options)   { {} }
 
     describe '#initialize' do
-      it { instance.must_be_instance_of(Trace) }
+      it { instance.must_be_instance_of(described) }
       it { instance.instance_variable_get('@options').must_equal(options) }
     end
 

@@ -23,7 +23,7 @@ module Vedeu
     before { IO.console.stubs(:winsize).returns([25, 80]) }
 
     describe '#initialize' do
-      it { instance.must_be_instance_of(Grid) }
+      it { instance.must_be_instance_of(described) }
       it { instance.instance_variable_get('@value').must_equal(_value) }
     end
 
