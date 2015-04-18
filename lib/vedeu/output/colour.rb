@@ -89,8 +89,7 @@ module Vedeu
     # @param value [String]
     # @return [String]
     def background=(value)
-      @attributes[:background] = value
-      @background = Vedeu::Background.coerce(value)
+      @background = @attributes[:background] = Vedeu::Background.coerce(value)
     end
 
     # @param other [Vedeu::Char]
@@ -113,8 +112,7 @@ module Vedeu
     # @param value [String]
     # @return [String]
     def foreground=(value)
-      @attributes[:foreground] = value
-      @foreground = Vedeu::Foreground.coerce(value)
+      @foreground = @attributes[:foreground] = Vedeu::Foreground.coerce(value)
     end
 
     # Returns both or either of the converted attributes into a single escape
