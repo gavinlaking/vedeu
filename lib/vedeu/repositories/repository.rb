@@ -14,6 +14,7 @@ module Vedeu
   class Repository
 
     include Vedeu::Common
+    include Vedeu::Registerable
     include Vedeu::Store
 
     # @!attribute [r] model
@@ -48,6 +49,18 @@ module Vedeu
     # @return [Class]
     def repository
       self.class # .name
+    end
+
+    # @param name [String] The name of the stored model.
+    # @return [void]
+    def by_name(name)
+      if registered?(name)
+        find(name)
+
+      else
+        null_model.new(name)
+
+      end
     end
 
     # Return the model for the interface currently in focus.
@@ -90,7 +103,6 @@ module Vedeu
         model.new(name).store
       end
     end
-    alias_method :by_name, :find_or_create
 
     # @return [String]
     def inspect

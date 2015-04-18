@@ -22,17 +22,7 @@ module Vedeu
 
     end
 
-    # @param name [String] The name of the stored geometry.
-    # @return [Vedeu::Geometry|Vedeu::Null::Geometry]
-    def by_name(name)
-      if registered?(name)
-        find(name)
-
-      else
-        Vedeu::Null::Geometry.new(name)
-
-      end
-    end
+    null Vedeu::Null::Geometry
 
   end # Geometries
 

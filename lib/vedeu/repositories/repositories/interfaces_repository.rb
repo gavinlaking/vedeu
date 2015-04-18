@@ -22,17 +22,7 @@ module Vedeu
 
     end
 
-    # @param name [String]
-    # @return [Vedeu::Interface|Vedeu::Null::Interface]
-    def by_name(name)
-      if registered?(name)
-        find(name)
-
-      else
-        Vedeu::Null::Interface.new(name: name)
-
-      end
-    end
+    null Vedeu::Null::Interface
 
   end # InterfacesRepository
 

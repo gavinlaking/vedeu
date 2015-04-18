@@ -22,17 +22,7 @@ module Vedeu
 
     end
 
-    # @param name [String] The name of the stored border.
-    # @return [Vedeu::Border|Vedeu::Null::Border]
-    def by_name(name)
-      if registered?(name)
-        find(name)
-
-      else
-        Vedeu::Null::Border.new(name)
-
-      end
-    end
+    null Vedeu::Null::Border
 
   end # Borders
 

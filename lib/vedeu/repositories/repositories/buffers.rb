@@ -21,17 +21,7 @@ module Vedeu
 
     end
 
-    # @param name [String] The name of the stored buffer.
-    # @return [Vedeu::Buffer|Vedeu::Null::Buffer]
-    def by_name(name)
-      if registered?(name)
-        find(name)
-
-      else
-        Vedeu::Null::Buffer.new(name)
-
-      end
-    end
+    null Vedeu::Null::Buffer
 
   end # Buffers
 

@@ -6,15 +6,24 @@ module Vedeu
     #
     class Interface
 
-      # @!attribute [r] attributes
-      # @return [Hash]
-      attr_reader :attributes
-
-      # @param attributes [Hash]
+      # @param name [String]
       # @return [Vedeu::Null::Interface]
-      def initialize(attributes = {})
-        @attributes = attributes
+      def initialize(name = nil)
+        @name = name
       end
+
+      # @return [Hash<Symbol => String>]
+      def attributes
+        {
+          name: name
+        }
+      end
+
+      private
+
+      # @!attribute [r] name
+      # @return [String]
+      attr_reader :name
 
     end # Interface
 
