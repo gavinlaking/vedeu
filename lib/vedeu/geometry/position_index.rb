@@ -4,17 +4,6 @@ module Vedeu
   #
   class PositionIndex
 
-    # @!attribute [r] y
-    # @return [Fixnum]
-    attr_reader :y
-
-    # @!attribute [r] x
-    # @return [Fixnum]
-    attr_reader :x
-
-    alias_method :first, :y
-    alias_method :last, :x
-
     # @param (see #initialize)
     def self.[](y, x)
       new(y, x).[]
@@ -26,8 +15,8 @@ module Vedeu
     # @param x [Fixnum]
     # @return [Vedeu::PositionIndex]
     def initialize(y, x)
-      @y = ((y - 1) <= 1) ? 0 : (y - 1)
-      @x = ((x - 1) <= 1) ? 0 : (x - 1)
+      @y = y
+      @x = x
     end
 
     # @return [Array]
@@ -46,6 +35,18 @@ module Vedeu
     def to_position
       Vedeu::Position.new(y, x)
     end
+
+    # @return [Fixnum]
+    def x
+      @_x ||= ((@x - 1) <= 1) ? 0 : (@x - 1)
+    end
+    alias_method :last, :x
+
+    # @return [Fixnum]
+    def y
+      @_y ||= ((@y - 1) <= 1) ? 0 : (@y - 1)
+    end
+    alias_method :first, :y
 
   end # PositionIndex
 
