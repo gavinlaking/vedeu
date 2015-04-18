@@ -18,8 +18,6 @@ module Vedeu
       Vedeu.borders.reset
       Vedeu.cursors.reset
       Vedeu.geometries.reset
-      Vedeu.interfaces.reset
-
       Vedeu::Cursor.new(name:    'move_with_border',
                         ox:      ox,
                         oy:      oy,
@@ -32,24 +30,20 @@ module Vedeu
                         visible: true,
                         x:       x,
                         y:       y).store
-      Vedeu.interface 'move_with_border' do
-        border do
-          # ...
-        end
-        geometry do
-          x  5
-          xn 10
-          y  5
-          yn 10
-        end
+      Vedeu.border 'move_with_border' do
+        # ...
       end
-      Vedeu.interface 'move_without_border' do
-        geometry do
-          x  5
-          xn 10
-          y  5
-          yn 10
-        end
+      Vedeu.geometry 'move_with_border' do
+        x  5
+        xn 10
+        y  5
+        yn 10
+      end
+      Vedeu.geometry 'move_without_border' do
+        x  5
+        xn 10
+        y  5
+        yn 10
       end
       IO.console.stubs(:winsize).returns([25, 80])
       IO.console.stubs(:print)
@@ -58,7 +52,6 @@ module Vedeu
       Vedeu.borders.reset
       Vedeu.cursors.reset
       Vedeu.geometries.reset
-      Vedeu.interfaces.reset
     end
 
     describe '#initialize' do

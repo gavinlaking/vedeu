@@ -9,11 +9,11 @@ module Vedeu
       let(:described) { Vedeu::Null::Border }
       let(:instance)  { described.new(_name) }
       let(:_name)     { 'null_border' }
+      let(:geometry)  {
+        Vedeu::Geometry.new(name: _name, x: 4, y: 6, xn: 10, yn: 12)
+      }
 
-      before do
-        Vedeu::Geometry.new(name: _name, x: 4, y: 6, xn: 10, yn: 12).store
-      end
-      after { Vedeu.geometries.reset }
+      before { Vedeu.geometries.stubs(:by_name).returns(geometry) }
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
