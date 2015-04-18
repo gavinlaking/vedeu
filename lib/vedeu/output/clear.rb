@@ -105,7 +105,8 @@ module Vedeu
     #   the terminal, or the colours of the interface.
     def clear_colour
       if use_terminal_colours?
-        Vedeu::Colour.new(background: :default, foreground: :default)
+        @colour ||= Vedeu::Colour.new(background: :default,
+                                      foreground: :default)
 
       else
         colour

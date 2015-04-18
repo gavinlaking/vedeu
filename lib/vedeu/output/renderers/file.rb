@@ -54,7 +54,7 @@ module Vedeu
 
     # @return [Float]
     def timestamp
-      Time.now.to_f
+      @timestamp ||= Time.now.to_f
     end
 
     # @return [Boolean]
