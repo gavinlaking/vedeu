@@ -1,10 +1,10 @@
-require_relative 'escape_sequence_renderer'
-require_relative 'file_renderer'
-require_relative 'html_renderer'
-require_relative 'json_renderer'
-require_relative 'null_renderer'
-require_relative 'terminal_renderer'
-require_relative 'text_renderer'
+require_relative 'escape_sequence'
+require_relative 'file'
+require_relative 'html'
+require_relative 'json'
+require_relative 'null'
+require_relative 'terminal'
+require_relative 'text'
 
 module Vedeu
 

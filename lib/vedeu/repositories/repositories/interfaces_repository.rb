@@ -12,6 +12,8 @@ module Vedeu
       end
       alias_method :repository, :interfaces
 
+      # Remove all stored models from the repository.
+      #
       # @return [Vedeu::InterfacesRepository]
       def reset!
         @interfaces = Vedeu::InterfacesRepository.
@@ -21,13 +23,13 @@ module Vedeu
     end
 
     # @param name [String]
-    # @return [Vedeu::Interface|Vedeu::NullInterface]
+    # @return [Vedeu::Interface|Vedeu::Null::Interface]
     def by_name(name)
       if registered?(name)
         find(name)
 
       else
-        Vedeu::NullInterface.new(name: name)
+        Vedeu::Null::Interface.new(name: name)
 
       end
     end

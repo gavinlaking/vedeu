@@ -12,11 +12,11 @@ module Vedeu
     before { instance.configure(yn, xn) }
 
     describe '.canvas' do
-      it { instance.must_be_instance_of(Vedeu::Canvas) }
+      it { instance.must_be_instance_of(described) }
     end
 
     describe '#configure' do
-      it { instance.must_be_instance_of(Vedeu::Canvas) }
+      it { instance.must_be_instance_of(described) }
     end
 
     describe '#c' do

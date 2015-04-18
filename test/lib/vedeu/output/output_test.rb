@@ -31,7 +31,7 @@ module Vedeu
 
       context 'when DRb is not enabled' do
       #   it 'sends the rendered interface to the Terminal' do
-      #     Vedeu::TerminalRenderer.expects(:render)
+      #     Vedeu::Renderers::Terminal.expects(:render)
       #     subject.must_be_instance_of(Array)
       #   end
       end

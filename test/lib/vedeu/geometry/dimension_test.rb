@@ -22,7 +22,7 @@ module Vedeu
     let(:options) { {} }
 
     describe '#initialize' do
-      it { instance.must_be_instance_of(Vedeu::Dimension) }
+      it { instance.must_be_instance_of(described) }
       it { instance.instance_variable_get('@d').must_equal(d) }
       it { instance.instance_variable_get('@dn').must_equal(dn) }
       it { instance.instance_variable_get('@d_dn').must_equal(d_dn) }

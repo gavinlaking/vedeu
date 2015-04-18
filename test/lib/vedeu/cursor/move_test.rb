@@ -18,8 +18,6 @@ module Vedeu
       Vedeu.borders.reset
       Vedeu.cursors.reset
       Vedeu.geometries.reset
-      Vedeu.interfaces.reset
-
       Vedeu::Cursor.new(name:    'move_with_border',
                         ox:      ox,
                         oy:      oy,
@@ -32,24 +30,20 @@ module Vedeu
                         visible: true,
                         x:       x,
                         y:       y).store
-      Vedeu.interface 'move_with_border' do
-        border do
-          # ...
-        end
-        geometry do
-          x  5
-          xn 10
-          y  5
-          yn 10
-        end
+      Vedeu.border 'move_with_border' do
+        # ...
       end
-      Vedeu.interface 'move_without_border' do
-        geometry do
-          x  5
-          xn 10
-          y  5
-          yn 10
-        end
+      Vedeu.geometry 'move_with_border' do
+        x  5
+        xn 10
+        y  5
+        yn 10
+      end
+      Vedeu.geometry 'move_without_border' do
+        x  5
+        xn 10
+        y  5
+        yn 10
       end
       IO.console.stubs(:winsize).returns([25, 80])
       IO.console.stubs(:print)
@@ -58,11 +52,10 @@ module Vedeu
       Vedeu.borders.reset
       Vedeu.cursors.reset
       Vedeu.geometries.reset
-      Vedeu.interfaces.reset
     end
 
     describe '#initialize' do
-      it { instance.must_be_instance_of(Vedeu::Move) }
+      it { instance.must_be_instance_of(described) }
       it { instance.instance_variable_get('@name').must_equal(_name) }
       it { instance.instance_variable_get('@dy').must_equal(dy) }
       it { instance.instance_variable_get('@dx').must_equal(dx) }
@@ -76,7 +69,7 @@ module Vedeu
         Vedeu::Cursor.new(name: 'manganese', oy: 2, ox: 3, x: 8, y: 7).store
       end
 
-      subject { Move.by_name(direction, _name) }
+      subject { described.by_name(direction, _name) }
 
       it { subject.must_be_instance_of(Vedeu::Cursor) }
 
@@ -108,18 +101,13 @@ module Vedeu
 
           it { subject.oy.must_equal(1) }
         end
-
-        context 'but the interface does not exist' do
-          before { Vedeu.interfaces.stubs(:find).with(_name).returns(nil) }
-
-        end
       end
     end
 
     describe '.down' do
       let(:_name) { 'move_down' }
 
-      subject { Move.down(_name) }
+      subject { described.down(_name) }
 
       it { subject.must_be_instance_of(Vedeu::Cursor) }
 
@@ -147,7 +135,7 @@ module Vedeu
     describe '.left' do
       let(:_name) { 'move_left' }
 
-      subject { Move.left(_name) }
+      subject { described.left(_name) }
 
       it { subject.must_be_instance_of(Vedeu::Cursor) }
 
@@ -173,7 +161,7 @@ module Vedeu
     describe '.right' do
       let(:_name) { 'move_right' }
 
-      subject { Move.right(_name) }
+      subject { described.right(_name) }
 
       it { subject.must_be_instance_of(Vedeu::Cursor) }
 
@@ -201,7 +189,7 @@ module Vedeu
     describe '.up' do
       let(:_name) { 'move_up' }
 
-      subject { Move.up(_name) }
+      subject { described.up(_name) }
 
       it { subject.must_be_instance_of(Vedeu::Cursor) }
 
@@ -227,7 +215,7 @@ module Vedeu
     describe '#origin' do
       let(:_name) { 'move_origin' }
 
-      subject { Move.origin(_name) }
+      subject { described.origin(_name) }
 
       it { subject.must_be_instance_of(Vedeu::Cursor) }
 
@@ -254,7 +242,7 @@ module Vedeu
     describe '#move' do
       let(:_name) { 'move_move' }
 
-      subject { Move.new(_name, dy, dx).move }
+      subject { instance.move }
 
       it { subject.must_be_instance_of(Vedeu::Cursor) }
     end

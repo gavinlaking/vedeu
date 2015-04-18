@@ -8,7 +8,7 @@ module Vedeu
     let(:instance)  { described.new }
 
     describe '#initialize' do
-      it { instance.must_be_instance_of(Vedeu::Chars) }
+      it { instance.must_be_instance_of(described) }
     end
 
   end # Chars

@@ -4,6 +4,7 @@
 require 'vedeu/debug'
 require 'vedeu/traps'
 
+require 'vedeu/null/all'
 require 'vedeu/geometry/all'
 require 'vedeu/storage/all'
 require 'vedeu/repositories/all'

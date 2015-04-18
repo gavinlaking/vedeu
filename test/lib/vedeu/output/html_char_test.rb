@@ -22,7 +22,7 @@ module Vedeu
     let(:_value) {}
 
     describe '#initialize' do
-      it { instance.must_be_instance_of(Vedeu::HTMLChar) }
+      it { instance.must_be_instance_of(described) }
       it { instance.instance_variable_get('@char').must_equal(char) }
     end
 

@@ -2,14 +2,14 @@ require 'test_helper'
 
 module Vedeu
 
-  describe JSONRenderer do
+  describe Renderers::JSON do
 
-    let(:described) { Vedeu::JSONRenderer }
+    let(:described) { Vedeu::Renderers::JSON }
     let(:instance)  { described.new(output) }
     let(:output)    {}
 
     describe '#initialize' do
-      it { instance.must_be_instance_of(Vedeu::JSONRenderer) }
+      it { instance.must_be_instance_of(described) }
       it { instance.instance_variable_get('@output').must_equal(output) }
     end
 
@@ -47,6 +47,6 @@ module Vedeu
       end
     end
 
-  end # JSONRenderer
+  end # Renderers::JSON
 
 end # Vedeu

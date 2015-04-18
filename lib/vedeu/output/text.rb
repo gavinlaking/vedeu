@@ -133,9 +133,9 @@ module Vedeu
 
     # Returns the model option if set.
     #
-    # @return [Vedeu::Interface|Vedeu::Line|Vedeu::Null|Vedeu::Stream]
+    # @return [Vedeu::Interface|Vedeu::Line|Vedeu::Null::Generic|Vedeu::Stream]
     def model
-      @model ||= options[:model] || Vedeu::Null.new
+      @model ||= options[:model] || Vedeu::Null::Generic.new
     end
 
     # The character to use for padding the string.

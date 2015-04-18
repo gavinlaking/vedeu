@@ -54,11 +54,25 @@ module Vedeu
     end
 
     describe '#render' do
+      let(:clear)  { mock('Vedeu::Clear') }
+      let(:border) { mock('Vedeu::Border') }
+      let(:view)   { mock('Vedeu::Viewport') }
+
+      before do
+        Vedeu::Clear.stubs(:new).returns(clear)
+        clear.stubs(:render).returns(:clear)
+        Vedeu.borders.stubs(:by_name).returns(border)
+        border.stubs(:render).returns(:border)
+        Vedeu::Viewport.stubs(:new).returns(view)
+        view.stubs(:render).returns(:view)
+      end
+
       subject { instance.render }
 
       it { subject.must_be_instance_of(Array) }
 
       context 'when the interface is visible' do
+        it { subject.must_equal(['', :clear, :border, :view, '']) }
       end
 
       context 'when the interface is not visible' do

@@ -12,6 +12,8 @@ module Vedeu
       end
       alias_method :repository, :menus
 
+      # Remove all stored models from the repository.
+      #
       # @return [Vedeu::Menus]
       def reset!
         @menus = Vedeu::Menus.register_repository(Vedeu::Menu)

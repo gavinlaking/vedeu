@@ -2,9 +2,9 @@ require 'test_helper'
 
 module Vedeu
 
-  describe FileRenderer do
+  describe Renderers::File do
 
-    let(:described) { Vedeu::FileRenderer }
+    let(:described) { Vedeu::Renderers::File }
     let(:instance)  { described.new(output, options) }
     let(:output)    {}
     let(:options)   {
@@ -15,7 +15,7 @@ module Vedeu
     let(:timestamp) { true }
 
     describe '#initialize' do
-      it { instance.must_be_instance_of(Vedeu::FileRenderer) }
+      it { instance.must_be_instance_of(described) }
       it { instance.instance_variable_get('@output').must_equal(output) }
       it { instance.instance_variable_get('@options').must_equal(options) }
     end
@@ -42,6 +42,6 @@ module Vedeu
       # end
     end
 
-  end # FileRenderer
+  end # Renderers::File
 
 end # Vedeu

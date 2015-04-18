@@ -24,7 +24,7 @@ module Vedeu
     end
 
     describe '#initialize' do
-      it { instance.must_be_instance_of(Vedeu::Area) }
+      it { instance.must_be_instance_of(described) }
       it { instance.instance_variable_get('@y').must_equal(y) }
       it { instance.instance_variable_get('@yn').must_equal(yn) }
       it { instance.instance_variable_get('@x').must_equal(x) }
@@ -37,7 +37,7 @@ module Vedeu
 
       subject { described.from_dimensions(y_yn: y_yn, x_xn: x_xn) }
 
-      it { subject.must_be_instance_of(Vedeu::Area) }
+      it { subject.must_be_instance_of(described) }
       it { subject.instance_variable_get('@y').must_equal(5) }
       it { subject.instance_variable_get('@yn').must_equal(8) }
       it { subject.instance_variable_get('@x').must_equal(15) }
@@ -50,7 +50,7 @@ module Vedeu
 
       subject { described.from_height_and_width(height: height, width: width) }
 
-      it { subject.must_be_instance_of(Vedeu::Area) }
+      it { subject.must_be_instance_of(described) }
       it { subject.instance_variable_get('@y').must_equal(1) }
       it { subject.instance_variable_get('@yn').must_equal(5) }
       it { subject.instance_variable_get('@x').must_equal(1) }
@@ -60,7 +60,7 @@ module Vedeu
     describe '.from_points' do
       subject { described.from_points(y: y, yn: yn, x: x, xn: xn) }
 
-      it { subject.must_be_instance_of(Vedeu::Area) }
+      it { subject.must_be_instance_of(described) }
       it { subject.instance_variable_get('@y').must_equal(y) }
       it { subject.instance_variable_get('@yn').must_equal(yn) }
       it { subject.instance_variable_get('@x').must_equal(x) }
@@ -180,38 +180,6 @@ module Vedeu
 
         it { subject.must_equal(4) }
       end
-    end
-
-    describe '#top_left' do
-      subject { instance.top_left }
-
-      it { subject.must_be_instance_of(Vedeu::Position) }
-      it { subject.y.must_equal(4) }
-      it { subject.x.must_equal(6) }
-    end
-
-    describe '#bottom_left' do
-      subject { instance.bottom_left }
-
-      it { subject.must_be_instance_of(Vedeu::Position) }
-      it { subject.y.must_equal(9) }
-      it { subject.x.must_equal(6) }
-    end
-
-    describe '#top_right' do
-      subject { instance.top_right }
-
-      it { subject.must_be_instance_of(Vedeu::Position) }
-      it { subject.y.must_equal(4) }
-      it { subject.x.must_equal(21) }
-    end
-
-    describe '#bottom_right' do
-      subject { instance.bottom_right }
-
-      it { subject.must_be_instance_of(Vedeu::Position) }
-      it { subject.y.must_equal(9) }
-      it { subject.x.must_equal(21) }
     end
 
   end # Area

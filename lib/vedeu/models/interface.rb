@@ -1,8 +1,6 @@
 require 'vedeu/models/all'
-require 'vedeu/output/null_border'
 require 'vedeu/output/presentation'
 require 'vedeu/buffers/display_buffer'
-require 'vedeu/buffers/buffer'
 
 module Vedeu
 
@@ -42,7 +40,7 @@ module Vedeu
     attr_accessor :parent
 
     # @!attribute [rw] visible
-    # @return [String|Symbol]
+    # @return [Boolean] Whether the interface is visible.
     attr_accessor :visible
     alias_method :visible?, :visible
 
@@ -111,7 +109,7 @@ module Vedeu
         hide_cursor,
         Vedeu::Clear.new(self).render,
         Vedeu.borders.by_name(name).render,
-        Vedeu::Viewport.new(self).render,
+        Vedeu::Viewport.render(self),
         show_cursor,
       ]
     end

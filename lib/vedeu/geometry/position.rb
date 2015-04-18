@@ -15,6 +15,8 @@ module Vedeu
     alias_method :first, :y
     alias_method :last, :x
 
+    # Convenience constructor for Vedeu::Position.
+    #
     # @param (see #initialize)
     def self.[](y, x)
       new(y, x)
@@ -51,6 +53,13 @@ module Vedeu
       self.class == other.class && (x == other.x && y == other.y)
     end
     alias_method :==, :eql?
+
+    # Return a tuple containing the y and x coordinates.
+    #
+    # @return [Array<Fixnum>]
+    def to_a
+      [y, x]
+    end
 
     # Return the escape sequence required to position the cursor at a particular
     # point on the screen. When passed a block, will do the aforementioned,

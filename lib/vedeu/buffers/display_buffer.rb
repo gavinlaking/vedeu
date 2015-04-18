@@ -78,7 +78,7 @@ module Vedeu
     # @return [Interface]
     def store_group
       unless group.nil? || group.empty? || Vedeu.groups.registered?(group)
-        Vedeu::Group.new(name, group).store
+        Vedeu::Group.new(members: name, name: group).store
       end
 
       self

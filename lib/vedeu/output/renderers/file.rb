@@ -4,7 +4,7 @@ module Vedeu
   # and content suitable for a terminal, and writes them to a file in the /tmp
   # directory.
   #
-  class FileRenderer
+  class Renderers::File
 
     # @param output [Array<Array<Vedeu::Char>>]
     # @param options [Hash]
@@ -13,11 +13,11 @@ module Vedeu
       new(output, options).render
     end
 
-    # Returns a new instance of Vedeu::FileRenderer.
+    # Returns a new instance of Vedeu::Renderers::File.
     #
     # @param output [Array<Array<Vedeu::Char>>]
     # @param options [Hash]
-    # @return [Vedeu::FileRenderer]
+    # @return [Vedeu::Renderers::File]
     def initialize(output, options = {})
       @output  = output
       @options = options
@@ -25,7 +25,7 @@ module Vedeu
 
     # @return [String]
     def render
-      File.open("/tmp/#{filename}", 'w') { |f| f.write(parsed) }
+      File.open(path, 'w') { |f| f.write(parsed) }
 
       parsed
     end
@@ -35,6 +35,11 @@ module Vedeu
     # @!attribute [r] output
     # @return [Array<Array<Vedeu::Char>>]
     attr_reader :output
+
+    # @return [String]
+    def path
+      "/tmp/#{filename}"
+    end
 
     # @return [String]
     def filename
@@ -54,7 +59,7 @@ module Vedeu
 
     # @return [Float]
     def timestamp
-      Time.now.to_f
+      @timestamp ||= Time.now.to_f
     end
 
     # @return [Boolean]
@@ -76,6 +81,6 @@ module Vedeu
       }
     end
 
-  end # FileRenderer
+  end # Renderers::File
 
 end # Vedeu

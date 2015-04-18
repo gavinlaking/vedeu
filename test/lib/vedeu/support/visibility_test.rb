@@ -23,7 +23,7 @@ module Vedeu
     let(:visible)   { true }
 
     describe '#initialize' do
-      it { instance.must_be_instance_of(Vedeu::Visibility) }
+      it { instance.must_be_instance_of(described) }
       it { instance.instance_variable_get('@model').must_equal(model) }
     end
 
@@ -32,7 +32,7 @@ module Vedeu
 
       subject { described.for_cursor(_name) }
 
-      it { subject.must_be_instance_of(Vedeu::Visibility) }
+      it { subject.must_be_instance_of(described) }
     end
 
     describe '.show' do

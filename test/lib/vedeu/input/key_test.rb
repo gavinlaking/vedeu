@@ -9,7 +9,7 @@ module Vedeu
     let(:input)     { 'a' }
 
     describe '#initialize' do
-      it { instance.must_be_instance_of(Key) }
+      it { instance.must_be_instance_of(described) }
       it { instance.instance_variable_get('@input').must_equal(input) }
 
       context 'when the required block is not given' do

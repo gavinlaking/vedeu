@@ -9,7 +9,7 @@ module Vedeu
     let(:storage)   { [] }
 
     describe '#initialize' do
-      it { instance.must_be_instance_of(Vedeu::FifoStore) }
+      it { instance.must_be_instance_of(described) }
       it { instance.instance_variable_get('@storage').must_equal(storage) }
     end
 

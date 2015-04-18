@@ -24,6 +24,10 @@ module Vedeu
       @name = name
     end
 
+    # Renders the cursor in the terminal. If the cursor's x or y offsets are
+    # greater or equal to the interface's width or height respectively, then
+    # the view is also refreshed, causing the content to be offset also.
+    #
     # @return [Array]
     def render
       Vedeu.log(type: :info, message: "Refreshing cursor: '#{name}'")

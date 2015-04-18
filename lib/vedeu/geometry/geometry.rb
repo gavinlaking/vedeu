@@ -46,11 +46,7 @@ module Vedeu
                    :yn,
                    :x,
                    :height,
-                   :width,
-                   :top_left,
-                   :top_right,
-                   :bottom_left,
-                   :bottom_right
+                   :width
 
     # @!attribute [rw] centred
     # @return [Boolean]

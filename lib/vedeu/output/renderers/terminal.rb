@@ -1,9 +1,9 @@
 module Vedeu
 
   # Converts a grid of {Vedeu::Char} objects into a stream of escape sequences
-  # and content.
+  # and content suitable for a terminal.
   #
-  class TextRenderer
+  class Renderers::Terminal
 
     # @param output [Array<Array<Vedeu::Char>>]
     # @return [String]
@@ -11,17 +11,17 @@ module Vedeu
       new(*output).render
     end
 
-    # Returns a new instance of Vedeu::TextRenderer.
+    # Returns a new instance of Vedeu::Renderers::Terminal.
     #
     # @param output [Array<Array<Vedeu::Char>>]
-    # @return [Vedeu::TextRenderer]
+    # @return [Vedeu::Renderers::Terminal]
     def initialize(*output)
-      @output  = output
+      @output = output
     end
 
-    # @return [String]
+    # @return [Array<String>]
     def render
-      parsed
+      Vedeu::Terminal.output(parsed)
     end
 
     private
@@ -35,6 +35,6 @@ module Vedeu
       Vedeu::Compressor.new(output).render
     end
 
-  end # TextRenderer
+  end # Renderers::Terminal
 
 end # Vedeu

@@ -30,7 +30,7 @@ module Vedeu
       context 'when the border does not exist' do
         let(:_name) { 'nitrogen' }
 
-        it { subject.must_be_instance_of(Vedeu::NullBorder) }
+        it { subject.must_be_instance_of(Vedeu::Null::Border) }
       end
     end
 

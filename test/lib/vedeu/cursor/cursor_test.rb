@@ -29,7 +29,7 @@ module Vedeu
     describe '#initialize' do
       subject { instance }
 
-      it { subject.must_be_instance_of(Cursor) }
+      it { subject.must_be_instance_of(described) }
       it { subject.instance_variable_get('@name').must_equal('silver') }
       it { subject.instance_variable_get('@ox').must_equal(3) }
       it { subject.instance_variable_get('@oy').must_equal(2) }

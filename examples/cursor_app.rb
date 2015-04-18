@@ -23,7 +23,7 @@ class VedeuCursorApp
 
     geometry do
       centred true
-      height  20
+      height  10
       width   20
     end
   end

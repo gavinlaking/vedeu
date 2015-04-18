@@ -12,7 +12,12 @@ module Vedeu
     # drawn or not.
     #
     # @example
-    #   # Borders can be defined as part of a view definition...
+    #   # Borders can be defined when defining your interface...
+    #   Vedeu.interface 'my_interface' do
+    #     border do
+    #       # ...
+    #
+    #   # ...or as part of a view definition...
     #   Vedeu.renders do
     #     view 'border_demo' do
     #       border do

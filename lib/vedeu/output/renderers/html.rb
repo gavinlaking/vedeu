@@ -2,7 +2,7 @@ module Vedeu
 
   # Renders a {Vedeu::VirtualBuffer} or {Vedeu::Output} as a HTML table.
   #
-  class HTMLRenderer
+  class Renderers::HTML
 
     # @param output [Array<Array<Vedeu::Char>>]
     # @return [String]
@@ -17,10 +17,10 @@ module Vedeu
       new(output).to_file(path)
     end
 
-    # Returns a new instance of Vedeu::HTMLRenderer.
+    # Returns a new instance of Vedeu::Renderers::HTML.
     #
     # @param output [Array<Array<Vedeu::Char>>]
-    # @return [Vedeu::HTMLRenderer]
+    # @return [Vedeu::Renderers::HTML]
     def initialize(output)
       @output = output
     end
@@ -80,6 +80,6 @@ module Vedeu
       @timestamp ||= Time.now.to_i
     end
 
-  end # HTMLRenderer
+  end # Renderers::HTML
 
 end # Vedeu

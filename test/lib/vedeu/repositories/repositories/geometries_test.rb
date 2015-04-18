@@ -33,7 +33,7 @@ module Vedeu
       context 'when the geometry does not exist' do
         let(:_name) { 'nitrogen' }
 
-        it { subject.must_be_instance_of(Vedeu::NullGeometry) }
+        it { subject.must_be_instance_of(Vedeu::Null::Geometry) }
       end
     end
 

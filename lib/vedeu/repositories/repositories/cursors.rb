@@ -17,6 +17,8 @@ module Vedeu
         cursors.by_name(Vedeu.focus) if Vedeu.focus
       end
 
+      # Remove all stored models from the repository.
+      #
       # @return [Vedeu::Cursors]
       def reset!
         @cursors = Vedeu::Cursors.register_repository(Vedeu::Cursor)

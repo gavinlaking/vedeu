@@ -10,7 +10,7 @@ module Vedeu
     let(:path)      {}
 
     describe '#initialize' do
-      it { instance.must_be_instance_of(Vedeu::Template) }
+      it { instance.must_be_instance_of(described) }
       it { instance.instance_variable_get('@object').must_equal(object) }
       it { instance.instance_variable_get('@path').must_equal('') }
     end

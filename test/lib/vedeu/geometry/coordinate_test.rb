@@ -47,62 +47,6 @@ module Vedeu
       end
     end
 
-    describe '#y_index' do
-      subject { instance.y_index(position) }
-
-      context 'when the position is <= 0' do
-        let(:position) { -2 }
-
-        it { subject.must_equal(0) }
-      end
-
-      context 'when the position is <= y' do
-        let(:position) { 4 }
-
-        it { subject.must_equal(0) }
-      end
-
-      context 'when the position is >= yn' do
-        let(:position) { 20 }
-
-        it { subject.must_equal(5) }
-      end
-
-      context 'when the position is > y and < yn' do
-        let(:position) { 8 }
-
-        it { subject.must_equal(3) }
-      end
-    end
-
-    describe '#x_index' do
-      subject { instance.x_index(position) }
-
-      context 'when the position is <= 0' do
-        let(:position) { -2 }
-
-        it { subject.must_equal(0) }
-      end
-
-      context 'when the position is <= x' do
-        let(:position) { 4 }
-
-        it { subject.must_equal(0) }
-      end
-
-      context 'when the position is >= xn' do
-        let(:position) { 20 }
-
-        it { subject.must_equal(5) }
-      end
-
-      context 'when the position is > x and < xn' do
-        let(:position) { 8 }
-
-        it { subject.must_equal(1) }
-      end
-    end
-
     describe '#y_position' do
       let(:index)  { 0 }
       let(:height) { 6 }

@@ -270,7 +270,7 @@ module Vedeu
         interactive:   true,
         log:           '/tmp/vedeu.log',
         once:          false,
-        renderers:     [Vedeu::TerminalRenderer],
+        renderers:     [Vedeu::Renderers::Terminal],
         stdin:         nil,
         stdout:        nil,
         stderr:        nil,

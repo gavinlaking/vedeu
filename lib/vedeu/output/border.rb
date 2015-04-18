@@ -174,7 +174,7 @@ module Vedeu
 
     # @return [String]
     def to_s
-      Vedeu::TextRenderer.render(render)
+      Vedeu::Renderers::Text.render(render)
     end
 
     # Renders the bottom border for the interface.
@@ -364,14 +364,14 @@ module Vedeu
     # @return [Vedeu::Position]
     def position(name, iy = 0, ix = 0)
       case name
-      when :top_horizontal    then Vedeu::Position[y, (bx + ix)]
-      when :bottom_horizontal then Vedeu::Position[yn, (bx + ix)]
-      when :left_vertical     then Vedeu::Position[(by + iy), x]
-      when :right_vertical    then Vedeu::Position[(by + iy), xn]
-      when :bottom_left       then geometry.bottom_left
-      when :bottom_right      then geometry.bottom_right
-      when :top_left          then geometry.top_left
-      when :top_right         then geometry.top_right
+      when :top_horizontal    then [y, (bx + ix)]
+      when :bottom_horizontal then [yn, (bx + ix)]
+      when :left_vertical     then [(by + iy), x]
+      when :right_vertical    then [(by + iy), xn]
+      when :bottom_left       then [yn, x]
+      when :bottom_right      then [yn, xn]
+      when :top_left          then [y, x]
+      when :top_right         then [y, xn]
       end
     end
 

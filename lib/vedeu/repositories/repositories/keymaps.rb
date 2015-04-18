@@ -12,6 +12,8 @@ module Vedeu
       end
       alias_method :repository, :keymaps
 
+      # Remove all stored models from the repository.
+      #
       # @return [Vedeu::Keymaps]
       def reset!
         @keymaps = Vedeu::Keymaps.register_repository(Vedeu::Keymap)

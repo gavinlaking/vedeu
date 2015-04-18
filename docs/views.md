@@ -1,14 +1,14 @@
 ## Views with Vedeu
 
 There are two ways to construct views with Vedeu. You would like to draw the
-view to the screen immediately (immediate render) or you want to save a view to
-be drawn when you trigger a refresh event later (deferred view).
+ view to the screen immediately (immediate render) or you want to save a view to
+ be drawn when you trigger a refresh event later (deferred view).
 
 ** LINK Both of these approaches require that you have defined an interface (or
-'visible area') first. You can find out how to define an interface with Vedeu
-here. The examples in 'Immediate Render' and 'Deferred View' use these interface
-definitions: (Note: if you use these examples, ensure your terminal is at least
-70 characters in width and 5 lines in height.)
+ 'visible area') first. You can find out how to define an interface with Vedeu
+ here. The examples in 'Immediate Render' and 'Deferred View' use these
+ interface definitions: (Note: if you use these examples, ensure your terminal
+ is at least 70 characters in width and 5 lines in height.)
 
 ```ruby
   Vedeu.interface 'main' do
@@ -30,31 +30,31 @@ definitions: (Note: if you use these examples, ensure your terminal is at least
 ```
 
 Both of these approaches use a concept of Buffers in Vedeu. There are three
-buffers for any defined interface. These are imaginatively called: 'back',
-'front' and 'previous'.
+ buffers for any defined interface. These are imaginatively called: 'back',
+ 'front' and 'previous'.
 
 The 'back' buffer is the content for an interface which will be shown next time
-a refresh event is fired globally or for that interface. So, 'back' becomes
-'front'.
+ a refresh event is fired globally or for that interface. So, 'back' becomes
+ 'front'.
 
 The 'front' buffer is the content for an interface which is currently showing.
 When a refresh event is fired, again, globally or for that interface
-specifically, the content of this 'front' buffer is first copied to the
-'previous' buffer, and then the current 'back' buffer overwrites this 'front'
-buffer.
+ specifically, the content of this 'front' buffer is first copied to the
+ 'previous' buffer, and then the current 'back' buffer overwrites this 'front'
+ buffer.
 
 The 'previous' buffer contains what was shown on the 'front' before the current
-'front'.
+ 'front'.
 
 You can only write to either the 'front' (you want the content to be drawn
-immediately) or the 'back' (you would like the content to be drawn on the next
-refresh).
+ immediately (immediate render)) or the 'back' (you would like the content to be
+ drawn on the next refresh (deferred view)).
 
 ### Immediate Render
 
 The immediate render DSL for Vedeu is accessed via `Vedeu.renders`. When this
-approach is used, the content defined is written directly to the 'front'
-buffer(s) for the interface(s) concerned. Take a glance at the example below:
+ approach is used, the content defined is written directly to the 'front'
+ buffer(s) for the interface(s) concerned. Take a glance at the example below:
 
 ```ruby
   Vedeu.renders do
@@ -81,13 +81,13 @@ buffer(s) for the interface(s) concerned. Take a glance at the example below:
 ### Deferred View
 
 The deferred view DSL for Vedeu is accessed via `Vedeu.views`. This approach
-writes the content defined to the 'back' buffer(s) for the interface(s)
-concerned. It will become the front when your application triggers the refresh
-event for the interface(s).
+ writes the content defined to the 'back' buffer(s) for the interface(s)
+ concerned. It will become the front when your application triggers the refresh
+ event for the interface(s).
 
 As you can see by comparing the examples above to these below, the immediate
-render simply wraps what is already here in the deferred view. Again, more
-specific information is available in the Rubydoc.
+ render simply wraps what is already here in the deferred view. Again, more
+ specific information is available in the Rubydoc.
 
 ```ruby
   Vedeu.views do
@@ -151,8 +151,8 @@ renders/views
 #### Authors Notes
 
 The Rubydoc documentation has more specific information about the DSL methods
-demonstrated above: [RubyDoc](http://rubydoc.info/gems/vedeu).
+ demonstrated above: [RubyDoc](http://rubydoc.info/gems/vedeu).
 
 I've tried to write the DSL in a way which makes it read nice; believing that
-this will make it easier to use. I hope this is the case for you.
+ this will make it easier to use. I hope this is the case for you.
 

@@ -53,6 +53,9 @@ module Vedeu
       @y    = y
     end
 
+    # Ensures the coordinates provided are within the terminal, interface and
+    # if applicable, bordered interface area.
+    #
     # @return [PositionValidator]
     def validate
       terminal_validation

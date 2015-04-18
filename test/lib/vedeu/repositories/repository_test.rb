@@ -55,7 +55,7 @@ module Vedeu
     end
 
     describe '#initialize' do
-      it { instance.must_be_instance_of(Vedeu::Repository) }
+      it { instance.must_be_instance_of(described) }
       it { instance.instance_variable_get('@model').must_equal(model) }
       it { instance.instance_variable_get('@storage').must_equal(storage) }
     end

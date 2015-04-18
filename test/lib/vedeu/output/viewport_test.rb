@@ -26,7 +26,7 @@ module Vedeu
     let(:visibility) { true }
 
     describe '#initialize' do
-      it { instance.must_be_instance_of(Viewport) }
+      it { instance.must_be_instance_of(described) }
       it { instance.instance_variable_get('@interface').must_equal(interface) }
     end
 

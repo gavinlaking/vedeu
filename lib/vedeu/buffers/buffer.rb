@@ -65,6 +65,23 @@ module Vedeu
       true
     end
 
+    # Returns the front buffer or, if that is empty, the interface cleared.
+    #
+    # @return [void]
+    def clear
+      Vedeu::Output.render(clear_buffer) unless clear_buffer.empty?
+
+      clear_buffer
+    end
+
+    # @return [void]
+    def hide
+      if visible?
+        Vedeu::Visibility.hide(interface)
+        clear
+      end
+    end
+
     # Return the content for this buffer.
     #
     # - If we have new content (i.e. content on 'back') to be shown, we first
@@ -84,13 +101,12 @@ module Vedeu
     end
     alias_method :content, :render
 
-    # Returns the front buffer or, if that is empty, the interface cleared.
-    #
     # @return [void]
-    def clear
-      Vedeu::Output.render(clear_buffer) unless clear_buffer.empty?
-
-      clear_buffer
+    def show
+      unless visible?
+        Vedeu::Visibility.show(interface)
+        render
+      end
     end
 
     private
@@ -131,6 +147,8 @@ module Vedeu
     #
     # @return [Boolean]
     def swap
+      Vedeu.log(type: :output, message: "Buffer swapping: '#{name}'")
+
       @previous = front
       @front    = back
       @back     = nil
@@ -153,7 +171,7 @@ module Vedeu
 
     # @return [Vedeu::Interface]
     def interface
-      @interface ||= Vedeu.interfaces.find(name)
+      @interface ||= Vedeu.interfaces.by_name(name)
     end
 
     # @return [Vedeu::Interface]
@@ -165,6 +183,11 @@ module Vedeu
         interface
 
       end
+    end
+
+    # @see Vedeu::Interface#visible
+    def visible?
+      interface.visible?
     end
 
   end # Buffer

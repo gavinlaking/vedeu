@@ -39,7 +39,7 @@ module Vedeu
     def by_name(name)
       Vedeu.log(type: :info, message: "Refreshing interface: '#{name}'")
 
-      Vedeu.buffers.render(name)
+      Vedeu.buffers.by_name(name).render
     end
 
   end # Refresh
