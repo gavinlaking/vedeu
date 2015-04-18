@@ -109,7 +109,7 @@ module Vedeu
         hide_cursor,
         Vedeu::Clear.new(self).render,
         Vedeu.borders.by_name(name).render,
-        Vedeu::Viewport.new(self).render,
+        Vedeu::Viewport.render(self),
         show_cursor,
       ]
     end
