@@ -58,9 +58,19 @@ module Vedeu
     #
     # @return [PositionValidator]
     def validate
-      terminal_validation
-      interface_validation
-      border_validation if enabled?
+      if enabled?
+        @x = bx  if x < bx
+        @x = bxn if x > bxn
+        @y = by  if y < by
+        @y = byn if y > byn
+
+      else
+        @x = left   if x < left   || x < tx
+        @x = right  if x > right  || x > txn
+        @y = top    if y < top    || y < ty
+        @y = bottom if y > bottom || y > tyn
+
+      end
 
       self
     end
@@ -74,45 +84,6 @@ module Vedeu
     # @return [Vedeu::Terminal]
     def terminal
       Vedeu::Terminal
-    end
-
-    # Validate the x and y coordinates are within the dimensions of the
-    # terminal.
-    #
-    # @return [PositionValidator]
-    def terminal_validation
-      @x = tx  if x < tx
-      @x = txn if x > txn
-      @y = ty  if y < ty
-      @y = tyn if y > tyn
-
-      self
-    end
-
-    # Validate the x and y coordinates are within the dimensions of the
-    # interface.
-    #
-    # @return [PositionValidator]
-    def interface_validation
-      @x = left   if x < left
-      @x = right  if x > right
-      @y = top    if y < top
-      @y = bottom if y > bottom
-
-      self
-    end
-
-    # Validate the x and y coordinates are within the dimensions of an interface
-    # with a border.
-    #
-    # @return [PositionValidator]
-    def border_validation
-      @x = bx  if x < bx
-      @x = bxn if x > bxn
-      @y = by  if y < by
-      @y = byn if y > byn
-
-      self
     end
 
     # @return (see Vedeu::Borders#by_name)
