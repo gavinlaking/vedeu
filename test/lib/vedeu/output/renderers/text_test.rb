@@ -2,23 +2,27 @@ require 'test_helper'
 
 module Vedeu
 
-  describe Renderers::Text do
+  module Renderers
 
-    let(:described) { Vedeu::Renderers::Text }
-    let(:instance)  { described.new(output) }
-    let(:output)    {}
+    describe Text do
 
-    describe '#initialize' do
-      it { instance.must_be_instance_of(described) }
-      it { instance.instance_variable_get('@output').must_equal([output]) }
-    end
+      let(:described) { Vedeu::Renderers::Text }
+      let(:instance)  { described.new(output) }
+      let(:output)    {}
 
-    describe '.render' do
-      subject { described.render }
+      describe '#initialize' do
+        it { instance.must_be_instance_of(described) }
+        it { instance.instance_variable_get('@output').must_equal([output]) }
+      end
 
-      it { subject.must_be_instance_of(String) }
-    end
+      describe '.render' do
+        subject { described.render }
 
-  end # Renderers::Text
+        it { subject.must_be_instance_of(String) }
+      end
+
+    end # Text
+
+  end # Renderers
 
 end # Vedeu

@@ -1,39 +1,43 @@
 module Vedeu
 
-  # Converts a grid of {Vedeu::Char} objects into a stream of escape sequences
-  # and content.
-  class Renderers::Text
+  module Renderers
 
-    # @param output [Array<Array<Vedeu::Char>>]
-    # @return [String]
-    def self.render(*output)
-      new(*output).render
-    end
+    # Converts a grid of {Vedeu::Char} objects into a stream of escape sequences
+    # and content.
+    class Text
 
-    # Returns a new instance of Vedeu::Renderers::Text.
-    #
-    # @param output [Array<Array<Vedeu::Char>>]
-    # @return [Vedeu::Renderers::Text]
-    def initialize(*output)
-      @output  = output
-    end
+      # @param output [Array<Array<Vedeu::Char>>]
+      # @return [String]
+      def self.render(*output)
+        new(*output).render
+      end
 
-    # @return [String]
-    def render
-      parsed
-    end
+      # Returns a new instance of Vedeu::Renderers::Text.
+      #
+      # @param output [Array<Array<Vedeu::Char>>]
+      # @return [Vedeu::Renderers::Text]
+      def initialize(*output)
+        @output  = output
+      end
 
-    private
+      # @return [String]
+      def render
+        parsed
+      end
 
-    # @!attribute [r] output
-    # @return [Array<Array<Vedeu::Char>>]
-    attr_reader :output
+      private
 
-    # @return [String]
-    def parsed
-      Vedeu::Compressor.new(output).render
-    end
+      # @!attribute [r] output
+      # @return [Array<Array<Vedeu::Char>>]
+      attr_reader :output
 
-  end # Renderers::Text
+      # @return [String]
+      def parsed
+        Vedeu::Compressor.new(output).render
+      end
+
+    end # Text
+
+  end # Renderers
 
 end # Vedeu
