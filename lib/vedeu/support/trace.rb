@@ -162,7 +162,7 @@ module Vedeu
     #
     # @return [Set]
     def vedeu_exceptions
-      Vedeu::Exceptions.to_set
+      Vedeu::EXCEPTIONS.to_set
     end
 
     # Returns a set of classes to ignore during tracing.
