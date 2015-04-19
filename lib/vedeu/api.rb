@@ -33,7 +33,7 @@ module Vedeu
   module API
 
     extend Forwardable
-    extend self
+    module_function
 
     # @!method borders
     #   @see Vedeu::Borders.borders

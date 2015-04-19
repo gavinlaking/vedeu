@@ -3,7 +3,7 @@ module Vedeu
   # Namespace for the API configuration and CLI configuration classes.
   module Config
 
-    extend self
+    module_function
 
     # Custom log for configuration.
     #

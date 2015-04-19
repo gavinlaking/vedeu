@@ -4,7 +4,7 @@ module Vedeu
   #
   module Refresh
 
-    extend self
+    module_function
 
     # Refresh all registered interfaces.
     #
