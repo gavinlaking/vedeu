@@ -8,12 +8,6 @@ module Vedeu
 
     extend Forwardable
 
-    def_delegators :terminal,
-                   :tx,
-                   :ty,
-                   :txn,
-                   :tyn
-
     def_delegators :border,
                    :enabled?,
                    :bx,
@@ -64,10 +58,10 @@ module Vedeu
         @y = byn if y > byn
 
       else
-        @x = left   if x < left || x < tx
-        @x = right  if x > right || x > txn
-        @y = top    if y < top || y < ty
-        @y = bottom if y > bottom || y > tyn
+        @x = left   if x < left
+        @x = right  if x > right
+        @y = top    if y < top
+        @y = bottom if y > bottom
 
       end
 
@@ -79,11 +73,6 @@ module Vedeu
     # @!attribute [r] name
     # @return [String]
     attr_reader :name
-
-    # @return [Vedeu::Terminal]
-    def terminal
-      Vedeu::Terminal
-    end
 
     # @return (see Vedeu::Borders#by_name)
     def border

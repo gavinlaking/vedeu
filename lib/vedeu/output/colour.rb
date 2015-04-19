@@ -41,21 +41,12 @@ module Vedeu
     def self.coerce(value)
       return value if value.is_a?(self)
       return new unless value.is_a?(Hash)
-      return new unless value[:colour] ||
-                        value[:background] ||
-                        value[:foreground]
 
       if value[:colour]
         return value[:colour] if value[:colour].is_a?(self)
-
-        if value[:colour].is_a?(Hash) && (value[:colour][:background] ||
-                                          value[:colour][:foreground])
-          new(value[:colour])
-
-        else
-          new
-
-        end
+        return new unless value[:colour].is_a?(Hash)
+        return new(value[:colour]) if value[:colour][:background] ||
+                                      value[:colour][:foreground]
 
       elsif value[:background] || value[:foreground]
         new(value)

@@ -224,7 +224,7 @@ module Vedeu
       # @param value [Boolean]
       # @return [Boolean]
       def trace!(value = true)
-        options[:debug] = true if value === true
+        options[:debug] = true if value
         options[:trace] = value
       end
       alias_method :trace, :trace!

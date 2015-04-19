@@ -240,9 +240,8 @@ module Vedeu
     # @param position [Symbol] Either :top_horizontal, or :bottom_horizontal.
     # @return [Array<Vedeu::Char>]
     def horizontal_border(position)
-      width.times.inject([]) do |a, ix|
+      width.times.each_with_object([]) do |ix, a|
         a << border(horizontal, position, nil, ix)
-        a
       end
     end
 
