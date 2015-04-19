@@ -15,7 +15,7 @@ module Vedeu
       #
       # @return [Vedeu::Groups]
       def reset!
-        @groups = Vedeu::Groups.register_repository(Vedeu::Group)
+        @groups = Vedeu::Groups.register(Vedeu::Group)
       end
 
     end

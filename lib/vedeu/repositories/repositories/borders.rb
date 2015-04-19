@@ -16,7 +16,7 @@ module Vedeu
       #
       # @return [Vedeu::Borders]
       def reset!
-        @borders = Vedeu::Borders.register_repository(Vedeu::Border)
+        @borders = Vedeu::Borders.register(Vedeu::Border)
       end
 
     end

@@ -15,7 +15,7 @@ module Vedeu
       #
       # @return [Vedeu::Buffers]
       def reset!
-        @buffers = Vedeu::Buffers.register_repository(Vedeu::Buffer)
+        @buffers = Vedeu::Buffers.register(Vedeu::Buffer)
       end
 
     end

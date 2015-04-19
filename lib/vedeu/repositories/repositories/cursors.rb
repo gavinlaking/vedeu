@@ -20,7 +20,7 @@ module Vedeu
       #
       # @return [Vedeu::Cursors]
       def reset!
-        @cursors = Vedeu::Cursors.register_repository(Vedeu::Cursor)
+        @cursors = Vedeu::Cursors.register(Vedeu::Cursor)
       end
 
     end

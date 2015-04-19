@@ -27,7 +27,7 @@ module Vedeu
     # @param model [Class]
     # @param storage [Class|Hash]
     # @return [Vedeu::Repository]
-    def self.register_repository(model = nil, storage = {})
+    def self.register(model = nil, storage = {})
       new(model, storage).tap do |klass|
         Vedeu::Repositories.register(klass.repository)
       end
