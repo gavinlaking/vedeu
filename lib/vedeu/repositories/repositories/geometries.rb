@@ -2,7 +2,6 @@ module Vedeu
 
   # Allows the storing of interface/view geometry independent of the interface
   # instance.
-  #
   class Geometries < Repository
 
     class << self

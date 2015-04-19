@@ -4,7 +4,6 @@ require 'vedeu/output/virtual_buffer'
 module Vedeu
 
   # Sends the content to the renderers.
-  #
   class Output
 
     # Writes content to the defined renderers.

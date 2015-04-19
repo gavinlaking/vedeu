@@ -6,7 +6,6 @@ module Vedeu
     # events to drive them.
     #
     # @api public
-    #
     class Menu
 
       include Vedeu::DSL

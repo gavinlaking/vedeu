@@ -10,7 +10,6 @@ module Vedeu
   #   { 'models' => [Model, Model, Model] }
   #
   #   { 'models' => [Model] }
-  #
   class Repository
 
     include Vedeu::Common

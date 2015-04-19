@@ -4,7 +4,6 @@ module Vedeu
   #
   # When the optional offset `oy` and `ox` params are given, the they are used
   # for the starting position.
-  #
   class IndexPosition
 
     # @param (see #initialize)

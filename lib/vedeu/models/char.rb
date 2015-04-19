@@ -10,7 +10,6 @@ module Vedeu
   #
   # Though a multi-character String can be passed as a value, only the first
   # character is returned in the escape sequence.
-  #
   class Char
 
     include Vedeu::Presentation

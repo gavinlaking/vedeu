@@ -4,7 +4,6 @@ module Vedeu
 
   # Interfaces can be associated with one another by being members of the same
   # Group. A Group is a collection of interface names.
-  #
   class Group
 
     include Vedeu::Model

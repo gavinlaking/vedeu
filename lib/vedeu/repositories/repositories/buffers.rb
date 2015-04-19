@@ -1,7 +1,6 @@
 module Vedeu
 
   # Allows the storing of view buffers.
-  #
   class Buffers < Repository
 
     class << self

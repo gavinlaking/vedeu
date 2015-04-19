@@ -16,7 +16,6 @@ require 'time'
 require 'vedeu/support/log'
 
 # Vedeu is a GUI framework for terminal/console applications written in Ruby.
-#
 module Vedeu
 
   extend Forwardable

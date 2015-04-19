@@ -3,7 +3,6 @@ module Vedeu
   # Converts a grid of {Vedeu::Char} objects into a stream of escape sequences
   # and content suitable for a terminal, and writes them to a file in the /tmp
   # directory.
-  #
   class Renderers::File
 
     # @param output [Array<Array<Vedeu::Char>>]

@@ -2,7 +2,6 @@ module Vedeu
 
   # Handle the refreshing (redrawing) of a cursor, without redrawing the whole
   # interface; unless the cursor's offset has caused the view to change.
-  #
   class RefreshCursor
 
     extend Forwardable

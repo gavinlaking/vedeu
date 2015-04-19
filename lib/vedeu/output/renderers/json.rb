@@ -1,7 +1,6 @@
 module Vedeu
 
   # Renders a {Vedeu::VirtualBuffer} or {Vedeu::Output} as JSON.
-  #
   class Renderers::JSON
 
     # @param output [Array<Array<Vedeu::Char>>]

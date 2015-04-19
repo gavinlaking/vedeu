@@ -5,7 +5,6 @@ require 'vedeu/input/key'
 module Vedeu
 
   # A container class for keys associated with a particular interface.
-  #
   class Keymap
 
     include Vedeu::Model

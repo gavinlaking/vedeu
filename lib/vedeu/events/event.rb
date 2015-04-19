@@ -30,7 +30,6 @@ module Vedeu
   #       # Not all events you define will have arguments; like methods.
   #       :do_stuff
   #     end
-  #
   class Event
 
     include Vedeu::Model

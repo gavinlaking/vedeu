@@ -7,7 +7,6 @@ module Vedeu
   #
   # @example
   #   Vedeu.trigger(:my_event, :oxidize, 'nitrogen')
-  #
   class Trigger
 
     # @param name [Symbol] The name of the event you wish to trigger. The event

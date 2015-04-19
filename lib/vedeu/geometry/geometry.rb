@@ -26,7 +26,6 @@ module Vedeu
   #       |    bottom    |           # bottom: yn
   #    yn +--------------+           # south:  yn + 1
   #            south
-  #
   class Geometry
 
     extend Forwardable

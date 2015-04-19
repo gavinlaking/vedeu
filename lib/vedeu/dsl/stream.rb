@@ -7,7 +7,6 @@ module Vedeu
     # Provides methods to be used to define views.
     #
     # @api public
-    #
     class Stream
 
       include Vedeu::DSL

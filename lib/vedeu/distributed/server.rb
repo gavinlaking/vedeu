@@ -3,7 +3,6 @@ module Vedeu
   module Distributed
 
     # A class for the server side of the DRb server/client relationship.
-    #
     class Server
 
       $SAFE = 1 # disable `eval` and related calls on strings passed

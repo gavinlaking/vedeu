@@ -2,7 +2,6 @@ module Vedeu
 
   # Allows the storing of interface/view borders independent of the interface
   # instance.
-  #
   class Borders < Repository
 
     class << self

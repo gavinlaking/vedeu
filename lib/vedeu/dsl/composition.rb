@@ -5,7 +5,6 @@ module Vedeu
   module DSL
 
     # DSL for creating collections of interfaces.
-    #
     class Composition
 
       include Vedeu::DSL

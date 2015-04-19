@@ -3,7 +3,6 @@ module Vedeu
   module Null
 
     # Provides a non-existent model to swallow messages.
-    #
     class Generic
 
       # @return [Vedeu::Null::Generic]

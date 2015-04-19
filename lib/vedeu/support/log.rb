@@ -3,7 +3,6 @@ require 'vedeu/configuration/configuration'
 module Vedeu
 
   # Allows the creation of a lock-less log device.
-  #
   class MonoLogger < Logger
 
     # Create a trappable Logger instance.

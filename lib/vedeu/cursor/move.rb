@@ -32,7 +32,6 @@ module Vedeu
   #   The cursor will not exceed the border or boundary of the interface.
   #   The cursor will move freely within the bounds of the interface,
   #     irrespective of content.
-  #
   class Move
 
     extend Forwardable

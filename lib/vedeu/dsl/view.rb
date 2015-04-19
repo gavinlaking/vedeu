@@ -7,7 +7,6 @@ module Vedeu
     # DSL for creating views.
     #
     # @api public
-    #
     class View
 
       class << self

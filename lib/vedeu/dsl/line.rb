@@ -34,7 +34,6 @@ module Vedeu
     #   end
     #
     # @api public
-    #
     class Line
 
       include Vedeu::DSL

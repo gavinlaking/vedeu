@@ -11,7 +11,6 @@ module Vedeu
   # Styles are applied as encountered.
   #
   # @see Vedeu::Esc
-  #
   class Style
 
     include Vedeu::Common

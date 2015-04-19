@@ -1,7 +1,6 @@
 module Vedeu
 
   # Crudely corrects out of range values.
-  #
   class Coordinate
 
     # @!attribute [r] height

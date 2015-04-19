@@ -2,7 +2,6 @@ module Vedeu
 
   # Conveyor belt like storage. The belt can move forward (`load_next`) or
   # backwards (`load_previous`), or a named entry can be retrieved.
-  #
   class ConveyorStore
 
     include Vedeu::Store

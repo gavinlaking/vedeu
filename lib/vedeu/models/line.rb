@@ -6,7 +6,6 @@ module Vedeu
   # A Line represents a single row of the terminal. It is a container for
   # {Vedeu::Stream} objects. A line's width is determined by the
   # {Vedeu::Interface} it belongs to.
-  #
   class Line
 
     include Vedeu::Model

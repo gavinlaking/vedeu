@@ -1,7 +1,6 @@
 module Vedeu
 
   # Renders a {Vedeu::VirtualBuffer} or {Vedeu::Output} as a HTML table.
-  #
   class Renderers::HTML
 
     # @param output [Array<Array<Vedeu::Char>>]

@@ -5,7 +5,6 @@ module Vedeu
   # When a buffer has more lines than the defined height, or more columns than
   # the defined width of the interface, the Viewport class provides 'scrolling'
   # via the cursor's position.
-  #
   class Viewport
 
     extend Forwardable

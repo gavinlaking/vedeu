@@ -1,7 +1,6 @@
 module Vedeu
 
   # A Cell represents a single square of the terminal.
-  #
   class Cell
 
     # @!attribute [r] colour

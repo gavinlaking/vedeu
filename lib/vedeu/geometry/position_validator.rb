@@ -4,7 +4,6 @@ module Vedeu
 
   # Validates that the provided coordinates are within the terminal and
   # interface's geometry (with or without a border).
-  #
   class PositionValidator
 
     extend Forwardable
@@ -65,9 +64,9 @@ module Vedeu
         @y = byn if y > byn
 
       else
-        @x = left   if x < left   || x < tx
-        @x = right  if x > right  || x > txn
-        @y = top    if y < top    || y < ty
+        @x = left   if x < left || x < tx
+        @x = right  if x > right || x > txn
+        @y = top    if y < top || y < ty
         @y = bottom if y > bottom || y > tyn
 
       end

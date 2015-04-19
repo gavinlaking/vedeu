@@ -3,7 +3,6 @@ module Vedeu
   module Null
 
     # Provides a non-existent model to swallow messages.
-    #
     class Interface
 
       # @param name [String]
@@ -15,7 +14,7 @@ module Vedeu
       # @return [Hash<Symbol => String>]
       def attributes
         {
-          name: name
+          name: name,
         }
       end
 

@@ -9,7 +9,6 @@ require_relative 'text'
 module Vedeu
 
   # Provides a single interface to all registered renderers.
-  #
   module Renderers
 
     extend Enumerable

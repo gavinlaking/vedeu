@@ -6,7 +6,6 @@ module Vedeu
   # finally the exiting of the application with the correct exit code.
   #
   # @api public
-  #
   class Launcher
 
     # @!attribute [r] exit_code

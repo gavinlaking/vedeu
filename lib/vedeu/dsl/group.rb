@@ -5,7 +5,6 @@ module Vedeu
   module DSL
 
     # DSL for adding interfaces to a group.
-    #
     class Group
 
       include Vedeu::DSL

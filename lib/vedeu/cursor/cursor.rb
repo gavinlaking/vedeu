@@ -5,7 +5,6 @@ module Vedeu
 
   # Each interface has its own Cursor which maintains the position and
   # visibility of the cursor within that interface.
-  #
   class Cursor
 
     extend Forwardable

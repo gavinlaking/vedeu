@@ -3,7 +3,6 @@ module Vedeu
   module Renderers
 
     # A renderer which returns the escape sequence for each character.
-    #
     class EscapeSequence
 
       # @param output [Array<Array<Vedeu::Char>>]

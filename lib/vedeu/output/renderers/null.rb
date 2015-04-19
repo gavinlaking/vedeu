@@ -1,7 +1,6 @@
 module Vedeu
 
   # A renderer which returns nothing.
-  #
   class Renderers::Null
 
     # @return [NilClass]

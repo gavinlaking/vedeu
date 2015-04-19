@@ -4,7 +4,6 @@ module Vedeu
 
   # The Buffer object represents the states of display for an interface. The
   # states are 'front', 'back' and 'previous'.
-  #
   class Buffer
 
     include Vedeu::Model

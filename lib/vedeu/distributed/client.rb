@@ -8,7 +8,6 @@ module Vedeu
     #   client = Vedeu::Distributed::Client.connect("druby://localhost:21420")
     #   client.input('a')
     #   client.output # => 'some content...'
-    #
     class Client
 
       # @param (see #initialize)

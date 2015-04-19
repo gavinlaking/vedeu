@@ -6,7 +6,6 @@ $LOAD_PATH.unshift(lib_dir) unless $LOAD_PATH.include?(lib_dir)
 require 'vedeu'
 
 # An example application to demonstrate borders.
-#
 class VedeuBordersApp
 
   include Vedeu

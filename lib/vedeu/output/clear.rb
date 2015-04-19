@@ -1,7 +1,6 @@
 module Vedeu
 
   # Clears the area defined by an interface.
-  #
   class Clear
 
     extend Forwardable

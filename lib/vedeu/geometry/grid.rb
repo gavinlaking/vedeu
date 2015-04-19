@@ -23,7 +23,6 @@ module Vedeu
 
   # Divides horizontal terminal space into 12 equal columns, discarding
   # the remainder.
-  #
   class Grid
 
     # @see (#initialize)

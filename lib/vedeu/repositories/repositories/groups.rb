@@ -1,7 +1,6 @@
 module Vedeu
 
   # Allows the storing of view groups.
-  #
   class Groups < Repository
 
     class << self
