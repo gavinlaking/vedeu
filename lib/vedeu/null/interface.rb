@@ -18,6 +18,25 @@ module Vedeu
         }
       end
 
+      # Pretend to store this model in the repository.
+      #
+      # @return [Vedeu::Null::Interface]
+      def store
+        self
+      end
+
+      # @return [FalseClass]
+      def visible?
+        false
+      end
+
+      # Override the visible= setter usually found on a Vedeu::Interface.
+      #
+      # @return [FalseClass]
+      def visible=(*)
+        false
+      end
+
       private
 
       # @!attribute [r] name

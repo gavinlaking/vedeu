@@ -24,13 +24,8 @@ module Vedeu
         end
       end
 
-      describe '.use' do
+      describe '#use' do
         context 'when the model exists' do
-          context 'and the attribute exists' do
-          end
-
-          context 'but the attribute does not exist' do
-          end
         end
 
         context 'when the model does not exist' do

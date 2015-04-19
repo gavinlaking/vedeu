@@ -7,6 +7,10 @@ module Vedeu
 
     extend self
 
+    def by_name(name)
+      model
+    end
+
     # The real repository stores the model and returns it.
     def store(model)
       model
@@ -32,8 +36,8 @@ module Vedeu
       @attributes = defaults.merge!(attributes)
 
       @colour = @attributes[:colour]
-      @name   = @attributes[:name]
-      @style  = @attributes[:style]
+      @name       = @attributes[:name]
+      @style      = @attributes[:style]
       @repository = Vedeu::RepositoryTestModule
     end
 
