@@ -6,16 +6,17 @@ module Vedeu
 
     describe CLI do
 
-      let(:described) { CLI.new(args) }
+      let(:described) { Vedeu::Config::CLI }
+      let(:instance)  { described.new(args) }
       let(:args)      { [] }
 
       before { Configuration.reset! }
       after  { test_configuration }
 
       describe '#initialize' do
-        it { described.must_be_instance_of(CLI) }
-        it { described.instance_variable_get('@args').must_equal(args) }
-        it { described.instance_variable_get('@options').must_equal({}) }
+        it { instance.must_be_instance_of(described) }
+        it { instance.instance_variable_get('@args').must_equal(args) }
+        it { instance.instance_variable_get('@options').must_equal({}) }
       end
 
       describe '#colour_mode' do
