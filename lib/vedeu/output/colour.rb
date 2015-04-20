@@ -62,7 +62,7 @@ module Vedeu
     # @param attributes [Hash]
     # @option attributes background [String]
     # @option attributes foreground [String]
-    # @return [Colour]
+    # @return [Vedeu::Colour]
     def initialize(attributes = {})
       @attributes = defaults.merge!(attributes)
     end
