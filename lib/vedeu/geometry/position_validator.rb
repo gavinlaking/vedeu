@@ -9,17 +9,10 @@ module Vedeu
     extend Forwardable
 
     def_delegators :border,
-                   :enabled?,
                    :bx,
                    :bxn,
                    :by,
                    :byn
-
-    def_delegators :geometry,
-                   :left,
-                   :right,
-                   :top,
-                   :bottom
 
     # @!attribute [rw] x
     # @return [Fixnum]
@@ -51,19 +44,10 @@ module Vedeu
     #
     # @return [PositionValidator]
     def validate
-      if enabled?
-        @x = bx  if x < bx
-        @x = bxn if x > bxn
-        @y = by  if y < by
-        @y = byn if y > byn
-
-      else
-        @x = left   if x < left
-        @x = right  if x > right
-        @y = top    if y < top
-        @y = bottom if y > bottom
-
-      end
+      @x = bx  if x < bx
+      @x = bxn if x > bxn
+      @y = by  if y < by
+      @y = byn if y > byn
 
       self
     end
@@ -77,11 +61,6 @@ module Vedeu
     # @return (see Vedeu::Borders#by_name)
     def border
       @border ||= Vedeu.borders.by_name(name)
-    end
-
-    # @return (see Vedeu::Geometries#by_name)
-    def geometry
-      @geometry ||= Vedeu.geometries.by_name(name)
     end
 
   end # PositionValidator
