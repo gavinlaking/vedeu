@@ -1,9 +1,14 @@
 module Vedeu
 
+  # Repositories contain registerables, this module provides convenience methods
+  # for them.
   module Registerable
 
+    # These class methods are mixed into the repository.
     module ClassMethods
 
+      # @param klass [Class]
+      # @return [Symbol]
       def null(klass)
         define_method(:null_model) { klass }
       end

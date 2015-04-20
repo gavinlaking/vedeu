@@ -25,6 +25,8 @@ module Vedeu
         self
       end
 
+      # The null interface should not be visible.
+      #
       # @return [FalseClass]
       def visible?
         false

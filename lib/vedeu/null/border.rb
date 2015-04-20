@@ -42,6 +42,9 @@ module Vedeu
       end
       alias_method :yn, :byn
 
+      # The null border should not be enabled, so that named geometry
+      # or null geometry is used.
+      #
       # @return [FalseClass]
       def enabled?
         false
