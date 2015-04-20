@@ -1,5 +1,3 @@
-require 'vedeu/repositories/all'
-
 require_relative 'mapper'
 require_relative 'key'
 require_relative 'input'

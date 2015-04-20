@@ -1,7 +1,3 @@
-require 'vedeu/configuration/configuration'
-require 'vedeu/output/translator'
-require 'vedeu/output/esc'
-
 module Vedeu
 
   # The class represents one half (the other, can be found at

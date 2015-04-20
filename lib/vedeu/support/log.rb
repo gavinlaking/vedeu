@@ -1,5 +1,3 @@
-require 'vedeu/configuration/configuration'
-
 module Vedeu
 
   # Allows the creation of a lock-less log device.

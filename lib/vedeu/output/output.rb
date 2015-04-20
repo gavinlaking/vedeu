@@ -1,6 +1,3 @@
-require 'vedeu/output/renderers/all'
-require 'vedeu/output/virtual_buffer'
-
 module Vedeu
 
   # Sends the content to the renderers.

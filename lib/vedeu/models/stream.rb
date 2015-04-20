@@ -1,6 +1,3 @@
-require 'vedeu/output/presentation'
-require 'vedeu/models/all'
-
 module Vedeu
 
   # A Stream can represent a character or collection of characters as part of a

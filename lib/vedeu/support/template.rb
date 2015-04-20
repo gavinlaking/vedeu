@@ -1,5 +1,3 @@
-require 'erb'
-
 module Vedeu
 
   # Generic class to loading a template and parsing it via ERb.

@@ -1,5 +1,3 @@
-require 'vedeu/dsl/shared/all'
-
 module Vedeu
 
   module DSL

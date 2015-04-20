@@ -1,8 +1,3 @@
-require 'vedeu/dsl/composition'
-require 'vedeu/repositories/all'
-require 'vedeu/output/presentation'
-require 'vedeu/support/common'
-
 module Vedeu
 
   # A composition is a collection of interfaces.

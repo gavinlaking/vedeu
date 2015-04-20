@@ -1,4 +1,3 @@
-require 'vedeu/repositories/all'
 require 'vedeu/events/trigger'
 
 module Vedeu

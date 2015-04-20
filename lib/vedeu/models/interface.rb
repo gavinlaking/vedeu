@@ -1,5 +1,3 @@
-require 'vedeu/models/all'
-require 'vedeu/output/presentation'
 require 'vedeu/buffers/display_buffer'
 
 module Vedeu

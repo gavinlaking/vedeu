@@ -1,6 +1,3 @@
-require 'vedeu/cursor/all'
-require 'vedeu/geometry/position'
-
 module Vedeu
 
   # Each interface has its own Cursor which maintains the position and

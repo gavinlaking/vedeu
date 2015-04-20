@@ -1,6 +1,3 @@
-require 'vedeu/geometry/geometry'
-require 'vedeu/dsl/shared/all'
-
 module Vedeu
 
   module DSL

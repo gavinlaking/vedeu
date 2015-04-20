@@ -1,7 +1,3 @@
-require 'vedeu/cursor/cursor'
-require 'vedeu/geometry/coordinate'
-require 'vedeu/geometry/position_validator'
-
 module Vedeu
 
   # Adjusts the position of the cursor. To use this class, call the appropriate

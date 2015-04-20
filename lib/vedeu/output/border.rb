@@ -1,6 +1,3 @@
-require 'vedeu/repositories/all'
-require 'vedeu/dsl/components/all'
-
 module Vedeu
 
   # Provides the mechanism to decorate an interface with a border on all edges,

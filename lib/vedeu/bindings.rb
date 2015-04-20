@@ -1,5 +1,3 @@
-require 'vedeu/events/event'
-
 module Vedeu
 
   # Creates system events which when called provide a variety of core functions

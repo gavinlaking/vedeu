@@ -1,5 +1,3 @@
-require 'vedeu/support/common'
-
 module Vedeu
 
   # Converts the style value or value collection into a terminal escape

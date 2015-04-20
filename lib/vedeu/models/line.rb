@@ -1,6 +1,3 @@
-require 'vedeu/output/presentation'
-require 'vedeu/models/all'
-
 module Vedeu
 
   # A Line represents a single row of the terminal. It is a container for

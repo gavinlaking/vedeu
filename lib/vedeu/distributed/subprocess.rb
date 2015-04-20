@@ -1,5 +1,3 @@
-require 'vedeu/distributed/test_application'
-
 module Vedeu
 
   # @example

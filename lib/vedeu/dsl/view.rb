@@ -1,5 +1,3 @@
-require 'vedeu/models/composition'
-
 module Vedeu
 
   module DSL

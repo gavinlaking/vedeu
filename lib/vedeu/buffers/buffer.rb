@@ -1,5 +1,3 @@
-require 'vedeu/repositories/model'
-
 module Vedeu
 
   # The Buffer object represents the states of display for an interface. The

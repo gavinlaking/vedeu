@@ -1,5 +1,3 @@
-require 'vedeu/repositories/model'
-
 module Vedeu
 
   # Converts the collection passed into a list of menu items which can be

@@ -1,5 +1,5 @@
-require 'vedeu/output/border'
-require 'vedeu/dsl/shared/all'
+require 'vedeu/dsl/shared/presentation'
+require 'vedeu/dsl/shared/use'
 
 module Vedeu
 

@@ -1,5 +1,4 @@
 require 'vedeu/support/common'
-require 'vedeu/input/key'
 
 module Vedeu
 

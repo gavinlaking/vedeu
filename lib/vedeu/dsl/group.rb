@@ -1,5 +1,3 @@
-require 'vedeu/models/group'
-
 module Vedeu
 
   module DSL

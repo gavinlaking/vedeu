@@ -1,6 +1,4 @@
-require 'vedeu/repositories/all'
-require 'vedeu/dsl/components/all'
-require 'vedeu/input/key'
+require 'vedeu/dsl/components/keymap'
 
 module Vedeu
 

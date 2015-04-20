@@ -1,9 +1,4 @@
-require 'vedeu/dsl/components/all'
 require 'vedeu/repositories/model'
-
-require 'vedeu/geometry/area'
-require 'vedeu/geometry/dimension'
-require 'vedeu/support/terminal'
 
 module Vedeu
 
