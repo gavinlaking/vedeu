@@ -36,11 +36,13 @@ module Vedeu
       Vedeu::Terminal.output(new_cursor.to_s)
     end
 
-    private
+    protected
 
     # @!attribute [r] name
     # @return [String]
     attr_reader :name
+
+    private
 
     # @return [Boolean]
     def refresh_view?

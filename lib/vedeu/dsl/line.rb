@@ -106,7 +106,7 @@ module Vedeu
       end
       alias_method :stream, :streams
 
-      private
+      protected
 
       # @!attribute [r] client
       # @return [Object]
@@ -115,6 +115,8 @@ module Vedeu
       # @!attribute [r] model
       # @return [Line]
       attr_reader :model
+
+      private
 
       # @return [Hash]
       def attributes

@@ -40,7 +40,7 @@ module Vedeu
       end
     end
 
-    private
+    protected
 
     # @!attribute [r] name
     # @return [Symbol]
@@ -53,6 +53,8 @@ module Vedeu
     # @!attribute [r]
     # @return [Vedeu::Repository]
     attr_reader :repository
+
+    private
 
     # @return [Array<void>|void]
     def results

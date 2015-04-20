@@ -73,7 +73,7 @@ module Vedeu
         model.add(new_model)
       end
 
-      private
+      protected
 
       # @!attribute [r] client
       # @return [Object]
@@ -82,6 +82,8 @@ module Vedeu
       # @!attribute [r] model
       # @return [Composition]
       attr_reader :model
+
+      private
 
       # @param name [String]
       # @param lines [Vedeu::Lines]

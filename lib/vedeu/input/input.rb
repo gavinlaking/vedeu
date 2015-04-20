@@ -35,11 +35,13 @@ module Vedeu
       end
     end
 
-    private
+    protected
 
     # @!attribute [r] reader
     # @return [IO]
     attr_reader :reader
+
+    private
 
     # Returns the input from the terminal.
     #

@@ -37,7 +37,7 @@ module Vedeu
         false
       end
 
-      private
+      protected
 
       # @!attribute [r] name
       # @return [String]

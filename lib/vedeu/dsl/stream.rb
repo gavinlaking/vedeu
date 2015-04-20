@@ -32,7 +32,7 @@ module Vedeu
         model.add(model.class.build(attributes, &block))
       end
 
-      private
+      protected
 
       # @!attribute [r] client
       # @return [Object]
@@ -41,6 +41,8 @@ module Vedeu
       # @!attribute [r] model
       # @return [Stream]
       attr_reader :model
+
+      private
 
       # @return [Hash]
       def attributes

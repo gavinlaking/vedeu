@@ -42,7 +42,7 @@ module Vedeu
         out
       end
 
-      private
+      protected
 
       # @!attribute [r] output
       # @return [Array<Array<Vedeu::Char>>]

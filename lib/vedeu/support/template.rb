@@ -26,11 +26,13 @@ module Vedeu
       ERB.new(load, nil, '-').result(binding)
     end
 
-    private
+    protected
 
     # @!attribute [r] object
     # @return [Class]
     attr_reader :object
+
+    private
 
     # @return [String]
     def load

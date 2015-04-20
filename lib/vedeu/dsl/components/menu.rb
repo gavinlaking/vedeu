@@ -72,7 +72,7 @@ module Vedeu
         model.name = value
       end
 
-      private
+      protected
 
       # @!attribute [r] client
       # @return [Object]

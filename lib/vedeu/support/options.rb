@@ -35,11 +35,13 @@ module Vedeu
       self
     end
 
-    private
+    protected
 
     # @!attribute [r] _options
     # @return [Hash]
     attr_reader :_options
+
+    private
 
     # @param alias_name [String|Symbol]
     # @param method_name [String|Symbol]

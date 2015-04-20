@@ -121,7 +121,7 @@ module Vedeu
       cursor
     end
 
-    private
+    protected
 
     # @!attribute [r] dx
     # @return [Fixnum]
@@ -134,6 +134,8 @@ module Vedeu
     # @!attribute [r] name
     # @return [String]
     attr_reader :name
+
+    private
 
     # @return [Hash<Symbol => Fixnum, String>]
     def attributes

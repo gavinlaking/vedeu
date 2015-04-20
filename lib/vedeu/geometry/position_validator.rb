@@ -52,11 +52,13 @@ module Vedeu
       self
     end
 
-    private
+    protected
 
     # @!attribute [r] name
     # @return [String]
     attr_reader :name
+
+    private
 
     # @return (see Vedeu::Borders#by_name)
     def border

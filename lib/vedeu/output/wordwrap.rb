@@ -77,7 +77,7 @@ module Vedeu
       end
     end
 
-    private
+    protected
 
     # @!attribute [r] text
     # @return [String]
@@ -86,6 +86,8 @@ module Vedeu
     # @!attribute [r] options
     # @return [Hash]
     attr_reader :options
+
+    private
 
     # @param text_as_lines [Array<String>]
     # @return [Vedeu::Lines]

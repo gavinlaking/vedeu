@@ -71,11 +71,13 @@ module Vedeu
       render.map(&:to_s).join("\n")
     end
 
-    private
+    protected
 
     # @!attribute [r] interface
     # @return [Vedeu::Interface]
     attr_reader :interface
+
+    private
 
     # Returns the visible content for the interface.
     #

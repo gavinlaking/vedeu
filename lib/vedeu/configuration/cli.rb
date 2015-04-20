@@ -34,7 +34,7 @@ module Vedeu
         Vedeu::Config.log(Esc.blue { '[cli]' }, options)
       end
 
-      private
+      protected
 
       # @!attribute [r] args
       # @return [Array<String>]
@@ -43,6 +43,8 @@ module Vedeu
       # @!attribute [r] options
       # @return [Hash]
       attr_reader :options
+
+      private
 
       # @return [void]
       def setup!

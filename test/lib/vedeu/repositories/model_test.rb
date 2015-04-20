@@ -13,7 +13,7 @@ module Vedeu
         @client = client
       end
 
-      private
+      protected
 
       attr_reader :model
 

@@ -77,8 +77,6 @@ module Vedeu
   )
   EXCEPTIONS.each { |e| const_set(e, Class.new(StandardError)) }
 
-  private
-
 end # Vedeu
 
 require 'vedeu/all'

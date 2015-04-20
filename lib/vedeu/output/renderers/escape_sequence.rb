@@ -24,11 +24,13 @@ module Vedeu
         parsed
       end
 
-      private
+      protected
 
       # @!attribute [r] output
       # @return [Array<Array<Vedeu::Char>>]
       attr_reader :output
+
+      private
 
       # Escapes the escape sequences.
       #

@@ -69,7 +69,7 @@ module Vedeu
       end
     end
 
-    private
+    protected
 
     # @!attribute [r] model
     # @return [void]

@@ -246,7 +246,7 @@ module Vedeu
         model.visible = boolean
       end
 
-      private
+      protected
 
       # @!attribute [r] client
       # @return [Object]
@@ -255,6 +255,8 @@ module Vedeu
       # @!attribute [r] model
       # @return [Interface]
       attr_reader :model
+
+      private
 
       # @return [Hash]
       def attributes

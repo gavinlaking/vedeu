@@ -83,11 +83,13 @@ module Vedeu
         :shutdown
       end
 
-      private
+      protected
 
       # @!attribute [r] uri
       # @return [String]
       attr_reader :uri
+
+      private
 
       # @return [void]
       def server

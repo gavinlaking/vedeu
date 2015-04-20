@@ -35,7 +35,7 @@ module Vedeu
       Vedeu.renderers.render(content)
     end
 
-    private
+    protected
 
     # @!attribute [r] content
     # @return [Array<Array<Vedeu::Char>>]

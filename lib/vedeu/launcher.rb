@@ -69,11 +69,13 @@ module Vedeu
       puts uncaught_exception.backtrace.join("\n") if configuration.debug?
     end
 
-    private
+    protected
 
     # @!attribute [r] argv
     # @return [Array<String>] The command line arguments provided.
     attr_reader :argv
+
+    private
 
     # Terminates the application after resetting $stdin, $stdout and $stderr.
     #

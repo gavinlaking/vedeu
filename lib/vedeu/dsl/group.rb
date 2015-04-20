@@ -57,7 +57,7 @@ module Vedeu
         model.add(interface_name)
       end
 
-      private
+      protected
 
       # @!attribute [r] client
       # @return [Object]

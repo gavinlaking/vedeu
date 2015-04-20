@@ -302,7 +302,7 @@ module Vedeu
         model.vertical = char
       end
 
-      private
+      protected
 
       # @!attribute [r] client
       # @return [Object]

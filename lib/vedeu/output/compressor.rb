@@ -31,9 +31,13 @@ module Vedeu
       end.join
     end
 
-    private
+    protected
 
+    # @!attribute [r] output
+    # @return [Array<Array<Vedeu::Char>>]
     attr_reader :output
+
+    private
 
     # @param char [Vedeu::Char]
     # @return [String]
