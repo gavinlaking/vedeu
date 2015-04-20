@@ -125,7 +125,6 @@ module Vedeu
 
     rescue NoMethodError
       ''
-
     end
 
     # Return the escape sequence to render a border character.

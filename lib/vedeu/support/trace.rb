@@ -47,11 +47,15 @@ module Vedeu
     # - (id) the method name being traced,
     # - (vars) any local variables belonging to the method.
     #
+    # @note
+    #   Arguments to set_trace_func proc:
+    #     |event, file, line, id, binding, name|
+    #
     # @todo Deprecate, and use TracePoint instead.
     #
     # @return [NilClass|String]
     def trace
-      set_trace_func proc { |event, _file, _line, id, binding, name|
+      set_trace_func proc { |event, _, _, id, binding, name|
         if event == watched && id != :log && classes.include?(name.to_s)
           vars = variables(binding)
 
