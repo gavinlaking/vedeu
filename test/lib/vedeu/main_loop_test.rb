@@ -19,6 +19,17 @@ module Vedeu
       it { subject; described.instance_variable_get('@loop').must_equal(false) }
     end
 
+    describe '.safe_exit_point!' do
+      subject { described.safe_exit_point! }
+
+      context 'when the application has started' do
+      end
+
+      context 'when the application has not started' do
+        it { Vedeu.expects(:trigger); subject }
+      end
+    end
+
   end # MainLoop
 
 end # Vedeu

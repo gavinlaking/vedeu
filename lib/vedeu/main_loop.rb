@@ -5,7 +5,6 @@ module Vedeu
   # Each time Vedeu starts one cycle in the application loop, it triggers the
   # `:tick` event. A completion of that cycle will trigger `:tock`. This can be
   # used by the client application for timing amongst other things.
-  #
   class MainLoop
 
     trap('SIGTERM') { stop! }
@@ -27,6 +26,7 @@ module Vedeu
         safe_exit_point!
       end
     rescue VedeuInterrupt
+      Vedeu.log(type: :debug, message: 'Vedeu execution interrupted, exiting.')
     end
     # :nocov:
 

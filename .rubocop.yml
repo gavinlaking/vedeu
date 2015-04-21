@@ -650,7 +650,7 @@ Metrics/ParameterLists:
   CountKeywordArgs: true
 
 Metrics/PerceivedComplexity:
-  Max: 10
+  Max: 12
 
 ##################### Lint ##################################
 

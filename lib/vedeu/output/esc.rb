@@ -121,7 +121,10 @@ module Vedeu
 
       return '' if name.empty?
 
-      send(name) rescue ''
+      send(name)
+
+    rescue NoMethodError
+      ''
     end
 
     # Return the escape sequence to render a border character.

@@ -1,7 +1,3 @@
-require 'vedeu/cursor/cursor'
-require 'vedeu/geometry/coordinate'
-require 'vedeu/geometry/position_validator'
-
 module Vedeu
 
   # Adjusts the position of the cursor. To use this class, call the appropriate
@@ -32,7 +28,6 @@ module Vedeu
   #   The cursor will not exceed the border or boundary of the interface.
   #   The cursor will move freely within the bounds of the interface,
   #     irrespective of content.
-  #
   class Move
 
     extend Forwardable
@@ -122,7 +117,7 @@ module Vedeu
       cursor
     end
 
-    private
+    protected
 
     # @!attribute [r] dx
     # @return [Fixnum]
@@ -135,6 +130,8 @@ module Vedeu
     # @!attribute [r] name
     # @return [String]
     attr_reader :name
+
+    private
 
     # @return [Hash<Symbol => Fixnum, String>]
     def attributes

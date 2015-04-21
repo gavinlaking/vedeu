@@ -3,9 +3,10 @@ module Vedeu
   module Null
 
     # Provides a non-existent model to swallow messages.
-    #
     class Generic
 
+      # Returns an instance of the Vedeu::Null::Generic class.
+      #
       # @return [Vedeu::Null::Generic]
       def initialize; end
 
@@ -34,6 +35,8 @@ module Vedeu
         nil
       end
 
+      # The generic null should not be visible.
+      #
       # @return [FalseClass]
       def visible?
         false

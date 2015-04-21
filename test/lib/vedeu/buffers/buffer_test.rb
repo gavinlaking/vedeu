@@ -4,22 +4,26 @@ module Vedeu
 
   describe Buffer do
 
-    let(:described)   { Vedeu::Buffer }
-    let(:instance)    { described.new(attributes) }
-    let(:attributes)  {
+    let(:described)  { Vedeu::Buffer }
+    let(:instance)   { described.new(attributes) }
+    let(:attributes) {
       {
-        name:       _name,
-        back:       back,
-        front:      front,
-        previous:   previous,
+        name:     _name,
+        back:     back,
+        front:    front,
+        previous: previous,
       }
     }
-    let(:_name) { 'krypton' }
-    let(:back)        {}
-    let(:front)       {}
-    let(:previous)    {}
+    let(:_name)     { 'krypton' }
+    let(:back)      {}
+    let(:front)     {}
+    let(:previous)  {}
+    let(:interface) {}
 
-    before { Vedeu.stubs(:trigger) }
+    before do
+      Vedeu.stubs(:trigger)
+      # Vedeu.interfaces.stubs(:by_name).returns(interface)
+    end
 
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }
@@ -58,6 +62,37 @@ module Vedeu
         subject
 
         instance.back.must_equal(content)
+      end
+    end
+
+    describe '#clear' do
+      subject { instance.clear }
+
+      context 'when the clear buffer is empty' do
+      end
+
+      context 'when the clear buffer is not empty' do
+      end
+    end
+
+    describe '#hide' do
+      subject { instance.hide }
+
+      context 'when the interface is visible' do
+      end
+
+      context 'when the interface is not visible' do
+        it { subject.must_be_instance_of(NilClass) }
+      end
+    end
+
+    describe '#show' do
+      subject { instance.show }
+
+      context 'when the interface is visible' do
+      end
+
+      context 'when the interface is not visible' do
       end
     end
 

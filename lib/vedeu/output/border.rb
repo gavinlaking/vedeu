@@ -1,6 +1,3 @@
-require 'vedeu/repositories/all'
-require 'vedeu/dsl/components/all'
-
 module Vedeu
 
   # Provides the mechanism to decorate an interface with a border on all edges,
@@ -10,7 +7,6 @@ module Vedeu
   #
   # @note Refer to UTF-8 U+2500 to U+257F for border characters. More details
   #   can be found at: http://en.wikipedia.org/wiki/Box-drawing_character
-  #
   class Border
 
     extend Forwardable
@@ -241,9 +237,8 @@ module Vedeu
     # @param position [Symbol] Either :top_horizontal, or :bottom_horizontal.
     # @return [Array<Vedeu::Char>]
     def horizontal_border(position)
-      width.times.inject([]) do |a, ix|
+      width.times.each_with_object([]) do |ix, a|
         a << border(horizontal, position, nil, ix)
-        a
       end
     end
 

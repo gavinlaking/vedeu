@@ -4,7 +4,6 @@ module Vedeu
 
     # Provides a non-existent Vedeu::Border that acts like the real thing, but
     # does nothing.
-    #
     class Border
 
       # @!attribute [r] name
@@ -43,6 +42,9 @@ module Vedeu
       end
       alias_method :yn, :byn
 
+      # The null border should not be enabled, so that named geometry
+      # or null geometry is used.
+      #
       # @return [FalseClass]
       def enabled?
         false

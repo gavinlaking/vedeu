@@ -24,16 +24,23 @@ module Vedeu
       subject { described.render(content) }
 
       context 'when DRb is enabled' do
-        let(:drb) { true }
+        let(:drb)            { true }
+        let(:virtual_buffer) { [] }
 
-        it { }
-      end
+        before do
+          Vedeu::Renderers::HTML.stubs(:to_file)
+          Vedeu::VirtualBuffer.stubs(:retrieve).returns(virtual_buffer)
+        end
 
-      context 'when DRb is not enabled' do
-      #   it 'sends the rendered interface to the Terminal' do
-      #     Vedeu::Renderers::Terminal.expects(:render)
-      #     subject.must_be_instance_of(Array)
-      #   end
+        it {
+          Vedeu.expects(:trigger).with(:_drb_store_output_, content)
+          subject
+        }
+
+        it 'writes the virtual buffer to a file' do
+          Vedeu::Renderers::HTML.expects(:to_file).with(virtual_buffer)
+          subject
+        end
       end
 
       it { Vedeu.renderers.expects(:render).with(content); subject }

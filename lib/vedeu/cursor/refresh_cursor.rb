@@ -2,7 +2,6 @@ module Vedeu
 
   # Handle the refreshing (redrawing) of a cursor, without redrawing the whole
   # interface; unless the cursor's offset has caused the view to change.
-  #
   class RefreshCursor
 
     extend Forwardable
@@ -37,11 +36,13 @@ module Vedeu
       Vedeu::Terminal.output(new_cursor.to_s)
     end
 
-    private
+    protected
 
     # @!attribute [r] name
     # @return [String]
     attr_reader :name
+
+    private
 
     # @return [Boolean]
     def refresh_view?
@@ -71,6 +72,15 @@ module Vedeu
       @cursor ||= Vedeu.cursors.by_name(name)
     end
 
+    # Fetch the border by name.
+    #
+    # @note
+    #   Vedeu::Border is used in this way because if there is not a border
+    #   defined, it will fallback to a Vedeu::Null::Border which uses
+    #   Vedeu::Geometry to determine it's dimensions based on the name also.
+    #   When a Vedeu::Geometry cannot be found, this falls back to a
+    #   Vedeu::Null::Geometry which uses the current terminal's dimensions.
+    #
     # @return (see Vedeu::Borders#by_name)
     def border
       @border ||= Vedeu.borders.by_name(name)

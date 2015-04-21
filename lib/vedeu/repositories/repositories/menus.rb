@@ -1,7 +1,6 @@
 module Vedeu
 
   # Allows the storing of menus by name.
-  #
   class Menus < Repository
 
     class << self
@@ -16,7 +15,7 @@ module Vedeu
       #
       # @return [Vedeu::Menus]
       def reset!
-        @menus = Vedeu::Menus.register_repository(Vedeu::Menu)
+        @menus = Vedeu::Menus.register(Vedeu::Menu)
       end
 
     end

@@ -1,7 +1,6 @@
 module Vedeu
 
   # Present a string (or object responding to `to_s`).
-  #
   class Text
 
     # @see Vedeu::DSL::Text#text
@@ -55,7 +54,7 @@ module Vedeu
       model.add(content)
     end
 
-    private
+    protected
 
     # @!attribute [r] value
     # @return [String]
@@ -64,6 +63,8 @@ module Vedeu
     # @!attribute [r] options
     # @return [Hash]
     attr_reader :options
+
+    private
 
     # @return [Symbol] One of :align, :centre, :center, :left, :right, :text
     def anchor

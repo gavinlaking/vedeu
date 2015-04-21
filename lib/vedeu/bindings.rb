@@ -1,5 +1,3 @@
-require 'vedeu/events/event'
-
 module Vedeu
 
   # Creates system events which when called provide a variety of core functions
@@ -171,9 +169,9 @@ module Vedeu
     # Clears the whole terminal space, or the named interface area to be cleared
     # if given.
     Vedeu.bind(:_clear_) do |name|
-      if name && Vedeu.interfaces.registered?(name)
-        Vedeu::Clear.clear(Vedeu.interfaces.find(name), clear_border: true,
-          use_terminal_colours: true)
+      if name
+        Vedeu::Clear.clear(Vedeu.interfaces.by_name(name),
+                           clear_border: true, use_terminal_colours: true)
 
       else
         Vedeu::Terminal.virtual.clear if Vedeu::Configuration.drb?

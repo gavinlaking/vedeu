@@ -1,5 +1,5 @@
-require 'vedeu/output/border'
-require 'vedeu/dsl/shared/all'
+require 'vedeu/dsl/shared/presentation'
+require 'vedeu/dsl/shared/use'
 
 module Vedeu
 
@@ -26,7 +26,6 @@ module Vedeu
     #   # ...or standalone; referencing the target interface or view.
     #   Vedeu.border 'some_interface' do
     #     # ...
-    #
     class Border
 
       include Vedeu::DSL
@@ -303,7 +302,7 @@ module Vedeu
         model.vertical = char
       end
 
-      private
+      protected
 
       # @!attribute [r] client
       # @return [Object]

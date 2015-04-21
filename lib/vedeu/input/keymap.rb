@@ -1,11 +1,8 @@
-require 'vedeu/repositories/all'
-require 'vedeu/dsl/components/all'
-require 'vedeu/input/key'
+require 'vedeu/dsl/components/keymap'
 
 module Vedeu
 
   # A container class for keys associated with a particular interface.
-  #
   class Keymap
 
     include Vedeu::Model
@@ -27,9 +24,9 @@ module Vedeu
     def initialize(attributes = {})
       @attributes = defaults.merge!(attributes)
 
-      @name       = @attributes[:name]
-      @keys       = @attributes[:keys]
-      @repository = @attributes[:repository]
+      @attributes.each do |key, value|
+        instance_variable_set("@#{key}", value)
+      end
     end
 
     # @param key [Key]

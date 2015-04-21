@@ -1,7 +1,6 @@
 module Vedeu
 
   # Allows the storing of view buffers.
-  #
   class Buffers < Repository
 
     class << self
@@ -16,22 +15,12 @@ module Vedeu
       #
       # @return [Vedeu::Buffers]
       def reset!
-        @buffers = Vedeu::Buffers.register_repository(Vedeu::Buffer)
+        @buffers = Vedeu::Buffers.register(Vedeu::Buffer)
       end
 
     end
 
-    # @param name [String] The name of the stored buffer.
-    # @return [Vedeu::Buffer|Vedeu::Null::Buffer]
-    def by_name(name)
-      if registered?(name)
-        find(name)
-
-      else
-        Vedeu::Null::Buffer.new(name)
-
-      end
-    end
+    null Vedeu::Null::Buffer
 
   end # Buffers
 

@@ -9,7 +9,6 @@ trap('INT') { exit! }
 require 'vedeu'
 
 # An example application to demonstrate 'Hello World'.
-#
 class HelloWorldApp
 
   include Vedeu

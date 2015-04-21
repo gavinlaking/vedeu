@@ -1,7 +1,6 @@
 module Vedeu
 
   # Clears the area defined by an interface.
-  #
   class Clear
 
     extend Forwardable
@@ -84,11 +83,13 @@ module Vedeu
       Vedeu::Output.render(rendered)
     end
 
-    private
+    protected
 
     # @!attribute [r] interface
     # @return [Interface]
     attr_reader :interface
+
+    private
 
     # @return (see Vedeu::Borders#by_name)
     def border

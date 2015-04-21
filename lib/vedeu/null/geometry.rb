@@ -3,7 +3,6 @@ module Vedeu
   module Null
 
     # Provides a non-existent model to swallow messages.
-    #
     class Geometry
 
       extend Forwardable

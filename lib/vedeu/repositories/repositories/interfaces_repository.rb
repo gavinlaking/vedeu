@@ -1,7 +1,6 @@
 module Vedeu
 
   # Allows the storing of interfaces and views.
-  #
   class InterfacesRepository < Repository
 
     class << self
@@ -16,23 +15,12 @@ module Vedeu
       #
       # @return [Vedeu::InterfacesRepository]
       def reset!
-        @interfaces = Vedeu::InterfacesRepository.
-          register_repository(Vedeu::Interface)
+        @interfaces = Vedeu::InterfacesRepository.register(Vedeu::Interface)
       end
 
     end
 
-    # @param name [String]
-    # @return [Vedeu::Interface|Vedeu::Null::Interface]
-    def by_name(name)
-      if registered?(name)
-        find(name)
-
-      else
-        Vedeu::Null::Interface.new(name: name)
-
-      end
-    end
+    null Vedeu::Null::Interface
 
   end # InterfacesRepository
 

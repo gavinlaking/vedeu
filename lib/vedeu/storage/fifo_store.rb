@@ -3,7 +3,6 @@ module Vedeu
   # First-in first-out storage.
   #
   #   in -> [3] -> [2] -> [1] -> out
-  #
   class FifoStore
 
     include Vedeu::Store

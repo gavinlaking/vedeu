@@ -1,7 +1,6 @@
 module Vedeu
 
   # Maps keys to keymaps.
-  #
   class Mapper
 
     # Takes a key as a keypress and sends it to registered keymaps. If found,
@@ -65,7 +64,7 @@ module Vedeu
       true
     end
 
-    private
+    protected
 
     # @!attribute [r] key
     # @return [String|Symbol]
@@ -74,6 +73,8 @@ module Vedeu
     # @!attribute [r] repository
     # @return [Vedeu::Repository]
     attr_reader :repository
+
+    private
 
     # Is the key a global key?
     #

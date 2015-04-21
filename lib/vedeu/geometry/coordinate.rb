@@ -1,7 +1,6 @@
 module Vedeu
 
   # Crudely corrects out of range values.
-  #
   class Coordinate
 
     # @!attribute [r] height
@@ -118,6 +117,12 @@ module Vedeu
       end
     end
 
+    protected
+
+    # @!attribute [r] name
+    # @return [String]
+    attr_reader :name
+
     private
 
     # Returns the maximum y index for an area.
@@ -193,12 +198,6 @@ module Vedeu
     def y_range
       (y...yn).to_a
     end
-
-    private
-
-    # @!attribute [r] name
-    # @return [String]
-    attr_reader :name
 
   end # Coordinate
 

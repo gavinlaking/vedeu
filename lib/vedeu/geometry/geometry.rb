@@ -1,9 +1,4 @@
-require 'vedeu/dsl/components/all'
 require 'vedeu/repositories/model'
-
-require 'vedeu/geometry/area'
-require 'vedeu/geometry/dimension'
-require 'vedeu/support/terminal'
 
 module Vedeu
 
@@ -26,7 +21,6 @@ module Vedeu
   #       |    bottom    |           # bottom: yn
   #    yn +--------------+           # south:  yn + 1
   #            south
-  #
   class Geometry
 
     extend Forwardable

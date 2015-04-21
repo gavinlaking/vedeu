@@ -3,7 +3,6 @@ module Vedeu
   module Distributed
 
     # A class for the server side of the DRb server/client relationship.
-    #
     class Server
 
       $SAFE = 1 # disable `eval` and related calls on strings passed
@@ -158,14 +157,16 @@ module Vedeu
 
         end
       rescue NoMethodError # raised when #join is called on NilClass.
-        # ...
+        Vedeu.log(type: :debug, message: 'Attempted to #join on DRb.thread.')
       end
 
-      private
+      protected
 
       # @!attribute [r] configuration
       # @return [Configuration]
       attr_reader :configuration
+
+      private
 
       # @return [Boolean]
       def drb?

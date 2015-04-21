@@ -1,7 +1,3 @@
-require 'vedeu/configuration/configuration'
-require 'vedeu/output/esc'
-require 'vedeu/support/log'
-
 module Vedeu
 
   # :nocov:
@@ -9,7 +5,6 @@ module Vedeu
   # occurs inside Vedeu. This is very useful (to me!) for debugging. Running
   # this will make your application less responsive, and the tests
   # excruciatingly slow to run.
-  #
   class Trace
 
     # @todo
@@ -48,11 +43,15 @@ module Vedeu
     # - (id) the method name being traced,
     # - (vars) any local variables belonging to the method.
     #
+    # @note
+    #   Arguments to set_trace_func proc:
+    #     |event, file, line, id, binding, name|
+    #
     # @todo Deprecate, and use TracePoint instead.
     #
     # @return [NilClass|String]
     def trace
-      set_trace_func proc { |event, _file, _line, id, binding, name|
+      set_trace_func proc { |event, _, _, id, binding, name|
         if event == watched && id != :log && classes.include?(name.to_s)
           vars = variables(binding)
 
@@ -163,7 +162,7 @@ module Vedeu
     #
     # @return [Set]
     def vedeu_exceptions
-      Vedeu::Exceptions.to_set
+      Vedeu::EXCEPTIONS.to_set
     end
 
     # Returns a set of classes to ignore during tracing.

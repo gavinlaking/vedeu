@@ -3,6 +3,7 @@ $LOAD_PATH.unshift($LIB_DIR) unless $LOAD_PATH.include?($LIB_DIR)
 
 require 'date'
 require 'drb'
+require 'erb'
 require 'forwardable'
 require 'io/console'
 require 'json'
@@ -16,7 +17,6 @@ require 'time'
 require 'vedeu/support/log'
 
 # Vedeu is a GUI framework for terminal/console applications written in Ruby.
-#
 module Vedeu
 
   extend Forwardable
@@ -67,7 +67,7 @@ module Vedeu
   #
   # VedeuInterrupt: Raised when Vedeu wishes to exit.
   #
-  Exceptions = %w(
+  EXCEPTIONS = %w(
     ModelNotFound
     InvalidSyntax
     MissingRequired
@@ -76,9 +76,7 @@ module Vedeu
     OutOfRange
     VedeuInterrupt
   )
-  Exceptions.each { |e| const_set(e, Class.new(StandardError)) }
-
-  private
+  EXCEPTIONS.each { |e| const_set(e, Class.new(StandardError)) }
 
 end # Vedeu
 

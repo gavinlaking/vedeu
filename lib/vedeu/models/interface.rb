@@ -1,5 +1,3 @@
-require 'vedeu/models/all'
-require 'vedeu/output/presentation'
 require 'vedeu/buffers/display_buffer'
 
 module Vedeu
@@ -7,7 +5,6 @@ module Vedeu
   # An Interface represents a portion of the terminal defined by
   # {Vedeu::Geometry}. It is a container for {Vedeu::Line} and {Vedeu::Stream}
   # objects.
-  #
   class Interface
 
     extend Forwardable

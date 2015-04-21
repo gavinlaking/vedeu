@@ -1,4 +1,3 @@
-require 'vedeu/repositories/all'
 require 'vedeu/events/trigger'
 
 module Vedeu
@@ -30,7 +29,6 @@ module Vedeu
   #       # Not all events you define will have arguments; like methods.
   #       :do_stuff
   #     end
-  #
   class Event
 
     include Vedeu::Model
@@ -150,7 +148,7 @@ module Vedeu
       return execute(*args) if throttling? && throttle_expired?
     end
 
-    private
+    protected
 
     # @!attribute [r] closure
     # @return [String]
@@ -171,6 +169,8 @@ module Vedeu
     # @!attribute [rw] now
     # @return [String]
     attr_accessor :now
+
+    private
 
     # Execute the code stored in the event closure.
     #

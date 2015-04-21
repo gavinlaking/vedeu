@@ -7,9 +7,20 @@ module Vedeu
     let(:described) { Vedeu::RefreshCursor }
     let(:instance)  { described.new(_name) }
     let(:_name)     { 'refresh_cursor' }
+    let(:expected)  {}
+    let(:ox)        { 0 }
+    let(:oy)        { 0 }
 
     before do
-      Vedeu::Terminal.stubs(:output)
+      Vedeu.geometry 'refresh_cursor' do
+        x  1
+        xn 3
+        y  1
+        yn 3
+      end
+      Vedeu::Cursor.new({ name: 'refresh_cursor', ox: ox, oy: oy }).store
+
+      Vedeu::Terminal.stubs(:output).returns(expected)
     end
 
     describe '#initialize' do
@@ -17,20 +28,31 @@ module Vedeu
       it { instance.instance_variable_get('@name').must_equal(_name) }
     end
 
-    # describe '.render' do
-    #   subject { described.render(_name) }
+    describe '.render' do
+      subject { described.render(_name) }
 
-    #   it 'renders the cursor in the terminal' do
-    #     Vedeu::Terminal.expects(:output).with("\e[1;1H\e[?25l")
-    #     subject
-    #   end
+      it 'renders the cursor in the terminal' do
+        Vedeu::Terminal.expects(:output).with("\e[1;1H\e[?25l")
+        subject
+      end
 
-    #   context 'when the view should be refreshed' do
-    #   end
+      context 'when the cursors offset position is outside the viewable area' do
+        let(:ox) { 3 }
+        let(:oy) { 3 }
 
-    #   context 'when the view should not be refreshed' do
-    #   end
-    # end
+        it 'refreshes the view' do
+          Vedeu::Refresh.expects(:by_name)
+          subject
+        end
+      end
+
+      context 'when the cursors offset position is inside the viewable area' do
+        it 'does not refresh the view' do
+          Vedeu::Refresh.expects(:by_name).never
+          subject
+        end
+      end
+    end
 
   end # RefreshCursor
 

@@ -1,5 +1,3 @@
-require 'vedeu/support/common'
-
 module Vedeu
 
   # Converts the style value or value collection into a terminal escape
@@ -11,7 +9,6 @@ module Vedeu
   # Styles are applied as encountered.
   #
   # @see Vedeu::Esc
-  #
   class Style
 
     include Vedeu::Common

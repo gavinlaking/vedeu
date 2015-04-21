@@ -1,7 +1,6 @@
 module Vedeu
 
   # A Dimension is either the height or width of an entity.
-  #
   class Dimension
 
     # @param (see #initialize)
@@ -42,7 +41,7 @@ module Vedeu
       dimension
     end
 
-    private
+    protected
 
     # @!attribute [r] d
     # @return [Fixnum|NilClass]
@@ -59,6 +58,8 @@ module Vedeu
     # @!attribute [r] default
     # @return [Fixnum|NilClass]
     attr_reader :default
+
+    private
 
     # @return [Array<Fixnum>]
     def dimension

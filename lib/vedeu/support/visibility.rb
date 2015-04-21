@@ -1,7 +1,6 @@
 module Vedeu
 
   # Change the visibility of the given model.
-  #
   class Visibility
 
     # @param name [String]
@@ -70,7 +69,7 @@ module Vedeu
       end
     end
 
-    private
+    protected
 
     # @!attribute [r] model
     # @return [void]

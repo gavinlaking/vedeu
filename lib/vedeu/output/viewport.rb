@@ -5,7 +5,6 @@ module Vedeu
   # When a buffer has more lines than the defined height, or more columns than
   # the defined width of the interface, the Viewport class provides 'scrolling'
   # via the cursor's position.
-  #
   class Viewport
 
     extend Forwardable
@@ -72,11 +71,13 @@ module Vedeu
       render.map(&:to_s).join("\n")
     end
 
-    private
+    protected
 
     # @!attribute [r] interface
     # @return [Vedeu::Interface]
     attr_reader :interface
+
+    private
 
     # Returns the visible content for the interface.
     #

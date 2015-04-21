@@ -2,7 +2,6 @@ module Vedeu
 
   # Allows the storing of interface/view borders independent of the interface
   # instance.
-  #
   class Borders < Repository
 
     class << self
@@ -17,22 +16,12 @@ module Vedeu
       #
       # @return [Vedeu::Borders]
       def reset!
-        @borders = Vedeu::Borders.register_repository(Vedeu::Border)
+        @borders = Vedeu::Borders.register(Vedeu::Border)
       end
 
     end
 
-    # @param name [String] The name of the stored border.
-    # @return [Vedeu::Border|Vedeu::Null::Border]
-    def by_name(name)
-      if registered?(name)
-        find(name)
-
-      else
-        Vedeu::Null::Border.new(name)
-
-      end
-    end
+    null Vedeu::Null::Border
 
   end # Borders
 

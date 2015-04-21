@@ -1,10 +1,6 @@
-require 'vedeu/output/renderers/all'
-require 'vedeu/output/virtual_buffer'
-
 module Vedeu
 
   # Sends the content to the renderers.
-  #
   class Output
 
     # Writes content to the defined renderers.
@@ -36,7 +32,7 @@ module Vedeu
       Vedeu.renderers.render(content)
     end
 
-    private
+    protected
 
     # @!attribute [r] content
     # @return [Array<Array<Vedeu::Char>>]

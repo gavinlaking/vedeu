@@ -1,11 +1,8 @@
-require 'vedeu/models/group'
-
 module Vedeu
 
   module DSL
 
     # DSL for adding interfaces to a group.
-    #
     class Group
 
       include Vedeu::DSL
@@ -58,7 +55,7 @@ module Vedeu
         model.add(interface_name)
       end
 
-      private
+      protected
 
       # @!attribute [r] client
       # @return [Object]

@@ -1,5 +1,3 @@
-require 'vedeu/repositories/all'
-
 module Vedeu
 
   # This module is included in Vedeu::Interface to provide means to store client

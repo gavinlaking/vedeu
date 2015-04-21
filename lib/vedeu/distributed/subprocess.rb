@@ -1,10 +1,7 @@
-require 'vedeu/distributed/test_application'
-
 module Vedeu
 
   # @example
   #   Vedeu::TestApplication.build
-  #
   class Subprocess
 
     # @param (see #initialize)
@@ -45,7 +42,7 @@ module Vedeu
       file_unlink
     end
 
-    private
+    protected
 
     # @!attribute [r] application
     # @return [Vedeu::TestApplication]
@@ -54,6 +51,8 @@ module Vedeu
     # @!attribute [rw] pid
     # @return [Fixnum]
     attr_accessor :pid
+
+    private
 
     # @return [String]
     def command

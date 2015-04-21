@@ -6,7 +6,6 @@ module Vedeu
     # events to drive them.
     #
     # @api public
-    #
     class Menu
 
       include Vedeu::DSL
@@ -73,7 +72,7 @@ module Vedeu
         model.name = value
       end
 
-      private
+      protected
 
       # @!attribute [r] client
       # @return [Object]

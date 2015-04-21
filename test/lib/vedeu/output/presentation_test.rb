@@ -20,40 +20,68 @@ module Vedeu
   class PresentationTestClass
     include Presentation
 
+    attr_reader :attributes
+
+    def initialize(attributes = {})
+      @attributes = attributes
+    end
+
     def parent
       ParentPresentationTestClass.new
     end
 
-    def attributes
-      {
-        colour: { background: '#000033', foreground: '#aadd00' },
-        style:  ['bold']
-      }
-    end
   end # PresentationTestClass
 
   describe Presentation do
 
-    let(:receiver) { PresentationTestClass.new }
+    let(:receiver) { PresentationTestClass.new(attributes) }
+    let(:attributes) {
+      {
+        colour: { background: background, foreground: foreground },
+        style:  ['bold']
+      }
+    }
+    let(:background) { '#000033' }
+    let(:foreground) { '#aadd00' }
 
     describe '#background' do
       subject { receiver.background }
 
       it { subject.must_be_instance_of(Vedeu::Background) }
+      it { subject.colour.must_equal('#000033') }
+
+      context 'no background value' do
+        let(:background) {}
+
+        it { subject.must_be_instance_of(Vedeu::Background) }
+        it { subject.colour.must_equal('') }
+      end
     end
 
     describe '#foreground' do
       subject { receiver.foreground }
 
       it { subject.must_be_instance_of(Vedeu::Foreground) }
+      it { subject.colour.must_equal('#aadd00') }
+
+      context 'no foreground value' do
+        let(:foreground) {}
+
+        it { subject.must_be_instance_of(Vedeu::Foreground) }
+        it { subject.colour.must_equal('') }
+      end
     end
 
     describe '#parent_background' do
       subject { receiver.parent_background }
+
+      it { subject.must_be_instance_of(Vedeu::Background) }
     end
 
     describe '#parent_foreground' do
       subject { receiver.parent_foreground }
+
+      it { subject.must_be_instance_of(Vedeu::Foreground) }
     end
 
     describe '#colour' do

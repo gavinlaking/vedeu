@@ -1,7 +1,6 @@
 module Vedeu
 
   # Orchestrates the running of the main application loop.
-  #
   class Application
 
     # @param (see #initialize)
@@ -64,11 +63,13 @@ module Vedeu
       output
     end
 
-    private
+    protected
 
     # @!attribute [r] configuration
     # @return [Configuration]
     attr_reader :configuration
+
+    private
 
     # Runs the application loop either once, or forever (exceptions and signals
     # permitting).

@@ -1,7 +1,6 @@
 module Vedeu
 
   # Change coordinates into an escape sequence to set the cursor position.
-  #
   class Position
 
     # @!attribute [r] y

@@ -1,12 +1,8 @@
-require 'vedeu/geometry/geometry'
-require 'vedeu/dsl/shared/all'
-
 module Vedeu
 
   module DSL
 
     # Provide DSL methods for configuring the geometry of an interface.
-    #
     class Geometry
 
       include Vedeu::DSL
@@ -187,7 +183,7 @@ module Vedeu
         model.yn = value
       end
 
-      private
+      protected
 
       # @!attribute [r] client
       # @return [Object]

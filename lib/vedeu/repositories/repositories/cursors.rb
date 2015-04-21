@@ -1,7 +1,6 @@
 module Vedeu
 
   # Allows the storing of each interface's cursor.
-  #
   class Cursors < Repository
 
     class << self
@@ -21,7 +20,7 @@ module Vedeu
       #
       # @return [Vedeu::Cursors]
       def reset!
-        @cursors = Vedeu::Cursors.register_repository(Vedeu::Cursor)
+        @cursors = Vedeu::Cursors.register(Vedeu::Cursor)
       end
 
     end

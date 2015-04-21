@@ -1,40 +1,45 @@
 module Vedeu
 
-  # Converts a grid of {Vedeu::Char} objects into a stream of escape sequences
-  # and content suitable for a terminal.
-  #
-  class Renderers::Terminal
+  module Renderers
 
-    # @param output [Array<Array<Vedeu::Char>>]
-    # @return [String]
-    def self.render(*output)
-      new(*output).render
-    end
+    # Converts a grid of {Vedeu::Char} objects into a stream of escape sequences
+    # and content suitable for a terminal.
+    class Terminal
 
-    # Returns a new instance of Vedeu::Renderers::Terminal.
-    #
-    # @param output [Array<Array<Vedeu::Char>>]
-    # @return [Vedeu::Renderers::Terminal]
-    def initialize(*output)
-      @output = output
-    end
+      # @param output [Array<Array<Vedeu::Char>>]
+      # @return [String]
+      def self.render(*output)
+        new(*output).render
+      end
 
-    # @return [Array<String>]
-    def render
-      Vedeu::Terminal.output(parsed)
-    end
+      # Returns a new instance of Vedeu::Renderers::Terminal.
+      #
+      # @param output [Array<Array<Vedeu::Char>>]
+      # @return [Vedeu::Renderers::Terminal]
+      def initialize(*output)
+        @output = output
+      end
 
-    private
+      # @return [Array<String>]
+      def render
+        Vedeu::Terminal.output(parsed)
+      end
 
-    # @!attribute [r] output
-    # @return [Array<Array<Vedeu::Char>>]
-    attr_reader :output
+      protected
 
-    # @return [String]
-    def parsed
-      Vedeu::Compressor.new(output).render
-    end
+      # @!attribute [r] output
+      # @return [Array<Array<Vedeu::Char>>]
+      attr_reader :output
 
-  end # Renderers::Terminal
+      private
+
+      # @return [String]
+      def parsed
+        Vedeu::Compressor.new(output).render
+      end
+
+    end # Terminal
+
+  end # Renderers
 
 end # Vedeu

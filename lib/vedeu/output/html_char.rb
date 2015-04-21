@@ -3,7 +3,6 @@ require 'vedeu/support/common'
 module Vedeu
 
   # Represents a {Vedeu::Char} as a HTML table cell.
-  #
   class HTMLChar
 
     include Vedeu::Common
@@ -27,11 +26,13 @@ module Vedeu
       "<td#{td_style}>#{td_value}</td>"
     end
 
-    private
+    protected
 
     # @!attribute [r] char
     # @return [Vedeu::Char]
     attr_reader :char
+
+    private
 
     # @return [String]
     def td_style

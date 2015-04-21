@@ -1,5 +1,3 @@
-require 'vedeu/dsl/shared/all'
-
 module Vedeu
 
   module DSL
@@ -7,7 +5,6 @@ module Vedeu
     # Provides methods to be used to define views.
     #
     # @api public
-    #
     class Stream
 
       include Vedeu::DSL
@@ -33,7 +30,7 @@ module Vedeu
         model.add(model.class.build(attributes, &block))
       end
 
-      private
+      protected
 
       # @!attribute [r] client
       # @return [Object]
@@ -42,6 +39,8 @@ module Vedeu
       # @!attribute [r] model
       # @return [Stream]
       attr_reader :model
+
+      private
 
       # @return [Hash]
       def attributes

@@ -1,12 +1,6 @@
-require 'vedeu/dsl/composition'
-require 'vedeu/repositories/all'
-require 'vedeu/output/presentation'
-require 'vedeu/support/common'
-
 module Vedeu
 
   # A composition is a collection of interfaces.
-  #
   class Composition
 
     include Vedeu::Model
@@ -30,7 +24,6 @@ module Vedeu
       @attributes = defaults.merge!(attributes)
 
       @interfaces = @attributes[:interfaces]
-      @repository = Vedeu.interfaces
     end
 
     # @param child [Vedeu::Interface]
@@ -62,6 +55,7 @@ module Vedeu
         client:     nil,
         colour:     nil,
         interfaces: [],
+        repository: Vedeu.interfaces,
         style:      nil,
       }
     end

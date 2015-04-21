@@ -33,6 +33,13 @@ module Vedeu
       end
     end
 
+    describe '#reset' do
+      subject { instance.reset }
+
+      it { subject.must_be_instance_of(Array) }
+      it { subject.must_equal([]) }
+    end
+
     describe '#save' do
       let(:data)    { :beryllium }
       let(:storage) { [:lithium, :helium, :hydrogen] }

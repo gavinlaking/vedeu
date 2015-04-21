@@ -23,7 +23,6 @@ module Vedeu
 
   # Divides horizontal terminal space into 12 equal columns, discarding
   # the remainder.
-  #
   class Grid
 
     # @see (#initialize)
@@ -49,11 +48,13 @@ module Vedeu
       column * value
     end
 
-    private
+    protected
 
     # @!attribute [r] value
     # @return [Fixnum]
     attr_reader :value
+
+    private
 
     # Returns the width of a single column in characters.
     #

@@ -1,6 +1,3 @@
-require 'vedeu/output/text'
-require 'vedeu/models/all'
-
 module Vedeu
 
   module DSL

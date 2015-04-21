@@ -7,7 +7,6 @@ module Vedeu
   #
   # @example
   #   Vedeu.trigger(:my_event, :oxidize, 'nitrogen')
-  #
   class Trigger
 
     # @param name [Symbol] The name of the event you wish to trigger. The event
@@ -41,7 +40,7 @@ module Vedeu
       end
     end
 
-    private
+    protected
 
     # @!attribute [r] name
     # @return [Symbol]
@@ -54,6 +53,8 @@ module Vedeu
     # @!attribute [r]
     # @return [Vedeu::Repository]
     attr_reader :repository
+
+    private
 
     # @return [Array<void>|void]
     def results

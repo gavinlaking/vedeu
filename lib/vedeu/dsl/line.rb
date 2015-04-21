@@ -1,5 +1,3 @@
-require 'vedeu/dsl/shared/all'
-
 module Vedeu
 
   module DSL
@@ -34,7 +32,6 @@ module Vedeu
     #   end
     #
     # @api public
-    #
     class Line
 
       include Vedeu::DSL
@@ -107,7 +104,7 @@ module Vedeu
       end
       alias_method :stream, :streams
 
-      private
+      protected
 
       # @!attribute [r] client
       # @return [Object]
@@ -116,6 +113,8 @@ module Vedeu
       # @!attribute [r] model
       # @return [Line]
       attr_reader :model
+
+      private
 
       # @return [Hash]
       def attributes

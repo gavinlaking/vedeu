@@ -2,23 +2,27 @@ require 'test_helper'
 
 module Vedeu
 
-  describe Renderers::Terminal do
+  module Renderers
 
-    let(:described) { Vedeu::Renderers::Terminal }
-    let(:instance)  { described.new(output) }
-    let(:output)    {}
+    describe Terminal do
 
-    describe '#initialize' do
-      it { instance.must_be_instance_of(described) }
-      it { instance.instance_variable_get('@output').must_equal([output]) }
-    end
+      let(:described) { Vedeu::Renderers::Terminal }
+      let(:instance)  { described.new(output) }
+      let(:output)    {}
 
-    describe '.render' do
-      subject { described.render }
+      describe '#initialize' do
+        it { instance.must_be_instance_of(described) }
+        it { instance.instance_variable_get('@output').must_equal([output]) }
+      end
 
-      it { subject.must_be_instance_of(Array) }
-    end
+      describe '.render' do
+        subject { described.render }
 
-  end # Renderers::Terminal
+        it { subject.must_be_instance_of(Array) }
+      end
+
+    end # Terminal
+
+  end # Renderers
 
 end # Vedeu

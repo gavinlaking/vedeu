@@ -39,6 +39,13 @@ module Vedeu
       end
     end
 
+    describe '#reset' do
+      subject { instance.reset }
+
+      it { subject.must_be_instance_of(Hash) }
+      it { subject.must_equal({}) }
+    end
+
     describe '#save' do
       let(:data)  { [:some_data] }
       let(:_name) {}

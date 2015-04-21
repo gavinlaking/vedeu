@@ -1,17 +1,8 @@
-require 'vedeu/cursor/cursor'
-require 'vedeu/models/focus'
-require 'vedeu/geometry/geometry'
-require 'vedeu/models/group'
-require 'vedeu/models/line'
-require 'vedeu/output/border'
-require 'vedeu/support/common'
-
 module Vedeu
 
   module DSL
 
     # DSL for creating interfaces.
-    #
     class Interface
 
       include Vedeu::Common
@@ -247,7 +238,7 @@ module Vedeu
         model.visible = boolean
       end
 
-      private
+      protected
 
       # @!attribute [r] client
       # @return [Object]
@@ -256,6 +247,8 @@ module Vedeu
       # @!attribute [r] model
       # @return [Interface]
       attr_reader :model
+
+      private
 
       # @return [Hash]
       def attributes

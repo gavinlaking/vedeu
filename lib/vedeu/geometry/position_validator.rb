@@ -1,32 +1,16 @@
-require 'vedeu/support/terminal'
-
 module Vedeu
 
   # Validates that the provided coordinates are within the terminal and
   # interface's geometry (with or without a border).
-  #
   class PositionValidator
 
     extend Forwardable
 
-    def_delegators :terminal,
-                   :tx,
-                   :ty,
-                   :txn,
-                   :tyn
-
     def_delegators :border,
-                   :enabled?,
                    :bx,
                    :bxn,
                    :by,
                    :byn
-
-    def_delegators :geometry,
-                   :left,
-                   :right,
-                   :top,
-                   :bottom
 
     # @!attribute [rw] x
     # @return [Fixnum]
@@ -58,55 +42,6 @@ module Vedeu
     #
     # @return [PositionValidator]
     def validate
-      terminal_validation
-      interface_validation
-      border_validation if enabled?
-
-      self
-    end
-
-    private
-
-    # @!attribute [r] name
-    # @return [String]
-    attr_reader :name
-
-    # @return [Vedeu::Terminal]
-    def terminal
-      Vedeu::Terminal
-    end
-
-    # Validate the x and y coordinates are within the dimensions of the
-    # terminal.
-    #
-    # @return [PositionValidator]
-    def terminal_validation
-      @x = tx  if x < tx
-      @x = txn if x > txn
-      @y = ty  if y < ty
-      @y = tyn if y > tyn
-
-      self
-    end
-
-    # Validate the x and y coordinates are within the dimensions of the
-    # interface.
-    #
-    # @return [PositionValidator]
-    def interface_validation
-      @x = left   if x < left
-      @x = right  if x > right
-      @y = top    if y < top
-      @y = bottom if y > bottom
-
-      self
-    end
-
-    # Validate the x and y coordinates are within the dimensions of an interface
-    # with a border.
-    #
-    # @return [PositionValidator]
-    def border_validation
       @x = bx  if x < bx
       @x = bxn if x > bxn
       @y = by  if y < by
@@ -115,14 +50,17 @@ module Vedeu
       self
     end
 
+    protected
+
+    # @!attribute [r] name
+    # @return [String]
+    attr_reader :name
+
+    private
+
     # @return (see Vedeu::Borders#by_name)
     def border
       @border ||= Vedeu.borders.by_name(name)
-    end
-
-    # @return (see Vedeu::Geometries#by_name)
-    def geometry
-      @geometry ||= Vedeu.geometries.by_name(name)
     end
 
   end # PositionValidator

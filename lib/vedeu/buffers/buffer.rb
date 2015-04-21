@@ -1,10 +1,7 @@
-require 'vedeu/repositories/model'
-
 module Vedeu
 
   # The Buffer object represents the states of display for an interface. The
   # states are 'front', 'back' and 'previous'.
-  #
   class Buffer
 
     include Vedeu::Model
@@ -76,10 +73,10 @@ module Vedeu
 
     # @return [void]
     def hide
-      if visible?
-        Vedeu::Visibility.hide(interface)
-        clear
-      end
+      return nil unless visible?
+
+      Vedeu::Visibility.hide(interface)
+      clear
     end
 
     # Return the content for this buffer.
@@ -103,10 +100,10 @@ module Vedeu
 
     # @return [void]
     def show
-      unless visible?
-        Vedeu::Visibility.show(interface)
-        render
-      end
+      return nil if visible?
+
+      Vedeu::Visibility.show(interface)
+      render
     end
 
     private

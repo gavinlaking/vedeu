@@ -15,6 +15,7 @@ module Vedeu
       it do
         subject.instance_variable_get('@application').must_equal(application)
       end
+      it { subject.instance_variable_get('@pid').must_equal(nil) }
     end
 
   end # Subprocess

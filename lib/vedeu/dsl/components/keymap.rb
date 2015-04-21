@@ -1,5 +1,4 @@
 require 'vedeu/support/common'
-require 'vedeu/input/key'
 
 module Vedeu
 
@@ -8,7 +7,6 @@ module Vedeu
     # Provides methods to be used to define keypress mapped to actions.
     #
     # @api public
-    #
     class Keymap
 
       include Vedeu::Common
@@ -123,7 +121,7 @@ module Vedeu
         model.name = value
       end
 
-      private
+      protected
 
       # @!attribute [r] client
       # @return [Object]

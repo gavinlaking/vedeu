@@ -2,18 +2,22 @@ require 'test_helper'
 
 module Vedeu
 
-  describe Renderers::Null do
+  module Renderers
 
-    let(:described) { Vedeu::Renderers::Null }
+    describe Null do
 
-    describe '.render' do
-      let(:args) {}
+      let(:described) { Vedeu::Renderers::Null }
 
-      subject { described.render(*args) }
+      describe '.render' do
+        let(:args) {}
 
-      it { subject.must_be_instance_of(NilClass) }
-    end
+        subject { described.render(*args) }
 
-  end # Renderers::Null
+        it { subject.must_be_instance_of(NilClass) }
+      end
+
+    end # Null
+
+  end # Renderers
 
 end # Vedeu

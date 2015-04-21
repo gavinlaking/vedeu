@@ -1,11 +1,8 @@
-require 'vedeu/models/interface'
-
 module Vedeu
 
   module DSL
 
     # DSL for creating collections of interfaces.
-    #
     class Composition
 
       include Vedeu::DSL
@@ -74,7 +71,7 @@ module Vedeu
         model.add(new_model)
       end
 
-      private
+      protected
 
       # @!attribute [r] client
       # @return [Object]
@@ -83,6 +80,8 @@ module Vedeu
       # @!attribute [r] model
       # @return [Composition]
       attr_reader :model
+
+      private
 
       # @param name [String]
       # @param lines [Vedeu::Lines]

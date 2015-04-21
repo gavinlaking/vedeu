@@ -1,10 +1,7 @@
-require 'vedeu/repositories/model'
-
 module Vedeu
 
   # Converts the collection passed into a list of menu items which can be
   # navigated using the instance methods or events provided.
-  #
   class Menu
 
     include Vedeu::Model
@@ -67,11 +64,10 @@ module Vedeu
     # @return [Menu]
     def initialize(attributes = {})
       @attributes = defaults.merge!(attributes)
-      @collection = @attributes[:collection]
-      @current    = @attributes[:current]
-      @name       = @attributes[:name]
-      @repository = Vedeu.menus
-      @selected   = @attributes[:selected]
+
+      @attributes.each do |key, value|
+        instance_variable_set("@#{key}", value)
+      end
     end
 
     # Returns the item from the collection which shares the same index as the
@@ -210,6 +206,7 @@ module Vedeu
         collection: [],
         current:    0,
         name:       '',
+        repository: Vedeu.menus,
         selected:   nil,
       }
     end

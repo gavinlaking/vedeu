@@ -161,7 +161,7 @@ Style/DeprecatedHashMethods:
 
 Style/Documentation:
   Description: 'Document classes and non-namespace modules.'
-  Enabled: true
+  Enabled: false
 
 Style/DotPosition:
   Description: 'Checks the position of the dot in multi-line method calls.'

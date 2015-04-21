@@ -1,5 +1,3 @@
-require 'vedeu/models/composition'
-
 module Vedeu
 
   module DSL
@@ -7,7 +5,6 @@ module Vedeu
     # DSL for creating views.
     #
     # @api public
-    #
     class View
 
       class << self

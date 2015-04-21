@@ -1,5 +1,3 @@
-require 'vedeu/models/all'
-require 'vedeu/storage/store'
 require 'vedeu/support/common'
 
 module Vedeu
@@ -10,10 +8,10 @@ module Vedeu
   #   { 'models' => [Model, Model, Model] }
   #
   #   { 'models' => [Model] }
-  #
   class Repository
 
     include Vedeu::Common
+    include Vedeu::Registerable
     include Vedeu::Store
 
     # @!attribute [r] model
@@ -27,7 +25,7 @@ module Vedeu
     # @param model [Class]
     # @param storage [Class|Hash]
     # @return [Vedeu::Repository]
-    def self.register_repository(model = nil, storage = {})
+    def self.register(model = nil, storage = {})
       new(model, storage).tap do |klass|
         Vedeu::Repositories.register(klass.repository)
       end
@@ -48,6 +46,18 @@ module Vedeu
     # @return [Class]
     def repository
       self.class # .name
+    end
+
+    # @param name [String] The name of the stored model.
+    # @return [void]
+    def by_name(name)
+      if registered?(name)
+        find(name)
+
+      else
+        null_model.new(name)
+
+      end
     end
 
     # Return the model for the interface currently in focus.
@@ -90,7 +100,6 @@ module Vedeu
         model.new(name).store
       end
     end
-    alias_method :by_name, :find_or_create
 
     # @return [String]
     def inspect

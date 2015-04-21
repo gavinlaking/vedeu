@@ -8,7 +8,6 @@ module Vedeu
     #   client = Vedeu::Distributed::Client.connect("druby://localhost:21420")
     #   client.input('a')
     #   client.output # => 'some content...'
-    #
     class Client
 
       # @param (see #initialize)
@@ -84,11 +83,13 @@ module Vedeu
         :shutdown
       end
 
-      private
+      protected
 
       # @!attribute [r] uri
       # @return [String]
       attr_reader :uri
+
+      private
 
       # @return [void]
       def server
