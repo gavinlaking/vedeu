@@ -43,6 +43,12 @@ module Vedeu
       end
     end
 
+    describe '#width' do
+      subject { instance.width }
+
+      it { subject.must_equal(6) }
+    end
+
   end # Grid
 
 end # Vedeu

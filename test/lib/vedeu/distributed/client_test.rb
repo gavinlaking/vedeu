@@ -9,8 +9,12 @@ module Vedeu
       let(:described) { Vedeu::Distributed::Client }
       let(:instance)  { described.new(uri) }
       let(:uri)       { 'druby://localhost:21420' }
+      let(:server)    {}
 
-      before { $stdout.stubs(:puts) }
+      before do
+        $stdout.stubs(:puts)
+        DRbObject.stubs(:new_with_uri).returns(server)
+      end
 
       describe 'alias methods' do
         it { instance.must_respond_to(:read) }
@@ -26,7 +30,18 @@ module Vedeu
         subject { described.connect(uri) }
 
         context 'when the DRb server is not available or not enabled' do
+          before { DRbObject.stubs(:new_with_uri).raises(DRb::DRbConnError) }
+
           it { subject.must_equal(:drb_connection_error) }
+        end
+
+        context 'when the URI is incorrect for connecting' do
+          before { DRbObject.stubs(:new_with_uri).raises(DRb::DRbBadURI) }
+
+          it { subject.must_equal(:drb_bad_uri) }
+        end
+
+        context 'when the DRb server is available' do
         end
       end
 
@@ -36,7 +51,12 @@ module Vedeu
         subject { instance.input(data) }
 
         context 'when the DRb server is not available or not enabled' do
+          before { DRbObject.stubs(:new_with_uri).raises(DRb::DRbConnError) }
+
           it { subject.must_equal(:drb_connection_error) }
+        end
+
+        context 'when the DRb server is available' do
         end
       end
 
@@ -44,7 +64,12 @@ module Vedeu
         subject { instance.output }
 
         context 'when the DRb server is not available or not enabled' do
+          before { DRbObject.stubs(:new_with_uri).raises(DRb::DRbConnError) }
+
           it { subject.must_equal(:drb_connection_error) }
+        end
+
+        context 'when the DRb server is available' do
         end
       end
 
@@ -52,7 +77,12 @@ module Vedeu
         subject { instance.shutdown }
 
         context 'when the DRb server is not available or not enabled' do
+          before { DRbObject.stubs(:new_with_uri).raises(DRb::DRbConnError) }
+
           it { subject.must_equal(:drb_connection_error) }
+        end
+
+        context 'when the DRb server is available' do
         end
       end
 

@@ -38,12 +38,16 @@ module Vedeu
     end
     alias_method :==, :eql?
 
+    # Returns the y coordinate.
+    #
     # @return [Fixnum]
     def y
       (iy <= 0) ? oy : (iy + oy)
     end
     alias_method :first, :y
 
+    # Returns the x coordinate.
+    #
     # @return [Fixnum]
     def x
       (ix <= 0) ? ox : (ix + ox)

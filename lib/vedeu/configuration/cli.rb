@@ -46,6 +46,8 @@ module Vedeu
 
       private
 
+      # Setup Vedeu using CLI configuration options for the client application.
+      #
       # @return [void]
       def setup!
         ([:banner] + allowed_options).each { |opt| send(opt) }

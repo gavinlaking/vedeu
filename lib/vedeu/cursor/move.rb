@@ -133,11 +133,15 @@ module Vedeu
 
     private
 
+    # Retrieve the attributes of the cursor.
+    #
     # @return [Hash<Symbol => Fixnum, String>]
     def attributes
       cursor.attributes
     end
 
+    # Provide the new attributes for the cursor.
+    #
     # @return [Hash<Symbol => Fixnum>]
     def new_attributes
       {
@@ -148,6 +152,8 @@ module Vedeu
       }
     end
 
+    # Validates the new position of the cursor.
+    #
     # @return [PositionValidator]
     def validator
       @validator ||= Vedeu::PositionValidator.validate(name,
@@ -155,16 +161,23 @@ module Vedeu
                                                        y_position)
     end
 
+    # Returns the cursors x position based on its current offset.
+    #
     # @return [Fixnum]
     def x_position
       coordinate.x_position(ox)
     end
 
+    # Returns the cursors y position based on its current offset.
+    #
     # @return [Fixnum]
     def y_position
       coordinate.y_position(oy)
     end
 
+    # Retrieve the border for the named view: this will provide the geometry for
+    # the cursor, ensuring it displays within the interface boundaries.
+    #
     # @return (see Vedeu::Borders#by_name)
     def border
       @border ||= Vedeu.borders.by_name(name)

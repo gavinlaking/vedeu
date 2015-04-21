@@ -22,10 +22,12 @@ end # Fixnum
 module Vedeu
 
   # Divides horizontal terminal space into 12 equal columns, discarding
-  # the remainder.
+  # the remainder. For example, the terminal width is 84 so each column would be
+  # 7 characters wide.
   class Grid
 
-    # @see (#initialize)
+    # @see #initialize
+    # @see #columns
     def self.columns(value)
       new(value).columns
     end
@@ -38,6 +40,8 @@ module Vedeu
       @value = value
     end
 
+    # Returns the width in characters for the number of columns specified.
+    #
     # @raise [OutOfRange] When the value parameter is not between 1 and 12
     #   inclusive.
     # @return [Fixnum|OutOfRange]
@@ -48,6 +52,14 @@ module Vedeu
       column * value
     end
 
+    # Returns the width of a single column in characters.
+    #
+    # @return [Fixnum]
+    def width
+      actual / 12
+    end
+    alias_method :column, :width
+
     protected
 
     # @!attribute [r] value
@@ -55,13 +67,6 @@ module Vedeu
     attr_reader :value
 
     private
-
-    # Returns the width of a single column in characters.
-    #
-    # @return [Fixnum]
-    def column
-      actual / 12
-    end
 
     # @return [Fixnum]
     def actual
