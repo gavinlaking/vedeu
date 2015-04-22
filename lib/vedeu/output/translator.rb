@@ -105,18 +105,30 @@ module Vedeu
 
     private
 
-    # Subclasses implement this method.
+    # Retrieves the escape sequence for the HTML/CSS colour code.
     #
+    # @param colour [String]
     # @return [String]
-    def retrieve(*)
-      ''
+    def retrieve(colour)
+      repository.retrieve(colour)
     end
 
-    # Subclasses implement this method.
+    # Registers a HTML/CSS colour code and escape sequence to reduce processing.
     #
-    # @return [FalseClass]
-    def registered?(*)
-      false
+    # @param colour [String] A HTML/CSS colour code.
+    # @param escape_sequence [String] The HTML/CSS colour code as an escape
+    #   sequence.
+    # @return [String]
+    def register(colour, escape_sequence)
+      repository.register(colour, escape_sequence)
+    end
+
+    # Returns a boolean indicating the HTML/CSS colour code has been registered.
+    #
+    # @param colour [String]
+    # @return [Boolean]
+    def registered?(colour)
+      repository.registered?(colour)
     end
 
     # @return [Boolean]
@@ -245,24 +257,14 @@ module Vedeu
 
     # @raise [NotImplemented] Subclasses of this class must implement this
     #   method.
-    # @return [Exception]
-    def named_codes
-      fail NotImplemented, 'Subclasses implement this.'
-    end
-
-    # @raise [NotImplemented] Subclasses of this class must implement this
-    #   method.
     # @return [NotImplemented]
-    def numbered_prefix
+    def not_implemented
       fail NotImplemented, 'Subclasses implement this.'
     end
-
-    # @raise [NotImplemented] Subclasses of this class must implement this
-    #   method.
-    # @return [NotImplemented]
-    def rgb_prefix
-      fail NotImplemented, 'Subclasses implement this.'
-    end
+    alias_method :named_codes,     :not_implemented
+    alias_method :numbered_prefix, :not_implemented
+    alias_method :repository,      :not_implemented
+    alias_method :rgb_prefix,      :not_implemented
 
   end # Translator
 

@@ -6,32 +6,6 @@ module Vedeu
 
     private
 
-    # Registers a HTML/CSS colour code and escape sequence to reduce processing.
-    #
-    # @param colour [String] A HTML/CSS colour code.
-    # @param escape_sequence [String] The HTML/CSS colour code as an escape
-    #   sequence.
-    # @return [String]
-    def register(colour, escape_sequence)
-      Vedeu.background_colours.register(colour, escape_sequence)
-    end
-
-    # Returns a boolean indicating the HTML/CSS colour code has been registered.
-    #
-    # @param colour [String]
-    # @return [Boolean]
-    def registered?(colour)
-      Vedeu.background_colours.registered?(colour)
-    end
-
-    # Retrieves the escape sequence for the HTML/CSS colour code.
-    #
-    # @param colour [String]
-    # @return [String]
-    def retrieve(colour)
-      Vedeu.background_colours.retrieve(colour)
-    end
-
     # @return [String]
     def named_codes
       Vedeu::Esc.background_codes[colour]
@@ -40,6 +14,11 @@ module Vedeu
     # @return [String]
     def numbered_prefix
       "\e[48;5;"
+    end
+
+    # @return [Vedeu::BackgroundColours]
+    def repository
+      Vedeu.background_colours
     end
 
     # @return [String]
