@@ -98,6 +98,14 @@ module Vedeu
     alias_method :content?, :lines?
     alias_method :value?, :lines?
 
+    # Returns a boolean indicating whether the interface belongs to a
+    # group.
+    #
+    # @return [Boolean]
+    def group?
+      !group.nil? && !group.empty?
+    end
+
     # @return [Array<Array<Vedeu::Char>>]
     def render
       return [] unless visible?

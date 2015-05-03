@@ -66,7 +66,7 @@ module Vedeu
     #
     # @return [Vedeu::Interface]
     def store_cursor
-      Vedeu::Cursor.new(name: name).store unless Vedeu.cursors.registered?(name)
+      Vedeu.cursors.by_name(name)
 
       self
     end
@@ -75,9 +75,7 @@ module Vedeu
     #
     # @return [Vedeu::Interface]
     def store_group
-      unless group.nil? || group.empty? || Vedeu.groups.registered?(group)
-        Vedeu::Group.new(members: name, name: group).store
-      end
+      Vedeu.groups.by_name(group).add(name) if group?
 
       self
     end
