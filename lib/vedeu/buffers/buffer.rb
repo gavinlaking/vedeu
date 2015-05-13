@@ -52,9 +52,7 @@ module Vedeu
     def initialize(attributes = {})
       @attributes = defaults.merge!(attributes)
 
-      @attributes.each do |key, value|
-        instance_variable_set("@#{key}", value)
-      end
+      @attributes.each { |key, value| instance_variable_set("@#{key}", value) }
     end
 
     # Add the content to the back buffer, then update the repository.
