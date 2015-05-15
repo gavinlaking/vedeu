@@ -36,6 +36,10 @@ module Vedeu
 
     module_function
 
+    # @!method background_colours
+    #   @see Vedeu::BackgroundColours.background_colours
+    def_delegators Vedeu::BackgroundColours, :background_colours
+
     # @!method borders
     #   @see Vedeu::Borders.borders
     def_delegators Vedeu::Borders, :borders
@@ -48,25 +52,68 @@ module Vedeu
     #   @see Vedeu::Canvas.canvas
     def_delegators Vedeu::Canvas, :canvas
 
-    # @!method background_colours
-    #   @see Vedeu::BackgroundColours.background_colours
-    def_delegators Vedeu::BackgroundColours, :background_colours
-
-    # @!method foreground_colours
-    #   @see Vedeu::ForegroundColours.foreground_colours
-    def_delegators Vedeu::ForegroundColours, :foreground_colours
-
-    # @!method cursors
-    #   @see Vedeu::Cursors.cursors
-    def_delegators Vedeu::Cursors, :cursors
+    # @!method configure
+    #   @see Vedeu::Configuration.configure
+    # @!method configuration
+    #   @see Vedeu::Configuration.configuration
+    def_delegators Vedeu::Configuration, :configure, :configuration
 
     # @!method cursor
     #   @see Vedeu::Cursors.cursor
-    def_delegators Vedeu::Cursors, :cursor
+    # @!method cursors
+    #   @see Vedeu::Cursors.cursors
+    def_delegators Vedeu::Cursors, :cursor, :cursors
+
+    # @!method border
+    #   @see Vedeu::DSL::Border.border
+    def_delegators Vedeu::DSL::Border, :border
+
+    # @!method geometry
+    #   @see Vedeu::DSL::Geometry.geometry
+    def_delegators Vedeu::DSL::Geometry, :geometry
+
+    # @!method group
+    #   @see Vedeu::DSL::Group.group
+    def_delegators Vedeu::DSL::Group, :group
+
+    # @!method keymap
+    #   @see Vedeu::DSL::Keymap.keymap
+    def_delegators Vedeu::DSL::Keymap, :keymap
+
+    # @!method interface
+    #   @see Vedeu::DSL::View.interface
+    # @!method renders
+    #   @see Vedeu::DSL::View.renders
+    # @!method views
+    #   @see Vedeu::DSL::View.views
+    def_delegators Vedeu::DSL::View, :interface, :renders, :views
+
+    # @!method bind
+    #   @see Vedeu::Event.bind
+    # @!method unbind
+    #   @see Vedeu::Event.unbind
+    def_delegators Vedeu::Event, :bind, :unbind
 
     # @!method events
     #   @see Vedeu::EventsRepository.events
     def_delegators Vedeu::EventsRepository, :events
+
+    # @!method focus
+    #   @see Vedeu::Focus#focus
+    # @!method focus_by_name
+    #   @see Vedeu::Focus#focus_by_name
+    # @!method focussed?
+    #   @see Vedeu::Focus#focussed?
+    # @!method focus_next
+    #   @see Vedeu::Focus#focus_next
+    # @!method focus_previous
+    #   @see Vedeu::Focus#focus_previous
+    def_delegators Vedeu::Focus, :focus, :focus_by_name, :focussed?,
+                   :focus_next, :focus_previous
+
+    # @!method foreground_colours
+    #   @see Vedeu::ForegroundColours.foreground_colours
+    def_delegators Vedeu::ForegroundColours, :foreground_colours
 
     # @!method geometries
     #   @see Vedeu::Geometries.geometries
@@ -84,74 +131,27 @@ module Vedeu
     #   @see Vedeu::Keymaps.keymaps
     def_delegators Vedeu::Keymaps, :keymaps
 
+    # @!method log
+    #   @see Vedeu::Log.log
+    def_delegators Vedeu::Log, :log
+
     # @!method keypress
     #   @see Vedeu::Mapper.keypress
     def_delegators Vedeu::Mapper, :keypress
+
+    # @!method menu
+    #   @see Vedeu::Menu.menu
+    def_delegators Vedeu::Menu, :menu
 
     # @!method menus
     #   @see Vedeu::Menus.menus
     def_delegators Vedeu::Menus, :menus
 
-    # @!method bind
-    #   @see Vedeu::Event.bind
-    # @!method unbind
-    #   @see Vedeu::Event.unbind
-    def_delegators Vedeu::Event, :bind, :unbind
-
-    # @!method trigger
-    #   @see Vedeu::Trigger.trigger
-    def_delegators Vedeu::Trigger, :trigger
-
-    # @!method configure
-    #   @see Vedeu::Configuration.configure
-    # @!method configuration
-    #   @see Vedeu::Configuration.configuration
-    def_delegators Vedeu::Configuration, :configure, :configuration
-
-    # @!method border
-    #   @see Vedeu::DSL::Border.border
-    def_delegators Vedeu::DSL::Border, :border
-
-    # @!method geometry
-    #   @see Vedeu::DSL::Geometry.geometry
-    def_delegators Vedeu::DSL::Geometry, :geometry
-
-    # @!method keymap
-    #   @see Vedeu::DSL::Keymap.keymap
-    def_delegators Vedeu::DSL::Keymap, :keymap
-
-    # @!method group
-    #   @see Vedeu::DSL::Group.group
-    def_delegators Vedeu::DSL::Group, :group
-
-    # @!method interface
-    #   @see Vedeu::DSL::View.interface
-    # @!method renders
-    #   @see Vedeu::DSL::View.renders
-    # @!method views
-    #   @see Vedeu::DSL::View.views
-    def_delegators Vedeu::DSL::View, :interface, :renders, :views
-
-    # @!method focus
-    #   @see Vedeu::Focus#focus
-    # @!method focus_by_name
-    #   @see Vedeu::Focus#focus_by_name
-    # @!method focussed?
-    #   @see Vedeu::Focus#focussed?
-    # @!method focus_next
-    #   @see Vedeu::Focus#focus_next
-    # @!method focus_previous
-    #   @see Vedeu::Focus#focus_previous
-    def_delegators Vedeu::Focus, :focus, :focus_by_name, :focussed?,
-                   :focus_next, :focus_previous
-
-    # @!method log
-    #   @see Vedeu::Log.log
-    def_delegators Vedeu::Log, :log
-
-    # @!method menu
-    #   @see Vedeu::Menu.menu
-    def_delegators Vedeu::Menu, :menu
+    # @!method renderer
+    #   @see Vedeu::Renderers#renderer
+    # @!method renderers
+    #   @see Vedeu::Renderers#renderers
+    def_delegators Vedeu::Renderers, :renderer, :renderers
 
     # @!method height
     #   @see Vedeu::Terminal#height
@@ -161,11 +161,9 @@ module Vedeu
     #   @see Vedeu::Terminal#resize
     def_delegators Vedeu::Terminal, :height, :width, :resize
 
-    # @!method renderer
-    #   @see Vedeu::Renderers#renderer
-    # @!method renderers
-    #   @see Vedeu::Renderers#renderers
-    def_delegators Vedeu::Renderers, :renderer, :renderers
+    # @!method trigger
+    #   @see Vedeu::Trigger.trigger
+    def_delegators Vedeu::Trigger, :trigger
 
   end # API
 
