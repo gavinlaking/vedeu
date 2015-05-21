@@ -23,12 +23,16 @@ module Vedeu
       end
     end
 
+    describe '.restart' do
+      subject { described.restart(configuration) }
+
+      it { subject.must_be_instance_of(Array) }
+    end
+
     describe '.start' do
       subject { described.start(configuration) }
 
       it { subject.must_be_instance_of(Array) }
-
-      it { described.must_respond_to(:restart) }
     end
 
     describe '.stop' do

@@ -23,7 +23,7 @@ module Vedeu
     # refresh event is triggered for the interface.
     #
     # @raise [InvalidSyntax] The name is not defined.
-    # @return [Interface]
+    # @return [Vedeu::Interface]
     def store_deferred
       unless defined_value?(name)
         fail InvalidSyntax, 'Cannot store an interface without a name.'
@@ -40,7 +40,7 @@ module Vedeu
     # and also adds interface's name to list of focussable interfaces.
     #
     # @see Vedeu::Buffer
-    # @return [Interface]
+    # @return [Vedeu::Interface]
     def store_new_buffer
       if Vedeu.buffers.registered?(name)
         Vedeu.buffers.find(name).add(self)
@@ -55,7 +55,7 @@ module Vedeu
 
     # Registers interface name in focus list unless already registered.
     #
-    # @return [Interface]
+    # @return [Vedeu::Interface]
     def store_focusable
       Vedeu.focusable.add(name) unless Vedeu.focusable.registered?(name)
 
@@ -64,20 +64,18 @@ module Vedeu
 
     # Registers a new cursor for the interface unless already registered.
     #
-    # @return [Interface]
+    # @return [Vedeu::Interface]
     def store_cursor
-      Vedeu::Cursor.new(name: name).store unless Vedeu.cursors.registered?(name)
+      Vedeu.cursors.by_name(name)
 
       self
     end
 
     # Registers a new group for the interface unless already registered.
     #
-    # @return [Interface]
+    # @return [Vedeu::Interface]
     def store_group
-      unless group.nil? || group.empty? || Vedeu.groups.registered?(group)
-        Vedeu::Group.new(members: name, name: group).store
-      end
+      Vedeu.groups.by_name(group).add(name) if group?
 
       self
     end

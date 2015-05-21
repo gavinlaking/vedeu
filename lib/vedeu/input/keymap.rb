@@ -29,6 +29,8 @@ module Vedeu
       end
     end
 
+    # Add a key to the keymap.
+    #
     # @param key [Key]
     # @return [void]
     def add(key)
@@ -37,11 +39,15 @@ module Vedeu
       @keys = keys.add(key)
     end
 
+    # Returns the collection of keys defined for this keymap.
+    #
     # @return [Vedeu::Keys]
     def keys
       collection.coerce(@keys, self)
     end
 
+    # Check whether the key is already defined for this keymap.
+    #
     # @param input [String|Symbol]
     # @return [Boolean] A boolean indicating the input provided is already in
     #   use for this keymap.

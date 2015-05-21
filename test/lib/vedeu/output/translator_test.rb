@@ -8,6 +8,10 @@ module Vedeu
     let(:instance)  { described.new(colour) }
     let(:colour)    { '#ff0000' }
 
+    before do
+      instance.stubs(:registered?).returns(false)
+    end
+
     describe 'alias methods' do
       it { instance.must_respond_to(:value) }
     end

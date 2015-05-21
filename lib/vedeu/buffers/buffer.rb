@@ -2,6 +2,14 @@ module Vedeu
 
   # The Buffer object represents the states of display for an interface. The
   # states are 'front', 'back' and 'previous'.
+  #
+  # [Back] -> [Front] -> [Previous]
+  #
+  # The content on the screen, or last output will always be the 'Front' buffer.
+  # Content due to be displayed on next refresh will come from the 'Back' buffer
+  # if available, otherwise from the current 'Front' buffer. When new content
+  # is copied to the 'Front' buffer, the current 'Front' buffer is also copied
+  # to the 'Previous' buffer.
   class Buffer
 
     include Vedeu::Model
@@ -36,17 +44,15 @@ module Vedeu
     #
     # @option attributes name [String] The name of the interface for which the
     #   buffer belongs.
-    # @option attributes back [Interface]
-    # @option attributes front [Interface]
-    # @option attributes previous [Interface]
+    # @option attributes back [Vedeu::Interface]
+    # @option attributes front [Vedeu::Interface]
+    # @option attributes previous [Vedeu::Interface]
     # @option attributes repository [Vedeu::Buffers]
     # @return [Vedeu::Buffer]
     def initialize(attributes = {})
       @attributes = defaults.merge!(attributes)
 
-      @attributes.each do |key, value|
-        instance_variable_set("@#{key}", value)
-      end
+      @attributes.each { |key, value| instance_variable_set("@#{key}", value) }
     end
 
     # Add the content to the back buffer, then update the repository.
@@ -71,6 +77,8 @@ module Vedeu
       clear_buffer
     end
 
+    # Hide this buffer.
+    #
     # @return [void]
     def hide
       return nil unless visible?
@@ -98,6 +106,8 @@ module Vedeu
     end
     alias_method :content, :render
 
+    # Show this buffer.
+    #
     # @return [void]
     def show
       return nil if visible?
@@ -108,6 +118,8 @@ module Vedeu
 
     private
 
+    # Retrieve the latest content from the buffer.
+    #
     # @return [Array<Array<Array<Vedeu::Char>>>]
     def buffer
       swap if content_for?(:back)
@@ -124,6 +136,8 @@ module Vedeu
       end
     end
 
+    # Clear the buffer.
+    #
     # @return [void]
     def clear_buffer
       @clear_buffer ||= Vedeu::Clear.new(view).clear
@@ -166,6 +180,8 @@ module Vedeu
       true
     end
 
+    # Retrieve the interface by name.
+    #
     # @return [Vedeu::Interface]
     def interface
       @interface ||= Vedeu.interfaces.by_name(name)

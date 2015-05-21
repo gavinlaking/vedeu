@@ -100,6 +100,8 @@ module Vedeu
 
     private
 
+    # Return the position of this cursor.
+    #
     # @return [Vedeu::Position]
     def position
       @position ||= Vedeu::Position.new(y, x)

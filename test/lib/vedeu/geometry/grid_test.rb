@@ -10,6 +10,14 @@ describe Fixnum do
     end
   end
 
+  describe '#rows' do
+    it 'returns the height if the value is in range' do
+      IO.console.stub :winsize, [25, 60] do
+        1.rows.must_equal(2)
+      end
+    end
+  end
+
 end # Fixnum
 
 module Vedeu
@@ -41,6 +49,34 @@ module Vedeu
           Grid.columns(7).must_equal(42)
         end
       end
+    end
+
+    describe '#height' do
+      subject { instance.height }
+
+      it { subject.must_equal(2) }
+    end
+
+    describe '.rows' do
+      context 'when the value is less than 1' do
+        it { proc { Grid.rows(0) }.must_raise(OutOfRange) }
+      end
+
+      context 'when the value is greater than 12' do
+        it { proc { Grid.rows(13) }.must_raise(OutOfRange) }
+      end
+
+      context 'when the value is in range' do
+        it 'returns the value of the row' do
+          Grid.rows(7).must_equal(14)
+        end
+      end
+    end
+
+    describe '#width' do
+      subject { instance.width }
+
+      it { subject.must_equal(6) }
     end
 
   end # Grid

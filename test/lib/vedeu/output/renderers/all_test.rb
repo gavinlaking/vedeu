@@ -51,6 +51,14 @@ module Vedeu
       # end
     end
 
+    describe '.render' do
+      let(:args) {}
+
+      subject { described.render(args) }
+
+      it { subject.must_be_instance_of(Array) }
+    end
+
     describe '.renderer' do
       let(:renderers) {}
 

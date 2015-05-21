@@ -9,29 +9,33 @@ module Vedeu
     let(:attributes) {
       {
         client: client,
-        name:   _name,
-        lines:  lines,
-        parent: parent,
         colour: colour,
+        delay:  delay,
+        group:  group,
+        lines:  lines,
+        name:   _name,
+        parent: parent,
         style:  style,
         visible: visible,
       }
     }
     let(:client)     {}
-    let(:_name)      { 'hydrogen' }
-    let(:lines)      { [] }
-    let(:parent)     {}
     let(:colour)     {}
+    let(:delay)      { 0.0 }
+    let(:group)      { '' }
+    let(:lines)      { [] }
+    let(:_name)      { 'hydrogen' }
+    let(:parent)     {}
+    let(:repository) { Vedeu.interfaces }
     let(:style)      {}
     let(:visible)    { true }
-    let(:repository) { Vedeu.interfaces }
 
     describe '#initialize' do
       subject { instance }
 
       it { subject.instance_variable_get('@client').must_equal(client) }
-      it { subject.instance_variable_get('@delay').must_equal(0.0) }
-      it { subject.instance_variable_get('@group').must_equal('') }
+      it { subject.instance_variable_get('@delay').must_equal(delay) }
+      it { subject.instance_variable_get('@group').must_equal(group) }
       it { subject.instance_variable_get('@lines').must_equal(lines) }
       it { subject.instance_variable_get('@name').must_equal(_name) }
       it { subject.instance_variable_get('@parent').must_equal(parent) }
@@ -49,6 +53,20 @@ module Vedeu
       end
 
       context 'when the interface does not have content' do
+        it { subject.must_equal(false) }
+      end
+    end
+
+    describe '#group?' do
+      subject { instance.group? }
+
+      context 'when the interface belongs to a group' do
+        let(:group) { 'interfaces' }
+
+        it { subject.must_equal(true) }
+      end
+
+      context 'when the interface does not belong to a group' do
         it { subject.must_equal(false) }
       end
     end

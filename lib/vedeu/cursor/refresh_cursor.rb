@@ -44,6 +44,10 @@ module Vedeu
 
     private
 
+    # Returns true when the view should be refreshed. This is determined by
+    # checking that the offsets for x and y are outside the width and height
+    # of the named interface.
+    #
     # @return [Boolean]
     def refresh_view?
       new_cursor.ox >= width || new_cursor.oy >= height
