@@ -33,6 +33,7 @@ module Vedeu
     describe '#initialize' do
       subject { instance }
 
+      it { subject.must_be_instance_of(described) }
       it { subject.instance_variable_get('@client').must_equal(client) }
       it { subject.instance_variable_get('@delay').must_equal(delay) }
       it { subject.instance_variable_get('@group').must_equal(group) }

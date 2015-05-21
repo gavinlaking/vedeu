@@ -11,7 +11,7 @@ module Vedeu
     describe '#initialize' do
       subject { instance }
 
-      it { subject.must_be_instance_of(Vedeu::Subprocess) }
+      it { subject.must_be_instance_of(described) }
       it do
         subject.instance_variable_get('@application').must_equal(application)
       end

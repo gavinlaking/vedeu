@@ -18,7 +18,7 @@ module Vedeu
     describe '#initialize' do
       subject { instance }
 
-      it { subject.must_be_instance_of(Group) }
+      it { subject.must_be_instance_of(described) }
       it {
         subject.instance_variable_get('@attributes').must_be_instance_of(Hash)
       }
