@@ -58,6 +58,10 @@ module Vedeu
     # @return [Fixnum]
     attr_writer :height
 
+    # @!attribute [rw] maximised
+    # @return [Boolean]
+    attr_accessor :maximised
+
     # @!attribute [w] width
     # @return [Fixnum]
     attr_writer :width
@@ -112,7 +116,9 @@ module Vedeu
                                       dn:      _xn,
                                       d_dn:    @width,
                                       default: Vedeu::Terminal.width,
-                                      options: { centred: centred })
+                                      options: {
+                                        centred:   centred,
+                                        maximised: maximised })
     end
 
     # @return [Array<Fixnum>]
@@ -121,7 +127,9 @@ module Vedeu
                                       dn:      _yn,
                                       d_dn:    @height,
                                       default: Vedeu::Terminal.height,
-                                      options: { centred: centred })
+                                      options: {
+                                        centred:   centred,
+                                        maximised: maximised })
     end
 
     # Returns the row/line start position for the interface.
@@ -157,6 +165,7 @@ module Vedeu
       {
         centred:    nil,
         height:     nil,
+        maximised:  false,
         name:       nil,
         repository: Vedeu.geometries,
         width:      nil,
