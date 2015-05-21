@@ -39,6 +39,13 @@ module Vedeu
       it { subject.must_be_instance_of(Array) }
       it { subject.must_equal([15, 38]) }
 
+      context 'when maximised' do
+        let(:options) { { maximised: true } }
+        let(:default) { 80 }
+
+        it { subject.must_equal([1, 80]) }
+      end
+
       context 'when centred and a length can be determined' do
         let(:options) { { centred: true } }
         let(:default) { 80 }
