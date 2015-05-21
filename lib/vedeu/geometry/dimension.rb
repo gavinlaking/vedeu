@@ -63,7 +63,10 @@ module Vedeu
 
     # @return [Array<Fixnum>]
     def dimension
-      @dimension ||= if centred? && length?
+      @dimension ||= if maximised?
+                       [1, default]
+
+                     elsif centred? && length?
                        [centred_d, centred_dn]
 
                      else
@@ -128,6 +131,11 @@ module Vedeu
       end
     end
 
+    # @return [Boolean]
+    def maximised?
+      options[:maximised]
+    end
+
     # @return [Hash<Symbol => Boolean>]
     def options
       defaults.merge!(@options)
@@ -136,7 +144,8 @@ module Vedeu
     # @return [Hash<Symbol => Boolean>]
     def defaults
       {
-        centred: false,
+        centred:   false,
+        maximised: false,
       }
     end
 

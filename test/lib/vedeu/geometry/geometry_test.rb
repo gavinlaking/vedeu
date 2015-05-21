@@ -10,6 +10,7 @@ module Vedeu
       {
         centred:    centred,
         height:     height,
+        maximised:  maximised,
         name:       _name,
         repository: Vedeu.geometries,
         width:      width,
@@ -19,14 +20,15 @@ module Vedeu
         yn:         yn,
       }
     }
-    let(:centred) {}
-    let(:height)  {}
-    let(:_name)   {}
-    let(:width)   {}
-    let(:x)       {}
-    let(:xn)      {}
-    let(:y)       {}
-    let(:yn)      {}
+    let(:centred)   {}
+    let(:height)    {}
+    let(:maximised) {}
+    let(:_name)     {}
+    let(:width)     {}
+    let(:x)         {}
+    let(:xn)        {}
+    let(:y)         {}
+    let(:yn)        {}
 
     before { Terminal.stubs(:size).returns([12, 40]) }
 
@@ -48,7 +50,50 @@ module Vedeu
       end
     end
 
+    describe '#maximise' do
+      let(:attributes) {
+        {
+          height:    6,
+          maximised: false,
+          name:      'maximise',
+          width:     18
+        }
+      }
+
+      subject { instance.maximise }
+
+      it { subject.must_be_instance_of(described) }
+
+      it { subject.maximised.must_equal(true) }
+    end
+
+    describe '#unmaximise' do
+      let(:attributes) {
+        {
+          height:    6,
+          maximised: true,
+          name:      'unmaximise',
+          width:     18
+        }
+      }
+
+      subject { instance.unmaximise }
+
+      it { subject.must_be_instance_of(described) }
+
+      it { subject.maximised.must_equal(false) }
+    end
+
     describe '#top, #right, #bottom, #left' do
+      context 'maximised is true' do
+        let(:attributes) { { maximised: true } }
+
+        it { instance.top.must_equal(1) }
+        it { instance.right.must_equal(40) }
+        it { instance.bottom.must_equal(12) }
+        it { instance.left.must_equal(1) }
+      end
+
       context 'centred is true' do
         let(:attributes) { { height: 6, width: 18, centred: true } }
 

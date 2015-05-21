@@ -23,6 +23,10 @@ module Vedeu
                      :height,
                      :width
 
+      # @!attribute [rw] maximise
+      # @return [Boolean]
+      attr_accessor :maximised
+
       # @!attribute [r] name
       # @return [String|NilClass]
       attr_reader :name
