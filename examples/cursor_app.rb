@@ -32,6 +32,9 @@ class VedeuCursorApp
     key(:right, 'l') { Vedeu.trigger(:_cursor_right_) }
     key(:down,  'j') { Vedeu.trigger(:_cursor_down_)  }
     key(:left,  'h') { Vedeu.trigger(:_cursor_left_)  }
+
+    key('m') { Vedeu.trigger(:_maximise_, 'main_interface') }
+    key('u') { Vedeu.trigger(:_unmaximise_, 'main_interface') }
   end
 
   renders do
