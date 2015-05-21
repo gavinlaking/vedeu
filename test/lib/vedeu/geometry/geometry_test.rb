@@ -50,6 +50,40 @@ module Vedeu
       end
     end
 
+    describe '#maximise' do
+      let(:attributes) {
+        {
+          height:    6,
+          maximised: false,
+          name:      'maximise',
+          width:     18
+        }
+      }
+
+      subject { instance.maximise }
+
+      it { subject.must_be_instance_of(described) }
+
+      it { subject.maximised.must_equal(true) }
+    end
+
+    describe '#unmaximise' do
+      let(:attributes) {
+        {
+          height:    6,
+          maximised: true,
+          name:      'unmaximise',
+          width:     18
+        }
+      }
+
+      subject { instance.unmaximise }
+
+      it { subject.must_be_instance_of(described) }
+
+      it { subject.maximised.must_equal(false) }
+    end
+
     describe '#top, #right, #bottom, #left' do
       context 'maximised is true' do
         let(:attributes) { { maximised: true } }

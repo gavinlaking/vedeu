@@ -262,6 +262,20 @@ module Vedeu
       end
     end
 
+    Vedeu.bind(:_maximise_) do |name|
+      Vedeu.geometries.by_name(name).maximise
+
+      Vedeu.trigger(:_refresh_, name)
+    end
+
+    Vedeu.bind(:_unmaximise_) do |name|
+      Vedeu.trigger(:_clear_, name)
+
+      Vedeu.geometries.by_name(name).unmaximise
+
+      Vedeu.trigger(:_refresh_, name)
+    end
+
   end # Bindings
   # :nocov:
 
