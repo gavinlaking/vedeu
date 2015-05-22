@@ -86,6 +86,7 @@ module Vedeu
     #
     # @param attributes [Hash]
     # @option attributes centred [Boolean]
+    # @option attributes maximised [Boolean]
     # @option attributes height [Fixnum]
     # @option attributes name [String]
     # @option attributes repository [Vedeu::Geometries]

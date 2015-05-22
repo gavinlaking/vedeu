@@ -54,6 +54,8 @@ module Vedeu
       @y, @yn, @x, @xn  = y, yn, x, xn
     end
 
+    # An object is equal when its values are the same.
+    #
     # @param other [Vedeu::Area]
     # @return [Boolean]
     def eql?(other)

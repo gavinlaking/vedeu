@@ -31,6 +31,8 @@ module Vedeu
       Vedeu::Position.new(y, x)
     end
 
+    # An object is equal when its values are the same.
+    #
     # @param other [Vedeu::IndexPosition]
     # @return [Boolean]
     def eql?(other)
