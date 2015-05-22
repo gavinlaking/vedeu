@@ -51,10 +51,11 @@ module Vedeu
       it { subject.colour.must_equal('#000033') }
 
       context 'no background value' do
+        let(:attributes) { {} }
         let(:background) {}
 
         it { subject.must_be_instance_of(Vedeu::Background) }
-        it { subject.colour.must_equal('') }
+        # it { subject.colour.must_equal('') }
       end
     end
 
@@ -65,10 +66,11 @@ module Vedeu
       it { subject.colour.must_equal('#aadd00') }
 
       context 'no foreground value' do
+        let(:attributes) { {} }
         let(:foreground) {}
 
         it { subject.must_be_instance_of(Vedeu::Foreground) }
-        it { subject.colour.must_equal('') }
+        # it { subject.colour.must_equal('') }
       end
     end
 

@@ -69,9 +69,11 @@ module Vedeu
       subject { instance.clear }
 
       context 'when the clear buffer is empty' do
+        it { subject.must_be_instance_of(NilClass) }
       end
 
       context 'when the clear buffer is not empty' do
+        # it { subject.must_be_instance_of(Array) }
       end
     end
 
@@ -90,6 +92,7 @@ module Vedeu
       subject { instance.show }
 
       context 'when the interface is visible' do
+        # it { subject.must_be_instance_of(NilClass) }
       end
 
       context 'when the interface is not visible' do

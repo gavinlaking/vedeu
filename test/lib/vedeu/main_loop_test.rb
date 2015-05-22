@@ -23,6 +23,11 @@ module Vedeu
       subject { described.safe_exit_point! }
 
       context 'when the application has started' do
+        context 'when the loop is running' do
+        end
+
+        context 'when the loop is not running' do
+        end
       end
 
       context 'when the application has not started' do
