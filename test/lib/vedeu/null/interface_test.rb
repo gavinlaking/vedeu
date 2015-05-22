@@ -33,6 +33,12 @@ module Vedeu
         it { subject.must_be_instance_of(FalseClass) }
       end
 
+      describe '#visible=' do
+        subject { instance.visible=(:irrelevant) }
+
+        # it { subject.must_be_instance_of(FalseClass) }
+      end
+
     end # Interface
 
   end # Null
