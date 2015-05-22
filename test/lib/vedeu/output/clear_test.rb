@@ -36,12 +36,7 @@ module Vedeu
       subject { described.clear(interface, options) }
 
       context 'when the interface is visible' do
-        context 'when DRb is enabled' do
-          let(:drb) { true }
-        end
-
-        context 'when DRb is not enabled' do
-        end
+        # it { subject.must_be_instance_of(Array) }
       end
 
       context 'when the interface is not visible' do
@@ -60,6 +55,7 @@ module Vedeu
       it { subject.flatten.size.must_equal(9) }
 
       context 'when the interface is visible' do
+        # it { subject.must_be_instance_of(Array) }
       end
 
       context 'when the interface is not visible' do
@@ -71,6 +67,16 @@ module Vedeu
 
     describe '#write' do
       subject { instance.write }
+
+      context 'when the interface is visible' do
+        # it { subject.must_be_instance_of(Array) }
+      end
+
+      context 'when the interface is not visible' do
+        let(:visible) { false }
+
+        it { subject.must_be_instance_of(NilClass) }
+      end
     end
 
   end # Clear

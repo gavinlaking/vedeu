@@ -124,7 +124,7 @@ module Vedeu
       def drb_height
         parser.on('--drb-height',
                   'Set the height for fake terminal.') do |height|
-          # options[:drb]      = true
+          options[:drb]        = true
           options[:drb_height] = height
         end
       end
@@ -133,7 +133,7 @@ module Vedeu
       def drb_host
         parser.on('--drb-host',
                   'Set the hostname/IP for the DRb server.') do |hostname|
-          # options[:drb]      = true
+          options[:drb]      = true
           options[:drb_host] = hostname
         end
       end
@@ -141,7 +141,7 @@ module Vedeu
       # @return [OptionParser]
       def drb_port
         parser.on('--drb-port', 'Set the port for the DRb server.') do |port|
-          # options[:drb]    = true
+          options[:drb]      = true
           options[:drb_port] = port
         end
       end
@@ -150,7 +150,7 @@ module Vedeu
       def drb_width
         parser.on('--drb-width',
                   'Set the width for fake terminal.') do |width|
-          # options[:drb]     = true
+          options[:drb]       = true
           options[:drb_width] = width
         end
       end

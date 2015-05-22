@@ -60,6 +60,12 @@ module Vedeu
       it { instance.instance_variable_get('@storage').must_equal(storage) }
     end
 
+    describe '#current' do
+      subject { instance.current }
+
+      # it { subject.must_equal('') }
+    end
+
     describe '#find' do
       subject { instance.find(model_name) }
 

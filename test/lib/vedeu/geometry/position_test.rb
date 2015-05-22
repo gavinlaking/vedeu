@@ -72,6 +72,12 @@ module Vedeu
       end
     end
 
+    describe '#to_a' do
+      subject { Position.new.to_a }
+
+      it { subject.must_equal([1, 1]) }
+    end
+
     describe '#to_s' do
       # subject { described.new.to_s }
 

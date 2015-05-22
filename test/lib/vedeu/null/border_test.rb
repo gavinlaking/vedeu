@@ -48,6 +48,12 @@ module Vedeu
         it { subject.must_equal(12) }
       end
 
+      describe '#enabled?' do
+        subject { instance.enabled? }
+
+        it { subject.must_be_instance_of(FalseClass) }
+      end
+
       describe '#height' do
         subject { instance.height }
 

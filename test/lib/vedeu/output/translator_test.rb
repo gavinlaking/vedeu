@@ -24,27 +24,29 @@ module Vedeu
     describe '.coerce' do
       let(:_value) {}
 
-      subject { described.coerce(value) }
+      subject { described.coerce(_value) }
 
-      # context 'when the value is nil' do
-      #   it { subject.must_equal(nil) }
-      # end
+      context 'when the value is nil' do
+        it { subject.must_be_instance_of(described) }
+      end
 
-      # context 'when the value is a Vedeu::Colour' do
-      #   it { subject.must_be_instance_of(Vedeu::Colour) }
-      # end
+      context 'when the value is a Vedeu::Background' do
+        let(:_value) { Vedeu::Background.new }
 
-      # context 'when the value is a Vedeu::Background' do
-      #   it { subject.must_be_instance_of(Vedeu::Background) }
-      # end
+        it { subject.must_equal(_value) }
+      end
 
-      # context 'when the value is a Vedeu::Foreground' do
-      #   it { subject.must_be_instance_of(Vedeu::Foreground) }
-      # end
+      context 'when the value is a Vedeu::Foreground' do
+        let(:_value) { Vedeu::Foreground.new }
 
-      # context 'when the value is not a polymorphic Colour' do
-      #   it { subject.must_be_instance_of(Vedeu::Colour) }
-      # end
+        it { subject.must_equal(_value) }
+      end
+
+      context 'when the value is not a polymorphic Colour' do
+        let(:_value) { '#aadd00' }
+
+        it { subject.must_be_instance_of(Vedeu::Translator) }
+      end
     end
 
     describe '#eql?' do
