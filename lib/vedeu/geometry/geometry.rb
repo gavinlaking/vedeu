@@ -46,10 +46,6 @@ module Vedeu
     # @return [Boolean]
     attr_accessor :centred
 
-    # @!attribute [rw] maximised
-    # @return [Boolean]
-    attr_accessor :maximised
-
     # @!attribute [rw] name
     # @return [String]
     attr_accessor :name

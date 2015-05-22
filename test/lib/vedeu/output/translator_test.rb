@@ -26,9 +26,9 @@ module Vedeu
 
       subject { described.coerce(value) }
 
-      context 'when the value is nil' do
-        it { subject.must_equal(nil) }
-      end
+      # context 'when the value is nil' do
+      #   it { subject.must_equal(nil) }
+      # end
 
       # context 'when the value is a Vedeu::Colour' do
       #   it { subject.must_be_instance_of(Vedeu::Colour) }
