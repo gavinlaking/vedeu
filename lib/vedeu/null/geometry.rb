@@ -44,9 +44,19 @@ module Vedeu
         false
       end
 
+      # @return [FalseClass]
+      def maximise
+        false
+      end
+
       # @return [Vedeu::Null::Geometry]
       def store
         self
+      end
+
+      # @return [FalseClass]
+      def unmaximise
+        false
       end
 
       private
