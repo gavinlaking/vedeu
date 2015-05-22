@@ -1,29 +1,3 @@
-# Monkey-patch Ruby's Fixnum to provide a columns method.
-# @todo Don't monkey-patch because it is naughty.
-class Fixnum
-
-  # Augment Fixnum to calculate column width in a grid-based layout.
-  #
-  # The grid system splits the terminal height and width into 12 equal parts, by
-  # dividing the available height and width by 12. If the terminal height or
-  # width is not a multiple of 12, then Grid chooses the maximum value which
-  # will fit.
-  #
-  # Used primarily at interface creation time:
-  #
-  #   width: 9.columns  # (Terminal width / 12) * 9 characters wide; e.g.
-  #                     # Terminal is 92 characters wide, maximum value is
-  #                     # therefore 84, meaning a column is 7 characters wide.
-  def columns
-    Vedeu::Grid.columns(self)
-  end
-
-  def rows
-    Vedeu::Grid.rows(self)
-  end
-
-end # Fixnum
-
 module Vedeu
 
   # Augment Fixnum to calculate column width or row height in a grid-based
@@ -36,13 +10,15 @@ module Vedeu
   #
   # Used primarily whilst defining geometry:
   #
-  #   width: 9.columns  # (Terminal width / 12) * 9 characters wide; e.g.
+  #   width: columns(9) # (Terminal width / 12) * 9 characters wide; e.g.
   #                     # Terminal is 92 characters wide, maximum value is
   #                     # therefore 84, meaning a column is 7 characters wide.
+  #                     # (And width is therefore 63 characters wide.)
   #
-  #   height: 3.columns # (Terminal height / 12) * 3 rows high; e.g.
+  #   height: rows(3)   # (Terminal height / 12) * 3 rows high; e.g.
   #                     # Terminal is 38 characters wide, maximum value is
   #                     # therefore 36, meaning a row is 3 characters tall.
+  #                     # (And height is therefore 9 characters tall.)
   class Grid
 
     # @see #initialize

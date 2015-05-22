@@ -21,7 +21,7 @@ class VedeuGeometryApp
 
     # Geometry can be defined within the interface.
     geometry do
-      height  8
+      height  rows(4)
       width   8
       x       2
       y       2
@@ -36,7 +36,7 @@ class VedeuGeometryApp
   # Geometry can be defined either before or after the interface.
   geometry 'second' do
     height  8
-    width   8
+    width   columns(1)
     x       12
     y       2
   end
