@@ -88,6 +88,32 @@ module Vedeu
       end
     end
 
+    # @return [Hash<Symbol => String>]
+    def actions
+      {
+        hide_cursor:   "\e[?25l",
+        show_cursor:   "\e[?25h",
+        bg_reset:      "\e[49m",
+        blink:         "\e[5m",
+        blink_off:     "\e[25m",
+        bold:          "\e[1m",
+        bold_off:      "\e[22m",
+        border_on:     "\e(0",
+        border_off:    "\e(B",
+        dim:           "\e[2m",
+        fg_reset:      "\e[39m",
+        negative:      "\e[7m",
+        positive:      "\e[27m",
+        reset:         "\e[0m",
+        underline:     "\e[4m",
+        underline_off: "\e[24m",
+      }
+    end
+
+    actions.each do |key, code|
+      define_method(key) { code }
+    end
+
     # Return the stream with the escape sequences escaped so that they can be
     # printed to the terminal instead of being interpreted by the terminal which
     # will render them. This way we can see what escape sequences are being sent
