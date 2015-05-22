@@ -51,7 +51,10 @@ module Vedeu
     # @param xn [Fixnum]
     # @return [Vedeu::Area]
     def initialize(y:, yn:, x:, xn:)
-      @y, @yn, @x, @xn  = y, yn, x, xn
+      @y  = y
+      @yn = yn
+      @x  = x
+      @xn = xn
     end
 
     # An object is equal when its values are the same.
