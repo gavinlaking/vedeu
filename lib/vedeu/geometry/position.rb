@@ -46,6 +46,8 @@ module Vedeu
       @x = (x.nil? || x < 1) ? 1 : x
     end
 
+    # An object is equal when its values are the same.
+    #
     # @param other [Vedeu::Position]
     # @return [Boolean]
     def eql?(other)

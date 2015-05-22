@@ -63,16 +63,16 @@ module Vedeu
 
     # @return [Array<Fixnum>]
     def dimension
-      @dimension ||= if maximised?
-                       [1, default]
+      @dimension = if maximised?
+                     [1, default]
 
-                     elsif centred? && length?
-                       [centred_d, centred_dn]
+                   elsif centred? && length?
+                     [centred_d, centred_dn]
 
-                     else
-                       [_d, _dn]
+                   else
+                     [_d, _dn]
 
-                     end
+                   end
     end
 
     # @return [Boolean]

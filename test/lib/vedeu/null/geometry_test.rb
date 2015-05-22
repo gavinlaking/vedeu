@@ -26,10 +26,22 @@ module Vedeu
         it { subject.must_equal(false) }
       end
 
+      describe '#maximise' do
+        subject { instance.maximise }
+
+        it { subject.must_equal(false) }
+      end
+
       describe '#store' do
         subject { instance.store }
 
         it { subject.must_be_instance_of(described) }
+      end
+
+      describe '#unmaximise' do
+        subject { instance.unmaximise }
+
+        it { subject.must_equal(false) }
       end
 
       describe '#height' do

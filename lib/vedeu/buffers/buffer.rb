@@ -72,9 +72,9 @@ module Vedeu
     #
     # @return [void]
     def clear
-      Vedeu::Output.render(clear_buffer) unless clear_buffer.empty?
-
-      clear_buffer
+      unless clear_buffer.empty?
+        Vedeu::Output.render(clear_buffer)
+      end
     end
 
     # Hide this buffer.

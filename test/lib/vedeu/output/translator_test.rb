@@ -21,6 +21,32 @@ module Vedeu
       it { instance.instance_variable_get('@colour').must_equal(colour) }
     end
 
+    describe '.coerce' do
+      let(:_value) {}
+
+      subject { described.coerce(value) }
+
+      # context 'when the value is nil' do
+      #   it { subject.must_equal(nil) }
+      # end
+
+      # context 'when the value is a Vedeu::Colour' do
+      #   it { subject.must_be_instance_of(Vedeu::Colour) }
+      # end
+
+      # context 'when the value is a Vedeu::Background' do
+      #   it { subject.must_be_instance_of(Vedeu::Background) }
+      # end
+
+      # context 'when the value is a Vedeu::Foreground' do
+      #   it { subject.must_be_instance_of(Vedeu::Foreground) }
+      # end
+
+      # context 'when the value is not a polymorphic Colour' do
+      #   it { subject.must_be_instance_of(Vedeu::Colour) }
+      # end
+    end
+
     describe '#eql?' do
       let(:other) { instance }
 

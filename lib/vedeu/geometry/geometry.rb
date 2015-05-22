@@ -86,6 +86,7 @@ module Vedeu
     #
     # @param attributes [Hash]
     # @option attributes centred [Boolean]
+    # @option attributes maximised [Boolean]
     # @option attributes height [Fixnum]
     # @option attributes name [String]
     # @option attributes repository [Vedeu::Geometries]
@@ -99,6 +100,11 @@ module Vedeu
       @attributes = defaults.merge!(attributes)
 
       @attributes.each { |key, value| instance_variable_set("@#{key}", value) }
+    end
+
+    # @return [String]
+    def inspect
+      "<Vedeu::Geometry x:#{x} xn:#{xn} y:#{y} yn:#{yn} maximise:#{maximised}>"
     end
 
     # @return [Vedeu::Geometry]
@@ -119,29 +125,29 @@ module Vedeu
 
     # @return [Vedeu::Area]
     def area
-      Vedeu::Area.from_dimensions(y_yn: y_yn, x_xn: x_xn)
+      @area = Vedeu::Area.from_dimensions(y_yn: y_yn, x_xn: x_xn)
     end
 
     # @return [Array<Fixnum>]
     def x_xn
-      Vedeu::Dimension.pair(d:        _x,
-                            dn:      _xn,
-                            d_dn:    @width,
-                            default: Vedeu::Terminal.width,
-                            options: {
-                              centred:   centred,
-                              maximised: maximised })
+      @x_xn = Vedeu::Dimension.pair(d:        _x,
+                                    dn:      _xn,
+                                    d_dn:    @width,
+                                    default: Vedeu::Terminal.width,
+                                    options: {
+                                      centred:   centred,
+                                      maximised: maximised })
     end
 
     # @return [Array<Fixnum>]
     def y_yn
-      Vedeu::Dimension.pair(d:       _y,
-                            dn:      _yn,
-                            d_dn:    @height,
-                            default: Vedeu::Terminal.height,
-                            options: {
-                              centred:   centred,
-                              maximised: maximised })
+      @y_yn = Vedeu::Dimension.pair(d:       _y,
+                                    dn:      _yn,
+                                    d_dn:    @height,
+                                    default: Vedeu::Terminal.height,
+                                    options: {
+                                      centred:   centred,
+                                      maximised: maximised })
     end
 
     # Returns the row/line start position for the interface.

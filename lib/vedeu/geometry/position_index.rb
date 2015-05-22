@@ -1,6 +1,7 @@
 module Vedeu
 
-  # Converts a position into an index for the terminal.
+  # Converts a position into an index for the terminal. An index is the position
+  # minus 1.
   class PositionIndex
 
     # Convenience constructor for Vedeu::Position.
@@ -27,6 +28,8 @@ module Vedeu
       [y, x]
     end
 
+    # An object is equal when its values are the same.
+    #
     # @param other [Vedeu::PositionIndex]
     # @return [Boolean]
     def eql?(other)
@@ -34,17 +37,25 @@ module Vedeu
     end
     alias_method :==, :eql?
 
+    # Converts the index values into a Vedeu::Position.
+    #
     # @return [Vedeu::Position]
     def to_position
       Vedeu::Position.new(y, x)
     end
 
+    # Returns the x index.
+    # If the position for x is less than 1, then the index is 0.
+    #
     # @return [Fixnum]
     def x
       @_x ||= ((@x - 1) <= 1) ? 0 : (@x - 1)
     end
     alias_method :last, :x
 
+    # Returns the y index.
+    # If the position for y is less than 1, then the index is 0.
+    #
     # @return [Fixnum]
     def y
       @_y ||= ((@y - 1) <= 1) ? 0 : (@y - 1)

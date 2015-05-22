@@ -41,6 +41,8 @@ module Vedeu
       @y      = attributes[:y]
     end
 
+    # An object is equal when its values are the same.
+    #
     # @param other [Vedeu::Cell]
     # @return [Boolean]
     def eql?(other)

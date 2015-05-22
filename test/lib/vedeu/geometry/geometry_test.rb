@@ -22,7 +22,7 @@ module Vedeu
     }
     let(:centred)   {}
     let(:height)    {}
-    let(:maximised) {}
+    let(:maximised) { false }
     let(:_name)     {}
     let(:width)     {}
     let(:x)         {}
@@ -39,6 +39,7 @@ module Vedeu
       it { subject.instance_variable_get('@attributes').must_equal(attributes) }
       it { subject.instance_variable_get('@centred').must_equal(centred) }
       it { subject.instance_variable_get('@height').must_equal(height) }
+      it { subject.instance_variable_get('@maximised').must_equal(maximised) }
       it { subject.instance_variable_get('@name').must_equal(_name) }
       it { subject.instance_variable_get('@width').must_equal(width) }
       it { subject.instance_variable_get('@x').must_equal(x) }
@@ -147,6 +148,37 @@ module Vedeu
         it { instance.bottom.must_equal(6) }
         it { instance.left.must_equal(4) }
       end
+
+      context 'maximised' do
+        let(:attributes) { { maximised: true } }
+
+        it { instance.top.must_equal(1) }
+        it { instance.right.must_equal(40) }
+        it { instance.bottom.must_equal(12) }
+        it { instance.left.must_equal(1) }
+      end
+    end
+
+    describe '#maximise' do
+      let(:attributes) { { maximised: true } }
+
+      subject { instance.maximise }
+
+      it { instance.top.must_equal(1) }
+      it { instance.right.must_equal(40) }
+      it { instance.bottom.must_equal(12) }
+      it { instance.left.must_equal(1) }
+    end
+
+    describe '#unmaximise' do
+      let(:attributes) { { maximised: false } }
+
+      subject { instance.unmaximise }
+
+      it { instance.top.must_equal(1) }
+      it { instance.right.must_equal(40) }
+      it { instance.bottom.must_equal(12) }
+      it { instance.left.must_equal(1) }
     end
 
   end # Geometry

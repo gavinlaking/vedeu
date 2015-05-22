@@ -82,6 +82,8 @@ module Vedeu
       @background = @attributes[:background] = Vedeu::Background.coerce(value)
     end
 
+    # An object is equal when its values are the same.
+    #
     # @param other [Vedeu::Char]
     # @return [Boolean]
     def eql?(other)
