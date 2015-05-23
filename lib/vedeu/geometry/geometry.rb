@@ -128,26 +128,44 @@ module Vedeu
       @area = Vedeu::Area.from_dimensions(y_yn: y_yn, x_xn: x_xn)
     end
 
+    # @return [Hash<Symbol => Fixnum, Hash]
+    def height_attributes
+      {
+        d:       _y,
+        dn:      _yn,
+        d_dn:    @height,
+        default: Vedeu::Terminal.height,
+        options: dimension_options
+      }
+    end
+
+    # @return [Hash<Symbol => Fixnum, Hash]
+    def width_attributes
+      {
+        d:        _x,
+        dn:      _xn,
+        d_dn:    @width,
+        default: Vedeu::Terminal.width,
+        options: dimension_options
+      }
+    end
+
+    # @return [Hash<Symbol => Boolean>]
+    def dimension_options
+      {
+        centred:   centred,
+        maximised: maximised,
+      }
+    end
+
     # @return [Array<Fixnum>]
     def x_xn
-      @x_xn = Vedeu::Dimension.pair(d:        _x,
-                                    dn:      _xn,
-                                    d_dn:    @width,
-                                    default: Vedeu::Terminal.width,
-                                    options: {
-                                      centred:   centred,
-                                      maximised: maximised })
+      @x_xn = Vedeu::Dimension.pair(width_attributes)
     end
 
     # @return [Array<Fixnum>]
     def y_yn
-      @y_yn = Vedeu::Dimension.pair(d:       _y,
-                                    dn:      _yn,
-                                    d_dn:    @height,
-                                    default: Vedeu::Terminal.height,
-                                    options: {
-                                      centred:   centred,
-                                      maximised: maximised })
+      @y_yn = Vedeu::Dimension.pair(height_attributes)
     end
 
     # Returns the row/line start position for the interface.
