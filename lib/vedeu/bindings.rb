@@ -60,7 +60,6 @@ module Vedeu
     # `_mode_switch_` is triggered.
     Vedeu.bind(:_keypress_) do |key|
       Vedeu.trigger(:key, key)
-
       Vedeu.keypress(key)
     end
 
@@ -82,12 +81,8 @@ module Vedeu
     # events. Please see those events for their behaviour.
     Vedeu.bind(:_resize_, delay: 0.15) { Vedeu.resize }
 
-    Vedeu.bind(:tick) do |time|
-      Vedeu.log(type: :debug, message: "Tick: #{time}")
-    end
-    Vedeu.bind(:tock) do |time|
-      Vedeu.log(type: :debug, message: "Tock: #{time}")
-    end
+    Vedeu.bind(:tick) { |t| Vedeu.log(type: :debug, message: "Tick: #{t}") }
+    Vedeu.bind(:tock) { |t| Vedeu.log(type: :debug, message: "Tock: #{t}") }
 
     # Hide the cursor of the named interface or interface currently in focus.
     Vedeu.bind(:_cursor_hide_) do |name|
@@ -175,7 +170,6 @@ module Vedeu
 
       else
         Vedeu::Terminal.virtual.clear if Vedeu::Configuration.drb?
-
         Vedeu::Terminal.clear
       end
     end
@@ -206,7 +200,6 @@ module Vedeu
     # the named group.
     Vedeu.bind(:_show_group_) do |name|
       Vedeu.trigger(:_clear_)
-
       Vedeu.trigger(:_refresh_group_, name)
     end
 
@@ -266,7 +259,6 @@ module Vedeu
     # of the available space on the terminal window.
     Vedeu.bind(:_maximise_) do |name|
       Vedeu.geometries.by_name(name).maximise
-
       Vedeu.trigger(:_refresh_, name)
     end
 
@@ -276,9 +268,7 @@ module Vedeu
     # resized, then the new geometry size should adapt).
     Vedeu.bind(:_unmaximise_) do |name|
       Vedeu.trigger(:_clear_, name)
-
       Vedeu.geometries.by_name(name).unmaximise
-
       Vedeu.trigger(:_refresh_, name)
     end
 

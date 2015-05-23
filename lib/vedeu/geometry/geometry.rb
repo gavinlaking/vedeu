@@ -135,7 +135,7 @@ module Vedeu
         dn:      _yn,
         d_dn:    @height,
         default: Vedeu::Terminal.height,
-        options: dimension_options
+        options: dimension_options,
       }
     end
 
@@ -146,7 +146,7 @@ module Vedeu
         dn:      _xn,
         d_dn:    @width,
         default: Vedeu::Terminal.width,
-        options: dimension_options
+        options: dimension_options,
       }
     end
 
