@@ -23,24 +23,16 @@ module Vedeu
 
     # @return [Array<void>]
     def render(*args)
-      # acc = []
       threads = storage.map do |renderer|
         Thread.new(renderer) do
           mutex.synchronize do
             Vedeu.log(type: :debug,
                       message: "Sending to renderer: '#{renderer}'")
-            # acc << renderer.render(*args)
             renderer.render(*args)
           end
         end
       end
       threads.each(&:join)
-      # acc
-
-      # storage.inject([]) do |acc, renderer|
-      #   acc << renderer.render(*args)
-      #   acc
-      # end
     end
 
     # Adds the given renderer class(es) to the list of renderers.

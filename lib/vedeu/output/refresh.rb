@@ -14,7 +14,7 @@ module Vedeu
 
       Vedeu.log(type: :info, message: message)
 
-      timer(message) do
+      Vedeu::Timer.for(message) do
         Vedeu.interfaces.registered.each { |name| by_name(name) }
       end
     end
@@ -36,7 +36,7 @@ module Vedeu
 
       Vedeu.log(type: :info, message: message)
 
-      timer(message) do
+      Vedeu::Timer.for(message) do
         Vedeu.groups.find!(group_name).members.each { |name| by_name(name) }
       end
     end
@@ -51,23 +51,7 @@ module Vedeu
 
       Vedeu.log(type: :info, message: message)
 
-      timer(message) { Vedeu.buffers.by_name(name).render }
-    end
-
-    # @param message [String]
-    # @param block [Proc]
-    # @return [Array|ModelNotFound]
-    def timer(message = '', &block)
-      started  = Time.now.to_f
-
-      work = yield
-
-      finished = Time.now.to_f
-      elapsed  = ((finished - started) * 1000).to_i
-
-      Vedeu.log(type: :debug, message: "#{message} took #{elapsed}ms.")
-
-      work
+      Vedeu::Timer.for(message) { Vedeu.buffers.by_name(name).render }
     end
 
   end # Refresh
