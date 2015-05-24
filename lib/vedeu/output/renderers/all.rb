@@ -27,7 +27,7 @@ module Vedeu
         Thread.new(renderer) do
           mutex.synchronize do
             Vedeu.log(type: :debug,
-                      message: "Sending to renderer: '#{renderer}'")
+              message: "Rendering with: '#{renderer}' (#{storage.size} defined)")
             renderer.render(*args)
           end
         end
