@@ -65,7 +65,7 @@ module Vedeu
             Vedeu::Char.new(value:    ' ',
                             colour:   clear_colour,
                             style:    style,
-                            position: position(iy, ix))
+                            position: Vedeu::IndexPosition[iy, ix, *position])
           end
         end
       else
@@ -105,9 +105,9 @@ module Vedeu
     # @return [Vedeu::Colour] The default background and foreground colours for
     #   the terminal, or the colours of the interface.
     def clear_colour
-      if use_terminal_colours?
-        @colour ||= Vedeu::Colour.new(background: :default,
-                                      foreground: :default)
+      @colour ||= if use_terminal_colours?
+        Vedeu::Colour.new(background: :default,
+                          foreground: :default)
 
       else
         colour
@@ -149,12 +149,12 @@ module Vedeu
     # @param iy [Fixnum]
     # @param ix [Fixnum]
     # @return [Vedeu::IndexPosition]
-    def position(iy, ix)
-      if clear_border?
-        Vedeu::IndexPosition[iy, ix, y, x]
+    def position
+      @position ||= if clear_border?
+        [y, x]
 
       else
-        Vedeu::IndexPosition[iy, ix, by, bx]
+        [by, bx]
 
       end
     end
