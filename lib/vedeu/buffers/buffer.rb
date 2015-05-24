@@ -72,7 +72,7 @@ module Vedeu
     #
     # @return [void]
     def clear
-      Vedeu::Output.render(clear_buffer) unless clear_buffer.empty?
+      Vedeu::Output.render(clear_buffer)
     end
 
     # Hide this buffer.
@@ -98,9 +98,7 @@ module Vedeu
     #
     # @return [Array<Array<Array<Vedeu::Char>>>]
     def render
-      Vedeu::Output.render(buffer) unless buffer.empty?
-
-      buffer
+      Vedeu::Output.render(buffer)
     end
     alias_method :content, :render
 

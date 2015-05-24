@@ -68,13 +68,7 @@ module Vedeu
     describe '#clear' do
       subject { instance.clear }
 
-      context 'when the clear buffer is empty' do
-        it { subject.must_be_instance_of(NilClass) }
-      end
-
-      context 'when the clear buffer is not empty' do
-        # it { subject.must_be_instance_of(Array) }
-      end
+      it { subject.must_be_instance_of(Array) }
     end
 
     describe '#hide' do
