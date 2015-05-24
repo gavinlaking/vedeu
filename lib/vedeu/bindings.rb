@@ -259,7 +259,6 @@ module Vedeu
     # of the available space on the terminal window.
     Vedeu.bind(:_maximise_) do |name|
       Vedeu.geometries.by_name(name).maximise
-      Vedeu.trigger(:_refresh_, name)
     end
 
     # Will unmaximise the named interface geometry. Previously, if a geometry
@@ -267,9 +266,7 @@ module Vedeu
     # usual defined size (terminal size permitting: if the terminal has been
     # resized, then the new geometry size should adapt).
     Vedeu.bind(:_unmaximise_) do |name|
-      Vedeu.trigger(:_clear_, name)
       Vedeu.geometries.by_name(name).unmaximise
-      Vedeu.trigger(:_refresh_, name)
     end
 
   end # Bindings

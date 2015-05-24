@@ -61,6 +61,7 @@ module Vedeu
     # @!attribute [rw] maximised
     # @return [Boolean]
     attr_accessor :maximised
+    alias_method :maximised?, :maximised
 
     # @!attribute [w] width
     # @return [Fixnum]
@@ -109,16 +110,30 @@ module Vedeu
 
     # @return [Vedeu::Geometry]
     def maximise
-      @maximised = true
+      unless maximised?
+        @maximised = true
 
-      store
+        work = store
+
+        Vedeu.trigger(:_refresh_, name)
+
+        work
+      end
     end
 
     # @return [Vedeu::Geometry]
     def unmaximise
-      @maximised = false
+      if maximised?
+        Vedeu.trigger(:_clear_, name)
 
-      store
+        @maximised = false
+
+        work = store
+
+        Vedeu.trigger(:_refresh_, name)
+
+        work
+      end
     end
 
     private
