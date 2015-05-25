@@ -52,16 +52,16 @@ module Vedeu
     def render
       return [] unless visible?
 
-      Vedeu.log(type: :output, message: "Rendering: '#{name}'")
-
-      out = []
-      show[0...height].each_with_index do |line, iy|
-        line[0...width].each_with_index do |column, ix|
-          column.position = Vedeu::IndexPosition[iy, ix, by, bx]
-          out << column
+      Vedeu::Timer.for(:output, "Rendering: #{name}") do
+        out = []
+        show[0...height].each_with_index do |line, iy|
+          line[0...width].each_with_index do |column, ix|
+            column.position = Vedeu::IndexPosition[iy, ix, by, bx]
+            out << column
+          end
         end
+        out
       end
-      out
     end
 
     # Returns a string representation of the viewport.

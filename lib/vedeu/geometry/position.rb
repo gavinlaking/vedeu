@@ -70,13 +70,9 @@ module Vedeu
     # @yieldreturn [void] Returns the block wrapped in position escape
     #   sequences.
     def to_s
-      if block_given?
-        [sequence, yield, sequence].join
+      return sequence unless block_given?
 
-      else
-        sequence
-
-      end
+      [sequence, yield, sequence].join
     end
 
     private

@@ -58,14 +58,14 @@ module Vedeu
     # @return [Array<Array<Vedeu::Char>>]
     def clear
       if visible?
-        Vedeu.log(type: :output, message: "Clearing: '#{name}'")
-
-        @clear ||= Array.new(height) do |iy|
-          Array.new(width) do |ix|
-            Vedeu::Char.new(value:    ' ',
-                            colour:   clear_colour,
-                            style:    style,
-                            position: Vedeu::IndexPosition[iy, ix, *position])
+        Vedeu::Timer.for(:debug, "Clearing: #{name}") do
+          @clear ||= Array.new(height) do |iy|
+            Array.new(width) do |ix|
+              Vedeu::Char.new(value:    ' ',
+                              colour:   clear_colour,
+                              style:    style,
+                              position: Vedeu::IndexPosition[iy, ix, *position])
+            end
           end
         end
       else
