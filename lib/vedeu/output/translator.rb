@@ -33,7 +33,7 @@ module Vedeu
     # @return [Object]
     def self.coerce(value)
       if value.nil?
-        new
+        ''
 
       elsif value.is_a?(self)
         value

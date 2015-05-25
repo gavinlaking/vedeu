@@ -27,7 +27,7 @@ module Vedeu
       subject { described.coerce(_value) }
 
       context 'when the value is nil' do
-        it { subject.must_be_instance_of(described) }
+        it { subject.must_be_instance_of(String) }
       end
 
       context 'when the value is a Vedeu::Background' do
