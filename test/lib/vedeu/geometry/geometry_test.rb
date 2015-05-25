@@ -51,6 +51,14 @@ module Vedeu
       end
     end
 
+    describe '#inspect' do
+      subject { instance.inspect }
+
+      it { subject.must_be_instance_of(String) }
+
+      it { subject.must_equal('<Vedeu::Geometry x:1 xn:40 y:1 yn:12 maximise:false>') }
+    end
+
     describe '#maximise' do
       let(:attributes) {
         {

@@ -53,6 +53,12 @@ module Vedeu
         end
       end
 
+      describe '#columns' do
+        subject { instance.columns(3) }
+
+        it { subject.must_equal(18) }
+      end
+
       describe '#height' do
         subject { instance.height(6) }
 
@@ -73,6 +79,12 @@ module Vedeu
             subject.height.must_equal(17)
           end
         end
+      end
+
+      describe '#rows' do
+        subject { instance.rows(3) }
+
+        it { subject.must_equal(6) }
       end
 
       describe '#width' do

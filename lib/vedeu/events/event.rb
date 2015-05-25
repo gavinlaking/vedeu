@@ -123,8 +123,7 @@ module Vedeu
     # @see Vedeu::Event.bind
     def bind
       if repository.registered?(name)
-        collection     = repository.find(name)
-        new_collection = collection.add(self)
+        new_collection = repository.find(name).add(self)
 
       else
         new_collection = Vedeu::Events.new([self], nil, name)

@@ -59,6 +59,17 @@ module Vedeu
       end
     end
 
+    describe '#background=' do
+      subject { receiver.background = '#987654' }
+
+      it { subject.must_equal('#987654') }
+
+      it do
+        subject
+        receiver.attributes[:background].must_equal('#987654')
+      end
+    end
+
     describe '#foreground' do
       subject { receiver.foreground }
 
@@ -71,6 +82,17 @@ module Vedeu
 
         it { subject.must_be_instance_of(Vedeu::Foreground) }
         # it { subject.colour.must_equal('') }
+      end
+    end
+
+    describe '#foreground=' do
+      subject { receiver.foreground = '#123456' }
+
+      it { subject.must_equal('#123456') }
+
+      it do
+        subject
+        receiver.attributes[:foreground].must_equal('#123456')
       end
     end
 

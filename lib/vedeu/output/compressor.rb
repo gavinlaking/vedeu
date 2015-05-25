@@ -13,6 +13,7 @@ module Vedeu
       @style  = ''
     end
 
+    # @note Takes approximately ~70ms for 2100 chars. (2015-05-24)
     # @return [String]
     def render
       Array(output).flatten.map do |char|

@@ -51,7 +51,7 @@ module Vedeu
     def chars
       return [] if empty?
 
-      streams.map(&:chars).flatten
+      streams.flat_map(&:chars)
     end
 
     # Returns a boolean indicating whether the line has content.

@@ -16,7 +16,8 @@ module Vedeu
     # @param path [String]
     # @return [Template]
     def initialize(object, path)
-      @object, @path = object, path.to_s
+      @object = object
+      @path   = path.to_s
     end
 
     # @return [void]

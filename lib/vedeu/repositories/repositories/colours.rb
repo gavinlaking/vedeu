@@ -24,8 +24,11 @@ module Vedeu
 
     # Returns a boolean indicating whether the colour has been registered.
     #
+    # @param colour [String]
     # @return [Boolean]
     def registered?(colour)
+      return false unless colour
+
       storage.key?(colour)
     end
 
@@ -36,15 +39,15 @@ module Vedeu
       storage.clear
     end
 
-    # Retrieves a registered colour.
+    # Retrieves the escape sequence of a registered colour.
     #
     # @return [String]
     def retrieve(colour)
       storage.fetch(colour, '')
     end
 
-    # Retrieves a registered colour, or registers the colour with its respective
-    # escape sequence.
+    # Retrieves the escape sequence of a registered colour, or registers the
+    # colour with its respective escape sequence.
     #
     # @return [String]
     def retrieve_or_register(colour, escape_sequence)

@@ -57,7 +57,7 @@ module Vedeu
       out = []
       show[0...height].each_with_index do |line, iy|
         line[0...width].each_with_index do |column, ix|
-          column.position = IndexPosition[iy, ix, by, bx]
+          column.position = Vedeu::IndexPosition[iy, ix, by, bx]
           out << column
         end
       end

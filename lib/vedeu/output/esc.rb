@@ -22,23 +22,9 @@ module Vedeu
     #   Esc.on_blue { 'some text' } # => "\e[44msome text\e[49m"
     #
     #   # Valid names:
-    #   :black
-    #   :red
-    #   :green
-    #   :yellow
-    #   :blue
-    #   :magenta
-    #   :cyan
-    #   :light_grey
-    #   :default
-    #   :dark_grey
-    #   :light_red
-    #   :light_green
-    #   :light_yellow
-    #   :light_blue
-    #   :light_magenta
-    #   :light_cyan
-    #   :white
+    #   :black, :red, :green, :yellow, :blue, :magenta, :cyan, :light_grey,
+    #   :default, :dark_grey, :light_red, :light_green, :light_yellow,
+    #   :light_blue, :light_magenta, :light_cyan, :white
     #
     # @return [Hash<Symbol => Fixnum>]
     def codes
@@ -88,6 +74,32 @@ module Vedeu
       end
     end
 
+    # @return [Hash<Symbol => String>]
+    def actions
+      {
+        hide_cursor:   "\e[?25l",
+        show_cursor:   "\e[?25h",
+        bg_reset:      "\e[49m",
+        blink:         "\e[5m",
+        blink_off:     "\e[25m",
+        bold:          "\e[1m",
+        bold_off:      "\e[22m",
+        border_on:     "\e(0",
+        border_off:    "\e(B",
+        dim:           "\e[2m",
+        fg_reset:      "\e[39m",
+        negative:      "\e[7m",
+        positive:      "\e[27m",
+        reset:         "\e[0m",
+        underline:     "\e[4m",
+        underline_off: "\e[24m",
+      }
+    end
+
+    actions.each do |key, code|
+      define_method(key) { code }
+    end
+
     # Return the stream with the escape sequences escaped so that they can be
     # printed to the terminal instead of being interpreted by the terminal which
     # will render them. This way we can see what escape sequences are being sent
@@ -99,16 +111,6 @@ module Vedeu
       return stream if stream.nil? || stream.empty?
 
       stream.gsub(/\e/, '\\e')
-    end
-
-    # @return [String]
-    def hide_cursor
-      "\e[?25l"
-    end
-
-    # @return [String]
-    def show_cursor
-      "\e[?25h"
     end
 
     # Return the escape sequence string from the list of recognised sequence
@@ -141,45 +143,6 @@ module Vedeu
     private
 
     # @return [String]
-    def bg_reset
-      "\e[49m"
-    end
-
-    # @return [String]
-    def blink
-      "\e[5m"
-    end
-
-    # @return [String]
-    def blink_off
-      "\e[25m"
-    end
-
-    # @return [String]
-    def bold
-      "\e[1m"
-    end
-
-    # @return [String]
-    def bold_off
-      "\e[22m"
-    end
-
-    # Returns the escape sequence to start a border.
-    #
-    # @return [String]
-    def border_on
-      "\e(0"
-    end
-
-    # Returns the escape sequence to end a border.
-    #
-    # @return [String]
-    def border_off
-      "\e(B"
-    end
-
-    # @return [String]
     def clear
       [colour_reset, "\e[2J"].join
     end
@@ -200,33 +163,8 @@ module Vedeu
     end
 
     # @return [String]
-    def dim
-      "\e[2m"
-    end
-
-    # @return [String]
-    def fg_reset
-      "\e[39m"
-    end
-
-    # @return [String]
-    def negative
-      "\e[7m"
-    end
-
-    # @return [String]
     def normal
       [underline_off, bold_off, positive].join
-    end
-
-    # @return [String]
-    def positive
-      "\e[27m"
-    end
-
-    # @return [String]
-    def reset
-      "\e[0m"
     end
 
     # @return [String]
@@ -237,16 +175,6 @@ module Vedeu
     # @return [String]
     def screen_exit
       [show_cursor, colour_reset, reset].join
-    end
-
-    # @return [String]
-    def underline
-      "\e[4m"
-    end
-
-    # @return [String]
-    def underline_off
-      "\e[24m"
     end
 
   end # Esc

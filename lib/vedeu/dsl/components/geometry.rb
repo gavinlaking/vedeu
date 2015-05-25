@@ -58,6 +58,11 @@ module Vedeu
       end
       alias_method :centred!, :centred
 
+      # @see Vedeu::Grid.columns
+      def columns(value)
+        Vedeu::Grid.columns(value)
+      end
+
       # Specify the number of characters/rows/lines tall the interface will be.
       #
       # @example
@@ -72,6 +77,11 @@ module Vedeu
       # @return [Fixnum]
       def height(value)
         model.height = value
+      end
+
+      # @see Vedeu::Grid.columns
+      def rows(value)
+        Vedeu::Grid.rows(value)
       end
 
       # Specify the number of characters/columns wide the interface will be.

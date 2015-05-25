@@ -130,12 +130,16 @@ module Vedeu
       end
       alias_method :show_bottom, :bottom
 
-      # @see #bottom
+      # Disable the bottom border.
+      #
+      # @see Vedeu::DSL::Border#bottom
       def hide_bottom!
         bottom(false)
       end
 
-      # @see #bottom
+      # Enable the bottom border.
+      #
+      # @see Vedeu::DSL::Border#bottom
       def show_bottom!
         bottom(true)
       end
@@ -162,12 +166,16 @@ module Vedeu
       end
       alias_method :show_left, :left
 
-      # @see #left
+      # Disable the left border.
+      #
+      # @see Vedeu::DSL::Border#left
       def hide_left!
         left(false)
       end
 
-      # @see #left
+      # Enable the left border.
+      #
+      # @see Vedeu::DSL::Border#left
       def show_left!
         left(true)
       end
@@ -194,12 +202,16 @@ module Vedeu
       end
       alias_method :show_right, :right
 
-      # @see #right
+      # Disable the right border.
+      #
+      # @see Vedeu::DSL::Border#right
       def hide_right!
         right(false)
       end
 
-      # @see #right
+      # Enable the right border.
+      #
+      # @see Vedeu::DSL::Border#right
       def show_right!
         right(true)
       end
@@ -244,12 +256,16 @@ module Vedeu
       end
       alias_method :show_top, :top
 
-      # @see #top
+      # Disable the top border.
+      #
+      # @see Vedeu::DSL::Border#top
       def hide_top!
         top(false)
       end
 
-      # @see #top
+      # Enable the top border.
+      #
+      # @see Vedeu::DSL::Border#top
       def show_top!
         top(true)
       end

@@ -20,8 +20,37 @@ module Vedeu
 
       it { subject.must_be_instance_of(String) }
 
-      context 'when the output is all Vedeu::Char elements' do
+      context 'when the output is not a collection' do
+        let(:output) { 'abcd' }
 
+        it { subject.must_equal('abcd') }
+      end
+
+      context 'when the output is all Vedeu::Char elements' do
+        let(:output) {
+          [
+            Vedeu::Char.new(value: 'Y', colour: { foreground: '#ff0000' }),
+            Vedeu::Char.new(value: 'e', colour: { foreground: '#ff0000' }),
+            Vedeu::Char.new(value: 's', colour: { foreground: '#ff0000' }),
+          ]
+        }
+        it 'converts the non-Vedeu::Char elements into String elements' do
+          subject.must_equal("\e[38;2;255;0;0mYes")
+        end
+      end
+
+      context 'when the output is all Vedeu::Char elements' do
+        let(:output) {
+          [
+            Vedeu::Char.new(value: 'a', colour: { foreground: '#ff0000' }),
+            Vedeu::Char.new(value: 'b', colour: { foreground: '#ff0000' }),
+            Vedeu::Char.new(value: 'c', colour: { foreground: '#0000ff' }),
+            Vedeu::Char.new(value: 'd', colour: { foreground: '#0000ff' }),
+          ]
+        }
+        it 'compresses multiple colours and styles where possible' do
+          subject.must_equal("\e[38;2;255;0;0mab\e[38;2;0;0;255mcd")
+        end
       end
 
       context 'when the output is not all Vedeu::Char elements' do

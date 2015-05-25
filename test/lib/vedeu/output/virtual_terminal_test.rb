@@ -94,6 +94,12 @@ module Vedeu
       it { subject.must_be_instance_of(Array) }
     end
 
+    describe '#render' do
+      subject { instance.render }
+
+      it { subject.must_be_instance_of(String) }
+    end
+
     describe '#reset' do
       subject { instance.reset }
 

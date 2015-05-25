@@ -58,7 +58,9 @@ module Vedeu
 
     # @return [void]
     def execute!
-      $stdin, $stdout, $stderr = @stdin, @stdout, @stderr
+      $stdin  = @stdin
+      $stdout = @stdout
+      $stderr = @stderr
 
       Vedeu::Application.start(configuration)
 
@@ -83,7 +85,9 @@ module Vedeu
     def terminate!
       Vedeu.log(type: :info, message: 'Exiting gracefully.')
 
-      $stdin, $stdout, $stderr = STDIN, STDOUT, STDERR
+      $stdin  = STDIN
+      $stdout = STDOUT
+      $stderr = STDERR
 
       @kernel.exit(exit_code)
     end

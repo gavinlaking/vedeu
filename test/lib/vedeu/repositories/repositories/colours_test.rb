@@ -13,16 +13,30 @@ module Vedeu
     end
 
     describe '#register' do
-      let(:colour)          {}
-      let(:escape_sequence) {}
+      let(:colour)          { 'ff0000' }
+      let(:escape_sequence) { 'fake_escape_sequence' }
 
       subject { instance.register(colour, escape_sequence) }
+
+      it { subject.must_equal('fake_escape_sequence') }
     end
 
     describe '#registered?' do
       let(:colour) {}
 
       subject { instance.registered?(colour) }
+
+      context 'when the colour is registered' do
+        let(:colour) { '#aa0000' }
+
+        before { instance.register(colour, 'fake_escape_sequence') }
+
+        it { subject.must_equal(true) }
+      end
+
+      context 'when the colour is not registered' do
+        it { subject.must_equal(false) }
+      end
     end
 
     describe '#reset!' do
@@ -39,6 +53,11 @@ module Vedeu
       subject { instance.retrieve(colour) }
 
       context 'when the colour can be found' do
+        let(:colour) { '#bb0000' }
+
+        before { instance.register(colour, 'fake_escape_sequence') }
+
+        it { subject.must_equal('fake_escape_sequence') }
       end
 
       context 'when the colour cannot be found' do
@@ -47,15 +66,21 @@ module Vedeu
     end
 
     describe '#retrieve_or_register' do
-      let(:colour)          {}
-      let(:escape_sequence) {}
+      let(:colour)          { '#cc0000' }
+      let(:escape_sequence) { 'escape_sequence' }
 
       subject { instance.retrieve_or_register(colour, escape_sequence) }
 
       context 'when the colour is registered' do
+        let(:colour) { '#cc0000' }
+
+        before { instance.register(colour, 'fake_escape_sequence') }
+
+        it { subject.must_equal('fake_escape_sequence') }
       end
 
       context 'when the colour is not registered' do
+        it { subject.must_equal('escape_sequence') }
       end
     end
 

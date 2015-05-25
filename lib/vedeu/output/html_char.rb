@@ -55,21 +55,21 @@ module Vedeu
     # @return [String]
     def border_style
       case border
-      when :top_horizontal    then border_css('top')
-      when :left_vertical     then border_css('left')
-      when :right_vertical    then border_css('right')
-      when :bottom_horizontal then border_css('bottom')
-      when :top_left     then [border_css('top'), border_css('left')].join
-      when :top_right    then [border_css('top'), border_css('right')].join
-      when :bottom_left  then [border_css('bottom'), border_css('left')].join
-      when :bottom_right then [border_css('bottom'), border_css('right')].join
+      when :top_horizontal    then css('top')
+      when :left_vertical     then css('left')
+      when :right_vertical    then css('right')
+      when :bottom_horizontal then css('bottom')
+      when :top_left     then [css('top'), css('left')].join
+      when :top_right    then [css('top'), css('right')].join
+      when :bottom_left  then [css('bottom'), css('left')].join
+      when :bottom_right then [css('bottom'), css('right')].join
       else
         ''
       end
     end
 
     # @return [String]
-    def border_css(direction = '')
+    def css(direction = '')
       "border-#{direction}:1px #{fg} solid;"
     end
 
