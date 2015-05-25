@@ -16,12 +16,13 @@ module Vedeu
       #
       # @return [Vedeu::Borders]
       def reset!
-        @borders = Vedeu::Borders.register(Vedeu::Border)
+        @borders = self.register(Vedeu::Border)
       end
 
     end
 
     null Vedeu::Null::Border
+    # real Vedeu::Border
 
   end # Borders
 

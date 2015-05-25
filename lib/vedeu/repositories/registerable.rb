@@ -7,10 +7,31 @@ module Vedeu
     # These class methods are mixed into the repository.
     module ClassMethods
 
+      # The null model is used when the repository cannot be found.
+      #
       # @param klass [Class]
       # @return [Symbol]
       def null(klass)
         define_method(:null_model) { klass }
+      end
+
+      # The real model is the usual model to use for a given repository.
+      #
+      # @param klass [Class]
+      # @return [Symbol]
+      def real(klass)
+        define_method(:real_model) { klass }
+      end
+
+      # Register a repository for storing models.
+      #
+      # @param model [Class]
+      # @param storage [Class|Hash]
+      # @return [Vedeu::Repository]
+      def register(model = nil, storage = {})
+        new(model, storage).tap do |klass|
+          Vedeu::Repositories.register(klass.repository)
+        end
       end
 
     end # ClassMethods
