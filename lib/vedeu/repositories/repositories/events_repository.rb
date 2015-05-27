@@ -15,7 +15,7 @@ module Vedeu
       #
       # @return [Vedeu::EventsRepository]
       def reset!
-        @events = self.new(Vedeu::Events)
+        @events = new(Vedeu::Events)
       end
 
     end

@@ -26,8 +26,7 @@ module Vedeu
       threads = storage.map do |renderer|
         Thread.new(renderer) do
           mutex.synchronize do
-            Vedeu.log(type: :debug,
-              message: "Rendering with: '#{renderer}' (#{storage.size} defined)")
+            Vedeu.log(type: :debug, message: "Rendering with: '#{renderer}'")
             renderer.render(*args)
           end
         end

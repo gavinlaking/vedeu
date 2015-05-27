@@ -15,7 +15,7 @@ module Vedeu
       #
       # @return [Vedeu::Keymaps]
       def reset!
-        @keymaps = self.register(Vedeu::Keymap)
+        @keymaps = register(Vedeu::Keymap)
       end
 
     end

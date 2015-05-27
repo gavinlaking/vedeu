@@ -10,7 +10,7 @@ module Vedeu
     #
     # @return [Array]
     def all
-      message = "Refreshing all interfaces"
+      message = 'Refreshing all interfaces'
 
       Vedeu::Timer.for(:info, message) do
         Vedeu.interfaces.registered.each { |name| by_name(name) }

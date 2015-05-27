@@ -16,13 +16,13 @@ module Vedeu
       #
       # @return [Vedeu::Geometries]
       def reset!
-        @geometries = self.register(Vedeu::Geometry)
+        @geometries = register(Vedeu::Geometry)
       end
 
     end
 
     null Vedeu::Null::Geometry
-    #real Vedeu::Geometry
+    # real Vedeu::Geometry
 
   end # Geometries
 

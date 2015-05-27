@@ -16,7 +16,7 @@ module Vedeu
       #
       # @return [Vedeu::Borders]
       def reset!
-        @borders = self.register(Vedeu::Border)
+        @borders = register(Vedeu::Border)
       end
 
     end
