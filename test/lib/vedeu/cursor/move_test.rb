@@ -5,7 +5,8 @@ module Vedeu
   describe Move do
 
     let(:described) { Vedeu::Move }
-    let(:instance)  { described.new(_name, dy, dx) }
+    let(:instance)  { described.new(entity, _name, dy, dx) }
+    let(:entity)    { Vedeu::Cursor }
     let(:_name)     { '' }
     let(:dy)        { 0 }
     let(:dx)        { 0 }
@@ -56,6 +57,7 @@ module Vedeu
 
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }
+      it { instance.instance_variable_get('@entity').must_equal(entity) }
       it { instance.instance_variable_get('@name').must_equal(_name) }
       it { instance.instance_variable_get('@dy').must_equal(dy) }
       it { instance.instance_variable_get('@dx').must_equal(dx) }
@@ -69,7 +71,7 @@ module Vedeu
         Vedeu::Cursor.new(name: 'manganese', oy: 2, ox: 3, x: 8, y: 7).store
       end
 
-      subject { described.by_name(direction, _name) }
+      subject { described.by_name(entity, direction, _name) }
 
       it { subject.must_be_instance_of(Vedeu::Cursor) }
 
@@ -107,7 +109,7 @@ module Vedeu
     describe '.down' do
       let(:_name) { 'move_down' }
 
-      subject { described.down(_name) }
+      subject { described.down(entity, _name) }
 
       it { subject.must_be_instance_of(Vedeu::Cursor) }
 
@@ -135,7 +137,7 @@ module Vedeu
     describe '.left' do
       let(:_name) { 'move_left' }
 
-      subject { described.left(_name) }
+      subject { described.left(entity, _name) }
 
       it { subject.must_be_instance_of(Vedeu::Cursor) }
 
@@ -161,7 +163,7 @@ module Vedeu
     describe '.right' do
       let(:_name) { 'move_right' }
 
-      subject { described.right(_name) }
+      subject { described.right(entity, _name) }
 
       it { subject.must_be_instance_of(Vedeu::Cursor) }
 
@@ -189,7 +191,7 @@ module Vedeu
     describe '.up' do
       let(:_name) { 'move_up' }
 
-      subject { described.up(_name) }
+      subject { described.up(entity, _name) }
 
       it { subject.must_be_instance_of(Vedeu::Cursor) }
 
@@ -215,7 +217,7 @@ module Vedeu
     describe '#origin' do
       let(:_name) { 'move_origin' }
 
-      subject { described.origin(_name) }
+      subject { described.origin(entity, _name) }
 
       it { subject.must_be_instance_of(Vedeu::Cursor) }
 
