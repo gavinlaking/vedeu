@@ -5,18 +5,34 @@ module Vedeu
   describe Coordinate do
 
     let(:described) { Vedeu::Coordinate }
-    let(:instance)  { described.new(height, width, x, y) }
+    let(:instance)  { described.new(_name) }
+    let(:_name)     { 'coordinate' }
     let(:height)    { 6 }
     let(:width)     { 6 }
     let(:x)         { 7 }
     let(:y)         { 5 }
 
+    let(:borders)   { mock('Vedeu::Borders') }
+    let(:border)    {
+      Vedeu::Border.new({
+        name: _name,
+        enabled: true
+      })
+    }
+
+    before do
+      Vedeu::Geometry.new({name: _name,
+        height: height,
+        width: width,
+        x: x,
+        y: y}).store
+      Vedeu.stubs(:borders).returns(borders)
+      borders.stubs(:by_name).returns(border)
+    end
+
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }
-      it { instance.instance_variable_get('@height').must_equal(height) }
-      it { instance.instance_variable_get('@width').must_equal(width) }
-      it { instance.instance_variable_get('@x').must_equal(x) }
-      it { instance.instance_variable_get('@y').must_equal(y) }
+      it { instance.instance_variable_get('@name').must_equal(_name) }
     end
 
     describe '#yn' do
@@ -29,7 +45,7 @@ module Vedeu
       end
 
       context 'when the height is > 0' do
-        it { subject.must_equal(11) }
+        it { subject.must_equal(9) }
       end
     end
 
@@ -43,16 +59,12 @@ module Vedeu
       end
 
       context 'when the width is > 0' do
-        it { subject.must_equal(13) }
+        it { subject.must_equal(11) }
       end
     end
 
     describe '#y_position' do
       let(:index)  { 0 }
-      let(:height) { 6 }
-      let(:width)  { 6 }
-      let(:x)      { 7 }
-      let(:y)      { 5 }
 
       subject { instance.y_position(index) }
 
@@ -61,18 +73,18 @@ module Vedeu
       context 'with a negative index' do
         let(:index) { -3 }
 
-        it { subject.must_equal(5) }
+        it { subject.must_equal(6) }
       end
 
       context 'with an index greater than the maximum index for y' do
         let(:index) { 9 }
 
-        it { subject.must_equal(11) }
+        it { subject.must_equal(9) }
 
         context 'but the height is negative' do
           let(:height) { -2 }
 
-          it { subject.must_equal(0) }
+          it { subject.must_equal(1) }
         end
       end
 
@@ -85,10 +97,6 @@ module Vedeu
 
     describe '#x_position' do
       let(:index)  { 0 }
-      let(:height) { 6 }
-      let(:width)  { 6 }
-      let(:x)      { 7 }
-      let(:y)      { 5 }
 
       subject { instance.x_position(index) }
 
@@ -97,18 +105,18 @@ module Vedeu
       context 'with a negative index' do
         let(:index) { -3 }
 
-        it { subject.must_equal(7) }
+        it { subject.must_equal(8) }
       end
 
       context 'with an index greater than the maximum index for x' do
         let(:index) { 9 }
 
-        it { subject.must_equal(13) }
+        it { subject.must_equal(11) }
 
         context 'but the width is negative' do
           let(:width) { -2 }
 
-          it { subject.must_equal(0) }
+          it { subject.must_equal(3) }
         end
       end
 
