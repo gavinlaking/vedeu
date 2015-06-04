@@ -318,7 +318,7 @@ module Vedeu
 
     # @return [Vedeu::Geometry]
     def geometry
-      @geometry ||= Vedeu.geometries.by_name(name)
+      Vedeu.geometries.by_name(name)
     end
 
     # @return [Vedeu::Interface]
