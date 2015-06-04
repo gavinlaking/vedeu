@@ -94,7 +94,7 @@ module Vedeu
       #
       # @return [TrueClass]
       def log(message:, force: false, type: :info)
-        logger.debug([message_type(type), message]) if enabled? || force
+        logger.debug([message_type(type), message_body(type, message)]) if enabled? || force
       end
 
       # @return [TrueClass]
@@ -124,8 +124,16 @@ module Vedeu
       end
 
       # @return [String]
+      def message_body(type, body)
+        Vedeu::Esc.send(message_types.fetch(type, :default).last) do
+          body
+        end
+      end
+
+
+      # @return [String]
       def message_type(type)
-        Vedeu::Esc.send(message_types.fetch(type, :default)) do
+        Vedeu::Esc.send(message_types.fetch(type, :default).first) do
           "[#{type}]".ljust(9)
         end
       end
@@ -133,17 +141,17 @@ module Vedeu
       # @return [Hash<Symbol => Symbol>]
       def message_types
         {
-          config: :yellow,
-          create: :green,
-          debug:  :red,
-          drb:    :blue,
-          event:  :magenta,
-          info:   :default,
-          input:  :yellow,
-          output: :green,
-          store:  :cyan,
-          test:   :white,
-          update: :cyan,
+          config: [:light_yellow,  :yellow],
+          create: [:light_green,   :green],
+          debug:  [:light_red,     :red],
+          drb:    [:light_blue,    :blue],
+          event:  [:light_magenta, :magenta],
+          info:   [:white,         :default],
+          input:  [:light_yellow,  :yellow],
+          output: [:light_green,   :green],
+          store:  [:light_cyan,    :cyan],
+          test:   [:light_white,   :white],
+          update: [:light_cyan,    :cyan],
         }
       end
 
