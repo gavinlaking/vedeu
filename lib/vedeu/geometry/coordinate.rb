@@ -72,15 +72,15 @@ module Vedeu
     # @return [Fixnum]
     def y_position(index = 0)
       value = if index <= 0
-        y
+                y
 
-      elsif index > yn_index
-        yn
+              elsif index > yn_index
+                yn
 
-      else
-        y_range[index]
+              else
+                y_range[index]
 
-      end
+              end
       validate_y(value)
     end
 
@@ -97,15 +97,15 @@ module Vedeu
     # @return [Fixnum]
     def x_position(index = 0)
       value = if index <= 0
-        x
+                x
 
-      elsif index > xn_index
-        xn
+              elsif index > xn_index
+                xn
 
-      else
-        x_range[index]
+              else
+                x_range[index]
 
-      end
+              end
       validate_x(value)
     end
 
@@ -125,7 +125,7 @@ module Vedeu
     # @param value [Fixnum]
     # @return [Fixnum]
     def validate_x(value)
-      value = value < bx  ? bx  : value
+      value = value < bx ? bx : value
       value = value > bxn ? bxn : value
       value
     end
@@ -133,7 +133,7 @@ module Vedeu
     # @param value [Fixnum]
     # @return [Fixnum]
     def validate_y(value)
-      value = value < by  ? by  : value
+      value = value < by ? by : value
       value = value > byn ? byn : value
       value
     end

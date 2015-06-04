@@ -94,7 +94,8 @@ module Vedeu
       #
       # @return [TrueClass]
       def log(message:, force: false, type: :info)
-        logger.debug([message_type(type), message_body(type, message)]) if enabled? || force
+        logger.debug([message_type(type),
+                      message_body(type, message)]) if enabled? || force
       end
 
       # @return [TrueClass]
@@ -108,6 +109,8 @@ module Vedeu
 
       private
 
+      # @param message [String]
+      # @param time [Time]
       # @return [String]
       def formatted_message(message, time = Time.now)
         [timestamp(time.utc.iso8601), message, "\n"].join
@@ -123,6 +126,8 @@ module Vedeu
         Vedeu::Configuration.log
       end
 
+      # @param type [Symbol] The type of log message.
+      # @param body [String] The log message itself.
       # @return [String]
       def message_body(type, body)
         Vedeu::Esc.send(message_types.fetch(type, :default).last) do
@@ -130,7 +135,7 @@ module Vedeu
         end
       end
 
-
+      # @param type [Symbol] The type of log message.
       # @return [String]
       def message_type(type)
         Vedeu::Esc.send(message_types.fetch(type, :default).first) do
@@ -158,6 +163,7 @@ module Vedeu
       # Returns a formatted (red, underlined) UTC timestamp,
       # eg. 2014-10-24T12:34:56Z
       #
+      # @param utc_time [String]
       # @return [String]
       def timestamp(utc_time)
         return '' if @last_seen == utc_time

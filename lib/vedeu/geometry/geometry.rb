@@ -105,7 +105,7 @@ module Vedeu
 
     # @return [String]
     def inspect
-      "<Vedeu::Geometry "   \
+      '<Vedeu::Geometry '   \
       "x:#{x} "             \
       "xn:#{xn} "           \
       "y:#{y} "             \
@@ -114,32 +114,32 @@ module Vedeu
       "maximise:#{maximised}>"
     end
 
-    # @return [Vedeu::Geometry]
+    # @return [Vedeu::Geometry|NilClass]
     def maximise
-      unless maximised?
-        @maximised = true
+      return nil unless maximised?
 
-        work = store
+      @maximised = true
 
-        Vedeu.trigger(:_refresh_, name)
+      work = store
 
-        work
-      end
+      Vedeu.trigger(:_refresh_, name)
+
+      work
     end
 
-    # @return [Vedeu::Geometry]
+    # @return [Vedeu::Geometry|NilClass]
     def unmaximise
-      if maximised?
-        Vedeu.trigger(:_clear_, name)
+      return nil if maximised?
 
-        @maximised = false
+      Vedeu.trigger(:_clear_, name)
 
-        work = store
+      @maximised = false
 
-        Vedeu.trigger(:_refresh_, name)
+      work = store
 
-        work
-      end
+      Vedeu.trigger(:_refresh_, name)
+
+      work
     end
 
     # @param dy [Fixnum]
