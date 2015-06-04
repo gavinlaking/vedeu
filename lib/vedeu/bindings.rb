@@ -92,19 +92,29 @@ module Vedeu
     end
 
     # @see {Vedeu::Move}
-    Vedeu.bind(:_cursor_down_) { |name| Vedeu::Move.by_name(:down, name) }
+    Vedeu.bind(:_cursor_down_) do |name|
+      Vedeu::Move.by_name(Vedeu::Cursor, :down, name)
+    end
 
     # @see {Vedeu::Move}
-    Vedeu.bind(:_cursor_left_) { |name| Vedeu::Move.by_name(:left, name) }
+    Vedeu.bind(:_cursor_left_) do |name|
+      Vedeu::Move.by_name(Vedeu::Cursor, :left, name)
+    end
 
     # @see {Vedeu::Move}
-    Vedeu.bind(:_cursor_right_) { |name| Vedeu::Move.by_name(:right, name) }
+    Vedeu.bind(:_cursor_right_) do |name|
+      Vedeu::Move.by_name(Vedeu::Cursor, :right, name)
+    end
 
     # @see {Vedeu::Move}
-    Vedeu.bind(:_cursor_up_) { |name| Vedeu::Move.by_name(:up, name) }
+    Vedeu.bind(:_cursor_up_) do |name|
+      Vedeu::Move.by_name(Vedeu::Cursor, :up, name)
+    end
 
     # @see {Vedeu::Move}
-    Vedeu.bind(:_cursor_origin_) { |name| Vedeu::Move.by_name(:origin, name) }
+    Vedeu.bind(:_cursor_origin_) do |name|
+      Vedeu::Move.by_name(Vedeu::Cursor, :origin, name)
+    end
 
     # @see {Vedeu::Move}
     Vedeu.bind(:_cursor_reset_) { |name| Vedeu.trigger(:_cursor_origin_, name) }
