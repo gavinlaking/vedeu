@@ -116,7 +116,7 @@ module Vedeu
 
     # @return [Vedeu::Geometry|NilClass]
     def maximise
-      return nil unless maximised?
+      return self if maximised?
 
       @maximised = true
 
@@ -129,7 +129,7 @@ module Vedeu
 
     # @return [Vedeu::Geometry|NilClass]
     def unmaximise
-      return nil if maximised?
+      return self unless maximised?
 
       Vedeu.trigger(:_clear_, name)
 
