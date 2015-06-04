@@ -117,6 +117,26 @@ module Vedeu
     end
 
     # @see {Vedeu::Move}
+    Vedeu.bind(:_geometry_down_) do |name|
+      Vedeu.geometries.by_name(name).move(1, 0)
+    end
+
+    # @see {Vedeu::Move}
+    Vedeu.bind(:_geometry_left_) do |name|
+      Vedeu.geometries.by_name(name).move(0, -1)
+    end
+
+    # @see {Vedeu::Move}
+    Vedeu.bind(:_geometry_right_) do |name|
+      Vedeu.geometries.by_name(name).move(0, 1)
+    end
+
+    # @see {Vedeu::Move}
+    Vedeu.bind(:_geometry_up_) do |name|
+      Vedeu.geometries.by_name(name).move(-1, 0)
+    end
+
+    # @see {Vedeu::Move}
     Vedeu.bind(:_cursor_reset_) { |name| Vedeu.trigger(:_cursor_origin_, name) }
 
     # When triggered with an interface name will focus that interface and

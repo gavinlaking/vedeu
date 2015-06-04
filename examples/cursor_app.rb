@@ -28,10 +28,15 @@ class VedeuCursorApp
   end
 
   keymap('_global_') do
-    key(:up,    'k') { Vedeu.trigger(:_cursor_up_)    }
-    key(:right, 'l') { Vedeu.trigger(:_cursor_right_) }
-    key(:down,  'j') { Vedeu.trigger(:_cursor_down_)  }
-    key(:left,  'h') { Vedeu.trigger(:_cursor_left_)  }
+    key(:up)    { Vedeu.trigger(:_cursor_up_)    }
+    key(:right) { Vedeu.trigger(:_cursor_right_) }
+    key(:down)  { Vedeu.trigger(:_cursor_down_)  }
+    key(:left)  { Vedeu.trigger(:_cursor_left_)  }
+
+    key('k') { Vedeu.trigger(:_geometry_up_, 'main_interface')    }
+    key('l') { Vedeu.trigger(:_geometry_right_, 'main_interface') }
+    key('j') { Vedeu.trigger(:_geometry_down_, 'main_interface')  }
+    key('h') { Vedeu.trigger(:_geometry_left_, 'main_interface')  }
 
     key('m') { Vedeu.trigger(:_maximise_, 'main_interface') }
     key('u') { Vedeu.trigger(:_unmaximise_, 'main_interface') }

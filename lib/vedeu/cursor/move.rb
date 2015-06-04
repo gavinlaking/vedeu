@@ -113,8 +113,6 @@ module Vedeu
 
       model = entity.new(attrs).store
 
-      # geometry = Vedeu::Geometry.new(attributes.merge!(new_attributes)).store
-
       if model.is_a?(Vedeu::Cursor)
         Vedeu.trigger(:_refresh_cursor_, name)
 
