@@ -98,10 +98,17 @@ module Vedeu
     # model has previously set the colour and style, reverts back to that for
     # consistent formatting.
     #
+    # @note
+    #   Aliasing #to_str to #to_s seems to reduce rendering time by around ~20ms
+    #   for normal sized (80x25) terminals.
+    # @todo
+    #   Must investigate. (GL 2015-06-05)
+    #
     # @return [String] An escape sequence with value interpolated.
     def to_s
       render_position { render_colour { render_style { value } } }
     end
+    alias_method :to_str, :to_s
 
     private
 
