@@ -15,7 +15,7 @@ module Vedeu
       #
       # @return [Vedeu::Menus]
       def reset!
-        @menus = Vedeu::Menus.register(Vedeu::Menu)
+        @menus = register(Vedeu::Menu)
       end
 
     end

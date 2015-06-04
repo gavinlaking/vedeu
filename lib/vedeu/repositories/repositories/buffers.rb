@@ -15,12 +15,13 @@ module Vedeu
       #
       # @return [Vedeu::Buffers]
       def reset!
-        @buffers = Vedeu::Buffers.register(Vedeu::Buffer)
+        @buffers = register(Vedeu::Buffer)
       end
 
     end
 
     null Vedeu::Null::Buffer
+    # real Vedeu::Buffer
 
   end # Buffers
 

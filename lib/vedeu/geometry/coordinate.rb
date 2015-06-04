@@ -3,34 +3,24 @@ module Vedeu
   # Crudely corrects out of range values.
   class Coordinate
 
-    # @!attribute [r] height
-    # @return [Fixnum]
-    attr_reader :height
+    extend Forwardable
 
-    # @!attribute [r] width
-    # @return [Fixnum]
-    attr_reader :width
-
-    # @!attribute [r] x
-    # @return [Fixnum]
-    attr_reader :x
-
-    # @!attribute [r] y
-    # @return [Fixnum]
-    attr_reader :y
+    def_delegators :border,
+                   :bx,
+                   :bxn,
+                   :by,
+                   :byn,
+                   :height,
+                   :width,
+                   :x,
+                   :y
 
     # Returns a new instance of Vedeu::Coordinate.
     #
-    # @param height [Fixnum]
-    # @param width [Fixnum]
-    # @param x [Fixnum]
-    # @param y [Fixnum]
+    # @param name [String]
     # @return [Vedeu::Coordinate]
-    def initialize(height, width, x, y)
-      @height = height
-      @width  = width
-      @x      = x
-      @y      = y
+    def initialize(name)
+      @name = name
     end
 
     # Returns the maximum y coordinate for an area.
@@ -81,16 +71,17 @@ module Vedeu
     # @param index [Fixnum]
     # @return [Fixnum]
     def y_position(index = 0)
-      if index <= 0
-        y
+      value = if index <= 0
+                y
 
-      elsif index > yn_index
-        yn
+              elsif index > yn_index
+                yn
 
-      else
-        y_range[index]
+              else
+                y_range[index]
 
-      end
+              end
+      validate_y(value)
     end
 
     # Returns the x coordinate for a given index.
@@ -105,16 +96,17 @@ module Vedeu
     # @param index [Fixnum]
     # @return [Fixnum]
     def x_position(index = 0)
-      if index <= 0
-        x
+      value = if index <= 0
+                x
 
-      elsif index > xn_index
-        xn
+              elsif index > xn_index
+                xn
 
-      else
-        x_range[index]
+              else
+                x_range[index]
 
-      end
+              end
+      validate_x(value)
     end
 
     protected
@@ -124,6 +116,27 @@ module Vedeu
     attr_reader :name
 
     private
+
+    # @return (see Vedeu::Borders#by_name)
+    def border
+      @border ||= Vedeu.borders.by_name(name)
+    end
+
+    # @param value [Fixnum]
+    # @return [Fixnum]
+    def validate_x(value)
+      value = value < bx ? bx : value
+      value = value > bxn ? bxn : value
+      value
+    end
+
+    # @param value [Fixnum]
+    # @return [Fixnum]
+    def validate_y(value)
+      value = value < by ? by : value
+      value = value > byn ? byn : value
+      value
+    end
 
     # Returns the maximum y index for an area.
     #

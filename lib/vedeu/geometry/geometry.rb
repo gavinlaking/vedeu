@@ -105,35 +105,63 @@ module Vedeu
 
     # @return [String]
     def inspect
-      "<Vedeu::Geometry x:#{x} xn:#{xn} y:#{y} yn:#{yn} maximise:#{maximised}>"
+      '<Vedeu::Geometry '   \
+      "x:#{x} "             \
+      "xn:#{xn} "           \
+      "y:#{y} "             \
+      "yn:#{yn} "           \
+      "centred:#{centred} " \
+      "maximise:#{maximised}>"
     end
 
-    # @return [Vedeu::Geometry]
+    # @return [Vedeu::Geometry|NilClass]
     def maximise
-      unless maximised?
-        @maximised = true
+      return self if maximised?
 
-        work = store
+      @maximised = true
 
-        Vedeu.trigger(:_refresh_, name)
+      work = store
 
-        work
-      end
+      Vedeu.trigger(:_refresh_, name)
+
+      work
     end
 
-    # @return [Vedeu::Geometry]
+    # @return [Vedeu::Geometry|NilClass]
     def unmaximise
-      if maximised?
-        Vedeu.trigger(:_clear_, name)
+      return self unless maximised?
 
-        @maximised = false
+      Vedeu.trigger(:_clear_, name)
 
-        work = store
+      @maximised = false
 
-        Vedeu.trigger(:_refresh_, name)
+      work = store
 
-        work
-      end
+      Vedeu.trigger(:_refresh_, name)
+
+      work
+    end
+
+    # @param dy [Fixnum]
+    # @param dx [Fixnum]
+    # @return [Vedeu::Geometry]
+    def move(dy = 0, dx = 0)
+      new_attrs = {
+        centred:    false,
+        maximised:  false,
+        name:       name,
+        x:          (area.x + dx),
+        y:          (area.y + dy),
+        xn:         (area.xn + dx),
+        yn:         (area.yn + dy),
+      }
+
+      work = Vedeu::Geometry.new(new_attrs).store
+
+      Vedeu.trigger(:_clear_)
+      Vedeu.trigger(:_refresh_, name)
+
+      work
     end
 
     private

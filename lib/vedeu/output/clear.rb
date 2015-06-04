@@ -58,14 +58,14 @@ module Vedeu
     # @return [Array<Array<Vedeu::Char>>]
     def clear
       if visible?
-        Vedeu.log(type: :output, message: "Clearing: '#{name}'")
-
-        @clear ||= Array.new(height) do |iy|
-          Array.new(width) do |ix|
-            Vedeu::Char.new(value:    ' ',
-                            colour:   clear_colour,
-                            style:    style,
-                            position: Vedeu::IndexPosition[iy, ix, *position])
+        Vedeu::Timer.for(:debug, "Clearing: #{name}") do
+          @clear ||= Array.new(height) do |iy|
+            Array.new(width) do |ix|
+              Vedeu::Char.new(value:    ' ',
+                              colour:   clear_colour,
+                              style:    style,
+                              position: Vedeu::IndexPosition[iy, ix, *position])
+            end
           end
         end
       else
@@ -106,13 +106,13 @@ module Vedeu
     #   the terminal, or the colours of the interface.
     def clear_colour
       @colour ||= if use_terminal_colours?
-        Vedeu::Colour.new(background: :default,
-                          foreground: :default)
+                    Vedeu::Colour.new(background: :default,
+                                      foreground: :default)
 
-      else
-        colour
+                  else
+                    colour
 
-      end
+                  end
     end
 
     # @return [Hash<Symbol => Boolean>]
@@ -146,17 +146,15 @@ module Vedeu
       @_options ||= defaults.merge!(@options)
     end
 
-    # @param iy [Fixnum]
-    # @param ix [Fixnum]
     # @return [Vedeu::IndexPosition]
     def position
       @position ||= if clear_border?
-        [y, x]
+                      [y, x]
 
-      else
-        [by, bx]
+                    else
+                      [by, bx]
 
-      end
+                    end
     end
 
     # @return [Boolean] Indicates whether the default terminal colours should be

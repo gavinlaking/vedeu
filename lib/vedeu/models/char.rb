@@ -76,7 +76,7 @@ module Vedeu
 
     # @return [Vedeu::Position]
     def position
-      @position ||= Vedeu::Position.coerce(attributes[:position])
+      @position ||= Vedeu::Position.coerce(@attributes[:position])
     end
 
     # Sets the position of the Char.
@@ -84,7 +84,7 @@ module Vedeu
     # @param value [Vedeu::Position]
     # @return [Vedeu::Position]
     def position=(value)
-      @position = Vedeu::Position.coerce(value)
+      @position = @attributes[:position] = Vedeu::Position.coerce(value)
     end
 
     # @return [String]

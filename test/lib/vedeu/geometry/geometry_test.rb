@@ -20,7 +20,7 @@ module Vedeu
         yn:         yn,
       }
     }
-    let(:centred)   {}
+    let(:centred)   { false }
     let(:height)    {}
     let(:maximised) { false }
     let(:_name)     {}
@@ -56,7 +56,10 @@ module Vedeu
 
       it { subject.must_be_instance_of(String) }
 
-      it { subject.must_equal('<Vedeu::Geometry x:1 xn:40 y:1 yn:12 maximise:false>') }
+      it { subject.must_equal(
+        '<Vedeu::Geometry x:1 xn:40 y:1 yn:12 centred:false maximise:false>'
+        )
+      }
     end
 
     describe '#maximise' do
@@ -91,6 +94,15 @@ module Vedeu
       it { subject.must_be_instance_of(described) }
 
       it { subject.maximised.must_equal(false) }
+    end
+
+    describe '#move' do
+      let(:dy) {}
+      let(:dx) {}
+
+      subject { instance.move(dy, dx) }
+
+
     end
 
     describe '#top, #right, #bottom, #left' do

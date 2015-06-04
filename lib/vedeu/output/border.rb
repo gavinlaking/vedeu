@@ -159,13 +159,15 @@ module Vedeu
       return [] unless visible?
       return [] unless enabled?
 
-      out = [top, bottom]
+      Vedeu::Timer.for(:debug, "Border rendering: #{name}") do
+        out = [top, bottom]
 
-      height.times do |y|
-        out << [left(y), right(y)]
+        height.times do |y|
+          out << [left(y), right(y)]
+        end
+
+        out.flatten
       end
-
-      out.flatten
     end
 
     # @return [String]
@@ -316,7 +318,7 @@ module Vedeu
 
     # @return [Vedeu::Geometry]
     def geometry
-      @geometry ||= Vedeu.geometries.by_name(name)
+      Vedeu.geometries.by_name(name)
     end
 
     # @return [Vedeu::Interface]

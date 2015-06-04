@@ -37,7 +37,7 @@ module Vedeu
     #
     # @return [String]
     def input
-      Vedeu.log(type: :debug, message: "--- Waiting for user input")
+      Vedeu.log(type: :debug, message: 'Waiting for user input...')
 
       keys_or_cmd = if raw_mode?
                       keys = console.getch

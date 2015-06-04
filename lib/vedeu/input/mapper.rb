@@ -10,6 +10,8 @@ module Vedeu
     # @param (see #initialize)
     # @return [Boolean]
     def self.keypress(key = nil, name = nil)
+      Vedeu.trigger(:key, key)
+
       return false unless key
 
       new(key, name).keypress

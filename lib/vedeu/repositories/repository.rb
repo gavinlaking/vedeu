@@ -22,15 +22,6 @@ module Vedeu
     # @return [void]
     attr_reader :storage
 
-    # @param model [Class]
-    # @param storage [Class|Hash]
-    # @return [Vedeu::Repository]
-    def self.register(model = nil, storage = {})
-      new(model, storage).tap do |klass|
-        Vedeu::Repositories.register(klass.repository)
-      end
-    end
-
     # Returns a new instance of Vedeu::Repository.
     #
     # @param model [Class]
@@ -45,7 +36,7 @@ module Vedeu
     #
     # @return [Class]
     def repository
-      self.class # .name
+      self.class
     end
 
     # @param name [String] The name of the stored model.

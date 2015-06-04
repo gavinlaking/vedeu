@@ -58,10 +58,7 @@ module Vedeu
     # you should define to 'do things'. If the `escape` key is pressed, then
     # `key` is triggered with the argument `:escape`, also an internal event
     # `_mode_switch_` is triggered.
-    Vedeu.bind(:_keypress_) do |key|
-      Vedeu.trigger(:key, key)
-      Vedeu.keypress(key)
-    end
+    Vedeu.bind(:_keypress_) { |key| Vedeu.keypress(key) }
 
     # Will cause the triggering of the `:command` event; which you should define
     # to 'do things'.
@@ -95,19 +92,49 @@ module Vedeu
     end
 
     # @see {Vedeu::Move}
-    Vedeu.bind(:_cursor_down_) { |name| Vedeu::Move.by_name(:down, name) }
+    Vedeu.bind(:_cursor_down_) do |name|
+      Vedeu::Move.by_name(Vedeu::Cursor, :down, name)
+    end
 
     # @see {Vedeu::Move}
-    Vedeu.bind(:_cursor_left_) { |name| Vedeu::Move.by_name(:left, name) }
+    Vedeu.bind(:_cursor_left_) do |name|
+      Vedeu::Move.by_name(Vedeu::Cursor, :left, name)
+    end
 
     # @see {Vedeu::Move}
-    Vedeu.bind(:_cursor_right_) { |name| Vedeu::Move.by_name(:right, name) }
+    Vedeu.bind(:_cursor_right_) do |name|
+      Vedeu::Move.by_name(Vedeu::Cursor, :right, name)
+    end
 
     # @see {Vedeu::Move}
-    Vedeu.bind(:_cursor_up_) { |name| Vedeu::Move.by_name(:up, name) }
+    Vedeu.bind(:_cursor_up_) do |name|
+      Vedeu::Move.by_name(Vedeu::Cursor, :up, name)
+    end
 
     # @see {Vedeu::Move}
-    Vedeu.bind(:_cursor_origin_) { |name| Vedeu::Move.by_name(:origin, name) }
+    Vedeu.bind(:_cursor_origin_) do |name|
+      Vedeu::Move.by_name(Vedeu::Cursor, :origin, name)
+    end
+
+    # @see {Vedeu::Move}
+    Vedeu.bind(:_geometry_down_) do |name|
+      Vedeu.geometries.by_name(name).move(1, 0)
+    end
+
+    # @see {Vedeu::Move}
+    Vedeu.bind(:_geometry_left_) do |name|
+      Vedeu.geometries.by_name(name).move(0, -1)
+    end
+
+    # @see {Vedeu::Move}
+    Vedeu.bind(:_geometry_right_) do |name|
+      Vedeu.geometries.by_name(name).move(0, 1)
+    end
+
+    # @see {Vedeu::Move}
+    Vedeu.bind(:_geometry_up_) do |name|
+      Vedeu.geometries.by_name(name).move(-1, 0)
+    end
 
     # @see {Vedeu::Move}
     Vedeu.bind(:_cursor_reset_) { |name| Vedeu.trigger(:_cursor_origin_, name) }
