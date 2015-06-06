@@ -5,23 +5,24 @@ $LOAD_PATH.unshift(lib_dir) unless $LOAD_PATH.include?(lib_dir)
 
 require 'vedeu'
 
-# An example application to demonstrate colours.
+# An example application to demonstrate colours, cursor and interface movement,
+# maximising/unmaximising of interfaces and toggling of cursors and interfaces.
 class VedeuMaterialColoursApp
 
   include Vedeu
 
   configure do
-    # debug!
+    debug!
     log '/tmp/vedeu_material_colours_app.log'
     renderers Vedeu::Renderers::File
   end
 
   interface 'main_interface' do
     border 'main_interface' do
-      colour foreground: '#ffffff', background: '#000000'
+      colour foreground: '#ffffff', background: :default
       title 'Rainbow!'
     end
-    colour foreground: '#ffffff', background: '#000000'
+    colour foreground: '#ffffff', background: :default
     cursor!
     geometry 'main_interface' do
       x  5
@@ -33,10 +34,10 @@ class VedeuMaterialColoursApp
 
   interface 'other_interface' do
     border 'other_interface' do
-      colour foreground: '#ffffff', background: '#000000'
+      colour foreground: '#ffffff', background: :default
       title 'Wow!'
     end
-    colour foreground: '#ffffff', background: '#000000'
+    colour foreground: '#ffffff', background: :default
     cursor!
     geometry 'other_interface' do
       x  27
