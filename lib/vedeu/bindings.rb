@@ -92,12 +92,12 @@ module Vedeu
     end
 
     # @see {Vedeu::Move}
-    %w(cursor geometry).each do |model|
+    %w(cursor view).each do |model|
       [:down, :left, :right, :up].each do |direction|
         Vedeu.bind("_#{model}_#{direction}_".to_sym) do |name|
           klass = {
-            'cursor'   => Vedeu::Cursor,
-            'geometry' => Vedeu::Geometry,
+            'cursor' => Vedeu::Cursor,
+            'view'   => Vedeu::Geometry,
           }.fetch(model)
 
           Vedeu::Move.by_name(klass, direction, name)
