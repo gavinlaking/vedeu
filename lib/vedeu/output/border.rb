@@ -362,14 +362,14 @@ module Vedeu
     # @return [Vedeu::Position]
     def position(name, iy = 0, ix = 0)
       case name
-      when :top_horizontal    then [y, (bx + ix)]
-      when :bottom_horizontal then [yn, (bx + ix)]
-      when :left_vertical     then [(by + iy), x]
-      when :right_vertical    then [(by + iy), xn]
-      when :bottom_left       then [yn, x]
-      when :bottom_right      then [yn, xn]
-      when :top_left          then [y, x]
-      when :top_right         then [y, xn]
+      when :top_horizontal    then Vedeu::Position.coerce([y, (bx + ix)])
+      when :bottom_horizontal then Vedeu::Position.coerce([yn, (bx + ix)])
+      when :left_vertical     then Vedeu::Position.coerce([(by + iy), x])
+      when :right_vertical    then Vedeu::Position.coerce([(by + iy), xn])
+      when :bottom_left       then Vedeu::Position.coerce([yn, x])
+      when :bottom_right      then Vedeu::Position.coerce([yn, xn])
+      when :top_left          then Vedeu::Position.coerce([y, x])
+      when :top_right         then Vedeu::Position.coerce([y, xn])
       end
     end
 

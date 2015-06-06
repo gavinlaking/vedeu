@@ -59,12 +59,14 @@ module Vedeu
     def clear
       if visible?
         Vedeu::Timer.for(:debug, "Clearing: #{name}") do
+          y, x = *position
+
           @clear ||= Array.new(height) do |iy|
             Array.new(width) do |ix|
               Vedeu::Char.new(value:    ' ',
                               colour:   clear_colour,
                               style:    style,
-                              position: Vedeu::IndexPosition[iy, ix, *position])
+                              position: [y + iy, x + ix])
             end
           end
         end
