@@ -31,6 +31,7 @@ module Vedeu
       def to_s
         ['druby://', host, ':', port].join
       end
+      alias_method :to_str, :to_s
 
     end # Uri
 

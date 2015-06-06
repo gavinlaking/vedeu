@@ -70,6 +70,7 @@ module Vedeu
     def to_s
       render.map(&:to_s).join("\n")
     end
+    alias_method :to_str, :to_s
 
     protected
 

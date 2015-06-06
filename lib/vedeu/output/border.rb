@@ -174,6 +174,7 @@ module Vedeu
     def to_s
       Vedeu::Renderers::Text.render(render)
     end
+    alias_method :to_str, :to_s
 
     # Renders the bottom border for the interface.
     #

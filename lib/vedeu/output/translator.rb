@@ -93,6 +93,7 @@ module Vedeu
       end
     end
     alias_method :to_s, :escape_sequence
+    alias_method :to_str, :escape_sequence
 
     # @return [String]
     def to_html

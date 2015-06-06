@@ -90,6 +90,7 @@ module Vedeu
     def to_s
       collection.map(&:to_s).join
     end
+    alias_method :to_str, :to_s
 
   end # Collection
 
