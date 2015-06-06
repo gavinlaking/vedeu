@@ -33,12 +33,13 @@ class VedeuCursorApp
     key(:down)  { Vedeu.trigger(:_cursor_down_)  }
     key(:left)  { Vedeu.trigger(:_cursor_left_)  }
 
+    key('h') { Vedeu.trigger(:_geometry_left_, 'main_interface')  }
+    key('j') { Vedeu.trigger(:_geometry_down_, 'main_interface')  }
     key('k') { Vedeu.trigger(:_geometry_up_, 'main_interface')    }
     key('l') { Vedeu.trigger(:_geometry_right_, 'main_interface') }
-    key('j') { Vedeu.trigger(:_geometry_down_, 'main_interface')  }
-    key('h') { Vedeu.trigger(:_geometry_left_, 'main_interface')  }
 
     key('m') { Vedeu.trigger(:_maximise_, 'main_interface') }
+    key('t') { Vedeu.trigger(:_toggle_interface_, 'main_interface') }
     key('u') { Vedeu.trigger(:_unmaximise_, 'main_interface') }
   end
 
