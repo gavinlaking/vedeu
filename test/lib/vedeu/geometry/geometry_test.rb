@@ -96,15 +96,6 @@ module Vedeu
       it { subject.maximised.must_equal(false) }
     end
 
-    describe '#move' do
-      let(:dy) {}
-      let(:dx) {}
-
-      subject { instance.move(dy, dx) }
-
-
-    end
-
     describe '#top, #right, #bottom, #left' do
       context 'maximised is true' do
         let(:attributes) { { maximised: true } }

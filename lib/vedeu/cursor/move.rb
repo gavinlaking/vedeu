@@ -30,6 +30,10 @@ module Vedeu
   #     irrespective of content.
   class Move
 
+    extend Forwardable
+
+    def_delegators :geometry, :x, :xn, :y, :yn
+
     # Move the named cursor, or that which is currently in focus in the
     # specified direction.
     #
@@ -109,19 +113,44 @@ module Vedeu
     #
     # @return [Cursor]
     def move
-      attrs = attributes.merge!(new_attributes)
+      model = entity.new(merged_attributes).store
 
-      model = entity.new(attrs).store
-
-      if model.is_a?(Vedeu::Cursor)
-        Vedeu.trigger(:_refresh_cursor_, name)
-
-      else
-        Vedeu.trigger(:_refresh_, name)
-
-      end
+      refresh
 
       model
+    end
+
+    def refresh
+      if entity.to_s == 'Vedeu::Geometry'
+        Vedeu.trigger(:_clear_)
+        Vedeu.trigger(:_refresh_, name)
+
+      else
+        Vedeu.trigger(:_refresh_cursor_, name)
+
+      end
+    end
+
+    def merged_attributes
+      if entity.to_s == 'Vedeu::Geometry'
+        {
+          centred:    false,
+          maximised:  false,
+          name:       name,
+          x:          (x + dx),
+          y:          (y + dy),
+          xn:         (xn + dx),
+          yn:         (yn + dy),
+        }
+
+      else
+        cursor.attributes.merge!(
+          x:  x_position,
+          y:  y_position,
+          ox: ox,
+          oy: oy)
+
+      end
     end
 
     protected
@@ -143,25 +172,6 @@ module Vedeu
     attr_reader :name
 
     private
-
-    # Retrieve the attributes of the cursor.
-    #
-    # @return [Hash<Symbol => Fixnum, String>]
-    def attributes
-      cursor.attributes
-    end
-
-    # Provide the new attributes for the cursor.
-    #
-    # @return [Hash<Symbol => Fixnum>]
-    def new_attributes
-      {
-        x:  x_position,
-        y:  y_position,
-        ox: ox,
-        oy: oy,
-      }
-    end
 
     # Returns the cursors x position based on its current offset.
     #
@@ -185,6 +195,11 @@ module Vedeu
     # @return (see Vedeu::Cursors#by_name)
     def cursor
       @cursor ||= Vedeu.cursors.by_name(name)
+    end
+
+    # @return (see Vedeu::Geometries#by_name)
+    def geometry
+      @geometry ||= Vedeu.geometries.by_name(name)
     end
 
     # Apply the direction amount to the cursor offset. If the offset is less
