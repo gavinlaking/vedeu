@@ -20,12 +20,6 @@ module Vedeu
 
       it { subject.must_be_instance_of(String) }
 
-      context 'when the output is not a collection' do
-        let(:output) { 'abcd' }
-
-        it { subject.must_equal('abcd') }
-      end
-
       context 'when the output is all Vedeu::Char elements' do
         let(:output) {
           [
@@ -57,12 +51,12 @@ module Vedeu
         let(:output) {
           [
             Vedeu::Char.new(value: 'N'),
-            'o',
+            Vedeu::EscapeChar.new("\e[?25l"),
             Vedeu::Char.new(value: 't'),
           ]
         }
         it 'converts the non-Vedeu::Char elements into String elements' do
-          subject.must_equal('Not')
+          subject.must_equal("N\e[?25lt")
         end
       end
     end

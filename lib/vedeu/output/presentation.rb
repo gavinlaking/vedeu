@@ -7,7 +7,7 @@ module Vedeu
 
     # @return [Vedeu::Background]
     def background
-      if colour
+      @background ||= if colour
         colour.background
 
       else
@@ -20,7 +20,7 @@ module Vedeu
     # @return [Vedeu::Background]
     def background=(value)
       attributes[:background] = value
-      colour.background = value
+      @background = colour.background = Vedeu::Background.coerce(value)
     end
 
     # @return [Vedeu::Colour]
@@ -36,7 +36,7 @@ module Vedeu
 
     # @return [Vedeu::Foreground]
     def foreground
-      if colour
+      @foreground ||= if colour
         colour.foreground
 
       else
@@ -49,7 +49,7 @@ module Vedeu
     # @return [Vedeu::Foreground]
     def foreground=(value)
       attributes[:foreground] = value
-      colour.foreground = value
+      @foreground = colour.foreground = Vedeu::Foreground.coerce(value)
     end
 
     # @return [Vedeu::Background]
@@ -117,7 +117,7 @@ module Vedeu
       if attributes[:colour]
         attributes[:colour]
 
-      elsif parent_colour
+      elsif parent && parent_colour
         parent_colour
 
       end
@@ -155,7 +155,7 @@ module Vedeu
       if attributes[:style]
         attributes[:style]
 
-      elsif parent_style
+      elsif parent && parent_style
         parent_style
 
       end

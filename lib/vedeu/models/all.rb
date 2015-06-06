@@ -2,6 +2,7 @@ require 'vedeu/repositories/all'
 
 require_relative 'cell'
 require_relative 'char'
+require_relative 'escape_char'
 require_relative 'stream'
 require_relative 'line'
 require_relative 'interface'

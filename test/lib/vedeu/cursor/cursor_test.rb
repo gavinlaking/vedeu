@@ -42,8 +42,8 @@ module Vedeu
     describe '#hide_cursor' do
       subject { instance.hide_cursor }
 
-      it { subject.must_be_instance_of(String) }
-      it { subject.must_equal("\e[?25l") }
+      it { subject.must_be_instance_of(Vedeu::EscapeChar) }
+      it { subject.to_s.must_equal("\e[?25l") }
     end
 
     describe '#inspect' do
@@ -58,8 +58,8 @@ module Vedeu
     describe '#show_cursor' do
       subject { instance.show_cursor }
 
-      it { subject.must_be_instance_of(String) }
-      it { subject.must_equal("\e[?25h") }
+      it { subject.must_be_instance_of(Vedeu::EscapeChar) }
+      it { subject.to_s.must_equal("\e[?25h") }
     end
 
     describe '#to_s' do

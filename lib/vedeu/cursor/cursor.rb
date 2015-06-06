@@ -4,10 +4,7 @@ module Vedeu
   # visibility of the cursor within that interface.
   class Cursor
 
-    extend Forwardable
     include Vedeu::Model
-
-    def_delegators Vedeu::Esc, :hide_cursor, :show_cursor
 
     # @!attribute [r] attributes
     # @return [Hash]
@@ -97,6 +94,17 @@ module Vedeu
 
       end
     end
+    alias_method :to_str, :to_s
+
+    # @return [Vedeu::EscapeChar]
+    def hide_cursor
+      @hide_cursor ||= Vedeu::EscapeChar.new(Vedeu::Esc.hide_cursor)
+    end
+
+    # @return [Vedeu::EscapeChar]
+    def show_cursor
+      @show_cursor ||= Vedeu::EscapeChar.new(Vedeu::Esc.show_cursor)
+    end
 
     private
 
@@ -133,13 +141,9 @@ module Vedeu
     #
     # @return [String]
     def visibility
-      if visible?
-        show_cursor
+      return show_cursor if visible?
 
-      else
-        hide_cursor
-
-      end
+      hide_cursor
     end
 
   end # Cursor
