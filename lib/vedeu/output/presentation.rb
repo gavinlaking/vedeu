@@ -7,7 +7,7 @@ module Vedeu
 
     # @return [Vedeu::Background]
     def background
-      if colour
+      @background ||= if colour
         colour.background
 
       else
@@ -20,7 +20,7 @@ module Vedeu
     # @return [Vedeu::Background]
     def background=(value)
       attributes[:background] = value
-      colour.background = value
+      @background = colour.background = Vedeu::Background.coerce(value)
     end
 
     # @return [Vedeu::Colour]
@@ -36,7 +36,7 @@ module Vedeu
 
     # @return [Vedeu::Foreground]
     def foreground
-      if colour
+      @foreground ||= if colour
         colour.foreground
 
       else
@@ -49,7 +49,7 @@ module Vedeu
     # @return [Vedeu::Foreground]
     def foreground=(value)
       attributes[:foreground] = value
-      colour.foreground = value
+      @foreground = colour.foreground = Vedeu::Foreground.coerce(value)
     end
 
     # @return [Vedeu::Background]
@@ -98,10 +98,17 @@ module Vedeu
     # model has previously set the colour and style, reverts back to that for
     # consistent formatting.
     #
+    # @note
+    #   Aliasing #to_str to #to_s seems to reduce rendering time by around ~20ms
+    #   for normal sized (80x25) terminals.
+    # @todo
+    #   Must investigate. (GL 2015-06-05)
+    #
     # @return [String] An escape sequence with value interpolated.
     def to_s
       render_position { render_colour { render_style { value } } }
     end
+    alias_method :to_str, :to_s
 
     private
 
@@ -110,7 +117,7 @@ module Vedeu
       if attributes[:colour]
         attributes[:colour]
 
-      elsif parent_colour
+      elsif parent && parent_colour
         parent_colour
 
       end
@@ -148,7 +155,7 @@ module Vedeu
       if attributes[:style]
         attributes[:style]
 
-      elsif parent_style
+      elsif parent && parent_style
         parent_style
 
       end

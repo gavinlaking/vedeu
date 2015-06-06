@@ -71,6 +71,7 @@ module Vedeu
       @sequences ||= Array(value).flatten.map { |v| Vedeu::Esc.string(v) }.join
     end
     alias_method :escape_sequences, :to_s
+    alias_method :to_str, :to_s
 
   end # Style
 

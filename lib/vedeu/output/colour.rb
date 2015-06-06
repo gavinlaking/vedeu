@@ -114,6 +114,7 @@ module Vedeu
     def to_s
       foreground.to_s + background.to_s
     end
+    alias_method :to_str, :to_s
 
     private
 

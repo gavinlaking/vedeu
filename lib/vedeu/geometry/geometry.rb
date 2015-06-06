@@ -142,28 +142,6 @@ module Vedeu
       work
     end
 
-    # @param dy [Fixnum]
-    # @param dx [Fixnum]
-    # @return [Vedeu::Geometry]
-    def move(dy = 0, dx = 0)
-      new_attrs = {
-        centred:    false,
-        maximised:  false,
-        name:       name,
-        x:          (area.x + dx),
-        y:          (area.y + dy),
-        xn:         (area.xn + dx),
-        yn:         (area.yn + dy),
-      }
-
-      work = Vedeu::Geometry.new(new_attrs).store
-
-      Vedeu.trigger(:_clear_)
-      Vedeu.trigger(:_refresh_, name)
-
-      work
-    end
-
     private
 
     # @return [Vedeu::Area]

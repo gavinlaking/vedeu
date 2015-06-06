@@ -74,6 +74,7 @@ module Vedeu
 
       [sequence, yield, sequence].join
     end
+    alias_method :to_str, :to_s
 
     private
 

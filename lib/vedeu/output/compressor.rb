@@ -17,18 +17,12 @@ module Vedeu
     # @return [String]
     def render
       Array(output).flatten.map do |char|
-        if char.is_a?(Vedeu::Char)
-          out = ''
-          out << char.position.to_s
-          out << colour_for(char)
-          out << style_for(char)
-          out << char.value
-          out
-
-        else
-          char.to_s
-
-        end
+        out =  ''
+        out << char.position.to_s
+        out << colour_for(char)
+        out << style_for(char)
+        out << char.value
+        out
       end.join
     end
 

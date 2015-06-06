@@ -92,48 +92,22 @@ module Vedeu
     end
 
     # @see {Vedeu::Move}
-    Vedeu.bind(:_cursor_down_) do |name|
-      Vedeu::Move.by_name(Vedeu::Cursor, :down, name)
-    end
+    %w(cursor view).each do |model|
+      [:down, :left, :right, :up].each do |direction|
+        Vedeu.bind("_#{model}_#{direction}_".to_sym) do |name|
+          klass = {
+            'cursor' => Vedeu::Cursor,
+            'view'   => Vedeu::Geometry,
+          }.fetch(model)
 
-    # @see {Vedeu::Move}
-    Vedeu.bind(:_cursor_left_) do |name|
-      Vedeu::Move.by_name(Vedeu::Cursor, :left, name)
-    end
-
-    # @see {Vedeu::Move}
-    Vedeu.bind(:_cursor_right_) do |name|
-      Vedeu::Move.by_name(Vedeu::Cursor, :right, name)
-    end
-
-    # @see {Vedeu::Move}
-    Vedeu.bind(:_cursor_up_) do |name|
-      Vedeu::Move.by_name(Vedeu::Cursor, :up, name)
+          Vedeu::Move.by_name(klass, direction, name)
+        end
+      end
     end
 
     # @see {Vedeu::Move}
     Vedeu.bind(:_cursor_origin_) do |name|
       Vedeu::Move.by_name(Vedeu::Cursor, :origin, name)
-    end
-
-    # @see {Vedeu::Move}
-    Vedeu.bind(:_geometry_down_) do |name|
-      Vedeu.geometries.by_name(name).move(1, 0)
-    end
-
-    # @see {Vedeu::Move}
-    Vedeu.bind(:_geometry_left_) do |name|
-      Vedeu.geometries.by_name(name).move(0, -1)
-    end
-
-    # @see {Vedeu::Move}
-    Vedeu.bind(:_geometry_right_) do |name|
-      Vedeu.geometries.by_name(name).move(0, 1)
-    end
-
-    # @see {Vedeu::Move}
-    Vedeu.bind(:_geometry_up_) do |name|
-      Vedeu.geometries.by_name(name).move(-1, 0)
     end
 
     # @see {Vedeu::Move}
@@ -191,14 +165,10 @@ module Vedeu
     # Clears the whole terminal space, or the named interface area to be cleared
     # if given.
     Vedeu.bind(:_clear_) do |name|
-      if name
-        Vedeu::Clear.clear(Vedeu.interfaces.by_name(name),
-                           clear_border: true, use_terminal_colours: true)
+      Vedeu::Terminal.clear unless name
 
-      else
-        Vedeu::Terminal.virtual.clear if Vedeu::Configuration.drb?
-        Vedeu::Terminal.clear
-      end
+      Vedeu::Clear.clear(Vedeu.interfaces.by_name(name),
+                         clear_border: true, use_terminal_colours: true)
     end
 
     # Clears the spaces occupied by the interfaces belonging to the named group.
@@ -237,27 +207,21 @@ module Vedeu
     #   This may be rarely used, since the action of showing a group using
     #   `Vedeu.trigger(:_show_group_, group_name)` will effectively clear the
     #   terminal and show the new group.
-    Vedeu.bind(:_hide_group_) do |name|
-      Vedeu.trigger(:_clear_group_, name)
-    end
+    Vedeu.bind(:_hide_group_) { |name| Vedeu.trigger(:_clear_group_, name) }
 
     # Will hide the named interface. If the interface is currently visible, it
     # will be cleared- rendered blank. To show the interface, the
     # ':_show_interface_' event should be triggered.
     # Triggering the ':_hide_group_' event to which this named interface belongs
     # will also hide the interface.
-    Vedeu.bind(:_hide_interface_) do |name|
-      Vedeu.buffers.by_name(name).hide
-    end
+    Vedeu.bind(:_hide_interface_) { |name| Vedeu.buffers.by_name(name).hide }
 
     # Will show the named interface. If the interface is currently invisible, it
     # will be shown- rendered with its latest content. To hide the interface,
     # the ':_hide_interface_' event should be triggered.
     # Triggering the ':_show_group_' event to which this named interface belongs
     # will also show the interface.
-    Vedeu.bind(:_show_interface_) do |name|
-      Vedeu.buffers.by_name(name).show
-    end
+    Vedeu.bind(:_show_interface_) { |name| Vedeu.buffers.by_name(name).show }
 
     # Will toggle the visibility of the named interface. If the interface is
     # currently visible, the area it occupies will be clears and the interface
@@ -269,24 +233,18 @@ module Vedeu
     #   or all of the interface's current position, the interface will overwrite
     #   this area- this may cause visual corruption.
     Vedeu.bind(:_toggle_interface_) do |name|
-      if name && Vedeu.interfaces.registered?(name)
-        interface = Vedeu.interfaces.find(name)
+      if Vedeu.interfaces.by_name(name).visible?
+        Vedeu.trigger(:_hide_interface_, name)
 
-        if interface.visible?
-          Vedeu.trigger(:_hide_interface_, name)
+      else
+        Vedeu.trigger(:_show_interface_, name)
 
-        else
-          Vedeu.trigger(:_show_interface_, name)
-
-        end
       end
     end
 
     # Will maximise the named interface geometry. This means it will occupy all
     # of the available space on the terminal window.
-    Vedeu.bind(:_maximise_) do |name|
-      Vedeu.geometries.by_name(name).maximise
-    end
+    Vedeu.bind(:_maximise_) { |name| Vedeu.geometries.by_name(name).maximise }
 
     # Will unmaximise the named interface geometry. Previously, if a geometry
     # was maximised, then triggering the unmaximise event will return it to its

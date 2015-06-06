@@ -101,6 +101,8 @@ module Vedeu
     #
     # @return [String]
     def clear
+      virtual.clear if Vedeu::Configuration.drb?
+
       output(Esc.string('clear'))
     end
 
@@ -217,13 +219,9 @@ module Vedeu
     #
     # @return [Fixnum]
     def width
-      if Vedeu::Configuration.drb?
-        Vedeu::Configuration.drb_width
+      return Vedeu::Configuration.drb_width if Vedeu::Configuration.drb?
 
-      else
-        size.last
-
-      end
+      size.last
     end
     alias_method :xn, :width
     alias_method :txn, :width
@@ -235,13 +233,9 @@ module Vedeu
     #
     # @return [Fixnum]
     def height
-      if Vedeu::Configuration.drb?
-        Vedeu::Configuration.drb_height
+      return Vedeu::Configuration.drb_height if Vedeu::Configuration.drb?
 
-      else
-        size.first
-
-      end
+      size.first
     end
     alias_method :yn, :height
     alias_method :tyn, :height

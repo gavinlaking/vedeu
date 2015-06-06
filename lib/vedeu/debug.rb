@@ -12,9 +12,9 @@ module Vedeu
 
     require 'ruby-prof'
 
-    RubyProf.measure_mode = RubyProf::WALL_TIME
+    # RubyProf.measure_mode = RubyProf::WALL_TIME
     # RubyProf.measure_mode = RubyProf::PROCESS_TIME
-    # RubyProf.measure_mode = RubyProf::CPU_TIME
+    RubyProf.measure_mode = RubyProf::CPU_TIME
     # RubyProf.measure_mode = RubyProf::ALLOCATIONS
     # RubyProf.measure_mode = RubyProf::MEMORY
     # RubyProf.measure_mode = RubyProf::GC_TIME
@@ -28,9 +28,12 @@ module Vedeu
     result.eliminate_methods!([
       /^Array/,
       /^Hash/,
+      /^String/,
+      /^Fixnum/,
     ])
 
     File.open('/tmp/' + filename, 'w') do |file|
+      # - Creates a HTML visualization of the Ruby stack
       RubyProf::CallStackPrinter.new(result).print(file)
 
       # Used with QTCacheGrind to analyse performance.
@@ -54,9 +57,6 @@ module Vedeu
 
       # - Creates a call tree report compatible with KCachegrind.
       # RubyProf::CallTreePrinter
-
-      # - Creates a HTML visualization of the Ruby stack
-      # RubyProf::CallStackPrinter
 
       # - Uses the other printers to create several reports in one profiling run
       # RubyProf::MultiPrinter
