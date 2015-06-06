@@ -135,6 +135,8 @@ module Vedeu
     def refresh
       if entity.to_s == 'Vedeu::Geometry'
         Vedeu.trigger(:_clear_)
+        Vedeu.trigger(:_refresh_)
+        Vedeu.trigger(:_clear_, name)
         Vedeu.trigger(:_refresh_, name)
 
       else
