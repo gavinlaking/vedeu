@@ -47,10 +47,21 @@ class VedeuMaterialColoursApp
   end
 
   keymap('_global_') do
-    key(:up,    'k') { Vedeu.trigger(:_cursor_up_)    }
-    key(:right, 'l') { Vedeu.trigger(:_cursor_right_) }
-    key(:down,  'j') { Vedeu.trigger(:_cursor_down_)  }
-    key(:left,  'h') { Vedeu.trigger(:_cursor_left_)  }
+    key(:up)    { Vedeu.trigger(:_cursor_up_)    }
+    key(:right) { Vedeu.trigger(:_cursor_right_) }
+    key(:down)  { Vedeu.trigger(:_cursor_down_)  }
+    key(:left)  { Vedeu.trigger(:_cursor_left_)  }
+
+    key('a') { Vedeu.trigger(:_view_left_, 'main_interface')  }
+    key('s') { Vedeu.trigger(:_view_down_, 'main_interface')  }
+    key('d') { Vedeu.trigger(:_view_up_, 'main_interface')    }
+    key('f') { Vedeu.trigger(:_view_right_, 'main_interface') }
+
+    key('h') { Vedeu.trigger(:_view_left_, 'other_interface')  }
+    key('j') { Vedeu.trigger(:_view_down_, 'other_interface')  }
+    key('k') { Vedeu.trigger(:_view_up_, 'other_interface')    }
+    key('l') { Vedeu.trigger(:_view_right_, 'other_interface') }
+
     key('t')         do
       Vedeu.trigger(:_toggle_interface_, 'main_interface')
       Vedeu.trigger(:_toggle_interface_, 'other_interface')
@@ -59,6 +70,10 @@ class VedeuMaterialColoursApp
     key('2') { Vedeu.trigger(:_show_interface_, 'main_interface') }
     key('3') { Vedeu.trigger(:_hide_interface_, 'other_interface') }
     key('4') { Vedeu.trigger(:_show_interface_, 'other_interface') }
+    key('m') { Vedeu.trigger(:_maximise_, 'main_interface') }
+    key('n') { Vedeu.trigger(:_unmaximise_, 'main_interface') }
+    key('b') { Vedeu.trigger(:_maximise_, 'other_interface') }
+    key('v') { Vedeu.trigger(:_unmaximise_, 'other_interface') }
   end
 
   renders do
