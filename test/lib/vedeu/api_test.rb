@@ -18,7 +18,7 @@ module Vedeu
         describe '.borders' do
           subject { Vedeu.borders }
 
-          # it { subject.must_be_instance_of(Vedeu::Borders) }
+          it { subject.must_be_instance_of(Vedeu::Borders) }
         end
       end
 
@@ -26,7 +26,7 @@ module Vedeu
         describe '.buffers' do
           subject { Vedeu.buffers }
 
-          # it { subject.must_be_instance_of(Vedeu::Buffers) }
+          it { subject.must_be_instance_of(Vedeu::Buffers) }
         end
       end
 
@@ -34,7 +34,7 @@ module Vedeu
         describe '.canvas' do
           subject { Vedeu.canvas }
 
-          # it { subject.must_be_instance_of(Vedeu::Canvas) }
+          it { subject.must_be_instance_of(Vedeu::Canvas) }
         end
       end
 
@@ -48,7 +48,7 @@ module Vedeu
         describe '.configuration' do
           subject { Vedeu.configuration }
 
-          # it { subject.must_be_instance_of(Vedeu::Configuration) }
+          it { subject.must_be_instance_of(Vedeu::Configuration) }
         end
       end
 
@@ -66,7 +66,7 @@ module Vedeu
         describe '.cursors' do
           subject { Vedeu.cursors }
 
-          # it { subject.must_be_instance_of(Vedeu::Cursors) }
+          it { subject.must_be_instance_of(Vedeu::Cursors) }
         end
       end
 
@@ -152,7 +152,7 @@ module Vedeu
         describe '.events' do
           subject { Vedeu.events }
 
-          # it { subject.must_be_instance_of(Vedeu::EventsRepository) }
+          it { subject.must_be_instance_of(Vedeu::EventsRepository) }
         end
       end
 
@@ -204,7 +204,7 @@ module Vedeu
         describe '.geometries' do
           subject { Vedeu.geometries }
 
-          # it { subject.must_be_instance_of(Vedeu::Geometries) }
+          it { subject.must_be_instance_of(Vedeu::Geometries) }
         end
       end
 
@@ -212,7 +212,7 @@ module Vedeu
         describe '.groups' do
           subject { Vedeu.groups }
 
-          # it { subject.must_be_instance_of(Vedeu::Groups) }
+          it { subject.must_be_instance_of(Vedeu::Groups) }
         end
       end
 
@@ -220,7 +220,7 @@ module Vedeu
         describe '.interfaces' do
           subject { Vedeu.interfaces }
 
-          # it { subject.must_be_instance_of(Vedeu::InterfacesRepository) }
+          it { subject.must_be_instance_of(Vedeu::InterfacesRepository) }
         end
       end
 
@@ -228,7 +228,7 @@ module Vedeu
         describe '.keymaps' do
           subject { Vedeu.keymaps }
 
-          # it { subject.must_be_instance_of(Vedeu::Keymaps) }
+          it { subject.must_be_instance_of(Vedeu::Keymaps) }
         end
       end
 
@@ -260,7 +260,7 @@ module Vedeu
         describe '.menus' do
           subject { Vedeu.menus }
 
-          # it { subject.must_be_instance_of(Vedeu::Menus) }
+          it { subject.must_be_instance_of(Vedeu::Menus) }
         end
       end
 

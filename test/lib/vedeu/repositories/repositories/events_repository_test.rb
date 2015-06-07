@@ -6,12 +6,6 @@ module Vedeu
 
     let(:described) { Vedeu::EventsRepository }
 
-    describe '.events' do
-      subject { described.events }
-
-      it { subject.must_be_instance_of(described) }
-    end
-
   end # EventsRepository
 
 end # Vedeu

@@ -7,12 +7,6 @@ module Vedeu
     let(:described) { Vedeu::Buffers }
     let(:instance)  { described.buffers }
 
-    describe '.buffers' do
-      subject { instance }
-
-      it { subject.must_be_instance_of(described) }
-    end
-
     describe '#by_name' do
       let(:_name) { 'carbon' }
 

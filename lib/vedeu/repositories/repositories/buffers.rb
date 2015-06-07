@@ -6,10 +6,7 @@ module Vedeu
     class << self
 
       # @return [Vedeu::Buffers]
-      def buffers
-        @buffers ||= reset!
-      end
-      alias_method :repository, :buffers
+      alias_method :buffers, :repository
 
       # Remove all stored models from the repository.
       #

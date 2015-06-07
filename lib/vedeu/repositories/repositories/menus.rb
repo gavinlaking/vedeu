@@ -6,10 +6,7 @@ module Vedeu
     class << self
 
       # @return [Vedeu::Menus]
-      def menus
-        @menus ||= reset!
-      end
-      alias_method :repository, :menus
+      alias_method :menus, :repository
 
       # Remove all stored models from the repository.
       #

@@ -6,12 +6,6 @@ module Vedeu
 
     let(:described) { Vedeu::Cursors }
 
-    describe '.cursors' do
-      subject { described.cursors }
-
-      it { subject.must_be_instance_of(described) }
-    end
-
     describe '.cursor' do
       subject { Vedeu.cursor }
 

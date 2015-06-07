@@ -6,12 +6,6 @@ module Vedeu
 
     let(:described) { Vedeu::Geometries }
 
-    describe '.geometries' do
-      subject { described.geometries }
-
-      it { subject.must_be_instance_of(described) }
-    end
-
     describe '#by_name' do
       let(:_name) { 'carbon' }
 
