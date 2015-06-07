@@ -6,10 +6,7 @@ module Vedeu
     class << self
 
       # @return [Vedeu::Keymaps]
-      def keymaps
-        @keymaps ||= reset!
-      end
-      alias_method :repository, :keymaps
+      alias_method :keymaps, :repository
 
       # Remove all stored models from the repository.
       #

@@ -6,10 +6,7 @@ module Vedeu
     class << self
 
       # @return [Vedeu::Cursors]
-      def cursors
-        @cursors ||= reset!
-      end
-      alias_method :repository, :cursors
+      alias_method :cursors, :repository
 
       # @return [Vedeu::Cursor]
       def cursor

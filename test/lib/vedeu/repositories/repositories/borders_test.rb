@@ -6,12 +6,6 @@ module Vedeu
 
     let(:described) { Vedeu::Borders }
 
-    describe '.borders' do
-      subject { described.borders }
-
-      it { subject.must_be_instance_of(described) }
-    end
-
     describe '#by_name' do
       let(:_name) { 'carbon' }
 

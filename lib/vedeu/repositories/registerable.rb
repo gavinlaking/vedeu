@@ -34,6 +34,18 @@ module Vedeu
         end
       end
 
+      # Returns the repositories registered.
+      #
+      # @note
+      #   If the repository is 'Geometries', for example, then @models will be
+      #   either an empty Geometries repository or the collection of stored
+      #   models.
+      #
+      # @return [void]
+      def repository
+        @models ||= reset!
+      end
+
     end # ClassMethods
 
     # When this module is included in a class, provide ClassMethods as class
