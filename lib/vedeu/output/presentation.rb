@@ -8,13 +8,13 @@ module Vedeu
     # @return [Vedeu::Background]
     def background
       @background ||= if colour
-        colour.background
+                        colour.background
 
-      else
-        Vedeu::Background.new
-        # @todo: Should this be: parent_background
+                      else
+                        Vedeu::Background.new
+                        # @todo: Should this be: parent_background
 
-      end
+                      end
     end
 
     # @return [Vedeu::Background]
@@ -37,13 +37,13 @@ module Vedeu
     # @return [Vedeu::Foreground]
     def foreground
       @foreground ||= if colour
-        colour.foreground
+                        colour.foreground
 
-      else
-        Vedeu::Foreground.new
-        # @todo: Should this be: parent_foreground
+                      else
+                        Vedeu::Foreground.new
+                        # @todo: Should this be: parent_foreground
 
-      end
+                      end
     end
 
     # @return [Vedeu::Foreground]

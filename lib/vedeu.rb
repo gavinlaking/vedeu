@@ -81,8 +81,3 @@ module Vedeu
 end # Vedeu
 
 require 'vedeu/all'
-
-require 'vedeu/support/trace'
-Vedeu::Trace.call
-# force tracing
-# Vedeu::Trace.call({ trace: true })
