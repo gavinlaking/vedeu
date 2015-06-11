@@ -47,10 +47,6 @@ require 'support/helpers/model_test_class'
 #  # Minitest::Reporters::SpecReporter.new
 # )
 
-# trace method execution with (optionally) local variables
-# require 'vedeu/support/log'
-# Vedeu::Trace.call({ watched: 'call', klass: /^Vedeu/ })
-
 def test_configuration
   Vedeu::Configuration.reset!
 
