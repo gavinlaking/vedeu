@@ -85,28 +85,31 @@ module Vedeu
 
     # @return [String]
     def colour_bg
-      if defined_value?(char.background.to_html)
-        char.background.to_html
-
-      elsif defined_value?(char.parent_background.to_html)
-        char.parent_background.to_html
-
-      else
-        '#000'
-
-      end
+      colour(char, 'background', '#000')
     end
 
     # @return [String]
     def colour_fg
-      if defined_value?(char.foreground.to_html)
-        char.foreground.to_html
+      colour(char, 'foreground', '#222')
+    end
 
-      elsif defined_value?(char.parent_foreground.to_html)
-        char.parent_foreground.to_html
+    # @param char []
+    # @param type [String]
+    # @param default [String]
+    # @return [String]
+    def colour(char, type, default)
+      parent_type         = ('parent_' + type).to_sym
+      type_to_html        = char.send(type).send(:to_html)
+      parent_type_to_html = char.send(parent_type).send(:to_html)
+
+      if defined_value?(type_to_html)
+        type_to_html
+
+      elsif defined_value?(parent_type_to_html)
+        parent_type_to_html
 
       else
-        '#222'
+        default
 
       end
     end
