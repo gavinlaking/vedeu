@@ -16,11 +16,7 @@ module Vedeu
       let(:client) {}
 
       before { Vedeu.interfaces.reset }
-
-      describe 'alias methods' do
-        it { instance.must_respond_to(:keys) }
-        it { instance.must_respond_to(:line) }
-      end
+      after  { Vedeu.interfaces.reset }
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
@@ -251,6 +247,7 @@ module Vedeu
         }
 
         it { subject.must_be_instance_of(Vedeu::Keymap) }
+        it { instance.must_respond_to(:keys) }
       end
 
       describe '#lines' do
@@ -267,6 +264,8 @@ module Vedeu
 
           it { proc { subject }.must_raise(InvalidSyntax) }
         end
+
+        it { instance.must_respond_to(:line) }
       end
 
       describe '#name' do
