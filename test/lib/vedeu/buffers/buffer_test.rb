@@ -24,6 +24,7 @@ module Vedeu
       Vedeu.stubs(:trigger)
       # Vedeu.interfaces.stubs(:by_name).returns(interface)
     end
+    after { Vedeu.interfaces.reset }
 
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }
