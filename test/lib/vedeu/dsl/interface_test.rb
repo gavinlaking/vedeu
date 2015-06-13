@@ -68,6 +68,13 @@ module Vedeu
         it { subject.must_be_instance_of(Vedeu::Border) }
       end
 
+      describe '#button' do
+        let(:label)  { 'No' }
+        let(:_value) { false }
+
+        subject { instance.button(label, _value) }
+      end
+
       describe '#cursor' do
         let(:_value) {}
 
