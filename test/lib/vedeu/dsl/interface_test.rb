@@ -285,6 +285,8 @@ module Vedeu
       end
 
       describe '#show!' do
+        after { Vedeu.interfaces.reset }
+
         subject {
           Vedeu.interface 'xenon' do
             show!
@@ -295,6 +297,8 @@ module Vedeu
       end
 
       describe '#hide!' do
+        after { Vedeu.interfaces.reset }
+
         subject {
           Vedeu.interface 'xenon' do
             hide!
@@ -309,6 +313,17 @@ module Vedeu
         it { instance.visible(true).must_equal(true) }
         it { instance.visible(nil).must_equal(false) }
         it { instance.visible(:show).must_equal(true) }
+      end
+
+      describe '#zindex' do
+        let(:_value) { 1 }
+
+        subject { instance.zindex(_value) }
+
+        it { subject.must_equal(1) }
+
+        it { instance.must_respond_to(:z_index) }
+        it { instance.must_respond_to(:z) }
       end
 
     end # Interface

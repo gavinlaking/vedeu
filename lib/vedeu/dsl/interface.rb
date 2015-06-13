@@ -245,6 +245,28 @@ module Vedeu
         model.visible = boolean
       end
 
+      # Set the zindex of the interface. This controls the render order of
+      # interfaces. Interfaces with a lower zindex will render before those
+      # with a higher zindex.
+      #
+      # @example
+      #   --4-- # rendered last
+      #   --3--
+      #   --2--
+      #   --1-- # rendered first
+      #
+      #   interface 'my_interface' do
+      #     zindex 3
+      #     # ...
+      #
+      # @param value [Fixnum]
+      # @return [void]
+      def zindex(value)
+        model.zindex = value
+      end
+      alias_method :z_index, :zindex
+      alias_method :z,       :zindex
+
       def yesno
       end
 
