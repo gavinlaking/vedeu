@@ -15,18 +15,18 @@ module Vedeu
         @interfaces = register(Vedeu::Interface)
       end
 
-      # Returns the interfaces in zindex order.
-      #
-      # @return [Array<Vedeu::Interface>]
-      # @see Vedeu::DSL::Interface#zindex
-      def zindexed
-        repository.all.sort { |a, b| a.zindex <=> b.zindex }
-      end
-
     end
 
     null Vedeu::Null::Interface
     # real Vedeu::Interface
+
+    # Returns the interfaces in zindex order.
+    #
+    # @return [Array<Vedeu::Interface>]
+    # @see Vedeu::DSL::Interface#zindex
+    def zindexed
+      all.sort { |a, b| a.zindex <=> b.zindex }
+    end
 
   end # InterfacesRepository
 

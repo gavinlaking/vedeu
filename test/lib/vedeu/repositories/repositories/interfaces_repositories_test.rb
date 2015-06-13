@@ -6,7 +6,7 @@ module Vedeu
 
     let(:described) { Vedeu::InterfacesRepository }
 
-    describe '.zindexed' do
+    describe '#zindexed' do
       before do
         @hydrogen = Vedeu.interface 'hydrogen' do
           zindex 2
@@ -20,7 +20,7 @@ module Vedeu
       end
       after { Vedeu.interfaces.reset }
 
-      subject { described.zindexed }
+      subject { Vedeu.interfaces.zindexed }
 
       it { subject.must_equal([@lithium, @hydrogen, @helium]) }
     end
