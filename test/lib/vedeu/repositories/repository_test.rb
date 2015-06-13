@@ -60,6 +60,40 @@ module Vedeu
       it { instance.instance_variable_get('@storage').must_equal(storage) }
     end
 
+    describe '#all' do
+      subject { instance.all }
+
+      context 'when there are no models stored in the repository' do
+        before { instance.reset }
+
+        it { subject.must_equal([]) }
+      end
+
+      context 'when there are models stored in the repository' do
+        context 'when the repository is a glorified Hash' do
+          let(:storage) {
+            {
+              oxygen:    :life,
+              plutonium: :death,
+            }
+          }
+          it { subject.must_equal([:life, :death]) }
+        end
+
+        context 'when the repository is a glorified Set' do
+          let(:storage) { Set[:oxygen, :hydrogen] }
+
+          it { subject.must_equal([:oxygen, :hydrogen]) }
+        end
+
+        context 'when the repository is unknown' do
+          let(:storage) { [:hydrogen, :helium] }
+
+          it { subject.must_equal([:hydrogen, :helium]) }
+        end
+      end
+    end
+
     describe '#current' do
       subject { instance.current }
 
