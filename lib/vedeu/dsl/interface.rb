@@ -267,9 +267,6 @@ module Vedeu
       alias_method :z_index, :zindex
       alias_method :z,       :zindex
 
-      def yesno
-      end
-
       # @param label [String]
       # @param name [String|Symbol]
       # @param value [Boolean|void]
