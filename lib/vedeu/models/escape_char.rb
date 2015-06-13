@@ -1,5 +1,6 @@
 module Vedeu
 
+  # Represents an invisible escape character sequence.
   class EscapeChar
 
     # @param value [String]
