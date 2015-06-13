@@ -110,6 +110,16 @@ module Vedeu
       Vedeu::Move.by_name(Vedeu::Cursor, :origin, name)
     end
 
+    # When triggered will return the current position of the cursor.
+    Vedeu.bind(:_cursor_position_) do |name|
+      named  = name ? name : Vedeu.focus
+      cursor = Vedeu.cursors.by_name(named)
+
+      Vedeu.log(type: :debug, message: cursor.inspect)
+
+      Vedeu::Position.new(cursor.y, cursor.x) if cursor
+    end
+
     # @see {Vedeu::Move}
     Vedeu.bind(:_cursor_reset_) { |name| Vedeu.trigger(:_cursor_origin_, name) }
 

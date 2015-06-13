@@ -28,8 +28,11 @@ module Vedeu
       if registered?(name)
         find(name)
 
-      else
+      elsif name
         Vedeu::Cursor.new(name: name).store
+
+      else
+
 
       end
     end
