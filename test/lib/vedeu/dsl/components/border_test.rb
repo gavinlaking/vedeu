@@ -27,6 +27,7 @@ module Vedeu
           end
         end
       end
+      after { Vedeu.interfaces.reset }
 
       describe 'alias methods' do
         it { instance.must_respond_to(:show_bottom) }
