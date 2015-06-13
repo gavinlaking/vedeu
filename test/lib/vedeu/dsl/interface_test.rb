@@ -268,6 +268,15 @@ module Vedeu
         it { subject; model.name.must_equal('nickel') }
       end
 
+      describe '#no_cursor!' do
+        subject { instance.no_cursor! }
+
+        it {
+          subject
+          Vedeu.cursors.find('actinium').visible?.must_equal(false)
+        }
+      end
+
       describe '#show!' do
         subject {
           Vedeu.interface 'xenon' do

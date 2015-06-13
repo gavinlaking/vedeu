@@ -198,6 +198,13 @@ module Vedeu
         model.name = value
       end
 
+      # Set the cursor to invisible for the interface.
+      #
+      # @return [Vedeu::Cursor]
+      def no_cursor!
+        cursor(false)
+      end
+
       # Set the interface to visible.
       #
       # @return [void]
