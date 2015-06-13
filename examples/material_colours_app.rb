@@ -30,6 +30,7 @@ class VedeuMaterialColoursApp
       y  2
       yn 13
     end
+    zindex 2
   end
 
   interface 'other_interface' do
@@ -45,6 +46,7 @@ class VedeuMaterialColoursApp
       y  3
       yn 13
     end
+    zindex 1
   end
 
   keymap('_global_') do
