@@ -13,19 +13,6 @@ module Vedeu
       IO.console.stubs(:print)
     end
 
-    describe 'alias methods' do
-      it { described.must_respond_to(:read) }
-      it { described.must_respond_to(:write) }
-      it { described.must_respond_to(:x) }
-      it { described.must_respond_to(:y) }
-      it { described.must_respond_to(:tx) }
-      it { described.must_respond_to(:ty) }
-      it { described.must_respond_to(:xn) }
-      it { described.must_respond_to(:txn) }
-      it { described.must_respond_to(:yn) }
-      it { described.must_respond_to(:tyn) }
-    end
-
     describe '.open' do
       context 'when a block was not given' do
         it { proc { Terminal.open }.must_raise(InvalidSyntax) }
@@ -54,6 +41,8 @@ module Vedeu
 
     describe '.input' do
       subject { Terminal.input }
+
+      it { described.must_respond_to(:read) }
 
       context 'when the terminal is in cooked mode' do
         let(:mode)  { :cooked }
@@ -85,11 +74,14 @@ module Vedeu
     describe '.output' do
       subject { described.output(*_value) }
 
+      it { described.must_respond_to(:write) }
+
       context 'when the value is a String' do
         let(:_value) { 'Some output...' }
 
         it { subject.must_equal(['Some output...']) }
       end
+
       context 'when there are multiple values' do
         let(:_value) { ['Some output...', 'more output...', 'even more...'] }
 
@@ -232,12 +224,20 @@ module Vedeu
       it { subject.must_be_instance_of(Fixnum) }
 
       it { subject.must_equal(1) }
+
+      it { described.must_respond_to(:x) }
+      it { described.must_respond_to(:y) }
+      it { described.must_respond_to(:tx) }
+      it { described.must_respond_to(:ty) }
     end
 
     describe '.width' do
       subject { Terminal.width }
 
       it { subject.must_be_instance_of(Fixnum) }
+
+      it { described.must_respond_to(:xn) }
+      it { described.must_respond_to(:txn) }
 
       context 'via method' do
         it 'returns the width' do
@@ -256,6 +256,9 @@ module Vedeu
       subject { Terminal.height }
 
       it { subject.must_be_instance_of(Fixnum) }
+
+      it { described.must_respond_to(:yn) }
+      it { described.must_respond_to(:tyn) }
 
       context 'via method' do
         it 'returns the height' do
