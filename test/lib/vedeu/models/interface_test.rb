@@ -94,7 +94,7 @@ module Vedeu
       it { subject.must_be_instance_of(Array) }
 
       context 'when the interface is visible' do
-        it { subject.must_equal(["\e[1;1H\e[?25l", :clear, :border, :view, "\e[1;1H\e[?25h"]) }
+        it { subject.must_equal([:clear, :border, :view]) }
       end
 
       context 'when the interface is not visible' do

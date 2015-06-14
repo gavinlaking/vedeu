@@ -116,13 +116,17 @@ module Vedeu
     def render
       return [] unless visible?
 
-      [
-        Vedeu.trigger(:_cursor_hide_, name).to_s,
+      Vedeu.trigger(:_cursor_hide_, name)
+
+      output = [
         Vedeu::Clear.new(self).render,
         Vedeu.borders.by_name(name).render,
         Vedeu::Viewport.render(self),
-        Vedeu.trigger(:_cursor_show_, name).to_s,
       ]
+
+      Vedeu.trigger(:_cursor_show_, name)
+
+      output
     end
 
     # @return [Interface]
