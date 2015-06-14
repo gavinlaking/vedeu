@@ -106,7 +106,7 @@ module Vedeu
     #
     # @return [Range]
     def rows
-      top..(top + (geometry.height - 1))
+      top..(top + height)
     end
 
     # Using the current cursor's x position, return a range of visible columns.
@@ -119,7 +119,7 @@ module Vedeu
     #
     # @return [Range]
     def columns
-      left..(left + (geometry.width - 1))
+      left..(left + width)
     end
 
     # @return [Fixnum]
@@ -161,13 +161,6 @@ module Vedeu
     # @return (see Vedeu::Cursors#by_name)
     def cursor
       @cursor ||= Vedeu.cursors.by_name(name)
-    end
-
-    # Return the geometry associated with the interface we are drawing.
-    #
-    # @return (see Vedeu::Geometries#by_name)
-    def geometry
-      @geometry || Vedeu.geometries.by_name(name)
     end
 
   end # Viewport
