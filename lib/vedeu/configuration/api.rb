@@ -181,8 +181,11 @@ module Vedeu
 
       # Sets boolean to enable/disable debugging. Vedeu's default setting is
       # for debugging to be disabled. Using `debug!` or setting `debug` to true
-      # will enable debugging. If `trace!` is used, or `trace` is set to true,
-      # debugging will be enabled, overriding any setting here.
+      # will enable debugging.
+      #
+      # @note
+      #   Be aware that running an application with debugging enabled will
+      #   affect performance.
       #
       # @example
       #   Vedeu.configure do

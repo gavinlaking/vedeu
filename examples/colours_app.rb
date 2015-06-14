@@ -10,6 +10,8 @@ class VedeuColoursApp
 
   include Vedeu
 
+  # Be aware that running an application with debugging enabled will affect
+  # performance.
   configure do
     debug!
     log '/tmp/vedeu_colours_app.log'
