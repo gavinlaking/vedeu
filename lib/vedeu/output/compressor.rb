@@ -17,7 +17,7 @@ module Vedeu
     # @return [String]
     def render
       Array(output).flatten.map do |char|
-        out =  ''
+        out = ''
         out << char.position.to_s
         out << colour_for(char)
         out << style_for(char)
