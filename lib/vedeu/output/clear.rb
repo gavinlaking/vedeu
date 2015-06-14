@@ -58,7 +58,7 @@ module Vedeu
     # @return [Array<Array<Vedeu::Char>>]
     def clear
       if visible?
-        Vedeu::Timer.for(:debug, "Clearing: #{name}") do
+        Vedeu::Timer.for(:timer, "Clearing: #{name}") do
           y, x = *position
 
           @clear ||= Array.new(height) do |iy|

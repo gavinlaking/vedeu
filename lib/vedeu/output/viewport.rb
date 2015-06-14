@@ -52,7 +52,7 @@ module Vedeu
     def render
       return [] unless visible?
 
-      Vedeu::Timer.for(:output, "Rendering: #{name}") do
+      Vedeu::Timer.for(:timer, "Rendering: #{name}") do
         out = []
 
         show[0...height].each_with_index do |line, iy|
