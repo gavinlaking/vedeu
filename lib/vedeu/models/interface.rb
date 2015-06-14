@@ -117,11 +117,11 @@ module Vedeu
       return [] unless visible?
 
       [
-        hide_cursor,
+        Vedeu.trigger(:_cursor_hide_, name).to_s,
         Vedeu::Clear.new(self).render,
         Vedeu.borders.by_name(name).render,
         Vedeu::Viewport.render(self),
-        show_cursor,
+        Vedeu.trigger(:_cursor_show_, name).to_s,
       ]
     end
 
@@ -158,20 +158,6 @@ module Vedeu
         visible:    true,
         zindex:     0,
       }
-    end
-
-    # @return [String]
-    def hide_cursor
-      return cursor.hide_cursor if cursor.visible?
-
-      ''
-    end
-
-    # @return [String]
-    def show_cursor
-      return cursor.show_cursor if cursor.visible?
-
-      ''
     end
 
   end # Interface
