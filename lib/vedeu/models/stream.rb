@@ -55,18 +55,12 @@ module Vedeu
     def chars
       return [] if empty?
 
-      value.chars.map do |char|
-        if char.nil?
-          member.new
-
-        else
-          member.new(value:    char,
-                     parent:   parent,
-                     colour:   colour,
-                     style:    style,
-                     position: nil)
-
-        end
+      @chars ||= value.chars.map do |char|
+        member.new(value:    char,
+                   parent:   parent,
+                   colour:   colour,
+                   style:    style,
+                   position: nil)
       end
     end
 
