@@ -148,22 +148,10 @@ module Vedeu
     # @return [Hash<Symbol => Boolean,Fixnum, String>]
     def merged_attributes
       if entity.to_s == 'Vedeu::Geometry'
-        {
-          centred:    false,
-          maximised:  false,
-          name:       name,
-          x:          (x + dx),
-          y:          (y + dy),
-          xn:         (xn + dx),
-          yn:         (yn + dy),
-        }
+        geometry_attributes
 
       else
-        cursor.attributes.merge!(
-          x:  x_position,
-          y:  y_position,
-          ox: ox,
-          oy: oy)
+        cursor_attributes
 
       end
     end
@@ -212,9 +200,27 @@ module Vedeu
       @cursor ||= Vedeu.cursors.by_name(name)
     end
 
+    # @return [Hash<Symbol => void>]
+    def cursor_attributes
+      cursor.attributes.merge!(x: x_position, y: y_position, ox: ox, oy: oy)
+    end
+
     # @return (see Vedeu::Geometries#by_name)
     def geometry
       @geometry ||= Vedeu.geometries.by_name(name)
+    end
+
+    # @return [Hash<Symbol => FalseClass,String,Fixnum>]
+    def geometry_attributes
+      {
+        centred:    false,
+        maximised:  false,
+        name:       name,
+        x:          (x + dx),
+        y:          (y + dy),
+        xn:         (xn + dx),
+        yn:         (yn + dy),
+      }
     end
 
     # Apply the direction amount to the cursor offset. If the offset is less

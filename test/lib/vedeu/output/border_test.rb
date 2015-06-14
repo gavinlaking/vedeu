@@ -30,6 +30,7 @@ module Vedeu
         end
       end
     end
+    after { Vedeu.interfaces.reset }
 
     describe '.build' do
       subject {
@@ -111,6 +112,7 @@ module Vedeu
           end
         end
       end
+      after { Vedeu.interfaces.reset }
 
       describe '#bx' do
         subject { instance.bx }
@@ -424,6 +426,7 @@ module Vedeu
           visible(visibility)
         end
       end
+      after { Vedeu.interfaces.reset }
 
       subject { instance.render }
 

@@ -26,10 +26,6 @@ module Vedeu
     let(:model)     {}
     let(:storage)   {}
 
-    describe 'alias methods' do
-      it { instance.must_respond_to(:registered?) }
-    end
-
     describe '#each' do
       subject { instance.each }
 
@@ -84,6 +80,8 @@ module Vedeu
 
         it { subject.must_equal(true) }
       end
+
+      it { instance.must_respond_to(:registered?) }
     end
 
     describe '#reset' do
@@ -94,6 +92,8 @@ module Vedeu
       it 'resets the repository' do
         instance.reset.must_equal({})
       end
+
+      it { instance.must_respond_to(:reset!) }
     end
 
     describe '#size' do

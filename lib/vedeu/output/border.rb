@@ -159,15 +159,13 @@ module Vedeu
       return [] unless visible?
       return [] unless enabled?
 
-      Vedeu::Timer.for(:debug, "Border rendering: #{name}") do
-        out = [top, bottom]
+      out = [top, bottom]
 
-        height.times do |y|
-          out << [left(y), right(y)]
-        end
-
-        out.flatten
+      height.times do |y|
+        out << [left(y), right(y)]
       end
+
+      out.flatten
     end
 
     # @return [String]
@@ -183,9 +181,9 @@ module Vedeu
       return [] unless bottom?
 
       out = []
-      out << border(bottom_left, :bottom_left) if left?
-      out << horizontal_border(:bottom_horizontal)
-      out << border(bottom_right, :bottom_right) if right?
+      out << border(bottom_left, :bottom_left, *[yn, x]) if left?
+      out << horizontal_border(:bottom_horizontal, yn)
+      out << border(bottom_right, :bottom_right, *[yn, xn]) if right?
       out
     end
 
@@ -196,7 +194,7 @@ module Vedeu
     def left(iy = 0)
       return [] unless left?
 
-      border(vertical, :left_vertical, iy)
+      border(vertical, :left_vertical, *[(by + iy), x])
     end
 
     # Renders the right border for the interface.
@@ -206,7 +204,7 @@ module Vedeu
     def right(iy = 0)
       return [] unless right?
 
-      border(vertical, :right_vertical, iy)
+      border(vertical, :left_vertical, *[(by + iy), xn])
     end
 
     # Renders the top border for the interface.
@@ -216,15 +214,15 @@ module Vedeu
       return [] unless top?
 
       out = []
-      out << border(top_left, :top_left) if left?
+      out << border(top_left, :top_left, *[y, x]) if left?
       if title?
         out << titlebar
 
       else
-        out << horizontal_border(:top_horizontal)
+        out << horizontal_border(:top_horizontal, y)
 
       end
-      out << border(top_right, :top_right) if right?
+      out << border(top_right, :top_right, *[y, xn]) if right?
       out
     end
 
@@ -239,9 +237,9 @@ module Vedeu
 
     # @param position [Symbol] Either :top_horizontal, or :bottom_horizontal.
     # @return [Array<Vedeu::Char>]
-    def horizontal_border(position)
+    def horizontal_border(position, y_coordinate)
       width.times.each_with_object([]) do |ix, a|
-        a << border(horizontal, position, nil, ix)
+        a << border(horizontal, position, *[y_coordinate, (bx + ix)])
       end
     end
 
@@ -250,7 +248,7 @@ module Vedeu
     #
     # @return [Array<Vedeu::Char>]
     def titlebar
-      horizontal_border(:top_horizontal).each_with_index do |char, index|
+      horizontal_border(:top_horizontal, y).each_with_index do |char, index|
         if index >= 1 && index <= title_characters.size
           char.border = nil
           char.value  = title_characters[(index - 1)]
@@ -313,7 +311,7 @@ module Vedeu
                       parent:   interface,
                       colour:   colour,
                       style:    style,
-                      position: position(type, iy, ix),
+                      position: Vedeu::Position[iy, ix],
                       border:   type)
     end
 
@@ -354,24 +352,6 @@ module Vedeu
         top_right:    "\x6B", # ┐ # \u2510
         vertical:     "\x78", # │ # \u2502
       }
-    end
-
-    # @param name [Symbol]
-    # @param iy [Fixnum]
-    # @param ix [Fixnum]
-    # @return [Vedeu::Position]
-    def position(name, iy = 0, ix = 0)
-      coords = case name
-               when :top_horizontal    then [y, (bx + ix)]
-               when :bottom_horizontal then [yn, (bx + ix)]
-               when :left_vertical     then [(by + iy), x]
-               when :right_vertical    then [(by + iy), xn]
-               when :bottom_left       then [yn, x]
-               when :bottom_right      then [yn, xn]
-               when :top_left          then [y, x]
-               when :top_right         then [y, xn]
-               end
-      Vedeu::Position.coerce(coords)
     end
 
   end # Border

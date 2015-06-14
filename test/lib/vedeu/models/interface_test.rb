@@ -8,15 +8,16 @@ module Vedeu
     let(:instance)   { described.new(attributes) }
     let(:attributes) {
       {
-        client: client,
-        colour: colour,
-        delay:  delay,
-        group:  group,
-        lines:  lines,
-        name:   _name,
-        parent: parent,
-        style:  style,
+        client:  client,
+        colour:  colour,
+        delay:   delay,
+        group:   group,
+        lines:   lines,
+        name:    _name,
+        parent:  parent,
+        style:   style,
         visible: visible,
+        zindex:  zindex,
       }
     }
     let(:client)     {}
@@ -29,6 +30,7 @@ module Vedeu
     let(:repository) { Vedeu.interfaces }
     let(:style)      {}
     let(:visible)    { true }
+    let(:zindex)     { 1 }
 
     describe '#initialize' do
       subject { instance }
@@ -42,6 +44,7 @@ module Vedeu
       it { subject.instance_variable_get('@parent').must_equal(parent) }
       it { subject.instance_variable_get('@repository').must_equal(repository) }
       it { subject.instance_variable_get('@visible').must_equal(visible) }
+      it { subject.instance_variable_get('@zindex').must_equal(zindex) }
     end
 
     describe '#lines?' do
@@ -91,7 +94,7 @@ module Vedeu
       it { subject.must_be_instance_of(Array) }
 
       context 'when the interface is visible' do
-        it { subject.must_equal(['', :clear, :border, :view, '']) }
+        it { subject.must_equal([:clear, :border, :view]) }
       end
 
       context 'when the interface is not visible' do

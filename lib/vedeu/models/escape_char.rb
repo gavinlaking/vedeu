@@ -1,6 +1,13 @@
 module Vedeu
 
+  # Represents an invisible escape character sequence.
   class EscapeChar
+
+    # @!attribute [r] value
+    # @return [String]
+    attr_reader :value
+    alias_method :to_s, :value
+    alias_method :to_str, :value
 
     # @param value [String]
     # @return [Vedeu::EscapeChar]
@@ -36,13 +43,6 @@ module Vedeu
     def style
       ''
     end
-
-    # @return [String]
-    def value
-      @value
-    end
-    alias_method :to_s, :value
-    alias_method :to_str, :value
 
   end # EscapeChar
 

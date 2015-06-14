@@ -25,11 +25,12 @@ class VedeuMaterialColoursApp
     colour foreground: '#ffffff', background: :default
     cursor!
     geometry 'main_interface' do
-      x  5
-      xn 25
-      y  3
+      x  3
+      xn 24
+      y  2
       yn 13
     end
+    zindex 2
   end
 
   interface 'other_interface' do
@@ -45,6 +46,7 @@ class VedeuMaterialColoursApp
       y  3
       yn 13
     end
+    zindex 1
   end
 
   keymap('_global_') do

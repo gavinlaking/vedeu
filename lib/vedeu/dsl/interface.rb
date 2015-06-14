@@ -198,6 +198,13 @@ module Vedeu
         model.name = value
       end
 
+      # Set the cursor to invisible for the interface.
+      #
+      # @return [Vedeu::Cursor]
+      def no_cursor!
+        cursor(false)
+      end
+
       # Set the interface to visible.
       #
       # @return [void]
@@ -236,6 +243,55 @@ module Vedeu
         boolean = value ? true : false
 
         model.visible = boolean
+      end
+
+      # Set the zindex of the interface. This controls the render order of
+      # interfaces. Interfaces with a lower zindex will render before those
+      # with a higher zindex.
+      #
+      # @example
+      #   --4-- # rendered last
+      #   --3--
+      #   --2--
+      #   --1-- # rendered first
+      #
+      #   interface 'my_interface' do
+      #     zindex 3
+      #     # ...
+      #
+      # @param value [Fixnum]
+      # @return [void]
+      def zindex(value)
+        model.zindex = value
+      end
+      alias_method :z_index, :zindex
+      alias_method :z,       :zindex
+
+      # @param label [String]
+      # @param name [String|Symbol]
+      # @param value [Boolean|void]
+      # @return [void]
+      def button(label, name, value = true)
+        button_name   = "button_#{model.name}_#{name}"
+        button_label  = " #{label} "
+        button_height = 3
+        button_width  = button_label.size + 2
+
+        Vedeu.interface button_name do
+          border {}
+          cursor
+          geometry do
+            height(button_height)
+            width(button_width)
+          end
+        end
+        Vedeu.renders do
+          view button_name do
+            lines do
+              line button_label
+            end
+          end
+        end
       end
 
       protected

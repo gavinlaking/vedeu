@@ -39,6 +39,15 @@ module Vedeu
       self.class
     end
 
+    # @return [Array<void>] An array containing each stored model.
+    def all
+      return []             if empty?
+      return storage.values if storage.is_a?(Hash)
+      return storage.to_a   if storage.is_a?(Set)
+
+      storage
+    end
+
     # @param name [String] The name of the stored model.
     # @return [void]
     def by_name(name)

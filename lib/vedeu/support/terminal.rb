@@ -175,6 +175,13 @@ module Vedeu
       @mode ||= Vedeu::Configuration.terminal_mode
     end
 
+    # Returns the position of the cursor.
+    #
+    # @return [Vedeu::Position]
+    def cursor
+      # Vedeu.trigger(:_cursor_position_)
+    end
+
     # Returns a coordinate tuple of the format [y, x], where `y` is the row/line
     # and `x` is the column/character.
     #

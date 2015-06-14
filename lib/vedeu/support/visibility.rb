@@ -37,8 +37,13 @@ module Vedeu
 
     # @return [void]
     def show
-      model.visible = true
-      model.store
+      if model.visible?
+        model
+
+      else
+        model.visible = true
+        model.store
+      end
     end
 
     # @return [Symbol]
@@ -54,8 +59,14 @@ module Vedeu
 
     # @return [void]
     def hide
-      model.visible = false
-      model.store
+      if model.visible?
+        model.visible = false
+        model.store
+
+      else
+        model
+
+      end
     end
 
     # @return [void]

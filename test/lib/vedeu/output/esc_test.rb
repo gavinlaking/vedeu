@@ -150,6 +150,10 @@ module Vedeu
       it 'returns an escape sequence when the style is underline off' do
         described.string('underline_off').must_equal("\e[24m")
       end
+
+      it 'returns an escape sequence when the style is underline off' do
+        described.string('cursor_position').must_equal("\e[6n")
+      end
     end
 
   end # Esc

@@ -13,14 +13,15 @@ module Vedeu
       Vedeu.interface('lead')     {}
       Vedeu.interface('bismuth')  {}
     end
+    after { Vedeu.interfaces.reset }
 
     describe '#add' do
-      context 'adds an interface to storage' do
-        before do
-          Focus.reset
-          Vedeu.interfaces.reset
-        end
+      before do
+        Focus.reset
+        Vedeu.interfaces.reset
+      end
 
+      context 'adds an interface to storage' do
         it {
           Focus.add('thallium').must_equal(['thallium'])
         }
@@ -28,8 +29,6 @@ module Vedeu
 
       context 'does not add it again if already exists' do
         before do
-          Focus.reset
-          Vedeu.interfaces.reset
           Vedeu.interface('thallium') {}
         end
 
@@ -49,8 +48,6 @@ module Vedeu
 
       context 'adds the interface to storage focussed' do
         before do
-          Focus.reset
-          Vedeu.interfaces.reset
           Vedeu.interface('thallium') {}
         end
 
@@ -63,8 +60,6 @@ module Vedeu
 
       context 'adds the interface to storage unfocussed' do
         before do
-          Focus.reset
-          Vedeu.interfaces.reset
           Vedeu.interface('thallium') {}
         end
 

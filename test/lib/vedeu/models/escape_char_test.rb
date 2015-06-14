@@ -29,6 +29,8 @@ module Vedeu
 
         it { subject.must_equal(false) }
       end
+
+      it { instance.must_respond_to(:==) }
     end
 
     describe '#inspect' do
@@ -47,8 +49,11 @@ module Vedeu
       it { instance.style.must_equal('') }
     end
 
-    describe '#to_s' do
-      it { instance.to_s.must_be_instance_of(String) }
+    describe '#value' do
+      it { instance.value.must_be_instance_of(String) }
+
+      it { instance.must_respond_to(:to_s) }
+      it { instance.must_respond_to(:to_str) }
     end
 
   end # EscapeChar

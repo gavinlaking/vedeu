@@ -106,6 +106,12 @@ module Vedeu
       @show_cursor ||= Vedeu::EscapeChar.new(Vedeu::Esc.show_cursor)
     end
 
+    # @param value [Boolean]
+    # @return [void]
+    def visible=(value)
+      @visible = @attributes[:visible] = value
+    end
+
     private
 
     # Return the position of this cursor.

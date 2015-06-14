@@ -36,6 +36,10 @@ module Vedeu
     # @return [Vedeu::Composition]
     attr_accessor :parent
 
+    # @!attribute [rw] zindex
+    # @return [Fixnum]
+    attr_accessor :zindex
+
     # @!attribute [rw] visible
     # @return [Boolean] Whether the interface is visible.
     attr_accessor :visible
@@ -62,6 +66,7 @@ module Vedeu
     # @option attributes repository [Vedeu::InterfacesRepository]
     # @option attributes style [Vedeu::Style]
     # @option attributes visible [Boolean]
+    # @option attributes zindex [Fixnum]
     # @return [Vedeu::Interface]
     def initialize(attributes = {})
       @attributes = defaults.merge!(attributes)
@@ -74,6 +79,7 @@ module Vedeu
       @parent     = @attributes[:parent]
       @repository = @attributes[:repository]
       @visible    = @attributes[:visible]
+      @zindex     = @attributes[:zindex]
     end
 
     # @param child [Vedeu::Line]
@@ -110,13 +116,17 @@ module Vedeu
     def render
       return [] unless visible?
 
-      [
-        hide_cursor,
+      Vedeu.trigger(:_cursor_hide_, name)
+
+      output = [
         Vedeu::Clear.new(self).render,
         Vedeu.borders.by_name(name).render,
         Vedeu::Viewport.render(self),
-        show_cursor,
       ]
+
+      Vedeu.trigger(:_cursor_show_, name)
+
+      output
     end
 
     # @return [Interface]
@@ -150,21 +160,8 @@ module Vedeu
         repository: Vedeu.interfaces,
         style:      nil,
         visible:    true,
+        zindex:     0,
       }
-    end
-
-    # @return [String]
-    def hide_cursor
-      return cursor.hide_cursor if cursor.visible?
-
-      ''
-    end
-
-    # @return [String]
-    def show_cursor
-      return cursor.show_cursor if cursor.visible?
-
-      ''
     end
 
   end # Interface

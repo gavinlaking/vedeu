@@ -54,12 +54,14 @@ module Vedeu
 
       Vedeu::Timer.for(:output, "Rendering: #{name}") do
         out = []
+
         show[0...height].each_with_index do |line, iy|
           line[0...width].each_with_index do |column, ix|
-            column.position = [by + iy, bx + ix]
+            column.position = Vedeu::Position[by + iy, bx + ix]
             out << column
           end
         end
+
         out
       end
     end

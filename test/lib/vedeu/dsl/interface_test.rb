@@ -16,11 +16,7 @@ module Vedeu
       let(:client) {}
 
       before { Vedeu.interfaces.reset }
-
-      describe 'alias methods' do
-        it { instance.must_respond_to(:keys) }
-        it { instance.must_respond_to(:line) }
-      end
+      after  { Vedeu.interfaces.reset }
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
@@ -66,6 +62,13 @@ module Vedeu
         subject { instance.border! }
 
         it { subject.must_be_instance_of(Vedeu::Border) }
+      end
+
+      describe '#button' do
+        let(:label)  { 'No' }
+        let(:_value) { false }
+
+        subject { instance.button(label, _value) }
       end
 
       describe '#cursor' do
@@ -244,6 +247,7 @@ module Vedeu
         }
 
         it { subject.must_be_instance_of(Vedeu::Keymap) }
+        it { instance.must_respond_to(:keys) }
       end
 
       describe '#lines' do
@@ -260,6 +264,8 @@ module Vedeu
 
           it { proc { subject }.must_raise(InvalidSyntax) }
         end
+
+        it { instance.must_respond_to(:line) }
       end
 
       describe '#name' do
@@ -268,7 +274,18 @@ module Vedeu
         it { subject; model.name.must_equal('nickel') }
       end
 
+      describe '#no_cursor!' do
+        subject { instance.no_cursor! }
+
+        it {
+          subject
+          Vedeu.cursors.find('actinium').visible?.must_equal(false)
+        }
+      end
+
       describe '#show!' do
+        after { Vedeu.interfaces.reset }
+
         subject {
           Vedeu.interface 'xenon' do
             show!
@@ -279,6 +296,8 @@ module Vedeu
       end
 
       describe '#hide!' do
+        after { Vedeu.interfaces.reset }
+
         subject {
           Vedeu.interface 'xenon' do
             hide!
@@ -293,6 +312,17 @@ module Vedeu
         it { instance.visible(true).must_equal(true) }
         it { instance.visible(nil).must_equal(false) }
         it { instance.visible(:show).must_equal(true) }
+      end
+
+      describe '#zindex' do
+        let(:_value) { 1 }
+
+        subject { instance.zindex(_value) }
+
+        it { subject.must_equal(1) }
+
+        it { instance.must_respond_to(:z_index) }
+        it { instance.must_respond_to(:z) }
       end
 
     end # Interface
