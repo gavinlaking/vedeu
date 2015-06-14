@@ -272,7 +272,7 @@ module Vedeu
       # @param value [Boolean|void]
       # @return [void]
       def button(label, name, value = true)
-        button_name   = "button_#{model.name}_#{name.to_s}"
+        button_name   = "button_#{model.name}_#{name}"
         button_label  = " #{label} "
         button_height = 3
         button_width  = button_label.size + 2

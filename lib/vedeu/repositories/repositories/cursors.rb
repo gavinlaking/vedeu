@@ -31,9 +31,6 @@ module Vedeu
       elsif name
         Vedeu::Cursor.new(name: name).store
 
-      else
-
-
       end
     end
 
