@@ -196,36 +196,9 @@ module Vedeu
       # @param value [Boolean]
       # @return [Boolean]
       def debug!(value = true)
-        if options.key?(:trace) && options[:trace] != false
-          options[:debug] = true
-
-        else
-          options[:debug] = value
-
-        end
+        options[:debug] = value
       end
       alias_method :debug, :debug!
-
-      # Sets boolean to enable/disable tracing. Vedeu's default setting is for
-      # tracing to be disabled. Using `trace!` or setting `trace` to true will
-      # enable tracing and debugging.
-      #
-      # @example
-      #   Vedeu.configure do
-      #     trace!
-      #     ...
-      #
-      #   Vedeu.configure do
-      #     trace false
-      #     ...
-      #
-      # @param value [Boolean]
-      # @return [Boolean]
-      def trace!(value = true)
-        options[:debug] = true if value
-        options[:trace] = value
-      end
-      alias_method :trace, :trace!
 
       # Sets the colour mode of the terminal.
       #

@@ -75,7 +75,6 @@ module Vedeu
           :run_many,
           :run_once,
           :standalone,
-          :trace,
         ]
       end
 
@@ -199,15 +198,6 @@ module Vedeu
                   'Run the application non-interactively; ' \
                   'i.e. not requiring intervention from the user.') do
           options[:interactive] = false
-        end
-      end
-
-      # @return [OptionParser]
-      def trace
-        parser.on('-D', '--trace', 'Run application with debugging on with ' \
-                                   'method and event tracing (noisy!).') do
-          options[:debug] = true
-          options[:trace] = true
         end
       end
 

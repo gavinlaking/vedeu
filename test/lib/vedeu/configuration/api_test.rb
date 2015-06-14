@@ -20,7 +20,6 @@ module Vedeu
         it { instance.must_respond_to(:cooked) }
         it { instance.must_respond_to(:raw) }
         it { instance.must_respond_to(:debug) }
-        it { instance.must_respond_to(:trace) }
       end
 
       describe '.configure' do
@@ -176,60 +175,6 @@ module Vedeu
         it 'sets the option to the desired value' do
           configuration = Vedeu.configure { debug(false) }
           configuration.debug.must_equal(false)
-        end
-
-        it 'sets the option to the desired value' do
-          configuration = Vedeu.configure { trace(true) }
-          configuration.debug.must_equal(true)
-        end
-
-        it 'sets the option to the desired value' do
-          configuration = Vedeu.configure do
-            debug(false)
-            trace(true)
-          end
-
-          configuration.debug.must_equal(true)
-        end
-
-        it 'sets the option to the desired value' do
-          configuration = Vedeu.configure do
-            debug(true)
-            trace(false)
-          end
-
-          configuration.debug.must_equal(true)
-        end
-
-        it 'sets the option to the desired value' do
-          configuration = Vedeu.configure do
-            debug(false)
-            trace(false)
-          end
-
-          configuration.debug.must_equal(false)
-        end
-      end
-
-      describe '#trace!' do
-        it 'sets the option to the desired value' do
-          configuration = Vedeu.configure { trace! }
-
-          configuration.trace.must_equal(true)
-        end
-
-        it 'sets the option to the desired value' do
-          configuration = Vedeu.configure { trace(false) }
-
-          configuration.trace.must_equal(false)
-          configuration.debug.must_equal(false)
-        end
-
-        it 'sets the option to the desired value' do
-          configuration = Vedeu.configure { trace(true) }
-
-          configuration.trace.must_equal(true)
-          configuration.debug.must_equal(true)
         end
       end
 

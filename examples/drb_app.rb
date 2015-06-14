@@ -25,8 +25,6 @@ class VedeuTestApplication
     # interactive!
     # standalone!
 
-    # trace!
-
     # System keys can be redefined
     # exit_key        'q'
     # focus_next_key  :tab
