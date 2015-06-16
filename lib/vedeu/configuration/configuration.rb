@@ -178,16 +178,6 @@ module Vedeu
         instance.options[:terminal_mode]
       end
 
-      # Returns whether tracing is enabled or disabled. Tracing is very noisy in
-      # the log file (logging method calls and events trigger). Default is
-      # false; meaning tracing is disabled.
-      #
-      # @return [Boolean]
-      def trace?
-        instance.options[:trace]
-      end
-      alias_method :trace, :trace?
-
       # Vedeu's default system keys. Use {Vedeu::Configuration.system_keys}.
       #
       # @return [Hash]
@@ -275,7 +265,6 @@ module Vedeu
         stderr:        nil,
         system_keys:   Vedeu::Configuration.default_system_keys,
         terminal_mode: :raw,
-        trace:         false,
       }
     end
 

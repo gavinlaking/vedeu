@@ -12,22 +12,18 @@ module Vedeu
     let(:x)         { 7 }
     let(:y)         { 5 }
 
-    let(:borders)   { mock('Vedeu::Borders') }
-    let(:border)    {
-      Vedeu::Border.new({
-        name: _name,
-        enabled: true
-      })
-    }
-
     before do
-      Vedeu::Geometry.new({name: _name,
-        height: height,
-        width: width,
-        x: x,
-        y: y}).store
-      Vedeu.stubs(:borders).returns(borders)
-      borders.stubs(:by_name).returns(border)
+      Vedeu::Border.new(name: _name,
+                        enabled: true).store
+      Vedeu::Geometry.new(name: _name,
+                          height: height,
+                          width: width,
+                          x: x,
+                          y: y).store
+    end
+    after do
+      Vedeu.borders.reset
+      Vedeu.geometries.reset
     end
 
     describe '#initialize' do

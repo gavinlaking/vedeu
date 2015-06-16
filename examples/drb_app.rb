@@ -8,6 +8,8 @@ require 'vedeu'
 # An example application to demonstrate the DRb server.
 class VedeuTestApplication
 
+  # Be aware that running an application with debugging enabled will affect
+  # performance.
   Vedeu.configure do
     log         '/tmp/vedeu_test_helper.log'
     debug!
@@ -24,8 +26,6 @@ class VedeuTestApplication
 
     # interactive!
     # standalone!
-
-    # trace!
 
     # System keys can be redefined
     # exit_key        'q'

@@ -84,13 +84,7 @@ module Vedeu
     # @param value [Vedeu::Position]
     # @return [Vedeu::Position]
     def position=(value)
-      if value.is_a?(Vedeu::Position)
-        @position = @attributes[:position] = value
-
-      else
-        @position = @attributes[:position] = Vedeu::Position.coerce(value)
-
-      end
+      @position = @attributes[:position] = Vedeu::Position.coerce(value)
     end
 
     # @return [String]

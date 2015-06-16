@@ -26,6 +26,7 @@ require 'vedeu/events/all'
 require 'vedeu/input/all'
 require 'vedeu/output/all'
 require 'vedeu/support/all'
+require 'vedeu/templating/all'
 
 require 'vedeu/main_loop'
 require 'vedeu/application'

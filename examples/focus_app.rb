@@ -15,6 +15,8 @@ require 'vedeu'
 # Use 'space' to change focus, 'q' to exit.
 class VedeuFocusApp
 
+  # Be aware that running an application with debugging enabled will affect
+  # performance.
   Vedeu.configure do
     debug!
     log '/tmp/vedeu_focus_app.log'

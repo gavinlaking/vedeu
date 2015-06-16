@@ -131,13 +131,6 @@ module Vedeu
         end
       end
 
-      describe '#trace?' do
-        it '--trace' do
-          Configuration.configure(['--trace'])
-          Configuration.trace?.must_equal(true)
-        end
-      end
-
     end # CLI
 
   end # Config

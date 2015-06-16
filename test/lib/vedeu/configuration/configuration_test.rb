@@ -14,7 +14,6 @@ module Vedeu
       it { described.must_respond_to(:drb) }
       it { described.must_respond_to(:interactive) }
       it { described.must_respond_to(:once) }
-      it { described.must_respond_to(:trace) }
     end
 
     describe '.default_system_keys' do
@@ -71,12 +70,6 @@ module Vedeu
     describe '#terminal_mode' do
       it 'returns the value of the mode option' do
         Configuration.terminal_mode.must_equal(:raw)
-      end
-    end
-
-    describe '#trace?' do
-      it 'returns the value of the trace option' do
-        Configuration.trace?.must_equal(false)
       end
     end
 

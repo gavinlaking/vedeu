@@ -68,11 +68,38 @@ module Vedeu
       true
     end
 
+    # Return a boolean indicating content presence on the buffer type.
+    #
+    # @return [Boolean] Whether the buffer targetted has content.
+    def back?
+      return false if back.nil? || back.content.empty?
+
+      true
+    end
+
     # Returns the front buffer or, if that is empty, the interface cleared.
     #
     # @return [void]
     def clear
       Vedeu::Output.render(clear_buffer)
+    end
+
+    # Return a boolean indicating content presence on the buffer type.
+    #
+    # @return [Boolean] Whether the buffer targetted has content.
+    def front?
+      return false if front.nil? || front.content.empty?
+
+      true
+    end
+
+    # Return a boolean indicating content presence on the buffer type.
+    #
+    # @return [Boolean] Whether the buffer targetted has content.
+    def previous?
+      return false if previous.nil? || previous.content.empty?
+
+      true
     end
 
     # Hide this buffer.
@@ -118,12 +145,12 @@ module Vedeu
     #
     # @return [Array<Array<Array<Vedeu::Char>>>]
     def buffer
-      swap if content_for?(:back)
+      swap if back?
 
-      if content_for?(:front)
+      if front?
         [front.render]
 
-      elsif content_for?(:previous)
+      elsif previous?
         [previous.render]
 
       else
@@ -165,17 +192,6 @@ module Vedeu
       true
     end
 
-    # Return a boolean indicating content presence on the buffer type.
-    #
-    # @param buffer [Symbol] One of; :back, :front or :previous.
-    # @return [Boolean] Whether the buffer targetted has content.
-    def content_for?(buffer)
-      return false if public_send(buffer).nil? ||
-                      public_send(buffer).content.empty?
-
-      true
-    end
-
     # Retrieve the interface by name.
     #
     # @return [Vedeu::Interface]
@@ -185,7 +201,7 @@ module Vedeu
 
     # @return [Vedeu::Interface]
     def view
-      if content_for?(:front)
+      if front?
         front
 
       else

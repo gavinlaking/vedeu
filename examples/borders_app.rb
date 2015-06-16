@@ -10,6 +10,8 @@ class VedeuBordersApp
 
   include Vedeu
 
+  # Be aware that running an application with debugging enabled will affect
+  # performance.
   configure do
     debug!
     log '/tmp/vedeu_borders_app.log'

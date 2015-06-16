@@ -156,6 +156,7 @@ module Vedeu
           output: [:light_green,   :green],
           store:  [:light_cyan,    :cyan],
           test:   [:light_white,   :white],
+          timer:  [:light_yellow,  :yellow],
           update: [:light_cyan,    :cyan],
         }
       end

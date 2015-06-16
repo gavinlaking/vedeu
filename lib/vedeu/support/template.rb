@@ -3,21 +3,23 @@ module Vedeu
   # Generic class to loading a template and parsing it via ERb.
   class Template
 
-    # @param object [Class]
-    # @param path [String]
+    # @param see Vedeu::Template#new
     # @return [void]
-    def self.parse(object, path)
-      new(object, path).parse
+    def self.parse(object, path, options = {})
+      new(object, path, options).parse
     end
 
     # Returns a new instance of Vedeu::Template.
     #
     # @param object [Class]
     # @param path [String]
+    # @param options [Hash]
+    # @option options name [String] The name of an interface.
     # @return [Template]
-    def initialize(object, path)
-      @object = object
-      @path   = path.to_s
+    def initialize(object, path, options = {})
+      @object  = object
+      @path    = path.to_s
+      @options = options
     end
 
     # @return [void]
@@ -30,6 +32,10 @@ module Vedeu
     # @!attribute [r] object
     # @return [Class]
     attr_reader :object
+
+    # @!attribute [r] options
+    # @return [Hash]
+    attr_reader :options
 
     private
 

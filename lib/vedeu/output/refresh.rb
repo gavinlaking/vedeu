@@ -12,7 +12,7 @@ module Vedeu
     def all
       message = 'Refreshing all interfaces'
 
-      Vedeu::Timer.for(:info, message) do
+      Vedeu::Timer.for(:timer, message) do
         Vedeu.interfaces.zindexed.each { |model| by_name(model.name) }
       end
     end
@@ -32,14 +32,10 @@ module Vedeu
     def by_group(group_name)
       message = "Refreshing group: '#{group_name}'"
 
-      Vedeu::Timer.for(:info, message) do
-        Vedeu.groups.find!(group_name).members.each do |name|
+      Vedeu::Timer.for(:timer, message) do
+        Vedeu.groups.find!(group_name).members.each { |name|
           Vedeu.interfaces.by_name(name)
-        end.sort do |a, b|
-          a.zindex <=> b.zindex
-        end.each do |name|
-          by_name(name)
-        end
+        }.sort { |a, b| a.zindex <=> b.zindex }.each { |name| by_name(name) }
       end
     end
 
@@ -51,7 +47,7 @@ module Vedeu
     def by_name(name)
       message = "Refreshing interface: '#{name}'"
 
-      Vedeu::Timer.for(:info, message) { Vedeu.buffers.by_name(name).render }
+      Vedeu::Timer.for(:timer, message) { Vedeu.buffers.by_name(name).render }
     end
 
   end # Refresh

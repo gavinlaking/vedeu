@@ -43,10 +43,10 @@ class VedeuViewTemplateApp
     colour foreground: '#aadd00', background: '#000000'
   end
   border('prune') do
-    colour foreground: '#aadd00', background: '#000000'
+    colour foreground: '#00aadd', background: '#000000'
   end
   border('wrap') do
-    colour foreground: '#aadd00', background: '#000000'
+    colour foreground: '#dd00aa', background: '#000000'
   end
 
   geometry('prune') do

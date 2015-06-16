@@ -71,6 +71,16 @@ module Vedeu
       value.empty?
     end
 
+    # An object is equal when its values are the same.
+    #
+    # @param other [Vedeu::Char]
+    # @return [Boolean]
+    def eql?(other)
+      self.class == other.class && value == other.value &&
+        colour == other.colour && style == other.style && parent == other.parent
+    end
+    alias_method :==, :eql?
+
     # @return [NilClass|String]
     def name
       parent.name if parent
