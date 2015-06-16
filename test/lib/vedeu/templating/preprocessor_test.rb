@@ -8,16 +8,7 @@ module Vedeu
 
       let(:described) { Vedeu::Templating::Preprocessor }
       let(:instance)  { described.new(lines) }
-      # let(:lines)     { File.readlines(File.dirname(__FILE__) + '/../../../support/templates/simple_stuff.erb') }
-      let(:lines) {
-        # [
-        #   "Some text here {{ colour(background: '#ff0', foreground: '#000') { 'with colour' } }}, then more text, cool.\n",
-        #   "Here's the next line. All ready for parsing...\n",
-        #   "\n",
-        #   "{{ colour(foreground: '#0f0') { 'Yay!' } }}\n",
-        #   "\n",
-        #   "That was fun!\n"
-        # ]
+      let(:lines)     {
         [
           "Some text here\n",
           "{{ colour(foreground: '#0f0') { 'Yay!' } }}\n",
