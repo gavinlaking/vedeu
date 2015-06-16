@@ -179,9 +179,7 @@ module Vedeu
           Vedeu.interface('hydrogen') {}
           Vedeu.interface('helium') {}
         end
-        after do
-          Vedeu.interfaces.reset
-        end
+        after { Vedeu.interfaces.reset }
 
         subject { Vedeu.interfaces.inspect }
 

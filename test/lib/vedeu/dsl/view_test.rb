@@ -50,6 +50,7 @@ module Vedeu
         end
 
         context 'when the block is given' do
+          it { subject.must_equal([]) }
         end
       end
 
@@ -69,6 +70,7 @@ module Vedeu
         end
 
         context 'when the block is given' do
+          it { subject.must_equal([]) }
         end
       end
 
