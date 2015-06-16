@@ -33,13 +33,9 @@ module Vedeu
       message = "Refreshing group: '#{group_name}'"
 
       Vedeu::Timer.for(:timer, message) do
-        Vedeu.groups.find!(group_name).members.each do |name|
+        Vedeu.groups.find!(group_name).members.each { |name|
           Vedeu.interfaces.by_name(name)
-        end.sort do |a, b|
-          a.zindex <=> b.zindex
-        end.each do |name|
-          by_name(name)
-        end
+        }.sort { |a, b| a.zindex <=> b.zindex }.each { |name| by_name(name) }
       end
     end
 

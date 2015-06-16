@@ -74,9 +74,10 @@ module Vedeu
       # def content_for(name, filename, object = nil, options = {})
       #   lines = Vedeu::Template.parse(object, filename)
 
-      #   new_model = model.member.build(new_attributes(name).merge!({ lines: lines }))
+      #   _model = model.member.build(new_attributes(name).
+      #              merge!({ lines: lines }))
 
-      #   model.add(new_model)
+      #   model.add(_model)
       # end
 
       protected

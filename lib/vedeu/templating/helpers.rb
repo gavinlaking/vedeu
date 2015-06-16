@@ -24,8 +24,8 @@ module Vedeu
       end
 
       # @example
-      #   Roses are {{ foreground('#ff0000', 'red') }}, violets are {{ fg('#0000ff', 'blue') }}
-      #
+      #   Roses are {{ foreground('#ff0000', 'red') }},
+      #   violets are {{ fg('#0000ff', 'blue') }}
       #   {{ foreground('#00ff00'), 'The test suite is all green!' }}
       #
       # @param value [String] The HTML/CSS colour.
@@ -52,7 +52,8 @@ module Vedeu
       def define_stream(attributes = {}, &block)
         fail InvalidSyntax, 'block not given' unless block_given?
 
-        Vedeu::Stream.build({ colour: define_colour(attributes), value: block.call })
+        Vedeu::Stream.build(colour: define_colour(attributes),
+                            value:  block.call)
       end
 
     end # Helpers

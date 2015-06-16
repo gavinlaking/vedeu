@@ -28,7 +28,7 @@ module Vedeu
 
       # @return [Array<Vedeu::Stream>]
       def process
-        lines.inject([]) do |acc, line|
+        lines.each_with_object([]) do |line, acc|
           if line =~ markers?
             code = line.gsub(markers, '').chomp
 
