@@ -55,8 +55,8 @@ module Vedeu
       Vedeu::Timer.for(:timer, "Rendering: #{name}") do
         out = []
 
-        show[0...height].each_with_index do |line, iy|
-          line[0...width].each_with_index do |column, ix|
+        show.each_with_index do |line, iy|
+          line.each_with_index do |column, ix|
             column.position = Vedeu::Position[by + iy, bx + ix]
             out << column
           end
@@ -106,7 +106,7 @@ module Vedeu
     #
     # @return [Range]
     def rows
-      top..(top + height)
+      top...(top + height)
     end
 
     # Using the current cursor's x position, return a range of visible columns.
@@ -119,7 +119,7 @@ module Vedeu
     #
     # @return [Range]
     def columns
-      left..(left + width)
+      left...(left + width)
     end
 
     # @return [Fixnum]
