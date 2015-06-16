@@ -76,6 +76,20 @@ module Vedeu
       end
     end
 
+    describe '#eql?' do
+      let(:other) { described.new(attributes) }
+
+      subject { instance.eql?(other) }
+
+      it { subject.must_equal(true) }
+
+      context 'when different to other' do
+        let(:other) { described.new(colour: Colour.coerce({ background: '#ff0000' })) }
+
+        it { subject.must_equal(false) }
+      end
+    end
+
     describe '#name' do
       subject { instance.name }
 
