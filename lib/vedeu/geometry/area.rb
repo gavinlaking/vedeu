@@ -23,6 +23,37 @@ module Vedeu
     attr_reader :xn
     alias_method :right, :xn
 
+    # @param y [Fixnum]
+    # @param yn [Fixnum]
+    # @param y_yn [Fixnum]
+    # @param y_default [Fixnum]
+    # @param y_options [Hash<Symbol => Boolean>]
+    # @param x [Fixnum]
+    # @param xn [Fixnum]
+    # @param x_xn [Fixnum]
+    # @param x_default [Fixnum]
+    # @param x_options [Hash<Symbol => Boolean>]
+    # @return [Vedeu::Area]
+    def self.from_attributes(y:, yn:, y_yn:, y_default:,
+                             x:, xn:, x_xn:, x_default:, options:)
+      y_yn = Vedeu::Dimension.pair({
+        d:       y,
+        dn:      yn,
+        d_dn:    y_yn,
+        default: y_default,
+        options: options,
+      })
+      x_xn = Vedeu::Dimension.pair({
+        d:       x,
+        dn:      xn,
+        d_dn:    x_xn,
+        default: x_default,
+        options: options,
+      })
+
+      from_dimensions(y_yn: y_yn, x_xn: x_xn)
+    end
+
     # @param y_yn [Array<Fixnum>]
     # @param x_xn [Array<Fixnum>]
     # @return [Vedeu::Area]
