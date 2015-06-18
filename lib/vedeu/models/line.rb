@@ -41,7 +41,7 @@ module Vedeu
     # @param child []
     # @return [void]
     def add(child)
-      @streams = streams.add(child)
+      @_streams = @streams = collection.coerce(streams, self).add(child)
     end
 
     # Returns an array of all the characters with formatting for this line.
@@ -75,7 +75,7 @@ module Vedeu
 
     # @return [Vedeu::Streams]
     def streams
-      collection.coerce(@streams, self)
+      @_streams ||= collection.coerce(@streams, self)
     end
 
     # Delegate to Vedeu::Interface#width if available.
