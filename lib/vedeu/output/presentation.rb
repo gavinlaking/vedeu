@@ -11,15 +11,14 @@ module Vedeu
                         colour.background
 
                       else
-                        Vedeu::Background.new
-                        # @todo: Should this be: parent_background
+                        parent_background
 
                       end
     end
 
     # @return [Vedeu::Background]
     def background=(value)
-      attributes[:background] = value
+      @attributes[:background] = value
       @background = colour.background = Vedeu::Background.coerce(value)
     end
 
@@ -30,7 +29,7 @@ module Vedeu
 
     # @return [Vedeu::Colour]
     def colour=(value)
-      attributes[:colour] = value
+      @attributes[:colour] = value
       @colour = Vedeu::Colour.coerce(value)
     end
 
@@ -40,15 +39,14 @@ module Vedeu
                         colour.foreground
 
                       else
-                        Vedeu::Foreground.new
-                        # @todo: Should this be: parent_foreground
+                        parent_foreground
 
                       end
     end
 
     # @return [Vedeu::Foreground]
     def foreground=(value)
-      attributes[:foreground] = value
+      @attributes[:foreground] = value
       @foreground = colour.foreground = Vedeu::Foreground.coerce(value)
     end
 
@@ -97,12 +95,6 @@ module Vedeu
     # Converts the colours and styles to escape sequences, and if the parent
     # model has previously set the colour and style, reverts back to that for
     # consistent formatting.
-    #
-    # @note
-    #   Aliasing #to_str to #to_s seems to reduce rendering time by around ~20ms
-    #   for normal sized (80x25) terminals.
-    # @todo
-    #   Must investigate. (GL 2015-06-05)
     #
     # @return [String] An escape sequence with value interpolated.
     def to_s
