@@ -110,8 +110,7 @@ module Vedeu
     #
     # @return [Array]
     def registered
-      return [] if empty?
-
+      return []           if empty?
       return storage.keys if storage.is_a?(Hash)
       return storage.to_a if storage.is_a?(Set)
 

@@ -21,6 +21,24 @@ module Vedeu
 
     class << self
 
+      # @param group [String]
+      # @return [void]
+      def by_group(group = nil)
+        return unless group
+
+        Vedeu.groups.find(group).members.each { |name| clear(name) }
+      end
+
+      # @param name [String]
+      # @return [void]
+      def by_name(name = nil)
+        return Vedeu::Terminal.clear unless name
+
+        clear(Vedeu.interfaces.by_name(name),
+              clear_border: true,
+              use_terminal_colours: true)
+      end
+
       # Clears the area defined by the interface.
       #
       # @return [Array|String]

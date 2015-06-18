@@ -21,13 +21,9 @@ module Vedeu
       end
     end
 
-    Vedeu.bind(:_drb_retrieve_output_) do
-      Vedeu.log(type: :drb, message: 'Retrieving output')
-      Vedeu::VirtualBuffer.retrieve
-    end
+    Vedeu.bind(:_drb_retrieve_output_) { Vedeu::VirtualBuffer.retrieve }
 
     Vedeu.bind(:_drb_store_output_) do |data|
-      Vedeu.log(type: :drb, message: 'Storing output')
       Vedeu::VirtualBuffer.store(Vedeu::Terminal.virtual.output(data))
     end
 
@@ -174,19 +170,10 @@ module Vedeu
 
     # Clears the whole terminal space, or the named interface area to be cleared
     # if given.
-    Vedeu.bind(:_clear_) do |name|
-      Vedeu::Terminal.clear unless name
-
-      Vedeu::Clear.clear(Vedeu.interfaces.by_name(name),
-                         clear_border: true, use_terminal_colours: true)
-    end
+    Vedeu.bind(:_clear_) { |name| Vedeu::Clear.by_name(name) }
 
     # Clears the spaces occupied by the interfaces belonging to the named group.
-    Vedeu.bind(:_clear_group_) do |group_name|
-      Vedeu.groups.find(group_name).members.each do |interface_name|
-        Vedeu.trigger(:_clear_, interface_name)
-      end
-    end
+    Vedeu.bind(:_clear_group_) { |name| Vedeu::Clear.by_group(name) }
 
     # Will cause all interfaces to refresh, or the named interface if given.
     #

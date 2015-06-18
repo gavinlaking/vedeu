@@ -20,6 +20,8 @@ module Vedeu
     #
     # @return [Array<Array<Vedeu::Char>>|NilClass]
     def retrieve
+      Vedeu.log(type: :drb, message: 'Retrieving output')
+
       storage.pop
     end
 
@@ -27,6 +29,8 @@ module Vedeu
     #
     # @return [Array<Array<Vedeu::Char>>]
     def store(data)
+      Vedeu.log(type: :drb, message: 'Storing output')
+
       storage.unshift(data)
     end
 
