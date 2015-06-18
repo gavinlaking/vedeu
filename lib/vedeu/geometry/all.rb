@@ -1,5 +1,4 @@
 require_relative 'area'
-require_relative 'canvas'
 require_relative 'coordinate'
 require_relative 'dimension'
 require_relative 'geometry'

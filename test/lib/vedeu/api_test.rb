@@ -30,14 +30,6 @@ module Vedeu
         end
       end
 
-      describe 'Vedeu::Canvas' do
-        describe '.canvas' do
-          subject { Vedeu.canvas }
-
-          it { subject.must_be_instance_of(Vedeu::Canvas) }
-        end
-      end
-
       describe 'Vedeu::Configuration' do
         describe '.configure' do
           subject { Vedeu.configure }

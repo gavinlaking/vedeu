@@ -48,10 +48,6 @@ module Vedeu
     #   @see Vedeu::Buffers.buffers
     def_delegators Vedeu::Buffers, :buffers
 
-    # @!method canvas
-    #   @see Vedeu::Canvas.canvas
-    def_delegators Vedeu::Canvas, :canvas
-
     # @!method configure
     #   @see Vedeu::Configuration.configure
     # @!method configuration
