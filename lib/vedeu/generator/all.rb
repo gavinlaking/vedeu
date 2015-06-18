@@ -1,4 +1,5 @@
 require 'vedeu/generator/application'
+require 'vedeu/generator/view'
 
 module Vedeu
 

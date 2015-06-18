@@ -20,30 +20,72 @@ module Vedeu
 
       # @return [void]
       def generate
+        make_directory_structure
+
+        copy_application_controller
+        copy_application_helper
+        copy_application_executable
+        make_application_executable
+
         copy_files
       end
 
-      private
+      # @return [String]
+      def name_as_class
+        name.downcase.split(/_|-/).map(&:capitalize).join
+      end
+
+      protected
 
       # @!attribute [r] name
       # @return [String]
       attr_reader :name
 
+      private
+
       # @return [void]
-      def copy_files
-        FileUtils.cp_r(source, destination)
+      def make_directory_structure
+        FileUtils.mkdir_p(name + '/app/controllers')
+        FileUtils.mkdir_p(name + '/app/helpers')
+        FileUtils.mkdir_p(name + '/app/models/keymaps')
+        FileUtils.mkdir_p(name + '/app/views/interfaces')
+        FileUtils.mkdir_p(name + '/app/views/templates')
+        FileUtils.mkdir_p(name + '/bin')
+        FileUtils.mkdir_p(name + '/config')
+        FileUtils.mkdir_p(name + '/log')
+        FileUtils.mkdir_p(name + '/test')
+      end
+
+      # @return [void]
+      def copy_application_controller
+        FileUtils.cp(source + '/app/controllers/application_controller.rb',
+                     name + '/app/controllers/application_controller.rb')
+      end
+
+      # @return [void]
+      def copy_application_helper
+        FileUtils.cp(source + '/app/helpers/application_helper.rb',
+                     name + '/app/helpers/application_helper.rb')
+      end
+
+      # @return [void]
+      def copy_application_executable
+        FileUtils.cp(source + '/bin/name',
+                     "#{name}/bin/#{name}")
+      end
+
+      def make_application_executable
+        FileUtils.chmod(0755, "#{name}/bin/#{name}")
+      end
+
+      def copy_global_keymap
+        FileUtils.cp(source + '/app/models/keymaps/global.rb',
+                     "#{name}/app/models/keymaps/global.rb")
       end
 
       # @return [String]
       def source
         File.dirname(__FILE__) + '/templates/application/.'
-      end
-
-      # @return [String]
-      def destination
-        FileUtils.mkdir(name)
-
-        name
       end
 
     end # Application
