@@ -6,7 +6,10 @@ module Vedeu
 
     let(:described) { Vedeu::Viewport }
     let(:instance)  { described.new(interface) }
-    let(:interface) {
+    let(:interface) { Vedeu.interfaces.by_name('lithium') }
+    let(:visibility) { true }
+
+    before do
       Vedeu.interface 'lithium' do
         geometry do
           height 3
@@ -22,8 +25,8 @@ module Vedeu
         end
         visible(visibility)
       end
-    }
-    let(:visibility) { true }
+    end
+    after { Vedeu.interfaces.reset }
 
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }
