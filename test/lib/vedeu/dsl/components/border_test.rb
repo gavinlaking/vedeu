@@ -14,9 +14,6 @@ module Vedeu
       let(:boolean)    { true }
 
       before do
-        Vedeu.borders.reset
-        Vedeu.buffers.reset
-        Vedeu.interfaces.reset
         Vedeu.interface 'borders' do
           geometry do
             height 3
@@ -27,7 +24,11 @@ module Vedeu
           end
         end
       end
-      after { Vedeu.interfaces.reset }
+      after do
+        Vedeu.borders.reset
+        Vedeu.buffers.reset
+        Vedeu.interfaces.reset
+      end
 
       describe 'alias methods' do
         it { instance.must_respond_to(:show_bottom) }

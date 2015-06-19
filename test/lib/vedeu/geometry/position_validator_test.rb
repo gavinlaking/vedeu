@@ -9,27 +9,25 @@ module Vedeu
     let(:_name)     { 'position_validator' }
     let(:x)         { 1 }
     let(:y)         { 1 }
-    let(:border)    {
+    let(:enabled)   { true }
+
+    before do
+      IO.console.stubs(:size).returns([15, 40])
       Vedeu::Border.new({
         name:    _name,
         enabled: enabled,
-      })
-    }
-    let(:enabled) { true }
-    let(:geometry)  {
+      }).store
       Vedeu::Geometry.new({
         name: _name,
         x:    5,
         xn:   35,
         y:    5,
         yn:   10
-      })
-    }
-
-    before do
-      IO.console.stubs(:size).returns([15, 40])
-      Vedeu.borders.stubs(:by_name).returns(border)
-      Vedeu.geometries.stubs(:by_name).returns(geometry)
+      }).store
+    end
+    after do
+      Vedeu.borders.reset
+      Vedeu.geometries.reset
     end
 
     describe '#initialize' do

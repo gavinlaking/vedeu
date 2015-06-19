@@ -13,8 +13,6 @@ module Vedeu
     }
 
     before do
-      Vedeu.interfaces.reset
-      Vedeu.borders.reset
       Vedeu.interface 'borders' do
         geometry do
           height 5
@@ -30,7 +28,10 @@ module Vedeu
         end
       end
     end
-    after { Vedeu.interfaces.reset }
+    after do
+      Vedeu.interfaces.reset
+      Vedeu.borders.reset
+    end
 
     describe '.build' do
       subject {
@@ -100,9 +101,6 @@ module Vedeu
       let(:right)   { false }
 
       before do
-        Vedeu.interfaces.reset
-        Vedeu.borders.reset
-
         Vedeu.interface('Border#bxbxnbybyn') do
           geometry do
             x      2
@@ -412,9 +410,6 @@ module Vedeu
       let(:visibility) { true }
 
       before do
-        Vedeu.interfaces.reset
-        Vedeu.borders.reset
-
         Vedeu.interface('Border#render') do
           geometry do
             x      1

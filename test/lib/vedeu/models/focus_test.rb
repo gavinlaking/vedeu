@@ -13,7 +13,10 @@ module Vedeu
       Vedeu.interface('lead')     {}
       Vedeu.interface('bismuth')  {}
     end
-    after { Vedeu.interfaces.reset }
+    after do
+      Vedeu::Focus.reset
+      Vedeu.interfaces.reset
+    end
 
     describe '#add' do
       before do
