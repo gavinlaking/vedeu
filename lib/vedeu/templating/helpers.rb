@@ -2,6 +2,7 @@ module Vedeu
 
   module Templating
 
+    # Provide helpers to be used with your Vedeu templates.
     module Helpers
 
       # @param value [String] The HTML/CSS colour.
@@ -39,7 +40,7 @@ module Vedeu
 
       private
 
-      # @param see Vedeu::Templating::Helpers#colours
+      # @see Vedeu::Templating::Helpers#colours
       def define_colour(attributes = {})
         attributes.delete_if do |k, v|
           [:background, :foreground].include?(k) == false || v.nil? || v.empty?
@@ -48,7 +49,7 @@ module Vedeu
         Vedeu::Colour.new(attributes)
       end
 
-      # @param see Vedeu::Templating::Helpers#colours
+      # @see Vedeu::Templating::Helpers#colours
       def define_stream(attributes = {}, &block)
         fail InvalidSyntax, 'block not given' unless block_given?
 

@@ -3,7 +3,7 @@ module Vedeu
   # Generic class to loading a template and parsing it via ERb.
   class Template
 
-    # @param see Vedeu::Template#new
+    # @param (see Vedeu::Template#new)
     # @return [void]
     def self.parse(object, path, options = {})
       new(object, path, options).parse

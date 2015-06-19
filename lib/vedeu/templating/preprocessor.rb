@@ -11,7 +11,7 @@ module Vedeu
     #
     # process
     #   converts JSON streams into line/stream objects with correct attributes
-
+    #
     # Pre-processes a template, to convert all lines and lines with directives
     # into Vedeu::Streams.
     class Preprocessor

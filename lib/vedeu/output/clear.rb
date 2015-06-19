@@ -111,7 +111,7 @@ module Vedeu
 
     private
 
-    # @return (see Vedeu::Borders#by_name)
+    # @see Vedeu::Borders#by_name
     def border
       @border ||= Vedeu.borders.by_name(name)
     end
@@ -143,7 +143,7 @@ module Vedeu
       }
     end
 
-    # @return (see Vedeu::Geometries#by_name)
+    # @see Vedeu::Geometries#by_name
     def geometry
       @geometry ||= Vedeu.geometries.by_name(name)
     end

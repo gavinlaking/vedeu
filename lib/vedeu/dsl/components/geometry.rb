@@ -3,6 +3,24 @@ module Vedeu
   module DSL
 
     # Provide DSL methods for configuring the geometry of an interface.
+    #
+    # Geometry for Vedeu, as the same for ANSI terminals, has the origin at
+    # top-left, y = 1, x = 1. The 'y' coordinate is deliberately first.
+    #
+    # @example
+    #   This crude ASCII diagram represents a Geometry within Vedeu, each of the
+    #   labels is a value you can access or define.
+    #
+    #        x    north    xn           # north:  y - 1
+    #      y +--------------+           # top:    y
+    #        |     top      |           # west:   x - 1
+    #        |              |           # left:   x
+    #   west | left   right | east      # right:  xn
+    #        |              |           # east:   xn + 1
+    #        |    bottom    |           # bottom: yn
+    #     yn +--------------+           # south:  yn + 1
+    #             south
+    #
     class Geometry
 
       include Vedeu::DSL

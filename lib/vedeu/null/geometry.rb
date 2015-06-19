@@ -23,7 +23,7 @@ module Vedeu
                      :height,
                      :width
 
-      # @!attribute [rw] maximise
+      # @!attribute [rw] maximised
       # @return [Boolean]
       attr_accessor :maximised
 
