@@ -284,8 +284,6 @@ module Vedeu
       end
 
       describe '#show!' do
-        after { Vedeu.interfaces.reset }
-
         subject {
           Vedeu.interface 'xenon' do
             show!
@@ -296,8 +294,6 @@ module Vedeu
       end
 
       describe '#hide!' do
-        after { Vedeu.interfaces.reset }
-
         subject {
           Vedeu.interface 'xenon' do
             hide!

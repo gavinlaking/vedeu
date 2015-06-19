@@ -175,13 +175,10 @@ module Vedeu
 
       context 'when there are models stored in the repository' do
         before do
-          Vedeu.interfaces.reset
           Vedeu.interface('hydrogen') {}
           Vedeu.interface('helium') {}
         end
-        after do
-          Vedeu.interfaces.reset
-        end
+        after { Vedeu.interfaces.reset }
 
         subject { Vedeu.interfaces.inspect }
 

@@ -16,9 +16,6 @@ module Vedeu
     let(:y)         { 1 }
 
     before do
-      Vedeu.borders.reset
-      Vedeu.cursors.reset
-      Vedeu.geometries.reset
       Vedeu::Cursor.new(name:    'move_with_border',
                         ox:      ox,
                         oy:      oy,

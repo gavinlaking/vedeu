@@ -10,9 +10,7 @@ module Vedeu
     let(:keymap)     {}
     let(:repository) {}
 
-    before do
-      Vedeu.keymaps.reset
-    end
+    before { Vedeu.keymaps.reset }
 
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }
@@ -47,10 +45,7 @@ module Vedeu
           let(:key_test) { Key.new('a') { :do_something } }
           let(:keymap_test) { Keymap.new(name: 'test', keys: [key_test]) }
 
-          before do
-            Vedeu.keymaps.reset
-            Vedeu.keymaps.store(keymap_test)
-          end
+          before { Vedeu.keymaps.store(keymap_test) }
 
           it { subject.must_equal(true) }
         end
@@ -77,10 +72,7 @@ module Vedeu
           let(:key_test) { Key.new('a') { :do_something } }
           let(:keymap_test) { Keymap.new(name: 'test', keys: [key_test]) }
 
-          before do
-            Vedeu.keymaps.reset
-            Vedeu.keymaps.store(keymap_test)
-          end
+          before { Vedeu.keymaps.store(keymap_test) }
 
           it { subject.must_equal(false) }
         end

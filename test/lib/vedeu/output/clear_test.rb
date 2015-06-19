@@ -7,11 +7,7 @@ module Vedeu
     let(:described) { Vedeu::Clear }
     let(:instance)  { described.new(interface, options) }
     let(:interface) { Vedeu::Interface.new(name: 'xenon', visible: visible) }
-    let(:options)   {
-      {
-
-      }
-    }
+    let(:options)   { {} }
     let(:visible)   { true }
     let(:drb)       { false }
 
@@ -20,6 +16,10 @@ module Vedeu
       Vedeu::Geometry.new(name: 'xenon', x: 1, y: 1, xn: 3, yn: 3).store
       Vedeu::Configuration.stubs(:drb?).returns(drb)
       Vedeu.renderers.stubs(:render)
+    end
+    after do
+      Vedeu.borders.reset
+      Vedeu.geometries.reset
     end
 
     describe '#initialize' do
@@ -31,6 +31,18 @@ module Vedeu
     describe 'alias methods' do
       it { described.must_respond_to(:render) }
     end
+
+    # describe '.by_group' do
+    #   subject { described.by_group(group) }
+
+    #   it { skip }
+    # end
+
+    # describe '.by_name' do
+    #   subject { described.by_name(_name) }
+
+    #   it { skip }
+    # end
 
     describe '.clear' do
       subject { described.clear(interface, options) }
