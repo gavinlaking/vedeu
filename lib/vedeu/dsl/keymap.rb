@@ -1,5 +1,3 @@
-require 'vedeu/support/common'
-
 module Vedeu
 
   module DSL

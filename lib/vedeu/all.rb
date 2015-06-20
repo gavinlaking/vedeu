@@ -19,7 +19,6 @@ require 'vedeu/configuration/all'
 require 'vedeu/cursor/all'
 require 'vedeu/distributed/all'
 
-require 'vedeu/dsl/shared/all'
 require 'vedeu/dsl/all'
 
 require 'vedeu/events/all'

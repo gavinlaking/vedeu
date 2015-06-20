@@ -1,6 +1,3 @@
-require 'vedeu/dsl/shared/presentation'
-require 'vedeu/dsl/shared/use'
-
 module Vedeu
 
   module DSL

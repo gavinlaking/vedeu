@@ -6,6 +6,8 @@ module Vedeu
 
     let(:described) { Vedeu::Geometries }
 
+    after { Vedeu.geometries.reset }
+
     describe '#by_name' do
       let(:_name) { 'carbon' }
 

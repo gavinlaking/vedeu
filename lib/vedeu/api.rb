@@ -4,11 +4,7 @@ require 'vedeu/output/renderers/all'
 require 'vedeu/events/all'
 require 'vedeu/models/all'
 require 'vedeu/input/all'
-require 'vedeu/dsl/components/all'
-require 'vedeu/dsl/composition'
-require 'vedeu/dsl/shared/all'
-require 'vedeu/dsl/group'
-require 'vedeu/dsl/view'
+require 'vedeu/dsl/all'
 
 module Vedeu
 
