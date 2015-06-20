@@ -36,6 +36,7 @@ module Vedeu
 
       Vedeu::Refresh.stubs(:by_name)
     end
+    after { Vedeu.interfaces.reset }
 
     describe '#store_immediate' do
       subject { example_instance.store_immediate }

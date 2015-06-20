@@ -26,8 +26,6 @@ SimpleCov.start do
   add_group  'support',       'vedeu/support'
 end unless ENV['no_simplecov']
 
-<<<<<<< HEAD
-=======
 module VedeuMiniTestPlugin
   # def before_setup
   #   Vedeu::Repositories.reset!
@@ -48,10 +46,11 @@ module VedeuMiniTestPlugin
   # end
 end
 
->>>>>>> 9225a52... Whitespace changes.
 module MiniTest
   class Spec
     # parallelize_me! # uncomment to unleash hell
+
+    include VedeuMiniTestPlugin
 
     class << self
       alias_method :context, :describe
