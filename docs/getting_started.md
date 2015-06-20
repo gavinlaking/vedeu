@@ -1,5 +1,14 @@
 ## Getting Started with Vedeu
 
+- Set your configuration.
+- Define your interfaces.
+  - Define the border.
+  - Define the geometry.
+  - Define the keymap.
+- Define the global keymap, this will be used irrespective of the interface
+  currently in focus.
+
+
 ### Predefined Keys
 
 Vedeu automatically defines four keys for your client application:
