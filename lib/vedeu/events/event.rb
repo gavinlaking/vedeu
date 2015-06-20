@@ -96,6 +96,7 @@ module Vedeu
         Vedeu.log(type: :event, message: "Unbinding: '#{name.inspect}'")
 
         Vedeu.events.remove(name)
+
         true
       end
       alias_method :unevent, :unbind
@@ -165,10 +166,6 @@ module Vedeu
     # @return [String]
     attr_accessor :executed_at
 
-    # @!attribute [rw] now
-    # @return [String]
-    attr_accessor :now
-
     private
 
     # Execute the code stored in the event closure.
@@ -176,11 +173,9 @@ module Vedeu
     # @param args [void]
     # @return [void]
     def execute(*args)
-      reset_deadline
-
-      set_executed
-
-      reset_time
+      @deadline    = 0    # reset deadline
+      @executed_at = @now # set execution time to now
+      @now         = 0    # reset now
 
       Vedeu.log(type: :event, message: "Triggering: '#{name.inspect}'")
 
@@ -193,7 +188,7 @@ module Vedeu
     #
     # @return [Boolean]
     def throttling?
-      set_time
+      @now = Time.now.to_f
 
       options[:delay] > 0
     end
@@ -202,7 +197,7 @@ module Vedeu
     #
     # @return [Boolean]
     def throttle_expired?
-      return true if elapsed_time > delay
+      return true if (@now - @executed_at) > delay
 
       Vedeu.log(type: :event, message: "Throttling: '#{name.inspect}'")
 
@@ -212,12 +207,14 @@ module Vedeu
     # Returns a boolean indicating whether debouncing is required for this
     # event. Setting the debounce option to any value greater than 0 will
     # enable debouncing.
+    # Sets the deadline for when this event can be executed to a point in the
+    # future determined by the amount of debounce time left.
     #
     # @return [Boolean]
     def debouncing?
-      set_time
+      @now = Time.now.to_f
 
-      set_deadline unless deadline?
+      @deadline = @now + debounce unless deadline?
 
       options[:debounce] > 0
     end
@@ -226,33 +223,11 @@ module Vedeu
     #
     # @return [Boolean]
     def debounce_expired?
-      return true if set_executed > deadline
+      return true if (@executed_at = @now) > @deadline
 
       Vedeu.log(type: :event, message: "Debouncing: '#{name.inspect}'")
 
       false
-    end
-
-    # Returns the time in seconds since the last triggering of this event.
-    #
-    # @return [Float]
-    def elapsed_time
-      now - @executed_at
-    end
-
-    # @return [Float]
-    def set_executed
-      @executed_at = now
-    end
-
-    # @return [Float]
-    def set_time
-      @now = Time.now.to_f
-    end
-
-    # @return [Fixnum]
-    def reset_time
-      @now = 0
     end
 
     # Returns a boolean indicating if this event has a deadline.
@@ -260,23 +235,6 @@ module Vedeu
     # @return [Boolean]
     def deadline?
       @deadline > 0
-    end
-
-    # Resets the deadline of this event.
-    #
-    # @return [Fixnum]
-    def reset_deadline
-      @deadline = 0
-    end
-
-    # Sets the deadline for when this event can be executed to a point in the
-    # future determined by the amount of debounce time left.
-    #
-    # @return [NilClass]
-    def set_deadline
-      @deadline = now + debounce
-
-      nil
     end
 
     # Return the amount of time in seconds to debounce the event by.
