@@ -7,7 +7,7 @@ module Vedeu
     include Vedeu::Common
 
     def defined_value_test(variable)
-      defined_value?(variable)
+      present?(variable)
     end
 
   end # VedeuCommonClass
@@ -16,7 +16,7 @@ module Vedeu
 
     let(:described) { Vedeu::VedeuCommonClass.new }
 
-    describe '#defined_value?' do
+    describe '#present?' do
       subject { described.defined_value_test(_value) }
 
       context 'when the variable is a Fixnum' do

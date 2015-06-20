@@ -89,12 +89,12 @@ module Vedeu
       def key(*value_or_values, &block)
         fail InvalidSyntax, 'No action defined for `key`.' unless block_given?
 
-        unless defined_value?(value_or_values)
+        unless present?(value_or_values)
           fail InvalidSyntax, 'No keypress(es) defined for `key`.'
         end
 
         value_or_values.each do |value|
-          unless defined_value?(value)
+          unless present?(value)
             fail InvalidSyntax, 'An invalid value for `key` was encountered.'
           end
 

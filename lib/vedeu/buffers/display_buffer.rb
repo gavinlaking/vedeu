@@ -25,7 +25,7 @@ module Vedeu
     # @raise [InvalidSyntax] The name is not defined.
     # @return [Vedeu::Interface]
     def store_deferred
-      unless defined_value?(name)
+      unless present?(name)
         fail InvalidSyntax, 'Cannot store an interface without a name.'
       end
 

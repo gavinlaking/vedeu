@@ -300,7 +300,7 @@ module Vedeu
     #
     # @return [Boolean]
     def title?
-      defined_value?(title)
+      present?(title)
     end
 
     # @param value [String]

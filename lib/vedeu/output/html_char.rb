@@ -36,7 +36,7 @@ module Vedeu
 
     # @return [String]
     def td_style
-      return '' unless border || defined_value?(value)
+      return '' unless border || present?(value)
 
       " style='" \
       "background:#{bg};" \
@@ -47,7 +47,7 @@ module Vedeu
 
     # @return [String]
     def td_value
-      return '&nbsp;' if border || !defined_value?(value)
+      return '&nbsp;' if border || !present?(value)
 
       value
     end
@@ -102,10 +102,10 @@ module Vedeu
       type_to_html        = char.send(type).send(:to_html)
       parent_type_to_html = char.send(parent_type).send(:to_html)
 
-      if defined_value?(type_to_html)
+      if present?(type_to_html)
         type_to_html
 
-      elsif defined_value?(parent_type_to_html)
+      elsif present?(parent_type_to_html)
         parent_type_to_html
 
       else
