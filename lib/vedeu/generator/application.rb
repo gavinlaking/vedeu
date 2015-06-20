@@ -52,6 +52,7 @@ module Vedeu
         FileUtils.mkdir_p(name + '/app/views/templates')
         FileUtils.mkdir_p(name + '/bin')
         FileUtils.mkdir_p(name + '/config')
+        FileUtils.mkdir_p(name + '/lib')
         FileUtils.mkdir_p(name + '/log')
         FileUtils.mkdir_p(name + '/test')
       end
