@@ -25,10 +25,9 @@ module Vedeu
         copy_gemfile
         copy_application_controller
         copy_application_helper
+        copy_global_keymap
         copy_application_executable
         make_application_executable
-
-        copy_files
       end
 
       # @return [String]
@@ -76,17 +75,20 @@ module Vedeu
                      "#{name}/bin/#{name}")
       end
 
+      # @return [void]
       def copy_gemfile
         FileUtils.cp(source + '/Gemfile', "#{name}/Gemfile")
       end
 
+      # @return [void]
       def make_application_executable
         FileUtils.chmod(0755, "#{name}/bin/#{name}")
       end
 
+      # @return [void]
       def copy_global_keymap
-        FileUtils.cp(source + '/app/models/keymaps/global.rb',
-                     "#{name}/app/models/keymaps/global.rb")
+        FileUtils.cp(source + '/app/models/keymaps/_global_.rb',
+                     "#{name}/app/models/keymaps/_global_.rb")
       end
 
       # @return [String]
