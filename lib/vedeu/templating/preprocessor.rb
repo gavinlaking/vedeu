@@ -52,6 +52,9 @@ module Vedeu
 
       # Return a pattern to remove directive markers and spaces.
       #
+      # @example
+      #   line containing {{ or }}
+      #
       # @return [Regexp]
       def markers
         /({{\s*|\s*}})/

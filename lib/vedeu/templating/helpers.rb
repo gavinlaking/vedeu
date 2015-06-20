@@ -5,6 +5,11 @@ module Vedeu
     # Provide helpers to be used with your Vedeu templates.
     module Helpers
 
+      # @example
+      #   Roses are {{ background('#ff0000', 'red') }},
+      #   violets are {{ bg('#0000ff', 'blue') }},
+      #   {{ background('#00ff00'), 'The test suite is all green!' }}
+      #
       # @param value [String] The HTML/CSS colour.
       # @param block [Proc]
       # @return [Vedeu::Stream]
@@ -26,7 +31,7 @@ module Vedeu
 
       # @example
       #   Roses are {{ foreground('#ff0000', 'red') }},
-      #   violets are {{ fg('#0000ff', 'blue') }}
+      #   violets are {{ fg('#0000ff', 'blue') }},
       #   {{ foreground('#00ff00'), 'The test suite is all green!' }}
       #
       # @param value [String] The HTML/CSS colour.
