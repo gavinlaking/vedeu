@@ -2,9 +2,11 @@
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
+require 'vedeu/version'
+
 Gem::Specification.new do |spec|
   spec.name          = 'vedeu'
-  spec.version       = '0.4.29'
+  spec.version       = Vedeu::VERSION
   spec.authors       = ['Gavin Laking']
   spec.email         = ['gavinlaking@gmail.com']
   spec.summary       = 'A terminal case of wonderland.'

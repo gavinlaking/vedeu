@@ -1,6 +1,7 @@
 
 # load order is important
 
+require 'vedeu/version'
 require 'vedeu/debug'
 require 'vedeu/traps'
 
