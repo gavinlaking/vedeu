@@ -1,40 +1,59 @@
-FROM stackbrew/ubuntu:trusty
+FROM ubuntu:15.04
 MAINTAINER Gavin Laking <gavinlaking@gmail.com>
 
-ENV DEBIAN_FRONTEND noninteractive
+# Build dependencies
+RUN apt-get update
+RUN apt-get install -y --force-yes \
+        software-properties-common \
+        build-essential \
+        openssl \
+        ca-certificates \
+        git-core \
+        autoconf \
+        gawk \
+        libreadline-dev \
+        libyaml-dev \
+        libgdbm-dev \
+        libncurses5-dev \
+        automake \
+        libtool \
+        bison \
+        pkg-config \
+        curl \
+        wget \
+        libxslt-dev \
+        libxml2-dev \
+        libffi-dev \
+        libssl-dev \
+        zlib1g-dev \
+        make
+RUN apt-get clean -y
+RUN apt-get autoremove -y
 
-RUN sudo apt-get update;\
-    sudo apt-get install -y --force-yes \
-                         software-properties-common \
-                         build-essential \
-                         openssl \
-                         ca-certificates \
-                         git-core \
-                         autoconf \
-                         gawk \
-                         libreadline6-dev \
-                         libyaml-dev \
-                         libgdbm-dev \
-                         libncurses5-dev \
-                         automake \
-                         libtool \
-                         bison \
-                         pkg-config \
-                         curl \
-                         libxslt-dev \
-                         libxml2-dev \
-                         make; \
-    sudo apt-get clean -y; \
-    sudo apt-get autoremove -y;
+# Chruby
+RUN wget -O chruby-0.3.9.tar.gz https://github.com/postmodern/chruby/archive/v0.3.9.tar.gz
+RUN tar -xzvf chruby-0.3.9.tar.gz
+RUN cd chruby-0.3.9/ && make install
 
-RUN sudo add-apt-repository "deb http://ppa.launchpad.net/brightbox/ruby-ng/ubuntu  $(lsb_release -sc) main";\
-    sudo apt-get update; \
-    sudo apt-get install ruby2.1 ruby2.1-dev -y --force-yes; \
-    sudo apt-get clean -y; \
-    sudo apt-get autoremove -y;
+# Ruby Install
+RUN wget -O ruby-install-0.5.0.tar.gz https://github.com/postmodern/ruby-install/archive/v0.5.0.tar.gz
+RUN tar -xzvf ruby-install-0.5.0.tar.gz
+RUN cd ruby-install-0.5.0/ && make install
 
-RUN echo "---\n:benchmark: false\n:bulk_threshold: 1000\n:backtrace: false\n:verbose: true\ngem: --no-ri --no-rdoc" > ~/.gemrc; \
-    /bin/bash -l -c "gem install bundler" ;
+# Install Ruby 2.2.2
+RUN ruby-install ruby 2.2.2
 
-RUN git clone https://github.com/gavinlaking/vedeu.git
-RUN cd vedeu; bundle install; rake
+# Setup Chruby
+RUN echo '[ -n "$BASH_VERSION" ] || [ -n "$ZSH_VERSION" ] || return' >> /etc/profile.d/chruby.sh
+RUN echo 'source /usr/local/share/chruby/chruby.sh' >> /etc/profile.d/chruby.sh
+RUN echo 'source /usr/local/share/chruby/auto.sh' >> $HOME/.bashrc
+RUN echo 'chruby ruby-2.2.2' >> $HOME/.bash_profile
+
+# Setup .gemrc
+RUN echo "---\n:benchmark: false\n:bulk_threshold: 1000\n:backtrace: false\n:verbose: true\ngem: --no-ri --no-rdoc" > $HOME/.gemrc
+
+# Setup PATH
+ENV PATH /opt/rubies/ruby-2.2.2/bin/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+# Get ruby version
+RUN ruby -v
