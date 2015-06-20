@@ -22,6 +22,7 @@ module Vedeu
       def generate
         make_directory_structure
 
+        copy_gemfile
         copy_application_controller
         copy_application_helper
         copy_application_executable
@@ -73,6 +74,10 @@ module Vedeu
       def copy_application_executable
         FileUtils.cp(source + '/bin/name',
                      "#{name}/bin/#{name}")
+      end
+
+      def copy_gemfile
+        FileUtils.cp(source + '/Gemfile', "#{name}/Gemfile")
       end
 
       def make_application_executable

@@ -1,7 +1,3 @@
-#!/usr/bin/env ruby
-
-require 'vedeu'
-
 module YourAppName
 
   class Application
