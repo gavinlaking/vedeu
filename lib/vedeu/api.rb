@@ -1,5 +1,6 @@
 require 'vedeu/support/common'
 require 'vedeu/support/terminal'
+require 'vedeu/support/timer'
 require 'vedeu/output/renderers/all'
 require 'vedeu/events/all'
 require 'vedeu/models/all'
@@ -152,6 +153,10 @@ module Vedeu
     # @!method resize
     #   @see Vedeu::Terminal#resize
     def_delegators Vedeu::Terminal, :height, :width, :resize
+
+    # @!method timer
+    #   @see Vedeu::Timer.timer
+    def_delegators Vedeu::Timer, :timer
 
     # @!method trigger
     #   @see Vedeu::Trigger.trigger

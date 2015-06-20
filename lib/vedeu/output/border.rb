@@ -159,7 +159,7 @@ module Vedeu
       return [] unless visible?
       return [] unless enabled?
 
-      Vedeu::Timer.for(:timer, "Rendering border: #{name}") do
+      Vedeu.timer("Rendering border: #{name}") do
         out = [top, bottom]
 
         height.times do |y|
