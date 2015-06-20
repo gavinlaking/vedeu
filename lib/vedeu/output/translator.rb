@@ -44,14 +44,6 @@ module Vedeu
       end
     end
 
-    # Convert a CSS/HTML colour string into a terminal escape sequence.
-    #
-    # @param colour [Fixnum|String|Symbol]
-    # @return [String]
-    def self.escape_sequence(colour = '')
-      new(colour).escape_sequence
-    end
-
     # Return a new instance of Vedeu::Translator.
     #
     # @param colour [Fixnum|String|Symbol]
