@@ -15,6 +15,10 @@ module Vedeu
       it { instance.instance_variable_get('@style').must_equal('') }
     end
 
+    describe '.render' do
+      it { described.must_respond_to(:render) }
+    end
+
     describe '#render' do
       subject { instance.render }
 

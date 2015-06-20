@@ -36,7 +36,7 @@ module Vedeu
       # @return [String]
       def parsed
         Vedeu.timer('Compression') do
-          Vedeu::Compressor.new(output).render
+          Vedeu::Compressor.render(output)
         end
       end
 

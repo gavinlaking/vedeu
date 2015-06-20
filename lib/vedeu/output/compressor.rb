@@ -6,6 +6,12 @@ module Vedeu
   class Compressor
 
     # @param output [Array<Array<Vedeu::Char>>]
+    # @return [String]
+    def self.render(output)
+      new(output).render
+    end
+
+    # @param output [Array<Array<Vedeu::Char>>]
     # @return [Vedeu::Compressor]
     def initialize(output)
       @output = output

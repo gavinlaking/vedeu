@@ -57,7 +57,7 @@ module Vedeu
 
       # @return [String]
       def parsed
-        @parsed ||= Vedeu::Compressor.new(output).render
+        @parsed ||= Vedeu::Compressor.render(output)
       end
 
       # @return [Float]
