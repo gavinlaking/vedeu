@@ -1,5 +1,3 @@
-require 'fileutils'
-
 module Vedeu
 
   module Generator
