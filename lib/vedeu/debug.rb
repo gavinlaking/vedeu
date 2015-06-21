@@ -22,7 +22,7 @@ module Vedeu
 
     RubyProf.start
 
-    yield
+    work = yield
 
     result = RubyProf.stop
     result.eliminate_methods!([
@@ -61,6 +61,8 @@ module Vedeu
       # - Uses the other printers to create several reports in one profiling run
       # RubyProf::MultiPrinter
     end
+
+    work
   end
   # :nocov:
 
