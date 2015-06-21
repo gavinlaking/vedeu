@@ -35,28 +35,33 @@ module Vedeu
 
       private
 
+      # @return [void]
       def make_controller_file
         make_file(source + '/app/controllers/name.erb',
-                  name + "/app/controllers/#{name}.rb")
+                  app_name + "/app/controllers/#{name}.rb")
       end
 
+      # @return [void]
       def make_helper_file
         make_file(source + '/app/helpers/name.erb',
-                  name + "/app/helpers/#{name}.rb")
+                  app_name + "/app/helpers/#{name}.rb")
       end
 
+      # @return [void]
       def make_interface_file
         make_file(source + '/app/views/interfaces/name.erb',
-                  name + "/app/views/interfaces/#{name}.rb")
+                  app_name + "/app/views/interfaces/#{name}.rb")
       end
 
+      # @return [void]
       def make_template_file
-        FileUtils.touch(name + "/app/views/templates/#{name}.erb")
+        FileUtils.touch(app_name + "/app/views/templates/#{name}.erb")
       end
 
+      # @return [void]
       def make_view_class_file
         make_file(source + '/app/views/name.erb',
-                  name + "/app/views/#{name}.rb")
+                  app_name + "/app/views/#{name}.rb")
       end
 
     end # View

@@ -32,6 +32,7 @@ module Vedeu
         copy_application_executable
         make_application_executable
         copy_configuration
+        copy_app_name
       end
 
       private
@@ -52,14 +53,14 @@ module Vedeu
 
       # @return [void]
       def copy_application_controller
-        FileUtils.cp(source + '/app/controllers/application_controller.rb',
-                     name + '/app/controllers/application_controller.rb')
+        make_file(source + '/app/controllers/application_controller.erb',
+                  name + '/app/controllers/application_controller.rb')
       end
 
       # @return [void]
       def copy_application_helper
-        FileUtils.cp(source + '/app/helpers/application_helper.rb',
-                     name + '/app/helpers/application_helper.rb')
+        make_file(source + '/app/helpers/application_helper.erb',
+                  name + '/app/helpers/application_helper.rb')
       end
 
       # @return [void]
@@ -72,6 +73,12 @@ module Vedeu
       def copy_configuration
         FileUtils.cp(source + '/config/configuration.rb',
                      "#{name}/config/configuration.rb")
+      end
+
+      # @return [void]
+      def copy_app_name
+        make_file(source + '/config/app_name.erb',
+                  name + '/config/app_name')
       end
 
       # @return [void]

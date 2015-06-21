@@ -55,7 +55,7 @@ module Vedeu
       fail MissingRequired, 'No path to template specified.' if @path.empty?
 
       unless File.exist?(@path)
-        fail MissingRequired, 'Template file cannot be found.'
+        fail MissingRequired, "Template file cannot be found. (#{@path})"
       end
 
       @path

@@ -4,11 +4,27 @@ module Vedeu
 
     module Helpers
 
-      # @param source []
-      # @param destination []
+      # @return [String]
+      # def app_name
+      #   @app_name ||= File.read(name + '/config/app_name')
+      # end
+
+      # @param name [String]
+      # @return [String]
+      def app_name_as_snake_case(name)
+        name.gsub!(/::/, '/')
+        name.gsub!(/([A-Z]+)([A-Z][a-z])/,'\1_\2')
+        name.gsub!(/([a-z\d])([A-Z])/,'\1_\2')
+        name.tr!("-", "_")
+        name.downcase!
+        name
+      end
+
+      # @param source [String]
+      # @param destination [String]
       # @return [void]
       def make_file(source, destination)
-        File.open(destination, 'w') { |file| file.write(parse(source)) }
+        File.write(destination, parse(source))
       end
 
       # @return [String]
@@ -21,7 +37,7 @@ module Vedeu
         name.downcase.split(/_|-/).map(&:capitalize).join
       end
 
-      # @param source []
+      # @param source [String]
       # @return [String]
       def parse(source)
         Vedeu::Template.parse(self, source)
