@@ -3,6 +3,9 @@
 lib_dir = File.dirname(__FILE__) + '/../lib'
 $LOAD_PATH.unshift(lib_dir) unless $LOAD_PATH.include?(lib_dir)
 
+require 'vedeu/version'
+
+puts "Vedeu (#{Vedeu::VERSION})"
 puts ''
 puts 'Vedeu is a Ruby gem. This executable serves for a future in which ' \
      'Vedeu can generate a starting point for your terminal-based GUI '   \
