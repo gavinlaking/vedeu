@@ -35,20 +35,16 @@ module Vedeu
     # @return [Vedeu::Area]
     def self.from_attributes(y:, yn:, y_yn:, y_default:,
                              x:, xn:, x_xn:, x_default:, options:)
-      y_yn = Vedeu::Dimension.pair({
-        d:       y,
-        dn:      yn,
-        d_dn:    y_yn,
-        default: y_default,
-        options: options,
-      })
-      x_xn = Vedeu::Dimension.pair({
-        d:       x,
-        dn:      xn,
-        d_dn:    x_xn,
-        default: x_default,
-        options: options,
-      })
+      y_yn = Vedeu::Dimension.pair(d:       y,
+                                   dn:      yn,
+                                   d_dn:    y_yn,
+                                   default: y_default,
+                                   options: options)
+      x_xn = Vedeu::Dimension.pair(d:       x,
+                                   dn:      xn,
+                                   d_dn:    x_xn,
+                                   default: x_default,
+                                   options: options)
 
       from_dimensions(y_yn: y_yn, x_xn: x_xn)
     end

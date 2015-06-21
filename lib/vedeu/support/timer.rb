@@ -23,7 +23,7 @@ module Vedeu
 
     # @param block [Proc]
     # @return [void]
-    def measure(&block)
+    def measure
       work = yield
 
       elapsed = ((Time.now.to_f - started) * 1000).round(3)
