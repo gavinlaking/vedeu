@@ -50,16 +50,6 @@ module Vedeu
 
         it { subject.must_be_instance_of(Vedeu::Colour) }
 
-        context 'with an invalid attribute' do
-          let(:attributes) { { invalid: background, foreground: foreground } }
-
-          it 'sets only the valid attributes' do
-            subject.attributes.must_equal(
-              background: '', foreground: '#ff00ff'
-            )
-          end
-        end
-
         context 'with an empty value' do
           let(:attributes) { { background: background, foreground: '' } }
 

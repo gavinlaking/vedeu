@@ -72,9 +72,6 @@ module Vedeu
       #
       # @return [Vedeu::Colour]
       def colour(attributes = {})
-        attributes.delete_if do |k, v|
-          [:background, :foreground].include?(k) == false || v.nil? || v.empty?
-        end
         model.colour = Vedeu::Colour.coerce(attributes)
       end
 
