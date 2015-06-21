@@ -84,7 +84,7 @@ module Vedeu
               Vedeu::Char.new(value:    ' ',
                               colour:   clear_colour,
                               style:    style,
-                              position: [y + iy, x + ix])
+                              position: Vedeu::Position[y + iy, x + ix])
             end
           end
         end
