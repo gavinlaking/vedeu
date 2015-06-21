@@ -18,7 +18,7 @@ class VedeuFocusApp
   # Be aware that running an application with debugging enabled will affect
   # performance.
   Vedeu.configure do
-    debug!
+    # debug!
     log '/tmp/vedeu_focus_app.log'
   end
 

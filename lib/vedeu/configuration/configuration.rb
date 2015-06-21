@@ -257,7 +257,7 @@ module Vedeu
         drb_height:    25,
         drb_width:     80,
         interactive:   true,
-        log:           '/tmp/vedeu.log',
+        log:           nil,
         once:          false,
         renderers:     [Vedeu::Renderers::Terminal],
         stdin:         nil,

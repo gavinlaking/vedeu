@@ -13,7 +13,7 @@ class VedeuBordersApp
   # Be aware that running an application with debugging enabled will affect
   # performance.
   configure do
-    debug!
+    # debug!
     log '/tmp/vedeu_borders_app.log'
   end
 

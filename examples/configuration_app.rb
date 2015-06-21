@@ -20,7 +20,7 @@ class VedeuConfigurationApp
   include Vedeu
 
   configure do
-    debug!
+    # debug!
     log '/tmp/vedeu_configuration_app.log'
   end
 

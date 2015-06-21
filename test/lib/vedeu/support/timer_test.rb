@@ -30,7 +30,7 @@ module Vedeu
 
       it {
         Vedeu.expects(:log).with(type:    :timer,
-                                 message: "Testing took 0ms.")
+                                 message: "Testing took 0.0ms.")
         subject
       }
     end

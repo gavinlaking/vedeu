@@ -14,7 +14,7 @@ class HelloWorldApp
   include Vedeu
 
   configure do
-    debug!
+    # debug!
     log '/tmp/vedeu_hello_world.log'
   end
 

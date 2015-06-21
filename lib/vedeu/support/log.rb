@@ -116,15 +116,11 @@ module Vedeu
         [timestamp(time.utc.iso8601), message, "\n"].join
       end
 
-      # @return [Boolean]
-      def enabled?
-        Vedeu::Configuration.debug?
-      end
-
       # @return [String]
       def log_file
         Vedeu::Configuration.log
       end
+      alias_method :enabled?, :log_file
 
       # @param type [Symbol] The type of log message.
       # @param body [String] The log message itself.
