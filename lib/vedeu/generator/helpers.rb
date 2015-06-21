@@ -5,17 +5,17 @@ module Vedeu
     module Helpers
 
       # @return [String]
-      # def app_name
-      #   @app_name ||= File.read(name + '/config/app_name')
-      # end
+      def app_name
+        @app_name ||= File.read('./config/app_name')
+      end
 
       # @param name [String]
       # @return [String]
-      def app_name_as_snake_case(name)
+      def app_name_as_snake_case(name = app_name)
         name.gsub!(/::/, '/')
-        name.gsub!(/([A-Z]+)([A-Z][a-z])/,'\1_\2')
-        name.gsub!(/([a-z\d])([A-Z])/,'\1_\2')
-        name.tr!("-", "_")
+        name.gsub!(/([A-Z]+)([A-Z][a-z])/, '\1_\2')
+        name.gsub!(/([a-z\d])([A-Z])/, '\1_\2')
+        name.tr!('-', '_')
         name.downcase!
         name
       end
