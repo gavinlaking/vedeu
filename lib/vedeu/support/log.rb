@@ -101,8 +101,8 @@ module Vedeu
       # @return [TrueClass]
       def logger
         MonoLogger.new(log_file).tap do |log|
-          log.formatter = proc do |_, time, _, message|
-            formatted_message(message, time)
+          log.formatter = proc do |_, _, _, message|
+            formatted_message(message)
           end
         end
       end
@@ -110,10 +110,9 @@ module Vedeu
       private
 
       # @param message [String]
-      # @param time [Time]
       # @return [String]
-      def formatted_message(message, time = Time.now)
-        [timestamp(time.utc.iso8601), message, "\n"].join
+      def formatted_message(message)
+        [timestamp, message, "\n"].join
       end
 
       # @return [String]
@@ -157,17 +156,21 @@ module Vedeu
         }
       end
 
-      # Returns a formatted (red, underlined) UTC timestamp,
-      # eg. 2014-10-24T12:34:56Z
+      # Returns a formatted timestamp.
+      # eg. [137.7824]
       #
-      # @param utc_time [String]
       # @return [String]
-      def timestamp(utc_time)
-        return '' if @last_seen == utc_time
+      def timestamp
+        @now  = Time.now.to_f
+        @time = 0.0  unless @time
+        @last = @now unless @last
 
-        @last_seen = utc_time
+        unless @last == @time
+          @time += (@now - @last).round(4)
+          @last = @now
+        end
 
-        "\n\e[4m\e[31m" + utc_time + "\e[39m\e[24m\n"
+        "[#{"%7.4f" % @time.to_s}] ".rjust(7)
       end
 
     end # Log eigenclass
