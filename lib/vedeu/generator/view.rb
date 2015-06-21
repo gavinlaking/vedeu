@@ -6,6 +6,8 @@ module Vedeu
 
     class View
 
+      include Vedeu::Generator::Helpers
+
       # @param name [String] The name of the view.
       # @return [Vedeu::Generator::View]
       def self.generate(name)
@@ -27,12 +29,6 @@ module Vedeu
         make_view_class_file
       end
 
-      protected
-
-      # @!attribute [r] name
-      # @return [String]
-      attr_reader :name
-
       private
 
       def make_interface_file
@@ -47,10 +43,6 @@ module Vedeu
       def make_view_class_file
         FileUtils.cp(source + '/app/views/name.erb',
                      name + '/app/views/name.rb')
-      end
-
-      def source
-        File.dirname(__FILE__) + '/templates/application/.'
       end
 
     end # View

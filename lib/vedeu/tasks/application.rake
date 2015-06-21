@@ -12,6 +12,7 @@ task :new do
   end
 end
 
+# 'Specify the interface name lowercase snakecase; e.g. main_interface'
 desc 'Create a new interface within the client application.'
 task :view do
   view_name = ARGV[0]

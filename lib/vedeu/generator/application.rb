@@ -6,6 +6,8 @@ module Vedeu
 
     class Application
 
+      include Vedeu::Generator::Helpers
+
       # @param name [String] The name of the application.
       # @return [Vedeu::Generator::Application]
       def self.generate(name)
@@ -30,17 +32,6 @@ module Vedeu
         make_application_executable
         copy_configuration
       end
-
-      # @return [String]
-      def name_as_class
-        name.downcase.split(/_|-/).map(&:capitalize).join
-      end
-
-      protected
-
-      # @!attribute [r] name
-      # @return [String]
-      attr_reader :name
 
       private
 
@@ -96,11 +87,6 @@ module Vedeu
       def copy_global_keymap
         FileUtils.cp(source + '/app/models/keymaps/_global_.rb',
                      "#{name}/app/models/keymaps/_global_.rb")
-      end
-
-      # @return [String]
-      def source
-        File.dirname(__FILE__) + '/templates/application/.'
       end
 
     end # Application

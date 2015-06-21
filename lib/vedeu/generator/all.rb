@@ -1,3 +1,4 @@
+require 'vedeu/generator/helpers'
 require 'vedeu/generator/application'
 require 'vedeu/generator/view'
 
