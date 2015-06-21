@@ -20,6 +20,13 @@ module Vedeu
       let(:instance)  { Vedeu::Generator::HelpersTestClass.new(_name) }
       let(:_name)     { 'my_first_app' }
 
+      describe '#make_file' do
+        let(:source)      {}
+        let(:destination) {}
+
+        subject { instance.make_file(source, destination) }
+      end
+
       describe '#name' do
         let(:_name) { 'My_First_APP' }
 
@@ -36,6 +43,12 @@ module Vedeu
         it { subject.must_be_instance_of(String) }
 
         it { subject.must_equal('MyFirstApp') }
+      end
+
+      describe '#parse_file' do
+        let(:source) {}
+
+        subject { instance.parse_file(source) }
       end
 
       describe '#source' do
