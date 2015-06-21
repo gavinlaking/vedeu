@@ -28,6 +28,7 @@ module Vedeu
         copy_global_keymap
         copy_application_executable
         make_application_executable
+        copy_configuration
       end
 
       # @return [String]
@@ -73,6 +74,12 @@ module Vedeu
       def copy_application_executable
         FileUtils.cp(source + '/bin/name',
                      "#{name}/bin/#{name}")
+      end
+
+      # @return [void]
+      def copy_configuration
+        FileUtils.cp(source + '/config/configuration.rb',
+                     "#{name}/config/configuration.rb")
       end
 
       # @return [void]
