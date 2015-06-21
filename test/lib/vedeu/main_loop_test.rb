@@ -26,10 +26,6 @@ module Vedeu
         context 'when the loop is not running' do
         end
       end
-
-      context 'when the application has not started' do
-        it { Vedeu.expects(:trigger); subject }
-      end
     end
 
   end # MainLoop

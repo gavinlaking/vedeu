@@ -2,53 +2,48 @@ module Vedeu
 
   # Provides the main loop for a Vedeu application.
   #
-  # Each time Vedeu starts one cycle in the application loop, it triggers the
-  # `:tick` event. A completion of that cycle will trigger `:tock`. This can be
-  # used by the client application for timing amongst other things.
   class MainLoop
 
     trap('SIGTERM') { stop! }
     trap('TERM')    { stop! }
     trap('INT')     { stop! }
 
-    # :nocov:
-    # Start the main loop.
-    #
-    # @return [void]
-    # @yieldreturn [void] The client application.
-    def self.start!
-      @started = true
-      @loop    = true
+    class << self
 
-      while @loop
-        yield
+      # :nocov:
+      # Start the main loop.
+      #
+      # @return [void]
+      # @yieldreturn [void] The client application.
+      def start!
+        @started = true
+        @loop    = true
 
-        safe_exit_point!
+        while @loop
+          yield
+
+          safe_exit_point!
+        end
+      rescue VedeuInterrupt
+        Vedeu.log(type: :debug, message: 'Vedeu execution interrupted, exiting.')
       end
-    rescue VedeuInterrupt
-      Vedeu.log(type: :debug, message: 'Vedeu execution interrupted, exiting.')
-    end
-    # :nocov:
+      # :nocov:
 
-    # Signal that we wish to terminate the running application.
-    #
-    # @return [void]
-    def self.stop!
-      @loop = false
-    end
-
-    # Check the application has started and we wish to continue running.
-    #
-    # @raise [VedeuInterrupt] When we wish to terminate the running application.
-    # @return [void]
-    def self.safe_exit_point!
-      if @started && !@loop
-        fail VedeuInterrupt
-
-      else
-        Vedeu.trigger(:tock, Time.now.to_f)
-
+      # Signal that we wish to terminate the running application.
+      #
+      # @return [void]
+      def stop!
+        @loop = false
       end
+
+      # Check the application has started and we wish to continue running.
+      #
+      # @raise [VedeuInterrupt] When we wish to terminate the running application.
+      # @return [void]
+      def safe_exit_point!
+        fail VedeuInterrupt if @started && !@loop
+      end
+
     end
 
   end # MainLoop

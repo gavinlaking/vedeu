@@ -53,8 +53,6 @@ module Vedeu
 
                     end
 
-      Vedeu.trigger(:tick, Time.now.to_f)
-
       keys_or_cmd
     end
     alias_method :read, :input
