@@ -13,7 +13,7 @@ class VedeuColoursApp
   # Be aware that running an application with debugging enabled will affect
   # performance.
   configure do
-    debug!
+    # debug!
     log '/tmp/vedeu_colours_app.log'
   end
 

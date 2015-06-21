@@ -20,8 +20,6 @@ module Vedeu
       it { Vedeu.events.registered?(:_refresh_group_).must_equal(true) }
       it { Vedeu.events.registered?(:_resize_).must_equal(true) }
       it { Vedeu.events.registered?(:_show_group_).must_equal(true) }
-      it { Vedeu.events.registered?(:tick).must_equal(true) }
-      it { Vedeu.events.registered?(:tock).must_equal(true) }
     end
 
     context 'the cursor specific events are defined' do

@@ -81,6 +81,7 @@ module Vedeu
                 y_range[index]
 
               end
+
       validate_y(value)
     end
 
@@ -106,6 +107,7 @@ module Vedeu
                 x_range[index]
 
               end
+
       validate_x(value)
     end
 

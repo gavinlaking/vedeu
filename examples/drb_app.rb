@@ -12,7 +12,7 @@ class VedeuTestApplication
   # performance.
   Vedeu.configure do
     log         '/tmp/vedeu_test_helper.log'
-    debug!
+    # debug!
     drb!
     drb_host    'localhost'
     drb_port    21_420

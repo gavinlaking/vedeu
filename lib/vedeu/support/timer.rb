@@ -23,10 +23,10 @@ module Vedeu
 
     # @param block [Proc]
     # @return [void]
-    def measure(&block)
+    def measure
       work = yield
 
-      elapsed = ((Time.now.to_f - started) * 1000).to_i
+      elapsed = ((Time.now.to_f - started) * 1000).round(3)
 
       Vedeu.log(type: :timer, message: "#{message} took #{elapsed}ms.")
 

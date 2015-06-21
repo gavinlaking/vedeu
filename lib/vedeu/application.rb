@@ -58,8 +58,6 @@ module Vedeu
         runner { main_sequence }
       end
 
-      Vedeu.trigger(:_drb_stop_)
-
       output
     end
 

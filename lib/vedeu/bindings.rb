@@ -74,9 +74,6 @@ module Vedeu
     # events. Please see those events for their behaviour.
     Vedeu.bind(:_resize_, delay: 0.15) { Vedeu.resize }
 
-    Vedeu.bind(:tick) { |t| Vedeu.log(type: :debug, message: "Tick: #{t}") }
-    Vedeu.bind(:tock) { |t| Vedeu.log(type: :debug, message: "Tock: #{t}") }
-
     # Hide the cursor of the named interface or interface currently in focus.
     Vedeu.bind(:_cursor_hide_) do |name|
       Vedeu::Visibility.for_cursor(name).hide

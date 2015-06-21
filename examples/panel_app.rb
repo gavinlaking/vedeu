@@ -14,7 +14,7 @@ class VedeuPanelApp
   # Be aware that running an application with debugging enabled will affect
   # performance.
   configure do
-    debug!
+    # debug!
     log '/tmp/vedeu_panel_app.log'
     # renderers Vedeu::Renderers::File
   end
