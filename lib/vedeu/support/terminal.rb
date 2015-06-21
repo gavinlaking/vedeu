@@ -18,14 +18,10 @@ module Vedeu
       fail InvalidSyntax, 'block not given' unless block_given?
 
       if raw_mode?
-        Vedeu.log(type: :info, message: "Terminal entering 'raw' mode")
-
-        console.raw    { initialize_screen { yield } }
+        console.raw    { initialize_screen(mode) { yield } }
 
       else
-        Vedeu.log(type: :info, message: "Terminal entering 'cooked' mode")
-
-        console.cooked { initialize_screen { yield } }
+        console.cooked { initialize_screen(mode) { yield } }
 
       end
     ensure
@@ -88,8 +84,11 @@ module Vedeu
       true
     end
 
+    # @param mode [Symbol]
     # @return [void]
-    def initialize_screen
+    def initialize_screen(mode)
+      Vedeu.log(type: :info, message: "Terminal entering '#{mode}' mode")
+
       output(Esc.string('screen_init'))
 
       yield if block_given?
@@ -134,8 +133,6 @@ module Vedeu
     #
     # @return [Symbol]
     def cooked_mode!
-      Vedeu.log(type: :info, message: "Terminal switching to 'cooked' mode")
-
       @mode = :cooked
     end
 
@@ -151,8 +148,6 @@ module Vedeu
     #
     # @return [Symbol]
     def raw_mode!
-      Vedeu.log(type: :info, message: "Terminal switching to 'raw' mode")
-
       @mode = :raw
     end
 
