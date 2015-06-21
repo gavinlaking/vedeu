@@ -22,14 +22,14 @@ module Vedeu
     # @note Takes approximately ~70ms for 2100 chars. (2015-05-24)
     # @return [String]
     def render
-      Array(output).flatten.map do |char|
-        out = ''
+      out = ''
+      Array(output).flatten.each do |char|
         out << char.position.to_s
         out << colour_for(char)
         out << style_for(char)
         out << char.value
-        out
-      end.join
+      end
+      out
     end
 
     protected
