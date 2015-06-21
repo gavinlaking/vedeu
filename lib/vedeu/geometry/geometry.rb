@@ -9,18 +9,6 @@ module Vedeu
   # Calculates and provides interface geometry determined by both the client's
   # requirements and the terminal's current viewing area.
   #
-  # Geometry for Vedeu, as the same for ANSI terminals, has the origin at
-  # top-left, y = 1, x = 1. The 'y' coordinate is deliberately first.
-  #
-  #       x    north    xn           # north:  y - 1
-  #     y +--------------+           # top:    y
-  #       |     top      |           # west:   x - 1
-  #       |              |           # left:   x
-  #  west | left   right | east      # right:  xn
-  #       |              |           # east:   xn + 1
-  #       |    bottom    |           # bottom: yn
-  #    yn +--------------+           # south:  yn + 1
-  #            south
   class Geometry
 
     extend Forwardable

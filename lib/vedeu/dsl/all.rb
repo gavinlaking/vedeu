@@ -1,12 +1,18 @@
-require 'vedeu/dsl/components/all'
-require 'vedeu/dsl/shared/all'
+require 'vedeu/support/common'
 
-require_relative 'composition'
-require_relative 'group'
-require_relative 'interface'
-require_relative 'line'
-require_relative 'stream'
-require_relative 'view'
+require 'vedeu/dsl/use'
+require 'vedeu/dsl/presentation'
+require 'vedeu/dsl/border'
+require 'vedeu/dsl/composition'
+require 'vedeu/dsl/geometry'
+require 'vedeu/dsl/group'
+require 'vedeu/dsl/keymap'
+require 'vedeu/dsl/text'
+require 'vedeu/dsl/interface'
+require 'vedeu/dsl/line'
+require 'vedeu/dsl/menu'
+require 'vedeu/dsl/stream'
+require 'vedeu/dsl/view'
 
 module Vedeu
 

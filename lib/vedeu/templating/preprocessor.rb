@@ -11,7 +11,7 @@ module Vedeu
     #
     # process
     #   converts JSON streams into line/stream objects with correct attributes
-
+    #
     # Pre-processes a template, to convert all lines and lines with directives
     # into Vedeu::Streams.
     class Preprocessor
@@ -51,6 +51,9 @@ module Vedeu
       private
 
       # Return a pattern to remove directive markers and spaces.
+      #
+      # @example
+      #   line containing {{ or }}
       #
       # @return [Regexp]
       def markers

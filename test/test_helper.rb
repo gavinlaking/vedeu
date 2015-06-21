@@ -26,9 +26,31 @@ SimpleCov.start do
   add_group  'support',       'vedeu/support'
 end unless ENV['no_simplecov']
 
+module VedeuMiniTestPlugin
+  # def before_setup
+  #   Vedeu::Repositories.reset!
+  #   super
+  # end
+
+  # def after_setup
+  #   super
+  # end
+
+  # def before_teardown
+  #   super
+  # end
+
+  # def after_teardown
+  #   super
+  #   Vedeu::Repositories.reset!
+  # end
+end
+
 module MiniTest
   class Spec
     # parallelize_me! # uncomment to unleash hell
+
+    include VedeuMiniTestPlugin
 
     class << self
       alias_method :context, :describe

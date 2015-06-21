@@ -3,19 +3,20 @@ module Vedeu
   # Measure the duration. Used for debugging.
   class Timer
 
-    # @param type [Symbol]
-    # @param message [String]
-    # @param block [Proc]
-    # @return [void]
-    def self.for(type = :debug, message = '', &block)
-      new(type, message).measure(&block)
+    class << self
+
+      # @param message [String]
+      # @param block [Proc]
+      # @return [void]
+      def timer(message = '', &block)
+        new(message).measure(&block)
+      end
+
     end
 
-    # @param type [Symbol]
     # @param message [String]
     # @return [Vedeu::Timer]
-    def initialize(type = :debug, message = '')
-      @type    = type
+    def initialize(message = '')
       @message = message
       @started = Time.now.to_f
     end
@@ -27,7 +28,7 @@ module Vedeu
 
       elapsed = ((Time.now.to_f - started) * 1000).to_i
 
-      Vedeu.log(type: type, message: "#{message} took #{elapsed}ms.")
+      Vedeu.log(type: :timer, message: "#{message} took #{elapsed}ms.")
 
       work
     end
@@ -41,10 +42,6 @@ module Vedeu
     # @!attribute [r] message
     # @return [String]
     attr_reader :message
-
-    # @!attribute [r] type
-    # @return [Symbol]
-    attr_reader :type
 
   end # Timer
 

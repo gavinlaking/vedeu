@@ -23,7 +23,7 @@ module Vedeu
                      :height,
                      :width
 
-      # @!attribute [rw] maximise
+      # @!attribute [rw] maximised
       # @return [Boolean]
       attr_accessor :maximised
 
@@ -36,7 +36,8 @@ module Vedeu
       # @param name [String|NilClass]
       # @return [Vedeu::Null::Geometry]
       def initialize(name = nil)
-        @name = name
+        @name      = name
+        @maximised = false
       end
 
       # @return [FalseClass]

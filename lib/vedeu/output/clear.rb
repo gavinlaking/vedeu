@@ -76,7 +76,7 @@ module Vedeu
     # @return [Array<Array<Vedeu::Char>>]
     def clear
       if visible?
-        Vedeu::Timer.for(:timer, "Clearing: #{name}") do
+        Vedeu.timer("Clearing: #{name}") do
           y, x = *position
 
           @clear ||= Array.new(height) do |iy|
@@ -84,7 +84,7 @@ module Vedeu
               Vedeu::Char.new(value:    ' ',
                               colour:   clear_colour,
                               style:    style,
-                              position: [y + iy, x + ix])
+                              position: Vedeu::Position[y + iy, x + ix])
             end
           end
         end
@@ -111,7 +111,7 @@ module Vedeu
 
     private
 
-    # @return (see Vedeu::Borders#by_name)
+    # @see Vedeu::Borders#by_name
     def border
       @border ||= Vedeu.borders.by_name(name)
     end
@@ -143,7 +143,7 @@ module Vedeu
       }
     end
 
-    # @return (see Vedeu::Geometries#by_name)
+    # @see Vedeu::Geometries#by_name
     def geometry
       @geometry ||= Vedeu.geometries.by_name(name)
     end

@@ -7,9 +7,6 @@ module Vedeu
     let(:described) { Vedeu::MainLoop }
 
     describe '.start!' do
-      before do
-      end
-
       subject { described.start! { } }
     end
 

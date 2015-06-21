@@ -27,12 +27,11 @@ module Vedeu
     # @param yn [Fixnum]
     # @param y_yn [Fixnum]
     # @param y_default [Fixnum]
-    # @param y_options [Hash<Symbol => Boolean>]
     # @param x [Fixnum]
     # @param xn [Fixnum]
     # @param x_xn [Fixnum]
     # @param x_default [Fixnum]
-    # @param x_options [Hash<Symbol => Boolean>]
+    # @param options [Hash<Symbol => Boolean>]
     # @return [Vedeu::Area]
     def self.from_attributes(y:, yn:, y_yn:, y_default:,
                              x:, xn:, x_xn:, x_default:, options:)

@@ -1,7 +1,9 @@
 module Vedeu
 
+  # Abstract interface class without the baggage.
   class Panel
 
+    # @return [Vedeu::Panel]
     def initialize
     end
 

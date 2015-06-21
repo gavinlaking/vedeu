@@ -6,6 +6,8 @@ module Vedeu
 
     let(:described) { Vedeu::Borders }
 
+    after { Vedeu.borders.reset }
+
     describe '#by_name' do
       let(:_name) { 'carbon' }
 
@@ -16,7 +18,6 @@ module Vedeu
           Vedeu.border 'carbon' do
           end
         end
-        after { Vedeu.borders.reset }
 
         it { subject.must_be_instance_of(Vedeu::Border) }
       end

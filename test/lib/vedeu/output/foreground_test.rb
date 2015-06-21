@@ -10,11 +10,13 @@ module Vedeu
 
     before { Vedeu.foreground_colours.reset! }
 
-    describe '.escape_sequence' do
+    describe '#escape_sequence' do
+      subject { instance.escape_sequence }
+
       context 'when the colour is empty' do
-        it 'returns an empty String' do
-          Foreground.escape_sequence('').must_equal('')
-        end
+        let(:colour) { '' }
+
+        it { subject.must_equal('') }
       end
 
       context 'when the colour is named (3-bit / 8 colours)' do
@@ -27,7 +29,7 @@ module Vedeu
           unknown: '',
         }.map do |colour, result|
           it "returns the correct escape sequence for #{colour}" do
-            Foreground.escape_sequence(colour).must_equal(result)
+            described.new(colour).escape_sequence.must_equal(result)
           end
         end
       end
@@ -44,7 +46,7 @@ module Vedeu
           442 => ''
         }.map do |colour, result|
           it "returns the correct escape sequence for #{colour}" do
-            Foreground.escape_sequence(colour).must_equal(result)
+            described.new(colour).escape_sequence.must_equal(result)
           end
         end
       end
@@ -64,7 +66,7 @@ module Vedeu
           '#h11111' => '',
         }.map do |colour, result|
           it "returns the correct escape sequence for #{colour}" do
-            Foreground.escape_sequence(colour).must_equal(result)
+            described.new(colour).escape_sequence.must_equal(result)
           end
         end
       end
@@ -82,7 +84,7 @@ module Vedeu
           '#h11111' => '',
         }.map do |colour, result|
           it "returns the correct escape sequence for #{colour}" do
-            Foreground.escape_sequence(colour).must_equal(result)
+            described.new(colour).escape_sequence.must_equal(result)
           end
         end
       end
@@ -94,25 +96,19 @@ module Vedeu
       context 'when the colour is empty' do
         let(:colour) {}
 
-        it 'returns an empty String' do
-          subject.must_equal('')
-        end
+        it { subject.must_equal('') }
       end
 
       context 'when the colour is named (3-bit / 8 colours)' do
         let(:colour) { :red }
 
-        it 'returns an empty String' do
-          subject.must_equal('')
-        end
+        it { subject.must_equal('') }
       end
 
       context 'when the colour is numbered (8-bit / 256 colours)' do
         let(:colour) { 118 }
 
-        it 'returns an empty String' do
-          subject.must_equal('')
-        end
+        it { subject.must_equal('') }
       end
 
       context 'when the colour is a CSS value' do

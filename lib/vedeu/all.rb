@@ -1,6 +1,7 @@
 
 # load order is important
 
+require 'vedeu/version'
 require 'vedeu/debug'
 require 'vedeu/traps'
 
@@ -19,7 +20,6 @@ require 'vedeu/configuration/all'
 require 'vedeu/cursor/all'
 require 'vedeu/distributed/all'
 
-require 'vedeu/dsl/shared/all'
 require 'vedeu/dsl/all'
 
 require 'vedeu/events/all'

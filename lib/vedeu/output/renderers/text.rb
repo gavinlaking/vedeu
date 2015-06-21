@@ -35,7 +35,7 @@ module Vedeu
 
       # @return [String]
       def parsed
-        Vedeu::Compressor.new(output).render
+        Vedeu::Compressor.render(output)
       end
 
     end # Text

@@ -1,4 +1,4 @@
-require 'vedeu/dsl/components/keymap'
+require 'vedeu/dsl/keymap'
 
 module Vedeu
 

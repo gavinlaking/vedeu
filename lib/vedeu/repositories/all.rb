@@ -30,7 +30,7 @@ module Vedeu
       @storage ||= Set.new
     end
 
-  end
+  end # Repositories
 
 end # Vedeu
 

@@ -195,7 +195,7 @@ module Vedeu
       @coordinate ||= Vedeu::Coordinate.new(name)
     end
 
-    # @return (see Vedeu::Cursors#by_name)
+    # @see Vedeu::Cursors#by_name
     def cursor
       @cursor ||= Vedeu.cursors.by_name(name)
     end
@@ -205,7 +205,7 @@ module Vedeu
       cursor.attributes.merge!(x: x_position, y: y_position, ox: ox, oy: oy)
     end
 
-    # @return (see Vedeu::Geometries#by_name)
+    # @see Vedeu::Geometries#by_name
     def geometry
       @geometry ||= Vedeu.geometries.by_name(name)
     end

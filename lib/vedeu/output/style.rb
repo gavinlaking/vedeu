@@ -66,7 +66,7 @@ module Vedeu
     #
     # @return [String]
     def to_s
-      return '' unless defined_value?(value)
+      return '' unless present?(value)
 
       @sequences ||= Array(value).flatten.map { |v| Vedeu::Esc.string(v) }.join
     end

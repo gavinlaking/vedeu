@@ -409,7 +409,7 @@ module Vedeu
 
         return false if value.is_a?(String) && value.size != 1
 
-        (value.is_a?(String) || value.is_a?(Symbol)) && defined_value?(value)
+        (value.is_a?(String) || value.is_a?(Symbol)) && present?(value)
       end
 
       # Raises an exception on behalf of the calling method to report that the

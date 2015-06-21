@@ -106,7 +106,7 @@ module Vedeu
       #
       # @return [String] The name of the interface in focus.
       def focus!
-        Vedeu::Focus.add(model.name, true) if defined_value?(model.name)
+        Vedeu::Focus.add(model.name, true) if present?(model.name)
       end
 
       # Define the geometry for an interface.
@@ -144,7 +144,7 @@ module Vedeu
       #   should belong.
       # @return [Vedeu::Group]
       def group(name)
-        return false unless defined_value?(name)
+        return false unless present?(name)
 
         model.group = name
 

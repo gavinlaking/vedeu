@@ -7,6 +7,11 @@ module Vedeu
     let(:described) { Vedeu::Buffers }
     let(:instance)  { described.buffers }
 
+    after do
+      Vedeu.buffers.reset
+      Vedeu.interfaces.reset
+    end
+
     describe '#by_name' do
       let(:_name) { 'carbon' }
 
@@ -17,7 +22,6 @@ module Vedeu
           Vedeu.interface 'carbon' do
           end
         end
-        after { Vedeu.buffers.reset }
 
         it { subject.must_be_instance_of(Vedeu::Buffer) }
       end

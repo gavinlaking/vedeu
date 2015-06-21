@@ -10,14 +10,16 @@ module Vedeu
 
     before { Vedeu.background_colours.reset! }
 
-    describe '.escape_sequence' do
-      describe 'when the colour is empty' do
-        it 'returns an empty String' do
-          Background.escape_sequence('').must_equal('')
-        end
+    describe '#escape_sequence' do
+      subject { instance.escape_sequence }
+
+      context 'when the colour is empty' do
+        let(:colour) { '' }
+
+        it { subject.must_equal('') }
       end
 
-      describe 'when the colour is named (3-bit / 8 colours)' do
+      context 'when the colour is named (3-bit / 8 colours)' do
         {
           red:     "\e[41m",
           yellow:  "\e[43m",
@@ -27,12 +29,12 @@ module Vedeu
           unknown: '',
         }.map do |colour, result|
           it "returns the correct escape sequence for #{colour}" do
-            Background.escape_sequence(colour).must_equal(result)
+            described.new(colour).escape_sequence.must_equal(result)
           end
         end
       end
 
-      describe 'when the colour is numbered (8-bit / 256 colours)' do
+      context 'when the colour is numbered (8-bit / 256 colours)' do
         {
           24  => "\e[48;5;24m",
           56  => "\e[48;5;56m",
@@ -44,12 +46,12 @@ module Vedeu
           442 => ''
         }.map do |colour, result|
           it "returns the correct escape sequence for #{colour}" do
-            Background.escape_sequence(colour).must_equal(result)
+            described.new(colour).escape_sequence.must_equal(result)
           end
         end
       end
 
-      describe 'when the colour is a CSS value (8-bit / 256 colours)' do
+      context 'when the colour is a CSS value (8-bit / 256 colours)' do
         before { Configuration.stubs(:colour_mode).returns(8) }
 
         {
@@ -64,12 +66,12 @@ module Vedeu
           '#h11111' => '',
         }.map do |colour, result|
           it "returns the correct escape sequence for #{colour}" do
-            Background.escape_sequence(colour).must_equal(result)
+            described.new(colour).escape_sequence.must_equal(result)
           end
         end
       end
 
-      describe 'when the colour is a CSS value (24-bit / 16.8mil colours)' do
+      context 'when the colour is a CSS value (24-bit / 16.8mil colours)' do
         {
           '#5f0000' => "\e[48;2;95;0;0m",
           '#008700' => "\e[48;2;0;135;0m",
@@ -82,7 +84,7 @@ module Vedeu
           '#h11111' => '',
         }.map do |colour, result|
           it "returns the correct escape sequence for #{colour}" do
-            Background.escape_sequence(colour).must_equal(result)
+            described.new(colour).escape_sequence.must_equal(result)
           end
         end
       end
@@ -94,25 +96,19 @@ module Vedeu
       context 'when the colour is empty' do
         let(:colour) {}
 
-        it 'returns an empty String' do
-          subject.must_equal('')
-        end
+        it { subject.must_equal('') }
       end
 
       context 'when the colour is named (3-bit / 8 colours)' do
         let(:colour) { :red }
 
-        it 'returns an empty String' do
-          subject.must_equal('')
-        end
+        it { subject.must_equal('') }
       end
 
       context 'when the colour is numbered (8-bit / 256 colours)' do
         let(:colour) { 118 }
 
-        it 'returns an empty String' do
-          subject.must_equal('')
-        end
+        it { subject.must_equal('') }
       end
 
       context 'when the colour is a CSS value' do

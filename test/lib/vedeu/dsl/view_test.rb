@@ -9,6 +9,8 @@ module Vedeu
       let(:described) { Vedeu::DSL::View }
 
       describe '.interface' do
+        after { Vedeu.interfaces.reset }
+
         subject {
           described.interface('flourine') do
             # ...
