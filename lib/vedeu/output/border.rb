@@ -120,22 +120,22 @@ module Vedeu
 
     # @return [Fixnum]
     def bx
-      (enabled? && left?) ? x + 1 : x
+      @bx ||= (enabled? && left?) ? x + 1 : x
     end
 
     # @return [Fixnum]
     def bxn
-      (enabled? && right?) ? xn - 1 : xn
+      @bxn ||= (enabled? && right?) ? xn - 1 : xn
     end
 
     # @return [Fixnum]
     def by
-      (enabled? && top?) ? y + 1 : y
+      @by ||= (enabled? && top?) ? y + 1 : y
     end
 
     # @return [Fixnum]
     def byn
-      (enabled? && bottom?) ? yn - 1 : yn
+      @byn ||= (enabled? && bottom?) ? yn - 1 : yn
     end
 
     # Returns the width of the interface determined by whether a left, right,
