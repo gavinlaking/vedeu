@@ -33,4 +33,7 @@ require 'vedeu/templating/all'
 require 'vedeu/main_loop'
 require 'vedeu/application'
 require 'vedeu/launcher'
+
+require 'vedeu/application/all'
+
 require 'vedeu/bootstrap'
