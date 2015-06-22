@@ -1,6 +1,8 @@
 module Vedeu
 
   # Measure the duration. Used for debugging.
+  #
+  # @api public
   class Timer
 
     class << self

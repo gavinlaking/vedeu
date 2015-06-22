@@ -3,6 +3,8 @@ module Vedeu
   # Name/Value storage.
   #
   #   name: [value]
+  #
+  # @api private
   class AssociativeStore
 
     include Vedeu::Store

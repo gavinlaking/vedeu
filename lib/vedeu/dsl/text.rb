@@ -4,6 +4,7 @@ module Vedeu
 
     # Provides helper methods for building views.
     #
+    # @api public
     module Text
 
       # Specify the content for a view. Provides the means to align a string

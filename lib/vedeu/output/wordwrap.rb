@@ -1,6 +1,8 @@
 module Vedeu
 
   # Wrap or prune text.
+  #
+  # @api private
   class Wordwrap
 
     # @see {Vedeu::Wordwrap#initialize}

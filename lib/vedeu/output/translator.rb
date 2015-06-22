@@ -19,6 +19,8 @@ module Vedeu
   # a 24-bit representation.
   #
   # @todo More documentation required (create a fancy chart!)
+  #
+  # @api private
   class Translator
 
     # @!attribute [r] colour

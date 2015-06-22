@@ -8,6 +8,8 @@ module Vedeu
   #   { 'models' => [Model, Model, Model] }
   #
   #   { 'models' => [Model] }
+  #
+  # @api private
   class Repository
 
     include Vedeu::Common

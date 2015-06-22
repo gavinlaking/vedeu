@@ -23,6 +23,8 @@ module Vedeu
     #   # ...or standalone; referencing the target interface or view.
     #   Vedeu.border 'some_interface' do
     #     # ...
+    #
+    # @api public
     class Border
 
       include Vedeu::DSL

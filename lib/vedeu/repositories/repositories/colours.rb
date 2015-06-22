@@ -2,6 +2,8 @@ module Vedeu
 
   # Allows the storing of HTML/CSS colours and their respective escape
   # sequences.
+  #
+  # @api public
   class Colours
 
     # @!attribute [r] storage

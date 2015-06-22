@@ -1,6 +1,8 @@
 module Vedeu
 
   # Generic class to loading a template and parsing it via ERb.
+  #
+  # @api private
   class Template
 
     # @param (see Vedeu::Template#new)

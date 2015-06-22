@@ -3,6 +3,8 @@ module Vedeu
   module Renderers
 
     # Renders a {Vedeu::VirtualBuffer} or {Vedeu::Output} as JSON.
+    #
+    # @api private
     class JSON
 
       # @param output [Array<Array<Vedeu::Char>>]

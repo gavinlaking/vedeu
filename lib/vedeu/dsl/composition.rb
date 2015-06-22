@@ -36,6 +36,7 @@ module Vedeu
     # - Colours are defined in CSS-style values, i.e. `#ff0000` would be red.
     # - Styles are named. See the table below for supported styles.
     #
+    # @api public
     class Composition
 
       include Vedeu::DSL

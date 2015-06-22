@@ -21,6 +21,7 @@ module Vedeu
     #     yn +--------------+           # south:  yn + 1
     #             south
     #
+    # @api public
     class Geometry
 
       include Vedeu::DSL

@@ -2,6 +2,8 @@ module Vedeu
 
   # Converts a position into an index for the terminal. An index is the position
   # minus 1.
+  #
+  # @api private
   class PositionIndex
 
     # Convenience constructor for Vedeu::Position.

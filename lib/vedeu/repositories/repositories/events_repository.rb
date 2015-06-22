@@ -1,6 +1,8 @@
 module Vedeu
 
   # Allows the storing of events.
+  #
+  # @api public
   class EventsRepository < Repository
 
     class << self

@@ -2,6 +2,8 @@ module Vedeu
 
   # Captures input from the user via {Vedeu::Terminal#input} and translates
   # special characters into symbols.
+  #
+  # @api private
   class Input
 
     # Instantiate Input and capture keypress(es).

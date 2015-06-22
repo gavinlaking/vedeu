@@ -1,6 +1,8 @@
 module Vedeu
 
   # A Dimension is either the height or width of an entity.
+  #
+  # @api private
   class Dimension
 
     # @param (see #initialize)

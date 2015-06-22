@@ -10,6 +10,7 @@ module Vedeu
   #
   # :nocov:
   #
+  # @api public
   module Bindings
 
     Vedeu.bind(:_drb_input_) do |data, type|

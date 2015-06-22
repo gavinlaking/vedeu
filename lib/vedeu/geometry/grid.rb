@@ -19,6 +19,8 @@ module Vedeu
   #                     # Terminal is 38 characters wide, maximum value is
   #                     # therefore 36, meaning a row is 3 characters tall.
   #                     # (And height is therefore 9 characters tall.)
+  #
+  # @api public
   class Grid
 
     # @see #initialize

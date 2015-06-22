@@ -1,6 +1,8 @@
 module Vedeu
 
   # Orchestrates the running of the main application loop.
+  #
+  # @api private
   class Application
 
     # @param (see #initialize)

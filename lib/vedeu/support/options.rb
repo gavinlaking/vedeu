@@ -3,6 +3,8 @@ module Vedeu
   # Converts an options Hash into a class containing methods for each of the
   # keys, which when called returns the value associated. When the value is
   # either true or false, an additional predicate method is created.
+  #
+  # @api private
   class Options
 
     # @!attribute [r] _defined

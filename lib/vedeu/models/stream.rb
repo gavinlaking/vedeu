@@ -3,6 +3,8 @@ module Vedeu
   # A Stream can represent a character or collection of characters as part of a
   # {Vedeu::Line} which you wish to colour and style independently of the other
   # characters in that line.
+  #
+  # @api private
   class Stream
 
     include Vedeu::Model

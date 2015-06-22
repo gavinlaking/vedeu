@@ -3,6 +3,8 @@ module Vedeu
   module Null
 
     # Provides a non-existent model to swallow messages.
+    #
+    # @api private
     class Interface
 
       # @param name [String]
