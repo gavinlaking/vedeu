@@ -7,10 +7,16 @@ module Vedeu
 
     class << self
 
+      # @example
+      #   Vedeu.events
+      #
       # @return [Vedeu::EventsRepository]
       alias_method :events, :repository
 
       # Remove all stored models from the repository.
+      #
+      # @example
+      #   Vedeu.events.reset
       #
       # @return [Vedeu::EventsRepository]
       def reset!

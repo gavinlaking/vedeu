@@ -90,6 +90,9 @@ module Vedeu
 
       # Unbind events from a named handler.
       #
+      # @example
+      #   Vedeu.unbind('some_event')
+      #
       # @param name [String]
       # @return [Boolean]
       def unbind(name)
@@ -101,7 +104,6 @@ module Vedeu
 
         true
       end
-      alias_method :unevent, :unbind
 
       extend Forwardable
 

@@ -7,6 +7,11 @@ module Vedeu
 
     class << self
 
+      # @example
+      #   Vedeu.timer 'message' do
+      #     # ... code to be measured
+      #   end
+      #
       # @param message [String]
       # @param block [Proc]
       # @return [void]

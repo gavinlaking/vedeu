@@ -9,6 +9,9 @@ module Vedeu
     # the associated action is fired, if not, we move to the next keymap or
     # return false.
     #
+    # @example
+    #   Vedeu.keypress(key_name, keymap_name)
+    #
     # @param (see #initialize)
     # @return [Boolean]
     def self.keypress(key = nil, name = nil)

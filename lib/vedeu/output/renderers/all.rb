@@ -18,12 +18,18 @@ module Vedeu
 
     # Provides access to the list of renderers.
     #
+    # @example
+    #   Vedeu.renderers
+    #
     # @api public
     # @return [Module]
     def renderers
       self
     end
 
+    # @example
+    #   Vedeu.renderers.render(*args)
+    #
     # @return [Array<void>]
     def render(*args)
       threads = storage.map do |renderer|
@@ -53,6 +59,9 @@ module Vedeu
       storage
     end
 
+    # @example
+    #   Vedeu.renderers.reset
+    #
     # @return [Set]
     def reset
       @storage = Set.new

@@ -76,6 +76,9 @@ module Vedeu
     # and attempt to redraw the current interface with varying degrees of
     # success. Can also be used to simulate a terminal resize.
     #
+    # @example
+    #   Vedeu.resize
+    #
     # @return [TrueClass]
     def resize
       Vedeu.trigger(:_clear_)

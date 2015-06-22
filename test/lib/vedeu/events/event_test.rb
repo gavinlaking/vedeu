@@ -20,7 +20,6 @@ module Vedeu
 
     describe '.unbind' do
       it { described.must_respond_to(:unbind ) }
-      it { described.must_respond_to(:unevent) }
     end
 
     describe '#initialize' do
