@@ -7,6 +7,11 @@ require 'vedeu'
 
 # This example application shows how interface focus works.
 #
+# If you have cloned this repository from GitHub, you can run this example:
+#
+#     ./examples/focus_app.rb
+#
+#
 # First, we set up the interfaces, noting that 'copper' should have focus when
 # the application starts. Also note that 'status' should not show a cursor.
 #

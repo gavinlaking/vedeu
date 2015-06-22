@@ -6,6 +6,10 @@ $LOAD_PATH.unshift(lib_dir) unless $LOAD_PATH.include?(lib_dir)
 require 'vedeu'
 
 # An example application to demonstrate geometry.
+# If you have cloned this repository from GitHub, you can run this example:
+#
+#     ./examples/geometry_app.rb
+#
 class VedeuGeometryApp
 
   include Vedeu

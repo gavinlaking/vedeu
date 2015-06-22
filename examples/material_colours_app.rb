@@ -7,6 +7,11 @@ require 'vedeu'
 
 # An example application to demonstrate colours, cursor and interface movement,
 # maximising/unmaximising of interfaces and toggling of cursors and interfaces.
+#
+# If you have cloned this repository from GitHub, you can run this example:
+#
+#     ./examples/material_colours_app.rb
+#
 class VedeuMaterialColoursApp
 
   include Vedeu
