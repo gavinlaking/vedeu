@@ -51,6 +51,59 @@ module Vedeu
       end
     end
 
+    describe '#centred' do
+      it { instance.must_respond_to(:centred) }
+    end
+
+    describe '#centred=' do
+      it { instance.must_respond_to(:centred=) }
+    end
+
+    describe '#attributes' do
+      it { instance.must_respond_to(:attributes) }
+    end
+
+    describe '#name' do
+      it { instance.must_respond_to(:name) }
+    end
+
+    describe '#name=' do
+      it { instance.must_respond_to(:name=) }
+    end
+
+    describe '#height=' do
+      it { instance.must_respond_to(:height=) }
+    end
+
+    describe '#maximised' do
+      it { instance.must_respond_to(:maximised) }
+      it { instance.must_respond_to(:maximised?) }
+    end
+
+    describe '#maximised=' do
+      it { instance.must_respond_to(:maximised=) }
+    end
+
+    describe '#width=' do
+      it { instance.must_respond_to(:width=) }
+    end
+
+    describe '#x=' do
+      it { instance.must_respond_to(:x=) }
+    end
+
+    describe '#xn=' do
+      it { instance.must_respond_to(:xn=) }
+    end
+
+    describe '#y=' do
+      it { instance.must_respond_to(:y=) }
+    end
+
+    describe '#yn=' do
+      it { instance.must_respond_to(:yn=) }
+    end
+
     describe '#inspect' do
       subject { instance.inspect }
 

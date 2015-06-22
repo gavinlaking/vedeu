@@ -47,6 +47,71 @@ module Vedeu
       it { subject.instance_variable_get('@zindex').must_equal(zindex) }
     end
 
+    describe '#client' do
+      it { instance.must_respond_to(:client) }
+    end
+
+    describe '#client=' do
+      it { instance.must_respond_to(:client=) }
+    end
+
+    describe '#delay' do
+      it { instance.must_respond_to(:delay) }
+    end
+
+    describe '#delay=' do
+      it { instance.must_respond_to(:delay=) }
+    end
+
+    describe '#group' do
+      it { instance.must_respond_to(:group) }
+    end
+
+    describe '#group=' do
+      it { instance.must_respond_to(:group=) }
+    end
+
+    describe '#name' do
+      it { instance.must_respond_to(:name) }
+    end
+
+    describe '#name=' do
+      it { instance.must_respond_to(:name=) }
+    end
+
+    describe '#parent' do
+      it { instance.must_respond_to(:parent) }
+    end
+
+    describe '#parent=' do
+      it { instance.must_respond_to(:parent=) }
+    end
+
+    describe '#zindex' do
+      it { instance.must_respond_to(:zindex) }
+    end
+
+    describe '#zindex=' do
+      it { instance.must_respond_to(:zindex=) }
+    end
+
+    describe '#visible' do
+      it { instance.must_respond_to(:visible) }
+      it { instance.must_respond_to(:visible?) }
+    end
+
+    describe '#visible=' do
+      it { instance.must_respond_to(:visible=) }
+    end
+
+    describe '#attributes' do
+      it { instance.must_respond_to(:attributes) }
+    end
+
+    describe '#lines=' do
+      it { instance.must_respond_to(:lines=) }
+    end
+
     describe '#lines?' do
       subject { instance.lines? }
 

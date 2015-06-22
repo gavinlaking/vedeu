@@ -32,17 +32,17 @@ module Vedeu
       it { described.must_respond_to(:render) }
     end
 
-    # describe '.by_group' do
-    #   subject { described.by_group(group) }
+    describe '.by_group' do
+      subject { described.by_group(group) }
 
-    #   it { skip }
-    # end
+      it { described.must_respond_to(:by_group) }
+    end
 
-    # describe '.by_name' do
-    #   subject { described.by_name(_name) }
+    describe '.by_name' do
+      subject { described.by_name(_name) }
 
-    #   it { skip }
-    # end
+      it { described.must_respond_to(:by_name) }
+    end
 
     describe '.clear' do
       subject { described.clear(interface, options) }

@@ -211,7 +211,7 @@ module Vedeu
       end
     end
 
-    describe '#origin' do
+    describe '.origin' do
       let(:_name) { 'move_origin' }
 
       subject { described.origin(entity, _name) }
@@ -243,7 +243,37 @@ module Vedeu
 
       subject { instance.move }
 
-      it { subject.must_be_instance_of(Vedeu::Cursor) }
+      context 'when the entity is a Vedeu::Geometry' do
+        let(:entity) { Vedeu::Geometry }
+      end
+
+      context 'when the entity is a Vedeu::Cursor' do
+        it { subject.must_be_instance_of(Vedeu::Cursor) }
+      end
+    end
+
+    describe '#refresh' do
+      subject { instance.refresh }
+
+      context 'when the entity is a Vedeu::Geometry' do
+        let(:entity) { Vedeu::Geometry }
+      end
+
+      context 'when the entity is a Vedeu::Cursor' do
+      end
+    end
+
+    describe '#merged_attributes' do
+      subject { instance.merged_attributes }
+
+      context 'when the entity is a Vedeu::Geometry' do
+        let(:entity) { Vedeu::Geometry }
+
+        it { subject.must_be_instance_of(Hash) }
+      end
+
+      context 'when the entity is a Vedeu::Cursor' do
+      end
     end
 
   end # Move

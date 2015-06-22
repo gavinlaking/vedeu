@@ -77,6 +77,115 @@ module Vedeu
       end
     end
 
+    describe '#attributes' do
+      it { instance.must_respond_to(:attributes) }
+    end
+
+    describe '#attributes=' do
+      it { instance.must_respond_to(:attributes=) }
+    end
+
+    describe '#bottom_left' do
+      it { instance.must_respond_to(:bottom_left) }
+    end
+
+    describe '#bottom_left=' do
+      it { instance.must_respond_to(:bottom_left=) }
+    end
+
+    describe '#bottom_right' do
+      it { instance.must_respond_to(:bottom_right) }
+    end
+
+    describe '#bottom_right=' do
+      it { instance.must_respond_to(:bottom_right=) }
+    end
+
+    describe '#horizontal' do
+      it { instance.must_respond_to(:horizontal) }
+    end
+
+    describe '#horizontal=' do
+      it { instance.must_respond_to(:horizontal=) }
+    end
+
+    describe '#show_bottom' do
+      it { instance.must_respond_to(:show_bottom) }
+      it { instance.must_respond_to(:bottom?) }
+    end
+
+    describe '#show_bottom=' do
+      it { instance.must_respond_to(:show_bottom=) }
+    end
+
+    describe '#show_left' do
+      it { instance.must_respond_to(:show_left) }
+      it { instance.must_respond_to(:left?) }
+    end
+
+    describe '#show_left=' do
+      it { instance.must_respond_to(:show_left=) }
+    end
+
+    describe '#show_right' do
+      it { instance.must_respond_to(:show_right) }
+      it { instance.must_respond_to(:right?) }
+    end
+
+    describe '#show_right=' do
+      it { instance.must_respond_to(:show_right=) }
+    end
+
+    describe '#show_top' do
+      it { instance.must_respond_to(:show_top) }
+      it { instance.must_respond_to(:top?) }
+    end
+
+    describe '#show_top=' do
+      it { instance.must_respond_to(:show_top=) }
+    end
+
+    describe '#title' do
+      it { instance.must_respond_to(:title) }
+    end
+
+    describe '#title=' do
+      it { instance.must_respond_to(:title=) }
+    end
+
+    describe '#top_left' do
+      it { instance.must_respond_to(:top_left) }
+    end
+
+    describe '#top_left=' do
+      it { instance.must_respond_to(:top_left=) }
+    end
+
+    describe '#top_right' do
+      it { instance.must_respond_to(:top_right) }
+    end
+
+    describe '#top_right=' do
+      it { instance.must_respond_to(:top_right=) }
+    end
+
+    describe '#vertical' do
+      it { instance.must_respond_to(:vertical) }
+    end
+
+    describe '#vertical=' do
+      it { instance.must_respond_to(:vertical=) }
+    end
+
+    describe '#name' do
+      it { instance.must_respond_to(:name) }
+    end
+
+    describe '#enabled' do
+      it { instance.must_respond_to(:enabled) }
+      it { instance.must_respond_to(:enabled?) }
+    end
+
     describe 'border offset methods; bx, bxn, by, byn' do
       let(:attributes) {
         {

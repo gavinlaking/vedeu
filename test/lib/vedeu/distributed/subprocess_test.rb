@@ -18,6 +18,18 @@ module Vedeu
       it { subject.instance_variable_get('@pid').must_equal(nil) }
     end
 
+    describe '.execute!' do
+      it { described.must_respond_to(:execute!) }
+    end
+
+    describe '#execute!' do
+      it { instance.must_respond_to(:execute!) }
+    end
+
+    describe '#kill' do
+      it { instance.must_respond_to(:kill) }
+    end
+
   end # Subprocess
 
 end # Vedeu

@@ -73,6 +73,10 @@ module Vedeu
       it { subject.must_equal('organics') }
     end
 
+    describe '#name=' do
+      it { instance.must_respond_to(:name=) }
+    end
+
     describe '#remove' do
       let(:member) { 'hydrogen' }
 

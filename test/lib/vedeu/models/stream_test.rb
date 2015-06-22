@@ -36,6 +36,29 @@ module Vedeu
       it { instance.instance_variable_get('@parent').must_equal(parent) }
     end
 
+    describe '#parent' do
+      it { instance.must_respond_to(:parent) }
+    end
+
+    describe '#parent=' do
+      it { instance.must_respond_to(:parent=) }
+    end
+
+    describe '#value' do
+      it { instance.must_respond_to(:value) }
+      it { instance.must_respond_to(:content) }
+      it { instance.must_respond_to(:data) }
+      it { instance.must_respond_to(:text) }
+    end
+
+    describe '#value=' do
+      it { instance.must_respond_to(:value=) }
+    end
+
+    describe '#attributes' do
+      it { instance.must_respond_to(:attributes) }
+    end
+
     describe '#add' do
       let(:child) { instance }
 

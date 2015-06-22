@@ -42,6 +42,30 @@ module Vedeu
       it { instance.must_respond_to(:value) }
     end
 
+    describe '#border' do
+      it { instance.must_respond_to(:border) }
+    end
+
+    describe '#border=' do
+      it { instance.must_respond_to(:border=) }
+    end
+
+    describe '#parent' do
+      it { instance.must_respond_to(:parent) }
+    end
+
+    describe '#parent=' do
+      it { instance.must_respond_to(:parent=) }
+    end
+
+    describe '#attributes' do
+      it { instance.must_respond_to(:attributes) }
+    end
+
+    describe '#value=' do
+      it { instance.must_respond_to(:value=) }
+    end
+
     describe '#chars' do
       subject { instance.chars }
 

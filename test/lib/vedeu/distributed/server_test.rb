@@ -17,11 +17,6 @@ module Vedeu
         DRb.stubs(:thread).returns(running)
       end
 
-      describe 'alias_methods' do
-        it { instance.must_respond_to(:read) }
-        it { instance.must_respond_to(:write) }
-      end
-
       describe '.input' do
         let(:data) {}
         let(:type) { :keypress }
@@ -35,15 +30,6 @@ module Vedeu
         subject { described.output }
 
         it { Vedeu.expects(:trigger).with(:_drb_retrieve_output_); subject }
-      end
-
-      describe '#pid' do
-        before { Process.stubs(:pid).returns(9876) }
-
-        subject { instance.pid }
-
-        it { subject.must_be_instance_of(Fixnum) }
-        it { subject.must_equal(9876) }
       end
 
       describe '.restart' do
@@ -154,6 +140,43 @@ module Vedeu
           end
 
         end
+      end
+
+      describe '#input' do
+        it { instance.must_respond_to(:read) }
+      end
+
+      describe '#output' do
+        it { instance.must_respond_to(:write) }
+      end
+
+      describe '#pid' do
+        before { Process.stubs(:pid).returns(9876) }
+
+        subject { instance.pid }
+
+        it { subject.must_be_instance_of(Fixnum) }
+        it { subject.must_equal(9876) }
+      end
+
+      describe '#restart' do
+        it { instance.must_respond_to(:restart) }
+      end
+
+      describe '#shutdown' do
+        it { instance.must_respond_to(:shutdown) }
+      end
+
+      describe '#start' do
+        it { instance.must_respond_to(:start) }
+      end
+
+      describe '#status' do
+        it { instance.must_respond_to(:status) }
+      end
+
+      describe '#stop' do
+        it { instance.must_respond_to(:stop) }
       end
 
     end # Server

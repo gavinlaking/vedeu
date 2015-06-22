@@ -12,15 +12,11 @@ module Vedeu
       let(:background) { '#00ff00' }
       let(:foreground) { '#ff00ff' }
 
-      describe 'alias methods' do
-        it { instance.must_respond_to(:bg) }
-        it { instance.must_respond_to(:bgcolor) }
-        it { instance.must_respond_to(:fg) }
-        it { instance.must_respond_to(:fgcolor) }
-      end
-
       describe '#background' do
         subject { instance.background(background) }
+
+        it { instance.must_respond_to(:bg) }
+        it { instance.must_respond_to(:bgcolor) }
 
         it { subject.must_be_instance_of(Vedeu::Colour) }
 
@@ -33,6 +29,9 @@ module Vedeu
 
       describe '#foreground' do
         subject { instance.foreground(foreground) }
+
+        it { instance.must_respond_to(:fg) }
+        it { instance.must_respond_to(:fgcolor) }
 
         it { subject.must_be_instance_of(Vedeu::Colour) }
 
@@ -65,6 +64,8 @@ module Vedeu
         let(:args)  { :bold }
 
         subject { instance.style(args) }
+
+        it { instance.must_respond_to(:styles) }
 
         it { subject.must_be_instance_of(Vedeu::Style) }
       end

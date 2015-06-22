@@ -12,17 +12,19 @@ module Vedeu
 
       before { Terminal.stubs(:size).returns([25, 80]) }
 
-      describe 'alias methods' do
-        it { instance.must_respond_to(:centred!) }
-      end
-
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
         it { instance.instance_variable_get('@model').must_equal(model) }
       end
 
+      describe '.geometry' do
+        it { described.must_respond_to(:geometry) }
+      end
+
       describe '#centred' do
         subject { instance.centred(true) }
+
+        it { instance.must_respond_to(:centred!) }
 
         it 'sets the attribute to the value' do
           subject.must_equal(true)

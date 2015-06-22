@@ -16,11 +16,6 @@ module Vedeu
         DRbObject.stubs(:new_with_uri).returns(server)
       end
 
-      describe 'alias methods' do
-        it { instance.must_respond_to(:read) }
-        it { instance.must_respond_to(:write) }
-      end
-
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
         it { instance.instance_variable_get('@uri').must_equal(uri) }
@@ -49,6 +44,7 @@ module Vedeu
         let(:data) {}
 
         subject { instance.input(data) }
+        it { instance.must_respond_to(:read) }
 
         context 'when the DRb server is not available or not enabled' do
           before { DRbObject.stubs(:new_with_uri).raises(DRb::DRbConnError) }
@@ -62,6 +58,8 @@ module Vedeu
 
       describe '#output' do
         subject { instance.output }
+
+        it { instance.must_respond_to(:write) }
 
         context 'when the DRb server is not available or not enabled' do
           before { DRbObject.stubs(:new_with_uri).raises(DRb::DRbConnError) }
