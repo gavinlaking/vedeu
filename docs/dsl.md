@@ -13,8 +13,42 @@ Borders are defined by name for each of the client application's interfaces or
 
 ### Geometry
 
-Geometry is defined by name and allows the configuration of the position and
- size of an interface.
+Geometry allows the configuration of the position and size of an interface.
+
+Here is an example of declarations for a `geometry` block:
+
+ ```ruby
+interface 'main' do
+  geometry do
+    height 5 # Sets the height of the view to 5
+    width 20 # Sets the width of the view to 20
+    x 3 # Start drawing 3 spaces from left
+    y 10 # Start drawing 10 spaces from top
+    xn 30 # Stop drawing 30 spaces from the left
+    yn 20 # Stop drawing 20 spaces from top
+  end
+end
+```
+
+If a declaration is omitted for `height` or `width` the full remaining space
+available in the terminal will be used. `x` and `y` both default to 0.
+
+You can also make a geometry declaration dependent on another view:
+
+ ```ruby
+interface 'other_panel' do
+  # other code ...
+end
+
+interface 'main' do
+  geometry do
+    height 10
+    y { use('other_panel').south }
+  end
+end
+```
+
+This view will begin just below "other\_panel".
 
 ### Groups
 
