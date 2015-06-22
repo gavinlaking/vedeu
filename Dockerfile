@@ -57,3 +57,9 @@ ENV PATH /opt/rubies/ruby-2.2.2/bin/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/u
 
 # Get ruby version
 RUN ruby -v
+
+# Once we're up and running, we can create a shell to the docker instance and
+# start running commands against it.
+#
+# docker run -it -v $PWD:/app:ro ubuntu /bin/bash
+
