@@ -87,6 +87,25 @@ module Vedeu
         it { subject.must_equal(6) }
       end
 
+      describe '#use' do
+        before do
+          Vedeu.geometry 'some_geometry' do
+            x 5
+          end
+          Vedeu.geometry 'other_geometry' do
+            x use('some_geometry').x
+          end
+        end
+        after { Vedeu.geometries.reset }
+
+        subject { instance.use('other_geometry').x }
+
+        it 'allows the use of another models attributes' do
+          subject
+          Vedeu.geometries.by_name('other_geometry').x.must_equal(5)
+        end
+      end
+
       describe '#width' do
         subject { instance.width(25) }
 

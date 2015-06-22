@@ -201,6 +201,25 @@ module Vedeu
         it { subject.must_equal('B') }
       end
 
+      describe '#use' do
+        before do
+          Vedeu.border 'some_border' do
+            title 'Some border'
+          end
+          Vedeu.border 'other_border' do
+            title use('some_border').title
+          end
+        end
+        after { Vedeu.borders.reset }
+
+        subject { instance.use('other_border').title }
+
+        it 'allows the use of another models attributes' do
+          subject
+          Vedeu.borders.by_name('other_border').title.must_equal('Some border')
+        end
+      end
+
       describe '#vertical' do
         let(:char) { 'V' }
 

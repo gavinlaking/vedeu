@@ -63,15 +63,15 @@ class VedeuTypedCommands
   geometry('status') do
     height 1
     width  40
-    x      Vedeu.use('output').left
-    y      Vedeu.use('output').south(0)
+    x      use('output').left
+    y      use('output').south(0)
   end
 
   geometry 'command' do
     height 3
     width  40
-    x      Vedeu.use('status').left
-    y      Vedeu.use('status').south(0)
+    x      use('status').left
+    y      use('status').south(0)
   end
 
   focus_by_name 'command'

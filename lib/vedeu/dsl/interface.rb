@@ -229,6 +229,15 @@ module Vedeu
         visible(false)
       end
 
+      # Use a value from another model.
+      #
+      # @param name [String] The name of the interface model you wish to use a
+      #   value from.
+      # @return [Vedeu::Interface]
+      def use(name)
+        model.repository.by_name(name)
+      end
+
       # Set the visibility of the interface.
       #
       # @param value [Boolean] Any value other than nil or false will evaluate

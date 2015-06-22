@@ -27,6 +27,7 @@ module Vedeu
 
       include Vedeu::DSL
       include Vedeu::DSL::Presentation
+      include Vedeu::DSL::Use
 
       # Specify the border of an interface or view with a simple DSL.
       #

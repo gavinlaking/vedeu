@@ -303,6 +303,25 @@ module Vedeu
         it { subject.visible.must_equal(false) }
       end
 
+      describe '#use' do
+        before do
+          Vedeu.interface 'some_interface' do
+            delay 0.75
+          end
+          Vedeu.interface 'other_interface' do
+            delay use('some_interface').delay
+          end
+        end
+        after { Vedeu.interfaces.reset }
+
+        subject { instance.use('other_interface').delay }
+
+        it 'allows the use of another models attributes' do
+          subject
+          Vedeu.interfaces.by_name('other_interface').delay.must_equal(0.75)
+        end
+      end
+
       describe '#visible' do
         it { instance.visible(false).must_equal(false) }
         it { instance.visible(true).must_equal(true) }
