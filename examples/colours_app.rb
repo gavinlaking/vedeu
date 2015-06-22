@@ -6,6 +6,11 @@ $LOAD_PATH.unshift(lib_dir) unless $LOAD_PATH.include?(lib_dir)
 require 'vedeu'
 
 # An example application to demonstrate colours.
+#
+# If you have cloned this repository from GitHub, you can run this example:
+#
+#     ./examples/colours_app.rb
+#
 class VedeuColoursApp
 
   include Vedeu

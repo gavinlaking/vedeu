@@ -1,6 +1,8 @@
 module Vedeu
 
   # Store foreground colour escape sequences by HTML/CSS code.
+  #
+  # @api public
   class ForegroundColours < Colours
 
     # @return [Vedeu::ForegroundColours]

@@ -7,6 +7,11 @@ require 'vedeu'
 
 # An example application to demonstrate colours, cursor and interface movement,
 # maximising/unmaximising of interfaces and toggling of cursors and interfaces.
+#
+# If you have cloned this repository from GitHub, you can run this example:
+#
+#     ./examples/material_colours_app.rb
+#
 class VedeuMaterialColoursApp
 
   include Vedeu
@@ -35,20 +40,22 @@ class VedeuMaterialColoursApp
     zindex 2
   end
 
+  # This interface uses the 'parens' style for the DSL, which sometimes helps
+  # Ruby to understand the values you provide.
   interface 'other_interface' do
     border 'other_interface' do
-      colour foreground: '#ffffff', background: :default
-      title 'Wow!'
+      colour(foreground: '#ffffff', background: :default)
+      title('Wow!')
     end
-    colour foreground: '#ffffff', background: :default
+    colour(foreground: '#ffffff', background: :default)
     cursor!
     geometry 'other_interface' do
-      x  27
-      xn 47
-      y  3
-      yn 13
+      x(27)
+      xn(47)
+      y(3)
+      yn(13)
     end
-    zindex 1
+    zindex(1)
   end
 
   keymap('_global_') do

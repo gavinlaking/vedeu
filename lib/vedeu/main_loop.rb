@@ -2,6 +2,7 @@ module Vedeu
 
   # Provides the main loop for a Vedeu application.
   #
+  # @api private
   class MainLoop
 
     trap('SIGTERM') { stop! }

@@ -1,6 +1,8 @@
 module Vedeu
 
   # Allows the creation of a lock-less log device.
+  #
+  # @api private
   class MonoLogger < Logger
 
     # Create a trappable Logger instance.
@@ -76,6 +78,7 @@ module Vedeu
 
   # Provides the ability to log anything to the Vedeu log file.
   #
+  # @api public
   class Log
 
     class << self

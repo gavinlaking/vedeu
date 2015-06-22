@@ -29,6 +29,8 @@ module Vedeu
   #       # Not all events you define will have arguments; like methods.
   #       :do_stuff
   #     end
+  #
+  # @api public
   class Event
 
     include Vedeu::Model

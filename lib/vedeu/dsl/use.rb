@@ -4,6 +4,7 @@ module Vedeu
 
     # Provides helper methods for building views.
     #
+    # @api public
     module Use
 
       # Duplicate a stored model.
@@ -40,7 +41,8 @@ module Vedeu
       #
       # This DSL method provides access to a stored model by name. You can
       # then request an attribute of that model for use within the current
-      # model.
+      # model. The models which current support this are Border, Geometry and
+      # Interface.
       #
       # @example
       #   # Here the character used for 'my_border' is used in

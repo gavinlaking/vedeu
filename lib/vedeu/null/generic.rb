@@ -3,6 +3,8 @@ module Vedeu
   module Null
 
     # Provides a non-existent model to swallow messages.
+    #
+    # @api private
     class Generic
 
       # Returns an instance of the Vedeu::Null::Generic class.

@@ -6,6 +6,10 @@ $LOAD_PATH.unshift(lib_dir) unless $LOAD_PATH.include?(lib_dir)
 require 'vedeu'
 
 # An example application to demonstrate the DRb server.
+# If you have cloned this repository from GitHub, you can run this example:
+#
+#     ./examples/drb_app.rb
+#
 class VedeuTestApplication
 
   # Be aware that running an application with debugging enabled will affect

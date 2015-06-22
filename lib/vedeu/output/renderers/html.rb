@@ -3,6 +3,8 @@ module Vedeu
   module Renderers
 
     # Renders a {Vedeu::VirtualBuffer} or {Vedeu::Output} as a HTML table.
+    #
+    # @api private
     class HTML
 
       # @param output [Array<Array<Vedeu::Char>>]

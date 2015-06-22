@@ -4,6 +4,7 @@ module Vedeu
   # Helps to debug a running application by providing a stack trace of its
   # execution upon exiting.
   #
+  # @api public
   # @param filename [String]
   # @return [void]
   # @yieldreturn [void] The section of the application to debug.

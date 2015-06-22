@@ -7,6 +7,10 @@ require 'vedeu'
 
 # This example application shows how configuration works.
 #
+# If you have cloned this repository from GitHub, you can run this example:
+#
+#     ./examples/configuration_app.rb
+#
 # First, we use the configuration API to switch debugging on, and set the
 # logging to go to a file in the /tmp directory.
 #
@@ -15,6 +19,7 @@ require 'vedeu'
 # overridden by command line arguments.
 #
 # Use 'space' to refresh, 'q' to exit.
+#
 class VedeuConfigurationApp
 
   include Vedeu

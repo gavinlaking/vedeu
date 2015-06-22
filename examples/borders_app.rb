@@ -6,6 +6,11 @@ $LOAD_PATH.unshift(lib_dir) unless $LOAD_PATH.include?(lib_dir)
 require 'vedeu'
 
 # An example application to demonstrate borders.
+#
+# If you have cloned this repository from GitHub, you can run this example:
+#
+#     ./examples/borders_app.rb
+#
 class VedeuBordersApp
 
   include Vedeu

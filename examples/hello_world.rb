@@ -9,6 +9,11 @@ trap('INT') { exit! }
 require 'vedeu'
 
 # An example application to demonstrate 'Hello World'.
+#
+# If you have cloned this repository from GitHub, you can run this example:
+#
+#     ./examples/hello_world.rb
+#
 class HelloWorldApp
 
   include Vedeu

@@ -58,15 +58,15 @@ class VedeuViewTemplateApp
   geometry 'default' do
     height 6
     width  25
-    x      Vedeu.use('prune').left
-    y      Vedeu.use('prune').north(7)
+    x      use('prune').left
+    y      use('prune').north(7)
   end
 
   geometry 'wrap' do
     height 6
     width  25
-    x      Vedeu.use('prune').left
-    y      Vedeu.use('prune').south(1)
+    x      use('prune').left
+    y      use('prune').south(1)
   end
 
   renders do

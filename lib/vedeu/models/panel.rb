@@ -1,6 +1,8 @@
 module Vedeu
 
   # Abstract interface class without the baggage.
+  #
+  # @api private
   class Panel
 
     # @return [Vedeu::Panel]

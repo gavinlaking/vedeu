@@ -3,6 +3,7 @@ module Vedeu
   # This module allows the sharing of presentation concerns between the models:
   # Interface, Line and Stream.
   #
+  # @api private
   module Presentation
 
     # @return [Vedeu::Background]

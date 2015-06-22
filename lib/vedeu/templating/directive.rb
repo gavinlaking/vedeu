@@ -3,6 +3,8 @@ module Vedeu
   module Templating
 
     # Converts a directive found in a template into a Vedeu::Stream object.
+    #
+    # @api private
     class Directive
 
       include Vedeu::Templating::Helpers
@@ -14,6 +16,7 @@ module Vedeu
       end
 
       # @param code [String]
+      # @return [Vedeu::Templating::Directive]
       def initialize(code)
         @code = code
       end

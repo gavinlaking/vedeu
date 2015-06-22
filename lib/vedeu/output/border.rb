@@ -7,6 +7,8 @@ module Vedeu
   #
   # @note Refer to UTF-8 U+2500 to U+257F for border characters. More details
   #   can be found at: http://en.wikipedia.org/wiki/Box-drawing_character
+  #
+  # @api private
   class Border
 
     extend Forwardable

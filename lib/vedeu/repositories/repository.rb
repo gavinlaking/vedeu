@@ -8,6 +8,8 @@ module Vedeu
   #   { 'models' => [Model, Model, Model] }
   #
   #   { 'models' => [Model] }
+  #
+  # @api private
   class Repository
 
     include Vedeu::Common
@@ -41,11 +43,9 @@ module Vedeu
 
     # @return [Array<void>] An array containing each stored model.
     def all
-      return []             if empty?
       return storage.values if storage.is_a?(Hash)
-      return storage.to_a   if storage.is_a?(Set)
 
-      storage
+      registered
     end
 
     # @param name [String] The name of the stored model.

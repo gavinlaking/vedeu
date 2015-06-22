@@ -1,6 +1,8 @@
 module Vedeu
 
   # Change the visibility of the given model.
+  #
+  # @api private
   class Visibility
 
     # @param name [String]

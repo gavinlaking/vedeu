@@ -4,6 +4,8 @@ module Vedeu
 
     # Provides a non-existent Vedeu::Border that acts like the real thing, but
     # does nothing.
+    #
+    # @api private
     class Border
 
       # @!attribute [r] name

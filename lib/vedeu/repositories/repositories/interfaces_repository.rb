@@ -1,6 +1,8 @@
 module Vedeu
 
   # Allows the storing of interfaces and views.
+  #
+  # @api public
   class InterfacesRepository < Repository
 
     class << self

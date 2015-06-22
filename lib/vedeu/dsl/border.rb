@@ -23,10 +23,13 @@ module Vedeu
     #   # ...or standalone; referencing the target interface or view.
     #   Vedeu.border 'some_interface' do
     #     # ...
+    #
+    # @api public
     class Border
 
       include Vedeu::DSL
       include Vedeu::DSL::Presentation
+      include Vedeu::DSL::Use
 
       # Specify the border of an interface or view with a simple DSL.
       #

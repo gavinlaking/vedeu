@@ -14,14 +14,18 @@ module Vedeu
     #
     # Pre-processes a template, to convert all lines and lines with directives
     # into Vedeu::Streams.
+    #
+    # @api private
     class Preprocessor
 
       # @param lines [Array<String>]
+      # @return [Array<Vedeu::Stream>]
       def self.process(lines)
         new(lines).process
       end
 
       # @param lines [Array<String>]
+      # @return [Vedeu::Templating::Preprocessor]
       def initialize(lines)
         @lines = lines
       end

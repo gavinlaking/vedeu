@@ -3,6 +3,8 @@ module Vedeu
   module DSL
 
     # DSL for creating interfaces.
+    #
+    # @api public
     class Interface
 
       include Vedeu::Common
@@ -23,12 +25,20 @@ module Vedeu
 
       # Allows the setting of a border for the interface.
       #
+      # @example
+      #   interface 'my_interface' do
+      #     border do
+      #       # ... see Vedeu::DSL::Border for DSL methods for borders.
+      #     end
+      #   end
+      #
       # @param name [String] The name of the interface; this is already provided
       #   when we define the interface or view, setting it here is just
       #   mirroring functionality of {Vedeu::DSL::Border.border}.
       # @param block [Proc]
       # @raise [InvalidSyntax] The required block was not given.
       # @return [Vedeu::Border]
+      # @see Vedeu::DSL::Border
       def border(name = nil, &block)
         fail InvalidSyntax, 'block not given' unless block_given?
 
@@ -114,7 +124,9 @@ module Vedeu
       # @example
       #   interface 'my_interface' do
       #     geometry do
-      #       # ...
+      #       # ... see Vedeu::DSL::Geometry for DSL methods for geometries.
+      #     end
+      #   end
       #
       # @param name [String] The name of the interface; this is already provided
       #   when we define the interface or view, setting it here is just
@@ -217,6 +229,15 @@ module Vedeu
       # @return [void]
       def hide!
         visible(false)
+      end
+
+      # Use a value from another model.
+      #
+      # @param name [String] The name of the interface model you wish to use a
+      #   value from.
+      # @return [Vedeu::Interface]
+      def use(name)
+        model.repository.by_name(name)
       end
 
       # Set the visibility of the interface.

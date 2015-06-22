@@ -9,6 +9,8 @@ require_relative 'text'
 module Vedeu
 
   # Provides a single interface to all registered renderers.
+  #
+  # @api private
   module Renderers
 
     extend Enumerable
@@ -16,6 +18,7 @@ module Vedeu
 
     # Provides access to the list of renderers.
     #
+    # @api public
     # @return [Module]
     def renderers
       self

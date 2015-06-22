@@ -1,6 +1,8 @@
 module Vedeu
 
   # Represents an invisible escape character sequence.
+  #
+  # @api private
   class EscapeChar
 
     # @!attribute [r] value
