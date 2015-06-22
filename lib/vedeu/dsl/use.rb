@@ -46,7 +46,7 @@ module Vedeu
       #   # Here the character used for 'my_border' is used in
       #   # 'my_other_border'.
       #   Vedeu.border 'my_other_border' do
-      #     top_right use('my_border').top_right
+      #     top_right Vedeu.use('my_border').top_right
       #   end
       #
       # @note

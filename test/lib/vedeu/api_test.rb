@@ -15,6 +15,7 @@ module Vedeu
     it { Vedeu.must_respond_to(:geometry) }
     it { Vedeu.must_respond_to(:group) }
     it { Vedeu.must_respond_to(:keymap) }
+    it { Vedeu.must_respond_to(:use) }
     it { Vedeu.must_respond_to(:interface) }
     it { Vedeu.must_respond_to(:renders) }
     it { Vedeu.must_respond_to(:views) }

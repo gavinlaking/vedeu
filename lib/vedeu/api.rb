@@ -73,6 +73,10 @@ module Vedeu
     #   @see Vedeu::DSL::Keymap.keymap
     def_delegators Vedeu::DSL::Keymap, :keymap
 
+    # @!method use
+    #   @see Vedeu::DSL::Use.use
+    def_delegators Vedeu::DSL::Use, :use
+
     # @!method interface
     #   @see Vedeu::DSL::View.interface
     # @!method renders
