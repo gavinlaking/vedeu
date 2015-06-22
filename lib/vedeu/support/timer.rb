@@ -21,7 +21,6 @@ module Vedeu
       @started = Time.now.to_f
     end
 
-    # @param block [Proc]
     # @return [void]
     def measure
       work = yield

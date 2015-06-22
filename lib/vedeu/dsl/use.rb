@@ -40,13 +40,14 @@ module Vedeu
       #
       # This DSL method provides access to a stored model by name. You can
       # then request an attribute of that model for use within the current
-      # model.
+      # model. The models which current support this are Border, Geometry and
+      # Interface.
       #
       # @example
       #   # Here the character used for 'my_border' is used in
       #   # 'my_other_border'.
       #   Vedeu.border 'my_other_border' do
-      #     top_right Vedeu.use('my_border').top_right
+      #     top_right use('my_border').top_right
       #   end
       #
       # @note
