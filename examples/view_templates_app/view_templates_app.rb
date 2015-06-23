@@ -79,8 +79,8 @@ class VedeuViewTemplateApp
 
   Vedeu.renders do
     template_for('default', default_template, nil)
-    template_for('prune', prune_template, nil, { mode: :prune, width: 22 })
-    template_for('wrap', wrap_template, nil, { mode: :wrap, width: 25 })
+    template_for('prune', prune_template, nil, mode: :prune, width: 22)
+    template_for('wrap', wrap_template, nil, mode: :wrap, width: 25)
   end
 
   def self.start(argv = ARGV)
