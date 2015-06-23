@@ -8,61 +8,59 @@ require 'vedeu'
 # An example application to demonstrate templates.
 class VedeuViewTemplateApp
 
-  include Vedeu
-
-  configure do
+  Vedeu.configure do
     debug!
     log '/tmp/vedeu_view_templates_app.log'
   end
 
-  bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
+  Vedeu.bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
 
-  interface 'default' do
+  Vedeu.interface 'default' do
     colour foreground: '#ff0000', background: '#000000'
     cursor!
   end
 
-  interface 'prune' do
+  Vedeu.interface 'prune' do
     colour foreground: '#00ff00', background: '#000000'
     cursor!
   end
 
-  interface 'wrap' do
+  Vedeu.interface 'wrap' do
     colour foreground: '#0000ff', background: '#000000'
     cursor!
   end
 
-  keymap('_global_') do
+  Vedeu.keymap('_global_') do
     key(:up,    'k') { Vedeu.trigger(:_cursor_up_)    }
     key(:right, 'l') { Vedeu.trigger(:_cursor_right_) }
     key(:down,  'j') { Vedeu.trigger(:_cursor_down_)  }
     key(:left,  'h') { Vedeu.trigger(:_cursor_left_)  }
   end
 
-  border('default') do
+  Vedeu.border('default') do
     colour foreground: '#aadd00', background: '#000000'
   end
-  border('prune') do
+  Vedeu.border('prune') do
     colour foreground: '#00aadd', background: '#000000'
   end
-  border('wrap') do
+  Vedeu.border('wrap') do
     colour foreground: '#dd00aa', background: '#000000'
   end
 
-  geometry('prune') do
+  Vedeu.geometry('prune') do
     centred!
     height 6
     width  25
   end
 
-  geometry 'default' do
+  Vedeu.geometry 'default' do
     height 6
     width  25
     x      use('prune').left
     y      use('prune').north(7)
   end
 
-  geometry 'wrap' do
+  Vedeu.geometry 'wrap' do
     height 6
     width  25
     x      use('prune').left
@@ -79,7 +77,7 @@ class VedeuViewTemplateApp
     File.dirname(__FILE__) + '/wrap.erb'
   end
 
-  renders do
+  Vedeu.renders do
     template_for('default', default_template, nil)
     template_for('prune', prune_template, nil, { mode: :prune, width: 22 })
     template_for('wrap', wrap_template, nil, { mode: :wrap, width: 25 })
