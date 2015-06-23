@@ -26,29 +26,29 @@ module Vedeu
 
       it { subject.must_be_instance_of(Module) }
 
-      # context 'API' do
-      #   before { Vedeu::Renderers.renderer(*renderers) }
+      context 'API' do
+        before { Vedeu::Renderers.renderer(*renderers) }
 
-      #   subject { Vedeu.renderers.render }
+        subject { Vedeu.renderers.render }
 
-      #   context 'when a single renderer is defined' do
-      #     let(:renderers) { DummyRenderer }
+        # context 'when a single renderer is defined' do
+        #   let(:renderers) { DummyRenderer }
 
-      #     it { subject.must_equal([:dummy]) }
-      #   end
+        #   it { subject.must_equal([:dummy]) }
+        # end
 
-      #   context 'when multiple renderers are defined' do
-      #     let(:renderers) { [DummyRenderer, FooRenderer] }
+        # context 'when multiple renderers are defined' do
+        #   let(:renderers) { [DummyRenderer, FooRenderer] }
 
-      #     it { subject.must_equal([:dummy, :foo]) }
-      #   end
+        #   it { subject.must_equal([:dummy, :foo]) }
+        # end
 
-      #   context 'when no renderers are defined' do
-      #     let(:renderers) {}
+        context 'when no renderers are defined' do
+          let(:renderers) {}
 
-      #     it { subject.must_equal([]) }
-      #   end
-      # end
+          it { subject.must_equal([]) }
+        end
+      end
     end
 
     describe '.render' do

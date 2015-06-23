@@ -90,6 +90,10 @@ module Vedeu
       it { subject.must_be_instance_of(String) }
     end
 
+    describe '#name=' do
+      it { instance.must_respond_to(:name=) }
+    end
+
   end # Keymap
 
 end # Vedeu

@@ -38,6 +38,9 @@ module Vedeu
     # Focus an interface by name. Used after defining an interface or interfaces
     # to set the initially focussed interface.
     #
+    # @example
+    #   Vedeu.focus_by_name('name')
+    #
     # @param name [String] The interface to focus; must be defined.
     # @raise [ModelNotFound] When the interface cannot be found.
     # @return [String] The name of the interface now in focus.
@@ -53,6 +56,9 @@ module Vedeu
 
     # Return the interface currently focussed.
     #
+    # @example
+    #   Vedeu.focus
+    #
     # @return [String]
     def current
       storage.first
@@ -60,6 +66,9 @@ module Vedeu
     alias_method :focus, :current
 
     # Returns a boolean indicating whether the named interface is focussed.
+    #
+    # @example
+    #   Vedeu.focussed?(name)
     #
     # @param name [String]
     # @return [Boolean]
@@ -77,6 +86,9 @@ module Vedeu
 
     # Put the next interface relative to the current interfaces in focus.
     #
+    # @example
+    #   Vedeu.focus_next
+    #
     # @return [String]
     def next_item
       storage.rotate!
@@ -87,6 +99,9 @@ module Vedeu
     alias_method :focus_next, :next_item
 
     # Put the previous interface relative to the current interface in focus.
+    #
+    # @example
+    #   Vedeu.focus_previous
     #
     # @return [String]
     def prev_item

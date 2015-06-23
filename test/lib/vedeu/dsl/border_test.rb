@@ -30,17 +30,14 @@ module Vedeu
         Vedeu.interfaces.reset
       end
 
-      describe 'alias methods' do
-        it { instance.must_respond_to(:show_bottom) }
-        it { instance.must_respond_to(:show_left) }
-        it { instance.must_respond_to(:show_right) }
-        it { instance.must_respond_to(:show_top) }
-      end
-
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
         it { instance.instance_variable_get('@model').must_equal(model) }
         it { instance.instance_variable_get('@client').must_equal(client) }
+      end
+
+      describe '.border' do
+        it { described.must_respond_to(:border) }
       end
 
       describe '#bottom_left' do
@@ -73,6 +70,7 @@ module Vedeu
       describe '#show_bottom' do
         subject { instance.show_bottom(boolean) }
 
+        it { instance.must_respond_to(:bottom) }
         it { subject.must_be_instance_of(TrueClass) }
 
         context 'when false' do

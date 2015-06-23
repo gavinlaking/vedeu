@@ -7,10 +7,16 @@ module Vedeu
 
     class << self
 
+      # @example
+      #   Vedeu.groups
+      #
       # @return [Vedeu::Groups]
       alias_method :groups, :repository
 
       # Remove all stored models from the repository.
+      #
+      # @example
+      #   Vedeu.groups.reset!
       #
       # @return [Vedeu::Groups]
       def reset!
@@ -19,6 +25,9 @@ module Vedeu
 
     end
 
+    # @example
+    #   Vedeu.groups.by_name('name')
+    #
     # @param name [String] The name of the stored group.
     # @return [Vedeu::Group]
     def by_name(name)

@@ -7,10 +7,16 @@ module Vedeu
 
     class << self
 
+      # @example
+      #   Vedeu.interfaces
+      #
       # @return [Vedeu::InterfacesRepository]
       alias_method :interfaces, :repository
 
       # Remove all stored models from the repository.
+      #
+      # @example
+      #   Vedeu.interfaces.reset!
       #
       # @return [Vedeu::InterfacesRepository]
       def reset!
@@ -23,6 +29,9 @@ module Vedeu
     # real Vedeu::Interface
 
     # Returns the interfaces in zindex order.
+    #
+    # @example
+    #   Vedeu.interfaces.zindexed
     #
     # @return [Array<Vedeu::Interface>]
     # @see Vedeu::DSL::Interface#zindex

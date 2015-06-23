@@ -19,31 +19,27 @@ module Vedeu
       it { instance.instance_variable_get('@renderer').must_equal(renderer) }
     end
 
-    describe 'attr_accessor' do
-      context '#renderer' do
-        subject { instance.renderer }
+    describe '#renderer' do
+      subject { instance.renderer }
 
-        it { subject.must_equal(Vedeu::Renderers::HTML) }
-      end
-      context '#renderer=' do
-        subject { instance.renderer = (Vedeu::FakeRenderer) }
+      it { subject.must_equal(Vedeu::Renderers::HTML) }
+    end
+    describe '#renderer=' do
+      subject { instance.renderer = (Vedeu::FakeRenderer) }
 
-        it { subject.must_equal(Vedeu::FakeRenderer) }
-      end
+      it { subject.must_equal(Vedeu::FakeRenderer) }
     end
 
-    describe 'attr_reader' do
-      context '#height' do
-        subject { instance.height }
+    describe '#height' do
+      subject { instance.height }
 
-        it { subject.must_equal(3) }
-      end
+      it { subject.must_equal(3) }
+    end
 
-      context '#width' do
-        subject { instance.width }
+    describe '#width' do
+      subject { instance.width }
 
-        it { subject.must_equal(3) }
-      end
+      it { subject.must_equal(3) }
     end
 
     describe '#cells' do

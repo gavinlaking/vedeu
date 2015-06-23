@@ -17,6 +17,27 @@ module Vedeu
       it { instance.instance_variable_get('@parent').must_equal(parent) }
     end
 
+    describe '#collection' do
+      it { instance.must_respond_to(:collection) }
+      it { instance.must_respond_to(:all) }
+    end
+
+    describe '#parent' do
+      it { instance.must_respond_to(:parent) }
+    end
+
+    describe '#parent=' do
+      it { instance.must_respond_to(:parent=) }
+    end
+
+    describe '#name' do
+      it { instance.must_respond_to(:name) }
+    end
+
+    describe '#name=' do
+      it { instance.must_respond_to(:name=) }
+    end
+
     describe '#[]' do
       let(:collection) { [:hydrogen, :helium, :lithium, :beryllium] }
       let(:_value) { 1..2 }

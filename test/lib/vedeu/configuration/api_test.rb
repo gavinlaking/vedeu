@@ -12,16 +12,6 @@ module Vedeu
       before { Configuration.reset! }
       after  { test_configuration }
 
-      describe 'alias_methods' do
-        it { instance.must_respond_to(:interactive) }
-        it { instance.must_respond_to(:standalone) }
-        it { instance.must_respond_to(:run_once) }
-        it { instance.must_respond_to(:drb) }
-        it { instance.must_respond_to(:cooked) }
-        it { instance.must_respond_to(:raw) }
-        it { instance.must_respond_to(:debug) }
-      end
-
       describe '.configure' do
         it 'returns the configuration singleton' do
           Vedeu.configure do
@@ -31,6 +21,8 @@ module Vedeu
       end
 
       describe '#interactive!' do
+        it { instance.must_respond_to(:interactive) }
+
         it 'sets the option to the desired value' do
           configuration = Vedeu.configure { interactive! }
           configuration.interactive?.must_equal(true)
@@ -53,6 +45,8 @@ module Vedeu
       end
 
       describe '#standalone!' do
+        it { instance.must_respond_to(:standalone) }
+
         it 'sets the option to the desired value' do
           configuration = Vedeu.configure { standalone! }
           configuration.interactive?.must_equal(false)
@@ -75,6 +69,8 @@ module Vedeu
       end
 
       describe '#run_once!' do
+        it { instance.must_respond_to(:run_once) }
+
         it 'sets the option to the desired value' do
           configuration = Vedeu.configure { run_once! }
           configuration.once.must_equal(true)
@@ -97,6 +93,8 @@ module Vedeu
       end
 
       describe '#drb!' do
+        it { instance.must_respond_to(:drb) }
+
         it 'sets the option to the desired value' do
           configuration = Vedeu.configure { drb! }
           configuration.drb.must_equal(true)
@@ -147,6 +145,8 @@ module Vedeu
       end
 
       describe '#cooked!' do
+        it { instance.must_respond_to(:cooked) }
+
         it 'sets the option to the desired value' do
           configuration = Vedeu.configure { cooked! }
           configuration.terminal_mode.must_equal(:cooked)
@@ -156,12 +156,16 @@ module Vedeu
       describe '#raw!' do
         subject { Vedeu.configure { raw! } }
 
+        it { instance.must_respond_to(:raw) }
+
         it 'sets the option to the desired value' do
           subject.terminal_mode.must_equal(:raw)
         end
       end
 
       describe '#debug!' do
+        it { instance.must_respond_to(:debug) }
+
         it 'sets the option to the desired value' do
           configuration = Vedeu.configure { debug! }
           configuration.debug.must_equal(true)
@@ -208,6 +212,28 @@ module Vedeu
           configuration = Vedeu.configure { log('/tmp/vedeu_api_test.log') }
           configuration.log.must_equal('/tmp/vedeu_api_test.log')
         end
+      end
+
+      describe '#renderer' do
+        it { instance.must_respond_to(:renderers) }
+      end
+
+      describe '#stdin' do
+        let(:io) {}
+
+        subject { instance.stdin(io) }
+      end
+
+      describe '#stdout' do
+        let(:io) {}
+
+        subject { instance.stdout(io) }
+      end
+
+      describe '#stderr' do
+        let(:io) {}
+
+        subject { instance.stderr(io) }
       end
 
       describe 'redefining system keys' do

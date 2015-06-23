@@ -8,6 +8,11 @@ module Vedeu
     # top-left, y = 1, x = 1. The 'y' coordinate is deliberately first.
     #
     # @example
+    #
+    #   Vedeu.geometry 'some_interface' do
+    #     # ...
+    #
+    #
     #   This crude ASCII diagram represents a Geometry within Vedeu, each of the
     #   labels is a value you can access or define.
     #

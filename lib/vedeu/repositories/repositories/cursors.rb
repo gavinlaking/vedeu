@@ -7,15 +7,24 @@ module Vedeu
 
     class << self
 
+      # @example
+      #   Vedeu.cursors
+      #
       # @return [Vedeu::Cursors]
       alias_method :cursors, :repository
 
+      # @example
+      #   Vedeu.cursor
+      #
       # @return [Vedeu::Cursor]
       def cursor
         cursors.by_name(Vedeu.focus) if Vedeu.focus
       end
 
       # Remove all stored models from the repository.
+      #
+      # @example
+      #   Vedeu.cursors.reset
       #
       # @return [Vedeu::Cursors]
       def reset!
@@ -24,6 +33,9 @@ module Vedeu
 
     end
 
+    # @example
+    #   Vedeu.cursors.by_name('some_name')
+    #
     # @param name [String] The name of the stored cursor.
     # @return [Vedeu::Cursor]
     def by_name(name)

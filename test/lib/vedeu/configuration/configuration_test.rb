@@ -9,13 +9,6 @@ module Vedeu
     before { Configuration.reset! }
     after  { test_configuration }
 
-    describe 'alias_methods' do
-      it { described.must_respond_to(:debug) }
-      it { described.must_respond_to(:drb) }
-      it { described.must_respond_to(:interactive) }
-      it { described.must_respond_to(:once) }
-    end
-
     describe '.default_system_keys' do
       it 'returns the default system keys' do
         Configuration.default_system_keys.must_equal(exit:        'q',
@@ -26,24 +19,32 @@ module Vedeu
     end
 
     describe '#debug?' do
+      it { described.must_respond_to(:debug) }
+
       it 'returns the value of the debug option' do
         Configuration.debug?.must_equal(false)
       end
     end
 
     describe '#drb?' do
+      it { described.must_respond_to(:drb) }
+
       it 'returns the value of the drb option' do
         Configuration.drb?.must_equal(false)
       end
     end
 
     describe '#interactive?' do
+      it { described.must_respond_to(:interactive) }
+
       it 'returns the value of the interactive option' do
         Configuration.interactive?.must_equal(true)
       end
     end
 
     describe '#once?' do
+      it { described.must_respond_to(:once) }
+
       it 'returns the value of the once option' do
         Configuration.once?.must_equal(false)
       end

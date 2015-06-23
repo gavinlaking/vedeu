@@ -29,6 +29,14 @@ module Vedeu
       }
     }
 
+    describe '#repository' do
+      it { model_instance.must_respond_to(:repository) }
+    end
+
+    describe '#repository=' do
+      it { model_instance.must_respond_to(:repository=) }
+    end
+
     describe '#deputy' do
       subject { model_instance.deputy }
 

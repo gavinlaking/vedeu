@@ -39,6 +39,9 @@ module Vedeu
       # are provided at application invocation, override any options with the
       # arguments provided.
       #
+      # @example
+      #   Vedeu.configure
+      #
       # @param args [Array]
       # @param opts [Hash]
       # @option opts stdin [File|IO]
@@ -52,6 +55,9 @@ module Vedeu
       end
 
       # Returns the configuration singleton.
+      #
+      # @example
+      #   Vedeu.configuration
       #
       # @return [Vedeu::Configuration]
       def configuration

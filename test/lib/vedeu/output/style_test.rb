@@ -17,6 +17,14 @@ module Vedeu
       it { instance.instance_variable_get('@value').must_equal('bold') }
     end
 
+    describe '#value' do
+      it { instance.must_respond_to(:value) }
+    end
+
+    describe '#value=' do
+      it { instance.must_respond_to(:value=) }
+    end
+
     describe '.coerce' do
       let(:_value) { 'bold' }
 

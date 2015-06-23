@@ -55,33 +55,33 @@ module Vedeu
         end
       end
 
-      # describe '#drb_height' do
-      #   it '--drb-height' do
-      #     Configuration.configure(['--drb-height'])
-      #     Configuration.drb_height.must_equal(true)
-      #   end
-      # end
+      describe '#drb_height' do
+        it '--drb-height' do
+          Configuration.configure(['--drb-height'])
+          Configuration.drb_height.must_equal(true)
+        end
+      end
 
-      # describe '#drb_host' do
-      #   it '--drb-host' do
-      #     Configuration.configure(['--drb-host'])
-      #     Configuration.drb_host.must_equal(true)
-      #   end
-      # end
+      describe '#drb_host' do
+        it '--drb-host' do
+          Configuration.configure(['--drb-host'])
+          Configuration.drb_host.must_equal(true)
+        end
+      end
 
-      # describe '#drb_port' do
-      #   it '--drb-port' do
-      #     Configuration.configure(['--drb-port'])
-      #     Configuration.drb_port.must_equal(true)
-      #   end
-      # end
+      describe '#drb_port' do
+        it '--drb-port' do
+          Configuration.configure(['--drb-port'])
+          Configuration.drb_port.must_equal(true)
+        end
+      end
 
-      # describe '#drb_width' do
-      #   it '--drb-width' do
-      #     Configuration.configure(['--drb-width'])
-      #     Configuration.drb_width.must_equal(true)
-      #   end
-      # end
+      describe '#drb_width' do
+        it '--drb-width' do
+          Configuration.configure(['--drb-width'])
+          Configuration.drb_width.must_equal(true)
+        end
+      end
 
       describe '#interactive?' do
         it '--interactive' do

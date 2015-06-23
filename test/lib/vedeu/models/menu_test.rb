@@ -50,6 +50,26 @@ module Vedeu
       end
     end
 
+    describe '#collection' do
+      it { instance.must_respond_to(:collection) }
+    end
+
+    describe '#collection=' do
+      it { instance.must_respond_to(:collection=) }
+    end
+
+    describe '#current=' do
+      it { instance.must_respond_to(:current=) }
+    end
+
+    describe '#name' do
+      it { instance.must_respond_to(:name) }
+    end
+
+    describe '#name=' do
+      it { instance.must_respond_to(:name=) }
+    end
+
     describe '#current' do
       subject { instance.current }
 
@@ -71,6 +91,10 @@ module Vedeu
 
         subject.must_equal(1)
       end
+    end
+
+    describe '#selected=' do
+      it { instance.must_respond_to(:selected=) }
     end
 
     describe '#current_item' do
