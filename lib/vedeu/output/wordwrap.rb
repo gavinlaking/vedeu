@@ -55,7 +55,7 @@ module Vedeu
     # @return [String]
     def wrap
       processed = []
-      text.split(/\n/).map do |unprocessed|
+      split_lines.map do |unprocessed|
         line_length = 0
         reformatted = []
 
