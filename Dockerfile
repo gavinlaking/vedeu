@@ -47,13 +47,33 @@ RUN echo 'chruby ruby-2.2.2' >> $HOME/.bash_profile
 RUN echo "---\n:benchmark: false\n:bulk_threshold: 1000\n:backtrace: false\n:verbose: true\ngem: --no-ri --no-rdoc" >> $HOME/.gemrc
 
 # Setup PATH
-ENV PATH /opt/rubies/ruby-2.2.2/bin/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ENV PATH /opt/rubies/ruby-2.2.2/bin/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/app/bin
 
 # Get ruby version
 RUN ruby -v
 
+# Create a fake home directory
+RUN usr/sbin/useradd --create-home --home-dir /home/vedeu --shell /bin/bash vedeu
+
+# Make files
+RUN chown -R vedeu:vedeu /home/vedeu
+
+RUN gem install bundler
+RUN gem install vedeu
+
+USER vedeu
+
+WORKDIR /home/vedeu
+
+# To build this file:
+#
+#     sudo docker build -t vedeu/my_first_app .
+#
+#
 # Once we're up and running, we can create a shell to the docker instance and
 # start running commands against it.
 #
-# docker run -it -v $PWD:/app:rw vedeu/generators /bin/bash
+#     sudo docker run -it -v $PWD:/app:rw vedeu/generators /bin/bash
+#
+#
 
