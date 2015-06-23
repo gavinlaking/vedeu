@@ -1,11 +1,22 @@
 #!/usr/bin/env ruby
 
 require 'rake'
-require 'bundler'
 
-unless defined?(Bundler)
-  raise "Bundler is required. Please install bundler with 'gem install bundler'"
+bundler_message = 'Bundler is required. Please install bundler with ' \
+                  "'gem install bundler'"
+
+begin
+  require 'bundler'
+
+rescue LoadError
+  puts bundler_message
+
 end
+
+fail bundler_message unless defined?(Bundler)
+
+ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../../Gemfile', __FILE__)
+# load Gem.bin_path('bundler', 'bundle')
 
 Bundler.setup
 
