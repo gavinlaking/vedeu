@@ -6,7 +6,7 @@ module Vedeu
   module ViewHelpers
 
     def time_now
-      Time.now.strftime("%a %e %b %k:%M")
+      Time.now.strftime('%a %e %b %k:%M')
     end
 
   end # ViewHelpers

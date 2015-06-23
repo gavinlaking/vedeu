@@ -36,10 +36,10 @@ module Vedeu
     def from_hash
       return build unless value
 
-      if value.key?(:colour)
+      if colour_key?
         Vedeu::ColourCoercer.coerce(value[:colour])
 
-      elsif value.key?(:background) || value.key?(:foreground)
+      elsif background? || foreground?
         build_from_hash(value)
 
       else
@@ -78,17 +78,17 @@ module Vedeu
     end
 
     # @return [Boolean]
-    def has_background?
+    def background?
       value.key?(:background)
     end
 
     # @return [Boolean]
-    def has_colour?
+    def colour_key?
       value.key?(:colour)
     end
 
     # @return [Boolean]
-    def has_foreground?
+    def foreground?
       value.key?(:foreground)
     end
 
