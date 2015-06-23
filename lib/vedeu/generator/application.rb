@@ -46,6 +46,7 @@ module Vedeu
         FileUtils.mkdir_p(name + '/config')
         FileUtils.mkdir_p(name + '/lib')
         FileUtils.mkdir_p(name + '/test')
+        FileUtils.mkdir_p(name + '/vendor')
       end
 
       # @return [void]
