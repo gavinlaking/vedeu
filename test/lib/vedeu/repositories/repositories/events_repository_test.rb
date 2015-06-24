@@ -6,6 +6,8 @@ module Vedeu
 
     let(:described) { Vedeu::EventsRepository }
 
+    # it { skip }
+
   end # EventsRepository
 
 end # Vedeu

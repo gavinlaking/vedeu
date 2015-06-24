@@ -31,6 +31,7 @@ module Vedeu
 
         it { subject.must_be_instance_of(String) }
 
+        # it { skip }
         # context 'when the timestamp option is true' do
         #   before { Time.stubs(:now).returns(_time) }
 

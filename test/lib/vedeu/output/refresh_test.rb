@@ -28,6 +28,7 @@ module Vedeu
       end
 
       context 'when there are registered interfaces' do
+        # it { skip }
       end
     end
 

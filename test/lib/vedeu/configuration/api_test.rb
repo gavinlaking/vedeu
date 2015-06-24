@@ -222,18 +222,24 @@ module Vedeu
         let(:io) {}
 
         subject { instance.stdin(io) }
+
+        # it { skip }
       end
 
       describe '#stdout' do
         let(:io) {}
 
         subject { instance.stdout(io) }
+
+        # it { skip }
       end
 
       describe '#stderr' do
         let(:io) {}
 
         subject { instance.stderr(io) }
+
+        # it { skip }
       end
 
       describe 'redefining system keys' do

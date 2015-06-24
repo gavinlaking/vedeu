@@ -4,7 +4,7 @@ module Vedeu
 
   describe Traps do
 
-
+    # it { skip }
 
   end # Traps
 

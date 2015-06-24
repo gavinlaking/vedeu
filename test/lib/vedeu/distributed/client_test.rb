@@ -37,6 +37,7 @@ module Vedeu
         end
 
         context 'when the DRb server is available' do
+          # it { skip }
         end
       end
 
@@ -53,6 +54,7 @@ module Vedeu
         end
 
         context 'when the DRb server is available' do
+          # it { skip }
         end
       end
 
@@ -68,6 +70,7 @@ module Vedeu
         end
 
         context 'when the DRb server is available' do
+          # it { skip }
         end
       end
 
@@ -81,6 +84,7 @@ module Vedeu
         end
 
         context 'when the DRb server is available' do
+          # it { skip }
         end
       end
 

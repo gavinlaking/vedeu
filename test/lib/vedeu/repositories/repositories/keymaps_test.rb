@@ -6,6 +6,8 @@ module Vedeu
 
     let(:described) { Vedeu::Keymaps }
 
+    # it { skip }
+
   end # Keymaps
 
 end # Vedeu
