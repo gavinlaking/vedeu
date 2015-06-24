@@ -38,3 +38,5 @@ RuboCop::RakeTask.new(:rubocop) do |task|
   task.formatters = ['progress']
   task.fail_on_error = false
 end
+
+task default: :test
