@@ -40,8 +40,16 @@ module Vedeu
                       keys = console.getch
 
                       if keys.ord == 27
-                        keys << console.read_nonblock(3) rescue nil
-                        keys << console.read_nonblock(2) rescue nil
+                        begin
+                          keys << console.read_nonblock(3)
+                        rescue
+                          nil
+                        end
+                        begin
+                          keys << console.read_nonblock(2)
+                        rescue
+                          nil
+                        end
                       end
                       keys
 

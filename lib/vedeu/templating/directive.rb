@@ -23,7 +23,7 @@ module Vedeu
 
       # @return [Vedeu::Stream]
       def process
-        eval(code, proc.binding)
+        eval(code, proc {}.binding)
       end
 
       protected
@@ -31,13 +31,6 @@ module Vedeu
       # @!attribute [r] code
       # @return [String]
       attr_reader :code
-
-      private
-
-      # @return [Proc]
-      def proc
-        @proc ||= Proc.new {}
-      end
 
     end # Directive
 

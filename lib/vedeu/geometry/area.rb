@@ -25,28 +25,28 @@ module Vedeu
     attr_reader :xn
     alias_method :right, :xn
 
-    # @param y [Fixnum]
-    # @param yn [Fixnum]
-    # @param y_yn [Fixnum]
-    # @param y_default [Fixnum]
-    # @param x [Fixnum]
-    # @param xn [Fixnum]
-    # @param x_xn [Fixnum]
-    # @param x_default [Fixnum]
-    # @param options [Hash<Symbol => Boolean>]
+    # @param attributes [Hash]
+    # @option attributes y [Fixnum]
+    # @option attributes yn [Fixnum]
+    # @option attributes y_yn [Fixnum]
+    # @option attributes y_default [Fixnum]
+    # @option attributes x [Fixnum]
+    # @option attributes xn [Fixnum]
+    # @option attributes x_xn [Fixnum]
+    # @option attributes x_default [Fixnum]
+    # @option attributes options [Hash<Symbol => Boolean>]
     # @return [Vedeu::Area]
-    def self.from_attributes(y:, yn:, y_yn:, y_default:,
-                             x:, xn:, x_xn:, x_default:, options:)
-      y_yn = Vedeu::Dimension.pair(d:       y,
-                                   dn:      yn,
-                                   d_dn:    y_yn,
-                                   default: y_default,
-                                   options: options)
-      x_xn = Vedeu::Dimension.pair(d:       x,
-                                   dn:      xn,
-                                   d_dn:    x_xn,
-                                   default: x_default,
-                                   options: options)
+    def self.from_attributes(attributes = {})
+      y_yn = Vedeu::Dimension.pair(d:       attributes[:y],
+                                   dn:      attributes[:yn],
+                                   d_dn:    attributes[:y_yn],
+                                   default: attributes[:y_default],
+                                   options: attributes[:options])
+      x_xn = Vedeu::Dimension.pair(d:       attributes[:x],
+                                   dn:      attributes[:xn],
+                                   d_dn:    attributes[:x_xn],
+                                   default: attributes[:x_default],
+                                   options: attributes[:options])
 
       from_dimensions(y_yn: y_yn, x_xn: x_xn)
     end
