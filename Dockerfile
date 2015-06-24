@@ -58,28 +58,15 @@ RUN usr/sbin/useradd --create-home --home-dir /home/vedeu --shell /bin/bash vede
 # Make files
 RUN chown -R vedeu:vedeu /home/vedeu
 
-### NOT SURE
-# RUN mkdir -p /home/vedeu/gem/
-
-# WORKDIR /home/vedeu/gem/
-# ADD . /gem/
-
-# RUN gem install bundler && bundle install
+USER vedeu
 
 # Import the gem source code
-# VOLUME .:/gem/
+VOLUME .:/app/
+ADD . /app
+WORKDIR /app
+RUN gem install bundler && bundle install
 
-# Setup PATH
-# ENV PATH /opt/rubies/ruby-2.2.2/bin/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/vedeu/gem/bin
-
-# ENTRYPOINT ["bundle", "exec"]
-# CMD ["rake", "-T"]
 ### END NOT SURE
-
-RUN gem install bundler
-RUN gem install vedeu
-
-USER vedeu
 
 WORKDIR /home/vedeu
 
