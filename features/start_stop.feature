@@ -1,6 +1,6 @@
 Feature: Starting and stopping a client application
 
-  @basic
+  @basic @wip
   Scenario: The simplest thing that could work
     Given a file named "simple.rb" with mode "0755" and with:
       """ruby

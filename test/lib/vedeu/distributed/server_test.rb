@@ -35,6 +35,7 @@ module Vedeu
       describe '.restart' do
         subject { described.restart }
 
+        # it { skip }
         # it { subject.must_be_instance_of(NilClass) }
         context 'when the server is not enabled' do
           it { subject.must_equal(:drb_not_enabled) }
@@ -44,10 +45,12 @@ module Vedeu
 
           context 'and the server is running' do
             # it { subject.must_equal(:running) }
+            # it { skip }
           end
 
           context 'and the server is not running' do
             # it { subject.must_equal(:stopped) }
+            # it { skip }
           end
 
         end
@@ -69,10 +72,12 @@ module Vedeu
 
           context 'and the server is running' do
             # it { subject.must_equal(:running) }
+            # it { skip }
           end
 
           context 'and the server is not running' do
             # it { subject.must_equal(:stopped) }
+            # it { skip }
           end
 
           it { Vedeu.expects(:trigger).with(:_exit_); subject }
@@ -91,10 +96,12 @@ module Vedeu
 
           context 'and the server is running' do
             # it { subject.must_equal(:running) }
+            # it { skip }
           end
 
           context 'and the server is not running' do
             # it { subject.must_equal(:stopped) }
+            # it { skip }
           end
 
         end
@@ -133,10 +140,12 @@ module Vedeu
 
           context 'and the server is running' do
             # it { subject.must_equal(:running) }
+            # it { skip }
           end
 
           context 'and the server is not running' do
             # it { subject.must_equal(:stopped) }
+            # it { skip }
           end
 
         end

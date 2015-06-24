@@ -18,17 +18,21 @@ module Vedeu
 
       describe '#duplicate' do
         context 'when the model exists' do
+          # it { skip }
         end
 
         context 'when the model does not exist' do
+          # it { skip }
         end
       end
 
       describe '#use' do
         context 'when the model exists' do
+          # it { skip }
         end
 
         context 'when the model does not exist' do
+          # it { skip }
         end
       end
 

@@ -21,9 +21,11 @@ module Vedeu
 
       context 'when the application has started' do
         context 'when the loop is running' do
+          # it { skip }
         end
 
         context 'when the loop is not running' do
+          # it { skip }
         end
       end
     end

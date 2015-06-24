@@ -1,15 +1,56 @@
 #!/usr/bin/env ruby
 
-lib_dir = File.dirname(__FILE__) + '/../lib'
-$LOAD_PATH.unshift(lib_dir) unless $LOAD_PATH.include?(lib_dir)
+require 'rake'
 
-require 'vedeu/version'
+bundler_message = 'Bundler is required. Please install bundler with ' \
+                  "'gem install bundler'"
 
-puts "Vedeu (#{Vedeu::VERSION})"
-puts ''
-puts 'Vedeu is a Ruby gem. This executable serves for a future in which ' \
-     'Vedeu can generate a starting point for your terminal-based GUI '   \
-     'application.'
-puts ''
-puts 'Please see: https://github.com/gavinlaking/vedeu for more details.'
-puts ''
+begin
+  require 'bundler'
+
+rescue LoadError
+  puts bundler_message
+
+end
+
+fail bundler_message unless defined?(Bundler)
+
+ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../../Gemfile', __FILE__)
+# load Gem.bin_path('bundler', 'bundle')
+
+Bundler.setup
+
+Rake.application.init
+
+gem_dir = File.expand_path('..', File.dirname(__FILE__))
+$LOAD_PATH.unshift(gem_dir) unless $LOAD_PATH.include?(gem_dir)
+
+# Initialize vedeu
+require 'vedeu'
+
+# Load the rake tasks of vedeu
+load "#{gem_dir}/lib/vedeu/tasks/vedeu.rake"
+
+# Let's go!
+begin
+  if ARGV.empty?
+    print "\n\e[33mVedeu v#{Vedeu::VERSION}\e[39m\n\n"
+    print "\e[4m\e[36mUsage:\e[39m\e[24m\n\n"
+    print "\e[32m  vedeu new [app_name]\e[39m\n"
+    print "    Creates the skeleton file and directory structure for a new Vedeu client application.\n\n"
+    print "\e[32m  vedeu view [view_name]\e[39m\n"
+    print "    Creates a new view for Vedeu.\n"
+    print "\n\n"
+
+  else
+    Rake.application.invoke_task(ARGV.shift)
+
+  end
+
+rescue RuntimeError => exception
+  puts 'Vedeu Error: Either the task you specified failed, or the task could ' \
+       "not be built.\n"
+  puts "Exception: #{exception.class.name}"
+  puts "Message: #{exception.message}"
+
+end

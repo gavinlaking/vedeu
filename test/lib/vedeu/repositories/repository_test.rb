@@ -97,6 +97,7 @@ module Vedeu
     describe '#current' do
       subject { instance.current }
 
+      # it { skip }
       # it { subject.must_equal('') }
     end
 

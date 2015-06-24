@@ -6,6 +6,8 @@ module Vedeu
 
     let(:described) { Vedeu::Menus }
 
+    # it { skip }
+
   end # Menus
 
 end # Vedeu

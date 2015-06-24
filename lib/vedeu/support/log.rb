@@ -173,7 +173,7 @@ module Vedeu
           @last = @now
         end
 
-        "[#{'%7.4f' % @time.to_s}] ".rjust(7)
+        "[#{format(@time.to_s, '%7.4f')}] ".rjust(7)
       end
 
     end # Log eigenclass

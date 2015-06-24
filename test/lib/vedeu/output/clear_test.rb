@@ -48,6 +48,7 @@ module Vedeu
       subject { described.clear(interface, options) }
 
       context 'when the interface is visible' do
+        # it { skip }
         # it { subject.must_be_instance_of(Array) }
       end
 
@@ -67,6 +68,7 @@ module Vedeu
       it { subject.flatten.size.must_equal(9) }
 
       context 'when the interface is visible' do
+        # it { skip }
         # it { subject.must_be_instance_of(Array) }
       end
 
@@ -81,6 +83,7 @@ module Vedeu
       subject { instance.write }
 
       context 'when the interface is visible' do
+        # it { skip }
         # it { subject.must_be_instance_of(Array) }
       end
 

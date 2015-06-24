@@ -4,6 +4,7 @@ $LOAD_PATH.unshift($LIB_DIR) unless $LOAD_PATH.include?($LIB_DIR)
 require 'date'
 require 'drb'
 require 'erb'
+require 'fileutils'
 require 'forwardable'
 require 'io/console'
 require 'json'

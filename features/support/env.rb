@@ -4,9 +4,10 @@ $LOAD_PATH.unshift(lib_dir) unless $LOAD_PATH.include?(lib_dir)
 require 'simplecov'
 require 'aruba'
 require 'aruba/cucumber'
-# require 'aruba/in_process'
+require 'aruba/in_process'
 require 'mocha/api'
-require 'vedeu'
+
+require_relative '../../lib/vedeu.rb'
 
 class CucumberError < StandardError; end
 

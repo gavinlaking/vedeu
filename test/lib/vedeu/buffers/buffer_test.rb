@@ -99,6 +99,7 @@ module Vedeu
 
       context 'with content' do
         # it { subject.must_equal(true) }
+        # it { skip }
       end
 
       context 'without content' do
@@ -117,6 +118,7 @@ module Vedeu
 
       context 'with content' do
         # it { subject.must_equal(true) }
+        # it { skip }
       end
 
       context 'without content' do
@@ -129,6 +131,7 @@ module Vedeu
 
       context 'with content' do
         # it { subject.must_equal(true) }
+        # it { skip }
       end
 
       context 'without content' do
@@ -140,6 +143,7 @@ module Vedeu
       subject { instance.hide }
 
       context 'when the interface is visible' do
+        # it { skip }
       end
 
       context 'when the interface is not visible' do
@@ -152,9 +156,11 @@ module Vedeu
 
       context 'when the interface is visible' do
         # it { subject.must_be_instance_of(NilClass) }
+        # it { skip }
       end
 
       context 'when the interface is not visible' do
+        # it { skip }
       end
     end
 
@@ -165,6 +171,7 @@ module Vedeu
 
       it { instance.must_respond_to(:content) }
 
+      # it { skip }
       # it { subject.must_be_instance_of(Array) }
 
       # context 'when there is content on the back buffer' do

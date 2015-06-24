@@ -105,6 +105,8 @@ module Vedeu
     describe '#north' do
       subject { instance.north(offset) }
 
+      it { subject.must_be_instance_of(Fixnum) }
+
       context 'with the default offset' do
         it { subject.must_equal(3) }
       end
@@ -124,6 +126,8 @@ module Vedeu
 
     describe '#east' do
       subject { instance.east(offset) }
+
+      it { subject.must_be_instance_of(Fixnum) }
 
       context 'with the default offset' do
         it { subject.must_equal(22) }
@@ -145,6 +149,8 @@ module Vedeu
     describe '#south' do
       subject { instance.south(offset) }
 
+      it { subject.must_be_instance_of(Fixnum) }
+
       context 'with the default offset' do
         it { subject.must_equal(10) }
       end
@@ -164,6 +170,8 @@ module Vedeu
 
     describe '#west' do
       subject { instance.west(offset) }
+
+      it { subject.must_be_instance_of(Fixnum) }
 
       context 'with the default offset' do
         it { subject.must_equal(5) }

@@ -186,6 +186,7 @@ module Vedeu
       subject { described.cursor }
 
       # it { subject.must_be_instance_of(Vedeu::Position) }
+      # it { skip }
     end
 
     describe '.centre' do

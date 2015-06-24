@@ -56,9 +56,11 @@ module Vedeu
       end
 
       context 'when the buffer is not already registered' do
+        # it { skip }
       end
 
       context 'when the buffer is already registered' do
+        # it { skip }
       end
     end
 

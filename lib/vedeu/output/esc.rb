@@ -56,7 +56,10 @@ module Vedeu
     #
     # @return [Hash<Symbol => Fixnum>]
     def background_codes
-      Vedeu::Esc.codes.inject({}) { |h, (k, v)| h.merge!(k => v + 10) }
+      hash = {}
+      Vedeu::Esc.codes.inject(hash) do |h, (k, v)|
+        h.merge!(k => v + 10)
+      end
     end
 
     # Dynamically creates methods for each terminal named colour. When a block
@@ -98,9 +101,7 @@ module Vedeu
       }
     end
 
-    actions.each do |key, code|
-      define_method(key) { code }
-    end
+    actions.each { |key, code| define_method(key) { code } }
 
     # Return the stream with the escape sequences escaped so that they can be
     # printed to the terminal instead of being interpreted by the terminal which
