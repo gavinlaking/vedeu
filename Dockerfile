@@ -47,7 +47,7 @@ RUN echo 'chruby ruby-2.2.2' >> $HOME/.bash_profile
 RUN echo "---\n:benchmark: false\n:bulk_threshold: 1000\n:backtrace: false\n:verbose: true\ngem: --no-ri --no-rdoc" >> $HOME/.gemrc
 
 # Setup PATH
-ENV PATH /opt/rubies/ruby-2.2.2/bin/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/app/bin
+ENV PATH /opt/rubies/ruby-2.2.2/bin/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/vedeu/gem/bin
 
 # Get ruby version
 RUN ruby -v
@@ -56,19 +56,15 @@ RUN ruby -v
 RUN usr/sbin/useradd --create-home --home-dir /home/vedeu --shell /bin/bash vedeu
 
 # Make files
+RUN mkdir /home/vedeu/gem
 RUN chown -R vedeu:vedeu /home/vedeu
+RUN gem install bundler
 
-USER vedeu
+# VOLUME .:/home/vedeu/gem
 
-# Import the gem source code
-VOLUME .:/app/
-ADD . /app
-WORKDIR /app
-RUN gem install bundler && bundle install
-
-### END NOT SURE
-
+ADD . /home/vedeu/gem/
 WORKDIR /home/vedeu
+USER vedeu
 
 # To build this file:
 #
