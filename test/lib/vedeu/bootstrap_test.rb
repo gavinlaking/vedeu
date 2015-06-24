@@ -19,7 +19,7 @@ module Vedeu
       it { described.must_respond_to(:start) }
     end
 
-    describe '#start'
+    describe '#start' do
       subject { instance.start }
 
 
