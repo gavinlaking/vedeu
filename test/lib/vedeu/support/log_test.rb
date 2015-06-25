@@ -27,6 +27,32 @@ module Vedeu
       end
     end
 
+    describe '.log_stdout' do
+      let(:type)     { :create }
+      let(:_message) { 'Logging to stdout...' }
+
+      subject { described.log_stdout(type: type, message: _message) }
+
+      it {
+        capture_io { subject }.must_equal(
+          ["\e[92m[create] \e[39m\e[32mLogging to stdout...\e[39m\n", ""]
+        )
+      }
+    end
+
+    describe '.log_stdout' do
+      let(:type)     { :debug }
+      let(:_message) { 'Logging to stderr...' }
+
+      subject { described.log_stderr(type: type, message: _message) }
+
+      it {
+        capture_io { subject }.must_equal(
+          ["", "\e[91m[debug]  \e[39m\e[31mLogging to stderr...\e[39m\n"]
+        )
+      }
+    end
+
     describe '.logger' do
       subject { described.logger }
 

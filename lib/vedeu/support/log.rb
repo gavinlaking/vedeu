@@ -102,6 +102,16 @@ module Vedeu
       end
 
       # @return [TrueClass]
+      def log_stdout(type: :info, message:)
+        $stdout.puts [message_type(type), message_body(type, message)].join
+      end
+
+      # @return [TrueClass]
+      def log_stderr(type: :info, message:)
+        $stderr.puts [message_type(type), message_body(type, message)].join
+      end
+
+      # @return [TrueClass]
       def logger
         MonoLogger.new(log_file).tap do |log|
           log.formatter = proc do |_, _, _, message|
