@@ -40,7 +40,23 @@ module Vedeu
     # @param value []
     # @return [Object]
     def self.coerce(value)
-      Vedeu::ColourCoercer.coerce(value)
+      # Vedeu::ColourCoercer.coerce(value)
+      return value if value.is_a?(self)
+      return new unless value.is_a?(Hash)
+
+      if value[:colour]
+        return value[:colour] if value[:colour].is_a?(self)
+        return new unless value[:colour].is_a?(Hash)
+        return new(value[:colour]) if value[:colour][:background] ||
+                                      value[:colour][:foreground]
+
+      elsif value[:background] || value[:foreground]
+        new(value)
+
+      else
+        new
+
+      end
     end
 
     # Returns a new instance of Vedeu::Colour.
