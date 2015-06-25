@@ -91,14 +91,20 @@ module Vedeu
       # @param name [String] The name of interface for which this template's
       #   content belongs to.
       # @param filename [String] The filename (including path) to the template
-      #   to be used.
+      #   to be used. Yoy can use `File.dirname(__FILE__)` to use relative
+      #   paths.
       # @param object [Object] The object for which the values of template's
       #   variables can be obtained.
       # @param options [Hash] See {Vedeu::Wordwrap}
       # @return [Vedeu::Interfaces<Vedeu::Interface>]
       def template_for(name, filename, object = nil, options = {})
-        content = Vedeu::Template.parse(object, filename)
-        lines   = Vedeu::Wordwrap.for(content, options)
+        fail MissingRequired, "Cannot render template without the name of " \
+                              "the view." unless name
+        fail MissingRequired, "Cannot render template for '#{name}', without " \
+                              "a filename." unless filename
+
+        content   = Vedeu::Template.parse(object, filename)
+        lines     = Vedeu::Wordwrap.for(content, options)
 
         new_model = model.member.build(template_attributes(name, lines))
 
