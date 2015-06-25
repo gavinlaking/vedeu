@@ -11,11 +11,11 @@ module Vedeu
     #   STDOUT, STDERR or an open file).
     #
     def initialize(logdev)
-      @level = DEBUG
+      @level             = DEBUG
       @default_formatter = Formatter.new
-      @formatter = nil
-      @logdev = nil
-      @logdev = LocklessLogDevice.new(logdev) if logdev
+      @formatter         = nil
+      @logdev            = nil
+      @logdev            = LocklessLogDevice.new(logdev) if logdev
     end
 
     # Ensures we can always write to the log file by creating a lock-less
@@ -28,14 +28,14 @@ module Vedeu
       # @param log []
       # @return []
       def initialize(log = nil)
-        @dev = nil
+        @dev      = nil
         @filename = nil
 
         if log.respond_to?(:write) && log.respond_to?(:close)
           @dev = log
 
         else
-          @dev = open_logfile(log)
+          @dev      = open_logfile(log)
           @dev.sync = true
           @filename = log
 
