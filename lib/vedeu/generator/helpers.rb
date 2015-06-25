@@ -24,6 +24,8 @@ module Vedeu
       # @param destination [String]
       # @return [void]
       def make_file(source, destination)
+        Vedeu.log_stdout(type: :create, message: "Writing: '#{destination}'")
+
         File.write(destination, parse(source))
       end
 
