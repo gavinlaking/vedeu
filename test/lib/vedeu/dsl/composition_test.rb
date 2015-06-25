@@ -46,14 +46,31 @@ module Vedeu
           ]
         }
 
-        before do
-          Vedeu::Template.expects(:parse).
-            with(object, filename).returns(content)
-        end
-
         subject { instance.template_for(_name, filename, object) }
 
-        it { subject.must_be_instance_of(Vedeu::Interfaces) }
+        context 'when the name of the view is not given' do
+          let(:filename) { 'my_interface.erb' }
+
+          it { proc { subject }.must_raise(MissingRequired) }
+        end
+
+        context 'when the filename of the template is not given' do
+          let(:_name) { 'my_interface' }
+
+          it { proc { subject }.must_raise(MissingRequired) }
+        end
+
+        context 'when the name and filename are given' do
+          let(:_name) { 'my_interface' }
+          let(:filename) { 'my_interface.erb' }
+
+          before do
+            Vedeu::Template.expects(:parse).
+              with(object, filename).returns(content)
+          end
+
+          it { subject.must_be_instance_of(Vedeu::Interfaces) }
+        end
       end
 
     end # Composition

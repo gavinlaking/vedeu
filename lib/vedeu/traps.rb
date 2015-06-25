@@ -5,9 +5,15 @@ module Vedeu
   # @api private
   module Traps
 
-    Signal.trap('INT') { puts; exit(1) }
+    Signal.trap('INT') do
+      puts
+      exit(1)
+    end
 
-    Signal.trap('TERM') { puts; exit(1) }
+    Signal.trap('TERM') do
+      puts
+      exit(1)
+    end
 
     Signal.trap('TTIN') {}
     Signal.trap('USR1') {}

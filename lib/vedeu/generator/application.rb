@@ -37,16 +37,9 @@ module Vedeu
 
       # @return [void]
       def make_directory_structure
-        FileUtils.mkdir_p(name + '/app/controllers')
-        FileUtils.mkdir_p(name + '/app/helpers')
-        FileUtils.mkdir_p(name + '/app/models/keymaps')
-        FileUtils.mkdir_p(name + '/app/views/interfaces')
-        FileUtils.mkdir_p(name + '/app/views/templates')
-        FileUtils.mkdir_p(name + '/bin')
-        FileUtils.mkdir_p(name + '/config')
-        FileUtils.mkdir_p(name + '/lib')
-        FileUtils.mkdir_p(name + '/test')
-        FileUtils.mkdir_p(name + '/vendor')
+        directories.each do |directory|
+          FileUtils.mkdir_p(name + directory)
+        end
       end
 
       # @return [void]
@@ -99,6 +92,22 @@ module Vedeu
       def copy_system_keymap
         FileUtils.cp(source + '/app/models/keymaps/_system_.rb',
                      "#{name}/app/models/keymaps/_system_.rb")
+      end
+
+      # @return [Array<String>]
+      def directories
+        [
+          '/app/controllers',
+          '/app/helpers',
+          '/app/models/keymaps',
+          '/app/views/interfaces',
+          '/app/views/templates',
+          '/bin',
+          '/config',
+          '/lib',
+          '/test',
+          '/vendor',
+        ]
       end
 
     end # Application

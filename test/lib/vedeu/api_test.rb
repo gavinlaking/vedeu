@@ -32,6 +32,8 @@ module Vedeu
     it { Vedeu.must_respond_to(:interfaces) }
     it { Vedeu.must_respond_to(:keymaps) }
     it { Vedeu.must_respond_to(:log) }
+    it { Vedeu.must_respond_to(:log_stdout) }
+    it { Vedeu.must_respond_to(:log_stderr) }
     it { Vedeu.must_respond_to(:keypress) }
     it { Vedeu.must_respond_to(:menu) }
     it { Vedeu.must_respond_to(:menus) }

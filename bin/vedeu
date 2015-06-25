@@ -37,7 +37,8 @@ begin
     print "\n\e[33mVedeu v#{Vedeu::VERSION}\e[39m\n\n"
     print "\e[4m\e[36mUsage:\e[39m\e[24m\n\n"
     print "\e[32m  vedeu new [app_name]\e[39m\n"
-    print "    Creates the skeleton file and directory structure for a new Vedeu client application.\n\n"
+    print '    Creates the skeleton file and directory structure for a new '
+    print "Vedeu client application.\n\n"
     print "\e[32m  vedeu view [view_name]\e[39m\n"
     print "    Creates a new view for Vedeu.\n"
     print "\n\n"
