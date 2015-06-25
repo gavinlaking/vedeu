@@ -98,10 +98,10 @@ module Vedeu
       # @param options [Hash] See {Vedeu::Wordwrap}
       # @return [Vedeu::Interfaces<Vedeu::Interface>]
       def template_for(name, filename, object = nil, options = {})
-        fail MissingRequired, "Cannot render template without the name of " \
-                              "the view." unless name
+        fail MissingRequired, 'Cannot render template without the name of ' \
+                              'the view.' unless name
         fail MissingRequired, "Cannot render template for '#{name}', without " \
-                              "a filename." unless filename
+                              'a filename.' unless filename
 
         content   = Vedeu::Template.parse(object, filename)
         lines     = Vedeu::Wordwrap.for(content, options)

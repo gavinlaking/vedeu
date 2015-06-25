@@ -106,7 +106,7 @@ module Vedeu
           '/config',
           '/lib',
           '/test',
-          '/vendor'
+          '/vendor',
         ]
       end
 

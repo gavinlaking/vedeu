@@ -55,17 +55,19 @@ module Vedeu
     # @param path [String]
     # @return [String]
     def load(path)
+      loadables(path).each { |file| Kernel.load(file) }
+
+      path
+    end
+
+    # @param path [String]
+    # @return [Array<String>]
+    def loadables(path)
       files = send(path)
 
       Dir.glob(files).select do |file|
         File.file?(file) && File.extname(file) == '.rb'
-
-      end.each do |file|
-        Kernel.load(file)
-
       end
-
-      path
     end
 
   end # Bootstrap
