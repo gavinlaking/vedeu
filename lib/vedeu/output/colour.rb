@@ -40,7 +40,6 @@ module Vedeu
     # @param value []
     # @return [Object]
     def self.coerce(value)
-      # Vedeu::ColourCoercer.coerce(value)
       return value if value.is_a?(self)
       return new unless value.is_a?(Hash)
 
