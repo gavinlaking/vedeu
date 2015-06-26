@@ -23,6 +23,7 @@ module Vedeu
         make_directory_structure
 
         copy_gemfile
+        copy_application_bootstrapper
         copy_application_controller
         copy_application_helper
         copy_global_keymap
@@ -40,6 +41,10 @@ module Vedeu
         directories.each { |directory| make_directory(name + directory) }
       end
 
+      def copy_application_bootstrapper
+        make_file(source + '/application.erb', "#{name}/application.rb")
+      end
+
       # @return [void]
       def copy_application_controller
         make_file(source + '/app/controllers/application_controller.erb',
@@ -47,14 +52,14 @@ module Vedeu
       end
 
       # @return [void]
-      def copy_application_helper
-        make_file(source + '/app/helpers/application_helper.erb',
-                  name + '/app/helpers/application_helper.rb')
+      def copy_application_executable
+        copy_file(source + '/bin/name', "#{name}/bin/#{name}")
       end
 
       # @return [void]
-      def copy_application_executable
-        copy_file(source + '/bin/name', "#{name}/bin/#{name}")
+      def copy_application_helper
+        make_file(source + '/app/helpers/application_helper.erb',
+                  name + '/app/helpers/application_helper.rb')
       end
 
       # @return [void]
