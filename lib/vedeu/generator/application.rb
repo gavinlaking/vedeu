@@ -37,9 +37,7 @@ module Vedeu
 
       # @return [void]
       def make_directory_structure
-        directories.each do |directory|
-          FileUtils.mkdir_p(name + directory)
-        end
+        directories.each { |directory| make_directory(name + directory) }
       end
 
       # @return [void]
@@ -56,14 +54,13 @@ module Vedeu
 
       # @return [void]
       def copy_application_executable
-        FileUtils.cp(source + '/bin/name',
-                     "#{name}/bin/#{name}")
+        copy_file(source + '/bin/name', "#{name}/bin/#{name}")
       end
 
       # @return [void]
       def copy_configuration
-        FileUtils.cp(source + '/config/configuration.rb',
-                     "#{name}/config/configuration.rb")
+        copy_file(source + '/config/configuration.rb',
+                  "#{name}/config/configuration.rb")
       end
 
       # @return [void]
@@ -74,7 +71,7 @@ module Vedeu
 
       # @return [void]
       def copy_gemfile
-        FileUtils.cp(source + '/Gemfile', "#{name}/Gemfile")
+        copy_file(source + '/Gemfile', "#{name}/Gemfile")
       end
 
       # @return [void]
@@ -84,13 +81,13 @@ module Vedeu
 
       # @return [void]
       def copy_global_keymap
-        FileUtils.cp(source + '/app/models/keymaps/_global_.rb',
+        copy_file(source + '/app/models/keymaps/_global_.rb',
                      "#{name}/app/models/keymaps/_global_.rb")
       end
 
       # @return [void]
       def copy_system_keymap
-        FileUtils.cp(source + '/app/models/keymaps/_system_.rb',
+        copy_file(source + '/app/models/keymaps/_system_.rb',
                      "#{name}/app/models/keymaps/_system_.rb")
       end
 

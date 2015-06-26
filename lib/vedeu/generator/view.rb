@@ -55,7 +55,7 @@ module Vedeu
 
       # @return [void]
       def make_template_file
-        FileUtils.touch('.' + "/app/views/templates/#{name}.erb")
+        touch_file('.' + "/app/views/templates/#{name}.erb")
       end
 
       # @return [void]
