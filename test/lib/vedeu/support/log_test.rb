@@ -5,26 +5,16 @@ module Vedeu
   describe Log do
 
     let(:described) { Vedeu::Log }
-    let(:_message) {}
-    let(:force) {}
-    let(:type) {}
+    let(:_message)  { 'Some message...' }
+    let(:force)     { false }
+    let(:type)      { :info }
 
     describe '.log' do
       subject { described.log(message: _message, force: force, type: type) }
 
-      context 'when logging has been forced' do
-        # it { skip }
-      end
-
-      context 'when logging has not been forced' do
-        context 'when the configuration requests logging' do
-          # it { skip }
-        end
-
-        context 'when the configuration does not request logging' do
-          # it { skip }
-        end
-      end
+      it { subject.must_equal(
+        ["\e[97m[info]   \e[39m", "\e[39mSome message...\e[39m"]
+      ) }
     end
 
     describe '.log_stdout' do
@@ -51,12 +41,6 @@ module Vedeu
           ["", "\e[91m[debug]  \e[39m\e[31mLogging to stderr...\e[39m\n"]
         )
       }
-    end
-
-    describe '.logger' do
-      subject { described.logger }
-
-      # it { skip }
     end
 
   end # Log
