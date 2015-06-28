@@ -163,6 +163,18 @@ module Vedeu
       end
     end
 
+    describe '#next_visible_item' do
+      it 'the next visible interface is focussed when the method is called' do
+        Vedeu.interface('lead') { visible false }
+        Vedeu.interface('bismuth') { visible false }
+        Focus.add('thallium')
+        Focus.add('lead')
+        Focus.add('bismuth')
+
+        Focus.next_visible_item.must_equal('thallium')
+      end
+    end
+
     describe '#prev_item' do
       it 'the previous interface is focussed when the method is called' do
         Focus.add('thallium')
@@ -175,6 +187,16 @@ module Vedeu
         before { Focus.reset }
 
         it { Focus.prev_item.must_equal(false) }
+      end
+    end
+
+    describe '#prev_visible_item' do
+      it 'the previous visible interface is focussed when the method is called' do
+        Vedeu.interface('bismuth') { visible false }
+        Focus.add('thallium')
+        Focus.add('lead')
+        Focus.add('bismuth')
+        Focus.prev_visible_item.must_equal('lead')
       end
     end
 

@@ -96,7 +96,25 @@ module Vedeu
       update
     end
     alias_method :next,       :next_item
-    alias_method :focus_next, :next_item
+
+    # Put the next visible interface relative to the current interfaces in
+    # focus.
+    #
+    # @return [String]
+    def next_visible_item
+      unless visible_items?
+        update
+        return
+      end
+
+      loop do
+        storage.rotate!
+        break if InterfacesRepository.interfaces.find(current).visible?
+      end
+
+      update
+    end
+    alias_method :focus_next, :next_visible_item
 
     # Put the previous interface relative to the current interface in focus.
     #
@@ -111,7 +129,25 @@ module Vedeu
     end
     alias_method :prev,           :prev_item
     alias_method :previous,       :prev_item
-    alias_method :focus_previous, :prev_item
+
+    # Put the previous visible interface relative to the current interfaces in
+    # focus.
+    #
+    # @return [String]
+    def prev_visible_item
+      unless visible_items?
+        update
+        return
+      end
+
+      loop do
+        storage.rotate!(-1)
+        break if InterfacesRepository.interfaces.find(current).visible?
+      end
+
+      update
+    end
+    alias_method :focus_previous, :prev_visible_item
 
     # Refresh the interface in focus.
     #
@@ -174,6 +210,12 @@ module Vedeu
     # @return [Array]
     def in_memory
       []
+    end
+
+    def visible_items?
+      storage.any? do |name|
+        InterfacesRepository.interfaces.find(name).visible?
+      end
     end
 
   end # Focus
