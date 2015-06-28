@@ -87,13 +87,13 @@ module Vedeu
       # @return [void]
       def copy_global_keymap
         copy_file(source + '/app/models/keymaps/_global_.rb',
-                     "#{name}/app/models/keymaps/_global_.rb")
+                  "#{name}/app/models/keymaps/_global_.rb")
       end
 
       # @return [void]
       def copy_system_keymap
         copy_file(source + '/app/models/keymaps/_system_.rb',
-                     "#{name}/app/models/keymaps/_system_.rb")
+                  "#{name}/app/models/keymaps/_system_.rb")
       end
 
       # @return [Array<String>]
