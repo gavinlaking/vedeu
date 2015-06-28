@@ -98,8 +98,15 @@ module Vedeu
       subject { instance.back? }
 
       context 'with content' do
-        # it { subject.must_equal(true) }
-        # it { skip }
+        let(:back) {
+          Vedeu.interface 'back' do
+            lines do
+              line 'back content'
+            end
+          end
+        }
+
+        it { subject.must_equal(true) }
       end
 
       context 'without content' do
@@ -117,8 +124,14 @@ module Vedeu
       subject { instance.front? }
 
       context 'with content' do
-        # it { subject.must_equal(true) }
-        # it { skip }
+        let(:front) {
+          Vedeu.interface 'front' do
+            lines do
+              line 'front content'
+            end
+          end
+        }
+        it { subject.must_equal(true) }
       end
 
       context 'without content' do
@@ -130,8 +143,15 @@ module Vedeu
       subject { instance.previous? }
 
       context 'with content' do
-        # it { subject.must_equal(true) }
-        # it { skip }
+        let(:previous) {
+          Vedeu.interface 'previous' do
+            lines do
+              line 'previous content'
+            end
+          end
+        }
+
+        it { subject.must_equal(true) }
       end
 
       context 'without content' do
@@ -143,7 +163,13 @@ module Vedeu
       subject { instance.hide }
 
       context 'when the interface is visible' do
-        # it { skip }
+        # let(:_name) { 'Buffer#hide' }
+        # let(:interface) { Vedeu.interface('Buffer#hide') {} }
+
+        # it {
+        #   Vedeu::Visibility.expects(:hide).with(interface)
+        #   subject
+        # }
       end
 
       context 'when the interface is not visible' do
@@ -160,7 +186,13 @@ module Vedeu
       end
 
       context 'when the interface is not visible' do
-        # it { skip }
+        # let(:_name) { 'Buffer#show' }
+        # let(:interface) { Vedeu.interface('Buffer#show') {} }
+
+        # it {
+        #   Vedeu::Visibility.expects(:show).with(interface)
+        #   subject
+        # }
       end
     end
 

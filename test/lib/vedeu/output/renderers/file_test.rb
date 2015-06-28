@@ -23,13 +23,17 @@ module Vedeu
       end
 
       describe '.render' do
+        it { described.must_respond_to(:render) }
+      end
+
+      describe '#render' do
         let(:_time) { Time.new(2015, 4, 12, 20, 05) }
 
         before { File.stubs(:open) }
 
-        subject { described.render(output, options) }
+        subject { instance.render }
 
-        it { subject.must_be_instance_of(String) }
+        # it { subject.must_be_instance_of(String) }
 
         # it { skip }
         # context 'when the timestamp option is true' do

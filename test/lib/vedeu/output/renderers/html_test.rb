@@ -10,23 +10,35 @@ module Vedeu
       let(:instance)  { described.new(output) }
       let(:output)    {}
 
+      before do
+        ::File.stubs(:open)
+      end
+
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
         it { instance.instance_variable_get('@output').must_equal(output) }
       end
 
       describe '.render' do
+        it { described.must_respond_to(:render) }
+      end
+
+      describe '.to_file' do
+        it { described.must_respond_to(:to_file) }
+      end
+
+      describe '#render' do
         before { ::File.stubs(:open) }
 
-        subject { described.render(output) }
+        subject { instance.render }
 
         it { subject.must_be_instance_of(String) }
       end
 
-      describe '.to_file' do
+      describe '#to_file' do
         before { ::File.stubs(:open) }
 
-        subject { described.to_file(output, path) }
+        subject { instance.to_file(path) }
 
         context 'when a path is given' do
           let(:path) { '/tmp/test_vedeu_html_renderer.html' }
