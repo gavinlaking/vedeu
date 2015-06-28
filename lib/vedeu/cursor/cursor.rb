@@ -16,13 +16,13 @@ module Vedeu
     # @return [String]
     attr_reader :name
 
-    # @!attribute [r] ox
+    # @!attribute [rw] ox
     # @return [Fixnum]
-    attr_reader :ox
+    attr_accessor :ox
 
-    # @!attribute [r] oy
+    # @!attribute [rw] oy
     # @return [Fixnum]
-    attr_reader :oy
+    attr_accessor :oy
 
     # @!attribute [r] state
     # @return [Boolean|Symbol]
@@ -33,13 +33,13 @@ module Vedeu
     attr_reader :visible
     alias_method :visible?, :visible
 
-    # @!attribute [r] x
+    # @!attribute [rw] x
     # @return [Fixnum]
-    attr_reader :x
+    attr_accessor :x
 
-    # @!attribute [r] y
+    # @!attribute [rw] y
     # @return [Fixnum]
-    attr_reader :y
+    attr_accessor :y
 
     # Returns a new instance of Vedeu::Cursor.
     #

@@ -30,6 +30,8 @@ module Vedeu
       it { Vedeu.events.registered?(:_cursor_right_).must_equal(true) }
       it { Vedeu.events.registered?(:_cursor_up_).must_equal(true) }
       it { Vedeu.events.registered?(:_cursor_origin_).must_equal(true) }
+      it { Vedeu.events.registered?(:_cursor_position_).must_equal(true) }
+      it { Vedeu.events.registered?(:_cursor_reposition_).must_equal(true) }
       it { Vedeu.events.registered?(:_cursor_reset_).must_equal(true) }
     end
 

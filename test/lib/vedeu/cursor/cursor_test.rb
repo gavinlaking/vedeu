@@ -51,8 +51,16 @@ module Vedeu
       it { instance.must_respond_to(:ox) }
     end
 
+    describe '#ox=' do
+      it { instance.must_respond_to(:ox=) }
+    end
+
     describe '#oy' do
       it { instance.must_respond_to(:oy) }
+    end
+
+    describe '#oy=' do
+      it { instance.must_respond_to(:oy=) }
     end
 
     describe '#state' do
@@ -68,8 +76,16 @@ module Vedeu
       it { instance.must_respond_to(:x) }
     end
 
+    describe '#x=' do
+      it { instance.must_respond_to(:x=) }
+    end
+
     describe '#y' do
       it { instance.must_respond_to(:y) }
+    end
+
+    describe '#y=' do
+      it { instance.must_respond_to(:y=) }
     end
 
     describe '#hide_cursor' do
