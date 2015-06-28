@@ -9,9 +9,6 @@ module Vedeu
     before do
       Focus.reset
       Vedeu.interfaces.reset
-      Vedeu.interface('thallium') {}
-      Vedeu.interface('lead')     {}
-      Vedeu.interface('bismuth')  {}
     end
     after do
       Vedeu::Focus.reset
@@ -163,6 +160,36 @@ module Vedeu
       end
     end
 
+    describe '#next_visible_item' do
+      before do
+        Vedeu.interface('gold') { visible true }
+        Vedeu.interface('silver') { visible true }
+        Vedeu.interface('platinum') { visible false }
+      end
+
+      it 'the next visible interface is focussed when the method is called' do
+        Focus.next_visible_item.must_equal('silver')
+      end
+
+      context 'when there are no visible interfaces' do
+        before do
+          Vedeu.interface('gold') { visible false }
+          Vedeu.interface('silver') { visible false }
+          Vedeu.interface('platinum') { visible false }
+        end
+
+        it 'puts the first interface defined in focus' do
+          Focus.next_visible_item.must_equal('gold')
+        end
+      end
+
+      context 'when there are no interfaces' do
+        before { Vedeu::Focus.reset }
+
+        it { Focus.next_visible_item.must_equal(false) }
+      end
+    end
+
     describe '#prev_item' do
       it 'the previous interface is focussed when the method is called' do
         Focus.add('thallium')
@@ -175,6 +202,36 @@ module Vedeu
         before { Focus.reset }
 
         it { Focus.prev_item.must_equal(false) }
+      end
+    end
+
+    describe '#prev_visible_item' do
+      before do
+        Vedeu.interface('gold') { visible true }
+        Vedeu.interface('silver') { visible true }
+        Vedeu.interface('platinum') { visible false }
+      end
+
+      it 'the previous visible interface is focussed when the method is called' do
+        Focus.prev_visible_item.must_equal('silver')
+      end
+
+      context 'when there are no visible interfaces' do
+        before do
+          Vedeu.interface('gold') { visible false }
+          Vedeu.interface('silver') { visible false }
+          Vedeu.interface('platinum') { visible false }
+        end
+
+        it 'puts the first interface defined in focus' do
+          Focus.prev_visible_item.must_equal('gold')
+        end
+      end
+
+      context 'when there are no interfaces' do
+        before { Vedeu::Focus.reset }
+
+        it { Focus.prev_visible_item.must_equal(false) }
       end
     end
 
