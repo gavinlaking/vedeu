@@ -22,7 +22,10 @@ module Vedeu
     describe '#start' do
       subject { instance.start }
 
-
+      it {
+        Vedeu::Launcher.expects(:execute!)
+        subject
+      }
     end
 
   end # Bootstrap

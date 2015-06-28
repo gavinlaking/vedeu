@@ -1,4 +1,3 @@
-require_relative 'colour_coercer'
 require_relative 'common'
 require_relative 'options'
 require_relative 'template'

@@ -97,8 +97,11 @@ module Vedeu
       #
       # @return [TrueClass]
       def log(message:, force: false, type: :info)
-        logger.debug([message_type(type),
-                      message_body(type, message)]) if enabled? || force
+        output = [message_type(type), message_body(type, message)]
+
+        logger.debug(output) if enabled? || force
+
+        output
       end
 
       # @return [TrueClass]
@@ -111,6 +114,8 @@ module Vedeu
         $stderr.puts [message_type(type), message_body(type, message)].join
       end
 
+      private
+
       # @return [TrueClass]
       def logger
         MonoLogger.new(log_file).tap do |log|
@@ -119,8 +124,6 @@ module Vedeu
           end
         end
       end
-
-      private
 
       # @param message [String]
       # @return [String]
@@ -183,7 +186,7 @@ module Vedeu
           @last = @now
         end
 
-        "[#{format(@time.to_s, '%7.4f')}] ".rjust(7)
+        "[#{format('%7.4f', @time.to_s)}] ".rjust(7)
       end
 
     end # Log eigenclass

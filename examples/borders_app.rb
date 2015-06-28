@@ -20,6 +20,9 @@ class VedeuBordersApp
   configure do
     # debug!
     log '/tmp/vedeu_borders_app.log'
+    raw!
+    run_once!
+    standalone!
   end
 
   interface 'default_border' do

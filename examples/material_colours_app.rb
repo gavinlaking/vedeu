@@ -74,7 +74,7 @@ class VedeuMaterialColoursApp
     key('k') { Vedeu.trigger(:_view_up_, 'other_interface')    }
     key('l') { Vedeu.trigger(:_view_right_, 'other_interface') }
 
-    key('t')         do
+    key('t') do
       Vedeu.trigger(:_toggle_interface_, 'main_interface')
       Vedeu.trigger(:_toggle_interface_, 'other_interface')
     end

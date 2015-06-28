@@ -21,11 +21,11 @@ module Vedeu
       end
 
       describe '.generate' do
-        subject { described.generate(_name) }
+        it { described.must_respond_to(:generate) }
       end
 
       describe '#generate' do
-        it { instance.must_respond_to(:generate) }
+        subject { instance.generate }
       end
 
     end # View

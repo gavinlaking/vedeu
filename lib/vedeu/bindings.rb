@@ -125,6 +125,18 @@ module Vedeu
       Vedeu::Position.new(cursor.y, cursor.x) if cursor
     end
 
+    # Move the cursor to a relative position inside the interface.
+    #
+    # @todo
+    #   - The content of the interface needs to be a consideration.
+    #   - If the screen size changes, what should happen to the cursor.
+    #   - How do we represent cursors which are deliberately positioned outside
+    #     of the viewable area?
+    #
+    Vedeu.bind(:_cursor_reposition_) do |name, y, x|
+      Vedeu::Reposition.to(Vedeu::Cursor, name, y, x)
+    end
+
     # @see {Vedeu::Move}
     Vedeu.bind(:_cursor_reset_) { |name| Vedeu.trigger(:_cursor_origin_, name) }
 

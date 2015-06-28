@@ -23,6 +23,7 @@ module Vedeu
         make_directory_structure
 
         copy_gemfile
+        copy_application_bootstrapper
         copy_application_controller
         copy_application_helper
         copy_global_keymap
@@ -37,9 +38,11 @@ module Vedeu
 
       # @return [void]
       def make_directory_structure
-        directories.each do |directory|
-          FileUtils.mkdir_p(name + directory)
-        end
+        directories.each { |directory| make_directory(name + directory) }
+      end
+
+      def copy_application_bootstrapper
+        make_file(source + '/application.erb', "#{name}/application.rb")
       end
 
       # @return [void]
@@ -49,21 +52,20 @@ module Vedeu
       end
 
       # @return [void]
+      def copy_application_executable
+        copy_file(source + '/bin/name', "#{name}/bin/#{name}")
+      end
+
+      # @return [void]
       def copy_application_helper
         make_file(source + '/app/helpers/application_helper.erb',
                   name + '/app/helpers/application_helper.rb')
       end
 
       # @return [void]
-      def copy_application_executable
-        FileUtils.cp(source + '/bin/name',
-                     "#{name}/bin/#{name}")
-      end
-
-      # @return [void]
       def copy_configuration
-        FileUtils.cp(source + '/config/configuration.rb',
-                     "#{name}/config/configuration.rb")
+        copy_file(source + '/config/configuration.rb',
+                  "#{name}/config/configuration.rb")
       end
 
       # @return [void]
@@ -74,7 +76,7 @@ module Vedeu
 
       # @return [void]
       def copy_gemfile
-        FileUtils.cp(source + '/Gemfile', "#{name}/Gemfile")
+        copy_file(source + '/Gemfile', "#{name}/Gemfile")
       end
 
       # @return [void]
@@ -84,14 +86,14 @@ module Vedeu
 
       # @return [void]
       def copy_global_keymap
-        FileUtils.cp(source + '/app/models/keymaps/_global_.rb',
-                     "#{name}/app/models/keymaps/_global_.rb")
+        copy_file(source + '/app/models/keymaps/_global_.rb',
+                  "#{name}/app/models/keymaps/_global_.rb")
       end
 
       # @return [void]
       def copy_system_keymap
-        FileUtils.cp(source + '/app/models/keymaps/_system_.rb',
-                     "#{name}/app/models/keymaps/_system_.rb")
+        copy_file(source + '/app/models/keymaps/_system_.rb',
+                  "#{name}/app/models/keymaps/_system_.rb")
       end
 
       # @return [Array<String>]

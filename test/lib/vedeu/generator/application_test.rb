@@ -21,31 +21,11 @@ module Vedeu
       end
 
       describe '.generate' do
-        subject { described.generate(_name) }
+        it { described.must_respond_to(:generate) }
       end
 
       describe '#generate' do
-        it { instance.must_respond_to(:generate) }
-      end
-
-      describe '#name_as_class' do
-        subject { instance.name_as_class }
-
-        context 'when the name is a single value' do
-          let(:_name) { 'VEDEU' }
-
-          it { subject.must_equal('Vedeu') }
-        end
-
-        context 'when the name is an underscored value' do
-          it { subject.must_equal('MyFirstApp') }
-        end
-
-        context 'when the name contains hyphens' do
-          let(:_name) { 'hyphenated-APP' }
-
-          it { subject.must_equal('HyphenatedApp')}
-        end
+        subject { instance.generate }
       end
 
     end # Application

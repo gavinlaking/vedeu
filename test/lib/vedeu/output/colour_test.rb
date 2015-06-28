@@ -43,6 +43,7 @@ module Vedeu
 
         it { subject.must_be_instance_of(described) }
         it { subject.attributes.must_equal(attributes) }
+        it { subject.to_s.must_equal("\e[38;2;34;0;34m\e[48;2;255;0;255m") }
       end
 
       context 'when the value is a Hash' do
@@ -62,6 +63,7 @@ module Vedeu
 
             it { subject.must_be_instance_of(described) }
             it { subject.attributes.must_equal(attributes) }
+            it { subject.to_s.must_equal("\e[38;2;0;255;0m\e[48;2;0;34;0m") }
           end
 
           context 'when the value of :colour is a Hash' do
@@ -79,6 +81,9 @@ module Vedeu
                 background: '#7700ff',
                 foreground: '',
               }) }
+              it {
+                subject.to_s.must_equal("\e[48;2;119;0;255m")
+              }
             end
 
             context 'and a :foreground is defined' do
@@ -95,6 +100,9 @@ module Vedeu
                 background: '',
                 foreground: '#220077',
               }) }
+              it {
+                subject.to_s.must_equal("\e[38;2;34;0;119m")
+              }
             end
 
             context 'and neither a :background or :foreground is defined' do
@@ -109,6 +117,7 @@ module Vedeu
                 background: '',
                 foreground: '',
               }) }
+              it { subject.to_s.must_equal('') }
             end
           end
         end
@@ -126,6 +135,7 @@ module Vedeu
               background: '#000022',
               foreground: '',
             }) }
+            it { subject.to_s.must_equal("\e[48;2;0;0;34m") }
           end
 
           context 'when the hash has a :foreground defined' do
@@ -140,6 +150,7 @@ module Vedeu
               background: '',
               foreground: '#aadd00',
             }) }
+            it { subject.to_s.must_equal("\e[38;2;170;221;0m") }
           end
 
           context 'when neither a :background or :foreground is defined' do
@@ -154,6 +165,7 @@ module Vedeu
               background: '',
               foreground: '',
             }) }
+            it { subject.to_s.must_equal('') }
           end
         end
       end
