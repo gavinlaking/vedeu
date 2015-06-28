@@ -106,7 +106,7 @@ module Vedeu
 
       loop do
         storage.rotate!
-        break if InterfacesRepository.interfaces.find(current).visible?
+        break if Vedeu.interfaces.by_name(current).visible?
       end
 
       update
@@ -136,7 +136,7 @@ module Vedeu
 
       loop do
         storage.rotate!(-1)
-        break if InterfacesRepository.interfaces.find(current).visible?
+        break if Vedeu.interfaces.by_name(current).visible?
       end
 
       update
@@ -206,10 +206,9 @@ module Vedeu
       []
     end
 
+    # @return [Boolean]
     def visible_items?
-      storage.any? do |name|
-        InterfacesRepository.interfaces.find(name).visible?
-      end
+      storage.any? { |name| Vedeu.interfaces.by_name(name).visible? }
     end
 
   end # Focus
