@@ -102,10 +102,7 @@ module Vedeu
     #
     # @return [String]
     def next_visible_item
-      unless visible_items?
-        update
-        return
-      end
+      return update unless visible_items?
 
       loop do
         storage.rotate!
@@ -135,10 +132,7 @@ module Vedeu
     #
     # @return [String]
     def prev_visible_item
-      unless visible_items?
-        update
-        return
-      end
+      return update unless visible_items?
 
       loop do
         storage.rotate!(-1)
