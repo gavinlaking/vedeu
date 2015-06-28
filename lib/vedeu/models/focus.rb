@@ -95,7 +95,7 @@ module Vedeu
 
       update
     end
-    alias_method :next,       :next_item
+    alias_method :next, :next_item
 
     # Put the next visible interface relative to the current interfaces in
     # focus.
@@ -127,8 +127,8 @@ module Vedeu
 
       update
     end
-    alias_method :prev,           :prev_item
-    alias_method :previous,       :prev_item
+    alias_method :prev,     :prev_item
+    alias_method :previous, :prev_item
 
     # Put the previous visible interface relative to the current interfaces in
     # focus.
