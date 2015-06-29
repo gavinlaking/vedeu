@@ -2,6 +2,10 @@ module Vedeu
 
   module Generator
 
+    # Provides functionality used by the generators to build the client
+    # application.
+    #
+    # @api private
     module Helpers
 
       # @return [String]
@@ -62,6 +66,13 @@ module Vedeu
       # @return [String]
       def name_as_class
         name.downcase.split(/_|-/).map(&:capitalize).join
+      end
+
+      # @return [String]
+      def output(message = '')
+        Vedeu.log_stdout(type: :info, message: message)
+
+        message
       end
 
       # @param source [String]

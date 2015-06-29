@@ -7,24 +7,33 @@ module Vedeu
   class Bootstrap
 
     # @param argv [Array<String>]
+    # @param entry_point [void]
     # @return [void]
-    def self.start(argv = ARGV)
-      new(argv).start
+    def self.start(argv = ARGV, entry_point = nil)
+      new(argv, entry_point).start
     end
 
     # @param argv [Array<String>]
+    # @param entry_point [void]
     # @return [Vedeu::Bootstrap]
-    def initialize(argv)
-      @argv = argv
+    def initialize(argv, entry_point)
+      @argv        = argv
+      @entry_point = entry_point
     end
 
     # @return [void]
     def start
-      [:configuration_path,
-       :interface_path,
-       :keymap_path].each do |path|
-        load(path)
-      end
+      Vedeu.configure { log('/tmp/vedeu_bootstrap.log') }
+
+      [
+        './config/**/*',
+        './app/controllers/**/*',
+        './app/helpers/**/*',
+        './app/views/**/*',
+        './app/models/keymaps/**/*',
+      ].each { |path| load(path) }
+
+      entry_point
 
       Vedeu::Launcher.execute!(argv)
     end
@@ -35,22 +44,11 @@ module Vedeu
     # @return [Array<String>]
     attr_reader :argv
 
+    # @!attribute [r] entry_point
+    # @return [void]
+    attr_reader :entry_point
+
     private
-
-    # @return [String]
-    def configuration_path
-      File.dirname(__FILE__) + '/config/**/*'
-    end
-
-    # @return [String]
-    def interface_path
-      File.dirname(__FILE__) + '/app/views/interfaces/**/*'
-    end
-
-    # @return [String]
-    def keymap_path
-      File.dirname(__FILE__) + '/app/models/keymaps/**/*'
-    end
 
     # @param path [String]
     # @return [String]
@@ -63,9 +61,7 @@ module Vedeu
     # @param path [String]
     # @return [Array<String>]
     def loadables(path)
-      files = send(path)
-
-      Dir.glob(files).select do |file|
+      Dir.glob(path).select do |file|
         File.file?(file) && File.extname(file) == '.rb'
       end
     end

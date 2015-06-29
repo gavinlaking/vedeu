@@ -20,6 +20,7 @@ RUN apt-get update && apt-get install -y --force-yes \
     pkg-config \
     curl \
     wget \
+    vim \
     libxslt-dev \
     libxml2-dev \
     libffi-dev \
@@ -58,6 +59,7 @@ RUN usr/sbin/useradd --create-home --home-dir /home/vedeu --shell /bin/bash vede
 # Make files
 RUN mkdir /home/vedeu/gem
 RUN chown -R vedeu:vedeu /home/vedeu
+RUN chown -R vedeu:vedeu /opt/rubies
 RUN gem install bundler
 
 # VOLUME .:/home/vedeu/gem
@@ -77,4 +79,3 @@ USER vedeu
 #     sudo docker run -it -v $PWD:/home/vedeu/gem:rw vedeu/my_first_app /bin/bash
 #
 #
-

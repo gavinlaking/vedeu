@@ -4,6 +4,14 @@ module Vedeu
 
   module Generator
 
+    # Generates a view for the client application.
+    #
+    # @example
+    #   ```bash
+    #   vedeu view main_screen
+    #   ```
+    #
+    # @api private
     class View
 
       include Vedeu::Generator::Helpers

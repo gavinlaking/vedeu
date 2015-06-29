@@ -50,7 +50,7 @@ module MiniTest
   class Spec
     # parallelize_me! # uncomment to unleash hell
 
-    include VedeuMiniTestPlugin
+    # include VedeuMiniTestPlugin
 
     class << self
       alias_method :context, :describe

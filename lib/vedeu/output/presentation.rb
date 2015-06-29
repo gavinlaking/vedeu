@@ -107,13 +107,8 @@ module Vedeu
 
     # @return [void]
     def _colour
-      if attributes[:colour]
-        attributes[:colour]
-
-      elsif parent && parent_colour
-        parent_colour
-
-      end
+      return attributes[:colour] if attributes[:colour]
+      return parent_colour if parent && parent_colour
     end
 
     # Renders the colour attributes of the receiver and yields (to then render
@@ -145,13 +140,8 @@ module Vedeu
 
     # @return [void]
     def _style
-      if attributes[:style]
-        attributes[:style]
-
-      elsif parent && parent_style
-        parent_style
-
-      end
+      return attributes[:style] if attributes[:style]
+      return parent_style if parent && parent_style
     end
 
   end # Presentation

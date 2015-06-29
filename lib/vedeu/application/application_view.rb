@@ -1,0 +1,42 @@
+module Vedeu
+
+  # Provides the mechanism to render views for the client application.
+  #
+  # @api private
+  class ApplicationView
+
+    # Renders the view.
+    #
+    # @param object [void]
+    # @return [void]
+    def self.render(object = nil)
+      new(object).render
+    end
+
+    # @param object [void]
+    # @return [Vedeu::ApplicationView]
+    def initialize(object = nil)
+      @object = object
+    end
+
+    protected
+
+    # @!attribute [r] object
+    # @return [void]
+    attr_reader :object
+
+    # # @!attribute [r] template
+    # # @return [void]
+    # attr_reader :template
+
+    private
+
+    # @param value [String]
+    # @return [String]
+    def template(value)
+      @template = File.expand_path("./app/views/templates/#{value}.erb")
+    end
+
+  end # ApplicationView
+
+end # Vedeu

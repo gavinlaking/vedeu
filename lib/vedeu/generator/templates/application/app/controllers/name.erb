@@ -1,8 +1,18 @@
+require_relative 'application_controller'
+require_relative '../views/<%= object.name %>'
+
 module <%= object.app_name %>
 
-  class <%= object.name_as_class %> < <%= object.app_name -%>::ApplicationController
+  class <%= object.name_as_class %>Controller < <%= object.app_name -%>::ApplicationController
 
     def initialize
+      <%= object.app_name %>::<%= object.name_as_class %>View.render(object)
+    end
+
+    private
+
+    def object
+      nil
     end
 
   end
