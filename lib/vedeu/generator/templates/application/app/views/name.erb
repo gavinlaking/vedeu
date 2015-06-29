@@ -1,0 +1,22 @@
+module <%= object.app_name %>
+
+  class <%= object.name_as_class %> < Vedeu::ApplicationView
+
+    def render
+      Vedeu.renders do
+        template_for('<%= object.name %>', template, object, options)
+      end
+    end
+
+    private
+
+    def options
+      {
+        # mode: :wrap,
+        # width:
+      }
+    end
+
+  end
+
+end
