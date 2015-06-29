@@ -1,6 +1,8 @@
+require_relative 'application_controller'
+
 module <%= object.app_name %>
 
-  class <%= object.name_as_class %> < <%= object.app_name -%>::ApplicationController
+  class <%= object.name_as_class %>Controller < <%= object.app_name -%>::ApplicationController
 
     def initialize
     end
