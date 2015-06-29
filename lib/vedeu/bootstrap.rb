@@ -24,7 +24,9 @@ module Vedeu
 
       [
         './config/**/*',
-        './app/views/interfaces/**/*',
+        './app/controllers/**/*',
+        './app/helpers/**/*',
+        './app/views/**/*',
         './app/models/keymaps/**/*',
       ].each { |path| load(path) }
 
