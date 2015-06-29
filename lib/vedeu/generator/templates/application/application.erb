@@ -1,3 +1,5 @@
+require_relative 'app/controllers/some_controller'
+
 module <%= object.name_as_class %>
 
   class Application
@@ -6,7 +8,7 @@ module <%= object.name_as_class %>
     # application from.
     #
     def self.entry_point
-      # SomeController.new
+      <%= object.name_as_class %>::SomeController.new
     end
 
     Vedeu::Bootstrap.start(ARGV, entry_point)

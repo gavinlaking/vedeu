@@ -90,6 +90,24 @@ module Vedeu
         end
       end
 
+      describe '#output' do
+        let(:_message) { 'This is a test message.' }
+
+        before { Vedeu.stubs(:log_stdout) }
+
+        subject { instance.output(_message) }
+
+        it { subject.must_be_instance_of(String) }
+
+        it {
+          Vedeu.expects(:log_stdout).
+            with(type: :info, message: _message)
+          subject
+        }
+
+        it { subject.must_equal(_message) }
+      end
+
       describe '#parse' do
         let(:source) {}
 

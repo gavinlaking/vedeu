@@ -68,6 +68,13 @@ module Vedeu
         name.downcase.split(/_|-/).map(&:capitalize).join
       end
 
+      # @return [String]
+      def output(message = '')
+        Vedeu.log_stdout(type: :info, message: message)
+
+        message
+      end
+
       # @param source [String]
       # @return [String]
       def parse(source)

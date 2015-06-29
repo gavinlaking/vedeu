@@ -15,6 +15,10 @@ module Vedeu
       it { subject.instance_variable_get('@object').must_equal(object) }
     end
 
+    describe '.render' do
+      it { described.must_respond_to(:render) }
+    end
+
   end # ApplicationView
 
 end # Vedeu
