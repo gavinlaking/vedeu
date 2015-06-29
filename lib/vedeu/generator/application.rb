@@ -64,7 +64,7 @@ module Vedeu
 
       # @return [void]
       def copy_configuration
-        copy_file(source + '/config/configuration.rb',
+        make_file(source + '/config/configuration.erb',
                   "#{name}/config/configuration.rb")
       end
 
