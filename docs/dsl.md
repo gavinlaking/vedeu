@@ -2,6 +2,73 @@ Coupled with the API (for interacting with the running client application), the
  DSL provides the mechanism to configure aspects of your application whilst
  using Vedeu.
 
+### Interfaces
+
+An Interface is a basic element in the GUI. It usually but does not necessarily
+correspond to a region of the terminal screen (for example, an Interface might
+not be displayed at certain points in an application life cycle). 
+
+Much of the behavior of an Interface comes from child objects that are defined
+under the Interface. These objects are described in more detail in their
+respective sections below.
+
+Here is an example of declarations for an `interface` block:
+
+```ruby
+interface 'main' do
+  visible true # whether to show the interface
+  focus! # focus this interface
+  cursor true # Show the cursor when this section is focused
+  colour foreground: '#ffffff', # set interface foreground
+         background: '#000033'  # and background colors
+  group 'general' # set interface group
+
+  geometry do 
+    # size and position details
+  end
+  border do 
+    # border properties
+  end
+  keymap do 
+    # keymap that is in effect when this interface is focused
+  end
+  views do 
+    # details about how to render the interface
+  end
+end
+```
+
+### Declaring interface sub-objects
+
+Every object in the DSL besides interface itself is defined for a particular
+interface. This can either be declared implicitly by defining the object inside
+an `interface` block or explicitly, by passing the interface name as a first
+argument to the declaration.
+
+That is, these are equivalent ways to declare a Geometry for an existing
+interface 
+
+```ruby 
+interface 'main' do
+  geometry do
+    # some geometry
+  end
+
+  # some other declarations
+end
+```
+
+or you can say
+
+```ruby
+interface 'main' do
+  # some other declarations
+end
+
+geometry 'main' do
+  # some geometry
+end
+```
 
 ### Borders
 
@@ -60,10 +127,6 @@ Interfaces can be configured to be part of a named group. Once an interface is a
  refresh of the 'commit' group would cause all interfaces belonging to the group
  to refresh. Similarly, showing or hiding the group would of course, show or
  hide the interfaces of that group.
-
-### Interfaces
-
-
 
 ### Keymaps
 
