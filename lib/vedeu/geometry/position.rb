@@ -85,7 +85,7 @@ module Vedeu
     #
     # @return [String]
     def sequence
-      ["\e[", y, ';', x, 'H'].join
+      "\e[#{y};#{x}H"
     end
 
   end # Position
