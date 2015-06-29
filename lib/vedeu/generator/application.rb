@@ -2,6 +2,14 @@ module Vedeu
 
   module Generator
 
+    # Generates the client application directory and file structure.
+    #
+    # @example
+    #   ```bash
+    #   vedeu new your_app_name_here
+    #   ```
+    #
+    # @api private
     class Application
 
       include Vedeu::Generator::Helpers
@@ -41,6 +49,7 @@ module Vedeu
         directories.each { |directory| make_directory(name + directory) }
       end
 
+      # @return [void]
       def copy_application_bootstrapper
         make_file(source + '/application.erb', "#{name}/application.rb")
       end

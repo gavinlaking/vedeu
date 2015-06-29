@@ -1,5 +1,7 @@
 module Vedeu
 
+  # Provides the mechanism to arbitrarily move a cursor to a given position.
+  #
   # @api private
   class Reposition
 
@@ -10,7 +12,7 @@ module Vedeu
     end
 
     # @param entity []
-    # @param name [String]]
+    # @param name [String]
     # @param y [Fixnum]
     # @param x [Fixnum]
     # @return [Vedeu::Reposition]

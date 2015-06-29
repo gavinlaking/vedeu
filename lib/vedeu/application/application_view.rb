@@ -1,5 +1,8 @@
 module Vedeu
 
+  # Provides view related functionality.
+  #
+  # @api private
   module ApplicationTemplate
 
     module_function
@@ -11,6 +14,9 @@ module Vedeu
 
   end # ApplicationTemplate
 
+  # Provides the mechanism to render views for the client application.
+  #
+  # @api private
   class ApplicationView
 
     extend ApplicationTemplate

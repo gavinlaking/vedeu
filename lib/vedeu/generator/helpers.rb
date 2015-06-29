@@ -2,6 +2,10 @@ module Vedeu
 
   module Generator
 
+    # Provides functionality used by the generators to build the client
+    # application.
+    #
+    # @api private
     module Helpers
 
       # @return [String]
