@@ -20,6 +20,7 @@ RUN apt-get update && apt-get install -y --force-yes \
     pkg-config \
     curl \
     wget \
+    vim \
     libxslt-dev \
     libxml2-dev \
     libffi-dev \
