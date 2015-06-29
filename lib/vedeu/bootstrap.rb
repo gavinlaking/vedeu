@@ -20,11 +20,13 @@ module Vedeu
 
     # @return [void]
     def start
-      [:configuration_path,
-       :interface_path,
-       :keymap_path].each do |path|
-        load(path)
-      end
+      Vedeu.configure { log('/tmp/vedeu_bootstrap.log') }
+
+      [
+        './config/**/*',
+        './app/views/interfaces/**/*',
+        './app/models/keymaps/**/*',
+      ].each { |path| load(path) }
 
       Vedeu::Launcher.execute!(argv)
     end
@@ -37,21 +39,6 @@ module Vedeu
 
     private
 
-    # @return [String]
-    def configuration_path
-      File.dirname(__FILE__) + '/config/**/*'
-    end
-
-    # @return [String]
-    def interface_path
-      File.dirname(__FILE__) + '/app/views/interfaces/**/*'
-    end
-
-    # @return [String]
-    def keymap_path
-      File.dirname(__FILE__) + '/app/models/keymaps/**/*'
-    end
-
     # @param path [String]
     # @return [String]
     def load(path)
@@ -63,9 +50,7 @@ module Vedeu
     # @param path [String]
     # @return [Array<String>]
     def loadables(path)
-      files = send(path)
-
-      Dir.glob(files).select do |file|
+      Dir.glob(path).select do |file|
         File.file?(file) && File.extname(file) == '.rb'
       end
     end
