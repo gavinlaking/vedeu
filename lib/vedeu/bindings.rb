@@ -120,8 +120,6 @@ module Vedeu
       named  = name ? name : Vedeu.focus
       cursor = Vedeu.cursors.by_name(named)
 
-      Vedeu.log(type: :debug, message: cursor.inspect)
-
       Vedeu::Position.new(cursor.y, cursor.x) if cursor
     end
 
