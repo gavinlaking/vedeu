@@ -7,6 +7,14 @@ module Vedeu
 
     module_function
 
+    # Renders the view.
+    #
+    # @param object [void]
+    # @return [void]
+    def render(object = nil)
+      new(object).render
+    end
+
     # @return [String]
     def template(value)
       @template = File.dirname(__FILE__) + "/templates/#{value}.erb"

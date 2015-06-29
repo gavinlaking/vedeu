@@ -2,7 +2,14 @@ module <%= object.name_as_class %>
 
   class Application
 
-    Vedeu::Bootstrap.start(ARGV)
+    # Change this to be the controller you would like to start the
+    # application from.
+    #
+    def self.entry_point
+      # SomeController.new
+    end
+
+    Vedeu::Bootstrap.start(ARGV, entry_point)
 
   end
 

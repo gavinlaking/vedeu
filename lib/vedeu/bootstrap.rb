@@ -7,15 +7,18 @@ module Vedeu
   class Bootstrap
 
     # @param argv [Array<String>]
+    # @param entry_point [void]
     # @return [void]
-    def self.start(argv = ARGV)
-      new(argv).start
+    def self.start(argv = ARGV, entry_point = nil)
+      new(argv, entry_point).start
     end
 
     # @param argv [Array<String>]
+    # @param entry_point [void]
     # @return [Vedeu::Bootstrap]
-    def initialize(argv)
-      @argv = argv
+    def initialize(argv, entry_point)
+      @argv        = argv
+      @entry_point = entry_point
     end
 
     # @return [void]
@@ -30,6 +33,8 @@ module Vedeu
         './app/models/keymaps/**/*',
       ].each { |path| load(path) }
 
+      entry_point
+
       Vedeu::Launcher.execute!(argv)
     end
 
@@ -38,6 +43,10 @@ module Vedeu
     # @!attribute [r] argv
     # @return [Array<String>]
     attr_reader :argv
+
+    # @!attribute [r] entry_point
+    # @return [void]
+    attr_reader :entry_point
 
     private
 
