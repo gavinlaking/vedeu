@@ -206,7 +206,7 @@ module Vedeu
     def right(iy = 0)
       return [] unless right?
 
-      border(vertical, :left_vertical, *[(by + iy), xn])
+      border(vertical, :right_vertical, *[(by + iy), xn])
     end
 
     # Renders the top border for the interface.
