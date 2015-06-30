@@ -25,7 +25,7 @@ module Vedeu
 
     # @return [Vedeu::Cursor]
     def to
-      result = @entity.new(name: name,
+      result = entity.new(name: name,
                            y:    y_position,
                            x:    x_position,
                            oy:   y,
@@ -61,21 +61,6 @@ module Vedeu
     # @return [Coordinate]
     def coordinate
       @coordinate ||= Vedeu::Coordinate.new(name)
-    end
-
-    # @return [Vedeu::Cursor]
-    def entity
-      @_entity ||= @entity.new
-    end
-
-    # @return [Vedeu::Cursor]
-    def model
-      @model ||= repository.by_name(name)
-    end
-
-    # @return [Vedeu::Cursors]
-    def repository
-      entity.repository
     end
 
     # Returns the cursors x position based on the desired x position.
