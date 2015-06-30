@@ -4,26 +4,39 @@ Vedeu has basic tools to generate client application scaffolding, in a similar
 way to Ruby on Rails. Although not nearly as advanced as the Rails equivalent,
 hopefully these generators will get you off the ground.
 
-### Application Structure
+### Generating a new application
 
 |
 |- app_name/
 |   |
     |- app/
-    |   |- controllers
-    |   |- helpers
-    |   |- models
-    |   |    |- keymaps
-    |   |- views
-    |        |- interfaces
-    |        |- templates
+    |   |- controllers/
+    |   |   |- application_controller.rb
+    |   |
+    |   |- helpers/
+    |   |   |- application_helper.rb
+    |   |
+    |   |- models/
+    |   |   |- keymaps/
+    |   |       |- _global_.rb
+    |   |       |- _system_.rb
+    |   |
+    |   |- views/
+    |       |- interfaces/
+    |       |- templates/
     |
-    |- bin
-    |- config
-    |- lib
-    |- test
-    |- vendor
+    |- bin/
+    |   |- app_name
     |
+    |- config/
+    |   |- add_name
+    |   |- configuration.rb
+    |
+    |- lib/
+    |- test/
+    |- vendor/
+    |- application.rb
+    |- Gemfile
 
 To create the application structure as shown above:
 
@@ -101,3 +114,39 @@ in the way you expect.
 This is for third-party code which your application might want to ship with.
 Usually you will include various Ruby gems to provide functionality, but you
 might want to do something special.
+
+
+### Generating a new view
+
+Vedeu also provides a generator to create the files needed for a view. To run
+this, use the following from within the root of the application directory:
+
+    vedeu view view_name
+
+Let's talk about the files it will create and populate:
+
+|
+|- app_name/
+|   |
+    |- app/
+    |   |- controllers/
+    |   |   |- view_name_controller.rb
+    |   |
+    |   |- helpers/
+    |   |   |- view_name_helper.rb
+    |   |
+    |   |- models/
+    |   |   |- keymaps/
+    |   |       |- view_name.rb
+    |   |
+    |   |- views/
+    |       |- interfaces/
+    |       |   |- view_name.rb
+    |       |
+    |       |- templates/
+    |       |   |- view_name.erb
+    |       |
+    |       |- view_name.rb
+    |...
+
+####
