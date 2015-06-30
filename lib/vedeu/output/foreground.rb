@@ -18,7 +18,7 @@ module Vedeu
       "\e[38;5;"
     end
 
-    # @return [Vedeu::ForegroundColours]
+    # @return [Vedeu::Foregrounds]
     def repository
       Vedeu.foreground_colours
     end

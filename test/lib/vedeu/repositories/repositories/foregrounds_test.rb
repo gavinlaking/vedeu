@@ -2,9 +2,9 @@ require 'test_helper'
 
 module Vedeu
 
-  describe ForegroundColours do
+  describe Foregrounds do
 
-    let(:described) { Vedeu::ForegroundColours }
+    let(:described) { Vedeu::Foregrounds }
 
     describe '.foreground_colours' do
       subject { described.foreground_colours }
@@ -12,6 +12,6 @@ module Vedeu
       it { subject.must_be_instance_of(described) }
     end
 
-  end # ForegroundColours
+  end # Foregrounds
 
 end # Vedeu

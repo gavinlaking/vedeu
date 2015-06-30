@@ -34,8 +34,8 @@ module Vedeu
     module_function
 
     # @!method background_colours
-    #   @see Vedeu::BackgroundColours.background_colours
-    def_delegators Vedeu::BackgroundColours, :background_colours
+    #   @see Vedeu::Backgrounds.background_colours
+    def_delegators Vedeu::Backgrounds, :background_colours
 
     # @!method borders
     #   @see Vedeu::Borders.borders
@@ -105,8 +105,8 @@ module Vedeu
                    :focus_next, :focus_previous
 
     # @!method foreground_colours
-    #   @see Vedeu::ForegroundColours.foreground_colours
-    def_delegators Vedeu::ForegroundColours, :foreground_colours
+    #   @see Vedeu::Foregrounds.foreground_colours
+    def_delegators Vedeu::Foregrounds, :foreground_colours
 
     # @!method geometries
     #   @see Vedeu::Geometries.geometries
