@@ -14,6 +14,7 @@ module Vedeu
   # @api private
   class Char
 
+    include Comparable
     include Vedeu::Presentation
 
     # @!attribute [rw] border
@@ -135,11 +136,6 @@ module Vedeu
     # @return [String]
     def to_html
       @to_html ||= Vedeu::HTMLChar.render(self)
-    end
-
-    # @return [String]
-    def to_json
-      @to_json ||= JSON.generate(to_hash)
     end
 
     private

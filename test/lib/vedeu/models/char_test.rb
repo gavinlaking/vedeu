@@ -122,12 +122,6 @@ module Vedeu
       it { subject.must_be_instance_of(String) }
     end
 
-    describe '#to_json' do
-      subject { instance.to_json }
-
-      it { subject.must_be_instance_of(String) }
-    end
-
     describe '#to_s' do
       subject { instance.to_s }
 
