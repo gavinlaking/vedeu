@@ -41,10 +41,22 @@ module Vedeu
     #
     # @param y [Fixnum] The row/line position.
     # @param x [Fixnum] The column/character position.
-    # @return [Position]
+    # @return [Vedeu::Position]
     def initialize(y = 1, x = 1)
       @y = (y.nil? || y < 1) ? 1 : y
       @x = (x.nil? || x < 1) ? 1 : x
+    end
+
+    # @param other [Vedeu::Position]
+    # @return [Fixnum]
+    def <=>(other)
+      if y == other.y
+        x <=> other.x
+
+      else
+        y <=> other.y
+
+      end
     end
 
     # An object is equal when its values are the same.

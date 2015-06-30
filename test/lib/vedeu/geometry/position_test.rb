@@ -28,6 +28,14 @@ module Vedeu
       it { instance.must_be_instance_of(described) }
     end
 
+    describe '#<=>' do
+      let(:other) {}
+
+      subject { instance.<=>(other) }
+
+      # it { skip }
+    end
+
     describe '.coerce' do
       let(:_value) {}
 
