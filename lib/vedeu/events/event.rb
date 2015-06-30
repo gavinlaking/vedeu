@@ -131,7 +131,7 @@ module Vedeu
         new_collection = repository.find(name).add(self)
 
       else
-        new_collection = Vedeu::Events.new([self], nil, name)
+        new_collection = Vedeu::EventCollection.new([self], nil, name)
 
       end
 

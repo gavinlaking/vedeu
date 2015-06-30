@@ -12,9 +12,9 @@ module Vedeu
   # A collection of {Vedeu::Event} instances.
   #
   # @api private
-  class Events < Vedeu::Collection
+  class EventCollection < Vedeu::Collection
 
-  end # Events
+  end # EventCollection
 
   # A collection of {Vedeu::Interface} instances.
   #

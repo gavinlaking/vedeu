@@ -13,16 +13,16 @@ module Vedeu
 
   end # Chars
 
-  describe Events do
+  describe EventCollection do
 
-    let(:described) { Vedeu::Events }
+    let(:described) { Vedeu::EventCollection }
     let(:instance)  { described.new }
 
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }
     end
 
-  end # Events
+  end # EventCollection
 
   describe InterfaceCollection do
 

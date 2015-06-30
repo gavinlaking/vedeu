@@ -88,8 +88,8 @@ module Vedeu
     def_delegators Vedeu::Event, :bind, :unbind
 
     # @!method events
-    #   @see Vedeu::EventsRepository.events
-    def_delegators Vedeu::EventsRepository, :events
+    #   @see Vedeu::Events.events
+    def_delegators Vedeu::Events, :events
 
     # @!method focus
     #   @see Vedeu::Focus#focus
