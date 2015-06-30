@@ -65,7 +65,7 @@ module Vedeu
     # @option attributes lines [Vedeu::Lines]
     # @option attributes name [String]
     # @option attributes parent [Vedeu::Composition]
-    # @option attributes repository [Vedeu::InterfacesRepository]
+    # @option attributes repository [Vedeu::Interfaces]
     # @option attributes style [Vedeu::Style]
     # @option attributes visible [Boolean]
     # @option attributes zindex [Fixnum]

@@ -117,8 +117,8 @@ module Vedeu
     def_delegators Vedeu::Groups, :groups
 
     # @!method interfaces
-    #   @see Vedeu::InterfacesRepository.interfaces
-    def_delegators Vedeu::InterfacesRepository, :interfaces
+    #   @see Vedeu::Interfaces.interfaces
+    def_delegators Vedeu::Interfaces, :interfaces
 
     # @!method keymaps
     #   @see Vedeu::Keymaps.keymaps

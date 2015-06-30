@@ -69,7 +69,7 @@ module Vedeu
       #     ...
       #
       # @raise [InvalidSyntax] The required block was not given.
-      # @return [Vedeu::Interfaces<Vedeu::Interface>]
+      # @return [Vedeu::InterfaceCollection<Vedeu::Interface>]
       def view(name = '', &block)
         fail InvalidSyntax, 'block not given' unless block_given?
 
@@ -96,7 +96,7 @@ module Vedeu
       # @param object [Object] The object for which the values of template's
       #   variables can be obtained.
       # @param options [Hash] See {Vedeu::Wordwrap}
-      # @return [Vedeu::Interfaces<Vedeu::Interface>]
+      # @return [Vedeu::InterfaceCollection<Vedeu::Interface>]
       def template_for(name, filename, object = nil, options = {})
         fail MissingRequired, 'Cannot render template without the name of ' \
                               'the view.' unless name

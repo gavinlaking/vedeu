@@ -184,7 +184,7 @@ module Vedeu
         subject { Vedeu.interfaces.inspect }
 
         it { subject.must_equal(
-          "<Vedeu::InterfacesRepository: [\"hydrogen\", \"helium\"]>"
+          "<Vedeu::Interfaces: [\"hydrogen\", \"helium\"]>"
         ) }
       end
     end
