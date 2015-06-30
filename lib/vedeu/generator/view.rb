@@ -34,6 +34,8 @@ module Vedeu
 
         make_helper_file
 
+        make_keymap_file
+
         make_interface_file
 
         make_template_file
@@ -53,6 +55,12 @@ module Vedeu
       def make_helper_file
         make_file(source + '/app/helpers/name.erb',
                   '.' + "/app/helpers/#{name}_helper.rb")
+      end
+
+      # @return [void]
+      def make_keymap_file
+        make_file(source + '/app/models/keymaps/name.erb',
+                  '.' + "/app/models/keymaps/#{name}.rb")
       end
 
       # @return [void]
