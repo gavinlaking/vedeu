@@ -7,16 +7,18 @@ module Vedeu
     describe JSON do
 
       let(:described) { Vedeu::Renderers::JSON }
-      let(:instance)  { described.new(output) }
+      let(:instance)  { described.new(output, options) }
       let(:output)    {}
+      let(:options)   { {} }
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
         it { instance.instance_variable_get('@output').must_equal(output) }
+        it { instance.instance_variable_get('@options').must_equal(options) }
       end
 
       describe '.render' do
-        subject { described.render(output) }
+        subject { described.render(output, options) }
 
         it { subject.must_be_instance_of(String) }
 
@@ -37,15 +39,32 @@ module Vedeu
               ]
             ]
           }
-          it { subject.must_equal(
-            "{\"border\":\"\",\"colour\":{\""                        \
-            "background\":\"\\u001b[48;2;255;255;255m\","            \
-            "\"foreground\":\"\\u001b[38;2;255;0;0m\"},"             \
-            "\"parent\":{\""                                         \
-            "background\":\"\",\"foreground\":\"\",\"style\":\"\"}," \
-            "\"position\":{\"y\":5,\"x\":3},\"style\":\"\","         \
-            "\"value\":\"a\"}\n\n"
-          ) }
+          let(:expected) {
+            <<-eos
+[
+  {
+    \"border\": \"\",
+    \"colour\": {
+      \"background\": \"\\u001b[48;2;255;255;255m\",
+      \"foreground\": \"\\u001b[38;2;255;0;0m\"
+    },
+    \"parent\": {
+      \"background\": \"\",
+      \"foreground\": \"\",
+      \"style\": \"\"
+    },
+    \"position\": {
+      \"y\": 5,
+      \"x\": 3
+    },
+    \"style\": \"\",
+    \"value\": \"a\"
+  }
+]
+            eos
+          }
+
+          it { subject.must_equal(expected.chomp) }
         end
       end
 
