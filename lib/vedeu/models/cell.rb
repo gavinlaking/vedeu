@@ -36,11 +36,9 @@ module Vedeu
     # @option attributes y [NilClass|Fixnum]
     # @return [Vedeu::Cell]
     def initialize(attributes = {})
-      @colour = attributes[:colour]
-      @style  = attributes[:style]
-      @value  = attributes[:value]
-      @x      = attributes[:x]
-      @y      = attributes[:y]
+      @attributes = defaults.merge!(attributes)
+
+      @attributes.each { |key, value| instance_variable_set("@#{key}", value) }
     end
 
     # An object is equal when its values are the same.
@@ -53,6 +51,19 @@ module Vedeu
         y == other.y
     end
     alias_method :==, :eql?
+
+    private
+
+    # @return [Hash<Symbol => void>]
+    def defaults
+      {
+        colour: nil,
+        style:  nil,
+        value:  nil,
+        x:      nil,
+        y:      nil,
+      }
+    end
 
   end # Cell
 

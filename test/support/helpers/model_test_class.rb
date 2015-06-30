@@ -35,19 +35,17 @@ module Vedeu
     def initialize(attributes = {})
       @attributes = defaults.merge!(attributes)
 
-      @colour = @attributes[:colour]
-      @name       = @attributes[:name]
-      @style      = @attributes[:style]
-      @repository = Vedeu::RepositoryTestModule
+      @attributes.each { |key, value| instance_variable_set("@#{key}", value) }
     end
 
     private
 
     def defaults
       {
-        colour: {},
-        name:   '',
-        style:  [],
+        colour:     {},
+        name:       '',
+        repository: Vedeu::RepositoryTestModule,
+        style:      [],
       }
     end
 
