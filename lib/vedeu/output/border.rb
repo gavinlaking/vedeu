@@ -211,13 +211,18 @@ module Vedeu
 
     # Renders the top border for the interface.
     #
+    # @note
+    #   If a title has been specified, then the top border will include this
+    #   title unless the size of the interface is smaller than the padded title
+    #   length.
+    #
     # @return [String]
     def top
       return [] unless top?
 
       out = []
       out << border(top_left, :top_left, *[y, x]) if left?
-      if title?
+      if title? && width > title_characters.size
         out << titlebar
 
       else
