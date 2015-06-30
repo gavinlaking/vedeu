@@ -66,7 +66,8 @@ module Vedeu
       #
       # @example
       #   view 'my_interface' do
-      #     ...
+      #     # ...
+      #   end
       #
       # @raise [InvalidSyntax] The required block was not given.
       # @return [Vedeu::InterfaceCollection<Vedeu::Interface>]
@@ -85,6 +86,7 @@ module Vedeu
       #     template_for('my_interface',
       #                  '/path/to/template.erb',
       #                  @some_object, options)
+      #   end
       #
       # @todo More documentation required.
       #

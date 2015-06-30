@@ -41,12 +41,14 @@ module Vedeu
     # @example
     #   Vedeu.menu 'my_interface' do
     #     items [:item_1, :item_2, :item_3]
-    #     ...
+    #     # ...
+    #   end
     #
     #   Vedeu.menu do
     #     name 'menus_must_have_a_name'
     #     items Track.all_my_favourites
-    #     ...
+    #     # ...
+    #   end
     #
     # @raise [InvalidSyntax] The required block was not given.
     # @return [API::Menu]

@@ -32,6 +32,9 @@ module Vedeu
       #       stream do
       #         background '#22ff00'
       #         # ...
+      #       end
+      #     end
+      #   end
       #
       # @return [String]
       def background(value = '')
@@ -68,6 +71,9 @@ module Vedeu
       #       stream do
       #         colour background: '#000000', foreground: '#ffffff'
       #         # ...
+      #       end
+      #     end
+      #   end
       #
       # @return [Vedeu::Colour]
       def colour(attributes = {})
@@ -81,15 +87,18 @@ module Vedeu
       # @example
       #   interface 'my_interface' do
       #     style 'normal'
-      #     ...
+      #     # ...
+      #   end
       #
       #   lines do
       #     style ['bold', 'underline']
-      #     ...
+      #     # ...
+      #   end
       #
       #   stream do
       #     style 'blink'
-      #     ...
+      #     # ...
+      #   end
       #
       # @return [Vedeu::Style]
       def style(value)

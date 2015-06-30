@@ -21,7 +21,8 @@ module Vedeu
       #
       # @example
       #   Vedeu.configure do
-      #     ...
+      #     # ...
+      #   end
       #
       # @param block [Proc]
       # @return [Configuration::API]
@@ -45,11 +46,13 @@ module Vedeu
       # @example
       #   Vedeu.configure do
       #     interactive!
-      #     ...
+      #     # ...
+      #   end
       #
       #   Vedeu.configure do
       #     interactive false
-      #     ...
+      #     # ...
+      #   end
       #
       # @param value [Boolean]
       # @return [Boolean]
@@ -64,7 +67,8 @@ module Vedeu
       # @example
       #   Vedeu.configure do
       #     standalone!
-      #     ...
+      #     # ...
+      #   end
       #
       # @param value [Boolean]
       # @return [Boolean]
@@ -80,7 +84,8 @@ module Vedeu
       # @example
       #   Vedeu.configure do
       #     run_once!
-      #     ...
+      #     # ...
+      #   end
       #
       # @param value [Boolean]
       # @return [Boolean]
@@ -94,7 +99,8 @@ module Vedeu
       # @example
       #   Vedeu.configure do
       #     drb!
-      #     ...
+      #     # ...
+      #   end
       #
       # @param value [Boolean]
       # @return [Boolean]
@@ -108,7 +114,8 @@ module Vedeu
       # @example
       #   Vedeu.configure do
       #     drb_host 'localhost'
-      #     ...
+      #     # ...
+      #   end
       #
       # @param hostname [String]
       # @return [String]
@@ -121,7 +128,8 @@ module Vedeu
       # @example
       #   Vedeu.configure do
       #     drb_port 12345
-      #     ...
+      #     # ...
+      #   end
       #
       # @param port [Fixnum|String]
       # @return [String]
@@ -134,7 +142,8 @@ module Vedeu
       # @example
       #   Vedeu.configure do
       #     drb_height 25
-      #     ...
+      #     # ...
+      #   end
       #
       # @param height [Fixnum]
       # @return [Fixnum]
@@ -147,7 +156,8 @@ module Vedeu
       # @example
       #   Vedeu.configure do
       #     drb_width 80
-      #     ...
+      #     # ...
+      #   end
       #
       # @param width [Fixnum]
       # @return [Fixnum]
@@ -160,7 +170,8 @@ module Vedeu
       # @example
       #   Vedeu.configure do
       #     cooked!
-      #     ...
+      #     # ...
+      #   end
       #
       # @return [Boolean]
       def cooked!
@@ -173,7 +184,8 @@ module Vedeu
       # @example
       #   Vedeu.configure do
       #     raw!
-      #     ...
+      #     # ...
+      #   end
       #
       # @return [Boolean]
       def raw!
@@ -192,11 +204,13 @@ module Vedeu
       # @example
       #   Vedeu.configure do
       #     debug!
-      #     ...
+      #     # ...
+      #   end
       #
       #   Vedeu.configure do
       #     debug false
-      #     ...
+      #     # ...
+      #   end
       #
       # @param value [Boolean]
       # @return [Boolean]
@@ -210,7 +224,8 @@ module Vedeu
       # @example
       #   Vedeu.configure do
       #     colour_mode 256
-      #     ...
+      #     # ...
+      #   end
       #
       # @note
       #   iTerm 2 on Mac OSX will handle the true colour setting (16777216),
@@ -233,7 +248,8 @@ module Vedeu
       # @example
       #   Vedeu.configure do
       #     log '/var/log/vedeu.log'
-      #     ...
+      #     # ...
+      #   end
       #
       # @param filename [String]
       # @return [String]
@@ -247,11 +263,13 @@ module Vedeu
       # @example
       #   Vedeu.configure do
       #     renderer MyRenderer
-      #     ...
+      #     # ...
+      #   end
       #
       #   Vedeu.configure do
       #     renderers MyRenderer, MyOtherRenderer
-      #     ...
+      #     # ...
+      #   end
       #
       # @param renderer [Array<Class>|Class]
       # @return [Array<Class>]
@@ -265,7 +283,8 @@ module Vedeu
       # @example
       #   Vedeu.configure do
       #     stdin IO.console
-      #     ...
+      #     # ...
+      #   end
       #
       # @param io [File|IO]
       # @return [File|IO]
@@ -278,7 +297,8 @@ module Vedeu
       # @example
       #   Vedeu.configure do
       #     stdout IO.console
-      #     ...
+      #     # ...
+      #   end
       #
       # @param io [File|IO]
       # @return [File|IO]
@@ -291,7 +311,8 @@ module Vedeu
       # @example
       #   Vedeu.configure do
       #     stderr IO.console
-      #     ...
+      #     # ...
+      #   end
       #
       # @param io [File|IO]
       # @return [File|IO]
@@ -304,11 +325,13 @@ module Vedeu
       # @example
       #   Vedeu.configure do
       #     exit_key 'x'
-      #     ...
+      #     # ...
+      #   end
       #
       #   Vedeu.configure do
       #     exit_key :f4
-      #     ...
+      #     # ...
+      #   end
       #
       # @param value [String|Symbol]
       # @return [String|Symbol]
@@ -323,11 +346,13 @@ module Vedeu
       # @example
       #   Vedeu.configure do
       #     focus_next_key 'n'
-      #     ...
+      #     # ...
+      #   end
       #
       #   Vedeu.configure do
       #     focus_next_key :right
-      #     ...
+      #     # ...
+      #   end
       #
       # @param value [String|Symbol]
       # @return [String|Symbol]
@@ -342,11 +367,13 @@ module Vedeu
       # @example
       #   Vedeu.configure do
       #     focus_prev_key 'p'
-      #     ...
+      #     # ...
+      #   end
       #
       #   Vedeu.configure do
       #     focus_prev_key :left
-      #     ...
+      #     # ...
+      #   end
       #
       # @param value [String|Symbol]
       # @return [String|Symbol]
@@ -361,11 +388,13 @@ module Vedeu
       # @example
       #   Vedeu.configure do
       #     mode_switch_key 'm'
-      #     ...
+      #     # ...
+      #   end
       #
       #   Vedeu.configure do
       #     mode_switch_key :f1
-      #     ...
+      #     # ...
+      #   end
       #
       # @param value [String|Symbol]
       # @return [String|Symbol]

@@ -18,12 +18,14 @@ module Vedeu
       #   Vedeu.group 'title_screen' do
       #     add 'welcome_interface'
       #     # ...
+      #   end
       #
       #   Vedeu.group 'main_screen' do
       #     add 'editor_interface'
       #     add 'status_interface'
       #     add 'command_interface'
       #     # ...
+      #   end
       #
       # @note
       #   Creating a group with the same name as an existing group overwrites

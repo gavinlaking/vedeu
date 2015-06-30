@@ -36,7 +36,9 @@ module Vedeu
   # @example
   #   class YourClassHere
   #     include Vedeu
-  #     ...
+  #
+  #     # ...
+  #   end
   #
   # @param receiver []
   # @return [void]

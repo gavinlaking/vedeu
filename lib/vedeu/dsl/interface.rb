@@ -70,14 +70,18 @@ module Vedeu
       #     cursor  :show # => both of these are equivalent to line above
       #     cursor!       #
       #     # ...
+      #   end
       #
+      #   interface 'my_interface' do
       #     cursor false # => hide the cursor for this interface
       #     cursor nil   # => as above
       #     # ...
+      #   end
       #
       #   view 'my_interface' do
-      #     cursor true
-      #     # ...
+      #     cursor true # => Specify the visibility of the cursor when the view
+      #     # ...       #    is rendered.
+      #   end
       #
       # @return [Cursor]
       def cursor(value = true)
@@ -103,6 +107,7 @@ module Vedeu
       #   interface 'my_interface' do
       #     delay 0.5 # interface will not update more often than every 500ms.
       #     # ...
+      #   end
       #
       # @return [Fixnum|Float]
       def delay(value)
@@ -159,6 +164,7 @@ module Vedeu
       #   interface 'my_interface' do
       #     group 'main_screen'
       #     # ...
+      #   end
       #
       # @param name [String] The name of the group to which this interface
       #   should belong.
@@ -212,6 +218,7 @@ module Vedeu
       #   interface do
       #     name 'my_interface'
       #     # ...
+      #   end
       #
       # @return [String]
       def name(value)
@@ -258,14 +265,18 @@ module Vedeu
       #     visible true  # => show the interface
       #     show!         # => as above
       #     # ...
+      #   end
       #
+      #   interface 'my_interface' do
       #     visible false # => hide the interface
       #     hide!         # => as above
       #     # ...
+      #   end
       #
       #   view 'my_interface' do
       #     visible false
       #     # ...
+      #   end
       #
       # @return [void]
       def visible(value = true)
@@ -287,6 +298,7 @@ module Vedeu
       #   interface 'my_interface' do
       #     zindex 3
       #     # ...
+      #   end
       #
       # @param value [Fixnum]
       # @return [void]

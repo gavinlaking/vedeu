@@ -11,7 +11,7 @@ module Vedeu
     #
     #   Vedeu.geometry 'some_interface' do
     #     # ...
-    #
+    #   end
     #
     #   This crude ASCII diagram represents a Geometry within Vedeu, each of the
     #   labels is a value you can access or define.
@@ -37,6 +37,7 @@ module Vedeu
       # @example
       #   Vedeu.geometry 'some_interface' do
       #     # ...
+      #   end
       #
       # @param name [String] The name of the interface or view to which this
       #   geometry belongs.
@@ -69,10 +70,12 @@ module Vedeu
       #   geometry 'some_interface' do
       #     centred!
       #     # ...
+      #   end
       #
       #   geometry 'some_interface' do
       #     centred false
       #     # ...
+      #   end
       #
       # @return [Boolean]
       def centred(value = true)
@@ -93,6 +96,7 @@ module Vedeu
       #   geometry 'some_interface' do
       #     height 8
       #     # ...
+      #   end
       #
       # @note
       #   This value will be ignored if by `y` and `yn` are set.
@@ -116,6 +120,7 @@ module Vedeu
       #   geometry 'some_interface' do
       #     width 25
       #     # ...
+      #   end
       #
       # @note
       #   This value will be ignored if by `x` and `xn` are set.
@@ -131,11 +136,12 @@ module Vedeu
       #   geometry 'some_interface' do
       #     x 7 # start on column 7.
       #     # ...
+      #   end
       #
       #   geometry 'some_interface' do
       #     x { use('other_interface').east } # start on column 8, if
       #     # ...                             # `other_interface` changes
-      #                                       # position, `some_interface` will
+      #   end                                 # position, `some_interface` will
       #                                       # too.
       #
       # @param value [Fixnum]
@@ -153,11 +159,12 @@ module Vedeu
       #   geometry 'some_interface' do
       #     xn 37 # end at column 37.
       #     # ...
+      #   end
       #
       #   geometry 'some_interface' do
       #     xn  { use('other_interface').right } # if `other_interface` changes
       #     # ...                                # position, `some_interface`
-      #                                          # will too.
+      #   end                                    # will too.
       #
       # @note
       #   This value will override `width`.
@@ -177,11 +184,12 @@ module Vedeu
       #   geometry 'some_interface' do
       #     y  4
       #     # ...
+      #   end
       #
       #   geometry 'some_interface' do
       #     y  { use('other_interface').north } # start on row/line 3, if
       #     # ...                               # `other_interface` changes
-      #                                         # position, `some_interface`
+      #   end                                   # position, `some_interface`
       #                                         # will too.
       #
       # @param value [Fixnum]
@@ -199,11 +207,12 @@ module Vedeu
       #   geometry 'some_interface' do
       #     yn 24 # end at row 24.
       #     # ...
+      #   end
       #
       #   geometry 'some_interface' do
       #     yn { use('other_interface').bottom } # if `other_interface` changes
       #     # ...                                # position, `some_interface`
-      #                                          # will too.
+      #   end                                    # will too.
       #
       # @note
       #   This value will override `height`.

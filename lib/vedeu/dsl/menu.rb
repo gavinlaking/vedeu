@@ -28,6 +28,7 @@ module Vedeu
       #   menu 'my_menu' do
       #     item SomeClass.new
       #     item SomeClass.new
+      #   end
       #
       # @return [Array]
       def item(element)
@@ -65,7 +66,8 @@ module Vedeu
       # @example
       #   menu do
       #     name 'my_menu'
-      #     ...
+      #     # ...
+      #   end
       #
       # @return [String]
       def name(value)

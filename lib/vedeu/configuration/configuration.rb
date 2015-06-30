@@ -41,6 +41,8 @@ module Vedeu
       #
       # @example
       #   Vedeu.configure
+      #     # ...
+      #   end
       #
       # @param args [Array]
       # @param opts [Hash]
@@ -58,6 +60,8 @@ module Vedeu
       #
       # @example
       #   Vedeu.configuration
+      #     # ...
+      #   end
       #
       # @return [Vedeu::Configuration]
       def configuration

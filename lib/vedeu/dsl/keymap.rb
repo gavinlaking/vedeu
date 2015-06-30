@@ -21,6 +21,8 @@ module Vedeu
       #   Vedeu.interface 'my_interface' do
       #     keymap do
       #       # ...
+      #     end
+      #   end
       #
       # @param name [String] The name of the interface which this keymap relates
       #   to.
@@ -29,17 +31,23 @@ module Vedeu
       # @example
       #   Vedeu.keymap 'my_interface' do
       #     # ...
+      #   end
       #
       #   Vedeu.keys 'my_interface' do
       #     # ...
+      #   end
       #
       #   Vedeu.interface 'my_interface' do
       #     keymap do
       #       # ...
+      #     end
+      #   end
       #
       #   Vedeu.interface 'my_interface' do
       #     keys do
       #       # ...
+      #     end
+      #   end
       #
       # @raise [InvalidSyntax] The required block was not given.
       # @return [Keymap]
@@ -76,9 +84,10 @@ module Vedeu
       #     key('h', :left) { Vedeu.trigger(:left) }
       #     key('j', :down) { Vedeu.trigger(:down) }
       #     key('p') do
-      #       ...
+      #       # ...
       #     end
-      #     ...
+      #     # ...
+      #   end
       #
       # @raise [InvalidSyntax] When the required block is not given, the
       #   value_or_values parameter is undefined, or when processing the
