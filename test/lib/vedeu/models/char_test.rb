@@ -42,27 +42,12 @@ module Vedeu
       it { instance.must_respond_to(:value) }
     end
 
-    describe '#border' do
+    describe 'accessors' do
       it { instance.must_respond_to(:border) }
-    end
-
-    describe '#border=' do
       it { instance.must_respond_to(:border=) }
-    end
-
-    describe '#parent' do
       it { instance.must_respond_to(:parent) }
-    end
-
-    describe '#parent=' do
       it { instance.must_respond_to(:parent=) }
-    end
-
-    describe '#attributes' do
       it { instance.must_respond_to(:attributes) }
-    end
-
-    describe '#value=' do
       it { instance.must_respond_to(:value=) }
     end
 
@@ -133,12 +118,6 @@ module Vedeu
 
     describe '#to_html' do
       subject { instance.to_html }
-
-      it { subject.must_be_instance_of(String) }
-    end
-
-    describe '#to_json' do
-      subject { instance.to_json }
 
       it { subject.must_be_instance_of(String) }
     end

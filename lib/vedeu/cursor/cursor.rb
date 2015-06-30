@@ -61,13 +61,7 @@ module Vedeu
 
       @attributes = defaults.merge!(attributes)
 
-      @name       = @attributes.fetch(:name)
-      @ox         = @attributes.fetch(:ox)
-      @oy         = @attributes.fetch(:oy)
-      @repository = @attributes.fetch(:repository)
-      @visible    = @attributes.fetch(:visible)
-      @x          = @attributes.fetch(:x)
-      @y          = @attributes.fetch(:y)
+      @attributes.each { |key, value| instance_variable_set("@#{key}", value) }
 
       @position   = Vedeu::Position.new(@y, @x)
     end

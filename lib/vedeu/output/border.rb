@@ -115,9 +115,7 @@ module Vedeu
     def initialize(attributes = {})
       @attributes   = defaults.merge!(attributes)
 
-      @attributes.each do |key, value|
-        instance_variable_set("@#{key}", value)
-      end
+      @attributes.each { |key, value| instance_variable_set("@#{key}", value) }
     end
 
     # @return [Fixnum]
@@ -213,13 +211,18 @@ module Vedeu
 
     # Renders the top border for the interface.
     #
+    # @note
+    #   If a title has been specified, then the top border will include this
+    #   title unless the size of the interface is smaller than the padded title
+    #   length.
+    #
     # @return [String]
     def top
       return [] unless top?
 
       out = []
       out << border(top_left, :top_left, *[y, x]) if left?
-      if title?
+      if title? && width > title_characters.size
         out << titlebar
 
       else
@@ -326,7 +329,7 @@ module Vedeu
 
     # @return [Vedeu::Interface]
     def interface
-      @interface ||= Vedeu.interfaces.find(name)
+      @interface ||= Vedeu.interfaces.by_name(name)
     end
 
     # The default values for a new instance of this class.

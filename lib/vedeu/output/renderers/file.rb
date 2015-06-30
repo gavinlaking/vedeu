@@ -38,6 +38,7 @@ module Vedeu
       # @!attribute [r] output
       # @return [Array<Array<Vedeu::Char>>]
       attr_reader :output
+      alias_method :parsed, :output
 
       private
 
@@ -55,11 +56,6 @@ module Vedeu
           'out'
 
         end
-      end
-
-      # @return [String]
-      def parsed
-        @parsed ||= Vedeu::Compressor.render(output)
       end
 
       # @return [Float]

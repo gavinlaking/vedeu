@@ -39,52 +39,19 @@ module Vedeu
       it { subject.instance_variable_get('@y').must_equal(8) }
     end
 
-    describe '#attributes' do
+    describe 'accessors' do
       it { instance.must_respond_to(:attributes) }
-    end
-
-    describe '#name' do
       it { instance.must_respond_to(:name) }
-    end
-
-    describe '#ox' do
       it { instance.must_respond_to(:ox) }
-    end
-
-    describe '#ox=' do
       it { instance.must_respond_to(:ox=) }
-    end
-
-    describe '#oy' do
       it { instance.must_respond_to(:oy) }
-    end
-
-    describe '#oy=' do
       it { instance.must_respond_to(:oy=) }
-    end
-
-    describe '#state' do
       it { instance.must_respond_to(:state) }
-    end
-
-    describe '#visible' do
       it { instance.must_respond_to(:visible) }
       it { instance.must_respond_to(:visible?) }
-    end
-
-    describe '#x' do
       it { instance.must_respond_to(:x) }
-    end
-
-    describe '#x=' do
       it { instance.must_respond_to(:x=) }
-    end
-
-    describe '#y' do
       it { instance.must_respond_to(:y) }
-    end
-
-    describe '#y=' do
       it { instance.must_respond_to(:y=) }
     end
 

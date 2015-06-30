@@ -33,9 +33,15 @@ module Vedeu
     end
 
     describe '.by_group' do
+      let(:group) {}
+
       subject { described.by_group(group) }
 
       it { described.must_respond_to(:by_group) }
+
+      context 'when no group is given' do
+        it { subject.must_equal(nil) }
+      end
     end
 
     describe '.by_name' do

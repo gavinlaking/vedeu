@@ -9,8 +9,10 @@ module Vedeu
     let(:y)         { 12 }
     let(:x)         { 19 }
 
-    describe 'alias methods' do
+    describe 'accessors' do
+      it { instance.must_respond_to(:y) }
       it { instance.must_respond_to(:first) }
+      it { instance.must_respond_to(:x) }
       it { instance.must_respond_to(:last) }
     end
 
@@ -24,6 +26,14 @@ module Vedeu
       subject { described.[](y, x) }
 
       it { instance.must_be_instance_of(described) }
+    end
+
+    describe '#<=>' do
+      let(:other) {}
+
+      subject { instance.<=>(other) }
+
+      # it { skip }
     end
 
     describe '.coerce' do

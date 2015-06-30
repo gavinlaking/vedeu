@@ -11,11 +11,6 @@ module Vedeu
     let(:oy)        { 3 }
     let(:ox)        { 5 }
 
-    describe 'alias methods' do
-      it { instance.must_respond_to(:first) }
-      it { instance.must_respond_to(:last) }
-    end
-
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }
       it { instance.instance_variable_get('@oy').must_equal(3) }
@@ -55,6 +50,8 @@ module Vedeu
     describe '#y' do
       subject { instance.y }
 
+      it { instance.must_respond_to(:first) }
+
       context 'when iy is <= 0' do
         let(:iy) { -2 }
 
@@ -90,6 +87,8 @@ module Vedeu
 
     describe '#x' do
       subject { instance.x }
+
+      it { instance.must_respond_to(:last) }
 
       context 'when ix is <= 0' do
         let(:ix) { -2 }
