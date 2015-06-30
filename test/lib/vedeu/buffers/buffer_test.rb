@@ -37,31 +37,13 @@ module Vedeu
       end
     end
 
-    describe '#back' do
+    describe 'accessors' do
       it { instance.must_respond_to(:back) }
-    end
-
-    describe '#back=' do
       it { instance.must_respond_to(:back=) }
-    end
-
-    describe '#front' do
       it { instance.must_respond_to(:front) }
-    end
-
-    describe '#front=' do
       it { instance.must_respond_to(:front=) }
-    end
-
-    describe '#previous' do
       it { instance.must_respond_to(:previous) }
-    end
-
-    describe '#previous=' do
       it { instance.must_respond_to(:previous=) }
-    end
-
-    describe '#name' do
       it { instance.must_respond_to(:name) }
     end
 
@@ -163,11 +145,20 @@ module Vedeu
       subject { instance.hide }
 
       context 'when the interface is visible' do
+        # before do
+        #   Vedeu::Visibility.stubs(:hide)
+        #   instance.stubs(:clear)
+        # end
+        # after do
+        #   Vedeu.interfaces.reset
+        # end
+
         # let(:_name) { 'Buffer#hide' }
-        # let(:interface) { Vedeu.interface('Buffer#hide') {} }
+        # let(:interface) { Vedeu.interface('Buffer') {} }
 
         # it {
         #   Vedeu::Visibility.expects(:hide).with(interface)
+        #   instance.expects(:clear)
         #   subject
         # }
       end
@@ -186,11 +177,22 @@ module Vedeu
       end
 
       context 'when the interface is not visible' do
+        # it { skip }
+
+        # before do
+        #   Vedeu::Visibility.stubs(:show)
+        #   instance.stubs(:render)
+        # end
+        # after do
+        #   Vedeu.interfaces.reset
+        # end
+
         # let(:_name) { 'Buffer#show' }
         # let(:interface) { Vedeu.interface('Buffer#show') {} }
 
         # it {
         #   Vedeu::Visibility.expects(:show).with(interface)
+        #   instance.expects(:render)
         #   subject
         # }
       end

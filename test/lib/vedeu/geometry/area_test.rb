@@ -12,7 +12,7 @@ module Vedeu
     let(:xn)        { 21 }
     let(:offset)    { 1 }
 
-    describe 'accessors and aliases' do
+    describe 'accessors' do
       it { instance.must_respond_to(:y) }
       it { instance.must_respond_to(:yn) }
       it { instance.must_respond_to(:x) }

@@ -8,12 +8,11 @@ module Vedeu
     # @!attribute [r] y
     # @return [Fixnum]
     attr_reader :y
+    alias_method :first, :y
 
     # @!attribute [r] x
     # @return [Fixnum]
     attr_reader :x
-
-    alias_method :first, :y
     alias_method :last, :x
 
     # Convenience constructor for Vedeu::Position.
