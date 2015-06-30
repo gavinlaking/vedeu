@@ -112,7 +112,15 @@ module Vedeu
       # Specify this interface as being in focus when the application starts.
       #
       # @note If multiple interfaces are defined, and this is included in each,
-      #   then the last defined will be the interface in focus.
+      #   then the last defined will be the interface in focus. However, this
+      #   behaviour can be overridden:
+      #
+      #   ```ruby
+      #   Vedeu.focus_by_name 'some_interface'
+      #   ```
+      #
+      #   When the above is specified (outside of a `Vedeu.interface`
+      #   declaration), the named interface will be focussed instead.
       #
       # @return [String] The name of the interface in focus.
       def focus!
