@@ -16,10 +16,10 @@ module Vedeu
       # Returns a new instance of Vedeu::Renderers::File.
       #
       # @param output [String]
-      # @option filename [String] Provide a filename for the output.
-      #   Defaults to 'out'.
-      # @option timestamp [Boolean] Append a timestamp to the filename.
       # @param options [Hash]
+      # @option options filename [String] Provide a filename for the output.
+      #   Defaults to 'out'.
+      # @option options timestamp [Boolean] Append a timestamp to the filename.
       # @return [Vedeu::Renderers::File]
       def initialize(output, options = {})
         @output  = output
