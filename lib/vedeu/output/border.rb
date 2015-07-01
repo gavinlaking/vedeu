@@ -176,6 +176,8 @@ module Vedeu
     end
     alias_method :to_str, :to_s
 
+    private
+
     # Renders the bottom border for the interface.
     #
     # @return [String]
@@ -239,8 +241,6 @@ module Vedeu
     def parent
       interface
     end
-
-    private
 
     # @param position [Symbol] Either :top_horizontal, or :bottom_horizontal.
     # @return [Array<Vedeu::Char>]
