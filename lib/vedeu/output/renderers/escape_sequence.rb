@@ -20,9 +20,6 @@ module Vedeu
 
       # @return [String]
       def render
-        Vedeu.log(type:    :debug,
-                  message: "#{self.class.name}:\n#{parsed}")
-
         parsed
       end
 
