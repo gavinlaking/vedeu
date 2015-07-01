@@ -6,7 +6,16 @@ module Vedeu
 
     let(:described) { Vedeu::Events }
 
-    # it { skip }
+    it { described.must_respond_to(:events) }
+
+    describe '.reset!' do
+      subject { described.reset! }
+
+      it {
+        described.expects(:new).with(Vedeu::EventCollection)
+        subject
+      }
+    end
 
   end # Events
 

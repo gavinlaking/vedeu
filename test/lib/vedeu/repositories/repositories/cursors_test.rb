@@ -6,6 +6,8 @@ module Vedeu
 
     let(:described) { Vedeu::Cursors }
 
+    it { described.must_respond_to(:cursors) }
+
     describe '.cursor' do
       subject { Vedeu.cursor }
 
@@ -25,6 +27,36 @@ module Vedeu
         end
 
         it { subject.must_be_instance_of(NilClass) }
+      end
+    end
+
+    describe '.reset!' do
+      subject { described.reset! }
+
+      it {
+        described.expects(:register).with(Vedeu::Cursor)
+        subject
+      }
+    end
+
+    describe '#by_name' do
+      let(:_name) { 'carbon' }
+
+      subject { described.cursors.by_name(_name) }
+
+      context 'when the cursor exists' do
+        before { Vedeu::Cursor.new(name: _name).store }
+        after { Vedeu.cursors.reset }
+
+        it { subject.must_be_instance_of(Vedeu::Cursor) }
+        it { subject.name.must_equal('carbon') }
+      end
+
+      context 'when the cursor does not exist' do
+        let(:_name) { 'nitrogen' }
+
+        it { subject.must_be_instance_of(Vedeu::Cursor) }
+        it { subject.name.must_equal('nitrogen') }
       end
     end
 
