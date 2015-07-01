@@ -64,6 +64,11 @@ class VedeuMaterialColoursApp
     key(:down)  { Vedeu.trigger(:_cursor_down_)  }
     key(:left)  { Vedeu.trigger(:_cursor_left_)  }
 
+    key('q')        { Vedeu.trigger(:_exit_) }
+    key(:escape)    { Vedeu.trigger(:_mode_switch_) }
+    key(:shift_tab) { Vedeu.trigger(:_focus_prev_) }
+    key(:tab)       { Vedeu.trigger(:_focus_next_) }
+
     key('a') { Vedeu.trigger(:_view_left_, 'main_interface')  }
     key('s') { Vedeu.trigger(:_view_down_, 'main_interface')  }
     key('d') { Vedeu.trigger(:_view_up_, 'main_interface')    }

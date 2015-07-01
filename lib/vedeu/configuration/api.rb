@@ -34,9 +34,6 @@ module Vedeu
       #
       # @return [Hash<Symbol => Boolean, Fixnum, String>]
       def configuration
-        new_system_keys = Configuration.default_system_keys.merge!(system_keys)
-        options.merge!(system_keys: new_system_keys) if system_keys.any?
-
         Vedeu::Config.log(Esc.green { '[api]' }, options)
       end
 
@@ -320,89 +317,6 @@ module Vedeu
         options[:stderr] = io
       end
 
-      # Sets the key used to exit the client application. The default is `q`.
-      #
-      # @example
-      #   Vedeu.configure do
-      #     exit_key 'x'
-      #     # ...
-      #   end
-      #
-      #   Vedeu.configure do
-      #     exit_key :f4
-      #     # ...
-      #   end
-      #
-      # @param value [String|Symbol]
-      # @return [String|Symbol]
-      def exit_key(value)
-        return invalid_key('exit_key') unless valid_key?(value)
-        system_keys[:exit] = value
-      end
-
-      # Sets the key used to switch focus to the next defined interface. The
-      # default is `:tab`.
-      #
-      # @example
-      #   Vedeu.configure do
-      #     focus_next_key 'n'
-      #     # ...
-      #   end
-      #
-      #   Vedeu.configure do
-      #     focus_next_key :right
-      #     # ...
-      #   end
-      #
-      # @param value [String|Symbol]
-      # @return [String|Symbol]
-      def focus_next_key(value)
-        return invalid_key('focus_next_key') unless valid_key?(value)
-        system_keys[:focus_next] = value
-      end
-
-      # Sets the key used to switch focus to the previous interface. The default
-      # is `:shift_tab`.
-      #
-      # @example
-      #   Vedeu.configure do
-      #     focus_prev_key 'p'
-      #     # ...
-      #   end
-      #
-      #   Vedeu.configure do
-      #     focus_prev_key :left
-      #     # ...
-      #   end
-      #
-      # @param value [String|Symbol]
-      # @return [String|Symbol]
-      def focus_prev_key(value)
-        return invalid_key('focus_prev_key') unless valid_key?(value)
-        system_keys[:focus_prev] = value
-      end
-
-      # Sets the key used to switch between raw and cooked mode in Vedeu. The
-      # default is `:escape`.
-      #
-      # @example
-      #   Vedeu.configure do
-      #     mode_switch_key 'm'
-      #     # ...
-      #   end
-      #
-      #   Vedeu.configure do
-      #     mode_switch_key :f1
-      #     # ...
-      #   end
-      #
-      # @param value [String|Symbol]
-      # @return [String|Symbol]
-      def mode_switch_key(value)
-        return invalid_key('mode_switch_key') unless valid_key?(value)
-        system_keys[:mode_switch] = value
-      end
-
       private
 
       # Returns the options set via the configuration API DSL or an empty Hash
@@ -411,14 +325,6 @@ module Vedeu
       # @return [Hash]
       def options
         @options ||= {}
-      end
-
-      # Returns the system keys set via the configuration API DSL or an empty
-      # hash if none were redefined.
-      #
-      # @return [Hash]
-      def system_keys
-        @system_keys ||= {}
       end
 
       # Checks that the value provided to {#colour_mode} is valid.
@@ -441,18 +347,6 @@ module Vedeu
         return false if value.is_a?(String) && value.size != 1
 
         (value.is_a?(String) || value.is_a?(Symbol)) && present?(value)
-      end
-
-      # Raises an exception on behalf of the calling method to report that the
-      # value provided is not valid.
-      #
-      # @param system_key [String] The calling method wishing to raise an
-      #   exception.
-      # @raise [InvalidSyntax] When the system_key parameter is not a String or
-      #   Symbol.
-      # @return [InvalidSyntax]
-      def invalid_key(system_key)
-        fail InvalidSyntax, "`#{system_key}` must be a String or a Symbol."
       end
 
     end # API

@@ -35,7 +35,6 @@ module Vedeu
         copy_application_controller
         copy_application_helper
         copy_global_keymap
-        copy_system_keymap
         copy_application_executable
         make_application_executable
         copy_configuration
@@ -97,12 +96,6 @@ module Vedeu
       def copy_global_keymap
         copy_file(source + '/app/models/keymaps/_global_.rb',
                   "#{name}/app/models/keymaps/_global_.rb")
-      end
-
-      # @return [void]
-      def copy_system_keymap
-        copy_file(source + '/app/models/keymaps/_system_.rb',
-                  "#{name}/app/models/keymaps/_system_.rb")
       end
 
       # @return [Array<String>]

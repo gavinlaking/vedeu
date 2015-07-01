@@ -242,45 +242,6 @@ module Vedeu
         # it { skip }
       end
 
-      describe 'redefining system keys' do
-        methods_and_keys = {
-          exit_key:        :exit,
-          focus_next_key:  :focus_next,
-          focus_prev_key:  :focus_prev,
-          mode_switch_key: :mode_switch,
-        }
-
-        context 'when using an invalid value' do
-          invalid_params = [nil, '', 123, 'oops']
-
-          methods_and_keys.each do |meth, _|
-            invalid_params.each do |param|
-              context 'when the parameter is invalid' do
-                it {
-                  proc {
-                    Vedeu.configure { send(meth, param) }
-                  }.must_raise(InvalidSyntax)
-                }
-              end
-            end
-          end
-        end
-
-        context 'when using a valid value' do
-          valid_params = ['v', :f1]
-
-          methods_and_keys.each do |meth, key|
-            valid_params.each do |param|
-              it 'sets the system key to the desired value' do
-                configuration = Vedeu.configure { send(meth, param) }
-
-                configuration.system_keys[key].must_equal(param)
-              end
-            end
-          end
-        end
-      end
-
     end # API
 
   end # Config

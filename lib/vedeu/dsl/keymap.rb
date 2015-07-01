@@ -118,10 +118,6 @@ module Vedeu
       # available to all interfaces. Once a key has been defined in the
       # '_global_' keymap, it cannot be used for a specific interface.
       #
-      # @note Using the name of a keymap that already exists will overwrite that
-      #   keymap. Do not use the name '_system_' as unexpected behaviour may
-      #   occur.
-      #
       # @param value [String]
       # @return [String]
       def name(value)

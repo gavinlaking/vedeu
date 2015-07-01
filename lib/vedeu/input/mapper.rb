@@ -46,7 +46,7 @@ module Vedeu
     end
 
     # Returns a boolean indicating that the key is registered to the current
-    # keymap or the global or system keymap.
+    # keymap, or the global keymap.
     #
     # @return [Boolean]
     def keypress
@@ -56,17 +56,15 @@ module Vedeu
 
       return true if global_key? && keymap('_global_').use(key)
 
-      return true if system_key? && keymap('_system_').use(key)
-
       false
     end
 
     # Returns a boolean indicating that the key is not registered to the current
-    # keymap, the global keymap or the system keymap.
+    # keymap, or the global keymap.
     #
     # @return [Boolean]
     def valid?
-      return false if !key || key_defined? || global_key? || system_key?
+      return false if !key || key_defined? || global_key?
 
       true
     end
@@ -88,13 +86,6 @@ module Vedeu
     # @return [Boolean]
     def global_key?
       key_defined?('_global_')
-    end
-
-    # Is the key a system key?
-    #
-    # @return [Boolean]
-    def system_key?
-      key_defined?('_system_')
     end
 
     # Is the key defined in the named keymap?

@@ -47,6 +47,11 @@ class VedeuConfigurationApp
 
   keymap('config') do
     key(' ') { Vedeu.trigger(:_refresh_, 'config') }
+
+    key('q')        { Vedeu.trigger(:_exit_) }
+    key(:escape)    { Vedeu.trigger(:_mode_switch_) }
+    key(:shift_tab) { Vedeu.trigger(:_focus_prev_) }
+    key(:tab)       { Vedeu.trigger(:_focus_next_) }
   end
 
   def self.start(argv = ARGV)
