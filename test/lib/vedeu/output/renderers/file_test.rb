@@ -8,13 +8,15 @@ module Vedeu
 
       let(:described) { Vedeu::Renderers::File }
       let(:instance)  { described.new(output, options) }
-      let(:output)    {}
+      let(:output)    { 'Some content...' }
       let(:options)   {
         {
-          timestamp: timestamp
+          filename:  filename,
+          timestamp: timestamp,
         }
       }
-      let(:timestamp) { true }
+      let(:filename)  { 'out' }
+      let(:timestamp) { false }
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
@@ -29,24 +31,38 @@ module Vedeu
       describe '#render' do
         let(:_time) { Time.new(2015, 4, 12, 20, 05) }
 
-        before { File.stubs(:open) }
-
         subject { instance.render }
 
-        # it { subject.must_be_instance_of(String) }
+        it { subject.must_be_instance_of(String) }
 
-        # it { skip }
-        # context 'when the timestamp option is true' do
-        #   before { Time.stubs(:now).returns(_time) }
+        context 'when the filename option is not set' do
+          context 'when the timestamp option is not set' do
+            it {
+              ::File.expects(:open).with('/tmp/out', 'w')
+              subject
+            }
+          end
 
-        #   it { File.expects(:open).with('/tmp/out_1428865500.0', 'w'); subject }
-        # end
+          context 'when the timestamp option is set' do
+            let(:timestamp) { true }
 
-        # context 'when the timestamp option is false' do
-        #   let(:timestamp) { false }
+            before { Time.stubs(:now).returns(_time) }
 
-        #   it { File.expects(:open).with('/tmp/out', 'w'); subject }
-        # end
+            it {
+              ::File.expects(:open).with('/tmp/out_1428865500.0', 'w')
+              subject
+            }
+          end
+        end
+
+        context 'when the filename option is set' do
+          let(:filename) { 'some_name' }
+
+          it {
+            ::File.expects(:open).with('/tmp/some_name', 'w')
+            subject
+          }
+        end
       end
 
     end # File

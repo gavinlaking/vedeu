@@ -2,23 +2,23 @@ module Vedeu
 
   module Renderers
 
-    # Converts a grid of {Vedeu::Char} objects into a stream of escape sequences
-    # and content suitable for a terminal, and writes them to a file in the /tmp
-    # directory.
+    # Writes the given output to a file.
     #
     # @api private
     class File
 
-      # @param output [Array<Array<Vedeu::Char>>]
-      # @param options [Hash]
       # @return [String]
+      # @see Vedeu::Renderers::File#initialize
       def self.render(output, options = {})
         new(output, options).render
       end
 
       # Returns a new instance of Vedeu::Renderers::File.
       #
-      # @param output [Array<Array<Vedeu::Char>>]
+      # @param output [String]
+      # @option filename [String] Provide a filename for the output.
+      #   Defaults to 'out'.
+      # @option timestamp [Boolean] Append a timestamp to the filename.
       # @param options [Hash]
       # @return [Vedeu::Renderers::File]
       def initialize(output, options = {})
@@ -36,7 +36,7 @@ module Vedeu
       protected
 
       # @!attribute [r] output
-      # @return [Array<Array<Vedeu::Char>>]
+      # @return [String]
       attr_reader :output
       alias_method :parsed, :output
 
@@ -50,10 +50,10 @@ module Vedeu
       # @return [String]
       def filename
         if timestamp?
-          "out_#{timestamp}"
+          "#{options[:filename]}_#{timestamp}"
 
         else
-          'out'
+          options[:filename]
 
         end
       end
@@ -78,6 +78,7 @@ module Vedeu
       # @return [Hash]
       def defaults
         {
+          filename:  'out',
           timestamp: false,
         }
       end
