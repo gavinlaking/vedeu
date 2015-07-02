@@ -86,28 +86,44 @@ module Vedeu
     # events. Please see those events for their behaviour.
     Vedeu.bind(:_resize_, delay: 0.15) { Vedeu.resize }
 
-    # Hide the cursor of the named interface or interface currently in focus.
-    Vedeu.bind(:_cursor_hide_) do |name|
-      Vedeu::Visibility.for_cursor(name).hide
-    end
-
-    # Show the cursor of the named interface or interface currently in focus.
-    Vedeu.bind(:_cursor_show_) do |name|
-      Vedeu::Visibility.for_cursor(name).show
+    # @see {Vedeu::Move}
+    Vedeu.bind(:_cursor_down_) do |name|
+      Vedeu::Move.by_name(Vedeu::Cursor, :down, name)
     end
 
     # @see {Vedeu::Move}
-    %w(cursor view).each do |model|
-      [:down, :left, :right, :up].each do |direction|
-        Vedeu.bind("_#{model}_#{direction}_".to_sym) do |name|
-          klass = {
-            'cursor' => Vedeu::Cursor,
-            'view'   => Vedeu::Geometry,
-          }.fetch(model)
+    Vedeu.bind(:_cursor_left_) do |name|
+      Vedeu::Move.by_name(Vedeu::Cursor, :left, name)
+    end
 
-          Vedeu::Move.by_name(klass, direction, name)
-        end
-      end
+    # @see {Vedeu::Move}
+    Vedeu.bind(:_cursor_right_) do |name|
+      Vedeu::Move.by_name(Vedeu::Cursor, :right, name)
+    end
+
+    # @see {Vedeu::Move}
+    Vedeu.bind(:_cursor_up_) do |name|
+      Vedeu::Move.by_name(Vedeu::Cursor, :up, name)
+    end
+
+    # @see {Vedeu::Move}
+    Vedeu.bind(:_geometry_down_) do |name|
+      Vedeu::Move.by_name(Vedeu::Geometry, :down, name)
+    end
+
+    # @see {Vedeu::Move}
+    Vedeu.bind(:_geometry_left_) do |name|
+      Vedeu::Move.by_name(Vedeu::Geometry, :left, name)
+    end
+
+    # @see {Vedeu::Move}
+    Vedeu.bind(:_geometry_right_) do |name|
+      Vedeu::Move.by_name(Vedeu::Geometry, :right, name)
+    end
+
+    # @see {Vedeu::Move}
+    Vedeu.bind(:_geometry_up_) do |name|
+      Vedeu::Move.by_name(Vedeu::Geometry, :up, name)
     end
 
     # @see {Vedeu::Move}
@@ -188,9 +204,6 @@ module Vedeu
     # if given.
     Vedeu.bind(:_clear_) { |name| Vedeu::Clear.by_name(name) }
 
-    # Clears the spaces occupied by the interfaces belonging to the named group.
-    Vedeu.bind(:_clear_group_) { |name| Vedeu::Clear.by_group(name) }
-
     # Will cause all interfaces to refresh, or the named interface if given.
     #
     # @note
@@ -206,12 +219,14 @@ module Vedeu
     # Will cause all interfaces in the named group to refresh.
     Vedeu.bind(:_refresh_group_) { |name| Vedeu::Refresh.by_group(name) }
 
-    # Will clear the terminal and then show all of the interfaces belonging to
-    # the named group.
-    Vedeu.bind(:_show_group_) do |name|
-      Vedeu.trigger(:_clear_)
-      Vedeu.trigger(:_refresh_group_, name)
+    # Clears the spaces occupied by the interfaces belonging to the named group.
+    Vedeu.bind(:_clear_group_) { |name| Vedeu::Clear.by_group(name) }
+
+    # Hide the cursor of the named interface or interface currently in focus.
+    Vedeu.bind(:_hide_cursor_) do |name|
+      Vedeu::Visibility.for_cursor(name).hide
     end
+    Vedeu.bind(:_cursor_hide_) { |name| Vedeu.trigger(:_hide_cursor_, name) }
 
     # Will hide all of the interfaces belonging to the named group. Useful for
     # hiding part of that which is currently displaying in the terminal.
@@ -219,11 +234,24 @@ module Vedeu
     # @note
     #   This may be rarely used, since the action of showing a group using
     #   `Vedeu.trigger(:_show_group_, group_name)` will effectively clear the
-    #   terminal and show the new group.
+    #   terminal and show the new group.}
     Vedeu.bind(:_hide_group_) { |name| Vedeu.trigger(:_clear_group_, name) }
 
     # @see Vedeu::Buffer#hide
     Vedeu.bind(:_hide_interface_) { |name| Vedeu.buffers.by_name(name).hide }
+
+    # Show the cursor of the named interface or interface currently in focus.
+    Vedeu.bind(:_show_cursor_) do |name|
+      Vedeu::Visibility.for_cursor(name).show
+    end
+    Vedeu.bind(:_cursor_show_) { |name| Vedeu.trigger(:_show_cursor_, name) }
+
+    # Will clear the terminal and then show all of the interfaces belonging to
+    # the named group.
+    Vedeu.bind(:_show_group_) do |name|
+      Vedeu.trigger(:_clear_)
+      Vedeu.trigger(:_refresh_group_, name)
+    end
 
     # @see Vedeu::Buffer#show
     Vedeu.bind(:_show_interface_) { |name| Vedeu.buffers.by_name(name).show }
