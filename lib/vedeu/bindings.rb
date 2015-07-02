@@ -36,13 +36,13 @@ module Vedeu
     Vedeu.bind(:_drb_restart_) { Vedeu::Distributed::Server.restart }
 
     # Use the DRb server to request the client application to start.
-    Vedeu.bind(:_drb_start_)   { Vedeu::Distributed::Server.start }
+    Vedeu.bind(:_drb_start_) { Vedeu::Distributed::Server.start }
 
     # Use the DRb server to request the status of the client application.
-    Vedeu.bind(:_drb_status_)  { Vedeu::Distributed::Server.status }
+    Vedeu.bind(:_drb_status_) { Vedeu::Distributed::Server.status }
 
     # Use the DRb server to request the client application to stop.
-    Vedeu.bind(:_drb_stop_)    { Vedeu::Distributed::Server.stop }
+    Vedeu.bind(:_drb_stop_) { Vedeu::Distributed::Server.stop }
 
     # Vedeu triggers this event when `:_exit_` is triggered. You can hook into
     # this to perform a special action before the application terminates. Saving
