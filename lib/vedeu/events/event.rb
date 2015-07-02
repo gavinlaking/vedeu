@@ -90,6 +90,8 @@ module Vedeu
 
       # Unbind events from a named handler.
       #
+      # Removes all events associated with the given name.
+      #
       # @example
       #   Vedeu.unbind('some_event')
       #
