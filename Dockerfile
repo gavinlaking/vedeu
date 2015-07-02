@@ -59,8 +59,6 @@ ENV PATH /opt/rubies/ruby-2.2.2/bin/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/u
 
 RUN gem install bundler
 
-# VOLUME .:/home/vedeu/gem
-
 ADD . /home/vedeu/gem/
 WORKDIR /home/vedeu
 USER vedeu
