@@ -1,3 +1,5 @@
+require_relative 'controller'
+
 module Vedeu
 
   # Provides methods which should be available to all client application
@@ -5,6 +7,8 @@ module Vedeu
   #
   # @api private
   class ApplicationController
+
+    include Vedeu::Controller
 
   end # ApplicationController
 
