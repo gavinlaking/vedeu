@@ -15,6 +15,8 @@ module Vedeu
         new(code).process
       end
 
+      # Returns a new instance of Vedeu::Templating::Directive.
+      #
       # @param code [String]
       # @return [Vedeu::Templating::Directive]
       def initialize(code)

@@ -8,6 +8,8 @@ module Vedeu
 
     include Vedeu::Store
 
+    # Returns a new instance of Vedeu::ConveyorStore.
+    #
     # @param storage [Array]
     # @return [Vedeu::ConveyorStore]
     def initialize(storage = [])

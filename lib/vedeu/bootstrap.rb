@@ -13,6 +13,8 @@ module Vedeu
       new(argv, entry_point).start
     end
 
+    # Returns a new instance of Vedeu::Bootstrap.
+    #
     # @param argv [Array<String>]
     # @param entry_point [void]
     # @return [Vedeu::Bootstrap]

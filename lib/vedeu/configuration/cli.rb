@@ -13,6 +13,8 @@ module Vedeu
         new(args).configuration
       end
 
+      # Returns a new instance of Vedeu::Config::CLI.
+      #
       # Configure Vedeu via command-line arguments. Options set here via
       # arguments override the client application configuration set via
       # {Vedeu::API#configure}.

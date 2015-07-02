@@ -13,6 +13,8 @@ module Vedeu
       new(object).render
     end
 
+    # Returns a new instance of Vedeu::ApplicationView.
+    #
     # @param object [void]
     # @return [Vedeu::ApplicationView]
     def initialize(object = nil)

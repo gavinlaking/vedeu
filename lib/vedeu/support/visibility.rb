@@ -31,6 +31,8 @@ module Vedeu
       new(model).toggle
     end
 
+    # Returns a new instance of Vedeu::Visibility.
+    #
     # @param model [void]
     # @return [Vedeu::Visibility]
     def initialize(model)

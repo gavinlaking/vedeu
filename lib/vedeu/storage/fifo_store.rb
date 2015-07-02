@@ -9,6 +9,8 @@ module Vedeu
 
     include Vedeu::Store
 
+    # Returns a new instance of Vedeu::FifoStore.
+    #
     # @param storage [Array]
     # @return [Vedeu::FifoStore]
     def initialize(storage = [])

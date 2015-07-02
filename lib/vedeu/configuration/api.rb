@@ -15,6 +15,8 @@ module Vedeu
         new(&block).configuration
       end
 
+      # Returns a new instance of Vedeu::Config::API.
+      #
       # Configure Vedeu via a simple configuration API DSL. Options set here
       # override the default Vedeu configuration set in
       # {Vedeu::Configuration#defaults}.

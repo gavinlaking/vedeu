@@ -17,6 +17,8 @@ module Vedeu
       new(options)._build
     end
 
+    # Returns a new instance of Vedeu::Options.
+    #
     # @param options [Hash]
     # @return [Vedeu::Options]
     def initialize(options = {})

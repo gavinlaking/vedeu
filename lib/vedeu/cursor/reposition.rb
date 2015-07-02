@@ -11,6 +11,8 @@ module Vedeu
       new(entity, name, y, x).to
     end
 
+    # Returns a new instance of Vedeu::Reposition.
+    #
     # @param entity []
     # @param name [String]
     # @param y [Fixnum]

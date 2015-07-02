@@ -9,6 +9,8 @@ module Vedeu
 
     include Vedeu::Store
 
+    # Returns a new instance of Vedeu::AssociativeStore.
+    #
     # @param storage [Hash]
     # @return [Vedeu::AssociativeStore]
     def initialize(storage = {})

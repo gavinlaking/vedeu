@@ -20,6 +20,8 @@ module Vedeu
         new(name).generate
       end
 
+      # Returns a new instance of Vedeu::Generator::Application.
+      #
       # @param name [String] The name of the application.
       # @return [Vedeu::Generator::Application]
       def initialize(name)
