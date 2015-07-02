@@ -13,6 +13,13 @@ module Vedeu
       storage.each(&block)
     end
 
+    # Return a boolean indicating whether the storage is empty.
+    #
+    # @return [Boolean]
+    def empty?
+      storage.empty?
+    end
+
     # Returns a boolean indicating whether the named model is registered.
     #
     # @param name [String]
@@ -23,13 +30,6 @@ module Vedeu
       storage.include?(name)
     end
     alias_method :registered?, :exists?
-
-    # Return a boolean indicating whether the storage is empty.
-    #
-    # @return [Boolean]
-    def empty?
-      storage.empty?
-    end
 
     # Remove all currently stored data.
     #
