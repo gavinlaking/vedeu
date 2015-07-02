@@ -91,6 +91,14 @@ module Vedeu
       ) }
     end
 
+    describe '#position' do
+      subject { instance.position }
+    end
+
+    describe '#position=' do
+      subject { instance.position=(value) }
+    end
+
     describe '#to_hash' do
       subject { instance.to_hash }
 
