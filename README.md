@@ -21,14 +21,11 @@ Note: You may have trouble running Vedeu with Windows installations. (Pull
 
 ## Installation
 
-Add this line to your application's Gemfile:
+To install Vedeu, simply:
 
-    gem 'vedeu'
+    gem install 'vedeu'
 
-And then execute:
-
-    $ bundle
-
+To use Vedeu's application scaffolding, see the [RubyDoc](http://www.rubydoc.info/gems/vedeu/file/docs/applications.md)
 
 ## Example
 
