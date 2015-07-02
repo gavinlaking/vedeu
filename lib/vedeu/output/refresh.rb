@@ -11,9 +11,7 @@ module Vedeu
     #
     # @return [Array]
     def all
-      message = 'Refreshing all interfaces'
-
-      Vedeu.timer(message) do
+      Vedeu.timer('Refreshing all interfaces') do
         Vedeu.interfaces.zindexed.each { |model| by_name(model.name) }
       end
     end
@@ -36,9 +34,7 @@ module Vedeu
     # @return [Array|ModelNotFound] A collection of the names of interfaces
     #   refreshed, or an exception if the group was not found.
     def by_group(group_name)
-      message = "Refreshing group: '#{group_name}'"
-
-      Vedeu.timer(message) do
+      Vedeu.timer("Refreshing group: '#{group_name}'") do
         members    = Vedeu.groups.find!(group_name).members
         interfaces = members.each { |name| Vedeu.interfaces.by_name(name) }
         by_zindex  = interfaces.sort { |a, b| a.zindex <=> b.zindex }
@@ -52,9 +48,9 @@ module Vedeu
     #   named buffer.
     # @return [Array|ModelNotFound]
     def by_name(name)
-      message = "Refreshing interface: '#{name}'"
-
-      Vedeu.timer(message) { Vedeu.buffers.by_name(name).render }
+      Vedeu.timer("Refreshing interface: '#{name}'") do
+        Vedeu.buffers.by_name(name).render
+      end
     end
 
   end # Refresh
