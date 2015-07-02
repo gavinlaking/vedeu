@@ -158,6 +158,8 @@ module Vedeu
       }
       let(:stream_style)  { Style.new(:underline) }
 
+      it { receiver.must_respond_to(:to_str) }
+
       it 'returns output' do
         stream.to_s.must_equal(
           # - stream colour

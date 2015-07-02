@@ -46,14 +46,6 @@ module Vedeu
     let(:model_name)     { 'terbium' }
     let(:storage)        { {} }
 
-    describe 'alias methods' do
-      it { instance.must_respond_to(:by_name) }
-      it { instance.must_respond_to(:destroy) }
-      it { instance.must_respond_to(:delete) }
-      it { instance.must_respond_to(:deregister) }
-      it { instance.must_respond_to(:register) }
-    end
-
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }
       it { instance.instance_variable_get('@model').must_equal(model) }
@@ -92,6 +84,14 @@ module Vedeu
           it { subject.must_equal([:hydrogen, :helium]) }
         end
       end
+    end
+
+    describe '#by_name' do
+      let(:_name) {}
+
+      subject { instance.by_name(_name) }
+
+      # it { skip }
     end
 
     describe '#current' do
@@ -250,6 +250,10 @@ module Vedeu
     describe '#remove' do
       subject { instance.remove('francium') }
 
+      it { instance.must_respond_to(:destroy) }
+      it { instance.must_respond_to(:delete) }
+      it { instance.must_respond_to(:deregister) }
+
       context 'when the storage is empty' do
         before { instance.reset }
 
@@ -280,6 +284,8 @@ module Vedeu
 
     describe '#store' do
       subject { instance.store(model_instance) }
+
+      it { instance.must_respond_to(:register) }
 
       context 'when a name attribute is empty or nil' do
         before { model_instance.name = '' }

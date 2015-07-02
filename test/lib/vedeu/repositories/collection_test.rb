@@ -26,6 +26,12 @@ module Vedeu
       it { instance.must_respond_to(:name=) }
     end
 
+    describe '.coerce' do
+      subject { described.coerce(collection, parent, model_name) }
+
+      # it { skip }
+    end
+
     describe '#[]' do
       let(:collection) { [:hydrogen, :helium, :lithium, :beryllium] }
       let(:_value) { 1..2 }
@@ -39,6 +45,7 @@ module Vedeu
     describe '#add' do
       subject { instance.add(:hydrogen) }
 
+      it { instance.must_respond_to(:<<) }
       it { subject.must_be_instance_of(Collection) }
       it { subject.all.must_equal([:hydrogen]) }
 

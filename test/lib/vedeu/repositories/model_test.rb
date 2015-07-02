@@ -22,23 +22,49 @@ module Vedeu
   end # DSL
 
   describe Model do
-    let(:model_instance) { ModelTestClass.new(attributes) }
+
+    let(:described)  { ModelTestClass }
+    let(:instance)   { described.new(attributes) }
     let(:attributes) {
       {
         name: 'hydrogen'
       }
     }
 
-    describe '#repository' do
-      it { model_instance.must_respond_to(:repository) }
+    describe 'accessors' do
+      it { instance.must_respond_to(:repository) }
+      it { instance.must_respond_to(:repository=) }
     end
 
-    describe '#repository=' do
-      it { model_instance.must_respond_to(:repository=) }
+    describe '.build' do
+      let(:attributes) {}
+
+      subject { described.build(attributes) { } }
+
+      # it { skip }
+    end
+
+    describe '.child' do
+      let(:klass) {}
+
+      subject { described.child(klass) }
+
+      it { described.must_respond_to(:member) }
+      it { described.must_respond_to(:collection) }
+
+      # it { skip }
+    end
+
+    describe '.repository' do
+      let(:klass) {}
+
+      subject { described.repository(klass) }
+
+      # it { skip }
     end
 
     describe '#deputy' do
-      subject { model_instance.deputy }
+      subject { instance.deputy }
 
       it 'returns the DSL instance' do
         subject.must_be_instance_of(DSL::ModelTestClass)
@@ -46,7 +72,7 @@ module Vedeu
     end
 
     describe '#store' do
-      subject { model_instance.store }
+      subject { instance.store }
 
       it 'returns the model' do
         subject.must_be_instance_of(ModelTestClass)
