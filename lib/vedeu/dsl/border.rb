@@ -102,6 +102,31 @@ module Vedeu
         model.bottom_right = char
       end
 
+      # Disable this border.
+      #
+      # @return [Boolean]
+      def disable!
+        model.enabled = false
+
+        hide_bottom!
+        hide_left!
+        hide_right!
+        hide_top!
+      end
+
+      # Enable this border.
+      # (Borders are enabled by default if defined for an interface).
+      #
+      # @return [Boolean]
+      def enable!
+        model.enabled = true
+
+        show_bottom!
+        show_left!
+        show_right!
+        show_top!
+      end
+
       # Set the character to be used to draw a horizontal part of the border.
       #
       # @example

@@ -84,7 +84,7 @@ module Vedeu
 
     # @!attribute [r] enabled
     # @return [Boolean]
-    attr_reader :enabled
+    attr_accessor :enabled
     alias_method :enabled?, :enabled
 
     # Returns a new instance of Vedeu::Border.

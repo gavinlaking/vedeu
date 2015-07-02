@@ -108,6 +108,7 @@ module Vedeu
       it { instance.must_respond_to(:vertical=) }
       it { instance.must_respond_to(:name) }
       it { instance.must_respond_to(:enabled) }
+      it { instance.must_respond_to(:enabled=) }
       it { instance.must_respond_to(:enabled?) }
     end
 
