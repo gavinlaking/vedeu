@@ -75,6 +75,11 @@ module Vedeu
       [y, x]
     end
 
+    # @return [Vedeu::Position]
+    def to_position
+      self
+    end
+
     # Return the escape sequence required to position the cursor at a particular
     # point on the screen. When passed a block, will do the aforementioned,
     # call the block and then reposition to this location.
