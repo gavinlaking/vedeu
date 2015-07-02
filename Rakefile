@@ -1,14 +1,8 @@
 require 'bundler/gem_tasks'
 require 'rake/testtask'
-# require 'cucumber'
-# require 'cucumber/rake/task'
 require 'inch/rake'
 require 'yard'
 require 'rubocop/rake_task'
-
-# Cucumber::Rake::Task.new(:cucumber) do |t|
-#   t.cucumber_opts = 'features --format progress'
-# end
 
 Rake::TestTask.new(:test) do |t|
   t.libs.push 'lib'
