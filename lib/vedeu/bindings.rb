@@ -225,47 +225,21 @@ module Vedeu
     #   terminal and show the new group.
     Vedeu.bind(:_hide_group_) { |name| Vedeu.trigger(:_clear_group_, name) }
 
-    # Will hide the named interface. If the interface is currently visible, it
-    # will be cleared- rendered blank. To show the interface, the
-    # ':_show_interface_' event should be triggered.
-    # Triggering the ':_hide_group_' event to which this named interface belongs
-    # will also hide the interface.
+    # @see Vedeu::Buffer#hide
     Vedeu.bind(:_hide_interface_) { |name| Vedeu.buffers.by_name(name).hide }
 
-    # Will show the named interface. If the interface is currently invisible, it
-    # will be shown- rendered with its latest content. To hide the interface,
-    # the ':_hide_interface_' event should be triggered.
-    # Triggering the ':_show_group_' event to which this named interface belongs
-    # will also show the interface.
+    # @see Vedeu::Buffer#show
     Vedeu.bind(:_show_interface_) { |name| Vedeu.buffers.by_name(name).show }
 
-    # Will toggle the visibility of the named interface. If the interface is
-    # currently visible, the area it occupies will be clears and the interface
-    # will be marked invisible. If the interface is invisible, then the
-    # interface will be marked visible and rendered in the area it occupies.
-    #
-    # @note
-    #   If an interface is marked visible whilst another view is occupying some
-    #   or all of the interface's current position, the interface will overwrite
-    #   this area- this may cause visual corruption.
+    # @see Vedeu::Buffer#toggle
     Vedeu.bind(:_toggle_interface_) do |name|
-      if Vedeu.interfaces.by_name(name).visible?
-        Vedeu.trigger(:_hide_interface_, name)
-
-      else
-        Vedeu.trigger(:_show_interface_, name)
-
-      end
+      Vedeu.buffers.by_name(name).toggle
     end
 
-    # Will maximise the named interface geometry. This means it will occupy all
-    # of the available space on the terminal window.
+    # @see Vedeu::Geometry#maximise
     Vedeu.bind(:_maximise_) { |name| Vedeu.geometries.by_name(name).maximise }
 
-    # Will unmaximise the named interface geometry. Previously, if a geometry
-    # was maximised, then triggering the unmaximise event will return it to its
-    # usual defined size (terminal size permitting: if the terminal has been
-    # resized, then the new geometry size should adapt).
+    # @see Vedeu::Geometry#unmaximise
     Vedeu.bind(:_unmaximise_) do |name|
       Vedeu.geometries.by_name(name).unmaximise
     end
