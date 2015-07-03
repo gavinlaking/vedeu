@@ -39,13 +39,13 @@ module Vedeu
 
       subject { instance.add(child) }
 
-      it { subject.must_be_instance_of(Vedeu::Interfaces) }
+      it { subject.must_be_instance_of(Vedeu::InterfaceCollection) }
     end
 
     describe '#interfaces' do
       subject { instance.interfaces }
 
-      it { subject.must_be_instance_of(Vedeu::Interfaces) }
+      it { subject.must_be_instance_of(Vedeu::InterfaceCollection) }
     end
 
     describe '#parent' do

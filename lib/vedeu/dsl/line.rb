@@ -58,6 +58,9 @@ module Vedeu
       #
       #       line do
       #         # ...
+      #       end
+      #     end
+      #   end
       #
       # @raise [InvalidSyntax] When no block or value is provided.
       # @return [Vedeu::Lines]
@@ -90,9 +93,14 @@ module Vedeu
       #       line do
       #         streams do
       #           # ...
+      #         end
       #
       #         stream do
       #           # ...
+      #         end
+      #       end
+      #     end
+      #   end
       #
       # @raise [InvalidSyntax] The required block was not given.
       # @return [Vedeu::Streams<Vedeu::Stream>]

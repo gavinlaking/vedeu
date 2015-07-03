@@ -97,6 +97,13 @@ module Vedeu
       @hide_cursor ||= Vedeu::EscapeChar.new(Vedeu::Esc.hide_cursor)
     end
 
+    # Return the position of this cursor.
+    #
+    # @return [Vedeu::Position]
+    def position
+      @position ||= Vedeu::Position.new(y, x)
+    end
+
     # @return [Vedeu::EscapeChar]
     def show_cursor
       @show_cursor ||= Vedeu::EscapeChar.new(Vedeu::Esc.show_cursor)
@@ -109,13 +116,6 @@ module Vedeu
     end
 
     private
-
-    # Return the position of this cursor.
-    #
-    # @return [Vedeu::Position]
-    def position
-      @position ||= Vedeu::Position.new(y, x)
-    end
 
     # The default values for a new instance of this class.
     #

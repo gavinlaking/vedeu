@@ -3,31 +3,37 @@ MAINTAINER Gavin Laking <gavinlaking@gmail.com>
 
 # Build dependencies
 RUN apt-get update && apt-get install -y --force-yes \
-    software-properties-common \
-    build-essential \
-    openssl \
-    ca-certificates \
-    git-core \
     autoconf \
+    automake \
+    bison \
+    build-essential \
+    ca-certificates \
+    curl \
     gawk \
-    libreadline-dev \
-    libyaml-dev \
+    git-core \
+    libffi-dev \
     libgdbm-dev \
     libncurses5-dev \
-    automake \
-    libtool \
-    bison \
-    pkg-config \
-    curl \
-    wget \
-    vim \
-    libxslt-dev \
-    libxml2-dev \
-    libffi-dev \
+    libreadline-dev \
     libssl-dev \
-    zlib1g-dev \
-    make
+    libtool \
+    libxml2-dev \
+    libxslt-dev \
+    libyaml-dev \
+    make \
+    openssl \
+    pkg-config \
+    software-properties-common \
+    vim \
+    wget \
+    zlib1g-dev
+
 RUN apt-get clean -y && apt-get autoremove -y
+
+# Create a fake home directory
+RUN usr/sbin/useradd --create-home --home-dir /home/vedeu --shell /bin/bash vedeu
+RUN mkdir /home/vedeu/gem
+RUN chown -R vedeu:vedeu /home/vedeu
 
 # Chruby
 RUN wget -O chruby-0.3.9.tar.gz https://github.com/postmodern/chruby/archive/v0.3.9.tar.gz
@@ -39,6 +45,7 @@ RUN tar -xzvf ruby-install-0.5.0.tar.gz && cd ruby-install-0.5.0/ && make instal
 
 # Install Ruby 2.2.2
 RUN ruby-install ruby 2.2.2
+RUN chown -R vedeu:vedeu /opt/rubies
 
 # Setup Chruby
 RUN echo '[ -n "$BASH_VERSION" ] || [ -n "$ZSH_VERSION" ] || return' >> /etc/profile.d/chruby.sh
@@ -50,19 +57,7 @@ RUN echo "---\n:benchmark: false\n:bulk_threshold: 1000\n:backtrace: false\n:ver
 # Setup PATH
 ENV PATH /opt/rubies/ruby-2.2.2/bin/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/vedeu/gem/bin
 
-# Get ruby version
-RUN ruby -v
-
-# Create a fake home directory
-RUN usr/sbin/useradd --create-home --home-dir /home/vedeu --shell /bin/bash vedeu
-
-# Make files
-RUN mkdir /home/vedeu/gem
-RUN chown -R vedeu:vedeu /home/vedeu
-RUN chown -R vedeu:vedeu /opt/rubies
 RUN gem install bundler
-
-# VOLUME .:/home/vedeu/gem
 
 ADD . /home/vedeu/gem/
 WORKDIR /home/vedeu

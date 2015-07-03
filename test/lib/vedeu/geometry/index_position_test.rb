@@ -28,6 +28,8 @@ module Vedeu
     describe '#[]' do
       subject { instance.[] }
 
+      it { instance.must_respond_to(:to_position) }
+
       it { subject.must_be_instance_of(Vedeu::Position) }
       it { subject.y.must_equal(9) }
       it { subject.x.must_equal(22) }

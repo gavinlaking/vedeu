@@ -23,10 +23,12 @@ module Vedeu
         # @example
         #   Vedeu.interface 'my_interface' do
         #     # ...
+        #   end
         #
         #   Vedeu.interface do
         #     name 'interfaces_must_have_a_name'
         #     # ...
+        #   end
         #
         # @raise [InvalidSyntax] The required block was not given.
         # @return [Interface]
@@ -51,6 +53,8 @@ module Vedeu
         #   Vedeu.renders do
         #     view 'my_interface' do
         #       # ...
+        #     end
+        #   end
         #
         # @raise [InvalidSyntax] The required block was not given.
         # @return [Array<Interface>]
@@ -81,7 +85,8 @@ module Vedeu
         #     view 'my_other_interface' do
         #       # ... some other attributes ...
         #     end
-        #     ...
+        #     # ...
+        #   end
         #
         # @raise [InvalidSyntax] The required block was not given.
         # @return [Array<Interface>]

@@ -5,6 +5,8 @@ module Vedeu
   # @api private
   class Panel
 
+    # Returns a new instance of Vedeu::Panel.
+    #
     # @return [Vedeu::Panel]
     def initialize
     end

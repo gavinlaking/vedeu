@@ -38,6 +38,11 @@ class VedeuTypedCommands
     key(:right, 'l') { Vedeu.trigger(:_cursor_right_) }
     key(:down,  'j') { Vedeu.trigger(:_cursor_down_)  }
     key(:left,  'h') { Vedeu.trigger(:_cursor_left_)  }
+
+    key('q')        { Vedeu.trigger(:_exit_) }
+    key(:escape)    { Vedeu.trigger(:_mode_switch_) }
+    key(:shift_tab) { Vedeu.trigger(:_focus_prev_) }
+    key(:tab)       { Vedeu.trigger(:_focus_next_) }
   end
 
   border('output') do

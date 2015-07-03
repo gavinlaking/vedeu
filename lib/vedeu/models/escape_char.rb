@@ -11,6 +11,8 @@ module Vedeu
     alias_method :to_s, :value
     alias_method :to_str, :value
 
+    # Returns a new instance of Vedeu::EscapeChar.
+    #
     # @param value [String]
     # @return [Vedeu::EscapeChar]
     def initialize(value)

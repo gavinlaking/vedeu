@@ -50,6 +50,16 @@ module Vedeu
       it { instance.instance_variable_get('@parent').must_equal(parent) }
     end
 
+    describe 'accessors' do
+      it { instance.must_respond_to(:parent) }
+      it { instance.must_respond_to(:parent=) }
+      it { instance.must_respond_to(:attributes) }
+    end
+
+    describe '#add' do
+      subject { instance.add(child) }
+    end
+
     describe '#chars' do
       subject { instance.chars }
 
@@ -106,6 +116,8 @@ module Vedeu
 
     describe '#streams' do
       subject { instance.streams }
+
+      it { instance.must_respond_to(:value) }
 
       it { subject.must_be_instance_of(Vedeu::Streams) }
     end

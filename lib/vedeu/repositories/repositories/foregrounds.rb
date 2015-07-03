@@ -3,16 +3,16 @@ module Vedeu
   # Store foreground colour escape sequences by HTML/CSS code.
   #
   # @api public
-  class ForegroundColours < Colours
+  class Foregrounds < Colours
 
     # @example
     #   Vedeu.foreground_colours
     #
-    # @return [Vedeu::ForegroundColours]
+    # @return [Vedeu::Foregrounds]
     def self.foreground_colours
       @foreground_colours ||= new
     end
 
-  end # ForegroundColours
+  end # Foregrounds
 
 end # Vedeu

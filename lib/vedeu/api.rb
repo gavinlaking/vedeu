@@ -34,8 +34,8 @@ module Vedeu
     module_function
 
     # @!method background_colours
-    #   @see Vedeu::BackgroundColours.background_colours
-    def_delegators Vedeu::BackgroundColours, :background_colours
+    #   @see Vedeu::Backgrounds.background_colours
+    def_delegators Vedeu::Backgrounds, :background_colours
 
     # @!method borders
     #   @see Vedeu::Borders.borders
@@ -88,8 +88,8 @@ module Vedeu
     def_delegators Vedeu::Event, :bind, :unbind
 
     # @!method events
-    #   @see Vedeu::EventsRepository.events
-    def_delegators Vedeu::EventsRepository, :events
+    #   @see Vedeu::Events.events
+    def_delegators Vedeu::Events, :events
 
     # @!method focus
     #   @see Vedeu::Focus#focus
@@ -105,8 +105,8 @@ module Vedeu
                    :focus_next, :focus_previous
 
     # @!method foreground_colours
-    #   @see Vedeu::ForegroundColours.foreground_colours
-    def_delegators Vedeu::ForegroundColours, :foreground_colours
+    #   @see Vedeu::Foregrounds.foreground_colours
+    def_delegators Vedeu::Foregrounds, :foreground_colours
 
     # @!method geometries
     #   @see Vedeu::Geometries.geometries
@@ -117,8 +117,8 @@ module Vedeu
     def_delegators Vedeu::Groups, :groups
 
     # @!method interfaces
-    #   @see Vedeu::InterfacesRepository.interfaces
-    def_delegators Vedeu::InterfacesRepository, :interfaces
+    #   @see Vedeu::Interfaces.interfaces
+    def_delegators Vedeu::Interfaces, :interfaces
 
     # @!method keymaps
     #   @see Vedeu::Keymaps.keymaps

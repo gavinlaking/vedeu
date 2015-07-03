@@ -12,16 +12,16 @@ module Vedeu
   # A collection of {Vedeu::Event} instances.
   #
   # @api private
-  class Events < Vedeu::Collection
+  class EventCollection < Vedeu::Collection
 
-  end # Events
+  end # EventCollection
 
   # A collection of {Vedeu::Interface} instances.
   #
   # @api private
-  class Interfaces < Vedeu::Collection
+  class InterfaceCollection < Vedeu::Collection
 
-  end # Interfaces
+  end # InterfaceCollection
 
   # A collection of {Vedeu::Key} instances.
   #

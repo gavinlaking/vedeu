@@ -22,6 +22,8 @@ module Vedeu
         new(name).generate
       end
 
+      # Returns a new instance of Vedeu::Generator::View.
+      #
       # @param name [String] The name of the view.
       # @return [Vedeu::Generator::View]
       def initialize(name)

@@ -52,15 +52,13 @@ module Vedeu
     def start
       Vedeu.trigger(:_drb_start_)
 
-      output = Vedeu::Terminal.open do
+      Vedeu::Terminal.open do
         Vedeu::Terminal.set_cursor_mode
 
         Vedeu.trigger(:_initialize_)
 
         runner { main_sequence }
       end
-
-      output
     end
 
     protected

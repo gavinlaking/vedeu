@@ -24,7 +24,7 @@ module Vedeu
           end
         }
 
-        it { subject.must_be_instance_of(Vedeu::Interfaces) }
+        it { subject.must_be_instance_of(Vedeu::InterfaceCollection) }
         it { subject.first.must_be_instance_of(Vedeu::Interface) }
 
         context 'when the block is not given' do
@@ -69,7 +69,7 @@ module Vedeu
               with(object, filename).returns(content)
           end
 
-          it { subject.must_be_instance_of(Vedeu::Interfaces) }
+          it { subject.must_be_instance_of(Vedeu::InterfaceCollection) }
         end
       end
 

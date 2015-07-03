@@ -13,6 +13,8 @@ module Vedeu
         new(output).render
       end
 
+      # Returns a new instance of Vedeu::Renderers::EscapeSequence.
+      #
       # @param output [Array<Array<Vedeu::Char>>]
       def initialize(output)
         @output = output
@@ -20,9 +22,6 @@ module Vedeu
 
       # @return [String]
       def render
-        Vedeu.log(type:    :debug,
-                  message: "#{self.class.name}:\n#{parsed}")
-
         parsed
       end
 

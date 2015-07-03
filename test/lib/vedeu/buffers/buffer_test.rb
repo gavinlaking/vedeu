@@ -198,6 +198,18 @@ module Vedeu
       end
     end
 
+    describe '#toggle' do
+      subject { instance.toggle }
+
+      context 'when the interface is visible' do
+        # it { skip }
+      end
+
+      context 'when the interface is not visible' do
+        # it { skip }
+      end
+    end
+
     describe '#render' do
       before { Vedeu::Output.stubs(:render) }
 

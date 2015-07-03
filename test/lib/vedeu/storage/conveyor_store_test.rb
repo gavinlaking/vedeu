@@ -8,10 +8,6 @@ module Vedeu
     let(:instance)  { described.new(storage) }
     let(:storage)   { [] }
 
-    describe 'alias methods' do
-      it { instance.must_respond_to(:current) }
-    end
-
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }
       it { instance.instance_variable_get('@storage').must_equal(storage) }
@@ -19,6 +15,8 @@ module Vedeu
 
     describe '#load' do
       subject { instance.load }
+
+      it { instance.must_respond_to(:current) }
 
       context 'when the storage is empty' do
         it { subject.must_equal(nil) }

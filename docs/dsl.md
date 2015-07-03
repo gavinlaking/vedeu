@@ -6,7 +6,7 @@ Coupled with the API (for interacting with the running client application), the
 
 An Interface is a basic element in the GUI. It usually but does not necessarily
 correspond to a region of the terminal screen (for example, an Interface might
-not be displayed at certain points in an application life cycle). 
+not be displayed at certain points in an application life cycle).
 
 Much of the behavior of an Interface comes from child objects that are defined
 under the Interface. These objects are described in more detail in their
@@ -23,16 +23,16 @@ interface 'main' do
          background: '#000033'  # and background colors
   group 'general' # set interface group
 
-  geometry do 
+  geometry do
     # size and position details
   end
-  border do 
+  border do
     # border properties
   end
-  keymap do 
+  keymap do
     # keymap that is in effect when this interface is focused
   end
-  views do 
+  views do
     # details about how to render the interface
   end
 end
@@ -46,9 +46,9 @@ an `interface` block or explicitly, by passing the interface name as a first
 argument to the declaration.
 
 That is, these are equivalent ways to declare a Geometry for an existing
-interface 
+interface
 
-```ruby 
+```ruby
 interface 'main' do
   geometry do
     # some geometry
@@ -129,11 +129,6 @@ Interfaces can be configured to be part of a named group. Once an interface is a
  hide the interfaces of that group.
 
 ### Keymaps
-
-There are two built in keymaps with Vedeu, 'system' (keys needed by Vedeu to
- operate, e.g. 'q' for quit, to quit the client application), and 'global' which
- holds keys which perform actions no matter which interface is currently
- focussed.
 
 You can define keymaps by name which matches a defined interface. When that
  interface is in focus, keys pressed as part of this definition will affect

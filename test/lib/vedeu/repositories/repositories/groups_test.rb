@@ -6,6 +6,17 @@ module Vedeu
 
     let(:described) { Vedeu::Groups }
 
+    it { described.must_respond_to(:groups) }
+
+    describe '.reset!' do
+      subject { described.reset! }
+
+      it {
+        described.expects(:register).with(Vedeu::Group)
+        subject
+      }
+    end
+
     describe '#by_name' do
       let(:_name) { 'carbon' }
 

@@ -88,6 +88,12 @@ module Vedeu
       it { subject.must_equal([1, 1]) }
     end
 
+    describe '#to_position' do
+      subject { Position.new }
+
+      it { subject.must_be_instance_of(Vedeu::Position) }
+    end
+
     describe '#to_s' do
       # subject { described.new.to_s }
 

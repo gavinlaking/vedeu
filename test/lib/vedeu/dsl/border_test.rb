@@ -58,6 +58,18 @@ module Vedeu
         it { subject.must_equal('D') }
       end
 
+      describe '#disable!' do
+        subject { instance.disable! }
+
+        it { subject.must_be_instance_of(FalseClass) }
+      end
+
+      describe '#enable!' do
+        subject { instance.enable! }
+
+        it { subject.must_be_instance_of(TrueClass) }
+      end
+
       describe '#horizontal' do
         let(:char) { 'H' }
 

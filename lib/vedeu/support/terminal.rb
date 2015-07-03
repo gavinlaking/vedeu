@@ -39,14 +39,14 @@ module Vedeu
       keys_or_cmd = if raw_mode?
                       keys = console.getch
 
-                      if keys.ord == 27
+                      if keys.ord == 27 # \e
                         begin
-                          keys << console.read_nonblock(3)
+                          keys << console.read_nonblock(5)
                         rescue
                           nil
                         end
                         begin
-                          keys << console.read_nonblock(2)
+                          keys << console.read_nonblock(4)
                         rescue
                           nil
                         end

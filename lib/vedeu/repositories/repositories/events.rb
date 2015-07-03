@@ -3,14 +3,14 @@ module Vedeu
   # Allows the storing of events.
   #
   # @api public
-  class EventsRepository < Repository
+  class Events < Repository
 
     class << self
 
       # @example
       #   Vedeu.events
       #
-      # @return [Vedeu::EventsRepository]
+      # @return [Vedeu::Events]
       alias_method :events, :repository
 
       # Remove all stored models from the repository.
@@ -18,13 +18,13 @@ module Vedeu
       # @example
       #   Vedeu.events.reset
       #
-      # @return [Vedeu::EventsRepository]
+      # @return [Vedeu::Events]
       def reset!
-        @events = new(Vedeu::Events)
+        @events = new(Vedeu::EventCollection)
       end
 
     end
 
-  end # EventsRepository
+  end # Events
 
 end # Vedeu

@@ -103,6 +103,12 @@ module Vedeu
       "maximise:#{maximised}>"
     end
 
+    # Will maximise the named interface geometry. This means it will occupy all
+    # of the available space on the terminal window.
+    #
+    # @example
+    #   Vedeu.trigger(:_maximise_, name)
+    #
     # @return [Vedeu::Geometry|NilClass]
     def maximise
       return self if maximised?
@@ -116,6 +122,14 @@ module Vedeu
       work
     end
 
+    # Will unmaximise the named interface geometry. Previously, if a geometry
+    # was maximised, then triggering the unmaximise event will return it to its
+    # usual defined size (terminal size permitting: if the terminal has been
+    # resized, then the new geometry size should adapt).
+    #
+    # @example
+    #   Vedeu.trigger(:_unmaximise_, name)
+    #
     # @return [Vedeu::Geometry|NilClass]
     def unmaximise
       return self unless maximised?

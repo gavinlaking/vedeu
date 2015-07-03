@@ -7,6 +7,8 @@ module Vedeu
     # @api private
     class Interface
 
+      # Returns a new instance of Vedeu::Null::Interface.
+      #
       # @param name [String]
       # @return [Vedeu::Null::Interface]
       def initialize(name = nil)

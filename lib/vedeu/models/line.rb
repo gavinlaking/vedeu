@@ -17,11 +17,6 @@ module Vedeu
     # @return [Interface]
     attr_accessor :parent
 
-    # @!attribute [rw] streams
-    # @return [Streams]
-    attr_accessor :streams
-    alias_method :value, :streams
-
     # @!attribute [r] attributes
     # @return [Hash]
     attr_reader :attributes
@@ -79,6 +74,7 @@ module Vedeu
     def streams
       @_streams ||= collection.coerce(@streams, self)
     end
+    alias_method :value, :streams
 
     # Delegate to Vedeu::Interface#width if available.
     #

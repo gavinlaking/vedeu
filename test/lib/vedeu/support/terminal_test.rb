@@ -185,8 +185,8 @@ module Vedeu
     describe '.cursor' do
       subject { described.cursor }
 
-      # it { subject.must_be_instance_of(Vedeu::Position) }
-      # it { skip }
+      #it { subject.must_be_instance_of(Array) }
+      #it { subject.must_be_instance_of(Vedeu::Position) }
     end
 
     describe '.centre' do

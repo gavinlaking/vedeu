@@ -7,38 +7,46 @@ module Vedeu
     let(:described) { Vedeu::Chars }
     let(:instance)  { described.new }
 
+    it { described.superclass.must_equal(Vedeu::Collection) }
+
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }
     end
 
   end # Chars
 
-  describe Events do
+  describe EventCollection do
 
-    let(:described) { Vedeu::Events }
+    let(:described) { Vedeu::EventCollection }
     let(:instance)  { described.new }
+
+    it { described.superclass.must_equal(Vedeu::Collection) }
 
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }
     end
 
-  end # Events
+  end # EventCollection
 
-  describe Interfaces do
+  describe InterfaceCollection do
 
-    let(:described) { Vedeu::Interfaces }
+    let(:described) { Vedeu::InterfaceCollection }
     let(:instance)  { described.new }
+
+    it { described.superclass.must_equal(Vedeu::Collection) }
 
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }
     end
 
-  end # Interfaces
+  end # InterfaceCollection
 
   describe Keys do
 
     let(:described) { Vedeu::Keys }
     let(:instance)  { described.new }
+
+    it { described.superclass.must_equal(Vedeu::Collection) }
 
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }
@@ -51,6 +59,8 @@ module Vedeu
     let(:described) { Vedeu::Lines }
     let(:instance)  { described.new }
 
+    it { described.superclass.must_equal(Vedeu::Collection) }
+
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }
     end
@@ -61,6 +71,8 @@ module Vedeu
 
     let(:described) { Vedeu::Streams }
     let(:instance)  { described.new }
+
+    it { described.superclass.must_equal(Vedeu::Collection) }
 
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }

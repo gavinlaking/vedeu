@@ -41,6 +41,8 @@ module Vedeu
       #
       # @example
       #   Vedeu.configure
+      #     # ...
+      #   end
       #
       # @param args [Array]
       # @param opts [Hash]
@@ -58,6 +60,8 @@ module Vedeu
       #
       # @example
       #   Vedeu.configuration
+      #     # ...
+      #   end
       #
       # @return [Vedeu::Configuration]
       def configuration
@@ -171,30 +175,11 @@ module Vedeu
         instance.options[:stderr]
       end
 
-      # Returns the redefined system keys for vital Vedeu functions.
-      #
-      # @return [Hash]
-      def system_keys
-        instance.options[:system_keys]
-      end
-
       # Returns the terminal mode for the application. Default is `:raw`.
       #
       # @return [Symbol]
       def terminal_mode
         instance.options[:terminal_mode]
-      end
-
-      # Vedeu's default system keys. Use {Vedeu::Configuration.system_keys}.
-      #
-      # @return [Hash]
-      def default_system_keys
-        {
-          exit:        'q',
-          focus_next:  :tab,
-          focus_prev:  :shift_tab,
-          mode_switch: :escape,
-        }
       end
 
       # @param value [void]
@@ -270,7 +255,6 @@ module Vedeu
         stdin:         nil,
         stdout:        nil,
         stderr:        nil,
-        system_keys:   Vedeu::Configuration.default_system_keys,
         terminal_mode: :raw,
       }
     end

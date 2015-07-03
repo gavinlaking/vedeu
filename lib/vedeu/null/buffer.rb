@@ -12,6 +12,8 @@ module Vedeu
       # @return [String]
       attr_reader :name
 
+      # Returns a new instance of Vedeu::Null::Buffer.
+      #
       # @param name [String]
       # @return [Vedeu::Null::Buffer]
       def initialize(name)

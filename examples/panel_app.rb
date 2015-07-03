@@ -44,6 +44,11 @@ class VedeuPanelApp
     key(:right) { Vedeu.trigger(:_cursor_right_) }
     key(:down)  { Vedeu.trigger(:_cursor_down_)  }
     key(:left)  { Vedeu.trigger(:_cursor_left_)  }
+
+    key('q')        { Vedeu.trigger(:_exit_) }
+    key(:escape)    { Vedeu.trigger(:_mode_switch_) }
+    key(:shift_tab) { Vedeu.trigger(:_focus_prev_) }
+    key(:tab)       { Vedeu.trigger(:_focus_next_) }
   end
 
   renders do

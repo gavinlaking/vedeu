@@ -19,7 +19,6 @@ hopefully these generators will get you off the ground.
     |   |- models/
     |   |   |- keymaps/
     |   |       |- _global_.rb
-    |   |       |- _system_.rb
     |   |
     |   |- views/
     |       |- interfaces/

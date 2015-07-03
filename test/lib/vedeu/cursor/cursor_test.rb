@@ -71,6 +71,12 @@ module Vedeu
       ) }
     end
 
+    describe '#position' do
+      subject { instance.position }
+
+      it { subject.must_be_instance_of(Vedeu::Position) }
+    end
+
     describe '#show_cursor' do
       subject { instance.show_cursor }
 

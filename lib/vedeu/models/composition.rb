@@ -8,7 +8,7 @@ module Vedeu
     include Vedeu::Model
     include Vedeu::Presentation
 
-    collection Vedeu::Interfaces
+    collection Vedeu::InterfaceCollection
     member     Vedeu::Interface
 
     # @!attribute [r] attributes
@@ -29,12 +29,12 @@ module Vedeu
     end
 
     # @param child [Vedeu::Interface]
-    # @return [Vedeu::Interfaces]
+    # @return [Vedeu::InterfaceCollection]
     def add(child)
       @interfaces = interfaces.add(child)
     end
 
-    # @return [Vedeu::Interfaces]
+    # @return [Vedeu::InterfaceCollection]
     def interfaces
       collection.coerce(@interfaces, self)
     end

@@ -12,17 +12,20 @@ module Vedeu
     #   # Borders can be defined when defining your interface...
     #   Vedeu.interface 'my_interface' do
     #     border do
-    #       # ...
+    #     # ...
+    #   end
     #
     #   # ...or as part of a view definition...
     #   Vedeu.renders do
     #     view 'border_demo' do
     #       border do
-    #         # ...
+    #       # ...
+    #     end
     #
     #   # ...or standalone; referencing the target interface or view.
     #   Vedeu.border 'some_interface' do
     #     # ...
+    #   end
     #
     # @api public
     class Border
@@ -36,6 +39,7 @@ module Vedeu
       # @example
       #   Vedeu.border 'some_interface' do
       #     # ...
+      #   end
       #
       # @param name [String] The name of the interface or view to which this
       #   border belongs.
@@ -67,6 +71,9 @@ module Vedeu
       #       border do
       #         bottom_left '+'
       #         # ...
+      #       end
+      #     end
+      #   end
       #
       # @param char [String] Character to be used as the bottom left border
       #   character.
@@ -84,12 +91,40 @@ module Vedeu
       #       border do
       #         bottom_right '+'
       #         # ...
+      #       end
+      #     end
+      #   end
       #
       # @param char [String] Character to be used as the bottom right border
       #   character.
       # @return [String]
       def bottom_right(char)
         model.bottom_right = char
+      end
+
+      # Disable this border.
+      #
+      # @return [Boolean]
+      def disable!
+        model.enabled = false
+
+        hide_bottom!
+        hide_left!
+        hide_right!
+        hide_top!
+      end
+
+      # Enable this border.
+      # (Borders are enabled by default if defined for an interface).
+      #
+      # @return [Boolean]
+      def enable!
+        model.enabled = true
+
+        show_bottom!
+        show_left!
+        show_right!
+        show_top!
       end
 
       # Set the character to be used to draw a horizontal part of the border.
@@ -100,6 +135,9 @@ module Vedeu
       #       border do
       #         horizontal '-'
       #         # ...
+      #       end
+      #     end
+      #   end
       #
       # @param char [String] Character to be used as the horizontal border
       #   character.
@@ -119,6 +157,9 @@ module Vedeu
       #         hide_bottom!
       #         # ... or
       #         show_bottom!
+      #       end
+      #     end
+      #   end
       #
       # @param value [Boolean] All values evaluate as true except nil and
       #   false.
@@ -155,6 +196,9 @@ module Vedeu
       #         hide_left!
       #         # ... or
       #         show_left!
+      #       end
+      #     end
+      #   end
       #
       # @param value [Boolean] All values evaluate as true except nil and
       #   false.
@@ -191,6 +235,9 @@ module Vedeu
       #         hide_right!
       #         # ... or
       #         show_right!
+      #       end
+      #     end
+      #   end
       #
       # @param value [Boolean] All values evaluate as true except nil and
       #   false.
@@ -225,6 +272,9 @@ module Vedeu
       #       border do
       #         title 'My Cool Title'
       #         # ...
+      #       end
+      #     end
+      #   end
       #
       #   +- My Cool Title --------------------------------+
       #
@@ -245,6 +295,9 @@ module Vedeu
       #         hide_top!
       #         # ... or
       #         show_top!
+      #       end
+      #     end
+      #   end
       #
       # @param value [Boolean] All values evaluate as true except nil and
       #   false.
@@ -278,6 +331,9 @@ module Vedeu
       #       border do
       #         top_left '+'
       #         # ...
+      #       end
+      #     end
+      #   end
       #
       # @param char [String] Character to be used as the top left border
       #   character.

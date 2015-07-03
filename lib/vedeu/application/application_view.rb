@@ -1,9 +1,13 @@
+require_relative 'view'
+
 module Vedeu
 
   # Provides the mechanism to render views for the client application.
   #
   # @api private
   class ApplicationView
+
+    include Vedeu::View
 
     # Renders the view.
     #
@@ -13,6 +17,8 @@ module Vedeu
       new(object).render
     end
 
+    # Returns a new instance of Vedeu::ApplicationView.
+    #
     # @param object [void]
     # @return [Vedeu::ApplicationView]
     def initialize(object = nil)

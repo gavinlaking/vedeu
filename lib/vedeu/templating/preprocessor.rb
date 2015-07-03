@@ -24,6 +24,8 @@ module Vedeu
         new(lines).process
       end
 
+      # Returns a new instance of Vedeu::Templating::Preprocessor.
+      #
       # @param lines [Array<String>]
       # @return [Vedeu::Templating::Preprocessor]
       def initialize(lines)

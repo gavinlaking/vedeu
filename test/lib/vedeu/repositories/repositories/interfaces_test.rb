@@ -2,9 +2,20 @@ require 'test_helper'
 
 module Vedeu
 
-  describe InterfacesRepository do
+  describe Interfaces do
 
-    let(:described) { Vedeu::InterfacesRepository }
+    let(:described) { Vedeu::Interfaces }
+
+    it { described.must_respond_to(:interfaces) }
+
+    describe '.reset!' do
+      subject { described.reset! }
+
+      it {
+        described.expects(:register).with(Vedeu::Interface)
+        subject
+      }
+    end
 
     describe '#zindexed' do
       before do
@@ -25,6 +36,6 @@ module Vedeu
       it { subject.must_equal([@lithium, @hydrogen, @helium]) }
     end
 
-  end # InterfacesRepository
+  end # Interfaces
 
 end # Vedeu

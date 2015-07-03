@@ -25,6 +25,8 @@ module Vedeu
     context 'the cursor specific events are defined' do
       it { Vedeu.events.registered?(:_cursor_hide_).must_equal(true) }
       it { Vedeu.events.registered?(:_cursor_show_).must_equal(true) }
+      it { Vedeu.events.registered?(:_hide_cursor_).must_equal(true) }
+      it { Vedeu.events.registered?(:_show_cursor_).must_equal(true) }
       it { Vedeu.events.registered?(:_cursor_down_).must_equal(true) }
       it { Vedeu.events.registered?(:_cursor_left_).must_equal(true) }
       it { Vedeu.events.registered?(:_cursor_right_).must_equal(true) }
@@ -33,6 +35,15 @@ module Vedeu
       it { Vedeu.events.registered?(:_cursor_position_).must_equal(true) }
       it { Vedeu.events.registered?(:_cursor_reposition_).must_equal(true) }
       it { Vedeu.events.registered?(:_cursor_reset_).must_equal(true) }
+    end
+
+    context 'the geometry specific events are defined' do
+      it { Vedeu.events.registered?(:_geometry_down_).must_equal(true) }
+      it { Vedeu.events.registered?(:_geometry_left_).must_equal(true) }
+      it { Vedeu.events.registered?(:_geometry_right_).must_equal(true) }
+      it { Vedeu.events.registered?(:_geometry_up_).must_equal(true) }
+      it { Vedeu.events.registered?(:_maximise_).must_equal(true) }
+      it { Vedeu.events.registered?(:_unmaximise_).must_equal(true) }
     end
 
     context 'the drb specific events are defined' do
@@ -67,6 +78,10 @@ module Vedeu
     context 'the refresh event for all registered interfaces is defined' do
       it { Vedeu.events.registered?(:_refresh_).must_equal(true) }
     end
+
+    it { Vedeu.events.registered?(:_hide_interface_).must_equal(true) }
+    it { Vedeu.events.registered?(:_show_interface_).must_equal(true) }
+    it { Vedeu.events.registered?(:_toggle_interface_).must_equal(true) }
 
   end # Bindings
 

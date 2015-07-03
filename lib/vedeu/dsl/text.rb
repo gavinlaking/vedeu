@@ -16,9 +16,11 @@ module Vedeu
       # @example
       #   lines do
       #     centre '...'
+      #   end
       #
       #   line do
       #     right '...'
+      #   end
       #
       #   left 'This will be left aligned.', width: 35
       #   # => 'This will be left aligned.         '

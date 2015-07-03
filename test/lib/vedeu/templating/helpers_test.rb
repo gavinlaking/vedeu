@@ -23,6 +23,8 @@ module Vedeu
 
         subject { instance.background('#000000') { 'background text' } }
 
+        it { instance.must_respond_to(:bg) }
+
         it { subject.must_equal(expected) }
       end
 
@@ -86,6 +88,8 @@ module Vedeu
         }
 
         subject { instance.foreground('#000000') { 'foreground text' } }
+
+        it { instance.must_respond_to(:fg) }
 
         it { subject.must_equal(expected) }
       end

@@ -45,6 +45,9 @@ module Vedeu
       elsif name
         Vedeu::Cursor.new(name: name).store
 
+      else
+        Vedeu::Cursor.new(name: Vedeu.focus).store
+
       end
     end
 

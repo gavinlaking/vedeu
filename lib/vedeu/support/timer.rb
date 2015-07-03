@@ -21,6 +21,8 @@ module Vedeu
 
     end
 
+    # Returns a new instance of Vedeu::Timer.
+    #
     # @param message [String]
     # @return [Vedeu::Timer]
     def initialize(message = '')

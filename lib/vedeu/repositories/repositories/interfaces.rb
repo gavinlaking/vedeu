@@ -3,14 +3,14 @@ module Vedeu
   # Allows the storing of interfaces and views.
   #
   # @api public
-  class InterfacesRepository < Repository
+  class Interfaces < Repository
 
     class << self
 
       # @example
       #   Vedeu.interfaces
       #
-      # @return [Vedeu::InterfacesRepository]
+      # @return [Vedeu::Interfaces]
       alias_method :interfaces, :repository
 
       # Remove all stored models from the repository.
@@ -18,7 +18,7 @@ module Vedeu
       # @example
       #   Vedeu.interfaces.reset!
       #
-      # @return [Vedeu::InterfacesRepository]
+      # @return [Vedeu::Interfaces]
       def reset!
         @interfaces = register(Vedeu::Interface)
       end
@@ -39,6 +39,6 @@ module Vedeu
       all.sort { |a, b| a.zindex <=> b.zindex }
     end
 
-  end # InterfacesRepository
+  end # Interfaces
 
 end # Vedeu

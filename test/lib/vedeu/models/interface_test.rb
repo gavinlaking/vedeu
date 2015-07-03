@@ -67,8 +67,18 @@ module Vedeu
       it { instance.must_respond_to(:lines=) }
     end
 
+    describe '#lines' do
+      subject { instance.lines }
+
+      it { instance.must_respond_to(:content) }
+      it { instance.must_respond_to(:value) }
+    end
+
     describe '#lines?' do
       subject { instance.lines? }
+
+      it { instance.must_respond_to(:content?) }
+      it { instance.must_respond_to(:value?) }
 
       context 'when the interface has content' do
         let(:lines) { [:line] }

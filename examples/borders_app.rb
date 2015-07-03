@@ -168,6 +168,11 @@ class VedeuBordersApp
 
   keymap '_global_' do
     key('r') { Vedeu.trigger(:_refresh_) }
+
+    key('q')        { Vedeu.trigger(:_exit_) }
+    key(:escape)    { Vedeu.trigger(:_mode_switch_) }
+    key(:shift_tab) { Vedeu.trigger(:_focus_prev_) }
+    key(:tab)       { Vedeu.trigger(:_focus_next_) }
   end
 
   # Borders can be defined as part of a view (see below), or standalone.

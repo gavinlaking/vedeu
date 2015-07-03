@@ -32,6 +32,7 @@ module Vedeu
     def []
       Vedeu::Position.new(y, x)
     end
+    alias_method :to_position, :[]
 
     # An object is equal when its values are the same.
     #

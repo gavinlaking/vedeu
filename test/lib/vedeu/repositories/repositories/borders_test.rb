@@ -8,25 +8,15 @@ module Vedeu
 
     after { Vedeu.borders.reset }
 
-    describe '#by_name' do
-      let(:_name) { 'carbon' }
+    it { described.must_respond_to(:borders) }
 
-      subject { described.borders.by_name(_name) }
+    describe '.reset!' do
+      subject { described.reset! }
 
-      context 'when the border exists' do
-        before do
-          Vedeu.border 'carbon' do
-          end
-        end
-
-        it { subject.must_be_instance_of(Vedeu::Border) }
-      end
-
-      context 'when the border does not exist' do
-        let(:_name) { 'nitrogen' }
-
-        it { subject.must_be_instance_of(Vedeu::Null::Border) }
-      end
+      it {
+        described.expects(:register).with(Vedeu::Border)
+        subject
+      }
     end
 
   end # Borders

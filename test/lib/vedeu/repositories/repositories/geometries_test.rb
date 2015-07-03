@@ -8,29 +8,15 @@ module Vedeu
 
     after { Vedeu.geometries.reset }
 
-    describe '#by_name' do
-      let(:_name) { 'carbon' }
+    it { described.must_respond_to(:geometries) }
 
-      subject { described.geometries.by_name(_name) }
+    describe '.reset!' do
+      subject { described.reset! }
 
-      context 'when the geometry exists' do
-        before do
-          Vedeu.geometry 'carbon' do
-            x  1
-            xn 3
-            y  1
-            yn 3
-          end
-        end
-
-        it { subject.must_be_instance_of(Vedeu::Geometry) }
-      end
-
-      context 'when the geometry does not exist' do
-        let(:_name) { 'nitrogen' }
-
-        it { subject.must_be_instance_of(Vedeu::Null::Geometry) }
-      end
+      it {
+        described.expects(:register).with(Vedeu::Geometry)
+        subject
+      }
     end
 
   end # Geometries
