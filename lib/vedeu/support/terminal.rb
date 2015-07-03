@@ -184,7 +184,7 @@ module Vedeu
     #
     # @return [Vedeu::Position]
     def cursor
-      Vedeu.trigger(:_cursor_position_)
+      # Vedeu.trigger(:_cursor_position_)
     end
 
     # Returns a coordinate tuple of the format [y, x], where `y` is the row/line
