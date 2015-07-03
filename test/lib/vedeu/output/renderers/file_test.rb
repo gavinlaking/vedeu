@@ -29,7 +29,7 @@ module Vedeu
       end
 
       describe '#render' do
-        let(:_time) { Time.new(2015, 4, 12, 20, 05) }
+        let(:_time) { Time.new(2015, 4, 12, 20, 05, 00, "+01:00") }
 
         subject { instance.render }
 
