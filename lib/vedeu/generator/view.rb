@@ -16,8 +16,7 @@ module Vedeu
 
       include Vedeu::Generator::Helpers
 
-      # @param name [String] The name of the view.
-      # @return [Vedeu::Generator::View]
+      # @see Vedeu::Generator::View#initialize
       def self.generate(name)
         new(name).generate
       end

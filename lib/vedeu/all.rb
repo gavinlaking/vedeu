@@ -37,3 +37,5 @@ require 'vedeu/launcher'
 require 'vedeu/application/all'
 
 require 'vedeu/bootstrap'
+
+require 'vedeu/cli/all'
