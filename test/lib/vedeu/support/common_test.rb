@@ -14,10 +14,11 @@ module Vedeu
 
   describe Common do
 
-    let(:described) { Vedeu::VedeuCommonClass.new }
+    let(:described) { Vedeu::VedeuCommonClass }
+    let(:instance) { described.new }
 
     describe '#present?' do
-      subject { described.defined_value_test(_value) }
+      subject { instance.defined_value_test(_value) }
 
       context 'when the variable is a Fixnum' do
         let(:_value) { 17 }
@@ -42,6 +43,20 @@ module Vedeu
         let(:_value)     { attributes[:not_found] }
 
         it { subject.must_equal(false) }
+      end
+    end
+
+    describe '#snake_case' do
+      let(:_name) { 'MyFirstApp' }
+
+      subject { instance.snake_case(_name) }
+
+      it { subject.must_equal('my_first_app') }
+
+      context 'when namespaced' do
+        let(:_name) { 'MyFirstApp::SomeController' }
+
+        it { subject.must_equal('my_first_app/some_controller') }
       end
     end
 

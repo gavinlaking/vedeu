@@ -1,3 +1,5 @@
+require 'vedeu/support/common'
+
 module Vedeu
 
   module Generator
@@ -8,20 +10,11 @@ module Vedeu
     # @api private
     module Helpers
 
+      include Vedeu::Common
+
       # @return [String]
       def app_name
         @app_name ||= File.read('./config/app_name')
-      end
-
-      # @param name [String]
-      # @return [String]
-      def app_name_as_snake_case(name = app_name)
-        name.gsub!(/::/, '/')
-        name.gsub!(/([A-Z]+)([A-Z][a-z])/, '\1_\2')
-        name.gsub!(/([a-z\d])([A-Z])/, '\1_\2')
-        name.tr!('-', '_')
-        name.downcase!
-        name
       end
 
       # @param destination [String]

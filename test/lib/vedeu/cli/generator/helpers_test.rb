@@ -26,14 +26,6 @@ module Vedeu
         # it { subject.must_equal('MyFirstApp') }
       end
 
-      describe '#app_name_as_snake_case' do
-        let(:_name) { 'MyFirstApp' }
-
-        subject { instance.app_name_as_snake_case(_name) }
-
-        it { subject.must_equal('my_first_app') }
-      end
-
       describe '#make_directory' do
         let(:destination) {}
 
