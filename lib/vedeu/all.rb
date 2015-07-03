@@ -13,7 +13,7 @@ require 'vedeu/repositories/all'
 require 'vedeu/api'
 require 'vedeu/bindings'
 
-require 'vedeu/generator/all'
+require 'vedeu/cli/generator/all'
 
 # load order has not been fully established beyond this point
 

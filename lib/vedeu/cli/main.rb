@@ -10,10 +10,10 @@ module Vedeu
       end
 
       # 'Specify the interface name lowercase snakecase; e.g. main_interface'
-      desc 'view <name> (<group>)',
+      desc 'view <name>',
            'Create a new interface within the client application.'
-      def view(name, group = nil)
-        Vedeu::Generator::View.generate(name, group)
+      def view(name)
+        Vedeu::Generator::View.generate(name)
       end
 
       desc 'version',

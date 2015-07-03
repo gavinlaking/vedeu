@@ -1,6 +1,6 @@
-require 'vedeu/generator/helpers'
-require 'vedeu/generator/application'
-require 'vedeu/generator/view'
+require 'vedeu/cli/generator/helpers'
+require 'vedeu/cli/generator/application'
+require 'vedeu/cli/generator/view'
 
 module Vedeu
 

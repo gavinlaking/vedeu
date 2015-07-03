@@ -119,7 +119,7 @@ module Vedeu
 
         it { subject.must_be_instance_of(String) }
 
-        it { subject.must_match('vedeu/generator/templates/application/.') }
+        it { subject.must_match('vedeu/cli/generator/templates/application/.') }
       end
 
     end # Helpers
