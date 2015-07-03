@@ -3,6 +3,11 @@ module Vedeu
   module Controller
 
     module ClassMethods
+
+      def controller_name(name)
+        Vedeu.bind("show_#{name}".to_sym) { self.new }
+      end
+
     end # ClassMethods
 
     module InstanceMethods
