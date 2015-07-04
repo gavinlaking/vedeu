@@ -58,11 +58,12 @@ module Vedeu
         #
         # @raise [InvalidSyntax] The required block was not given.
         # @return [Array<Interface>]
-        def renders(&block)
+        def render(&block)
           fail InvalidSyntax, 'block not given' unless block_given?
 
           store(:store_immediate, &block)
         end
+        alias_method :renders, :render
 
         # Deferred view
         #

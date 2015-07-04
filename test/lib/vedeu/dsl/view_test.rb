@@ -43,6 +43,7 @@ module Vedeu
           end
         }
 
+        it { described.must_respond_to(:render) }
         it { subject.must_be_instance_of(Array) }
 
         context 'when the block is not given' do
