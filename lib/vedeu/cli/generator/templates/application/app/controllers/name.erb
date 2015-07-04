@@ -5,7 +5,7 @@ module <%= object.app_name %>
 
   class <%= object.name_as_class %>Controller < <%= object.app_name -%>::ApplicationController
 
-    controller_name <%= object.app_name -%>
+    controller_name :<%= object.name %>
 
     def initialize
       <%= object.app_name %>::<%= object.name_as_class %>View.render(object)
