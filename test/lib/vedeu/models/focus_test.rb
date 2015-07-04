@@ -98,6 +98,8 @@ module Vedeu
     end
 
     describe '#current' do
+      before { Focus.reset }
+
       subject { described.current }
 
       it 'returns the name of the interface currently in focus' do
@@ -108,8 +110,6 @@ module Vedeu
       end
 
       context 'when no interfaces are defined' do
-        before { Focus.reset }
-
         it { subject.must_equal(nil) }
       end
 
@@ -162,6 +162,7 @@ module Vedeu
 
     describe '#next_visible_item' do
       before do
+        Vedeu.stubs(:trigger)
         Vedeu.interface('gold') { visible true }
         Vedeu.interface('silver') { visible true }
         Vedeu.interface('platinum') { visible false }
@@ -192,6 +193,7 @@ module Vedeu
 
     describe '#prev_item' do
       it 'the previous interface is focussed when the method is called' do
+
         Focus.add('thallium')
         Focus.add('lead')
         Focus.add('bismuth')
@@ -207,6 +209,7 @@ module Vedeu
 
     describe '#prev_visible_item' do
       before do
+        Vedeu.stubs(:trigger)
         Vedeu.interface('gold') { visible true }
         Vedeu.interface('silver') { visible true }
         Vedeu.interface('platinum') { visible false }
