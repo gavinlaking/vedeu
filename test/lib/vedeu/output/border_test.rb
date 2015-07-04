@@ -124,6 +124,7 @@ module Vedeu
           end
         end
       end
+      after { Vedeu.interfaces.reset }
 
       describe '#bx' do
         subject { instance.bx }
