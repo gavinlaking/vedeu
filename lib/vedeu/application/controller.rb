@@ -1,17 +1,19 @@
 module Vedeu
 
+  # Provides methods to be used by Vedeu::ApplicationController.
+  #
+  # @api private
   module Controller
 
+    # When included, provide these methods as class methods.
     module ClassMethods
 
+      # @param name [Symbol] The name of the controller
       def controller_name(name)
         Vedeu.bind("show_#{name}".to_sym) { self.new }
       end
 
     end # ClassMethods
-
-    module InstanceMethods
-    end # InstanceMethods
 
     # When this module is included in a class, provide ClassMethods as class
     # methods for the class.
@@ -20,7 +22,6 @@ module Vedeu
     # @return [void]
     def self.included(klass)
       klass.send :extend, ClassMethods
-      klass.send :include, InstanceMethods
     end
 
   end # Controller

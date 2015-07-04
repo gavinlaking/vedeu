@@ -2,6 +2,8 @@ module Vedeu
 
   module Bindings
 
+    # System events relating to the visibility of cursors or interfaces.
+    #
     # @api public
     module Visibility
 

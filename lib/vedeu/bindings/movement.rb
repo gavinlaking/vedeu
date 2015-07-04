@@ -2,6 +2,8 @@ module Vedeu
 
   module Bindings
 
+    # System events relating to movement of cursors or interfaces.
+    #
     # @api public
     module Movement
 

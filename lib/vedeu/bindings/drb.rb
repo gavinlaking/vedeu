@@ -2,6 +2,8 @@ module Vedeu
 
   module Bindings
 
+    # System events relating to the DRb server implementation.
+    #
     # @api public
     module DRB
 
