@@ -94,7 +94,6 @@ module Vedeu
     def lines
       collection.coerce(@lines, self)
     end
-    alias_method :content, :lines
     alias_method :value, :lines
 
     # Returns a boolean indicating whether the interface has content.

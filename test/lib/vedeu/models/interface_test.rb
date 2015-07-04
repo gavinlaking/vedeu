@@ -70,7 +70,6 @@ module Vedeu
     describe '#lines' do
       subject { instance.lines }
 
-      it { instance.must_respond_to(:content) }
       it { instance.must_respond_to(:value) }
     end
 

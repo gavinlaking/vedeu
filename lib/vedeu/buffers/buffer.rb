@@ -74,7 +74,7 @@ module Vedeu
     #
     # @return [Boolean] Whether the buffer targetted has content.
     def back?
-      return false if back.nil? || back.content.empty?
+      return false if back.nil? || back.lines.empty?
 
       true
     end
@@ -90,7 +90,7 @@ module Vedeu
     #
     # @return [Boolean] Whether the buffer targetted has content.
     def front?
-      return false if front.nil? || front.content.empty?
+      return false if front.nil? || front.lines.empty?
 
       true
     end
@@ -99,7 +99,7 @@ module Vedeu
     #
     # @return [Boolean] Whether the buffer targetted has content.
     def previous?
-      return false if previous.nil? || previous.content.empty?
+      return false if previous.nil? || previous.lines.empty?
 
       true
     end
