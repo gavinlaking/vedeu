@@ -177,7 +177,7 @@ module Vedeu
 
     # @return [String]
     def screen_exit
-      [show_cursor, colour_reset, reset].join
+      [show_cursor, colour_reset, reset, "\n", "\n", "\n"].join
     end
 
   end # Esc

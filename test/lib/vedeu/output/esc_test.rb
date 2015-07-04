@@ -116,7 +116,8 @@ module Vedeu
       end
 
       it 'returns an escape sequence when the style is screen_exit' do
-        described.string('screen_exit').must_equal("\e[?25h\e[39m\e[49m\e[0m")
+        described.string('screen_exit')
+          .must_equal("\e[?25h\e[39m\e[49m\e[0m\n\n\n")
       end
 
       it 'returns an escape sequence when the style is negative' do
