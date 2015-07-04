@@ -31,6 +31,9 @@ module Vedeu
                   elsif parent_colour
                     Vedeu::Colour.coerce(parent_colour)
 
+                  else
+                    Vedeu::Colour.new
+
                   end
     end
 
@@ -102,6 +105,9 @@ module Vedeu
 
                  elsif parent_style
                    Vedeu::Style.coerce(parent_style)
+
+                 else
+                   Vedeu::Style.new
 
                  end
     end
