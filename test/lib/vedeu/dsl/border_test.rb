@@ -13,23 +13,6 @@ module Vedeu
       let(:attributes) { { name: 'borders' } }
       let(:boolean)    { true }
 
-      before do
-        Vedeu.interface 'borders' do
-          geometry do
-            height 3
-            width  3
-          end
-          lines do
-            line ''
-          end
-        end
-      end
-      after do
-        Vedeu.borders.reset
-        Vedeu.buffers.reset
-        Vedeu.interfaces.reset
-      end
-
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
         it { instance.instance_variable_get('@model').must_equal(model) }

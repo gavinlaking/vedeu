@@ -37,14 +37,6 @@ module Vedeu
         let(:filename) {}
         let(:object)   {}
         let(:content)  { "Hydrogen\nCarbon\nOxygen\nNitrogen" }
-        let(:as_lines) {
-          [
-            Vedeu::Line.new(streams: [Vedeu::Stream.new(value: 'Hydrogen')]),
-            Vedeu::Line.new(streams: [Vedeu::Stream.new(value: 'Carbon')]),
-            Vedeu::Line.new(streams: [Vedeu::Stream.new(value: 'Oxygen')]),
-            Vedeu::Line.new(streams: [Vedeu::Stream.new(value: 'Nitrogen')])
-          ]
-        }
 
         subject { instance.template_for(_name, filename, object) }
 
