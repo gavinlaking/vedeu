@@ -199,6 +199,9 @@ module Vedeu
       elsif previous?
         [previous.render]
 
+      elsif visible?
+        [interface.render]
+
       else
         []
 
