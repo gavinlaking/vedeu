@@ -181,7 +181,7 @@ module Vedeu
         show_cursor,
         colour_reset,
         reset,
-        Vedeu::Position.new(Vedeu::Terminal.height, Vedeu::Terminal.width).to_s,
+        Vedeu::Position.new(Vedeu.height, Vedeu.width).to_s,
         "\n"
       ].join
     end
