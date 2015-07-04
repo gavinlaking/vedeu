@@ -25,7 +25,13 @@ module Vedeu
 
     # @return [Vedeu::Colour]
     def colour
-      @colour ||= Vedeu::Colour.coerce(_colour)
+      @colour ||= if attributes[:colour]
+                    Vedeu::Colour.coerce(attributes[:colour])
+
+                  elsif parent_colour
+                    Vedeu::Colour.coerce(parent_colour)
+
+                  end
     end
 
     # @return [Vedeu::Colour]
@@ -80,12 +86,24 @@ module Vedeu
 
     # @return [String|NilClass]
     def parent_style
-      parent.style if parent
+      if parent
+        parent.style
+
+      else
+        Vedeu::Style.new
+
+      end
     end
 
     # @return [Vedeu::Style]
     def style
-      @style ||= Vedeu::Style.coerce(_style)
+      @style ||= if attributes[:style]
+                   Vedeu::Style.coerce(attributes[:style])
+
+                 elsif parent_style
+                   Vedeu::Style.coerce(parent_style)
+
+                 end
     end
 
     # @return [Vedeu::Style]
@@ -104,12 +122,6 @@ module Vedeu
     alias_method :to_str, :to_s
 
     private
-
-    # @return [void]
-    def _colour
-      return attributes[:colour] if attributes[:colour]
-      return parent_colour if parent && parent_colour
-    end
 
     # Renders the colour attributes of the receiver and yields (to then render
     # the styles).
@@ -136,12 +148,6 @@ module Vedeu
     # @return [String]
     def render_style
       [style, yield].join
-    end
-
-    # @return [void]
-    def _style
-      return attributes[:style] if attributes[:style]
-      return parent_style if parent && parent_style
     end
 
   end # Presentation
