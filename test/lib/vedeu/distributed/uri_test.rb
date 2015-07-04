@@ -12,11 +12,9 @@ module Vedeu
       let(:port)      {}
 
       describe '#initialize' do
-        subject { instance }
-
-        it { subject.must_be_instance_of(described) }
-        it { subject.instance_variable_get('@host').must_equal('localhost') }
-        it { subject.instance_variable_get('@port').must_equal(21_420) }
+        it { instance.must_be_instance_of(described) }
+        it { instance.instance_variable_get('@host').must_equal('localhost') }
+        it { instance.instance_variable_get('@port').must_equal(21_420) }
       end
 
       describe '#host' do

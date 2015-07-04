@@ -38,15 +38,15 @@ module Vedeu
     end
 
     describe '#initialize' do
-      subject { instance }
-
-      it { subject.must_be_instance_of(described) }
-      it { subject.instance_variable_get('@collection').must_equal(collection) }
-      it { subject.instance_variable_get('@name').must_equal('elements') }
-      it { subject.instance_variable_get('@current').must_equal(0) }
-      it { subject.instance_variable_get('@selected').must_equal(nil) }
+      it { instance.must_be_instance_of(described) }
+      it {
+        instance.instance_variable_get('@collection').must_equal(collection)
+      }
+      it { instance.instance_variable_get('@name').must_equal('elements') }
+      it { instance.instance_variable_get('@current').must_equal(0) }
+      it { instance.instance_variable_get('@selected').must_equal(nil) }
       it do
-        subject.instance_variable_get('@repository').must_equal(Vedeu.menus)
+        instance.instance_variable_get('@repository').must_equal(Vedeu.menus)
       end
     end
 

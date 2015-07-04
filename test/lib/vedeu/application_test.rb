@@ -14,11 +14,9 @@ module Vedeu
     end
 
     describe '#initialize' do
-      subject { instance }
-
-      it { subject.must_be_instance_of(described) }
+      it { instance.must_be_instance_of(described) }
       it do
-        subject.instance_variable_get('@configuration').
+        instance.instance_variable_get('@configuration').
           must_equal(configuration)
       end
     end

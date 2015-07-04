@@ -10,12 +10,10 @@ module Vedeu
     let(:entry_point) {}
 
     describe '#initialize' do
-      subject { instance }
-
-      it { subject.must_be_instance_of(described) }
-      it { subject.instance_variable_get('@argv').must_equal(argv) }
+      it { instance.must_be_instance_of(described) }
+      it { instance.instance_variable_get('@argv').must_equal(argv) }
       it do
-        subject.instance_variable_get('@entry_point').must_equal(entry_point)
+        instance.instance_variable_get('@entry_point').must_equal(entry_point)
       end
     end
 

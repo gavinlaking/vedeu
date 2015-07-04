@@ -9,13 +9,11 @@ module Vedeu
     let(:application) {}
 
     describe '#initialize' do
-      subject { instance }
-
-      it { subject.must_be_instance_of(described) }
+      it { instance.must_be_instance_of(described) }
       it do
-        subject.instance_variable_get('@application').must_equal(application)
+        instance.instance_variable_get('@application').must_equal(application)
       end
-      it { subject.instance_variable_get('@pid').must_equal(nil) }
+      it { instance.instance_variable_get('@pid').must_equal(nil) }
     end
 
     describe '.execute!' do

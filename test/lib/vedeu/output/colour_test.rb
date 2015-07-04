@@ -16,15 +16,13 @@ module Vedeu
     let(:foreground) {}
 
     describe '#initialize' do
-      subject { instance }
-
-      it { subject.must_be_instance_of(described) }
+      it { instance.must_be_instance_of(described) }
       it {
-        subject.instance_variable_get('@background').
+        instance.instance_variable_get('@background').
           must_be_instance_of(Vedeu::Background)
       }
       it {
-        subject.instance_variable_get('@foreground').
+        instance.instance_variable_get('@foreground').
           must_be_instance_of(Vedeu::Foreground)
       }
     end
