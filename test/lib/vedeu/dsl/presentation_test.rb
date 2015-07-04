@@ -13,32 +13,60 @@ module Vedeu
       let(:foreground) { '#ff00ff' }
 
       describe '#background' do
+        let(:dsl) {
+          Vedeu.interface 'my_interface' do
+            background '#00ff00'
+          end
+        }
+        after { Vedeu.interfaces.reset }
+
         subject { instance.background(background) }
 
         it { instance.must_respond_to(:bg) }
         it { instance.must_respond_to(:bgcolor) }
+        it { dsl.colour.background.must_be_instance_of(Vedeu::Background) }
+        it { dsl.colour.background.colour.must_equal(background) }
 
-        it { subject.must_be_instance_of(Vedeu::Colour) }
+        context 'setting both background and foreground' do
+          let(:dsl) {
+            Vedeu.interface 'my_interface' do
+              background '#00ff00'
+              foreground '#ff00ff'
+            end
+          }
+          after { Vedeu.interfaces.reset }
 
-        it 'sets the background' do
-          subject.attributes.must_equal(
-            background: '#00ff00', foreground: ''
-          )
+          it { dsl.colour.background.colour.must_equal(background) }
+          it { dsl.colour.foreground.colour.must_equal(foreground) }
         end
       end
 
       describe '#foreground' do
+        let(:dsl) {
+          Vedeu.interface 'my_interface' do
+            foreground '#ff00ff'
+          end
+        }
+        after { Vedeu.interfaces.reset }
+
         subject { instance.foreground(foreground) }
 
         it { instance.must_respond_to(:fg) }
         it { instance.must_respond_to(:fgcolor) }
+        it { dsl.colour.foreground.must_be_instance_of(Vedeu::Foreground) }
+        it { dsl.colour.foreground.colour.must_equal(foreground) }
 
-        it { subject.must_be_instance_of(Vedeu::Colour) }
+        context 'setting both background and foreground' do
+          let(:dsl) {
+            Vedeu.interface 'my_interface' do
+              background '#00ff00'
+              foreground '#ff00ff'
+            end
+          }
+          after { Vedeu.interfaces.reset }
 
-        it 'sets the foreground' do
-          subject.attributes.must_equal(
-            background: '', foreground: '#ff00ff'
-          )
+          it { dsl.colour.background.colour.must_equal(background) }
+          it { dsl.colour.foreground.colour.must_equal(foreground) }
         end
       end
 
@@ -61,7 +89,7 @@ module Vedeu
       end
 
       describe '#style' do
-        let(:args)  { :bold }
+        let(:args) { :bold }
 
         subject { instance.style(args) }
 

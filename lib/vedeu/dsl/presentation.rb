@@ -38,14 +38,14 @@ module Vedeu
       #
       # @return [String]
       def background(value = '')
-        colour(background: value)
+        model.colour.background = value
       end
       alias_method :bg,      :background
       alias_method :bgcolor, :background
 
       # @see Vedeu::DSL::Presentation#background
       def foreground(value = '')
-        colour(foreground: value)
+        model.colour.foreground = value
       end
       alias_method :fg,      :foreground
       alias_method :fgcolor, :foreground
