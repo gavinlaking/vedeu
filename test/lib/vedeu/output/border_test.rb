@@ -452,6 +452,7 @@ module Vedeu
           visible(visibility)
         end
       end
+      after { Vedeu.interfaces.reset }
 
       subject { instance.render }
 
