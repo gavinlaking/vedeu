@@ -71,6 +71,6 @@ USER vedeu
 # Once we're up and running, we can create a shell to the docker instance and
 # start running commands against it.
 #
-#     sudo docker run -it -v $PWD:/home/vedeu/gem:rw vedeu/my_first_app /bin/bash
+#     sudo docker run -it -v $PWD:/home/vedeu/gem:rw -v ~/Docker/:/home/vedeu/docker:rw vedeu/my_first_app /bin/bash
 #
 #
