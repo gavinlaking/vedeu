@@ -12,6 +12,19 @@ module Vedeu
       let(:background) { '#00ff00' }
       let(:foreground) { '#ff00ff' }
 
+      context 'setting both background and foreground' do
+        let(:dsl) {
+          Vedeu.interface 'my_interface' do
+            background '#00ff00'
+            foreground '#ff00ff'
+          end
+        }
+        after { Vedeu.interfaces.reset }
+
+        it { dsl.colour.background.colour.must_equal(background) }
+        it { dsl.colour.foreground.colour.must_equal(foreground) }
+      end
+
       describe '#background' do
         let(:dsl) {
           Vedeu.interface 'my_interface' do
@@ -26,19 +39,6 @@ module Vedeu
         it { instance.must_respond_to(:bgcolor) }
         it { dsl.colour.background.must_be_instance_of(Vedeu::Background) }
         it { dsl.colour.background.colour.must_equal(background) }
-
-        context 'setting both background and foreground' do
-          let(:dsl) {
-            Vedeu.interface 'my_interface' do
-              background '#00ff00'
-              foreground '#ff00ff'
-            end
-          }
-          after { Vedeu.interfaces.reset }
-
-          it { dsl.colour.background.colour.must_equal(background) }
-          it { dsl.colour.foreground.colour.must_equal(foreground) }
-        end
       end
 
       describe '#foreground' do
@@ -55,19 +55,6 @@ module Vedeu
         it { instance.must_respond_to(:fgcolor) }
         it { dsl.colour.foreground.must_be_instance_of(Vedeu::Foreground) }
         it { dsl.colour.foreground.colour.must_equal(foreground) }
-
-        context 'setting both background and foreground' do
-          let(:dsl) {
-            Vedeu.interface 'my_interface' do
-              background '#00ff00'
-              foreground '#ff00ff'
-            end
-          }
-          after { Vedeu.interfaces.reset }
-
-          it { dsl.colour.background.colour.must_equal(background) }
-          it { dsl.colour.foreground.colour.must_equal(foreground) }
-        end
       end
 
       describe '#colour' do
