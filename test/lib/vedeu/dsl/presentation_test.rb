@@ -80,11 +80,8 @@ module Vedeu
         context 'with an empty value' do
           let(:attributes) { { background: background, foreground: '' } }
 
-          it 'sets only the valid attributes' do
-            subject.attributes.must_equal(
-              background: '#00ff00', foreground: ''
-            )
-          end
+          it { subject.background.colour.must_equal(background) }
+          it { subject.foreground.colour.must_equal('') }
         end
       end
 

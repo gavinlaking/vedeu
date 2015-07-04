@@ -38,14 +38,18 @@ module Vedeu
       #
       # @return [String]
       def background(value = '')
-        model.colour.background = value
+        model.colour = Vedeu::Colour.coerce(
+          background: Vedeu::Background.coerce(value),
+          foreground: model.colour.foreground)
       end
       alias_method :bg,      :background
       alias_method :bgcolor, :background
 
       # @see Vedeu::DSL::Presentation#background
       def foreground(value = '')
-        model.colour.foreground = value
+        model.colour = Vedeu::Colour.coerce(
+          foreground: Vedeu::Foreground.coerce(value),
+          background: model.colour.background)
       end
       alias_method :fg,      :foreground
       alias_method :fgcolor, :foreground

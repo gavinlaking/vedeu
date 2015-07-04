@@ -8,16 +8,25 @@ module Vedeu
     let(:instance)   { described.new(attributes) }
     let(:attributes) {
       {
-        background: '',
-        foreground: ''
+        background: background,
+        foreground: foreground,
       }
     }
+    let(:background) {}
+    let(:foreground) {}
 
     describe '#initialize' do
       subject { instance }
 
       it { subject.must_be_instance_of(described) }
-      it { subject.instance_variable_get('@attributes').must_equal(attributes) }
+      it {
+        subject.instance_variable_get('@background').
+          must_be_instance_of(Vedeu::Background)
+      }
+      it {
+        subject.instance_variable_get('@foreground').
+          must_be_instance_of(Vedeu::Foreground)
+      }
     end
 
     describe '.coerce' do
@@ -28,41 +37,33 @@ module Vedeu
       it { subject.must_be_instance_of(described) }
 
       context 'when the value is nil' do
-        it { subject.must_be_instance_of(described) }
-        it { subject.attributes.must_equal({ background: '', foreground: '' }) }
+        it { subject.foreground.colour.must_equal('') }
+        it { subject.background.colour.must_equal('') }
       end
 
       context 'when the value is a Vedeu::Colour' do
-        let(:attributes) {
-          {
-            background: '#ff00ff',
-            foreground: '#220022',
-          }
-        }
-        let(:_value) { Vedeu::Colour.new(attributes) }
+        let(:background) { '#ff00ff' }
+        let(:foreground) { '#220022' }
+        let(:_value)     { Vedeu::Colour.new(attributes) }
 
-        it { subject.must_be_instance_of(described) }
-        it { subject.attributes.must_equal(attributes) }
+        it { subject.foreground.colour.must_equal('#220022') }
+        it { subject.background.colour.must_equal('#ff00ff') }
         it { subject.to_s.must_equal("\e[38;2;34;0;34m\e[48;2;255;0;255m") }
       end
 
       context 'when the value is a Hash' do
         context 'when the hash has a :colour defined' do
           context 'when the value of :colour is a Vedeu::Colour' do
-            let(:attributes) {
-              {
-                background: '#002200',
-                foreground: '#00ff00',
-              }
-            }
+            let(:background) { '#002200' }
+            let(:foreground) { '#00ff00' }
             let(:_value) {
               {
                 colour: Vedeu::Colour.new(attributes),
               }
             }
 
-            it { subject.must_be_instance_of(described) }
-            it { subject.attributes.must_equal(attributes) }
+            it { subject.foreground.colour.must_equal('#00ff00') }
+            it { subject.background.colour.must_equal('#002200') }
             it { subject.to_s.must_equal("\e[38;2;0;255;0m\e[48;2;0;34;0m") }
           end
 
@@ -76,11 +77,8 @@ module Vedeu
                 }
               }
 
-              it { subject.must_be_instance_of(described) }
-              it { subject.attributes.must_equal({
-                background: '#7700ff',
-                foreground: '',
-              }) }
+              it { subject.foreground.colour.must_equal('') }
+              it { subject.background.colour.must_equal('#7700ff') }
               it {
                 subject.to_s.must_equal("\e[48;2;119;0;255m")
               }
@@ -95,11 +93,8 @@ module Vedeu
                 }
               }
 
-              it { subject.must_be_instance_of(described) }
-              it { subject.attributes.must_equal({
-                background: '',
-                foreground: '#220077',
-              }) }
+              it { subject.foreground.colour.must_equal('#220077') }
+              it { subject.background.colour.must_equal('') }
               it {
                 subject.to_s.must_equal("\e[38;2;34;0;119m")
               }
@@ -112,11 +107,8 @@ module Vedeu
                 }
               }
 
-              it { subject.must_be_instance_of(described) }
-              it { subject.attributes.must_equal({
-                background: '',
-                foreground: '',
-              }) }
+              it { subject.foreground.colour.must_equal('') }
+              it { subject.background.colour.must_equal('') }
               it { subject.to_s.must_equal('') }
             end
           end
@@ -130,11 +122,8 @@ module Vedeu
               }
             }
 
-            it { subject.must_be_instance_of(described) }
-            it { subject.attributes.must_equal({
-              background: '#000022',
-              foreground: '',
-            }) }
+            it { subject.foreground.colour.must_equal('') }
+            it { subject.background.colour.must_equal('#000022') }
             it { subject.to_s.must_equal("\e[48;2;0;0;34m") }
           end
 
@@ -145,11 +134,8 @@ module Vedeu
               }
             }
 
-            it { subject.must_be_instance_of(described) }
-            it { subject.attributes.must_equal({
-              background: '',
-              foreground: '#aadd00',
-            }) }
+            it { subject.foreground.colour.must_equal('#aadd00') }
+            it { subject.background.colour.must_equal('') }
             it { subject.to_s.must_equal("\e[38;2;170;221;0m") }
           end
 
@@ -160,38 +146,11 @@ module Vedeu
               }
             }
 
-            it { subject.must_be_instance_of(described) }
-            it { subject.attributes.must_equal({
-              background: '',
-              foreground: '',
-            }) }
+            it { subject.foreground.colour.must_equal('') }
+            it { subject.background.colour.must_equal('') }
             it { subject.to_s.must_equal('') }
           end
         end
-      end
-    end
-
-    describe '#background' do
-      subject { instance.background }
-
-      it { subject.must_be_instance_of(Vedeu::Background) }
-
-      context 'with a background' do
-        let(:attributes) {
-          {
-            background: '#000000'
-          }
-        }
-
-        it { subject.to_s.must_equal("\e[48;2;0;0;0m") }
-        it { subject.to_html.must_equal('#000000') }
-      end
-
-      context 'without a background' do
-        let(:attributes) { {} }
-
-        it { subject.to_s.must_equal('') }
-        it { subject.to_html.must_equal('') }
       end
     end
 
@@ -217,30 +176,6 @@ module Vedeu
       end
     end
 
-    describe '#foreground' do
-      subject { instance.foreground }
-
-      it { subject.must_be_instance_of(Vedeu::Foreground) }
-
-      context 'with a foreground' do
-        let(:attributes) {
-          {
-            foreground: '#ff0000'
-          }
-        }
-
-        it { subject.to_s.must_equal("\e[38;2;255;0;0m") }
-        it { subject.to_html.must_equal('#ff0000') }
-      end
-
-      context 'without a foreground' do
-        let(:attributes) { {} }
-
-        it { subject.to_s.must_equal('') }
-        it { subject.to_html.must_equal('') }
-      end
-    end
-
     describe '#foreground=' do
       let(:_value) { '#ff0000' }
 
@@ -255,39 +190,25 @@ module Vedeu
       it { subject.must_be_instance_of(String) }
 
       context 'with both background and foreground' do
-        let(:attributes) {
-          {
-            foreground: '#ff0000',
-            background: '#000000'
-          }
-        }
+        let(:background) { '#000000' }
+        let(:foreground) { '#ff0000' }
 
         it { subject.must_equal("\e[38;2;255;0;0m\e[48;2;0;0;0m") }
       end
 
       context 'when the foreground is missing' do
-        let(:attributes) {
-          {
-            background: '#000000'
-          }
-        }
+        let(:background) { '#000000' }
 
         it { subject.must_equal("\e[48;2;0;0;0m") }
       end
 
       context 'when the background is missing' do
-        let(:attributes) {
-          {
-            foreground: '#ff0000',
-          }
-        }
+        let(:foreground) { '#ff0000' }
 
         it { subject.must_equal("\e[38;2;255;0;0m") }
       end
 
       context 'when both are missing' do
-        let(:attributes) { {} }
-
         it { subject.must_equal('') }
       end
     end

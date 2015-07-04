@@ -3,7 +3,7 @@ require 'test_helper'
 module Vedeu
 
   class ParentPresentationTestClass
-    include Presentation
+    include Vedeu::Presentation
 
     def parent
       nil
@@ -18,7 +18,7 @@ module Vedeu
   end
 
   class PresentationTestClass
-    include Presentation
+    include Vedeu::Presentation
 
     attr_reader :attributes
 
@@ -27,14 +27,14 @@ module Vedeu
     end
 
     def parent
-      ParentPresentationTestClass.new
+      Vedeu::ParentPresentationTestClass.new
     end
 
   end # PresentationTestClass
 
   describe Presentation do
 
-    let(:receiver) { PresentationTestClass.new(attributes) }
+    let(:includer) { Vedeu::PresentationTestClass.new(attributes) }
     let(:attributes) {
       {
         colour: { background: background, foreground: foreground },
@@ -45,7 +45,7 @@ module Vedeu
     let(:foreground) { '#aadd00' }
 
     describe '#background' do
-      subject { receiver.background }
+      subject { includer.background }
 
       it { subject.must_be_instance_of(Vedeu::Background) }
       it { subject.colour.must_equal('#000033') }
@@ -55,23 +55,24 @@ module Vedeu
         let(:background) {}
 
         it { subject.must_be_instance_of(Vedeu::Background) }
-        # it { subject.colour.must_equal('') }
+        it { subject.colour.must_equal('#330000') }
       end
     end
 
     describe '#background=' do
-      subject { receiver.background = '#987654' }
+      subject { includer.background = '#987654' }
+
+      it {
+        includer.colour.background.colour.must_equal('#000033')
+        subject
+        includer.colour.background.colour.must_equal('#987654')
+      }
 
       it { subject.must_equal('#987654') }
-
-      it do
-        subject
-        receiver.attributes[:background].must_equal('#987654')
-      end
     end
 
     describe '#foreground' do
-      subject { receiver.foreground }
+      subject { includer.foreground }
 
       it { subject.must_be_instance_of(Vedeu::Foreground) }
       it { subject.colour.must_equal('#aadd00') }
@@ -81,35 +82,37 @@ module Vedeu
         let(:foreground) {}
 
         it { subject.must_be_instance_of(Vedeu::Foreground) }
-        # it { subject.colour.must_equal('') }
+        it { subject.colour.must_equal('#00aadd') }
       end
     end
 
     describe '#foreground=' do
-      subject { receiver.foreground = '#123456' }
+      subject { includer.foreground = '#123456' }
+
+      it {
+        includer.colour.foreground.colour.must_equal('#aadd00')
+        subject
+        includer.colour.foreground.colour.must_equal('#123456')
+      }
 
       it { subject.must_equal('#123456') }
-
-      it do
-        subject
-        receiver.attributes[:foreground].must_equal('#123456')
-      end
     end
 
     describe '#parent_background' do
-      subject { receiver.parent_background }
+      subject { includer.parent_background }
 
       it { subject.must_be_instance_of(Vedeu::Background) }
+      it { subject.colour.must_equal('#330000') }
     end
 
     describe '#parent_foreground' do
-      subject { receiver.parent_foreground }
+      subject { includer.parent_foreground }
 
       it { subject.must_be_instance_of(Vedeu::Foreground) }
     end
 
     describe '#colour' do
-      subject { receiver.colour }
+      subject { includer.colour }
 
       it { subject.must_be_instance_of(Vedeu::Colour) }
     end
@@ -117,13 +120,13 @@ module Vedeu
     describe '#colour=' do
       let(:colour) { Colour.new(foreground: '#00ff00', background: '#000000') }
 
-      subject { receiver.colour = (colour) }
+      subject { includer.colour = (colour) }
 
       it { subject.must_be_instance_of(Colour) }
     end
 
     describe '#style' do
-      subject { receiver.style }
+      subject { includer.style }
 
       it { subject.must_be_instance_of(Vedeu::Style) }
     end
@@ -131,7 +134,7 @@ module Vedeu
     describe '#style=' do
       let(:style) { Style.new('normal') }
 
-      subject { receiver.style = (style) }
+      subject { includer.style = (style) }
 
       it { subject.must_be_instance_of(Style) }
     end
@@ -158,7 +161,7 @@ module Vedeu
       }
       let(:stream_style)  { Style.new(:underline) }
 
-      it { receiver.must_respond_to(:to_str) }
+      it { includer.must_respond_to(:to_str) }
 
       it 'returns output' do
         stream.to_s.must_equal(
