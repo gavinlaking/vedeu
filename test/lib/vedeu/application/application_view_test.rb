@@ -9,10 +9,8 @@ module Vedeu
     let(:object)    {}
 
     describe '#initialize' do
-      subject { instance }
-
-      it { subject.must_be_instance_of(Vedeu::ApplicationView) }
-      it { subject.instance_variable_get('@object').must_equal(object) }
+      it { instance.must_be_instance_of(Vedeu::ApplicationView) }
+      it { instance.instance_variable_get('@object').must_equal(object) }
     end
 
     describe '.render' do

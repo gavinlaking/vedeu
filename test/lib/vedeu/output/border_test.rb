@@ -12,27 +12,6 @@ module Vedeu
       }
     }
 
-    before do
-      Vedeu.interface 'borders' do
-        geometry do
-          height 5
-          width  8
-        end
-        lines do
-          line 'Beryllium'
-          line 'Magnesium'
-          line 'Plutonium'
-          line 'Potassium'
-          line 'Lanthanum'
-          line 'Stront­ium'
-        end
-      end
-    end
-    after do
-      Vedeu.interfaces.reset
-      Vedeu.borders.reset
-    end
-
     describe '.build' do
       subject {
         described.build(attributes) do
@@ -145,6 +124,7 @@ module Vedeu
           end
         end
       end
+      after { Vedeu.interfaces.reset }
 
       describe '#bx' do
         subject { instance.bx }
@@ -236,6 +216,15 @@ module Vedeu
     end
 
     describe '#width' do
+      before do
+        Vedeu.interface 'borders' do
+          geometry do
+            width 8
+          end
+        end
+      end
+      after { Vedeu.interfaces.reset }
+
       subject { instance.width }
 
       context 'when the border is not enabled' do
@@ -284,6 +273,15 @@ module Vedeu
     end
 
     describe '#height' do
+      before do
+        Vedeu.interface 'borders' do
+          geometry do
+            height 5
+          end
+        end
+      end
+      after { Vedeu.interfaces.reset }
+
       subject { instance.height }
 
       context 'when the border is not enabled' do
@@ -455,6 +453,7 @@ module Vedeu
           visible(visibility)
         end
       end
+      after { Vedeu.interfaces.reset }
 
       subject { instance.render }
 

@@ -123,7 +123,7 @@ module Vedeu
     # Returns the row above the top by default.
     #
     # @example
-    #   `top` / `y` is 4.
+    #   `top` or `y` is 4.
     #
     #   north     # => 3
     #   north(2)  # => 2 (positive goes north)
@@ -138,7 +138,7 @@ module Vedeu
     # Returns the column after right by default.
     #
     # @example
-    #   `right` / `xn` is 19.
+    #   `right` or `xn` is 19.
     #
     #   east     # => 20
     #   east(2)  # => 21 (positive goes east)
@@ -153,7 +153,7 @@ module Vedeu
     # Returns the row below the bottom by default.
     #
     # @example
-    #   `bottom` / `yn` is 12.
+    #   `bottom` or `yn` is 12.
     #
     #   south     # => 13
     #   south(2)  # => 14 (positive goes south)
@@ -168,7 +168,7 @@ module Vedeu
     # Returns the column before left by default.
     #
     # @example
-    #   `left` / `x` is 8.
+    #   `left` or `x` is 8.
     #
     #   west      # => 7
     #   west(2)   # => 6  (positive goes west)

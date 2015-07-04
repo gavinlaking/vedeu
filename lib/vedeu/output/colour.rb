@@ -33,9 +33,13 @@ module Vedeu
   # @api private
   class Colour
 
-    # @!attribute [r] attributes
-    # @return [Hash]
-    attr_reader :attributes
+    # @!attribute [r] background
+    # @return [Vedeu::Background]
+    attr_reader :background
+
+    # @!attribute [r] foreground
+    # @return [Vedeu::Foreground]
+    attr_reader :foreground
 
     # @param value []
     # @return [Object]
@@ -43,11 +47,11 @@ module Vedeu
       return value if value.is_a?(self)
       return new unless value.is_a?(Hash)
 
-      if value[:colour]
-        return value[:colour] if value[:colour].is_a?(self)
-        return new unless value[:colour].is_a?(Hash)
-        return new(value[:colour]) if value[:colour][:background] ||
-                                      value[:colour][:foreground]
+      if value[:colour] && value[:colour].is_a?(self)
+        value[:colour]
+
+      elsif value[:colour] && value[:colour].is_a?(Hash)
+        new(value[:colour])
 
       elsif value[:background] || value[:foreground]
         new(value)
@@ -65,14 +69,8 @@ module Vedeu
     # @option attributes foreground [String]
     # @return [Vedeu::Colour]
     def initialize(attributes = {})
-      @attributes = defaults.merge!(attributes)
-    end
-
-    # Returns the background colour as a Vedeu::Background.
-    #
-    # @return [Vedeu::Background]
-    def background
-      @background ||= Vedeu::Background.coerce(attributes[:background])
+      @background = Vedeu::Background.coerce(attributes[:background])
+      @foreground = Vedeu::Foreground.coerce(attributes[:foreground])
     end
 
     # Converts the value into a Vedeu::Background.
@@ -80,7 +78,7 @@ module Vedeu
     # @param value [String]
     # @return [String]
     def background=(value)
-      @background = @attributes[:background] = Vedeu::Background.coerce(value)
+      @background = Vedeu::Background.coerce(value)
     end
 
     # An object is equal when its values are the same.
@@ -93,19 +91,12 @@ module Vedeu
     end
     alias_method :==, :eql?
 
-    # Returns the foreground colour as a Vedeu::Foreground.
-    #
-    # @return [Vedeu::Foreground]
-    def foreground
-      @foreground ||= Vedeu::Foreground.coerce(attributes[:foreground])
-    end
-
     # Converts the value into a Vedeu::Foreground.
     #
     # @param value [String]
     # @return [String]
     def foreground=(value)
-      @foreground = @attributes[:foreground] = Vedeu::Foreground.coerce(value)
+      @foreground = Vedeu::Foreground.coerce(value)
     end
 
     # Returns both or either of the converted attributes into a single escape
@@ -118,16 +109,6 @@ module Vedeu
     alias_method :to_str, :to_s
 
     private
-
-    # The default values for a new instance of this class.
-    #
-    # @return [Hash<Symbol => NilClass>]
-    def defaults
-      {
-        background: '',
-        foreground: '',
-      }
-    end
 
   end # Colour
 

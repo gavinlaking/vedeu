@@ -1,3 +1,5 @@
+require 'vedeu/support/common'
+
 module Vedeu
 
   # When included into a class, provides the mechanism to store the class in a
@@ -5,6 +7,8 @@ module Vedeu
   #
   # @api private
   module Model
+
+    include Vedeu::Common
 
     # @!attribute [rw] repository
     # @return [Vedeu::Repository]
@@ -94,19 +98,6 @@ module Vedeu
     end
 
     private
-
-    # Removes the module part from the expression in the string.
-    #
-    # @example
-    #   demodulize('Vedeu::DSL::Interface') # => "Interface"
-    #
-    # @param klass [Class|String]
-    # @return [void]
-    def demodulize(klass)
-      klass = klass.to_s
-
-      klass[(klass.rindex('::') + 2)..-1]
-    end
 
     # Returns the DSL class name responsible for this model.
     #

@@ -12,34 +12,49 @@ module Vedeu
       let(:background) { '#00ff00' }
       let(:foreground) { '#ff00ff' }
 
+      context 'setting both background and foreground' do
+        let(:dsl) {
+          Vedeu.interface 'my_interface' do
+            background '#00ff00'
+            foreground '#ff00ff'
+          end
+        }
+        after { Vedeu.interfaces.reset }
+
+        it { dsl.colour.background.colour.must_equal(background) }
+        it { dsl.colour.foreground.colour.must_equal(foreground) }
+      end
+
       describe '#background' do
+        let(:dsl) {
+          Vedeu.interface 'my_interface' do
+            background '#00ff00'
+          end
+        }
+        after { Vedeu.interfaces.reset }
+
         subject { instance.background(background) }
 
         it { instance.must_respond_to(:bg) }
         it { instance.must_respond_to(:bgcolor) }
-
-        it { subject.must_be_instance_of(Vedeu::Colour) }
-
-        it 'sets the background' do
-          subject.attributes.must_equal(
-            background: '#00ff00', foreground: ''
-          )
-        end
+        it { dsl.colour.background.must_be_instance_of(Vedeu::Background) }
+        it { dsl.colour.background.colour.must_equal(background) }
       end
 
       describe '#foreground' do
+        let(:dsl) {
+          Vedeu.interface 'my_interface' do
+            foreground '#ff00ff'
+          end
+        }
+        after { Vedeu.interfaces.reset }
+
         subject { instance.foreground(foreground) }
 
         it { instance.must_respond_to(:fg) }
         it { instance.must_respond_to(:fgcolor) }
-
-        it { subject.must_be_instance_of(Vedeu::Colour) }
-
-        it 'sets the foreground' do
-          subject.attributes.must_equal(
-            background: '', foreground: '#ff00ff'
-          )
-        end
+        it { dsl.colour.foreground.must_be_instance_of(Vedeu::Foreground) }
+        it { dsl.colour.foreground.colour.must_equal(foreground) }
       end
 
       describe '#colour' do
@@ -52,16 +67,13 @@ module Vedeu
         context 'with an empty value' do
           let(:attributes) { { background: background, foreground: '' } }
 
-          it 'sets only the valid attributes' do
-            subject.attributes.must_equal(
-              background: '#00ff00', foreground: ''
-            )
-          end
+          it { subject.background.colour.must_equal(background) }
+          it { subject.foreground.colour.must_equal('') }
         end
       end
 
       describe '#style' do
-        let(:args)  { :bold }
+        let(:args) { :bold }
 
         subject { instance.style(args) }
 

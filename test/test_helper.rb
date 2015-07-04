@@ -49,6 +49,7 @@ end
 module MiniTest
   class Spec
     # parallelize_me! # uncomment to unleash hell
+    # i_suck_and_my_tests_are_order_dependent! # just incase
 
     # include VedeuMiniTestPlugin
 
@@ -65,7 +66,8 @@ require 'support/helpers/model_test_class'
 # require 'minitest/reporters'
 # Minitest::Reporters.use!(
 #  # commented out by default (makes tests slower)
-#  # Minitest::Reporters::DefaultReporter.new({ color: true, slow_count: 15 }),
+#  # Minitest::Reporters::DefaultReporter.new({ color: true,
+#  #                                            slow_suite_count: 3 }),
 #  # Minitest::Reporters::SpecReporter.new
 # )
 

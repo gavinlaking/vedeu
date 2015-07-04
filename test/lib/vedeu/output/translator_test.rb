@@ -27,7 +27,18 @@ module Vedeu
       subject { described.coerce(_value) }
 
       context 'when the value is nil' do
-        it { subject.must_be_instance_of(String) }
+        it { subject.must_be_instance_of(Vedeu::Translator) }
+
+        it {
+          Vedeu::Background.coerce(_value).
+            must_be_instance_of(Vedeu::Background)
+        }
+        it { Vedeu::Background.coerce(_value).colour.must_equal('') }
+        it {
+          Vedeu::Foreground.coerce(_value).
+            must_be_instance_of(Vedeu::Foreground)
+        }
+        it { Vedeu::Foreground.coerce(_value).colour.must_equal('') }
       end
 
       context 'when the value is a Vedeu::Background' do

@@ -75,11 +75,13 @@ module Vedeu
 
     # @!method interface
     #   @see Vedeu::DSL::View.interface
+    # @!method render
+    #   @see Vedeu::DSL::View.render
     # @!method renders
     #   @see Vedeu::DSL::View.renders
     # @!method views
     #   @see Vedeu::DSL::View.views
-    def_delegators Vedeu::DSL::View, :interface, :renders, :views
+    def_delegators Vedeu::DSL::View, :interface, :renders, :render, :views
 
     # @!method bind
     #   @see Vedeu::Event.bind

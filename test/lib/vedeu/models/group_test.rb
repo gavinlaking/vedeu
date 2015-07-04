@@ -16,16 +16,14 @@ module Vedeu
     let(:members)    { ['carbon', 'nitrogen', 'oxygen'] }
 
     describe '#initialize' do
-      subject { instance }
-
-      it { subject.must_be_instance_of(described) }
+      it { instance.must_be_instance_of(described) }
       it {
-        subject.instance_variable_get('@attributes').must_be_instance_of(Hash)
+        instance.instance_variable_get('@attributes').must_be_instance_of(Hash)
       }
-      it { subject.instance_variable_get('@members').must_equal(members) }
-      it { subject.instance_variable_get('@name').must_equal(_name) }
+      it { instance.instance_variable_get('@members').must_equal(members) }
+      it { instance.instance_variable_get('@name').must_equal(_name) }
       it {
-        subject.instance_variable_get('@repository').must_equal(Vedeu.groups)
+        instance.instance_variable_get('@repository').must_equal(Vedeu.groups)
       }
     end
 

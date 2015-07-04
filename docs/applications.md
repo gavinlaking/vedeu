@@ -4,8 +4,17 @@ Vedeu has basic tools to generate client application scaffolding, in a similar
 way to Ruby on Rails. Although not nearly as advanced as the Rails equivalent,
 hopefully these generators will get you off the ground.
 
+### Installing Vedeu
+
+To install Vedeu, simply:
+
+    gem install 'vedeu'
+
+To use Vedeu's application scaffolding, see below:
+
 ### Generating a new application
 
+```bash
 |
 |- app_name/
 |   |
@@ -36,10 +45,13 @@ hopefully these generators will get you off the ground.
     |- vendor/
     |- application.rb
     |- Gemfile
+```
 
 To create the application structure as shown above:
 
-    vedeu new app_name
+```bash
+vedeu new app_name
+```
 
 Let's talk about each directory and its purpose.
 
@@ -120,10 +132,13 @@ might want to do something special.
 Vedeu also provides a generator to create the files needed for a view. To run
 this, use the following from within the root of the application directory:
 
-    vedeu view view_name
+```bash
+vedeu view view_name
+```
 
 Let's talk about the files it will create and populate:
 
+```bash
 |
 |- app_name/
 |   |
@@ -147,5 +162,6 @@ Let's talk about the files it will create and populate:
     |       |
     |       |- view_name.rb
     |...
+```
 
 ####

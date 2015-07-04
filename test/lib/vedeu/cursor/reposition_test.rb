@@ -19,8 +19,6 @@ module Vedeu
     after { Vedeu.cursors.reset }
 
     describe '#initialize' do
-      subject { instance }
-
       it { instance.must_be_instance_of(Vedeu::Reposition) }
       it { instance.instance_variable_get('@entity').must_equal(entity) }
       it { instance.instance_variable_get('@name').must_equal(_name) }

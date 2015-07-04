@@ -34,10 +34,7 @@ module Vedeu
     # @param value [Object|NilClass]
     # @return [Object]
     def self.coerce(value)
-      if value.nil?
-        ''
-
-      elsif value.is_a?(self)
+      if value.is_a?(self)
         value
 
       else
@@ -51,7 +48,7 @@ module Vedeu
     # @param colour [Fixnum|String|Symbol]
     # @return [Translator]
     def initialize(colour = '')
-      @colour = colour
+      @colour = colour || ''
     end
 
     # An object is equal when its values are the same.
