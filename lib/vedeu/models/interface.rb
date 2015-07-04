@@ -103,8 +103,6 @@ module Vedeu
     def lines?
       lines.any?
     end
-    alias_method :content?, :lines?
-    alias_method :value?, :lines?
 
     # Returns a boolean indicating whether the interface belongs to a
     # group.
