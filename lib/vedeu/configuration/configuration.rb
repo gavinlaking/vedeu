@@ -34,6 +34,13 @@ module Vedeu
 
     class << self
 
+      # Returns the base_path value
+      #
+      # @return [String]
+      def base_path
+        instance.options[:base_path]
+      end
+
       # Configure Vedeu with sensible defaults. If the client application sets
       # options, override the defaults with those, and if command-line arguments
       # are provided at application invocation, override any options with the
@@ -241,6 +248,7 @@ module Vedeu
     # @return [Hash]
     def defaults
       {
+        base_path:     set_base_path,
         colour_mode:   detect_colour_mode,
         debug:         false,
         drb:           false,
@@ -270,6 +278,10 @@ module Vedeu
       when /-color$/, 'rxvt'     then 16
       else 256
       end
+    end
+
+    def set_base_path
+      File.expand_path('.')
     end
 
   end # Configuration

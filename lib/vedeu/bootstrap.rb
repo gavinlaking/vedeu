@@ -28,12 +28,12 @@ module Vedeu
       Vedeu.configure { log('/tmp/vedeu_bootstrap.log') }
 
       [
-        './config/**/*',
-        './app/controllers/**/*',
-        './app/helpers/**/*',
-        './app/views/**/*',
-        './app/models/keymaps/**/*',
-      ].each { |path| load(path) }
+        'config/**/*',
+        'app/controllers/**/*',
+        'app/helpers/**/*',
+        'app/views/**/*',
+        'app/models/keymaps/**/*',
+      ].each { |path| load(File.join(Vedeu::Configuration.base_path, path)) }
 
       entry_point
 

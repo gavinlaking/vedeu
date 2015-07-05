@@ -9,6 +9,14 @@ module Vedeu
     before { Configuration.reset! }
     after  { test_configuration }
 
+    describe '#base_path' do
+      it { described.must_respond_to(:base_path) }
+
+      it 'returns the value of the base_path option' do
+        Configuration.base_path.must_equal(Dir.pwd)
+      end
+    end
+
     describe '#debug?' do
       it { described.must_respond_to(:debug) }
 
