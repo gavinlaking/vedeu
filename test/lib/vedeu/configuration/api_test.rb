@@ -12,6 +12,13 @@ module Vedeu
       before { Configuration.reset! }
       after  { test_configuration }
 
+      describe '#base_path' do
+        it 'sets the option to the desired value' do
+          configuration = Vedeu.configure { base_path 'somewhere' }
+          configuration.base_path.must_equal('somewhere')
+        end
+      end
+
       describe '.configure' do
         it 'returns the configuration singleton' do
           Vedeu.configure do

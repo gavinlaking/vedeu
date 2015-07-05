@@ -40,7 +40,8 @@ module Vedeu
     # @param value [String]
     # @return [String]
     def template(value)
-      @template = File.expand_path("./app/views/templates/#{value}.erb")
+      @template = Vedeu::Configuration.base_path +
+        "/app/views/templates/#{value}.erb"
     end
 
   end # ApplicationView

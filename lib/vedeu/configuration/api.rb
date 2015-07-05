@@ -277,6 +277,16 @@ module Vedeu
       end
       alias_method :renderers, :renderer
 
+      # Override the base path for the application (for locating templates and
+      # other resources). By default the base path is just cwd but this will
+      # not work for many applications.
+      #
+      # @param value [String]
+      # @return [String]
+      def base_path(path = nil)
+        options[:base_path] = path
+      end
+
       # Sets the value of STDIN.
       #
       # @example
