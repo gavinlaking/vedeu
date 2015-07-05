@@ -23,6 +23,8 @@ module Vedeu
     before do
       Vedeu.stubs(:trigger)
       # Vedeu.interfaces.stubs(:by_name).returns(interface)
+      Vedeu::Visibility.stubs(:show)
+      Vedeu::Visibility.stubs(:hide)
     end
     after { Vedeu.interfaces.reset }
 
@@ -142,71 +144,104 @@ module Vedeu
     end
 
     describe '#hide' do
+      let(:interface) {
+        Vedeu::Interface.new({ name: _name, visible: visible })
+      }
+      let(:_name)   { 'Buffer#hide' }
+      let(:visible) {}
+
+      before do
+        interface.store
+        Vedeu::Output.stubs(:render)
+      end
+      after do
+        Vedeu.interfaces.reset
+      end
+
       subject { instance.hide }
 
       context 'when the interface is visible' do
-        # before do
-        #   Vedeu::Visibility.stubs(:hide)
-        #   instance.stubs(:clear)
-        # end
-        # after do
-        #   Vedeu.interfaces.reset
-        # end
+        let(:visible) { true }
 
-        # let(:_name) { 'Buffer#hide' }
-        # let(:interface) { Vedeu.interface('Buffer') {} }
-
-        # it {
-        #   Vedeu::Visibility.expects(:hide).with(interface)
-        #   instance.expects(:clear)
-        #   subject
-        # }
+        it {
+          Vedeu::Visibility.expects(:hide).with(interface)
+          subject
+        }
       end
 
       context 'when the interface is not visible' do
+        let(:visible) { false }
+
         it { subject.must_be_instance_of(NilClass) }
       end
     end
 
     describe '#show' do
+      let(:interface) {
+        Vedeu::Interface.new({ name: _name, visible: visible })
+      }
+      let(:_name)   { 'Buffer#show' }
+      let(:visible) {}
+
+      before do
+        interface.store
+        Vedeu::Output.stubs(:render)
+      end
+      after do
+        Vedeu.interfaces.reset
+      end
+
       subject { instance.show }
 
       context 'when the interface is visible' do
-        # it { subject.must_be_instance_of(NilClass) }
-        # it { skip }
+        let(:visible) { true }
+
+        it { subject.must_be_instance_of(NilClass) }
       end
 
       context 'when the interface is not visible' do
-        # it { skip }
+        let(:visible) { false }
 
-        # before do
-        #   Vedeu::Visibility.stubs(:show)
-        #   instance.stubs(:render)
-        # end
-        # after do
-        #   Vedeu.interfaces.reset
-        # end
-
-        # let(:_name) { 'Buffer#show' }
-        # let(:interface) { Vedeu.interface('Buffer#show') {} }
-
-        # it {
-        #   Vedeu::Visibility.expects(:show).with(interface)
-        #   instance.expects(:render)
-        #   subject
-        # }
+        it {
+          Vedeu::Visibility.expects(:show).with(interface)
+          subject
+        }
       end
     end
 
     describe '#toggle' do
+      let(:interface) {
+        Vedeu::Interface.new({ name: _name, visible: visible })
+      }
+      let(:_name)   { 'Buffer#toggle' }
+      let(:visible) {}
+
+      before do
+        interface.store
+        Vedeu::Output.stubs(:render)
+      end
+      after do
+        Vedeu.interfaces.reset
+      end
+
       subject { instance.toggle }
 
       context 'when the interface is visible' do
-        # it { skip }
+        let(:visible) { true }
+
+        it {
+          Vedeu::Visibility.expects(:hide).with(interface)
+          subject
+        }
       end
 
       context 'when the interface is not visible' do
-        # it { skip }
+        let(:visible) { false }
+
+        it {
+          Vedeu::Visibility.expects(:show).with(interface)
+          subject
+        }
       end
     end
 

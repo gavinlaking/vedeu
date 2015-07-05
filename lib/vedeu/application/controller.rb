@@ -8,7 +8,7 @@ module Vedeu
     # When included, provide these methods as class methods.
     module ClassMethods
 
-      # @param name [Symbol] The name of the controller
+      # @param name [Symbol] The name of the controller.
       def controller_name(name)
         Vedeu.bind("show_#{name}".to_sym) { new }
       end

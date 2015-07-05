@@ -32,15 +32,10 @@ module Vedeu
       # @return [void]
       def generate
         make_controller_file
-
         make_helper_file
-
         make_keymap_file
-
         make_interface_file
-
         make_template_file
-
         make_view_class_file
       end
 
