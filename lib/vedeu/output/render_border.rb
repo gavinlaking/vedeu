@@ -200,6 +200,7 @@ module Vedeu
 
       out = []
       out << build(top_left, :top_left, *[y, x]) if left?
+
       if title? && width > title_characters.size
         out << titlebar
 
@@ -207,6 +208,7 @@ module Vedeu
         out << horizontal_border(:top_horizontal, y)
 
       end
+
       out << build(top_right, :top_right, *[y, xn]) if right?
       out
     end

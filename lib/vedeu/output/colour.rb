@@ -108,8 +108,6 @@ module Vedeu
     end
     alias_method :to_str, :to_s
 
-    private
-
   end # Colour
 
 end # Vedeu

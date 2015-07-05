@@ -32,7 +32,9 @@ module Vedeu
       Vedeu.bind(:_menu_prev_) { |name| Vedeu.menus.find(name).prev_item }
 
       # Returns the selected menu item.
-      Vedeu.bind(:_menu_selected_) { |name| Vedeu.menus.find(name).selected_item }
+      Vedeu.bind(:_menu_selected_) do |name|
+        Vedeu.menus.find(name).selected_item
+      end
 
       # Makes the current menu item also the selected menu item.
       Vedeu.bind(:_menu_select_) { |name| Vedeu.menus.find(name).select_item }

@@ -10,7 +10,7 @@ module Vedeu
 
       # @param name [Symbol] The name of the controller
       def controller_name(name)
-        Vedeu.bind("show_#{name}".to_sym) { self.new }
+        Vedeu.bind("show_#{name}".to_sym) { new }
       end
 
     end # ClassMethods

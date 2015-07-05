@@ -41,7 +41,7 @@ module Vedeu
     # @return [String]
     def template(value)
       @template = Vedeu::Configuration.base_path +
-        "/app/views/templates/#{value}.erb"
+                  "/app/views/templates/#{value}.erb"
     end
 
   end # ApplicationView

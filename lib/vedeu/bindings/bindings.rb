@@ -102,7 +102,6 @@ module Vedeu
     # Clears the spaces occupied by the interfaces belonging to the named group.
     Vedeu.bind(:_clear_group_) { |name| Vedeu::Clear.by_group(name) }
 
-
     # @see Vedeu::Geometry#maximise
     Vedeu.bind(:_maximise_) { |name| Vedeu.geometries.by_name(name).maximise }
 

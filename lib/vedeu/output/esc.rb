@@ -182,7 +182,7 @@ module Vedeu
         colour_reset,
         reset,
         Vedeu::Position.new(Vedeu.height, Vedeu.width).to_s,
-        "\n"
+        "\n",
       ].join
     end
 
