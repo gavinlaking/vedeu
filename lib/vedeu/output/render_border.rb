@@ -92,17 +92,43 @@ module Vedeu
                       border:   type)
     end
 
+    # @return [Array<Vedeu::Char>]
+    def build_bottom_horizontal
+      horizontal_border(:bottom_horizontal, yn)
+    end
+
+    # @return [Vedeu::Char]
+    def build_bottom_left
+      build(bottom_left, :bottom_left, *[yn, x]) if left?
+    end
+
+    # @return [Vedeu::Char]
+    def build_bottom_right
+      build(bottom_right, :bottom_right, *[yn, xn]) if right?
+    end
+
+    # @return [Array<Vedeu::Char>]
+    def build_top_horizontal
+      horizontal_border(:top_horizontal, y)
+    end
+
+    # @return [Vedeu::Char]
+    def build_top_left
+      build(top_left, :top_left, *[y, x]) if left?
+    end
+
+    # @return [Vedeu::Char]
+    def build_top_right
+      build(top_right, :top_right, *[y, xn]) if right?
+    end
+
     # Renders the bottom border for the interface.
     #
     # @return [String]
     def bottom
       return [] unless bottom?
 
-      out = []
-      out << build(bottom_left, :bottom_left, *[yn, x]) if left?
-      out << horizontal_border(:bottom_horizontal, yn)
-      out << build(bottom_right, :bottom_right, *[yn, xn]) if right?
-      out
+      [build_bottom_left, build_bottom_horizontal, build_bottom_right].compact
     end
 
     # @return [Vedeu::Geometry]
@@ -169,12 +195,22 @@ module Vedeu
       present?(title)
     end
 
+    # Return boolean indicating whether the title fits within the width of the
+    # top border.
+    #
+    # @return [Boolean]
+    def title_fits?
+      width > title_characters.size
+    end
+
     # From the second element of {#title_characters} remove the border from each
     # {#horizontal_border} Vedeu::Char, and add the title character.
     #
     # @return [Array<Vedeu::Char>]
     def titlebar
-      horizontal_border(:top_horizontal, y).each_with_index do |char, index|
+      return build_top_horizontal unless title? && title_fits?
+
+      build_top_horizontal.each_with_index do |char, index|
         if index >= 1 && index <= title_characters.size
           char.border = nil
           char.value  = title_characters[(index - 1)]
@@ -198,19 +234,7 @@ module Vedeu
     def top
       return [] unless top?
 
-      out = []
-      out << build(top_left, :top_left, *[y, x]) if left?
-
-      if title? && width > title_characters.size
-        out << titlebar
-
-      else
-        out << horizontal_border(:top_horizontal, y)
-
-      end
-
-      out << build(top_right, :top_right, *[y, xn]) if right?
-      out
+      [build_top_left, titlebar, build_top_right].compact
     end
 
     # Truncates the title to the width of the interface, minus characters needed
