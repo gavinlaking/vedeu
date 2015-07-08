@@ -281,7 +281,7 @@ module Vedeu
       # other resources). By default the base path is just cwd but this will
       # not work for many applications.
       #
-      # @param value [String]
+      # @param path [String]
       # @return [String]
       def base_path(path = nil)
         options[:base_path] = path

@@ -8,10 +8,6 @@ module Vedeu
 
     class << self
 
-      # @example
-      #   Vedeu.geometries
-      #
-      # @return [Vedeu::Geometries]
       alias_method :geometries, :repository
 
       # Remove all stored models from the repository.

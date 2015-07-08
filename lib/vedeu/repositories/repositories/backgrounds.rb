@@ -5,10 +5,8 @@ module Vedeu
   # @api public
   class Backgrounds < Colours
 
-    # @example
-    #   Vedeu.background_colours
-    #
     # @return [Vedeu::Backgrounds]
+    # @see Vedeu::Repository
     def self.background_colours
       @background_colours ||= new
     end

@@ -8,7 +8,20 @@ module Vedeu
     # When included, provide these methods as class methods.
     module ClassMethods
 
+      # Specifying the controller name in your controller provides a Vedeu event
+      # which will trigger the loading of the controller.
+      #
+      # @example
+      #   class YourController
+      #     controller_name :your_controller
+      #     # ...
+      #   end
+      #
+      #   Vedeu.trigger(:show_your_controller) # this event is now available to
+      #                                        # trigger.
+      #
       # @param name [Symbol] The name of the controller.
+      # @return [void]
       def controller_name(name)
         Vedeu.bind("show_#{name}".to_sym) { new }
       end

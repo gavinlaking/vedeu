@@ -7,10 +7,6 @@ module Vedeu
 
     class << self
 
-      # @example
-      #   Vedeu.interfaces
-      #
-      # @return [Vedeu::Interfaces]
       alias_method :interfaces, :repository
 
       # Remove all stored models from the repository.

@@ -7,16 +7,10 @@ module Vedeu
 
     class << self
 
-      # @example
-      #   Vedeu.cursors
-      #
-      # @return [Vedeu::Cursors]
       alias_method :cursors, :repository
 
-      # @example
-      #   Vedeu.cursor
-      #
       # @return [Vedeu::Cursor]
+      # @see Vedeu::API.cursor
       def cursor
         cursors.by_name(Vedeu.focus) if Vedeu.focus
       end

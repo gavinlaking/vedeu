@@ -280,6 +280,7 @@ module Vedeu
       end
     end
 
+    # @return [String]
     def set_base_path
       File.expand_path('.')
     end
