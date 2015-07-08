@@ -23,6 +23,9 @@ module Vedeu
         @code = code
       end
 
+      # Evaluate the code/text in the template; converting any recognised
+      # directives as they are encountered.
+      #
       # @return [Vedeu::Stream]
       def process
         eval(code, proc {}.binding)

@@ -5,6 +5,7 @@ module Vedeu
   # @api private
   module Traps
 
+    # :nocov:
     Signal.trap('INT') do
       puts
       exit(1)
@@ -20,6 +21,7 @@ module Vedeu
     Signal.trap('USR2') {}
 
     Signal.trap('SIGWINCH') { Vedeu.trigger(:_resize_) }
+    # :nocov:
 
   end # Traps
 

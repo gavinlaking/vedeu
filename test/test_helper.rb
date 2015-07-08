@@ -1,5 +1,5 @@
 require 'simplecov'
-require 'simplecov-console'
+require 'simplecov-console' if ENV['CONSOLE_COVERAGE']
 require 'pry'
 require 'minitest/autorun'
 require 'minitest/pride' unless ENV['NO_COLOR']
@@ -8,10 +8,13 @@ require 'minitest/hell'
 # GC.disable # uncomment to remove ~20ms from test run speed
 
 SimpleCov.start do
-  formatter SimpleCov::Formatter::Console
+  formatter SimpleCov::Formatter::Console if ENV['CONSOLE_COVERAGE']
   command_name 'MiniTest::Spec'
   add_filter '/test/'
+  add_group  'application',   'vedeu/application'
+  add_group  'bindings',      'vedeu/bindings'
   add_group  'buffers',       'vedeu/buffers'
+  add_group  'cli',           'vedeu/cli'
   add_group  'configuration', 'vedeu/configuration'
   add_group  'cursor',        'vedeu/cursor'
   add_group  'distributed',   'vedeu/distributed'
@@ -20,10 +23,12 @@ SimpleCov.start do
   add_group  'geometry',      'vedeu/geometry'
   add_group  'input',         'vedeu/input'
   add_group  'models',        'vedeu/models'
+  add_group  'null',          'vedeu/null'
   add_group  'output',        'vedeu/output'
   add_group  'repositories',  'vedeu/repositories'
   add_group  'storage',       'vedeu/storage'
   add_group  'support',       'vedeu/support'
+  add_group  'templating',    'vedeu/templating'
 end unless ENV['no_simplecov']
 
 module VedeuMiniTestPlugin

@@ -27,11 +27,14 @@ module Vedeu
 
   def_delegators Vedeu::Log, :log
 
+  # Return the name of currently focussed interface.
+  #
   # @return [Vedeu::Focus]
   def self.focusable
     @focusable ||= Vedeu::Focus
   end
 
+  # :nocov:
   # When Vedeu is included within one of your classes, you should have all
   # API methods at your disposal.
   #
@@ -48,6 +51,7 @@ module Vedeu
     receiver.send(:include, API)
     receiver.extend(API)
   end
+  # :nocov:
 
 end # Vedeu
 

@@ -1,27 +1,7 @@
-## Vedeu API
+# @title Vedeu API
 
 Vedeu provides a simple DSL for the creation of terminal/console based
-applications.
-
-Below is a list of all the API methods. These can be accessed in your
-application by including Vedeu in your class or module or by calling them directly.
-
-
-### API 'include' example
-
-Doing it this way will mean you can use any API method without the `Vedeu.` prefix.
-
-```ruby
-class SomeClassInYourApplication
-  include Vedeu
-
-  # ...
-```
-
-
-### API direct example
-
-Doing it this way means you need to use the `Vedeu.` prefix.
+applications. Below is a list of all the API methods:
 
 ```ruby
 class OtherClassInYourApplication
@@ -34,32 +14,42 @@ class OtherClassInYourApplication
   # ...
 ```
 
-... TODO ...
-
-
-### API DSL methods
-
 Note: Nesting indicates where an API method is allowed/supposed to be used.
+
+#### Borders
+
+- Vedeu.border
+
+#### Configuration
+
+- Vedeu.configure
+- Vedeu.configuration
 
 #### Events
 
-- bind
-- trigger
-- unbind
+- Vedeu.bind
+- Vedeu.trigger
+- Vedeu.unbind
 
+#### Geometry
+
+- Vedeu.geometry
+
+#### Groups
+
+- Vedeu.group
 
 #### Input
 
-- keypress
-- keymap
+- Vedeu.keypress
+- Vedeu.keymap
   - key
   - name
   - interface
 
-
 #### Interfaces
 
-- interface
+- Vedeu.interface
   - background
   - border
   - cursor
@@ -83,10 +73,10 @@ Note: Nesting indicates where an API method is allowed/supposed to be used.
   - style
   - use
 
-
 #### Views
 
-- renders
+- Vedeu.renders
+- Vedeu.render
   - view
     - colour
     - cursor
@@ -116,36 +106,49 @@ Note: Nesting indicates where an API method is allowed/supposed to be used.
     - name
     - style
   - use
-- views
+- Vedeu.views
   - ... as #renders
-
 
 #### Menus
 
-- menu
+- Vedeu.menu
   - items
   - name
 
+#### Renderers
+
+- Vedeu.renderer
+- Vedeu.renderers
+
+#### Repositories
+
+These are collections which you can access:
+
+- Vedeu.background_colours
+- Vedeu.foreground_colours
+- Vedeu.borders
+- Vedeu.buffers
+- Vedeu.cursors
+- Vedeu.events
+- Vedeu.geometries
+- Vedeu.groups
+- Vedeu.interfaces
+- Vedeu.keymaps
+- Vedeu.menus
 
 #### Miscellany
 
-- configure
-- focus
-- focus_by_name
-- focussed?
-- focus_next
-- focus_previous
-
-- height
-  Usage: Vedeu.height
-  Returns the height (in lines) for the current terminal.
-
-- log
-- resize
-  Usage: Vedeu.resize
-
-
-- width
-  Usage: Vedeu.width
-  Returns the width (in characters) for the current terminal.
+- Vedeu.cursor
+- Vedeu.focus
+- Vedeu.focus_by_name
+- Vedeu.focussed?
+- Vedeu.focus_next
+- Vedeu.focus_previous
+- Vedeu.height
+- Vedeu.log
+- Vedeu.log_stdout
+- Vedeu.log_stderr
+- Vedeu.resize
+- Vedeu.timer
+- Vedeu.width
 

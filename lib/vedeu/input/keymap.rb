@@ -72,6 +72,8 @@ module Vedeu
 
     private
 
+    # Returns the default options/attributes for this class.
+    #
     # @return [Hash]
     def defaults
       {

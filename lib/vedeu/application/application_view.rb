@@ -37,6 +37,9 @@ module Vedeu
 
     private
 
+    # Provides the path to the template file using the base_path configuration
+    # option.
+    #
     # @param value [String]
     # @return [String]
     def template(value)

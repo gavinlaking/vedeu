@@ -1,4 +1,4 @@
-## Producing an object graph of Vedeu
+# @title Producing an object graph of Vedeu
 
 Sometimes I find looking at the project as a graph helps me to understand the
 relationship between the various objects. To achieve this, I use Yard's graph

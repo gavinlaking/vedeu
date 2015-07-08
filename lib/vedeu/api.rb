@@ -33,16 +33,31 @@ module Vedeu
 
     module_function
 
+    # Manipulate the repository of background colours.
+    #
+    # @example
+    #   Vedeu.background_colours
+    #
     # @!method background_colours
-    #   @see Vedeu::Backgrounds.background_colours
+    # @return [Vedeu::Backgrounds]
     def_delegators Vedeu::Backgrounds, :background_colours
 
+    # Manipulate the repository of borders.
+    #
+    # @example
+    #   Vedeu.borders
+    #
     # @!method borders
-    #   @see Vedeu::Borders.borders
+    # @return [Vedeu::Borders]
     def_delegators Vedeu::Borders, :borders
 
+    # Manipulate the repository of buffers.
+    #
+    # @example
+    #   Vedeu.buffers
+    #
     # @!method buffers
-    #   @see Vedeu::Buffers.buffers
+    # @return [Vedeu::Buffers]
     def_delegators Vedeu::Buffers, :buffers
 
     # @!method configure
@@ -51,11 +66,23 @@ module Vedeu
     #   @see Vedeu::Configuration.configuration
     def_delegators Vedeu::Configuration, :configure, :configuration
 
+    # Manipulate the currently focussed cursor.
+    #
+    # @example
+    #   Vedeu.cursor
+    #
     # @!method cursor
-    #   @see Vedeu::Cursors.cursor
+    # @return [Vedeu::Cursor]
+    def_delegators Vedeu::Cursors, :cursor
+
+    # Manipulate the repository of cursors.
+    #
+    # @example
+    #   Vedeu.cursors
+    #
     # @!method cursors
-    #   @see Vedeu::Cursors.cursors
-    def_delegators Vedeu::Cursors, :cursor, :cursors
+    # @return [Vedeu::Cursors]
+    def_delegators Vedeu::Cursors, :cursors
 
     # @!method border
     #   @see Vedeu::DSL::Border.border
@@ -89,8 +116,13 @@ module Vedeu
     #   @see Vedeu::Event.unbind
     def_delegators Vedeu::Event, :bind, :unbind
 
+    # Manipulate the repository of events.
+    #
+    # @example
+    #   Vedeu.events
+    #
     # @!method events
-    #   @see Vedeu::Events.events
+    # @return [Vedeu::Events]
     def_delegators Vedeu::Events, :events
 
     # @!method focus
@@ -106,24 +138,49 @@ module Vedeu
     def_delegators Vedeu::Focus, :focus, :focus_by_name, :focussed?,
                    :focus_next, :focus_previous
 
+    # Manipulate the repository of foreground colours.
+    #
+    # @example
+    #   Vedeu.foreground_colours
+    #
     # @!method foreground_colours
-    #   @see Vedeu::Foregrounds.foreground_colours
+    # @return [Vedeu::Foregrounds]
     def_delegators Vedeu::Foregrounds, :foreground_colours
 
+    # Manipulate the repository of geometries.
+    #
+    # @example
+    #   Vedeu.geometries
+    #
     # @!method geometries
-    #   @see Vedeu::Geometries.geometries
+    # @return [Vedeu::Geometries]
     def_delegators Vedeu::Geometries, :geometries
 
+    # Manipulate the repository of groups.
+    #
+    # @example
+    #   Vedeu.groups
+    #
     # @!method groups
-    #   @see Vedeu::Groups.groups
+    # @return [Vedeu::Groups]
     def_delegators Vedeu::Groups, :groups
 
+    # Manipulate the repository of interfaces.
+    #
+    # @example
+    #   Vedeu.interfaces
+    #
     # @!method interfaces
-    #   @see Vedeu::Interfaces.interfaces
+    # @return [Vedeu::Interfaces]
     def_delegators Vedeu::Interfaces, :interfaces
 
+    # Manipulate the repository of keymaps.
+    #
+    # @example
+    #   Vedeu.keymaps
+    #
     # @!method keymaps
-    #   @see Vedeu::Keymaps.keymaps
+    # @return [Vedeu::Keymaps]
     def_delegators Vedeu::Keymaps, :keymaps
 
     # @!method log
@@ -142,8 +199,13 @@ module Vedeu
     #   @see Vedeu::Menu.menu
     def_delegators Vedeu::Menu, :menu
 
+    # Manipulate the repository of menus.
+    #
+    # @example
+    #   Vedeu.menus
+    #
     # @!method menus
-    #   @see Vedeu::Menus.menus
+    # @return [Vedeu::Menus]
     def_delegators Vedeu::Menus, :menus
 
     # @!method renderer

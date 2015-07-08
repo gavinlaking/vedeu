@@ -7,10 +7,6 @@ module Vedeu
 
     class << self
 
-      # @example
-      #   Vedeu.events
-      #
-      # @return [Vedeu::Events]
       alias_method :events, :repository
 
       # Remove all stored models from the repository.

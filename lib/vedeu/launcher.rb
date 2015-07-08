@@ -13,6 +13,7 @@ module Vedeu
     #   error occurred (1).
     attr_reader :exit_code
 
+    # :nocov:
     # @param (see #initialize)
     def self.execute!(argv = [],
                       stdin  = STDIN,
@@ -21,6 +22,7 @@ module Vedeu
                       kernel = Kernel)
       new(argv, stdin, stdout, stderr, kernel).debug_execute!
     end
+    # :nocov:
 
     # Returns a new instance of Vedeu::Launcher.
     #
@@ -43,6 +45,11 @@ module Vedeu
       @exit_code = 1
     end
 
+    # :nocov:
+    # If debugging is enabled, execute the application within the debugging
+    # context. At the moment, this simple uses 'ruby-prof' to profile the
+    # running application.
+    #
     # @return [void]
     def debug_execute!
       if configuration.debug?
@@ -55,7 +62,12 @@ module Vedeu
 
       terminate!
     end
+    # :nocov:
 
+    # Alters the STD[IN|OUT|ERR] to those requested by the client application,
+    # then starts the application. If an uncaught exception occurs during the
+    # application runtime, we exit ungracefully with the error message if any.
+    #
     # @return [void]
     def execute!
       $stdin  = @stdin
@@ -79,6 +91,7 @@ module Vedeu
 
     private
 
+    # :nocov:
     # Terminates the application after resetting $stdin, $stdout and $stderr.
     #
     # @return [void]
@@ -91,6 +104,7 @@ module Vedeu
 
       @kernel.exit(exit_code)
     end
+    # :nocov:
 
     # Use the arguments passed on the command-line along with those defined by
     # the client application and Vedeu's defaults to configure the client

@@ -92,6 +92,8 @@ module Vedeu
       @attributes.each { |key, value| instance_variable_set("@#{key}", value) }
     end
 
+    # Override Ruby's Object#inspect method to provide a more helpful output.
+    #
     # @return [String]
     def inspect
       '<Vedeu::Geometry '   \
@@ -198,6 +200,8 @@ module Vedeu
       @xn.is_a?(Proc) ? @xn.call : @xn
     end
 
+    # Returns the default options/attributes for this class.
+    #
     # @return [Hash]
     def defaults
       {

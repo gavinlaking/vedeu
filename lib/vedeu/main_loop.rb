@@ -38,6 +38,7 @@ module Vedeu
         @loop = false
       end
 
+      # :nocov:
       # Check the application has started and we wish to continue running.
       #
       # @raise [VedeuInterrupt] When we wish to terminate the running
@@ -46,6 +47,7 @@ module Vedeu
       def safe_exit_point!
         fail VedeuInterrupt if @started && !@loop
       end
+      # :nocov:
 
     end
 

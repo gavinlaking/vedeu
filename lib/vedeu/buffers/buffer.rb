@@ -217,6 +217,8 @@ module Vedeu
       @clear_buffer ||= Vedeu::Clear.new(view).clear
     end
 
+    # Returns the default options/attributes for this class.
+    #
     # @return [Hash<Symbol => NilClass, String>]
     def defaults
       {

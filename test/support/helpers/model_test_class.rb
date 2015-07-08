@@ -40,6 +40,8 @@ module Vedeu
 
     private
 
+    # Returns the default options/attributes for this class.
+    #
     def defaults
       {
         colour:     {},

@@ -7,10 +7,6 @@ module Vedeu
 
     class << self
 
-      # @example
-      #   Vedeu.groups
-      #
-      # @return [Vedeu::Groups]
       alias_method :groups, :repository
 
       # Remove all stored models from the repository.

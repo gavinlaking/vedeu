@@ -8,10 +8,6 @@ module Vedeu
 
     class << self
 
-      # @example
-      #   Vedeu.borders
-      #
-      # @return [Vedeu::Borders]
       alias_method :borders, :repository
 
       # Remove all stored models from the repository.

@@ -41,6 +41,8 @@ module Vedeu
       self.class
     end
 
+    # Return all the registered models.
+    #
     # @return [Array<void>] An array containing each stored model.
     def all
       return storage.values if storage.is_a?(Hash)
@@ -48,6 +50,8 @@ module Vedeu
       registered
     end
 
+    # Return the named model or a null object if not registered.
+    #
     # @param name [String] The name of the stored model.
     # @return [void]
     def by_name(name)
@@ -101,6 +105,8 @@ module Vedeu
       end
     end
 
+    # Override Ruby's Object#inspect method to provide a more helpful output.
+    #
     # @return [String]
     def inspect
       "<#{self.class.name}: #{registered.inspect}>"

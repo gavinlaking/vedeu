@@ -1,4 +1,4 @@
-## Views with Vedeu
+# @title Views with Vedeu
 
 There are two ways to construct views with Vedeu. You would like to draw the
  view to the screen immediately (immediate render) or you want to save a view to

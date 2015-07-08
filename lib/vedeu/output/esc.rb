@@ -122,11 +122,9 @@ module Vedeu
     # @param value [String|Symbol]
     # @return [String]
     def string(value = '')
-      name = value.to_sym
+      return '' if value.empty?
 
-      return '' if name.empty?
-
-      send(name)
+      send(value.to_sym)
 
     rescue NoMethodError
       ''
@@ -156,11 +154,6 @@ module Vedeu
     end
 
     # @return [String]
-    def clear_last_line
-      Vedeu::Position.new((Vedeu::Terminal.height - 1), 1).to_s { clear_line }
-    end
-
-    # @return [String]
     def colour_reset
       [fg_reset, bg_reset].join
     end
@@ -177,13 +170,12 @@ module Vedeu
 
     # @return [String]
     def screen_exit
-      [
-        show_cursor,
-        colour_reset,
-        reset,
-        Vedeu::Position.new(Vedeu.height, Vedeu.width).to_s,
-        "\n",
-      ].join
+      [show_cursor, colour_reset, reset, last_character_position, "\n"].join
+    end
+
+    # @return [String]
+    def last_character_position
+      Vedeu::Position.new(Vedeu.height, Vedeu.width).to_s
     end
 
   end # Esc
