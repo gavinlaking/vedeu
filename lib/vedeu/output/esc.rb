@@ -170,13 +170,12 @@ module Vedeu
 
     # @return [String]
     def screen_exit
-      [
-        show_cursor,
-        colour_reset,
-        reset,
-        Vedeu::Position.new(Vedeu.height, Vedeu.width).to_s,
-        "\n",
-      ].join
+      [show_cursor, colour_reset, reset, last_character_position, "\n"].join
+    end
+
+    # @return [String]
+    def last_character_position
+      Vedeu::Position.new(Vedeu.height, Vedeu.width).to_s
     end
 
   end # Esc
