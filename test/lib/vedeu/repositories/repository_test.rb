@@ -97,8 +97,17 @@ module Vedeu
     describe '#current' do
       subject { instance.current }
 
-      # it { skip }
-      # it { subject.must_equal('') }
+      context 'when there is nothing in focus' do
+        before { Vedeu.stubs(:focus) }
+
+        it { subject.must_be_instance_of(NilClass) }
+      end
+
+      context 'when there something in focus' do
+        before { Vedeu.stubs(:focus).returns('zinc') }
+
+        it { subject.must_be_instance_of(Vedeu::TestModel) }
+      end
     end
 
     describe '#find' do

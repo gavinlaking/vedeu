@@ -8,18 +8,22 @@ module Vedeu
     let(:_value)    { 'Testing the Text class with various options' }
     let(:options)   {
       {
-        anchor: anchor,
-        colour: colour,
-        model:  model,
-        pad:    pad,
-        width:  width,
+        anchor:     anchor,
+        background: background,
+        colour:     colour,
+        foreground: foreground,
+        model:      model,
+        pad:        pad,
+        width:      width,
       }
     }
-    let(:anchor) { :left }
-    let(:colour) { nil }
-    let(:model)  { nil }
-    let(:pad)    { ' ' }
-    let(:width)  { nil }
+    let(:anchor)     { :left }
+    let(:background) { nil }
+    let(:colour)     { nil }
+    let(:foreground) { nil }
+    let(:model)      { nil }
+    let(:pad)        { ' ' }
+    let(:width)      { nil }
 
     describe '.with' do
       subject { described.with(_value, options) }
@@ -127,14 +131,16 @@ module Vedeu
       end
 
       context 'when the colour option is given' do
-        let(:colour) {}
+        let(:colour) { { background: '#33ff33', foreground: '#ffaa00' } }
+
+        # it { skip }
       end
 
       context 'when the background and/or foreground options are given' do
         let(:background) { '#111111' }
         let(:foreground) { '#aadd00' }
 
-
+        # it { skip }
       end
 
     end

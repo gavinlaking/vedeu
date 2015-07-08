@@ -21,35 +21,62 @@ module Vedeu
       let(:_name)     { 'my_first_app' }
 
       describe '#app_name' do
+        before { File.stubs(:read).returns('MyFirstApp') }
+
         subject { instance.app_name }
 
-        # it { subject.must_equal('MyFirstApp') }
+        it { subject.must_equal('MyFirstApp') }
       end
 
       describe '#make_directory' do
         let(:destination) {}
 
+        before { Vedeu.stubs(:log_stdout) }
+
         subject { instance.make_directory(destination) }
+
+        it {
+          FileUtils.expects(:mkdir_p).with(destination)
+          subject
+        }
       end
 
       describe '#copy_file' do
         let(:source)      {}
         let(:destination) {}
 
+        before { Vedeu.stubs(:log_stdout) }
+
         subject { instance.copy_file(source, destination) }
+
+        it {
+          FileUtils.expects(:cp).with(source, destination)
+          subject
+        }
       end
 
       describe '#make_file' do
         let(:source)      {}
         let(:destination) {}
 
+        before { Vedeu.stubs(:log_stdout) }
+
         subject { instance.make_file(source, destination) }
+
+        # it { skip }
       end
 
       describe '#touch_file' do
         let(:destination) {}
 
+        before { Vedeu.stubs(:log_stdout) }
+
         subject { instance.touch_file(destination) }
+
+        it {
+          FileUtils.expects(:touch).with(destination)
+          subject
+        }
       end
 
       describe '#name' do
@@ -104,6 +131,11 @@ module Vedeu
         let(:source) {}
 
         subject { instance.parse(source) }
+
+        it {
+          Vedeu::Template.expects(:parse).with(instance, source)
+          subject
+        }
       end
 
       describe '#source' do
