@@ -1,5 +1,0 @@
-files:
-  included:
-    lib/**/*.rb
-  excluded:
-    vendor/**/*.rb

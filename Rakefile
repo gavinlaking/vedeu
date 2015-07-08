@@ -1,6 +1,5 @@
 require 'bundler/gem_tasks'
 require 'rake/testtask'
-require 'inch/rake'
 require 'yard'
 require 'rubocop/rake_task'
 
@@ -20,11 +19,6 @@ YARD::Rake::YardocTask.new(:yard) do |t|
     'docs/getting_started.md',
     'docs/views.md',
   ]
-end
-
-Inch::Rake::Suggest.new(:inch) do |suggest|
-  suggest.args << '--pedantic'
-  suggest.args << '--all'
 end
 
 RuboCop::RakeTask.new(:rubocop) do |task|
