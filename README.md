@@ -10,7 +10,9 @@ Vedeu (vee-dee-you; aka VDU) is my attempt at creating a terminal based
 
 ## Requirements
 
-Vedeu was been built primarily with Ruby v2.1.
+Vedeu was been built primarily with Ruby v2.1; however, the
+[.ruby-version](https://github.com/gavinlaking/vedeu/blob/master/.ruby-version)
+file will indicate the currently used Ruby version.
 
 When Vedeu started I was a MacOSX user, I've since moved to Linux. You shouldn't have any problems with either of these operating systems.
 
