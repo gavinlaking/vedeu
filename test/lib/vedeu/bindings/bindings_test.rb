@@ -20,10 +20,7 @@ module Vedeu
       it { Vedeu.events.registered?(:_resize_).must_equal(true) }
     end
 
-    it { Vedeu.events.registered?(:_cursor_position_).must_equal(true) }
-
     context 'the geometry specific events are defined' do
-
       it { Vedeu.events.registered?(:_maximise_).must_equal(true) }
       it { Vedeu.events.registered?(:_unmaximise_).must_equal(true) }
     end

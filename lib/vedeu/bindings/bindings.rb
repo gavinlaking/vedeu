@@ -31,6 +31,9 @@ module Vedeu
 
     # When triggered, Vedeu will trigger a `:cleanup` event which you can define
     # (to save files, etc) and attempt to exit.
+    #
+    # Also available as:
+    #   Vedeu.exit
     Vedeu.bind(:_exit_) { Vedeu::Application.stop }
 
     # Vedeu triggers this event when it is ready to enter the main loop. Client
@@ -63,11 +66,6 @@ module Vedeu
     # events. Please see those events for their behaviour.
     Vedeu.bind(:_resize_, delay: 0.15) { Vedeu.resize }
 
-    # When triggered will return the current position of the cursor.
-    Vedeu.bind(:_cursor_position_) do |name|
-      Vedeu.cursors.by_name(name).position
-    end
-
     # When triggered with an interface name will focus that interface and
     # restore the cursor position and visibility.
     Vedeu.bind(:_focus_by_name_) { |name| Vedeu.focus_by_name(name) }
@@ -82,6 +80,9 @@ module Vedeu
 
     # Clears the whole terminal space, or the named interface area to be cleared
     # if given.
+    #
+    # Also available as:
+    #   Vedeu.clear_by_name(name)
     Vedeu.bind(:_clear_) { |name| Vedeu::Clear.by_name(name) }
 
     # Will cause all interfaces to refresh, or the named interface if given.
@@ -100,6 +101,9 @@ module Vedeu
     Vedeu.bind(:_refresh_group_) { |name| Vedeu::Refresh.by_group(name) }
 
     # Clears the spaces occupied by the interfaces belonging to the named group.
+    #
+    # Also available as:
+    #   Vedeu.clear_by_group(name)
     Vedeu.bind(:_clear_group_) { |name| Vedeu::Clear.by_group(name) }
 
     # @see Vedeu::Geometry#maximise

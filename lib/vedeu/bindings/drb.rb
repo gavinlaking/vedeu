@@ -18,6 +18,7 @@ module Vedeu
         end
       end
 
+      # @todo This event queries Vedeu. Events should only be commands.
       Vedeu.bind(:_drb_retrieve_output_) { Vedeu::VirtualBuffer.retrieve }
 
       # Triggering this event with 'data' will push data into the running

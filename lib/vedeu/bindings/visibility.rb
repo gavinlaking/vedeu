@@ -8,6 +8,9 @@ module Vedeu
     module Visibility
 
       # Hide the cursor of the named interface or interface currently in focus.
+      #
+      # Also available as:
+      #   Vedeu.hide_cursor(name)
       Vedeu.bind(:_hide_cursor_) do |name|
         Vedeu::Visibility.for_cursor(name).hide
       end
@@ -26,6 +29,9 @@ module Vedeu
       Vedeu.bind(:_hide_interface_) { |name| Vedeu.buffers.by_name(name).hide }
 
       # Show the cursor of the named interface or interface currently in focus.
+      #
+      # Also available as:
+      #   Vedeu.show_cursor(name)
       Vedeu.bind(:_show_cursor_) do |name|
         Vedeu::Visibility.for_cursor(name).show
       end

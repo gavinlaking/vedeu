@@ -8,9 +8,25 @@ module Vedeu
     # @param name [String]
     # @return [Vedeu::Visibility]
     def self.for_cursor(name = nil)
-      named = name ? Vedeu.cursors.by_name(name) : Vedeu.cursor
+      model = name ? Vedeu.cursors.by_name(name) : Vedeu.cursor
 
-      new(named)
+      new(model)
+    end
+
+    # @param name [String]
+    # @return [Vedeu::Visibility]
+    def self.hide_cursor(name = nil)
+      model = name ? Vedeu.cursors.by_name(name) : Vedeu.cursor
+
+      new(model).hide
+    end
+
+    # @param name [String]
+    # @return [Vedeu::Visibility]
+    def self.show_cursor(name = nil)
+      model = name ? Vedeu.cursors.by_name(name) : Vedeu.cursor
+
+      new(model).show
     end
 
     # @param model [void]
@@ -47,6 +63,7 @@ module Vedeu
       else
         model.visible = true
         model.store
+
       end
     end
 

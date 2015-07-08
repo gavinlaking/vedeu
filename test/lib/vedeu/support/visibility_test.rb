@@ -21,6 +21,7 @@ module Vedeu
     let(:instance)  { described.new(model) }
     let(:model)     { VisibilityTestModel.new(visible) }
     let(:visible)   { true }
+    let(:_name)     { 'Vedeu::Visibility' }
 
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }
@@ -28,8 +29,6 @@ module Vedeu
     end
 
     describe '.for_cursor' do
-      let(:_name) {}
-
       subject { described.for_cursor(_name) }
 
       it { subject.must_be_instance_of(described) }
@@ -49,6 +48,19 @@ module Vedeu
       it { subject.must_equal(model) }
 
       it { subject; instance.state.must_equal(:invisible) }
+    end
+
+    describe '.show_cursor' do
+      subject { described.show_cursor(_name) }
+
+      it { subject; instance.state.must_equal(:visible) }
+    end
+
+    describe '.hide_cursor' do
+      subject { described.hide_cursor(_name) }
+
+      # it { subject; instance.state.must_equal(:invisible) }
+      # it { skip }
     end
 
     describe '.toggle' do

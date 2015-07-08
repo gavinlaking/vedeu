@@ -22,6 +22,13 @@ module Vedeu
         Vedeu::Move.by_name(Vedeu::Cursor, :origin, name)
       end
 
+      # When triggered will return the current position of the cursor.
+      #
+      # @todo This event queries Vedeu. Events should only be commands.
+      Vedeu.bind(:_cursor_position_) do |name|
+        Vedeu.cursors.by_name(name).position
+      end
+
       # Move the cursor to a relative position inside the interface.
       #
       # @todo
