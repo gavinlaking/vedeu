@@ -55,6 +55,15 @@ module Vedeu
             Vedeu.expects(:trigger).with(:_keypress_, :up)
             subject
           end
+
+          context 'when the key is an F key' do
+            let(:keypress) { "\e[17~" }
+
+            it 'triggers an event with the keypress' do
+              Vedeu.expects(:trigger).with(:_keypress_, :f6)
+              subject
+            end
+          end
         end
       end
     end

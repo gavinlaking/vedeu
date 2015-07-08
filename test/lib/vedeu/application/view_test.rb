@@ -13,14 +13,6 @@ module Vedeu
     let(:described) { Vedeu::ViewTestClass }
     let(:instance)  { described.new }
 
-    context 'ClassMethods' do
-
-    end
-
-    context 'InstanceMethods' do
-
-    end
-
   end # View
 
 end # Vedeu

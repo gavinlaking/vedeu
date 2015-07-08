@@ -17,10 +17,6 @@ module Vedeu
 
     end
 
-    context 'InstanceMethods' do
-
-    end
-
   end # Controller
 
 end # Vedeu

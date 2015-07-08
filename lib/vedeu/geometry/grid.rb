@@ -93,12 +93,12 @@ module Vedeu
 
     # @return [Fixnum]
     def actual_height
-      Vedeu::Terminal.height
+      Vedeu.height
     end
 
     # @return [Fixnum]
     def actual_width
-      Vedeu::Terminal.width
+      Vedeu.width
     end
 
     # @return [Boolean]

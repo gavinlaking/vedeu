@@ -308,33 +308,6 @@ module Vedeu
       alias_method :z_index, :zindex
       alias_method :z,       :zindex
 
-      # @param label [String]
-      # @param name [String|Symbol]
-      # @param value [Boolean|void]
-      # @return [void]
-      def button(label, name, value = true)
-        button_name   = "button_#{model.name}_#{name}"
-        button_label  = " #{label} "
-        button_height = 3
-        button_width  = button_label.size + 2
-
-        Vedeu.interface button_name do
-          border {}
-          cursor
-          geometry do
-            height(button_height)
-            width(button_width)
-          end
-        end
-        Vedeu.renders do
-          view button_name do
-            lines do
-              line button_label
-            end
-          end
-        end
-      end
-
       protected
 
       # @!attribute [r] client

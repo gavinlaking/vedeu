@@ -122,7 +122,7 @@ module Vedeu
     #
     # @return [String]
     def restore_screen
-      output(Esc.string('screen_exit'), Esc.string('clear_last_line'))
+      output(Esc.string('screen_exit'))
     end
 
     # Sets the cursor to be visible unless in raw mode, whereby it will be left

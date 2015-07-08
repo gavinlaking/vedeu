@@ -153,11 +153,11 @@ module Vedeu
         y:         _y,
         yn:        _yn,
         y_yn:      @height,
-        y_default: Vedeu::Terminal.height,
+        y_default: Vedeu.height,
         x:         _x,
         xn:        _xn,
         x_xn:      @width,
-        x_default: Vedeu::Terminal.width,
+        x_default: Vedeu.width,
         options:   dimension_options,
       )
     end

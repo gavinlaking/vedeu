@@ -6,6 +6,8 @@ module Vedeu
 
     let(:described) { Vedeu::Esc }
 
+    before { Vedeu::Terminal.stubs(:size).returns([80, 25]) }
+
     describe 'alias methods' do
       it { described.must_respond_to(:foreground_codes) }
     end
@@ -116,7 +118,8 @@ module Vedeu
       end
 
       it 'returns an escape sequence when the style is screen_exit' do
-        described.string('screen_exit').must_equal("\e[?25h\e[39m\e[49m\e[0m")
+        described.string('screen_exit')
+          .must_equal("\e[?25h\e[39m\e[49m\e[0m\e[80;25H\n")
       end
 
       it 'returns an escape sequence when the style is negative' do

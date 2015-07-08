@@ -71,12 +71,12 @@ module Vedeu
 
       # @return [Array<Fixnum>]
       def x_xn
-        @x_xn ||= Vedeu::Dimension.pair(default: Vedeu::Terminal.width)
+        @x_xn ||= Vedeu::Dimension.pair(default: Vedeu.width)
       end
 
       # @return [Array<Fixnum>]
       def y_yn
-        @y_yn ||= Vedeu::Dimension.pair(default: Vedeu::Terminal.height)
+        @y_yn ||= Vedeu::Dimension.pair(default: Vedeu.height)
       end
 
     end # Geometry

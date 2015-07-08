@@ -28,10 +28,10 @@ module Vedeu
     # @return [Vedeu::Cursor]
     def to
       result = entity.new(name: name,
-                           y:    y_position,
-                           x:    x_position,
-                           oy:   y,
-                           ox:   x).store
+                          y:    y_position,
+                          x:    x_position,
+                          oy:   y,
+                          ox:   x).store
 
       Vedeu.trigger(:_clear_, name)
       Vedeu.trigger(:_refresh_, name)

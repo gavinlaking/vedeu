@@ -120,6 +120,7 @@ module Vedeu
       return nil unless visible?
 
       Vedeu::Visibility.hide(interface)
+
       clear
     end
 
@@ -156,6 +157,7 @@ module Vedeu
       return nil if visible?
 
       Vedeu::Visibility.show(interface)
+
       render
     end
 

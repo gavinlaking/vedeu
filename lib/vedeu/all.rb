@@ -2,6 +2,7 @@
 # load order is important
 
 require 'vedeu/version'
+require 'vedeu/exceptions'
 require 'vedeu/debug'
 require 'vedeu/traps'
 
@@ -11,7 +12,9 @@ require 'vedeu/storage/all'
 require 'vedeu/repositories/all'
 
 require 'vedeu/api'
-require 'vedeu/bindings'
+require 'vedeu/bindings/drb'
+require 'vedeu/bindings/menus'
+require 'vedeu/bindings/bindings'
 
 require 'vedeu/cli/generator/all'
 

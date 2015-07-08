@@ -1,0 +1,5 @@
+require_relative 'visibility'
+require_relative 'movement'
+require_relative 'menus'
+require_relative 'drb'
+require_relative 'bindings'
