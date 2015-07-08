@@ -27,6 +27,8 @@ module Vedeu
 
   def_delegators Vedeu::Log, :log
 
+  # Return the name of currently focussed interface.
+  #
   # @return [Vedeu::Focus]
   def self.focusable
     @focusable ||= Vedeu::Focus

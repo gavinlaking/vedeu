@@ -54,6 +54,8 @@ module Vedeu
 
     private
 
+    # Returns the default options/attributes for this class.
+    #
     # @return [Hash<Symbol => void>]
     def defaults
       {

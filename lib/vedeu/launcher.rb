@@ -43,6 +43,10 @@ module Vedeu
       @exit_code = 1
     end
 
+    # If debugging is enabled, execute the application within the debugging
+    # context. At the moment, this simple uses 'ruby-prof' to profile the
+    # running application.
+    #
     # @return [void]
     def debug_execute!
       if configuration.debug?
@@ -56,6 +60,10 @@ module Vedeu
       terminate!
     end
 
+    # Alters the STD[IN|OUT|ERR] to those requested by the client application,
+    # then starts the application. If an uncaught exception occurs during the
+    # application runtime, we exit ungracefully with the error message if any.
+    #
     # @return [void]
     def execute!
       $stdin  = @stdin

@@ -66,6 +66,8 @@ module Vedeu
       @position   = Vedeu::Position.new(@y, @x)
     end
 
+    # Override Ruby's Object#inspect method to provide a more helpful output.
+    #
     # @return [String]
     def inspect
       "<Vedeu::Cursor (#{name}, " \

@@ -150,6 +150,8 @@ module Vedeu
       options.fetch(:width)
     end
 
+    # Returns the default options/attributes for this class.
+    #
     # @return [Hash<Symbol => Fixnum, String, Symbol>]
     def defaults
       {

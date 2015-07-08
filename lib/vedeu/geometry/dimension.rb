@@ -143,6 +143,8 @@ module Vedeu
       defaults.merge!(@options)
     end
 
+    # Returns the default options/attributes for this class.
+    #
     # @return [Hash<Symbol => Boolean>]
     def defaults
       {

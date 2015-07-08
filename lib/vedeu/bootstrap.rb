@@ -23,6 +23,10 @@ module Vedeu
       @entry_point = entry_point
     end
 
+    # Loads all of the client application files so that Vedeu has access to
+    # them, calls the 'entry_point' controller, ready to start the application,
+    # then launches the client application.
+    #
     # @return [void]
     def start
       Vedeu.configure { log('/tmp/vedeu_bootstrap.log') }
@@ -57,6 +61,8 @@ module Vedeu
 
     private
 
+    # Load each of the loadable files.
+    #
     # @param path [String]
     # @return [String]
     def load(path)
@@ -65,6 +71,9 @@ module Vedeu
       path
     end
 
+    # Collect each of the files from the client application directories by path
+    # excluding '.' and '..' and only loading files with the '.rb' extension.
+    #
     # @param path [String]
     # @return [Array<String>]
     def loadables(path)
