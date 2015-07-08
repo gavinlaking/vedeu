@@ -347,20 +347,6 @@ module Vedeu
         value.is_a?(Fixnum) && [8, 16, 256, 16_777_216].include?(value)
       end
 
-      # Checks that the value provided to {#exit_key}, {#focus_next_key},
-      # {#focus_prev_key} and {#mode_switch_key} is valid. Must be a Symbol or a
-      # non-empty String.
-      #
-      # @param value [String|Symbol]
-      # @return [Boolean]
-      def valid_key?(value)
-        return false unless value.is_a?(String) || value.is_a?(Symbol)
-
-        return false if value.is_a?(String) && value.size != 1
-
-        (value.is_a?(String) || value.is_a?(Symbol)) && present?(value)
-      end
-
     end # API
 
   end # Config
