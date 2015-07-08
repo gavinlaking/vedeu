@@ -154,11 +154,6 @@ module Vedeu
     end
 
     # @return [String]
-    def clear_last_line
-      Vedeu::Position.new((Vedeu::Terminal.height - 1), 1).to_s { clear_line }
-    end
-
-    # @return [String]
     def colour_reset
       [fg_reset, bg_reset].join
     end
