@@ -84,6 +84,16 @@ module Vedeu
         end
 
         context 'when the DRb server is available' do
+          # before do
+          #   DRbObject.stubs(:new_with_uri).returns(server)
+          #   Process.stubs(:kill)
+          # end
+
+          # it {
+          #   Process.expects(:kill).with('KILL', 0)
+          #   subject
+          # }
+
           # it { skip }
         end
       end
