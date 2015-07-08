@@ -1,3 +1,5 @@
+require 'vedeu/output/presentation'
+
 module Vedeu
 
   module Null
@@ -6,6 +8,8 @@ module Vedeu
     #
     # @api private
     class Interface
+
+      include Vedeu::Presentation
 
       # Returns a new instance of Vedeu::Null::Interface.
       #
@@ -20,6 +24,13 @@ module Vedeu
         {
           name: name,
         }
+      end
+
+      # The null interface should not have a parent.
+      #
+      # @return [NilClass]
+      def parent
+        nil
       end
 
       # Pretend to store this model in the repository.
