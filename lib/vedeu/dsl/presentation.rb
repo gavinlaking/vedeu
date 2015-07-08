@@ -38,18 +38,14 @@ module Vedeu
       #
       # @return [String]
       def background(value = '')
-        model.colour = Vedeu::Colour.coerce(
-          background: Vedeu::Background.coerce(value),
-          foreground: model.colour.foreground)
+        colour(background: Vedeu::Background.coerce(value))
       end
       alias_method :bg,      :background
       alias_method :bgcolor, :background
 
       # @see Vedeu::DSL::Presentation#background
       def foreground(value = '')
-        model.colour = Vedeu::Colour.coerce(
-          foreground: Vedeu::Foreground.coerce(value),
-          background: model.colour.background)
+        colour(foreground: Vedeu::Foreground.coerce(value))
       end
       alias_method :fg,      :foreground
       alias_method :fgcolor, :foreground
@@ -81,7 +77,7 @@ module Vedeu
       #
       # @return [Vedeu::Colour]
       def colour(attributes = {})
-        model.colour = Vedeu::Colour.coerce(attributes)
+        model.colour = Vedeu::Colour.coerce(colour_attributes.merge(attributes))
       end
 
       # Define a style or styles for an interface, line or a stream.
@@ -109,6 +105,16 @@ module Vedeu
         model.style = Vedeu::Style.coerce(value)
       end
       alias_method :styles, :style
+
+      private
+
+      # @return [Hash<Symbol => String>]
+      def colour_attributes
+        {
+          background: model.colour.background,
+          foreground: model.colour.foreground,
+        }
+      end
 
     end # Presentation
 
