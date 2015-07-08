@@ -1,3 +1,5 @@
+# @title The Vedeu DSL
+
 Coupled with the API (for interacting with the running client application), the
  DSL provides the mechanism to configure aspects of your application whilst
  using Vedeu.

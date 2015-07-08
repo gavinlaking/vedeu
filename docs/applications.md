@@ -1,4 +1,4 @@
-## Vedeu Applications
+# @title Vedeu Applications
 
 Vedeu has basic tools to generate client application scaffolding, in a similar
 way to Ruby on Rails. Although not nearly as advanced as the Rails equivalent,
