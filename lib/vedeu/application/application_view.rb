@@ -11,25 +11,25 @@ module Vedeu
 
     # Renders the view.
     #
-    # @param object [void]
+    # @param args [void]
     # @return [void]
-    def self.render(object = nil)
-      new(object).render
+    def self.render(*args)
+      new(args).render
     end
 
     # Returns a new instance of Vedeu::ApplicationView.
     #
-    # @param object [void]
+    # @param args [void]
     # @return [Vedeu::ApplicationView]
-    def initialize(object = nil)
-      @object = object
+    def initialize(*args)
+      @args = args
     end
 
     protected
 
-    # @!attribute [r] object
+    # @!attribute [r] args
     # @return [void]
-    attr_reader :object
+    attr_reader :args
 
     # # @!attribute [r] template
     # # @return [void]

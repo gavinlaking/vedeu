@@ -8,7 +8,7 @@ module <%= object.app_name %>
     controller_name :<%= object.name %>
 
     def initialize
-      <%= object.app_name %>::<%= object.name_as_class %>View.render(object)
+      <%= object.app_name %>::<%= object.name_as_class %>View.render(*args)
     end
 
     private
