@@ -122,11 +122,9 @@ module Vedeu
     # @param value [String|Symbol]
     # @return [String]
     def string(value = '')
-      name = value.to_sym
+      return '' if value.empty?
 
-      return '' if name.empty?
-
-      send(name)
+      send(value.to_sym)
 
     rescue NoMethodError
       ''
