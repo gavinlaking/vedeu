@@ -38,6 +38,7 @@ module Vedeu
       @storage = in_memory
     end
     alias_method :reset!, :reset
+    alias_method :clear, :reset
 
     # Return the number of entries stored.
     #

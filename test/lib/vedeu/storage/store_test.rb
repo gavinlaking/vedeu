@@ -94,6 +94,7 @@ module Vedeu
       end
 
       it { instance.must_respond_to(:reset!) }
+      it { instance.must_respond_to(:clear) }
     end
 
     describe '#size' do
