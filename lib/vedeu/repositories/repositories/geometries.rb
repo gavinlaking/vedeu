@@ -20,7 +20,7 @@ module Vedeu
         @geometries = register(Vedeu::Geometry)
       end
 
-    end
+    end # Eigenclass
 
     null Vedeu::Null::Geometry
     # real Vedeu::Geometry

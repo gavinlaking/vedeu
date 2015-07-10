@@ -18,14 +18,14 @@ module Vedeu
       # Remove all stored models from the repository.
       #
       # @example
-      #   Vedeu.cursors.reset
+      #   Vedeu.cursors.reset!
       #
       # @return [Vedeu::Cursors]
       def reset!
         @cursors = register(Vedeu::Cursor)
       end
 
-    end
+    end # Eigenclass
 
     # @example
     #   Vedeu.cursors.by_name('some_name')

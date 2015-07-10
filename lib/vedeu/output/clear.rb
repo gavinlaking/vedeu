@@ -58,7 +58,7 @@ module Vedeu
       end
       alias_method :render, :clear
 
-    end
+    end # Eigenclass
 
     # Return a new instance of Vedeu::Clear.
     #

@@ -32,7 +32,7 @@ module Vedeu
       end
       alias_method :exit, :stop
 
-    end
+    end # Eigenclass
 
     # :nocov:
     # Returns a new instance of Vedeu::Application.

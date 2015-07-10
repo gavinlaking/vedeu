@@ -86,7 +86,7 @@ Geometry allows the configuration of the position and size of an interface.
 
 Here is an example of declarations for a `geometry` block:
 
- ```ruby
+```ruby
 interface 'main' do
   geometry do
     height 5 # Sets the height of the view to 5
@@ -104,7 +104,7 @@ available in the terminal will be used. `x` and `y` both default to 0.
 
 You can also make a geometry declaration dependent on another view:
 
- ```ruby
+```ruby
 interface 'other_panel' do
   # other code ...
 end
@@ -140,9 +140,9 @@ You can define keymaps by name which matches a defined interface. When that
 
 ### Menus
 
-
+`@todo` Documentation coming soon!
 
 ### Views
 
-
+@todo Documentation coming soon!
 

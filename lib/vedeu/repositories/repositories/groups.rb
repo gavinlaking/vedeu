@@ -19,7 +19,7 @@ module Vedeu
         @groups = register(Vedeu::Group)
       end
 
-    end
+    end # Eigenclass
 
     # @example
     #   Vedeu.groups.by_name('name')

@@ -13,14 +13,14 @@ module Vedeu
       # Remove all stored models from the repository.
       #
       # @example
-      #   Vedeu.borders.reset
+      #   Vedeu.borders.reset!
       #
       # @return [Vedeu::Borders]
       def reset!
         @borders = register(Vedeu::Border)
       end
 
-    end
+    end # Eigenclass
 
     null Vedeu::Null::Border
     # real Vedeu::Border

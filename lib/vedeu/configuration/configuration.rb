@@ -202,7 +202,7 @@ module Vedeu
         instance.reset!
       end
 
-    end # Configuration eigenclass
+    end # Eigenclass
 
     # @!attribute [r] options
     # @return [Hash]

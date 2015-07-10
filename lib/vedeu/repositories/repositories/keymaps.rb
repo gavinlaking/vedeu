@@ -19,7 +19,7 @@ module Vedeu
         @keymaps = register(Vedeu::Keymap)
       end
 
-    end
+    end # Eigenclass
 
   end # Keymaps
 

@@ -12,14 +12,14 @@ module Vedeu
       # Remove all stored models from the repository.
       #
       # @example
-      #   Vedeu.events.reset
+      #   Vedeu.events.reset!
       #
       # @return [Vedeu::Events]
       def reset!
         @events = new(Vedeu::EventCollection)
       end
 
-    end
+    end # Eigenclass
 
   end # Events
 

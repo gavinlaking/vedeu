@@ -12,14 +12,14 @@ module Vedeu
       # Remove all stored models from the repository.
       #
       # @example
-      #   Vedeu.buffers.reset
+      #   Vedeu.buffers.reset!
       #
       # @return [Vedeu::Buffers]
       def reset!
         @buffers = register(Vedeu::Buffer)
       end
 
-    end
+    end # Eigenclass
 
     null Vedeu::Null::Buffer
     # real Vedeu::Buffer

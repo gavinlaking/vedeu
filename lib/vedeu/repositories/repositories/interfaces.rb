@@ -19,7 +19,7 @@ module Vedeu
         @interfaces = register(Vedeu::Interface)
       end
 
-    end
+    end # Eigenclass
 
     null Vedeu::Null::Interface
     # real Vedeu::Interface

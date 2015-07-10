@@ -49,20 +49,26 @@ module VedeuMiniTestPlugin
   #   super
   #   Vedeu::Repositories.reset!
   # end
-end
+end # VedeuMiniTestPlugin
 
 module MiniTest
+
   class Spec
+
     # parallelize_me! # uncomment to unleash hell
     # i_suck_and_my_tests_are_order_dependent! # just incase
 
-    # include VedeuMiniTestPlugin
+    include VedeuMiniTestPlugin
 
     class << self
+
       alias_method :context, :describe
-    end
-  end
-end
+
+    end # Eigenclass
+
+  end # Spec
+
+end # MiniTest
 
 require 'mocha/setup'
 require 'vedeu'

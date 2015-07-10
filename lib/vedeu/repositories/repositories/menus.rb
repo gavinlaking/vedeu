@@ -19,7 +19,7 @@ module Vedeu
         @menus = register(Vedeu::Menu)
       end
 
-    end
+    end # Eigenclass
 
   end # Menus
 
