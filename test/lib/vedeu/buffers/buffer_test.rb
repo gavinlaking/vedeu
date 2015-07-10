@@ -23,8 +23,6 @@ module Vedeu
     before do
       Vedeu.stubs(:trigger)
       # Vedeu.interfaces.stubs(:by_name).returns(interface)
-      Vedeu::Visibility.stubs(:show)
-      Vedeu::Visibility.stubs(:hide)
     end
     after { Vedeu.interfaces.reset }
 
@@ -145,17 +143,14 @@ module Vedeu
 
     describe '#hide' do
       let(:interface) {
-        Vedeu::Interface.new({ name: _name, visible: visible })
+        Vedeu::Interface.new({ name: _name, visible: visible }).store
       }
       let(:_name)   { 'Buffer#hide' }
       let(:visible) {}
 
       before do
-        interface.store
         Vedeu::Output.stubs(:render)
-      end
-      after do
-        Vedeu.interfaces.reset
+        Vedeu::Visibility.stubs(:hide)
       end
 
       subject { instance.hide }
@@ -178,17 +173,14 @@ module Vedeu
 
     describe '#show' do
       let(:interface) {
-        Vedeu::Interface.new({ name: _name, visible: visible })
+        Vedeu::Interface.new({ name: _name, visible: visible }).store
       }
       let(:_name)   { 'Buffer#show' }
       let(:visible) {}
 
       before do
-        interface.store
         Vedeu::Output.stubs(:render)
-      end
-      after do
-        Vedeu.interfaces.reset
+        Vedeu::Visibility.stubs(:show)
       end
 
       subject { instance.show }
@@ -211,23 +203,21 @@ module Vedeu
 
     describe '#toggle' do
       let(:interface) {
-        Vedeu::Interface.new({ name: _name, visible: visible })
+        Vedeu::Interface.new({ name: _name, visible: visible }).store
       }
       let(:_name)   { 'Buffer#toggle' }
       let(:visible) {}
 
       before do
-        interface.store
         Vedeu::Output.stubs(:render)
-      end
-      after do
-        Vedeu.interfaces.reset
       end
 
       subject { instance.toggle }
 
       context 'when the interface is visible' do
         let(:visible) { true }
+
+        before { Vedeu::Visibility.stubs(:hide) }
 
         it {
           Vedeu::Visibility.expects(:hide).with(interface)
@@ -237,6 +227,8 @@ module Vedeu
 
       context 'when the interface is not visible' do
         let(:visible) { false }
+
+        before { Vedeu::Visibility.stubs(:show) }
 
         it {
           Vedeu::Visibility.expects(:show).with(interface)
