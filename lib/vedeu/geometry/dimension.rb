@@ -21,11 +21,9 @@ module Vedeu
     # @option attributes options [Hash]
     # @return [Vedeu::Dimension]
     def initialize(attributes = {})
-      @d       = attributes[:d]
-      @dn      = attributes[:dn]
-      @d_dn    = attributes[:d_dn]
-      @default = attributes[:default]
-      @options = attributes.fetch(:options, {})
+      @attributes = defaults.merge!(attributes)
+
+      @attributes.each { |key, value| instance_variable_set("@#{key}", value) }
     end
 
     # @return [Fixnum]
@@ -60,6 +58,10 @@ module Vedeu
     # @!attribute [r] default
     # @return [Fixnum|NilClass]
     attr_reader :default
+
+    # @!attribute [r] options
+    # @return [Hash<Symbol => Boolean]
+    attr_reader :options
 
     private
 
@@ -138,18 +140,19 @@ module Vedeu
       options[:maximised]
     end
 
-    # @return [Hash<Symbol => Boolean>]
-    def options
-      defaults.merge!(@options)
-    end
-
     # Returns the default options/attributes for this class.
     #
-    # @return [Hash<Symbol => Boolean>]
+    # @return [Hash<Symbol => NilClass,Boolean>]
     def defaults
       {
-        centred:   false,
-        maximised: false,
+        d:       nil,
+        dn:      nil,
+        d_dn:    nil,
+        default: nil,
+        options: {
+          centred:   false,
+          maximised: false,
+        }
       }
     end
 

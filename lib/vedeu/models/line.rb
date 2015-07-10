@@ -31,8 +31,8 @@ module Vedeu
     # @return [Vedeu::Line]
     def initialize(attributes = {})
       @attributes = defaults.merge!(attributes)
-      @parent     = @attributes[:parent]
-      @streams    = @attributes[:streams]
+
+      @attributes.each { |key, value| instance_variable_set("@#{key}", value) }
     end
 
     # @param child []

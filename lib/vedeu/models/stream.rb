@@ -38,8 +38,8 @@ module Vedeu
     # @return [Vedeu::Stream]
     def initialize(attributes = {})
       @attributes = defaults.merge!(attributes)
-      @parent     = @attributes[:parent]
-      @value      = @attributes[:value]
+
+      @attributes.each { |key, value| instance_variable_set("@#{key}", value) }
     end
 
     # @param child [Vedeu::Stream]

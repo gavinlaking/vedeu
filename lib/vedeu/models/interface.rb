@@ -76,15 +76,7 @@ module Vedeu
     def initialize(attributes = {})
       @attributes = defaults.merge!(attributes)
 
-      @client     = @attributes[:client]
-      @delay      = @attributes[:delay]
-      @group      = @attributes[:group]
-      @lines      = @attributes[:lines]
-      @name       = @attributes[:name]
-      @parent     = @attributes[:parent]
-      @repository = @attributes[:repository]
-      @visible    = @attributes[:visible]
-      @zindex     = @attributes[:zindex]
+      @attributes.each { |key, value| instance_variable_set("@#{key}", value) }
     end
 
     # @param child [Vedeu::Line]
