@@ -13,6 +13,10 @@ module Vedeu
     describe '.reset!' do
       subject { described.reset! }
 
+      before { described.stubs(:register) }
+
+      it { described.must_respond_to(:reset) }
+
       it {
         described.expects(:register).with(Vedeu::Border)
         subject

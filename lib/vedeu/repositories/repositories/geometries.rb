@@ -19,6 +19,7 @@ module Vedeu
       def reset!
         @geometries = register(Vedeu::Geometry)
       end
+      alias_method :reset, :reset!
 
     end # Eigenclass
 

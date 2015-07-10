@@ -19,6 +19,7 @@ module Vedeu
       def reset!
         @borders = register(Vedeu::Border)
       end
+      alias_method :reset, :reset!
 
     end # Eigenclass
 

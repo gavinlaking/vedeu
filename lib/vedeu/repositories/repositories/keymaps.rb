@@ -18,6 +18,7 @@ module Vedeu
       def reset!
         @keymaps = register(Vedeu::Keymap)
       end
+      alias_method :reset, :reset!
 
     end # Eigenclass
 

@@ -18,6 +18,7 @@ module Vedeu
       def reset!
         @buffers = register(Vedeu::Buffer)
       end
+      alias_method :reset, :reset!
 
     end # Eigenclass
 

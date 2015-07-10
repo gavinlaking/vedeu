@@ -18,6 +18,7 @@ module Vedeu
       def reset!
         @interfaces = register(Vedeu::Interface)
       end
+      alias_method :reset, :reset!
 
     end # Eigenclass
 

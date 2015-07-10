@@ -18,6 +18,7 @@ module Vedeu
       def reset!
         @menus = register(Vedeu::Menu)
       end
+      alias_method :reset, :reset!
 
     end # Eigenclass
 

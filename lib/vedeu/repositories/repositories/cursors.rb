@@ -24,6 +24,7 @@ module Vedeu
       def reset!
         @cursors = register(Vedeu::Cursor)
       end
+      alias_method :reset, :reset!
 
     end # Eigenclass
 

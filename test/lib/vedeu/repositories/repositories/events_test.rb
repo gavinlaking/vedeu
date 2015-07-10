@@ -11,6 +11,8 @@ module Vedeu
     describe '.reset!' do
       subject { described.reset! }
 
+      it { described.must_respond_to(:reset) }
+
       it {
         described.expects(:new).with(Vedeu::EventCollection)
         subject
