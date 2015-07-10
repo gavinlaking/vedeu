@@ -28,12 +28,6 @@ module Vedeu
       it { instance.instance_variable_get('@model').must_equal(model) }
     end
 
-    describe '.for_cursor' do
-      subject { described.for_cursor(_name) }
-
-      it { subject.must_be_instance_of(described) }
-    end
-
     describe '.show' do
       subject { described.show(model) }
 

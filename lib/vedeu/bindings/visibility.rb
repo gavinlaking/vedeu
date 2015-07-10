@@ -10,12 +10,10 @@ module Vedeu
 
       Vedeu.bind(:_hide_cursor_) { |name| Vedeu::Visibility.hide_cursor(name) }
       Vedeu.bind(:_cursor_hide_) { |name| Vedeu.trigger(:_hide_cursor_, name) }
-
       Vedeu.bind(:_show_cursor_) { |name| Vedeu::Visibility.show_cursor(name) }
       Vedeu.bind(:_cursor_show_) { |name| Vedeu.trigger(:_show_cursor_, name) }
 
       Vedeu.bind(:_hide_group_) { |name| Vedeu.trigger(:_clear_group_, name) }
-
       Vedeu.bind(:_show_group_) do |name|
         Vedeu.trigger(:_clear_)
         Vedeu.trigger(:_refresh_group_, name)
