@@ -29,7 +29,7 @@ SimpleCov.start do
   add_group  'storage',       'vedeu/storage'
   add_group  'support',       'vedeu/support'
   add_group  'templating',    'vedeu/templating'
-end unless ENV['no_simplecov']
+end unless ENV['NO_SIMPLECOV']
 
 module VedeuMiniTestPlugin
   # def before_setup
