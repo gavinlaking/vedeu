@@ -72,8 +72,6 @@ module Vedeu
         # Vedeu.log(Esc.escape(stream))
 
         console.print(stream)
-
-        # Vedeu::Console.write(stream)
       end
 
       streams
