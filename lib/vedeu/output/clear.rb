@@ -30,6 +30,7 @@ module Vedeu
 
         Vedeu.groups.find(group).members.each { |name| clear(name) }
       end
+      alias_method :clear_by_group, :by_group
 
       # @param name [String]
       # @return [void]
@@ -40,6 +41,7 @@ module Vedeu
               clear_border: true,
               use_terminal_colours: true)
       end
+      alias_method :clear_by_name, :by_name
 
       # Clears the area defined by the interface.
       #
@@ -56,7 +58,7 @@ module Vedeu
       end
       alias_method :render, :clear
 
-    end
+    end # Eigenclass
 
     # Return a new instance of Vedeu::Clear.
     #

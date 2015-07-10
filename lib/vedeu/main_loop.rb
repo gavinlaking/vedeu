@@ -49,7 +49,7 @@ module Vedeu
       end
       # :nocov:
 
-    end
+    end # Eigenclass
 
   end # MainLoop
 

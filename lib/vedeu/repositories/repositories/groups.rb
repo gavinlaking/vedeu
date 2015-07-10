@@ -18,8 +18,9 @@ module Vedeu
       def reset!
         @groups = register(Vedeu::Group)
       end
+      alias_method :reset, :reset!
 
-    end
+    end # Eigenclass
 
     # @example
     #   Vedeu.groups.by_name('name')

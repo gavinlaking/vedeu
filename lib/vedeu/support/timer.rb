@@ -19,7 +19,7 @@ module Vedeu
         new(message).measure(&block)
       end
 
-    end
+    end # Eigenclass
 
     # Returns a new instance of Vedeu::Timer.
     #

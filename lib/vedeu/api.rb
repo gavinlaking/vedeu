@@ -1,11 +1,14 @@
 require 'vedeu/support/common'
 require 'vedeu/support/terminal'
 require 'vedeu/support/timer'
+require 'vedeu/support/visibility'
 require 'vedeu/output/renderers/all'
 require 'vedeu/events/all'
 require 'vedeu/models/all'
 require 'vedeu/input/all'
 require 'vedeu/dsl/all'
+require 'vedeu/application'
+require 'vedeu/output/clear'
 
 module Vedeu
 
@@ -229,6 +232,26 @@ module Vedeu
     # @!method trigger
     #   @see Vedeu::Trigger.trigger
     def_delegators Vedeu::Trigger, :trigger
+
+    # @!method exit
+    #   @see Vedeu::Application.stop
+    def_delegators Vedeu::Application, :exit
+
+    # @!method clear_by_name
+    #   @see Vedeu::Clear.by_name
+    def_delegators Vedeu::Clear, :clear_by_name
+
+    # @!method clear_by_group
+    #   @see Vedeu::Clear.by_group
+    def_delegators Vedeu::Clear, :clear_by_group
+
+    # @!method hide_cursor
+    #   @see Vedeu::Visibility.hide_cursor
+    def_delegators Vedeu::Visibility, :hide_cursor
+
+    # @!method show_cursor
+    #   @see Vedeu::Visibility.show_cursor
+    def_delegators Vedeu::Visibility, :show_cursor
 
   end # API
 

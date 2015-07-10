@@ -5,26 +5,52 @@ module Vedeu
   # @api private
   class Visibility
 
+    # Hide a named cursor, or without a name, the cursor of the currently
+    # focussed interface.
+    #
+    # @example
+    #   Vedeu.hide_cursor(name)
+    #
     # @param name [String]
     # @return [Vedeu::Visibility]
-    def self.for_cursor(name = nil)
-      named = name ? Vedeu.cursors.by_name(name) : Vedeu.cursor
+    def self.hide_cursor(name = nil)
+      model = name ? Vedeu.cursors.by_name(name) : Vedeu.cursor
 
-      new(named)
+      new(model).hide
     end
 
+    # Show a named cursor, or without a name, the cursor of the currently
+    # focussed interface.
+    #
+    # @example
+    #   Vedeu.show_cursor(name)
+    #
+    # @param name [String]
+    # @return [Vedeu::Visibility]
+    def self.show_cursor(name = nil)
+      model = name ? Vedeu.cursors.by_name(name) : Vedeu.cursor
+
+      new(model).show
+    end
+
+    # Show the given model.
+    #
     # @param model [void]
     # @return [void]
     def self.show(model)
       new(model).show
     end
 
+    # Hide the given model.
+    #
     # @param model [void]
     # @return [void]
     def self.hide(model)
       new(model).hide
     end
 
+    # Toggle the visibility of the given model.
+    #
     # @param model [void]
     # @return [void]
     def self.toggle(model)
@@ -47,6 +73,7 @@ module Vedeu
       else
         model.visible = true
         model.store
+
       end
     end
 
@@ -72,6 +99,7 @@ module Vedeu
 
       end
     end
+
 
     # @return [void]
     def toggle

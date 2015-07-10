@@ -189,7 +189,7 @@ module Vedeu
         "[#{format('%7.4f', @time.to_s)}] ".rjust(7)
       end
 
-    end # Log eigenclass
+    end # Eigenclass
 
   end # Log
 

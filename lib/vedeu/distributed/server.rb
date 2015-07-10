@@ -10,36 +10,43 @@ module Vedeu
       include Singleton
 
       # @param (see #input)
+      # @see #input
       def self.input(data, type = :key)
         instance.input(data, type)
       end
 
       # @return [void]
+      # @see #output
       def self.output
         instance.output
       end
 
       # @return [void]
+      # @see #restart
       def self.restart
         instance.restart
       end
 
       # @return [void]
+      # @see #shutdown
       def self.shutdown
         instance.shutdown
       end
 
       # @return [void]
+      # @see #start
       def self.start
         instance.start
       end
 
       # @return [Symbol]
+      # @see #status
       def self.status
         instance.status
       end
 
       # @return [void]
+      # @see #stop
       def self.stop
         instance.stop
       end
@@ -63,6 +70,8 @@ module Vedeu
         Process.pid
       end
 
+      # Restart the DRb server.
+      #
       # @return [void]
       def restart
         log('Attempting to restart')
@@ -102,6 +111,8 @@ module Vedeu
         Vedeu::Terminal.restore_screen
       end
 
+      # Start the DRb server.
+      #
       # @return [Vedeu::Distributed::Server]
       def start
         log('Attempting to start')
@@ -120,6 +131,8 @@ module Vedeu
         end
       end
 
+      # Fetch the status of the DRb server.
+      #
       # @return [Symbol]
       def status
         log('Fetching status')
@@ -139,6 +152,8 @@ module Vedeu
         end
       end
 
+      # Stop the DRb server.
+      #
       # @return [void]
       def stop
         log('Attempting to stop')

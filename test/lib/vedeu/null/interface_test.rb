@@ -21,6 +21,12 @@ module Vedeu
         it { subject.must_be_instance_of(Hash) }
       end
 
+      describe '#parent' do
+        subject { instance.parent }
+
+        it { subject.must_be_instance_of(NilClass) }
+      end
+
       describe '#store' do
         subject { instance.store }
 

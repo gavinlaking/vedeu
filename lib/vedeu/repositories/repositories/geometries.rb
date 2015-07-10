@@ -1,3 +1,6 @@
+require 'vedeu/null/geometry'
+require 'vedeu/geometry/geometry'
+
 module Vedeu
 
   # Allows the storing of interface/view geometry independent of the interface
@@ -19,11 +22,12 @@ module Vedeu
       def reset!
         @geometries = register(Vedeu::Geometry)
       end
+      alias_method :reset, :reset!
 
-    end
+    end # Eigenclass
 
     null Vedeu::Null::Geometry
-    # real Vedeu::Geometry
+    real Vedeu::Geometry
 
   end # Geometries
 

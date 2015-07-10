@@ -131,7 +131,7 @@ module Vedeu
           end
         end
 
-      end
+      end # Eigenclass
 
     end # View
 

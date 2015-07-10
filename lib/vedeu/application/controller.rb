@@ -22,6 +22,7 @@ module Vedeu
       #
       # @param name [Symbol] The name of the controller.
       # @return [void]
+      # @todo This event binding should be: `Vedeu.bind(:show_view, name)`.
       def controller_name(name)
         Vedeu.bind("show_#{name}".to_sym) { new }
       end

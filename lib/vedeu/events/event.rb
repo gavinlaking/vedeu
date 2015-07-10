@@ -111,7 +111,7 @@ module Vedeu
 
       def_delegators Vedeu::Trigger, :trigger
 
-    end
+    end # Eigenclass
 
     # Returns a new instance of Vedeu::Event.
     #

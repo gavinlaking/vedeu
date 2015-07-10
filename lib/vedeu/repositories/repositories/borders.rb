@@ -1,3 +1,6 @@
+require 'vedeu/null/border'
+require 'vedeu/output/border'
+
 module Vedeu
 
   # Allows the storing of interface/view borders independent of the interface
@@ -13,17 +16,18 @@ module Vedeu
       # Remove all stored models from the repository.
       #
       # @example
-      #   Vedeu.borders.reset
+      #   Vedeu.borders.reset!
       #
       # @return [Vedeu::Borders]
       def reset!
         @borders = register(Vedeu::Border)
       end
+      alias_method :reset, :reset!
 
-    end
+    end # Eigenclass
 
     null Vedeu::Null::Border
-    # real Vedeu::Border
+    real Vedeu::Border
 
   end # Borders
 

@@ -5,29 +5,34 @@ module Vedeu
   # @api private
   class Application
 
-    # @param (see #initialize)
-    def self.start(configuration)
-      new(configuration).start
-    end
+    class << self
 
-    # @param (see #initialize)
-    def self.restart(configuration)
-      new(configuration).start
-    end
+      # @param (see #initialize)
+      def start(configuration)
+        new(configuration).start
+      end
 
-    # Stops the application!
-    # - The `:_cleanup_` event is triggered, which in turn triggers the client
-    #   event `:cleanup`; the client application may treat this event as Vedeu
-    #   signalling that it is about to terminate. Client applications are
-    #   encouraged to use this event to close any open buffers, save files,
-    #   empty trash, etc.
-    #
-    # @return [void]
-    def self.stop
-      Vedeu.trigger(:_cleanup_)
+      # @param (see #initialize)
+      def restart(configuration)
+        new(configuration).start
+      end
 
-      Vedeu::MainLoop.stop!
-    end
+      # Stops the application!
+      # - The `:_cleanup_` event is triggered, which in turn triggers the client
+      #   event `:cleanup`; the client application may treat this event as Vedeu
+      #   signalling that it is about to terminate. Client applications are
+      #   encouraged to use this event to close any open buffers, save files,
+      #   empty trash, etc.
+      #
+      # @return [void]
+      def stop
+        Vedeu.trigger(:_cleanup_)
+
+        Vedeu::MainLoop.stop!
+      end
+      alias_method :exit, :stop
+
+    end # Eigenclass
 
     # :nocov:
     # Returns a new instance of Vedeu::Application.

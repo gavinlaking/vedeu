@@ -1,3 +1,6 @@
+require 'vedeu/null/interface'
+require 'vedeu/models/interface'
+
 module Vedeu
 
   # Allows the storing of interfaces and views.
@@ -18,11 +21,12 @@ module Vedeu
       def reset!
         @interfaces = register(Vedeu::Interface)
       end
+      alias_method :reset, :reset!
 
-    end
+    end # Eigenclass
 
     null Vedeu::Null::Interface
-    # real Vedeu::Interface
+    real Vedeu::Interface
 
     # Returns the interfaces in zindex order.
     #
