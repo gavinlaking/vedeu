@@ -1,3 +1,5 @@
+require 'vedeu/models/group'
+
 module Vedeu
 
   # Allows the storing of view groups.
@@ -9,18 +11,9 @@ module Vedeu
 
       alias_method :groups, :repository
 
-      # Remove all stored models from the repository.
-      #
-      # @example
-      #   Vedeu.groups.reset!
-      #
-      # @return [Vedeu::Groups]
-      def reset!
-        @groups = register(Vedeu::Group)
-      end
-      alias_method :reset, :reset!
-
     end # Eigenclass
+
+    real Vedeu::Group
 
     # @example
     #   Vedeu.groups.by_name('name')

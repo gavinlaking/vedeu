@@ -8,17 +8,6 @@ module Vedeu
 
     it { described.must_respond_to(:keymaps) }
 
-    describe '.reset!' do
-      subject { described.reset! }
-
-      it { described.must_respond_to(:reset) }
-
-      it {
-        described.expects(:register).with(Vedeu::Keymap)
-        subject
-      }
-    end
-
   end # Keymaps
 
 end # Vedeu

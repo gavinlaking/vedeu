@@ -1,3 +1,5 @@
+require 'vedeu/cursor/cursor'
+
 module Vedeu
 
   # Allows the storing of each interface's cursor.
@@ -15,18 +17,9 @@ module Vedeu
         cursors.by_name(Vedeu.focus) if Vedeu.focus
       end
 
-      # Remove all stored models from the repository.
-      #
-      # @example
-      #   Vedeu.cursors.reset!
-      #
-      # @return [Vedeu::Cursors]
-      def reset!
-        @cursors = register(Vedeu::Cursor)
-      end
-      alias_method :reset, :reset!
-
     end # Eigenclass
+
+    real Vedeu::Cursor
 
     # @example
     #   Vedeu.cursors.by_name('some_name')

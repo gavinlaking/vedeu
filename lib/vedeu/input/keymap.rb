@@ -1,3 +1,4 @@
+require 'vedeu/input/key'
 require 'vedeu/dsl/keymap'
 
 module Vedeu

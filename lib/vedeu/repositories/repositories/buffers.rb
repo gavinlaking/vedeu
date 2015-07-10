@@ -12,17 +12,6 @@ module Vedeu
 
       alias_method :buffers, :repository
 
-      # Remove all stored models from the repository.
-      #
-      # @example
-      #   Vedeu.buffers.reset!
-      #
-      # @return [Vedeu::Buffers]
-      def reset!
-        @buffers = register(Vedeu::Buffer)
-      end
-      alias_method :reset, :reset!
-
     end # Eigenclass
 
     null Vedeu::Null::Buffer

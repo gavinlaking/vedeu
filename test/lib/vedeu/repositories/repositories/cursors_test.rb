@@ -30,17 +30,6 @@ module Vedeu
       end
     end
 
-    describe '.reset!' do
-      subject { described.reset! }
-
-      it { described.must_respond_to(:reset) }
-
-      it {
-        described.expects(:register).with(Vedeu::Cursor)
-        subject
-      }
-    end
-
     describe '#by_name' do
       let(:_name) { 'carbon' }
 

@@ -8,17 +8,6 @@ module Vedeu
 
     it { described.must_respond_to(:interfaces) }
 
-    describe '.reset!' do
-      subject { described.reset! }
-
-      it { described.must_respond_to(:reset) }
-
-      it {
-        described.expects(:register).with(Vedeu::Interface)
-        subject
-      }
-    end
-
     describe '#zindexed' do
       before do
         @hydrogen = Vedeu.interface 'hydrogen' do

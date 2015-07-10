@@ -1,3 +1,5 @@
+require 'vedeu/input/keymap'
+
 module Vedeu
 
   # Allows the storing of keymaps.
@@ -9,18 +11,9 @@ module Vedeu
 
       alias_method :keymaps, :repository
 
-      # Remove all stored models from the repository.
-      #
-      # @example
-      #   Vedeu.keymaps.reset!
-      #
-      # @return [Vedeu::Keymaps]
-      def reset!
-        @keymaps = register(Vedeu::Keymap)
-      end
-      alias_method :reset, :reset!
-
     end # Eigenclass
+
+    real Vedeu::Keymap
 
   end # Keymaps
 

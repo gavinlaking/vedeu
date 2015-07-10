@@ -10,17 +10,6 @@ module Vedeu
 
     it { described.must_respond_to(:geometries) }
 
-    describe '.reset!' do
-      subject { described.reset! }
-
-      it { described.must_respond_to(:reset) }
-
-      it {
-        described.expects(:register).with(Vedeu::Geometry)
-        subject
-      }
-    end
-
   end # Geometries
 
 end # Vedeu

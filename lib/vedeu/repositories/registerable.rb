@@ -22,7 +22,7 @@ module Vedeu
       # @param klass [Class]
       # @return [Symbol]
       def real(klass)
-        define_method(:real_model) { klass }
+        define_method(:model) { instance_variable_set('@model', klass) }
       end
 
       # Register a repository for storing models.
@@ -47,6 +47,14 @@ module Vedeu
       def repository
         @models ||= reset!
       end
+
+      # Remove all stored models from the repository.
+      #
+      # @return [void]
+      def reset!
+        @models = register
+      end
+      alias_method :reset, :reset!
 
     end # ClassMethods
 
