@@ -1,3 +1,6 @@
+require 'vedeu/null/interface'
+require 'vedeu/models/interface'
+
 module Vedeu
 
   # Allows the storing of interfaces and views.
@@ -23,7 +26,7 @@ module Vedeu
     end # Eigenclass
 
     null Vedeu::Null::Interface
-    # real Vedeu::Interface
+    real Vedeu::Interface
 
     # Returns the interfaces in zindex order.
     #

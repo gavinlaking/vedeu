@@ -1,3 +1,6 @@
+require 'vedeu/models/char'
+require 'vedeu/models/stream'
+require 'vedeu/models/line'
 require 'vedeu/buffers/display_buffer'
 
 module Vedeu

@@ -1,3 +1,6 @@
+require 'vedeu/null/buffer'
+require 'vedeu/buffers/buffer'
+
 module Vedeu
 
   # Allows the storing of view buffers.
@@ -23,7 +26,7 @@ module Vedeu
     end # Eigenclass
 
     null Vedeu::Null::Buffer
-    # real Vedeu::Buffer
+    real Vedeu::Buffer
 
   end # Buffers
 

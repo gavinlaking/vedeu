@@ -1,3 +1,6 @@
+require 'vedeu/null/geometry'
+require 'vedeu/geometry/geometry'
+
 module Vedeu
 
   # Allows the storing of interface/view geometry independent of the interface
@@ -24,7 +27,7 @@ module Vedeu
     end # Eigenclass
 
     null Vedeu::Null::Geometry
-    # real Vedeu::Geometry
+    real Vedeu::Geometry
 
   end # Geometries
 
