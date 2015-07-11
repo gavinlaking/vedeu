@@ -84,6 +84,46 @@ module Vedeu
       it { instance.must_respond_to(:registered?) }
     end
 
+    describe '#registered' do
+      subject { instance.registered }
+
+      it { subject.must_be_instance_of(Array) }
+
+      context 'when the storage is a Hash' do
+        let(:storage) {
+          {
+            'rutherfordium' => { name: 'rutherfordium' }
+          }
+        }
+
+        it 'returns a collection of the names of all the registered entities' do
+          subject.must_equal(['rutherfordium'])
+        end
+      end
+
+      context 'when the storage is an Array' do
+        let(:storage) { ['rutherfordium'] }
+
+        it 'returns the registered entities' do
+          subject.must_equal(['rutherfordium'])
+        end
+      end
+
+      context 'when the storage is a Set' do
+        let(:storage) { Set['rutherfordium'] }
+
+        it 'returns the registered entities' do
+          subject.must_equal(['rutherfordium'])
+        end
+      end
+
+      context 'when the storage is empty' do
+        it 'returns an empty collection' do
+          subject.must_equal([])
+        end
+      end
+    end
+
     describe '#reset' do
       it 'returns a Hash' do
         instance.reset.must_be_instance_of(Hash)

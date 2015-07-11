@@ -31,10 +31,23 @@ module Vedeu
     end
     alias_method :registered?, :exists?
 
+    # Returns a collection of the names of all the registered entities.
+    #
+    # @return [Array]
+    def registered
+      return []           if empty?
+      return storage.keys if storage.is_a?(Hash)
+      return storage.to_a if storage.is_a?(Set)
+
+      storage
+    end
+
     # Remove all currently stored data.
     #
     # @return [Array|Hash|Set]
     def reset
+      Vedeu.log(type: :reset, message: "#{registered.inspect}")
+
       @storage = in_memory
     end
     alias_method :reset!, :reset

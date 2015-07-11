@@ -112,17 +112,6 @@ module Vedeu
       "<#{self.class.name}: #{registered.inspect}>"
     end
 
-    # Returns a collection of the names of all the registered entities.
-    #
-    # @return [Array]
-    def registered
-      return []           if empty?
-      return storage.keys if storage.is_a?(Hash)
-      return storage.to_a if storage.is_a?(Set)
-
-      storage
-    end
-
     # Returns a boolean indicating whether the named model is registered.
     #
     # @param name [String]
@@ -169,6 +158,7 @@ module Vedeu
       storage[model.name] = model
     end
     alias_method :register, :store
+    alias_method :add, :store
 
     private
 

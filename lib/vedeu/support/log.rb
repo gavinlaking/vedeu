@@ -165,6 +165,7 @@ module Vedeu
           info:   [:white,         :default],
           input:  [:light_yellow,  :yellow],
           output: [:light_green,   :green],
+          reset:  [:light_cyan,    :cyan],
           store:  [:light_cyan,    :cyan],
           test:   [:light_white,   :white],
           timer:  [:light_yellow,  :yellow],
