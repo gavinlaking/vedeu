@@ -33,7 +33,9 @@ end unless ENV['NO_SIMPLECOV']
 
 module VedeuMiniTestPlugin
   # def before_setup
-  #   Vedeu::Repositories.reset!
+  #   # Vedeu::Repositories.reset!
+  #   # Vedeu.log(type: :debug, message: "#{self.class}")
+  #
   #   super
   # end
 
