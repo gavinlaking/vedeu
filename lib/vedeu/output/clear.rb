@@ -28,7 +28,7 @@ module Vedeu
       def by_group(group = nil)
         return unless group
 
-        Vedeu.groups.find(group).members.each { |name| clear(name) }
+        Vedeu.groups.by_name(group).members.each { |name| by_name(name) }
       end
       alias_method :clear_by_group, :by_group
 
