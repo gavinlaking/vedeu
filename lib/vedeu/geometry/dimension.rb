@@ -152,7 +152,7 @@ module Vedeu
         options: {
           centred:   false,
           maximised: false,
-        }
+        },
       }
     end
 

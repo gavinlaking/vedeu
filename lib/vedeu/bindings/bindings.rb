@@ -30,7 +30,6 @@ module Vedeu
       Vedeu.trigger(:cleanup)
     end
 
-
     Vedeu.bind(:_exit_) { Vedeu::Application.stop }
 
     # Vedeu triggers this event when it is ready to enter the main loop. Client
