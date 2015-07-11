@@ -23,7 +23,7 @@ module Vedeu
 
     class << self
 
-      # @param group [String]
+      # @param group [String] The name of the group to clear.
       # @return [void]
       def by_group(group = nil)
         return unless group
@@ -32,7 +32,7 @@ module Vedeu
       end
       alias_method :clear_by_group, :by_group
 
-      # @param name [String]
+      # @param name [String] The name of the interface to clear.
       # @return [void]
       def by_name(name = nil)
         return Vedeu::Terminal.clear unless name
