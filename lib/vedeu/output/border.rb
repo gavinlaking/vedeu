@@ -122,22 +122,22 @@ module Vedeu
 
     # @return [Fixnum]
     def bx
-      @bx ||= (enabled? && left?) ? x + 1 : x
+      (enabled? && left?) ? x + 1 : x
     end
 
     # @return [Fixnum]
     def bxn
-      @bxn ||= (enabled? && right?) ? xn - 1 : xn
+      (enabled? && right?) ? xn - 1 : xn
     end
 
     # @return [Fixnum]
     def by
-      @by ||= (enabled? && top?) ? y + 1 : y
+      (enabled? && top?) ? y + 1 : y
     end
 
     # @return [Fixnum]
     def byn
-      @byn ||= (enabled? && bottom?) ? yn - 1 : yn
+      (enabled? && bottom?) ? yn - 1 : yn
     end
 
     # Returns the width of the interface determined by whether a left, right,
@@ -158,7 +158,7 @@ module Vedeu
 
     # @return [Array<Array<Vedeu::Char>>]
     def render
-      @render ||= Vedeu::RenderBorder.with(self)
+      @render = Vedeu::RenderBorder.with(self)
     end
 
     # @return [String]
