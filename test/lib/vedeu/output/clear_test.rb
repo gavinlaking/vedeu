@@ -6,7 +6,9 @@ module Vedeu
 
     let(:described) { Vedeu::Clear }
     let(:instance)  { described.new(interface, options) }
-    let(:interface) { Vedeu::Interface.new(name: 'xenon', visible: visible) }
+    let(:interface) {
+      Vedeu::Interface.new(name: 'xenon', visible: visible).store
+    }
     let(:options)   { {} }
     let(:visible)   { true }
     let(:drb)       { false }
@@ -15,11 +17,12 @@ module Vedeu
       Vedeu::Border.new(name: 'xenon').store
       Vedeu::Geometry.new(name: 'xenon', x: 1, y: 1, xn: 3, yn: 3).store
       Vedeu::Configuration.stubs(:drb?).returns(drb)
-      Vedeu.renderers.stubs(:render)
+      Vedeu::Output.stubs(:render)
     end
     after do
       Vedeu.borders.reset
       Vedeu.geometries.reset
+      Vedeu.interfaces.reset
     end
 
     describe '#initialize' do
@@ -28,30 +31,26 @@ module Vedeu
       it { instance.instance_variable_get('@options').must_equal(options) }
     end
 
-    describe 'alias methods' do
-      it { described.must_respond_to(:render) }
-    end
-
     describe '.by_group' do
       let(:group) {}
 
       subject { described.by_group(group) }
 
       it { described.must_respond_to(:by_group) }
-
-      context 'when no group is given' do
-        it { subject.must_equal(nil) }
-      end
+      it { described.must_respond_to(:clear_by_group) }
     end
 
     describe '.by_name' do
       subject { described.by_name(_name) }
 
       it { described.must_respond_to(:by_name) }
+      it { described.must_respond_to(:clear_by_name) }
     end
 
     describe '.clear' do
       subject { described.clear(interface, options) }
+
+      it { described.must_respond_to(:render) }
 
       context 'when the interface is visible' do
         # it { skip }

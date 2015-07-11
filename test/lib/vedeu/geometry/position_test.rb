@@ -29,11 +29,27 @@ module Vedeu
     end
 
     describe '#<=>' do
-      let(:other) {}
-
       subject { instance.<=>(other) }
 
-      # it { skip }
+      context 'when y is the same as other.y' do
+        context 'when x is the same as other.x' do
+          let(:other) { described.new(12, 19) }
+
+          it { subject.must_equal(0) }
+        end
+
+        context 'when x is different to other.x' do
+          let(:other) { described.new(12, 21) }
+
+          it { subject.must_equal(-1) }
+        end
+      end
+
+      context 'when y is different to other.y' do
+        let(:other) { described.new(14, 19) }
+
+        it { subject.must_equal(-1) }
+      end
     end
 
     describe '.coerce' do
@@ -89,9 +105,10 @@ module Vedeu
     end
 
     describe '#to_position' do
-      subject { Position.new }
+      subject { instance.to_position }
 
       it { subject.must_be_instance_of(Vedeu::Position) }
+      it { subject.must_equal(instance) }
     end
 
     describe '#to_s' do
