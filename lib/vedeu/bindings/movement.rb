@@ -6,6 +6,7 @@ module Vedeu
     #
     # @api public
     # {include:file:docs/events/movement.md}
+    # :nocov:
     module Movement
 
       Vedeu.bind(:_cursor_down_) do |name|
@@ -58,6 +59,7 @@ module Vedeu
       end
 
     end # Movement
+    # :nocov:
 
   end # Bindings
 

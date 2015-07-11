@@ -7,6 +7,7 @@ module Vedeu
     #
     # @api public
     # {include:file:docs/events/menus.md}
+    # :nocov:
     module Menus
 
       Vedeu.bind(:_menu_bottom_) { |name| Vedeu.menus.find(name).bottom_item }
@@ -29,6 +30,7 @@ module Vedeu
       Vedeu.bind(:_menu_view_) { |name| Vedeu.menus.find(name).view }
 
     end # Menus
+    # :nocov:
 
   end # Bindings
 

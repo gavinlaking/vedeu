@@ -6,6 +6,7 @@ module Vedeu
     #
     # @api public
     # {include:file:docs/events/visibility.md}
+    # :nocov:
     module Visibility
 
       Vedeu.bind(:_hide_cursor_) { |name| Vedeu::Visibility.hide_cursor(name) }
@@ -26,6 +27,7 @@ module Vedeu
       end
 
     end # Visibility
+    # :nocov:
 
   end # Bindings
 

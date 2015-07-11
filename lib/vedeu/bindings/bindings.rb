@@ -15,6 +15,7 @@ module Vedeu
   #
   # @api public
   # {include:file:docs/events/main.md}
+  # :nocov:
   module Bindings
 
     include Vedeu::Bindings::DRB
@@ -30,6 +31,9 @@ module Vedeu
       Vedeu.trigger(:cleanup)
     end
 
+    Vedeu.bind(:_clear_) { |name| Vedeu::Clear.by_name(name) }
+    Vedeu.bind(:_clear_group_) { |name| Vedeu::Clear.by_group(name) }
+
     Vedeu.bind(:_exit_) { Vedeu::Application.stop }
 
     # Vedeu triggers this event when it is ready to enter the main loop. Client
@@ -41,6 +45,8 @@ module Vedeu
     Vedeu.bind(:_keypress_) { |key| Vedeu.keypress(key) }
     Vedeu.bind(:_command_) { |command| Vedeu.trigger(:command, command) }
     Vedeu.bind(:_log_) { |msg| Vedeu.log(type: :debug, message: msg) }
+
+    Vedeu.bind(:_maximise_) { |name| Vedeu.geometries.by_name(name).maximise }
 
     # When triggered (after the user presses `escape`), Vedeu switches from a
     # "raw mode" terminal to a "cooked mode" terminal. The idea here being that
@@ -55,21 +61,19 @@ module Vedeu
     Vedeu.bind(:_focus_by_name_) { |name| Vedeu.focus_by_name(name) }
     Vedeu.bind(:_focus_next_) { Vedeu.focus_next }
     Vedeu.bind(:_focus_prev_) { Vedeu.focus_previous }
-    Vedeu.bind(:_clear_) { |name| Vedeu::Clear.by_name(name) }
+
 
     Vedeu.bind(:_refresh_) do |name|
       name ? Vedeu::Refresh.by_name(name) : Vedeu::Refresh.all
     end
-
     Vedeu.bind(:_refresh_cursor_) { |name| Vedeu::RefreshCursor.render(name) }
     Vedeu.bind(:_refresh_group_) { |name| Vedeu::Refresh.by_group(name) }
-    Vedeu.bind(:_clear_group_) { |name| Vedeu::Clear.by_group(name) }
-    Vedeu.bind(:_maximise_) { |name| Vedeu.geometries.by_name(name).maximise }
 
     Vedeu.bind(:_unmaximise_) do |name|
       Vedeu.geometries.by_name(name).unmaximise
     end
 
   end # Bindings
+  # :nocov:
 
 end # Vedeu

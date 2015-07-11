@@ -6,6 +6,7 @@ module Vedeu
     #
     # @api public
     # {include:file:docs/events/drb.md}
+    # :nocov:
     module DRB
 
       Vedeu.bind(:_drb_input_) do |data, type|
@@ -30,6 +31,7 @@ module Vedeu
       Vedeu.bind(:_drb_stop_) { Vedeu::Distributed::Server.stop }
 
     end # DRB
+    # :nocov:
 
   end # Bindings
 
