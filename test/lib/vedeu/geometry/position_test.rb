@@ -119,7 +119,7 @@ module Vedeu
       end
 
       it 'returns an escape sequence when coordinates are provided' do
-        Position.new(12, 19).to_s.must_equal("\e[12;19H")
+        Position[12, 19].to_s.must_equal("\e[12;19H")
       end
 
       it 'returns an escape sequence if a coordinate is missing' do
@@ -127,15 +127,15 @@ module Vedeu
       end
 
       it 'returns an escape sequence if the x coordinate is negative' do
-        Position.new(12, -5).to_s.must_equal("\e[12;1H")
+        Position[12, -5].to_s.must_equal("\e[12;1H")
       end
 
       it 'returns an escape sequence if the y coordinate is negative' do
-        Position.new(-12, 5).to_s.must_equal("\e[1;5H")
+        Position[-12, 5].to_s.must_equal("\e[1;5H")
       end
 
       it 'resets to starting position when a block is given' do
-        Position.new(4, 9).to_s { 'test' }.must_equal("\e[4;9Htest\e[4;9H")
+        Position[4, 9].to_s { 'test' }.must_equal("\e[4;9Htest\e[4;9H")
       end
     end
 

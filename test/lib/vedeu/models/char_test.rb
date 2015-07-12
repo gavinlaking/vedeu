@@ -74,7 +74,7 @@ module Vedeu
     describe '#inspect' do
       let(:colour)   { Vedeu::Colour.new(foreground: '#00ff00',
                                          background: '#005500') }
-      let(:position) { Vedeu::Position.new(17, 2) }
+      let(:position) { Vedeu::Position[17, 2] }
       let(:style)    { Vedeu::Style.new('underline') }
 
 
@@ -136,7 +136,7 @@ module Vedeu
       it { subject.must_be_instance_of(String) }
 
       context 'when a position is specified' do
-        let(:position) { Vedeu::Position.new(17, 2) }
+        let(:position) { Vedeu::Position[17, 2] }
 
         it { subject.must_equal("\e[17;2Ha\e[17;2H") }
       end
@@ -218,7 +218,7 @@ module Vedeu
     end
 
     describe '#x' do
-      let(:position) { Vedeu::Position.new(17, 2) }
+      let(:position) { Vedeu::Position[17, 2] }
 
       subject { instance.x }
 
@@ -234,7 +234,7 @@ module Vedeu
     end
 
     describe '#y' do
-      let(:position) { Vedeu::Position.new(17, 2) }
+      let(:position) { Vedeu::Position[17, 2] }
 
       subject { instance.y }
 

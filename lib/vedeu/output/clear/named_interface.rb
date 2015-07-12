@@ -81,7 +81,7 @@ module Vedeu
             Array.new(width) do |ix|
               Vedeu::Char.new(value:    ' ',
                               colour:   colour,
-                              position: Vedeu::Position.new(y + iy, x + ix))
+                              position: Vedeu::Position[y + iy, x + ix])
             end
           end
         end

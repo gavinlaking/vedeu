@@ -63,7 +63,7 @@ module Vedeu
 
       @attributes.each { |key, value| instance_variable_set("@#{key}", value) }
 
-      @position   = Vedeu::Position.new(@y, @x)
+      @position   = Vedeu::Position[@y, @x]
     end
 
     # Override Ruby's Object#inspect method to provide a more helpful output.
@@ -103,7 +103,7 @@ module Vedeu
     #
     # @return [Vedeu::Position]
     def position
-      @position ||= Vedeu::Position.new(y, x)
+      @position ||= Vedeu::Position[y, x]
     end
 
     # @return [Vedeu::EscapeChar]

@@ -43,7 +43,7 @@ module Vedeu
     #
     # @return [Vedeu::Position]
     def to_position
-      Vedeu::Position.new(y, x)
+      Vedeu::Position[y, x]
     end
 
     # Returns the x index.

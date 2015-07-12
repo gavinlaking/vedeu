@@ -30,7 +30,7 @@ module Vedeu
 
     # @return [Vedeu::Position]
     def []
-      Vedeu::Position.new(y, x)
+      Vedeu::Position[y, x]
     end
     alias_method :to_position, :[]
 
