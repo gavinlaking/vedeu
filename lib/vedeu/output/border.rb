@@ -158,7 +158,7 @@ module Vedeu
 
     # @return [Array<Array<Vedeu::Char>>]
     def render
-      @render = Vedeu::RenderBorder.with(self)
+      Vedeu::RenderBorder.with(self)
     end
 
     # @return [String]
