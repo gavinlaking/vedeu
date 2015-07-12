@@ -34,9 +34,11 @@ module Vedeu
 
 end # Vedeu
 
+require_relative 'store'
 require_relative 'registerable'
 require_relative 'collection'
 require_relative 'collections/all'
 require_relative 'model'
 require_relative 'repositories/all'
 require_relative 'repository'
+
