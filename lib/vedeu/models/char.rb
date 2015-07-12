@@ -29,6 +29,10 @@ module Vedeu
     # @return [Hash]
     attr_reader :attributes
 
+    # @!attribute [r] position
+    # @return [Vedeu::Position]
+    attr_reader :position
+
     # @!attribute [w] value
     # @return [String]
     attr_writer :value
@@ -50,6 +54,7 @@ module Vedeu
       @border   = @attributes[:border]
       @parent   = @attributes[:parent]
       @value    = @attributes[:value]
+      @position = Vedeu::Position.coerce(@attributes[:position])
     end
 
     # When {Vedeu::Viewport#padded_lines} has less lines that required to fill
@@ -78,11 +83,6 @@ module Vedeu
     # @return [String]
     def inspect
       "<Vedeu::Char '#{Vedeu::Esc.escape(to_s)}'>"
-    end
-
-    # @return [Vedeu::Position]
-    def position
-      @position ||= Vedeu::Position.coerce(@attributes[:position])
     end
 
     # Sets the position of the Char.
