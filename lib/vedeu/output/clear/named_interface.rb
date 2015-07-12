@@ -17,7 +17,6 @@ module Vedeu
 
       def_delegators :interface,
                      :colour,
-                     :name,
                      :style,
                      :visible?
 
@@ -82,7 +81,6 @@ module Vedeu
             Array.new(width) do |ix|
               Vedeu::Char.new(value:    ' ',
                               colour:   colour,
-                              style:    style,
                               position: Vedeu::Position.new(y + iy, x + ix))
             end
           end
