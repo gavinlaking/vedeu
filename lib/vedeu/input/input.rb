@@ -70,6 +70,7 @@ module Vedeu
     def specials
       {
         "\r"      => :enter,
+        "\n"      => :enter,
         "\t"      => :tab,
         "\e"      => :escape,
         "\e[A"    => :up,
@@ -95,7 +96,7 @@ module Vedeu
         "\u0007"  => :ctrl_g,
         "\u0008"  => :ctrl_h,
         # "\u0009"  => :ctrl_i, # duplicates tab
-        "\u0010"  => :ctrl_j,
+        "\u0010"  => :ctrl_j, # produces "\n"
         "\u0011"  => :ctrl_k,
         "\u0012"  => :ctrl_l,
         "\u0013"  => :ctrl_m,
