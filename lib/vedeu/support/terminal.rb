@@ -67,14 +67,7 @@ module Vedeu
     # @param streams [String|Array]
     # @return [Array]
     def output(*streams)
-      streams.each do |stream|
-        # Write the stream to the log file.
-        # Vedeu.log(Esc.escape(stream))
-
-        console.print(stream)
-      end
-
-      streams
+      streams.each { |stream| console.print(stream) }
     end
     alias_method :write, :output
 
