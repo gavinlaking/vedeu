@@ -18,8 +18,6 @@ module Vedeu
                    :visible?
 
     def_delegators :border,
-                   :bx,
-                   :by,
                    :height,
                    :width
 
@@ -156,6 +154,16 @@ module Vedeu
     # @return (see Vedeu::Borders#by_name)
     def border
       @border ||= Vedeu.borders.by_name(name)
+    end
+
+    # @return [Fixnum]
+    def bx
+      @bx ||= border.bx
+    end
+
+    # @return [Fixnum]
+    def by
+      @by ||= border.by
     end
 
     # Fetch the cursor associated with the interface we are drawing.

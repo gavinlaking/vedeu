@@ -7,19 +7,6 @@ module Vedeu
     # @api private
     class NamedInterface
 
-      extend Forwardable
-
-      def_delegators :geometry,
-                     :height,
-                     :width,
-                     :x,
-                     :y
-
-      def_delegators :interface,
-                     :colour,
-                     :style,
-                     :visible?
-
       class << self
 
         # @return [void]
@@ -42,7 +29,7 @@ module Vedeu
 
       # @return [void]
       def render
-        return [] unless visible?
+        return [] unless interface.visible?
 
         output
       end
@@ -81,6 +68,28 @@ module Vedeu
             end
           end
         end
+      end
+
+      def colour
+        @colour ||= interface.colour
+      end
+
+      def height
+        @height ||= geometry.height
+      end
+
+      def width
+        @width ||= geometry.width
+      end
+
+      # @return [Fixnum]
+      def x
+        @x ||= geometry.x
+      end
+
+      # @return [Fixnum]
+      def y
+        @y ||= geometry.y
       end
 
     end # NamedInterface
