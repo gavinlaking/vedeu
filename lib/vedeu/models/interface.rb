@@ -12,8 +12,6 @@ module Vedeu
   # @api private
   class Interface
 
-    extend Forwardable
-
     include Vedeu::Model
     include Vedeu::Presentation
     include Vedeu::DisplayBuffer
