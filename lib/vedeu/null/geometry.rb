@@ -48,18 +48,15 @@ module Vedeu
       end
 
       # @return [FalseClass]
-      def maximise
+      def maximised?
         false
       end
+      alias_method :maximise, :maximised?
+      alias_method :unmaximise, :maximised?
 
       # @return [Vedeu::Null::Geometry]
       def store
         self
-      end
-
-      # @return [FalseClass]
-      def unmaximise
-        false
       end
 
       private
