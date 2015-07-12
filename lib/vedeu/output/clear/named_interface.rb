@@ -64,7 +64,7 @@ module Vedeu
         @geometry ||= Vedeu.geometries.by_name(name)
       end
 
-      # # @see Vedeu::Interfaces#by_name
+      # @see Vedeu::Interfaces#by_name
       def interface
         @interface ||= Vedeu.interfaces.by_name(name)
       end
