@@ -115,6 +115,8 @@ module Vedeu
     def maximise
       return self if maximised?
 
+      Vedeu.trigger(:_clear_)
+
       @maximised = true
 
       work = store
