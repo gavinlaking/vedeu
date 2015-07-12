@@ -107,8 +107,8 @@ module Vedeu
       let(:view)   { mock('Vedeu::Viewport') }
 
       before do
-        Vedeu::Clear.stubs(:new).returns(clear)
-        clear.stubs(:render).returns(:clear)
+        Vedeu::Clear::NamedInterface.stubs(:render).returns(:clear)
+
         Vedeu.borders.stubs(:by_name).returns(border)
         border.stubs(:render).returns(:border)
         Vedeu::Viewport.stubs(:new).returns(view)
@@ -120,6 +120,11 @@ module Vedeu
       it { subject.must_be_instance_of(Array) }
 
       context 'when the interface is visible' do
+        it {
+          Vedeu::Clear::NamedInterface.expects(:render).with(_name)
+          subject
+        }
+
         it { subject.must_equal([:clear, :border, :view]) }
       end
 

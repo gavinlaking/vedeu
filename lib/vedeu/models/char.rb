@@ -68,7 +68,8 @@ module Vedeu
     # @param other [Vedeu::Char]
     # @return [Boolean]
     def eql?(other)
-      self.class == other.class && value == other.value
+      self.class == other.class && value == other.value &&
+        position == other.position
     end
     alias_method :==, :eql?
 

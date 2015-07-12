@@ -8,7 +8,7 @@ require 'vedeu/models/all'
 require 'vedeu/input/all'
 require 'vedeu/dsl/all'
 require 'vedeu/application'
-require 'vedeu/output/clear'
+require 'vedeu/output/clear/all'
 
 module Vedeu
 
@@ -239,11 +239,11 @@ module Vedeu
 
     # @!method clear_by_name
     #   @see Vedeu::Clear.by_name
-    def_delegators Vedeu::Clear, :clear_by_name
+    def_delegators Vedeu::Clear::NamedInterface, :clear_by_name
 
     # @!method clear_by_group
     #   @see Vedeu::Clear.by_group
-    def_delegators Vedeu::Clear, :clear_by_group
+    def_delegators Vedeu::Clear::NamedGroup, :clear_by_group
 
     # @!method hide_cursor
     #   @see Vedeu::Visibility.hide_cursor

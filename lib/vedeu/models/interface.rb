@@ -113,7 +113,7 @@ module Vedeu
       Vedeu.trigger(:_cursor_hide_, name)
 
       output = [
-        Vedeu::Clear.new(self).render,
+        Vedeu::Clear::NamedInterface.render(name),
         Vedeu.borders.by_name(name).render,
         Vedeu::Viewport.render(self),
       ]

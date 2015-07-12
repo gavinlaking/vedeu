@@ -31,8 +31,16 @@ module Vedeu
       Vedeu.trigger(:cleanup)
     end
 
-    Vedeu.bind(:_clear_) { |name| Vedeu::Clear.by_name(name) }
-    Vedeu.bind(:_clear_group_) { |name| Vedeu::Clear.by_group(name) }
+    Vedeu.bind(:_clear_) do |name|
+      if name
+        Vedeu::Clear::NamedInterface.render(name)
+
+      else
+        Vedeu::Terminal.clear
+
+      end
+    end
+    Vedeu.bind(:_clear_group_) { |name| Vedeu::Clear::NamedGroup.render(name) }
 
     Vedeu.bind(:_exit_) { Vedeu::Application.stop }
 
@@ -61,7 +69,6 @@ module Vedeu
     Vedeu.bind(:_focus_by_name_) { |name| Vedeu.focus_by_name(name) }
     Vedeu.bind(:_focus_next_) { Vedeu.focus_next }
     Vedeu.bind(:_focus_prev_) { Vedeu.focus_previous }
-
 
     Vedeu.bind(:_refresh_) do |name|
       name ? Vedeu::Refresh.by_name(name) : Vedeu::Refresh.all

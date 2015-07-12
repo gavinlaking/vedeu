@@ -100,7 +100,6 @@ module Vedeu
       end
     end
 
-
     # @return [void]
     def toggle
       if model.visible?

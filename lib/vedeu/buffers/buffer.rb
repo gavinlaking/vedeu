@@ -214,7 +214,7 @@ module Vedeu
     #
     # @return [void]
     def clear_buffer
-      @clear_buffer ||= Vedeu::Clear.new(view).clear
+      @clear_buffer ||= Vedeu::Clear::NamedInterface.render(name)
     end
 
     # Returns the default options/attributes for this class.
