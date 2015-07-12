@@ -21,6 +21,12 @@ module Vedeu
         it { subject.must_be_instance_of(Hash) }
       end
 
+      describe '#null?' do
+        subject { instance.null? }
+
+        it { subject.must_be_instance_of(TrueClass) }
+      end
+
       describe '#parent' do
         subject { instance.parent }
 

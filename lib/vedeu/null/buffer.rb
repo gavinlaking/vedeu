@@ -30,6 +30,11 @@ module Vedeu
         nil
       end
 
+      # @return [Boolean]
+      def null?
+        true
+      end
+
       # @return [NilClass]
       def render
         nil

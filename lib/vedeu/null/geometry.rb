@@ -54,6 +54,11 @@ module Vedeu
       alias_method :maximise, :maximised?
       alias_method :unmaximise, :maximised?
 
+      # @return [Boolean]
+      def null?
+        true
+      end
+
       # @return [Vedeu::Null::Geometry]
       def store
         self

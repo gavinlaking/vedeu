@@ -32,6 +32,12 @@ module Vedeu
         it { instance.must_respond_to(:name) }
       end
 
+      describe '#null?' do
+        subject { instance.null? }
+
+        it { subject.must_be_instance_of(TrueClass) }
+      end
+
       describe '#centred' do
         subject { instance.centred }
 
