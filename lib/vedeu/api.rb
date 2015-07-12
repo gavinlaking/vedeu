@@ -115,6 +115,8 @@ module Vedeu
 
     # @!method bind
     #   @see Vedeu::Event.bind
+    # @!method bound?
+    #   @see Vedeu::Event.bound?
     # @!method unbind
     #   @see Vedeu::Event.unbind
     def_delegators Vedeu::Event, :bind, :unbind

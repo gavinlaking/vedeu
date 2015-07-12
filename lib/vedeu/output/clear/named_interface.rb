@@ -70,23 +70,36 @@ module Vedeu
         end
       end
 
+      # Memoizes and returns the colour attribute of the named interface.
+      #
+      # @return [Vedeu::Colour|NilClass]
       def colour
         @colour ||= interface.colour
       end
 
+      # Memoizes and returns the height attribute of the named geometry.
+      #
+      # @return [Fixnum]
       def height
         @height ||= geometry.height
       end
 
+      # Memoizes and returns the width attribute of the named geometry.
+      #
+      # @return [Fixnum]
       def width
         @width ||= geometry.width
       end
 
+      # Memoizes and returns the x attribute of the named geometry.
+      #
       # @return [Fixnum]
       def x
         @x ||= geometry.x
       end
 
+      # Memoizes and returns the y attribute of the named geometry.
+      #
       # @return [Fixnum]
       def y
         @y ||= geometry.y
