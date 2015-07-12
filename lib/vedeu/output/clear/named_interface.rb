@@ -42,13 +42,9 @@ module Vedeu
 
       # @return [void]
       def render
-        if visible?
-          output
+        return [] unless visible?
 
-        else
-          []
-
-        end
+        output
       end
 
       protected
