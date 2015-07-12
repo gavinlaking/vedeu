@@ -88,17 +88,28 @@ module Vedeu
       alias_method :event, :bind
       alias_method :register, :bind
 
+      # Return a boolean indicating whether the named event is registered.
+      #
+      # @example
+      #   Vedeu.bound?(:some_event)
+      #
+      # @param name [Symbol]
+      # @return [Boolean]
+      def bound?(name)
+        Vedeu.events.registered?(name)
+      end
+
       # Unbind events from a named handler.
       #
       # Removes all events associated with the given name.
       #
       # @example
-      #   Vedeu.unbind('some_event')
+      #   Vedeu.unbind(:some_event)
       #
-      # @param name [String]
+      # @param name [Symbol]
       # @return [Boolean]
       def unbind(name)
-        return false unless Vedeu.events.registered?(name)
+        return false unless Vedeu.bound?(name)
 
         Vedeu.log(type: :event, message: "Unbinding: '#{name.inspect}'")
 

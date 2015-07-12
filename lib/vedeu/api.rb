@@ -119,7 +119,7 @@ module Vedeu
     #   @see Vedeu::Event.bound?
     # @!method unbind
     #   @see Vedeu::Event.unbind
-    def_delegators Vedeu::Event, :bind, :unbind
+    def_delegators Vedeu::Event, :bind, :bound?, :unbind
 
     # Manipulate the repository of events.
     #

@@ -18,6 +18,23 @@ module Vedeu
       it { subject.must_be_instance_of(TrueClass) }
     end
 
+    describe '.bound?' do
+      subject { described.bound?(event_name) }
+
+      context 'when the event is registered' do
+        before { Vedeu.bind(event_name) }
+        after  { Vedeu.unbind(event_name) }
+
+        it { subject.must_equal(true) }
+      end
+
+      context 'when the event is not registered' do
+        before { Vedeu.unbind(event_name) }
+
+        it { subject.must_equal(false) }
+      end
+    end
+
     describe '.unbind' do
       it { described.must_respond_to(:unbind ) }
     end
