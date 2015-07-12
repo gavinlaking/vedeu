@@ -31,40 +31,35 @@ module Vedeu
       it { instance.instance_variable_get('@xn').must_equal(xn) }
     end
 
-    describe '.from_dimensions' do
-      let(:y_yn) { [5, 8] }
-      let(:x_xn) { [15, 25] }
+    describe '.from_attributes' do
+      let(:attributes) {
+        {
+          y:         y,
+          yn:        yn,
+          y_yn:      y_yn,
+          y_default: y_default,
+          x:         x,
+          xn:        xn,
+          x_xn:      x_xn,
+          x_default: x_default,
+          maximised: maximised,
+          centred:   centred,
+        }
+      }
+      let(:y)         {}
+      let(:yn)        {}
+      let(:y_yn)      {}
+      let(:y_default) {}
+      let(:x)         {}
+      let(:xn)        {}
+      let(:x_xn)      {}
+      let(:x_default) {}
+      let(:maximised) {}
+      let(:centred)   {}
 
-      subject { described.from_dimensions(y_yn: y_yn, x_xn: x_xn) }
+      subject { described.from_attributes(attributes) }
 
       it { subject.must_be_instance_of(described) }
-      it { subject.instance_variable_get('@y').must_equal(5) }
-      it { subject.instance_variable_get('@yn').must_equal(8) }
-      it { subject.instance_variable_get('@x').must_equal(15) }
-      it { subject.instance_variable_get('@xn').must_equal(25) }
-    end
-
-    describe '.from_height_and_width' do
-      let(:height) { 5 }
-      let(:width)  { 15 }
-
-      subject { described.from_height_and_width(height: height, width: width) }
-
-      it { subject.must_be_instance_of(described) }
-      it { subject.instance_variable_get('@y').must_equal(1) }
-      it { subject.instance_variable_get('@yn').must_equal(5) }
-      it { subject.instance_variable_get('@x').must_equal(1) }
-      it { subject.instance_variable_get('@xn').must_equal(15) }
-    end
-
-    describe '.from_points' do
-      subject { described.from_points(y: y, yn: yn, x: x, xn: xn) }
-
-      it { subject.must_be_instance_of(described) }
-      it { subject.instance_variable_get('@y').must_equal(y) }
-      it { subject.instance_variable_get('@yn').must_equal(yn) }
-      it { subject.instance_variable_get('@x').must_equal(x) }
-      it { subject.instance_variable_get('@xn').must_equal(xn) }
     end
 
     describe '#eql?' do

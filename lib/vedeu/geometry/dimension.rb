@@ -59,9 +59,15 @@ module Vedeu
     # @return [Fixnum|NilClass]
     attr_reader :default
 
-    # @!attribute [r] options
-    # @return [Hash<Symbol => Boolean]
-    attr_reader :options
+    # @!attribute [r] maximised
+    # @return [Boolean]
+    attr_reader :maximised
+    alias_method :maximised?, :maximised
+
+    # @!attribute [r] centred
+    # @return [Boolean]
+    attr_reader :centred
+    alias_method :centred?, :centred
 
     private
 
@@ -98,11 +104,6 @@ module Vedeu
       end
     end
 
-    # @return [Boolean]
-    def centred?
-      options[:centred]
-    end
-
     # @return [Fixnum]
     def centred_d
       (default / 2) - (length / 2)
@@ -135,24 +136,17 @@ module Vedeu
       end
     end
 
-    # @return [Boolean]
-    def maximised?
-      options[:maximised]
-    end
-
     # Returns the default options/attributes for this class.
     #
     # @return [Hash<Symbol => NilClass,Boolean>]
     def defaults
       {
-        d:       nil,
-        dn:      nil,
-        d_dn:    nil,
-        default: nil,
-        options: {
-          centred:   false,
-          maximised: false,
-        },
+        d:         nil,
+        dn:        nil,
+        d_dn:      nil,
+        default:   nil,
+        centred:   false,
+        maximised: false,
       }
     end
 

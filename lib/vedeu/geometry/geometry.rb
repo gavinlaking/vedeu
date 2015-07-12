@@ -162,16 +162,9 @@ module Vedeu
         xn:        _xn,
         x_xn:      @width,
         x_default: Vedeu.width,
-        options:   dimension_options,
-      )
-    end
-
-    # @return [Hash<Symbol => Boolean>]
-    def dimension_options
-      {
         centred:   centred,
         maximised: maximised,
-      }
+      )
     end
 
     # Returns the row/line start position for the interface.
