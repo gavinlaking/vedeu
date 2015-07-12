@@ -8,18 +8,20 @@ module Vedeu
     let(:instance)   { described.new(attributes) }
     let(:attributes) {
       {
-        d:       d,
-        dn:      dn,
-        d_dn:    d_dn,
-        default: default,
-        options: options,
+        d:         d,
+        dn:        dn,
+        d_dn:      d_dn,
+        default:   default,
+        maximised: maximised,
+        centred:   centred,
       }
     }
-    let(:d)       {}
-    let(:dn)      {}
-    let(:d_dn)    {}
-    let(:default) {}
-    let(:options) { {} }
+    let(:d)         {}
+    let(:dn)        {}
+    let(:d_dn)      {}
+    let(:default)   {}
+    let(:maximised) {}
+    let(:centred)   {}
 
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }
@@ -27,7 +29,8 @@ module Vedeu
       it { instance.instance_variable_get('@dn').must_equal(dn) }
       it { instance.instance_variable_get('@d_dn').must_equal(d_dn) }
       it { instance.instance_variable_get('@default').must_equal(default) }
-      it { instance.instance_variable_get('@options').must_equal(options) }
+      it { instance.instance_variable_get('@maximised').must_equal(maximised) }
+      it { instance.instance_variable_get('@centred').must_equal(centred) }
     end
 
     describe '.pair' do
@@ -40,14 +43,14 @@ module Vedeu
       it { subject.must_equal([15, 38]) }
 
       context 'when maximised' do
-        let(:options) { { maximised: true } }
-        let(:default) { 80 }
+        let(:maximised) { true }
+        let(:default)   { 80 }
 
         it { subject.must_equal([1, 80]) }
       end
 
       context 'when centred and a length can be determined' do
-        let(:options) { { centred: true } }
+        let(:centred) { true }
         let(:default) { 80 }
 
         context 'when d and dn are given' do
@@ -87,7 +90,7 @@ module Vedeu
       end
 
       context 'when centred and a length can be determined' do
-        let(:options) { { centred: true } }
+        let(:centred) { true }
         let(:default) { 80 }
 
         context 'when d and dn are given' do
@@ -158,7 +161,7 @@ module Vedeu
       end
 
       context 'when centred and a length can be determined' do
-        let(:options) { { centred: true } }
+        let(:centred) { true }
         let(:default) { 80 }
 
         context 'when d and dn are given' do

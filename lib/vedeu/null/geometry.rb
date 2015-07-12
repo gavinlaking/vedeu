@@ -63,17 +63,8 @@ module Vedeu
 
       # @return [Vedeu::Area]
       def area
-        @area ||= Vedeu::Area.from_dimensions(y_yn: y_yn, x_xn: x_xn)
-      end
-
-      # @return [Array<Fixnum>]
-      def x_xn
-        @x_xn ||= Vedeu::Dimension.pair(default: Vedeu.width)
-      end
-
-      # @return [Array<Fixnum>]
-      def y_yn
-        @y_yn ||= Vedeu::Dimension.pair(default: Vedeu.height)
+        @area ||= Vedeu::Area.from_attributes(y_default: Vedeu.height,
+                                              x_default: Vedeu.width)
       end
 
     end # Geometry

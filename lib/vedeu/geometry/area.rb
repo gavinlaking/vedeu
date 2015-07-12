@@ -41,34 +41,16 @@ module Vedeu
                                    dn:      attributes[:yn],
                                    d_dn:    attributes[:y_yn],
                                    default: attributes[:y_default],
-                                   options: attributes[:options])
+                                   maximised: attributes[:maximised],
+                                   centred: attributes[:centred])
       x_xn = Vedeu::Dimension.pair(d:       attributes[:x],
                                    dn:      attributes[:xn],
                                    d_dn:    attributes[:x_xn],
                                    default: attributes[:x_default],
-                                   options: attributes[:options])
+                                   maximised: attributes[:maximised],
+                                   centred: attributes[:centred])
 
-      from_dimensions(y_yn: y_yn, x_xn: x_xn)
-    end
-
-    # @param y_yn [Array<Fixnum>]
-    # @param x_xn [Array<Fixnum>]
-    # @return [Vedeu::Area]
-    def self.from_dimensions(y_yn:, x_xn:)
       new(y: y_yn.first, yn: y_yn.last, x: x_xn.first, xn: x_xn.last)
-    end
-
-    # @param height [Fixnum]
-    # @param width [Fixnum]
-    # @return [Vedeu::Area]
-    def self.from_height_and_width(height:, width:)
-      new(y: 1, yn: height, x: 1, xn: width)
-    end
-
-    # @param (see #initialize)
-    # @return [Vedeu::Area]
-    def self.from_points(y:, yn:, x:, xn:)
-      new(y: y, yn: yn, x: x, xn: xn)
     end
 
     # Returns a new instance of Vedeu::Area.
