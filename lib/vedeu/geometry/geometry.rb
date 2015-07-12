@@ -136,7 +136,7 @@ module Vedeu
     def unmaximise
       return self unless maximised?
 
-      Vedeu.trigger(:_clear_, name)
+      Vedeu.trigger(:_clear_)
 
       @maximised = false
 
