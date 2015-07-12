@@ -90,6 +90,8 @@ module Vedeu
         }
       }
 
+      before { Vedeu.stubs(:trigger) }
+
       subject { instance.maximise }
 
       it { subject.must_be_instance_of(described) }
@@ -106,6 +108,8 @@ module Vedeu
           width:     18
         }
       }
+
+      before { Vedeu.stubs(:trigger) }
 
       subject { instance.unmaximise }
 
