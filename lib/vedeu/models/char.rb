@@ -49,12 +49,10 @@ module Vedeu
     #   border 'piece' this Char represents.
     # @return [Char]
     def initialize(attributes = {})
-      @attributes = defaults.merge!(attributes)
-
-      @border   = @attributes[:border]
-      @parent   = @attributes[:parent]
-      @value    = @attributes[:value]
-      @position = Vedeu::Position.coerce(@attributes[:position])
+      @attributes = attributes
+      @border     = @attributes[:border]
+      @parent     = @attributes[:parent]
+      @value      = @attributes[:value]
     end
 
     # When {Vedeu::Viewport#padded_lines} has less lines that required to fill
@@ -83,6 +81,11 @@ module Vedeu
     # @return [String]
     def inspect
       "<Vedeu::Char '#{Vedeu::Esc.escape(to_s)}'>"
+    end
+
+    # @return [Vedeu::Position]
+    def position
+      @position = Vedeu::Position.coerce(@attributes[:position])
     end
 
     # Sets the position of the Char.
@@ -148,20 +151,6 @@ module Vedeu
       {
         background: background.to_s,
         foreground: foreground.to_s,
-      }
-    end
-
-    # The default values for a new instance of this class.
-    #
-    # @return [Hash]
-    def defaults
-      {
-        border:   nil,
-        colour:   nil,
-        parent:   nil,
-        position: nil,
-        style:    nil,
-        value:    '',
       }
     end
 
