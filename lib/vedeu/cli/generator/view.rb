@@ -12,6 +12,7 @@ module Vedeu
     #   ```
     #
     # @api private
+    # :nocov:
     class View
 
       include Vedeu::Generator::Helpers
@@ -77,6 +78,7 @@ module Vedeu
       end
 
     end # View
+    # :nocov:
 
   end # Generator
 

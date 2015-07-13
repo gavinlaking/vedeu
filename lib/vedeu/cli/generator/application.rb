@@ -10,6 +10,7 @@ module Vedeu
     #   ```
     #
     # @api private
+    # :nocov:
     class Application
 
       include Vedeu::Generator::Helpers
@@ -117,6 +118,7 @@ module Vedeu
       end
 
     end # Application
+    # :nocov:
 
   end # Generator
 

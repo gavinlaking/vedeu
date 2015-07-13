@@ -8,6 +8,7 @@ module Vedeu
     # application.
     #
     # @api private
+    # :nocov:
     module Helpers
 
       include Vedeu::Common
@@ -80,6 +81,7 @@ module Vedeu
       end
 
     end # Helpers
+    # :nocov:
 
   end # Generator
 

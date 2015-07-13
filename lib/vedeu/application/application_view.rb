@@ -43,10 +43,12 @@ module Vedeu
     #
     # @param value [String]
     # @return [String]
+    # :nocov:
     def template(value)
       @template = Vedeu::Configuration.base_path +
                   "/app/views/templates/#{value}.erb"
     end
+    # :nocov:
 
   end # ApplicationView
 

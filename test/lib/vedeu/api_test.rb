@@ -17,6 +17,7 @@ module Vedeu
     it { Vedeu.must_respond_to(:keymap) }
     it { Vedeu.must_respond_to(:interface) }
     it { Vedeu.must_respond_to(:renders) }
+    it { Vedeu.must_respond_to(:render) }
     it { Vedeu.must_respond_to(:views) }
     it { Vedeu.must_respond_to(:bind) }
     it { Vedeu.must_respond_to(:bound?) }
@@ -45,6 +46,12 @@ module Vedeu
     it { Vedeu.must_respond_to(:resize) }
     it { Vedeu.must_respond_to(:timer) }
     it { Vedeu.must_respond_to(:trigger) }
+    it { Vedeu.must_respond_to(:exit) }
+    it { Vedeu.must_respond_to(:clear) }
+    it { Vedeu.must_respond_to(:clear_by_name) }
+    it { Vedeu.must_respond_to(:clear_by_group) }
+    it { Vedeu.must_respond_to(:hide_cursor) }
+    it { Vedeu.must_respond_to(:show_cursor) }
 
   end # API
 
