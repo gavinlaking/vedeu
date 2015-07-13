@@ -26,6 +26,11 @@ module Vedeu
         }
       end
 
+      # @return [Boolean]
+      def null?
+        true
+      end
+
       # The null interface should not have a parent.
       #
       # @return [NilClass]

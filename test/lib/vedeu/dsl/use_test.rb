@@ -17,6 +17,8 @@ module Vedeu
       # end
 
       describe '#duplicate' do
+        subject { model_instance.duplicate(_name) }
+
         context 'when the model exists' do
           # it { skip }
         end

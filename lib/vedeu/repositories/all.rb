@@ -41,4 +41,3 @@ require_relative 'collections/all'
 require_relative 'model'
 require_relative 'repositories/all'
 require_relative 'repository'
-

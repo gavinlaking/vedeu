@@ -22,6 +22,11 @@ module Vedeu
         nil
       end
 
+      # @return [Boolean]
+      def null?
+        true
+      end
+
       # @return [NilClass]
       def parent
         nil

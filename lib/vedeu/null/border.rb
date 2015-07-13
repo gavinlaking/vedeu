@@ -57,6 +57,11 @@ module Vedeu
         (by..byn).size
       end
 
+      # @return [Boolean]
+      def null?
+        true
+      end
+
       # @return [Array]
       def render
         []
