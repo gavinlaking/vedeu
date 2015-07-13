@@ -65,6 +65,7 @@ module Vedeu
           @width  = geometry.width
           @height = geometry.height
           @colour = interface.colour
+
           @clear ||= Array.new(@width) do |iy|
             Array.new(@height) do |ix|
               Vedeu::Char.new(value:    ' ',

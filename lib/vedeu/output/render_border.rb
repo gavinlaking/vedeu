@@ -37,9 +37,6 @@ module Vedeu
                    :y,
                    :yn
 
-    def_delegators :interface,
-                   :visible?
-
     # @return [Array<Array<Vedeu::Char>>]
     # @see Vedeu::RenderBorder#initialize
     def self.with(border)
@@ -56,15 +53,13 @@ module Vedeu
 
     # @return [Array<Array<Vedeu::Char>>]
     def render
-      return [] unless visible?
+      return [] unless interface.visible?
       return [] unless enabled?
 
       Vedeu.timer("Rendering border: #{name}") do
         out = [top, bottom]
 
-        height.times do |y|
-          out << [left(y), right(y)]
-        end
+        height.times { |y| out << [left(y), right(y)] }
 
         out.flatten
       end
@@ -88,13 +83,8 @@ module Vedeu
                       parent:   interface,
                       colour:   colour,
                       style:    style,
-                      position: Vedeu::Position[iy, ix],
+                      position: [iy, ix],
                       border:   type)
-    end
-
-    # @return [Array<Vedeu::Char>]
-    def build_bottom_horizontal
-      horizontal_border(:bottom_horizontal, yn)
     end
 
     # @return [Vedeu::Char]
@@ -105,11 +95,6 @@ module Vedeu
     # @return [Vedeu::Char]
     def build_bottom_right
       build(bottom_right, :bottom_right, *[yn, xn]) if right?
-    end
-
-    # @return [Array<Vedeu::Char>]
-    def build_top_horizontal
-      horizontal_border(:top_horizontal, y)
     end
 
     # @return [Vedeu::Char]
@@ -128,7 +113,11 @@ module Vedeu
     def bottom
       return [] unless bottom?
 
-      [build_bottom_left, build_bottom_horizontal, build_bottom_right].compact
+      [
+        build_bottom_left,
+        build_horizontal(:bottom_horizontal, yn),
+        build_bottom_right,
+      ].compact
     end
 
     # @return [Vedeu::Geometry]
@@ -137,10 +126,11 @@ module Vedeu
     end
 
     # @param position [Symbol] Either :top_horizontal, or :bottom_horizontal.
+    # @param y_coordinate [Fixnum] The value of either y or yn.
     # @return [Array<Vedeu::Char>]
-    def horizontal_border(position, y_coordinate)
-      width.times.each_with_object([]) do |ix, a|
-        a << build(horizontal, position, *[y_coordinate, (bx + ix)])
+    def build_horizontal(position, y_coordinate)
+      Array.new(width) do |ix|
+        build(horizontal, position, *[y_coordinate, (bx + ix)])
       end
     end
 
@@ -162,22 +152,6 @@ module Vedeu
       build(vertical, :left_vertical, *[(by + iy), x])
     end
 
-    # Pads the title with a single whitespace either side.
-    #
-    # @example
-    #   title = 'Truncated!'
-    #   width = 20
-    #   # => ' Truncated! '
-    #
-    #   width = 10
-    #   # => ' Trunca '
-    #
-    # @return [String]
-    # @see #truncated_title
-    def padded_title
-      truncated_title.center(truncated_title.size + 2)
-    end
-
     # Renders the right border for the interface.
     #
     # @param iy [Fixnum]
@@ -186,6 +160,35 @@ module Vedeu
       return [] unless right?
 
       build(vertical, :right_vertical, *[(by + iy), xn])
+    end
+
+    # Renders the top border for the interface.
+    #
+    # @note
+    #   If a title has been specified, then the top border will include this
+    #   title unless the size of the interface is smaller than the padded title
+    #   length.
+    #
+    # @return [String]
+    def top
+      return [] unless top?
+
+      [build_top_left, titlebar, build_top_right].compact
+    end
+
+    # From the second element of {#title_characters} remove the border from each
+    # {#horizontal_border} Vedeu::Char, and add the title character.
+    #
+    # @return [Array<Vedeu::Char>]
+    def titlebar
+      return build_horizontal(:top_horizontal, y) unless title? && title_fits?
+
+      build_horizontal(:top_horizontal, y).each_with_index do |char, index|
+        if index >= 1 && index <= title_characters.size
+          char.border = nil
+          char.value  = title_characters[(index - 1)]
+        end
+      end
     end
 
     # Return boolean indicating whether this border has a non-empty title.
@@ -203,38 +206,25 @@ module Vedeu
       width > title_characters.size
     end
 
-    # From the second element of {#title_characters} remove the border from each
-    # {#horizontal_border} Vedeu::Char, and add the title character.
-    #
-    # @return [Array<Vedeu::Char>]
-    def titlebar
-      return build_top_horizontal unless title? && title_fits?
-
-      build_top_horizontal.each_with_index do |char, index|
-        if index >= 1 && index <= title_characters.size
-          char.border = nil
-          char.value  = title_characters[(index - 1)]
-        end
-      end
-    end
-
     # @return [Array<String>]
     def title_characters
-      @title_characters ||= padded_title.chars
+      @title_characters ||= title_padded.chars
     end
 
-    # Renders the top border for the interface.
+    # Pads the title with a single whitespace either side.
     #
-    # @note
-    #   If a title has been specified, then the top border will include this
-    #   title unless the size of the interface is smaller than the padded title
-    #   length.
+    # @example
+    #   title = 'Truncated!'
+    #   width = 20
+    #   # => ' Truncated! '
+    #
+    #   width = 10
+    #   # => ' Trunca '
     #
     # @return [String]
-    def top
-      return [] unless top?
-
-      [build_top_left, titlebar, build_top_right].compact
+    # @see #truncated_title
+    def title_padded
+      truncated_title.center(truncated_title.size + 2)
     end
 
     # Truncates the title to the width of the interface, minus characters needed
