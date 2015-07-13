@@ -11,9 +11,7 @@ require 'vedeu/geometry/all'
 require 'vedeu/repositories/all'
 
 require 'vedeu/api'
-require 'vedeu/bindings/drb'
-require 'vedeu/bindings/menus'
-require 'vedeu/bindings/bindings'
+require 'vedeu/bindings/all'
 
 require 'vedeu/cli/generator/all'
 
