@@ -321,6 +321,15 @@ module Vedeu
     #   @see Vedeu::Application.stop
     def_delegators Vedeu::Application, :exit
 
+    # Clear the entire terminal.
+    #
+    # @example
+    #   Vedeu.clear
+    #
+    # @!method clear
+    #   @see Vedeu::Terminal.clear
+    def_delegators Vedeu::Terminal, :clear
+
     # Clear the interface with the given name.
     #
     # @example
