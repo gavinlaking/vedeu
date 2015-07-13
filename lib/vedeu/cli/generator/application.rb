@@ -34,6 +34,8 @@ module Vedeu
         make_directory_structure
 
         copy_gemfile
+        copy_license
+        copy_readme
         copy_application_bootstrapper
         copy_application_controller
         copy_application_helper
@@ -88,6 +90,16 @@ module Vedeu
       # @return [void]
       def copy_gemfile
         copy_file(source + '/Gemfile', "#{name}/Gemfile")
+      end
+
+      # @return [void]
+      def copy_license
+        copy_file(source + '/LICENSE.txt', "#{name}/LICENSE.txt")
+      end
+
+      # @return [void]
+      def copy_readme
+        copy_file(source + '/README.md', "#{name}/README.md")
       end
 
       # @return [void]
