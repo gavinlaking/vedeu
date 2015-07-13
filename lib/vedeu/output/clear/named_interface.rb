@@ -60,49 +60,19 @@ module Vedeu
       # @return [Array<Array<Vedeu::Char>>]
       def output
         Vedeu.timer("Clearing: #{name}") do
-          @clear ||= Array.new(height) do |iy|
-            Array.new(width) do |ix|
+          @y      = geometry.y
+          @x      = geometry.x
+          @width  = geometry.width
+          @height = geometry.height
+          @colour = interface.colour
+          @clear ||= Array.new(@width) do |iy|
+            Array.new(@height) do |ix|
               Vedeu::Char.new(value:    ' ',
-                              colour:   colour,
-                              position: Vedeu::Position[y + iy, x + ix])
+                              colour:   @colour,
+                              position: [@y + iy, @x + ix])
             end
           end
         end
-      end
-
-      # Memoizes and returns the colour attribute of the named interface.
-      #
-      # @return [Vedeu::Colour|NilClass]
-      def colour
-        @colour ||= interface.colour
-      end
-
-      # Memoizes and returns the height attribute of the named geometry.
-      #
-      # @return [Fixnum]
-      def height
-        @height ||= geometry.height
-      end
-
-      # Memoizes and returns the width attribute of the named geometry.
-      #
-      # @return [Fixnum]
-      def width
-        @width ||= geometry.width
-      end
-
-      # Memoizes and returns the x attribute of the named geometry.
-      #
-      # @return [Fixnum]
-      def x
-        @x ||= geometry.x
-      end
-
-      # Memoizes and returns the y attribute of the named geometry.
-      #
-      # @return [Fixnum]
-      def y
-        @y ||= geometry.y
       end
 
     end # NamedInterface
