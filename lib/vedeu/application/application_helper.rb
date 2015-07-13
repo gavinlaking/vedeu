@@ -3,7 +3,8 @@ require_relative 'helper'
 module Vedeu
 
   # Provides methods which should be available to all client application
-  # helpers.
+  # helpers. The client application's ApplicationHelper will include this
+  # module.
   #
   # @api private
   module ApplicationHelper
