@@ -21,7 +21,7 @@ class VedeuPanelApp
   configure do
     # debug!
     log '/tmp/vedeu_panel_app.log'
-    # renderers Vedeu::Renderers::File
+    # renderers Vedeu::Renderers::File.new
   end
 
   # line { centre 'Blue',        width: 20, background: '#2196f3' }

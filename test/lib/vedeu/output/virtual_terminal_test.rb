@@ -10,7 +10,7 @@ module Vedeu
     let(:instance)  { described.new(height, width, renderer) }
     let(:height)    { 3 }
     let(:width)     { 3 }
-    let(:renderer)  { Vedeu::Renderers::HTML }
+    let(:renderer)  { Vedeu::Renderers::HTML.new }
 
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }

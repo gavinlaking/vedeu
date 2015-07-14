@@ -21,7 +21,7 @@ class VedeuMaterialColoursApp
   configure do
     # debug!
     log '/tmp/vedeu_material_colours_app.log'
-    # renderers Vedeu::Renderers::File
+    # renderers Vedeu::Renderers::File.new
   end
 
   interface 'main_interface' do
