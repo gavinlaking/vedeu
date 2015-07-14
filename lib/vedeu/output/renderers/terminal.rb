@@ -24,17 +24,23 @@ module Vedeu
 
       private
 
+      # @param output [Array<Array<Vedeu::Char>>]
+      # @return [Array<Array<Vedeu::Char>>]
       def parsed(output)
         Vedeu.timer('Compression') do
           Vedeu::Compressor.render(output)
         end
       end
 
+      # Combines the options provided at instantiation with the default values.
+      #
       # @return [Hash<Symbol => void>]
       def options
         defaults.merge!(@options)
       end
 
+      # The default values for a new instance of this class.
+      #
       # @return [Hash<Symbol => void>]
       def defaults
         {}

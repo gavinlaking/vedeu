@@ -14,6 +14,8 @@ module Vedeu
         @options = options || {}
       end
 
+      # Render the output with the escape sequences escaped.
+      #
       # @param output [Array<Array<Vedeu::Char>>]
       # @return [String]
       def render(output)
@@ -24,11 +26,15 @@ module Vedeu
 
       private
 
+      # Combines the options provided at instantiation with the default values.
+      #
       # @return [Hash<Symbol => void>]
       def options
         defaults.merge!(@options)
       end
 
+      # The default values for a new instance of this class.
+      #
       # @return [Hash<Symbol => void>]
       def defaults
         {}

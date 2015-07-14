@@ -56,6 +56,8 @@ module Vedeu
         options[:write_file]
       end
 
+      # Combines the options provided at instantiation with the default values.
+      #
       # @return [Hash]
       def options
         defaults.merge!(@options)

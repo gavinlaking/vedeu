@@ -47,11 +47,13 @@ module Vedeu
 
       private
 
+      # @param value [Array<Array<Vedeu::Char>>]
+      # @return [Array<Array<Vedeu::Char>>]
       def content=(value)
         options[:content] = value
       end
 
-      # @param content [Array<Array<Vedeu::Char>>]
+      # @return [Array<Array<Vedeu::Char>>]
       def content
         options[:content]
       end
@@ -61,11 +63,15 @@ module Vedeu
         options[:template]
       end
 
+      # Combines the options provided at instantiation with the default values.
+      #
       # @return [Hash<Symbol => void>]
       def options
         defaults.merge!(@options)
       end
 
+      # The default values for a new instance of this class.
+      #
       # @return [Hash<Symbol => void>]
       def defaults
         {
