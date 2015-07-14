@@ -7,39 +7,31 @@ module Vedeu
     # @api private
     class EscapeSequence
 
-      # @param output [Array<Array<Vedeu::Char>>]
-      # @return [String]
-      def self.render(output)
-        new(output).render
-      end
-
       # Returns a new instance of Vedeu::Renderers::EscapeSequence.
       #
+      # @param options [Hash]
+      def initialize(options)
+        @options = options
+      end
+
       # @param output [Array<Array<Vedeu::Char>>]
-      def initialize(output)
-        @output = output
-      end
-
       # @return [String]
-      def render
-        parsed
-      end
-
-      protected
-
-      # @!attribute [r] output
-      # @return [Array<Array<Vedeu::Char>>]
-      attr_reader :output
-
-      private
-
-      # Escapes the escape sequences.
-      #
-      # @return [String]
-      def parsed
+      def render(output)
         @parsed ||= Array(output).flatten.map do |char|
           Esc.escape(char.to_s) + "\n"
         end.join
+      end
+
+      private
+
+      # @return [Hash<Symbol => void>]
+      def options
+        defaults.merge!(@options)
+      end
+
+      # @return [Hash<Symbol => void>]
+      def defaults
+        {}
       end
 
     end # EscapeSequence

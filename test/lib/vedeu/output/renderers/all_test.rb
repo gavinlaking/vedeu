@@ -17,6 +17,7 @@ module Vedeu
   describe Renderers do
 
     let(:described) { Vedeu::Renderers }
+    let(:output)    {}
 
     before { Vedeu::Renderers.reset }
     after  { Vedeu::Renderers.reset }
@@ -29,7 +30,7 @@ module Vedeu
       context 'API' do
         before { Vedeu::Renderers.renderer(*renderers) }
 
-        subject { Vedeu.renderers.render }
+        subject { Vedeu.renderers.render(output) }
 
         # context 'when a single renderer is defined' do
         #   let(:renderers) { DummyRenderer }
@@ -87,13 +88,6 @@ module Vedeu
 
     describe '.reset' do
       subject { described.reset }
-
-      it { subject.must_be_instance_of(Set) }
-      it { subject.size.must_equal(0) }
-    end
-
-    describe '.storage' do
-      subject { described.storage }
 
       it { subject.must_be_instance_of(Set) }
       it { subject.size.must_equal(0) }

@@ -5,51 +5,34 @@ module Vedeu
     # Renders a {Vedeu::VirtualBuffer} or {Vedeu::Output} as a HTML table.
     #
     # @api private
-    class HTML
-
-      # @param output [Array<Array<Vedeu::Char>>]
-      # @return [String]
-      def self.render(output)
-        new(output).to_file
-      end
-
-      # @param output [Array<Array<Vedeu::Char>>]
-      # @param path [String]
-      # @return [String]
-      def self.to_file(output, path = nil)
-        new(output).to_file(path)
-      end
+    class HTML < Vedeu::Renderers::File
 
       # Returns a new instance of Vedeu::Renderers::HTML.
       #
-      # @param output [Array<Array<Vedeu::Char>>]
+      # @param options [Hash]
       # @return [Vedeu::Renderers::HTML]
-      def initialize(output)
-        @output = output
+      def initialize(options = {})
+        @options = options
       end
 
+      # @param output [Array<Array<Vedeu::Char>>]
       # @return [String]
-      def render
-        Vedeu::Template.parse(self, template)
-      end
+      def render(output)
+        content = output
 
-      # Writes the parsed template to a file (at the given path) and returns the
-      # contents.
-      #
-      # @param path [String]
-      # @return [String]
-      def to_file(path = file_path)
-        content = render
+        if write_file?
+          super(Vedeu::Template.parse(self, template))
 
-        ::File.open(path, 'w') { |file| file.write(content) }
+        else
+          Vedeu::Template.parse(self, template)
 
-        content
+        end
       end
 
       # @return [String]
       def html_body
         out = ''
-        Array(output).each do |line|
+        Array(content).each do |line|
           out << "<tr>\n"
           line.each do |char|
             if char.is_a?(Vedeu::Char)
@@ -62,27 +45,38 @@ module Vedeu
         out
       end
 
-      protected
-
-      # @!attribute [r] output
-      # @return [Array<Array<Vedeu::Char>>]
-      attr_reader :output
-
       private
+
+      def content=(value)
+        options[:content] = value
+      end
+
+      # @param content [Array<Array<Vedeu::Char>>]
+      def content
+        options[:content]
+      end
 
       # @return [String]
       def template
-        ::File.dirname(__FILE__) + '/../templates/html_renderer.vedeu'
+        options[:template]
+      end
+
+      # @return [Hash<Symbol => void>]
+      def options
+        defaults.merge!(@options)
+      end
+
+      # @return [Hash<Symbol => void>]
+      def defaults
+        {
+          content:  '',
+          template: default_template,
+        }
       end
 
       # @return [String]
-      def file_path
-        "/tmp/vedeu_html_#{timestamp}.html"
-      end
-
-      # return [Fixnum]
-      def timestamp
-        @timestamp ||= Time.now.to_i
+      def default_template
+        ::File.dirname(__FILE__) + '/../templates/html_renderer.vedeu'
       end
 
     end # HTML

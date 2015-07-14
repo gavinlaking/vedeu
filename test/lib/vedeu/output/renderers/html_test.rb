@@ -6,82 +6,79 @@ module Vedeu
 
     describe HTML do
 
-      let(:described) { Vedeu::Renderers::HTML }
-      let(:instance)  { described.new(output) }
-      let(:output)    {}
-
-      before do
-        ::File.stubs(:open)
-      end
+      let(:described)  { Vedeu::Renderers::HTML }
+      let(:instance)   { described.new(options) }
+      let(:options)    {
+        {
+          content:    content,
+          write_file: write_file,
+        }
+      }
+      let(:content)     { [''] }
+      let(:write_file) { false }
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
-        it { instance.instance_variable_get('@output').must_equal(output) }
+        it { instance.instance_variable_get('@options').must_equal(options) }
       end
 
-      describe '.render' do
-        it { described.must_respond_to(:render) }
-      end
+      # describe '#render' do
+      #   before { ::File.stubs(:open) }
 
-      describe '.to_file' do
-        it { described.must_respond_to(:to_file) }
-      end
+      #   subject { instance.render(content) }
 
-      describe '#render' do
-        before { ::File.stubs(:open) }
+      #   it { subject.must_be_instance_of(String) }
 
-        subject { instance.render }
+      #   context 'when the :write_file option is true' do
+      #     let(:write_file) { true }
 
-        it { subject.must_be_instance_of(String) }
-      end
+      #     context 'when a path is given' do
+      #       let(:path) { '/tmp/test_vedeu_html_renderer.html' }
 
-      describe '#to_file' do
-        before { ::File.stubs(:open) }
+      #       # it do
+      #       #   ::File.expects(:open)
+      #       #   subject
+      #       # end
+      #     end
 
-        subject { instance.to_file(path) }
+      #     context 'when a path is not given' do
+      #       let(:path) {}
+      #       let(:_time) { Time.new(2015, 4, 12, 16, 55) }
 
-        context 'when a path is given' do
-          let(:path) { '/tmp/test_vedeu_html_renderer.html' }
+      #       before { Time.stubs(:now).returns(_time) }
 
-          it do
-            ::File.expects(:open)
-            subject
-          end
-        end
+      #       # it do
+      #       #   ::File.expects(:open)#.with('/tmp/vedeu_html_1428854100.html', 'w')
+      #       #   subject
+      #       # end
+      #     end
+      #   end
 
-        context 'when a path is not given' do
-          let(:path) {}
-          let(:_time) { Time.new(2015, 4, 12, 16, 55) }
+      #   context 'when the :write_file options is false' do
+      #     let(:write_file) { false }
 
-          before { Time.stubs(:now).returns(_time) }
-
-          it do
-            ::File.expects(:open)#.with('/tmp/vedeu_html_1428854100.html', 'w')
-            subject
-          end
-        end
-      end
+      #     # it { skip }
+      #   end
+      # end
 
       describe '#html_body' do
+        let(:content) {
+          [
+            [
+              Vedeu::Char.new(value: 't'),
+              Vedeu::Char.new(value: 'e'),
+              Vedeu::Char.new(value: 's'),
+              Vedeu::Char.new(value: 't'),
+            ]
+          ]
+        }
+
         subject { instance.html_body }
 
         it { subject.must_be_instance_of(String) }
 
-        it { subject.must_equal('') }
-
-        context 'when there is output' do
-          let(:output) {
-            [
-              [
-                Vedeu::Char.new(value: 't'),
-                Vedeu::Char.new(value: 'e'),
-                Vedeu::Char.new(value: 's'),
-                Vedeu::Char.new(value: 't'),
-              ]
-            ]
-          }
-
-          it { subject.must_equal(
+        it do
+          subject.must_equal(
             "<tr>\n" \
             "<td style='background:#000;color:#222;border:1px #000 solid;'>"   \
             "t</td>\n" \
@@ -91,7 +88,8 @@ module Vedeu
             "s</td>\n" \
               "<td style='background:#000;color:#222;border:1px #000 solid;'>" \
             "t</td>\n" \
-            "</tr>\n") }
+            "</tr>\n"
+          )
         end
       end
 

@@ -8,36 +8,30 @@ module Vedeu
     # @api private
     class Text
 
-      # @param output [Array<Array<Vedeu::Char>>]
-      # @return [String]
-      def self.render(*output)
-        new(*output).render
-      end
-
       # Returns a new instance of Vedeu::Renderers::Text.
       #
-      # @param output [Array<Array<Vedeu::Char>>]
+      # @param options [Hash]
       # @return [Vedeu::Renderers::Text]
-      def initialize(*output)
-        @output  = output
+      def initialize(options = {})
+        @options = options
       end
 
+      # @param output [Array<Array<Vedeu::Char>>]
       # @return [String]
-      def render
-        parsed
+      def render(output)
+        Vedeu::Compressor.render(output)
       end
-
-      protected
-
-      # @!attribute [r] output
-      # @return [Array<Array<Vedeu::Char>>]
-      attr_reader :output
 
       private
 
-      # @return [String]
-      def parsed
-        Vedeu::Compressor.render(output)
+      # @return [Hash<Symbol => void>]
+      def options
+        defaults.merge!(@options)
+      end
+
+      # @return [Hash<Symbol => void>]
+      def defaults
+        {}
       end
 
     end # Text
