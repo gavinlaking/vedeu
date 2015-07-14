@@ -1,7 +1,8 @@
 Vedeu.configure do
-  log         "/tmp/<%= object.name %>.log"
+  # base_path
 
-  colour_mode 16_777_216
+  # colour_mode 16_777_216 # Some terminals don't render colour at all if this
+                           # value is not one of 8, 16, 256 or 16777216.
 
   # debug! # Add "gem 'ruby-prof'" to your Gemfile if uncommenting this line.
   # drb!
@@ -12,6 +13,10 @@ Vedeu.configure do
 
   # cooked!
   # raw!
+
+  log         "/tmp/<%= object.name %>.log"
+
+  # renderers
 
   # run_once!
 
