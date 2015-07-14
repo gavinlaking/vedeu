@@ -13,6 +13,8 @@ module Vedeu
     let(:described) { Vedeu::HelperTestClass }
     let(:instance)  { described.new }
 
+    # @todo
+
   end # Helper
 
 end # Vedeu

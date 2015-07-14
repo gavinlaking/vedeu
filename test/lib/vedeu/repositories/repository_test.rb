@@ -91,6 +91,7 @@ module Vedeu
 
       subject { instance.by_name(_name) }
 
+      # @todo
       # it { skip }
     end
 

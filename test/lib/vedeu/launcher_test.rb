@@ -28,10 +28,12 @@ module Vedeu
       subject { instance.debug_execute! }
 
       context 'when debugging is enabled in the configuration' do
+        # @todo
         # it { skip }
       end
 
       context 'when debugging is not enabled in the configuration' do
+        # @todo
         # it { skip }
       end
     end

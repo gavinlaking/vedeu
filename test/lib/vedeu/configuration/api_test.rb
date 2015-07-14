@@ -230,6 +230,7 @@ module Vedeu
 
         subject { instance.stdin(io) }
 
+        # @todo
         # it { skip }
       end
 
@@ -238,6 +239,7 @@ module Vedeu
 
         subject { instance.stdout(io) }
 
+        # @todo
         # it { skip }
       end
 
@@ -246,6 +248,7 @@ module Vedeu
 
         subject { instance.stderr(io) }
 
+        # @todo
         # it { skip }
       end
 

@@ -7,6 +7,8 @@ module Vedeu
     let(:described) { Vedeu::ApplicationController }
     let(:instance)  { described.new }
 
+    # @todo
+
   end # ApplicationController
 
 end # Vedeu

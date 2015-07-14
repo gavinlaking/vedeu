@@ -57,6 +57,7 @@ module Vedeu
       #   context 'when the :write_file options is false' do
       #     let(:write_file) { false }
 
+      #     @todo
       #     # it { skip }
       #   end
       # end

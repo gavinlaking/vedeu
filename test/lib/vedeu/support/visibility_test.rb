@@ -53,6 +53,7 @@ module Vedeu
     describe '.hide_cursor' do
       subject { described.hide_cursor(_name) }
 
+      # @todo
       # it { subject; instance.state.must_equal(:invisible) }
       # it { skip }
     end

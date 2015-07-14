@@ -22,7 +22,6 @@ module Vedeu
 
     before do
       Vedeu.stubs(:trigger)
-      # Vedeu.interfaces.stubs(:by_name).returns(interface)
     end
     after { Vedeu.interfaces.reset }
 
@@ -244,6 +243,7 @@ module Vedeu
 
       it { instance.must_respond_to(:content) }
 
+      # @todo
       # it { skip }
       # it { subject.must_be_instance_of(Array) }
 
