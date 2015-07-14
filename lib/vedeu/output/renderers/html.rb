@@ -18,7 +18,7 @@ module Vedeu
       # @param output [Array<Array<Vedeu::Char>>]
       # @return [String]
       def render(output)
-        content = output
+        @options[:content] = output
 
         if write_file?
           super(Vedeu::Template.parse(self, template))
@@ -46,12 +46,6 @@ module Vedeu
       end
 
       private
-
-      # @param value [Array<Array<Vedeu::Char>>]
-      # @return [Array<Array<Vedeu::Char>>]
-      def content=(value)
-        options[:content] = value
-      end
 
       # @return [Array<Array<Vedeu::Char>>]
       def content

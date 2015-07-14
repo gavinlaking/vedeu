@@ -18,6 +18,7 @@ module Vedeu
       # @param output [Array<Array<Vedeu::Char>>]
       # @return [String]
       def render(output)
+        output
       end
 
       private
