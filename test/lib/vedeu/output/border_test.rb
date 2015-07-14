@@ -561,14 +561,6 @@ module Vedeu
       end
     end
 
-    describe '#to_s' do
-      subject { instance.to_s }
-
-      it { subject.must_be_instance_of(String) }
-
-      it { subject.must_equal('') }
-    end
-
   end # Border
 
 end # Vedeu

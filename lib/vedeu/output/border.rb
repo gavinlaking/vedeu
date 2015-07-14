@@ -161,12 +161,6 @@ module Vedeu
       Vedeu::RenderBorder.with(self)
     end
 
-    # @return [String]
-    def to_s
-      Vedeu::Renderers::Text.render(render)
-    end
-    alias_method :to_str, :to_s
-
     private
 
     # @return [Vedeu::Geometry]
