@@ -144,6 +144,13 @@ module Vedeu
         instance.options[:log]
       end
 
+      # Returns a boolean indicating whether the log has been configured.
+      #
+      # @return [Boolean]
+      def log?
+        log != nil
+      end
+
       # Returns whether the application will run through its main loop once or
       # not. Default is false; meaning the application will loop forever or
       # until terminated by the user.
