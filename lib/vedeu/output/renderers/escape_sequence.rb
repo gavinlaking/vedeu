@@ -10,8 +10,8 @@ module Vedeu
       # Returns a new instance of Vedeu::Renderers::EscapeSequence.
       #
       # @param options [Hash]
-      def initialize(options)
-        @options = options
+      def initialize(options = {})
+        @options = options || {}
       end
 
       # @param output [Array<Array<Vedeu::Char>>]

@@ -13,7 +13,7 @@ module Vedeu
       # @param options [Hash]
       # @return [Vedeu::Renderers::Text]
       def initialize(options = {})
-        @options = options
+        @options = options || {}
       end
 
       # @param output [Array<Array<Vedeu::Char>>]

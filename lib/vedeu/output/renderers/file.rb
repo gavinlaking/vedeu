@@ -15,23 +15,18 @@ module Vedeu
       # @option options timestamp [Boolean] Append a timestamp to the filename.
       # @return [Vedeu::Renderers::File]
       def initialize(options = {})
-        @options = options
+        @options = options || {}
       end
 
       # @param output [Array<Array<Vedeu::Char>>]
       # @return [String]
       def render(output)
-        ::File.write(path, output) if write_file?
+        ::File.write(filename, output) if write_file?
 
         output
       end
 
       private
-
-      # @return [String]
-      def path
-        "/tmp/#{filename}"
-      end
 
       # @return [String]
       def filename
@@ -73,7 +68,7 @@ module Vedeu
         {
           filename:   'out',
           timestamp:  false,
-          write_file: false,
+          write_file: true,
         }
       end
 
