@@ -255,7 +255,7 @@ module Vedeu
     # @return [Hash]
     def defaults
       {
-        base_path:     set_base_path,
+        base_path:     base_path,
         colour_mode:   detect_colour_mode,
         debug:         false,
         drb:           false,
@@ -288,7 +288,7 @@ module Vedeu
     end
 
     # @return [String]
-    def set_base_path
+    def base_path
       File.expand_path('.')
     end
 
