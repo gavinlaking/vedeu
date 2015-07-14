@@ -31,7 +31,9 @@ module Vedeu
     #
     # @return [void]
     def start
-      Vedeu.configure { log('/tmp/vedeu_bootstrap.log') }
+      unless Vedeu::Configuration.log?
+        Vedeu.configure { log('/tmp/vedeu_bootstrap.log') }
+      end
 
       # config/configuration.rb is already loaded so don't load it twice
       Dir[File.join(Vedeu::Configuration.base_path, 'config/**/*')].each do |f|

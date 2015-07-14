@@ -1,3 +1,4 @@
 source 'https://rubygems.org'
 
 gem 'vedeu'
+# gem 'ruby-prof' # uncomment if using the `debug!` configuration option.

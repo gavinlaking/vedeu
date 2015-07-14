@@ -4,6 +4,7 @@ module Vedeu
   #
   # @api private
   module Clear
+
   end # Clear
 
 end # Vedeu

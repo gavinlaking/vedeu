@@ -9,7 +9,7 @@ module Vedeu
     before { Configuration.reset! }
     after  { test_configuration }
 
-    describe '#base_path' do
+    describe '.base_path' do
       it { described.must_respond_to(:base_path) }
 
       it 'returns the value of the base_path option' do
@@ -17,7 +17,7 @@ module Vedeu
       end
     end
 
-    describe '#debug?' do
+    describe '.debug?' do
       it { described.must_respond_to(:debug) }
 
       it 'returns the value of the debug option' do
@@ -25,7 +25,7 @@ module Vedeu
       end
     end
 
-    describe '#drb?' do
+    describe '.drb?' do
       it { described.must_respond_to(:drb) }
 
       it 'returns the value of the drb option' do
@@ -33,7 +33,7 @@ module Vedeu
       end
     end
 
-    describe '#interactive?' do
+    describe '.interactive?' do
       it { described.must_respond_to(:interactive) }
 
       it 'returns the value of the interactive option' do
@@ -41,7 +41,39 @@ module Vedeu
       end
     end
 
-    describe '#once?' do
+    describe '.log' do
+      context 'when the log is not configured' do
+        it { described.log.must_equal(nil) }
+      end
+
+      context 'when the log is configured' do
+        before do
+          Vedeu.configure do
+            log '/tmp/vedeu.log'
+          end
+        end
+
+        it { described.log.must_equal('/tmp/vedeu.log') }
+      end
+    end
+
+    describe '.log?' do
+      context 'when the log is not configured' do
+        it { described.log?.must_equal(false) }
+      end
+
+      context 'when the log is configured' do
+        before do
+          Vedeu.configure do
+            log '/tmp/vedeu.log'
+          end
+        end
+
+        it { described.log?.must_equal(true) }
+      end
+    end
+
+    describe '.once?' do
       it { described.must_respond_to(:once) }
 
       it 'returns the value of the once option' do
@@ -49,25 +81,25 @@ module Vedeu
       end
     end
 
-    describe '#stdin' do
+    describe '.stdin' do
       it 'returns the value of the redefined STDIN' do
         Configuration.stdin.must_equal(nil)
       end
     end
 
-    describe '#stdout' do
+    describe '.stdout' do
       it 'returns the value of the redefined STDOUT' do
         Configuration.stdout.must_equal(nil)
       end
     end
 
-    describe '#stderr' do
+    describe '.stderr' do
       it 'returns the value of the redefined STDERR' do
         Configuration.stderr.must_equal(nil)
       end
     end
 
-    describe '#terminal_mode' do
+    describe '.terminal_mode' do
       it 'returns the value of the mode option' do
         Configuration.terminal_mode.must_equal(:raw)
       end

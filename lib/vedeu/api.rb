@@ -87,22 +87,40 @@ module Vedeu
     # @return [Vedeu::Cursors]
     def_delegators Vedeu::Cursors, :cursors
 
+    # @example
+    #   Vedeu.border
+    #
     # @!method border
     #   @see Vedeu::DSL::Border.border
     def_delegators Vedeu::DSL::Border, :border
 
+    # @example
+    #   Vedeu.geometry
+    #
     # @!method geometry
     #   @see Vedeu::DSL::Geometry.geometry
     def_delegators Vedeu::DSL::Geometry, :geometry
 
+    # @example
+    #   Vedeu.group
+    #
     # @!method group
     #   @see Vedeu::DSL::Group.group
     def_delegators Vedeu::DSL::Group, :group
 
+    # @example
+    #   Vedeu.keymap
+    #
     # @!method keymap
     #   @see Vedeu::DSL::Keymap.keymap
     def_delegators Vedeu::DSL::Keymap, :keymap
 
+    # @example
+    #   Vedeu.interface
+    #   Vedeu.renders
+    #   Vedeu.render
+    #   Vedeu.views
+    #
     # @!method interface
     #   @see Vedeu::DSL::View.interface
     # @!method render
@@ -113,6 +131,11 @@ module Vedeu
     #   @see Vedeu::DSL::View.views
     def_delegators Vedeu::DSL::View, :interface, :renders, :render, :views
 
+    # @example
+    #   Vedeu.bind
+    #   Vedeu.bound?
+    #   Vedeu.unbind
+    #
     # @!method bind
     #   @see Vedeu::Event.bind
     # @!method bound?
@@ -130,6 +153,13 @@ module Vedeu
     # @return [Vedeu::Events]
     def_delegators Vedeu::Events, :events
 
+    # @example
+    #   Vedeu.focus
+    #   Vedeu.focus_by_name
+    #   Vedeu.focussed?
+    #   Vedeu.focus_next
+    #   Vedeu.focus_previous
+    #
     # @!method focus
     #   @see Vedeu::Focus#focus
     # @!method focus_by_name
@@ -188,6 +218,11 @@ module Vedeu
     # @return [Vedeu::Keymaps]
     def_delegators Vedeu::Keymaps, :keymaps
 
+    # @example
+    #   Vedeu.log
+    #   Vedeu.log_stdout
+    #   Vedeu.log_stderr
+    #
     # @!method log
     #   @see Vedeu::Log.log
     # @!method log_stdout
@@ -196,10 +231,16 @@ module Vedeu
     #   @see Vedeu::Log.log_stderr
     def_delegators Vedeu::Log, :log, :log_stdout, :log_stderr
 
+    # @example
+    #   Vedeu.keypress
+    #
     # @!method keypress
     #   @see Vedeu::Mapper.keypress
     def_delegators Vedeu::Mapper, :keypress
 
+    # @example
+    #   Vedeu.menu
+    #
     # @!method menu
     #   @see Vedeu::Menu.menu
     def_delegators Vedeu::Menu, :menu
@@ -213,44 +254,114 @@ module Vedeu
     # @return [Vedeu::Menus]
     def_delegators Vedeu::Menus, :menus
 
+    # @example
+    #   Vedeu.renderer
+    #   Vedeu.renderers
+    #
     # @!method renderer
     #   @see Vedeu::Renderers#renderer
     # @!method renderers
     #   @see Vedeu::Renderers#renderers
     def_delegators Vedeu::Renderers, :renderer, :renderers
 
+    # Return the height of the terminal running the client application.
+    #
+    # @example
+    #   Vedeu.height
+    #
     # @!method height
     #   @see Vedeu::Terminal#height
+    def_delegators Vedeu::Terminal, :height
+
+    # Return the width of the terminal running the client application.
+    #
+    # @example
+    #   Vedeu.width
+    #
     # @!method width
     #   @see Vedeu::Terminal#width
+    def_delegators Vedeu::Terminal, :width
+
+    # Instruct the terminal to resize. This will happen automatically as the
+    # terminal recieves SIGWINCH signals.
+    #
+    # @example
+    #   Vedeu.resize
+    #
     # @!method resize
     #   @see Vedeu::Terminal#resize
-    def_delegators Vedeu::Terminal, :height, :width, :resize
+    def_delegators Vedeu::Terminal, :resize
 
+    # Measure the execution time of the code in the given block.
+    #
+    # @example
+    #   Vedeu.timer do
+    #     # ... some code here ...
+    #   end
+    #
     # @!method timer
     #   @see Vedeu::Timer.timer
     def_delegators Vedeu::Timer, :timer
 
+    # Trigger an event by name.
+    #
+    # @example
+    #   Vedeu.trigger(:name)
+    #
     # @!method trigger
     #   @see Vedeu::Trigger.trigger
     def_delegators Vedeu::Trigger, :trigger
 
+    # Exit the client application using Vedeu.
+    #
+    # @example
+    #   Vedeu.exit
+    #
     # @!method exit
     #   @see Vedeu::Application.stop
     def_delegators Vedeu::Application, :exit
 
+    # Clear the entire terminal.
+    #
+    # @example
+    #   Vedeu.clear
+    #
+    # @!method clear
+    #   @see Vedeu::Terminal.clear
+    def_delegators Vedeu::Terminal, :clear
+
+    # Clear the interface with the given name.
+    #
+    # @example
+    #   Vedeu.clear_by_name(name)
+    #
     # @!method clear_by_name
-    #   @see Vedeu::Clear.by_name
+    #   @see Vedeu::Clear::NamedInterface.render
     def_delegators Vedeu::Clear::NamedInterface, :clear_by_name
 
+    # Clears the group of interfaces belonging to the given name.
+    #
+    # @example
+    #   Vedeu.clear_by_group(name)
+    #
     # @!method clear_by_group
-    #   @see Vedeu::Clear.by_group
+    #   @see Vedeu::Clear::NamedGroup.render
     def_delegators Vedeu::Clear::NamedGroup, :clear_by_group
 
+    # Hide the cursor for the interface of the given name.
+    #
+    # @example
+    #   Vedeu.hide_cursor(name)
+    #
     # @!method hide_cursor
     #   @see Vedeu::Visibility.hide_cursor
     def_delegators Vedeu::Visibility, :hide_cursor
 
+    # Shows the cursor for the interface of the given name.
+    #
+    # @example
+    #   Vedeu.show_cursor(name)
+    #
     # @!method show_cursor
     #   @see Vedeu::Visibility.show_cursor
     def_delegators Vedeu::Visibility, :show_cursor

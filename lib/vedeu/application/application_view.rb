@@ -2,7 +2,8 @@ require_relative 'view'
 
 module Vedeu
 
-  # Provides the mechanism to render views for the client application.
+  # Provides the mechanism to render views for the client application. The
+  # client application's ApplicationView will inherit from this class.
   #
   # @api private
   class ApplicationView
@@ -42,10 +43,12 @@ module Vedeu
     #
     # @param value [String]
     # @return [String]
+    # :nocov:
     def template(value)
       @template = Vedeu::Configuration.base_path +
                   "/app/views/templates/#{value}.erb"
     end
+    # :nocov:
 
   end # ApplicationView
 

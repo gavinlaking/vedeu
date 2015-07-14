@@ -57,7 +57,7 @@ module Vedeu
 
         show.each_with_index do |line, iy|
           line.each_with_index do |column, ix|
-            column.position = Vedeu::Position[by + iy, bx + ix]
+            column.position = [by + iy, bx + ix]
             out << column
           end
         end

@@ -144,6 +144,13 @@ module Vedeu
         instance.options[:log]
       end
 
+      # Returns a boolean indicating whether the log has been configured.
+      #
+      # @return [Boolean]
+      def log?
+        log != nil
+      end
+
       # Returns whether the application will run through its main loop once or
       # not. Default is false; meaning the application will loop forever or
       # until terminated by the user.
@@ -248,7 +255,7 @@ module Vedeu
     # @return [Hash]
     def defaults
       {
-        base_path:     set_base_path,
+        base_path:     base_path,
         colour_mode:   detect_colour_mode,
         debug:         false,
         drb:           false,
@@ -281,7 +288,7 @@ module Vedeu
     end
 
     # @return [String]
-    def set_base_path
+    def base_path
       File.expand_path('.')
     end
 

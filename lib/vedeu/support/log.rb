@@ -86,14 +86,14 @@ module Vedeu
       # Write a message to the Vedeu log file.
       #
       # @example
-      #   Vedeu.log(message: 'A useful debugging message: Error!')
+      #   Vedeu.log(type: :debug, message: 'A useful debugging message: Error!')
       #
       # @param message [String] The message you wish to emit to the log file,
       #   useful for debugging.
       # @param force [Boolean] When evaluates to true will attempt to write to
       #   the log file regardless of the Configuration setting.
       # @param type [Symbol] Colour code messages in the log file depending
-      #   on their source.
+      #   on their source. See {message_types}
       #
       # @return [TrueClass]
       def log(message:, force: false, type: :info)
@@ -104,11 +104,15 @@ module Vedeu
         output
       end
 
+      # Write a message to STDOUT.
+      #
       # @return [TrueClass]
       def log_stdout(type: :info, message:)
         $stdout.puts [message_type(type), message_body(type, message)].join
       end
 
+      # Write a message to STDERR.
+      #
       # @return [TrueClass]
       def log_stderr(type: :info, message:)
         $stderr.puts [message_type(type), message_body(type, message)].join
@@ -125,18 +129,28 @@ module Vedeu
         end
       end
 
-      # @param message [String]
+      # Returns the message with timestamp.
+      #
+      #    [ 0.0987] [debug]  Something happened.
+      #
+      # @param message [String] The message type and message coloured and
+      #   combined.
       # @return [String]
       def formatted_message(message)
         [timestamp, message, "\n"].join
       end
 
+      # Fetches the filename from the configuration.
+      #
       # @return [String]
       def log_file
         Vedeu::Configuration.log
       end
       alias_method :enabled?, :log_file
 
+      # Displays the message body using the colour specified in the last element
+      # of {message_types}.
+      #
       # @param type [Symbol] The type of log message.
       # @param body [String] The log message itself.
       # @return [String]
@@ -146,6 +160,9 @@ module Vedeu
         end
       end
 
+      # Displays the message type using the colour specified in the first
+      # element of {message_types}.
+      #
       # @param type [Symbol] The type of log message.
       # @return [String]
       def message_type(type)
@@ -154,7 +171,16 @@ module Vedeu
         end
       end
 
-      # @return [Hash<Symbol => Symbol>]
+      # The defined message types for Vedeu with their respective colours.
+      # When used, produces a log entry of the format:
+      #
+      #     [type] message
+      #
+      # The 'type' will be shown as the first colour defined in the value
+      # array, whilst the 'message' will be shown using the last colour.
+      # Valid types are available by viewing the source for this method.
+      #
+      # @return [Hash<Symbol => Array<Symbol>>]
       def message_types
         {
           config: [:light_yellow,  :yellow],
