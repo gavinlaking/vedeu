@@ -11,6 +11,10 @@ module Vedeu
 
       include Vedeu::Presentation
 
+      # @!attribute [r] name
+      # @return [String]
+      attr_reader :name
+
       # Returns a new instance of Vedeu::Null::Interface.
       #
       # @param name [String]
@@ -58,12 +62,6 @@ module Vedeu
       def visible=(*)
         false
       end
-
-      protected
-
-      # @!attribute [r] name
-      # @return [String]
-      attr_reader :name
 
     end # Interface
 
