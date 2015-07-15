@@ -113,15 +113,6 @@ module Vedeu
         model.add(new_model)
       end
 
-      # def content_for(name, filename, object = nil, options = {})
-      #   lines = Vedeu::Template.parse(object, filename)
-
-      #   _model = model.member.build(new_attributes(name).
-      #              merge!({ lines: lines }))
-
-      #   model.add(_model)
-      # end
-
       protected
 
       # @!attribute [r] client
