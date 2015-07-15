@@ -42,6 +42,8 @@ module Vedeu
       end
 
       [
+        'app/views/templates/**/*',
+        'app/views/interfaces/**/*',
         'app/controllers/**/*',
         'app/helpers/**/*',
         'app/views/**/*',
