@@ -66,8 +66,8 @@ module Vedeu
           @height = geometry.height
           @colour = interface.colour
 
-          @clear ||= Array.new(@width) do |iy|
-            Array.new(@height) do |ix|
+          @clear ||= Array.new(@height) do |iy|
+            Array.new(@width) do |ix|
               Vedeu::Char.new(value:    ' ',
                               colour:   @colour,
                               position: [@y + iy, @x + ix])
