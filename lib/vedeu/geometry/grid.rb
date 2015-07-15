@@ -66,14 +66,6 @@ module Vedeu
       row * value
     end
 
-    # Returns the width of a single column in characters.
-    #
-    # @return [Fixnum]
-    def width
-      actual_width / 12
-    end
-    alias_method :column, :width
-
     protected
 
     # @!attribute [r] value
@@ -85,13 +77,8 @@ module Vedeu
     # Returns the height of a single row in characters.
     #
     # @return [Fixnum]
-    def actual_height
-      Vedeu.height
-    end
-
-    # @return [Fixnum]
-    def actual_width
-      Vedeu.width
+    def row
+      Vedeu.height / 12
     end
 
     # Returns a boolean indicating whether the value is out of range.
@@ -99,6 +86,13 @@ module Vedeu
     # @return [Boolean]
     def out_of_range?
       value < 1 || value > 12
+    end
+
+    # Returns the width of a single column in characters.
+    #
+    # @return [Fixnum]
+    def column
+      Vedeu.width / 12
     end
 
   end # Grid

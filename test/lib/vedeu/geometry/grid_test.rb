@@ -31,12 +31,6 @@ module Vedeu
       end
     end
 
-    describe '#height' do
-      subject { instance.height }
-
-      it { subject.must_equal(2) }
-    end
-
     describe '.rows' do
       context 'when the value is less than 1' do
         it { proc { Grid.rows(0) }.must_raise(OutOfRange) }
@@ -51,12 +45,6 @@ module Vedeu
           Grid.rows(7).must_equal(14)
         end
       end
-    end
-
-    describe '#width' do
-      subject { instance.width }
-
-      it { subject.must_equal(6) }
     end
 
   end # Grid
