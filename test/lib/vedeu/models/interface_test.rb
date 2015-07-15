@@ -67,6 +67,24 @@ module Vedeu
       it { instance.must_respond_to(:lines=) }
     end
 
+    describe '#add' do
+      subject { instance.add(child) }
+
+      it { instance.must_respond_to(:add) }
+    end
+
+    describe '#inspect' do
+      subject { instance.inspect }
+
+      it { subject.must_be_instance_of(String) }
+
+      it { subject.must_equal(
+        "<Vedeu::Interface name: 'hydrogen', group: '', visible: 'true', " \
+        "zindex: '1'>"
+        )
+      }
+    end
+
     describe '#lines' do
       subject { instance.lines }
 

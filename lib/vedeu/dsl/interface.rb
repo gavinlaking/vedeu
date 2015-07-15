@@ -101,7 +101,7 @@ module Vedeu
       # often, the reduces artefacts particularly when resizing the terminal
       # screen.
       #
-      # @param value [Fixnum|Float]
+      # @param value [Fixnum|Float] Time in seconds. (0.5 = 500ms).
       #
       # @example
       #   interface 'my_interface' do

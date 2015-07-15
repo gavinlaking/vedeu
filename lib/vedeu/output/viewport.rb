@@ -52,7 +52,7 @@ module Vedeu
     def render
       return [] unless visible?
 
-      Vedeu.timer("Rendering: #{name}") do
+      Vedeu.timer("Rendering: '#{name}'") do
         out = []
 
         show.each_with_index do |line, iy|

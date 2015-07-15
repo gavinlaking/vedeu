@@ -263,13 +263,13 @@ module Vedeu
 
       context 'via method' do
         it 'returns the height' do
-          subject.must_equal(25)
+          subject.must_equal(24)
         end
       end
 
       context 'via API' do
         it 'returns the height' do
-          Vedeu.height.must_equal(25)
+          Vedeu.height.must_equal(24)
         end
       end
     end
@@ -280,7 +280,7 @@ module Vedeu
       it { subject.must_be_instance_of(Array) }
 
       it 'returns the width and height' do
-        subject.must_equal([25, 80])
+        subject.must_equal([24, 80])
       end
     end
 

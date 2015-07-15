@@ -1,5 +1,10 @@
 #!/bin/bash
 #
+#   Vedeu can use 24-bit color codes. To test whether your terminal supports
+#   this colour mode, running this file should output lots of beautiful colours.
+#   If the output is 'patchy' and not many colours show, then it is unlikely
+#   your terminal supports 24-bit colour mode, which is disappointing.
+#
 #   This file echoes a bunch of 24-bit color codes
 #   to the terminal to demonstrate its functionality.
 #   The foreground escape sequence is ^[38;2;<r>;<g>;<b>m
@@ -9,12 +14,12 @@
 
 setBackgroundColor()
 {
-    echo -en "\x1b[48;2;$1;$2;$3""m"
+    echo -en "\e[48;2;$1;$2;$3""m"
 }
 
 resetOutput()
 {
-    echo -en "\x1b[0m\n"
+    echo -en "\e[0m\n"
 }
 
 # Gives a color $1/255 % along HSV

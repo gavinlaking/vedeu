@@ -245,9 +245,28 @@ module Vedeu
 
     # Returns a tuple containing the height and width of the current terminal.
     #
+    # @note
+    #   If the terminal is a odd number of characters in height or width, then
+    #   1 is deducted from the dimension to make it even. For example; the
+    #   actual terminal is height: 37, width: 145, then the reported size will
+    #   be 36, 144 respectively.
+    #
+    #   This is done to make it easier for client applications to divide the
+    #   terminal space up when defining interfaces or views, leading to more
+    #   consistent rendering.
+    #
+    #   If the client application is using the {Vedeu::Grid#rows} or
+    #   {Vedeu::Grid#columns} helpers, the dimensions are made more consistent
+    #   using this approach.
+    #
     # @return [Array]
     def size
-      console.winsize
+      h, w = console.winsize
+
+      h = (h.even? ? h : h - 1)
+      w = (w.even? ? w : w - 1)
+
+      [h, w]
     end
 
     # Provides our gateway into the wonderful rainbow-filled world of IO.

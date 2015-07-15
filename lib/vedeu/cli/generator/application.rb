@@ -34,6 +34,7 @@ module Vedeu
         make_directory_structure
 
         copy_gemfile
+        copy_gitignore
         copy_license
         copy_readme
         copy_application_bootstrapper
@@ -90,6 +91,11 @@ module Vedeu
       # @return [void]
       def copy_gemfile
         copy_file(source + '/Gemfile', "#{name}/Gemfile")
+      end
+
+      # @return [void]
+      def copy_gitignore
+        copy_file(source + '/.gitignore', "#{name}/.gitignore")
       end
 
       # @return [void]

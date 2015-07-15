@@ -252,6 +252,25 @@ module Vedeu
         # it { skip }
       end
 
+      describe '#compression!' do
+        it { instance.must_respond_to(:compression) }
+
+        it 'sets the option to the desired value' do
+          configuration = Vedeu.configure { compression! }
+          configuration.compression.must_equal(true)
+        end
+
+        it 'sets the option to the desired value' do
+          configuration = Vedeu.configure { compression(true) }
+          configuration.compression.must_equal(true)
+        end
+
+        it 'sets the option to the desired value' do
+          configuration = Vedeu.configure { compression(false) }
+          configuration.compression.must_equal(false)
+        end
+      end
+
     end # API
 
   end # Config

@@ -329,6 +329,37 @@ module Vedeu
         options[:stderr] = io
       end
 
+      # Compression reduces the number of escape sequences being sent to the
+      # terminal which improves redraw/render/refresh rate. By default it is
+      # enabled.
+      #
+      # Sets boolean to enable/disable compression. Vedeu's default setting is
+      # for compression to be enabled. Setting `compression` to false will
+      # disable compression.
+      #
+      # @note
+      #   - Be aware that running an application without compression will
+      #     affect performance.
+      #   - Compression cannot yet be configured using a CLI option flag.
+      #
+      # @example
+      #   Vedeu.configure do
+      #     compression! # enabled (default)
+      #     # ...
+      #   end
+      #
+      #   Vedeu.configure do
+      #     compression false
+      #     # ...
+      #   end
+      #
+      # @param value [Boolean]
+      # @return [Boolean]
+      def compression(value = true)
+        options[:compression] = value
+      end
+      alias_method :compression!, :compression
+
       private
 
       # Returns the options set via the configuration API DSL or an empty Hash

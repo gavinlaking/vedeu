@@ -17,6 +17,14 @@ module Vedeu
       end
     end
 
+    describe '.compression?' do
+      it { described.must_respond_to(:compression) }
+
+      it 'returns the value of the compression option' do
+        Configuration.compression?.must_equal(true)
+      end
+    end
+
     describe '.debug?' do
       it { described.must_respond_to(:debug) }
 

@@ -17,6 +17,10 @@ module Vedeu
       let(:content)     { [''] }
       let(:write_file) { false }
 
+      before do
+        ::File.stubs(:write)
+      end
+
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
         it { instance.instance_variable_get('@options').must_equal(options) }

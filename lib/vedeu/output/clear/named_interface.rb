@@ -59,7 +59,7 @@ module Vedeu
       #
       # @return [Array<Array<Vedeu::Char>>]
       def output
-        Vedeu.timer("Clearing: #{name}") do
+        Vedeu.timer("Clearing: '#{name}'") do
           @y      = geometry.y
           @x      = geometry.x
           @width  = geometry.width
