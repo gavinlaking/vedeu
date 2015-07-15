@@ -83,6 +83,18 @@ module Vedeu
       @lines = lines.add(child)
     end
 
+    # Override Ruby's Object#inspect method to provide a more helpful output.
+    #
+    # @return [String]
+    def inspect
+      '<Vedeu::Interface '      \
+      "name: '#{name}', "       \
+      "group: '#{group}', "     \
+      "visible: '#{visible}', " \
+      "zindex: '#{zindex}'"     \
+      '>'
+    end
+
     # @return [Vedeu::Lines]
     def lines
       collection.coerce(@lines, self)
