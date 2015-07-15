@@ -141,6 +141,9 @@ module Vedeu
         new_attributes(name).merge!(lines: lines)
       end
 
+      # Return the current attributes combined with the existing interface
+      # attributes defined by the interface.
+      #
       # @param name [String] The name of the interface.
       # @return [Hash]
       def new_attributes(name)
