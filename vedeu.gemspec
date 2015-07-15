@@ -21,13 +21,11 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_development_dependency 'guard',              '2.12.8'
-  spec.add_development_dependency 'guard-bundler',      '2.1.0'
   spec.add_development_dependency 'guard-minitest',     '2.4.4'
   spec.add_development_dependency 'minitest',           '5.7.0'
   spec.add_development_dependency 'minitest-reporters', '1.0.18'
   spec.add_development_dependency 'mocha',              '1.1.0'
   spec.add_development_dependency 'pry',                '0.10.1'
-  spec.add_development_dependency 'pry-byebug',         '3.1.0'
   spec.add_development_dependency 'rubocop',            '0.32.1'
   spec.add_development_dependency 'ruby-prof',          '0.15.8'
   spec.add_development_dependency 'simplecov',          '0.10.0'

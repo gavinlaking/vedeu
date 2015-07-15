@@ -7,11 +7,17 @@ module Vedeu
     describe Null do
 
       let(:described) { Vedeu::Renderers::Null }
+      let(:instance)  { described.new(options) }
+      let(:options)   { {} }
+      let(:output)    {}
 
-      describe '.render' do
-        let(:args) {}
+      describe '#initialize' do
+        it { instance.must_be_instance_of(Vedeu::Renderers::Null) }
+        it { instance.instance_variable_get('@options').must_equal(options) }
+      end
 
-        subject { described.render(*args) }
+      describe '#render' do
+        subject { instance.render(output) }
 
         it { subject.must_be_instance_of(NilClass) }
       end

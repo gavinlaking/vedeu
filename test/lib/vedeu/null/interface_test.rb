@@ -48,6 +48,7 @@ module Vedeu
       describe '#visible=' do
         subject { instance.visible=(:irrelevant) }
 
+        # @todo
         # it { skip }
         # it { subject.must_be_instance_of(FalseClass) }
       end

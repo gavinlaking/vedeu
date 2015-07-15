@@ -37,6 +37,7 @@ module Vedeu
         end
 
         context 'when the DRb server is available' do
+          # @todo
           # it { skip }
         end
       end
@@ -54,6 +55,7 @@ module Vedeu
         end
 
         context 'when the DRb server is available' do
+          # @todo
           # it { skip }
         end
       end
@@ -70,6 +72,7 @@ module Vedeu
         end
 
         context 'when the DRb server is available' do
+          # @todo
           # it { skip }
         end
       end
@@ -84,6 +87,7 @@ module Vedeu
         end
 
         context 'when the DRb server is available' do
+          # @todo
           # before do
           #   DRbObject.stubs(:new_with_uri).returns(server)
           #   Process.stubs(:kill)

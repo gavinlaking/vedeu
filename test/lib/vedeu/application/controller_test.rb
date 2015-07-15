@@ -14,7 +14,7 @@ module Vedeu
     let(:instance)  { described.new }
 
     context 'ClassMethods' do
-
+      # @todo
     end
 
   end # Controller

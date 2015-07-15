@@ -48,6 +48,7 @@ module Vedeu
         context 'when the border is enabled' do
           let(:enabled) { true }
 
+          # @todo
           # it { skip }
         end
       end

@@ -7,18 +7,17 @@ module Vedeu
     describe JSON do
 
       let(:described) { Vedeu::Renderers::JSON }
-      let(:instance)  { described.new(output, options) }
-      let(:output)    {}
+      let(:instance)  { described.new(options) }
       let(:options)   { {} }
+      let(:output)    {}
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
-        it { instance.instance_variable_get('@output').must_equal(output) }
         it { instance.instance_variable_get('@options').must_equal(options) }
       end
 
-      describe '.render' do
-        subject { described.render(output, options) }
+      describe '#render' do
+        subject { instance.render(output) }
 
         it { subject.must_be_instance_of(String) }
 

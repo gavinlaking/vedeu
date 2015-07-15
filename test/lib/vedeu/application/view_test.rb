@@ -13,6 +13,8 @@ module Vedeu
     let(:described) { Vedeu::ViewTestClass }
     let(:instance)  { described.new }
 
+    # @todo
+
   end # View
 
 end # Vedeu

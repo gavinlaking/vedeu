@@ -266,7 +266,7 @@ module Vedeu
         interactive:   true,
         log:           nil,
         once:          false,
-        renderers:     [Vedeu::Renderers::Terminal],
+        renderers:     [Vedeu::Renderers::Terminal.new],
         stdin:         nil,
         stdout:        nil,
         stderr:        nil,

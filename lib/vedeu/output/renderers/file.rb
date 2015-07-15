@@ -7,45 +7,26 @@ module Vedeu
     # @api private
     class File
 
-      # @return [String]
-      # @see Vedeu::Renderers::File#initialize
-      def self.render(output, options = {})
-        new(output, options).render
-      end
-
       # Returns a new instance of Vedeu::Renderers::File.
       #
-      # @param output [String]
       # @param options [Hash]
       # @option options filename [String] Provide a filename for the output.
       #   Defaults to 'out'.
       # @option options timestamp [Boolean] Append a timestamp to the filename.
       # @return [Vedeu::Renderers::File]
-      def initialize(output, options = {})
-        @output  = output
-        @options = options
+      def initialize(options = {})
+        @options = options || {}
       end
 
+      # @param output [Array<Array<Vedeu::Char>>]
       # @return [String]
-      def render
-        ::File.open(path, 'w') { |f| f.write(parsed) }
+      def render(output)
+        ::File.write(filename, output) if write_file?
 
-        parsed
+        output
       end
-
-      protected
-
-      # @!attribute [r] output
-      # @return [String]
-      attr_reader :output
-      alias_method :parsed, :output
 
       private
-
-      # @return [String]
-      def path
-        "/tmp/#{filename}"
-      end
 
       # @return [String]
       def filename
@@ -70,6 +51,13 @@ module Vedeu
         false
       end
 
+      # @return [Boolean]
+      def write_file?
+        options[:write_file]
+      end
+
+      # Combines the options provided at instantiation with the default values.
+      #
       # @return [Hash]
       def options
         defaults.merge!(@options)
@@ -80,8 +68,9 @@ module Vedeu
       # @return [Hash]
       def defaults
         {
-          filename:  'out',
-          timestamp: false,
+          filename:   'out',
+          timestamp:  false,
+          write_file: true,
         }
       end
 

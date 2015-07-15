@@ -26,6 +26,8 @@ module Vedeu
 
       describe '#generate' do
         subject { instance.generate }
+
+        # @todo
       end
 
     end # Application

@@ -46,7 +46,7 @@ module Vedeu
     # Returns a new instance of Vedeu::RenderBorder.
     #
     # @param border [Vedeu::Border]
-    # @return [Vedeu::Renderers::Border]
+    # @return [Vedeu::RenderBorder]
     def initialize(border)
       @border = border
     end

@@ -28,15 +28,18 @@ module Vedeu
     end
 
     # @example
-    #   Vedeu.renderers.render(*args)
+    #   Vedeu.renderers.render(output)
     #
+    # @api public
+    # @param output [void]
     # @return [Array<void>]
-    def render(*args)
+    def render(output)
       threads = storage.map do |renderer|
         Thread.new(renderer) do
           mutex.synchronize do
             Vedeu.log(type: :debug, message: "Rendering with: '#{renderer}'")
-            renderer.render(*args)
+
+            renderer.render(output)
           end
         end
       end
@@ -51,6 +54,7 @@ module Vedeu
     # @note
     #   A renderer class must respond to the '.render' class method.
     #
+    # @api public
     # @param renderers [Class]
     # @return [Set]
     def renderer(*renderers)
@@ -62,17 +66,18 @@ module Vedeu
     # @example
     #   Vedeu.renderers.reset
     #
+    # @api public
     # @return [Set]
     def reset
       @storage = Set.new
     end
 
+    private
+
     # @return [Set]
     def storage
       @storage ||= reset
     end
-
-    private
 
     # @return [Mutex]
     def mutex

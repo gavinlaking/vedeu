@@ -20,20 +20,24 @@ module Vedeu
         subject { model_instance.duplicate(_name) }
 
         context 'when the model exists' do
+          # @todo
           # it { skip }
         end
 
         context 'when the model does not exist' do
+          # @todo
           # it { skip }
         end
       end
 
       describe '#use' do
         context 'when the model exists' do
+          # @todo
           # it { skip }
         end
 
         context 'when the model does not exist' do
+          # @todo
           # it { skip }
         end
       end

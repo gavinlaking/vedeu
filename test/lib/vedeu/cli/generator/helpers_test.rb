@@ -63,6 +63,7 @@ module Vedeu
 
         subject { instance.make_file(source, destination) }
 
+        # @todo
         # it { skip }
       end
 

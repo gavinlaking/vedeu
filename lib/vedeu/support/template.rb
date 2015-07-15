@@ -23,7 +23,7 @@ module Vedeu
     def initialize(object, path, options = {})
       @object  = object
       @path    = path.to_s
-      @options = options
+      @options = options || {}
     end
 
     # @return [void]

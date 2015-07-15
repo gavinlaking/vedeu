@@ -8,38 +8,42 @@ module Vedeu
     # @api private
     class Terminal
 
-      # @param output [Array<Array<Vedeu::Char>>]
-      # @return [String]
-      def self.render(*output)
-        new(*output).render
-      end
-
       # Returns a new instance of Vedeu::Renderers::Terminal.
       #
-      # @param output [Array<Array<Vedeu::Char>>]
+      # @param options [Hash]
       # @return [Vedeu::Renderers::Terminal]
-      def initialize(*output)
-        @output = output
+      def initialize(options = {})
+        @options = options || {}
       end
 
+      # @param output [Array<Array<Vedeu::Char>>]
       # @return [Array<String>]
-      def render
-        Vedeu::Terminal.output(parsed)
+      def render(output)
+        Vedeu::Terminal.output(parsed(output))
       end
-
-      protected
-
-      # @!attribute [r] output
-      # @return [Array<Array<Vedeu::Char>>]
-      attr_reader :output
 
       private
 
-      # @return [String]
-      def parsed
+      # @param output [Array<Array<Vedeu::Char>>]
+      # @return [Array<Array<Vedeu::Char>>]
+      def parsed(output)
         Vedeu.timer('Compression') do
           Vedeu::Compressor.render(output)
         end
+      end
+
+      # Combines the options provided at instantiation with the default values.
+      #
+      # @return [Hash<Symbol => void>]
+      def options
+        defaults.merge!(@options)
+      end
+
+      # The default values for a new instance of this class.
+      #
+      # @return [Hash<Symbol => void>]
+      def defaults
+        {}
       end
 
     end # Terminal
