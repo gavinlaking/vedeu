@@ -1,3 +1,5 @@
+require_relative 'refresh_group'
+
 module Vedeu
 
   # Refreshes the terminal.
@@ -34,11 +36,8 @@ module Vedeu
     # @return [Array|ModelNotFound] A collection of the names of interfaces
     #   refreshed, or an exception if the group was not found.
     def by_group(group_name)
-      Vedeu.timer("Refreshing group: '#{group_name}'") do
-        members    = Vedeu.groups.find!(group_name).members
-        interfaces = members.each { |name| Vedeu.interfaces.by_name(name) }
-        by_zindex  = interfaces.sort { |a, b| a.zindex <=> b.zindex }
-        by_zindex.each { |name| by_name(name) }
+      Vedeu.timer("Refresh Group: '#{group_name}'") do
+        Vedeu::RefreshGroup.by_name(group_name)
       end
     end
 
