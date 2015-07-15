@@ -11,7 +11,7 @@ module Vedeu
     #
     # @return [Array]
     def all
-      Vedeu.timer('Refreshing all interfaces') do
+      Vedeu.timer('Refresh All') do
         Vedeu.interfaces.zindexed.each { |model| by_name(model.name) }
       end
     end
@@ -48,7 +48,7 @@ module Vedeu
     #   named buffer.
     # @return [Array|ModelNotFound]
     def by_name(name)
-      Vedeu.timer("Refreshing interface: '#{name}'") do
+      Vedeu.timer("Refresh Interface: '#{name}'") do
         Vedeu.buffers.by_name(name).render
       end
     end

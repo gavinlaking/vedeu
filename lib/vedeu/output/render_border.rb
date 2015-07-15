@@ -56,7 +56,7 @@ module Vedeu
       return [] unless interface.visible?
       return [] unless enabled?
 
-      Vedeu.timer("Rendering border: #{name}") do
+      Vedeu.timer("Bordering: '#{name}'") do
         out = [top, bottom]
 
         height.times { |y| out << [left(y), right(y)] }
