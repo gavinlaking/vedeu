@@ -2,7 +2,7 @@
 
 # Vedeu Events
 
-{include:file:docs/events/main.md}
+{include:file:docs/events/system.md}
 
 {include:file:docs/events/drb.md}
 
