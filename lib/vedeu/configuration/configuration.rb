@@ -34,12 +34,20 @@ module Vedeu
 
     class << self
 
-      # Returns the base_path value
+      # Returns the base_path value.
       #
       # @return [String]
       def base_path
         instance.options[:base_path]
       end
+
+      # Returns the compression value.
+      #
+      # @return [Boolean]
+      def compression
+        instance.options[:compression]
+      end
+      alias_method :compression?, :compression
 
       # Configure Vedeu with sensible defaults. If the client application sets
       # options, override the defaults with those, and if command-line arguments
@@ -257,6 +265,7 @@ module Vedeu
       {
         base_path:     base_path,
         colour_mode:   detect_colour_mode,
+        compression:   true,
         debug:         false,
         drb:           false,
         drb_host:      nil,

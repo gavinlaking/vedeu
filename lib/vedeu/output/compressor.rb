@@ -26,6 +26,24 @@ module Vedeu
     # @note Takes approximately ~70ms for 2100 chars. (2015-05-24)
     # @return [String]
     def render
+      if Vedeu::Configuration.compression?
+        compress
+
+      else
+        uncompress
+
+      end
+    end
+
+    protected
+
+    # @!attribute [r] output
+    # @return [Array<Array<Vedeu::Char>>]
+    attr_reader :output
+
+    private
+
+    def compress
       out = ''
       Array(output).flatten.each do |char|
         out << char.position.to_s
@@ -36,13 +54,16 @@ module Vedeu
       out
     end
 
-    protected
-
-    # @!attribute [r] output
-    # @return [Array<Array<Vedeu::Char>>]
-    attr_reader :output
-
-    private
+    def uncompress
+      out = ''
+      Array(output).flatten.each do |char|
+        out << char.position.to_s
+        out << char.colour.to_s
+        out << char.style.to_s
+        out << char.value
+      end
+      out
+    end
 
     # @param char [Vedeu::Char]
     # @return [String]
