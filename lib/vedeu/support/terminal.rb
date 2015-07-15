@@ -263,8 +263,8 @@ module Vedeu
     def size
       h, w = console.winsize
 
-      h = ((h % 2 == 0) ? h : h - 1)
-      w = ((w % 2 == 0) ? w : w - 1)
+      h = (h.even? ? h : h - 1)
+      w = (w.even? ? w : w - 1)
 
       [h, w]
     end
