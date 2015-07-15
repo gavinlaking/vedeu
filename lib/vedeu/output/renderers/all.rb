@@ -1,3 +1,4 @@
+require_relative 'renderer_options'
 require_relative 'escape_sequence'
 require_relative 'file'
 require_relative 'html'
