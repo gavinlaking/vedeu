@@ -1,3 +1,5 @@
+require 'vedeu/templating/preprocessor'
+
 module Vedeu
 
   # Generic class to loading a template and parsing it via ERb.
@@ -42,6 +44,11 @@ module Vedeu
     attr_reader :options
 
     private
+
+    # @return [String]
+    def preprocess
+      Vedeu::Templating::Preprocessor.process(load)
+    end
 
     # @return [String]
     def load
