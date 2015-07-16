@@ -12,16 +12,38 @@ module Vedeu
       storage.add(klass)
     end
 
+    # List all models stored in each registered repository.
+    #
+    # @return [Array]
+    def registered
+      all.map do |repository|
+        registered = repository.send(:registered)
+
+        Vedeu.log(type:    :debug,
+                  message: "Repository '#{repository.class.name}':" \
+                           " #{registered.inspect}")
+
+        registered
+      end
+    end
+
     # Remove all stored models from the repository.
     #
     # @return [TrueClass]
     def reset!
-      storage.map(&:repository).map { |repository| repository.send(:reset) }
+      all.map { |repository| repository.send(:reset) }
 
       true
     end
 
     private
+
+    # Access all the repositories stored.
+    #
+    # @return [Array]
+    def all
+      storage.map(&:repository)
+    end
 
     # Access to the storage for this repository.
     #
