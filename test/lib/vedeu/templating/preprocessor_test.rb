@@ -15,6 +15,14 @@ module Vedeu
           "More text here\n"
         ]
       }
+      let(:expected) {
+        [
+          Vedeu::Stream.new(value: 'Some text here'),
+          Vedeu::Stream.new(value: 'Yay!',
+                            colour: Vedeu::Colour.coerce(foreground: '#0f0')),
+          Vedeu::Stream.new(value: 'More text here')
+        ]
+      }
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
@@ -22,19 +30,12 @@ module Vedeu
       end
 
       describe '.process' do
-        it { described.must_respond_to(:process) }
+        subject { described.process(lines) }
+
+        it { subject.must_equal(expected) }
       end
 
       describe '#process' do
-        let(:expected) {
-          [
-            Vedeu::Stream.new(value: 'Some text here'),
-            Vedeu::Stream.new(value: 'Yay!',
-                              colour: Vedeu::Colour.coerce({ foreground: '#0f0' })),
-            Vedeu::Stream.new(value: 'More text here')
-          ]
-        }
-
         subject { instance.process }
 
         it { subject.must_equal(expected) }
