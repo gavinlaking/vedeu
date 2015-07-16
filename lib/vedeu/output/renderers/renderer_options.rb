@@ -1,5 +1,8 @@
 module Vedeu
 
+  # Provides shared functionality to Vedeu::Renderer classes.
+  #
+  # @api private
   module RendererOptions
 
     private

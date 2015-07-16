@@ -20,8 +20,16 @@ module Vedeu
     describe '#by_name' do
       subject { instance.by_name }
 
-      # @todo
-      # it { skip }
+      context 'when the name is not present' do
+        let(:_name) { '' }
+
+        it { proc { subject }.must_raise(Vedeu::MissingRequired) }
+      end
+
+      context 'when the name is present' do
+        # @todo
+        # it { skip }
+      end
     end
 
   end # RefreshGroup

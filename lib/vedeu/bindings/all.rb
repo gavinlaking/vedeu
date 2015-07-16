@@ -8,7 +8,7 @@ module Vedeu
 
   module Bindings
 
-    # Setup events for running Vedeu.
+    # Setup events for running Vedeu. This method is called by Vedeu.
     #
     # @return [void]
     def self.setup!

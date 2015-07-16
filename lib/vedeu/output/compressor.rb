@@ -43,6 +43,7 @@ module Vedeu
 
     private
 
+    # @return [String]
     def compress
       out = ''
       Array(output).flatten.each do |char|
@@ -54,6 +55,7 @@ module Vedeu
       out
     end
 
+    # @return [String]
     def uncompress
       out = ''
       Array(output).flatten.each do |char|
