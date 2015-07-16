@@ -1,5 +1,5 @@
 require_relative 'esc'
-require_relative 'translator'
+require_relative 'colour_translator'
 require_relative 'background'
 require_relative 'foreground'
 require_relative 'presentation'

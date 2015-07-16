@@ -21,7 +21,7 @@ module Vedeu
   # @todo More documentation required (create a fancy chart!)
   #
   # @api private
-  class Translator
+  class ColourTranslator
 
     # @!attribute [r] colour
     # @return [String]
@@ -43,10 +43,10 @@ module Vedeu
       end
     end
 
-    # Return a new instance of Vedeu::Translator.
+    # Return a new instance of Vedeu::ColourTranslator.
     #
     # @param colour [Fixnum|String|Symbol]
-    # @return [Translator]
+    # @return [Vedeu::ColourTranslator]
     def initialize(colour = '')
       @colour = colour || ''
     end
@@ -61,7 +61,7 @@ module Vedeu
     alias_method :==, :eql?
 
     # @return [String]
-    # @see Vedeu::Translator
+    # @see Vedeu::ColourTranslator
     def escape_sequence
       if no_colour?
         ''
@@ -260,6 +260,6 @@ module Vedeu
     alias_method :repository,      :not_implemented
     alias_method :rgb_prefix,      :not_implemented
 
-  end # Translator
+  end # ColourTranslator
 
 end # Vedeu
