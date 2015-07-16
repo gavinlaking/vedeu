@@ -32,10 +32,6 @@ module Vedeu
     # @return [void]
     attr_reader :args
 
-    # # @!attribute [r] template
-    # # @return [void]
-    # attr_reader :template
-
     private
 
     # Provides the path to the template file using the base_path configuration
