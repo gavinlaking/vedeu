@@ -235,8 +235,6 @@ module Vedeu
 
       subject { instance.render }
 
-      it { instance.must_respond_to(:content) }
-
       # @todo
       # it { skip }
       # it { subject.must_be_instance_of(Array) }

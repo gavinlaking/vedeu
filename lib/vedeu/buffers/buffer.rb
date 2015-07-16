@@ -132,7 +132,6 @@ module Vedeu
     def render
       Vedeu::Output.render(buffer)
     end
-    alias_method :content, :render
 
     # Show this buffer.
     #
