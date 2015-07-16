@@ -79,13 +79,6 @@ module Vedeu
       true
     end
 
-    # Returns the front buffer or, if that is empty, the interface cleared.
-    #
-    # @return [void]
-    def clear
-      Vedeu::Output.render(clear_buffer)
-    end
-
     # Return a boolean indicating content presence on the buffer type.
     #
     # @return [Boolean] Whether the buffer targetted has content.
@@ -121,7 +114,7 @@ module Vedeu
 
       Vedeu::Visibility.hide(interface)
 
-      clear
+      Vedeu::Output.render(clear_buffer)
     end
 
     # Return the content for this buffer.

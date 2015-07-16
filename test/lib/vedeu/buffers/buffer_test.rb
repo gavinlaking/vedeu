@@ -95,12 +95,6 @@ module Vedeu
       end
     end
 
-    describe '#clear' do
-      subject { instance.clear }
-
-      it { subject.must_be_instance_of(Array) }
-    end
-
     describe '#front?' do
       subject { instance.front? }
 
