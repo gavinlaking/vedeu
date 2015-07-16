@@ -34,32 +34,15 @@ module Vedeu
     end
 
     describe '.by_group' do
-      let(:_name)  { 'aluminium' }
-      let(:buffer) { Vedeu::Null::Buffer.new(_name) }
+      let(:group_name) { 'elements' }
+      let(:_name)      { 'aluminium' }
 
       subject { described.by_group(group_name) }
 
-      context 'when there are no registered groups' do
-        let(:group_name) { '' }
-
-        before { Vedeu.groups.reset }
-
-        it { proc { subject }.must_raise(ModelNotFound) }
-      end
-
-      context 'when there are registered groups' do
-        let(:group_name) { 'elements' }
-
-        before do
-          Vedeu::Group.new(name: group_name, members: _name).store
-        end
-
-        it do
-          Vedeu.buffers.expects(:by_name).with(_name).returns(buffer)
-          buffer.expects(:render)
-          subject
-        end
-      end
+      it {
+        Vedeu::RefreshGroup.expects(:by_name).with(group_name)
+        subject
+      }
     end
 
     describe '.by_name' do

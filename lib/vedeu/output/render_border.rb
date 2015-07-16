@@ -177,7 +177,7 @@ module Vedeu
     end
 
     # From the second element of {#title_characters} remove the border from each
-    # {#horizontal_border} Vedeu::Char, and add the title character.
+    # {#build_horizontal} Vedeu::Char, and add the title character.
     #
     # @return [Array<Vedeu::Char>]
     def titlebar

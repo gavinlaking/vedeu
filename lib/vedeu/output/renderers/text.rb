@@ -8,6 +8,8 @@ module Vedeu
     # @api private
     class Text
 
+      include Vedeu::RendererOptions
+
       # Returns a new instance of Vedeu::Renderers::Text.
       #
       # @param options [Hash]
@@ -20,22 +22,6 @@ module Vedeu
       # @return [String]
       def render(output)
         Vedeu::Compressor.render(output)
-      end
-
-      private
-
-      # Combines the options provided at instantiation with the default values.
-      #
-      # @return [Hash<Symbol => void>]
-      def options
-        defaults.merge!(@options)
-      end
-
-      # The default values for a new instance of this class.
-      #
-      # @return [Hash<Symbol => void>]
-      def defaults
-        {}
       end
 
     end # Text

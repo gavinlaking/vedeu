@@ -2,12 +2,22 @@
 
 # Vedeu Events
 
-{include:file:docs/events/main.md}
+## System Events
 
-{include:file:docs/events/drb.md}
+See {Vedeu::Bindings::System}
 
-{include:file:docs/events/menus.md}
+## DRB Events
 
-{include:file:docs/events/movement.md}
+See {Vedeu::Bindings::DRB}
 
-{include:file:docs/events/visibility.md}
+## Menu Events
+
+See {Vedeu::Bindings::Menus}
+
+## Movement Events
+
+See {Vedeu::Bindings::Movement}
+
+## Visibility Events
+
+See {Vedeu::Bindings::Visibility}

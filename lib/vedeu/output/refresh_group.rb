@@ -7,6 +7,8 @@ module Vedeu
   # @api private
   class RefreshGroup
 
+    include Vedeu::Common
+
     # @param name [String]
     # @return [void]
     def self.by_name(name)
@@ -44,7 +46,10 @@ module Vedeu
 
     # @return [Set]
     def members
-      Vedeu.groups.find!(name).members
+      fail Vedeu::MissingRequired,
+        'Cannot refresh group with an empty group name.' unless present?(name)
+
+      Vedeu.groups.by_name(name).members
     end
 
   end # RefreshGroup
