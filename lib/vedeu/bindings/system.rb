@@ -15,18 +15,46 @@ module Vedeu
 
     module System
 
+      extend self
+
       # Setup events relating to running Vedeu.
       #
       # @return [void]
-      def self.setup!
-        # Vedeu triggers this event when `:_exit_` is triggered. You can hook into
-        # this to perform a special action before the application terminates. Saving
-        # the user's work, session or preferences might be popular here.
+      def setup!
+        cleanup!
+        clear!
+        clear_group!
+        command!
+        exit!
+        focus_next!
+        focus_prev!
+        focus_by_name!
+        initialize!
+        keypress!
+        log!
+        maximise!
+        mode_switch!
+        refresh!
+        refresh_cursor!
+        refresh_group!
+        resize!
+        unmaximise!
+      end
+
+      private
+
+      # Vedeu triggers this event when `:_exit_` is triggered. You can hook
+      # into this to perform a special action before the application
+      # terminates. Saving the user's work, session or preferences might be
+      # popular here.
+      def cleanup!
         Vedeu.bind(:_cleanup_) do
           Vedeu.trigger(:_drb_stop_)
           Vedeu.trigger(:cleanup)
         end
+      end
 
+      def clear!
         Vedeu.bind(:_clear_) do |name|
           if name
             Vedeu::Clear::NamedInterface.render(name)
@@ -36,42 +64,89 @@ module Vedeu
 
           end
         end
-        Vedeu.bind(:_clear_group_) { |name| Vedeu::Clear::NamedGroup.render(name) }
+      end
 
-        Vedeu.bind(:_exit_) { Vedeu::Application.stop }
+      def clear_group!
+        Vedeu.bind(:_clear_group_) do |name|
+          Vedeu::Clear::NamedGroup.render(name)
+        end
+      end
 
-        # Vedeu triggers this event when it is ready to enter the main loop. Client
-        # applications can listen for this event and perform some action(s), like
-        # render the first screen, interface or make a sound. When Vedeu triggers
-        # this event, the :_refresh_ event is also triggered automatically.
-        Vedeu.bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
-
-        Vedeu.bind(:_keypress_) { |key| Vedeu.keypress(key) }
+      def command!
         Vedeu.bind(:_command_) { |command| Vedeu.trigger(:command, command) }
-        Vedeu.bind(:_log_) { |msg| Vedeu.log(type: :debug, message: msg) }
+      end
 
-        Vedeu.bind(:_maximise_) { |name| Vedeu.geometries.by_name(name).maximise }
+      def exit!
+        Vedeu.bind(:_exit_) { Vedeu::Application.stop }
+      end
 
-        # When triggered (after the user presses `escape`), Vedeu switches from a
-        # "raw mode" terminal to a "cooked mode" terminal. The idea here being that
-        # the raw mode is for single keypress actions, whilst cooked mode allows the
-        # user to enter more elaborate commands- such as commands with arguments.
-        Vedeu.bind(:_mode_switch_) { fail ModeSwitch }
-
-        # When triggered will cause Vedeu to trigger the `:_clear_` and `:_refresh_`
-        # events. Please see those events for their behaviour.
-        Vedeu.bind(:_resize_, delay: 0.15) { Vedeu.resize }
-
+      def focus_by_name!
         Vedeu.bind(:_focus_by_name_) { |name| Vedeu.focus_by_name(name) }
-        Vedeu.bind(:_focus_next_) { Vedeu.focus_next }
-        Vedeu.bind(:_focus_prev_) { Vedeu.focus_previous }
+      end
 
+      def focus_next!
+        Vedeu.bind(:_focus_next_) { Vedeu.focus_next }
+      end
+
+      def focus_prev!
+        Vedeu.bind(:_focus_prev_) { Vedeu.focus_previous }
+      end
+
+      # Vedeu triggers this event when it is ready to enter the main loop.
+      # Client applications can listen for this event and perform some
+      # action(s), like render the first screen, interface or make a sound.
+      # When Vedeu triggers this event, the :_refresh_ event is also triggered
+      # automatically.
+      def initialize!
+        Vedeu.bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
+      end
+
+      def keypress!
+        Vedeu.bind(:_keypress_) { |key| Vedeu.keypress(key) }
+      end
+
+      def log!
+        Vedeu.bind(:_log_) { |msg| Vedeu.log(type: :debug, message: msg) }
+      end
+
+      def maximise!
+        Vedeu.bind(:_maximise_) do |name|
+          Vedeu.geometries.by_name(name).maximise
+        end
+      end
+
+      # When triggered (after the user presses `escape`), Vedeu switches from a
+      # "raw mode" terminal to a "cooked mode" terminal. The idea here being
+      # that the raw mode is for single keypress actions, whilst cooked mode
+      # allows the user to enter more elaborate commands- such as commands with
+      # arguments.
+      def mode_switch!
+        Vedeu.bind(:_mode_switch_) { fail ModeSwitch }
+      end
+
+      def refresh!
         Vedeu.bind(:_refresh_) do |name|
           name ? Vedeu::Refresh.by_name(name) : Vedeu::Refresh.all
         end
-        Vedeu.bind(:_refresh_cursor_) { |name| Vedeu::RefreshCursor.render(name) }
-        Vedeu.bind(:_refresh_group_) { |name| Vedeu::Refresh.by_group(name) }
+      end
 
+      def refresh_cursor!
+        Vedeu.bind(:_refresh_cursor_) do |name|
+          Vedeu::RefreshCursor.render(name)
+        end
+      end
+
+      def refresh_group!
+        Vedeu.bind(:_refresh_group_) { |name| Vedeu::Refresh.by_group(name) }
+      end
+
+      # When triggered will cause Vedeu to trigger the `:_clear_` and
+      # `:_refresh_` events. Please see those events for their behaviour.
+      def resize!
+        Vedeu.bind(:_resize_, delay: 0.15) { Vedeu.resize }
+      end
+
+      def unmaximise!
         Vedeu.bind(:_unmaximise_) do |name|
           Vedeu.geometries.by_name(name).unmaximise
         end
