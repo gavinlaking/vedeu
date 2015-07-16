@@ -44,7 +44,7 @@ module Vedeu
 
     # @return [Set]
     def members
-      Vedeu.groups.find!(name).members
+      Vedeu.groups.by_name(name).members
     end
 
   end # RefreshGroup
