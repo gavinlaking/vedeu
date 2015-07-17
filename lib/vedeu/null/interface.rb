@@ -30,6 +30,11 @@ module Vedeu
         }
       end
 
+      # @return [NilClass]
+      def hide
+        nil
+      end
+
       # @return [Boolean]
       def null?
         true
@@ -42,11 +47,21 @@ module Vedeu
         nil
       end
 
+      # @return [NilClass]
+      def show
+        nil
+      end
+
       # Pretend to store this model in the repository.
       #
       # @return [Vedeu::Null::Interface]
       def store
         self
+      end
+
+      # @return [NilClass]
+      def toggle
+        nil
       end
 
       # The null interface should not be visible.
