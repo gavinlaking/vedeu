@@ -80,6 +80,12 @@ module Vedeu
       @lines = lines.add(child)
     end
 
+    # Hide a named interface buffer, or without a name, the buffer of the
+    # currently focussed interface.
+    #
+    # @example
+    #   Vedeu.hide_interface(name)
+    #
     # @return [void]
     def hide
       super
@@ -137,6 +143,12 @@ module Vedeu
       output
     end
 
+    # Show the named interface buffer, or without a name, the buffer of the
+    # currently focussed interface.
+    #
+    # @example
+    #   Vedeu.show_interface(name)
+    #
     # @return [void]
     def show
       super
@@ -154,6 +166,12 @@ module Vedeu
       store_group
     end
 
+    # Toggle the named interface buffer, or without a name, the buffer of the
+    # currently focussed interface.
+    #
+    # @example
+    #   Vedeu.toggle_interface(name)
+    #
     # @return [void]
     def toggle
       super

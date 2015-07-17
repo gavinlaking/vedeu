@@ -92,6 +92,12 @@ module Vedeu
     end
     alias_method :to_str, :to_s
 
+    # Hide a named cursor, or without a name, the cursor of the currently
+    # focussed interface.
+    #
+    # @example
+    #   Vedeu.hide_cursor(name)
+    #
     # @return [Vedeu::EscapeChar]
     def hide
       super
@@ -106,6 +112,12 @@ module Vedeu
       @position ||= Vedeu::Position[y, x]
     end
 
+    # Show a named cursor, or without a name, the cursor of the currently
+    # focussed interface.
+    #
+    # @example
+    #   Vedeu.show_cursor(name)
+    #
     # @return [Vedeu::EscapeChar]
     def show
       super

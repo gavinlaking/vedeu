@@ -101,6 +101,7 @@ module Vedeu
     #
     # @example
     #   Vedeu.trigger(:_hide_interface_, name)
+    #   Vedeu.hide_interface(name)
     #
     # Will hide the named interface. If the interface is currently visible, it
     # will be cleared- rendered blank. To show the interface, the
@@ -133,6 +134,7 @@ module Vedeu
     #
     # @example
     #   Vedeu.trigger(:_show_interface_, name)
+    #   Vedeu.show_interface(name)
     #
     # Will show the named interface. If the interface is currently invisible, it
     # will be shown- rendered with its latest content. To hide the interface,

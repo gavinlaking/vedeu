@@ -43,6 +43,12 @@ module Vedeu
       Vedeu::Group.new(name: name, members: @members).store
     end
 
+    # Hide the named group of interfaces, or without a name, the group of the
+    # currently focussed interface.
+    #
+    # @example
+    #   Vedeu.hide_group(name)
+    #
     # @return [Vedeu::Group]
     def hide
       super
@@ -76,6 +82,12 @@ module Vedeu
       Vedeu::Group.new(defaults.merge!(name: name)).store
     end
 
+    # Show the named group of interfaces, or without a name, the group of the
+    # currently focussed interface.
+    #
+    # @example
+    #   Vedeu.show_group(name)
+    #
     # @return [Vedeu::Group]
     def show
       super
