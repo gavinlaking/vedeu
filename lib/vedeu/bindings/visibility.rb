@@ -14,16 +14,33 @@ module Vedeu
       #
       # @return [void]
       def setup!
+        clear_group!
         hide_cursor!
         hide_group!
         hide_interface!
         show_cursor!
         show_group!
         show_interface!
+        toggle_cursor!
+        toggle_group!
         toggle_interface!
       end
 
       private
+
+      # Clears the spaces occupied by the interfaces belonging to the named
+      # group.
+      #
+      # @example
+      #   Vedeu.trigger(:_clear_group_, name)
+      #   Vedeu.clear_by_group(name)
+      #
+      # @return [void]
+      def clear_group!
+        Vedeu.bind(:_clear_group_) do |name|
+          Vedeu::Clear::NamedGroup.render(name)
+        end
+      end
 
       # Hide the cursor of the named interface or if a name is not given, the
       # interface currently in focus.
@@ -31,6 +48,7 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:_hide_cursor_, name)
       #   Vedeu.trigger(:_cursor_hide_, name)
+      #   Vedeu::Visibility.hide_cursor(name)
       #   Vedeu.hide_cursor(name)
       #
       # @return [void]
@@ -50,12 +68,14 @@ module Vedeu
       # effectively clear the terminal and show the new group.
       #
       # @example
-      #   Vedeu.trigger(:_hide_group_, group_name)
+      #   Vedeu.trigger(:_hide_group_, name)
+      #   Vedeu::Visibility.hide_group(name)
+      #   Vedeu.hide_group(name)
       #
       # @return [void]
       def hide_group!
         Vedeu.bind(:_hide_group_) do |name|
-          Vedeu.trigger(:_clear_group_, name)
+          Vedeu::Visibility.hide_group(name)
         end
       end
 
@@ -63,12 +83,13 @@ module Vedeu
       #
       # @example
       #   Vedeu.trigger(:_hide_interface_, name)
+      #   Vedeu::Visibility.hide_interface(name)
+      #   Vedeu.hide_interface(name)
       #
       # @return [void]
-      # @see Vedeu::Buffer#hide
       def hide_interface!
         Vedeu.bind(:_hide_interface_) do |name|
-          Vedeu.buffers.by_name(name).hide
+          Vedeu::Visibility.hide_interface(name)
         end
       end
 
@@ -78,6 +99,7 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:_show_cursor_, name)
       #   Vedeu.trigger(:_cursor_show_, name)
+      #   Vedeu::Visibility.show_cursor(name)
       #   Vedeu.show_cursor(name)
       #
       # @return [void]
@@ -94,13 +116,14 @@ module Vedeu
       # the named group.
       #
       # @example
-      #   Vedeu.trigger(:_show_group_, group_name)
+      #   Vedeu.trigger(:_show_group_, name)
+      #   Vedeu::Visibility.show_group(name)
+      #   Vedeu.show_group(name)
       #
       # @return [void]
       def show_group!
         Vedeu.bind(:_show_group_) do |name|
-          Vedeu.trigger(:_clear_)
-          Vedeu.trigger(:_refresh_group_, name)
+          Vedeu::Visibility.show_group(name)
         end
       end
 
@@ -108,12 +131,41 @@ module Vedeu
       #
       # @example
       #   Vedeu.trigger(:_show_interface_, name)
+      #   Vedeu::Visibility.show_interface(name)
+      #   Vedeu.show_interface(name)
       #
       # @return [void]
-      # @see Vedeu::Buffer#show
       def show_interface!
         Vedeu.bind(:_show_interface_) do |name|
-          Vedeu.buffers.by_name(name).show
+          Vedeu::Visibility.show_interface(name)
+        end
+      end
+
+      # Toggling a cursor.
+      #
+      # @example
+      #   Vedeu.trigger(:_toggle_cursor_, name)
+      #   Vedeu::Visibility.toggle_cursor(name)
+      #   Vedeu.toggle_cursor(name)
+      #
+      # @return [void]
+      def toggle_cursor!
+        Vedeu.bind(:_toggle_cursor_) do |name|
+          Vedeu::Visibility.toggle_cursor(name)
+        end
+      end
+
+      # Toggling a group.
+      #
+      # @example
+      #   Vedeu.trigger(:_toggle_group_, name)
+      #   Vedeu::Visibility.toggle_group(name)
+      #   Vedeu.toggle_group(name)
+      #
+      # @return [void]
+      def toggle_group!
+        Vedeu.bind(:_toggle_group_) do |name|
+          Vedeu::Visibility.toggle_group(name)
         end
       end
 
@@ -121,12 +173,13 @@ module Vedeu
       #
       # @example
       #   Vedeu.trigger(:_toggle_interface_, name)
+      #   Vedeu::Visibility.toggle_interface(name)
+      #   Vedeu.toggle_interface(name)
       #
       # @return [void]
-      # @see Vedeu::Buffer#toggle
       def toggle_interface!
         Vedeu.bind(:_toggle_interface_) do |name|
-          Vedeu.buffers.by_name(name).toggle
+          Vedeu::Visibility.toggle_interface(name)
         end
       end
 
