@@ -366,6 +366,69 @@ module Vedeu
     #   @see Vedeu::Visibility.show_cursor
     def_delegators Vedeu::Visibility, :show_cursor
 
+    # Toggle the visibility of the cursor with the given name.
+    #
+    # @example
+    #   Vedeu.toggle_cursor(name)
+    #
+    # @!method toggle_cursor
+    #   @see Vedeu::Visibility.toggle_cursor
+    def_delegators Vedeu::Visibility, :toggle_cursor
+
+    # Hide the group with the given name.
+    #
+    # @example
+    #   Vedeu.hide_group(name)
+    #
+    # @!method hide_group
+    #   @see Vedeu::Visibility.hide_group
+    def_delegators Vedeu::Visibility, :hide_group
+
+    # Shows the group with the given name.
+    #
+    # @example
+    #   Vedeu.show_group(name)
+    #
+    # @!method show_group
+    #   @see Vedeu::Visibility.show_group
+    def_delegators Vedeu::Visibility, :show_group
+
+    # Toggle the visibility of the group with the given name.
+    #
+    # @example
+    #   Vedeu.toggle_group(name)
+    #
+    # @!method toggle_group
+    #   @see Vedeu::Visibility.toggle_group
+    def_delegators Vedeu::Visibility, :toggle_group
+
+    # Hide the interface with the given name.
+    #
+    # @example
+    #   Vedeu.hide_interface(name)
+    #
+    # @!method hide_interface
+    #   @see Vedeu::Visibility.hide_interface
+    def_delegators Vedeu::Visibility, :hide_interface
+
+    # Shows the interface with the given name.
+    #
+    # @example
+    #   Vedeu.show_interface(name)
+    #
+    # @!method show_interface
+    #   @see Vedeu::Visibility.show_interface
+    def_delegators Vedeu::Visibility, :show_interface
+
+    # Toggle the visibility of the interface with the given name.
+    #
+    # @example
+    #   Vedeu.toggle_interface(name)
+    #
+    # @!method toggle_interface
+    #   @see Vedeu::Visibility.toggle_interface
+    def_delegators Vedeu::Visibility, :toggle_interface
+
   end # API
 
   extend API
