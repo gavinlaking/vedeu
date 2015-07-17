@@ -22,7 +22,6 @@ module Vedeu
       def setup!
         cleanup!
         clear!
-        clear_group!
         command!
         exit!
         focus_next!
@@ -75,20 +74,6 @@ module Vedeu
             Vedeu::Terminal.clear
 
           end
-        end
-      end
-
-      # Clears the spaces occupied by the interfaces belonging to the named
-      # group.
-      #
-      # @example
-      #   Vedeu.trigger(:_clear_group_, name)
-      #   Vedeu.clear_by_group(name)
-      #
-      # @return [void]
-      def clear_group!
-        Vedeu.bind(:_clear_group_) do |name|
-          Vedeu::Clear::NamedGroup.render(name)
         end
       end
 
