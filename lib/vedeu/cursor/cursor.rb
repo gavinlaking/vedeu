@@ -1,3 +1,5 @@
+require 'vedeu/support/toggleable'
+
 module Vedeu
 
   # Each interface has its own Cursor which maintains the position and
@@ -7,6 +9,7 @@ module Vedeu
   class Cursor
 
     include Vedeu::Model
+    include Vedeu::Toggleable
 
     # @!attribute [r] attributes
     # @return [Hash]
@@ -27,11 +30,6 @@ module Vedeu
     # @!attribute [r] state
     # @return [Boolean|Symbol]
     attr_reader :state
-
-    # @!attribute [r] visible
-    # @return [Boolean|Symbol]
-    attr_reader :visible
-    alias_method :visible?, :visible
 
     # @!attribute [rw] x
     # @return [Fixnum]
@@ -95,8 +93,10 @@ module Vedeu
     alias_method :to_str, :to_s
 
     # @return [Vedeu::EscapeChar]
-    def hide_cursor
-      @hide_cursor ||= Vedeu::EscapeChar.new(Vedeu::Esc.hide_cursor)
+    def hide
+      super
+
+      visibility
     end
 
     # Return the position of this cursor.
@@ -107,14 +107,10 @@ module Vedeu
     end
 
     # @return [Vedeu::EscapeChar]
-    def show_cursor
-      @show_cursor ||= Vedeu::EscapeChar.new(Vedeu::Esc.show_cursor)
-    end
+    def show
+      super
 
-    # @param value [Boolean]
-    # @return [void]
-    def visible=(value)
-      @visible = @attributes[:visible] = value
+      visibility
     end
 
     private
@@ -145,9 +141,9 @@ module Vedeu
     #
     # @return [String]
     def visibility
-      return show_cursor if visible?
+      return Vedeu::EscapeChar.new(Vedeu::Esc.show_cursor) if visible?
 
-      hide_cursor
+      Vedeu::EscapeChar.new(Vedeu::Esc.hide_cursor)
     end
 
   end # Cursor

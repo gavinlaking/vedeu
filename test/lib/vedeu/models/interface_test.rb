@@ -61,8 +61,8 @@ module Vedeu
       it { instance.must_respond_to(:zindex) }
       it { instance.must_respond_to(:zindex=) }
       it { instance.must_respond_to(:visible) }
-      it { instance.must_respond_to(:visible?) }
       it { instance.must_respond_to(:visible=) }
+      it { instance.must_respond_to(:visible?) }
       it { instance.must_respond_to(:attributes) }
       it { instance.must_respond_to(:lines=) }
     end

@@ -135,99 +135,25 @@ module Vedeu
     end
 
     describe '#hide' do
-      let(:interface) {
-        Vedeu::Interface.new({ name: _name, visible: visible }).store
-      }
-      let(:_name)   { 'Buffer#hide' }
-      let(:visible) {}
-
-      before do
-        Vedeu::Output.stubs(:render)
-        Vedeu::Visibility.stubs(:hide)
-      end
+      before { Vedeu::Output.stubs(:render) }
 
       subject { instance.hide }
 
-      context 'when the interface is visible' do
-        let(:visible) { true }
-
-        it {
-          Vedeu::Visibility.expects(:hide).with(interface)
-          subject
-        }
-      end
-
-      context 'when the interface is not visible' do
-        let(:visible) { false }
-
-        it { subject.must_be_instance_of(NilClass) }
-      end
+      it {
+        Vedeu::Output.expects(:render)
+        subject
+      }
     end
 
     describe '#show' do
-      let(:interface) {
-        Vedeu::Interface.new({ name: _name, visible: visible }).store
-      }
-      let(:_name)   { 'Buffer#show' }
-      let(:visible) {}
-
-      before do
-        Vedeu::Output.stubs(:render)
-        Vedeu::Visibility.stubs(:show)
-      end
+      before { Vedeu::Output.stubs(:render) }
 
       subject { instance.show }
 
-      context 'when the interface is visible' do
-        let(:visible) { true }
-
-        it { subject.must_be_instance_of(NilClass) }
-      end
-
-      context 'when the interface is not visible' do
-        let(:visible) { false }
-
-        it {
-          Vedeu::Visibility.expects(:show).with(interface)
-          subject
-        }
-      end
-    end
-
-    describe '#toggle' do
-      let(:interface) {
-        Vedeu::Interface.new({ name: _name, visible: visible }).store
+      it {
+        Vedeu::Output.expects(:render)
+        subject
       }
-      let(:_name)   { 'Buffer#toggle' }
-      let(:visible) {}
-
-      before do
-        Vedeu::Output.stubs(:render)
-      end
-
-      subject { instance.toggle }
-
-      context 'when the interface is visible' do
-        let(:visible) { true }
-
-        before { Vedeu::Visibility.stubs(:hide) }
-
-        it {
-          Vedeu::Visibility.expects(:hide).with(interface)
-          subject
-        }
-      end
-
-      context 'when the interface is not visible' do
-        let(:visible) { false }
-
-        before { Vedeu::Visibility.stubs(:show) }
-
-        it {
-          Vedeu::Visibility.expects(:show).with(interface)
-          subject
-        }
-      end
     end
 
     describe '#render' do

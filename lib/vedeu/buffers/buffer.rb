@@ -110,10 +110,6 @@ module Vedeu
     #
     # @return [void]
     def hide
-      return nil unless visible?
-
-      Vedeu::Visibility.hide(interface)
-
       Vedeu::Output.render(clear_buffer)
     end
 
@@ -130,7 +126,7 @@ module Vedeu
     #
     # @return [Array<Array<Array<Vedeu::Char>>>]
     def render
-      Vedeu::Output.render(buffer)
+      Vedeu::Output.render(buffer) if visible?
     end
 
     # Show this buffer.
@@ -146,37 +142,7 @@ module Vedeu
     #
     # @return [void]
     def show
-      return nil if visible?
-
-      Vedeu::Visibility.show(interface)
-
-      render
-    end
-
-    # Toggles the visibility of this buffer.
-    #
-    # @example
-    #   Vedeu.trigger(:_toggle_interface_, name)
-    #
-    # Will toggle the visibility of the named interface. If the interface is
-    # currently visible, the area it occupies will be clears and the interface
-    # will be marked invisible. If the interface is invisible, then the
-    # interface will be marked visible and rendered in the area it occupies.
-    #
-    # @note
-    #   If an interface is marked visible whilst another view is occupying some
-    #   or all of the interface's current position, the interface will overwrite
-    #   this area- this may cause visual corruption.
-    #
-    # @return [void]
-    def toggle
-      if visible?
-        hide
-
-      else
-        show
-
-      end
+      Vedeu::Output.render(buffer)
     end
 
     private

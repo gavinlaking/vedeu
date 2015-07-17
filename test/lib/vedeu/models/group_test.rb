@@ -8,12 +8,15 @@ module Vedeu
     let(:instance)   { described.new(attributes) }
     let(:attributes) {
       {
-        name:    _name,
-        members: members,
+        name:       _name,
+        members:    members,
+        repository: Vedeu.groups,
+        visible:    visible,
       }
     }
     let(:_name)      { 'organics' }
     let(:members)    { ['carbon', 'nitrogen', 'oxygen'] }
+    let(:visible)    { true }
 
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }
@@ -25,12 +28,21 @@ module Vedeu
       it {
         instance.instance_variable_get('@repository').must_equal(Vedeu.groups)
       }
+      it { instance.instance_variable_get('@visible').must_equal(visible) }
+    end
+
+    describe 'accessors' do
+      it { instance.must_respond_to(:name) }
+      it { instance.must_respond_to(:name=) }
+      it { instance.must_respond_to(:visible) }
+      it { instance.must_respond_to(:visible=) }
+      it { instance.must_respond_to(:visible?) }
     end
 
     describe '#add' do
       subject { instance.add('hydrogen') }
 
-      it { subject.must_be_instance_of(Group) }
+      it { subject.must_be_instance_of(Vedeu::Group) }
 
       context 'when the member already exists' do
         it 'does not add the member again but returns a new Group' do
@@ -65,16 +77,6 @@ module Vedeu
       end
     end
 
-    describe '#name' do
-      subject { instance.name }
-
-      it { subject.must_equal('organics') }
-    end
-
-    describe '#name=' do
-      it { instance.must_respond_to(:name=) }
-    end
-
     describe '#remove' do
       let(:member) { 'hydrogen' }
 
@@ -104,7 +106,7 @@ module Vedeu
     describe '#reset' do
       subject { instance.reset }
 
-      it { subject.must_be_instance_of(Group) }
+      it { subject.must_be_instance_of(Vedeu::Group) }
       it { subject.members.must_be_empty }
     end
 
