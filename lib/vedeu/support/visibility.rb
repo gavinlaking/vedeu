@@ -19,6 +19,18 @@ module Vedeu
       new(model).hide
     end
 
+    def self.hide_group(name)
+      model = Vedeu.groups.by_name(name)
+
+      new(model).hide
+    end
+
+    def self.hide_interface(name)
+      model = Vedeu.interfaces.by_name(name)
+
+      new(model).hide
+    end
+
     # Show a named cursor, or without a name, the cursor of the currently
     # focussed interface.
     #
@@ -31,6 +43,36 @@ module Vedeu
       model = name ? Vedeu.cursors.by_name(name) : Vedeu.cursor
 
       new(model).show
+    end
+
+    def self.show_group(name)
+      model = Vedeu.groups.by_name(name)
+
+      new(model).show
+    end
+
+    def self.show_interface(name)
+      model = Vedeu.interfaces.by_name(name)
+
+      new(model).show
+    end
+
+    def self.toggle_cursor(name)
+      model = Vedeu.cursors.by_name(name)
+
+      new(model).toggle
+    end
+
+    def self.toggle_group(name)
+      model = Vedeu.groups.by_name(name)
+
+      new(model).toggle
+    end
+
+    def self.toggle_interface(name)
+      model = Vedeu.interfaces.by_name(name)
+
+      new(model).toggle
     end
 
     # Show the given model.
@@ -71,8 +113,9 @@ module Vedeu
         model
 
       else
-        model.visible = true
-        model.store
+        model.show
+        # model.visible = true
+        # model.store
 
       end
     end
@@ -91,8 +134,9 @@ module Vedeu
     # @return [void]
     def hide
       if model.visible?
-        model.visible = false
-        model.store
+        model.hide
+        # model.visible = false
+        # model.store
 
       else
         model

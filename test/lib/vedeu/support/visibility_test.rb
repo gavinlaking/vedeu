@@ -3,8 +3,7 @@ require 'test_helper'
 module Vedeu
 
   class VisibilityTestModel
-    attr_accessor :visible
-    alias_method :visible?, :visible
+    include Vedeu::Toggleable
 
     def initialize(visible = true)
       @visible = visible
