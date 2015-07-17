@@ -41,4 +41,10 @@ module Vedeu
 
   end # Cursors
 
+  class Cursor
+
+    repo Vedeu::Cursors.repository
+
+  end
+
 end # Vedeu

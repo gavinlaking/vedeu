@@ -19,6 +19,10 @@ module Vedeu
     #
     module ClassMethods
 
+      # @!attribute [r]
+      # @return [Vedeu::Repository]
+      attr_reader :repository
+
       # Build models using a simple DSL when a block is given, otherwise returns
       # a new instance of the class including this module.
       #
@@ -34,6 +38,14 @@ module Vedeu
         model
       end
 
+      # Fetch an instance of a repository's model by name.
+      #
+      # @param name [String]
+      # @return [void]
+      def by_name(name)
+        @repository.by_name(name)
+      end
+
       # Provide a convenient way to define the child or children of a model.
       #
       # @param klass [Class] The member (singular) or collection (multiple)
@@ -45,15 +57,12 @@ module Vedeu
       alias_method :member,     :child
       alias_method :collection, :child
 
-      # @note
-      #   Not current used.
+      # Allow models to specify their repository using a class method.
       #
       # @param klass [void]
-      # @param as [void]
       # @return [void]
-      def repository(klass, as:)
-        self.repository = as
-        klass.register(as, self)
+      def repo(klass)
+        @repository = klass
       end
 
       private

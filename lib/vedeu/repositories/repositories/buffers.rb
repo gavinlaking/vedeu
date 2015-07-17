@@ -19,4 +19,10 @@ module Vedeu
 
   end # Buffers
 
+  class Buffer
+
+    repo Vedeu::Buffers.repository
+
+  end
+
 end # Vedeu
