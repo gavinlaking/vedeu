@@ -48,13 +48,12 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:_hide_cursor_, name)
       #   Vedeu.trigger(:_cursor_hide_, name)
-      #   Vedeu::Visibility.hide_cursor(name)
       #   Vedeu.hide_cursor(name)
       #
       # @return [void]
       def hide_cursor!
         Vedeu.bind(:_hide_cursor_) do |name|
-          Vedeu::Visibility.hide_cursor(name)
+          Vedeu::Cursor.hide_cursor(name)
         end
         Vedeu.bind(:_cursor_hide_) do |name|
           Vedeu.trigger(:_hide_cursor_, name)
@@ -69,13 +68,12 @@ module Vedeu
       #
       # @example
       #   Vedeu.trigger(:_hide_group_, name)
-      #   Vedeu::Visibility.hide_group(name)
       #   Vedeu.hide_group(name)
       #
       # @return [void]
       def hide_group!
         Vedeu.bind(:_hide_group_) do |name|
-          Vedeu::Visibility.hide_group(name)
+          Vedeu::Group.hide_group(name)
         end
       end
 
@@ -83,13 +81,12 @@ module Vedeu
       #
       # @example
       #   Vedeu.trigger(:_hide_interface_, name)
-      #   Vedeu::Visibility.hide_interface(name)
       #   Vedeu.hide_interface(name)
       #
       # @return [void]
       def hide_interface!
         Vedeu.bind(:_hide_interface_) do |name|
-          Vedeu::Visibility.hide_interface(name)
+          Vedeu::Interface.hide_interface(name)
         end
       end
 
@@ -99,13 +96,12 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:_show_cursor_, name)
       #   Vedeu.trigger(:_cursor_show_, name)
-      #   Vedeu::Visibility.show_cursor(name)
       #   Vedeu.show_cursor(name)
       #
       # @return [void]
       def show_cursor!
         Vedeu.bind(:_show_cursor_) do |name|
-          Vedeu::Visibility.show_cursor(name)
+          Vedeu::Cursor.show_cursor(name)
         end
         Vedeu.bind(:_cursor_show_) do |name|
           Vedeu.trigger(:_show_cursor_, name)
@@ -117,13 +113,12 @@ module Vedeu
       #
       # @example
       #   Vedeu.trigger(:_show_group_, name)
-      #   Vedeu::Visibility.show_group(name)
       #   Vedeu.show_group(name)
       #
       # @return [void]
       def show_group!
         Vedeu.bind(:_show_group_) do |name|
-          Vedeu::Visibility.show_group(name)
+          Vedeu::Group.show_group(name)
         end
       end
 
@@ -131,13 +126,12 @@ module Vedeu
       #
       # @example
       #   Vedeu.trigger(:_show_interface_, name)
-      #   Vedeu::Visibility.show_interface(name)
       #   Vedeu.show_interface(name)
       #
       # @return [void]
       def show_interface!
         Vedeu.bind(:_show_interface_) do |name|
-          Vedeu::Visibility.show_interface(name)
+          Vedeu::Interface.show_interface(name)
         end
       end
 
@@ -145,13 +139,12 @@ module Vedeu
       #
       # @example
       #   Vedeu.trigger(:_toggle_cursor_, name)
-      #   Vedeu::Visibility.toggle_cursor(name)
       #   Vedeu.toggle_cursor(name)
       #
       # @return [void]
       def toggle_cursor!
         Vedeu.bind(:_toggle_cursor_) do |name|
-          Vedeu::Visibility.toggle_cursor(name)
+          Vedeu::Cursor.toggle_cursor(name)
         end
       end
 
@@ -159,13 +152,12 @@ module Vedeu
       #
       # @example
       #   Vedeu.trigger(:_toggle_group_, name)
-      #   Vedeu::Visibility.toggle_group(name)
       #   Vedeu.toggle_group(name)
       #
       # @return [void]
       def toggle_group!
         Vedeu.bind(:_toggle_group_) do |name|
-          Vedeu::Visibility.toggle_group(name)
+          Vedeu::Group.toggle_group(name)
         end
       end
 
@@ -173,13 +165,12 @@ module Vedeu
       #
       # @example
       #   Vedeu.trigger(:_toggle_interface_, name)
-      #   Vedeu::Visibility.toggle_interface(name)
       #   Vedeu.toggle_interface(name)
       #
       # @return [void]
       def toggle_interface!
         Vedeu.bind(:_toggle_interface_) do |name|
-          Vedeu::Visibility.toggle_interface(name)
+          Vedeu::Interface.toggle_interface(name)
         end
       end
 

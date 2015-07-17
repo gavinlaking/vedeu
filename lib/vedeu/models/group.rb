@@ -47,7 +47,7 @@ module Vedeu
     def hide
       super
 
-      @members.each { |member| Vedeu::Visibility.hide_interface(member) }
+      @members.each { |member| Vedeu::Interface.hide_interface(member) }
 
       self
     end
@@ -80,7 +80,7 @@ module Vedeu
     def show
       super
 
-      @members.each { |member| Vedeu::Visibility.show_interface(member) }
+      @members.each { |member| Vedeu::Interface.show_interface(member) }
 
       self
     end
