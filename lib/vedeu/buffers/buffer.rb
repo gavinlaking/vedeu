@@ -209,18 +209,7 @@ module Vedeu
     #
     # @return [Vedeu::Interface]
     def interface
-      @interface ||= Vedeu.interfaces.by_name(name)
-    end
-
-    # @return [Vedeu::Interface]
-    def view
-      if front?
-        front
-
-      else
-        interface
-
-      end
+      Vedeu.interfaces.by_name(name)
     end
 
     # @see Vedeu::Interface#visible
