@@ -25,6 +25,12 @@ module Vedeu
         it { subject.must_be_instance_of(Hash) }
       end
 
+      describe '#hide' do
+        subject { instance.hide }
+
+        it { subject.must_be_instance_of(NilClass) }
+      end
+
       describe '#null?' do
         subject { instance.null? }
 
@@ -37,10 +43,22 @@ module Vedeu
         it { subject.must_be_instance_of(NilClass) }
       end
 
+      describe '#show' do
+        subject { instance.show }
+
+        it { subject.must_be_instance_of(NilClass) }
+      end
+
       describe '#store' do
         subject { instance.store }
 
         it { subject.must_be_instance_of(Vedeu::Null::Interface) }
+      end
+
+      describe '#toggle' do
+        subject { instance.toggle }
+
+        it { subject.must_be_instance_of(NilClass) }
       end
 
       describe '#visible?' do

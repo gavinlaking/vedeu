@@ -2,9 +2,9 @@ require 'test_helper'
 
 module Vedeu
 
-  describe Translator do
+  describe ColourTranslator do
 
-    let(:described) { Vedeu::Translator }
+    let(:described) { Vedeu::ColourTranslator }
     let(:instance)  { described.new(colour) }
     let(:colour)    { '#ff0000' }
 
@@ -27,7 +27,7 @@ module Vedeu
       subject { described.coerce(_value) }
 
       context 'when the value is nil' do
-        it { subject.must_be_instance_of(Vedeu::Translator) }
+        it { subject.must_be_instance_of(Vedeu::ColourTranslator) }
 
         it {
           Vedeu::Background.coerce(_value).
@@ -56,7 +56,7 @@ module Vedeu
       context 'when the value is not a polymorphic Colour' do
         let(:_value) { '#aadd00' }
 
-        it { subject.must_be_instance_of(Vedeu::Translator) }
+        it { subject.must_be_instance_of(Vedeu::ColourTranslator) }
       end
     end
 
@@ -151,6 +151,6 @@ module Vedeu
       end
     end
 
-  end # Translator
+  end # ColourTranslator
 
 end # Vedeu

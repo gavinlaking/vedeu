@@ -59,6 +59,18 @@ module Vedeu
         subject { instance.columns(3) }
 
         it { subject.must_equal(18) }
+
+        context 'DSL #columns' do
+          before { Vedeu.stubs(:width).returns(80) }
+
+          subject {
+            Vedeu.geometry 'geometry' do
+              width columns(8)
+            end
+          }
+
+          it { subject.width.must_equal(48) }
+        end
       end
 
       describe '#height' do
@@ -87,6 +99,18 @@ module Vedeu
         subject { instance.rows(3) }
 
         it { subject.must_equal(6) }
+
+        context 'DSL #rows' do
+          before { Vedeu.stubs(:height).returns(38) }
+
+          subject {
+            Vedeu.geometry 'geometry' do
+              height rows(8)
+            end
+          }
+
+          it { subject.height.must_equal(24) }
+        end
       end
 
       describe '#use' do

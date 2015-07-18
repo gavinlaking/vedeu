@@ -45,6 +45,11 @@ module Vedeu
         nil
       end
 
+      # @return [NilClass]
+      def toggle
+        nil
+      end
+
     end # Buffer
 
   end # Null

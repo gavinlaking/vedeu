@@ -32,4 +32,10 @@ module Vedeu
 
   end # Groups
 
+  class Group
+
+    repo Vedeu::Groups.repository
+
+  end
+
 end # Vedeu

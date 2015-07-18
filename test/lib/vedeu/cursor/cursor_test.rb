@@ -47,16 +47,14 @@ module Vedeu
       it { instance.must_respond_to(:oy) }
       it { instance.must_respond_to(:oy=) }
       it { instance.must_respond_to(:state) }
-      it { instance.must_respond_to(:visible) }
-      it { instance.must_respond_to(:visible?) }
       it { instance.must_respond_to(:x) }
       it { instance.must_respond_to(:x=) }
       it { instance.must_respond_to(:y) }
       it { instance.must_respond_to(:y=) }
     end
 
-    describe '#hide_cursor' do
-      subject { instance.hide_cursor }
+    describe '#hide' do
+      subject { instance.hide }
 
       it { subject.must_be_instance_of(Vedeu::EscapeChar) }
       it { subject.to_s.must_equal("\e[?25l") }
@@ -77,8 +75,8 @@ module Vedeu
       it { subject.must_be_instance_of(Vedeu::Position) }
     end
 
-    describe '#show_cursor' do
-      subject { instance.show_cursor }
+    describe '#show' do
+      subject { instance.show }
 
       it { subject.must_be_instance_of(Vedeu::EscapeChar) }
       it { subject.to_s.must_equal("\e[?25h") }

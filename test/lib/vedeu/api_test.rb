@@ -52,7 +52,13 @@ module Vedeu
     it { Vedeu.must_respond_to(:clear_by_group) }
     it { Vedeu.must_respond_to(:hide_cursor) }
     it { Vedeu.must_respond_to(:show_cursor) }
-
+    it { Vedeu.must_respond_to(:toggle_cursor) }
+    it { Vedeu.must_respond_to(:hide_group) }
+    it { Vedeu.must_respond_to(:show_group) }
+    it { Vedeu.must_respond_to(:toggle_group) }
+    it { Vedeu.must_respond_to(:hide_interface) }
+    it { Vedeu.must_respond_to(:show_interface) }
+    it { Vedeu.must_respond_to(:toggle_interface) }
   end # API
 
 end # Vedeu

@@ -4,7 +4,7 @@ module Vedeu
   # {Vedeu::Foreground}) of a terminal colour escape sequence.
   #
   # @api private
-  class Background < Vedeu::Translator
+  class Background < Vedeu::ColourTranslator
 
     private
 

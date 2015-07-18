@@ -79,13 +79,6 @@ module Vedeu
       true
     end
 
-    # Returns the front buffer or, if that is empty, the interface cleared.
-    #
-    # @return [void]
-    def clear
-      Vedeu::Output.render(clear_buffer)
-    end
-
     # Return a boolean indicating content presence on the buffer type.
     #
     # @return [Boolean] Whether the buffer targetted has content.
@@ -108,6 +101,7 @@ module Vedeu
     #
     # @example
     #   Vedeu.trigger(:_hide_interface_, name)
+    #   Vedeu.hide_interface(name)
     #
     # Will hide the named interface. If the interface is currently visible, it
     # will be cleared- rendered blank. To show the interface, the
@@ -117,11 +111,7 @@ module Vedeu
     #
     # @return [void]
     def hide
-      return nil unless visible?
-
-      Vedeu::Visibility.hide(interface)
-
-      clear
+      Vedeu::Output.render(clear_buffer)
     end
 
     # Return the content for this buffer.
@@ -139,12 +129,12 @@ module Vedeu
     def render
       Vedeu::Output.render(buffer)
     end
-    alias_method :content, :render
 
     # Show this buffer.
     #
     # @example
     #   Vedeu.trigger(:_show_interface_, name)
+    #   Vedeu.show_interface(name)
     #
     # Will show the named interface. If the interface is currently invisible, it
     # will be shown- rendered with its latest content. To hide the interface,
@@ -154,37 +144,7 @@ module Vedeu
     #
     # @return [void]
     def show
-      return nil if visible?
-
-      Vedeu::Visibility.show(interface)
-
-      render
-    end
-
-    # Toggles the visibility of this buffer.
-    #
-    # @example
-    #   Vedeu.trigger(:_toggle_interface_, name)
-    #
-    # Will toggle the visibility of the named interface. If the interface is
-    # currently visible, the area it occupies will be clears and the interface
-    # will be marked invisible. If the interface is invisible, then the
-    # interface will be marked visible and rendered in the area it occupies.
-    #
-    # @note
-    #   If an interface is marked visible whilst another view is occupying some
-    #   or all of the interface's current position, the interface will overwrite
-    #   this area- this may cause visual corruption.
-    #
-    # @return [void]
-    def toggle
-      if visible?
-        hide
-
-      else
-        show
-
-      end
+      Vedeu::Output.render(buffer)
     end
 
     private
@@ -249,18 +209,7 @@ module Vedeu
     #
     # @return [Vedeu::Interface]
     def interface
-      @interface ||= Vedeu.interfaces.by_name(name)
-    end
-
-    # @return [Vedeu::Interface]
-    def view
-      if front?
-        front
-
-      else
-        interface
-
-      end
+      Vedeu.interfaces.by_name(name)
     end
 
     # @see Vedeu::Interface#visible

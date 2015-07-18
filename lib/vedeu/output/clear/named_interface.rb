@@ -29,8 +29,6 @@ module Vedeu
 
       # @return [void]
       def render
-        return [] unless interface.visible?
-
         output
       end
 

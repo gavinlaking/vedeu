@@ -2,6 +2,7 @@ require 'vedeu/models/char'
 require 'vedeu/models/stream'
 require 'vedeu/models/line'
 require 'vedeu/buffers/display_buffer'
+require 'vedeu/support/toggleable'
 
 module Vedeu
 
@@ -15,6 +16,7 @@ module Vedeu
     include Vedeu::Model
     include Vedeu::Presentation
     include Vedeu::DisplayBuffer
+    include Vedeu::Toggleable
 
     collection Vedeu::Lines
     member     Vedeu::Line
@@ -42,11 +44,6 @@ module Vedeu
     # @!attribute [rw] zindex
     # @return [Fixnum]
     attr_accessor :zindex
-
-    # @!attribute [rw] visible
-    # @return [Boolean] Whether the interface is visible.
-    attr_accessor :visible
-    alias_method :visible?, :visible
 
     # @!attribute [r] attributes
     # @return [Hash]
@@ -81,6 +78,19 @@ module Vedeu
     # @return [void]
     def add(child)
       @lines = lines.add(child)
+    end
+
+    # Hide a named interface buffer, or without a name, the buffer of the
+    # currently focussed interface.
+    #
+    # @example
+    #   Vedeu.hide_interface(name)
+    #
+    # @return [void]
+    def hide
+      super
+
+      Vedeu.buffers.by_name(name).hide
     end
 
     # Override Ruby's Object#inspect method to provide a more helpful output.
@@ -133,6 +143,19 @@ module Vedeu
       output
     end
 
+    # Show the named interface buffer, or without a name, the buffer of the
+    # currently focussed interface.
+    #
+    # @example
+    #   Vedeu.show_interface(name)
+    #
+    # @return [void]
+    def show
+      super
+
+      Vedeu.buffers.by_name(name).show
+    end
+
     # @return [Interface]
     def store
       super
@@ -141,6 +164,19 @@ module Vedeu
       store_focusable
       store_cursor
       store_group
+    end
+
+    # Toggle the named interface buffer, or without a name, the buffer of the
+    # currently focussed interface.
+    #
+    # @example
+    #   Vedeu.toggle_interface(name)
+    #
+    # @return [void]
+    def toggle
+      super
+
+      Vedeu.buffers.by_name(name).toggle
     end
 
     private

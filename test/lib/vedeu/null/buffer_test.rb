@@ -45,6 +45,12 @@ module Vedeu
         it { subject.must_be_instance_of(NilClass) }
       end
 
+      describe '#toggle' do
+        subject { instance.toggle }
+
+        it { subject.must_be_instance_of(NilClass) }
+      end
+
     end # Buffer
 
   end # Null

@@ -30,4 +30,10 @@ module Vedeu
 
   end # Interfaces
 
+  class Interface
+
+    repo Vedeu::Interfaces.repository
+
+  end
+
 end # Vedeu
