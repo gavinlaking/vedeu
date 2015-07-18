@@ -127,7 +127,7 @@ module Vedeu
     #
     # @return [Array<Array<Array<Vedeu::Char>>>]
     def render
-      Vedeu::Output.render(buffer) if visible?
+      Vedeu::Output.render(buffer)
     end
 
     # Show this buffer.

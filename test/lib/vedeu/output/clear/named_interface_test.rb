@@ -35,30 +35,21 @@ module Vedeu
 
         subject { instance.render }
 
-        context 'when the interface is visible' do
-          let(:output) {
+        let(:output) {
+          [
             [
-              [
-                Vedeu::Char.new(value: ' ', position: [1, 1]),
-                Vedeu::Char.new(value: ' ', position: [1, 2]),
+              Vedeu::Char.new(value: ' ', position: [1, 1]),
+              Vedeu::Char.new(value: ' ', position: [1, 2]),
 
-              ], [
-                Vedeu::Char.new(value: ' ', position: [2, 1]),
-                Vedeu::Char.new(value: ' ', position: [2, 2]),
+            ], [
+              Vedeu::Char.new(value: ' ', position: [2, 1]),
+              Vedeu::Char.new(value: ' ', position: [2, 2]),
 
-              ]
             ]
-          }
+          ]
+        }
 
-          it { subject.must_equal(output) }
-        end
-
-        context 'when the interface is not visible' do
-          let(:visible) { false }
-
-          it { subject.must_equal([]) }
-        end
-
+        it { subject.must_equal(output) }
       end
 
     end # NamedInterface
