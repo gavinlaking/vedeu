@@ -18,16 +18,16 @@ module Vedeu
     end
 
     describe '.start' do
-      it { described.must_respond_to(:start) }
-    end
-
-    describe '#start' do
-      subject { instance.start }
+      subject { described.start(argv, entry_point) }
 
       it {
         Vedeu::Launcher.expects(:execute!)
         subject
       }
+    end
+
+    describe '#start' do
+      it { instance.must_respond_to(:start) }
     end
 
   end # Bootstrap

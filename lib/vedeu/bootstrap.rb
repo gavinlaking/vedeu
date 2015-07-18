@@ -6,14 +6,12 @@ module Vedeu
   # Vedeu with this data, then starts the client application.
   class Bootstrap
 
-    # :nocov:
     # @param argv [Array<String>]
     # @param entry_point [void]
     # @return [void]
     def self.start(argv = ARGV, entry_point = nil)
       new(argv, entry_point).start
     end
-    # :nocov:
 
     # Returns a new instance of Vedeu::Bootstrap.
     #
