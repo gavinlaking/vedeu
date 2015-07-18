@@ -72,7 +72,7 @@ module Vedeu
       # @param source [String]
       # @return [String]
       def parse(source)
-        Vedeu::Template.parse(self, source)
+        Vedeu::Templating::Template.parse(self, source)
       end
 
       # @return [String]

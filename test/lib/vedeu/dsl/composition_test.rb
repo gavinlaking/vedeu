@@ -57,7 +57,7 @@ module Vedeu
           let(:filename) { 'my_interface.erb' }
 
           before do
-            Vedeu::Template.expects(:parse).
+            Vedeu::Templating::Template.expects(:parse).
               with(object, filename).returns(content)
           end
 

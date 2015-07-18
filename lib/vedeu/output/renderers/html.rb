@@ -21,10 +21,10 @@ module Vedeu
         @options[:content] = output
 
         if write_file?
-          super(Vedeu::Template.parse(self, template))
+          super(Vedeu::Templating::Template.parse(self, template))
 
         else
-          Vedeu::Template.parse(self, template)
+          Vedeu::Templating::Template.parse(self, template)
 
         end
       end

@@ -134,7 +134,7 @@ module Vedeu
         subject { instance.parse(source) }
 
         it {
-          Vedeu::Template.expects(:parse).with(instance, source)
+          Vedeu::Templating::Template.expects(:parse).with(instance, source)
           subject
         }
       end
