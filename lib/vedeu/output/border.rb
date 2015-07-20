@@ -99,7 +99,7 @@ module Vedeu
     # @option attributes horizontal [String] The horizontal border character.
     # @option attributes name [String] The name of the interface to which this
     #   border relates.
-    # @option attributes style []
+    # @option attributes style [Vedeu::Style]
     # @option attributes show_bottom [Boolean] Indicate whether the bottom
     #   border is to be shown.
     # @option attributes show_left [Boolean] Indicate whether the left border

@@ -45,7 +45,7 @@ module Vedeu
   #     # ...
   #   end
   #
-  # @param receiver []
+  # @param receiver [void]
   # @return [void]
   def included(receiver)
     receiver.send(:include, API)

@@ -25,8 +25,8 @@ module Vedeu
 
       # Returns a new instance of Vedeu::LocklessLogDevice.
       #
-      # @param log []
-      # @return []
+      # @param log [void]
+      # @return [void]
       def initialize(log = nil)
         @dev      = nil
         @filename = nil
@@ -42,8 +42,8 @@ module Vedeu
         end
       end
 
-      # @param message []
-      # @return []
+      # @param message [String]
+      # @return [void]
       def write(message)
         @dev.write(message)
 
@@ -51,15 +51,15 @@ module Vedeu
         warn("log writing failed. #{exception}")
       end
 
-      # @return []
+      # @return [void]
       def close
         @dev.close rescue nil
       end
 
       private
 
-      # @param filename []
-      # @return []
+      # @param filename [String]
+      # @return [void]
       def open_logfile(filename)
         if FileTest.exist?(filename)
           open(filename, (File::WRONLY | File::APPEND))
