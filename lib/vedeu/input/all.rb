@@ -1,7 +1,8 @@
-require_relative 'mapper'
-require_relative 'key'
-require_relative 'input'
-require_relative 'keymap'
+require 'vedeu/input/mapper'
+require 'vedeu/input/key'
+require 'vedeu/input/input'
+require 'vedeu/input/keymaps'
+require 'vedeu/input/keymap'
 
 module Vedeu
 

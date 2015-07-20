@@ -17,7 +17,7 @@ require 'time'
 
 require 'thor'
 
-require 'vedeu/support/log'
+require 'vedeu/log'
 
 # Vedeu is a GUI framework for terminal/console applications written in Ruby.
 module Vedeu

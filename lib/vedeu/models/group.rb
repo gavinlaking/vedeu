@@ -1,4 +1,4 @@
-require 'vedeu/support/toggleable'
+require 'vedeu/models/toggleable'
 
 module Vedeu
 

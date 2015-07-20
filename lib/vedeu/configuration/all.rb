@@ -1,3 +1,3 @@
-require_relative 'cli'
-require_relative 'api'
-require_relative 'configuration'
+require 'vedeu/configuration/cli'
+require 'vedeu/configuration/api'
+require 'vedeu/configuration/configuration'

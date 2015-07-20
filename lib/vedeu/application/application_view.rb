@@ -1,4 +1,4 @@
-require_relative 'view'
+require 'vedeu/application/view'
 
 module Vedeu
 

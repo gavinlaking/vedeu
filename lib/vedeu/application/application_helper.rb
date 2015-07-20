@@ -1,4 +1,4 @@
-require_relative 'helper'
+require 'vedeu/application/helper'
 
 module Vedeu
 

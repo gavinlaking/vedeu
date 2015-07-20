@@ -1,4 +1,4 @@
-require_relative 'refresh'
+require 'vedeu/output/refresh'
 
 module Vedeu
 

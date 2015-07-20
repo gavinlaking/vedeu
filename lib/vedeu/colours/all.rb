@@ -1,0 +1,7 @@
+require 'vedeu/colours/colours'
+require 'vedeu/colours/backgrounds'
+require 'vedeu/colours/foregrounds'
+require 'vedeu/colours/colour_translator'
+require 'vedeu/colours/background'
+require 'vedeu/colours/foreground'
+require 'vedeu/colours/colour'

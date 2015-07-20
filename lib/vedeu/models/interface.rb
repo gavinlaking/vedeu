@@ -2,7 +2,7 @@ require 'vedeu/models/char'
 require 'vedeu/models/stream'
 require 'vedeu/models/line'
 require 'vedeu/buffers/display_buffer'
-require 'vedeu/support/toggleable'
+require 'vedeu/models/toggleable'
 
 module Vedeu
 
