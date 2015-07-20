@@ -6,6 +6,14 @@ require_relative 'system'
 
 module Vedeu
 
+  # Binds various events for running and manipulating Vedeu.
+  #
+  # @note
+  #   The methods these modules use are private, and should not be called
+  #   directly, however the produced events are all public and are highly
+  #   recommended to be used.
+  #
+  # @api private
   module Bindings
 
     # Setup events for running Vedeu. This method is called by Vedeu.

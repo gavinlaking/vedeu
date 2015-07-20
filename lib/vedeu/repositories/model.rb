@@ -19,7 +19,7 @@ module Vedeu
     #
     module ClassMethods
 
-      # @!attribute [r]
+      # @!attribute [r] repository
       # @return [Vedeu::Repository]
       attr_reader :repository
 
