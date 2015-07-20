@@ -9,8 +9,6 @@ module Vedeu
     # @api private
     class Template
 
-      include Vedeu::ViewHelpers
-
       # @param (see Vedeu::Templating::Template#new)
       # @return [void]
       def self.parse(object, path, options = {})
