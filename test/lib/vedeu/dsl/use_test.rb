@@ -4,7 +4,16 @@ module Vedeu
 
   module DSL
 
+    class TestUseClass
+
+      include Vedeu::DSL::Use
+
+    end
+
     describe Use do
+
+      let(:described) { Vedeu::DSL::Use }
+      let(:model_instance) { Vedeu::DSL::TestUseClass }
 
       # before do
       #   Vedeu.interfaces.reset

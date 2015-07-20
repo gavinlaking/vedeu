@@ -32,7 +32,7 @@ module Vedeu
       # @param name [String] The name of the model to duplicate.
       # @return [void] The new model based on the original.
       def duplicate(name)
-        original = model.repository.by_name(name)
+        original = use(name)
 
         unless original.respond_to?(:null?)
           duplicated      = original.dup
