@@ -7,7 +7,7 @@ module Vedeu
   # instance.
   #
   # @api public
-  class Borders < Repository
+  class Borders < Vedeu::Repository
 
     class << self
 
