@@ -15,19 +15,18 @@ module Vedeu
       # @return [String]
       attr_reader :name
 
+      # @!attribute [r] attributes
+      # @return [String]
+      attr_reader :attributes
+
       # Returns a new instance of Vedeu::Null::Interface.
       #
-      # @param name [String]
+      # @param attributes [Hash<Symbol => void>]
+      # @oprion attributes name [String]
       # @return [Vedeu::Null::Interface]
-      def initialize(name = nil)
-        @name = name
-      end
-
-      # @return [Hash<Symbol => String>]
-      def attributes
-        {
-          name: name,
-        }
+      def initialize(attributes = {})
+        @attributes = attributes
+        @name       = @attributes[:name]
       end
 
       # @return [NilClass]

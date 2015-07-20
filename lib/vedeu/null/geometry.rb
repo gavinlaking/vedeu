@@ -35,11 +35,13 @@ module Vedeu
 
       # Returns a new instance of Vedeu::Null::Geometry.
       #
-      # @param name [String|NilClass]
+      # @param attributes [Hash<Symbol => void>]
+      # @option attributes name [String|NilClass]
       # @return [Vedeu::Null::Geometry]
-      def initialize(name = nil)
-        @name      = name
-        @maximised = false
+      def initialize(attributes = {})
+        @attributes = attributes
+        @name       = @attributes[:name]
+        @maximised  = @attributes.fetch(:maximised, false)
       end
 
       # @return [FalseClass]

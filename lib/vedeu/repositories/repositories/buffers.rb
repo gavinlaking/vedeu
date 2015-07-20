@@ -23,6 +23,6 @@ module Vedeu
 
     repo Vedeu::Buffers.repository
 
-  end
+  end # Buffer
 
 end # Vedeu

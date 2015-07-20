@@ -30,27 +30,6 @@ module Vedeu
       end
     end
 
-    describe '#by_name' do
-      let(:_name) { 'carbon' }
-
-      subject { described.cursors.by_name(_name) }
-
-      context 'when the cursor exists' do
-        before { Vedeu::Cursor.new(name: _name).store }
-        after { Vedeu.cursors.reset }
-
-        it { subject.must_be_instance_of(Vedeu::Cursor) }
-        it { subject.name.must_equal('carbon') }
-      end
-
-      context 'when the cursor does not exist' do
-        let(:_name) { 'nitrogen' }
-
-        it { subject.must_be_instance_of(Vedeu::Cursor) }
-        it { subject.name.must_equal('nitrogen') }
-      end
-    end
-
   end # Cursors
 
 end # Vedeu

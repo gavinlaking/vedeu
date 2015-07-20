@@ -52,14 +52,23 @@ module Vedeu
 
     # Return the named model or a null object if not registered.
     #
+    # @example
+    #   Vedeu.cursors.by_name('some_name') # => Fetch the cursor belonging to
+    #                                           the interface of the same name.
+    #
+    #   Vedeu.groups.by_name(name) # => Fetch the names of the interfaces
+    #                                   belonging to this group.
+    #
     # @param name [String] The name of the stored model.
     # @return [void]
     def by_name(name)
+      name = name || Vedeu.focus
+
       if registered?(name)
         find(name)
 
       else
-        null_model.new(name)
+        null_model.new(name: name)
 
       end
     end
