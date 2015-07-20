@@ -39,7 +39,7 @@ module Vedeu
 
     # Returns an instance of Vedeu::Viewport.
     #
-    # @param interface [Interface] An instance of interface.
+    # @param interface [Vedeu::Interface] An instance of interface.
     # @return [Viewport]
     def initialize(interface)
       @interface = interface

@@ -14,7 +14,7 @@ module Vedeu
     member     Vedeu::Stream
 
     # @!attribute [rw] parent
-    # @return [Interface]
+    # @return [Vedeu::Interface]
     attr_accessor :parent
 
     # @!attribute [r] attributes
@@ -35,7 +35,7 @@ module Vedeu
       @attributes.each { |key, value| instance_variable_set("@#{key}", value) }
     end
 
-    # @param child []
+    # @param child [void]
     # @return [void]
     def add(child)
       @_streams = @streams = collection.coerce(streams, self).add(child)

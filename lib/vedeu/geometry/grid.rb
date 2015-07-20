@@ -37,11 +37,11 @@ module Vedeu
     #                      # 7 * 9 = 63
     #                      # Therefore, width is 63 characters.
     #
-    # @raise [OutOfRange] When the value parameter is not between 1 and 12
-    #   inclusive.
-    # @return [Fixnum|OutOfRange]
+    # @raise [Vedeu::OutOfRange] When the value parameter is not between 1 and
+    #   12 inclusive.
+    # @return [Fixnum|Vedeu::OutOfRange]
     def columns
-      fail OutOfRange,
+      fail Vedeu::OutOfRange,
            'Valid value between 1 and 12 inclusive.' if out_of_range?
 
       column * value
@@ -56,11 +56,11 @@ module Vedeu
     #                    # 3 * 3 = 9
     #                    # Therefore, height is 9 characters.
     #
-    # @raise [OutOfRange] When the value parameter is not between 1 and 12
-    #   inclusive.
-    # @return [Fixnum|OutOfRange]
+    # @raise [Vedeu::OutOfRange] When the value parameter is not between 1 and
+    #   12 inclusive.
+    # @return [Fixnum|Vedeu::OutOfRange]
     def rows
-      fail OutOfRange,
+      fail Vedeu::OutOfRange,
            'Valid value between 1 and 12 inclusive.' if out_of_range?
 
       row * value

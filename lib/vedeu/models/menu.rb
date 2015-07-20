@@ -50,10 +50,10 @@ module Vedeu
     #     # ...
     #   end
     #
-    # @raise [InvalidSyntax] The required block was not given.
+    # @raise [Vedeu::InvalidSyntax] The required block was not given.
     # @return [API::Menu]
     def self.menu(name = '', &block)
-      fail InvalidSyntax, 'block not given' unless block_given?
+      fail Vedeu::InvalidSyntax, 'block not given' unless block_given?
 
       build({ name: name }, &block).store
     end
@@ -65,7 +65,7 @@ module Vedeu
     # @option attributes name [String]
     # @option attributes current [Fixnum]
     # @option attributes selected [Fixnum|NilClass]
-    # @return [Menu]
+    # @return [Vedeu::Menu]
     def initialize(attributes = {})
       @attributes = defaults.merge!(attributes)
 

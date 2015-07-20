@@ -62,7 +62,7 @@ module Vedeu
       #     end
       #   end
       #
-      # @raise [InvalidSyntax] When no block or value is provided.
+      # @raise [Vedeu::InvalidSyntax] When no block or value is provided.
       # @return [Vedeu::Lines]
       def line(value = '', &block)
         if block_given?
@@ -75,7 +75,7 @@ module Vedeu
                                       streams: [build_stream(value)])
 
         else
-          fail InvalidSyntax, 'block not given'
+          fail Vedeu::InvalidSyntax, 'block not given'
 
         end
 
@@ -102,11 +102,11 @@ module Vedeu
       #     end
       #   end
       #
-      # @raise [InvalidSyntax] The required block was not given.
+      # @raise [Vedeu::InvalidSyntax] The required block was not given.
       # @return [Vedeu::Streams<Vedeu::Stream>]
       # @see Vedeu::DSL::Stream for subdirectives.
       def streams(&block)
-        fail InvalidSyntax, 'block not given' unless block_given?
+        fail Vedeu::InvalidSyntax, 'block not given' unless block_given?
 
         model.add(model.member.build(attributes, &block))
       end
@@ -119,7 +119,7 @@ module Vedeu
       attr_reader :client
 
       # @!attribute [r] model
-      # @return [Line]
+      # @return [Vedeu::Line]
       attr_reader :model
 
       private

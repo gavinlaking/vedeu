@@ -40,7 +40,7 @@ module Vedeu
     #
     # @param value [Array<String|Symbol>|String|Symbol]
     #   The style value or a collection of values.
-    # @return [Style]
+    # @return [Vedeu::Style]
     def initialize(value = nil)
       @value = value
     end

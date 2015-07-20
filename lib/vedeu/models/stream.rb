@@ -14,7 +14,7 @@ module Vedeu
     member     Vedeu::Char
 
     # @!attribute [rw] parent
-    # @return [Line]
+    # @return [Vedeu::Line]
     attr_accessor :parent
 
     # @!attribute [rw] value

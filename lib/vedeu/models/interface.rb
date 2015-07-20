@@ -156,7 +156,7 @@ module Vedeu
       Vedeu.buffers.by_name(name).show
     end
 
-    # @return [Interface]
+    # @return [Vedeu::Interface]
     def store
       super
 

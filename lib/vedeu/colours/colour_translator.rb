@@ -249,11 +249,11 @@ module Vedeu
       (css_to_rgb[2] / 51) * 1
     end
 
-    # @raise [NotImplemented] Subclasses of this class must implement this
-    #   method.
-    # @return [NotImplemented]
+    # @raise [Vedeu::NotImplemented] Subclasses of this class must implement
+    #   this method.
+    # @return [Vedeu::NotImplemented]
     def not_implemented
-      fail NotImplemented, 'Subclasses implement this.'
+      fail Vedeu::NotImplemented, 'Subclasses implement this.'
     end
     alias_method :named_codes,     :not_implemented
     alias_method :numbered_prefix, :not_implemented

@@ -14,4 +14,3 @@ require 'vedeu/models/groups'
 require 'vedeu/models/group'
 require 'vedeu/models/menus'
 require 'vedeu/models/menu'
-

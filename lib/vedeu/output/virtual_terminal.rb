@@ -21,7 +21,8 @@ module Vedeu
     #
     # @param height [Fixnum]
     # @param width [Fixnum]
-    # @param renderer [Object|Renderers::HTML] An object responding to .render.
+    # @param renderer [Object|Vedeu::Renderers::HTML] An object responding to
+    #   .render.
     # @return [Vedeu::VirtualTerminal]
     def initialize(height, width, renderer = Vedeu::Renderers::HTML.new)
       @height   = height

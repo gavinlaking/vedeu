@@ -113,7 +113,7 @@ module Vedeu
     # @option attributes top_left [String] The top left border character.
     # @option attributes top_right [String] The top right border character.
     # @option attributes vertical [String] The vertical border character.
-    # @return [Border]
+    # @return [Vedeu::Border]
     def initialize(attributes = {})
       @attributes   = defaults.merge!(attributes)
 

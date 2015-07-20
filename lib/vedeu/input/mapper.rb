@@ -37,8 +37,8 @@ module Vedeu
     #
     # @param key [NilClass|String|Symbol]
     # @param name [NilClass|String]
-    # @param repository [NilClass|Repository]
-    # @return [Mapper]
+    # @param repository [NilClass|Vedeu::Repository]
+    # @return [Vedeu::Mapper]
     def initialize(key = nil, name = nil, repository = nil)
       @key        = key
       @name       = name
@@ -101,7 +101,7 @@ module Vedeu
     # Fetch the named keymap from the repository.
     #
     # @param named [NilClass|String]
-    # @return [Keymap]
+    # @return [Vedeu::Keymap]
     def keymap(named = name)
       repository.find(named)
     end

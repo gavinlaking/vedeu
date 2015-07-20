@@ -95,7 +95,7 @@ module Vedeu
       colour(char, 'foreground', '#222')
     end
 
-    # @param char []
+    # @param char [Vedeu::Char]
     # @param type [String]
     # @param default [String]
     # @return [String]

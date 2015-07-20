@@ -55,7 +55,7 @@ module Vedeu
     # @param name [String|NilClass] The name of the interface/cursor to be
     #   moved; when not given, the interface currently in focus determines which
     #   cursor instance to move.
-    # @return [Cursor]
+    # @return [Vedeu::Cursor]
     def self.by_name(entity, direction, name = nil)
       name = name ? name : Vedeu.focus
 
@@ -66,7 +66,7 @@ module Vedeu
     #
     # @param entity [Class]
     # @param name [String]
-    # @return [Cursor]
+    # @return [Vedeu::Cursor]
     def self.down(entity, name)
       new(entity, name, 1, 0).move
     end
@@ -75,7 +75,7 @@ module Vedeu
     #
     # @param entity [Class]
     # @param name [String]
-    # @return [Cursor]
+    # @return [Vedeu::Cursor]
     def self.left(entity, name)
       new(entity, name, 0, -1).move
     end
@@ -84,7 +84,7 @@ module Vedeu
     #
     # @param entity [Class]
     # @param name [String]
-    # @return [Cursor]
+    # @return [Vedeu::Cursor]
     def self.right(entity, name)
       new(entity, name, 0, 1).move
     end
@@ -93,7 +93,7 @@ module Vedeu
     #
     # @param entity [Class]
     # @param name [String]
-    # @return [Cursor]
+    # @return [Vedeu::Cursor]
     def self.up(entity, name)
       new(entity, name, -1, 0).move
     end
@@ -103,7 +103,7 @@ module Vedeu
     #
     # @param entity [Class]
     # @param name [String]
-    # @return [Cursor]
+    # @return [Vedeu::Cursor]
     def self.origin(entity, name)
       new(entity, name, -2000, -2000).move
     end
@@ -114,7 +114,7 @@ module Vedeu
     # @param name [String] The name of the cursor or view.
     # @param dy [Fixnum] Move up (-1), or down (1), or no action (0).
     # @param dx [Fixnum] Move left (-1), or right (1), or no action (0).
-    # @return [Move]
+    # @return [Vedeu::Move]
     def initialize(entity, name, dy = 0, dx = 0)
       @entity = entity
       @name   = name
@@ -192,7 +192,7 @@ module Vedeu
       coordinate.y_position(oy)
     end
 
-    # @return [Coordinate]
+    # @return [Vedeu::Coordinate]
     def coordinate
       @coordinate ||= Vedeu::Coordinate.new(name)
     end

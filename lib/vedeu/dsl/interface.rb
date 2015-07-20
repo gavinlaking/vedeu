@@ -36,11 +36,11 @@ module Vedeu
       #   when we define the interface or view, setting it here is just
       #   mirroring functionality of {Vedeu::DSL::Border.border}.
       # @param block [Proc]
-      # @raise [InvalidSyntax] The required block was not given.
+      # @raise [Vedeu::InvalidSyntax] The required block was not given.
       # @return [Vedeu::Border]
       # @see Vedeu::DSL::Border
       def border(name = nil, &block)
-        fail InvalidSyntax, 'block not given' unless block_given?
+        fail Vedeu::InvalidSyntax, 'block not given' unless block_given?
 
         model_name = name ? name : model.name
 
@@ -83,7 +83,7 @@ module Vedeu
       #     # ...       #    is rendered.
       #   end
       #
-      # @return [Cursor]
+      # @return [Vedeu::Cursor]
       def cursor(value = true)
         boolean = value ? true : false
 
@@ -145,11 +145,11 @@ module Vedeu
       #   when we define the interface or view, setting it here is just
       #   mirroring functionality of {Vedeu::DSL::Geometry.geometry}.
       # @param block [Proc]
-      # @raise [InvalidSyntax] The required block was not given.
-      # @return [Geometry]
+      # @raise [Vedeu::InvalidSyntax] The required block was not given.
+      # @return [Vedeu::Geometry]
       # @see Vedeu::DSL::Geometry
       def geometry(name = nil, &block)
-        fail InvalidSyntax, 'block not given' unless block_given?
+        fail Vedeu::InvalidSyntax, 'block not given' unless block_given?
 
         model_name = name ? name : model.name
 
@@ -200,10 +200,10 @@ module Vedeu
       #     end
       #   end
       #
-      # @raise [InvalidSyntax] The required block was not given.
+      # @raise [Vedeu::InvalidSyntax] The required block was not given.
       # @return [Line]
       def lines(&block)
-        fail InvalidSyntax, 'block not given' unless block_given?
+        fail Vedeu::InvalidSyntax, 'block not given' unless block_given?
 
         model.add(model.member.build(attributes, &block))
       end
@@ -315,7 +315,7 @@ module Vedeu
       attr_reader :client
 
       # @!attribute [r] model
-      # @return [Interface]
+      # @return [Vedeu::Interface]
       attr_reader :model
 
       private

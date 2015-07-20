@@ -44,10 +44,10 @@ module Vedeu
       # @param name [String] The name of the interface or view to which this
       #   border belongs.
       # @param block [Proc]
-      # @raise [InvalidSyntax] The required block was not given.
+      # @raise [Vedeu::InvalidSyntax] The required block was not given.
       # @return [Vedeu::Border]
       def self.border(name, &block)
-        fail InvalidSyntax, 'block not given' unless block_given?
+        fail Vedeu::InvalidSyntax, 'block not given' unless block_given?
 
         Vedeu::Border.build({ enabled: true, name: name }, &block).store
       end
@@ -381,7 +381,7 @@ module Vedeu
       attr_reader :client
 
       # @!attribute [r] model
-      # @return [Border]
+      # @return [Vedeu::Border]
       attr_reader :model
 
     end # Border

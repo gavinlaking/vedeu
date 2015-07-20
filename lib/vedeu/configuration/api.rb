@@ -27,7 +27,7 @@ module Vedeu
       #   end
       #
       # @param block [Proc]
-      # @return [Configuration::API]
+      # @return [Vedeu::Configuration::API]
       def initialize(&block)
         instance_eval(&block) if block_given?
       end
@@ -233,11 +233,11 @@ module Vedeu
       #   the colour mode at all and allow it to be detected, or use 256 here.
       #
       # @param value [Fixnum]
-      # @raise [InvalidSyntax] When the value parameter is not one of +8+, +16+,
-      #   +256+ or +16777216+.
+      # @raise [Vedeu::InvalidSyntax] When the value parameter is not one of
+      #   +8+, +16+, +256+ or +16777216+.
       # @return [Boolean]
       def colour_mode(value = nil)
-        fail InvalidSyntax, '`colour_mode` must be `8`, `16`, `256`, ' \
+        fail Vedeu::InvalidSyntax, '`colour_mode` must be `8`, `16`, `256`, ' \
                             '`16777216`.' unless valid_colour_mode?(value)
         options[:colour_mode] = value
       end

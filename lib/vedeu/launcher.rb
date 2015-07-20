@@ -31,7 +31,7 @@ module Vedeu
     # @param stdout [IO]
     # @param stderr [IO]
     # @param kernel [Kernel]
-    # @return [Launcher]
+    # @return [Vedeu::Launcher]
     def initialize(argv   = [],
                    stdin  = STDIN,
                    stdout = STDOUT,

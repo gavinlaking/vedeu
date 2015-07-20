@@ -65,7 +65,7 @@ module Vedeu
       # @option opts stdout [File|IO]
       # @option opts stderr [File|IO]
       # @param block [Proc]
-      # @raise [InvalidSyntax] When the required block is not given.
+      # @raise [Vedeu::InvalidSyntax] When the required block is not given.
       # @return [Hash]
       def configure(args = [], opts = {}, &block)
         instance.configure(args, opts, &block)
@@ -225,7 +225,7 @@ module Vedeu
 
     # Create a new singleton instance of Vedeu::Configuration.
     #
-    # @return [Configuration]
+    # @return [Vedeu::Configuration]
     def initialize
       @options = defaults
     end

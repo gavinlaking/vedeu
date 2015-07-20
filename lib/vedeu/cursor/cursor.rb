@@ -51,7 +51,7 @@ module Vedeu
     # @option attributes x [Fixnum] The terminal x coordinate for the cursor.
     # @option attributes y [Fixnum] The terminal y coordinate for the cursor.
     #
-    # @return [Cursor]
+    # @return [Vedeu::Cursor]
     def initialize(attributes = {})
       # Hack because Repository#by_name creates Cursor objects with just a
       # name.
