@@ -2,7 +2,8 @@ module Vedeu
 
   module Renderers
 
-    # Renders a {Vedeu::VirtualBuffer} or {Vedeu::Output} as a HTML table.
+    # Renders a {Vedeu::VirtualBuffer} or {Vedeu::Output} as a HTML snippet;
+    # a table by default.
     #
     # @api private
     class HTML < Vedeu::Renderers::File
@@ -10,6 +11,10 @@ module Vedeu
       # Returns a new instance of Vedeu::Renderers::HTML.
       #
       # @param options [Hash]
+      # @option options content [String]
+      # @option options end_row_tag [String]
+      # @option options start_row_tag [String]
+      # @option options template [String]
       # @return [Vedeu::Renderers::HTML]
       def initialize(options = {})
         @options = options || {}
@@ -33,14 +38,14 @@ module Vedeu
       def html_body
         out = ''
         Array(content).each do |line|
-          out << "<tr>\n"
+          out << "#{start_row_tag}\n"
           line.each do |char|
             if char.is_a?(Vedeu::Char)
               out << char.to_html
               out << "\n"
             end
           end
-          out << "</tr>\n"
+          out << "#{end_row_tag}\n"
         end
         out
       end
@@ -50,6 +55,16 @@ module Vedeu
       # @return [Array<Array<Vedeu::Char>>]
       def content
         options[:content]
+      end
+
+      # @return [String]
+      def end_row_tag
+        options[:end_row_tag]
+      end
+
+      # @return [String]
+      def start_row_tag
+        options[:start_row_tag]
       end
 
       # @return [String]
@@ -69,8 +84,10 @@ module Vedeu
       # @return [Hash<Symbol => void>]
       def defaults
         {
-          content:  '',
-          template: default_template,
+          content:       '',
+          end_row_tag:   '</tr>',
+          start_row_tag: '<tr>',
+          template:      default_template,
         }
       end
 
