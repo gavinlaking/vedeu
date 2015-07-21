@@ -47,7 +47,7 @@ module Vedeu
     # @option attributes position [Vedeu::Position]
     # @option attributes border   [NilClass|Symbol] A symbol representing the
     #   border 'piece' this Char represents.
-    # @return [Char]
+    # @return [Vedeu::Char]
     def initialize(attributes = {})
       @attributes = attributes
       @border     = @attributes[:border]

@@ -11,7 +11,7 @@ module Vedeu
     # Store the view and immediate refresh it; causing to be pushed to the
     # Terminal.
     #
-    # @return [Interface]
+    # @return [Vedeu::Interface]
     def store_immediate
       store_deferred
 
@@ -23,11 +23,11 @@ module Vedeu
     # Store the view if it has a name. This view will be shown next time the
     # refresh event is triggered for the interface.
     #
-    # @raise [InvalidSyntax] The name is not defined.
+    # @raise [Vedeu::InvalidSyntax] The name is not defined.
     # @return [Vedeu::Interface]
     def store_deferred
       unless present?(name)
-        fail InvalidSyntax, 'Cannot store an interface without a name.'
+        fail Vedeu::InvalidSyntax, 'Cannot store an interface without a name.'
       end
 
       store_new_buffer

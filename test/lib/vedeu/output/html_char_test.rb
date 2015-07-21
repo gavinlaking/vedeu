@@ -5,8 +5,14 @@ module Vedeu
   describe HTMLChar do
 
     let(:described)  { Vedeu::HTMLChar }
-    let(:instance)   { described.new(char) }
+    let(:instance)   { described.new(char, options) }
     let(:char)       { Vedeu::Char.new(attributes) }
+    let(:options)    {
+      {
+        start_tag: '<td',
+        end_tag:   '</td>',
+      }
+    }
     let(:attributes) {
       {
         border: border,
@@ -24,10 +30,11 @@ module Vedeu
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }
       it { instance.instance_variable_get('@char').must_equal(char) }
+      it { instance.instance_variable_get('@options').must_equal(options) }
     end
 
     describe '.render' do
-      subject { described.render(char) }
+      subject { described.render(char, options) }
 
       it { subject.must_be_instance_of(String) }
 

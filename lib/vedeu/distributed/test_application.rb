@@ -63,7 +63,7 @@ module Vedeu
     # @option attributes keymaps [String]
     # @option attributes menus [String]
     # @option attributes views [String]
-    # @return [TestApplication]
+    # @return [Vedeu::TestApplication]
     def initialize(attributes = {})
       @attributes = defaults.merge!(attributes)
 

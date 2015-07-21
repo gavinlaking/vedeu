@@ -18,7 +18,7 @@ module Vedeu
     #
     # @param reader [IO] An object that responds to `#read`. Typically, this is
     #   Vedeu::Terminal.
-    # @return [Input]
+    # @return [Vedeu::Input]
     def initialize(reader)
       @reader = reader
     end

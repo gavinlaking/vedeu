@@ -57,6 +57,12 @@ module Vedeu
       end
     end
 
+    describe '#hide' do
+      subject { instance.hide }
+
+      it { subject.must_equal(instance) }
+    end
+
     describe '#members' do
       subject { instance.members }
 
@@ -108,6 +114,12 @@ module Vedeu
 
       it { subject.must_be_instance_of(Vedeu::Group) }
       it { subject.members.must_be_empty }
+    end
+
+    describe '#show' do
+      subject { instance.show }
+
+      it { subject.must_equal(instance) }
     end
 
   end # Group

@@ -33,17 +33,17 @@ module Vedeu
       #
       # @param name [String] The name of this group.
       # @param block [Proc]
-      # @raise [InvalidSyntax] The required block was not given.
+      # @raise [Vedeu::InvalidSyntax] The required block was not given.
       # @return [Vedeu::Group]
       def self.group(name, &block)
-        fail InvalidSyntax, 'block not given' unless block_given?
+        fail Vedeu::InvalidSyntax, 'block not given' unless block_given?
 
         Vedeu::Group.build({ name: name }, &block).store
       end
 
       # Returns an instance of DSL::Group.
       #
-      # @param model [Group]
+      # @param model [Vedeu::Group]
       # @param client [Object]
       # @return [Vedeu::DSL::Group]
       def initialize(model, client = nil)
@@ -66,7 +66,7 @@ module Vedeu
       attr_reader :client
 
       # @!attribute [r] model
-      # @return [Group]
+      # @return [Vedeu::Group]
       attr_reader :model
 
     end # Group

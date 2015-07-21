@@ -13,7 +13,7 @@ module Vedeu
 
     # Returns a new instance of Vedeu::Reposition.
     #
-    # @param entity []
+    # @param entity [void]
     # @param name [String]
     # @param y [Fixnum]
     # @param x [Fixnum]
@@ -60,7 +60,7 @@ module Vedeu
 
     private
 
-    # @return [Coordinate]
+    # @return [Vedeu::Coordinate]
     def coordinate
       @coordinate ||= Vedeu::Coordinate.new(name)
     end

@@ -41,7 +41,7 @@ module Vedeu
     # @return [Vedeu::Foreground]
     attr_reader :foreground
 
-    # @param value []
+    # @param value [Vedeu::Colour|Fixnum|Hash|String]
     # @return [Object]
     def self.coerce(value)
       return value if value.is_a?(self)

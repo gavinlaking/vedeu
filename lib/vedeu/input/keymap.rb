@@ -32,7 +32,7 @@ module Vedeu
 
     # Add a key to the keymap.
     #
-    # @param key [Key]
+    # @param key [Vedeu::Key]
     # @return [void]
     def add(key)
       return false unless valid?(key)

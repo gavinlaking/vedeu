@@ -58,7 +58,7 @@ module Vedeu
           let(:output) {
             [
               Vedeu::Char.new(value: 'N'),
-              Vedeu::EscapeChar.new("\e[?25l"),
+              Vedeu::Escape.new("\e[?25l"),
               Vedeu::Char.new(value: 't'),
             ]
           }
@@ -106,7 +106,7 @@ module Vedeu
           let(:output) {
             [
               Vedeu::Char.new(value: 'N'),
-              Vedeu::EscapeChar.new("\e[?25l"),
+              Vedeu::Escape.new("\e[?25l"),
               Vedeu::Char.new(value: 't'),
             ]
           }

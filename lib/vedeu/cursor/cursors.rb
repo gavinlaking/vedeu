@@ -5,7 +5,7 @@ module Vedeu
   # Allows the storing of each interface's cursor.
   #
   # @api public
-  class Cursors < Repository
+  class Cursors < Vedeu::Repository
 
     class << self
 

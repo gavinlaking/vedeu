@@ -30,7 +30,7 @@ module Vedeu
 
     # Refresh the interface which is currently focussed.
     #
-    # @return [Array|ModelNotFound|NilClass]
+    # @return [Array|Vedeu::ModelNotFound|NilClass]
     def by_focus
       by_name(Vedeu.focus) if Vedeu.focus
     end
@@ -43,8 +43,8 @@ module Vedeu
     #   Vedeu::Refresh.by_group(group_name)
     #
     # @param group_name [String] The name of the group to be refreshed.
-    # @return [Array|ModelNotFound] A collection of the names of interfaces
-    #   refreshed, or an exception if the group was not found.
+    # @return [Array|Vedeu::ModelNotFound] A collection of the names of
+    #   interfaces refreshed, or an exception if the group was not found.
     def by_group(group_name)
       Vedeu.timer("Refresh Group: '#{group_name}'") do
         Vedeu::RefreshGroup.by_name(group_name)
@@ -60,7 +60,7 @@ module Vedeu
     #
     # @param name [String] The name of the interface to be refreshed using the
     #   named buffer.
-    # @return [Array|ModelNotFound]
+    # @return [Array|Vedeu::ModelNotFound]
     def by_name(name)
       Vedeu.timer("Refresh Interface: '#{name}'") do
         Vedeu.buffers.by_name(name).render

@@ -5,6 +5,8 @@ module Vedeu
   # @api private
   module RendererOptions
 
+    # :nocov:
+
     private
 
     # Combines the options provided at instantiation with the default values.
@@ -20,6 +22,8 @@ module Vedeu
     def defaults
       {}
     end
+
+    # :nocov
 
   end # RendererOptions
 

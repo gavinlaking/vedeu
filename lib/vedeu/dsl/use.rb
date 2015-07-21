@@ -63,8 +63,8 @@ module Vedeu
       #
       # @param name [String] The name of the model with the value you wish to
       #   use.
-      # @raise [ModelNotFound|NoMethodError] The model or attribute cannot be
-      #   found.
+      # @raise [Vedeu::ModelNotFound|Vedeu::NoMethodError] The model or
+      #   attribute cannot be found.
       # @return [void] The stored model.
       def use(name)
         model.repository.by_name(name)

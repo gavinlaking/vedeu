@@ -18,7 +18,7 @@ module Vedeu
       # Returns a new instance of Vedeu::Distributed::Client.
       #
       # @param uri [Vedeu::Distributed::Uri|String]
-      # @return [Client]
+      # @return [Vedeu::Distributed::Client]
       def initialize(uri)
         @uri = uri.to_s
       end

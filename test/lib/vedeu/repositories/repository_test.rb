@@ -2,7 +2,7 @@ require 'test_helper'
 
 module Vedeu
 
-  class RepositoriesTestClass < Repository
+  class RepositoriesTestClass < Vedeu::Repository
 
     attr_accessor :storage
     alias_method :in_memory, :storage
@@ -23,7 +23,7 @@ module Vedeu
 
   end # RepositoriesTestClass
 
-  class TestRepository < Repository
+  class TestRepository < Vedeu::Repository
   end
 
   class TestModel

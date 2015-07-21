@@ -37,7 +37,7 @@ module Vedeu
 
     # Returns a new instance of Vedeu::Collection.
     #
-    # @param collection []
+    # @param collection [void]
     # @param parent [void]
     # @param name [String|NilClass]
     # @return [Vedeu::Collection]

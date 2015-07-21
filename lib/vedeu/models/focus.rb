@@ -50,11 +50,13 @@ module Vedeu
     #   Vedeu.focus_by_name('name')
     #
     # @param name [String] The interface to focus; must be defined.
-    # @raise [ModelNotFound] When the interface cannot be found.
+    # @raise [Vedeu::ModelNotFound] When the interface cannot be found.
     # @return [String] The name of the interface now in focus.
     def by_name(name)
-      fail ModelNotFound, "Cannot focus '#{name}' as this interface has not " \
-                          'been registered.' unless registered?(name)
+      unless registered?(name)
+        fail Vedeu::ModelNotFound, "Cannot focus '#{name}' as this interface " \
+                                   'has not been registered.'
+      end
 
       storage.rotate!(storage.index(name))
 

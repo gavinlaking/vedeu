@@ -38,7 +38,7 @@ module Vedeu
     # Returns a new instance of Vedeu::Application.
     #
     # @param configuration [Vedeu::Configuration]
-    # @return [Application]
+    # @return [Vedeu::Application]
     def initialize(configuration)
       @configuration = configuration
     end
@@ -69,7 +69,7 @@ module Vedeu
     protected
 
     # @!attribute [r] configuration
-    # @return [Configuration]
+    # @return [Vedeu::Configuration]
     attr_reader :configuration
 
     private

@@ -5,7 +5,7 @@ module Vedeu
   # Allows the storing of keymaps.
   #
   # @api public
-  class Keymaps < Repository
+  class Keymaps < Vedeu::Repository
 
     class << self
 

@@ -32,7 +32,7 @@ module Vedeu
     # @param name [String]
     # @param x [Fixnum]
     # @param y [Fixnum]
-    # @return [PositionValidator]
+    # @return [Vedeu::PositionValidator]
     def initialize(name, x, y)
       @name = name
       @x    = x

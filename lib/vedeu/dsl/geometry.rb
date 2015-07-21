@@ -42,17 +42,17 @@ module Vedeu
       # @param name [String] The name of the interface or view to which this
       #   geometry belongs.
       # @param block [Proc]
-      # @raise [InvalidSyntax] The required block was not given.
+      # @raise [Vedeu::InvalidSyntax] The required block was not given.
       # @return [Vedeu::Geometry]
       def self.geometry(name, &block)
-        fail InvalidSyntax, 'block not given' unless block_given?
+        fail Vedeu::InvalidSyntax, 'block not given' unless block_given?
 
         Vedeu::Geometry.build({ name: name }, &block).store
       end
 
       # Returns an instance of DSL::Geometry.
       #
-      # @param model [Geometry]
+      # @param model [Vedeu::Geometry]
       # @param client [Object]
       # @return [Vedeu::DSL::Geometry]
       def initialize(model, client = nil)
@@ -233,7 +233,7 @@ module Vedeu
       attr_reader :client
 
       # @!attribute [r] model
-      # @return [Geometry]
+      # @return [Vedeu::Geometry]
       attr_reader :model
 
     end # Geometry

@@ -14,10 +14,10 @@ module Vedeu
     #
     # @param input [String|Symbol]
     # @param block [Proc]
-    # @raise [InvalidSyntax] The required block was not given.
+    # @raise [Vedeu::InvalidSyntax] The required block was not given.
     # @return [Key]
     def initialize(input = nil, &block)
-      fail InvalidSyntax, 'block not given' unless block_given?
+      fail Vedeu::InvalidSyntax, 'block not given' unless block_given?
 
       @input  = input
       @output = block

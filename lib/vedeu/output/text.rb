@@ -26,7 +26,7 @@ module Vedeu
     # @option options model [Vedeu::Interface|Vedeu::Line|Vedeu::Stream]
     # @option options pad [String]
     # @option options width [Integer]
-    # @return [Text]
+    # @return [Vedeu::Text]
     def initialize(value = '', options = {})
       @value   = value
       @options = defaults.merge!(options)

@@ -20,7 +20,7 @@ module Vedeu
       # {Vedeu::API#configure}.
       #
       # @param args [Array]
-      # @return [Configuration::CLI]
+      # @return [Vedeu::Configuration::CLI]
       def initialize(args = [])
         @args    = args
         @options = {}

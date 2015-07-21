@@ -7,7 +7,7 @@ module Vedeu
   # instance.
   #
   # @api public
-  class Geometries < Repository
+  class Geometries < Vedeu::Repository
 
     class << self
 

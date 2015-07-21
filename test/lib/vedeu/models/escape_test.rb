@@ -2,9 +2,9 @@ require 'test_helper'
 
 module Vedeu
 
-  describe EscapeChar do
+  describe Escape do
 
-    let(:described) { Vedeu::EscapeChar }
+    let(:described) { Vedeu::Escape }
     let(:instance)  { described.new(_value) }
     let(:_value)    { "\e[?25h" }
 
@@ -35,7 +35,7 @@ module Vedeu
 
     describe '#inspect' do
       it { instance.inspect.must_equal(
-        "<Vedeu::EscapeChar '" \
+        "<Vedeu::Escape '" \
         "\\e[?25h"       \
         "'>"
       ) }
@@ -56,6 +56,6 @@ module Vedeu
       it { instance.must_respond_to(:to_str) }
     end
 
-  end # EscapeChar
+  end # Escape
 
 end # Vedeu

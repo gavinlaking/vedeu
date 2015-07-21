@@ -99,7 +99,7 @@ module Vedeu
     # @option attributes horizontal [String] The horizontal border character.
     # @option attributes name [String] The name of the interface to which this
     #   border relates.
-    # @option attributes style []
+    # @option attributes style [Vedeu::Style]
     # @option attributes show_bottom [Boolean] Indicate whether the bottom
     #   border is to be shown.
     # @option attributes show_left [Boolean] Indicate whether the left border
@@ -113,7 +113,7 @@ module Vedeu
     # @option attributes top_left [String] The top left border character.
     # @option attributes top_right [String] The top right border character.
     # @option attributes vertical [String] The vertical border character.
-    # @return [Border]
+    # @return [Vedeu::Border]
     def initialize(attributes = {})
       @attributes   = defaults.merge!(attributes)
 

@@ -51,7 +51,7 @@ module Vedeu
     # @option attributes x [Fixnum] The terminal x coordinate for the cursor.
     # @option attributes y [Fixnum] The terminal y coordinate for the cursor.
     #
-    # @return [Cursor]
+    # @return [Vedeu::Cursor]
     def initialize(attributes = {})
       # Hack because Repository#by_name creates Cursor objects with just a
       # name.
@@ -98,7 +98,7 @@ module Vedeu
     # @example
     #   Vedeu.hide_cursor(name)
     #
-    # @return [Vedeu::EscapeChar]
+    # @return [Vedeu::Escape]
     def hide
       super
 
@@ -118,7 +118,7 @@ module Vedeu
     # @example
     #   Vedeu.show_cursor(name)
     #
-    # @return [Vedeu::EscapeChar]
+    # @return [Vedeu::Escape]
     def show
       super
 
@@ -153,9 +153,9 @@ module Vedeu
     #
     # @return [String]
     def visibility
-      return Vedeu::EscapeChar.new(Vedeu::Esc.show_cursor) if visible?
+      return Vedeu::Escape.new(Vedeu::Esc.show_cursor) if visible?
 
-      Vedeu::EscapeChar.new(Vedeu::Esc.hide_cursor)
+      Vedeu::Escape.new(Vedeu::Esc.hide_cursor)
     end
 
   end # Cursor

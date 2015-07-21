@@ -178,7 +178,7 @@ module Vedeu
       protected
 
       # @!attribute [r] configuration
-      # @return [Configuration]
+      # @return [Vedeu::Configuration]
       attr_reader :configuration
 
       private

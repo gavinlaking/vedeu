@@ -43,7 +43,7 @@ module Vedeu
 
       # Returns an instance of DSL::Composition.
       #
-      # @param model [Composition]
+      # @param model [Vedeu::Composition]
       # @param client [Object]
       # @return [Vedeu::DSL::Composition]
       def initialize(model, client = nil)
@@ -69,10 +69,10 @@ module Vedeu
       #     # ...
       #   end
       #
-      # @raise [InvalidSyntax] The required block was not given.
+      # @raise [Vedeu::InvalidSyntax] The required block was not given.
       # @return [Vedeu::InterfaceCollection<Vedeu::Interface>]
       def view(name = '', &block)
-        fail InvalidSyntax, 'block not given' unless block_given?
+        fail Vedeu::InvalidSyntax, 'block not given' unless block_given?
 
         new_model = model.member.build(new_attributes(name), &block)
 
@@ -120,7 +120,7 @@ module Vedeu
       attr_reader :client
 
       # @!attribute [r] model
-      # @return [Composition]
+      # @return [Vedeu::Composition]
       attr_reader :model
 
       private

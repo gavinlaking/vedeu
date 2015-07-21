@@ -127,7 +127,7 @@ module Vedeu
     # Returns a new instance of Vedeu::Event.
     #
     # @param (see Vedeu::Event.bind)
-    # @return [Event]
+    # @return [Vedeu::Event]
     def initialize(name, options = {}, closure)
       @name         = name
       @options      = options

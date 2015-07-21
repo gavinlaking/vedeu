@@ -20,21 +20,21 @@ module Vedeu
     # on next refresh.
     #
     # @!attribute [rw] back
-    # @return [Interface]
+    # @return [Vedeu::Interface]
     attr_accessor :back
 
     # The currently displayed buffer, contains the content which was last
     # output.
     #
     # @!attribute [rw] front
-    # @return [Interface]
+    # @return [Vedeu::Interface]
     attr_accessor :front
 
     # The previous buffer which was displayed; contains the content that was
     # shown before 'front'.
     #
     # @!attribute [rw] previous
-    # @return [Interface]
+    # @return [Vedeu::Interface]
     attr_accessor :previous
 
     # @!attribute [r] name

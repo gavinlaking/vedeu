@@ -19,9 +19,9 @@ module Vedeu
     #
     # @param attributes [Hash]
     # @option attributes colour [Vedeu::Colour]
-    # @option attributes interfaces []
+    # @option attributes interfaces [void]
     # @option attributes style [Vedeu::Style]
-    # @return [Composition]
+    # @return [Vedeu::Composition]
     def initialize(attributes = {})
       @attributes = defaults.merge!(attributes)
 

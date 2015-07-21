@@ -49,8 +49,8 @@ module Vedeu
       #     end
       #   end
       #
-      # @raise [InvalidSyntax] The required block was not given.
-      # @return [Keymap]
+      # @raise [Vedeu::InvalidSyntax] The required block was not given.
+      # @return [Vedeu::Keymap]
       # @todo Try to remember why we need to pre-create the keymap in the
       #   repository.
       def self.keymap(name, &block)
@@ -61,7 +61,7 @@ module Vedeu
 
       # Returns an instance of DSL::Keymap.
       #
-      # @param model [Keymap]
+      # @param model [Vedeu::Keymap]
       # @param client [Object]
       # @return [Vedeu::DSL::Keymap]
       def initialize(model, client = nil)
@@ -89,20 +89,22 @@ module Vedeu
       #     # ...
       #   end
       #
-      # @raise [InvalidSyntax] When the required block is not given, the
+      # @raise [Vedeu::InvalidSyntax] When the required block is not given, the
       #   value_or_values parameter is undefined, or when processing the
       #   collection, a member is undefined.
       # @return [Array] A collection containing the keypress(es).
       def key(*value_or_values, &block)
-        fail InvalidSyntax, 'No action defined for `key`.' unless block_given?
+        fail Vedeu::InvalidSyntax,
+             'No action defined for `key`.' unless block_given?
 
         unless present?(value_or_values)
-          fail InvalidSyntax, 'No keypress(es) defined for `key`.'
+          fail Vedeu::InvalidSyntax, 'No keypress(es) defined for `key`.'
         end
 
         value_or_values.each do |value|
           unless present?(value)
-            fail InvalidSyntax, 'An invalid value for `key` was encountered.'
+            fail Vedeu::InvalidSyntax,
+                 'An invalid value for `key` was encountered.'
           end
 
           model.add(model.member.new(value, &block))
@@ -131,7 +133,7 @@ module Vedeu
       attr_reader :client
 
       # @!attribute [r] model
-      # @return [Keymap]
+      # @return [Vedeu::Keymap]
       attr_reader :model
 
     end # Keymap
