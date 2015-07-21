@@ -10,12 +10,13 @@ module Vedeu
       {
         name:       _name,
         members:    members,
-        repository: Vedeu.groups,
+        repository: repository,
         visible:    visible,
       }
     }
     let(:_name)      { 'organics' }
-    let(:members)    { ['carbon', 'nitrogen', 'oxygen'] }
+    let(:members)    { Set.new(['carbon', 'nitrogen', 'oxygen']) }
+    let(:repository) { Vedeu.groups }
     let(:visible)    { true }
 
     describe '#initialize' do
@@ -26,7 +27,7 @@ module Vedeu
       it { instance.instance_variable_get('@members').must_equal(members) }
       it { instance.instance_variable_get('@name').must_equal(_name) }
       it {
-        instance.instance_variable_get('@repository').must_equal(Vedeu.groups)
+        instance.instance_variable_get('@repository').must_equal(repository)
       }
       it { instance.instance_variable_get('@visible').must_equal(visible) }
     end

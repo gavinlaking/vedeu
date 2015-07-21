@@ -31,10 +31,7 @@ module Vedeu
     def initialize(attributes = {})
       @attributes = defaults.merge!(attributes)
 
-      @members    = Array(@attributes[:members])
-      @name       = @attributes[:name]
-      @repository = @attributes[:repository]
-      @visible    = @attributes[:visible]
+      @attributes.each { |key, value| instance_variable_set("@#{key}", value) }
     end
 
     # Add a member to the group by name.
@@ -42,9 +39,21 @@ module Vedeu
     # @param member [String]
     # @return [Vedeu::Group]
     def add(member)
-      @members = members.add(member)
+      attrs = attributes.merge!(members: members.add(member))
 
-      Vedeu::Group.new(name: name, members: @members, visible: visible).store
+      Vedeu::Group.new(attrs).store
+    end
+
+    # Returns the attributes of the group.
+    #
+    # @return [Hash<Symbol => void>]
+    def attributes
+      {
+        name:       name,
+        members:    members,
+        repository: repository,
+        visible:    visible,
+      }
     end
 
     # Hide the named group of interfaces, or without a name, the group of the
@@ -72,7 +81,7 @@ module Vedeu
     #
     # @return [Set]
     def members
-      @members.to_set
+      @_members ||= Set.new(@members)
     end
 
     # Remove a member from the group by name.
@@ -80,16 +89,18 @@ module Vedeu
     # @param member [String]
     # @return [Vedeu::Group]
     def remove(member)
-      @members = members.delete(member)
+      attrs = attributes.merge!(members: members.delete(member))
 
-      Vedeu::Group.new(name: name, members: @members, visible: visible).store
+      Vedeu::Group.new(attrs).store
     end
 
     # Remove all members from the group.
     #
     # @return [Vedeu::Group]
     def reset
-      Vedeu::Group.new(defaults.merge!(name: name)).store
+      attrs = defaults.merge!(name: name)
+
+      Vedeu::Group.new(attrs).store
     end
 
     # Show the named group of interfaces, or without a name, the group of the
@@ -115,7 +126,7 @@ module Vedeu
     # @return [Hash]
     def defaults
       {
-        members:    [],
+        members:    Set.new,
         name:       '',
         repository: Vedeu.groups,
         visible:    true,
