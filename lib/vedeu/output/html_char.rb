@@ -2,7 +2,8 @@ require 'vedeu/common'
 
 module Vedeu
 
-  # Represents a {Vedeu::Char} as a HTML table cell.
+  # Represents a {Vedeu::Char} as a HTML tag with value. By default, a table
+  # cell is used.
   #
   # @api private
   class HTMLChar
@@ -10,22 +11,29 @@ module Vedeu
     include Vedeu::Common
 
     # @param char [Vedeu::Char]
+    # @param options [Hash<Symbol => String>]
+    # @option options start_tag [String]
+    # @option options end_tag [String]
     # @return [String]
-    def self.render(char)
-      new(char).render
+    def self.render(char, options = {})
+      new(char, options).render
     end
 
     # Returns a new instance of Vedeu::HTMLChar.
     #
     # @param char [Vedeu::Char]
+    # @param options [Hash<Symbol => String>]
+    # @option options start_tag [String]
+    # @option options end_tag [String]
     # @return [Vedeu::HTMLChar]
-    def initialize(char)
-      @char = char
+    def initialize(char, options = {})
+      @char    = char
+      @options = options
     end
 
     # @return [String]
     def render
-      "<td#{td_style}>#{td_value}</td>"
+      [start_tag, tag_style, '>', tag_value, end_tag].join
     end
 
     protected
@@ -37,7 +45,7 @@ module Vedeu
     private
 
     # @return [String]
-    def td_style
+    def tag_style
       return '' unless border || present?(value)
 
       " style='" \
@@ -48,7 +56,7 @@ module Vedeu
     end
 
     # @return [String]
-    def td_value
+    def tag_value
       return '&nbsp;' if border || !present?(value)
 
       value
@@ -77,22 +85,12 @@ module Vedeu
 
     # @return [String]
     def fg
-      @fg ||= colour_fg
+      @fg ||= colour(char, 'foreground', '#222')
     end
 
     # @return [String]
     def bg
-      @bg ||= colour_bg
-    end
-
-    # @return [String]
-    def colour_bg
-      colour(char, 'background', '#000')
-    end
-
-    # @return [String]
-    def colour_fg
-      colour(char, 'foreground', '#222')
+      @bg ||= colour(char, 'background', '#000')
     end
 
     # @param char [Vedeu::Char]
@@ -124,6 +122,29 @@ module Vedeu
     # @return [String]
     def value
       char.value
+    end
+
+    # @return [String]
+    def start_tag
+      options[:start_tag]
+    end
+
+    # @return [String]
+    def end_tag
+      options[:end_tag]
+    end
+
+    # @return [Hash<Symbol => String>]
+    def options
+      defaults.merge!(@options)
+    end
+
+    # @return [Hash<Symbol => String>]
+    def defaults
+      {
+        start_tag: '<td',
+        end_tag:   '</td>',
+      }
     end
 
   end # HTMLChar
