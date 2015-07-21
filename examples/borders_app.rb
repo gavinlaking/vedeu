@@ -13,11 +13,9 @@ require 'vedeu'
 #
 class VedeuBordersApp
 
-  include Vedeu
-
   # Be aware that running an application with debugging enabled will affect
   # performance.
-  configure do
+  Vedeu.configure do
     # debug!
     log '/tmp/vedeu_borders_app.log'
     raw!
@@ -25,7 +23,7 @@ class VedeuBordersApp
     standalone!
   end
 
-  interface 'default_border' do
+  Vedeu.interface 'default_border' do
     geometry do
       x      2
       y      2
@@ -35,7 +33,7 @@ class VedeuBordersApp
     colour  foreground: '#ffffff', background: '#ff0000'
   end
 
-  interface 'border_off' do
+  Vedeu.interface 'border_off' do
     geometry do
       x      14
       y      2
@@ -45,7 +43,7 @@ class VedeuBordersApp
     colour  foreground: '#ffffff', background: '#ff0000'
   end
 
-  interface 'no_top' do
+  Vedeu.interface 'no_top' do
     geometry do
       x      26
       y      2
@@ -55,7 +53,7 @@ class VedeuBordersApp
     colour  foreground: '#000000', background: '#ff5500'
   end
 
-  interface 'no_bottom' do
+  Vedeu.interface 'no_bottom' do
     geometry do
       x      38
       y      2
@@ -65,7 +63,7 @@ class VedeuBordersApp
     colour  foreground: '#000000', background: '#ff5500'
   end
 
-  interface 'no_left' do
+  Vedeu.interface 'no_left' do
     geometry do
       x      50
       y      2
@@ -75,7 +73,7 @@ class VedeuBordersApp
     colour  foreground: '#000000', background: '#ff5500'
   end
 
-  interface 'no_right' do
+  Vedeu.interface 'no_right' do
     geometry do
       x      62
       y      2
@@ -85,7 +83,7 @@ class VedeuBordersApp
     colour  foreground: '#000000', background: '#ff5500'
   end
 
-  interface 'custom_corners' do
+  Vedeu.interface 'custom_corners' do
     geometry do
       x      2
       y      8
@@ -95,7 +93,7 @@ class VedeuBordersApp
     colour  foreground: '#ffffff', background: '#ff0000'
   end
 
-  interface 'custom_sides' do
+  Vedeu.interface 'custom_sides' do
     geometry do
       x      14
       y      8
@@ -105,7 +103,7 @@ class VedeuBordersApp
     colour  foreground: '#ffffff', background: '#ff0000'
   end
 
-  interface 'only_top' do
+  Vedeu.interface 'only_top' do
     geometry do
       x      26
       y      8
@@ -115,7 +113,7 @@ class VedeuBordersApp
     colour  foreground: '#ffffff', background: '#0000ff'
   end
 
-  interface 'only_bottom' do
+  Vedeu.interface 'only_bottom' do
     geometry do
       x      38
       y      8
@@ -125,7 +123,7 @@ class VedeuBordersApp
     colour  foreground: '#ffffff', background: '#0000ff'
   end
 
-  interface 'only_left' do
+  Vedeu.interface 'only_left' do
     geometry do
       x      50
       y      8
@@ -135,7 +133,7 @@ class VedeuBordersApp
     colour  foreground: '#ffffff', background: '#0000ff'
   end
 
-  interface 'only_right' do
+  Vedeu.interface 'only_right' do
     geometry do
       x      62
       y      8
@@ -145,7 +143,7 @@ class VedeuBordersApp
     colour  foreground: '#ffffff', background: '#0000ff'
   end
 
-  interface 'custom_colour' do
+  Vedeu.interface 'custom_colour' do
     geometry do
       x      2
       y      14
@@ -155,7 +153,7 @@ class VedeuBordersApp
     colour foreground: '#ffffff', background: '#ff0000'
   end
 
-  interface 'negative' do
+  Vedeu.interface 'negative' do
     geometry do
       x      14
       y      14
@@ -166,7 +164,7 @@ class VedeuBordersApp
     style  'normal'
   end
 
-  keymap '_global_' do
+  Vedeu.keymap '_global_' do
     key('r') { Vedeu.trigger(:_refresh_) }
 
     key('q')        { Vedeu.trigger(:_exit_) }
@@ -176,24 +174,24 @@ class VedeuBordersApp
   end
 
   # Borders can be defined as part of a view (see below), or standalone.
-  border 'no_bottom' do
+  Vedeu.border 'no_bottom' do
     foreground  '#ffffff'
     show_bottom false
   end
-  border 'no_left' do
+  Vedeu.border 'no_left' do
     foreground  '#ffffff'
     show_left false
   end
-  border 'no_right' do
+  Vedeu.border 'no_right' do
     foreground  '#ffffff'
     show_right false
   end
-  border 'no_top' do
+  Vedeu.border 'no_top' do
     foreground  '#ffffff'
     show_top false
   end
 
-  renders do
+  Vedeu.renders do
     view('default_border') do
       border do
         foreground '#ffffff'
