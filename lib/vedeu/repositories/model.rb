@@ -1,4 +1,4 @@
-require 'vedeu/support/common'
+require 'vedeu/common'
 
 module Vedeu
 
@@ -19,7 +19,7 @@ module Vedeu
     #
     module ClassMethods
 
-      # @!attribute [r]
+      # @!attribute [r] repository
       # @return [Vedeu::Repository]
       attr_reader :repository
 

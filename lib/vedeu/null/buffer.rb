@@ -14,10 +14,12 @@ module Vedeu
 
       # Returns a new instance of Vedeu::Null::Buffer.
       #
-      # @param name [String]
+      # @param attributes [Hash<Symbol => void>]
+      # @option attributes name [String|NilClass]
       # @return [Vedeu::Null::Buffer]
-      def initialize(name)
-        @name = name
+      def initialize(attributes = {})
+        @attributes = attributes
+        @name       = @attributes[:name]
       end
 
       # @return [NilClass]

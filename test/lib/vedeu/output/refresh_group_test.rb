@@ -14,11 +14,7 @@ module Vedeu
     end
 
     describe '.by_name' do
-      it { described.must_respond_to(:by_name) }
-    end
-
-    describe '#by_name' do
-      subject { instance.by_name }
+      subject { described.by_name(_name) }
 
       context 'when the name is not present' do
         let(:_name) { '' }
@@ -30,6 +26,10 @@ module Vedeu
         # @todo
         # it { skip }
       end
+    end
+
+    describe '#by_name' do
+      it { instance.must_respond_to(:by_name) }
     end
 
   end # RefreshGroup

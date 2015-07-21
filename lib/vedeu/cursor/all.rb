@@ -1,6 +1,7 @@
 require 'vedeu/repositories/all'
 
-require_relative 'cursor'
-require_relative 'move'
-require_relative 'refresh_cursor'
-require_relative 'reposition'
+require 'vedeu/cursor/cursor'
+require 'vedeu/cursor/cursors'
+require 'vedeu/cursor/move'
+require 'vedeu/cursor/refresh_cursor'
+require 'vedeu/cursor/reposition'

@@ -9,8 +9,13 @@ module Vedeu
 
       # Returns an instance of the Vedeu::Null::Generic class.
       #
+      # @param attributes [Hash<Symbol => void>]
+      # @option attributes name [String|NilClass]
       # @return [Vedeu::Null::Generic]
-      def initialize; end
+      def initialize(attributes = {})
+        @attributes = attributes
+        @name       = @attributes[:name]
+      end
 
       # @return [NilClass]
       def add(*)

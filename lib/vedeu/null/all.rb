@@ -11,8 +11,8 @@ module Vedeu
 
 end
 
-require_relative 'border'
-require_relative 'buffer'
-require_relative 'generic'
-require_relative 'geometry'
-require_relative 'interface'
+require 'vedeu/null/border'
+require 'vedeu/null/buffer'
+require 'vedeu/null/generic'
+require 'vedeu/null/geometry'
+require 'vedeu/null/interface'

@@ -87,12 +87,17 @@ module Vedeu
     end
 
     describe '#by_name' do
-      let(:_name) {}
+      let(:_name) { 'carbon' }
 
       subject { instance.by_name(_name) }
 
-      # @todo
-      # it { skip }
+      context 'when the model exists' do
+        # it { skip }
+      end
+
+      context 'when the model does not exist' do
+        # it { skip }
+      end
     end
 
     describe '#current' do

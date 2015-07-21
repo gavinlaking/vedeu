@@ -105,7 +105,7 @@ module Vedeu
         fail MissingRequired, "Cannot render template for '#{name}', without " \
                               'a filename.' unless filename
 
-        content   = Vedeu::Template.parse(object, filename)
+        content   = Vedeu::Templating::Template.parse(object, filename)
         lines     = Vedeu::Wordwrap.for(content, options)
 
         new_model = model.member.build(template_attributes(name, lines))

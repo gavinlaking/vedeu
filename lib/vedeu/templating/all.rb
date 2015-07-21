@@ -7,6 +7,7 @@ module Vedeu
 
 end # Vedeu
 
-require_relative 'helpers'
-require_relative 'directive'
-require_relative 'preprocessor'
+require 'vedeu/templating/helpers'
+require 'vedeu/templating/directive'
+require 'vedeu/templating/preprocessor'
+require 'vedeu/templating/template'

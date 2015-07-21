@@ -1,4 +1,4 @@
-require_relative 'controller'
+require 'vedeu/application/controller'
 
 module Vedeu
 

@@ -1,4 +1,5 @@
-require 'vedeu/repositories/collections/all'
+require 'vedeu/repositories/collection'
 
-require_relative 'event'
-require_relative 'trigger'
+require 'vedeu/events/events'
+require 'vedeu/events/event'
+require 'vedeu/events/trigger'

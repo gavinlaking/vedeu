@@ -1,4 +1,4 @@
-require 'vedeu/support/common'
+require 'vedeu/common'
 
 require 'vedeu/dsl/use'
 require 'vedeu/dsl/presentation'

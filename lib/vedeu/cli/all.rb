@@ -1,1 +1,1 @@
-require_relative 'main'
+require 'vedeu/cli/main'

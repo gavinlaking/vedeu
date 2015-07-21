@@ -9,5 +9,5 @@ module Vedeu
 
 end # Vedeu
 
-require_relative 'named_group'
-require_relative 'named_interface'
+require 'vedeu/output/clear/named_group'
+require 'vedeu/output/clear/named_interface'

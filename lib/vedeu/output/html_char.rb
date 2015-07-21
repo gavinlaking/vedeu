@@ -1,4 +1,4 @@
-require 'vedeu/support/common'
+require 'vedeu/common'
 
 module Vedeu
 

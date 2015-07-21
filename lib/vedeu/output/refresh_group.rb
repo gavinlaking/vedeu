@@ -1,4 +1,4 @@
-require_relative 'refresh'
+require 'vedeu/output/refresh'
 
 module Vedeu
 
@@ -46,8 +46,10 @@ module Vedeu
 
     # @return [Set]
     def members
-      fail Vedeu::MissingRequired,
-        'Cannot refresh group with an empty group name.' unless present?(name)
+      unless present?(name)
+        fail Vedeu::MissingRequired,
+             'Cannot refresh group with an empty group name.'
+      end
 
       Vedeu.groups.by_name(name).members
     end

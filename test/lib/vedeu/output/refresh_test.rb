@@ -47,7 +47,7 @@ module Vedeu
 
     describe '.by_name' do
       let(:_name)  { 'aluminium' }
-      let(:buffer) { Vedeu::Null::Buffer.new(_name) }
+      let(:buffer) { Vedeu::Null::Buffer.new(name: _name) }
 
       subject { described.by_name(_name) }
 

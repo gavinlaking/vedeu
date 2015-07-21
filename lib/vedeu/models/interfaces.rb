@@ -34,6 +34,6 @@ module Vedeu
 
     repo Vedeu::Interfaces.repository
 
-  end
+  end # Interface
 
 end # Vedeu

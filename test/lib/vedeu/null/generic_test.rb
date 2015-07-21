@@ -7,7 +7,13 @@ module Vedeu
     describe Generic do
 
       let(:described) { Vedeu::Null::Generic }
-      let(:instance)  { described.new }
+      let(:instance)  { described.new(attributes) }
+      let(:attributes){
+        {
+          name: _name
+        }
+      }
+      let(:_name) { 'null_generic' }
 
       describe 'alias methods' do
         it { instance.must_respond_to(:visible?) }
@@ -15,6 +21,9 @@ module Vedeu
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
+        it {
+          instance.instance_variable_get('@attributes').must_equal(attributes)
+        }
       end
 
       describe '#add' do

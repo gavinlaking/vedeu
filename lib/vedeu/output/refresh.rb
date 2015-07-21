@@ -1,4 +1,4 @@
-require_relative 'refresh_group'
+require 'vedeu/output/refresh_group'
 
 module Vedeu
 

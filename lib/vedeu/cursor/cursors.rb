@@ -19,25 +19,8 @@ module Vedeu
 
     end # Eigenclass
 
+    null Vedeu::Cursor
     real Vedeu::Cursor
-
-    # @example
-    #   Vedeu.cursors.by_name('some_name')
-    #
-    # @param name [String] The name of the stored cursor.
-    # @return [Vedeu::Cursor]
-    def by_name(name)
-      if registered?(name)
-        find(name)
-
-      elsif name
-        Vedeu::Cursor.new(name: name).store
-
-      else
-        Vedeu::Cursor.new(name: Vedeu.focus).store
-
-      end
-    end
 
   end # Cursors
 
@@ -45,6 +28,6 @@ module Vedeu
 
     repo Vedeu::Cursors.repository
 
-  end
+  end # Cursor
 
 end # Vedeu

@@ -13,22 +13,8 @@ module Vedeu
 
     end # Eigenclass
 
+    null Vedeu::Group
     real Vedeu::Group
-
-    # @example
-    #   Vedeu.groups.by_name('name')
-    #
-    # @param name [String] The name of the stored group.
-    # @return [Vedeu::Group]
-    def by_name(name)
-      if registered?(name)
-        find(name)
-
-      else
-        Vedeu::Group.new(name: name).store
-
-      end
-    end
 
   end # Groups
 
@@ -36,6 +22,6 @@ module Vedeu
 
     repo Vedeu::Groups.repository
 
-  end
+  end # Group
 
 end # Vedeu

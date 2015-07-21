@@ -1,4 +1,4 @@
-require 'vedeu/support/toggleable'
+require 'vedeu/models/toggleable'
 
 module Vedeu
 
@@ -40,7 +40,7 @@ module Vedeu
     def add(member)
       @members = members.add(member)
 
-      Vedeu::Group.new(name: name, members: @members).store
+      Vedeu::Group.new(name: name, members: @members, visible: visible).store
     end
 
     # Hide the named group of interfaces, or without a name, the group of the
@@ -72,7 +72,7 @@ module Vedeu
     def remove(member)
       @members = members.delete(member)
 
-      Vedeu::Group.new(name: name, members: @members).store
+      Vedeu::Group.new(name: name, members: @members, visible: visible).store
     end
 
     # Remove all members from the group.

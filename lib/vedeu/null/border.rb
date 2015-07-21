@@ -14,10 +14,12 @@ module Vedeu
 
       # Returns a new instance of Vedeu::Null::Border.
       #
-      # @param name [String|NilClass]
+      # @param attributes [Hash<Symbol => void>]
+      # @option attributes name [String|NilClass]
       # @return [Vedeu::Null::Border]
-      def initialize(name = nil)
-        @name = name
+      def initialize(attributes = {})
+        @attributes = attributes
+        @name       = @attributes[:name]
       end
 
       # @return [Fixnum]

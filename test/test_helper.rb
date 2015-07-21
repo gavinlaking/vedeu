@@ -5,7 +5,13 @@ require 'minitest/autorun'
 require 'minitest/pride' unless ENV['NO_COLOR']
 require 'minitest/hell'
 
-# GC.disable # uncomment to remove ~20ms from test run speed
+# Notes: (2015-07-20)
+#
+# On my MacBookPro 6,2 (Mid-2010), the test speed is around 0.9s to 1.1s.
+# On my Raspberry Pi 2 (Early 2015), the test speed is around 6.5s to 7.0s.
+
+# GC.disable # Uncomment to remove ~20ms from test run speed; left uncommented
+             # though makes tests slower over time with 'guard'.
 
 SimpleCov.start do
   formatter SimpleCov::Formatter::Console if ENV['CONSOLE_COVERAGE']

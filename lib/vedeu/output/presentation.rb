@@ -6,6 +6,9 @@ module Vedeu
   # @api private
   module Presentation
 
+    # Returns the background colour for the model, or if it does not exist,
+    # returns the parent background colour, or an empty Vedeu::Background.
+    #
     # @return [Vedeu::Background]
     def background
       @background ||= if colour
@@ -17,6 +20,9 @@ module Vedeu
                       end
     end
 
+    # Allows the setting of the background colour by coercing the given value
+    # into a Vedeu::Background colour.
+    #
     # @return [Vedeu::Background]
     def background=(value)
       self.colour = Vedeu::Colour.coerce(
@@ -38,11 +44,17 @@ module Vedeu
                   end
     end
 
+    # Allows the setting of the model's colour by coercing the given value into
+    # a Vedeu::Colour.
+    #
     # @return [Vedeu::Colour]
     def colour=(value)
       @colour = attributes[:colour] = Vedeu::Colour.coerce(value)
     end
 
+    # Returns the foreground colour for the model, or if it does not exist,
+    # returns the parent foreground colour, or an empty Vedeu::Foreground.
+    #
     # @return [Vedeu::Foreground]
     def foreground
       @foreground ||= if colour
@@ -54,6 +66,9 @@ module Vedeu
                       end
     end
 
+    # Allows the setting of the foreground colour by coercing the given value
+    # into a Vedeu::Foreground colour.
+    #
     # @return [Vedeu::Foreground]
     def foreground=(value)
       self.colour = Vedeu::Colour.coerce(
@@ -61,6 +76,9 @@ module Vedeu
         background: colour.background)
     end
 
+    # Returns the parent background colour if a parent colour is available, or
+    # an empty Vedeu::Background.
+    #
     # @return [Vedeu::Background]
     def parent_background
       if parent_colour
@@ -72,11 +90,16 @@ module Vedeu
       end
     end
 
+    # Returns the parent colour if available or NilClass.
+    #
     # @return [String|NilClass]
     def parent_colour
       parent.colour if parent
     end
 
+    # Returns the parent foreground colour if a parent colour is available, or
+    # an empty Vedeu::Foreground.
+    #
     # @return [Vedeu::Foreground]
     def parent_foreground
       if parent_colour
@@ -88,6 +111,8 @@ module Vedeu
       end
     end
 
+    # Returns the parent style if available or NilClass.
+    #
     # @return [String|NilClass]
     def parent_style
       if parent

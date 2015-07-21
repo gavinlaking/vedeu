@@ -1,2 +1,3 @@
-require_relative 'buffer'
-require_relative 'display_buffer'
+require 'vedeu/buffers/buffers'
+require 'vedeu/buffers/buffer'
+require 'vedeu/buffers/display_buffer'

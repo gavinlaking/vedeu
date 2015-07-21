@@ -7,7 +7,12 @@ module Vedeu
     describe Geometry do
 
       let(:described) { Vedeu::Null::Geometry }
-      let(:instance)  { described.new(_name) }
+      let(:instance)  { described.new(attributes) }
+      let(:attributes){
+        {
+          name: _name
+        }
+      }
       let(:_name)     { 'null_geometry' }
 
       before do
@@ -17,6 +22,9 @@ module Vedeu
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
+        it {
+          instance.instance_variable_get('@attributes').must_equal(attributes)
+        }
         it { instance.instance_variable_get('@name').must_equal(_name) }
       end
 

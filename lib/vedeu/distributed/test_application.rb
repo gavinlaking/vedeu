@@ -75,7 +75,7 @@ module Vedeu
     def build(&block)
       instance_eval(&block) if block_given?
 
-      Vedeu::Template.parse(self, template)
+      Vedeu::Templating::Template.parse(self, template)
     end
 
     # @return [String]
