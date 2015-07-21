@@ -161,6 +161,11 @@ module Vedeu
 
       subject { instance.render }
 
+      it {
+        Vedeu::Output.expects(:render)
+        subject
+      }
+
       # @todo
       # it { skip }
       # it { subject.must_be_instance_of(Array) }

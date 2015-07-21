@@ -73,6 +73,13 @@ module Vedeu
       it { instance.must_respond_to(:add) }
     end
 
+    describe '#hide' do
+      subject { instance.hide }
+
+      # @todo
+      # it { skip }
+    end
+
     describe '#inspect' do
       subject { instance.inspect }
 
@@ -151,6 +158,13 @@ module Vedeu
 
         it { subject.must_equal([]) }
       end
+    end
+
+    describe '#show' do
+      subject { instance.show }
+
+      # @todo
+      # it { skip }
     end
 
     describe '#store' do

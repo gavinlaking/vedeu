@@ -29,45 +29,31 @@ module Vedeu
       end
 
       describe '#hide' do
-        subject { instance.hide }
-
-        it { subject.must_be_instance_of(NilClass) }
+        it { instance.hide.must_be_instance_of(NilClass) }
       end
 
       describe '#null?' do
-        subject { instance.null? }
-
-        it { subject.must_be_instance_of(TrueClass) }
+        it { instance.null?.must_be_instance_of(TrueClass) }
       end
 
       describe '#parent' do
-        subject { instance.parent }
-
-        it { subject.must_be_instance_of(NilClass) }
+        it { instance.parent.must_be_instance_of(NilClass) }
       end
 
       describe '#show' do
-        subject { instance.show }
-
-        it { subject.must_be_instance_of(NilClass) }
+        it { instance.show.must_be_instance_of(NilClass) }
       end
 
       describe '#store' do
-        subject { instance.store }
-
-        it { subject.must_be_instance_of(Vedeu::Null::Interface) }
+        it { instance.store.must_be_instance_of(Vedeu::Null::Interface) }
       end
 
       describe '#toggle' do
-        subject { instance.toggle }
-
-        it { subject.must_be_instance_of(NilClass) }
+        it { instance.toggle.must_be_instance_of(NilClass) }
       end
 
       describe '#visible?' do
-        subject { instance.visible? }
-
-        it { subject.must_be_instance_of(FalseClass) }
+        it { instance.visible?.must_be_instance_of(FalseClass) }
       end
 
       describe '#visible=' do

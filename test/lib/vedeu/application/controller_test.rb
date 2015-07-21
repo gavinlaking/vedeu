@@ -14,7 +14,14 @@ module Vedeu
     let(:instance)  { described.new }
 
     context 'ClassMethods' do
-      # @todo
+      let(:_name) { :vedeu_controller_test }
+
+      subject { ControllerTestClass.controller_name(_name) }
+
+      it {
+        Vedeu.expects(:bind).with(:show_vedeu_controller_test)
+        subject
+      }
     end
 
   end # Controller

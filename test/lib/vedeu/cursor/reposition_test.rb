@@ -27,17 +27,13 @@ module Vedeu
     end
 
     describe '.to' do
-      it { described.must_respond_to(:to) }
-    end
-
-    describe '#to' do
       # let(:new_entity) { Vedeu::Cursor.new(name: _name, y: 8, x: 5, oy: 7, ox: 4) }
 
       # before do
       #   entity.stubs(:new).returns(new_entity)
       # end
 
-      subject { instance.to }
+      subject { described.to(entity, _name, y, x) }
 
       it { subject.must_be_instance_of(entity) }
 
@@ -60,6 +56,10 @@ module Vedeu
       it { subject.y.must_equal(8) }
       it { subject.ox.must_equal(4) }
       it { subject.oy.must_equal(7) }
+    end
+
+    describe '#to' do
+      it { instance.must_respond_to(:to) }
     end
 
   end # Reposition
