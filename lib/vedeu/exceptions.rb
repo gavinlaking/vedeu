@@ -2,7 +2,6 @@ module Vedeu
 
   # Raised with Vedeu attempts to access a named model that does not exist.
   #
-  # @api private
   class ModelNotFound < StandardError
 
   end # ModeSwitch
@@ -10,7 +9,6 @@ module Vedeu
   # Raised when Vedeu attempts to parse a {Vedeu.view} or {Vedeu.interface} and
   # encounters a problem.
   #
-  # @api private
   class InvalidSyntax < StandardError
 
   end # InvalidSyntax
@@ -18,7 +16,6 @@ module Vedeu
   # Raised when a name is not provided for a model when attempting to store it
   # in a repository.
   #
-  # @api private
   class MissingRequired < StandardError
 
   end # MissingRequired
@@ -28,7 +25,6 @@ module Vedeu
   #
   # @see Vedeu::Application
   #
-  # @api private
   class ModeSwitch < StandardError
 
   end # ModeSwitch
@@ -38,7 +34,6 @@ module Vedeu
   #
   # @see Vedeu::ColourTranslator
   #
-  # @api private
   class NotImplemented < StandardError
 
   end # NotImplemented
@@ -48,7 +43,6 @@ module Vedeu
   #
   # @see Vedeu::Grid
   #
-  # @api private
   class OutOfRange < StandardError
 
   end # OutOfRange
@@ -57,7 +51,6 @@ module Vedeu
   #
   # @see Vedeu::MainLoop
   #
-  # @api private
   class VedeuInterrupt < StandardError
 
   end # VedeuInterrupt

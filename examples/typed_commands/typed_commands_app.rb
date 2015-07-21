@@ -91,6 +91,6 @@ class VedeuTypedCommands
     Vedeu::Launcher.execute!(argv)
   end
 
-end
+end # VedeuTypedCommands
 
 VedeuTypedCommands.start(ARGV)

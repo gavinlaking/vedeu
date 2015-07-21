@@ -2,7 +2,6 @@ module Vedeu
 
   # Present a string (or object responding to `to_s`).
   #
-  # @api private
   class Text
 
     # @see Vedeu::DSL::Text#text

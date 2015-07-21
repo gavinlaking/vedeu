@@ -10,7 +10,6 @@ module Vedeu
   # {Vedeu::Geometry}. It is a container for {Vedeu::Line} and {Vedeu::Stream}
   # objects.
   #
-  # @api private
   class Interface
 
     include Vedeu::Model

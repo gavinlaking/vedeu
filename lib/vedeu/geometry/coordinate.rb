@@ -2,7 +2,6 @@ module Vedeu
 
   # Crudely corrects out of range values.
   #
-  # @api private
   class Coordinate
 
     extend Forwardable

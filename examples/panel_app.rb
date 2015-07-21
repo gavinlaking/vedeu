@@ -68,6 +68,6 @@ class VedeuPanelApp
     Vedeu::Launcher.execute!(argv)
   end
 
-end
+end # VedeuPanelApp
 
 VedeuPanelApp.start(ARGV)

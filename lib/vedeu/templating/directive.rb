@@ -4,7 +4,6 @@ module Vedeu
 
     # Converts a directive found in a template into a Vedeu::Stream object.
     #
-    # @api private
     class Directive
 
       include Vedeu::Templating::Helpers

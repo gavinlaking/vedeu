@@ -2,9 +2,8 @@ module Vedeu
 
   module Clear
 
-    # Clear the named group.
+    # Clear the interfaces belonging to the named group.
     #
-    # @api private
     class NamedGroup
 
       class << self

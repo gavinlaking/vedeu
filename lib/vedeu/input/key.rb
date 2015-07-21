@@ -2,7 +2,6 @@ module Vedeu
 
   # A single keypress or combination of keypresses bound to a specific action.
   #
-  # @api private
   class Key
 
     # @!attribute [r] input

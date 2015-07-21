@@ -45,4 +45,4 @@ class VedeuColoursApp
     end
   end
 
-end
+end # VedeuColoursApp

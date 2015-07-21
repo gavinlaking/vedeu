@@ -7,7 +7,6 @@ module Vedeu
     # Provides functionality used by the generators to build the client
     # application.
     #
-    # @api private
     # :nocov:
     module Helpers
 

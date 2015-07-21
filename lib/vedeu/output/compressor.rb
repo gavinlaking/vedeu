@@ -4,7 +4,6 @@ module Vedeu
   # sequences, this class removes multiple occurences of the same escape
   # sequence, resulting in a smaller payload being sent to the renderer.
   #
-  # @api private
   class Compressor
 
     # @param output [Array<Array<Vedeu::Char>>]

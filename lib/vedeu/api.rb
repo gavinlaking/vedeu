@@ -379,20 +379,10 @@ module Vedeu
     #   @see Vedeu::Cursor#show
     def_delegators Vedeu::Cursor, :toggle_cursor
 
-    # Hide the group with the given name.
-    #
-    # @example
-    #   Vedeu.hide_group(name)
-    #
     # @!method hide_group
     #   @see Vedeu::Group#hide
     def_delegators Vedeu::Group, :hide_group
 
-    # Shows the group with the given name.
-    #
-    # @example
-    #   Vedeu.show_group(name)
-    #
     # @!method show_group
     #   @see Vedeu::Group#show
     def_delegators Vedeu::Group, :show_group

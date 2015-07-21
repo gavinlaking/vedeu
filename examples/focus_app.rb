@@ -126,6 +126,6 @@ class VedeuFocusApp
     Vedeu::Launcher.execute!(argv)
   end
 
-end
+end # VedeuFocusApp
 
 VedeuFocusApp.start(ARGV)

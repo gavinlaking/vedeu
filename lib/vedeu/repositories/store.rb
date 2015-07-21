@@ -2,7 +2,6 @@ module Vedeu
 
   # Provides generic repository related behaviour.
   #
-  # @api private
   module Store
 
     include Enumerable

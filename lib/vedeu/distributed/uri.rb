@@ -5,7 +5,6 @@ module Vedeu
     # Value class which provides the host and port for the DRb server and
     # client.
     #
-    # @api private
     class Uri
 
       # @!attribute [r] host

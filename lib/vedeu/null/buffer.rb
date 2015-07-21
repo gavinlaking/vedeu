@@ -5,7 +5,6 @@ module Vedeu
     # Provides a non-existent Vedeu::Buffer that acts like the real thing, but
     # does nothing.
     #
-    # @api private
     class Buffer
 
       # @!attribute [r] name

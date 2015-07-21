@@ -47,6 +47,6 @@ class HelloWorldApp
     Vedeu::Launcher.execute!(argv)
   end
 
-end
+end # HelloWorldApp
 
 HelloWorldApp.start(ARGV)

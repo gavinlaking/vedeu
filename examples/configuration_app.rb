@@ -58,6 +58,6 @@ class VedeuConfigurationApp
     Vedeu::Launcher.execute!(argv)
   end
 
-end
+end # VedeuConfigurationApp
 
 VedeuConfigurationApp.start(ARGV)

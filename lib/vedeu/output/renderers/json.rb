@@ -4,7 +4,6 @@ module Vedeu
 
     # Renders a {Vedeu::VirtualBuffer} or {Vedeu::Output} as JSON.
     #
-    # @api private
     class JSON < Vedeu::Renderers::File
 
       # Returns a new instance of Vedeu::Renderers::JSON.

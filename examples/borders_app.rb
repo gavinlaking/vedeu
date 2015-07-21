@@ -322,6 +322,6 @@ class VedeuBordersApp
     Vedeu::Launcher.execute!(argv)
   end
 
-end
+end # VedeuBordersApp
 
 VedeuBordersApp.start(ARGV)

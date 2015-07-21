@@ -3,7 +3,6 @@ module Vedeu
   # Repositories contain registerables, this module provides convenience methods
   # for them.
   #
-  # @api private
   module Registerable
 
     # These class methods are mixed into the repository.

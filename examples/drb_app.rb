@@ -115,6 +115,6 @@ class VedeuTestApplication
     Vedeu::Launcher.execute!(argv, stdin, stdout, stderr, kernel)
   end
 
-end
+end # VedeuTestApplication
 
 VedeuTestApplication.start(ARGV)

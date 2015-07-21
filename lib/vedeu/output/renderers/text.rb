@@ -5,7 +5,6 @@ module Vedeu
     # Converts a grid of {Vedeu::Char} objects into a stream of escape sequences
     # and content.
     #
-    # @api private
     class Text
 
       include Vedeu::RendererOptions

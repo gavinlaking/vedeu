@@ -39,7 +39,6 @@ module Vedeu
   #   The view will move freely within the bounds of the interface,
   #     irrespective of content.
   #
-  # @api private
   class Move
 
     extend Forwardable

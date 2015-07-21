@@ -144,6 +144,6 @@ class VedeuGeometryApp
     Vedeu::Launcher.execute!(argv)
   end
 
-end
+end # VedeuGeometryApp
 
 VedeuGeometryApp.start(ARGV)

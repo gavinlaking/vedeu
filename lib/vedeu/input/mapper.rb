@@ -2,7 +2,6 @@ module Vedeu
 
   # Maps keys to keymaps.
   #
-  # @api private
   class Mapper
 
     # Takes a key as a keypress and sends it to registered keymaps. If found,

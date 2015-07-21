@@ -4,7 +4,6 @@ module Vedeu
 
     # Clear the named interface.
     #
-    # @api private
     class NamedInterface
 
       class << self

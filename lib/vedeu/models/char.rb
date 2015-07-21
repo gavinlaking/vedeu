@@ -11,7 +11,6 @@ module Vedeu
   # Though a multi-character String can be passed as a value, only the first
   # character is returned in the escape sequence.
   #
-  # @api private
   class Char
 
     include Comparable

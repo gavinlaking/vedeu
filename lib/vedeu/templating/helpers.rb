@@ -4,7 +4,6 @@ module Vedeu
 
     # Provide helpers to be used with your Vedeu templates.
     #
-    # @api private
     module Helpers
 
       # @example
