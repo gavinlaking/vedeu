@@ -3,7 +3,7 @@ module Vedeu
   # Represents an invisible escape character sequence.
   #
   # @api private
-  class EscapeChar
+  class Escape
 
     # @!attribute [r] value
     # @return [String]
@@ -11,10 +11,10 @@ module Vedeu
     alias_method :to_s, :value
     alias_method :to_str, :value
 
-    # Returns a new instance of Vedeu::EscapeChar.
+    # Returns a new instance of Vedeu::Escape.
     #
     # @param value [String]
-    # @return [Vedeu::EscapeChar]
+    # @return [Vedeu::Escape]
     def initialize(value)
       @value = value
     end
@@ -37,7 +37,7 @@ module Vedeu
     #
     # @return [String]
     def inspect
-      "<Vedeu::EscapeChar '#{Vedeu::Esc.escape(to_s)}'>"
+      "<Vedeu::Escape '#{Vedeu::Esc.escape(to_s)}'>"
     end
 
     # @return [String]
@@ -50,6 +50,6 @@ module Vedeu
       ''
     end
 
-  end # EscapeChar
+  end # Escape
 
 end # Vedeu

@@ -56,7 +56,7 @@ module Vedeu
     describe '#hide' do
       subject { instance.hide }
 
-      it { subject.must_be_instance_of(Vedeu::EscapeChar) }
+      it { subject.must_be_instance_of(Vedeu::Escape) }
       it { subject.to_s.must_equal("\e[?25l") }
     end
 
@@ -78,7 +78,7 @@ module Vedeu
     describe '#show' do
       subject { instance.show }
 
-      it { subject.must_be_instance_of(Vedeu::EscapeChar) }
+      it { subject.must_be_instance_of(Vedeu::Escape) }
       it { subject.to_s.must_equal("\e[?25h") }
     end
 
