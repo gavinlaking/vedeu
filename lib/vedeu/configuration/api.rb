@@ -375,6 +375,35 @@ module Vedeu
       end
       alias_method :compression!, :compression
 
+      # Sets the terminal mode. Valid values can be either ':raw' or ':cooked'.
+      #
+      # @example
+      #   Vedeu.configure do
+      #     terminal_mode :raw
+      #     # ...
+      #   end
+      #
+      #   Vedeu.configure do
+      #     terminal_mode :cooked
+      #     # ...
+      #   end
+      #
+      # @param mode [Symbol] Either ':raw' or ':cooked'.
+      # @raise [Vedeu::InvalidSyntax] When the mode is not ':raw' or ':cooked'.
+      # @return [Symbol]
+      # @see Vedeu::Config::API#raw!
+      # @see Vedeu::Config::API#cooked!
+      def terminal_mode(value)
+        if value == :raw || value == :cooked
+          options[:terminal_mode] = value
+
+        else
+          fail Vedeu::InvalidSyntax, 'Terminal mode can be set to either :raw or ' \
+                              ':cooked'
+
+        end
+      end
+
       private
 
       # Returns the options set via the configuration API DSL or an empty Hash

@@ -271,6 +271,30 @@ module Vedeu
         end
       end
 
+      describe '#terminal_mode' do
+        context 'when setting to :raw mode' do
+          it {
+            configuration = Vedeu.configure { terminal_mode(:raw) }
+            configuration.terminal_mode.must_equal(:raw)
+          }
+        end
+
+        context 'when setting to :cooked mode' do
+          it {
+            configuration = Vedeu.configure { terminal_mode(:raw) }
+            configuration.terminal_mode.must_equal(:raw)
+          }
+        end
+
+        context 'when setting to an invalid mode' do
+          it {
+            proc {
+              Vedeu.configure { terminal_mode(:invalid) }
+            }.must_raise(Vedeu::InvalidSyntax)
+          }
+        end
+      end
+
     end # API
 
   end # Config
