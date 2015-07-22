@@ -1,1 +1,0 @@
-require 'vedeu/cli/main'

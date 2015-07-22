@@ -1,5 +1,7 @@
 module Vedeu
 
+  # Provides the mechanisms to clear an interface or group of interfaces.
+  #
   module Clear
 
     # Clear the interfaces belonging to the named group.
