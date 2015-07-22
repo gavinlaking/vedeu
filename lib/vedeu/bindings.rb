@@ -1,9 +1,3 @@
-require 'vedeu/bindings/visibility'
-require 'vedeu/bindings/movement'
-require 'vedeu/bindings/menus'
-require 'vedeu/bindings/drb'
-require 'vedeu/bindings/system'
-
 module Vedeu
 
   # Binds various events for running and manipulating Vedeu.

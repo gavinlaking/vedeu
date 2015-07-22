@@ -44,7 +44,8 @@ module Vedeu
       raw_mode!
     end
 
-    # Returns the mode of the terminal, either `:raw` or `:cooked`
+    # Returns the mode of the terminal, either `:raw` or `:cooked`. Can change
+    # throughout the lifespan of the client application.
     #
     # @return [Symbol]
     def mode

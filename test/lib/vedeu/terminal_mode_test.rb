@@ -56,8 +56,8 @@ module Vedeu
       subject { described.mode }
 
       before do
+        described.raw_mode!
         Configuration.stubs(:terminal_mode).returns(:raw)
-        Terminal.switch_mode! if Terminal.mode == :cooked
       end
 
       it { subject.must_be_instance_of(Symbol) }
