@@ -95,40 +95,4 @@ module Vedeu
 
   end # Collection
 
-  # A collection of {Vedeu::Char} instances.
-  #
-  class Chars < Vedeu::Collection
-
-  end # Chars
-
-  # A collection of {Vedeu::Event} instances.
-  #
-  class EventCollection < Vedeu::Collection
-
-  end # EventCollection
-
-  # A collection of {Vedeu::Interface} instances.
-  #
-  class InterfaceCollection < Vedeu::Collection
-
-  end # InterfaceCollection
-
-  # A collection of {Vedeu::Key} instances.
-  #
-  class Keys < Vedeu::Collection
-
-  end # Keys
-
-  # A collection of {Vedeu::Line} instances.
-  #
-  class Lines < Vedeu::Collection
-
-  end # Lines
-
-  # A collection of {Vedeu::Stream} instances.
-  #
-  class Streams < Vedeu::Collection
-
-  end # Streams
-
 end # Vedeu
