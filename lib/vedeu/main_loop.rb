@@ -24,7 +24,7 @@ module Vedeu
 
           safe_exit_point!
         end
-      rescue VedeuInterrupt
+      rescue Vedeu::VedeuInterrupt
         Vedeu.log(type:    :debug,
                   message: 'Vedeu execution interrupted, exiting.')
       end
@@ -44,7 +44,7 @@ module Vedeu
       #   application.
       # @return [void]
       def safe_exit_point!
-        fail VedeuInterrupt if @started && !@loop
+        fail Vedeu::VedeuInterrupt if @started && !@loop
       end
       # :nocov:
 
