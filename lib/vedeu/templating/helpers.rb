@@ -1,10 +1,10 @@
 module Vedeu
 
+  # Provides means to use templates with Vedeu.
   module Templating
 
     # Provide helpers to be used with your Vedeu templates.
     #
-    # @api private
     module Helpers
 
       # @example

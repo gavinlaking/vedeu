@@ -4,7 +4,6 @@ module Vedeu
 
     # Writes the given output to a file.
     #
-    # @api private
     class File
 
       # Returns a new instance of Vedeu::Renderers::File.

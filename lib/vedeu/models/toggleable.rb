@@ -1,8 +1,11 @@
 module Vedeu
 
-  # Toggleable instance methods for certain models.
+  # This module provides behaviour for certain classes which can be toggled
+  # between being shown and hidden.
   #
-  # @api private
+  # Currently using this are: {Vedeu::Cursor}, {Vedeu::Group} and
+  # {Vedeu::Interface}.
+  #
   module Toggleable
 
     # @!attribute [rw] visible
@@ -10,6 +13,8 @@ module Vedeu
     attr_accessor :visible
     alias_method :visible?, :visible
 
+    # Set the visible state to false and store the model.
+    #
     # @return [FalseClass]
     def hide
       @visible = false
@@ -17,6 +22,8 @@ module Vedeu
       store
     end
 
+    # Set the visible state to true and store the model.
+    #
     # @return [TrueClass]
     def show
       @visible = true
@@ -24,6 +31,8 @@ module Vedeu
       store
     end
 
+    # Toggle the visible state and store the model.
+    #
     # @return [FalseClass|TrueClass]
     def toggle
       if visible?
@@ -35,11 +44,12 @@ module Vedeu
       end
     end
 
-    # Toggleable class methods for models.
+    # Provide class methods to models to allow the visibility to be changed.
     #
-    # @api private
     module ClassMethods
 
+      # Hides the model.
+      #
       # @param name [String]
       # @return [void]
       def hide(name = nil)
@@ -49,6 +59,8 @@ module Vedeu
       alias_method :hide_group,     :hide
       alias_method :hide_interface, :hide
 
+      # Shows the model.
+      #
       # @param name [String]
       # @return [void]
       def show(name = nil)
@@ -58,6 +70,8 @@ module Vedeu
       alias_method :show_group,     :show
       alias_method :show_interface, :show
 
+      # Toggles the visibility of the model.
+      #
       # @param name [String]
       # @return [void]
       def toggle(name = nil)
@@ -69,17 +83,13 @@ module Vedeu
 
       private
 
+      # Fetch the model by name.
+      #
       # @param name [String]
       # @param klass [void] The repository of the model.
       # @return [void]
       def model_by_name(name = nil, klass)
-        klass.by_name(model_name(name))
-      end
-
-      # @param name [String]
-      # @return [void]
-      def model_name(name = nil)
-        name || Vedeu.focus
+        klass.by_name(name || Vedeu.focus)
       end
 
     end # ClassMethods

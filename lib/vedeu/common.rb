@@ -2,7 +2,6 @@ module Vedeu
 
   # A module for common methods used throughout Vedeu.
   #
-  # @api private
   module Common
 
     # Removes the module part from the expression in the string.

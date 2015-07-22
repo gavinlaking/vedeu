@@ -27,7 +27,6 @@ module Vedeu
   # application settings (via the configuration API), or any command-line
   # arguments provided.
   #
-  # @api private
   class Configuration
 
     include Singleton

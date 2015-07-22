@@ -6,7 +6,6 @@ module Vedeu
   # helpers. The client application's ApplicationHelper will include this
   # module.
   #
-  # @api private
   module ApplicationHelper
 
     include Vedeu::Helper

@@ -4,7 +4,6 @@ module Vedeu
   # real counterpart. In most cases the call is muted or returns a generic
   # value that does not halt processing.
   #
-  # @api private
   module Null
 
   end

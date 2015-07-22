@@ -13,16 +13,14 @@ require 'vedeu'
 #
 class VedeuColoursApp
 
-  include Vedeu
-
   # Be aware that running an application with debugging enabled will affect
   # performance.
-  configure do
+  Vedeu.configure do
     # debug!
     log '/tmp/vedeu_colours_app.log'
   end
 
-  interface 'colours_256' do
+  Vedeu.interface 'colours_256' do
     geometry do
       centred!
       height 16
@@ -30,7 +28,7 @@ class VedeuColoursApp
     end
   end
 
-  renders do
+  Vedeu.renders do
     view('colours_256') do
       lines do
         0.upto(16) do |row|
@@ -45,4 +43,4 @@ class VedeuColoursApp
     end
   end
 
-end
+end # VedeuColoursApp

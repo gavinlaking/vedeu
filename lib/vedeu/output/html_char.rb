@@ -5,7 +5,6 @@ module Vedeu
   # Represents a {Vedeu::Char} as a HTML tag with value. By default, a table
   # cell is used.
   #
-  # @api private
   class HTMLChar
 
     include Vedeu::Common

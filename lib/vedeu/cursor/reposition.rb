@@ -2,7 +2,6 @@ module Vedeu
 
   # Provides the mechanism to arbitrarily move a cursor to a given position.
   #
-  # @api private
   class Reposition
 
     # @return [Vedeu::Cursor]

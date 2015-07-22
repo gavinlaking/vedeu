@@ -11,7 +11,6 @@ module Vedeu
   # is copied to the 'Front' buffer, the current 'Front' buffer is also copied
   # to the 'Previous' buffer.
   #
-  # @api private
   class Buffer
 
     include Vedeu::Model

@@ -3,7 +3,6 @@ module Vedeu
   # This module is included in Vedeu::Interface to provide means to store client
   # application views created with {Vedeu.renders} or {Vedeu.views}.
   #
-  # @api private
   module DisplayBuffer
 
     include Vedeu::Common

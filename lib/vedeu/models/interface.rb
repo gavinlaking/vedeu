@@ -10,7 +10,6 @@ module Vedeu
   # {Vedeu::Geometry}. It is a container for {Vedeu::Line} and {Vedeu::Stream}
   # objects.
   #
-  # @api private
   class Interface
 
     include Vedeu::Model
@@ -134,8 +133,8 @@ module Vedeu
 
       output = [
         Vedeu::Clear::NamedInterface.render(name),
-        Vedeu.borders.by_name(name).render,
         Vedeu::Viewport.render(self),
+        Vedeu.borders.by_name(name).render,
       ]
 
       Vedeu.trigger(:_show_cursor_, name)

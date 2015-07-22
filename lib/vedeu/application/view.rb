@@ -2,7 +2,6 @@ module Vedeu
 
   # Provides methods to be used by Vedeu::ApplicationView.
   #
-  # @api private
   module View
 
     # Returns the current local time.

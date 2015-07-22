@@ -12,19 +12,22 @@ require 'vedeu'
 #
 #     ./examples/material_colours_app.rb
 #
+# Running this application once, and immediately exiting produces the diagram
+# at `./examples/material_colours_app_20150721.svg`. Hopefully this will help
+# you to understand how parts of Vedeu work together. Questions are always
+# welcome at `https://github.com/gavinlaking/vedeu/issues`
+#
 class VedeuMaterialColoursApp
-
-  include Vedeu
 
   # Be aware that running an application with debugging enabled will affect
   # performance.
-  configure do
+  Vedeu.configure do
     # debug!
     log '/tmp/vedeu_material_colours_app.log'
     # renderers Vedeu::Renderers::File.new
   end
 
-  interface 'main_interface' do
+  Vedeu.interface 'main_interface' do
     border 'main_interface' do
       colour foreground: '#ffffff', background: :default
       title 'Rainbow!'
@@ -42,10 +45,17 @@ class VedeuMaterialColoursApp
 
   # This interface uses the 'parens' style for the DSL, which sometimes helps
   # Ruby to understand the values you provide.
-  interface 'other_interface' do
+  #
+  # It also uses custom border characters to demonstrate that functionality.
+  Vedeu.interface 'other_interface' do
     border 'other_interface' do
       colour(foreground: '#ffffff', background: :default)
       title('Wow!')
+      horizontal('-')
+      top_right('+')
+      top_left('+')
+      bottom_right('+')
+      bottom_left('+')
     end
     colour(foreground: '#ffffff', background: :default)
     cursor!
@@ -58,7 +68,7 @@ class VedeuMaterialColoursApp
     zindex(1)
   end
 
-  keymap('_global_') do
+  Vedeu.keymap('_global_') do
     key(:up)    { Vedeu.trigger(:_cursor_up_)    }
     key(:right) { Vedeu.trigger(:_cursor_right_) }
     key(:down)  { Vedeu.trigger(:_cursor_down_)  }
@@ -93,7 +103,7 @@ class VedeuMaterialColoursApp
     key('v') { Vedeu.trigger(:_unmaximise_, 'other_interface') }
   end
 
-  renders do
+  Vedeu.renders do
     view 'main_interface' do
       line { centre 'Red',         width: 20, background: '#f44336' }
       line { centre 'Pink',        width: 20, background: '#e91e63' }
@@ -139,12 +149,12 @@ class VedeuMaterialColoursApp
     end
   end
 
-  focus_by_name 'main_interface'
+  Vedeu.focus_by_name 'main_interface'
 
   def self.start(argv = ARGV)
     Vedeu::Launcher.execute!(argv)
   end
 
-end
+end # VedeuMaterialColoursApp
 
 VedeuMaterialColoursApp.start(ARGV)

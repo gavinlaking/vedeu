@@ -5,7 +5,6 @@ module Vedeu
     # Renders a {Vedeu::VirtualBuffer} or {Vedeu::Output} as a HTML snippet;
     # a table by default.
     #
-    # @api private
     class HTML < Vedeu::Renderers::File
 
       # Returns a new instance of Vedeu::Renderers::HTML.

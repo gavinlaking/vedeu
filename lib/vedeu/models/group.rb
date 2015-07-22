@@ -5,7 +5,6 @@ module Vedeu
   # Interfaces can be associated with one another by being members of the same
   # Group. A Group is a collection of interface names.
   #
-  # @api private
   class Group
 
     include Vedeu::Model
@@ -17,20 +16,22 @@ module Vedeu
 
     # Return a new instance of Vedeu::Group.
     #
+    # @note
+    #   A group being visible or not may not necessarily mean the members are of
+    #   the same state.
+    #
     # @param attributes [Hash]
-    # @option attributes members [Array] A collection of names of interfaces
+    # @option attributes members [Set] A collection of names of interfaces
     #   belonging to this group.
     # @option attributes name [String] The name of the group.
     # @option attributes repository [Vedeu::Repository] The storage for all
     #   Group models.
+    # @option attributes visible [Boolean] Whether the group is visible or not.
     # @return [Vedeu::Group]
     def initialize(attributes = {})
       @attributes = defaults.merge!(attributes)
 
-      @members    = Array(@attributes[:members])
-      @name       = @attributes[:name]
-      @repository = @attributes[:repository]
-      @visible    = @attributes[:visible]
+      @attributes.each { |key, value| instance_variable_set("@#{key}", value) }
     end
 
     # Add a member to the group by name.
@@ -38,15 +39,33 @@ module Vedeu
     # @param member [String]
     # @return [Vedeu::Group]
     def add(member)
-      @members = members.add(member)
+      attrs = attributes.merge!(members: members.add(member))
 
-      Vedeu::Group.new(name: name, members: @members, visible: visible).store
+      Vedeu::Group.new(attrs).store
+    end
+
+    # Returns the attributes of the group.
+    #
+    # @return [Hash<Symbol => void>]
+    def attributes
+      {
+        name:       name,
+        members:    members,
+        repository: repository,
+        visible:    visible,
+      }
     end
 
     # Hide the named group of interfaces, or without a name, the group of the
-    # currently focussed interface.
+    # currently focussed interface. Useful for hiding part of that which is
+    # currently displaying in the terminal.
+    #
+    # @note
+    #   The action of showing a group will effectively clear the terminal and
+    #   show the new group, therefore hiding the group may not be necessary.
     #
     # @example
+    #   Vedeu.trigger(:_hide_group_, name)
     #   Vedeu.hide_group(name)
     #
     # @return [Vedeu::Group]
@@ -58,11 +77,11 @@ module Vedeu
       self
     end
 
-    # Return the members as a Set.
+    # Return the members of the group.
     #
     # @return [Set]
     def members
-      @members.to_set
+      @_members ||= Set.new(@members)
     end
 
     # Remove a member from the group by name.
@@ -70,22 +89,25 @@ module Vedeu
     # @param member [String]
     # @return [Vedeu::Group]
     def remove(member)
-      @members = members.delete(member)
+      attrs = attributes.merge!(members: members.delete(member))
 
-      Vedeu::Group.new(name: name, members: @members, visible: visible).store
+      Vedeu::Group.new(attrs).store
     end
 
     # Remove all members from the group.
     #
     # @return [Vedeu::Group]
     def reset
-      Vedeu::Group.new(defaults.merge!(name: name)).store
+      attrs = defaults.merge!(name: name)
+
+      Vedeu::Group.new(attrs).store
     end
 
     # Show the named group of interfaces, or without a name, the group of the
     # currently focussed interface.
     #
     # @example
+    #   Vedeu.trigger(:_show_group_, name)
     #   Vedeu.show_group(name)
     #
     # @return [Vedeu::Group]
@@ -104,7 +126,7 @@ module Vedeu
     # @return [Hash]
     def defaults
       {
-        members:    [],
+        members:    Set.new,
         name:       '',
         repository: Vedeu.groups,
         visible:    true,

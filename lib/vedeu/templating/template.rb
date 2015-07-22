@@ -2,11 +2,11 @@ require 'vedeu/templating/preprocessor'
 
 module Vedeu
 
+  # Provides means to use templates with Vedeu.
   module Templating
 
     # Generic class to loading a template and parsing it via ERb.
     #
-    # @api private
     class Template
 
       # @param (see Vedeu::Templating::Template#new)

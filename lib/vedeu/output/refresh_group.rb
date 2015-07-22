@@ -4,7 +4,6 @@ module Vedeu
 
   # Refreshes the given named group of interfaces.
   #
-  # @api private
   class RefreshGroup
 
     include Vedeu::Common

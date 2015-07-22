@@ -2,7 +2,6 @@ module Vedeu
 
   # Sends the output to the renderers.
   #
-  # @api private
   class Output
 
     # Writes output to the defined renderers.

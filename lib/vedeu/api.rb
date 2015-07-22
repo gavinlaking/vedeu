@@ -1,4 +1,11 @@
-require 'vedeu/colours/all'
+require 'vedeu/colours/colours'
+require 'vedeu/colours/backgrounds'
+require 'vedeu/colours/foregrounds'
+require 'vedeu/colours/colour_translator'
+require 'vedeu/colours/background'
+require 'vedeu/colours/foreground'
+require 'vedeu/colours/colour'
+
 require 'vedeu/buffers/buffers'
 require 'vedeu/output/borders'
 require 'vedeu/cursor/cursors'
@@ -6,12 +13,35 @@ require 'vedeu/common'
 require 'vedeu/terminal'
 require 'vedeu/timer'
 require 'vedeu/output/renderers/all'
-require 'vedeu/events/all'
-require 'vedeu/models/all'
+
+require 'vedeu/repositories/collection'
+
+require 'vedeu/events/events'
+require 'vedeu/events/event'
+require 'vedeu/events/trigger'
+
+require 'vedeu/repositories/all'
+
+require 'vedeu/models/toggleable'
+require 'vedeu/models/cell'
+require 'vedeu/models/char'
+require 'vedeu/models/escape'
+require 'vedeu/models/stream'
+require 'vedeu/models/line'
+require 'vedeu/models/interfaces'
+require 'vedeu/models/interface'
+require 'vedeu/models/composition'
+require 'vedeu/models/focus'
+require 'vedeu/models/groups'
+require 'vedeu/models/group'
+require 'vedeu/models/menus'
+require 'vedeu/models/menu'
+
 require 'vedeu/input/all'
 require 'vedeu/dsl/all'
 require 'vedeu/application'
-require 'vedeu/output/clear/all'
+require 'vedeu/output/clear/named_group'
+require 'vedeu/output/clear/named_interface'
 
 module Vedeu
 
@@ -379,20 +409,10 @@ module Vedeu
     #   @see Vedeu::Cursor#show
     def_delegators Vedeu::Cursor, :toggle_cursor
 
-    # Hide the group with the given name.
-    #
-    # @example
-    #   Vedeu.hide_group(name)
-    #
     # @!method hide_group
     #   @see Vedeu::Group#hide
     def_delegators Vedeu::Group, :hide_group
 
-    # Shows the group with the given name.
-    #
-    # @example
-    #   Vedeu.show_group(name)
-    #
     # @!method show_group
     #   @see Vedeu::Group#show
     def_delegators Vedeu::Group, :show_group

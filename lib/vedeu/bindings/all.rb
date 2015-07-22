@@ -13,7 +13,6 @@ module Vedeu
   #   directly, however the produced events are all public and are highly
   #   recommended to be used.
   #
-  # @api private
   module Bindings
 
     # Setup events for running Vedeu. This method is called by Vedeu.

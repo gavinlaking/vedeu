@@ -14,18 +14,16 @@ require 'vedeu'
 #
 class VedeuPanelApp
 
-  include Vedeu
-
   # Be aware that running an application with debugging enabled will affect
   # performance.
-  configure do
+  Vedeu.configure do
     # debug!
     log '/tmp/vedeu_panel_app.log'
     # renderers Vedeu::Renderers::File.new
   end
 
   # line { centre 'Blue',        width: 20, background: '#2196f3' }
-  interface 'main_interface' do
+  Vedeu.interface 'main_interface' do
     border 'main_interface' do
       colour foreground: '#000000', background: '#cddc39' # lime
       title 'Panel: Yes/No'
@@ -39,7 +37,7 @@ class VedeuPanelApp
     end
   end
 
-  keymap('_global_') do
+  Vedeu.keymap('_global_') do
     key(:up)    { Vedeu.trigger(:_cursor_up_)    }
     key(:right) { Vedeu.trigger(:_cursor_right_) }
     key(:down)  { Vedeu.trigger(:_cursor_down_)  }
@@ -51,7 +49,7 @@ class VedeuPanelApp
     key(:tab)       { Vedeu.trigger(:_focus_next_) }
   end
 
-  renders do
+  Vedeu.renders do
     view 'main_interface' do
       lines do
         line ' '
@@ -62,12 +60,12 @@ class VedeuPanelApp
     end
   end
 
-  focus_by_name 'main_interface'
+  Vedeu.focus_by_name 'main_interface'
 
   def self.start(argv = ARGV)
     Vedeu::Launcher.execute!(argv)
   end
 
-end
+end # VedeuPanelApp
 
 VedeuPanelApp.start(ARGV)

@@ -11,7 +11,6 @@ module Vedeu
     #   vedeu view main_screen
     #   ```
     #
-    # @api private
     # :nocov:
     class View
 

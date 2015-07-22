@@ -1,5 +1,7 @@
 module Vedeu
 
+  # Provides a mechanism to control a running client application via DRb.
+  #
   module Distributed
 
     # A class for the server side of the DRb server/client relationship.

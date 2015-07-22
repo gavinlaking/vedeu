@@ -4,7 +4,6 @@ module Vedeu
 
     # A renderer which returns the escape sequence for each character.
     #
-    # @api private
     class EscapeSequence
 
       include Vedeu::RendererOptions

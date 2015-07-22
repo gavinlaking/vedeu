@@ -2,7 +2,6 @@ module Vedeu
 
   # Provides methods to be used by Vedeu::ApplicationController.
   #
-  # @api private
   module Controller
 
     # When included, provide these methods as class methods.

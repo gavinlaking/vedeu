@@ -2,7 +2,6 @@ module Vedeu
 
   # A Dimension is either the height or width of an entity.
   #
-  # @api private
   class Dimension
 
     # @param (see #initialize)
@@ -26,16 +25,22 @@ module Vedeu
       @attributes.each { |key, value| instance_variable_set("@#{key}", value) }
     end
 
+    # Fetch the starting coordinate.
+    #
     # @return [Fixnum]
     def d1
       dimension.first < 1 ? 1 : dimension.first
     end
 
+    # Fetch the ending coordinate.
+    #
     # @return [Fixnum]
     def d2
       dimension.last
     end
 
+    # Fetch the coordinates.
+    #
     # @return [Array<Fixnum>]
     def pair
       dimension
@@ -104,21 +109,29 @@ module Vedeu
       end
     end
 
+    # Ascertains the centred starting coordinate.
+    #
     # @return [Fixnum]
     def centred_d
       (default / 2) - (length / 2)
     end
 
+    # Ascertains the centred ending coordinate.
+    #
     # @return [Fixnum]
     def centred_dn
       (default / 2) + (length / 2)
     end
 
+    # Fetch the starting coordinate, or use 1 if not set.
+    #
     # @return [Fixnum]
     def _d
       d || 1
     end
 
+    # Fetch the ending coordinate.
+    #
     # @return [Fixnum]
     def _dn
       if dn

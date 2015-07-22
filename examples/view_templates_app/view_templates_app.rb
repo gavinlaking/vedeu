@@ -92,6 +92,6 @@ class VedeuViewTemplateApp
     Vedeu::Launcher.execute!(argv)
   end
 
-end
+end # VedeuViewTemplateApp
 
 VedeuViewTemplateApp.start(ARGV)

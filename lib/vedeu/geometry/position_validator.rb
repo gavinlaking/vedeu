@@ -3,7 +3,6 @@ module Vedeu
   # Validates that the provided coordinates are within the terminal and
   # interface's geometry (with or without a border).
   #
-  # @api private
   class PositionValidator
 
     extend Forwardable

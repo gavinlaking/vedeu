@@ -9,7 +9,6 @@ module Vedeu
   # Calculates and provides interface geometry determined by both the client's
   # requirements and the terminal's current viewing area.
   #
-  # @api private
   class Geometry
 
     extend Forwardable

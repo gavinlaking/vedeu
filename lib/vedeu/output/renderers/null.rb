@@ -4,7 +4,6 @@ module Vedeu
 
     # A renderer which returns nothing.
     #
-    # @api private
     class Null
 
       include Vedeu::RendererOptions

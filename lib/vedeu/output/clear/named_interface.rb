@@ -1,10 +1,11 @@
 module Vedeu
 
+  # Provides the mechanisms to clear an interface or group of interfaces.
+  #
   module Clear
 
     # Clear the named interface.
     #
-    # @api private
     class NamedInterface
 
       class << self

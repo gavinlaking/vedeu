@@ -12,16 +12,14 @@ require 'vedeu'
 #
 class VedeuGeometryApp
 
-  include Vedeu
-
   # Be aware that running an application with debugging enabled will affect
   # performance.
-  configure do
+  Vedeu.configure do
     # debug!
     log '/tmp/vedeu_geometry_app.log'
   end
 
-  interface 'main_interface' do
+  Vedeu.interface 'main_interface' do
     colour foreground: '#ff0000', background: '#000000'
     cursor!
 
@@ -34,20 +32,20 @@ class VedeuGeometryApp
     end
   end
 
-  interface 'second' do
+  Vedeu.interface 'second' do
     colour foreground: '#0000ff', background: '#000000'
     cursor!
   end
 
   # Geometry can be defined either before or after the interface.
-  geometry 'second' do
+  Vedeu.geometry 'second' do
     height  8
     width   columns(1)
     x       12
     y       2
   end
 
-  keymap('_global_') do
+  Vedeu.keymap('_global_') do
     key(:up,    'k') { Vedeu.trigger(:_cursor_up_)    }
     key(:right, 'l') { Vedeu.trigger(:_cursor_right_) }
     key(:down,  'j') { Vedeu.trigger(:_cursor_down_)  }
@@ -59,7 +57,7 @@ class VedeuGeometryApp
     key(:tab)       { Vedeu.trigger(:_focus_next_) }
   end
 
-  renders do
+  Vedeu.renders do
     view 'second' do
       border!
       lines do
@@ -138,12 +136,12 @@ class VedeuGeometryApp
     end
   end
 
-  focus_by_name 'main_interface'
+  Vedeu.focus_by_name 'main_interface'
 
   def self.start(argv = ARGV)
     Vedeu::Launcher.execute!(argv)
   end
 
-end
+end # VedeuGeometryApp
 
 VedeuGeometryApp.start(ARGV)

@@ -1,5 +1,6 @@
 module Vedeu
 
+  # Provides means to use templates with Vedeu.
   module Templating
 
     # preprocess
@@ -15,7 +16,6 @@ module Vedeu
     # Pre-processes a template, to convert all lines and lines with directives
     # into Vedeu::Streams.
     #
-    # @api private
     class Preprocessor
 
       # @param lines [Array<String>]

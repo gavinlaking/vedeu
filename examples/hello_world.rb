@@ -16,14 +16,12 @@ require 'vedeu'
 #
 class HelloWorldApp
 
-  include Vedeu
-
-  configure do
+  Vedeu.configure do
     # debug!
     log '/tmp/vedeu_hello_world.log'
   end
 
-  interface 'messages' do
+  Vedeu.interface 'messages' do
     background '#000000'
     foreground '#00ff00'
     geometry do
@@ -33,7 +31,7 @@ class HelloWorldApp
     end
   end
 
-  renders do
+  Vedeu.renders do
     view 'messages' do
       lines do
         centre 'Hello World!', width: 20
@@ -47,6 +45,6 @@ class HelloWorldApp
     Vedeu::Launcher.execute!(argv)
   end
 
-end
+end # HelloWorldApp
 
 HelloWorldApp.start(ARGV)

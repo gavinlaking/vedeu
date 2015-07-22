@@ -11,7 +11,6 @@ module Vedeu
 
   # Provides a single interface to all registered renderers.
   #
-  # @api private
   module Renderers
 
     extend Enumerable

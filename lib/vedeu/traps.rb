@@ -2,7 +2,6 @@ module Vedeu
 
   # Vedeu can respond to various signals which are handled here.
   #
-  # @api private
   module Traps
 
     # :nocov:

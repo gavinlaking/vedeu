@@ -2,7 +2,6 @@ module Vedeu
 
   # Renders the provided border.
   #
-  # @api private
   class RenderBorder
 
     extend Forwardable

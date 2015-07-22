@@ -2,7 +2,6 @@ module Vedeu
 
   # Represents a {Vedeu::Terminal} view as a grid of {Vedeu::Cell} objects.
   #
-  # @api private
   class VirtualTerminal
 
     # @!attribute [rw] renderer

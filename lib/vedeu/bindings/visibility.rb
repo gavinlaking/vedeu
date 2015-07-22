@@ -60,17 +60,7 @@ module Vedeu
         end
       end
 
-      # Will hide all of the interfaces belonging to the named group. Useful for
-      # hiding part of that which is currently displaying in the terminal.
-
-      # This may be rarely used, since the action of showing a group will
-      # effectively clear the terminal and show the new group.
-      #
-      # @example
-      #   Vedeu.trigger(:_hide_group_, name)
-      #   Vedeu.hide_group(name)
-      #
-      # @return [void]
+      # @see Vedeu::Group#hide
       def hide_group!
         Vedeu.bind(:_hide_group_) do |name|
           Vedeu::Group.hide_group(name)
@@ -108,14 +98,7 @@ module Vedeu
         end
       end
 
-      # Will clear the terminal and then show all of the interfaces belonging to
-      # the named group.
-      #
-      # @example
-      #   Vedeu.trigger(:_show_group_, name)
-      #   Vedeu.show_group(name)
-      #
-      # @return [void]
+      # @see Vedeu::Group#show
       def show_group!
         Vedeu.bind(:_show_group_) do |name|
           Vedeu::Group.show_group(name)

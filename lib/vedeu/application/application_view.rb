@@ -5,7 +5,6 @@ module Vedeu
   # Provides the mechanism to render views for the client application. The
   # client application's ApplicationView will inherit from this class.
   #
-  # @api private
   class ApplicationView
 
     include Vedeu::View

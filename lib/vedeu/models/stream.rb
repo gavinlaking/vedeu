@@ -4,7 +4,6 @@ module Vedeu
   # {Vedeu::Line} which you wish to colour and style independently of the other
   # characters in that line.
   #
-  # @api private
   class Stream
 
     include Vedeu::Model

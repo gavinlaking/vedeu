@@ -9,7 +9,6 @@ module Vedeu
     #   vedeu new your_app_name_here
     #   ```
     #
-    # @api private
     # :nocov:
     class Application
 

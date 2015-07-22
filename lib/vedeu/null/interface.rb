@@ -6,7 +6,6 @@ module Vedeu
 
     # Provides a non-existent model to swallow messages.
     #
-    # @api private
     class Interface
 
       include Vedeu::Presentation

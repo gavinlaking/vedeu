@@ -22,14 +22,12 @@ require 'vedeu'
 #
 class VedeuConfigurationApp
 
-  include Vedeu
-
-  configure do
+  Vedeu.configure do
     # debug!
     log '/tmp/vedeu_configuration_app.log'
   end
 
-  interface 'config' do
+  Vedeu.interface 'config' do
     geometry do
       width  40
       height 2
@@ -37,7 +35,7 @@ class VedeuConfigurationApp
     end
   end
 
-  renders do
+  Vedeu.renders do
     view 'config' do
       lines do
         line Configuration.log.inspect + ' ' + Process.pid.to_s
@@ -45,7 +43,7 @@ class VedeuConfigurationApp
     end
   end
 
-  keymap('config') do
+  Vedeu.keymap('config') do
     key(' ') { Vedeu.trigger(:_refresh_, 'config') }
 
     key('q')        { Vedeu.trigger(:_exit_) }
@@ -58,6 +56,6 @@ class VedeuConfigurationApp
     Vedeu::Launcher.execute!(argv)
   end
 
-end
+end # VedeuConfigurationApp
 
 VedeuConfigurationApp.start(ARGV)

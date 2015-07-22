@@ -12,7 +12,6 @@ module Vedeu
   #   - If the `Vedeu.focus_by_name 'some_interface'` declaration is used, then
   #     the list pointer (`current`) is set to the interface of that name.
   #
-  # @api private
   module Focus
 
     extend self
