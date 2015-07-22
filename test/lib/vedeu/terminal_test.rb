@@ -5,12 +5,11 @@ module Vedeu
   describe Terminal do
 
     let(:described) { Vedeu::Terminal }
-
-    let(:console) { IO.console }
+    let(:console)   { IO.console }
 
     before do
-      IO.console.stubs(:winsize).returns([25, 80])
-      IO.console.stubs(:print)
+      console.stubs(:winsize).returns([25, 80])
+      console.stubs(:print)
     end
 
     describe '.open' do
@@ -50,7 +49,7 @@ module Vedeu
 
         before do
           Terminal.stubs(:mode).returns(mode)
-          IO.console.stubs(:gets).returns(input)
+          console.stubs(:gets).returns(input)
         end
 
         it { subject.must_equal('Some input') }
@@ -62,9 +61,9 @@ module Vedeu
 
         before do
           Terminal.stubs(:mode).returns(mode)
-          IO.console.stubs(:getch).returns(input)
+          console.stubs(:getch).returns(input)
           input.stubs(:ord).returns(27)
-          IO.console.stubs(:read_nonblock)
+          console.stubs(:read_nonblock)
         end
 
         it { subject.must_be_instance_of(String) }
@@ -121,66 +120,6 @@ module Vedeu
       end
     end
 
-    describe '.raw_mode?' do
-      subject { described.raw_mode? }
-
-      it 'returns true if the terminal is in raw mode' do
-        described.raw_mode!
-        subject.must_equal(true)
-      end
-
-      it 'returns false if the terminal is not in raw mode' do
-        described.cooked_mode!
-        subject.must_equal(false)
-      end
-    end
-
-    describe '.cooked_mode?' do
-      subject { described.cooked_mode? }
-
-      it 'returns true if the terminal is in cooked mode' do
-        described.cooked_mode!
-        subject.must_equal(true)
-      end
-
-      it 'returns false if the terminal is not in cooked mode' do
-        described.raw_mode!
-        subject.must_equal(false)
-      end
-    end
-
-    describe '.switch_mode!' do
-      subject { described.switch_mode! }
-
-      it 'returns a Symbol' do
-        subject.must_be_instance_of(Symbol)
-      end
-
-      it 'returns :cooked if previously :raw' do
-        described.raw_mode!
-        subject.must_equal(:cooked)
-      end
-
-      it 'returns :raw if previously :cooked' do
-        described.cooked_mode!
-        subject.must_equal(:raw)
-      end
-    end
-
-    describe '.mode' do
-      subject { described.mode }
-
-      before do
-        Configuration.stubs(:terminal_mode).returns(:raw)
-        Terminal.switch_mode! if Terminal.mode == :cooked
-      end
-
-      it { subject.must_be_instance_of(Symbol) }
-
-      it 'returns the configured terminal mode' do
-        subject.must_equal(:raw)
-      end
-    end
 
     describe '.cursor' do
       subject { described.cursor }
