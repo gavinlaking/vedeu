@@ -89,13 +89,7 @@ module Vedeu
       # @param klass [void] The repository of the model.
       # @return [void]
       def model_by_name(name = nil, klass)
-        klass.by_name(model_name(name))
-      end
-
-      # @param name [String]
-      # @return [void]
-      def model_name(name = nil)
-        name || Vedeu.focus
+        klass.by_name(name || Vedeu.focus)
       end
 
     end # ClassMethods
