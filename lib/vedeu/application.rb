@@ -34,6 +34,7 @@ module Vedeu
     end # Eigenclass
 
     # :nocov:
+
     # Returns a new instance of Vedeu::Application.
     #
     # @param configuration [Vedeu::Configuration]

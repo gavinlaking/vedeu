@@ -44,12 +44,17 @@ module Vedeu
       #
       # @example
       #   Vedeu.configure do
-      #     interactive!
+      #     interactive! # => same as `interactive true` or `standalone false`
       #     # ...
       #   end
       #
       #   Vedeu.configure do
-      #     interactive false
+      #     interactive true # => Allow user input.
+      #     # ...
+      #   end
+      #
+      #   Vedeu.configure do
+      #     interactive false # => Disallow user input.
       #     # ...
       #   end
       #
@@ -65,7 +70,17 @@ module Vedeu
       #
       # @example
       #   Vedeu.configure do
-      #     standalone!
+      #     standalone! # => same as `standalone true` or `interactive false`
+      #     # ...
+      #   end
+      #
+      #   Vedeu.configure do
+      #     standalone true # => Disallow user input.
+      #     # ...
+      #   end
+      #
+      #   Vedeu.configure do
+      #     standalone false # => Allow user input.
       #     # ...
       #   end
       #
