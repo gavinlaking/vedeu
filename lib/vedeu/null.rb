@@ -6,12 +6,6 @@ module Vedeu
   #
   module Null
 
-  end
+  end # Null
 
-end
-
-require 'vedeu/null/border'
-require 'vedeu/null/buffer'
-require 'vedeu/null/generic'
-require 'vedeu/null/geometry'
-require 'vedeu/null/interface'
+end # Vedeu

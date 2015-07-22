@@ -23,6 +23,7 @@ class VedeuTestApplication
     drb_width   80
     drb_height  25
 
+    # terminal_mode :raw
     # cooked!
     # raw!
 

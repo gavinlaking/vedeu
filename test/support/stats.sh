@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Displays the number of lines of Vedeu application code and the corresponding
+# number of lines of Vedeu test code per commit.
+
 set -e
 
 function main {

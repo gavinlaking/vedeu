@@ -44,12 +44,17 @@ module Vedeu
       #
       # @example
       #   Vedeu.configure do
-      #     interactive!
+      #     interactive! # => same as `interactive true` or `standalone false`
       #     # ...
       #   end
       #
       #   Vedeu.configure do
-      #     interactive false
+      #     interactive true # => Allow user input.
+      #     # ...
+      #   end
+      #
+      #   Vedeu.configure do
+      #     interactive false # => Disallow user input.
       #     # ...
       #   end
       #
@@ -65,7 +70,17 @@ module Vedeu
       #
       # @example
       #   Vedeu.configure do
-      #     standalone!
+      #     standalone! # => same as `standalone true` or `interactive false`
+      #     # ...
+      #   end
+      #
+      #   Vedeu.configure do
+      #     standalone true # => Disallow user input.
+      #     # ...
+      #   end
+      #
+      #   Vedeu.configure do
+      #     standalone false # => Allow user input.
       #     # ...
       #   end
       #
@@ -359,6 +374,35 @@ module Vedeu
         options[:compression] = value
       end
       alias_method :compression!, :compression
+
+      # Sets the terminal mode. Valid values can be either ':raw' or ':cooked'.
+      #
+      # @example
+      #   Vedeu.configure do
+      #     terminal_mode :raw
+      #     # ...
+      #   end
+      #
+      #   Vedeu.configure do
+      #     terminal_mode :cooked
+      #     # ...
+      #   end
+      #
+      # @param mode [Symbol] Either ':raw' or ':cooked'.
+      # @raise [Vedeu::InvalidSyntax] When the mode is not ':raw' or ':cooked'.
+      # @return [Symbol]
+      # @see Vedeu::Config::API#raw!
+      # @see Vedeu::Config::API#cooked!
+      def terminal_mode(value)
+        if value == :raw || value == :cooked
+          options[:terminal_mode] = value
+
+        else
+          fail Vedeu::InvalidSyntax, 'Terminal mode can be set to either :raw or ' \
+                              ':cooked'
+
+        end
+      end
 
       private
 

@@ -194,7 +194,7 @@ module Vedeu
       #
       # @return [void]
       def mode_switch!
-        Vedeu.bind(:_mode_switch_) { fail ModeSwitch }
+        Vedeu.bind(:_mode_switch_) { fail Vedeu::ModeSwitch }
       end
 
       # Will cause the named interface to refresh, or if a name is not given,

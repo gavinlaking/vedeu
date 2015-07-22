@@ -48,10 +48,10 @@ module Vedeu
       end
       alias_method :compression?, :compression
 
-      # Configure Vedeu with sensible defaults. If the client application sets
-      # options, override the defaults with those, and if command-line arguments
-      # are provided at application invocation, override any options with the
-      # arguments provided.
+      # Provides the mechanism to configure Vedeu. If the client application
+      # sets options, override the defaults with those, and if command-line
+      # arguments are provided at application invocation, override any options
+      # with the arguments provided.
       #
       # @example
       #   Vedeu.configure
@@ -71,11 +71,10 @@ module Vedeu
       end
 
       # Returns the configuration singleton.
+      # Append configuration methods to access the configuration variable.
       #
       # @example
       #   Vedeu.configuration
-      #     # ...
-      #   end
       #
       # @return [Vedeu::Configuration]
       def configuration
@@ -259,7 +258,7 @@ module Vedeu
     # The Vedeu default options, which of course are influenced by environment
     # variables also.
     #
-    # @return [Hash]
+    # @return [Hash<Symbol => void>]
     def defaults
       {
         base_path:     base_path,
