@@ -301,6 +301,20 @@ module Vedeu
         options[:base_path] = path
       end
 
+      # Sets the root of the client application. Vedeu will execute this
+      # controller first.
+      #
+      # @example
+      #   Vedeu.configure do
+      #     root YourApp::SomeController.new
+      #     ...
+      #
+      # @param controller [Class]
+      # @return [Class]
+      def root(controller)
+        options[:root] = controller
+      end
+
       # Sets the value of STDIN.
       #
       # @example

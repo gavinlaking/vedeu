@@ -1,5 +1,12 @@
 require 'test_helper'
 
+module YourApp
+
+  class SomeController
+  end # SomeController
+
+end # YourApp
+
 module Vedeu
 
   module Config
@@ -223,6 +230,13 @@ module Vedeu
 
       describe '#renderer' do
         it { instance.must_respond_to(:renderers) }
+      end
+
+      describe '#root' do
+        it 'sets the options to the desired value' do
+          configuration = Vedeu.configure { root(::YourApp::SomeController.new) }
+          configuration.root.must_be_instance_of(YourApp::SomeController)
+        end
       end
 
       describe '#stdin' do

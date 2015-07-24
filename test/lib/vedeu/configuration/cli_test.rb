@@ -1,5 +1,13 @@
 require 'test_helper'
 
+module YourApp
+
+  class SomeController
+
+  end # SomeController
+
+end # YourApp
+
 module Vedeu
 
   module Config
@@ -116,6 +124,13 @@ module Vedeu
         it '--run-many' do
           Configuration.configure(['--run-many'])
           Configuration.once?.must_equal(false)
+        end
+      end
+
+      describe '#root' do
+        it '--root' do
+          Configuration.configure(['--root', 'YourApp::SomeController.new'])
+          Configuration.root.must_equal('YourApp::SomeController.new')
         end
       end
 

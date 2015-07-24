@@ -77,6 +77,7 @@ module Vedeu
           :raw,
           :run_many,
           :run_once,
+          :root,
           :standalone,
         ]
       end
@@ -177,6 +178,14 @@ module Vedeu
       def raw
         parser.on('-r', '--raw', 'Run application in raw mode (default).') do
           options[:terminal_mode] = :raw
+        end
+      end
+
+      # # @return [OptionParser]
+      def root
+        parser.on('-s', '--root []', String,
+                  'Start the application from the specified controller.') do |c|
+          options[:root] = c
         end
       end
 
