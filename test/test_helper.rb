@@ -32,8 +32,6 @@ SimpleCov.start do
   add_group  'null',          'vedeu/null'
   add_group  'output',        'vedeu/output'
   add_group  'repositories',  'vedeu/repositories'
-  add_group  'storage',       'vedeu/storage'
-  add_group  'support',       'vedeu/support'
   add_group  'templating',    'vedeu/templating'
 end unless ENV['NO_SIMPLECOV']
 

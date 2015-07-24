@@ -165,19 +165,6 @@ module Vedeu
       store_group
     end
 
-    # Toggle the named interface buffer, or without a name, the buffer of the
-    # currently focussed interface.
-    #
-    # @example
-    #   Vedeu.toggle_interface(name)
-    #
-    # @return [void]
-    def toggle
-      super
-
-      Vedeu.buffers.by_name(name).toggle
-    end
-
     private
 
     # The default values for a new instance of this class.

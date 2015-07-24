@@ -18,6 +18,11 @@ module Vedeu
       # @return [String]
       attr_reader :attributes
 
+      # @!attribute [rw] visible
+      # @return [String]
+      attr_accessor :visible
+      alias_method :visible?, :visible
+
       # Returns a new instance of Vedeu::Null::Interface.
       #
       # @param attributes [Hash<Symbol => void>]
@@ -26,6 +31,7 @@ module Vedeu
       def initialize(attributes = {})
         @attributes = attributes
         @name       = @attributes[:name]
+        @visible    = @attributes[:visible]
       end
 
       # @return [NilClass]
@@ -66,13 +72,6 @@ module Vedeu
       #
       # @return [FalseClass]
       def visible?
-        false
-      end
-
-      # Override the visible= setter usually found on a Vedeu::Interface.
-      #
-      # @return [FalseClass]
-      def visible=(*)
         false
       end
 
