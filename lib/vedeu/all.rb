@@ -175,3 +175,6 @@ require 'vedeu/bindings/system'
 require 'vedeu/bindings/visibility'
 
 require 'vedeu/bindings'
+
+require 'vedeu/plugins'
+require 'vedeu/plugins/plugin'
