@@ -398,8 +398,8 @@ module Vedeu
           options[:terminal_mode] = value
 
         else
-          fail Vedeu::InvalidSyntax, 'Terminal mode can be set to either :raw or ' \
-                              ':cooked'
+          fail Vedeu::InvalidSyntax,
+               'Terminal mode can be set to either :raw or :cooked'
 
         end
       end
