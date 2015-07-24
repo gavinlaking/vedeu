@@ -5,7 +5,6 @@ module Vedeu
     # Provides colour and style helpers for use in the {Vedeu::DSL::Interface},
     # {Vedeu::DSL::Line} and {Vedeu::DSL::Stream} classes.
     #
-    # @api public
     module Presentation
 
       # Define the background colour for an interface, line, or a stream. When

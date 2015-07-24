@@ -1,12 +1,3 @@
-require 'vedeu/output/renderers/renderer_options'
-require 'vedeu/output/renderers/escape_sequence'
-require 'vedeu/output/renderers/file'
-require 'vedeu/output/renderers/html'
-require 'vedeu/output/renderers/json'
-require 'vedeu/output/renderers/null'
-require 'vedeu/output/renderers/terminal'
-require 'vedeu/output/renderers/text'
-
 module Vedeu
 
   # Provides a single interface to all registered renderers.
@@ -21,7 +12,6 @@ module Vedeu
     # @example
     #   Vedeu.renderers
     #
-    # @api public
     # @return [Module]
     def renderers
       self
@@ -30,7 +20,6 @@ module Vedeu
     # @example
     #   Vedeu.renderers.render(output)
     #
-    # @api public
     # @param output [void]
     # @return [Array<void>]
     def render(output)
@@ -55,7 +44,6 @@ module Vedeu
     # @note
     #   A renderer class must respond to the '.render' class method.
     #
-    # @api public
     # @param renderers [Class]
     # @return [Set]
     def renderer(*renderers)
@@ -67,7 +55,6 @@ module Vedeu
     # @example
     #   Vedeu.renderers.reset
     #
-    # @api public
     # @return [Set]
     def reset
       @storage = Set.new

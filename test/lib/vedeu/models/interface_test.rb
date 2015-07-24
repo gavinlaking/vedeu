@@ -74,10 +74,14 @@ module Vedeu
     end
 
     describe '#hide' do
+      before { Vedeu::Output.stubs(:render) }
+
       subject { instance.hide }
 
-      # @todo
-      # it { skip }
+      it {
+        Vedeu::Output.expects(:render)
+        subject
+      }
     end
 
     describe '#inspect' do
@@ -161,10 +165,14 @@ module Vedeu
     end
 
     describe '#show' do
+      before { Vedeu::Output.stubs(:render) }
+
       subject { instance.show }
 
-      # @todo
-      # it { skip }
+      it {
+        Vedeu::Output.expects(:render)
+        subject
+      }
     end
 
     describe '#store' do

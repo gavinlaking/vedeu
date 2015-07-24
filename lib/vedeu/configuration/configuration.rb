@@ -174,6 +174,14 @@ module Vedeu
         instance.options[:renderers]
       end
 
+      # Returns the root of the client application. Vedeu will execute this
+      # controller first.
+      #
+      # @return [Class]
+      def root
+        instance.options[:root]
+      end
+
       # Returns the redefined setting for STDIN.
       #
       # @return [File|IO]
@@ -274,6 +282,7 @@ module Vedeu
         log:           nil,
         once:          false,
         renderers:     [Vedeu::Renderers::Terminal.new],
+        root:          nil,
         stdin:         nil,
         stdout:        nil,
         stderr:        nil,

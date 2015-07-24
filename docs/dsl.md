@@ -72,77 +72,89 @@ geometry 'main' do
 end
 ```
 
-### Borders
+## Borders
 
-Borders are defined by name for each of the client application's interfaces or
- views. They can be enabled or disabled (which controls whether they are
- rendered or not), they have their own colours and styles, and each aspect of
- the border can be controlled. The RubyDoc contains information for
- configuring borders.
+{include:Vedeu::DSL::Border}
 
-### Geometry
+### Setting a title for the border
 
-Geometry allows the configuration of the position and size of an interface.
+{include:Vedeu::DSL::Border#title}
 
-Here is an example of declarations for a `geometry` block:
+### Customising the appearance of the border
 
-```ruby
-interface 'main' do
-  geometry do
-    height 5 # Sets the height of the view to 5
-    width 20 # Sets the width of the view to 20
-    x 3 # Start drawing 3 spaces from left
-    y 10 # Start drawing 10 spaces from top
-    xn 30 # Stop drawing 30 spaces from the left
-    yn 20 # Stop drawing 20 spaces from top
-  end
-end
-```
+{include:Vedeu::DSL::Border#bottom_left}
+{include:Vedeu::DSL::Border#bottom_right}
+{include:Vedeu::DSL::Border#horizontal}
+{include:Vedeu::DSL::Border#top_left}
+{include:Vedeu::DSL::Border#top_right}
+{include:Vedeu::DSL::Border#vertical}
 
-If a declaration is omitted for `height` or `width` the full remaining space
-available in the terminal will be used. `x` and `y` both default to 0.
+### Enabling/disabling the border
 
-You can also make a geometry declaration dependent on another view:
+{include:Vedeu::DSL::Border#enable!}
+{include:Vedeu::DSL::Border#disable!}
 
-```ruby
-interface 'other_panel' do
-  # other code ...
-end
+### Enabling/disabling an aspect of the border
 
-interface 'main' do
-  geometry do
-    height 10
-    y { use('other_panel').south }
-  end
-end
-```
+{include:Vedeu::DSL::Border#bottom}
+{include:Vedeu::DSL::Border#left}
+{include:Vedeu::DSL::Border#right}
+{include:Vedeu::DSL::Border#top}
 
-This view will begin just below "other\_panel".
+## Geometry
 
-### Groups
+{include:Vedeu::DSL::Geometry}
 
-Interfaces can be configured to be part of a named group. Once an interface is a
- member of group, the group can be affected by other controls. For example,
- assuming the client application is a simple Git client, it may have a group
- called 'commit'. The 'commit' group will contain the interfaces 'diff' (to show
- the changes), 'staged' (to show which files are staged) and 'unstaged'. A
- refresh of the 'commit' group would cause all interfaces belonging to the group
- to refresh. Similarly, showing or hiding the group would of course, show or
- hide the interfaces of that group.
+### Setting the interface dimensions
 
-### Keymaps
+{include:Vedeu::DSL::Geometry#centred}
+{include:Vedeu::DSL::Geometry#height}
+{include:Vedeu::DSL::Geometry#width}
+{include:Vedeu::DSL::Geometry#columns}
+{include:Vedeu::DSL::Geometry#rows}
+{include:Vedeu::DSL::Geometry#x}
+{include:Vedeu::DSL::Geometry#xn}
+{include:Vedeu::DSL::Geometry#y}
+{include:Vedeu::DSL::Geometry#yn}
 
-You can define keymaps by name which matches a defined interface. When that
- interface is in focus, keys pressed as part of this definition will affect
- that interface. This allows you to form context driven behaviour for your
- application.
+## Groups
 
+{include:Vedeu::DSL::Group}
 
-### Menus
+### Add interfaces to groups
 
-`@todo` Documentation coming soon!
+{include:Vedeu::DSL::Group.group}
 
-### Views
+## Keymaps
 
-@todo Documentation coming soon!
+{include:Vedeu::DSL::Keymap}
+{include:Vedeu::DSL::Keymap.keymap}
+{include:Vedeu::DSL::Keymap#name}
+
+## Menus
+
+{include:Vedeu::DSL::Menu}
+{include:Vedeu::DSL::Menu#item}
+{include:Vedeu::DSL::Menu#items}
+{include:Vedeu::DSL::Menu#name}
+
+## Views
+
+{include:Vedeu::DSL::View.interface}
+
+### Immediate rendering
+
+{include:Vedeu::DSL::View.render}
+
+### Deferred rendering
+
+{include:Vedeu::DSL::View.view}
+
+### Specifying view content
+
+{include:Vedeu::DSL::Line}
+{include:Vedeu::DSL::Line#line}
+{include:Vedeu::DSL::Line#streams}
+
+`@todo` More documentation coming soon.
 

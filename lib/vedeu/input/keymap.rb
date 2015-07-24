@@ -1,6 +1,3 @@
-require 'vedeu/input/key'
-require 'vedeu/dsl/keymap'
-
 module Vedeu
 
   # A container class for keys associated with a particular interface.

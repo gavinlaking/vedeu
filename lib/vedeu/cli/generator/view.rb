@@ -1,5 +1,3 @@
-require 'fileutils'
-
 module Vedeu
 
   module Generator
@@ -37,6 +35,10 @@ module Vedeu
         make_interface_file
         make_template_file
         make_view_class_file
+
+        output("Please update the 'root' setting in 'config/configuration.rb'" \
+               " to '#{app_name}::#{name_as_class}Controller.new' if you " \
+               'would like to start Vedeu at this controller.')
       end
 
       private

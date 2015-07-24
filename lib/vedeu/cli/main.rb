@@ -2,12 +2,10 @@ module Vedeu
 
   # Provide a command line interface to Vedeu.
   #
-  # @api public
   module CLI
 
     # The main command line interface commands.
     #
-    # @api public
     class Main < Thor
 
       desc 'new <name>', 'Create a skeleton Vedeu client application.'

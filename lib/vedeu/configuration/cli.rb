@@ -5,7 +5,6 @@ module Vedeu
     # The Configuration::CLI class parses command-line arguments using
     # OptionParser into options used by Vedeu to affect certain behaviours.
     #
-    # @api public
     class CLI
 
       # @param (see #initialize)
@@ -78,6 +77,7 @@ module Vedeu
           :raw,
           :run_many,
           :run_once,
+          :root,
           :standalone,
         ]
       end
@@ -178,6 +178,14 @@ module Vedeu
       def raw
         parser.on('-r', '--raw', 'Run application in raw mode (default).') do
           options[:terminal_mode] = :raw
+        end
+      end
+
+      # # @return [OptionParser]
+      def root
+        parser.on('-s', '--root []', String,
+                  'Start the application from the specified controller.') do |c|
+          options[:root] = c
         end
       end
 

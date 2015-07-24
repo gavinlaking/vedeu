@@ -1,5 +1,3 @@
-require 'vedeu/repositories/model'
-
 module Vedeu
 
   # @todo Consider storing the Terminal size at the time of first creation,

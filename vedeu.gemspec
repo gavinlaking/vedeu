@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ['lib']
 
-  spec.add_development_dependency 'guard',              '2.12.8'
+  spec.add_development_dependency 'guard',              '2.12.9'
   spec.add_development_dependency 'guard-minitest',     '2.4.4'
   spec.add_development_dependency 'minitest',           '5.7.0'
   spec.add_development_dependency 'minitest-reporters', '1.0.19'

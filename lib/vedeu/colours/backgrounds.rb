@@ -2,7 +2,6 @@ module Vedeu
 
   # Store background colour escape sequences by HTML/CSS code.
   #
-  # @api public
   class Backgrounds < Colours
 
     # @return [Vedeu::Backgrounds]

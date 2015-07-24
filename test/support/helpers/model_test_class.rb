@@ -1,6 +1,3 @@
-require 'vedeu/repositories/model'
-require 'vedeu/output/presentation'
-
 module Vedeu
 
   module RepositoryTestModule

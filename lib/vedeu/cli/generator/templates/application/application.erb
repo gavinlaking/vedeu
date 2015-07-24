@@ -1,5 +1,6 @@
 require_relative 'config/configuration'
-require_relative 'app/controllers/some_controller'
+# Uncomment this, if you are manually setting the entry point below
+# require_relative 'app/controllers/some_controller'
 
 module <%= object.name_as_class %>
 
@@ -8,11 +9,13 @@ module <%= object.name_as_class %>
     # Change this to be the controller you would like to start the
     # application from.
     #
-    def self.entry_point
-      <%= object.name_as_class %>::SomeController.new
-    end
+    # def self.entry_point
+    #   <%= object.name_as_class %>::SomeController.new
+    # end
 
-    Vedeu::Bootstrap.start(ARGV, entry_point)
+    # Vedeu::Bootstrap.start(ARGV, entry_point)
+
+    Vedeu::Bootstrap.start(ARGV)
 
   end
 

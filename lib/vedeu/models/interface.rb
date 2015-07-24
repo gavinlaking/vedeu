@@ -1,9 +1,3 @@
-require 'vedeu/models/char'
-require 'vedeu/models/stream'
-require 'vedeu/models/line'
-require 'vedeu/buffers/display_buffer'
-require 'vedeu/models/toggleable'
-
 module Vedeu
 
   # An Interface represents a portion of the terminal defined by
@@ -163,19 +157,6 @@ module Vedeu
       store_focusable
       store_cursor
       store_group
-    end
-
-    # Toggle the named interface buffer, or without a name, the buffer of the
-    # currently focussed interface.
-    #
-    # @example
-    #   Vedeu.toggle_interface(name)
-    #
-    # @return [void]
-    def toggle
-      super
-
-      Vedeu.buffers.by_name(name).toggle
     end
 
     private

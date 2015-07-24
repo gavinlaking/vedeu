@@ -5,7 +5,6 @@ module Vedeu
     # Each of the Bindings::Menus events require a target menu name as an
     # argument.
     #
-    # @api public
     # :nocov:
     module Menus
 

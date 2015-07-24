@@ -5,7 +5,6 @@ module Vedeu
     # The Configuration::API class parses client application configuration into
     # options used by Vedeu to affect certain behaviours.
     #
-    # @api public
     class API
 
       include Vedeu::Common
@@ -302,6 +301,20 @@ module Vedeu
         options[:base_path] = path
       end
 
+      # Sets the root of the client application. Vedeu will execute this
+      # controller first.
+      #
+      # @example
+      #   Vedeu.configure do
+      #     root YourApp::SomeController.new
+      #     ...
+      #
+      # @param controller [Class]
+      # @return [Class]
+      def root(controller)
+        options[:root] = controller
+      end
+
       # Sets the value of STDIN.
       #
       # @example
@@ -393,13 +406,13 @@ module Vedeu
       # @return [Symbol]
       # @see Vedeu::Config::API#raw!
       # @see Vedeu::Config::API#cooked!
-      def terminal_mode(value)
-        if value == :raw || value == :cooked
-          options[:terminal_mode] = value
+      def terminal_mode(mode)
+        if mode == :raw || mode == :cooked
+          options[:terminal_mode] = mode
 
         else
-          fail Vedeu::InvalidSyntax, 'Terminal mode can be set to either :raw or ' \
-                              ':cooked'
+          fail Vedeu::InvalidSyntax,
+               'Terminal mode can be set to either :raw or :cooked'
 
         end
       end

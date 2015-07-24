@@ -1,5 +1,3 @@
-require 'vedeu/common'
-
 module Vedeu
 
   # When included into a class, provides the mechanism to store the class in a

@@ -1,12 +1,8 @@
-require 'vedeu/null/geometry'
-require 'vedeu/geometry/geometry'
-
 module Vedeu
 
   # Allows the storing of interface/view geometry independent of the interface
   # instance.
   #
-  # @api public
   class Geometries < Vedeu::Repository
 
     class << self

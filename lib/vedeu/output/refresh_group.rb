@@ -1,5 +1,3 @@
-require 'vedeu/output/refresh'
-
 module Vedeu
 
   # Refreshes the given named group of interfaces.

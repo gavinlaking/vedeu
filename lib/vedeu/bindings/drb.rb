@@ -4,7 +4,6 @@ module Vedeu
 
     # System events relating to the DRb server implementation.
     #
-    # @api public
     # :nocov:
     module DRB
 

@@ -26,6 +26,9 @@ module Vedeu
       describe 'accessors' do
         it { instance.must_respond_to(:name) }
         it { instance.must_respond_to(:attributes) }
+        it { instance.must_respond_to(:visible) }
+        it { instance.must_respond_to(:visible=) }
+        it { instance.must_respond_to(:visible?) }
       end
 
       describe '#hide' do
@@ -50,18 +53,6 @@ module Vedeu
 
       describe '#toggle' do
         it { instance.toggle.must_be_instance_of(NilClass) }
-      end
-
-      describe '#visible?' do
-        it { instance.visible?.must_be_instance_of(FalseClass) }
-      end
-
-      describe '#visible=' do
-        subject { instance.visible=(:irrelevant) }
-
-        # @todo
-        # it { skip }
-        # it { subject.must_be_instance_of(FalseClass) }
       end
 
     end # Interface

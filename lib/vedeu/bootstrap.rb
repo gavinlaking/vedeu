@@ -18,7 +18,7 @@ module Vedeu
     # @param argv [Array<String>]
     # @param entry_point [void]
     # @return [Vedeu::Bootstrap]
-    def initialize(argv, entry_point)
+    def initialize(argv, entry_point = nil)
       @argv        = argv
       @entry_point = entry_point
     end
@@ -48,7 +48,7 @@ module Vedeu
         'app/models/keymaps/**/*',
       ].each { |path| load(File.join(Vedeu::Configuration.base_path, path)) }
 
-      entry_point
+      entry_point || eval(Vedeu::Configuration.root)
 
       Vedeu::Launcher.execute!(argv)
     end

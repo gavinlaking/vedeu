@@ -1,10 +1,7 @@
-require 'vedeu/input/keymap'
-
 module Vedeu
 
   # Allows the storing of keymaps.
   #
-  # @api public
   class Keymaps < Vedeu::Repository
 
     class << self

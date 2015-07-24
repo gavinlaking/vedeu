@@ -2,7 +2,6 @@ module Vedeu
 
   # Provides a mechanism to help configure and use Vedeu.
   #
-  # @api public
   module DSL
 
     private

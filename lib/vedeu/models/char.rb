@@ -1,8 +1,3 @@
-require 'vedeu/geometry/position'
-require 'vedeu/output/esc'
-require 'vedeu/output/html_char'
-require 'vedeu/output/presentation'
-
 module Vedeu
 
   # A Char represents a single character of the terminal. It is a container for

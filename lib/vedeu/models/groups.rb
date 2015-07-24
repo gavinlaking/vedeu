@@ -1,10 +1,7 @@
-require 'vedeu/models/group'
-
 module Vedeu
 
   # Allows the storing of view groups.
   #
-  # @api public
   class Groups < Vedeu::Repository
 
     class << self

@@ -1,11 +1,7 @@
-require 'vedeu/null/buffer'
-require 'vedeu/buffers/buffer'
-
 module Vedeu
 
   # Allows the storing of view buffers.
   #
-  # @api public
   class Buffers < Vedeu::Repository
 
     class << self

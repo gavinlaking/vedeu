@@ -36,7 +36,6 @@ module Vedeu
     # - Colours are defined in CSS-style values, i.e. `#ff0000` would be red.
     # - Styles are named. See the table below for supported styles.
     #
-    # @api public
     class Composition
 
       include Vedeu::DSL
@@ -103,7 +102,7 @@ module Vedeu
         fail Vedeu::MissingRequired,
              'Cannot render template without the name of the view.' unless name
         fail Vedeu::MissingRequired,
-             "Cannot render template without a filename." unless filename
+             'Cannot render template without a filename.' unless filename
 
         content   = Vedeu::Templating::Template.parse(object, filename)
         lines     = Vedeu::Wordwrap.for(content, options)

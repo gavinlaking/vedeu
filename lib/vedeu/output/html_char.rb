@@ -1,5 +1,3 @@
-require 'vedeu/common'
-
 module Vedeu
 
   # Represents a {Vedeu::Char} as a HTML tag with value. By default, a table

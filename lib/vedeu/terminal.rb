@@ -1,11 +1,8 @@
-require 'vedeu/configuration/configuration'
-
 module Vedeu
 
   # This module is the direct interface between Vedeu and your terminal/
   # console, via Ruby's IO core library.
   #
-  # @api public
   module Terminal
 
     include Vedeu::TerminalMode
