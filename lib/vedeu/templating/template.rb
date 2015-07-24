@@ -1,5 +1,3 @@
-require 'vedeu/templating/preprocessor'
-
 module Vedeu
 
   # Provides means to use templates with Vedeu.

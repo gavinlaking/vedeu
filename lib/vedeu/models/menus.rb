@@ -1,5 +1,3 @@
-require 'vedeu/models/menu'
-
 module Vedeu
 
   # Allows the storing of menus by name.

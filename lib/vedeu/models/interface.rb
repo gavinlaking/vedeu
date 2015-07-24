@@ -1,9 +1,3 @@
-require 'vedeu/models/char'
-require 'vedeu/models/stream'
-require 'vedeu/models/line'
-require 'vedeu/buffers/display_buffer'
-require 'vedeu/models/toggleable'
-
 module Vedeu
 
   # An Interface represents a portion of the terminal defined by

@@ -1,5 +1,3 @@
-require 'vedeu/common'
-
 module Vedeu
 
   module Generator

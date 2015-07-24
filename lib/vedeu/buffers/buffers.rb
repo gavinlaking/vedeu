@@ -1,6 +1,3 @@
-require 'vedeu/null/buffer'
-require 'vedeu/buffers/buffer'
-
 module Vedeu
 
   # Allows the storing of view buffers.

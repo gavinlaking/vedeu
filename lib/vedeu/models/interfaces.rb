@@ -1,6 +1,3 @@
-require 'vedeu/null/interface'
-require 'vedeu/models/interface'
-
 module Vedeu
 
   # Allows the storing of interfaces and views.

@@ -1,5 +1,3 @@
-require 'vedeu/models/toggleable'
-
 module Vedeu
 
   # Each interface has its own Cursor which maintains the position and

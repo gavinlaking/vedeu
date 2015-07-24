@@ -1,6 +1,3 @@
-require 'vedeu/null/geometry'
-require 'vedeu/geometry/geometry'
-
 module Vedeu
 
   # Allows the storing of interface/view geometry independent of the interface

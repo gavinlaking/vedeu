@@ -57,18 +57,3 @@ module Vedeu
   end # Repositories
 
 end # Vedeu
-
-require 'vedeu/repositories/store'
-require 'vedeu/repositories/registerable'
-require 'vedeu/repositories/collection'
-
-require 'vedeu/events/event_collection'
-require 'vedeu/input/keys'
-
-require 'vedeu/models/chars'
-require 'vedeu/models/interface_collection'
-require 'vedeu/models/lines'
-require 'vedeu/models/streams'
-
-require 'vedeu/repositories/model'
-require 'vedeu/repositories/repository'

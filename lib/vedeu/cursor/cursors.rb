@@ -1,5 +1,3 @@
-require 'vedeu/cursor/cursor'
-
 module Vedeu
 
   # Allows the storing of each interface's cursor.

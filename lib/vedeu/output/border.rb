@@ -1,5 +1,3 @@
-require 'vedeu/output/render_border'
-
 module Vedeu
 
   # Provides the mechanism to decorate an interface with a border on all edges,

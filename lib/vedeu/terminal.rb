@@ -1,5 +1,3 @@
-require 'vedeu/configuration/configuration'
-
 module Vedeu
 
   # This module is the direct interface between Vedeu and your terminal/

@@ -1,5 +1,3 @@
-require 'vedeu/output/refresh_group'
-
 module Vedeu
 
   # Refreshes the terminal.

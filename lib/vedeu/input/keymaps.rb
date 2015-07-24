@@ -1,5 +1,3 @@
-require 'vedeu/input/keymap'
-
 module Vedeu
 
   # Allows the storing of keymaps.
