@@ -4,7 +4,6 @@ module Vedeu
 
     # System events relating to the visibility of cursors or interfaces.
     #
-    # @api public
     # :nocov:
     module Visibility
 

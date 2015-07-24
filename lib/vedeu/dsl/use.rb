@@ -4,7 +4,6 @@ module Vedeu
 
     # Provides helper methods for building views.
     #
-    # @api public
     module Use
 
       # Duplicate a stored model.

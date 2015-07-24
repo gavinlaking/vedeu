@@ -5,7 +5,6 @@ module Vedeu
     # Provides the mechanism to create menus within client applications and use
     # events to drive them.
     #
-    # @api public
     class Menu
 
       include Vedeu::DSL
@@ -24,8 +23,7 @@ module Vedeu
       #
       # @param element [Object] An object you wish to add to the collection.
       #
-      # @example
-      #   menu 'my_menu' do
+      #   Vedeu.menu 'my_menu' do
       #     item SomeClass.new
       #     item SomeClass.new
       #   end
@@ -41,18 +39,16 @@ module Vedeu
       # In the 'my_playlist' example below, your `Track` model may return a
       # collection of tracks to populate the menu.
       #
-      # @param collection [Array<Object>] A collection of objects which make up
-      #   the menu items.
-      #
-      # @example
-      #   menu 'my_menu' do
+      #   Vedeu.menu 'my_menu' do
       #     items [:item_1, :item_2, :item_3]
       #   end
       #
-      #   menu 'my_playlist' do
+      #   Vedeu.menu 'my_playlist' do
       #     items Track.all_my_favourites
       #   end
       #
+      # @param collection [Array<Object>] A collection of objects which make up
+      #   the menu items.
       # @return [Array]
       def items(collection = [])
         model.collection = collection
@@ -61,14 +57,12 @@ module Vedeu
       # The name of the menu. Used to reference the menu throughout your
       # application's execution lifetime.
       #
-      # @param value [String]
-      #
-      # @example
-      #   menu do
+      #   Vedeu.menu do
       #     name 'my_menu'
       #     # ...
       #   end
       #
+      # @param value [String]
       # @return [String]
       def name(value)
         model.name = value

@@ -9,7 +9,6 @@ module Vedeu
   #   in z-index order, meaning that interfaces with a lower z-index will be
   #   drawn first. This means overlapping interfaces will be drawn as specified.
   #
-  # @api public
   module Refresh
 
     module_function

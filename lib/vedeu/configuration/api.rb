@@ -5,7 +5,6 @@ module Vedeu
     # The Configuration::API class parses client application configuration into
     # options used by Vedeu to affect certain behaviours.
     #
-    # @api public
     class API
 
       include Vedeu::Common
@@ -393,9 +392,9 @@ module Vedeu
       # @return [Symbol]
       # @see Vedeu::Config::API#raw!
       # @see Vedeu::Config::API#cooked!
-      def terminal_mode(value)
-        if value == :raw || value == :cooked
-          options[:terminal_mode] = value
+      def terminal_mode(mode)
+        if mode == :raw || mode == :cooked
+          options[:terminal_mode] = mode
 
         else
           fail Vedeu::InvalidSyntax,

@@ -30,7 +30,6 @@ module Vedeu
   #       :do_stuff
   #     end
   #
-  # @api public
   class Event
 
     include Vedeu::Model

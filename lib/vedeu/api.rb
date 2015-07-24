@@ -16,8 +16,6 @@ module Vedeu
   #   # with other methods
   #   Vedeu.method_name.other_method
   #
-  # @api public
-  #
   module API
 
     extend Forwardable

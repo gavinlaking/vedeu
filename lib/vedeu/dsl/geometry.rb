@@ -2,19 +2,61 @@ module Vedeu
 
   module DSL
 
-    # Provide DSL methods for configuring the geometry of an interface.
-    #
-    # Geometry for Vedeu, as the same for ANSI terminals, has the origin at
+    # Geometry allows the configuration of the position and size of an
+    # interface. Within Vedeu, as the same for ANSI terminals, has the origin at
     # top-left, y = 1, x = 1. The 'y' coordinate is deliberately first.
     #
-    # @example
+    # The Geometry DSL can be used within the Interface DSL or standalone. Here
+    # are example of declarations for a `geometry` block:
+    #
+    # A standalone geometry definition:
     #
     #   Vedeu.geometry 'some_interface' do
-    #     # ...
+    #     height 5 # Sets the height of the view to 5
+    #     width 20 # Sets the width of the view to 20
+    #     x 3      # Start drawing 3 spaces from left
+    #     y 10     # Start drawing 10 spaces from top
+    #     xn 30    # Stop drawing 30 spaces from the left
+    #     yn 20    # Stop drawing 20 spaces from top
     #   end
     #
-    #   This crude ASCII diagram represents a Geometry within Vedeu, each of the
-    #   labels is a value you can access or define.
+    # An interface including a geometry definition:
+    #
+    #   Vedeu.interface 'some_interface' do
+    #     geometry do
+    #       height 5
+    #       width 20
+    #       x 3
+    #       y 10
+    #       xn 30
+    #       yn 20
+    #     end
+    #     # ... some code here
+    #   end
+    #
+    # If a declaration is omitted for `height` or `width` the full remaining
+    # space available in the terminal will be used. `x` and `y` both default to
+    # 1.
+    #
+    # You can also make a geometry declaration dependent on another view:
+    #
+    #   Vedeu.interface 'other_panel' do
+    #     # ... some code here
+    #   end
+    #
+    #   Vedeu.interface 'main' do
+    #     geometry do
+    #       height 10
+    #       y { use('other_panel').south }
+    #     end
+    #     # ... some code here
+    #   end
+    #
+    #
+    # This view will begin just below "other\_panel".
+    #
+    # This crude ASCII diagram represents a Geometry within Vedeu, each of the
+    # labels is a value you can access or define.
     #
     #        x    north    xn           # north:  y - 1
     #      y +--------------+           # top:    y
@@ -26,7 +68,6 @@ module Vedeu
     #     yn +--------------+           # south:  yn + 1
     #             south
     #
-    # @api public
     class Geometry
 
       include Vedeu::DSL
@@ -34,7 +75,6 @@ module Vedeu
 
       # Specify the geometry of an interface or view with a simple DSL.
       #
-      # @example
       #   Vedeu.geometry 'some_interface' do
       #     # ...
       #   end
@@ -63,20 +103,16 @@ module Vedeu
       # Instructs Vedeu to calculate x and y geometry automatically based on the
       # centre character of the terminal, the width and the height.
       #
+      #   Vedeu.geometry 'some_interface' do
+      #     centred false # or...
+      #
+      #     centred true  # or...
+      #     centred!      # or...
+      #     # ... some code
+      #   end
+      #
       # @param value [Boolean] Any value other than nil or false will evaluate
       #   to true.
-      #
-      # @example
-      #   geometry 'some_interface' do
-      #     centred!
-      #     # ...
-      #   end
-      #
-      #   geometry 'some_interface' do
-      #     centred false
-      #     # ...
-      #   end
-      #
       # @return [Boolean]
       def centred(value = true)
         boolean = value ? true : false
@@ -85,21 +121,31 @@ module Vedeu
       end
       alias_method :centred!, :centred
 
-      # @see Vedeu::Grid.columns
+      # Returns the width in characters for the number of columns specified.
+      #
+      #   Vedeu.geometry 'main_interface' do
+      #     # ... some code
+      #     width columns(9) # Vedeu.width # => 92 (for example)
+      #                      # 92 / 12 = 7
+      #                      # 7 * 9 = 63
+      #                      # Therefore, width is 63 characters.
+      #   end
+      #
+      # @param value [Fixnum]
+      # @raise [Vedeu::OutOfRange] When the value parameter is not between 1 and
+      #   12 inclusive.
+      # @return [Fixnum|Vedeu::OutOfRange]
       def columns(value)
         Vedeu::Grid.columns(value)
       end
 
       # Specify the number of characters/rows/lines tall the interface will be.
+      # This value will be ignored if by `y` and `yn` are set.
       #
-      # @example
-      #   geometry 'some_interface' do
+      #   Vedeu.geometry 'some_interface' do
       #     height 8
-      #     # ...
+      #     # ... some code
       #   end
-      #
-      # @note
-      #   This value will be ignored if by `y` and `yn` are set.
       #
       # @param value [Fixnum]
       # @return [Fixnum]
@@ -107,24 +153,33 @@ module Vedeu
         model.height = value
       end
 
-      # @see Vedeu::Grid.columns
+      # Returns the height in characters for the number of rows specified.
+      #
+      #   Vedeu.geometry 'main_interface' do
+      #     # ... some code
+      #     height rows(3)  # Vedeu.height # => 38 (for example)
+      #                     # 38 / 12 = 3
+      #                     # 3 * 3 = 9
+      #                     # Therefore, height is 9 characters.
+      #   end
+      #
+      # @param value [Fixnum]
+      # @raise [Vedeu::OutOfRange] When the value parameter is not between 1 and
+      #   12 inclusive.
+      # @return [Fixnum]
       def rows(value)
         Vedeu::Grid.rows(value)
       end
 
       # Specify the number of characters/columns wide the interface will be.
+      # This value will be ignored if by `x` and `xn` are set.
       #
-      # @param value [Fixnum]
-      #
-      # @example
-      #   geometry 'some_interface' do
+      #   Vedeu.geometry 'some_interface' do
       #     width 25
-      #     # ...
+      #     # ... some code
       #   end
       #
-      # @note
-      #   This value will be ignored if by `x` and `xn` are set.
-      #
+      # @param value [Fixnum]
       # @return [Fixnum]
       def width(value)
         model.width = value
@@ -132,15 +187,11 @@ module Vedeu
 
       # Specify the starting x position (column) of the interface.
       #
-      # @example
-      #   geometry 'some_interface' do
+      #   Vedeu.geometry 'some_interface' do
       #     x 7 # start on column 7.
-      #     # ...
-      #   end
       #
-      #   geometry 'some_interface' do
       #     x { use('other_interface').east } # start on column 8, if
-      #     # ...                             # `other_interface` changes
+      #     # ... some code                   # `other_interface` changes
       #   end                                 # position, `some_interface` will
       #                                       # too.
       #
@@ -154,20 +205,14 @@ module Vedeu
       end
 
       # Specify the ending x position (column) of the interface.
+      # This value will override `width`.
       #
-      # @example
-      #   geometry 'some_interface' do
+      #   Vedeu.geometry 'some_interface' do
       #     xn 37 # end at column 37.
-      #     # ...
-      #   end
       #
-      #   geometry 'some_interface' do
       #     xn  { use('other_interface').right } # if `other_interface` changes
-      #     # ...                                # position, `some_interface`
+      #     # ... some code                      # position, `some_interface`
       #   end                                    # will too.
-      #
-      # @note
-      #   This value will override `width`.
       #
       # @param value [Fixnum]
       # @param block [Proc]
@@ -180,15 +225,11 @@ module Vedeu
 
       # Specify the starting y position (row/line) of the interface.
       #
-      # @example
-      #   geometry 'some_interface' do
-      #     y  4
-      #     # ...
-      #   end
+      #   Vedeu.geometry 'some_interface' do
+      #     y  4 # start at row 4
       #
-      #   geometry 'some_interface' do
       #     y  { use('other_interface').north } # start on row/line 3, if
-      #     # ...                               # `other_interface` changes
+      #     # ... some code                     # `other_interface` changes
       #   end                                   # position, `some_interface`
       #                                         # will too.
       #
@@ -202,20 +243,14 @@ module Vedeu
       end
 
       # Specify the ending y position (row/line) of the interface.
+      # This value will override `height`.
       #
-      # @example
-      #   geometry 'some_interface' do
+      #   Vedeu.geometry 'some_interface' do
       #     yn 24 # end at row 24.
-      #     # ...
-      #   end
       #
-      #   geometry 'some_interface' do
       #     yn { use('other_interface').bottom } # if `other_interface` changes
-      #     # ...                                # position, `some_interface`
+      #     # ... some code                      # position, `some_interface`
       #   end                                    # will too.
-      #
-      # @note
-      #   This value will override `height`.
       #
       # @param value [Fixnum]
       # @param block [Proc]

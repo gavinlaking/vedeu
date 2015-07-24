@@ -5,7 +5,6 @@ module Vedeu
   # width is not a multiple of 12, then Grid chooses the maximum value which
   # will fit.
   #
-  # @api public
   class Grid
 
     # @see #initialize
@@ -28,18 +27,7 @@ module Vedeu
       @value = value
     end
 
-    # Returns the width in characters for the number of columns specified.
-    #
-    # @example
-    #  Vedeu.geometry 'main_interface' do
-    #    width: columns(9) # Vedeu.width # => 92 (for example)
-    #                      # 92 / 12 = 7
-    #                      # 7 * 9 = 63
-    #                      # Therefore, width is 63 characters.
-    #
-    # @raise [Vedeu::OutOfRange] When the value parameter is not between 1 and
-    #   12 inclusive.
-    # @return [Fixnum|Vedeu::OutOfRange]
+    # @see Vedeu::DSL::Geometry#columns
     def columns
       fail Vedeu::OutOfRange,
            'Valid value between 1 and 12 inclusive.' if out_of_range?
@@ -47,18 +35,7 @@ module Vedeu
       column * value
     end
 
-    # Returns the height in characters for the number of rows specified.
-    #
-    # @example
-    #  Vedeu.geometry 'main_interface' do
-    #    height: rows(3) # Vedeu.height # => 38 (for example)
-    #                    # 38 / 12 = 3
-    #                    # 3 * 3 = 9
-    #                    # Therefore, height is 9 characters.
-    #
-    # @raise [Vedeu::OutOfRange] When the value parameter is not between 1 and
-    #   12 inclusive.
-    # @return [Fixnum|Vedeu::OutOfRange]
+    # @see Vedeu::DSL::Geometry#rows
     def rows
       fail Vedeu::OutOfRange,
            'Valid value between 1 and 12 inclusive.' if out_of_range?

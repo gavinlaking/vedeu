@@ -4,7 +4,6 @@ module Vedeu
 
     # Provides methods to be used to define views.
     #
-    # @example
     #   Vedeu.renders do
     #     view 'my_interface' do
     #       lines do
@@ -31,7 +30,6 @@ module Vedeu
     #     end
     #   end
     #
-    # @api public
     class Line
 
       include Vedeu::DSL
@@ -50,14 +48,13 @@ module Vedeu
 
       # Specify a single line in a view.
       #
-      # @example
       #   Vedeu.renders do
       #     view 'my_interface' do
       #       line 'some text...'
-      #       # ...
+      #       # ... some code
       #
       #       line do
-      #         # ...
+      #         # ... some code
       #       end
       #     end
       #   end
@@ -85,23 +82,21 @@ module Vedeu
       # Define multiple streams (a stream is a subset of a line).
       # Uses {Vedeu::DSL::Stream} for all directives within the required block.
       #
-      # @param block [Proc]
-      #
-      # @example
       #   Vedeu.renders do
       #     view 'my_interface' do
       #       line do
       #         streams do
-      #           # ...
+      #           # ... some code
       #         end
       #
       #         stream do
-      #           # ...
+      #           # ... some code
       #         end
       #       end
       #     end
       #   end
       #
+      # @param block [Proc]
       # @raise [Vedeu::InvalidSyntax] The required block was not given.
       # @return [Vedeu::Streams<Vedeu::Stream>]
       # @see Vedeu::DSL::Stream for subdirectives.

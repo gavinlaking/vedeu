@@ -77,7 +77,6 @@ module Vedeu
 
   # Provides the ability to log anything to the Vedeu log file.
   #
-  # @api public
   class Log
 
     class << self

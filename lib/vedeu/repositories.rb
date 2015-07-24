@@ -6,6 +6,8 @@ module Vedeu
 
     extend self
 
+    # Register a repository with the collection of Vedeu repositories.
+    #
     # @param klass [Class]
     # @return [Set]
     def register(klass)

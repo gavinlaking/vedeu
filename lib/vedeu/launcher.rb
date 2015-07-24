@@ -5,7 +5,6 @@ module Vedeu
   # the starting of the application, the handling of uncaught exceptions and
   # finally the exiting of the application with the correct exit code.
   #
-  # @api public
   class Launcher
 
     # @!attribute [r] exit_code

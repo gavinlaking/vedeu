@@ -41,6 +41,8 @@ to your project here.
 Vedeu is largely documented using Yard. I hope to produce more 'General Usage'
 documentation shortly. In the meantime, please browse the [RubyDoc](http://rubydoc.info/gems/vedeu).
 
+- [The Vedeu DSL](http://rubydoc.info/gems/vedeu/file/docs/dsl.md)
+
 
 ## Development / Contributing
 

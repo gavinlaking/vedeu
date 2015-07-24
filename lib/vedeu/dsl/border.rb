@@ -2,11 +2,10 @@ module Vedeu
 
   module DSL
 
-    # DSL for creating borders for interfaces.
-    #
-    # Allows customisation for the border's sides and corners; a custom
-    # foreground and background, style, and whether a particular side should be
-    # drawn or not.
+    # Borders are defined by name for each of the client application's
+    # interfaces or views. They can be enabled or disabled (which controls
+    # whether they are rendered or not), they have their own colours and styles,
+    # and each aspect of the border can be controlled.
     #
     # @example
     #   # Borders can be defined when defining your interface...
@@ -27,7 +26,6 @@ module Vedeu
     #     # ...
     #   end
     #
-    # @api public
     class Border
 
       include Vedeu::DSL
@@ -36,7 +34,6 @@ module Vedeu
 
       # Specify the border of an interface or view with a simple DSL.
       #
-      # @example
       #   Vedeu.border 'some_interface' do
       #     # ...
       #   end
@@ -65,14 +62,9 @@ module Vedeu
       # Set the character to be used to draw the bottom left corner of the
       # border.
       #
-      # @example
-      #   Vedeu.renders do
-      #     view 'border_demo' do
-      #       border do
-      #         bottom_left '+'
-      #         # ...
-      #       end
-      #     end
+      #   Vedeu.border 'border_demo' do
+      #     bottom_left '+'
+      #     # ... some code
       #   end
       #
       # @param char [String] Character to be used as the bottom left border
@@ -85,14 +77,9 @@ module Vedeu
       # Set the character to be used to draw the bottom right corner of the
       # border.
       #
-      # @example
-      #   Vedeu.renders do
-      #     view 'border_demo' do
-      #       border do
-      #         bottom_right '+'
-      #         # ...
-      #       end
-      #     end
+      #   Vedeu.border 'border_demo' do
+      #     bottom_right '+'
+      #     # ... some code
       #   end
       #
       # @param char [String] Character to be used as the bottom right border
@@ -102,7 +89,12 @@ module Vedeu
         model.bottom_right = char
       end
 
-      # Disable this border.
+      # Disable the border:
+      #
+      #   Vedeu.border 'border_demo' do
+      #     disable!
+      #     # ... some other code (will be ignored)
+      #   end
       #
       # @return [Boolean]
       def disable!
@@ -112,10 +104,17 @@ module Vedeu
         hide_left!
         hide_right!
         hide_top!
+
+        model.enabled
       end
 
-      # Enable this border.
+      # Enable the border:
       # (Borders are enabled by default if defined for an interface).
+      #
+      #   Vedeu.border 'border_demo' do
+      #     enable!
+      #     # ... some code
+      #   end
       #
       # @return [Boolean]
       def enable!
@@ -125,18 +124,15 @@ module Vedeu
         show_left!
         show_right!
         show_top!
+
+        model.enabled
       end
 
       # Set the character to be used to draw a horizontal part of the border.
       #
-      # @example
-      #   Vedeu.renders do
-      #     view 'border_demo' do
-      #       border do
-      #         horizontal '-'
-      #         # ...
-      #       end
-      #     end
+      #   Vedeu.border 'border_demo' do
+      #     horizontal '-'
+      #     # ... some code
       #   end
       #
       # @param char [String] Character to be used as the horizontal border
@@ -148,17 +144,12 @@ module Vedeu
 
       # Enable/disable the bottom border.
       #
-      # @example
-      #   Vedeu.renders do
-      #     view 'border_demo' do
-      #       border do
-      #         bottom false
-      #         # ... or
-      #         hide_bottom!
-      #         # ... or
-      #         show_bottom!
-      #       end
-      #     end
+      #   Vedeu.border 'border_demo' do
+      #     bottom true  # or...
+      #     bottom false # or...
+      #     hide_bottom! # or...
+      #     show_bottom!
+      #     # ... some code
       #   end
       #
       # @param value [Boolean] All values evaluate as true except nil and
@@ -187,17 +178,12 @@ module Vedeu
 
       # Enable/disable the left border.
       #
-      # @example
-      #   Vedeu.renders do
-      #     view 'border_demo' do
-      #       border do
-      #         left false
-      #         # ... or
-      #         hide_left!
-      #         # ... or
-      #         show_left!
-      #       end
-      #     end
+      #   Vedeu.border 'border_demo' do
+      #     left true  # or...
+      #     left false # or...
+      #     hide_left! # or...
+      #     show_left!
+      #     # ... some code
       #   end
       #
       # @param value [Boolean] All values evaluate as true except nil and
@@ -226,17 +212,12 @@ module Vedeu
 
       # Enable/disable the right border.
       #
-      # @example
-      #   Vedeu.renders do
-      #     view 'border_demo' do
-      #       border do
-      #         right false
-      #         # ... or
-      #         hide_right!
-      #         # ... or
-      #         show_right!
-      #       end
-      #     end
+      #   Vedeu.border 'border_demo' do
+      #     right true  # or...
+      #     right false # or...
+      #     hide_right! # or...
+      #     show_right!
+      #     # ... some code
       #   end
       #
       # @param value [Boolean] All values evaluate as true except nil and
@@ -265,16 +246,12 @@ module Vedeu
 
       # If you have you are showing a top border, you could add a title.
       #
-      # @example
-      #   Vedeu.renders do
-      #     view 'border_demo' do
-      #       geometry { width: 50 }
-      #       border do
-      #         title 'My Cool Title'
-      #         # ...
-      #       end
-      #     end
+      #   Vedeu.border 'border_demo' do
+      #     title 'My Cool Title'
+      #     # ... some code
       #   end
+      #
+      # produces, depending on other customisations:
       #
       #   +- My Cool Title --------------------------------+
       #
@@ -286,17 +263,12 @@ module Vedeu
 
       # Enable/disable the top border.
       #
-      # @example
-      #   Vedeu.renders do
-      #     view 'border_demo' do
-      #       border do
-      #         top false
-      #         # ... or
-      #         hide_top!
-      #         # ... or
-      #         show_top!
-      #       end
-      #     end
+      #   Vedeu.border 'border_demo' do
+      #     top true  # or...
+      #     top false # or...
+      #     hide_top! # or...
+      #     show_top!
+      #     # ... some code
       #   end
       #
       # @param value [Boolean] All values evaluate as true except nil and
@@ -325,14 +297,9 @@ module Vedeu
 
       # Set the character to be used to draw the top left corner of the border.
       #
-      # @example
-      #   Vedeu.renders do
-      #     view 'border_demo' do
-      #       border do
-      #         top_left '+'
-      #         # ...
-      #       end
-      #     end
+      #   Vedeu.border 'border_demo' do
+      #     top_left '+'
+      #     # ... some code
       #   end
       #
       # @param char [String] Character to be used as the top left border
@@ -344,12 +311,10 @@ module Vedeu
 
       # Set the character to be used to draw the top right corner of the border.
       #
-      # @example
-      #   Vedeu.renders do
-      #     view 'border_demo' do
-      #       border do
-      #         top_right '+'
-      #         # ...
+      #   Vedeu.border 'border_demo' do
+      #     top_right '+'
+      #     # ... some code
+      #   end
       #
       # @param char [String] Character to be used as the top right border
       #   character.
@@ -360,12 +325,10 @@ module Vedeu
 
       # Set the character to be used to draw a vertical part of the border.
       #
-      # @example
-      #   Vedeu.renders do
-      #     view 'border_demo' do
-      #       border do
-      #         vertical '|'
-      #         # ...
+      #   Vedeu.border 'border_demo' do
+      #     vertical '|'
+      #     # ... some code
+      #   end
       #
       # @param char [String] Character to be used as the vertical border
       #   character.

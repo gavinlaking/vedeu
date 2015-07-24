@@ -21,7 +21,6 @@ module Vedeu
     # @example
     #   Vedeu.renderers
     #
-    # @api public
     # @return [Module]
     def renderers
       self
@@ -30,7 +29,6 @@ module Vedeu
     # @example
     #   Vedeu.renderers.render(output)
     #
-    # @api public
     # @param output [void]
     # @return [Array<void>]
     def render(output)
@@ -55,7 +53,6 @@ module Vedeu
     # @note
     #   A renderer class must respond to the '.render' class method.
     #
-    # @api public
     # @param renderers [Class]
     # @return [Set]
     def renderer(*renderers)
@@ -67,7 +64,6 @@ module Vedeu
     # @example
     #   Vedeu.renderers.reset
     #
-    # @api public
     # @return [Set]
     def reset
       @storage = Set.new

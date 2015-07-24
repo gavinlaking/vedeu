@@ -4,7 +4,6 @@ module Vedeu
 
     # DSL for creating views.
     #
-    # @api public
     class View
 
       class << self
@@ -13,25 +12,22 @@ module Vedeu
         # or command. This provides the means for you to define your the views
         # of your application without their content.
         #
-        # @todo More documentation required.
+        #   Vedeu.interface 'my_interface' do
+        #     # ... some code
+        #   end
+        #
+        #   Vedeu.interface do
+        #     name 'interfaces_must_have_a_name'
+        #     # ... some code
+        #   end
         #
         # @param name [String] The name of the interface. Used to reference the
         #   interface throughout your application's execution lifetime.
         # @param block [Proc] A set of attributes which define the features of
         #   the interface.
-        #
-        # @example
-        #   Vedeu.interface 'my_interface' do
-        #     # ...
-        #   end
-        #
-        #   Vedeu.interface do
-        #     name 'interfaces_must_have_a_name'
-        #     # ...
-        #   end
-        #
         # @raise [Vedeu::InvalidSyntax] The required block was not given.
         # @return [Vedeu::Interface]
+        # @todo More documentation required.
         def interface(name = '', &block)
           fail Vedeu::InvalidSyntax, 'block not given' unless block_given?
 
@@ -40,22 +36,26 @@ module Vedeu
           Vedeu::Interface.build(attributes, &block).store
         end
 
-        # Immediate render
-        #
         # Directly write a view buffer to the terminal. Using this method means
         # that the refresh event does not need to be triggered after creating
         # the views, though can be later triggered if needed.
         #
-        # @param block [Proc] The directives you wish to send to render.
-        #   Typically includes `view` with associated sub-directives.
-        #
-        # @example
         #   Vedeu.renders do
         #     view 'my_interface' do
-        #       # ...
+        #       # ... some code
         #     end
         #   end
         #
+        #   # or...
+        #
+        #   Vedeu.render do
+        #     view 'my_interface' do
+        #       # ... some code
+        #     end
+        #   end
+        #
+        # @param block [Proc] The directives you wish to send to render.
+        #   Typically includes `view` with associated sub-directives.
         # @raise [Vedeu::InvalidSyntax] The required block was not given.
         # @return [Array<Interface>]
         def render(&block)
@@ -65,20 +65,14 @@ module Vedeu
         end
         alias_method :renders, :render
 
-        # Deferred view
-        #
         # Define a view (content) for an interface.
         #
-        # @note The views declared within this block are stored in their
-        #   respective interface back buffers until a refresh event occurs. When
-        #   the refresh event is triggered, the back buffers are swapped into
-        #   the front buffers and the content here will be rendered to
-        #   {Vedeu::Terminal.output}.
+        # The views declared within this block are stored in their respective
+        # interface back buffers until a refresh event occurs. When the refresh
+        # event is triggered, the back buffers are swapped into the front
+        # buffers and the content here will be rendered to
+        # {Vedeu::Terminal.output}.
         #
-        # @param block [Proc] The directives you wish to send to render.
-        #   Typically includes `view` with associated sub-directives.
-        #
-        # @example
         #   Vedeu.views do
         #     view 'my_interface' do
         #       # ... some attributes ...
@@ -86,16 +80,19 @@ module Vedeu
         #     view 'my_other_interface' do
         #       # ... some other attributes ...
         #     end
-        #     # ...
+        #     # ... some code
         #   end
         #
+        # @param block [Proc] The directives you wish to send to render.
+        #   Typically includes `view` with associated sub-directives.
         # @raise [Vedeu::InvalidSyntax] The required block was not given.
         # @return [Array<Interface>]
-        def views(&block)
+        def view(&block)
           fail Vedeu::InvalidSyntax, 'block not given' unless block_given?
 
           store(:store_deferred, &block)
         end
+        alias_method :views, :view
 
         private
 

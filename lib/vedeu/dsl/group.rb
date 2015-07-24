@@ -2,34 +2,42 @@ module Vedeu
 
   module DSL
 
-    # DSL for adding interfaces to a group.
+    # Interfaces can be configured to be part of a named group. Once an
+    # interface is a member of group, the group can be affected by other
+    # controls. For example, assuming the client application is a simple Git
+    # client, it may have a group called 'commit'. The 'commit' group will
+    # contain the interfaces 'diff' (to show the changes), 'staged' (to show
+    # which files are staged) and 'unstaged'. A refresh of the 'commit' group
+    # would cause all interfaces belonging to the group to refresh. Similarly,
+    # showing or hiding the group would of course, show or hide the interfaces
+    # of that group.
     #
-    # @api public
     class Group
 
       include Vedeu::DSL
 
-      # Specify a new group of interfaces with a simple DSL.
+      # Specify a new group of interfaces with a simple DSL. Creating a group
+      # with the same name as an existing group overwrites the existing group.
       #
       # The example below resembles 'vim' (the popular terminal-based text
       # editor):
       #
-      # @example
       #   Vedeu.group 'title_screen' do
       #     add 'welcome_interface'
-      #     # ...
+      #     # ... some code
       #   end
       #
       #   Vedeu.group 'main_screen' do
       #     add 'editor_interface'
       #     add 'status_interface'
       #     add 'command_interface'
-      #     # ...
+      #     # ... some code
       #   end
       #
-      # @note
-      #   Creating a group with the same name as an existing group overwrites
-      #   the existing group.
+      #   Vedeu.interface 'some_interface' do
+      #     group 'some_group'
+      #     # ... some code
+      #   end
       #
       # @param name [String] The name of this group.
       # @param block [Proc]
@@ -52,6 +60,10 @@ module Vedeu
       end
 
       # Add the named interface to this group.
+      #
+      #   Vedeu.group 'main_screen' do
+      #     add 'editor_interface'
+      #   end
       #
       # @param interface_name [String]
       # @return [void]
