@@ -78,6 +78,15 @@ module Vedeu
       collection.empty?
     end
 
+    # An object is equal when its values are the same.
+    #
+    # @param other [Vedeu::Collection]
+    # @return [Boolean]
+    def eql?(other)
+      self.class == other.class && collection == other.collection
+    end
+    alias_method :==, :eql?
+
     # Returns the size of the collection.
     #
     # @return [Fixnum]
