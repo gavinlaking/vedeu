@@ -35,6 +35,7 @@ require 'vedeu/null/buffer'
 require 'vedeu/null/generic'
 require 'vedeu/null/geometry'
 require 'vedeu/null/interface'
+require 'vedeu/null/menu'
 
 require 'vedeu/geometry/area'
 require 'vedeu/geometry/coordinate'

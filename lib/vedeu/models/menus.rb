@@ -11,6 +11,7 @@ module Vedeu
     end # Eigenclass
 
     real Vedeu::Menu
+    null Vedeu::Null::Menu
 
   end # Menus
 

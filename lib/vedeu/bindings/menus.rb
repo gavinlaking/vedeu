@@ -35,7 +35,9 @@ module Vedeu
       #
       # @return [void]
       def menu_bottom!
-        Vedeu.bind(:_menu_bottom_) { |name| Vedeu.menus.find(name).bottom_item }
+        Vedeu.bind(:_menu_bottom_) do |name|
+          Vedeu.menus.by_name(name).bottom_item
+        end
       end
 
       # Returns the current menu item.
@@ -46,7 +48,7 @@ module Vedeu
       # @return [void]
       def menu_current!
         Vedeu.bind(:_menu_current_) do |name|
-          Vedeu.menus.find(name).current_item
+          Vedeu.menus.by_name(name).current_item
         end
       end
 
@@ -58,7 +60,7 @@ module Vedeu
       # @return [void]
       def menu_deselect!
         Vedeu.bind(:_menu_deselect_) do |name|
-          Vedeu.menus.find(name).deselect_item
+          Vedeu.menus.by_name(name).deselect_item
         end
       end
 
@@ -70,7 +72,7 @@ module Vedeu
       #
       # @return [void]
       def menu_items!
-        Vedeu.bind(:_menu_items_) { |name| Vedeu.menus.find(name).items }
+        Vedeu.bind(:_menu_items_) { |name| Vedeu.menus.by_name(name).items }
       end
 
       # Makes the next menu item the current menu item, until it reaches the
@@ -81,7 +83,7 @@ module Vedeu
       #
       # @return [void]
       def menu_next!
-        Vedeu.bind(:_menu_next_) { |name| Vedeu.menus.find(name).next_item }
+        Vedeu.bind(:_menu_next_) { |name| Vedeu.menus.by_name(name).next_item }
       end
 
       # Makes the previous menu item the current menu item, until it reaches the
@@ -92,7 +94,7 @@ module Vedeu
       #
       # @return [void]
       def menu_prev!
-        Vedeu.bind(:_menu_prev_) { |name| Vedeu.menus.find(name).prev_item }
+        Vedeu.bind(:_menu_prev_) { |name| Vedeu.menus.by_name(name).prev_item }
       end
 
       # Returns the selected menu item.
@@ -103,7 +105,7 @@ module Vedeu
       # @return [void]
       def menu_selected!
         Vedeu.bind(:_menu_selected_) do |name|
-          Vedeu.menus.find(name).selected_item
+          Vedeu.menus.by_name(name).selected_item
         end
       end
 
@@ -114,7 +116,9 @@ module Vedeu
       #
       # @return [void]
       def menu_select!
-        Vedeu.bind(:_menu_select_) { |name| Vedeu.menus.find(name).select_item }
+        Vedeu.bind(:_menu_select_) do |name|
+          Vedeu.menus.by_name(name).select_item
+        end
       end
 
       # Makes the first menu item the current menu item.
@@ -124,7 +128,7 @@ module Vedeu
       #
       # @return [void]
       def menu_top!
-        Vedeu.bind(:_menu_top_) { |name| Vedeu.menus.find(name).top_item }
+        Vedeu.bind(:_menu_top_) { |name| Vedeu.menus.by_name(name).top_item }
       end
 
       # Returns a subset of the menu items; starting at the current item to the
@@ -135,7 +139,7 @@ module Vedeu
       #
       # @return [void]
       def menu_view!
-        Vedeu.bind(:_menu_view_) { |name| Vedeu.menus.find(name).view }
+        Vedeu.bind(:_menu_view_) { |name| Vedeu.menus.by_name(name).view }
       end
 
     end # Menus
