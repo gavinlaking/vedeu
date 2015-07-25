@@ -94,6 +94,17 @@ module Vedeu
         it { subject.must_equal(expected) }
       end
 
+      describe '#style' do
+        let(:expected) {
+          Vedeu::Stream.new(value: 'style text',
+                            style: Vedeu::Style.coerce(:bold))
+        }
+
+        subject { instance.style(:bold) { 'style text' } }
+
+        it { subject.must_equal(expected) }
+      end
+
     end # Helpers
 
   end # Templating

@@ -7,11 +7,6 @@ module Vedeu
     #
     module Helpers
 
-      # @example
-      #   Roses are {{ background('#ff0000', 'red') }},
-      #   violets are {{ bg('#0000ff', 'blue') }},
-      #   {{ background('#00ff00'), 'The test suite is all green!' }}
-      #
       # @param value [String] The HTML/CSS colour.
       # @param block [Proc]
       # @return [Vedeu::Stream]
@@ -31,11 +26,6 @@ module Vedeu
         define_stream(attributes, &block)
       end
 
-      # @example
-      #   Roses are {{ foreground('#ff0000', 'red') }},
-      #   violets are {{ fg('#0000ff', 'blue') }},
-      #   {{ foreground('#00ff00'), 'The test suite is all green!' }}
-      #
       # @param value [String] The HTML/CSS colour.
       # @param block [Proc]
       # @return [Vedeu::Stream]
@@ -45,22 +35,21 @@ module Vedeu
       end
       alias_method :fg, :foreground
 
-      private
-
-      # @see Vedeu::Templating::Helpers#colours
-      def define_colour(attributes = {})
-        attributes.delete_if do |k, v|
-          [:background, :foreground].include?(k) == false || v.nil? || v.empty?
-        end
-
-        Vedeu::Colour.new(attributes)
+      # @param value [Symbol]
+      # @param block [Proc]
+      # @return [Vedeu::Stream]
+      def style(value, &block)
+        define_stream({ style: value }, &block)
       end
 
-      # @see Vedeu::Templating::Helpers#colours
+      private
+
+      # @see Vedeu::Templating::Helpers#colour
       def define_stream(attributes = {}, &block)
         fail Vedeu::InvalidSyntax, 'block not given' unless block_given?
 
-        Vedeu::Stream.build(colour: define_colour(attributes),
+        Vedeu::Stream.build(colour: Vedeu::Colour.new(attributes),
+                            style:  Vedeu::Style.new(attributes[:style]),
                             value:  block.call)
       end
 
