@@ -1,10 +1,11 @@
 # @title The Vedeu DSL
+# The Vedeu DSL
 
 Coupled with the API (for interacting with the running client application), the
  DSL provides the mechanism to configure aspects of your application whilst
  using Vedeu.
 
-### Interfaces
+## Interfaces
 
 An Interface is a basic element in the GUI. It usually but does not necessarily
 correspond to a region of the terminal screen (for example, an Interface might
@@ -140,6 +141,7 @@ end
 
 ## Views
 
+{include:Vedeu::DSL::View}
 {include:Vedeu::DSL::View.interface}
 
 ### Immediate rendering
@@ -158,3 +160,10 @@ end
 
 `@todo` More documentation coming soon.
 
+#### Authors Notes
+
+The Rubydoc documentation has more specific information about the DSL methods
+ demonstrated above: [RubyDoc](http://rubydoc.info/gems/vedeu).
+
+I've tried to write the DSL in a way which makes it read nice; believing that
+ this will make it easier to use. I hope this is the case for you.

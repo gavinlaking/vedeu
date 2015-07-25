@@ -35,6 +35,7 @@ require 'vedeu/null/buffer'
 require 'vedeu/null/generic'
 require 'vedeu/null/geometry'
 require 'vedeu/null/interface'
+require 'vedeu/null/menu'
 
 require 'vedeu/geometry/area'
 require 'vedeu/geometry/coordinate'
@@ -47,6 +48,7 @@ require 'vedeu/geometry/position_index'
 require 'vedeu/geometry/position'
 require 'vedeu/geometry/position_validator'
 
+require 'vedeu/colours/escape_sequences'
 require 'vedeu/colours/colours'
 require 'vedeu/colours/backgrounds'
 require 'vedeu/colours/foregrounds'
@@ -173,3 +175,6 @@ require 'vedeu/bindings/system'
 require 'vedeu/bindings/visibility'
 
 require 'vedeu/bindings'
+
+require 'vedeu/plugins'
+require 'vedeu/plugins/plugin'

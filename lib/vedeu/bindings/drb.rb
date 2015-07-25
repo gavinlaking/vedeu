@@ -69,6 +69,7 @@ module Vedeu
       #
       # @example
       #   Vedeu.trigger(:_drb_restart_)
+      #   Vedeu.drb_restart
       #
       # @return [void]
       def drb_restart!
@@ -79,6 +80,7 @@ module Vedeu
       #
       # @example
       #   Vedeu.trigger(:_drb_start_)
+      #   Vedeu.drb_start
       #
       # @return [void]
       def drb_start!
@@ -89,6 +91,7 @@ module Vedeu
       #
       # @example
       #   Vedeu.trigger(:_drb_status_)
+      #   Vedeu.drb_status
       #
       # @return [void]
       def drb_status!
@@ -99,6 +102,7 @@ module Vedeu
       #
       # @example
       #   Vedeu.trigger(:_drb_stop_)
+      #   Vedeu.drb_stop
       #
       # @return [void]
       def drb_stop!

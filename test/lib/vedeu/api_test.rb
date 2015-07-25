@@ -11,6 +11,10 @@ module Vedeu
     it { Vedeu.must_respond_to(:configuration) }
     it { Vedeu.must_respond_to(:cursor) }
     it { Vedeu.must_respond_to(:cursors) }
+    it { Vedeu.must_respond_to(:drb_restart) }
+    it { Vedeu.must_respond_to(:drb_start) }
+    it { Vedeu.must_respond_to(:drb_status) }
+    it { Vedeu.must_respond_to(:drb_stop) }
     it { Vedeu.must_respond_to(:border) }
     it { Vedeu.must_respond_to(:geometry) }
     it { Vedeu.must_respond_to(:group) }

@@ -1,4 +1,5 @@
 # @title Vedeu API
+# The Vedeu API
 
 Vedeu provides a simple DSL for the creation of terminal/console based
 applications. Below is a list of all the API methods:
@@ -16,30 +17,30 @@ class OtherClassInYourApplication
 
 Note: Nesting indicates where an API method is allowed/supposed to be used.
 
-#### Borders
+### Borders
 
 - Vedeu.border
 
-#### Configuration
+### Configuration
 
 - Vedeu.configure
 - Vedeu.configuration
 
-#### Events
+### Events
 
 - Vedeu.bind
 - Vedeu.trigger
 - Vedeu.unbind
 
-#### Geometry
+### Geometry
 
 - Vedeu.geometry
 
-#### Groups
+### Groups
 
 - Vedeu.group
 
-#### Input
+### Input
 
 - Vedeu.keypress
 - Vedeu.keymap
@@ -47,7 +48,7 @@ Note: Nesting indicates where an API method is allowed/supposed to be used.
   - name
   - interface
 
-#### Interfaces
+### Interfaces
 
 - Vedeu.interface
   - background
@@ -73,7 +74,7 @@ Note: Nesting indicates where an API method is allowed/supposed to be used.
   - style
   - use
 
-#### Views
+### Views
 
 - Vedeu.renders
 - Vedeu.render
@@ -109,18 +110,18 @@ Note: Nesting indicates where an API method is allowed/supposed to be used.
 - Vedeu.views
   - ... as #renders
 
-#### Menus
+### Menus
 
 - Vedeu.menu
   - items
   - name
 
-#### Renderers
+### Renderers
 
 - Vedeu.renderer
 - Vedeu.renderers
 
-#### Repositories
+### Repositories
 
 These are collections which you can access:
 
@@ -136,7 +137,7 @@ These are collections which you can access:
 - Vedeu.keymaps
 - Vedeu.menus
 
-#### Miscellany
+### Miscellany
 
 - Vedeu.cursor
 - Vedeu.focus
@@ -151,4 +152,3 @@ These are collections which you can access:
 - Vedeu.resize
 - Vedeu.timer
 - Vedeu.width
-

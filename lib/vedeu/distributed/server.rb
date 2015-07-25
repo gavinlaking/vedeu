@@ -11,47 +11,55 @@ module Vedeu
 
       include Singleton
 
-      # @param (see #input)
-      # @see #input
-      def self.input(data, type = :key)
-        instance.input(data, type)
-      end
+      class << self
 
-      # @return [void]
-      # @see #output
-      def self.output
-        instance.output
-      end
+        # @param (see #input)
+        # @see #input
+        def input(data, type = :key)
+          instance.input(data, type)
+        end
 
-      # @return [void]
-      # @see #restart
-      def self.restart
-        instance.restart
-      end
+        # @return [void]
+        # @see #output
+        def output
+          instance.output
+        end
 
-      # @return [void]
-      # @see #shutdown
-      def self.shutdown
-        instance.shutdown
-      end
+        # @return [void]
+        # @see #restart
+        def restart
+          instance.restart
+        end
+        alias_method :drb_restart, :restart
 
-      # @return [void]
-      # @see #start
-      def self.start
-        instance.start
-      end
+        # @return [void]
+        # @see #shutdown
+        def shutdown
+          instance.shutdown
+        end
 
-      # @return [Symbol]
-      # @see #status
-      def self.status
-        instance.status
-      end
+        # @return [void]
+        # @see #start
+        def start
+          instance.start
+        end
+        alias_method :drb_start, :start
 
-      # @return [void]
-      # @see #stop
-      def self.stop
-        instance.stop
-      end
+        # @return [Symbol]
+        # @see #status
+        def status
+          instance.status
+        end
+        alias_method :drb_status, :status
+
+        # @return [void]
+        # @see #stop
+        def stop
+          instance.stop
+        end
+        alias_method :drb_stop, :stop
+
+      end # Eigenclass
 
       # @param data [String|Symbol]
       # @param type [Symbol] Either :keypress or :command.

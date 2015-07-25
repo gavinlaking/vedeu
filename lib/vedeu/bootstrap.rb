@@ -29,26 +29,13 @@ module Vedeu
     #
     # @return [void]
     def start
-      unless Vedeu::Configuration.log?
-        Vedeu.configure { log('/tmp/vedeu_bootstrap.log') }
-      end
+      configure_log!
 
-      # config/configuration.rb is already loaded so don't load it twice
-      Dir[File.join(Vedeu::Configuration.base_path, 'config/**/*')].each do |f|
-        next if f =~ %r{config/configuration\.rb}
-        load f
-      end
+      client_configuration!
 
-      [
-        'app/views/templates/**/*',
-        'app/views/interfaces/**/*',
-        'app/controllers/**/*',
-        'app/helpers/**/*',
-        'app/views/**/*',
-        'app/models/keymaps/**/*',
-      ].each { |path| load(File.join(Vedeu::Configuration.base_path, path)) }
+      client_application!
 
-      entry_point || eval(Vedeu::Configuration.root)
+      client_initialize!
 
       Vedeu::Launcher.execute!(argv)
     end
@@ -64,6 +51,39 @@ module Vedeu
     attr_reader :entry_point
 
     private
+
+    # @return [String]
+    def base_path
+      Vedeu::Configuration.base_path
+    end
+
+    # @note
+    #   config/configuration.rb is already loaded so don't load it twice
+    # @return [void]
+    def client_configuration!
+      Dir[File.join(base_path, 'config/**/*')].each do |path|
+        next if path =~ %r{config/configuration\.rb}
+
+        load(path)
+      end
+    end
+
+    # @return [void]
+    def client_application!
+      [
+        'app/views/templates/**/*',
+        'app/views/interfaces/**/*',
+        'app/controllers/**/*',
+        'app/helpers/**/*',
+        'app/views/**/*',
+        'app/models/keymaps/**/*',
+      ].each { |path| load(File.join(base_path, path)) }
+    end
+
+    # @return [void]
+    def client_initialize!
+      entry_point || eval(Vedeu::Configuration.root)
+    end
 
     # Load each of the loadable files.
     #
@@ -84,6 +104,13 @@ module Vedeu
       Dir.glob(path).select do |file|
         File.file?(file) && File.extname(file) == '.rb'
       end
+    end
+
+    # @return [void]
+    def configure_log!
+      Vedeu.configure do
+        log('/tmp/vedeu_bootstrap.log')
+      end unless Vedeu::Configuration.log?
     end
 
   end # Bootstrap

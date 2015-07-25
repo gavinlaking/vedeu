@@ -47,6 +47,12 @@ module Vedeu
 
   end # OutOfRange
 
+  # Raised when Vedeu encounters an error.
+  #
+  class VedeuError < StandardError
+
+  end # VedeuError,
+
   # Raised when Vedeu wishes to exit.
   #
   # @see Vedeu::MainLoop
