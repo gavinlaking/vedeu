@@ -26,9 +26,7 @@ module Vedeu
     # @param plugin [Vedeu::Plugin]
     # @return [void]
     def register(name, plugin = false)
-      if plugin && !loaded?(name)
-        plugins << plugin
-      end
+      plugins << plugin if plugin && !loaded?(name)
     end
 
     # Find all installed plugins and store them.
@@ -40,7 +38,7 @@ module Vedeu
       Gem::Specification.each do |gem|
         next unless gem.name =~ /^#{prefix}/
         plugin_name = gem.name[/^#{prefix}-(.*)/, 1]
-        register(plugin_name, Plugin.new(plugin_name, gem))
+        register(plugin_name, Vedeu::Plugin.new(plugin_name, gem))
       end
 
       plugins
@@ -50,7 +48,8 @@ module Vedeu
     #
     # @return [void]
     def names
-      plugins.reduce({}) do |hash, plugin|
+      collection = {}
+      plugins.each_with_object(collection) do |hash, plugin|
         hash[plugin.name] = plugin
         hash
       end
