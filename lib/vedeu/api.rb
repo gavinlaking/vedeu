@@ -73,6 +73,25 @@ module Vedeu
     # @return [Vedeu::Cursors]
     def_delegators Vedeu::Cursors, :cursors
 
+    # Manipulate the DRb server implementation.
+    #
+    # @example
+    #   Vedeu.drb_restart
+    #   Vedeu.drb_start
+    #   Vedeu.drb_status
+    #   Vedeu.drb_stop
+    #
+    # @!method drb_restart
+    #   @see Vedeu::Distributed::Server#restart
+    # @!method drb_start
+    #   @see Vedeu::Distributed::Server#start
+    # @!method drb_status
+    #   @see Vedeu::Distributed::Server#status
+    # @!method drb_stop
+    #   @see Vedeu::Distributed::Server#stop
+    def_delegators Vedeu::Distributed::Server, :drb_restart, :drb_start,
+                   :drb_status, :drb_stop
+
     # @example
     #   Vedeu.border
     #
