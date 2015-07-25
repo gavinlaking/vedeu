@@ -182,10 +182,10 @@ module Vedeu
       return build_horizontal(:top_horizontal, y) unless title? && title_fits?
 
       build_horizontal(:top_horizontal, y).each_with_index do |char, index|
-        if index >= 1 && index <= title_characters.size
-          char.border = nil
-          char.value  = title_characters[(index - 1)]
-        end
+        next if index == 0 || index > title_characters.size
+
+        char.border = nil
+        char.value  = title_characters[(index - 1)]
       end
     end
 
