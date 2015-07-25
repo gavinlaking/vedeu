@@ -105,7 +105,7 @@ require 'vedeu/templating/encoder'
 require 'vedeu/templating/decoder'
 require 'vedeu/templating/helpers'
 require 'vedeu/templating/directive'
-require 'vedeu/templating/preprocessor'
+require 'vedeu/templating/post_processor'
 require 'vedeu/templating/template'
 
 require 'vedeu/application/controller'

@@ -16,29 +16,27 @@ module Vedeu
     # Pre-processes a template, to convert all lines and lines with directives
     # into Vedeu::Streams.
     #
-    class Preprocessor
+    class PostProcessor
 
-      # @param lines [Array<String>]
+      # @param content [String]
       # @return [Array<Vedeu::Stream>]
-      def self.process(lines)
-        new(lines).process
+      def self.process(content)
+        new(content).process
       end
 
-      # Returns a new instance of Vedeu::Templating::Preprocessor.
+      # Returns a new instance of Vedeu::Templating::PostProcessor.
       #
-      # @param lines [Array<String>]
-      # @return [Vedeu::Templating::Preprocessor]
-      def initialize(lines)
-        @lines = lines
+      # @param content [String]
+      # @return [Vedeu::Templating::PostProcessor]
+      def initialize(content)
+        @content = content
       end
 
-      # @return [Array<Vedeu::Stream>]
+      # @return [Vedeu::Streams]
       def process
-        lines.each_with_object([]) do |line, acc|
+        lines.each_with_object(Vedeu::Streams.new) do |line, acc|
           if line =~ markers?
-            code = line.gsub(markers, '').chomp
-
-            acc << Directive.process(code)
+            acc << Vedeu::Templating::Decoder.process(unmark(line))
 
           else
             acc << Vedeu::Stream.new(value: line.chomp)
@@ -50,11 +48,16 @@ module Vedeu
 
       protected
 
-      # @!attribute [r] lines
-      # @return [Array<String>]
-      attr_reader :lines
+      # @!attribute [r] content
+      # @return [String]
+      attr_reader :content
 
       private
+
+      # @return [Array<String>]
+      def lines
+        content.lines
+      end
 
       # Return a pattern to remove directive markers and spaces.
       #
@@ -74,7 +77,13 @@ module Vedeu
         /^\s*({{)(.*?)(}})$/
       end
 
-    end # Preprocessor
+      # @param line [String]
+      # @return [String]
+      def unmark(line)
+        line.gsub(markers, '').chomp
+      end
+
+    end # PostProcessor
 
   end # Templating
 
