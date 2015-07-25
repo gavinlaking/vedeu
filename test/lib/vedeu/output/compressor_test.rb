@@ -16,11 +16,7 @@ module Vedeu
     end
 
     describe '.render' do
-      it { described.must_respond_to(:render) }
-    end
-
-    describe '#render' do
-      subject { instance.render }
+      subject { described.render(output) }
 
       it { subject.must_be_instance_of(String) }
 
@@ -115,6 +111,10 @@ module Vedeu
           end
         end
       end
+    end
+
+    describe '#render' do
+      it { instance.must_respond_to(:render) }
     end
 
   end # Compressor

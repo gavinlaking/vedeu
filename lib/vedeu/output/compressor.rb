@@ -22,7 +22,8 @@ module Vedeu
       @style  = ''
     end
 
-    # @note Takes approximately ~70ms for 2100 chars. (2015-05-24)
+    # @note
+    #   Takes approximately ~25ms for 2100 chars. (2015-07-25)
     # @return [String]
     def render
       if Vedeu::Configuration.compression?
@@ -57,12 +58,7 @@ module Vedeu
     # @return [String]
     def uncompress
       out = ''
-      Array(output).flatten.each do |char|
-        out << char.position.to_s
-        out << char.colour.to_s
-        out << char.style.to_s
-        out << char.value
-      end
+      Array(output).flatten.each { |char| out << char.to_s }
       out
     end
 
