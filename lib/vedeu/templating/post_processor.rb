@@ -1,18 +1,7 @@
 module Vedeu
 
-  # Provides means to use templates with Vedeu.
   module Templating
 
-    # preprocess
-    #   takes a line at a time
-    #   splits line into component parts e.g. text1, ruby, text1
-    #     takes text1, adds to JSON stream
-    #     processes ruby, adding to a new JSON stream
-    #     takes text2, adds to a JSON stream
-    #
-    # process
-    #   converts JSON streams into line/stream objects with correct attributes
-    #
     # Pre-processes a template, to convert all lines and lines with directives
     # into Vedeu::Streams.
     #
@@ -77,6 +66,8 @@ module Vedeu
         /^\s*({{)(.*?)(}})$/
       end
 
+      # Removes the markers and any line returns from the given line.
+      #
       # @param line [String]
       # @return [String]
       def unmark(line)

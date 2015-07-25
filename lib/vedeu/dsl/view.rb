@@ -163,7 +163,7 @@ module Vedeu
         # interface back buffers until a refresh event occurs. When the refresh
         # event is triggered, the back buffers are swapped into the front
         # buffers and the content here will be rendered to
-        # {Vedeu::Terminal.output}.
+        # {Vedeu::Terminal#output}.
         #
         #   Vedeu.views do
         #     view 'some_interface' do

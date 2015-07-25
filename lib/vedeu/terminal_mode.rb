@@ -1,5 +1,7 @@
 module Vedeu
 
+  # Store the current mode of the terminal.
+  #
   module TerminalMode
 
     extend self

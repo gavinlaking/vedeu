@@ -2,6 +2,8 @@ module Vedeu
 
   module Templating
 
+    # Converts an encoded string back into an object or objects.
+    #
     class Decoder
 
       # @param data [String]
@@ -10,6 +12,8 @@ module Vedeu
         new(data).process
       end
 
+      # Returns a new instance of Vedeu::Templating::Decoder.
+      #
       # @param data [String]
       # @return [Vedeu::Templating::Decoder]
       def initialize(data)
@@ -29,16 +33,23 @@ module Vedeu
 
       private
 
+      # Convert the marshalled object or objects back into an object(s).
+      #
       # @return [Object]
       def demarshal
         Marshal.load(decompress)
       end
 
+      # Decompress the marshalled object or objects.
+      #
       # @return [String]
       def decompress
         Zlib::Inflate.inflate(decode64)
       end
 
+      # Decode the Base64 string into a compressed, marshalled object or
+      # objects.
+      #
       # @return [String]
       def decode64
         Base64.strict_decode64(data)

@@ -1,6 +1,5 @@
 module Vedeu
 
-  # Provides means to use templates with Vedeu.
   module Templating
 
     # Converts a directive found in a template into a Vedeu::Stream object.
