@@ -47,6 +47,7 @@ require 'vedeu/geometry/position_index'
 require 'vedeu/geometry/position'
 require 'vedeu/geometry/position_validator'
 
+require 'vedeu/colours/escape_sequences'
 require 'vedeu/colours/colours'
 require 'vedeu/colours/backgrounds'
 require 'vedeu/colours/foregrounds'
