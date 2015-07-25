@@ -17,7 +17,6 @@ YARD::Rake::YardocTask.new(:yard) do |t|
     '-',
     'docs/api.md',
     'docs/getting_started.md',
-    'docs/views.md',
   ]
 end
 

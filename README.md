@@ -14,7 +14,8 @@ Vedeu was been built primarily with Ruby v2.1; however, the
 [.ruby-version](https://github.com/gavinlaking/vedeu/blob/master/.ruby-version)
 file will indicate the currently used Ruby version.
 
-When Vedeu started I was a MacOSX user, I've since moved to Linux. You shouldn't have any problems with either of these operating systems.
+When Vedeu started I was a MacOSX user, I've since moved to Linux. You shouldn't
+have any problems with either of these operating systems.
 
 Note: You may have trouble running Vedeu with Windows installations. (Pull
  requests welcome!)
@@ -26,23 +27,28 @@ To install Vedeu, simply:
 
     gem install 'vedeu'
 
-To use Vedeu's application scaffolding, see the [RubyDoc](http://www.rubydoc.info/gems/vedeu/file/docs/applications.md)
+To use Vedeu's application scaffolding, see the
+[RubyDoc](http://www.rubydoc.info/gems/vedeu/file/docs/getting_started.md)
 
 ## Example
 
-Have a look at: [Playa](https://github.com/gavinlaking/playa). Please browse the source of Playa and Vedeu to get a feel for how it all works.
+Have a look at: [Playa](https://github.com/gavinlaking/playa). Please browse the
+source of Playa and Vedeu to get a feel for how it all works.
 
 If you have produced software which uses Vedeu, please let me know, I'll link
 to your project here.
 
-
 ## Documentation & Usage
 
 Vedeu is largely documented using Yard. I hope to produce more 'General Usage'
-documentation shortly. In the meantime, please browse the [RubyDoc](http://rubydoc.info/gems/vedeu).
+documentation shortly. In the meantime, please browse the
+[RubyDoc](http://rubydoc.info/gems/vedeu).
 
+- [Getting Started](http://rubydoc.info/gems/vedeu/file/docs/getting_started.md)
 - [The Vedeu DSL](http://rubydoc.info/gems/vedeu/file/docs/dsl.md)
-
+- [The Vedeu API](http://rubydoc.info/gems/vedeu/file/docs/api.md)
+- [Vedeu Events](http://rubydoc.info/gems/vedeu/file/docs/events.md)
+- [Object Graphs](http://rubydoc.info/gems/vedeu/file/docs/object_graph.md)
 
 ## Development / Contributing
 
