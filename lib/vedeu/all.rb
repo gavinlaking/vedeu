@@ -101,6 +101,8 @@ require 'vedeu/models/groups'
 require 'vedeu/models/menu'
 require 'vedeu/models/menus'
 
+require 'vedeu/templating/encoder'
+require 'vedeu/templating/decoder'
 require 'vedeu/templating/helpers'
 require 'vedeu/templating/directive'
 require 'vedeu/templating/preprocessor'

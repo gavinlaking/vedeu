@@ -1,6 +1,7 @@
 $LIB_DIR = File.dirname(__FILE__) + '/../lib'
 $LOAD_PATH.unshift($LIB_DIR) unless $LOAD_PATH.include?($LIB_DIR)
 
+require 'base64'
 require 'date'
 require 'drb'
 require 'erb'
@@ -14,6 +15,7 @@ require 'set'
 require 'singleton'
 require 'thread'
 require 'time'
+require 'zlib'
 
 require 'thor'
 
