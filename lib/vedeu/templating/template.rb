@@ -44,11 +44,6 @@ module Vedeu
       private
 
       # @return [String]
-      def preprocess
-        Vedeu::Templating::Preprocessor.process(load)
-      end
-
-      # @return [String]
       def load
         File.read(path)
       end

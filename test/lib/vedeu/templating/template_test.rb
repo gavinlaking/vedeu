@@ -33,9 +33,10 @@ module Vedeu
         end
 
         context 'when the path exists' do
-          let(:path) { 'test/support/templates/inline.erb' }
+          let(:path) { 'test/support/templates/plain.erb' }
+          let(:expected) { "This is a test.\n" }
 
-          it { subject.must_equal("This is a test.\n") }
+          it { subject.must_equal(expected) }
         end
       end
 
