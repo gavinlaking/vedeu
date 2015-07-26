@@ -34,6 +34,7 @@ module Vedeu
     it { Vedeu.must_respond_to(:focus_previous) }
     it { Vedeu.must_respond_to(:foreground_colours) }
     it { Vedeu.must_respond_to(:geometries) }
+    it { Vedeu.must_respond_to(:goto) }
     it { Vedeu.must_respond_to(:groups) }
     it { Vedeu.must_respond_to(:interfaces) }
     it { Vedeu.must_respond_to(:keymaps) }

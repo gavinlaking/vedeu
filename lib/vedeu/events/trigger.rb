@@ -28,7 +28,7 @@ module Vedeu
       @repository = Vedeu.events
     end
 
-    # Trigger the event and return the result (if one) or an array of results.
+    # Trigger the event and return the result or an array of results.
     #
     # @return [Array]
     def trigger

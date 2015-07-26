@@ -65,7 +65,7 @@ module Vedeu
 
     # Alters the STD[IN|OUT|ERR] to those requested by the client application,
     # then starts the application. If an uncaught exception occurs during the
-    # application runtime, we exit ungracefully with the error message if any.
+    # application runtime, we exit ungracefully with any error message(s).
     #
     # @return [void]
     def execute!

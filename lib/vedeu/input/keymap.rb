@@ -52,8 +52,8 @@ module Vedeu
       keys.any? { |key| key.input == input }
     end
 
-    # Triggers the action associated with the key, if it is registered with this
-    # keymap.
+    # When the given input is registered with this keymap, this method triggers
+    # the action associated with the key.
     #
     # @param input [String|Symbol]
     # @return [Array|FalseClass]

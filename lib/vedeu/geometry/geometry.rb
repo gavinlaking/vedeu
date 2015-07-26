@@ -123,9 +123,9 @@ module Vedeu
       work
     end
 
-    # Will unmaximise the named interface geometry. Previously, if a geometry
+    # Will unmaximise the named interface geometry. Previously, when a geometry
     # was maximised, then triggering the unmaximise event will return it to its
-    # usual defined size (terminal size permitting: if the terminal has been
+    # usual defined size (terminal size permitting: when the terminal has been
     # resized, then the new geometry size should adapt).
     #
     # @example

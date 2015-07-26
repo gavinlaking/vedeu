@@ -7,7 +7,7 @@ module Vedeu
     #
     # @note
     #   Unbinding any of these events is likely to cause problems, so I would
-    #   advise leaving them alone. A safe rule: if the name starts with an
+    #   advise leaving them alone. A safe rule: when the name starts with an
     #   underscore, it's probably used by Vedeu internally.
     #
     # :nocov:
@@ -56,8 +56,8 @@ module Vedeu
         end
       end
 
-      # Clears the whole terminal space, or the named interface area to be
-      # cleared if given.
+      # Clears the whole terminal space, or when a name is given, the named
+      # interface area will be cleared.
       #
       # @example
       #   Vedeu.trigger(:_clear_)
@@ -196,7 +196,7 @@ module Vedeu
         Vedeu.bind(:_mode_switch_) { fail Vedeu::ModeSwitch }
       end
 
-      # Will cause the named interface to refresh, or if a name is not given,
+      # Will cause the named interface to refresh, or when a name is not given,
       # will refresh all interfaces.
       #
       # @note: Hidden interfaces will be still refreshed in memory but not

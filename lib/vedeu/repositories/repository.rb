@@ -85,8 +85,8 @@ module Vedeu
       storage[name]
     end
 
-    # Find the model attributes by name, raises an exception if the model cannot
-    # be found.
+    # Find the model attributes by name, raises an exception when the model
+    # cannot be found.
     #
     # @param name [String]
     # @raise [Vedeu::ModelNotFound] When the model cannot be found with this
@@ -97,7 +97,7 @@ module Vedeu
                          "Cannot find model by name: '#{name}'")
     end
 
-    # Find a model by name, registers the model by name if not found.
+    # Find a model by name, registers the model by name when not found.
     #
     # @param name [String]
     # @return [void]
@@ -131,7 +131,7 @@ module Vedeu
       storage.include?(name)
     end
 
-    # Returns the storage with the named model removed, or false if the model
+    # Returns the storage with the named model removed, or false when the model
     # does not exist.
     #
     # @param name [String]

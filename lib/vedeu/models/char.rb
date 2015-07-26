@@ -101,14 +101,14 @@ module Vedeu
       end
     end
 
-    # Returns the x position for the Char if set.
+    # Returns the x position for the Char when set.
     #
     # @return [Fixnum|NilClass]
     def x
       position.x if position
     end
 
-    # Returns the y position for the Char if set.
+    # Returns the y position for the Char when set.
     #
     # @return [Fixnum|NilClass]
     def y

@@ -269,6 +269,13 @@ module Vedeu
     #   @see Vedeu::Renderers#renderers
     def_delegators Vedeu::Renderers, :renderer, :renderers
 
+    # Instruct Vedeu to load the client application controller action with
+    # parameters.
+    #
+    # @!method goto
+    #   @see Vedeu::Router.goto
+    def_delegators Vedeu::Router, :goto
+
     # Return the height of the terminal running the client application.
     #
     # @example

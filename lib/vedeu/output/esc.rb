@@ -22,7 +22,7 @@ module Vedeu
     end
 
     # Return the escape sequence string from the list of recognised sequence
-    # 'commands', or an empty string if the 'command' cannot be found.
+    # 'commands', or an empty string when the 'command' cannot be found.
     #
     # @param value [String|Symbol]
     # @return [String]

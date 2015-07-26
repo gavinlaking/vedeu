@@ -109,7 +109,7 @@ module Vedeu
       end
 
       # Enable the border:
-      # (Borders are enabled by default if defined for an interface).
+      # (Borders are enabled by default when defined for an interface).
       #
       #   Vedeu.border 'border_demo' do
       #     enable!

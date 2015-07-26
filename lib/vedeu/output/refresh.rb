@@ -41,7 +41,7 @@ module Vedeu
     #
     # @param group_name [String] The name of the group to be refreshed.
     # @return [Array|Vedeu::ModelNotFound] A collection of the names of
-    #   interfaces refreshed, or an exception if the group was not found.
+    #   interfaces refreshed, or an exception when the group was not found.
     def by_group(group_name)
       Vedeu.timer("Refresh Group: '#{group_name}'") do
         Vedeu::RefreshGroup.by_name(group_name)

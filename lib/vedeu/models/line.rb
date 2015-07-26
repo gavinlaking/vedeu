@@ -75,7 +75,7 @@ module Vedeu
     end
     alias_method :value, :streams
 
-    # Delegate to Vedeu::Interface#width if available.
+    # Delegate to Vedeu::Interface#width when available.
     #
     # @return [Fixnum]
     def width

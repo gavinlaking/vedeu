@@ -236,7 +236,7 @@ module Vedeu
       false
     end
 
-    # Returns a boolean indicating if this event has a deadline.
+    # Returns a boolean indicating whether this event has a deadline.
     #
     # @return [Boolean]
     def deadline?

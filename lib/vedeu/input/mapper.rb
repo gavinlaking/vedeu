@@ -5,7 +5,7 @@ module Vedeu
   class Mapper
 
     # Takes a key as a keypress and sends it to registered keymaps. If found,
-    # the associated action is fired, if not, we move to the next keymap or
+    # the associated action is fired, otherwise, we move to the next keymap or
     # return false.
     #
     # @example
@@ -21,7 +21,7 @@ module Vedeu
       new(key, name).keypress
     end
 
-    # Checks a key is valid; i.e. not already registered to a keymap. If the
+    # Checks a key is valid; i.e. not already registered to a keymap. When the
     # key is registered, then the key is invalid and cannot be used again.
     #
     # @param (see #initialize)

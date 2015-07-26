@@ -125,6 +125,8 @@ module Vedeu
 
       subject { described.goto(controller_name, action_name, **args) }
 
+      it { described.must_respond_to(:action) }
+
       context 'when the controller is registered' do
         context 'when the controller klass is defined' do
           before do

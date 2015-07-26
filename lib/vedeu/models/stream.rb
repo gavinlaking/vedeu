@@ -94,7 +94,7 @@ module Vedeu
       value.size
     end
 
-    # Delegate to Vedeu::Line#width if available.
+    # Delegate to Vedeu::Line#width when available.
     #
     # @return [Fixnum]
     def width

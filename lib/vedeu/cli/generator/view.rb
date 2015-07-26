@@ -37,8 +37,8 @@ module Vedeu
         make_view_class_file
 
         output("Please update the 'root' setting in 'config/configuration.rb'" \
-               " to '#{app_name}::#{name_as_class}Controller.new' if you " \
-               'would like to start Vedeu at this controller.')
+               " to '#{app_name}::#{name_as_class}Controller.new' to start " \
+               'Vedeu at this controller.')
       end
 
       private

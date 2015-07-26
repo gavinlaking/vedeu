@@ -188,7 +188,7 @@ module Vedeu
     private
 
     # Return the name of the interface in focus after triggering the refresh
-    # event for that interface. Returns false if the storage is empty.
+    # event for that interface. Returns false when the storage is empty.
     #
     # @return [String|FalseClass]
     def update

@@ -23,7 +23,7 @@ module Vedeu
   # to): iTerm2 (OSX), Gnome Terminal (Linux).
   #
   # Setting your `$TERM` environment variable as above gets you up to 256
-  # colours, but if you then add the `colour_mode 16_777_216` configuration to
+  # colours, but when you then add the `colour_mode 16_777_216` configuration to
   # your client application, it's really a hit and miss affair. iTerm2 renders
   # all the colours correctly as does Gnome Terminal. Terminator (Linux) goes
   # crazy though and defaults to 16 colours despite the `$TERM` setting. This
