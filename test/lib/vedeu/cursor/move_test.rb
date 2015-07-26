@@ -75,7 +75,7 @@ module Vedeu
       context 'when the name is not specified' do
         let(:_name) {}
 
-        # @todo
+        # @todo Add more tests.
         # it { skip }
       end
 
@@ -248,7 +248,7 @@ module Vedeu
       context 'when the entity is a Vedeu::Geometry' do
         let(:entity) { Vedeu::Geometry }
 
-        # @todo
+        # @todo Add more tests.
         # it { skip }
       end
 
@@ -263,12 +263,12 @@ module Vedeu
       context 'when the entity is a Vedeu::Geometry' do
         let(:entity) { Vedeu::Geometry }
 
-        # @todo
+        # @todo Add more tests.
         # it { skip }
       end
 
       context 'when the entity is a Vedeu::Cursor' do
-        # @todo
+        # @todo Add more tests.
         # it { skip }
       end
     end
@@ -283,7 +283,7 @@ module Vedeu
       end
 
       context 'when the entity is a Vedeu::Cursor' do
-        # @todo
+        # @todo Add more tests.
         # it { skip }
       end
     end

@@ -23,7 +23,7 @@ module Vedeu
 
       subject { instance.register(_name, plugin) }
 
-      # @todo
+      # @todo Add more tests.
       # it { skip }
     end
 
@@ -43,7 +43,7 @@ module Vedeu
       end
 
       context 'when plugins are registered' do
-        # @todo
+        # @todo Add more tests.
         # it { skip }
       end
     end

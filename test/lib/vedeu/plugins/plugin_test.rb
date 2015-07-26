@@ -23,7 +23,7 @@ module Vedeu
     describe '#load!' do
       subject { instance.load! }
 
-      # @todo
+      # @todo Add more tests.
       # it { skip }
     end
 

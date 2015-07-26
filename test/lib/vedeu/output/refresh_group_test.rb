@@ -23,7 +23,7 @@ module Vedeu
       end
 
       context 'when the name is present' do
-        # @todo
+        # @todo Add more tests.
         # it { skip }
       end
     end

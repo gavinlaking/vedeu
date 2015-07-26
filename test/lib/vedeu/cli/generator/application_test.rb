@@ -27,7 +27,7 @@ module Vedeu
       describe '#generate' do
         subject { instance.generate }
 
-        # @todo
+        # @todo Add more tests.
       end
 
     end # Application

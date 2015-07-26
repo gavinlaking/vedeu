@@ -35,7 +35,7 @@ module Vedeu
       describe '.restart' do
         subject { described.restart }
 
-        # @todo
+        # @todo Add more tests.
         # it { skip }
         # it { subject.must_be_instance_of(NilClass) }
         context 'when the server is not enabled' do
@@ -45,13 +45,13 @@ module Vedeu
         context 'when the server is enabled' do
 
           context 'and the server is running' do
-            # @todo
+            # @todo Add more tests.
             # it { subject.must_equal(:running) }
             # it { skip }
           end
 
           context 'and the server is not running' do
-            # @todo
+            # @todo Add more tests.
             # it { subject.must_equal(:stopped) }
             # it { skip }
           end
@@ -74,13 +74,13 @@ module Vedeu
           end
 
           context 'and the server is running' do
-            # @todo
+            # @todo Add more tests.
             # it { subject.must_equal(:running) }
             # it { skip }
           end
 
           context 'and the server is not running' do
-            # @todo
+            # @todo Add more tests.
             # it { subject.must_equal(:stopped) }
             # it { skip }
           end
@@ -100,13 +100,13 @@ module Vedeu
         context 'when the server is enabled' do
 
           context 'and the server is running' do
-            # @todo
+            # @todo Add more tests.
             # it { subject.must_equal(:running) }
             # it { skip }
           end
 
           context 'and the server is not running' do
-            # @todo
+            # @todo Add more tests.
             # it { subject.must_equal(:stopped) }
             # it { skip }
           end
@@ -146,13 +146,13 @@ module Vedeu
         context 'when the server is enabled' do
 
           context 'and the server is running' do
-            # @todo
+            # @todo Add more tests.
             # it { subject.must_equal(:running) }
             # it { skip }
           end
 
           context 'and the server is not running' do
-            # @todo
+            # @todo Add more tests.
             # it { subject.must_equal(:stopped) }
             # it { skip }
           end

@@ -244,7 +244,7 @@ module Vedeu
 
         subject { instance.stdin(io) }
 
-        # @todo
+        # @todo Add more tests.
         # it { skip }
       end
 
@@ -253,7 +253,7 @@ module Vedeu
 
         subject { instance.stdout(io) }
 
-        # @todo
+        # @todo Add more tests.
         # it { skip }
       end
 
@@ -262,7 +262,7 @@ module Vedeu
 
         subject { instance.stderr(io) }
 
-        # @todo
+        # @todo Add more tests.
         # it { skip }
       end
 

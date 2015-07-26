@@ -166,7 +166,7 @@ module Vedeu
         subject
       }
 
-      # @todo
+      # @todo Add more tests.
       # it { skip }
       # it { subject.must_be_instance_of(Array) }
 

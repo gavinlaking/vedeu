@@ -32,14 +32,14 @@ module Vedeu
 
         subject { Vedeu.renderers.render(output) }
 
-        # @todo
+        # @todo Add more tests.
         # context 'when a single renderer is defined' do
         #   let(:renderers) { DummyRenderer }
 
         #   it { subject.must_equal([:dummy]) }
         # end
 
-        # @todo
+        # @todo Add more tests.
         # context 'when multiple renderers are defined' do
         #   let(:renderers) { [DummyRenderer, FooRenderer] }
 

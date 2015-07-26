@@ -63,7 +63,7 @@ module Vedeu
 
         subject { instance.make_file(source, destination) }
 
-        # @todo
+        # @todo Add more tests.
         # it { skip }
       end
 

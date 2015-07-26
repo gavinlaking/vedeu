@@ -133,7 +133,7 @@ module Vedeu
       context 'when the colour option is given' do
         let(:colour) { { background: '#33ff33', foreground: '#ffaa00' } }
 
-        # @todo
+        # @todo Add more tests.
         # it { skip }
       end
 
@@ -141,7 +141,7 @@ module Vedeu
         let(:background) { '#111111' }
         let(:foreground) { '#aadd00' }
 
-        # @todo
+        # @todo Add more tests.
         # it { skip }
       end
 

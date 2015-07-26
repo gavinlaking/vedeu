@@ -41,7 +41,7 @@ module Vedeu
 
       subject { described.build(attributes) { } }
 
-      # @todo
+      # @todo Add more tests.
       # it { skip }
     end
 
@@ -53,7 +53,7 @@ module Vedeu
       it { described.must_respond_to(:member) }
       it { described.must_respond_to(:collection) }
 
-      # @todo
+      # @todo Add more tests.
       # it { skip }
     end
 
@@ -62,7 +62,7 @@ module Vedeu
 
       subject { described.repository(klass) }
 
-      # @todo
+      # @todo Add more tests.
       # it { skip }
     end
 
