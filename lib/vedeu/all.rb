@@ -172,6 +172,7 @@ require 'vedeu/output/virtual_terminal'
 require 'vedeu/output/wordwrap'
 
 require 'vedeu/api'
+require 'vedeu/internal_api'
 
 require 'vedeu/bindings/application'
 require 'vedeu/bindings/drb'
