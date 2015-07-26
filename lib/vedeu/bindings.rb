@@ -9,10 +9,13 @@ module Vedeu
   #
   module Bindings
 
+    extend self
+
     # Setup events for running Vedeu. This method is called by Vedeu.
     #
     # @return [void]
-    def self.setup!
+    def setup!
+      Vedeu::Bindings::Application.setup!
       Vedeu::Bindings::Visibility.setup!
       Vedeu::Bindings::Movement.setup!
       Vedeu::Bindings::Menus.setup!

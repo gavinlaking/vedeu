@@ -173,6 +173,7 @@ require 'vedeu/output/wordwrap'
 
 require 'vedeu/api'
 
+require 'vedeu/bindings/application'
 require 'vedeu/bindings/drb'
 require 'vedeu/bindings/menus'
 require 'vedeu/bindings/movement'
