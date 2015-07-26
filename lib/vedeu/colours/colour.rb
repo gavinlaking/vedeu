@@ -47,7 +47,7 @@ module Vedeu
       return new   unless value.is_a?(Hash)
 
       if value.key?(:colour)
-        self.coerce(value[:colour])
+        coerce(value[:colour])
 
       elsif value.key?(:background) || value.key?(:foreground)
         new(value)

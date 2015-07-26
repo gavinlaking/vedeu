@@ -21,7 +21,7 @@ module Vedeu
         storage[controller_name].merge!(klass: klass)
 
       else
-        storage.store(controller_name, { klass: klass, actions: [] })
+        storage.store(controller_name, klass: klass, actions: [])
 
       end
 

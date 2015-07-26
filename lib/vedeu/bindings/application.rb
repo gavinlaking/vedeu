@@ -34,4 +34,3 @@ module Vedeu
   end # Bindings
 
 end # Vedeu
-
