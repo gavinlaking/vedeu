@@ -40,7 +40,7 @@ module Vedeu
       # @param name [String]
       # @return [void]
       def by_name(name)
-        @repository.by_name(name)
+        repository.by_name(name) if repository
       end
 
       # Provide a convenient way to define the child or children of a model.
