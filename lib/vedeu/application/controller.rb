@@ -5,26 +5,58 @@ module Vedeu
   module Controller
 
     # When included, provide these methods as class methods.
+    #
     module ClassMethods
 
-      # Specifying the controller name in your controller provides a Vedeu event
-      # which will trigger the loading of the controller.
+      attr_accessor :controller_name
+
+      # Specifying the controller name in your controller provides Vedeu with
+      # the means to route requests to different parts of your application.
       #
       # @example
       #   class YourController
+      #
+      #     controller :your_controller
+      #     # or...
       #     controller_name :your_controller
-      #     # ...
+      #
+      #     # ... some code
+      #
       #   end
       #
-      #   Vedeu.trigger(:show_your_controller) # this event is now available to
-      #                                        # trigger.
-      #
-      # @param name [Symbol] The name of the controller.
+      # @param controller_name [Symbol] The name of the controller.
       # @return [void]
-      # @todo This event binding should be: `Vedeu.bind(:show_view, name)`.
-      def controller_name(name)
-        Vedeu.bind("show_#{name}".to_sym) { new }
+      def controller(controller_name = nil)
+        @controller_name = controller_name
+
+        Vedeu::Router.add_controller(controller_name, ancestors.first.to_s)
       end
+      alias_method :controller_name, :controller
+
+      # Specifying the action names in your controller provides Vedeu with the
+      # means to route requests to different parts of your application.
+      #
+      # @example
+      #   class YourController
+      #
+      #     controller :your_controller
+      #
+      #     action :show
+      #     # or...
+      #     action_name :show
+      #
+      #     # ... some code
+      #
+      #   end
+      #
+      #   Vedeu.trigger(:_action_, :your_controller, :show, { some: :args })
+      #
+      # @param action_name [Symbol] THe name of the action.
+      # @return [void]
+      def action(action_name = nil)
+        Vedeu::Router.add_action(@controller_name, action_name)
+      end
+      alias_method :action_name, :action
 
     end # ClassMethods
 
