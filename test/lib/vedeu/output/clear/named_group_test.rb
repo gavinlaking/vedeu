@@ -16,22 +16,23 @@ module Vedeu
       end
 
       describe '.render' do
-        it { described.must_respond_to(:by_group) }
-        it { described.must_respond_to(:clear_by_group) }
-        it { described.must_respond_to(:render) }
-      end
-
-      describe '#render' do
         let(:group) { Vedeu::Group.new(members: [_name]) }
 
         before { Vedeu.groups.stubs(:by_name).returns(group) }
 
-        subject { instance.render }
+        subject { described.render(_name) }
 
         it {
           Vedeu::Clear::NamedInterface.expects(:render).with(_name)
           subject
         }
+
+        it { described.must_respond_to(:by_group) }
+        it { described.must_respond_to(:clear_by_group) }
+      end
+
+      describe '#render' do
+        it { instance.must_respond_to(:render) }
       end
 
     end # NamedGroup

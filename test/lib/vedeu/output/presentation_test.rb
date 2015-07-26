@@ -103,12 +103,41 @@ module Vedeu
 
       it { subject.must_be_instance_of(Vedeu::Background) }
       it { subject.colour.must_equal('#330000') }
+
+      context 'when no parent colour is set' do
+        before { includer.stubs(:parent).returns(nil) }
+
+        it { subject.colour.must_equal('') }
+      end
+    end
+
+    describe '#parent_colour' do
+      subject { includer.parent_colour }
+
+      context 'when a parent is available' do
+        it { subject.must_be_instance_of(Vedeu::Colour) }
+        it { subject.background.must_be_instance_of(Vedeu::Background) }
+        it { subject.foreground.must_be_instance_of(Vedeu::Foreground) }
+      end
+
+      context 'when a parent is not available' do
+        before { includer.stubs(:parent).returns(nil) }
+
+        it { subject.must_equal(nil) }
+      end
     end
 
     describe '#parent_foreground' do
       subject { includer.parent_foreground }
 
       it { subject.must_be_instance_of(Vedeu::Foreground) }
+      it { subject.colour.must_equal('#00aadd') }
+
+      context 'when no parent colour is set' do
+        before { includer.stubs(:parent).returns(nil) }
+
+        it { subject.colour.must_equal('') }
+      end
     end
 
     describe '#colour' do
@@ -123,6 +152,22 @@ module Vedeu
       subject { includer.colour = (colour) }
 
       it { subject.must_be_instance_of(Colour) }
+    end
+
+    describe '#parent_style' do
+      subject { includer.parent_style }
+
+      it { subject.must_be_instance_of(Vedeu::Style) }
+
+      context 'when a parent is available' do
+        it { subject.value.must_equal(['bold']) }
+      end
+
+      context 'when a parent is not available' do
+        before { includer.stubs(:parent).returns(nil) }
+
+        it { subject.value.must_equal(nil) }
+      end
     end
 
     describe '#style' do

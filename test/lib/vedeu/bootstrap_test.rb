@@ -25,12 +25,23 @@ module Vedeu
     end
 
     describe '.start' do
+      before { Vedeu::Launcher.stubs(:execute!) }
+
       subject { described.start(argv, entry_point) }
 
       it {
         Vedeu::Launcher.expects(:execute!)
         subject
       }
+
+      context 'when the entry point is not set' do
+        let(:entry_point) {}
+
+        it 'tries to use the Configuration.root setting' do
+          Vedeu::Configuration.expects(:root)
+          subject
+        end
+      end
     end
 
     describe '#start' do

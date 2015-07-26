@@ -3,13 +3,13 @@ require 'test_helper'
 module Vedeu
 
   class DummyRenderer
-    def self.render
+    def self.render(*output)
       :dummy
     end
   end
 
   class FooRenderer
-    def self.render
+    def self.render(*output)
       :foo
     end
   end
@@ -55,11 +55,21 @@ module Vedeu
     end
 
     describe '.render' do
-      let(:args) {}
+      let(:output) {}
 
-      subject { described.render(args) }
+      before do
+        Vedeu::Renderers.reset
+        Vedeu::Renderers.renderer(DummyRenderer)
+      end
+
+      subject { described.render(output) }
 
       it { subject.must_be_instance_of(Array) }
+
+      it {
+        DummyRenderer.expects(:render).with(output)
+        subject
+      }
     end
 
     describe '.renderer' do
