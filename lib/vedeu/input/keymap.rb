@@ -87,7 +87,7 @@ module Vedeu
     def valid?(key)
       return true unless key_defined?(key.input)
 
-      Vedeu.log(type:    :debug,
+      Vedeu.log(type:    :input,
                 message: "Keymap '#{name}' already defines '#{key.input}'.")
 
       false
