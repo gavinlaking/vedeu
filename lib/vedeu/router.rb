@@ -72,11 +72,9 @@ module Vedeu
     # @raise [Vedeu::ModelNotFound] When the controller is not registered.
     # @return [void]
     def goto(controller_name, action_name, **args)
-      unless registered?(controller_name)
-        fail Vedeu::ModelNotFound, "#{controller_name} is not registered."
+      if action_defined?(action_name, controller_name)
+        controller_with(controller_name).send(action_name, args)
       end
-
-      controller_with(controller_name).send(action_name, args)
     end
     alias_method :action, :goto
 
@@ -98,6 +96,25 @@ module Vedeu
     alias_method :reset, :reset!
 
     private
+
+    # Returns a boolean indicating whether the given action name is defined for
+    # the given controller.
+    #
+    # @param action_name [Symbol]
+    # @param controller_name [Symbol]
+    # @return [Boolean]
+    def action_defined?(action_name, controller_name)
+      if registered?(controller_name)
+        return true if storage[controller_name][:actions].include?(action_name)
+
+        fail Vedeu::ActionNotFound,
+             "#{action_name} is not registered for #{controller_name}."
+
+      else
+        fail Vedeu::ControllerNotFound, "#{controller_name} is not registered."
+
+      end
+    end
 
     # Instantiate the given controller by name.
     #
