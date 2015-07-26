@@ -25,7 +25,7 @@ module Vedeu
       def process
         lines.each_with_object(Vedeu::Streams.new) do |line, acc|
           if line =~ markers?
-            acc << Vedeu::Templating::Decoder.process(unmark(line))
+            acc << Vedeu::Templating::Directive.process(unmark(line))
 
           else
             acc << Vedeu::Stream.new(value: line.chomp)

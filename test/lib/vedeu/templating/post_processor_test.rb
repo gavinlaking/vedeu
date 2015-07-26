@@ -30,7 +30,7 @@ module Vedeu
       describe '.process' do
         subject { described.process(content) }
 
-        # it { subject.must_equal(expected) }
+        it { subject.must_equal(expected) }
       end
 
       describe '#process' do
