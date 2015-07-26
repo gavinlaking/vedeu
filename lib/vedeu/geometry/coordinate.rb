@@ -19,9 +19,13 @@ module Vedeu
     # Returns a new instance of Vedeu::Coordinate.
     #
     # @param name [String]
+    # @param oy [Fixnum]
+    # @param ox [Fixnum]
     # @return [Vedeu::Coordinate]
-    def initialize(name)
+    def initialize(name, oy, ox)
       @name = name
+      @ox   = ox
+      @oy   = oy
     end
 
     # Returns the maximum y coordinate for an area.
@@ -69,17 +73,16 @@ module Vedeu
     #   y_position(2)  # => 9
     #   y_position(7)  # => 11
     #
-    # @param index [Fixnum]
     # @return [Fixnum]
-    def y_position(index = 0)
-      value = if index <= 0
+    def y_position
+      value = if oy <= 0
                 y
 
-              elsif index > yn_index
+              elsif oy > yn_index
                 yn
 
               else
-                y_range[index]
+                y_range[oy]
 
               end
 
@@ -95,17 +98,16 @@ module Vedeu
     #   x_position(2)  # => 6
     #   x_position(15) # => 13
     #
-    # @param index [Fixnum]
     # @return [Fixnum]
-    def x_position(index = 0)
-      value = if index <= 0
+    def x_position
+      value = if ox <= 0
                 x
 
-              elsif index > xn_index
+              elsif ox > xn_index
                 xn
 
               else
-                x_range[index]
+                x_range[ox]
 
               end
 
@@ -117,6 +119,14 @@ module Vedeu
     # @!attribute [r] name
     # @return [String]
     attr_reader :name
+
+    # @!attribute [r] oy
+    # @return [Fixnum]
+    attr_reader :oy
+
+    # @!attribute [r] ox
+    # @return [Fixnum]
+    attr_reader :ox
 
     private
 

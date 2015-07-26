@@ -13,11 +13,9 @@ module Vedeu
 
     # Loads all plugins that are not enabled.
     #
-    # @return [void]
+    # @return [Array<void>]
     def load
-      plugins.each do |plugin|
-        plugin.load! unless plugin.enabled?
-      end
+      plugins.each { |plugin| plugin.load! unless plugin.enabled? }
     end
 
     # Register plugin with name in an internal array.
@@ -26,21 +24,21 @@ module Vedeu
     # @param plugin [Vedeu::Plugin]
     # @return [void]
     def register(name, plugin = false)
-      if plugin && !loaded?(name)
-        plugins << plugin
-      end
+      plugins << plugin if plugin && not_loaded?(name)
     end
 
     # Find all installed plugins and store them.
     #
-    # @return [void]
+    # @return [Array<void>]
     def find
       Gem.refresh
 
       Gem::Specification.each do |gem|
         next unless gem.name =~ /^#{prefix}/
+
         plugin_name = gem.name[/^#{prefix}-(.*)/, 1]
-        register(plugin_name, Plugin.new(plugin_name, gem))
+
+        register(plugin_name, Vedeu::Plugin.new(plugin_name, gem))
       end
 
       plugins
@@ -48,9 +46,10 @@ module Vedeu
 
     # Return a list of all plugin names as strings.
     #
-    # @return [void]
+    # @return [Hash]
     def names
-      plugins.reduce({}) do |hash, plugin|
+      collection = {}
+      plugins.each_with_object(collection) do |hash, plugin|
         hash[plugin.name] = plugin
         hash
       end
@@ -68,8 +67,8 @@ module Vedeu
     #
     # @param name [String]
     # @return [Boolean]
-    def loaded?(name)
-      plugins.any? { |plugin| plugin.gem_name == name }
+    def not_loaded?(name)
+      plugins.empty? || plugins.any? { |plugin| plugin.gem_name != name }
     end
 
     # @return [String]

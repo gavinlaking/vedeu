@@ -141,7 +141,7 @@ module Vedeu
 
       work = store
 
-      Vedeu.trigger(:_refresh_, name)
+      Vedeu.trigger(:_refresh_)
 
       work
     end

@@ -87,9 +87,9 @@ module Vedeu
     # @yieldreturn [void] Returns the block wrapped in position escape
     #   sequences.
     def to_s
-      return sequence unless block_given?
+      return [sequence, yield].join if block_given?
 
-      [sequence, yield, sequence].join
+      sequence
     end
     alias_method :to_str, :to_s
 

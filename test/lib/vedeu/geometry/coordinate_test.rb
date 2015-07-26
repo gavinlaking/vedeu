@@ -5,21 +5,22 @@ module Vedeu
   describe Coordinate do
 
     let(:described) { Vedeu::Coordinate }
-    let(:instance)  { described.new(_name) }
+    let(:instance)  { described.new(_name, oy, ox) }
     let(:_name)     { 'coordinate' }
+    let(:oy)        { 0 }
+    let(:ox)        { 0 }
     let(:height)    { 6 }
     let(:width)     { 6 }
     let(:x)         { 7 }
     let(:y)         { 5 }
 
     before do
-      Vedeu::Border.new(name: _name,
-                        enabled: true).store
-      Vedeu::Geometry.new(name: _name,
+      Vedeu::Border.new(name: _name, enabled: true).store
+      Vedeu::Geometry.new(name:   _name,
                           height: height,
-                          width: width,
-                          x: x,
-                          y: y).store
+                          width:  width,
+                          x:      x,
+                          y:      y).store
     end
     after do
       Vedeu.borders.reset
@@ -29,6 +30,8 @@ module Vedeu
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }
       it { instance.instance_variable_get('@name').must_equal(_name) }
+      it { instance.instance_variable_get('@oy').must_equal(oy) }
+      it { instance.instance_variable_get('@ox').must_equal(ox) }
     end
 
     describe '#yn' do
@@ -60,20 +63,20 @@ module Vedeu
     end
 
     describe '#y_position' do
-      let(:index)  { 0 }
+      let(:oy)  { 0 }
 
-      subject { instance.y_position(index) }
+      subject { instance.y_position }
 
       it { subject.must_be_instance_of(Fixnum) }
 
       context 'with a negative index' do
-        let(:index) { -3 }
+        let(:oy) { -3 }
 
         it { subject.must_equal(6) }
       end
 
       context 'with an index greater than the maximum index for y' do
-        let(:index) { 9 }
+        let(:oy) { 9 }
 
         it { subject.must_equal(9) }
 
@@ -85,27 +88,27 @@ module Vedeu
       end
 
       context 'with an index within range' do
-        let(:index) { 3 }
+        let(:oy) { 3 }
 
         it { subject.must_equal(8) }
       end
     end
 
     describe '#x_position' do
-      let(:index)  { 0 }
+      let(:ox)  { 0 }
 
-      subject { instance.x_position(index) }
+      subject { instance.x_position }
 
       it { subject.must_be_instance_of(Fixnum) }
 
       context 'with a negative index' do
-        let(:index) { -3 }
+        let(:ox) { -3 }
 
         it { subject.must_equal(8) }
       end
 
       context 'with an index greater than the maximum index for x' do
-        let(:index) { 9 }
+        let(:ox) { 9 }
 
         it { subject.must_equal(11) }
 
@@ -117,7 +120,7 @@ module Vedeu
       end
 
       context 'with an index within range' do
-        let(:index) { 3 }
+        let(:ox) { 3 }
 
         it { subject.must_equal(10) }
       end

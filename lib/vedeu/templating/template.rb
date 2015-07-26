@@ -1,6 +1,5 @@
 module Vedeu
 
-  # Provides means to use templates with Vedeu.
   module Templating
 
     # Generic class to loading a template and parsing it via ERb.
@@ -26,7 +25,7 @@ module Vedeu
         @options = options || {}
       end
 
-      # @return [void]
+      # @return [Vedeu::Stream]
       def parse
         ERB.new(load, nil, '-').result(binding)
       end
@@ -42,11 +41,6 @@ module Vedeu
       attr_reader :options
 
       private
-
-      # @return [String]
-      def preprocess
-        Vedeu::Templating::Preprocessor.process(load)
-      end
 
       # @return [String]
       def load

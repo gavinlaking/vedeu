@@ -177,23 +177,9 @@ module Vedeu
 
     private
 
-    # Returns the cursors x position based on its current offset.
-    #
-    # @return [Fixnum]
-    def x_position
-      coordinate.x_position(ox)
-    end
-
-    # Returns the cursors y position based on its current offset.
-    #
-    # @return [Fixnum]
-    def y_position
-      coordinate.y_position(oy)
-    end
-
     # @return [Vedeu::Coordinate]
     def coordinate
-      @coordinate ||= Vedeu::Coordinate.new(name)
+      @coordinate ||= Vedeu::Coordinate.new(name, oy, ox)
     end
 
     # @see Vedeu::Cursors#by_name
@@ -203,7 +189,10 @@ module Vedeu
 
     # @return [Hash<Symbol => void>]
     def cursor_attributes
-      cursor.attributes.merge!(x: x_position, y: y_position, ox: ox, oy: oy)
+      cursor.attributes.merge!(x:  coordinate.x_position,
+                               y:  coordinate.y_position,
+                               ox: ox,
+                               oy: oy)
     end
 
     # @see Vedeu::Geometries#by_name

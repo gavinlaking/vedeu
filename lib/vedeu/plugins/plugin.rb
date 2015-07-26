@@ -40,9 +40,11 @@ module Vedeu
       begin
         require gem_name unless enabled?
       rescue LoadError => error
-        fail VedeuError, "Unable to load plugin #{gem_name} due to #{error}."
+        raise Vedeu::VedeuError,
+              "Unable to load plugin #{gem_name} due to #{error}."
       rescue => error
-        fail VedeuError, "require '#{gem_name}' failed with #{error}."
+        raise Vedeu::VedeuError,
+              "require '#{gem_name}' failed with #{error}."
       end
 
       @enabled = true

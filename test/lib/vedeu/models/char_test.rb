@@ -86,7 +86,6 @@ module Vedeu
         "\\e[38;2;0;255;0m" \
         "\\e[48;2;0;85;0m"  \
         "\\e[4ma"           \
-        "\\e[17;2H"         \
         "'>"
       ) }
     end
@@ -105,23 +104,23 @@ module Vedeu
       it { subject.must_be_instance_of(Hash) }
 
       it { subject.must_equal(
-                  border: '',
-                  colour: {
-            background: '',
-            foreground: '',
-          },
-                  parent: {
-            background: '',
-            foreground: '',
+            border: '',
+            colour: {
+              background: '',
+              foreground: '',
+            },
+            parent: {
+              background: '',
+              foreground: '',
+              style: '',
+            },
+            position: {
+              y: nil,
+              x: nil
+            },
             style: '',
-          },
-                  position: {
-            y: nil,
-            x: nil
-          },
-                  style: '',
-                  value: 'a',
-      ) }
+            value: 'a')
+      }
     end
 
     describe '#to_html' do
@@ -138,7 +137,7 @@ module Vedeu
       context 'when a position is specified' do
         let(:position) { Vedeu::Position[17, 2] }
 
-        it { subject.must_equal("\e[17;2Ha\e[17;2H") }
+        it { subject.must_equal("\e[17;2Ha") }
       end
 
       context 'when a position is not specified' do

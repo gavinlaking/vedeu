@@ -14,8 +14,7 @@ module Vedeu
     describe '#load' do
       subject { instance.load }
 
-      # @todo
-      # it { skip }
+      it { subject.must_be_instance_of(Array) }
     end
 
     describe '#register' do
@@ -31,15 +30,22 @@ module Vedeu
     describe '#find' do
       subject { instance.find }
 
-      # @todo
-      # it { skip }
+      it { subject.must_be_instance_of(Array) }
     end
 
     describe '#names' do
       subject { instance.names }
 
-      # @todo
-      # it { skip }
+      it { subject.must_be_instance_of(Hash) }
+
+      context 'when no plugins are registered' do
+        it { subject.must_equal({}) }
+      end
+
+      context 'when plugins are registered' do
+        # @todo
+        # it { skip }
+      end
     end
 
 	end # Plugins

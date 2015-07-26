@@ -135,7 +135,7 @@ module Vedeu
       end
 
       it 'resets to starting position when a block is given' do
-        Position[4, 9].to_s { 'test' }.must_equal("\e[4;9Htest\e[4;9H")
+        Position[4, 9].to_s { 'test' }.must_equal("\e[4;9Htest")
       end
     end
 

@@ -46,7 +46,7 @@ module Vedeu
 
     # Return an attributes hash for this class.
     #
-    # @return [Array<String|Symbol>|String|Symbol]
+    # @return [Hash<Symbol => Array<String|Symbol>|String|Symbol>]
     def attributes
       {
         style: value,

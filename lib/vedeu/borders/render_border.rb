@@ -87,22 +87,32 @@ module Vedeu
 
     # @return [Vedeu::Char]
     def build_bottom_left
-      build(bottom_left, :bottom_left, *[yn, x]) if left?
+      build(bottom_left, :bottom_left, yn, x) if left?
     end
 
     # @return [Vedeu::Char]
     def build_bottom_right
-      build(bottom_right, :bottom_right, *[yn, xn]) if right?
+      build(bottom_right, :bottom_right, yn, xn) if right?
+    end
+
+    # @return [Array<Vedeu::Char>]
+    def build_top
+      build_horizontal(:bottom_horizontal, y)
+    end
+
+    # @return [Array<Vedeu::Char>]
+    def build_bottom
+      build_horizontal(:bottom_horizontal, yn)
     end
 
     # @return [Vedeu::Char]
     def build_top_left
-      build(top_left, :top_left, *[y, x]) if left?
+      build(top_left, :top_left, y, x) if left?
     end
 
     # @return [Vedeu::Char]
     def build_top_right
-      build(top_right, :top_right, *[y, xn]) if right?
+      build(top_right, :top_right, y, xn) if right?
     end
 
     # Renders the bottom border for the interface.
@@ -111,11 +121,7 @@ module Vedeu
     def bottom
       return [] unless bottom?
 
-      [
-        build_bottom_left,
-        build_horizontal(:bottom_horizontal, yn),
-        build_bottom_right,
-      ].compact
+      [build_bottom_left, build_bottom, build_bottom_right].compact
     end
 
     # @return [Vedeu::Geometry]
@@ -128,7 +134,7 @@ module Vedeu
     # @return [Array<Vedeu::Char>]
     def build_horizontal(position, y_coordinate)
       Array.new(width) do |ix|
-        build(horizontal, position, *[y_coordinate, (bx + ix)])
+        build(horizontal, position, y_coordinate, (bx + ix))
       end
     end
 
@@ -147,7 +153,7 @@ module Vedeu
     def left(iy = 0)
       return [] unless left?
 
-      build(vertical, :left_vertical, *[(by + iy), x])
+      build(vertical, :left_vertical, (by + iy), x)
     end
 
     # Renders the right border for the interface.
@@ -157,7 +163,7 @@ module Vedeu
     def right(iy = 0)
       return [] unless right?
 
-      build(vertical, :right_vertical, *[(by + iy), xn])
+      build(vertical, :right_vertical, (by + iy), xn)
     end
 
     # Renders the top border for the interface.
@@ -179,13 +185,13 @@ module Vedeu
     #
     # @return [Array<Vedeu::Char>]
     def titlebar
-      return build_horizontal(:top_horizontal, y) unless title? && title_fits?
+      return build_top unless title? && title_fits?
 
-      build_horizontal(:top_horizontal, y).each_with_index do |char, index|
-        if index >= 1 && index <= title_characters.size
-          char.border = nil
-          char.value  = title_characters[(index - 1)]
-        end
+      build_top.each_with_index do |char, index|
+        next if index == 0 || index > title_characters.size
+
+        char.border = nil
+        char.value  = title_characters[(index - 1)]
       end
     end
 

@@ -27,8 +27,8 @@ module Vedeu
     # @return [Vedeu::Cursor]
     def to
       result = entity.new(name: name,
-                          y:    y_position,
-                          x:    x_position,
+                          y:    coordinate.y_position,
+                          x:    coordinate.x_position,
                           oy:   y,
                           ox:   x).store
 
@@ -61,21 +61,7 @@ module Vedeu
 
     # @return [Vedeu::Coordinate]
     def coordinate
-      @coordinate ||= Vedeu::Coordinate.new(name)
-    end
-
-    # Returns the cursors x position based on the desired x position.
-    #
-    # @return [Fixnum]
-    def x_position
-      coordinate.x_position(x)
-    end
-
-    # Returns the cursors y position based on the desired y position.
-    #
-    # @return [Fixnum]
-    def y_position
-      coordinate.y_position(y)
+      @coordinate ||= Vedeu::Coordinate.new(name, y, x)
     end
 
   end # Reposition
