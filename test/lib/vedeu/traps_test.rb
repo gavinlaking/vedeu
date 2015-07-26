@@ -4,7 +4,7 @@ module Vedeu
 
   describe Traps do
 
-    # @todo
+    # @todo Add more tests.
     # it { skip }
 
   end # Traps

@@ -61,7 +61,7 @@ module Vedeu
       #   context 'when the :write_file options is false' do
       #     let(:write_file) { false }
 
-      #     @todo
+      #     @todo Add more tests.
       #     # it { skip }
       #   end
       # end

@@ -13,7 +13,7 @@ module Vedeu
     let(:described) { Vedeu::ApplicationHelper }
     let(:instance)  { Vedeu::ApplicationHelperTestClass.new }
 
-    # @todo
+    # @todo Add more tests.
 
   end # Application
 

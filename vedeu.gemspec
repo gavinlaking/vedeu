@@ -10,8 +10,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Gavin Laking']
   spec.email         = ['gavinlaking@gmail.com']
   spec.summary       = 'A terminal case of wonderland.'
-  spec.description   = 'A GUI framework written in Ruby for building ' \
-                       'terminal/console applications.'
+  spec.description   = 'A GUI/TUI framework for building terminal/console ' \
+                       'applications.'
   spec.homepage      = 'https://github.com/gavinlaking/vedeu'
   spec.license       = 'MIT'
 

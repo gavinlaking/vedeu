@@ -56,12 +56,12 @@ module Vedeu
       end
 
       context 'when the buffer is not already registered' do
-        # @todo
+        # @todo Add more tests.
         # it { skip }
       end
 
       context 'when the buffer is already registered' do
-        # @todo
+        # @todo Add more tests.
         # it { skip }
       end
     end

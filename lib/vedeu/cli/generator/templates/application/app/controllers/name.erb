@@ -5,16 +5,22 @@ module <%= object.app_name %>
 
   class <%= object.name_as_class %>Controller < <%= object.app_name -%>::ApplicationController
 
-    controller_name :<%= object.name %>
+    controller :<%= object.name %>
+    action :list
+    action :show
+    # add more actions and implement or remove existing actions
 
     def initialize
+    end
+
+    def list
+    end
+
+    def show(*args)
       <%= object.app_name %>::<%= object.name_as_class %>View.render(*args)
     end
 
     private
-
-    def args
-    end
 
     def object
       nil

@@ -7,7 +7,7 @@ module Vedeu
     let(:described) { Vedeu::ApplicationController }
     let(:instance)  { described.new }
 
-    # @todo
+    # @todo Add more tests.
 
   end # ApplicationController
 

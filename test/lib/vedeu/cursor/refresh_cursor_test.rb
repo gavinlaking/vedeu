@@ -54,6 +54,10 @@ module Vedeu
       end
     end
 
+    describe '#render' do
+      it { instance.must_respond_to(:render) }
+    end
+
   end # RefreshCursor
 
 end # Vedeu

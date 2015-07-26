@@ -28,7 +28,7 @@ module Vedeu
       end
 
       context 'when there are registered interfaces' do
-        # @todo
+        # @todo Add more tests.
         # it { skip }
       end
     end

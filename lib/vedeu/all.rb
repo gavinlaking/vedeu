@@ -7,6 +7,7 @@ require 'vedeu/debug'
 require 'vedeu/traps'
 require 'vedeu/common'
 require 'vedeu/terminal_mode'
+require 'vedeu/router'
 
 require 'vedeu/configuration/cli'
 require 'vedeu/configuration/api'
@@ -172,6 +173,7 @@ require 'vedeu/output/wordwrap'
 
 require 'vedeu/api'
 
+require 'vedeu/bindings/application'
 require 'vedeu/bindings/drb'
 require 'vedeu/bindings/menus'
 require 'vedeu/bindings/movement'

@@ -82,7 +82,7 @@ module Vedeu
 
     # @return [void]
     def client_initialize!
-      entry_point || eval(Vedeu::Configuration.root)
+      entry_point || root
     end
 
     # Load each of the loadable files.
@@ -111,6 +111,11 @@ module Vedeu
       Vedeu.configure do
         log('/tmp/vedeu_bootstrap.log')
       end unless Vedeu::Configuration.log?
+    end
+
+    # @return [Class]
+    def root
+      Object.const_get(Vedeu::Configuration.root) if Vedeu::Configuration.root
     end
 
   end # Bootstrap

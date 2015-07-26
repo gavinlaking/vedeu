@@ -29,7 +29,7 @@ module Vedeu
     describe '.coerce' do
       subject { described.coerce(collection, parent, model_name) }
 
-      # @todo
+      # @todo Add more tests.
       # it { skip }
     end
 

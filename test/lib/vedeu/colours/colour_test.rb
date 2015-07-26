@@ -28,11 +28,19 @@ module Vedeu
     end
 
     describe '.coerce' do
+      let(:attributes) {
+        {
+          background: background,
+          foreground: foreground,
+        }
+      }
+      let(:background) {}
+      let(:foreground) {}
       let(:_value) {}
 
       subject { described.coerce(_value) }
 
-      it { subject.must_be_instance_of(described) }
+      it { subject.must_be_instance_of(Vedeu::Colour) }
 
       context 'when the value is nil' do
         it { subject.foreground.colour.must_equal('') }

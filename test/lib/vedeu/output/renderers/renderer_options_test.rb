@@ -4,7 +4,7 @@ module Vedeu
 
   describe RendererOptions do
 
-    # @todo
+    # @todo Add more tests.
     # it { skip }
 
   end # RendererOptions

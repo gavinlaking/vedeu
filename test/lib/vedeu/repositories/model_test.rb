@@ -41,8 +41,23 @@ module Vedeu
 
       subject { described.build(attributes) { } }
 
-      # @todo
+      # @todo Add more tests.
       # it { skip }
+    end
+
+    describe '.by_name' do
+      let(:_name) {}
+
+      subject { described.by_name(_name) }
+
+      context 'when the model has no repository set' do
+        it { subject.must_be_instance_of(NilClass) }
+      end
+
+      context 'when the model has a repository set' do
+        # @todo Add more tests.
+        # it { skip }
+      end
     end
 
     describe '.child' do
@@ -53,7 +68,7 @@ module Vedeu
       it { described.must_respond_to(:member) }
       it { described.must_respond_to(:collection) }
 
-      # @todo
+      # @todo Add more tests.
       # it { skip }
     end
 
@@ -62,7 +77,7 @@ module Vedeu
 
       subject { described.repository(klass) }
 
-      # @todo
+      # @todo Add more tests.
       # it { skip }
     end
 
