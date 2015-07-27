@@ -29,8 +29,8 @@ module Vedeu
     # Returns a new instance of Vedeu::PositionValidator.
     #
     # @param name [String]
-    # @param x [Fixnum]
-    # @param y [Fixnum]
+    # @param y [Fixnum] The row/line coordinate.
+    # @param x [Fixnum] The column/character coordinate.
     # @return [Vedeu::PositionValidator]
     def initialize(name, x, y)
       @name = name

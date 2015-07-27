@@ -2,6 +2,7 @@ module Vedeu
 
   # @example
   #   Vedeu::TestApplication.build
+  #
   class Subprocess
 
     # @param (see #initialize)

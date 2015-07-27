@@ -37,11 +37,13 @@ module Vedeu
       end
 
       describe '.action' do
-        subject { described_model.action(:some_action) }
+        subject { described_model.action(:some_action, :other_action) }
 
         it {
           Vedeu::Router.expects(:add_action).
             with(:some_controller, :some_action)
+          Vedeu::Router.expects(:add_action).
+            with(:some_controller, :other_action)
           subject
         }
       end

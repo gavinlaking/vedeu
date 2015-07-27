@@ -36,28 +36,28 @@ module Vedeu
     # @option attributes options [Hash<Symbol => Boolean>]
     # @return [Vedeu::Area]
     def self.from_attributes(attributes = {})
-      y_yn = Vedeu::Dimension.pair(d:       attributes[:y],
-                                   dn:      attributes[:yn],
-                                   d_dn:    attributes[:y_yn],
-                                   default: attributes[:y_default],
+      y_yn = Vedeu::Dimension.pair(d:         attributes[:y],
+                                   dn:        attributes[:yn],
+                                   d_dn:      attributes[:y_yn],
+                                   default:   attributes[:y_default],
                                    maximised: attributes[:maximised],
-                                   centred: attributes[:centred])
-      x_xn = Vedeu::Dimension.pair(d:       attributes[:x],
-                                   dn:      attributes[:xn],
-                                   d_dn:    attributes[:x_xn],
-                                   default: attributes[:x_default],
+                                   centred:   attributes[:centred])
+      x_xn = Vedeu::Dimension.pair(d:         attributes[:x],
+                                   dn:        attributes[:xn],
+                                   d_dn:      attributes[:x_xn],
+                                   default:   attributes[:x_default],
                                    maximised: attributes[:maximised],
-                                   centred: attributes[:centred])
+                                   centred:   attributes[:centred])
 
       new(y: y_yn.first, yn: y_yn.last, x: x_xn.first, xn: x_xn.last)
     end
 
     # Returns a new instance of Vedeu::Area.
     #
-    # @param y [Fixnum]
-    # @param yn [Fixnum]
-    # @param x [Fixnum]
-    # @param xn [Fixnum]
+    # @param y [Fixnum] The starting row/line position.
+    # @param yn [Fixnum] The ending row/line position.
+    # @param x [Fixnum] The starting column/character position.
+    # @param xn [Fixnum] The ending column/character position.
     # @return [Vedeu::Area]
     def initialize(y:, yn:, x:, xn:)
       @y  = y

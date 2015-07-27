@@ -6,12 +6,10 @@ module Vedeu
 
     # :nocov:
     Signal.trap('INT') do
-      puts
       exit(1)
     end
 
     Signal.trap('TERM') do
-      puts
       exit(1)
     end
 

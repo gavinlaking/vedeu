@@ -153,11 +153,11 @@ module Vedeu
       @area = Vedeu::Area.from_attributes(
         y:         _y,
         yn:        _yn,
-        y_yn:      @height,
+        y_yn:      _height,
         y_default: Vedeu.height,
         x:         _x,
         xn:        _xn,
-        x_xn:      @width,
+        x_xn:      _width,
         x_default: Vedeu.width,
         centred:   centred,
         maximised: maximised,
@@ -190,6 +190,20 @@ module Vedeu
     # @return [Fixnum]
     def _xn
       @xn.is_a?(Proc) ? @xn.call : @xn
+    end
+
+    # Returns the width of the interface.
+    #
+    # @return [Fixnum]
+    def _width
+      @width.is_a?(Proc) ? @width.call : @width
+    end
+
+    # Returns the height of the interface.
+    #
+    # @return [Fixnum]
+    def _height
+      @height.is_a?(Proc) ? @height.call : @height
     end
 
     # Returns the default options/attributes for this class.

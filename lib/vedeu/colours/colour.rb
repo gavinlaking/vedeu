@@ -30,6 +30,7 @@ module Vedeu
   # area needs more work in Vedeu.
   #
   # @todo Fix colours in all terminals. (GL: 2015-04-13)
+  #
   class Colour
 
     # @!attribute [r] background

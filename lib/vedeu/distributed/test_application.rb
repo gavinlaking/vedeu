@@ -13,6 +13,7 @@ module Vedeu
   #     app.menus         = ''
   #     app.views         = ''
   #   end
+  #
   class TestApplication
 
     # @!attribute [rw] borders

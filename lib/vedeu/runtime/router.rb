@@ -21,6 +21,9 @@ module Vedeu
              'Cannot store controller without a name attribute.'
       end
 
+      Vedeu.log(type:    :create,
+                message: "Adding ':#{controller_name}'")
+
       if registered?(controller_name)
         storage[controller_name].merge!(klass: klass)
 
@@ -42,6 +45,9 @@ module Vedeu
     # @return [void]
     def add_action(controller_name, action_name)
       if present?(controller_name) && present?(action_name)
+        Vedeu.log(type:    :create,
+                  message: "Adding ':#{action_name}' for ':#{controller_name}'")
+
         if registered?(controller_name)
           storage[controller_name][:actions] << action_name
 
@@ -73,6 +79,9 @@ module Vedeu
     # @return [void]
     def goto(controller_name, action_name, **args)
       if action_defined?(action_name, controller_name)
+        Vedeu.log(type:    :debug,
+                  message: "Routing: #{controller_name} #{action_name}")
+
         controller_with(controller_name).send(action_name, args)
       end
     end

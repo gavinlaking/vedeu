@@ -14,8 +14,8 @@ module Vedeu
     #
     # @param entity [void]
     # @param name [String]
-    # @param y [Fixnum]
-    # @param x [Fixnum]
+    # @param y [Fixnum] The row/line position.
+    # @param x [Fixnum] The column/character position.
     # @return [Vedeu::Reposition]
     def initialize(entity, name, y, x)
       @entity = entity
