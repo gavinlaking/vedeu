@@ -150,7 +150,7 @@ module Vedeu
       # @param value [Fixnum]
       # @return [Fixnum]
       def height(value)
-        model.height = value
+        model.height = proc { value }
       end
 
       # Returns the height in characters for the number of rows specified.
@@ -182,7 +182,7 @@ module Vedeu
       # @param value [Fixnum]
       # @return [Fixnum]
       def width(value)
-        model.width = value
+        model.width = proc { value }
       end
 
       # Specify the starting x position (column) of the interface.

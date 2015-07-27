@@ -244,7 +244,7 @@ module Vedeu
       #
       # @return [void]
       def resize!
-        Vedeu.bind(:_resize_, debounce: 1) { Vedeu.resize }
+        Vedeu.bind(:_resize_, delay: 0.25) { Vedeu.resize }
       end
 
       # Unmaximising an interface.

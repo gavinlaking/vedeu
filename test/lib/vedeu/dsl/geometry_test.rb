@@ -77,7 +77,7 @@ module Vedeu
         subject { instance.height(6) }
 
         it 'sets the attribute to the value' do
-          subject.must_equal(6)
+          subject.call.must_equal(6)
         end
 
         context 'DSL #height' do
@@ -136,7 +136,7 @@ module Vedeu
         subject { instance.width(25) }
 
         it 'sets the attribute to the value' do
-          subject.must_equal(25)
+          subject.call.must_equal(25)
         end
 
         context 'DSL #width' do
