@@ -43,6 +43,8 @@ module Vedeu
       #
       #     action :show
       #     # or...
+      #     actions :show, :list
+      #     # or...
       #     action_name :show
       #
       #     # ... some code
@@ -51,12 +53,16 @@ module Vedeu
       #
       #   Vedeu.trigger(:_goto_, :your_controller, :show, { some: :args })
       #
-      # @param action_name [Symbol] THe name of the action.
+      # @param action_name [Array<Symbol>, Symbol] A collection of action names
+      #   or the name of the action.
       # @return [void]
-      def action(action_name = nil)
-        Vedeu::Router.add_action(@controller_name, action_name)
+      def action(*action_names)
+        action_names.each do |action_name|
+          Vedeu::Router.add_action(@controller_name, action_name)
+        end
       end
       alias_method :action_name, :action
+      alias_method :actions, :action
 
     end # ClassMethods
 
