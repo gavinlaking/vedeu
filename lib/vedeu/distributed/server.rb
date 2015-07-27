@@ -182,7 +182,7 @@ module Vedeu
 
         end
       rescue NoMethodError # raised when #join is called on NilClass.
-        Vedeu.log(type: :debug, message: 'Attempted to #join on DRb.thread.')
+        Vedeu.log(type: :drb, message: 'Attempted to #join on DRb.thread.')
       end
 
       protected

@@ -420,7 +420,7 @@ module Vedeu
       private
 
       # Returns the options set via the configuration API DSL or an empty Hash
-      # if none were set.
+      # when none were set.
       #
       # @return [Hash]
       def options

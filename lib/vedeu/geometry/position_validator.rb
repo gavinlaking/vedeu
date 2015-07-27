@@ -39,7 +39,7 @@ module Vedeu
     end
 
     # Ensures the coordinates provided are within the terminal, interface and
-    # if applicable, bordered interface area.
+    # when applicable, bordered interface area.
     #
     # @return [PositionValidator]
     def validate

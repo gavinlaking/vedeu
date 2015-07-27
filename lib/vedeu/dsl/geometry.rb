@@ -140,7 +140,7 @@ module Vedeu
       end
 
       # Specify the number of characters/rows/lines tall the interface will be.
-      # This value will be ignored if by `y` and `yn` are set.
+      # This value will be ignored when `y` and `yn` are set.
       #
       #   Vedeu.geometry 'some_interface' do
       #     height 8
@@ -172,7 +172,7 @@ module Vedeu
       end
 
       # Specify the number of characters/columns wide the interface will be.
-      # This value will be ignored if by `x` and `xn` are set.
+      # This value will be ignored when `x` and `xn` are set.
       #
       #   Vedeu.geometry 'some_interface' do
       #     width 25
@@ -210,9 +210,10 @@ module Vedeu
       #   Vedeu.geometry 'some_interface' do
       #     xn 37 # end at column 37.
       #
-      #     xn  { use('other_interface').right } # if `other_interface` changes
-      #     # ... some code                      # position, `some_interface`
-      #   end                                    # will too.
+      #     xn  { use('other_interface').right } # when `other_interface`
+      #                                          # changes position,
+      #     # ... some code                      # `some_interface` will too.
+      #   end
       #
       # @param value [Fixnum]
       # @param block [Proc]
@@ -228,7 +229,7 @@ module Vedeu
       #   Vedeu.geometry 'some_interface' do
       #     y  4 # start at row 4
       #
-      #     y  { use('other_interface').north } # start on row/line 3, if
+      #     y  { use('other_interface').north } # start on row/line 3, when
       #     # ... some code                     # `other_interface` changes
       #   end                                   # position, `some_interface`
       #                                         # will too.

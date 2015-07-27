@@ -9,8 +9,8 @@ module Vedeu
     # Both of these approaches require that you have defined an interface (or
     # 'visible area') first. You can find out how to define an interface with
     # Vedeu here. The examples in 'Immediate Render' and 'Deferred View' use
-    # these interface definitions: (Note: if you use these examples, ensure your
-    # terminal is at least 70 characters in width and 5 lines in height.)
+    # these interface definitions: (Note: should you use these examples, ensure
+    # your terminal is at least 70 characters in width and 5 lines in height.)
     #
     #   Vedeu.interface 'main' do
     #     geometry do
@@ -111,7 +111,7 @@ module Vedeu
 
         # Directly write a view buffer to the terminal. Using this method means
         # that the refresh event does not need to be triggered after creating
-        # the views, though can be later triggered if needed.
+        # the views, though can be later triggered when needed.
         #
         #   Vedeu.renders do
         #     view 'some_interface' do

@@ -123,7 +123,7 @@ module Vedeu
       (default / 2) + (length / 2)
     end
 
-    # Fetch the starting coordinate, or use 1 if not set.
+    # Fetch the starting coordinate, or use 1 when not set.
     #
     # @return [Fixnum]
     def _d

@@ -5,7 +5,7 @@ module Vedeu
   #
   module Presentation
 
-    # Returns the background colour for the model, or if it does not exist,
+    # When the background colour for the model exists, return it, otherwise
     # returns the parent background colour, or an empty Vedeu::Background.
     #
     # @return [Vedeu::Background]
@@ -51,7 +51,7 @@ module Vedeu
       @colour = attributes[:colour] = Vedeu::Colour.coerce(value)
     end
 
-    # Returns the foreground colour for the model, or if it does not exist,
+    # When the foreground colour for the model exists, return it, otherwise
     # returns the parent foreground colour, or an empty Vedeu::Foreground.
     #
     # @return [Vedeu::Foreground]
@@ -75,8 +75,8 @@ module Vedeu
         background: colour.background)
     end
 
-    # Returns the parent background colour if a parent colour is available, or
-    # an empty Vedeu::Background.
+    # When a parent colour is available, returns the parent background colour,
+    # otherwise an empty Vedeu::Background.
     #
     # @return [Vedeu::Background]
     def parent_background
@@ -89,15 +89,15 @@ module Vedeu
       end
     end
 
-    # Returns the parent colour if available or NilClass.
+    # Returns the parent colour when available or NilClass.
     #
     # @return [String|NilClass]
     def parent_colour
       parent.colour if parent
     end
 
-    # Returns the parent foreground colour if a parent colour is available, or
-    # an empty Vedeu::Foreground.
+    # When a parent colour is available, returns the parent foreground colour,
+    # otherwise an empty Vedeu::Foreground.
     #
     # @return [Vedeu::Foreground]
     def parent_foreground
@@ -110,7 +110,7 @@ module Vedeu
       end
     end
 
-    # Returns the parent style if available or NilClass.
+    # Returns the parent style when available or NilClass.
     #
     # @return [String|NilClass]
     def parent_style
@@ -142,7 +142,7 @@ module Vedeu
       @style = Vedeu::Style.coerce(value)
     end
 
-    # Converts the colours and styles to escape sequences, and if the parent
+    # Converts the colours and styles to escape sequences, and when the parent
     # model has previously set the colour and style, reverts back to that for
     # consistent formatting.
     #

@@ -1,5 +1,3 @@
-require 'vedeu/application/view'
-
 module Vedeu
 
   # Provides the mechanism to render views for the client application. The

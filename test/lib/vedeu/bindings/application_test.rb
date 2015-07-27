@@ -7,10 +7,10 @@ module Vedeu
 	  describe Application do
 
       context 'the application specific events are defined' do
-        it { Vedeu.bound?(:_action_).must_equal(true) }
+        it { Vedeu.bound?(:_goto_).must_equal(true) }
       end
 
-      describe '.action!' do
+      describe '.goto!' do
         let(:controller) { :some_controller }
         let(:action)     { :show_basket }
         let(:args)       {
@@ -22,7 +22,7 @@ module Vedeu
 
         before { Vedeu::Router.stubs(:goto) }
 
-        subject { Vedeu.trigger(:_action_, controller, action, **args) }
+        subject { Vedeu.trigger(:_goto_, controller, action, **args) }
 
         it {
           Vedeu::Router.expects(:goto)

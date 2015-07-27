@@ -49,7 +49,7 @@ module Vedeu
       alias_method :compression?, :compression
 
       # Provides the mechanism to configure Vedeu. If the client application
-      # sets options, override the defaults with those, and if command-line
+      # sets options, override the defaults with those, and when command-line
       # arguments are provided at application invocation, override any options
       # with the arguments provided.
       #

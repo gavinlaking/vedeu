@@ -44,7 +44,7 @@ module Vedeu
       @interface = interface
     end
 
-    # Returns the interface with border (if enabled) and the content for the
+    # Returns the interface with border (when enabled) and the content for the
     # interface.
     #
     # @return [Array<Array<String>>]

@@ -19,8 +19,8 @@ module Vedeu
       self
     end
 
-    # Store the view if it has a name. This view will be shown next time the
-    # refresh event is triggered for the interface.
+    # When a name is given, the view is stored with this name. This view will be
+    # shown next time the refresh event is triggered for the interface.
     #
     # @raise [Vedeu::InvalidSyntax] The name is not defined.
     # @return [Vedeu::Interface]

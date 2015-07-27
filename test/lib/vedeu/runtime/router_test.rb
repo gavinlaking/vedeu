@@ -125,6 +125,8 @@ module Vedeu
 
       subject { described.goto(controller_name, action_name, **args) }
 
+      it { described.must_respond_to(:action) }
+
       context 'when the controller is registered' do
         context 'when the controller klass is defined' do
           before do
@@ -146,6 +148,16 @@ module Vedeu
           }
         end
 
+        context 'when the action is not defined for this controller' do
+          let(:action_name) { :undefined_action }
+
+          before do
+            described.add_controller(controller_name, 'Vedeu::SomeController')
+          end
+
+          it { proc { subject }.must_raise(Vedeu::ActionNotFound) }
+        end
+
         context 'when the controller klass is not defined' do
           before do
             described.add_controller(controller_name, '')
@@ -158,7 +170,7 @@ module Vedeu
       end
 
       context 'when the controller is not registered' do
-        it { proc { subject }.must_raise(Vedeu::ModelNotFound) }
+        it { proc { subject }.must_raise(Vedeu::ControllerNotFound) }
       end
     end
 

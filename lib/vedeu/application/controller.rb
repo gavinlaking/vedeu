@@ -49,7 +49,7 @@ module Vedeu
       #
       #   end
       #
-      #   Vedeu.trigger(:_action_, :your_controller, :show, { some: :args })
+      #   Vedeu.trigger(:_goto_, :your_controller, :show, { some: :args })
       #
       # @param action_name [Symbol] THe name of the action.
       # @return [void]

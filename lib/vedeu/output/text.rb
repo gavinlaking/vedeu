@@ -133,7 +133,7 @@ module Vedeu
       @line ||= Vedeu::Line.build(parent: parent)
     end
 
-    # Returns the model option if set.
+    # Returns the model option when set.
     #
     # @return [Vedeu::Interface|Vedeu::Line|Vedeu::Null::Generic|Vedeu::Stream]
     def model

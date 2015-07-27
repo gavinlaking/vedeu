@@ -14,18 +14,26 @@ module Vedeu
       #
       # @return [void]
       def setup!
-        action!
+        goto!
       end
 
       private
 
+      # Call a client application controller's action with parameters.
+      #
       # @example
-      #   Vedeu.trigger(:_action_, :your_controller, :some_action, { id: 7 })
+      #   Vedeu.trigger(:_goto_, :your_controller, :some_action, { id: 7 })
+      #   Vedeu.goto(:your_controller, :some_action, { id: 7 })
       #
       # @return [void]
-      def action!
-        Vedeu.bind(:_action_) do |controller, action, **args|
+      def goto!
+        Vedeu.bind(:_goto_) do |controller, action, **args|
           Vedeu::Router.goto(controller, action, **args)
+        end
+
+        # @todo Remove this aliasing event. (GL 2015-07-26)
+        Vedeu.bind(:_action_) do |controller, action, **args|
+          Vedeu.trigger(:_goto_, controller, action, **args)
         end
       end
 

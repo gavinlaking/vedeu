@@ -41,7 +41,7 @@ module Vedeu
         end
       end
 
-      # Hide the cursor of the named interface or if a name is not given, the
+      # Hide the cursor of the named interface or when a name is not given, the
       # interface currently in focus.
       #
       # @example
@@ -54,6 +54,8 @@ module Vedeu
         Vedeu.bind(:_hide_cursor_) do |name|
           Vedeu::Cursor.hide_cursor(name)
         end
+
+        # @todo Remove this aliasing event. (GL 2015-07-26)
         Vedeu.bind(:_cursor_hide_) do |name|
           Vedeu.trigger(:_hide_cursor_, name)
         end
@@ -79,7 +81,7 @@ module Vedeu
         end
       end
 
-      # Show the cursor of the named interface or if a name is not given, the
+      # Show the cursor of the named interface or when a name is not given, the
       # interface currently in focus.
       #
       # @example
@@ -92,6 +94,8 @@ module Vedeu
         Vedeu.bind(:_show_cursor_) do |name|
           Vedeu::Cursor.show_cursor(name)
         end
+
+        # @todo Remove this aliasing event. (GL 2015-07-26)
         Vedeu.bind(:_cursor_show_) do |name|
           Vedeu.trigger(:_show_cursor_, name)
         end

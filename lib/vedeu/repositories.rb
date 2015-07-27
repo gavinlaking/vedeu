@@ -21,7 +21,7 @@ module Vedeu
       all.map do |repository|
         registered = repository.send(:registered)
 
-        Vedeu.log(type:    :debug,
+        Vedeu.log(type:    :store,
                   message: "Repository '#{repository.class.name}':" \
                            " #{registered.inspect}")
 

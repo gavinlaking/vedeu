@@ -1,5 +1,19 @@
 module Vedeu
 
+  # Raised with Vedeu attempts to access a client application controller that
+  # does not exist.
+  #
+  class ControllerNotFound < StandardError
+
+  end # ControllerNotFound
+
+  # Raised with Vedeu attempts to access a client application controller's
+  # action that does not exist.
+  #
+  class ActionNotFound < StandardError
+
+  end # ActionNotFound
+
   # Raised with Vedeu attempts to access a named model that does not exist.
   #
   class ModelNotFound < StandardError

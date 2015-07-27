@@ -80,7 +80,7 @@ module Vedeu
     # Fetch the border by name.
     #
     # @note
-    #   Vedeu::Border is used in this way because if there is not a border
+    #   Vedeu::Border is used in this way because when there is not a border
     #   defined, it will fallback to a Vedeu::Null::Border which uses
     #   Vedeu::Geometry to determine it's dimensions based on the name also.
     #   When a Vedeu::Geometry cannot be found, this falls back to a
