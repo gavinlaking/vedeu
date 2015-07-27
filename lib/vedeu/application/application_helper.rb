@@ -1,5 +1,3 @@
-require 'vedeu/application/helper'
-
 module Vedeu
 
   # Provides methods which should be available to all client application
