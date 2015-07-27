@@ -36,18 +36,18 @@ module Vedeu
     # @option attributes options [Hash<Symbol => Boolean>]
     # @return [Vedeu::Area]
     def self.from_attributes(attributes = {})
-      y_yn = Vedeu::Dimension.pair(d:       attributes[:y],
-                                   dn:      attributes[:yn],
-                                   d_dn:    attributes[:y_yn],
-                                   default: attributes[:y_default],
+      y_yn = Vedeu::Dimension.pair(d:         attributes[:y],
+                                   dn:        attributes[:yn],
+                                   d_dn:      attributes[:y_yn],
+                                   default:   attributes[:y_default],
                                    maximised: attributes[:maximised],
-                                   centred: attributes[:centred])
-      x_xn = Vedeu::Dimension.pair(d:       attributes[:x],
-                                   dn:      attributes[:xn],
-                                   d_dn:    attributes[:x_xn],
-                                   default: attributes[:x_default],
+                                   centred:   attributes[:centred])
+      x_xn = Vedeu::Dimension.pair(d:         attributes[:x],
+                                   dn:        attributes[:xn],
+                                   d_dn:      attributes[:x_xn],
+                                   default:   attributes[:x_default],
                                    maximised: attributes[:maximised],
-                                   centred: attributes[:centred])
+                                   centred:   attributes[:centred])
 
       new(y: y_yn.first, yn: y_yn.last, x: x_xn.first, xn: x_xn.last)
     end
