@@ -1,13 +1,13 @@
 require 'vedeu/version'
-require 'vedeu/launcher'
-require 'vedeu/bootstrap'
+require 'vedeu/runtime/launcher'
+require 'vedeu/runtime/bootstrap'
 require 'vedeu/exceptions'
 require 'vedeu/log'
 require 'vedeu/debug'
 require 'vedeu/traps'
 require 'vedeu/common'
 require 'vedeu/terminal_mode'
-require 'vedeu/router'
+require 'vedeu/runtime/router'
 
 require 'vedeu/configuration/cli'
 require 'vedeu/configuration/api'
@@ -15,8 +15,8 @@ require 'vedeu/configuration/configuration'
 
 require 'vedeu/terminal'
 require 'vedeu/timer'
-require 'vedeu/main_loop'
-require 'vedeu/application'
+require 'vedeu/runtime/main_loop'
+require 'vedeu/runtime/application'
 
 require 'vedeu/models/toggleable'
 
