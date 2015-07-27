@@ -38,6 +38,7 @@ module Vedeu
       end
 
     end # Application
+    # :nocov:
 
   end # Bindings
 

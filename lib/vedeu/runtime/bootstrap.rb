@@ -4,6 +4,7 @@ module Vedeu
   #
   # This class loads all necessary client application files and initializes
   # Vedeu with this data, then starts the client application.
+  #
   class Bootstrap
 
     # @param argv [Array<String>]

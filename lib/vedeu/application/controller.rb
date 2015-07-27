@@ -53,7 +53,7 @@ module Vedeu
       #
       #   Vedeu.trigger(:_goto_, :your_controller, :show, { some: :args })
       #
-      # @param action_name [Array<Symbol>, Symbol] A collection of action names
+      # @param action_names [Array<Symbol>, Symbol] A collection of action names
       #   or the name of the action.
       # @return [void]
       def action(*action_names)

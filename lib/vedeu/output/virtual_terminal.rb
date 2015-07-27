@@ -44,8 +44,8 @@ module Vedeu
     #   Convert to coordinate indices (cy, cx) e.g. (0, 0)
     #   Fetch the row at cy and return the cell from cx
     #
-    # @param y [Fixnum]
-    # @param x [Fixnum]
+    # @param y [Fixnum] The row/line coordinate.
+    # @param x [Fixnum] The column/character coordinate.
     # @return [Vedeu::Char]
     def read(y, x)
       cy, cx = Vedeu::PositionIndex[y, x]
@@ -89,8 +89,8 @@ module Vedeu
     #   If the position (y, x) is nil; we're out of bounds.
     #   Otherwise, write the data to (cy, cx).
     #
-    # @param y [Fixnum]
-    # @param x [Fixnum]
+    # @param y [Fixnum] The row/line coordinate.
+    # @param x [Fixnum] The column/character coordinate.
     # @param data [Vedeu::Char]
     # @return [Vedeu::Char]
     def write(y, x, data)

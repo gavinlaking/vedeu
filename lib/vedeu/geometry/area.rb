@@ -54,10 +54,10 @@ module Vedeu
 
     # Returns a new instance of Vedeu::Area.
     #
-    # @param y [Fixnum]
-    # @param yn [Fixnum]
-    # @param x [Fixnum]
-    # @param xn [Fixnum]
+    # @param y [Fixnum] The starting row/line position.
+    # @param yn [Fixnum] The ending row/line position.
+    # @param x [Fixnum] The starting column/character position.
+    # @param xn [Fixnum] The ending column/character position.
     # @return [Vedeu::Area]
     def initialize(y:, yn:, x:, xn:)
       @y  = y
