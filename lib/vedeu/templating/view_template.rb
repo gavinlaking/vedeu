@@ -7,7 +7,7 @@ module Vedeu
     class ViewTemplate < Template
 
       include Vedeu::Common
-      include Vedeu::Templating::ViewHelpers
+      include Vedeu::Templating::Helpers
 
       # @return [Vedeu::Lines]
       def parse

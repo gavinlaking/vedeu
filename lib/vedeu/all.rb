@@ -106,7 +106,6 @@ require 'vedeu/templating/all'
 require 'vedeu/templating/encoder'
 require 'vedeu/templating/decoder'
 require 'vedeu/templating/helpers'
-require 'vedeu/templating/view_helpers'
 require 'vedeu/templating/template'
 require 'vedeu/templating/view_template'
 
