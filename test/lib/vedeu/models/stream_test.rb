@@ -53,6 +53,8 @@ module Vedeu
       subject { instance.add(child) }
 
       it { subject.must_be_instance_of(Vedeu::Streams) }
+
+      it { instance.must_respond_to(:<<) }
     end
 
     describe '#chars' do

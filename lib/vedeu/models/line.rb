@@ -39,6 +39,7 @@ module Vedeu
     def add(child)
       @_streams = @streams = collection.coerce(streams, self).add(child)
     end
+    alias_method :<<, :add
 
     # Returns an array of all the characters with formatting for this line.
     #

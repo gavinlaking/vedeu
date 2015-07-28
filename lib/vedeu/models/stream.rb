@@ -46,6 +46,7 @@ module Vedeu
     def add(child)
       parent.add(child)
     end
+    alias_method :<<, :add
 
     # Returns an array of characters, each element is the escape sequences of
     # colours and styles for this stream, the character itself, and the escape

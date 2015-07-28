@@ -58,6 +58,10 @@ module Vedeu
 
     describe '#add' do
       subject { instance.add(child) }
+
+      it { instance.must_respond_to(:add) }
+
+      it { instance.must_respond_to(:<<) }
     end
 
     describe '#chars' do
