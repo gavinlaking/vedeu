@@ -44,14 +44,17 @@ module Vedeu
     # @param value [Vedeu::Colour|Hash<Symbol => void>]
     # @return [Object]
     def self.coerce(value)
-      return value if value.is_a?(Vedeu::Colour)
-      return new   unless value.is_a?(Hash)
+      return value if value.is_a?(self)
+      return new unless value.is_a?(Hash)
 
-      if value.key?(:colour)
-        coerce(value[:colour])
+      if value[:colour] && value[:colour].is_a?(self)
+        value[:colour]
 
-      elsif value.key?(:background) || value.key?(:foreground)
-        new(value)
+      elsif value[:colour] && value[:colour].is_a?(Hash)
+        new(value[:colour])
+
+      elsif value[:background] || value[:foreground]
+         new(value)
 
       else
         new
