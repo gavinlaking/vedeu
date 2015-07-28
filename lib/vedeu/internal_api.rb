@@ -46,6 +46,15 @@ module Vedeu
     # @return [Vedeu::Cursors]
     def_delegators Vedeu::Cursors, :cursors
 
+    # Allow debugging via the creation of stack traces courtesy of ruby-prof.
+    #
+    # @example
+    #   Vedeu.debug
+    #
+    # @!method debug
+    # @return [Vedeu::Debug]
+    def_delegators Vedeu::Debug, :debug
+
     # Manipulate the repository of events.
     #
     # @example

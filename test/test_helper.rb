@@ -30,6 +30,7 @@ SimpleCov.start do
   add_group  'events',        'vedeu/events'
   add_group  'geometry',      'vedeu/geometry'
   add_group  'input',         'vedeu/input'
+  add_group  'log',           'vedeu/log'
   add_group  'models',        'vedeu/models'
   add_group  'null',          'vedeu/null'
   add_group  'output',        'vedeu/output'
