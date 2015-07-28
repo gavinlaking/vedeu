@@ -14,16 +14,16 @@ module Vedeu
       def define_stream(attributes = {}, &block)
         fail Vedeu::InvalidSyntax, 'block not given' unless block_given?
 
-        wrap(Vedeu::Templating::Encoder.process(
+        encode(
           Vedeu::Stream.build(colour: Vedeu::Colour.new(attributes),
                               style:  Vedeu::Style.new(attributes[:style]),
-                              value:  block.call)))
+                              value:  block.call))
       end
 
       # @param data [String]
       # @return [String]
-      def wrap(data)
-        "{{#{data}}}"
+      def encode(data)
+        Vedeu::Templating::Encoder.process(data)
       end
 
     end # ViewHelpers

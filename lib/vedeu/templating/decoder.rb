@@ -52,7 +52,14 @@ module Vedeu
       #
       # @return [String]
       def decode64
-        Base64.strict_decode64(data)
+        Base64.strict_decode64(unwrap)
+      end
+
+      # Removes '{{' and '}}' from the start and end of the data.
+      #
+      # @return [String]
+      def unwrap
+        data.gsub(/({{)|(}})/, '')
       end
 
     end # Decoder

@@ -22,7 +22,7 @@ module Vedeu
 
       # @return [String]
       def process
-        encode64
+        wrap
       end
 
       protected
@@ -32,6 +32,13 @@ module Vedeu
       attr_reader :data
 
       private
+
+      # Adds '{{' and '}}' to the start and end of the data.
+      #
+      # @return [String]
+      def wrap
+        "{{#{encode64}}}"
+      end
 
       # Encode the compressed, marshalled object or objects into a Base64
       # string.
