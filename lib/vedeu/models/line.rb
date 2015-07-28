@@ -58,6 +58,15 @@ module Vedeu
       streams.empty?
     end
 
+    # An object is equal when its values are the same.
+    #
+    # @param other [Vedeu::Collection]
+    # @return [Boolean]
+    def eql?(other)
+      self.class == other.class && streams == other.streams
+    end
+    alias_method :==, :eql?
+
     # @return [NilClass|String]
     def name
       parent.name if parent

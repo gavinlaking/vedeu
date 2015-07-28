@@ -94,6 +94,20 @@ module Vedeu
       end
     end
 
+    describe '#eql?' do
+      let(:other) { instance }
+
+      subject { instance.eql?(other) }
+
+      it { subject.must_equal(true) }
+
+      context 'when different to other' do
+        let(:other) { described.new(streams: [:other]) }
+
+        it { subject.must_equal(false) }
+      end
+    end
+
     describe '#name' do
       subject { instance.name }
 
