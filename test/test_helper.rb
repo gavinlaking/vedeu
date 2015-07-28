@@ -19,8 +19,10 @@ SimpleCov.start do
   add_filter '/test/'
   add_group  'application',   'vedeu/application'
   add_group  'bindings',      'vedeu/bindings'
+  add_group  'borders',       'vedeu/borders'
   add_group  'buffers',       'vedeu/buffers'
   add_group  'cli',           'vedeu/cli'
+  add_group  'colours',       'vedeu/colours'
   add_group  'configuration', 'vedeu/configuration'
   add_group  'cursor',        'vedeu/cursor'
   add_group  'distributed',   'vedeu/distributed'
@@ -31,7 +33,9 @@ SimpleCov.start do
   add_group  'models',        'vedeu/models'
   add_group  'null',          'vedeu/null'
   add_group  'output',        'vedeu/output'
+  add_group  'plugins',       'vedeu/plygins'
   add_group  'repositories',  'vedeu/repositories'
+  add_group  'runtime',       'vedeu/runtime'
   add_group  'templating',    'vedeu/templating'
 end unless ENV['NO_SIMPLECOV']
 
