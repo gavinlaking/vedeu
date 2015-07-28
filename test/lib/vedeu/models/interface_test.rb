@@ -71,6 +71,8 @@ module Vedeu
       subject { instance.add(child) }
 
       it { instance.must_respond_to(:add) }
+
+      it { instance.must_respond_to(:<<) }
     end
 
     describe '#hide' do

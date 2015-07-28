@@ -72,6 +72,7 @@ module Vedeu
     def add(child)
       @lines = lines.add(child)
     end
+    alias_method :<<, :add
 
     # Hide a named interface buffer, or without a name, the buffer of the
     # currently focussed interface.

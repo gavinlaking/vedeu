@@ -58,6 +58,10 @@ module Vedeu
 
     describe '#add' do
       subject { instance.add(child) }
+
+      it { instance.must_respond_to(:add) }
+
+      it { instance.must_respond_to(:<<) }
     end
 
     describe '#chars' do
@@ -87,6 +91,20 @@ module Vedeu
 
       context 'when there is content' do
         it { subject.must_be_instance_of(FalseClass) }
+      end
+    end
+
+    describe '#eql?' do
+      let(:other) { instance }
+
+      subject { instance.eql?(other) }
+
+      it { subject.must_equal(true) }
+
+      context 'when different to other' do
+        let(:other) { described.new(streams: [:other]) }
+
+        it { subject.must_equal(false) }
       end
     end
 

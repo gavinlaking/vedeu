@@ -39,6 +39,7 @@ module Vedeu
     def add(child)
       @_streams = @streams = collection.coerce(streams, self).add(child)
     end
+    alias_method :<<, :add
 
     # Returns an array of all the characters with formatting for this line.
     #
@@ -56,6 +57,15 @@ module Vedeu
     def empty?
       streams.empty?
     end
+
+    # An object is equal when its values are the same.
+    #
+    # @param other [Vedeu::Collection]
+    # @return [Boolean]
+    def eql?(other)
+      self.class == other.class && streams == other.streams
+    end
+    alias_method :==, :eql?
 
     # @return [NilClass|String]
     def name
