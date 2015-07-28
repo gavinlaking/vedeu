@@ -23,6 +23,14 @@ module Vedeu
       @args = args
     end
 
+    # @raise [Vedeu::NotImplemented] Subclasses of this class must implement
+    #   this method.
+    def render
+      fail Vedeu::NotImplemented,
+           'The subclass of Vedeu::ApplicationView must implement the #render' \
+           'method.'
+    end
+
     protected
 
     # @!attribute [r] args

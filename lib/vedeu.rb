@@ -19,7 +19,7 @@ require 'zlib'
 
 require 'thor'
 
-require 'vedeu/log'
+require 'vedeu/log/log'
 
 # Vedeu is a GUI framework for terminal/console applications written in Ruby.
 #

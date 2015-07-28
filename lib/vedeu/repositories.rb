@@ -11,7 +11,7 @@ module Vedeu
     # @param klass [Class]
     # @return [Set]
     def register(klass)
-      storage.add(klass)
+      storage.add(klass) if klass
     end
 
     # List all models stored in each registered repository.

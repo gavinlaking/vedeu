@@ -47,9 +47,16 @@ module Vedeu
       def define_stream(attributes = {}, &block)
         fail Vedeu::InvalidSyntax, 'block not given' unless block_given?
 
-        Vedeu::Stream.build(colour: Vedeu::Colour.new(attributes),
-                            style:  Vedeu::Style.new(attributes[:style]),
-                            value:  block.call)
+        encode(
+          Vedeu::Stream.build(colour: Vedeu::Colour.new(attributes),
+                              style:  Vedeu::Style.new(attributes[:style]),
+                              value:  block.call))
+      end
+
+      # @param data [String]
+      # @return [String]
+      def encode(data)
+        Vedeu::Templating::Encoder.process(data)
       end
 
     end # Helpers
