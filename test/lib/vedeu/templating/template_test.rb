@@ -40,6 +40,10 @@ module Vedeu
         end
       end
 
+      describe '#parse' do
+        it { instance.must_respond_to(:parse) }
+      end
+
     end # Templating
 
   end # Template
