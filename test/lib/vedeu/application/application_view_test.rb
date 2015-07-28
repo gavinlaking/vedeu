@@ -14,7 +14,13 @@ module Vedeu
     end
 
     describe '.render' do
-      it { described.must_respond_to(:render) }
+      subject { described.render(object) }
+
+      it { proc { subject }.must_raise(Vedeu::NotImplemented) }
+    end
+
+    describe '#render' do
+      it { instance.must_respond_to(:render) }
     end
 
   end # ApplicationView
