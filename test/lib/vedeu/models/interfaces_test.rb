@@ -10,6 +10,8 @@ module Vedeu
 
     describe '#zindexed' do
       before {
+        Vedeu.interfaces.reset
+
         @hydrogen = Vedeu.interface('hydrogen') do
           zindex 2
         end

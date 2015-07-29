@@ -186,8 +186,6 @@ module Vedeu
       it { subject.must_be_instance_of(String) }
 
       context 'when there are no models stored in the repository' do
-        before { instance.reset }
-
         it { subject.must_equal("<Vedeu::Repository: []>") }
       end
 
