@@ -8,10 +8,6 @@ module Vedeu
     let(:instance)  { described.new(colour) }
     let(:colour)    { '#ff0000' }
 
-    before do
-      instance.stubs(:registered?).returns(false)
-    end
-
     describe 'alias methods' do
       it { instance.must_respond_to(:value) }
     end
@@ -112,6 +108,8 @@ module Vedeu
 
       context 'when the colour is not supported' do
         let(:colour) { [:not_supported] }
+
+        before { instance.stubs(:registered?).returns(false) }
 
         it { subject.must_equal('') }
       end

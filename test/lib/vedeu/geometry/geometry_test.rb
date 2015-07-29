@@ -30,8 +30,6 @@ module Vedeu
     let(:y)         {}
     let(:yn)        {}
 
-    before { Terminal.stubs(:size).returns([12, 40]) }
-
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }
       it {
@@ -70,6 +68,8 @@ module Vedeu
     end
 
     describe '#inspect' do
+      before { Terminal.stubs(:size).returns([12, 40]) }
+
       subject { instance.inspect }
 
       it { subject.must_be_instance_of(String) }
@@ -119,6 +119,8 @@ module Vedeu
     end
 
     describe '#top, #right, #bottom, #left' do
+      before { Terminal.stubs(:size).returns([12, 40]) }
+
       context 'maximised is true' do
         let(:attributes) { { maximised: true } }
 
@@ -195,6 +197,8 @@ module Vedeu
     describe '#maximise' do
       let(:attributes) { { maximised: true } }
 
+      before { Terminal.stubs(:size).returns([12, 40]) }
+
       subject { instance.maximise }
 
       it { instance.top.must_equal(1) }
@@ -205,6 +209,8 @@ module Vedeu
 
     describe '#unmaximise' do
       let(:attributes) { { maximised: false } }
+
+      before { Terminal.stubs(:size).returns([12, 40]) }
 
       subject { instance.unmaximise }
 

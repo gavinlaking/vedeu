@@ -20,11 +20,6 @@ module Vedeu
     let(:previous)  {}
     let(:interface) {}
 
-    before do
-      Vedeu.stubs(:trigger)
-    end
-    after { Vedeu.interfaces.reset }
-
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }
       it { instance.instance_variable_get('@name').must_equal(_name) }
@@ -62,6 +57,9 @@ module Vedeu
         end
       }
 
+      before { Vedeu.stubs(:trigger) }
+      after { Vedeu.interfaces.reset }
+
       subject { instance.add(content) }
 
       it { subject.must_equal(true) }
@@ -76,6 +74,9 @@ module Vedeu
     end
 
     describe '#back?' do
+      before { Vedeu.stubs(:trigger) }
+      after { Vedeu.interfaces.reset }
+
       subject { instance.back? }
 
       context 'with content' do
@@ -96,6 +97,9 @@ module Vedeu
     end
 
     describe '#front?' do
+      before { Vedeu.stubs(:trigger) }
+      after { Vedeu.interfaces.reset }
+
       subject { instance.front? }
 
       context 'with content' do
@@ -115,6 +119,9 @@ module Vedeu
     end
 
     describe '#previous?' do
+      before { Vedeu.stubs(:trigger) }
+      after { Vedeu.interfaces.reset }
+
       subject { instance.previous? }
 
       context 'with content' do

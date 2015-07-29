@@ -9,10 +9,7 @@ module Vedeu
     let(:output)    {}
     let(:drb)       { false }
 
-    before do
-      Vedeu::Configuration.stubs(:drb?).returns(drb)
-      Vedeu.renderers.stubs(:render)
-    end
+    before { Vedeu::Configuration.stubs(:drb?).returns(drb) }
 
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }

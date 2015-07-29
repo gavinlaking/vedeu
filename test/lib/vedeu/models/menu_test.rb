@@ -19,7 +19,7 @@ module Vedeu
     let(:current)    { 0 }
     let(:selected)   {}
 
-    before { Vedeu.menus.reset }
+    # before { Vedeu.menus.reset }
 
     describe '.menu' do
       subject {

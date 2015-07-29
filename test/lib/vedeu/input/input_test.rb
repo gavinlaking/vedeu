@@ -10,17 +10,17 @@ module Vedeu
     let(:instance)  { described.new(reader) }
     let(:raw_mode)  { true }
 
-    before do
-      reader.stubs(:raw_mode?).returns(raw_mode)
-      Vedeu.stubs(:trigger).returns([false])
-    end
-
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }
       it { instance.instance_variable_get('@reader').must_equal(reader) }
     end
 
     describe '.capture' do
+      before do
+        reader.stubs(:raw_mode?).returns(raw_mode)
+        Vedeu.stubs(:trigger).returns([false])
+      end
+
       subject { described.capture(reader) }
 
       context 'when in cooked mode' do
