@@ -168,7 +168,6 @@ module Vedeu
     def defaults
       {
         client:     nil,
-        colour:     nil,
         colour:     Vedeu::Colour.coerce(background: :default,
                                          foreground: :default),
         delay:      0.0,
