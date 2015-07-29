@@ -66,9 +66,17 @@ module Vedeu
     #
     # @return [Array|Array<Vedeu::Event>]
     def registered_events
-      return [] unless repository.registered?(name)
+      if repository.registered?(name)
+        repository.find(name)
 
-      repository.find(name)
+      else
+        Vedeu::EventAliases.find(name).map do |event_name|
+          Vedeu::Trigger.trigger(event_name, *args)
+        end
+
+        []
+
+      end
     end
 
   end # Trigger

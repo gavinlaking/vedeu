@@ -172,11 +172,6 @@ module Vedeu
 
     private
 
-    # @return [Hash]
-    def in_memory
-      {}
-    end
-
     # @return [String]
     def log_store(model)
       type = registered?(model.name) ? :update : :create

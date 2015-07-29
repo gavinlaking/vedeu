@@ -79,6 +79,7 @@ require 'vedeu/output/renderers/terminal'
 require 'vedeu/output/renderers/text'
 require 'vedeu/output/renderers'
 
+require 'vedeu/events/event_aliases'
 require 'vedeu/events/trigger'
 require 'vedeu/events/events'
 require 'vedeu/events/event'

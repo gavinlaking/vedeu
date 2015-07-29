@@ -29,8 +29,10 @@ Note: Nesting indicates where an API method is allowed/supposed to be used.
 ### Events
 
 - Vedeu.bind
+- Vedeu.bind_alias
 - Vedeu.trigger
 - Vedeu.unbind
+- Vedeu.unbind_alias
 
 ### Geometry
 

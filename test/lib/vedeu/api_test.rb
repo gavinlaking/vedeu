@@ -20,8 +20,11 @@ module Vedeu
     it { Vedeu.must_respond_to(:render) }
     it { Vedeu.must_respond_to(:views) }
     it { Vedeu.must_respond_to(:bind) }
+    it { Vedeu.must_respond_to(:bind_alias) }
     it { Vedeu.must_respond_to(:bound?) }
     it { Vedeu.must_respond_to(:unbind) }
+    it { Vedeu.must_respond_to(:unbind_alias) }
+    it { Vedeu.must_respond_to(:events) }
     it { Vedeu.must_respond_to(:focus) }
     it { Vedeu.must_respond_to(:focus_by_name) }
     it { Vedeu.must_respond_to(:focussed?) }

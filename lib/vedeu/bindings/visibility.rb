@@ -55,17 +55,12 @@ module Vedeu
           Vedeu::Cursor.hide_cursor(name)
         end
 
-        # @todo Remove this aliasing event. (GL 2015-07-26)
-        Vedeu.bind(:_cursor_hide_) do |name|
-          Vedeu.trigger(:_hide_cursor_, name)
-        end
+        Vedeu.bind_alias(:_cursor_hide_, :_hide_cursor_)
       end
 
       # @see Vedeu::Group#hide
       def hide_group!
-        Vedeu.bind(:_hide_group_) do |name|
-          Vedeu::Group.hide_group(name)
-        end
+        Vedeu.bind(:_hide_group_) { |name| Vedeu::Group.hide_group(name) }
       end
 
       # Hiding an interface.
@@ -95,17 +90,12 @@ module Vedeu
           Vedeu::Cursor.show_cursor(name)
         end
 
-        # @todo Remove this aliasing event. (GL 2015-07-26)
-        Vedeu.bind(:_cursor_show_) do |name|
-          Vedeu.trigger(:_show_cursor_, name)
-        end
+        Vedeu.bind_alias(:_cursor_show_, :_show_cursor_)
       end
 
       # @see Vedeu::Group#show
       def show_group!
-        Vedeu.bind(:_show_group_) do |name|
-          Vedeu::Group.show_group(name)
-        end
+        Vedeu.bind(:_show_group_) { |name| Vedeu::Group.show_group(name) }
       end
 
       # Showing an interface.

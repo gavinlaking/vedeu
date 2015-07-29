@@ -99,7 +99,7 @@ module Vedeu
     def hide
       super
 
-      visibility
+      Vedeu::Output.render(visibility)
     end
 
     # Return the position of this cursor.
@@ -119,7 +119,7 @@ module Vedeu
     def show
       super
 
-      visibility
+      Vedeu::Output.render(visibility)
     end
 
     private

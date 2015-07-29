@@ -93,7 +93,7 @@ module Vedeu
       # @param name [Symbol]
       # @return [Boolean]
       def bound?(name)
-        Vedeu.events.registered?(name)
+        Vedeu.events.registered?(name) || Vedeu::EventAliases.registered?(name)
       end
 
       # Unbind events from a named handler.

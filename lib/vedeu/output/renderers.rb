@@ -34,6 +34,8 @@ module Vedeu
         end
       end
       threads.each(&:join)
+
+      output
     end
 
     # Adds the given renderer class(es) to the list of renderers.
