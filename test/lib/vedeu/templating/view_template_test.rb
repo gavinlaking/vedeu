@@ -28,6 +28,7 @@ module Vedeu
                 Vedeu::Stream.new(colour: {
                                     background: :default,
                                     foreground: :default },
+                                  style: :normal,
                                   value: 'This is a test.'))
             ])
           }
@@ -43,11 +44,13 @@ module Vedeu
                 Vedeu::Stream.new(colour: {
                                     background: :default,
                                     foreground: :default },
+                                  style: :normal,
                                   value: 'This is a test.')),
               Vedeu::Line.new(streams:
                 Vedeu::Stream.new(colour: {
                                     background: :default,
                                     foreground: :default },
+                                  style: :normal,
                                   value: 'And so is this.')),
             ])
           }
@@ -67,11 +70,13 @@ module Vedeu
                 Vedeu::Stream.new(colour: {
                                     background: :default,
                                     foreground: :default },
+                                  style: :normal,
                                   value: 'This is a '),
                 Vedeu::Stream.new(value: 'test', colour: colour),
                 Vedeu::Stream.new(colour: {
                                     background: :default,
                                     foreground: :default },
+                                  style: :normal,
                                   value: '.'),
               ])
             ])
@@ -95,16 +100,19 @@ module Vedeu
                   Vedeu::Stream.new(colour: {
                                       background: :default,
                                       foreground: :default },
+                                    style: :normal,
                                     value: 'This is a '),
                   Vedeu::Stream.new(value: 'test', colour: colour),
                   Vedeu::Stream.new(colour: {
                                       background: :default,
                                       foreground: :default },
+                                    style: :normal,
                                     value: '. And so is '),
                   Vedeu::Stream.new(value: 'this', colour: colour),
                   Vedeu::Stream.new(colour: {
                                       background: :default,
                                       foreground: :default },
+                                    style: :normal,
                                     value: '.'),
                 ])
               ])
@@ -126,11 +134,13 @@ module Vedeu
                 Vedeu::Stream.new(colour: {
                                     background: :default,
                                     foreground: :default },
+                                  style: :normal,
                                   value: 'This is a '),
                 Vedeu::Stream.new(value: 'test', colour: colour),
                 Vedeu::Stream.new(colour: {
                                     background: :default,
                                     foreground: :default },
+                                  style: :normal,
                                   value: '.'),
               ])
             ])
@@ -151,11 +161,13 @@ module Vedeu
                 Vedeu::Stream.new(colour: {
                                     background: :default,
                                     foreground: :default },
+                                  style: :normal,
                                   value: 'This is a '),
                 Vedeu::Stream.new(value: 'test', colour: colour),
                 Vedeu::Stream.new(colour: {
                                     background: :default,
                                     foreground: :default },
+                                  style: :normal,
                                   value: '.'),
               ])
             ])
@@ -176,11 +188,13 @@ module Vedeu
                 Vedeu::Stream.new(colour: {
                                     background: :default,
                                     foreground: :default },
+                                  style: :normal,
                                   value: 'This is a '),
                 Vedeu::Stream.new(value: 'test', style: style),
                 Vedeu::Stream.new(colour: {
                                     background: :default,
                                     foreground: :default },
+                                  style: :normal,
                                   value: '.'),
               ])
             ])

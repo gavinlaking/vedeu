@@ -26,6 +26,7 @@ module Vedeu
                              Vedeu::Stream.new(colour: {
                                                  background: :default,
                                                  foreground: :default },
+                                               style: :normal,
                                                value: stream)
 
                            end
