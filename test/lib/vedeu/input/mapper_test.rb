@@ -10,7 +10,7 @@ module Vedeu
     let(:keymap)     {}
     let(:repository) {}
 
-    # before { Vedeu.keymaps.reset }
+    before { Vedeu.keymaps.reset }
 
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }

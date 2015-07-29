@@ -179,6 +179,8 @@ module Vedeu
     end
 
     describe '#inspect' do
+      before { Vedeu.interfaces.reset }
+
       subject { instance.inspect }
 
       it { subject.must_be_instance_of(String) }

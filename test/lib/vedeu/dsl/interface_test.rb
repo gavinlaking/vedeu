@@ -9,14 +9,9 @@ module Vedeu
       let(:described) { Vedeu::DSL::Interface }
       let(:instance)  { described.new(model) }
       let(:model)     {
-        Vedeu.interface 'actinium' do
-          # ...
-        end
+        Vedeu::Interface.new(name: 'actinium')
       }
       let(:client) {}
-
-      before { Vedeu.interfaces.reset }
-      after  { Vedeu.interfaces.reset }
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
@@ -26,12 +21,6 @@ module Vedeu
 
       describe '#border' do
         after { Vedeu.borders.reset }
-
-        subject {
-          instance.border do
-            # ...
-          end
-        }
 
         context 'when the block is not given' do
           subject { instance.border }
@@ -167,12 +156,6 @@ module Vedeu
       end
 
       describe '#geometry' do
-        subject {
-          instance.geometry do
-            # ...
-          end
-        }
-
         context 'when the required block is not provided' do
           subject { instance.geometry }
 
@@ -332,7 +315,6 @@ module Vedeu
         subject { instance.zindex(_value) }
 
         it { subject.must_equal(1) }
-
         it { instance.must_respond_to(:z_index) }
         it { instance.must_respond_to(:z) }
       end

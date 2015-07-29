@@ -66,6 +66,7 @@ module Vedeu
 
       before {
         Vedeu::Cursor.new(name: 'manganese', oy: 2, ox: 3, x: 8, y: 7).store
+        Vedeu.stubs(:focus).returns('neon')
       }
 
       subject { described.by_name(entity, direction, _name) }
@@ -75,8 +76,10 @@ module Vedeu
       context 'when the name is not specified' do
         let(:_name) {}
 
-        # @todo Add more tests.
-        # it { skip }
+        it 'uses the current focussed interface name' do
+          Vedeu::Move.expects(:send).with(:down, Vedeu::Cursor, 'neon')
+          subject
+        end
       end
 
       context 'when the name is specified' do
