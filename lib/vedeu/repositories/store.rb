@@ -69,6 +69,11 @@ module Vedeu
     end
     alias_method :all, :storage
 
+    # @return [Hash]
+    def in_memory
+      {}
+    end
+
   end # Store
 
 end # Vedeu
