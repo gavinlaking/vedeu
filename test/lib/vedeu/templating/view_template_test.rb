@@ -24,7 +24,11 @@ module Vedeu
           let(:content) { "This is a test.\n" }
           let(:expected) {
             Vedeu::Lines.new([
-              Vedeu::Line.new(streams: Vedeu::Stream.new(value: 'This is a test.'))
+              Vedeu::Line.new(streams:
+                Vedeu::Stream.new(colour: {
+                                    background: :default,
+                                    foreground: :default },
+                                  value: 'This is a test.'))
             ])
           }
 
@@ -35,8 +39,16 @@ module Vedeu
           let(:content) { "This is a test.\nAnd so is this.\n" }
           let(:expected) {
             Vedeu::Lines.new([
-              Vedeu::Line.new(streams: Vedeu::Stream.new(value: 'This is a test.')),
-              Vedeu::Line.new(streams: Vedeu::Stream.new(value: 'And so is this.')),
+              Vedeu::Line.new(streams:
+                Vedeu::Stream.new(colour: {
+                                    background: :default,
+                                    foreground: :default },
+                                  value: 'This is a test.')),
+              Vedeu::Line.new(streams:
+                Vedeu::Stream.new(colour: {
+                                    background: :default,
+                                    foreground: :default },
+                                  value: 'And so is this.')),
             ])
           }
 
@@ -52,9 +64,15 @@ module Vedeu
           let(:expected) {
             Vedeu::Lines.new([
               Vedeu::Line.new(streams: [
-                Vedeu::Stream.new(value: 'This is a '),
+                Vedeu::Stream.new(colour: {
+                                    background: :default,
+                                    foreground: :default },
+                                  value: 'This is a '),
                 Vedeu::Stream.new(value: 'test', colour: colour),
-                Vedeu::Stream.new(value: '.'),
+                Vedeu::Stream.new(colour: {
+                                    background: :default,
+                                    foreground: :default },
+                                  value: '.'),
               ])
             ])
           }
@@ -74,11 +92,20 @@ module Vedeu
             let(:expected) {
               Vedeu::Lines.new([
                 Vedeu::Line.new(streams: [
-                  Vedeu::Stream.new(value: 'This is a '),
+                  Vedeu::Stream.new(colour: {
+                                      background: :default,
+                                      foreground: :default },
+                                    value: 'This is a '),
                   Vedeu::Stream.new(value: 'test', colour: colour),
-                  Vedeu::Stream.new(value: '. And so is '),
+                  Vedeu::Stream.new(colour: {
+                                      background: :default,
+                                      foreground: :default },
+                                    value: '. And so is '),
                   Vedeu::Stream.new(value: 'this', colour: colour),
-                  Vedeu::Stream.new(value: '.'),
+                  Vedeu::Stream.new(colour: {
+                                      background: :default,
+                                      foreground: :default },
+                                    value: '.'),
                 ])
               ])
             }
@@ -96,9 +123,15 @@ module Vedeu
           let(:expected) {
             Vedeu::Lines.new([
               Vedeu::Line.new(streams: [
-                Vedeu::Stream.new(value: 'This is a '),
+                Vedeu::Stream.new(colour: {
+                                    background: :default,
+                                    foreground: :default },
+                                  value: 'This is a '),
                 Vedeu::Stream.new(value: 'test', colour: colour),
-                Vedeu::Stream.new(value: '.'),
+                Vedeu::Stream.new(colour: {
+                                    background: :default,
+                                    foreground: :default },
+                                  value: '.'),
               ])
             ])
           }
@@ -115,9 +148,15 @@ module Vedeu
           let(:expected) {
             Vedeu::Lines.new([
               Vedeu::Line.new(streams: [
-                Vedeu::Stream.new(value: 'This is a '),
+                Vedeu::Stream.new(colour: {
+                                    background: :default,
+                                    foreground: :default },
+                                  value: 'This is a '),
                 Vedeu::Stream.new(value: 'test', colour: colour),
-                Vedeu::Stream.new(value: '.'),
+                Vedeu::Stream.new(colour: {
+                                    background: :default,
+                                    foreground: :default },
+                                  value: '.'),
               ])
             ])
           }
@@ -134,9 +173,15 @@ module Vedeu
           let(:expected) {
             Vedeu::Lines.new([
               Vedeu::Line.new(streams: [
-                Vedeu::Stream.new(value: 'This is a '),
+                Vedeu::Stream.new(colour: {
+                                    background: :default,
+                                    foreground: :default },
+                                  value: 'This is a '),
                 Vedeu::Stream.new(value: 'test', style: style),
-                Vedeu::Stream.new(value: '.'),
+                Vedeu::Stream.new(colour: {
+                                    background: :default,
+                                    foreground: :default },
+                                  value: '.'),
               ])
             ])
           }

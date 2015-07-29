@@ -23,7 +23,10 @@ module Vedeu
                              Vedeu::Templating::Decoder.process(stream)
 
                            else
-                             Vedeu::Stream.new(value: stream)
+                             Vedeu::Stream.new(colour: {
+                                                 background: :default,
+                                                 foreground: :default },
+                                               value: stream)
 
                            end
           end
