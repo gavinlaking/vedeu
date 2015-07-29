@@ -1,5 +1,8 @@
 module Vedeu
 
+  # Allows the storing of event aliases. Each alias can contain multiple event
+  # names.
+  #
   module EventAliases
 
     extend self

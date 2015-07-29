@@ -2,6 +2,8 @@ module Vedeu
 
   module Presentation
 
+    # Provides style related presentation behaviour.
+    #
     module Style
 
       # Returns the parent style when available or NilClass.

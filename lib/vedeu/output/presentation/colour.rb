@@ -2,6 +2,8 @@ module Vedeu
 
   module Presentation
 
+    # Provides colour related presentation behaviour.
+    #
     module Colour
 
       # When the background colour for the model exists, return it, otherwise
