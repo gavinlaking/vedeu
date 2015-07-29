@@ -23,11 +23,9 @@ module Vedeu
                              Vedeu::Templating::Decoder.process(stream)
 
                            else
-                             Vedeu::Stream.new(colour: {
-                                                 background: :default,
-                                                 foreground: :default },
-                                               style: :normal,
-                                               value: stream)
+                             Vedeu::Stream.new(colour: default_colour,
+                                               style:  default_style,
+                                               value:  stream)
 
                            end
           end
@@ -49,6 +47,37 @@ module Vedeu
       attr_reader :options
 
       private
+
+      # @return [Vedeu::Colour|Hash<Symbol => Symbol>]
+      def default_colour
+        if interface?
+          interface.colour
+
+        else
+          {
+            background: :default,
+            foreground: :default,
+          }
+
+        end
+      end
+
+      # @return [Symbol]
+      def default_style
+        if interface?
+          interface.style
+
+        else
+          :normal
+
+        end
+      end
+
+      # @return [Vedeu::Interface]
+      def interface
+        Vedeu.interfaces.by_name(options[:name]) if options[:name]
+      end
+      alias_method :interface?, :interface
 
       # @param line [String]
       # @return [Array<String>]
