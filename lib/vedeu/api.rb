@@ -101,9 +101,9 @@ module Vedeu
     def_delegators Vedeu::DSL::View, :interface, :renders, :render, :views
 
     # @example
-    #   Vedeu.bind
-    #   Vedeu.bound?
-    #   Vedeu.unbind
+    #   Vedeu.bind(name) { }
+    #   Vedeu.bound?(name)
+    #   Vedeu.unbind(name)
     #
     # @!method bind
     #   @see Vedeu::Event.bind
@@ -112,6 +112,16 @@ module Vedeu
     # @!method unbind
     #   @see Vedeu::Event.unbind
     def_delegators Vedeu::Event, :bind, :bound?, :unbind
+
+    # @example
+    #   Vedeu.bind_alias(alias_name, event_name)
+    #   Vedeu.unbind_alias(alias_name)
+    #
+    # @!method bind_alias
+    #   @see Vedeu::EventAliases.bind_alias
+    # @!method unbind_alias
+    #   @see Vedeu::EventAliases.unbind_alias
+    def_delegators Vedeu::EventAliases, :bind_alias, :unbind_alias
 
     # @example
     #   Vedeu.focus

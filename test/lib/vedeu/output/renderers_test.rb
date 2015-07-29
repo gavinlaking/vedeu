@@ -49,7 +49,7 @@ module Vedeu
         context 'when no renderers are defined' do
           let(:renderers) {}
 
-          it { subject.must_equal([]) }
+          it { subject.must_equal(output) }
         end
       end
     end
@@ -64,12 +64,22 @@ module Vedeu
 
       subject { described.render(output) }
 
-      it { subject.must_be_instance_of(Array) }
+      # it { subject.must_be_instance_of(Array) }
 
       it {
         DummyRenderer.expects(:render).with(output)
         subject
       }
+
+      context 'when there is content' do
+        let(:output) { Vedeu::Escape.new(Vedeu::Esc.hide_cursor) }
+
+        it { subject.must_be_instance_of(Vedeu::Escape) }
+      end
+
+      context 'when there is no content' do
+        it { subject.must_be_instance_of(NilClass) }
+      end
     end
 
     describe '.renderer' do

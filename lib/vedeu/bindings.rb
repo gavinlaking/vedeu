@@ -15,6 +15,8 @@ module Vedeu
     #
     # @return [TrueClass]
     def setup!
+      Vedeu::Events.reset!
+
       Vedeu::Bindings::Application.setup!
       Vedeu::Bindings::Visibility.setup!
       Vedeu::Bindings::Movement.setup!
