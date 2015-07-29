@@ -9,10 +9,7 @@ module Vedeu
     let(:output)    {}
     let(:drb)       { false }
 
-    before do
-      Vedeu::Configuration.stubs(:drb?).returns(drb)
-      Vedeu.renderers.stubs(:render)
-    end
+    before { Vedeu::Configuration.stubs(:drb?).returns(drb) }
 
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }
@@ -28,10 +25,10 @@ module Vedeu
         let(:drb)            { true }
         let(:virtual_buffer) { [] }
 
-        before do
+        before {
           # Vedeu::Renderers::HTML.stubs(:to_file)
           Vedeu::VirtualBuffer.stubs(:retrieve).returns(virtual_buffer)
-        end
+        }
 
         it {
           Vedeu.expects(:trigger).with(:_drb_store_output_, output)

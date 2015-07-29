@@ -39,11 +39,6 @@ module Vedeu
     let(:colour)    { Colour.new(foreground: '#ff0000', background: '#000000') }
     let(:style)     { Style.new('normal') }
 
-    before do
-      parent.stubs(:colour)
-      parent.stubs(:style)
-    end
-
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }
       it { instance.instance_variable_get('@streams').must_equal(streams) }

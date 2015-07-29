@@ -12,10 +12,10 @@ module Vedeu
       let(:enabled)       { false }
       let(:running)       { false }
 
-      before do
+      before {
         Vedeu::Configuration.stubs(:drb?).returns(enabled)
         DRb.stubs(:thread).returns(running)
-      end
+      }
 
       describe '.input' do
         let(:data) {}
@@ -69,9 +69,9 @@ module Vedeu
         context 'when the server is enabled' do
           let(:enabled) { true }
 
-          before do
+          before {
             Vedeu::Terminal.stubs(:restore_screen)
-          end
+          }
 
           context 'and the server is running' do
             # @todo Add more tests.
@@ -86,7 +86,6 @@ module Vedeu
           end
 
           it { Vedeu.expects(:trigger).with(:_exit_); subject }
-
         end
       end
 

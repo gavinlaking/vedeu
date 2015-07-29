@@ -19,8 +19,6 @@ module Vedeu
     let(:current)    { 0 }
     let(:selected)   {}
 
-    before { Vedeu.menus.reset }
-
     describe '.menu' do
       subject {
         described.menu('elements') do

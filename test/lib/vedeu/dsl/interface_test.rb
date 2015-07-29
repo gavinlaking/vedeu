@@ -9,14 +9,9 @@ module Vedeu
       let(:described) { Vedeu::DSL::Interface }
       let(:instance)  { described.new(model) }
       let(:model)     {
-        Vedeu.interface 'actinium' do
-          # ...
-        end
+        Vedeu::Interface.new(name: 'actinium')
       }
       let(:client) {}
-
-      before { Vedeu.interfaces.reset }
-      after  { Vedeu.interfaces.reset }
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
@@ -26,12 +21,6 @@ module Vedeu
 
       describe '#border' do
         after { Vedeu.borders.reset }
-
-        subject {
-          instance.border do
-            # ...
-          end
-        }
 
         context 'when the block is not given' do
           subject { instance.border }
@@ -143,10 +132,10 @@ module Vedeu
 
       describe '#focus!' do
         context 'when a single call is made' do
-          before do
+          before {
             Vedeu::Focus.reset
             Vedeu.interface('curium') { focus! }
-          end
+          }
 
           it 'sets the interface as current' do
             Vedeu.focus.must_equal('curium')
@@ -154,11 +143,11 @@ module Vedeu
         end
 
         context 'when no calls are made' do
-          before do
+          before {
             Vedeu::Focus.reset
             Vedeu.interface('curium')     {}
             Vedeu.interface('dysprosium') {}
-          end
+          }
 
           it 'the first interface defined will be current' do
             Vedeu.focus.must_equal('curium')
@@ -167,12 +156,6 @@ module Vedeu
       end
 
       describe '#geometry' do
-        subject {
-          instance.geometry do
-            # ...
-          end
-        }
-
         context 'when the required block is not provided' do
           subject { instance.geometry }
 
@@ -218,9 +201,9 @@ module Vedeu
         context 'when the named group exists' do
           let(:members) { Set['actinium', 'lanthanum'] }
 
-          before do
+          before {
             Vedeu::Group.new(name: 'elements', members: ['lanthanum']).store
-          end
+          }
 
           it {
             subject
@@ -301,14 +284,14 @@ module Vedeu
       end
 
       describe '#use' do
-        before do
+        before {
           Vedeu.interface 'some_interface' do
             delay 0.75
           end
           Vedeu.interface 'other_interface' do
             delay use('some_interface').delay
           end
-        end
+        }
         after { Vedeu.interfaces.reset }
 
         subject { instance.use('other_interface').delay }
@@ -332,7 +315,6 @@ module Vedeu
         subject { instance.zindex(_value) }
 
         it { subject.must_equal(1) }
-
         it { instance.must_respond_to(:z_index) }
         it { instance.must_respond_to(:z) }
       end

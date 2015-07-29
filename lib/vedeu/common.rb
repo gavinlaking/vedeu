@@ -10,7 +10,7 @@ module Vedeu
     #   demodulize('Vedeu::DSL::Interface') # => "Interface"
     #
     # @param klass [Class|String]
-    # @return [void]
+    # @return [String]
     def demodulize(klass)
       klass = klass.to_s
 

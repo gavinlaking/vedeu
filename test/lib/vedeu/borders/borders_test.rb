@@ -6,8 +6,6 @@ module Vedeu
 
     let(:described) { Vedeu::Borders }
 
-    after { Vedeu.borders.reset! }
-
     it { described.must_respond_to(:borders) }
 
   end # Borders

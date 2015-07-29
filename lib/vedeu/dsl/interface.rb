@@ -25,7 +25,7 @@ module Vedeu
       # Allows the setting of a border for the interface.
       #
       # @example
-      #   interface 'my_interface' do
+      #   Vedeu.interface 'my_interface' do
       #     border do
       #       # ... see Vedeu::DSL::Border for DSL methods for borders.
       #     end
@@ -51,6 +51,13 @@ module Vedeu
 
       # Applies the default border to the interface.
       #
+      # @example
+      #   Vedeu.interface 'my_interface' do
+      #     border!
+      #
+      #     # ... some code
+      #   end
+      #
       # @return [Vedeu::Border]
       def border!
         border do
@@ -64,20 +71,23 @@ module Vedeu
       #   to true.
       #
       # @example
-      #   interface 'my_interface' do
+      #   Vedeu.interface 'my_interface' do
       #     cursor  true  # => show the cursor for this interface
+      #     # or...
       #     cursor  :show # => both of these are equivalent to line above
+      #     # or...
       #     cursor!       #
       #     # ...
       #   end
       #
-      #   interface 'my_interface' do
+      #   Vedeu.interface 'my_interface' do
       #     cursor false # => hide the cursor for this interface
+      #     # or...
       #     cursor nil   # => as above
       #     # ...
       #   end
       #
-      #   view 'my_interface' do
+      #   Vedeu.view 'my_interface' do
       #     cursor true # => Specify the visibility of the cursor when the view
       #     # ...       #    is rendered.
       #   end
@@ -103,7 +113,7 @@ module Vedeu
       # @param value [Fixnum|Float] Time in seconds. (0.5 = 500ms).
       #
       # @example
-      #   interface 'my_interface' do
+      #   Vedeu.interface 'my_interface' do
       #     delay 0.5 # interface will not update more often than every 500ms.
       #     # ...
       #   end
@@ -134,7 +144,7 @@ module Vedeu
       # Define the geometry for an interface.
       #
       # @example
-      #   interface 'my_interface' do
+      #   Vedeu.interface 'my_interface' do
       #     geometry do
       #       # ... see Vedeu::DSL::Geometry for DSL methods for geometries.
       #     end
@@ -160,7 +170,7 @@ module Vedeu
       # interfaces at once.
       #
       # @example
-      #   interface 'my_interface' do
+      #   Vedeu.interface 'my_interface' do
       #     group 'main_screen'
       #     # ...
       #   end
@@ -187,13 +197,13 @@ module Vedeu
       # @param block [Proc]
       #
       # @example
-      #   view 'my_interface' do
+      #   Vedeu.view 'my_interface' do
       #     lines do
       #       # ... see {Vedeu::DSL::Line} and {Vedeu::DSL::Stream}
       #     end
       #   end
       #
-      #   view 'my_interface' do
+      #   Vedeu.view 'my_interface' do
       #     line do
       #       # ... see {Vedeu::DSL::Line} and {Vedeu::DSL::Stream}
       #     end
@@ -214,7 +224,7 @@ module Vedeu
       # @param value [String]
       #
       # @example
-      #   interface do
+      #   Vedeu.interface do
       #     name 'my_interface'
       #     # ...
       #   end
@@ -233,12 +243,24 @@ module Vedeu
 
       # Set the interface to visible.
       #
+      # @example
+      #   Vedeu.interface('my_interface') do
+      #     show!
+      #
+      #     # ... some code
+      #   end
+      #
       # @return [void]
       def show!
         visible(true)
       end
 
       # Set the interface to invisible.
+      #
+      # @example
+      #   Vedeu.interface('my_interface') do
+      #     # ... some code
+      #   end
       #
       # @return [void]
       def hide!
@@ -260,21 +282,23 @@ module Vedeu
       #   to true.
       #
       # @example
-      #   interface 'my_interface' do
+      #   Vedeu.interface 'my_interface' do
       #     visible true  # => show the interface
+      #     # or...
       #     show!         # => as above
-      #     # ...
+      #     # ... some code
       #   end
       #
-      #   interface 'my_interface' do
+      #   Vedeu.interface 'my_interface' do
       #     visible false # => hide the interface
+      #     # or...
       #     hide!         # => as above
-      #     # ...
+      #     # ... some code
       #   end
       #
-      #   view 'my_interface' do
+      #   Vedeu.view 'my_interface' do
       #     visible false
-      #     # ...
+      #     # ... some code
       #   end
       #
       # @return [void]
@@ -294,7 +318,7 @@ module Vedeu
       #   --2--
       #   --1-- # rendered first
       #
-      #   interface 'my_interface' do
+      #   Vedeu.interface 'my_interface' do
       #     zindex 3
       #     # ...
       #   end

@@ -6,10 +6,7 @@ module Vedeu
 
     let(:described)   { Vedeu::RenderBorder }
     let(:instance)    { described.new(border) }
-    let(:border)      {
-      Vedeu::Border.new(enabled: enabled,
-                        name: _name).store
-    }
+    let(:border)      { Vedeu::Border.new(enabled: enabled, name: _name) }
     let(:visible)     { false }
     let(:enabled)     { false }
     let(:_name)       { 'Vedeu::RenderBorder' }
@@ -22,15 +19,16 @@ module Vedeu
     end
 
     describe '#render' do
-      before do
-        Vedeu::Geometry.new(name: _name, x: 1, xn: 3, y: 1, yn: 3).store
-        Vedeu::Interface.new(name: _name, visible: visible).store
-      end
-      after do
-        Vedeu.geometries.reset!
-        Vedeu.interfaces.reset!
-        Vedeu.borders.reset!
-      end
+      let(:geometry) {
+        Vedeu::Geometry.new(name: _name, x: 1, xn: 3, y: 1, yn: 3)
+      }
+      let(:interface) {
+        Vedeu::Interface.new(name: _name, visible: visible)
+      }
+      before {
+        Vedeu.geometries.stubs(:by_name).returns(geometry)
+        Vedeu.interfaces.stubs(:by_name).returns(interface)
+      }
 
       subject { instance.render }
 

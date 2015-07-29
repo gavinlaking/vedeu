@@ -12,7 +12,7 @@ module Vedeu
       # Setup events relating to client applications. This method is called by
       # Vedeu.
       #
-      # @return [void]
+      # @return [TrueClass]
       def setup!
         goto!
       end
@@ -25,7 +25,7 @@ module Vedeu
       #   Vedeu.trigger(:_goto_, :your_controller, :some_action, { id: 7 })
       #   Vedeu.goto(:your_controller, :some_action, { id: 7 })
       #
-      # @return [void]
+      # @return [TrueClass]
       def goto!
         Vedeu.bind(:_goto_) do |controller, action, **args|
           Vedeu::Router.goto(controller, action, **args)

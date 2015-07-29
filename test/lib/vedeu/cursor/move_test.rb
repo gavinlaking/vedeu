@@ -15,7 +15,7 @@ module Vedeu
     let(:x)         { 1 }
     let(:y)         { 1 }
 
-    before do
+    before {
       Vedeu::Cursor.new(name:    'move_with_border',
                         ox:      ox,
                         oy:      oy,
@@ -45,12 +45,12 @@ module Vedeu
       end
       IO.console.stubs(:winsize).returns([25, 80])
       IO.console.stubs(:print)
-    end
-    after do
+    }
+    after {
       Vedeu.borders.reset
       Vedeu.cursors.reset
       Vedeu.geometries.reset
-    end
+    }
 
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }
@@ -64,9 +64,10 @@ module Vedeu
       let(:direction) { :down }
       let(:_name)     { 'manganese' }
 
-      before do
+      before {
         Vedeu::Cursor.new(name: 'manganese', oy: 2, ox: 3, x: 8, y: 7).store
-      end
+        Vedeu.stubs(:focus).returns('neon')
+      }
 
       subject { described.by_name(entity, direction, _name) }
 
@@ -75,8 +76,10 @@ module Vedeu
       context 'when the name is not specified' do
         let(:_name) {}
 
-        # @todo Add more tests.
-        # it { skip }
+        it 'uses the current focussed interface name' do
+          Vedeu::Move.expects(:send).with(:down, Vedeu::Cursor, 'neon')
+          subject
+        end
       end
 
       context 'when the name is specified' do

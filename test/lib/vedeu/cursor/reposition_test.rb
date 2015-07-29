@@ -11,15 +11,8 @@ module Vedeu
     let(:x)         { 4 }
     let(:y)         { 7 }
 
-    before do
-      Vedeu::Cursor.new(name: _name, x: 1, y: 1, ox: 1, oy: 1)
-      Vedeu.stubs(:trigger)
-    end
-
-    after { Vedeu.cursors.reset }
-
     describe '#initialize' do
-      it { instance.must_be_instance_of(Vedeu::Reposition) }
+      it { instance.must_be_instance_of(described) }
       it { instance.instance_variable_get('@entity').must_equal(entity) }
       it { instance.instance_variable_get('@name').must_equal(_name) }
       it { instance.instance_variable_get('@x').must_equal(x) }
@@ -29,9 +22,12 @@ module Vedeu
     describe '.to' do
       # let(:new_entity) { Vedeu::Cursor.new(name: _name, y: 8, x: 5, oy: 7, ox: 4) }
 
-      # before do
-      #   entity.stubs(:new).returns(new_entity)
-      # end
+      before {
+        #   entity.stubs(:new).returns(new_entity)
+        Vedeu::Cursor.new(name: _name, x: 1, y: 1, ox: 1, oy: 1)
+        Vedeu.stubs(:trigger)
+      }
+      after { Vedeu.cursors.reset }
 
       subject { described.to(entity, _name, y, x) }
 

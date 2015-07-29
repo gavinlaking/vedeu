@@ -168,14 +168,15 @@ module Vedeu
     def defaults
       {
         client:     nil,
-        colour:     nil,
+        colour:     Vedeu::Colour.coerce(background: :default,
+                                         foreground: :default),
         delay:      0.0,
         group:      '',
         lines:      [],
         name:       '',
         parent:     nil,
         repository: Vedeu.interfaces,
-        style:      nil,
+        style:      :normal,
         visible:    true,
         zindex:     0,
       }

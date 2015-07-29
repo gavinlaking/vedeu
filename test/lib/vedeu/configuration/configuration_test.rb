@@ -55,11 +55,11 @@ module Vedeu
       end
 
       context 'when the log is configured' do
-        before do
+        before {
           Vedeu.configure do
             log '/tmp/vedeu.log'
           end
-        end
+        }
 
         it { described.log.must_equal('/tmp/vedeu.log') }
       end
@@ -71,11 +71,11 @@ module Vedeu
       end
 
       context 'when the log is configured' do
-        before do
+        before {
           Vedeu.configure do
             log '/tmp/vedeu.log'
           end
-        end
+        }
 
         it { described.log?.must_equal(true) }
       end

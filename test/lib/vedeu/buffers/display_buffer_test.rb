@@ -31,11 +31,11 @@ module Vedeu
     let(:example_model)    { Vedeu::TestInterfaceModel }
     let(:example_instance) { example_model.new }
 
-    before do
+    before {
       example_instance.store
 
       Vedeu::Refresh.stubs(:by_name)
-    end
+    }
     after { Vedeu.interfaces.reset }
 
     describe '#store_immediate' do

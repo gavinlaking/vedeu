@@ -37,8 +37,9 @@ module Vedeu
         let(:filename) {}
         let(:object)   {}
         let(:content)  { "Hydrogen\nCarbon\nOxygen\nNitrogen" }
+        let(:options)  { {} }
 
-        subject { instance.template_for(_name, filename, object) }
+        subject { instance.template_for(_name, filename, object, options) }
 
         context 'when the name of the view is not given' do
           let(:filename) { 'my_interface.erb' }
@@ -56,10 +57,10 @@ module Vedeu
           let(:_name) { 'my_interface' }
           let(:filename) { 'my_interface.erb' }
 
-          before do
+          before {
             Vedeu::Templating::ViewTemplate.expects(:parse).
-              with(object, filename).returns(content)
-          end
+              with(object, filename, options).returns(content)
+          }
 
           it { subject.must_be_instance_of(Vedeu::InterfaceCollection) }
         end

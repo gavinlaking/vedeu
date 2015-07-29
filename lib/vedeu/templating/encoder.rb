@@ -2,7 +2,7 @@ module Vedeu
 
   module Templating
 
-    # Converts an object or objects into an encoded string.
+    # Converts an object or collection of objects into an encoded String.
     #
     class Encoder
 
@@ -20,6 +20,8 @@ module Vedeu
         @data = data
       end
 
+      # Converts an object or collection of objects into an encoded String.
+      #
       # @return [String]
       def process
         wrap
@@ -33,7 +35,7 @@ module Vedeu
 
       private
 
-      # Adds '{{' and '}}' to the start and end of the data.
+      # Adds delimiters to the start and end of the data.
       #
       # @return [String]
       def wrap

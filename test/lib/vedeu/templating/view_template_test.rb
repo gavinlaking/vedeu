@@ -9,17 +9,27 @@ module Vedeu
       let(:described) { Vedeu::Templating::ViewTemplate }
       let(:instance)  { described.new(object, path) }
       let(:object)    {}
-      let(:path)      {}
+      let(:path)      { '/tmp/some_template.erb' }
+      let(:content)   { '' }
 
       describe '.parse' do
+        before {
+          File.stubs(:exist?).returns(true)
+          File.stubs(:read).returns(content)
+        }
+
         subject { described.parse(object, path) }
 
         context 'with a plain text file' do
-          let(:path) { 'test/support/templates/plain.erb' }
-
+          let(:content) { "This is a test.\n" }
           let(:expected) {
             Vedeu::Lines.new([
-              Vedeu::Line.new(streams: Vedeu::Stream.new(value: 'This is a test.'))
+              Vedeu::Line.new(streams:
+                Vedeu::Stream.new(colour: {
+                                    background: :default,
+                                    foreground: :default },
+                                  style: :normal,
+                                  value: 'This is a test.'))
             ])
           }
 
@@ -27,12 +37,21 @@ module Vedeu
         end
 
         context 'with a plain text file with multiple lines' do
-          let(:path) { 'test/support/templates/multiple.erb' }
-
+          let(:content) { "This is a test.\nAnd so is this.\n" }
           let(:expected) {
             Vedeu::Lines.new([
-              Vedeu::Line.new(streams: Vedeu::Stream.new(value: 'This is a test.')),
-              Vedeu::Line.new(streams: Vedeu::Stream.new(value: 'And so is this.')),
+              Vedeu::Line.new(streams:
+                Vedeu::Stream.new(colour: {
+                                    background: :default,
+                                    foreground: :default },
+                                  style: :normal,
+                                  value: 'This is a test.')),
+              Vedeu::Line.new(streams:
+                Vedeu::Stream.new(colour: {
+                                    background: :default,
+                                    foreground: :default },
+                                  style: :normal,
+                                  value: 'And so is this.')),
             ])
           }
 
@@ -40,7 +59,7 @@ module Vedeu
         end
 
         context 'with a background colour directive' do
-          let(:path)   { 'test/support/templates/background.erb' }
+          let(:content) { "This is a <%= background('#ff0000') { 'test' } %>.\n" }
           let(:colour) {
             Vedeu::Colour.new(background: '#ff0000', foreground: '')
           }
@@ -48,18 +67,63 @@ module Vedeu
           let(:expected) {
             Vedeu::Lines.new([
               Vedeu::Line.new(streams: [
-                Vedeu::Stream.new(value: 'This is a '),
+                Vedeu::Stream.new(colour: {
+                                    background: :default,
+                                    foreground: :default },
+                                  style: :normal,
+                                  value: 'This is a '),
                 Vedeu::Stream.new(value: 'test', colour: colour),
-                Vedeu::Stream.new(value: '.'),
+                Vedeu::Stream.new(colour: {
+                                    background: :default,
+                                    foreground: :default },
+                                  style: :normal,
+                                  value: '.'),
               ])
             ])
           }
 
           it { subject.must_equal(expected) }
+
+          context 'and multiple' do
+            let(:content) {
+              "This is a <%= background('#ff0000') { 'test' } %>. And so is " \
+              "<%= background('#ff0000') { 'this' } %>.\n"
+            }
+
+            let(:colour) {
+              Vedeu::Colour.new(background: '#ff0000', foreground: '')
+            }
+
+            let(:expected) {
+              Vedeu::Lines.new([
+                Vedeu::Line.new(streams: [
+                  Vedeu::Stream.new(colour: {
+                                      background: :default,
+                                      foreground: :default },
+                                    style: :normal,
+                                    value: 'This is a '),
+                  Vedeu::Stream.new(value: 'test', colour: colour),
+                  Vedeu::Stream.new(colour: {
+                                      background: :default,
+                                      foreground: :default },
+                                    style: :normal,
+                                    value: '. And so is '),
+                  Vedeu::Stream.new(value: 'this', colour: colour),
+                  Vedeu::Stream.new(colour: {
+                                      background: :default,
+                                      foreground: :default },
+                                    style: :normal,
+                                    value: '.'),
+                ])
+              ])
+            }
+
+            it { subject.must_equal(expected) }
+          end
         end
 
         context 'with a foreground colour directive' do
-          let(:path) { 'test/support/templates/foreground.erb' }
+          let(:content) { "This is a <%= foreground('#00ff00') { 'test' } %>.\n" }
           let(:colour) {
             Vedeu::Colour.new(background: '', foreground: '#00ff00')
           }
@@ -67,9 +131,17 @@ module Vedeu
           let(:expected) {
             Vedeu::Lines.new([
               Vedeu::Line.new(streams: [
-                Vedeu::Stream.new(value: 'This is a '),
+                Vedeu::Stream.new(colour: {
+                                    background: :default,
+                                    foreground: :default },
+                                  style: :normal,
+                                  value: 'This is a '),
                 Vedeu::Stream.new(value: 'test', colour: colour),
-                Vedeu::Stream.new(value: '.'),
+                Vedeu::Stream.new(colour: {
+                                    background: :default,
+                                    foreground: :default },
+                                  style: :normal,
+                                  value: '.'),
               ])
             ])
           }
@@ -78,8 +150,7 @@ module Vedeu
         end
 
         context 'with a colour directive' do
-          let(:path) { 'test/support/templates/colour.erb' }
-
+          let(:content) { "This is a <%= colour(background: '#003300', foreground: '#aadd00') { 'test' } %>.\n" }
           let(:colour) {
             Vedeu::Colour.new(background: '#003300', foreground: '#aadd00')
           }
@@ -87,9 +158,17 @@ module Vedeu
           let(:expected) {
             Vedeu::Lines.new([
               Vedeu::Line.new(streams: [
-                Vedeu::Stream.new(value: 'This is a '),
+                Vedeu::Stream.new(colour: {
+                                    background: :default,
+                                    foreground: :default },
+                                  style: :normal,
+                                  value: 'This is a '),
                 Vedeu::Stream.new(value: 'test', colour: colour),
-                Vedeu::Stream.new(value: '.'),
+                Vedeu::Stream.new(colour: {
+                                    background: :default,
+                                    foreground: :default },
+                                  style: :normal,
+                                  value: '.'),
               ])
             ])
           }
@@ -98,8 +177,7 @@ module Vedeu
         end
 
         context 'with a style directive' do
-          let(:path) { 'test/support/templates/style.erb' }
-
+          let(:content) { "This is a <%= style(:bold) { 'test' } %>." }
           let(:style) {
             Vedeu::Style.new(:bold)
           }
@@ -107,9 +185,17 @@ module Vedeu
           let(:expected) {
             Vedeu::Lines.new([
               Vedeu::Line.new(streams: [
-                Vedeu::Stream.new(value: 'This is a '),
+                Vedeu::Stream.new(colour: {
+                                    background: :default,
+                                    foreground: :default },
+                                  style: :normal,
+                                  value: 'This is a '),
                 Vedeu::Stream.new(value: 'test', style: style),
-                Vedeu::Stream.new(value: '.'),
+                Vedeu::Stream.new(colour: {
+                                    background: :default,
+                                    foreground: :default },
+                                  style: :normal,
+                                  value: '.'),
               ])
             ])
           }

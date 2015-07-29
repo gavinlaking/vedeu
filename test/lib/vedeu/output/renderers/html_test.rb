@@ -17,9 +17,7 @@ module Vedeu
       let(:content)     { [''] }
       let(:write_file) { false }
 
-      before do
-        ::File.stubs(:write)
-      end
+      before { ::File.stubs(:write) }
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }

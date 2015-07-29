@@ -78,10 +78,11 @@ module Vedeu
       @exit_code = 0
 
     rescue StandardError => uncaught_exception
-      Vedeu.log_stdout(message: uncaught_exception.message)
+      Vedeu.log_stdout(type: :error, message: uncaught_exception.message)
 
       if configuration.debug?
-        Vedeu.log_stdout(message: uncaught_exception.backtrace.join("\n"))
+        Vedeu.log_stdout(type:    :error,
+                         message: uncaught_exception.backtrace.join("\n"))
       end
     end
 

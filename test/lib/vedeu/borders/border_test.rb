@@ -113,18 +113,13 @@ module Vedeu
       let(:bottom)  { false }
       let(:left)    { false }
       let(:right)   { false }
+      let(:geometry) {
+        Vedeu::Geometry.new(name: 'Border#bxbxnbybyn', x: 2, xn: 6, y: 2, yn: 6)
+      }
 
-      before do
-        Vedeu.interface('Border#bxbxnbybyn') do
-          geometry do
-            x      2
-            xn     6
-            y      2
-            yn     6
-          end
-        end
-      end
-      after { Vedeu.interfaces.reset }
+      before {
+        Vedeu.geometries.stubs(:by_name).returns(geometry)
+      }
 
       describe '#bx' do
         subject { instance.bx }
@@ -216,14 +211,12 @@ module Vedeu
     end
 
     describe '#width' do
-      before do
-        Vedeu.interface 'borders' do
-          geometry do
-            width 8
-          end
-        end
-      end
-      after { Vedeu.interfaces.reset }
+      let(:geometry) {
+        Vedeu::Geometry.new(name: 'borders', width: 8)
+      }
+      before {
+        Vedeu.geometries.stubs(:by_name).returns(geometry)
+      }
 
       subject { instance.width }
 
@@ -273,14 +266,12 @@ module Vedeu
     end
 
     describe '#height' do
-      before do
-        Vedeu.interface 'borders' do
-          geometry do
-            height 5
-          end
-        end
-      end
-      after { Vedeu.interfaces.reset }
+      let(:geometry) {
+        Vedeu::Geometry.new(name: 'borders', height: 5)
+      }
+      before {
+        Vedeu.geometries.stubs(:by_name).returns(geometry)
+      }
 
       subject { instance.height }
 
@@ -441,19 +432,16 @@ module Vedeu
       let(:left)    { false }
       let(:right)   { false }
       let(:visibility) { true }
-
-      before do
-        Vedeu.interface('Border#render') do
-          geometry do
-            x      1
-            xn     4
-            y      1
-            yn     4
-          end
-          visible(visibility)
-        end
-      end
-      after { Vedeu.interfaces.reset }
+      let(:geometry) {
+        Vedeu::Geometry.new(name: 'Border#render', x: 1, xn: 4, y: 1, yn: 4)
+      }
+      let(:interface) {
+        Vedeu::Interface.new(visible: visibility)
+      }
+      before {
+        Vedeu.interfaces.stubs(:by_name).returns(interface)
+        Vedeu.geometries.stubs(:by_name).returns(geometry)
+      }
 
       subject { instance.render }
 

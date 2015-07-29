@@ -25,7 +25,7 @@ module Vedeu
       #   end
       #
       # @param controller_name [Symbol] The name of the controller.
-      # @return [void]
+      # @return [Hash<Symbol => Hash<Symbol => String, Array<Symbol>>>]
       def controller(controller_name = nil)
         @controller_name = controller_name
 
@@ -55,7 +55,7 @@ module Vedeu
       #
       # @param action_names [Array<Symbol>, Symbol] A collection of action names
       #   or the name of the action.
-      # @return [void]
+      # @return [Array<Symbol>]
       def action(*action_names)
         action_names.each do |action_name|
           Vedeu::Router.add_action(@controller_name, action_name)

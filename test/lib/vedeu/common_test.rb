@@ -17,6 +17,14 @@ module Vedeu
     let(:described) { Vedeu::VedeuCommonClass }
     let(:instance) { described.new }
 
+    describe '#demodulize' do
+      let(:klass) { described }
+
+      subject { instance.demodulize(klass) }
+
+      it { subject.must_equal('VedeuCommonClass') }
+    end
+
     describe '#present?' do
       subject { instance.defined_value_test(_value) }
 

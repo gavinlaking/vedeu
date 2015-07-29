@@ -6,9 +6,9 @@ module Vedeu
 
     let(:described) { Vedeu::Refresh }
 
-    before { Vedeu.interfaces.reset }
-
     describe '.all' do
+      before { Vedeu.interfaces.reset }
+
       subject { described.all }
 
       it { subject.must_be_instance_of(Array) }

@@ -22,6 +22,25 @@ module Vedeu
 
   end # RepositoryTestModule
 
+  module DSL
+
+    class ModelTestClass
+
+      include Vedeu::DSL::Presentation
+
+      def initialize(model, client = nil)
+        @model  = model
+        @client = client
+      end
+
+      protected
+
+      attr_reader :model
+
+    end # ModelTestClass
+
+  end # DSL
+
   class ModelTestClass
 
     include Vedeu::Model

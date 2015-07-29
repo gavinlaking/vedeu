@@ -40,10 +40,10 @@ module Vedeu
       context 'when multiple results occur from triggering an event' do
         let(:event_name) { :_multiple_results_ }
 
-        before do
+        before {
           Vedeu::Event.register(event_name) { :_result_one_ }
           Vedeu::Event.register(event_name) { :_result_two_ }
-        end
+        }
 
         it { subject.must_equal([:_result_one_, :_result_two_]) }
       end

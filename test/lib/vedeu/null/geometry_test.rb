@@ -15,10 +15,7 @@ module Vedeu
       }
       let(:_name)     { 'null_geometry' }
 
-      before do
-        Vedeu::Terminal.stubs(:height).returns(25)
-        Vedeu::Terminal.stubs(:width).returns(40)
-      end
+      before { Vedeu::Terminal.stubs(:size).returns([25, 40]) }
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }

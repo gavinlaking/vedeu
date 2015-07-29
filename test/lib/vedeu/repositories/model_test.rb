@@ -2,25 +2,6 @@ require 'test_helper'
 
 module Vedeu
 
-  module DSL
-
-    class ModelTestClass
-
-      include Vedeu::DSL::Presentation
-
-      def initialize(model, client = nil)
-        @model  = model
-        @client = client
-      end
-
-      protected
-
-      attr_reader :model
-
-    end # ModelTestClass
-
-  end # DSL
-
   describe Model do
 
     let(:described)  { ModelTestClass }

@@ -20,23 +20,23 @@ module Vedeu
     before { described.reset! }
 
     describe '.add_controller' do
-      let(:controller_name) {}
+      let(:controller) {}
       let(:klass) { "SomeController" }
 
-      subject { described.add_controller(controller_name, klass) }
+      subject { described.add_controller(controller, klass) }
 
       context 'when a name is not given' do
         it { proc { subject }.must_raise(Vedeu::MissingRequired) }
       end
 
       context 'when a name is given' do
-        let(:controller_name) { :some_controller }
+        let(:controller) { :some_controller }
 
         context 'when the controller is registered' do
-          before do
-            described.add_controller(controller_name, '')
-            described.add_action(controller_name, :show_basket)
-          end
+          before {
+            described.add_controller(controller, '')
+            described.add_action(controller, :show_basket)
+          }
           after  { described.reset! }
 
           it {
@@ -63,29 +63,29 @@ module Vedeu
     end
 
     describe '.add_action' do
-      let(:controller_name) {}
-      let(:action_name)     {}
+      let(:controller) {}
+      let(:action)     {}
 
-      subject { described.add_action(controller_name, action_name) }
+      subject { described.add_action(controller, action) }
 
       context 'when the controller is not given' do
-        let(:action_name) { :some_action }
+        let(:action) { :some_action }
 
         it { proc { subject }.must_raise(Vedeu::MissingRequired) }
       end
 
       context 'when the name is not given' do
-        let(:controller_name) { :some_controller }
+        let(:controller) { :some_controller }
 
         it { proc { subject }.must_raise(Vedeu::MissingRequired) }
       end
 
       context 'when the controller and name is given' do
-        let(:controller_name) { :some_controller }
-        let(:action_name) { :some_action }
+        let(:controller) { :some_controller }
+        let(:action) { :some_action }
 
         context 'when the controller is registered' do
-          before { described.add_controller(controller_name, 'SomeController') }
+          before { described.add_controller(controller, 'SomeController') }
           after  { described.reset! }
 
           it {
@@ -114,8 +114,8 @@ module Vedeu
     end
 
     describe '.goto' do
-      let(:controller_name) { :some_controller }
-      let(:action_name)     { :some_action }
+      let(:controller) { :some_controller }
+      let(:action)     { :some_action }
       let(:args)            {
         {
           customer_id: 7,
@@ -123,16 +123,16 @@ module Vedeu
         }
       }
 
-      subject { described.goto(controller_name, action_name, **args) }
+      subject { described.goto(controller, action, **args) }
 
       it { described.must_respond_to(:action) }
 
       context 'when the controller is registered' do
         context 'when the controller klass is defined' do
-          before do
-            described.add_controller(controller_name, 'Vedeu::SomeController')
-            described.add_action(controller_name, action_name)
-          end
+          before {
+            described.add_controller(controller, 'Vedeu::SomeController')
+            described.add_action(controller, action)
+          }
           after { described.reset! }
 
           it {
@@ -149,20 +149,20 @@ module Vedeu
         end
 
         context 'when the action is not defined for this controller' do
-          let(:action_name) { :undefined_action }
+          let(:action) { :undefined_action }
 
-          before do
-            described.add_controller(controller_name, 'Vedeu::SomeController')
-          end
+          before {
+            described.add_controller(controller, 'Vedeu::SomeController')
+          }
 
           it { proc { subject }.must_raise(Vedeu::ActionNotFound) }
         end
 
         context 'when the controller klass is not defined' do
-          before do
-            described.add_controller(controller_name, '')
-            described.add_action(controller_name, action_name)
-          end
+          before {
+            described.add_controller(controller, '')
+            described.add_action(controller, action)
+          }
           after { described.reset! }
 
           it { proc { subject }.must_raise(Vedeu::MissingRequired) }
@@ -175,12 +175,12 @@ module Vedeu
     end
 
     describe '.registered' do
-      let(:controller_name) { :some_controller }
+      let(:controller) { :some_controller }
 
-      subject { described.registered?(controller_name) }
+      subject { described.registered?(controller) }
 
       context 'when the controller is registered' do
-        before { described.add_controller(controller_name, "SomeController") }
+        before { described.add_controller(controller, "SomeController") }
         after  { described.reset! }
 
         it { subject.must_equal(true) }

@@ -11,7 +11,7 @@ module Vedeu
 
       # Setup events relating to movement. This method is called by Vedeu.
       #
-      # @return [void]
+      # @return [TrueClass]
       def setup!
         cursor_down!
         cursor_left!
@@ -33,7 +33,7 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:_cursor_down_, name)
       #
-      # @return [void]
+      # @return [TrueClass]
       # @see Vedeu::Move
       def cursor_down!
         Vedeu.bind(:_cursor_down_) do |name|
@@ -46,7 +46,7 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:_cursor_left_, name)
       #
-      # @return [void]
+      # @return [TrueClass]
       # @see Vedeu::Move
       def cursor_left!
         Vedeu.bind(:_cursor_left_) do |name|
@@ -61,7 +61,7 @@ module Vedeu
       #   Vedeu.trigger(:_cursor_origin_, name)
       #   Vedeu.trigger(:_cursor_reset_, name)
       #
-      # @return [void]
+      # @return [TrueClass]
       # @see Vedeu::Move
       def cursor_origin!
         Vedeu.bind(:_cursor_origin_) do |name|
@@ -79,7 +79,7 @@ module Vedeu
       #
       # @todo This event queries Vedeu. Events should only be commands.
       #
-      # @return [void]
+      # @return [TrueClass]
       # @see Vedeu::Move
       def cursor_position!
         Vedeu.bind(:_cursor_position_) do |name|
@@ -92,7 +92,7 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:_cursor_reposition_, name, y, x)
       #
-      # @return [void]
+      # @return [TrueClass]
       # @see Vedeu::Move
       def cursor_reposition!
         Vedeu.bind(:_cursor_reposition_) do |name, y, x|
@@ -105,7 +105,7 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:_cursor_right_, name)
       #
-      # @return [void]
+      # @return [TrueClass]
       # @see Vedeu::Move
       def cursor_right!
         Vedeu.bind(:_cursor_right_) do |name|
@@ -118,7 +118,7 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:_cursor_up, name)
       #
-      # @return [void]
+      # @return [TrueClass]
       # @see Vedeu::Move
       def cursor_up!
         Vedeu.bind(:_cursor_up_) do |name|
@@ -131,7 +131,7 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:_geometry_down_, name)
       #
-      # @return [void]
+      # @return [TrueClass]
       # @see Vedeu::Move
       def geometry_down!
         Vedeu.bind(:_geometry_down_) do |name|
@@ -144,7 +144,7 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:_geometry_left_, name)
       #
-      # @return [void]
+      # @return [TrueClass]
       # @see Vedeu::Move
       def geometry_left!
         Vedeu.bind(:_geometry_left_) do |name|
@@ -157,7 +157,7 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:_geometry_right_, name)
       #
-      # @return [void]
+      # @return [TrueClass]
       # @see Vedeu::Move
       def geometry_right!
         Vedeu.bind(:_geometry_right_) do |name|
@@ -170,7 +170,7 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:_geometry_up_, name)
       #
-      # @return [void]
+      # @return [TrueClass]
       # @see Vedeu::Move
       def geometry_up!
         Vedeu.bind(:_geometry_up_) do |name|

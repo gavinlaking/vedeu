@@ -8,13 +8,11 @@ module Vedeu
     let(:instance)  { described.new(interface) }
     let(:interface) { Vedeu.interfaces.by_name('lithium') }
     let(:visibility) { true }
+    let(:geometry)   { Vedeu::Geometry.new(height: 3, width: 3) }
 
-    before do
+    before {
+      Vedeu.geometries.stubs(:by_name).returns(geometry)
       Vedeu.interface 'lithium' do
-        geometry do
-          height 3
-          width 3
-        end
         lines do
           line 'barium'
           line 'carbon'
@@ -23,9 +21,10 @@ module Vedeu
           line 'nickel'
           line 'osmium'
         end
+        style nil
         visible(visibility)
       end
-    end
+    }
     after { Vedeu.interfaces.reset }
 
     describe '#initialize' do
@@ -60,9 +59,9 @@ module Vedeu
       let(:x)      { 1 }
       let(:y)      { 1 }
 
-      before do
+      before {
         interface.stubs(:cursor).returns(cursor)
-      end
+      }
 
       subject { instance.render }
 
@@ -104,15 +103,15 @@ module Vedeu
 
           it 'scrolls the content the correct position' do
             subject.must_equal(
-              "\e[1;1Hb\n" \
-              "\e[1;2Ha\n" \
-              "\e[1;3Hr\n" \
-              "\e[2;1Hc\n" \
-              "\e[2;2Ha\n" \
-              "\e[2;3Hr\n" \
-              "\e[3;1Hh\n" \
-              "\e[3;2He\n" \
-              "\e[3;3Hl"
+              "\e[1;1H\e[39m\e[49mb\n" \
+              "\e[1;2H\e[39m\e[49ma\n" \
+              "\e[1;3H\e[39m\e[49mr\n" \
+              "\e[2;1H\e[39m\e[49mc\n" \
+              "\e[2;2H\e[39m\e[49ma\n" \
+              "\e[2;3H\e[39m\e[49mr\n" \
+              "\e[3;1H\e[39m\e[49mh\n" \
+              "\e[3;2H\e[39m\e[49me\n" \
+              "\e[3;3H\e[39m\e[49ml"
             )
           end
         end
@@ -124,15 +123,15 @@ module Vedeu
 
             it "renders the visible content" do
               subject.must_equal(
-                "\e[1;1Hb\n" \
-                "\e[1;2Ha\n" \
-                "\e[1;3Hr\n" \
-                "\e[2;1Hc\n" \
-                "\e[2;2Ha\n" \
-                "\e[2;3Hr\n" \
-                "\e[3;1Hh\n" \
-                "\e[3;2He\n" \
-                "\e[3;3Hl"
+                "\e[1;1H\e[39m\e[49mb\n" \
+                "\e[1;2H\e[39m\e[49ma\n" \
+                "\e[1;3H\e[39m\e[49mr\n" \
+                "\e[2;1H\e[39m\e[49mc\n" \
+                "\e[2;2H\e[39m\e[49ma\n" \
+                "\e[2;3H\e[39m\e[49mr\n" \
+                "\e[3;1H\e[39m\e[49mh\n" \
+                "\e[3;2H\e[39m\e[49me\n" \
+                "\e[3;3H\e[39m\e[49ml"
               )
             end
           end
@@ -143,15 +142,15 @@ module Vedeu
 
             it "is cropped to show only that which fits" do
               subject.must_equal(
-                "\e[1;1Hb\n" \
-                "\e[1;2Ha\n" \
-                "\e[1;3Hr\n" \
-                "\e[2;1Hc\n" \
-                "\e[2;2Ha\n" \
-                "\e[2;3Hr\n" \
-                "\e[3;1Hh\n" \
-                "\e[3;2He\n" \
-                "\e[3;3Hl"
+                "\e[1;1H\e[39m\e[49mb\n" \
+                "\e[1;2H\e[39m\e[49ma\n" \
+                "\e[1;3H\e[39m\e[49mr\n" \
+                "\e[2;1H\e[39m\e[49mc\n" \
+                "\e[2;2H\e[39m\e[49ma\n" \
+                "\e[2;3H\e[39m\e[49mr\n" \
+                "\e[3;1H\e[39m\e[49mh\n" \
+                "\e[3;2H\e[39m\e[49me\n" \
+                "\e[3;3H\e[39m\e[49ml"
               )
             end
           end
@@ -164,15 +163,15 @@ module Vedeu
 
             it 'scrolls the content the correct position' do
               subject.must_equal(
-                "\e[1;1Hb\n" \
-                "\e[1;2Ha\n" \
-                "\e[1;3Hr\n" \
-                "\e[2;1Hc\n" \
-                "\e[2;2Ha\n" \
-                "\e[2;3Hr\n" \
-                "\e[3;1Hh\n" \
-                "\e[3;2He\n" \
-                "\e[3;3Hl"
+                "\e[1;1H\e[39m\e[49mb\n" \
+                "\e[1;2H\e[39m\e[49ma\n" \
+                "\e[1;3H\e[39m\e[49mr\n" \
+                "\e[2;1H\e[39m\e[49mc\n" \
+                "\e[2;2H\e[39m\e[49ma\n" \
+                "\e[2;3H\e[39m\e[49mr\n" \
+                "\e[3;1H\e[39m\e[49mh\n" \
+                "\e[3;2H\e[39m\e[49me\n" \
+                "\e[3;3H\e[39m\e[49ml"
               )
             end
           end
@@ -183,15 +182,15 @@ module Vedeu
 
             it "scrolls the content the correct position" do
               subject.must_equal(
-                "\e[1;1Hb\n" \
-                "\e[1;2Ha\n" \
-                "\e[1;3Hr\n" \
-                "\e[2;1Hc\n" \
-                "\e[2;2Ha\n" \
-                "\e[2;3Hr\n" \
-                "\e[3;1Hh\n" \
-                "\e[3;2He\n" \
-                "\e[3;3Hl"
+                "\e[1;1H\e[39m\e[49mb\n" \
+                "\e[1;2H\e[39m\e[49ma\n" \
+                "\e[1;3H\e[39m\e[49mr\n" \
+                "\e[2;1H\e[39m\e[49mc\n" \
+                "\e[2;2H\e[39m\e[49ma\n" \
+                "\e[2;3H\e[39m\e[49mr\n" \
+                "\e[3;1H\e[39m\e[49mh\n" \
+                "\e[3;2H\e[39m\e[49me\n" \
+                "\e[3;3H\e[39m\e[49ml"
               )
             end
           end
@@ -204,15 +203,15 @@ module Vedeu
 
             it "renders the visible content" do
               subject.must_equal(
-                "\e[1;1Hb\n" \
-                "\e[1;2Ha\n" \
-                "\e[1;3Hr\n" \
-                "\e[2;1Hc\n" \
-                "\e[2;2Ha\n" \
-                "\e[2;3Hr\n" \
-                "\e[3;1Hh\n" \
-                "\e[3;2He\n" \
-                "\e[3;3Hl"
+                "\e[1;1H\e[39m\e[49mb\n" \
+                "\e[1;2H\e[39m\e[49ma\n" \
+                "\e[1;3H\e[39m\e[49mr\n" \
+                "\e[2;1H\e[39m\e[49mc\n" \
+                "\e[2;2H\e[39m\e[49ma\n" \
+                "\e[2;3H\e[39m\e[49mr\n" \
+                "\e[3;1H\e[39m\e[49mh\n" \
+                "\e[3;2H\e[39m\e[49me\n" \
+                "\e[3;3H\e[39m\e[49ml"
               )
             end
           end
@@ -223,15 +222,15 @@ module Vedeu
 
             it "is cropped to show only that which fits" do
               subject.must_equal(
-                "\e[1;1Hb\n" \
-                "\e[1;2Ha\n" \
-                "\e[1;3Hr\n" \
-                "\e[2;1Hc\n" \
-                "\e[2;2Ha\n" \
-                "\e[2;3Hr\n" \
-                "\e[3;1Hh\n" \
-                "\e[3;2He\n" \
-                "\e[3;3Hl"
+                "\e[1;1H\e[39m\e[49mb\n" \
+                "\e[1;2H\e[39m\e[49ma\n" \
+                "\e[1;3H\e[39m\e[49mr\n" \
+                "\e[2;1H\e[39m\e[49mc\n" \
+                "\e[2;2H\e[39m\e[49ma\n" \
+                "\e[2;3H\e[39m\e[49mr\n" \
+                "\e[3;1H\e[39m\e[49mh\n" \
+                "\e[3;2H\e[39m\e[49me\n" \
+                "\e[3;3H\e[39m\e[49ml"
               )
             end
           end

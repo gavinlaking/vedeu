@@ -17,7 +17,7 @@ module Vedeu
 
       # Setup events relating to running Vedeu. This method is called by Vedeu.
       #
-      # @return [void]
+      # @return [TrueClass]
       def setup!
         cleanup!
         clear!
@@ -48,7 +48,7 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:_exit_)
       #
-      # @return [void]
+      # @return [TrueClass]
       def cleanup!
         Vedeu.bind(:_cleanup_) do
           Vedeu.trigger(:_drb_stop_)
@@ -63,7 +63,7 @@ module Vedeu
       #   Vedeu.trigger(:_clear_)
       #   Vedeu.clear_by_name(name)
       #
-      # @return [void]
+      # @return [TrueClass]
       def clear!
         Vedeu.bind(:_clear_) do |name|
           if name
@@ -82,7 +82,7 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:_command_, command)
       #
-      # @return [void]
+      # @return [TrueClass]
       def command!
         Vedeu.bind(:_command_) { |command| Vedeu.trigger(:command, command) }
       end
@@ -94,7 +94,7 @@ module Vedeu
       #   Vedeu.trigger(:_exit_)
       #   Vedeu.exit
       #
-      # @return [void]
+      # @return [TrueClass]
       def exit!
         Vedeu.bind(:_exit_) { Vedeu::Application.stop }
       end
@@ -105,7 +105,7 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:_focus_by_name_, name)
       #
-      # @return [void]
+      # @return [TrueClass]
       def focus_by_name!
         Vedeu.bind(:_focus_by_name_) { |name| Vedeu.focus_by_name(name) }
       end
@@ -116,7 +116,7 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:_focus_next_)
       #
-      # @return [void]
+      # @return [TrueClass]
       def focus_next!
         Vedeu.bind(:_focus_next_) { Vedeu.focus_next }
       end
@@ -127,7 +127,7 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:_focus_prev_)
       #
-      # @return [void]
+      # @return [TrueClass]
       def focus_prev!
         Vedeu.bind(:_focus_prev_) { Vedeu.focus_previous }
       end
@@ -138,7 +138,7 @@ module Vedeu
       # When Vedeu triggers this event, the :_refresh_ event is also triggered
       # automatically.
       #
-      # @return [void]
+      # @return [TrueClass]
       def initialize!
         Vedeu.bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
       end
@@ -153,7 +153,7 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:_keypress_, key)
       #
-      # @return [void]
+      # @return [TrueClass]
       def keypress!
         Vedeu.bind(:_keypress_) { |key| Vedeu.keypress(key) }
       end
@@ -164,7 +164,7 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:_log_, message)
       #
-      # @return [void]
+      # @return [TrueClass]
       def log!
         Vedeu.bind(:_log_) { |msg| Vedeu.log(type: :debug, message: msg) }
       end
@@ -174,7 +174,7 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:_maximise_, name)
       #
-      # @return [void]
+      # @return [TrueClass]
       # @see Vedeu::Geometry#maximise
       def maximise!
         Vedeu.bind(:_maximise_) do |name|
@@ -191,7 +191,7 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:_mode_switch_)
       #
-      # @return [void]
+      # @return [TrueClass]
       def mode_switch!
         Vedeu.bind(:_mode_switch_) { fail Vedeu::ModeSwitch }
       end
@@ -206,7 +206,7 @@ module Vedeu
       #   Vedeu.trigger(:_refresh_)
       #   Vedeu.trigger(:_refresh_, name)
       #
-      # @return [void]
+      # @return [TrueClass]
       def refresh!
         Vedeu.bind(:_refresh_) do |name|
           name ? Vedeu::Refresh.by_name(name) : Vedeu::Refresh.all
@@ -219,7 +219,7 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:_refresh_cursor_, name)
       #
-      # @return [void]
+      # @return [TrueClass]
       def refresh_cursor!
         Vedeu.bind(:_refresh_cursor_) do |name|
           Vedeu::RefreshCursor.render(name)
@@ -231,7 +231,7 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:_refresh_group_, name)
       #
-      # @return [void]
+      # @return [TrueClass]
       def refresh_group!
         Vedeu.bind(:_refresh_group_) { |name| Vedeu::Refresh.by_group(name) }
       end
@@ -242,7 +242,7 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:_resize_)
       #
-      # @return [void]
+      # @return [TrueClass]
       def resize!
         Vedeu.bind(:_resize_, delay: 0.25) { Vedeu.resize }
       end
@@ -252,7 +252,7 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:_unmaximise_, name)
       #
-      # @return [void]
+      # @return [TrueClass]
       # @see Vedeu::Geometry#unmaximise
       def unmaximise!
         Vedeu.bind(:_unmaximise_) do |name|

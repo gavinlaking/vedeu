@@ -10,8 +10,6 @@ module Vedeu
       let(:instance)  { described.new(model) }
       let(:model)     { Vedeu::Geometry.new }
 
-      before { Terminal.stubs(:size).returns([25, 80]) }
-
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
         it { instance.instance_variable_get('@model').must_equal(model) }
@@ -56,6 +54,8 @@ module Vedeu
       end
 
       describe '#columns' do
+        before { Terminal.stubs(:size).returns([25, 80]) }
+
         subject { instance.columns(3) }
 
         it { subject.must_equal(18) }
@@ -96,6 +96,8 @@ module Vedeu
       end
 
       describe '#rows' do
+        before { Terminal.stubs(:size).returns([25, 80]) }
+
         subject { instance.rows(3) }
 
         it { subject.must_equal(6) }
@@ -114,14 +116,14 @@ module Vedeu
       end
 
       describe '#use' do
-        before do
+        before {
           Vedeu.geometry 'some_geometry' do
             x 5
           end
           Vedeu.geometry 'other_geometry' do
             x use('some_geometry').x
           end
-        end
+        }
         after { Vedeu.geometries.reset }
 
         subject { instance.use('other_geometry').x }

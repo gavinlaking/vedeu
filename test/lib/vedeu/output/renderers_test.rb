@@ -57,10 +57,10 @@ module Vedeu
     describe '.render' do
       let(:output) {}
 
-      before do
+      before {
         Vedeu::Renderers.reset
         Vedeu::Renderers.renderer(DummyRenderer)
-      end
+      }
 
       subject { described.render(output) }
 

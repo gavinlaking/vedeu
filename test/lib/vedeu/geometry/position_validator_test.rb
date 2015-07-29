@@ -10,25 +10,22 @@ module Vedeu
     let(:x)         { 1 }
     let(:y)         { 1 }
     let(:enabled)   { true }
-
-    before do
-      IO.console.stubs(:size).returns([15, 40])
-      Vedeu::Border.new({
-        name:    _name,
-        enabled: enabled,
-      }).store
-      Vedeu::Geometry.new({
+    let(:border)    { Vedeu::Border.new(name: _name, enabled: enabled) }
+    let(:geometry)  {
+      Vedeu::Geometry.new(
         name: _name,
         x:    5,
         xn:   35,
         y:    5,
         yn:   10
-      }).store
-    end
-    after do
-      Vedeu.borders.reset
-      Vedeu.geometries.reset
-    end
+      )
+    }
+
+    before {
+      IO.console.stubs(:size).returns([15, 40])
+      Vedeu.borders.stubs(:by_name).returns(border)
+      Vedeu.geometries.stubs(:by_name).returns(geometry)
+    }
 
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }

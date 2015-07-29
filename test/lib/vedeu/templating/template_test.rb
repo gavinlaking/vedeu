@@ -29,12 +29,19 @@ module Vedeu
         context 'when the path is does not exist' do
           let(:path) { '/tmp/vedeu_does_not_exist' }
 
+          before { File.stubs(:exist?).returns(false) }
+
           it { proc { subject }.must_raise(MissingRequired) }
         end
 
         context 'when the path exists' do
-          let(:path) { 'test/support/templates/plain.erb' }
+          let(:path) { '/tmp/vedeu_exists' }
           let(:expected) { "This is a test.\n" }
+
+          before {
+            File.stubs(:exist?).returns(true)
+            File.stubs(:read).returns(expected)
+          }
 
           it { subject.must_equal(expected) }
         end

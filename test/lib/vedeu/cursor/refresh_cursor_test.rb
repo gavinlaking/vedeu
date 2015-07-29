@@ -11,24 +11,24 @@ module Vedeu
     let(:ox)        { 0 }
     let(:oy)        { 0 }
 
-    before do
-      Vedeu.geometry 'refresh_cursor' do
-        x  1
-        xn 3
-        y  1
-        yn 3
-      end
-      Vedeu::Cursor.new({ name: 'refresh_cursor', ox: ox, oy: oy }).store
-
-      Vedeu::Terminal.stubs(:output).returns(expected)
-    end
-
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }
       it { instance.instance_variable_get('@name').must_equal(_name) }
     end
 
     describe '.render' do
+      before {
+        Vedeu.geometry 'refresh_cursor' do
+          x  1
+          xn 3
+          y  1
+          yn 3
+        end
+        Vedeu::Cursor.new({ name: 'refresh_cursor', ox: ox, oy: oy }).store
+
+        Vedeu::Terminal.stubs(:output).returns(expected)
+      }
+
       subject { described.render(_name) }
 
       it 'renders the cursor in the terminal' do

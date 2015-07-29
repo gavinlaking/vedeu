@@ -10,10 +10,10 @@ module Vedeu
     let(:_time)     { mock('Time') }
     let(:started)   { 1434492219.5238185 }
 
-    before do
+    before {
       Time.stubs(:now).returns(_time)
       _time.stubs(:to_f).returns(started)
-    end
+    }
 
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }

@@ -34,6 +34,8 @@ module Vedeu
             with(:some_controller, 'Vedeu::ControllerTestKlass')
           subject
         }
+
+        it { subject.must_be_instance_of(Hash) }
       end
 
       describe '.action' do
@@ -46,6 +48,8 @@ module Vedeu
             with(:some_controller, :other_action)
           subject
         }
+
+        it { subject.must_be_instance_of(Array) }
       end
 
     end # ClassMethods
