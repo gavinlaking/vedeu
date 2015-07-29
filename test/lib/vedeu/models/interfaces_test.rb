@@ -9,17 +9,17 @@ module Vedeu
     it { described.must_respond_to(:interfaces) }
 
     describe '#zindexed' do
-      before do
-        @hydrogen = Vedeu.interface 'hydrogen' do
+      before {
+        @hydrogen = Vedeu.interface('hydrogen') do
           zindex 2
         end
-        @helium = Vedeu.interface 'helium' do
+        @helium = Vedeu.interface('helium') do
           zindex 3
         end
-        @lithium = Vedeu.interface 'lithium' do
+        @lithium = Vedeu.interface('lithium') do
           zindex 1
         end
-      end
+      }
       after { Vedeu.interfaces.reset }
 
       subject { Vedeu.interfaces.zindexed }

@@ -38,6 +38,8 @@ module Vedeu
         Vedeu::Bindings::System.expects(:setup!)
         subject
       }
+
+      it { subject.must_equal(true) }
     end
 
 	end # Bindings

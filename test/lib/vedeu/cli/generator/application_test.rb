@@ -16,10 +16,10 @@ module Vedeu
       end
 
       describe '.generate' do
-        # before do
+        # before {
         #   FileUtils.stubs(:cp_r)
         #   FileUtils.stubs(:mkdir)
-        # end
+        # }
 
         subject { instance.generate(_name) }
 

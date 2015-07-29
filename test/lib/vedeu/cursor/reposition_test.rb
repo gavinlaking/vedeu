@@ -22,11 +22,11 @@ module Vedeu
     describe '.to' do
       # let(:new_entity) { Vedeu::Cursor.new(name: _name, y: 8, x: 5, oy: 7, ox: 4) }
 
-      before do
+      before {
         #   entity.stubs(:new).returns(new_entity)
         Vedeu::Cursor.new(name: _name, x: 1, y: 1, ox: 1, oy: 1)
         Vedeu.stubs(:trigger)
-      end
+      }
       after { Vedeu.cursors.reset }
 
       subject { described.to(entity, _name, y, x) }

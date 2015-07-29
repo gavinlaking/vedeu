@@ -33,10 +33,10 @@ module Vedeu
         let(:controller_name) { :some_controller }
 
         context 'when the controller is registered' do
-          before do
+          before {
             described.add_controller(controller_name, '')
             described.add_action(controller_name, :show_basket)
-          end
+          }
           after  { described.reset! }
 
           it {
@@ -129,10 +129,10 @@ module Vedeu
 
       context 'when the controller is registered' do
         context 'when the controller klass is defined' do
-          before do
+          before {
             described.add_controller(controller_name, 'Vedeu::SomeController')
             described.add_action(controller_name, action_name)
-          end
+          }
           after { described.reset! }
 
           it {
@@ -151,18 +151,18 @@ module Vedeu
         context 'when the action is not defined for this controller' do
           let(:action_name) { :undefined_action }
 
-          before do
+          before {
             described.add_controller(controller_name, 'Vedeu::SomeController')
-          end
+          }
 
           it { proc { subject }.must_raise(Vedeu::ActionNotFound) }
         end
 
         context 'when the controller klass is not defined' do
-          before do
+          before {
             described.add_controller(controller_name, '')
             described.add_action(controller_name, action_name)
-          end
+          }
           after { described.reset! }
 
           it { proc { subject }.must_raise(Vedeu::MissingRequired) }

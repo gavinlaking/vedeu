@@ -7,10 +7,10 @@ module Vedeu
     let(:described) { Vedeu::Terminal }
     let(:console)   { IO.console }
 
-    before do
+    before {
       console.stubs(:winsize).returns([25, 80])
       console.stubs(:print)
-    end
+    }
 
     describe '.open' do
       context 'when a block was not given' do
@@ -47,10 +47,10 @@ module Vedeu
         let(:mode)  { :cooked }
         let(:input) { "Some input\r\n" }
 
-        before do
+        before {
           Terminal.stubs(:mode).returns(mode)
           console.stubs(:gets).returns(input)
-        end
+        }
 
         it { subject.must_equal('Some input') }
       end
@@ -59,12 +59,12 @@ module Vedeu
         let(:mode)  { :raw }
         let(:input) { "\e" }
 
-        before do
+        before {
           Terminal.stubs(:mode).returns(mode)
           console.stubs(:getch).returns(input)
           input.stubs(:ord).returns(27)
           console.stubs(:read_nonblock)
-        end
+        }
 
         it { subject.must_be_instance_of(String) }
       end

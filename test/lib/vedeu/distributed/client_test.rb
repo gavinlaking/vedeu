@@ -11,10 +11,10 @@ module Vedeu
       let(:uri)       { 'druby://localhost:21420' }
       let(:server)    {}
 
-      before do
+      before {
         $stdout.stubs(:puts)
         DRbObject.stubs(:new_with_uri).returns(server)
-      end
+      }
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
@@ -88,10 +88,10 @@ module Vedeu
 
         context 'when the DRb server is available' do
           # @todo Add more tests.
-          # before do
+          # before {
           #   DRbObject.stubs(:new_with_uri).returns(server)
           #   Process.stubs(:kill)
-          # end
+          # }
 
           # it {
           #   Process.expects(:kill).with('KILL', 0)

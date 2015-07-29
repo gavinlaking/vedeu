@@ -17,7 +17,7 @@ module Vedeu
     end
 
     describe '.render' do
-      before do
+      before {
         Vedeu.geometry 'refresh_cursor' do
           x  1
           xn 3
@@ -27,7 +27,7 @@ module Vedeu
         Vedeu::Cursor.new({ name: 'refresh_cursor', ox: ox, oy: oy }).store
 
         Vedeu::Terminal.stubs(:output).returns(expected)
-      end
+      }
 
       subject { described.render(_name) }
 

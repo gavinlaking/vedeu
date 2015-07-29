@@ -13,19 +13,19 @@ module Vedeu
     let(:width)     { 6 }
     let(:x)         { 7 }
     let(:y)         { 5 }
-
-    before do
-      Vedeu::Border.new(name: _name, enabled: true).store
+    let(:border)    { Vedeu::Border.new(name: _name, enabled: true) }
+    let(:geometry)  {
       Vedeu::Geometry.new(name:   _name,
                           height: height,
                           width:  width,
                           x:      x,
-                          y:      y).store
-    end
-    after do
-      Vedeu.borders.reset
-      Vedeu.geometries.reset
-    end
+                          y:      y)
+    }
+
+    before {
+      Vedeu.borders.stubs(:by_name).returns(border)
+      Vedeu.geometries.stubs(:by_name).returns(geometry)
+    }
 
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }

@@ -8,13 +8,11 @@ module Vedeu
     let(:instance)  { described.new(interface) }
     let(:interface) { Vedeu.interfaces.by_name('lithium') }
     let(:visibility) { true }
+    let(:geometry)   { Vedeu::Geometry.new(height: 3, width: 3) }
 
-    before do
+    before {
+      Vedeu.geometries.stubs(:by_name).returns(geometry)
       Vedeu.interface 'lithium' do
-        geometry do
-          height 3
-          width 3
-        end
         lines do
           line 'barium'
           line 'carbon'
@@ -25,7 +23,7 @@ module Vedeu
         end
         visible(visibility)
       end
-    end
+    }
     after { Vedeu.interfaces.reset }
 
     describe '#initialize' do
@@ -60,9 +58,9 @@ module Vedeu
       let(:x)      { 1 }
       let(:y)      { 1 }
 
-      before do
+      before {
         interface.stubs(:cursor).returns(cursor)
-      end
+      }
 
       subject { instance.render }
 

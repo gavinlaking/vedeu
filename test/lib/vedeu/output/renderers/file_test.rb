@@ -26,9 +26,7 @@ module Vedeu
       describe '#render' do
         let(:_time) { Time.new(2015, 4, 12, 20, 05, 00, "+01:00") }
 
-        before do
-          ::File.stubs(:write)
-        end
+        before { ::File.stubs(:write) }
 
         subject { instance.render(output) }
 

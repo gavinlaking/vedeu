@@ -25,10 +25,10 @@ module Vedeu
         let(:drb)            { true }
         let(:virtual_buffer) { [] }
 
-        before do
+        before {
           # Vedeu::Renderers::HTML.stubs(:to_file)
           Vedeu::VirtualBuffer.stubs(:retrieve).returns(virtual_buffer)
-        end
+        }
 
         it {
           Vedeu.expects(:trigger).with(:_drb_store_output_, output)

@@ -6,7 +6,7 @@ module Vedeu
 
     let(:described) { Vedeu::Refresh }
 
-    before { Vedeu.interfaces.reset }
+    # before { Vedeu.interfaces.reset }
 
     describe '.all' do
       subject { described.all }

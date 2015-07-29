@@ -7,13 +7,6 @@ module Vedeu
     let(:described) { Vedeu::Launcher }
     let(:instance)  { described.new }
 
-    before do
-      Configuration.stubs(:configure)# .returns(test_configuration)
-      Application.stubs(:start)
-      Kernel.stubs(:exit)
-      Kernel.stubs(:puts)
-    end
-
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }
       it { instance.instance_variable_get('@argv').must_equal([]) }
@@ -39,6 +32,13 @@ module Vedeu
     end
 
     describe '#execute!' do
+      before {
+        Configuration.stubs(:configure)# .returns(test_configuration)
+        Application.stubs(:start)
+        Kernel.stubs(:exit)
+        Kernel.stubs(:puts)
+      }
+
       subject { instance.execute! }
 
       it 'returns 0 for successful execution' do

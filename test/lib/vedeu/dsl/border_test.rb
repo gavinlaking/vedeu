@@ -195,14 +195,14 @@ module Vedeu
       end
 
       describe '#use' do
-        before do
+        before {
           Vedeu.border 'some_border' do
             title 'Some border'
           end
           Vedeu.border 'other_border' do
             title use('some_border').title
           end
-        end
+        }
         after { Vedeu.borders.reset }
 
         subject { instance.use('other_border').title }

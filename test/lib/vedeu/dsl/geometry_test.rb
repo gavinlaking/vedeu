@@ -116,14 +116,14 @@ module Vedeu
       end
 
       describe '#use' do
-        before do
+        before {
           Vedeu.geometry 'some_geometry' do
             x 5
           end
           Vedeu.geometry 'other_geometry' do
             x use('some_geometry').x
           end
-        end
+        }
         after { Vedeu.geometries.reset }
 
         subject { instance.use('other_geometry').x }

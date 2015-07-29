@@ -190,10 +190,10 @@ module Vedeu
       end
 
       context 'when there are models stored in the repository' do
-        before do
+        before {
           Vedeu.interface('hydrogen') {}
           Vedeu.interface('helium') {}
-        end
+        }
         after { Vedeu.interfaces.reset }
 
         subject { Vedeu.interfaces.inspect }
@@ -239,20 +239,20 @@ module Vedeu
       end
 
       context 'when the model is not registered' do
-        before do
+        before {
           instance.reset
           instance.store(Vedeu::TestModel.new('zinc'))
-        end
+        }
 
         it { subject.must_be_instance_of(FalseClass) }
       end
 
       context 'when the model is registered' do
-        before do
+        before {
           instance.reset
           instance.store(Vedeu::TestModel.new('gadolinium'))
           instance.store(Vedeu::TestModel.new('francium'))
-        end
+        }
 
         it 'returns the storage with the model removed' do
           subject.size.must_equal(1)

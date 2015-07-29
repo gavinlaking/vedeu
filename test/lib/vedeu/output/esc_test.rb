@@ -6,8 +6,6 @@ module Vedeu
 
     let(:described) { Vedeu::Esc }
 
-    before { Vedeu::Terminal.stubs(:size).returns([80, 25]) }
-
     describe '.escape' do
       let(:stream) { "\e[0m\e[38;2;39m\e[48;2;49m\e[2J\e[?25l" }
 
@@ -54,8 +52,6 @@ module Vedeu
         it { described.string('hide_cursor').must_equal("\e[?25l") }
         it { described.string('screen_init').
                must_equal("\e[0m\e[39m\e[49m\e[2J\e[?25l") }
-        it { described.string('screen_exit').
-               must_equal("\e[?25h\e[39m\e[49m\e[0m\e[80;25H\n") }
         it { described.string('negative').must_equal("\e[7m") }
         it { described.string('positive').must_equal("\e[27m") }
         it { described.string('reset').must_equal("\e[0m") }
@@ -65,6 +61,13 @@ module Vedeu
         it { described.string('underline').must_equal("\e[4m") }
         it { described.string('underline_off').must_equal("\e[24m") }
         it { described.string('cursor_position').must_equal("\e[6n") }
+      end
+
+      context 'screen_exit' do
+        before { Vedeu::Terminal.stubs(:size).returns([80, 25]) }
+
+        it { described.string('screen_exit').
+               must_equal("\e[?25h\e[39m\e[49m\e[0m\e[80;25H\n") }
       end
     end
 

@@ -137,14 +137,14 @@ module Vedeu
       let(:border) { mock('Vedeu::Border') }
       let(:view)   { mock('Vedeu::Viewport') }
 
-      before do
+      before {
         Vedeu::Clear::NamedInterface.stubs(:render).returns(:clear)
 
         Vedeu.borders.stubs(:by_name).returns(border)
         border.stubs(:render).returns(:border)
         Vedeu::Viewport.stubs(:new).returns(view)
         view.stubs(:render).returns(:view)
-      end
+      }
 
       subject { instance.render }
 

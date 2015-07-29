@@ -38,10 +38,10 @@ module Vedeu
           let(:path) { '/tmp/vedeu_exists' }
           let(:expected) { "This is a test.\n" }
 
-          before do
+          before {
             File.stubs(:exist?).returns(true)
             File.stubs(:read).returns(expected)
-          end
+          }
 
           it { subject.must_equal(expected) }
         end
