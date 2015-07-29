@@ -11,24 +11,24 @@ module Vedeu
     # Registers a controller with the given controller name for the client
     # application.
     #
-    # @param controller_name [Symbol]
+    # @param controller [Symbol]
     # @param klass [String]
     # @raise [Vedeu::MissingRequired] When the controller name is not given.
     # @return [void]
-    def add_controller(controller_name, klass)
-      unless present?(controller_name)
+    def add_controller(controller, klass)
+      unless present?(controller)
         fail Vedeu::MissingRequired,
              'Cannot store controller without a name attribute.'
       end
 
       Vedeu.log(type:    :create,
-                message: "Adding ':#{controller_name}'")
+                message: "Adding ':#{controller}'")
 
-      if registered?(controller_name)
-        storage[controller_name].merge!(klass: klass)
+      if registered?(controller)
+        storage[controller].merge!(klass: klass)
 
       else
-        storage.store(controller_name, klass: klass, actions: [])
+        storage.store(controller, klass: klass, actions: [])
 
       end
 
@@ -38,22 +38,22 @@ module Vedeu
     # Registers an action to the given controller name for the client
     # application.
     #
-    # @param controller_name [Symbol]
-    # @param action_name [Symbol]
+    # @param controller [Symbol]
+    # @param action [Symbol]
     # @raise [Vedeu::MissingRequired] When the controller name or action name is
     #   not given.
     # @return [void]
-    def add_action(controller_name, action_name)
-      if present?(controller_name) && present?(action_name)
+    def add_action(controller, action)
+      if present?(controller) && present?(action)
         Vedeu.log(type:    :create,
-                  message: "Adding ':#{action_name}' for ':#{controller_name}'")
+                  message: "Adding ':#{action}' for ':#{controller}'")
 
-        if registered?(controller_name)
-          storage[controller_name][:actions] << action_name
+        if registered?(controller)
+          storage[controller][:actions] << action
 
         else
-          add_controller(controller_name, '')
-          add_action(controller_name, action_name)
+          add_controller(controller, '')
+          add_action(controller, action)
 
         end
 
@@ -70,30 +70,28 @@ module Vedeu
     # parameters.
     #
     # @example
-    #   Vedeu.goto(controller_name, action_name, args)
+    #   Vedeu.goto(controller, action, args)
     #
-    # @param controller_name [Symbol]
-    # @param action_name [Symbol]
+    # @param controller [Symbol]
+    # @param action [Symbol]
     # @param args [void]
     # @raise [Vedeu::ModelNotFound] When the controller is not registered.
     # @return [void]
-    def goto(controller_name, action_name, **args)
-      if action_defined?(action_name, controller_name)
-        Vedeu.log(type:    :debug,
-                  message: "Routing: #{controller_name} #{action_name}")
+    def goto(controller, action, **args)
+      Vedeu.log(type:    :debug,
+                message: "Routing: #{controller} #{action}")
 
-        controller_with(controller_name).send(action_name, args)
-      end
+      route(controller, action, args) if action_defined?(action, controller)
     end
     alias_method :action, :goto
 
     # Returns a boolean indicating whether the given controller name is already
     # registered.
     #
-    # @param controller_name [Symbol]
+    # @param controller [Symbol]
     # @return [Boolean]
-    def registered?(controller_name)
-      storage.key?(controller_name)
+    def registered?(controller)
+      storage.key?(controller)
     end
 
     # Removes all stored controllers with their respective actions.
@@ -109,18 +107,18 @@ module Vedeu
     # Returns a boolean indicating whether the given action name is defined for
     # the given controller.
     #
-    # @param action_name [Symbol]
-    # @param controller_name [Symbol]
+    # @param action [Symbol]
+    # @param controller [Symbol]
     # @return [Boolean]
-    def action_defined?(action_name, controller_name)
-      if registered?(controller_name)
-        return true if storage[controller_name][:actions].include?(action_name)
+    def action_defined?(action, controller)
+      if registered?(controller)
+        return true if storage[controller][:actions].include?(action)
 
         fail Vedeu::ActionNotFound,
-             "#{action_name} is not registered for #{controller_name}."
+             "#{action} is not registered for #{controller}."
 
       else
-        fail Vedeu::ControllerNotFound, "#{controller_name} is not registered."
+        fail Vedeu::ControllerNotFound, "#{controller} is not registered."
 
       end
     end
@@ -128,25 +126,28 @@ module Vedeu
     # Instantiate the given controller by name, the call the action (method)
     # with any given arguments.
     #
-    # @param controller_name [Symbol]
+    # @param controller [Symbol]
+    # @param action [Symbol]
+    # @param args [Symbol]
     # @return [void]
-    def controller_with(controller_name)
-      Object.const_get(klass_for(controller_name)).new
+    def route(controller, action, **args)
+      klass = Object.const_get(klass_for(controller)).new
+      klass.send(action, args)
     end
 
     # Fetch the class for the controller by name.
     #
-    # @param controller_name [Symbol]
+    # @param controller [Symbol]
     # @raise [Vedeu::MissingRequired] When the given controller name does not
     #   have a class defined.
     # @return [String]
-    def klass_for(controller_name)
-      if registered?(controller_name) && klass_defined?(controller_name)
-        storage[controller_name][:klass]
+    def klass_for(controller)
+      if registered?(controller) && klass_defined?(controller)
+        storage[controller][:klass]
 
       else
         fail Vedeu::MissingRequired,
-             "Cannot route to #{controller_name} as no class defined."
+             "Cannot route to #{controller} as no class defined."
 
       end
     end
@@ -154,10 +155,10 @@ module Vedeu
     # Returns a boolean indicating whether the given controller name has a class
     # defined.
     #
-    # @param controller_name [Symbol]
+    # @param controller [Symbol]
     # @return [Boolean]
-    def klass_defined?(controller_name)
-      present?(storage[controller_name][:klass])
+    def klass_defined?(controller)
+      present?(storage[controller][:klass])
     end
 
     # Returns all the stored controllers and their respective actions.
