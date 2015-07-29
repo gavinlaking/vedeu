@@ -125,7 +125,8 @@ module Vedeu
       end
     end
 
-    # Instantiate the given controller by name.
+    # Instantiate the given controller by name, the call the action (method)
+    # with any given arguments.
     #
     # @param controller_name [Symbol]
     # @return [void]

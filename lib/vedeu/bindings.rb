@@ -13,7 +13,7 @@ module Vedeu
 
     # Setup events for running Vedeu. This method is called by Vedeu.
     #
-    # @return [void]
+    # @return [TrueClass]
     def setup!
       Vedeu::Bindings::Application.setup!
       Vedeu::Bindings::Visibility.setup!

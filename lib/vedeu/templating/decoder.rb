@@ -2,7 +2,7 @@ module Vedeu
 
   module Templating
 
-    # Converts an encoded string back into an object or objects.
+    # Converts an encoded string back into an object or collection of objects.
     #
     class Decoder
 
@@ -20,6 +20,8 @@ module Vedeu
         @data = data
       end
 
+      # Converts an encoded string back into an object or collection of objects.
+      #
       # @return [Object]
       def process
         demarshal
@@ -55,7 +57,7 @@ module Vedeu
         Base64.strict_decode64(unwrap)
       end
 
-      # Removes '{{' and '}}' from the start and end of the data.
+      # Removes delimiters from the start and end of the data.
       #
       # @return [String]
       def unwrap

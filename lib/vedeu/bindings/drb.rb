@@ -11,7 +11,7 @@ module Vedeu
 
       # Setup events relating to the DRb server. This method is called by Vedeu.
       #
-      # @return [void]
+      # @return [TrueClass]
       def setup!
         drb_input!
         drb_retrieve_output!
@@ -30,7 +30,7 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:_drb_input_, data, type)
       #
-      # @return [void]
+      # @return [TrueClass]
       def drb_input!
         Vedeu.bind(:_drb_input_) do |data, type|
           Vedeu.log(type: :drb, message: "Sending input (#{type})")
@@ -47,7 +47,7 @@ module Vedeu
       #
       # @todo This event queries Vedeu. Events should only be commands.
       #
-      # @return [void]
+      # @return [TrueClass]
       def drb_retrieve_output!
         Vedeu.bind(:_drb_retrieve_output_) { Vedeu::VirtualBuffer.retrieve }
       end
@@ -58,7 +58,7 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:_drb_store_output_, data)
       #
-      # @return [void]
+      # @return [TrueClass]
       def drb_store_output!
         Vedeu.bind(:_drb_store_output_) do |data|
           Vedeu::VirtualBuffer.store(Vedeu::Terminal.virtual.output(data))
@@ -71,7 +71,7 @@ module Vedeu
       #   Vedeu.trigger(:_drb_restart_)
       #   Vedeu.drb_restart
       #
-      # @return [void]
+      # @return [TrueClass]
       def drb_restart!
         Vedeu.bind(:_drb_restart_) { Vedeu::Distributed::Server.restart }
       end
@@ -82,7 +82,7 @@ module Vedeu
       #   Vedeu.trigger(:_drb_start_)
       #   Vedeu.drb_start
       #
-      # @return [void]
+      # @return [TrueClass]
       def drb_start!
         Vedeu.bind(:_drb_start_) { Vedeu::Distributed::Server.start }
       end
@@ -93,7 +93,7 @@ module Vedeu
       #   Vedeu.trigger(:_drb_status_)
       #   Vedeu.drb_status
       #
-      # @return [void]
+      # @return [TrueClass]
       def drb_status!
         Vedeu.bind(:_drb_status_) { Vedeu::Distributed::Server.status }
       end
@@ -104,7 +104,7 @@ module Vedeu
       #   Vedeu.trigger(:_drb_stop_)
       #   Vedeu.drb_stop
       #
-      # @return [void]
+      # @return [TrueClass]
       def drb_stop!
         Vedeu.bind(:_drb_stop_) { Vedeu::Distributed::Server.stop }
       end

@@ -12,7 +12,7 @@ module Vedeu
 
       # Setup events relating to menus. This method is called by Vedeu.
       #
-      # @return [void]
+      # @return [TrueClass]
       def setup!
         menu_bottom!
         menu_current!
@@ -33,7 +33,7 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:_menu_bottom_, name)
       #
-      # @return [void]
+      # @return [TrueClass]
       def menu_bottom!
         Vedeu.bind(:_menu_bottom_) do |name|
           Vedeu.menus.by_name(name).bottom_item
@@ -45,7 +45,7 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:_menu_current_, name)
       #
-      # @return [void]
+      # @return [TrueClass]
       def menu_current!
         Vedeu.bind(:_menu_current_) do |name|
           Vedeu.menus.by_name(name).current_item
@@ -57,7 +57,7 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:_menu_deselect_, name)
       #
-      # @return [void]
+      # @return [TrueClass]
       def menu_deselect!
         Vedeu.bind(:_menu_deselect_) do |name|
           Vedeu.menus.by_name(name).deselect_item
@@ -70,7 +70,7 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:_menu_items_, name)
       #
-      # @return [void]
+      # @return [TrueClass]
       def menu_items!
         Vedeu.bind(:_menu_items_) { |name| Vedeu.menus.by_name(name).items }
       end
@@ -81,7 +81,7 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:_menu_next_, name)
       #
-      # @return [void]
+      # @return [TrueClass]
       def menu_next!
         Vedeu.bind(:_menu_next_) { |name| Vedeu.menus.by_name(name).next_item }
       end
@@ -92,7 +92,7 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:_menu_prev_, name)
       #
-      # @return [void]
+      # @return [TrueClass]
       def menu_prev!
         Vedeu.bind(:_menu_prev_) { |name| Vedeu.menus.by_name(name).prev_item }
       end
@@ -102,7 +102,7 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:_menu_selected_, name)
       #
-      # @return [void]
+      # @return [TrueClass]
       def menu_selected!
         Vedeu.bind(:_menu_selected_) do |name|
           Vedeu.menus.by_name(name).selected_item
@@ -114,7 +114,7 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:_menu_select_, name)
       #
-      # @return [void]
+      # @return [TrueClass]
       def menu_select!
         Vedeu.bind(:_menu_select_) do |name|
           Vedeu.menus.by_name(name).select_item
@@ -126,7 +126,7 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:_menu_top_, name)
       #
-      # @return [void]
+      # @return [TrueClass]
       def menu_top!
         Vedeu.bind(:_menu_top_) { |name| Vedeu.menus.by_name(name).top_item }
       end
@@ -137,7 +137,7 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:_menu_view_, name)
       #
-      # @return [void]
+      # @return [TrueClass]
       def menu_view!
         Vedeu.bind(:_menu_view_) { |name| Vedeu.menus.by_name(name).view }
       end

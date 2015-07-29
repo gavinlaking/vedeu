@@ -1,5 +1,8 @@
 module Vedeu
 
+  # Provides a stack trace of a running client application upon exit in a file
+  # for further analysis.
+  #
   module Debug
 
     extend self

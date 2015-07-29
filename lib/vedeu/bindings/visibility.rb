@@ -11,7 +11,7 @@ module Vedeu
 
       # Setup events relating to visibility. This method is called by Vedeu.
       #
-      # @return [void]
+      # @return [TrueClass]
       def setup!
         clear_group!
         hide_cursor!
@@ -34,7 +34,7 @@ module Vedeu
       #   Vedeu.trigger(:_clear_group_, name)
       #   Vedeu.clear_by_group(name)
       #
-      # @return [void]
+      # @return [TrueClass]
       def clear_group!
         Vedeu.bind(:_clear_group_) do |name|
           Vedeu::Clear::NamedGroup.render(name)
@@ -49,7 +49,7 @@ module Vedeu
       #   Vedeu.trigger(:_cursor_hide_, name)
       #   Vedeu.hide_cursor(name)
       #
-      # @return [void]
+      # @return [TrueClass]
       def hide_cursor!
         Vedeu.bind(:_hide_cursor_) do |name|
           Vedeu::Cursor.hide_cursor(name)
@@ -74,7 +74,7 @@ module Vedeu
       #   Vedeu.trigger(:_hide_interface_, name)
       #   Vedeu.hide_interface(name)
       #
-      # @return [void]
+      # @return [TrueClass]
       def hide_interface!
         Vedeu.bind(:_hide_interface_) do |name|
           Vedeu::Interface.hide_interface(name)
@@ -89,7 +89,7 @@ module Vedeu
       #   Vedeu.trigger(:_cursor_show_, name)
       #   Vedeu.show_cursor(name)
       #
-      # @return [void]
+      # @return [TrueClass]
       def show_cursor!
         Vedeu.bind(:_show_cursor_) do |name|
           Vedeu::Cursor.show_cursor(name)
@@ -114,7 +114,7 @@ module Vedeu
       #   Vedeu.trigger(:_show_interface_, name)
       #   Vedeu.show_interface(name)
       #
-      # @return [void]
+      # @return [TrueClass]
       def show_interface!
         Vedeu.bind(:_show_interface_) do |name|
           Vedeu::Interface.show_interface(name)
@@ -127,7 +127,7 @@ module Vedeu
       #   Vedeu.trigger(:_toggle_cursor_, name)
       #   Vedeu.toggle_cursor(name)
       #
-      # @return [void]
+      # @return [TrueClass]
       def toggle_cursor!
         Vedeu.bind(:_toggle_cursor_) do |name|
           Vedeu::Cursor.toggle_cursor(name)
@@ -140,7 +140,7 @@ module Vedeu
       #   Vedeu.trigger(:_toggle_group_, name)
       #   Vedeu.toggle_group(name)
       #
-      # @return [void]
+      # @return [TrueClass]
       def toggle_group!
         Vedeu.bind(:_toggle_group_) do |name|
           Vedeu::Group.toggle_group(name)
@@ -153,7 +153,7 @@ module Vedeu
       #   Vedeu.trigger(:_toggle_interface_, name)
       #   Vedeu.toggle_interface(name)
       #
-      # @return [void]
+      # @return [TrueClass]
       def toggle_interface!
         Vedeu.bind(:_toggle_interface_) do |name|
           Vedeu::Interface.toggle_interface(name)

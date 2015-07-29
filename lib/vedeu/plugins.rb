@@ -22,7 +22,7 @@ module Vedeu
     #
     # @param name [String]
     # @param plugin [Vedeu::Plugin]
-    # @return [void]
+    # @return [Array<void>]
     def register(name, plugin = false)
       plugins << plugin if plugin && not_loaded?(name)
     end

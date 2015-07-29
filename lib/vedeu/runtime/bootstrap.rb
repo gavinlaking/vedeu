@@ -31,11 +31,8 @@ module Vedeu
     # @return [void]
     def start
       configure_log!
-
       client_configuration!
-
       client_application!
-
       client_initialize!
 
       Vedeu::Launcher.execute!(argv)
