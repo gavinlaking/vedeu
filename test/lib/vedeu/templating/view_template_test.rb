@@ -60,6 +60,31 @@ module Vedeu
           }
 
           it { subject.must_equal(expected) }
+
+          context 'and multiple' do
+            let(:content) {
+              "This is a <%= background('#ff0000') { 'test' } %>. And so is " \
+              "<%= background('#ff0000') { 'this' } %>.\n"
+            }
+
+            let(:colour) {
+              Vedeu::Colour.new(background: '#ff0000', foreground: '')
+            }
+
+            let(:expected) {
+              Vedeu::Lines.new([
+                Vedeu::Line.new(streams: [
+                  Vedeu::Stream.new(value: 'This is a '),
+                  Vedeu::Stream.new(value: 'test', colour: colour),
+                  Vedeu::Stream.new(value: '. And so is '),
+                  Vedeu::Stream.new(value: 'this', colour: colour),
+                  Vedeu::Stream.new(value: '.'),
+                ])
+              ])
+            }
+
+            it { subject.must_equal(expected) }
+          end
         end
 
         context 'with a foreground colour directive' do

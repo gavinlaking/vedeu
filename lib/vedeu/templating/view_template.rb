@@ -49,7 +49,7 @@ module Vedeu
       # @param line [String]
       # @return [Array<String>]
       def streams_for(line)
-        line.split(/({{.*}})/)
+        line.split(/({{\s*[^}]+\s*}})/)
       end
 
       # @return [Array<String>]
