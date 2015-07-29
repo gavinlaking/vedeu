@@ -184,6 +184,7 @@ module Vedeu
           config: [:light_yellow,  :yellow],
           create: [:light_green,   :green],
           debug:  [:light_red,     :red],
+          error:  [:light_red,     :red],
           drb:    [:light_blue,    :blue],
           event:  [:light_magenta, :magenta],
           info:   [:white,         :default],
