@@ -169,7 +169,8 @@ module Vedeu
       {
         client:     nil,
         colour:     nil,
-        colour:     Vedeu::Colour.coerce(background: :default, foreground: :default),
+        colour:     Vedeu::Colour.coerce(background: :default,
+                                         foreground: :default),
         delay:      0.0,
         group:      '',
         lines:      [],

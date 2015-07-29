@@ -104,8 +104,11 @@ module Vedeu
         fail Vedeu::MissingRequired,
              'Cannot render template without a filename.' unless filename
 
-        content = Vedeu::Templating::ViewTemplate.
-                    parse(object, filename, options.merge!({ name: name }))
+        options.merge!(name: name)
+
+        content = Vedeu::Templating::ViewTemplate.parse(object,
+                                                        filename,
+                                                        options)
 
         # lines     = Vedeu::Wordwrap.for(content, options)
 

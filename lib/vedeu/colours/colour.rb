@@ -54,7 +54,7 @@ module Vedeu
         new(value[:colour])
 
       elsif value[:background] || value[:foreground]
-         new(value)
+        new(value)
 
       else
         new

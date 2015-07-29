@@ -65,7 +65,8 @@ module Vedeu
         # - Creates a call tree report compatible with KCachegrind.
         # RubyProf::CallTreePrinter
 
-        # - Uses the other printers to create several reports in one profiling run
+        # - Uses the other printers to create several reports in one profiling
+        #   run
         # RubyProf::MultiPrinter
       end
 
