@@ -44,7 +44,6 @@ require 'vedeu/geometry/dimension'
 require 'vedeu/geometry/geometry'
 require 'vedeu/geometry/geometries'
 require 'vedeu/geometry/grid'
-require 'vedeu/geometry/index_position'
 require 'vedeu/geometry/position_index'
 require 'vedeu/geometry/position'
 
