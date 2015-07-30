@@ -86,7 +86,7 @@ module Vedeu
       def restart
         log('Attempting to restart')
 
-        return not_enabled unless drb?
+        return not_enabled unless Vedeu::Configuration.drb?
 
         if drb_running?
           log('Restarting')
@@ -112,7 +112,7 @@ module Vedeu
       #
       # @return [void]
       def shutdown
-        return not_enabled unless drb?
+        return not_enabled unless Vedeu::Configuration.drb?
 
         stop if drb_running?
 
@@ -127,7 +127,7 @@ module Vedeu
       def start
         log('Attempting to start')
 
-        return not_enabled unless drb?
+        return not_enabled unless Vedeu::Configuration.drb?
 
         if drb_running?
           log('Already started')
@@ -147,7 +147,7 @@ module Vedeu
       def status
         log('Fetching status')
 
-        return not_enabled unless drb?
+        return not_enabled unless Vedeu::Configuration.drb?
 
         if drb_running?
           log('Running')
@@ -168,7 +168,7 @@ module Vedeu
       def stop
         log('Attempting to stop')
 
-        return not_enabled unless drb?
+        return not_enabled unless Vedeu::Configuration.drb?
 
         if drb_running?
           log('Stopping')
@@ -193,24 +193,9 @@ module Vedeu
 
       private
 
-      # @return [Boolean]
-      def drb?
-        Vedeu::Configuration.drb?
-      end
-
-      # @return [String]
-      def drb_host
-        Vedeu::Configuration.drb_host
-      end
-
       # @return [|NilClass]
       def drb_running?
         DRb.thread
-      end
-
-      # @return [Fixnum|String]
-      def drb_port
-        Vedeu::Configuration.drb_port
       end
 
       # @return [void]
@@ -227,7 +212,8 @@ module Vedeu
 
       # @return [String]
       def uri
-        Vedeu::Distributed::Uri.new(drb_host, drb_port).to_s
+        Vedeu::Distributed::Uri.new(Vedeu::Configuration.drb_host,
+                                    Vedeu::Configuration.drb_port).to_s
       end
 
     end # Server
