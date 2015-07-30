@@ -75,18 +75,14 @@ module Vedeu
     #
     # @return [Fixnum]
     def y_position
-      value = if oy <= 0
-                y
+      pos = case
+            when oy <= 0       then y
+            when oy > yn_index then yn
+            else
+              y_range[oy]
+            end
 
-              elsif oy > yn_index
-                yn
-
-              else
-                y_range[oy]
-
-              end
-
-      validate_y(value)
+      validate_y(pos)
     end
 
     # Returns the x coordinate for a given index.
@@ -100,18 +96,14 @@ module Vedeu
     #
     # @return [Fixnum]
     def x_position
-      value = if ox <= 0
-                x
+      pos = case
+            when ox <= 0       then x
+            when ox > xn_index then xn
+            else
+              x_range[ox]
+            end
 
-              elsif ox > xn_index
-                xn
-
-              else
-                x_range[ox]
-
-              end
-
-      validate_x(value)
+      validate_x(pos)
     end
 
     protected
