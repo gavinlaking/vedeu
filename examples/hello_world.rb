@@ -26,17 +26,24 @@ class HelloWorldApp
     foreground '#00ff00'
     geometry do
       centred!
-      height   3
+      height   5
       width    20
+    end
+    keymap do
+      key('q') { Vedeu.exit }
     end
   end
 
   Vedeu.renders do
     view 'messages' do
       lines do
-        centre 'Hello World!', width: 20
+        line do
+          centre 'Hello World!', width: 20
+        end
         line
-        centre "Press 'q' to exit.", width: 20
+        line do
+          centre "Press 'q' to exit.", width: 20
+        end
       end
     end
   end

@@ -33,6 +33,10 @@ class VedeuFocusApp
     Vedeu.renders { view('status') { lines { line(Vedeu.focus) } } }
   end
 
+  Vedeu.keymap('_global_') do
+    key('q') { Vedeu.exit }
+  end
+
   Vedeu.interface 'aluminium' do
     colour  foreground: '#ffffff', background: '#330000'
     cursor  true
