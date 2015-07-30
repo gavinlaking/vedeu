@@ -95,7 +95,7 @@ module Vedeu
       #
       # @return [TrueClass]
       def log(message:, force: false, type: :info)
-        output = [message_type(type), message_body(type, message)]
+        output = log_entry(type, message)
 
         logger.debug(output) if enabled? || force
 
@@ -106,14 +106,14 @@ module Vedeu
       #
       # @return [TrueClass]
       def log_stdout(type: :info, message:)
-        $stdout.puts "#{message_type(type)}#{message_body(type, message)}"
+        $stdout.puts log_entry(type, message)
       end
 
       # Write a message to STDERR.
       #
       # @return [TrueClass]
       def log_stderr(type: :info, message:)
-        $stderr.puts "#{message_type(type)}#{message_body(type, message)}"
+        $stderr.puts log_entry(type, message)
       end
 
       private
@@ -136,6 +136,18 @@ module Vedeu
       # @return [String]
       def formatted_message(message)
         "#{timestamp}#{message}\n"
+      end
+
+      # Returns the message:
+      #
+      #     [type] message
+      #
+      # @param type [Symbol] The type of log message.
+      # @param message [String] The message you wish to emit to the log file,
+      #   useful for debugging.
+      # @return [String]
+      def log_entry(type, message)
+        "#{message_type(type)}#{message_body(type, message)}"
       end
 
       # Fetches the filename from the configuration.
