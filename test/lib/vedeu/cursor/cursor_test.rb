@@ -24,6 +24,22 @@ module Vedeu
     let(:visible)    { true }
     let(:x)          { 19 }
     let(:y)          { 8 }
+    let(:border)    { Vedeu::Border.new(name: _name, enabled: enabled) }
+    let(:geometry)  {
+      Vedeu::Geometry.new(
+        name: _name,
+        x:    5,
+        xn:   35,
+        y:    5,
+        yn:   10
+      )
+    }
+    let(:enabled) { true }
+
+    before {
+      Vedeu.borders.stubs(:by_name).returns(border)
+      Vedeu.geometries.stubs(:by_name).returns(geometry)
+    }
 
     describe '#initialize' do
       subject { instance }
@@ -46,9 +62,7 @@ module Vedeu
       it { instance.must_respond_to(:oy) }
       it { instance.must_respond_to(:oy=) }
       it { instance.must_respond_to(:state) }
-      it { instance.must_respond_to(:x) }
       it { instance.must_respond_to(:x=) }
-      it { instance.must_respond_to(:y) }
       it { instance.must_respond_to(:y=) }
     end
 
@@ -128,6 +142,110 @@ module Vedeu
            'of the cursor and returns to that position after yielding the '  \
            'block' do
           subject.must_equal("\e[8;19H\e[8;19H\e[?25h")
+        end
+      end
+    end
+
+    describe '#x' do
+      subject { instance.x }
+
+      context 'when x is less than tx' do
+        let(:x) { -2 }
+
+        it { subject.must_equal(6) }
+      end
+
+      context 'when x is less than left' do
+        let(:x) { 2 }
+
+        it { subject.must_equal(6) }
+      end
+
+      context 'when x is less than bx' do
+        let(:x) { 5 }
+
+        it { subject.must_equal(6) }
+
+        context 'when border is not enabled' do
+          let(:enabled) { false }
+
+          it { subject.must_equal(5) }
+        end
+      end
+
+      context 'when x is more than txn' do
+        let(:x) { 47 }
+
+        it { subject.must_equal(34) }
+      end
+
+      context 'when x is more than right' do
+        let(:x) { 37 }
+
+        it { subject.must_equal(34) }
+      end
+
+      context 'when x is more than bxn' do
+        let(:x) { 35 }
+
+        it { subject.must_equal(34) }
+
+        context 'when border is not enabled' do
+          let(:enabled) { false }
+
+          it { subject.must_equal(35) }
+        end
+      end
+    end
+
+    describe '#y' do
+      subject { instance.y }
+
+      context 'when y is less than ty' do
+        let(:y) { -2 }
+
+        it { subject.must_equal(6) }
+      end
+
+      context 'when y is less than top' do
+        let(:y) { 2 }
+
+        it { subject.must_equal(6) }
+      end
+
+      context 'when y is less than by' do
+        let(:y) { 5 }
+
+        it { subject.must_equal(6) }
+
+        context 'when border is not enabled' do
+          let(:enabled) { false }
+
+          it { subject.must_equal(5) }
+        end
+      end
+
+      context 'when y is more than tyn' do
+        let(:y) { 17 }
+
+        it { subject.must_equal(9) }
+      end
+
+      context 'when y is more than bottom' do
+        let(:y) { 12 }
+
+        it { subject.must_equal(9) }
+      end
+
+      context 'when y is more than byn' do
+        let(:y) { 10 }
+
+        it { subject.must_equal(9) }
+
+        context 'when border is not enabled' do
+          let(:enabled) { false }
+
+          it { subject.must_equal(10) }
         end
       end
     end

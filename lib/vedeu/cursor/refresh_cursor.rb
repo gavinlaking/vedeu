@@ -62,14 +62,9 @@ module Vedeu
     # @return [Hash<Symbol => Fixnum>]
     def position
       {
-        x: validated_position.x,
-        y: validated_position.y,
+        x: cursor.x,
+        y: cursor.y,
       }
-    end
-
-    # @return [Vedeu::PositionValidator]
-    def validated_position
-      @position ||= Vedeu::PositionValidator.validate(name, cursor.x, cursor.y)
     end
 
     # @return [Vedeu::Cursor]
