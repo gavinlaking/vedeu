@@ -53,10 +53,17 @@ module Vedeu
     end
 
     describe '#hide' do
+      let(:visible)     { true }
+      let(:hide_cursor) { Vedeu::Escape.new(Vedeu::Esc.hide_cursor) }
+
+      before {
+        Vedeu::Output.stubs(:render).
+          with(hide_cursor).returns(hide_cursor)
+      }
+
       subject { instance.hide }
 
       it { subject.must_be_instance_of(Vedeu::Escape) }
-      it { subject.to_s.must_equal("\e[?25l") }
     end
 
     describe '#inspect' do
@@ -75,10 +82,17 @@ module Vedeu
     end
 
     describe '#show' do
+      let(:visible) { false }
+      let(:show_cursor) { Vedeu::Escape.new(Vedeu::Esc.show_cursor) }
+
+      before {
+        Vedeu::Output.stubs(:render).
+          with(show_cursor).returns(show_cursor)
+      }
+
       subject { instance.show }
 
       it { subject.must_be_instance_of(Vedeu::Escape) }
-      it { subject.to_s.must_equal("\e[?25h") }
     end
 
     describe '#to_s' do

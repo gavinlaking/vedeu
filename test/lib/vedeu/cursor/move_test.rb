@@ -15,41 +15,29 @@ module Vedeu
     let(:x)         { 1 }
     let(:y)         { 1 }
 
+    let(:cursor) {
+      Vedeu::Cursor.new(name: _name, ox: ox, oy: oy, visible: true, x: x, y: y)
+    }
+    let(:new_cursor) {
+      Vedeu::Cursor.new
+    }
+    let(:border) {
+      Vedeu::Border.new(name: '_name', enabled: enabled)
+    }
+    let(:enabled)  { true }
+    let(:geometry) {
+      Vedeu::Geometry.new(name: _name, x: 5, xn: 10, y: 5, yn: 10)
+    }
+
     before {
-      Vedeu::Cursor.new(name:    'move_with_border',
-                        ox:      ox,
-                        oy:      oy,
-                        visible: true,
-                        x:       x,
-                        y:       y).store
-      Vedeu::Cursor.new(name:    'move_without_border',
-                        ox:      ox,
-                        oy:      oy,
-                        visible: true,
-                        x:       x,
-                        y:       y).store
-      Vedeu.border 'move_with_border' do
-        # ...
-      end
-      Vedeu.geometry 'move_with_border' do
-        x  5
-        xn 10
-        y  5
-        yn 10
-      end
-      Vedeu.geometry 'move_without_border' do
-        x  5
-        xn 10
-        y  5
-        yn 10
-      end
       IO.console.stubs(:winsize).returns([25, 80])
       IO.console.stubs(:print)
-    }
-    after {
-      Vedeu.borders.reset
-      Vedeu.cursors.reset
-      Vedeu.geometries.reset
+
+      Vedeu.borders.stubs(:by_name).returns(border)
+      Vedeu.cursors.stubs(:by_name).returns(cursor)
+      Vedeu.geometries.stubs(:by_name).returns(geometry)
+
+      Vedeu.stubs(:trigger).with(:_refresh_cursor_, _name)
     }
 
     describe '#initialize' do
@@ -63,11 +51,12 @@ module Vedeu
     describe '.by_name' do
       let(:direction) { :down }
       let(:_name)     { 'manganese' }
+      let(:oy)        { 2 }
+      let(:ox)        { 3 }
+      let(:x)         { 8 }
+      let(:y)         { 7 }
 
-      before {
-        Vedeu::Cursor.new(name: 'manganese', oy: 2, ox: 3, x: 8, y: 7).store
-        Vedeu.stubs(:focus).returns('neon')
-      }
+      before { Vedeu.stubs(:focus).returns('neon') }
 
       subject { described.by_name(entity, direction, _name) }
 
@@ -115,9 +104,8 @@ module Vedeu
 
       it { subject.must_be_instance_of(Vedeu::Cursor) }
 
-      it { subject.y.must_equal(2) }
-
       context 'when within the boundary of the interface' do
+        let(:enabled) { false }
         let(:_name) { 'move_without_border' }
         let(:oy)    { 15 }
 
@@ -127,6 +115,7 @@ module Vedeu
       end
 
       context 'when within the border of the interface' do
+        let(:enabled) { true }
         let(:_name) { 'move_with_border' }
         let(:oy)    { 15 }
 
@@ -143,9 +132,8 @@ module Vedeu
 
       it { subject.must_be_instance_of(Vedeu::Cursor) }
 
-      it { subject.x.must_equal(1) }
-
       context 'when within the boundary of the interface' do
+        let(:enabled) { false }
         let(:_name) { 'move_without_border' }
 
         it 'does not move past the left of the interface' do
@@ -154,6 +142,7 @@ module Vedeu
       end
 
       context 'when within the border of the interface' do
+        let(:enabled) { true }
         let(:_name) { 'move_with_border' }
 
         it 'does not move past the left border' do
@@ -169,9 +158,8 @@ module Vedeu
 
       it { subject.must_be_instance_of(Vedeu::Cursor) }
 
-      it { subject.x.must_equal(2) }
-
       context 'when within the boundary of the interface' do
+        let(:enabled) { false }
         let(:_name) { 'move_without_border' }
         let(:ox)    { 15 }
 
@@ -181,6 +169,7 @@ module Vedeu
       end
 
       context 'when within the border of the interface' do
+        let(:enabled) { true }
         let(:_name) { 'move_with_border' }
         let(:ox)    { 15 }
 
@@ -197,9 +186,8 @@ module Vedeu
 
       it { subject.must_be_instance_of(Vedeu::Cursor) }
 
-      it { subject.y.must_equal(1) }
-
       context 'when within the boundary of the interface' do
+        let(:enabled) { false }
         let(:_name) { 'move_without_border' }
 
         it 'does not move past the top of the interface' do
@@ -208,6 +196,7 @@ module Vedeu
       end
 
       context 'when within the border of the interface' do
+        let(:enabled) { true }
         let(:_name) { 'move_with_border' }
 
         it 'does not move past the top border' do
@@ -223,12 +212,8 @@ module Vedeu
 
       it { subject.must_be_instance_of(Vedeu::Cursor) }
 
-      context 'within the visible area for the console' do
-        it { subject.x.must_equal(1) }
-        it { subject.y.must_equal(1) }
-      end
-
       context 'within the boundary of the interface' do
+        let(:enabled) { false }
         let(:_name) { 'move_without_border' }
 
         it { subject.x.must_equal(5) }
@@ -236,6 +221,7 @@ module Vedeu
       end
 
       context 'within the border of the interface' do
+        let(:enabled) { true }
         let(:_name) { 'move_with_border' }
 
         it { subject.x.must_equal(6) }

@@ -95,7 +95,6 @@ module Vedeu
       subject { instance.maximise }
 
       it { subject.must_be_instance_of(described) }
-
       it { subject.maximised.must_equal(true) }
     end
 
@@ -114,7 +113,6 @@ module Vedeu
       subject { instance.unmaximise }
 
       it { subject.must_be_instance_of(described) }
-
       it { subject.maximised.must_equal(false) }
     end
 

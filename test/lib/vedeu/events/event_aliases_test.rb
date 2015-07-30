@@ -6,12 +6,8 @@ module Vedeu
 
     let(:described) { Vedeu::EventAliases }
 
-    before do
-      Vedeu::EventAliases.reset
-    end
-    after do
-      Vedeu::Bindings.setup!
-    end
+    before { Vedeu::EventAliases.reset }
+    after  { Vedeu::Bindings.setup! }
 
     describe '.add' do
       let(:alias_name) { :alias_test }

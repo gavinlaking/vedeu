@@ -71,6 +71,8 @@ module Vedeu
     end
 
     describe '.output' do
+      before { IO.console.stubs(:print) }
+
       subject { described.output(*_value) }
 
       it { described.must_respond_to(:write) }
