@@ -7,7 +7,6 @@ Vedeu (vee-dee-you; aka VDU) is my attempt at creating a terminal based
  application framework without the need for Ncurses. I've tried to make Vedeu
  as simple and flexible as possible.
 
-
 ## Requirements
 
 Vedeu was been built primarily with Ruby v2.1; however, the
@@ -17,7 +16,7 @@ file will indicate the currently used Ruby version.
 When Vedeu started I was a MacOSX user, I've since moved to Linux. You shouldn't
 have any problems with either of these operating systems.
 
-Note: You may have trouble running Vedeu with Windows installations. (Pull
+**Note**: You may have trouble running Vedeu with Windows installations. (Pull
  requests welcome!)
 
 
@@ -35,12 +34,15 @@ To use Vedeu's application scaffolding, see the
 Have a look at: [Playa](https://github.com/gavinlaking/playa). Please browse the
 source of Playa and Vedeu to get a feel for how it all works.
 
+**Note**: Playa is based on an old version of Vedeu. Vedeu has significantly
+ improved since then and a better example is coming soon!
+
 If you have produced software which uses Vedeu, please let me know, I'll link
 to your project here.
 
 ## Documentation & Usage
 
-Vedeu is largely documented using Yard. I hope to produce more 'General Usage'
+Vedeu is documented using Yard. I hope to produce more 'General Usage'
 documentation shortly. In the meantime, please browse the
 [RubyDoc](http://rubydoc.info/gems/vedeu).
 
@@ -70,7 +72,6 @@ Any branch on the repository that is not `master` is probably experimental; do
  into `master` before a release, and branches prefixed with `spike/` are me
  playing with ideas.
 
-
 ### General contribution help
 
 1. Fork it ([https://github.com/gavinlaking/vedeu/fork](https://github.com/gavinlaking/vedeu/fork))
@@ -82,7 +83,6 @@ Any branch on the repository that is not `master` is probably experimental; do
 7. Commit your changes (`git commit -am 'Add some feature'`)
 8. Push to the branch (`git push origin my-new-feature`)
 9. Create a new pull request.
-
 
 ## Author & Contributors
 
