@@ -4,9 +4,16 @@ module Vedeu
 
   describe Escape do
 
-    let(:described) { Vedeu::Escape }
-    let(:instance)  { described.new(_value) }
-    let(:_value)    { "\e[?25h" }
+    let(:described)  { Vedeu::Escape }
+    let(:instance)   { described.new(attributes) }
+    let(:attributes) {
+      {
+        value:    _value,
+        position: position,
+      }
+    }
+    let(:_value)     { "\e[?25h" }
+    let(:position)   { [2, 6] }
 
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }
@@ -36,13 +43,13 @@ module Vedeu
     describe '#inspect' do
       it { instance.inspect.must_equal(
         "<Vedeu::Escape '" \
-        "\\e[?25h"       \
+        "\\e[2;6H\\e[?25h"       \
         "'>"
       ) }
     end
 
     describe '#position' do
-      it { instance.position.must_equal('') }
+      it { instance.position.must_be_instance_of(Vedeu::Position) }
     end
 
     describe '#style' do
@@ -51,8 +58,11 @@ module Vedeu
 
     describe '#value' do
       it { instance.value.must_be_instance_of(String) }
+    end
 
-      it { instance.must_respond_to(:to_s) }
+    describe '#to_s' do
+      subject { instance.to_s }
+
       it { instance.must_respond_to(:to_str) }
     end
 

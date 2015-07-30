@@ -160,7 +160,7 @@ module Vedeu
           subject
         }
 
-        it { subject.must_equal([:clear, :view, :border]) }
+        it { subject.must_equal([:clear, :view, :border, nil]) }
       end
 
       context 'when the interface is not visible' do

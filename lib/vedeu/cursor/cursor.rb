@@ -64,8 +64,6 @@ module Vedeu
       @attributes = defaults.merge!(attributes)
 
       @attributes.each { |key, value| instance_variable_set("@#{key}", value) }
-
-      @position   = Vedeu::Position[@y, @x]
     end
 
     # Override Ruby's Object#inspect method to provide a more helpful output.
@@ -87,10 +85,10 @@ module Vedeu
     # @return [String]
     def to_s
       if block_given?
-        "#{position}#{yield}#{position}#{visibility}"
+        "#{position}#{yield}#{visibility}"
 
       else
-        "#{position}#{visibility}"
+        "#{visibility}"
 
       end
     end
@@ -113,7 +111,7 @@ module Vedeu
     #
     # @return [Vedeu::Position]
     def position
-      @position ||= Vedeu::Position[y, x]
+      @position = Vedeu::Position[y, x]
     end
 
     # Show a named cursor, or without a name, the cursor of the currently
@@ -133,6 +131,9 @@ module Vedeu
     def x
       @x = bx  if @x < bx
       @x = bxn if @x > bxn
+
+      @attributes[:x] = @x
+
       @x
     end
 
@@ -140,6 +141,9 @@ module Vedeu
     def y
       @y = by  if @y < by
       @y = byn if @y > byn
+
+      @attributes[:y] = @y
+
       @y
     end
 
@@ -169,9 +173,13 @@ module Vedeu
     #
     # @return [String]
     def visibility
-      return Vedeu::Escape.new(Vedeu::Esc.show_cursor) if visible?
+      if visible?
+        Vedeu::Escape.new(position: position, value: Vedeu::Esc.show_cursor)
 
-      Vedeu::Escape.new(Vedeu::Esc.hide_cursor)
+      else
+        Vedeu::Escape.new(position: position, value: Vedeu::Esc.hide_cursor)
+
+      end
     end
 
   end # Cursor

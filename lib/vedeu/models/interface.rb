@@ -130,9 +130,8 @@ module Vedeu
         Vedeu::Clear::NamedInterface.render(name),
         Vedeu::Viewport.render(self),
         Vedeu.borders.by_name(name).render,
+        Vedeu.trigger(:_show_cursor_, name)
       ]
-
-      Vedeu.trigger(:_show_cursor_, name)
 
       output
     end

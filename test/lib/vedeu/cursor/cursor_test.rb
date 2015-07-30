@@ -68,7 +68,7 @@ module Vedeu
 
     describe '#hide' do
       let(:visible)     { true }
-      let(:hide_cursor) { Vedeu::Escape.new(Vedeu::Esc.hide_cursor) }
+      let(:hide_cursor) { Vedeu::Escape.new(value: Vedeu::Esc.hide_cursor) }
 
       before {
         Vedeu::Output.stubs(:render).
@@ -97,7 +97,7 @@ module Vedeu
 
     describe '#show' do
       let(:visible) { false }
-      let(:show_cursor) { Vedeu::Escape.new(Vedeu::Esc.show_cursor) }
+      let(:show_cursor) { Vedeu::Escape.new(value: Vedeu::Esc.show_cursor) }
 
       before {
         Vedeu::Output.stubs(:render).
