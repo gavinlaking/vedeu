@@ -17,33 +17,22 @@ module Vedeu
       end
 
       # @return [NilClass]
-      def add(*)
+      def null(*)
         nil
       end
-
-      # @return [NilClass]
-      def colour
-        nil
-      end
+      alias_method :add, :null
+      alias_method :colour, :null
+      alias_method :parent, :null
+      alias_method :style, :null
 
       # @return [Boolean]
       def null?
         true
       end
 
-      # @return [NilClass]
-      def parent
-        nil
-      end
-
       # @return [Vedeu::Null::Generic]
       def store
         self
-      end
-
-      # @return [NilClass]
-      def style
-        nil
       end
 
       # The generic null should not be visible.

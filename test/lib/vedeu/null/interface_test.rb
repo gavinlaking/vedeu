@@ -31,28 +31,22 @@ module Vedeu
         it { instance.must_respond_to(:visible?) }
       end
 
-      describe '#hide' do
-        it { instance.hide.must_be_instance_of(NilClass) }
+      describe '#null' do
+        it { instance.null.must_be_instance_of(NilClass) }
+
+        it { instance.must_respond_to(:hide) }
+        it { instance.must_respond_to(:parent) }
+        it { instance.must_respond_to(:show) }
+        it { instance.must_respond_to(:toggle) }
+        it { instance.must_respond_to(:zindex) }
       end
 
       describe '#null?' do
         it { instance.null?.must_be_instance_of(TrueClass) }
       end
 
-      describe '#parent' do
-        it { instance.parent.must_be_instance_of(NilClass) }
-      end
-
-      describe '#show' do
-        it { instance.show.must_be_instance_of(NilClass) }
-      end
-
       describe '#store' do
         it { instance.store.must_be_instance_of(Vedeu::Null::Interface) }
-      end
-
-      describe '#toggle' do
-        it { instance.toggle.must_be_instance_of(NilClass) }
       end
 
     end # Interface

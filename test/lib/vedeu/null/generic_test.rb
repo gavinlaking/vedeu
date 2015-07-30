@@ -26,16 +26,14 @@ module Vedeu
         }
       end
 
-      describe '#add' do
-        subject { instance.add }
+      describe '#null' do
+        subject { instance.null }
 
         it { subject.must_be_instance_of(NilClass) }
-      end
-
-      describe '#colour' do
-        subject { instance.colour }
-
-        it { subject.must_be_instance_of(NilClass) }
+        it { instance.must_respond_to(:add) }
+        it { instance.must_respond_to(:colour) }
+        it { instance.must_respond_to(:parent) }
+        it { instance.must_respond_to(:style) }
       end
 
       describe '#null?' do
@@ -44,22 +42,10 @@ module Vedeu
         it { subject.must_be_instance_of(TrueClass) }
       end
 
-      describe '#parent' do
-        subject { instance.parent }
-
-        it { subject.must_be_instance_of(NilClass) }
-      end
-
       describe '#store' do
         subject { instance.store }
 
         it { subject.must_be_instance_of(described) }
-      end
-
-      describe '#style' do
-        subject { instance.style }
-
-        it { subject.must_be_instance_of(NilClass) }
       end
 
       describe '#visible' do

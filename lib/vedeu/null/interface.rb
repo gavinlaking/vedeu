@@ -35,25 +35,18 @@ module Vedeu
       end
 
       # @return [NilClass]
-      def hide
+      def null
         nil
       end
+      alias_method :hide, :null
+      alias_method :parent, :null
+      alias_method :show, :null
+      alias_method :toggle, :null
+      alias_method :zindex, :null
 
       # @return [Boolean]
       def null?
         true
-      end
-
-      # The null interface should not have a parent.
-      #
-      # @return [NilClass]
-      def parent
-        nil
-      end
-
-      # @return [NilClass]
-      def show
-        nil
       end
 
       # Pretend to store this model in the repository.
@@ -61,11 +54,6 @@ module Vedeu
       # @return [Vedeu::Null::Interface]
       def store
         self
-      end
-
-      # @return [NilClass]
-      def toggle
-        nil
       end
 
       # The null interface should not be visible.
