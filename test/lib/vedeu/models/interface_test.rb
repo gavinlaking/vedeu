@@ -138,12 +138,16 @@ module Vedeu
       let(:view)   { mock('Vedeu::Viewport') }
 
       before {
+        Vedeu.stubs(:trigger).with(:_hide_cursor_, _name)
+
         Vedeu::Clear::NamedInterface.stubs(:render).returns(:clear)
+
+        Vedeu::Viewport.stubs(:render).returns(:view)
 
         Vedeu.borders.stubs(:by_name).returns(border)
         border.stubs(:render).returns(:border)
-        Vedeu::Viewport.stubs(:new).returns(view)
-        view.stubs(:render).returns(:view)
+
+        Vedeu.stubs(:trigger).with(:_show_cursor_, _name)
       }
 
       subject { instance.render }

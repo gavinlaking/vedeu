@@ -13,45 +13,57 @@ module Vedeu
       #
       # @return [TrueClass]
       def setup!
-        cursor_down!
-        cursor_left!
         cursor_origin!
         cursor_position!
         cursor_reposition!
-        cursor_right!
-        cursor_up!
-        geometry_down!
-        geometry_left!
-        geometry_right!
-        geometry_up!
+        down!
+        left!
+        right!
+        up!
       end
 
       private
 
-      # Move the cursor down by one character.
+      # Move the cursor/view down by one character.
       #
       # @example
       #   Vedeu.trigger(:_cursor_down_, name)
+      #   Vedeu.trigger(:_view_down_, name)
+      #   Vedeu.trigger(:_geometry_down_, name)
       #
       # @return [TrueClass]
       # @see Vedeu::Move
-      def cursor_down!
+      def down!
         Vedeu.bind(:_cursor_down_) do |name|
           Vedeu::Move.by_name(Vedeu::Cursor, :down, name)
         end
+
+        Vedeu.bind(:_view_down_) do |name|
+          Vedeu::Move.by_name(Vedeu::Geometry, :down, name)
+        end
+
+        Vedeu.bind_alias(:_geometry_down_, :_view_down_)
       end
 
-      # Move the cursor left by one character.
+      # Move the cursor/view left by one character.
       #
       # @example
       #   Vedeu.trigger(:_cursor_left_, name)
+      #   Vedeu.trigger(:_view_left_, name)
+      #   Vedeu.trigger(:_geometry_left_, name)
       #
       # @return [TrueClass]
       # @see Vedeu::Move
-      def cursor_left!
+      def left!
         Vedeu.bind(:_cursor_left_) do |name|
           Vedeu::Move.by_name(Vedeu::Cursor, :left, name)
         end
+
+        Vedeu.bind(:_view_left_) do |name|
+          Vedeu::Move.by_name(Vedeu::Geometry, :left, name)
+        end
+
+        Vedeu.bind_alias(:_geometry_left_, :_view_left_)
       end
 
       # This event moves the cursor to the interface origin; the top left corner
@@ -99,94 +111,46 @@ module Vedeu
         end
       end
 
-      # Move the cursor right by one character.
+      # Move the cursor/view right by one character.
       #
       # @example
       #   Vedeu.trigger(:_cursor_right_, name)
+      #   Vedeu.trigger(:_view_right_, name)
+      #   Vedeu.trigger(:_geometry_right_, name)
       #
       # @return [TrueClass]
       # @see Vedeu::Move
-      def cursor_right!
+      def right!
         Vedeu.bind(:_cursor_right_) do |name|
           Vedeu::Move.by_name(Vedeu::Cursor, :right, name)
         end
-      end
 
-      # Move the cursor up by one character.
-      #
-      # @example
-      #   Vedeu.trigger(:_cursor_up, name)
-      #
-      # @return [TrueClass]
-      # @see Vedeu::Move
-      def cursor_up!
-        Vedeu.bind(:_cursor_up_) do |name|
-          Vedeu::Move.by_name(Vedeu::Cursor, :up, name)
-        end
-      end
-
-      # Move the geometry down by one character.
-      #
-      # @example
-      #   Vedeu.trigger(:_geometry_down_, name)
-      #   Vedeu.trigger(:_view_down_, name)
-      #
-      # @return [TrueClass]
-      # @see Vedeu::Move
-      def geometry_down!
-        Vedeu.bind(:_geometry_down_) do |name|
-          Vedeu::Move.by_name(Vedeu::Geometry, :down, name)
-        end
-
-        Vedeu.bind_alias(:_view_down_, :_geometry_down_)
-      end
-
-      # Move the geometry left by one character.
-      #
-      # @example
-      #   Vedeu.trigger(:_geometry_left_, name)
-      #   Vedeu.trigger(:_view_left_, name)
-      #
-      # @return [TrueClass]
-      # @see Vedeu::Move
-      def geometry_left!
-        Vedeu.bind(:_geometry_left_) do |name|
-          Vedeu::Move.by_name(Vedeu::Geometry, :left, name)
-        end
-
-        Vedeu.bind_alias(:_view_left_, :_geometry_left_)
-      end
-
-      # Move the geometry right by one character.
-      #
-      # @example
-      #   Vedeu.trigger(:_geometry_right_, name)
-      #   Vedeu.trigger(:_view_right_, name)
-      #
-      # @return [TrueClass]
-      # @see Vedeu::Move
-      def geometry_right!
-        Vedeu.bind(:_geometry_right_) do |name|
+        Vedeu.bind(:_view_right_) do |name|
           Vedeu::Move.by_name(Vedeu::Geometry, :right, name)
         end
 
-        Vedeu.bind_alias(:_view_right_, :_geometry_right_)
+        Vedeu.bind_alias(:_geometry_right_, :_view_right_)
       end
 
-      # Move the geometry up by one character.
+      # Move the cursor/view up by one character.
       #
       # @example
-      #   Vedeu.trigger(:_geometry_up_, name)
+      #   Vedeu.trigger(:_cursor_up, name)
       #   Vedeu.trigger(:_view_up_, name)
+      #   Vedeu.trigger(:_geometry_up_, name)
       #
       # @return [TrueClass]
       # @see Vedeu::Move
-      def geometry_up!
-        Vedeu.bind(:_geometry_up_) do |name|
+      def up!
+        Vedeu.bind(:_cursor_up_) do |name|
+          Vedeu::Move.by_name(Vedeu::Cursor, :up, name)
+        end
+
+        Vedeu.bind(:_view_up_) do |name|
           Vedeu::Move.by_name(Vedeu::Geometry, :up, name)
         end
 
-        Vedeu.bind_alias(:_view_up_, :_geometry_up_)
+        Vedeu.bind_alias(:_geometry_up_, :_view_up_)
       end
 
     end # Movement

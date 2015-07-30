@@ -80,10 +80,10 @@ module Vedeu
     # @return [String]
     def to_s
       if block_given?
-        [sequence, yield, sequence].join
+        "#{position}#{yield}#{position}#{visibility}"
 
       else
-        sequence
+        "#{position}#{visibility}"
 
       end
     end
@@ -137,13 +137,6 @@ module Vedeu
         x:          1,
         y:          1,
       }
-    end
-
-    # Returns the escape sequence to position the cursor and set its visibility.
-    #
-    # @return [String]
-    def sequence
-      [position, visibility].join
     end
 
     # Returns the escape sequence for setting the visibility of the cursor.

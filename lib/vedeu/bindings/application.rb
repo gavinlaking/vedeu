@@ -31,10 +31,7 @@ module Vedeu
           Vedeu::Router.goto(controller, action, **args)
         end
 
-        # @todo Remove this aliasing event. (GL 2015-07-26)
-        Vedeu.bind(:_action_) do |controller, action, **args|
-          Vedeu.trigger(:_goto_, controller, action, **args)
-        end
+        Vedeu.bind_alias(:_action_, :_goto_)
       end
 
     end # Application

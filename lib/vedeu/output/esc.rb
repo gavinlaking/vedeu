@@ -42,39 +42,39 @@ module Vedeu
     def border
       return '' unless block_given?
 
-      [border_on, yield, border_off].join
+      "#{border_on}#{yield}#{border_off}"
     end
 
     private
 
     # @return [String]
     def clear
-      [colour_reset, "\e[2J"].join
+      "#{colour_reset}\e[2J"
     end
 
     # @return [String]
     def clear_line
-      [colour_reset, "\e[2K"].join
+      "#{colour_reset}\e[2K"
     end
 
     # @return [String]
     def colour_reset
-      [fg_reset, bg_reset].join
+      "#{fg_reset}#{bg_reset}"
     end
 
     # @return [String]
     def normal
-      [underline_off, bold_off, positive].join
+      "#{underline_off}#{bold_off}#{positive}"
     end
 
     # @return [String]
     def screen_init
-      [reset, clear, hide_cursor].join
+      "#{reset}#{clear}#{hide_cursor}"
     end
 
     # @return [String]
     def screen_exit
-      [show_cursor, colour_reset, reset, last_character_position, "\n"].join
+      "#{show_cursor}#{colour_reset}#{reset}#{last_character_position}\n"
     end
 
     # @return [String]

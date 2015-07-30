@@ -30,7 +30,7 @@ module Vedeu
 
     # @return [String]
     def render
-      [start_tag, tag_style, '>', tag_value, end_tag].join
+      "#{start_tag}#{tag_style}>#{tag_value}#{end_tag}"
     end
 
     protected
@@ -66,10 +66,10 @@ module Vedeu
       when :left_vertical     then css('left')
       when :right_vertical    then css('right')
       when :bottom_horizontal then css('bottom')
-      when :top_left     then [css('top'), css('left')].join
-      when :top_right    then [css('top'), css('right')].join
-      when :bottom_left  then [css('bottom'), css('left')].join
-      when :bottom_right then [css('bottom'), css('right')].join
+      when :top_left     then "#{css('top')}#{css('left')}"
+      when :top_right    then "#{css('top')}#{css('right')}"
+      when :bottom_left  then "#{css('bottom')}#{css('left')}"
+      when :bottom_right then "#{css('bottom')}#{css('right')}"
       else
         ''
       end

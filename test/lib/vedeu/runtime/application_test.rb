@@ -11,6 +11,8 @@ module Vedeu
     before {
       configuration.stubs(:drb?).returns(false)
       Terminal.stubs(:open).returns([''])
+
+      Vedeu.stubs(:trigger)
     }
 
     describe '#initialize' do

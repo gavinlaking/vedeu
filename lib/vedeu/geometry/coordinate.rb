@@ -75,18 +75,14 @@ module Vedeu
     #
     # @return [Fixnum]
     def y_position
-      value = if oy <= 0
-                y
+      pos = case
+            when oy <= 0       then y
+            when oy > yn_index then yn
+            else
+              y_range[oy]
+            end
 
-              elsif oy > yn_index
-                yn
-
-              else
-                y_range[oy]
-
-              end
-
-      validate_y(value)
+      validate_y(pos)
     end
 
     # Returns the x coordinate for a given index.
@@ -100,18 +96,14 @@ module Vedeu
     #
     # @return [Fixnum]
     def x_position
-      value = if ox <= 0
-                x
+      pos = case
+            when ox <= 0       then x
+            when ox > xn_index then xn
+            else
+              x_range[ox]
+            end
 
-              elsif ox > xn_index
-                xn
-
-              else
-                x_range[ox]
-
-              end
-
-      validate_x(value)
+      validate_x(pos)
     end
 
     protected
@@ -159,9 +151,13 @@ module Vedeu
     #
     # @return [Fixnum]
     def yn_index
-      return 0 if y_indices.empty?
+      if height < 1
+        0
 
-      y_indices.last
+      else
+        height - 1
+
+      end
     end
 
     # Returns the maximum x index for an area.
@@ -172,31 +168,13 @@ module Vedeu
     #
     # @return [Fixnum]
     def xn_index
-      return 0 if x_indices.empty?
+      if width < 1
+        0
 
-      x_indices.last
-    end
+      else
+        width - 1
 
-    # Returns the same as #y_range, except as indices of an array.
-    #
-    # @example
-    #   # height = 4
-    #   y_indices # => [0, 1, 2, 3]
-    #
-    # @return [Array]
-    def y_indices
-      (0...height).to_a
-    end
-
-    # Returns the same as #x_range, except as indices of an array.
-    #
-    # @example
-    #   # width = 10
-    #   x_indices # => [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-    #
-    # @return [Array]
-    def x_indices
-      (0...width).to_a
+      end
     end
 
     # Returns an array with all coordinates from x to xn.

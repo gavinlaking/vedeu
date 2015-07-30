@@ -28,7 +28,7 @@ module Vedeu
     #
     # @return [String]
     def render_colour
-      [colour, yield].join
+      "#{colour}#{yield}"
     end
 
     # @return [String]
@@ -47,7 +47,7 @@ module Vedeu
     #
     # @return [String]
     def render_style
-      [style, yield].join
+      "#{style}#{yield}"
     end
 
   end # Presentation

@@ -13,7 +13,7 @@ module Vedeu
       subject { described.log(message: _message, force: force, type: type) }
 
       it { subject.must_equal(
-        ["\e[97m[info]   \e[39m", "\e[39mSome message...\e[39m"]
+        "\e[97m[info]   \e[39m\e[39mSome message...\e[39m"
       ) }
     end
 
