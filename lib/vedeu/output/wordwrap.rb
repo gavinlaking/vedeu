@@ -118,7 +118,7 @@ module Vedeu
         prune_string(string)
 
       else
-        [prune_string(string), ellipsis].join
+        "#{prune_string(string)}#{ellipsis}"
 
       end
     end

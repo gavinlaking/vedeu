@@ -87,7 +87,7 @@ module Vedeu
     # @yieldreturn [void] Returns the block wrapped in position escape
     #   sequences.
     def to_s
-      return [sequence, yield].join if block_given?
+      return "#{sequence}#{yield}" if block_given?
 
       sequence
     end

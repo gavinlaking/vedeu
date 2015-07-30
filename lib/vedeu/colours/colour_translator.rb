@@ -141,7 +141,7 @@ module Vedeu
     #
     # @return [String]
     def named
-      ["\e[", named_codes, 'm'].join
+      "\e[#{named_codes}m"
     end
 
     # Returns a boolean indicating whether the colour provided is a valid named
@@ -164,7 +164,7 @@ module Vedeu
     #
     # @return [String]
     def numbered
-      [numbered_prefix, css_to_numbered, 'm'].join
+      "#{numbered_prefix}#{css_to_numbered}m"
     end
 
     # Returns a boolean indicated whether the colour is a valid HTML/CSS colour.

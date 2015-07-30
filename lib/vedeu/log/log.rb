@@ -106,14 +106,14 @@ module Vedeu
       #
       # @return [TrueClass]
       def log_stdout(type: :info, message:)
-        $stdout.puts [message_type(type), message_body(type, message)].join
+        $stdout.puts "#{message_type(type)}#{message_body(type, message)}"
       end
 
       # Write a message to STDERR.
       #
       # @return [TrueClass]
       def log_stderr(type: :info, message:)
-        $stderr.puts [message_type(type), message_body(type, message)].join
+        $stderr.puts "#{message_type(type)}#{message_body(type, message)}"
       end
 
       private
@@ -135,7 +135,7 @@ module Vedeu
       #   combined.
       # @return [String]
       def formatted_message(message)
-        [timestamp, message, "\n"].join
+        "#{timestamp}#{message}\n"
       end
 
       # Fetches the filename from the configuration.

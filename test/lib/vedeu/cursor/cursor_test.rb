@@ -113,7 +113,7 @@ module Vedeu
         it 'returns the escape sequence to position and set the visibility ' \
            'of the cursor and returns to that position after yielding the '  \
            'block' do
-          subject.must_equal("\e[8;19H\e[?25h\e[8;19H\e[?25h")
+          subject.must_equal("\e[8;19H\e[8;19H\e[?25h")
         end
       end
     end
