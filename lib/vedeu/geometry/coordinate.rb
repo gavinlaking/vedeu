@@ -151,9 +151,13 @@ module Vedeu
     #
     # @return [Fixnum]
     def yn_index
-      return 0 if y_indices.empty?
+      if height < 1
+        0
 
-      y_indices.last
+      else
+        height - 1
+
+      end
     end
 
     # Returns the maximum x index for an area.
@@ -164,31 +168,13 @@ module Vedeu
     #
     # @return [Fixnum]
     def xn_index
-      return 0 if x_indices.empty?
+      if width < 1
+        0
 
-      x_indices.last
-    end
+      else
+        width - 1
 
-    # Returns the same as #y_range, except as indices of an array.
-    #
-    # @example
-    #   # height = 4
-    #   y_indices # => [0, 1, 2, 3]
-    #
-    # @return [Array]
-    def y_indices
-      (0...height).to_a
-    end
-
-    # Returns the same as #x_range, except as indices of an array.
-    #
-    # @example
-    #   # width = 10
-    #   x_indices # => [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-    #
-    # @return [Array]
-    def x_indices
-      (0...width).to_a
+      end
     end
 
     # Returns an array with all coordinates from x to xn.
