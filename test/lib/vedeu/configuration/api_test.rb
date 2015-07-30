@@ -16,7 +16,6 @@ module Vedeu
       let(:described) { Vedeu::Config::API }
       let(:instance)  { described.new }
 
-      before { Configuration.reset! }
       after  { test_configuration }
 
       describe '#base_path' do

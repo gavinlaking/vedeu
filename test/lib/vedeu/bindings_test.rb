@@ -7,6 +7,15 @@ module Vedeu
     let(:described) { Vedeu::Bindings }
 
     describe '.setup!' do
+      before {
+        Vedeu::Bindings::Application.stubs(:setup!)
+        Vedeu::Bindings::Visibility.stubs(:setup!)
+        Vedeu::Bindings::Movement.stubs(:setup!)
+        Vedeu::Bindings::Menus.stubs(:setup!)
+        Vedeu::Bindings::DRB.stubs(:setup!)
+        Vedeu::Bindings::System.stubs(:setup!)
+      }
+
       subject { described.setup! }
 
       it {
