@@ -6,11 +6,7 @@ module Vedeu
 
     let(:described) { Vedeu::ApplicationController }
     let(:instance)  { described.new(params) }
-    let(:params)    {
-      {
-
-      }
-    }
+    let(:params)    { {} }
 
     describe '#initialize' do
       subject { instance }
@@ -22,9 +18,7 @@ module Vedeu
     describe '#redirect_to' do
       let(:controller) {}
       let(:action)     {}
-      let(:params)     {
-        {}
-      }
+      let(:params)     { {} }
 
       before { Vedeu.stubs(:trigger) }
 
@@ -34,6 +28,9 @@ module Vedeu
         Vedeu.expects(:trigger).with(:_goto_, controller, action, params)
         subject
       }
+
+      it { instance.must_respond_to(:redirect) }
+      it { instance.must_respond_to(:goto) }
     end
 
   end # ApplicationController
