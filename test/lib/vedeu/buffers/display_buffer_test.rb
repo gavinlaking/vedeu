@@ -54,16 +54,6 @@ module Vedeu
 
         it { proc { subject }.must_raise(InvalidSyntax) }
       end
-
-      context 'when the buffer is not already registered' do
-        # @todo Add more tests.
-        # it { skip }
-      end
-
-      context 'when the buffer is already registered' do
-        # @todo Add more tests.
-        # it { skip }
-      end
     end
 
   end # DisplayBuffer
