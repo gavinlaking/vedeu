@@ -118,6 +118,13 @@ module Vedeu
     # @return [Vedeu::Menus]
     def_delegators Vedeu::Menus, :menus
 
+    # Manipulate the internal flags.
+    #
+    # @!method ready?
+    # @!method ready!
+    # @return [Boolean]
+    def_delegators Vedeu::Flags, :ready?, :ready!
+
     # @example
     #   Vedeu.renderer
     #   Vedeu.renderers

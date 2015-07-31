@@ -140,7 +140,10 @@ module Vedeu
       #
       # @return [TrueClass]
       def initialize!
-        Vedeu.bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
+        Vedeu.bind(:_initialize_) do
+          Vedeu.ready!
+          Vedeu.trigger(:_refresh_)
+        end
       end
 
       # Will cause the triggering of the `:key` event; which you should define

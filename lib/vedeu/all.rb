@@ -16,6 +16,7 @@ require 'vedeu/configuration/configuration'
 
 require 'vedeu/terminal'
 require 'vedeu/runtime/main_loop'
+require 'vedeu/runtime/flags'
 require 'vedeu/runtime/application'
 
 require 'vedeu/models/toggleable'
