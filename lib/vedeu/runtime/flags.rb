@@ -1,5 +1,7 @@
 module Vedeu
 
+  # Home of various runtime flags which Vedeu uses.
+  #
   class Flags
 
     include Singleton

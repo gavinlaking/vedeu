@@ -10,7 +10,9 @@ module Vedeu
 
     # Returns a new instance of Vedeu::Escape.
     #
-    # @param value [String]
+    # @param attributes [String]
+    # @option attributes position [Vedeu::Position|Array<Fixnum>]
+    # @option attributes value [String]
     # @return [Vedeu::Escape]
     def initialize(attributes = {})
       @attributes = defaults.merge!(attributes)
@@ -49,6 +51,7 @@ module Vedeu
       ''
     end
 
+    # @return [String]
     def to_s
       "#{position}#{value}"
     end
@@ -56,6 +59,7 @@ module Vedeu
 
     private
 
+    # @return [Hash]
     def defaults
       {
         position: [1, 1],
