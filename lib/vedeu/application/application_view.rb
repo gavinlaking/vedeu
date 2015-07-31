@@ -9,18 +9,18 @@ module Vedeu
 
     # Renders the view.
     #
-    # @param args [void]
+    # @param params [Hash]
     # @return [void]
-    def self.render(*args)
-      new(args).render
+    def self.render(**params)
+      new(params).render
     end
 
     # Returns a new instance of Vedeu::ApplicationView.
     #
-    # @param args [void]
+    # @param params [Hash]
     # @return [Vedeu::ApplicationView]
-    def initialize(*args)
-      @args = args
+    def initialize(**params)
+      @params = params
     end
 
     # @raise [Vedeu::NotImplemented] Subclasses of this class must implement
@@ -33,9 +33,9 @@ module Vedeu
 
     protected
 
-    # @!attribute [r] args
-    # @return [void]
-    attr_reader :args
+    # @!attribute [rw] params
+    # @return [Hash]
+    attr_accessor :params
 
     private
 
