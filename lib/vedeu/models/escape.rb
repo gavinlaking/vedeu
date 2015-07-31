@@ -7,15 +7,17 @@ module Vedeu
     # @!attribute [r] value
     # @return [String]
     attr_reader :value
-    alias_method :to_s, :value
-    alias_method :to_str, :value
 
     # Returns a new instance of Vedeu::Escape.
     #
-    # @param value [String]
+    # @param attributes [String]
+    # @option attributes position [Vedeu::Position|Array<Fixnum>]
+    # @option attributes value [String]
     # @return [Vedeu::Escape]
-    def initialize(value)
-      @value = value
+    def initialize(attributes = {})
+      @attributes = defaults.merge!(attributes)
+
+      @attributes.each { |key, value| instance_variable_set("@#{key}", value) }
     end
 
     # @return [String]
@@ -41,12 +43,28 @@ module Vedeu
 
     # @return [String]
     def position
-      ''
+      Vedeu::Position.coerce(@position)
     end
 
     # @return [String]
     def style
       ''
+    end
+
+    # @return [String]
+    def to_s
+      "#{position}#{value}"
+    end
+    alias_method :to_str, :to_s
+
+    private
+
+    # @return [Hash]
+    def defaults
+      {
+        position: [1, 1],
+        value:    '',
+      }
     end
 
   end # Escape

@@ -10,20 +10,11 @@ module <%= object.app_name %>
     action :show
     # add more actions and implement or remove existing actions
 
-    def initialize
-    end
-
     def list
     end
 
-    def show(*args)
-      <%= object.app_name %>::<%= object.name_as_class %>View.render(*args)
-    end
-
-    private
-
-    def object
-      nil
+    def show
+      <%= object.app_name %>::<%= object.name_as_class %>View.render(params)
     end
 
   end

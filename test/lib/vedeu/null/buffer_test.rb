@@ -23,40 +23,22 @@ module Vedeu
         it { instance.instance_variable_get('@name').must_equal(_name) }
       end
 
-      describe '#clear' do
-        subject { instance.clear }
+      describe '#null' do
+        subject { instance.null }
 
         it { subject.must_be_instance_of(NilClass) }
-      end
 
-      describe '#hide' do
-        subject { instance.hide }
-
-        it { subject.must_be_instance_of(NilClass) }
+        it { instance.must_respond_to(:clear) }
+        it { instance.must_respond_to(:hide) }
+        it { instance.must_respond_to(:render) }
+        it { instance.must_respond_to(:show) }
+        it { instance.must_respond_to(:toggle) }
       end
 
       describe '#null?' do
         subject { instance.null? }
 
         it { subject.must_be_instance_of(TrueClass) }
-      end
-
-      describe '#render' do
-        subject { instance.render }
-
-        it { subject.must_be_instance_of(NilClass) }
-      end
-
-      describe '#show' do
-        subject { instance.show }
-
-        it { subject.must_be_instance_of(NilClass) }
-      end
-
-      describe '#toggle' do
-        subject { instance.toggle }
-
-        it { subject.must_be_instance_of(NilClass) }
       end
 
     end # Buffer

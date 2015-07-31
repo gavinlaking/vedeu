@@ -20,12 +20,12 @@ module Vedeu
         it { subject.must_be_instance_of(Vedeu::Interface) }
 
         context 'when the block is not given' do
-          subject { described.interface }
+          subject { described.interface('flourine') }
 
           it { proc { subject }.must_raise(InvalidSyntax) }
         end
 
-        context 'when the name was not set' do
+        context 'when the name is not given' do
           subject {
             described.interface('') do
               # ...

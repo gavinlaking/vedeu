@@ -91,6 +91,8 @@ require 'support/helpers/model_test_class'
 def test_configuration
   Vedeu::Configuration.reset!
 
+  Vedeu.ready!
+
   Vedeu.configure do
     colour_mode 16_777_216
     # adds ~40ms to test run speed

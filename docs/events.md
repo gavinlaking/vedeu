@@ -1,6 +1,10 @@
 # @title Vedeu Events
 # Vedeu Events
 
+## Application Events
+
+See {Vedeu::Bindings::Application}
+
 ## System Events
 
 See {Vedeu::Bindings::System}

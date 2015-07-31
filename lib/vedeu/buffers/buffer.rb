@@ -110,7 +110,7 @@ module Vedeu
     #
     # @return [void]
     def hide
-      Vedeu::Output.render(clear_buffer)
+      Vedeu::Output.render(clear_buffer) if Vedeu.ready?
     end
 
     # Return the content for this buffer.
@@ -126,7 +126,7 @@ module Vedeu
     #
     # @return [Array<Array<Array<Vedeu::Char>>>]
     def render
-      Vedeu::Output.render(buffer)
+      Vedeu::Output.render(buffer) if Vedeu.ready?
     end
 
     # Show this buffer.
@@ -143,7 +143,7 @@ module Vedeu
     #
     # @return [void]
     def show
-      Vedeu::Output.render(buffer)
+      Vedeu::Output.render(buffer) if Vedeu.ready?
     end
 
     private
@@ -160,7 +160,7 @@ module Vedeu
       elsif previous?
         [previous.render]
 
-      elsif visible?
+      elsif interface.visible?
         [interface.render]
 
       else
@@ -209,11 +209,6 @@ module Vedeu
     # @return [Vedeu::Interface]
     def interface
       Vedeu.interfaces.by_name(name)
-    end
-
-    # @see Vedeu::Interface#visible
-    def visible?
-      interface.visible?
     end
 
   end # Buffer

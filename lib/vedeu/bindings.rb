@@ -23,6 +23,8 @@ module Vedeu
       Vedeu::Bindings::Menus.setup!
       Vedeu::Bindings::DRB.setup!
       Vedeu::Bindings::System.setup!
+
+      true
     end
 
   end # Bindings

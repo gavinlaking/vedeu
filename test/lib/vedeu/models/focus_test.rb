@@ -9,6 +9,8 @@ module Vedeu
     before {
       Focus.reset
       Vedeu.interfaces.reset
+
+      Vedeu.stubs(:trigger)
     }
     after {
       Vedeu::Focus.reset
@@ -188,7 +190,6 @@ module Vedeu
 
     describe '#prev_item' do
       it 'the previous interface is focussed when the method is called' do
-
         Focus.add('thallium')
         Focus.add('lead')
         Focus.add('bismuth')

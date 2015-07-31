@@ -16,6 +16,7 @@ require 'vedeu/configuration/configuration'
 
 require 'vedeu/terminal'
 require 'vedeu/runtime/main_loop'
+require 'vedeu/runtime/flags'
 require 'vedeu/runtime/application'
 
 require 'vedeu/models/toggleable'
@@ -44,10 +45,8 @@ require 'vedeu/geometry/dimension'
 require 'vedeu/geometry/geometry'
 require 'vedeu/geometry/geometries'
 require 'vedeu/geometry/grid'
-require 'vedeu/geometry/index_position'
 require 'vedeu/geometry/position_index'
 require 'vedeu/geometry/position'
-require 'vedeu/geometry/position_validator'
 
 require 'vedeu/colours/escape_sequences'
 require 'vedeu/colours/colours'

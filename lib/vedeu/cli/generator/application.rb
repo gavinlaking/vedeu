@@ -36,6 +36,7 @@ module Vedeu
         copy_gitignore
         copy_license
         copy_readme
+        copy_ruby_version
         copy_application_bootstrapper
         copy_application_controller
         copy_application_helper
@@ -105,6 +106,11 @@ module Vedeu
       # @return [void]
       def copy_readme
         copy_file(source + '/README.md', "#{name}/README.md")
+      end
+
+      # @return [void]
+      def copy_ruby_version
+        copy_file(source + '/.ruby-version', "#{name}/.ruby-version")
       end
 
       # @return [void]

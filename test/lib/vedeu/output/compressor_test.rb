@@ -54,12 +54,12 @@ module Vedeu
           let(:output) {
             [
               Vedeu::Char.new(value: 'N'),
-              Vedeu::Escape.new("\e[?25l"),
+              Vedeu::Escape.new(value: "\e[?25l"),
               Vedeu::Char.new(value: 't'),
             ]
           }
           it 'converts the non-Vedeu::Char elements into String elements' do
-            subject.must_equal("N\e[?25lt")
+            subject.must_equal("N\e[1;1H\e[?25lt")
           end
         end
       end
@@ -102,12 +102,12 @@ module Vedeu
           let(:output) {
             [
               Vedeu::Char.new(value: 'N'),
-              Vedeu::Escape.new("\e[?25l"),
+              Vedeu::Escape.new(value: "\e[?25l"),
               Vedeu::Char.new(value: 't'),
             ]
           }
           it 'converts the non-Vedeu::Char elements into String elements' do
-            subject.must_equal("N\e[?25lt")
+            subject.must_equal("N\e[1;1H\e[?25lt")
           end
         end
       end

@@ -19,6 +19,7 @@ module Vedeu
     it { Vedeu.must_respond_to(:renders) }
     it { Vedeu.must_respond_to(:render) }
     it { Vedeu.must_respond_to(:views) }
+    it { Vedeu.must_respond_to(:view) }
     it { Vedeu.must_respond_to(:bind) }
     it { Vedeu.must_respond_to(:bind_alias) }
     it { Vedeu.must_respond_to(:bound?) }

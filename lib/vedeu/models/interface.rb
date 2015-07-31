@@ -124,15 +124,13 @@ module Vedeu
     def render
       return [] unless visible?
 
-      Vedeu.trigger(:_hide_cursor_, name)
-
       output = [
+        Vedeu.trigger(:_hide_cursor_, name),
         Vedeu::Clear::NamedInterface.render(name),
         Vedeu::Viewport.render(self),
         Vedeu.borders.by_name(name).render,
+        Vedeu.trigger(:_show_cursor_, name)
       ]
-
-      Vedeu.trigger(:_show_cursor_, name)
 
       output
     end
@@ -148,16 +146,6 @@ module Vedeu
       super
 
       Vedeu.buffers.by_name(name).show
-    end
-
-    # @return [Vedeu::Interface]
-    def store
-      super
-
-      store_new_buffer
-      store_focusable
-      store_cursor
-      store_group
     end
 
     private

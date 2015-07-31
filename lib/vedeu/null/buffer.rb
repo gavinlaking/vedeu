@@ -22,33 +22,19 @@ module Vedeu
       end
 
       # @return [NilClass]
-      def clear
+      def null(*)
         nil
       end
-
-      # @return [NilClass]
-      def hide
-        nil
-      end
+      alias_method :add, :null
+      alias_method :clear, :null
+      alias_method :hide, :null
+      alias_method :render, :null
+      alias_method :show, :null
+      alias_method :toggle, :null
 
       # @return [Boolean]
       def null?
         true
-      end
-
-      # @return [NilClass]
-      def render
-        nil
-      end
-
-      # @return [NilClass]
-      def show
-        nil
-      end
-
-      # @return [NilClass]
-      def toggle
-        nil
       end
 
     end # Buffer

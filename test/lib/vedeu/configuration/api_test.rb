@@ -16,7 +16,6 @@ module Vedeu
       let(:described) { Vedeu::Config::API }
       let(:instance)  { described.new }
 
-      before { Configuration.reset! }
       after  { test_configuration }
 
       describe '#base_path' do
@@ -225,6 +224,13 @@ module Vedeu
         it 'sets the options to the desired value' do
           configuration = Vedeu.configure { log('/tmp/vedeu_api_test.log') }
           configuration.log.must_equal('/tmp/vedeu_api_test.log')
+        end
+      end
+
+      describe '#log_only' do
+        it 'sets the options to the desired value' do
+          configuration = Vedeu.configure { log_only :debug, :store }
+          configuration.log_only.must_equal([:debug, :store])
         end
       end
 

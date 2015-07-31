@@ -72,7 +72,7 @@ module Vedeu
       }
 
       context 'when there is content' do
-        let(:output) { Vedeu::Escape.new(Vedeu::Esc.hide_cursor) }
+        let(:output) { Vedeu::Escape.new(value: Vedeu::Esc.hide_cursor) }
 
         it { subject.must_be_instance_of(Vedeu::Escape) }
       end

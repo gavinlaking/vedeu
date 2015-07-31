@@ -18,7 +18,6 @@ module Vedeu
       let(:instance)  { described.new(args) }
       let(:args)      { [] }
 
-      before { Configuration.reset! }
       after  { test_configuration }
 
       describe '#initialize' do

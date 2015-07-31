@@ -114,9 +114,9 @@ module Vedeu
     # @param dy [Fixnum] Move up (-1), or down (1), or no action (0).
     # @param dx [Fixnum] Move left (-1), or right (1), or no action (0).
     # @return [Vedeu::Move]
-    def initialize(entity, name, dy = 0, dx = 0)
+    def initialize(entity, name = nil, dy = 0, dx = 0)
       @entity = entity
-      @name   = name
+      @name   = name ? name : Vedeu.focus
       @dy     = dy
       @dx     = dx
     end

@@ -158,6 +158,11 @@ module Vedeu
         log != nil
       end
 
+      # @return [Array<Symbol>]
+      def log_only
+        instance.options[:log_only] || []
+      end
+
       # Returns whether the application will run through its main loop once or
       # not. Default is false; meaning the application will loop forever or
       # until terminated by the user.
@@ -281,6 +286,7 @@ module Vedeu
         drb_width:     80,
         interactive:   true,
         log:           nil,
+        log_only:      [],
         once:          false,
         renderers:     [Vedeu::Renderers::Terminal.new],
         root:          nil,

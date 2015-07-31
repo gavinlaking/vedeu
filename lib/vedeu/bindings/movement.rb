@@ -35,11 +35,11 @@ module Vedeu
       # @see Vedeu::Move
       def down!
         Vedeu.bind(:_cursor_down_) do |name|
-          Vedeu::Move.by_name(Vedeu::Cursor, :down, name)
+          Vedeu::Move.down(Vedeu::Cursor, name)
         end
 
         Vedeu.bind(:_view_down_) do |name|
-          Vedeu::Move.by_name(Vedeu::Geometry, :down, name)
+          Vedeu::Move.down(Vedeu::Geometry, name)
         end
 
         Vedeu.bind_alias(:_geometry_down_, :_view_down_)
@@ -56,11 +56,11 @@ module Vedeu
       # @see Vedeu::Move
       def left!
         Vedeu.bind(:_cursor_left_) do |name|
-          Vedeu::Move.by_name(Vedeu::Cursor, :left, name)
+          Vedeu::Move.left(Vedeu::Cursor, name)
         end
 
         Vedeu.bind(:_view_left_) do |name|
-          Vedeu::Move.by_name(Vedeu::Geometry, :left, name)
+          Vedeu::Move.left(Vedeu::Geometry, name)
         end
 
         Vedeu.bind_alias(:_geometry_left_, :_view_left_)
@@ -77,7 +77,7 @@ module Vedeu
       # @see Vedeu::Move
       def cursor_origin!
         Vedeu.bind(:_cursor_origin_) do |name|
-          Vedeu::Move.by_name(Vedeu::Cursor, :origin, name)
+          Vedeu::Move.origin(Vedeu::Cursor, name)
         end
 
         Vedeu.bind_alias(:_cursor_reset_, :_cursor_origin_)
@@ -122,11 +122,11 @@ module Vedeu
       # @see Vedeu::Move
       def right!
         Vedeu.bind(:_cursor_right_) do |name|
-          Vedeu::Move.by_name(Vedeu::Cursor, :right, name)
+          Vedeu::Move.right(Vedeu::Cursor, name)
         end
 
         Vedeu.bind(:_view_right_) do |name|
-          Vedeu::Move.by_name(Vedeu::Geometry, :right, name)
+          Vedeu::Move.right(Vedeu::Geometry, name)
         end
 
         Vedeu.bind_alias(:_geometry_right_, :_view_right_)
@@ -143,11 +143,11 @@ module Vedeu
       # @see Vedeu::Move
       def up!
         Vedeu.bind(:_cursor_up_) do |name|
-          Vedeu::Move.by_name(Vedeu::Cursor, :up, name)
+          Vedeu::Move.up(Vedeu::Cursor, name)
         end
 
         Vedeu.bind(:_view_up_) do |name|
-          Vedeu::Move.by_name(Vedeu::Geometry, :up, name)
+          Vedeu::Move.up(Vedeu::Geometry, name)
         end
 
         Vedeu.bind_alias(:_geometry_up_, :_view_up_)
