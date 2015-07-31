@@ -30,7 +30,7 @@ module Vedeu
         # Vedeu::Renderers::HTML.to_file(Vedeu::VirtualBuffer.retrieve)
       end
 
-      Vedeu.renderers.render(output)
+      Vedeu.renderers.render(output) if Vedeu.ready?
     end
 
     protected

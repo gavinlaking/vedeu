@@ -110,7 +110,7 @@ module Vedeu
     #
     # @return [void]
     def hide
-      Vedeu::Output.render(clear_buffer) if Vedeu.ready?
+      Vedeu::Output.render(clear_buffer)
     end
 
     # Return the content for this buffer.
@@ -126,7 +126,7 @@ module Vedeu
     #
     # @return [Array<Array<Array<Vedeu::Char>>>]
     def render
-      Vedeu::Output.render(buffer) if Vedeu.ready?
+      Vedeu::Output.render(buffer)
     end
 
     # Show this buffer.
@@ -143,7 +143,7 @@ module Vedeu
     #
     # @return [void]
     def show
-      Vedeu::Output.render(buffer) if Vedeu.ready?
+      Vedeu::Output.render(buffer)
     end
 
     private

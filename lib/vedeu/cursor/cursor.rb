@@ -104,7 +104,7 @@ module Vedeu
     def hide
       super
 
-      Vedeu::Output.render(visibility) if Vedeu.ready?
+      Vedeu::Output.render(visibility)
     end
 
     # Return the position of this cursor.
@@ -124,7 +124,7 @@ module Vedeu
     def show
       super
 
-      Vedeu::Output.render(visibility) if Vedeu.ready?
+      Vedeu::Output.render(visibility)
     end
 
     # @return [Fixnum] The column/character coordinate.
