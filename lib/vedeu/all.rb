@@ -144,6 +144,7 @@ require 'vedeu/input/key'
 require 'vedeu/input/input'
 require 'vedeu/input/keymap'
 require 'vedeu/input/keymaps'
+require 'vedeu/input/command_line'
 
 require 'vedeu/borders/render_border'
 require 'vedeu/borders/border'
