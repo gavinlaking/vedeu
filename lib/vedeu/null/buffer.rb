@@ -22,9 +22,10 @@ module Vedeu
       end
 
       # @return [NilClass]
-      def null
+      def null(*)
         nil
       end
+      alias_method :add, :null
       alias_method :clear, :null
       alias_method :hide, :null
       alias_method :render, :null
