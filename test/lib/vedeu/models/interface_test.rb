@@ -76,12 +76,14 @@ module Vedeu
     end
 
     describe '#hide' do
-      before { Vedeu::Output.stubs(:render) }
+      let(:buffer) { Vedeu::Buffer.new }
+
+      before { Vedeu.buffers.stubs(:by_name).returns(buffer) }
 
       subject { instance.hide }
 
       it {
-        Vedeu::Output.expects(:render)
+        Vedeu.buffers.by_name('hydrogen').expects(:hide)
         subject
       }
     end
@@ -160,7 +162,7 @@ module Vedeu
           subject
         }
 
-        it { subject.must_equal([:clear, :view, :border, nil]) }
+        it { subject.must_equal([nil, :clear, :view, :border, nil]) }
       end
 
       context 'when the interface is not visible' do
@@ -171,12 +173,14 @@ module Vedeu
     end
 
     describe '#show' do
-      before { Vedeu::Output.stubs(:render) }
+      let(:buffer) { Vedeu::Buffer.new }
+
+      before { Vedeu.buffers.stubs(:by_name).returns(buffer) }
 
       subject { instance.show }
 
       it {
-        Vedeu::Output.expects(:render)
+        Vedeu.buffers.by_name('hydrogen').expects(:show)
         subject
       }
     end
