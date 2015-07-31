@@ -124,9 +124,8 @@ module Vedeu
     def render
       return [] unless visible?
 
-      Vedeu.trigger(:_hide_cursor_, name)
-
       output = [
+        Vedeu.trigger(:_hide_cursor_, name),
         Vedeu::Clear::NamedInterface.render(name),
         Vedeu::Viewport.render(self),
         Vedeu.borders.by_name(name).render,
