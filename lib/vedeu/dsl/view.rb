@@ -81,16 +81,13 @@ module Vedeu
 
       class << self
 
+        include Vedeu::Common
+
         # Register an interface by name which will display output from a event
         # or command. This provides the means for you to define your the views
         # of your application without their content.
         #
         #   Vedeu.interface 'my_interface' do
-        #     # ... some code
-        #   end
-        #
-        #   Vedeu.interface do
-        #     name 'interfaces_must_have_a_name'
         #     # ... some code
         #   end
         #
@@ -101,8 +98,13 @@ module Vedeu
         # @raise [Vedeu::InvalidSyntax] The required block was not given.
         # @return [Vedeu::Interface]
         # @todo More documentation required.
-        def interface(name = '', &block)
+        def interface(name, &block)
           fail Vedeu::InvalidSyntax, 'block not given' unless block_given?
+          fail Vedeu::MissingRequired, 'name not given' unless present?(name)
+
+          add_buffers!(name)
+          add_cursor!(name)
+          add_focusable!(name)
 
           attributes = { client: client(&block), name: name }
 
@@ -198,6 +200,29 @@ module Vedeu
         alias_method :views, :view
 
         private
+
+        # Registers a set of buffers for the interface unless already registered,
+        # and also adds interface's name to list of focussable interfaces.
+        #
+        # @see Vedeu::Buffer
+        # @return [void]
+        def add_buffers!(name)
+          Vedeu::Buffer.new(name: name).store
+        end
+
+        # Registers a new cursor for the interface unless already registered.
+        #
+        # @return [void]
+        def add_cursor!(name)
+          Vedeu::Cursor.new(name: name).store
+        end
+
+        # Registers interface name in focus list unless already registered.
+        #
+        # @return [void]
+        def add_focusable!(name)
+          Vedeu.focusable.add(name) unless Vedeu.focusable.registered?(name)
+        end
 
         # Returns the client object which called the DSL method.
         #
