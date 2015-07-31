@@ -113,7 +113,7 @@ module Vedeu
 
     # @return [Class]
     def root
-      Object.const_get(Vedeu::Configuration.root) if Vedeu::Configuration.root
+      Vedeu::Configuration.root if Vedeu::Configuration.root
     end
 
   end # Bootstrap
