@@ -135,14 +135,11 @@ module Vedeu
       # Vedeu triggers this event when it is ready to enter the main loop.
       # Client applications can listen for this event and perform some
       # action(s), like render the first screen, interface or make a sound.
-      # When Vedeu triggers this event, the :_refresh_ event is also triggered
-      # automatically.
       #
       # @return [TrueClass]
       def initialize!
         Vedeu.bind(:_initialize_) do
           Vedeu.ready!
-          Vedeu.trigger(:_refresh_)
         end
       end
 
