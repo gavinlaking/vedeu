@@ -148,16 +148,6 @@ module Vedeu
       Vedeu.buffers.by_name(name).show
     end
 
-    # @return [Vedeu::Interface]
-    def store
-      super
-
-      store_new_buffer
-      store_focusable
-      store_cursor
-      store_group
-    end
-
     private
 
     # The default values for a new instance of this class.
