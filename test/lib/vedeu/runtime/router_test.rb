@@ -2,12 +2,12 @@ require 'test_helper'
 
 module Vedeu
 
-  class SomeController
+  class SomeController < Vedeu::ApplicationController
 
-    def some_action(customer_id:, product_id:)
+    def some_action
       {
-        customer: { name: 'Gavin Laking', customer_id: customer_id },
-        basket:   { product_ids: [product_id] }
+        customer: { name: 'Gavin Laking', customer_id: params[:customer_id] },
+        basket:   { product_ids: [params[:product_id]] }
       }
     end
 

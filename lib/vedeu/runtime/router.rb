@@ -131,8 +131,8 @@ module Vedeu
     # @param args [Symbol]
     # @return [void]
     def route(controller, action, **args)
-      klass = Object.const_get(klass_for(controller)).new
-      klass.send(action, args)
+      klass = Object.const_get(klass_for(controller)).new(**args)
+      klass.send(action)
     end
 
     # Fetch the class for the controller by name.
