@@ -81,6 +81,22 @@ module Vedeu
       end
     end
 
+    describe '.log_only' do
+      context 'when log_only is not configured' do
+        it { described.log_only.must_equal([]) }
+      end
+
+      context 'when log_only is configured' do
+        before {
+          Vedeu.configure do
+            log_only :timer, :event
+          end
+        }
+
+        it { described.log_only.must_equal([:timer, :event]) }
+      end
+    end
+
     describe '.once?' do
       it { described.must_respond_to(:once) }
 

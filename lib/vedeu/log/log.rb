@@ -97,7 +97,10 @@ module Vedeu
       def log(message:, force: false, type: :info)
         output = log_entry(type, message)
 
-        logger.debug(output) if enabled? || force
+        if (enabled? || force) && (Vedeu::Configuration.log_only.empty? ||
+                   Vedeu::Configuration.log_only.include?(type))
+          logger.debug(output)
+        end
 
         output
       end
@@ -135,7 +138,7 @@ module Vedeu
       #   combined.
       # @return [String]
       def formatted_message(message)
-        "#{timestamp}#{message}\n"
+        "#{timestamp}#{message}\n" if message
       end
 
       # Returns the message:
