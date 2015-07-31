@@ -160,7 +160,7 @@ module Vedeu
       elsif previous?
         [previous.render]
 
-      elsif visible?
+      elsif interface.visible?
         [interface.render]
 
       else
@@ -209,11 +209,6 @@ module Vedeu
     # @return [Vedeu::Interface]
     def interface
       Vedeu.interfaces.by_name(name)
-    end
-
-    # @see Vedeu::Interface#visible
-    def visible?
-      interface.visible?
     end
 
   end # Buffer
