@@ -172,12 +172,11 @@ module Vedeu
         #   Typically includes `view` with associated sub-directives.
         # @raise [Vedeu::InvalidSyntax] The required block was not given.
         # @return [Array<View>]
-        def view(&block)
+        def views(&block)
           fail Vedeu::InvalidSyntax, 'block not given' unless block_given?
 
           store(:store_deferred, &block)
         end
-        alias_method :views, :view
 
         private
 

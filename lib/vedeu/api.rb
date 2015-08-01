@@ -102,9 +102,7 @@ module Vedeu
     #   @see Vedeu::DSL::View.renders
     # @!method views
     #   @see Vedeu::DSL::View.views
-    # @!method view
-    #   @see Vedeu::DSL::View.view
-    def_delegators Vedeu::DSL::View, :renders, :render, :views, :view
+    def_delegators Vedeu::DSL::View, :renders, :render, :views
 
     # @example
     #   Vedeu.bind(name) { }
