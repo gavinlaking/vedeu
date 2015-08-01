@@ -86,12 +86,16 @@ module Vedeu
 
     # @example
     #   Vedeu.interface
+    #
+    # @!method interface
+    #   @see Vedeu::DSL::View.interface
+    def_delegators Vedeu::DSL::Interface, :interface
+
+    # @example
     #   Vedeu.renders
     #   Vedeu.render
     #   Vedeu.views
     #
-    # @!method interface
-    #   @see Vedeu::DSL::View.interface
     # @!method render
     #   @see Vedeu::DSL::View.render
     # @!method renders
@@ -100,8 +104,7 @@ module Vedeu
     #   @see Vedeu::DSL::View.views
     # @!method view
     #   @see Vedeu::DSL::View.view
-    def_delegators Vedeu::DSL::View, :interface, :renders, :render, :views,
-                                     :view
+    def_delegators Vedeu::DSL::View, :renders, :render, :views, :view
 
     # @example
     #   Vedeu.bind(name) { }

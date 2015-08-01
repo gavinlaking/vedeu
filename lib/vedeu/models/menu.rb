@@ -54,7 +54,7 @@ module Vedeu
     def self.menu(name = '', &block)
       fail Vedeu::InvalidSyntax, 'block not given' unless block_given?
 
-      build({ name: name }, &block).store
+      build(name: name, &block).store
     end
 
     # Returns a new instance of Vedeu::Menu.

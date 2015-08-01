@@ -25,7 +25,7 @@ module Vedeu
       @options = defaults.merge!(options)
     end
 
-    # @return [Vedeu::Lines]
+    # @return [Vedeu::Views::Lines]
     def content
       case mode
       when :prune then to_line_objects(prune)
@@ -94,16 +94,16 @@ module Vedeu
     private
 
     # @param text_as_lines [Array<String>]
-    # @return [Vedeu::Lines]
+    # @return [Vedeu::Views::Lines]
     def to_line_objects(text_as_lines)
       line_objects = Array(text_as_lines).map do |text_line|
-        stream        = Vedeu::Stream.new(value: text_line)
-        line          = Vedeu::Line.new
+        stream        = Vedeu::Views::Stream.new(value: text_line)
+        line          = Vedeu::Views::Line.new
         stream.parent = line
         line.add(stream)
         line
       end
-      Vedeu::Lines.new(line_objects)
+      Vedeu::Views::Lines.new(line_objects)
     end
 
     # @return [Array<String>]

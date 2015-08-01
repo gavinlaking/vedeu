@@ -1,12 +1,12 @@
 module Vedeu
 
-  # During the conversion of a Vedeu::Char object into a string of escape
+  # During the conversion of a Vedeu::Views::Char object into a string of escape
   # sequences, this class removes multiple occurences of the same escape
   # sequence, resulting in a smaller payload being sent to the renderer.
   #
   class Compressor
 
-    # @param output [Array<Array<Vedeu::Char>>]
+    # @param output [Array<Array<Vedeu::Views::Char>>]
     # @return [String]
     def self.render(output)
       new(output).render
@@ -14,7 +14,7 @@ module Vedeu
 
     # Returns a new instance of Vedeu::Compressor.
     #
-    # @param output [Array<Array<Vedeu::Char>>]
+    # @param output [Array<Array<Vedeu::Views::Char>>]
     # @return [Vedeu::Compressor]
     def initialize(output)
       @output = output
@@ -38,7 +38,7 @@ module Vedeu
     protected
 
     # @!attribute [r] output
-    # @return [Array<Array<Vedeu::Char>>]
+    # @return [Array<Array<Vedeu::Views::Char>>]
     attr_reader :output
 
     private
@@ -62,7 +62,7 @@ module Vedeu
       out
     end
 
-    # @param char [Vedeu::Char]
+    # @param char [Vedeu::Views::Char]
     # @return [String]
     def colour_for(char)
       return '' if char.colour == @colour
@@ -71,7 +71,7 @@ module Vedeu
       @colour.to_s
     end
 
-    # @param char [Vedeu::Char]
+    # @param char [Vedeu::Views::Char]
     # @return [String]
     def style_for(char)
       return '' if char.style == @style

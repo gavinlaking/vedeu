@@ -6,7 +6,7 @@ module Vedeu
 
     let(:described)  { Vedeu::HTMLChar }
     let(:instance)   { described.new(char, options) }
-    let(:char)       { Vedeu::Char.new(attributes) }
+    let(:char)       { Vedeu::Views::Char.new(attributes) }
     let(:options)    {
       {
         start_tag: '<td',
@@ -23,7 +23,7 @@ module Vedeu
     }
     let(:border) {}
     let(:colour) {}
-    let(:parent) { Vedeu::Line.new(colour: parent_colour) }
+    let(:parent) { Vedeu::Views::Line.new(colour: parent_colour) }
     let(:parent_colour) {}
     let(:_value) {}
 

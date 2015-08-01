@@ -24,7 +24,7 @@ module Vedeu
           y  1
           yn 3
         end
-        Vedeu::Cursor.new({ name: 'refresh_cursor', ox: ox, oy: oy }).store
+        Vedeu::Cursor.new(name: 'refresh_cursor', ox: ox, oy: oy).store
 
         Vedeu::Terminal.stubs(:output).returns(expected)
       }

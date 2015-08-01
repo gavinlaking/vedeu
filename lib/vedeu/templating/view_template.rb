@@ -9,12 +9,12 @@ module Vedeu
       include Vedeu::Common
       include Vedeu::Templating::Helpers
 
-      # @return [Vedeu::Lines]
+      # @return [Vedeu::Views::Lines]
       def parse
-        lines_collection = Vedeu::Lines.new
+        lines_collection = Vedeu::Views::Lines.new
 
         lines.each do |line|
-          line_object = Vedeu::Line.new
+          line_object = Vedeu::Views::Line.new
 
           streams_for(line).each do |stream|
             next unless present?(stream)
@@ -23,9 +23,9 @@ module Vedeu
                              Vedeu::Templating::Decoder.process(stream)
 
                            else
-                             Vedeu::Stream.new(colour: default_colour,
-                                               style:  default_style,
-                                               value:  stream)
+                             Vedeu::Views::Stream.new(colour: default_colour,
+                                                      style:  default_style,
+                                                      value:  stream)
 
                            end
           end

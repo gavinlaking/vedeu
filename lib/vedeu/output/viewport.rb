@@ -10,7 +10,7 @@ module Vedeu
 
     extend Forwardable
 
-    def_delegators :interface,
+    def_delegators :view,
                    :lines,
                    :lines?,
                    :name,
@@ -24,28 +24,21 @@ module Vedeu
                    :ox,
                    :oy
 
-    # @param interface [Vedeu::Interface]
-    # @return [Array<Array<Vedeu::Char>>]
-    def self.render(interface)
-      if interface.visible?
-        new(interface).render
-
-      else
-        []
-
-      end
+    # @param view [Vedeu::Views::View]
+    # @return [Array<Array<Vedeu::Views::Char>>]
+    def self.render(view)
+      new(view).render
     end
 
     # Returns an instance of Vedeu::Viewport.
     #
-    # @param interface [Vedeu::Interface] An instance of interface.
-    # @return [Viewport]
-    def initialize(interface)
-      @interface = interface
+    # @param view [Vedeu::Views::View]
+    # @return [Vedeu::Viewport]
+    def initialize(view)
+      @view = view
     end
 
-    # Returns the interface with border (when enabled) and the content for the
-    # interface.
+    # Returns the content for the view.
     #
     # @return [Array<Array<String>>]
     def render
@@ -75,13 +68,13 @@ module Vedeu
 
     protected
 
-    # @!attribute [r] interface
-    # @return [Vedeu::Interface]
-    attr_reader :interface
+    # @!attribute [r] view
+    # @return [Vedeu::Views::View]
+    attr_reader :view
 
     private
 
-    # Returns the visible content for the interface.
+    # Returns the visible content for the view.
     #
     # @note If there are no lines of content, we return an empty array. If there
     #   are no more columns of content we return a space enclosed in an array;
@@ -148,7 +141,7 @@ module Vedeu
       end
     end
 
-    # Return the border associated with the interface we are drawing.
+    # Return the border associated with the interface/view we are drawing.
     #
     # @return (see Vedeu::Borders#by_name)
     def border
@@ -165,7 +158,7 @@ module Vedeu
       @by ||= border.by
     end
 
-    # Fetch the cursor associated with the interface we are drawing.
+    # Fetch the cursor associated with the interface/view we are drawing.
     #
     # @return (see Vedeu::Cursors#by_name)
     def cursor

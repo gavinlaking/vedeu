@@ -153,7 +153,7 @@ module Vedeu
       (by..byn).size
     end
 
-    # @return [Array<Array<Vedeu::Char>>]
+    # @return [Array<Array<Vedeu::Views::Char>>]
     def render
       Vedeu::RenderBorder.with(self)
     end

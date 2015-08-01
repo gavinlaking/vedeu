@@ -1,18 +1,13 @@
 module Vedeu
 
   # An Interface represents a portion of the terminal defined by
-  # {Vedeu::Geometry}. It is a container for {Vedeu::Line} and {Vedeu::Stream}
-  # objects.
+  # {Vedeu::Geometry}.
   #
   class Interface
 
     include Vedeu::Model
     include Vedeu::Presentation
-    include Vedeu::DisplayBuffer
     include Vedeu::Toggleable
-
-    collection Vedeu::Lines
-    member     Vedeu::Line
 
     # @!attribute [rw] client
     # @return [Fixnum|Float]
@@ -31,7 +26,7 @@ module Vedeu
     attr_accessor :name
 
     # @!attribute [rw] parent
-    # @return [Vedeu::Composition]
+    # @return [Vedeu::Views::Composition]
     attr_accessor :parent
 
     # @!attribute [rw] zindex
@@ -42,10 +37,6 @@ module Vedeu
     # @return [Hash]
     attr_reader :attributes
 
-    # @!attribute [w] lines
-    # @return [Array<Vedeu::Line>]
-    attr_writer :lines
-
     # Return a new instance of Vedeu::Interface.
     #
     # @param attributes [Hash]
@@ -53,9 +44,8 @@ module Vedeu
     # @option attributes colour [Vedeu::Colour]
     # @option attributes delay [Float]
     # @option attributes group [String]
-    # @option attributes lines [Vedeu::Lines]
     # @option attributes name [String]
-    # @option attributes parent [Vedeu::Composition]
+    # @option attributes parent [Vedeu::Views::Composition]
     # @option attributes repository [Vedeu::Interfaces]
     # @option attributes style [Vedeu::Style]
     # @option attributes visible [Boolean]
@@ -66,13 +56,6 @@ module Vedeu
 
       @attributes.each { |key, value| instance_variable_set("@#{key}", value) }
     end
-
-    # @param child [Vedeu::Line]
-    # @return [void]
-    def add(child)
-      @lines = lines.add(child)
-    end
-    alias_method :<<, :add
 
     # Hide a named interface buffer, or without a name, the buffer of the
     # currently focussed interface.
@@ -97,42 +80,6 @@ module Vedeu
       "visible: '#{visible}', " \
       "zindex: '#{zindex}'"     \
       '>'
-    end
-
-    # @return [Vedeu::Lines]
-    def lines
-      collection.coerce(@lines, self)
-    end
-    alias_method :value, :lines
-
-    # Returns a boolean indicating whether the interface has content.
-    #
-    # @return [Boolean]
-    def lines?
-      lines.any?
-    end
-
-    # Returns a boolean indicating whether the interface belongs to a
-    # group.
-    #
-    # @return [Boolean]
-    def group?
-      !group.nil? && !group.empty?
-    end
-
-    # @return [Array<Array<Vedeu::Char>>]
-    def render
-      return [] unless visible?
-
-      output = [
-        Vedeu.trigger(:_hide_cursor_, name),
-        Vedeu::Clear::NamedInterface.render(name),
-        Vedeu::Viewport.render(self),
-        Vedeu.borders.by_name(name).render,
-        Vedeu.trigger(:_show_cursor_, name)
-      ]
-
-      output
     end
 
     # Show the named interface buffer, or without a name, the buffer of the
@@ -160,7 +107,6 @@ module Vedeu
                                          foreground: :default),
         delay:      0.0,
         group:      '',
-        lines:      [],
         name:       '',
         parent:     nil,
         repository: Vedeu.interfaces,

@@ -8,7 +8,7 @@ module Vedeu
 
       let(:described) { Vedeu::DSL::Composition }
       let(:instance)  { described.new(model) }
-      let(:model)     { Vedeu::Composition.new }
+      let(:model)     { Vedeu::Views::Composition.new }
       let(:client)    {}
 
       describe '#initialize' do
@@ -24,11 +24,11 @@ module Vedeu
           end
         }
 
-        it { subject.must_be_instance_of(Vedeu::InterfaceCollection) }
-        it { subject.first.must_be_instance_of(Vedeu::Interface) }
+        it { subject.must_be_instance_of(Vedeu::Views::ViewCollection) }
+        it { subject.first.must_be_instance_of(Vedeu::Views::View) }
 
         context 'when the block is not given' do
-          it { proc { instance.view }.must_raise(InvalidSyntax) }
+          it { proc { instance.view }.must_raise(Vedeu::InvalidSyntax) }
         end
       end
 
@@ -44,13 +44,13 @@ module Vedeu
         context 'when the name of the view is not given' do
           let(:filename) { 'my_interface.erb' }
 
-          it { proc { subject }.must_raise(MissingRequired) }
+          it { proc { subject }.must_raise(Vedeu::MissingRequired) }
         end
 
         context 'when the filename of the template is not given' do
           let(:_name) { 'my_interface' }
 
-          it { proc { subject }.must_raise(MissingRequired) }
+          it { proc { subject }.must_raise(Vedeu::MissingRequired) }
         end
 
         context 'when the name and filename are given' do
@@ -62,7 +62,7 @@ module Vedeu
               with(object, filename, options).returns(content)
           }
 
-          it { subject.must_be_instance_of(Vedeu::InterfaceCollection) }
+          it { subject.must_be_instance_of(Vedeu::Views::ViewCollection) }
         end
       end
 

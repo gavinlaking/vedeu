@@ -14,7 +14,7 @@ module Vedeu
         @options = options || {}
       end
 
-      # @param output [Array<Array<Vedeu::Char>>]
+      # @param output [Array<Array<Vedeu::Views::Char>>]
       # @return [String]
       def render(output)
         super(parsed(output))
@@ -22,7 +22,7 @@ module Vedeu
 
       private
 
-      # @param output [Array<Array<Vedeu::Char>>]
+      # @param output [Array<Array<Vedeu::Views::Char>>]
       # @return [String]
       def parsed(output)
         return '' if output.nil? || output.empty?
@@ -30,13 +30,13 @@ module Vedeu
         ::JSON.pretty_generate(as_hash(output))
       end
 
-      # @param output [Array<Array<Vedeu::Char>>]
+      # @param output [Array<Array<Vedeu::Views::Char>>]
       # @return [Array]
       def as_hash(output)
         sorted(output).map(&:to_hash)
       end
 
-      # @param output [Array<Array<Vedeu::Char>>]
+      # @param output [Array<Array<Vedeu::Views::Char>>]
       # @return [Array]
       def sorted(output)
         Array(output).flatten.sort { |a, b| a.position <=> b.position }

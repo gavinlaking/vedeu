@@ -3,14 +3,15 @@ module Vedeu
   # Store and retrieve {Vedeu::VirtualTerminal} objects.
   #
   # Each {Vedeu::VirtualTerminal} object is a copy of the current terminal
-  # including content but not as String objects but {Vedeu::Char} objects. Using
-  # {Vedeu::Char} objects means that we can store the data used to make up the
-  # displayed character, complete with its colour, position and style.
+  # including content but not as String objects but {Vedeu::Views::Char}
+  # objects. Using {Vedeu::Views::Char} objects means that we can store the data
+  # used to make up the displayed character, complete with its colour, position
+  # and style.
   #
-  # Once a {Vedeu::Char} has been converted to a String, it is tricky to
+  # Once a {Vedeu::Views::Char} has been converted to a String, it is tricky to
   # separate the escape sequences and string data. By deferring this conversion
-  # we can display the {Vedeu::Char} in multiple ways (e.g. HTML) or in multiple
-  # formats (e.g. JSON), and render/use that in an appropriate way.
+  # we can display the {Vedeu::Views::Char} in multiple ways (e.g. HTML) or in
+  # multiple formats (e.g. JSON), and render/use that in an appropriate way.
   #
   module VirtualBuffer
 
@@ -18,7 +19,7 @@ module Vedeu
 
     # Fetch the oldest stored virtual buffer first.
     #
-    # @return [Array<Array<Vedeu::Char>>|NilClass]
+    # @return [Array<Array<Vedeu::Views::Char>>|NilClass]
     def retrieve
       Vedeu.log(type: :drb, message: 'Retrieving output')
 
@@ -27,7 +28,7 @@ module Vedeu
 
     # Store a new virtual buffer.
     #
-    # @return [Array<Array<Vedeu::Char>>]
+    # @return [Array<Array<Vedeu::Views::Char>>]
     def store(data)
       Vedeu.log(type: :drb, message: 'Storing output')
 

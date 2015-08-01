@@ -46,7 +46,7 @@ module Vedeu
       def self.border(name, &block)
         fail Vedeu::InvalidSyntax, 'block not given' unless block_given?
 
-        Vedeu::Border.build({ enabled: true, name: name }, &block).store
+        Vedeu::Border.build(enabled: true, name: name, &block).store
       end
 
       # Returns an instance of DSL::Border.

@@ -54,7 +54,7 @@ module Vedeu
       def self.keymap(name, &block)
         Vedeu::Keymap.new(name: name).store
 
-        Vedeu::Keymap.build({ name: name }, &block).store
+        Vedeu::Keymap.build(name: name, &block).store
       end
 
       # Returns an instance of DSL::Keymap.

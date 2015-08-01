@@ -9,8 +9,77 @@ module Vedeu
       include Vedeu::Common
       include Vedeu::DSL
       include Vedeu::DSL::Presentation
+      include Vedeu::DSL::Shared
       include Vedeu::DSL::Text
       include Vedeu::DSL::Use
+
+      class << self
+
+        include Vedeu::Common
+
+        # Register an interface by name which will display output from a event
+        # or command. This provides the means for you to define your the views
+        # of your application without their content.
+        #
+        #   Vedeu.interface 'my_interface' do
+        #     # ... some code
+        #   end
+        #
+        # @param name [String] The name of the interface. Used to reference the
+        #   interface throughout your application's execution lifetime.
+        # @param block [Proc] A set of attributes which define the features of
+        #   the interface.
+        # @raise [Vedeu::InvalidSyntax] The required block was not given.
+        # @return [Vedeu::Interface]
+        # @todo More documentation required.
+        def interface(name, &block)
+          fail Vedeu::InvalidSyntax, 'block not given' unless block_given?
+          fail Vedeu::MissingRequired, 'name not given' unless present?(name)
+
+          add_buffers!(name)
+          add_cursor!(name)
+          add_focusable!(name)
+
+          attributes = { client: client(&block), name: name }
+
+          Vedeu::Interface.build(attributes, &block).store
+        end
+
+        private
+
+        # Registers a set of buffers for the interface unless already
+        # registered, and also adds interface's name to list of focussable
+        # interfaces.
+        #
+        # @see Vedeu::Buffer
+        # @return [void]
+        def add_buffers!(name)
+          Vedeu::Buffer.new(name: name).store
+        end
+
+        # Registers a new cursor for the interface unless already registered.
+        #
+        # @return [void]
+        def add_cursor!(name)
+          Vedeu::Cursor.new(name: name).store
+        end
+
+        # Registers interface name in focus list unless already registered.
+        #
+        # @return [void]
+        def add_focusable!(name)
+          Vedeu.focusable.add(name) unless Vedeu.focusable.registered?(name)
+        end
+
+        # Returns the client object which called the DSL method.
+        #
+        # @param block [Proc]
+        # @return [Object]
+        def client(&block)
+          eval('self', block.binding)
+        end
+
+      end # Eigenclass
 
       # Returns an instance of Vedeu::DSL::Interface.
       #
@@ -20,49 +89,6 @@ module Vedeu
       def initialize(model, client = nil)
         @model  = model
         @client = client
-      end
-
-      # Allows the setting of a border for the interface.
-      #
-      # @example
-      #   Vedeu.interface 'my_interface' do
-      #     border do
-      #       # ... see Vedeu::DSL::Border for DSL methods for borders.
-      #     end
-      #   end
-      #
-      # @param name [String] The name of the interface; this is already provided
-      #   when we define the interface or view, setting it here is just
-      #   mirroring functionality of {Vedeu::DSL::Border.border}.
-      # @param block [Proc]
-      # @raise [Vedeu::InvalidSyntax] The required block was not given.
-      # @return [Vedeu::Border]
-      # @see Vedeu::DSL::Border
-      def border(name = nil, &block)
-        fail Vedeu::InvalidSyntax, 'block not given' unless block_given?
-
-        model_name = name ? name : model.name
-
-        border_attrs = attributes.merge!(enabled: true,
-                                         name:    model_name)
-
-        Vedeu::Border.build(border_attrs, &block).store
-      end
-
-      # Applies the default border to the interface.
-      #
-      # @example
-      #   Vedeu.interface 'my_interface' do
-      #     border!
-      #
-      #     # ... some code
-      #   end
-      #
-      # @return [Vedeu::Border]
-      def border!
-        border do
-          # adds default border
-        end
       end
 
       # Set the cursor visibility on an interface.
@@ -141,30 +167,6 @@ module Vedeu
         Vedeu::Focus.add(model.name, true) if present?(model.name)
       end
 
-      # Define the geometry for an interface.
-      #
-      # @example
-      #   Vedeu.interface 'my_interface' do
-      #     geometry do
-      #       # ... see Vedeu::DSL::Geometry for DSL methods for geometries.
-      #     end
-      #   end
-      #
-      # @param name [String] The name of the interface; this is already provided
-      #   when we define the interface or view, setting it here is just
-      #   mirroring functionality of {Vedeu::DSL::Geometry.geometry}.
-      # @param block [Proc]
-      # @raise [Vedeu::InvalidSyntax] The required block was not given.
-      # @return [Vedeu::Geometry]
-      # @see Vedeu::DSL::Geometry
-      def geometry(name = nil, &block)
-        fail Vedeu::InvalidSyntax, 'block not given' unless block_given?
-
-        model_name = name ? name : model.name
-
-        Vedeu::Geometry.build({ name: model_name }, &block).store
-      end
-
       # Specify a group for an interface. Interfaces of the same group can be
       # targetted together; for example you may want to refresh multiple
       # interfaces at once.
@@ -191,32 +193,6 @@ module Vedeu
         Vedeu.keymap(name, &block)
       end
       alias_method :keys, :keymap
-
-      # Specify multiple lines in a view.
-      #
-      # @param block [Proc]
-      #
-      # @example
-      #   Vedeu.view 'my_interface' do
-      #     lines do
-      #       # ... see {Vedeu::DSL::Line} and {Vedeu::DSL::Stream}
-      #     end
-      #   end
-      #
-      #   Vedeu.view 'my_interface' do
-      #     line do
-      #       # ... see {Vedeu::DSL::Line} and {Vedeu::DSL::Stream}
-      #     end
-      #   end
-      #
-      # @raise [Vedeu::InvalidSyntax] The required block was not given.
-      # @return [Line]
-      def lines(&block)
-        fail Vedeu::InvalidSyntax, 'block not given' unless block_given?
-
-        model.add(model.member.build(attributes, &block))
-      end
-      alias_method :line, :lines
 
       # The name of the interface. Used to reference the interface throughout
       # your application's execution lifetime.

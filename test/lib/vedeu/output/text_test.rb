@@ -105,23 +105,23 @@ module Vedeu
     describe '.add' do
       subject { described.add(value, options) }
 
-      context 'when the model is a Vedeu::Interface' do
-        let(:model) { Vedeu::Interface.new }
+      context 'when the model is a Vedeu::Views::View' do
+        let(:model) { Vedeu::Views::View.new }
 
-        it { subject.must_be_instance_of(Vedeu::Lines) }
+        it { subject.must_be_instance_of(Vedeu::Views::Lines) }
       end
 
-      context 'when the model is a Vedeu::Line' do
-        let(:model) { Vedeu::Line.new }
+      context 'when the model is a Vedeu::Views::Line' do
+        let(:model) { Vedeu::Views::Line.new }
 
-        it { subject.must_be_instance_of(Vedeu::Streams) }
+        it { subject.must_be_instance_of(Vedeu::Views::Streams) }
       end
 
-      context 'when the model is a Vedeu::Stream' do
-        let(:parent) { Vedeu::Line.new }
-        let(:model)  { Vedeu::Stream.new(parent: parent) }
+      context 'when the model is a Vedeu::Views::Stream' do
+        let(:parent) { Vedeu::Views::Line.new }
+        let(:model)  { Vedeu::Views::Stream.new(parent: parent) }
 
-        it { subject.must_be_instance_of(Vedeu::Streams) }
+        it { subject.must_be_instance_of(Vedeu::Views::Streams) }
       end
 
       context 'when the model is not given' do

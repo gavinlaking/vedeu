@@ -17,12 +17,7 @@ module Vedeu
 
       describe '#background' do
         let(:expected) {
-          "{{" \
-          "eJxdj00LwjAMhj1Ip7aKX3iW+Qd2zi5BUdhZ8d5tUYZzla4VxT9vrTrBXJI34UnetD" \
-          "sKxnvKyQJsjSZ5FjBEaYwuUmuofnDgWVlQZSJXqFJZ/QNWXgcOSGV2Omplq1zB7DNd" \
-          "Nj0GAt9sEopF5IMBW+8ceVCa/slN02OxSMIWi/s74BepvY1ebe4lKRg1tp1kwPEqS0" \
-          "tu7nMSTn+m5oZuxm/pVvJM35XO1fu1WGDg1PcCR38CRTzBPvTwxeDgCdSbXHg=" \
-          "}}"
+          "{{eJxdj00LwjAMhj1Ip7aKXwjeZP4Bz9klKAo7K7t3GmU4V+laP/DPW+tUMJfkTfokb+sNBeOEdmQBkoyuJcDaaJInAV2UxugstYbKBwe+zTMqzMwVKldWK+hX3MLrwAGp3B4PWtlip2BUTeffHgOBbzYOxXTmgwFbbhy5V5r+ydW3xyIRhzUWtTfAz1J7G63S3HNS0Kter1+SAceLzC25uc9xOPyZmhi6Gb+lWcgTfVY6V++vRQIDpz4XOPoTKKIBtqGFLwY7T83nXwE=}}"
         }
 
         subject { instance.background('#000000') { 'background text' } }
@@ -48,13 +43,7 @@ module Vedeu
             }
           }
           let(:expected) {
-            "{{" \
-            "eJxdj08LwjAMxT1Ip7aKf8CzzC9QPGaXoCjsrHjvNMpwrlJbUfzy1k4neEpewu/l" \
-            "pdnSMNzSnhzA2hpSZwF9VNaaPHOWrk8OfFfkVFrpG11oZ37AIujIA5nanY5Gu3Kv" \
-            "YfzZzusZA4EVm8ZiKuVsJiUDttx48qAN/ZOresYSkcYNlnQ3wC/KhBidq30UpGFQ" \
-            "x/aSAcebKhz5fahp3K9OTizdbXBol+pMXzufqHorERh59XXnGOxRJCPsQgffDPZe" \
-            "Rsda7A==" \
-            "}}"
+            "{{eJxdj00LwjAMhj1I/WgVP0DwJvMPFI/ZJSgKOyveq0YZzlW61g/889ZuevCUvEmeN0m9qWG8pQM5gG1K9wJgbQ2pi4AeKmtNunOWihcHvs9Syq30ic60MxoGFbcIuuGBndqfT0a7/KBhVHXnvxoDgSWbRGIq5WwmJQO23HjyqA39k6tfjcUiiWos7myAX5UJZ7QL+8xIQ7+aXn8kA443lTny/RCTqFeunFh62ODQytWFvnb+ovKtWGDDq687x2CPIh5iB9r4YbD7BjXvXXU=}}"
           }
 
           it { subject.must_equal(expected) }
@@ -67,13 +56,7 @@ module Vedeu
             }
           }
           let(:expected) {
-            "{{" \
-            "eJxdj08LwjAMxT1I/dMqU8GzzC/gOb0ERWFnh/dOMxHnKrUVxS9v1+kEc2lewu/l" \
-            "td3VMN7RgRzA1hpSFwERKmvNKXOWbi8OfF+cqLQL3+hCO/MDVkF3PJCp/flotCsP" \
-            "Gqaf7bKZMRBYs0ncYsDWqUdybegf2TQzJkUSi3meL3wxOUiBX5UJMfo3+yxIw6iJ" \
-            "7SUDjndVOPL78CZxVJ+cWXrY4NAr1YWqBJXwiepvSYEdr77uHIM9CjnBAfSxYnD4" \
-            "BqMMW1Q=" \
-            "}}"
+            "{{eJxdj8sKwjAQRV1IqiaKDxDcSf0B19PNoCh0rbiPdirF2kia+MCfN02rC2eTuTOcOzftjoLZgRKyAIeMHiXAzmiSVwFDlMbo7GgNlW8O/JRnVJila1SurFYwbri114EDjvJ0OWtli0TBtNmufjMGAms2DlsM2GbvkFRp+ke2vxmLRByKRZouXbGovwd+k9rH6JXmlZOCUQPtKsmA413mltzev3E4rE/ODT2Nd+gW8kpVgkq4RPW3IoGBU193jt4eRTTBPvSwYnDwAZI0Xd0=}}"
           }
 
           it { subject.must_equal(expected) }
@@ -87,13 +70,7 @@ module Vedeu
             }
           }
           let(:expected) {
-            "{{" \
-            "eJxdj0sLwjAQhD1IfCSKD/As+geKF2F7WRQFz4r3VLci1kZiIop/3jXVCuaSzCzf" \
-            "7KRaN9Db0p48wNpZ0mcFHdTO2WPiHV2fEuQuO1LuIn6YzHj7A+ZB1xhI9O50sMbn" \
-            "ewODz3RWegIUFuxqpMYRn8lEgFhsmEyNpX9yWXoiVm8kTafTKBJxawPyom1o07y6" \
-            "R0YGumV7lgIk3nTmiefhXo06xeaho7sLCY1cn9mvBMHFit/FCmusvukSQzyquI8t" \
-            "aOKbwfYLqERctQ==" \
-            "}}"
+            "{{eJxdj8sKwjAQRV1IfCSKDxDcif5AcSNMN4Oi4FrpPupUirWRNPGBP2+aVhfOJnPvcO5M6k0F44hOZAGihB45wM5oklcBPZTG6ORgDeVvDvyYJpSZwDUqVVYrGFTcyuuGAw7yeDlrZbOTglE1Xf48BgJLdjsVs8DVfM6ArfeOjJWmf3Lz81goCiSOF4sgYGFnD/wmtb+mnZtXSgr6FbQrJAOOd5lacnP/bqe9cvPE0NP4hFYmr86veeEOK38XCmw49U3n6ONRhEPsQBsLBrsfqStfPg==}}"
           }
 
           it { subject.must_equal(expected) }
@@ -102,12 +79,7 @@ module Vedeu
 
       describe '#foreground' do
         let(:expected) {
-          "{{" \
-          "eJxdj08PATEQxR2ki3bFvzjL+gLOs5cJIdkzcS87ZKO2Uq0QX163WIm5dN5MfvNemy" \
-          "0Ngy3l5ADW1pA8C+ihtNYUO2fp+uTA96qg0s58o5V25gcsgo48sJP709FoV+Yaxp/t" \
-          "vJ4xEPhms6TBgC03HjloQ//Iqp6xVGSJmM5CsTTeAL9IE2J0rvahSEO/ju0lA443qR" \
-          "z5fXizZPRzmFi623ClXcozVSkq4VO9v5YKjLz6OnAMFijSIcbQwYrB7gsCxlyT" \
-          "}}"
+          "{{eJxdj8sKwjAQRV1IqiaKLwR3Un/A9XQzKApdK+6jHaVYG0kTH/jzprEqOJvMneHMvak3FIy3lJAF2KZ0KwDWRpM8C+iiNEanO2uoeHLg+yyl3MxcozJltYJ+xS28Dhywk/vTUSubJwpG1Xb+nTEQ+GbjsMaALTcOOShN/8jqO2ORiEMxnfliUXsD/CK1j9EqzCMjBb0KWpeSAcerzCy5vX/jcPhzmBi6G3+lmcszlSlK4VK9vxYJDJz6OHD0FiiiAbahhSWDnRf8A18c}}"
         }
 
         subject { instance.foreground('#000000') { 'foreground text' } }
@@ -119,12 +91,7 @@ module Vedeu
 
       describe '#style' do
         let(:expected) {
-          "{{" \
-          "eJxdj08LwjAMxT1I59b6HzzLPoHn7BIUBc+K926LItZVaiuKX96u6gRveUl+7yXtjo" \
-          "bRjkpyABtrSJ4FDFBaa465s3R9cuCFOlJlZ77QSjvzAxZBRx7IZXE6GO2qUsPkM503" \
-          "PQYC3+w6bTFgy61H9trQP7JqeiwT9W7W3QK/SBPyk6t9KNIwbO71kgHHm1SOIM61Ki" \
-          "EJYp32w/LU0t0Gl7iSZ/pa+nPeP2UCI6++CRwDhSIbYxcSrBnsvQDMNVrp" \
-          "}}"
+          "{{eJxdj09PAjEQxT2YItuiqAkJN8In8Pz2MtFowhnCvcuOZkPZMd3WP/HL0y0LB2/zZt5v3sz1jWC+5ZojsG34uwPWwbM9GEzJhuCbKgbu/jT0zjXchqdUiJPoBQ8D95L1KAGV3e0/vMS2FsyG6fOlp2DoxK6WVwrqdZOQd/H8H3m79FRpem852UB/Wp/ziy78OhbcD+51LxU0fVkXGeNKXI0ii9XyLpsXgX9C3jJu7YHPK9M5p59KQ6OkzgmaMkWmfKQJCuoZuj0Cs8Jdcg==}}"
         }
 
         subject { instance.style(:bold) { 'style text' } }

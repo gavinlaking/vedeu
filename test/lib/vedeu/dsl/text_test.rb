@@ -16,16 +16,16 @@ module Vedeu
           }
         }
         let(:anchor)   { :text }
-        let(:model)    { Vedeu::Line.new }
+        let(:model)    { Vedeu::Views::Line.new }
         let(:instance) { Vedeu::DSL::Line.new(model) }
 
         subject { instance.text(_value, options) }
 
-        context 'when the model is a Vedeu::Interface' do
-          let(:model)    { Vedeu::Interface.new }
+        context 'when the model is a Vedeu::Views::View' do
+          let(:model)    { Vedeu::Views::View.new }
           let(:instance) { Vedeu::DSL::Interface.new(model) }
 
-          it { subject.must_be_instance_of(Vedeu::Lines) }
+          it { subject.must_be_instance_of(Vedeu::Views::Lines) }
 
           it 'adds the text to the model' do
             Vedeu::Text.expects(:add).with(_value, modified_options)
@@ -33,11 +33,11 @@ module Vedeu
           end
         end
 
-        context 'when the model is a Vedeu::Line' do
-          let(:model)    { Vedeu::Line.new }
+        context 'when the model is a Vedeu::Views::Line' do
+          let(:model)    { Vedeu::Views::Line.new }
           let(:instance) { Vedeu::DSL::Line.new(model) }
 
-          it { subject.must_be_instance_of(Vedeu::Streams) }
+          it { subject.must_be_instance_of(Vedeu::Views::Streams) }
 
           it 'adds the text to the model' do
             Vedeu::Text.expects(:add).with(_value, modified_options)
@@ -45,12 +45,12 @@ module Vedeu
           end
         end
 
-        context 'when the model is a Vedeu::Stream' do
-          let(:parent)   { Vedeu::Line.new }
-          let(:model)    { Vedeu::Stream.new(parent: parent) }
+        context 'when the model is a Vedeu::Views::Stream' do
+          let(:parent)   { Vedeu::Views::Line.new }
+          let(:model)    { Vedeu::Views::Stream.new(parent: parent) }
           let(:instance) { Vedeu::DSL::Stream.new(model) }
 
-          it { subject.must_be_instance_of(Vedeu::Streams) }
+          it { subject.must_be_instance_of(Vedeu::Views::Streams) }
 
           it 'adds the text to the model' do
             Vedeu::Text.expects(:add).with(_value, modified_options)

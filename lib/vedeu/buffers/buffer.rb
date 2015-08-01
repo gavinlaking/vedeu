@@ -19,21 +19,21 @@ module Vedeu
     # on next refresh.
     #
     # @!attribute [rw] back
-    # @return [Vedeu::Interface]
+    # @return [Vedeu::Views::View]
     attr_accessor :back
 
     # The currently displayed buffer, contains the content which was last
     # output.
     #
     # @!attribute [rw] front
-    # @return [Vedeu::Interface]
+    # @return [Vedeu::Views::View]
     attr_accessor :front
 
     # The previous buffer which was displayed; contains the content that was
     # shown before 'front'.
     #
     # @!attribute [rw] previous
-    # @return [Vedeu::Interface]
+    # @return [Vedeu::Views::View]
     attr_accessor :previous
 
     # @!attribute [r] name
@@ -45,9 +45,9 @@ module Vedeu
     #
     # @option attributes name [String] The name of the interface for which the
     #   buffer belongs.
-    # @option attributes back [Vedeu::Interface]
-    # @option attributes front [Vedeu::Interface]
-    # @option attributes previous [Vedeu::Interface]
+    # @option attributes back [Vedeu::Views::View]
+    # @option attributes front [Vedeu::Views::View]
+    # @option attributes previous [Vedeu::Views::View]
     # @option attributes repository [Vedeu::Buffers]
     # @return [Vedeu::Buffer]
     def initialize(attributes = {})
@@ -59,7 +59,7 @@ module Vedeu
     # Add the content to the back buffer, then update the repository.
     # Returns boolean indicating that the repository was updated.
     #
-    # @param content [Vedeu::Interface]
+    # @param content [Vedeu::Views::View]
     # @return [Boolean]
     def add(content)
       @back = content
@@ -104,9 +104,9 @@ module Vedeu
     #
     # Will hide the named interface. If the interface is currently visible, it
     # will be cleared- rendered blank. To show the interface, the
-    # ':_show_interface_' event should be triggered.
-    # Triggering the ':_hide_group_' event to which this named interface belongs
-    # will also hide the interface.
+    # ':_show_interface_' event should be triggered. Triggering the
+    # ':_hide_group_' event to which this named interface belongs will also hide
+    # the interface.
     #
     # @return [void]
     def hide
@@ -124,7 +124,7 @@ module Vedeu
     #   'previous' buffer.
     # - If the 'previous' buffer is empty, return an empty collection.
     #
-    # @return [Array<Array<Array<Vedeu::Char>>>]
+    # @return [Array<Array<Array<Vedeu::Views::Char>>>]
     def render
       Vedeu::Output.render(buffer)
     end
@@ -137,9 +137,9 @@ module Vedeu
     #
     # Will show the named interface. If the interface is currently invisible, it
     # will be shown- rendered with its latest content. To hide the interface,
-    # the ':_hide_interface_' event should be triggered.
-    # Triggering the ':_show_group_' event to which this named interface belongs
-    # will also show the interface.
+    # the ':_hide_interface_' event should be triggered. Triggering the
+    # ':_show_group_' event to which this named interface belongs will also show
+    # the interface.
     #
     # @return [void]
     def show
@@ -150,7 +150,7 @@ module Vedeu
 
     # Retrieve the latest content from the buffer.
     #
-    # @return [Array<Array<Array<Vedeu::Char>>>]
+    # @return [Array<Array<Array<Vedeu::Views::Char>>>]
     def buffer
       swap if back?
 
@@ -160,8 +160,8 @@ module Vedeu
       elsif previous?
         [previous.render]
 
-      elsif interface.visible?
-        [interface.render]
+      elsif view.visible?
+        [view.render]
 
       else
         []
@@ -204,11 +204,11 @@ module Vedeu
       true
     end
 
-    # Retrieve the interface by name.
+    # Retrieve the view by name.
     #
-    # @return [Vedeu::Interface]
-    def interface
-      Vedeu.interfaces.by_name(name)
+    # @return [Vedeu::Views::View]
+    def view
+      Vedeu.views.by_name(name)
     end
 
   end # Buffer

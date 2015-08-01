@@ -36,7 +36,7 @@ module Vedeu
                    :y,
                    :yn
 
-    # @return [Array<Array<Vedeu::Char>>]
+    # @return [Array<Array<Vedeu::Views::Char>>]
     # @see Vedeu::RenderBorder#initialize
     def self.with(border)
       new(border).render
@@ -50,7 +50,7 @@ module Vedeu
       @border = border
     end
 
-    # @return [Array<Array<Vedeu::Char>>]
+    # @return [Array<Array<Vedeu::Views::Char>>]
     def render
       return [] unless enabled?
 
@@ -75,42 +75,42 @@ module Vedeu
     # @param type [Symbol|NilClass]
     # @param iy [Fixnum]
     # @param ix [Fixnum]
-    # @return [Vedeu::Char]
+    # @return [Vedeu::Views::Char]
     def build(value, type = :border, iy = 0, ix = 0)
-      Vedeu::Char.new(value:    value,
-                      parent:   interface,
-                      colour:   colour,
-                      style:    style,
-                      position: [iy, ix],
-                      border:   type)
+      Vedeu::Views::Char.new(value:    value,
+                             parent:   interface,
+                             colour:   colour,
+                             style:    style,
+                             position: [iy, ix],
+                             border:   type)
     end
 
-    # @return [Vedeu::Char]
+    # @return [Vedeu::Views::Char]
     def build_bottom_left
       build(bottom_left, :bottom_left, yn, x) if left?
     end
 
-    # @return [Vedeu::Char]
+    # @return [Vedeu::Views::Char]
     def build_bottom_right
       build(bottom_right, :bottom_right, yn, xn) if right?
     end
 
-    # @return [Array<Vedeu::Char>]
+    # @return [Array<Vedeu::Views::Char>]
     def build_top
       build_horizontal(:bottom_horizontal, y)
     end
 
-    # @return [Array<Vedeu::Char>]
+    # @return [Array<Vedeu::Views::Char>]
     def build_bottom
       build_horizontal(:bottom_horizontal, yn)
     end
 
-    # @return [Vedeu::Char]
+    # @return [Vedeu::Views::Char]
     def build_top_left
       build(top_left, :top_left, y, x) if left?
     end
 
-    # @return [Vedeu::Char]
+    # @return [Vedeu::Views::Char]
     def build_top_right
       build(top_right, :top_right, y, xn) if right?
     end
@@ -131,7 +131,7 @@ module Vedeu
 
     # @param position [Symbol] Either :top_horizontal, or :bottom_horizontal.
     # @param y_coordinate [Fixnum] The value of either y or yn.
-    # @return [Array<Vedeu::Char>]
+    # @return [Array<Vedeu::Views::Char>]
     def build_horizontal(position, y_coordinate)
       Array.new(width) do |ix|
         build(horizontal, position, y_coordinate, (bx + ix))
@@ -181,9 +181,9 @@ module Vedeu
     end
 
     # From the second element of {#title_characters} remove the border from each
-    # {#build_horizontal} Vedeu::Char, and add the title character.
+    # {#build_horizontal} Vedeu::Views::Char, and add the title character.
     #
-    # @return [Array<Vedeu::Char>]
+    # @return [Array<Vedeu::Views::Char>]
     def titlebar
       return build_top unless title? && title_fits?
 

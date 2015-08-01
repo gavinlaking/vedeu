@@ -17,7 +17,7 @@ module Vedeu
         @options = options || {}
       end
 
-      # @param output [Array<Array<Vedeu::Char>>]
+      # @param output [Array<Array<Vedeu::Views::Char>>]
       # @return [String]
       def render(output)
         ::File.write(filename, output) if write_file?
