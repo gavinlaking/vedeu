@@ -25,6 +25,10 @@ module Vedeu
       @attributes.each { |key, value| instance_variable_set("@#{key}", value) }
     end
 
+    # Deletes the character from the line where the cursor is currently
+    # positioned.
+    #
+    # @return [void]
     def delete
       if text.empty?
         ''
@@ -37,6 +41,11 @@ module Vedeu
       end
     end
 
+    # Inserts the given character in to the line where the cursor is currently
+    # positioned.
+    #
+    # @param character [String]
+    # @return [void]
     def insert(character)
       @line = line.insert(x, character).join
 
