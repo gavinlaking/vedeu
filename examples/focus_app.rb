@@ -20,6 +20,8 @@ require 'vedeu'
 # Use 'space' to change focus, 'q' to exit.
 class VedeuFocusApp
 
+  Vedeu.bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
+
   # Be aware that running an application with debugging enabled will affect
   # performance.
   Vedeu.configure do

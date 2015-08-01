@@ -16,6 +16,8 @@ require 'vedeu'
 #
 class HelloWorldApp
 
+  Vedeu.bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
+
   Vedeu.configure do
     # debug!
     log '/tmp/vedeu_hello_world.log'
