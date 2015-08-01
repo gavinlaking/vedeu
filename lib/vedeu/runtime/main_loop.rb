@@ -40,7 +40,7 @@ module Vedeu
       # :nocov:
       # Check the application has started and we wish to continue running.
       #
-      # @raise [VedeuInterrupt] When we wish to terminate the running
+      # @raise [Vedeu::VedeuInterrupt] When we wish to terminate the running
       #   application.
       # @return [void]
       def safe_exit_point!

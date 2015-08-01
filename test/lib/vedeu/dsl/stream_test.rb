@@ -26,7 +26,7 @@ module Vedeu
         context 'when the block is not given' do
           subject { instance.stream }
 
-          it { proc { subject }.must_raise(InvalidSyntax) }
+          it { proc { subject }.must_raise(Vedeu::InvalidSyntax) }
         end
       end
 

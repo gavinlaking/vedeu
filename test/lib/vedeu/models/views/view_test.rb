@@ -29,7 +29,7 @@ module Vedeu
         context 'when the name is not defined' do
           let(:_name) {}
 
-          it { proc { subject }.must_raise(InvalidSyntax) }
+          it { proc { subject }.must_raise(Vedeu::InvalidSyntax) }
         end
       end
 

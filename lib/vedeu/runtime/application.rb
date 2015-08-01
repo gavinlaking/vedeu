@@ -114,7 +114,7 @@ module Vedeu
     def run_many
       Vedeu::MainLoop.start! { yield }
 
-    rescue ModeSwitch
+    rescue Vedeu::ModeSwitch
       Vedeu::Terminal.switch_mode!
 
       Vedeu.trigger(:_drb_restart_)

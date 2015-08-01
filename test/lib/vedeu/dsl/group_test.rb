@@ -31,7 +31,7 @@ module Vedeu
         context 'when the block is not given' do
           subject { described.group(group_name) }
 
-          it { proc { subject }.must_raise(InvalidSyntax) }
+          it { proc { subject }.must_raise(Vedeu::InvalidSyntax) }
         end
       end
 
@@ -58,7 +58,7 @@ module Vedeu
           end
         }
 
-        it { proc { subject }.must_raise(MissingRequired) }
+        it { proc { subject }.must_raise(Vedeu::MissingRequired) }
       end
 
       context 'it adds interface names to the group' do
