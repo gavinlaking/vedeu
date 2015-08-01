@@ -2,6 +2,14 @@ module Vedeu
 
   class CommandLine
 
+    # @!attribute [rw] x
+    # @return [Fixnum]
+    attr_accessor :x
+
+    # @!attribute [rw] y
+    # @return [Fixnum]
+    attr_accessor :y
+
     # Return a new instance of Vedeu::CommandLine.
     #
     # @param attributes [Hash<Symbol => void>]
@@ -17,12 +25,24 @@ module Vedeu
       @attributes.each { |key, value| instance_variable_set("@#{key}", value) }
     end
 
-    # def delete
-    #   line.slice!(x).join
-    # end
+    def delete
+      if text.empty?
+        ''
+
+      else
+        @line = line(@y)
+        @line.slice!(@x, 1)
+        @line.join
+
+      end
+    end
 
     def insert(character)
       @line = line.insert(x, character).join
+
+      progress
+
+      @line
     end
 
     # Moves the position forward by one character or down into next line, until
@@ -33,6 +53,15 @@ module Vedeu
       if text.empty?
         @x
 
+      elsif @x == line(@y).size - 1 # end of current line
+        if @y >= lines.size - 1 # on last line already
+          @x
+
+        else
+          @x = 0
+          @y = @y += 1
+
+        end
       else
         @x = @x += 1
 
@@ -44,8 +73,12 @@ module Vedeu
     #
     # @return [void]
     def regress
-      if text.empty? || @x == 0
+      if text.empty? || (@x == 0 && @y == 0)
         @x
+
+      elsif @x == 0 && @y > 0
+        @y = @y -= 1
+        @x = line(@y).index(line(@y).last)
 
       else
         @x = @x -= 1
@@ -82,14 +115,6 @@ module Vedeu
     # @!attribute [rw] text
     # @return [String]
     attr_accessor :text
-
-    # @!attribute [rw] x
-    # @return [Fixnum]
-    attr_accessor :x
-
-    # @!attribute [rw] y
-    # @return [Fixnum]
-    attr_accessor :y
 
     private
 
@@ -128,7 +153,7 @@ module Vedeu
     def lines
       return [''] if text.lines.empty?
 
-      text.lines
+      @lines = text.lines.map(&:chomp)
     end
 
     # @return [Hash<Symbol => void>]
