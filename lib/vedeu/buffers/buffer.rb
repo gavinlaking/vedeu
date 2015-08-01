@@ -160,9 +160,6 @@ module Vedeu
       elsif previous?
         [previous.render]
 
-      elsif view.visible?
-        [view.render]
-
       else
         []
 
@@ -202,13 +199,6 @@ module Vedeu
       store
 
       true
-    end
-
-    # Retrieve the view by name.
-    #
-    # @return [Vedeu::Views::View]
-    def view
-      Vedeu.views.by_name(name)
     end
 
   end # Buffer

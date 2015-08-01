@@ -62,7 +62,6 @@ module Vedeu
           client:     nil,
           colour:     nil,
           views:      [],
-          repository: Vedeu.views,
           style:      nil,
         }
       end

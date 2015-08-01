@@ -45,7 +45,6 @@ module Vedeu
       # @option attributes lines [Vedeu::Views::Lines]
       # @option attributes name [String]
       # @option attributes parent [Vedeu::Views::Composition]
-      # @option attributes repository [Vedeu::Views::Views]
       # @option attributes style [Vedeu::Style]
       # @option attributes zindex [Fixnum]
       # @return [Vedeu::Views::View]
@@ -146,7 +145,6 @@ module Vedeu
                                            foreground: :default),
           name:       '',
           parent:     nil,
-          repository: Vedeu.views,
           style:      :normal,
           zindex:     0,
         }

@@ -156,15 +156,6 @@ module Vedeu
     #   @see Vedeu::Timer.timer
     def_delegators Vedeu::Timer, :timer
 
-    # Manipulate the repository of interfaces.
-    #
-    # @example
-    #   Vedeu.views
-    #
-    # @!method views
-    # @return [Vedeu::Views::Views]
-    def_delegators Vedeu::Views::Views, :views
-
   end # InternalAPI
 
   extend InternalAPI
