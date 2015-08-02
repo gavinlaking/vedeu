@@ -47,9 +47,13 @@ module Vedeu
           }
 
           it { subject.must_equal(
-            "<td style='background:#220022;color:#aadd00;"           \
-            "border:1px #220022 solid;border-top:1px #aadd00 solid;" \
-            "border-left:1px #aadd00 solid;'>&nbsp;</td>"
+            "<td style='" \
+            "border:1px #220022 solid;" \
+            "background:#220022;" \
+            "color:#aadd00;"      \
+            "border-top:1px #aadd00 solid;" \
+            "border-left:1px #aadd00 solid;" \
+            "'>&nbsp;</td>"
           ) }
         end
 
@@ -60,43 +64,19 @@ module Vedeu
             }
 
             it { subject.must_equal(
-              "<td style='background:#002222;color:#dd2200;"           \
-              "border:1px #002222 solid;border-top:1px #dd2200 solid;" \
-              "border-left:1px #dd2200 solid;'>&nbsp;</td>"
+              "<td style='" \
+              "border:1px #002222 solid;" \
+              "background:#002222;" \
+              "color:#dd2200;"      \
+              "border-top:1px #dd2200 solid;" \
+              "border-left:1px #dd2200 solid;" \
+              "'>&nbsp;</td>"
             ) }
           end
 
           context 'when there is no parent colour' do
-            it { subject.must_equal(
-              "<td style='background:#000;color:#222;border:1px #000 solid;" \
-              "border-top:1px #222 solid;border-left:1px #222 solid;'>"      \
-              "&nbsp;</td>"
-            ) }
+            it { subject.must_equal("<td style=''>&nbsp;</td>") }
           end
-        end
-      end
-
-      grey = '1px #222 solid'
-      {
-        top_horizontal:    "border-top:#{grey};",
-        left_vertical:     "border-left:#{grey};",
-        right_vertical:    "border-right:#{grey};",
-        bottom_horizontal: "border-bottom:#{grey};",
-        top_left:     "border-top:#{grey};border-left:#{grey};",
-        top_right:    "border-top:#{grey};border-right:#{grey};",
-        bottom_left:  "border-bottom:#{grey};border-left:#{grey};",
-        bottom_right: "border-bottom:#{grey};border-right:#{grey};",
-        horizontal:        '',
-        vertical:          ''
-      }.each do |border_style, result|
-        context "when there is a border (#{border_style.inspect})" do
-          let(:border) { border_style }
-
-          it { subject.must_equal(
-            "<td style='background:#000;color:#222;border:1px #000 solid;" +
-            result +
-            "'>&nbsp;</td>"
-          ) }
         end
       end
 
@@ -114,10 +94,7 @@ module Vedeu
         context 'when there is a value' do
           let(:_value) { 'a' }
 
-          it { subject.must_equal(
-            "<td style='background:#000;color:#222;" \
-            "border:1px #000 solid;'>a</td>"
-          ) }
+          it { subject.must_equal("<td style=''>a</td>") }
         end
       end
     end

@@ -46,6 +46,17 @@ module Vedeu
       @x = (x.nil? || x < 1) ? 1 : x
     end
 
+    # Converts a position into an index for the terminal. An index is the
+    # position minus 1.
+    #
+    # @return [Array<Fixnum>]
+    def as_indices
+      xi = ((x - 1) <= 1) ? 0 : (x - 1)
+      yi = ((y - 1) <= 1) ? 0 : (y - 1)
+
+      [yi, xi]
+    end
+
     # @param other [Vedeu::Position]
     # @return [Fixnum]
     def <=>(other)

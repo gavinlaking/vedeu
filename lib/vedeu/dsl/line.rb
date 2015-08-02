@@ -67,9 +67,9 @@ module Vedeu
                                              parent: model.parent, &block)
 
         elsif value
-          content = Vedeu::Views::Line.build(client:  client,
-                                             parent:  model.parent,
-                                             streams: [build_stream(value)])
+          content = Vedeu::Views::Line.build(client: client,
+                                             parent: model.parent,
+                                             value:  [build_stream(value)])
 
         else
           fail Vedeu::InvalidSyntax, 'block not given'
@@ -107,25 +107,7 @@ module Vedeu
       end
       alias_method :stream, :streams
 
-      protected
-
-      # @!attribute [r] client
-      # @return [Object]
-      attr_reader :client
-
-      # @!attribute [r] model
-      # @return [Vedeu::Views::Line]
-      attr_reader :model
-
       private
-
-      # @return [Hash]
-      def attributes
-        {
-          client: client,
-          parent: model,
-        }
-      end
 
       # @param value [String]
       # @return [Vedeu::Views::Stream]

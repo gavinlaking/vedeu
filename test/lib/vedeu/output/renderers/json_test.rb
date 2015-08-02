@@ -36,12 +36,45 @@ module Vedeu
               [
                 Vedeu::Views::Char.new(value: 'a',
                                        colour: colour,
+                                       parent: parent,
                                        position: Vedeu::Position[5, 3])
               ]
             ]
           }
+          let(:parent)   {}
           let(:expected) {
             <<-eos
+[
+  {
+    \"border\": \"\",
+    \"colour\": {
+      \"background\": \"\\u001b[48;2;255;255;255m\",
+      \"foreground\": \"\\u001b[38;2;255;0;0m\"
+    },
+    \"parent\": {
+    },
+    \"position\": {
+      \"y\": 5,
+      \"x\": 3
+    },
+    \"style\": \"\",
+    \"value\": \"a\"
+  }
+]
+            eos
+          }
+
+          it { subject.must_equal(expected.chomp) }
+
+          context 'when a parent is available' do
+            let(:parent) {
+              Vedeu::Views::Stream.new(
+                colour: Vedeu::Colour.coerce(background: '', foreground: '')
+              )
+            }
+
+            let(:expected) {
+              <<-eos
 [
   {
     \"border\": \"\",
@@ -62,10 +95,11 @@ module Vedeu
     \"value\": \"a\"
   }
 ]
-            eos
-          }
+              eos
+            }
 
-          it { subject.must_equal(expected.chomp) }
+            it { subject.must_equal(expected.chomp) }
+          end
         end
       end
 

@@ -70,6 +70,27 @@ class VedeuMaterialColoursApp
     zindex(1)
   end
 
+  Vedeu.interface 'empty_interface' do
+    border 'empty_interface' do
+      colour(foreground: '#ffffff', background: :default)
+      title('Empty!')
+      horizontal('-')
+      top_right('+')
+      top_left('+')
+      bottom_right('+')
+      bottom_left('+')
+    end
+    colour(foreground: '#ffffff', background: :default)
+    cursor!
+    geometry 'empty_interface' do
+      x(50)
+      xn(64)
+      y(5)
+      yn(13)
+    end
+    zindex(1)
+  end
+
   Vedeu.keymap('_global_') do
     key(:up)    { Vedeu.trigger(:_cursor_up_)    }
     key(:right) { Vedeu.trigger(:_cursor_right_) }
@@ -148,6 +169,10 @@ class VedeuMaterialColoursApp
       line { centre 'Purple',      width: 20, background: '#9c27b0' }
       line { centre 'Pink',        width: 20, background: '#e91e63' }
       line { centre 'Red',         width: 20, background: '#f44336' }
+    end
+
+    view 'empty_interface' do
+      line { line '' }
     end
   end
 

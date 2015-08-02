@@ -2,32 +2,31 @@ require 'test_helper'
 
 module Vedeu
 
-  class ParentPresentationTestClass
-    include Vedeu::Presentation
+  class ParentPresentationStyleTestClass
 
-    def parent
-      nil
-    end
-
-    def attributes
-      {
-        colour: { background: '#330000', foreground: '#00aadd' },
-        style:  ['bold']
-      }
-    end
-  end
-
-  class PresentationTestClass
     include Vedeu::Presentation
 
     attr_reader :attributes
+    attr_reader :parent
+
+    def attributes
+      {
+        style: ['underline']
+      }
+    end
+
+  end
+
+  class PresentationStyleTestClass
+
+    include Vedeu::Presentation
+
+    attr_reader :attributes
+    attr_reader :parent
 
     def initialize(attributes = {})
       @attributes = attributes
-    end
-
-    def parent
-      Vedeu::ParentPresentationTestClass.new
+      @parent     = @attributes[:parent]
     end
 
   end # PresentationTestClass
@@ -36,36 +35,38 @@ module Vedeu
 
     describe Style do
 
-      let(:includer) { Vedeu::PresentationTestClass.new(attributes) }
+      let(:includer) { Vedeu::PresentationStyleTestClass.new(attributes) }
       let(:attributes) {
         {
-          colour: { background: background, foreground: foreground },
-          style:  ['bold']
+          parent: parent,
+          style:  style,
         }
       }
-      let(:background) { '#000033' }
-      let(:foreground) { '#aadd00' }
-
-      describe '#parent_style' do
-        subject { includer.parent_style }
-
-        it { subject.must_be_instance_of(Vedeu::Style) }
-
-        context 'when a parent is available' do
-          it { subject.value.must_equal(['bold']) }
-        end
-
-        context 'when a parent is not available' do
-          before { includer.stubs(:parent).returns(nil) }
-
-          it { subject.value.must_equal(nil) }
-        end
-      end
+      let(:parent) { Vedeu::ParentPresentationStyleTestClass.new }
+      let(:style)  { ['bold'] }
 
       describe '#style' do
         subject { includer.style }
 
         it { subject.must_be_instance_of(Vedeu::Style) }
+
+        context 'when the attribute is not set' do
+          let(:style) {}
+
+          context 'when a parent is available' do
+            it { subject.value.must_equal(['underline']) }
+          end
+
+          context 'when a parent is not available' do
+            let(:parent) {}
+
+            it { subject.value.must_equal(nil) }
+          end
+        end
+
+        context 'when the attribute is set' do
+          it { subject.value.must_equal(['bold']) }
+        end
       end
 
       describe '#style=' do

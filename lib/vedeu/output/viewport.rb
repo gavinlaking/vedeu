@@ -12,7 +12,6 @@ module Vedeu
 
     def_delegators :view,
                    :lines,
-                   :lines?,
                    :name,
                    :visible?
 
@@ -83,8 +82,6 @@ module Vedeu
     #
     # @return [Array]
     def show
-      return [] unless lines?
-
       (lines[rows] || []).map { |line| (line.chars[columns] || []) }
     end
 

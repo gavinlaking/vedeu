@@ -117,23 +117,13 @@ module Vedeu
         model.add(new_model)
       end
 
-      protected
-
-      # @!attribute [r] client
-      # @return [Object]
-      attr_reader :client
-
-      # @!attribute [r] model
-      # @return [Vedeu::Views::Composition]
-      attr_reader :model
-
       private
 
       # @param name [String]
       # @param lines [Vedeu::Views::Lines]
       # @return [Hash]
       def template_attributes(name, lines)
-        new_attributes(name).merge!(lines: lines)
+        new_attributes(name).merge!(value: lines)
       end
 
       # Return the current attributes combined with the existing interface
@@ -151,14 +141,6 @@ module Vedeu
       # @return [Hash]
       def existing_attributes(name)
         Vedeu.interfaces.by_name(name).attributes
-      end
-
-      # @return [Hash]
-      def attributes
-        {
-          client: client,
-          parent: model,
-        }
       end
 
     end # Composition

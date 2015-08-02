@@ -24,7 +24,7 @@ module Vedeu
           let(:content) { "This is a test.\n" }
           let(:expected) {
             Vedeu::Views::Lines.new([
-              Vedeu::Views::Line.new(streams:
+              Vedeu::Views::Line.new(value:
                 Vedeu::Views::Stream.new(colour: {
                                            background: :default,
                                            foreground: :default },
@@ -40,13 +40,13 @@ module Vedeu
           let(:content) { "This is a test.\nAnd so is this.\n" }
           let(:expected) {
             Vedeu::Views::Lines.new([
-              Vedeu::Views::Line.new(streams:
+              Vedeu::Views::Line.new(value:
                 Vedeu::Views::Stream.new(colour: {
                                            background: :default,
                                            foreground: :default },
                                          style: :normal,
                                          value: 'This is a test.')),
-              Vedeu::Views::Line.new(streams:
+              Vedeu::Views::Line.new(value:
                 Vedeu::Views::Stream.new(colour: {
                                            background: :default,
                                            foreground: :default },
@@ -66,7 +66,7 @@ module Vedeu
 
           let(:expected) {
             Vedeu::Views::Lines.new([
-              Vedeu::Views::Line.new(streams: [
+              Vedeu::Views::Line.new(value: [
                 Vedeu::Views::Stream.new(colour: {
                                            background: :default,
                                            foreground: :default },
@@ -96,7 +96,7 @@ module Vedeu
 
             let(:expected) {
               Vedeu::Views::Lines.new([
-                Vedeu::Views::Line.new(streams: [
+                Vedeu::Views::Line.new(value: [
                   Vedeu::Views::Stream.new(colour: {
                                              background: :default,
                                              foreground: :default },
@@ -130,7 +130,7 @@ module Vedeu
 
           let(:expected) {
             Vedeu::Views::Lines.new([
-              Vedeu::Views::Line.new(streams: [
+              Vedeu::Views::Line.new(value: [
                 Vedeu::Views::Stream.new(colour: {
                                            background: :default,
                                            foreground: :default },
@@ -157,7 +157,7 @@ module Vedeu
 
           let(:expected) {
             Vedeu::Views::Lines.new([
-              Vedeu::Views::Line.new(streams: [
+              Vedeu::Views::Line.new(value: [
                 Vedeu::Views::Stream.new(colour: {
                                            background: :default,
                                            foreground: :default },
@@ -184,7 +184,7 @@ module Vedeu
 
           let(:expected) {
             Vedeu::Views::Lines.new([
-              Vedeu::Views::Line.new(streams: [
+              Vedeu::Views::Line.new(value: [
                 Vedeu::Views::Stream.new(colour: {
                                            background: :default,
                                            foreground: :default },

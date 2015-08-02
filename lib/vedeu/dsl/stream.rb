@@ -29,18 +29,12 @@ module Vedeu
         model.add(model.class.build(attributes, &block))
       end
 
-      protected
-
-      # @!attribute [r] client
-      # @return [Object]
-      attr_reader :client
-
-      # @!attribute [r] model
-      # @return [Vedeu::Views::Stream]
-      attr_reader :model
-
       private
 
+      # Returns the default attributes for the new model.
+      #
+      # Overrides {Vedeu::DSL#attributes}.
+      #
       # @return [Hash]
       def attributes
         {

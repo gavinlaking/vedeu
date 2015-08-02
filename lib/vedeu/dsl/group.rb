@@ -71,16 +71,6 @@ module Vedeu
         model.add(interface_name)
       end
 
-      protected
-
-      # @!attribute [r] client
-      # @return [Object]
-      attr_reader :client
-
-      # @!attribute [r] model
-      # @return [Vedeu::Group]
-      attr_reader :model
-
     end # Group
 
   end # DSL

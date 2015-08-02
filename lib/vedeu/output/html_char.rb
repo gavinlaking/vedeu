@@ -45,11 +45,19 @@ module Vedeu
     def tag_style
       return '' unless border || present?(value)
 
-      " style='" \
-      "background:#{bg};" \
-      "color:#{fg};" \
-      "border:1px #{bg} solid;" \
-      "#{border_style}'"
+      out = " style='"
+
+      unless char.background.empty?
+        out << "border:1px #{char.background.to_html} solid;"
+        out << "background:#{char.background.to_html};"
+      end
+
+      unless char.foreground.empty?
+        out << "color:#{char.foreground.to_html};"
+        out << "#{border_style}"
+      end
+
+      out << "'"
     end
 
     # @return [String]
@@ -77,39 +85,41 @@ module Vedeu
 
     # @return [String]
     def css(direction = '')
-      "border-#{direction}:1px #{fg} solid;"
+      "border-#{direction}:1px #{char.foreground.to_html} solid;"
     end
 
-    # @return [String]
-    def fg
-      @fg ||= colour(char, 'foreground', '#222')
-    end
+    # # @return [String]
+    # def fg
+    #   @fg ||= colour(char, 'foreground', '#222')
+    # end
 
-    # @return [String]
-    def bg
-      @bg ||= colour(char, 'background', '#000')
-    end
+    # # @return [String]
+    # def bg
+    #   @bg ||= colour(char, 'background', '#000')
+    # end
 
     # @param char [Vedeu::Views::Char]
-    # @param type [String]
-    # @param default [String]
+    # @param type [String] 'background' or 'foreground'
+    # @param default [String] A default colour (CSS style; e.g. '#b2adf2')
     # @return [String]
-    def colour(char, type, default)
-      parent_type         = ('parent_' + type).to_sym
-      type_to_html        = char.send(type).send(:to_html)
-      parent_type_to_html = char.send(parent_type).send(:to_html)
+    # def colour(char, type, default)
+    #   parent_type         = char.send(:parent).send(type).send(:to_html)
+    #   #parent_type         = ('parent_' + type).to_sym
+    #   type_to_html        = char.send(type).send(:to_html)
+    #   #parent_type_to_html = char.send(parent_type).send(:to_html)
 
-      if present?(type_to_html)
-        type_to_html
+    #   if present?(type_to_html)
+    #     type_to_html
 
-      elsif present?(parent_type_to_html)
-        parent_type_to_html
+    #   elsif char.parent
+    #     parent_type
+    #     #char.parent.send(type).send(:to_html)
 
-      else
-        default
+    #   else
+    #     default
 
-      end
-    end
+    #   end
+    # end
 
     # @return [Symbol|NilClass]
     def border

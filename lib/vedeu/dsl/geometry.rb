@@ -262,16 +262,6 @@ module Vedeu
         model.yn = value
       end
 
-      protected
-
-      # @!attribute [r] client
-      # @return [Object]
-      attr_reader :client
-
-      # @!attribute [r] model
-      # @return [Vedeu::Geometry]
-      attr_reader :model
-
     end # Geometry
 
   end # DSL

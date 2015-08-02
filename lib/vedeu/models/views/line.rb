@@ -14,21 +14,21 @@ module Vedeu
       collection Vedeu::Views::Streams
       member     Vedeu::Views::Stream
 
-      # @!attribute [rw] parent
-      # @return [Vedeu::Views::View]
-      attr_accessor :parent
-
       # @!attribute [r] attributes
       # @return [Hash]
       attr_reader :attributes
 
+      # @!attribute [rw] parent
+      # @return [Vedeu::Views::View]
+      attr_accessor :parent
+
       # Returns a new instance of Vedeu::Views::Line.
       #
       # @param attributes [Hash]
-      # @option attributes streams [Vedeu::Views::Streams]
-      # @option attributes parent [Vedeu::Views::View]
       # @option attributes colour [Vedeu::Colour]
+      # @option attributes parent [Vedeu::Views::View]
       # @option attributes style [Vedeu::Style]
+      # @option attributes value [Vedeu::Views::Streams]
       # @return [Vedeu::Views::Line]
       def initialize(attributes = {})
         @attributes = defaults.merge!(attributes)
@@ -41,7 +41,7 @@ module Vedeu
       # @param child [void]
       # @return [void]
       def add(child)
-        @_streams = @streams = collection.coerce(streams, self).add(child)
+        @value = value.add(child)
       end
       alias_method :<<, :add
 
@@ -50,16 +50,9 @@ module Vedeu
       # @return [Array]
       # @see Vedeu::Views::Stream
       def chars
-        return [] if empty?
+        return [] if value.empty?
 
-        @chars ||= streams.flat_map(&:chars)
-      end
-
-      # Returns a boolean indicating whether the line has content.
-      #
-      # @return [Boolean]
-      def empty?
-        streams.empty?
+        @chars ||= value.flat_map(&:chars)
       end
 
       # An object is equal when its values are the same.
@@ -67,27 +60,22 @@ module Vedeu
       # @param other [Vedeu::Collection]
       # @return [Boolean]
       def eql?(other)
-        self.class == other.class && streams == other.streams
+        self.class == other.class && value == other.value
       end
       alias_method :==, :eql?
-
-      # @return [NilClass|String]
-      def name
-        parent.name if parent
-      end
 
       # Returns the size of the content in characters without formatting.
       #
       # @return [Fixnum]
       def size
-        streams.map(&:size).inject(0, :+)
+        value.map(&:size).inject(0, :+)
       end
 
       # @return [Vedeu::Views::Streams]
-      def streams
-        @_streams ||= collection.coerce(@streams, self)
+      def value
+        collection.coerce(@value, self)
       end
-      alias_method :value, :streams
+      alias_method :streams, :value
 
       private
 
@@ -96,11 +84,11 @@ module Vedeu
       # @return [Hash]
       def defaults
         {
-          client:  nil,
-          colour:  nil,
-          parent:  nil,
-          streams: [],
-          style:   nil,
+          client: nil,
+          colour: nil,
+          parent: nil,
+          style:  nil,
+          value:  [],
         }
       end
 

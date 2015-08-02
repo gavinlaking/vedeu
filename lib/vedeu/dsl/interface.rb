@@ -307,26 +307,6 @@ module Vedeu
       alias_method :z_index, :zindex
       alias_method :z,       :zindex
 
-      protected
-
-      # @!attribute [r] client
-      # @return [Object]
-      attr_reader :client
-
-      # @!attribute [r] model
-      # @return [Vedeu::Interface]
-      attr_reader :model
-
-      private
-
-      # @return [Hash]
-      def attributes
-        {
-          client: client,
-          parent: model,
-        }
-      end
-
     end # Interface
 
   end # DSL

@@ -250,26 +250,6 @@ module Vedeu
       end
       alias_method :line, :lines
 
-      protected
-
-      # @!attribute [r] client
-      # @return [Object]
-      attr_reader :client
-
-      # @!attribute [r] model
-      # @return [Vedeu::Views::View]
-      attr_reader :model
-
-      private
-
-      # @return [Hash]
-      def attributes
-        {
-          client: client,
-          parent: model,
-        }
-      end
-
     end # View
 
   end # DSL

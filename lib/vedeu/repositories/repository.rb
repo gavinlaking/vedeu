@@ -113,13 +113,6 @@ module Vedeu
       end
     end
 
-    # Override Ruby's Object#inspect method to provide a more helpful output.
-    #
-    # @return [String]
-    def inspect
-      "<#{self.class.name}: #{registered.inspect}>"
-    end
-
     # Returns a boolean indicating whether the named model is registered.
     #
     # @param name [String]

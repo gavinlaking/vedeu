@@ -178,32 +178,6 @@ module Vedeu
       end
     end
 
-    describe '#inspect' do
-      before { Vedeu.interfaces.reset }
-
-      subject { instance.inspect }
-
-      it { subject.must_be_instance_of(String) }
-
-      context 'when there are no models stored in the repository' do
-        it { subject.must_equal("<Vedeu::Repository: []>") }
-      end
-
-      context 'when there are models stored in the repository' do
-        before {
-          Vedeu.interface('hydrogen') {}
-          Vedeu.interface('helium') {}
-        }
-        after { Vedeu.interfaces.reset }
-
-        subject { Vedeu.interfaces.inspect }
-
-        it { subject.must_equal(
-          "<Vedeu::Interfaces: [\"hydrogen\", \"helium\"]>"
-        ) }
-      end
-    end
-
     describe '#registered?' do
       it 'returns false with no name' do
         RepositoriesTestClass.new.registered?('').must_equal(false)

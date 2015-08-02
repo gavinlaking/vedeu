@@ -13,6 +13,10 @@ module Vedeu
       include Comparable
       include Vedeu::Presentation
 
+      # @!attribute [r] attributes
+      # @return [Hash]
+      attr_reader :attributes
+
       # @!attribute [rw] border
       # @return [NilClass|Symbol]
       attr_accessor :border
@@ -20,10 +24,6 @@ module Vedeu
       # @!attribute [rw] parent
       # @return [Vedeu::Views::Line]
       attr_accessor :parent
-
-      # @!attribute [r] attributes
-      # @return [Hash]
-      attr_reader :attributes
 
       # @!attribute [r] position
       # @return [Vedeu::Position]
@@ -36,13 +36,13 @@ module Vedeu
       # Returns a new instance of Vedeu::Views::Char.
       #
       # @param attributes [Hash]
-      # @option attributes value    [String]
-      # @option attributes parent   [Vedeu::Views::Line]
-      # @option attributes colour   [Vedeu::Colour]
-      # @option attributes style    [Vedeu::Style]
-      # @option attributes position [Vedeu::Position]
-      # @option attributes border   [NilClass|Symbol] A symbol representing the
+      # @option attributes border [NilClass|Symbol] A symbol representing the
       #   border 'piece' this Vedeu::Views::Char represents.
+      # @option attributes colour [Vedeu::Colour]
+      # @option attributes parent [Vedeu::Views::Line]
+      # @option attributes position [Vedeu::Position]
+      # @option attributes style [Vedeu::Style]
+      # @option attributes value [String]
       # @return [Vedeu::Views::Char]
       def initialize(attributes = {})
         @attributes = attributes
@@ -71,13 +71,6 @@ module Vedeu
           position == other.position
       end
       alias_method :==, :eql?
-
-      # Override Ruby's Object#inspect method to provide a more helpful output.
-      #
-      # @return [String]
-      def inspect
-        "<Vedeu::Views::Char '#{Vedeu::Esc.escape(to_s)}'>"
-      end
 
       # @return [Vedeu::Position]
       def position
@@ -153,11 +146,17 @@ module Vedeu
 
       # @return [Hash]
       def parent_to_hash
-        {
-          background: parent_background.to_s,
-          foreground: parent_foreground.to_s,
-          style:      parent_style.to_s,
-        }
+        if parent
+          {
+            background: parent.background.to_s,
+            foreground: parent.foreground.to_s,
+            style:      parent.style.to_s,
+          }
+
+        else
+          {}
+
+        end
       end
 
       # @return [Hash]

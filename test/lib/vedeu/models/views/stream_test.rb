@@ -18,10 +18,10 @@ module Vedeu
       }
       let(:_value)  { 'Some text' }
       let(:parent) {
-        Vedeu::Views::Line.new(streams: [],
-                               parent:  line_parent,
-                               colour:  parent_colour,
-                               style:   style)
+        Vedeu::Views::Line.new(value:  [],
+                               parent: line_parent,
+                               colour: parent_colour,
+                               style:  style)
       }
       let(:parent_colour) {
         Vedeu::Colour.new(background: '#0000ff', foreground: '#ffff00')
@@ -43,7 +43,6 @@ module Vedeu
         it { instance.must_respond_to(:parent=) }
         it { instance.must_respond_to(:value) }
         it { instance.must_respond_to(:content) }
-        it { instance.must_respond_to(:data) }
         it { instance.must_respond_to(:text) }
         it { instance.must_respond_to(:value=) }
         it { instance.must_respond_to(:attributes) }
@@ -77,20 +76,6 @@ module Vedeu
         end
       end
 
-      describe '#empty?' do
-        subject { instance.empty? }
-
-        context 'when there is no content' do
-          let(:_value) { '' }
-
-          it { subject.must_equal(true) }
-        end
-
-        context 'when there is content' do
-          it { subject.must_equal(false) }
-        end
-      end
-
       describe '#eql?' do
         let(:other) { described.new(attributes) }
 
@@ -104,20 +89,6 @@ module Vedeu
           }
 
           it { subject.must_equal(false) }
-        end
-      end
-
-      describe '#name' do
-        subject { instance.name }
-
-        context 'when a parent is defined' do
-          it { subject.must_be_instance_of(String) }
-        end
-
-        context 'when a parent is not defined' do
-          before { instance.stubs(:parent) }
-
-          it { subject.must_be_instance_of(NilClass) }
         end
       end
 

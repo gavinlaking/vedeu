@@ -46,7 +46,7 @@ module Vedeu
 
     describe '#to_s' do
       let(:line) {
-        Vedeu::Views::Line.new(streams: [],
+        Vedeu::Views::Line.new(value:  [],
                                parent: Vedeu::Interface.new,
                                colour: Vedeu::Colour.new(foreground: '#00ff00',
                                                          background: '#000000'),

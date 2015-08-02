@@ -40,14 +40,6 @@ module Vedeu
       it { instance.must_respond_to(:==) }
     end
 
-    describe '#inspect' do
-      it { instance.inspect.must_equal(
-        "<Vedeu::Escape '" \
-        "\\e[2;6H\\e[?25h"       \
-        "'>"
-      ) }
-    end
-
     describe '#position' do
       it { instance.position.must_be_instance_of(Vedeu::Position) }
     end

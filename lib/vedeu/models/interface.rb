@@ -9,6 +9,10 @@ module Vedeu
     include Vedeu::Presentation
     include Vedeu::Toggleable
 
+    # @!attribute [r] attributes
+    # @return [Hash]
+    attr_reader :attributes
+
     # @!attribute [rw] client
     # @return [Fixnum|Float]
     attr_accessor :client
@@ -32,10 +36,6 @@ module Vedeu
     # @!attribute [rw] zindex
     # @return [Fixnum]
     attr_accessor :zindex
-
-    # @!attribute [r] attributes
-    # @return [Hash]
-    attr_reader :attributes
 
     # Return a new instance of Vedeu::Interface.
     #
@@ -68,18 +68,6 @@ module Vedeu
       super
 
       Vedeu.buffers.by_name(name).hide
-    end
-
-    # Override Ruby's Object#inspect method to provide a more helpful output.
-    #
-    # @return [String]
-    def inspect
-      '<Vedeu::Interface '      \
-      "name: '#{name}', "       \
-      "group: '#{group}', "     \
-      "visible: '#{visible}', " \
-      "zindex: '#{zindex}'"     \
-      '>'
     end
 
     # Show the named interface buffer, or without a name, the buffer of the

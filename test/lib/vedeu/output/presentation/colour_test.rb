@@ -2,7 +2,7 @@ require 'test_helper'
 
 module Vedeu
 
-  class ParentPresentationTestClass
+  class ParentPresentationColourTestClass
     include Vedeu::Presentation
 
     def parent
@@ -12,22 +12,20 @@ module Vedeu
     def attributes
       {
         colour: { background: '#330000', foreground: '#00aadd' },
-        style:  ['bold']
       }
     end
   end
 
-  class PresentationTestClass
+  class PresentationColourTestClass
+
     include Vedeu::Presentation
 
     attr_reader :attributes
+    attr_reader :parent
 
     def initialize(attributes = {})
       @attributes = attributes
-    end
-
-    def parent
-      Vedeu::ParentPresentationTestClass.new
+      @parent     = @attributes[:parent]
     end
 
   end # PresentationTestClass
@@ -36,28 +34,44 @@ module Vedeu
 
     describe Colour do
 
-      let(:includer) { Vedeu::PresentationTestClass.new(attributes) }
+      let(:includer) { Vedeu::PresentationColourTestClass.new(attributes) }
       let(:attributes) {
         {
-          colour: { background: background, foreground: foreground },
-          style:  ['bold']
+          colour: colour,
+          parent: parent
+        }
+      }
+      let(:colour)     {
+        {
+          background: background,
+          foreground: foreground
         }
       }
       let(:background) { '#000033' }
       let(:foreground) { '#aadd00' }
+      let(:parent)     { Vedeu::ParentPresentationColourTestClass.new }
 
       describe '#background' do
         subject { includer.background }
 
         it { subject.must_be_instance_of(Vedeu::Background) }
-        it { subject.colour.must_equal('#000033') }
 
-        context 'no background value' do
-          let(:attributes) { {} }
-          let(:background) {}
+        context 'when a colour is not set' do
+          let(:colour) {}
 
-          it { subject.must_be_instance_of(Vedeu::Background) }
-          it { subject.colour.must_equal('#330000') }
+          context 'when a parent is not available' do
+            let(:parent) {}
+
+            it { subject.colour.must_equal('') }
+          end
+
+          context 'when a parent is available' do
+            it { subject.colour.must_equal('#330000') }
+          end
+        end
+
+        context 'when a colour is set' do
+          it { subject.colour.must_equal('#000033') }
         end
       end
 
@@ -79,12 +93,22 @@ module Vedeu
         it { subject.must_be_instance_of(Vedeu::Foreground) }
         it { subject.colour.must_equal('#aadd00') }
 
-        context 'no foreground value' do
-          let(:attributes) { {} }
-          let(:foreground) {}
+        context 'when a colour is not set' do
+          let(:colour) {}
 
-          it { subject.must_be_instance_of(Vedeu::Foreground) }
-          it { subject.colour.must_equal('#00aadd') }
+          context 'when a parent is not available' do
+            let(:parent) {}
+
+            it { subject.colour.must_equal('') }
+          end
+
+          context 'when a parent is available' do
+            it { subject.colour.must_equal('#00aadd') }
+          end
+        end
+
+        context 'when a colour is set' do
+          it { subject.colour.must_equal('#aadd00') }
         end
       end
 
@@ -100,52 +124,31 @@ module Vedeu
         it { subject.must_equal('#123456') }
       end
 
-      describe '#parent_background' do
-        subject { includer.parent_background }
-
-        it { subject.must_be_instance_of(Vedeu::Background) }
-        it { subject.colour.must_equal('#330000') }
-
-        context 'when no parent colour is set' do
-          before { includer.stubs(:parent).returns(nil) }
-
-          it { subject.colour.must_equal('') }
-        end
-      end
-
-      describe '#parent_colour' do
-        subject { includer.parent_colour }
-
-        context 'when a parent is available' do
-          it { subject.must_be_instance_of(Vedeu::Colour) }
-          it { subject.background.must_be_instance_of(Vedeu::Background) }
-          it { subject.foreground.must_be_instance_of(Vedeu::Foreground) }
-        end
-
-        context 'when a parent is not available' do
-          before { includer.stubs(:parent).returns(nil) }
-
-          it { subject.must_equal(nil) }
-        end
-      end
-
-      describe '#parent_foreground' do
-        subject { includer.parent_foreground }
-
-        it { subject.must_be_instance_of(Vedeu::Foreground) }
-        it { subject.colour.must_equal('#00aadd') }
-
-        context 'when no parent colour is set' do
-          before { includer.stubs(:parent).returns(nil) }
-
-          it { subject.colour.must_equal('') }
-        end
-      end
-
       describe '#colour' do
         subject { includer.colour }
 
         it { subject.must_be_instance_of(Vedeu::Colour) }
+
+        context 'when a colour is not set' do
+          let(:colour) {}
+
+          context 'when a parent is not available' do
+            let(:parent) {}
+
+            it { subject.background.colour.must_equal('') }
+            it { subject.foreground.colour.must_equal('') }
+          end
+
+          context 'when a parent is available' do
+            it { subject.background.colour.must_equal('#330000') }
+            it { subject.foreground.colour.must_equal('#00aadd') }
+          end
+        end
+
+        context 'when a colour is set' do
+          it { subject.background.colour.must_equal('#000033') }
+          it { subject.foreground.colour.must_equal('#aadd00') }
+        end
       end
 
       describe '#colour=' do
@@ -153,7 +156,7 @@ module Vedeu
           Vedeu::Colour.new(foreground: '#00ff00', background: '#000000')
         }
 
-        subject { includer.colour = (colour) }
+        subject { includer.colour=(colour) }
 
         it { subject.must_be_instance_of(Vedeu::Colour) }
       end

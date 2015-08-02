@@ -76,18 +76,6 @@ module Vedeu
       }
     end
 
-    describe '#inspect' do
-      subject { instance.inspect }
-
-      it { subject.must_be_instance_of(String) }
-
-      it { subject.must_equal(
-        "<Vedeu::Interface name: 'hydrogen', group: '', visible: 'true', " \
-        "zindex: '1'>"
-        )
-      }
-    end
-
     describe '#show' do
       let(:buffer) { Vedeu::Buffer.new }
 
