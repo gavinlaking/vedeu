@@ -133,7 +133,7 @@ module Vedeu
       # @param lines [Vedeu::Views::Lines]
       # @return [Hash]
       def template_attributes(name, lines)
-        new_attributes(name).merge!(lines: lines)
+        new_attributes(name).merge!(value: lines)
       end
 
       # Return the current attributes combined with the existing interface

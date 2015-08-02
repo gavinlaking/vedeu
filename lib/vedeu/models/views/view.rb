@@ -13,6 +13,10 @@ module Vedeu
       collection Vedeu::Views::Lines
       member     Vedeu::Views::Line
 
+      # @!attribute [r] attributes
+      # @return [Hash]
+      attr_reader :attributes
+
       # @!attribute [rw] client
       # @return [Fixnum|Float]
       attr_accessor :client
@@ -25,24 +29,20 @@ module Vedeu
       # @return [Vedeu::Views::Composition]
       attr_accessor :parent
 
-      # @!attribute [rw] zindex
-      # @return [Fixnum]
-      attr_accessor :zindex
-
-      # @!attribute [r] attributes
-      # @return [Hash]
-      attr_reader :attributes
-
       # @!attribute [w] lines
       # @return [Array<Vedeu::Views::Line>]
       attr_writer :lines
+
+      # @!attribute [rw] zindex
+      # @return [Fixnum]
+      attr_accessor :zindex
 
       # Return a new instance of Vedeu::Views::View.
       #
       # @param attributes [Hash]
       # @option attributes client [Vedeu::Client]
       # @option attributes colour [Vedeu::Colour]
-      # @option attributes lines [Vedeu::Views::Lines]
+      # @option attributes value [Vedeu::Views::Lines]
       # @option attributes name [String]
       # @option attributes parent [Vedeu::Views::Composition]
       # @option attributes style [Vedeu::Style]
@@ -57,17 +57,17 @@ module Vedeu
       end
 
       # @param child [Vedeu::Views::Line]
-      # @return [void]
+      # @return [Vedeu::Views::Lines]
       def add(child)
-        @lines = lines.add(child)
+        @value = value.add(child)
       end
       alias_method :<<, :add
 
       # @return [Vedeu::Views::Lines]
-      def lines
-        collection.coerce(@lines, self)
+      def value
+        collection.coerce(@value, self)
       end
-      alias_method :value, :lines
+      alias_method :lines, :value
 
       # @return [Array<Array<Vedeu::Views::Char>>]
       def render
@@ -126,13 +126,14 @@ module Vedeu
       # @return [Hash]
       def defaults
         {
-          client:     nil,
-          colour:     Vedeu::Colour.coerce(background: :default,
-                                           foreground: :default),
-          name:       '',
-          parent:     nil,
-          style:      :normal,
-          zindex:     0,
+          client: nil,
+          colour: Vedeu::Colour.coerce(background: :default,
+                                       foreground: :default),
+          name:   '',
+          parent: nil,
+          style:  :normal,
+          value:  [],
+          zindex: 0,
         }
       end
 

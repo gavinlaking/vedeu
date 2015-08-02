@@ -42,7 +42,7 @@ module Vedeu
     end
 
     describe '#add' do
-      let(:content) { Vedeu::Views::View.new(lines: [Vedeu::Views::Line.new]) }
+      let(:content) { Vedeu::Views::View.new(value: [Vedeu::Views::Line.new]) }
 
       subject { instance.add(content) }
 
@@ -54,7 +54,7 @@ module Vedeu
 
       context 'with content' do
         let(:back) {
-          Vedeu::Views::View.new(lines: [Vedeu::Views::Line.new])
+          Vedeu::Views::View.new(value: [Vedeu::Views::Line.new])
         }
 
         it { subject.must_equal(true) }
@@ -70,7 +70,7 @@ module Vedeu
 
       context 'with content' do
         let(:front) {
-          Vedeu::Views::View.new(lines: [Vedeu::Views::Line.new])
+          Vedeu::Views::View.new(value: [Vedeu::Views::Line.new])
         }
 
         it { subject.must_equal(true) }
@@ -86,7 +86,7 @@ module Vedeu
 
       context 'with content' do
         let(:previous) {
-          Vedeu::Views::View.new(lines: [Vedeu::Views::Line.new])
+          Vedeu::Views::View.new(value: [Vedeu::Views::Line.new])
         }
 
         it { subject.must_equal(true) }

@@ -10,14 +10,18 @@ module Vedeu
       let(:instance)   { described.new(attributes) }
       let(:attributes) {
         {
-          views: views,
-          colour:     colour,
-          style:      style,
+          client: client,
+          colour: colour,
+          parent: parent,
+          style:  style,
+          value:  _value,
         }
       }
-      let(:views) { [] }
-      let(:colour)     {}
-      let(:style)      {}
+      let(:client) {}
+      let(:colour) {}
+      let(:parent) {}
+      let(:style)  {}
+      let(:_value) {}
 
       describe '.build' do
         subject {
@@ -31,7 +35,18 @@ module Vedeu
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
-        it { instance.instance_variable_get('@views').must_equal(views) }
+        it { instance.instance_variable_get('@client').must_equal(client) }
+        it { instance.instance_variable_get('@colour').must_equal(colour) }
+        it { instance.instance_variable_get('@parent').must_equal(parent) }
+        it { instance.instance_variable_get('@style').must_equal(style) }
+        it { instance.instance_variable_get('@value').must_equal(_value) }
+      end
+
+      describe 'accessors' do
+        it { instance.must_respond_to(:attributes) }
+        it { instance.must_respond_to(:parent) }
+        it { instance.must_respond_to(:value) }
+        it { instance.must_respond_to(:views) }
       end
 
       describe '#add' do
@@ -39,20 +54,11 @@ module Vedeu
 
         subject { instance.add(child) }
 
-        it { subject.must_be_instance_of(Vedeu::Views::ViewCollection) }
-      end
-
-      describe '#views' do
-        subject { instance.views }
+        it { instance.must_respond_to(:<<) }
 
         it { subject.must_be_instance_of(Vedeu::Views::ViewCollection) }
       end
 
-      describe '#parent' do
-        subject { instance.parent }
-
-        it { subject.must_be_instance_of(NilClass) }
-      end
 
     end # Composition
 

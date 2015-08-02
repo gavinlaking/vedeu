@@ -22,10 +22,10 @@ module Vedeu
       let(:parent)            { Vedeu::Views::Line.new(parent_attributes) }
       let(:parent_attributes) {
         {
-          streams: [],
-          parent:  nil,
-          colour:  parent_colour,
-          style:   parent_style,
+          value:  [],
+          parent: nil,
+          colour: parent_colour,
+          style:  parent_style,
         }
       }
       let(:border)        { nil }

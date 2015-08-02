@@ -67,9 +67,9 @@ module Vedeu
                                              parent: model.parent, &block)
 
         elsif value
-          content = Vedeu::Views::Line.build(client:  client,
-                                             parent:  model.parent,
-                                             streams: [build_stream(value)])
+          content = Vedeu::Views::Line.build(client: client,
+                                             parent: model.parent,
+                                             value:  [build_stream(value)])
 
         else
           fail Vedeu::InvalidSyntax, 'block not given'

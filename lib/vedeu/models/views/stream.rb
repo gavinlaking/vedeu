@@ -14,6 +14,10 @@ module Vedeu
       collection Vedeu::Views::Chars
       member     Vedeu::Views::Char
 
+      # @!attribute [r] attributes
+      # @return [Hash]
+      attr_reader :attributes
+
       # @!attribute [rw] parent
       # @return [Vedeu::Views::Line]
       attr_accessor :parent
@@ -22,20 +26,15 @@ module Vedeu
       # @return [String]
       attr_accessor :value
       alias_method :content, :value
-      alias_method :data,    :value
       alias_method :text,    :value
-
-      # @!attribute [r] attributes
-      # @return [Hash]
-      attr_reader :attributes
 
       # Returns a new instance of Vedeu::Views::Stream.
       #
       # @param attributes [Hash]
-      # @option attributes value [String]
-      # @option attributes parent [Vedeu::Views::Line]
       # @option attributes colour [Vedeu::Colour]
       # @option attributes style [Vedeu::Style]
+      # @option attributes parent [Vedeu::Views::Line]
+      # @option attributes value [String]
       # @return [Vedeu::Views::Stream]
       def initialize(attributes = {})
         @attributes = defaults.merge!(attributes)
@@ -59,7 +58,7 @@ module Vedeu
       #
       # @return [Array]
       def chars
-        return [] if empty?
+        return [] if value.empty?
 
         @chars ||= value.chars.map do |char|
           member.new(value:    char,

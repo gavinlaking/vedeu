@@ -16,14 +16,17 @@ module Vedeu
       # @return [Hash]
       attr_reader :attributes
 
+      # @!attribute [r] parent
+      # @return [NilClass] Composition objects do not have a parent.
+      attr_reader :parent
+
       # Returns a new instance of Vedeu::Views::Composition.
       #
       # @param attributes [Hash]
       # @option attributes client [void]
       # @option attributes colour [Vedeu::Colour]
-      # @option attributes views [void]
-      # @option attributes repository [void]
       # @option attributes style [Vedeu::Style]
+      # @option attributes value [Vedeu::Views::ViewCollection]
       # @return [Vedeu::Views::Composition]
       def initialize(attributes = {})
         @attributes = defaults.merge!(attributes)
@@ -36,21 +39,15 @@ module Vedeu
       # @param child [Vedeu::Views::View]
       # @return [Vedeu::Views::ViewCollection]
       def add(child)
-        @views = collection.coerce(@views, self).add(child)
+        @value = value.add(child)
       end
+      alias_method :<<, :add
 
-      # @return [Vedeu::Views::Views]
-      def views
-        collection.coerce(@views, self)
+      # @return [Vedeu::Views::ViewCollection]
+      def value
+        collection.coerce(@value, self)
       end
-      alias_method :value, :views
-
-      # Composition objects do not have a parent.
-      #
-      # @return [NilClass]
-      def parent
-        nil
-      end
+      alias_method :views, :value
 
       private
 
@@ -59,10 +56,11 @@ module Vedeu
       # @return [Hash]
       def defaults
         {
-          client:     nil,
-          colour:     nil,
-          views:      [],
-          style:      nil,
+          client: nil,
+          colour: nil,
+          parent: nil,
+          style:  nil,
+          value:  [],
         }
       end
 

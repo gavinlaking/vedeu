@@ -6,22 +6,24 @@ module Vedeu
 
     describe Line do
 
-      let(:described) { Vedeu::DSL::Line }
-      let(:instance)  { described.new(model) }
-      let(:model)     { Vedeu::Views::Line.new(attributes) }
-      let(:attributes){
+      let(:described)  { Vedeu::DSL::Line }
+      let(:instance)   { described.new(model) }
+      let(:model)      { Vedeu::Views::Line.new(attributes) }
+      let(:client)     {}
+      let(:colour)     { Vedeu::Colour.new }
+      let(:parent)     { Vedeu::Views::View.new }
+      let(:style)      { Vedeu::Style.new }
+      let(:_value)     { [] }
+      let(:attributes) {
         {
-          streams: streams,
-          parent:  parent,
-          colour:  colour,
-          style:   style,
+          client: client,
+          value:  _value,
+          parent: parent,
+          colour: colour,
+          style:  style,
         }
       }
-      let(:client)    {}
-      let(:streams)   { [] }
-      let(:parent)    { Vedeu::Views::View.new }
-      let(:colour)    { Vedeu::Colour.new }
-      let(:style)     { Vedeu::Style.new }
+
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }

@@ -18,10 +18,10 @@ module Vedeu
       }
       let(:_value)  { 'Some text' }
       let(:parent) {
-        Vedeu::Views::Line.new(streams: [],
-                               parent:  line_parent,
-                               colour:  parent_colour,
-                               style:   style)
+        Vedeu::Views::Line.new(value:  [],
+                               parent: line_parent,
+                               colour: parent_colour,
+                               style:  style)
       }
       let(:parent_colour) {
         Vedeu::Colour.new(background: '#0000ff', foreground: '#ffff00')
@@ -43,7 +43,6 @@ module Vedeu
         it { instance.must_respond_to(:parent=) }
         it { instance.must_respond_to(:value) }
         it { instance.must_respond_to(:content) }
-        it { instance.must_respond_to(:data) }
         it { instance.must_respond_to(:text) }
         it { instance.must_respond_to(:value=) }
         it { instance.must_respond_to(:attributes) }

@@ -39,19 +39,19 @@ module Vedeu
     }
     let(:text_line_objects) {
       [
-        Vedeu::Views::Line.new(streams: [
+        Vedeu::Views::Line.new(value: [
           Vedeu::Views::Stream.new(
             value: 'Krypton is a colorless, odorless, tasteless noble gas.'
           )]),
-        Vedeu::Views::Line.new(streams: [
+        Vedeu::Views::Line.new(value: [
           Vedeu::Views::Stream.new(
             value: 'It occurs in trace amounts in the atmosphere.'
           )]),
-        Vedeu::Views::Line.new(streams: [
+        Vedeu::Views::Line.new(value: [
           Vedeu::Views::Stream.new(
             value: 'It is isolated by fractionally distilling liquefied air.'
           )]),
-        Vedeu::Views::Line.new(streams: [
+        Vedeu::Views::Line.new(value: [
           Vedeu::Views::Stream.new(
             value: 'Krypton is often used with other rare gases in ' \
                    'fluorescent lamps.'

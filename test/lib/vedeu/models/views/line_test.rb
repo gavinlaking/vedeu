@@ -10,13 +10,13 @@ module Vedeu
       let(:instance)   { described.new(attributes) }
       let(:attributes) {
         {
-          streams: streams,
-          parent:  parent,
-          colour:  colour,
-          style:   style,
+          value:  _value,
+          parent: parent,
+          colour: colour,
+          style:  style,
         }
       }
-      let(:streams)   {
+      let(:_value)   {
         [
           Vedeu::Views::Stream.new(value: 'Something interesting ',
                                    parent: streams_parent,
@@ -34,10 +34,10 @@ module Vedeu
       }
 
       let(:streams_parent) {
-        Vedeu::Views::Line.new(streams: nil,
-                               parent:  parent,
-                               colour:  colour,
-                               style:   style)
+        Vedeu::Views::Line.new(value:  nil,
+                               parent: parent,
+                               colour: colour,
+                               style:  style)
       }
 
       let(:parent) { Vedeu::Views::View.new(name: 'Vedeu::Line') }
@@ -48,21 +48,20 @@ module Vedeu
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
-        it { instance.instance_variable_get('@streams').must_equal(streams) }
+        it { instance.instance_variable_get('@value').must_equal(_value) }
         it { instance.instance_variable_get('@parent').must_equal(parent) }
       end
 
       describe 'accessors' do
+        it { instance.must_respond_to(:attributes) }
         it { instance.must_respond_to(:parent) }
         it { instance.must_respond_to(:parent=) }
-        it { instance.must_respond_to(:attributes) }
       end
 
       describe '#add' do
         subject { instance.add(child) }
 
         it { instance.must_respond_to(:add) }
-
         it { instance.must_respond_to(:<<) }
       end
 
@@ -72,7 +71,7 @@ module Vedeu
         it { subject.must_be_instance_of(Array) }
 
         context 'when there is no content' do
-          let(:streams) { [] }
+          let(:_value) { [] }
 
           it { subject.must_equal([]) }
         end
@@ -90,7 +89,7 @@ module Vedeu
         it { subject.must_equal(true) }
 
         context 'when different to other' do
-          let(:other) { described.new(streams: [:other]) }
+          let(:other) { described.new(value: [:other]) }
 
           it { subject.must_equal(false) }
         end
