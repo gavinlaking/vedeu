@@ -9,6 +9,10 @@ module Vedeu
     include Vedeu::Presentation
     include Vedeu::Toggleable
 
+    # @!attribute [r] attributes
+    # @return [Hash]
+    attr_reader :attributes
+
     # @!attribute [rw] client
     # @return [Fixnum|Float]
     attr_accessor :client
@@ -32,10 +36,6 @@ module Vedeu
     # @!attribute [rw] zindex
     # @return [Fixnum]
     attr_accessor :zindex
-
-    # @!attribute [r] attributes
-    # @return [Hash]
-    attr_reader :attributes
 
     # Return a new instance of Vedeu::Interface.
     #

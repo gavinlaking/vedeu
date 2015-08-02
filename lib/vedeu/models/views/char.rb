@@ -13,6 +13,10 @@ module Vedeu
       include Comparable
       include Vedeu::Presentation
 
+      # @!attribute [r] attributes
+      # @return [Hash]
+      attr_reader :attributes
+
       # @!attribute [rw] border
       # @return [NilClass|Symbol]
       attr_accessor :border
@@ -20,10 +24,6 @@ module Vedeu
       # @!attribute [rw] parent
       # @return [Vedeu::Views::Line]
       attr_accessor :parent
-
-      # @!attribute [r] attributes
-      # @return [Hash]
-      attr_reader :attributes
 
       # @!attribute [r] position
       # @return [Vedeu::Position]
