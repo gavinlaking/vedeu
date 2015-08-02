@@ -70,13 +70,6 @@ module Vedeu
         end
       end
 
-      # Returns a boolean indicating whether the stream has content.
-      #
-      # @return [Boolean]
-      def empty?
-        value.empty?
-      end
-
       # An object is equal when its values are the same.
       #
       # @param other [Vedeu::Views::Char]
@@ -87,11 +80,6 @@ module Vedeu
           parent == other.parent
       end
       alias_method :==, :eql?
-
-      # @return [NilClass|String]
-      def name
-        parent.name if parent
-      end
 
       # Returns the size of the content in characters without formatting.
       #

@@ -77,20 +77,6 @@ module Vedeu
         end
       end
 
-      describe '#empty?' do
-        subject { instance.empty? }
-
-        context 'when there is no content' do
-          let(:_value) { '' }
-
-          it { subject.must_equal(true) }
-        end
-
-        context 'when there is content' do
-          it { subject.must_equal(false) }
-        end
-      end
-
       describe '#eql?' do
         let(:other) { described.new(attributes) }
 
@@ -104,20 +90,6 @@ module Vedeu
           }
 
           it { subject.must_equal(false) }
-        end
-      end
-
-      describe '#name' do
-        subject { instance.name }
-
-        context 'when a parent is defined' do
-          it { subject.must_be_instance_of(String) }
-        end
-
-        context 'when a parent is not defined' do
-          before { instance.stubs(:parent) }
-
-          it { subject.must_be_instance_of(NilClass) }
         end
       end
 

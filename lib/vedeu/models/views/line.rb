@@ -50,16 +50,7 @@ module Vedeu
       # @return [Array]
       # @see Vedeu::Views::Stream
       def chars
-        return [] if empty?
 
-        @chars ||= streams.flat_map(&:chars)
-      end
-
-      # Returns a boolean indicating whether the line has content.
-      #
-      # @return [Boolean]
-      def empty?
-        streams.empty?
       end
 
       # An object is equal when its values are the same.
@@ -70,11 +61,6 @@ module Vedeu
         self.class == other.class && streams == other.streams
       end
       alias_method :==, :eql?
-
-      # @return [NilClass|String]
-      def name
-        parent.name if parent
-      end
 
       # Returns the size of the content in characters without formatting.
       #

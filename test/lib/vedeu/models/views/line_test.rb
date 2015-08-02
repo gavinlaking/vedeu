@@ -82,20 +82,6 @@ module Vedeu
         end
       end
 
-      describe '#empty?' do
-        subject { instance.empty? }
-
-        context 'when there is no content' do
-          let(:streams) { [] }
-
-          it { subject.must_be_instance_of(TrueClass) }
-        end
-
-        context 'when there is content' do
-          it { subject.must_be_instance_of(FalseClass) }
-        end
-      end
-
       describe '#eql?' do
         let(:other) { instance }
 
@@ -107,20 +93,6 @@ module Vedeu
           let(:other) { described.new(streams: [:other]) }
 
           it { subject.must_equal(false) }
-        end
-      end
-
-      describe '#name' do
-        subject { instance.name }
-
-        context 'when a parent is defined' do
-          it { subject.must_be_instance_of(String) }
-        end
-
-        context 'when a parent is not defined' do
-          before { instance.stubs(:parent) }
-
-          it { subject.must_be_instance_of(NilClass) }
         end
       end
 
