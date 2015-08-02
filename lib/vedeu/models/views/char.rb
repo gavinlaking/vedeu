@@ -146,11 +146,17 @@ module Vedeu
 
       # @return [Hash]
       def parent_to_hash
-        {
-          background: parent_background.to_s,
-          foreground: parent_foreground.to_s,
-          style:      parent_style.to_s,
-        }
+        if parent
+          {
+            background: parent.background.to_s,
+            foreground: parent.foreground.to_s,
+            style:      parent.style.to_s,
+          }
+
+        else
+          {}
+
+        end
       end
 
       # @return [Hash]

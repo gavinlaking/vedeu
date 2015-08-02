@@ -6,26 +6,16 @@ module Vedeu
     #
     module Style
 
-      # Returns the parent style when available or NilClass.
+      # When the style for the model exists, return it, otherwise returns the
+      # parent style, or an empty Vedeu::Style.
       #
-      # @return [String|NilClass]
-      def parent_style
-        if parent
-          parent.style
-
-        else
-          Vedeu::Style.new
-
-        end
-      end
-
       # @return [Vedeu::Style]
       def style
         @style ||= if attributes[:style]
                      Vedeu::Style.coerce(attributes[:style])
 
-                   elsif parent_style
-                     Vedeu::Style.coerce(parent_style)
+                   elsif parent
+                     Vedeu::Style.coerce(parent.style)
 
                    else
                      Vedeu::Style.new
@@ -33,6 +23,9 @@ module Vedeu
                    end
       end
 
+      # Allows the setting of the style by coercing the given value into a
+      # Vedeu::Style.
+      #
       # @return [Vedeu::Style]
       def style=(value)
         @style = Vedeu::Style.coerce(value)

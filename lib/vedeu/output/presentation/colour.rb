@@ -14,8 +14,11 @@ module Vedeu
         @background ||= if colour
                           colour.background
 
+                        elsif parent
+                          parent.background
+
                         else
-                          parent_background
+                          Vedeu::Background.new
 
                         end
       end
@@ -25,7 +28,7 @@ module Vedeu
       #
       # @return [Vedeu::Background]
       def background=(value)
-        self.colour = Vedeu::Colour.coerce(
+        @colour = Vedeu::Colour.coerce(
           background: Vedeu::Background.coerce(value),
           foreground: colour.foreground)
       end
@@ -35,8 +38,8 @@ module Vedeu
         @colour ||= if attributes[:colour]
                       Vedeu::Colour.coerce(attributes[:colour])
 
-                    elsif parent_colour
-                      Vedeu::Colour.coerce(parent_colour)
+                    elsif parent
+                      Vedeu::Colour.coerce(parent.colour)
 
                     else
                       Vedeu::Colour.new
@@ -49,7 +52,7 @@ module Vedeu
       #
       # @return [Vedeu::Colour]
       def colour=(value)
-        @colour = attributes[:colour] = Vedeu::Colour.coerce(value)
+        @colour = Vedeu::Colour.coerce(value)
       end
 
       # When the foreground colour for the model exists, return it, otherwise
@@ -60,8 +63,11 @@ module Vedeu
         @foreground ||= if colour
                           colour.foreground
 
+                        elsif parent
+                          parent.foreground
+
                         else
-                          parent_foreground
+                          Vedeu::Foreground.new
 
                         end
       end
@@ -71,44 +77,9 @@ module Vedeu
       #
       # @return [Vedeu::Foreground]
       def foreground=(value)
-        self.colour = Vedeu::Colour.coerce(
-          foreground: Vedeu::Foreground.coerce(value),
-          background: colour.background)
-      end
-
-      # When a parent colour is available, returns the parent background colour,
-      # otherwise an empty Vedeu::Background.
-      #
-      # @return [Vedeu::Background]
-      def parent_background
-        if parent_colour
-          parent_colour.background
-
-        else
-          Vedeu::Background.new
-
-        end
-      end
-
-      # Returns the parent colour when available or NilClass.
-      #
-      # @return [String|NilClass]
-      def parent_colour
-        parent.colour if parent
-      end
-
-      # When a parent colour is available, returns the parent foreground colour,
-      # otherwise an empty Vedeu::Foreground.
-      #
-      # @return [Vedeu::Foreground]
-      def parent_foreground
-        if parent_colour
-          parent_colour.foreground
-
-        else
-          Vedeu::Foreground.new
-
-        end
+        @colour = Vedeu::Colour.coerce(
+          background: colour.background,
+          foreground: Vedeu::Foreground.coerce(value))
       end
 
     end # Colour
