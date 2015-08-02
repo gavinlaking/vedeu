@@ -34,7 +34,7 @@ module Vedeu
       end
 
       # @param child [Vedeu::Views::View]
-      # @return [Vedeu::InterfaceCollection]
+      # @return [Vedeu::Views::ViewCollection]
       def add(child)
         @views = collection.coerce(@views, self).add(child)
       end

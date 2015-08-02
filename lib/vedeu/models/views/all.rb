@@ -8,7 +8,6 @@ module Vedeu
 
 end # Vedeu
 
-require 'vedeu/models/interface_collection'
 require 'vedeu/models/views/char'
 require 'vedeu/models/views/chars'
 require 'vedeu/models/views/stream'
