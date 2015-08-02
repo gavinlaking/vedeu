@@ -36,13 +36,13 @@ module Vedeu
       # Returns a new instance of Vedeu::Views::Char.
       #
       # @param attributes [Hash]
-      # @option attributes value    [String]
-      # @option attributes parent   [Vedeu::Views::Line]
-      # @option attributes colour   [Vedeu::Colour]
-      # @option attributes style    [Vedeu::Style]
-      # @option attributes position [Vedeu::Position]
-      # @option attributes border   [NilClass|Symbol] A symbol representing the
+      # @option attributes border [NilClass|Symbol] A symbol representing the
       #   border 'piece' this Vedeu::Views::Char represents.
+      # @option attributes colour [Vedeu::Colour]
+      # @option attributes parent [Vedeu::Views::Line]
+      # @option attributes position [Vedeu::Position]
+      # @option attributes style [Vedeu::Style]
+      # @option attributes value [String]
       # @return [Vedeu::Views::Char]
       def initialize(attributes = {})
         @attributes = attributes
