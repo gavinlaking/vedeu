@@ -68,16 +68,6 @@ module Vedeu
         model.name = value
       end
 
-      protected
-
-      # @!attribute [r] client
-      # @return [Object]
-      attr_reader :client
-
-      # @!attribute [r] model
-      # @return [Vedeu::Menu]
-      attr_reader :model
-
     end # Menu
 
   end # DSL

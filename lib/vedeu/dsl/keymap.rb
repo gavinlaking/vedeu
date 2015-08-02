@@ -116,16 +116,6 @@ module Vedeu
         model.name = value
       end
 
-      protected
-
-      # @!attribute [r] client
-      # @return [Object]
-      attr_reader :client
-
-      # @!attribute [r] model
-      # @return [Vedeu::Keymap]
-      attr_reader :model
-
     end # Keymap
 
   end # DSL

@@ -337,16 +337,6 @@ module Vedeu
         model.vertical = char
       end
 
-      protected
-
-      # @!attribute [r] client
-      # @return [Object]
-      attr_reader :client
-
-      # @!attribute [r] model
-      # @return [Vedeu::Border]
-      attr_reader :model
-
     end # Border
 
   end # DSL

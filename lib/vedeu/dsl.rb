@@ -4,7 +4,30 @@ module Vedeu
   #
   module DSL
 
+    protected
+
+    # @!attribute [r] client
+    # @return [Object] The object instance where the DSL is being used.
+    attr_reader :client
+
+    # @!attribute [r] model
+    # @return [void] The new model object which the DSL is constructing.
+    attr_reader :model
+
     private
+
+    # Returns the default attributes for the new model.
+    #
+    # @note
+    #   Specific DSL classes may be overriding this method.
+    #
+    # @return [Hash<Symbol => void>]
+    def attributes
+      {
+        client: client,
+        parent: model,
+      }
+    end
 
     # :nocov:
     # Attempts to find the missing method on the client object.
