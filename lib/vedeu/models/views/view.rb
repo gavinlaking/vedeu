@@ -76,13 +76,6 @@ module Vedeu
       end
       alias_method :value, :lines
 
-      # Returns a boolean indicating whether the interface has content.
-      #
-      # @return [Boolean]
-      def lines?
-        lines.any?
-      end
-
       # @return [Array<Array<Vedeu::Views::Char>>]
       def render
         return [] unless visible?
