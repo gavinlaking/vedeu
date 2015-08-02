@@ -7,7 +7,7 @@ module Vedeu
     describe Interface do
 
       let(:described) { Vedeu::DSL::Interface }
-      let(:instance)  { described.new(model) }
+      let(:instance)  { described.new(model, client) }
       let(:model)     {
         Vedeu::Interface.new(name: 'actinium')
       }
@@ -19,13 +19,41 @@ module Vedeu
         it { instance.instance_variable_get('@client').must_equal(client) }
       end
 
+      describe '.interface' do
+        after { Vedeu.interfaces.reset }
+
+        subject {
+          described.interface('flourine') do
+            # ...
+          end
+        }
+
+        it { subject.must_be_instance_of(Vedeu::Interface) }
+
+        context 'when the block is not given' do
+          subject { described.interface('flourine') }
+
+          it { proc { subject }.must_raise(Vedeu::InvalidSyntax) }
+        end
+
+        context 'when the name is not given' do
+          subject {
+            described.interface('') do
+              # ...
+            end
+          }
+
+          it { proc { subject }.must_raise(Vedeu::MissingRequired) }
+        end
+      end
+
       describe '#border' do
         after { Vedeu.borders.reset }
 
         context 'when the block is not given' do
           subject { instance.border }
 
-          it { proc { subject }.must_raise(InvalidSyntax) }
+          it { proc { subject }.must_raise(Vedeu::InvalidSyntax) }
         end
 
         context 'when the block is given' do
@@ -159,7 +187,7 @@ module Vedeu
         context 'when the required block is not provided' do
           subject { instance.geometry }
 
-          it { proc { subject }.must_raise(InvalidSyntax) }
+          it { proc { subject }.must_raise(Vedeu::InvalidSyntax) }
         end
 
         context 'when the block is given' do
@@ -228,24 +256,6 @@ module Vedeu
 
         it { subject.must_be_instance_of(Vedeu::Keymap) }
         it { instance.must_respond_to(:keys) }
-      end
-
-      describe '#lines' do
-        subject {
-          instance.lines do
-            # ...
-          end
-        }
-
-        it { subject.must_be_instance_of(Vedeu::Lines) }
-
-        context 'when the required block is not provided' do
-          subject { instance.lines }
-
-          it { proc { subject }.must_raise(InvalidSyntax) }
-        end
-
-        it { instance.must_respond_to(:line) }
       end
 
       describe '#name' do

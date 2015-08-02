@@ -142,15 +142,15 @@ end
 ## Views
 
 {include:Vedeu::DSL::View}
-{include:Vedeu::DSL::View.interface}
+{include:Vedeu::DSL::Interface.interface}
 
 ### Immediate rendering
 
-{include:Vedeu::DSL::View.render}
+{include:Vedeu::DSL::View.renders}
 
 ### Deferred rendering
 
-{include:Vedeu::DSL::View.view}
+{include:Vedeu::DSL::View.views}
 
 ### Specifying view content
 

@@ -28,10 +28,26 @@ module Vedeu
         context 'when there is output' do
           let(:output) {
             [
-              Vedeu::Char.new(value: 't', colour: { background: '#ff0000', foreground: '#ffffff' }),
-              Vedeu::Char.new(value: 'e', colour: { background: '#ffff00', foreground: '#000000' }),
-              Vedeu::Char.new(value: 's', colour: { background: '#00ff00', foreground: '#000000' }),
-              Vedeu::Char.new(value: 't', colour: { background: '#00ffff', foreground: '#000000' }),
+              Vedeu::Views::Char.new(value: 't',
+                                     colour: {
+                                       background: '#ff0000',
+                                       foreground: '#ffffff'
+                                     }),
+              Vedeu::Views::Char.new(value: 'e',
+                                     colour: {
+                                       background: '#ffff00',
+                                       foreground: '#000000'
+                                     }),
+              Vedeu::Views::Char.new(value: 's',
+                                     colour: {
+                                       background: '#00ff00',
+                                       foreground: '#000000'
+                                     }),
+              Vedeu::Views::Char.new(value: 't',
+                                     colour: {
+                                       background: '#00ffff',
+                                       foreground: '#000000'
+                                     }),
              ]
           }
 

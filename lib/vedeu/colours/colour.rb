@@ -83,7 +83,7 @@ module Vedeu
 
     # An object is equal when its values are the same.
     #
-    # @param other [Vedeu::Char]
+    # @param other [Vedeu::Views::Char]
     # @return [Boolean]
     def eql?(other)
       self.class == other.class && background == other.background &&

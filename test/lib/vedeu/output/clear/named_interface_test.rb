@@ -38,12 +38,12 @@ module Vedeu
         let(:output) {
           [
             [
-              Vedeu::Char.new(value: ' ', position: [1, 1]),
-              Vedeu::Char.new(value: ' ', position: [1, 2]),
+              Vedeu::Views::Char.new(value: ' ', position: [1, 1]),
+              Vedeu::Views::Char.new(value: ' ', position: [1, 2]),
 
             ], [
-              Vedeu::Char.new(value: ' ', position: [2, 1]),
-              Vedeu::Char.new(value: ' ', position: [2, 2]),
+              Vedeu::Views::Char.new(value: ' ', position: [2, 1]),
+              Vedeu::Views::Char.new(value: ' ', position: [2, 2]),
 
             ]
           ]

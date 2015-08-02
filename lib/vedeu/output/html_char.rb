@@ -1,13 +1,13 @@
 module Vedeu
 
-  # Represents a {Vedeu::Char} as a HTML tag with value. By default, a table
-  # cell is used.
+  # Represents a {Vedeu::Views::Char} as a HTML tag with value. By default, a
+  # table cell is used.
   #
   class HTMLChar
 
     include Vedeu::Common
 
-    # @param char [Vedeu::Char]
+    # @param char [Vedeu::Views::Char]
     # @param options [Hash<Symbol => String>]
     # @option options start_tag [String]
     # @option options end_tag [String]
@@ -18,7 +18,7 @@ module Vedeu
 
     # Returns a new instance of Vedeu::HTMLChar.
     #
-    # @param char [Vedeu::Char]
+    # @param char [Vedeu::Views::Char]
     # @param options [Hash<Symbol => String>]
     # @option options start_tag [String]
     # @option options end_tag [String]
@@ -36,7 +36,7 @@ module Vedeu
     protected
 
     # @!attribute [r] char
-    # @return [Vedeu::Char]
+    # @return [Vedeu::Views::Char]
     attr_reader :char
 
     private
@@ -90,7 +90,7 @@ module Vedeu
       @bg ||= colour(char, 'background', '#000')
     end
 
-    # @param char [Vedeu::Char]
+    # @param char [Vedeu::Views::Char]
     # @param type [String]
     # @param default [String]
     # @return [String]

@@ -8,7 +8,7 @@ module Vedeu
 
       let(:described) { Vedeu::DSL::Line }
       let(:instance)  { described.new(model) }
-      let(:model)     { Vedeu::Line.new(attributes) }
+      let(:model)     { Vedeu::Views::Line.new(attributes) }
       let(:attributes){
         {
           streams: streams,
@@ -19,7 +19,7 @@ module Vedeu
       }
       let(:client)    {}
       let(:streams)   { [] }
-      let(:parent)    { Vedeu::Interface.new }
+      let(:parent)    { Vedeu::Views::View.new }
       let(:colour)    { Vedeu::Colour.new }
       let(:style)     { Vedeu::Style.new }
 
@@ -38,8 +38,8 @@ module Vedeu
           end
         }
 
-        it { subject.must_be_instance_of(Vedeu::Lines) }
-        it { subject.first.must_be_instance_of(Vedeu::Line) }
+        it { subject.must_be_instance_of(Vedeu::Views::Lines) }
+        it { subject.first.must_be_instance_of(Vedeu::Views::Line) }
 
         context 'when the block is given' do
         end
@@ -54,7 +54,7 @@ module Vedeu
 
             subject { instance.line(_value) }
 
-            it { proc { subject }.must_raise(InvalidSyntax) }
+            it { proc { subject }.must_raise(Vedeu::InvalidSyntax) }
           end
         end
       end
@@ -67,12 +67,12 @@ module Vedeu
             end
           }
 
-          it { subject.must_be_instance_of(Vedeu::Streams) }
-          it { subject.first.must_be_instance_of(Vedeu::Stream) }
+          it { subject.must_be_instance_of(Vedeu::Views::Streams) }
+          it { subject.first.must_be_instance_of(Vedeu::Views::Stream) }
         end
 
         context 'when the block is not given' do
-          it { proc { instance.streams }.must_raise(InvalidSyntax) }
+          it { proc { instance.streams }.must_raise(Vedeu::InvalidSyntax) }
         end
 
         it { instance.must_respond_to(:stream) }

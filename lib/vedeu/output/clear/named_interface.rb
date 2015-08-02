@@ -56,7 +56,7 @@ module Vedeu
       # then starting write space characters over the area which the interface
       # occupies.
       #
-      # @return [Array<Array<Vedeu::Char>>]
+      # @return [Array<Array<Vedeu::Views::Char>>]
       def output
         Vedeu.timer("Clearing: '#{name}'") do
           @y      = geometry.y
@@ -67,9 +67,9 @@ module Vedeu
 
           @clear ||= Array.new(@height) do |iy|
             Array.new(@width) do |ix|
-              Vedeu::Char.new(value:    ' ',
-                              colour:   @colour,
-                              position: [@y + iy, @x + ix])
+              Vedeu::Views::Char.new(value:    ' ',
+                                     colour:   @colour,
+                                     position: [@y + iy, @x + ix])
             end
           end
         end

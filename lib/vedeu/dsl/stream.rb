@@ -10,9 +10,9 @@ module Vedeu
       include Vedeu::DSL::Presentation
       include Vedeu::DSL::Text
 
-      # Returns an instance of DSL::Stream.
+      # Returns an instance of Vedeu::DSL::Stream.
       #
-      # @param model [Vedeu::Stream]
+      # @param model [Vedeu::Views::Stream]
       # @param client [Object]
       # @return [Vedeu::DSL::Stream]
       def initialize(model, client = nil)
@@ -36,7 +36,7 @@ module Vedeu
       attr_reader :client
 
       # @!attribute [r] model
-      # @return [Stream]
+      # @return [Vedeu::Views::Stream]
       attr_reader :model
 
       private

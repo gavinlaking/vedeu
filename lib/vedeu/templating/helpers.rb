@@ -8,10 +8,10 @@ module Vedeu
 
       # @param value [String] The HTML/CSS colour.
       # @param block [Proc]
-      # @return [Vedeu::Stream]
+      # @return [Vedeu::Views::Stream]
       # @raise [Vedeu::InvalidSyntax] The required block was not given.
       def background(value, &block)
-        define_stream({ background: value }, &block)
+        define_stream(background: value, &block)
       end
       alias_method :bg, :background
 
@@ -19,7 +19,7 @@ module Vedeu
       # @option attributes foreground [String] The HTML/CSS foreground colour.
       # @option attributes background [String] The HTML/CSS background colour.
       # @param block [Proc]
-      # @return [Vedeu::Stream]
+      # @return [Vedeu::Views::Stream]
       # @raise [Vedeu::InvalidSyntax] The required block was not given.
       def colour(attributes = {}, &block)
         define_stream(attributes, &block)
@@ -27,18 +27,18 @@ module Vedeu
 
       # @param value [String] The HTML/CSS colour.
       # @param block [Proc]
-      # @return [Vedeu::Stream]
+      # @return [Vedeu::Views::Stream]
       # @raise [Vedeu::InvalidSyntax] The required block was not given.
       def foreground(value, &block)
-        define_stream({ foreground: value }, &block)
+        define_stream(foreground: value, &block)
       end
       alias_method :fg, :foreground
 
       # @param value [Symbol]
       # @param block [Proc]
-      # @return [Vedeu::Stream]
+      # @return [Vedeu::Views::Stream]
       def style(value, &block)
-        define_stream({ style: value }, &block)
+        define_stream(style: value, &block)
       end
 
       private
@@ -48,9 +48,10 @@ module Vedeu
         fail Vedeu::InvalidSyntax, 'block not given' unless block_given?
 
         encode(
-          Vedeu::Stream.build(colour: Vedeu::Colour.new(attributes),
-                              style:  Vedeu::Style.new(attributes[:style]),
-                              value:  block.call))
+          Vedeu::Views::Stream.build(
+            colour: Vedeu::Colour.new(attributes),
+            style:  Vedeu::Style.new(attributes[:style]),
+            value:  block.call))
       end
 
       # @param data [String]

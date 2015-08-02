@@ -23,13 +23,13 @@ module Vedeu
         context 'with a plain text file' do
           let(:content) { "This is a test.\n" }
           let(:expected) {
-            Vedeu::Lines.new([
-              Vedeu::Line.new(streams:
-                Vedeu::Stream.new(colour: {
-                                    background: :default,
-                                    foreground: :default },
-                                  style: :normal,
-                                  value: 'This is a test.'))
+            Vedeu::Views::Lines.new([
+              Vedeu::Views::Line.new(streams:
+                Vedeu::Views::Stream.new(colour: {
+                                           background: :default,
+                                           foreground: :default },
+                                         style: :normal,
+                                         value: 'This is a test.'))
             ])
           }
 
@@ -39,19 +39,19 @@ module Vedeu
         context 'with a plain text file with multiple lines' do
           let(:content) { "This is a test.\nAnd so is this.\n" }
           let(:expected) {
-            Vedeu::Lines.new([
-              Vedeu::Line.new(streams:
-                Vedeu::Stream.new(colour: {
-                                    background: :default,
-                                    foreground: :default },
-                                  style: :normal,
-                                  value: 'This is a test.')),
-              Vedeu::Line.new(streams:
-                Vedeu::Stream.new(colour: {
-                                    background: :default,
-                                    foreground: :default },
-                                  style: :normal,
-                                  value: 'And so is this.')),
+            Vedeu::Views::Lines.new([
+              Vedeu::Views::Line.new(streams:
+                Vedeu::Views::Stream.new(colour: {
+                                           background: :default,
+                                           foreground: :default },
+                                         style: :normal,
+                                         value: 'This is a test.')),
+              Vedeu::Views::Line.new(streams:
+                Vedeu::Views::Stream.new(colour: {
+                                           background: :default,
+                                           foreground: :default },
+                                           style: :normal,
+                                         value: 'And so is this.')),
             ])
           }
 
@@ -65,19 +65,19 @@ module Vedeu
           }
 
           let(:expected) {
-            Vedeu::Lines.new([
-              Vedeu::Line.new(streams: [
-                Vedeu::Stream.new(colour: {
-                                    background: :default,
-                                    foreground: :default },
-                                  style: :normal,
-                                  value: 'This is a '),
-                Vedeu::Stream.new(value: 'test', colour: colour),
-                Vedeu::Stream.new(colour: {
-                                    background: :default,
-                                    foreground: :default },
-                                  style: :normal,
-                                  value: '.'),
+            Vedeu::Views::Lines.new([
+              Vedeu::Views::Line.new(streams: [
+                Vedeu::Views::Stream.new(colour: {
+                                           background: :default,
+                                           foreground: :default },
+                                         style: :normal,
+                                         value: 'This is a '),
+                Vedeu::Views::Stream.new(value: 'test', colour: colour),
+                Vedeu::Views::Stream.new(colour: {
+                                           background: :default,
+                                           foreground: :default },
+                                         style: :normal,
+                                         value: '.'),
               ])
             ])
           }
@@ -95,25 +95,25 @@ module Vedeu
             }
 
             let(:expected) {
-              Vedeu::Lines.new([
-                Vedeu::Line.new(streams: [
-                  Vedeu::Stream.new(colour: {
-                                      background: :default,
-                                      foreground: :default },
-                                    style: :normal,
-                                    value: 'This is a '),
-                  Vedeu::Stream.new(value: 'test', colour: colour),
-                  Vedeu::Stream.new(colour: {
-                                      background: :default,
-                                      foreground: :default },
-                                    style: :normal,
-                                    value: '. And so is '),
-                  Vedeu::Stream.new(value: 'this', colour: colour),
-                  Vedeu::Stream.new(colour: {
-                                      background: :default,
-                                      foreground: :default },
-                                    style: :normal,
-                                    value: '.'),
+              Vedeu::Views::Lines.new([
+                Vedeu::Views::Line.new(streams: [
+                  Vedeu::Views::Stream.new(colour: {
+                                             background: :default,
+                                             foreground: :default },
+                                           style: :normal,
+                                           value: 'This is a '),
+                  Vedeu::Views::Stream.new(value: 'test', colour: colour),
+                  Vedeu::Views::Stream.new(colour: {
+                                             background: :default,
+                                             foreground: :default },
+                                           style: :normal,
+                                           value: '. And so is '),
+                  Vedeu::Views::Stream.new(value: 'this', colour: colour),
+                  Vedeu::Views::Stream.new(colour: {
+                                             background: :default,
+                                             foreground: :default },
+                                           style: :normal,
+                                           value: '.'),
                 ])
               ])
             }
@@ -129,19 +129,19 @@ module Vedeu
           }
 
           let(:expected) {
-            Vedeu::Lines.new([
-              Vedeu::Line.new(streams: [
-                Vedeu::Stream.new(colour: {
-                                    background: :default,
-                                    foreground: :default },
-                                  style: :normal,
-                                  value: 'This is a '),
-                Vedeu::Stream.new(value: 'test', colour: colour),
-                Vedeu::Stream.new(colour: {
-                                    background: :default,
-                                    foreground: :default },
-                                  style: :normal,
-                                  value: '.'),
+            Vedeu::Views::Lines.new([
+              Vedeu::Views::Line.new(streams: [
+                Vedeu::Views::Stream.new(colour: {
+                                           background: :default,
+                                           foreground: :default },
+                                         style: :normal,
+                                         value: 'This is a '),
+                Vedeu::Views::Stream.new(value: 'test', colour: colour),
+                Vedeu::Views::Stream.new(colour: {
+                                           background: :default,
+                                           foreground: :default },
+                                         style: :normal,
+                                         value: '.'),
               ])
             ])
           }
@@ -156,19 +156,19 @@ module Vedeu
           }
 
           let(:expected) {
-            Vedeu::Lines.new([
-              Vedeu::Line.new(streams: [
-                Vedeu::Stream.new(colour: {
-                                    background: :default,
-                                    foreground: :default },
-                                  style: :normal,
-                                  value: 'This is a '),
-                Vedeu::Stream.new(value: 'test', colour: colour),
-                Vedeu::Stream.new(colour: {
-                                    background: :default,
-                                    foreground: :default },
-                                  style: :normal,
-                                  value: '.'),
+            Vedeu::Views::Lines.new([
+              Vedeu::Views::Line.new(streams: [
+                Vedeu::Views::Stream.new(colour: {
+                                           background: :default,
+                                           foreground: :default },
+                                         style: :normal,
+                                         value: 'This is a '),
+                Vedeu::Views::Stream.new(value: 'test', colour: colour),
+                Vedeu::Views::Stream.new(colour: {
+                                           background: :default,
+                                           foreground: :default },
+                                         style: :normal,
+                                         value: '.'),
               ])
             ])
           }
@@ -183,19 +183,19 @@ module Vedeu
           }
 
           let(:expected) {
-            Vedeu::Lines.new([
-              Vedeu::Line.new(streams: [
-                Vedeu::Stream.new(colour: {
-                                    background: :default,
-                                    foreground: :default },
-                                  style: :normal,
-                                  value: 'This is a '),
-                Vedeu::Stream.new(value: 'test', style: style),
-                Vedeu::Stream.new(colour: {
-                                    background: :default,
-                                    foreground: :default },
-                                  style: :normal,
-                                  value: '.'),
+            Vedeu::Views::Lines.new([
+              Vedeu::Views::Line.new(streams: [
+                Vedeu::Views::Stream.new(colour: {
+                                           background: :default,
+                                           foreground: :default },
+                                         style: :normal,
+                                         value: 'This is a '),
+                Vedeu::Views::Stream.new(value: 'test', style: style),
+                Vedeu::Views::Stream.new(colour: {
+                                           background: :default,
+                                           foreground: :default },
+                                         style: :normal,
+                                         value: '.'),
               ])
             ])
           }

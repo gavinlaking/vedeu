@@ -22,7 +22,8 @@ module Vedeu
     # @option options background [String]
     # @option options colour [Hash|NilClass]
     # @option options foreground [String]
-    # @option options model [Vedeu::Interface|Vedeu::Line|Vedeu::Stream]
+    # @option options model
+    #   [Vedeu::Views::View|Vedeu::Views::Line|Vedeu::Views::Stream]
     # @option options pad [String]
     # @option options width [Integer]
     # @return [Vedeu::Text]
@@ -80,7 +81,7 @@ module Vedeu
     end
 
     # If a colour, background or foreground option is set, use them as the
-    # colour settings for the new Vedeu::Stream.
+    # colour settings for the new Vedeu::Views::Stream.
     #
     # @return [void]
     def colour
@@ -93,11 +94,12 @@ module Vedeu
       end
     end
 
-    # Returns either a Vedeu::Line or Vedeu::Stream containing the text value.
+    # Returns either a Vedeu::Views::Line or Vedeu::Views::Stream containing the
+    # text value.
     #
-    # @return [Vedeu::Line|Vedeu::Stream]
+    # @return [Vedeu::Views::Line|Vedeu::Views::Stream]
     def content
-      if model.is_a?(Vedeu::Interface)
+      if model.is_a?(Vedeu::Views::View)
         stream.parent = line
         line.add(stream)
         line
@@ -128,14 +130,17 @@ module Vedeu
       string.ljust(width, pad)
     end
 
-    # @return [Vedeu::Line]
+    # @return [Vedeu::Views::Line]
     def line
-      @line ||= Vedeu::Line.build(parent: parent)
+      @line ||= Vedeu::Views::Line.build(parent: parent)
     end
 
     # Returns the model option when set.
     #
-    # @return [Vedeu::Interface|Vedeu::Line|Vedeu::Null::Generic|Vedeu::Stream]
+    # @return [Vedeu::Views::View|
+    #          Vedeu::Views::Line|
+    #          Vedeu::Null::Generic|
+    #          Vedeu::Views::Stream]
     def model
       @model ||= options[:model] || Vedeu::Null::Generic.new
     end
@@ -147,11 +152,11 @@ module Vedeu
       options[:pad]
     end
 
-    # Returns the parent for the new Vedeu::Stream.
+    # Returns the parent for the new Vedeu::Views::Stream.
     #
     # @return [void]
     def parent
-      model.is_a?(Vedeu::Stream) ? model.parent : model
+      model.is_a?(Vedeu::Views::Stream) ? model.parent : model
     end
 
     # The string padded to width, right justified.
@@ -161,14 +166,14 @@ module Vedeu
       string.rjust(width, pad)
     end
 
-    # Builds and returns a new Vedeu::Stream.
+    # Builds and returns a new Vedeu::Views::Stream.
     #
     # @return [void]
     def stream
-      @stream ||= Vedeu::Stream.build(colour: colour,
-                                      parent: parent,
-                                      style:  style,
-                                      value:  aligned)
+      @stream ||= Vedeu::Views::Stream.build(colour: colour,
+                                             parent: parent,
+                                             style:  style,
+                                             value:  aligned)
     end
 
     # The string, coerced.

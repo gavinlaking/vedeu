@@ -22,6 +22,8 @@ require 'vedeu'
 #
 class VedeuConfigurationApp
 
+  Vedeu.bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
+
   Vedeu.configure do
     # debug!
     log '/tmp/vedeu_configuration_app.log'

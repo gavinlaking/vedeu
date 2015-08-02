@@ -25,7 +25,7 @@ module Vedeu
         @options = options || {}
       end
 
-      # @return [Vedeu::Stream]
+      # @return [Vedeu::Views::Stream]
       def parse
         ERB.new(load, nil, '-').result(binding)
       end

@@ -42,50 +42,19 @@ module Vedeu
     end
 
     describe '#add' do
-      let(:back) {
-        Vedeu.interface 'buffer' do
-          lines do
-            line 'old_back'
-          end
-        end
-      }
-      let(:content) {
-        Vedeu.interface 'buffer' do
-          lines do
-            line 'new_back'
-          end
-        end
-      }
-
-      before { Vedeu.stubs(:trigger) }
-      after { Vedeu.interfaces.reset }
+      let(:content) { Vedeu::Views::View.new(lines: [Vedeu::Views::Line.new]) }
 
       subject { instance.add(content) }
 
       it { subject.must_equal(true) }
-
-      it 'replaces the back buffer with the content' do
-        instance.back.must_equal(back)
-
-        subject
-
-        instance.back.must_equal(content)
-      end
     end
 
     describe '#back?' do
-      before { Vedeu.stubs(:trigger) }
-      after { Vedeu.interfaces.reset }
-
       subject { instance.back? }
 
       context 'with content' do
         let(:back) {
-          Vedeu.interface 'back' do
-            lines do
-              line 'back content'
-            end
-          end
+          Vedeu::Views::View.new(lines: [Vedeu::Views::Line.new])
         }
 
         it { subject.must_equal(true) }
@@ -97,19 +66,13 @@ module Vedeu
     end
 
     describe '#front?' do
-      before { Vedeu.stubs(:trigger) }
-      after { Vedeu.interfaces.reset }
-
       subject { instance.front? }
 
       context 'with content' do
         let(:front) {
-          Vedeu.interface 'front' do
-            lines do
-              line 'front content'
-            end
-          end
+          Vedeu::Views::View.new(lines: [Vedeu::Views::Line.new])
         }
+
         it { subject.must_equal(true) }
       end
 
@@ -119,18 +82,11 @@ module Vedeu
     end
 
     describe '#previous?' do
-      before { Vedeu.stubs(:trigger) }
-      after { Vedeu.interfaces.reset }
-
       subject { instance.previous? }
 
       context 'with content' do
         let(:previous) {
-          Vedeu.interface 'previous' do
-            lines do
-              line 'previous content'
-            end
-          end
+          Vedeu::Views::View.new(lines: [Vedeu::Views::Line.new])
         }
 
         it { subject.must_equal(true) }
@@ -172,96 +128,6 @@ module Vedeu
         Vedeu::Output.expects(:render)
         subject
       }
-
-      # @todo Add more tests.
-      # it { skip }
-      # it { subject.must_be_instance_of(Array) }
-
-      # context 'when there is content on the back buffer' do
-      #   let(:back) {
-      #     Vedeu.interface 'buffer' do
-      #       lines do
-      #         line 'old_back'
-      #       end
-      #     end
-      #   }
-      #   let(:front) {
-      #     Vedeu.interface 'buffer' do
-      #       lines do
-      #         line 'front'
-      #       end
-      #     end
-      #   }
-      #   let(:previous) {
-      #     Vedeu.interface 'buffer' do
-      #       lines do
-      #         line 'previous'
-      #       end
-      #     end
-      #   }
-      #   let(:buffer) { :back }
-
-      #   it { subject.must_equal([back]) }
-
-      #   it 'replaces the previous buffer with the front buffer' do
-      #     subject
-      #     instance.previous.must_equal(front)
-      #   end
-
-      #   it 'replaces the front buffer with the back buffer' do
-      #     subject
-      #     instance.front.must_equal(back)
-      #   end
-
-      #   it 'replaces the back buffer with an empty buffer' do
-      #     subject
-      #     instance.back.must_equal(nil)
-      #   end
-      # end
-
-      # context 'when there is no content on the back buffer' do
-      #   let(:buffer) { :back }
-
-      #   it { subject.must_equal([]) }
-      # end
-
-      # context 'when there is content on the front buffer' do
-      #   let(:buffer) { :front }
-      #   let(:front) {
-      #     Vedeu.interface 'buffer' do
-      #       lines do
-      #         line 'front'
-      #       end
-      #     end
-      #   }
-
-      #   it { subject.must_equal([front]) }
-      # end
-
-      # context 'when there is no content on the front buffer' do
-      #   let(:buffer) { :front }
-
-      #   it { subject.must_equal([]) }
-      # end
-
-      # context 'when there is content on the previous buffer' do
-      #   let(:buffer) { :previous }
-      #   let(:previous) {
-      #     Vedeu.interface 'buffer' do
-      #       lines do
-      #         line 'old_back'
-      #       end
-      #     end
-      #   }
-
-      #   it { subject.must_equal([previous]) }
-      # end
-
-      # context 'when there is no content on the previous buffer' do
-      #   let(:buffer) { :previous }
-
-      #   it { subject.must_equal([]) }
-      # end
     end
 
   end # Buffer

@@ -38,7 +38,7 @@ module Vedeu
 
       # Returns an instance of DSL::Line.
       #
-      # @param model [Vedeu::Line]
+      # @param model [Vedeu::Views::Line]
       # @param client [Object]
       # @return [Vedeu::DSL::Line]
       def initialize(model, client = nil)
@@ -60,16 +60,16 @@ module Vedeu
       #   end
       #
       # @raise [Vedeu::InvalidSyntax] When no block or value is provided.
-      # @return [Vedeu::Lines]
+      # @return [Vedeu::Views::Lines]
       def line(value = '', &block)
         if block_given?
-          content = Vedeu::Line.build({ client: client,
-                                        parent: model.parent }, &block)
+          content = Vedeu::Views::Line.build(client: client,
+                                             parent: model.parent, &block)
 
         elsif value
-          content = Vedeu::Line.build(client:  client,
-                                      parent:  model.parent,
-                                      streams: [build_stream(value)])
+          content = Vedeu::Views::Line.build(client:  client,
+                                             parent:  model.parent,
+                                             streams: [build_stream(value)])
 
         else
           fail Vedeu::InvalidSyntax, 'block not given'
@@ -98,7 +98,7 @@ module Vedeu
       #
       # @param block [Proc]
       # @raise [Vedeu::InvalidSyntax] The required block was not given.
-      # @return [Vedeu::Streams<Vedeu::Stream>]
+      # @return [Vedeu::Views::Streams<Vedeu::Views::Stream>]
       # @see Vedeu::DSL::Stream for subdirectives.
       def streams(&block)
         fail Vedeu::InvalidSyntax, 'block not given' unless block_given?
@@ -114,7 +114,7 @@ module Vedeu
       attr_reader :client
 
       # @!attribute [r] model
-      # @return [Vedeu::Line]
+      # @return [Vedeu::Views::Line]
       attr_reader :model
 
       private
@@ -128,9 +128,9 @@ module Vedeu
       end
 
       # @param value [String]
-      # @return [Vedeu::Stream]
+      # @return [Vedeu::Views::Stream]
       def build_stream(value)
-        Vedeu::Stream.build(client: client, parent: model, value: value)
+        Vedeu::Views::Stream.build(client: client, parent: model, value: value)
       end
 
     end # Line

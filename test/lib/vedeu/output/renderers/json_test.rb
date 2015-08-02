@@ -34,9 +34,9 @@ module Vedeu
           let(:output) {
             [
               [
-                Vedeu::Char.new(value: 'a',
-                                colour: colour,
-                                position: Vedeu::Position[5, 3])
+                Vedeu::Views::Char.new(value: 'a',
+                                       colour: colour,
+                                       position: Vedeu::Position[5, 3])
               ]
             ]
           }

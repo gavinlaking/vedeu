@@ -68,10 +68,10 @@ module Vedeu
         let(:content) {
           [
             [
-              Vedeu::Char.new(value: 't'),
-              Vedeu::Char.new(value: 'e'),
-              Vedeu::Char.new(value: 's'),
-              Vedeu::Char.new(value: 't'),
+              Vedeu::Views::Char.new(value: 't'),
+              Vedeu::Views::Char.new(value: 'e'),
+              Vedeu::Views::Char.new(value: 's'),
+              Vedeu::Views::Char.new(value: 't'),
             ]
           ]
         }

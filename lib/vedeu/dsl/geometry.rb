@@ -87,7 +87,7 @@ module Vedeu
       def self.geometry(name, &block)
         fail Vedeu::InvalidSyntax, 'block not given' unless block_given?
 
-        Vedeu::Geometry.build({ name: name }, &block).store
+        Vedeu::Geometry.build(name: name, &block).store
       end
 
       # Returns an instance of DSL::Geometry.

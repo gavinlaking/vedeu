@@ -8,9 +8,10 @@ module Vedeu
     #
     # Both of these approaches require that you have defined an interface (or
     # 'visible area') first. You can find out how to define an interface with
-    # Vedeu here. The examples in 'Immediate Render' and 'Deferred View' use
-    # these interface definitions: (Note: should you use these examples, ensure
-    # your terminal is at least 70 characters in width and 5 lines in height.)
+    # Vedeu below or in {Vedeu::DSL::Interface}. The examples in 'Immediate
+    # Render' and 'Deferred View' use these interface definitions: (Note: should
+    # you use these examples, ensure your terminal is at least 70 characters in
+    # width and 5 lines in height.)
     #
     #   Vedeu.interface 'main' do
     #     geometry do
@@ -79,37 +80,16 @@ module Vedeu
     #
     class View
 
+      include Vedeu::Common
+      include Vedeu::DSL
+      include Vedeu::DSL::Presentation
+      include Vedeu::DSL::Shared
+      include Vedeu::DSL::Text
+      include Vedeu::DSL::Use
+
       class << self
 
         include Vedeu::Common
-
-        # Register an interface by name which will display output from a event
-        # or command. This provides the means for you to define your the views
-        # of your application without their content.
-        #
-        #   Vedeu.interface 'my_interface' do
-        #     # ... some code
-        #   end
-        #
-        # @param name [String] The name of the interface. Used to reference the
-        #   interface throughout your application's execution lifetime.
-        # @param block [Proc] A set of attributes which define the features of
-        #   the interface.
-        # @raise [Vedeu::InvalidSyntax] The required block was not given.
-        # @return [Vedeu::Interface]
-        # @todo More documentation required.
-        def interface(name, &block)
-          fail Vedeu::InvalidSyntax, 'block not given' unless block_given?
-          fail Vedeu::MissingRequired, 'name not given' unless present?(name)
-
-          add_buffers!(name)
-          add_cursor!(name)
-          add_focusable!(name)
-
-          attributes = { client: client(&block), name: name }
-
-          Vedeu::Interface.build(attributes, &block).store
-        end
 
         # Directly write a view buffer to the terminal. Using this method means
         # that the refresh event does not need to be triggered after creating
@@ -147,7 +127,7 @@ module Vedeu
         # @param block [Proc] The directives you wish to send to render.
         #   Typically includes `view` with associated sub-directives.
         # @raise [Vedeu::InvalidSyntax] The required block was not given.
-        # @return [Array<Interface>]
+        # @return [Array<View>]
         def render(&block)
           fail Vedeu::InvalidSyntax, 'block not given' unless block_given?
 
@@ -191,38 +171,14 @@ module Vedeu
         # @param block [Proc] The directives you wish to send to render.
         #   Typically includes `view` with associated sub-directives.
         # @raise [Vedeu::InvalidSyntax] The required block was not given.
-        # @return [Array<Interface>]
-        def view(&block)
+        # @return [Array<View>]
+        def views(&block)
           fail Vedeu::InvalidSyntax, 'block not given' unless block_given?
 
           store(:store_deferred, &block)
         end
-        alias_method :views, :view
 
         private
-
-        # Registers a set of buffers for the interface unless already registered,
-        # and also adds interface's name to list of focussable interfaces.
-        #
-        # @see Vedeu::Buffer
-        # @return [void]
-        def add_buffers!(name)
-          Vedeu::Buffer.new(name: name).store
-        end
-
-        # Registers a new cursor for the interface unless already registered.
-        #
-        # @return [void]
-        def add_cursor!(name)
-          Vedeu::Cursor.new(name: name).store
-        end
-
-        # Registers interface name in focus list unless already registered.
-        #
-        # @return [void]
-        def add_focusable!(name)
-          Vedeu.focusable.add(name) unless Vedeu.focusable.registered?(name)
-        end
 
         # Returns the client object which called the DSL method.
         #
@@ -232,14 +188,14 @@ module Vedeu
           eval('self', block.binding)
         end
 
-        # Creates a new Composition which may contain one or more views
-        # (Interface objects).
+        # Creates a new Vedeu::Views::Composition which may contain one or more
+        # views (Vedeu::Views::View objects).
         #
         # @param client [Object]
         # @param block [Proc]
-        # @return [Vedeu::Composition]
+        # @return [Vedeu::Views::Composition]
         def composition(client, &block)
-          Vedeu::Composition.build({ client: client }, &block)
+          Vedeu::Views::Composition.build(client: client, &block)
         end
 
         # Stores each of the views defined in their respective buffers ready to
@@ -251,12 +207,68 @@ module Vedeu
         # @param block [Proc]
         # @return [Array]
         def store(method, &block)
-          composition(client(&block), &block).interfaces.map do |interface|
-            interface.public_send(method)
+          composition(client(&block), &block).views.map do |view|
+            view.public_send(method)
           end
         end
 
       end # Eigenclass
+
+      # Returns an instance of Vedeu::DSL::View.
+      #
+      # @param model [Vedeu::DSL::View]
+      # @param client [Object]
+      # @return [Vedeu::DSL::View]
+      def initialize(model, client = nil)
+        @model  = model
+        @client = client
+      end
+
+      # Specify multiple lines in a view.
+      #
+      # @param block [Proc]
+      #
+      # @example
+      #   Vedeu.view 'my_interface' do
+      #     lines do
+      #       # ... see {Vedeu::DSL::Line} and {Vedeu::DSL::Stream}
+      #     end
+      #   end
+      #
+      #   Vedeu.view 'my_interface' do
+      #     line do
+      #       # ... see {Vedeu::DSL::Line} and {Vedeu::DSL::Stream}
+      #     end
+      #   end
+      #
+      # @raise [Vedeu::InvalidSyntax] The required block was not given.
+      # @return [Vedeu::Views::Line]
+      def lines(&block)
+        fail Vedeu::InvalidSyntax, 'block not given' unless block_given?
+
+        model.add(model.member.build(attributes, &block))
+      end
+      alias_method :line, :lines
+
+      protected
+
+      # @!attribute [r] client
+      # @return [Object]
+      attr_reader :client
+
+      # @!attribute [r] model
+      # @return [Vedeu::Views::View]
+      attr_reader :model
+
+      private
+
+      # @return [Hash]
+      def attributes
+        {
+          client: client,
+          parent: model,
+        }
+      end
 
     end # View
 

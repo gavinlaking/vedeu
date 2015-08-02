@@ -57,10 +57,6 @@ module Vedeu
     #
     # @return [Vedeu::Cursor]
     def initialize(attributes = {})
-      # @todo Hack because Repository#by_name creates Cursor objects with just a
-      #   name. Intend to remove this.
-      attributes = { name: attributes } if attributes.is_a?(String)
-
       @attributes = defaults.merge!(attributes)
 
       @attributes.each { |key, value| instance_variable_set("@#{key}", value) }
@@ -76,6 +72,13 @@ module Vedeu
       "y:#{y}, "                  \
       "ox:#{ox}, "                \
       "oy:#{oy})>"
+    end
+
+    # Renders the cursor.
+    #
+    # @return [void]
+    def render
+      Vedeu::Output.render(visibility)
     end
 
     # Returns an escape sequence to position the cursor and set its visibility.
@@ -104,7 +107,7 @@ module Vedeu
     def hide
       super
 
-      Vedeu::Output.render(visibility) if Vedeu.ready?
+      render
     end
 
     # Return the position of this cursor.
@@ -124,7 +127,7 @@ module Vedeu
     def show
       super
 
-      Vedeu::Output.render(visibility) if Vedeu.ready?
+      render
     end
 
     # @return [Fixnum] The column/character coordinate.

@@ -46,24 +46,20 @@ module Vedeu
 
     describe '#to_s' do
       let(:line) {
-        Vedeu::Line.new(streams: [],
-                        parent:  Vedeu::Interface.new,
-                        colour:  line_colour,
-                        style:   Vedeu::Style.new('normal'))
-      }
-      let(:line_colour) {
-        Vedeu::Colour.new(foreground: '#00ff00', background: '#000000')
+        Vedeu::Views::Line.new(streams: [],
+                               parent: Vedeu::Interface.new,
+                               colour: Vedeu::Colour.new(foreground: '#00ff00',
+                                                         background: '#000000'),
+                               style:  Vedeu::Style.new('normal'))
       }
       let(:stream) {
-        Vedeu::Stream.new(value: stream_value,
-                   parent: line,
-                   colour: stream_colour,
-                   style: stream_style)
+        Vedeu::Views::Stream.new(value:  stream_value,
+                                 parent: line,
+                                 colour: Vedeu::Colour.new(foreground: '#ff0000',
+                                                           background: '#000000'),
+                                 style:  stream_style)
       }
       let(:stream_value)  { 'Some text' }
-      let(:stream_colour) {
-        Vedeu::Colour.new(foreground: '#ff0000', background: '#000000')
-      }
       let(:stream_style)  { Vedeu::Style.new(:underline) }
 
       it { includer.must_respond_to(:to_str) }

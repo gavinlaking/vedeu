@@ -4,15 +4,10 @@ module Vedeu
 
   describe Viewport do
 
-    let(:described) { Vedeu::Viewport }
-    let(:instance)  { described.new(interface) }
-    let(:interface) { Vedeu.interfaces.by_name('lithium') }
-    let(:visibility) { true }
-    let(:geometry)   { Vedeu::Geometry.new(height: 3, width: 3) }
-
-    before {
-      Vedeu.geometries.stubs(:by_name).returns(geometry)
-      Vedeu.interface 'lithium' do
+    let(:described)  { Vedeu::Viewport }
+    let(:instance)   { described.new(view) }
+    let(:view)       {
+      Vedeu::Views::View.build(name: 'lithium', style: nil) do
         lines do
           line 'barium'
           line 'carbon'
@@ -21,26 +16,33 @@ module Vedeu
           line 'nickel'
           line 'osmium'
         end
-        style nil
-        visible(visibility)
       end
+    }
+    let(:visible)   { true }
+    let(:interface) { Vedeu::Interface.new(style: nil, visible: visible) }
+    let(:geometry)  { Vedeu::Geometry.new(height: 3, width: 3) }
+
+    before {
+      Vedeu.interfaces.stubs(:by_name).returns(interface)
+      Vedeu.geometries.stubs(:by_name).returns(geometry)
     }
     after { Vedeu.interfaces.reset }
 
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }
-      it { instance.instance_variable_get('@interface').must_equal(interface) }
+      it { instance.instance_variable_get('@view').must_equal(view) }
     end
 
     describe '.render' do
-      subject { described.render(interface) }
+      subject { described.render(view) }
 
       context 'when the interface is visible' do
-
+        # @todo Add more tests.
+        # it { skip }
       end
 
       context 'when the interface is not visible' do
-        let(:visibility) { false }
+        let(:visible) { false }
 
         it { subject.must_be_instance_of(Array) }
 
@@ -49,7 +51,7 @@ module Vedeu
     end
 
     describe '#render' do
-      let(:cursor) { Cursor.new(cursor_attributes) }
+      let(:cursor) { Vedeu::Cursor.new(cursor_attributes) }
       let(:cursor_attributes) {
         { name: 'lithium', ox: ox, oy: oy, visible: true, x: x, y: y }
       }
@@ -59,23 +61,19 @@ module Vedeu
       let(:x)      { 1 }
       let(:y)      { 1 }
 
-      before {
-        interface.stubs(:cursor).returns(cursor)
-      }
-
       subject { instance.render }
 
       it { subject.must_be_instance_of(Array) }
 
       context 'when there is no content' do
-        before { interface.stubs(:lines).returns([]) }
+        before { view.stubs(:lines).returns([]) }
 
         it { subject.must_equal([]) }
       end
     end
 
     describe '#to_s' do
-      let(:cursor) { Cursor.new(cursor_attributes) }
+      let(:cursor) { Vedeu::Cursor.new(cursor_attributes) }
       let(:cursor_attributes) {
         { name: 'lithium', ox: ox, oy: oy, visible: true, x: x, y: y }
       }
@@ -90,7 +88,7 @@ module Vedeu
       it { subject.must_be_instance_of(String) }
 
       context 'when there is no content' do
-        before { interface.stubs(:lines).returns([]) }
+        before { view.stubs(:lines).returns([]) }
 
         it { subject.must_equal('') }
       end

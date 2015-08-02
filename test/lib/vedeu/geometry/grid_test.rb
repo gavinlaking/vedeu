@@ -17,11 +17,11 @@ module Vedeu
 
     describe '.columns' do
       context 'when the value is less than 1' do
-        it { proc { Grid.columns(0) }.must_raise(OutOfRange) }
+        it { proc { Grid.columns(0) }.must_raise(Vedeu::OutOfRange) }
       end
 
       context 'when the value is greater than 12' do
-        it { proc { Grid.columns(13) }.must_raise(OutOfRange) }
+        it { proc { Grid.columns(13) }.must_raise(Vedeu::OutOfRange) }
       end
 
       context 'when the value is in range' do
@@ -33,11 +33,11 @@ module Vedeu
 
     describe '.rows' do
       context 'when the value is less than 1' do
-        it { proc { Grid.rows(0) }.must_raise(OutOfRange) }
+        it { proc { Grid.rows(0) }.must_raise(Vedeu::OutOfRange) }
       end
 
       context 'when the value is greater than 12' do
-        it { proc { Grid.rows(13) }.must_raise(OutOfRange) }
+        it { proc { Grid.rows(13) }.must_raise(Vedeu::OutOfRange) }
       end
 
       context 'when the value is in range' do

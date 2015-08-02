@@ -29,10 +29,10 @@ module Vedeu
       @renderer = renderer
     end
 
-    # Return a grid of {Vedeu::Char} objects defined by the height and width of
-    # this virtual terminal.
+    # Return a grid of {Vedeu::Views::Char} objects defined by the height and
+    # width of this virtual terminal.
     #
-    # @return [Array<Array<Vedeu::Char>>]
+    # @return [Array<Array<Vedeu::Views::Char>>]
     def cells
       @cells ||= new_virtual_terminal
     end
@@ -46,7 +46,7 @@ module Vedeu
     #
     # @param y [Fixnum] The row/line coordinate.
     # @param x [Fixnum] The column/character coordinate.
-    # @return [Vedeu::Char]
+    # @return [Vedeu::Views::Char]
     def read(y, x)
       cy, cx = Vedeu::PositionIndex[y, x]
 
@@ -58,11 +58,11 @@ module Vedeu
 
     # Write a collection of cells to the virtual terminal.
     #
-    # @param data [Array<Array<Vedeu::Char>>]
-    # @return [Array<Array<Vedeu::Char>>]
+    # @param data [Array<Array<Vedeu::Views::Char>>]
+    # @return [Array<Array<Vedeu::Views::Char>>]
     def output(data)
       Array(data).flatten.each do |char|
-        write(char.y, char.x, char) if char.is_a?(Vedeu::Char)
+        write(char.y, char.x, char) if char.is_a?(Vedeu::Views::Char)
       end
 
       cells
@@ -77,7 +77,7 @@ module Vedeu
 
     # Removes all content from the virtual terminal; effectively clearing it.
     #
-    # @return [Array<Array<Vedeu::Char>>]
+    # @return [Array<Array<Vedeu::Views::Char>>]
     def reset
       @cells = new_virtual_terminal
     end
@@ -91,8 +91,8 @@ module Vedeu
     #
     # @param y [Fixnum] The row/line coordinate.
     # @param x [Fixnum] The column/character coordinate.
-    # @param data [Vedeu::Char]
-    # @return [Vedeu::Char]
+    # @param data [Vedeu::Views::Char]
+    # @return [Vedeu::Views::Char]
     def write(y, x, data)
       return false unless read(y, x).is_a?(Vedeu::Cell)
 
@@ -107,7 +107,7 @@ module Vedeu
     # @param from [Array] An Array of rows, or an Array of cells.
     # @param which [Fixnum] A Fixnum representing the index; the row number or
     #   the cell number for a row.
-    # @return [Array<Vedeu::Char>|Array]
+    # @return [Array<Vedeu::Views::Char>|Array]
     def fetch(from, which)
       from[which] || []
     end

@@ -17,7 +17,7 @@ module Vedeu
 
       # Render the output with the escape sequences escaped.
       #
-      # @param output [Array<Array<Vedeu::Char>>]
+      # @param output [Array<Array<Vedeu::Views::Char>>]
       # @return [String]
       def render(output)
         @parsed ||= Array(output).flatten.map do |char|

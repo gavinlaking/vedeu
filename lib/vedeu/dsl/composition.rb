@@ -42,7 +42,7 @@ module Vedeu
 
       # Returns an instance of DSL::Composition.
       #
-      # @param model [Vedeu::Composition]
+      # @param model [Vedeu::Views::Composition]
       # @param client [Object]
       # @return [Vedeu::DSL::Composition]
       def initialize(model, client = nil)
@@ -69,7 +69,7 @@ module Vedeu
       #   end
       #
       # @raise [Vedeu::InvalidSyntax] The required block was not given.
-      # @return [Vedeu::InterfaceCollection<Vedeu::Interface>]
+      # @return [Vedeu::Views::Views<Vedeu::Views::View>]
       def view(name = '', &block)
         fail Vedeu::InvalidSyntax, 'block not given' unless block_given?
 
@@ -97,7 +97,7 @@ module Vedeu
       # @param object [Object] The object for which the values of template's
       #   variables can be obtained.
       # @param options [Hash] See {Vedeu::Wordwrap}
-      # @return [Vedeu::InterfaceCollection<Vedeu::Interface>]
+      # @return [Vedeu::Views::Views<Vedeu::Views::View>]
       def template_for(name, filename, object = nil, options = {})
         fail Vedeu::MissingRequired,
              'Cannot render template without the name of the view.' unless name
@@ -124,13 +124,13 @@ module Vedeu
       attr_reader :client
 
       # @!attribute [r] model
-      # @return [Vedeu::Composition]
+      # @return [Vedeu::Views::Composition]
       attr_reader :model
 
       private
 
       # @param name [String]
-      # @param lines [Vedeu::Lines]
+      # @param lines [Vedeu::Views::Lines]
       # @return [Hash]
       def template_attributes(name, lines)
         new_attributes(name).merge!(lines: lines)

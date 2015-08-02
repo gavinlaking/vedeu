@@ -19,7 +19,7 @@ module Vedeu
         @options = options || {}
       end
 
-      # @param output [Array<Array<Vedeu::Char>>]
+      # @param output [Array<Array<Vedeu::Views::Char>>]
       # @return [String]
       def render(output)
         @options[:content] = output
@@ -39,7 +39,7 @@ module Vedeu
         Array(content).each do |line|
           out << "#{start_row_tag}\n"
           line.each do |char|
-            if char.is_a?(Vedeu::Char)
+            if char.is_a?(Vedeu::Views::Char)
               out << char.to_html
               out << "\n"
             end
@@ -51,7 +51,7 @@ module Vedeu
 
       private
 
-      # @return [Array<Array<Vedeu::Char>>]
+      # @return [Array<Array<Vedeu::Views::Char>>]
       def content
         options[:content]
       end

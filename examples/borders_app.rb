@@ -13,6 +13,8 @@ require 'vedeu'
 #
 class VedeuBordersApp
 
+  Vedeu.bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
+
   # Be aware that running an application with debugging enabled will affect
   # performance.
   Vedeu.configure do

@@ -23,7 +23,7 @@ module Vedeu
         context 'when the path is empty' do
           let(:path) { '' }
 
-          it { proc { subject }.must_raise(MissingRequired) }
+          it { proc { subject }.must_raise(Vedeu::MissingRequired) }
         end
 
         context 'when the path is does not exist' do
@@ -31,7 +31,7 @@ module Vedeu
 
           before { File.stubs(:exist?).returns(false) }
 
-          it { proc { subject }.must_raise(MissingRequired) }
+          it { proc { subject }.must_raise(Vedeu::MissingRequired) }
         end
 
         context 'when the path exists' do

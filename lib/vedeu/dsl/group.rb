@@ -46,7 +46,7 @@ module Vedeu
       def self.group(name, &block)
         fail Vedeu::InvalidSyntax, 'block not given' unless block_given?
 
-        Vedeu::Group.build({ name: name }, &block).store
+        Vedeu::Group.build(name: name, &block).store
       end
 
       # Returns an instance of DSL::Group.

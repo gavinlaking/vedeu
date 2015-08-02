@@ -87,7 +87,7 @@ module Vedeu
     end
 
     describe '#write' do
-      let(:data) { Vedeu::Char.new(value: 'a') }
+      let(:data) { Vedeu::Views::Char.new(value: 'a') }
 
       subject { instance.write(y, x, data) }
 

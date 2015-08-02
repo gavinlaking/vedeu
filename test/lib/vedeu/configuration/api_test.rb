@@ -199,19 +199,19 @@ module Vedeu
         context 'when the value is invalid (nil)' do
           it { proc {
             Vedeu.configure { colour_mode(nil) }
-          }.must_raise(InvalidSyntax) }
+          }.must_raise(Vedeu::InvalidSyntax) }
         end
 
         context 'when the value is invalid (empty)' do
           it { proc {
             Vedeu.configure { colour_mode('') }
-          }.must_raise(InvalidSyntax) }
+          }.must_raise(Vedeu::InvalidSyntax) }
         end
 
         context 'when the value is invalid' do
           it { proc {
             Vedeu.configure { colour_mode(1234) }
-          }.must_raise(InvalidSyntax) }
+          }.must_raise(Vedeu::InvalidSyntax) }
         end
 
         it 'sets the option to the desired value' do

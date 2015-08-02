@@ -14,7 +14,7 @@ module Vedeu
 
     describe '.open' do
       context 'when a block was not given' do
-        it { proc { Terminal.open }.must_raise(InvalidSyntax) }
+        it { proc { Terminal.open }.must_raise(Vedeu::InvalidSyntax) }
       end
 
       it 'opens a new terminal console in raw mode' do

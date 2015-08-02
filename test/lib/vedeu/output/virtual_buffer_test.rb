@@ -16,7 +16,7 @@ module Vedeu
       end
 
       context 'when buffers are stored' do
-        let(:buffer) { [[Vedeu::Char.new]] }
+        let(:buffer) { [[Vedeu::Views::Char.new]] }
 
         before { described.store(buffer) }
 

@@ -14,7 +14,7 @@ module Vedeu
 
     # Return a new instance of Vedeu::Output.
     #
-    # @param output [Array<Array<Vedeu::Char>>]
+    # @param output [Array<Array<Vedeu::Views::Char>>]
     # @return [Output]
     def initialize(output)
       @output = output
@@ -30,13 +30,13 @@ module Vedeu
         # Vedeu::Renderers::HTML.to_file(Vedeu::VirtualBuffer.retrieve)
       end
 
-      Vedeu.renderers.render(output)
+      Vedeu.renderers.render(output) if Vedeu.ready?
     end
 
     protected
 
     # @!attribute [r] output
-    # @return [Array<Array<Vedeu::Char>>]
+    # @return [Array<Array<Vedeu::Views::Char>>]
     attr_reader :output
 
   end # Output
