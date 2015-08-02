@@ -89,19 +89,6 @@ module Vedeu
       @attributes.each { |key, value| instance_variable_set("@#{key}", value) }
     end
 
-    # Override Ruby's Object#inspect method to provide a more helpful output.
-    #
-    # @return [String]
-    def inspect
-      '<Vedeu::Geometry '   \
-      "x:#{x} "             \
-      "xn:#{xn} "           \
-      "y:#{y} "             \
-      "yn:#{yn} "           \
-      "centred:#{centred} " \
-      "maximise:#{maximised}>"
-    end
-
     # Will maximise the named interface geometry. This means it will occupy all
     # of the available space on the terminal window.
     #

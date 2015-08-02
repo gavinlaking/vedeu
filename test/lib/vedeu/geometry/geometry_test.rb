@@ -67,19 +67,6 @@ module Vedeu
       it { instance.must_respond_to(:yn=) }
     end
 
-    describe '#inspect' do
-      before { Terminal.stubs(:size).returns([12, 40]) }
-
-      subject { instance.inspect }
-
-      it { subject.must_be_instance_of(String) }
-
-      it { subject.must_equal(
-        '<Vedeu::Geometry x:1 xn:40 y:1 yn:12 centred:false maximise:false>'
-        )
-      }
-    end
-
     describe '#maximise' do
       let(:attributes) {
         {

@@ -72,13 +72,6 @@ module Vedeu
       end
       alias_method :==, :eql?
 
-      # Override Ruby's Object#inspect method to provide a more helpful output.
-      #
-      # @return [String]
-      def inspect
-        "<Vedeu::Views::Char '#{Vedeu::Esc.escape(to_s)}'>"
-      end
-
       # @return [Vedeu::Position]
       def position
         @position = Vedeu::Position.coerce(@attributes[:position])

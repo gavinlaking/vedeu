@@ -73,25 +73,6 @@ module Vedeu
         end
       end
 
-      describe '#inspect' do
-        let(:colour)   { Vedeu::Colour.new(foreground: '#00ff00',
-                                           background: '#005500') }
-        let(:position) { Vedeu::Position[17, 2] }
-        let(:style)    { Vedeu::Style.new('underline') }
-
-
-        subject { instance.inspect }
-
-        it { subject.must_equal(
-          "<Vedeu::Views::Char '" \
-          "\\e[17;2H" \
-          "\\e[38;2;0;255;0m" \
-          "\\e[48;2;0;85;0m" \
-          "\\e[4ma" \
-          "'>"
-        ) }
-      end
-
       describe '#position' do
         subject { instance.position }
       end

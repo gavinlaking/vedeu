@@ -70,18 +70,6 @@ module Vedeu
       Vedeu.buffers.by_name(name).hide
     end
 
-    # Override Ruby's Object#inspect method to provide a more helpful output.
-    #
-    # @return [String]
-    def inspect
-      '<Vedeu::Interface '      \
-      "name: '#{name}', "       \
-      "group: '#{group}', "     \
-      "visible: '#{visible}', " \
-      "zindex: '#{zindex}'"     \
-      '>'
-    end
-
     # Show the named interface buffer, or without a name, the buffer of the
     # currently focussed interface.
     #

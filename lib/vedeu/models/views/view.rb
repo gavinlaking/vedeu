@@ -63,13 +63,6 @@ module Vedeu
       end
       alias_method :<<, :add
 
-      # Override Ruby's Object#inspect method to provide a more helpful output.
-      #
-      # @return [String]
-      def inspect
-        "<Vedeu::Views::View name: '#{name}', zindex: '#{zindex}'>"
-      end
-
       # @return [Vedeu::Views::Lines]
       def lines
         collection.coerce(@lines, self)

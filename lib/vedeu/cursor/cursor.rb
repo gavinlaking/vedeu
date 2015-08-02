@@ -62,18 +62,6 @@ module Vedeu
       @attributes.each { |key, value| instance_variable_set("@#{key}", value) }
     end
 
-    # Override Ruby's Object#inspect method to provide a more helpful output.
-    #
-    # @return [String]
-    def inspect
-      "<Vedeu::Cursor (#{name}, " \
-      "#{visible}, "              \
-      "x:#{x}, "                  \
-      "y:#{y}, "                  \
-      "ox:#{ox}, "                \
-      "oy:#{oy})>"
-    end
-
     # Renders the cursor.
     #
     # @return [void]
