@@ -40,7 +40,9 @@ module Vedeu
       def initialize(attributes = {})
         @attributes = defaults.merge!(attributes)
 
-        @attributes.each { |key, value| instance_variable_set("@#{key}", value) }
+        @attributes.each do |key, value|
+          instance_variable_set("@#{key}", value)
+        end
       end
 
       # @param child [Vedeu::Views::Stream]
@@ -81,7 +83,8 @@ module Vedeu
       # @return [Boolean]
       def eql?(other)
         self.class == other.class && value == other.value &&
-          colour == other.colour && style == other.style && parent == other.parent
+          colour == other.colour && style == other.style &&
+          parent == other.parent
       end
       alias_method :==, :eql?
 

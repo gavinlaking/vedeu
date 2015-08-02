@@ -2,8 +2,8 @@ module Vedeu
 
   module Views
 
-    # A Char represents a single character of the terminal. It is a container for
-    # the a single character in a {Vedeu::Views::Stream}.
+    # A Char represents a single character of the terminal. It is a container
+    # for the a single character in a {Vedeu::Views::Stream}.
     #
     # Though a multi-character String can be passed as a value, only the first
     # character is returned in the escape sequence.

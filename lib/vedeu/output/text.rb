@@ -22,7 +22,8 @@ module Vedeu
     # @option options background [String]
     # @option options colour [Hash|NilClass]
     # @option options foreground [String]
-    # @option options model [Vedeu::Views::View|Vedeu::Views::Line|Vedeu::Views::Stream]
+    # @option options model
+    #   [Vedeu::Views::View|Vedeu::Views::Line|Vedeu::Views::Stream]
     # @option options pad [String]
     # @option options width [Integer]
     # @return [Vedeu::Text]
@@ -136,7 +137,10 @@ module Vedeu
 
     # Returns the model option when set.
     #
-    # @return [Vedeu::Views::View|Vedeu::Views::Line|Vedeu::Null::Generic|Vedeu::Views::Stream]
+    # @return [Vedeu::Views::View|
+    #          Vedeu::Views::Line|
+    #          Vedeu::Null::Generic|
+    #          Vedeu::Views::Stream]
     def model
       @model ||= options[:model] || Vedeu::Null::Generic.new
     end

@@ -92,7 +92,7 @@ module Vedeu
           Vedeu::Clear::NamedInterface.render(name),
           Vedeu::Viewport.render(self),
           Vedeu.borders.by_name(name).render,
-          Vedeu::Cursor.show_cursor(name)
+          Vedeu::Cursor.show_cursor(name),
         ]
 
         output
@@ -155,4 +155,3 @@ module Vedeu
   end # Views
 
 end # Vedeu
-
