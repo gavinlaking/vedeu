@@ -56,6 +56,20 @@ module Vedeu
       end
     end
 
+    describe '#empty?' do
+      subject { instance.empty? }
+
+      context 'when there is no colour' do
+        let(:colour) {}
+
+        it { subject.must_equal(true) }
+      end
+
+      context 'when there is a colour' do
+        it { subject.must_equal(false) }
+      end
+    end
+
     describe '#eql?' do
       let(:other) { instance }
 

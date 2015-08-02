@@ -50,6 +50,11 @@ module Vedeu
       @colour = colour || ''
     end
 
+    # @return [Boolean]
+    def empty?
+      colour.nil? || colour.to_s.empty?
+    end
+
     # An object is equal when its values are the same.
     #
     # @param other [Vedeu::Views::Char]
@@ -62,7 +67,7 @@ module Vedeu
     # @return [String]
     # @see Vedeu::ColourTranslator
     def escape_sequence
-      if no_colour?
+      if empty?
         ''
 
       elsif registered?(colour)
@@ -122,11 +127,6 @@ module Vedeu
     # @return [Boolean]
     def registered?(colour)
       repository.registered?(colour)
-    end
-
-    # @return [Boolean]
-    def no_colour?
-      colour.nil? || colour.to_s.empty?
     end
 
     # @return [Boolean]
