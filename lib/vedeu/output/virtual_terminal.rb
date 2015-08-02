@@ -48,7 +48,7 @@ module Vedeu
     # @param x [Fixnum] The column/character coordinate.
     # @return [Vedeu::Views::Char]
     def read(y, x)
-      cy, cx = Vedeu::PositionIndex[y, x]
+      cy, cx = Vedeu::Position[y, x].as_indices
 
       row  = fetch(cells, cy)
       cell = fetch(row, cx)
@@ -96,7 +96,7 @@ module Vedeu
     def write(y, x, data)
       return false unless read(y, x).is_a?(Vedeu::Cell)
 
-      cy, cx = Vedeu::PositionIndex[y, x]
+      cy, cx = Vedeu::Position[y, x].as_indices
       cells[cy][cx] = data
 
       true

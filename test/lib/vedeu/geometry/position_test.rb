@@ -139,6 +139,24 @@ module Vedeu
       end
     end
 
+    describe '#as_indices' do
+      subject { instance.as_indices }
+
+      it { subject.must_equal([11, 18]) }
+
+      context 'when y is less than 1' do
+        let(:y) { -3 }
+
+        it { subject.must_equal([0, 18]) }
+      end
+
+      context 'when x is less than 1' do
+        let(:x) { -9 }
+
+        it { subject.must_equal([11, 0]) }
+      end
+    end
+
   end # Position
 
 end # Vedeu
