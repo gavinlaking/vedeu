@@ -88,7 +88,7 @@ module Vedeu
     #   Vedeu.interface
     #
     # @!method interface
-    #   @see Vedeu::DSL::View.interface
+    #   @see Vedeu::DSL::Interface.interface
     def_delegators Vedeu::DSL::Interface, :interface
 
     # @example

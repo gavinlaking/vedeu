@@ -1,3 +1,13 @@
+module Vedeu
+
+  # View related models.
+  #
+  module Views
+
+  end # Views
+
+end # Vedeu
+
 require 'vedeu/models/interface_collection'
 require 'vedeu/models/views/char'
 require 'vedeu/models/views/chars'

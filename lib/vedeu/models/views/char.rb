@@ -51,11 +51,11 @@ module Vedeu
         @value      = @attributes[:value]
       end
 
-      # When {Vedeu::Viewport#padded_lines} has less lines that required to fill
+      # When {Vedeu::Viewport#show} has less lines that required to fill
       # the visible area of the interface, it creates a line that contains a
-      # single {Vedeu::Views::Char} containing a space (0x20); later,
-      # {Vedeu::Viewport#padded_columns} will attempts to call `#chars` on an
-      # expected {Vedeu::Views::Line} and fail; this method fixes that.
+      # single {Vedeu::Views::Char} containing a space (0x20); later, attempts
+      # to call `#chars` on an expected {Vedeu::Views::Line} and fail; this
+      # method fixes that.
       #
       # @return [Array]
       def chars

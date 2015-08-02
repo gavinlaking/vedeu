@@ -2,6 +2,9 @@ module Vedeu
 
   module DSL
 
+    # Provides behaviour to be shared between both {Vedeu::DSL::Interface} and
+    # {Vedeu::DSL::View} objects.
+    #
     module Shared
 
       # Allows the setting of a border for the interface.
