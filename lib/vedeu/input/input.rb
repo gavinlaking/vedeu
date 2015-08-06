@@ -113,7 +113,7 @@ module Vedeu
         "\u0024"  => :ctrl_x,
         "\u0025"  => :ctrl_y,
         "\u0026"  => :ctrl_z,
-      }.merge(f_keys)
+      }.merge!(f_keys)
     end
 
     # @return [Hash<String => Symbol]
