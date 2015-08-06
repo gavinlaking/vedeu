@@ -29,14 +29,14 @@ module Vedeu
     #
     # @return [Fixnum]
     def d1
-      dimension.first < 1 ? 1 : dimension.first
+      dimension[0] < 1 ? 1 : dimension[0]
     end
 
     # Fetch the ending coordinate.
     #
     # @return [Fixnum]
     def d2
-      dimension.last
+      dimension[-1]
     end
 
     # Fetch the coordinates.

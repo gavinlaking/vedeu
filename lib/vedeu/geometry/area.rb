@@ -49,7 +49,7 @@ module Vedeu
                                    maximised: attributes[:maximised],
                                    centred:   attributes[:centred])
 
-      new(y: y_yn.first, yn: y_yn.last, x: x_xn.first, xn: x_xn.last)
+      new(y: y_yn[0], yn: y_yn[-1], x: x_xn[0], xn: x_xn[-1])
     end
 
     # Returns a new instance of Vedeu::Area.

@@ -33,7 +33,7 @@ module Vedeu
     # @return [Array]
     def trigger
       if results.one?
-        results.first
+        results[0]
 
       else
         results

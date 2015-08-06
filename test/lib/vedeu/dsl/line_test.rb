@@ -41,7 +41,7 @@ module Vedeu
         }
 
         it { subject.must_be_instance_of(Vedeu::Views::Lines) }
-        it { subject.first.must_be_instance_of(Vedeu::Views::Line) }
+        it { subject[0].must_be_instance_of(Vedeu::Views::Line) }
 
         context 'when the block is given' do
         end
@@ -70,7 +70,7 @@ module Vedeu
           }
 
           it { subject.must_be_instance_of(Vedeu::Views::Streams) }
-          it { subject.first.must_be_instance_of(Vedeu::Views::Stream) }
+          it { subject[0].must_be_instance_of(Vedeu::Views::Stream) }
         end
 
         context 'when the block is not given' do

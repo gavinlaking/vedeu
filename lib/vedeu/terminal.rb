@@ -135,7 +135,7 @@ module Vedeu
     #
     # @return [Fixnum]
     def centre_y
-      centre.first
+      centre[0]
     end
 
     # Returns the `x` (column/character) component of the coodinate tuple
@@ -143,7 +143,7 @@ module Vedeu
     #
     # @return [Fixnum]
     def centre_x
-      centre.last
+      centre[-1]
     end
 
     # Returns 1. This 1 is either the top-most or left-most coordinate of the
@@ -168,7 +168,7 @@ module Vedeu
     def width
       return Vedeu::Configuration.drb_width if Vedeu::Configuration.drb?
 
-      size.last
+      size[-1]
     end
     alias_method :xn, :width
     alias_method :txn, :width
