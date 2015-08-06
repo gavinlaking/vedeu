@@ -4,11 +4,7 @@ module Vedeu
   #
   class Interfaces < Vedeu::Repository
 
-    class << self
-
-      alias_method :interfaces, :repository
-
-    end # Eigenclass
+    singleton_class.send(:alias_method, :interfaces, :repository)
 
     null Vedeu::Null::Interface
     real Vedeu::Interface

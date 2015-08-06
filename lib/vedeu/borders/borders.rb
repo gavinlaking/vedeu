@@ -5,11 +5,7 @@ module Vedeu
   #
   class Borders < Vedeu::Repository
 
-    class << self
-
-      alias_method :borders, :repository
-
-    end # Eigenclass
+    singleton_class.send(:alias_method, :borders, :repository)
 
     null Vedeu::Null::Border
     real Vedeu::Border

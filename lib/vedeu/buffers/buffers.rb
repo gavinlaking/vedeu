@@ -4,11 +4,7 @@ module Vedeu
   #
   class Buffers < Vedeu::Repository
 
-    class << self
-
-      alias_method :buffers, :repository
-
-    end # Eigenclass
+    singleton_class.send(:alias_method, :buffers, :repository)
 
     null Vedeu::Null::Buffer
     real Vedeu::Buffer

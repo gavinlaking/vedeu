@@ -4,11 +4,7 @@ module Vedeu
   #
   class Menus < Vedeu::Repository
 
-    class << self
-
-      alias_method :menus, :repository
-
-    end # Eigenclass
+    singleton_class.send(:alias_method, :menus, :repository)
 
     real Vedeu::Menu
     null Vedeu::Null::Menu

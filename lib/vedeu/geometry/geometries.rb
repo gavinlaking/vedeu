@@ -5,11 +5,7 @@ module Vedeu
   #
   class Geometries < Vedeu::Repository
 
-    class << self
-
-      alias_method :geometries, :repository
-
-    end # Eigenclass
+    singleton_class.send(:alias_method, :geometries, :repository)
 
     null Vedeu::Null::Geometry
     real Vedeu::Geometry
