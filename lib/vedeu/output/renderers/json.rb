@@ -39,7 +39,7 @@ module Vedeu
       # @param output [Array<Array<Vedeu::Views::Char>>]
       # @return [Array]
       def sorted(output)
-        Array(output).flatten.sort { |a, b| a.position <=> b.position }
+        Array(output).flatten.sort_by(&:position)
       end
 
     end # JSON

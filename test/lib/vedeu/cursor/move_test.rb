@@ -29,7 +29,7 @@ module Vedeu
       Vedeu::Geometry.new(name: _name, x: 5, xn: 10, y: 5, yn: 10)
     }
 
-    before {
+    before do
       IO.console.stubs(:winsize).returns([25, 80])
       IO.console.stubs(:print)
 
@@ -38,7 +38,7 @@ module Vedeu
       Vedeu.geometries.stubs(:by_name).returns(geometry)
 
       Vedeu.stubs(:trigger).with(:_refresh_cursor_, _name)
-    }
+    end
 
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }

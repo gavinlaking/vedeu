@@ -8,12 +8,12 @@ module Vedeu
     let(:instance)      { described.new(configuration) }
     let(:configuration) { Vedeu.configuration }
 
-    before {
+    before do
       configuration.stubs(:drb?).returns(false)
       Terminal.stubs(:open).returns([''])
 
       Vedeu.stubs(:trigger)
-    }
+    end
 
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }

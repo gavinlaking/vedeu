@@ -23,6 +23,15 @@ module Vedeu
     describe '#load!' do
       subject { instance.load! }
 
+      context 'when the plugin gem cannot be loaded' do
+        before do
+          Kernel.stubs(:require).raises(LoadError)
+        end
+
+        it { proc { subject }.must_raise(Vedeu::VedeuError) }
+        it { instance.enabled.must_equal(false) }
+      end
+
       # @todo Add more tests.
       # it { skip }
     end

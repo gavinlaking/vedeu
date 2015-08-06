@@ -31,7 +31,7 @@ module Vedeu
       def initialize(attributes = {})
         @attributes = attributes
         @name       = @attributes[:name]
-        @visible    = @attributes[:visible]
+        @visible    = false
       end
 
       # @return [NilClass]
@@ -54,13 +54,6 @@ module Vedeu
       # @return [Vedeu::Null::Interface]
       def store
         self
-      end
-
-      # The null interface should not be visible.
-      #
-      # @return [FalseClass]
-      def visible?
-        false
       end
 
     end # Interface

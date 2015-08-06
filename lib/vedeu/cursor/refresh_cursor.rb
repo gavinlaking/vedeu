@@ -56,7 +56,7 @@ module Vedeu
 
     # @return [Vedeu::Cursor]
     def new_cursor
-      @new_cursor ||= Vedeu::Cursor.new(cursor.attributes.merge(position))
+      @new_cursor ||= Vedeu::Cursor.new(cursor.attributes.merge!(position))
     end
 
     # @return [Hash<Symbol => Fixnum>]

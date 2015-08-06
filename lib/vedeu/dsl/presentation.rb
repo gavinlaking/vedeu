@@ -56,7 +56,7 @@ module Vedeu
       #   defined colour for a particular interface, line or stream overrides
       #   previously defined entries in the same block.
       #
-      # @param attributes [Hash] See {Vedeu::Colour}
+      # @param attrs [Hash] See {Vedeu::Colour}
       #
       # @example
       #   interface 'my_interface' do
@@ -75,8 +75,8 @@ module Vedeu
       #   end
       #
       # @return [Vedeu::Colour]
-      def colour(attributes = {})
-        model.colour = Vedeu::Colour.coerce(colour_attributes.merge(attributes))
+      def colour(attrs = {})
+        model.colour = Vedeu::Colour.coerce(colour_attributes.merge!(attrs))
       end
 
       # Define a style or styles for an interface, line or a stream.

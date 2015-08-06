@@ -36,10 +36,10 @@ module Vedeu
     }
     let(:enabled) { true }
 
-    before {
+    before do
       Vedeu.borders.stubs(:by_name).returns(border)
       Vedeu.geometries.stubs(:by_name).returns(geometry)
-    }
+    end
 
     describe '#initialize' do
       subject { instance }
@@ -70,10 +70,10 @@ module Vedeu
       let(:visible)     { true }
       let(:hide_cursor) { Vedeu::Escape.new(value: Vedeu::Esc.hide_cursor) }
 
-      before {
+      before do
         Vedeu::Output.stubs(:render).
           with(hide_cursor).returns(hide_cursor)
-      }
+      end
 
       subject { instance.hide }
 
@@ -90,10 +90,10 @@ module Vedeu
       let(:visible) { false }
       let(:show_cursor) { Vedeu::Escape.new(value: Vedeu::Esc.show_cursor) }
 
-      before {
+      before do
         Vedeu::Output.stubs(:render).
           with(show_cursor).returns(show_cursor)
-      }
+      end
 
       subject { instance.show }
 

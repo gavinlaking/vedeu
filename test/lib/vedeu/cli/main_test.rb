@@ -12,10 +12,10 @@ module Vedeu
       describe '#new' do
         let(:_name) { 'app_name' }
 
-        before {
+        before do
           instance.stubs(:say)
           Vedeu::Generator::Application.stubs(:generate).returns('')
-        }
+        end
 
         subject { instance.new(_name) }
 
@@ -28,10 +28,10 @@ module Vedeu
       describe '#view' do
         let(:_name) { 'view_name' }
 
-        before {
+        before do
           instance.stubs(:say)
           Vedeu::Generator::View.stubs(:generate).returns('')
-        }
+        end
 
         subject { instance.view(_name) }
 

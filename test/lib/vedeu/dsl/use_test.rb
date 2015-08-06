@@ -15,30 +15,6 @@ module Vedeu
       let(:described) { Vedeu::DSL::Use }
       let(:model_instance) { Vedeu::DSL::TestUseClass }
 
-      # before {
-      #   Vedeu.interfaces.reset
-      #   Vedeu.interface('hydrogen') do
-      #     delay 0.75
-      #   end
-      #   Vedeu.interface('helium') do
-      #     duplicate('hydrogen')
-      #   end
-      # }
-
-      describe '#duplicate' do
-        subject { model_instance.duplicate(_name) }
-
-        context 'when the model exists' do
-          # @todo Add more tests.
-          # it { skip }
-        end
-
-        context 'when the model does not exist' do
-          # @todo Add more tests.
-          # it { skip }
-        end
-      end
-
       describe '#use' do
         context 'when the model exists' do
           # @todo Add more tests.

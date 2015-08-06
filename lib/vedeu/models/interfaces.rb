@@ -21,7 +21,7 @@ module Vedeu
     # @return [Array<Vedeu::Interface>]
     # @see Vedeu::DSL::Interface#zindex
     def zindexed
-      all.sort { |a, b| a.zindex <=> b.zindex }
+      all.sort_by(&:zindex)
     end
 
   end # Interfaces

@@ -25,7 +25,7 @@ module Vedeu
         }
 
         it { subject.must_be_instance_of(Vedeu::Views::ViewCollection) }
-        it { subject.first.must_be_instance_of(Vedeu::Views::View) }
+        it { subject[0].must_be_instance_of(Vedeu::Views::View) }
 
         context 'when the block is not given' do
           it { proc { instance.view }.must_raise(Vedeu::InvalidSyntax) }
@@ -57,10 +57,10 @@ module Vedeu
           let(:_name) { 'my_interface' }
           let(:filename) { 'my_interface.erb' }
 
-          before {
+          before do
             Vedeu::Templating::ViewTemplate.expects(:parse).
               with(object, filename, options).returns(content)
-          }
+          end
 
           it { subject.must_be_instance_of(Vedeu::Views::ViewCollection) }
         end

@@ -28,10 +28,10 @@ module Vedeu
           Vedeu::Geometry.new(name: _name, x: 1, y: 1, xn: 2, yn: 2)
         }
 
-        before {
+        before do
           Vedeu.interfaces.stubs(:by_name).returns(interface)
           Vedeu.geometries.stubs(:by_name).returns(geometry)
-        }
+        end
 
         subject { instance.render }
 

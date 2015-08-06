@@ -70,7 +70,7 @@ module Vedeu
     #
     # @return [String]
     def current
-      storage.first
+      storage[0]
     end
     alias_method :focus, :current
 

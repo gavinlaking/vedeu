@@ -29,7 +29,7 @@ module Vedeu
       def controller(controller_name = nil)
         @controller_name = controller_name
 
-        Vedeu::Router.add_controller(controller_name, ancestors.first.to_s)
+        Vedeu::Router.add_controller(controller_name, ancestors[0].to_s)
       end
       alias_method :controller_name, :controller
 
@@ -72,7 +72,7 @@ module Vedeu
     # @param klass [Class]
     # @return [void]
     def self.included(klass)
-      klass.send :extend, ClassMethods
+      klass.send(:extend, ClassMethods)
     end
 
   end # Controller

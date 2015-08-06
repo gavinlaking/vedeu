@@ -52,7 +52,9 @@ module Vedeu
 
       # @return [void]
       def close
-        @dev.close rescue nil
+        @dev.close
+      rescue
+        nil
       end
 
       private
@@ -168,7 +170,7 @@ module Vedeu
       # @param body [String] The log message itself.
       # @return [String]
       def message_body(type, body)
-        Vedeu::Esc.send(message_types.fetch(type, :default).last) do
+        Vedeu::Esc.send(message_types.fetch(type, :default)[-1]) do
           body
         end
       end
@@ -179,7 +181,7 @@ module Vedeu
       # @param type [Symbol] The type of log message.
       # @return [String]
       def message_type(type)
-        Vedeu::Esc.send(message_types.fetch(type, :default).first) do
+        Vedeu::Esc.send(message_types.fetch(type, :default)[0]) do
           "[#{type}]".ljust(9)
         end
       end

@@ -7,16 +7,17 @@ module Vedeu
   	describe ViewTemplate do
 
       let(:described) { Vedeu::Templating::ViewTemplate }
-      let(:instance)  { described.new(object, path) }
+      let(:instance)  { described.new(object, path, options) }
       let(:object)    {}
       let(:path)      { '/tmp/some_template.erb' }
+      let(:options)   { {} }
       let(:content)   { '' }
 
       describe '.parse' do
-        before {
+        before do
           File.stubs(:exist?).returns(true)
           File.stubs(:read).returns(content)
-        }
+        end
 
         subject { described.parse(object, path) }
 

@@ -107,6 +107,15 @@ module Vedeu
       let(:args)       {}
 
       subject { described.trigger(alias_name, *args) }
+
+      context 'when the alias name is registered' do
+        # @todo Add more tests.
+        # it { skip }
+      end
+
+      context 'when the alias name is not registered' do
+        it { subject.must_equal([]) }
+      end
     end
 
 	end # EventAliases

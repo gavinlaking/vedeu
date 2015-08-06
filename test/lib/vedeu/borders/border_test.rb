@@ -29,9 +29,7 @@ module Vedeu
     }
     let(:geometry) {}
 
-    before {
-      Vedeu.geometries.stubs(:by_name).returns(geometry)
-    }
+    before { Vedeu.geometries.stubs(:by_name).returns(geometry) }
 
     describe '.build' do
       subject {
@@ -422,9 +420,7 @@ module Vedeu
       }
       let(:interface) { Vedeu::Interface.new(visible: visibility) }
 
-      before {
-        Vedeu.interfaces.stubs(:by_name).returns(interface)
-      }
+      before { Vedeu.interfaces.stubs(:by_name).returns(interface) }
 
       subject { instance.render }
 

@@ -50,7 +50,7 @@ module Vedeu
 
       # @return [Vedeu::Colour|Hash<Symbol => Symbol>]
       def default_colour
-        if interface?
+        if options[:name]
           interface.colour
 
         else
@@ -64,7 +64,7 @@ module Vedeu
 
       # @return [Symbol]
       def default_style
-        if interface?
+        if options[:name]
           interface.style
 
         else
@@ -75,7 +75,7 @@ module Vedeu
 
       # @return [Vedeu::Interface]
       def interface
-        Vedeu.interfaces.by_name(options[:name]) if options[:name]
+        Vedeu.interfaces.by_name(options[:name])
       end
       alias_method :interface?, :interface
 
