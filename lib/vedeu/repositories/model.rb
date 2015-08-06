@@ -82,7 +82,7 @@ module Vedeu
     # @param klass [Class]
     # @return [void]
     def self.included(klass)
-      klass.send :extend, ClassMethods
+      klass.send(:extend, ClassMethods)
     end
 
     # Returns a DSL instance responsible for defining the DSL methods of this

@@ -5,10 +5,10 @@ module Vedeu
   describe Event do
 
     let(:described)  { Vedeu::Event }
-    let(:instance)   { described.new(event_name, options, closure) }
+    let(:instance)   { described.new(event_name, closure, options) }
     let(:event_name) { :some_event }
-    let(:options)    { {} }
     let(:closure)    { proc { :event_triggered } }
+    let(:options)    { {} }
 
     describe '.bind' do
       subject { described.bind(event_name, options) { :event_triggered } }
@@ -67,7 +67,7 @@ module Vedeu
 
     describe '#trigger' do
       it 'returns the result of calling the closure when debouncing' do
-        event = Event.new(event_name, { debounce: 0.001 }, closure)
+        event = Event.new(event_name, closure, { debounce: 0.001 })
         event.trigger.must_equal(nil)
         sleep 0.0005
         event.trigger.must_equal(nil)
@@ -78,7 +78,7 @@ module Vedeu
       end
 
       it 'returns the result of calling the closure when throttling' do
-        event = Event.new(event_name, { delay: 0.001 }, closure)
+        event = Event.new(event_name, closure, { delay: 0.001 })
         event.trigger.must_equal(:event_triggered)
         sleep 0.0005
         event.trigger.must_equal(nil)
@@ -87,7 +87,7 @@ module Vedeu
       end
 
       it 'returns the result of calling the closure with its arguments' do
-        event = Event.new(event_name, options, closure)
+        event = Event.new(event_name, closure, options)
         event.trigger.must_equal(:event_triggered)
       end
     end

@@ -52,7 +52,9 @@ module Vedeu
 
       # @return [void]
       def close
-        @dev.close rescue nil
+        @dev.close
+      rescue
+        nil
       end
 
       private

@@ -80,7 +80,7 @@ module Vedeu
       def bind(name, options = {}, &block)
         Vedeu.log(type: :event, message: "Binding: '#{name.inspect}'")
 
-        new(name, options, block).bind
+        new(name, block, options).bind
       end
       alias_method :event, :bind
       alias_method :register, :bind
@@ -125,7 +125,7 @@ module Vedeu
     #
     # @param (see Vedeu::Event.bind)
     # @return [Vedeu::Event]
-    def initialize(name, options = {}, closure)
+    def initialize(name, closure, options = {})
       @name         = name
       @options      = options
       @closure      = closure
