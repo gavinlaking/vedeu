@@ -33,7 +33,7 @@ module Vedeu
 
     # @return [Array<String>]
     def zindexed
-      interfaces.sort { |a, b| a.zindex <=> b.zindex }.map(&:name)
+      interfaces.sort_by(&:zindex).map(&:name)
     end
 
     # @return [Array<Vedeu::Interface>]
