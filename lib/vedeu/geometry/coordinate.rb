@@ -82,7 +82,9 @@ module Vedeu
               y_range[oy]
             end
 
-      validate_y(pos)
+      pos = pos < by ? by : pos
+      pos = pos > byn ? byn : pos
+      pos
     end
 
     # Returns the x coordinate for a given index.
@@ -103,7 +105,9 @@ module Vedeu
               x_range[ox]
             end
 
-      validate_x(pos)
+      pos = pos < bx ? bx : pos
+      pos = pos > bxn ? bxn : pos
+      pos
     end
 
     protected
@@ -125,22 +129,6 @@ module Vedeu
     # @see Vedeu::Borders#by_name
     def border
       @border ||= Vedeu.borders.by_name(name)
-    end
-
-    # @param value [Fixnum]
-    # @return [Fixnum]
-    def validate_x(value)
-      value = value < bx ? bx : value
-      value = value > bxn ? bxn : value
-      value
-    end
-
-    # @param value [Fixnum]
-    # @return [Fixnum]
-    def validate_y(value)
-      value = value < by ? by : value
-      value = value > byn ? byn : value
-      value
     end
 
     # Returns the maximum y index for an area.
