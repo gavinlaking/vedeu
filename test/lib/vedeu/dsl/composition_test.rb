@@ -57,10 +57,10 @@ module Vedeu
           let(:_name) { 'my_interface' }
           let(:filename) { 'my_interface.erb' }
 
-          before {
+          before do
             Vedeu::Templating::ViewTemplate.expects(:parse).
               with(object, filename, options).returns(content)
-          }
+          end
 
           it { subject.must_be_instance_of(Vedeu::Views::ViewCollection) }
         end

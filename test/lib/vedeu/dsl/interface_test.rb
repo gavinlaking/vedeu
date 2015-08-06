@@ -160,10 +160,10 @@ module Vedeu
 
       describe '#focus!' do
         context 'when a single call is made' do
-          before {
+          before do
             Vedeu::Focus.reset
             Vedeu.interface('curium') { focus! }
-          }
+          end
 
           it 'sets the interface as current' do
             Vedeu.focus.must_equal('curium')
@@ -171,11 +171,11 @@ module Vedeu
         end
 
         context 'when no calls are made' do
-          before {
+          before do
             Vedeu::Focus.reset
             Vedeu.interface('curium')     {}
             Vedeu.interface('dysprosium') {}
-          }
+          end
 
           it 'the first interface defined will be current' do
             Vedeu.focus.must_equal('curium')
@@ -229,9 +229,9 @@ module Vedeu
         context 'when the named group exists' do
           let(:members) { Set['actinium', 'lanthanum'] }
 
-          before {
+          before do
             Vedeu::Group.new(name: 'elements', members: ['lanthanum']).store
-          }
+          end
 
           it {
             subject
@@ -294,14 +294,14 @@ module Vedeu
       end
 
       describe '#use' do
-        before {
+        before do
           Vedeu.interface 'some_interface' do
             delay 0.75
           end
           Vedeu.interface 'other_interface' do
             delay use('some_interface').delay
           end
-        }
+        end
         after { Vedeu.interfaces.reset }
 
         subject { instance.use('other_interface').delay }

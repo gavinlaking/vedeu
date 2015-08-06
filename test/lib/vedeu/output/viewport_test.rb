@@ -22,10 +22,10 @@ module Vedeu
     let(:interface) { Vedeu::Interface.new(style: nil, visible: visible) }
     let(:geometry)  { Vedeu::Geometry.new(height: 3, width: 3) }
 
-    before {
+    before do
       Vedeu.interfaces.stubs(:by_name).returns(interface)
       Vedeu.geometries.stubs(:by_name).returns(geometry)
-    }
+    end
     after { Vedeu.interfaces.reset }
 
     describe '#initialize' do

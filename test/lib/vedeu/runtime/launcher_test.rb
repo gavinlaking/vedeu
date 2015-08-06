@@ -32,12 +32,12 @@ module Vedeu
     end
 
     describe '#execute!' do
-      before {
+      before do
         Configuration.stubs(:configure)# .returns(test_configuration)
         Application.stubs(:start)
         Kernel.stubs(:exit)
         Kernel.stubs(:puts)
-      }
+      end
 
       subject { instance.execute! }
 

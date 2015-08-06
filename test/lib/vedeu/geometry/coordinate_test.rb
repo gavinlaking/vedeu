@@ -22,10 +22,10 @@ module Vedeu
                           y:      y)
     }
 
-    before {
+    before do
       Vedeu.borders.stubs(:by_name).returns(border)
       Vedeu.geometries.stubs(:by_name).returns(geometry)
-    }
+    end
 
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }

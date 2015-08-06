@@ -29,10 +29,10 @@ module Vedeu
       subject { instance.add(key) }
 
       context 'when the key is already defined' do
-        before {
+        before do
           Vedeu.keymaps.reset
           instance.add(key)
-        }
+        end
 
         it { subject.must_equal(false) }
       end

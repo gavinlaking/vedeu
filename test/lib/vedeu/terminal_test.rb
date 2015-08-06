@@ -7,10 +7,10 @@ module Vedeu
     let(:described) { Vedeu::Terminal }
     let(:console)   { IO.console }
 
-    before {
+    before do
       console.stubs(:winsize).returns([25, 80])
       console.stubs(:print)
-    }
+    end
 
     describe '.open' do
       context 'when a block was not given' do
@@ -47,10 +47,10 @@ module Vedeu
         let(:mode)  { :cooked }
         let(:input) { "Some input\r\n" }
 
-        before {
+        before do
           Terminal.stubs(:mode).returns(mode)
           console.stubs(:gets).returns(input)
-        }
+        end
 
         it { subject.must_equal('Some input') }
       end
@@ -59,12 +59,12 @@ module Vedeu
         let(:mode)  { :raw }
         let(:input) { "\e" }
 
-        before {
+        before do
           Terminal.stubs(:mode).returns(mode)
           console.stubs(:getch).returns(input)
           input.stubs(:ord).returns(27)
           console.stubs(:read_nonblock)
-        }
+        end
 
         it { subject.must_be_instance_of(String) }
       end
@@ -164,9 +164,7 @@ module Vedeu
       subject { Terminal.origin }
 
       it { subject.must_be_instance_of(Fixnum) }
-
       it { subject.must_equal(1) }
-
       it { described.must_respond_to(:x) }
       it { described.must_respond_to(:y) }
       it { described.must_respond_to(:tx) }
@@ -177,7 +175,6 @@ module Vedeu
       subject { Terminal.width }
 
       it { subject.must_be_instance_of(Fixnum) }
-
       it { described.must_respond_to(:xn) }
       it { described.must_respond_to(:txn) }
 
@@ -198,7 +195,6 @@ module Vedeu
       subject { Terminal.height }
 
       it { subject.must_be_instance_of(Fixnum) }
-
       it { described.must_respond_to(:yn) }
       it { described.must_respond_to(:tyn) }
 

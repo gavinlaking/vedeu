@@ -25,10 +25,10 @@ module Vedeu
       let(:interface) {
         Vedeu::Interface.new(name: _name, visible: visible)
       }
-      before {
+      before do
         Vedeu.geometries.stubs(:by_name).returns(geometry)
         Vedeu.interfaces.stubs(:by_name).returns(interface)
-      }
+      end
 
       subject { instance.render }
 

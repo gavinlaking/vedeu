@@ -16,10 +16,10 @@ module Vedeu
     end
 
     describe '.capture' do
-      before {
+      before do
         reader.stubs(:raw_mode?).returns(raw_mode)
         Vedeu.stubs(:trigger).returns([false])
-      }
+      end
 
       subject { described.capture(reader) }
 

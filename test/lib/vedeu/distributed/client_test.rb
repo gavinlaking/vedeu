@@ -11,10 +11,10 @@ module Vedeu
       let(:uri)       { 'druby://localhost:21420' }
       let(:server)    {}
 
-      before {
+      before do
         $stdout.stubs(:puts)
         DRbObject.stubs(:new_with_uri).returns(server)
-      }
+      end
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }

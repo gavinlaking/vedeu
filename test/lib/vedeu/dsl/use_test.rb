@@ -15,7 +15,7 @@ module Vedeu
       let(:described) { Vedeu::DSL::Use }
       let(:model_instance) { Vedeu::DSL::TestUseClass }
 
-      # before {
+      # before do
       #   Vedeu.interfaces.reset
       #   Vedeu.interface('hydrogen') do
       #     delay 0.75
@@ -23,7 +23,7 @@ module Vedeu
       #   Vedeu.interface('helium') do
       #     duplicate('hydrogen')
       #   end
-      # }
+      # end
 
       describe '#duplicate' do
         subject { model_instance.duplicate(_name) }

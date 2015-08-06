@@ -13,10 +13,10 @@ module Vedeu
       let(:content)   { '' }
 
       describe '.parse' do
-        before {
+        before do
           File.stubs(:exist?).returns(true)
           File.stubs(:read).returns(content)
-        }
+        end
 
         subject { described.parse(object, path) }
 

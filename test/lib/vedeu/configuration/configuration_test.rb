@@ -55,11 +55,11 @@ module Vedeu
       end
 
       context 'when the log is configured' do
-        before {
+        before do
           Vedeu.configure do
             log '/tmp/vedeu.log'
           end
-        }
+        end
 
         it { described.log.must_equal('/tmp/vedeu.log') }
       end
@@ -71,11 +71,11 @@ module Vedeu
       end
 
       context 'when the log is configured' do
-        before {
+        before do
           Vedeu.configure do
             log '/tmp/vedeu.log'
           end
-        }
+        end
 
         it { described.log?.must_equal(true) }
       end
@@ -87,11 +87,11 @@ module Vedeu
       end
 
       context 'when log_only is configured' do
-        before {
+        before do
           Vedeu.configure do
             log_only :timer, :event
           end
-        }
+        end
 
         it { described.log_only.must_equal([:timer, :event]) }
       end

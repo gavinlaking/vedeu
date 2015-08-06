@@ -55,10 +55,10 @@ module Vedeu
     describe '.mode' do
       subject { described.mode }
 
-      before {
+      before do
         described.raw_mode!
         Configuration.stubs(:terminal_mode).returns(:raw)
-      }
+      end
 
       it { subject.must_be_instance_of(Symbol) }
 
