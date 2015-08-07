@@ -13,7 +13,6 @@ module Vedeu
       @level             = DEBUG
       @default_formatter = Formatter.new
       @formatter         = nil
-      @logdev            = nil
       @logdev            = LocklessLogDevice.new(logdev) if logdev
     end
 
