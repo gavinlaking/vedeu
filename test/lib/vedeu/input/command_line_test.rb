@@ -134,6 +134,12 @@ module Vedeu
       end
     end
 
+    describe '#raw_mode?' do
+      subject { instance.raw_mode? }
+
+      it { subject.must_equal(false) }
+    end
+
     describe '#regress' do
       subject { instance.regress }
 

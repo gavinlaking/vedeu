@@ -77,6 +77,11 @@ module Vedeu
       end
     end
 
+    # @return [Boolean]
+    def raw_mode?
+      false
+    end
+
     # Moves the position backward by one character or up into previous line,
     # until the position is [0, 0].
     #
