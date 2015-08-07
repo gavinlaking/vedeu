@@ -1,5 +1,8 @@
-require 'simplecov'
-require 'simplecov-console' if ENV['CONSOLE_COVERAGE']
+unless ENV['NO_SIMPLECOV']
+  require 'simplecov'
+  require 'simplecov-console' if ENV['CONSOLE_COVERAGE']
+end
+
 require 'pry'
 require 'minitest/autorun'
 require 'minitest/pride' unless ENV['NO_COLOR']
@@ -8,32 +11,34 @@ require 'minitest/hell'
 # GC.disable # Uncomment to remove ~20ms from test run speed; left uncommented
              # though makes tests slower over time with 'guard'.
 
-SimpleCov.start do
-  formatter SimpleCov::Formatter::Console if ENV['CONSOLE_COVERAGE']
-  command_name 'MiniTest::Spec'
-  add_filter '/test/'
-  add_group  'application',   'vedeu/application'
-  add_group  'bindings',      'vedeu/bindings'
-  add_group  'borders',       'vedeu/borders'
-  add_group  'buffers',       'vedeu/buffers'
-  add_group  'cli',           'vedeu/cli'
-  add_group  'colours',       'vedeu/colours'
-  add_group  'configuration', 'vedeu/configuration'
-  add_group  'cursor',        'vedeu/cursor'
-  add_group  'distributed',   'vedeu/distributed'
-  add_group  'dsl',           'vedeu/dsl'
-  add_group  'events',        'vedeu/events'
-  add_group  'geometry',      'vedeu/geometry'
-  add_group  'input',         'vedeu/input'
-  add_group  'log',           'vedeu/log'
-  add_group  'models',        'vedeu/models'
-  add_group  'null',          'vedeu/null'
-  add_group  'output',        'vedeu/output'
-  add_group  'plugins',       'vedeu/plygins'
-  add_group  'repositories',  'vedeu/repositories'
-  add_group  'runtime',       'vedeu/runtime'
-  add_group  'templating',    'vedeu/templating'
-end unless ENV['NO_SIMPLECOV']
+unless ENV['NO_SIMPLECOV']
+  SimpleCov.start do
+    formatter SimpleCov::Formatter::Console if ENV['CONSOLE_COVERAGE']
+    command_name 'MiniTest::Spec'
+    add_filter '/test/'
+    add_group  'application',   'vedeu/application'
+    add_group  'bindings',      'vedeu/bindings'
+    add_group  'borders',       'vedeu/borders'
+    add_group  'buffers',       'vedeu/buffers'
+    add_group  'cli',           'vedeu/cli'
+    add_group  'colours',       'vedeu/colours'
+    add_group  'configuration', 'vedeu/configuration'
+    add_group  'cursor',        'vedeu/cursor'
+    add_group  'distributed',   'vedeu/distributed'
+    add_group  'dsl',           'vedeu/dsl'
+    add_group  'events',        'vedeu/events'
+    add_group  'geometry',      'vedeu/geometry'
+    add_group  'input',         'vedeu/input'
+    add_group  'log',           'vedeu/log'
+    add_group  'models',        'vedeu/models'
+    add_group  'null',          'vedeu/null'
+    add_group  'output',        'vedeu/output'
+    add_group  'plugins',       'vedeu/plygins'
+    add_group  'repositories',  'vedeu/repositories'
+    add_group  'runtime',       'vedeu/runtime'
+    add_group  'templating',    'vedeu/templating'
+  end
+end
 
 module VedeuMiniTestPlugin
   # def before_setup
