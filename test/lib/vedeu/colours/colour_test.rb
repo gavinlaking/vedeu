@@ -27,6 +27,11 @@ module Vedeu
       }
     end
 
+    describe 'accessors' do
+      it { instance.must_respond_to(:background) }
+      it { instance.must_respond_to(:foreground) }
+    end
+
     describe '.coerce' do
       let(:attributes) {
         {

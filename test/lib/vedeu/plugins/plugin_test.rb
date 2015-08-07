@@ -20,6 +20,15 @@ module Vedeu
       it { instance.instance_variable_get('@enabled').must_equal(false) }
     end
 
+    describe 'accessors' do
+      it { instance.must_respond_to(:name) }
+      it { instance.must_respond_to(:gem) }
+      it { instance.must_respond_to(:gem_name) }
+      it { instance.must_respond_to(:enabled) }
+      it { instance.must_respond_to(:enabled=) }
+      it { instance.must_respond_to(:enabled?) }
+    end
+
     describe '#load!' do
       subject { instance.load! }
 
