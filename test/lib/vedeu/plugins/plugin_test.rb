@@ -15,7 +15,7 @@ module Vedeu
       it { instance.instance_variable_get('@gem').must_equal(_gem) }
       it {
         instance.instance_variable_get('@gem_name').
-          must_equal("vedeu-#{_name}")
+          must_equal("vedeu_#{_name}")
       }
       it { instance.instance_variable_get('@enabled').must_equal(false) }
     end

@@ -29,7 +29,7 @@ module Vedeu
     def initialize(name, gem)
       @name     = name
       @gem      = gem
-      @gem_name = "vedeu-#{name}"
+      @gem_name = "vedeu_#{name}"
       @enabled  = false
     end
 
