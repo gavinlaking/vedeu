@@ -17,6 +17,10 @@ module Vedeu
       it { instance.instance_variable_get('@exit_code').must_equal(1) }
     end
 
+    describe 'accessors' do
+      it { instance.must_respond_to(:exit_code) }
+    end
+
     describe '#debug_execute!' do
       subject { instance.debug_execute! }
 

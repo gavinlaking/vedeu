@@ -4,9 +4,9 @@ module Vedeu
   #
   class Cursors < Vedeu::Repository
 
-    class << self
+    singleton_class.send(:alias_method, :cursors, :repository)
 
-      alias_method :cursors, :repository
+    class << self
 
       # @return [Vedeu::Cursor]
       # @see Vedeu::API.cursor

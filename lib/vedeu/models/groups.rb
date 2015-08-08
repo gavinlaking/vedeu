@@ -4,11 +4,7 @@ module Vedeu
   #
   class Groups < Vedeu::Repository
 
-    class << self
-
-      alias_method :groups, :repository
-
-    end # Eigenclass
+    singleton_class.send(:alias_method, :groups, :repository)
 
     null Vedeu::Group
     real Vedeu::Group

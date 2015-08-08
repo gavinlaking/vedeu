@@ -9,8 +9,9 @@ module Vedeu
       let(:described) { Vedeu::DSL::Interface }
       let(:instance)  { described.new(model, client) }
       let(:model)     {
-        Vedeu::Interface.new(name: 'actinium')
+        Vedeu::Interface.new(name: _name)
       }
+      let(:_name)  { 'actinium' }
       let(:client) {}
 
       describe '#initialize' do
@@ -159,27 +160,18 @@ module Vedeu
       end
 
       describe '#focus!' do
-        context 'when a single call is made' do
-          before do
-            Vedeu::Focus.reset
-            Vedeu.interface('curium') { focus! }
-          end
+        subject { instance.focus! }
 
-          it 'sets the interface as current' do
-            Vedeu.focus.must_equal('curium')
-          end
+        context 'when the interface does not yet have a name' do
+          let(:_name) {}
+
+          it { subject.must_equal(nil) }
         end
 
-        context 'when no calls are made' do
-          before do
-            Vedeu::Focus.reset
-            Vedeu.interface('curium')     {}
-            Vedeu.interface('dysprosium') {}
-          end
+        context 'when the interface has a name' do
+          before { Vedeu::Focus.reset }
 
-          it 'the first interface defined will be current' do
-            Vedeu.focus.must_equal('curium')
-          end
+          it { subject.must_equal(['actinium']) }
         end
       end
 

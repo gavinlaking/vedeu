@@ -58,6 +58,15 @@ module Vedeu
       end
     end
 
+    describe '#by_zindex' do
+      subject { instance.by_zindex }
+
+      it { subject.must_be_instance_of(Array) }
+
+      # @todo Add more tests.
+      # it { skip }
+    end
+
     describe '#hide' do
       subject { instance.hide }
 

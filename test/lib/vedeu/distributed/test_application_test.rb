@@ -12,6 +12,25 @@ module Vedeu
       it { instance.must_be_instance_of(described) }
     end
 
+    describe 'accessors' do
+      it { instance.must_respond_to(:borders) }
+      it { instance.must_respond_to(:borders=) }
+      it { instance.must_respond_to(:configuration) }
+      it { instance.must_respond_to(:configuration=) }
+      it { instance.must_respond_to(:events) }
+      it { instance.must_respond_to(:events=) }
+      it { instance.must_respond_to(:geometries) }
+      it { instance.must_respond_to(:geometries=) }
+      it { instance.must_respond_to(:interfaces) }
+      it { instance.must_respond_to(:interfaces=) }
+      it { instance.must_respond_to(:keymaps) }
+      it { instance.must_respond_to(:keymaps=) }
+      it { instance.must_respond_to(:menus) }
+      it { instance.must_respond_to(:menus=) }
+      it { instance.must_respond_to(:views) }
+      it { instance.must_respond_to(:views=) }
+    end
+
     describe '.build' do
       subject { described.build(attributes) { } }
 

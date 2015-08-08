@@ -54,6 +54,13 @@ module Vedeu
       }
     end
 
+    # Return the members of the group sorted by the zindex of the members.
+    #
+    # @return [Array<String>]
+    def by_zindex
+      interfaces.sort { |a, b| a.zindex <=> b.zindex }.map(&:name)
+    end
+
     # Hide the named group of interfaces, or without a name, the group of the
     # currently focussed interface. Useful for hiding part of that which is
     # currently displaying in the terminal.
@@ -129,6 +136,13 @@ module Vedeu
         repository: Vedeu.groups,
         visible:    true,
       }
+    end
+
+    # Return the interfaces for all members of the group.
+    #
+    # @return [Array<Vedeu::Interface]
+    def interfaces
+      members.map { |name| Vedeu.interfaces.by_name(name) }
     end
 
   end # Group

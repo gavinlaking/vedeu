@@ -16,7 +16,10 @@ YARD::Rake::YardocTask.new(:yard) do |t|
     'lib/**/*.rb',
     '-',
     'docs/api.md',
+    'docs/dsl.md',
+    'docs/events.md',
     'docs/getting_started.md',
+    'docs/object_graph.md',
   ]
 end
 

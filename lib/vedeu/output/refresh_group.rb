@@ -20,7 +20,14 @@ module Vedeu
 
     # @return [void]
     def by_name
-      zindexed.each { |name| Vedeu::Refresh.by_name(name) }
+      unless present?(name)
+        fail Vedeu::MissingRequired,
+             'Cannot refresh group with an empty group name.'
+      end
+
+      Vedeu.groups.by_name(name).by_zindex.each do |name|
+        Vedeu::Refresh.by_name(name)
+      end
     end
 
     protected
@@ -28,28 +35,6 @@ module Vedeu
     # @!attribute [r] name
     # @return [String]
     attr_reader :name
-
-    private
-
-    # @return [Array<String>]
-    def zindexed
-      interfaces.sort_by(&:zindex).map(&:name)
-    end
-
-    # @return [Array<Vedeu::Interface>]
-    def interfaces
-      members.map { |name| Vedeu.interfaces.by_name(name) }
-    end
-
-    # @return [Set]
-    def members
-      unless present?(name)
-        fail Vedeu::MissingRequired,
-             'Cannot refresh group with an empty group name.'
-      end
-
-      Vedeu.groups.by_name(name).members
-    end
 
   end # RefreshGroup
 

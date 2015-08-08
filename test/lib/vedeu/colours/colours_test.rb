@@ -12,6 +12,10 @@ module Vedeu
       it { instance.instance_variable_get('@storage').must_equal({}) }
     end
 
+    describe 'accessors' do
+      it { instance.must_respond_to(:storage) }
+    end
+
     describe '#register' do
       let(:colour)          { 'ff0000' }
       let(:escape_sequence) { 'fake_escape_sequence' }

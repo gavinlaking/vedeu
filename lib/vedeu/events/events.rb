@@ -4,9 +4,9 @@ module Vedeu
   #
   class Events < Vedeu::Repository
 
-    class << self
+    singleton_class.send(:alias_method, :events, :repository)
 
-      alias_method :events, :repository
+    class << self
 
       # Remove all stored models from the repository.
       #

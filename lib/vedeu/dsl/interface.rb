@@ -162,7 +162,7 @@ module Vedeu
       #   When the above is specified (outside of a `Vedeu.interface`
       #   declaration), the named interface will be focussed instead.
       #
-      # @return [String] The name of the interface in focus.
+      # @return [Array<String>] A list of focusable interfaces.
       def focus!
         Vedeu::Focus.add(model.name, true) if present?(model.name)
       end

@@ -25,6 +25,10 @@ module Vedeu
       end
     end
 
+    describe 'accessors' do
+      it { instance.must_respond_to(:name) }
+    end
+
     describe '#add' do
       subject { instance.add(key) }
 

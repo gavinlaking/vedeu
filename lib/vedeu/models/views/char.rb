@@ -25,10 +25,6 @@ module Vedeu
       # @return [Vedeu::Views::Line]
       attr_accessor :parent
 
-      # @!attribute [r] position
-      # @return [Vedeu::Position]
-      attr_reader :position
-
       # @!attribute [w] value
       # @return [String]
       attr_writer :value

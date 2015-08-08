@@ -28,6 +28,10 @@ module Vedeu
         it { instance.instance_variable_get('@name').must_equal(_name) }
       end
 
+      describe 'accessors' do
+        it { instance.must_respond_to(:name) }
+      end
+
       describe '#bx' do
         subject { instance.bx }
 

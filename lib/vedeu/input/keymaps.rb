@@ -4,11 +4,7 @@ module Vedeu
   #
   class Keymaps < Vedeu::Repository
 
-    class << self
-
-      alias_method :keymaps, :repository
-
-    end # Eigenclass
+    singleton_class.send(:alias_method, :keymaps, :repository)
 
     real Vedeu::Keymap
 

@@ -15,9 +15,18 @@ module Vedeu
       it { instance.instance_variable_get('@gem').must_equal(_gem) }
       it {
         instance.instance_variable_get('@gem_name').
-          must_equal("vedeu-#{_name}")
+          must_equal("vedeu_#{_name}")
       }
       it { instance.instance_variable_get('@enabled').must_equal(false) }
+    end
+
+    describe 'accessors' do
+      it { instance.must_respond_to(:name) }
+      it { instance.must_respond_to(:gem) }
+      it { instance.must_respond_to(:gem_name) }
+      it { instance.must_respond_to(:enabled) }
+      it { instance.must_respond_to(:enabled=) }
+      it { instance.must_respond_to(:enabled?) }
     end
 
     describe '#load!' do

@@ -20,6 +20,10 @@ module Vedeu
       it { instance.instance_variable_get('@value').must_equal(_value) }
     end
 
+    describe 'accessors' do
+      it { instance.must_respond_to(:value) }
+    end
+
     describe '#colour' do
       it { instance.colour.must_equal('') }
     end

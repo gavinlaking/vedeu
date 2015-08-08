@@ -25,15 +25,9 @@ module Vedeu
         it { instance.instance_variable_get('@name').must_equal(_name) }
       end
 
-      describe '#maximised' do
+      describe 'accessors' do
         it { instance.must_respond_to(:maximised) }
-      end
-
-      describe '#maximised=' do
         it { instance.must_respond_to(:maximised=) }
-      end
-
-      describe '#name' do
         it { instance.must_respond_to(:name) }
       end
 
