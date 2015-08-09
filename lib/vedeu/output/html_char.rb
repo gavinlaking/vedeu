@@ -46,18 +46,20 @@ module Vedeu
       return '' unless border || present?(value)
 
       out = " style='"
-
-      unless char.background.empty?
-        out << "border:1px #{char.background.to_html} solid;"
-        out << "background:#{char.background.to_html};"
-      end
-
-      unless char.foreground.empty?
-        out << "color:#{char.foreground.to_html};"
-        out << "#{border_style}"
-      end
-
+      out << tag_style_background unless char.background.empty?
+      out << tag_style_foreground unless char.foreground.empty?
       out << "'"
+    end
+
+    # @return [String]
+    def tag_style_background
+      "border:1px #{char.background.to_html} solid;" \
+        "background:#{char.background.to_html};"
+    end
+
+    # @return [String]
+    def tag_style_foreground
+      "color:#{char.foreground.to_html};#{border_style}"
     end
 
     # @return [String]
