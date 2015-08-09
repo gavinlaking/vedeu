@@ -5,7 +5,9 @@ module Vedeu
   #
   module Esc
 
-    include Vedeu::EscapeSequences
+    include Vedeu::EscapeSequences::Actions
+    include Vedeu::EscapeSequences::Borders
+    include Vedeu::EscapeSequences::Colours
     extend self
 
     # Return the stream with the escape sequences escaped so that they can be
