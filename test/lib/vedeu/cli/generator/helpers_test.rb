@@ -45,26 +45,69 @@ module Vedeu
         let(:source)      {}
         let(:destination) {}
 
-        before { Vedeu.stubs(:log_stdout) }
+        before {
+          File.stubs(:exist?).returns(false)
+          Vedeu.stubs(:log_stdout)
+        }
 
         subject { instance.copy_file(source, destination) }
 
-        it {
-          FileUtils.expects(:cp).with(source, destination)
-          subject
-        }
+        context 'when the file exists' do
+          before { File.stubs(:exist?).returns(true) }
+
+          it {
+            Vedeu.expects(:log_stdout)
+            subject
+          }
+        end
+
+        context 'when the file does not exist' do
+          it {
+            FileUtils.expects(:cp).with(source, destination)
+            subject
+          }
+        end
       end
 
       describe '#make_file' do
         let(:source)      {}
         let(:destination) {}
 
-        before { Vedeu.stubs(:log_stdout) }
+        before {
+          File.stubs(:exist?).returns(false)
+          Vedeu.stubs(:log_stdout)
+        }
 
         subject { instance.make_file(source, destination) }
 
-        # @todo Add more tests.
-        # it { skip }
+        context 'when the file exists' do
+          before { File.stubs(:exist?).returns(true) }
+
+          it {
+            Vedeu.expects(:log_stdout)
+            subject
+          }
+        end
+
+        context 'when the file does not exist' do
+          # @todo Add more tests.
+          # it { skip }
+        end
+      end
+
+      describe '#skipped_file' do
+        let(:destination) { 'some_file.txt' }
+
+        before { Vedeu.stubs(:log_stdout) }
+
+        subject { instance.skipped_file(destination) }
+
+        it {
+          Vedeu.expects(:log_stdout).
+            with(type:    :create,
+                 message: "some_file.txt \e[31malready exists, skipped.\e[39m")
+          subject
+        }
       end
 
       describe '#touch_file' do
