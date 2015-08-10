@@ -92,13 +92,9 @@ module Vedeu
 
     # @return [String]
     def to_html
-      if rgb?
-        colour
+      return colour if rgb?
 
-      else
-        ''
-
-      end
+      ''
     end
 
     private
