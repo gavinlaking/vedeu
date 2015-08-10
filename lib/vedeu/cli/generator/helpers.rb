@@ -15,30 +15,37 @@ module Vedeu
         @app_name ||= File.read('./config/app_name')
       end
 
+      # @return [String]
       def app_bin_path
         name + '/bin/'
       end
 
+      # @return [String]
       def app_config_path
         name + '/config/'
       end
 
+      # @return [String]
       def app_controllers_path
         name + '/app/controllers/'
       end
 
+      # @return [String]
       def app_helpers_path
         name + '/app/helpers/'
       end
 
+      # @return [String]
       def app_models_path
         name + '/app/models/'
       end
 
+      # @return [String]
       def app_keymaps_path
         name + '/app/models/keymaps/'
       end
 
+      # @return [String]
       def app_views_path
         name + '/app/views/'
       end
