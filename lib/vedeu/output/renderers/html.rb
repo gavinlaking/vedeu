@@ -49,6 +49,7 @@ module Vedeu
               out << "\n"
               # end
             #end
+
           end
 
           out << "#{end_row_tag}\n"
