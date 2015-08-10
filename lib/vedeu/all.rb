@@ -31,7 +31,7 @@ require 'vedeu/repositories/store'
 require 'vedeu/repositories/registerable'
 require 'vedeu/repositories/repository'
 
-require 'vedeu/null'
+require 'vedeu/null/null'
 require 'vedeu/null/border'
 require 'vedeu/null/buffer'
 require 'vedeu/null/generic'
