@@ -60,8 +60,10 @@ ENV PATH /opt/rubies/ruby-2.2.2/bin/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/u
 RUN gem install bundler
 
 ADD . /home/vedeu/gem/
-WORKDIR /home/vedeu
+WORKDIR /home/vedeu/gem
 USER vedeu
+RUN bundle
+WORKDIR /home/vedeu
 
 # To build this file:
 #

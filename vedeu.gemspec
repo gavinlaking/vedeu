@@ -22,7 +22,7 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency 'guard',              '2.13.0'
   spec.add_development_dependency 'guard-minitest',     '2.4.4'
-  spec.add_development_dependency 'minitest',           '5.7.0'
+  spec.add_development_dependency 'minitest',           '5.8.0'
   spec.add_development_dependency 'minitest-reporters', '1.0.19'
   spec.add_development_dependency 'mocha',              '1.1.0'
   spec.add_development_dependency 'pry',                '0.10.1'
@@ -32,7 +32,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'simplecov-console',  '0.2.0'
   spec.add_development_dependency 'yard',               '0.8.7.6'
 
-  spec.add_dependency 'bundler', '~> 1.8'
+  spec.add_dependency 'bundler', '~> 1.10'
   spec.add_dependency 'rake',    '~> 10.4'
   spec.add_dependency 'thor',    '0.19.1'
 end

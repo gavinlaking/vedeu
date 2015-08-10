@@ -15,6 +15,41 @@ module Vedeu
         @app_name ||= File.read('./config/app_name')
       end
 
+      # @return [String]
+      def app_bin_path
+        name + '/bin/'
+      end
+
+      # @return [String]
+      def app_config_path
+        name + '/config/'
+      end
+
+      # @return [String]
+      def app_controllers_path
+        name + '/app/controllers/'
+      end
+
+      # @return [String]
+      def app_helpers_path
+        name + '/app/helpers/'
+      end
+
+      # @return [String]
+      def app_models_path
+        name + '/app/models/'
+      end
+
+      # @return [String]
+      def app_keymaps_path
+        name + '/app/models/keymaps/'
+      end
+
+      # @return [String]
+      def app_views_path
+        name + '/app/views/'
+      end
+
       # @param destination [String]
       # @return [void]
       def make_directory(destination)
@@ -27,18 +62,36 @@ module Vedeu
       # @param destination [String]
       # @return [void]
       def copy_file(source, destination)
-        Vedeu.log_stdout(type: :create, message: "#{destination}")
+        if File.exist?(destination)
+          skipped_file(destination)
 
-        FileUtils.cp(source, destination)
+        else
+          Vedeu.log_stdout(type: :create, message: "#{destination}")
+
+          FileUtils.cp(source, destination)
+        end
       end
 
       # @param source [String]
       # @param destination [String]
       # @return [void]
       def make_file(source, destination)
-        Vedeu.log_stdout(type: :create, message: "#{destination}")
+        if File.exist?(destination)
+          skipped_file(destination)
 
-        File.write(destination, parse(source))
+        else
+          Vedeu.log_stdout(type: :create, message: "#{destination}")
+
+          File.write(destination, parse(source))
+        end
+      end
+
+      # @param destination [String]
+      # @return [void]
+      def skipped_file(destination)
+        Vedeu.log_stdout(type:    :create,
+                         message: "#{destination} " +
+                                  Esc.red { 'already exists, skipped.' })
       end
 
       # @param destination [String]
@@ -53,6 +106,7 @@ module Vedeu
       def name
         @_name ||= @name.downcase
       end
+      alias_method :app_root_path, :name
 
       # @return [String]
       def name_as_class

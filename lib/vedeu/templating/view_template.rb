@@ -48,6 +48,9 @@ module Vedeu
 
       private
 
+      # Return the interface colours if a name option is set, otherwise use the
+      # default colours.
+      #
       # @return [Vedeu::Colour|Hash<Symbol => Symbol>]
       def default_colour
         if options[:name]
@@ -62,6 +65,9 @@ module Vedeu
         end
       end
 
+      # Return the interface style(s) if a name option is set, otherwise use the
+      # default style.
+      #
       # @return [Symbol]
       def default_style
         if options[:name]
@@ -73,23 +79,32 @@ module Vedeu
         end
       end
 
+      # Fetch the interface by name.
+      #
       # @return [Vedeu::Interface]
       def interface
         Vedeu.interfaces.by_name(options[:name])
       end
       alias_method :interface?, :interface
 
+      # Returns the stream directives for the line.
+      #
       # @param line [String]
       # @return [Array<String>]
       def streams_for(line)
         line.split(/({{\s*[^}]+\s*}})/)
       end
 
+      # Convert the content into an array of strings without the line ending
+      # character.
+      #
       # @return [Array<String>]
       def lines
         content.lines.map(&:chomp)
       end
 
+      # Return a string representing the template processed with ERB.
+      #
       # @return [String]
       def content
         ERB.new(load, nil, '-').result(binding)

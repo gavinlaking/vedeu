@@ -20,8 +20,9 @@ for your desired application name.
 
     vedeu new your_app_name
 
-The generated files are a skeleton Vedeu client application. Let's take a look
-at these files individually.
+If `your_app_name` already exists, Vedeu will only write new files that do not
+exist at the file path. The generated files are a skeleton Vedeu client
+application. Let's take a look at these files individually.
 
 ```bash
 |
@@ -150,7 +151,9 @@ might want to do something special.
 ## Adding a new view to your application
 
 The following command will build a new view within your application.
-Substitute `some_view_name` for your desired application name.
+Substitute `some_view_name` for your desired application name. As with
+generating a new application, If `some_view_name` already exists, Vedeu will
+only write new files that do not exist at the file path.
 
     cd your_app_name
     vedeu view some_view_name

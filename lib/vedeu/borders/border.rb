@@ -173,19 +173,16 @@ module Vedeu
 
     # The default values for a new instance of this class.
     #
-    # @note
-    #   Using the '\uXXXX' variant produces gaps in the border, whilst the
-    #   '\xXX' renders 'nicely'.
-    #
     # @return [Hash]
+    # @see Vedeu::EscapeSequences::Borders
     def defaults
       {
-        bottom_left:  "\x6D", # └ # \u2514
-        bottom_right: "\x6A", # ┘ # \u2518
+        bottom_left:  Vedeu::EscapeSequences::Borders.bottom_left,
+        bottom_right: Vedeu::EscapeSequences::Borders.bottom_right,
         client:       nil,
         colour:       nil,
         enabled:      false,
-        horizontal:   "\x71", # ─ # \u2500
+        horizontal:   Vedeu::EscapeSequences::Borders.horizontal,
         name:         '',
         repository:   Vedeu.borders,
         show_bottom:  true,
@@ -194,9 +191,9 @@ module Vedeu
         show_top:     true,
         style:        nil,
         title:        '',
-        top_left:     "\x6C", # ┌ # \u250C
-        top_right:    "\x6B", # ┐ # \u2510
-        vertical:     "\x78", # │ # \u2502
+        top_left:     Vedeu::EscapeSequences::Borders.top_left,
+        top_right:    Vedeu::EscapeSequences::Borders.top_right,
+        vertical:     Vedeu::EscapeSequences::Borders.vertical,
       }
     end
 

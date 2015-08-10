@@ -39,7 +39,7 @@ module Vedeu
     end
 
     describe '#eql?' do
-      let(:other) { described.new(colour: Colour.new(background: '#000000')) }
+      let(:other) { described.new(value: nil) }
 
       subject { instance.eql?(other) }
 
@@ -48,7 +48,7 @@ module Vedeu
       it { subject.must_equal(true) }
 
       context 'when different to other' do
-        let(:other) { described.new(colour: Colour.new(background: '#ff0000')) }
+        let(:other) { described.new(value: 'b') }
 
         it { subject.must_equal(false) }
       end
