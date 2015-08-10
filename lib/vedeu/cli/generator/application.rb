@@ -92,7 +92,7 @@ module Vedeu
           '/.gitignore',
           '/LICENSE.txt',
           '/README.md',
-          '/.ruby-version'
+          '/.ruby-version',
         ].each do |file|
           copy_file((source + file), (app_root_path + file))
         end

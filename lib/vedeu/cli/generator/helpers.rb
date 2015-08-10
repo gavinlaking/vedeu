@@ -84,7 +84,7 @@ module Vedeu
       def skipped_file(destination)
         Vedeu.log_stdout(type:    :create,
                          message: "#{destination} " +
-                                  Esc.red { "already exists, skipped." })
+                                  Esc.red { 'already exists, skipped.' })
       end
 
       # @param destination [String]
