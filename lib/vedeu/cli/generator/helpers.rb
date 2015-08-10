@@ -15,6 +15,34 @@ module Vedeu
         @app_name ||= File.read('./config/app_name')
       end
 
+      def app_bin_path
+        name + '/bin/'
+      end
+
+      def app_config_path
+        name + '/config/'
+      end
+
+      def app_controllers_path
+        name + '/app/controllers/'
+      end
+
+      def app_helpers_path
+        name + '/app/helpers/'
+      end
+
+      def app_models_path
+        name + '/app/models/'
+      end
+
+      def app_keymaps_path
+        name + '/app/models/keymaps/'
+      end
+
+      def app_views_path
+        name + '/app/views/'
+      end
+
       # @param destination [String]
       # @return [void]
       def make_directory(destination)
@@ -55,7 +83,8 @@ module Vedeu
       # @return [void]
       def skipped_file(destination)
         Vedeu.log_stdout(type:    :create,
-                         message: "#{destination} exists, skipped.")
+                         message: "#{destination} " +
+                                  Esc.red { "already exists, skipped." })
       end
 
       # @param destination [String]
@@ -70,6 +99,7 @@ module Vedeu
       def name
         @_name ||= @name.downcase
       end
+      alias_method :app_root_path, :name
 
       # @return [String]
       def name_as_class

@@ -32,11 +32,7 @@ module Vedeu
       def generate
         make_directory_structure
 
-        copy_gemfile
-        copy_gitignore
-        copy_license
-        copy_readme
-        copy_ruby_version
+        copy_app_root_files
         copy_application_bootstrapper
         copy_application_controller
         copy_application_helper
@@ -56,61 +52,50 @@ module Vedeu
 
       # @return [void]
       def copy_application_bootstrapper
-        make_file(source + '/application.erb', "#{name}/application.rb")
+        make_file(source + '/application.erb',
+                  app_root_path + '/application.rb')
       end
 
       # @return [void]
       def copy_application_controller
         make_file(source + '/app/controllers/application_controller.erb',
-                  name + '/app/controllers/application_controller.rb')
+                  app_controllers_path + 'application_controller.rb')
       end
 
       # @return [void]
       def copy_application_executable
-        copy_file(source + '/bin/name', "#{name}/bin/#{name}")
+        copy_file(source + '/bin/name', app_bin_path + "#{name}")
       end
 
       # @return [void]
       def copy_application_helper
         make_file(source + '/app/helpers/application_helper.erb',
-                  name + '/app/helpers/application_helper.rb')
+                  app_helpers_path + 'application_helper.rb')
       end
 
       # @return [void]
       def copy_configuration
         make_file(source + '/config/configuration.erb',
-                  "#{name}/config/configuration.rb")
+                  app_config_path + 'configuration.rb')
       end
 
       # @return [void]
       def copy_app_name
         make_file(source + '/config/app_name.erb',
-                  name + '/config/app_name')
+                  app_config_path + 'app_name')
       end
 
       # @return [void]
-      def copy_gemfile
-        copy_file(source + '/Gemfile', "#{name}/Gemfile")
-      end
-
-      # @return [void]
-      def copy_gitignore
-        copy_file(source + '/.gitignore', "#{name}/.gitignore")
-      end
-
-      # @return [void]
-      def copy_license
-        copy_file(source + '/LICENSE.txt', "#{name}/LICENSE.txt")
-      end
-
-      # @return [void]
-      def copy_readme
-        copy_file(source + '/README.md', "#{name}/README.md")
-      end
-
-      # @return [void]
-      def copy_ruby_version
-        copy_file(source + '/.ruby-version', "#{name}/.ruby-version")
+      def copy_app_root_files
+        [
+          '/Gemfile',
+          '/.gitignore',
+          '/LICENSE.txt',
+          '/README.md',
+          '/.ruby-version'
+        ].each do |file|
+          copy_file((source + file), (app_root_path + file))
+        end
       end
 
       # @return [void]
@@ -121,7 +106,7 @@ module Vedeu
       # @return [void]
       def copy_global_keymap
         copy_file(source + '/app/models/keymaps/_global_.rb',
-                  "#{name}/app/models/keymaps/_global_.rb")
+                  app_keymaps_path + '_global_.rb')
       end
 
       # @return [Array<String>]
