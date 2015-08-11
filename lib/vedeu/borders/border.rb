@@ -59,6 +59,10 @@ module Vedeu
     attr_accessor :show_top
     alias_method :top?, :show_top
 
+    # @!attribute [rw] caption
+    # @return [String]
+    attr_accessor :caption
+
     # @!attribute [rw] title
     # @return [String]
     attr_accessor :title
@@ -105,8 +109,10 @@ module Vedeu
     #   is to be shown.
     # @option attributes show_top [Boolean] Indicate whether the top border is
     #   to be shown.
-    # @option attributes title [String] A title bar for when the top border is
-    #   to be shown.
+    # @option attributes title [String] An optional title for when the top
+    #   border is to be shown.
+    # @option attributes caption [String] An optional caption for when the
+    #   bottom border is to be shown.
     # @option attributes top_left [String] The top left border character.
     # @option attributes top_right [String] The top right border character.
     # @option attributes vertical [String] The vertical border character.
@@ -179,6 +185,7 @@ module Vedeu
       {
         bottom_left:  Vedeu::EscapeSequences::Borders.bottom_left,
         bottom_right: Vedeu::EscapeSequences::Borders.bottom_right,
+        caption:      '',
         client:       nil,
         colour:       nil,
         enabled:      false,

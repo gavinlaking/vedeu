@@ -15,6 +15,7 @@ module Vedeu
                    :bxn,
                    :by,
                    :byn,
+                   :caption,
                    :colour,
                    :enabled?,
                    :height,
@@ -117,11 +118,16 @@ module Vedeu
 
     # Renders the bottom border for the interface.
     #
+    # @note
+    #   If a caption has been specified, then the bottom border will include
+    #   this caption unless the size of the interface is smaller than the padded
+    #   caption length.
+    #
     # @return [String]
     def bottom
       return [] unless bottom?
 
-      [build_bottom_left, build_bottom, build_bottom_right].compact
+      [build_bottom_left, captionbar, build_bottom_right].compact
     end
 
     # @return [Vedeu::Geometry]
@@ -180,6 +186,21 @@ module Vedeu
       [build_top_left, titlebar, build_top_right].compact
     end
 
+    def captionbar
+      return build_bottom unless caption? && caption_fits?
+
+      caption_starts_at = (width - caption_characters.size) - 2
+
+      caption_char = 0
+      build_bottom.each_with_index do |char, index|
+        next if index <= caption_starts_at || index > (width - 2)
+
+        char.border  = nil
+        char.value   = caption_characters[caption_char]
+        caption_char += 1
+      end
+    end
+
     # From the second element of {#title_characters} remove the border from each
     # {#build_horizontal} Vedeu::Views::Char, and add the title character.
     #
@@ -202,6 +223,13 @@ module Vedeu
       present?(title)
     end
 
+    # Return boolean indicating whether this border has a non-empty caption.
+    #
+    # @return [Boolean]
+    def caption?
+      present?(caption)
+    end
+
     # Return boolean indicating whether the title fits within the width of the
     # top border.
     #
@@ -210,9 +238,22 @@ module Vedeu
       width > title_characters.size
     end
 
+    # Return boolean indicating whether the caption fits within the width of the
+    # bottom border.
+    #
+    # @return [Boolean]
+    def caption_fits?
+      width > caption_characters.size
+    end
+
     # @return [Array<String>]
     def title_characters
       @title_characters ||= title_padded.chars
+    end
+
+    # @return [Array<String>]
+    def caption_characters
+      @caption_characters ||= caption_padded.chars
     end
 
     # Pads the title with a single whitespace either side.
@@ -231,6 +272,22 @@ module Vedeu
       truncated_title.center(truncated_title.size + 2)
     end
 
+    # Pads the caption with a single whitespace either side.
+    #
+    # @example
+    #   caption = 'Truncated!'
+    #   width = 20
+    #   # => ' Truncated! '
+    #
+    #   width = 10
+    #   # => ' Trunca '
+    #
+    # @return [String]
+    # @see #truncated_caption
+    def caption_padded
+      truncated_caption.center(truncated_caption.size + 2)
+    end
+
     # Truncates the title to the width of the interface, minus characters needed
     # to ensure there is at least a single character of horizontal border and a
     # whitespace on either side of the title.
@@ -246,6 +303,23 @@ module Vedeu
     # @return [String]
     def truncated_title
       title.chomp.slice(0..(width - 5))
+    end
+
+    # Truncates the caption to the width of the interface, minus characters
+    # needed to ensure there is at least a single character of horizontal border
+    # and a whitespace on either side of the caption.
+    #
+    # @example
+    #   caption = 'Truncated!'
+    #   width = 20
+    #   # => 'Truncated!'
+    #
+    #   width = 10
+    #   # => 'Trunca'
+    #
+    # @return [String]
+    def truncated_caption
+      caption.chomp.slice(0..(width - 5))
     end
 
   end # RenderBorder

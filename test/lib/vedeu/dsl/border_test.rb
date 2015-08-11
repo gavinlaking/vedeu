@@ -176,6 +176,15 @@ module Vedeu
         it { subject.must_equal('Some title') }
       end
 
+      describe '#caption' do
+        let(:_value) { 'Some caption'}
+
+        subject { instance.caption(_value) }
+
+        it { subject.must_be_instance_of(String) }
+        it { subject.must_equal('Some caption') }
+      end
+
       describe '#top_left' do
         let(:char) { 'A' }
 
