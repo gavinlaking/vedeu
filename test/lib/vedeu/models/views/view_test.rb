@@ -28,6 +28,35 @@ module Vedeu
         it { instance.must_respond_to(:zindex=) }
       end
 
+      describe '#add' do
+        let(:child) {}
+
+        subject { instance.add(child) }
+
+        # @todo Add more tests.
+        # it { skip }
+      end
+
+      describe '#value' do
+        subject { instance.value }
+
+        # @todo Add more tests.
+        # it { skip }
+      end
+
+      describe '#render' do
+        subject { instance.render }
+
+        context 'when the view is not visible' do
+          it { subject.must_equal([]) }
+        end
+
+        context 'when the view is visible' do
+          # @todo Add more tests.
+          # it { skip }
+        end
+      end
+
       describe '#store_immediate' do
         subject { instance.store_immediate }
 
@@ -44,6 +73,11 @@ module Vedeu
 
           it { proc { subject }.must_raise(Vedeu::InvalidSyntax) }
         end
+      end
+
+      describe '#visible?' do
+        # @todo Add more tests.
+        # it { skip }
       end
 
   	end # View

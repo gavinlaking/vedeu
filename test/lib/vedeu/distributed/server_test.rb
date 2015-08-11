@@ -43,14 +43,19 @@ module Vedeu
         end
 
         context 'when the server is enabled' do
+          before { Vedeu::Configuration.stubs(:drb?).returns(true) }
 
           context 'and the server is running' do
+            before { DRb.stubs(:thread).returns(true) }
+
             # @todo Add more tests.
             # it { subject.must_equal(:running) }
             # it { skip }
           end
 
           context 'and the server is not running' do
+            before { DRb.stubs(:thread).returns(false) }
+
             # @todo Add more tests.
             # it { subject.must_equal(:stopped) }
             # it { skip }
