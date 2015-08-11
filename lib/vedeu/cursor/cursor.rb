@@ -164,13 +164,9 @@ module Vedeu
     #
     # @return [String]
     def visibility
-      if visible?
-        Vedeu::Escape.new(position: position, value: Vedeu::Esc.show_cursor)
+      value = visible? ? Vedeu::Esc.show_cursor : Vedeu::Esc.hide_cursor
 
-      else
-        Vedeu::Escape.new(position: position, value: Vedeu::Esc.hide_cursor)
-
-      end
+      Vedeu::Escape.new(position: position, value: value)
     end
 
   end # Cursor
