@@ -33,6 +33,7 @@ class VedeuMaterialColoursApp
     border 'main_interface' do
       colour foreground: '#ffffff', background: :default
       title 'Rainbow!'
+      caption('Unicorns!')
     end
     colour foreground: '#ffffff', background: :default
     cursor!
@@ -53,6 +54,7 @@ class VedeuMaterialColoursApp
     border 'other_interface' do
       colour(foreground: '#ffffff', background: :default)
       title('Wow!')
+      caption('Shiny!')
       horizontal('-')
       top_right('+')
       top_left('+')

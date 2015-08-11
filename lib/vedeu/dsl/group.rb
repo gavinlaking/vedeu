@@ -34,6 +34,15 @@ module Vedeu
       #     # ... some code
       #   end
       #
+      # or more succinctly:
+      #
+      #   Vedeu.group 'main_screen' do
+      #     members 'editor_interface', 'status_interface', 'command_interface'
+      #     # ... some code
+      #   end
+      #
+      # or when defining an interface:
+      #
       #   Vedeu.interface 'some_interface' do
       #     group 'some_group'
       #     # ... some code
@@ -66,9 +75,21 @@ module Vedeu
       #   end
       #
       # @param interface_name [String]
-      # @return [void]
+      # @return [Vedeu::Group]
       def add(interface_name)
         model.add(interface_name)
+      end
+
+      # Add the named interfaces to this group in bulk.
+      #
+      #   Vedeu.group 'main_screen' do
+      #     members ['editor_interface', 'some_interface', 'other_interface']
+      #   end
+      #
+      # @param interface_names [Array<String>]
+      # @return [Array<String>]
+      def members(*interface_names)
+        interface_names.each { |name| add(name) }
       end
 
     end # Group

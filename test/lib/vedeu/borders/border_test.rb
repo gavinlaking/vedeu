@@ -10,6 +10,7 @@ module Vedeu
       {
         bottom_left:  'm',
         bottom_right: 'j',
+        caption:      '',
         client:       nil,
         colour:       nil,
         enabled:      false,
@@ -56,6 +57,8 @@ module Vedeu
       it { instance.must_respond_to(:bottom_left=) }
       it { instance.must_respond_to(:bottom_right) }
       it { instance.must_respond_to(:bottom_right=) }
+      it { instance.must_respond_to(:caption) }
+      it { instance.must_respond_to(:caption=) }
       it { instance.must_respond_to(:horizontal) }
       it { instance.must_respond_to(:horizontal=) }
       it { instance.must_respond_to(:show_bottom) }

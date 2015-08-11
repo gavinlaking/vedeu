@@ -31,12 +31,14 @@ module Vedeu
       #   Vedeu.trigger(:_drb_input_, data, type)
       #
       # @return [TrueClass]
+      # @see Vedeu::Distributed::Server#input
       def drb_input!
         Vedeu.bind(:_drb_input_) do |data, type|
           Vedeu.log(type: :drb, message: "Sending input (#{type})")
 
           case type
-          when :command then Vedeu.trigger(:_command_, data)
+          when :command  then Vedeu.trigger(:_command_, data)
+          when :keypress then Vedeu.trigger(:_keypress_, data)
           else Vedeu.trigger(:_keypress_, data)
           end
         end
