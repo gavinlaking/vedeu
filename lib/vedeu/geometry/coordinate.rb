@@ -6,15 +6,13 @@ module Vedeu
 
     extend Forwardable
 
-    def_delegators :border,
-                   :bx,
-                   :bxn,
-                   :by,
-                   :byn,
-                   :height,
-                   :width,
-                   :x,
-                   :y
+    def_delegators :x,
+                   :x_position,
+                   :xn
+
+    def_delegators :y,
+                   :y_position,
+                   :yn
 
     # Returns a new instance of Vedeu::Coordinate.
     #
@@ -28,87 +26,87 @@ module Vedeu
       @oy   = oy
     end
 
-    # Returns the maximum y coordinate for an area.
+    private
+
+    # Provide an instance of Vedeu::GenericCoordinate to determine correct x
+    # related coordinates.
+    #
+    # @return [Vedeu::GenericCoordinate]
+    def x
+      @x ||= Vedeu::GenericCoordinate.new(name: @name, offset: @ox, type: :x)
+    end
+
+    # Provide an instance of Vedeu::GenericCoordinate to determine correct y
+    # related coordinates.
+    #
+    # @return [Vedeu::GenericCoordinate]
+    def y
+      @y ||= Vedeu::GenericCoordinate.new(name: @name, offset: @oy, type: :y)
+    end
+
+  end # Coordinate
+
+  # Crudely corrects out of range values.
+  #
+  class GenericCoordinate
+
+    # Return a new instance of Vedeu::GenericCoordinate.
+    #
+    # @param attributes [Hash]
+    # @option attributes name [String]
+    # @option attributes type [Symbol]
+    # @option attributes offset [Fixnum]
+    # @return [Vedeu::GenericCoordinate]
+    def initialize(attributes = {})
+      @attributes = defaults.merge!(attributes)
+
+      @attributes.each { |key, value| instance_variable_set("@#{key}", value) }
+    end
+
+    # Returns the maximum coordinate for an area.
     #
     # @example
-    #   # y = 2
-    #   # height = 4
-    #   yn # => 6
+    #   # d = 2
+    #   # d_dn = 4
+    #   dn # => 6
     #
     # @return [Fixnum]
-    def yn
-      if height <= 0
+    def dn
+      if d_dn <= 0
         0
 
       else
-        y + height
+        d + d_dn
 
       end
     end
+    alias_method :xn, :dn
+    alias_method :yn, :dn
 
-    # Returns the maximum x coordinate for an area.
+    # Returns the coordinate for a given index.
     #
     # @example
-    #   # x = 5
-    #   # width = 20
-    #   xn # => 25
+    #   # d_range = [4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+    #   position     # => 4
+    #   position(-2) # => 4
+    #   position(2)  # => 6
+    #   position(15) # => 13
     #
     # @return [Fixnum]
-    def xn
-      if width <= 0
-        0
-
-      else
-        x + width
-
-      end
-    end
-
-    # Returns the y coordinate for a given index.
-    #
-    # @example
-    #   # y_range = [7, 8, 9, 10, 11]
-    #   y_position     # => 7
-    #   y_position(-2) # => 7
-    #   y_position(2)  # => 9
-    #   y_position(7)  # => 11
-    #
-    # @return [Fixnum]
-    def y_position
+    def position
       pos = case
-            when oy <= 0       then y
-            when oy > yn_index then yn
+            when offset <= 0       then d
+            when offset > dn_index then dn
             else
-              y_range[oy]
+              d_range[offset]
             end
 
-      pos = pos < by ? by : pos
-      pos = pos > byn ? byn : pos
+      pos = pos < bd ? bd : pos
+      pos = pos > bdn ? bdn : pos
       pos
     end
-
-    # Returns the x coordinate for a given index.
-    #
-    # @example
-    #   # x_range = [4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
-    #   x_position     # => 4
-    #   x_position(-2) # => 4
-    #   x_position(2)  # => 6
-    #   x_position(15) # => 13
-    #
-    # @return [Fixnum]
-    def x_position
-      pos = case
-            when ox <= 0       then x
-            when ox > xn_index then xn
-            else
-              x_range[ox]
-            end
-
-      pos = pos < bx ? bx : pos
-      pos = pos > bxn ? bxn : pos
-      pos
-    end
+    alias_method :x_position, :position
+    alias_method :y_position, :position
 
     protected
 
@@ -116,13 +114,13 @@ module Vedeu
     # @return [String]
     attr_reader :name
 
-    # @!attribute [r] oy
+    # @!attribute [r] offset
     # @return [Fixnum]
-    attr_reader :oy
+    attr_reader :offset
 
-    # @!attribute [r] ox
-    # @return [Fixnum]
-    attr_reader :ox
+    # @!attribute [r] type
+    # @return [Symbol]
+    attr_reader :type
 
     private
 
@@ -131,66 +129,88 @@ module Vedeu
       @border ||= Vedeu.borders.by_name(name)
     end
 
-    # Returns the maximum y index for an area.
-    #
-    # @example
-    #   # height = 3
-    #   yn_index # => 2
+    # Return the :x or :y value from the border.
     #
     # @return [Fixnum]
-    def yn_index
-      if height < 1
+    def d
+      border.send(coordinate_type[0])
+    end
+
+    # Return the :bx or :by value from the border.
+    #
+    # @return [Fixnum]
+    def bd
+      border.send(coordinate_type[1])
+    end
+
+    # Return the :bxn or :byn value from the border.
+    #
+    # @return [Fixnum]
+    def bdn
+      border.send(coordinate_type[2])
+    end
+
+    # Return the :width or :height value from the border.
+    #
+    # @return [Fixnum]
+    def d_dn
+      border.send(coordinate_type[3])
+    end
+
+    # Ascertain the correct methods to use for determining the coordinates.
+    #
+    # @return [Fixnum]
+    def coordinate_type
+      @_type ||= case type
+                 when :x then [:x, :bx, :bxn, :width]
+                 when :y then [:y, :by, :byn, :height]
+                 else
+                   fail Vedeu::InvalidSyntax,
+                        'Coordinate type not given, cannot continue.'
+                 end
+    end
+
+    # Returns the maximum index for an area.
+    #
+    # @example
+    #   # d_dn = 3
+    #   dn_index # => 2
+    #
+    # @return [Fixnum]
+    def dn_index
+      if d_dn < 1
         0
 
       else
-        height - 1
+        d_dn - 1
 
       end
     end
 
-    # Returns the maximum x index for an area.
+    # Returns an array with all coordinates from d to dn.
     #
     # @example
-    #   # width = 6
-    #   xn_index # => 5
-    #
-    # @return [Fixnum]
-    def xn_index
-      if width < 1
-        0
-
-      else
-        width - 1
-
-      end
-    end
-
-    # Returns an array with all coordinates from x to xn.
-    #
-    # @example
-    #   # width = 10
-    #   # x = 4
-    #   # xn = 14
-    #   x_range # => [4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+    #   # d_dn = 10
+    #   # d = 4
+    #   # dn = 14
+    #   d_range # => [4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
     #
     # @return [Array]
-    def x_range
-      (x...xn).to_a
+    def d_range
+      (d...dn).to_a
     end
 
-    # Returns an array with all coordinates from y to yn.
+    # The default values for a new instance of this class.
     #
-    # @example
-    #   # height = 4
-    #   # y  = 7
-    #   # yn  = 11
-    #   y_range # => [7, 8, 9, 10]
-    #
-    # @return [Array]
-    def y_range
-      (y...yn).to_a
+    # @return [Hash]
+    def defaults
+      {
+        name:   '',
+        offset: nil,
+        type:   :x,
+      }
     end
 
-  end # Coordinate
+  end # GenericCoordinate
 
 end # Vedeu
