@@ -47,6 +47,22 @@ module Vedeu
         it { subject.members.must_equal(Set['editor_interface']) }
       end
 
+      describe '#members' do
+        let(:expected) {
+          Set['editor_interface', 'some_interface', 'other_interface']
+        }
+
+        subject {
+          described.group(group_name) do
+            members('editor_interface', 'some_interface', 'other_interface')
+          end
+        }
+
+        it { subject.must_be_instance_of(Vedeu::Group) }
+
+        it { subject.members.must_equal(expected) }
+      end
+
     end # Group
 
     describe 'integration' do
