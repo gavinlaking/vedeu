@@ -186,6 +186,10 @@ module Vedeu
       [build_top_left, titlebar, build_top_right].compact
     end
 
+    # Overwrite the border from {#build_horizontal} on the bottom border to
+    # include the caption if given.
+    #
+    # @return [Array<Vedeu::Views::Char>]
     def captionbar
       return build_bottom unless caption? && caption_fits?
 
@@ -201,8 +205,8 @@ module Vedeu
       end
     end
 
-    # From the second element of {#title_characters} remove the border from each
-    # {#build_horizontal} Vedeu::Views::Char, and add the title character.
+    # Overwrite the border from {#build_horizontal} on the top border to
+    # include the title if given.
     #
     # @return [Array<Vedeu::Views::Char>]
     def titlebar
