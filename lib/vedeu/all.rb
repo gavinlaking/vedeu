@@ -58,6 +58,8 @@ require 'vedeu/colours/colour'
 
 require 'vedeu/buffers/buffer'
 require 'vedeu/buffers/buffers'
+require 'vedeu/buffers/virtual_buffer'
+require 'vedeu/buffers/virtual_buffers'
 
 require 'vedeu/refresh/refresh'
 require 'vedeu/refresh/refresh_cursor'
@@ -158,8 +160,6 @@ require 'vedeu/output/presentation'
 require 'vedeu/output/compressor'
 require 'vedeu/output/style'
 require 'vedeu/output/text'
-require 'vedeu/output/virtual_buffer'
-require 'vedeu/output/virtual_buffers'
 require 'vedeu/output/html_char'
 
 require 'vedeu/output/output'
