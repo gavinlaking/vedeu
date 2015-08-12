@@ -22,7 +22,6 @@
 
 # /end of not sure this is really needed
 
-
 require 'vedeu'
 
 Vedeu::CLI::Main.start(ARGV.dup)
