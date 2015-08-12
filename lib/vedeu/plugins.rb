@@ -24,7 +24,11 @@ module Vedeu
     # @param plugin [Vedeu::Plugin]
     # @return [Array<void>]
     def register(name, plugin = false)
-      plugins << plugin if plugin && not_loaded?(name)
+      if plugin && not_loaded?(name)
+        Vedeu.log(type: :debug, message: "Registering plugin: #{name}")
+
+        plugins << plugin
+      end
     end
 
     # Find all installed plugins and store them.
