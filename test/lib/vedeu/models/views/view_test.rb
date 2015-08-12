@@ -58,9 +58,16 @@ module Vedeu
       end
 
       describe '#store_immediate' do
+        before { Vedeu.stubs(:trigger) }
+
         subject { instance.store_immediate }
 
         it { subject.must_be_instance_of(described) }
+
+        it {
+          Vedeu.expects(:trigger).with(:_refresh_, _name)
+          subject
+        }
       end
 
       describe '#store_deferred' do

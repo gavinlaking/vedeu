@@ -2,11 +2,11 @@ require 'test_helper'
 
 module Vedeu
 
-  describe RefreshGroup do
+  describe RefreshBuffer do
 
-    let(:described) { Vedeu::RefreshGroup }
+    let(:described) { Vedeu::RefreshBuffer }
     let(:instance)  { described.new(_name) }
-    let(:_name)     { 'Vedeu::RefreshGroup' }
+    let(:_name)     { 'Vedeu::RefreshBuffer' }
 
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }
@@ -22,6 +22,19 @@ module Vedeu
         it { proc { subject }.must_raise(Vedeu::MissingRequired) }
       end
 
+# describe '.by_name' do
+#       let(:_name)  { 'aluminium' }
+#       let(:buffer) { Vedeu::Null::Buffer.new(name: _name) }
+
+#       subject { described.by_name(_name) }
+
+#       it {
+#         Vedeu.buffers.expects(:by_name).with(_name).returns(buffer)
+#         buffer.expects(:render)
+#         subject
+#       }
+#     end
+
       context 'when the name is present' do
         # @todo Add more tests.
         # it { skip }
@@ -32,6 +45,6 @@ module Vedeu
       it { instance.must_respond_to(:by_name) }
     end
 
-  end # RefreshGroup
+  end # RefreshBuffer
 
 end # Vedeu

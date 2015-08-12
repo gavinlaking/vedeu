@@ -35,6 +35,7 @@ unless ENV['NO_SIMPLECOV']
     add_group  'null',          'vedeu/null'
     add_group  'output',        'vedeu/output'
     add_group  'plugins',       'vedeu/plygins'
+    add_group  'refresh',       'vedeu/refresh'
     add_group  'repositories',  'vedeu/repositories'
     add_group  'runtime',       'vedeu/runtime'
     add_group  'templating',    'vedeu/templating'

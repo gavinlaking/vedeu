@@ -12,8 +12,8 @@ module Vedeu
                    :width
 
     # @param (see #initialize)
-    def self.render(name = Vedeu.focus)
-      new(name).render
+    def self.by_name(name = Vedeu.focus)
+      new(name).by_name
     end
 
     # Returns a new instance of Vedeu::RefreshCursor.
@@ -29,10 +29,10 @@ module Vedeu
     # the view is also refreshed, causing the content to be offset also.
     #
     # @return [Array]
-    def render
+    def by_name
       Vedeu.log(type: :info, message: "Refreshing cursor: '#{name}'")
 
-      Vedeu::Refresh.by_name(name) if refresh_view?
+      Vedeu.trigger(:_refresh_, name) if refresh_view?
 
       Vedeu::Terminal.output(new_cursor.to_s)
     end
