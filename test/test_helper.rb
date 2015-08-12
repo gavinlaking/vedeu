@@ -20,7 +20,6 @@ unless ENV['NO_SIMPLECOV']
     add_group  'bindings',      'vedeu/bindings'
     add_group  'borders',       'vedeu/borders'
     add_group  'buffers',       'vedeu/buffers'
-    add_group  'cli',           'vedeu/cli'
     add_group  'colours',       'vedeu/colours'
     add_group  'configuration', 'vedeu/configuration'
     add_group  'cursor',        'vedeu/cursor'

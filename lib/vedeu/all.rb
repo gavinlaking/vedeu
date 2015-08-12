@@ -115,13 +115,6 @@ require 'vedeu/application/application_controller'
 require 'vedeu/application/application_helper'
 require 'vedeu/application/application_view'
 
-require 'vedeu/cli/generator/helpers'
-require 'vedeu/cli/generator/application'
-require 'vedeu/cli/generator/view'
-require 'vedeu/cli/generator/all'
-
-require 'vedeu/cli/main'
-
 require 'vedeu/distributed/uri'
 require 'vedeu/distributed/server'
 require 'vedeu/distributed/client'

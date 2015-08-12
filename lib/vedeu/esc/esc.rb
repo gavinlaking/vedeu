@@ -1,3 +1,7 @@
+require 'vedeu/esc/actions'
+require 'vedeu/esc/borders'
+require 'vedeu/esc/colours'
+
 module Vedeu
 
   # Provides escape sequence strings for setting the cursor position and various
