@@ -159,11 +159,11 @@ require 'vedeu/output/compressor'
 require 'vedeu/output/style'
 require 'vedeu/output/text'
 require 'vedeu/output/virtual_buffer'
+require 'vedeu/output/virtual_buffers'
 require 'vedeu/output/html_char'
 
 require 'vedeu/output/output'
 require 'vedeu/output/viewport'
-require 'vedeu/output/virtual_terminal'
 require 'vedeu/output/wordwrap'
 
 require 'vedeu/api'

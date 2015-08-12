@@ -5,63 +5,123 @@ module Vedeu
   describe VirtualBuffer do
 
     let(:described) { Vedeu::VirtualBuffer }
+    let(:instance)  { described.new(height, width, renderer) }
+    let(:height)    { 3 }
+    let(:width)     { 3 }
+    let(:renderer)  { Vedeu::Renderers::HTML.new }
 
-    before { described.clear }
+    describe '#initialize' do
+      it { instance.must_be_instance_of(described) }
+      it { instance.instance_variable_get('@height').must_equal(3) }
+      it { instance.instance_variable_get('@width').must_equal(3) }
+      it { instance.instance_variable_get('@renderer').must_equal(renderer) }
+    end
 
-    describe '#retrieve' do
-      subject { described.retrieve }
+    describe 'accessors' do
+      it { instance.must_respond_to(:renderer) }
+      it { instance.must_respond_to(:renderer=) }
+      it { instance.must_respond_to(:height) }
+      it { instance.must_respond_to(:width) }
+    end
 
-      context 'when no buffers are stored' do
-        it { subject.must_be_instance_of(NilClass) }
+    describe '.output' do
+      let(:data) {}
+
+      subject { described.output(data) }
+
+      it { subject.must_be_instance_of(Array) }
+    end
+
+    describe '#cells' do
+      subject { instance.cells }
+
+      it { subject.must_be_instance_of(Array) }
+      it { subject.size.must_equal(3) }
+      it { subject.flatten.size.must_equal(9) }
+    end
+
+    describe '#read' do
+      subject { instance.read(y, x) }
+
+      context 'when x is out of bounds' do
+        let(:y) { 1 }
+        let(:x) { 5 }
+
+        it { subject.must_equal([]) }
       end
 
-      context 'when buffers are stored' do
-        let(:buffer) { [[Vedeu::Views::Char.new]] }
+      context 'when y is out of bounds' do
+        let(:y) { 5 }
+        let(:x) { 1 }
 
-        before { described.store(buffer) }
+        it { subject.must_equal([]) }
+      end
 
-        it { subject.must_be_instance_of(Array) }
+      context 'when both x and y are out of bounds' do
+        let(:y) { 5 }
+        let(:x) { 5 }
 
-        it { subject.must_equal(buffer) }
+        it { subject.must_equal([]) }
+      end
 
-        it 'removes the stored buffer from the storage' do
-          described.size.must_equal(1)
-          subject
-          described.size.must_equal(0)
-        end
+      context 'when x and y are in bounds' do
+        let(:y) { 0 }
+        let(:x) { 2 }
+
+        it { subject.must_be_instance_of(Vedeu::Cell) }
       end
     end
 
-    describe '#store' do
-      let(:data) { :data }
+    describe '#output' do
+      it { instance.must_respond_to(:output) }
+    end
 
-      subject { described.store(data) }
+    describe '#render' do
+      subject { instance.render }
+
+      it { subject.must_be_instance_of(String) }
+    end
+
+    describe '#reset' do
+      subject { instance.reset }
 
       it { subject.must_be_instance_of(Array) }
 
-      it { subject.must_equal([:data]) }
+      it { instance.must_respond_to(:clear) }
+    end
 
-      it 'adds the buffer (data) to the storage' do
-        described.size.must_equal(0)
-        subject
-        described.size.must_equal(1)
+    describe '#write' do
+      let(:data) { Vedeu::Views::Char.new(value: 'a') }
+
+      subject { instance.write(y, x, data) }
+
+      context 'when x is out of bounds' do
+        let(:y) { 1 }
+        let(:x) { 5 }
+
+        it { subject.must_equal(false) }
       end
-    end
 
-    describe '#size' do
-      subject { described.size }
+      context 'when y is out of bounds' do
+        let(:y) { 5 }
+        let(:x) { 1 }
 
-      it { subject.must_be_instance_of(Fixnum) }
-    end
+        it { subject.must_equal(false) }
+      end
 
-    describe '#clear' do
-      subject { described.clear }
+      context 'when both x and y are out of bounds' do
+        let(:y) { 5 }
+        let(:x) { 5 }
 
-      it { subject.must_be_instance_of(Array) }
+        it { subject.must_equal(false) }
+      end
 
-      it { subject.must_be_empty }
+      context 'when x and y are in bounds' do
+        let(:y) { 0 }
+        let(:x) { 2 }
 
-      it { described.must_respond_to(:reset) }
+        it { subject.must_equal(true) }
+      end
     end
 
   end # VirtualBuffer

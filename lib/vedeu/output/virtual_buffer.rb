@@ -1,69 +1,128 @@
 module Vedeu
 
-  # Store and retrieve {Vedeu::VirtualTerminal} objects.
+  # Represents a {Vedeu::Terminal} view as a grid of {Vedeu::Cell} objects.
   #
-  # Each {Vedeu::VirtualTerminal} object is a copy of the current terminal
-  # including content but not as String objects but {Vedeu::Views::Char}
-  # objects. Using {Vedeu::Views::Char} objects means that we can store the data
-  # used to make up the displayed character, complete with its colour, position
-  # and style.
-  #
-  # Once a {Vedeu::Views::Char} has been converted to a String, it is tricky to
-  # separate the escape sequences and string data. By deferring this conversion
-  # we can display the {Vedeu::Views::Char} in multiple ways (e.g. HTML) or in
-  # multiple formats (e.g. JSON), and render/use that in an appropriate way.
-  #
-  module VirtualBuffer
+  class VirtualBuffer
 
-    extend self
+    # @!attribute [rw] renderer
+    # @return [void]
+    attr_accessor :renderer
 
-    # Fetch the oldest stored virtual buffer first.
-    #
-    # @return [Array<Array<Vedeu::Views::Char>>|NilClass]
-    def retrieve
-      Vedeu.log(type: :drb, message: 'Retrieving output')
+    # @!attribute [r] height
+    # @return [Fixnum]
+    attr_reader :height
 
-      storage.pop
+    # @!attribute [r] width
+    # @return [Fixnum]
+    attr_reader :width
+
+    # @param data [Array<Array<Vedeu::Views::Char>>]
+    # @return [Array<Array<Vedeu::Views::Char>>]
+    # @see Vedeu::VirtualBuffer#output
+    def self.output(data)
+      new(Vedeu.height, Vedeu.width, Vedeu::Renderers::HTML.new).output(data)
     end
 
-    # Store a new virtual buffer.
+    # Returns a new instance of Vedeu::VirtualBuffer.
+    #
+    # @param height [Fixnum]
+    # @param width [Fixnum]
+    # @param renderer [Object|Vedeu::Renderers::HTML] An object responding to
+    #   .render.
+    # @return [Vedeu::VirtualBuffer]
+    def initialize(height, width, renderer = Vedeu::Renderers::HTML.new)
+      @height   = height
+      @width    = width
+      @renderer = renderer
+    end
+
+    # Return a grid of {Vedeu::Views::Char} objects defined by the height and
+    # width of this virtual terminal.
     #
     # @return [Array<Array<Vedeu::Views::Char>>]
-    def store(data)
-      Vedeu.log(type: :drb, message: 'Storing output')
-
-      storage.unshift(data)
+    def cells
+      @cells ||= new_virtual_buffer
     end
 
-    # Return the number of virtual buffers currently stored.
+    # Read a single cell from the virtual terminal.
     #
-    # @return [Fixnum]
-    def size
-      storage.size
+    # @note
+    #   Given two actual coordinates (y, x) e.g. (1, 1)
+    #   Convert to coordinate indices (cy, cx) e.g. (0, 0)
+    #   Fetch the row at cy and return the cell from cx
+    #
+    # @param y [Fixnum] The row/line coordinate.
+    # @param x [Fixnum] The column/character coordinate.
+    # @return [Vedeu::Views::Char]
+    def read(y, x)
+      cy, cx = Vedeu::Position[y, x].as_indices
+
+      row  = fetch(cells, cy)
+      cell = fetch(row, cx)
+
+      cell
     end
 
-    # Destroy all virtual buffers currently stored.
+    # Write a collection of cells to the virtual terminal.
     #
-    # @return [Array]
-    def clear
-      @storage = in_memory
+    # @param data [Array<Array<Vedeu::Views::Char>>]
+    # @return [Array<Array<Vedeu::Views::Char>>]
+    def output(data)
+      Array(data).flatten.each do |char|
+        write(char.y, char.x, char) if char.is_a?(Vedeu::Views::Char)
+      end
+
+      cells
     end
-    alias_method :reset, :clear
+
+    # Send the cells to the renderer and return the rendered result.
+    #
+    # @return [String|void] Most likely to be a String.
+    def render
+      renderer.render(cells)
+    end
+
+    # Removes all content from the virtual terminal; effectively clearing it.
+    #
+    # @return [Array<Array<Vedeu::Views::Char>>]
+    def reset
+      @cells = new_virtual_buffer
+    end
+    alias_method :clear, :reset
+
+    # Write a single cell to the virtual terminal.
+    #
+    # @note
+    #   If the position (y, x) is nil; we're out of bounds.
+    #   Otherwise, write the data to (cy, cx).
+    #
+    # @param y [Fixnum] The row/line coordinate.
+    # @param x [Fixnum] The column/character coordinate.
+    # @param data [Vedeu::Views::Char]
+    # @return [Vedeu::Views::Char]
+    def write(y, x, data)
+      return false unless read(y, x).is_a?(Vedeu::Cell)
+
+      cy, cx = Vedeu::Position[y, x].as_indices
+      cells[cy][cx] = data
+
+      true
+    end
 
     private
 
-    # Access to the storage for this repository.
-    #
-    # @return [Array]
-    def storage
-      @storage ||= in_memory
+    # @param from [Array] An Array of rows, or an Array of cells.
+    # @param which [Fixnum] A Fixnum representing the index; the row number or
+    #   the cell number for a row.
+    # @return [Array<Vedeu::Views::Char>|Array]
+    def fetch(from, which)
+      from[which] || []
     end
 
-    # Returns an empty collection ready for the storing of virtual buffers.
-    #
-    # @return [Array]
-    def in_memory
-      []
+    # @return [Array<Array<Vedeu::Cell>>]
+    # @see {Vedeu::VirtualBuffer#cells}
+    def new_virtual_buffer
+      Array.new(height) { Array.new(width) { Vedeu::Cell.new } }
     end
 
   end # VirtualBuffer

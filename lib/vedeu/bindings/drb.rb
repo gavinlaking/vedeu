@@ -51,7 +51,7 @@ module Vedeu
       #
       # @return [TrueClass]
       def drb_retrieve_output!
-        Vedeu.bind(:_drb_retrieve_output_) { Vedeu::VirtualBuffer.retrieve }
+        Vedeu.bind(:_drb_retrieve_output_) { Vedeu::VirtualBuffers.retrieve }
       end
 
       # Triggering this event with 'data' will push data into the running
@@ -63,7 +63,7 @@ module Vedeu
       # @return [TrueClass]
       def drb_store_output!
         Vedeu.bind(:_drb_store_output_) do |data|
-          Vedeu::VirtualBuffer.store(Vedeu::Terminal.virtual.output(data))
+          Vedeu::VirtualBuffers.store(Vedeu::VirtualBuffer.output(data))
         end
       end
 
