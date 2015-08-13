@@ -163,29 +163,29 @@ module Vedeu
         context 'when x is nil or x <= 0' do
           it { subject.must_equal(0) }
 
-          context 'and x is regressed' do
+          context 'and x is moved left' do
             it {
-              instance.send(:regress)
+              instance.send(:left)
               subject.must_equal(0)
             }
 
             it 'multiple times' do
-              instance.send(:regress)
-              instance.send(:regress)
+              instance.send(:left)
+              instance.send(:left)
 
               subject.must_equal(0)
             end
           end
 
-          context 'and x is progressed' do
+          context 'and x is moved right' do
             it {
-              instance.send(:progress)
+              instance.send(:right)
               subject.must_equal(1)
             }
 
             it 'multiple times' do
-              instance.send(:progress)
-              instance.send(:progress)
+              instance.send(:right)
+              instance.send(:right)
 
               subject.must_equal(2)
             end
@@ -197,29 +197,29 @@ module Vedeu
 
           it { subject.must_equal(4) }
 
-          context 'and x is regressed' do
+          context 'and x is moved left' do
             it {
-              instance.send(:regress)
+              instance.send(:left)
               subject.must_equal(3)
             }
 
             it 'multiple times' do
-              instance.send(:regress)
-              instance.send(:regress)
+              instance.send(:left)
+              instance.send(:left)
 
               subject.must_equal(2)
             end
           end
 
-          context 'and x is progressed' do
+          context 'and x is moved right' do
             it {
-              instance.send(:progress)
+              instance.send(:right)
               subject.must_equal(5)
             }
 
             it 'multiple times' do
-              instance.send(:progress)
-              instance.send(:progress)
+              instance.send(:right)
+              instance.send(:right)
 
               subject.must_equal(6)
             end
@@ -231,29 +231,29 @@ module Vedeu
 
           it { subject.must_equal(11) }
 
-          context 'and x is regressed' do
+          context 'and x is moved left' do
             it {
-              instance.send(:regress)
+              instance.send(:left)
               subject.must_equal(10)
             }
 
             it 'multiple times' do
-              instance.send(:regress)
-              instance.send(:regress)
+              instance.send(:left)
+              instance.send(:left)
 
               subject.must_equal(9)
             end
           end
 
-          context 'and x is progressed' do
+          context 'and x is moved right' do
             it {
-              instance.send(:progress)
+              instance.send(:right)
               subject.must_equal(11)
             }
 
             it 'multiple times' do
-              instance.send(:progress)
-              instance.send(:progress)
+              instance.send(:right)
+              instance.send(:right)
 
               subject.must_equal(11)
             end

@@ -27,7 +27,7 @@ module Vedeu
           @chars[position] = nil
           @chars.compact
 
-          regress
+          left
         end
 
         self
@@ -46,7 +46,7 @@ module Vedeu
 
         end
 
-        progress
+        right
 
         self
       end
@@ -100,7 +100,7 @@ module Vedeu
       # Move the current virtual cursor to the right.
       #
       # @return [Fixnum]
-      def progress
+      def right
         if x > (size - 1)
           @x = size - 1
 
@@ -113,7 +113,7 @@ module Vedeu
       # Move the current virtual cursor to the left.
       #
       # @return [Fixnum]
-      def regress
+      def left
         if x <= 0
           @x = 0
 
