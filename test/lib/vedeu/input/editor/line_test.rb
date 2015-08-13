@@ -155,8 +155,8 @@ module Vedeu
         end
       end
 
-      describe '#position' do
-        subject { instance.position }
+      describe '#x_position' do
+        subject { instance.x_position }
 
         it { subject.must_be_instance_of(Fixnum) }
 

@@ -23,8 +23,8 @@ module Vedeu
       #
       # @return [Vedeu::Editor::Line]
       def delete
-        if position > 0 && position <= (size - 1)
-          @chars[position] = nil
+        if x_position > 0 && x_position <= (size - 1)
+          @chars[x_position] = nil
           @chars.compact
 
           left
@@ -38,7 +38,7 @@ module Vedeu
       # @param character [String]
       # @return [Vedeu::Editor::Line]
       def insert(character)
-        if empty? || position == (size - 1)
+        if empty? || x_position == (size - 1)
           @chars = chars.push(character)
 
         else
@@ -54,7 +54,7 @@ module Vedeu
       # Return the current virtual cursor position.
       #
       # @return [Fixnum]
-      def position
+      def x_position
         if x <= 0
           @x = 0
 
