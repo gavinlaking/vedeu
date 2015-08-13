@@ -34,5 +34,5 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'bundler',   '~> 1.10'
   spec.add_dependency 'rake',      '~> 10.4'
-  spec.add_dependency 'vedeu_cli', '0.0.3'
+  spec.add_dependency 'vedeu_cli', '0.0.4'
 end
