@@ -24,7 +24,11 @@ module Vedeu
     # @param plugin [Vedeu::Plugin]
     # @return [Array<void>]
     def register(name, plugin = false)
-      plugins << plugin if plugin && not_loaded?(name)
+      if plugin && not_loaded?(name)
+        Vedeu.log(type: :debug, message: "Registering plugin: #{name}")
+
+        plugins << plugin
+      end
     end
 
     # Find all installed plugins and store them.
@@ -36,7 +40,7 @@ module Vedeu
       Gem::Specification.each do |gem|
         next unless gem.name =~ /^#{prefix}/
 
-        plugin_name = gem.name[/^#{prefix}_(.*)/, 1]
+        plugin_name = gem.name[/^#{prefix}(.*)/, 1]
 
         register(plugin_name, Vedeu::Plugin.new(plugin_name, gem))
       end
@@ -73,7 +77,7 @@ module Vedeu
 
     # @return [String]
     def prefix
-      'vedeu'
+      'vedeu_'
     end
 
   end # Plugins

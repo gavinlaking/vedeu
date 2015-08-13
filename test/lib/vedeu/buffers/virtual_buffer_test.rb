@@ -2,9 +2,9 @@ require 'test_helper'
 
 module Vedeu
 
-  describe VirtualTerminal do
+  describe VirtualBuffer do
 
-    let(:described) { Vedeu::VirtualTerminal }
+    let(:described) { Vedeu::VirtualBuffer }
     let(:instance)  { described.new(height, width, renderer) }
     let(:height)    { 3 }
     let(:width)     { 3 }
@@ -22,6 +22,14 @@ module Vedeu
       it { instance.must_respond_to(:renderer=) }
       it { instance.must_respond_to(:height) }
       it { instance.must_respond_to(:width) }
+    end
+
+    describe '.output' do
+      let(:data) {}
+
+      subject { described.output(data) }
+
+      it { subject.must_be_instance_of(Array) }
     end
 
     describe '#cells' do
@@ -65,18 +73,14 @@ module Vedeu
     end
 
     describe '#output' do
-      let(:data) {}
-
-      subject { instance.output(data) }
-
-      it { subject.must_be_instance_of(Array) }
+      it { instance.must_respond_to(:output) }
     end
 
-    # describe '#render' do
-    #   subject { instance.render }
+    describe '#render' do
+      subject { instance.render }
 
-    #   it { subject.must_be_instance_of(String) }
-    # end
+      it { subject.must_be_instance_of(String) }
+    end
 
     describe '#reset' do
       subject { instance.reset }
@@ -120,6 +124,6 @@ module Vedeu
       end
     end
 
-  end # VirtualTerminal
+  end # VirtualBuffer
 
 end # Vedeu

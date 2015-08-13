@@ -26,17 +26,13 @@ module Vedeu
 
     # @return [Vedeu::Cursor]
     def to
-      result = entity.new(name: name,
-                          y:    coordinate.y_position,
-                          x:    coordinate.x_position,
-                          oy:   y,
-                          ox:   x).store
+      build_entity!
 
       Vedeu.trigger(:_clear_, name)
       Vedeu.trigger(:_refresh_, name)
       Vedeu.trigger(:_refresh_cursor_, name)
 
-      result
+      new_entity
     end
 
     protected
@@ -58,6 +54,15 @@ module Vedeu
     attr_reader :y
 
     private
+
+    def build_entity!
+      @_entity ||= entity.new(name: name,
+                              y:    coordinate.y_position,
+                              x:    coordinate.x_position,
+                              oy:   y,
+                              ox:   x).store
+    end
+    alias_method :new_entity, :build_entity!
 
     # @return [Vedeu::Coordinate]
     def coordinate

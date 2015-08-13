@@ -220,9 +220,9 @@ module Vedeu
       IO.console
     end
 
-    # @return [VirtualTerminal]
+    # @return [VirtualBuffer]
     def virtual
-      @virtual ||= Vedeu::VirtualTerminal.new(height, width)
+      @virtual ||= Vedeu::VirtualBuffer.new(height, width)
     end
 
   end # Terminal

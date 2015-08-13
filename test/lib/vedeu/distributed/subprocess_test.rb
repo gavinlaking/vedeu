@@ -25,7 +25,18 @@ module Vedeu
     end
 
     describe '#kill' do
-      it { instance.must_respond_to(:kill) }
+      before do
+        Process.stubs(:kill)
+        File.stubs(:unlink)
+      end
+
+      subject { instance.kill }
+
+      it {
+        Process.expects(:kill)
+        File.expects(:unlink)
+        subject
+      }
     end
 
   end # Subprocess

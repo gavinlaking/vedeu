@@ -58,11 +58,17 @@ require 'vedeu/colours/colour'
 
 require 'vedeu/buffers/buffer'
 require 'vedeu/buffers/buffers'
+require 'vedeu/buffers/virtual_buffer'
+require 'vedeu/buffers/virtual_buffers'
+
+require 'vedeu/refresh/refresh'
+require 'vedeu/refresh/refresh_cursor'
+require 'vedeu/refresh/refresh_buffer'
+require 'vedeu/refresh/refresh_group'
 
 require 'vedeu/cursor/cursor'
 require 'vedeu/cursor/cursors'
 require 'vedeu/cursor/move'
-require 'vedeu/cursor/refresh_cursor'
 require 'vedeu/cursor/reposition'
 
 require 'vedeu/esc/actions'
@@ -109,13 +115,6 @@ require 'vedeu/application/application_controller'
 require 'vedeu/application/application_helper'
 require 'vedeu/application/application_view'
 
-require 'vedeu/cli/generator/helpers'
-require 'vedeu/cli/generator/application'
-require 'vedeu/cli/generator/view'
-require 'vedeu/cli/generator/all'
-
-require 'vedeu/cli/main'
-
 require 'vedeu/distributed/uri'
 require 'vedeu/distributed/server'
 require 'vedeu/distributed/client'
@@ -154,13 +153,10 @@ require 'vedeu/output/presentation'
 require 'vedeu/output/compressor'
 require 'vedeu/output/style'
 require 'vedeu/output/text'
-require 'vedeu/output/virtual_buffer'
 require 'vedeu/output/html_char'
-require 'vedeu/output/refresh_group'
-require 'vedeu/output/refresh'
+
 require 'vedeu/output/output'
 require 'vedeu/output/viewport'
-require 'vedeu/output/virtual_terminal'
 require 'vedeu/output/wordwrap'
 
 require 'vedeu/api'

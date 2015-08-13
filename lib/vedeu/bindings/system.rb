@@ -196,11 +196,13 @@ module Vedeu
         Vedeu.bind(:_mode_switch_) { fail Vedeu::ModeSwitch }
       end
 
-      # Will cause the named interface to refresh, or when a name is not given,
-      # will refresh all interfaces.
+      # Refreshes all registered interfaces or the named interface.
       #
-      # @note: Hidden interfaces will be still refreshed in memory but not
-      #   shown.
+      # @note
+      #   The interfaces will be refreshed in z-index order, meaning that
+      #   interfaces with a lower z-index will be drawn first. This means
+      #   overlapping interfaces will be drawn as specified.
+      #   Hidden interfaces will be still refreshed in memory but not shown.
       #
       # @example
       #   Vedeu.trigger(:_refresh_)
@@ -209,7 +211,7 @@ module Vedeu
       # @return [TrueClass]
       def refresh!
         Vedeu.bind(:_refresh_) do |name|
-          name ? Vedeu::Refresh.by_name(name) : Vedeu::Refresh.all
+          name ? Vedeu::RefreshBuffer.by_name(name) : Vedeu::Refresh.all
         end
       end
 
@@ -222,7 +224,7 @@ module Vedeu
       # @return [TrueClass]
       def refresh_cursor!
         Vedeu.bind(:_refresh_cursor_) do |name|
-          Vedeu::RefreshCursor.render(name)
+          Vedeu::RefreshCursor.by_name(name)
         end
       end
 
@@ -233,7 +235,9 @@ module Vedeu
       #
       # @return [TrueClass]
       def refresh_group!
-        Vedeu.bind(:_refresh_group_) { |name| Vedeu::Refresh.by_group(name) }
+        Vedeu.bind(:_refresh_group_) do |name|
+          Vedeu::RefreshGroup.by_name(name)
+        end
       end
 
       # When triggered will cause Vedeu to trigger the `:_clear_` and

@@ -2,9 +2,9 @@ require 'test_helper'
 
 module Vedeu
 
-  describe VirtualBuffer do
+  describe VirtualBuffers do
 
-    let(:described) { Vedeu::VirtualBuffer }
+    let(:described) { Vedeu::VirtualBuffers }
 
     before { described.clear }
 
@@ -64,6 +64,6 @@ module Vedeu
       it { described.must_respond_to(:reset) }
     end
 
-  end # VirtualBuffer
+  end # VirtualBuffers
 
 end # Vedeu

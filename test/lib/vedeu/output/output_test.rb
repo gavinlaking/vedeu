@@ -27,7 +27,7 @@ module Vedeu
 
         before do
           # Vedeu::Renderers::HTML.stubs(:to_file)
-          Vedeu::VirtualBuffer.stubs(:retrieve).returns(virtual_buffer)
+          Vedeu::VirtualBuffers.stubs(:retrieve).returns(virtual_buffer)
         end
 
         it {

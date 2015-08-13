@@ -2,7 +2,7 @@ module Vedeu
 
   # Represents a {Vedeu::Terminal} view as a grid of {Vedeu::Cell} objects.
   #
-  class VirtualTerminal
+  class VirtualBuffer
 
     # @!attribute [rw] renderer
     # @return [void]
@@ -16,13 +16,20 @@ module Vedeu
     # @return [Fixnum]
     attr_reader :width
 
-    # Returns a new instance of Vedeu::VirtualTerminal.
+    # @param data [Array<Array<Vedeu::Views::Char>>]
+    # @return [Array<Array<Vedeu::Views::Char>>]
+    # @see Vedeu::VirtualBuffer#output
+    def self.output(data)
+      new(Vedeu.height, Vedeu.width, Vedeu::Renderers::HTML.new).output(data)
+    end
+
+    # Returns a new instance of Vedeu::VirtualBuffer.
     #
     # @param height [Fixnum]
     # @param width [Fixnum]
     # @param renderer [Object|Vedeu::Renderers::HTML] An object responding to
     #   .render.
-    # @return [Vedeu::VirtualTerminal]
+    # @return [Vedeu::VirtualBuffer]
     def initialize(height, width, renderer = Vedeu::Renderers::HTML.new)
       @height   = height
       @width    = width
@@ -34,7 +41,7 @@ module Vedeu
     #
     # @return [Array<Array<Vedeu::Views::Char>>]
     def cells
-      @cells ||= new_virtual_terminal
+      @cells ||= new_virtual_buffer
     end
 
     # Read a single cell from the virtual terminal.
@@ -79,7 +86,7 @@ module Vedeu
     #
     # @return [Array<Array<Vedeu::Views::Char>>]
     def reset
-      @cells = new_virtual_terminal
+      @cells = new_virtual_buffer
     end
     alias_method :clear, :reset
 
@@ -113,11 +120,11 @@ module Vedeu
     end
 
     # @return [Array<Array<Vedeu::Cell>>]
-    # @see {Vedeu::VirtualTerminal#cells}
-    def new_virtual_terminal
+    # @see {Vedeu::VirtualBuffer#cells}
+    def new_virtual_buffer
       Array.new(height) { Array.new(width) { Vedeu::Cell.new } }
     end
 
-  end # VirtualTerminal
+  end # VirtualBuffer
 
 end # Vedeu

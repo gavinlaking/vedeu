@@ -13,6 +13,8 @@ module Vedeu
 
       context 'when there are cursors are defined' do
         before do
+          Vedeu::Focus.reset
+          Vedeu.cursors.reset
           Vedeu::Focus.add('Vedeu.cursor')
           Vedeu::Cursor.new(name: 'Vedeu.cursor').store
         end

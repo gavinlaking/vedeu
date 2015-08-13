@@ -1,8 +1,8 @@
 module Vedeu
 
-  # Store and retrieve {Vedeu::VirtualTerminal} objects.
+  # Store and retrieve {Vedeu::VirtualBuffer} objects.
   #
-  # Each {Vedeu::VirtualTerminal} object is a copy of the current terminal
+  # Each {Vedeu::VirtualBuffer} object is a copy of the current terminal
   # including content but not as String objects but {Vedeu::Views::Char}
   # objects. Using {Vedeu::Views::Char} objects means that we can store the data
   # used to make up the displayed character, complete with its colour, position
@@ -13,7 +13,7 @@ module Vedeu
   # we can display the {Vedeu::Views::Char} in multiple ways (e.g. HTML) or in
   # multiple formats (e.g. JSON), and render/use that in an appropriate way.
   #
-  module VirtualBuffer
+  module VirtualBuffers
 
     extend self
 
@@ -66,6 +66,6 @@ module Vedeu
       []
     end
 
-  end # VirtualBuffer
+  end # VirtualBuffers
 
 end # Vedeu

@@ -87,17 +87,21 @@ module Vedeu
         end
 
         context 'when the DRb server is available' do
+          let(:server) { mock('DRbObject', pid: 9876) }
+
+          before do
+            server.stubs(:shutdown)
+            DRbObject.stubs(:new_with_uri).returns(server)
+            Process.stubs(:kill)
+          end
+
+          it {
+            server.expects(:shutdown)
+            Process.expects(:kill)
+            subject
+          }
+
           # @todo Add more tests.
-          # before {
-          #   DRbObject.stubs(:new_with_uri).returns(server)
-          #   Process.stubs(:kill)
-          # }
-
-          # it {
-          #   Process.expects(:kill).with('KILL', 0)
-          #   subject
-          # }
-
           # it { skip }
         end
       end

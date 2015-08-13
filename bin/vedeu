@@ -1,21 +1,17 @@
 #!/usr/bin/env ruby
 
 require 'rake'
-
 bundler_message = 'Bundler is required. Please install bundler with ' \
                   "'gem install bundler'"
 begin
   require 'bundler'
-
 rescue LoadError
   puts bundler_message
-
 end
 
 fail bundler_message unless defined?(Bundler)
 
 ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../../Gemfile', __FILE__)
-# load Gem.bin_path('bundler', 'bundle')
 
 Bundler.setup
 
@@ -23,5 +19,6 @@ gem_dir = File.expand_path('..', File.dirname(__FILE__))
 $LOAD_PATH.unshift(gem_dir) unless $LOAD_PATH.include?(gem_dir)
 
 require 'vedeu'
+require 'vedeu_cli'
 
 Vedeu::CLI::Main.start(ARGV.dup)
