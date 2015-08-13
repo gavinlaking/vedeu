@@ -61,8 +61,9 @@ RUN gem install bundler
 
 ADD . /home/vedeu/gem/
 WORKDIR /home/vedeu/gem
+RUN chown -R vedeu:vedeu .
 USER vedeu
-RUN bundle
+RUN bundle install --deployment
 WORKDIR /home/vedeu
 
 # To build this file:
