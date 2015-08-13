@@ -40,7 +40,7 @@ module Vedeu
       Gem::Specification.each do |gem|
         next unless gem.name =~ /^#{prefix}/
 
-        plugin_name = gem.name[/^#{prefix}_(.*)/, 1]
+        plugin_name = gem.name[/^#{prefix}(.*)/, 1]
 
         register(plugin_name, Vedeu::Plugin.new(plugin_name, gem))
       end
@@ -77,7 +77,7 @@ module Vedeu
 
     # @return [String]
     def prefix
-      'vedeu'
+      'vedeu_'
     end
 
   end # Plugins
