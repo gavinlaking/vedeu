@@ -15,7 +15,8 @@ module Vedeu
       def initialize(text:, y:, x:)
         @text  = text
         @y     = y || 0
-        @lines = present?(text) ? text.lines : []
+        @x     = x || 0
+        @lines = present?(text) ? text.lines.map(&:chomp) : []
       end
 
       # Return the current virtual cursor position.
