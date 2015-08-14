@@ -232,13 +232,14 @@ module Vedeu
     describe '#move' do
       let(:_name) { 'move_move' }
 
+      before { Vedeu.stubs(:trigger) }
+
       subject { instance.move }
 
       context 'when the entity is a Vedeu::Geometry' do
         let(:entity) { Vedeu::Geometry }
 
-        # @todo Add more tests.
-        # it { skip }
+        it { subject.must_be_instance_of(Vedeu::Geometry) }
       end
 
       context 'when the entity is a Vedeu::Cursor' do
@@ -247,33 +248,51 @@ module Vedeu
     end
 
     describe '#refresh' do
+      before { Vedeu.stubs(:trigger) }
+
       subject { instance.refresh }
 
       context 'when the entity is a Vedeu::Geometry' do
         let(:entity) { Vedeu::Geometry }
 
-        # @todo Add more tests.
-        # it { skip }
+        it {
+          Vedeu.expects(:trigger)
+          subject
+        }
       end
 
       context 'when the entity is a Vedeu::Cursor' do
-        # @todo Add more tests.
-        # it { skip }
+        it {
+          Vedeu.expects(:trigger)
+          subject
+        }
       end
     end
 
     describe '#merged_attributes' do
       subject { instance.merged_attributes }
 
-      context 'when the entity is a Vedeu::Geometry' do
-        let(:entity) { Vedeu::Geometry }
+      it { subject.must_be_instance_of(Hash) }
 
-        it { subject.must_be_instance_of(Hash) }
+      context 'when the entity is a Vedeu::Geometry' do
+        let(:entity)   { Vedeu::Geometry }
+        let(:expected) {
+          {
+            centred: false,
+            maximised: false,
+            name: '',
+            x: 5,
+            y: 5,
+            xn: 10,
+            yn: 10
+          }
+        }
+
+        it { subject.must_equal(expected) }
       end
 
       context 'when the entity is a Vedeu::Cursor' do
-        # @todo Add more tests.
-        # it { skip }
+        it { subject.must_be_instance_of(Hash) }
       end
     end
 
