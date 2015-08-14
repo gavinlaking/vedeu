@@ -2,7 +2,7 @@ require 'test_helper'
 
 module Vedeu
 
-	describe TerminalMode do
+  describe TerminalMode do
 
     let(:described) { Vedeu::TerminalMode }
 
@@ -67,6 +67,6 @@ module Vedeu
       end
     end
 
-	end # TerminalMode
+  end # TerminalMode
 
 end # Vedeu

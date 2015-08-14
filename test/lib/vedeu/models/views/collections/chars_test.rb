@@ -4,7 +4,7 @@ module Vedeu
 
   module Views
 
-  	describe Chars do
+    describe Chars do
 
       let(:described) { Vedeu::Views::Chars }
       let(:instance)  { described.new }

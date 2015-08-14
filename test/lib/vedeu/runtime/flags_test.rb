@@ -2,7 +2,7 @@ require 'test_helper'
 
 module Vedeu
 
-	describe Flags do
+  describe Flags do
 
     let(:described) { Vedeu::Flags }
 
@@ -42,6 +42,6 @@ module Vedeu
       it { described.instance.must_respond_to(:reset!) }
     end
 
-	end # Flags
+  end # Flags
 
 end # Vedeu

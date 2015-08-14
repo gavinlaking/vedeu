@@ -13,7 +13,7 @@ module Vedeu
 
   end # SomeController
 
-	describe Router do
+  describe Router do
 
     let(:described) { Vedeu::Router }
 
@@ -199,6 +199,6 @@ module Vedeu
       it { described.must_respond_to(:reset) }
     end
 
-	end # Router
+  end # Router
 
 end # Vedeu

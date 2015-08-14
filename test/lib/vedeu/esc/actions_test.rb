@@ -4,7 +4,7 @@ module Vedeu
 
   module EscapeSequences
 
-  	describe Actions do
+    describe Actions do
 
       let(:described) { Vedeu::EscapeSequences::Actions }
 
@@ -32,7 +32,7 @@ module Vedeu
         it { described.characters.must_be_instance_of(Hash) }
       end
 
-  	end # Actions
+    end # Actions
 
   end # EscapeSequences
 

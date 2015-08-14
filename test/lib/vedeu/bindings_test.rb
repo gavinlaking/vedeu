@@ -2,7 +2,7 @@ require 'test_helper'
 
 module Vedeu
 
-	describe Bindings do
+  describe Bindings do
 
     let(:described) { Vedeu::Bindings }
 
@@ -51,6 +51,6 @@ module Vedeu
       it { subject.must_equal(true) }
     end
 
-	end # Bindings
+  end # Bindings
 
 end # Vedeu

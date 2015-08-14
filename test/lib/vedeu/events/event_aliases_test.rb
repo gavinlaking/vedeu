@@ -2,7 +2,7 @@ require 'test_helper'
 
 module Vedeu
 
-	describe EventAliases do
+  describe EventAliases do
 
     let(:described) { Vedeu::EventAliases }
 
@@ -118,6 +118,6 @@ module Vedeu
       end
     end
 
-	end # EventAliases
+  end # EventAliases
 
 end # Vedeu

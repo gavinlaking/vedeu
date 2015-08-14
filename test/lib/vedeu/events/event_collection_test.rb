@@ -2,7 +2,7 @@ require 'test_helper'
 
 module Vedeu
 
-	describe EventCollection do
+  describe EventCollection do
 
     let(:described) { Vedeu::EventCollection }
     let(:instance)  { described.new }
