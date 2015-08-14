@@ -171,6 +171,15 @@ module Vedeu
         end
       end
 
+      describe '#fake!' do
+        it { instance.must_respond_to(:fake) }
+
+        it 'sets the option to the desired value' do
+          configuration = Vedeu.configure { fake! }
+          configuration.terminal_mode.must_equal(:fake)
+        end
+      end
+
       describe '#raw!' do
         subject { Vedeu.configure { raw! } }
 
@@ -312,14 +321,21 @@ module Vedeu
       end
 
       describe '#terminal_mode' do
-        context 'when setting to :raw mode' do
+        context 'when setting to :fake mode' do
+          it {
+            configuration = Vedeu.configure { terminal_mode(:fake) }
+            configuration.terminal_mode.must_equal(:fake)
+          }
+        end
+
+        context 'when setting to :cooked mode' do
           it {
             configuration = Vedeu.configure { terminal_mode(:raw) }
             configuration.terminal_mode.must_equal(:raw)
           }
         end
 
-        context 'when setting to :cooked mode' do
+        context 'when setting to :raw mode' do
           it {
             configuration = Vedeu.configure { terminal_mode(:raw) }
             configuration.terminal_mode.must_equal(:raw)

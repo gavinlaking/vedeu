@@ -31,6 +31,9 @@ module Vedeu
       if reader.raw_mode?
         Vedeu.trigger(:_keypress_, keypress)
 
+      elsif reader.fake_mode?
+        Vedeu.trigger(:_editor_, keypress)
+
       else
         Vedeu.trigger(:_command_, command)
 

@@ -27,6 +27,7 @@ class VedeuTestApplication
 
     # terminal_mode :raw
     # cooked!
+    # fake!
     # raw!
 
     # run_once!

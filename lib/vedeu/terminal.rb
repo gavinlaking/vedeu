@@ -16,7 +16,7 @@ module Vedeu
     def open
       fail Vedeu::InvalidSyntax, 'block not given' unless block_given?
 
-      if raw_mode?
+      if raw_mode? || fake_mode?
         console.raw    { initialize_screen(mode) { yield } }
 
       else
@@ -50,6 +50,9 @@ module Vedeu
                         end
                       end
                       keys
+
+                    elsif fake_mode?
+
 
                     else
                       console.gets.chomp

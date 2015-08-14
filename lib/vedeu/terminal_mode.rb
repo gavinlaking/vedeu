@@ -21,6 +21,21 @@ module Vedeu
       @mode = :cooked
     end
 
+    # Returns a boolean indicating whether the terminal is currently in `fake`
+    # mode.
+    #
+    # @return [Boolean]
+    def fake_mode?
+      mode == :fake
+    end
+
+    # Sets the terminal in to `fake` mode.
+    #
+    # @return [Symbol]
+    def fake_mode!
+      @mode = :fake
+    end
+
     # Returns a boolean indicating whether the terminal is currently in `raw`
     # mode.
     #
@@ -36,18 +51,19 @@ module Vedeu
       @mode = :raw
     end
 
-    # Toggles the terminal's mode between `cooked` and `raw`, depending on its
-    # current mode.
+    # Toggles the terminal's mode between `cooked`, `fake` and `raw`, depending
+    # on its current mode.
     #
     # @return [Symbol]
     def switch_mode!
-      return cooked_mode! if raw_mode?
+      return fake_mode!   if raw_mode?
+      return cooked_mode! if fake_mode?
 
       raw_mode!
     end
 
-    # Returns the mode of the terminal, either `:raw` or `:cooked`. Can change
-    # throughout the lifespan of the client application.
+    # Returns the mode of the terminal, either `:cooked`, `:fake` or `:raw`. Can
+    # change throughout the lifespan of the client application.
     #
     # @return [Symbol]
     def mode

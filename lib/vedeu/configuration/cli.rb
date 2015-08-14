@@ -72,6 +72,7 @@ module Vedeu
           :drb_host,
           :drb_port,
           :drb_width,
+          :fake,
           :interactive,
           :log,
           :raw,
@@ -194,6 +195,13 @@ module Vedeu
       #
       #    -i, --interactive
       #
+      # @return [OptionParser]
+      def fake
+        parser.on('-f', '--fake', 'Run application in fake mode.') do
+          options[:terminal_mode] = :fake
+        end
+      end
+
       # @return [OptionParser]
       def interactive
         parser.on('-i', '--interactive',

@@ -183,6 +183,20 @@ module Vedeu
       end
       alias_method :cooked, :cooked!
 
+      # Sets the terminal mode to `fake`. Default terminal mode is `raw`.
+      #
+      # @example
+      #   Vedeu.configure do
+      #     fake!
+      #     # ...
+      #   end
+      #
+      # @return [Boolean]
+      def fake!
+        options[:terminal_mode] = :fake
+      end
+      alias_method :fake, :fake!
+
       # Sets the terminal mode to `raw`. Default terminal mode is `raw`.
       # Also, see {Vedeu::Config::API#cooked!}
       #
@@ -390,30 +404,37 @@ module Vedeu
       end
       alias_method :compression!, :compression
 
-      # Sets the terminal mode. Valid values can be either ':raw' or ':cooked'.
-      #
-      #   Vedeu.configure do
-      #     terminal_mode :raw
-      #     # ...
-      #   end
+      # Sets the terminal mode. Valid values can be either ':cooked', ':fake' or
+      # :raw'.
       #
       #   Vedeu.configure do
       #     terminal_mode :cooked
-      #     # ...
+      #
+      #     # or...
+      #
+      #     terminal_mode :fake
+      #
+      #     # or...
+      #
+      #     terminal_mode :raw
+      #
+      #     # ... some code
       #   end
       #
-      # @param mode [Symbol] Either ':raw' or ':cooked'.
-      # @raise [Vedeu::InvalidSyntax] When the mode is not ':raw' or ':cooked'.
+      # @param mode [Symbol] Either ':cooked', ':fake' or ':raw'.
+      # @raise [Vedeu::InvalidSyntax] When the mode is not ':cooked', ':fake' or
+      #   ':raw'.
       # @return [Symbol]
-      # @see Vedeu::Config::API#raw!
       # @see Vedeu::Config::API#cooked!
+      # @see Vedeu::Config::API#fake!
+      # @see Vedeu::Config::API#raw!
       def terminal_mode(mode)
-        if mode == :raw || mode == :cooked
+        if [:cooked, :fake, :raw].include?(mode)
           options[:terminal_mode] = mode
 
         else
           fail Vedeu::InvalidSyntax,
-               'Terminal mode can be set to either :raw or :cooked'
+               'Terminal mode can be set to either :cooked, :fake or :raw'
 
         end
       end

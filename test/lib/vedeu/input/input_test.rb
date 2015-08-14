@@ -18,14 +18,16 @@ module Vedeu
     describe '.capture' do
       before do
         reader.stubs(:raw_mode?).returns(raw_mode)
+        reader.stubs(:fake_mode?).returns(fake_mode)
         Vedeu.stubs(:trigger).returns([false])
       end
 
       subject { described.capture(reader) }
 
       context 'when in cooked mode' do
-        let(:raw_mode) { false }
-        let(:command)  { 'help' }
+        let(:raw_mode)  { false }
+        let(:fake_mode) { false }
+        let(:command)   { 'help' }
 
         before { reader.stubs(:read).returns(command) }
 
@@ -35,9 +37,23 @@ module Vedeu
         end
       end
 
+      context 'when in fake mode' do
+        let(:raw_mode)  { false }
+        let(:fake_mode) { true }
+        let(:command)   { 'help' }
+
+        before { reader.stubs(:read).returns(command) }
+
+        it 'triggers an event with the command' do
+          Vedeu.expects(:trigger).with(:_editor_, command)
+          subject
+        end
+      end
+
       context 'when in raw mode' do
-        let(:raw_mode) { true }
-        let(:keypress) { 'a' }
+        let(:raw_mode)  { true }
+        let(:fake_mode) { false }
+        let(:keypress)  { 'a' }
 
         before { reader.stubs(:read).returns(keypress) }
 
