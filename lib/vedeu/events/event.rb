@@ -183,7 +183,10 @@ module Vedeu
       @executed_at = @now # set execution time to now
       @now         = 0    # reset now
 
-      Vedeu.log(type: :event, message: "Triggering: '#{name.inspect}'")
+      message = "Triggering: '#{name.inspect}'"
+      message << " with '#{args.inspect}'" if args.any?
+
+      Vedeu.log(type: :event, message: message)
 
       closure.call(*args)
     end
