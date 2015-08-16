@@ -22,7 +22,7 @@ module Vedeu
       end
 
       Vedeu.log(type:    :create,
-                message: "Adding ':#{controller}'")
+                message: "Controller: ':#{controller}'")
 
       if registered?(controller)
         storage[controller].merge!(klass: klass)
@@ -46,7 +46,7 @@ module Vedeu
     def add_action(controller, action)
       if present?(controller) && present?(action)
         Vedeu.log(type:    :create,
-                  message: "Adding ':#{action}' for ':#{controller}'")
+                  message: "Action: ':#{action}' (for ':#{controller}')")
 
         if registered?(controller)
           storage[controller][:actions] << action
