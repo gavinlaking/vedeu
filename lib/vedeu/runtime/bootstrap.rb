@@ -73,10 +73,10 @@ module Vedeu
     # @return [void]
     def client_initialize!
       if Vedeu::Configuration.root
-        Vedeu.trigger(:goto, *root)
+        Vedeu.trigger(:goto, *Vedeu::Configuration.root)
 
       else
-        Vedeu.log_stderr(type: :debug, message: "Fail because no root.")
+        Vedeu.log_stderr(type: :debug, message: client_initialize_error)
 
       end
     end
@@ -107,6 +107,15 @@ module Vedeu
       Vedeu.configure do
         log('/tmp/vedeu_bootstrap.log')
       end unless Vedeu::Configuration.log?
+    end
+
+    # @return [String]
+    def client_initialize_error
+      "Please update the 'root' setting in 'config/configuration.rb' to "     \
+      "start Vedeu using this controller and action: (args are optional)\n\n" \
+      "Vedeu.configure do\n" \
+      "  root :some_controller, :show, *args\n" \
+      "end\n\n"
     end
 
   end # Bootstrap

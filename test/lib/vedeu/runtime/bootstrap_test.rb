@@ -21,17 +21,16 @@ module Vedeu
     end
 
     describe '.start' do
-      before { Vedeu::Launcher.stubs(:execute!) }
+      before do
+        Vedeu::Configuration.stubs(:root).returns([:controller, :action, :args])
+        Vedeu.stubs(:trigger)
+        Vedeu::Launcher.stubs(:execute!)
+      end
 
       subject { described.start(argv) }
 
       it {
         Vedeu::Launcher.expects(:execute!)
-        subject
-      }
-
-      it {
-        Vedeu::Configuration.expects(:root)
         subject
       }
     end
