@@ -240,8 +240,8 @@ module Vedeu
 
       describe '#root' do
         it 'sets the options to the desired value' do
-          configuration = Vedeu.configure { root(::YourApp::SomeController.new) }
-          configuration.root.must_be_instance_of(YourApp::SomeController)
+          configuration = Vedeu.configure { root(:controller, :action, :args) }
+          configuration.root.must_equal([:controller, :action, :args])
         end
       end
 

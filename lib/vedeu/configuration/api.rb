@@ -298,17 +298,17 @@ module Vedeu
       end
 
       # Sets the root of the client application. Vedeu will execute this
-      # controller first.
+      # controller with action and optional arguments first.
       #
       #   Vedeu.configure do
-      #     root YourApp::SomeController.new
+      #     root :controller, :action, args
       #     # ...
       #   end
       #
-      # @param controller [Class]
+      # @param args [Array<Symbol|void>]
       # @return [Class]
-      def root(controller)
-        options[:root] = controller
+      def root(*args)
+        options[:root] = args
       end
 
       # Sets the value of STDIN.
