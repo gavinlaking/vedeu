@@ -64,7 +64,7 @@ module Vedeu
 
     # Renders the cursor.
     #
-    # @return [void]
+    # @return [Array<Vedeu::Escape>]
     def render
       Vedeu::Output.render(visibility)
     end

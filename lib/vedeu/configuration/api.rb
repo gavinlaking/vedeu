@@ -63,7 +63,7 @@ module Vedeu
       alias_method :interactive, :interactive!
 
       # Sets boolean to prevent user intervention. This is the same as setting
-      # {#interactive!} to false.
+      # {include:Vedeu::Config::API#interactive!} to false.
       #
       #   Vedeu.configure do
       #     standalone! # => same as `standalone true` or `interactive false`
@@ -261,6 +261,11 @@ module Vedeu
       # Only log specific message types. A complete list of message types can
       # be found at {Vedeu::Log.message_types}.
       #
+      #   Vedeu.configure do
+      #     log_only :debug, :event
+      #     # ...
+      #   end
+      #
       # @param types [Array<Symbol>] The message types which should be logged.
       # @return [Array<Symbol>]
       def log_only(*types)
@@ -290,6 +295,11 @@ module Vedeu
       # Override the base path for the application (for locating templates and
       # other resources). By default the base path is just cwd but this will
       # not work for many applications.
+      #
+      #   Vedeu.configure do
+      #     base_path '/path/to/application'
+      #     # ...
+      #   end
       #
       # @param path [String]
       # @return [String]

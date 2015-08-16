@@ -55,6 +55,10 @@ module Vedeu
 
     private
 
+    # Build a new instance of the entity that is being repositioned and replace
+    # existing stored version.
+    #
+    # @return [Vedeu::Cursor|Vedeu::Geometry]
     def build_entity!
       @_entity ||= entity.new(name: name,
                               y:    coordinate.y_position,

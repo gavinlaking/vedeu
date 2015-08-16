@@ -108,7 +108,7 @@ module Vedeu
     # ':_hide_group_' event to which this named interface belongs will also hide
     # the interface.
     #
-    # @return [void]
+    # @return [Array<Array<Array<Vedeu::Views::Char>>>]
     def hide
       Vedeu::Output.render(clear_buffer)
     end
@@ -141,7 +141,7 @@ module Vedeu
     # ':_show_group_' event to which this named interface belongs will also show
     # the interface.
     #
-    # @return [void]
+    # @return [Array<Array<Array<Vedeu::Views::Char>>>]
     def show
       Vedeu::Output.render(buffer)
     end
@@ -168,7 +168,7 @@ module Vedeu
 
     # Clear the buffer.
     #
-    # @return [void]
+    # @return [Array<Array<Vedeu::Views::Char>>]
     def clear_buffer
       @clear_buffer ||= Vedeu::Clear::NamedInterface.render(name)
     end
