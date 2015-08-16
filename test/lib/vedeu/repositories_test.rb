@@ -2,7 +2,7 @@ require 'test_helper'
 
 module Vedeu
 
-	describe Repositories do
+  describe Repositories do
 
     let(:described) { Vedeu::Repositories }
 
@@ -37,6 +37,6 @@ module Vedeu
       it { subject.must_equal(true) }
     end
 
-	end # Repositories
+  end # Repositories
 
 end # Vedeu

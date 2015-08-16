@@ -2,7 +2,7 @@ require 'test_helper'
 
 module Vedeu
 
-	describe InternalAPI do
+  describe InternalAPI do
 
       it { Vedeu.must_respond_to(:background_colours) }
       it { Vedeu.must_respond_to(:borders) }
@@ -23,6 +23,6 @@ module Vedeu
       it { Vedeu.must_respond_to(:resize) }
       it { Vedeu.must_respond_to(:timer) }
 
-	end # InternalAPI
+  end # InternalAPI
 
 end # Vedeu

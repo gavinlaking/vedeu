@@ -49,6 +49,7 @@ documentation shortly. In the meantime, please browse the
 - [Getting Started](http://rubydoc.info/gems/vedeu/file/docs/getting_started.md)
 - [The Vedeu DSL](http://rubydoc.info/gems/vedeu/file/docs/dsl.md)
 - [The Vedeu API](http://rubydoc.info/gems/vedeu/file/docs/api.md)
+- [Vedeu Configuration](http://rubydoc.info/gems/vedeu/file/docs/configuration.md)
 - [Vedeu Events](http://rubydoc.info/gems/vedeu/file/docs/events.md)
 - [Object Graphs](http://rubydoc.info/gems/vedeu/file/docs/object_graph.md)
 

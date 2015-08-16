@@ -3,6 +3,7 @@
 --embed-mixin ClassMethods
 -
 docs/api.md
+docs/configuration.md
 docs/dsl.md
 docs/events.md
 docs/getting_started.md

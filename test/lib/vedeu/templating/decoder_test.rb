@@ -4,7 +4,7 @@ module Vedeu
 
   module Templating
 
-	  describe Decoder do
+    describe Decoder do
 
       let(:described) { Vedeu::Templating::Decoder }
       let(:instance)  { described.new(data) }
@@ -31,7 +31,7 @@ module Vedeu
         it { instance.must_respond_to(:process) }
       end
 
-	  end # Decoder
+    end # Decoder
 
   end # Templating
 

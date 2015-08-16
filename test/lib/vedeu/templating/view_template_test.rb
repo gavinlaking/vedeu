@@ -4,7 +4,7 @@ module Vedeu
 
   module Templating
 
-  	describe ViewTemplate do
+    describe ViewTemplate do
 
       let(:described) { Vedeu::Templating::ViewTemplate }
       let(:instance)  { described.new(object, path, options) }
@@ -209,7 +209,7 @@ module Vedeu
         it { instance.must_respond_to(:parse) }
       end
 
-  	end # ViewTemplate
+    end # ViewTemplate
 
   end # Templating
 

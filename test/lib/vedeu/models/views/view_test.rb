@@ -4,7 +4,7 @@ module Vedeu
 
   module Views
 
-  	describe View do
+    describe View do
 
       let(:described)  { Vedeu::Views::View }
       let(:instance)   { described.new(attributes) }
@@ -87,7 +87,7 @@ module Vedeu
         # it { skip }
       end
 
-  	end # View
+    end # View
 
   end # Views
 

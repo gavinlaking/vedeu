@@ -4,7 +4,7 @@ module Vedeu
 
   module Views
 
-  	describe ViewCollection do
+    describe ViewCollection do
 
       let(:described) { Vedeu::Views::ViewCollection }
       let(:instance)  { described.new }
@@ -15,7 +15,7 @@ module Vedeu
         it { instance.must_be_instance_of(described) }
       end
 
-  	end # ViewCollection
+    end # ViewCollection
 
   end # Views
 

@@ -240,36 +240,36 @@ module Vedeu
 
       describe '#root' do
         it 'sets the options to the desired value' do
-          configuration = Vedeu.configure { root(::YourApp::SomeController.new) }
-          configuration.root.must_be_instance_of(YourApp::SomeController)
+          configuration = Vedeu.configure { root(:controller, :action, :args) }
+          configuration.root.must_equal([:controller, :action, :args])
         end
       end
 
       describe '#stdin' do
-        let(:io) {}
+        let(:io) { IO.console }
 
-        subject { instance.stdin(io) }
-
-        # @todo Add more tests.
-        # it { skip }
+        it 'sets the option to the desired value' do
+          configuration = Vedeu.configure { stdin(IO.console) }
+          configuration.stdin.must_equal(io)
+        end
       end
 
       describe '#stdout' do
-        let(:io) {}
+        let(:io) { IO.console }
 
-        subject { instance.stdout(io) }
-
-        # @todo Add more tests.
-        # it { skip }
+        it 'sets the option to the desired value' do
+          configuration = Vedeu.configure { stdout(IO.console) }
+          configuration.stdout.must_equal(io)
+        end
       end
 
       describe '#stderr' do
-        let(:io) {}
+        let(:io) { IO.console }
 
-        subject { instance.stderr(io) }
-
-        # @todo Add more tests.
-        # it { skip }
+        it 'sets the option to the desired value' do
+          configuration = Vedeu.configure { stderr(IO.console) }
+          configuration.stderr.must_equal(io)
+        end
       end
 
       describe '#compression!' do

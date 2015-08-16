@@ -13,7 +13,10 @@ module Vedeu
     describe '.stop!' do
       subject { described.stop! }
 
-      it { subject; described.instance_variable_get('@loop').must_equal(false) }
+      it {
+        subject
+        described.instance_variable_get('@loop').must_equal(false)
+      }
     end
 
     describe '.safe_exit_point!' do

@@ -21,6 +21,10 @@ module Vedeu
     # @return [Vedeu::ApplicationView]
     def initialize(**params)
       @params = params
+
+      @params.each do |key, value|
+        self.class.send(:define_method, key) { value } unless respond_to?(key)
+      end
     end
 
     # @raise [Vedeu::NotImplemented] Subclasses of this class must implement

@@ -4,7 +4,7 @@ module Vedeu
 
   module Null
 
-  	describe View do
+    describe View do
 
       let(:described)  { Vedeu::Null::View }
       let(:instance)   { described.new(attributes) }
@@ -49,7 +49,7 @@ module Vedeu
         it { instance.visible?.must_equal(false) }
       end
 
-  	end # View
+    end # View
 
   end # Null
 

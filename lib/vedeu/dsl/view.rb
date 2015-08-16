@@ -128,12 +128,12 @@ module Vedeu
         #   Typically includes `view` with associated sub-directives.
         # @raise [Vedeu::InvalidSyntax] The required block was not given.
         # @return [Array<View>]
-        def render(&block)
+        def renders(&block)
           fail Vedeu::InvalidSyntax, 'block not given' unless block_given?
 
           store(:store_immediate, &block)
         end
-        alias_method :renders, :render
+        alias_method :render, :renders
 
         # Define a view (content) for an interface.
         #

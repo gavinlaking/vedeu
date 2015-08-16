@@ -55,7 +55,7 @@ module Vedeu
       # with the arguments provided.
       #
       # @example
-      #   Vedeu.configure
+      #   Vedeu.configure do
       #     # ...
       #   end
       #

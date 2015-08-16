@@ -156,7 +156,10 @@ module Vedeu
       describe '#delay' do
         subject { instance.delay(0.25) }
 
-        it { subject; model.delay.must_equal(0.25) }
+        it {
+          subject
+          model.delay.must_equal(0.25)
+        }
       end
 
       describe '#focus!' do
@@ -253,7 +256,10 @@ module Vedeu
       describe '#name' do
         subject { instance.name('nickel') }
 
-        it { subject; model.name.must_equal('nickel') }
+        it {
+          subject
+          model.name.must_equal('nickel')
+        }
       end
 
       describe '#no_cursor!' do

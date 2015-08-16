@@ -4,7 +4,7 @@ module Vedeu
 
   module Null
 
-  	describe Menu do
+    describe Menu do
 
       let(:described)  { Vedeu::Null::Menu }
       let(:instance)   { described.new(attributes) }
@@ -40,7 +40,7 @@ module Vedeu
         it { instance.item.must_equal(nil) }
       end
 
-  	end # Menu
+    end # Menu
 
   end # Null
 

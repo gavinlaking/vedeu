@@ -20,7 +20,6 @@ module Vedeu
       # override the default Vedeu configuration set in
       # {Vedeu::Configuration#defaults}.
       #
-      # @example
       #   Vedeu.configure do
       #     # ...
       #   end
@@ -41,7 +40,6 @@ module Vedeu
       # Sets boolean to allow user input. The default behaviour of Vedeu is to
       # be interactive.
       #
-      # @example
       #   Vedeu.configure do
       #     interactive! # => same as `interactive true` or `standalone false`
       #     # ...
@@ -67,7 +65,6 @@ module Vedeu
       # Sets boolean to prevent user intervention. This is the same as setting
       # {#interactive!} to false.
       #
-      # @example
       #   Vedeu.configure do
       #     standalone! # => same as `standalone true` or `interactive false`
       #     # ...
@@ -94,7 +91,6 @@ module Vedeu
       # using `run_once!` or setting `run_once` to true will allow Vedeu to
       # initialize, run any client application code, cleanup, then terminate.
       #
-      # @example
       #   Vedeu.configure do
       #     run_once!
       #     # ...
@@ -109,7 +105,6 @@ module Vedeu
 
       # Sets boolean to run a DRb server.
       #
-      # @example
       #   Vedeu.configure do
       #     drb!
       #     # ...
@@ -124,7 +119,6 @@ module Vedeu
 
       # Sets the hostname or IP address of the DRb server.
       #
-      # @example
       #   Vedeu.configure do
       #     drb_host 'localhost'
       #     # ...
@@ -138,7 +132,6 @@ module Vedeu
 
       # Sets the port of the DRb server.
       #
-      # @example
       #   Vedeu.configure do
       #     drb_port 12345
       #     # ...
@@ -152,7 +145,6 @@ module Vedeu
 
       # Sets the height of the fake terminal in the DRb server.
       #
-      # @example
       #   Vedeu.configure do
       #     drb_height 25
       #     # ...
@@ -166,7 +158,6 @@ module Vedeu
 
       # Sets the width of the fake terminal in the DRb server.
       #
-      # @example
       #   Vedeu.configure do
       #     drb_width 80
       #     # ...
@@ -179,8 +170,8 @@ module Vedeu
       end
 
       # Sets the terminal mode to `cooked`. Default terminal mode is `raw`.
+      # Also, see {Vedeu::Config::API#raw!}
       #
-      # @example
       #   Vedeu.configure do
       #     cooked!
       #     # ...
@@ -193,8 +184,8 @@ module Vedeu
       alias_method :cooked, :cooked!
 
       # Sets the terminal mode to `raw`. Default terminal mode is `raw`.
+      # Also, see {Vedeu::Config::API#cooked!}
       #
-      # @example
       #   Vedeu.configure do
       #     raw!
       #     # ...
@@ -214,7 +205,6 @@ module Vedeu
       #   Be aware that running an application with debugging enabled will
       #   affect performance.
       #
-      # @example
       #   Vedeu.configure do
       #     debug!
       #     # ...
@@ -234,7 +224,6 @@ module Vedeu
 
       # Sets the colour mode of the terminal.
       #
-      # @example
       #   Vedeu.configure do
       #     colour_mode 256
       #     # ...
@@ -258,7 +247,6 @@ module Vedeu
 
       # Sets the location of the log file.
       #
-      # @example
       #   Vedeu.configure do
       #     log '/var/log/vedeu.log'
       #     # ...
@@ -270,6 +258,9 @@ module Vedeu
         options[:log] = filename
       end
 
+      # Only log specific message types. A complete list of message types can
+      # be found at {Vedeu::Log.message_types}.
+      #
       # @param types [Array<Symbol>] The message types which should be logged.
       # @return [Array<Symbol>]
       def log_only(*types)
@@ -279,7 +270,6 @@ module Vedeu
       # Sets the renderers for Vedeu. Each renderer added must have the class
       # method '.render' defined as this will be called when rendering content.
       #
-      # @example
       #   Vedeu.configure do
       #     renderer MyRenderer
       #     # ...
@@ -308,22 +298,21 @@ module Vedeu
       end
 
       # Sets the root of the client application. Vedeu will execute this
-      # controller first.
+      # controller with action and optional arguments first.
       #
-      # @example
       #   Vedeu.configure do
-      #     root YourApp::SomeController.new
-      #     ...
+      #     root :controller, :action, args
+      #     # ...
+      #   end
       #
-      # @param controller [Class]
+      # @param args [Array<Symbol|void>]
       # @return [Class]
-      def root(controller)
-        options[:root] = controller
+      def root(*args)
+        options[:root] = args
       end
 
       # Sets the value of STDIN.
       #
-      # @example
       #   Vedeu.configure do
       #     stdin IO.console
       #     # ...
@@ -337,7 +326,6 @@ module Vedeu
 
       # Sets the value of STDOUT.
       #
-      # @example
       #   Vedeu.configure do
       #     stdout IO.console
       #     # ...
@@ -351,7 +339,6 @@ module Vedeu
 
       # Sets the value of STDERR.
       #
-      # @example
       #   Vedeu.configure do
       #     stderr IO.console
       #     # ...
@@ -371,12 +358,6 @@ module Vedeu
       # for compression to be enabled. Setting `compression` to false will
       # disable compression.
       #
-      # @note
-      #   - Be aware that running an application without compression will
-      #     affect performance.
-      #   - Compression cannot yet be configured using a CLI option flag.
-      #
-      # @example
       #   Vedeu.configure do
       #     compression! # enabled (default)
       #     # ...
@@ -387,6 +368,11 @@ module Vedeu
       #     # ...
       #   end
       #
+      # @note
+      # - Be aware that running an application without compression will
+      #   affect performance.
+      # - Compression cannot yet be configured using a CLI option flag.
+      #
       # @param value [Boolean]
       # @return [Boolean]
       def compression(value = true)
@@ -396,7 +382,6 @@ module Vedeu
 
       # Sets the terminal mode. Valid values can be either ':raw' or ':cooked'.
       #
-      # @example
       #   Vedeu.configure do
       #     terminal_mode :raw
       #     # ...

@@ -4,7 +4,7 @@ module Vedeu
 
   module EscapeSequences
 
-  	describe Borders do
+    describe Borders do
 
       let(:described) { Vedeu::EscapeSequences::Borders }
 
@@ -30,7 +30,7 @@ module Vedeu
         it { described.characters.must_be_instance_of(Hash) }
       end
 
-  	end # Borders
+    end # Borders
 
   end # EscapeSequences
 

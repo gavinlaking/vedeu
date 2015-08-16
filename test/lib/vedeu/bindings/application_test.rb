@@ -4,7 +4,7 @@ module Vedeu
 
   module Bindings
 
-	  describe Application do
+    describe Application do
 
       context 'the application specific events are defined' do
         it { Vedeu.bound?(:_goto_).must_equal(true) }
@@ -31,7 +31,7 @@ module Vedeu
         }
       end
 
-	  end # Application
+    end # Application
 
   end # Bindings
 

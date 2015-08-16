@@ -140,6 +140,7 @@ module Vedeu
       def initialize!
         Vedeu.bind(:_initialize_) do
           Vedeu.ready!
+          Vedeu.trigger(:_refresh_)
         end
       end
 

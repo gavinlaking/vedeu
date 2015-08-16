@@ -2,7 +2,7 @@ require 'test_helper'
 
 module Vedeu
 
-	describe Plugins do
+  describe Plugins do
 
     let(:described) { Vedeu::Plugins }
     let(:instance)  { described.new }
@@ -55,6 +55,6 @@ module Vedeu
       end
     end
 
-	end # Plugins
+  end # Plugins
 
 end # Vedeu
