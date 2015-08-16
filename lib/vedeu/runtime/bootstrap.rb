@@ -73,7 +73,7 @@ module Vedeu
     # @return [void]
     def client_initialize!
       if Vedeu::Configuration.root
-        Vedeu.trigger(:goto, *Vedeu::Configuration.root)
+        Vedeu.trigger(:_goto_, *Vedeu::Configuration.root)
 
       else
         Vedeu.log_stderr(type: :debug, message: client_initialize_error)
