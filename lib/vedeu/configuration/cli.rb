@@ -87,6 +87,10 @@ module Vedeu
         parser.banner = "Usage: #{$PROGRAM_NAME} [options]"
       end
 
+      # CLI arguments:
+      #
+      #    -C, --colour-mode
+      #
       # @return [OptionParser]
       def colour_mode
         parser.on('-C', '--colour-mode [COLOURS]', Integer,
@@ -102,6 +106,10 @@ module Vedeu
         end
       end
 
+      # CLI arguments:
+      #
+      #    -c, --cooked
+      #
       # @return [OptionParser]
       def cooked
         parser.on('-c', '--cooked', 'Run application in cooked mode.') do
@@ -109,6 +117,10 @@ module Vedeu
         end
       end
 
+      # CLI arguments:
+      #
+      #    -d, --debug
+      #
       # @return [OptionParser]
       def debug
         parser.on('-d', '--debug', 'Run application with debugging on.') do
@@ -116,6 +128,10 @@ module Vedeu
         end
       end
 
+      # CLI arguments:
+      #
+      #    --drb
+      #
       # @return [OptionParser]
       def drb
         parser.on('--drb', 'Run application with DRb on.') do
@@ -123,6 +139,10 @@ module Vedeu
         end
       end
 
+      # CLI arguments:
+      #
+      #    --drb-height
+      #
       # @return [OptionParser]
       def drb_height
         parser.on('--drb-height',
@@ -132,6 +152,10 @@ module Vedeu
         end
       end
 
+      # CLI arguments:
+      #
+      #    --drb-host
+      #
       # @return [OptionParser]
       def drb_host
         parser.on('--drb-host',
@@ -141,6 +165,10 @@ module Vedeu
         end
       end
 
+      # CLI arguments:
+      #
+      #    --drb-port
+      #
       # @return [OptionParser]
       def drb_port
         parser.on('--drb-port', 'Set the port for the DRb server.') do |port|
@@ -149,6 +177,10 @@ module Vedeu
         end
       end
 
+      # CLI arguments:
+      #
+      #    --drb-width
+      #
       # @return [OptionParser]
       def drb_width
         parser.on('--drb-width',
@@ -158,6 +190,10 @@ module Vedeu
         end
       end
 
+      # CLI arguments:
+      #
+      #    -i, --interactive
+      #
       # @return [OptionParser]
       def interactive
         parser.on('-i', '--interactive',
@@ -166,6 +202,10 @@ module Vedeu
         end
       end
 
+      # CLI arguments:
+      #
+      #    -l, --log
+      #
       # @return [OptionParser]
       def log
         parser.on('-l', '--log [FILENAME]', String,
@@ -174,6 +214,10 @@ module Vedeu
         end
       end
 
+      # CLI arguments:
+      #
+      #    -r, --raw
+      #
       # @return [OptionParser]
       def raw
         parser.on('-r', '--raw', 'Run application in raw mode (default).') do
@@ -181,7 +225,11 @@ module Vedeu
         end
       end
 
-      # # @return [OptionParser]
+      # CLI arguments:
+      #
+      #    -s, --root
+      #
+      # @return [OptionParser]
       def root
         parser.on('-s', '--root []', String,
                   'Start the application from the specified controller.') do |c|
@@ -189,6 +237,10 @@ module Vedeu
         end
       end
 
+      # CLI arguments:
+      #
+      #    -n, --run-many
+      #
       # @return [OptionParser]
       def run_many
         parser.on('-n', '--run-many',
@@ -197,6 +249,10 @@ module Vedeu
         end
       end
 
+      # CLI arguments:
+      #
+      #    -1, --run-once
+      #
       # @return [OptionParser]
       def run_once
         parser.on('-1', '--run-once', 'Run the application loop once.') do
@@ -204,6 +260,10 @@ module Vedeu
         end
       end
 
+      # CLI arguments:
+      #
+      #    -I, --noninteractive, --standalone
+      #
       # @return [OptionParser]
       def standalone
         parser.on('-I', '--noninteractive', '--standalone',

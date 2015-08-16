@@ -192,7 +192,11 @@ module Vedeu
       #
       # The 'type' will be shown as the first colour defined in the value
       # array, whilst the 'message' will be shown using the last colour.
-      # Valid types are available by viewing the source for this method.
+      #
+      # Valid types available:
+      #
+      #     :config, :create, :debug, :error, :drb, :event, :info, :input,
+      #     :output, :reset, :store, :test, :timer, :update
       #
       # @return [Hash<Symbol => Array<Symbol>>]
       def message_types
