@@ -8,25 +8,21 @@ module Vedeu
   class Bootstrap
 
     # @param argv [Array<String>]
-    # @param entry_point [void]
     # @return [void]
-    def self.start(argv = ARGV, entry_point = nil)
-      new(argv, entry_point).start
+    def self.start(argv = ARGV)
+      new(argv).start
     end
 
     # Returns a new instance of Vedeu::Bootstrap.
     #
     # @param argv [Array<String>]
-    # @param entry_point [void]
     # @return [Vedeu::Bootstrap]
-    def initialize(argv, entry_point = nil)
-      @argv        = argv
-      @entry_point = entry_point
+    def initialize(argv)
+      @argv = argv
     end
 
     # Loads all of the client application files so that Vedeu has access to
-    # them, calls the 'entry_point' controller, ready to start the application,
-    # then launches the client application.
+    # them, then launches the client application.
     #
     # @return [void]
     def start
@@ -43,10 +39,6 @@ module Vedeu
     # @!attribute [r] argv
     # @return [Array<String>]
     attr_reader :argv
-
-    # @!attribute [r] entry_point
-    # @return [void]
-    attr_reader :entry_point
 
     private
 
@@ -80,7 +72,13 @@ module Vedeu
 
     # @return [void]
     def client_initialize!
-      entry_point || root
+      if Vedeu::Configuration.root
+        Vedeu.trigger(:goto, *root)
+
+      else
+        Vedeu.log_stderr(type: :debug, message: "Fail because no root.")
+
+      end
     end
 
     # Load each of the loadable files.
@@ -109,11 +107,6 @@ module Vedeu
       Vedeu.configure do
         log('/tmp/vedeu_bootstrap.log')
       end unless Vedeu::Configuration.log?
-    end
-
-    # @return [Class]
-    def root
-      Vedeu::Configuration.root if Vedeu::Configuration.root
     end
 
   end # Bootstrap
