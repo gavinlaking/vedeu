@@ -6,10 +6,17 @@ module Vedeu
 
     let(:described)   { Vedeu::RenderBorder }
     let(:instance)    { described.new(border) }
-    let(:border)      { Vedeu::Border.new(enabled: enabled, name: _name) }
+    let(:border)      {
+      Vedeu::Border.new(enabled: enabled,
+                        name:    _name,
+                        title:   title,
+                        caption: caption)
+    }
     let(:visible)     { false }
     let(:enabled)     { false }
     let(:_name)       { 'Vedeu::RenderBorder' }
+    let(:title)       {}
+    let(:caption)     {}
 
     it { described.must_respond_to(:with) }
 
@@ -20,7 +27,7 @@ module Vedeu
 
     describe '#render' do
       let(:geometry) {
-        Vedeu::Geometry.new(name: _name, x: 1, xn: 3, y: 1, yn: 3)
+        Vedeu::Geometry.new(name: _name, x: 1, xn: 7, y: 1, yn: 4)
       }
       let(:interface) {
         Vedeu::Interface.new(name: _name, visible: visible)
@@ -45,6 +52,30 @@ module Vedeu
 
         context 'when the border is enabled' do
           let(:enabled) { true }
+
+          context 'and a title is given' do
+            let(:title) { 'T' }
+
+            # @todo Add more tests.
+            # it { skip }
+          end
+
+          context 'and a title is not given' do
+            # @todo Add more tests.
+            # it { skip }
+          end
+
+          context 'and a caption is given' do
+            let(:caption) { 'C' }
+
+            # @todo Add more tests.
+            # it { skip }
+          end
+
+          context 'and a caption is not given' do
+            # @todo Add more tests.
+            # it { skip }
+          end
 
           # @todo Add more tests.
           # it { skip }
