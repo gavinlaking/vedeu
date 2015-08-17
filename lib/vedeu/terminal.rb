@@ -34,7 +34,7 @@ module Vedeu
     def input
       Vedeu.log(type: :input, message: 'Waiting for user input...')
 
-      keys_or_cmd = if raw_mode?
+      keys_or_cmd = if raw_mode? || fake_mode?
                       keys = console.getch
 
                       if keys.ord == 27 # \e
@@ -50,9 +50,6 @@ module Vedeu
                         end
                       end
                       keys
-
-                    elsif fake_mode?
-
 
                     else
                       console.gets.chomp

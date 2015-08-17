@@ -40,12 +40,12 @@ module Vedeu
       context 'when in fake mode' do
         let(:raw_mode)  { false }
         let(:fake_mode) { true }
-        let(:command)   { 'help' }
+        let(:keypress)  { 'b' }
 
-        before { reader.stubs(:read).returns(command) }
+        before { reader.stubs(:read).returns(keypress) }
 
-        it 'triggers an event with the command' do
-          Vedeu.expects(:trigger).with(:_editor_, command)
+        it 'triggers an event with the keypress' do
+          Vedeu.expects(:trigger).with(:_editor_, keypress)
           subject
         end
       end
