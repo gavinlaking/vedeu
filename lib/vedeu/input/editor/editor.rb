@@ -2,212 +2,74 @@ module Vedeu
 
   module Editor
 
+    # Handles keypresses for a named document whilst the terminal is in fake
+    # mode.
+    #
     class Editor
 
       include Vedeu::Common
+      extend Forwardable
 
-      def initialize(content:, keypress:, x:, y:)
-        @content  = content
-        @keypress = keypress
-        @x        = x || 0
-        @y        = y || 0
-      end
+      def_delegators :document,
+                     :delete_character,
+                     :down,
+                     :insert_character,
+                     :left,
+                     :render,
+                     :right,
+                     :up
 
+      # @!attribute [rw] name
       # @return [String]
-      def render
-        lines.join("\n")
+      attr_accessor :name
+
+      # @param name [String]
+      # @param input [String|Symbol]
+      # @return [void]
+      def self.keypress(name:, input:)
+        new(name: name, input: input).keypress
       end
 
-      # Deletes the character from the line where the cursor is currently
-      # positioned.
+      # Returns a new instance of Vedeu::Editor::Editor.
       #
-      # @return [Vedeu::Editor::Line]
-      def delete_character
-        if line_empty?
-          ''
-        elsif x_position == 0
-          line
-
-        elsif x_position > 0 && x_position <= (line_size - 1)
-          new_lines = lines.dup
-          new_line  = new_lines[y_position].dup
-          new_line.slice!(x_position)
-          new_lines[y_position] = new_line
-          @lines = new_lines
-
-          left
-
-        end
-
-        self
+      # @param name [String]
+      # @param input [String|Symbol]
+      # @return [Vedeu::Editor::Editor]
+      def initialize(input:, name:)
+        @input = input
+        @name  = name
       end
 
-      # Inserts the given character in to the line where the cursor is currently
-      # positioned.
-      #
-      # @param character [String]
-      # @return [Vedeu::Editor::Line]
-      def insert_character(character)
-        new_lines = lines.dup
-        if line_empty? || x_position == (line_size - 1)
-          new_line =  new_lines[y_position] ? new_lines[y_position].dup : ''
-          new_line << character
-
+      # @return [void]
+      def keypress
+        case input
+        when :backspace then delete_character
+        when :down      then down
+        when :enter     then :what
+        when :escape    then Vedeu.trigger(:_mode_switch_)
+        when :left      then left
+        when :right     then right
+        when :up        then up
         else
-          new_line = new_lines[y_position].insert(x_position, character)
-
-        end
-
-        new_lines[y_position] = new_line
-        @lines = new_lines
-
-        right
-
-        self
-      end
-
-      # @return [Array<String|void>]
-      def line
-        @line = present?(lines[y]) ? lines[y] : ''
-      end
-
-      # @return [Array<String|void>]
-      def lines
-        @lines ||= present?(content) ? content.lines.map(&:chomp) : []
-      end
-
-      # Return the current virtual cursor position.
-      #
-      # @return [Fixnum]
-      def x_position
-        if x <= 0
-          @x = 0
-
-        elsif x >= (line_size - 1)
-          @x = line_size - 1
-
-        else
-          @x
-
-        end
-      end
-
-      # Return the current virtual cursor position.
-      #
-      # @return [Fixnum]
-      def y_position
-        if y <= 0
-          @y = 0
-
-        elsif y >= (lines_size - 1)
-          @y = lines_size - 1
-
-        else
-          @y
-
-        end
-      end
-
-      # Move the current virtual cursor down by one line.
-      #
-      # @return [Fixnum]
-      def down
-        if y >= (lines_size - 1)
-          @y = lines_size - 1
-
-        else
-          @y += 1
-
-        end
-      end
-
-      # Move the current virtual cursor to the left.
-      #
-      # @return [Fixnum]
-      def left
-        if x <= 0
-          @x = 0
-
-        elsif x >= (line_size - 1)
-          @x = (line_size - 1) - 1
-
-        else
-          @x -= 1
-
-        end
-      end
-
-      # Move the current virtual cursor to the right.
-      #
-      # @return [Fixnum]
-      def right
-        if x >= (line_size - 1)
-          @x = line_size - 1
-
-        else
-          @x += 1
-
-        end
-      end
-
-      # Move the current virtual cursor up by one line.
-      #
-      # @return [Fixnum]
-      def up
-        if y <= 0
-          @y = 0
-
-        elsif y >= (lines_size - 1)
-          @y = (lines_size - 1) - 1
-
-        else
-          @y -= 1
-
+          insert_character(input) unless input.is_a?(Symbol)
         end
       end
 
       protected
 
-      # @!attribute [rw] content
-      # @return [void]
-      attr_accessor :content
+      # @!attribute [r] input
+      # @return [Symbol|String]
+      attr_reader :input
 
-      # @!attribute [r] keypress
-      # @return [void]
-      attr_reader :keypress
-
-      # @!attribute [r] x
-      # @return [Fixnum]
-      attr_reader :x
-
-      # @!attribute [r] y
-      # @return [Fixnum]
-      attr_reader :y
+      # @!attribute [r] name
+      # @return [String]
+      attr_reader :name
 
       private
 
-      # @return [Boolean]
-      def lines_empty?
-        lines && lines.empty?
-      end
-
-      # @return [Fixnum]
-      def lines_size
-        return 0 if lines_empty?
-
-        lines.size
-      end
-
-      # @return [Boolean]
-      def line_empty?
-        line && line.empty?
-      end
-
-      # @return [Fixnum]
-      def line_size
-        return 0 if line_empty?
-
-        line.size
+      # @return [Vedeu::Editor::Document]
+      def document
+        @document ||= Vedeu.documents.by_name(name)
       end
 
     end # Editor
