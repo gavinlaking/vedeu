@@ -66,14 +66,6 @@ module Vedeu
         self
       end
 
-      def keypress
-        if keypress.size == 1
-          insert
-        else
-
-        end
-      end
-
       # @return [Array<String|void>]
       def line
         @line = present?(lines[y]) ? lines[y] : ''

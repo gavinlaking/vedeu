@@ -174,10 +174,6 @@ module Vedeu
         end
       end
 
-      # describe '#keypress' do
-      #   subject { instance.keypress }
-      # end
-
       describe '#line' do
         subject { instance.line }
 
