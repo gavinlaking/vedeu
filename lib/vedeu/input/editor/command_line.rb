@@ -7,13 +7,13 @@ module Vedeu
       # Return a new instance of Vedeu::Editor::CommandLine.
       #
       # @param attributes [Hash<Symbol => void>]
+      # @option attributes name [String] The name of the interface which 'owns'
+      #   this command line. This is used to get display options and geometry.
       # @option attributes text [String] The text already entered if any.
       # @option attributes x [Fixnum] The cursor x position within the
       #   entered text.
       # @option attributes y [Fixnum] The cursor y position within the
       #   entered text.
-      # @option attributes name [String] The name of the interface which 'owns'
-      #   this command line. This is used to get display options and geometry.
       # @return [Vedeu::Editor::CommandLine]
       def initialize(attributes = {})
         @attributes = defaults.merge!(attributes)

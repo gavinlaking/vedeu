@@ -18,7 +18,8 @@ module Vedeu
         lines.join("\n")
       end
 
-      # Delete a character from the line.
+      # Deletes the character from the line where the cursor is currently
+      # positioned.
       #
       # @return [Vedeu::Editor::Line]
       def delete_character
@@ -41,7 +42,8 @@ module Vedeu
         self
       end
 
-      # Insert a character into the line.
+      # Inserts the given character in to the line where the cursor is currently
+      # positioned.
       #
       # @param character [String]
       # @return [Vedeu::Editor::Line]
