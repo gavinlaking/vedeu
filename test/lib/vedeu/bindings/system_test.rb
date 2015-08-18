@@ -10,6 +10,7 @@ module Vedeu
         it { Vedeu.bound?(:_cleanup_).must_equal(true) }
         it { Vedeu.bound?(:_clear_).must_equal(true) }
         it { Vedeu.bound?(:_command_).must_equal(true) }
+        it { Vedeu.bound?(:_editor_).must_equal(true) }
         it { Vedeu.bound?(:_exit_).must_equal(true) }
         it { Vedeu.bound?(:_focus_by_name_).must_equal(true) }
         it { Vedeu.bound?(:_focus_next_).must_equal(true) }

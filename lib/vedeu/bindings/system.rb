@@ -22,6 +22,7 @@ module Vedeu
         cleanup!
         clear!
         command!
+        editor!
         exit!
         focus_next!
         focus_prev!
@@ -85,6 +86,19 @@ module Vedeu
       # @return [TrueClass]
       def command!
         Vedeu.bind(:_command_) { |command| Vedeu.trigger(:command, command) }
+      end
+
+      # This event is called by {Vedeu::Input#capture}. When invoked, the
+      # key will be passed to the editor for currently focussed view.
+      #
+      # @example
+      #   Vedeu.trigger(:_editor_, key)
+      #
+      # @return [TrueClass]
+      def editor!
+        Vedeu.bind(:_editor_) do |key|
+          Vedeu::Editor::Editor.keypress(name: Vedeu.focus, input: key)
+        end
       end
 
       # When triggered, Vedeu will trigger a `:cleanup` event which you can
