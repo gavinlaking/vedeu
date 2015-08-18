@@ -32,10 +32,7 @@ module Vedeu
         Vedeu.trigger(:_keypress_, keypress)
 
       elsif reader.fake_mode?
-        pressed = keypress
-
-        Vedeu.trigger(:_keypress_, pressed)
-        Vedeu.trigger(:_editor_, pressed)
+        Vedeu.trigger(:_editor_, keypress)
 
       else
         Vedeu.trigger(:_command_, command)
