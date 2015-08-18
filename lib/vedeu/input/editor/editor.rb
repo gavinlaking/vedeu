@@ -91,7 +91,7 @@ module Vedeu
         if x <= 0
           @x = 0
 
-        elsif x > (line_size - 1)
+        elsif x >= (line_size - 1)
           @x = line_size - 1
 
         else
@@ -107,7 +107,7 @@ module Vedeu
         if y <= 0
           @y = 0
 
-        elsif y > (lines_size - 1)
+        elsif y >= (lines_size - 1)
           @y = lines_size - 1
 
         else
