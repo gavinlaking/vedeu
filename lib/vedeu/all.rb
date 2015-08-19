@@ -139,6 +139,7 @@ require 'vedeu/dsl/menu'
 require 'vedeu/dsl/stream'
 require 'vedeu/dsl/view'
 
+require 'vedeu/input/direct'
 require 'vedeu/input/mapper'
 require 'vedeu/input/key'
 require 'vedeu/input/input'
