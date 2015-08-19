@@ -108,6 +108,16 @@ module Vedeu
       end
 
       def insert_line
+        new_lines = lines.dup
+        new_lines[y_position + 1] = ''
+        @lines = new_lines
+        @data = @lines.join("\n")
+
+        new_line
+
+        render
+
+        self
       end
 
       # @return [Array<String|void>]
@@ -181,6 +191,11 @@ module Vedeu
         end
       end
 
+      def new_line
+        @x = bx
+        @y = y + 1
+      end
+
       # @return [String]
       def render
         store
@@ -188,12 +203,13 @@ module Vedeu
         view_line_collection = Vedeu::Views::Lines.new
 
         @data.lines.map(&:chomp).each do |line|
-          view_line_collection << Vedeu::Views::Line.new(value: Vedeu::Views::Stream.new(value: line))
+          stream = Vedeu::Views::Stream.new(value: line)
+          view_line_collection << Vedeu::Views::Line.new(value: stream)
         end
 
-        Vedeu::Cursor.new(name: name, x: x_position, y: y_position).store
-        Vedeu::Views::View.new(name: name, value: view_line_collection).store_immediate
+        Vedeu::Cursor.new(name: name, x: cursor_x, y: cursor_y).store
 
+        Vedeu::Views::View.new(name: name, value: view_line_collection).store_immediate
       end
 
       # Move the current virtual cursor to the right.
@@ -232,6 +248,18 @@ module Vedeu
       attr_reader :border
 
       private
+
+      def cursor
+        Vedeu.cursors.by_name(name)
+      end
+
+      def cursor_x
+        bx + x + 1
+      end
+
+      def cursor_y
+        by + y
+      end
 
       # Returns the default options/attributes for this class.
       #

@@ -14,20 +14,17 @@ module Vedeu
                      :delete_character,
                      :down,
                      :insert_character,
+                     :insert_line,
                      :left,
                      :render,
                      :right,
                      :up
 
-      # @!attribute [rw] name
-      # @return [String]
-      attr_accessor :name
-
       # @param name [String]
       # @param input [String|Symbol]
       # @return [void]
-      def self.keypress(name:, input:)
-        new(name: name, input: input).keypress
+      def self.keypress(input:, name:)
+        new(input: input, name: name).keypress
       end
 
       # Returns a new instance of Vedeu::Editor::Editor.
@@ -43,9 +40,10 @@ module Vedeu
       # @return [void]
       def keypress
         case input
+        when :ctrl_c    then Vedeu.trigger(:_exit_)
         when :backspace then delete_character
         when :down      then down
-        when :enter     then :what
+        when :enter     then insert_line
         when :escape    then Vedeu.trigger(:_mode_switch_)
         when :left      then left
         when :right     then right
