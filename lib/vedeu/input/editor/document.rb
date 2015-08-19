@@ -7,6 +7,11 @@ module Vedeu
     class Document
 
       include Vedeu::Model
+      extend Forwardable
+
+      def_delegators :border,
+                     :bx,
+                     :by
 
       # @!attribute [r] attributes
       # @return [Hash]
@@ -43,6 +48,8 @@ module Vedeu
         @attributes.each do |key, value|
           instance_variable_set("@#{key}", value || defaults[key])
         end
+
+        @border = Vedeu.borders.by_name(@name)
       end
 
       # Deletes the character from the line where the cursor is currently
@@ -217,6 +224,12 @@ module Vedeu
 
         end
       end
+
+      protected
+
+      # @!attribute [r] border
+      # @return [Vedeu::Border]
+      attr_reader :border
 
       private
 
