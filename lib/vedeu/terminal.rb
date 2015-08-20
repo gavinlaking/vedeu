@@ -34,29 +34,13 @@ module Vedeu
     def input
       Vedeu.log(type: :input, message: 'Waiting for user input...')
 
-      keys_or_cmd = if raw_mode? || fake_mode?
-                      keys = console.getch
+      if raw_mode? || fake_mode?
+        Vedeu::Editor::Line.read(console)
 
-                      if keys.ord == 27 # \e
-                        begin
-                          keys << console.read_nonblock(5)
-                        rescue
-                          nil
-                        end
-                        begin
-                          keys << console.read_nonblock(4)
-                        rescue
-                          nil
-                        end
-                      end
-                      keys
+      else
+        console.gets.chomp
 
-                    else
-                      console.gets.chomp
-
-                    end
-
-      keys_or_cmd
+      end
     end
     alias_method :read, :input
 
