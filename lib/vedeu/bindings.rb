@@ -22,6 +22,8 @@ module Vedeu
       Vedeu::Bindings::Movement.setup!
       Vedeu::Bindings::Menus.setup!
       Vedeu::Bindings::DRB.setup!
+      Vedeu::Bindings::Focus.setup!
+      Vedeu::Bindings::Refresh.setup!
       Vedeu::Bindings::System.setup!
 
       true

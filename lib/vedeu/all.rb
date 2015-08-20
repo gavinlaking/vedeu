@@ -171,6 +171,8 @@ require 'vedeu/bindings/application'
 require 'vedeu/bindings/drb'
 require 'vedeu/bindings/menus'
 require 'vedeu/bindings/movement'
+require 'vedeu/bindings/focus'
+require 'vedeu/bindings/refresh'
 require 'vedeu/bindings/system'
 require 'vedeu/bindings/visibility'
 
