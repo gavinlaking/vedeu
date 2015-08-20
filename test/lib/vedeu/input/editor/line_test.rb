@@ -7,15 +7,16 @@ module Vedeu
     describe Line do
 
       let(:described) { Vedeu::Editor::Line }
-      let(:instance)  { described.new }
+      let(:instance)  { described.new(console) }
       let(:console)   { mock }
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
+        it { instance.instance_variable_get('@console').must_equal(console) }
       end
 
       describe '.read' do
-        subject { described.read }
+        subject { described.read(console) }
 
         before do
           Vedeu::Terminal.stubs(:console).returns(console)
