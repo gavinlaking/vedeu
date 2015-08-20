@@ -34,7 +34,7 @@ class VedeuEditorApp
     border 'main_interface' do
       colour foreground: '#ffffff', background: :default
       title 'Editor'
-      caption('Q = Quit')
+      caption('Ctrl+C = Quit')
     end
     colour foreground: '#ffffff', background: :default
     cursor!
@@ -42,7 +42,7 @@ class VedeuEditorApp
       x  columns(1)
       xn columns(11)
       y  rows(1)
-      yn rows(12)
+      yn rows(1) + 4
     end
     zindex 1
   end
