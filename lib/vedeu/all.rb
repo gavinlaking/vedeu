@@ -17,6 +17,7 @@ require 'vedeu/configuration/api'
 require 'vedeu/configuration/configuration'
 
 require 'vedeu/terminal'
+require 'vedeu/terminal/content'
 require 'vedeu/runtime/main_loop'
 require 'vedeu/runtime/flags'
 require 'vedeu/runtime/application'

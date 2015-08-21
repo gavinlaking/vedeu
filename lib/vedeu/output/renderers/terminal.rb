@@ -28,9 +28,17 @@ module Vedeu
       # @param output [Array<Array<Vedeu::Views::Char>>]
       # @return [Array<Array<Vedeu::Views::Char>>]
       def parsed(output)
+        store!(output)
+
         Vedeu.timer('Compression') do
           Vedeu::Compressor.render(output)
         end
+      end
+
+      # @param output [Array<Array<Vedeu::Views::Char>>]
+      # @return [Array<Vedeu::Views::Char>]
+      def store!(output)
+        Vedeu::Terminal::Content.stores(output)
       end
 
     end # Terminal
