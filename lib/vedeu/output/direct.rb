@@ -1,17 +1,27 @@
 module Vedeu
 
+  # Write a string directly to the terminal at defined coordinates.
+  #
   class Direct
 
+    # @param value [String]
+    # @param x [Fixnum]
+    # @param y [Fixnum]
+    # @return [void]
     def self.write(value:, x:, y:)
       new(value: value, x: x, y: y).write
     end
 
+    # @param value [String]
+    # @param x [Fixnum]
+    # @param y [Fixnum]
     def initialize(value:, x:, y:)
       @value = value || ''
       @x     = x     || 1
       @y     = y     || 1
     end
 
+    # @return [void]
     def write
       Vedeu::Terminal.output(output)
 
@@ -34,10 +44,12 @@ module Vedeu
 
     private
 
+    # @return [String]
     def output
       position + value
     end
 
+    # @return [String]
     def position
       Vedeu::Position.new(y, x).to_s
     end
