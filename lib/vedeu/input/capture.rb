@@ -2,6 +2,8 @@ module Vedeu
 
   module Editor
 
+    # Capture input from the terminal via 'getch'.
+    #
     class Capture
 
       # @param console [IO]

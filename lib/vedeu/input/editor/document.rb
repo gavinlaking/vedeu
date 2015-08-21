@@ -77,6 +77,9 @@ module Vedeu
         self
       end
 
+      # Delete a line.
+      #
+      # @return [void]
       def delete_line
       end
 
@@ -107,6 +110,9 @@ module Vedeu
         self
       end
 
+      # Insert an empty line.
+      #
+      # @return [void]
       def insert_line
         new_lines = lines.dup
         new_lines[y_position + 1] = ''
@@ -191,6 +197,10 @@ module Vedeu
         end
       end
 
+      # Set the x coordinate to the beginning of the line and the y coordinate
+      # to the next line.
+      #
+      # @return [void]
       def new_line
         @x = bx
         @y = y + 1
@@ -249,14 +259,18 @@ module Vedeu
 
       private
 
+      # @return [Vedeu::Cursor]
+      # @see Vedeu::Cursors#by_name
       def cursor
         Vedeu.cursors.by_name(name)
       end
 
+      # @return [Fixnum]
       def cursor_x
         bx + x + 1
       end
 
+      # @return [Fixnum]
       def cursor_y
         by + y
       end

@@ -68,6 +68,7 @@ module Vedeu
     end
 
     # @return [Vedeu::Cursor]
+    # @see Vedeu::Cursors#by_name
     def cursor
       @cursor ||= Vedeu.cursors.by_name(name)
     end

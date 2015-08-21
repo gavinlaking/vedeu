@@ -155,9 +155,8 @@ module Vedeu
       @by ||= border.by
     end
 
-    # Fetch the cursor associated with the interface/view we are drawing.
-    #
-    # @return (see Vedeu::Cursors#by_name)
+    # @return [Vedeu::Cursor]
+    # @see Vedeu::Cursors#by_name
     def cursor
       @cursor ||= Vedeu.cursors.by_name(name)
     end
