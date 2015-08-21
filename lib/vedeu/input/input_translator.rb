@@ -43,7 +43,9 @@ module Vedeu
         "\u0001"  => :ctrl_a,
         "\u0002"  => :ctrl_b,
         "\u0003"  => :ctrl_c,
+        "\u2404"  => :ctrl_c,
         "\u0004"  => :ctrl_d,
+        "\u2403"  => :ctrl_d,
         "\u0005"  => :ctrl_e,
         "\u0006"  => :ctrl_f,
         "\u0007"  => :ctrl_g,
@@ -58,6 +60,7 @@ module Vedeu
         "\u0016"  => :ctrl_p,
         "\u0017"  => :ctrl_q,
         "\u0018"  => :ctrl_r,
+        "\u2412"  => :ctrl_r,
         "\u0019"  => :ctrl_s,
         # "\u0020"  => :ctrl_t, # duplicates spacebar
         "\u0021"  => :ctrl_u,
@@ -107,44 +110,35 @@ module Vedeu
     def specials
       {
         "\r"      => :enter,
+        "\u23CE"  => :carriage_return,
         "\n"      => :enter,
+        "\u240A"  => :line_feed,
         "\t"      => :tab,
+        "\u21B9"  => :tab,
         "\e"      => :escape,
+        "\u238B"  => :escape,
         "\e[A"    => :up,
+        "\u2191"  => :up,
         "\e[B"    => :down,
+        "\u2193"  => :down,
         "\e[C"    => :right,
+        "\u2192"  => :right,
         "\e[D"    => :left,
+        "\u2190"  => :left,
         "\e[5~"   => :page_up,
         "\e[6~"   => :page_down,
         "\e[H"    => :home,
         "\e[3~"   => :delete,
+        "\u232B"  => :delete,
         "\e[F"    => :end,
         "\e[Z"    => :shift_tab,
         "\e[1;2P" => :print_screen,
         "\e[1;2Q" => :scroll_lock,
         "\e[1;2R" => :pause_break,
         "\u007F"  => :backspace,
+        "\u2408"  => :backspace,
       }
     end
-
-    # space:           "\u2420",
-    # tab:             "\u21B9",
-    # carriage_return: "\u23CE",
-    # line_feed:       "\u240A",
-
-    # control_c: "\u2404",
-    # control_d: "\u2403",
-    # control_r: "\u2412",
-
-    # escape: "\u238B",
-
-    # backspace: "\u2408",
-    # delete:    "\u232B",
-
-    # up:    "\u2191",
-    # down:  "\u2193",
-    # left:  "\u2190",
-    # right: "\u2192"
 
   end # InputTranslator
 
