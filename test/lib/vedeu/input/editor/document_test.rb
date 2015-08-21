@@ -151,6 +151,14 @@ module Vedeu
         end
       end
 
+      describe '#delete_line' do
+        # let(:y) { 4 }
+
+        subject { instance.delete_line }
+
+        it { subject.must_be_instance_of(Vedeu::Editor::Document) }
+      end
+
       describe '#insert_character' do
         let(:character) { 'a' }
 

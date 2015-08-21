@@ -79,8 +79,14 @@ module Vedeu
 
       # Delete a line.
       #
-      # @return [void]
+      # @return [Vedeu::Editor::Document]
       def delete_line
+        # new_lines = lines.dup
+        # new_lines.slice!(y_position)
+        # @lines = new_lines
+        # @data  = new_lines.join("\n")
+
+        self
       end
 
       # Inserts the given character in to the line where the cursor is currently
