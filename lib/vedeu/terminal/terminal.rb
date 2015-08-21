@@ -5,7 +5,7 @@ module Vedeu
   #
   module Terminal
 
-    include Vedeu::TerminalMode
+    include Vedeu::Terminal::Mode
     extend self
 
     # Opens a terminal screen in either `raw` or `cooked` mode. On exit,
