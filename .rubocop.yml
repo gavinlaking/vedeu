@@ -96,6 +96,9 @@ Style/Next:
     - skip_modifier_ifs
     - always
 
+Style/SpaceAroundOperators:
+  Enabled: false
+
 Style/SpaceAroundEqualsInParameterDefault:
   EnforcedStyle: space
 
@@ -180,3 +183,6 @@ Lint/DefEndAlignment:
     - start_of_line
     - def
 
+Lint/Eval:
+  Description: 'The use of eval represents a serious security risk.'
+  Enabled: false
