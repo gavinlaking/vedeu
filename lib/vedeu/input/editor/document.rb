@@ -219,7 +219,8 @@ module Vedeu
 
         Vedeu::Cursor.new(name: name, x: cursor_x, y: cursor_y).store
 
-        Vedeu::Views::View.new(name: name, value: view_line_collection).store_immediate
+        Vedeu::Views::View.new(name:  name,
+                               value: view_line_collection).store_immediate
       end
 
       # Move the current virtual cursor to the right.
