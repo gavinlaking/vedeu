@@ -4,9 +4,9 @@ module Vedeu
 
   module Editor
 
-    describe Line do
+    describe Capture do
 
-      let(:described) { Vedeu::Editor::Line }
+      let(:described) { Vedeu::Editor::Capture }
       let(:instance)  { described.new(console) }
       let(:console)   { mock }
 
@@ -56,7 +56,7 @@ module Vedeu
         it { instance.must_respond_to(:read) }
       end
 
-    end # Line
+    end # Capture
 
   end # Editor
 

@@ -55,7 +55,7 @@ module Vedeu
       # Deletes the character from the line where the cursor is currently
       # positioned.
       #
-      # @return [Vedeu::Editor::Line]
+      # @return [Vedeu::Editor::Document]
       def delete_character
         if line_empty? || x_position == 0
           line
@@ -84,7 +84,7 @@ module Vedeu
       # positioned.
       #
       # @param character [String]
-      # @return [Vedeu::Editor::Line]
+      # @return [Vedeu::Editor::Document]
       def insert_character(character)
         new_lines = lines.dup
         if line_empty? || x_position == (line_size - 1)

@@ -2,7 +2,7 @@ module Vedeu
 
   module Editor
 
-    class Line
+    class Capture
 
       # @param console [IO]
       # @return [String|Symbol]
@@ -11,7 +11,7 @@ module Vedeu
       end
 
       # @param console [IO]
-      # @return [Vedeu::Editor::Line]
+      # @return [Vedeu::Editor::Capture]
       def initialize(console)
         @console = console
       end
@@ -28,30 +28,30 @@ module Vedeu
         keys = console.getch
 
         if keys.ord == 27 # \e
-          # Vedeu.log(type: :debug, message: "_::_::Line: Escape detected...")
+          # Vedeu.log(type: :debug, message: "_::_::Capture: Escape detected...")
 
           @chars = 3
 
           begin
             # Vedeu.log(type:    :debug,
-            #           message: "_::_::Line: Attempting read_nonblock(#{@chars})")
+            #           message: "_::_::Capture: Attempting read_nonblock(#{@chars})")
             keys << console.read_nonblock(@chars)
           rescue IO::WaitReadable
             # Vedeu.log(type:    :debug,
-            #           message: "_::_::Line: (#{@chars}) Rescuing IO::WaitReadable")
+            #           message: "_::_::Capture: (#{@chars}) Rescuing IO::WaitReadable")
             IO.select([console])
             @chars -= 1
             retry
           rescue IO::WaitWritable
             # Vedeu.log(type:    :debug,
-            #           message: "_::_::Line: (#{@chars}) Rescuing IO::WaitWritable")
+            #           message: "_::_::Capture: (#{@chars}) Rescuing IO::WaitWritable")
             IO.select(nil, [console])
             @chars -= 1
             retry
           end
         end
         # Vedeu.log(type:    :debug,
-        #           message: "_::_::Line: Sending result: #{keys.inspect}")
+        #           message: "_::_::Capture: Sending result: #{keys.inspect}")
 
         keys
       end
@@ -61,7 +61,7 @@ module Vedeu
         @console || Vedeu::Terminal.console
       end
 
-    end # Line
+    end # Capture
 
   end # Editor
 

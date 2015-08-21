@@ -35,7 +35,7 @@ module Vedeu
       Vedeu.log(type: :input, message: 'Waiting for user input...')
 
       if raw_mode? || fake_mode?
-        Vedeu::Editor::Line.read(console)
+        Vedeu::Editor::Capture.read(console)
 
       else
         console.gets.chomp
