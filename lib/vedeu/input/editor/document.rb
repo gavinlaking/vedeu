@@ -25,14 +25,6 @@ module Vedeu
       # @return [String]
       attr_accessor :name
 
-      # @!attribute [r] x
-      # @return [Fixnum]
-      attr_reader :x
-
-      # @!attribute [r] y
-      # @return [Fixnum]
-      attr_reader :y
-
       # Returns a new instance of Vedeu::Editor::Document.
       #
       # @param attributes [Hash]
@@ -57,16 +49,15 @@ module Vedeu
       #
       # @return [Vedeu::Editor::Document]
       def delete_character
-        if line_empty? || x_position == 0
+        if line_empty? || x == 0
           line
 
-        elsif x_position > 0 && x_position <= (line_size - 1)
+        elsif x > 0 && x <= (line_size - 1)
           new_lines = lines.dup
-          new_line  = new_lines[y_position].dup
-          new_line.slice!(x_position)
-          new_lines[y_position] = new_line
-          @lines = new_lines
-          @data  = @lines.join("\n")
+          new_line  = new_lines[y].dup
+          new_line.slice!(x)
+          new_lines[y] = new_line
+          @data = new_lines.join("\n")
 
           left
 
@@ -74,19 +65,18 @@ module Vedeu
 
         render
 
-        self
+        store
       end
 
       # Delete a line.
       #
       # @return [Vedeu::Editor::Document]
       def delete_line
-        # new_lines = lines.dup
-        # new_lines.slice!(y_position)
-        # @lines = new_lines
-        # @data  = new_lines.join("\n")
+        new_lines = lines.dup
+        new_lines.slice!(y)
+        @data = new_lines.join("\n")
 
-        self
+        store
       end
 
       # Inserts the given character in to the line where the cursor is currently
@@ -96,16 +86,16 @@ module Vedeu
       # @return [Vedeu::Editor::Document]
       def insert_character(character)
         new_lines = lines.dup
-        if line_empty? || x_position == (line_size - 1)
-          new_line =  new_lines[y_position] ? new_lines[y_position].dup : ''
+        if line_empty? || x == (line_size - 1)
+          new_line =  new_lines[y] ? new_lines[y].dup : ''
           new_line << character
 
         else
-          new_line = new_lines[y_position].insert(x_position, character)
+          new_line = new_lines[y].insert(x, character)
 
         end
 
-        new_lines[y_position] = new_line
+        new_lines[y] = new_line
         @lines = new_lines
         @data  = @lines.join("\n")
 
@@ -113,43 +103,40 @@ module Vedeu
 
         render
 
-        self
+        store
       end
 
       # Insert an empty line.
       #
-      # @return [void]
+      # @return [Vedeu::Editor::Document]
       def insert_line
         new_lines = lines.dup
-        new_lines[y_position + 1] = ''
-        @lines = new_lines
-        @data = @lines.join("\n")
+        new_lines.insert(y + 1, '')
+        @data = new_lines.join("\n")
 
         new_line
 
-        render
-
-        self
+        store
       end
 
       # @return [Array<String|void>]
       def line
-        @line = present?(lines[y]) ? lines[y] : ''
+        present?(lines[y]) ? lines[y] : ''
       end
 
       # @return [Array<String|void>]
       def lines
-        @lines ||= present?(data) ? data.lines.map(&:chomp) : []
+        present?(data) ? data.lines.map(&:chomp) : []
       end
 
       # Return the current virtual cursor position.
       #
       # @return [Fixnum]
-      def x_position
-        if x <= 0
+      def x
+        if @x <= 0
           @x = 0
 
-        elsif x >= (line_size - 1)
+        elsif @x >= (line_size - 1)
           @x = line_size - 1
 
         else
@@ -161,11 +148,11 @@ module Vedeu
       # Return the current virtual cursor position.
       #
       # @return [Fixnum]
-      def y_position
-        if y <= 0
+      def y
+        if @y <= 0
           @y = 0
 
-        elsif y >= (lines_size - 1)
+        elsif @y >= (lines_size - 1)
           @y = lines_size - 1
 
         else
@@ -214,8 +201,6 @@ module Vedeu
 
       # @return [String]
       def render
-        store
-
         view_line_collection = Vedeu::Views::Lines.new
 
         @data.lines.map(&:chomp).each do |line|

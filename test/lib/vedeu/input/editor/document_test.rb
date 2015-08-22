@@ -77,8 +77,6 @@ module Vedeu
         it { instance.must_respond_to(:data=) }
         it { instance.must_respond_to(:name) }
         it { instance.must_respond_to(:name=) }
-        it { instance.must_respond_to(:x) }
-        it { instance.must_respond_to(:y) }
       end
 
       # describe '#render' do
@@ -159,9 +157,34 @@ module Vedeu
       end
 
       describe '#delete_line' do
-        # let(:y) { 4 }
+        let(:y) { 4 }
 
         subject { instance.delete_line }
+
+        context 'when there is no data' do
+          let(:data) {}
+
+          it { subject.data.must_equal('') }
+        end
+
+        context 'when there is data' do
+          let(:expected) {
+            "Hydrogen\n"  \
+            "Helium\n"    \
+            "Lithium\n"   \
+            "Beryllium\n" \
+            "Carbon\n"    \
+            "Nitrogen\n"  \
+            "Oxygen\n"    \
+            "Fluorine\n"  \
+            "Neon\n"      \
+            "Sodium\n"    \
+            "Magnesium"
+          }
+
+          it { subject.data.must_equal(expected) }
+          it { subject.lines.wont_include('Boron') }
+        end
 
         it { subject.must_be_instance_of(Vedeu::Editor::Document) }
       end
@@ -210,19 +233,51 @@ module Vedeu
         end
       end
 
+      describe '#insert_line' do
+        let(:y) { 4 }
+
+        subject { instance.insert_line }
+
+        context 'when there is no data' do
+          let(:data) {}
+
+          it { subject.data.must_equal('') }
+        end
+
+        context 'when there is data' do
+          let(:expected) {
+            "Hydrogen\n"  \
+            "Helium\n"    \
+            "Lithium\n"   \
+            "Beryllium\n" \
+            "Boron\n"     \
+            "\n"          \
+            "Carbon\n"    \
+            "Nitrogen\n"  \
+            "Oxygen\n"    \
+            "Fluorine\n"  \
+            "Neon\n"      \
+            "Sodium\n"    \
+            "Magnesium"
+          }
+
+          it { subject.data.must_equal(expected) }
+        end
+
+        it { subject.must_be_instance_of(Vedeu::Editor::Document) }
+      end
+
       describe '#line' do
         subject { instance.line }
 
         context 'when the line is empty' do
-          let(:y) { 13 }
+          let(:data) {}
 
           it { subject.must_equal('') }
         end
 
         context 'when the line is not empty' do
-          let(:expected) { 'Hydrogen' }
-
-          it { subject.must_equal(expected) }
+          it { subject.must_equal('Hydrogen') }
         end
       end
 
@@ -247,8 +302,8 @@ module Vedeu
         end
       end
 
-      describe '#x_position' do
-        subject { instance.x_position }
+      describe '#x' do
+        subject { instance.x }
 
         it { subject.must_be_instance_of(Fixnum) }
 
@@ -353,8 +408,8 @@ module Vedeu
         end
       end
 
-      describe '#y_position' do
-        subject { instance.y_position }
+      describe '#y' do
+        subject { instance.y }
 
         it { subject.must_be_instance_of(Fixnum) }
 
@@ -467,7 +522,7 @@ module Vedeu
 
           it 'y becomes the last line index' do
             subject
-            instance.y_position.must_equal(11)
+            instance.y.must_equal(11)
           end
         end
 
@@ -476,7 +531,7 @@ module Vedeu
 
           it 'y becomes the last line index' do
             subject
-            instance.y_position.must_equal(11)
+            instance.y.must_equal(11)
           end
         end
 
@@ -485,7 +540,7 @@ module Vedeu
 
           it {
             subject
-            instance.y_position.must_equal(5)
+            instance.y.must_equal(5)
           }
         end
       end
@@ -498,7 +553,7 @@ module Vedeu
 
           it {
             subject
-            instance.x_position.must_equal(0)
+            instance.x.must_equal(0)
           }
         end
 
@@ -507,7 +562,7 @@ module Vedeu
 
           it {
             subject
-            instance.x_position.must_equal(0)
+            instance.x.must_equal(0)
           }
         end
 
@@ -516,7 +571,7 @@ module Vedeu
 
           it {
             subject
-            instance.x_position.must_equal(6)
+            instance.x.must_equal(6)
           }
         end
 
@@ -525,7 +580,7 @@ module Vedeu
 
           it {
             subject
-            instance.x_position.must_equal(6)
+            instance.x.must_equal(6)
           }
         end
 
@@ -534,7 +589,7 @@ module Vedeu
 
           it {
             subject
-            instance.x_position.must_equal(5)
+            instance.x.must_equal(5)
           }
         end
       end
@@ -547,7 +602,7 @@ module Vedeu
 
           it 'x becomes the last character index' do
             subject
-            instance.x_position.must_equal(7)
+            instance.x.must_equal(7)
           end
         end
 
@@ -556,7 +611,7 @@ module Vedeu
 
           it 'x becomes the last character index' do
             subject
-            instance.x_position.must_equal(7)
+            instance.x.must_equal(7)
           end
         end
 
@@ -565,7 +620,7 @@ module Vedeu
 
           it {
             subject
-            instance.x_position.must_equal(5)
+            instance.x.must_equal(5)
           }
         end
       end
@@ -578,7 +633,7 @@ module Vedeu
 
           it {
             subject
-            instance.y_position.must_equal(0)
+            instance.y.must_equal(0)
           }
         end
 
@@ -587,7 +642,7 @@ module Vedeu
 
           it {
             subject
-            instance.y_position.must_equal(0)
+            instance.y.must_equal(0)
           }
         end
 
@@ -596,7 +651,7 @@ module Vedeu
 
           it {
             subject
-            instance.y_position.must_equal(10)
+            instance.y.must_equal(10)
           }
         end
 
@@ -605,7 +660,7 @@ module Vedeu
 
           it {
             subject
-            instance.y_position.must_equal(9)
+            instance.y.must_equal(9)
           }
         end
 
@@ -614,7 +669,7 @@ module Vedeu
 
           it {
             subject
-            instance.y_position.must_equal(5)
+            instance.y.must_equal(5)
           }
         end
       end
