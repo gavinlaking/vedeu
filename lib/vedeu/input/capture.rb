@@ -12,6 +12,8 @@ module Vedeu
         new(console).read
       end
 
+      # Returns a new instance of Vedeu::Editor::Capture.
+      #
       # @param console [IO]
       # @return [Vedeu::Editor::Capture]
       def initialize(console)
