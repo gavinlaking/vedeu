@@ -167,12 +167,13 @@ module Vedeu
       describe '#down' do
         subject { instance.down }
 
+        it { subject.must_be_instance_of(Vedeu::Editor::Document) }
+
         context 'when y = last line' do
           let(:y) { 11 }
 
           it 'y becomes the last line index' do
-            subject
-            instance.y.must_equal(11)
+            subject.y.must_equal(11)
           end
         end
 
@@ -180,8 +181,7 @@ module Vedeu
           let(:y) { 13 }
 
           it 'y becomes the last line index' do
-            subject
-            instance.y.must_equal(11)
+            subject.y.must_equal(11)
           end
         end
 
@@ -189,8 +189,7 @@ module Vedeu
           let(:y) { 4 }
 
           it {
-            subject
-            instance.y.must_equal(5)
+            subject.y.must_equal(5)
           }
         end
       end
@@ -276,49 +275,36 @@ module Vedeu
       describe '#left' do
         subject { instance.left }
 
+        it { subject.must_be_instance_of(Vedeu::Editor::Document) }
+
         context 'when x = 0' do
           let(:x) { 0 }
 
-          it {
-            subject
-            instance.x.must_equal(0)
-          }
+          it { subject.x.must_equal(0) }
         end
 
         context 'when x < 0' do
           let(:x) { -4 }
 
-          it {
-            subject
-            instance.x.must_equal(0)
-          }
+          it { subject.x.must_equal(0) }
         end
 
         context 'when x > last character' do
           let(:x) { 15 }
 
-          it {
-            subject
-            instance.x.must_equal(6)
-          }
+          it { subject.x.must_equal(6) }
         end
 
         context 'when x = last character' do
           let(:x) { 10 }
 
-          it {
-            subject
-            instance.x.must_equal(6)
-          }
+          it { subject.x.must_equal(6) }
         end
 
         context 'when x < last character' do
           let(:x) { 6 }
 
-          it {
-            subject
-            instance.x.must_equal(5)
-          }
+          it { subject.x.must_equal(5) }
         end
       end
 
@@ -370,12 +356,13 @@ module Vedeu
       describe '#right' do
         subject { instance.right }
 
+        it { subject.must_be_instance_of(Vedeu::Editor::Document) }
+
         context 'when x = last character' do
           let(:x) { 8 }
 
           it 'x becomes the last character index' do
-            subject
-            instance.x.must_equal(7)
+            subject.x.must_equal(7)
           end
         end
 
@@ -383,67 +370,50 @@ module Vedeu
           let(:x) { 10 }
 
           it 'x becomes the last character index' do
-            subject
-            instance.x.must_equal(7)
+            subject.x.must_equal(7)
           end
         end
 
         context 'when x < last character' do
           let(:x) { 4 }
 
-          it {
-            subject
-            instance.x.must_equal(5)
-          }
+          it { subject.x.must_equal(5) }
         end
       end
 
       describe '#up' do
         subject { instance.up }
 
+        it { subject.must_be_instance_of(Vedeu::Editor::Document) }
+
         context 'when y = 0' do
           let(:y) { 0 }
 
-          it {
-            subject
-            instance.y.must_equal(0)
-          }
+          it { subject.y.must_equal(0) }
         end
 
         context 'when y < 0' do
           let(:y) { -4 }
 
-          it {
-            subject
-            instance.y.must_equal(0)
-          }
+          it { subject.y.must_equal(0) }
         end
 
         context 'when y > last line' do
           let(:y) { 15 }
 
-          it {
-            subject
-            instance.y.must_equal(10)
-          }
+          it { subject.y.must_equal(10) }
         end
 
         context 'when y = last line' do
           let(:y) { 10 }
 
-          it {
-            subject
-            instance.y.must_equal(9)
-          }
+          it { subject.y.must_equal(9) }
         end
 
         context 'when y < last line' do
           let(:y) { 6 }
 
-          it {
-            subject
-            instance.y.must_equal(5)
-          }
+          it { subject.y.must_equal(5) }
         end
       end
 

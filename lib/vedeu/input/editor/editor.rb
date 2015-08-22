@@ -37,13 +37,13 @@ module Vedeu
         @name  = name
       end
 
-      # @return [void]
+      # @return [Vedeu::Editor::Document|void]
       def keypress
         return input unless document
 
         case input
-        when :ctrl_c    then Vedeu.trigger(:_exit_)
         when :backspace then delete_character
+        when :ctrl_c    then Vedeu.trigger(:_exit_)
         when :down      then down
         when :enter     then insert_line
         when :escape    then Vedeu.trigger(:_mode_switch_)

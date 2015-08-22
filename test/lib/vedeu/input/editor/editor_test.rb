@@ -11,8 +11,8 @@ module Vedeu
         described.new(input: input, name: _name)
       }
       let(:input)     {}
-      let(:_name)     {}
-      let(:document)  { Vedeu::Editor::Document.new(data: data) }
+      let(:_name)     { 'Vedeu::Editor::Editor' }
+      let(:document)  { Vedeu::Editor::Document.new(data: data, name: _name) }
       let(:data)      {
         "Hydrogen\n"  \
         "Helium\n"    \
@@ -50,52 +50,76 @@ module Vedeu
         end
 
         context 'when a name is given' do
-          context 'when the input is :ctrl_c' do
-            let(:input) { :ctrl_c }
-
-            # it { subject.must_equal([false]) }
-          end
-
           context 'when the input is :backspace' do
             let(:input) { :backspace }
 
-            # it { subject.must_equal(nil) }
+            it {
+              document.expects(:delete_character)
+              subject
+            }
+          end
+
+          context 'when the input is :ctrl_c' do
+            let(:input) { :ctrl_c }
+
+            it {
+              Vedeu.expects(:trigger).with(:_exit_)
+              subject
+            }
           end
 
           context 'when the input is :down' do
             let(:input) { :down }
 
-            it { subject.must_equal(1) }
+            it {
+              document.expects(:down)
+              subject
+            }
           end
 
           context 'when the input is :enter' do
             let(:input) { :enter }
 
-            # it { subject.must_equal(nil) }
+            it {
+              document.expects(:insert_line)
+              subject
+            }
           end
 
           context 'when the input is :escape' do
             let(:input) { :escape }
 
-            # it { subject.must_equal(nil) }
+            it {
+              Vedeu.expects(:trigger).with(:_mode_switch_)
+              subject
+            }
           end
 
           context 'when the input is :left' do
             let(:input) { :left }
 
-            it { subject.must_equal(0) }
+            it {
+              document.expects(:left)
+              subject
+            }
           end
 
           context 'when the input is :right' do
             let(:input) { :right }
 
-            it { subject.must_equal(1) }
+            it {
+              document.expects(:right)
+              subject
+            }
           end
 
           context 'when the input is :up' do
             let(:input) { :up }
 
-            it { subject.must_equal(0) }
+            it {
+              document.expects(:up)
+              subject
+            }
           end
 
           context 'when the input is something else' do
@@ -107,6 +131,11 @@ module Vedeu
 
             context 'when the input is not a symbol' do
               let(:input) { 'a' }
+
+              it {
+                document.expects(:insert_character).with(input)
+                subject
+              }
             end
           end
         end

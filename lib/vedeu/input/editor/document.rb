@@ -60,7 +60,6 @@ module Vedeu
           @data = new_lines.join("\n")
 
           left
-
         end
 
         store
@@ -88,6 +87,8 @@ module Vedeu
           @y += 1
 
         end
+
+        store
       end
 
       # Inserts the given character in to the line where the cursor is currently
@@ -142,6 +143,8 @@ module Vedeu
           @x -= 1
 
         end
+
+        store
       end
 
       # @return [Array<String|void>]
@@ -174,6 +177,8 @@ module Vedeu
           @x += 1
 
         end
+
+        store
       end
 
       # Move the current virtual cursor up by one line.
@@ -190,6 +195,8 @@ module Vedeu
           @y -= 1
 
         end
+
+        store
       end
 
       # Return the current virtual cursor position.
