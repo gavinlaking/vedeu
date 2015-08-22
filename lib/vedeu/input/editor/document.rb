@@ -232,22 +232,6 @@ module Vedeu
 
       private
 
-      # @return [Vedeu::Cursor]
-      # @see Vedeu::Cursors#by_name
-      def cursor
-        Vedeu.cursors.by_name(name)
-      end
-
-      # @return [Fixnum]
-      def cursor_x
-        bx + x + 1
-      end
-
-      # @return [Fixnum]
-      def cursor_y
-        by + y
-      end
-
       # Returns the default options/attributes for this class.
       #
       # @return [Hash]
