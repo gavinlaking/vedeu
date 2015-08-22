@@ -38,6 +38,7 @@ unless ENV['NO_SIMPLECOV']
     add_group  'repositories',  'vedeu/repositories'
     add_group  'runtime',       'vedeu/runtime'
     add_group  'templating',    'vedeu/templating'
+    add_group  'terminal',      'vedeu/terminal'
   end
 end
 

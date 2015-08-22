@@ -14,18 +14,12 @@ module Vedeu
     end
 
     describe '.translate' do
-      subject { described.translate(code) }
-
       context 'when the code is not recognised' do
-        let(:code) { 'a' }
-
-        it { subject.must_equal('a') }
+        it { described.translate('a').must_equal('a') }
       end
 
       context 'when the code is recognised' do
-        let(:code) { "\e[H" }
-
-        it { subject.must_equal(:home) }
+        it { described.translate("\e[H").must_equal(:home) }
       end
     end
 

@@ -49,6 +49,50 @@ module Vedeu
         end
       end
 
+      describe '#store' do
+        let(:char) {}
+
+        subject { described.store(char) }
+      end
+
+      describe '#stores' do
+        let(:chars) {}
+
+        subject { described.stores(chars) }
+      end
+
+      describe '#write' do
+        subject { described.write }
+
+        context 'when logging is enabled' do
+          # before { Vedeu::Configuration.stubs(:log?).returns(true) }
+          # before { File.stubs(:write) }
+
+          # it {
+          #   File.expects(:write)
+          #   subject
+          # }
+        end
+
+        context 'when logging is not enabled' do
+          before { Vedeu::Configuration.stubs(:log?).returns(false) }
+
+          it { subject.must_equal(nil) }
+        end
+      end
+
+      describe '#reprocess' do
+        subject { described.reprocess }
+      end
+
+      describe '#reset' do
+        subject { described.reset }
+
+        it { subject.must_be_instance_of(Hash) }
+
+        it { subject.must_be_empty }
+      end
+
     end # Content
 
   end # Terminal

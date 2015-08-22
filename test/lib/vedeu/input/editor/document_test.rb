@@ -30,9 +30,14 @@ module Vedeu
         "Sodium\n"    \
         "Magnesium"
       }
-      let(:_name) { 'Vedeu::Editor::Document' }
-      let(:x)     {}
-      let(:y)     {}
+      let(:_name)  { 'Vedeu::Editor::Document' }
+      let(:x)      {}
+      let(:y)      {}
+      let(:border) { Vedeu::Border.new(name: _name) }
+
+      before do
+        Vedeu.borders.stubs(:by_name).with(_name).returns(border)
+      end
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
@@ -62,6 +67,8 @@ module Vedeu
 
           it { instance.instance_variable_get('@y').must_equal(6) }
         end
+
+        it { instance.instance_variable_get('@border').must_equal(border) }
       end
 
       describe 'accessors' do

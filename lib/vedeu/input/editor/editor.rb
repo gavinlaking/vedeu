@@ -39,6 +39,8 @@ module Vedeu
 
       # @return [void]
       def keypress
+        return input unless document
+
         case input
         when :ctrl_c    then Vedeu.trigger(:_exit_)
         when :backspace then delete_character

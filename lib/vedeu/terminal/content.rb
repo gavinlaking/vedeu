@@ -39,7 +39,7 @@ module Vedeu
         Array(chars).flatten.map { |char| store(char) }
       end
 
-      # @return [Hash<String => String>]
+      # @return [Hash<String => String>|NilClass]
       def write
         if Vedeu::Configuration.log?
           File.write("/tmp/vedeu/content_#{Time.now.to_f}", storage.inspect)
@@ -58,6 +58,11 @@ module Vedeu
         Vedeu::Terminal.clear
 
         Vedeu::Terminal.output(out.join)
+      end
+
+      # @return [Hash]
+      def reset
+        @storage = in_memory
       end
 
       private
