@@ -79,31 +79,6 @@ module Vedeu
         it { instance.must_respond_to(:name=) }
       end
 
-      # describe '#render' do
-      #   subject { instance.render }
-
-      #   context 'when there is no data' do
-      #     let(:data) {}
-
-      #     it { subject.must_equal('') }
-      #   end
-
-      #   context 'when there is data' do
-      #     it { subject.must_equal("Hydrogen\n"  \
-      #                             "Helium\n"    \
-      #                             "Lithium\n"   \
-      #                             "Beryllium\n" \
-      #                             "Boron\n"     \
-      #                             "Carbon\n"    \
-      #                             "Nitrogen\n"  \
-      #                             "Oxygen\n"    \
-      #                             "Fluorine\n"  \
-      #                             "Neon\n"      \
-      #                             "Sodium\n"    \
-      #                             "Magnesium") }
-      #   end
-      # end
-
       describe '#delete_character' do
         context 'when the line is empty' do
           let(:data) {}
@@ -189,6 +164,37 @@ module Vedeu
         it { subject.must_be_instance_of(Vedeu::Editor::Document) }
       end
 
+      describe '#down' do
+        subject { instance.down }
+
+        context 'when y = last line' do
+          let(:y) { 11 }
+
+          it 'y becomes the last line index' do
+            subject
+            instance.y.must_equal(11)
+          end
+        end
+
+        context 'when y > last line' do
+          let(:y) { 13 }
+
+          it 'y becomes the last line index' do
+            subject
+            instance.y.must_equal(11)
+          end
+        end
+
+        context 'when y < last line' do
+          let(:y) { 4 }
+
+          it {
+            subject
+            instance.y.must_equal(5)
+          }
+        end
+      end
+
       describe '#insert_character' do
         let(:character) { 'a' }
 
@@ -267,6 +273,55 @@ module Vedeu
         it { subject.must_be_instance_of(Vedeu::Editor::Document) }
       end
 
+      describe '#left' do
+        subject { instance.left }
+
+        context 'when x = 0' do
+          let(:x) { 0 }
+
+          it {
+            subject
+            instance.x.must_equal(0)
+          }
+        end
+
+        context 'when x < 0' do
+          let(:x) { -4 }
+
+          it {
+            subject
+            instance.x.must_equal(0)
+          }
+        end
+
+        context 'when x > last character' do
+          let(:x) { 15 }
+
+          it {
+            subject
+            instance.x.must_equal(6)
+          }
+        end
+
+        context 'when x = last character' do
+          let(:x) { 10 }
+
+          it {
+            subject
+            instance.x.must_equal(6)
+          }
+        end
+
+        context 'when x < last character' do
+          let(:x) { 6 }
+
+          it {
+            subject
+            instance.x.must_equal(5)
+          }
+        end
+      end
+
       describe '#line' do
         subject { instance.line }
 
@@ -299,6 +354,96 @@ module Vedeu
           }
 
           it { subject.must_equal(expected) }
+        end
+      end
+
+      describe '#new_line' do
+        subject { instance.new_line }
+
+        it {
+          subject
+          instance.x.must_equal(1)
+          instance.y.must_equal(1)
+        }
+      end
+
+      describe '#right' do
+        subject { instance.right }
+
+        context 'when x = last character' do
+          let(:x) { 8 }
+
+          it 'x becomes the last character index' do
+            subject
+            instance.x.must_equal(7)
+          end
+        end
+
+        context 'when x > last character' do
+          let(:x) { 10 }
+
+          it 'x becomes the last character index' do
+            subject
+            instance.x.must_equal(7)
+          end
+        end
+
+        context 'when x < last character' do
+          let(:x) { 4 }
+
+          it {
+            subject
+            instance.x.must_equal(5)
+          }
+        end
+      end
+
+      describe '#up' do
+        subject { instance.up }
+
+        context 'when y = 0' do
+          let(:y) { 0 }
+
+          it {
+            subject
+            instance.y.must_equal(0)
+          }
+        end
+
+        context 'when y < 0' do
+          let(:y) { -4 }
+
+          it {
+            subject
+            instance.y.must_equal(0)
+          }
+        end
+
+        context 'when y > last line' do
+          let(:y) { 15 }
+
+          it {
+            subject
+            instance.y.must_equal(10)
+          }
+        end
+
+        context 'when y = last line' do
+          let(:y) { 10 }
+
+          it {
+            subject
+            instance.y.must_equal(9)
+          }
+        end
+
+        context 'when y < last line' do
+          let(:y) { 6 }
+
+          it {
+            subject
+            instance.y.must_equal(5)
+          }
         end
       end
 
@@ -514,165 +659,6 @@ module Vedeu
         end
       end
 
-      describe '#down' do
-        subject { instance.down }
-
-        context 'when y = last line' do
-          let(:y) { 11 }
-
-          it 'y becomes the last line index' do
-            subject
-            instance.y.must_equal(11)
-          end
-        end
-
-        context 'when y > last line' do
-          let(:y) { 13 }
-
-          it 'y becomes the last line index' do
-            subject
-            instance.y.must_equal(11)
-          end
-        end
-
-        context 'when y < last line' do
-          let(:y) { 4 }
-
-          it {
-            subject
-            instance.y.must_equal(5)
-          }
-        end
-      end
-
-      describe '#left' do
-        subject { instance.left }
-
-        context 'when x = 0' do
-          let(:x) { 0 }
-
-          it {
-            subject
-            instance.x.must_equal(0)
-          }
-        end
-
-        context 'when x < 0' do
-          let(:x) { -4 }
-
-          it {
-            subject
-            instance.x.must_equal(0)
-          }
-        end
-
-        context 'when x > last character' do
-          let(:x) { 15 }
-
-          it {
-            subject
-            instance.x.must_equal(6)
-          }
-        end
-
-        context 'when x = last character' do
-          let(:x) { 10 }
-
-          it {
-            subject
-            instance.x.must_equal(6)
-          }
-        end
-
-        context 'when x < last character' do
-          let(:x) { 6 }
-
-          it {
-            subject
-            instance.x.must_equal(5)
-          }
-        end
-      end
-
-      describe '#right' do
-        subject { instance.right }
-
-        context 'when x = last character' do
-          let(:x) { 8 }
-
-          it 'x becomes the last character index' do
-            subject
-            instance.x.must_equal(7)
-          end
-        end
-
-        context 'when x > last character' do
-          let(:x) { 10 }
-
-          it 'x becomes the last character index' do
-            subject
-            instance.x.must_equal(7)
-          end
-        end
-
-        context 'when x < last character' do
-          let(:x) { 4 }
-
-          it {
-            subject
-            instance.x.must_equal(5)
-          }
-        end
-      end
-
-      describe '#up' do
-        subject { instance.up }
-
-        context 'when y = 0' do
-          let(:y) { 0 }
-
-          it {
-            subject
-            instance.y.must_equal(0)
-          }
-        end
-
-        context 'when y < 0' do
-          let(:y) { -4 }
-
-          it {
-            subject
-            instance.y.must_equal(0)
-          }
-        end
-
-        context 'when y > last line' do
-          let(:y) { 15 }
-
-          it {
-            subject
-            instance.y.must_equal(10)
-          }
-        end
-
-        context 'when y = last line' do
-          let(:y) { 10 }
-
-          it {
-            subject
-            instance.y.must_equal(9)
-          }
-        end
-
-        context 'when y < last line' do
-          let(:y) { 6 }
-
-          it {
-            subject
-            instance.y.must_equal(5)
-          }
-        end
-      end
 
     end # Editor
 

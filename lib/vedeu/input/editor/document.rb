@@ -63,8 +63,6 @@ module Vedeu
 
         end
 
-        render
-
         store
       end
 
@@ -77,6 +75,19 @@ module Vedeu
         @data = new_lines.join("\n")
 
         store
+      end
+
+      # Move the current virtual cursor down by one line.
+      #
+      # @return [Fixnum]
+      def down
+        if y >= (lines_size - 1)
+          @y = lines_size - 1
+
+        else
+          @y += 1
+
+        end
       end
 
       # Inserts the given character in to the line where the cursor is currently
@@ -101,8 +112,6 @@ module Vedeu
 
         right
 
-        render
-
         store
       end
 
@@ -119,6 +128,22 @@ module Vedeu
         store
       end
 
+      # Move the current virtual cursor to the left.
+      #
+      # @return [Fixnum]
+      def left
+        if x <= 0
+          @x = 0
+
+        elsif x >= (line_size - 1)
+          @x = (line_size - 1) - 1
+
+        else
+          @x -= 1
+
+        end
+      end
+
       # @return [Array<String|void>]
       def line
         present?(lines[y]) ? lines[y] : ''
@@ -127,6 +152,44 @@ module Vedeu
       # @return [Array<String|void>]
       def lines
         present?(data) ? data.lines.map(&:chomp) : []
+      end
+
+      # Set the x coordinate to the beginning of the line and the y coordinate
+      # to the next line.
+      #
+      # @return [void]
+      def new_line
+        @x = bx
+        @y = y + 1
+      end
+
+      # Move the current virtual cursor to the right.
+      #
+      # @return [Fixnum]
+      def right
+        if x >= (line_size - 1)
+          @x = line_size - 1
+
+        else
+          @x += 1
+
+        end
+      end
+
+      # Move the current virtual cursor up by one line.
+      #
+      # @return [Fixnum]
+      def up
+        if y <= 0
+          @y = 0
+
+        elsif y >= (lines_size - 1)
+          @y = (lines_size - 1) - 1
+
+        else
+          @y -= 1
+
+        end
       end
 
       # Return the current virtual cursor position.
@@ -157,88 +220,6 @@ module Vedeu
 
         else
           @y
-
-        end
-      end
-
-      # Move the current virtual cursor down by one line.
-      #
-      # @return [Fixnum]
-      def down
-        if y >= (lines_size - 1)
-          @y = lines_size - 1
-
-        else
-          @y += 1
-
-        end
-      end
-
-      # Move the current virtual cursor to the left.
-      #
-      # @return [Fixnum]
-      def left
-        if x <= 0
-          @x = 0
-
-        elsif x >= (line_size - 1)
-          @x = (line_size - 1) - 1
-
-        else
-          @x -= 1
-
-        end
-      end
-
-      # Set the x coordinate to the beginning of the line and the y coordinate
-      # to the next line.
-      #
-      # @return [void]
-      def new_line
-        @x = bx
-        @y = y + 1
-      end
-
-      # @return [String]
-      def render
-        view_line_collection = Vedeu::Views::Lines.new
-
-        @data.lines.map(&:chomp).each do |line|
-          stream = Vedeu::Views::Stream.new(value: line)
-          view_line_collection << Vedeu::Views::Line.new(value: stream)
-        end
-
-        Vedeu::Cursor.new(name: name, x: cursor_x, y: cursor_y).store
-
-        Vedeu::Views::View.new(name:  name,
-                               value: view_line_collection).store_immediate
-      end
-
-      # Move the current virtual cursor to the right.
-      #
-      # @return [Fixnum]
-      def right
-        if x >= (line_size - 1)
-          @x = line_size - 1
-
-        else
-          @x += 1
-
-        end
-      end
-
-      # Move the current virtual cursor up by one line.
-      #
-      # @return [Fixnum]
-      def up
-        if y <= 0
-          @y = 0
-
-        elsif y >= (lines_size - 1)
-          @y = (lines_size - 1) - 1
-
-        else
-          @y -= 1
 
         end
       end
