@@ -78,6 +78,13 @@ module Vedeu
       true
     end
 
+    # Clear the buffer.
+    #
+    # @return [Array<Array<Vedeu::Views::Char>>]
+    def clear
+      Vedeu::Output.render(Vedeu::Clear::NamedInterface.render(name))
+    end
+
     # Return a boolean indicating content presence on the buffer type.
     #
     # @return [Boolean] Whether the buffer targetted has content.
@@ -110,7 +117,7 @@ module Vedeu
     #
     # @return [Array<Array<Array<Vedeu::Views::Char>>>]
     def hide
-      Vedeu::Output.render(clear_buffer)
+      Vedeu::Output.render(clear)
     end
 
     # Return the content for this buffer.
@@ -164,13 +171,6 @@ module Vedeu
         []
 
       end
-    end
-
-    # Clear the buffer.
-    #
-    # @return [Array<Array<Vedeu::Views::Char>>]
-    def clear_buffer
-      @clear_buffer ||= Vedeu::Clear::NamedInterface.render(name)
     end
 
     # Returns the default options/attributes for this class.
