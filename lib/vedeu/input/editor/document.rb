@@ -57,9 +57,10 @@ module Vedeu
           new_line  = new_lines[y].dup
           new_line.slice!(x)
           new_lines[y] = new_line
-          @data = new_lines.join("\n")
 
           left
+
+          @data = new_lines.join("\n")
         end
 
         store
@@ -108,8 +109,7 @@ module Vedeu
         end
 
         new_lines[y] = new_line
-        @lines = new_lines
-        @data  = @lines.join("\n")
+        @data = new_lines.join("\n")
 
         right
 
@@ -179,13 +179,25 @@ module Vedeu
         present?(data) ? data.lines.map(&:chomp) : []
       end
 
-      # Set the x coordinate to the beginning of the line and the y coordinate
-      # to the next line.
-      #
-      # @return [void]
-      def new_line
-        @x = bx
-        @y = y + 1
+      def store
+        super
+
+        cursor.x = x
+        cursor.y = y
+        cursor.store
+        cursor.render
+
+        render
+
+        self
+      end
+
+      def render
+        Vedeu.buffers.by_name(name).clear
+
+        Vedeu::Output.render(border.render)
+
+        Vedeu::Direct.write(value: @data, x: bx, y: by)
       end
 
       # Move the current virtual cursor to the right.
@@ -260,6 +272,11 @@ module Vedeu
       attr_reader :border
 
       private
+
+      # @return [Vedeu::Cursor]
+      def cursor
+        @cursor = Vedeu.cursors.by_name(name)
+      end
 
       # Returns the default options/attributes for this class.
       #

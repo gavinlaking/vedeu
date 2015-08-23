@@ -34,9 +34,20 @@ module Vedeu
       let(:x)      {}
       let(:y)      {}
       let(:border) { Vedeu::Border.new(name: _name) }
+      let(:buffer) { Vedeu::Buffer.new(name: _name) }
+      let(:cursor) { Vedeu::Cursor.new(name: _name) }
 
       before do
         Vedeu.borders.stubs(:by_name).with(_name).returns(border)
+
+        Vedeu.cursors.stubs(:by_name).with(_name).returns(cursor)
+        cursor.stubs(:render)
+
+        Vedeu.buffers.stubs(:by_name).with(_name).returns(buffer)
+        buffer.stubs(:clear)
+
+        Vedeu::Output.stubs(:render)
+        Vedeu::Direct.stubs(:write)
       end
 
       describe '#initialize' do
@@ -406,6 +417,29 @@ module Vedeu
       describe '#store' do
 
       end
+
+      # describe '#render' do
+      #   let(:expected) {
+      #     "Hydrogen\n"  \
+      #     "Helium\n"    \
+      #     "Lithium\n"   \
+      #     "Beryllium\n" \
+      #     "Boron\n"     \
+      #     "Carbon\n"    \
+      #     "Nitrogen\n"  \
+      #     "Oxygen\n"    \
+      #     "Fluorine\n"  \
+      #     "Neon\n"      \
+      #     "Sodium\n"    \
+      #     "Magnesium"
+      #   }
+
+      #   before { Vedeu::Direct.stubs(:write) }
+
+      #   subject { instance.render }
+
+      #   it { subject.must_equal(expected) }
+      # end
 
       describe '#right' do
         subject { instance.right }
