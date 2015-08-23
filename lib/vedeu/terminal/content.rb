@@ -41,9 +41,9 @@ module Vedeu
 
       # @return [Hash<String => String>|NilClass]
       def write
-        if Vedeu::Configuration.log?
-          File.write("/tmp/vedeu/content_#{Time.now.to_f}", storage.inspect)
-        end
+        filename = "/tmp/vedeu/content_#{Time.now.to_f}"
+
+        File.write(filename, storage.inspect) if Vedeu::Configuration.log?
       end
 
       # @return [Array<String>]
