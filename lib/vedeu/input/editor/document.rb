@@ -179,6 +179,7 @@ module Vedeu
         present?(data) ? data.lines.map(&:chomp) : []
       end
 
+      # @return [Vedeu::Editor::Document]
       def store
         super
 
@@ -192,6 +193,7 @@ module Vedeu
         self
       end
 
+      # @return [void]
       def render
         Vedeu.buffers.by_name(name).clear
 
