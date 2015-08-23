@@ -152,6 +152,26 @@ module Vedeu
         present?(lines[y]) ? lines[y] : ''
       end
 
+      # @return [Fixnum]
+      def goto_eol
+        @x = line.size - 1
+      end
+
+      # @return [Fixnum]
+      def goto_bol
+        @x = 0
+      end
+
+      # @return [Fixnum]
+      def goto_top
+        @y = 0
+      end
+
+      # @return [Fixnum]
+      def goto_bottom
+        @y = lines.size - 1
+      end
+
       # @return [Array<String|void>]
       def lines
         present?(data) ? data.lines.map(&:chomp) : []

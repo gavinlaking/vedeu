@@ -322,6 +322,64 @@ module Vedeu
         end
       end
 
+      describe '#goto_eol' do
+        subject { instance.goto_eol }
+
+        context 'when the data is empty' do
+          let(:data) {}
+
+          it {
+            subject
+            instance.x.must_equal(0)
+          }
+        end
+
+        context 'when the data is not empty' do
+          it {
+            subject
+            instance.x.must_equal(7)
+          }
+        end
+      end
+
+      describe '#goto_bol' do
+        subject { instance.goto_bol }
+
+        it {
+          subject
+          instance.x.must_equal(0)
+        }
+      end
+
+      describe '#goto_top' do
+        subject { instance.goto_top }
+
+        it {
+          subject
+          instance.y.must_equal(0)
+        }
+      end
+
+      describe '#goto_bottom' do
+        subject { instance.goto_bottom }
+
+        context 'when the data is empty' do
+          let(:data) {}
+
+          it {
+            subject
+            instance.y.must_equal(0)
+          }
+        end
+
+        context 'when the data is not empty' do
+          it {
+            subject
+            instance.y.must_equal(11)
+          }
+        end
+      end
+
       describe '#lines' do
         subject { instance.lines }
 
