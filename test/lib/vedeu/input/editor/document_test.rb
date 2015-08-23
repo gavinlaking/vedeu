@@ -110,7 +110,7 @@ module Vedeu
             it 'handles multiple deletes' do
               instance.delete_character
               instance.delete_character
-              instance.line.must_equal('Hydroe')
+              instance.line.must_equal('Hydrog')
             end
           end
 
@@ -267,6 +267,8 @@ module Vedeu
           }
 
           it { subject.data.must_equal(expected) }
+          it { subject.x.must_equal(0) }
+          it { subject.y.must_equal(5) }
         end
 
         it { subject.must_be_instance_of(Vedeu::Editor::Document) }
@@ -401,14 +403,8 @@ module Vedeu
         end
       end
 
-      describe '#new_line' do
-        subject { instance.new_line }
+      describe '#store' do
 
-        it {
-          subject
-          instance.x.must_equal(1)
-          instance.y.must_equal(1)
-        }
       end
 
       describe '#right' do

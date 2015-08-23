@@ -120,11 +120,13 @@ module Vedeu
       #
       # @return [Vedeu::Editor::Document]
       def insert_line
+        goto_bol
+
         new_lines = lines.dup
         new_lines.insert(y + 1, '')
-        @data = new_lines.join("\n")
 
-        new_line
+        @y    = y + 1
+        @data = new_lines.join("\n")
 
         store
       end
