@@ -205,6 +205,64 @@ module Vedeu
         end
       end
 
+      describe '#goto_bof' do
+        subject { instance.goto_bof }
+
+        it {
+          subject
+          instance.y.must_equal(0)
+        }
+      end
+
+      describe '#goto_bol' do
+        subject { instance.goto_bol }
+
+        it {
+          subject
+          instance.x.must_equal(0)
+        }
+      end
+
+      describe '#goto_eof' do
+        subject { instance.goto_eof }
+
+        context 'when the data is empty' do
+          let(:data) {}
+
+          it {
+            subject
+            instance.y.must_equal(0)
+          }
+        end
+
+        context 'when the data is not empty' do
+          it {
+            subject
+            instance.y.must_equal(11)
+          }
+        end
+      end
+
+      describe '#goto_eol' do
+        subject { instance.goto_eol }
+
+        context 'when the data is empty' do
+          let(:data) {}
+
+          it {
+            subject
+            instance.x.must_equal(0)
+          }
+        end
+
+        context 'when the data is not empty' do
+          it {
+            subject
+            instance.x.must_equal(7)
+          }
+        end
+      end
+
       describe '#insert_character' do
         let(:character) { 'a' }
 
@@ -335,64 +393,6 @@ module Vedeu
         end
       end
 
-      describe '#goto_eol' do
-        subject { instance.goto_eol }
-
-        context 'when the data is empty' do
-          let(:data) {}
-
-          it {
-            subject
-            instance.x.must_equal(0)
-          }
-        end
-
-        context 'when the data is not empty' do
-          it {
-            subject
-            instance.x.must_equal(7)
-          }
-        end
-      end
-
-      describe '#goto_bol' do
-        subject { instance.goto_bol }
-
-        it {
-          subject
-          instance.x.must_equal(0)
-        }
-      end
-
-      describe '#goto_top' do
-        subject { instance.goto_top }
-
-        it {
-          subject
-          instance.y.must_equal(0)
-        }
-      end
-
-      describe '#goto_bottom' do
-        subject { instance.goto_bottom }
-
-        context 'when the data is empty' do
-          let(:data) {}
-
-          it {
-            subject
-            instance.y.must_equal(0)
-          }
-        end
-
-        context 'when the data is not empty' do
-          it {
-            subject
-            instance.y.must_equal(11)
-          }
-        end
-      end
-
       describe '#lines' do
         subject { instance.lines }
 
@@ -414,32 +414,28 @@ module Vedeu
         end
       end
 
-      describe '#store' do
+      describe '#render' do
+        # let(:expected) {
+        #   "Hydrogen\n"  \
+        #   "Helium\n"    \
+        #   "Lithium\n"   \
+        #   "Beryllium\n" \
+        #   "Boron\n"     \
+        #   "Carbon\n"    \
+        #   "Nitrogen\n"  \
+        #   "Oxygen\n"    \
+        #   "Fluorine\n"  \
+        #   "Neon\n"      \
+        #   "Sodium\n"    \
+        #   "Magnesium"
+        # }
 
+        # before { Vedeu::Direct.stubs(:write) }
+
+        subject { instance.render }
+
+        # it { subject.must_equal(expected) }
       end
-
-      # describe '#render' do
-      #   let(:expected) {
-      #     "Hydrogen\n"  \
-      #     "Helium\n"    \
-      #     "Lithium\n"   \
-      #     "Beryllium\n" \
-      #     "Boron\n"     \
-      #     "Carbon\n"    \
-      #     "Nitrogen\n"  \
-      #     "Oxygen\n"    \
-      #     "Fluorine\n"  \
-      #     "Neon\n"      \
-      #     "Sodium\n"    \
-      #     "Magnesium"
-      #   }
-
-      #   before { Vedeu::Direct.stubs(:write) }
-
-      #   subject { instance.render }
-
-      #   it { subject.must_equal(expected) }
-      # end
 
       describe '#right' do
         subject { instance.right }
@@ -467,6 +463,12 @@ module Vedeu
 
           it { subject.x.must_equal(5) }
         end
+      end
+
+      describe '#store' do
+        subject { instance.store }
+
+        # it { skip }
       end
 
       describe '#up' do

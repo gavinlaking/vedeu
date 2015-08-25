@@ -92,6 +92,26 @@ module Vedeu
         store
       end
 
+      # @return [Fixnum]
+      def goto_bof
+        @y = 0
+      end
+
+      # @return [Fixnum]
+      def goto_bol
+        @x = 0
+      end
+
+      # @return [Fixnum]
+      def goto_eof
+        @y = lines.size - 1
+      end
+
+      # @return [Fixnum]
+      def goto_eol
+        @x = line.size - 1
+      end
+
       # Inserts the given character in to the line where the cursor is currently
       # positioned.
       #
@@ -154,43 +174,10 @@ module Vedeu
         present?(lines[y]) ? lines[y] : ''
       end
 
-      # @return [Fixnum]
-      def goto_eol
-        @x = line.size - 1
-      end
-
-      # @return [Fixnum]
-      def goto_bol
-        @x = 0
-      end
-
-      # @return [Fixnum]
-      def goto_top
-        @y = 0
-      end
-
-      # @return [Fixnum]
-      def goto_bottom
-        @y = lines.size - 1
-      end
 
       # @return [Array<String|void>]
       def lines
         present?(data) ? data.lines.map(&:chomp) : []
-      end
-
-      # @return [Vedeu::Editor::Document]
-      def store
-        super
-
-        cursor.x = x
-        cursor.y = y
-        cursor.store
-        cursor.render
-
-        render
-
-        self
       end
 
       # @return [void]
@@ -215,6 +202,20 @@ module Vedeu
         end
 
         store
+      end
+
+      # @return [Vedeu::Editor::Document]
+      def store
+        super
+
+        cursor.x = x
+        cursor.y = y
+        cursor.store
+        cursor.render
+
+        render
+
+        self
       end
 
       # Move the current virtual cursor up by one line.
@@ -291,6 +292,14 @@ module Vedeu
           x:          0,
           y:          0,
         }
+      end
+
+      # Provides the position information for an internal cursor within the
+      # document.
+      #
+      # @return [Vedeu::Editor::DocumentCursor]
+      def document_cursor
+
       end
 
       # @return [Boolean]
