@@ -26,7 +26,7 @@ module Vedeu
           @lines = lines.dup.tap { |lines| lines.slice!(index) }
 
         else
-          @lines = lines.dup.tap { |lines| lines.pop }
+          @lines = lines.dup.tap(&:pop)
 
         end
       end
