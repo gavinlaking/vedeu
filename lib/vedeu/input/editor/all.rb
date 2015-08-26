@@ -10,5 +10,8 @@ end # Vedeu
 
 require 'vedeu/input/capture'
 require 'vedeu/input/editor/editor'
+
+require 'vedeu/input/editor/line'
+require 'vedeu/input/editor/lines'
 require 'vedeu/input/editor/document'
 require 'vedeu/input/editor/documents'

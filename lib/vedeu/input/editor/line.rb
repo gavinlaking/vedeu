@@ -1,0 +1,78 @@
+module Vedeu
+
+  module Editor
+
+    # Manipulate a single line of an Vedeu::Editor::Document.
+    #
+    class Line
+
+      # @!attribute [rw] line
+      # @return [String]
+      attr_accessor :line
+
+      # @param line [String|NilClass]
+      # @return [Vedeu::Editor::Line]
+      def initialize(line = nil)
+        @line = line || ''
+      end
+
+      # @param index [Fixnum|NilClass]
+      # @return [String]
+      def delete_character(index = nil)
+        if line.empty? || (index && index <= 0)
+          line
+
+        elsif index
+          if index >= size
+            @line = line.chop
+          else
+            @line = line.dup.tap { |line| line.slice!(index) }
+          end
+        else
+          @line = line.chop
+
+        end
+      end
+
+      # An object is equal when its values are the same.
+      #
+      # @param other [Vedeu::Views::Char]
+      # @return [Boolean]
+      def eql?(other)
+        self.class == other.class && line == other.line
+      end
+      alias_method :==, :eql?
+
+      # @param character [String]
+      # @param index [Fixnum|NilClass]
+      # @return [String]
+      def insert_character(character, index = nil)
+        if index
+          if index <= 0
+            @line = line.insert(0, character)
+
+          elsif index >= size
+            @line = line << character
+
+          else
+            @line = line.insert(index, character)
+
+          end
+        else
+          @line = line + character
+
+        end
+      end
+
+      private
+
+      # @return [Fixnum]
+      def size
+        line.size
+      end
+
+    end # Line
+
+  end # Editor
+
+end # Vedeu
