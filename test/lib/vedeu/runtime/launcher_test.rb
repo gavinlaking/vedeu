@@ -37,7 +37,6 @@ module Vedeu
 
     describe '#execute!' do
       before do
-        Configuration.stubs(:configure)# .returns(test_configuration)
         Application.stubs(:start)
         Kernel.stubs(:exit)
         Kernel.stubs(:puts)
@@ -47,6 +46,32 @@ module Vedeu
 
       it 'returns 0 for successful execution' do
         subject.must_equal(0)
+      end
+
+      context 'when an uncaught exception occurs' do
+        before do
+          Vedeu::Application.stubs(:start).raises(StandardError, 'Oops!')
+          Vedeu::Configuration.stubs(:debug?).returns(debug)
+        end
+
+        context 'but debugging is disabled' do
+          let(:debug) { false }
+
+          it {
+            Vedeu.expects(:log_stdout).with(type: :error, message: 'Oops!')
+            subject
+          }
+        end
+
+        context 'and debugging is enabled' do
+          let(:debug) { true }
+
+          # Need to stub a backtrace.
+          # it {
+          #   Vedeu.expects(:log_stdout).with(type: :error, message: 'Oops!')
+          #   subject
+          # }
+        end
       end
     end
 

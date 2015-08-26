@@ -10,7 +10,7 @@ module Vedeu
 
       class << self
 
-        # @return [void]
+        # @return [Array<Array<Vedeu::Views::Char>>]
         # @see #initialize
         def render(name)
           new(name).render
@@ -28,7 +28,7 @@ module Vedeu
         @name = name
       end
 
-      # @return [void]
+      # @return [Array<Array<Vedeu::Views::Char>>]
       def render
         output
       end

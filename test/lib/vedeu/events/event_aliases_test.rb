@@ -44,6 +44,11 @@ module Vedeu
       end
     end
 
+    describe '.find' do
+      # @todo Add more tests
+      # it { skip }
+    end
+
     describe '.registered?' do
       let(:alias_name) { :alias_test }
 
@@ -103,17 +108,29 @@ module Vedeu
     end
 
     describe '.trigger' do
-      let(:alias_name) {}
+      let(:alias_name) { :some_alias }
       let(:args)       {}
 
       subject { described.trigger(alias_name, *args) }
 
       context 'when the alias name is registered' do
-        # @todo Add more tests.
-        # it { skip }
+        before do
+          Vedeu::Trigger.stubs(:trigger)
+
+          described.add(:some_alias, :some_event)
+          described.add(:some_alias, :other_event)
+        end
+
+        it {
+          Vedeu::Trigger.expects(:trigger).with(:some_event, nil)
+          Vedeu::Trigger.expects(:trigger).with(:other_event, nil)
+          subject
+        }
       end
 
       context 'when the alias name is not registered' do
+        let(:alias_name) {}
+
         it { subject.must_equal([]) }
       end
     end

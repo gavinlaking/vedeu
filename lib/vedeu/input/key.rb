@@ -14,7 +14,7 @@ module Vedeu
     # @param input [String|Symbol]
     # @param block [Proc]
     # @raise [Vedeu::InvalidSyntax] The required block was not given.
-    # @return [Key]
+    # @return [Vedeu::Key]
     def initialize(input = nil, &block)
       fail Vedeu::InvalidSyntax, 'block not given' unless block_given?
 

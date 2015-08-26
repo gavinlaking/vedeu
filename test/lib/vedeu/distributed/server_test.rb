@@ -100,17 +100,32 @@ module Vedeu
         end
 
         context 'when the server is enabled' do
+          let(:enabled) { true }
 
           context 'and the server is running' do
-            # @todo Add more tests.
-            # it { subject.must_equal(:running) }
-            # it { skip }
+            let(:running) { true }
+
+            it {
+              Vedeu.expects(:log).
+                with(type:    :drb,
+                     message: "Attempting to start: 'druby://localhost:21420'")
+              Vedeu.expects(:log).
+                with(type:    :drb,
+                     message: "Already started: 'druby://localhost:21420'")
+              subject
+            }
           end
 
           context 'and the server is not running' do
-            # @todo Add more tests.
-            # it { subject.must_equal(:stopped) }
-            # it { skip }
+            it {
+              Vedeu.expects(:log).
+                with(type:    :drb,
+                     message: "Attempting to start: 'druby://localhost:21420'")
+              Vedeu.expects(:log).
+                with(type:    :drb,
+                     message: "Starting: 'druby://localhost:21420'")
+              subject
+            }
           end
 
         end
@@ -146,17 +161,35 @@ module Vedeu
         end
 
         context 'when the server is enabled' do
+          let(:enabled) { true }
 
           context 'and the server is running' do
-            # @todo Add more tests.
-            # it { subject.must_equal(:running) }
-            # it { skip }
+            let(:running) { true }
+
+            it {
+              Vedeu.expects(:log).
+                with(type:    :drb,
+                     message: "Attempting to stop: 'druby://localhost:21420'")
+              Vedeu.expects(:log).
+                with(type:    :drb,
+                     message: "Stopping: 'druby://localhost:21420'")
+              Vedeu.expects(:log).
+                with(type:    :drb,
+                     message: "Attempted to #join on DRb.thread.")
+              subject
+            }
           end
 
           context 'and the server is not running' do
-            # @todo Add more tests.
-            # it { subject.must_equal(:stopped) }
-            # it { skip }
+            it {
+              Vedeu.expects(:log).
+                with(type:    :drb,
+                     message: "Attempting to stop: 'druby://localhost:21420'")
+              Vedeu.expects(:log).
+                with(type:    :drb,
+                     message: "Already stopped: 'druby://localhost:21420'")
+              subject
+            }
           end
 
         end

@@ -15,7 +15,7 @@ module Vedeu
     # Return a new instance of Vedeu::Output.
     #
     # @param output [Array<Array<Vedeu::Views::Char>>]
-    # @return [Output]
+    # @return [Vedeu::Output]
     def initialize(output)
       @output = output
     end

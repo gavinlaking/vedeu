@@ -9,6 +9,11 @@ end # YourApp
 
 module Vedeu
 
+  class SomeRenderer
+  end # SomeRenderer
+  class OtherRenderer
+  end # OtherRenderer
+
   module Config
 
     describe API do
@@ -235,7 +240,22 @@ module Vedeu
       end
 
       describe '#renderer' do
+        let(:some)  { Vedeu::SomeRenderer.new }
+        let(:other) { Vedeu::OtherRenderer.new }
+
+        # before do
+        #   Vedeu::Configuration.stubs(:renderers).
+        #     returns([some])
+        # end
+
         it { instance.must_respond_to(:renderers) }
+
+        # it 'sets the options to the desired value' do
+        #   configuration = Vedeu.configure do
+        #     renderer proc { other }
+        #   end
+        #   configuration.renderers.must_equal([some, other])
+        # end
       end
 
       describe '#root' do
