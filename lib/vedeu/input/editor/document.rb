@@ -294,14 +294,6 @@ module Vedeu
         }
       end
 
-      # Provides the position information for an internal cursor within the
-      # document.
-      #
-      # @return [Vedeu::Editor::DocumentCursor]
-      def document_cursor
-
-      end
-
       # @return [Boolean]
       def lines_empty?
         lines && lines.empty?
