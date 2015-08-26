@@ -31,41 +31,41 @@ module Vedeu
 
         subject { instance.delete_line(index) }
 
-        it { subject.must_be_instance_of(Array) }
+        it { subject.must_be_instance_of(Vedeu::Editor::Lines) }
 
         context 'when the lines are empty' do
           let(:lines) { [] }
 
-          it { subject.must_equal([]) }
+          it { subject.lines.must_equal([]) }
         end
 
         context 'when the lines are not empty' do
           context 'when an index is not given' do
             let(:index) {}
 
-            it { subject.must_equal(['Some text...', 'More text...']) }
+            it { subject.lines.must_equal(['Some text...', 'More text...']) }
           end
 
           context 'when a negative index is given' do
             let(:index) { -4 }
 
-            it { subject.must_equal(['Some text...', 'More text...', 'Other text...']) }
+            it { subject.lines.must_equal(['Some text...', 'More text...', 'Other text...']) }
           end
 
           context 'when an index is given' do
-            it { subject.must_equal(['Some text...', 'Other text...']) }
+            it { subject.lines.must_equal(['Some text...', 'Other text...']) }
           end
 
           context 'when an index of the last line is given' do
             let(:index) { 2 }
 
-            it { subject.must_equal(['Some text...', 'More text...']) }
+            it { subject.lines.must_equal(['Some text...', 'More text...']) }
           end
 
           context 'when an index greater than the number of lines is given' do
             let(:index) { 10 }
 
-            it { subject.must_equal(['Some text...', 'More text...']) }
+            it { subject.lines.must_equal(['Some text...', 'More text...']) }
           end
         end
       end
@@ -76,41 +76,41 @@ module Vedeu
 
         subject { instance.insert_line(line, index) }
 
-        it { subject.must_be_instance_of(Array) }
+        it { subject.must_be_instance_of(Vedeu::Editor::Lines) }
 
         context 'when a line is not given' do
           let(:line) {}
 
-          it { subject.must_equal(['Some text...', 'More text...', 'Other text...']) }
+          it { subject.lines.must_equal(['Some text...', 'More text...', 'Other text...']) }
         end
 
         context 'when a line is given' do
           context 'and an index is not given' do
             let(:index) {}
 
-            it { subject.must_equal(['Some text...', 'More text...', 'Other text...', 'Many text...']) }
+            it { subject.lines.must_equal(['Some text...', 'More text...', 'Other text...', 'Many text...']) }
           end
 
           context 'and a negative index is given' do
             let(:index) { -4 }
 
-            it { subject.must_equal(['Many text...', 'Some text...', 'More text...', 'Other text...']) }
+            it { subject.lines.must_equal(['Many text...', 'Some text...', 'More text...', 'Other text...']) }
           end
 
           context 'and an index is given' do
-            it { subject.must_equal(['Some text...', 'Many text...', 'More text...', 'Other text...']) }
+            it { subject.lines.must_equal(['Some text...', 'Many text...', 'More text...', 'Other text...']) }
           end
 
           context 'and an index of the last line is given' do
             let(:index) { 5 }
 
-            it { subject.must_equal(['Some text...', 'More text...', 'Other text...', 'Many text...']) }
+            it { subject.lines.must_equal(['Some text...', 'More text...', 'Other text...', 'Many text...']) }
           end
 
           context 'and an index greater than the number of lines is given' do
             let(:index) { 10 }
 
-            it { subject.must_equal(['Some text...', 'More text...', 'Other text...', 'Many text...']) }
+            it { subject.lines.must_equal(['Some text...', 'More text...', 'Other text...', 'Many text...']) }
           end
         end
       end

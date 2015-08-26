@@ -29,13 +29,15 @@ module Vedeu
           @lines = lines.dup.tap(&:pop)
 
         end
+
+        self
       end
 
       # @param line [String]
       # @param index [Fixnum|NilClass]
       # @return [String]
       def insert_line(line, index = nil)
-        return lines unless line
+        return self unless line
 
         if index
           if index <= 0
@@ -52,6 +54,8 @@ module Vedeu
           @lines = lines + [line]
 
         end
+
+        self
       end
 
       # @param index [Fixnum|NilClass]

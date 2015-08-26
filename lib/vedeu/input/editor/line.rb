@@ -20,7 +20,7 @@ module Vedeu
       # @return [String]
       def delete_character(index = nil)
         if line.empty? || (index && index <= 0)
-          line
+          self
 
         elsif index
           if index >= size
@@ -32,6 +32,8 @@ module Vedeu
           @line = line.chop
 
         end
+
+        self
       end
 
       # An object is equal when its values are the same.
@@ -62,6 +64,8 @@ module Vedeu
           @line = line + character
 
         end
+
+        self
       end
 
       private
