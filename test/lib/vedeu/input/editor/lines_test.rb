@@ -47,9 +47,36 @@ module Vedeu
         end
 
         context 'when the document is an Array' do
-          let(:document) { lines }
+          let(:document) {
+            [
+              Vedeu::Editor::Line.new('Some text...'),
+              :more_text,
+              'Other text...',
+            ]
+          }
+          let(:expected) {
+            [
+              Vedeu::Editor::Line.new('Some text...'),
+              Vedeu::Editor::Line.new(''),
+              Vedeu::Editor::Line.new('Other text...'),
+            ]
+          }
 
-          it { subject.lines.must_equal(lines) }
+          it { subject.lines.must_equal(expected) }
+        end
+
+        context 'when the document is a String' do
+          let(:document) { "Some text...\nMore text..." }
+
+          context 'but it is empty' do
+            let(:document) { '' }
+
+            it { subject.must_equal(Vedeu::Editor::Lines.new) }
+          end
+
+          context 'but it has no line breaks' do
+
+          end
         end
       end
 

@@ -18,7 +18,25 @@ module Vedeu
         return document if document.is_a?(self)
 
         if document.is_a?(Array)
-          new(document)
+          lines = document.map do |line|
+            if line.is_a?(Vedeu::Editor::Line)
+              line
+
+            elsif line.is_a?(String)
+              Vedeu::Editor::Line.coerce(line)
+
+            else
+              Vedeu::Editor::Line.new
+
+            end
+          end
+
+          new(lines)
+
+        elsif document.is_a?(String)
+          lines = document.lines.map(&:chomp)
+
+          new(lines)
 
         else
           new
