@@ -13,6 +13,14 @@ module Vedeu
                      :bx,
                      :by
 
+      def_delegators :virtual_cursor,
+                     :down,
+                     :left,
+                     :right,
+                     :up,
+                     :x,
+                     :y
+
       # @!attribute [r] attributes
       # @return [Hash]
       attr_reader :attributes
@@ -38,10 +46,8 @@ module Vedeu
         @attributes = defaults.merge!(attributes)
 
         @attributes.each do |key, value|
-          instance_variable_set("@#{key}", value || defaults[key])
+          instance_variable_set("@#{key}", value || defaults.fetch(key))
         end
-
-        @border = Vedeu.borders.by_name(@name)
       end
 
       # Deletes the character from the line where the cursor is currently
@@ -49,232 +55,95 @@ module Vedeu
       #
       # @return [Vedeu::Editor::Document]
       def delete_character
-        if line_empty? || x == 0
-          line
-
-        elsif x > 0 && x <= (line_size - 1)
-          new_lines = lines.dup
-          new_line  = new_lines[y].dup
-          new_line.slice!(x)
-          new_lines[y] = new_line
-
-          left
-
-          @data = new_lines.join("\n")
-        end
-
-        store
+        lines.delete_character(x)
       end
 
       # Delete a line.
       #
       # @return [Vedeu::Editor::Document]
       def delete_line
-        new_lines = lines.dup
-        new_lines.slice!(y)
-        @data = new_lines.join("\n")
-
-        store
-      end
-
-      # Move the current virtual cursor down by one line.
-      #
-      # @return [Fixnum]
-      def down
-        if y >= (lines_size - 1)
-          @y = lines_size - 1
-
-        else
-          @y += 1
-
-        end
-
-        store
-      end
-
-      # @return [Fixnum]
-      def goto_bof
-        @y = 0
-      end
-
-      # @return [Fixnum]
-      def goto_bol
-        @x = 0
-      end
-
-      # @return [Fixnum]
-      def goto_eof
-        @y = lines.size - 1
-      end
-
-      # @return [Fixnum]
-      def goto_eol
-        @x = line.size - 1
+        lines.delete_line(y)
       end
 
       # Inserts the given character in to the line where the cursor is currently
       # positioned.
       #
-      # @param character [String]
+      # @param character [String|Symbol]
       # @return [Vedeu::Editor::Document]
       def insert_character(character)
-        new_lines = lines.dup
-        if line_empty? || x == (line_size - 1)
-          new_line =  new_lines[y] ? new_lines[y].dup : ''
-          new_line << character
+        return self if character.is_a?(Symbol)
 
-        else
-          new_line = new_lines[y].insert(x, character)
+        new_lines = lines.insert_character(character, y, x)
 
-        end
-
-        new_lines[y] = new_line
-        @data = new_lines.join("\n")
-
-        right
+        Vedeu.log(message: "#{new_lines.inspect}")
 
         store
+
+        new_lines
       end
 
       # Insert an empty line.
       #
       # @return [Vedeu::Editor::Document]
       def insert_line
-        goto_bol
+        new_lines = lines.insert_line(Vedeu::Editor::Line.new, y)
 
-        new_lines = lines.dup
-        new_lines.insert(y + 1, '')
-
-        @y    = y + 1
-        @data = new_lines.join("\n")
+        Vedeu.log(message: "#{new_lines.inspect}")
 
         store
-      end
 
-      # Move the current virtual cursor to the left.
-      #
-      # @return [Fixnum]
-      def left
-        if x <= 0
-          @x = 0
-
-        elsif x >= (line_size - 1)
-          @x = (line_size - 1) - 1
-
-        else
-          @x -= 1
-
-        end
-
-        store
+        new_lines
       end
 
       # @return [Array<String|void>]
       def line
-        present?(lines[y]) ? lines[y] : ''
+        lines.line(y)
       end
-
 
       # @return [Array<String|void>]
       def lines
-        present?(data) ? data.lines.map(&:chomp) : []
+        @lines ||= if present?(data)
+          Vedeu::Editor::Lines.coerce(data)
+
+        else
+          defaults.fetch(data)
+
+        end
       end
 
       # @return [void]
       def render
-        Vedeu.buffers.by_name(name).clear
+        # Vedeu.buffers.by_name(name).clear
+        # Vedeu::Output.render(border.render)
 
-        Vedeu::Output.render(border.render)
+        value = lines.flat_map { |line| line.to_chars }.map(&:to_s)
 
-        Vedeu::Direct.write(value: @data, x: bx, y: by)
-      end
-
-      # Move the current virtual cursor to the right.
-      #
-      # @return [Fixnum]
-      def right
-        if x >= (line_size - 1)
-          @x = line_size - 1
-
-        else
-          @x += 1
-
-        end
-
-        store
+        Vedeu::Direct.write(value: value, x: bx, y: by)
       end
 
       # @return [Vedeu::Editor::Document]
       def store
+        virtual_cursor.x = x
+        virtual_cursor.y = y
+
         super
 
-        cursor.x = x
-        cursor.y = y
-        cursor.store
-        cursor.render
+        # cursor.store
+        # cursor.render
 
-        render
+        # render
 
-        self
-      end
-
-      # Move the current virtual cursor up by one line.
-      #
-      # @return [Fixnum]
-      def up
-        if y <= 0
-          @y = 0
-
-        elsif y >= (lines_size - 1)
-          @y = (lines_size - 1) - 1
-
-        else
-          @y -= 1
-
-        end
-
-        store
-      end
-
-      # Return the current virtual cursor position.
-      #
-      # @return [Fixnum]
-      def x
-        if @x <= 0
-          @x = 0
-
-        elsif @x >= (line_size - 1)
-          @x = line_size - 1
-
-        else
-          @x
-
-        end
-      end
-
-      # Return the current virtual cursor position.
-      #
-      # @return [Fixnum]
-      def y
-        if @y <= 0
-          @y = 0
-
-        elsif @y >= (lines_size - 1)
-          @y = lines_size - 1
-
-        else
-          @y
-
-        end
+        # self
       end
 
       protected
 
-      # @!attribute [r] border
-      # @return [Vedeu::Border]
-      attr_reader :border
-
       private
+
+      # @return [Vedeu::Border]
+      def border
+        @border ||= Vedeu.borders.by_name(name)
+      end
 
       # @return [Vedeu::Cursor]
       def cursor
@@ -286,36 +155,15 @@ module Vedeu
       # @return [Hash]
       def defaults
         {
-          data:       '',
+          data:       Vedeu::Editor::Lines.new([Vedeu::Editor::Line.new]),
           name:       nil,
           repository: Vedeu.documents,
-          x:          0,
-          y:          0,
         }
       end
 
-      # @return [Boolean]
-      def lines_empty?
-        lines && lines.empty?
-      end
-
-      # @return [Fixnum]
-      def lines_size
-        return 0 if lines_empty?
-
-        lines.size
-      end
-
-      # @return [Boolean]
-      def line_empty?
-        line && line.empty?
-      end
-
-      # @return [Fixnum]
-      def line_size
-        return 0 if line_empty?
-
-        line.size
+      # @return [Vedeu::VirtualCursor]
+      def virtual_cursor
+        @virtual_cursor ||= Vedeu::Editor::VirtualCursor.new(y: 0, x: 0)
       end
 
     end # Document

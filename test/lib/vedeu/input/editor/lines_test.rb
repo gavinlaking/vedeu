@@ -87,12 +87,57 @@ module Vedeu
       end
 
       describe '#delete_character' do
-        let(:y) { }
-        let(:x) { }
-
         subject { instance.delete_character(y, x) }
 
-        it { skip }
+        context 'when the line is empty' do
+          let(:data) {}
+
+          # it {
+          #   subject
+          #   instance.line.must_equal('')
+          # }
+        end
+
+        context 'when the line is not empty' do
+          context 'and x is nil or x <= 0' do
+            let(:x) { 0 }
+
+            # it {
+            #   subject
+            #   instance.line.must_equal('Hydrogen')
+            # }
+          end
+
+          context 'and x is at the last character of the line' do
+            let(:x) { 7 }
+
+            # it {
+            #   subject
+            #   instance.line.must_equal('Hydroge')
+            # }
+
+            # it 'handles multiple deletes' do
+            #   subject
+            #   subject
+            #   instance.line.must_equal('Hydrog')
+            # end
+          end
+
+          context 'and x is somewhere on the line' do
+            let(:x) { 4 }
+
+            # it {
+            #   subject
+            #   instance.line.must_equal('Hydrgen')
+            # }
+
+            # it 'handles multiple deletes' do
+            #   subject
+            #   subject
+            #   instance.line.must_equal('Hydgen')
+            # end
+          end
+        end
       end
 
       describe '#delete_line' do
@@ -184,13 +229,49 @@ module Vedeu
       end
 
       describe '#insert_character' do
-        let(:character) {}
-        let(:y)         {}
-        let(:x)         {}
+        let(:character) { 'a' }
 
         subject { instance.insert_character(character, y, x) }
 
-        it { skip }
+        context 'when the line is empty' do
+          let(:data) {}
+
+          # it {
+          #   instance.insert_character(character)
+          #   instance.line.must_equal('a')
+          # }
+        end
+
+        context 'when the line is not empty' do
+          context 'and x is at the last character of the line' do
+            let(:x) { 7 }
+
+            # it {
+            #   instance.insert_character('Hydrogena')
+            # }
+
+            # it 'handles multiple inserts' do
+            #   instance.insert_character(character)
+            #   instance.insert_character(character)
+            #   instance.line.must_equal('Hydrogenaa')
+            # end
+          end
+
+          context 'and x is somewhere on the line' do
+            let(:x) { 4 }
+
+            # it {
+            #   instance.insert_character(character)
+            #   instance.line.must_equal('Hydraogen')
+            # }
+
+            # it 'handles multiple inserts' do
+            #   instance.insert_character(character)
+            #   instance.insert_character(character)
+            #   instance.line.must_equal('Hydraaogen')
+            # end
+          end
+        end
       end
 
       describe '#insert_line' do

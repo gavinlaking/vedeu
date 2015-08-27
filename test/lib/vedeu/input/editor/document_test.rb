@@ -12,43 +12,14 @@ module Vedeu
         {
           data: data,
           name: _name,
-          x:    x,
-          y:    y,
         }
       }
       let(:data)   {
         "Hydrogen\n"  \
         "Helium\n"    \
-        "Lithium\n"   \
-        "Beryllium\n" \
-        "Boron\n"     \
-        "Carbon\n"    \
-        "Nitrogen\n"  \
-        "Oxygen\n"    \
-        "Fluorine\n"  \
-        "Neon\n"      \
-        "Sodium\n"    \
-        "Magnesium"
+        "Lithium\n"
       }
       let(:_name)  { 'Vedeu::Editor::Document' }
-      let(:x)      {}
-      let(:y)      {}
-      let(:border) { Vedeu::Border.new(name: _name) }
-      let(:buffer) { Vedeu::Buffer.new(name: _name) }
-      let(:cursor) { Vedeu::Cursor.new(name: _name) }
-
-      before do
-        Vedeu.borders.stubs(:by_name).with(_name).returns(border)
-
-        Vedeu.cursors.stubs(:by_name).with(_name).returns(cursor)
-        cursor.stubs(:render)
-
-        Vedeu.buffers.stubs(:by_name).with(_name).returns(buffer)
-        buffer.stubs(:clear)
-
-        Vedeu::Output.stubs(:render)
-        Vedeu::Direct.stubs(:write)
-      end
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
@@ -59,27 +30,7 @@ module Vedeu
             must_equal(Vedeu.documents)
         }
 
-        context 'when x is nil' do
-          it { instance.instance_variable_get('@x').must_equal(0) }
-        end
-
-        context 'when x is not nil' do
-          let(:x) { 3 }
-
-          it { instance.instance_variable_get('@x').must_equal(3) }
-        end
-
-        context 'when y is nil' do
-          it { instance.instance_variable_get('@y').must_equal(0) }
-        end
-
-        context 'when y is not nil' do
-          let(:y) { 6 }
-
-          it { instance.instance_variable_get('@y').must_equal(6) }
-        end
-
-        it { instance.instance_variable_get('@border').must_equal(border) }
+        # it { instance.instance_variable_get('@border').must_equal(border) }
       end
 
       describe 'accessors' do
@@ -91,292 +42,28 @@ module Vedeu
       end
 
       describe '#delete_character' do
-        context 'when the line is empty' do
-          let(:data) {}
-
-          it {
-            instance.delete_character
-            instance.line.must_equal('')
-          }
-        end
-
-        context 'when the line is not empty' do
-          context 'and x is nil or x <= 0' do
-            let(:x) { 0 }
-
-            it {
-              instance.delete_character
-              instance.line.must_equal('Hydrogen')
-            }
-          end
-
-          context 'and x is at the last character of the line' do
-            let(:x) { 7 }
-
-            it {
-              instance.delete_character
-              instance.line.must_equal('Hydroge')
-            }
-
-            it 'handles multiple deletes' do
-              instance.delete_character
-              instance.delete_character
-              instance.line.must_equal('Hydrog')
-            end
-          end
-
-          context 'and x is somewhere on the line' do
-            let(:x) { 4 }
-
-            it {
-              instance.delete_character
-              instance.line.must_equal('Hydrgen')
-            }
-
-            it 'handles multiple deletes' do
-              instance.delete_character
-              instance.delete_character
-              instance.line.must_equal('Hydgen')
-            end
-          end
-        end
+        subject { instance.delete_character }
       end
 
       describe '#delete_line' do
-        let(:y) { 4 }
-
-        subject { instance.delete_line }
-
-        context 'when there is no data' do
-          let(:data) {}
-
-          it { subject.data.must_equal('') }
-        end
-
-        context 'when there is data' do
-          let(:expected) {
-            "Hydrogen\n"  \
-            "Helium\n"    \
-            "Lithium\n"   \
-            "Beryllium\n" \
-            "Carbon\n"    \
-            "Nitrogen\n"  \
-            "Oxygen\n"    \
-            "Fluorine\n"  \
-            "Neon\n"      \
-            "Sodium\n"    \
-            "Magnesium"
-          }
-
-          it { subject.data.must_equal(expected) }
-          it { subject.lines.wont_include('Boron') }
-        end
-
-        it { subject.must_be_instance_of(Vedeu::Editor::Document) }
-      end
-
-      describe '#down' do
-        subject { instance.down }
-
-        it { subject.must_be_instance_of(Vedeu::Editor::Document) }
-
-        context 'when y = last line' do
-          let(:y) { 11 }
-
-          it 'y becomes the last line index' do
-            subject.y.must_equal(11)
-          end
-        end
-
-        context 'when y > last line' do
-          let(:y) { 13 }
-
-          it 'y becomes the last line index' do
-            subject.y.must_equal(11)
-          end
-        end
-
-        context 'when y < last line' do
-          let(:y) { 4 }
-
-          it {
-            subject.y.must_equal(5)
-          }
-        end
-      end
-
-      describe '#goto_bof' do
-        subject { instance.goto_bof }
-
-        it {
-          subject
-          instance.y.must_equal(0)
-        }
-      end
-
-      describe '#goto_bol' do
-        subject { instance.goto_bol }
-
-        it {
-          subject
-          instance.x.must_equal(0)
-        }
-      end
-
-      describe '#goto_eof' do
-        subject { instance.goto_eof }
-
-        context 'when the data is empty' do
-          let(:data) {}
-
-          it {
-            subject
-            instance.y.must_equal(0)
-          }
-        end
-
-        context 'when the data is not empty' do
-          it {
-            subject
-            instance.y.must_equal(11)
-          }
-        end
-      end
-
-      describe '#goto_eol' do
-        subject { instance.goto_eol }
-
-        context 'when the data is empty' do
-          let(:data) {}
-
-          it {
-            subject
-            instance.x.must_equal(0)
-          }
-        end
-
-        context 'when the data is not empty' do
-          it {
-            subject
-            instance.x.must_equal(7)
-          }
-        end
       end
 
       describe '#insert_character' do
         let(:character) { 'a' }
 
-        context 'when the line is empty' do
-          let(:data) {}
+        subject { instance.insert_character(character) }
 
-          it {
-            instance.insert_character(character)
-            instance.line.must_equal('a')
-          }
-        end
+        context 'when the character is a Symbol' do
+          let(:character) { :a }
 
-        context 'when the line is not empty' do
-          context 'and x is at the last character of the line' do
-            let(:x) { 7 }
-
-            it {
-              instance.insert_character('Hydrogena')
-            }
-
-            it 'handles multiple inserts' do
-              instance.insert_character(character)
-              instance.insert_character(character)
-              instance.line.must_equal('Hydrogenaa')
-            end
-          end
-
-          context 'and x is somewhere on the line' do
-            let(:x) { 4 }
-
-            it {
-              instance.insert_character(character)
-              instance.line.must_equal('Hydraogen')
-            }
-
-            it 'handles multiple inserts' do
-              instance.insert_character(character)
-              instance.insert_character(character)
-              instance.line.must_equal('Hydraaogen')
-            end
-          end
+          it { subject.must_equal(instance) }
         end
       end
 
       describe '#insert_line' do
-        let(:y) { 4 }
+        let(:y) { 2 }
 
         subject { instance.insert_line }
-
-        context 'when there is no data' do
-          let(:data) {}
-
-          it { subject.data.must_equal('') }
-        end
-
-        context 'when there is data' do
-          let(:expected) {
-            "Hydrogen\n"  \
-            "Helium\n"    \
-            "Lithium\n"   \
-            "Beryllium\n" \
-            "Boron\n"     \
-            "\n"          \
-            "Carbon\n"    \
-            "Nitrogen\n"  \
-            "Oxygen\n"    \
-            "Fluorine\n"  \
-            "Neon\n"      \
-            "Sodium\n"    \
-            "Magnesium"
-          }
-
-          it { subject.data.must_equal(expected) }
-          it { subject.x.must_equal(0) }
-          it { subject.y.must_equal(5) }
-        end
-
-        it { subject.must_be_instance_of(Vedeu::Editor::Document) }
-      end
-
-      describe '#left' do
-        subject { instance.left }
-
-        it { subject.must_be_instance_of(Vedeu::Editor::Document) }
-
-        context 'when x = 0' do
-          let(:x) { 0 }
-
-          it { subject.x.must_equal(0) }
-        end
-
-        context 'when x < 0' do
-          let(:x) { -4 }
-
-          it { subject.x.must_equal(0) }
-        end
-
-        context 'when x > last character' do
-          let(:x) { 15 }
-
-          it { subject.x.must_equal(6) }
-        end
-
-        context 'when x = last character' do
-          let(:x) { 10 }
-
-          it { subject.x.must_equal(6) }
-        end
-
-        context 'when x < last character' do
-          let(:x) { 6 }
-
-          it { subject.x.must_equal(5) }
-        end
       end
 
       describe '#line' do
@@ -385,11 +72,11 @@ module Vedeu
         context 'when the line is empty' do
           let(:data) {}
 
-          it { subject.must_equal('') }
+          it { subject.must_equal(Vedeu::Editor::Line.new('')) }
         end
 
         context 'when the line is not empty' do
-          it { subject.must_equal('Hydrogen') }
+          it { subject.must_equal(Vedeu::Editor::Line.new('Hydrogen')) }
         end
       end
 
@@ -398,16 +85,20 @@ module Vedeu
 
         context 'when the data is empty' do
           let(:data) {}
+          let(:expected) {
+            Vedeu::Editor::Lines.new([Vedeu::Editor::Line.new])
+          }
 
-          it { subject.must_equal([]) }
+          it { subject.must_equal(expected) }
         end
 
         context 'when the data is not empty' do
           let(:expected) {
-            [
-              'Hydrogen', 'Helium', 'Lithium', 'Beryllium', 'Boron', 'Carbon',
-              'Nitrogen', 'Oxygen', 'Fluorine', 'Neon', 'Sodium', 'Magnesium',
-            ]
+            Vedeu::Editor::Lines.new([
+              Vedeu::Editor::Line.new('Hydrogen'),
+              Vedeu::Editor::Line.new('Helium'),
+              Vedeu::Editor::Line.new('Lithium'),
+            ])
           }
 
           it { subject.must_equal(expected) }
@@ -415,54 +106,22 @@ module Vedeu
       end
 
       describe '#render' do
-        # let(:expected) {
-        #   "Hydrogen\n"  \
-        #   "Helium\n"    \
-        #   "Lithium\n"   \
-        #   "Beryllium\n" \
-        #   "Boron\n"     \
-        #   "Carbon\n"    \
-        #   "Nitrogen\n"  \
-        #   "Oxygen\n"    \
-        #   "Fluorine\n"  \
-        #   "Neon\n"      \
-        #   "Sodium\n"    \
-        #   "Magnesium"
-        # }
+        let(:data) {
+          Vedeu::Editor::Lines.new([
+            Vedeu::Editor::Line.new('A'),
+            Vedeu::Editor::Line.new('B'),
+            Vedeu::Editor::Line.new('C'),
+          ])
+        }
 
-        # before { Vedeu::Direct.stubs(:write) }
+        before { Vedeu::Direct.stubs(:write) }
 
         subject { instance.render }
 
-        # it { subject.must_equal(expected) }
-      end
-
-      describe '#right' do
-        subject { instance.right }
-
-        it { subject.must_be_instance_of(Vedeu::Editor::Document) }
-
-        context 'when x = last character' do
-          let(:x) { 8 }
-
-          it 'x becomes the last character index' do
-            subject.x.must_equal(7)
-          end
-        end
-
-        context 'when x > last character' do
-          let(:x) { 10 }
-
-          it 'x becomes the last character index' do
-            subject.x.must_equal(7)
-          end
-        end
-
-        context 'when x < last character' do
-          let(:x) { 4 }
-
-          it { subject.x.must_equal(5) }
-        end
+        it {
+          Vedeu::Direct.expects(:write).with(value: ['A', 'B', 'C'], x: 1, y: 1)
+          subject
+        }
       end
 
       describe '#store' do
@@ -470,255 +129,6 @@ module Vedeu
 
         # it { skip }
       end
-
-      describe '#up' do
-        subject { instance.up }
-
-        it { subject.must_be_instance_of(Vedeu::Editor::Document) }
-
-        context 'when y = 0' do
-          let(:y) { 0 }
-
-          it { subject.y.must_equal(0) }
-        end
-
-        context 'when y < 0' do
-          let(:y) { -4 }
-
-          it { subject.y.must_equal(0) }
-        end
-
-        context 'when y > last line' do
-          let(:y) { 15 }
-
-          it { subject.y.must_equal(10) }
-        end
-
-        context 'when y = last line' do
-          let(:y) { 10 }
-
-          it { subject.y.must_equal(9) }
-        end
-
-        context 'when y < last line' do
-          let(:y) { 6 }
-
-          it { subject.y.must_equal(5) }
-        end
-      end
-
-      describe '#x' do
-        subject { instance.x }
-
-        it { subject.must_be_instance_of(Fixnum) }
-
-        context 'when x is nil or x <= 0' do
-          it { subject.must_equal(0) }
-
-          context 'and x is moved left' do
-            it {
-              instance.left
-              subject.must_equal(0)
-            }
-
-            it 'multiple times' do
-              instance.left
-              instance.left
-
-              subject.must_equal(0)
-            end
-          end
-
-          context 'and x is moved right' do
-            it {
-              instance.right
-              subject.must_equal(1)
-            }
-
-            it 'multiple times' do
-              instance.right
-              instance.right
-
-              subject.must_equal(2)
-            end
-          end
-        end
-
-        context 'when x > 0 && x <= line_size - 1' do
-          let(:x) { 4 }
-
-          it { subject.must_equal(4) }
-
-          context 'and x is moved left' do
-            it {
-              instance.left
-              subject.must_equal(3)
-            }
-
-            it 'multiple times' do
-              instance.left
-              instance.left
-
-              subject.must_equal(2)
-            end
-          end
-
-          context 'and x is moved right' do
-            it {
-              instance.right
-              subject.must_equal(5)
-            }
-
-            it 'multiple times' do
-              instance.right
-              instance.right
-
-              subject.must_equal(6)
-            end
-          end
-        end
-
-        context 'when x > size - 1' do
-          let(:x) { 10 }
-
-          it { subject.must_equal(7) }
-
-          context 'and x is moved left' do
-            it {
-              instance.left
-              subject.must_equal(6)
-            }
-
-            it 'multiple times' do
-              instance.left
-              instance.left
-
-              subject.must_equal(5)
-            end
-          end
-
-          context 'and x is moved right' do
-            it {
-              instance.right
-              subject.must_equal(7)
-            }
-
-            it 'multiple times' do
-              instance.right
-              instance.right
-
-              subject.must_equal(7)
-            end
-          end
-        end
-      end
-
-      describe '#y' do
-        subject { instance.y }
-
-        it { subject.must_be_instance_of(Fixnum) }
-
-        context 'when y is nil or y <= 0' do
-          it { subject.must_equal(0) }
-
-          context 'and y is moved up' do
-            it {
-              instance.up
-              subject.must_equal(0)
-            }
-
-            it 'multiple times' do
-              instance.up
-              instance.up
-
-              subject.must_equal(0)
-            end
-          end
-
-          context 'and y is moved down' do
-            it {
-              instance.down
-              subject.must_equal(1)
-            }
-
-            it 'multiple times' do
-              instance.down
-              instance.down
-
-              subject.must_equal(2)
-            end
-          end
-        end
-
-        context 'when y > 0 && y <= size - 1' do
-          let(:y) { 4 }
-
-          it { subject.must_equal(4) }
-
-          context 'and y is moved up' do
-            it {
-              instance.up
-              subject.must_equal(3)
-            }
-
-            it 'multiple times' do
-              instance.up
-              instance.up
-
-              subject.must_equal(2)
-            end
-          end
-
-          context 'and y is moved down' do
-            it {
-              instance.down
-              subject.must_equal(5)
-            }
-
-            it 'multiple times' do
-              instance.down
-              instance.down
-
-              subject.must_equal(6)
-            end
-          end
-        end
-
-        context 'when y > size - 1' do
-          let(:y) { 15 }
-
-          it { subject.must_equal(11) }
-
-          context 'and y is moved up' do
-            it {
-              instance.up
-              subject.must_equal(10)
-            }
-
-            it 'multiple times' do
-              instance.up
-              instance.up
-
-              subject.must_equal(9)
-            end
-          end
-
-          context 'and y is moved down' do
-            it {
-              instance.down
-              subject.must_equal(11)
-            }
-
-            it 'multiple times' do
-              instance.down
-              instance.down
-
-              subject.must_equal(11)
-            end
-          end
-        end
-      end
-
 
     end # Editor
 

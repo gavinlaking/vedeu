@@ -16,20 +16,19 @@ module Vedeu
       let(:data)      {
         "Hydrogen\n"  \
         "Helium\n"    \
-        "Lithium\n"   \
-        "Beryllium\n" \
-        "Boron\n"     \
-        "Carbon\n"    \
-        "Nitrogen\n"  \
-        "Oxygen\n"    \
-        "Fluorine\n"  \
-        "Neon\n"      \
-        "Sodium\n"    \
-        "Magnesium"
+        "Lithium\n"
       }
 
       before do
         Vedeu.documents.stubs(:by_name).returns(document)
+        # document.stubs(:delete_character)
+        # document.stubs(:down)
+        # document.stubs(:insert_line)
+        # document.stubs(:left)
+        # document.stubs(:right)
+        # document.stubs(:up)
+        # document.stubs(:insert_character)
+        # document.stubs(:render)
       end
 
       describe '#initialize' do
@@ -126,7 +125,7 @@ module Vedeu
             context 'when the input is a symbol' do
               let(:input) { :ctrl_p }
 
-              it { subject.must_equal(nil) }
+              it { subject.must_be_instance_of(Vedeu::Editor::Document) }
             end
 
             context 'when the input is not a symbol' do
