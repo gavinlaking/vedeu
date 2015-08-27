@@ -53,6 +53,15 @@ module Vedeu
         self
       end
 
+      # An object is equal when its values are the same.
+      #
+      # @param other [Vedeu::Editor::Lines]
+      # @return [Boolean]
+      def eql?(other)
+        self.class == other.class && lines == other.lines
+      end
+      alias_method :==, :eql?
+
       # Insert the line on the line below the given index.
       #
       # @param line [String]
