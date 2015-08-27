@@ -124,6 +124,11 @@ module Vedeu
         line.size
       end
 
+      # @return [Array<Vedeu::Views::Char>]
+      def to_chars
+        line.chars.map { |char| Vedeu::Views::Char.new(value: char) }
+      end
+
     end # Line
 
   end # Editor
