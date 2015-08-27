@@ -111,7 +111,7 @@ module Vedeu
           end
 
           context 'when an index of the last character of the line is given' do
-            let(:index) { 12 }
+            let(:index) { 11 }
 
             it { subject.line.must_equal('Some text..') }
           end

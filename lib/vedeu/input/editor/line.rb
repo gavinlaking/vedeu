@@ -10,6 +10,8 @@ module Vedeu
       # @return [String]
       attr_accessor :line
 
+      # Returns a new instance of Vedeu::Editor::Line.
+      #
       # @param line [String|NilClass]
       # @return [Vedeu::Editor::Line]
       def initialize(line = nil)
@@ -35,6 +37,9 @@ module Vedeu
 
         end
       end
+
+      # Delete the character from the line positioned at the given index.
+      #
       # @param index [Fixnum|NilClass]
       # @return [String]
       def delete_character(index = nil)
@@ -64,6 +69,8 @@ module Vedeu
       end
       alias_method :==, :eql?
 
+      # Insert the character on the line positioned at the given index.
+      #
       # @param character [String]
       # @param index [Fixnum|NilClass]
       # @return [String]
@@ -89,6 +96,8 @@ module Vedeu
 
       private
 
+      # Return the size of the line in characters.
+      #
       # @return [Fixnum]
       def size
         line.size

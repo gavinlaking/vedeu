@@ -10,12 +10,16 @@ module Vedeu
       # @return [String]
       attr_accessor :lines
 
+      # Returns a new instance of Vedeu::Editor::Lines.
+      #
       # @param lines [Array<String>]
       # @return [Vedeu::Editor::Lines]
       def initialize(lines)
         @lines = lines || []
       end
 
+      # Delete the line from the lines positioned at the given index.
+      #
       # @param index [Fixnum|NilClass]
       # @return [String]
       def delete_line(index = nil)
@@ -33,6 +37,8 @@ module Vedeu
         self
       end
 
+      # Insert the line on the line below the given index.
+      #
       # @param line [String]
       # @param index [Fixnum|NilClass]
       # @return [String]
@@ -58,6 +64,8 @@ module Vedeu
         self
       end
 
+      # Returns the line at the given index.
+      #
       # @param index [Fixnum|NilClass]
       # @return [Vedeu::Editor::Line]
       def line(index = nil)
@@ -78,6 +86,8 @@ module Vedeu
 
       private
 
+      # Return the number of lines.
+      #
       # @return [Fixnum]
       def size
         lines.size
