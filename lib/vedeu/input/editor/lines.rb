@@ -10,11 +10,27 @@ module Vedeu
       # @return [String]
       attr_accessor :lines
 
+      # Coerce a document into a new instance of Vedeu::Editor::Lines.
+      #
+      # @param document [Array<String>|Vedeu::Editor::Lines]
+      # @return [Vedeu::Editor::Lines]
+      def self.coerce(document)
+        return document if document.is_a?(self)
+
+        if document.is_a?(Array)
+          new(document)
+
+        else
+          new
+
+        end
+      end
+
       # Returns a new instance of Vedeu::Editor::Lines.
       #
-      # @param lines [Array<String>]
+      # @param lines [Array<String>|NilClass]
       # @return [Vedeu::Editor::Lines]
-      def initialize(lines)
+      def initialize(lines = nil)
         @lines = lines || []
       end
 

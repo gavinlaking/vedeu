@@ -10,6 +10,22 @@ module Vedeu
       # @return [String]
       attr_accessor :line
 
+      # Coerce a line into a new instance of Vedeu::Editor::Line.
+      #
+      # @param line [String|Vedeu::Editor::Line]
+      # @return [Vedeu::Editor::Line]
+      def self.coerce(line)
+        return line if line.is_a?(self)
+
+        if line.is_a?(String)
+          new(line)
+
+        else
+          new
+
+        end
+      end
+
       # Returns a new instance of Vedeu::Editor::Line.
       #
       # @param line [String|NilClass]

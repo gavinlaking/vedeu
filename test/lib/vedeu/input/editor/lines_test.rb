@@ -26,6 +26,33 @@ module Vedeu
         it { instance.must_respond_to(:lines=) }
       end
 
+      describe '.coerce' do
+        let(:document) {}
+
+        subject { described.coerce(document) }
+
+        it { subject.must_be_instance_of(Vedeu::Editor::Lines) }
+
+        context 'when the document is already a Vedeu::Editor::Lines object' do
+          let(:document) { Vedeu::Editor::Lines.new(lines) }
+
+          it { subject.must_equal(document) }
+          it { subject.lines.must_equal(lines) }
+        end
+
+        context 'when the document is an empty Array' do
+          let(:document) { [] }
+
+          it { subject.lines.must_equal([]) }
+        end
+
+        context 'when the document is an Array' do
+          let(:document) { lines }
+
+          it { subject.lines.must_equal(lines) }
+        end
+      end
+
       describe '#delete_line' do
         let(:index) { 1 }
 

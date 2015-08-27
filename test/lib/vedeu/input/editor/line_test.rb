@@ -26,6 +26,33 @@ module Vedeu
         it { instance.must_respond_to(:line=) }
       end
 
+      describe '.coerce' do
+        let(:_value) {}
+
+        subject { described.coerce(_value) }
+
+        it { subject.must_be_instance_of(Vedeu::Editor::Line) }
+
+        context 'when the value is already a Vedeu::Editor::Line object' do
+          let(:_value) { Vedeu::Editor::Line.new(line) }
+
+          it { subject.must_equal(_value) }
+          it { subject.line.must_equal(line) }
+        end
+
+        context 'when the value is an empty String' do
+          let(:_value) { '' }
+
+          it { subject.line.must_equal('') }
+        end
+
+        context 'when the value is an String' do
+          let(:_value) { line }
+
+          it { subject.line.must_equal(line) }
+        end
+      end
+
       describe '#character' do
         let(:index) { 5 }
 
