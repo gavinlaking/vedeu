@@ -16,6 +16,25 @@ module Vedeu
         @line = line || ''
       end
 
+      # Return the character from the line positioned at the given index.
+      #
+      # @param index [Fixnum|NilClass]
+      # @return [String|NilClass]
+      def character(index = nil)
+        return ''       if line && line.empty?
+        return line[-1] unless index
+
+        if index <= 0
+          line[0]
+
+        elsif index && index <= size
+          line[index]
+
+        else
+          line[-1]
+
+        end
+      end
       # @param index [Fixnum|NilClass]
       # @return [String]
       def delete_character(index = nil)

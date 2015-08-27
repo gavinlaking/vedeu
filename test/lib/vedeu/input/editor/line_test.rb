@@ -26,6 +26,54 @@ module Vedeu
         it { instance.must_respond_to(:line=) }
       end
 
+      describe '#character' do
+        let(:index) { 5 }
+
+        subject { instance.character(index) }
+
+        it { subject.must_be_instance_of(String) }
+
+        context 'when the line is empty' do
+          let(:line) { '' }
+
+          context 'and an index is not given' do
+            let(:index) {}
+
+            it { subject.must_equal('') }
+          end
+        end
+
+        context 'when the line is not empty' do
+          context 'when an index is not given' do
+            let(:index) {}
+
+            it { subject.must_equal('.') }
+          end
+
+          context 'when a negative index is given' do
+            let(:index) { -4 }
+
+            it { subject.must_equal('S') }
+          end
+
+          context 'when an index is given' do
+            it { subject.must_equal('t') }
+          end
+
+          context 'when an index of the last character of the line is given' do
+            let(:index) { 11 }
+
+            it { subject.must_equal('.') }
+          end
+
+          context 'when an index greater than the line length is given' do
+            let(:index) { 20 }
+
+            it { subject.must_equal('.') }
+          end
+        end
+      end
+
       describe '#delete_character' do
         let(:index) { 5 }
 
