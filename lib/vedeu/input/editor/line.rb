@@ -76,6 +76,13 @@ module Vedeu
         self
       end
 
+      # Returns a boolean indicating whether there are characters on this line.
+      #
+      # @return [Boolean]
+      def empty?
+        size == 0
+      end
+
       # An object is equal when its values are the same.
       #
       # @param other [Vedeu::Editor::Line]

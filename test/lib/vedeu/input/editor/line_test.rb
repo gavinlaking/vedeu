@@ -151,6 +151,20 @@ module Vedeu
         end
       end
 
+      describe '#empty?' do
+        subject { instance.empty? }
+
+        context 'when the line is empty' do
+          let(:line) {}
+
+          it { subject.must_equal(true) }
+        end
+
+        context 'when the line is not empty' do
+          it { subject.must_equal(false) }
+        end
+      end
+
       describe '#eql?' do
         let(:other) { instance }
 
