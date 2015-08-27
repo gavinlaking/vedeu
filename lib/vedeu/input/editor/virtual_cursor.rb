@@ -2,6 +2,8 @@ module Vedeu
 
   module Editor
 
+    # Maintains a cursor position within the Vedeu::Editor::Document class.
+    #
     class VirtualCursor
 
       # @!attribute [rw] x
@@ -12,8 +14,10 @@ module Vedeu
       # @return [Fixnum]
       attr_accessor :y
 
-      # @param y [Fixnum]
-      # @param x [Fixnum]
+      # Returns a new instance of Vedeu::Editor::VirtualCursor.
+      #
+      # @param y [Fixnum] The current line.
+      # @param x [Fixnum] The current character with the line.
       # @return [Vedeu::Editor::VirtualCursor]
       def initialize(y: 0, x: 0)
         @y = (y.nil? || y < 0) ? 0 : y
