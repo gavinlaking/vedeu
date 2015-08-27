@@ -6,6 +6,8 @@ module Vedeu
     #
     class Lines
 
+      include Enumerable
+
       # @!attribute [rw] lines
       # @return [String]
       attr_accessor :lines
@@ -85,6 +87,14 @@ module Vedeu
         end
       end
 
+      # Provides iteration over the collection.
+      #
+      # @param block [Proc]
+      # @return [Enumerator]
+      def each(&block)
+        lines.each(&block)
+      end
+
       # Returns a boolean indicating whether there are lines.
       #
       # @return [Boolean]
@@ -146,7 +156,7 @@ module Vedeu
       # @param index [Fixnum|NilClass]
       # @return [Vedeu::Editor::Line]
       def line(index = nil)
-        return Vedeu::Editor::Line.new             unless lines
+        return Vedeu::Editor::Line.new                unless lines
         return Vedeu::Editor::Line.coerce(lines.last) unless index
 
         if index <= 0
