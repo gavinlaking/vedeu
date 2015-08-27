@@ -100,8 +100,6 @@ module Vedeu
         end
       end
 
-      private
-
       # Return the number of lines.
       #
       # @return [Fixnum]

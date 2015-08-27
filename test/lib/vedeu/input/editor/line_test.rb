@@ -238,6 +238,20 @@ module Vedeu
         end
       end
 
+      describe '#size' do
+        subject { instance.size }
+
+        context 'when the line is empty' do
+          let(:line) {}
+
+          it { subject.must_equal(0) }
+        end
+
+        context 'when the line is not empty' do
+          it { subject.must_equal(12) }
+        end
+      end
+
     end # Line
 
   end # Editor

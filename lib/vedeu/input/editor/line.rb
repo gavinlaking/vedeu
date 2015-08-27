@@ -110,8 +110,6 @@ module Vedeu
         self
       end
 
-      private
-
       # Return the size of the line in characters.
       #
       # @return [Fixnum]

@@ -192,6 +192,20 @@ module Vedeu
         end
       end
 
+      describe '#size' do
+        subject { instance.size }
+
+        context 'when there are no lines' do
+          let(:lines) {}
+
+          it { subject.must_equal(0) }
+        end
+
+        context 'when there are lines' do
+          it { subject.must_equal(3) }
+        end
+      end
+
     end # Lines
 
   end # Editor
