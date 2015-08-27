@@ -15,9 +15,10 @@ module Vedeu
       # @param document [Array<String>|Vedeu::Editor::Lines]
       # @return [Vedeu::Editor::Lines]
       def self.coerce(document)
-        return document if document.is_a?(self)
+        if document.is_a?(self)
+          new(document.lines)
 
-        if document.is_a?(Array)
+        elsif document.is_a?(Array)
           lines = document.map do |line|
             if line.is_a?(Vedeu::Editor::Line)
               line
@@ -34,7 +35,9 @@ module Vedeu
           new(lines)
 
         elsif document.is_a?(String)
-          lines = document.lines.map(&:chomp)
+          lines = document.lines.map(&:chomp).map do |line|
+            Vedeu::Editor::Line.coerce(line)
+          end
 
           new(lines)
 
@@ -52,23 +55,34 @@ module Vedeu
         @lines = lines || []
       end
 
+      # Delete a character from a line.
+      #
+      # @param character [String]
+      # @param y [Fixnum]
+      # @param x [Fixnum]
+      #
+      # @return [Vedeu::Editor::Lines]
+      def delete_character(y, x)
+        line(y).delete_character(x)
+      end
+
       # Delete the line from the lines positioned at the given index.
       #
       # @param index [Fixnum|NilClass]
       # @return [String]
       def delete_line(index = nil)
         if lines.empty? || (index && index <= 0)
-          lines
+          self
 
         elsif index && index <= size
-          @lines = lines.dup.tap { |lines| lines.slice!(index) }
+          new_lines = lines.dup.tap { |lines| lines.slice!(index) }
+          Vedeu::Editor::Lines.coerce(new_lines)
 
         else
-          @lines = lines.dup.tap(&:pop)
+          new_lines = lines.dup.tap(&:pop)
+          Vedeu::Editor::Lines.coerce(new_lines)
 
         end
-
-        self
       end
 
       # Returns a boolean indicating whether there are lines.
@@ -87,31 +101,44 @@ module Vedeu
       end
       alias_method :==, :eql?
 
+      # Insert a character in to a line.
+      #
+      # @param character [String]
+      # @param y [Fixnum]
+      # @param x [Fixnum]
+      #
+      # @return [Vedeu::Editor::Lines]
+      def insert_character(character, y, x)
+        line(y).insert_character(character, x)
+      end
+
       # Insert the line on the line below the given index.
       #
       # @param line [String]
       # @param index [Fixnum|NilClass]
-      # @return [String]
+      # @return [Vedeu::Editor::Lines]
       def insert_line(line, index = nil)
         return self unless line
 
         if index
           if index <= 0
-            @lines = lines.insert(0, line)
+            new_lines = lines.insert(0, line)
+            Vedeu::Editor::Lines.coerce(new_lines)
 
           elsif index >= size
-            @lines = lines << line
+            new_lines = lines << line
+            Vedeu::Editor::Lines.coerce(new_lines)
 
           else
-            @lines = lines.insert(index, line)
+            new_lines = lines.insert(index, line)
+            Vedeu::Editor::Lines.coerce(new_lines)
 
           end
         else
-          @lines = lines + [line]
+          new_lines = lines << line
+          Vedeu::Editor::Lines.coerce(new_lines)
 
         end
-
-        self
       end
 
       # Returns the line at the given index.
@@ -120,16 +147,16 @@ module Vedeu
       # @return [Vedeu::Editor::Line]
       def line(index = nil)
         return Vedeu::Editor::Line.new             unless lines
-        return Vedeu::Editor::Line.new(lines.last) unless index
+        return Vedeu::Editor::Line.coerce(lines.last) unless index
 
         if index <= 0
-          Vedeu::Editor::Line.new(lines.first)
+          Vedeu::Editor::Line.coerce(lines.first)
 
         elsif index && index <= size
-          Vedeu::Editor::Line.new(lines[index])
+          Vedeu::Editor::Line.coerce(lines[index])
 
         else
-          Vedeu::Editor::Line.new(lines.last)
+          Vedeu::Editor::Line.coerce(lines.last)
 
         end
       end

@@ -8,7 +8,13 @@ module Vedeu
 
       let(:described) { Vedeu::Editor::Lines }
       let(:instance)  { described.new(lines) }
-      let(:lines)     { ['Some text...', 'More text...', 'Other text...'] }
+      let(:lines)     {
+        [
+          Vedeu::Editor::Line.new('Some text...'),
+          Vedeu::Editor::Line.new('More text...'),
+          Vedeu::Editor::Line.new('Other text...')
+        ]
+      }
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
@@ -80,6 +86,15 @@ module Vedeu
         end
       end
 
+      describe '#delete_character' do
+        let(:y) { }
+        let(:x) { }
+
+        subject { instance.delete_character(y, x) }
+
+        it { skip }
+      end
+
       describe '#delete_line' do
         let(:index) { 1 }
 
@@ -90,36 +105,52 @@ module Vedeu
         context 'when the lines are empty' do
           let(:lines) { [] }
 
-          it { subject.lines.must_equal([]) }
+          it { subject.must_equal(Vedeu::Editor::Lines.new) }
         end
 
         context 'when the lines are not empty' do
           context 'when an index is not given' do
             let(:index) {}
+            let(:expected) {
+              Vedeu::Editor::Lines.coerce(['Some text...', 'More text...'])
+            }
 
-            it { subject.lines.must_equal(['Some text...', 'More text...']) }
+            it { subject.must_equal(expected) }
           end
 
           context 'when a negative index is given' do
             let(:index) { -4 }
+            let(:expected) {
+              Vedeu::Editor::Lines.coerce(['Some text...', 'More text...', 'Other text...'])
+            }
 
-            it { subject.lines.must_equal(['Some text...', 'More text...', 'Other text...']) }
+            it { subject.must_equal(expected) }
           end
 
           context 'when an index is given' do
-            it { subject.lines.must_equal(['Some text...', 'Other text...']) }
+            let(:expected) {
+              Vedeu::Editor::Lines.coerce(['Some text...', 'Other text...'])
+            }
+
+            it { subject.must_equal(expected) }
           end
 
           context 'when an index of the last line is given' do
             let(:index) { 2 }
+            let(:expected) {
+              Vedeu::Editor::Lines.coerce(['Some text...', 'More text...'])
+            }
 
-            it { subject.lines.must_equal(['Some text...', 'More text...']) }
+            it { subject.must_equal(expected) }
           end
 
           context 'when an index greater than the number of lines is given' do
             let(:index) { 10 }
+            let(:expected) {
+              Vedeu::Editor::Lines.coerce(['Some text...', 'More text...'])
+            }
 
-            it { subject.lines.must_equal(['Some text...', 'More text...']) }
+            it { subject.must_equal(expected) }
           end
         end
       end
@@ -152,6 +183,16 @@ module Vedeu
         end
       end
 
+      describe '#insert_character' do
+        let(:character) {}
+        let(:y)         {}
+        let(:x)         {}
+
+        subject { instance.insert_character(character, y, x) }
+
+        it { skip }
+      end
+
       describe '#insert_line' do
         let(:line)  { "Many text..." }
         let(:index) { 1 }
@@ -162,37 +203,56 @@ module Vedeu
 
         context 'when a line is not given' do
           let(:line) {}
+          let(:expected) {
+            Vedeu::Editor::Lines.coerce(['Some text...', 'More text...', 'Other text...'])
+          }
 
-          it { subject.lines.must_equal(['Some text...', 'More text...', 'Other text...']) }
+          it { subject.must_equal(expected) }
         end
 
         context 'when a line is given' do
           context 'and an index is not given' do
             let(:index) {}
+            let(:expected) {
+              Vedeu::Editor::Lines.coerce(['Some text...', 'More text...', 'Other text...', 'Many text...'])
+            }
 
-            it { subject.lines.must_equal(['Some text...', 'More text...', 'Other text...', 'Many text...']) }
+            it { subject.must_equal(expected) }
           end
 
           context 'and a negative index is given' do
             let(:index) { -4 }
+            let(:expected) {
+              Vedeu::Editor::Lines.coerce(['Many text...', 'Some text...', 'More text...', 'Other text...'])
+            }
 
-            it { subject.lines.must_equal(['Many text...', 'Some text...', 'More text...', 'Other text...']) }
+            it { subject.must_equal(expected) }
           end
 
           context 'and an index is given' do
-            it { subject.lines.must_equal(['Some text...', 'Many text...', 'More text...', 'Other text...']) }
+            let(:expected) {
+              Vedeu::Editor::Lines.coerce(['Some text...', 'Many text...', 'More text...', 'Other text...'])
+            }
+
+            it { subject.must_equal(expected) }
           end
 
           context 'and an index of the last line is given' do
             let(:index) { 5 }
+            let(:expected) {
+              Vedeu::Editor::Lines.coerce(['Some text...', 'More text...', 'Other text...', 'Many text...'])
+            }
 
-            it { subject.lines.must_equal(['Some text...', 'More text...', 'Other text...', 'Many text...']) }
+            it { subject.must_equal(expected) }
           end
 
           context 'and an index greater than the number of lines is given' do
             let(:index) { 10 }
+            let(:expected) {
+              Vedeu::Editor::Lines.coerce(['Some text...', 'More text...', 'Other text...', 'Many text...'])
+            }
 
-            it { subject.lines.must_equal(['Some text...', 'More text...', 'Other text...', 'Many text...']) }
+            it { subject.must_equal(expected) }
           end
         end
       end
