@@ -7,16 +7,24 @@ module Vedeu
     let(:described)   { Vedeu::RenderBorder }
     let(:instance)    { described.new(border) }
     let(:border)      {
-      Vedeu::Border.new(enabled: enabled,
-                        name:    _name,
-                        title:   title,
-                        caption: caption)
+      Vedeu::Border.new(enabled:     enabled,
+                        name:        _name,
+                        title:       title,
+                        caption:     caption,
+                        show_top:    show_top,
+                        show_bottom: show_bottom,
+                        show_left:   show_left,
+                        show_right:  show_right)
     }
     let(:visible)     { false }
     let(:enabled)     { false }
     let(:_name)       { 'Vedeu::RenderBorder' }
     let(:title)       {}
     let(:caption)     {}
+    let(:show_top)    { true }
+    let(:show_bottom) { true }
+    let(:show_left)   { true }
+    let(:show_right)  { true }
 
     it { described.must_respond_to(:with) }
 
@@ -57,28 +65,53 @@ module Vedeu
             let(:title) { 'T' }
 
             # @todo Add more tests.
-            # it { skip }
+            it { subject.size.must_equal(18) }
           end
 
           context 'and a title is not given' do
             # @todo Add more tests.
-            # it { skip }
+            it { subject.size.must_equal(18) }
           end
 
           context 'and a caption is given' do
             let(:caption) { 'C' }
 
             # @todo Add more tests.
-            # it { skip }
+            it { subject.size.must_equal(18) }
           end
 
           context 'and a caption is not given' do
             # @todo Add more tests.
-            # it { skip }
+            it { subject.size.must_equal(18) }
           end
 
-          # @todo Add more tests.
-          # it { skip }
+          context 'and the left side is disabled' do
+            let(:show_left) { false }
+
+            # @todo Add more tests.
+            it { subject.size.must_equal(16) }
+          end
+
+          context 'and the right side is disabled' do
+            let(:show_right) { false }
+
+            # @todo Add more tests.
+            it { subject.size.must_equal(16) }
+          end
+
+          context 'and the top side is disabled' do
+            let(:show_top) { false }
+
+            # @todo Add more tests.
+            it { subject.size.must_equal(13) }
+          end
+
+          context 'and the bottom side is disabled' do
+            let(:show_bottom) { false }
+
+            # @todo Add more tests.
+            it { subject.size.must_equal(13) }
+          end
         end
       end
     end
