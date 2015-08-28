@@ -62,18 +62,15 @@ module Vedeu
         if line.empty? || (index && index <= 0)
           self
 
-        elsif index
-          if index >= size
-            @line = line.chop
-          else
-            @line = line.dup.tap { |line| line.slice!(index) }
-          end
+        elsif index && index <= size
+          new_line = line.dup.tap { |line| line.slice!(index) }
+          Vedeu::Editor::Line.coerce(new_line)
+
         else
-          @line = line.chop
+          new_line = line.chop
+          Vedeu::Editor::Line.coerce(new_line)
 
         end
-
-        self
       end
 
       # Returns a boolean indicating whether there are characters on this line.
