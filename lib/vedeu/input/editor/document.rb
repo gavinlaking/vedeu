@@ -55,14 +55,18 @@ module Vedeu
       #
       # @return [Vedeu::Editor::Document]
       def delete_character
-        lines.delete_character(y, x)
+        @lines = lines.delete_character(y, x)
+
+        store
       end
 
       # Delete a line.
       #
       # @return [Vedeu::Editor::Document]
       def delete_line
-        lines.delete_line(y)
+        @lines = lines.delete_line(y)
+
+        store
       end
 
       # Inserts the given character in to the line where the cursor is currently
@@ -73,20 +77,18 @@ module Vedeu
       def insert_character(character)
         return self if character.is_a?(Symbol)
 
-        lines.insert_character(character, y, x)
+        @lines = lines.insert_character(character, y, x)
+
+        store
       end
 
       # Insert an empty line.
       #
       # @return [Vedeu::Editor::Document]
       def insert_line
-        new_lines = lines.insert_line(Vedeu::Editor::Line.new, y)
-
-        Vedeu.log(message: "#{new_lines.inspect}")
+        @lines = lines.insert_line(Vedeu::Editor::Line.new, y)
 
         store
-
-        new_lines
       end
 
       # @return [Array<String|void>]

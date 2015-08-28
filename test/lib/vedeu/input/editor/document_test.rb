@@ -45,6 +45,8 @@ module Vedeu
 
         subject { instance.delete_character }
 
+        it { subject.must_be_instance_of(Vedeu::Editor::Document) }
+
         # it { skip }
       end
 
@@ -53,6 +55,8 @@ module Vedeu
 
         subject { instance.delete_line }
 
+        it { subject.must_be_instance_of(Vedeu::Editor::Document) }
+
         # it { skip }
       end
 
@@ -60,6 +64,8 @@ module Vedeu
         let(:character) { 'a' }
 
         subject { instance.insert_character(character) }
+
+        it { subject.must_be_instance_of(Vedeu::Editor::Document) }
 
         # it { skip }
 
@@ -74,6 +80,8 @@ module Vedeu
         let(:y) { 2 }
 
         subject { instance.insert_line }
+
+        it { subject.must_be_instance_of(Vedeu::Editor::Document) }
 
         # it { skip }
       end
@@ -90,6 +98,12 @@ module Vedeu
         context 'when the line is not empty' do
           it { subject.must_equal(Vedeu::Editor::Line.new('Hydrogen')) }
         end
+
+        # context 'when y is set' do
+        #   let(:y) { 2 }
+
+        #   it { subject.must_equal(Vedeu::Editor::Line.new('Lithium')) }
+        # end
       end
 
       describe '#lines' do
