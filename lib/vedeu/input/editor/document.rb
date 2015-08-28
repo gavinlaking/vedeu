@@ -55,7 +55,7 @@ module Vedeu
       #
       # @return [Vedeu::Editor::Document]
       def delete_character
-        lines.delete_character(x)
+        lines.delete_character(y, x)
       end
 
       # Delete a line.
