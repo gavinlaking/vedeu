@@ -6,6 +6,8 @@ module Vedeu
     #
     class Capture
 
+      ESCAPE_KEY_CODE = 27 # \e
+
       # @param console [IO]
       # @return [String|Symbol]
       def self.read(console)
@@ -31,7 +33,7 @@ module Vedeu
       def keys
         keys = console.getch
 
-        if keys.ord == 27 # \e
+        if keys.ord == ESCAPE_KEY_CODE
           # Vedeu.log(type: :debug, message: "#keys: Escape detected...")
           @chars = 3
 
