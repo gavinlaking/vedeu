@@ -75,18 +75,17 @@ module Vedeu
       # @param index [Fixnum|NilClass]
       # @return [String]
       def delete_line(index = nil)
-        if lines.empty? || (index && index <= 0)
-          self
+        return self if lines.empty? || (index && index <= 0)
 
-        elsif index && index <= size
-          new_lines = lines.dup.tap { |lines| lines.slice!(index) }
-          Vedeu::Editor::Lines.coerce(new_lines)
+        new_lines = if index && index <= size
+                      lines.dup.tap { |lines| lines.slice!(index) }
 
-        else
-          new_lines = lines.dup.tap(&:pop)
-          Vedeu::Editor::Lines.coerce(new_lines)
+                    else
+                      lines.dup.tap(&:pop)
 
-        end
+                    end
+
+        Vedeu::Editor::Lines.coerce(new_lines)
       end
 
       # Provides iteration over the collection.
@@ -133,25 +132,23 @@ module Vedeu
       def insert_line(line, index = nil)
         return self unless line
 
-        if index
-          if index <= 0
-            new_lines = lines.insert(0, line)
-            Vedeu::Editor::Lines.coerce(new_lines)
+        new_lines = if index
+                      if index <= 0
+                        lines.insert(0, line)
 
-          elsif index >= size
-            new_lines = lines << line
-            Vedeu::Editor::Lines.coerce(new_lines)
+                      elsif index >= size
+                        lines << line
 
-          else
-            new_lines = lines.insert(index, line)
-            Vedeu::Editor::Lines.coerce(new_lines)
+                      else
+                        lines.insert(index, line)
 
-          end
-        else
-          new_lines = lines << line
-          Vedeu::Editor::Lines.coerce(new_lines)
+                      end
+                    else
+                      lines << line
 
-        end
+                    end
+
+        Vedeu::Editor::Lines.coerce(new_lines)
       end
 
       # Returns the line at the given index.
