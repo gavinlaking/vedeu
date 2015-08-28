@@ -7,14 +7,18 @@ module Vedeu
     describe VirtualCursor do
 
       let(:described) { Vedeu::Editor::VirtualCursor }
-      let(:instance)  { described.new(y: y, x: x) }
+      let(:instance)  { described.new(y: y, x: x, bx: bx, by: by) }
       let(:y)         { 0 }
       let(:x)         { 0 }
+      let(:by)        { 1 }
+      let(:bx)        { 1 }
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
         it { instance.instance_variable_get('@y').must_equal(y) }
         it { instance.instance_variable_get('@x').must_equal(x) }
+        it { instance.instance_variable_get('@by').must_equal(by) }
+        it { instance.instance_variable_get('@bx').must_equal(bx) }
 
         context 'when x is nil' do
           it { instance.instance_variable_get('@x').must_equal(0) }
@@ -35,6 +39,17 @@ module Vedeu
 
           it { instance.instance_variable_get('@y').must_equal(6) }
         end
+      end
+
+      describe '#accessors' do
+        it { instance.must_respond_to(:bx) }
+        it { instance.must_respond_to(:bx=) }
+        it { instance.must_respond_to(:by) }
+        it { instance.must_respond_to(:by=) }
+        it { instance.must_respond_to(:x) }
+        it { instance.must_respond_to(:x=) }
+        it { instance.must_respond_to(:y) }
+        it { instance.must_respond_to(:y=) }
       end
 
       describe '#bol' do
@@ -67,6 +82,15 @@ module Vedeu
         subject { instance.right }
 
         it { subject.must_equal(12) }
+      end
+
+      describe '#to_s' do
+        let(:x) { 11 }
+        let(:y) { 5 }
+
+        subject { instance.to_s }
+
+        it { subject.must_equal("\e[6;12H\e[?25h") }
       end
 
       describe '#up' do

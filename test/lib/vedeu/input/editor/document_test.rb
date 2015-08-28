@@ -139,7 +139,7 @@ module Vedeu
             Vedeu::Editor::Line.new('C'),
           ])
         }
-        let(:output) { "\e[1;1HA\e[2;1HB\e[3;1HC" }
+        let(:output) { "\e[1;1HA\e[2;1HB\e[3;1HC\e[1;1H\e[?25h" }
 
         before { Vedeu::Direct.stubs(:write) }
 

@@ -149,12 +149,34 @@ module Vedeu
           output << Vedeu::Position.new((by + y_index), bx).to_s + line.to_s
         end
 
+        virtual_cursor_adjust!
+
+        output << virtual_cursor.to_s
+
         output
       end
 
       # @return [Vedeu::VirtualCursor]
       def virtual_cursor
-        @virtual_cursor ||= Vedeu::Editor::VirtualCursor.new(y: 0, x: 0)
+        @virtual_cursor ||= Vedeu::Editor::VirtualCursor.new(y:  0,
+                                                             x:  0,
+                                                             by: by,
+                                                             bx: bx)
+      end
+
+      # Adjust the position of the virtual cursor.
+      #
+      # @return [TrueClass]
+      def virtual_cursor_adjust!
+        if virtual_cursor.x > lines.line(y).size
+          virtual_cursor.x = lines.line(y).size
+        end
+
+        if virtual_cursor.y > lines.size
+          virtual_cursor.y = lines.size
+        end
+
+        true
       end
 
     end # Document
