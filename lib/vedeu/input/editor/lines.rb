@@ -178,6 +178,11 @@ module Vedeu
         lines.size
       end
 
+      # @return [String]
+      def to_s
+        lines.map(&:to_s).join
+      end
+
     end # Line
 
   end # Editor

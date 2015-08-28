@@ -513,6 +513,22 @@ module Vedeu
         end
       end
 
+      describe '#to_s' do
+        subject { instance.to_s }
+
+        context 'when there are no lines' do
+          let(:lines) {}
+
+          it { subject.must_equal("") }
+        end
+
+        context 'when there are lines' do
+          let(:expected) { "Some text...\nMore text...\nOther text...\n" }
+
+          it { subject.must_equal(expected) }
+        end
+      end
+
     end # Lines
 
   end # Editor
