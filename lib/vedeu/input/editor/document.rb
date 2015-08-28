@@ -58,6 +58,8 @@ module Vedeu
       def delete_character
         @lines = lines.delete_character(y, x)
 
+        left
+
         store
       end
 
@@ -66,6 +68,8 @@ module Vedeu
       # @return [Vedeu::Editor::Document]
       def delete_line
         @lines = lines.delete_line(y)
+
+        up
 
         store
       end
@@ -80,6 +84,8 @@ module Vedeu
 
         @lines = lines.insert_character(character, y, x)
 
+        right
+
         store
       end
 
@@ -87,7 +93,11 @@ module Vedeu
       #
       # @return [Vedeu::Editor::Document]
       def insert_line
-        @lines = lines.insert_line(Vedeu::Editor::Line.new, y)
+        @lines = lines.insert_line(Vedeu::Editor::Line.new, y + 1)
+
+        down
+
+        bol
 
         store
       end

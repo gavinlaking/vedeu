@@ -24,6 +24,13 @@ module Vedeu
         @x = (x.nil? || x < 0) ? 0 : x
       end
 
+      # Move the virtual cursor to the beginning of the line.
+      #
+      # @return [Fixnum]
+      def bol
+        @x = 0
+      end
+
       # Move the virtual cursor down by one line.
       #
       # @return [Fixnum]

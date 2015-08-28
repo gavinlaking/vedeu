@@ -37,6 +37,14 @@ module Vedeu
         end
       end
 
+      describe '#bol' do
+        let(:x) { 11 }
+
+        subject { instance.bol }
+
+        it { subject.must_equal(0) }
+      end
+
       describe '#down' do
         let(:y) { 11 }
 
