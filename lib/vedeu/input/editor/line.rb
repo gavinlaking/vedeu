@@ -59,18 +59,17 @@ module Vedeu
       # @param index [Fixnum|NilClass]
       # @return [String]
       def delete_character(index = nil)
-        if line.empty? || (index && index <= 0)
-          self
+        return self if line.empty? || (index && index <= 0)
 
-        elsif index && index <= size
-          new_line = line.dup.tap { |line| line.slice!(index) }
-          Vedeu::Editor::Line.coerce(new_line)
+        new_line = if index && index <= size
+          line.dup.tap { |line| line.slice!(index) }
 
         else
-          new_line = line.chop
-          Vedeu::Editor::Line.coerce(new_line)
+          line.chop
 
         end
+
+        Vedeu::Editor::Line.coerce(new_line)
       end
 
       # Returns a boolean indicating whether there are characters on this line.
@@ -95,23 +94,23 @@ module Vedeu
       # @param index [Fixnum|NilClass]
       # @return [String]
       def insert_character(character, index = nil)
-        if index
-          if index <= 0
-            @line = line.insert(0, character)
+        new_line = if index
+                     if index <= 0
+                       line.insert(0, character)
 
-          elsif index >= size
-            @line = line << character
+                     elsif index >= size
+                       line << character
 
-          else
-            @line = line.insert(index, character)
+                     else
+                       line.insert(index, character)
 
-          end
-        else
-          @line = line + character
+                     end
+                   else
+                     line + character
 
-        end
+                   end
 
-        self
+        Vedeu::Editor::Line.coerce(new_line)
       end
 
       # Return the size of the line in characters.
