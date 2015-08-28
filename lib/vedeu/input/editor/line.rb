@@ -63,12 +63,12 @@ module Vedeu
         return self if line.empty? || (index && index <= 0)
 
         new_line = if index && index <= size
-          line.dup.tap { |line| line.slice!(index) }
+                     line.dup.tap { |line| line.slice!(index) }
 
-        else
-          line.chop
+                   else
+                     line.chop
 
-        end
+                   end
 
         Vedeu::Editor::Line.coerce(new_line)
       end

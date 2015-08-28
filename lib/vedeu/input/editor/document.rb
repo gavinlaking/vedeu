@@ -110,12 +110,12 @@ module Vedeu
       # @return [Array<String|void>]
       def lines
         @lines ||= if present?(data)
-          Vedeu::Editor::Lines.coerce(data)
+                     Vedeu::Editor::Lines.coerce(data)
 
-        else
-          defaults.fetch(data)
+                   else
+                     defaults.fetch(data)
 
-        end
+                   end
       end
 
       # @return [void]
