@@ -60,7 +60,6 @@ module Vedeu
       # Deletes the character from the line where the cursor is currently
       # positioned.
       #
-      # @param character [String]
       # @param y [Fixnum]
       # @param x [Fixnum]
       # @return [Vedeu::Editor::Lines]
