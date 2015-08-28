@@ -523,7 +523,7 @@ module Vedeu
         end
 
         context 'when there are lines' do
-          let(:expected) { "Some text...\nMore text...\nOther text...\n" }
+          let(:expected) { "Some text...More text...Other text..." }
 
           it { subject.must_equal(expected) }
         end

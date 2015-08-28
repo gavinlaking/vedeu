@@ -139,13 +139,14 @@ module Vedeu
             Vedeu::Editor::Line.new('C'),
           ])
         }
+        let(:output) { "\e[1;1HA\e[2;1HB\e[3;1HC" }
 
         before { Vedeu::Direct.stubs(:write) }
 
         subject { instance.render }
 
         it {
-          Vedeu::Direct.expects(:write).with(value: ['A', 'B', 'C'], x: 1, y: 1)
+          Vedeu::Direct.expects(:write).with(value: output, x: 1, y: 1)
           subject
         }
       end

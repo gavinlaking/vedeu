@@ -120,7 +120,7 @@ module Vedeu
 
       # @return [void]
       def render
-        Vedeu::Direct.write(write: output, x: bx, y: by)
+        Vedeu::Direct.write(value: output, x: bx, y: by)
       end
 
       # @return [Vedeu::Editor::Document]
