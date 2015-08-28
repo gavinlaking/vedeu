@@ -10,8 +10,6 @@ module Vedeu
     let(:x)         {}
     let(:y)         {}
 
-    before { Vedeu::Terminal.stubs(:output) }
-
     describe '#initialize' do
       it { instance.must_be_instance_of(described) }
 
@@ -46,6 +44,8 @@ module Vedeu
     end
 
     describe '.write' do
+      before { Vedeu::Terminal.stubs(:output) }
+
       subject { described.write(value: _value, x: x, y: y) }
 
       it { subject.must_be_instance_of(String) }

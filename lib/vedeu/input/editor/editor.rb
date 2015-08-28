@@ -37,7 +37,7 @@ module Vedeu
         @name  = name
       end
 
-      # @return [Vedeu::Editor::Document|void]
+      # @return [String|Symbol]
       def keypress
         if document
           case input
@@ -53,7 +53,7 @@ module Vedeu
             insert_character(input)
           end
 
-          # render
+          render
 
         else
           input

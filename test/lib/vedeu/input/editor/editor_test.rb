@@ -38,6 +38,8 @@ module Vedeu
       end
 
       describe '.keypress' do
+        before { Vedeu::Terminal.stubs(:output) }
+
         subject { described.keypress(input: input, name: _name) }
 
         context 'when no name is given' do
@@ -125,7 +127,7 @@ module Vedeu
             context 'when the input is a symbol' do
               let(:input) { :ctrl_p }
 
-              it { subject.must_be_instance_of(Vedeu::Editor::Document) }
+              it { subject.must_be_instance_of(String) }
             end
 
             context 'when the input is not a symbol' do

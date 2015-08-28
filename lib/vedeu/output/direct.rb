@@ -46,7 +46,7 @@ module Vedeu
 
     # @return [String]
     def output
-      position + value
+      (Array(position) + Array(value)).join
     end
 
     # @return [String]
