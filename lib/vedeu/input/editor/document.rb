@@ -123,24 +123,11 @@ module Vedeu
         Vedeu::Direct.write(value: output, x: bx, y: by)
       end
 
-      # @return [Vedeu::Editor::Document]
-      def store
-        virtual_cursor.x = x
-        virtual_cursor.y = y
-
-        super
-      end
-
       private
 
       # @return [Vedeu::Border]
       def border
         @border ||= Vedeu.borders.by_name(name)
-      end
-
-      # @return [Vedeu::Cursor]
-      def cursor
-        @cursor = Vedeu.cursors.by_name(name)
       end
 
       # Returns the default options/attributes for this class.

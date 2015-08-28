@@ -151,12 +151,6 @@ module Vedeu
         }
       end
 
-      describe '#store' do
-        subject { instance.store }
-
-        # it { skip }
-      end
-
     end # Editor
 
   end # Editor
