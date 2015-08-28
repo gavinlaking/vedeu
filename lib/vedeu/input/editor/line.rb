@@ -9,6 +9,7 @@ module Vedeu
       # @!attribute [rw] line
       # @return [String]
       attr_accessor :line
+      alias_method :to_s, :line
 
       # Coerce a line into a new instance of Vedeu::Editor::Line.
       #
@@ -118,11 +119,6 @@ module Vedeu
       # @return [Fixnum]
       def size
         line.size
-      end
-
-      # @return [String]
-      def to_s
-        line + "\n"
       end
 
       # @return [Array<Vedeu::Views::Char>]

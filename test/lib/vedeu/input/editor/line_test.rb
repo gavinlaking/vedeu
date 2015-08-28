@@ -302,11 +302,11 @@ module Vedeu
         context 'when the line is empty' do
           let(:line) {}
 
-          it { subject.must_equal("\n") }
+          it { subject.must_equal('') }
         end
 
         context 'when the line is not empty' do
-          it { subject.must_equal("Some text...\n") }
+          it { subject.must_equal('Some text...') }
         end
       end
 
