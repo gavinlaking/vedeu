@@ -39,26 +39,22 @@ module Vedeu
 
       # @return [String|Symbol]
       def keypress
-        if document
-          case input
-          when :backspace then delete_character
-          when :ctrl_c    then Vedeu.trigger(:_exit_)
-          when :down      then down
-          when :enter     then insert_line
-          when :escape    then Vedeu.trigger(:_mode_switch_)
-          when :left      then left
-          when :right     then right
-          when :up        then up
-          else
-            insert_character(input)
-          end
+        return input unless document
 
-          render
-
+        case input
+        when :backspace then delete_character
+        when :ctrl_c    then Vedeu.trigger(:_exit_)
+        when :down      then down
+        when :enter     then insert_line
+        when :escape    then Vedeu.trigger(:_mode_switch_)
+        when :left      then left
+        when :right     then right
+        when :up        then up
         else
-          input
-
+          insert_character(input)
         end
+
+        render
       end
 
       protected
