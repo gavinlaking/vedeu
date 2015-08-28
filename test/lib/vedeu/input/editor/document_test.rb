@@ -29,8 +29,6 @@ module Vedeu
           instance.instance_variable_get('@repository').
             must_equal(Vedeu.documents)
         }
-
-        # it { instance.instance_variable_get('@border').must_equal(border) }
       end
 
       describe 'accessors' do

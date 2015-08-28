@@ -130,8 +130,6 @@ module Vedeu
         # self
       end
 
-      protected
-
       private
 
       # @return [Vedeu::Border]
