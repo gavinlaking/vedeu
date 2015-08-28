@@ -98,8 +98,11 @@ module Vedeu
               Vedeu::Editor::Line.new('')
             ]
           }
+          let(:expected) {
+            Vedeu::Editor::Lines.new([Vedeu::Editor::Line.new('')])
+          }
 
-          it { subject.must_equal(Vedeu::Editor::Line.new('')) }
+          it { subject.must_equal(expected) }
         end
 
         context 'when there is one line' do
@@ -111,24 +114,33 @@ module Vedeu
 
           context 'and x is the first character of the line' do
             let(:x) { 0 }
+            let(:expected) {
+              Vedeu::Editor::Lines.new([Vedeu::Editor::Line.new('Hydrogen')])
+            }
 
-            it { subject.must_equal(Vedeu::Editor::Line.new('Hydrogen')) }
+            it { subject.must_equal(expected) }
           end
 
           context 'and x is somewhere on the line' do
             let(:x) { 4 }
+            let(:expected) {
+              Vedeu::Editor::Lines.new([Vedeu::Editor::Line.new('Hydrgen')])
+            }
 
-            it { subject.must_equal(Vedeu::Editor::Line.new('Hydrgen')) }
+            it { subject.must_equal(expected) }
           end
 
           context 'and x is the last character of the line' do
             let(:x) { 15 }
+            let(:expected) {
+              Vedeu::Editor::Lines.new([Vedeu::Editor::Line.new('Hydroge')])
+            }
 
-            it { subject.must_equal(Vedeu::Editor::Line.new('Hydroge')) }
+            it { subject.must_equal(expected) }
           end
         end
 
-        context 'when there is multiple lines' do
+        context 'when there are multiple lines' do
           let(:y)     { 1 }
           let(:lines) {
             [
@@ -140,20 +152,41 @@ module Vedeu
 
           context 'and x is the first character of the line' do
             let(:x) { 0 }
+            let(:expected) {
+              Vedeu::Editor::Lines.new([
+                Vedeu::Editor::Line.new('Hydrogen'),
+                Vedeu::Editor::Line.new('Helium'),
+                Vedeu::Editor::Line.new('Lithium'),
+              ])
+            }
 
-            it { subject.must_equal(Vedeu::Editor::Line.new('Helium')) }
+            it { subject.must_equal(expected) }
           end
 
           context 'and x is somewhere on the line' do
             let(:x) { 4 }
+            let(:expected) {
+              Vedeu::Editor::Lines.new([
+                Vedeu::Editor::Line.new('Hydrogen'),
+                Vedeu::Editor::Line.new('Helim'),
+                Vedeu::Editor::Line.new('Lithium'),
+              ])
+            }
 
-            it { subject.must_equal(Vedeu::Editor::Line.new('Helim')) }
+            it { subject.must_equal(expected) }
           end
 
           context 'and x is the last character of the line' do
             let(:x) { 15 }
+            let(:expected) {
+              Vedeu::Editor::Lines.new([
+                Vedeu::Editor::Line.new('Hydrogen'),
+                Vedeu::Editor::Line.new('Heliu'),
+                Vedeu::Editor::Line.new('Lithium'),
+              ])
+            }
 
-            it { subject.must_equal(Vedeu::Editor::Line.new('Heliu')) }
+            it { subject.must_equal(expected) }
           end
         end
       end
@@ -259,8 +292,11 @@ module Vedeu
               Vedeu::Editor::Line.new('')
             ]
           }
+          let(:expected) {
+            Vedeu::Editor::Lines.new([Vedeu::Editor::Line.new('a')])
+          }
 
-          it { subject.must_equal(Vedeu::Editor::Line.new('a')) }
+          it { subject.must_equal(expected) }
         end
 
         context 'when there is one line' do
@@ -272,24 +308,33 @@ module Vedeu
 
           context 'and x is the first character of the line' do
             let(:x) { 0 }
+            let(:expected) {
+              Vedeu::Editor::Lines.new([Vedeu::Editor::Line.new('aHydrogen')])
+            }
 
-            it { subject.must_equal(Vedeu::Editor::Line.new('aHydrogen')) }
+            it { subject.must_equal(expected) }
           end
 
           context 'and x is somewhere on the line' do
             let(:x) { 4 }
+            let(:expected) {
+              Vedeu::Editor::Lines.new([Vedeu::Editor::Line.new('Hydraogen')])
+            }
 
-            it { subject.must_equal(Vedeu::Editor::Line.new('Hydraogen')) }
+            it { subject.must_equal(expected) }
           end
 
           context 'and x is the last character of the line' do
             let(:x) { 15 }
+            let(:expected) {
+              Vedeu::Editor::Lines.new([Vedeu::Editor::Line.new('Hydrogena')])
+            }
 
-            it { subject.must_equal(Vedeu::Editor::Line.new('Hydrogena')) }
+            it { subject.must_equal(expected) }
           end
         end
 
-        context 'when there is multiple lines' do
+        context 'when there are multiple lines' do
           let(:y)     { 1 }
           let(:lines) {
             [
@@ -301,20 +346,41 @@ module Vedeu
 
           context 'and x is the first character of the line' do
             let(:x) { 0 }
+            let(:expected) {
+              Vedeu::Editor::Lines.new([
+                Vedeu::Editor::Line.new('Hydrogen'),
+                Vedeu::Editor::Line.new('aHelium'),
+                Vedeu::Editor::Line.new('Lithium'),
+              ])
+            }
 
-            it { subject.must_equal(Vedeu::Editor::Line.new('aHelium')) }
+            it { subject.must_equal(expected) }
           end
 
           context 'and x is somewhere on the line' do
             let(:x) { 4 }
+            let(:expected) {
+              Vedeu::Editor::Lines.new([
+                Vedeu::Editor::Line.new('Hydrogen'),
+                Vedeu::Editor::Line.new('Heliaum'),
+                Vedeu::Editor::Line.new('Lithium'),
+              ])
+            }
 
-            it { subject.must_equal(Vedeu::Editor::Line.new('Heliaum')) }
+            it { subject.must_equal(expected) }
           end
 
           context 'and x is the last character of the line' do
             let(:x) { 15 }
+            let(:expected) {
+              Vedeu::Editor::Lines.new([
+                Vedeu::Editor::Line.new('Hydrogen'),
+                Vedeu::Editor::Line.new('Heliuma'),
+                Vedeu::Editor::Line.new('Lithium'),
+              ])
+            }
 
-            it { subject.must_equal(Vedeu::Editor::Line.new('Heliuma')) }
+            it { subject.must_equal(expected) }
           end
         end
       end

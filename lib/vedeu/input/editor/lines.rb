@@ -65,9 +65,8 @@ module Vedeu
       # @param x [Fixnum]
       # @return [Vedeu::Editor::Lines]
       def delete_character(y, x)
-        new_line  = line(y).delete_character(x)
-        # new_lines = lines[y] = new_line
-        # Vedeu::Editor::Lines.coerce(new_lines)
+        lines[y] = line(y).delete_character(x)
+        Vedeu::Editor::Lines.coerce(lines)
       end
 
       # Delete the line from the lines positioned at the given index.
@@ -119,9 +118,8 @@ module Vedeu
       # @param x [Fixnum]
       # @return [Vedeu::Editor::Lines]
       def insert_character(character, y, x)
-        new_line = line(y).insert_character(character, x)
-        # new_lines = lines[y] = new_line
-        # Vedeu::Editor::Lines.coerce(new_lines)
+        lines[y] = line(y).insert_character(character, x)
+        Vedeu::Editor::Lines.coerce(lines)
       end
 
       # Insert the line on the line below the given index.
