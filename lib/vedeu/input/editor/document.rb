@@ -73,13 +73,7 @@ module Vedeu
       def insert_character(character)
         return self if character.is_a?(Symbol)
 
-        new_lines = lines.insert_character(character, y, x)
-
-        Vedeu.log(message: "#{new_lines.inspect}")
-
-        store
-
-        new_lines
+        lines.insert_character(character, y, x)
       end
 
       # Insert an empty line.

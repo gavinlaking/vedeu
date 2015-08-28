@@ -42,16 +42,28 @@ module Vedeu
       end
 
       describe '#delete_character' do
+        let(:y) { 0 }
+        let(:x) { 0 }
+
         subject { instance.delete_character }
+
+        # it { skip }
       end
 
       describe '#delete_line' do
+        let(:y) { 0 }
+
+        subject { instance.delete_line }
+
+        # it { skip }
       end
 
       describe '#insert_character' do
         let(:character) { 'a' }
 
         subject { instance.insert_character(character) }
+
+        # it { skip }
 
         context 'when the character is a Symbol' do
           let(:character) { :a }
@@ -64,6 +76,8 @@ module Vedeu
         let(:y) { 2 }
 
         subject { instance.insert_line }
+
+        # it { skip }
       end
 
       describe '#line' do
