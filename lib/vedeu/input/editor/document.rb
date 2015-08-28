@@ -120,12 +120,7 @@ module Vedeu
 
       # @return [void]
       def render
-        # Vedeu.buffers.by_name(name).clear
-        # Vedeu::Output.render(border.render)
-
-        value = lines.flat_map { |line| line.to_chars }.map(&:to_s)
-
-        Vedeu::Direct.write(value: value, x: bx, y: by)
+        Vedeu::Direct.write(write: output, x: bx, y: by)
       end
 
       # @return [Vedeu::Editor::Document]
@@ -134,13 +129,6 @@ module Vedeu
         virtual_cursor.y = y
 
         super
-
-        # cursor.store
-        # cursor.render
-
-        # render
-
-        # self
       end
 
       private
@@ -164,6 +152,17 @@ module Vedeu
           name:       nil,
           repository: Vedeu.documents,
         }
+      end
+
+      # @return [String]
+      def output
+        output = ''
+
+        lines.each_with_index do |line, y_index|
+          output << Vedeu::Position.new((by + y_index), bx).to_s + line.to_s
+        end
+
+        output
       end
 
       # @return [Vedeu::VirtualCursor]
