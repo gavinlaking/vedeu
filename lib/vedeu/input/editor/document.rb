@@ -14,6 +14,7 @@ module Vedeu
                      :by
 
       def_delegators :virtual_cursor,
+                     :bol,
                      :down,
                      :left,
                      :right,
