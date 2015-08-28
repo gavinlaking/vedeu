@@ -57,15 +57,17 @@ module Vedeu
         @lines = lines || []
       end
 
-      # Delete a character from a line.
+      # Deletes the character from the line where the cursor is currently
+      # positioned.
       #
       # @param character [String]
       # @param y [Fixnum]
       # @param x [Fixnum]
-      #
       # @return [Vedeu::Editor::Lines]
       def delete_character(y, x)
-        line(y).delete_character(x)
+        new_line  = line(y).delete_character(x)
+        # new_lines = lines[y] = new_line
+        # Vedeu::Editor::Lines.coerce(new_lines)
       end
 
       # Delete the line from the lines positioned at the given index.
@@ -116,10 +118,11 @@ module Vedeu
       # @param character [String]
       # @param y [Fixnum]
       # @param x [Fixnum]
-      #
       # @return [Vedeu::Editor::Lines]
       def insert_character(character, y, x)
-        line(y).insert_character(character, x)
+        new_line = line(y).insert_character(character, x)
+        # new_lines = lines[y] = new_line
+        # Vedeu::Editor::Lines.coerce(new_lines)
       end
 
       # Insert the line on the line below the given index.

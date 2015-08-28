@@ -87,55 +87,73 @@ module Vedeu
       end
 
       describe '#delete_character' do
+        let(:x)         { 0 }
+        let(:y)         { 0 }
+
         subject { instance.delete_character(y, x) }
 
-        context 'when the line is empty' do
-          let(:data) {}
+        context 'when there are no lines' do
+          let(:lines) {
+            [
+              Vedeu::Editor::Line.new('')
+            ]
+          }
 
-          # it {
-          #   subject
-          #   instance.line.must_equal('')
-          # }
+          it { subject.must_equal(Vedeu::Editor::Line.new('')) }
         end
 
-        context 'when the line is not empty' do
-          context 'and x is nil or x <= 0' do
+        context 'when there is one line' do
+          let(:lines) {
+            [
+              Vedeu::Editor::Line.new('Hydrogen')
+            ]
+          }
+
+          context 'and x is the first character of the line' do
             let(:x) { 0 }
 
-            # it {
-            #   subject
-            #   instance.line.must_equal('Hydrogen')
-            # }
-          end
-
-          context 'and x is at the last character of the line' do
-            let(:x) { 7 }
-
-            # it {
-            #   subject
-            #   instance.line.must_equal('Hydroge')
-            # }
-
-            # it 'handles multiple deletes' do
-            #   subject
-            #   subject
-            #   instance.line.must_equal('Hydrog')
-            # end
+            it { subject.must_equal(Vedeu::Editor::Line.new('Hydrogen')) }
           end
 
           context 'and x is somewhere on the line' do
             let(:x) { 4 }
 
-            # it {
-            #   subject
-            #   instance.line.must_equal('Hydrgen')
-            # }
+            it { subject.must_equal(Vedeu::Editor::Line.new('Hydrgen')) }
+          end
 
-            # it 'handles multiple deletes' do
-            #   subject
-            #   subject
-            #   instance.line.must_equal('Hydgen')
-            # end
+          context 'and x is the last character of the line' do
+            let(:x) { 15 }
+
+            it { subject.must_equal(Vedeu::Editor::Line.new('Hydroge')) }
+          end
+        end
+
+        context 'when there is multiple lines' do
+          let(:y)     { 1 }
+          let(:lines) {
+            [
+              Vedeu::Editor::Line.new('Hydrogen'),
+              Vedeu::Editor::Line.new('Helium'),
+              Vedeu::Editor::Line.new('Lithium'),
+            ]
+          }
+
+          context 'and x is the first character of the line' do
+            let(:x) { 0 }
+
+            it { subject.must_equal(Vedeu::Editor::Line.new('Helium')) }
+          end
+
+          context 'and x is somewhere on the line' do
+            let(:x) { 4 }
+
+            it { subject.must_equal(Vedeu::Editor::Line.new('Helim')) }
+          end
+
+          context 'and x is the last character of the line' do
+            let(:x) { 15 }
+
+            it { subject.must_equal(Vedeu::Editor::Line.new('Heliu')) }
           end
         end
       end
@@ -229,47 +247,74 @@ module Vedeu
       end
 
       describe '#insert_character' do
+        let(:x)         { 0 }
+        let(:y)         { 0 }
         let(:character) { 'a' }
 
         subject { instance.insert_character(character, y, x) }
 
-        context 'when the line is empty' do
-          let(:data) {}
+        context 'when there are no lines' do
+          let(:lines) {
+            [
+              Vedeu::Editor::Line.new('')
+            ]
+          }
 
-          # it {
-          #   instance.insert_character(character)
-          #   instance.line.must_equal('a')
-          # }
+          it { subject.must_equal(Vedeu::Editor::Line.new('a')) }
         end
 
-        context 'when the line is not empty' do
-          context 'and x is at the last character of the line' do
-            let(:x) { 7 }
+        context 'when there is one line' do
+          let(:lines) {
+            [
+              Vedeu::Editor::Line.new('Hydrogen')
+            ]
+          }
 
-            # it {
-            #   instance.insert_character('Hydrogena')
-            # }
+          context 'and x is the first character of the line' do
+            let(:x) { 0 }
 
-            # it 'handles multiple inserts' do
-            #   instance.insert_character(character)
-            #   instance.insert_character(character)
-            #   instance.line.must_equal('Hydrogenaa')
-            # end
+            it { subject.must_equal(Vedeu::Editor::Line.new('aHydrogen')) }
           end
 
           context 'and x is somewhere on the line' do
             let(:x) { 4 }
 
-            # it {
-            #   instance.insert_character(character)
-            #   instance.line.must_equal('Hydraogen')
-            # }
+            it { subject.must_equal(Vedeu::Editor::Line.new('Hydraogen')) }
+          end
 
-            # it 'handles multiple inserts' do
-            #   instance.insert_character(character)
-            #   instance.insert_character(character)
-            #   instance.line.must_equal('Hydraaogen')
-            # end
+          context 'and x is the last character of the line' do
+            let(:x) { 15 }
+
+            it { subject.must_equal(Vedeu::Editor::Line.new('Hydrogena')) }
+          end
+        end
+
+        context 'when there is multiple lines' do
+          let(:y)     { 1 }
+          let(:lines) {
+            [
+              Vedeu::Editor::Line.new('Hydrogen'),
+              Vedeu::Editor::Line.new('Helium'),
+              Vedeu::Editor::Line.new('Lithium'),
+            ]
+          }
+
+          context 'and x is the first character of the line' do
+            let(:x) { 0 }
+
+            it { subject.must_equal(Vedeu::Editor::Line.new('aHelium')) }
+          end
+
+          context 'and x is somewhere on the line' do
+            let(:x) { 4 }
+
+            it { subject.must_equal(Vedeu::Editor::Line.new('Heliaum')) }
+          end
+
+          context 'and x is the last character of the line' do
+            let(:x) { 15 }
+
+            it { subject.must_equal(Vedeu::Editor::Line.new('Heliuma')) }
           end
         end
       end
