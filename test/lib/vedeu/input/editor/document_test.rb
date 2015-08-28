@@ -151,6 +151,20 @@ module Vedeu
         }
       end
 
+      describe '#reset!' do
+        subject { instance.reset! }
+
+        it { subject.must_be_instance_of(Vedeu::Editor::Document) }
+      end
+
+      describe '#retrieve' do
+        subject { instance.retrieve }
+
+        it { subject.must_be_instance_of(String) }
+
+        it { subject.must_equal("Hydrogen\nHelium\nLithium") }
+      end
+
     end # Editor
 
   end # Editor

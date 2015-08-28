@@ -123,6 +123,23 @@ module Vedeu
         Vedeu::Direct.write(value: output, x: bx, y: by)
       end
 
+      # Reset the document to the empty state.
+      #
+      # @return [Vedeu::Editor::Document]
+      def reset!
+        @lines = defaults[:data]
+
+        store
+      end
+
+      # Returns the document as a string with line breaks if there is more than
+      # one line.
+      #
+      # @return [String]
+      def retrieve
+        lines.map { |line| line.to_s }.join("\n")
+      end
+
       private
 
       # @return [Vedeu::Border]

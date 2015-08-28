@@ -22,13 +22,16 @@ module Vedeu
       before do
         Vedeu.documents.stubs(:by_name).returns(document)
         # document.stubs(:delete_character)
+        # document.stubs(:delete_line)
         # document.stubs(:down)
-        # document.stubs(:insert_line)
         # document.stubs(:left)
         # document.stubs(:right)
-        # document.stubs(:up)
         # document.stubs(:insert_character)
+        # document.stubs(:insert_line)
         # document.stubs(:render)
+        # document.stubs(:reset!)
+        # document.stubs(:retrieve)
+        # document.stubs(:up)
       end
 
       describe '#initialize' do
@@ -80,9 +83,12 @@ module Vedeu
 
           context 'when the input is :enter' do
             let(:input) { :enter }
+            let(:data)  { mock }
 
             it {
-              document.expects(:insert_line)
+              document.expects(:retrieve).returns(data)
+              document.expects(:reset!)
+              Vedeu.expects(:trigger).with(:_command_, data)
               subject
             }
           end

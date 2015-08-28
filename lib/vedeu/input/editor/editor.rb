@@ -17,6 +17,8 @@ module Vedeu
                      :insert_line,
                      :left,
                      :render,
+                     :reset!,
+                     :retrieve,
                      :right,
                      :up
 
@@ -45,16 +47,23 @@ module Vedeu
         when :backspace then delete_character
         when :ctrl_c    then Vedeu.trigger(:_exit_)
         when :down      then down
-        when :enter     then insert_line
+        when :enter     then
+          command = retrieve
+
+          reset!
+
+          Vedeu.trigger(:_command_, command)
         when :escape    then Vedeu.trigger(:_mode_switch_)
         when :left      then left
         when :right     then right
         when :up        then up
+        # when ''         then delete_line
+        # when ''         then insert_line
         else
           insert_character(input)
         end
 
-        render
+        render unless input == :enter
       end
 
       protected
