@@ -22,6 +22,14 @@ module Vedeu
       # @return [Fixnum]
       attr_accessor :byn
 
+      # @!attribute [rw] ox
+      # @return [Fixnum]
+      attr_accessor :ox
+
+      # @!attribute [rw] oy
+      # @return [Fixnum]
+      attr_accessor :oy
+
       # @!attribute [rw] x
       # @return [Fixnum]
       attr_accessor :x
@@ -38,52 +46,68 @@ module Vedeu
       # @param bx [Fixnum]
       # @param byn [Fixnum]
       # @param bxn [Fixnum]
+      # @param oy [Fixnum]
+      # @param ox [Fixnum]
       # @return [Vedeu::Editor::VirtualCursor]
-      def initialize(y: 0, x: 0, by: 1, bx: 1, byn:, bxn:)
+      def initialize(y: 0, x: 0, by:, bx:, byn:, bxn:, oy: 0, ox: 0)
         @y   = (y.nil? || y < 0) ? 0 : y
         @x   = (x.nil? || x < 0) ? 0 : x
         @by  = by
         @bx  = bx
         @byn = byn
         @bxn = bxn
+        @ox  = ox
+        @oy  = oy
       end
 
       # Move the virtual cursor to the beginning of the line.
       #
-      # @return [Fixnum]
+      # @return [Vedeu::Editor::VirtualCursor]
       def bol
-        @x = 0
+        @ox = 0
+        @x  = 0
+
+        self
       end
 
       # Move the virtual cursor down by one line.
       #
-      # @return [Fixnum]
+      # @return [Vedeu::Editor::VirtualCursor]
       def down
         @y += 1
+
+        self
       end
 
       # Move the virtual cursor to the left.
       #
-      # @return [Fixnum]
+      # @return [Vedeu::Editor::VirtualCursor]
       def left
-        @x -= 1
+        @ox -= 1 unless @ox == 0
+        @x  -= 1
+
+        self
       end
 
       # Move the virtual cursor to the origin (0, 0).
       #
-      # @return [Fixnum]
+      # @return [Vedeu::Editor::VirtualCursor]
       def reset!
-        @x = 0
-        @y = 0
+        @x  = 0
+        @y  = 0
+        @ox = 0
+        @oy = 0
 
         self
       end
 
       # Move the virtual cursor to the right.
       #
-      # @return [Fixnum]
+      # @return [Vedeu::Editor::VirtualCursor]
       def right
         @x += 1
+
+        self
       end
 
       # Return the escape sequence for setting the cursor position and show the
@@ -96,22 +120,27 @@ module Vedeu
 
       # Move the virtual cursor up by one line.
       #
-      # @return [Fixnum]
+      # @return [Vedeu::Editor::VirtualCursor]
       def up
-        @y -= 1
+        @oy -= 1 unless @oy == 0
+        @y  -= 1
+
+        self
       end
 
       # @return [Fixnum] The column/character coordinate.
       def x
-        @x = 0        if @x < 0
-        @x = bxn - bx if @x > bxn - bx
+        @x  = 0               if @x <= 0
+        @ox = @x - (bxn - bx) if @x > bxn - bx
+
         @x
       end
 
       # @return [Fixnum] The row/line coordinate.
       def y
-        @y = 0        if @y < 0
-        @y = byn - by if @y > byn - by
+        @y  = 0               if @y <= 0
+        @oy = @y - (byn - by) if @y > byn - by
+
         @y
       end
 
@@ -121,14 +150,14 @@ module Vedeu
       #
       # @return [Fixnum]
       def real_y
-        by + y
+        (by + y) - oy
       end
 
       # Return the real x coordinate.
       #
       # @return [Fixnum]
       def real_x
-        bx + x
+        (bx + x) - ox
       end
 
     end # VirtualCursor

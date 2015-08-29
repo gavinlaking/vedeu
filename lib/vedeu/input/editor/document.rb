@@ -21,7 +21,8 @@ module Vedeu
                      :bol,
                      :down,
                      :left,
-                     :origin,
+                     :ox,
+                     :oy,
                      :right,
                      :up,
                      :x,
@@ -254,8 +255,8 @@ module Vedeu
         Vedeu::Editor::Cropper.new(lines:  lines,
                                    height: height,
                                    width:  width,
-                                   ox:     x,
-                                   oy:     y).cropped
+                                   ox:     ox,
+                                   oy:     oy).cropped
       end
 
     end # Document
