@@ -45,8 +45,6 @@ module Vedeu
       # @option attributes data [String]
       # @option attributes name [String]
       # @option attributes repository [Vedeu::Repository]
-      # @option attributes x [Fixnum]
-      # @option attributes y [Fixnum]
       # @return [Vedeu::Editor::Document]
       def initialize(attributes = {})
         @attributes = defaults.merge!(attributes)
