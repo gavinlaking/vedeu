@@ -2,6 +2,9 @@ module Vedeu
 
   module Editor
 
+    # Crop the lines to the visible area of the document, as defined by the
+    # geometry provided.
+    #
     class Cropper
 
       # Returns a new instance of Vedeu::Editor::Cropper.
