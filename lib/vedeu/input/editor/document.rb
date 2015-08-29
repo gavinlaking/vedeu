@@ -185,10 +185,11 @@ module Vedeu
       def clear_output
         clear_output = ''
 
-        (by..byn).each do |y|
-          clear_output << "\e[#{y};#{bx}H" + (' ' * width)
+        (by..byn).each do |row|
+          clear_output << "\e[#{row};#{bx}H" + (' ' * width)
         end
 
+        # reset cursor to top left of document
         clear_output << "\e[#{by};#{bx}H"
       end
 
