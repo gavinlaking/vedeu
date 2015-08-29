@@ -49,12 +49,12 @@ module Vedeu
             ])
           }
 
-          it { subject.must_equal(['Hydro', 'Heliu', 'Lithi']) }
+          it { subject.must_equal(['elium', 'ithiu', 'eryll']) }
 
           context 'when oy is near the bottom' do
             let(:oy) { 6 }
 
-            it { subject.must_equal(['Beryl', 'Boron']) }
+            it { subject.must_equal([]) }
           end
 
           context 'when ox is nearly past the content width' do
@@ -62,7 +62,7 @@ module Vedeu
             let(:ox) { 10 }
 
             it 'returns only that which is visible, discarding empty lines' do
-              subject.must_equal(['um', 'lium'])
+              subject.must_equal([])
             end
           end
 

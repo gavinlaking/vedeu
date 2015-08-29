@@ -30,7 +30,7 @@ module Vedeu
       #
       # @return [Array<void>]
       def cropped
-        lines.map { |line| columns(line) }.delete_if(&:empty?)
+        lines.map { |line| columns(line) }
       end
 
       protected
@@ -57,41 +57,14 @@ module Vedeu
       #
       # @return [Vedeu::Editor::Lines]
       def lines
-        (@lines[top...(top + height)] || [])
+        (@lines[oy...(oy + height)] || [])
       end
 
       # Return a range of visible characters from each line.
       #
       # @return [String]
       def columns(line)
-        (line[left...(left + width)] || [])
-      end
-
-      # @return [Fixnum]
-      def left
-        @left ||= content_offset(ox, width)
-      end
-
-      # @return [Fixnum]
-      def top
-        @top ||= content_offset(oy, height)
-      end
-
-      # Returns the offset for the content (the number of rows or columns to
-      # change the viewport by on either the y or x axis) determined by the
-      # offset values (ox, oy).
-      #
-      # @param offset [Fixnum] Either the ox or oy value.
-      # @param dimension [Fixnum] Either the height or width.
-      # @return [Fixnum]
-      def content_offset(offset, dimension)
-        if offset >= dimension && ((offset - dimension) > 0)
-          offset - dimension
-
-        else
-          0
-
-        end
+        (line[ox...(ox + width)] || '')
       end
 
     end # Editor
