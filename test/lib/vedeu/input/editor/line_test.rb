@@ -53,6 +53,22 @@ module Vedeu
         end
       end
 
+      describe '#[]' do
+        subject { instance.[](index) }
+
+        context 'when index is a Fixnum' do
+          let(:index)    { 2 }
+
+          it { subject.must_equal('m') }
+        end
+
+        context 'when index is a Range' do
+          let(:index)    { (3..6) }
+
+          it { subject.must_equal('e te') }
+        end
+      end
+
       describe '#character' do
         let(:index) { 5 }
 

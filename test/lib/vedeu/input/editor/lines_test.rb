@@ -86,6 +86,31 @@ module Vedeu
         end
       end
 
+      describe '#[]' do
+        subject { instance.[](index) }
+
+        context 'when index is a Fixnum' do
+          let(:index)    { 2 }
+          let(:expected) {
+            Vedeu::Editor::Line.new('Other text...')
+          }
+
+          it { subject.must_equal(expected) }
+        end
+
+        context 'when index is a Range' do
+          let(:index)    { (1..2) }
+          let(:expected) {
+            [
+              Vedeu::Editor::Line.new('More text...'),
+              Vedeu::Editor::Line.new('Other text...')
+            ]
+          }
+
+          it { subject.must_equal(expected) }
+        end
+      end
+
       describe '#delete_character' do
         let(:x)         { 0 }
         let(:y)         { 0 }

@@ -57,6 +57,14 @@ module Vedeu
         @lines = lines || []
       end
 
+      # Return a line or collection of lines (if index is a Range).
+      #
+      # @param index [Fixnum|Range]
+      # @return [Vedeu::Editor::Line]
+      def [](index)
+        lines[index]
+      end
+
       # Deletes the character from the line where the cursor is currently
       # positioned.
       #

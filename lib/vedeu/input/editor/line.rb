@@ -35,6 +35,14 @@ module Vedeu
         @line = line || ''
       end
 
+      # Return a character or collection of characters (if index is a Range).
+      #
+      # @param index [Fixnum|Range]
+      # @return [String]
+      def [](index)
+        line[index]
+      end
+
       # Return the character from the line positioned at the given index.
       #
       # @param index [Fixnum|NilClass]
