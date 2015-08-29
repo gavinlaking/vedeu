@@ -11,12 +11,16 @@ module Vedeu
 
       def_delegators :border,
                      :bx,
-                     :by
+                     :bxn,
+                     :by,
+                     :byn,
+                     :width
 
       def_delegators :virtual_cursor,
                      :bol,
                      :down,
                      :left,
+                     :origin,
                      :right,
                      :up,
                      :x,
@@ -49,6 +53,11 @@ module Vedeu
         @attributes.each do |key, value|
           instance_variable_set("@#{key}", value || defaults.fetch(key))
         end
+      end
+
+      # @return [void]
+      def clear
+        Vedeu::Direct.write(value: clear_output, x: bx, y: by)
       end
 
       # Deletes the character from the line where the cursor is currently
@@ -145,6 +154,17 @@ module Vedeu
       # @return [Vedeu::Border]
       def border
         @border ||= Vedeu.borders.by_name(name)
+      end
+
+      # @return [String]
+      def clear_output
+        clear_output = ''
+
+        (by..byn).each do |y|
+          clear_output << "\e[#{y};#{bx}H" + (' ' * width)
+        end
+
+        clear_output << "\e[#{by};#{bx}H"
       end
 
       # Returns the default options/attributes for this class.

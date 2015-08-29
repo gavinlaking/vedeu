@@ -39,6 +39,11 @@ module Vedeu
         it { instance.must_respond_to(:name=) }
       end
 
+      describe '#clear' do
+        subject { instance.clear }
+
+      end
+
       describe '#delete_character' do
         let(:y) { 0 }
         let(:x) { 0 }

@@ -11,6 +11,7 @@ module Vedeu
       extend Forwardable
 
       def_delegators :document,
+                     :clear,
                      :delete_character,
                      :down,
                      :insert_character,
@@ -51,6 +52,8 @@ module Vedeu
           command = retrieve
 
           reset!
+
+          clear
 
           Vedeu.trigger(:_command_, command)
         when :escape    then Vedeu.trigger(:_mode_switch_)
