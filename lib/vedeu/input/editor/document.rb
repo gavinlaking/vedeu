@@ -113,7 +113,7 @@ module Vedeu
                      Vedeu::Editor::Lines.coerce(data)
 
                    else
-                     defaults.fetch(data)
+                     defaults[:data]
 
                    end
       end
