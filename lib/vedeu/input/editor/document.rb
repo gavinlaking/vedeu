@@ -66,7 +66,7 @@ module Vedeu
       #
       # @return [Vedeu::Editor::Document]
       def delete_character
-        @lines = lines.delete_character(y, x)
+        @lines = lines.delete_character(y, x - 1)
 
         left
 
@@ -136,6 +136,8 @@ module Vedeu
       #
       # @return [void]
       def render
+        clear
+
         Vedeu::Direct.write(value: output, x: bx, y: by)
       end
 
