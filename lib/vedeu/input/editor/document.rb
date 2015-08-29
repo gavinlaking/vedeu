@@ -17,7 +17,7 @@ module Vedeu
                      :height,
                      :width
 
-      def_delegators :virtual_cursor,
+      def_delegators :cursor,
                      :bol,
                      :down,
                      :left,
@@ -213,9 +213,9 @@ module Vedeu
           output << Vedeu::Position.new((by + y_index), bx).to_s + line.to_s
         end
 
-        virtual_cursor_adjust!
+        cursor_adjust!
 
-        output << virtual_cursor.to_s
+        output << cursor.to_s
 
         output
       end
@@ -224,22 +224,21 @@ module Vedeu
       # document.
       #
       # @return [Vedeu::Editor::VirtualCursor]
-      def virtual_cursor
-        @virtual_cursor ||= Vedeu::Editor::VirtualCursor.new(y:  0,
-                                                             x:  0,
-                                                             by: by,
-                                                             bx: bx)
+      def cursor
+        attributes = { y: 0, x: 0, by: by, bx: bx, byn: byn, bxn: bxn }
+
+        @cursor ||= Vedeu::Editor::VirtualCursor.new(attributes)
       end
 
       # Adjust the position of the virtual cursor.
       #
       # @return [TrueClass]
-      def virtual_cursor_adjust!
-        if virtual_cursor.x > lines.line(y).size
-          virtual_cursor.x = lines.line(y).size
+      def cursor_adjust!
+        if cursor.x > lines.line(y).size
+          cursor.x = lines.line(y).size
         end
 
-        virtual_cursor.y = lines.size if virtual_cursor.y > lines.size
+        cursor.y = lines.size if cursor.y > lines.size
 
         true
       end
