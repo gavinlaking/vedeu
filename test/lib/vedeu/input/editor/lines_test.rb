@@ -37,7 +37,7 @@ module Vedeu
 
         subject { described.coerce(document) }
 
-        it { subject.must_be_instance_of(Vedeu::Editor::Lines) }
+        it { subject.must_be_instance_of(described) }
 
         context 'when the document is already a Vedeu::Editor::Lines object' do
           let(:document) { Vedeu::Editor::Lines.new(lines) }
@@ -196,7 +196,7 @@ module Vedeu
 
         subject { instance.delete_line(index) }
 
-        it { subject.must_be_instance_of(Vedeu::Editor::Lines) }
+        it { subject.must_be_instance_of(described) }
 
         context 'when the lines are empty' do
           let(:lines) { [] }
@@ -391,7 +391,7 @@ module Vedeu
 
         subject { instance.insert_line(line, index) }
 
-        it { subject.must_be_instance_of(Vedeu::Editor::Lines) }
+        it { subject.must_be_instance_of(described) }
 
         context 'when a line is not given' do
           let(:line) {}
