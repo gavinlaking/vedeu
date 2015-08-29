@@ -101,6 +101,20 @@ module Vedeu
         @y -= 1
       end
 
+      # @return [Fixnum] The column/character coordinate.
+      def x
+        @x = 0        if @x < 0
+        @x = bxn - bx if @x > bxn - bx
+        @x
+      end
+
+      # @return [Fixnum] The row/line coordinate.
+      def y
+        @y = 0        if @y < 0
+        @y = byn - by if @y > byn - by
+        @y
+      end
+
       private
 
       # Return the real y coordinate.

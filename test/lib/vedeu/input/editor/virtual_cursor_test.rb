@@ -111,7 +111,7 @@ module Vedeu
 
         subject { instance.to_s }
 
-        it { subject.must_equal("\e[6;12H\e[?25h") }
+        it { subject.must_equal("\e[6;6H\e[?25h") }
       end
 
       describe '#up' do
