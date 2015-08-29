@@ -209,9 +209,7 @@ module Vedeu
           virtual_cursor.x = lines.line(y).size
         end
 
-        if virtual_cursor.y > lines.size
-          virtual_cursor.y = lines.size
-        end
+        virtual_cursor.y = lines.size if virtual_cursor.y > lines.size
 
         true
       end
