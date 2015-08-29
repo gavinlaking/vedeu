@@ -217,8 +217,6 @@ module Vedeu
           output << Vedeu::Position.new((by + y_index), bx).to_s + line.to_s
         end
 
-        cursor_adjust!
-
         output << cursor.to_s
 
         output
@@ -229,22 +227,12 @@ module Vedeu
       #
       # @return [Vedeu::Editor::VirtualCursor]
       def cursor
-        attributes = { y: 0, x: 0, by: by, bx: bx, byn: byn, bxn: bxn }
-
-        @cursor ||= Vedeu::Editor::VirtualCursor.new(attributes)
-      end
-
-      # Adjust the position of the virtual cursor.
-      #
-      # @return [TrueClass]
-      def cursor_adjust!
-        if cursor.x > lines.line(y).size
-          cursor.x = lines.line(y).size
-        end
-
-        cursor.y = lines.size if cursor.y > lines.size
-
-        true
+        @cursor ||= Vedeu::Editor::VirtualCursor.new(y:   0,
+                                                     x:   0,
+                                                     by:  by,
+                                                     bx:  bx,
+                                                     byn: byn,
+                                                     bxn: bxn)
       end
 
       # Return only the visible lines for the document based on the current
