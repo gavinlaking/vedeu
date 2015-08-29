@@ -83,12 +83,9 @@ module Vedeu
 
           context 'when the input is :enter' do
             let(:input) { :enter }
-            let(:data)  { mock }
 
             it {
-              document.expects(:retrieve).returns(data)
-              document.expects(:reset!)
-              Vedeu.expects(:trigger).with(:_command_, data)
+              document.expects(:insert_line)
               subject
             }
           end
@@ -116,6 +113,19 @@ module Vedeu
 
             it {
               document.expects(:right)
+              subject
+            }
+          end
+
+          context 'when the input is :tab' do
+            let(:input) { :tab }
+            let(:data)  { mock(:empty? => false) }
+
+            it {
+              document.expects(:retrieve).returns(data)
+              document.expects(:reset!)
+              document.expects(:clear)
+              Vedeu.expects(:trigger).with(:_command_, data)
               subject
             }
           end

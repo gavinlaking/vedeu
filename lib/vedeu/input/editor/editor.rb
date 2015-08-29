@@ -48,20 +48,13 @@ module Vedeu
         when :backspace then delete_character
         when :ctrl_c    then Vedeu.trigger(:_exit_)
         when :down      then down
-        when :enter     then
-          command = retrieve
-
-          reset!
-
-          clear
-
-          Vedeu.trigger(:_command_, command)
+        when :enter     then insert_line
         when :escape    then Vedeu.trigger(:_mode_switch_)
         when :left      then left
         when :right     then right
+        when :tab       then command
         when :up        then up
         # when ''         then delete_line
-        # when ''         then insert_line
         else
           insert_character(input)
         end
@@ -80,6 +73,18 @@ module Vedeu
       attr_reader :name
 
       private
+
+      #
+      # @return []
+      def command
+        command = retrieve
+
+        reset!
+
+        clear
+
+        Vedeu.trigger(:_command_, command)
+      end
 
       # Return the document by name from the documents repository.
       #
