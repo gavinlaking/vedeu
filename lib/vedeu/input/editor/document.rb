@@ -198,7 +198,7 @@ module Vedeu
       def output
         output = ''
 
-        lines.each_with_index do |line, y_index|
+        visible.each_with_index do |line, y_index|
           output << Vedeu::Position.new((by + y_index), bx).to_s + line.to_s
         end
 
@@ -231,6 +231,18 @@ module Vedeu
         virtual_cursor.y = lines.size if virtual_cursor.y > lines.size
 
         true
+      end
+
+      # Return only the visible lines for the document based on the current
+      # virtual cursor position.
+      #
+      # @return [Vedeu::Editor::Lines]
+      def visible
+        Vedeu::Editor::Cropper.new(lines:  lines,
+                                   height: height,
+                                   width:  width,
+                                   ox:     x,
+                                   oy:     y).cropped
       end
 
     end # Document
