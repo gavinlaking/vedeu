@@ -146,7 +146,7 @@ module Vedeu
       #
       # @return [String]
       def retrieve
-        lines.map { |line| line.to_s }.join("\n")
+        lines.map(&:to_s).join("\n")
       end
 
       private
