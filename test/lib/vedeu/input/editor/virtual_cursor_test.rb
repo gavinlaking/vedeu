@@ -76,6 +76,17 @@ module Vedeu
         it { subject.must_equal(10) }
       end
 
+      describe '#reset!' do
+        let(:x) { 11 }
+        let(:y) { 5 }
+
+        subject { instance.reset! }
+
+        it { subject.must_be_instance_of(described) }
+        it { subject.x.must_equal(0) }
+        it { subject.y.must_equal(0) }
+      end
+
       describe '#right' do
         let(:x) { 11 }
 

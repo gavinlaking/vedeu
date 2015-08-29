@@ -57,6 +57,16 @@ module Vedeu
         @x -= 1
       end
 
+      # Move the virtual cursor to the origin (0, 0).
+      #
+      # @return [Fixnum]
+      def reset!
+        @x = 0
+        @y = 0
+
+        self
+      end
+
       # Move the virtual cursor to the right.
       #
       # @return [Fixnum]
