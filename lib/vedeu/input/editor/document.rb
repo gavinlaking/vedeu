@@ -212,7 +212,7 @@ module Vedeu
       # Return a virtual cursor to track the cursor position within the
       # document.
       #
-      # @return [Vedeu::VirtualCursor]
+      # @return [Vedeu::Editor::VirtualCursor]
       def virtual_cursor
         @virtual_cursor ||= Vedeu::Editor::VirtualCursor.new(y:  0,
                                                              x:  0,
