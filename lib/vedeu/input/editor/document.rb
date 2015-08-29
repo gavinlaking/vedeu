@@ -158,6 +158,17 @@ module Vedeu
         lines.map(&:to_s).join("\n")
       end
 
+      # Store the document in the documents repository and render the view.
+      #
+      # @return [Vedeu::Editor::Document]
+      def store
+        super
+
+        render
+
+        self
+      end
+
       private
 
       # Retrieve the dimensions of the document from the interface of the same

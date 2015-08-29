@@ -21,6 +21,8 @@ module Vedeu
       }
       let(:_name)  { 'Vedeu::Editor::Document' }
 
+      before { Vedeu::Direct.stubs(:write) }
+
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
         it { instance.instance_variable_get('@data').must_equal(data) }
@@ -50,7 +52,7 @@ module Vedeu
 
         subject { instance.delete_character }
 
-        it { subject.must_be_instance_of(Vedeu::Editor::Document) }
+        it { subject.must_be_instance_of(described) }
 
         # it { skip }
       end
@@ -60,7 +62,7 @@ module Vedeu
 
         subject { instance.delete_line }
 
-        it { subject.must_be_instance_of(Vedeu::Editor::Document) }
+        it { subject.must_be_instance_of(described) }
 
         # it { skip }
       end
@@ -70,7 +72,7 @@ module Vedeu
 
         subject { instance.insert_character(character) }
 
-        it { subject.must_be_instance_of(Vedeu::Editor::Document) }
+        it { subject.must_be_instance_of(described) }
 
         # it { skip }
 
@@ -86,7 +88,7 @@ module Vedeu
 
         subject { instance.insert_line }
 
-        it { subject.must_be_instance_of(Vedeu::Editor::Document) }
+        it { subject.must_be_instance_of(described) }
 
         # it { skip }
       end
@@ -159,7 +161,7 @@ module Vedeu
       describe '#reset!' do
         subject { instance.reset! }
 
-        it { subject.must_be_instance_of(Vedeu::Editor::Document) }
+        it { subject.must_be_instance_of(described) }
       end
 
       describe '#retrieve' do
@@ -168,6 +170,17 @@ module Vedeu
         it { subject.must_be_instance_of(String) }
 
         it { subject.must_equal("Hydrogen\nHelium\nLithium") }
+      end
+
+      describe '#store' do
+        subject { instance.store }
+
+        it { subject.must_be_instance_of(described) }
+
+        it {
+          instance.expects(:render)
+          subject
+        }
       end
 
     end # Editor
