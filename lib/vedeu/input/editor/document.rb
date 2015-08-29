@@ -143,6 +143,8 @@ module Vedeu
       #
       # @return [Vedeu::Editor::Document]
       def reset!
+        @cursor = cursor.reset!
+
         @lines = defaults[:data]
 
         store
