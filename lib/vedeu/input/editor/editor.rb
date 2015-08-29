@@ -81,6 +81,8 @@ module Vedeu
 
       private
 
+      # Return the document by name from the documents repository.
+      #
       # @return [Vedeu::Editor::Document]
       def document
         @document ||= Vedeu.documents.by_name(name)

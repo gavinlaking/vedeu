@@ -121,6 +121,8 @@ module Vedeu
         line.size
       end
 
+      # Return the line as a collection of Vedeu::Views::Char objects.
+      #
       # @return [Array<Vedeu::Views::Char>]
       def to_chars
         line.chars.map { |char| Vedeu::Views::Char.new(value: char) }

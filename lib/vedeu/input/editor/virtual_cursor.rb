@@ -81,10 +81,16 @@ module Vedeu
 
       private
 
+      # Return the real y coordinate.
+      #
+      # @return [Fixnum]
       def real_y
         by + y
       end
 
+      # Return the real x coordinate.
+      #
+      # @return [Fixnum]
       def real_x
         bx + x
       end

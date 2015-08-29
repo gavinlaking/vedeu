@@ -14,6 +14,7 @@ module Vedeu
                      :bxn,
                      :by,
                      :byn,
+                     :height,
                      :width
 
       def_delegators :virtual_cursor,
@@ -55,6 +56,8 @@ module Vedeu
         end
       end
 
+      # Clear the document content in the terminal.
+      #
       # @return [void]
       def clear
         Vedeu::Direct.write(value: clear_output, x: bx, y: by)
@@ -111,11 +114,15 @@ module Vedeu
         store
       end
 
+      # Returns the current line from the collection of lines.
+      #
       # @return [Array<String|void>]
       def line
         lines.line(y)
       end
 
+      # Returns the collection of lines which constitutes the document content.
+      #
       # @return [Array<String|void>]
       def lines
         @lines ||= if present?(data)
@@ -127,6 +134,8 @@ module Vedeu
                    end
       end
 
+      # Render the document content in the terminal.
+      #
       # @return [void]
       def render
         Vedeu::Direct.write(value: output, x: bx, y: by)
@@ -151,11 +160,16 @@ module Vedeu
 
       private
 
+      # Retrieve the dimensions of the document from the interface of the same
+      # name.
+      #
       # @return [Vedeu::Border]
       def border
         @border ||= Vedeu.borders.by_name(name)
       end
 
+      # Return the data needed to clear the area which the document is using.
+      #
       # @return [String]
       def clear_output
         clear_output = ''
@@ -178,6 +192,8 @@ module Vedeu
         }
       end
 
+      # Return the data needed to render the document.
+      #
       # @return [String]
       def output
         output = ''
@@ -193,6 +209,9 @@ module Vedeu
         output
       end
 
+      # Return a virtual cursor to track the cursor position within the
+      # document.
+      #
       # @return [Vedeu::VirtualCursor]
       def virtual_cursor
         @virtual_cursor ||= Vedeu::Editor::VirtualCursor.new(y:  0,

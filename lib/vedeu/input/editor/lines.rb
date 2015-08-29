@@ -177,6 +177,8 @@ module Vedeu
         lines.size
       end
 
+      # Return the lines as a string.
+      #
       # @return [String]
       def to_s
         lines.map(&:to_s).join
