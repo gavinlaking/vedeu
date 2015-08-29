@@ -7,11 +7,15 @@ module Vedeu
     describe VirtualCursor do
 
       let(:described) { Vedeu::Editor::VirtualCursor }
-      let(:instance)  { described.new(y: y, x: x, bx: bx, by: by) }
+      let(:instance)  {
+        described.new(y: y, x: x, bx: bx, by: by, byn: byn, bxn: bxn)
+      }
       let(:y)         { 0 }
       let(:x)         { 0 }
       let(:by)        { 1 }
       let(:bx)        { 1 }
+      let(:byn)       { 6 }
+      let(:bxn)       { 6 }
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
@@ -19,6 +23,8 @@ module Vedeu
         it { instance.instance_variable_get('@x').must_equal(x) }
         it { instance.instance_variable_get('@by').must_equal(by) }
         it { instance.instance_variable_get('@bx').must_equal(bx) }
+        it { instance.instance_variable_get('@byn').must_equal(byn) }
+        it { instance.instance_variable_get('@bxn').must_equal(bxn) }
 
         context 'when x is nil' do
           it { instance.instance_variable_get('@x').must_equal(0) }
@@ -46,6 +52,10 @@ module Vedeu
         it { instance.must_respond_to(:bx=) }
         it { instance.must_respond_to(:by) }
         it { instance.must_respond_to(:by=) }
+        it { instance.must_respond_to(:bxn) }
+        it { instance.must_respond_to(:bxn=) }
+        it { instance.must_respond_to(:byn) }
+        it { instance.must_respond_to(:byn=) }
         it { instance.must_respond_to(:x) }
         it { instance.must_respond_to(:x=) }
         it { instance.must_respond_to(:y) }

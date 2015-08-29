@@ -14,6 +14,14 @@ module Vedeu
       # @return [Fixnum]
       attr_accessor :by
 
+      # @!attribute [rw] bxn
+      # @return [Fixnum]
+      attr_accessor :bxn
+
+      # @!attribute [rw] byn
+      # @return [Fixnum]
+      attr_accessor :byn
+
       # @!attribute [rw] x
       # @return [Fixnum]
       attr_accessor :x
@@ -28,12 +36,16 @@ module Vedeu
       # @param x [Fixnum] The current character with the line.
       # @param by [Fixnum]
       # @param bx [Fixnum]
+      # @param byn [Fixnum]
+      # @param bxn [Fixnum]
       # @return [Vedeu::Editor::VirtualCursor]
-      def initialize(y: 0, x: 0, by: 1, bx: 1)
-        @y  = (y.nil? || y < 0) ? 0 : y
-        @x  = (x.nil? || x < 0) ? 0 : x
-        @by = by
-        @bx = bx
+      def initialize(y: 0, x: 0, by: 1, bx: 1, byn:, bxn:)
+        @y   = (y.nil? || y < 0) ? 0 : y
+        @x   = (x.nil? || x < 0) ? 0 : x
+        @by  = by
+        @bx  = bx
+        @byn = byn
+        @bxn = bxn
       end
 
       # Move the virtual cursor to the beginning of the line.
