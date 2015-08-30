@@ -104,9 +104,9 @@ module Vedeu
       #
       # @return [Vedeu::Editor::Document]
       def insert_line
-        @lines = lines.insert_line(Vedeu::Editor::Line.new, y + 1)
-
         down
+
+        @lines = lines.insert_line(Vedeu::Editor::Line.new, y)
 
         bol
 
