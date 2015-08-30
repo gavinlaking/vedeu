@@ -9,6 +9,7 @@ module Vedeu
       it { Vedeu.must_respond_to(:buffers) }
       it { Vedeu.must_respond_to(:cursors) }
       it { Vedeu.must_respond_to(:debug) }
+      it { Vedeu.must_respond_to(:documents) }
       it { Vedeu.must_respond_to(:events) }
       it { Vedeu.must_respond_to(:foreground_colours) }
       it { Vedeu.must_respond_to(:geometries) }

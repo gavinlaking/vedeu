@@ -55,6 +55,15 @@ module Vedeu
     # @return [Vedeu::Debug]
     def_delegators Vedeu::Debug, :debug
 
+    # Manipulate the repository of documents.
+    #
+    # @example
+    #   Vedeu.documents
+    #
+    # @!method documents
+    # @return [Vedeu::Editor::Documents]
+    def_delegators Vedeu::Editor::Documents, :documents
+
     # Manipulate the repository of events.
     #
     # @example

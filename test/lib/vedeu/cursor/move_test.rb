@@ -30,7 +30,7 @@ module Vedeu
     }
 
     before do
-      IO.console.stubs(:winsize).returns([25, 80])
+      IO.console.stubs(:winsize).returns([10, 40])
       IO.console.stubs(:print)
 
       Vedeu.borders.stubs(:by_name).returns(border)

@@ -10,6 +10,7 @@ Vedeu.configure do
 
   # terminal_mode :raw
   # cooked!
+  # fake!
   # raw!
 
   # run_once!

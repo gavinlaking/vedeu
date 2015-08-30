@@ -157,6 +157,62 @@ module Vedeu
       end
     end
 
+    describe '#down' do
+      subject { instance.down }
+
+      it { subject.must_be_instance_of(Vedeu::Position) }
+      it { subject.y.must_equal(13) }
+      it { subject.x.must_equal(19) }
+
+      context 'when y is 0' do
+        let(:y) { 0 }
+
+        it { subject.y.must_equal(2) }
+      end
+    end
+
+    describe '#left' do
+      subject { instance.left }
+
+      it { subject.must_be_instance_of(Vedeu::Position) }
+      it { subject.y.must_equal(12) }
+      it { subject.x.must_equal(18) }
+
+      context 'when x is 0' do
+        let(:x) { 0 }
+
+        it { subject.x.must_equal(1) }
+      end
+    end
+
+    describe '#right' do
+      subject { instance.right }
+
+      it { subject.must_be_instance_of(Vedeu::Position) }
+      it { subject.y.must_equal(12) }
+      it { subject.x.must_equal(20) }
+
+      context 'when x is 0' do
+        let(:x) { 0 }
+
+        it { subject.x.must_equal(2) }
+      end
+    end
+
+    describe '#up' do
+      subject { instance.up }
+
+      it { subject.must_be_instance_of(Vedeu::Position) }
+      it { subject.y.must_equal(11) }
+      it { subject.x.must_equal(19) }
+
+      context 'when y is 0' do
+        let(:y) { 0 }
+
+        it { subject.y.must_equal(1) }
+      end
+    end
+
   end # Position
 
 end # Vedeu

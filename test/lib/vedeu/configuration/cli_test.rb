@@ -139,6 +139,11 @@ module Vedeu
           Configuration.terminal_mode.must_equal(:cooked)
         end
 
+        it '--fake' do
+          Configuration.configure(['--fake'])
+          Configuration.terminal_mode.must_equal(:fake)
+        end
+
         it '--raw' do
           Configuration.configure(['--raw'])
           Configuration.terminal_mode.must_equal(:raw)

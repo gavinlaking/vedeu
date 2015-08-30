@@ -42,7 +42,7 @@ module Vedeu
 
     private
 
-    # @param filename [String]
+    # @param log [String]
     # @return [void]
     def open_logfile(log)
       if FileTest.exist?(log)

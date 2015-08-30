@@ -24,8 +24,12 @@ module Vedeu
       it { instance.must_respond_to(:value) }
     end
 
-    describe '#colour' do
-      it { instance.colour.must_equal('') }
+    describe '#null' do
+      it { instance.null.must_equal(nil) }
+      it { instance.background.must_equal(nil) }
+      it { instance.colour.must_equal(nil) }
+      it { instance.foreground.must_equal(nil) }
+      it { instance.style.must_equal(nil) }
     end
 
     describe '#eql?' do
@@ -46,10 +50,6 @@ module Vedeu
 
     describe '#position' do
       it { instance.position.must_be_instance_of(Vedeu::Position) }
-    end
-
-    describe '#style' do
-      it { instance.style.must_equal('') }
     end
 
     describe '#value' do

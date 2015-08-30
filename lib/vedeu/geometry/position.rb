@@ -104,6 +104,34 @@ module Vedeu
     end
     alias_method :to_str, :to_s
 
+    # Increase y coordinate; moves down.
+    #
+    # @return [Vedeu::Position]
+    def down
+      Vedeu::Position.new(y + 1, x)
+    end
+
+    # Decrease x coordinate; moves left.
+    #
+    # @return [Vedeu::Position]
+    def left
+      Vedeu::Position.new(y, x - 1)
+    end
+
+    # Increase x coordinate; moves right.
+    #
+    # @return [Vedeu::Position]
+    def right
+      Vedeu::Position.new(y, x + 1)
+    end
+
+    # Decrease y coordinate; moves up.
+    #
+    # @return [Vedeu::Position]
+    def up
+      Vedeu::Position.new(y - 1, x)
+    end
+
     private
 
     # Returns the escape sequence to reposition the cursors at the coordinates

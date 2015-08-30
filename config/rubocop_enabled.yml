@@ -609,7 +609,7 @@ Style/SpaceAroundEqualsInParameterDefault:
 Style/SpaceAroundOperators:
   Description: 'Use a single space around operators.'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#spaces-operators'
-  Enabled: true
+  Enabled: false
 
 Style/SpaceBeforeModifierKeyword:
   Description: 'Put a space before the modifier keyword.'
@@ -858,7 +858,7 @@ Lint/EnsureReturn:
 
 Lint/Eval:
   Description: 'The use of eval represents a serious security risk.'
-  Enabled: true
+  Enabled: false
 
 Lint/HandleExceptions:
   Description: "Don't suppress exception."

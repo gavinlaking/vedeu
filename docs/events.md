@@ -7,6 +7,8 @@ See {Vedeu::Bindings::Application}
 
 ## System Events
 
+See {Vedeu::Bindings::Focus}
+See {Vedeu::Bindings::Refresh}
 See {Vedeu::Bindings::System}
 
 ## DRB Events

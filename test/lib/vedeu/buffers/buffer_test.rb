@@ -65,6 +65,24 @@ module Vedeu
       end
     end
 
+    describe '#clear' do
+      let(:emptiness) { mock }
+
+      before do
+        Vedeu::Clear::NamedInterface.stubs(:render).returns(emptiness)
+        Vedeu::Output.stubs(:render).returns(emptiness)
+      end
+
+      subject { instance.clear }
+
+      it {
+        Vedeu::Clear::NamedInterface.expects(:render).with(_name).
+          returns(emptiness)
+        Vedeu::Output.expects(:render).with(emptiness)
+        subject
+      }
+    end
+
     describe '#front?' do
       subject { instance.front? }
 

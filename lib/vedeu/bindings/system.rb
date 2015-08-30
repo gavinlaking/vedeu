@@ -22,18 +22,13 @@ module Vedeu
         cleanup!
         clear!
         command!
+        editor!
         exit!
-        focus_next!
-        focus_prev!
-        focus_by_name!
         initialize!
         keypress!
         log!
         maximise!
         mode_switch!
-        refresh!
-        refresh_cursor!
-        refresh_group!
         resize!
         unmaximise!
       end
@@ -87,6 +82,19 @@ module Vedeu
         Vedeu.bind(:_command_) { |command| Vedeu.trigger(:command, command) }
       end
 
+      # This event is called by {Vedeu::Input#capture}. When invoked, the
+      # key will be passed to the editor for currently focussed view.
+      #
+      # @example
+      #   Vedeu.trigger(:_editor_, key)
+      #
+      # @return [TrueClass]
+      def editor!
+        Vedeu.bind(:_editor_) do |key|
+          Vedeu::Editor::Editor.keypress(name: Vedeu.focus, input: key)
+        end
+      end
+
       # When triggered, Vedeu will trigger a `:cleanup` event which you can
       # define (to save files, etc) and attempt to exit.
       #
@@ -97,39 +105,6 @@ module Vedeu
       # @return [TrueClass]
       def exit!
         Vedeu.bind(:_exit_) { Vedeu::Application.stop }
-      end
-
-      # When triggered with an interface name will focus that interface and
-      # restore the cursor position and visibility.
-      #
-      # @example
-      #   Vedeu.trigger(:_focus_by_name_, name)
-      #
-      # @return [TrueClass]
-      def focus_by_name!
-        Vedeu.bind(:_focus_by_name_) { |name| Vedeu.focus_by_name(name) }
-      end
-
-      # When triggered will focus the next interface and restore the cursor
-      # position and visibility.
-      #
-      # @example
-      #   Vedeu.trigger(:_focus_next_)
-      #
-      # @return [TrueClass]
-      def focus_next!
-        Vedeu.bind(:_focus_next_) { Vedeu.focus_next }
-      end
-
-      # When triggered will focus the previous interface and restore the cursor
-      # position and visibility.
-      #
-      # @example
-      #   Vedeu.trigger(:_focus_prev_)
-      #
-      # @return [TrueClass]
-      def focus_prev!
-        Vedeu.bind(:_focus_prev_) { Vedeu.focus_previous }
       end
 
       # Vedeu triggers this event when it is ready to enter the main loop.
@@ -183,11 +158,11 @@ module Vedeu
         end
       end
 
-      # When triggered (after the user presses `escape`), Vedeu switches from a
-      # "raw mode" terminal to a "cooked mode" terminal. The idea here being
-      # that the raw mode is for single keypress actions, whilst cooked mode
-      # allows the user to enter more elaborate commands- such as commands with
-      # arguments.
+      # When triggered (by default, after the user presses `escape`), Vedeu
+      # switches between modes of the terminal. The idea here being
+      # that the raw mode is for single keypress actions, whilst fake and cooked
+      # modes allow the user to enter more elaborate commands- such as commands
+      # with arguments.
       #
       # @example
       #   Vedeu.trigger(:_mode_switch_)
@@ -195,50 +170,6 @@ module Vedeu
       # @return [TrueClass]
       def mode_switch!
         Vedeu.bind(:_mode_switch_) { fail Vedeu::ModeSwitch }
-      end
-
-      # Refreshes all registered interfaces or the named interface.
-      #
-      # @note
-      #   The interfaces will be refreshed in z-index order, meaning that
-      #   interfaces with a lower z-index will be drawn first. This means
-      #   overlapping interfaces will be drawn as specified.
-      #   Hidden interfaces will be still refreshed in memory but not shown.
-      #
-      # @example
-      #   Vedeu.trigger(:_refresh_)
-      #   Vedeu.trigger(:_refresh_, name)
-      #
-      # @return [TrueClass]
-      def refresh!
-        Vedeu.bind(:_refresh_) do |name|
-          name ? Vedeu::RefreshBuffer.by_name(name) : Vedeu::Refresh.all
-        end
-      end
-
-      # Will cause the named cursor to refresh, or the cursor of the interface
-      # which is currently in focus.
-      #
-      # @example
-      #   Vedeu.trigger(:_refresh_cursor_, name)
-      #
-      # @return [TrueClass]
-      def refresh_cursor!
-        Vedeu.bind(:_refresh_cursor_) do |name|
-          Vedeu::RefreshCursor.by_name(name)
-        end
-      end
-
-      # Will cause all interfaces in the named group to refresh.
-      #
-      # @example
-      #   Vedeu.trigger(:_refresh_group_, name)
-      #
-      # @return [TrueClass]
-      def refresh_group!
-        Vedeu.bind(:_refresh_group_) do |name|
-          Vedeu::RefreshGroup.by_name(name)
-        end
       end
 
       # When triggered will cause Vedeu to trigger the `:_clear_` and

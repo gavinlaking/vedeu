@@ -94,7 +94,7 @@ in focus. By default the global keymap contains a few simple definitions:
 
 - **`<esc>`**
 
-  **Mode Switch**. Toggle between cooked and raw terminal modes.
+  **Mode Switch**. Toggle between cooked, fake and raw terminal modes.
 
 - **`<tab>`**
 

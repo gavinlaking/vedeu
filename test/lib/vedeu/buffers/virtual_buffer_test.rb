@@ -27,12 +27,22 @@ module Vedeu
     describe '.output' do
       let(:data) {}
 
+      before do
+        Vedeu.stubs(:width).returns(3)
+        Vedeu.stubs(:height).returns(3)
+      end
+
       subject { described.output(data) }
 
       it { subject.must_be_instance_of(Array) }
     end
 
     describe '#cells' do
+      before do
+        Vedeu.stubs(:width).returns(3)
+        Vedeu.stubs(:height).returns(3)
+      end
+
       subject { instance.cells }
 
       it { subject.must_be_instance_of(Array) }
@@ -77,6 +87,11 @@ module Vedeu
     end
 
     describe '#render' do
+      before do
+        Vedeu.stubs(:width).returns(3)
+        Vedeu.stubs(:height).returns(3)
+      end
+
       subject { instance.render }
 
       it { subject.must_be_instance_of(String) }

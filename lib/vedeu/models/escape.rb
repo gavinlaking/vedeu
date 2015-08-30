@@ -20,10 +20,14 @@ module Vedeu
       @attributes.each { |key, value| instance_variable_set("@#{key}", value) }
     end
 
-    # @return [String]
-    def colour
-      ''
+    # @return [NilClass]
+    def null
+      nil
     end
+    alias_method :background, :null
+    alias_method :colour,     :null
+    alias_method :foreground, :null
+    alias_method :style,      :null
 
     # An object is equal when its values are the same.
     #
@@ -37,11 +41,6 @@ module Vedeu
     # @return [String]
     def position
       Vedeu::Position.coerce(@position)
-    end
-
-    # @return [String]
-    def style
-      ''
     end
 
     # @return [String]

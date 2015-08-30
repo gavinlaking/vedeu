@@ -5,7 +5,7 @@ module Vedeu
   #
   module Terminal
 
-    include Vedeu::TerminalMode
+    include Vedeu::Terminal::Mode
     extend self
 
     # Opens a terminal screen in either `raw` or `cooked` mode. On exit,
@@ -16,7 +16,7 @@ module Vedeu
     def open
       fail Vedeu::InvalidSyntax, 'block not given' unless block_given?
 
-      if raw_mode?
+      if raw_mode? || fake_mode?
         console.raw    { initialize_screen(mode) { yield } }
 
       else
@@ -34,29 +34,13 @@ module Vedeu
     def input
       Vedeu.log(type: :input, message: 'Waiting for user input...')
 
-      keys_or_cmd = if raw_mode?
-                      keys = console.getch
+      if raw_mode? || fake_mode?
+        Vedeu::Editor::Capture.read(console)
 
-                      if keys.ord == 27 # \e
-                        begin
-                          keys << console.read_nonblock(5)
-                        rescue
-                          nil
-                        end
-                        begin
-                          keys << console.read_nonblock(4)
-                        rescue
-                          nil
-                        end
-                      end
-                      keys
+      else
+        console.gets.chomp
 
-                    else
-                      console.gets.chomp
-
-                    end
-
-      keys_or_cmd
+      end
     end
     alias_method :read, :input
 

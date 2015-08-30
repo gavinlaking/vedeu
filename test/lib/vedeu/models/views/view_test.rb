@@ -83,8 +83,21 @@ module Vedeu
       end
 
       describe '#visible?' do
-        # @todo Add more tests.
-        # it { skip }
+        subject { instance.visible? }
+
+        context 'when the interface is visible' do
+          let(:interface) { Vedeu::Interface.new(visible: true) }
+
+          before do
+            Vedeu.interfaces.stubs(:by_name).with(_name).returns(interface)
+          end
+
+          it { subject.must_equal(true) }
+        end
+
+        context 'when the interface is not visible' do
+          it { subject.must_equal(false) }
+        end
       end
 
     end # View

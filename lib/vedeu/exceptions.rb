@@ -35,7 +35,7 @@ module Vedeu
   end # MissingRequired
 
   # Raised intentionally when the client application wishes to switch between
-  # cooked and raw (or vice versa) terminal modes.
+  # cooked, fake and raw terminal modes.
   #
   # @see Vedeu::Application
   #
