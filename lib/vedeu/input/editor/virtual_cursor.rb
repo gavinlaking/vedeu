@@ -40,24 +40,22 @@ module Vedeu
 
       # Returns a new instance of Vedeu::Editor::VirtualCursor.
       #
-      # @param y [Fixnum] The current line.
-      # @param x [Fixnum] The current character with the line.
-      # @param by [Fixnum]
-      # @param bx [Fixnum]
-      # @param byn [Fixnum]
-      # @param bxn [Fixnum]
-      # @param oy [Fixnum]
-      # @param ox [Fixnum]
+      # @param attributes [Hash]
+      # @option attributes y [Fixnum] The current line.
+      # @option attributes x [Fixnum] The current character with the line.
+      # @option attributes by [Fixnum]
+      # @option attributes bx [Fixnum]
+      # @option attributes byn [Fixnum]
+      # @option attributes bxn [Fixnum]
+      # @option attributes oy [Fixnum]
+      # @option attributes ox [Fixnum]
       # @return [Vedeu::Editor::VirtualCursor]
-      def initialize(y: 0, x: 0, by:, bx:, byn:, bxn:, oy: 0, ox: 0)
-        @y   = (y.nil? || y < 0) ? 0 : y
-        @x   = (x.nil? || x < 0) ? 0 : x
-        @by  = by
-        @bx  = bx
-        @byn = byn
-        @bxn = bxn
-        @ox  = ox
-        @oy  = oy
+      def initialize(attributes = {})
+        @attributes = defaults.merge!(attributes)
+
+        @attributes.each do |key, value|
+          instance_variable_set("@#{key}", value)
+        end
       end
 
       # Move the virtual cursor to the beginning of the line.
@@ -145,6 +143,22 @@ module Vedeu
       end
 
       private
+
+      # Returns the default options/attributes for this class.
+      #
+      # @return [Hash<Symbol => Fixnum|NilClass>]
+      def defaults
+        {
+          y:   0,
+          x:   0,
+          by:  nil,
+          bx:  nil,
+          byn: nil,
+          bxn: nil,
+          ox:  0,
+          oy:  0,
+        }
+      end
 
       # Return the real y coordinate.
       #

@@ -6,16 +6,19 @@ module Vedeu
 
     describe VirtualCursor do
 
-      let(:described) { Vedeu::Editor::VirtualCursor }
-      let(:instance)  {
-        described.new(y:   y,
-                      x:   x,
-                      bx:  bx,
-                      by:  by,
-                      byn: byn,
-                      bxn: bxn,
-                      oy:  oy,
-                      ox:  ox)
+      let(:described)  { Vedeu::Editor::VirtualCursor }
+      let(:instance)   { described.new(attributes) }
+      let(:attributes) {
+        {
+          y:   y,
+          x:   x,
+          bx:  bx,
+          by:  by,
+          byn: byn,
+          bxn: bxn,
+          oy:  oy,
+          ox:  ox
+        }
       }
       let(:y)         { 0 }
       let(:x)         { 0 }
@@ -28,6 +31,9 @@ module Vedeu
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
+        it {
+          instance.instance_variable_get('@attributes').must_equal(attributes)
+        }
         it { instance.instance_variable_get('@y').must_equal(y) }
         it { instance.instance_variable_get('@x').must_equal(x) }
         it { instance.instance_variable_get('@by').must_equal(by) }
