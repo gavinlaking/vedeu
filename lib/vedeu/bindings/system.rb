@@ -197,8 +197,8 @@ module Vedeu
       end
 
     end # System
+    # :nocov:
 
   end # Bindings
-  # :nocov:
 
 end # Vedeu

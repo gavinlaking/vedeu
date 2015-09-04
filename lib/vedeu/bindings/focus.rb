@@ -60,6 +60,7 @@ module Vedeu
       end
 
     end # Focus
+    # :nocov:
 
   end # Bindings
 

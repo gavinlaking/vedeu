@@ -71,6 +71,7 @@ module Vedeu
       end
 
     end # Refresh
+    # :nocov:
 
   end # Bindings
 
