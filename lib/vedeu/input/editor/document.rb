@@ -158,8 +158,17 @@ module Vedeu
       #
       # @return [String]
       def retrieve
-        lines.map(&:to_s).join("\n")
+        command = lines.map(&:to_s).join("\n")
+
+        reset!
+
+        clear
+
+        Vedeu.trigger(:_command_, command)
+
+        command
       end
+      alias_method :command, :retrieve
 
       # Store the document in the documents repository and render the view.
       #

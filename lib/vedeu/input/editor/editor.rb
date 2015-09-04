@@ -78,18 +78,6 @@ module Vedeu
 
       private
 
-      #
-      # @return [void]
-      def command
-        command = retrieve
-
-        reset!
-
-        clear
-
-        Vedeu.trigger(:_command_, command)
-      end
-
       # Return the document by name from the documents repository.
       #
       # @return [Vedeu::Editor::Document]
