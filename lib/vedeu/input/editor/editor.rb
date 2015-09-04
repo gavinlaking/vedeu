@@ -23,6 +23,8 @@ module Vedeu
                      :right,
                      :up
 
+      # Send given input to the named document.
+      #
       # @param name [String]
       # @param input [String|Symbol]
       # @return [void]
@@ -40,6 +42,8 @@ module Vedeu
         @name  = name
       end
 
+      # Send given input to the named document.
+      #
       # @return [String|Symbol]
       def keypress
         return input unless document
@@ -75,7 +79,7 @@ module Vedeu
       private
 
       #
-      # @return []
+      # @return [void]
       def command
         command = retrieve
 
