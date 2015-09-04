@@ -170,6 +170,7 @@ require 'vedeu/api'
 require 'vedeu/internal_api'
 
 require 'vedeu/bindings/application'
+require 'vedeu/bindings/document'
 require 'vedeu/bindings/drb'
 require 'vedeu/bindings/menus'
 require 'vedeu/bindings/movement'

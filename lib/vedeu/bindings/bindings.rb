@@ -18,6 +18,7 @@ module Vedeu
       Vedeu::Events.reset!
 
       Vedeu::Bindings::Application.setup!
+      Vedeu::Bindings::Document.setup!
       Vedeu::Bindings::Visibility.setup!
       Vedeu::Bindings::Movement.setup!
       Vedeu::Bindings::Menus.setup!
