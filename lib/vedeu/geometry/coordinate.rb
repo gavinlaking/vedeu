@@ -159,13 +159,15 @@ module Vedeu
 
     # Ascertain the correct methods to use for determining the coordinates.
     #
+    # @raise [Vedeu::Error::InvalidSyntax] When the coordinate type is not
+    #   given.
     # @return [Fixnum]
     def coordinate_type
       @_type ||= case type
                  when :x then [:x, :bx, :bxn, :width]
                  when :y then [:y, :by, :byn, :height]
                  else
-                   fail Vedeu::InvalidSyntax,
+                   fail Vedeu::Error::InvalidSyntax,
                         'Coordinate type not given, cannot continue.'
                  end
     end

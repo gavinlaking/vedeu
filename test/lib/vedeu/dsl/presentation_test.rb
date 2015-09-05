@@ -37,7 +37,12 @@ module Vedeu
 
         it { instance.must_respond_to(:bg) }
         it { instance.must_respond_to(:bgcolor) }
-        it { dsl.colour.background.must_be_instance_of(Vedeu::Background) }
+        it { instance.must_respond_to(:bg=) }
+        it { instance.must_respond_to(:bgcolor=) }
+        it { instance.must_respond_to(:background=) }
+        it {
+          dsl.colour.background.must_be_instance_of(Vedeu::Colours::Background)
+        }
         it { dsl.colour.background.colour.must_equal(background) }
       end
 
@@ -53,7 +58,12 @@ module Vedeu
 
         it { instance.must_respond_to(:fg) }
         it { instance.must_respond_to(:fgcolor) }
-        it { dsl.colour.foreground.must_be_instance_of(Vedeu::Foreground) }
+        it { instance.must_respond_to(:fg=) }
+        it { instance.must_respond_to(:fgcolor=) }
+        it { instance.must_respond_to(:foreground=) }
+        it {
+          dsl.colour.foreground.must_be_instance_of(Vedeu::Colours::Foreground)
+        }
         it { dsl.colour.foreground.colour.must_equal(foreground) }
       end
 
@@ -62,7 +72,8 @@ module Vedeu
 
         subject { instance.colour(attributes) }
 
-        it { subject.must_be_instance_of(Vedeu::Colour) }
+        it { instance.must_respond_to(:colour=) }
+        it { subject.must_be_instance_of(Vedeu::Colours::Colour) }
 
         context 'with an empty value' do
           let(:attributes) { { background: background, foreground: '' } }
@@ -77,7 +88,9 @@ module Vedeu
 
         subject { instance.style(args) }
 
+        it { instance.must_respond_to(:style=) }
         it { instance.must_respond_to(:styles) }
+        it { instance.must_respond_to(:styles=) }
 
         it { subject.must_be_instance_of(Vedeu::Style) }
       end

@@ -14,7 +14,9 @@ module Vedeu
 
     describe '.open' do
       context 'when a block was not given' do
-        it { proc { Vedeu::Terminal.open }.must_raise(Vedeu::InvalidSyntax) }
+        it {
+          proc { Vedeu::Terminal.open }.must_raise(Vedeu::Error::InvalidSyntax)
+        }
       end
 
       it 'opens a new terminal console in raw mode' do
@@ -93,8 +95,6 @@ module Vedeu
     end
 
     describe '.resize' do
-      before { Vedeu.interfaces.reset }
-
       subject { described.resize }
 
       it { subject.must_be_instance_of(TrueClass) }

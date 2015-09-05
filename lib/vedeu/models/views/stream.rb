@@ -31,7 +31,7 @@ module Vedeu
       # Returns a new instance of Vedeu::Views::Stream.
       #
       # @param attributes [Hash]
-      # @option attributes colour [Vedeu::Colour]
+      # @option attributes colour [Vedeu::Colours::Colour]
       # @option attributes style [Vedeu::Style]
       # @option attributes parent [Vedeu::Views::Line]
       # @option attributes value [String]

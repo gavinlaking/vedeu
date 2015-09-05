@@ -43,7 +43,8 @@ module Vedeu
 
         context 'when there is a colour' do
           let(:colour) {
-            Vedeu::Colour.new(background: '#220022', foreground: '#aadd00')
+            Vedeu::Colours::Colour.new(background: '#220022',
+                                       foreground: '#aadd00')
           }
 
           it { subject.must_equal(
@@ -60,7 +61,8 @@ module Vedeu
         context 'when there is no colour' do
           context 'when there is a parent colour' do
             let(:parent_colour) {
-              Vedeu::Colour.new(background: '#002222', foreground: '#dd2200')
+              Vedeu::Colours::Colour.new(background: '#002222',
+                                         foreground: '#dd2200')
             }
 
             it { subject.must_equal(

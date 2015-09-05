@@ -147,7 +147,7 @@ module Vedeu
       context 'when the model cannot be found' do
         let(:model_name) { 'not_found' }
 
-        it { proc { subject }.must_raise(Vedeu::ModelNotFound) }
+        it { proc { subject }.must_raise(Vedeu::Error::ModelNotFound) }
       end
 
       context 'when the model is found' do
@@ -247,7 +247,7 @@ module Vedeu
       context 'when a name attribute is empty or nil' do
         before { model_instance.name = '' }
 
-        it { proc { subject }.must_raise(Vedeu::MissingRequired) }
+        it { proc { subject }.must_raise(Vedeu::Error::MissingRequired) }
       end
 
       context 'when a name attributes is provided' do

@@ -126,10 +126,11 @@ module Vedeu
         #
         # @param block [Proc] The directives you wish to send to render.
         #   Typically includes `view` with associated sub-directives.
-        # @raise [Vedeu::InvalidSyntax] The required block was not given.
+        # @raise [Vedeu::Error::InvalidSyntax] The required block was not given.
         # @return [Array<View>]
         def renders(&block)
-          fail Vedeu::InvalidSyntax, 'block not given' unless block_given?
+          fail Vedeu::Error::InvalidSyntax,
+               'block not given' unless block_given?
 
           store(:store_immediate, &block)
         end
@@ -170,10 +171,11 @@ module Vedeu
         #
         # @param block [Proc] The directives you wish to send to render.
         #   Typically includes `view` with associated sub-directives.
-        # @raise [Vedeu::InvalidSyntax] The required block was not given.
+        # @raise [Vedeu::Error::InvalidSyntax] The required block was not given.
         # @return [Array<View>]
         def views(&block)
-          fail Vedeu::InvalidSyntax, 'block not given' unless block_given?
+          fail Vedeu::Error::InvalidSyntax,
+               'block not given' unless block_given?
 
           store(:store_deferred, &block)
         end
@@ -241,10 +243,10 @@ module Vedeu
       #     end
       #   end
       #
-      # @raise [Vedeu::InvalidSyntax] The required block was not given.
+      # @raise [Vedeu::Error::InvalidSyntax] The required block was not given.
       # @return [Vedeu::Views::Line]
       def lines(&block)
-        fail Vedeu::InvalidSyntax, 'block not given' unless block_given?
+        fail Vedeu::Error::InvalidSyntax, 'block not given' unless block_given?
 
         model.add(model.member.build(attributes, &block))
       end

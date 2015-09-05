@@ -47,15 +47,15 @@ module Vedeu
         File.read(path)
       end
 
-      # @raise [Vedeu::MissingRequired] when the path is empty.
-      # @raise [Vedeu::MissingRequired] when the path does not exist.
+      # @raise [Vedeu::Error::MissingRequired] When the path is empty or does
+      #   not exist.
       # @return [String]
       def path
-        fail Vedeu::MissingRequired,
+        fail Vedeu::Error::MissingRequired,
              'No path to template specified.' if @path.empty?
 
         unless File.exist?(@path)
-          fail Vedeu::MissingRequired,
+          fail Vedeu::Error::MissingRequired,
                "Template file cannot be found. (#{@path})"
         end
 

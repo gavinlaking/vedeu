@@ -1,78 +1,89 @@
 module Vedeu
 
-  # Raised with Vedeu attempts to access a client application controller that
-  # does not exist.
+  # Custom exceptions which Vedeu will raise in certain circumstances.
   #
-  class ControllerNotFound < StandardError
+  module Error
 
-  end # ControllerNotFound
+    # Raised with Vedeu attempts to access a client application controller's
+    # action that does not exist.
+    #
+    class ActionNotFound < StandardError
 
-  # Raised with Vedeu attempts to access a client application controller's
-  # action that does not exist.
-  #
-  class ActionNotFound < StandardError
+    end # ActionNotFound
 
-  end # ActionNotFound
+    # Raised with Vedeu attempts to access a client application controller that
+    # does not exist.
+    #
+    class ControllerNotFound < StandardError
 
-  # Raised with Vedeu attempts to access a named model that does not exist.
-  #
-  class ModelNotFound < StandardError
+    end # ControllerNotFound
 
-  end # ModeSwitch
+    # Raised when Vedeu encounters an error.
+    #
+    class Fatal < StandardError
 
-  # Raised when Vedeu attempts to parse a {Vedeu.view} or {Vedeu.interface} and
-  # encounters a problem.
-  #
-  class InvalidSyntax < StandardError
+    end # Fatal
 
-  end # InvalidSyntax
+    # Raised when Vedeu wishes to exit.
+    #
+    # @see Vedeu::MainLoop
+    #
+    class Interrupt < StandardError
 
-  # Raised when a name is not provided for a model when attempting to store it
-  # in a repository.
-  #
-  class MissingRequired < StandardError
+    end # Interrupt
 
-  end # MissingRequired
+    # Raised when Vedeu attempts to parse a view or interface and encounters a
+    # problem.
+    #
+    class InvalidSyntax < StandardError
 
-  # Raised intentionally when the client application wishes to switch between
-  # cooked, fake and raw terminal modes.
-  #
-  # @see Vedeu::Application
-  #
-  class ModeSwitch < StandardError
+    end # InvalidSyntax
 
-  end # ModeSwitch
+    # Raised when a name is not provided for a model when attempting to store it
+    # in a repository.
+    #
+    class MissingRequired < StandardError
 
-  # Raised to remind me (or client application developers) that the subclass
-  # implements the functionality sought.
-  #
-  # @see Vedeu::ColourTranslator
-  #
-  class NotImplemented < StandardError
+    end # MissingRequired
 
-  end # NotImplemented
+    # Raised with Vedeu attempts to access a named model that does not exist.
+    #
+    class ModelNotFound < StandardError
 
-  # Raised when trying to access an interface column less than 1 or greater
-  # than 12. Vedeu is hard-wired to a 12-column layout for the time being.
-  #
-  # @see Vedeu::Grid
-  #
-  class OutOfRange < StandardError
+    end # ModelNotFound
 
-  end # OutOfRange
+    # Raised intentionally when the client application wishes to switch between
+    # cooked, fake and raw terminal modes.
+    #
+    # @see Vedeu::Application
+    #
+    class ModeSwitch < StandardError
 
-  # Raised when Vedeu encounters an error.
-  #
-  class VedeuError < StandardError
+    end # ModeSwitch
 
-  end # VedeuError,
+    # Raised to remind me (or client application developers) that the subclass
+    # implements the functionality sought.
+    #
+    # @see Vedeu::Colours::Translator
+    #
+    class NotImplemented < StandardError
 
-  # Raised when Vedeu wishes to exit.
-  #
-  # @see Vedeu::MainLoop
-  #
-  class VedeuInterrupt < StandardError
+    end # NotImplemented
 
-  end # VedeuInterrupt
+    # Raised when trying to access an interface column less than 1 or greater
+    # than 12. Vedeu is hard-wired to a 12-column layout for the time being.
+    #
+    # @see Vedeu::Grid
+    #
+    class OutOfRange < StandardError
+
+      # @return [String]
+      def message
+        'Valid value is between 1 and 12 inclusive.'
+      end
+
+    end # OutOfRange
+
+  end # Error
 
 end # Vedeu

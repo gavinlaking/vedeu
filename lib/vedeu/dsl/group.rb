@@ -50,10 +50,10 @@ module Vedeu
       #
       # @param name [String] The name of this group.
       # @param block [Proc]
-      # @raise [Vedeu::InvalidSyntax] The required block was not given.
+      # @raise [Vedeu::Error::InvalidSyntax] The required block was not given.
       # @return [Vedeu::Group]
       def self.group(name, &block)
-        fail Vedeu::InvalidSyntax, 'block not given' unless block_given?
+        fail Vedeu::Error::InvalidSyntax, 'block not given' unless block_given?
 
         Vedeu::Group.build(name: name, &block).store
       end

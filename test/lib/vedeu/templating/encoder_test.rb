@@ -9,11 +9,10 @@ module Vedeu
       let(:described) { Vedeu::Templating::Encoder }
       let(:instance)  { described.new(data) }
       let(:data)      {
-        Vedeu::Colour.new(background: '#ff0000', foreground: '#00ff00')
+        Vedeu::Colours::Colour.new(background: '#ff0000', foreground: '#00ff00')
       }
       let(:expected)  {
-        "{{eJxj4ci3EgpLTUkttbJyzs/JLy1itxJwSEpMzk4vyi/NS8m3EoPKOsHF2Kx4HJLBaj" \
-        "2VeJTT0gyAgM2KzTUEqDMtvygVXacbXIzNmgOkxcAApInNmjMEAAMcJsQ=}}"
+        "{{eJxj4ci3kg5LTUkttbJyzs/JLy0qhjHYrQQckhKTs9OL8kvzUvKt5NGVOcEl2ax4HJLBwp5KPMppaQZAwGbF5hoCNCItvygVpxFucEk2aw6QXgMDkG42a84QAEnkMPA=}}"
       }
 
       describe '#initialize' do

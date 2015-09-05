@@ -82,10 +82,10 @@ module Vedeu
       # @param name [String] The name of the interface or view to which this
       #   geometry belongs.
       # @param block [Proc]
-      # @raise [Vedeu::InvalidSyntax] The required block was not given.
+      # @raise [Vedeu::Error::InvalidSyntax] The required block was not given.
       # @return [Vedeu::Geometry]
       def self.geometry(name, &block)
-        fail Vedeu::InvalidSyntax, 'block not given' unless block_given?
+        fail Vedeu::Error::InvalidSyntax, 'block not given' unless block_given?
 
         Vedeu::Geometry.build(name: name, &block).store
       end
@@ -120,6 +120,7 @@ module Vedeu
         model.centred = boolean
       end
       alias_method :centred!, :centred
+      alias_method :centred=, :centred
 
       # Returns the width in characters for the number of columns specified.
       #
@@ -132,9 +133,9 @@ module Vedeu
       #   end
       #
       # @param value [Fixnum]
-      # @raise [Vedeu::OutOfRange] When the value parameter is not between 1 and
-      #   12 inclusive.
-      # @return [Fixnum|Vedeu::OutOfRange]
+      # @raise [Vedeu::Error::OutOfRange] When the value parameter is not
+      #   between 1 and 12 inclusive.
+      # @return [Fixnum|Vedeu::Error::OutOfRange]
       def columns(value)
         Vedeu::Grid.columns(value)
       end
@@ -152,6 +153,7 @@ module Vedeu
       def height(value)
         model.height = proc { value }
       end
+      alias_method :height=, :height
 
       # Returns the height in characters for the number of rows specified.
       #
@@ -164,8 +166,8 @@ module Vedeu
       #   end
       #
       # @param value [Fixnum]
-      # @raise [Vedeu::OutOfRange] When the value parameter is not between 1 and
-      #   12 inclusive.
+      # @raise [Vedeu::Error::OutOfRange] When the value parameter is not
+      #   between 1 and 12 inclusive.
       # @return [Fixnum]
       def rows(value)
         Vedeu::Grid.rows(value)
@@ -184,6 +186,7 @@ module Vedeu
       def width(value)
         model.width = proc { value }
       end
+      alias_method :width=, :width
 
       # Specify the starting x position (column) of the interface.
       #
@@ -203,6 +206,7 @@ module Vedeu
 
         model.x = value
       end
+      alias_method :x=, :x
 
       # Specify the ending x position (column) of the interface.
       # This value will override `width`.
@@ -223,6 +227,7 @@ module Vedeu
 
         model.xn = value
       end
+      alias_method :xn=, :xn
 
       # Specify the starting y position (row/line) of the interface.
       #
@@ -242,6 +247,7 @@ module Vedeu
 
         model.y = value
       end
+      alias_method :y=, :y
 
       # Specify the ending y position (row/line) of the interface.
       # This value will override `height`.
@@ -261,6 +267,7 @@ module Vedeu
 
         model.yn = value
       end
+      alias_method :yn=, :yn
 
     end # Geometry
 

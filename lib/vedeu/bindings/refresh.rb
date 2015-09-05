@@ -5,11 +5,6 @@ module Vedeu
     # Creates system events which when called provide a variety of core
     # functions and behaviours. They are soft-namespaced using underscores.
     #
-    # @note
-    #   Unbinding any of these events is likely to cause problems, so I would
-    #   advise leaving them alone. A safe rule: when the name starts with an
-    #   underscore, it's probably used by Vedeu internally.
-    #
     # :nocov:
     module Refresh
 

@@ -10,7 +10,7 @@ module Vedeu
       let(:instance)   { described.new(model) }
       let(:model)      { Vedeu::Views::Line.new(attributes) }
       let(:client)     {}
-      let(:colour)     { Vedeu::Colour.new }
+      let(:colour)     { Vedeu::Colours::Colour.new }
       let(:parent)     { Vedeu::Views::View.new }
       let(:style)      { Vedeu::Style.new }
       let(:_value)     { [] }
@@ -42,6 +42,7 @@ module Vedeu
 
         it { subject.must_be_instance_of(Vedeu::Views::Lines) }
         it { subject[0].must_be_instance_of(Vedeu::Views::Line) }
+        it { instance.must_respond_to(:line=) }
 
         context 'when the block is given' do
         end
@@ -56,7 +57,7 @@ module Vedeu
 
             subject { instance.line(_value) }
 
-            it { proc { subject }.must_raise(Vedeu::InvalidSyntax) }
+            it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
           end
         end
       end
@@ -74,10 +75,12 @@ module Vedeu
         end
 
         context 'when the block is not given' do
-          it { proc { instance.streams }.must_raise(Vedeu::InvalidSyntax) }
+          it { proc { instance.streams }.must_raise(Vedeu::Error::InvalidSyntax) }
         end
 
         it { instance.must_respond_to(:stream) }
+        it { instance.must_respond_to(:stream=) }
+        it { instance.must_respond_to(:streams=) }
       end
 
     end # Line

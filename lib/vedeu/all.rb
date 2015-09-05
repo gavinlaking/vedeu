@@ -27,7 +27,6 @@ require 'vedeu/models/toggleable'
 
 require 'vedeu/repositories/collection'
 require 'vedeu/input/keys'
-require 'vedeu/events/event_collection'
 require 'vedeu/repositories/repositories'
 
 require 'vedeu/repositories/model'
@@ -52,13 +51,7 @@ require 'vedeu/geometry/geometries'
 require 'vedeu/geometry/grid'
 require 'vedeu/geometry/position'
 
-require 'vedeu/colours/colours'
-require 'vedeu/colours/backgrounds'
-require 'vedeu/colours/foregrounds'
-require 'vedeu/colours/colour_translator'
-require 'vedeu/colours/background'
-require 'vedeu/colours/foreground'
-require 'vedeu/colours/colour'
+require 'vedeu/colours/all'
 
 require 'vedeu/buffers/buffer'
 require 'vedeu/buffers/buffers'
@@ -90,11 +83,7 @@ require 'vedeu/output/renderers/terminal'
 require 'vedeu/output/renderers/text'
 require 'vedeu/output/renderers'
 
-require 'vedeu/events/event_aliases'
-require 'vedeu/events/trigger'
-require 'vedeu/events/events'
-require 'vedeu/events/event'
-
+require 'vedeu/events/all'
 require 'vedeu/models/views/all'
 
 require 'vedeu/models/cell'

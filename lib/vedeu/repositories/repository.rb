@@ -89,11 +89,11 @@ module Vedeu
     # cannot be found.
     #
     # @param name [String]
-    # @raise [Vedeu::ModelNotFound] When the model cannot be found with this
-    #   name.
+    # @raise [Vedeu::Error::ModelNotFound] When the model cannot be found with
+    #   this name.
     # @return [Hash<String => Object>]
     def find!(name)
-      find(name) || fail(Vedeu::ModelNotFound,
+      find(name) || fail(Vedeu::Error::ModelNotFound,
                          "Cannot find model by name: '#{name}'")
     end
 
@@ -148,12 +148,13 @@ module Vedeu
     # Stores the model instance by name in the repository of the model.
     #
     # @param model [void] A model instance.
-    # @raise [Vedeu::MissingRequired] When the name attribute is not defined.
+    # @raise [Vedeu::Error::MissingRequired] When the name attribute is not
+    #   defined.
     # @return [void] The model instance which was stored.
     def store(model)
       unless present?(model.name)
-        fail Vedeu::MissingRequired, "Cannot store model '#{model.class}' " \
-                                     'without a name attribute.'
+        fail Vedeu::Error::MissingRequired,
+             "Cannot store model '#{model.class}' without a name attribute."
       end
 
       log_store(model)

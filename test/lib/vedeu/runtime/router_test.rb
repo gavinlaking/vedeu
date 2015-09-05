@@ -26,7 +26,7 @@ module Vedeu
       subject { described.add_controller(controller, klass) }
 
       context 'when a name is not given' do
-        it { proc { subject }.must_raise(Vedeu::MissingRequired) }
+        it { proc { subject }.must_raise(Vedeu::Error::MissingRequired) }
       end
 
       context 'when a name is given' do
@@ -71,13 +71,13 @@ module Vedeu
       context 'when the controller is not given' do
         let(:action) { :some_action }
 
-        it { proc { subject }.must_raise(Vedeu::MissingRequired) }
+        it { proc { subject }.must_raise(Vedeu::Error::MissingRequired) }
       end
 
       context 'when the name is not given' do
         let(:controller) { :some_controller }
 
-        it { proc { subject }.must_raise(Vedeu::MissingRequired) }
+        it { proc { subject }.must_raise(Vedeu::Error::MissingRequired) }
       end
 
       context 'when the controller and name is given' do
@@ -155,7 +155,7 @@ module Vedeu
             described.add_controller(controller, 'Vedeu::SomeController')
           end
 
-          it { proc { subject }.must_raise(Vedeu::ActionNotFound) }
+          it { proc { subject }.must_raise(Vedeu::Error::ActionNotFound) }
         end
 
         context 'when the controller klass is not defined' do
@@ -165,12 +165,12 @@ module Vedeu
           end
           after { described.reset! }
 
-          it { proc { subject }.must_raise(Vedeu::MissingRequired) }
+          it { proc { subject }.must_raise(Vedeu::Error::MissingRequired) }
         end
       end
 
       context 'when the controller is not registered' do
-        it { proc { subject }.must_raise(Vedeu::ControllerNotFound) }
+        it { proc { subject }.must_raise(Vedeu::Error::ControllerNotFound) }
       end
     end
 

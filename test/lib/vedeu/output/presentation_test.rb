@@ -48,15 +48,15 @@ module Vedeu
       let(:line) {
         Vedeu::Views::Line.new(value:  [],
                                parent: Vedeu::Interface.new,
-                               colour: Vedeu::Colour.new(foreground: '#00ff00',
-                                                         background: '#000000'),
+                               colour: Vedeu::Colours::Colour.new(foreground: '#00ff00',
+                                                                  background: '#000000'),
                                style:  Vedeu::Style.new('normal'))
       }
       let(:stream) {
         Vedeu::Views::Stream.new(value:  stream_value,
                                  parent: line,
-                                 colour: Vedeu::Colour.new(foreground: '#ff0000',
-                                                           background: '#000000'),
+                                 colour: Vedeu::Colours::Colour.new(foreground: '#ff0000',
+                                                                    background: '#000000'),
                                  style:  stream_style)
       }
       let(:stream_value)  { 'Some text' }

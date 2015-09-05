@@ -9,7 +9,7 @@ module Vedeu
       # @param value [String] The HTML/CSS colour.
       # @param block [Proc]
       # @return [Vedeu::Views::Stream]
-      # @raise [Vedeu::InvalidSyntax] The required block was not given.
+      # @raise [Vedeu::Error::InvalidSyntax] The required block was not given.
       def background(value, &block)
         define_stream(background: value, &block)
       end
@@ -20,7 +20,7 @@ module Vedeu
       # @option attributes background [String] The HTML/CSS background colour.
       # @param block [Proc]
       # @return [Vedeu::Views::Stream]
-      # @raise [Vedeu::InvalidSyntax] The required block was not given.
+      # @raise [Vedeu::Error::InvalidSyntax] The required block was not given.
       def colour(attributes = {}, &block)
         define_stream(attributes, &block)
       end
@@ -28,7 +28,7 @@ module Vedeu
       # @param value [String] The HTML/CSS colour.
       # @param block [Proc]
       # @return [Vedeu::Views::Stream]
-      # @raise [Vedeu::InvalidSyntax] The required block was not given.
+      # @raise [Vedeu::Error::InvalidSyntax] The required block was not given.
       def foreground(value, &block)
         define_stream(foreground: value, &block)
       end
@@ -45,11 +45,11 @@ module Vedeu
 
       # @see Vedeu::Templating::Helpers#colour
       def define_stream(attributes = {}, &block)
-        fail Vedeu::InvalidSyntax, 'block not given' unless block_given?
+        fail Vedeu::Error::InvalidSyntax, 'block not given' unless block_given?
 
         encode(
           Vedeu::Views::Stream.build(
-            colour: Vedeu::Colour.new(attributes),
+            colour: Vedeu::Colours::Colour.new(attributes),
             style:  Vedeu::Style.new(attributes[:style]),
             value:  block.call))
       end

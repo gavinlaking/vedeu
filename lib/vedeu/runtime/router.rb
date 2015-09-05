@@ -13,11 +13,12 @@ module Vedeu
     #
     # @param controller [Symbol]
     # @param klass [String]
-    # @raise [Vedeu::MissingRequired] When the controller name is not given.
+    # @raise [Vedeu::Error::MissingRequired] When the controller name is not
+    #   given.
     # @return [void]
     def add_controller(controller, klass)
       unless present?(controller)
-        fail Vedeu::MissingRequired,
+        fail Vedeu::Error::MissingRequired,
              'Cannot store controller without a name attribute.'
       end
 
@@ -40,8 +41,8 @@ module Vedeu
     #
     # @param controller [Symbol]
     # @param action [Symbol]
-    # @raise [Vedeu::MissingRequired] When the controller name or action name is
-    #   not given.
+    # @raise [Vedeu::Error::MissingRequired] When the controller name or action
+    #   name is not given.
     # @return [void]
     def add_action(controller, action)
       if present?(controller) && present?(action)
@@ -60,7 +61,7 @@ module Vedeu
         storage
 
       else
-        fail Vedeu::MissingRequired,
+        fail Vedeu::Error::MissingRequired,
              'Cannot store action without a controller or name attribute.'
 
       end
@@ -75,7 +76,8 @@ module Vedeu
     # @param controller [Symbol]
     # @param action [Symbol]
     # @param args [void]
-    # @raise [Vedeu::ModelNotFound] When the controller is not registered.
+    # @raise [Vedeu::Error::ModelNotFound] When the controller is not
+    #   registered.
     # @return [void]
     def goto(controller, action, **args)
       Vedeu.log(type:    :debug,
@@ -114,11 +116,12 @@ module Vedeu
       if registered?(controller)
         return true if storage[controller][:actions].include?(action)
 
-        fail Vedeu::ActionNotFound,
+        fail Vedeu::Error::ActionNotFound,
              "#{action} is not registered for #{controller}."
 
       else
-        fail Vedeu::ControllerNotFound, "#{controller} is not registered."
+        fail Vedeu::Error::ControllerNotFound,
+             "#{controller} is not registered."
 
       end
     end
@@ -138,15 +141,15 @@ module Vedeu
     # Fetch the class for the controller by name.
     #
     # @param controller [Symbol]
-    # @raise [Vedeu::MissingRequired] When the given controller name does not
-    #   have a class defined.
+    # @raise [Vedeu::Error::MissingRequired] When the given controller name does
+    #   not have a class defined.
     # @return [String]
     def klass_for(controller)
       if registered?(controller) && klass_defined?(controller)
         storage[controller][:klass]
 
       else
-        fail Vedeu::MissingRequired,
+        fail Vedeu::Error::MissingRequired,
              "Cannot route to #{controller} as no class defined."
 
       end

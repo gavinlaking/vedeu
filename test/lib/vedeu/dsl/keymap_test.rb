@@ -20,28 +20,30 @@ module Vedeu
 
         subject { instance.key(*value_or_values) { :some_action } }
 
+        it { instance.must_respond_to(:key=) }
+
         context 'when a block was not given' do
           subject { instance.key(value_or_values) }
 
-          it { proc { subject }.must_raise(Vedeu::InvalidSyntax) }
+          it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
         end
 
         context 'when a key was not given' do
           let(:value_or_values) {}
 
-          it { proc { subject }.must_raise(Vedeu::InvalidSyntax) }
+          it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
         end
 
         context 'when an invalid key was given (nil)' do
           let(:value_or_values) { ['v', nil] }
 
-          it { proc { subject }.must_raise(Vedeu::InvalidSyntax) }
+          it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
         end
 
         context 'when an invalid key was given (empty)' do
           let(:value_or_values) { ['v', ''] }
 
-          it { proc { subject }.must_raise(Vedeu::InvalidSyntax) }
+          it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
         end
 
         context 'when the key is valid (not already defined)' do
@@ -58,6 +60,8 @@ module Vedeu
         let(:_value) { 'gold' }
 
         subject { instance.name(_value) }
+
+        it { instance.must_respond_to(:name=) }
 
         it 'defines the name of the keymap' do
           subject

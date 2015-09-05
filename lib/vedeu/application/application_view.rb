@@ -27,10 +27,10 @@ module Vedeu
       end
     end
 
-    # @raise [Vedeu::NotImplemented] Subclasses of this class must implement
-    #   this method.
+    # @raise [Vedeu::Error::NotImplemented] Subclasses of this class must
+    #   implement this method.
     def render
-      fail Vedeu::NotImplemented,
+      fail Vedeu::Error::NotImplemented,
            'The subclass of Vedeu::ApplicationView must implement the #render' \
            'method.'
     end
@@ -48,12 +48,10 @@ module Vedeu
     #
     # @param value [String]
     # @return [String]
-    # :nocov:
     def template(value)
       @template = Vedeu::Configuration.base_path +
                   "/app/views/templates/#{value}.erb"
     end
-    # :nocov:
 
   end # ApplicationView
 

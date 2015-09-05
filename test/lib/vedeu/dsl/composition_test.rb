@@ -28,7 +28,7 @@ module Vedeu
         it { subject[0].must_be_instance_of(Vedeu::Views::View) }
 
         context 'when the block is not given' do
-          it { proc { instance.view }.must_raise(Vedeu::InvalidSyntax) }
+          it { proc { instance.view }.must_raise(Vedeu::Error::InvalidSyntax) }
         end
       end
 
@@ -44,13 +44,13 @@ module Vedeu
         context 'when the name of the view is not given' do
           let(:filename) { 'my_interface.erb' }
 
-          it { proc { subject }.must_raise(Vedeu::MissingRequired) }
+          it { proc { subject }.must_raise(Vedeu::Error::MissingRequired) }
         end
 
         context 'when the filename of the template is not given' do
           let(:_name) { 'my_interface' }
 
-          it { proc { subject }.must_raise(Vedeu::MissingRequired) }
+          it { proc { subject }.must_raise(Vedeu::Error::MissingRequired) }
         end
 
         context 'when the name and filename are given' do

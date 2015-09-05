@@ -11,7 +11,7 @@ module Vedeu
 
     # @param name [String] The name of the interface to be refreshed using the
     #   named buffer.
-    # @return [Array|Vedeu::ModelNotFound]
+    # @return [Array|Vedeu::Error::ModelNotFound]
     def self.by_name(name)
       new(name).by_name
     end
@@ -39,12 +39,12 @@ module Vedeu
 
     private
 
-    # @raise [Vedeu::MissingRequired] When the name is empty or nil.
+    # @raise [Vedeu::Error::MissingRequired] When the name is empty or nil.
     # @return [String]
     def buffer_name
       return name if present?(name)
 
-      fail Vedeu::MissingRequired,
+      fail Vedeu::Error::MissingRequired,
            'Cannot refresh interface with an empty interface name.'
     end
 

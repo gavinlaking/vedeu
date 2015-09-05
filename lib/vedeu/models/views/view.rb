@@ -41,7 +41,7 @@ module Vedeu
       #
       # @param attributes [Hash]
       # @option attributes client [Vedeu::Client]
-      # @option attributes colour [Vedeu::Colour]
+      # @option attributes colour [Vedeu::Colours::Colour]
       # @option attributes value [Vedeu::Views::Lines]
       # @option attributes name [String]
       # @option attributes parent [Vedeu::Views::Composition]
@@ -100,12 +100,11 @@ module Vedeu
       # be shown next time a refresh event is triggered with this name.
       # Called by {Vedeu::DSL::View.views}.
       #
-      # @raise [Vedeu::InvalidSyntax] The name is not defined.
+      # @raise [Vedeu::Error::InvalidSyntax] The name is not defined.
       # @return [Vedeu::Views::View]
       def store_deferred
-        unless present?(name)
-          fail Vedeu::InvalidSyntax, 'Cannot store an interface without a name.'
-        end
+        fail Vedeu::Error::InvalidSyntax,
+             'Cannot store an interface without a name.' unless present?(name)
 
         Vedeu.buffers.by_name(name).add(self)
 
@@ -127,8 +126,8 @@ module Vedeu
       def defaults
         {
           client: nil,
-          colour: Vedeu::Colour.coerce(background: :default,
-                                       foreground: :default),
+          colour: Vedeu::Colours::Colour.coerce(background: :default,
+                                                foreground: :default),
           name:   '',
           parent: nil,
           style:  :normal,

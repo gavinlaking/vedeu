@@ -29,16 +29,14 @@ module Vedeu
 
     # @see Vedeu::DSL::Geometry#columns
     def columns
-      fail Vedeu::OutOfRange,
-           'Valid value between 1 and 12 inclusive.' if out_of_range?
+      fail Vedeu::Error::OutOfRange if out_of_range?
 
       column * value
     end
 
     # @see Vedeu::DSL::Geometry#rows
     def rows
-      fail Vedeu::OutOfRange,
-           'Valid value between 1 and 12 inclusive.' if out_of_range?
+      fail Vedeu::Error::OutOfRange if out_of_range?
 
       row * value
     end

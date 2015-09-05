@@ -137,23 +137,9 @@ module Vedeu
       def insert_line(line, index = nil)
         return self unless line
 
-        new_lines = if index
-                      if index <= 0
-                        lines.insert(0, line)
+        insert = Vedeu::Editor::Insert.into(lines, line, index, size)
 
-                      elsif index >= size
-                        lines << line
-
-                      else
-                        lines.insert(index, line)
-
-                      end
-                    else
-                      lines << line
-
-                    end
-
-        Vedeu::Editor::Lines.coerce(new_lines)
+        Vedeu::Editor::Lines.coerce(insert)
       end
 
       # Returns the line at the given index.

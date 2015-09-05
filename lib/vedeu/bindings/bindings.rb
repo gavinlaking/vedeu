@@ -7,6 +7,10 @@ module Vedeu
   #   directly, however the produced events are all public and are highly
   #   recommended to be used.
   #
+  #   Unbinding any of these events is likely to cause problems, so I would
+  #   advise leaving them alone. A safe rule: when the name starts and ends with
+  #   an underscore, it's probably used by Vedeu internally.
+  #
   module Bindings
 
     extend self
@@ -15,7 +19,7 @@ module Vedeu
     #
     # @return [TrueClass]
     def setup!
-      Vedeu::Events.reset!
+      Vedeu::Events::Repository.reset!
 
       Vedeu::Bindings::Application.setup!
       Vedeu::Bindings::Document.setup!

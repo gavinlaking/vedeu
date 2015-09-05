@@ -4,9 +4,9 @@ module Vedeu
 
   module Editor
 
-    describe VirtualCursor do
+    describe Cursor do
 
-      let(:described)  { Vedeu::Editor::VirtualCursor }
+      let(:described)  { Vedeu::Editor::Cursor }
       let(:instance)   { described.new(attributes) }
       let(:attributes) {
         {
@@ -183,7 +183,7 @@ module Vedeu
         # it { skip }
       end
 
-    end # VirtualCursor
+    end # Cursor
 
   end # Editor
 

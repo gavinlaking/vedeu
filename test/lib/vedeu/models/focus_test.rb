@@ -69,7 +69,8 @@ module Vedeu
       end
 
       it 'raises an exception if the interface does not exist' do
-        proc { Vedeu::Focus.by_name('not_found') }.must_raise(Vedeu::ModelNotFound)
+        proc { Vedeu::Focus.by_name('not_found') }.
+          must_raise(Vedeu::Error::ModelNotFound)
       end
 
       context 'API methods' do
@@ -81,7 +82,8 @@ module Vedeu
         end
 
         it 'raises an exception if the interface does not exist' do
-          proc { Vedeu.focus_by_name('not_found') }.must_raise(Vedeu::ModelNotFound)
+          proc { Vedeu.focus_by_name('not_found') }.
+            must_raise(Vedeu::Error::ModelNotFound)
         end
       end
     end

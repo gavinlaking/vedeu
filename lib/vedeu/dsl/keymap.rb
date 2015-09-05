@@ -47,7 +47,7 @@ module Vedeu
       # @param name [String] The name of the interface which this keymap relates
       #   to.
       # @param block [Proc]
-      # @raise [Vedeu::InvalidSyntax] The required block was not given.
+      # @raise [Vedeu::Error::InvalidSyntax] The required block was not given.
       # @return [Vedeu::Keymap]
       # @todo Try to remember why we need to pre-create the keymap in the
       #   repository.
@@ -75,27 +75,28 @@ module Vedeu
       #   extras are treated as aliases.
       # @param block [Proc] The action to perform when this key is pressed. Can
       #   be a method call or event triggered.
-      # @raise [Vedeu::InvalidSyntax] When the required block is not given, the
-      #   value_or_values parameter is undefined, or when processing the
-      #   collection, a member is undefined.
+      # @raise [Vedeu::Error::InvalidSyntax]
+      #   When the required block is not given, the value_or_values parameter is
+      #   undefined, or when processing the collection, a member is undefined.
       # @return [Array] A collection containing the keypress(es).
       def key(*value_or_values, &block)
-        fail Vedeu::InvalidSyntax,
+        fail Vedeu::Error::InvalidSyntax,
              'No action defined for `key`.' unless block_given?
 
         unless present?(value_or_values)
-          fail Vedeu::InvalidSyntax, 'No keypress(es) defined for `key`.'
+          fail Vedeu::Error::InvalidSyntax, 'No keypress(es) defined for `key`.'
         end
 
         value_or_values.each do |value|
           unless present?(value)
-            fail Vedeu::InvalidSyntax,
+            fail Vedeu::Error::InvalidSyntax,
                  'An invalid value for `key` was encountered.'
           end
 
           model.add(model.member.new(value, &block))
         end
       end
+      alias_method :key=, :key
 
       # Define the name of the keymap.
       #
@@ -115,6 +116,7 @@ module Vedeu
       def name(value)
         model.name = value
       end
+      alias_method :name=, :name
 
     end # Keymap
 

@@ -51,7 +51,7 @@ module Vedeu
       # Return the interface colours if a name option is set, otherwise use the
       # default colours.
       #
-      # @return [Vedeu::Colour|Hash<Symbol => Symbol>]
+      # @return [Vedeu::Colours::Colour|Hash<Symbol => Symbol>]
       def default_colour
         if options[:name]
           interface.colour
