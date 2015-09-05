@@ -118,7 +118,7 @@ module Vedeu
     # @option attributes vertical [String] The vertical border character.
     # @return [Vedeu::Border]
     def initialize(attributes = {})
-      @attributes   = defaults.merge!(attributes)
+      @attributes = defaults.merge!(attributes)
 
       @attributes.each { |key, value| instance_variable_set("@#{key}", value) }
     end

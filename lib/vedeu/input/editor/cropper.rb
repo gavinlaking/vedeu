@@ -57,14 +57,14 @@ module Vedeu
       #
       # @return [Vedeu::Editor::Lines]
       def lines
-        (@lines[oy...(oy + height)] || [])
+        @lines[oy...(oy + height)] || []
       end
 
       # Return a range of visible characters from each line.
       #
       # @return [String]
       def columns(line)
-        (line[ox...(ox + width)] || '')
+        line[ox...(ox + width)] || ''
       end
 
     end # Editor

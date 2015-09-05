@@ -45,9 +45,11 @@ class VedeuViewTemplateApp
   Vedeu.border('default') do
     colour foreground: '#aadd00', background: '#000000'
   end
+
   Vedeu.border('prune') do
     colour foreground: '#00aadd', background: '#000000'
   end
+
   Vedeu.border('wrap') do
     colour foreground: '#dd00aa', background: '#000000'
   end
@@ -75,9 +77,11 @@ class VedeuViewTemplateApp
   def self.default_template
     File.dirname(__FILE__) + '/default.erb'
   end
+
   def self.prune_template
     File.dirname(__FILE__) + '/prune.erb'
   end
+
   def self.wrap_template
     File.dirname(__FILE__) + '/wrap.erb'
   end

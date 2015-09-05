@@ -25,13 +25,13 @@ module Vedeu
         # document.stubs(:delete_character)
         # document.stubs(:delete_line)
         # document.stubs(:down)
+        # document.stubs(:execute)
         # document.stubs(:left)
         # document.stubs(:right)
         # document.stubs(:insert_character)
         # document.stubs(:insert_line)
         # document.stubs(:render)
         # document.stubs(:reset!)
-        # document.stubs(:retrieve)
         # document.stubs(:up)
       end
 
@@ -123,7 +123,7 @@ module Vedeu
             let(:data)  { mock(:empty? => false) }
 
             # it {
-            #   document.expects(:retrieve).returns(data)
+            #   document.expects(:execute).returns(data)
             #   document.expects(:reset!)
             #   document.expects(:clear)
             #   Vedeu.expects(:trigger).with(:_command_, data)
@@ -144,7 +144,7 @@ module Vedeu
             context 'when the input is a symbol' do
               let(:input) { :ctrl_p }
 
-              it { subject.must_be_instance_of(String) }
+              it { subject.must_be_instance_of(Vedeu::Editor::Document) }
             end
 
             context 'when the input is not a symbol' do

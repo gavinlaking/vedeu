@@ -19,12 +19,8 @@ module Vedeu
 
       def_delegators :cursor,
                      :bol,
-                     :down,
-                     :left,
                      :ox,
                      :oy,
-                     :right,
-                     :up,
                      :x,
                      :y
 
@@ -71,7 +67,7 @@ module Vedeu
 
         left
 
-        store
+        refresh
       end
 
       # Delete a line.
@@ -82,7 +78,32 @@ module Vedeu
 
         up
 
-        store
+        refresh
+      end
+
+      # Move the virtual cursor down.
+      #
+      # @return [Vedeu::Editor::Document]
+      def down
+        cursor.down
+
+        refresh
+      end
+
+      # Returns the document as a string with line breaks if there is more than
+      # one line.
+      #
+      # @return [String]
+      def execute
+        command = lines.map(&:to_s).join("\n")
+
+        reset!
+
+        clear
+
+        Vedeu.trigger(:_command_, command)
+
+        command
       end
 
       # Inserts the given character in to the line where the cursor is currently
@@ -97,7 +118,7 @@ module Vedeu
 
         right
 
-        store
+        refresh
       end
 
       # Insert an empty line.
@@ -110,7 +131,16 @@ module Vedeu
 
         bol
 
-        store
+        refresh
+      end
+
+      # Move the virtual cursor left.
+      #
+      # @return [Vedeu::Editor::Document]
+      def left
+        cursor.left
+
+        refresh
       end
 
       # Returns the current line from the collection of lines.
@@ -150,26 +180,37 @@ module Vedeu
 
         @lines = defaults[:data]
 
-        store
+        refresh
       end
 
-      # Returns the document as a string with line breaks if there is more than
-      # one line.
-      #
-      # @return [String]
-      def retrieve
-        lines.map(&:to_s).join("\n")
-      end
-
-      # Store the document in the documents repository and render the view.
+      # Store the document in the documents repository, clear and render the
+      # view.
       #
       # @return [Vedeu::Editor::Document]
-      def store
-        super
+      def refresh
+        store
 
         render
 
         self
+      end
+
+      # Move the virtual cursor right.
+      #
+      # @return [Vedeu::Editor::Document]
+      def right
+        cursor.right
+
+        refresh
+      end
+
+      # Move the virtual cursor up.
+      #
+      # @return [Vedeu::Editor::Document]
+      def up
+        cursor.up
+
+        refresh
       end
 
       private
@@ -214,7 +255,8 @@ module Vedeu
         output = ''
 
         visible.each_with_index do |line, y_index|
-          output << Vedeu::Position.new((by + y_index), bx).to_s + line.to_s
+          output << Vedeu::Position.new((by + y_index), bx).to_s
+          output << line.to_s
         end
 
         output << cursor.to_s

@@ -19,10 +19,12 @@ module Vedeu
                      :left,
                      :render,
                      :reset!,
-                     :retrieve,
+                     :execute,
                      :right,
                      :up
 
+      # Send given input to the named document.
+      #
       # @param name [String]
       # @param input [String|Symbol]
       # @return [void]
@@ -40,6 +42,8 @@ module Vedeu
         @name  = name
       end
 
+      # Send given input to the named document.
+      #
       # @return [String|Symbol]
       def keypress
         return input unless document
@@ -52,14 +56,12 @@ module Vedeu
         when :escape    then Vedeu.trigger(:_mode_switch_)
         when :left      then left
         when :right     then right
-        when :tab       then command
+        when :tab       then execute
         when :up        then up
         # when ''         then delete_line
         else
           insert_character(input)
         end
-
-        render unless input == :enter
       end
 
       protected
@@ -73,18 +75,6 @@ module Vedeu
       attr_reader :name
 
       private
-
-      #
-      # @return []
-      def command
-        command = retrieve
-
-        reset!
-
-        clear
-
-        Vedeu.trigger(:_command_, command)
-      end
 
       # Return the document by name from the documents repository.
       #

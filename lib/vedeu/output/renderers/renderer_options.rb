@@ -22,7 +22,7 @@ module Vedeu
       {}
     end
 
-    # :nocov
+    # :nocov:
 
   end # RendererOptions
 
