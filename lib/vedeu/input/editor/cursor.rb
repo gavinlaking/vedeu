@@ -4,7 +4,7 @@ module Vedeu
 
     # Maintains a cursor position within the Vedeu::Editor::Document class.
     #
-    class VirtualCursor
+    class Cursor
 
       # @!attribute [rw] bx
       # @return [Fixnum]
@@ -38,7 +38,7 @@ module Vedeu
       # @return [Fixnum]
       attr_accessor :y
 
-      # Returns a new instance of Vedeu::Editor::VirtualCursor.
+      # Returns a new instance of Vedeu::Editor::Cursor.
       #
       # @param attributes [Hash]
       # @option attributes y [Fixnum] The current line.
@@ -49,7 +49,7 @@ module Vedeu
       # @option attributes bxn [Fixnum]
       # @option attributes oy [Fixnum]
       # @option attributes ox [Fixnum]
-      # @return [Vedeu::Editor::VirtualCursor]
+      # @return [Vedeu::Editor::Cursor]
       def initialize(attributes = {})
         @attributes = defaults.merge!(attributes)
 
@@ -60,7 +60,7 @@ module Vedeu
 
       # Move the virtual cursor to the beginning of the line.
       #
-      # @return [Vedeu::Editor::VirtualCursor]
+      # @return [Vedeu::Editor::Cursor]
       def bol
         @ox = 0
         @x  = 0
@@ -70,7 +70,7 @@ module Vedeu
 
       # Move the virtual cursor down by one line.
       #
-      # @return [Vedeu::Editor::VirtualCursor]
+      # @return [Vedeu::Editor::Cursor]
       def down
         @y += 1
 
@@ -79,7 +79,7 @@ module Vedeu
 
       # Move the virtual cursor to the left.
       #
-      # @return [Vedeu::Editor::VirtualCursor]
+      # @return [Vedeu::Editor::Cursor]
       def left
         @ox -= 1 unless @ox == 0
         @x  -= 1
@@ -89,7 +89,7 @@ module Vedeu
 
       # Move the virtual cursor to the origin (0, 0).
       #
-      # @return [Vedeu::Editor::VirtualCursor]
+      # @return [Vedeu::Editor::Cursor]
       def reset!
         @x  = 0
         @y  = 0
@@ -101,7 +101,7 @@ module Vedeu
 
       # Move the virtual cursor to the right.
       #
-      # @return [Vedeu::Editor::VirtualCursor]
+      # @return [Vedeu::Editor::Cursor]
       def right
         @x += 1
 
@@ -118,7 +118,7 @@ module Vedeu
 
       # Move the virtual cursor up by one line.
       #
-      # @return [Vedeu::Editor::VirtualCursor]
+      # @return [Vedeu::Editor::Cursor]
       def up
         @oy -= 1 unless @oy == 0
         @y  -= 1
@@ -174,7 +174,7 @@ module Vedeu
         (bx + x) - ox
       end
 
-    end # VirtualCursor
+    end # Cursor
 
   end # Editor
 
