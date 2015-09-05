@@ -101,25 +101,13 @@ module Vedeu
       #
       # @param character [String]
       # @param index [Fixnum|NilClass]
-      # @return [String]
+      # @return [Vedeu::Editor::Line]
       def insert_character(character, index = nil)
-        new_line = if index
-                     if index <= 0
-                       line.insert(0, character)
+        return self unless character
 
-                     elsif index >= size
-                       line << character
+        insert = Vedeu::Editor::Insert.into(line, character, index, size)
 
-                     else
-                       line.insert(index, character)
-
-                     end
-                   else
-                     line + character
-
-                   end
-
-        Vedeu::Editor::Line.coerce(new_line)
+        Vedeu::Editor::Line.coerce(insert)
       end
 
       # Return the size of the line in characters.

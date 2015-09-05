@@ -11,6 +11,7 @@ end # Vedeu
 require 'vedeu/input/editor/capture'
 require 'vedeu/input/editor/cropper'
 require 'vedeu/input/editor/editor'
+require 'vedeu/input/editor/insert'
 require 'vedeu/input/editor/line'
 require 'vedeu/input/editor/lines'
 require 'vedeu/input/editor/virtual_cursor'
