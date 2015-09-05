@@ -95,8 +95,6 @@ module Vedeu
     end
 
     describe '.resize' do
-      before { Vedeu.interfaces.reset }
-
       subject { described.resize }
 
       it { subject.must_be_instance_of(TrueClass) }
