@@ -37,7 +37,7 @@ AllCops:
   # Style guide URLs are not displayed in offense messages by default. Change
   # behavior by overriding DisplayStyleGuide, or by giving the
   # -S/--display-style-guide option.
-  DisplayStyleGuide: false
+  DisplayStyleGuide: true
   # Additional cops that do not reference a style guide rule may be enabled by
   # default. Change behavior by overriding StyleGuideCopsOnly, or by giving
   # the --only-guide-cops option.
@@ -133,7 +133,7 @@ Metrics/ClassLength:
 
 # Avoid complex methods.
 Metrics/CyclomaticComplexity:
-  Max: 10
+  Max: 12
 
 Metrics/LineLength:
   Max: 80
