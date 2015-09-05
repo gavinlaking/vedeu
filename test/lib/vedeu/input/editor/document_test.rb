@@ -67,6 +67,21 @@ module Vedeu
         # it { skip }
       end
 
+      describe '#down' do
+        subject { instance.down }
+
+        it { subject.must_be_instance_of(described) }
+        # it { skip }
+      end
+
+      describe '#execute' do
+        subject { instance.execute }
+
+        it { subject.must_be_instance_of(String) }
+
+        it { subject.must_equal("Hydrogen\nHelium\nLithium") }
+      end
+
       describe '#insert_character' do
         let(:character) { 'a' }
 
@@ -90,6 +105,13 @@ module Vedeu
 
         it { subject.must_be_instance_of(described) }
 
+        # it { skip }
+      end
+
+      describe '#left' do
+        subject { instance.left }
+
+        it { subject.must_be_instance_of(described) }
         # it { skip }
       end
 
@@ -164,16 +186,8 @@ module Vedeu
         it { subject.must_be_instance_of(described) }
       end
 
-      describe '#retrieve' do
-        subject { instance.retrieve }
-
-        it { subject.must_be_instance_of(String) }
-
-        it { subject.must_equal("Hydrogen\nHelium\nLithium") }
-      end
-
-      describe '#store' do
-        subject { instance.store }
+      describe '#refresh' do
+        subject { instance.refresh }
 
         it { subject.must_be_instance_of(described) }
 
@@ -181,6 +195,20 @@ module Vedeu
           instance.expects(:render)
           subject
         }
+      end
+
+      describe '#right' do
+        subject { instance.right }
+
+        it { subject.must_be_instance_of(described) }
+        # it { skip }
+      end
+
+      describe '#up' do
+        subject { instance.up }
+
+        it { subject.must_be_instance_of(described) }
+        # it { skip }
       end
 
     end # Editor

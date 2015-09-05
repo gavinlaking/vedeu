@@ -7,7 +7,7 @@ module Vedeu
     describe Document do
 
       context 'the system events needed by Vedeu to run are defined' do
-        it { Vedeu.bound?(:_editor_command_).must_equal(true) }
+        it { Vedeu.bound?(:_editor_execute_).must_equal(true) }
         it { Vedeu.bound?(:_editor_delete_character_).must_equal(true) }
         it { Vedeu.bound?(:_editor_delete_line_).must_equal(true) }
         it { Vedeu.bound?(:_editor_down_).must_equal(true) }

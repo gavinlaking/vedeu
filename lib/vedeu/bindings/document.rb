@@ -15,7 +15,7 @@ module Vedeu
       #
       # @return [TrueClass]
       def setup!
-        editor_command!
+        editor_execute!
         editor_delete_character!
         editor_delete_line!
         editor_down!
@@ -29,12 +29,12 @@ module Vedeu
       private
 
       # @example
-      #   Vedeu.trigger(:_editor_command_, name)
+      #   Vedeu.trigger(:_editor_execute_, name)
       #
       # @return [TrueClass]
-      def editor_command!
-        Vedeu.bind(:_editor_command_) do |name|
-          Vedeu.documents.by_name(name).command
+      def editor_execute!
+        Vedeu.bind(:_editor_execute_) do |name|
+          Vedeu.documents.by_name(name).execute
         end
       end
 
