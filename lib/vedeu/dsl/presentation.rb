@@ -37,14 +37,14 @@ module Vedeu
       #
       # @return [String]
       def background(value = '')
-        colour(background: Vedeu::Background.coerce(value))
+        colour(background: Vedeu::Colours::Background.coerce(value))
       end
       alias_method :bg,      :background
       alias_method :bgcolor, :background
 
       # @see Vedeu::DSL::Presentation#background
       def foreground(value = '')
-        colour(foreground: Vedeu::Foreground.coerce(value))
+        colour(foreground: Vedeu::Colours::Foreground.coerce(value))
       end
       alias_method :fg,      :foreground
       alias_method :fgcolor, :foreground
@@ -56,7 +56,7 @@ module Vedeu
       #   defined colour for a particular interface, line or stream overrides
       #   previously defined entries in the same block.
       #
-      # @param attrs [Hash] See {Vedeu::Colour}
+      # @param attrs [Hash] See {Vedeu::Colours::Colour}
       #
       # @example
       #   interface 'my_interface' do
@@ -74,9 +74,10 @@ module Vedeu
       #     end
       #   end
       #
-      # @return [Vedeu::Colour]
+      # @return [Vedeu::Colours::Colour]
       def colour(attrs = {})
-        model.colour = Vedeu::Colour.coerce(colour_attributes.merge!(attrs))
+        model.colour = Vedeu::Colours::Colour.
+          coerce(colour_attributes.merge!(attrs))
       end
 
       # Define a style or styles for an interface, line or a stream.

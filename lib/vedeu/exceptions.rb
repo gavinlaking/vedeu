@@ -64,7 +64,7 @@ module Vedeu
     # Raised to remind me (or client application developers) that the subclass
     # implements the functionality sought.
     #
-    # @see Vedeu::ColourTranslator
+    # @see Vedeu::Colours::Translator
     #
     class NotImplemented < StandardError
 

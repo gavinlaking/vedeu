@@ -34,7 +34,7 @@ module Vedeu
       # @param attributes [Hash]
       # @option attributes border [NilClass|Symbol] A symbol representing the
       #   border 'piece' this Vedeu::Views::Char represents.
-      # @option attributes colour [Vedeu::Colour]
+      # @option attributes colour [Vedeu::Colours::Colour]
       # @option attributes parent [Vedeu::Views::Line]
       # @option attributes position [Vedeu::Position]
       # @option attributes style [Vedeu::Style]

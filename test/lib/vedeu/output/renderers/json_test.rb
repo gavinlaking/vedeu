@@ -29,7 +29,8 @@ module Vedeu
 
         context 'when the output is not empty' do
           let(:colour) {
-            Vedeu::Colour.new(foreground: '#ff0000', background: '#ffffff')
+            Vedeu::Colours::Colour.new(foreground: '#ff0000',
+                                       background: '#ffffff')
           }
           let(:output) {
             [
@@ -69,7 +70,8 @@ module Vedeu
           context 'when a parent is available' do
             let(:parent) {
               Vedeu::Views::Stream.new(
-                colour: Vedeu::Colour.coerce(background: '', foreground: '')
+                colour: Vedeu::Colours::Colour.coerce(background: '',
+                                                      foreground: '')
               )
             }
 

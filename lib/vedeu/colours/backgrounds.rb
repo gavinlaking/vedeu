@@ -1,15 +1,19 @@
 module Vedeu
 
-  # Store background colour escape sequences by HTML/CSS code.
-  #
-  class Backgrounds < Colours
+  module Colours
 
-    # @return [Vedeu::Backgrounds]
-    # @see Vedeu::Repository
-    def self.background_colours
-      @background_colours ||= new
-    end
+    # Store background colour escape sequences by HTML/CSS code.
+    #
+    class Backgrounds < Vedeu::Colours::Repository
 
-  end # Backgrounds
+      # @return [Vedeu::Colours::Backgrounds]
+      # @see Vedeu::Repository
+      def self.background_colours
+        @background_colours ||= new
+      end
+
+    end # Backgrounds
+
+  end # Colours
 
 end # Vedeu

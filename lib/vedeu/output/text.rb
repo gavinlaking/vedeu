@@ -86,7 +86,7 @@ module Vedeu
     # @return [void]
     def colour
       if options[:colour] || options[:background] || options[:foreground]
-        Vedeu::Colour.coerce(options)
+        Vedeu::Colours::Colour.coerce(options)
 
       else
         model.colour

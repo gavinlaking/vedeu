@@ -49,7 +49,7 @@ module Vedeu
 
         encode(
           Vedeu::Views::Stream.build(
-            colour: Vedeu::Colour.new(attributes),
+            colour: Vedeu::Colours::Colour.new(attributes),
             style:  Vedeu::Style.new(attributes[:style]),
             value:  block.call))
       end

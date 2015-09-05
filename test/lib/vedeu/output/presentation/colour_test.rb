@@ -54,7 +54,7 @@ module Vedeu
       describe '#background' do
         subject { includer.background }
 
-        it { subject.must_be_instance_of(Vedeu::Background) }
+        it { subject.must_be_instance_of(Vedeu::Colours::Background) }
 
         context 'when a colour is not set' do
           let(:colour) {}
@@ -90,7 +90,7 @@ module Vedeu
       describe '#foreground' do
         subject { includer.foreground }
 
-        it { subject.must_be_instance_of(Vedeu::Foreground) }
+        it { subject.must_be_instance_of(Vedeu::Colours::Foreground) }
         it { subject.colour.must_equal('#aadd00') }
 
         context 'when a colour is not set' do
@@ -127,7 +127,7 @@ module Vedeu
       describe '#colour' do
         subject { includer.colour }
 
-        it { subject.must_be_instance_of(Vedeu::Colour) }
+        it { subject.must_be_instance_of(Vedeu::Colours::Colour) }
 
         context 'when a colour is not set' do
           let(:colour) {}
@@ -153,12 +153,12 @@ module Vedeu
 
       describe '#colour=' do
         let(:colour) {
-          Vedeu::Colour.new(foreground: '#00ff00', background: '#000000')
+          Vedeu::Colours::Colour.new(foreground: '#00ff00', background: '#000000')
         }
 
         subject { includer.colour=(colour) }
 
-        it { subject.must_be_instance_of(Vedeu::Colour) }
+        it { subject.must_be_instance_of(Vedeu::Colours::Colour) }
       end
 
     end # Colour

@@ -15,7 +15,7 @@ module Vedeu
         y:      y,
       }
     }
-    let(:colour) { Colour.new(background: '#000000') }
+    let(:colour) { Vedeu::Colours::Colour.new(background: '#000000') }
     let(:style)  {}
     let(:_value) {}
     let(:x)      {}

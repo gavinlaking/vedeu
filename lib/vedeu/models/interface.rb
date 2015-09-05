@@ -41,7 +41,7 @@ module Vedeu
     #
     # @param attributes [Hash]
     # @option attributes client [Vedeu::Client]
-    # @option attributes colour [Vedeu::Colour]
+    # @option attributes colour [Vedeu::Colours::Colour]
     # @option attributes delay [Float]
     # @option attributes group [String]
     # @option attributes name [String]
@@ -91,8 +91,8 @@ module Vedeu
     def defaults
       {
         client:     nil,
-        colour:     Vedeu::Colour.coerce(background: :default,
-                                         foreground: :default),
+        colour:     Vedeu::Colours::Colour.coerce(background: :default,
+                                                  foreground: :default),
         delay:      0.0,
         group:      '',
         name:       '',

@@ -16,8 +16,8 @@ module Vedeu
     #   Vedeu.background_colours
     #
     # @!method background_colours
-    # @return [Vedeu::Backgrounds]
-    def_delegators Vedeu::Backgrounds, :background_colours
+    # @return [Vedeu::Colours::Backgrounds]
+    def_delegators Vedeu::Colours::Backgrounds, :background_colours
 
     # Manipulate the repository of borders.
     #
@@ -79,8 +79,8 @@ module Vedeu
     #   Vedeu.foreground_colours
     #
     # @!method foreground_colours
-    # @return [Vedeu::Foregrounds]
-    def_delegators Vedeu::Foregrounds, :foreground_colours
+    # @return [Vedeu::Colours::Foregrounds]
+    def_delegators Vedeu::Colours::Foregrounds, :foreground_colours
 
     # Manipulate the repository of geometries.
     #

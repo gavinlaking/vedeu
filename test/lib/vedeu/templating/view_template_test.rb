@@ -62,7 +62,7 @@ module Vedeu
         context 'with a background colour directive' do
           let(:content) { "This is a <%= background('#ff0000') { 'test' } %>.\n" }
           let(:colour) {
-            Vedeu::Colour.new(background: '#ff0000', foreground: '')
+            Vedeu::Colours::Colour.new(background: '#ff0000', foreground: '')
           }
 
           let(:expected) {
@@ -92,7 +92,7 @@ module Vedeu
             }
 
             let(:colour) {
-              Vedeu::Colour.new(background: '#ff0000', foreground: '')
+              Vedeu::Colours::Colour.new(background: '#ff0000', foreground: '')
             }
 
             let(:expected) {
@@ -126,7 +126,7 @@ module Vedeu
         context 'with a foreground colour directive' do
           let(:content) { "This is a <%= foreground('#00ff00') { 'test' } %>.\n" }
           let(:colour) {
-            Vedeu::Colour.new(background: '', foreground: '#00ff00')
+            Vedeu::Colours::Colour.new(background: '', foreground: '#00ff00')
           }
 
           let(:expected) {
@@ -153,7 +153,7 @@ module Vedeu
         context 'with a colour directive' do
           let(:content) { "This is a <%= colour(background: '#003300', foreground: '#aadd00') { 'test' } %>.\n" }
           let(:colour) {
-            Vedeu::Colour.new(background: '#003300', foreground: '#aadd00')
+            Vedeu::Colours::Colour.new(background: '#003300', foreground: '#aadd00')
           }
 
           let(:expected) {

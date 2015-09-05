@@ -20,15 +20,15 @@ module Vedeu
         [
           Vedeu::Views::Stream.new(value: 'Something interesting ',
                                    parent: streams_parent,
-                                   colour: Vedeu::Colour.new(foreground: '#ffff00'),
+                                   colour: Vedeu::Colours::Colour.new(foreground: '#ffff00'),
                                    style:  Vedeu::Style.new('normal')),
           Vedeu::Views::Stream.new(value: 'on this line ',
                                    parent: streams_parent,
-                                   colour: Vedeu::Colour.new(foreground: '#00ff00'),
+                                   colour: Vedeu::Colours::Colour.new(foreground: '#00ff00'),
                                    style:  Vedeu::Style.new('normal')),
           Vedeu::Views::Stream.new(value: 'would be cool, eh?',
                                    parent: streams_parent,
-                                   colour: Vedeu::Colour.new(foreground: '#0000ff'),
+                                   colour: Vedeu::Colours::Colour.new(foreground: '#0000ff'),
                                    style:  Vedeu::Style.new('normal'))
         ]
       }
@@ -42,7 +42,7 @@ module Vedeu
 
       let(:parent) { Vedeu::Views::View.new(name: 'Vedeu::Line') }
       let(:colour) {
-        Vedeu::Colour.new(foreground: '#ff0000', background: '#000000')
+        Vedeu::Colours::Colour.new(foreground: '#ff0000', background: '#000000')
       }
       let(:style)  { Vedeu::Style.new('normal') }
 

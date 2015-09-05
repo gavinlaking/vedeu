@@ -41,7 +41,7 @@ module Vedeu
       #
       # @param attributes [Hash]
       # @option attributes client [Vedeu::Client]
-      # @option attributes colour [Vedeu::Colour]
+      # @option attributes colour [Vedeu::Colours::Colour]
       # @option attributes value [Vedeu::Views::Lines]
       # @option attributes name [String]
       # @option attributes parent [Vedeu::Views::Composition]
@@ -126,8 +126,8 @@ module Vedeu
       def defaults
         {
           client: nil,
-          colour: Vedeu::Colour.coerce(background: :default,
-                                       foreground: :default),
+          colour: Vedeu::Colours::Colour.coerce(background: :default,
+                                                foreground: :default),
           name:   '',
           parent: nil,
           style:  :normal,

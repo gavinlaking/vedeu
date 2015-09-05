@@ -10,7 +10,7 @@ module Vedeu
       let(:instance)   { described.new(model) }
       let(:model)      { Vedeu::Views::Line.new(attributes) }
       let(:client)     {}
-      let(:colour)     { Vedeu::Colour.new }
+      let(:colour)     { Vedeu::Colours::Colour.new }
       let(:parent)     { Vedeu::Views::View.new }
       let(:style)      { Vedeu::Style.new }
       let(:_value)     { [] }

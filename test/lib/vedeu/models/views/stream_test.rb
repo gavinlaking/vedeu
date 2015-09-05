@@ -24,10 +24,10 @@ module Vedeu
                                style:  style)
       }
       let(:parent_colour) {
-        Vedeu::Colour.new(background: '#0000ff', foreground: '#ffff00')
+        Vedeu::Colours::Colour.new(background: '#0000ff', foreground: '#ffff00')
       }
       let(:colour)      {
-        Vedeu::Colour.new(background: '#ff0000', foreground: '#000000')
+        Vedeu::Colours::Colour.new(background: '#ff0000', foreground: '#000000')
       }
       let(:style)       { Vedeu::Style.new('normal') }
       let(:line_parent) { Vedeu::Views::View.new(name: 'Vedeu::Views::Stream') }
@@ -85,7 +85,7 @@ module Vedeu
 
         context 'when different to other' do
           let(:other) {
-            described.new(colour: Vedeu::Colour.coerce(background: '#ff0000'))
+            described.new(colour: Vedeu::Colours::Colour.coerce(background: '#ff0000'))
           }
 
           it { subject.must_equal(false) }
