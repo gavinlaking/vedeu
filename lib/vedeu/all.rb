@@ -44,6 +44,7 @@ require 'vedeu/null/menu'
 require 'vedeu/null/view'
 
 require 'vedeu/geometry/area'
+require 'vedeu/geometry/generic_coordinate'
 require 'vedeu/geometry/coordinate'
 require 'vedeu/geometry/dimension'
 require 'vedeu/geometry/geometry'

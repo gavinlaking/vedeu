@@ -65,6 +65,10 @@ module Vedeu
       it { instance.instance_variable_get('@options').must_equal(options) }
     end
 
+    describe '#content' do
+      it { instance.must_respond_to(:content) }
+    end
+
     describe '#prune' do
       let(:text) { text_line }
 
@@ -184,8 +188,8 @@ module Vedeu
       end
     end
 
-    describe '#content' do
-      subject { instance.content }
+    describe '.for' do
+      subject { described.for(text, options) }
 
       it { subject.must_be_instance_of(Vedeu::Views::Lines) }
 
