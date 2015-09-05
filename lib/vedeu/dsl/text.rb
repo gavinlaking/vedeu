@@ -58,11 +58,17 @@ module Vedeu
 
         Vedeu::Text.add(value, options)
       end
-      alias_method :align,  :text
-      alias_method :center, :text
-      alias_method :centre, :text
-      alias_method :left,   :text
-      alias_method :right,  :text
+      alias_method :text=,   :text
+      alias_method :align,   :text
+      alias_method :center,  :text
+      alias_method :centre,  :text
+      alias_method :left,    :text
+      alias_method :right,   :text
+      alias_method :align=,  :text
+      alias_method :center=, :text
+      alias_method :centre=, :text
+      alias_method :left=,   :text
+      alias_method :right=,  :text
 
     end # Text
 

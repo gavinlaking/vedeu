@@ -21,6 +21,13 @@ module Vedeu
 
         subject { instance.text(_value, options) }
 
+        it { instance.must_respond_to(:text=) }
+        it { instance.must_respond_to(:align=) }
+        it { instance.must_respond_to(:center=) }
+        it { instance.must_respond_to(:centre=) }
+        it { instance.must_respond_to(:left=) }
+        it { instance.must_respond_to(:right=) }
+
         context 'when the model is a Vedeu::Views::View' do
           let(:model)    { Vedeu::Views::View.new }
           let(:instance) { Vedeu::DSL::Interface.new(model) }
