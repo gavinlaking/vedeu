@@ -255,7 +255,8 @@ module Vedeu
         output = ''
 
         visible.each_with_index do |line, y_index|
-          output << Vedeu::Position.new((by + y_index), bx).to_s + line.to_s
+          output << Vedeu::Position.new((by + y_index), bx).to_s
+          output << line.to_s
         end
 
         output << cursor.to_s
