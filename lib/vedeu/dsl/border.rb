@@ -41,10 +41,11 @@ module Vedeu
       # @param name [String] The name of the interface or view to which this
       #   border belongs.
       # @param block [Proc]
-      # @raise [Vedeu::InvalidSyntax] The required block was not given.
+      # @raise [Vedeu::Error::InvalidSyntax]
+      #   The required block was not given.
       # @return [Vedeu::Border]
       def self.border(name, &block)
-        fail Vedeu::InvalidSyntax, 'block not given' unless block_given?
+        fail Vedeu::Error::InvalidSyntax, 'block not given' unless block_given?
 
         Vedeu::Border.build(enabled: true, name: name, &block).store
       end

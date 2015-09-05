@@ -82,10 +82,10 @@ module Vedeu
       # @param name [String] The name of the interface or view to which this
       #   geometry belongs.
       # @param block [Proc]
-      # @raise [Vedeu::InvalidSyntax] The required block was not given.
+      # @raise [Vedeu::Error::InvalidSyntax] The required block was not given.
       # @return [Vedeu::Geometry]
       def self.geometry(name, &block)
-        fail Vedeu::InvalidSyntax, 'block not given' unless block_given?
+        fail Vedeu::Error::InvalidSyntax, 'block not given' unless block_given?
 
         Vedeu::Geometry.build(name: name, &block).store
       end
@@ -132,9 +132,9 @@ module Vedeu
       #   end
       #
       # @param value [Fixnum]
-      # @raise [Vedeu::OutOfRange] When the value parameter is not between 1 and
-      #   12 inclusive.
-      # @return [Fixnum|Vedeu::OutOfRange]
+      # @raise [Vedeu::Error::OutOfRange] When the value parameter is not
+      #   between 1 and 12 inclusive.
+      # @return [Fixnum|Vedeu::Error::OutOfRange]
       def columns(value)
         Vedeu::Grid.columns(value)
       end
@@ -164,8 +164,8 @@ module Vedeu
       #   end
       #
       # @param value [Fixnum]
-      # @raise [Vedeu::OutOfRange] When the value parameter is not between 1 and
-      #   12 inclusive.
+      # @raise [Vedeu::Error::OutOfRange] When the value parameter is not
+      #   between 1 and 12 inclusive.
       # @return [Fixnum]
       def rows(value)
         Vedeu::Grid.rows(value)

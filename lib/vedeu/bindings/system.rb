@@ -169,7 +169,7 @@ module Vedeu
       #
       # @return [TrueClass]
       def mode_switch!
-        Vedeu.bind(:_mode_switch_) { fail Vedeu::ModeSwitch }
+        Vedeu.bind(:_mode_switch_) { fail Vedeu::Error::ModeSwitch }
       end
 
       # When triggered will cause Vedeu to trigger the `:_clear_` and

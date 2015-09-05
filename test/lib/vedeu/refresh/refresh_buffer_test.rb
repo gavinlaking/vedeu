@@ -19,7 +19,7 @@ module Vedeu
       context 'when the name is not present' do
         let(:_name) { '' }
 
-        it { proc { subject }.must_raise(Vedeu::MissingRequired) }
+        it { proc { subject }.must_raise(Vedeu::Error::MissingRequired) }
       end
 
 # describe '.by_name' do

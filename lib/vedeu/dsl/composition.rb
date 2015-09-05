@@ -68,10 +68,11 @@ module Vedeu
       #     # ...
       #   end
       #
-      # @raise [Vedeu::InvalidSyntax] The required block was not given.
+      # @raise [Vedeu::Error::InvalidSyntax]
+      #   The required block was not given.
       # @return [Vedeu::Views::Views<Vedeu::Views::View>]
       def view(name = '', &block)
-        fail Vedeu::InvalidSyntax, 'block not given' unless block_given?
+        fail Vedeu::Error::InvalidSyntax, 'block not given' unless block_given?
 
         new_model = model.member.build(new_attributes(name), &block)
 
@@ -97,11 +98,12 @@ module Vedeu
       # @param object [Object] The object for which the values of template's
       #   variables can be obtained.
       # @param options [Hash] See {Vedeu::Wordwrap}
+      # @raise [Vedeu::Error::MissingRequired]
       # @return [Vedeu::Views::Views<Vedeu::Views::View>]
       def template_for(name, filename, object = nil, options = {})
-        fail Vedeu::MissingRequired,
+        fail Vedeu::Error::MissingRequired,
              'Cannot render template without the name of the view.' unless name
-        fail Vedeu::MissingRequired,
+        fail Vedeu::Error::MissingRequired,
              'Cannot render template without a filename.' unless filename
 
         options.merge!(name: name)

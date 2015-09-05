@@ -29,12 +29,14 @@ module Vedeu
         #   interface throughout your application's execution lifetime.
         # @param block [Proc] A set of attributes which define the features of
         #   the interface.
-        # @raise [Vedeu::InvalidSyntax] The required block was not given.
+        # @raise [Vedeu::Error::InvalidSyntax] The required block was not given.
         # @return [Vedeu::Interface]
         # @todo More documentation required.
         def interface(name, &block)
-          fail Vedeu::InvalidSyntax, 'block not given' unless block_given?
-          fail Vedeu::MissingRequired, 'name not given' unless present?(name)
+          fail Vedeu::Error::InvalidSyntax,
+               'block not given' unless block_given?
+          fail Vedeu::Error::MissingRequired,
+               'name not given' unless present?(name)
 
           add_buffers!(name)
           add_cursor!(name)

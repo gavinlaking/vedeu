@@ -78,7 +78,7 @@ module Vedeu
         context 'when the name is not defined' do
           let(:_name) {}
 
-          it { proc { subject }.must_raise(Vedeu::InvalidSyntax) }
+          it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
         end
       end
 

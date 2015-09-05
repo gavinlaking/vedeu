@@ -99,7 +99,7 @@ module Vedeu
 
         it 'raises an exception since the subclasses Background and ' \
            'Foreground handle this' do
-          proc { subject }.must_raise(Vedeu::NotImplemented)
+          proc { subject }.must_raise(Vedeu::Error::NotImplemented)
         end
       end
 
@@ -108,7 +108,7 @@ module Vedeu
 
         it 'raises an exception since the subclasses Background and ' \
            'Foreground handle this' do
-          proc { subject }.must_raise(Vedeu::NotImplemented)
+          proc { subject }.must_raise(Vedeu::Error::NotImplemented)
         end
       end
 
@@ -117,7 +117,7 @@ module Vedeu
 
         it 'raises an exception since the subclasses Background and ' \
            'Foreground handle this' do
-          proc { subject }.must_raise(Vedeu::NotImplemented)
+          proc { subject }.must_raise(Vedeu::Error::NotImplemented)
         end
       end
 

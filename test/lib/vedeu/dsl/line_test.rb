@@ -56,7 +56,7 @@ module Vedeu
 
             subject { instance.line(_value) }
 
-            it { proc { subject }.must_raise(Vedeu::InvalidSyntax) }
+            it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
           end
         end
       end
@@ -74,7 +74,7 @@ module Vedeu
         end
 
         context 'when the block is not given' do
-          it { proc { instance.streams }.must_raise(Vedeu::InvalidSyntax) }
+          it { proc { instance.streams }.must_raise(Vedeu::Error::InvalidSyntax) }
         end
 
         it { instance.must_respond_to(:stream) }

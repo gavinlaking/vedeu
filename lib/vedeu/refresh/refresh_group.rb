@@ -14,7 +14,7 @@ module Vedeu
     include Vedeu::Common
 
     # @param name [String] The name of the group to be refreshed.
-    # @return [Array|Vedeu::ModelNotFound] A collection of the names of
+    # @return [Array|Vedeu::Error::ModelNotFound] A collection of the names of
     #   interfaces refreshed, or an exception when the group was not found.
     def self.by_name(name)
       new(name).by_name
@@ -45,12 +45,12 @@ module Vedeu
 
     private
 
-    # @raise [Vedeu::MissingRequired] When the name is empty or nil.
+    # @raise [Vedeu::Error::MissingRequired] When the name is empty or nil.
     # @return [String]
     def group_name
       return name if present?(name)
 
-      fail Vedeu::MissingRequired,
+      fail Vedeu::Error::MissingRequired,
            'Cannot refresh group with an empty group name.'
     end
 

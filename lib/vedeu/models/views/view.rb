@@ -100,12 +100,11 @@ module Vedeu
       # be shown next time a refresh event is triggered with this name.
       # Called by {Vedeu::DSL::View.views}.
       #
-      # @raise [Vedeu::InvalidSyntax] The name is not defined.
+      # @raise [Vedeu::Error::InvalidSyntax] The name is not defined.
       # @return [Vedeu::Views::View]
       def store_deferred
-        unless present?(name)
-          fail Vedeu::InvalidSyntax, 'Cannot store an interface without a name.'
-        end
+        fail Vedeu::Error::InvalidSyntax,
+             'Cannot store an interface without a name.' unless present?(name)
 
         Vedeu.buffers.by_name(name).add(self)
 

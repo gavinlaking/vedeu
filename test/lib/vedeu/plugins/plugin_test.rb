@@ -37,7 +37,7 @@ module Vedeu
           Kernel.stubs(:require).raises(LoadError)
         end
 
-        it { proc { subject }.must_raise(Vedeu::VedeuError) }
+        it { proc { subject }.must_raise(Vedeu::Error::Fatal) }
         it { instance.enabled.must_equal(false) }
       end
 

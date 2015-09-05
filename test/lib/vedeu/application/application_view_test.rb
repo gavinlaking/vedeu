@@ -43,7 +43,7 @@ module Vedeu
     describe '.render' do
       subject { described.render(params) }
 
-      it { proc { subject }.must_raise(Vedeu::NotImplemented) }
+      it { proc { subject }.must_raise(Vedeu::Error::NotImplemented) }
     end
 
     describe '#render' do
