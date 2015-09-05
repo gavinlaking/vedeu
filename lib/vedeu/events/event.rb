@@ -96,7 +96,7 @@ module Vedeu
         # @return [Boolean]
         def bound?(name)
           Vedeu.events.registered?(name) ||
-          Vedeu::Events::Aliases.registered?(name)
+            Vedeu::Events::Aliases.registered?(name)
         end
 
         # Unbind events from a named handler.

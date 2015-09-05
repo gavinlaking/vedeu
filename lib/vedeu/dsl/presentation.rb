@@ -76,8 +76,8 @@ module Vedeu
       #
       # @return [Vedeu::Colours::Colour]
       def colour(attrs = {})
-        model.colour = Vedeu::Colours::Colour.
-          coerce(colour_attributes.merge!(attrs))
+        model.colour = Vedeu::Colours::Colour
+          .coerce(colour_attributes.merge!(attrs))
       end
 
       # Define a style or styles for an interface, line or a stream.
