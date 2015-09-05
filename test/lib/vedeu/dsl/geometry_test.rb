@@ -23,6 +23,7 @@ module Vedeu
         subject { instance.centred(true) }
 
         it { instance.must_respond_to(:centred!) }
+        it { instance.must_respond_to(:centred=) }
 
         it 'sets the attribute to the value' do
           subject.must_equal(true)
@@ -75,6 +76,8 @@ module Vedeu
 
       describe '#height' do
         subject { instance.height(6) }
+
+        it { instance.must_respond_to(:height=) }
 
         it 'sets the attribute to the value' do
           subject.call.must_equal(6)
@@ -137,6 +140,8 @@ module Vedeu
       describe '#width' do
         subject { instance.width(25) }
 
+        it { instance.must_respond_to(:width=) }
+
         it 'sets the attribute to the value' do
           subject.call.must_equal(25)
         end
@@ -158,6 +163,8 @@ module Vedeu
 
       describe '#x' do
         subject { instance.x(2) }
+
+        it { instance.must_respond_to(:x=) }
 
         it 'sets the attribute to the value' do
           subject.must_equal(2)
@@ -215,6 +222,8 @@ module Vedeu
       describe '#y' do
         subject { instance.y(5) }
 
+        it { instance.must_respond_to(:y=) }
+
         it 'sets the attribute to the value' do
           subject.must_equal(5)
         end
@@ -271,6 +280,7 @@ module Vedeu
       describe '#xn' do
         subject { instance.xn(15) }
 
+        it { instance.must_respond_to(:xn=) }
         it { subject.must_equal(15) }
 
         context 'when a block is given' do
@@ -289,6 +299,7 @@ module Vedeu
       describe '#yn' do
         subject { instance.yn(8) }
 
+        it { instance.must_respond_to(:yn=) }
         it { subject.must_equal(8) }
 
         context 'when a block is given' do
