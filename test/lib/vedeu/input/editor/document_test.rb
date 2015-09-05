@@ -42,8 +42,24 @@ module Vedeu
       end
 
       describe '#clear' do
+        let(:expected) {
+          "\e[1;1H\e[1;1H     " \
+          "\e[2;1H     " \
+          "\e[3;1H     " \
+          "\e[4;1H     " \
+          "\e[5;1H     " \
+          "\e[1;1H"
+        }
+
+        before do
+          Vedeu::Geometry.new(name: _name, x: 1, y: 1, xn: 5, yn: 5).store
+          Vedeu::Terminal.stubs(:output)
+          Vedeu::Direct.stubs(:write).returns(expected)
+        end
+
         subject { instance.clear }
 
+        it { subject.must_equal(expected) }
       end
 
       describe '#delete_character' do
