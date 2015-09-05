@@ -4,7 +4,7 @@ module Vedeu
   #
   class Wordwrap
 
-    # @see {Vedeu::Wordwrap#initialize}
+    # @see Vedeu::Wordwrap#initialize
     def self.for(text, options = {})
       new(text, options).content
     end
@@ -13,12 +13,9 @@ module Vedeu
     #
     # @param text [String]
     # @param options [Hash]
-    # @option options ellipsis [String] For when using mode `:prune`.
-    # @option options mode [Symbol] One of :default, :prune or :wrap;
-    #   :default = Renders the content as is.
-    #   :prune   = Discards the remainder of the content line after width.
-    #   :wrap    = Forces the content on to a new line after width.
-    # @option options width [Fixnum] The width to prune or wrap to.
+    # @option options ellipsis [String] See {#ellipsis}.
+    # @option options mode [Symbol] See {#mode}.
+    # @option options width [Fixnum] See {#width}.
     # @return [Vedeu::Wordwrap]
     def initialize(text, options = {})
       @text    = text
@@ -106,6 +103,8 @@ module Vedeu
       Vedeu::Views::Lines.new(line_objects)
     end
 
+    # Returns the text as an array of lines, split on '\n'.
+    #
     # @return [Array<String>]
     def split_lines
       text.split(/\n/)
@@ -123,27 +122,39 @@ module Vedeu
       end
     end
 
+    # Returns the string pruned.
+    #
     # @param string [String]
     # @return [String]
     def prune_string(string)
       string.chomp.slice(0..pruned_width)
     end
 
+    # Returns the width of the string minus the ellipsis.
+    #
     # @return [Fixnum]
     def pruned_width
       width - ellipsis.size
     end
 
+    # For when using mode `:prune`, by default, provides '...'.
+    #
     # @return [String]
     def ellipsis
       options.fetch(:ellipsis)
     end
 
+    # Returns the word wrapping mode. One of :default, :prune or :wrap;
+    #   :default = Renders the content as is.
+    #   :prune   = Discards the remainder of the content line after width.
+    #   :wrap    = Forces the content on to a new line after width.
     # @return [Symbol]
     def mode
       options.fetch(:mode)
     end
 
+    # Returns the width to prune or wrap to.
+    #
     # @return [Fixnum]
     def width
       options.fetch(:width)

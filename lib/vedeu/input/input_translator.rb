@@ -37,7 +37,7 @@ module Vedeu
       @symbols ||= f_keys.merge!(ctrl_letters).merge!(specials)
     end
 
-    # @return [Hash<String => Symbol]
+    # @return [Hash<String => Symbol>]
     def ctrl_letters
       {
         "\u0001"  => :ctrl_a,
@@ -72,7 +72,7 @@ module Vedeu
       }
     end
 
-    # @return [Hash<String => Symbol]
+    # @return [Hash<String => Symbol>]
     def f_keys
       {
         "\eOP"      => :f1,
