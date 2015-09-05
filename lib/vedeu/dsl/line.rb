@@ -78,6 +78,7 @@ module Vedeu
 
         model.parent.add(content)
       end
+      alias_method :line=, :line
 
       # Define multiple streams (a stream is a subset of a line).
       # Uses {Vedeu::DSL::Stream} for all directives within the required block.
@@ -106,6 +107,8 @@ module Vedeu
         model.add(model.member.build(attributes, &block))
       end
       alias_method :stream, :streams
+      alias_method :stream=, :streams
+      alias_method :streams=, :streams
 
       private
 

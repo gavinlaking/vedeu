@@ -42,6 +42,7 @@ module Vedeu
 
         it { subject.must_be_instance_of(Vedeu::Views::Lines) }
         it { subject[0].must_be_instance_of(Vedeu::Views::Line) }
+        it { instance.must_respond_to(:line=) }
 
         context 'when the block is given' do
         end
@@ -78,6 +79,8 @@ module Vedeu
         end
 
         it { instance.must_respond_to(:stream) }
+        it { instance.must_respond_to(:stream=) }
+        it { instance.must_respond_to(:streams=) }
       end
 
     end # Line
