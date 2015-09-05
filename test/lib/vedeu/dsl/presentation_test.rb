@@ -37,6 +37,9 @@ module Vedeu
 
         it { instance.must_respond_to(:bg) }
         it { instance.must_respond_to(:bgcolor) }
+        it { instance.must_respond_to(:bg=) }
+        it { instance.must_respond_to(:bgcolor=) }
+        it { instance.must_respond_to(:background=) }
         it {
           dsl.colour.background.must_be_instance_of(Vedeu::Colours::Background)
         }
@@ -55,6 +58,9 @@ module Vedeu
 
         it { instance.must_respond_to(:fg) }
         it { instance.must_respond_to(:fgcolor) }
+        it { instance.must_respond_to(:fg=) }
+        it { instance.must_respond_to(:fgcolor=) }
+        it { instance.must_respond_to(:foreground=) }
         it {
           dsl.colour.foreground.must_be_instance_of(Vedeu::Colours::Foreground)
         }
@@ -66,6 +72,7 @@ module Vedeu
 
         subject { instance.colour(attributes) }
 
+        it { instance.must_respond_to(:colour=) }
         it { subject.must_be_instance_of(Vedeu::Colours::Colour) }
 
         context 'with an empty value' do
@@ -81,7 +88,9 @@ module Vedeu
 
         subject { instance.style(args) }
 
+        it { instance.must_respond_to(:style=) }
         it { instance.must_respond_to(:styles) }
+        it { instance.must_respond_to(:styles=) }
 
         it { subject.must_be_instance_of(Vedeu::Style) }
       end
