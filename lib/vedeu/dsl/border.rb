@@ -74,6 +74,7 @@ module Vedeu
       def bottom_left(char)
         model.bottom_left = char
       end
+      alias_method :bottom_left=, :bottom_left
 
       # Set the character to be used to draw the bottom right corner of the
       # border.
@@ -89,6 +90,7 @@ module Vedeu
       def bottom_right(char)
         model.bottom_right = char
       end
+      alias_method :bottom_right=, :bottom_right
 
       # Disable the border:
       #
@@ -142,6 +144,7 @@ module Vedeu
       def horizontal(char)
         model.horizontal = char
       end
+      alias_method :horizontal=, :horizontal
 
       # Enable/disable the bottom border.
       #
@@ -162,6 +165,7 @@ module Vedeu
         model.show_bottom = boolean
       end
       alias_method :show_bottom, :bottom
+      alias_method :bottom=, :bottom
 
       # Disable the bottom border.
       #
@@ -196,6 +200,7 @@ module Vedeu
         model.show_left = boolean
       end
       alias_method :show_left, :left
+      alias_method :left=, :left
 
       # Disable the left border.
       #
@@ -230,6 +235,7 @@ module Vedeu
         model.show_right = boolean
       end
       alias_method :show_right, :right
+      alias_method :right=, :right
 
       # Disable the right border.
       #
@@ -261,6 +267,7 @@ module Vedeu
       def title(value)
         model.title = value
       end
+      alias_method :title=, :title
 
       # If you have you are showing a bottom border, you could add a caption.
       #
@@ -278,6 +285,7 @@ module Vedeu
       def caption(value)
         model.caption = value
       end
+      alias_method :caption=, :caption
 
       # Enable/disable the top border.
       #
@@ -298,6 +306,7 @@ module Vedeu
         model.show_top = boolean
       end
       alias_method :show_top, :top
+      alias_method :top=, :top
 
       # Disable the top border.
       #
@@ -326,6 +335,7 @@ module Vedeu
       def top_left(char)
         model.top_left = char
       end
+      alias_method :top_left=, :top_left
 
       # Set the character to be used to draw the top right corner of the border.
       #
@@ -340,6 +350,7 @@ module Vedeu
       def top_right(char)
         model.top_right = char
       end
+      alias_method :top_right=, :top_right
 
       # Set the character to be used to draw a vertical part of the border.
       #
@@ -354,6 +365,7 @@ module Vedeu
       def vertical(char)
         model.vertical = char
       end
+      alias_method :vertical=, :vertical
 
     end # Border
 

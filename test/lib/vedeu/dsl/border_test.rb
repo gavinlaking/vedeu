@@ -30,6 +30,7 @@ module Vedeu
 
         it { subject.must_be_instance_of(String) }
         it { subject.must_equal('C') }
+        it { instance.must_respond_to(:bottom_left=) }
       end
 
       describe '#bottom_right' do
@@ -39,6 +40,7 @@ module Vedeu
 
         it { subject.must_be_instance_of(String) }
         it { subject.must_equal('D') }
+        it { instance.must_respond_to(:bottom_right=) }
       end
 
       describe '#disable!' do
@@ -60,6 +62,7 @@ module Vedeu
 
         it { subject.must_be_instance_of(String) }
         it { subject.must_equal('H') }
+        it { instance.must_respond_to(:horizontal=) }
       end
 
       describe '#show_bottom' do
@@ -75,6 +78,7 @@ module Vedeu
         end
 
         it { instance.must_respond_to(:bottom) }
+        it { instance.must_respond_to(:bottom=) }
       end
 
       describe '#hide_bottom!' do
@@ -95,6 +99,7 @@ module Vedeu
         it { subject.must_be_instance_of(TrueClass) }
 
         it { instance.must_respond_to(:left) }
+        it { instance.must_respond_to(:left=) }
 
         context 'when false' do
           let(:boolean) { false }
@@ -121,6 +126,7 @@ module Vedeu
         it { subject.must_be_instance_of(TrueClass) }
 
         it { instance.must_respond_to(:right) }
+        it { instance.must_respond_to(:right=) }
 
         context 'when false' do
           let(:boolean) { false }
@@ -147,6 +153,7 @@ module Vedeu
         it { subject.must_be_instance_of(TrueClass) }
 
         it { instance.must_respond_to(:top) }
+        it { instance.must_respond_to(:top=) }
 
         context 'when false' do
           let(:boolean) { false }
@@ -174,6 +181,7 @@ module Vedeu
 
         it { subject.must_be_instance_of(String) }
         it { subject.must_equal('Some title') }
+        it { instance.must_respond_to(:title=) }
       end
 
       describe '#caption' do
@@ -183,6 +191,7 @@ module Vedeu
 
         it { subject.must_be_instance_of(String) }
         it { subject.must_equal('Some caption') }
+        it { instance.must_respond_to(:caption=) }
       end
 
       describe '#top_left' do
@@ -192,6 +201,7 @@ module Vedeu
 
         it { subject.must_be_instance_of(String) }
         it { subject.must_equal('A') }
+        it { instance.must_respond_to(:top_left=) }
       end
 
       describe '#top_right' do
@@ -201,6 +211,7 @@ module Vedeu
 
         it { subject.must_be_instance_of(String) }
         it { subject.must_equal('B') }
+        it { instance.must_respond_to(:top_right=) }
       end
 
       describe '#use' do
@@ -229,6 +240,7 @@ module Vedeu
 
         it { subject.must_be_instance_of(String) }
         it { subject.must_equal('V') }
+        it { instance.must_respond_to(:vertical=) }
       end
 
     end # Border
