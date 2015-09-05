@@ -110,22 +110,22 @@ module Vedeu
     #   Vedeu.unbind(name)
     #
     # @!method bind
-    #   @see Vedeu::Event.bind
+    #   @see Vedeu::Events::Event.bind
     # @!method bound?
-    #   @see Vedeu::Event.bound?
+    #   @see Vedeu::Events::Event.bound?
     # @!method unbind
-    #   @see Vedeu::Event.unbind
-    def_delegators Vedeu::Event, :bind, :bound?, :unbind
+    #   @see Vedeu::Events::Event.unbind
+    def_delegators Vedeu::Events::Event, :bind, :bound?, :unbind
 
     # @example
     #   Vedeu.bind_alias(alias_name, event_name)
     #   Vedeu.unbind_alias(alias_name)
     #
     # @!method bind_alias
-    #   @see Vedeu::EventAliases.bind_alias
+    #   @see Vedeu::Events::Aliases.bind_alias
     # @!method unbind_alias
-    #   @see Vedeu::EventAliases.unbind_alias
-    def_delegators Vedeu::EventAliases, :bind_alias, :unbind_alias
+    #   @see Vedeu::Events::Aliases.unbind_alias
+    def_delegators Vedeu::Events::Aliases, :bind_alias, :unbind_alias
 
     # @example
     #   Vedeu.focus
@@ -205,8 +205,8 @@ module Vedeu
     #   Vedeu.trigger(:name)
     #
     # @!method trigger
-    #   @see Vedeu::Trigger.trigger
-    def_delegators Vedeu::Trigger, :trigger
+    #   @see Vedeu::Events::Trigger.trigger
+    def_delegators Vedeu::Events::Trigger, :trigger
 
     # Exit the client application using Vedeu.
     #

@@ -70,8 +70,8 @@ module Vedeu
     #   Vedeu.events
     #
     # @!method events
-    # @return [Vedeu::Events]
-    def_delegators Vedeu::Events, :events
+    # @return [Vedeu::Events::Repository]
+    def_delegators Vedeu::Events::Repository, :events
 
     # Manipulate the repository of foreground colours.
     #
