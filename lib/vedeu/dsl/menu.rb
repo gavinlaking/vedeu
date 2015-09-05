@@ -32,6 +32,7 @@ module Vedeu
       def item(element)
         model.collection << element
       end
+      alias_method :item=, :item
 
       # Define the items for the menu. Most powerful when used with one of your
       # model classes.
@@ -53,6 +54,7 @@ module Vedeu
       def items(collection = [])
         model.collection = collection
       end
+      alias_method :items=, :items
 
       # The name of the menu. Used to reference the menu throughout your
       # application's execution lifetime.
@@ -67,6 +69,7 @@ module Vedeu
       def name(value)
         model.name = value
       end
+      alias_method :name=, :name
 
     end # Menu
 

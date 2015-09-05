@@ -28,6 +28,8 @@ module Vedeu
 
         subject { instance.item(_value) }
 
+        it { instance.must_respond_to(:item=) }
+
         context 'when items are provided' do
           it { subject.must_equal([:sodium,
                                     :magnesium,
@@ -41,6 +43,8 @@ module Vedeu
         let(:_value) { [] }
 
         subject { instance.items(_value) }
+
+        it { instance.must_respond_to(:items=) }
 
         context 'when no items are provided' do
           it { subject.must_equal([]) }
@@ -57,6 +61,8 @@ module Vedeu
         let(:_value) { 'metals' }
 
         subject { instance.name(_value) }
+
+        it { instance.must_respond_to(:name=) }
 
         it 'returns the name of the menu' do
           subject
