@@ -27,7 +27,6 @@ require 'vedeu/models/toggleable'
 
 require 'vedeu/repositories/collection'
 require 'vedeu/input/keys'
-require 'vedeu/events/collection'
 require 'vedeu/repositories/repositories'
 
 require 'vedeu/repositories/model'
@@ -90,11 +89,7 @@ require 'vedeu/output/renderers/terminal'
 require 'vedeu/output/renderers/text'
 require 'vedeu/output/renderers'
 
-require 'vedeu/events/aliases'
-require 'vedeu/events/trigger'
-require 'vedeu/events/repository'
-require 'vedeu/events/event'
-
+require 'vedeu/events/all'
 require 'vedeu/models/views/all'
 
 require 'vedeu/models/cell'
