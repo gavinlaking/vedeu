@@ -96,6 +96,7 @@ module Vedeu
           model.add(model.member.new(value, &block))
         end
       end
+      alias_method :key=, :key
 
       # Define the name of the keymap.
       #
@@ -115,6 +116,7 @@ module Vedeu
       def name(value)
         model.name = value
       end
+      alias_method :name=, :name
 
     end # Keymap
 

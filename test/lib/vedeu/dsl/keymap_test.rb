@@ -20,6 +20,8 @@ module Vedeu
 
         subject { instance.key(*value_or_values) { :some_action } }
 
+        it { instance.must_respond_to(:key=) }
+
         context 'when a block was not given' do
           subject { instance.key(value_or_values) }
 
@@ -58,6 +60,8 @@ module Vedeu
         let(:_value) { 'gold' }
 
         subject { instance.name(_value) }
+
+        it { instance.must_respond_to(:name=) }
 
         it 'defines the name of the keymap' do
           subject
