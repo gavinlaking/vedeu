@@ -24,18 +24,15 @@ module Vedeu
       def render(output)
         @options[:content] = output
 
-        if write_file?
-          super(Vedeu::Templating::Template.parse(self, template))
-
-        else
-          Vedeu::Templating::Template.parse(self, template)
-
-        end
+        super(Vedeu::Templating::Template.parse(self, template))
       end
 
       # @return [String]
       def html_body
+        return '' if content.is_a?(Vedeu::Escape)
+
         out = ''
+
         Array(content).each do |line|
           out << "#{start_row_tag}\n"
           line.each do |char|
