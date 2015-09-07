@@ -54,12 +54,30 @@ module Vedeu
         it { instance.position.must_be_instance_of(Vedeu::Geometry::Position) }
       end
 
+      describe '#position' do
+        subject { instance.position }
+
+        it { subject.must_be_instance_of(Vedeu::Position) }
+      end
+
       describe '#value' do
-        it { instance.value.must_be_instance_of(String) }
+        subject { instance.value }
+
+        it { subject.must_be_instance_of(String) }
+        it { subject.must_equal("\e[?25h") }
+      end
+
+      describe '#to_html' do
+        subject { instance.to_html }
+
+        it { subject.must_be_instance_of(String) }
+        it { subject.must_equal('') }
       end
 
       describe '#to_s' do
         subject { instance.to_s }
+        it { subject.must_be_instance_of(String) }
+        it { subject.must_equal("\e[2;6H\e[?25h") }
 
         it { instance.must_respond_to(:to_str) }
       end

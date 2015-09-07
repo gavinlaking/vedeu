@@ -22,7 +22,7 @@ module Vedeu
       # @param output [Array<Array<Vedeu::Views::Char>>]
       # @return [String]
       def render(output)
-        @options[:content] = output
+        @content = output
 
         super(Vedeu::Templating::Template.parse(self, template))
       end
@@ -33,16 +33,27 @@ module Vedeu
 
         out = ''
 
-        Array(content).each do |line|
+        Array(content).flatten.each do |line|
           out << "#{start_row_tag}\n"
-          line.each do |char|
-            if char.is_a?(Vedeu::Views::Char)
-              out << char.to_html
+
+          if line.is_a?(String)
+            out << line
+
+          elsif line.is_a?(Vedeu::Escape)
+            out << line.to_html(options)
+
+          else
+            #line.each do |char|
+              # if char.is_a?(Vedeu::Views::Char)
+              out << line.to_html(options)
               out << "\n"
-            end
+              # end
+            #end
           end
+
           out << "#{end_row_tag}\n"
         end
+
         out
       end
 
@@ -50,12 +61,23 @@ module Vedeu
 
       # @return [Array<Array<Vedeu::Views::Char>>]
       def content
-        options[:content]
+        @content || options[:content]
+      end
+      alias_method :output, :content
+
+      # @return [String]
+      def end_tag
+        options[:end_tag]
       end
 
       # @return [String]
       def end_row_tag
         options[:end_row_tag]
+      end
+
+      # @return [String]
+      def end_tag
+        options[:start_tag]
       end
 
       # @return [String]
@@ -80,12 +102,14 @@ module Vedeu
       #
       # @return [Hash<Symbol => void>]
       def defaults
-        {
+        super.merge({
           content:       '',
+          end_tag:       '</td>',
           end_row_tag:   '</tr>',
+          start_tag:     '<td',
           start_row_tag: '<tr>',
           template:      default_template,
-        }
+        })
       end
 
       # @return [String]

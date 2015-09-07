@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <style type='text/css'>
+      body {
+        background:#000;
+      }
+      td {
+        border:1px #171717 solid;
+        font-size:12px;
+        font-family:monospace;
+        height:18px;
+        margin:1px;
+        text-align:center;
+        vertical-align:center;
+        width:18px;
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+      <tr>
+
+</tr>
+<tr>
+
+</tr>
+<tr>
+
+</tr>
+<tr>
+
+</tr>
+<tr>
+
+</tr>
+<tr>
+
+</tr>
+<tr>
+
+</tr>
+<tr>
+
+</tr>
+<tr>
+
+</tr>
+    </table>
+  </body>
+</html>
