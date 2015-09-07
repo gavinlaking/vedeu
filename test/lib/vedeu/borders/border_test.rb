@@ -396,139 +396,14 @@ module Vedeu
     end
 
     describe '#render' do
-      let(:attributes) {
-        {
-          bottom_left:  'C',
-          bottom_right: 'D',
-          enabled:      enabled,
-          horizontal:   'H',
-          name:         'Border#render',
-          show_top:     top,
-          show_bottom:  bottom,
-          show_left:    left,
-          show_right:   right,
-          top_left:     'A',
-          top_right:    'B',
-          vertical:     'V'
-        }
-      }
-      let(:enabled) { false }
-      let(:top)     { false }
-      let(:bottom)  { false }
-      let(:left)    { false }
-      let(:right)   { false }
-      let(:visibility) { true }
-      let(:geometry) {
-        Vedeu::Geometry.new(name: 'Border#render', x: 1, xn: 4, y: 1, yn: 4)
-      }
-      let(:interface) { Vedeu::Interface.new(visible: visibility) }
-
-      before { Vedeu.interfaces.stubs(:by_name).returns(interface) }
+      before { Vedeu::RenderBorder.stubs(:with) }
 
       subject { instance.render }
 
-      it { subject.must_be_instance_of(Array) }
-
-      context 'when the interface is not visible' do
-        let(:visibility) { false }
-
-        it { subject.must_equal([]) }
-      end
-
-      context 'when the border is not enabled' do
-        it { subject.must_equal([]) }
-      end
-
-      context 'when the border is enabled' do
-        let(:enabled) { true }
-
-        context 'top' do
-          let(:top) { true }
-
-          it { subject.size.must_equal(4) }
-        end
-
-        context 'right' do
-          let(:right) { true }
-
-          it { subject.size.must_equal(4) }
-        end
-
-        context 'bottom' do
-          let(:bottom) { true }
-
-          it { subject.size.must_equal(4) }
-        end
-
-        context 'left' do
-          let(:left) { true }
-
-          it { subject.size.must_equal(4) }
-        end
-
-        context 'top and right' do
-          let(:top)   { true }
-          let(:right) { true }
-
-          it { subject.size.must_equal(7) }
-        end
-
-        context 'top and right and bottom' do
-          let(:top)    { true }
-          let(:right)  { true }
-          let(:bottom) { true }
-
-          it { subject.size.must_equal(10) }
-        end
-
-        context 'top and bottom' do
-          let(:top)    { true }
-          let(:bottom) { true }
-
-          it { subject.size.must_equal(8) }
-        end
-
-        context 'top and left' do
-          let(:top)  { true }
-          let(:left) { true }
-
-          it { subject.size.must_equal(7) }
-        end
-
-        context 'right and bottom' do
-          let(:right)  { true }
-          let(:bottom) { true }
-
-          it { subject.size.must_equal(7) }
-        end
-
-        context 'right and left' do
-          let(:right) { true }
-          let(:left)  { true }
-
-          it { subject.size.must_equal(8) }
-        end
-
-        context 'bottom and left' do
-          let(:bottom) { true }
-          let(:left)   { true }
-
-          it { subject.size.must_equal(7) }
-        end
-
-        context 'all' do
-          let(:top)    { true }
-          let(:right)  { true }
-          let(:bottom) { true }
-          let(:left)   { true }
-
-          it { subject.size.must_equal(12) }
-        end
-
-        context 'none' do
-          it { subject.size.must_equal(0) }
-        end
-      end
+      it {
+        Vedeu::RenderBorder.expects(:with).with(instance)
+        subject
+      }
     end
 
   end # Border
