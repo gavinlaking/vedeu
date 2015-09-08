@@ -137,7 +137,12 @@ module Vedeu
 
     # @return [Vedeu::Area]
     def area
-      @area = Vedeu::Area.from_attributes(
+      @area = Vedeu::Area.from_attributes(area_attributes)
+    end
+
+    # @return [Hash<Symbol => Fixnum, Boolean>]
+    def area_attributes
+      {
         y:         _y,
         yn:        _yn,
         y_yn:      _height,
@@ -148,7 +153,7 @@ module Vedeu
         x_default: Vedeu.width,
         centred:   centred,
         maximised: maximised,
-      )
+      }
     end
 
     # Returns the row/line start position for the interface.

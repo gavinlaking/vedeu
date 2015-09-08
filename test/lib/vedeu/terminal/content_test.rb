@@ -53,12 +53,16 @@ module Vedeu
         let(:char) {}
 
         subject { described.store(char) }
+
+        it { subject.must_equal(char) }
       end
 
       describe '#stores' do
         let(:chars) {}
 
         subject { described.stores(chars) }
+
+        it { subject.must_equal([]) }
       end
 
       describe '#write' do
@@ -82,7 +86,11 @@ module Vedeu
       end
 
       describe '#reprocess' do
+        before { Vedeu::Terminal.stubs(:clear) }
+
         subject { described.reprocess }
+
+        it { subject.must_equal(['']) }
       end
 
       describe '#reset' do

@@ -154,13 +154,7 @@ module Vedeu
       #
       # @return [Array<String|void>]
       def lines
-        @lines ||= if present?(data)
-                     Vedeu::Editor::Lines.coerce(data)
-
-                   else
-                     defaults[:data]
-
-                   end
+        @lines ||= Vedeu::Editor::Lines.coerce(data)
       end
 
       # Render the document content in the terminal.

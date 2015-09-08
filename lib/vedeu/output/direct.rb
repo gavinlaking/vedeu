@@ -12,9 +12,12 @@ module Vedeu
       new(value: value, x: x, y: y).write
     end
 
+    # Returns a new instance of Vedeu::Direct.
+    #
     # @param value [String]
     # @param x [Fixnum]
     # @param y [Fixnum]
+    # @return [Vedeu::Direct]
     def initialize(value:, x:, y:)
       @value = value || ''
       @x     = x     || 1
