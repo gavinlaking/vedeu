@@ -11,6 +11,8 @@
 
 # For a list of all available engines, see here:
 # http://docs.codeclimate.com/article/296-engines-available-engines
+languages:
+  Ruby: true
 
 engines:
 # to turn on an engine, add it here and set enabled to `true`
@@ -33,5 +35,6 @@ ratings:
 # exclude_paths key.
 
 exclude_paths:
+- examples/**/*
 - test/**/*
 - vendor/**/*
