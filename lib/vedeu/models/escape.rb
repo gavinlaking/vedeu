@@ -15,9 +15,9 @@ module Vedeu
     # @option attributes value [String]
     # @return [Vedeu::Escape]
     def initialize(attributes = {})
-      @attributes = defaults.merge!(attributes)
-
-      @attributes.each { |key, value| instance_variable_set("@#{key}", value) }
+      defaults.merge!(attributes).each do |key, value|
+        instance_variable_set("@#{key}", value)
+      end
     end
 
     # @return [NilClass]

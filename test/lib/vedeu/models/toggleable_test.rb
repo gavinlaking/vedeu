@@ -33,6 +33,10 @@ module Vedeu
         subject
         instance.instance_variable_get('@visible').must_equal(false)
       }
+
+      it { Vedeu::ToggleableTestClass.must_respond_to(:hide_cursor) }
+      it { Vedeu::ToggleableTestClass.must_respond_to(:hide_group) }
+      it { Vedeu::ToggleableTestClass.must_respond_to(:hide_interface) }
     end
 
     describe '#show' do
@@ -42,10 +46,18 @@ module Vedeu
         subject
         instance.instance_variable_get('@visible').must_equal(true)
       }
+
+      it { Vedeu::ToggleableTestClass.must_respond_to(:show_cursor) }
+      it { Vedeu::ToggleableTestClass.must_respond_to(:show_group) }
+      it { Vedeu::ToggleableTestClass.must_respond_to(:show_interface) }
     end
 
     describe '#toggle' do
       subject { instance.toggle }
+
+      it { Vedeu::ToggleableTestClass.must_respond_to(:toggle_cursor) }
+      it { Vedeu::ToggleableTestClass.must_respond_to(:toggle_group) }
+      it { Vedeu::ToggleableTestClass.must_respond_to(:toggle_interface) }
 
       context 'when the model is visible' do
         let(:visible) { true }

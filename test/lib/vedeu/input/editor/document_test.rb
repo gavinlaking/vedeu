@@ -152,28 +152,17 @@ module Vedeu
       end
 
       describe '#lines' do
+        let(:expected) {
+          Vedeu::Editor::Lines.new([
+            Vedeu::Editor::Line.new('Hydrogen'),
+            Vedeu::Editor::Line.new('Helium'),
+            Vedeu::Editor::Line.new('Lithium'),
+          ])
+        }
+
         subject { instance.lines }
 
-        context 'when the data is empty' do
-          let(:data) {}
-          let(:expected) {
-            Vedeu::Editor::Lines.new([Vedeu::Editor::Line.new])
-          }
-
-          it { subject.must_equal(expected) }
-        end
-
-        context 'when the data is not empty' do
-          let(:expected) {
-            Vedeu::Editor::Lines.new([
-              Vedeu::Editor::Line.new('Hydrogen'),
-              Vedeu::Editor::Line.new('Helium'),
-              Vedeu::Editor::Line.new('Lithium'),
-            ])
-          }
-
-          it { subject.must_equal(expected) }
-        end
+        it { subject.must_equal(expected) }
       end
 
       describe '#render' do

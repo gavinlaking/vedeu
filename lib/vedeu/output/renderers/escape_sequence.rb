@@ -11,6 +11,7 @@ module Vedeu
       # Returns a new instance of Vedeu::Renderers::EscapeSequence.
       #
       # @param options [Hash]
+      # @return [Vedeu::Renderers::EscapeSequence]
       def initialize(options = {})
         @options = options || {}
       end

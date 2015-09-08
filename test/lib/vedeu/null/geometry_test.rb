@@ -15,8 +15,6 @@ module Vedeu
       }
       let(:_name)     { 'null_geometry' }
 
-      before { Vedeu::Terminal.stubs(:size).returns([25, 40]) }
-
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
         it {
@@ -62,26 +60,38 @@ module Vedeu
       end
 
       describe '#height' do
+        before { Vedeu::Terminal.stubs(:size).returns([25, 40]) }
+
         it { instance.height.must_equal(25) }
       end
 
       describe '#width' do
+        before { Vedeu::Terminal.stubs(:size).returns([25, 40]) }
+
         it { instance.width.must_equal(40) }
       end
 
       describe '#x' do
+        before { Vedeu::Terminal.stubs(:size).returns([25, 40]) }
+
         it { instance.x.must_equal(1) }
       end
 
       describe '#xn' do
+        before { Vedeu::Terminal.stubs(:size).returns([25, 40]) }
+
         it { instance.xn.must_equal(40) }
       end
 
       describe '#y' do
+        before { Vedeu::Terminal.stubs(:size).returns([25, 40]) }
+
         it { instance.y.must_equal(1) }
       end
 
       describe '#yn' do
+        before { Vedeu::Terminal.stubs(:size).returns([25, 40]) }
+
         it { instance.yn.must_equal(25) }
       end
 

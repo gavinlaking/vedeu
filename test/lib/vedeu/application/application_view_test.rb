@@ -50,8 +50,6 @@ module Vedeu
       it { instance.must_respond_to(:render) }
     end
 
-
-
   end # ApplicationView
 
 end # Vedeu
