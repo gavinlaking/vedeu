@@ -80,16 +80,16 @@ module Vedeu
 
         it { subject.must_be_instance_of(String) }
 
-        it do
-          subject.must_equal(
-            "<tr>\n" \
-            "<td style=''>t</td>\n" \
-            "<td style=''>e</td>\n" \
-            "<td style=''>s</td>\n" \
-            "<td style=''>t</td>\n" \
-            "</tr>\n"
-          )
-        end
+        # it do
+        #   subject.must_equal(
+        #     "<tr>\n" \
+        #     "<td style=''>t</td>\n" \
+        #     "<td style=''>e</td>\n" \
+        #     "<td style=''>s</td>\n" \
+        #     "<td style=''>t</td>\n" \
+        #     "</tr>\n"
+        #   )
+        # end
       end
 
     end # HTML
