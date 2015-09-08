@@ -22,6 +22,7 @@ module Vedeu
       # @return [NilClass|Fixnum]
       attr_reader :x
 
+<<<<<<< HEAD
       # @!attribute [r] y
       # @return [NilClass|Fixnum]
       attr_reader :y
@@ -38,9 +39,7 @@ module Vedeu
       # @option attributes y [NilClass|Fixnum]
       # @return [Vedeu::Models::Cell]
       def initialize(attributes = {})
-        @attributes = defaults.merge!(attributes)
-
-        @attributes.each do |key, value|
+        defaults.merge!(attributes).each do |key, value|
           instance_variable_set("@#{key}", value)
         end
       end
