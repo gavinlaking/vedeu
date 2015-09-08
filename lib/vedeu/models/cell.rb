@@ -73,7 +73,7 @@ module Vedeu
         {
           colour: nil,
           style:  nil,
-          value:  nil,
+          value:  '',
           x:      nil,
           y:      nil,
         }
