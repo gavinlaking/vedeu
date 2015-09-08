@@ -22,7 +22,6 @@ module Vedeu
       # @return [NilClass|Fixnum]
       attr_reader :x
 
-<<<<<<< HEAD
       # @!attribute [r] y
       # @return [NilClass|Fixnum]
       attr_reader :y
@@ -53,6 +52,11 @@ module Vedeu
           y == other.y
       end
       alias_method :==, :eql?
+
+      # @return [Vedeu::Position]
+      def position
+        Vedeu::Position[y, x]
+      end
 
       # @param options [Hash] Ignored.
       # @return [String]

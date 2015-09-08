@@ -56,6 +56,12 @@ module Vedeu
         end
       end
 
+      describe '#position' do
+        subject { instance.position }
+
+        it { subject.must_be_instance_of(Vedeu::Position) }
+      end
+
       describe '#to_html' do
         subject { instance.to_html }
 
