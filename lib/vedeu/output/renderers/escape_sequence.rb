@@ -18,11 +18,13 @@ module Vedeu
 
       # Render the output with the escape sequences escaped.
       #
-      # @param output [Array<Array<Vedeu::Views::Char>>]
+      # @param buffer [Vedeu::Terminal::Buffer]
       # @return [String]
-      def render(output)
-        @parsed ||= Array(output).flatten.map do |char|
-          Esc.escape(char.to_s) + "\n"
+      def render(buffer)
+        @parsed ||= buffer.output.map do |line|
+          line.map do |char|
+            Esc.escape(char.to_s)
+          end.join
         end.join
       end
 
