@@ -15,32 +15,26 @@ module Vedeu
         @options = options || {}
       end
 
-      # @param output [Array<Array<Vedeu::Views::Char>>]
+      # @param buffer [Vedeu::Terminal::Buffer]
       # @return [String]
-      def render(output)
-        super(parsed(output))
+      def render(buffer)
+        super(parsed(buffer))
       end
 
       private
 
-      # @param output [Array<Array<Vedeu::Views::Char>>]
+      # @param buffer [Vedeu::Terminal::Buffer]
       # @return [String]
-      def parsed(output)
-        return '' if output.nil? || output.empty?
-
-        ::JSON.pretty_generate(as_hash(output))
+      def parsed(buffer)
+        ::JSON.pretty_generate(as_hash(buffer))
       end
 
-      # @param output [Array<Array<Vedeu::Views::Char>>]
+      # @param buffer [Vedeu::Terminal::Buffer]
       # @return [Array]
-      def as_hash(output)
-        sorted(output).map(&:to_hash)
-      end
-
-      # @param output [Array<Array<Vedeu::Views::Char>>]
-      # @return [Array]
-      def sorted(output)
-        Array(output).flatten.sort_by(&:position)
+      def as_hash(buffer)
+        buffer.output.flatten.map do |char|
+          char.to_hash
+        end
       end
 
     end # JSON

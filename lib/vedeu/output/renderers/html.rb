@@ -17,12 +17,13 @@ module Vedeu
       # @return [Vedeu::Renderers::HTML]
       def initialize(options = {})
         @options = options || {}
+        @content = nil
       end
 
-      # @param output [Array<Array<Vedeu::Views::Char>>]
+      # @param buffer [Vedeu::Terminal::Buffer]
       # @return [String]
-      def render(output)
-        @content = output
+      def render(buffer)
+        @content = buffer
 
         super(Vedeu::Templating::Template.parse(self, template))
       end
@@ -33,25 +34,9 @@ module Vedeu
 
         out = ''
 
-        Array(content).flatten.each do |line|
+        content.output.each do |line|
           out << "#{start_row_tag}\n"
-
-          if line.is_a?(String)
-            out << line
-
-          elsif line.is_a?(Vedeu::Escape)
-            out << line.to_html(options)
-
-          else
-            #line.each do |char|
-              # if char.is_a?(Vedeu::Views::Char)
-              out << line.to_html(options)
-              out << "\n"
-              # end
-            #end
-
-          end
-
+          line.each { |char| out << char.to_html(options) }
           out << "#{end_row_tag}\n"
         end
 

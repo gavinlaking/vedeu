@@ -9,9 +9,14 @@ module Vedeu
       let(:described) { Vedeu::Renderers::JSON }
       let(:instance)  { described.new(options) }
       let(:options)   { {} }
-      let(:output)    {}
+      let(:buffer)    { Vedeu::Terminal::Buffer }
 
-      before { ::File.stubs(:write) }
+      before do
+        ::File.stubs(:write)
+        Vedeu.stubs(:height).returns(2)
+        Vedeu.stubs(:width).returns(4)
+        Vedeu::Terminal::Buffer.reset
+      end
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
@@ -19,15 +24,36 @@ module Vedeu
       end
 
       describe '#render' do
-        subject { instance.render(output) }
+        subject { instance.render(buffer) }
 
         it { subject.must_be_instance_of(String) }
 
-        context 'when the output is empty' do
-          it { subject.must_equal('') }
+        context 'when there is an empty buffer' do
+          let(:expected) {
+            ::JSON.pretty_generate([
+              {
+                'colour': '', 'style': '', 'value': '', 'y': 1, 'x': 1
+              },{
+                'colour': '', 'style': '', 'value': '', 'y': 1, 'x': 2
+              },{
+                'colour': '', 'style': '', 'value': '', 'y': 1, 'x': 3
+              },{
+                'colour': '', 'style': '', 'value': '', 'y': 1, 'x': 4
+              },{
+                'colour': '', 'style': '', 'value': '', 'y': 2, 'x': 1
+              },{
+                'colour': '', 'style': '', 'value': '', 'y': 2, 'x': 2
+              },{
+                'colour': '', 'style': '', 'value': '', 'y': 2, 'x': 3
+              },{
+                'colour': '', 'style': '', 'value': '', 'y': 2, 'x': 4
+              }
+            ])
+          }
+          it { subject.must_equal(expected) }
         end
 
-        context 'when the output is not empty' do
+        context 'when there is content on the buffer' do
           let(:colour) {
             Vedeu::Colours::Colour.new(foreground: '#ff0000',
                                        background: '#ffffff')
@@ -44,64 +70,98 @@ module Vedeu
           }
           let(:parent)   {}
           let(:expected) {
-            <<-eos
-[
-  {
-    \"border\": \"\",
-    \"colour\": {
-      \"background\": \"\\u001b[48;2;255;255;255m\",
-      \"foreground\": \"\\u001b[38;2;255;0;0m\"
-    },
-    \"parent\": {
-    },
-    \"position\": {
-      \"y\": 5,
-      \"x\": 3
-    },
-    \"style\": \"\",
-    \"value\": \"a\"
-  }
-]
-            eos
+            ::JSON.pretty_generate([
+              {
+                'colour': '', 'style': '', 'value': '', 'y': 1, 'x': 1
+              },{
+                'colour': '', 'style': '', 'value': '', 'y': 1, 'x': 2
+              },{
+                'colour': '', 'style': '', 'value': '', 'y': 1, 'x': 3
+              },{
+                'colour': '', 'style': '', 'value': '', 'y': 1, 'x': 4
+              },{
+                'colour': '', 'style': '', 'value': '', 'y': 2, 'x': 1
+              },{
+                'border': '',
+                'colour': {
+                  'background': "\u001b[48;2;255;0;0m",
+                  'foreground': "\u001b[38;2;255;255;255m"
+                },
+                'parent': {},
+                'position': {
+                  'y': nil,
+                  'x': nil
+                },
+                'style': '',
+                'value': 't'
+              },{
+                'border': '',
+                'colour': {
+                  'background': "\u001b[48;2;255;255;0m",
+                  'foreground': "\u001b[38;2;0;0;0m"
+                },
+                'parent': {},
+                'position': {
+                  'y': nil,
+                  'x': nil
+                },
+                'style': '',
+                'value': 'e'
+              },{
+                'border': '',
+                'colour': {
+                  'background': "\u001b[48;2;0;255;0m",
+                  'foreground': "\u001b[38;2;0;0;0m"
+                },
+                'parent': {},
+                'position': {
+                  'y': nil,
+                  'x': nil
+                },
+                'style': '',
+                'value': 's'
+              },{
+                'border': '',
+                'colour': {
+                  'background': "\u001b[48;2;0;255;255m",
+                  'foreground': "\u001b[38;2;0;0;0m"
+                },
+                'parent': {},
+                'position': {
+                  'y': nil,
+                  'x': nil
+                },
+                'style': '',
+                'value': 't'
+              }
+            ])
           }
 
-          it { subject.must_equal(expected.chomp) }
-
-          context 'when a parent is available' do
-            let(:parent) {
-              Vedeu::Views::Stream.new(
-                colour: Vedeu::Colours::Colour.coerce(background: '',
-                                                      foreground: '')
-              )
-            }
-
-            let(:expected) {
-              <<-eos
-[
-  {
-    \"border\": \"\",
-    \"colour\": {
-      \"background\": \"\\u001b[48;2;255;255;255m\",
-      \"foreground\": \"\\u001b[38;2;255;0;0m\"
-    },
-    \"parent\": {
-      \"background\": \"\",
-      \"foreground\": \"\",
-      \"style\": \"\"
-    },
-    \"position\": {
-      \"y\": 5,
-      \"x\": 3
-    },
-    \"style\": \"\",
-    \"value\": \"a\"
-  }
-]
-              eos
-            }
-
-            it { subject.must_equal(expected.chomp) }
+          before do
+            buffer.write(Vedeu::Views::Char.new(value: 't',
+                                                colour: {
+                                                  background: '#ff0000',
+                                                  foreground: '#ffffff'
+                                                }), 1, 1)
+            buffer.write(Vedeu::Views::Char.new(value: 'e',
+                                                colour: {
+                                                  background: '#ffff00',
+                                                  foreground: '#000000'
+                                                }), 1, 2)
+            buffer.write(Vedeu::Views::Char.new(value: 's',
+                                                colour: {
+                                                  background: '#00ff00',
+                                                  foreground: '#000000'
+                                                }), 1, 3)
+            buffer.write(Vedeu::Views::Char.new(value: 't',
+                                                colour: {
+                                                  background: '#00ffff',
+                                                  foreground: '#000000'
+                                                }), 1, 4)
           end
+
+          it { subject.must_be_instance_of(String) }
+          it { subject.must_equal(expected) }
         end
       end
 
