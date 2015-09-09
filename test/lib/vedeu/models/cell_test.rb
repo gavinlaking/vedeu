@@ -62,6 +62,23 @@ module Vedeu
         it { subject.must_be_instance_of(Vedeu::Position) }
       end
 
+      describe '#to_hash' do
+        let(:expected) {
+          {
+            colour: "\e[48;2;0;0;0m",
+            style:  '',
+            value:  '',
+            y:      nil,
+            x:      nil,
+          }
+        }
+
+        subject { instance.to_hash }
+
+        it { subject.must_be_instance_of(Hash) }
+        it { subject.must_equal(expected) }
+      end
+
       describe '#to_html' do
         subject { instance.to_html }
 

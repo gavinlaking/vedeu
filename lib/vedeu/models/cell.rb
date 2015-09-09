@@ -58,6 +58,17 @@ module Vedeu
         Vedeu::Position[y, x]
       end
 
+      # @return [Hash]
+      def to_hash
+        {
+          colour: colour.to_s,
+          style:  style.to_s,
+          value:  value.to_s,
+          y:      y,
+          x:      x,
+        }
+      end
+
       # @param options [Hash] Ignored.
       # @return [String]
       def to_html(options = {})
