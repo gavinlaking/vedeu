@@ -21,7 +21,7 @@ module Vedeu
 
       # @return [void|NilClass]
       def render
-        Vedeu.renderers.render(output) if Vedeu.ready?
+        Vedeu.renderers.render(self) if Vedeu.ready?
       end
 
       # @return [Array<Array<void>>]

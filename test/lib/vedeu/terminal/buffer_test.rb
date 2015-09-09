@@ -58,7 +58,14 @@ module Vedeu
         end
 
         context 'when Vedeu is ready' do
-          # it { skip }
+          before do
+            Vedeu.stubs(:ready?).returns(true)
+          end
+
+          it {
+            Vedeu.renderers.expects(:render).with(described)
+            subject
+          }
         end
       end
 
