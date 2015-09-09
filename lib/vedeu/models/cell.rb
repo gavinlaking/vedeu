@@ -64,6 +64,11 @@ module Vedeu
         ''
       end
 
+      # @return [String]
+      def to_s
+        value.to_s
+      end
+
       private
 
       # Returns the default options/attributes for this class.
