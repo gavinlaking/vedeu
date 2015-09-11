@@ -96,6 +96,8 @@ require 'vedeu/models/group'
 require 'vedeu/models/groups'
 require 'vedeu/models/menu'
 require 'vedeu/models/menus'
+require 'vedeu/models/row'
+require 'vedeu/models/page'
 
 require 'vedeu/templating/all'
 require 'vedeu/templating/encoder'
