@@ -17,7 +17,6 @@ require 'vedeu/configuration/configuration'
 
 require 'vedeu/terminal/mode'
 require 'vedeu/terminal/terminal'
-require 'vedeu/terminal/content'
 require 'vedeu/terminal/buffer'
 
 require 'vedeu/runtime/main_loop'
