@@ -24,7 +24,7 @@ module Vedeu
         after { Vedeu.interfaces.reset }
 
         subject {
-          described.interface('flourine') do
+          described.interface('fluorine') do
             # ...
           end
         }
@@ -32,7 +32,7 @@ module Vedeu
         it { subject.must_be_instance_of(Vedeu::Interface) }
 
         context 'when the block is not given' do
-          subject { described.interface('flourine') }
+          subject { described.interface('fluorine') }
 
           it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
         end
