@@ -1,4 +1,6 @@
 require 'vedeu/version'
+require 'vedeu/options'
+
 require 'vedeu/runtime/launcher'
 require 'vedeu/runtime/bootstrap'
 require 'vedeu/exceptions'
