@@ -29,7 +29,11 @@ module Vedeu
     end
 
     describe '.coerce' do
+      let(:_value) {}
+
       subject { described.coerce(_value) }
+
+      it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
 
       context 'when the value is a Vedeu::Page' do
         let(:_value) { Vedeu::Page.new }
@@ -38,20 +42,87 @@ module Vedeu
       end
 
       context 'when the value is a Vedeu::Row' do
-        let(:_value) { Vedeu::Row.coerce([:hydrogen, :helium, :lithium]) }
+        let(:_value)   { Vedeu::Row.new }
+        let(:expected) { Vedeu::Page.new([_value]) }
 
-        it { subject.must_equal(Vedeu::Page.new(Vedeu::Row.new([:hydrogen, :helium, :lithium]))) }
+        it { subject.must_equal(expected) }
       end
 
-      # context 'when the value is an Array' do
-      #   let(:_value) { [] }
-      # end
+      context 'when the value is an Array' do
+        context 'and the value is empty' do
+          let(:_value)   { [] }
+          let(:expected) { Vedeu::Page.coerce(Vedeu::Row.coerce(_value)) }
 
-      # context 'when the value is nil' do
-      #   let(:_value) {}
+          it { subject.must_be_instance_of(Vedeu::Page) }
+          it { subject.must_equal(expected) }
+        end
 
-      #   it { subject.must_equal() }
-      # end
+        context 'and the value is not empty, the content is' do
+          context 'is an empty Array' do
+            let(:_value)   { [[]] }
+            let(:expected) { Vedeu::Page.coerce(Vedeu::Row.coerce([])) }
+
+            it { subject.must_be_instance_of(Vedeu::Page) }
+            it { subject.must_equal(expected) }
+          end
+
+          context 'an array of Vedeu::Row objects' do
+            let(:_value) {
+              [
+                Vedeu::Row.new([:hydrogen, :helium]),
+                Vedeu::Row.new([:lithium, :beryllium]),
+              ]
+            }
+            let(:expected) { Vedeu::Page.new(_value) }
+
+            it { subject.must_equal(expected) }
+          end
+
+          context 'a mix of Vedeu::Row objects and other objects' do
+            let(:_value) {
+              [
+                Vedeu::Row.new([:hydrogen, :helium]),
+                [:lithium],
+                Vedeu::Row.new([:beryllium, :boron]),
+              ]
+            }
+            let(:expected) {
+              Vedeu::Page.new([
+                Vedeu::Row.new([:hydrogen, :helium]),
+                Vedeu::Row.new([:lithium]),
+                Vedeu::Row.new([:beryllium, :boron]),
+              ])
+            }
+
+            it { subject.must_equal(expected) }
+          end
+
+          context 'a mix of Vedeu::Row objects, other objects and nils' do
+            let(:_value) {
+              [
+                Vedeu::Row.new([:hydrogen, :helium]),
+                nil,
+                [:lithium],
+                Vedeu::Row.new([:beryllium, :boron]),
+                [nil, :carbon],
+              ]
+            }
+            let(:expected) {
+              Vedeu::Page.new([
+                Vedeu::Row.new([:hydrogen, :helium]),
+                Vedeu::Row.new([]),
+                Vedeu::Row.new([:lithium]),
+                Vedeu::Row.new([:beryllium, :boron]),
+                Vedeu::Row.new([:carbon]),
+              ])
+            }
+
+            it { subject.must_equal(expected) }
+          end
+
+        end
+
+      end
     end
 
     describe '#each' do

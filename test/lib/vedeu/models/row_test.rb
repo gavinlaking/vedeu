@@ -37,6 +37,12 @@ module Vedeu
         it { subject.must_equal(Vedeu::Row.new(_value)) }
       end
 
+      context 'when the value is an Array containing nil objects' do
+        let(:_value) { [:hydrogen, nil, :lithium] }
+
+        it { subject.must_equal(Vedeu::Row.new([:hydrogen, :lithium])) }
+      end
+
       context 'when the value is nil' do
         let(:_value) {}
 
@@ -74,8 +80,6 @@ module Vedeu
       let(:index) {}
 
       subject { instance.cell(index) }
-
-      # it { instance.must_respond_to(:[]) }
 
       context 'when the index is nil' do
         it { subject.must_equal(nil) }

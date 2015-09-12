@@ -17,7 +17,7 @@ module Vedeu
         value
 
       elsif value.is_a?(Array)
-        new(value)
+        new(value.compact)
 
       elsif value.nil?
         new
@@ -60,7 +60,6 @@ module Vedeu
 
       cells[index]
     end
-    # alias_method :[], :cell
 
   end # Row
 

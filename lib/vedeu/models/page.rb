@@ -13,20 +13,30 @@ module Vedeu
     # @param value [Vedeu::Page|Vedeu::Row|Array<void>|void]
     # @return [Vedeu::Page]
     def self.coerce(value)
-      if value.is_a?(self)
+      if value.is_a?(Vedeu::Page)
         value
 
       elsif value.is_a?(Vedeu::Row)
-        new(value)
+        Vedeu::Page.new([value])
+
+      elsif value.is_a?(Array) && value.empty?
+        Vedeu::Page.new([Vedeu::Row.coerce(value)])
 
       elsif value.is_a?(Array)
-        new(Vedeu::Row.coerce(value))
+        values = value.map do |v|
+          if v.is_a?(Vedeu::Row)
+            v
 
-      elsif value.is_a?(NilClass)
-        new(Vedeu::Row.coerce(value))
+          else
+            Vedeu::Row.coerce(v)
+
+          end
+        end
+        Vedeu::Page.new(values)
 
       else
-        new(Vedeu::Row.coerce([value]))
+        fail Vedeu::Error::InvalidSyntax,
+             'Cannot coerce as value is not an Array.'
 
       end
     end
@@ -62,7 +72,6 @@ module Vedeu
       return nil if index.nil?
 
       rows[index]
-      # row.cell(index)
     end
 
     # @param row_index [Fixnum]
