@@ -46,6 +46,11 @@ module Vedeu
         cells.each(&block)
       end
 
+      # @return [Boolean]
+      def empty?
+        cells.empty?
+      end
+
       # An object is equal when its values are the same.
       #
       # @param other [Vedeu::Models::Row]

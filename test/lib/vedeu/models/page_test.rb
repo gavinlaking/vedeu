@@ -136,6 +136,20 @@ module Vedeu
         it { subject.must_be_instance_of(Enumerator) }
       end
 
+      describe '#empty?' do
+        subject { instance.empty? }
+
+        context 'when the page is empty' do
+          let(:rows) { [] }
+
+          it { subject.must_equal(true) }
+        end
+
+        context 'when the pages is not empty' do
+          it { subject.must_equal(false) }
+        end
+      end
+
       describe '#eql?' do
         let(:other) { instance }
 

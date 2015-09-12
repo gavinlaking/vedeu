@@ -64,6 +64,20 @@ module Vedeu
         it { subject.must_be_instance_of(Enumerator) }
       end
 
+      describe '#empty?' do
+        subject { instance.empty? }
+
+        context 'when the row is empty' do
+          let(:cells) { [] }
+
+          it { subject.must_equal(true) }
+        end
+
+        context 'when the row is not empty' do
+          it { subject.must_equal(false) }
+        end
+      end
+
       describe '#eql?' do
         let(:other) { instance }
 

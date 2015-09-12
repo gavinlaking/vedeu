@@ -60,6 +60,11 @@ module Vedeu
         rows.each(&block)
       end
 
+      # @return [Boolean]
+      def empty?
+        rows.empty?
+      end
+
       # An object is equal when its values are the same.
       #
       # @param other [Vedeu::Models::Page]
