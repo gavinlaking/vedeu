@@ -3,7 +3,7 @@ require 'vedeu/options'
 
 require 'vedeu/runtime/launcher'
 require 'vedeu/runtime/bootstrap'
-require 'vedeu/exceptions'
+require 'vedeu/error'
 require 'vedeu/log/lockless_log_device'
 require 'vedeu/log/mono_logger'
 require 'vedeu/log/log'

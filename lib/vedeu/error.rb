@@ -1,6 +1,6 @@
 module Vedeu
 
-  # Custom exceptions which Vedeu will raise in certain circumstances.
+  # Custom exceptions/errors which Vedeu will raise in certain circumstances.
   #
   module Error
 
