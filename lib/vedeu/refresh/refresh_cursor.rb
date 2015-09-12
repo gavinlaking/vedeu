@@ -76,13 +76,13 @@ module Vedeu
     # Fetch the border by name.
     #
     # @note
-    #   Vedeu::Border is used in this way because when there is not a border
-    #   defined, it will fallback to a Vedeu::Null::Border which uses
+    #   Vedeu::Borders::Border is used in this way because when there is not a
+    #   border defined, it will fallback to a Vedeu::Borders::Null which uses
     #   Vedeu::Geometry to determine it's dimensions based on the name also.
     #   When a Vedeu::Geometry cannot be found, this falls back to a
     #   Vedeu::Null::Geometry which uses the current terminal's dimensions.
     #
-    # @return (see Vedeu::Borders#by_name)
+    # @return (see Vedeu::Borders::Repository#by_name)
     def border
       @border ||= Vedeu.borders.by_name(name)
     end

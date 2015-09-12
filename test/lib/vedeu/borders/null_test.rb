@@ -2,11 +2,11 @@ require 'test_helper'
 
 module Vedeu
 
-  module Null
+  module Borders
 
-    describe Border do
+    describe Null do
 
-      let(:described) { Vedeu::Null::Border }
+      let(:described) { Vedeu::Borders::Null }
       let(:instance)  { described.new(attributes) }
       let(:attributes){
         {
@@ -93,8 +93,8 @@ module Vedeu
         it { subject.must_equal(7) }
       end
 
-    end # Border
+    end # Null
 
-  end # Null
+  end # Borders
 
 end # Vedeu

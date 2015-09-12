@@ -22,7 +22,7 @@ module Vedeu
       Vedeu::Cursor.new
     }
     let(:border) {
-      Vedeu::Border.new(name: '_name', enabled: enabled)
+      Vedeu::Borders::Border.new(name: '_name', enabled: enabled)
     }
     let(:enabled)  { true }
     let(:geometry) {

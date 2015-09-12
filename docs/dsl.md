@@ -75,32 +75,32 @@ end
 
 ## Borders
 
-{include:Vedeu::DSL::Border}
+{include:Vedeu::Borders::DSL}
 
 ### Setting a title for the border
 
-{include:Vedeu::DSL::Border#title}
+{include:Vedeu::Borders::DSL#title}
 
 ### Customising the appearance of the border
 
-{include:Vedeu::DSL::Border#bottom_left}
-{include:Vedeu::DSL::Border#bottom_right}
-{include:Vedeu::DSL::Border#horizontal}
-{include:Vedeu::DSL::Border#top_left}
-{include:Vedeu::DSL::Border#top_right}
-{include:Vedeu::DSL::Border#vertical}
+{include:Vedeu::Borders::DSL#bottom_left}
+{include:Vedeu::Borders::DSL#bottom_right}
+{include:Vedeu::Borders::DSL#horizontal}
+{include:Vedeu::Borders::DSL#top_left}
+{include:Vedeu::Borders::DSL#top_right}
+{include:Vedeu::Borders::DSL#vertical}
 
 ### Enabling/disabling the border
 
-{include:Vedeu::DSL::Border#enable!}
-{include:Vedeu::DSL::Border#disable!}
+{include:Vedeu::Borders::DSL#enable!}
+{include:Vedeu::Borders::DSL#disable!}
 
 ### Enabling/disabling an aspect of the border
 
-{include:Vedeu::DSL::Border#bottom}
-{include:Vedeu::DSL::Border#left}
-{include:Vedeu::DSL::Border#right}
-{include:Vedeu::DSL::Border#top}
+{include:Vedeu::Borders::DSL#bottom}
+{include:Vedeu::Borders::DSL#left}
+{include:Vedeu::Borders::DSL#right}
+{include:Vedeu::Borders::DSL#top}
 
 ## Geometry
 

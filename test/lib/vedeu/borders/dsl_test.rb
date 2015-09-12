@@ -2,13 +2,13 @@ require 'test_helper'
 
 module Vedeu
 
-  module DSL
+  module Borders
 
-    describe Border do
+    describe DSL do
 
-      let(:described)  { Vedeu::DSL::Border }
+      let(:described)  { Vedeu::Borders::DSL }
       let(:instance)   { described.new(model, client) }
-      let(:model)      { Vedeu::Border.new(attributes) }
+      let(:model)      { Vedeu::Borders::Border.new(attributes) }
       let(:client)     {}
       let(:attributes) { { name: 'borders' } }
       let(:boolean)    { true }
@@ -243,8 +243,8 @@ module Vedeu
         it { instance.must_respond_to(:vertical=) }
       end
 
-    end # Border
+    end # DSL
 
-  end # DSL
+  end # Borders
 
 end # Vedeu

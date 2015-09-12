@@ -13,7 +13,7 @@ module Vedeu
     let(:width)     { 6 }
     let(:x)         { 7 }
     let(:y)         { 5 }
-    let(:border)    { Vedeu::Border.new(name: _name, enabled: true) }
+    let(:border)    { Vedeu::Borders::Border.new(name: _name, enabled: true) }
     let(:geometry)  {
       Vedeu::Geometry.new(name:   _name,
                           height: height,

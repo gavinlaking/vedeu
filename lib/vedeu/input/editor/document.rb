@@ -212,7 +212,7 @@ module Vedeu
       # Retrieve the dimensions of the document from the interface of the same
       # name.
       #
-      # @return [Vedeu::Border]
+      # @return [Vedeu::Borders::Border]
       def border
         @border ||= Vedeu.borders.by_name(name)
       end

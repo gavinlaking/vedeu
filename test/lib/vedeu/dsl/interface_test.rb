@@ -60,7 +60,7 @@ module Vedeu
         context 'when the block is given' do
           subject { instance.border { } }
 
-          it { subject.must_be_instance_of(Vedeu::Border) }
+          it { subject.must_be_instance_of(Vedeu::Borders::Border) }
 
           context 'when the name is not given' do
             it 'uses the interface name for storing the border' do
@@ -83,7 +83,7 @@ module Vedeu
 
         subject { instance.border! }
 
-        it { subject.must_be_instance_of(Vedeu::Border) }
+        it { subject.must_be_instance_of(Vedeu::Borders::Border) }
       end
 
       describe '#cursor' do

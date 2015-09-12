@@ -24,7 +24,9 @@ module Vedeu
     let(:visible)    { true }
     let(:x)          { 19 }
     let(:y)          { 8 }
-    let(:border)    { Vedeu::Border.new(name: _name, enabled: enabled) }
+    let(:border)     {
+      Vedeu::Borders::Border.new(name: _name, enabled: enabled)
+    }
     let(:geometry)  {
       Vedeu::Geometry.new(
         name: _name,

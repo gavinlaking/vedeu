@@ -1,21 +1,21 @@
 module Vedeu
 
-  module Null
+  module Borders
 
-    # Provides a non-existent Vedeu::Border that acts like the real thing, but
-    # does nothing.
+    # Provides a non-existent Vedeu::Borders::Border that acts like the real
+    # thing, but does nothing.
     #
-    class Border
+    class Null
 
       # @!attribute [r] name
       # @return [String|NilClass]
       attr_reader :name
 
-      # Returns a new instance of Vedeu::Null::Border.
+      # Returns a new instance of Vedeu::Borders::Null.
       #
       # @param attributes [Hash<Symbol => void>]
       # @option attributes name [String|NilClass]
-      # @return [Vedeu::Null::Border]
+      # @return [Vedeu::Borders::Null]
       def initialize(attributes = {})
         @attributes = attributes
         @name       = @attributes[:name]
@@ -82,8 +82,8 @@ module Vedeu
         @geometry ||= Vedeu.geometries.by_name(name)
       end
 
-    end # Border
+    end # Null
 
-  end # Null
+  end # Borders
 
 end # Vedeu

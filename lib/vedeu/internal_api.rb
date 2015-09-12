@@ -25,8 +25,8 @@ module Vedeu
     #   Vedeu.borders
     #
     # @!method borders
-    # @return [Vedeu::Borders]
-    def_delegators Vedeu::Borders, :borders
+    # @return [Vedeu::Borders::Repository]
+    def_delegators Vedeu::Borders::Repository, :borders
 
     # Manipulate the repository of buffers.
     #

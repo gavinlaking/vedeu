@@ -60,8 +60,8 @@ module Vedeu
     #   Vedeu.border
     #
     # @!method border
-    #   @see Vedeu::DSL::Border.border
-    def_delegators Vedeu::DSL::Border, :border
+    #   @see Vedeu::Borders::DSL.border
+    def_delegators Vedeu::Borders::DSL, :border
 
     # @example
     #   Vedeu.geometry

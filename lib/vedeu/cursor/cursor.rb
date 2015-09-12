@@ -140,7 +140,7 @@ module Vedeu
 
     private
 
-    # @see Vedeu::Borders#by_name
+    # @see Vedeu::Borders::Repository#by_name
     def border
       @border ||= Vedeu.borders.by_name(name)
     end

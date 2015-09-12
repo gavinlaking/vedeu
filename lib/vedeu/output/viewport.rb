@@ -140,7 +140,7 @@ module Vedeu
 
     # Return the border associated with the interface/view we are drawing.
     #
-    # @return (see Vedeu::Borders#by_name)
+    # @return (see Vedeu::Borders::Repository#by_name)
     def border
       @border ||= Vedeu.borders.by_name(name)
     end

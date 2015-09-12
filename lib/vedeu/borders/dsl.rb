@@ -1,6 +1,6 @@
 module Vedeu
 
-  module DSL
+  module Borders
 
     # Borders are defined by name for each of the client application's
     # interfaces or views. They can be enabled or disabled (which controls
@@ -26,7 +26,7 @@ module Vedeu
     #     # ...
     #   end
     #
-    class Border
+    class DSL
 
       include Vedeu::DSL
       include Vedeu::DSL::Presentation
@@ -43,18 +43,18 @@ module Vedeu
       # @param block [Proc]
       # @raise [Vedeu::Error::InvalidSyntax]
       #   The required block was not given.
-      # @return [Vedeu::Border]
+      # @return [Vedeu::Borders::Border]
       def self.border(name, &block)
         fail Vedeu::Error::InvalidSyntax, 'block not given' unless block_given?
 
-        Vedeu::Border.build(enabled: true, name: name, &block).store
+        Vedeu::Borders::Border.build(enabled: true, name: name, &block).store
       end
 
-      # Returns an instance of DSL::Border.
+      # Returns an instance of Borders::DSL.
       #
-      # @param model [Border]
+      # @param model [Vedeu::Borders::Border]
       # @param client [Object]
-      # @return [Vedeu::DSL::Border]
+      # @return [Vedeu::Borders::DSL]
       def initialize(model, client = nil)
         @model  = model
         @client = client
@@ -169,14 +169,14 @@ module Vedeu
 
       # Disable the bottom border.
       #
-      # @see Vedeu::DSL::Border#bottom
+      # @see Vedeu::Borders::DSL#bottom
       def hide_bottom!
         bottom(false)
       end
 
       # Enable the bottom border.
       #
-      # @see Vedeu::DSL::Border#bottom
+      # @see Vedeu::Borders::DSL#bottom
       def show_bottom!
         bottom(true)
       end
@@ -204,14 +204,14 @@ module Vedeu
 
       # Disable the left border.
       #
-      # @see Vedeu::DSL::Border#left
+      # @see Vedeu::Borders::DSL#left
       def hide_left!
         left(false)
       end
 
       # Enable the left border.
       #
-      # @see Vedeu::DSL::Border#left
+      # @see Vedeu::Borders::DSL#left
       def show_left!
         left(true)
       end
@@ -239,14 +239,14 @@ module Vedeu
 
       # Disable the right border.
       #
-      # @see Vedeu::DSL::Border#right
+      # @see Vedeu::Borders::DSL#right
       def hide_right!
         right(false)
       end
 
       # Enable the right border.
       #
-      # @see Vedeu::DSL::Border#right
+      # @see Vedeu::Borders::DSL#right
       def show_right!
         right(true)
       end
@@ -310,14 +310,14 @@ module Vedeu
 
       # Disable the top border.
       #
-      # @see Vedeu::DSL::Border#top
+      # @see Vedeu::Borders::DSL#top
       def hide_top!
         top(false)
       end
 
       # Enable the top border.
       #
-      # @see Vedeu::DSL::Border#top
+      # @see Vedeu::Borders::DSL#top
       def show_top!
         top(true)
       end
