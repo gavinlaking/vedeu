@@ -119,8 +119,13 @@ module Vedeu
       # TODO: Move cursor also.
       # @return [Vedeu::Geometry::Geometry]
       def move_down
-        dy  = (yn + 1 > Vedeu.height) ? y  : y + 1
-        dyn = (yn + 1 > Vedeu.height) ? yn : yn + 1
+        if yn + 1 > Vedeu.height
+          dy  = y
+          dyn = yn
+        else
+          dy  = y + 1
+          dyn = yn + 1
+        end
 
         @attributes = attributes.merge(
           centred:   false,
@@ -173,8 +178,13 @@ module Vedeu
       # TODO: Move cursor also.
       # @return [Vedeu::Geometry::Geometry]
       def move_right
-        dx  = (xn + 1 > Vedeu.width) ? x  : x + 1
-        dxn = (xn + 1 > Vedeu.width) ? xn : xn + 1
+        if xn + 1 > Vedeu.width
+          dx  = x
+          dxn = xn
+        else
+          dx  = x + 1
+          dxn = xn + 1
+        end
 
         @attributes = attributes.merge(
           centred:   false,

@@ -70,7 +70,7 @@ module Vedeu
       #
       # @return [Vedeu::Cursors::Cursor]
       def move_down
-        @oy = @oy + 1
+        @oy += 1
 
         @attributes = attributes.merge!(x:  x,
                                         y:  coordinate.y_position,
@@ -84,7 +84,7 @@ module Vedeu
       #
       # @return [Vedeu::Cursors::Cursor]
       def move_left
-        @ox = @ox - 1
+        @ox -= 1
 
         @attributes = attributes.merge!(x:  coordinate.x_position,
                                         y:  y,
@@ -107,7 +107,7 @@ module Vedeu
       #
       # @return [Vedeu::Cursors::Cursor]
       def move_right
-        @ox = @ox + 1
+        @ox += 1
 
         @attributes = attributes.merge!(x:  coordinate.x_position,
                                         y:  y,
@@ -121,7 +121,7 @@ module Vedeu
       #
       # @return [Vedeu::Cursors::Cursor]
       def move_up
-        @oy = @oy - 1
+        @oy -= 1
 
         @attributes = attributes.merge!(x:  x,
                                         y:  coordinate.y_position,
