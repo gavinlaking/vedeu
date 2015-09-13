@@ -25,7 +25,7 @@ module Vedeu
       let(:centred)   { false }
       let(:height)    {}
       let(:maximised) { false }
-      let(:_name)     {}
+      let(:_name)     { 'vedeu_geometry_geometry' }
       let(:width)     {}
       let(:x)         {}
       let(:xn)        {}
@@ -85,6 +85,127 @@ module Vedeu
 
         it { subject.must_be_instance_of(described) }
         it { subject.maximised.must_equal(true) }
+      end
+
+      describe '#move_down' do
+        let(:x)  { 15 }
+        let(:xn) { 25 }
+        let(:y)  { 4 }
+        let(:yn) { 8 }
+
+        before { Terminal.stubs(:size).returns([12, 40]) }
+
+        subject { instance.move_down }
+
+        it { subject.must_be_instance_of(described) }
+
+        it { subject.y.must_equal(5) }
+        it { subject.yn.must_equal(9) }
+
+        context 'when the move will make the geometry out of bounds' do
+          let(:x)  { 15 }
+          let(:xn) { 25 }
+          let(:y)  { 8 }
+          let(:yn) { 12 }
+
+          it { subject.y.must_equal(8) }
+          it { subject.yn.must_equal(12) }
+        end
+      end
+
+      describe '#move_left' do
+        let(:x)  { 15 }
+        let(:xn) { 25 }
+        let(:y)  { 4 }
+        let(:yn) { 8 }
+
+        before { Terminal.stubs(:size).returns([12, 40]) }
+
+        subject { instance.move_left }
+
+        it { subject.must_be_instance_of(described) }
+
+        it { subject.x.must_equal(14) }
+        it { subject.xn.must_equal(24) }
+
+        context 'when the move will make the geometry out of bounds' do
+          let(:x)  { 1 }
+          let(:xn) { 11 }
+          let(:y)  { 4 }
+          let(:yn) { 8 }
+
+          it { subject.x.must_equal(1) }
+          it { subject.xn.must_equal(11) }
+        end
+      end
+
+      describe '#move_origin' do
+        let(:x)  { 15 }
+        let(:xn) { 25 }
+        let(:y)  { 4 }
+        let(:yn) { 8 }
+
+        before { Terminal.stubs(:size).returns([12, 40]) }
+
+        subject { instance.move_origin }
+
+        it { subject.must_be_instance_of(described) }
+        it { subject.x.must_equal(1) }
+        it { subject.xn.must_equal(11) }
+        it { subject.y.must_equal(1) }
+        it { subject.yn.must_equal(5) }
+      end
+
+      describe '#move_right' do
+        let(:x)  { 15 }
+        let(:xn) { 25 }
+        let(:y)  { 4 }
+        let(:yn) { 8 }
+
+        before { Terminal.stubs(:size).returns([12, 40]) }
+
+        subject { instance.move_right }
+
+        it { subject.must_be_instance_of(described) }
+
+        it { subject.x.must_equal(16) }
+        it { subject.xn.must_equal(26) }
+
+        context 'when the move will make the geometry out of bounds' do
+          let(:x)  { 30 }
+          let(:xn) { 40 }
+          let(:y)  { 4 }
+          let(:yn) { 8 }
+
+          it { subject.x.must_equal(30) }
+          it { subject.xn.must_equal(40) }
+        end
+      end
+
+      describe '#move_up' do
+        let(:x)  { 15 }
+        let(:xn) { 25 }
+        let(:y)  { 4 }
+        let(:yn) { 8 }
+
+        before { Terminal.stubs(:size).returns([12, 40]) }
+
+        subject { instance.move_up }
+
+        it { subject.must_be_instance_of(described) }
+
+        it { subject.y.must_equal(3) }
+        it { subject.yn.must_equal(7) }
+
+        context 'when the move will make the geometry out of bounds' do
+          let(:x)  { 15 }
+          let(:xn) { 25 }
+          let(:y)  { 1 }
+          let(:yn) { 5 }
+
+          it { subject.y.must_equal(1) }
+          it { subject.yn.must_equal(5) }
+        end
       end
 
       describe '#unmaximise' do

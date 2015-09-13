@@ -114,6 +114,98 @@ module Vedeu
         work
       end
 
+      # Moves the geometry down by one row.
+      #
+      # TODO: Move cursor also.
+      # @return [Vedeu::Geometry::Geometry]
+      def move_down
+        dy  = (yn + 1 > Vedeu.height) ? y  : y + 1
+        dyn = (yn + 1 > Vedeu.height) ? yn : yn + 1
+
+        @attributes = attributes.merge(
+          centred:   false,
+          maximised: false,
+          x:         x,
+          xn:        xn,
+          y:         dy,
+          yn:        dyn,
+        )
+        Vedeu::Geometry::Geometry.new(@attributes).store
+      end
+
+      # Moves the geometry left by one column.
+      #
+      # TODO: Move cursor also.
+      # @return [Vedeu::Geometry::Geometry]
+      def move_left
+        dx  = (x - 1 < 1) ? x  : x - 1
+        dxn = (x - 1 < 1) ? xn : xn - 1
+
+        @attributes = attributes.merge(
+          centred:   false,
+          maximised: false,
+          x:         dx,
+          xn:        dxn,
+          y:         y,
+          yn:        yn,
+        )
+        Vedeu::Geometry::Geometry.new(@attributes).store
+      end
+
+      # Moves the geometry to the top left of the terminal.
+      #
+      # TODO: Move cursor also.
+      # @return [Vedeu::Geometry::Geometry]
+      def move_origin
+        @attributes = attributes.merge(
+          centred:   false,
+          maximised: false,
+          x:         1,
+          xn:        xn - x + 1,
+          y:         1,
+          yn:        yn - y + 1,
+        )
+        Vedeu::Geometry::Geometry.new(@attributes).store
+      end
+
+      # Moves the geometry right by one column.
+      #
+      # TODO: Move cursor also.
+      # @return [Vedeu::Geometry::Geometry]
+      def move_right
+        dx  = (xn + 1 > Vedeu.width) ? x  : x + 1
+        dxn = (xn + 1 > Vedeu.width) ? xn : xn + 1
+
+        @attributes = attributes.merge(
+          centred:   false,
+          maximised: false,
+          x:         dx,
+          xn:        dxn,
+          y:         y,
+          yn:        yn,
+        )
+        Vedeu::Geometry::Geometry.new(@attributes).store
+      end
+
+      # Moves the geometry up by one column.
+      #
+      # TODO: Move cursor also.
+      # @return [Vedeu::Geometry::Geometry]
+      def move_up
+        dy  = (y - 1 < 1) ? y  : y - 1
+        dyn = (y - 1 < 1) ? yn : yn - 1
+
+        @attributes = attributes.merge(
+          centred:   false,
+          maximised: false,
+          x:         x,
+          xn:        xn,
+          y:         dy,
+          yn:        dyn,
+        )
+        Vedeu::Geometry::Geometry.new(@attributes).store
+      end
+
       # Will unmaximise the named interface geometry. Previously, when a
       # geometry was maximised, then triggering the unmaximise event will return
       # it to its usual defined size (terminal size permitting: when the

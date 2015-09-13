@@ -36,7 +36,7 @@ module Vedeu
 
         Vedeu.trigger(:_refresh_, name) if refresh_view?
 
-        Vedeu::Terminal.output(new_cursor.to_s)
+        Vedeu::Terminal.output(cursor.to_s)
       end
 
       protected
@@ -53,21 +53,7 @@ module Vedeu
       #
       # @return [Boolean]
       def refresh_view?
-        new_cursor.ox >= width || new_cursor.oy >= height
-      end
-
-      # @return [Vedeu::Cursors::Cursor]
-      def new_cursor
-        @new_cursor ||= Vedeu::Cursors::Cursor
-                        .new(cursor.attributes.merge!(position))
-      end
-
-      # @return [Hash<Symbol => Fixnum>]
-      def position
-        {
-          x: cursor.x,
-          y: cursor.y,
-        }
+        cursor.ox >= width || cursor.oy >= height
       end
 
       # @return [Vedeu::Cursors::Cursor]

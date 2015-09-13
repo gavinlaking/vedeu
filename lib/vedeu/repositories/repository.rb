@@ -113,6 +113,11 @@ module Vedeu
       end
     end
 
+    # @return [String]
+    def inspect
+      "<#{self.class.name}>"
+    end
+
     # Returns a boolean indicating whether the named model is registered.
     #
     # @param name [String]

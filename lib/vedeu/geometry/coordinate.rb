@@ -28,6 +28,20 @@ module Vedeu
         @oy   = oy
       end
 
+      protected
+
+      # @!attribute [r] name
+      # @return [String]
+      attr_reader :name
+
+      # @!attribute [rw] ox
+      # @return [Fixnum]
+      attr_accessor :ox
+
+      # @!attribute [rw] oy
+      # @return [Fixnum]
+      attr_accessor :oy
+
       private
 
       # Provide an instance of Vedeu::Geometry::GenericCoordinate to determine
@@ -35,8 +49,8 @@ module Vedeu
       #
       # @return [Vedeu::Geometry::GenericCoordinate]
       def x
-        @x ||= Vedeu::Geometry::GenericCoordinate.new(name:   @name,
-                                                      offset: @ox,
+        @x ||= Vedeu::Geometry::GenericCoordinate.new(name:   name,
+                                                      offset: ox,
                                                       type:   :x)
       end
 
@@ -45,8 +59,8 @@ module Vedeu
       #
       # @return [Vedeu::Geometry::GenericCoordinate]
       def y
-        @y ||= Vedeu::Geometry::GenericCoordinate.new(name:   @name,
-                                                      offset: @oy,
+        @y ||= Vedeu::Geometry::GenericCoordinate.new(name:   name,
+                                                      offset: oy,
                                                       type:   :y)
       end
 

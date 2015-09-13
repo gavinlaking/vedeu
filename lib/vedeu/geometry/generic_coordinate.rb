@@ -25,7 +25,7 @@ module Vedeu
       #
       # @example
       #   # d = 2
-      #   # d_dn = 4
+      #   # d_dn = 4 # represents width or height
       #   dn # => 6
       #
       # @return [Fixnum]

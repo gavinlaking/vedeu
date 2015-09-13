@@ -25,13 +25,13 @@ module Vedeu
       # @return [String]
       attr_reader :name
 
-      # @!attribute [rw] ox
+      # @!attribute [w] ox
       # @return [Fixnum]
-      attr_accessor :ox
+      attr_writer :ox
 
-      # @!attribute [rw] oy
+      # @!attribute [w] oy
       # @return [Fixnum]
-      attr_accessor :oy
+      attr_writer :oy
 
       # @!attribute [r] state
       # @return [Boolean|Symbol]
@@ -41,7 +41,7 @@ module Vedeu
       # @return [Fixnum]
       attr_writer :x
 
-      # @!attribute [sw] y
+      # @!attribute [w] y
       # @return [Fixnum]
       attr_writer :y
 
@@ -66,11 +66,90 @@ module Vedeu
         end
       end
 
+      # Moves the cursor down by one row.
+      #
+      # @return [Vedeu::Cursors::Cursor]
+      def move_down
+        @oy = @oy + 1
+
+        @attributes = attributes.merge!(x:  x,
+                                        y:  coordinate.y_position,
+                                        ox: ox,
+                                        oy: oy)
+
+        Vedeu::Cursors::Cursor.new(@attributes).store
+      end
+
+      # Moves the cursor left by one column.
+      #
+      # @return [Vedeu::Cursors::Cursor]
+      def move_left
+        @ox = @ox - 1
+
+        @attributes = attributes.merge!(x:  coordinate.x_position,
+                                        y:  y,
+                                        ox: ox,
+                                        oy: oy)
+
+        Vedeu::Cursors::Cursor.new(@attributes).store
+      end
+
+      # Moves the cursor to the top left of the named interface.
+      #
+      # @return [Vedeu::Cursors::Cursor]
+      def move_origin
+        @attributes = attributes.merge!(x: bx, y: by, ox: 0, oy: 0)
+
+        Vedeu::Cursors::Cursor.new(@attributes).store
+      end
+
+      # Moves the cursor right by one column.
+      #
+      # @return [Vedeu::Cursors::Cursor]
+      def move_right
+        @ox = @ox + 1
+
+        @attributes = attributes.merge!(x:  coordinate.x_position,
+                                        y:  y,
+                                        ox: ox,
+                                        oy: oy)
+
+        Vedeu::Cursors::Cursor.new(@attributes).store
+      end
+
+      # Moves the cursor up by one row.
+      #
+      # @return [Vedeu::Cursors::Cursor]
+      def move_up
+        @oy = @oy - 1
+
+        @attributes = attributes.merge!(x:  x,
+                                        y:  coordinate.y_position,
+                                        ox: ox,
+                                        oy: oy)
+
+        Vedeu::Cursors::Cursor.new(@attributes).store
+      end
+
       # Renders the cursor.
       #
       # @return [Array<Vedeu::Escape>]
       def render
         Vedeu::Output.render(visibility)
+      end
+
+      # Arbitrarily move the cursor to a given position.
+      #
+      # @param new_y [Fixnum] The row/line position.
+      # @param new_x [Fixnum] The column/character position.
+      # @return [Vedeu::Cursors::Cursor]
+      def reposition(new_y, new_x)
+        @attributes = attributes.merge!(x:  coordinate.x_position,
+                                        y:  coordinate.y_position,
+                                        ox: new_x,
+                                        oy: new_y)
+
+        Vedeu::Cursors::Cursor.new(@attributes).store
       end
 
       # Returns an escape sequence to position the cursor and set its
@@ -100,6 +179,18 @@ module Vedeu
         super
 
         render
+      end
+
+      # @return [Fixnum]
+      def ox
+        @ox = 0 if @ox < 0
+        @ox
+      end
+
+      # @return [Fixnum]
+      def oy
+        @oy = 0 if @oy < 0
+        @oy
       end
 
       # Return the position of this cursor.
@@ -147,6 +238,11 @@ module Vedeu
       # @see Vedeu::Borders::Repository#by_name
       def border
         @border ||= Vedeu.borders.by_name(name)
+      end
+
+      # @return [Vedeu::Geometry::Coordinate]
+      def coordinate
+        @coordinate ||= Vedeu::Geometry::Coordinate.new(name, oy, ox)
       end
 
       # The default values for a new instance of this class.

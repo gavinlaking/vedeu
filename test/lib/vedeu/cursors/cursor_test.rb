@@ -50,12 +50,12 @@ module Vedeu
 
         it { subject.must_be_instance_of(described) }
         it { subject.instance_variable_get('@name').must_equal('silver') }
-        it { subject.instance_variable_get('@ox').must_equal(3) }
-        it { subject.instance_variable_get('@oy').must_equal(2) }
+        it { subject.instance_variable_get('@ox').must_equal(ox) }
+        it { subject.instance_variable_get('@oy').must_equal(oy) }
         it { subject.instance_variable_get('@repository').must_equal(repository) }
         it { subject.instance_variable_get('@visible').must_equal(true) }
-        it { subject.instance_variable_get('@x').must_equal(19) }
-        it { subject.instance_variable_get('@y').must_equal(8) }
+        it { subject.instance_variable_get('@x').must_equal(x) }
+        it { subject.instance_variable_get('@y').must_equal(y) }
       end
 
       describe 'accessors' do
@@ -84,6 +84,110 @@ module Vedeu
         it { subject.must_be_instance_of(Vedeu::Escape) }
       end
 
+      describe '#move_down' do
+        let(:x)  { 19 }
+        let(:y)  { 8 }
+        let(:ox) { 3 }
+        let(:oy) { 2 }
+
+        subject { instance.move_down }
+
+        it { subject.must_be_instance_of(described) }
+
+        it { subject.x.must_equal(19) }
+        it { subject.y.must_equal(8) }
+        it { subject.ox.must_equal(3) }
+        it { subject.oy.must_equal(3) }
+      end
+
+      describe '#move_left' do
+        let(:x)  { 19 }
+        let(:y)  { 8 }
+        let(:ox) { 3 }
+        let(:oy) { 2 }
+
+        subject { instance.move_left }
+
+        it { subject.must_be_instance_of(described) }
+
+        it { subject.x.must_equal(7) }
+        it { subject.y.must_equal(8) }
+        it { subject.ox.must_equal(2) }
+        it { subject.oy.must_equal(2) }
+      end
+
+      describe '#move_origin' do
+        let(:x)  { 19 }
+        let(:y)  { 8 }
+        let(:ox) { 3 }
+        let(:oy) { 2 }
+
+        subject { instance.move_origin }
+
+        it { subject.must_be_instance_of(described) }
+
+        it { subject.x.must_equal(6) }
+        it { subject.y.must_equal(6) }
+        it { subject.ox.must_equal(0) }
+        it { subject.oy.must_equal(0) }
+      end
+
+      describe '#move_right' do
+        let(:x)  { 19 }
+        let(:y)  { 8 }
+        let(:ox) { 3 }
+        let(:oy) { 2 }
+
+        subject { instance.move_right }
+
+        it { subject.must_be_instance_of(described) }
+
+        it { subject.x.must_equal(9) }
+        it { subject.y.must_equal(8) }
+        it { subject.ox.must_equal(4) }
+        it { subject.oy.must_equal(2) }
+      end
+
+      describe '#move_up' do
+        let(:x)  { 19 }
+        let(:y)  { 8 }
+        let(:ox) { 3 }
+        let(:oy) { 2 }
+
+        subject { instance.move_up }
+
+        it { subject.must_be_instance_of(described) }
+
+        it { subject.x.must_equal(19) }
+        it { subject.y.must_equal(6) }
+        it { subject.ox.must_equal(3) }
+        it { subject.oy.must_equal(1) }
+      end
+
+      describe '#ox' do
+        subject { instance.ox }
+
+        it { subject.must_equal(3) }
+
+        context 'when < 0' do
+          let(:ox) { -2 }
+
+          it { subject.must_equal(0) }
+        end
+      end
+
+      describe '#oy' do
+        subject { instance.oy }
+
+        it { subject.must_equal(2) }
+
+        context 'when < 0' do
+          let(:oy) { -4 }
+
+          it { subject.must_equal(0) }
+        end
+      end
+
       describe '#position' do
         subject { instance.position }
 
@@ -102,6 +206,20 @@ module Vedeu
         subject { instance.show }
 
         it { subject.must_be_instance_of(Vedeu::Escape) }
+      end
+
+      describe '#reposition' do
+        let(:new_y) { 3 }
+        let(:new_x) { 5 }
+
+        subject { instance.reposition(new_y, new_x) }
+
+        it { subject.must_be_instance_of(described) }
+
+        it { subject.x.must_equal(8) }
+        it { subject.y.must_equal(7) }
+        it { subject.ox.must_equal(5) }
+        it { subject.oy.must_equal(3) }
       end
 
       describe '#to_s' do
