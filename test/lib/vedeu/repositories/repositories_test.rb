@@ -16,7 +16,7 @@ module Vedeu
       end
 
       context 'when the klass is a repository class' do
-        let(:klass) { Vedeu::Buffers }
+        let(:klass) { Vedeu::Buffers::Repository }
 
         it { subject.wont_be_empty }
       end

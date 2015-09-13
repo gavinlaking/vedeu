@@ -2,11 +2,11 @@ require 'test_helper'
 
 module Vedeu
 
-  module Null
+  module Buffers
 
-    describe Buffer do
+    describe Null do
 
-      let(:described) { Vedeu::Null::Buffer }
+      let(:described) { Vedeu::Buffers::Null }
       let(:instance)  { described.new(attributes) }
       let(:attributes){
         {
@@ -45,8 +45,8 @@ module Vedeu
         it { subject.must_be_instance_of(TrueClass) }
       end
 
-    end # Buffer
+    end # Null
 
-  end # Null
+  end # Buffers
 
 end # Vedeu

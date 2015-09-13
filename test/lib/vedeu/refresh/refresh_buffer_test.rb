@@ -22,18 +22,18 @@ module Vedeu
         it { proc { subject }.must_raise(Vedeu::Error::MissingRequired) }
       end
 
-# describe '.by_name' do
-#       let(:_name)  { 'aluminium' }
-#       let(:buffer) { Vedeu::Null::Buffer.new(name: _name) }
-
-#       subject { described.by_name(_name) }
-
-#       it {
-#         Vedeu.buffers.expects(:by_name).with(_name).returns(buffer)
-#         buffer.expects(:render)
-#         subject
-#       }
-#     end
+      # describe '.by_name' do
+      #   let(:_name)  { 'aluminium' }
+      #   let(:buffer) { Vedeu::Buffers::Null.new(name: _name) }
+      #
+      #   subject { described.by_name(_name) }
+      #
+      #   it {
+      #     Vedeu.buffers.expects(:by_name).with(_name).returns(buffer)
+      #     buffer.expects(:render)
+      #     subject
+      #   }
+      # end
 
       context 'when the name is present' do
         # @todo Add more tests.

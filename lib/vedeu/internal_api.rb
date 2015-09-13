@@ -34,8 +34,8 @@ module Vedeu
     #   Vedeu.buffers
     #
     # @!method buffers
-    # @return [Vedeu::Buffers]
-    def_delegators Vedeu::Buffers, :buffers
+    # @return [Vedeu::Buffers::Repository]
+    def_delegators Vedeu::Buffers::Repository, :buffers
 
     # Manipulate the repository of cursors.
     #

@@ -1,21 +1,21 @@
 module Vedeu
 
-  module Null
+  module Buffers
 
-    # Provides a non-existent Vedeu::Buffer that acts like the real thing, but
-    # does nothing.
+    # Provides a non-existent Vedeu::Buffers::Buffer that acts like the real
+    # thing, but does nothing.
     #
-    class Buffer
+    class Null
 
       # @!attribute [r] name
       # @return [String]
       attr_reader :name
 
-      # Returns a new instance of Vedeu::Null::Buffer.
+      # Returns a new instance of Vedeu::Buffers::Null.
       #
       # @param attributes [Hash<Symbol => void>]
       # @option attributes name [String|NilClass]
-      # @return [Vedeu::Null::Buffer]
+      # @return [Vedeu::Buffers::Null]
       def initialize(attributes = {})
         @attributes = attributes
         @name       = @attributes[:name]
@@ -37,8 +37,8 @@ module Vedeu
         true
       end
 
-    end # Buffer
+    end # Null
 
-  end # Null
+  end # Buffers
 
 end # Vedeu

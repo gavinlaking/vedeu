@@ -111,6 +111,8 @@ module Vedeu
     def dsl_class
       if demodulize(self.class.name) == 'Border'
         'Vedeu::Borders::DSL'
+      elsif demodulize(self.class.name) == 'Buffer'
+        'Vedeu::Buffers::DSL'
       elsif demodulize(self.class.name) == 'Geometry'
         'Vedeu::Geometry::DSL'
       else

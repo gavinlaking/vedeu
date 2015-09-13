@@ -64,7 +64,7 @@ module Vedeu
     end
 
     describe '#hide' do
-      let(:buffer) { Vedeu::Buffer.new }
+      let(:buffer) { Vedeu::Buffers::Buffer.new }
 
       before { Vedeu.buffers.stubs(:by_name).returns(buffer) }
 
@@ -77,7 +77,7 @@ module Vedeu
     end
 
     describe '#show' do
-      let(:buffer) { Vedeu::Buffer.new }
+      let(:buffer) { Vedeu::Buffers::Buffer.new }
 
       before { Vedeu.buffers.stubs(:by_name).returns(buffer) }
 
