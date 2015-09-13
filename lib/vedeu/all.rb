@@ -108,7 +108,7 @@ require 'vedeu/input/editor/all'
 require 'vedeu/borders/all'
 require 'vedeu/buffers/all'
 require 'vedeu/colours/all'
-require 'vedeu/cursor/all'
+require 'vedeu/cursors/all'
 require 'vedeu/events/all'
 require 'vedeu/geometry/all'
 
