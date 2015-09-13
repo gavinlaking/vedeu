@@ -6,7 +6,7 @@ module Vedeu
 
     let(:described) { Vedeu::Move }
     let(:instance)  { described.new(entity, _name, dy, dx) }
-    let(:entity)    { Vedeu::Cursor }
+    let(:entity)    { Vedeu::Cursors::Cursor }
     let(:_name)     { '' }
     let(:dy)        { 0 }
     let(:dx)        { 0 }
@@ -16,10 +16,15 @@ module Vedeu
     let(:y)         { 1 }
 
     let(:cursor) {
-      Vedeu::Cursor.new(name: _name, ox: ox, oy: oy, visible: true, x: x, y: y)
+      Vedeu::Cursors::Cursor.new(name:    _name,
+                                 ox:      ox,
+                                 oy:      oy,
+                                 visible: true,
+                                 x:       x,
+                                 y: y)
     }
     let(:new_cursor) {
-      Vedeu::Cursor.new
+      Vedeu::Cursors::Cursor.new
     }
     let(:border) {
       Vedeu::Borders::Border.new(name: '_name', enabled: enabled)
@@ -60,13 +65,13 @@ module Vedeu
 
       subject { described.by_name(entity, direction, _name) }
 
-      it { subject.must_be_instance_of(Vedeu::Cursor) }
+      it { subject.must_be_instance_of(Vedeu::Cursors::Cursor) }
 
       context 'when the name is not specified' do
         let(:_name) {}
 
         it 'uses the current focussed interface name' do
-          Vedeu::Move.expects(:send).with(:down, Vedeu::Cursor, 'neon')
+          Vedeu::Move.expects(:send).with(:down, Vedeu::Cursors::Cursor, 'neon')
           subject
         end
       end
@@ -102,7 +107,7 @@ module Vedeu
 
       subject { described.down(entity, _name) }
 
-      it { subject.must_be_instance_of(Vedeu::Cursor) }
+      it { subject.must_be_instance_of(Vedeu::Cursors::Cursor) }
 
       context 'when within the boundary of the interface' do
         let(:enabled) { false }
@@ -130,7 +135,7 @@ module Vedeu
 
       subject { described.left(entity, _name) }
 
-      it { subject.must_be_instance_of(Vedeu::Cursor) }
+      it { subject.must_be_instance_of(Vedeu::Cursors::Cursor) }
 
       context 'when within the boundary of the interface' do
         let(:enabled) { false }
@@ -156,7 +161,7 @@ module Vedeu
 
       subject { described.right(entity, _name) }
 
-      it { subject.must_be_instance_of(Vedeu::Cursor) }
+      it { subject.must_be_instance_of(Vedeu::Cursors::Cursor) }
 
       context 'when within the boundary of the interface' do
         let(:enabled) { false }
@@ -184,7 +189,7 @@ module Vedeu
 
       subject { described.up(entity, _name) }
 
-      it { subject.must_be_instance_of(Vedeu::Cursor) }
+      it { subject.must_be_instance_of(Vedeu::Cursors::Cursor) }
 
       context 'when within the boundary of the interface' do
         let(:enabled) { false }
@@ -210,7 +215,7 @@ module Vedeu
 
       subject { described.origin(entity, _name) }
 
-      it { subject.must_be_instance_of(Vedeu::Cursor) }
+      it { subject.must_be_instance_of(Vedeu::Cursors::Cursor) }
 
       context 'within the boundary of the interface' do
         let(:enabled) { false }
@@ -242,8 +247,8 @@ module Vedeu
         it { subject.must_be_instance_of(Vedeu::Geometry::Geometry) }
       end
 
-      context 'when the entity is a Vedeu::Cursor' do
-        it { subject.must_be_instance_of(Vedeu::Cursor) }
+      context 'when the entity is a Vedeu::Cursors::Cursor' do
+        it { subject.must_be_instance_of(Vedeu::Cursors::Cursor) }
       end
     end
 
@@ -261,7 +266,7 @@ module Vedeu
         }
       end
 
-      context 'when the entity is a Vedeu::Cursor' do
+      context 'when the entity is a Vedeu::Cursors::Cursor' do
         it {
           Vedeu.expects(:trigger)
           subject
@@ -291,7 +296,7 @@ module Vedeu
         it { subject.must_equal(expected) }
       end
 
-      context 'when the entity is a Vedeu::Cursor' do
+      context 'when the entity is a Vedeu::Cursors::Cursor' do
         it { subject.must_be_instance_of(Hash) }
       end
     end

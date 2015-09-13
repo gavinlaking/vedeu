@@ -51,10 +51,13 @@ module Vedeu
     end
 
     describe '#render' do
-      let(:cursor) { Vedeu::Cursor.new(cursor_attributes) }
-      let(:cursor_attributes) {
-        { name: 'lithium', ox: ox, oy: oy, visible: true, x: x, y: y }
-      }
+      let(:cursor) {
+        Vedeu::Cursors::Cursor.new(name:    'lithium',
+                                   ox:      ox,
+                                   oy:      oy,
+                                   visible: true,
+                                   x:       x,
+                                   y:       y) }
       let(:lines)  { [] }
       let(:ox)     { 0 }
       let(:oy)     { 0 }
@@ -73,10 +76,13 @@ module Vedeu
     end
 
     describe '#to_s' do
-      let(:cursor) { Vedeu::Cursor.new(cursor_attributes) }
-      let(:cursor_attributes) {
-        { name: 'lithium', ox: ox, oy: oy, visible: true, x: x, y: y }
-      }
+      let(:cursor) {
+        Vedeu::Cursors::Cursor.new(name:    'lithium',
+                                   ox:      ox,
+                                   oy:      oy,
+                                   visible: true,
+                                   x:       x,
+                                   y:       y) }
       let(:lines)  { [] }
       let(:ox)     { 0 }
       let(:oy)     { 0 }

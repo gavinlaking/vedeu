@@ -54,7 +54,7 @@ module Vedeu
     # @param name [String|NilClass] The name of the interface/cursor to be
     #   moved; when not given, the interface currently in focus determines which
     #   cursor instance to move.
-    # @return [Vedeu::Cursor]
+    # @return [Vedeu::Cursors::Cursor]
     def self.by_name(entity, direction, name = nil)
       name = name ? name : Vedeu.focus
 
@@ -65,7 +65,7 @@ module Vedeu
     #
     # @param entity [Class]
     # @param name [String]
-    # @return [Vedeu::Cursor]
+    # @return [Vedeu::Cursors::Cursor]
     def self.down(entity, name)
       new(entity, name, 1, 0).move
     end
@@ -74,7 +74,7 @@ module Vedeu
     #
     # @param entity [Class]
     # @param name [String]
-    # @return [Vedeu::Cursor]
+    # @return [Vedeu::Cursors::Cursor]
     def self.left(entity, name)
       new(entity, name, 0, -1).move
     end
@@ -83,7 +83,7 @@ module Vedeu
     #
     # @param entity [Class]
     # @param name [String]
-    # @return [Vedeu::Cursor]
+    # @return [Vedeu::Cursors::Cursor]
     def self.right(entity, name)
       new(entity, name, 0, 1).move
     end
@@ -92,7 +92,7 @@ module Vedeu
     #
     # @param entity [Class]
     # @param name [String]
-    # @return [Vedeu::Cursor]
+    # @return [Vedeu::Cursors::Cursor]
     def self.up(entity, name)
       new(entity, name, -1, 0).move
     end
@@ -102,7 +102,7 @@ module Vedeu
     #
     # @param entity [Class]
     # @param name [String]
-    # @return [Vedeu::Cursor]
+    # @return [Vedeu::Cursors::Cursor]
     def self.origin(entity, name)
       new(entity, name, -2000, -2000).move
     end
@@ -123,7 +123,7 @@ module Vedeu
 
     # Returns a newly positioned and stored cursor or view.
     #
-    # @return [Vedeu::Cursor|Vedeu::Geometry::Geometry]
+    # @return [Vedeu::Cursors::Cursor|Vedeu::Geometry::Geometry]
     def move
       model = entity.new(merged_attributes).store
 
@@ -182,8 +182,8 @@ module Vedeu
       @coordinate ||= Vedeu::Geometry::Coordinate.new(name, oy, ox)
     end
 
-    # @return [Vedeu::Cursor]
-    # @see Vedeu::Cursors#by_name
+    # @return [Vedeu::Cursors::Cursor]
+    # @see Vedeu::Cursors::Repository#by_name
     def cursor
       @cursor ||= Vedeu.cursors.by_name(name)
     end

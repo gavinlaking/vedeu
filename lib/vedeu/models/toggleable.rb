@@ -3,7 +3,7 @@ module Vedeu
   # This module provides behaviour for certain classes which can be toggled
   # between being shown and hidden.
   #
-  # Currently using this are: {Vedeu::Cursor}, {Vedeu::Group} and
+  # Currently using this are: {Vedeu::Cursors::Cursor}, {Vedeu::Group} and
   # {Vedeu::Interface}.
   #
   module Toggleable

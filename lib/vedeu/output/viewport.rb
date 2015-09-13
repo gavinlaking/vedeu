@@ -155,8 +155,8 @@ module Vedeu
       @by ||= border.by
     end
 
-    # @return [Vedeu::Cursor]
-    # @see Vedeu::Cursors#by_name
+    # @return [Vedeu::Cursors::Cursor]
+    # @see Vedeu::Cursors::Repository#by_name
     def cursor
       @cursor ||= Vedeu.cursors.by_name(name)
     end

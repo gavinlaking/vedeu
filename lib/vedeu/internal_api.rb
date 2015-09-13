@@ -43,8 +43,8 @@ module Vedeu
     #   Vedeu.cursors
     #
     # @!method cursors
-    # @return [Vedeu::Cursors]
-    def_delegators Vedeu::Cursors, :cursors
+    # @return [Vedeu::Cursors::Repository]
+    def_delegators Vedeu::Cursors::Repository, :cursors
 
     # Allow debugging via the creation of stack traces courtesy of ruby-prof.
     #

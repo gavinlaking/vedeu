@@ -42,7 +42,7 @@ module Vedeu
       def directional!
         [:down, :left, :right, :up].each do |direction|
           Vedeu.bind("_cursor_#{direction}_".to_sym) do |name|
-            Vedeu::Move.send(direction, Vedeu::Cursor, name)
+            Vedeu::Move.send(direction, Vedeu::Cursors::Cursor, name)
           end
 
           Vedeu.bind("_view_#{direction}_".to_sym) do |name|
@@ -65,7 +65,7 @@ module Vedeu
       # @see Vedeu::Move
       def cursor_origin!
         Vedeu.bind(:_cursor_origin_) do |name|
-          Vedeu::Move.origin(Vedeu::Cursor, name)
+          Vedeu::Move.origin(Vedeu::Cursors::Cursor, name)
         end
 
         Vedeu.bind_alias(:_cursor_reset_, :_cursor_origin_)
@@ -95,7 +95,7 @@ module Vedeu
       # @see Vedeu::Move
       def cursor_reposition!
         Vedeu.bind(:_cursor_reposition_) do |name, y, x|
-          Vedeu::Reposition.to(Vedeu::Cursor, name, y, x)
+          Vedeu::Reposition.to(Vedeu::Cursors::Cursor, name, y, x)
         end
       end
 

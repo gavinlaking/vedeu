@@ -4,7 +4,7 @@ module Vedeu
   #
   class Reposition
 
-    # @return [Vedeu::Cursor]
+    # @return [Vedeu::Cursors::Cursor]
     # @see Vedeu::Reposition.new
     def self.to(entity, name, y, x)
       new(entity, name, y, x).to
@@ -24,7 +24,7 @@ module Vedeu
       @x      = x
     end
 
-    # @return [Vedeu::Cursor]
+    # @return [Vedeu::Cursors::Cursor]
     def to
       build_entity!
 
@@ -58,7 +58,7 @@ module Vedeu
     # Build a new instance of the entity that is being repositioned and replace
     # existing stored version.
     #
-    # @return [Vedeu::Cursor|Vedeu::Geometry::Geometry]
+    # @return [Vedeu::Cursors::Cursor|Vedeu::Geometry::Geometry]
     def build_entity!
       @_entity ||= entity.new(name: name,
                               y:    coordinate.y_position,

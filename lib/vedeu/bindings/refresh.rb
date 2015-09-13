@@ -49,7 +49,7 @@ module Vedeu
       # @return [TrueClass]
       def refresh_cursor!
         Vedeu.bind(:_refresh_cursor_) do |name|
-          Vedeu::RefreshCursor.by_name(name)
+          Vedeu::Cursors::Refresh.by_name(name)
         end
       end
 

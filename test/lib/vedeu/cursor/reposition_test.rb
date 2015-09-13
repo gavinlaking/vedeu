@@ -6,7 +6,7 @@ module Vedeu
 
     let(:described) { Vedeu::Reposition }
     let(:instance)  { described.new(entity, _name, y, x) }
-    let(:entity)    { Vedeu::Cursor }
+    let(:entity)    { Vedeu::Cursors::Cursor }
     let(:_name)     { 'reposition' }
     let(:x)         { 4 }
     let(:y)         { 7 }
@@ -20,11 +20,13 @@ module Vedeu
     end
 
     describe '.to' do
-      # let(:new_entity) { Vedeu::Cursor.new(name: _name, y: 8, x: 5, oy: 7, ox: 4) }
+      # let(:new_entity) {
+      #   Vedeu::Cursors::Cursor.new(name: _name, y: 8, x: 5, oy: 7, ox: 4)
+      # }
 
       before do
         #   entity.stubs(:new).returns(new_entity)
-        Vedeu::Cursor.new(name: _name, x: 1, y: 1, ox: 1, oy: 1)
+        Vedeu::Cursors::Cursor.new(name: _name, x: 1, y: 1, ox: 1, oy: 1)
         Vedeu.stubs(:trigger)
       end
       after { Vedeu.cursors.reset }
