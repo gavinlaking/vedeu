@@ -88,31 +88,43 @@ module Vedeu
                                border:   type)
       end
 
+      # Creates the bottom left border character.
+      #
       # @return [Vedeu::Views::Char]
       def build_bottom_left
         build(bottom_left, :bottom_left, yn, x) if left?
       end
 
+      # Creates the bottom right border character.
+      #
       # @return [Vedeu::Views::Char]
       def build_bottom_right
         build(bottom_right, :bottom_right, yn, xn) if right?
       end
 
+      # Creates a top border character.
+      #
       # @return [Array<Vedeu::Views::Char>]
       def build_top
         build_horizontal(:bottom_horizontal, y)
       end
 
+      # Creates a bottom border character.
+      #
       # @return [Array<Vedeu::Views::Char>]
       def build_bottom
         build_horizontal(:bottom_horizontal, yn)
       end
 
+      # Creates the top left border character.
+      #
       # @return [Vedeu::Views::Char]
       def build_top_left
         build(top_left, :top_left, y, x) if left?
       end
 
+      # Creates the top right border character.
+      #
       # @return [Vedeu::Views::Char]
       def build_top_right
         build(top_right, :top_right, y, xn) if right?
