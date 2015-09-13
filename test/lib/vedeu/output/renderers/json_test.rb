@@ -38,7 +38,7 @@ module Vedeu
                 Vedeu::Views::Char.new(value: 'a',
                                        colour: colour,
                                        parent: parent,
-                                       position: Vedeu::Position[5, 3])
+                                       position: Vedeu::Geometry::Position[5, 3])
               ]
             ]
           }

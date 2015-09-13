@@ -54,7 +54,7 @@ module Vedeu
 
     # @return [String]
     def position
-      Vedeu::Position.new(y, x).to_s
+      Vedeu::Geometry::Position.new(y, x).to_s
     end
 
   end # Direct

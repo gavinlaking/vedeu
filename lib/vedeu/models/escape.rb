@@ -11,7 +11,7 @@ module Vedeu
     # Returns a new instance of Vedeu::Escape.
     #
     # @param attributes [String]
-    # @option attributes position [Vedeu::Position|Array<Fixnum>]
+    # @option attributes position [Vedeu::Geometry::Position|Array<Fixnum>]
     # @option attributes value [String]
     # @return [Vedeu::Escape]
     def initialize(attributes = {})
@@ -40,7 +40,7 @@ module Vedeu
 
     # @return [String]
     def position
-      Vedeu::Position.coerce(@position)
+      Vedeu::Geometry::Position.coerce(@position)
     end
 
     # @return [String]

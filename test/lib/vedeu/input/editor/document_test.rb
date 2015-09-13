@@ -52,7 +52,7 @@ module Vedeu
         }
 
         before do
-          Vedeu::Geometry.new(name: _name, x: 1, y: 1, xn: 5, yn: 5).store
+          Vedeu::Geometry::Geometry.new(name: _name, x: 1, y: 1, xn: 5, yn: 5).store
           Vedeu::Terminal.stubs(:output)
           Vedeu::Direct.stubs(:write).returns(expected)
         end

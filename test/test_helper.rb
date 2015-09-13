@@ -22,7 +22,7 @@ unless ENV['NO_SIMPLECOV']
     add_group  'buffers',       'vedeu/buffers'
     add_group  'colours',       'vedeu/colours'
     add_group  'configuration', 'vedeu/configuration'
-    add_group  'cursor',        'vedeu/cursor'
+    add_group  'cursors',       'vedeu/cursors'
     add_group  'distributed',   'vedeu/distributed'
     add_group  'dsl',           'vedeu/dsl'
     add_group  'esc',           'vedeu/esc'

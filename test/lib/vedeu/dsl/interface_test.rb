@@ -24,7 +24,7 @@ module Vedeu
         after { Vedeu.interfaces.reset }
 
         subject {
-          described.interface('flourine') do
+          described.interface('fluorine') do
             # ...
           end
         }
@@ -32,7 +32,7 @@ module Vedeu
         it { subject.must_be_instance_of(Vedeu::Interface) }
 
         context 'when the block is not given' do
-          subject { described.interface('flourine') }
+          subject { described.interface('fluorine') }
 
           it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
         end
@@ -60,7 +60,7 @@ module Vedeu
         context 'when the block is given' do
           subject { instance.border { } }
 
-          it { subject.must_be_instance_of(Vedeu::Border) }
+          it { subject.must_be_instance_of(Vedeu::Borders::Border) }
 
           context 'when the name is not given' do
             it 'uses the interface name for storing the border' do
@@ -83,7 +83,7 @@ module Vedeu
 
         subject { instance.border! }
 
-        it { subject.must_be_instance_of(Vedeu::Border) }
+        it { subject.must_be_instance_of(Vedeu::Borders::Border) }
       end
 
       describe '#cursor' do
@@ -188,7 +188,7 @@ module Vedeu
         context 'when the block is given' do
           subject { instance.geometry { } }
 
-          it { subject.must_be_instance_of(Vedeu::Geometry) }
+          it { subject.must_be_instance_of(Vedeu::Geometry::Geometry) }
 
           context 'when the name is not given' do
             it 'uses the interface name for storing the geometry' do

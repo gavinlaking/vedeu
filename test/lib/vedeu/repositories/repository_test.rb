@@ -183,6 +183,13 @@ module Vedeu
       end
     end
 
+    describe '#inspect' do
+      subject { instance.inspect }
+
+      it { subject.must_be_instance_of(String) }
+      it { subject.must_equal('<Vedeu::Repository>') }
+    end
+
     describe '#registered?' do
       it 'returns false with no name' do
         RepositoriesTestClass.new.registered?('').must_equal(false)

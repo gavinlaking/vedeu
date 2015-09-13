@@ -212,7 +212,7 @@ module Vedeu
       # Retrieve the dimensions of the document from the interface of the same
       # name.
       #
-      # @return [Vedeu::Border]
+      # @return [Vedeu::Borders::Border]
       def border
         @border ||= Vedeu.borders.by_name(name)
       end
@@ -249,7 +249,7 @@ module Vedeu
         output = ''
 
         visible.each_with_index do |line, y_index|
-          output << Vedeu::Position.new((by + y_index), bx).to_s
+          output << Vedeu::Geometry::Position.new((by + y_index), bx).to_s
           output << line.to_s
         end
 

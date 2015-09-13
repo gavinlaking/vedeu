@@ -34,8 +34,8 @@ module Vedeu
     #   Vedeu.cursor
     #
     # @!method cursor
-    # @return [Vedeu::Cursor]
-    def_delegators Vedeu::Cursors, :cursor
+    # @return [Vedeu::Cursors::Cursor]
+    def_delegators Vedeu::Cursors::Repository, :cursor
 
     # Manipulate the DRb server implementation.
     #
@@ -60,15 +60,15 @@ module Vedeu
     #   Vedeu.border
     #
     # @!method border
-    #   @see Vedeu::DSL::Border.border
-    def_delegators Vedeu::DSL::Border, :border
+    #   @see Vedeu::Borders::DSL.border
+    def_delegators Vedeu::Borders::DSL, :border
 
     # @example
     #   Vedeu.geometry
     #
     # @!method geometry
-    #   @see Vedeu::DSL::Geometry.geometry
-    def_delegators Vedeu::DSL::Geometry, :geometry
+    #   @see Vedeu::Geometry::DSL.geometry
+    def_delegators Vedeu::Geometry::DSL, :geometry
 
     # @example
     #   Vedeu.group
@@ -250,8 +250,8 @@ module Vedeu
     #   Vedeu.hide_cursor(name)
     #
     # @!method hide_cursor
-    #   @see Vedeu::Cursor#hide
-    def_delegators Vedeu::Cursor, :hide_cursor
+    #   @see Vedeu::Cursors::Cursor#hide
+    def_delegators Vedeu::Cursors::Cursor, :hide_cursor
 
     # Shows the cursor for the interface of the given name.
     #
@@ -259,8 +259,8 @@ module Vedeu
     #   Vedeu.show_cursor(name)
     #
     # @!method show_cursor
-    #   @see Vedeu::Cursor#show
-    def_delegators Vedeu::Cursor, :show_cursor
+    #   @see Vedeu::Cursors::Cursor#show
+    def_delegators Vedeu::Cursors::Cursor, :show_cursor
 
     # Toggle the visibility of the cursor with the given name.
     #
@@ -268,9 +268,9 @@ module Vedeu
     #   Vedeu.toggle_cursor(name)
     #
     # @!method toggle_cursor
-    #   @see Vedeu::Cursor#hide
-    #   @see Vedeu::Cursor#show
-    def_delegators Vedeu::Cursor, :toggle_cursor
+    #   @see Vedeu::Cursors::Cursor#hide
+    #   @see Vedeu::Cursors::Cursor#show
+    def_delegators Vedeu::Cursors::Cursor, :toggle_cursor
 
     # @!method hide_group
     #   @see Vedeu::Group#hide

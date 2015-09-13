@@ -33,7 +33,8 @@ module Vedeu
 
     # @return [String]
     def render_position
-      if self.respond_to?(:position) && position.is_a?(Vedeu::Position)
+      if self.respond_to?(:position) &&
+         position.is_a?(Vedeu::Geometry::Position)
         position.to_s { yield }
 
       else

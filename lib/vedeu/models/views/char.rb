@@ -36,7 +36,7 @@ module Vedeu
       #   border 'piece' this Vedeu::Views::Char represents.
       # @option attributes colour [Vedeu::Colours::Colour]
       # @option attributes parent [Vedeu::Views::Line]
-      # @option attributes position [Vedeu::Position]
+      # @option attributes position [Vedeu::Geometry::Position]
       # @option attributes style [Vedeu::Style]
       # @option attributes value [String]
       # @return [Vedeu::Views::Char]
@@ -68,17 +68,18 @@ module Vedeu
       end
       alias_method :==, :eql?
 
-      # @return [Vedeu::Position]
+      # @return [Vedeu::Geometry::Position]
       def position
-        @position = Vedeu::Position.coerce(@attributes[:position])
+        @position = Vedeu::Geometry::Position.coerce(@attributes[:position])
       end
 
       # Sets the position of the Vedeu::Views::Char.
       #
-      # @param value [Vedeu::Position]
-      # @return [Vedeu::Position]
+      # @param value [Vedeu::Geometry::Position]
+      # @return [Vedeu::Geometry::Position]
       def position=(value)
-        @position = @attributes[:position] = Vedeu::Position.coerce(value)
+        @position = @attributes[:position] = Vedeu::Geometry::Position
+                                             .coerce(value)
       end
 
       # @return [String]

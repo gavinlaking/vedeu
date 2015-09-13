@@ -74,11 +74,11 @@ module Vedeu
         return [] unless visible?
 
         output = [
-          Vedeu::Cursor.hide_cursor(name),
+          Vedeu::Cursors::Cursor.hide_cursor(name),
           Vedeu::Clear::NamedInterface.render(name),
           Vedeu::Viewport.render(self),
           Vedeu.borders.by_name(name).render,
-          Vedeu::Cursor.show_cursor(name),
+          Vedeu::Cursors::Cursor.show_cursor(name),
         ]
 
         output

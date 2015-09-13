@@ -53,17 +53,17 @@ module Vedeu
         # registered, and also adds interface's name to list of focussable
         # interfaces.
         #
-        # @see Vedeu::Buffer
-        # @return [void]
+        # @see Vedeu::Buffers::Buffer
+        # @return [Vedeu::Buffers::Buffer]
         def add_buffers!(name)
-          Vedeu::Buffer.new(name: name).store
+          Vedeu::Buffers::Buffer.new(name: name).store
         end
 
         # Registers a new cursor for the interface unless already registered.
         #
-        # @return [void]
+        # @return [Vedeu::Cursors::Cursor]
         def add_cursor!(name)
-          Vedeu::Cursor.new(name: name).store
+          Vedeu::Cursors::Cursor.new(name: name).store
         end
 
         # Registers interface name in focus list unless already registered.
@@ -120,16 +120,16 @@ module Vedeu
       #     # ...       #    is rendered.
       #   end
       #
-      # @return [Vedeu::Cursor]
+      # @return [Vedeu::Cursors::Cursor]
       def cursor(value = true)
         boolean = value ? true : false
 
-        Vedeu::Cursor.new(name: model.name, visible: boolean).store
+        Vedeu::Cursors::Cursor.new(name: model.name, visible: boolean).store
       end
 
       # Set the cursor to visible for the interface.
       #
-      # @return [Vedeu::Cursor]
+      # @return [Vedeu::Cursors::Cursor]
       def cursor!
         cursor(true)
       end
@@ -214,7 +214,7 @@ module Vedeu
 
       # Set the cursor to invisible for the interface.
       #
-      # @return [Vedeu::Cursor]
+      # @return [Vedeu::Cursors::Cursor]
       def no_cursor!
         cursor(false)
       end

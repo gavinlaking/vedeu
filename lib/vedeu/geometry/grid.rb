@@ -1,75 +1,79 @@
 module Vedeu
 
-  # The grid system splits the terminal height and width into 12 equal parts, by
-  # dividing the available height and width by 12. If the terminal height or
-  # width is not a multiple of 12, then Grid chooses the maximum value which
-  # will fit.
-  #
-  class Grid
+  module Geometry
 
-    # @see #initialize
-    # @see #columns
-    def self.columns(value)
-      new(value).columns
-    end
-
-    # @see #initialize
-    # @see #rows
-    def self.rows(value)
-      new(value).rows
-    end
-
-    # Returns a new instance of Vedeu::Grid.
+    # The grid system splits the terminal height and width into 12 equal parts,
+    # by dividing the available height and width by 12. If the terminal height
+    # or width is not a multiple of 12, then Grid chooses the maximum value
+    # which will fit.
     #
-    # @param value [Fixnum]
-    # @return [Grid]
-    def initialize(value)
-      @value = value
-    end
+    class Grid
 
-    # @see Vedeu::DSL::Geometry#columns
-    def columns
-      fail Vedeu::Error::OutOfRange if out_of_range?
+      # @see #initialize
+      # @see #columns
+      def self.columns(value)
+        new(value).columns
+      end
 
-      column * value
-    end
+      # @see #initialize
+      # @see #rows
+      def self.rows(value)
+        new(value).rows
+      end
 
-    # @see Vedeu::DSL::Geometry#rows
-    def rows
-      fail Vedeu::Error::OutOfRange if out_of_range?
+      # Returns a new instance of Vedeu::Geometry::Grid.
+      #
+      # @param value [Fixnum]
+      # @return [Vedeu::Geometry::Grid]
+      def initialize(value)
+        @value = value
+      end
 
-      row * value
-    end
+      # @see Vedeu::Geometry::DSL#columns
+      def columns
+        fail Vedeu::Error::OutOfRange if out_of_range?
 
-    protected
+        column * value
+      end
 
-    # @!attribute [r] value
-    # @return [Fixnum]
-    attr_reader :value
+      # @see Vedeu::Geometry::DSL#rows
+      def rows
+        fail Vedeu::Error::OutOfRange if out_of_range?
 
-    private
+        row * value
+      end
 
-    # Returns the height of a single row in characters.
-    #
-    # @return [Fixnum]
-    def row
-      Vedeu.height / 12
-    end
+      protected
 
-    # Returns a boolean indicating whether the value is out of range.
-    #
-    # @return [Boolean]
-    def out_of_range?
-      value < 1 || value > 12
-    end
+      # @!attribute [r] value
+      # @return [Fixnum]
+      attr_reader :value
 
-    # Returns the width of a single column in characters.
-    #
-    # @return [Fixnum]
-    def column
-      Vedeu.width / 12
-    end
+      private
 
-  end # Grid
+      # Returns the height of a single row in characters.
+      #
+      # @return [Fixnum]
+      def row
+        Vedeu.height / 12
+      end
+
+      # Returns a boolean indicating whether the value is out of range.
+      #
+      # @return [Boolean]
+      def out_of_range?
+        value < 1 || value > 12
+      end
+
+      # Returns the width of a single column in characters.
+      #
+      # @return [Fixnum]
+      def column
+        Vedeu.width / 12
+      end
+
+    end # Grid
+
+  end # Geometry
 
 end # Vedeu

@@ -75,48 +75,48 @@ end
 
 ## Borders
 
-{include:Vedeu::DSL::Border}
+{include:Vedeu::Borders::DSL}
 
 ### Setting a title for the border
 
-{include:Vedeu::DSL::Border#title}
+{include:Vedeu::Borders::DSL#title}
 
 ### Customising the appearance of the border
 
-{include:Vedeu::DSL::Border#bottom_left}
-{include:Vedeu::DSL::Border#bottom_right}
-{include:Vedeu::DSL::Border#horizontal}
-{include:Vedeu::DSL::Border#top_left}
-{include:Vedeu::DSL::Border#top_right}
-{include:Vedeu::DSL::Border#vertical}
+{include:Vedeu::Borders::DSL#bottom_left}
+{include:Vedeu::Borders::DSL#bottom_right}
+{include:Vedeu::Borders::DSL#horizontal}
+{include:Vedeu::Borders::DSL#top_left}
+{include:Vedeu::Borders::DSL#top_right}
+{include:Vedeu::Borders::DSL#vertical}
 
 ### Enabling/disabling the border
 
-{include:Vedeu::DSL::Border#enable!}
-{include:Vedeu::DSL::Border#disable!}
+{include:Vedeu::Borders::DSL#enable!}
+{include:Vedeu::Borders::DSL#disable!}
 
 ### Enabling/disabling an aspect of the border
 
-{include:Vedeu::DSL::Border#bottom}
-{include:Vedeu::DSL::Border#left}
-{include:Vedeu::DSL::Border#right}
-{include:Vedeu::DSL::Border#top}
+{include:Vedeu::Borders::DSL#bottom}
+{include:Vedeu::Borders::DSL#left}
+{include:Vedeu::Borders::DSL#right}
+{include:Vedeu::Borders::DSL#top}
 
 ## Geometry
 
-{include:Vedeu::DSL::Geometry}
+{include:Vedeu::Geometry::DSL}
 
 ### Setting the interface dimensions
 
-{include:Vedeu::DSL::Geometry#centred}
-{include:Vedeu::DSL::Geometry#height}
-{include:Vedeu::DSL::Geometry#width}
-{include:Vedeu::DSL::Geometry#columns}
-{include:Vedeu::DSL::Geometry#rows}
-{include:Vedeu::DSL::Geometry#x}
-{include:Vedeu::DSL::Geometry#xn}
-{include:Vedeu::DSL::Geometry#y}
-{include:Vedeu::DSL::Geometry#yn}
+{include:Vedeu::Geometry::DSL#centred}
+{include:Vedeu::Geometry::DSL#height}
+{include:Vedeu::Geometry::DSL#width}
+{include:Vedeu::Geometry::DSL#columns}
+{include:Vedeu::Geometry::DSL#rows}
+{include:Vedeu::Geometry::DSL#x}
+{include:Vedeu::Geometry::DSL#xn}
+{include:Vedeu::Geometry::DSL#y}
+{include:Vedeu::Geometry::DSL#yn}
 
 ## Groups
 

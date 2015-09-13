@@ -41,7 +41,7 @@ module Vedeu
 
       private
 
-      # @see Vedeu::Geometries#by_name
+      # @see Vedeu::Geometry::Repository#by_name
       def geometry
         @geometry ||= Vedeu.geometries.by_name(name)
       end

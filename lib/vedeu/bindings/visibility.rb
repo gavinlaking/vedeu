@@ -52,7 +52,7 @@ module Vedeu
       # @return [TrueClass]
       def hide_cursor!
         Vedeu.bind(:_hide_cursor_) do |name|
-          Vedeu::Cursor.hide_cursor(name)
+          Vedeu::Cursors::Cursor.hide_cursor(name)
         end
 
         Vedeu.bind_alias(:_cursor_hide_, :_hide_cursor_)
@@ -87,7 +87,7 @@ module Vedeu
       # @return [TrueClass]
       def show_cursor!
         Vedeu.bind(:_show_cursor_) do |name|
-          Vedeu::Cursor.show_cursor(name)
+          Vedeu::Cursors::Cursor.show_cursor(name)
         end
 
         Vedeu.bind_alias(:_cursor_show_, :_show_cursor_)
@@ -120,7 +120,7 @@ module Vedeu
       # @return [TrueClass]
       def toggle_cursor!
         Vedeu.bind(:_toggle_cursor_) do |name|
-          Vedeu::Cursor.toggle_cursor(name)
+          Vedeu::Cursors::Cursor.toggle_cursor(name)
         end
       end
 

@@ -25,8 +25,8 @@ module Vedeu
     #   Vedeu.borders
     #
     # @!method borders
-    # @return [Vedeu::Borders]
-    def_delegators Vedeu::Borders, :borders
+    # @return [Vedeu::Borders::Repository]
+    def_delegators Vedeu::Borders::Repository, :borders
 
     # Manipulate the repository of buffers.
     #
@@ -34,8 +34,8 @@ module Vedeu
     #   Vedeu.buffers
     #
     # @!method buffers
-    # @return [Vedeu::Buffers]
-    def_delegators Vedeu::Buffers, :buffers
+    # @return [Vedeu::Buffers::Repository]
+    def_delegators Vedeu::Buffers::Repository, :buffers
 
     # Manipulate the repository of cursors.
     #
@@ -43,8 +43,8 @@ module Vedeu
     #   Vedeu.cursors
     #
     # @!method cursors
-    # @return [Vedeu::Cursors]
-    def_delegators Vedeu::Cursors, :cursors
+    # @return [Vedeu::Cursors::Repository]
+    def_delegators Vedeu::Cursors::Repository, :cursors
 
     # Allow debugging via the creation of stack traces courtesy of ruby-prof.
     #
@@ -88,8 +88,8 @@ module Vedeu
     #   Vedeu.geometries
     #
     # @!method geometries
-    # @return [Vedeu::Geometries]
-    def_delegators Vedeu::Geometries, :geometries
+    # @return [Vedeu::Geometry::Repository]
+    def_delegators Vedeu::Geometry::Repository, :geometries
 
     # Manipulate the repository of groups.
     #
