@@ -78,9 +78,9 @@ module Vedeu
     # @note
     #   Vedeu::Borders::Border is used in this way because when there is not a
     #   border defined, it will fallback to a Vedeu::Borders::Null which uses
-    #   Vedeu::Geometry to determine it's dimensions based on the name also.
-    #   When a Vedeu::Geometry cannot be found, this falls back to a
-    #   Vedeu::Null::Geometry which uses the current terminal's dimensions.
+    #   Vedeu::Geometry::Geometry to determine it's dimensions based on the name
+    #   also. When a Vedeu::Geometry::Geometry cannot be found, this falls back
+    #   to a Vedeu::Geometry::Null which uses the current terminal's dimensions.
     #
     # @return (see Vedeu::Borders::Repository#by_name)
     def border

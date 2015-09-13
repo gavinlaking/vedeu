@@ -73,7 +73,7 @@ module Vedeu
     # Raised when trying to access an interface column less than 1 or greater
     # than 12. Vedeu is hard-wired to a 12-column layout for the time being.
     #
-    # @see Vedeu::Grid
+    # @see Vedeu::Geometry::Grid
     #
     class OutOfRange < StandardError
 

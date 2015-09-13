@@ -4,7 +4,7 @@ module Vedeu
 
     # Represents a single row of the terminal. It is a container for
     # {Vedeu::Views::Stream} objects. A line's width is determined by the
-    # {Vedeu::Geometry} it belongs to.
+    # {Vedeu::Geometry::Geometry} it belongs to.
     #
     class Line
 

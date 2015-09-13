@@ -2,11 +2,11 @@ require 'test_helper'
 
 module Vedeu
 
-  module Null
+  module Geometry
 
-    describe Geometry do
+    describe Null do
 
-      let(:described) { Vedeu::Null::Geometry }
+      let(:described) { Vedeu::Geometry::Null }
       let(:instance)  { described.new(attributes) }
       let(:attributes){
         {
@@ -95,8 +95,8 @@ module Vedeu
         it { instance.yn.must_equal(25) }
       end
 
-    end # Geometry
+    end # Null
 
-  end # Null
+  end # Geometry
 
 end # Vedeu

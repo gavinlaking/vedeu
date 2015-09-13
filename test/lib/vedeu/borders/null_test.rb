@@ -15,7 +15,7 @@ module Vedeu
       }
       let(:_name)     { 'null_border' }
       let(:geometry)  {
-        Vedeu::Geometry.new(name: _name, x: 4, y: 6, xn: 10, yn: 12)
+        Vedeu::Geometry::Geometry.new(name: _name, x: 4, y: 6, xn: 10, yn: 12)
       }
 
       before { Vedeu.geometries.stubs(:by_name).returns(geometry) }

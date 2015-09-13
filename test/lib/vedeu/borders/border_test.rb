@@ -112,7 +112,11 @@ module Vedeu
         let(:left)    { false }
         let(:right)   { false }
         let(:geometry) {
-          Vedeu::Geometry.new(name: 'Border#bxbxnbybyn', x: 2, xn: 6, y: 2, yn: 6)
+          Vedeu::Geometry::Geometry.new(name: 'Border#bxbxnbybyn',
+                                        x:    2,
+                                        xn:   6,
+                                        y:    2,
+                                        yn: 6)
         }
 
         describe '#bx' do
@@ -206,7 +210,7 @@ module Vedeu
 
       describe '#width' do
         let(:geometry) {
-          Vedeu::Geometry.new(name: 'borders', width: 8)
+          Vedeu::Geometry::Geometry.new(name: 'borders', width: 8)
         }
 
         subject { instance.width }
@@ -258,7 +262,7 @@ module Vedeu
 
       describe '#height' do
         let(:geometry) {
-          Vedeu::Geometry.new(name: 'borders', height: 5)
+          Vedeu::Geometry::Geometry.new(name: 'borders', height: 5)
         }
 
         subject { instance.height }

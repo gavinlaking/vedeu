@@ -67,8 +67,8 @@ module Vedeu
     #   Vedeu.geometry
     #
     # @!method geometry
-    #   @see Vedeu::DSL::Geometry.geometry
-    def_delegators Vedeu::DSL::Geometry, :geometry
+    #   @see Vedeu::Geometry::DSL.geometry
+    def_delegators Vedeu::Geometry::DSL, :geometry
 
     # @example
     #   Vedeu.group

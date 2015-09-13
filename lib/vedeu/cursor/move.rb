@@ -123,7 +123,7 @@ module Vedeu
 
     # Returns a newly positioned and stored cursor or view.
     #
-    # @return [Vedeu::Cursor|Vedeu::Geometry]
+    # @return [Vedeu::Cursor|Vedeu::Geometry::Geometry]
     def move
       model = entity.new(merged_attributes).store
 
@@ -134,7 +134,7 @@ module Vedeu
 
     # @return [void]
     def refresh
-      if entity.to_s == 'Vedeu::Geometry'
+      if entity.to_s == 'Vedeu::Geometry::Geometry'
         Vedeu.trigger(:_clear_)
         Vedeu.trigger(:_refresh_)
         Vedeu.trigger(:_clear_, name)
@@ -148,7 +148,7 @@ module Vedeu
 
     # @return [Hash<Symbol => Boolean,Fixnum, String>]
     def merged_attributes
-      if entity.to_s == 'Vedeu::Geometry'
+      if entity.to_s == 'Vedeu::Geometry::Geometry'
         geometry_attributes
 
       else
@@ -177,9 +177,9 @@ module Vedeu
 
     private
 
-    # @return [Vedeu::Coordinate]
+    # @return [Vedeu::Geometry::Coordinate]
     def coordinate
-      @coordinate ||= Vedeu::Coordinate.new(name, oy, ox)
+      @coordinate ||= Vedeu::Geometry::Coordinate.new(name, oy, ox)
     end
 
     # @return [Vedeu::Cursor]
@@ -196,7 +196,7 @@ module Vedeu
                                oy: oy)
     end
 
-    # @see Vedeu::Geometries#by_name
+    # @see Vedeu::Geometry::Repository#by_name
     def geometry
       @geometry ||= Vedeu.geometries.by_name(name)
     end

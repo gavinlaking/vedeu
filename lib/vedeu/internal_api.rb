@@ -88,8 +88,8 @@ module Vedeu
     #   Vedeu.geometries
     #
     # @!method geometries
-    # @return [Vedeu::Geometries]
-    def_delegators Vedeu::Geometries, :geometries
+    # @return [Vedeu::Geometry::Repository]
+    def_delegators Vedeu::Geometry::Repository, :geometries
 
     # Manipulate the repository of groups.
     #

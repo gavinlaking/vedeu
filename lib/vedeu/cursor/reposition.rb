@@ -58,7 +58,7 @@ module Vedeu
     # Build a new instance of the entity that is being repositioned and replace
     # existing stored version.
     #
-    # @return [Vedeu::Cursor|Vedeu::Geometry]
+    # @return [Vedeu::Cursor|Vedeu::Geometry::Geometry]
     def build_entity!
       @_entity ||= entity.new(name: name,
                               y:    coordinate.y_position,
@@ -68,9 +68,9 @@ module Vedeu
     end
     alias_method :new_entity, :build_entity!
 
-    # @return [Vedeu::Coordinate]
+    # @return [Vedeu::Geometry::Coordinate]
     def coordinate
-      @coordinate ||= Vedeu::Coordinate.new(name, y, x)
+      @coordinate ||= Vedeu::Geometry::Coordinate.new(name, y, x)
     end
 
   end # Reposition

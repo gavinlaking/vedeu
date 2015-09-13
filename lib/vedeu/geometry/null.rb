@@ -1,10 +1,10 @@
 module Vedeu
 
-  module Null
+  module Geometry
 
     # Provides a non-existent model to swallow messages.
     #
-    class Geometry
+    class Null
 
       extend Forwardable
 
@@ -32,11 +32,11 @@ module Vedeu
       # @return [String|NilClass]
       attr_reader :name
 
-      # Returns a new instance of Vedeu::Null::Geometry.
+      # Returns a new instance of Vedeu::Geometry::Null.
       #
       # @param attributes [Hash<Symbol => void>]
       # @option attributes name [String|NilClass]
-      # @return [Vedeu::Null::Geometry]
+      # @return [Vedeu::Geometry::Null]
       def initialize(attributes = {})
         @attributes = attributes
         @name       = @attributes[:name]
@@ -60,21 +60,21 @@ module Vedeu
         true
       end
 
-      # @return [Vedeu::Null::Geometry]
+      # @return [Vedeu::Geometry::Null]
       def store
         self
       end
 
       private
 
-      # @return [Vedeu::Area]
+      # @return [Vedeu::Geometry::Area]
       def area
-        @area ||= Vedeu::Area.from_attributes(y_default: Vedeu.height,
-                                              x_default: Vedeu.width)
+        @area ||= Vedeu::Geometry::Area.from_attributes(y_default: Vedeu.height,
+                                                        x_default: Vedeu.width)
       end
 
-    end # Geometry
+    end # Null
 
-  end # Null
+  end # Geometry
 
 end # Vedeu

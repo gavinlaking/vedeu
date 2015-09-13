@@ -183,9 +183,9 @@ module Vedeu
     #   terminal space up when defining interfaces or views, leading to more
     #   consistent rendering.
     #
-    #   If the client application is using the {Vedeu::Grid#rows} or
-    #   {Vedeu::Grid#columns} helpers, the dimensions are made more consistent
-    #   using this approach.
+    #   If the client application is using the {Vedeu::Geometry::Grid#rows} or
+    #   {Vedeu::Geometry::Grid#columns} helpers, the dimensions are made more
+    #   consistent using this approach.
     #
     # @return [Array]
     def size

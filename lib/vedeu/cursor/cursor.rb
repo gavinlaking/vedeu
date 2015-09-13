@@ -100,9 +100,9 @@ module Vedeu
 
     # Return the position of this cursor.
     #
-    # @return [Vedeu::Position]
+    # @return [Vedeu::Geometry::Position]
     def position
-      @position = Vedeu::Position[y, x]
+      @position = Vedeu::Geometry::Position[y, x]
     end
 
     # Show a named cursor, or without a name, the cursor of the currently

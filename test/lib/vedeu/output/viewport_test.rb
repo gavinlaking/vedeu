@@ -20,7 +20,7 @@ module Vedeu
     }
     let(:visible)   { true }
     let(:interface) { Vedeu::Interface.new(style: nil, visible: visible) }
-    let(:geometry)  { Vedeu::Geometry.new(height: 3, width: 3) }
+    let(:geometry)  { Vedeu::Geometry::Geometry.new(height: 3, width: 3) }
 
     before do
       Vedeu.interfaces.stubs(:by_name).returns(interface)

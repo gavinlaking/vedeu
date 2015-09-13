@@ -144,7 +144,7 @@ module Vedeu
         [build_bottom_left, captionbar, build_bottom_right].compact
       end
 
-      # @return [Vedeu::Geometry]
+      # @return [Vedeu::Geometry::Geometry]
       def geometry
         Vedeu.geometries.by_name(name)
       end

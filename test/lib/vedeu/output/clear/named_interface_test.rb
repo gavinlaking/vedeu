@@ -25,7 +25,7 @@ module Vedeu
         let(:interface) { Vedeu::Interface.new(name: _name, visible: visible) }
         let(:visible)   { true }
         let(:geometry)  {
-          Vedeu::Geometry.new(name: _name, x: 1, y: 1, xn: 2, yn: 2)
+          Vedeu::Geometry::Geometry.new(name: _name, x: 1, y: 1, xn: 2, yn: 2)
         }
 
         before do

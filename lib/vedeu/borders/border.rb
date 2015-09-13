@@ -171,7 +171,7 @@ module Vedeu
 
       private
 
-      # @return [Vedeu::Geometry]
+      # @return [Vedeu::Geometry::Geometry]
       def geometry
         Vedeu.geometries.by_name(name)
       end

@@ -37,7 +37,7 @@ module Vedeu
 
       describe '#render' do
         let(:geometry) {
-          Vedeu::Geometry.new(name: _name, x: 1, xn: 7, y: 1, yn: 4)
+          Vedeu::Geometry::Geometry.new(name: _name, x: 1, xn: 7, y: 1, yn: 4)
         }
         let(:interface) {
           Vedeu::Interface.new(name: _name, visible: visible)

@@ -26,7 +26,7 @@ module Vedeu
     }
     let(:enabled)  { true }
     let(:geometry) {
-      Vedeu::Geometry.new(name: _name, x: 5, xn: 10, y: 5, yn: 10)
+      Vedeu::Geometry::Geometry.new(name: _name, x: 5, xn: 10, y: 5, yn: 10)
     }
 
     before do
@@ -236,10 +236,10 @@ module Vedeu
 
       subject { instance.move }
 
-      context 'when the entity is a Vedeu::Geometry' do
-        let(:entity) { Vedeu::Geometry }
+      context 'when the entity is a Vedeu::Geometry::Geometry' do
+        let(:entity) { Vedeu::Geometry::Geometry }
 
-        it { subject.must_be_instance_of(Vedeu::Geometry) }
+        it { subject.must_be_instance_of(Vedeu::Geometry::Geometry) }
       end
 
       context 'when the entity is a Vedeu::Cursor' do
@@ -252,8 +252,8 @@ module Vedeu
 
       subject { instance.refresh }
 
-      context 'when the entity is a Vedeu::Geometry' do
-        let(:entity) { Vedeu::Geometry }
+      context 'when the entity is a Vedeu::Geometry::Geometry' do
+        let(:entity) { Vedeu::Geometry::Geometry }
 
         it {
           Vedeu.expects(:trigger)
@@ -274,8 +274,8 @@ module Vedeu
 
       it { subject.must_be_instance_of(Hash) }
 
-      context 'when the entity is a Vedeu::Geometry' do
-        let(:entity)   { Vedeu::Geometry }
+      context 'when the entity is a Vedeu::Geometry::Geometry' do
+        let(:entity)   { Vedeu::Geometry::Geometry }
         let(:expected) {
           {
             centred: false,

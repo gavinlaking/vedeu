@@ -2,13 +2,13 @@ require 'test_helper'
 
 module Vedeu
 
-  module DSL
+  module Geometry
 
-    describe Geometry do
+    describe DSL do
 
-      let(:described) { Vedeu::DSL::Geometry }
+      let(:described) { Vedeu::Geometry::DSL }
       let(:instance)  { described.new(model) }
-      let(:model)     { Vedeu::Geometry.new }
+      let(:model)     { Vedeu::Geometry::Geometry.new }
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
@@ -36,7 +36,7 @@ module Vedeu
             end
           }
 
-          it { subject.must_be_instance_of(Vedeu::Geometry) }
+          it { subject.must_be_instance_of(Vedeu::Geometry::Geometry) }
 
           it 'allows the use of centred within geometry' do
             subject.centred.must_equal(false)
@@ -90,7 +90,7 @@ module Vedeu
             end
           }
 
-          it { subject.must_be_instance_of(Vedeu::Geometry) }
+          it { subject.must_be_instance_of(Vedeu::Geometry::Geometry) }
 
           it 'allows the use of height within geometry' do
             subject.height.must_equal(17)
@@ -153,7 +153,7 @@ module Vedeu
             end
           }
 
-          it { subject.must_be_instance_of(Vedeu::Geometry) }
+          it { subject.must_be_instance_of(Vedeu::Geometry::Geometry) }
 
           it 'allows the use of width within geometry' do
             subject.width.must_equal(29)
@@ -172,7 +172,7 @@ module Vedeu
 
         context 'when a block is given' do
           subject {
-            Vedeu::Geometry.build({}) do
+            Vedeu::Geometry::Geometry.build({}) do
               x do
                 3 + 4
               end
@@ -189,7 +189,7 @@ module Vedeu
             end
           }
 
-          it { subject.must_be_instance_of(Vedeu::Geometry) }
+          it { subject.must_be_instance_of(Vedeu::Geometry::Geometry) }
 
           it 'allows the use of x within geometry' do
             subject.x.must_equal(9)
@@ -207,7 +207,7 @@ module Vedeu
 
           context 'when a block is given' do
             subject {
-              Vedeu::Geometry.build({}) do
+              Vedeu::Geometry::Geometry.build({}) do
                 x do
                   8 + 8
                 end
@@ -230,7 +230,7 @@ module Vedeu
 
         context 'when a block is given' do
           subject {
-            Vedeu::Geometry.build({}) do
+            Vedeu::Geometry::Geometry.build({}) do
               y do
                 2 + 7
               end
@@ -247,7 +247,7 @@ module Vedeu
             end
           }
 
-          it { subject.must_be_instance_of(Vedeu::Geometry) }
+          it { subject.must_be_instance_of(Vedeu::Geometry::Geometry) }
 
           it 'allows the use of y within geometry' do
             subject.y.must_equal(4)
@@ -265,7 +265,7 @@ module Vedeu
 
           context 'when a block is given' do
             subject {
-              Vedeu::Geometry.build({}) do
+              Vedeu::Geometry::Geometry.build({}) do
                 y do
                   8 + 8
                 end
@@ -285,7 +285,7 @@ module Vedeu
 
         context 'when a block is given' do
           subject {
-            Vedeu::Geometry.build({}) do
+            Vedeu::Geometry::Geometry.build({}) do
               xn do
                 8 + 8
               end
@@ -304,7 +304,7 @@ module Vedeu
 
         context 'when a block is given' do
           subject {
-            Vedeu::Geometry.build({}) do
+            Vedeu::Geometry::Geometry.build({}) do
               yn do
                 5 + 4
               end
@@ -315,8 +315,8 @@ module Vedeu
         end
       end
 
-    end # Geometry
+    end # DSL
 
-  end # DSL
+  end # Geometry
 
 end # Vedeu

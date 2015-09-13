@@ -49,7 +49,7 @@ module Vedeu
     end
 
     describe '#position' do
-      it { instance.position.must_be_instance_of(Vedeu::Position) }
+      it { instance.position.must_be_instance_of(Vedeu::Geometry::Position) }
     end
 
     describe '#value' do

@@ -104,19 +104,19 @@ end
 
 ## Geometry
 
-{include:Vedeu::DSL::Geometry}
+{include:Vedeu::Geometry::DSL}
 
 ### Setting the interface dimensions
 
-{include:Vedeu::DSL::Geometry#centred}
-{include:Vedeu::DSL::Geometry#height}
-{include:Vedeu::DSL::Geometry#width}
-{include:Vedeu::DSL::Geometry#columns}
-{include:Vedeu::DSL::Geometry#rows}
-{include:Vedeu::DSL::Geometry#x}
-{include:Vedeu::DSL::Geometry#xn}
-{include:Vedeu::DSL::Geometry#y}
-{include:Vedeu::DSL::Geometry#yn}
+{include:Vedeu::Geometry::DSL#centred}
+{include:Vedeu::Geometry::DSL#height}
+{include:Vedeu::Geometry::DSL#width}
+{include:Vedeu::Geometry::DSL#columns}
+{include:Vedeu::Geometry::DSL#rows}
+{include:Vedeu::Geometry::DSL#x}
+{include:Vedeu::Geometry::DSL#xn}
+{include:Vedeu::Geometry::DSL#y}
+{include:Vedeu::Geometry::DSL#yn}
 
 ## Groups
 

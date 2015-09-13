@@ -1,7 +1,7 @@
 module Vedeu
 
   # An Interface represents a portion of the terminal defined by
-  # {Vedeu::Geometry}.
+  # {Vedeu::Geometry::Geometry}.
   #
   class Interface
 

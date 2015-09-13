@@ -1,6 +1,6 @@
 module Vedeu
 
-  module DSL
+  module Geometry
 
     # Geometry allows the configuration of the position and size of an
     # interface. Within Vedeu, as the same for ANSI terminals, has the origin at
@@ -68,7 +68,7 @@ module Vedeu
     #     yn +--------------+           # south:  yn + 1
     #             south
     #
-    class Geometry
+    class DSL
 
       include Vedeu::DSL
       include Vedeu::DSL::Use
@@ -83,18 +83,18 @@ module Vedeu
       #   geometry belongs.
       # @param block [Proc]
       # @raise [Vedeu::Error::InvalidSyntax] The required block was not given.
-      # @return [Vedeu::Geometry]
+      # @return [Vedeu::Geometry::Geometry]
       def self.geometry(name, &block)
         fail Vedeu::Error::InvalidSyntax, 'block not given' unless block_given?
 
-        Vedeu::Geometry.build(name: name, &block).store
+        Vedeu::Geometry::Geometry.build(name: name, &block).store
       end
 
-      # Returns an instance of DSL::Geometry.
+      # Returns an instance of Vedeu::Geometry::DSL.
       #
-      # @param model [Vedeu::Geometry]
+      # @param model [Vedeu::Geometry::Geometry]
       # @param client [Object]
-      # @return [Vedeu::DSL::Geometry]
+      # @return [Vedeu::Geometry::DSL]
       def initialize(model, client = nil)
         @model  = model
         @client = client
@@ -137,7 +137,7 @@ module Vedeu
       #   between 1 and 12 inclusive.
       # @return [Fixnum|Vedeu::Error::OutOfRange]
       def columns(value)
-        Vedeu::Grid.columns(value)
+        Vedeu::Geometry::Grid.columns(value)
       end
 
       # Specify the number of characters/rows/lines tall the interface will be.
@@ -170,7 +170,7 @@ module Vedeu
       #   between 1 and 12 inclusive.
       # @return [Fixnum]
       def rows(value)
-        Vedeu::Grid.rows(value)
+        Vedeu::Geometry::Grid.rows(value)
       end
 
       # Specify the number of characters/columns wide the interface will be.
@@ -269,8 +269,8 @@ module Vedeu
       end
       alias_method :yn=, :yn
 
-    end # Geometry
+    end # DSL
 
-  end # DSL
+  end # Geometry
 
 end # Vedeu

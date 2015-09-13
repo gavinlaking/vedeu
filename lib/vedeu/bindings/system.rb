@@ -146,7 +146,7 @@ module Vedeu
       #   Vedeu.trigger(:_maximise_, name)
       #
       # @return [TrueClass]
-      # @see Vedeu::Geometry#maximise
+      # @see Vedeu::Geometry::Geometry#maximise
       def maximise!
         Vedeu.bind(:_maximise_) do |name|
           Vedeu.geometries.by_name(name).maximise
@@ -184,7 +184,7 @@ module Vedeu
       #   Vedeu.trigger(:_unmaximise_, name)
       #
       # @return [TrueClass]
-      # @see Vedeu::Geometry#unmaximise
+      # @see Vedeu::Geometry::Geometry#unmaximise
       def unmaximise!
         Vedeu.bind(:_unmaximise_) do |name|
           Vedeu.geometries.by_name(name).unmaximise

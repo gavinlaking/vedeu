@@ -46,7 +46,7 @@ module Vedeu
           end
 
           Vedeu.bind("_view_#{direction}_".to_sym) do |name|
-            Vedeu::Move.send(direction, Vedeu::Geometry, name)
+            Vedeu::Move.send(direction, Vedeu::Geometry::Geometry, name)
           end
 
           Vedeu.bind_alias("_geometry_#{direction}_".to_sym,

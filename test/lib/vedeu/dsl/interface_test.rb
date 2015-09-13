@@ -188,7 +188,7 @@ module Vedeu
         context 'when the block is given' do
           subject { instance.geometry { } }
 
-          it { subject.must_be_instance_of(Vedeu::Geometry) }
+          it { subject.must_be_instance_of(Vedeu::Geometry::Geometry) }
 
           context 'when the name is not given' do
             it 'uses the interface name for storing the geometry' do
