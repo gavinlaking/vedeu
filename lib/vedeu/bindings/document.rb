@@ -10,8 +10,8 @@ module Vedeu
 
       extend self
 
-      # Setup events relating to the document/editor/fake terminal. This method
-      # is called by Vedeu.
+      # Setup events relating to the document/editor/fake terminal.
+      # This method is called by Vedeu.
       #
       # @return [TrueClass]
       def setup!
@@ -38,8 +38,8 @@ module Vedeu
         end
       end
 
-      # This event attempts to delete the character in the named document at the
-      # current virtual cursor position.
+      # This event attempts to delete the character in the named
+      # document at the current virtual cursor position.
       #
       # @example
       #   Vedeu.trigger(:_editor_delete_character_, name)
@@ -51,8 +51,8 @@ module Vedeu
         end
       end
 
-      # This event attempts to delete the line in the named document at the
-      # current virtual cursor position.
+      # This event attempts to delete the line in the named document
+      # at the current virtual cursor position.
       #
       # @example
       #   Vedeu.trigger(:_editor_delete_line_, name)
@@ -64,8 +64,8 @@ module Vedeu
         end
       end
 
-      # This event attempts to move the virtual cursor down by one line in the
-      # named document.
+      # This event attempts to move the virtual cursor down by one
+      # line in the named document.
       #
       # @example
       #   Vedeu.trigger(:_editor_down_, name)
@@ -77,8 +77,8 @@ module Vedeu
         end
       end
 
-      # This event attempts to insert the given character in the named document
-      # at the current virtual cursor position.
+      # This event attempts to insert the given character in the named
+      # document at the current virtual cursor position.
       #
       # @example
       #   Vedeu.trigger(:_editor_insert_character_, name, character)
@@ -90,8 +90,8 @@ module Vedeu
         end
       end
 
-      # This event attempts to insert a new line in the named document at the
-      # current virtual cursor position.
+      # This event attempts to insert a new line in the named document
+      # at the current virtual cursor position.
       #
       # @example
       #   Vedeu.trigger(:_editor_insert_line_, name)
@@ -103,8 +103,8 @@ module Vedeu
         end
       end
 
-      # This event attempts to move the virtual cursor left by one character in
-      # the named document.
+      # This event attempts to move the virtual cursor left by one
+      # character in the named document.
       #
       # @example
       #   Vedeu.trigger(:_editor_left_, name)
@@ -114,8 +114,8 @@ module Vedeu
         Vedeu.bind(:_editor_left_) { |name| Vedeu.documents.by_name(name).left }
       end
 
-      # This event attempts to move the virtual cursor right by one character in
-      # the named document.
+      # This event attempts to move the virtual cursor right by one
+      # character in the named document.
       #
       # @example
       #   Vedeu.trigger(:_editor_right_, name)
@@ -127,8 +127,8 @@ module Vedeu
         end
       end
 
-      # This event attempts to move the virtual cursor up by one line in the
-      # named document.
+      # This event attempts to move the virtual cursor up by one line
+      # in the named document.
       #
       # @example
       #   Vedeu.trigger(:_editor_up_, name)

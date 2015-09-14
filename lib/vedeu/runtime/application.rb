@@ -23,6 +23,9 @@ module Vedeu
       #   encouraged to use this event to close any open buffers, save files,
       #   empty trash, etc.
       #
+      # @example
+      #   Vedeu.exit
+      #
       # @return [void]
       def stop
         Vedeu.trigger(:_cleanup_)

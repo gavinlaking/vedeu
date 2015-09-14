@@ -13,7 +13,7 @@ module Vedeu
       #
       # @param message [String]
       # @param block [Proc]
-      # @return [void]
+      # @return [void] The return value of the executed block.
       def timer(message = '', &block)
         new(message).measure(&block)
       end
@@ -32,7 +32,7 @@ module Vedeu
     # Write an entry to the log file stating how long a section of code took in
     # milliseconds. Useful for debugging performance.
     #
-    # @return [void]
+    # @return [void] The return value of the executed block.
     def measure
       work = yield
 

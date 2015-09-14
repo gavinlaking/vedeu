@@ -31,7 +31,8 @@ module Vedeu
       store
     end
 
-    # Toggle the visible state and store the model.
+    # Toggle the visible state and store the model. When the model is
+    # hidden, then it is shown, and vice versa.
     #
     # @return [FalseClass|TrueClass]
     def toggle

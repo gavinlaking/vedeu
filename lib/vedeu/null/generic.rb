@@ -6,6 +6,14 @@ module Vedeu
     #
     class Generic
 
+      # @!attribute [r] attributes
+      # @return [String]
+      attr_reader :attributes
+
+      # @!attribute [r] name
+      # @return [String]
+      attr_reader :name
+
       # Returns an instance of the Vedeu::Null::Generic class.
       #
       # @param attributes [Hash<Symbol => void>]
@@ -20,10 +28,25 @@ module Vedeu
       def null(*)
         nil
       end
-      alias_method :add, :null
-      alias_method :colour, :null
-      alias_method :parent, :null
-      alias_method :style, :null
+      alias_method :add,           :null
+      alias_method :bottom_item,   :null
+      alias_method :colour,        :null
+      alias_method :current_item,  :null
+      alias_method :deselect_item, :null
+      alias_method :hide,          :null
+      alias_method :item,          :null
+      alias_method :items,         :null
+      alias_method :next_item,     :null
+      alias_method :parent,        :null
+      alias_method :prev_item,     :null
+      alias_method :select_item,   :null
+      alias_method :selected_item, :null
+      alias_method :show,          :null
+      alias_method :style,         :null
+      alias_method :toggle,        :null
+      alias_method :top_item,      :null
+      alias_method :view,          :null
+      alias_method :zindex,        :null
 
       # @return [Boolean]
       def null?

@@ -129,7 +129,7 @@ module Vedeu
     # @param dimension [Fixnum] Either the height or width.
     # @return [Fixnum]
     def content_offset(offset, dimension)
-      if offset >= dimension && ((offset - dimension) > 0)
+      if offset >= dimension
         offset - dimension
 
       else

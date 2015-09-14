@@ -9,7 +9,8 @@ module Vedeu
 
       extend self
 
-      # Setup events relating to the DRb server. This method is called by Vedeu.
+      # Setup events relating to the DRb server. This method is called
+      # by Vedeu.
       #
       # @return [TrueClass]
       def setup!
@@ -24,8 +25,8 @@ module Vedeu
 
       private
 
-      # Triggering this event will send input to the running application as long
-      # as it has the DRb server running.
+      # Triggering this event will send input to the running
+      # application as long as it has the DRb server running.
       #
       # @example
       #   Vedeu.trigger(:_drb_input_, data, type)
@@ -47,15 +48,16 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:_drb_retrieve_output_)
       #
-      # @todo This event queries Vedeu. Events should only be commands.
+      # @todo This event queries Vedeu. Events should only be
+      #   commands.
       #
       # @return [TrueClass]
       def drb_retrieve_output!
         Vedeu.bind(:_drb_retrieve_output_) { Vedeu::VirtualBuffers.retrieve }
       end
 
-      # Triggering this event with 'data' will push data into the running
-      # application's virtual buffer.
+      # Triggering this event with 'data' will push data into the
+      # running application's virtual buffer.
       #
       # @example
       #   Vedeu.trigger(:_drb_store_output_, data)
@@ -67,7 +69,8 @@ module Vedeu
         end
       end
 
-      # Use the DRb server to request the client application to restart.
+      # Use the DRb server to request the client application to
+      # restart.
       #
       # @example
       #   Vedeu.trigger(:_drb_restart_)
@@ -89,7 +92,8 @@ module Vedeu
         Vedeu.bind(:_drb_start_) { Vedeu::Distributed::Server.start }
       end
 
-      # Use the DRb server to request the status of the client application.
+      # Use the DRb server to request the status of the client
+      # application.
       #
       # @example
       #   Vedeu.trigger(:_drb_status_)

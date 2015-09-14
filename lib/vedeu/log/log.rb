@@ -32,12 +32,18 @@ module Vedeu
 
       # Write a message to STDOUT.
       #
+      # @example
+      #   Vedeu.log_stdout
+      #
       # @return [TrueClass]
       def log_stdout(type: :info, message:)
         $stdout.puts log_entry(type, message)
       end
 
       # Write a message to STDERR.
+      #
+      # @example
+      #   Vedeu.log_stderr
       #
       # @return [TrueClass]
       def log_stderr(type: :info, message:)

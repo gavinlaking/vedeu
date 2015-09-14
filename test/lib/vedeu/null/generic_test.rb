@@ -16,6 +16,8 @@ module Vedeu
       let(:_name) { 'null_generic' }
 
       describe 'alias methods' do
+        it { instance.must_respond_to(:name) }
+        it { instance.must_respond_to(:attributes) }
         it { instance.must_respond_to(:visible?) }
       end
 
@@ -31,9 +33,24 @@ module Vedeu
 
         it { subject.must_be_instance_of(NilClass) }
         it { instance.must_respond_to(:add) }
+        it { instance.must_respond_to(:bottom_item) }
         it { instance.must_respond_to(:colour) }
+        it { instance.must_respond_to(:current_item) }
+        it { instance.must_respond_to(:deselect_item) }
+        it { instance.must_respond_to(:hide) }
+        it { instance.must_respond_to(:item) }
+        it { instance.must_respond_to(:items) }
+        it { instance.must_respond_to(:next_item) }
         it { instance.must_respond_to(:parent) }
+        it { instance.must_respond_to(:prev_item) }
+        it { instance.must_respond_to(:select_item) }
+        it { instance.must_respond_to(:selected_item) }
+        it { instance.must_respond_to(:show) }
         it { instance.must_respond_to(:style) }
+        it { instance.must_respond_to(:toggle) }
+        it { instance.must_respond_to(:top_item) }
+        it { instance.must_respond_to(:view) }
+        it { instance.must_respond_to(:zindex) }
       end
 
       describe '#null?' do
@@ -52,6 +69,7 @@ module Vedeu
         subject { instance.visible }
 
         it { subject.must_be_instance_of(FalseClass) }
+        it { instance.must_respond_to(:visible?) }
       end
 
       describe '#visible=' do

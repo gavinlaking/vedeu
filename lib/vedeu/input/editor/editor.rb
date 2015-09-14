@@ -27,7 +27,7 @@ module Vedeu
       #
       # @param name [String]
       # @param input [String|Symbol]
-      # @return [void]
+      # @return [String|Symbol]
       def self.keypress(input:, name:)
         new(input: input, name: name).keypress
       end

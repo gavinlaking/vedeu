@@ -10,6 +10,11 @@ module Vedeu
 
       class << self
 
+        # Clears the group of interfaces belonging to the given name.
+        #
+        # @example
+        #   Vedeu.clear_by_group(name)
+        #
         # @param name [String]
         # @return [void]
         def render(name)
