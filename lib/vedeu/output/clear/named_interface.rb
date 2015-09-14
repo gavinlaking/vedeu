@@ -10,6 +10,11 @@ module Vedeu
 
       class << self
 
+        # Clear the interface with the given name.
+        #
+        # @example
+        #   Vedeu.clear_by_name(name)
+        #
         # @return [Array<Array<Vedeu::Views::Char>>]
         # @see #initialize
         def render(name)

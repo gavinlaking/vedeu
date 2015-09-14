@@ -22,7 +22,7 @@ module Vedeu
     attr_accessor :delay
 
     # @!attribute [rw] group
-    # @return [void]
+    # @return [Symbol|String]
     attr_accessor :group
 
     # @!attribute [rw] name
@@ -81,6 +81,22 @@ module Vedeu
       super
 
       Vedeu.buffers.by_name(name).show
+    end
+
+    # Toggle the visibility of the interface with the given name.
+    #
+    # @example
+    #   Vedeu.toggle_interface(name)
+    #
+    # @return [void]
+    def toggle
+      if visible?
+        hide
+
+      else
+        show
+
+      end
     end
 
     private

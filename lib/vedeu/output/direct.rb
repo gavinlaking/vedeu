@@ -7,7 +7,7 @@ module Vedeu
     # @param value [String]
     # @param x [Fixnum]
     # @param y [Fixnum]
-    # @return [void]
+    # @return [String]
     def self.write(value:, x:, y:)
       new(value: value, x: x, y: y).write
     end
@@ -24,7 +24,7 @@ module Vedeu
       @y     = y     || 1
     end
 
-    # @return [void]
+    # @return [String]
     def write
       Vedeu::Terminal.output(output)
 

@@ -10,8 +10,9 @@ module Vedeu
 
       attr_accessor :controller_name
 
-      # Specifying the controller name in your controller provides Vedeu with
-      # the means to route requests to different parts of your application.
+      # Specifying the controller name in your controller provides
+      # Vedeu with the means to route requests to different parts of
+      # your application.
       #
       # @example
       #   class YourController
@@ -25,7 +26,8 @@ module Vedeu
       #   end
       #
       # @param controller_name [Symbol] The name of the controller.
-      # @return [Hash<Symbol => Hash<Symbol => String, Array<Symbol>>>]
+      # @return
+      #   [Hash<Symbol => Hash<Symbol => String, Array<Symbol>>>]
       def controller(controller_name = nil)
         @controller_name = controller_name
 
@@ -33,8 +35,9 @@ module Vedeu
       end
       alias_method :controller_name, :controller
 
-      # Specifying the action names in your controller provides Vedeu with the
-      # means to route requests to different parts of your application.
+      # Specifying the action names in your controller provides Vedeu
+      # with the means to route requests to different parts of your
+      # application.
       #
       # @example
       #   class YourController
@@ -51,10 +54,13 @@ module Vedeu
       #
       #   end
       #
-      #   Vedeu.trigger(:_goto_, :your_controller, :show, { some: :args })
+      #   Vedeu.trigger(:_goto_,
+      #                 :your_controller,
+      #                 :show,
+      #                 { some: :args })
       #
-      # @param action_names [Array<Symbol>, Symbol] A collection of action names
-      #   or the name of the action.
+      # @param action_names [Array<Symbol>, Symbol] A collection of
+      #   action names or the name of the action.
       # @return [Array<Symbol>]
       def action(*action_names)
         action_names.each do |action_name|
@@ -66,8 +72,8 @@ module Vedeu
 
     end # ClassMethods
 
-    # When this module is included in a class, provide ClassMethods as class
-    # methods for the class.
+    # When this module is included in a class, provide ClassMethods as
+    # class methods for the class.
     #
     # @param klass [Class]
     # @return [void]

@@ -2,16 +2,7 @@ module Vedeu
 
   module Buffers
 
-    # The Buffer object represents the states of display for an interface. The
-    # states are 'front', 'back' and 'previous'.
-    #
-    # [Back] -> [Front] -> [Previous]
-    #
-    # The content on the screen, or last output will always be the 'Front'
-    # buffer. Content due to be displayed on next refresh will come from the
-    # 'Back' buffer when available, otherwise from the current 'Front' buffer.
-    # When new content is copied to the 'Front' buffer, the current 'Front'
-    # buffer is also copied to the 'Previous' buffer.
+    # Used by Vedeu internally to manage the buffers of each interface defined.
     #
     class Buffer
 

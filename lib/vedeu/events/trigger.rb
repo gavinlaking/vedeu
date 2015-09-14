@@ -7,11 +7,13 @@ module Vedeu
     # registered for a name, then the result of each event will be returned as
     # part of a collection.
     #
-    # @example
-    #   Vedeu.trigger(:my_event, :oxidize, 'nitrogen')
-    #
     class Trigger
 
+      # Trigger an event by name.
+      #
+      # @example
+      #   Vedeu.trigger(:my_event, :oxidize, 'nitrogen')
+      #
       # @param name [Symbol] The name of the event you wish to trigger. The
       #   event does not have to exist.
       # @param args [Array] Any arguments the event needs to execute correctly.

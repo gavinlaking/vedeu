@@ -213,6 +213,22 @@ module Vedeu
         render
       end
 
+      # Toggle the visibility of the cursor with the given name.
+      #
+      # @example
+      #   Vedeu.toggle_cursor(name)
+      #
+      # @return [Vedeu::Escape]
+      def toggle
+        if visible?
+          hide
+
+        else
+          show
+
+        end
+      end
+
       # @return [Fixnum] The column/character coordinate.
       def x
         @x = bx  if @x < bx

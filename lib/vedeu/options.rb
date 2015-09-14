@@ -1,5 +1,8 @@
 module Vedeu
 
+  # An internal class for Vedeu to provide a consistent interface to
+  # options used by many classes.
+  #
   class Options
 
     # @param options [Hash]

@@ -2,29 +2,7 @@ module Vedeu
 
   module Borders
 
-    # Borders are defined by name for each of the client application's
-    # interfaces or views. They can be enabled or disabled (which controls
-    # whether they are rendered or not), they have their own colours and styles,
-    # and each aspect of the border can be controlled.
-    #
-    # @example
-    #   # Borders can be defined when defining your interface...
-    #   Vedeu.interface 'my_interface' do
-    #     border do
-    #     # ...
-    #   end
-    #
-    #   # ...or as part of a view definition...
-    #   Vedeu.renders do
-    #     view 'border_demo' do
-    #       border do
-    #       # ...
-    #     end
-    #
-    #   # ...or standalone; referencing the target interface or view.
-    #   Vedeu.border 'some_interface' do
-    #     # ...
-    #   end
+    # Provides a mechanism to help configure borders in Vedeu.
     #
     class DSL
 

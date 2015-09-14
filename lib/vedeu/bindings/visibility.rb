@@ -2,14 +2,16 @@ module Vedeu
 
   module Bindings
 
-    # System events relating to the visibility of cursors or interfaces.
+    # System events relating to the visibility of cursors or
+    # interfaces.
     #
     # :nocov:
     module Visibility
 
       extend self
 
-      # Setup events relating to visibility. This method is called by Vedeu.
+      # Setup events relating to visibility. This method is called by
+      # Vedeu.
       #
       # @return [TrueClass]
       def setup!
@@ -27,8 +29,8 @@ module Vedeu
 
       private
 
-      # Clears the spaces occupied by the interfaces belonging to the named
-      # group.
+      # Clears the spaces occupied by the interfaces belonging to the
+      # named group.
       #
       # @example
       #   Vedeu.trigger(:_clear_group_, name)
@@ -41,8 +43,8 @@ module Vedeu
         end
       end
 
-      # Hide the cursor of the named interface or when a name is not given, the
-      # interface currently in focus.
+      # Hide the cursor of the named interface or when a name is not
+      # given, the interface currently in focus.
       #
       # @example
       #   Vedeu.trigger(:_hide_cursor_, name)
@@ -76,8 +78,8 @@ module Vedeu
         end
       end
 
-      # Show the cursor of the named interface or when a name is not given, the
-      # interface currently in focus.
+      # Show the cursor of the named interface or when a name is not
+      # given, the interface currently in focus.
       #
       # @example
       #   Vedeu.trigger(:_show_cursor_, name)

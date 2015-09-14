@@ -81,6 +81,9 @@ module Vedeu
 
     # Clears the entire terminal space.
     #
+    # @example
+    #   Vedeu.clear
+    #
     # @return [String]
     def clear
       virtual.clear if Vedeu::Configuration.drb?

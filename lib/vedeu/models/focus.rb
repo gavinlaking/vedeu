@@ -46,6 +46,7 @@ module Vedeu
     # to set the initially focussed interface.
     #
     # @example
+    #   Vedeu.trigger(:_focus_by_name_, name)
     #   Vedeu.focus_by_name('name')
     #
     # @param name [String] The interface to focus; must be defined.
@@ -96,6 +97,7 @@ module Vedeu
     # Put the next interface relative to the current interfaces in focus.
     #
     # @example
+    #   Vedeu.trigger(:_focus_next_)
     #   Vedeu.focus_next
     #
     # @return [String]
@@ -125,6 +127,7 @@ module Vedeu
     # Put the previous interface relative to the current interface in focus.
     #
     # @example
+    #   Vedeu.trigger(:_focus_prev_)
     #   Vedeu.focus_previous
     #
     # @return [String]

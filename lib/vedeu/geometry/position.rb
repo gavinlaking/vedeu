@@ -24,7 +24,7 @@ module Vedeu
       end
 
       # @param value [Array<Fixnum>|Vedeu::Position]
-      # @return [void]
+      # @return [Vedeu::Geometry::Position]
       def self.coerce(value)
         if value.is_a?(self)
           value
@@ -97,7 +97,7 @@ module Vedeu
       # aforementioned, call the block and then reposition to this location.
       #
       # @return [String]
-      # @yieldreturn [void] Returns the block wrapped in position escape
+      # @yieldreturn [String] Returns the block wrapped in position escape
       #   sequences.
       def to_s
         return "#{sequence}#{yield}" if block_given?

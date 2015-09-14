@@ -3,13 +3,14 @@ module Vedeu
   # Binds various events for running and manipulating Vedeu.
   #
   # @note
-  #   The methods these modules use are private, and should not be called
-  #   directly, however the produced events are all public and are highly
-  #   recommended to be used.
+  #   The methods these modules use are private, and should not be
+  #   called directly, however the produced events are all public and
+  #   are highly recommended to be used.
   #
-  #   Unbinding any of these events is likely to cause problems, so I would
-  #   advise leaving them alone. A safe rule: when the name starts and ends with
-  #   an underscore, it's probably used by Vedeu internally.
+  #   Unbinding any of these events is likely to cause problems, so I
+  #   would advise leaving them alone. A safe rule: when the name
+  #   starts and ends with an underscore, it's probably used by Vedeu
+  #   internally.
   #
   module Bindings
 

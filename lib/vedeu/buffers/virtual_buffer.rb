@@ -120,7 +120,7 @@ module Vedeu
     end
 
     # @return [Array<Array<Vedeu::Cell>>]
-    # @see {Vedeu::VirtualBuffer#cells}
+    # @see Vedeu::VirtualBuffer#cells
     def new_virtual_buffer
       Array.new(height) { Array.new(width) { Vedeu::Cell.new } }
     end

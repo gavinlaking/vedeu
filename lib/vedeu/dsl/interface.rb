@@ -228,7 +228,7 @@ module Vedeu
       #     # ... some code
       #   end
       #
-      # @return [void]
+      # @return [Boolean]
       def show!
         visible(true)
       end
@@ -240,7 +240,7 @@ module Vedeu
       #     # ... some code
       #   end
       #
-      # @return [void]
+      # @return [Boolean]
       def hide!
         visible(false)
       end
@@ -279,7 +279,7 @@ module Vedeu
       #     # ... some code
       #   end
       #
-      # @return [void]
+      # @return [Boolean]
       def visible(value = true)
         boolean = value ? true : false
 
@@ -302,7 +302,7 @@ module Vedeu
       #   end
       #
       # @param value [Fixnum]
-      # @return [void]
+      # @return [Fixnum]
       def zindex(value)
         model.zindex = value
       end

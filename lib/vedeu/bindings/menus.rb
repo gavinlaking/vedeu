@@ -2,15 +2,16 @@ module Vedeu
 
   module Bindings
 
-    # Each of the Bindings::Menus events require a target menu name as an
-    # argument.
+    # Each of the Bindings::Menus events require a target menu name as
+    # an argument.
     #
     # :nocov:
     module Menus
 
       extend self
 
-      # Setup events relating to menus. This method is called by Vedeu.
+      # Setup events relating to menus. This method is called by
+      # Vedeu.
       #
       # @return [TrueClass]
       def setup!
@@ -64,8 +65,8 @@ module Vedeu
         end
       end
 
-      # Returns all the menu items with respective `current` or `selected`
-      # boolean indicators.
+      # Returns all the menu items with respective `current` or
+      # `selected` boolean indicators.
       #
       # @example
       #   Vedeu.trigger(:_menu_items_, name)
@@ -75,8 +76,8 @@ module Vedeu
         Vedeu.bind(:_menu_items_) { |name| Vedeu.menus.by_name(name).items }
       end
 
-      # Makes the next menu item the current menu item, until it reaches the
-      # last item.
+      # Makes the next menu item the current menu item, until it
+      # reaches the last item.
       #
       # @example
       #   Vedeu.trigger(:_menu_next_, name)
@@ -86,8 +87,8 @@ module Vedeu
         Vedeu.bind(:_menu_next_) { |name| Vedeu.menus.by_name(name).next_item }
       end
 
-      # Makes the previous menu item the current menu item, until it reaches the
-      # first item.
+      # Makes the previous menu item the current menu item, until it
+      # reaches the first item.
       #
       # @example
       #   Vedeu.trigger(:_menu_prev_, name)
@@ -131,8 +132,8 @@ module Vedeu
         Vedeu.bind(:_menu_top_) { |name| Vedeu.menus.by_name(name).top_item }
       end
 
-      # Returns a subset of the menu items; starting at the current item to the
-      # last item.
+      # Returns a subset of the menu items; starting at the current
+      # item to the last item.
       #
       # @example
       #   Vedeu.trigger(:_menu_view_, name)

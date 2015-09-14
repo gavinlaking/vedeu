@@ -1,7 +1,8 @@
 module Vedeu
 
-  # Provides the mechanism to render views for the client application. The
-  # client application's ApplicationView will inherit from this class.
+  # Provides the mechanism to render views for the client application.
+  # The client application's ApplicationView will inherit from this
+  # class.
   #
   class ApplicationView
 
@@ -27,8 +28,8 @@ module Vedeu
       end
     end
 
-    # @raise [Vedeu::Error::NotImplemented] Subclasses of this class must
-    #   implement this method.
+    # @raise [Vedeu::Error::NotImplemented] Subclasses of this class
+    #   must implement this method.
     def render
       fail Vedeu::Error::NotImplemented,
            'The subclass of Vedeu::ApplicationView must implement the #render' \
@@ -43,8 +44,8 @@ module Vedeu
 
     private
 
-    # Provides the path to the template file using the base_path configuration
-    # option.
+    # Provides the path to the template file using the base_path
+    # configuration option.
     #
     # @param value [String]
     # @return [String]

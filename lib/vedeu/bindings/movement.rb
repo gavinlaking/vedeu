@@ -9,7 +9,8 @@ module Vedeu
 
       extend self
 
-      # Setup events relating to movement. This method is called by Vedeu.
+      # Setup events relating to movement. This method is called by
+      # Vedeu.
       #
       # @return [TrueClass]
       def setup!
@@ -26,23 +27,21 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:_cursor_down_)
       #
-      #   Vedeu.trigger(:_cursor_left_) # When a name is not given, the cursor
-      #                                 # in the interface which is currently in
-      #                                 # focus should move to the left.
+      #   Vedeu.trigger(:_cursor_left_)
+      #   # When a name is not given, the cursor in the interface
+      #   # which is currently in focus should move to the left.
       #
       #   Vedeu.trigger(:_cursor_left_, 'my_interface')
-      #                                 # When a name is given, the cursor
-      #                                 # instance belonging to this interface
-      #                                 # moves to the left.
+      #   # When a name is given, the cursor instance belonging to
+      #   # this interface moves to the left.
       #
       #   Vedeu.trigger(:_cursor_right_)
       #   Vedeu.trigger(:_cursor_up_)
       #
       #   Vedeu.trigger(:_cursor_origin_)                 # /or/
       #   Vedeu.trigger(:_cursor_origin_, 'my_interface')
-      #                                 # Moves the cursor to the top left of
-      #                                 # the named or current interface in
-      #                                 # focus.
+      #   # Moves the cursor to the top left of the named or current
+      #   # interface in focus.
       #
       #   Vedeu.trigger(:_view_down_,  'my_interface')
       #   Vedeu.trigger(:_view_left_,  'my_interface')
@@ -52,15 +51,16 @@ module Vedeu
       #   Each of the :_view_* events has an alias, :_geometry_*
       #
       # @note
-      #   The cursor or view may not be visible, but it will still move if
-      #     requested.
-      #   The cursor will not exceed the border or boundary of the interface, or
-      #     boundary of the visible terminal.
-      #   The cursor will move freely within the bounds of the interface,
-      #     irrespective of content.
-      #   The view will not exceed the boundary of the visible terminal.
-      #   The view will move freely within the bounds of the interface,
-      #     irrespective of content.
+      #   The cursor or view may not be visible, but it will still
+      #     move if requested.
+      #   The cursor will not exceed the border or boundary of the
+      #     interface, or boundary of the visible terminal.
+      #   The cursor will move freely within the bounds of the
+      #     interface, irrespective of content.
+      #   The view will not exceed the boundary of the visible
+      #     terminal.
+      #   The view will move freely within the bounds of the
+      #     interface, irrespective of content.
       #
       # @return [TrueClass]
       def directional!
@@ -85,8 +85,8 @@ module Vedeu
         end
       end
 
-      # This event moves the cursor to the interface origin; the top left corner
-      # of the named interface.
+      # This event moves the cursor to the interface origin; the top
+      # left corner of the named interface.
       #
       # @example
       #   Vedeu.trigger(:_cursor_origin_, name)
@@ -107,7 +107,8 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:_cursor_position_, name)
       #
-      # @todo This event queries Vedeu. Events should only be commands.
+      # @todo This event queries Vedeu. Events should only be
+      #   commands.
       #
       # @return [TrueClass]
       # @see Vedeu::Move

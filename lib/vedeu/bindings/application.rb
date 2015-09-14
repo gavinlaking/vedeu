@@ -9,8 +9,8 @@ module Vedeu
 
       extend self
 
-      # Setup events relating to client applications. This method is called by
-      # Vedeu.
+      # Setup events relating to client applications. This method is
+      # called by Vedeu.
       #
       # @return [TrueClass]
       def setup!
@@ -22,7 +22,10 @@ module Vedeu
       # Call a client application controller's action with parameters.
       #
       # @example
-      #   Vedeu.trigger(:_goto_, :your_controller, :some_action, { id: 7 })
+      #   Vedeu.trigger(:_goto_,
+      #                 :your_controller,
+      #                 :some_action,
+      #                 { id: 7 })
       #   Vedeu.goto(:your_controller, :some_action, { id: 7 })
       #
       # @return [TrueClass]

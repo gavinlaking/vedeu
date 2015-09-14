@@ -38,8 +38,8 @@ module Vedeu
         end
       end
 
-      # @param child [void]
-      # @return [void]
+      # @param child [Vedeu::Views::Stream]
+      # @return [Vedeu::Views::Stream]
       def add(child)
         @value = value.add(child)
       end

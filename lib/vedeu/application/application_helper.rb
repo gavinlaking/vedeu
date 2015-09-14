@@ -1,8 +1,8 @@
 module Vedeu
 
-  # Provides methods which should be available to all client application
-  # helpers. The client application's ApplicationHelper will include this
-  # module.
+  # Provides methods which should be available to all client
+  # application helpers. The client application's ApplicationHelper
+  # will include this module.
   #
   module ApplicationHelper
 

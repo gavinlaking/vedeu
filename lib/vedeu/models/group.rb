@@ -124,6 +124,19 @@ module Vedeu
       self
     end
 
+    # Toggle the visibility of the group with the given name.
+    #
+    # @example
+    #   Vedeu.trigger(:_toggle_group, name)
+    #   Vedeu.toggle_group(name)
+    #
+    # @return [Vedeu::Group]
+    def toggle
+      super
+
+      self
+    end
+
     private
 
     # Returns the default options/attributes for this class.
