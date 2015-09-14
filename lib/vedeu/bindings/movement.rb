@@ -96,7 +96,7 @@ module Vedeu
       # @see Vedeu::Move
       def cursor_origin!
         Vedeu.bind(:_cursor_origin_) do |name|
-          Vedeu::Move.origin(Vedeu::Cursors::Cursor, name)
+          Vedeu.cursors.by_name(name).move_origin
         end
 
         Vedeu.bind_alias(:_cursor_reset_, :_cursor_origin_)
