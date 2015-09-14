@@ -32,7 +32,7 @@ module Vedeu
     def by_name
       Vedeu.timer("Refresh Group: '#{group_name}'") do
         Vedeu.groups.by_name(group_name).by_zindex.each do |name|
-          Vedeu::RefreshBuffer.by_name(name)
+          Vedeu::Buffers::Refresh.by_name(name)
         end
       end
     end

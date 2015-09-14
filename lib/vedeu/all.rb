@@ -41,7 +41,6 @@ require 'vedeu/null/menu'
 require 'vedeu/null/view'
 
 require 'vedeu/refresh/refresh'
-require 'vedeu/refresh/refresh_buffer'
 require 'vedeu/refresh/refresh_group'
 
 require 'vedeu/models/toggleable'

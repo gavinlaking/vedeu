@@ -39,7 +39,7 @@ module Vedeu
       # @return [TrueClass]
       def refresh!
         Vedeu.bind(:_refresh_) do |name|
-          name ? Vedeu::RefreshBuffer.by_name(name) : Vedeu::Refresh.all
+          name ? Vedeu::Buffers::Refresh.by_name(name) : Vedeu::Refresh.all
         end
       end
 
