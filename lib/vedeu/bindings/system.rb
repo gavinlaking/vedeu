@@ -77,8 +77,9 @@ module Vedeu
         Vedeu.bind(:_command_) { |command| Vedeu.trigger(:command, command) }
       end
 
-      # This event is called by {Vedeu::Input#capture}. When invoked, the
-      # key will be passed to the editor for currently focussed view.
+      # This event is called by {Vedeu::Input::Input#capture}. When
+      # invoked, the key will be passed to the editor for currently
+      # focussed view.
       #
       # @example
       #   Vedeu.trigger(:_editor_, key)
@@ -119,7 +120,7 @@ module Vedeu
       # with the argument `:escape`, also an internal event `_mode_switch_` is
       # triggered. Vedeu recognises most key presses and some 'extended'
       # keypress (eg. Ctrl+J), a list of supported keypresses can be found here:
-      # {Vedeu::Input#specials} and {Vedeu::Input#f_keys}.
+      # {Vedeu::Input::Input#specials} and {Vedeu::Input::Input#f_keys}.
       #
       # @example
       #   Vedeu.trigger(:_keypress_, key)

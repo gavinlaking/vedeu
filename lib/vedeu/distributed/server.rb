@@ -62,9 +62,10 @@ module Vedeu
       end # Eigenclass
 
       # @param data [String|Symbol] The input to send to Vedeu.
-      # @param type [Symbol] Either :command or :keypress. Will trigger the
-      #   respective capture mode within {Vedeu::Input}, or if not given, will
-      #   treat the data as a keypress.
+      # @param type [Symbol] Either :command or :keypress. Will
+      #   trigger the respective capture mode within
+      #   {Vedeu::Input::Input}, or if not given, will treat the data
+      #   as a keypress.
       # @return [void]
       def input(data, type = :keypress)
         Vedeu.trigger(:_drb_input_, data, type)

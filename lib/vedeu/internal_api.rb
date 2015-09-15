@@ -116,8 +116,8 @@ module Vedeu
     #   Vedeu.keymaps
     #
     # @!method keymaps
-    # @return [Vedeu::Keymaps]
-    def_delegators Vedeu::Keymaps, :keymaps
+    # @return [Vedeu::Input::Keymaps]
+    def_delegators Vedeu::Input::Keymaps, :keymaps
 
     # Manipulate the repository of menus.
     #

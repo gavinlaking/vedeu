@@ -25,6 +25,7 @@ unless ENV['NO_SIMPLECOV']
     add_group  'cursors',       'vedeu/cursors'
     add_group  'distributed',   'vedeu/distributed'
     add_group  'dsl',           'vedeu/dsl'
+    add_group  'editor',        'vedeu/editor'
     add_group  'esc',           'vedeu/esc'
     add_group  'events',        'vedeu/events'
     add_group  'geometry',      'vedeu/geometry'

@@ -2,12 +2,16 @@ require 'test_helper'
 
 module Vedeu
 
-  describe Keymaps do
+  module Input
 
-    let(:described) { Vedeu::Keymaps }
+    describe Keymaps do
 
-    it { described.must_respond_to(:keymaps) }
+      let(:described) { Vedeu::Input::Keymaps }
 
-  end # Keymaps
+      it { described.must_respond_to(:keymaps) }
+
+    end # Keymaps
+
+  end # Input
 
 end # Vedeu

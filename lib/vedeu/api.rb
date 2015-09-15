@@ -108,8 +108,8 @@ module Vedeu
     def_delegators Vedeu::Logging::Log, :log, :log_stdout, :log_stderr
 
     # @!method keypress
-    #   @see Vedeu::Mapper.keypress
-    def_delegators Vedeu::Mapper, :keypress
+    #   @see Vedeu::Input::Mapper.keypress
+    def_delegators Vedeu::Input::Mapper, :keypress
 
     # @!method menu
     #   @see Vedeu::Menus::Menu.menu

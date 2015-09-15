@@ -8,7 +8,7 @@ module Vedeu
 
       let(:described) { Vedeu::DSL::Keymap }
       let(:instance)  { described.new(model) }
-      let(:model)     { Vedeu::Keymap.new(name: '_test_') }
+      let(:model)     { Vedeu::Input::Keymap.new(name: '_test_') }
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
@@ -47,7 +47,7 @@ module Vedeu
         end
 
         context 'when the key is valid (not already defined)' do
-          before { model.stubs(:add).returns(Vedeu::Keymap) }
+          before { model.stubs(:add).returns(Vedeu::Input::Keymap) }
 
           it { subject.must_equal(['j', :down]) }
         end
