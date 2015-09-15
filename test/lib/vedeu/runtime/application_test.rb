@@ -2,51 +2,55 @@ require 'test_helper'
 
 module Vedeu
 
-  describe Application do
+  module Runtime
 
-    let(:described)     { Vedeu::Application }
-    let(:instance)      { described.new(configuration) }
-    let(:configuration) { Vedeu.configuration }
+    describe Application do
 
-    before do
-      configuration.stubs(:drb?).returns(false)
-      Terminal.stubs(:open).returns([''])
+      let(:described)     { Vedeu::Runtime::Application }
+      let(:instance)      { described.new(configuration) }
+      let(:configuration) { Vedeu.configuration }
 
-      Vedeu.stubs(:trigger)
-    end
+      before do
+        configuration.stubs(:drb?).returns(false)
+        Terminal.stubs(:open).returns([''])
 
-    describe '#initialize' do
-      it { instance.must_be_instance_of(described) }
-      it do
-        instance.instance_variable_get('@configuration').
-          must_equal(configuration)
+        Vedeu.stubs(:trigger)
       end
-    end
 
-    describe '.restart' do
-      subject { described.restart(configuration) }
+      describe '#initialize' do
+        it { instance.must_be_instance_of(described) }
+        it do
+          instance.instance_variable_get('@configuration').
+            must_equal(configuration)
+        end
+      end
 
-      it { subject.must_be_instance_of(Array) }
-    end
+      describe '.restart' do
+        subject { described.restart(configuration) }
 
-    describe '.start' do
-      subject { described.start(configuration) }
+        it { subject.must_be_instance_of(Array) }
+      end
 
-      it { subject.must_be_instance_of(Array) }
-    end
+      describe '.start' do
+        subject { described.start(configuration) }
 
-    describe '.stop' do
-      subject { described.stop }
+        it { subject.must_be_instance_of(Array) }
+      end
 
-      it { subject.must_equal(false) }
-    end
+      describe '.stop' do
+        subject { described.stop }
 
-    describe '#start' do
-      subject { instance.start }
+        it { subject.must_equal(false) }
+      end
 
-      it { subject.must_be_instance_of(Array) }
-    end
+      describe '#start' do
+        subject { instance.start }
 
-  end # Application
+        it { subject.must_be_instance_of(Array) }
+      end
+
+    end # Application
+
+  end # Runtime
 
 end # Vedeu

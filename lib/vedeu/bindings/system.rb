@@ -99,7 +99,7 @@ module Vedeu
       #
       # @return [TrueClass]
       def exit!
-        Vedeu.bind(:_exit_) { Vedeu::Application.stop }
+        Vedeu.bind(:_exit_) { Vedeu::Runtime::Application.stop }
       end
 
       # Vedeu triggers this event when it is ready to enter the main loop.

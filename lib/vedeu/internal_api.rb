@@ -133,7 +133,7 @@ module Vedeu
     # @!method ready?
     # @!method ready!
     # @return [Boolean]
-    def_delegators Vedeu::Flags, :ready?, :ready!
+    def_delegators Vedeu::Runtime::Flags, :ready?, :ready!
 
     # @example
     #   Vedeu.renderer

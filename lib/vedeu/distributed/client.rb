@@ -1,13 +1,16 @@
 module Vedeu
 
-  # Provides a mechanism to control a running client application via DRb.
+  # Provides a mechanism to control a running client application via
+  # DRb.
   #
   module Distributed
 
-    # A class for the client side of the DRb server/client relationship.
+    # A class for the client side of the DRb server/client
+    # relationship.
     #
     # @example
-    #   client = Vedeu::Distributed::Client.connect("druby://localhost:21420")
+    #   client = Vedeu::Distributed::Client.
+    #              connect("druby://localhost:21420")
     #   client.input('a')
     #   client.output # => 'some content...'
     class Client
@@ -25,7 +28,8 @@ module Vedeu
         @uri = uri.to_s
       end
 
-      # Simulate connecting to the DRb server by requesting its status.
+      # Simulate connecting to the DRb server by requesting its
+      # status.
       #
       # @return [Symbol]
       def connect
@@ -67,8 +71,9 @@ module Vedeu
       # Shutdown the DRb server and the client application.
       #
       # @note
-      #   {Vedeu::Application} will raise StopIteration when its `.stop` method
-      #   is called. Here we rescue that to give a clean client exit.
+      #   {Vedeu::Runtime::Application} will raise StopIteration when
+      #   its `.stop` method is called. Here we rescue that to give a
+      #   clean client exit.
       #
       # @return [void|Symbol]
       def shutdown

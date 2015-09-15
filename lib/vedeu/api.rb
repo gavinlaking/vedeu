@@ -132,8 +132,8 @@ module Vedeu
     def_delegators Vedeu::Events::Trigger, :trigger
 
     # @!method exit
-    #   @see Vedeu::Application.stop
-    def_delegators Vedeu::Application, :exit
+    #   @see Vedeu::Runtime::Application.stop
+    def_delegators Vedeu::Runtime::Application, :exit
 
     # @!method clear
     #   @see Vedeu::Terminal#clear

@@ -2,39 +2,43 @@ require 'test_helper'
 
 module Vedeu
 
-  describe MainLoop do
+  module Runtime
 
-    let(:described) { Vedeu::MainLoop }
+    describe MainLoop do
 
-    describe '.start!' do
-      subject { described.start! { } }
-    end
+      let(:described) { Vedeu::Runtime::MainLoop }
 
-    describe '.stop!' do
-      subject { described.stop! }
+      describe '.start!' do
+        subject { described.start! { } }
+      end
 
-      it {
-        subject
-        described.instance_variable_get('@loop').must_equal(false)
-      }
-    end
+      describe '.stop!' do
+        subject { described.stop! }
 
-    describe '.safe_exit_point!' do
-      subject { described.safe_exit_point! }
+        it {
+          subject
+          described.instance_variable_get('@loop').must_equal(false)
+        }
+      end
 
-      context 'when the application has started' do
-        context 'when the loop is running' do
-          # @todo Add more tests.
-          # it { skip }
-        end
+      describe '.safe_exit_point!' do
+        subject { described.safe_exit_point! }
 
-        context 'when the loop is not running' do
-          # @todo Add more tests.
-          # it { skip }
+        context 'when the application has started' do
+          context 'when the loop is running' do
+            # @todo Add more tests.
+            # it { skip }
+          end
+
+          context 'when the loop is not running' do
+            # @todo Add more tests.
+            # it { skip }
+          end
         end
       end
-    end
 
-  end # MainLoop
+    end # MainLoop
+
+  end # Runtime
 
 end # Vedeu

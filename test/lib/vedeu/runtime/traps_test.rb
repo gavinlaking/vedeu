@@ -2,11 +2,15 @@ require 'test_helper'
 
 module Vedeu
 
-  describe Traps do
+  module Runtime
 
-    # @todo Add more tests.
-    # it { skip }
+    describe Traps do
 
-  end # Traps
+      # @todo Add more tests.
+      # it { skip }
+
+    end # Traps
+
+  end # Runtime
 
 end # Vedeu
