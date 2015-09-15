@@ -21,7 +21,7 @@ require 'zlib'
 
 require 'thor'
 
-require 'vedeu/log/log'
+require 'vedeu/logging/log'
 
 # Vedeu is a GUI framework for terminal/console applications written in Ruby.
 #
@@ -30,7 +30,7 @@ module Vedeu
   extend Forwardable
   extend self
 
-  def_delegators Vedeu::Log, :log
+  def_delegators Vedeu::Logging::Log, :log
 
   # Return the name of currently focussed interface.
   #

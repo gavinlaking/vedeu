@@ -73,7 +73,7 @@ module Vedeu
       $stdout = @stdout
       $stderr = @stderr
 
-      Vedeu::Application.start(configuration)
+      Vedeu::Runtime::Application.start(configuration)
 
       @exit_code = 0
 

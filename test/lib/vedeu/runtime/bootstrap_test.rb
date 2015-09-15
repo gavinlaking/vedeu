@@ -9,36 +9,41 @@ end # YourApp
 
 module Vedeu
 
-  describe Bootstrap do
+  module Runtime
 
-    let(:described)   { Vedeu::Bootstrap }
-    let(:instance)    { described.new(argv) }
-    let(:argv)        { [] }
+    describe Bootstrap do
 
-    describe '#initialize' do
-      it { instance.must_be_instance_of(described) }
-      it { instance.instance_variable_get('@argv').must_equal(argv) }
-    end
+      let(:described)   { Vedeu::Runtime::Bootstrap }
+      let(:instance)    { described.new(argv) }
+      let(:argv)        { [] }
 
-    describe '.start' do
-      before do
-        Vedeu::Configuration.stubs(:root).returns([:controller, :action, :args])
-        Vedeu.stubs(:trigger)
-        Vedeu::Launcher.stubs(:execute!)
+      describe '#initialize' do
+        it { instance.must_be_instance_of(described) }
+        it { instance.instance_variable_get('@argv').must_equal(argv) }
       end
 
-      subject { described.start(argv) }
+      describe '.start' do
+        before do
+          Vedeu::Configuration.stubs(:root).
+            returns([:controller, :action, :args])
+          Vedeu.stubs(:trigger)
+          Vedeu::Launcher.stubs(:execute!)
+        end
 
-      it {
-        Vedeu::Launcher.expects(:execute!)
-        subject
-      }
-    end
+        subject { described.start(argv) }
 
-    describe '#start' do
-      it { instance.must_respond_to(:start) }
-    end
+        it {
+          Vedeu::Launcher.expects(:execute!)
+          subject
+        }
+      end
 
-  end # Bootstrap
+      describe '#start' do
+        it { instance.must_respond_to(:start) }
+      end
+
+    end # Bootstrap
+
+  end # Runtime
 
 end # Vedeu

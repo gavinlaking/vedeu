@@ -134,10 +134,10 @@ end
 
 ## Menus
 
-{include:Vedeu::DSL::Menu}
-{include:Vedeu::DSL::Menu#item}
-{include:Vedeu::DSL::Menu#items}
-{include:Vedeu::DSL::Menu#name}
+{include:Vedeu::Menus::DSL}
+{include:Vedeu::Menus::DSL#item}
+{include:Vedeu::Menus::DSL#items}
+{include:Vedeu::Menus::DSL#name}
 
 ## Views
 

@@ -2,11 +2,11 @@ require 'test_helper'
 
 module Vedeu
 
-  module Null
+  module Menus
 
-    describe Menu do
+    describe Null do
 
-      let(:described)  { Vedeu::Null::Menu }
+      let(:described)  { Vedeu::Menus::Null }
       let(:instance)   { described.new(attributes) }
       let(:_name)      { 'null_menu' }
       let(:attributes) {
@@ -23,8 +23,8 @@ module Vedeu
         it { instance.instance_variable_get('@name').must_equal(_name) }
       end
 
-    end # Menu
+    end # Null
 
-  end # Null
+  end # Menus
 
 end # Vedeu

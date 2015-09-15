@@ -24,7 +24,7 @@ module Vedeu
 
       # @return [String|Symbol]
       def read
-        Vedeu::InputTranslator.translate(keys)
+        Vedeu::Input::Translator.translate(keys)
       end
 
       private

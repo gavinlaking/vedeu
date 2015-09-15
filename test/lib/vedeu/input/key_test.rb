@@ -2,44 +2,48 @@ require 'test_helper'
 
 module Vedeu
 
-  describe Key do
+  module Input
 
-    let(:described) { Vedeu::Key }
-    let(:instance)  { described.new(input) { :output } }
-    let(:input)     { 'a' }
+    describe Key do
 
-    describe '#initialize' do
-      it { instance.must_be_instance_of(described) }
-      it { instance.instance_variable_get('@input').must_equal(input) }
+      let(:described) { Vedeu::Input::Key }
+      let(:instance)  { described.new(input) { :output } }
+      let(:input)     { 'a' }
 
-      context 'when the required block is not given' do
-        subject { described.new(input) }
+      describe '#initialize' do
+        it { instance.must_be_instance_of(described) }
+        it { instance.instance_variable_get('@input').must_equal(input) }
 
-        it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
-      end
-    end
+        context 'when the required block is not given' do
+          subject { described.new(input) }
 
-    describe '#input' do
-      subject { instance.input }
-
-      it 'returns the key defined' do
-        subject.must_equal('a')
+          it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
+        end
       end
 
-      it { instance.must_respond_to(:key) }
-    end
+      describe '#input' do
+        subject { instance.input }
 
-    describe '#output' do
-      subject { instance.output }
+        it 'returns the key defined' do
+          subject.must_equal('a')
+        end
 
-      it 'returns the result of calling the proc' do
-        subject.must_equal(:output)
+        it { instance.must_respond_to(:key) }
       end
 
-      it { instance.must_respond_to(:action) }
-      it { instance.must_respond_to(:press) }
-    end
+      describe '#output' do
+        subject { instance.output }
 
-  end # Key
+        it 'returns the result of calling the proc' do
+          subject.must_equal(:output)
+        end
+
+        it { instance.must_respond_to(:action) }
+        it { instance.must_respond_to(:press) }
+      end
+
+    end # Key
+
+  end # Input
 
 end # Vedeu

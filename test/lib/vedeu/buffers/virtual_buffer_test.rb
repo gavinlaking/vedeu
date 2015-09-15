@@ -78,7 +78,7 @@ module Vedeu
         let(:y) { 0 }
         let(:x) { 2 }
 
-        it { subject.must_be_instance_of(Vedeu::Cell) }
+        it { subject.must_be_instance_of(Vedeu::Models::Cell) }
       end
     end
 

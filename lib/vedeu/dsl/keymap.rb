@@ -48,18 +48,18 @@ module Vedeu
       #   to.
       # @param block [Proc]
       # @raise [Vedeu::Error::InvalidSyntax] The required block was not given.
-      # @return [Vedeu::Keymap]
+      # @return [Vedeu::Input::Keymap]
       # @todo Try to remember why we need to pre-create the keymap in the
       #   repository.
       def self.keymap(name, &block)
-        Vedeu::Keymap.new(name: name).store
+        Vedeu::Input::Keymap.new(name: name).store
 
-        Vedeu::Keymap.build(name: name, &block).store
+        Vedeu::Input::Keymap.build(name: name, &block).store
       end
 
       # Returns an instance of DSL::Keymap.
       #
-      # @param model [Vedeu::Keymap]
+      # @param model [Vedeu::Input::Keymap]
       # @param client [Object]
       # @return [Vedeu::DSL::Keymap]
       def initialize(model, client = nil)
@@ -71,8 +71,8 @@ module Vedeu
       #
       # @param value_or_values [Array<String>|Array<Symbol>|String|Symbol]
       #   The key(s) pressed. Special keys can be found in
-      #   {Vedeu::Input#specials}. When more than one key is defined, then the
-      #   extras are treated as aliases.
+      #   {Vedeu::Input::Input#specials}. When more than one key is
+      #   defined, then the extras are treated as aliases.
       # @param block [Proc] The action to perform when this key is pressed. Can
       #   be a method call or event triggered.
       # @raise [Vedeu::Error::InvalidSyntax]

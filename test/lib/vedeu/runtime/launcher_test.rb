@@ -37,7 +37,7 @@ module Vedeu
 
     describe '#execute!' do
       before do
-        Application.stubs(:start)
+        Vedeu::Runtime::Application.stubs(:start)
         Kernel.stubs(:exit)
         Kernel.stubs(:puts)
       end
@@ -50,7 +50,9 @@ module Vedeu
 
       context 'when an uncaught exception occurs' do
         before do
-          Vedeu::Application.stubs(:start).raises(StandardError, 'Oops!')
+          Vedeu::Runtime::Application.
+            stubs(:start).
+            raises(StandardError, 'Oops!')
           Vedeu::Configuration.stubs(:debug?).returns(debug)
         end
 

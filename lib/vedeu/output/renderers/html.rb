@@ -2,8 +2,8 @@ module Vedeu
 
   module Renderers
 
-    # Renders a {Vedeu::VirtualBuffer} or {Vedeu::Output} as a HTML snippet;
-    # a table by default.
+    # Renders a {Vedeu::VirtualBuffer} or {Vedeu::Output} as a HTML
+    # snippet; a table by default.
     #
     class HTML < Vedeu::Renderers::File
 
@@ -29,7 +29,7 @@ module Vedeu
 
       # @return [String]
       def html_body
-        return '' if content.is_a?(Vedeu::Escape)
+        return '' if content.is_a?(Vedeu::Models::Escape)
 
         out = ''
 
@@ -68,7 +68,8 @@ module Vedeu
         options[:template]
       end
 
-      # Combines the options provided at instantiation with the default values.
+      # Combines the options provided at instantiation with the
+      # default values.
       #
       # @return [Hash<Symbol => void>]
       def options

@@ -249,7 +249,7 @@ module Vedeu
           end
         }
 
-        it { subject.must_be_instance_of(Vedeu::Keymap) }
+        it { subject.must_be_instance_of(Vedeu::Input::Keymap) }
         it { instance.must_respond_to(:keys) }
       end
 

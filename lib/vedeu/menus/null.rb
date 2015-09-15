@@ -1,23 +1,23 @@
 module Vedeu
 
-  module Null
+  module Menus
 
     # Provides a non-existent model to swallow messages.
     #
-    class Menu < Vedeu::Null::Generic
+    class Null < Vedeu::Null::Generic
 
-      # Returns an instance of the Vedeu::Null::Menu class.
+      # Returns an instance of the Vedeu::Menus::Null class.
       #
       # @param attributes [Hash<Symbol => void>]
       # @option attributes name [String|NilClass]
-      # @return [Vedeu::Null::Menu]
+      # @return [Vedeu::Menus::Null]
       def initialize(attributes = {})
         @attributes = attributes
         @name       = @attributes[:name]
       end
 
-    end # Menu
+    end # Null
 
-  end # Null
+  end # Menus
 
 end # Vedeu

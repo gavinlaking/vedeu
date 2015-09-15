@@ -1,9 +1,13 @@
 module Vedeu
 
-  # A collection of {Vedeu::Key} instances.
-  #
-  class Keys < Vedeu::Collection
+  module Input
 
-  end # Keys
+    # A collection of {Vedeu::Input::Key} instances.
+    #
+    class Keys < Vedeu::Collection
+
+    end # Keys
+
+  end # Input
 
 end # Vedeu

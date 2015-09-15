@@ -7,11 +7,13 @@ module Vedeu
     # Provides border/box related escape sequences.
     #
     # @note
-    #   Refer to UTF-8 U+2500 to U+257F for border characters. More details can
-    #   be found at: http://en.wikipedia.org/wiki/Box-drawing_character
+    #   Refer to UTF-8 U+2500 to U+257F for border characters. More
+    #   details can be found at:
     #
-    #   Using the '\uXXXX' variant produces gaps in the border, whilst the
-    #   '\xXX' renders 'nicely'.
+    #   http://en.wikipedia.org/wiki/Box-drawing_character
+    #
+    #   Using the '\uXXXX' variant produces gaps in the border, whilst
+    #   the '\xXX' renders 'nicely'.
     #
     module Borders
 

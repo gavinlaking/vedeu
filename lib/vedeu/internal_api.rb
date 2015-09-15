@@ -1,8 +1,8 @@
 module Vedeu
 
-  # Vedeu's internal API methods provide convenient ways to access Vedeu's
-  # internals. They are not supposed to be used by client applications as they
-  # have limited value there.
+  # Vedeu's internal API methods provide convenient ways to access
+  # Vedeu's internals. They are not supposed to be used by client
+  # applications as they have limited value there.
   #
   module InternalAPI
 
@@ -46,14 +46,15 @@ module Vedeu
     # @return [Vedeu::Cursors::Repository]
     def_delegators Vedeu::Cursors::Repository, :cursors
 
-    # Allow debugging via the creation of stack traces courtesy of ruby-prof.
+    # Allow debugging via the creation of stack traces courtesy of
+    # ruby-prof.
     #
     # @example
     #   Vedeu.debug
     #
     # @!method debug
-    # @return [Vedeu::Debug]
-    def_delegators Vedeu::Debug, :debug
+    # @return [Vedeu::Logging::Debug]
+    def_delegators Vedeu::Logging::Debug, :debug
 
     # Manipulate the repository of documents.
     #
@@ -115,8 +116,8 @@ module Vedeu
     #   Vedeu.keymaps
     #
     # @!method keymaps
-    # @return [Vedeu::Keymaps]
-    def_delegators Vedeu::Keymaps, :keymaps
+    # @return [Vedeu::Input::Keymaps]
+    def_delegators Vedeu::Input::Keymaps, :keymaps
 
     # Manipulate the repository of menus.
     #
@@ -124,15 +125,15 @@ module Vedeu
     #   Vedeu.menus
     #
     # @!method menus
-    # @return [Vedeu::Menus]
-    def_delegators Vedeu::Menus, :menus
+    # @return [Vedeu::Menus::Repository]
+    def_delegators Vedeu::Menus::Repository, :menus
 
     # Manipulate the internal flags.
     #
     # @!method ready?
     # @!method ready!
     # @return [Boolean]
-    def_delegators Vedeu::Flags, :ready?, :ready!
+    def_delegators Vedeu::Runtime::Flags, :ready?, :ready!
 
     # @example
     #   Vedeu.renderer
@@ -144,8 +145,8 @@ module Vedeu
     #   @see Vedeu::Renderers#renderers
     def_delegators Vedeu::Renderers, :renderer, :renderers
 
-    # Instruct the terminal to resize. This will happen automatically as the
-    # terminal recieves SIGWINCH signals.
+    # Instruct the terminal to resize. This will happen automatically
+    # as the terminal recieves SIGWINCH signals.
     #
     # @example
     #   Vedeu.resize
@@ -162,8 +163,8 @@ module Vedeu
     #   end
     #
     # @!method timer
-    #   @see Vedeu::Timer.timer
-    def_delegators Vedeu::Timer, :timer
+    #   @see Vedeu::Logging::Timer.timer
+    def_delegators Vedeu::Logging::Timer, :timer
 
   end # InternalAPI
 

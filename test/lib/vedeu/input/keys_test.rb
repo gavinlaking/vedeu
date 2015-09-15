@@ -2,17 +2,21 @@ require 'test_helper'
 
 module Vedeu
 
-  describe Keys do
+  module Input
 
-    let(:described) { Vedeu::Keys }
-    let(:instance)  { described.new }
+    describe Keys do
 
-    it { described.superclass.must_equal(Vedeu::Collection) }
+      let(:described) { Vedeu::Input::Keys }
+      let(:instance)  { described.new }
 
-    describe '#initialize' do
-      it { instance.must_be_instance_of(described) }
-    end
+      it { described.superclass.must_equal(Vedeu::Collection) }
 
-  end # Keys
+      describe '#initialize' do
+        it { instance.must_be_instance_of(described) }
+      end
+
+    end # Keys
+
+  end # Input
 
 end # Vedeu

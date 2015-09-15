@@ -1,9 +1,10 @@
 module Vedeu
 
-  # Provides the API to Vedeu. Methods therein, and classes belonging to this
-  # module expose Vedeu's core functionality.
+  # Provides the API to Vedeu. Methods therein, and classes belonging
+  # to this module expose Vedeu's core functionality.
   #
-  # These methods are used in a variety of ways, sometimes in combination:
+  # These methods are used in a variety of ways, sometimes in
+  # combination:
   #
   #   # with parameters
   #   Vedeu.method_name(*params)
@@ -99,20 +100,20 @@ module Vedeu
                    :focus_next, :focus_previous
 
     # @!method log
-    #   @see Vedeu::Log.log
+    #   @see Vedeu::Logging::Log.log
     # @!method log_stdout
-    #   @see Vedeu::Log.log_stdout
+    #   @see Vedeu::Logging::Log.log_stdout
     # @!method log_stderr
-    #   @see Vedeu::Log.log_stderr
-    def_delegators Vedeu::Log, :log, :log_stdout, :log_stderr
+    #   @see Vedeu::Logging::Log.log_stderr
+    def_delegators Vedeu::Logging::Log, :log, :log_stdout, :log_stderr
 
     # @!method keypress
-    #   @see Vedeu::Mapper.keypress
-    def_delegators Vedeu::Mapper, :keypress
+    #   @see Vedeu::Input::Mapper.keypress
+    def_delegators Vedeu::Input::Mapper, :keypress
 
     # @!method menu
-    #   @see Vedeu::Menu.menu
-    def_delegators Vedeu::Menu, :menu
+    #   @see Vedeu::Menus::Menu.menu
+    def_delegators Vedeu::Menus::Menu, :menu
 
     # @!method goto
     #   @see Vedeu::Router#goto
@@ -131,8 +132,8 @@ module Vedeu
     def_delegators Vedeu::Events::Trigger, :trigger
 
     # @!method exit
-    #   @see Vedeu::Application.stop
-    def_delegators Vedeu::Application, :exit
+    #   @see Vedeu::Runtime::Application.stop
+    def_delegators Vedeu::Runtime::Application, :exit
 
     # @!method clear
     #   @see Vedeu::Terminal#clear
