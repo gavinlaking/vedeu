@@ -115,6 +115,8 @@ module Vedeu
         'Vedeu::Buffers::DSL'
       elsif demodulize(self.class.name) == 'Geometry'
         'Vedeu::Geometry::DSL'
+      elsif demodulize(self.class.name) == 'Menu'
+        'Vedeu::Menus::DSL'
       else
         'Vedeu::DSL::' + demodulize(self.class.name)
       end

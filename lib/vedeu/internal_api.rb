@@ -1,8 +1,8 @@
 module Vedeu
 
-  # Vedeu's internal API methods provide convenient ways to access Vedeu's
-  # internals. They are not supposed to be used by client applications as they
-  # have limited value there.
+  # Vedeu's internal API methods provide convenient ways to access
+  # Vedeu's internals. They are not supposed to be used by client
+  # applications as they have limited value there.
   #
   module InternalAPI
 
@@ -46,7 +46,8 @@ module Vedeu
     # @return [Vedeu::Cursors::Repository]
     def_delegators Vedeu::Cursors::Repository, :cursors
 
-    # Allow debugging via the creation of stack traces courtesy of ruby-prof.
+    # Allow debugging via the creation of stack traces courtesy of
+    # ruby-prof.
     #
     # @example
     #   Vedeu.debug
@@ -124,8 +125,8 @@ module Vedeu
     #   Vedeu.menus
     #
     # @!method menus
-    # @return [Vedeu::Menus]
-    def_delegators Vedeu::Menus, :menus
+    # @return [Vedeu::Menus::Repository]
+    def_delegators Vedeu::Menus::Repository, :menus
 
     # Manipulate the internal flags.
     #
@@ -144,8 +145,8 @@ module Vedeu
     #   @see Vedeu::Renderers#renderers
     def_delegators Vedeu::Renderers, :renderer, :renderers
 
-    # Instruct the terminal to resize. This will happen automatically as the
-    # terminal recieves SIGWINCH signals.
+    # Instruct the terminal to resize. This will happen automatically
+    # as the terminal recieves SIGWINCH signals.
     #
     # @example
     #   Vedeu.resize

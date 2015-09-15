@@ -1,19 +1,19 @@
 module Vedeu
 
-  module DSL
+  module Menus
 
-    # Provides the mechanism to create menus within client applications and use
-    # events to drive them.
+    # Provides the mechanism to create menus within client
+    # applications and use events to drive them.
     #
-    class Menu
+    class DSL
 
       include Vedeu::DSL
 
-      # Return a new instance of DSL::Menu.
+      # Return a new instance of Vedeu::Menus::DSL.
       #
-      # @param model [Vedeu::Menu]
+      # @param model [Vedeu::Menus::Menu]
       # @param client [Object]
-      # @return [Vedeu::DSL::Menu]
+      # @return [Vedeu::Menus::DSL]
       def initialize(model, client = nil)
         @model  = model
         @client = client
@@ -21,7 +21,8 @@ module Vedeu
 
       # Add an individual item to the menu.
       #
-      # @param element [Object] An object you wish to add to the collection.
+      # @param element [Object] An object you wish to add to the
+      #   collection.
       #
       #   Vedeu.menu 'my_menu' do
       #     item SomeClass.new
@@ -34,11 +35,11 @@ module Vedeu
       end
       alias_method :item=, :item
 
-      # Define the items for the menu. Most powerful when used with one of your
-      # model classes.
+      # Define the items for the menu. Most powerful when used with
+      # one of your model classes.
       #
-      # In the 'my_playlist' example below, your `Track` model may return a
-      # collection of tracks to populate the menu.
+      # In the 'my_playlist' example below, your `Track` model may
+      # return a collection of tracks to populate the menu.
       #
       #   Vedeu.menu 'my_menu' do
       #     items [:item_1, :item_2, :item_3]
@@ -48,16 +49,16 @@ module Vedeu
       #     items Track.all_my_favourites
       #   end
       #
-      # @param collection [Array<Object>] A collection of objects which make up
-      #   the menu items.
+      # @param collection [Array<Object>] A collection of objects
+      #   which make up the menu items.
       # @return [Array]
       def items(collection = [])
         model.collection = collection
       end
       alias_method :items=, :items
 
-      # The name of the menu. Used to reference the menu throughout your
-      # application's execution lifetime.
+      # The name of the menu. Used to reference the menu throughout
+      # your application's execution lifetime.
       #
       #   Vedeu.menu do
       #     name 'my_menu'
@@ -71,8 +72,8 @@ module Vedeu
       end
       alias_method :name=, :name
 
-    end # Menu
+    end # DSL
 
-  end # DSL
+  end # Menus
 
 end # Vedeu

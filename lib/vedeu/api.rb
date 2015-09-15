@@ -1,9 +1,10 @@
 module Vedeu
 
-  # Provides the API to Vedeu. Methods therein, and classes belonging to this
-  # module expose Vedeu's core functionality.
+  # Provides the API to Vedeu. Methods therein, and classes belonging
+  # to this module expose Vedeu's core functionality.
   #
-  # These methods are used in a variety of ways, sometimes in combination:
+  # These methods are used in a variety of ways, sometimes in
+  # combination:
   #
   #   # with parameters
   #   Vedeu.method_name(*params)
@@ -111,8 +112,8 @@ module Vedeu
     def_delegators Vedeu::Mapper, :keypress
 
     # @!method menu
-    #   @see Vedeu::Menu.menu
-    def_delegators Vedeu::Menu, :menu
+    #   @see Vedeu::Menus::Menu.menu
+    def_delegators Vedeu::Menus::Menu, :menu
 
     # @!method goto
     #   @see Vedeu::Router#goto

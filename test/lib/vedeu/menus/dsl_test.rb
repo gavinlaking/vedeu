@@ -2,13 +2,13 @@ require 'test_helper'
 
 module Vedeu
 
-  module DSL
+  module Menus
 
-    describe Menu do
+    describe DSL do
 
-      let(:described)  { Vedeu::DSL::Menu }
+      let(:described)  { Vedeu::Menus::DSL }
       let(:instance)   { described.new(model) }
-      let(:model)      { Vedeu::Menu.new(attributes) }
+      let(:model)      { Vedeu::Menus::Menu.new(attributes) }
       let(:attributes) {
         {
           collection: collection,
@@ -70,8 +70,8 @@ module Vedeu
         end
       end
 
-    end # Menu
+    end # DSL
 
-  end # DSL
+  end # Menus
 
 end # Vedeu
