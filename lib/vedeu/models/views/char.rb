@@ -128,7 +128,7 @@ module Vedeu
 
       # @return [String]
       def to_html
-        @to_html ||= Vedeu::HTMLChar.render(self)
+        @to_html ||= Vedeu::Views::HTMLChar.render(self)
       end
 
       private

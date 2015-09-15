@@ -9,6 +9,7 @@ module Vedeu
 end # Vedeu
 
 require 'vedeu/models/views/char'
+require 'vedeu/models/views/html_char'
 require 'vedeu/models/views/collections/chars'
 require 'vedeu/models/views/stream'
 require 'vedeu/models/views/collections/streams'
