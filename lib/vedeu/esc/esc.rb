@@ -4,8 +4,8 @@ require 'vedeu/esc/colours'
 
 module Vedeu
 
-  # Provides escape sequence strings for setting the cursor position and various
-  # display related functions.
+  # Provides escape sequence strings for setting the cursor position
+  # and various display related functions.
   #
   module Esc
 
@@ -14,10 +14,10 @@ module Vedeu
     include Vedeu::EscapeSequences::Colours
     extend self
 
-    # Return the stream with the escape sequences escaped so that they can be
-    # printed to the terminal instead of being interpreted by the terminal which
-    # will render them. This way we can see what escape sequences are being sent
-    # along with the content.
+    # Return the stream with the escape sequences escaped so that they
+    # can be printed to the terminal instead of being interpreted by
+    # the terminal which will render them. This way we can see what
+    # escape sequences are being sent along with the content.
     #
     # @param stream [String]
     # @return [String]
@@ -27,8 +27,9 @@ module Vedeu
       stream.gsub(/\e/, '\\e')
     end
 
-    # Return the escape sequence string from the list of recognised sequence
-    # 'commands', or an empty string when the 'command' cannot be found.
+    # Return the escape sequence string from the list of recognised
+    # sequence 'commands', or an empty string when the 'command'
+    # cannot be found.
     #
     # @param value [String|Symbol]
     # @return [String]
@@ -43,8 +44,8 @@ module Vedeu
     # Return the escape sequence to render a border character.
     #
     # @return [String]
-    # @yieldreturn [void] The border character to wrap with border on and off
-    #   escape sequences.
+    # @yieldreturn [void] The border character to wrap with border on
+    #   and off escape sequences.
     def border
       return '' unless block_given?
 

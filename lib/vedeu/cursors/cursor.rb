@@ -2,8 +2,8 @@ module Vedeu
 
   module Cursors
 
-    # Each interface has its own Cursor which maintains the position and
-    # visibility of the cursor within that interface.
+    # Each interface has its own Cursor which maintains the position
+    # and visibility of the cursor within that interface.
     #
     class Cursor
 
@@ -48,14 +48,17 @@ module Vedeu
       # Returns a new instance of Vedeu::Cursors::Cursor.
       #
       # @param attributes [Hash]
-      # @option attributes name [String] The name of the interface this cursor
-      #   belongs to.
+      # @option attributes name [String] The name of the interface
+      #   this cursor belongs to.
       # @option attributes ox [Fixnum] The offset x coordinate.
       # @option attributes oy [Fixnum] The offset y coordinate.
       # @option attributes repository [Vedeu::Repository]
-      # @option attributes visible [Boolean] The visibility of the cursor.
-      # @option attributes x [Fixnum] The terminal x coordinate for the cursor.
-      # @option attributes y [Fixnum] The terminal y coordinate for the cursor.
+      # @option attributes visible [Boolean] The visibility of the
+      #   cursor.
+      # @option attributes x [Fixnum] The terminal x coordinate for
+      #   the cursor.
+      # @option attributes y [Fixnum] The terminal y coordinate for
+      #   the cursor.
       #
       # @return [Vedeu::Cursors::Cursor]
       def initialize(attributes = {})
@@ -133,7 +136,7 @@ module Vedeu
 
       # Renders the cursor.
       #
-      # @return [Array<Vedeu::Escape>]
+      # @return [Array<Vedeu::Models::Escape>]
       def render
         Vedeu::Output.render(visibility)
       end
@@ -153,8 +156,8 @@ module Vedeu
       end
 
       # Returns an escape sequence to position the cursor and set its
-      # visibility. When passed a block, will position the cursor, yield and
-      # return the original position.
+      # visibility. When passed a block, will position the cursor,
+      # yield and return the original position.
       #
       # @return [String]
       def to_s
@@ -168,13 +171,14 @@ module Vedeu
       end
       alias_method :to_str, :to_s
 
-      # Hide a named cursor, or without a name, the cursor of the currently
+      # Hide a named cursor, or without a name, the cursor of the
+      # currently
       # focussed interface.
       #
       # @example
       #   Vedeu.hide_cursor(name)
       #
-      # @return [Vedeu::Escape]
+      # @return [Vedeu::Models::Escape]
       def hide
         super
 
@@ -200,13 +204,13 @@ module Vedeu
         @position = Vedeu::Geometry::Position[y, x]
       end
 
-      # Show a named cursor, or without a name, the cursor of the currently
-      # focussed interface.
+      # Show a named cursor, or without a name, the cursor of the
+      # currently focussed interface.
       #
       # @example
       #   Vedeu.show_cursor(name)
       #
-      # @return [Vedeu::Escape]
+      # @return [Vedeu::Models::Escape]
       def show
         super
 
@@ -218,7 +222,7 @@ module Vedeu
       # @example
       #   Vedeu.toggle_cursor(name)
       #
-      # @return [Vedeu::Escape]
+      # @return [Vedeu::Models::Escape]
       def toggle
         if visible?
           hide
@@ -276,13 +280,14 @@ module Vedeu
         }
       end
 
-      # Returns the escape sequence for setting the visibility of the cursor.
+      # Returns the escape sequence for setting the visibility of the
+      # cursor.
       #
       # @return [String]
       def visibility
         value = visible? ? Vedeu::Esc.show_cursor : Vedeu::Esc.hide_cursor
 
-        Vedeu::Escape.new(position: position, value: value)
+        Vedeu::Models::Escape.new(position: position, value: value)
       end
 
     end # Cursor

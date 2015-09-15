@@ -26,12 +26,16 @@ module Vedeu
         context 'when the output is all Vedeu::Views::Char elements' do
           let(:output) {
             [
-              Vedeu::Views::Char.new(value: 'Y', colour: { foreground: '#ff0000' }),
-              Vedeu::Views::Char.new(value: 'e', colour: { foreground: '#ff0000' }),
-              Vedeu::Views::Char.new(value: 's', colour: { foreground: '#ff0000' }),
+              Vedeu::Views::Char.new(value:  'Y',
+                                     colour: { foreground: '#ff0000' }),
+              Vedeu::Views::Char.new(value:  'e',
+                                     colour: { foreground: '#ff0000' }),
+              Vedeu::Views::Char.new(value:  's',
+                                     colour: { foreground: '#ff0000' }),
             ]
           }
-          it 'converts the non-Vedeu::Views::Char elements into String elements' do
+          it 'converts the non-Vedeu::Views::Char elements into String ' \
+             'elements' do
             subject.must_equal("\e[38;2;255;0;0mYes")
           end
         end
@@ -39,10 +43,14 @@ module Vedeu
         context 'when the output is all Vedeu::Views::Char elements' do
           let(:output) {
             [
-              Vedeu::Views::Char.new(value: 'a', colour: { foreground: '#ff0000' }),
-              Vedeu::Views::Char.new(value: 'b', colour: { foreground: '#ff0000' }),
-              Vedeu::Views::Char.new(value: 'c', colour: { foreground: '#0000ff' }),
-              Vedeu::Views::Char.new(value: 'd', colour: { foreground: '#0000ff' }),
+              Vedeu::Views::Char.new(value:  'a',
+                                     colour: { foreground: '#ff0000' }),
+              Vedeu::Views::Char.new(value:  'b',
+                                     colour: { foreground: '#ff0000' }),
+              Vedeu::Views::Char.new(value:  'c',
+                                     colour: { foreground: '#0000ff' }),
+              Vedeu::Views::Char.new(value:  'd',
+                                     colour: { foreground: '#0000ff' }),
             ]
           }
           it 'compresses multiple colours and styles where possible' do
@@ -50,15 +58,17 @@ module Vedeu
           end
         end
 
-        context 'when the output is not all Vedeu::Views::Char elements' do
+        context 'when the output is not all Vedeu::Views::Char ' \
+                'elements' do
           let(:output) {
             [
               Vedeu::Views::Char.new(value: 'N'),
-              Vedeu::Escape.new(value: "\e[?25l"),
+              Vedeu::Models::Escape.new(value: "\e[?25l"),
               Vedeu::Views::Char.new(value: 't'),
             ]
           }
-          it 'converts the non-Vedeu::Views::Char elements into String elements' do
+          it 'converts the non-Vedeu::Views::Char elements into String ' \
+             'elements' do
             subject.must_equal("N\e[1;1H\e[?25lt")
           end
         end
@@ -70,12 +80,16 @@ module Vedeu
         context 'when the output is all Vedeu::Views::Char elements' do
           let(:output) {
             [
-              Vedeu::Views::Char.new(value: 'Y', colour: { foreground: '#ff0000' }),
-              Vedeu::Views::Char.new(value: 'e', colour: { foreground: '#ff0000' }),
-              Vedeu::Views::Char.new(value: 's', colour: { foreground: '#ff0000' }),
+              Vedeu::Views::Char.new(value:  'Y',
+                                     colour: { foreground: '#ff0000' }),
+              Vedeu::Views::Char.new(value:  'e',
+                                     colour: { foreground: '#ff0000' }),
+              Vedeu::Views::Char.new(value:  's',
+                                     colour: { foreground: '#ff0000' }),
             ]
           }
-          it 'converts the non-Vedeu::Views::Char elements into String elements' do
+          it 'converts the non-Vedeu::Views::Char elements into String ' \
+             'elements' do
             subject.must_equal(
               "\e[38;2;255;0;0mY\e[38;2;255;0;0me\e[38;2;255;0;0ms"
             )
@@ -85,15 +99,22 @@ module Vedeu
         context 'when the output is all Vedeu::Views::Char elements' do
           let(:output) {
             [
-              Vedeu::Views::Char.new(value: 'a', colour: { foreground: '#ff0000' }),
-              Vedeu::Views::Char.new(value: 'b', colour: { foreground: '#ff0000' }),
-              Vedeu::Views::Char.new(value: 'c', colour: { foreground: '#0000ff' }),
-              Vedeu::Views::Char.new(value: 'd', colour: { foreground: '#0000ff' }),
+              Vedeu::Views::Char.new(value:  'a',
+                                     colour: { foreground: '#ff0000' }),
+              Vedeu::Views::Char.new(value:  'b',
+                                     colour: { foreground: '#ff0000' }),
+              Vedeu::Views::Char.new(value:  'c',
+                                     colour: { foreground: '#0000ff' }),
+              Vedeu::Views::Char.new(value:  'd',
+                                     colour: { foreground: '#0000ff' }),
             ]
           }
           it 'compresses multiple colours and styles where possible' do
             subject.must_equal(
-              "\e[38;2;255;0;0ma\e[38;2;255;0;0mb\e[38;2;0;0;255mc\e[38;2;0;0;255md"
+              "\e[38;2;255;0;0ma" \
+              "\e[38;2;255;0;0mb" \
+              "\e[38;2;0;0;255mc" \
+              "\e[38;2;0;0;255md"
             )
           end
         end
@@ -102,11 +123,12 @@ module Vedeu
           let(:output) {
             [
               Vedeu::Views::Char.new(value: 'N'),
-              Vedeu::Escape.new(value: "\e[?25l"),
+              Vedeu::Models::Escape.new(value: "\e[?25l"),
               Vedeu::Views::Char.new(value: 't'),
             ]
           }
-          it 'converts the non-Vedeu::Views::Char elements into String elements' do
+          it 'converts the non-Vedeu::Views::Char elements into String ' \
+             'elements' do
             subject.must_equal("N\e[1;1H\e[?25lt")
           end
         end

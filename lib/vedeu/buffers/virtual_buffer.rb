@@ -1,6 +1,7 @@
 module Vedeu
 
-  # Represents a {Vedeu::Terminal} view as a grid of {Vedeu::Cell} objects.
+  # Represents a {Vedeu::Terminal} view as a grid of
+  # {Vedeu::Models::Cell} objects.
   #
   class VirtualBuffer
 
@@ -27,8 +28,8 @@ module Vedeu
     #
     # @param height [Fixnum]
     # @param width [Fixnum]
-    # @param renderer [Object|Vedeu::Renderers::HTML] An object responding to
-    #   .render.
+    # @param renderer [Object|Vedeu::Renderers::HTML] An object
+    #   responding to .render.
     # @return [Vedeu::VirtualBuffer]
     def initialize(height, width, renderer = Vedeu::Renderers::HTML.new)
       @height   = height
@@ -36,8 +37,8 @@ module Vedeu
       @renderer = renderer
     end
 
-    # Return a grid of {Vedeu::Views::Char} objects defined by the height and
-    # width of this virtual terminal.
+    # Return a grid of {Vedeu::Views::Char} objects defined by the
+    # height and width of this virtual terminal.
     #
     # @return [Array<Array<Vedeu::Views::Char>>]
     def cells
@@ -82,7 +83,8 @@ module Vedeu
       renderer.render(cells)
     end
 
-    # Removes all content from the virtual terminal; effectively clearing it.
+    # Removes all content from the virtual terminal; effectively
+    # clearing it.
     #
     # @return [Array<Array<Vedeu::Views::Char>>]
     def reset
@@ -101,7 +103,7 @@ module Vedeu
     # @param data [Vedeu::Views::Char]
     # @return [Vedeu::Views::Char]
     def write(y, x, data)
-      return false unless read(y, x).is_a?(Vedeu::Cell)
+      return false unless read(y, x).is_a?(Vedeu::Models::Cell)
 
       cy, cx = Vedeu::Geometry::Position[y, x].as_indices
       cells[cy][cx] = data
@@ -112,17 +114,17 @@ module Vedeu
     private
 
     # @param from [Array] An Array of rows, or an Array of cells.
-    # @param which [Fixnum] A Fixnum representing the index; the row number or
-    #   the cell number for a row.
+    # @param which [Fixnum] A Fixnum representing the index; the row
+    #   number or the cell number for a row.
     # @return [Array<Vedeu::Views::Char>|Array]
     def fetch(from, which)
       from[which] || []
     end
 
-    # @return [Array<Array<Vedeu::Cell>>]
+    # @return [Array<Array<Vedeu::Models::Cell>>]
     # @see Vedeu::VirtualBuffer#cells
     def new_virtual_buffer
-      Array.new(height) { Array.new(width) { Vedeu::Cell.new } }
+      Array.new(height) { Array.new(width) { Vedeu::Models::Cell.new } }
     end
 
   end # VirtualBuffer

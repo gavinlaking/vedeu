@@ -52,7 +52,9 @@ module Vedeu
         it { subject.instance_variable_get('@name').must_equal('silver') }
         it { subject.instance_variable_get('@ox').must_equal(ox) }
         it { subject.instance_variable_get('@oy').must_equal(oy) }
-        it { subject.instance_variable_get('@repository').must_equal(repository) }
+        it {
+          subject.instance_variable_get('@repository').must_equal(repository)
+        }
         it { subject.instance_variable_get('@visible').must_equal(true) }
         it { subject.instance_variable_get('@x').must_equal(x) }
         it { subject.instance_variable_get('@y').must_equal(y) }
@@ -72,7 +74,9 @@ module Vedeu
 
       describe '#hide' do
         let(:visible)     { true }
-        let(:hide_cursor) { Vedeu::Escape.new(value: Vedeu::Esc.hide_cursor) }
+        let(:hide_cursor) {
+          Vedeu::Models::Escape.new(value: Vedeu::Esc.hide_cursor)
+        }
 
         before do
           Vedeu::Output.stubs(:render).
@@ -81,7 +85,7 @@ module Vedeu
 
         subject { instance.hide }
 
-        it { subject.must_be_instance_of(Vedeu::Escape) }
+        it { subject.must_be_instance_of(Vedeu::Models::Escape) }
       end
 
       describe '#move_down' do
@@ -196,7 +200,9 @@ module Vedeu
 
       describe '#show' do
         let(:visible) { false }
-        let(:show_cursor) { Vedeu::Escape.new(value: Vedeu::Esc.show_cursor) }
+        let(:show_cursor) {
+          Vedeu::Models::Escape.new(value: Vedeu::Esc.show_cursor)
+        }
 
         before do
           Vedeu::Output.stubs(:render).
@@ -205,7 +211,7 @@ module Vedeu
 
         subject { instance.show }
 
-        it { subject.must_be_instance_of(Vedeu::Escape) }
+        it { subject.must_be_instance_of(Vedeu::Models::Escape) }
       end
 
       describe '#reposition' do

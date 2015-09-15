@@ -2,66 +2,70 @@ require 'test_helper'
 
 module Vedeu
 
-  describe Escape do
+  module Models
 
-    let(:described)  { Vedeu::Escape }
-    let(:instance)   { described.new(attributes) }
-    let(:attributes) {
-      {
-        value:    _value,
-        position: position,
+    describe Escape do
+
+      let(:described)  { Vedeu::Models::Escape }
+      let(:instance)   { described.new(attributes) }
+      let(:attributes) {
+        {
+          value:    _value,
+          position: position,
+        }
       }
-    }
-    let(:_value)     { "\e[?25h" }
-    let(:position)   { [2, 6] }
+      let(:_value)     { "\e[?25h" }
+      let(:position)   { [2, 6] }
 
-    describe '#initialize' do
-      it { instance.must_be_instance_of(described) }
-      it { instance.instance_variable_get('@value').must_equal(_value) }
-    end
-
-    describe 'accessors' do
-      it { instance.must_respond_to(:value) }
-    end
-
-    describe '#null' do
-      it { instance.null.must_equal(nil) }
-      it { instance.background.must_equal(nil) }
-      it { instance.colour.must_equal(nil) }
-      it { instance.foreground.must_equal(nil) }
-      it { instance.style.must_equal(nil) }
-    end
-
-    describe '#eql?' do
-      let(:other) { instance }
-
-      subject { instance.eql?(other) }
-
-      it { subject.must_equal(true) }
-
-      context 'when different to other' do
-        let(:other) { described.new(value: 'b') }
-
-        it { subject.must_equal(false) }
+      describe '#initialize' do
+        it { instance.must_be_instance_of(described) }
+        it { instance.instance_variable_get('@value').must_equal(_value) }
       end
 
-      it { instance.must_respond_to(:==) }
-    end
+      describe 'accessors' do
+        it { instance.must_respond_to(:value) }
+      end
 
-    describe '#position' do
-      it { instance.position.must_be_instance_of(Vedeu::Geometry::Position) }
-    end
+      describe '#null' do
+        it { instance.null.must_equal(nil) }
+        it { instance.background.must_equal(nil) }
+        it { instance.colour.must_equal(nil) }
+        it { instance.foreground.must_equal(nil) }
+        it { instance.style.must_equal(nil) }
+      end
 
-    describe '#value' do
-      it { instance.value.must_be_instance_of(String) }
-    end
+      describe '#eql?' do
+        let(:other) { instance }
 
-    describe '#to_s' do
-      subject { instance.to_s }
+        subject { instance.eql?(other) }
 
-      it { instance.must_respond_to(:to_str) }
-    end
+        it { subject.must_equal(true) }
 
-  end # Escape
+        context 'when different to other' do
+          let(:other) { described.new(value: 'b') }
+
+          it { subject.must_equal(false) }
+        end
+
+        it { instance.must_respond_to(:==) }
+      end
+
+      describe '#position' do
+        it { instance.position.must_be_instance_of(Vedeu::Geometry::Position) }
+      end
+
+      describe '#value' do
+        it { instance.value.must_be_instance_of(String) }
+      end
+
+      describe '#to_s' do
+        subject { instance.to_s }
+
+        it { instance.must_respond_to(:to_str) }
+      end
+
+    end # Escape
+
+  end # Models
 
 end # Vedeu
