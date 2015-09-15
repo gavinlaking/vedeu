@@ -37,6 +37,6 @@ module Vedeu
 
     end # LocklessLogDevice
 
-  end # Loggings
+  end # Logging
 
 end # Vedeu
