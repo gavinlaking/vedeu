@@ -99,12 +99,12 @@ module Vedeu
                    :focus_next, :focus_previous
 
     # @!method log
-    #   @see Vedeu::Log.log
+    #   @see Vedeu::Logging::Log.log
     # @!method log_stdout
-    #   @see Vedeu::Log.log_stdout
+    #   @see Vedeu::Logging::Log.log_stdout
     # @!method log_stderr
-    #   @see Vedeu::Log.log_stderr
-    def_delegators Vedeu::Log, :log, :log_stdout, :log_stderr
+    #   @see Vedeu::Logging::Log.log_stderr
+    def_delegators Vedeu::Logging::Log, :log, :log_stdout, :log_stderr
 
     # @!method keypress
     #   @see Vedeu::Mapper.keypress

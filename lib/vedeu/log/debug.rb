@@ -1,79 +1,84 @@
 module Vedeu
 
-  # Provides a stack trace of a running client application upon exit in a file
-  # for further analysis.
-  #
-  module Debug
+  module Logging
 
-    extend self
-
-    # :nocov:
-    # Helps to debug a running application by providing a stack trace of its
-    # execution upon exiting.
+    # Provides a stack trace of a running client application upon exit
+    # in a file for further analysis.
     #
-    # @param filename [String]
-    # @return [void]
-    # @yieldreturn [void] The section of the application to debug.
-    def self.debug(filename = 'profile.html')
-      return nil unless block_given?
+    module Debug
 
-      require 'ruby-prof'
+      extend self
 
-      # RubyProf.measure_mode = RubyProf::WALL_TIME
-      # RubyProf.measure_mode = RubyProf::PROCESS_TIME
-      RubyProf.measure_mode = RubyProf::CPU_TIME
-      # RubyProf.measure_mode = RubyProf::ALLOCATIONS
-      # RubyProf.measure_mode = RubyProf::MEMORY
-      # RubyProf.measure_mode = RubyProf::GC_TIME
-      # RubyProf.measure_mode = RubyProf::GC_RUNS
+      # :nocov:
+      # Helps to debug a running application by providing a stack
+      # trace of its execution upon exiting.
+      #
+      # @param filename [String]
+      # @return [void]
+      # @yieldreturn [void] The section of the application to debug.
+      def self.debug(filename = 'profile.html')
+        return nil unless block_given?
 
-      RubyProf.start
+        require 'ruby-prof'
 
-      work = yield
+        # RubyProf.measure_mode = RubyProf::WALL_TIME
+        # RubyProf.measure_mode = RubyProf::PROCESS_TIME
+        RubyProf.measure_mode = RubyProf::CPU_TIME
+        # RubyProf.measure_mode = RubyProf::ALLOCATIONS
+        # RubyProf.measure_mode = RubyProf::MEMORY
+        # RubyProf.measure_mode = RubyProf::GC_TIME
+        # RubyProf.measure_mode = RubyProf::GC_RUNS
 
-      result = RubyProf.stop
-      result.eliminate_methods!([
-        /^Array/,
-        /^Hash/,
-        /^String/,
-        /^Fixnum/,
-      ])
+        RubyProf.start
 
-      File.open('/tmp/' + filename, 'w') do |file|
-        # - Creates a HTML visualization of the Ruby stack
-        RubyProf::CallStackPrinter.new(result).print(file)
+        work = yield
 
-        # Used with QTCacheGrind to analyse performance.
-        # RubyProf::CallTreePrinter.new(result).print(file)
+        result = RubyProf.stop
+        result.eliminate_methods!([
+          /^Array/,
+          /^Hash/,
+          /^String/,
+          /^Fixnum/,
+        ])
 
-        # Creates a flat report in text format
-        # RubyProf::FlatPrinter
+        File.open('/tmp/' + filename, 'w') do |file|
+          # - Creates a HTML visualization of the Ruby stack
+          RubyProf::CallStackPrinter.new(result).print(file)
 
-        # - same as above but more verbose
-        # RubyProf::FlatPrinterWithLineNumbers
+          # Used with QTCacheGrind to analyse performance.
+          # RubyProf::CallTreePrinter.new(result).print(file)
 
-        # - Creates a call graph report in text format
-        # RubyProf::GraphPrinter
+          # Creates a flat report in text format
+          # RubyProf::FlatPrinter
 
-        # - Creates a call graph report in HTML (separate files per thread)
-        # RubyProf::GraphHtmlPrinter
+          # - same as above but more verbose
+          # RubyProf::FlatPrinterWithLineNumbers
 
-        # - Creates a call graph report in GraphViz's DOT format which can be
-        #   converted to an image
-        # RubyProf::DotPrinter
+          # - Creates a call graph report in text format
+          # RubyProf::GraphPrinter
 
-        # - Creates a call tree report compatible with KCachegrind.
-        # RubyProf::CallTreePrinter
+          # - Creates a call graph report in HTML (separate files per
+          #   thread)
+          # RubyProf::GraphHtmlPrinter
 
-        # - Uses the other printers to create several reports in one profiling
-        #   run
-        # RubyProf::MultiPrinter
+          # - Creates a call graph report in GraphViz's DOT format
+          #   which can be converted to an image
+          # RubyProf::DotPrinter
+
+          # - Creates a call tree report compatible with KCachegrind.
+          # RubyProf::CallTreePrinter
+
+          # - Uses the other printers to create several reports in one
+          #   profiling run
+          # RubyProf::MultiPrinter
+        end
+
+        work
       end
+      # :nocov:
 
-      work
-    end
-    # :nocov:
+    end # Debug
 
-  end # Debug
+  end # Logging
 
 end # Vedeu

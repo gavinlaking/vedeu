@@ -52,8 +52,8 @@ module Vedeu
     #   Vedeu.debug
     #
     # @!method debug
-    # @return [Vedeu::Debug]
-    def_delegators Vedeu::Debug, :debug
+    # @return [Vedeu::Logging::Debug]
+    def_delegators Vedeu::Logging::Debug, :debug
 
     # Manipulate the repository of documents.
     #
@@ -162,8 +162,8 @@ module Vedeu
     #   end
     #
     # @!method timer
-    #   @see Vedeu::Timer.timer
-    def_delegators Vedeu::Timer, :timer
+    #   @see Vedeu::Logging::Timer.timer
+    def_delegators Vedeu::Logging::Timer, :timer
 
   end # InternalAPI
 

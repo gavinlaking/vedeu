@@ -275,15 +275,16 @@ module Vedeu
         options[:log] = filename
       end
 
-      # Only log specific message types. A complete list of message types can
-      # be found at {Vedeu::Log.message_types}.
+      # Only log specific message types. A complete list of message
+      # types can be found at {Vedeu::Logging::Log.message_types}.
       #
       #   Vedeu.configure do
       #     log_only :debug, :event
       #     # ...
       #   end
       #
-      # @param types [Array<Symbol>] The message types which should be logged.
+      # @param types [Array<Symbol>] The message types which should be
+      #   slogged.
       # @return [Array<Symbol>]
       def log_only(*types)
         options[:log_only] = types

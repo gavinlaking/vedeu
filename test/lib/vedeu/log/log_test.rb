@@ -2,47 +2,51 @@ require 'test_helper'
 
 module Vedeu
 
-  describe Log do
+  module Logging
 
-    let(:described) { Vedeu::Log }
-    let(:_message)  { 'Some message...' }
-    let(:force)     { false }
-    let(:type)      { :info }
+    describe Log do
 
-    describe '.log' do
-      subject { described.log(message: _message, force: force, type: type) }
+      let(:described) { Vedeu::Logging::Log }
+      let(:_message)  { 'Some message...' }
+      let(:force)     { false }
+      let(:type)      { :info }
 
-      it { subject.must_equal(
-        "\e[97m[info]   \e[39m\e[39mSome message...\e[39m"
-      ) }
-    end
+      describe '.log' do
+        subject { described.log(message: _message, force: force, type: type) }
 
-    describe '.log_stdout' do
-      let(:type)     { :create }
-      let(:_message) { 'Logging to stdout...' }
+        it { subject.must_equal(
+          "\e[97m[info]   \e[39m\e[39mSome message...\e[39m"
+        ) }
+      end
 
-      subject { described.log_stdout(type: type, message: _message) }
+      describe '.log_stdout' do
+        let(:type)     { :create }
+        let(:_message) { 'Logging to stdout...' }
 
-      it {
-        capture_io { subject }.must_equal(
-          ["\e[92m[create] \e[39m\e[32mLogging to stdout...\e[39m\n", ""]
-        )
-      }
-    end
+        subject { described.log_stdout(type: type, message: _message) }
 
-    describe '.log_stdout' do
-      let(:type)     { :debug }
-      let(:_message) { 'Logging to stderr...' }
+        it {
+          capture_io { subject }.must_equal(
+            ["\e[92m[create] \e[39m\e[32mLogging to stdout...\e[39m\n", ""]
+          )
+        }
+      end
 
-      subject { described.log_stderr(type: type, message: _message) }
+      describe '.log_stdout' do
+        let(:type)     { :debug }
+        let(:_message) { 'Logging to stderr...' }
 
-      it {
-        capture_io { subject }.must_equal(
-          ["", "\e[91m[debug]  \e[39m\e[31mLogging to stderr...\e[39m\n"]
-        )
-      }
-    end
+        subject { described.log_stderr(type: type, message: _message) }
 
-  end # Log
+        it {
+          capture_io { subject }.must_equal(
+            ["", "\e[91m[debug]  \e[39m\e[31mLogging to stderr...\e[39m\n"]
+          )
+        }
+      end
+
+    end # Log
+
+  end # Logging
 
 end # Vedeu

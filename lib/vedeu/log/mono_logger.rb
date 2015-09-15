@@ -1,21 +1,26 @@
 module Vedeu
 
-  # Allows the creation of a lock-less log device.
-  #
-  class MonoLogger < Logger
+  module Logging
 
-    # Create a trappable Logger instance.
+    # Allows the creation of a lock-less log device.
     #
-    # @param logdev [String|IO] The filename (String) or IO object (typically
-    #   STDOUT, STDERR or an open file).
-    # @return [Vedeu::MonoLogger]
-    def initialize(logdev)
-      @level             = Logger::DEBUG
-      @default_formatter = Logger::Formatter.new
-      @formatter         = nil
-      @logdev            = Vedeu::LocklessLogDevice.new(logdev) if logdev
-    end
+    class MonoLogger < ::Logger
 
-  end # MonoLogger
+      # Create a trappable Logger instance.
+      #
+      # @param logdev [String|IO] The filename (String) or IO object
+      #   (typically STDOUT, STDERR or an open file).
+      # @return [Vedeu::Logging::MonoLogger]
+      def initialize(logdev)
+        @level             = Logger::DEBUG
+        @default_formatter = Logger::Formatter.new
+        @formatter         = nil
+
+        @logdev = Vedeu::Logging::LocklessLogDevice.new(logdev) if logdev
+      end
+
+    end # MonoLogger
+
+  end # Logging
 
 end # Vedeu
