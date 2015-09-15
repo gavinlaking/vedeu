@@ -25,7 +25,7 @@ have any problems with either of these operating systems.
 
 To install Vedeu, simply:
 
-    gem install 'vedeu'
+    gem install vedeu
 
 To use Vedeu's application scaffolding, see the
 [RubyDoc](http://www.rubydoc.info/gems/vedeu/file/docs/getting_started.md)
