@@ -2,243 +2,250 @@ require 'test_helper'
 
 module Vedeu
 
-  describe Focus do
+  module Models
 
-    let(:described) { Vedeu::Focus }
+    describe Focus do
 
-    before do
-      Vedeu::Focus.reset
-      Vedeu.interfaces.reset
+      let(:described) { Vedeu::Models::Focus }
 
-      Vedeu.stubs(:trigger)
-    end
-    after do
-      Vedeu::Focus.reset
-      Vedeu.interfaces.reset
-    end
+      before do
+        Vedeu::Models::Focus.reset
+        Vedeu.interfaces.reset
 
-    describe '#add' do
-      context 'adds an interface to storage' do
-        it { Vedeu::Focus.add('thallium').must_equal(['thallium']) }
+        Vedeu.stubs(:trigger)
+      end
+      after do
+        Vedeu::Models::Focus.reset
+        Vedeu.interfaces.reset
       end
 
-      context 'does not add it again if already exists' do
-        before { Vedeu.interface('thallium') {} }
+      describe '#add' do
+        context 'adds an interface to storage' do
+          it { Vedeu::Models::Focus.add('thallium').must_equal(['thallium']) }
+        end
 
-        it {
-          Vedeu::Focus.add('thallium')
-          Vedeu::Focus.registered.must_equal(['thallium'])
-        }
+        context 'does not add it again if already exists' do
+          before { Vedeu.interface('thallium') {} }
+
+          it {
+            Vedeu::Models::Focus.add('thallium')
+            Vedeu::Models::Focus.registered.must_equal(['thallium'])
+          }
+        end
+
+        it 'does not add it again if already exists' do
+          Vedeu::Models::Focus.add('thallium')
+          Vedeu::Models::Focus.add('lead')
+          Vedeu::Models::Focus.add('bismuth')
+          Vedeu::Models::Focus.add('bismuth', true)
+          Vedeu::Models::Focus.registered.must_equal(
+            ['bismuth', 'thallium', 'lead']
+          )
+        end
+
+        context 'adds the interface to storage focussed' do
+          before { Vedeu.interface('thallium') {} }
+
+          it {
+            Vedeu::Models::Focus.add('thallium')
+            Vedeu::Models::Focus.add('lead', true)
+            Vedeu::Models::Focus.registered.must_equal(['lead', 'thallium'])
+          }
+        end
+
+        context 'adds the interface to storage unfocussed' do
+          before { Vedeu.interface('thallium') {} }
+
+          it {
+            Vedeu::Models::Focus.add('thallium')
+            Vedeu::Models::Focus.add('lead')
+            Vedeu::Models::Focus.registered.must_equal(['thallium', 'lead'])
+          }
+        end
       end
 
-      it 'does not add it again if already exists' do
-        Vedeu::Focus.add('thallium')
-        Vedeu::Focus.add('lead')
-        Vedeu::Focus.add('bismuth')
-        Vedeu::Focus.add('bismuth', true)
-        Vedeu::Focus.registered.must_equal(['bismuth', 'thallium', 'lead'])
-      end
-
-      context 'adds the interface to storage focussed' do
-        before { Vedeu.interface('thallium') {} }
-
-        it {
-          Vedeu::Focus.add('thallium')
-          Vedeu::Focus.add('lead', true)
-          Vedeu::Focus.registered.must_equal(['lead', 'thallium'])
-        }
-      end
-
-      context 'adds the interface to storage unfocussed' do
-        before { Vedeu.interface('thallium') {} }
-
-        it {
-          Vedeu::Focus.add('thallium')
-          Vedeu::Focus.add('lead')
-          Vedeu::Focus.registered.must_equal(['thallium', 'lead'])
-        }
-      end
-    end
-
-    describe '#by_name' do
-      it 'the named interface is focussed when the method is called' do
-        Vedeu::Focus.add('thallium')
-        Vedeu::Focus.add('lead')
-        Vedeu::Focus.add('bismuth')
-        Vedeu::Focus.by_name('lead').must_equal('lead')
-      end
-
-      it 'raises an exception if the interface does not exist' do
-        proc { Vedeu::Focus.by_name('not_found') }.
-          must_raise(Vedeu::Error::ModelNotFound)
-      end
-
-      context 'API methods' do
+      describe '#by_name' do
         it 'the named interface is focussed when the method is called' do
-          Vedeu::Focus.add('thallium')
-          Vedeu::Focus.add('lead')
-          Vedeu::Focus.add('bismuth')
-          Vedeu.focus_by_name('lead').must_equal('lead')
+          Vedeu::Models::Focus.add('thallium')
+          Vedeu::Models::Focus.add('lead')
+          Vedeu::Models::Focus.add('bismuth')
+          Vedeu::Models::Focus.by_name('lead').must_equal('lead')
         end
 
         it 'raises an exception if the interface does not exist' do
-          proc { Vedeu.focus_by_name('not_found') }.
+          proc { Vedeu::Models::Focus.by_name('not_found') }.
             must_raise(Vedeu::Error::ModelNotFound)
         end
-      end
-    end
 
-    describe '#current' do
-      before { Vedeu::Focus.reset }
+        context 'API methods' do
+          it 'the named interface is focussed when the method is called' do
+            Vedeu::Models::Focus.add('thallium')
+            Vedeu::Models::Focus.add('lead')
+            Vedeu::Models::Focus.add('bismuth')
+            Vedeu.focus_by_name('lead').must_equal('lead')
+          end
 
-      subject { described.current }
-
-      it 'returns the name of the interface currently in focus' do
-        Vedeu::Focus.add('thallium')
-        Vedeu::Focus.add('lead')
-        Vedeu::Focus.add('bismuth')
-        subject.must_equal('thallium')
-      end
-
-      context 'when no interfaces are defined' do
-        it { subject.must_equal(nil) }
-      end
-
-      context 'API methods' do
-        it 'returns the name of the interface currently in focus' do
-          Vedeu::Focus.add('thallium')
-          Vedeu::Focus.add('lead')
-          Vedeu::Focus.add('bismuth')
-          Vedeu.focus.must_equal('thallium')
+          it 'raises an exception if the interface does not exist' do
+            proc { Vedeu.focus_by_name('not_found') }.
+              must_raise(Vedeu::Error::ModelNotFound)
+          end
         end
       end
-    end
 
-    describe '#current?' do
-      before { Vedeu::Focus.stubs(:current).returns('lead') }
+      describe '#current' do
+        before { Vedeu::Models::Focus.reset }
 
-      context 'when the interface is currently in focus' do
-        it { Vedeu::Focus.current?('lead').must_equal(true) }
+        subject { described.current }
+
+        it 'returns the name of the interface currently in focus' do
+          Vedeu::Models::Focus.add('thallium')
+          Vedeu::Models::Focus.add('lead')
+          Vedeu::Models::Focus.add('bismuth')
+          subject.must_equal('thallium')
+        end
+
+        context 'when no interfaces are defined' do
+          it { subject.must_equal(nil) }
+        end
+
+        context 'API methods' do
+          it 'returns the name of the interface currently in focus' do
+            Vedeu::Models::Focus.add('thallium')
+            Vedeu::Models::Focus.add('lead')
+            Vedeu::Models::Focus.add('bismuth')
+            Vedeu.focus.must_equal('thallium')
+          end
+        end
       end
 
-      context 'when the interface is not currently in focus' do
-        it { Vedeu::Focus.current?('bismuth').must_equal(false) }
-      end
+      describe '#current?' do
+        before { Vedeu::Models::Focus.stubs(:current).returns('lead') }
 
-      context 'API methods' do
         context 'when the interface is currently in focus' do
-          it { Vedeu.focussed?('lead').must_equal(true) }
+          it { Vedeu::Models::Focus.current?('lead').must_equal(true) }
         end
 
         context 'when the interface is not currently in focus' do
-          it { Vedeu.focussed?('bismuth').must_equal(false) }
+          it { Vedeu::Models::Focus.current?('bismuth').must_equal(false) }
         end
-      end
-    end
 
-    describe '#next_item' do
-      it 'the next interface is focussed when the method is called' do
-        Vedeu::Focus.add('thallium')
-        Vedeu::Focus.add('lead')
-        Vedeu::Focus.add('bismuth')
-        Vedeu::Focus.next_item.must_equal('lead')
-      end
+        context 'API methods' do
+          context 'when the interface is currently in focus' do
+            it { Vedeu.focussed?('lead').must_equal(true) }
+          end
 
-      context 'returns false if storage is empty' do
-        before { Vedeu::Focus.reset }
-
-        it { Vedeu::Focus.next_item.must_equal(false) }
-      end
-    end
-
-    describe '#next_visible_item' do
-      before do
-        Vedeu.stubs(:trigger)
-        Vedeu.interface('gold') { visible true }
-        Vedeu.interface('silver') { visible true }
-        Vedeu.interface('platinum') { visible false }
-      end
-
-      it 'the next visible interface is focussed when the method is called' do
-        Vedeu::Focus.next_visible_item.must_equal('silver')
-      end
-
-      context 'when there are no visible interfaces' do
-        before {
-          Vedeu.interface('gold') { visible false }
-          Vedeu.interface('silver') { visible false }
-          Vedeu.interface('platinum') { visible false }
-        }
-
-        it 'puts the first interface defined in focus' do
-          Vedeu::Focus.next_visible_item.must_equal('gold')
+          context 'when the interface is not currently in focus' do
+            it { Vedeu.focussed?('bismuth').must_equal(false) }
+          end
         end
       end
 
-      context 'when there are no interfaces' do
-        before { Vedeu::Focus.reset }
+      describe '#next_item' do
+        it 'the next interface is focussed when the method is called' do
+          Vedeu::Models::Focus.add('thallium')
+          Vedeu::Models::Focus.add('lead')
+          Vedeu::Models::Focus.add('bismuth')
+          Vedeu::Models::Focus.next_item.must_equal('lead')
+        end
 
-        it { Vedeu::Focus.next_visible_item.must_equal(false) }
-      end
-    end
+        context 'returns false if storage is empty' do
+          before { Vedeu::Models::Focus.reset }
 
-    describe '#prev_item' do
-      it 'the previous interface is focussed when the method is called' do
-        Vedeu::Focus.add('thallium')
-        Vedeu::Focus.add('lead')
-        Vedeu::Focus.add('bismuth')
-        Vedeu::Focus.prev_item.must_equal('bismuth')
-      end
-
-      context 'returns false if storage is empty' do
-        before { Vedeu::Focus.reset }
-
-        it { Vedeu::Focus.prev_item.must_equal(false) }
-      end
-    end
-
-    describe '#prev_visible_item' do
-      before do
-        Vedeu.stubs(:trigger)
-        Vedeu.interface('gold') { visible true }
-        Vedeu.interface('silver') { visible true }
-        Vedeu.interface('platinum') { visible false }
+          it { Vedeu::Models::Focus.next_item.must_equal(false) }
+        end
       end
 
-      it 'the previous visible interface is focussed when the method is called' do
-        Vedeu::Focus.prev_visible_item.must_equal('silver')
-      end
-
-      context 'when there are no visible interfaces' do
+      describe '#next_visible_item' do
         before do
-          Vedeu.interface('gold') { visible false }
-          Vedeu.interface('silver') { visible false }
+          Vedeu.stubs(:trigger)
+          Vedeu.interface('gold') { visible true }
+          Vedeu.interface('silver') { visible true }
           Vedeu.interface('platinum') { visible false }
         end
 
-        it 'puts the first interface defined in focus' do
-          Vedeu::Focus.prev_visible_item.must_equal('gold')
+        it 'the next visible interface is focussed when the method is called' do
+          Vedeu::Models::Focus.next_visible_item.must_equal('silver')
+        end
+
+        context 'when there are no visible interfaces' do
+          before {
+            Vedeu.interface('gold') { visible false }
+            Vedeu.interface('silver') { visible false }
+            Vedeu.interface('platinum') { visible false }
+          }
+
+          it 'puts the first interface defined in focus' do
+            Vedeu::Models::Focus.next_visible_item.must_equal('gold')
+          end
+        end
+
+        context 'when there are no interfaces' do
+          before { Vedeu::Models::Focus.reset }
+
+          it { Vedeu::Models::Focus.next_visible_item.must_equal(false) }
         end
       end
 
-      context 'when there are no interfaces' do
-        before { Vedeu::Focus.reset }
+      describe '#prev_item' do
+        it 'the previous interface is focussed when the method is called' do
+          Vedeu::Models::Focus.add('thallium')
+          Vedeu::Models::Focus.add('lead')
+          Vedeu::Models::Focus.add('bismuth')
+          Vedeu::Models::Focus.prev_item.must_equal('bismuth')
+        end
 
-        it { Vedeu::Focus.prev_visible_item.must_equal(false) }
+        context 'returns false if storage is empty' do
+          before { Vedeu::Models::Focus.reset }
+
+          it { Vedeu::Models::Focus.prev_item.must_equal(false) }
+        end
       end
-    end
 
-    describe '#refresh' do
-      before do
-        Vedeu::Focus.add('thallium')
-        Vedeu.stubs(:trigger).returns([])
+      describe '#prev_visible_item' do
+        before do
+          Vedeu.stubs(:trigger)
+          Vedeu.interface('gold') { visible true }
+          Vedeu.interface('silver') { visible true }
+          Vedeu.interface('platinum') { visible false }
+        end
+
+        it 'the previous visible interface is focussed when the method is ' \
+           'called' do
+          Vedeu::Models::Focus.prev_visible_item.must_equal('silver')
+        end
+
+        context 'when there are no visible interfaces' do
+          before do
+            Vedeu.interface('gold') { visible false }
+            Vedeu.interface('silver') { visible false }
+            Vedeu.interface('platinum') { visible false }
+          end
+
+          it 'puts the first interface defined in focus' do
+            Vedeu::Models::Focus.prev_visible_item.must_equal('gold')
+          end
+        end
+
+        context 'when there are no interfaces' do
+          before { Vedeu::Models::Focus.reset }
+
+          it { Vedeu::Models::Focus.prev_visible_item.must_equal(false) }
+        end
       end
 
-      it 'triggers the event to refresh the interface current in focus' do
-        Vedeu::Focus.refresh.must_equal([])
-      end
-    end
+      describe '#refresh' do
+        before do
+          Vedeu::Models::Focus.add('thallium')
+          Vedeu.stubs(:trigger).returns([])
+        end
 
-  end # Focus
+        it 'triggers the event to refresh the interface current in focus' do
+          Vedeu::Models::Focus.refresh.must_equal([])
+        end
+      end
+
+    end # Focus
+
+  end # Models
 
 end # Vedeu

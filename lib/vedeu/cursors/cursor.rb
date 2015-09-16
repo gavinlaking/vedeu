@@ -138,7 +138,7 @@ module Vedeu
       #
       # @return [Array<Vedeu::Models::Escape>]
       def render
-        Vedeu::Output.render(visibility)
+        Vedeu::Output::Output.render(visibility)
       end
 
       # Arbitrarily move the cursor to a given position.

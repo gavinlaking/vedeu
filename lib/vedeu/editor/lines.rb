@@ -65,8 +65,8 @@ module Vedeu
         lines[index]
       end
 
-      # Deletes the character from the line where the cursor is currently
-      # positioned.
+      # Deletes the character from the line where the cursor is
+      # currently positioned.
       #
       # @param y [Fixnum]
       # @param x [Fixnum]

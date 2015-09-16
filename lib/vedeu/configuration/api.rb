@@ -2,8 +2,9 @@ module Vedeu
 
   module Config
 
-    # The Configuration::API class parses client application configuration into
-    # options used by Vedeu to affect certain behaviours.
+    # The Configuration::API class parses client application
+    # configuration into options used by Vedeu to affect certain
+    # behaviours.
     #
     class API
 
@@ -16,8 +17,8 @@ module Vedeu
 
       # Returns a new instance of Vedeu::Config::API.
       #
-      # Configure Vedeu via a simple configuration API DSL. Options set here
-      # override the default Vedeu configuration set in
+      # Configure Vedeu via a simple configuration API DSL. Options
+      # set here override the default Vedeu configuration set in
       # {Vedeu::Configuration#defaults}.
       #
       #   Vedeu.configure do
@@ -37,11 +38,12 @@ module Vedeu
         Vedeu::Config.log(Esc.green { '[api]' }, options)
       end
 
-      # Sets boolean to allow user input. The default behaviour of Vedeu is to
-      # be interactive.
+      # Sets boolean to allow user input. The default behaviour of
+      # Vedeu is to be interactive.
       #
       #   Vedeu.configure do
-      #     interactive! # => same as `interactive true` or `standalone false`
+      #     interactive! # => same as `interactive true` or
+      #                  #    `standalone false`
       #     # ...
       #   end
       #
@@ -62,11 +64,12 @@ module Vedeu
       end
       alias_method :interactive, :interactive!
 
-      # Sets boolean to prevent user intervention. This is the same as setting
-      # {include:Vedeu::Config::API#interactive!} to false.
+      # Sets boolean to prevent user intervention. This is the same as
+      # setting {include:Vedeu::Config::API#interactive!} to false.
       #
       #   Vedeu.configure do
-      #     standalone! # => same as `standalone true` or `interactive false`
+      #     standalone! # => same as `standalone true` or
+      #                 #    `interactive false`
       #     # ...
       #   end
       #
@@ -87,9 +90,10 @@ module Vedeu
       end
       alias_method :standalone, :standalone!
 
-      # Sets boolean to run the Vedeu main application loop once. In effect,
-      # using `run_once!` or setting `run_once` to true will allow Vedeu to
-      # initialize, run any client application code, cleanup, then terminate.
+      # Sets boolean to run the Vedeu main application loop once. In
+      # effect, using `run_once!` or setting `run_once` to true will
+      # allow Vedeu to initialize, run any client application code,
+      # cleanup, then terminate.
       #
       #   Vedeu.configure do
       #     run_once!
@@ -169,8 +173,8 @@ module Vedeu
         options[:drb_width] = width
       end
 
-      # Sets the terminal mode to `cooked`. Default terminal mode is `raw`.
-      # Also, see {Vedeu::Config::API#raw!}
+      # Sets the terminal mode to `cooked`. Default terminal mode is
+      # `raw`. Also, see {Vedeu::Config::API#raw!}
       #
       #   Vedeu.configure do
       #     cooked!
@@ -183,7 +187,8 @@ module Vedeu
       end
       alias_method :cooked, :cooked!
 
-      # Sets the terminal mode to `fake`. Default terminal mode is `raw`.
+      # Sets the terminal mode to `fake`. Default terminal mode is
+      # `raw`.
       #
       # @example
       #   Vedeu.configure do
@@ -197,8 +202,8 @@ module Vedeu
       end
       alias_method :fake, :fake!
 
-      # Sets the terminal mode to `raw`. Default terminal mode is `raw`.
-      # Also, see {Vedeu::Config::API#cooked!}
+      # Sets the terminal mode to `raw`. Default terminal mode is
+      # `raw`. Also, see {Vedeu::Config::API#cooked!}
       #
       #   Vedeu.configure do
       #     raw!
@@ -211,13 +216,13 @@ module Vedeu
       end
       alias_method :raw, :raw!
 
-      # Sets boolean to enable/disable debugging. Vedeu's default setting is
-      # for debugging to be disabled. Using `debug!` or setting `debug` to true
-      # will enable debugging.
+      # Sets boolean to enable/disable debugging. Vedeu's default
+      # setting is for debugging to be disabled. Using `debug!` or
+      # setting `debug` to true will enable debugging.
       #
       # @note
-      #   Be aware that running an application with debugging enabled will
-      #   affect performance.
+      #   Be aware that running an application with debugging enabled
+      #   will affect performance.
       #
       #   Vedeu.configure do
       #     debug!
@@ -244,14 +249,15 @@ module Vedeu
       #   end
       #
       # @note
-      #   iTerm 2 on Mac OSX will handle the true colour setting (16777216),
-      #   whereas Terminator on Linux will not display colours correctly. For
-      #   compatibility across platforms, it is recommended to either not set
-      #   the colour mode at all and allow it to be detected, or use 256 here.
+      #   iTerm 2 on Mac OSX will handle the true colour setting
+      #   (16777216), whereas Terminator on Linux will not display
+      #   colours correctly. For compatibility across platforms, it is
+      #   recommended to either not set the colour mode at all and
+      #   allow it to be detected, or use 256 here.
       #
       # @param value [Fixnum]
-      # @raise [Vedeu::Error::InvalidSyntax] When the value parameter is not one
-      #   of +8+, +16+, +256+ or +16777216+.
+      # @raise [Vedeu::Error::InvalidSyntax] When the value parameter
+      #   is not one of +8+, +16+, +256+ or +16777216+.
       # @return [Boolean]
       def colour_mode(value = nil)
         unless valid_colour_mode?(value)
@@ -290,8 +296,9 @@ module Vedeu
         options[:log_only] = types
       end
 
-      # Sets the renderers for Vedeu. Each renderer added must have the class
-      # method '.render' defined as this will be called when rendering content.
+      # Sets the renderers for Vedeu. Each renderer added must have
+      # the class method '.render' defined as this will be called when
+      # rendering content.
       #
       #   Vedeu.configure do
       #     renderer MyRenderer
@@ -310,9 +317,9 @@ module Vedeu
       end
       alias_method :renderers, :renderer
 
-      # Override the base path for the application (for locating templates and
-      # other resources). By default the base path is just cwd but this will
-      # not work for many applications.
+      # Override the base path for the application (for locating
+      # templates and other resources). By default the base path is
+      # just cwd but this will not work for many applications.
       #
       #   Vedeu.configure do
       #     base_path '/path/to/application'
@@ -325,8 +332,8 @@ module Vedeu
         options[:base_path] = path
       end
 
-      # Sets the root of the client application. Vedeu will execute this
-      # controller with action and optional arguments first.
+      # Sets the root of the client application. Vedeu will execute
+      # this controller with action and optional arguments first.
       #
       #   Vedeu.configure do
       #     root :controller, :action, args
@@ -378,13 +385,13 @@ module Vedeu
         options[:stderr] = io
       end
 
-      # Compression reduces the number of escape sequences being sent to the
-      # terminal which improves redraw/render/refresh rate. By default it is
-      # enabled.
+      # Compression reduces the number of escape sequences being sent
+      # to the terminal which improves redraw/render/refresh rate. By
+      # default it is enabled.
       #
-      # Sets boolean to enable/disable compression. Vedeu's default setting is
-      # for compression to be enabled. Setting `compression` to false will
-      # disable compression.
+      # Sets boolean to enable/disable compression. Vedeu's default
+      # setting is for compression to be enabled. Setting
+      # `compression` to false will disable compression.
       #
       #   Vedeu.configure do
       #     compression! # enabled (default)
@@ -397,9 +404,10 @@ module Vedeu
       #   end
       #
       # @note
-      # - Be aware that running an application without compression will
-      #   affect performance.
-      # - Compression cannot yet be configured using a CLI option flag.
+      # - Be aware that running an application without compression
+      #   will affect performance.
+      # - Compression cannot yet be configured using a CLI option
+      #   flag.
       #
       # @param value [Boolean]
       # @return [Boolean]
@@ -408,8 +416,8 @@ module Vedeu
       end
       alias_method :compression!, :compression
 
-      # Sets the terminal mode. Valid values can be either ':cooked', ':fake' or
-      # :raw'.
+      # Sets the terminal mode. Valid values can be either ':cooked',
+      # ':fake' or :raw'.
       #
       #   Vedeu.configure do
       #     terminal_mode :cooked
@@ -426,8 +434,8 @@ module Vedeu
       #   end
       #
       # @param mode [Symbol] Either ':cooked', ':fake' or ':raw'.
-      # @raise [Vedeu::Error::InvalidSyntax] When the mode is not ':cooked',
-      #   ':fake' or ':raw'.
+      # @raise [Vedeu::Error::InvalidSyntax] When the mode is not
+      #   ':cooked', ':fake' or ':raw'.
       # @return [Symbol]
       # @see Vedeu::Config::API#cooked!
       # @see Vedeu::Config::API#fake!
@@ -445,8 +453,8 @@ module Vedeu
 
       private
 
-      # Returns the options set via the configuration API DSL or an empty Hash
-      # when none were set.
+      # Returns the options set via the configuration API DSL or an
+      # empty Hash when none were set.
       #
       # @return [Hash]
       def options

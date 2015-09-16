@@ -51,16 +51,16 @@ module Vedeu
       # @param name [String] The name of this group.
       # @param block [Proc]
       # @raise [Vedeu::Error::InvalidSyntax] The required block was not given.
-      # @return [Vedeu::Group]
+      # @return [Vedeu::Models::Group]
       def self.group(name, &block)
         fail Vedeu::Error::InvalidSyntax, 'block not given' unless block_given?
 
-        Vedeu::Group.build(name: name, &block).store
+        Vedeu::Models::Group.build(name: name, &block).store
       end
 
       # Returns an instance of DSL::Group.
       #
-      # @param model [Vedeu::Group]
+      # @param model [Vedeu::Models::Group]
       # @param client [Object]
       # @return [Vedeu::DSL::Group]
       def initialize(model, client = nil)
@@ -75,7 +75,7 @@ module Vedeu
       #   end
       #
       # @param interface_name [String]
-      # @return [Vedeu::Group]
+      # @return [Vedeu::Models::Group]
       def add(interface_name)
         model.add(interface_name)
       end

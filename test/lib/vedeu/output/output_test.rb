@@ -2,48 +2,52 @@ require 'test_helper'
 
 module Vedeu
 
-  describe Output do
+  module Output
 
-    let(:described) { Vedeu::Output }
-    let(:instance)  { described.new(output) }
-    let(:output)    {}
-    let(:drb)       { false }
+    describe Output do
 
-    before { Vedeu::Configuration.stubs(:drb?).returns(drb) }
+      let(:described) { Vedeu::Output::Output }
+      let(:instance)  { described.new(output) }
+      let(:output)    {}
+      let(:drb)       { false }
 
-    describe '#initialize' do
-      it { instance.must_be_instance_of(described) }
-      it { instance.instance_variable_get('@output').must_equal(output) }
-    end
+      before { Vedeu::Configuration.stubs(:drb?).returns(drb) }
 
-    describe '.render' do
-      before { Vedeu.renderers.stubs(:render) }
-
-      subject { described.render(output) }
-
-      context 'when DRb is enabled' do
-        let(:drb)            { true }
-        let(:virtual_buffer) { [] }
-
-        before do
-          Vedeu::Configuration.stubs(:drb?).returns(drb)
-          # Vedeu::Renderers::HTML.stubs(:to_file)
-          # Vedeu::VirtualBuffers.stubs(:retrieve).returns(virtual_buffer)
-        end
-
-        it {
-          Vedeu.expects(:trigger).with(:_drb_store_output_, output)
-          subject
-        }
-
-        # it 'writes the virtual buffer to a file' do
-        #   Vedeu::Renderers::HTML.expects(:to_file).with(virtual_buffer)
-        #   subject
-        # end
+      describe '#initialize' do
+        it { instance.must_be_instance_of(described) }
+        it { instance.instance_variable_get('@output').must_equal(output) }
       end
 
-      it { Vedeu.renderers.expects(:render).with(output); subject }
-    end
+      describe '.render' do
+        before { Vedeu.renderers.stubs(:render) }
+
+        subject { described.render(output) }
+
+        context 'when DRb is enabled' do
+          let(:drb)            { true }
+          let(:virtual_buffer) { [] }
+
+          before do
+            Vedeu::Configuration.stubs(:drb?).returns(drb)
+            # Vedeu::Renderers::HTML.stubs(:to_file)
+            # Vedeu::Buffers::VirtualBuffers.stubs(:retrieve).returns(virtual_buffer)
+          end
+
+          it {
+            Vedeu.expects(:trigger).with(:_drb_store_output_, output)
+            subject
+          }
+
+          # it 'writes the virtual buffer to a file' do
+          #   Vedeu::Renderers::HTML.expects(:to_file).with(virtual_buffer)
+          #   subject
+          # end
+        end
+
+        it { Vedeu.renderers.expects(:render).with(output); subject }
+      end
+
+    end # Output
 
   end # Output
 

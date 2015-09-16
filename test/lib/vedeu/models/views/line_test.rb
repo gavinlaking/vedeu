@@ -20,18 +20,22 @@ module Vedeu
         [
           Vedeu::Views::Stream.new(value: 'Something interesting ',
                                    parent: streams_parent,
-                                   colour: Vedeu::Colours::Colour.new(foreground: '#ffff00'),
-                                   style:  Vedeu::Style.new('normal')),
+                                   colour: yellow,
+                                   style:  normal_style),
           Vedeu::Views::Stream.new(value: 'on this line ',
                                    parent: streams_parent,
-                                   colour: Vedeu::Colours::Colour.new(foreground: '#00ff00'),
-                                   style:  Vedeu::Style.new('normal')),
+                                   colour: green,
+                                   style:  normal_style),
           Vedeu::Views::Stream.new(value: 'would be cool, eh?',
                                    parent: streams_parent,
-                                   colour: Vedeu::Colours::Colour.new(foreground: '#0000ff'),
-                                   style:  Vedeu::Style.new('normal'))
+                                   colour: blue,
+                                   style:  normal_style)
         ]
       }
+      let(:yellow)       { Vedeu::Colours::Colour.new(foreground: '#ffff00') }
+      let(:green)        { Vedeu::Colours::Colour.new(foreground: '#00ff00') }
+      let(:blue)         { Vedeu::Colours::Colour.new(foreground: '#0000ff') }
+      let(:normal_style) { Vedeu::Presentation::Style.new('normal') }
 
       let(:streams_parent) {
         Vedeu::Views::Line.new(value:  nil,
@@ -41,10 +45,10 @@ module Vedeu
       }
 
       let(:parent) { Vedeu::Views::View.new(name: 'Vedeu::Line') }
+      let(:style)  { Vedeu::Presentation::Style.new('normal') }
       let(:colour) {
         Vedeu::Colours::Colour.new(foreground: '#ff0000', background: '#000000')
       }
-      let(:style)  { Vedeu::Style.new('normal') }
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }

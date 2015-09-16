@@ -2,8 +2,8 @@ module Vedeu
 
   module Editor
 
-    # Crop the lines to the visible area of the document, as defined by the
-    # geometry provided.
+    # Crop the lines to the visible area of the document, as defined
+    # by the geometry provided.
     #
     class Cropper
 
@@ -25,8 +25,8 @@ module Vedeu
 
       # Returns the lines cropped.
       #
-      # @note If there are no lines of content, we return an empty array. If
-      # there are any empty lines, then they are discarded.
+      # @note If there are no lines of content, we return an empty
+      # array. If there are any empty lines, then they are discarded.
       #
       # @return [Array<void>]
       def cropped

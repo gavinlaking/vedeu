@@ -2,8 +2,8 @@ module Vedeu
 
   module Editor
 
-    # Handles keypresses for a named document whilst the terminal is in fake
-    # mode.
+    # Handles keypresses for a named document whilst the terminal is
+    # in fake mode.
     #
     class Editor
 

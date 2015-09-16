@@ -34,9 +34,9 @@ module Vedeu
 
   # Return the name of currently focussed interface.
   #
-  # @return [Vedeu::Focus]
+  # @return [Vedeu::Models::Focus]
   def self.focusable
-    @focusable ||= Vedeu::Focus
+    @focusable ||= Vedeu::Models::Focus
   end
 
   # :nocov:

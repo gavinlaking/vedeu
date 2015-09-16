@@ -98,8 +98,8 @@ module Vedeu
     #   Vedeu.groups
     #
     # @!method groups
-    # @return [Vedeu::Groups]
-    def_delegators Vedeu::Groups, :groups
+    # @return [Vedeu::Models::Groups]
+    def_delegators Vedeu::Models::Groups, :groups
 
     # Manipulate the repository of interfaces.
     #
@@ -107,8 +107,8 @@ module Vedeu
     #   Vedeu.interfaces
     #
     # @!method interfaces
-    # @return [Vedeu::Interfaces]
-    def_delegators Vedeu::Interfaces, :interfaces
+    # @return [Vedeu::Models::Interfaces]
+    def_delegators Vedeu::Models::Interfaces, :interfaces
 
     # Manipulate the repository of keymaps.
     #

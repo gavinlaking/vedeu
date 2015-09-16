@@ -1,28 +1,44 @@
 # @title Vedeu Events
-# Vedeu Events
 
-## Application Events
+# Vedeu Provided Events
 
-See {Vedeu::Bindings::Application}
+Vedeu provides a bunch of events which you can use to control its
+behaviour. These are listed below:
 
-## System Events
+### Application Events
+See {file:docs/events/application.md}
 
-See {Vedeu::Bindings::Focus}
-See {Vedeu::Bindings::Refresh}
-See {Vedeu::Bindings::System}
+### Document Events
+See {file:docs/events/document.md}
 
-## DRB Events
+### Focus Events
+See {file:docs/events/focus.md}
 
-See {Vedeu::Bindings::DRB}
+### Refresh Events
+See {file:docs/events/refresh.md}
 
-## Menu Events
+### System Events
+See {file:docs/events/system.md}
 
-See {Vedeu::Bindings::Menus}
+### DRB Events
+See {file:docs/events/drb.md}
 
-## Movement Events
+### Menu Events
+See {file:docs/events/menu.md}
 
-See {Vedeu::Bindings::Movement}
+### Movement Events
+See {file:docs/events/movement.md}
 
-## Visibility Events
+### Visibility Events
+See {file:docs/events/visibility.md}
 
-See {Vedeu::Bindings::Visibility}
+# Vedeu Custom Events
+
+You can bind or unbind your own events using Vedeu's event system. It
+provides:
+
+### Vedeu.bind
+### Vedeu.bind_alias
+### Vedeu.trigger
+### Vedeu.unbind
+### Vedeu.unbind_alias

@@ -107,9 +107,9 @@ module Vedeu
       #     # ...
       #   end
       #
-      # @return [Vedeu::Style]
+      # @return [Vedeu::Presentation::Style]
       def style(value)
-        model.style = Vedeu::Style.coerce(value)
+        model.style = Vedeu::Presentation::Style.coerce(value)
       end
       alias_method :style=,  :style
       alias_method :styles,  :style

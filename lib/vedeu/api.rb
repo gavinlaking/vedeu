@@ -87,16 +87,16 @@ module Vedeu
     def_delegators Vedeu::Events::Aliases, :bind_alias, :unbind_alias
 
     # @!method focus
-    #   @see Vedeu::Focus#focus
+    #   @see Vedeu::Models::Focus#focus
     # @!method focus_by_name
-    #   @see Vedeu::Focus#focus_by_name
+    #   @see Vedeu::Models::Focus#focus_by_name
     # @!method focussed?
-    #   @see Vedeu::Focus#focussed?
+    #   @see Vedeu::Models::Focus#focussed?
     # @!method focus_next
-    #   @see Vedeu::Focus#focus_next
+    #   @see Vedeu::Models::Focus#focus_next
     # @!method focus_previous
-    #   @see Vedeu::Focus#focus_previous
-    def_delegators Vedeu::Focus, :focus, :focus_by_name, :focussed?,
+    #   @see Vedeu::Models::Focus#focus_previous
+    def_delegators Vedeu::Models::Focus, :focus, :focus_by_name, :focussed?,
                    :focus_next, :focus_previous
 
     # @!method log
@@ -160,28 +160,28 @@ module Vedeu
     def_delegators Vedeu::Cursors::Cursor, :toggle_cursor
 
     # @!method hide_group
-    #   @see Vedeu::Group#hide
-    def_delegators Vedeu::Group, :hide_group
+    #   @see Vedeu::Models::Group#hide
+    def_delegators Vedeu::Models::Group, :hide_group
 
     # @!method show_group
-    #   @see Vedeu::Group#show
-    def_delegators Vedeu::Group, :show_group
+    #   @see Vedeu::Models::Group#show
+    def_delegators Vedeu::Models::Group, :show_group
 
     # @!method toggle_group
-    #   @see Vedeu::Group#toggle
-    def_delegators Vedeu::Group, :toggle_group
+    #   @see Vedeu::Models::Group#toggle
+    def_delegators Vedeu::Models::Group, :toggle_group
 
     # @!method hide_interface
-    #   @see Vedeu::Interface#hide
-    def_delegators Vedeu::Interface, :hide_interface
+    #   @see Vedeu::Models::Interface#hide
+    def_delegators Vedeu::Models::Interface, :hide_interface
 
     # @!method show_interface
-    #   @see Vedeu::Interface#show
-    def_delegators Vedeu::Interface, :show_interface
+    #   @see Vedeu::Models::Interface#show
+    def_delegators Vedeu::Models::Interface, :show_interface
 
     # @!method toggle_interface
-    #   @see Vedeu::Interface#toggle
-    def_delegators Vedeu::Interface, :toggle_interface
+    #   @see Vedeu::Models::Interface#toggle
+    def_delegators Vedeu::Models::Interface, :toggle_interface
 
   end # API
 

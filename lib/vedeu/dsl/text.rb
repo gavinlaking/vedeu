@@ -56,7 +56,7 @@ module Vedeu
       def text(value = '', options = {})
         options.merge!(anchor: __callee__, model: model)
 
-        Vedeu::Text.add(value, options)
+        Vedeu::Output::Text.add(value, options)
       end
       alias_method :text=,   :text
       alias_method :align,   :text

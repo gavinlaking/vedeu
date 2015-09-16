@@ -15,9 +15,9 @@ module Vedeu
 
         context 'when there are cursors are defined' do
           before do
-            Vedeu::Focus.reset
+            Vedeu::Models::Focus.reset
             Vedeu.cursors.reset
-            Vedeu::Focus.add('Vedeu.cursor')
+            Vedeu::Models::Focus.add('Vedeu.cursor')
             Vedeu::Cursors::Cursor.new(name: 'Vedeu.cursor').store
           end
 
@@ -26,7 +26,7 @@ module Vedeu
 
         context 'when there are no cursors defined' do
           before do
-            Vedeu::Focus.reset
+            Vedeu::Models::Focus.reset
             Vedeu.cursors.reset
           end
 

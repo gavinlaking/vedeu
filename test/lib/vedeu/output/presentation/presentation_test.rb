@@ -45,22 +45,26 @@ module Vedeu
     let(:foreground) { '#aadd00' }
 
     describe '#to_s' do
+      let(:red)   {
+        Vedeu::Colours::Colour.new(foreground: '#ff0000', background: '#000000')
+      }
+      let(:green) {
+        Vedeu::Colours::Colour.new(foreground: '#00ff00', background: '#000000')
+      }
       let(:line) {
         Vedeu::Views::Line.new(value:  [],
-                               parent: Vedeu::Interface.new,
-                               colour: Vedeu::Colours::Colour.new(foreground: '#00ff00',
-                                                                  background: '#000000'),
-                               style:  Vedeu::Style.new('normal'))
+                               parent: Vedeu::Models::Interface.new,
+                               colour: green,
+                               style:  Vedeu::Presentation::Style.new('normal'))
       }
       let(:stream) {
         Vedeu::Views::Stream.new(value:  stream_value,
                                  parent: line,
-                                 colour: Vedeu::Colours::Colour.new(foreground: '#ff0000',
-                                                                    background: '#000000'),
+                                 colour: red,
                                  style:  stream_style)
       }
       let(:stream_value)  { 'Some text' }
-      let(:stream_style)  { Vedeu::Style.new(:underline) }
+      let(:stream_style)  { Vedeu::Presentation::Style.new(:underline) }
 
       it { includer.must_respond_to(:to_str) }
 

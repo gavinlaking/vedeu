@@ -45,7 +45,7 @@ module Vedeu
       # @option attributes value [Vedeu::Views::Lines]
       # @option attributes name [String]
       # @option attributes parent [Vedeu::Views::Composition]
-      # @option attributes style [Vedeu::Style]
+      # @option attributes style [Vedeu::Presentation::Style]
       # @option attributes zindex [Fixnum]
       # @return [Vedeu::Views::View]
       def initialize(attributes = {})

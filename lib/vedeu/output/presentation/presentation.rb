@@ -1,4 +1,5 @@
 require 'vedeu/output/presentation/colour'
+require 'vedeu/output/presentation/styles'
 require 'vedeu/output/presentation/style'
 
 module Vedeu
@@ -9,7 +10,7 @@ module Vedeu
   module Presentation
 
     include Vedeu::Presentation::Colour
-    include Vedeu::Presentation::Style
+    include Vedeu::Presentation::Styles
 
     # Converts the colours and styles to escape sequences, and when the parent
     # model has previously set the colour and style, reverts back to that for

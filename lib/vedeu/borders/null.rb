@@ -2,8 +2,8 @@ module Vedeu
 
   module Borders
 
-    # Provides a non-existent Vedeu::Borders::Border that acts like the real
-    # thing, but does nothing.
+    # Provides a non-existent Vedeu::Borders::Border that acts like
+    # the real thing, but does nothing.
     #
     class Null
 

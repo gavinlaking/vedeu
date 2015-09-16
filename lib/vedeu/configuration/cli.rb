@@ -3,7 +3,8 @@ module Vedeu
   module Config
 
     # The Configuration::CLI class parses command-line arguments using
-    # OptionParser into options used by Vedeu to affect certain behaviours.
+    # OptionParser into options used by Vedeu to affect certain
+    # behaviours.
     #
     class CLI
 
@@ -14,9 +15,9 @@ module Vedeu
 
       # Returns a new instance of Vedeu::Config::CLI.
       #
-      # Configure Vedeu via command-line arguments. Options set here via
-      # arguments override the client application configuration set via
-      # {Vedeu::API#configure}.
+      # Configure Vedeu via command-line arguments. Options set here
+      # via arguments override the client application configuration
+      # set via {Vedeu::API#configure}.
       #
       # @param args [Array]
       # @return [Vedeu::Configuration::CLI]
@@ -25,8 +26,8 @@ module Vedeu
         @options = {}
       end
 
-      # Returns the configuration options set up by parsing the command-line
-      # arguments passed to the client application.
+      # Returns the configuration options set up by parsing the
+      # command-line arguments passed to the client application.
       #
       # @return [Hash]
       def configuration
@@ -49,7 +50,8 @@ module Vedeu
 
       private
 
-      # Setup Vedeu using CLI configuration options for the client application.
+      # Setup Vedeu using CLI configuration options for the client
+      # application.
       #
       # @return [void]
       def setup!

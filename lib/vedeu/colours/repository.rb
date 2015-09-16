@@ -2,8 +2,8 @@ module Vedeu
 
   module Colours
 
-    # Allows the storing of HTML/CSS colours and their respective escape
-    # sequences.
+    # Allows the storing of HTML/CSS colours and their respective
+    # escape sequences.
     #
     class Repository
 
@@ -25,7 +25,8 @@ module Vedeu
         storage.store(colour, escape_sequence)
       end
 
-      # Returns a boolean indicating whether the colour has been registered.
+      # Returns a boolean indicating whether the colour has been
+      # sregistered.
       #
       # @param colour [String]
       # @return [Boolean]
@@ -49,8 +50,8 @@ module Vedeu
         storage.fetch(colour, '')
       end
 
-      # Retrieves the escape sequence of a registered colour, or registers the
-      # colour with its respective escape sequence.
+      # Retrieves the escape sequence of a registered colour, or
+      # registers the colour with its respective escape sequence.
       #
       # @return [String]
       def retrieve_or_register(colour, escape_sequence)

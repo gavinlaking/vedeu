@@ -2,8 +2,8 @@ module Vedeu
 
   module Renderers
 
-    # Converts a grid of {Vedeu::Views::Char} objects into a stream of escape
-    # sequences and content suitable for a terminal.
+    # Converts a grid of {Vedeu::Views::Char} objects into a stream of
+    # escape sequences and content suitable for a terminal.
     #
     class Terminal
 
@@ -31,7 +31,7 @@ module Vedeu
         store!(output)
 
         Vedeu.timer('Compression') do
-          Vedeu::Compressor.render(output)
+          Vedeu::Output::Compressor.render(output)
         end
       end
 

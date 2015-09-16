@@ -5,7 +5,6 @@ module Vedeu
     # Each of the Bindings::Menus events require a target menu name as
     # an argument.
     #
-    # :nocov:
     module Menus
 
       extend self
@@ -29,122 +28,67 @@ module Vedeu
 
       private
 
-      # Makes the last menu item the current menu item.
-      #
-      # @example
-      #   Vedeu.trigger(:_menu_bottom_, name)
-      #
-      # @return [TrueClass]
+      # See {file:docs/events/menu.md#\_menu_bottom_}
       def menu_bottom!
         Vedeu.bind(:_menu_bottom_) do |name|
           Vedeu.menus.by_name(name).bottom_item
         end
       end
 
-      # Returns the current menu item.
-      #
-      # @example
-      #   Vedeu.trigger(:_menu_current_, name)
-      #
-      # @return [TrueClass]
+      # See {file:docs/events/menu.md#\_menu_current_}
       def menu_current!
         Vedeu.bind(:_menu_current_) do |name|
           Vedeu.menus.by_name(name).current_item
         end
       end
 
-      # Deselects all menu items.
-      #
-      # @example
-      #   Vedeu.trigger(:_menu_deselect_, name)
-      #
-      # @return [TrueClass]
+      # See {file:docs/events/menu.md#\_menu_deselect_}
       def menu_deselect!
         Vedeu.bind(:_menu_deselect_) do |name|
           Vedeu.menus.by_name(name).deselect_item
         end
       end
 
-      # Returns all the menu items with respective `current` or
-      # `selected` boolean indicators.
-      #
-      # @example
-      #   Vedeu.trigger(:_menu_items_, name)
-      #
-      # @return [TrueClass]
+      # See {file:docs/events/menu.md#\_menu_items_}
       def menu_items!
         Vedeu.bind(:_menu_items_) { |name| Vedeu.menus.by_name(name).items }
       end
 
-      # Makes the next menu item the current menu item, until it
-      # reaches the last item.
-      #
-      # @example
-      #   Vedeu.trigger(:_menu_next_, name)
-      #
-      # @return [TrueClass]
+      # See {file:docs/events/menu.md#\_menu_next_}
       def menu_next!
         Vedeu.bind(:_menu_next_) { |name| Vedeu.menus.by_name(name).next_item }
       end
 
-      # Makes the previous menu item the current menu item, until it
-      # reaches the first item.
-      #
-      # @example
-      #   Vedeu.trigger(:_menu_prev_, name)
-      #
-      # @return [TrueClass]
+      # See {file:docs/events/menu.md#\_menu_prev_}
       def menu_prev!
         Vedeu.bind(:_menu_prev_) { |name| Vedeu.menus.by_name(name).prev_item }
       end
 
-      # Returns the selected menu item.
-      #
-      # @example
-      #   Vedeu.trigger(:_menu_selected_, name)
-      #
-      # @return [TrueClass]
+      # See {file:docs/events/menu.md#\_menu_selected_}
       def menu_selected!
         Vedeu.bind(:_menu_selected_) do |name|
           Vedeu.menus.by_name(name).selected_item
         end
       end
 
-      # Makes the current menu item also the selected menu item.
-      #
-      # @example
-      #   Vedeu.trigger(:_menu_select_, name)
-      #
-      # @return [TrueClass]
+      # See {file:docs/events/menu.md#\_menu_select_}
       def menu_select!
         Vedeu.bind(:_menu_select_) do |name|
           Vedeu.menus.by_name(name).select_item
         end
       end
 
-      # Makes the first menu item the current menu item.
-      #
-      # @example
-      #   Vedeu.trigger(:_menu_top_, name)
-      #
-      # @return [TrueClass]
+      # See {file:docs/events/menu.md#\_menu_top_}
       def menu_top!
         Vedeu.bind(:_menu_top_) { |name| Vedeu.menus.by_name(name).top_item }
       end
 
-      # Returns a subset of the menu items; starting at the current
-      # item to the last item.
-      #
-      # @example
-      #   Vedeu.trigger(:_menu_view_, name)
-      #
-      # @return [TrueClass]
+      # See {file:docs/events/menu.md#\_menu_view_}
       def menu_view!
         Vedeu.bind(:_menu_view_) { |name| Vedeu.menus.by_name(name).view }
       end
 
     end # Menus
-    # :nocov:
 
   end # Bindings
 

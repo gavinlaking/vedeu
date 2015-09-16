@@ -55,11 +55,11 @@ module Vedeu
       #
       # @return [void]
       def clear
-        Vedeu::Direct.write(value: clear_output, x: bx, y: by)
+        Vedeu::Output::Direct.write(value: clear_output, x: bx, y: by)
       end
 
-      # Deletes the character from the line where the cursor is currently
-      # positioned.
+      # Deletes the character from the line where the cursor is
+      # currently positioned.
       #
       # @return [Vedeu::Editor::Document]
       def delete_character
@@ -90,8 +90,8 @@ module Vedeu
         refresh
       end
 
-      # Returns the document as a string with line breaks if there is more than
-      # one line.
+      # Returns the document as a string with line breaks if there is
+      # more than one line.
       #
       # @return [String]
       def execute
@@ -106,8 +106,8 @@ module Vedeu
         command
       end
 
-      # Inserts the given character in to the line where the cursor is currently
-      # positioned.
+      # Inserts the given character in to the line where the cursor is
+      # currently positioned.
       #
       # @param character [String|Symbol]
       # @return [Vedeu::Editor::Document]
@@ -150,7 +150,8 @@ module Vedeu
         lines.line(y)
       end
 
-      # Returns the collection of lines which constitutes the document content.
+      # Returns the collection of lines which constitutes the document
+      # content.
       #
       # @return [Array<String|void>]
       def lines
@@ -163,7 +164,7 @@ module Vedeu
       def render
         clear
 
-        Vedeu::Direct.write(value: output, x: bx, y: by)
+        Vedeu::Output::Direct.write(value: output, x: bx, y: by)
       end
 
       # Reset the document to the empty state.
@@ -177,8 +178,8 @@ module Vedeu
         refresh
       end
 
-      # Store the document in the documents repository, clear and render the
-      # view.
+      # Store the document in the documents repository, clear and
+      # render the view.
       #
       # @return [Vedeu::Editor::Document]
       def refresh
@@ -209,15 +210,16 @@ module Vedeu
 
       private
 
-      # Retrieve the dimensions of the document from the interface of the same
-      # name.
+      # Retrieve the dimensions of the document from the interface of
+      # the same name.
       #
       # @return [Vedeu::Borders::Border]
       def border
         @border ||= Vedeu.borders.by_name(name)
       end
 
-      # Return the data needed to clear the area which the document is using.
+      # Return the data needed to clear the area which the document is
+      # using.
       #
       # @return [String]
       def clear_output
@@ -258,8 +260,8 @@ module Vedeu
         output
       end
 
-      # Return a virtual cursor to track the cursor position within the
-      # document.
+      # Return a virtual cursor to track the cursor position within
+      # the document.
       #
       # @return [Vedeu::Editor::Cursor]
       def cursor
@@ -271,8 +273,8 @@ module Vedeu
                                               bxn: bxn)
       end
 
-      # Return only the visible lines for the document based on the current
-      # virtual cursor position.
+      # Return only the visible lines for the document based on the
+      # current virtual cursor position.
       #
       # @return [Vedeu::Editor::Lines]
       def visible

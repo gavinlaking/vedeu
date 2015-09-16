@@ -35,7 +35,8 @@ module Vedeu
         @line = line || ''
       end
 
-      # Return a character or collection of characters (if index is a Range).
+      # Return a character or collection of characters (if index is a
+      # Range).
       #
       # @param index [Fixnum|Range]
       # @return [String]
@@ -43,7 +44,8 @@ module Vedeu
         line[index]
       end
 
-      # Return the character from the line positioned at the given index.
+      # Return the character from the line positioned at the given
+      # index.
       #
       # @param index [Fixnum|NilClass]
       # @return [String|NilClass]
@@ -63,7 +65,8 @@ module Vedeu
         end
       end
 
-      # Delete the character from the line positioned at the given index.
+      # Delete the character from the line positioned at the given
+      # index.
       #
       # @param index [Fixnum|NilClass]
       # @return [String]
@@ -81,7 +84,8 @@ module Vedeu
         Vedeu::Editor::Line.coerce(new_line)
       end
 
-      # Returns a boolean indicating whether there are characters on this line.
+      # Returns a boolean indicating whether there are characters on
+      # this line.
       #
       # @return [Boolean]
       def empty?
@@ -97,7 +101,8 @@ module Vedeu
       end
       alias_method :==, :eql?
 
-      # Insert the character on the line positioned at the given index.
+      # Insert the character on the line positioned at the given
+      # index.
       #
       # @param character [String]
       # @param index [Fixnum|NilClass]

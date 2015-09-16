@@ -133,9 +133,9 @@ module Vedeu
       # Renders the bottom border for the interface.
       #
       # @note
-      #   If a caption has been specified, then the bottom border will include
-      #   this caption unless the size of the interface is smaller than the
-      #   padded caption length.
+      #   If a caption has been specified, then the bottom border will
+      #   include this caption unless the size of the interface is
+      #   smaller than the padded caption length.
       #
       # @return [String]
       def bottom
@@ -149,7 +149,8 @@ module Vedeu
         Vedeu.geometries.by_name(name)
       end
 
-      # @param position [Symbol] Either :top_horizontal, or :bottom_horizontal.
+      # @param position [Symbol] Either :top_horizontal, or
+      #   :bottom_horizontal.
       # @param y_coordinate [Fixnum] The value of either y or yn.
       # @return [Array<Vedeu::Views::Char>]
       def build_horizontal(position, y_coordinate)
@@ -160,7 +161,7 @@ module Vedeu
 
       # The parent of a border is always an interface.
       #
-      # @return [Vedeu::Interface]
+      # @return [Vedeu::Models::Interface]
       def interface
         @interface ||= Vedeu.interfaces.by_name(name)
       end
@@ -189,9 +190,9 @@ module Vedeu
       # Renders the top border for the interface.
       #
       # @note
-      #   If a title has been specified, then the top border will include this
-      #   title unless the size of the interface is smaller than the padded
-      #   title length.
+      #   If a title has been specified, then the top border will
+      #   include this title unless the size of the interface is
+      #   smaller than the padded title length.
       #
       # @return [String]
       def top
@@ -200,8 +201,8 @@ module Vedeu
         [build_top_left, titlebar, build_top_right].compact
       end
 
-      # Overwrite the border from {#build_horizontal} on the bottom border to
-      # include the caption if given.
+      # Overwrite the border from {#build_horizontal} on the bottom
+      # border to include the caption if given.
       #
       # @return [Array<Vedeu::Views::Char>]
       def captionbar
@@ -219,8 +220,8 @@ module Vedeu
         end
       end
 
-      # Overwrite the border from {#build_horizontal} on the top border to
-      # include the title if given.
+      # Overwrite the border from {#build_horizontal} on the top
+      # border to include the title if given.
       #
       # @return [Array<Vedeu::Views::Char>]
       def titlebar
@@ -234,30 +235,32 @@ module Vedeu
         end
       end
 
-      # Return boolean indicating whether this border has a non-empty title.
+      # Return boolean indicating whether this border has a non-empty
+      # title.
       #
       # @return [Boolean]
       def title?
         present?(title)
       end
 
-      # Return boolean indicating whether this border has a non-empty caption.
+      # Return boolean indicating whether this border has a non-empty
+      # caption.
       #
       # @return [Boolean]
       def caption?
         present?(caption)
       end
 
-      # Return boolean indicating whether the title fits within the width of the
-      # top border.
+      # Return boolean indicating whether the title fits within the
+      # width of the top border.
       #
       # @return [Boolean]
       def title_fits?
         width > title_characters.size
       end
 
-      # Return boolean indicating whether the caption fits within the width of
-      # the bottom border.
+      # Return boolean indicating whether the caption fits within the
+      # width of the bottom border.
       #
       # @return [Boolean]
       def caption_fits?
@@ -306,9 +309,10 @@ module Vedeu
         truncated_caption.center(truncated_caption.size + 2)
       end
 
-      # Truncates the title to the width of the interface, minus characters
-      # needed to ensure there is at least a single character of horizontal
-      # border and a whitespace on either side of the title.
+      # Truncates the title to the width of the interface, minus
+      # characters needed to ensure there is at least a single
+      # character of horizontal border and a whitespace on either side
+      # of the title.
       #
       # @example
       #   title = 'Truncated!'
@@ -323,9 +327,10 @@ module Vedeu
         title.chomp.slice(0..(width - 5))
       end
 
-      # Truncates the caption to the width of the interface, minus characters
-      # needed to ensure there is at least a single character of horizontal
-      # border and a whitespace on either side of the caption.
+      # Truncates the caption to the width of the interface, minus
+      # characters needed to ensure there is at least a single
+      # character of horizontal border and a whitespace on either
+      # side of the caption.
       #
       # @example
       #   caption = 'Truncated!'

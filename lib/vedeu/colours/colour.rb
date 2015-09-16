@@ -2,17 +2,18 @@ module Vedeu
 
   module Colours
 
-    # Provides a container for terminal escape sequences controlling the
-    # foreground and background colours of a character or collection of
-    # characters.
+    # Provides a container for terminal escape sequences controlling
+    # the foreground and background colours of a character or
+    # collection of characters.
     #
-    # Vedeu uses HTML/CSS style notation (i.e. '#aadd00'), they can be used at
-    # the stream level, the line level or for the whole interface. Terminals
-    # generally support either 8, 16 or 256 colours, with few supporting full
-    # 24-bit colour (see notes below).
+    # Vedeu uses HTML/CSS style notation (i.e. '#aadd00'), they can be
+    # used at the stream level, the line level or for the whole
+    # interface. Terminals generally support either 8, 16 or 256
+    # colours, with few supporting full 24-bit colour (see notes
+    # below).
     #
-    # Vedeu attempts to detect the colour depth using the `$TERM` environment
-    # variable.
+    # Vedeu attempts to detect the colour depth using the `$TERM`
+    # environment variable.
     #
     # To set your `$TERM` variable to allow 256 colour support:
     #
@@ -21,15 +22,16 @@ module Vedeu
     # ```
     #
     # Notes:
-    # Terminals which support the 24-bit colour mode include (but are not
-    # limited to): iTerm2 (OSX), Gnome Terminal (Linux).
+    # Terminals which support the 24-bit colour mode include (but are
+    # not limited to): iTerm2 (OSX), Gnome Terminal (Linux).
     #
-    # Setting your `$TERM` environment variable as above gets you up to 256
-    # colours, but when you then add the `colour_mode 16_777_216` configuration
-    # to your client application, it's really a hit and miss affair. iTerm2
-    # renders all the colours correctly as does Gnome Terminal. Terminator
-    # (Linux) goes crazy though and defaults to 16 colours despite the `$TERM`
-    # setting. This area needs more work in Vedeu.
+    # Setting your `$TERM` environment variable as above gets you up
+    # to 256 colours, but when you then add the
+    # `colour_mode 16_777_216` configuration to your client
+    # application, it's really a hit and miss affair. iTerm2 renders
+    # all the colours correctly as does Gnome Terminal. Terminator
+    # (Linux) goes crazy though and defaults to 16 colours despite the
+    # `$TERM` setting. This area needs more work in Vedeu.
     #
     # @todo Fix colours in all terminals. (GL: 2015-04-13)
     #
@@ -101,8 +103,8 @@ module Vedeu
         @foreground = Vedeu::Colours::Foreground.coerce(value)
       end
 
-      # Returns both or either of the converted attributes into a single escape
-      # sequence.
+      # Returns both or either of the converted attributes into a
+      # single escape sequence.
       #
       # @return [String]
       def to_s

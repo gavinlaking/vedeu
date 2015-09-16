@@ -40,7 +40,7 @@ module Vedeu
           Vedeu::Geometry::Geometry.new(name: _name, x: 1, xn: 7, y: 1, yn: 4)
         }
         let(:interface) {
-          Vedeu::Interface.new(name: _name, visible: visible)
+          Vedeu::Models::Interface.new(name: _name, visible: visible)
         }
         before do
           Vedeu.geometries.stubs(:by_name).returns(geometry)

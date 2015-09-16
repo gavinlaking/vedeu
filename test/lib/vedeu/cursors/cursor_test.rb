@@ -79,7 +79,7 @@ module Vedeu
         }
 
         before do
-          Vedeu::Output.stubs(:render).
+          Vedeu::Output::Output.stubs(:render).
             with(hide_cursor).returns(hide_cursor)
         end
 
@@ -205,7 +205,7 @@ module Vedeu
         }
 
         before do
-          Vedeu::Output.stubs(:render).
+          Vedeu::Output::Output.stubs(:render).
             with(show_cursor).returns(show_cursor)
         end
 
