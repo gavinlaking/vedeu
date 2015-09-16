@@ -14,7 +14,7 @@ module Vedeu
                      :width
 
       # @param (see #initialize)
-      def self.by_name(name = Vedeu.focus)
+      def self.by_name(name = nil)
         new(name).by_name
       end
 
@@ -22,8 +22,8 @@ module Vedeu
       #
       # @param name [String] The name of the cursor.
       # @return [Vedeu::Cursors::Refresh]
-      def initialize(name)
-        @name = name
+      def initialize(name = nil)
+        @name = name || Vedeu.focus
       end
 
       # Renders the cursor in the terminal. If the cursor's x or y offsets are
