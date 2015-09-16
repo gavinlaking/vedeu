@@ -5,7 +5,6 @@ module Vedeu
     # System events relating to the visibility of cursors or
     # interfaces.
     #
-    # :nocov:
     module Visibility
 
       extend self
@@ -29,29 +28,14 @@ module Vedeu
 
       private
 
-      # Clears the spaces occupied by the interfaces belonging to the
-      # named group.
-      #
-      # @example
-      #   Vedeu.trigger(:_clear_group_, name)
-      #   Vedeu.clear_by_group(name)
-      #
-      # @return [TrueClass]
+      # See {file:docs/events.md#\_clear_group_}
       def clear_group!
         Vedeu.bind(:_clear_group_) do |name|
           Vedeu::Clear::NamedGroup.render(name)
         end
       end
 
-      # Hide the cursor of the named interface or when a name is not
-      # given, the interface currently in focus.
-      #
-      # @example
-      #   Vedeu.trigger(:_hide_cursor_, name)
-      #   Vedeu.trigger(:_cursor_hide_, name)
-      #   Vedeu.hide_cursor(name)
-      #
-      # @return [TrueClass]
+      # See {file:docs/events.md#\_hide_cursor_}
       def hide_cursor!
         Vedeu.bind(:_hide_cursor_) do |name|
           Vedeu::Cursors::Cursor.hide_cursor(name)
@@ -60,35 +44,21 @@ module Vedeu
         Vedeu.bind_alias(:_cursor_hide_, :_hide_cursor_)
       end
 
-      # @see Vedeu::Models::Group#hide
+      # See {file:docs/events.md#\_hide_group_}
       def hide_group!
         Vedeu.bind(:_hide_group_) do |name|
           Vedeu::Models::Group.hide_group(name)
         end
       end
 
-      # Hiding an interface.
-      #
-      # @example
-      #   Vedeu.trigger(:_hide_interface_, name)
-      #   Vedeu.hide_interface(name)
-      #
-      # @return [TrueClass]
+      # See {file:docs/events.md#\_hide_interface_}
       def hide_interface!
         Vedeu.bind(:_hide_interface_) do |name|
           Vedeu::Models::Interface.hide_interface(name)
         end
       end
 
-      # Show the cursor of the named interface or when a name is not
-      # given, the interface currently in focus.
-      #
-      # @example
-      #   Vedeu.trigger(:_show_cursor_, name)
-      #   Vedeu.trigger(:_cursor_show_, name)
-      #   Vedeu.show_cursor(name)
-      #
-      # @return [TrueClass]
+      # See {file:docs/events.md#\_show_cursor_}
       def show_cursor!
         Vedeu.bind(:_show_cursor_) do |name|
           Vedeu::Cursors::Cursor.show_cursor(name)
@@ -97,59 +67,35 @@ module Vedeu
         Vedeu.bind_alias(:_cursor_show_, :_show_cursor_)
       end
 
-      # @see Vedeu::Models::Group#show
+      # See {file:docs/events.md#\_show_group_}
       def show_group!
         Vedeu.bind(:_show_group_) do |name|
           Vedeu::Models::Group.show_group(name)
         end
       end
 
-      # Showing an interface.
-      #
-      # @example
-      #   Vedeu.trigger(:_show_interface_, name)
-      #   Vedeu.show_interface(name)
-      #
-      # @return [TrueClass]
+      # See {file:docs/events.md#\_show_interface_}
       def show_interface!
         Vedeu.bind(:_show_interface_) do |name|
           Vedeu::Models::Interface.show_interface(name)
         end
       end
 
-      # Toggling a cursor.
-      #
-      # @example
-      #   Vedeu.trigger(:_toggle_cursor_, name)
-      #   Vedeu.toggle_cursor(name)
-      #
-      # @return [TrueClass]
+      # See {file:docs/events.md#\_toggle_cursor_}
       def toggle_cursor!
         Vedeu.bind(:_toggle_cursor_) do |name|
           Vedeu::Cursors::Cursor.toggle_cursor(name)
         end
       end
 
-      # Toggling a group.
-      #
-      # @example
-      #   Vedeu.trigger(:_toggle_group_, name)
-      #   Vedeu.toggle_group(name)
-      #
-      # @return [TrueClass]
+      # See {file:docs/events.md#\_toggle_group_}
       def toggle_group!
         Vedeu.bind(:_toggle_group_) do |name|
           Vedeu::Models::Group.toggle_group(name)
         end
       end
 
-      # Toggling an interface.
-      #
-      # @example
-      #   Vedeu.trigger(:_toggle_interface_, name)
-      #   Vedeu.toggle_interface(name)
-      #
-      # @return [TrueClass]
+      # See {file:docs/events.md#\_toggle_interface_}
       def toggle_interface!
         Vedeu.bind(:_toggle_interface_) do |name|
           Vedeu::Models::Interface.toggle_interface(name)
@@ -157,7 +103,6 @@ module Vedeu
       end
 
     end # Visibility
-    # :nocov:
 
   end # Bindings
 

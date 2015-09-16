@@ -4,7 +4,6 @@ module Vedeu
 
     # System events relating to movement of cursors or interfaces.
     #
-    # :nocov:
     module Application
 
       extend self
@@ -19,16 +18,7 @@ module Vedeu
 
       private
 
-      # Call a client application controller's action with parameters.
-      #
-      # @example
-      #   Vedeu.trigger(:_goto_,
-      #                 :your_controller,
-      #                 :some_action,
-      #                 { id: 7 })
-      #   Vedeu.goto(:your_controller, :some_action, { id: 7 })
-      #
-      # @return [TrueClass]
+      # See {file:docs/events.md#\_goto_}
       def goto!
         Vedeu.bind(:_goto_) do |controller, action, **args|
           Vedeu::Router.goto(controller, action, **args)
@@ -38,7 +28,6 @@ module Vedeu
       end
 
     end # Application
-    # :nocov:
 
   end # Bindings
 

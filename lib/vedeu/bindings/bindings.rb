@@ -1,6 +1,8 @@
 module Vedeu
 
-  # Binds various events for running and manipulating Vedeu.
+  # Binds various events for running and manipulating Vedeu. When
+  # called provide a variety of core functions and behaviours.
+  # They are soft-namespaced using underscores.
   #
   # @note
   #   The methods these modules use are private, and should not be

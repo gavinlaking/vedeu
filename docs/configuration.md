@@ -3,13 +3,16 @@
 
 Vedeu provides a simple DSL for configuration.
 
-```ruby
-Vedeu.configure do
+    Vedeu.configure do
 
-  # add configuration options here...
+      # add configuration options here, each of which are listed below...
 
-end
-```
+    end
+
+If you need to access the value of Vedeu's configuration for whatever reason,
+simply ask for it:
+
+    Vedeu.configuration.base_path # => The current value of 'base_path'
 
 ## Configuration Options
 

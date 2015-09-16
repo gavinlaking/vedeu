@@ -4,55 +4,47 @@
 Vedeu provides a simple DSL for the creation of terminal/console based
 applications. Below is a list of all the API methods:
 
-```ruby
-class OtherClassInYourApplication
-  # ...
+    class OtherClassInYourApplication
+      # ...
 
-  def some_method
-    Vedeu.some_api_method
-  end
+      def some_method
+        Vedeu.some_api_method
+      end
 
-  # ...
-```
+      # ...
+    end
 
-Note: Nesting indicates where an API method is allowed/supposed to be used.
+## Configuration
 
-### Borders
+See {file:docs/configuration.md}
 
-- Vedeu.border
+## Events
 
-### Configuration
+See {file:docs/events.md}
 
-- Vedeu.configure
-- Vedeu.configuration
+## Borders
 
-### Events
+### Vedeu.border
 
-- Vedeu.bind
-- Vedeu.bind_alias
-- Vedeu.trigger
-- Vedeu.unbind
-- Vedeu.unbind_alias
+## Geometry
 
-### Geometry
+### Vedeu.geometry
 
-- Vedeu.geometry
+## Groups
 
-### Groups
+### Vedeu.group
 
-- Vedeu.group
+## Input
 
-### Input
-
-- Vedeu.keypress
-- Vedeu.keymap
+### Vedeu.keypress
+### Vedeu.keymap
   - key
   - name
   - interface
 
-### Interfaces
+## Interfaces
 
-- Vedeu.interface
+### Vedeu.interface
   - background
   - border
   - cursor
@@ -76,10 +68,10 @@ Note: Nesting indicates where an API method is allowed/supposed to be used.
   - style
   - use
 
-### Views
+## Views
 
-- Vedeu.renders
-- Vedeu.render
+### Vedeu.renders
+### Vedeu.render
   - view
     - colour
     - cursor
@@ -109,48 +101,49 @@ Note: Nesting indicates where an API method is allowed/supposed to be used.
     - name
     - style
   - use
-- Vedeu.views
+
+### Vedeu.views
   - ... as #renders
 
-### Menus
+## Menus
 
-- Vedeu.menu
+### Vedeu.menu
   - items
   - name
 
-### Renderers
+## Renderers
 
-- Vedeu.renderer
-- Vedeu.renderers
+### Vedeu.renderer
+### Vedeu.renderers
 
-### Repositories
+## Repositories
 
 These are collections which you can access:
 
-- Vedeu.background_colours
-- Vedeu.foreground_colours
-- Vedeu.borders
-- Vedeu.buffers
-- Vedeu.cursors
-- Vedeu.events
-- Vedeu.geometries
-- Vedeu.groups
-- Vedeu.interfaces
-- Vedeu.keymaps
-- Vedeu.menus
+### Vedeu.background_colours
+### Vedeu.foreground_colours
+### Vedeu.borders
+### Vedeu.buffers
+### Vedeu.cursors
+### Vedeu.events
+### Vedeu.geometries
+### Vedeu.groups
+### Vedeu.interfaces
+### Vedeu.keymaps
+### Vedeu.menus
 
-### Miscellany
+## Miscellany
 
-- Vedeu.cursor
-- Vedeu.focus
-- Vedeu.focus_by_name
-- Vedeu.focussed?
-- Vedeu.focus_next
-- Vedeu.focus_previous
-- Vedeu.height
-- Vedeu.log
-- Vedeu.log_stdout
-- Vedeu.log_stderr
-- Vedeu.resize
-- Vedeu.timer
-- Vedeu.width
+### Vedeu.cursor
+### Vedeu.focus
+### Vedeu.focus_by_name
+### Vedeu.focussed?
+### Vedeu.focus_next
+### Vedeu.focus_previous
+### Vedeu.height
+### Vedeu.log
+### Vedeu.log_stdout
+### Vedeu.log_stderr
+### Vedeu.resize
+### Vedeu.timer
+### Vedeu.width

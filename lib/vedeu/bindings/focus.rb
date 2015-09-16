@@ -2,11 +2,6 @@ module Vedeu
 
   module Bindings
 
-    # Creates system events which when called provide a variety of
-    # core functions and behaviours. They are soft-namespaced using
-    # underscores.
-    #
-    # :nocov:
     module Focus
 
       extend self
@@ -23,42 +18,22 @@ module Vedeu
 
       private
 
-      # When triggered with an interface name will focus that
-      # interface and restore the cursor position and visibility.
-      #
-      # @example
-      #   Vedeu.trigger(:_focus_by_name_, name)
-      #
-      # @return [TrueClass]
+      # See {file:docs/events.md#\_focus_by_name_}
       def focus_by_name!
         Vedeu.bind(:_focus_by_name_) { |name| Vedeu.focus_by_name(name) }
       end
 
-      # When triggered will focus the next interface and restore the
-      # cursor position and visibility.
-      #
-      # @example
-      #   Vedeu.trigger(:_focus_next_)
-      #
-      # @return [TrueClass]
+      # See {file:docs/events.md#\_focus_next_}
       def focus_next!
         Vedeu.bind(:_focus_next_) { Vedeu.focus_next }
       end
 
-      # When triggered will focus the previous interface and restore
-      # the cursor position and visibility.
-      #
-      # @example
-      #   Vedeu.trigger(:_focus_prev_)
-      #   Vedeu.focus_previous
-      #
-      # @return [TrueClass]
+      # See {file:docs/events.md#\_focus_prev_}
       def focus_prev!
         Vedeu.bind(:_focus_prev_) { Vedeu.focus_previous }
       end
 
     end # Focus
-    # :nocov:
 
   end # Bindings
 
