@@ -1,6 +1,6 @@
 module Vedeu
 
-  # Provides methods to be used by Vedeu::ApplicationController.
+  # Provides methods to be used by {Vedeu::ApplicationController}.
   #
   module Controller
 

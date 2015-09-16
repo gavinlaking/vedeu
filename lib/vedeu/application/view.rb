@@ -1,6 +1,6 @@
 module Vedeu
 
-  # Provides methods to be used by Vedeu::ApplicationView.
+  # Provides methods to be used by {Vedeu::ApplicationView}.
   #
   module View
 

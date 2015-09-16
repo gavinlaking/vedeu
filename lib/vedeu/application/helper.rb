@@ -1,6 +1,6 @@
 module Vedeu
 
-  # Provides methods to be used by Vedeu::ApplicationHelper.
+  # Provides methods to be used by {Vedeu::ApplicationHelper}.
   #
   module Helper
 
