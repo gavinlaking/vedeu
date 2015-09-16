@@ -29,16 +29,8 @@ module Vedeu
       # @return [Vedeu::Editor::Line|Vedeu::Editor::Lines]
       def insert
         if index
-          if index <= 0
-            collection.insert(0, entity)
+          collection.insert(index, entity)
 
-          elsif index >= size
-            collection << entity
-
-          else
-            collection.insert(index, entity)
-
-          end
         else
           collection << entity
 
@@ -55,13 +47,20 @@ module Vedeu
       # @return [String]
       attr_reader :entity
 
-      # @!attribute [r] index
-      # @return [Fixnum]
-      attr_reader :index
-
       # @!attribute [r] size
       # @return [Fixnum]
       attr_reader :size
+
+      private
+
+      # @return [Fixnum]
+      def index
+        return nil unless @index
+
+        @index = 0    if @index < 0
+        @index = size if @index > size
+        @index
+      end
 
     end # Insert
 
