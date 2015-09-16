@@ -170,9 +170,9 @@ module Vedeu
       describe '#background=' do
         let(:_value) { '#000000' }
 
-        subject { instance.background = (_value) }
+        subject { instance.public_send(:background=, _value) }
 
-        it { subject.must_equal(_value) }
+        it { subject.must_be_instance_of(Vedeu::Colours::Background) }
       end
 
       describe '#eql?' do
@@ -192,9 +192,9 @@ module Vedeu
       describe '#foreground=' do
         let(:_value) { '#ff0000' }
 
-        subject { instance.foreground = (_value) }
+        subject { instance.public_send(:foreground=, _value) }
 
-        it { subject.must_equal(_value) }
+        it { subject.must_be_instance_of(Vedeu::Colours::Foreground) }
       end
 
       describe '#to_s' do

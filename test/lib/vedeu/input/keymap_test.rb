@@ -29,6 +29,7 @@ module Vedeu
 
       describe 'accessors' do
         it { instance.must_respond_to(:name) }
+        it { instance.must_respond_to(:name=) }
       end
 
       describe '#add' do
@@ -88,16 +89,6 @@ module Vedeu
         subject { instance.keys }
 
         it { subject.must_be_instance_of(Vedeu::Input::Keys) }
-      end
-
-      describe '#name' do
-        subject { instance.name }
-
-        it { subject.must_be_instance_of(String) }
-      end
-
-      describe '#name=' do
-        it { instance.must_respond_to(:name=) }
       end
 
     end # Keymap
