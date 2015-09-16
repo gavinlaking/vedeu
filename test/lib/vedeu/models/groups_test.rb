@@ -2,20 +2,24 @@ require 'test_helper'
 
 module Vedeu
 
-  describe Groups do
+  module Models
 
-    let(:described) { Vedeu::Groups }
+    describe Groups do
 
-    it { described.must_respond_to(:groups) }
+      let(:described) { Vedeu::Models::Groups }
 
-    describe '#by_name' do
-      let(:_name) { 'carbon' }
+      it { described.must_respond_to(:groups) }
 
-      subject { described.groups.by_name(_name) }
+      describe '#by_name' do
+        let(:_name) { 'carbon' }
 
-      it { subject.must_be_instance_of(Vedeu::Group) }
-    end
+        subject { described.groups.by_name(_name) }
 
-  end # Groups
+        it { subject.must_be_instance_of(Vedeu::Models::Group) }
+      end
+
+    end # Groups
+
+  end # Models
 
 end # Vedeu

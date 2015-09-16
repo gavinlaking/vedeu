@@ -19,7 +19,9 @@ module Vedeu
       end
     }
     let(:visible)   { true }
-    let(:interface) { Vedeu::Interface.new(style: nil, visible: visible) }
+    let(:interface) {
+      Vedeu::Models::Interface.new(style: nil, visible: visible)
+    }
     let(:geometry)  { Vedeu::Geometry::Geometry.new(height: 3, width: 3) }
 
     before do

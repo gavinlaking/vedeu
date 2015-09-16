@@ -25,7 +25,7 @@ module Vedeu
       # @param attributes [Hash]
       # @option attributes client [void]
       # @option attributes colour [Vedeu::Colours::Colour]
-      # @option attributes style [Vedeu::Style]
+      # @option attributes style [Vedeu::Presentation::Style]
       # @option attributes value [Vedeu::Views::ViewCollection]
       # @return [Vedeu::Views::Composition]
       def initialize(attributes = {})

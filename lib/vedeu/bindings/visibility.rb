@@ -60,9 +60,11 @@ module Vedeu
         Vedeu.bind_alias(:_cursor_hide_, :_hide_cursor_)
       end
 
-      # @see Vedeu::Group#hide
+      # @see Vedeu::Models::Group#hide
       def hide_group!
-        Vedeu.bind(:_hide_group_) { |name| Vedeu::Group.hide_group(name) }
+        Vedeu.bind(:_hide_group_) do |name|
+          Vedeu::Models::Group.hide_group(name)
+        end
       end
 
       # Hiding an interface.
@@ -74,7 +76,7 @@ module Vedeu
       # @return [TrueClass]
       def hide_interface!
         Vedeu.bind(:_hide_interface_) do |name|
-          Vedeu::Interface.hide_interface(name)
+          Vedeu::Models::Interface.hide_interface(name)
         end
       end
 
@@ -95,9 +97,11 @@ module Vedeu
         Vedeu.bind_alias(:_cursor_show_, :_show_cursor_)
       end
 
-      # @see Vedeu::Group#show
+      # @see Vedeu::Models::Group#show
       def show_group!
-        Vedeu.bind(:_show_group_) { |name| Vedeu::Group.show_group(name) }
+        Vedeu.bind(:_show_group_) do |name|
+          Vedeu::Models::Group.show_group(name)
+        end
       end
 
       # Showing an interface.
@@ -109,7 +113,7 @@ module Vedeu
       # @return [TrueClass]
       def show_interface!
         Vedeu.bind(:_show_interface_) do |name|
-          Vedeu::Interface.show_interface(name)
+          Vedeu::Models::Interface.show_interface(name)
         end
       end
 
@@ -135,7 +139,7 @@ module Vedeu
       # @return [TrueClass]
       def toggle_group!
         Vedeu.bind(:_toggle_group_) do |name|
-          Vedeu::Group.toggle_group(name)
+          Vedeu::Models::Group.toggle_group(name)
         end
       end
 
@@ -148,7 +152,7 @@ module Vedeu
       # @return [TrueClass]
       def toggle_interface!
         Vedeu.bind(:_toggle_interface_) do |name|
-          Vedeu::Interface.toggle_interface(name)
+          Vedeu::Models::Interface.toggle_interface(name)
         end
       end
 

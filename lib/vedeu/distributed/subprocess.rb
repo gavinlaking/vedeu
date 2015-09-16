@@ -1,96 +1,100 @@
 module Vedeu
 
-  # @example
-  #   Vedeu::TestApplication.build
-  #
-  class Subprocess
+  module Distributed
 
-    # @param (see #initialize)
-    def self.execute!(application)
-      new(application).execute!
-    end
-
-    # Returns a new instance of Vedeu::Subprocess.
+    # @example
+    #   Vedeu::TestApplication.build
     #
-    # @param application [Vedeu::TestApplication]
-    # @return [Vedeu::Subprocess]
-    def initialize(application)
-      @application = application
-      @pid         = nil
-    end
+    class Subprocess
 
-    # :nocov:
-    # @return [Array]
-    def execute!
-      file_open && file_write && file_close
-
-      @pid = fork do
-        exec(file_path)
+      # @param (see #initialize)
+      def self.execute!(application)
+        new(application).execute!
       end
 
-      Process.detach(@pid)
+      # Returns a new instance of Vedeu::Distributed::Subprocess.
+      #
+      # @param application [Vedeu::TestApplication]
+      # @return [Vedeu::Distributed::Subprocess]
+      def initialize(application)
+        @application = application
+        @pid         = nil
+      end
 
-      self
-    end
-    # :nocov:
+      # :nocov:
+      # @return [Array]
+      def execute!
+        file_open && file_write && file_close
 
-    # Sends the KILL signal to the process.
-    #
-    # @return [void]
-    def kill
-      Process.kill('KILL', pid)
+        @pid = fork do
+          exec(file_path)
+        end
 
-      file_unlink
-    end
+        Process.detach(@pid)
 
-    protected
+        self
+      end
+      # :nocov:
 
-    # @!attribute [r] application
-    # @return [Vedeu::TestApplication]
-    attr_reader :application
+      # Sends the KILL signal to the process.
+      #
+      # @return [void]
+      def kill
+        Process.kill('KILL', pid)
 
-    # @!attribute [r] pid
-    # @return [Fixnum]
-    attr_reader :pid
+        file_unlink
+      end
 
-    private
+      protected
 
-    # @return [String]
-    def command
-      "ruby #{file_path}"
-    end
+      # @!attribute [r] application
+      # @return [Vedeu::TestApplication]
+      attr_reader :application
 
-    # @return [Fixnum] The number of bytes written.
-    def file_write
-      file.write(application)
-    end
+      # @!attribute [r] pid
+      # @return [Fixnum]
+      attr_reader :pid
 
-    # @return [NilClass]
-    def file_close
-      file.close
-    end
+      private
 
-    # @return [Fixnum] The number of files removed; 1.
-    def file_unlink
-      File.unlink("/tmp/foo_#{timestamp}")
-    end
+      # @return [String]
+      def command
+        "ruby #{file_path}"
+      end
 
-    # return [String]
-    def file_path
-      file.path
-    end
+      # @return [Fixnum] The number of bytes written.
+      def file_write
+        file.write(application)
+      end
 
-    # @return [File]
-    def file_open
-      @file ||= File.new("/tmp/foo_#{timestamp}", 'w', 0755)
-    end
-    alias_method :file, :file_open
+      # @return [NilClass]
+      def file_close
+        file.close
+      end
 
-    # return [Fixnum]
-    def timestamp
-      @timestamp ||= Time.now.to_i
-    end
+      # @return [Fixnum] The number of files removed; 1.
+      def file_unlink
+        File.unlink("/tmp/foo_#{timestamp}")
+      end
 
-  end # Subprocess
+      # return [String]
+      def file_path
+        file.path
+      end
+
+      # @return [File]
+      def file_open
+        @file ||= File.new("/tmp/foo_#{timestamp}", 'w', 0755)
+      end
+      alias_method :file, :file_open
+
+      # return [Fixnum]
+      def timestamp
+        @timestamp ||= Time.now.to_i
+      end
+
+    end # Subprocess
+
+  end # Distributed
 
 end # Vedeu

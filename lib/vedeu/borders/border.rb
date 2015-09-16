@@ -2,13 +2,15 @@ module Vedeu
 
   module Borders
 
-    # Provides the mechanism to decorate an interface with a border on all
-    # edges, or specific edges. The characters which are used for the border
-    # parts (e.g. the corners, verticals and horizontals) can be customised as
-    # can the colours and styles.
+    # Provides the mechanism to decorate an interface with a border on
+    # all edges, or specific edges. The characters which are used for
+    # the border parts (e.g. the corners, verticals and horizontals)
+    # can be customised as can the colours and styles.
     #
-    # @note Refer to UTF-8 U+2500 to U+257F for border characters. More details
-    #   can be found at: http://en.wikipedia.org/wiki/Box-drawing_character
+    # @note
+    #   Refer to UTF-8 U+2500 to U+257F for border characters.
+    #   More details can be found at:
+    #   http://en.wikipedia.org/wiki/Box-drawing_character
     #
     class Border
 
@@ -95,30 +97,34 @@ module Vedeu
       # @param attributes [Hash]
       # @option attributes bottom_left [String] The bottom left border
       #   character.
-      # @option attributes bottom_right [String] The bottom right border
-      #   character.
+      # @option attributes bottom_right [String] The bottom right
+      #   border character.
       # @option attributes colour [Hash]
-      # @option attributes enabled [Boolean] Indicate whether the border is to
-      #   be shown for this interface.
-      # @option attributes horizontal [String] The horizontal border character.
-      # @option attributes name [String] The name of the interface to which this
-      #   border relates.
-      # @option attributes style [Vedeu::Style]
-      # @option attributes show_bottom [Boolean] Indicate whether the bottom
-      #   border is to be shown.
-      # @option attributes show_left [Boolean] Indicate whether the left border
-      #   is to be shown.
-      # @option attributes show_right [Boolean] Indicate whether the right
-      #   border is to be shown.
-      # @option attributes show_top [Boolean] Indicate whether the top border is
-      #   to be shown.
-      # @option attributes title [String] An optional title for when the top
-      #   border is to be shown.
-      # @option attributes caption [String] An optional caption for when the
+      # @option attributes enabled [Boolean] Indicate whether the
+      #   border is to be shown for this interface.
+      # @option attributes horizontal [String] The horizontal border
+      #   character.
+      # @option attributes name [String] The name of the interface to
+      #   which this border relates.
+      # @option attributes style [Vedeu::Presentation::Style]
+      # @option attributes show_bottom [Boolean] Indicate whether the
       #   bottom border is to be shown.
-      # @option attributes top_left [String] The top left border character.
-      # @option attributes top_right [String] The top right border character.
-      # @option attributes vertical [String] The vertical border character.
+      # @option attributes show_left [Boolean] Indicate whether the
+      #   left border is to be shown.
+      # @option attributes show_right [Boolean] Indicate whether the
+      #   right border is to be shown.
+      # @option attributes show_top [Boolean] Indicate whether the top
+      #   border is to be shown.
+      # @option attributes title [String] An optional title for when
+      #   the top border is to be shown.
+      # @option attributes caption [String] An optional caption for
+      #   when the bottom border is to be shown.
+      # @option attributes top_left [String] The top left border
+      #   character.
+      # @option attributes top_right [String] The top right border
+      #   character.
+      # @option attributes vertical [String] The vertical border
+      #   character.
       # @return [Vedeu::Borders::Border]
       def initialize(attributes = {})
         @attributes = defaults.merge!(attributes)
@@ -148,16 +154,16 @@ module Vedeu
         (enabled? && bottom?) ? yn - 1 : yn
       end
 
-      # Returns the width of the interface determined by whether a left, right,
-      # both or neither borders are shown.
+      # Returns the width of the interface determined by whether a
+      # left, right, both or neither borders are shown.
       #
       # @return [Fixnum]
       def width
         (bx..bxn).size
       end
 
-      # Returns the height of the interface determined by whether a top, bottom,
-      # both or neither borders are shown.
+      # Returns the height of the interface determined by whether a
+      # top, bottom, both or neither borders are shown.
       #
       # @return [Fixnum]
       def height
@@ -176,7 +182,7 @@ module Vedeu
         Vedeu.geometries.by_name(name)
       end
 
-      # @return [Vedeu::Interface]
+      # @return [Vedeu::Models::Interface]
       def interface
         @interface ||= Vedeu.interfaces.by_name(name)
       end

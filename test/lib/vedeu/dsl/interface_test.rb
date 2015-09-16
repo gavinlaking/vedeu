@@ -9,7 +9,7 @@ module Vedeu
       let(:described) { Vedeu::DSL::Interface }
       let(:instance)  { described.new(model, client) }
       let(:model)     {
-        Vedeu::Interface.new(name: _name)
+        Vedeu::Models::Interface.new(name: _name)
       }
       let(:_name)  { 'actinium' }
       let(:client) {}
@@ -29,7 +29,7 @@ module Vedeu
           end
         }
 
-        it { subject.must_be_instance_of(Vedeu::Interface) }
+        it { subject.must_be_instance_of(Vedeu::Models::Interface) }
 
         context 'when the block is not given' do
           subject { described.interface('fluorine') }
@@ -172,7 +172,7 @@ module Vedeu
         end
 
         context 'when the interface has a name' do
-          before { Vedeu::Focus.reset }
+          before { Vedeu::Models::Focus.reset }
 
           it { subject.must_equal(['actinium']) }
         end
@@ -213,7 +213,7 @@ module Vedeu
 
         subject { instance.group(_value) }
 
-        it { subject.must_be_instance_of(Vedeu::Group) }
+        it { subject.must_be_instance_of(Vedeu::Models::Group) }
 
         context 'when the value is empty or nil' do
           let(:_value) { '' }
@@ -225,7 +225,8 @@ module Vedeu
           let(:members) { Set['actinium', 'lanthanum'] }
 
           before do
-            Vedeu::Group.new(name: 'elements', members: ['lanthanum']).store
+            Vedeu::Models::Group.new(name:    'elements',
+                                     members: ['lanthanum']).store
           end
 
           it {

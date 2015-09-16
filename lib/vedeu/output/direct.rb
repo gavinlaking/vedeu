@@ -1,62 +1,66 @@
 module Vedeu
 
-  # Write a string directly to the terminal at defined coordinates.
-  #
-  class Direct
+  module Output
 
-    # @param value [String]
-    # @param x [Fixnum]
-    # @param y [Fixnum]
-    # @return [String]
-    def self.write(value:, x:, y:)
-      new(value: value, x: x, y: y).write
-    end
-
-    # Returns a new instance of Vedeu::Direct.
+    # Write a string directly to the terminal at defined coordinates.
     #
-    # @param value [String]
-    # @param x [Fixnum]
-    # @param y [Fixnum]
-    # @return [Vedeu::Direct]
-    def initialize(value:, x:, y:)
-      @value = value || ''
-      @x     = x     || 1
-      @y     = y     || 1
-    end
+    class Direct
 
-    # @return [String]
-    def write
-      Vedeu::Terminal.output(output)
+      # @param value [String]
+      # @param x [Fixnum]
+      # @param y [Fixnum]
+      # @return [String]
+      def self.write(value:, x:, y:)
+        new(value: value, x: x, y: y).write
+      end
 
-      output
-    end
+      # Returns a new instance of Vedeu::Output::Direct.
+      #
+      # @param value [String]
+      # @param x [Fixnum]
+      # @param y [Fixnum]
+      # @return [Vedeu::Output::Direct]
+      def initialize(value:, x:, y:)
+        @value = value || ''
+        @x     = x     || 1
+        @y     = y     || 1
+      end
 
-    protected
+      # @return [String]
+      def write
+        Vedeu::Terminal.output(output)
 
-    # @attribute [r] value
-    # @return [String]
-    attr_reader :value
+        output
+      end
 
-    # @attribute [r] x
-    # @return [Fixnum]
-    attr_reader :x
+      protected
 
-    # @attribute [r] y
-    # @return [Fixnum]
-    attr_reader :y
+      # @attribute [r] value
+      # @return [String]
+      attr_reader :value
 
-    private
+      # @attribute [r] x
+      # @return [Fixnum]
+      attr_reader :x
 
-    # @return [String]
-    def output
-      (Array(position) + Array(value)).join
-    end
+      # @attribute [r] y
+      # @return [Fixnum]
+      attr_reader :y
 
-    # @return [String]
-    def position
-      Vedeu::Geometry::Position.new(y, x).to_s
-    end
+      private
 
-  end # Direct
+      # @return [String]
+      def output
+        (Array(position) + Array(value)).join
+      end
+
+      # @return [String]
+      def position
+        Vedeu::Geometry::Position.new(y, x).to_s
+      end
+
+    end # Direct
+
+  end # Output
 
 end # Vedeu

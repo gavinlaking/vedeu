@@ -6,7 +6,7 @@ module Vedeu
 
     describe Document do
 
-      let(:described) { Vedeu::Editor::Document }
+      let(:described)  { Vedeu::Editor::Document }
       let(:instance)   { described.new(attributes) }
       let(:attributes) {
         {
@@ -21,7 +21,7 @@ module Vedeu
       }
       let(:_name)  { 'Vedeu::Editor::Document' }
 
-      before { Vedeu::Direct.stubs(:write) }
+      before { Vedeu::Output::Direct.stubs(:write) }
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
@@ -52,9 +52,13 @@ module Vedeu
         }
 
         before do
-          Vedeu::Geometry::Geometry.new(name: _name, x: 1, y: 1, xn: 5, yn: 5).store
+          Vedeu::Geometry::Geometry.new(name: _name,
+                                        x:    1,
+                                        y:    1,
+                                        xn:   5,
+                                        yn:   5).store
           Vedeu::Terminal.stubs(:output)
-          Vedeu::Direct.stubs(:write).returns(expected)
+          Vedeu::Output::Direct.stubs(:write).returns(expected)
         end
 
         subject { instance.clear }
@@ -175,12 +179,12 @@ module Vedeu
         }
         let(:output) { "\e[1;1HA\e[2;1HB\e[3;1HC\e[1;1H\e[?25h" }
 
-        before { Vedeu::Direct.stubs(:write) }
+        before { Vedeu::Output::Direct.stubs(:write) }
 
         subject { instance.render }
 
         it {
-          Vedeu::Direct.expects(:write).with(value: output, x: 1, y: 1)
+          Vedeu::Output::Direct.expects(:write).with(value: output, x: 1, y: 1)
           subject
         }
       end

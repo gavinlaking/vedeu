@@ -8,7 +8,7 @@ module Vedeu
 
       let(:described)  { Vedeu::DSL::Group }
       let(:instance)   { described.new(model, client) }
-      let(:model)      { Vedeu::Group.new }
+      let(:model)      { Vedeu::Models::Group.new }
       let(:client)     {}
       let(:group_name) { 'main_screen' }
 
@@ -42,7 +42,7 @@ module Vedeu
           end
         }
 
-        it { subject.must_be_instance_of(Vedeu::Group) }
+        it { subject.must_be_instance_of(Vedeu::Models::Group) }
 
         it { subject.members.must_equal(Set['editor_interface']) }
       end
@@ -58,7 +58,7 @@ module Vedeu
           end
         }
 
-        it { subject.must_be_instance_of(Vedeu::Group) }
+        it { subject.must_be_instance_of(Vedeu::Models::Group) }
 
         it { subject.members.must_equal(expected) }
       end

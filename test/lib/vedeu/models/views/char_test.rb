@@ -158,10 +158,10 @@ module Vedeu
         end
 
         context 'when a style is specified' do
-          let(:style) { Vedeu::Style.new('underline') }
+          let(:style) { Vedeu::Presentation::Style.new('underline') }
 
           context 'when a parent style is specified' do
-            let(:parent_style) { Vedeu::Style.new('bold') }
+            let(:parent_style) { Vedeu::Presentation::Style.new('bold') }
 
             it { subject.must_equal("\e[4ma") }
           end

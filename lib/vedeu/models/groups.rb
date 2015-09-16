@@ -1,20 +1,24 @@
 module Vedeu
 
-  # Allows the storing of view groups.
-  #
-  class Groups < Vedeu::Repository
+  module Models
 
-    singleton_class.send(:alias_method, :groups, :repository)
+    # Allows the storing of view groups.
+    #
+    class Groups < Vedeu::Repository
 
-    null Vedeu::Group
-    real Vedeu::Group
+      singleton_class.send(:alias_method, :groups, :repository)
 
-  end # Groups
+      null Vedeu::Models::Group
+      real Vedeu::Models::Group
 
-  class Group
+    end # Groups
 
-    repo Vedeu::Groups.repository
+    class Group
 
-  end # Group
+      repo Vedeu::Models::Groups.repository
+
+    end # Group
+
+  end # Models
 
 end # Vedeu

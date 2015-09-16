@@ -5,7 +5,7 @@ module Vedeu
 
     # Refresh all registered interfaces.
     #
-    # @return [Array<Vedeu::Interface>]
+    # @return [Array<Vedeu::Models::Interface>]
     def self.all
       new.all
     end
@@ -17,7 +17,7 @@ module Vedeu
 
     # Refresh all registered interfaces.
     #
-    # @return [Array<Vedeu::Interface>]
+    # @return [Array<Vedeu::Models::Interface>]
     def all
       Vedeu.timer('Refreshing all') do
         Vedeu.interfaces.zindexed.each do |interface|

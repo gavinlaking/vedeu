@@ -8,6 +8,11 @@ module Vedeu
 
       let(:described)  { Vedeu::Buffers::Buffer }
       let(:instance)   { described.new(attributes) }
+      let(:_name)      { 'krypton' }
+      let(:back)       {}
+      let(:front)      {}
+      let(:previous)   {}
+      let(:interface)  {}
       let(:attributes) {
         {
           name:     _name,
@@ -16,11 +21,6 @@ module Vedeu
           previous: previous,
         }
       }
-      let(:_name)     { 'krypton' }
-      let(:back)      {}
-      let(:front)     {}
-      let(:previous)  {}
-      let(:interface) {}
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
@@ -44,7 +44,9 @@ module Vedeu
       end
 
       describe '#add' do
-        let(:content) { Vedeu::Views::View.new(value: [Vedeu::Views::Line.new]) }
+        let(:content) {
+          Vedeu::Views::View.new(value: [Vedeu::Views::Line.new])
+        }
 
         subject { instance.add(content) }
 
@@ -72,7 +74,7 @@ module Vedeu
 
         before do
           Vedeu::Clear::NamedInterface.stubs(:render).returns(emptiness)
-          Vedeu::Output.stubs(:render).returns(emptiness)
+          Vedeu::Output::Output.stubs(:render).returns(emptiness)
         end
 
         subject { instance.clear }
@@ -80,7 +82,7 @@ module Vedeu
         it {
           Vedeu::Clear::NamedInterface.expects(:render).with(_name).
             returns(emptiness)
-          Vedeu::Output.expects(:render).with(emptiness)
+          Vedeu::Output::Output.expects(:render).with(emptiness)
           subject
         }
       end
@@ -118,34 +120,34 @@ module Vedeu
       end
 
       describe '#hide' do
-        before { Vedeu::Output.stubs(:render) }
+        before { Vedeu::Output::Output.stubs(:render) }
 
         subject { instance.hide }
 
         it {
-          Vedeu::Output.expects(:render)
+          Vedeu::Output::Output.expects(:render)
           subject
         }
       end
 
       describe '#show' do
-        before { Vedeu::Output.stubs(:render) }
+        before { Vedeu::Output::Output.stubs(:render) }
 
         subject { instance.show }
 
         it {
-          Vedeu::Output.expects(:render)
+          Vedeu::Output::Output.expects(:render)
           subject
         }
       end
 
       describe '#render' do
-        before { Vedeu::Output.stubs(:render) }
+        before { Vedeu::Output::Output.stubs(:render) }
 
         subject { instance.render }
 
         it {
-          Vedeu::Output.expects(:render)
+          Vedeu::Output::Output.expects(:render)
           subject
         }
       end

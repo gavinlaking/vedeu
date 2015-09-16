@@ -30,7 +30,7 @@ module Vedeu
         # @param block [Proc] A set of attributes which define the features of
         #   the interface.
         # @raise [Vedeu::Error::InvalidSyntax] The required block was not given.
-        # @return [Vedeu::Interface]
+        # @return [Vedeu::Models::Interface]
         # @todo More documentation required.
         def interface(name, &block)
           fail Vedeu::Error::InvalidSyntax,
@@ -44,7 +44,7 @@ module Vedeu
 
           attributes = { client: client(&block), name: name }
 
-          Vedeu::Interface.build(attributes, &block).store
+          Vedeu::Models::Interface.build(attributes, &block).store
         end
 
         private
@@ -166,7 +166,7 @@ module Vedeu
       #
       # @return [Array<String>] A list of focusable interfaces.
       def focus!
-        Vedeu::Focus.add(model.name, true) if present?(model.name)
+        Vedeu::Models::Focus.add(model.name, true) if present?(model.name)
       end
 
       # Specify a group for an interface. Interfaces of the same group can be
@@ -181,7 +181,7 @@ module Vedeu
       #
       # @param name [String] The name of the group to which this interface
       #   should belong.
-      # @return [Vedeu::Group]
+      # @return [Vedeu::Models::Group]
       def group(name)
         return false unless present?(name)
 
@@ -249,7 +249,7 @@ module Vedeu
       #
       # @param name [String] The name of the interface model you wish to use a
       #   value from.
-      # @return [Vedeu::Interface]
+      # @return [Vedeu::Models::Interface]
       def use(name)
         model.repository.by_name(name)
       end

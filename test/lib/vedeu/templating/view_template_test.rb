@@ -186,7 +186,7 @@ module Vedeu
         context 'with a style directive' do
           let(:content) { "This is a <%= style(:bold) { 'test' } %>." }
           let(:style) {
-            Vedeu::Style.new(:bold)
+            Vedeu::Presentation::Style.new(:bold)
           }
 
           let(:expected) {

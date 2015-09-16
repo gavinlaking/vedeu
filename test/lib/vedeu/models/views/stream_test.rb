@@ -29,7 +29,7 @@ module Vedeu
       let(:colour)      {
         Vedeu::Colours::Colour.new(background: '#ff0000', foreground: '#000000')
       }
-      let(:style)       { Vedeu::Style.new('normal') }
+      let(:style)       { Vedeu::Presentation::Style.new('normal') }
       let(:line_parent) { Vedeu::Views::View.new(name: 'Vedeu::Views::Stream') }
 
       describe '#initialize' do

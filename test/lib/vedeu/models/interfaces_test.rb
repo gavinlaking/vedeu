@@ -2,33 +2,37 @@ require 'test_helper'
 
 module Vedeu
 
-  describe Interfaces do
+  module Models
 
-    let(:described) { Vedeu::Interfaces }
+    describe Interfaces do
 
-    it { described.must_respond_to(:interfaces) }
+      let(:described) { Vedeu::Models::Interfaces }
 
-    describe '#zindexed' do
-      before do
-        Vedeu.interfaces.reset
+      it { described.must_respond_to(:interfaces) }
 
-        @hydrogen = Vedeu.interface('hydrogen') do
-          zindex 2
+      describe '#zindexed' do
+        before do
+          Vedeu.interfaces.reset
+
+          @hydrogen = Vedeu.interface('hydrogen') do
+            zindex 2
+          end
+          @helium = Vedeu.interface('helium') do
+            zindex 3
+          end
+          @lithium = Vedeu.interface('lithium') do
+            zindex 1
+          end
         end
-        @helium = Vedeu.interface('helium') do
-          zindex 3
-        end
-        @lithium = Vedeu.interface('lithium') do
-          zindex 1
-        end
+        after { Vedeu.interfaces.reset }
+
+        subject { Vedeu.interfaces.zindexed }
+
+        it { subject.must_equal([@lithium, @hydrogen, @helium]) }
       end
-      after { Vedeu.interfaces.reset }
 
-      subject { Vedeu.interfaces.zindexed }
+    end # Interfaces
 
-      it { subject.must_equal([@lithium, @hydrogen, @helium]) }
-    end
-
-  end # Interfaces
+  end # Models
 
 end # Vedeu

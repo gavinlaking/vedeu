@@ -97,7 +97,7 @@ module Vedeu
       #   paths.
       # @param object [Object] The object for which the values of template's
       #   variables can be obtained.
-      # @param options [Hash] See {Vedeu::Wordwrap}
+      # @param options [Hash] See {Vedeu::Output::Wordwrap}
       # @raise [Vedeu::Error::MissingRequired]
       # @return [Vedeu::Views::Views<Vedeu::Views::View>]
       def template_for(name, filename, object = nil, options = {})
@@ -112,7 +112,7 @@ module Vedeu
                                                         filename,
                                                         options)
 
-        # lines     = Vedeu::Wordwrap.for(content, options)
+        # lines     = Vedeu::Output::Wordwrap.for(content, options)
 
         new_model = model.member.build(template_attributes(name, content))
 

@@ -21,7 +21,9 @@ module Vedeu
       end
 
       context 'when there are registered interfaces' do
-        let(:interface)  { Vedeu::Interface.new(name: 'Vedeu::Refresh') }
+        let(:interface)  {
+          Vedeu::Models::Interface.new(name: 'Vedeu::Refresh')
+        }
         let(:interfaces) { [interface] }
 
         before { Vedeu.interfaces.stubs(:zindexed).returns(interfaces) }

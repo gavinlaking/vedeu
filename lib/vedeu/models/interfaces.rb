@@ -1,31 +1,35 @@
 module Vedeu
 
-  # Allows the storing of interfaces and views.
-  #
-  class Interfaces < Vedeu::Repository
+  module Models
 
-    singleton_class.send(:alias_method, :interfaces, :repository)
-
-    null Vedeu::Null::Interface
-    real Vedeu::Interface
-
-    # Returns the interfaces in zindex order.
+    # Allows the storing of interfaces and views.
     #
-    # @example
-    #   Vedeu.interfaces.zindexed
-    #
-    # @return [Array<Vedeu::Interface>]
-    # @see Vedeu::DSL::Interface#zindex
-    def zindexed
-      all.sort_by(&:zindex)
-    end
+    class Interfaces < Vedeu::Repository
 
-  end # Interfaces
+      singleton_class.send(:alias_method, :interfaces, :repository)
 
-  class Interface
+      null Vedeu::Null::Interface
+      real Vedeu::Models::Interface
 
-    repo Vedeu::Interfaces.repository
+      # Returns the interfaces in zindex order.
+      #
+      # @example
+      #   Vedeu.interfaces.zindexed
+      #
+      # @return [Array<Vedeu::Models::Interface>]
+      # @see Vedeu::DSL::Interface#zindex
+      def zindexed
+        all.sort_by(&:zindex)
+      end
 
-  end # Interface
+    end # Interfaces
+
+    class Interface
+
+      repo Vedeu::Models::Interfaces.repository
+
+    end # Interface
+
+  end # Models
 
 end # Vedeu

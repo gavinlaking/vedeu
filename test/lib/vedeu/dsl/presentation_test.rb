@@ -8,7 +8,7 @@ module Vedeu
 
       let(:described)  { Vedeu::DSL::Presentation }
       let(:instance)   { Vedeu::DSL::Interface.new(model) }
-      let(:model)      { Vedeu::Interface.new }
+      let(:model)      { Vedeu::Models::Interface.new }
       let(:background) { '#00ff00' }
       let(:foreground) { '#ff00ff' }
 
@@ -92,7 +92,7 @@ module Vedeu
         it { instance.must_respond_to(:styles) }
         it { instance.must_respond_to(:styles=) }
 
-        it { subject.must_be_instance_of(Vedeu::Style) }
+        it { subject.must_be_instance_of(Vedeu::Presentation::Style) }
       end
 
     end # Presentation

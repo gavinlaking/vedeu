@@ -1,10 +1,10 @@
 module Vedeu
 
-  # This module provides behaviour for certain classes which can be toggled
-  # between being shown and hidden.
+  # This module provides behaviour for certain classes which can be
+  # toggled between being shown and hidden.
   #
-  # Currently using this are: {Vedeu::Cursors::Cursor}, {Vedeu::Group} and
-  # {Vedeu::Interface}.
+  # Currently using this are: {Vedeu::Cursors::Cursor},
+  # {Vedeu::Models::Group} and {Vedeu::Models::Interface}.
   #
   module Toggleable
 

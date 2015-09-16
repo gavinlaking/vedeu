@@ -32,7 +32,7 @@ module Vedeu
       #
       # @param attributes [Hash]
       # @option attributes colour [Vedeu::Colours::Colour]
-      # @option attributes style [Vedeu::Style]
+      # @option attributes style [Vedeu::Presentation::Style]
       # @option attributes parent [Vedeu::Views::Line]
       # @option attributes value [String]
       # @return [Vedeu::Views::Stream]

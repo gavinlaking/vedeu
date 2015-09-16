@@ -2,8 +2,8 @@ module Vedeu
 
   module Renderers
 
-    # Converts a grid of {Vedeu::Views::Char} objects into a stream of escape
-    # sequences and content.
+    # Converts a grid of {Vedeu::Views::Char} objects into a stream of
+    # escape sequences and content.
     #
     class Text
 
@@ -20,7 +20,7 @@ module Vedeu
       # @param output [Array<Array<Vedeu::Views::Char>>]
       # @return [String]
       def render(output)
-        Vedeu::Compressor.render(output)
+        Vedeu::Output::Compressor.render(output)
       end
 
     end # Text

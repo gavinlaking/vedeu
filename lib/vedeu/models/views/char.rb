@@ -37,7 +37,7 @@ module Vedeu
       # @option attributes colour [Vedeu::Colours::Colour]
       # @option attributes parent [Vedeu::Views::Line]
       # @option attributes position [Vedeu::Geometry::Position]
-      # @option attributes style [Vedeu::Style]
+      # @option attributes style [Vedeu::Presentation::Style]
       # @option attributes value [String]
       # @return [Vedeu::Views::Char]
       def initialize(attributes = {})

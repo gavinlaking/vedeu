@@ -1,4 +1,4 @@
-require 'vedeu/output/presentation'
+require 'vedeu/output/presentation/presentation'
 
 module Vedeu
 

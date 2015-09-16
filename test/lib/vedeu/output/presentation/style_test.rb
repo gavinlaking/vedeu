@@ -2,79 +2,119 @@ require 'test_helper'
 
 module Vedeu
 
-  class ParentPresentationStyleTestClass
-
-    include Vedeu::Presentation
-
-    attr_reader :attributes
-    attr_reader :parent
-
-    def attributes
-      {
-        style: ['underline']
-      }
-    end
-
-  end
-
-  class PresentationStyleTestClass
-
-    include Vedeu::Presentation
-
-    attr_reader :attributes
-    attr_reader :parent
-
-    def initialize(attributes = {})
-      @attributes = attributes
-      @parent     = @attributes[:parent]
-    end
-
-  end # PresentationTestClass
-
   module Presentation
 
     describe Style do
 
-      let(:includer) { Vedeu::PresentationStyleTestClass.new(attributes) }
-      let(:attributes) {
-        {
-          parent: parent,
-          style:  style,
-        }
-      }
-      let(:parent) { Vedeu::ParentPresentationStyleTestClass.new }
-      let(:style)  { ['bold'] }
+      let(:described) { Vedeu::Presentation::Style }
+      let(:instance)  { described.new(_value) }
+      let(:_value)    { 'bold' }
 
-      describe '#style' do
-        subject { includer.style }
+      describe 'alias methods' do
+        it { instance.must_respond_to(:escape_sequences) }
+      end
 
-        it { subject.must_be_instance_of(Vedeu::Style) }
+      describe '#initialize' do
+        it { instance.must_be_instance_of(described) }
+        it { instance.instance_variable_get('@value').must_equal('bold') }
+      end
 
-        context 'when the attribute is not set' do
-          let(:style) {}
+      describe 'accessors' do
+        it { instance.must_respond_to(:value) }
+        it { instance.must_respond_to(:value=) }
+      end
 
-          context 'when a parent is available' do
-            it { subject.value.must_equal(['underline']) }
-          end
+      describe '.coerce' do
+        let(:_value) { 'bold' }
 
-          context 'when a parent is not available' do
-            let(:parent) {}
+        subject { described.coerce(_value) }
 
-            it { subject.value.must_equal(nil) }
+        it { subject.must_be_instance_of(described) }
+
+        context 'when the value is nil' do
+          let(:_value) { nil }
+
+          it { subject.must_be_instance_of(described) }
+        end
+
+        context 'when the value is a Style already' do
+          let(:_value) { Vedeu::Presentation::Style.new('bold') }
+
+          it 'returns the value' do
+            subject.must_equal(_value)
           end
         end
 
-        context 'when the attribute is set' do
-          it { subject.value.must_equal(['bold']) }
+        context 'when the value is an Array' do
+          let(:_value)  { [:bold, :blink] }
+
+          it { subject.value.must_equal([:bold, :blink]) }
         end
       end
 
-      describe '#style=' do
-        let(:style) { Vedeu::Style.new('normal') }
+      describe '#attributes' do
+        subject { instance.attributes }
 
-        subject { includer.style = (style) }
+        it { subject.must_be_instance_of(Hash) }
 
-        it { subject.must_be_instance_of(Vedeu::Style) }
+        it 'returns an attributes hash for this instance' do
+          subject.must_equal(style: 'bold')
+        end
+      end
+
+      describe '#eql?' do
+        let(:other) { instance }
+
+        subject { instance.eql?(other) }
+
+        it { subject.must_equal(true) }
+
+        context 'when different to other' do
+          let(:other) { described.new('underline') }
+
+          it { subject.must_equal(false) }
+        end
+      end
+
+      describe '#to_s' do
+        let(:_value) {}
+
+        subject { instance.to_s }
+
+        it { subject.must_be_instance_of(String) }
+        it { subject.must_equal('') }
+
+        describe 'for a single style' do
+          let(:_value) { 'normal' }
+
+          it 'returns an escape sequence' do
+            subject.must_equal("\e[24m\e[22m\e[27m")
+          end
+        end
+
+        describe 'for multiple styles' do
+          let(:_value) { ['normal', 'underline'] }
+
+          it 'returns an escape sequence for multiple styles' do
+            subject.must_equal("\e[24m\e[22m\e[27m\e[4m")
+          end
+        end
+
+        describe 'for an unknown style' do
+          let(:_value) { 'unknown' }
+
+          it 'returns an empty string for an unknown style' do
+            subject.must_equal('')
+          end
+        end
+
+        describe 'for an empty or nil' do
+          let(:_value) { '' }
+
+          it 'returns an empty string for empty or nil' do
+            subject.must_equal('')
+          end
+        end
       end
 
     end # Style

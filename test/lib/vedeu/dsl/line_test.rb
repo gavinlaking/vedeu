@@ -12,7 +12,7 @@ module Vedeu
       let(:client)     {}
       let(:colour)     { Vedeu::Colours::Colour.new }
       let(:parent)     { Vedeu::Views::View.new }
-      let(:style)      { Vedeu::Style.new }
+      let(:style)      { Vedeu::Presentation::Style.new }
       let(:_value)     { [] }
       let(:attributes) {
         {
@@ -75,7 +75,9 @@ module Vedeu
         end
 
         context 'when the block is not given' do
-          it { proc { instance.streams }.must_raise(Vedeu::Error::InvalidSyntax) }
+          it {
+            proc { instance.streams }.must_raise(Vedeu::Error::InvalidSyntax)
+          }
         end
 
         it { instance.must_respond_to(:stream) }
