@@ -18,7 +18,7 @@ module Vedeu
 
       private
 
-      # See {file:docs/events.md#\_goto_}
+      # See {file:docs/events/application.md#\_goto_}
       def goto!
         Vedeu.bind(:_goto_) do |controller, action, **args|
           Vedeu::Router.goto(controller, action, **args)

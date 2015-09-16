@@ -21,7 +21,7 @@ module Vedeu
 
       private
 
-      # See {file:docs/events.md#\_view__up_down_left_right_}
+      # See {file:docs/events/movement.md#\_cursor_up_down_left_right_}
       def directional!
         [:down, :left, :right, :up].each do |direction|
           Vedeu.bind("_cursor_#{direction}_".to_sym) do |name|
@@ -44,7 +44,7 @@ module Vedeu
         end
       end
 
-      # See {file:docs/events.md#\_cursor_origin_}
+      # See {file:docs/events/movement.md#\_cursor_origin_}
       def cursor_origin!
         Vedeu.bind(:_cursor_origin_) do |name|
           Vedeu.cursors.by_name(name).move_origin
@@ -53,14 +53,14 @@ module Vedeu
         Vedeu.bind_alias(:_cursor_reset_, :_cursor_origin_)
       end
 
-      # See {file:docs/events.md#\_cursor_position_}
+      # See {file:docs/events/movement.md#\_cursor_position_}
       def cursor_position!
         Vedeu.bind(:_cursor_position_) do |name|
           Vedeu.cursors.by_name(name).position
         end
       end
 
-      # See {file:docs/events.md#\_cursor_reposition_}
+      # See {file:docs/events/movement.md#\_cursor_reposition_}
       def cursor_reposition!
         Vedeu.bind(:_cursor_reposition_) do |name, y, x|
           Vedeu.cursors.by_name(name).reposition(y, x)

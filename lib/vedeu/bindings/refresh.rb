@@ -18,21 +18,21 @@ module Vedeu
 
       private
 
-      # See {file:docs/events.md#\_refresh_}
+      # See {file:docs/events/refresh.md#\_refresh_}
       def refresh!
         Vedeu.bind(:_refresh_) do |name|
           name ? Vedeu::Buffers::Refresh.by_name(name) : Vedeu::Refresh.all
         end
       end
 
-      # See {file:docs/events.md#\_refresh_cursor_}
+      # See {file:docs/events/refresh.md#\_refresh_cursor_}
       def refresh_cursor!
         Vedeu.bind(:_refresh_cursor_) do |name|
           Vedeu::Cursors::Refresh.by_name(name)
         end
       end
 
-      # See {file:docs/events.md#\_refresh_group_}
+      # See {file:docs/events/refresh.md#\_refresh_group_}
       def refresh_group!
         Vedeu.bind(:_refresh_group_) do |name|
           Vedeu::RefreshGroup.by_name(name)

@@ -18,17 +18,17 @@ module Vedeu
 
       private
 
-      # See {file:docs/events.md#\_focus_by_name_}
+      # See {file:docs/events/focus.md#\_focus_by_name_}
       def focus_by_name!
         Vedeu.bind(:_focus_by_name_) { |name| Vedeu.focus_by_name(name) }
       end
 
-      # See {file:docs/events.md#\_focus_next_}
+      # See {file:docs/events/focus.md#\_focus_next_}
       def focus_next!
         Vedeu.bind(:_focus_next_) { Vedeu.focus_next }
       end
 
-      # See {file:docs/events.md#\_focus_prev_}
+      # See {file:docs/events/focus.md#\_focus_prev_}
       def focus_prev!
         Vedeu.bind(:_focus_prev_) { Vedeu.focus_previous }
       end

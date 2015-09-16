@@ -28,62 +28,62 @@ module Vedeu
 
       private
 
-      # See {file:docs/events.md#\_menu_bottom_}
+      # See {file:docs/events/menu.md#\_menu_bottom_}
       def menu_bottom!
         Vedeu.bind(:_menu_bottom_) do |name|
           Vedeu.menus.by_name(name).bottom_item
         end
       end
 
-      # See {file:docs/events.md#\_menu_current_}
+      # See {file:docs/events/menu.md#\_menu_current_}
       def menu_current!
         Vedeu.bind(:_menu_current_) do |name|
           Vedeu.menus.by_name(name).current_item
         end
       end
 
-      # See {file:docs/events.md#\_menu_deselect_}
+      # See {file:docs/events/menu.md#\_menu_deselect_}
       def menu_deselect!
         Vedeu.bind(:_menu_deselect_) do |name|
           Vedeu.menus.by_name(name).deselect_item
         end
       end
 
-      # See {file:docs/events.md#\_menu_items_}
+      # See {file:docs/events/menu.md#\_menu_items_}
       def menu_items!
         Vedeu.bind(:_menu_items_) { |name| Vedeu.menus.by_name(name).items }
       end
 
-      # See {file:docs/events.md#\_menu_next_}
+      # See {file:docs/events/menu.md#\_menu_next_}
       def menu_next!
         Vedeu.bind(:_menu_next_) { |name| Vedeu.menus.by_name(name).next_item }
       end
 
-      # See {file:docs/events.md#\_menu_prev_}
+      # See {file:docs/events/menu.md#\_menu_prev_}
       def menu_prev!
         Vedeu.bind(:_menu_prev_) { |name| Vedeu.menus.by_name(name).prev_item }
       end
 
-      # See {file:docs/events.md#\_menu_selected_}
+      # See {file:docs/events/menu.md#\_menu_selected_}
       def menu_selected!
         Vedeu.bind(:_menu_selected_) do |name|
           Vedeu.menus.by_name(name).selected_item
         end
       end
 
-      # See {file:docs/events.md#\_menu_select_}
+      # See {file:docs/events/menu.md#\_menu_select_}
       def menu_select!
         Vedeu.bind(:_menu_select_) do |name|
           Vedeu.menus.by_name(name).select_item
         end
       end
 
-      # See {file:docs/events.md#\_menu_top_}
+      # See {file:docs/events/menu.md#\_menu_top_}
       def menu_top!
         Vedeu.bind(:_menu_top_) { |name| Vedeu.menus.by_name(name).top_item }
       end
 
-      # See {file:docs/events.md#\_menu_view_}
+      # See {file:docs/events/menu.md#\_menu_view_}
       def menu_view!
         Vedeu.bind(:_menu_view_) { |name| Vedeu.menus.by_name(name).view }
       end

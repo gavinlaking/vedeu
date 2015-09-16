@@ -24,7 +24,7 @@ module Vedeu
 
       private
 
-      # See {file:docs/events.md#\_drb_input_}
+      # See {file:docs/events/drb.md#\_drb_input_}
       def drb_input!
         Vedeu.bind(:_drb_input_) do |data, type|
           Vedeu.log(type: :drb, message: "Sending input (#{type})")
@@ -37,14 +37,14 @@ module Vedeu
         end
       end
 
-      # See {file:docs/events.md#\_drb_retrieve_output_}
+      # See {file:docs/events/drb.md#\_drb_retrieve_output_}
       def drb_retrieve_output!
         Vedeu.bind(:_drb_retrieve_output_) do
           Vedeu::Buffers::VirtualBuffers.retrieve
         end
       end
 
-      # See {file:docs/events.md#\_drb_store_output_}
+      # See {file:docs/events/drb.md#\_drb_store_output_}
       def drb_store_output!
         Vedeu.bind(:_drb_store_output_) do |data|
           Vedeu::Buffers::VirtualBuffers.store(
@@ -53,22 +53,22 @@ module Vedeu
         end
       end
 
-      # See {file:docs/events.md#\_drb_restart_}
+      # See {file:docs/events/drb.md#\_drb_restart_}
       def drb_restart!
         Vedeu.bind(:_drb_restart_) { Vedeu::Distributed::Server.restart }
       end
 
-      # See {file:docs/events.md#\_drb_start_}
+      # See {file:docs/events/drb.md#\_drb_start_}
       def drb_start!
         Vedeu.bind(:_drb_start_) { Vedeu::Distributed::Server.start }
       end
 
-      # See {file:docs/events.md#\_drb_status_}
+      # See {file:docs/events/drb.md#\_drb_status_}
       def drb_status!
         Vedeu.bind(:_drb_status_) { Vedeu::Distributed::Server.status }
       end
 
-      # See {file:docs/events.md#\_drb_stop_}
+      # See {file:docs/events/drb.md#\_drb_stop_}
       def drb_stop!
         Vedeu.bind(:_drb_stop_) { Vedeu::Distributed::Server.stop }
       end

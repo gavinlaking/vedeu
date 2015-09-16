@@ -8,3 +8,12 @@ docs/dsl.md
 docs/events.md
 docs/getting_started.md
 docs/object_graph.md
+docs/events/application.md
+docs/events/document.md
+docs/events/drb.md
+docs/events/focus.md
+docs/events/menu.md
+docs/events/movement.md
+docs/events/refresh.md
+docs/events/system.md
+docs/events/visibility.md
