@@ -56,7 +56,9 @@ module Vedeu
       def initialize(attributes = {})
         @attributes = defaults.merge!(attributes)
 
-        @attributes.each { |key, value| instance_variable_set("@#{key}", value) }
+        @attributes.each do |key, value|
+          instance_variable_set("@#{key}", value)
+        end
       end
 
       # Hide a named interface buffer, or without a name, the buffer of the

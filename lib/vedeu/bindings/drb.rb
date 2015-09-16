@@ -47,9 +47,8 @@ module Vedeu
       # See {file:docs/events/drb.md#\_drb_store_output_}
       def drb_store_output!
         Vedeu.bind(:_drb_store_output_) do |data|
-          Vedeu::Buffers::VirtualBuffers.store(
-            Vedeu::Buffers::VirtualBuffer.output(data)
-          )
+          Vedeu::Buffers::VirtualBuffers
+            .store(Vedeu::Buffers::VirtualBuffer.output(data))
         end
       end
 

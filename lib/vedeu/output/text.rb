@@ -70,7 +70,8 @@ module Vedeu
 
       private
 
-      # @return [Symbol] One of :align, :centre, :center, :left, :right, :text
+      # @return [Symbol] One of :align, :centre, :center, :left,
+      #   :right, :text
       def anchor
         options[:anchor]
       end
@@ -82,8 +83,8 @@ module Vedeu
         string.center(width, pad)
       end
 
-      # If a colour, background or foreground option is set, use them as the
-      # colour settings for the new Vedeu::Views::Stream.
+      # If a colour, background or foreground option is set, use them
+      # as the colour settings for the new Vedeu::Views::Stream.
       #
       # @return [void]
       def colour
@@ -96,8 +97,8 @@ module Vedeu
         end
       end
 
-      # Returns either a Vedeu::Views::Line or Vedeu::Views::Stream containing the
-      # text value.
+      # Returns either a Vedeu::Views::Line or Vedeu::Views::Stream
+      # containing the text value.
       #
       # @return [Vedeu::Views::Line|Vedeu::Views::Stream]
       def content
@@ -192,7 +193,8 @@ module Vedeu
         model.style
       end
 
-      # Return a boolean indicating that the string is greater than the width.
+      # Return a boolean indicating that the string is greater than
+      # the width.
       #
       # @return [Boolean]
       def truncate?

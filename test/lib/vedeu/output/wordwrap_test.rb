@@ -24,7 +24,7 @@ module Vedeu
       }
       let(:text_block) {
         "Krypton (from Greek: κρυπτός kryptos 'the hidden one') is a " \
-        'chemical element with symbol Kr and atomic number 36. It is a " \
+        "chemical element with symbol Kr and atomic number 36. It is a " \
         'member of group 18 (noble gases) elements.'
       }
       let(:text_newlines) {
