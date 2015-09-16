@@ -8,7 +8,8 @@ module Vedeu
 
     # Custom log for configuration.
     #
-    # @param from [String] Which configuration set the options ('API' or 'CLI').
+    # @param from [String] Which configuration set the options
+    #   ('API' or 'CLI').
     # @param options [Hash] The configuration options set.
     # @return [Hash] The options param.
     def log(from, options)
@@ -20,13 +21,13 @@ module Vedeu
 
   end
 
-  # Allows the customisation of Vedeu's behaviour through the configuration API
-  # or command-line arguments.
+  # Allows the customisation of Vedeu's behaviour through the
+  # configuration API or command-line arguments.
   #
-  # Provides access to Vedeu's configuration, which was set with sensible
-  # defaults (influenced by environment variables), overridden by client
-  # application settings (via the configuration API), or any command-line
-  # arguments provided.
+  # Provides access to Vedeu's configuration, which was set with
+  # sensible defaults (influenced by environment variables),
+  # overridden by client application settings (via the configuration
+  # API), or any command-line arguments provided.
   #
   class Configuration
 
@@ -49,10 +50,10 @@ module Vedeu
       end
       alias_method :compression?, :compression
 
-      # Provides the mechanism to configure Vedeu. If the client application
-      # sets options, override the defaults with those, and when command-line
-      # arguments are provided at application invocation, override any options
-      # with the arguments provided.
+      # Provides the mechanism to configure Vedeu. If the client
+      # application sets options, override the defaults with those,
+      # and when command-line arguments are provided at application
+      # invocation, override any options with the arguments provided.
       #
       # @example
       #   Vedeu.configure do
@@ -73,7 +74,8 @@ module Vedeu
       end
 
       # Returns the configuration singleton.
-      # Append configuration methods to access the configuration variable.
+      # Append configuration methods to access the configuration
+      # variable.
       #
       # @example
       #   Vedeu.configuration
@@ -90,8 +92,9 @@ module Vedeu
         instance.options[:colour_mode]
       end
 
-      # Returns whether debugging is enabled or disabled. Default is false;
-      # meaning nothing apart from warnings are written to the log file.
+      # Returns whether debugging is enabled or disabled. Default is
+      # false; meaning nothing apart from warnings are written to the
+      # log file.
       #
       # @return [Boolean]
       def debug?
@@ -99,7 +102,8 @@ module Vedeu
       end
       alias_method :debug, :debug?
 
-      # Returns whether the DRb server is enabled or disabled. Default is false.
+      # Returns whether the DRb server is enabled or disabled. Default
+      # is false.
       #
       # @return [Boolean]
       def drb?
@@ -135,9 +139,10 @@ module Vedeu
         instance.options[:drb_width]
       end
 
-      # Returns whether the application is interactive (required user input) or
-      # standalone (will run until terminates of natural causes.) Default is
-      # true; meaning the application will require user input.
+      # Returns whether the application is interactive (required user
+      # input) or standalone (will run until terminates of natural
+      # causes.) Default is true; meaning the application will require
+      # user input.
       #
       # @return [Boolean]
       def interactive?
@@ -152,7 +157,8 @@ module Vedeu
         instance.options[:log]
       end
 
-      # Returns a boolean indicating whether the log has been configured.
+      # Returns a boolean indicating whether the log has been
+      # configured.
       #
       # @return [Boolean]
       def log?
@@ -164,9 +170,9 @@ module Vedeu
         instance.options[:log_only] || []
       end
 
-      # Returns whether the application will run through its main loop once or
-      # not. Default is false; meaning the application will loop forever or
-      # until terminated by the user.
+      # Returns whether the application will run through its main loop
+      # once or not. Default is false; meaning the application will
+      # loop forever or until terminated by the user.
       #
       # @return [Boolean]
       def once?
@@ -181,8 +187,8 @@ module Vedeu
         instance.options[:renderers]
       end
 
-      # Returns the root of the client application. Vedeu will execute this
-      # controller first.
+      # Returns the root of the client application. Vedeu will execute
+      # this controller first.
       #
       # @return [Class]
       def root
@@ -210,7 +216,8 @@ module Vedeu
         instance.options[:stderr]
       end
 
-      # Returns the terminal mode for the application. Default is `:raw`.
+      # Returns the terminal mode for the application. Default is
+      # `:raw`.
       #
       # @return [Symbol]
       def terminal_mode
@@ -243,9 +250,10 @@ module Vedeu
       @options = defaults
     end
 
-    # Set up default configuration and then allow the client application to
-    # modify it via the configuration API. After this, process any command line
-    # arguments as potential configuration and apply that.
+    # Set up default configuration and then allow the client
+    # application to modify it via the configuration API. After this,
+    # process any command line arguments as potential configuration
+    # and apply that.
     #
     # @param args [Array]
     # @param block [Proc]
@@ -270,8 +278,8 @@ module Vedeu
 
     private
 
-    # The Vedeu default options, which of course are influenced by environment
-    # variables also.
+    # The Vedeu default options, which of course are influenced by
+    # environment variables also.
     #
     # @return [Hash<Symbol => void>]
     def defaults
@@ -298,8 +306,9 @@ module Vedeu
       }
     end
 
-    # Attempt to determine the terminal colour mode via $TERM environment
-    # variable, or be optimistic and settle for 256 colours.
+    # Attempt to determine the terminal colour mode via $TERM
+    # environment variable, or be optimistic and settle for 256
+    # colours.
     #
     # @return [Fixnum]
     def detect_colour_mode

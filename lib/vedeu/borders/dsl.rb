@@ -16,8 +16,8 @@ module Vedeu
       #     # ...
       #   end
       #
-      # @param name [String] The name of the interface or view to which this
-      #   border belongs.
+      # @param name [String] The name of the interface or view to
+      #   which this border belongs.
       # @param block [Proc]
       # @raise [Vedeu::Error::InvalidSyntax]
       #   The required block was not given.
@@ -38,32 +38,32 @@ module Vedeu
         @client = client
       end
 
-      # Set the character to be used to draw the bottom left corner of the
-      # border.
+      # Set the character to be used to draw the bottom left corner of
+      # the border.
       #
       #   Vedeu.border 'border_demo' do
       #     bottom_left '+'
       #     # ... some code
       #   end
       #
-      # @param char [String] Character to be used as the bottom left border
-      #   character.
+      # @param char [String] Character to be used as the bottom left
+      #   border character.
       # @return [String]
       def bottom_left(char)
         model.bottom_left = char
       end
       alias_method :bottom_left=, :bottom_left
 
-      # Set the character to be used to draw the bottom right corner of the
-      # border.
+      # Set the character to be used to draw the bottom right corner
+      # of the border.
       #
       #   Vedeu.border 'border_demo' do
       #     bottom_right '+'
       #     # ... some code
       #   end
       #
-      # @param char [String] Character to be used as the bottom right border
-      #   character.
+      # @param char [String] Character to be used as the bottom right
+      #   border character.
       # @return [String]
       def bottom_right(char)
         model.bottom_right = char
@@ -90,7 +90,8 @@ module Vedeu
       end
 
       # Enable the border:
-      # (Borders are enabled by default when defined for an interface).
+      # (Borders are enabled by default when defined for an
+      # interface).
       #
       #   Vedeu.border 'border_demo' do
       #     enable!
@@ -109,15 +110,16 @@ module Vedeu
         model.enabled
       end
 
-      # Set the character to be used to draw a horizontal part of the border.
+      # Set the character to be used to draw a horizontal part of the
+      # border.
       #
       #   Vedeu.border 'border_demo' do
       #     horizontal '-'
       #     # ... some code
       #   end
       #
-      # @param char [String] Character to be used as the horizontal border
-      #   character.
+      # @param char [String] Character to be used as the horizontal
+      #   border character.
       # @return [String]
       def horizontal(char)
         model.horizontal = char
@@ -134,8 +136,8 @@ module Vedeu
       #     # ... some code
       #   end
       #
-      # @param value [Boolean] All values evaluate as true except nil and
-      #   false.
+      # @param value [Boolean] All values evaluate as true except nil
+      # and false.
       # @return [Boolean]
       def bottom(value)
         boolean = value ? true : false
@@ -169,8 +171,8 @@ module Vedeu
       #     # ... some code
       #   end
       #
-      # @param value [Boolean] All values evaluate as true except nil and
-      #   false.
+      # @param value [Boolean] All values evaluate as true except nil
+      #   and false.
       # @return [Boolean]
       def left(value)
         boolean = value ? true : false
@@ -204,8 +206,8 @@ module Vedeu
       #     # ... some code
       #   end
       #
-      # @param value [Boolean] All values evaluate as true except nil and
-      #   false.
+      # @param value [Boolean] All values evaluate as true except nil
+      #   and false.
       # @return [Boolean]
       def right(value)
         boolean = value ? true : false
@@ -229,7 +231,8 @@ module Vedeu
         right(true)
       end
 
-      # If you have you are showing a top border, you could add a title.
+      # If you have you are showing a top border, you could add a
+      # title.
       #
       #   Vedeu.border 'border_demo' do
       #     title 'My Cool Title'
@@ -247,7 +250,8 @@ module Vedeu
       end
       alias_method :title=, :title
 
-      # If you have you are showing a bottom border, you could add a caption.
+      # If you have you are showing a bottom border, you could add a
+      # caption.
       #
       #   Vedeu.border 'border_demo' do
       #     caption 'My Cool Caption'
@@ -275,8 +279,8 @@ module Vedeu
       #     # ... some code
       #   end
       #
-      # @param value [Boolean] All values evaluate as true except nil and
-      #   false.
+      # @param value [Boolean] All values evaluate as true except nil
+      #   and false.
       # @return [Boolean]
       def top(value)
         boolean = value ? true : false
@@ -300,45 +304,48 @@ module Vedeu
         top(true)
       end
 
-      # Set the character to be used to draw the top left corner of the border.
+      # Set the character to be used to draw the top left corner of
+      # the border.
       #
       #   Vedeu.border 'border_demo' do
       #     top_left '+'
       #     # ... some code
       #   end
       #
-      # @param char [String] Character to be used as the top left border
-      #   character.
+      # @param char [String] Character to be used as the top left
+      #   border character.
       # @return [String]
       def top_left(char)
         model.top_left = char
       end
       alias_method :top_left=, :top_left
 
-      # Set the character to be used to draw the top right corner of the border.
+      # Set the character to be used to draw the top right corner of
+      # the border.
       #
       #   Vedeu.border 'border_demo' do
       #     top_right '+'
       #     # ... some code
       #   end
       #
-      # @param char [String] Character to be used as the top right border
-      #   character.
+      # @param char [String] Character to be used as the top right
+      #   border character.
       # @return [String]
       def top_right(char)
         model.top_right = char
       end
       alias_method :top_right=, :top_right
 
-      # Set the character to be used to draw a vertical part of the border.
+      # Set the character to be used to draw a vertical part of the
+      # border.
       #
       #   Vedeu.border 'border_demo' do
       #     vertical '|'
       #     # ... some code
       #   end
       #
-      # @param char [String] Character to be used as the vertical border
-      #   character.
+      # @param char [String] Character to be used as the vertical
+      #   border character.
       # @return [String]
       def vertical(char)
         model.vertical = char

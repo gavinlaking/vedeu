@@ -1,9 +1,10 @@
 module Vedeu
 
   # Borders are defined by name for each of the client application's
-  # interfaces or views. They can be enabled or disabled (which controls
-  # whether they are rendered or not), they have their own colours and styles,
-  # and each aspect of the border can be controlled.
+  # interfaces or views. They can be enabled or disabled (which
+  # controls whether they are rendered or not), they have their own
+  # colours and styles, and each aspect of the border can be
+  # controlled.
   #
   # @example
   #   # Borders can be defined when defining your interface...

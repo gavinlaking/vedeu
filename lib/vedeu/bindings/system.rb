@@ -6,7 +6,8 @@ module Vedeu
 
       extend self
 
-      # Setup events relating to running Vedeu. This method is called by Vedeu.
+      # Setup events relating to running Vedeu. This method is called
+      # by Vedeu.
       #
       # @return [TrueClass]
       def setup!

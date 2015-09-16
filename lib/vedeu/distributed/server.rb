@@ -1,10 +1,12 @@
 module Vedeu
 
-  # Provides a mechanism to control a running client application via DRb.
+  # Provides a mechanism to control a running client application via
+  # DRb.
   #
   module Distributed
 
-    # A class for the server side of the DRb server/client relationship.
+    # A class for the server side of the DRb server/client
+    # relationship.
     class Server
 
       $SAFE = 1 # disable `eval` and related calls on strings passed
@@ -106,12 +108,12 @@ module Vedeu
         end
       end
 
-      # When called will stop the DRb server and attempt to terminate the client
-      # application.
+      # When called will stop the DRb server and attempt to terminate
+      # the client application.
       #
       # @note
-      #   :_exit_ never gets triggered as when the DRb server goes away, no
-      #   further methods will be called.
+      #   :_exit_ never gets triggered as when the DRb server goes
+      #   away, no further methods will be called.
       #
       # @return [void]
       def shutdown

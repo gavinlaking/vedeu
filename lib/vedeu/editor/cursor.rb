@@ -2,7 +2,8 @@ module Vedeu
 
   module Editor
 
-    # Maintains a cursor position within the Vedeu::Editor::Document class.
+    # Maintains a cursor position within the {Vedeu::Editor::Document}
+    # class.
     #
     class Cursor
 
@@ -42,7 +43,8 @@ module Vedeu
       #
       # @param attributes [Hash]
       # @option attributes y [Fixnum] The current line.
-      # @option attributes x [Fixnum] The current character with the line.
+      # @option attributes x [Fixnum] The current character with the
+      #   line.
       # @option attributes by [Fixnum]
       # @option attributes bx [Fixnum]
       # @option attributes byn [Fixnum]
@@ -108,8 +110,8 @@ module Vedeu
         self
       end
 
-      # Return the escape sequence for setting the cursor position and show the
-      # cursor.
+      # Return the escape sequence for setting the cursor position and
+      # show the cursor.
       #
       # @return [String]
       def to_s

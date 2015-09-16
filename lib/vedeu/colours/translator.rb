@@ -2,23 +2,27 @@ module Vedeu
 
   module Colours
 
-    # Convert a CSS/HTML colour string into a terminal escape sequence.
+    # Convert a CSS/HTML colour string into a terminal escape
+    # sequence.
     #
-    # If provided with an empty value or a string it cannot convert, it will
-    # return an empty string.
+    # If provided with an empty value or a string it cannot convert,
+    # it will return an empty string.
     #
-    # When provided with a named colour, uses the terminal's value for that
-    # colour. If a theme is being used with the terminal, which overrides the
-    # defaults, then the theme's colour will be used. The recognised names are:
-    # :black, :red, :green, :yellow, :blue, :magenta, :cyan, :white, :default.
+    # When provided with a named colour, uses the terminal's value for
+    # that colour. If a theme is being used with the terminal, which
+    # overrides the defaults, then the theme's colour will be used.
+    # The recognised names are:
     #
-    # When a number between 0 and 255 is provided, Vedeu will use the terminal
-    # colour corresponding with that colour.
+    # :black, :red, :green, :yellow, :blue, :magenta, :cyan, :white,
+    # :default.
     #
-    # Finally, when provided a CSS/HTML colour string e.g. '#ff0000', Vedeu will
-    # translate that to the 8-bit escape sequence or when you have a capable
-    # terminal and the `TERM=xterm-truecolor` environment variable set,
-    # a 24-bit representation.
+    # When a number between 0 and 255 is provided, Vedeu will use the
+    # terminal colour corresponding with that colour.
+    #
+    # Finally, when provided a CSS/HTML colour string e.g. '#ff0000',
+    # Vedeu will translate that to the 8-bit escape sequence or when
+    # you have a capable terminal and the `TERM=xterm-truecolor`
+    # environment variable set, a 24-bit representation.
     #
     # @todo More documentation required (create a fancy chart!)
     #
@@ -29,8 +33,8 @@ module Vedeu
       attr_reader :colour
       alias_method :value, :colour
 
-      # Produces new objects of the correct class from the value, ignores
-      # objects Colours::that have already been coerced.
+      # Produces new objects of the correct class from the value,
+      # ignores objects Colours::that have already been coerced.
       #
       # @param value [Object|NilClass]
       # @return [Object]
@@ -113,8 +117,8 @@ module Vedeu
       # processing.
       #
       # @param colour [String] A HTML/CSS colour code.
-      # @param escape_sequence [String] The HTML/CSS colour code as an escape
-      #   sequence.
+      # @param escape_sequence [String] The HTML/CSS colour code as an
+      #   escape sequence.
       # @return [String]
       def register(colour, escape_sequence)
         repository.register(colour, escape_sequence)
@@ -144,16 +148,16 @@ module Vedeu
         "\e[#{named_codes}m"
       end
 
-      # Returns a boolean indicating whether the colour provided is a valid
-      # named colour.
+      # Returns a boolean indicating whether the colour provided is a
+      # valid named colour.
       #
       # @return [Boolean]
       def valid_name?
         Vedeu::Esc.codes.keys.include?(colour)
       end
 
-      # Returns a boolean indicating whether the colour provided is a terminal
-      # numbered colour.
+      # Returns a boolean indicating whether the colour provided is a
+      # terminal numbered colour.
       #
       # @return [Boolean]
       def numbered?
@@ -167,8 +171,8 @@ module Vedeu
         "#{numbered_prefix}#{css_to_numbered}m"
       end
 
-      # Returns a boolean indicated whether the colour is a valid HTML/CSS
-      # colour.
+      # Returns a boolean indicated whether the colour is a valid
+      # HTML/CSS colour.
       #
       # @return [Boolean]
       def rgb?
@@ -190,16 +194,16 @@ module Vedeu
         end
       end
 
-      # Returns a boolean indicating whether the numbered colour is within the
-      # range of valid terminal numbered colours.
+      # Returns a boolean indicating whether the numbered colour is
+      # within the range of valid terminal numbered colours.
       #
       # @return [Boolean]
       def valid_range?
         colour >= 0 && colour <= 255
       end
 
-      # Returns a collection of converted HTML/CSS octets as their decimal
-      # equivalents.
+      # Returns a collection of converted HTML/CSS octets as their
+      # decimal equivalents.
       #
       # @example
       #   colour = '#aadd55'
@@ -225,32 +229,32 @@ module Vedeu
         end
       end
 
-      # Takes the red component of {#css_to_rgb} and converts to the correct
-      # value for setting the terminal red value.
+      # Takes the red component of {#css_to_rgb} and converts to the
+      # correct value for setting the terminal red value.
       #
       # @return [Fixnum]
       def red
         (css_to_rgb[0] / 51) * 36
       end
 
-      # Takes the green component of {#css_to_rgb} and converts to the correct
-      # value for setting the terminal green value.
+      # Takes the green component of {#css_to_rgb} and converts to the
+      # correct value for setting the terminal green value.
       #
       # @return [Fixnum]
       def green
         (css_to_rgb[1] / 51) * 6
       end
 
-      # Takes the blue component of {#css_to_rgb} and converts to the correct
-      # value for setting the terminal blue value.
+      # Takes the blue component of {#css_to_rgb} and converts to the
+      # correct value for setting the terminal blue value.
       #
       # @return [Fixnum]
       def blue
         (css_to_rgb[2] / 51) * 1
       end
 
-      # @raise [Vedeu::Error::NotImplemented] Subclasses of this class must
-      #   implement this method.
+      # @raise [Vedeu::Error::NotImplemented] Subclasses of this class
+      #   must implement this method.
       # @return [Vedeu::Error::NotImplemented]
       def not_implemented
         fail Vedeu::Error::NotImplemented, 'Subclasses implement this.'
