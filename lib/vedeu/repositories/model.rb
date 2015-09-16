@@ -109,14 +109,11 @@ module Vedeu
     #
     # @return [String]
     def dsl_class
-      if demodulize(self.class.name) == 'Border'
-        'Vedeu::Borders::DSL'
-      elsif demodulize(self.class.name) == 'Buffer'
-        'Vedeu::Buffers::DSL'
-      elsif demodulize(self.class.name) == 'Geometry'
-        'Vedeu::Geometry::DSL'
-      elsif demodulize(self.class.name) == 'Menu'
-        'Vedeu::Menus::DSL'
+      case demodulize(self.class.name)
+      when 'Border'   then 'Vedeu::Borders::DSL'
+      when 'Buffer'   then 'Vedeu::Buffers::DSL'
+      when 'Geometry' then 'Vedeu::Geometry::DSL'
+      when 'Menu'     then 'Vedeu::Menus::DSL'
       else
         'Vedeu::DSL::' + demodulize(self.class.name)
       end
