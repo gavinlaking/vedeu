@@ -2,7 +2,8 @@ module Vedeu
 
   module Templating
 
-    # Converts an object or collection of objects into an encoded String.
+    # Converts an object or collection of objects into an encoded
+    # String.
     #
     class Encoder
 
@@ -20,7 +21,8 @@ module Vedeu
         @data = data
       end
 
-      # Converts an object or collection of objects into an encoded String.
+      # Converts an object or collection of objects into an encoded
+      # String.
       #
       # @return [String]
       def process
@@ -42,8 +44,8 @@ module Vedeu
         "{{#{encode64}}}"
       end
 
-      # Encode the compressed, marshalled object or objects into a Base64
-      # string.
+      # Encode the compressed, marshalled object or objects into a
+      # Base64 string.
       #
       # @return [String]
       def encode64

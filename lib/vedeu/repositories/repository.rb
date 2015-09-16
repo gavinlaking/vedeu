@@ -1,6 +1,7 @@
 module Vedeu
 
-  # Provides common methods for accessing the various repositories Vedeu uses.
+  # Provides common methods for accessing the various repositories
+  # Vedeu uses.
   #
   # @example
   #   { 'models' => [Model, Model, Model] }
@@ -50,11 +51,12 @@ module Vedeu
     # Return the named model or a null object if not registered.
     #
     # @example
-    #   Vedeu.cursors.by_name('some_name') # => Fetch the cursor belonging to
-    #                                           the interface of the same name.
+    #   # Fetch the cursor belonging to the interface of the same
+    #   # name.
+    #   Vedeu.cursors.by_name('some_name')
     #
-    #   Vedeu.groups.by_name(name) # => Fetch the names of the interfaces
-    #                                   belonging to this group.
+    #   # Fetch the names of the interfaces belonging to this group.
+    #   Vedeu.groups.by_name(name)
     #
     # @param name [String] The name of the stored model.
     # @return [void]
@@ -85,19 +87,20 @@ module Vedeu
       storage[name]
     end
 
-    # Find the model attributes by name, raises an exception when the model
-    # cannot be found.
+    # Find the model attributes by name, raises an exception when the
+    # model cannot be found.
     #
     # @param name [String]
-    # @raise [Vedeu::Error::ModelNotFound] When the model cannot be found with
-    #   this name.
+    # @raise [Vedeu::Error::ModelNotFound] When the model cannot be
+    #   found with this name.
     # @return [Hash<String => Object>]
     def find!(name)
       find(name) || fail(Vedeu::Error::ModelNotFound,
                          "Cannot find model by name: '#{name}'")
     end
 
-    # Find a model by name, registers the model by name when not found.
+    # Find a model by name, registers the model by name when not
+    # found.
     #
     # @param name [String]
     # @return [void]
@@ -118,7 +121,8 @@ module Vedeu
       "<#{self.class.name}>"
     end
 
-    # Returns a boolean indicating whether the named model is registered.
+    # Returns a boolean indicating whether the named model is
+    # registered.
     #
     # @param name [String]
     # @return [Boolean]
@@ -129,8 +133,8 @@ module Vedeu
       storage.include?(name)
     end
 
-    # Returns the storage with the named model removed, or false when the model
-    # does not exist.
+    # Returns the storage with the named model removed, or false when
+    # the model does not exist.
     #
     # @param name [String]
     # @return [Hash|FalseClass]
@@ -150,11 +154,12 @@ module Vedeu
     alias_method :delete,     :remove
     alias_method :deregister, :remove
 
-    # Stores the model instance by name in the repository of the model.
+    # Stores the model instance by name in the repository of the
+    # model.
     #
     # @param model [void] A model instance.
-    # @raise [Vedeu::Error::MissingRequired] When the name attribute is not
-    #   defined.
+    # @raise [Vedeu::Error::MissingRequired] When the name attribute
+    #   is not defined.
     # @return [void] The model instance which was stored.
     def store(model)
       unless present?(model.name)

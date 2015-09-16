@@ -34,9 +34,11 @@ module Vedeu
       name
     end
 
-    # Returns a boolean indicating whether a variable has a useful value.
+    # Returns a boolean indicating whether a variable has a useful
+    # value.
     #
-    # @param variable [String|Symbol|Array|Fixnum] The variable to check.
+    # @param variable [String|Symbol|Array|Fixnum] The variable to
+    #   check.
     # @return [Boolean]
     def present?(variable)
       return true if variable.is_a?(Fixnum)

@@ -67,7 +67,8 @@ module Vedeu
 
       private
 
-      # Returns an empty collection ready for the storing terminal content.
+      # Returns an empty collection ready for the storing terminal
+      # content.
       #
       # @return [Hash]
       def in_memory

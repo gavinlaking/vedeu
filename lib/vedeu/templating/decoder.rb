@@ -2,7 +2,8 @@ module Vedeu
 
   module Templating
 
-    # Converts an encoded string back into an object or collection of objects.
+    # Converts an encoded string back into an object or collection of
+    # objects.
     #
     class Decoder
 
@@ -20,7 +21,8 @@ module Vedeu
         @data = data
       end
 
-      # Converts an encoded string back into an object or collection of objects.
+      # Converts an encoded string back into an object or collection
+      # of objects.
       #
       # @return [Object]
       def process
@@ -35,7 +37,8 @@ module Vedeu
 
       private
 
-      # Convert the marshalled object or objects back into an object(s).
+      # Convert the marshalled object or objects back into an
+      # object(s).
       #
       # @return [Object]
       def demarshal
@@ -49,8 +52,8 @@ module Vedeu
         Zlib::Inflate.inflate(decode64)
       end
 
-      # Decode the Base64 string into a compressed, marshalled object or
-      # objects.
+      # Decode the Base64 string into a compressed, marshalled object
+      # or objects.
       #
       # @return [String]
       def decode64
