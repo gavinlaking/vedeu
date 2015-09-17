@@ -79,13 +79,8 @@ module Vedeu
       def write(value)
         values = Array(value).flatten
 
-        values.each do |value|
-          if valid_position?(value)
-            buffer[value.position.y][value.position.x] = value
-
-          else
-
-          end
+        values.each do |v|
+          buffer[v.position.y][v.position.x] = v if valid_position?(v)
         end
 
         self
@@ -106,18 +101,18 @@ module Vedeu
       #
       # @param value [void]
       # @return [Boolean]
-      def has_position?(value)
+      def position?(value)
         value.respond_to?(:position) &&
-        value.position.is_a?(Vedeu::Geometry::Position)
+          value.position.is_a?(Vedeu::Geometry::Position)
       end
 
       # Returns a boolean indicating the value has a position
       # attribute and is within the terminal boundary.
       #
-      # @param value []
+      # @param value [void]
       # @return [Boolean]
       def valid_position?(value)
-        has_position?(value) && within_terminal_boundary?(value)
+        position?(value) && within_terminal_boundary?(value)
       end
 
       # Returns a boolean indicating the position of the value object
@@ -127,7 +122,7 @@ module Vedeu
       # @return [Boolean]
       def within_terminal_boundary?(value)
         value.position.y > 0 && value.position.y <= Vedeu.height &&
-        value.position.x > 0 && value.position.x <= Vedeu.width
+          value.position.x > 0 && value.position.x <= Vedeu.width
       end
 
     end # Buffer

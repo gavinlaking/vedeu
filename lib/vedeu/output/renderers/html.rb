@@ -33,9 +33,7 @@ module Vedeu
       def render(output)
         @output = output
 
-        unless @output.is_a?(Vedeu::Models::Escape)
-          super(Vedeu::Templating::Template.parse(self, template))
-        end
+        super(Vedeu::Templating::Template.parse(self, template)) unless escape?
       end
 
       # @return [String]
@@ -54,6 +52,15 @@ module Vedeu
       end
 
       private
+
+      # Returns a boolean indicating whether the output is a
+      # {Vedeu::Models::Escape}. If it is, it won't be rendered in
+      # HTML.
+      #
+      # @return [Boolean]
+      def escape?
+        output.is_a?(Vedeu::Models::Escape)
+      end
 
       # @return [Array<Array<Vedeu::Views::Char>>]
       def output
