@@ -1,6 +1,7 @@
 module Vedeu
 
-  # Provides the mechanisms to clear an interface or group of interfaces.
+  # Provides the mechanisms to clear an interface or group of
+  # interfaces.
   #
   module Clear
 
@@ -57,9 +58,9 @@ module Vedeu
       end
 
       # For each visible line of the interface, set the foreground and
-      # background colours to those specified when the interface was defined,
-      # then starting write space characters over the area which the interface
-      # occupies.
+      # background colours to those specified when the interface was
+      # defined, then starting write space characters over the area
+      # which the interface occupies.
       #
       # @return [Array<Array<Vedeu::Views::Char>>]
       def output

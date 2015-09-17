@@ -59,7 +59,8 @@ module Vedeu
       #     end
       #   end
       #
-      # @raise [Vedeu::Error::InvalidSyntax] When no block or value is provided.
+      # @raise [Vedeu::Error::InvalidSyntax] When no block or value is
+      #   provided.
       # @return [Vedeu::Views::Lines]
       def line(value = '', &block)
         if block_given?
@@ -81,7 +82,8 @@ module Vedeu
       alias_method :line=, :line
 
       # Define multiple streams (a stream is a subset of a line).
-      # Uses {Vedeu::DSL::Stream} for all directives within the required block.
+      # Uses {Vedeu::DSL::Stream} for all directives within the
+      # required block.
       #
       #   Vedeu.renders do
       #     view 'my_interface' do
@@ -98,7 +100,8 @@ module Vedeu
       #   end
       #
       # @param block [Proc]
-      # @raise [Vedeu::Error::InvalidSyntax] The required block was not given.
+      # @raise [Vedeu::Error::InvalidSyntax] The required block was
+      #   not given.
       # @return [Vedeu::Views::Streams<Vedeu::Views::Stream>]
       # @see Vedeu::DSL::Stream for subdirectives.
       def streams(&block)

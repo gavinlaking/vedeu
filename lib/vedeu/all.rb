@@ -118,8 +118,7 @@ require 'vedeu/output/renderers/terminal'
 require 'vedeu/output/renderers/text'
 require 'vedeu/output/renderers'
 
-require 'vedeu/api/external'
-require 'vedeu/api/internal'
+require 'vedeu/api/all'
 
 require 'vedeu/bindings/application'
 require 'vedeu/bindings/document'

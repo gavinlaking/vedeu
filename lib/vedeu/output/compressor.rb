@@ -42,6 +42,7 @@ module Vedeu
 
       private
 
+      # @return [Array]
       def content
         return [] if output.nil? || output.empty?
 

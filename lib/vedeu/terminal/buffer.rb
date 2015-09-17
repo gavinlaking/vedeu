@@ -2,13 +2,14 @@ module Vedeu
 
   module Terminal
 
-    # All output will be written to this singleton, and #render will be called
-    # at the end of each run of {Vedeu::MainLoop}; effectively rendering this
-    # buffer to each registered renderer. This buffer is not cleared after this
-    # action though, as subsequent actions will modify the contents. This means
-    # that individual parts of Vedeu can write content here at various points
-    # and only at the end of each run of {Vedeu::MainLoop} will it be actually
-    # output 'somewhere'.
+    # All output will be written to this singleton, and #render will
+    # be called at the end of each run of {Vedeu::MainLoop};
+    # effectively rendering this buffer to each registered renderer.
+    # This buffer is not cleared after this action though, as
+    # subsequent actions will modify the contents. This means that
+    # individual parts of Vedeu can write content here at various
+    # points and only at the end of each run of {Vedeu::MainLoop} will
+    # it be actually output 'somewhere'.
     #
     module Buffer
 
