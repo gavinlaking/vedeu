@@ -7,7 +7,8 @@ module Vedeu
 
     private
 
-    # Combines the options provided at instantiation with the default values.
+    # Combines the options provided at instantiation with the default
+    # values.
     #
     # @return [Hash<Symbol => void>]
     def options

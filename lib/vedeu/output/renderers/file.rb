@@ -6,6 +6,8 @@ module Vedeu
     #
     class File
 
+      include Vedeu::RendererOptions
+
       # Returns a new instance of Vedeu::Renderers::File.
       #
       # @param options [Hash]
@@ -42,13 +44,6 @@ module Vedeu
       # @return [Boolean]
       def write_file?
         options[:write_file]
-      end
-
-      # Combines the options provided at instantiation with the default values.
-      #
-      # @return [Hash]
-      def options
-        defaults.merge!(@options)
       end
 
       # Returns the default options/attributes for this class.
