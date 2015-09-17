@@ -26,7 +26,7 @@ module Vedeu
       # @option attributes style
       #   [NilClass|Array<Symbol|String>|Symbol|String]
       # @option attributes value [NilClass|String]
-      # @option attributes position [Vedeu::Position]
+      # @option attributes position [Vedeu::Geometry::Position]
       # @return [Vedeu::Models::Cell]
       def initialize(attributes = {})
         defaults.merge!(attributes).each do |key, value|
@@ -44,9 +44,9 @@ module Vedeu
       end
       alias_method :==, :eql?
 
-      # @return [Vedeu::Position]
+      # @return [Vedeu::Geometry::Position]
       def position
-        Vedeu::Position.coerce(@position)
+        Vedeu::Geometry::Position.coerce(@position)
       end
 
       # @return [Hash]

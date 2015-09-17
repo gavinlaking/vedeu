@@ -23,7 +23,7 @@ module Vedeu
         new(y, x)
       end
 
-      # @param value [Array<Fixnum>|Vedeu::Position]
+      # @param value [Array<Fixnum>|Vedeu::Geometry::Position]
       # @return [Vedeu::Geometry::Position]
       def self.coerce(value)
         if value.is_a?(self)
