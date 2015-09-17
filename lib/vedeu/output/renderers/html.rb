@@ -25,26 +25,26 @@ module Vedeu
       # @return [Vedeu::Renderers::HTML]
       def initialize(options = {})
         @options = options || {}
-        @content = nil
+        @output  = nil
       end
 
-      # @param buffer [Vedeu::Models::Page]
+      # @param output [Vedeu::Models::Page]
       # @return [String]
-      def render(buffer)
-        @content = buffer
+      def render(output)
+        @output = output
 
-        unless @content.is_a?(Vedeu::Models::Escape)
+        unless @output.is_a?(Vedeu::Models::Escape)
           super(Vedeu::Templating::Template.parse(self, template))
         end
       end
 
       # @return [String]
       def html_body
-        return '' if content.is_a?(Vedeu::Models::Escape)
+        return '' if output.is_a?(Vedeu::Models::Escape)
 
         out = ''
 
-        content.output.each do |line|
+        output.each do |line|
           out << "#{start_row_tag}\n"
           line.each { |char| out << char.to_html(options) }
           out << "#{end_row_tag}\n"
@@ -56,10 +56,9 @@ module Vedeu
       private
 
       # @return [Array<Array<Vedeu::Views::Char>>]
-      def content
-        @content || options[:content]
+      def output
+        @output || options[:output]
       end
-      alias_method :output, :content
 
       # @return [String]
       def end_tag
