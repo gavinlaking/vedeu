@@ -34,7 +34,7 @@ module Vedeu
 
       # An object is equal when its values are the same.
       #
-      # @param other [Vedeu::Escape]
+      # @param other [Vedeu::Models::Escape]
       # @return [Boolean]
       def eql?(other)
         self.class == other.class && value == other.value
@@ -55,7 +55,6 @@ module Vedeu
         ''
       end
 
-<<<<<<< HEAD
       # @return [String]
       def to_s
         "#{position}#{value}"
@@ -63,18 +62,6 @@ module Vedeu
       alias_method :to_str, :to_s
 
       private
-=======
-    # @return [String]
-    def to_html
-      ''
-    end
-
-    # @return [String]
-    def to_s
-      "#{position}#{value}"
-    end
-    alias_method :to_str, :to_s
->>>>>>> Add #to_html to Vedeu::Escape.
 
       # @return [Hash]
       def defaults

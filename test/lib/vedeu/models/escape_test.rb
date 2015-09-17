@@ -6,7 +6,7 @@ module Vedeu
 
     describe Escape do
 
-      let(:described)  { Vedeu::Escape }
+      let(:described)  { Vedeu::Models::Escape }
       let(:instance)   { described.new(attributes) }
       let(:attributes) {
         {
