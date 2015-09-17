@@ -13,192 +13,196 @@ module Vedeu
 
   end # SomeController
 
-  describe Router do
+  module Runtime
 
-    let(:described) { Vedeu::Router }
+    describe Router do
 
-    before { described.reset! }
+      let(:described) { Vedeu::Runtime::Router }
 
-    describe '.add_controller' do
-      let(:controller) {}
-      let(:klass) { "SomeController" }
+      before { described.reset! }
 
-      subject { described.add_controller(controller, klass) }
+      describe '.add_controller' do
+        let(:controller) {}
+        let(:klass) { "SomeController" }
 
-      context 'when a name is not given' do
-        it { proc { subject }.must_raise(Vedeu::Error::MissingRequired) }
-      end
+        subject { described.add_controller(controller, klass) }
 
-      context 'when a name is given' do
-        let(:controller) { :some_controller }
-
-        context 'when the controller is registered' do
-          before do
-            described.add_controller(controller, '')
-            described.add_action(controller, :show_basket)
-          end
-          after  { described.reset! }
-
-          it {
-            subject.must_equal({
-              some_controller: {
-                klass:   'SomeController',
-                actions: [:show_basket]
-              }
-            })
-          }
+        context 'when a name is not given' do
+          it { proc { subject }.must_raise(Vedeu::Error::MissingRequired) }
         end
 
-        context 'when the controller is not registered' do
-          it {
-            subject.must_equal({
-              some_controller: {
-                klass:   'SomeController',
-                actions: []
-              }
-            })
-          }
-        end
-      end
-    end
+        context 'when a name is given' do
+          let(:controller) { :some_controller }
 
-    describe '.add_action' do
-      let(:controller) {}
-      let(:action)     {}
+          context 'when the controller is registered' do
+            before do
+              described.add_controller(controller, '')
+              described.add_action(controller, :show_basket)
+            end
+            after  { described.reset! }
 
-      subject { described.add_action(controller, action) }
-
-      context 'when the controller is not given' do
-        let(:action) { :some_action }
-
-        it { proc { subject }.must_raise(Vedeu::Error::MissingRequired) }
-      end
-
-      context 'when the name is not given' do
-        let(:controller) { :some_controller }
-
-        it { proc { subject }.must_raise(Vedeu::Error::MissingRequired) }
-      end
-
-      context 'when the controller and name is given' do
-        let(:controller) { :some_controller }
-        let(:action) { :some_action }
-
-        context 'when the controller is registered' do
-          before { described.add_controller(controller, 'SomeController') }
-          after  { described.reset! }
-
-          it {
-            subject.must_equal({
-              some_controller: {
-                klass:   'SomeController',
-                actions: [:some_action]
-              }
-            })
-          }
-        end
-
-        context 'when the controller is not registered' do
-          before { described.reset! }
-
-          it {
-            subject.must_equal({
-              some_controller: {
-                klass:   '',
-                actions: [:some_action]
-              }
-            })
-          }
-        end
-      end
-    end
-
-    describe '.goto' do
-      let(:controller) { :some_controller }
-      let(:action)     { :some_action }
-      let(:args)            {
-        {
-          customer_id: 7,
-          product_id:  88,
-        }
-      }
-
-      subject { described.goto(controller, action, **args) }
-
-      it { described.must_respond_to(:action) }
-
-      context 'when the controller is registered' do
-        context 'when the controller klass is defined' do
-          before do
-            described.add_controller(controller, 'Vedeu::SomeController')
-            described.add_action(controller, action)
-          end
-          after { described.reset! }
-
-          it {
-            subject.must_equal({
-              customer: {
-                name: 'Gavin Laking',
-                customer_id: 7
-              },
-              basket: {
-                product_ids: [88]
-              }
-            })
-          }
-        end
-
-        context 'when the action is not defined for this controller' do
-          let(:action) { :undefined_action }
-
-          before do
-            described.add_controller(controller, 'Vedeu::SomeController')
+            it {
+              subject.must_equal({
+                some_controller: {
+                  klass:   'SomeController',
+                  actions: [:show_basket]
+                }
+              })
+            }
           end
 
-          it { proc { subject }.must_raise(Vedeu::Error::ActionNotFound) }
-        end
-
-        context 'when the controller klass is not defined' do
-          before do
-            described.add_controller(controller, '')
-            described.add_action(controller, action)
+          context 'when the controller is not registered' do
+            it {
+              subject.must_equal({
+                some_controller: {
+                  klass:   'SomeController',
+                  actions: []
+                }
+              })
+            }
           end
-          after { described.reset! }
+        end
+      end
+
+      describe '.add_action' do
+        let(:controller) {}
+        let(:action)     {}
+
+        subject { described.add_action(controller, action) }
+
+        context 'when the controller is not given' do
+          let(:action) { :some_action }
 
           it { proc { subject }.must_raise(Vedeu::Error::MissingRequired) }
         end
+
+        context 'when the name is not given' do
+          let(:controller) { :some_controller }
+
+          it { proc { subject }.must_raise(Vedeu::Error::MissingRequired) }
+        end
+
+        context 'when the controller and name is given' do
+          let(:controller) { :some_controller }
+          let(:action) { :some_action }
+
+          context 'when the controller is registered' do
+            before { described.add_controller(controller, 'SomeController') }
+            after  { described.reset! }
+
+            it {
+              subject.must_equal({
+                some_controller: {
+                  klass:   'SomeController',
+                  actions: [:some_action]
+                }
+              })
+            }
+          end
+
+          context 'when the controller is not registered' do
+            before { described.reset! }
+
+            it {
+              subject.must_equal({
+                some_controller: {
+                  klass:   '',
+                  actions: [:some_action]
+                }
+              })
+            }
+          end
+        end
       end
 
-      context 'when the controller is not registered' do
-        it { proc { subject }.must_raise(Vedeu::Error::ControllerNotFound) }
+      describe '.goto' do
+        let(:controller) { :some_controller }
+        let(:action)     { :some_action }
+        let(:args)            {
+          {
+            customer_id: 7,
+            product_id:  88,
+          }
+        }
+
+        subject { described.goto(controller, action, **args) }
+
+        it { described.must_respond_to(:action) }
+
+        context 'when the controller is registered' do
+          context 'when the controller klass is defined' do
+            before do
+              described.add_controller(controller, 'Vedeu::SomeController')
+              described.add_action(controller, action)
+            end
+            after { described.reset! }
+
+            it {
+              subject.must_equal({
+                customer: {
+                  name: 'Gavin Laking',
+                  customer_id: 7
+                },
+                basket: {
+                  product_ids: [88]
+                }
+              })
+            }
+          end
+
+          context 'when the action is not defined for this controller' do
+            let(:action) { :undefined_action }
+
+            before do
+              described.add_controller(controller, 'Vedeu::SomeController')
+            end
+
+            it { proc { subject }.must_raise(Vedeu::Error::ActionNotFound) }
+          end
+
+          context 'when the controller klass is not defined' do
+            before do
+              described.add_controller(controller, '')
+              described.add_action(controller, action)
+            end
+            after { described.reset! }
+
+            it { proc { subject }.must_raise(Vedeu::Error::MissingRequired) }
+          end
+        end
+
+        context 'when the controller is not registered' do
+          it { proc { subject }.must_raise(Vedeu::Error::ControllerNotFound) }
+        end
       end
-    end
 
-    describe '.registered' do
-      let(:controller) { :some_controller }
+      describe '.registered' do
+        let(:controller) { :some_controller }
 
-      subject { described.registered?(controller) }
+        subject { described.registered?(controller) }
 
-      context 'when the controller is registered' do
-        before { described.add_controller(controller, "SomeController") }
-        after  { described.reset! }
+        context 'when the controller is registered' do
+          before { described.add_controller(controller, "SomeController") }
+          after  { described.reset! }
 
-        it { subject.must_equal(true) }
+          it { subject.must_equal(true) }
+        end
+
+        context 'when the controller is not registered' do
+          it { subject.must_equal(false) }
+        end
       end
 
-      context 'when the controller is not registered' do
-        it { subject.must_equal(false) }
+      describe '.reset!' do
+        subject { described.reset! }
+
+        it { subject.must_equal({}) }
+
+        it { described.must_respond_to(:reset) }
       end
-    end
 
-    describe '.reset!' do
-      subject { described.reset! }
+    end # Router
 
-      it { subject.must_equal({}) }
-
-      it { described.must_respond_to(:reset) }
-    end
-
-  end # Router
+  end # Runtime
 
 end # Vedeu

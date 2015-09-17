@@ -30,7 +30,7 @@ module Vedeu
         subject { described_model.controller(:some_controller) }
 
         it {
-          Vedeu::Router.expects(:add_controller).
+          Vedeu::Runtime::Router.expects(:add_controller).
             with(:some_controller, 'Vedeu::ControllerTestKlass')
           subject
         }
@@ -42,9 +42,9 @@ module Vedeu
         subject { described_model.action(:some_action, :other_action) }
 
         it {
-          Vedeu::Router.expects(:add_action).
+          Vedeu::Runtime::Router.expects(:add_action).
             with(:some_controller, :some_action)
-          Vedeu::Router.expects(:add_action).
+          Vedeu::Runtime::Router.expects(:add_action).
             with(:some_controller, :other_action)
           subject
         }

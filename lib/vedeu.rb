@@ -53,8 +53,8 @@ module Vedeu
   # @param receiver [void]
   # @return [void]
   def included(receiver)
-    receiver.send(:include, API)
-    receiver.extend(API)
+    receiver.send(:include, Vedeu::API::External)
+    receiver.extend(Vedeu::API::External)
   end
   # :nocov:
 

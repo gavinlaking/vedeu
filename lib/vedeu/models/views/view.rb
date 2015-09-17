@@ -76,7 +76,7 @@ module Vedeu
         output = [
           Vedeu::Cursors::Cursor.hide_cursor(name),
           Vedeu::Clear::NamedInterface.render(name),
-          Vedeu::Viewport.render(self),
+          Vedeu::Output::Viewport.render(self),
           Vedeu.borders.by_name(name).render,
           Vedeu::Cursors::Cursor.show_cursor(name),
         ]
