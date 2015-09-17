@@ -207,11 +207,6 @@ module Vedeu
       IO.console
     end
 
-    # @return [Vedeu::Buffers::VirtualBuffer]
-    def virtual
-      @virtual ||= Vedeu::Buffers::VirtualBuffer.new(height, width)
-    end
-
   end # Terminal
 
 end # Vedeu
