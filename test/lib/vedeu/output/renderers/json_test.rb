@@ -13,8 +13,8 @@ module Vedeu
 
       before do
         ::File.stubs(:write)
-        Vedeu.stubs(:height).returns(2)
-        Vedeu.stubs(:width).returns(4)
+        Vedeu.stubs(:height).returns(1)
+        Vedeu.stubs(:width).returns(1)
         Vedeu::Terminal::Buffer.reset
       end
 
@@ -23,145 +23,40 @@ module Vedeu
         it { instance.instance_variable_get('@options').must_equal(options) }
       end
 
-      # describe '#render' do
-      #   let(:output) {
-      #     Vedeu::Models::Page.coerce([
-      #       Vedeu::Views::Char.new(value: 't',
-      #                              colour: {
-      #                                background: '#ff0000',
-      #                                foreground: '#ffffff' }),
-      #       Vedeu::Views::Char.new(value: 'e',
-      #                              colour: {
-      #                                background: '#ffff00',
-      #                                foreground: '#000000' }),
-      #       Vedeu::Views::Char.new(value: 's',
-      #                              colour: {
-      #                                background: '#00ff00',
-      #                                foreground: '#000000' }),
-      #       Vedeu::Views::Char.new(value: 't',
-      #                              colour: {
-      #                                background: '#00ffff',
-      #                                foreground: '#000000' }),
-      #     ])
-      #   }
+      describe '#render' do
+        let(:output) {
+          Vedeu::Models::Page.coerce([
+            Vedeu::Views::Char.new(value: 'a',
+                                   colour: {
+                                     background: '#ff0000',
+                                     foreground: '#ffffff' }),
+          ])
+        }
+        let(:expected) {
+          "[\n"   \
+          "  {\n" \
+          "    \"border\": \"\",\n" \
+          "    \"colour\": {\n" \
+          "      \"background\": \"\\u001b[48;2;255;0;0m\",\n" \
+          "      \"foreground\": \"\\u001b[38;2;255;255;255m\"\n" \
+          "    },\n" \
+          "    \"parent\": {\n" \
+          "    },\n" \
+          "    \"position\": {\n" \
+          "      \"y\": null,\n" \
+          "      \"x\": null\n" \
+          "    },\n" \
+          "    \"style\": \"\",\n" \
+          "    \"value\": \"a\"\n" \
+          "  }\n" \
+          "]"
+        }
 
-      #   subject { instance.render(output) }
+        subject { instance.render(output) }
 
-      #   it { subject.must_be_instance_of(String) }
-
-      #   context 'when there is an empty buffer' do
-      #     let(:expected) {
-      #       ::JSON.pretty_generate([
-      #         {
-      #           'colour': '', 'style': '', 'value': '', 'y': 1, 'x': 1
-      #         },{
-      #           'colour': '', 'style': '', 'value': '', 'y': 1, 'x': 2
-      #         },{
-      #           'colour': '', 'style': '', 'value': '', 'y': 1, 'x': 3
-      #         },{
-      #           'colour': '', 'style': '', 'value': '', 'y': 1, 'x': 4
-      #         },{
-      #           'colour': '', 'style': '', 'value': '', 'y': 2, 'x': 1
-      #         },{
-      #           'colour': '', 'style': '', 'value': '', 'y': 2, 'x': 2
-      #         },{
-      #           'colour': '', 'style': '', 'value': '', 'y': 2, 'x': 3
-      #         },{
-      #           'colour': '', 'style': '', 'value': '', 'y': 2, 'x': 4
-      #         }
-      #       ])
-      #     }
-      #     it { subject.must_equal(expected) }
-      #   end
-
-      #   context 'when there is content on the buffer' do
-      #     let(:colour) {
-      #       Vedeu::Colours::Colour.new(foreground: '#ff0000',
-      #                                  background: '#ffffff')
-      #     }
-      #     let(:output) {
-      #       [
-      #         [
-      #           Vedeu::Views::Char.new(value: 'a',
-      #                                  colour: colour,
-      #                                  parent: parent,
-      #                                  position: Vedeu::Geometry::Position[5, 3])
-      #         ]
-      #       ]
-      #     }
-      #     let(:parent)   {}
-      #     let(:expected) {
-      #       ::JSON.pretty_generate([
-      #         {
-      #           'colour': '', 'style': '', 'value': '', 'y': 1, 'x': 1
-      #         },{
-      #           'colour': '', 'style': '', 'value': '', 'y': 1, 'x': 2
-      #         },{
-      #           'colour': '', 'style': '', 'value': '', 'y': 1, 'x': 3
-      #         },{
-      #           'colour': '', 'style': '', 'value': '', 'y': 1, 'x': 4
-      #         },{
-      #           'colour': '', 'style': '', 'value': '', 'y': 2, 'x': 1
-      #         },{
-      #           'border': '',
-      #           'colour': {
-      #             'background': "\u001b[48;2;255;0;0m",
-      #             'foreground': "\u001b[38;2;255;255;255m"
-      #           },
-      #           'parent': {},
-      #           'position': {
-      #             'y': nil,
-      #             'x': nil
-      #           },
-      #           'style': '',
-      #           'value': 't'
-      #         },{
-      #           'border': '',
-      #           'colour': {
-      #             'background': "\u001b[48;2;255;255;0m",
-      #             'foreground': "\u001b[38;2;0;0;0m"
-      #           },
-      #           'parent': {},
-      #           'position': {
-      #             'y': nil,
-      #             'x': nil
-      #           },
-      #           'style': '',
-      #           'value': 'e'
-      #         },{
-      #           'border': '',
-      #           'colour': {
-      #             'background': "\u001b[48;2;0;255;0m",
-      #             'foreground': "\u001b[38;2;0;0;0m"
-      #           },
-      #           'parent': {},
-      #           'position': {
-      #             'y': nil,
-      #             'x': nil
-      #           },
-      #           'style': '',
-      #           'value': 's'
-      #         },{
-      #           'border': '',
-      #           'colour': {
-      #             'background': "\u001b[48;2;0;255;255m",
-      #             'foreground': "\u001b[38;2;0;0;0m"
-      #           },
-      #           'parent': {},
-      #           'position': {
-      #             'y': nil,
-      #             'x': nil
-      #           },
-      #           'style': '',
-      #           'value': 't'
-      #         }
-      #       ])
-      #     }
-
-      #     it { subject.must_be_instance_of(String) }
-      #     it { subject.must_equal(expected) }
-      #   end
-      # end
+        it { subject.must_be_instance_of(String) }
+        it { subject.must_equal(expected) }
+      end
 
     end # JSON
 

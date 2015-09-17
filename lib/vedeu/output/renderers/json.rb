@@ -17,7 +17,11 @@ module Vedeu
       # @param output [Vedeu::Models::Page]
       # @return [String]
       def render(output)
-        super(parse(output))
+        json = parse(output)
+
+        super(json)
+
+        json
       end
 
       private
