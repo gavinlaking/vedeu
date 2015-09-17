@@ -126,10 +126,11 @@ module Vedeu
         }
       end
 
-      # @param options [Hash<Symbol => String>] See {Vedeu::HTMLChar#initialize}
+      # @param options [Hash<Symbol => String>]
+      #   See {Vedeu::Views::HTMLChar#initialize}
       # @return [String]
       def to_html(options = {})
-        @to_html ||= Vedeu::HTMLChar.render(self, options)
+        @to_html ||= Vedeu::Views::HTMLChar.render(self, options)
       end
 
       private
