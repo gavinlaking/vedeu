@@ -52,12 +52,32 @@ module Vedeu
         @rows = rows || []
       end
 
+      # @return [Array<void>]
+      def content
+        rows.map(&:content).flatten
+      end
+
+      # @param row_index [Fixnum]
+      # @param cell_index [Fixnum]
+      # @return [NilClass|void]
+      def cell(row_index = nil, cell_index = nil)
+        return nil if row_index.nil? || cell_index.nil?
+        return nil unless row(row_index)
+
+        row(row_index)[cell_index]
+      end
+
       # Provides iteration over the collection.
       #
       # @param block [Proc]
       # @return [Enumerator]
       def each(&block)
         rows.each(&block)
+      end
+
+      # @return [Boolean]
+      def empty?
+        rows.empty?
       end
 
       # An object is equal when its values are the same.
@@ -75,16 +95,6 @@ module Vedeu
         return nil if index.nil?
 
         rows[index]
-      end
-
-      # @param row_index [Fixnum]
-      # @param cell_index [Fixnum]
-      # @return [NilClass|void]
-      def cell(row_index = nil, cell_index = nil)
-        return nil if row_index.nil? || cell_index.nil?
-        return nil unless row(row_index)
-
-        row(row_index)[cell_index]
       end
 
     end # Page

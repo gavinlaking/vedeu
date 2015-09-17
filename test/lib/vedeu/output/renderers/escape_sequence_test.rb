@@ -9,7 +9,7 @@ module Vedeu
       let(:described) { Vedeu::Renderers::EscapeSequence }
       let(:instance)  { described.new(options) }
       let(:options)   { {} }
-      let(:output)    {}
+      let(:output)    { Vedeu::Models::Page.new }
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
@@ -21,13 +21,15 @@ module Vedeu
 
         it { subject.must_be_instance_of(String) }
 
-        context 'when there is no output' do
-          it { subject.must_equal('') }
+        context 'when there is an empty buffer' do
+          let(:expected) { '' }
+
+          it { subject.must_equal(expected) }
         end
 
-        context 'when there is output' do
+        context 'when there is content on the buffer' do
           let(:output) {
-            [
+            Vedeu::Models::Page.coerce([
               Vedeu::Views::Char.new(value: 't',
                                      colour: {
                                        background: '#ff0000',
@@ -48,14 +50,16 @@ module Vedeu
                                        background: '#00ffff',
                                        foreground: '#000000'
                                      }),
-             ]
+            ])
           }
 
-          it { subject.must_equal(
-            "\\e[38;2;255;255;255m\\e[48;2;255;0;0mt\n" \
-            "\\e[38;2;0;0;0m\\e[48;2;255;255;0me\n"     \
-            "\\e[38;2;0;0;0m\\e[48;2;0;255;0ms\n"       \
-            "\\e[38;2;0;0;0m\\e[48;2;0;255;255mt\n")
+          it {
+            subject.must_equal(
+              "\\e[38;2;255;255;255m\\e[48;2;255;0;0mt" \
+              "\\e[38;2;0;0;0m\\e[48;2;255;255;0me"     \
+              "\\e[38;2;0;0;0m\\e[48;2;0;255;0ms"       \
+              "\\e[38;2;0;0;0m\\e[48;2;0;255;255mt"
+            )
           }
         end
       end

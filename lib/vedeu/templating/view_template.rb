@@ -2,7 +2,8 @@ module Vedeu
 
   module Templating
 
-    # Extend Template to provide client application view specific parsing.
+    # Extend Template to provide client application view specific
+    # parsing.
     #
     class ViewTemplate < Template
 
@@ -48,8 +49,8 @@ module Vedeu
 
       private
 
-      # Return the interface colours if a name option is set, otherwise use the
-      # default colours.
+      # Return the interface colours if a name option is set,
+      # otherwise use the default colours.
       #
       # @return [Vedeu::Colours::Colour|Hash<Symbol => Symbol>]
       def default_colour
@@ -65,8 +66,8 @@ module Vedeu
         end
       end
 
-      # Return the interface style(s) if a name option is set, otherwise use the
-      # default style.
+      # Return the interface style(s) if a name option is set,
+      # otherwise use the default style.
       #
       # @return [Symbol]
       def default_style
@@ -95,8 +96,8 @@ module Vedeu
         line.split(/({{\s*[^}]+\s*}})/)
       end
 
-      # Convert the content into an array of strings without the line ending
-      # character.
+      # Convert the content into an array of strings without the line
+      # ending character.
       #
       # @return [Array<String>]
       def lines

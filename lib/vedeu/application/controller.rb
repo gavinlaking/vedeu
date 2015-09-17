@@ -31,7 +31,8 @@ module Vedeu
       def controller(controller_name = nil)
         @controller_name = controller_name
 
-        Vedeu::Router.add_controller(controller_name, ancestors[0].to_s)
+        Vedeu::Runtime::Router.add_controller(controller_name,
+                                              ancestors[0].to_s)
       end
       alias_method :controller_name, :controller
 
@@ -64,7 +65,7 @@ module Vedeu
       # @return [Array<Symbol>]
       def action(*action_names)
         action_names.each do |action_name|
-          Vedeu::Router.add_action(@controller_name, action_name)
+          Vedeu::Runtime::Router.add_action(@controller_name, action_name)
         end
       end
       alias_method :action_name, :action

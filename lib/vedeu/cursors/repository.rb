@@ -11,7 +11,7 @@ module Vedeu
       class << self
 
         # @return [Vedeu::Cursors::Cursor]
-        # @see Vedeu::API.cursor
+        # @see Vedeu::API::External.cursor
         def cursor
           cursors.by_name(Vedeu.focus) if Vedeu.focus
         end

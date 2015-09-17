@@ -130,56 +130,6 @@ module Vedeu
         end
       end
 
-      describe '#each' do
-        subject { instance.each }
-
-        it { subject.must_be_instance_of(Enumerator) }
-      end
-
-      describe '#eql?' do
-        let(:other) { instance }
-
-        subject { instance.eql?(other) }
-
-        it { subject.must_equal(true) }
-
-        context 'when different to other' do
-          let(:other) { described.new([:hydrogen]) }
-
-          it { subject.must_equal(false) }
-        end
-      end
-
-      describe '#row' do
-        let(:index) {}
-
-        subject { instance.row(index) }
-
-        context 'when the index is nil' do
-          it { subject.must_equal(nil) }
-        end
-
-        context 'when the index is not nil' do
-          context 'and the index is in range' do
-            let(:index) { 1 }
-
-            it { subject.must_equal([:beryllium, :boron, :carbon]) }
-          end
-
-          context 'and the index is out of range' do
-            let(:index) { 4 }
-
-            it { subject.must_equal(nil) }
-          end
-
-          context 'and the index is out of range' do
-            let(:index) { -4 }
-
-            it { subject.must_equal(nil) }
-          end
-        end
-      end
-
       describe '#cell' do
         let(:row_index)  {}
         let(:cell_index) {}
@@ -229,6 +179,76 @@ module Vedeu
 
           context 'and the row_index is out of range' do
             let(:row_index) { -4 }
+
+            it { subject.must_equal(nil) }
+          end
+        end
+      end
+
+      # describe '#content' do
+      #   subject { instance.content }
+
+      #   it { subject.must_equal() }
+      # end
+
+      describe '#each' do
+        subject { instance.each }
+
+        it { subject.must_be_instance_of(Enumerator) }
+      end
+
+      describe '#empty?' do
+        subject { instance.empty? }
+
+        context 'when the page is empty' do
+          let(:rows) { [] }
+
+          it { subject.must_equal(true) }
+        end
+
+        context 'when the pages is not empty' do
+          it { subject.must_equal(false) }
+        end
+      end
+
+      describe '#eql?' do
+        let(:other) { instance }
+
+        subject { instance.eql?(other) }
+
+        it { subject.must_equal(true) }
+
+        context 'when different to other' do
+          let(:other) { described.new([:hydrogen]) }
+
+          it { subject.must_equal(false) }
+        end
+      end
+
+      describe '#row' do
+        let(:index) {}
+
+        subject { instance.row(index) }
+
+        context 'when the index is nil' do
+          it { subject.must_equal(nil) }
+        end
+
+        context 'when the index is not nil' do
+          context 'and the index is in range' do
+            let(:index) { 1 }
+
+            it { subject.must_equal([:beryllium, :boron, :carbon]) }
+          end
+
+          context 'and the index is out of range' do
+            let(:index) { 4 }
+
+            it { subject.must_equal(nil) }
+          end
+
+          context 'and the index is out of range' do
+            let(:index) { -4 }
 
             it { subject.must_equal(nil) }
           end

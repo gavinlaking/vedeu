@@ -24,6 +24,8 @@ module Vedeu
           while @loop
             yield
 
+            Vedeu::Terminal::Buffer.render
+
             safe_exit_point!
           end
         rescue Vedeu::Error::Interrupt

@@ -26,17 +26,8 @@ module Vedeu
       #
       # @return [Array]
       def render
-        if Vedeu::Configuration.drb?
-          Vedeu.trigger(:_drb_store_output_, output)
-
-          # Vedeu::Renderers::HTML.
-          # to_file(Vedeu::Buffers::VirtualBuffers.retrieve)
-        end
-
-        Vedeu.renderers.render(output) if Vedeu.ready?
+        Vedeu::Terminal::Buffer.write(output).render
       end
-
-      protected
 
       # @!attribute [r] output
       # @return [Array<Array<Vedeu::Views::Char>>]

@@ -19,7 +19,8 @@ module Vedeu
       storage.empty?
     end
 
-    # Returns a boolean indicating whether the named model is registered.
+    # Returns a boolean indicating whether the named model is
+    # registered.
     #
     # @param name [String]
     # @return [Boolean]
@@ -30,7 +31,8 @@ module Vedeu
     end
     alias_method :registered?, :exists?
 
-    # Returns a collection of the names of all the registered entities.
+    # Returns a collection of the names of all the registered
+    # entities.
     #
     # @return [Array]
     def registered
@@ -60,8 +62,8 @@ module Vedeu
       storage.size
     end
 
-    # Return whole repository; provides raw access to the storage for this
-    # repository.
+    # Return whole repository; provides raw access to the storage for
+    # this repository.
     #
     # @return [Array|Hash|Set]
     def storage

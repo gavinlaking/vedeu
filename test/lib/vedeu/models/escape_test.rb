@@ -10,20 +10,17 @@ module Vedeu
       let(:instance)   { described.new(attributes) }
       let(:attributes) {
         {
-          value:    _value,
           position: position,
+          value:    _value,
         }
       }
-      let(:_value)     { "\e[?25h" }
       let(:position)   { [2, 6] }
+      let(:_value)     { "\e[?25h" }
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
+        it { instance.instance_variable_get('@position').must_equal(position) }
         it { instance.instance_variable_get('@value').must_equal(_value) }
-      end
-
-      describe 'accessors' do
-        it { instance.must_respond_to(:value) }
       end
 
       describe '#null' do
@@ -54,13 +51,38 @@ module Vedeu
         it { instance.position.must_be_instance_of(Vedeu::Geometry::Position) }
       end
 
+      describe '#position' do
+        subject { instance.position }
+
+        it { subject.must_be_instance_of(Vedeu::Geometry::Position) }
+      end
+
       describe '#value' do
-        it { instance.value.must_be_instance_of(String) }
+        subject { instance.value }
+
+        it { subject.must_be_instance_of(String) }
+        it { subject.must_equal("\e[?25h") }
+      end
+
+      describe '#to_hash' do
+        subject { instance.to_hash }
+
+        it { subject.must_be_instance_of(Hash) }
+        it { subject.must_equal({}) }
+      end
+
+      describe '#to_html' do
+        subject { instance.to_html }
+
+        it { subject.must_be_instance_of(String) }
+        it { subject.must_equal('') }
       end
 
       describe '#to_s' do
         subject { instance.to_s }
 
+        it { subject.must_be_instance_of(String) }
+        it { subject.must_equal("\e[2;6H\e[?25h") }
         it { instance.must_respond_to(:to_str) }
       end
 

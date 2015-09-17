@@ -17,7 +17,7 @@ require 'vedeu/configuration/configuration'
 
 require 'vedeu/terminal/mode'
 require 'vedeu/terminal/terminal'
-require 'vedeu/terminal/content'
+require 'vedeu/terminal/buffer'
 
 require 'vedeu/runtime/main_loop'
 require 'vedeu/runtime/flags'
@@ -121,8 +121,8 @@ require 'vedeu/output/renderers/terminal'
 require 'vedeu/output/renderers/text'
 require 'vedeu/output/renderers'
 
-require 'vedeu/api'
-require 'vedeu/internal_api'
+require 'vedeu/api/external'
+require 'vedeu/api/internal'
 
 require 'vedeu/bindings/application'
 require 'vedeu/bindings/document'

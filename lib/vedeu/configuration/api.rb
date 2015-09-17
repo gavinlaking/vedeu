@@ -313,7 +313,7 @@ module Vedeu
       # @param renderer [Array<Class>|Class]
       # @return [Array<Class>]
       def renderer(*renderer)
-        options[:renderers] = Vedeu::Configuration.renderers + renderer
+        options[:renderers] = renderer
       end
       alias_method :renderers, :renderer
 

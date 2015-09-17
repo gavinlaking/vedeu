@@ -10,86 +10,84 @@ module Vedeu
       let(:instance)   { described.new(options) }
       let(:options)    {
         {
-          content:    content,
-          write_file: write_file,
+          content:       content,
+          end_tag:       end_tag,
+          end_row_tag:   end_row_tag,
+          filename:      filename,
+          start_tag:     start_tag,
+          start_row_tag: start_row_tag,
+          template:      template,
+          timestamp:     timestamp,
+          write_file:    write_file,
         }
       }
-      let(:content)     { [''] }
-      let(:write_file) { false }
+      let(:content)       { '' }
+      let(:end_tag)       { '</td>' }
+      let(:end_row_tag)   { '</tr>' }
+      let(:filename)      { 'out' }
+      let(:start_tag)     { '<td' }
+      let(:start_row_tag) { '<tr>' }
+      let(:template)      {
+        ::File.dirname(__FILE__) + '/../../../../support/templates/html_renderer.vedeu'
+      }
+      let(:timestamp)     { false }
+      let(:write_file)    { false }
+      let(:buffer)        { Vedeu::Terminal::Buffer }
 
-      before { ::File.stubs(:write) }
+      before do
+        ::File.stubs(:write)
+        Vedeu.stubs(:height).returns(2)
+        Vedeu.stubs(:width).returns(4)
+        Vedeu::Terminal::Buffer.reset
+      end
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
         it { instance.instance_variable_get('@options').must_equal(options) }
+        it { instance.instance_variable_get('@output').must_equal(nil) }
       end
 
-      # describe '#render' do
-      #   before { ::File.stubs(:open) }
-
-      #   subject { instance.render(content) }
-
-      #   it { subject.must_be_instance_of(String) }
-
-      #   context 'when the :write_file option is true' do
-      #     let(:write_file) { true }
-
-      #     context 'when a path is given' do
-      #       let(:path) { '/tmp/test_vedeu_html_renderer.html' }
-
-      #       # it do
-      #       #   ::File.expects(:open)
-      #       #   subject
-      #       # end
-      #     end
-
-      #     context 'when a path is not given' do
-      #       let(:path) {}
-      #       let(:_time) { Time.new(2015, 4, 12, 16, 55) }
-
-      #       before { Time.stubs(:now).returns(_time) }
-
-      #       # it do
-      #       #   ::File.expects(:open)#.with('/tmp/vedeu_html_1428854100.html', 'w')
-      #       #   subject
-      #       # end
-      #     end
-      #   end
-
-      #   context 'when the :write_file options is false' do
-      #     let(:write_file) { false }
-
-      #     # @todo Add more tests.
-      #     # it { skip }
-      #   end
-      # end
-
-      describe '#html_body' do
-        let(:content) {
-          [
-            [
-              Vedeu::Views::Char.new(value: 't'),
-              Vedeu::Views::Char.new(value: 'e'),
-              Vedeu::Views::Char.new(value: 's'),
-              Vedeu::Views::Char.new(value: 't'),
-            ]
-          ]
+      describe '#render' do
+        let(:output) {
+          Vedeu::Models::Page.coerce([
+            Vedeu::Views::Char.new(value: 'a',
+                                   colour: {
+                                     background: '#ff0000',
+                                     foreground: '#ffffff' }),
+          ])
+        }
+        let(:expected) {
+          "<html>\n" \
+          "  <head>\n" \
+          "    <style type='text/css'>\n" \
+          "      body {\n" \
+          "        background:#000;\n" \
+          "      }\n" \
+          "      td {\n" \
+          "        border:1px #171717 solid;\n" \
+          "        font-size:12px;\n" \
+          "        font-family:monospace;\n" \
+          "        height:18px;\n" \
+          "        margin:1px;\n" \
+          "        text-align:center;\n" \
+          "        vertical-align:center;\n" \
+          "        width:18px;\n" \
+          "      }\n" \
+          "    </style>\n" \
+          "  </head>\n" \
+          "  <body>\n" \
+          "    <table>\n" \
+          "      <tr>\n" \
+          "<td style='border:1px #ff0000 solid;background:#ff0000;color:#ffffff;'>a</td></tr>\n" \
+          "    </table>\n" \
+          "  </body>\n" \
+          "</html>\n"
         }
 
-        subject { instance.html_body }
+        subject { instance.render(output) }
 
         it { subject.must_be_instance_of(String) }
-
-        it do
-          subject.must_equal(
-            "<tr>\n" \
-            "<td style=''>t</td>\n" \
-            "<td style=''>e</td>\n" \
-            "<td style=''>s</td>\n" \
-            "<td style=''>t</td>\n" \
-            "</tr>\n"
-          )
-        end
+        it { subject.must_equal(expected) }
       end
 
     end # HTML

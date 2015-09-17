@@ -23,7 +23,7 @@ module Vedeu
 
       # See {file:docs/events/movement.md#\_cursor_up_down_left_right_}
       def directional!
-        [:down, :left, :right, :up].each do |direction|
+        %w(down left right up).each do |direction|
           Vedeu.bind("_cursor_#{direction}_".to_sym) do |name|
             Vedeu.cursors.by_name(name).send("move_#{direction}")
 

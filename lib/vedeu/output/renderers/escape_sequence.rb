@@ -18,12 +18,16 @@ module Vedeu
 
       # Render the output with the escape sequences escaped.
       #
-      # @param output [Array<Array<Vedeu::Views::Char>>]
+      # @param output [Vedeu::Models::Page]
       # @return [String]
       def render(output)
-        @parsed ||= Array(output).flatten.map do |char|
-          Esc.escape(char.to_s) + "\n"
-        end.join
+        out = ''
+
+        output.each do |row|
+          row.each { |cell| out << Vedeu::Esc.escape(cell.to_s) }
+        end
+
+        out
       end
 
     end # EscapeSequence

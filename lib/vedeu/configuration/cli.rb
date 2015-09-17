@@ -17,7 +17,7 @@ module Vedeu
       #
       # Configure Vedeu via command-line arguments. Options set here
       # via arguments override the client application configuration
-      # set via {Vedeu::API#configure}.
+      # set via {Vedeu::API::External#configure}.
       #
       # @param args [Array]
       # @return [Vedeu::Configuration::CLI]

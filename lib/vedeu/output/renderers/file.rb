@@ -6,18 +6,22 @@ module Vedeu
     #
     class File
 
+      include Vedeu::RendererOptions
+
       # Returns a new instance of Vedeu::Renderers::File.
       #
       # @param options [Hash]
       # @option options filename [String] Provide a filename for the output.
       #   Defaults to 'out'.
       # @option options timestamp [Boolean] Append a timestamp to the filename.
+      # @option options write_file [Boolean] Whether to write the file to the
+      #   given filename.
       # @return [Vedeu::Renderers::File]
       def initialize(options = {})
         @options = options || {}
       end
 
-      # @param output [Array<Array<Vedeu::Views::Char>>]
+      # @param output [Vedeu::Models::Page]
       # @return [String]
       def render(output)
         ::File.write(filename, output) if write_file?
@@ -29,37 +33,17 @@ module Vedeu
 
       # @return [String]
       def filename
-        if timestamp?
-          "#{options[:filename]}_#{timestamp}"
-
-        else
-          options[:filename]
-
-        end
+        options[:filename] + "_#{timestamp}"
       end
 
       # @return [Float]
       def timestamp
-        @timestamp ||= Time.now.to_f
-      end
-
-      # @return [Boolean]
-      def timestamp?
-        return true if options[:timestamp]
-
-        false
+        Time.now.to_f if options[:timestamp]
       end
 
       # @return [Boolean]
       def write_file?
         options[:write_file]
-      end
-
-      # Combines the options provided at instantiation with the default values.
-      #
-      # @return [Hash]
-      def options
-        defaults.merge!(@options)
       end
 
       # Returns the default options/attributes for this class.

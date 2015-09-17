@@ -20,12 +20,12 @@ module Vedeu
           }
         }
 
-        before { Vedeu::Router.stubs(:goto) }
+        before { Vedeu::Runtime::Router.stubs(:goto) }
 
         subject { Vedeu.trigger(:_goto_, controller, action, **args) }
 
         it {
-          Vedeu::Router.expects(:goto)
+          Vedeu::Runtime::Router.expects(:goto)
             .with(:some_controller, :show_basket, args)
           subject
         }

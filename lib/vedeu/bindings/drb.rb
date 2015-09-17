@@ -40,15 +40,14 @@ module Vedeu
       # See {file:docs/events/drb.md#\_drb_retrieve_output_}
       def drb_retrieve_output!
         Vedeu.bind(:_drb_retrieve_output_) do
-          Vedeu::Buffers::VirtualBuffers.retrieve
+          Vedeu::Terminal::Buffer.output
         end
       end
 
       # See {file:docs/events/drb.md#\_drb_store_output_}
       def drb_store_output!
         Vedeu.bind(:_drb_store_output_) do |data|
-          Vedeu::Buffers::VirtualBuffers
-            .store(Vedeu::Buffers::VirtualBuffer.output(data))
+          Vedeu::Terminal::Buffer.write(data)
         end
       end
 

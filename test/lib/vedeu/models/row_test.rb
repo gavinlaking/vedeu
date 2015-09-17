@@ -58,26 +58,6 @@ module Vedeu
         end
       end
 
-      describe '#each' do
-        subject { instance.each }
-
-        it { subject.must_be_instance_of(Enumerator) }
-      end
-
-      describe '#eql?' do
-        let(:other) { instance }
-
-        subject { instance.eql?(other) }
-
-        it { subject.must_equal(true) }
-
-        context 'when different to other' do
-          let(:other) { described.new([:hydrogen]) }
-
-          it { subject.must_equal(false) }
-        end
-      end
-
       describe '#cell' do
         let(:index) {}
 
@@ -105,6 +85,46 @@ module Vedeu
 
             it { subject.must_equal(nil) }
           end
+        end
+      end
+
+      # describe '#content' do
+      #   subject { instance.content }
+
+      #   it { subject.must_equal() }
+      # end
+
+      describe '#each' do
+        subject { instance.each }
+
+        it { subject.must_be_instance_of(Enumerator) }
+      end
+
+      describe '#empty?' do
+        subject { instance.empty? }
+
+        context 'when the row is empty' do
+          let(:cells) { [] }
+
+          it { subject.must_equal(true) }
+        end
+
+        context 'when the row is not empty' do
+          it { subject.must_equal(false) }
+        end
+      end
+
+      describe '#eql?' do
+        let(:other) { instance }
+
+        subject { instance.eql?(other) }
+
+        it { subject.must_equal(true) }
+
+        context 'when different to other' do
+          let(:other) { described.new([:hydrogen]) }
+
+          it { subject.must_equal(false) }
         end
       end
 

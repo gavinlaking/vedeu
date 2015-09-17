@@ -4,8 +4,9 @@ module Vedeu
 
     # Provides the mechanism to start up a generated application.
     #
-    # This class loads all necessary client application files and initializes
-    # Vedeu with this data, then starts the client application.
+    # This class loads all necessary client application files and
+    # initializes Vedeu with this data, then starts the client
+    # application.
     #
     class Bootstrap
 
@@ -23,8 +24,8 @@ module Vedeu
         @argv = argv
       end
 
-      # Loads all of the client application files so that Vedeu has access to
-      # them, then launches the client application.
+      # Loads all of the client application files so that Vedeu has
+      # access to them, then launches the client application.
       #
       # @return [void]
       def start
@@ -50,7 +51,8 @@ module Vedeu
       end
 
       # @note
-      #   config/configuration.rb is already loaded so don't load it twice
+      #   config/configuration.rb is already loaded so don't load it
+      #   twice.
       # @return [void]
       def client_configuration!
         Dir[File.join(base_path, 'config/**/*')].each do |path|

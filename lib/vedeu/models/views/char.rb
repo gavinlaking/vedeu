@@ -47,7 +47,7 @@ module Vedeu
         @value      = @attributes[:value]
       end
 
-      # When {Vedeu::Viewport#show} has less lines that required to fill
+      # When {Vedeu::Output::Viewport#show} has less lines that required to fill
       # the visible area of the interface, it creates a line that contains a
       # single {Vedeu::Views::Char} containing a space (0x20); later, attempts
       # to call `#chars` on an expected {Vedeu::Views::Line} and fail; this
@@ -114,7 +114,7 @@ module Vedeu
       #   Vedeu::Views::Char, however, at the moment, `:parent` cannot be
       #   coerced.
       #
-      # @return [Hash]
+      # @return [Hash<Symbol => Hash, String>]
       def to_hash
         {
           border:   border.to_s,
@@ -126,14 +126,16 @@ module Vedeu
         }
       end
 
+      # @param options [Hash<Symbol => String>]
+      #   See {Vedeu::Views::HTMLChar#initialize}
       # @return [String]
-      def to_html
-        @to_html ||= Vedeu::Views::HTMLChar.render(self)
+      def to_html(options = {})
+        @to_html ||= Vedeu::Views::HTMLChar.render(self, options)
       end
 
       private
 
-      # @return [Hash]
+      # @return [Hash<Symbol => String>]
       def colour_to_hash
         {
           background: background.to_s,
@@ -141,7 +143,7 @@ module Vedeu
         }
       end
 
-      # @return [Hash]
+      # @return [Hash<Symbol => String>]
       def parent_to_hash
         if parent
           {
@@ -156,7 +158,7 @@ module Vedeu
         end
       end
 
-      # @return [Hash]
+      # @return [Has<Symbol => Fixnum>]
       def position_to_hash
         {
           y: y,

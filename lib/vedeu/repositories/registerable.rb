@@ -1,7 +1,7 @@
 module Vedeu
 
-  # Repositories contain registerables, this module provides convenience methods
-  # for them.
+  # Repositories contain registerables, this module provides
+  # convenience methods for them.
   #
   module Registerable
 
@@ -16,7 +16,8 @@ module Vedeu
         define_method(:null_model) { klass }
       end
 
-      # The real model is the usual model to use for a given repository.
+      # The real model is the usual model to use for a given
+      # repository.
       #
       # @param klass [Class]
       # @return [Symbol]
@@ -38,9 +39,9 @@ module Vedeu
       # Returns the repositories registered.
       #
       # @note
-      #   If the repository is 'Geometries', for example, then @models will be
-      #   either an empty Geometries repository or the collection of stored
-      #   models.
+      #   If the repository is 'Geometries', for example, then @models
+      #   will be either an empty Geometries repository or the
+      #   collection of stored models.
       #
       # @return [void]
       def repository
@@ -57,8 +58,8 @@ module Vedeu
 
     end # ClassMethods
 
-    # When this module is included in a class, provide ClassMethods as class
-    # methods for the class.
+    # When this module is included in a class, provide ClassMethods as
+    # class methods for the class.
     #
     # @param klass [Class]
     # @return [void]

@@ -17,28 +17,20 @@ module Vedeu
         @options = options || {}
       end
 
-      # @param output [Array<Array<Vedeu::Views::Char>>]
+      # @param output [Vedeu::Models::Page]
       # @return [Array<String>]
       def render(output)
-        Vedeu::Terminal.output(parsed(output))
+        output = parse(output)
+
+        Vedeu::Terminal.output(output)
       end
 
       private
 
-      # @param output [Array<Array<Vedeu::Views::Char>>]
+      # @param output [Vedeu::Models::Page]
       # @return [Array<Array<Vedeu::Views::Char>>]
-      def parsed(output)
-        store!(output)
-
-        Vedeu.timer('Compression') do
-          Vedeu::Output::Compressor.render(output)
-        end
-      end
-
-      # @param output [Array<Array<Vedeu::Views::Char>>]
-      # @return [Array<Vedeu::Views::Char>]
-      def store!(output)
-        Vedeu::Terminal::Content.stores(output)
+      def parse(output)
+        Vedeu::Output::Compressor.render(output)
       end
 
     end # Terminal

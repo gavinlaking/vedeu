@@ -16,7 +16,7 @@ module Vedeu
         @options = options || {}
       end
 
-      # @param output [Array<Array<Vedeu::Views::Char>>]
+      # @param output [Vedeu::Models::Page]
       # @return [String]
       def render(output)
         output
