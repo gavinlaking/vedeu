@@ -14,42 +14,120 @@ module Vedeu
 
       extend self
 
-      # @return [Array<Array<void>>]
-      def output
-        @output ||= terminal
+      # Return a grid of {Vedeu::Models::Cell} objects defined by the
+      # height and width of this virtual terminal.
+      #
+      # @return [Array<Array<Vedeu::Models::Cell>>]
+      def buffer
+        @output ||= empty_buffer.dup
       end
+      alias_method :cells, :buffer
 
-      # @return [void|NilClass]
-      def render
-        Vedeu.renderers.render(self) if Vedeu.ready?
-      end
-
-      # @return [Array<Array<void>>]
-      def reset
-        @output = terminal
-      end
-
-      # @return [Array<Array<Vedeu::Cell>>]
-      def terminal
+      # @return [Array<Array<Vedeu::Models::Cell>>]
+      def empty_buffer
         Array.new(Vedeu.height) do |y|
           Array.new(Vedeu.width) do |x|
-            Vedeu::Cell.new(y: y + 1, x: x + 1)
+            Vedeu::Models::Cell.new(position: [y + 1, x + 1])
           end
         end
       end
 
+      # @return [Vedeu::Models::Page]
+      def output
+        Vedeu::Models::Page.coerce(buffer)
+      end
+
+      # Read a single cell from the virtual terminal.
+      #
+      # @note
+      #   Given two actual coordinates (y, x) e.g. (1, 1)
+      #   Convert to coordinate indices (cy, cx) e.g. (0, 0)
+      #   Fetch the row at cy and return the cell from cx
+      #
+      # @param y [Fixnum] The row/line coordinate.
+      # @param x [Fixnum] The column/character coordinate.
+      # @return [Vedeu::Views::Char]
+      def read(y, x)
+        cy, cx = Vedeu::Geometry::Position[y, x].as_indices
+
+        row  = fetch(cells, cy)
+        cell = fetch(row, cx)
+
+        cell
+      end
+
+      # Send the cells to the renderer and return the rendered result.
+      #
+      # @return [String|void] Most likely to be a String.
+      def render
+        Vedeu.renderers.render(output) if Vedeu.ready?
+      end
+
+      # Removes all content from the virtual terminal; effectively
+      # clearing it.
+      #
+      # @return [Array<Array<Vedeu::Models::Cell>>]
+      def reset
+        @output = empty_buffer
+      end
+      alias_method :clear, :reset
+
+      # Write a collection of cells to the virtual terminal.
+      #
+      # @param value [Array<Array<Vedeu::Views::Char>>]
+      # @return [Array<Array<Vedeu::Views::Char>>]
+      def write(value)
+        values = Array(value).flatten
+
+        values.each do |value|
+          if valid_position?(value)
+            buffer[value.position.y][value.position.x] = value
+
+          else
+
+          end
+        end
+
+        self
+      end
+
+      private
+
+      # @param from [Array] An Array of rows, or an Array of cells.
+      # @param which [Fixnum] A Fixnum representing the index; the row
+      #   number or the cell number for a row.
+      # @return [Array<Vedeu::Views::Char>|Array]
+      def fetch(from, which)
+        from[which] || []
+      end
+
+      # Returns a boolean indicating the value has a position
+      # attribute.
+      #
       # @param value [void]
-      # @param y [Fixnum]
-      # @param x [Fixnum]
       # @return [Boolean]
-      def write(value, y = 1, x = 1)
-        return false if value.nil?
-        return false if y < 1 || y > Vedeu.height
-        return false if x < 1 || x > Vedeu.width
+      def has_position?(value)
+        value.respond_to?(:position) &&
+        value.position.is_a?(Vedeu::Geometry::Position)
+      end
 
-        output[y][x] = value
+      # Returns a boolean indicating the value has a position
+      # attribute and is within the terminal boundary.
+      #
+      # @param value []
+      # @return [Boolean]
+      def valid_position?(value)
+        has_position?(value) && within_terminal_boundary?(value)
+      end
 
-        true
+      # Returns a boolean indicating the position of the value object
+      # is valid for this terminal.
+      #
+      # @param value [void]
+      # @return [Boolean]
+      def within_terminal_boundary?(value)
+        value.position.y > 0 && value.position.y <= Vedeu.height &&
+        value.position.x > 0 && value.position.x <= Vedeu.width
       end
 
     end # Buffer

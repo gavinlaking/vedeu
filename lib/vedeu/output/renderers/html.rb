@@ -2,30 +2,40 @@ module Vedeu
 
   module Renderers
 
-    # Renders a {Vedeu::Buffers::VirtualBuffer} or
-    # {Vedeu::Output::Output} as a HTML snippet; a table by default.
+    # Renders a {Vedeu::Terminal::Buffer} as a HTML snippet; a table
+    # by default.
     #
     class HTML < Vedeu::Renderers::File
 
       # Returns a new instance of Vedeu::Renderers::HTML.
       #
       # @param options [Hash]
-      # @option options content [String]
-      # @option options end_row_tag [String]
-      # @option options start_row_tag [String]
+      # @option options content [String] Defaults to an empty string.
+      # @option options end_tag [String] Defaults to '</td>'.
+      # @option options end_row_tag [String] Defaults to '</tr>'.
+      # @option options filename [String] Provide a filename for the output.
+      #   Defaults to 'out'.
+      # @option options start_tag [String] Defaults to '<td' (note the end of
+      #   the tag is missing, this is so that inline styles can be added later).
+      # @option options start_row_tag [String] Defaults to '<tr>'.
       # @option options template [String]
+      # @option options timestamp [Boolean] Append a timestamp to the filename.
+      # @option options write_file [Boolean] Whether to write the file to the
+      #   given filename.
       # @return [Vedeu::Renderers::HTML]
       def initialize(options = {})
         @options = options || {}
         @content = nil
       end
 
-      # @param buffer [Vedeu::Terminal::Buffer]
+      # @param buffer [Vedeu::Models::Page]
       # @return [String]
       def render(buffer)
         @content = buffer
 
-        super(Vedeu::Templating::Template.parse(self, template))
+        unless @content.is_a?(Vedeu::Models::Escape)
+          super(Vedeu::Templating::Template.parse(self, template))
+        end
       end
 
       # @return [String]
@@ -62,7 +72,7 @@ module Vedeu
       end
 
       # @return [String]
-      def end_tag
+      def start_tag
         options[:start_tag]
       end
 
@@ -88,14 +98,17 @@ module Vedeu
       #
       # @return [Hash<Symbol => void>]
       def defaults
-        super.merge!({
+        {
           content:       '',
           end_tag:       '</td>',
           end_row_tag:   '</tr>',
+          filename:      'out',
           start_tag:     '<td',
           start_row_tag: '<tr>',
           template:      default_template,
-        })
+          timestamp:     false,
+          write_file:    true,
+        }
       end
 
       # @return [String]

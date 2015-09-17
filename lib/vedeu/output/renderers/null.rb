@@ -16,10 +16,10 @@ module Vedeu
         @options = options || {}
       end
 
-      # @param buffer [Vedeu::Terminal::Buffer]
+      # @param output [Vedeu::Models::Page]
       # @return [String]
-      def render(buffer)
-        buffer
+      def render(output)
+        output
       end
 
     end # Null

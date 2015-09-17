@@ -27,6 +27,10 @@ module Vedeu
         ])
       }
 
+      before do
+        Vedeu::Terminal.stubs(:output).returns(output)
+      end
+
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
         it { instance.instance_variable_get('@options').must_equal(options) }
@@ -35,7 +39,7 @@ module Vedeu
       describe '#render' do
         subject { instance.render(output) }
 
-        it { subject.must_be_instance_of(Array) }
+        it { subject.must_be_instance_of(Vedeu::Models::Page) }
       end
 
     end # Terminal

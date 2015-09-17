@@ -9,13 +9,7 @@ module Vedeu
       let(:described) { Vedeu::Renderers::EscapeSequence }
       let(:instance)  { described.new(options) }
       let(:options)   { {} }
-      let(:buffer) { Vedeu::Terminal::Buffer }
-
-      before do
-        Vedeu.stubs(:height).returns(2)
-        Vedeu.stubs(:width).returns(4)
-        Vedeu::Terminal::Buffer.reset
-      end
+      let(:output)    { Vedeu::Models::Page.new }
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
@@ -23,7 +17,7 @@ module Vedeu
       end
 
       describe '#render' do
-        subject { instance.render(buffer) }
+        subject { instance.render(output) }
 
         it { subject.must_be_instance_of(String) }
 
@@ -34,30 +28,33 @@ module Vedeu
         end
 
         context 'when there is content on the buffer' do
-          before do
-            buffer.write(Vedeu::Views::Char.new(value: 't',
-                                                colour: {
-                                                  background: '#ff0000',
-                                                  foreground: '#ffffff'
-                                                }), 1, 1)
-            buffer.write(Vedeu::Views::Char.new(value: 'e',
-                                                colour: {
-                                                  background: '#ffff00',
-                                                  foreground: '#000000'
-                                                }), 1, 2)
-            buffer.write(Vedeu::Views::Char.new(value: 's',
-                                                colour: {
-                                                  background: '#00ff00',
-                                                  foreground: '#000000'
-                                                }), 1, 3)
-            buffer.write(Vedeu::Views::Char.new(value: 't',
-                                                colour: {
-                                                  background: '#00ffff',
-                                                  foreground: '#000000'
-                                                }), 1, 4)
-          end
+          let(:output) {
+            Vedeu::Models::Page.coerce([
+              Vedeu::Views::Char.new(value: 't',
+                                     colour: {
+                                       background: '#ff0000',
+                                       foreground: '#ffffff'
+                                     }),
+              Vedeu::Views::Char.new(value: 'e',
+                                     colour: {
+                                       background: '#ffff00',
+                                       foreground: '#000000'
+                                     }),
+              Vedeu::Views::Char.new(value: 's',
+                                     colour: {
+                                       background: '#00ff00',
+                                       foreground: '#000000'
+                                     }),
+              Vedeu::Views::Char.new(value: 't',
+                                     colour: {
+                                       background: '#00ffff',
+                                       foreground: '#000000'
+                                     }),
+            ])
+          }
 
-          it { subject.must_equal(
+          it {
+            subject.must_equal(
               "\\e[38;2;255;255;255m\\e[48;2;255;0;0mt" \
               "\\e[38;2;0;0;0m\\e[48;2;255;255;0me"     \
               "\\e[38;2;0;0;0m\\e[48;2;0;255;0ms"       \

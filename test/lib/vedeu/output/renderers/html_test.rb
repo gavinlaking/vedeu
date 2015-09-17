@@ -10,11 +10,29 @@ module Vedeu
       let(:instance)   { described.new(options) }
       let(:options)    {
         {
-          write_file: write_file,
+          content:       content,
+          end_tag:       end_tag,
+          end_row_tag:   end_row_tag,
+          filename:      filename,
+          start_tag:     start_tag,
+          start_row_tag: start_row_tag,
+          template:      template,
+          timestamp:     timestamp,
+          write_file:    write_file,
         }
       }
-      let(:write_file) { false }
-      let(:buffer)     { Vedeu::Terminal::Buffer }
+      let(:content)       { '' }
+      let(:end_tag)       { '</td>' }
+      let(:end_row_tag)   { '</tr>' }
+      let(:filename)      { 'out' }
+      let(:start_tag)     { '<td' }
+      let(:start_row_tag) { '<tr>' }
+      let(:template)      {
+        ::File.dirname(__FILE__) + '/../../../../support/templates/html_renderer.vedeu'
+      }
+      let(:timestamp)     { false }
+      let(:write_file)    { false }
+      let(:buffer)        { Vedeu::Terminal::Buffer }
 
       before do
         ::File.stubs(:write)
@@ -69,59 +87,75 @@ module Vedeu
       #   end
       # end
 
-      describe '#html_body' do
-        before do
-          instance.render(buffer)
-        end
+      # describe '#html_body' do
+      #   before do
+      #     instance.render(buffer)
+      #   end
 
-        subject { instance.html_body }
+      #   subject { instance.html_body }
 
-        context 'when there is an empty buffer' do
-          let(:expected) {
-            "<tr>\n</tr>\n" \
-            "<tr>\n</tr>\n"
-          }
+      #   context 'when there is an empty buffer' do
+      #     let(:expected) {
+      #       "<tr>\n</tr>\n" \
+      #       "<tr>\n</tr>\n"
+      #     }
 
-          it { subject.must_equal(expected) }
-        end
+      #     it { subject.must_equal(expected) }
+      #   end
 
-        context 'when there is content on the buffer' do
-          let(:expected) {
-            "<tr>\n</tr>\n<tr>\n" \
-            "<td style='border:1px #ff0000 solid;background:#ff0000;color:#ffffff;'>t</td>" \
-            "<td style='border:1px #ffff00 solid;background:#ffff00;color:#000000;'>e</td>" \
-            "<td style='border:1px #00ff00 solid;background:#00ff00;color:#000000;'>s</td>" \
-            "<td style='border:1px #00ffff solid;background:#00ffff;color:#000000;'>t</td>" \
-            "</tr>\n"
-          }
+      #   context 'when there is content on the buffer' do
+      #     context 'when the content is a Vedeu::Models::Escape, then it ' \
+      #             'cannot be rendered as HTML and therefore discarded' do
+      #       let(:buffer) {
+      #         Vedeu::Models::Escape.new(value: Vedeu::Esc.show_cursor)
+      #       }
 
-          before do
-            buffer.write(Vedeu::Views::Char.new(value: 't',
-                                                colour: {
-                                                  background: '#ff0000',
-                                                  foreground: '#ffffff'
-                                                }), 1, 1)
-            buffer.write(Vedeu::Views::Char.new(value: 'e',
-                                                colour: {
-                                                  background: '#ffff00',
-                                                  foreground: '#000000'
-                                                }), 1, 2)
-            buffer.write(Vedeu::Views::Char.new(value: 's',
-                                                colour: {
-                                                  background: '#00ff00',
-                                                  foreground: '#000000'
-                                                }), 1, 3)
-            buffer.write(Vedeu::Views::Char.new(value: 't',
-                                                colour: {
-                                                  background: '#00ffff',
-                                                  foreground: '#000000'
-                                                }), 1, 4)
-          end
+      #       it { subject.must_be_instance_of(String) }
+      #       it { subject.must_equal('') }
+      #     end
 
-          it { subject.must_be_instance_of(String) }
-          it { subject.must_equal(expected) }
-        end
-      end
+      #     context 'when the content can be rendered as HTML' do
+      #       let(:expected) {
+      #         "<tr>\n</tr>\n<tr>\n" \
+      #         "<td style='border:1px #ff0000 solid;background:#ff0000;color:#ffffff;'>t</td>" \
+      #         "<td style='border:1px #ffff00 solid;background:#ffff00;color:#000000;'>e</td>" \
+      #         "<td style='border:1px #00ff00 solid;background:#00ff00;color:#000000;'>s</td>" \
+      #         "<td style='border:1px #00ffff solid;background:#00ffff;color:#000000;'>t</td>" \
+      #         "</tr>\n"
+      #       }
+
+      #       before do
+      #         buffer.write(Vedeu::Views::Char.new(value: 't',
+      #                                             colour: {
+      #                                               background: '#ff0000',
+      #                                               foreground: '#ffffff'
+      #                                             },
+      #                                             position: [1, 1]))
+      #         buffer.write(Vedeu::Views::Char.new(value: 'e',
+      #                                             colour: {
+      #                                               background: '#ffff00',
+      #                                               foreground: '#000000'
+      #                                             },
+      #                                             position: [1, 2]))
+      #         buffer.write(Vedeu::Views::Char.new(value: 's',
+      #                                             colour: {
+      #                                               background: '#00ff00',
+      #                                               foreground: '#000000'
+      #                                             },
+      #                                             position: [1, 3]))
+      #         buffer.write(Vedeu::Views::Char.new(value: 't',
+      #                                             colour: {
+      #                                               background: '#00ffff',
+      #                                               foreground: '#000000'
+      #                                             },
+      #                                             position: [1, 4]))
+      #       end
+
+      #       it { subject.must_be_instance_of(String) }
+      #       it { subject.must_equal(expected) }
+      #     end
+      #   end
+      # end
 
     end # HTML
 

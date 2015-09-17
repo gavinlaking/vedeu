@@ -2,8 +2,7 @@ module Vedeu
 
   module Renderers
 
-    # Renders a {Vedeu::Buffers::VirtualBuffer} or
-    # {Vedeu::Output::Output} as JSON.
+    # Renders a {Vedeu::Terminal::Buffer} as JSON.
     #
     class JSON < Vedeu::Renderers::File
 
@@ -15,26 +14,24 @@ module Vedeu
         @options = options || {}
       end
 
-      # @param buffer [Vedeu::Terminal::Buffer]
+      # @param output [Vedeu::Models::Page]
       # @return [String]
-      def render(buffer)
-        super(parsed(buffer))
+      def render(output)
+        super(parse(output))
       end
 
       private
 
-      # @param buffer [Vedeu::Terminal::Buffer]
+      # @param output [Vedeu::Models::Page]
       # @return [String]
-      def parsed(buffer)
-        ::JSON.pretty_generate(as_hash(buffer))
+      def parse(output)
+        ::JSON.pretty_generate(as_hash(output))
       end
 
-      # @param buffer [Vedeu::Terminal::Buffer]
+      # @param output [Vedeu::Models::Page]
       # @return [Array]
-      def as_hash(buffer)
-        buffer.output.flatten.map do |char|
-          char.to_hash
-        end
+      def as_hash(output)
+        output.content.map(&:to_hash)
       end
 
     end # JSON
