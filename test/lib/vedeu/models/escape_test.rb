@@ -64,6 +64,13 @@ module Vedeu
         it { subject.must_equal("\e[?25h") }
       end
 
+      describe '#to_hash' do
+        subject { instance.to_hash }
+
+        it { subject.must_be_instance_of(Hash) }
+        it { subject.must_equal({}) }
+      end
+
       describe '#to_html' do
         subject { instance.to_html }
 

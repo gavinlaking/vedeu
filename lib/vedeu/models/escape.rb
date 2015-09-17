@@ -46,6 +46,14 @@ module Vedeu
         Vedeu::Geometry::Position.coerce(@position)
       end
 
+      # Return an empty hash as most escape sequences won't make
+      # sense as JSON.
+      #
+      # @return [Hash<void>]
+      def to_hash
+        {}
+      end
+
       # Return an empty string as most escape sequences won't make
       # sense as HTML.
       #
