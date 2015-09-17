@@ -29,13 +29,9 @@ module Vedeu
       #   Takes approximately ~25ms for 2100 chars. (2015-07-25)
       # @return [String]
       def render
-        if Vedeu::Configuration.compression?
-          compress
+        return compress if Vedeu::Configuration.compression?
 
-        else
-          uncompress
-
-        end
+        uncompress
       end
 
       protected
@@ -46,22 +42,34 @@ module Vedeu
 
       private
 
+      def content
+        return [] if output.nil? || output.empty?
+
+        output.content.delete_if { |cell| cell.is_a?(Vedeu::Models::Cell) }
+      end
+
       # @return [String]
       def compress
-        out = ''
-        Array(output).flatten.each do |char|
-          out << char.position.to_s
-          out << colour_for(char)
-          out << style_for(char)
-          out << char.value
+        Vedeu.timer('Compression') do
+          out = ''
+
+          content.each do |cell|
+            out << cell.position.to_s
+            out << colour_for(cell)
+            out << style_for(cell)
+            out << cell.value
+          end
+
+          out
         end
-        out
       end
 
       # @return [String]
       def uncompress
         out = ''
-        Array(output).flatten.each { |char| out << char.to_s }
+
+        content.each { |cell| out << cell.to_s }
+
         out
       end
 

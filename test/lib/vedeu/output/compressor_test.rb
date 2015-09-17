@@ -27,14 +27,14 @@ module Vedeu
 
           context 'when the output is all Vedeu::Views::Char elements' do
             let(:output) {
-              [
+              Vedeu::Models::Page.coerce([
                 Vedeu::Views::Char.new(value:  'Y',
                                        colour: { foreground: '#ff0000' }),
                 Vedeu::Views::Char.new(value:  'e',
                                        colour: { foreground: '#ff0000' }),
                 Vedeu::Views::Char.new(value:  's',
                                        colour: { foreground: '#ff0000' }),
-              ]
+              ])
             }
             it 'converts the non-Vedeu::Views::Char elements into String ' \
                'elements' do
@@ -44,7 +44,7 @@ module Vedeu
 
           context 'when the output is all Vedeu::Views::Char elements' do
             let(:output) {
-              [
+              Vedeu::Models::Page.coerce([
                 Vedeu::Views::Char.new(value:  'a',
                                        colour: { foreground: '#ff0000' }),
                 Vedeu::Views::Char.new(value:  'b',
@@ -53,7 +53,7 @@ module Vedeu
                                        colour: { foreground: '#0000ff' }),
                 Vedeu::Views::Char.new(value:  'd',
                                        colour: { foreground: '#0000ff' }),
-              ]
+              ])
             }
             it 'compresses multiple colours and styles where possible' do
               subject.must_equal("\e[38;2;255;0;0mab\e[38;2;0;0;255mcd")
@@ -63,11 +63,11 @@ module Vedeu
           context 'when the output is not all Vedeu::Views::Char ' \
                   'elements' do
             let(:output) {
-              [
+              Vedeu::Models::Page.coerce([
                 Vedeu::Views::Char.new(value: 'N'),
                 Vedeu::Models::Escape.new(value: "\e[?25l"),
                 Vedeu::Views::Char.new(value: 't'),
-              ]
+              ])
             }
             it 'converts the non-Vedeu::Views::Char elements into String ' \
                'elements' do
@@ -81,14 +81,14 @@ module Vedeu
 
           context 'when the output is all Vedeu::Views::Char elements' do
             let(:output) {
-              [
+              Vedeu::Models::Page.coerce([
                 Vedeu::Views::Char.new(value:  'Y',
                                        colour: { foreground: '#ff0000' }),
                 Vedeu::Views::Char.new(value:  'e',
                                        colour: { foreground: '#ff0000' }),
                 Vedeu::Views::Char.new(value:  's',
                                        colour: { foreground: '#ff0000' }),
-              ]
+              ])
             }
             it 'converts the non-Vedeu::Views::Char elements into String ' \
                'elements' do
@@ -100,7 +100,7 @@ module Vedeu
 
           context 'when the output is all Vedeu::Views::Char elements' do
             let(:output) {
-              [
+              Vedeu::Models::Page.coerce([
                 Vedeu::Views::Char.new(value:  'a',
                                        colour: { foreground: '#ff0000' }),
                 Vedeu::Views::Char.new(value:  'b',
@@ -109,7 +109,7 @@ module Vedeu
                                        colour: { foreground: '#0000ff' }),
                 Vedeu::Views::Char.new(value:  'd',
                                        colour: { foreground: '#0000ff' }),
-              ]
+              ])
             }
             it 'compresses multiple colours and styles where possible' do
               subject.must_equal(
@@ -123,11 +123,11 @@ module Vedeu
 
           context 'when the output is not all Vedeu::Views::Char elements' do
             let(:output) {
-              [
+              Vedeu::Models::Page.coerce([
                 Vedeu::Views::Char.new(value: 'N'),
                 Vedeu::Models::Escape.new(value: "\e[?25l"),
                 Vedeu::Views::Char.new(value: 't'),
-              ]
+              ])
             }
             it 'converts the non-Vedeu::Views::Char elements into String ' \
                'elements' do
