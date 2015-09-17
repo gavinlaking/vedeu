@@ -7,7 +7,7 @@ module Vedeu
     #
     class Cursor
 
-      include Vedeu::Model
+      include Vedeu::Repositories::Model
       include Vedeu::Toggleable
       extend Forwardable
 
@@ -52,7 +52,8 @@ module Vedeu
       #   this cursor belongs to.
       # @option attributes ox [Fixnum] The offset x coordinate.
       # @option attributes oy [Fixnum] The offset y coordinate.
-      # @option attributes repository [Vedeu::Repository]
+      # @option attributes repository
+      #   [Vedeu::Repositories::Repository]
       # @option attributes visible [Boolean] The visibility of the
       #   cursor.
       # @option attributes x [Fixnum] The terminal x coordinate for
@@ -285,7 +286,13 @@ module Vedeu
       #
       # @return [String]
       def visibility
-        value = visible? ? Vedeu::Esc.show_cursor : Vedeu::Esc.hide_cursor
+        value = if visible?
+                  Vedeu::EscapeSequences::Esc.show_cursor
+
+                else
+                  Vedeu::EscapeSequences::Esc.hide_cursor
+
+                end
 
         Vedeu::Models::Escape.new(position: position, value: value)
       end

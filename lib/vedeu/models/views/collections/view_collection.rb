@@ -5,7 +5,7 @@ module Vedeu
     # A collection of {Vedeu::Views::View} instances.
     #
     # @api private
-    class ViewCollection < Vedeu::Collection
+    class ViewCollection < Vedeu::Repositories::Collection
 
     end # ViewCollection
 

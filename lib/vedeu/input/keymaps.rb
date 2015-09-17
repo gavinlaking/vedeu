@@ -4,7 +4,7 @@ module Vedeu
 
     # Allows the storing of keymaps.
     #
-    class Keymaps < Vedeu::Repository
+    class Keymaps < Vedeu::Repositories::Repository
 
       singleton_class.send(:alias_method, :keymaps, :repository)
 

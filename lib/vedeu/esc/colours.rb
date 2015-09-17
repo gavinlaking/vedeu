@@ -28,13 +28,17 @@ module Vedeu
       # to produce the desired colours:
       #
       # @example
-      #   Esc.red                     # => "\e[31m"
+      #   # "\e[31m"
+      #   Vedeu::EscapeSequences::Esc.red
       #
-      #   Esc.red { 'some text' }     # => "\e[31msome text\e[39m"
+      #   # "\e[31msome text\e[39m"
+      #   Vedeu::EscapeSequences::Esc.red { 'some text' }
       #
-      #   Esc.on_blue                 # => "\e[44m"
+      #   # "\e[44m"
+      #   Vedeu::EscapeSequences::Esc.on_blue
       #
-      #   Esc.on_blue { 'some text' } # => "\e[44msome text\e[49m"
+      #   # "\e[44msome text\e[49m"
+      #   Vedeu::EscapeSequences::Esc.on_blue { 'some text' }
       #
       #   # Valid names:
       #   :black, :red, :green, :yellow, :blue, :magenta, :cyan,

@@ -11,7 +11,7 @@ module Vedeu
     # be defined in either interfaces, for specific lines or within
     # streams. Styles are applied as encountered.
     #
-    # @see Vedeu::Esc
+    # @see Vedeu::EscapeSequences::Esc
     #
     class Style
 
@@ -71,7 +71,7 @@ module Vedeu
         return '' unless present?(value)
 
         @sequences ||= Array(value).flatten.map do |v|
-          Vedeu::Esc.string(v)
+          Vedeu::EscapeSequences::Esc.string(v)
         end.join
       end
       alias_method :escape_sequences, :to_s

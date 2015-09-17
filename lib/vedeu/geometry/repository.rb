@@ -2,10 +2,10 @@ module Vedeu
 
   module Geometry
 
-    # Allows the storing of interface/view geometry independent of the interface
-    # instance.
+    # Allows the storing of interface/view geometry independent of the
+    # interface instance.
     #
-    class Repository < Vedeu::Repository
+    class Repository < Vedeu::Repositories::Repository
 
       singleton_class.send(:alias_method, :geometries, :repository)
 

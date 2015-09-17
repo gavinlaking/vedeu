@@ -4,7 +4,7 @@ module Vedeu
 
     # A collection of {Vedeu::Input::Key} instances.
     #
-    class Keys < Vedeu::Collection
+    class Keys < Vedeu::Repositories::Collection
 
     end # Keys
 

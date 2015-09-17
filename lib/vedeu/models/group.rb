@@ -7,7 +7,7 @@ module Vedeu
     #
     class Group
 
-      include Vedeu::Model
+      include Vedeu::Repositories::Model
       include Vedeu::Toggleable
 
       # @!attribute [rw] name
@@ -24,8 +24,9 @@ module Vedeu
       # @option attributes members [Set] A collection of names of
       #   interfaces belonging to this group.
       # @option attributes name [String] The name of the group.
-      # @option attributes repository [Vedeu::Repository] The storage
-      #   for all Group models.
+      # @option attributes repository
+      #   [Vedeu::Repositories::Repository]
+      #   The storage for all Group models.
       # @option attributes visible [Boolean] Whether the group is
       #   visible or not.
       # @return [Vedeu::Models::Group]

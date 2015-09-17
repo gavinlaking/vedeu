@@ -16,7 +16,7 @@ module Vedeu
 
       extend Forwardable
       include Vedeu::Common
-      include Vedeu::Model
+      include Vedeu::Repositories::Model
       include Vedeu::Presentation
 
       def_delegators :geometry,

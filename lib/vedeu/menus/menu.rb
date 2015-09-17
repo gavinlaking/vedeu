@@ -7,7 +7,7 @@ module Vedeu
     #
     class Menu
 
-      include Vedeu::Model
+      include Vedeu::Repositories::Model
 
       # @!attribute [rw] collection
       # @return [Array]

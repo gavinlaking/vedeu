@@ -3,12 +3,12 @@ module Vedeu
   module Views
 
     # Represents a single row of the terminal. It is a container for
-    # {Vedeu::Views::Stream} objects. A line's width is determined by the
-    # {Vedeu::Geometry::Geometry} it belongs to.
+    # {Vedeu::Views::Stream} objects. A line's width is determined by
+    # the {Vedeu::Geometry::Geometry} it belongs to.
     #
     class Line
 
-      include Vedeu::Model
+      include Vedeu::Repositories::Model
       include Vedeu::Presentation
 
       collection Vedeu::Views::Streams
@@ -45,7 +45,8 @@ module Vedeu
       end
       alias_method :<<, :add
 
-      # Returns an array of all the characters with formatting for this line.
+      # Returns an array of all the characters with formatting for
+      # this line.
       #
       # @return [Array]
       # @see Vedeu::Views::Stream
@@ -57,14 +58,15 @@ module Vedeu
 
       # An object is equal when its values are the same.
       #
-      # @param other [Vedeu::Collection]
+      # @param other [Vedeu::Repositories::Collection]
       # @return [Boolean]
       def eql?(other)
         self.class == other.class && value == other.value
       end
       alias_method :==, :eql?
 
-      # Returns the size of the content in characters without formatting.
+      # Returns the size of the content in characters without
+      # formatting.
       #
       # @return [Fixnum]
       def size

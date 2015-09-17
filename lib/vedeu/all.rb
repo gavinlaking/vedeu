@@ -37,9 +37,6 @@ require 'vedeu/null/generic'
 require 'vedeu/null/interface'
 require 'vedeu/null/view'
 
-require 'vedeu/refresh/refresh'
-require 'vedeu/refresh/refresh_group'
-
 require 'vedeu/models/toggleable'
 
 require 'vedeu/esc/actions'
@@ -101,16 +98,16 @@ require 'vedeu/input/all'
 require 'vedeu/menus/all'
 
 require 'vedeu/output/presentation/presentation'
-
 require 'vedeu/output/direct'
 require 'vedeu/output/clear/named_group'
 require 'vedeu/output/clear/named_interface'
-
 require 'vedeu/output/compressor'
 require 'vedeu/output/text'
 require 'vedeu/output/output'
 require 'vedeu/output/viewport'
 require 'vedeu/output/wordwrap'
+require 'vedeu/output/refresh/refresh'
+require 'vedeu/output/refresh/refresh_group'
 require 'vedeu/output/renderers/renderer_options'
 require 'vedeu/output/renderers/escape_sequence'
 require 'vedeu/output/renderers/file'

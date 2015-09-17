@@ -2,54 +2,58 @@ require 'test_helper'
 
 module Vedeu
 
-  describe Registerable do
+  module Repositories
 
-    class RegisterableTestClass
+    describe Registerable do
 
-      include Vedeu::Registerable
+      class RegisterableTestClass
 
-      null Vedeu::ModelTestClass
-      real Vedeu::ModelTestClass
+        include Vedeu::Repositories::Registerable
 
-    end
+        null Vedeu::Repositories::ModelTestClass
+        real Vedeu::Repositories::ModelTestClass
 
-    let(:described) { Vedeu::Registerable }
+      end
 
-    it { RegisterableTestClass.must_respond_to(:repository) }
-    it { RegisterableTestClass.must_respond_to(:register) }
+      let(:described) { Vedeu::Repositories::Registerable }
 
-    describe '.null' do
-      subject { RegisterableTestClass.new }
+      it { RegisterableTestClass.must_respond_to(:repository) }
+      it { RegisterableTestClass.must_respond_to(:register) }
 
-      it { RegisterableTestClass.must_respond_to(:null) }
+      describe '.null' do
+        subject { RegisterableTestClass.new }
 
-      it { subject.must_respond_to(:null_model) }
-      it { subject.null_model.must_equal(Vedeu::ModelTestClass) }
-    end
+        it { RegisterableTestClass.must_respond_to(:null) }
 
-    describe '.real' do
-      subject { RegisterableTestClass.new }
+        it { subject.must_respond_to(:null_model) }
+        it { subject.null_model.must_equal(Vedeu::Repositories::ModelTestClass) }
+      end
 
-      it { RegisterableTestClass.must_respond_to(:real) }
+      describe '.real' do
+        subject { RegisterableTestClass.new }
 
-      it { subject.must_respond_to(:model) }
-      it { subject.model.must_equal(Vedeu::ModelTestClass) }
-    end
+        it { RegisterableTestClass.must_respond_to(:real) }
 
-    describe '.reset' do
-      subject { RegisterableTestClass.reset! }
+        it { subject.must_respond_to(:model) }
+        it { subject.model.must_equal(Vedeu::Repositories::ModelTestClass) }
+      end
 
-      before { RegisterableTestClass.stubs(:register) }
+      describe '.reset' do
+        subject { RegisterableTestClass.reset! }
 
-      it { RegisterableTestClass.must_respond_to(:reset!) }
-      it { RegisterableTestClass.must_respond_to(:reset) }
+        before { RegisterableTestClass.stubs(:register) }
 
-      it {
-        RegisterableTestClass.expects(:register)
-        subject
-      }
-    end
+        it { RegisterableTestClass.must_respond_to(:reset!) }
+        it { RegisterableTestClass.must_respond_to(:reset) }
 
-  end # Registerable
+        it {
+          RegisterableTestClass.expects(:register)
+          subject
+        }
+      end
+
+    end # Registerable
+
+  end # Repositories
 
 end # Vedeu

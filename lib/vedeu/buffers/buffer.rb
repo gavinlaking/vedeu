@@ -7,7 +7,7 @@ module Vedeu
     #
     class Buffer
 
-      include Vedeu::Model
+      include Vedeu::Repositories::Model
 
       # The next buffer to be displayed; contains the content which
       # will be shown on next refresh.

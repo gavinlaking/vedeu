@@ -4,7 +4,7 @@ module Vedeu
 
     # Allows the storing of documents.
     #
-    class Documents < Vedeu::Repository
+    class Documents < Vedeu::Repositories::Repository
 
       singleton_class.send(:alias_method, :documents, :repository)
 

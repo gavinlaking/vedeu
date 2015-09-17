@@ -2,10 +2,10 @@ module Vedeu
 
   module Events
 
-    # Trigger a registered or system event by name with arguments. If the
-    # event stored returns a value, that is returned. If multiple events are
-    # registered for a name, then the result of each event will be returned as
-    # part of a collection.
+    # Trigger a registered or system event by name with arguments. If
+    # the event stored returns a value, that is returned. If multiple
+    # events are registered for a name, then the result of each event
+    # will be returned as part of a collection.
     #
     class Trigger
 
@@ -14,9 +14,10 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:my_event, :oxidize, 'nitrogen')
       #
-      # @param name [Symbol] The name of the event you wish to trigger. The
-      #   event does not have to exist.
-      # @param args [Array] Any arguments the event needs to execute correctly.
+      # @param name [Symbol] The name of the event you wish to
+      #   trigger. The event does not have to exist.
+      # @param args [Array] Any arguments the event needs to execute
+      #   correctly.
       # @return [Array]
       def self.trigger(name, *args)
         new(name, *args).trigger
@@ -32,7 +33,8 @@ module Vedeu
         @repository = Vedeu.events
       end
 
-      # Trigger the event and return the result or an array of results.
+      # Trigger the event and return the result or an array of
+      # results.
       #
       # @return [Array]
       def trigger
@@ -56,7 +58,7 @@ module Vedeu
       attr_reader :args
 
       # @!attribute [r]
-      # @return [Vedeu::Repository]
+      # @return [Vedeu::Repositories::Repository]
       attr_reader :repository
 
       private

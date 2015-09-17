@@ -7,7 +7,7 @@ module Vedeu
     #
     class Interface
 
-      include Vedeu::Model
+      include Vedeu::Repositories::Model
       include Vedeu::Presentation
       include Vedeu::Toggleable
 

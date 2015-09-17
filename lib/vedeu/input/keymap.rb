@@ -2,11 +2,12 @@ module Vedeu
 
   module Input
 
-    # A container class for keys associated with a particular interface.
+    # A container class for keys associated with a particular
+    # interface.
     #
     class Keymap
 
-      include Vedeu::Model
+      include Vedeu::Repositories::Model
 
       collection Vedeu::Input::Keys
       member     Vedeu::Input::Key
@@ -21,8 +22,8 @@ module Vedeu
       # @option attributes name [String] The name of the keymap.
       # @option attributes keys [Vedeu::Input::Keys|Array]
       #   A collection of keys.
-      # @option attributes repository [Vedeu::Repository]
-      #   This model's storage.
+      # @option attributes repository
+      #   [Vedeu::Repositories::Repository] This model's storage.
       # @return [Vedeu::Input::Keymap]
       def initialize(attributes = {})
         @attributes = defaults.merge!(attributes)
@@ -58,8 +59,8 @@ module Vedeu
         keys.any? { |key| key.input == input }
       end
 
-      # When the given input is registered with this keymap, this method
-      # triggers the action associated with the key.
+      # When the given input is registered with this keymap, this
+      # method triggers the action associated with the key.
       #
       # @param input [String|Symbol]
       # @return [Array|FalseClass]
@@ -86,8 +87,8 @@ module Vedeu
         }
       end
 
-      # Checks that the provided key is not already registered with this
-      # keymap.
+      # Checks that the provided key is not already registered with
+      # this keymap.
       #
       # @param key [Vedeu::Input::Key]
       # @return [Boolean]

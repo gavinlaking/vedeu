@@ -4,7 +4,7 @@ module Vedeu
 
     # Allows the storing of menus by name.
     #
-    class Repository < Vedeu::Repository
+    class Repository < Vedeu::Repositories::Repository
 
       singleton_class.send(:alias_method, :menus, :repository)
 

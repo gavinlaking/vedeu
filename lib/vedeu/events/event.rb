@@ -32,7 +32,7 @@ module Vedeu
     #
     class Event
 
-      include Vedeu::Model
+      include Vedeu::Repositories::Model
 
       class << self
 

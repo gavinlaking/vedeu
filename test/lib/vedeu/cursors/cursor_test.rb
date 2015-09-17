@@ -75,7 +75,8 @@ module Vedeu
       describe '#hide' do
         let(:visible)     { true }
         let(:hide_cursor) {
-          Vedeu::Models::Escape.new(value: Vedeu::Esc.hide_cursor)
+          Vedeu::Models::Escape
+            .new(value: Vedeu::EscapeSequences::Esc.hide_cursor)
         }
 
         before do
@@ -201,7 +202,8 @@ module Vedeu
       describe '#show' do
         let(:visible) { false }
         let(:show_cursor) {
-          Vedeu::Models::Escape.new(value: Vedeu::Esc.show_cursor)
+          Vedeu::Models::Escape
+            .new(value: Vedeu::EscapeSequences::Esc.show_cursor)
         }
 
         before do
