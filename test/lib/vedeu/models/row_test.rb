@@ -58,6 +58,42 @@ module Vedeu
         end
       end
 
+      describe '#cell' do
+        let(:index) {}
+
+        subject { instance.cell(index) }
+
+        context 'when the index is nil' do
+          it { subject.must_equal(nil) }
+        end
+
+        context 'when the index is not nil' do
+          context 'and the index is in range' do
+            let(:index) { 1 }
+
+            it { subject.must_equal(:helium) }
+          end
+
+          context 'and the index is out of range' do
+            let(:index) { 4 }
+
+            it { subject.must_equal(nil) }
+          end
+
+          context 'and the index is out of range' do
+            let(:index) { -4 }
+
+            it { subject.must_equal(nil) }
+          end
+        end
+      end
+
+      # describe '#content' do
+      #   subject { instance.content }
+
+      #   it { subject.must_equal() }
+      # end
+
       describe '#each' do
         subject { instance.each }
 
@@ -89,36 +125,6 @@ module Vedeu
           let(:other) { described.new([:hydrogen]) }
 
           it { subject.must_equal(false) }
-        end
-      end
-
-      describe '#cell' do
-        let(:index) {}
-
-        subject { instance.cell(index) }
-
-        context 'when the index is nil' do
-          it { subject.must_equal(nil) }
-        end
-
-        context 'when the index is not nil' do
-          context 'and the index is in range' do
-            let(:index) { 1 }
-
-            it { subject.must_equal(:helium) }
-          end
-
-          context 'and the index is out of range' do
-            let(:index) { 4 }
-
-            it { subject.must_equal(nil) }
-          end
-
-          context 'and the index is out of range' do
-            let(:index) { -4 }
-
-            it { subject.must_equal(nil) }
-          end
         end
       end
 

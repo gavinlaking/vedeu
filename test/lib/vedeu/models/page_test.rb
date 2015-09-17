@@ -130,6 +130,67 @@ module Vedeu
         end
       end
 
+      describe '#cell' do
+        let(:row_index)  {}
+        let(:cell_index) {}
+
+        subject { instance.cell(row_index, cell_index) }
+
+        context 'when the row_index is nil' do
+          it { subject.must_equal(nil) }
+        end
+
+        context 'when the row_index is not nil' do
+          let(:row_index) { 1 }
+
+          context 'and the row_index is in range' do
+            let(:row_index) { 1 }
+
+            context 'when the cell_index is nil' do
+              it { subject.must_equal(nil) }
+            end
+
+            context 'when the cell_index is not nil' do
+              context 'and the cell_index is in range' do
+                let(:cell_index) { 2 }
+
+                it { subject.must_equal(:carbon) }
+              end
+
+              context 'and the cell_index is out of range' do
+                let(:cell_index) { 4 }
+
+                it { subject.must_equal(nil) }
+              end
+
+              context 'and the cell_index is out of range' do
+                let(:cell_index) { -4 }
+
+                it { subject.must_equal(nil) }
+              end
+            end
+          end
+
+          context 'and the row_index is out of range' do
+            let(:row_index) { 4 }
+
+            it { subject.must_equal(nil) }
+          end
+
+          context 'and the row_index is out of range' do
+            let(:row_index) { -4 }
+
+            it { subject.must_equal(nil) }
+          end
+        end
+      end
+
+      # describe '#content' do
+      #   subject { instance.content }
+
+      #   it { subject.must_equal() }
+      # end
+
       describe '#each' do
         subject { instance.each }
 
@@ -188,61 +249,6 @@ module Vedeu
 
           context 'and the index is out of range' do
             let(:index) { -4 }
-
-            it { subject.must_equal(nil) }
-          end
-        end
-      end
-
-      describe '#cell' do
-        let(:row_index)  {}
-        let(:cell_index) {}
-
-        subject { instance.cell(row_index, cell_index) }
-
-        context 'when the row_index is nil' do
-          it { subject.must_equal(nil) }
-        end
-
-        context 'when the row_index is not nil' do
-          let(:row_index) { 1 }
-
-          context 'and the row_index is in range' do
-            let(:row_index) { 1 }
-
-            context 'when the cell_index is nil' do
-              it { subject.must_equal(nil) }
-            end
-
-            context 'when the cell_index is not nil' do
-              context 'and the cell_index is in range' do
-                let(:cell_index) { 2 }
-
-                it { subject.must_equal(:carbon) }
-              end
-
-              context 'and the cell_index is out of range' do
-                let(:cell_index) { 4 }
-
-                it { subject.must_equal(nil) }
-              end
-
-              context 'and the cell_index is out of range' do
-                let(:cell_index) { -4 }
-
-                it { subject.must_equal(nil) }
-              end
-            end
-          end
-
-          context 'and the row_index is out of range' do
-            let(:row_index) { 4 }
-
-            it { subject.must_equal(nil) }
-          end
-
-          context 'and the row_index is out of range' do
-            let(:row_index) { -4 }
 
             it { subject.must_equal(nil) }
           end

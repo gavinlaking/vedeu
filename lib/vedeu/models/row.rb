@@ -38,6 +38,19 @@ module Vedeu
         @cells = cells || []
       end
 
+      # @param index [Fixnum]
+      # @return [NilClass|void]
+      def cell(index)
+        return nil if index.nil?
+
+        cells[index]
+      end
+
+      # @return [Array<void>]
+      def content
+        cells.flatten
+      end
+
       # Provides iteration over the collection.
       #
       # @param block [Proc]
@@ -59,14 +72,6 @@ module Vedeu
         self.class == other.class && cells == other.cells
       end
       alias_method :==, :eql?
-
-      # @param index [Fixnum]
-      # @return [NilClass|void]
-      def cell(index)
-        return nil if index.nil?
-
-        cells[index]
-      end
 
     end # Row
 
