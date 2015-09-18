@@ -110,9 +110,8 @@ module Vedeu
       def insert_character(character, index = nil)
         return self unless character
 
-        insert = Vedeu::Editor::Insert.into(line, character, index, size)
-
-        Vedeu::Editor::Line.coerce(insert)
+        Vedeu::Editor::Line.coerce(Vedeu::Editor::Insert
+                                   .into(line, character, index, size))
       end
 
       # Return the size of the line in characters.

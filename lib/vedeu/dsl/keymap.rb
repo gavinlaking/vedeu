@@ -69,25 +69,24 @@ module Vedeu
 
       # Define keypress(es) to perform an action.
       #
-      # @param value_or_values [Array<String>|Array<Symbol>|String|Symbol]
+      # @param values [Array<String>|Array<Symbol>|String|Symbol]
       #   The key(s) pressed. Special keys can be found in
       #   {Vedeu::Input::Input#specials}. When more than one key is
       #   defined, then the extras are treated as aliases.
       # @param block [Proc] The action to perform when this key is pressed. Can
       #   be a method call or event triggered.
       # @raise [Vedeu::Error::InvalidSyntax]
-      #   When the required block is not given, the value_or_values parameter is
+      #   When the required block is not given, the values parameter is
       #   undefined, or when processing the collection, a member is undefined.
       # @return [Array] A collection containing the keypress(es).
-      def key(*value_or_values, &block)
+      def key(*values, &block)
         fail Vedeu::Error::InvalidSyntax,
              'No action defined for `key`.' unless block_given?
 
-        unless present?(value_or_values)
-          fail Vedeu::Error::InvalidSyntax, 'No keypress(es) defined for `key`.'
-        end
+        fail Vedeu::Error::InvalidSyntax,
+             'No keypress(es) defined for `key`.' unless present?(values)
 
-        value_or_values.each do |value|
+        values.each do |value|
           unless present?(value)
             fail Vedeu::Error::InvalidSyntax,
                  'An invalid value for `key` was encountered.'

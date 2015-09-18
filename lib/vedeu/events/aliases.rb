@@ -48,8 +48,7 @@ module Vedeu
       # @param alias_name [Symbol]
       # @return [Boolean]
       def registered?(alias_name)
-        return false if alias_name.nil? || alias_name.empty?
-        return false if empty?
+        return false if empty? || alias_name.nil? || alias_name.empty?
 
         storage.include?(alias_name)
       end
