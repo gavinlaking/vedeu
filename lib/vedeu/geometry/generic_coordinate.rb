@@ -14,9 +14,7 @@ module Vedeu
       # @option attributes offset [Fixnum]
       # @return [Vedeu::Geometry::GenericCoordinate]
       def initialize(attributes = {})
-        @attributes = defaults.merge!(attributes)
-
-        @attributes.each do |key, value|
+        defaults.merge!(attributes).each do |key, value|
           instance_variable_set("@#{key}", value)
         end
       end

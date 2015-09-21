@@ -26,9 +26,7 @@ module Vedeu
       #   [Vedeu::Repositories::Repository] This model's storage.
       # @return [Vedeu::Input::Keymap]
       def initialize(attributes = {})
-        @attributes = defaults.merge!(attributes)
-
-        @attributes.each do |key, value|
+        defaults.merge!(attributes).each do |key, value|
           instance_variable_set("@#{key}", value)
         end
       end

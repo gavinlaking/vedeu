@@ -51,9 +51,9 @@ module Vedeu
       attr_accessor :background, :colour, :name, :style
 
       def initialize(attributes = {})
-        @attributes = defaults.merge!(attributes)
-
-        @attributes.each { |key, value| instance_variable_set("@#{key}", value) }
+        defaults.merge!(attributes).each do |key, value|
+          instance_variable_set("@#{key}", value)
+        end
       end
 
       private

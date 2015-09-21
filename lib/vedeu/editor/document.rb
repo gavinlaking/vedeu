@@ -45,9 +45,7 @@ module Vedeu
       #   [Vedeu::Repositories::Repository]
       # @return [Vedeu::Editor::Document]
       def initialize(attributes = {})
-        @attributes = defaults.merge!(attributes)
-
-        @attributes.each do |key, value|
+        defaults.merge!(attributes).each do |key, value|
           instance_variable_set("@#{key}", value || defaults.fetch(key))
         end
       end

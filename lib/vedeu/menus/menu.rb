@@ -73,9 +73,7 @@ module Vedeu
       # @option attributes selected [Fixnum|NilClass]
       # @return [Vedeu::Menus::Menu]
       def initialize(attributes = {})
-        @attributes = defaults.merge!(attributes)
-
-        @attributes.each do |key, value|
+        defaults.merge!(attributes).each do |key, value|
           instance_variable_set("@#{key}", value)
         end
       end
