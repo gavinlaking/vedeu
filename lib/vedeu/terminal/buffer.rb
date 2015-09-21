@@ -24,6 +24,17 @@ module Vedeu
       end
       alias_method :cells, :buffer
 
+      # Clear the output.
+      #
+      # @return [String|void] Most likely to be a String.
+      def clear
+        if Vedeu.ready?
+          reset
+
+          Vedeu.renderers.clear
+        end
+      end
+
       # @return [Array<Array<Vedeu::Models::Cell>>]
       def empty_buffer
         Array.new(Vedeu.height) do |y|
@@ -71,7 +82,6 @@ module Vedeu
       def reset
         @output = empty_buffer
       end
-      alias_method :clear, :reset
 
       # Write a collection of cells to the virtual terminal.
       #

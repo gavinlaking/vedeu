@@ -30,6 +30,15 @@ module Vedeu
         @output  = nil
       end
 
+      # Render a cleared output.
+      #
+      # @return [String]
+      def clear
+        @output = Vedeu::Models::Escape.new
+
+        ''
+      end
+
       # @param output [Vedeu::Models::Page]
       # @return [String]
       def render(output)

@@ -42,7 +42,6 @@ module Vedeu
             Vedeu::Clear::NamedInterface.render(name)
 
           else
-            Vedeu::Terminal.clear
             Vedeu::Terminal::Buffer.clear
 
           end

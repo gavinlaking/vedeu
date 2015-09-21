@@ -22,6 +22,15 @@ module Vedeu
         @options = options || {}
       end
 
+      # Render a cleared output.
+      #
+      # @return [String]
+      def clear
+        ::File.write(filename, '') if write_file?
+
+        ''
+      end
+
       # @param output [Vedeu::Models::Page]
       # @return [String]
       def render(output)
