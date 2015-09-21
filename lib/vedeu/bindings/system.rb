@@ -43,6 +43,7 @@ module Vedeu
 
           else
             Vedeu::Terminal.clear
+            Vedeu::Terminal::Buffer.clear
 
           end
         end
