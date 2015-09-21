@@ -28,11 +28,9 @@ module Vedeu
       #
       # @return [String|void] Most likely to be a String.
       def clear
-        if Vedeu.ready?
-          reset
+        reset
 
-          Vedeu.renderers.clear
-        end
+        Vedeu.renderers.clear if Vedeu.ready?
       end
 
       # @return [Array<Array<Vedeu::Models::Cell>>]
@@ -80,7 +78,7 @@ module Vedeu
       #
       # @return [Array<Array<Vedeu::Models::Cell>>]
       def reset
-        @output = empty_buffer
+        @output = empty_buffer if Vedeu.ready?
       end
 
       # Write a collection of cells to the virtual terminal.
