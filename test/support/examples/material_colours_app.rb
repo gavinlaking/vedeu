@@ -26,7 +26,6 @@ class VedeuMaterialColoursApp
   Vedeu.configure do
     debug!
     log '/tmp/vedeu_material_colours_app.log'
-    renderers Vedeu::Renderers::HTML.new(filename: '/tmp/material', timestamp: true)
   end
 
   Vedeu.interface 'main_interface' do
