@@ -89,8 +89,6 @@ module Vedeu
     #
     # @return [String]
     def clear
-      virtual.clear if Vedeu::Configuration.drb?
-
       output(Vedeu::EscapeSequences::Esc.string('clear'))
     end
 
