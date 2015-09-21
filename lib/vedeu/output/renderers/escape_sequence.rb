@@ -6,7 +6,7 @@ module Vedeu
     #
     class EscapeSequence
 
-      include Vedeu::RendererOptions
+      include Vedeu::Renderers::RendererOptions
 
       # Returns a new instance of Vedeu::Renderers::EscapeSequence.
       #
@@ -24,7 +24,9 @@ module Vedeu
         out = ''
 
         output.each do |row|
-          row.each { |cell| out << Vedeu::Esc.escape(cell.to_s) }
+          row.each do |cell|
+            out << Vedeu::EscapeSequences::Esc.escape(cell.to_s)
+          end
         end
 
         out

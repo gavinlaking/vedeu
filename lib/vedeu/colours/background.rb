@@ -12,7 +12,7 @@ module Vedeu
 
       # @return [String]
       def named_codes
-        Vedeu::Esc.background_codes[colour]
+        Vedeu::EscapeSequences::Esc.background_codes[colour]
       end
 
       # @return [String]

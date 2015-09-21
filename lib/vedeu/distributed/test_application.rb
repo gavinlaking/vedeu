@@ -66,9 +66,9 @@ module Vedeu
     # @option attributes views [String]
     # @return [Vedeu::TestApplication]
     def initialize(attributes = {})
-      @attributes = defaults.merge!(attributes)
-
-      @attributes.each { |k, _| instance_variable_set("@#{k}", @attributes[k]) }
+      defaults.merge!(attributes).each do |key, value|
+        instance_variable_set("@#{key}", value)
+      end
     end
 
     # @param block [Proc]

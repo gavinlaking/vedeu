@@ -7,11 +7,13 @@ module Vedeu
     protected
 
     # @!attribute [r] client
-    # @return [Object] The object instance where the DSL is being used.
+    # @return [Object] The object instance where the DSL is being
+    #   used.
     attr_reader :client
 
     # @!attribute [r] model
-    # @return [void] The new model object which the DSL is constructing.
+    # @return [void] The new model object which the DSL is
+    #   constructing.
     attr_reader :model
 
     private
@@ -33,7 +35,8 @@ module Vedeu
     # Attempts to find the missing method on the client object.
     #
     # @param method [Symbol] The name of the method sought.
-    # @param args [Array] The arguments which the method was to be invoked with.
+    # @param args [Array] The arguments which the method was to be
+    #   invoked with.
     # @param block [Proc] The optional block provided to the method.
     # @return [void]
     def method_missing(method, *args, &block)

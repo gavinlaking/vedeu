@@ -2,11 +2,15 @@ require 'test_helper'
 
 module Vedeu
 
-  describe RendererOptions do
+  module Renderers
 
-    # @todo Add more tests.
-    # it { skip }
+    describe RendererOptions do
 
-  end # RendererOptions
+      # @todo Add more tests.
+      # it { skip }
+
+    end # RendererOptions
+
+  end # Renderers
 
 end # Vedeu

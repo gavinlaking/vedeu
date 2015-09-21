@@ -57,7 +57,7 @@ module Vedeu
       # Return an empty string as most escape sequences won't make
       # sense as HTML.
       #
-      # @param options [Hash] Ignored.
+      # @param _options [Hash] Ignored.
       # @return [String]
       def to_html(_options = {})
         ''

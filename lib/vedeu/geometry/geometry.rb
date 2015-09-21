@@ -12,7 +12,7 @@ module Vedeu
     class Geometry
 
       extend Forwardable
-      include Vedeu::Model
+      include Vedeu::Repositories::Model
 
       def_delegators :area,
                      :north,

@@ -1,5 +1,8 @@
 module Vedeu
 
+  # Classes within the Input namespace handle various aspects of
+  # user input.
+  #
   module Input
 
   end # Input

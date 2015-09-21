@@ -6,9 +6,9 @@ module Vedeu
     #
     class Mapper
 
-      # Takes a key as a keypress and sends it to registered keymaps. If found,
-      # the associated action is fired, otherwise, we move to the next keymap or
-      # return false.
+      # Takes a key as a keypress and sends it to registered keymaps.
+      # If found, the associated action is fired, otherwise, we move
+      # to the next keymap or return false.
       #
       # @example
       #   Vedeu.keypress(key_name, keymap_name)
@@ -23,8 +23,9 @@ module Vedeu
         new(key, name).keypress
       end
 
-      # Checks a key is valid; i.e. not already registered to a keymap. When the
-      # key is registered, then the key is invalid and cannot be used again.
+      # Checks a key is valid; i.e. not already registered to a
+      # keymap. When the key is registered, then the key is invalid
+      # and cannot be used again.
       #
       # @param (see #initialize)
       # @return [Boolean]
@@ -38,7 +39,7 @@ module Vedeu
       #
       # @param key [NilClass|String|Symbol]
       # @param name [NilClass|String]
-      # @param repository [NilClass|Vedeu::Repository]
+      # @param repository [NilClass|Vedeu::Repositories::Repository]
       # @return [Vedeu::Input::Mapper]
       def initialize(key = nil, name = nil, repository = nil)
         @key        = key
@@ -46,8 +47,8 @@ module Vedeu
         @repository = repository || Vedeu.keymaps
       end
 
-      # Returns a boolean indicating that the key is registered to the current
-      # keymap, or the global keymap.
+      # Returns a boolean indicating that the key is registered to the
+      # current keymap, or the global keymap.
       #
       # @return [Boolean]
       def keypress
@@ -79,7 +80,7 @@ module Vedeu
       attr_reader :key
 
       # @!attribute [r] repository
-      # @return [Vedeu::Repository]
+      # @return [Vedeu::Repositories::Repository]
       attr_reader :repository
 
       private
@@ -107,7 +108,8 @@ module Vedeu
         repository.find(named)
       end
 
-      # Does the keymaps repository have the named keymap already registered?
+      # Does the keymaps repository have the named keymap already
+      # registered?
       #
       # @param named [NilClass|String]
       # @return [Boolean]
@@ -115,8 +117,8 @@ module Vedeu
         repository.registered?(named)
       end
 
-      # With a name, we check the keymap with that name, otherwise we use the
-      # name of the interface currently in focus.
+      # With a name, we check the keymap with that name, otherwise we
+      # use the name of the interface currently in focus.
       #
       # @return [String|NilClass]
       def name

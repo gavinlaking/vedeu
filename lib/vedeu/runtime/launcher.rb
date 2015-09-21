@@ -1,15 +1,16 @@
 module Vedeu
 
-  # This class ensures that STDIN, STDOUT and STDERR point to the correct
-  # places. It also handles the initial configuration of the application,
-  # the starting of the application, the handling of uncaught exceptions and
-  # finally the exiting of the application with the correct exit code.
+  # This class ensures that STDIN, STDOUT and STDERR point to the
+  # correct places. It also handles the initial configuration of the
+  # application, the starting of the application, the handling of
+  # uncaught exceptions and finally the exiting of the application
+  # with the correct exit code.
   #
   class Launcher
 
     # @!attribute [r] exit_code
-    # @return [Fixnum] Return value indicating successful execution (0) or an
-    #   error occurred (1).
+    # @return [Fixnum] Return value indicating successful execution
+    #   (0) or an error occurred (1).
     attr_reader :exit_code
 
     # :nocov:
@@ -45,9 +46,9 @@ module Vedeu
     end
 
     # :nocov:
-    # If debugging is enabled, execute the application within the debugging
-    # context. At the moment, this simple uses 'ruby-prof' to profile the
-    # running application.
+    # If debugging is enabled, execute the application within the
+    # debugging context. At the moment, this simple uses 'ruby-prof'
+    # to profile the running application.
     #
     # @return [void]
     def debug_execute!
@@ -63,9 +64,10 @@ module Vedeu
     end
     # :nocov:
 
-    # Alters the STD[IN|OUT|ERR] to those requested by the client application,
-    # then starts the application. If an uncaught exception occurs during the
-    # application runtime, we exit ungracefully with any error message(s).
+    # Alters the STD[IN|OUT|ERR] to those requested by the client
+    # application, then starts the application. If an uncaught
+    # exception occurs during the application runtime, we exit
+    # ungracefully with any error message(s).
     #
     # @return [void]
     def execute!
@@ -95,7 +97,8 @@ module Vedeu
     private
 
     # :nocov:
-    # Terminates the application after resetting $stdin, $stdout and $stderr.
+    # Terminates the application after resetting $stdin, $stdout and
+    # $stderr.
     #
     # @return [void]
     def terminate!
@@ -109,9 +112,9 @@ module Vedeu
     end
     # :nocov:
 
-    # Use the arguments passed on the command-line along with those defined by
-    # the client application and Vedeu's defaults to configure the client
-    # application.
+    # Use the arguments passed on the command-line along with those
+    # defined by the client application and Vedeu's defaults to
+    # configure the client application.
     #
     # @return [Vedeu::Configuration]
     def configuration

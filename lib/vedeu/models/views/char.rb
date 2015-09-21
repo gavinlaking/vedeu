@@ -85,7 +85,7 @@ module Vedeu
       # @return [String]
       def value
         if border
-          Vedeu::Esc.border { @value }
+          Vedeu::EscapeSequences::Esc.border { @value }
 
         else
           @value

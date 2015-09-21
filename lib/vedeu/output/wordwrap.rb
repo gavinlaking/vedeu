@@ -146,10 +146,13 @@ module Vedeu
         options.fetch(:ellipsis)
       end
 
-      # Returns the word wrapping mode. One of :default, :prune or :wrap;
-      #   :default = Renders the content as is.
-      #   :prune   = Discards the remainder of the content line after width.
-      #   :wrap    = Forces the content on to a new line after width.
+      # Returns the word wrapping mode. One of :default, :prune or
+      #   :wrap;
+      #     :default = Renders the content as is.
+      #     :prune   = Discards the remainder of the content line
+      #                after width.
+      #     :wrap    = Forces the content on to a new line after
+      #                width.
       # @return [Symbol]
       def mode
         options.fetch(:mode)

@@ -21,7 +21,13 @@ module Vedeu
       # See {file:docs/events/refresh.md#\_refresh_}
       def refresh!
         Vedeu.bind(:_refresh_) do |name|
-          name ? Vedeu::Buffers::Refresh.by_name(name) : Vedeu::Refresh.all
+          if name
+            Vedeu::Buffers::Refresh.by_name(name)
+
+          else
+            Vedeu::Output::Refresh.all
+
+          end
         end
       end
 
@@ -35,7 +41,7 @@ module Vedeu
       # See {file:docs/events/refresh.md#\_refresh_group_}
       def refresh_group!
         Vedeu.bind(:_refresh_group_) do |name|
-          Vedeu::RefreshGroup.by_name(name)
+          Vedeu::Output::RefreshGroup.by_name(name)
         end
       end
 

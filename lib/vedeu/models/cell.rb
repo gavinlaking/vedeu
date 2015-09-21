@@ -59,7 +59,7 @@ module Vedeu
         }
       end
 
-      # @param options [Hash] Ignored.
+      # @param _options [Hash] Ignored.
       # @return [String]
       def to_html(_options = {})
         ''

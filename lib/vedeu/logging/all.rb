@@ -1,5 +1,8 @@
 module Vedeu
 
+  # Classes within the Logging namespace handle various aspects of
+  # logging for Vedeu.
+  #
   module Logging
 
   end # Logging

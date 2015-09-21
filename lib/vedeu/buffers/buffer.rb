@@ -7,7 +7,7 @@ module Vedeu
     #
     class Buffer
 
-      include Vedeu::Model
+      include Vedeu::Repositories::Model
 
       # The next buffer to be displayed; contains the content which
       # will be shown on next refresh.
@@ -45,9 +45,7 @@ module Vedeu
       # @option attributes repository [Vedeu::Buffers::Repository]
       # @return [Vedeu::Buffers::Buffer]
       def initialize(attributes = {})
-        @attributes = defaults.merge!(attributes)
-
-        @attributes.each do |key, value|
+        defaults.merge!(attributes).each do |key, value|
           instance_variable_set("@#{key}", value)
         end
       end

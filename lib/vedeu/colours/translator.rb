@@ -96,7 +96,7 @@ module Vedeu
       alias_method :to_s, :escape_sequence
       alias_method :to_str, :escape_sequence
 
-      # @param options [Hash] Ignored.
+      # @param _options [Hash] Ignored.
       # @return [String]
       def to_html(_options = {})
         return colour if rgb?
@@ -142,7 +142,8 @@ module Vedeu
       # Returns an escape sequence for a named background colour.
       #
       # @note
-      #   Valid names can be found at {Vedeu::Esc#codes}
+      #   Valid names can be found at
+      #   {Vedeu::EscapeSequences::Esc#codes}
       #
       # @return [String]
       def named
@@ -154,7 +155,7 @@ module Vedeu
       #
       # @return [Boolean]
       def valid_name?
-        Vedeu::Esc.codes.keys.include?(colour)
+        Vedeu::EscapeSequences::Esc.codes.keys.include?(colour)
       end
 
       # Returns a boolean indicating whether the colour provided is a

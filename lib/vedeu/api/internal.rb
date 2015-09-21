@@ -2,6 +2,10 @@ module Vedeu
 
   module API
 
+    # The internal API methods allow Vedeu to function and change
+    # without major refactoring. The methods listed here will rarely
+    # be used by client applications.
+    #
     module Internal
 
       extend Forwardable

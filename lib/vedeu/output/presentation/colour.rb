@@ -6,8 +6,8 @@ module Vedeu
     #
     module Colour
 
-      # When the background colour for the model exists, return it, otherwise
-      # returns the parent background colour, or an empty
+      # When the background colour for the model exists, return it,
+      # otherwise returns the parent background colour, or an empty
       # Vedeu::Colours::Background.
       #
       # @return [Vedeu::Colours::Background]
@@ -24,8 +24,8 @@ module Vedeu
                         end
       end
 
-      # Allows the setting of the background colour by coercing the given value
-      # into a Vedeu::Colours::Background colour.
+      # Allows the setting of the background colour by coercing the
+      # given value into a Vedeu::Colours::Background colour.
       #
       # @return [Vedeu::Colours::Background]
       def background=(value)
@@ -48,16 +48,16 @@ module Vedeu
                     end
       end
 
-      # Allows the setting of the model's colour by coercing the given value
-      # into a Vedeu::Colours::Colour.
+      # Allows the setting of the model's colour by coercing the given
+      # value into a Vedeu::Colours::Colour.
       #
       # @return [Vedeu::Colours::Colour]
       def colour=(value)
         @colour = Vedeu::Colours::Colour.coerce(value)
       end
 
-      # When the foreground colour for the model exists, return it, otherwise
-      # returns the parent foreground colour, or an empty
+      # When the foreground colour for the model exists, return it,
+      # otherwise returns the parent foreground colour, or an empty
       # Vedeu::Colours::Foreground.
       #
       # @return [Vedeu::Colours::Foreground]
@@ -74,8 +74,8 @@ module Vedeu
                         end
       end
 
-      # Allows the setting of the foreground colour by coercing the given value
-      # into a Vedeu::Colours::Foreground colour.
+      # Allows the setting of the foreground colour by coercing the
+      # given value into a Vedeu::Colours::Foreground colour.
       #
       # @return [Vedeu::Colours::Foreground]
       def foreground=(value)

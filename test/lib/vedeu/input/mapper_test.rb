@@ -23,7 +23,7 @@ module Vedeu
         end
 
         context 'when the repository is provided' do
-          let(:repository) { Vedeu::Repository.new }
+          let(:repository) { Vedeu::Repositories::Repository.new }
 
           it do
             instance.instance_variable_get('@repository').must_equal(repository)

@@ -35,7 +35,7 @@ module Vedeu
 
         parser.parse!(args)
 
-        Vedeu::Config.log(Esc.blue { '[cli]' }, options)
+        Vedeu::Config.log(Vedeu::EscapeSequences::Esc.blue { '[cli]' }, options)
       end
 
       protected

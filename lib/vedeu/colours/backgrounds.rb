@@ -7,7 +7,7 @@ module Vedeu
     class Backgrounds < Vedeu::Colours::Repository
 
       # @return [Vedeu::Colours::Backgrounds]
-      # @see Vedeu::Repository
+      # @see Vedeu::Repositories::Repository
       def self.background_colours
         @background_colours ||= new
       end

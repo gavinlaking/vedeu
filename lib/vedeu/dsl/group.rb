@@ -2,25 +2,27 @@ module Vedeu
 
   module DSL
 
-    # Interfaces can be configured to be part of a named group. Once an
-    # interface is a member of group, the group can be affected by other
-    # controls. For example, assuming the client application is a simple Git
-    # client, it may have a group called 'commit'. The 'commit' group will
-    # contain the interfaces 'diff' (to show the changes), 'staged' (to show
-    # which files are staged) and 'unstaged'. A refresh of the 'commit' group
-    # would cause all interfaces belonging to the group to refresh. Similarly,
-    # showing or hiding the group would of course, show or hide the interfaces
-    # of that group.
+    # Interfaces can be configured to be part of a named group. Once
+    # an interface is a member of group, the group can be affected by
+    # other controls. For example, assuming the client application is
+    # a simple Git client, it may have a group called 'commit'. The
+    # 'commit' group will contain the interfaces 'diff' (to show the
+    # changes), 'staged' (to show which files are staged) and
+    # 'unstaged'. A refresh of the 'commit' group would cause all
+    # interfaces belonging to the group to refresh. Similarly,
+    # showing or hiding the group would of course, show or hide the
+    # interfaces of that group.
     #
     class Group
 
       include Vedeu::DSL
 
-      # Specify a new group of interfaces with a simple DSL. Creating a group
-      # with the same name as an existing group overwrites the existing group.
+      # Specify a new group of interfaces with a simple DSL. Creating
+      # a group with the same name as an existing group overwrites the
+      # existing group.
       #
-      # The example below resembles 'vim' (the popular terminal-based text
-      # editor):
+      # The example below resembles 'vim' (the popular terminal-based
+      # text editor):
       #
       #   Vedeu.group 'title_screen' do
       #     add 'welcome_interface'
@@ -37,7 +39,9 @@ module Vedeu
       # or more succinctly:
       #
       #   Vedeu.group 'main_screen' do
-      #     members 'editor_interface', 'status_interface', 'command_interface'
+      #     members 'editor_interface',
+      #             'status_interface',
+      #             'command_interface'
       #     # ... some code
       #   end
       #
@@ -50,7 +54,8 @@ module Vedeu
       #
       # @param name [String] The name of this group.
       # @param block [Proc]
-      # @raise [Vedeu::Error::InvalidSyntax] The required block was not given.
+      # @raise [Vedeu::Error::InvalidSyntax] The required block was
+      #   not given.
       # @return [Vedeu::Models::Group]
       def self.group(name, &block)
         fail Vedeu::Error::InvalidSyntax, 'block not given' unless block_given?
@@ -83,7 +88,9 @@ module Vedeu
       # Add the named interfaces to this group in bulk.
       #
       #   Vedeu.group 'main_screen' do
-      #     members ['editor_interface', 'some_interface', 'other_interface']
+      #     members ['editor_interface',
+      #              'some_interface',
+      #              'other_interface']
       #   end
       #
       # @param interface_names [Array<String>]

@@ -6,7 +6,7 @@ module Vedeu
     #
     class Document
 
-      include Vedeu::Model
+      include Vedeu::Repositories::Model
       extend Forwardable
 
       def_delegators :border,
@@ -41,12 +41,11 @@ module Vedeu
       # @param attributes [Hash]
       # @option attributes data [String]
       # @option attributes name [String]
-      # @option attributes repository [Vedeu::Repository]
+      # @option attributes repository
+      #   [Vedeu::Repositories::Repository]
       # @return [Vedeu::Editor::Document]
       def initialize(attributes = {})
-        @attributes = defaults.merge!(attributes)
-
-        @attributes.each do |key, value|
+        defaults.merge!(attributes).each do |key, value|
           instance_variable_set("@#{key}", value || defaults.fetch(key))
         end
       end

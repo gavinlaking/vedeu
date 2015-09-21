@@ -5,7 +5,7 @@ module Vedeu
     # Allows the storing of interface/view borders independent of the
     # interface instance.
     #
-    class Repository < Vedeu::Repository
+    class Repository < Vedeu::Repositories::Repository
 
       singleton_class.send(:alias_method, :borders, :repository)
 

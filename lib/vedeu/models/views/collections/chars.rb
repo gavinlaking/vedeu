@@ -5,7 +5,7 @@ module Vedeu
     # A collection of {Vedeu::Views::Char} instances.
     #
     # @api private
-    class Chars < Vedeu::Collection
+    class Chars < Vedeu::Repositories::Collection
 
     end # Chars
 

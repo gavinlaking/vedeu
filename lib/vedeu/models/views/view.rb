@@ -7,7 +7,7 @@ module Vedeu
     #
     class View
 
-      include Vedeu::Model
+      include Vedeu::Repositories::Model
       include Vedeu::Presentation
 
       collection Vedeu::Views::Lines

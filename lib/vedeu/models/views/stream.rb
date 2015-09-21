@@ -8,7 +8,7 @@ module Vedeu
     #
     class Stream
 
-      include Vedeu::Model
+      include Vedeu::Repositories::Model
       include Vedeu::Presentation
 
       collection Vedeu::Views::Chars

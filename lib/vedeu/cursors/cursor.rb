@@ -7,7 +7,7 @@ module Vedeu
     #
     class Cursor
 
-      include Vedeu::Model
+      include Vedeu::Repositories::Model
       include Vedeu::Toggleable
       extend Forwardable
 
@@ -52,7 +52,8 @@ module Vedeu
       #   this cursor belongs to.
       # @option attributes ox [Fixnum] The offset x coordinate.
       # @option attributes oy [Fixnum] The offset y coordinate.
-      # @option attributes repository [Vedeu::Repository]
+      # @option attributes repository
+      #   [Vedeu::Repositories::Repository]
       # @option attributes visible [Boolean] The visibility of the
       #   cursor.
       # @option attributes x [Fixnum] The terminal x coordinate for
@@ -75,10 +76,7 @@ module Vedeu
       def move_down
         @oy += 1
 
-        @attributes = attributes.merge!(x:  x,
-                                        y:  coordinate.y_position,
-                                        ox: ox,
-                                        oy: oy)
+        @attributes = new_attributes(coordinate.y_position, x, oy, ox)
 
         Vedeu::Cursors::Cursor.new(@attributes).store
       end
@@ -89,10 +87,7 @@ module Vedeu
       def move_left
         @ox -= 1
 
-        @attributes = attributes.merge!(x:  coordinate.x_position,
-                                        y:  y,
-                                        ox: ox,
-                                        oy: oy)
+        @attributes = new_attributes(y, coordinate.x_position, oy, ox)
 
         Vedeu::Cursors::Cursor.new(@attributes).store
       end
@@ -112,10 +107,7 @@ module Vedeu
       def move_right
         @ox += 1
 
-        @attributes = attributes.merge!(x:  coordinate.x_position,
-                                        y:  y,
-                                        ox: ox,
-                                        oy: oy)
+        @attributes = new_attributes(y, coordinate.x_position, oy, ox)
 
         Vedeu::Cursors::Cursor.new(@attributes).store
       end
@@ -126,10 +118,7 @@ module Vedeu
       def move_up
         @oy -= 1
 
-        @attributes = attributes.merge!(x:  x,
-                                        y:  coordinate.y_position,
-                                        ox: ox,
-                                        oy: oy)
+        @attributes = new_attributes(coordinate.y_position, x, oy, ox)
 
         Vedeu::Cursors::Cursor.new(@attributes).store
       end
@@ -143,14 +132,14 @@ module Vedeu
 
       # Arbitrarily move the cursor to a given position.
       #
-      # @param new_y [Fixnum] The row/line position.
-      # @param new_x [Fixnum] The column/character position.
+      # @param new_oy [Fixnum] The row/line position.
+      # @param new_ox [Fixnum] The column/character position.
       # @return [Vedeu::Cursors::Cursor]
-      def reposition(new_y, new_x)
-        @attributes = attributes.merge!(x:  coordinate.x_position,
-                                        y:  coordinate.y_position,
-                                        ox: new_x,
-                                        oy: new_y)
+      def reposition(new_oy, new_ox)
+        @attributes = new_attributes(coordinate.y_position,
+                                     coordinate.x_position,
+                                     new_oy,
+                                     new_ox)
 
         Vedeu::Cursors::Cursor.new(@attributes).store
       end
@@ -280,12 +269,23 @@ module Vedeu
         }
       end
 
+      # @return [Hash]
+      def new_attributes(new_y = y, new_x = x, new_oy = oy, new_ox = ox)
+        attributes.merge!(x: new_x, y: new_y, ox: new_ox, oy: new_oy)
+      end
+
       # Returns the escape sequence for setting the visibility of the
       # cursor.
       #
       # @return [String]
       def visibility
-        value = visible? ? Vedeu::Esc.show_cursor : Vedeu::Esc.hide_cursor
+        value = if visible?
+                  Vedeu::EscapeSequences::Esc.show_cursor
+
+                else
+                  Vedeu::EscapeSequences::Esc.hide_cursor
+
+                end
 
         Vedeu::Models::Escape.new(position: position, value: value)
       end

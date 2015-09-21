@@ -4,7 +4,7 @@ module Vedeu
 
     # Allows the storing of interfaces and views.
     #
-    class Interfaces < Vedeu::Repository
+    class Interfaces < Vedeu::Repositories::Repository
 
       singleton_class.send(:alias_method, :interfaces, :repository)
 

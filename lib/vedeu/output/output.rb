@@ -1,5 +1,8 @@
 module Vedeu
 
+  # Classes within the Output namespace handle various aspects of
+  # rendering content.
+  #
   module Output
 
     # Sends the output to the renderers.

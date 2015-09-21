@@ -13,15 +13,17 @@ module Vedeu
       # @option options content [String] Defaults to an empty string.
       # @option options end_tag [String] Defaults to '</td>'.
       # @option options end_row_tag [String] Defaults to '</tr>'.
-      # @option options filename [String] Provide a filename for the output.
-      #   Defaults to 'out'.
-      # @option options start_tag [String] Defaults to '<td' (note the end of
-      #   the tag is missing, this is so that inline styles can be added later).
+      # @option options filename [String] Provide a filename for the
+      #   output. Defaults to 'out'.
+      # @option options start_tag [String] Defaults to '<td' (note the
+      #   end of the tag is missing, this is so that inline styles can
+      #   be added later).
       # @option options start_row_tag [String] Defaults to '<tr>'.
       # @option options template [String]
-      # @option options timestamp [Boolean] Append a timestamp to the filename.
-      # @option options write_file [Boolean] Whether to write the file to the
-      #   given filename.
+      # @option options timestamp [Boolean] Append a timestamp to the
+      #   filename.
+      # @option options write_file [Boolean] Whether to write the file
+      #   to the given filename.
       # @return [Vedeu::Renderers::HTML]
       def initialize(options = {})
         @options = options || {}

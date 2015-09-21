@@ -1,72 +1,76 @@
 module Vedeu
 
-  module RepositoryTestModule
+  module Repositories
 
-    extend self
+    module DSL
 
-    def by_name(name)
-      model
-    end
+      class ModelTestClass
 
-    # The real repository stores the model and returns it.
-    def store(model)
-      model
-    end
+        include Vedeu::DSL::Presentation
 
-    private
+        def initialize(model, client = nil)
+          @model  = model
+          @client = client
+        end
 
-    # A storage solution that uses memory to persist models.
-    def in_memory
-      {}
-    end
+        protected
 
-  end # RepositoryTestModule
+        attr_reader :model
 
-  module DSL
-
-    class ModelTestClass
-
-      include Vedeu::DSL::Presentation
-
-      def initialize(model, client = nil)
-        @model  = model
-        @client = client
-      end
-
-      protected
-
-      attr_reader :model
+      end # DSL
 
     end # ModelTestClass
 
-  end # DSL
+    module RepositoryTestModule
 
-  class ModelTestClass
+      extend self
 
-    include Vedeu::Model
-    include Vedeu::Presentation
+      def by_name(name)
+        model
+      end
 
-    attr_accessor :background, :colour, :name, :style
+      # The real repository stores the model and returns it.
+      def store(model)
+        model
+      end
 
-    def initialize(attributes = {})
-      @attributes = defaults.merge!(attributes)
+      private
 
-      @attributes.each { |key, value| instance_variable_set("@#{key}", value) }
-    end
+      # A storage solution that uses memory to persist models.
+      def in_memory
+        {}
+      end
 
-    private
+    end # RepositoryTestModule
 
-    # Returns the default options/attributes for this class.
-    #
-    def defaults
-      {
-        colour:     {},
-        name:       '',
-        repository: Vedeu::RepositoryTestModule,
-        style:      [],
-      }
-    end
+    class ModelTestClass
 
-  end # ModelTestClass
+      include Vedeu::Repositories::Model
+      include Vedeu::Presentation
+
+      attr_accessor :background, :colour, :name, :style
+
+      def initialize(attributes = {})
+        defaults.merge!(attributes).each do |key, value|
+          instance_variable_set("@#{key}", value)
+        end
+      end
+
+      private
+
+      # Returns the default options/attributes for this class.
+      #
+      def defaults
+        {
+          colour:     {},
+          name:       '',
+          repository: Vedeu::Repositories::RepositoryTestModule,
+          style:      [],
+        }
+      end
+
+    end # ModelTestClass
+
+  end # Repositories
 
 end # Vedeu

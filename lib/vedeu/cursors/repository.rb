@@ -4,7 +4,7 @@ module Vedeu
 
     # Allows the storing of each interface's cursor.
     #
-    class Repository < Vedeu::Repository
+    class Repository < Vedeu::Repositories::Repository
 
       singleton_class.send(:alias_method, :cursors, :repository)
 
