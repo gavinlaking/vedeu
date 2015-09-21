@@ -92,13 +92,13 @@ require 'support/helpers/model_test_class'
 # require 'minitest/reporters'
 # require 'support/average_duration_reporter'
 # Minitest::Reporters.use!(
-    # commented out by default (makes tests slower)
-    # Minitest::Reporters::MeanTimeReporter.new({
-    #   previous_runs_filename: "/tmp/reports/durations",
-    #   report_filename:        "/tmp/reports/durations_results"})
-    # Minitest::Reporters::DefaultReporter.new({ color: true,
-    #                                            slow_suite_count: 15 }),
-    # Minitest::Reporters::SpecReporter.new
+#     # # commented out by default (makes tests slower)
+#     # Minitest::Reporters::MeanTimeReporter.new({
+#     #   previous_runs_filename: "/tmp/reports/durations",
+#     #   report_filename:        "/tmp/reports/durations_results"})
+#     # Minitest::Reporters::DefaultReporter.new({ color: true,
+#     #                                            slow_suite_count: 15 }),
+#     # Minitest::Reporters::SpecReporter.new
 # )
 
 def test_configuration
