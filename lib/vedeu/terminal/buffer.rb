@@ -130,8 +130,7 @@ module Vedeu
       # @param value [void]
       # @return [Boolean]
       def within_terminal_boundary?(value)
-        value.position.y > 0 && value.position.y <= Vedeu.height &&
-          value.position.x > 0 && value.position.x <= Vedeu.width
+        buffer[value.position.y] && buffer[value.position.y][value.position.x]
       end
 
     end # Buffer
