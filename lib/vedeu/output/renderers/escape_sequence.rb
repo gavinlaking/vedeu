@@ -16,6 +16,13 @@ module Vedeu
         @options = options || {}
       end
 
+      # Render a cleared output.
+      #
+      # @return [String]
+      def clear
+        ''
+      end
+
       # Render the output with the escape sequences escaped.
       #
       # @param output [Vedeu::Models::Page]

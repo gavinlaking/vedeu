@@ -7,6 +7,19 @@ module Vedeu
     extend Enumerable
     extend self
 
+    def clear
+      threads = storage.map do |renderer|
+        Thread.new(renderer) do
+          mutex.synchronize do
+            renderer.clear
+          end
+        end
+      end
+      threads.each(&:join)
+
+      ''
+    end
+
     # Provides access to the list of renderers.
     #
     # @example

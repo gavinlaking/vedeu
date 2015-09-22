@@ -17,6 +17,13 @@ module Vedeu
         @options = options || {}
       end
 
+      # Render a cleared output.
+      #
+      # @return [String]
+      def clear
+        Vedeu::Terminal.clear
+      end
+
       # @param output [Vedeu::Models::Page]
       # @return [Array<String>]
       def render(output)

@@ -30,7 +30,7 @@ module Vedeu
       def by_name
         Vedeu.timer("Refresh Buffer: '#{buffer_name}'") do
           Vedeu.buffers.by_name(buffer_name).render
-        end
+        end if Vedeu.ready?
       end
 
       protected

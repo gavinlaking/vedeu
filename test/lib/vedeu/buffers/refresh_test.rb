@@ -9,6 +9,11 @@ module Vedeu
       let(:described) { Vedeu::Buffers::Refresh }
       let(:instance)  { described.new(_name) }
       let(:_name)     { 'Vedeu::Buffers::Refresh' }
+      let(:ready)     { true }
+
+      before do
+        Vedeu.stubs(:ready?).returns(ready)
+      end
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
@@ -18,28 +23,23 @@ module Vedeu
       describe '.by_name' do
         subject { described.by_name(_name) }
 
-        context 'when the name is not present' do
-          let(:_name) { '' }
+        context 'when Vedeu is not yet ready' do
+          let(:ready) { false }
 
-          it { proc { subject }.must_raise(Vedeu::Error::MissingRequired) }
+          it { subject.must_equal(nil) }
         end
 
-        # describe '.by_name' do
-        #   let(:_name)  { 'aluminium' }
-        #   let(:buffer) { Vedeu::Buffers::Null.new(name: _name) }
-        #
-        #   subject { described.by_name(_name) }
-        #
-        #   it {
-        #     Vedeu.buffers.expects(:by_name).with(_name).returns(buffer)
-        #     buffer.expects(:render)
-        #     subject
-        #   }
-        # end
+        context 'when Vedeu is ready' do
+          context 'when the name is not present' do
+            let(:_name) { '' }
 
-        context 'when the name is present' do
-          # @todo Add more tests.
-          # it { skip }
+            it { proc { subject }.must_raise(Vedeu::Error::MissingRequired) }
+          end
+
+          context 'when the name is present' do
+            # @todo Add more tests.
+            # it { skip }
+          end
         end
       end
 

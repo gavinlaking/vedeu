@@ -42,7 +42,6 @@ module Vedeu
             Vedeu::Clear::NamedInterface.render(name)
 
           else
-            Vedeu::Terminal.clear
             Vedeu::Terminal::Buffer.clear
 
           end
@@ -68,10 +67,7 @@ module Vedeu
 
       # See {file:docs/events/system.md#\_initialize_}
       def initialize!
-        Vedeu.bind(:_initialize_) do
-          Vedeu.ready!
-          Vedeu.trigger(:_refresh_)
-        end
+        Vedeu.bind(:_initialize_) { Vedeu.ready! }
       end
 
       # See {file:docs/events/system.md#\_keypress_}
