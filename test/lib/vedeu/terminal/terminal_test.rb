@@ -95,7 +95,19 @@ module Vedeu
     end
 
     describe '.resize' do
+      before { Vedeu.stubs(:trigger) }
+
       subject { described.resize }
+
+      it {
+        Vedeu.expects(:trigger).with(:_clear_)
+        subject
+      }
+
+      it {
+        Vedeu.expects(:trigger).with(:_refresh_)
+        subject
+      }
 
       it { subject.must_be_instance_of(TrueClass) }
     end
