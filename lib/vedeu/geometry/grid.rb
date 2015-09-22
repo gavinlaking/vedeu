@@ -2,10 +2,10 @@ module Vedeu
 
   module Geometry
 
-    # The grid system splits the terminal height and width into 12 equal parts,
-    # by dividing the available height and width by 12. If the terminal height
-    # or width is not a multiple of 12, then Grid chooses the maximum value
-    # which will fit.
+    # The grid system splits the terminal height and width into 12
+    # equal parts, by dividing the available height and width by 12.
+    # If the terminal height or width is not a multiple of 12, then
+    # Grid chooses the maximum value which will fit.
     #
     class Grid
 
@@ -58,7 +58,8 @@ module Vedeu
         Vedeu.height / 12
       end
 
-      # Returns a boolean indicating whether the value is out of range.
+      # Returns a boolean indicating whether the value is out of
+      # range.
       #
       # @return [Boolean]
       def out_of_range?

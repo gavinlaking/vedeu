@@ -2,8 +2,8 @@ module Vedeu
 
   module DSL
 
-    # Provides behaviour to be shared between both {Vedeu::DSL::Interface} and
-    # {Vedeu::DSL::View} objects.
+    # Provides behaviour to be shared between both
+    # {Vedeu::DSL::Interface} and {Vedeu::DSL::View} objects.
     #
     module Shared
 
@@ -12,13 +12,15 @@ module Vedeu
       # @example
       #   Vedeu.interface 'my_interface' do
       #     border do
-      #       # ... see Vedeu::Borders::DSL for DSL methods for borders.
+      #       # ... see Vedeu::Borders::DSL for DSL methods for
+      #       #     borders.
       #     end
       #   end
       #
-      # @param name [String] The name of the interface; this is already provided
-      #   when we define the interface or view, setting it here is just
-      #   mirroring functionality of {Vedeu::Borders::DSL.border}.
+      # @param name [String] The name of the interface; this is
+      #   already provided when we define the interface or view,
+      #   setting it here is just mirroring functionality of
+      #   {Vedeu::Borders::DSL.border}.
       # @param block [Proc]
       # @raise [Vedeu::Error::RequiresBlock]
       # @return [Vedeu::Borders::Border]
@@ -55,7 +57,8 @@ module Vedeu
       # @example
       #   Vedeu.interface 'my_interface' do
       #     geometry do
-      #       # ... see Vedeu::Geometry::DSL for DSL methods for geometries.
+      #       # ... see Vedeu::Geometry::DSL for DSL methods for
+      #       #     geometries.
       #     end
       #   end
       #

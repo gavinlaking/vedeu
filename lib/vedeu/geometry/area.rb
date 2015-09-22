@@ -12,7 +12,8 @@ module Vedeu
       alias_method :top, :y
 
       # @!attribute [r] yn
-      # @return [Fixnum] Returns the bottom coordinate of the interface.
+      # @return [Fixnum] Returns the bottom coordinate of the
+      #   interface.
       attr_reader :yn
       alias_method :bottom, :yn
 
@@ -22,7 +23,8 @@ module Vedeu
       alias_method :left, :x
 
       # @!attribute [r] xn
-      # @return [Fixnum] Returns the right coordinate of the interface.
+      # @return [Fixnum] Returns the right coordinate of the
+      #   interface.
       attr_reader :xn
       alias_method :right, :xn
 

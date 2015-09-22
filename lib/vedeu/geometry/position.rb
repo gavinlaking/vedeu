@@ -2,7 +2,8 @@ module Vedeu
 
   module Geometry
 
-    # Change coordinates into an escape sequence to set the cursor position.
+    # Change coordinates into an escape sequence to set the cursor
+    # position.
     #
     class Position
 
@@ -48,8 +49,8 @@ module Vedeu
         @x = (x.nil? || x < 1) ? 1 : x
       end
 
-      # Converts a position into an index for the terminal. An index is the
-      # position minus 1.
+      # Converts a position into an index for the terminal. An index
+      # is the position minus 1.
       #
       # @return [Array<Fixnum>]
       def as_indices
@@ -92,13 +93,14 @@ module Vedeu
         self
       end
 
-      # Return the escape sequence required to position the cursor at a
-      # particular point on the screen. When passed a block, will do the
-      # aforementioned, call the block and then reposition to this location.
+      # Return the escape sequence required to position the cursor at
+      # a particular point on the screen. When passed a block, will do
+      # the aforementioned, call the block and then reposition to this
+      # location.
       #
       # @return [String]
-      # @yieldreturn [String] Returns the block wrapped in position escape
-      #   sequences.
+      # @yieldreturn [String] Returns the block wrapped in position
+      #   escape sequences.
       def to_s
         return "#{sequence}#{yield}" if block_given?
 
@@ -136,8 +138,8 @@ module Vedeu
 
       private
 
-      # Returns the escape sequence to reposition the cursors at the coordinates
-      # specified by x and y.
+      # Returns the escape sequence to reposition the cursors at the
+      # coordinates specified by x and y.
       #
       # @return [String]
       def sequence

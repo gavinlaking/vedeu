@@ -3,11 +3,13 @@ module Vedeu
   module Geometry
 
     # Geometry allows the configuration of the position and size of an
-    # interface. Within Vedeu, as the same for ANSI terminals, has the origin at
-    # top-left, y = 1, x = 1. The 'y' coordinate is deliberately first.
+    # interface. Within Vedeu, as the same for ANSI terminals, has the
+    # origin at top-left, y = 1, x = 1. The 'y' coordinate is
+    # deliberately first.
     #
-    # The Geometry DSL can be used within the Interface DSL or standalone. Here
-    # are example of declarations for a `geometry` block:
+    # The Geometry DSL can be used within the Interface DSL or
+    # standalone. Here are example of declarations for a `geometry`
+    # block:
     #
     # A standalone geometry definition:
     #
@@ -34,11 +36,12 @@ module Vedeu
     #     # ... some code here
     #   end
     #
-    # If a declaration is omitted for `height` or `width` the full remaining
-    # space available in the terminal will be used. `x` and `y` both default to
-    # 1.
+    # If a declaration is omitted for `height` or `width` the full
+    # remaining space available in the terminal will be used. `x` and
+    # `y` both default to 1.
     #
-    # You can also make a geometry declaration dependent on another view:
+    # You can also make a geometry declaration dependent on another
+    # view:
     #
     #   Vedeu.interface 'other_panel' do
     #     # ... some code here
@@ -55,8 +58,8 @@ module Vedeu
     #
     # This view will begin just below "other\_panel".
     #
-    # This crude ASCII diagram represents a Geometry within Vedeu, each of the
-    # labels is a value you can access or define.
+    # This crude ASCII diagram represents a Geometry within Vedeu,
+    # each of the labels is a value you can access or define.
     #
     #        x    north    xn           # north:  y - 1
     #      y +--------------+           # top:    y
@@ -73,14 +76,15 @@ module Vedeu
       include Vedeu::DSL
       include Vedeu::DSL::Use
 
-      # Specify the geometry of an interface or view with a simple DSL.
+      # Specify the geometry of an interface or view with a simple
+      # DSL.
       #
       #   Vedeu.geometry 'some_interface' do
       #     # ...
       #   end
       #
-      # @param name [String] The name of the interface or view to which this
-      #   geometry belongs.
+      # @param name [String] The name of the interface or view to
+      #   which this geometry belongs.
       # @param block [Proc]
       # @raise [Vedeu::Error::RequiresBlock]
       # @return [Vedeu::Geometry::Geometry]
@@ -100,8 +104,9 @@ module Vedeu
         @client = client
       end
 
-      # Instructs Vedeu to calculate x and y geometry automatically based on the
-      # centre character of the terminal, the width and the height.
+      # Instructs Vedeu to calculate x and y geometry automatically
+      # based on the centre character of the terminal, the width and
+      # the height.
       #
       #   Vedeu.geometry 'some_interface' do
       #     centred false # or...
@@ -111,8 +116,8 @@ module Vedeu
       #     # ... some code
       #   end
       #
-      # @param value [Boolean] Any value other than nil or false will evaluate
-      #   to true.
+      # @param value [Boolean] Any value other than nil or false will
+      #   evaluate to true.
       # @return [Boolean]
       def centred(value = true)
         boolean = value ? true : false
@@ -122,7 +127,8 @@ module Vedeu
       alias_method :centred!, :centred
       alias_method :centred=, :centred
 
-      # Returns the width in characters for the number of columns specified.
+      # Returns the width in characters for the number of columns
+      # specified.
       #
       #   Vedeu.geometry 'main_interface' do
       #     # ... some code
@@ -133,15 +139,15 @@ module Vedeu
       #   end
       #
       # @param value [Fixnum]
-      # @raise [Vedeu::Error::OutOfRange] When the value parameter is not
-      #   between 1 and 12 inclusive.
+      # @raise [Vedeu::Error::OutOfRange] When the value parameter is
+      #   not between 1 and 12 inclusive.
       # @return [Fixnum|Vedeu::Error::OutOfRange]
       def columns(value)
         Vedeu::Geometry::Grid.columns(value)
       end
 
-      # Specify the number of characters/rows/lines tall the interface will be.
-      # This value will be ignored when `y` and `yn` are set.
+      # Specify the number of characters/rows/lines tall the interface
+      # will be. This value will be ignored when `y` and `yn` are set.
       #
       #   Vedeu.geometry 'some_interface' do
       #     height 8
@@ -155,7 +161,8 @@ module Vedeu
       end
       alias_method :height=, :height
 
-      # Returns the height in characters for the number of rows specified.
+      # Returns the height in characters for the number of rows
+      # specified.
       #
       #   Vedeu.geometry 'main_interface' do
       #     # ... some code
@@ -166,15 +173,15 @@ module Vedeu
       #   end
       #
       # @param value [Fixnum]
-      # @raise [Vedeu::Error::OutOfRange] When the value parameter is not
-      #   between 1 and 12 inclusive.
+      # @raise [Vedeu::Error::OutOfRange] When the value parameter is
+      #   not between 1 and 12 inclusive.
       # @return [Fixnum]
       def rows(value)
         Vedeu::Geometry::Grid.rows(value)
       end
 
-      # Specify the number of characters/columns wide the interface will be.
-      # This value will be ignored when `x` and `xn` are set.
+      # Specify the number of characters/columns wide the interface
+      # will be. This value will be ignored when `x` and `xn` are set.
       #
       #   Vedeu.geometry 'some_interface' do
       #     width 25
@@ -193,10 +200,11 @@ module Vedeu
       #   Vedeu.geometry 'some_interface' do
       #     x 7 # start on column 7.
       #
-      #     x { use('other_interface').east } # start on column 8, if
-      #     # ... some code                   # `other_interface` changes
-      #   end                                 # position, `some_interface` will
-      #                                       # too.
+      #     # start on column 8, if `other_interface` changes position
+      #     # then `some_interface` will too.
+      #     x { use('other_interface').east }
+      #     # ... some code
+      #   end
       #
       # @param value [Fixnum]
       # @param block [Proc]
@@ -214,9 +222,10 @@ module Vedeu
       #   Vedeu.geometry 'some_interface' do
       #     xn 37 # end at column 37.
       #
-      #     xn  { use('other_interface').right } # when `other_interface`
-      #                                          # changes position,
-      #     # ... some code                      # `some_interface` will too.
+      #     # when `other_interface` changes position,
+      #     # `some_interface` will too.
+      #     xn  { use('other_interface').right }
+      #     # ... some code
       #   end
       #
       # @param value [Fixnum]
@@ -234,10 +243,11 @@ module Vedeu
       #   Vedeu.geometry 'some_interface' do
       #     y  4 # start at row 4
       #
-      #     y  { use('other_interface').north } # start on row/line 3, when
-      #     # ... some code                     # `other_interface` changes
-      #   end                                   # position, `some_interface`
-      #                                         # will too.
+      #     # start on row/line 3, when `other_interface` changes
+      #     # position, `some_interface` will too.
+      #     y  { use('other_interface').north }
+      #     # ... some code
+      #   end
       #
       # @param value [Fixnum]
       # @param block [Proc]
@@ -255,9 +265,11 @@ module Vedeu
       #   Vedeu.geometry 'some_interface' do
       #     yn 24 # end at row 24.
       #
-      #     yn { use('other_interface').bottom } # if `other_interface` changes
-      #     # ... some code                      # position, `some_interface`
-      #   end                                    # will too.
+      #     # if `other_interface` changes position, `some_interface`
+      #     # will too.
+      #     yn { use('other_interface').bottom }
+      #     # ... some code
+      #   end
       #
       # @param value [Fixnum]
       # @param block [Proc]
