@@ -36,6 +36,17 @@ module Vedeu
         it { instance.instance_variable_get('@options').must_equal(options) }
       end
 
+      describe '#clear' do
+        before { Vedeu::Terminal.stubs(:clear) }
+
+        subject { instance.clear }
+
+        it {
+          Vedeu::Terminal.expects(:clear)
+          subject
+        }
+      end
+
       describe '#render' do
         subject { instance.render(output) }
 

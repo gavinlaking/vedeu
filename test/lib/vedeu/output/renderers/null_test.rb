@@ -16,6 +16,13 @@ module Vedeu
         it { instance.instance_variable_get('@options').must_equal(options) }
       end
 
+      describe '#clear' do
+        subject { instance.clear }
+
+        it { subject.must_be_instance_of(String) }
+        it { subject.must_equal('') }
+      end
+
       describe '#render' do
         subject { instance.render(output) }
 
