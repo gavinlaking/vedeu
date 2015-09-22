@@ -26,7 +26,7 @@ module Vedeu
         context 'when the block is not given' do
           subject { described.renders }
 
-          it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
+          it { proc { subject }.must_raise(Vedeu::Error::RequiresBlock) }
         end
 
         context 'when the block is given' do
@@ -46,7 +46,7 @@ module Vedeu
         context 'when the block is not given' do
           subject { described.views }
 
-          it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
+          it { proc { subject }.must_raise(Vedeu::Error::RequiresBlock) }
         end
 
         context 'when the block is given' do
@@ -66,7 +66,7 @@ module Vedeu
         context 'when the required block is not provided' do
           subject { instance.lines }
 
-          it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
+          it { proc { subject }.must_raise(Vedeu::Error::RequiresBlock) }
         end
 
         it { instance.must_respond_to(:line) }

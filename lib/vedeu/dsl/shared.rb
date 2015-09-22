@@ -20,11 +20,11 @@ module Vedeu
       #   when we define the interface or view, setting it here is just
       #   mirroring functionality of {Vedeu::Borders::DSL.border}.
       # @param block [Proc]
-      # @raise [Vedeu::Error::InvalidSyntax] The required block was not given.
+      # @raise [Vedeu::Error::RequiresBlock]
       # @return [Vedeu::Borders::Border]
       # @see Vedeu::Borders::DSL
       def border(name = nil, &block)
-        fail Vedeu::Error::InvalidSyntax, 'block not given' unless block_given?
+        fail Vedeu::Error::RequiresBlock unless block_given?
 
         model_name = name ? name : model.name
 
@@ -59,15 +59,16 @@ module Vedeu
       #     end
       #   end
       #
-      # @param name [String] The name of the interface; this is already provided
-      #   when we define the interface or view, setting it here is just
-      #   mirroring functionality of {Vedeu::Geometry::DSL.geometry}.
+      # @param name [String] The name of the interface; this is
+      #   already provided when we define the interface or view,
+      #   setting it here is just mirroring functionality of
+      #   {Vedeu::Geometry::DSL.geometry}.
       # @param block [Proc]
-      # @raise [Vedeu::Error::InvalidSyntax] The required block was not given.
+      # @raise [Vedeu::Error::RequiresBlock]
       # @return [Vedeu::Geometry::Geometry]
       # @see Vedeu::Geometry::DSL
       def geometry(name = nil, &block)
-        fail Vedeu::Error::InvalidSyntax, 'block not given' unless block_given?
+        fail Vedeu::Error::RequiresBlock unless block_given?
 
         model_name = name ? name : model.name
 

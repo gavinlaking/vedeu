@@ -57,7 +57,7 @@ module Vedeu
 
             subject { instance.line(_value) }
 
-            it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
+            it { proc { subject }.must_raise(Vedeu::Error::RequiresBlock) }
           end
         end
       end
@@ -76,7 +76,7 @@ module Vedeu
 
         context 'when the block is not given' do
           it {
-            proc { instance.streams }.must_raise(Vedeu::Error::InvalidSyntax)
+            proc { instance.streams }.must_raise(Vedeu::Error::RequiresBlock)
           }
         end
 

@@ -15,7 +15,7 @@ module Vedeu
     describe '.open' do
       context 'when a block was not given' do
         it {
-          proc { Vedeu::Terminal.open }.must_raise(Vedeu::Error::InvalidSyntax)
+          proc { Vedeu::Terminal.open }.must_raise(Vedeu::Error::RequiresBlock)
         }
       end
 

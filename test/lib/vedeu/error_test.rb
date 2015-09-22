@@ -17,6 +17,19 @@ module Vedeu
 
     end # OutOfRange
 
+    describe RequiresBlock do
+
+      let(:described) { Vedeu::Error::RequiresBlock }
+      let(:instance)  { described.new }
+
+      describe '#message' do
+        subject { instance.message }
+
+        it { subject.must_be_instance_of(String) }
+      end
+
+    end # RequiresBlock
+
   end # Error
 
 end # Vedeu

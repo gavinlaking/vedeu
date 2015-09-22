@@ -12,11 +12,11 @@ module Vedeu
     # exit, attempts to restore the screen. See
     # {Vedeu::Terminal#restore_screen}.
     #
-    # @raise [Vedeu::Error::InvalidSyntax] The required block was not
+    # @raise [Vedeu::Error::RequiresBlock] The required block was not
     #   given.
     # @return [Array]
     def open
-      fail Vedeu::Error::InvalidSyntax, 'block not given' unless block_given?
+      fail Vedeu::Error::RequiresBlock unless block_given?
 
       if raw_mode? || fake_mode?
         console.raw    { initialize_screen(mode) { yield } }

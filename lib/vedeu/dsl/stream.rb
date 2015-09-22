@@ -21,11 +21,10 @@ module Vedeu
       end
 
       # @param block [Proc]
-      # @raise [Vedeu::Error::InvalidSyntax] The required block was
-      #   not given.
+      # @raise [Vedeu::Error::RequiresBlock]
       # @return [void]
       def stream(&block)
-        fail Vedeu::Error::InvalidSyntax, 'block not given' unless block_given?
+        fail Vedeu::Error::RequiresBlock unless block_given?
 
         model.add(model.class.build(attributes, &block))
       end

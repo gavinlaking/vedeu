@@ -71,11 +71,10 @@ module Vedeu
       #     # ...
       #   end
       #
-      # @raise [Vedeu::Error::InvalidSyntax]
-      #   The required block was not given.
+      # @raise [Vedeu::Error::RequiresBlock]
       # @return [Vedeu::Views::Views<Vedeu::Views::View>]
       def view(name = '', &block)
-        fail Vedeu::Error::InvalidSyntax, 'block not given' unless block_given?
+        fail Vedeu::Error::RequiresBlock unless block_given?
 
         new_model = model.member.build(new_attributes(name), &block)
 

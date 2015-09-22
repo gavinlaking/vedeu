@@ -28,7 +28,7 @@ module Vedeu
         it { subject[0].must_be_instance_of(Vedeu::Views::View) }
 
         context 'when the block is not given' do
-          it { proc { instance.view }.must_raise(Vedeu::Error::InvalidSyntax) }
+          it { proc { instance.view }.must_raise(Vedeu::Error::RequiresBlock) }
         end
       end
 

@@ -47,7 +47,7 @@ module Vedeu
       # @param name [String] The name of the interface which this keymap relates
       #   to.
       # @param block [Proc]
-      # @raise [Vedeu::Error::InvalidSyntax] The required block was not given.
+      # @raise [Vedeu::Error::RequiresBlock]
       # @return [Vedeu::Input::Keymap]
       # @todo Try to remember why we need to pre-create the keymap in the
       #   repository.
