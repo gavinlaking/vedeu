@@ -30,7 +30,14 @@ module Vedeu
       it { Vedeu.must_respond_to(:geometry) }
       it { Vedeu.must_respond_to(:goto) }
       it { Vedeu.must_respond_to(:group) }
-      it { Vedeu.must_respond_to(:height) }
+
+      describe 'Vedeu.height' do
+        before { Terminal.stubs(:size).returns([25, 40]) }
+
+        it { Vedeu.must_respond_to(:height) }
+        it { Vedeu.height.must_equal(25) }
+      end
+
       it { Vedeu.must_respond_to(:hide_cursor) }
       it { Vedeu.must_respond_to(:hide_group) }
       it { Vedeu.must_respond_to(:hide_interface) }
@@ -53,8 +60,13 @@ module Vedeu
       it { Vedeu.must_respond_to(:unbind) }
       it { Vedeu.must_respond_to(:unbind_alias) }
       it { Vedeu.must_respond_to(:views) }
-      it { Vedeu.must_respond_to(:width) }
 
+      describe 'Vedeu.width' do
+        before { Terminal.stubs(:size).returns([25, 40]) }
+
+        it { Vedeu.must_respond_to(:width) }
+        it { Vedeu.width.must_equal(40) }
+      end
     end # External
 
   end

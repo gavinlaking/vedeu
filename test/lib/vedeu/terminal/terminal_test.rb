@@ -8,7 +8,7 @@ module Vedeu
     let(:console)   { IO.console }
 
     before do
-      console.stubs(:winsize).returns([25, 80])
+      console.stubs(:winsize).returns([25, 40])
       console.stubs(:print)
     end
 
@@ -136,7 +136,7 @@ module Vedeu
       it { subject.must_be_instance_of(Array) }
 
       it 'returns the centre point on the terminal' do
-        subject.must_equal([12, 40])
+        subject.must_equal([12, 20])
       end
     end
 
@@ -156,7 +156,7 @@ module Vedeu
       it { subject.must_be_instance_of(Fixnum) }
 
       it 'returns the centre `x` point on the terminal' do
-        subject.must_equal(40)
+        subject.must_equal(20)
       end
     end
 
@@ -178,15 +178,9 @@ module Vedeu
       it { described.must_respond_to(:xn) }
       it { described.must_respond_to(:txn) }
 
-      context 'via method' do
+      context 'when the terminal is an odd number of characters in width' do
         it 'returns the width' do
-          subject.must_equal(80)
-        end
-      end
-
-      context 'via API' do
-        it 'returns the width' do
-          Vedeu.width.must_equal(80)
+          subject.must_equal(40)
         end
       end
     end
@@ -198,15 +192,9 @@ module Vedeu
       it { described.must_respond_to(:yn) }
       it { described.must_respond_to(:tyn) }
 
-      context 'via method' do
+      context 'when the terminal is an odd number of characters in height' do
         it 'returns the height' do
           subject.must_equal(24)
-        end
-      end
-
-      context 'via API' do
-        it 'returns the height' do
-          Vedeu.height.must_equal(24)
         end
       end
     end
@@ -216,8 +204,11 @@ module Vedeu
 
       it { subject.must_be_instance_of(Array) }
 
-      it 'returns the width and height' do
-        subject.must_equal([24, 80])
+      context 'when the terminal is an odd number of characters in height or ' \
+              'width' do
+        it 'returns the width and height' do
+          subject.must_equal([24, 40])
+        end
       end
     end
 
