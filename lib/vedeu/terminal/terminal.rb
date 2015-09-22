@@ -155,6 +155,7 @@ module Vedeu
     # @return [Fixnum]
     def width
       return Vedeu::Configuration.drb_width if Vedeu::Configuration.drb?
+      return Vedeu::Configuration.width     if Vedeu::Configuration.width
 
       size[-1]
     end
@@ -170,6 +171,7 @@ module Vedeu
     # @return [Fixnum]
     def height
       return Vedeu::Configuration.drb_height if Vedeu::Configuration.drb?
+      return Vedeu::Configuration.height     if Vedeu::Configuration.height
 
       size.first
     end

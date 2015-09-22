@@ -269,6 +269,19 @@ module Vedeu
         options[:colour_mode] = value
       end
 
+      # Sets the height of the terminal.
+      #
+      #   Vedeu.configure do
+      #     height 25
+      #     # ...
+      #   end
+      #
+      # @param height [Fixnum]
+      # @return [Fixnum]
+      def height(height = 25)
+        options[:height] = height
+      end
+
       # Sets the location of the log file.
       #
       #   Vedeu.configure do
@@ -450,6 +463,19 @@ module Vedeu
                'Terminal mode can be set to either :cooked, :fake or :raw'
 
         end
+      end
+
+      # Sets the width of the terminal.
+      #
+      #   Vedeu.configure do
+      #     width 80
+      #     # ...
+      #   end
+      #
+      # @param width [Fixnum]
+      # @return [Fixnum]
+      def width(width = 80)
+        options[:width] = width
       end
 
       private

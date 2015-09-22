@@ -26,6 +26,8 @@ class VedeuMaterialColoursApp
   Vedeu.configure do
     # debug!
     log '/tmp/vedeu_material_colours_app.log'
+    # height 11
+    # width  20
   end
 
   Vedeu.interface 'main_interface' do
