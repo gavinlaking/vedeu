@@ -18,6 +18,8 @@ module Vedeu
 
       private
 
+      # :nocov:
+
       # See {file:docs/events/application.md#\_goto_}
       def goto!
         Vedeu.bind(:_goto_) do |controller, action, **args|
@@ -26,6 +28,8 @@ module Vedeu
 
         Vedeu.bind_alias(:_action_, :_goto_)
       end
+
+      # :nocov:
 
     end # Application
 

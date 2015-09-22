@@ -27,6 +27,8 @@ module Vedeu
 
       private
 
+      # :nocov:
+
       # See {file:docs/events/system.md#\_cleanup_}
       def cleanup!
         Vedeu.bind(:_cleanup_) do
@@ -103,6 +105,8 @@ module Vedeu
           Vedeu.geometries.by_name(name).unmaximise
         end
       end
+
+      # :nocov:
 
     end # System
 

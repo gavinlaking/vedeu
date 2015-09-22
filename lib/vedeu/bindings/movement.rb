@@ -21,6 +21,8 @@ module Vedeu
 
       private
 
+      # :nocov:
+
       # See {file:docs/events/movement.md#\_cursor_up_down_left_right_}
       def directional!
         %w(down left right up).each do |direction|
@@ -70,6 +72,8 @@ module Vedeu
           Vedeu.trigger(:_refresh_cursor_, name)
         end
       end
+
+      # :nocov:
 
     end # Movement
 

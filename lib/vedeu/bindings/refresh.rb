@@ -18,6 +18,8 @@ module Vedeu
 
       private
 
+      # :nocov:
+
       # See {file:docs/events/refresh.md#\_refresh_}
       def refresh!
         Vedeu.bind(:_refresh_) do |name|
@@ -44,6 +46,8 @@ module Vedeu
           Vedeu::Output::RefreshGroup.by_name(name)
         end
       end
+
+      # :nocov:
 
     end # Refresh
 

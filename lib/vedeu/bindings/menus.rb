@@ -28,6 +28,8 @@ module Vedeu
 
       private
 
+      # :nocov:
+
       # See {file:docs/events/menu.md#\_menu_bottom_}
       def menu_bottom!
         Vedeu.bind(:_menu_bottom_) do |name|
@@ -87,6 +89,8 @@ module Vedeu
       def menu_view!
         Vedeu.bind(:_menu_view_) { |name| Vedeu.menus.by_name(name).view }
       end
+
+      # :nocov:
 
     end # Menus
 
