@@ -57,7 +57,6 @@ module Vedeu
       #     # ...
       #   end
       #
-      # @param args [Array]
       # @param opts [Hash]
       # @option opts stdin [File|IO]
       # @option opts stdout [File|IO]
@@ -66,8 +65,8 @@ module Vedeu
       # @raise [Vedeu::Error::InvalidSyntax]
       #   When the required block is not given.
       # @return [Hash]
-      def configure(args = [], opts = {}, &block)
-        instance.configure(args, opts, &block)
+      def configure(opts = {}, &block)
+        instance.configure(opts, &block)
       end
 
       # Returns the configuration singleton.
@@ -264,10 +263,9 @@ module Vedeu
     # Set up default configuration and then allow the client
     # application to modify it via the configuration API.
     #
-    # @param args [Array]
     # @param block [Proc]
     # @return [Hash]
-    def configure(args = [], opts = {}, &block)
+    def configure(opts = {}, &block)
       @options.merge!(opts)
 
       @options.merge!(Config::API.configure(&block)) if block_given?
