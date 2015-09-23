@@ -2,6 +2,8 @@ module Vedeu
 
   module Bindings
 
+    # Provides events to refresh the view.
+    #
     module Refresh
 
       extend self

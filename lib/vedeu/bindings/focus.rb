@@ -2,6 +2,8 @@ module Vedeu
 
   module Bindings
 
+    # Provides events to change the focus between interfaces/views.
+    #
     module Focus
 
       extend self

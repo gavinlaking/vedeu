@@ -1,5 +1,7 @@
 module Vedeu
 
+  # Provides the classes which control the basic Vedeu runtime.
+  #
   module Runtime
 
   end # Runtime
