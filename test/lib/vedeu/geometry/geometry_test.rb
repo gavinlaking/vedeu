@@ -69,6 +69,26 @@ module Vedeu
         it { instance.must_respond_to(:yn=) }
       end
 
+      describe '.store' do
+        subject { described.store(attributes) }
+
+        it { subject.must_equal(instance) }
+      end
+
+      describe '#eql?' do
+        let(:other) { instance }
+
+        subject { instance.eql?(other) }
+
+        it { subject.must_equal(true) }
+
+        context 'when different to other' do
+          let(:other) { described.new(name: 'other_geometry') }
+
+          it { subject.must_equal(false) }
+        end
+      end
+
       describe '#maximise' do
         let(:attributes) {
           {
