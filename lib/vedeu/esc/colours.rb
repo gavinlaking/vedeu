@@ -1,7 +1,5 @@
 module Vedeu
 
-  # Provides escape sequence strings.
-  #
   module EscapeSequences
 
     # Provides colour related escape sequences.

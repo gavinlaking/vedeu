@@ -1,7 +1,5 @@
 module Vedeu
 
-  # Provides escape sequence strings.
-  #
   module EscapeSequences
 
     # Provides border/box related escape sequences.
