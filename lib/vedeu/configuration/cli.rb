@@ -74,7 +74,6 @@ module Vedeu
           :drb_host,
           :drb_port,
           :drb_width,
-          :height,
           :fake,
           :interactive,
           :log,
@@ -83,7 +82,6 @@ module Vedeu
           :run_once,
           :root,
           :standalone,
-          :width
         ]
       end
 
