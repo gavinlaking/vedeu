@@ -6,7 +6,6 @@ require 'vedeu/common'
 require 'vedeu/logging/all'
 require 'vedeu/runtime/all'
 
-require 'vedeu/configuration/cli'
 require 'vedeu/configuration/api'
 require 'vedeu/configuration/configuration'
 

@@ -112,17 +112,9 @@ module Vedeu
     end
     # :nocov:
 
-    # Use the arguments passed on the command-line along with those
-    # defined by the client application and Vedeu's defaults to
-    # configure the client application.
-    #
     # @return [Vedeu::Configuration]
     def configuration
-      Vedeu::Configuration.configure(argv)
-
-      # Configuration.configure(argv, { stdin:  @stdin,
-      #                                 stdout: @stdout,
-      #                                 stderr: @stderr })
+      Vedeu::Configuration
     end
 
   end # Launcher
