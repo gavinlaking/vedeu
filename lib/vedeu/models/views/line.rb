@@ -2,6 +2,13 @@ module Vedeu
 
   module Views
 
+    # A collection of {Vedeu::Views::Line} instances.
+    #
+    # @api private
+    class Lines < Vedeu::Repositories::Collection
+
+    end # Lines
+
     # Represents a single row of the terminal. It is a container for
     # {Vedeu::Views::Stream} objects. A line's width is determined by
     # the {Vedeu::Geometry::Geometry} it belongs to.

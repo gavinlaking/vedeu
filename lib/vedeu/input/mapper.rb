@@ -54,11 +54,11 @@ module Vedeu
       def keypress
         return false unless key
 
-        Vedeu.log(type: :input, message: "Key detected: #{key.inspect}")
-
         return true if key_defined? && keymap.use(key)
 
         return true if global_key? && keymap('_global_').use(key)
+
+        Vedeu.log(type: :input, message: "Key detected: #{key.inspect}")
 
         false
       end

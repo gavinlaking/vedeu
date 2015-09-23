@@ -2,6 +2,13 @@ module Vedeu
 
   module Views
 
+    # A collection of {Vedeu::Views::View} instances.
+    #
+    # @api private
+    class ViewCollection < Vedeu::Repositories::Collection
+
+    end # ViewCollection
+
     # Represents a container for {Vedeu::Views::Line} and {Vedeu::Views::Stream}
     # objects.
     #

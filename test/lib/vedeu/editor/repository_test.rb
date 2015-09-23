@@ -4,13 +4,13 @@ module Vedeu
 
   module Editor
 
-    describe Documents do
+    describe Repository do
 
-      let(:described) { Vedeu::Editor::Documents }
+      let(:described) { Vedeu::Editor::Repository }
 
       it { described.must_respond_to(:documents) }
 
-    end # Documents
+    end # Repository
 
   end # Editor
 

@@ -4,6 +4,19 @@ module Vedeu
 
   module Views
 
+    describe Lines do
+
+      let(:described) { Vedeu::Views::Lines }
+      let(:instance)  { described.new }
+
+      it { described.superclass.must_equal(Vedeu::Repositories::Collection) }
+
+      describe '#initialize' do
+        it { instance.must_be_instance_of(described) }
+      end
+
+    end # Lines
+
     describe Line do
 
       let(:described)  { Vedeu::Views::Line }
@@ -109,10 +122,10 @@ module Vedeu
         end
       end
 
-      describe '#streams' do
-        subject { instance.streams }
+      describe '#value' do
+        subject { instance.value }
 
-        it { instance.must_respond_to(:value) }
+        it { instance.must_respond_to(:streams) }
 
         it { subject.must_be_instance_of(Vedeu::Views::Streams) }
       end

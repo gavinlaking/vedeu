@@ -1,6 +1,6 @@
 module Vedeu
 
-  # Namespace for the API configuration and CLI configuration classes.
+  # Namespace for configuration classes.
   #
   module Config
 
@@ -8,8 +8,7 @@ module Vedeu
 
     # Custom log for configuration.
     #
-    # @param from [String] Which configuration set the options
-    #   ('API' or 'CLI').
+    # @param from [String] Which configuration set the options.
     # @param options [Hash] The configuration options set.
     # @return [Hash] The options param.
     def log(from, options)
@@ -22,12 +21,12 @@ module Vedeu
   end
 
   # Allows the customisation of Vedeu's behaviour through the
-  # configuration API or command-line arguments.
+  # configuration API.
   #
   # Provides access to Vedeu's configuration, which was set with
   # sensible defaults (influenced by environment variables),
   # overridden by client application settings (via the configuration
-  # API), or any command-line arguments provided.
+  # API).
   #
   class Configuration
 
@@ -51,16 +50,13 @@ module Vedeu
       alias_method :compression?, :compression
 
       # Provides the mechanism to configure Vedeu. If the client
-      # application sets options, override the defaults with those,
-      # and when command-line arguments are provided at application
-      # invocation, override any options with the arguments provided.
+      # application sets options, override the defaults with those.
       #
       # @example
       #   Vedeu.configure do
       #     # ...
       #   end
       #
-      # @param args [Array]
       # @param opts [Hash]
       # @option opts stdin [File|IO]
       # @option opts stdout [File|IO]
@@ -69,8 +65,8 @@ module Vedeu
       # @raise [Vedeu::Error::InvalidSyntax]
       #   When the required block is not given.
       # @return [Hash]
-      def configure(args = [], opts = {}, &block)
-        instance.configure(args, opts, &block)
+      def configure(opts = {}, &block)
+        instance.configure(opts, &block)
       end
 
       # Returns the configuration singleton.
@@ -265,18 +261,14 @@ module Vedeu
     end
 
     # Set up default configuration and then allow the client
-    # application to modify it via the configuration API. After this,
-    # process any command line arguments as potential configuration
-    # and apply that.
+    # application to modify it via the configuration API.
     #
-    # @param args [Array]
     # @param block [Proc]
     # @return [Hash]
-    def configure(args = [], opts = {}, &block)
+    def configure(opts = {}, &block)
       @options.merge!(opts)
 
       @options.merge!(Config::API.configure(&block)) if block_given?
-      @options.merge!(Config::CLI.configure(args)) if args.any?
 
       Vedeu::Renderers.renderer(*@options[:renderers])
 

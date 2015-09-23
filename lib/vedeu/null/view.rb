@@ -1,5 +1,3 @@
-require 'vedeu/output/presentation/presentation'
-
 module Vedeu
 
   module Null

@@ -420,8 +420,6 @@ module Vedeu
       # @note
       # - Be aware that running an application without compression
       #   will affect performance.
-      # - Compression cannot yet be configured using a CLI option
-      #   flag.
       #
       # @param value [Boolean]
       # @return [Boolean]

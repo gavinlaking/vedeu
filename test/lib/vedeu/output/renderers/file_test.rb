@@ -18,6 +18,8 @@ module Vedeu
       let(:filename)  { 'vedeu_renderers_file' }
       let(:timestamp) { false }
 
+      before { ::File.stubs(:write) }
+
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
         it { instance.instance_variable_get('@options').must_equal(options) }
@@ -32,8 +34,6 @@ module Vedeu
 
       describe '#render' do
         let(:_time) { Time.new(2015, 4, 12, 20, 05, 00, "+01:00") }
-
-        before { ::File.stubs(:write) }
 
         subject { instance.render(output) }
 

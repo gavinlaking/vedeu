@@ -1,5 +1,7 @@
 module Vedeu
 
+  # Provides various models which Vedeu uses.
+  #
   module Models
 
   end # Models

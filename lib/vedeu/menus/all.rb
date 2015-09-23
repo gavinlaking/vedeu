@@ -1,5 +1,8 @@
 module Vedeu
 
+  # Provides the mechanism to create menus within client
+  # applications.
+  #
   module Menus
 
   end # Menus

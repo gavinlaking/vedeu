@@ -25,10 +25,16 @@ module Vedeu
         @output = output
       end
 
-      # Send the view to the renderers.
+      # Send the view to the renderers. If the output is a
+      # {Vedeu::Models::Escape} object (typical when showing or
+      # hiding the cursor) then we bypass the
+      # {Vedeu::Terminal::Buffer} and write directly to the terminal
+      # because escape sequences only make sense to the terminal and
+      # not other renderers.
       #
-      # @return [Array]
+      # @return [Array|NilClass]
       def render
+        return nil if output.nil?
         return render_terminal_buffer unless output.is_a?(Vedeu::Models::Escape)
 
         Vedeu::Output::Direct.write(value: output.value,

@@ -2,6 +2,8 @@ module Vedeu
 
   module Bindings
 
+    # Provides events to manage Vedeu.
+    #
     module System
 
       extend self

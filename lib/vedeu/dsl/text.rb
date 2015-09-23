@@ -23,6 +23,12 @@ module Vedeu
       #     right '...'
       #   end
       #
+      #   line do
+      #     stream do
+      #       text '...'
+      #     end
+      #   end
+      #
       #   left 'This will be left aligned.', width: 35
       #   # => 'This will be left aligned.         '
       #
