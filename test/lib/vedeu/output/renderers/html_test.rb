@@ -47,6 +47,13 @@ module Vedeu
         it { instance.instance_variable_get('@output').must_equal(nil) }
       end
 
+      describe '#clear' do
+        subject { instance.clear }
+
+        it { subject.must_be_instance_of(String) }
+        it { subject.must_equal('') }
+      end
+
       describe '#render' do
         let(:output) {
           Vedeu::Models::Page.coerce([

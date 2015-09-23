@@ -24,6 +24,21 @@ module Vedeu
         it { Vedeu.bound?(:_toggle_interface_).must_equal(true) }
       end
 
+      # describe ':_some_event_' do
+      #   let(:_name) { 'some_name' }
+      #
+      #   before do
+      #     # stub expectation
+      #   end
+      #
+      #   subject { Vedeu.trigger(:_some_event_, _name) }
+      #
+      #   it {
+      #     # expectation
+      #     subject
+      #   }
+      # end
+
     end # Visibility
 
   end # Bindings

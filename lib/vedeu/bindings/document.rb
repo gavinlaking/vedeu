@@ -27,6 +27,8 @@ module Vedeu
 
       private
 
+      # :nocov:
+
       # See {file:docs/events/document.md#\_editor_execute_}
       def editor_execute!
         Vedeu.bind(:_editor_execute_) do |name|
@@ -85,6 +87,8 @@ module Vedeu
       def editor_up!
         Vedeu.bind(:_editor_up_) { |name| Vedeu.documents.by_name(name).up }
       end
+
+      # :nocov:
 
     end # Document
 

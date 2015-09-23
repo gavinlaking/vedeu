@@ -31,7 +31,7 @@ module Vedeu
         context 'when the block is not given' do
           subject { described.group(group_name) }
 
-          it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
+          it { proc { subject }.must_raise(Vedeu::Error::RequiresBlock) }
         end
       end
 

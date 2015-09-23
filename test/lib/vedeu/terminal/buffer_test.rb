@@ -32,6 +32,29 @@ module Vedeu
         it { subject.must_equal(expected) }
       end
 
+      describe '#clear' do
+        let(:ready) { false }
+
+        before do
+          Vedeu.stubs(:ready?).returns(ready)
+          Vedeu.renderers.stubs(:clear)
+        end
+
+        subject { described.clear }
+
+        context 'when Vedeu is ready' do
+          let(:ready) { true }
+
+          it {
+            Vedeu.renderers.expects(:clear)
+            subject
+          }
+        end
+
+        context 'when Vedeu is not ready' do
+        end
+      end
+
       describe '#empty_buffer' do
         let(:expected) {
           Array.new(height) do |y|
@@ -75,7 +98,10 @@ module Vedeu
       describe '#render' do
         let(:ready) { false }
 
-        before { Vedeu.stubs(:ready?).returns(ready) }
+        before do
+          Vedeu.stubs(:ready?).returns(ready)
+          Vedeu.renderers.stubs(:render)
+        end
 
         subject { described.render }
 
@@ -86,15 +112,10 @@ module Vedeu
         context 'when Vedeu is ready' do
           let(:ready) { true }
 
-          context 'when the buffer is empty' do
-            # it {
-            #   Vedeu.renderers.expects(:render).with(Vedeu::Models::Page)
-            #   subject
-            # }
-          end
-
-          context 'when the buffer is not empty' do
-          end
+          it {
+            Vedeu.renderers.expects(:render)
+            subject
+          }
         end
       end
 
@@ -112,8 +133,6 @@ module Vedeu
         it { described.instance_variable_get('@output').must_equal(output) }
         it { subject.must_be_instance_of(Array) }
         it { subject.must_equal(output) }
-
-        it { described.must_respond_to(:clear) }
       end
 
       describe '#write' do

@@ -34,7 +34,7 @@ module Vedeu
         context 'when the block is not given' do
           subject { described.interface('fluorine') }
 
-          it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
+          it { proc { subject }.must_raise(Vedeu::Error::RequiresBlock) }
         end
 
         context 'when the name is not given' do
@@ -54,7 +54,7 @@ module Vedeu
         context 'when the block is not given' do
           subject { instance.border }
 
-          it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
+          it { proc { subject }.must_raise(Vedeu::Error::RequiresBlock) }
         end
 
         context 'when the block is given' do
@@ -182,7 +182,7 @@ module Vedeu
         context 'when the required block is not provided' do
           subject { instance.geometry }
 
-          it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
+          it { proc { subject }.must_raise(Vedeu::Error::RequiresBlock) }
         end
 
         context 'when the block is given' do

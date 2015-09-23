@@ -44,8 +44,8 @@ module Vedeu
 
       private
 
-      # Provide an instance of Vedeu::Geometry::GenericCoordinate to determine
-      # correct x related coordinates.
+      # Provide an instance of {Vedeu::Geometry::GenericCoordinate} to
+      # determine correct x related coordinates.
       #
       # @return [Vedeu::Geometry::GenericCoordinate]
       def x
@@ -54,8 +54,8 @@ module Vedeu
                                                       type:   :x)
       end
 
-      # Provide an instance of Vedeu::Geometry::GenericCoordinate to determine
-      # correct y related coordinates.
+      # Provide an instance of {Vedeu::Geometry::GenericCoordinate} to
+      # determine correct y related coordinates.
       #
       # @return [Vedeu::Geometry::GenericCoordinate]
       def y

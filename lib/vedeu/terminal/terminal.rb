@@ -12,11 +12,11 @@ module Vedeu
     # exit, attempts to restore the screen. See
     # {Vedeu::Terminal#restore_screen}.
     #
-    # @raise [Vedeu::Error::InvalidSyntax] The required block was not
+    # @raise [Vedeu::Error::RequiresBlock] The required block was not
     #   given.
     # @return [Array]
     def open
-      fail Vedeu::Error::InvalidSyntax, 'block not given' unless block_given?
+      fail Vedeu::Error::RequiresBlock unless block_given?
 
       if raw_mode? || fake_mode?
         console.raw    { initialize_screen(mode) { yield } }
@@ -155,6 +155,7 @@ module Vedeu
     # @return [Fixnum]
     def width
       return Vedeu::Configuration.drb_width if Vedeu::Configuration.drb?
+      return Vedeu::Configuration.width     if Vedeu::Configuration.width
 
       size[-1]
     end
@@ -170,6 +171,7 @@ module Vedeu
     # @return [Fixnum]
     def height
       return Vedeu::Configuration.drb_height if Vedeu::Configuration.drb?
+      return Vedeu::Configuration.height     if Vedeu::Configuration.height
 
       size.first
     end

@@ -139,6 +139,13 @@ module Vedeu
         instance.options[:drb_width]
       end
 
+      # Returns the client defined height for the terminal.
+      #
+      # @return [Fixnum]
+      def height
+        instance.options[:height]
+      end
+
       # Returns whether the application is interactive (required user
       # input) or standalone (will run until terminates of natural
       # causes.) Default is true; meaning the application will require
@@ -224,6 +231,13 @@ module Vedeu
         instance.options[:terminal_mode]
       end
 
+      # Returns the client defined width for the terminal.
+      #
+      # @return [Fixnum]
+      def width
+        instance.options[:width]
+      end
+
       # @param value [void]
       # @return [void]
       def options=(value)
@@ -293,6 +307,7 @@ module Vedeu
         drb_port:      nil,
         drb_height:    25,
         drb_width:     80,
+        height:        nil,
         interactive:   true,
         log:           nil,
         log_only:      [],
@@ -303,6 +318,7 @@ module Vedeu
         stdout:        nil,
         stderr:        nil,
         terminal_mode: :raw,
+        width:         nil,
       }
     end
 

@@ -16,11 +16,10 @@ module Vedeu
       #
       # @param input [String|Symbol]
       # @param block [Proc]
-      # @raise [Vedeu::Error::InvalidSyntax] The required block was
-      #   not given.
+      # @raise [Vedeu::Error::RequiresBlock]
       # @return [Vedeu::Input::Key]
       def initialize(input = nil, &block)
-        fail Vedeu::Error::InvalidSyntax, 'block not given' unless block_given?
+        fail Vedeu::Error::RequiresBlock unless block_given?
 
         @input  = input
         @output = block

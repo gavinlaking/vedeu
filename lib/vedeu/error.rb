@@ -87,6 +87,18 @@ module Vedeu
 
     end # OutOfRange
 
+    # Raised when a method expecting a block to be given was not given
+    # the block.
+    #
+    class RequiresBlock < StandardError
+
+      # @return [String]
+      def message
+        'The required block was not given.'
+      end
+
+    end
+
   end # Error
 
 end # Vedeu

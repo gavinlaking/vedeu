@@ -2,19 +2,20 @@ module Vedeu
 
   module DSL
 
-    # You can define keymaps by name which matches a defined interface. When
-    # that interface is in focus, keys pressed as part of this definition will
-    # affect that interface. This allows you to form context driven behaviour
-    # for your application.
+    # You can define keymaps by name which matches a defined
+    # interface. When that interface is in focus, keys pressed as part
+    # of this definition will affect that interface. This allows you
+    # to form context driven behaviour for your application.
     #
     class Keymap
 
       include Vedeu::Common
       include Vedeu::DSL
 
-      # Define actions for keypresses for when specific interfaces are in focus.
-      # Unless an interface is specified, the key will be assumed to be global,
-      # meaning its action will happen regardless of the interface in focus.
+      # Define actions for keypresses for when specific interfaces are
+      # in focus. Unless an interface is specified, the key will be
+      # assumed to be global, meaning its action will happen
+      # regardless of the interface in focus.
       #
       #   Vedeu.keymap 'some_interface' do
       #     key('s')        { Vedeu.trigger(:save) }
@@ -44,13 +45,13 @@ module Vedeu
       #     end
       #   end
       #
-      # @param name [String] The name of the interface which this keymap relates
-      #   to.
+      # @param name [String] The name of the interface which this
+      #   keymap relates to.
       # @param block [Proc]
-      # @raise [Vedeu::Error::InvalidSyntax] The required block was not given.
+      # @raise [Vedeu::Error::RequiresBlock]
       # @return [Vedeu::Input::Keymap]
-      # @todo Try to remember why we need to pre-create the keymap in the
-      #   repository.
+      # @todo Try to remember why we need to pre-create the keymap in
+      #   the repository.
       def self.keymap(name, &block)
         Vedeu::Input::Keymap.new(name: name).store
 
@@ -73,11 +74,12 @@ module Vedeu
       #   The key(s) pressed. Special keys can be found in
       #   {Vedeu::Input::Input#specials}. When more than one key is
       #   defined, then the extras are treated as aliases.
-      # @param block [Proc] The action to perform when this key is pressed. Can
-      #   be a method call or event triggered.
+      # @param block [Proc] The action to perform when this key is
+      #   pressed. Can be a method call or event triggered.
       # @raise [Vedeu::Error::InvalidSyntax]
-      #   When the required block is not given, the values parameter is
-      #   undefined, or when processing the collection, a member is undefined.
+      #   When the required block is not given, the values parameter
+      #   is undefined, or when processing the collection, a member
+      #   is undefined.
       # @return [Array] A collection containing the keypress(es).
       def key(*values, &block)
         fail Vedeu::Error::InvalidSyntax,
@@ -99,12 +101,13 @@ module Vedeu
 
       # Define the name of the keymap.
       #
-      # To only allow certain keys to work with specific interfaces, use the
-      # same name as the interface.
+      # To only allow certain keys to work with specific interfaces,
+      # use the same name as the interface.
       #
-      # When the name '_global_' is used, all keys in the keymap block will be
-      # available to all interfaces. Once a key has been defined in the
-      # '_global_' keymap, it cannot be used for a specific interface.
+      # When the name '_global_' is used, all keys in the keymap block
+      # will be available to all interfaces. Once a key has been
+      # defined in the '_global_' keymap, it cannot be used for a
+      # specific interface.
       #
       #   Vedeu.keymap do
       #     name 'some_interface'

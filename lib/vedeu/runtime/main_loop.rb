@@ -24,7 +24,11 @@ module Vedeu
           while @loop
             yield
 
+            Vedeu::Cursors::Cursor.hide_cursor
+
             Vedeu::Terminal::Buffer.render
+
+            Vedeu::Cursors::Cursor.show_cursor
 
             safe_exit_point!
           end

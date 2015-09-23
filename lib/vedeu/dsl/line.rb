@@ -59,8 +59,7 @@ module Vedeu
       #     end
       #   end
       #
-      # @raise [Vedeu::Error::InvalidSyntax] When no block or value is
-      #   provided.
+      # @raise [Vedeu::Error::RequiresBlock]
       # @return [Vedeu::Views::Lines]
       def line(value = '', &block)
         if block_given?
@@ -73,7 +72,7 @@ module Vedeu
                                              value:  [build_stream(value)])
 
         else
-          fail Vedeu::Error::InvalidSyntax, 'block not given'
+          fail Vedeu::Error::RequiresBlock unless block_given?
 
         end
 
@@ -100,12 +99,11 @@ module Vedeu
       #   end
       #
       # @param block [Proc]
-      # @raise [Vedeu::Error::InvalidSyntax] The required block was
-      #   not given.
+      # @raise [Vedeu::Error::RequiresBlock]
       # @return [Vedeu::Views::Streams<Vedeu::Views::Stream>]
       # @see Vedeu::DSL::Stream for subdirectives.
       def streams(&block)
-        fail Vedeu::Error::InvalidSyntax, 'block not given' unless block_given?
+        fail Vedeu::Error::RequiresBlock unless block_given?
 
         model.add(model.member.build(attributes, &block))
       end

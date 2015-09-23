@@ -15,11 +15,13 @@ module Vedeu
       # Returns a new instance of Vedeu::Geometry::Dimension.
       #
       # @param attributes [Hash<Symbol => Fixnum, NilClass>]
-      # @option attributes d [Fixnum|NilClass] The starting value (y or x).
-      # @option attributes dn [Fixnum|NilClass] The ending value (yn or xn).
+      # @option attributes d [Fixnum|NilClass]
+      #   The starting value (y or x).
+      # @option attributes dn [Fixnum|NilClass]
+      #   The ending value (yn or xn).
       # @option attributes d_dn [Fixnum|NilClass] A width or a height.
-      # @option attributes default [Fixnum|NilClass] The terminal width or
-      #   height.
+      # @option attributes default [Fixnum|NilClass]
+      #   The terminal width or height.
       # @option attributes options [Hash]
       # @return [Vedeu::Geometry::Dimension]
       def initialize(attributes = {})

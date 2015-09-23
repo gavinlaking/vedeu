@@ -33,7 +33,7 @@ module Vedeu
         context 'when the block is not given' do
           subject { described.menu }
 
-          it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
+          it { proc { subject }.must_raise(Vedeu::Error::RequiresBlock) }
         end
       end
 

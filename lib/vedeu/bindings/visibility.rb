@@ -28,6 +28,8 @@ module Vedeu
 
       private
 
+      # :nocov:
+
       # See {file:docs/events/visibility.md#\_clear_group_}
       def clear_group!
         Vedeu.bind(:_clear_group_) do |name|
@@ -101,6 +103,8 @@ module Vedeu
           Vedeu::Models::Interface.toggle_interface(name)
         end
       end
+
+      # :nocov:
 
     end # Visibility
 

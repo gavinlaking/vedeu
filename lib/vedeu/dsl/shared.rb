@@ -2,8 +2,8 @@ module Vedeu
 
   module DSL
 
-    # Provides behaviour to be shared between both {Vedeu::DSL::Interface} and
-    # {Vedeu::DSL::View} objects.
+    # Provides behaviour to be shared between both
+    # {Vedeu::DSL::Interface} and {Vedeu::DSL::View} objects.
     #
     module Shared
 
@@ -12,19 +12,21 @@ module Vedeu
       # @example
       #   Vedeu.interface 'my_interface' do
       #     border do
-      #       # ... see Vedeu::Borders::DSL for DSL methods for borders.
+      #       # ... see Vedeu::Borders::DSL for DSL methods for
+      #       #     borders.
       #     end
       #   end
       #
-      # @param name [String] The name of the interface; this is already provided
-      #   when we define the interface or view, setting it here is just
-      #   mirroring functionality of {Vedeu::Borders::DSL.border}.
+      # @param name [String] The name of the interface; this is
+      #   already provided when we define the interface or view,
+      #   setting it here is just mirroring functionality of
+      #   {Vedeu::Borders::DSL.border}.
       # @param block [Proc]
-      # @raise [Vedeu::Error::InvalidSyntax] The required block was not given.
+      # @raise [Vedeu::Error::RequiresBlock]
       # @return [Vedeu::Borders::Border]
       # @see Vedeu::Borders::DSL
       def border(name = nil, &block)
-        fail Vedeu::Error::InvalidSyntax, 'block not given' unless block_given?
+        fail Vedeu::Error::RequiresBlock unless block_given?
 
         model_name = name ? name : model.name
 
@@ -55,19 +57,21 @@ module Vedeu
       # @example
       #   Vedeu.interface 'my_interface' do
       #     geometry do
-      #       # ... see Vedeu::Geometry::DSL for DSL methods for geometries.
+      #       # ... see Vedeu::Geometry::DSL for DSL methods for
+      #       #     geometries.
       #     end
       #   end
       #
-      # @param name [String] The name of the interface; this is already provided
-      #   when we define the interface or view, setting it here is just
-      #   mirroring functionality of {Vedeu::Geometry::DSL.geometry}.
+      # @param name [String] The name of the interface; this is
+      #   already provided when we define the interface or view,
+      #   setting it here is just mirroring functionality of
+      #   {Vedeu::Geometry::DSL.geometry}.
       # @param block [Proc]
-      # @raise [Vedeu::Error::InvalidSyntax] The required block was not given.
+      # @raise [Vedeu::Error::RequiresBlock]
       # @return [Vedeu::Geometry::Geometry]
       # @see Vedeu::Geometry::DSL
       def geometry(name = nil, &block)
-        fail Vedeu::Error::InvalidSyntax, 'block not given' unless block_given?
+        fail Vedeu::Error::RequiresBlock unless block_given?
 
         model_name = name ? name : model.name
 

@@ -113,10 +113,11 @@ module Vedeu
         border.send(coordinate_type[3])
       end
 
-      # Ascertain the correct methods to use for determining the coordinates.
+      # Ascertain the correct methods to use for determining the
+      # coordinates.
       #
-      # @raise [Vedeu::Error::InvalidSyntax] When the coordinate type is not
-      #   given.
+      # @raise [Vedeu::Error::InvalidSyntax] When the coordinate type
+      #   is not given.
       # @return [Fixnum]
       def coordinate_type
         @_type ||= case type

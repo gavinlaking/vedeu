@@ -2,12 +2,13 @@ module Vedeu
 
   module Geometry
 
-    # @todo Consider storing the Terminal size at the time of first creation,
-    # this allows us to return the interface to its original dimensions if
-    # the terminal resizes back to normal size.
+    # @todo Consider storing the Terminal size at the time of first
+    # creation, this allows us to return the interface to its original
+    # dimensions if the terminal resizes back to normal size.
     #
-    # Calculates and provides interface geometry determined by both the client's
-    # requirements and the terminal's current viewing area.
+    # Calculates and provides interface geometry determined by both
+    # the client's requirements and the terminal's current viewing
+    # area.
     #
     class Geometry
 
@@ -93,8 +94,8 @@ module Vedeu
         end
       end
 
-      # Will maximise the named interface geometry. This means it will occupy
-      # all of the available space on the terminal window.
+      # Will maximise the named interface geometry. This means it will
+      # occupy all of the available space on the terminal window.
       #
       # @example
       #   Vedeu.trigger(:_maximise_, name)
@@ -226,10 +227,11 @@ module Vedeu
         Vedeu::Geometry::Geometry.new(@attributes).store
       end
 
-      # Will unmaximise the named interface geometry. Previously, when a
-      # geometry was maximised, then triggering the unmaximise event will return
-      # it to its usual defined size (terminal size permitting: when the
-      # terminal has been resized, then the new geometry size should adapt).
+      # Will unmaximise the named interface geometry. Previously, when
+      # a geometry was maximised, then triggering the unmaximise event
+      # will return it to its usual defined size (terminal size
+      # permitting: when the terminal has been resized, then the new
+      # geometry size should adapt).
       #
       # @example
       #   Vedeu.trigger(:_unmaximise_, name)

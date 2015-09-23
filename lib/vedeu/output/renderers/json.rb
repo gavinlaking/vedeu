@@ -46,6 +46,8 @@ module Vedeu
       # @param output [Vedeu::Models::Page]
       # @return [Array]
       def as_hash(output)
+        return output if output.is_a?(Hash)
+
         output.content.map(&:to_hash)
       end
 

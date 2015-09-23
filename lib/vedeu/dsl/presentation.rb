@@ -2,18 +2,20 @@ module Vedeu
 
   module DSL
 
-    # Provides colour and style helpers for use in the {Vedeu::DSL::Interface},
-    # {Vedeu::DSL::Line} and {Vedeu::DSL::Stream} classes.
+    # Provides colour and style helpers for use in the
+    # {Vedeu::DSL::Interface}, {Vedeu::DSL::Line} and
+    # {Vedeu::DSL::Stream} classes.
     #
     module Presentation
 
-      # Define the background colour for an interface, line, or a stream. When
-      # called with a block, will create a new stream with the background colour
-      # specified. When the block terminates, the background will return to that
-      # of the parent.
+      # Define the background colour for an interface, line, or a
+      # stream. When called with a block, will create a new stream
+      # with the background colour specified. When the block
+      # terminates, the background will return to that of the parent.
       #
-      # @note The last defined background colour for a particular interface,
-      #   line or stream overrides previously defined entries in the same block.
+      # @note The last defined background colour for a particular
+      #   interface, line or stream overrides previously defined
+      #   entries in the same block.
       #
       # @param value [String] A HTML/CSS value.
       #
@@ -56,11 +58,13 @@ module Vedeu
       alias_method :fgcolor=,    :foreground
 
       # Define either or both foreground and background colours for an
-      # interface, line or a stream. At least one attribute is required.
+      # interface, line or a stream. At least one attribute is
+      # required.
       #
-      # @note Rejects invalid keys and empty/nil attributes. Also, the last
-      #   defined colour for a particular interface, line or stream overrides
-      #   previously defined entries in the same block.
+      # @note Rejects invalid keys and empty/nil attributes. Also, the
+      #   last defined colour for a particular interface, line or
+      #   stream overrides previously defined entries in the same
+      #   block.
       #
       # @param attrs [Hash] See {Vedeu::Colours::Colour}
       #

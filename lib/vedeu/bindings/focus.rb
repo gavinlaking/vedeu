@@ -18,6 +18,8 @@ module Vedeu
 
       private
 
+      # :nocov:
+
       # See {file:docs/events/focus.md#\_focus_by_name_}
       def focus_by_name!
         Vedeu.bind(:_focus_by_name_) { |name| Vedeu.focus_by_name(name) }
@@ -32,6 +34,8 @@ module Vedeu
       def focus_prev!
         Vedeu.bind(:_focus_prev_) { Vedeu.focus_previous }
       end
+
+      # :nocov:
 
     end # Focus
 

@@ -145,7 +145,7 @@ module Vedeu
             drb:    [:light_blue,    :blue],
             event:  [:light_magenta, :magenta],
             info:   [:white,         :default],
-            input:  [:light_yellow,  :yellow],
+            input:  [:light_red,     :red],
             output: [:light_green,   :green],
             reset:  [:light_cyan,    :cyan],
             store:  [:light_cyan,    :cyan],

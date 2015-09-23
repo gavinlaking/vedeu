@@ -17,7 +17,7 @@ module Vedeu
         context 'when the required block is not given' do
           subject { described.new(input) }
 
-          it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
+          it { proc { subject }.must_raise(Vedeu::Error::RequiresBlock) }
         end
       end
 

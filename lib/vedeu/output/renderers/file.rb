@@ -25,10 +25,10 @@ module Vedeu
       # Render a cleared output.
       #
       # @return [String]
-      def clear
-        ::File.write(filename, '') if write_file?
+      def clear(output = '')
+        ::File.write(filename, output) if write_file?
 
-        ''
+        output
       end
 
       # @param output [Vedeu::Models::Page]
