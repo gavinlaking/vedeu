@@ -17,24 +17,38 @@ module Vedeu
       end
 
       describe '.render' do
-        # let(:buffer) { mock }
+        subject { described.render(output) }
 
-        # before do
-        #   Vedeu::Terminal::Buffer.stubs(:write).returns(buffer)
-        #   buffer.stubs(:render)
-        # end
+        context 'when the output is empty' do
+          it { subject.must_be_instance_of(NilClass) }
+        end
 
-        # subject { described.render(output) }
+        context 'when the output is not empty' do
+          context 'and the output is an escape sequence' do
+            let(:output) {
+              Vedeu::Models::Escape.new(value: "\e[?25h", position: [1, 1])
+            }
 
-        # it {
-        #   Vedeu::Terminal::Buffer.expects(:write).with(output)
-        #   subject
-        # }
+            before { Vedeu::Output::Direct.stubs(:write).returns(output.to_s) }
 
-        # it {
-        #   buffer.expects(:render)
-        #   subject
-        # }
+            it { subject.must_equal("\e[1;1H\e[?25h") }
+          end
+
+          context 'and the output is not an escape sequence' do
+            let(:output) { Vedeu::Models::Page.new }
+            let(:buffer) { mock('Vedeu::Terminal::Buffer') }
+
+            before do
+              Vedeu::Terminal::Buffer.stubs(:write)
+              buffer.expects(:render).returns(output)
+            end
+
+            it {
+              Vedeu::Terminal::Buffer.expects(:write).with(output).returns(buffer)
+              subject
+            }
+          end
+        end
       end
 
       describe '#render' do
