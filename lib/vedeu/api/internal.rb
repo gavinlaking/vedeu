@@ -64,8 +64,8 @@ module Vedeu
       #   Vedeu.documents
       #
       # @!method documents
-      # @return [Vedeu::Editor::Documents]
-      def_delegators Vedeu::Editor::Documents, :documents
+      # @return [Vedeu::Editor::Repository]
+      def_delegators Vedeu::Editor::Repository, :documents
 
       # Manipulate the repository of events.
       #
