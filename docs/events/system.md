@@ -10,13 +10,6 @@ popular here.
 
     Vedeu.trigger(:_exit_)
 
-### :_clear_
-Clears the whole terminal space, or when a name is given, the named
-interface area will be cleared.
-
-    Vedeu.trigger(:_clear_)
-    Vedeu.clear_by_name(name)
-
 ### :_command_
 Will cause the triggering of the `:command` event; which you should
 define to 'do things'.

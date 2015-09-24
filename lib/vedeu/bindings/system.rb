@@ -14,7 +14,6 @@ module Vedeu
       # @return [TrueClass]
       def setup!
         cleanup!
-        clear!
         command!
         editor!
         exit!
@@ -36,19 +35,6 @@ module Vedeu
         Vedeu.bind(:_cleanup_) do
           Vedeu.trigger(:_drb_stop_)
           Vedeu.trigger(:cleanup)
-        end
-      end
-
-      # See {file:docs/events/system.md#\_cleanup_}
-      def clear!
-        Vedeu.bind(:_clear_) do |name|
-          if name
-            Vedeu::Clear::NamedInterface.render(name)
-
-          else
-            Vedeu::Terminal::Buffer.clear
-
-          end
         end
       end
 
