@@ -8,7 +8,7 @@ module Vedeu
     #
     module ClassMethods
 
-      attr_accessor :controller_name
+      attr_writer :controller_name
 
       # Specifying the controller name in your controller provides
       # Vedeu with the means to route requests to different parts of

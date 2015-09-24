@@ -33,11 +33,11 @@ module Vedeu
 
       # @!attribute [rw] x
       # @return [Fixnum]
-      attr_accessor :x
+      attr_writer :x
 
       # @!attribute [rw] y
       # @return [Fixnum]
-      attr_accessor :y
+      attr_writer :y
 
       # Returns a new instance of Vedeu::Editor::Cursor.
       #
