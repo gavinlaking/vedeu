@@ -38,7 +38,7 @@ module Vedeu
 
         Vedeu.trigger(:_refresh_, name) if refresh_view?
 
-        Vedeu::Terminal.output(cursor.to_s)
+        cursor.render
       end
 
       protected
