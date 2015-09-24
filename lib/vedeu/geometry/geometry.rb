@@ -143,15 +143,7 @@ module Vedeu
           dyn = yn + 1
         end
 
-        @attributes = attributes.merge(
-          centred:   false,
-          maximised: false,
-          x:         x,
-          xn:        xn,
-          y:         dy,
-          yn:        dyn,
-        )
-        Vedeu::Geometry::Geometry.store(@attributes)
+        Vedeu::Geometry::Geometry.store(move_attributes.merge!(y: dy, yn: dyn))
       end
 
       # Moves the geometry left by one column.
@@ -167,15 +159,7 @@ module Vedeu
           dxn = xn - 1
         end
 
-        @attributes = attributes.merge(
-          centred:   false,
-          maximised: false,
-          x:         dx,
-          xn:        dxn,
-          y:         y,
-          yn:        yn,
-        )
-        Vedeu::Geometry::Geometry.store(@attributes)
+        Vedeu::Geometry::Geometry.store(move_attributes.merge!(x: dx, xn: dxn))
       end
 
       # Moves the geometry to the top left of the terminal.
@@ -183,15 +167,11 @@ module Vedeu
       # TODO: Move cursor also.
       # @return [Vedeu::Geometry::Geometry]
       def move_origin
-        @attributes = attributes.merge(
-          centred:   false,
-          maximised: false,
-          x:         1,
-          xn:        xn - x + 1,
-          y:         1,
-          yn:        yn - y + 1,
-        )
-        Vedeu::Geometry::Geometry.store(@attributes)
+        Vedeu::Geometry::Geometry.store(
+          move_attributes.merge!(x:  1,
+                                 xn: (xn - x + 1),
+                                 y:  1,
+                                 yn: (yn - y + 1)))
       end
 
       # Moves the geometry right by one column.
@@ -207,15 +187,7 @@ module Vedeu
           dxn = xn + 1
         end
 
-        @attributes = attributes.merge(
-          centred:   false,
-          maximised: false,
-          x:         dx,
-          xn:        dxn,
-          y:         y,
-          yn:        yn,
-        )
-        Vedeu::Geometry::Geometry.store(@attributes)
+        Vedeu::Geometry::Geometry.store(move_attributes.merge!(x: dx, xn: dxn))
       end
 
       # Moves the geometry up by one column.
@@ -231,15 +203,7 @@ module Vedeu
           dyn = yn - 1
         end
 
-        @attributes = attributes.merge(
-          centred:   false,
-          maximised: false,
-          x:         x,
-          xn:        xn,
-          y:         dy,
-          yn:        dyn,
-        )
-        Vedeu::Geometry::Geometry.store(@attributes)
+        Vedeu::Geometry::Geometry.store(move_attributes.merge!(y: dy, yn: dyn))
       end
 
       # Will unmaximise the named interface geometry. Previously, when
@@ -273,7 +237,7 @@ module Vedeu
         @area = Vedeu::Geometry::Area.from_attributes(area_attributes)
       end
 
-      # @return [Hash<Symbol => Fixnum, Boolean>]
+      # @return [Hash<Symbol => Boolean, Fixnum>]
       def area_attributes
         {
           y:         _y,
@@ -287,6 +251,17 @@ module Vedeu
           centred:   centred,
           maximised: maximised,
         }
+      end
+
+      # @return [Hash<Symbol => Boolean, Fixnum>]
+      def move_attributes
+        @attributes.merge(
+          centred:   false,
+          maximised: false,
+          x:         x,
+          xn:        xn,
+          y:         y,
+          yn:        yn)
       end
 
       # Returns the row/line start position for the interface.
