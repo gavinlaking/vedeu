@@ -19,6 +19,7 @@ module Vedeu
       Vedeu::Bindings::Focus.setup!
       Vedeu::Bindings::Refresh.setup!
       Vedeu::Bindings::System.setup!
+      Vedeu::Bindings::View.setup!
 
       true
     end

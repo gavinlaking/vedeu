@@ -14,6 +14,7 @@ module Vedeu
       #
       # @return [TrueClass]
       def setup!
+        clear!
         clear_group!
         hide_cursor!
         hide_group!
@@ -29,6 +30,19 @@ module Vedeu
       private
 
       # :nocov:
+
+      # See {file:docs/events/system.md#\_cleanup_}
+      def clear!
+        Vedeu.bind(:_clear_) do |name|
+          if name
+            Vedeu::Clear::NamedInterface.render(name)
+
+          else
+            Vedeu::Terminal::Buffer.clear
+
+          end
+        end
+      end
 
       # See {file:docs/events/visibility.md#\_clear_group_}
       def clear_group!

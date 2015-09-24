@@ -45,6 +45,12 @@ module Vedeu
       # @return [Fixnum]
       attr_writer :y
 
+      # @param attributes [Hash] See #initialize
+      # @return [Vedeu::Cursors::Cursor]
+      def self.store(attributes)
+        new(attributes).store
+      end
+
       # Returns a new instance of Vedeu::Cursors::Cursor.
       #
       # @param attributes [Hash]
@@ -60,7 +66,6 @@ module Vedeu
       #   the cursor.
       # @option attributes y [Fixnum] The terminal y coordinate for
       #   the cursor.
-      #
       # @return [Vedeu::Cursors::Cursor]
       def initialize(attributes = {})
         @attributes = defaults.merge!(attributes)
@@ -70,15 +75,23 @@ module Vedeu
         end
       end
 
+      # An object is equal when its values are the same.
+      #
+      # @param other [Vedeu::Cursors::Cursor]
+      # @return [Boolean]
+      def eql?(other)
+        self.class == other.class && name == other.name
+      end
+      alias_method :==, :eql?
+
       # Moves the cursor down by one row.
       #
       # @return [Vedeu::Cursors::Cursor]
       def move_down
         @oy += 1
 
-        @attributes = new_attributes(coordinate.y_position, x, oy, ox)
-
-        Vedeu::Cursors::Cursor.new(@attributes).store
+        Vedeu::Cursors::Cursor.store(
+          new_attributes(coordinate.y_position, x, oy, ox))
       end
 
       # Moves the cursor left by one column.
@@ -87,18 +100,16 @@ module Vedeu
       def move_left
         @ox -= 1
 
-        @attributes = new_attributes(y, coordinate.x_position, oy, ox)
-
-        Vedeu::Cursors::Cursor.new(@attributes).store
+        Vedeu::Cursors::Cursor.store(
+          new_attributes(y, coordinate.x_position, oy, ox))
       end
 
       # Moves the cursor to the top left of the named interface.
       #
       # @return [Vedeu::Cursors::Cursor]
       def move_origin
-        @attributes = attributes.merge!(x: bx, y: by, ox: 0, oy: 0)
-
-        Vedeu::Cursors::Cursor.new(@attributes).store
+        Vedeu::Cursors::Cursor.store(
+          attributes.merge!(x: bx, y: by, ox: 0, oy: 0))
       end
 
       # Moves the cursor right by one column.
@@ -107,9 +118,8 @@ module Vedeu
       def move_right
         @ox += 1
 
-        @attributes = new_attributes(y, coordinate.x_position, oy, ox)
-
-        Vedeu::Cursors::Cursor.new(@attributes).store
+        Vedeu::Cursors::Cursor.store(
+          new_attributes(y, coordinate.x_position, oy, ox))
       end
 
       # Moves the cursor up by one row.
@@ -118,9 +128,8 @@ module Vedeu
       def move_up
         @oy -= 1
 
-        @attributes = new_attributes(coordinate.y_position, x, oy, ox)
-
-        Vedeu::Cursors::Cursor.new(@attributes).store
+        Vedeu::Cursors::Cursor.store(
+          new_attributes(coordinate.y_position, x, oy, ox))
       end
 
       # Renders the cursor.
@@ -136,12 +145,11 @@ module Vedeu
       # @param new_ox [Fixnum] The column/character position.
       # @return [Vedeu::Cursors::Cursor]
       def reposition(new_oy, new_ox)
-        @attributes = new_attributes(coordinate.y_position,
-                                     coordinate.x_position,
-                                     new_oy,
-                                     new_ox)
+        @oy = new_oy
+        @ox = new_ox
 
-        Vedeu::Cursors::Cursor.new(@attributes).store
+        Vedeu::Cursors::Cursor.store(
+          new_attributes(coordinate.y_position, coordinate.x_position, oy, ox))
       end
 
       # Returns an escape sequence to position the cursor and set its

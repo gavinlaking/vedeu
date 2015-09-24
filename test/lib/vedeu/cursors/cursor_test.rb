@@ -72,6 +72,26 @@ module Vedeu
         it { instance.must_respond_to(:y=) }
       end
 
+      describe '.store' do
+        subject { described.store(attributes) }
+
+        it { subject.must_equal(instance) }
+      end
+
+      describe '#eql?' do
+        let(:other) { instance }
+
+        subject { instance.eql?(other) }
+
+        it { subject.must_equal(true) }
+
+        context 'when different to other' do
+          let(:other) { described.new(name: 'other_cursor') }
+
+          it { subject.must_equal(false) }
+        end
+      end
+
       describe '#hide' do
         let(:visible)     { true }
         let(:hide_cursor) {
@@ -224,8 +244,8 @@ module Vedeu
 
         it { subject.must_be_instance_of(described) }
 
-        it { subject.x.must_equal(8) }
-        it { subject.y.must_equal(7) }
+        it { subject.x.must_equal(10) }
+        it { subject.y.must_equal(8) }
         it { subject.ox.must_equal(5) }
         it { subject.oy.must_equal(3) }
       end

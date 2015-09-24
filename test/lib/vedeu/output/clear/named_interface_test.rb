@@ -29,14 +29,6 @@ module Vedeu
         let(:geometry)  {
           Vedeu::Geometry::Geometry.new(name: _name, x: 1, y: 1, xn: 2, yn: 2)
         }
-
-        before do
-          Vedeu.interfaces.stubs(:by_name).returns(interface)
-          Vedeu.geometries.stubs(:by_name).returns(geometry)
-        end
-
-        subject { instance.render }
-
         let(:output) {
           [
             [
@@ -51,6 +43,19 @@ module Vedeu
           ]
         }
 
+        before do
+          Vedeu.interfaces.stubs(:by_name).returns(interface)
+          Vedeu.geometries.stubs(:by_name).returns(geometry)
+          Vedeu::Output::Output.stubs(:render).returns(output)
+        end
+
+        subject { instance.render }
+
+        it { subject.must_be_instance_of(Array) }
+        it {
+          Vedeu::Output::Output.expects(:render).with(output)
+          subject
+        }
         it { subject.must_equal(output) }
       end
 

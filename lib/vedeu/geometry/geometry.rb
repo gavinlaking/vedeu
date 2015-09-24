@@ -72,6 +72,12 @@ module Vedeu
       # @return [Fixnum]
       attr_writer :yn
 
+      # @param attributes [Hash] See #initialize
+      # @return [Vedeu::Geometry::Geometry]
+      def self.store(attributes)
+        new(attributes).store
+      end
+
       # Returns a new instance of Vedeu::Geometry::Geometry.
       #
       # @param attributes [Hash]
@@ -93,6 +99,15 @@ module Vedeu
           instance_variable_set("@#{key}", value)
         end
       end
+
+      # An object is equal when its values are the same.
+      #
+      # @param other [Vedeu::Geometry::Geometry]
+      # @return [Boolean]
+      def eql?(other)
+        self.class == other.class && name == other.name
+      end
+      alias_method :==, :eql?
 
       # Will maximise the named interface geometry. This means it will
       # occupy all of the available space on the terminal window.
@@ -128,15 +143,7 @@ module Vedeu
           dyn = yn + 1
         end
 
-        @attributes = attributes.merge(
-          centred:   false,
-          maximised: false,
-          x:         x,
-          xn:        xn,
-          y:         dy,
-          yn:        dyn,
-        )
-        Vedeu::Geometry::Geometry.new(@attributes).store
+        Vedeu::Geometry::Geometry.store(move_attributes.merge!(y: dy, yn: dyn))
       end
 
       # Moves the geometry left by one column.
@@ -152,15 +159,7 @@ module Vedeu
           dxn = xn - 1
         end
 
-        @attributes = attributes.merge(
-          centred:   false,
-          maximised: false,
-          x:         dx,
-          xn:        dxn,
-          y:         y,
-          yn:        yn,
-        )
-        Vedeu::Geometry::Geometry.new(@attributes).store
+        Vedeu::Geometry::Geometry.store(move_attributes.merge!(x: dx, xn: dxn))
       end
 
       # Moves the geometry to the top left of the terminal.
@@ -168,15 +167,11 @@ module Vedeu
       # TODO: Move cursor also.
       # @return [Vedeu::Geometry::Geometry]
       def move_origin
-        @attributes = attributes.merge(
-          centred:   false,
-          maximised: false,
-          x:         1,
-          xn:        xn - x + 1,
-          y:         1,
-          yn:        yn - y + 1,
-        )
-        Vedeu::Geometry::Geometry.new(@attributes).store
+        Vedeu::Geometry::Geometry.store(
+          move_attributes.merge!(x:  1,
+                                 xn: (xn - x + 1),
+                                 y:  1,
+                                 yn: (yn - y + 1)))
       end
 
       # Moves the geometry right by one column.
@@ -192,15 +187,7 @@ module Vedeu
           dxn = xn + 1
         end
 
-        @attributes = attributes.merge(
-          centred:   false,
-          maximised: false,
-          x:         dx,
-          xn:        dxn,
-          y:         y,
-          yn:        yn,
-        )
-        Vedeu::Geometry::Geometry.new(@attributes).store
+        Vedeu::Geometry::Geometry.store(move_attributes.merge!(x: dx, xn: dxn))
       end
 
       # Moves the geometry up by one column.
@@ -216,15 +203,7 @@ module Vedeu
           dyn = yn - 1
         end
 
-        @attributes = attributes.merge(
-          centred:   false,
-          maximised: false,
-          x:         x,
-          xn:        xn,
-          y:         dy,
-          yn:        dyn,
-        )
-        Vedeu::Geometry::Geometry.new(@attributes).store
+        Vedeu::Geometry::Geometry.store(move_attributes.merge!(y: dy, yn: dyn))
       end
 
       # Will unmaximise the named interface geometry. Previously, when
@@ -258,7 +237,7 @@ module Vedeu
         @area = Vedeu::Geometry::Area.from_attributes(area_attributes)
       end
 
-      # @return [Hash<Symbol => Fixnum, Boolean>]
+      # @return [Hash<Symbol => Boolean, Fixnum>]
       def area_attributes
         {
           y:         _y,
@@ -272,6 +251,17 @@ module Vedeu
           centred:   centred,
           maximised: maximised,
         }
+      end
+
+      # @return [Hash<Symbol => Boolean, Fixnum>]
+      def move_attributes
+        @attributes.merge(
+          centred:   false,
+          maximised: false,
+          x:         x,
+          xn:        xn,
+          y:         y,
+          yn:        yn)
       end
 
       # Returns the row/line start position for the interface.

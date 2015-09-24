@@ -10,13 +10,6 @@ popular here.
 
     Vedeu.trigger(:_exit_)
 
-### :_clear_
-Clears the whole terminal space, or when a name is given, the named
-interface area will be cleared.
-
-    Vedeu.trigger(:_clear_)
-    Vedeu.clear_by_name(name)
-
 ### :_command_
 Will cause the triggering of the `:command` event; which you should
 define to 'do things'.
@@ -60,13 +53,6 @@ logging is enabled in the configuration.
 
     Vedeu.trigger(:_log_, message)
 
-### :_maximise_
-Maximising an interface.
-
-    Vedeu.trigger(:_maximise_, name)
-
-See {Vedeu::Geometry::Geometry#maximise}
-
 ### :_mode_switch_
 When triggered (by default, after the user presses `escape`), Vedeu
 switches between modes of the terminal. The idea here being
@@ -75,16 +61,3 @@ modes allow the user to enter more elaborate commands- such as commands
 with arguments.
 
     Vedeu.trigger(:_mode_switch_)
-
-### :_resize_
-When triggered will cause Vedeu to trigger the `:_clear_` and
-`:_refresh_` events. Please see those events for their behaviour.
-
-    Vedeu.trigger(:_resize_)
-
-### :_unmaximise_
-Unmaximising an interface.
-
-    Vedeu.trigger(:_unmaximise_, name)
-
-See {Vedeu::Geometry::Geometry#unmaximise}

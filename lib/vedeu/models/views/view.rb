@@ -80,8 +80,9 @@ module Vedeu
       def render
         return [] unless visible?
 
+        Vedeu.trigger(:_clear_, name)
+
         output = [
-          Vedeu::Clear::NamedInterface.render(name),
           Vedeu::Output::Viewport.render(self),
           Vedeu.borders.by_name(name).render,
         ]
