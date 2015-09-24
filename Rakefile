@@ -3,16 +3,16 @@ require 'rake/testtask'
 require 'yard'
 require 'rubocop/rake_task'
 
-Rake::TestTask.new(:test) do |t|
-  t.libs.push 'lib'
-  t.libs.push 'test'
-  t.pattern = 'test/**/*_test.rb'
-  t.verbose = false
-  t.warning = false # set to true for Ruby warnings (ruby -w)
+Rake::TestTask.new(:test) do |task|
+  task.libs.push 'lib'
+  task.libs.push 'test'
+  task.pattern = 'test/**/*_test.rb'
+  task.verbose = false
+  task.warning = true # set to true for Ruby warnings (ruby -w)
 end
 
-YARD::Rake::YardocTask.new(:yard) do |t|
-  t.files = [
+YARD::Rake::YardocTask.new(:yard) do |task|
+  task.files = [
     'lib/**/*.rb',
     '-',
     'docs/api.md',
