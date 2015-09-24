@@ -244,8 +244,8 @@ module Vedeu
 
         it { subject.must_be_instance_of(described) }
 
-        it { subject.x.must_equal(8) }
-        it { subject.y.must_equal(7) }
+        it { subject.x.must_equal(10) }
+        it { subject.y.must_equal(8) }
         it { subject.ox.must_equal(5) }
         it { subject.oy.must_equal(3) }
       end

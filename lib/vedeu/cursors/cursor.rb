@@ -150,10 +150,13 @@ module Vedeu
       # @param new_ox [Fixnum] The column/character position.
       # @return [Vedeu::Cursors::Cursor]
       def reposition(new_oy, new_ox)
+        @oy = new_oy
+        @ox = new_ox
+
         @attributes = new_attributes(coordinate.y_position,
                                      coordinate.x_position,
-                                     new_oy,
-                                     new_ox)
+                                     oy,
+                                     ox)
 
         Vedeu::Cursors::Cursor.store(@attributes)
       end
