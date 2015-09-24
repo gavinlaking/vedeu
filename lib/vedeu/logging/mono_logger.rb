@@ -12,6 +12,7 @@ module Vedeu
       #   (typically STDOUT, STDERR or an open file).
       # @return [Vedeu::Logging::MonoLogger]
       def initialize(logdev)
+        @progname          = 'Vedeu'
         @level             = Logger::DEBUG
         @default_formatter = Logger::Formatter.new
         @formatter         = nil
