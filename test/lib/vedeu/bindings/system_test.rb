@@ -14,10 +14,7 @@ module Vedeu
         it { Vedeu.bound?(:_initialize_).must_equal(true) }
         it { Vedeu.bound?(:_keypress_).must_equal(true) }
         it { Vedeu.bound?(:_log_).must_equal(true) }
-        it { Vedeu.bound?(:_maximise_).must_equal(true) }
         it { Vedeu.bound?(:_mode_switch_).must_equal(true) }
-        it { Vedeu.bound?(:_resize_).must_equal(true) }
-        it { Vedeu.bound?(:_unmaximise_).must_equal(true) }
       end
 
     end # System

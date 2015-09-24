@@ -29,6 +29,9 @@ See {file:docs/events/menu.md}
 ### Movement Events
 See {file:docs/events/movement.md}
 
+### View Events
+See {file:docs/events/view.md}
+
 ### Visibility Events
 See {file:docs/events/visibility.md}
 

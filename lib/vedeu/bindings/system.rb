@@ -20,10 +20,7 @@ module Vedeu
         initialize!
         keypress!
         log!
-        maximise!
         mode_switch!
-        resize!
-        unmaximise!
       end
 
       private
@@ -70,28 +67,9 @@ module Vedeu
         Vedeu.bind(:_log_) { |msg| Vedeu.log(type: :debug, message: msg) }
       end
 
-      # See {file:docs/events/system.md#\_maximise_}
-      def maximise!
-        Vedeu.bind(:_maximise_) do |name|
-          Vedeu.geometries.by_name(name).maximise
-        end
-      end
-
       # See {file:docs/events/system.md#\_mode_switch_}
       def mode_switch!
         Vedeu.bind(:_mode_switch_) { fail Vedeu::Error::ModeSwitch }
-      end
-
-      # See {file:docs/events/system.md#\_resize_}
-      def resize!
-        Vedeu.bind(:_resize_, delay: 0.25) { Vedeu.resize }
-      end
-
-      # See {file:docs/events/system.md#\_unmaximise_}
-      def unmaximise!
-        Vedeu.bind(:_unmaximise_) do |name|
-          Vedeu.geometries.by_name(name).unmaximise
-        end
       end
 
       # :nocov:
