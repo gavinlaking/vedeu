@@ -82,19 +82,24 @@ module Vedeu
     #
     # @return [Set]
     def reset
-      @storage = Set.new
+      @storage = in_memory
     end
 
     private
 
     # @return [Set]
-    def storage
-      @storage ||= reset
+    def in_memory
+      Set.new
     end
 
     # @return [Mutex]
     def mutex
       @mutex ||= Mutex.new
+    end
+
+    # @return [Set]
+    def storage
+      @storage ||= in_memory
     end
 
   end # Renderers
