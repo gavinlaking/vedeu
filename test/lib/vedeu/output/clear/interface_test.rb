@@ -4,11 +4,11 @@ module Vedeu
 
   module Clear
 
-    describe NamedInterface do
+    describe Interface do
 
-      let(:described) { Vedeu::Clear::NamedInterface }
+      let(:described) { Vedeu::Clear::Interface }
       let(:instance)  { described.new(_name) }
-      let(:_name)     { 'Vedeu::Clear::NamedInterface' }
+      let(:_name)     { 'Vedeu::Clear::Interface' }
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
@@ -59,7 +59,7 @@ module Vedeu
         it { subject.must_equal(output) }
       end
 
-    end # NamedInterface
+    end # Interface
 
   end # Clear
 

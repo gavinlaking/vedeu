@@ -107,14 +107,14 @@ module Vedeu
         subject { instance.hide }
 
         it {
-          Vedeu.expects(:trigger).with(:_clear_, _name)
+          Vedeu.expects(:trigger).with(:_clear_view_, _name)
           subject
         }
       end
 
       describe '#show' do
         before do
-          # Vedeu::Clear::NamedInterface.stubs(:render)
+          # Vedeu::Clear::Interface.stubs(:render)
           Vedeu::Output::Output.stubs(:render)
         end
 

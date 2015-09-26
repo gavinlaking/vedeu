@@ -38,13 +38,9 @@ module Vedeu
       #
       # @return [Array]
       def trigger
-        if results.one?
-          results[0]
+        return results[0] if results.one?
 
-        else
-          results
-
-        end
+        results
       end
 
       protected
@@ -72,17 +68,13 @@ module Vedeu
       #
       # @return [Array|Array<Vedeu::Events::Event>]
       def registered_events
-        if repository.registered?(name)
-          repository.find(name)
+        return repository.find(name) if repository.registered?(name)
 
-        else
-          Vedeu::Events::Aliases.find(name).map do |event_name|
-            Vedeu::Events::Trigger.trigger(event_name, *args)
-          end
-
-          []
-
+        Vedeu::Events::Aliases.find(name).map do |event_name|
+          Vedeu::Events::Trigger.trigger(event_name, *args)
         end
+
+        []
       end
 
     end # Trigger

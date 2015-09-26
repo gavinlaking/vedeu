@@ -108,7 +108,7 @@ module Vedeu
       #
       # @return [Array<Array<Array<Vedeu::Views::Char>>>]
       def hide
-        Vedeu.trigger(:_clear_, name)
+        Vedeu.trigger(:_clear_view_, name)
       end
 
       # Return the content for this buffer.

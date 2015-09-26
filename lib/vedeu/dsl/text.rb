@@ -1,3 +1,4 @@
+
 module Vedeu
 
   module DSL
@@ -38,28 +39,30 @@ module Vedeu
       #
       #   right 'This will be right aligned.', width: 35
       #   # => '        This will be right aligned.'
-
-      #   right 'This will be right aligned.', width: 35, anchor: centre
-      #   # => '        This will be right aligned.'
       #
-      #   text 'This will be truncated here. More text here.', width: 28
-      #   # => 'This will be truncated here.'
+      #   right 'This will be right aligned.', width: 35,
+      #     anchor: centre
       #
-      #   text 'Padded with hyphens.', width: 25, pad: '-', anchor: :right
-      #   # => '-----Padded with hyphens.'
+      #   text 'This will be truncated here. More text here.',
+      #     width: 28 # => 'This will be truncated here.'
       #
-      # @param value [String|Object] A string or object that responds to `to_s`.
+      #   text 'Padded with hyphens.', width: 25, pad: '-',
+      #     anchor: :right # => '-----Padded with hyphens.'
+      #
+      # @param value [String|Object] A string or object that responds
+      #   to `to_s`.
       # @param options [Hash] Text options.
-      # @option options :anchor [Symbol] One of `:left`, `:centre`/`:center`, or
-      #   `:right`.
-      # @option options :width [Integer|NilClass] The width of the text stream
-      #   to add. If the `string` provided is longer than this value, the string
-      #   will be truncated. If no width is provided in the context of 'lines',
-      #   then the interface width is used. If no width is provided in the
-      #   context of a 'stream', then no alignment will occur.
-      # @option options :pad [String] The character to use to pad the width, by
-      #   default uses an empty space (0x20). Only when the string is shorter
-      #   than the specified width.
+      # @option options :anchor [Symbol] One of `:left`,
+      #   `:centre`/`:center`, or `:right`.
+      # @option options :width [Integer|NilClass] The width of the
+      #   text stream to add. If the `string` provided is longer than
+      #   this value, the string will be truncated. If no width is
+      #   provided in the context of 'lines', then the interface width
+      #   is used. If no width is provided in the context of a
+      #   'stream', then no alignment will occur.
+      # @option options :pad [String] The character to use to pad the
+      #   width, by default uses an empty space (0x20). Only when the
+      #   string is shorter than the specified width.
       # @return [String]
       def text(value = '', options = {})
         options.merge!(anchor: __callee__, model: model)

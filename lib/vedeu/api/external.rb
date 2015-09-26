@@ -138,16 +138,16 @@ module Vedeu
       def_delegators Vedeu::Runtime::Application, :exit
 
       # @!method clear
-      #   @see Vedeu::Terminal#clear
-      def_delegators Vedeu::Terminal, :clear
+      #   @see Vedeu::Terminal::Buffer#clear
+      def_delegators Vedeu::Terminal::Buffer, :clear
 
       # @!method clear_by_name
-      #   @see Vedeu::Clear::NamedInterface.render
-      def_delegators Vedeu::Clear::NamedInterface, :clear_by_name
+      #   @see Vedeu::Clear::Interface.render
+      def_delegators Vedeu::Clear::Interface, :clear_by_name
 
       # @!method clear_by_group
-      #   @see Vedeu::Clear::NamedGroup.render
-      def_delegators Vedeu::Clear::NamedGroup, :clear_by_group
+      #   @see Vedeu::Clear::Group.render
+      def_delegators Vedeu::Clear::Group, :clear_by_group
 
       # @!method hide_cursor
       #   @see Vedeu::Cursors::Cursor#hide

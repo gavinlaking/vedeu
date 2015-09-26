@@ -22,7 +22,8 @@ require 'thor'
 
 require 'vedeu/logging/log'
 
-# Vedeu is a GUI framework for terminal/console applications written in Ruby.
+# Vedeu is a GUI framework for terminal/console applications written
+# in Ruby.
 #
 module Vedeu
 
@@ -39,8 +40,8 @@ module Vedeu
   end
 
   # :nocov:
-  # When Vedeu is included within one of your classes, you should have all
-  # API methods at your disposal.
+  # When Vedeu is included within one of your classes, you should have
+  # all API methods at your disposal.
   #
   # @example
   #   class YourClassHere

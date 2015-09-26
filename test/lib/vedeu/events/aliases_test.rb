@@ -34,8 +34,6 @@ module Vedeu
         subject { described.empty? }
 
         context 'when no aliases are registered' do
-          before { described.reset }
-
           it { subject.must_equal(true) }
         end
 
@@ -70,8 +68,6 @@ module Vedeu
       describe '.remove' do
         let(:alias_name) { :alias_test }
 
-        before { described.reset }
-
         subject { described.remove(alias_name) }
 
         it { described.must_respond_to(:unbind_alias) }
@@ -102,8 +98,6 @@ module Vedeu
       end
 
       describe '.storage' do
-        before { described.reset }
-
         subject { described.storage }
 
         it { subject.must_equal({}) }

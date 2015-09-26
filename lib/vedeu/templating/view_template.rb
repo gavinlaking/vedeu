@@ -54,16 +54,12 @@ module Vedeu
       #
       # @return [Vedeu::Colours::Colour|Hash<Symbol => Symbol>]
       def default_colour
-        if options[:name]
-          interface.colour
+        return interface.colour if options[:name]
 
-        else
-          {
-            background: :default,
-            foreground: :default,
-          }
-
-        end
+        {
+          background: :default,
+          foreground: :default,
+        }
       end
 
       # Return the interface style(s) if a name option is set,
@@ -71,13 +67,9 @@ module Vedeu
       #
       # @return [Symbol]
       def default_style
-        if options[:name]
-          interface.style
+        return interface.style if options[:name]
 
-        else
-          :normal
-
-        end
+        :normal
       end
 
       # Fetch the interface by name.

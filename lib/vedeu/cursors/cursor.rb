@@ -136,7 +136,7 @@ module Vedeu
       #
       # @return [Array<Vedeu::Models::Escape>]
       def render
-        Vedeu::Output::Output.render(visibility)
+        Vedeu::Output::Output.render(escape_sequence)
       end
 
       # Arbitrarily move the cursor to a given position.
@@ -158,13 +158,9 @@ module Vedeu
       #
       # @return [String]
       def to_s
-        if block_given?
-          "#{position}#{yield}#{visibility}"
+        return escape_sequence.to_s unless block_given?
 
-        else
-          "#{visibility}"
-
-        end
+        "#{position}#{yield}#{escape_sequence}"
       end
       alias_method :to_str, :to_s
 
@@ -221,13 +217,9 @@ module Vedeu
       #
       # @return [Vedeu::Models::Escape]
       def toggle
-        if visible?
-          hide
+        return hide if visible?
 
-        else
-          show
-
-        end
+        show
       end
 
       # @return [Fixnum] The column/character coordinate.
@@ -277,6 +269,11 @@ module Vedeu
         }
       end
 
+      # @return [Vedeu::Models::Escape]
+      def escape_sequence
+        Vedeu::Models::Escape.new(position: position, value: visibility)
+      end
+
       # @return [Hash]
       def new_attributes(new_y = y, new_x = x, new_oy = oy, new_ox = ox)
         attributes.merge!(x: new_x, y: new_y, ox: new_ox, oy: new_oy)
@@ -287,15 +284,9 @@ module Vedeu
       #
       # @return [String]
       def visibility
-        value = if visible?
-                  Vedeu::EscapeSequences::Esc.show_cursor
+        return Vedeu::EscapeSequences::Esc.show_cursor if visible?
 
-                else
-                  Vedeu::EscapeSequences::Esc.hide_cursor
-
-                end
-
-        Vedeu::Models::Escape.new(position: position, value: value)
+        Vedeu::EscapeSequences::Esc.hide_cursor
       end
 
     end # Cursor

@@ -102,15 +102,11 @@ module Vedeu
       #
       # @return [Vedeu::Views::Line|Vedeu::Views::Stream]
       def content
-        if model.is_a?(Vedeu::Views::View)
-          stream.parent = line
-          line.add(stream)
-          line
+        return stream unless model.is_a?(Vedeu::Views::View)
 
-        else
-          stream
-
-        end
+        stream.parent = line
+        line.add(stream)
+        line
       end
 
       # The default values for a new instance of this class.

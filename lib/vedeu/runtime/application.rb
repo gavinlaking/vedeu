@@ -86,13 +86,9 @@ module Vedeu
       #
       # @return [void]
       def runner
-        if configuration.once?
-          yield
+        return yield if configuration.once?
 
-        else
-          run_many { yield }
-
-        end
+        run_many { yield }
       end
 
       # For an interactive application we capture input, (usually from

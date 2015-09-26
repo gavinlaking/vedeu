@@ -22,8 +22,8 @@ module Vedeu
       # @return [Vedeu::Output::Direct]
       def initialize(value:, x:, y:)
         @value = value || ''
-        @x     = x     || 1
-        @y     = y     || 1
+        @x     = x || 1
+        @y     = y || 1
       end
 
       # @return [String]

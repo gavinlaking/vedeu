@@ -4,12 +4,12 @@ module Vedeu
 
   module Renderers
 
-    describe RendererOptions do
+    describe Options do
 
       # @todo Add more tests.
       # it { skip }
 
-    end # RendererOptions
+    end # Options
 
   end # Renderers
 

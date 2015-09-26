@@ -61,8 +61,8 @@ module Vedeu
         end
       end
 
-      # Hide a named interface buffer, or without a name, the buffer of the
-      # currently focussed interface.
+      # Hide a named interface buffer, or without a name, the buffer
+      # of the currently focussed interface.
       #
       # @example
       #   Vedeu.hide_interface(name)
@@ -74,8 +74,8 @@ module Vedeu
         Vedeu.buffers.by_name(name).hide
       end
 
-      # Show the named interface buffer, or without a name, the buffer of the
-      # currently focussed interface.
+      # Show the named interface buffer, or without a name, the buffer
+      # of the currently focussed interface.
       #
       # @example
       #   Vedeu.show_interface(name)
@@ -94,13 +94,9 @@ module Vedeu
       #
       # @return [void]
       def toggle
-        if visible?
-          hide
+        return hide if visible?
 
-        else
-          show
-
-        end
+        show
       end
 
       private

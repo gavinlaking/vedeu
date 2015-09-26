@@ -21,7 +21,8 @@ module Vedeu
     #
     # @example
     #   snake_case(MyClassName) # => "my_class_name"
-    #   snake_case(NameSpaced::ClassName) # => "name_spaced/class_name"
+    #   snake_case(NameSpaced::ClassName)
+    #   # => "name_spaced/class_name"
     #
     # @param name [String]
     # @return [String]

@@ -24,6 +24,14 @@ module Vedeu
 
     private
 
+    # Returns a boolean indicating the model has a position
+    # attribute.
+    #
+    # @return [Boolean]
+    def position?
+      self.respond_to?(:position) && position.is_a?(Vedeu::Geometry::Position)
+    end
+
     # Renders the colour attributes of the receiver and yields (to
     # then render the styles).
     #
@@ -34,14 +42,9 @@ module Vedeu
 
     # @return [String]
     def render_position
-      if self.respond_to?(:position) &&
-         position.is_a?(Vedeu::Geometry::Position)
-        position.to_s { yield }
+      return yield unless position?
 
-      else
-        yield
-
-      end
+      position.to_s { yield }
     end
 
     # Renders the style attributes of the receiver and yields (to

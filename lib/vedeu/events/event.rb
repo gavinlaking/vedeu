@@ -2,31 +2,30 @@ module Vedeu
 
   module Events
 
-    # Contains all the logic of an event. Handles debouncing and throttling.
+    # Contains all the logic of an event. Handles debouncing and
+    # throttling.
     #
-    # Vedeu provides an event mechanism to facilitate the functionality of your
-    # application. The events are either Vedeu defined, ie. system events or
-    # user defined, ie. user events. User events allow you to orchestrate
-    # behaviour within your application, ie. the user presses a specific key,
-    # you trigger an event to make something happen. Eg. pressing 'p' instructs
-    # the player to play.
+    # Vedeu provides an event mechanism to facilitate the
+    # functionality of your application. The events are either Vedeu
+    # defined, ie. system events or user defined, ie. user events.
+    # User events allow you to orchestrate behaviour within your
+    # application, ie. the user presses a specific key,
+    # you trigger an event to make something happen. Eg. pressing 'p'
+    # instructs the player to play.
     #
-    # Events described here assume that you have either included Vedeu in your
-    # class:
+    # Events described here assume that you have bound the events
+    # within your classes:
     #
     #   class SomeClassInYourApplication
-    #     include Vedeu
-    #
-    #     bind :event_name do |arg1, arg2|
-    #       # Things that should happen when the event is triggered; these can
-    #       # be method calls or the triggering of another event or events.
+    #     Vedeu.bind(:event_name) do |arg1, arg2|
+    #       # Things that should happen when the event is triggered;
+    #       # these can be method calls or the triggering of another
+    #       # event or events.
     #     end
     #
-    # or, you are prepared to use the `Vedeu` prefix:
-    #
-    #   class SomeClassInYourApplication
     #     Vedeu.bind(:event_name) do
-    #       # Not all events you define will have arguments; like methods.
+    #       # Not all events you define will have arguments; like
+    #       # methods.
     #       :do_stuff
     #     end
     #
@@ -36,20 +35,25 @@ module Vedeu
 
       class << self
 
-        # Register an event by name with optional delay (throttling) which when
-        # triggered will execute the code contained within the passed block.
+        # Register an event by name with optional delay (throttling)
+        # which when triggered will execute the code contained within
+        # the passed block.
         #
-        # @param name [Symbol] The name of the event to be triggered later.
-        # @param options [Hash] The options to register the event with.
-        # @option options :delay [Fixnum|Float] Limits the execution of the
-        #   triggered event to only execute when first triggered, with
-        #   subsequent triggering being ignored until the delay has expired.
-        # @option options :debounce [Fixnum|Float] Limits the execution of the
-        #   triggered event to only execute once the debounce has expired.
-        #   Subsequent triggers before debounce expiry are ignored.
-        # @param block [Proc] The event to be executed when triggered. This
-        #   block could be a method call, or the triggering of another event, or
-        #   sequence of either/both.
+        # @param name [Symbol] The name of the event to be triggered
+        #   later.
+        # @param options [Hash] The options to register the event
+        #   with.
+        # @option options :delay [Fixnum|Float] Limits the execution
+        #   of the triggered event to only execute when first
+        #   triggered, with subsequent triggering being ignored until
+        #   the delay has expired.
+        # @option options :debounce [Fixnum|Float] Limits the
+        #   execution of the triggered event to only execute once the
+        #   debounce has expired. Subsequent triggers before debounce
+        #   expiry are ignored.
+        # @param block [Proc] The event to be executed when triggered.
+        #   This block could be a method call, or the triggering of
+        #   another event, or sequence of either/both.
         #
         # @example
         #   Vedeu.bind :my_event do |some, args|
@@ -87,7 +91,8 @@ module Vedeu
         alias_method :event, :bind
         alias_method :register, :bind
 
-        # Return a boolean indicating whether the named event is registered.
+        # Return a boolean indicating whether the named event is
+        # registered.
         #
         # @example
         #   Vedeu.bound?(:some_event)
@@ -153,7 +158,8 @@ module Vedeu
         true
       end
 
-      # Triggers the event based on debouncing and throttling conditions.
+      # Triggers the event based on debouncing and throttling
+      # conditions.
       #
       # @param args [Array]
       # @return [void]
@@ -194,9 +200,9 @@ module Vedeu
         closure.call(*args)
       end
 
-      # Returns a boolean indicating whether throttling is required for this
-      # event. Setting the delay option to any value greater than 0 will enable
-      # throttling.
+      # Returns a boolean indicating whether throttling is required
+      # for this event. Setting the delay option to any value greater
+      # than 0 will enable throttling.
       #
       # @return [Boolean]
       def throttling?
@@ -216,11 +222,12 @@ module Vedeu
         false
       end
 
-      # Returns a boolean indicating whether debouncing is required for this
-      # event. Setting the debounce option to any value greater than 0 will
-      # enable debouncing.
-      # Sets the deadline for when this event can be executed to a point in the
-      # future determined by the amount of debounce time left.
+      # Returns a boolean indicating whether debouncing is required
+      # for this event. Setting the debounce option to any value
+      # greater than 0 will enable debouncing.
+      # Sets the deadline for when this event can be executed to a
+      # point in the future determined by the amount of debounce time
+      # left.
       #
       # @return [Boolean]
       def debouncing?
@@ -242,7 +249,8 @@ module Vedeu
         false
       end
 
-      # Returns a boolean indicating whether this event has a deadline.
+      # Returns a boolean indicating whether this event has a
+      # deadline.
       #
       # @return [Boolean]
       def deadline?
@@ -263,7 +271,8 @@ module Vedeu
         options[:delay] || defaults[:delay]
       end
 
-      # Combines the options provided at instantiation with the default values.
+      # Combines the options provided at instantiation with the
+      # default values.
       #
       # @return [Hash]
       def options

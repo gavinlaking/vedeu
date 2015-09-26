@@ -16,6 +16,7 @@ module Vedeu
         refresh!
         refresh_cursor!
         refresh_group!
+        refresh_view!
       end
 
       private
@@ -24,15 +25,7 @@ module Vedeu
 
       # See {file:docs/events/refresh.md#\_refresh_}
       def refresh!
-        Vedeu.bind(:_refresh_) do |name|
-          if name
-            Vedeu::Buffers::Refresh.by_name(name)
-
-          else
-            Vedeu::Output::Refresh.all
-
-          end
-        end
+        Vedeu.bind(:_refresh_) { Vedeu::Output::Refresh.all }
       end
 
       # See {file:docs/events/refresh.md#\_refresh_cursor_}
@@ -46,6 +39,13 @@ module Vedeu
       def refresh_group!
         Vedeu.bind(:_refresh_group_) do |name|
           Vedeu::Output::RefreshGroup.by_name(name)
+        end
+      end
+
+      # See {file:docs/events/refresh.md#\_refresh_view_}
+      def refresh_view!
+        Vedeu.bind(:_refresh_view_) do |name|
+          Vedeu::Buffers::Refresh.by_name(name)
         end
       end
 

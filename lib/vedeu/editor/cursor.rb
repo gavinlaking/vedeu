@@ -82,7 +82,7 @@ module Vedeu
       # @return [Vedeu::Editor::Cursor]
       def left
         @ox -= 1 unless @ox == 0
-        @x  -= 1
+        @x -= 1
 
         self
       end
@@ -121,7 +121,7 @@ module Vedeu
       # @return [Vedeu::Editor::Cursor]
       def up
         @oy -= 1 unless @oy == 0
-        @y  -= 1
+        @y -= 1
 
         self
       end

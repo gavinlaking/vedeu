@@ -26,7 +26,9 @@ module Vedeu
             y  1
             yn 3
           end
-          Vedeu::Cursors::Cursor.new(name: 'refresh_cursor', ox: ox, oy: oy).store
+          Vedeu::Cursors::Cursor.new(name: 'refresh_cursor',
+                                     ox:   ox,
+                                     oy:   oy).store
 
           Vedeu::Terminal.stubs(:output).returns(expected)
 
@@ -45,14 +47,14 @@ module Vedeu
           let(:oy) { 3 }
 
           it 'refreshes the view' do
-            Vedeu.expects(:trigger).with(:_refresh_, _name)
+            Vedeu.expects(:trigger).with(:_refresh_view_, _name)
             subject
           end
         end
 
         context 'when the cursors offset position is inside the viewable area' do
           it 'does not refresh the view' do
-            Vedeu.expects(:trigger).with(:_refresh_, _name).never
+            Vedeu.expects(:trigger).with(:_refresh_view_, _name).never
             subject
           end
         end

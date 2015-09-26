@@ -28,13 +28,9 @@ module Vedeu
 
       # @return [Vedeu::Editor::Line|Vedeu::Editor::Lines]
       def insert
-        if index
-          collection.insert(index, entity)
+        return collection.insert(index, entity) if index
 
-        else
-          collection << entity
-
-        end
+        collection << entity
       end
 
       protected

@@ -16,15 +16,10 @@ module Vedeu
       # @param line [String|Vedeu::Editor::Line]
       # @return [Vedeu::Editor::Line]
       def self.coerce(line)
-        return line if line.is_a?(self)
+        return line      if line.is_a?(self)
+        return new(line) if line.is_a?(String)
 
-        if line.is_a?(String)
-          new(line)
-
-        else
-          new
-
-        end
+        new
       end
 
       # Returns a new instance of Vedeu::Editor::Line.

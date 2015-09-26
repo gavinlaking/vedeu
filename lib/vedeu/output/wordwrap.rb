@@ -115,13 +115,9 @@ module Vedeu
       # @param string [String]
       # @return [String]
       def ellipsis_string(string)
-        if string.size < ellipsis.size
-          prune_string(string)
+        return prune_string(string) if string.size < ellipsis.size
 
-        else
-          "#{prune_string(string)}#{ellipsis}"
-
-        end
+        "#{prune_string(string)}#{ellipsis}"
       end
 
       # Returns the string pruned.

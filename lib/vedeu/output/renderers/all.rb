@@ -82,14 +82,14 @@ module Vedeu
     #
     # @return [Set]
     def reset
-      @storage = Set.new
+      @storage = in_memory
     end
 
     private
 
     # @return [Set]
-    def storage
-      @storage ||= reset
+    def in_memory
+      Set.new
     end
 
     # @return [Mutex]
@@ -97,11 +97,16 @@ module Vedeu
       @mutex ||= Mutex.new
     end
 
+    # @return [Set]
+    def storage
+      @storage ||= in_memory
+    end
+
   end # Renderers
 
 end # Vedeu
 
-require 'vedeu/output/renderers/renderer_options'
+require 'vedeu/output/renderers/options'
 require 'vedeu/output/renderers/escape_sequence'
 require 'vedeu/output/renderers/file'
 require 'vedeu/output/renderers/html'

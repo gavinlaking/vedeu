@@ -18,8 +18,9 @@ require 'vedeu/models/toggleable'
 
 require 'vedeu/output/presentation/presentation'
 require 'vedeu/output/direct'
-require 'vedeu/output/clear/named_group'
-require 'vedeu/output/clear/named_interface'
+
+require 'vedeu/output/clear/all'
+
 require 'vedeu/output/compressor'
 require 'vedeu/output/text'
 require 'vedeu/output/output'

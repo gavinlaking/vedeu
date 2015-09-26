@@ -4,11 +4,11 @@ module Vedeu
 
   module Clear
 
-    describe NamedGroup do
+    describe Group do
 
-      let(:described) { Vedeu::Clear::NamedGroup }
+      let(:described) { Vedeu::Clear::Group }
       let(:instance)  { described.new(_name) }
-      let(:_name)     { 'Vedeu::Clear::NamedGroup' }
+      let(:_name)     { 'Vedeu::Clear::Group' }
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
@@ -23,7 +23,7 @@ module Vedeu
         subject { described.render(_name) }
 
         it {
-          Vedeu::Clear::NamedInterface.expects(:render).with(_name)
+          Vedeu::Clear::Interface.expects(:render).with(_name)
           subject
         }
 
@@ -35,7 +35,7 @@ module Vedeu
         it { instance.must_respond_to(:render) }
       end
 
-    end # NamedGroup
+    end # Group
 
   end # Clear
 

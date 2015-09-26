@@ -92,39 +92,6 @@ module Vedeu
         "border-#{direction}:1px #{char.foreground.to_html} solid;"
       end
 
-      # # @return [String]
-      # def fg
-      #   @fg ||= colour(char, 'foreground', '#222')
-      # end
-
-      # # @return [String]
-      # def bg
-      #   @bg ||= colour(char, 'background', '#000')
-      # end
-
-      # @param char [Vedeu::Views::Char]
-      # @param type [String] 'background' or 'foreground'
-      # @param default [String] A default colour (CSS style; e.g. '#b2adf2')
-      # @return [String]
-      # def colour(char, type, default)
-      #   parent_type         = char.send(:parent).send(type).send(:to_html)
-      #   #parent_type         = ('parent_' + type).to_sym
-      #   type_to_html        = char.send(type).send(:to_html)
-      #   #parent_type_to_html = char.send(parent_type).send(:to_html)
-
-      #   if present?(type_to_html)
-      #     type_to_html
-
-      #   elsif char.parent
-      #     parent_type
-      #     #char.parent.send(type).send(:to_html)
-
-      #   else
-      #     default
-
-      #   end
-      # end
-
       # @return [Symbol|NilClass]
       def border
         char.border

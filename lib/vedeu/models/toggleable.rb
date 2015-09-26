@@ -36,16 +36,13 @@ module Vedeu
     #
     # @return [FalseClass|TrueClass]
     def toggle
-      if visible?
-        hide
+      return hide if visible?
 
-      else
-        show
-
-      end
+      show
     end
 
-    # Provide class methods to models to allow the visibility to be changed.
+    # Provide class methods to models to allow the visibility to be
+    # changed.
     #
     module ClassMethods
 
@@ -95,8 +92,8 @@ module Vedeu
 
     end # ClassMethods
 
-    # When this module is included in a class, provide ClassMethods as class
-    # methods for the class.
+    # When this module is included in a class, provide ClassMethods as
+    # class methods for the class.
     #
     # @param klass [Class]
     # @return [void]

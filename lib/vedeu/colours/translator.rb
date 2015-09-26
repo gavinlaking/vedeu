@@ -39,13 +39,9 @@ module Vedeu
       # @param value [Object|NilClass]
       # @return [Object]
       def self.coerce(value)
-        if value.is_a?(self)
-          value
+        return value if value.is_a?(self)
 
-        else
-          new(value)
-
-        end
+        new(value)
       end
 
       # Return a new instance of Vedeu::Colours::Translator.
