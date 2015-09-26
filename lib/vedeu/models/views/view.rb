@@ -97,7 +97,7 @@ module Vedeu
       def store_immediate
         store_deferred
 
-        Vedeu.trigger(:_refresh_, name)
+        Vedeu.trigger(:_refresh_view_, name)
 
         self
       end

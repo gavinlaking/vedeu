@@ -78,7 +78,7 @@ module Vedeu
         it { subject.must_be_instance_of(described) }
 
         it {
-          Vedeu.expects(:trigger).with(:_refresh_, _name)
+          Vedeu.expects(:trigger).with(:_refresh_view_, _name)
           subject
         }
       end

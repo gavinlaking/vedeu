@@ -5,7 +5,7 @@ module Vedeu
     # Refreshes the given named interface.
     #
     # @example
-    #   Vedeu.trigger(:_refresh_, name)
+    #   Vedeu.trigger(:_refresh_view_, name)
     #
     class Refresh
 

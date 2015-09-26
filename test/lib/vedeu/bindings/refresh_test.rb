@@ -10,6 +10,7 @@ module Vedeu
         it { Vedeu.bound?(:_refresh_).must_equal(true) }
         it { Vedeu.bound?(:_refresh_cursor_).must_equal(true) }
         it { Vedeu.bound?(:_refresh_group_).must_equal(true) }
+        it { Vedeu.bound?(:_refresh_view_).must_equal(true) }
       end
 
     end # Refresh
