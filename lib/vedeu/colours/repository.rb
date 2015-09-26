@@ -54,6 +54,7 @@ module Vedeu
       # registers the colour with its respective escape sequence.
       #
       # @return [String]
+      # @todo Unused - GL 2015-09-26
       def retrieve_or_register(colour, escape_sequence)
         if registered?(colour)
           retrieve(colour)
