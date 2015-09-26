@@ -65,7 +65,7 @@ module Vedeu
         #
         # @return [Vedeu::Cursors::Cursor]
         def add_cursor!(name)
-          Vedeu::Cursors::Cursor.new(name: name).store
+          Vedeu::Cursors::Cursor.store(name: name)
         end
 
         # Registers interface name in focus list unless already
@@ -130,7 +130,7 @@ module Vedeu
       def cursor(value = true)
         boolean = value ? true : false
 
-        Vedeu::Cursors::Cursor.new(name: model.name, visible: boolean).store
+        Vedeu::Cursors::Cursor.store(name: model.name, visible: boolean)
       end
 
       # Set the cursor to visible for the interface.
