@@ -1,6 +1,3 @@
-# This is the default configuration file. Enabling and disabling is configured
-# in separate files. This file adds all other parameters apart from Enabled.
-
 inherit_from:
   - config/rubocop_enabled.yml
   - config/rubocop_disabled.yml
@@ -96,9 +93,6 @@ Style/Next:
     - skip_modifier_ifs
     - always
 
-Style/SpaceAroundOperators:
-  Enabled: false
-
 Style/SpaceAroundEqualsInParameterDefault:
   EnforcedStyle: space
 
@@ -117,8 +111,6 @@ Style/TrailingBlankLines:
 Style/TrailingComma:
   EnforcedStyleForMultiline: comma
 
-##################### Metrics ##################################
-
 Metrics/AbcSize:
   # The ABC size is a calculated magnitude, so this number can be a Fixnum or
   # a Float.
@@ -127,62 +119,13 @@ Metrics/AbcSize:
 Metrics/BlockNesting:
   Max: 3
 
-Metrics/ClassLength:
-  CountComments: false  # count full line comments?
-  Max: 100
-
 # Avoid complex methods.
 Metrics/CyclomaticComplexity:
   Max: 12
 
-Metrics/LineLength:
-  Max: 80
-  # To make it possible to copy or click on URIs in the code, we allow lines
-  # contaning a URI to be longer than Max.
-  AllowURI: true
-  URISchemes:
-    - http
-    - https
-
 Metrics/MethodLength:
   CountComments: false  # count full line comments?
-  Max: 70
-
-Metrics/ParameterLists:
-  Max: 5
-  CountKeywordArgs: true
+  Max: 30
 
 Metrics/PerceivedComplexity:
-  Max: 12
-
-##################### Lint ##################################
-
-# Allow safe assignment in conditions.
-Lint/AssignmentInCondition:
-  AllowSafeAssignment: true
-
-# Align ends correctly.
-Lint/EndAlignment:
-  # The value `keyword` means that `end` should be aligned with the matching
-  # keyword (if, while, etc.).
-  # The value `variable` means that in assignments, `end` should be aligned
-  # with the start of the variable on the left hand side of `=`. In all other
-  # situations, `end` should still be aligned with the keyword.
-  AlignWith: keyword
-  SupportedStyles:
-    - keyword
-    - variable
-
-Lint/DefEndAlignment:
-  # The value `def` means that `end` should be aligned with the def keyword.
-  # The value `start_of_line` means that `end` should be aligned with method
-  # calls like `private`, `public`, etc, if present in front of the `def`
-  # keyword on the same line.
-  AlignWith: start_of_line
-  SupportedStyles:
-    - start_of_line
-    - def
-
-Lint/Eval:
-  Description: 'The use of eval represents a serious security risk.'
-  Enabled: false
+  Max: 10
