@@ -36,7 +36,11 @@ module Vedeu
 
       # @return [Hash<String => Symbol>]
       def symbols
-        @symbols ||= f_keys.merge!(ctrl_letters).merge!(specials)
+        @symbols ||= ctrl_letters.merge!(f_keys)
+                     .merge!(shift_f_keys)
+                     .merge!(ctrl_f_keys)
+                     .merge!(direction_keys)
+                     .merge!(specials)
       end
 
       # @return [Hash<String => Symbol>]
@@ -44,10 +48,13 @@ module Vedeu
         {
           "\u0001"  => :ctrl_a,
           "\u0002"  => :ctrl_b,
+
           "\u0003"  => :ctrl_c,
           "\u2404"  => :ctrl_c,
+
           "\u0004"  => :ctrl_d,
           "\u2403"  => :ctrl_d,
+
           "\u0005"  => :ctrl_e,
           "\u0006"  => :ctrl_f,
           "\u0007"  => :ctrl_g,
@@ -61,8 +68,10 @@ module Vedeu
           "\u0015"  => :ctrl_o,
           "\u0016"  => :ctrl_p,
           "\u0017"  => :ctrl_q,
+
           "\u0018"  => :ctrl_r,
           "\u2412"  => :ctrl_r,
+
           "\u0019"  => :ctrl_s,
           # "\u0020"  => :ctrl_t, # duplicates spacebar
           "\u0021"  => :ctrl_u,
@@ -81,38 +90,56 @@ module Vedeu
           "\eOQ"      => :f2,
           "\eOR"      => :f3,
           "\eOS"      => :f4,
-
           "\e[15~"    => :f5,
-          "\e[15;2~"  => :shift_f5,
-          "\e[15;5~"  => :ctrl_f5,
-
           "\e[17~"    => :f6,
-          "\e[17;2~"  => :shift_f6,
-          "\e[17;5~"  => :ctrl_f6,
-
           "\e[18~"    => :f7,
-          "\e[18;2~"  => :shift_f7,
-          "\e[18;5~"  => :ctrl_f7,
-
           "\e[19~"    => :f8,
-          "\e[19;2~"  => :shift_f8,
-          "\e[19;5~"  => :ctrl_f8,
-
           "\e[20~"    => :f9,
-          "\e[20;2~"  => :shift_f9,
-          "\e[20;5~"  => :ctrl_f9,
-
           "\e[21~"    => :f10,
-          "\e[21;2~"  => :shift_f10,
-          "\e[21;5~"  => :ctrl_f10,
-
           "\e[23~"    => :f11,
-          "\e[23;2~"  => :shift_f11,
-          "\e[23;5~"  => :ctrl_f11,
-
           "\e[24~"    => :f12,
+        }
+      end
+
+      # @return [Hash<String => Symbol>]
+      def shift_f_keys
+        {
+          "\e[15;2~"  => :shift_f5,
+          "\e[17;2~"  => :shift_f6,
+          "\e[18;2~"  => :shift_f7,
+          "\e[19;2~"  => :shift_f8,
+          "\e[20;2~"  => :shift_f9,
+          "\e[21;2~"  => :shift_f10,
+          "\e[23;2~"  => :shift_f11,
           "\e[24;2~"  => :shift_f12,
+        }
+      end
+
+      # @return [Hash<String => Symbol>]
+      def ctrl_f_keys
+        {
+          "\e[15;5~"  => :ctrl_f5,
+          "\e[17;5~"  => :ctrl_f6,
+          "\e[18;5~"  => :ctrl_f7,
+          "\e[19;5~"  => :ctrl_f8,
+          "\e[20;5~"  => :ctrl_f9,
+          "\e[21;5~"  => :ctrl_f10,
+          "\e[23;5~"  => :ctrl_f11,
           "\e[24;5~"  => :ctrl_f12,
+        }
+      end
+
+      # @return [Hash<String => Symbol>]
+      def direction_keys
+        {
+          "\e[B"    => :down,
+          "\u2193"  => :down,
+          "\e[D"    => :left,
+          "\u2190"  => :left,
+          "\e[C"    => :right,
+          "\u2192"  => :right,
+          "\e[A"    => :up,
+          "\u2191"  => :up,
         }
       end
 
@@ -124,8 +151,6 @@ module Vedeu
           "\u23CE"  => :carriage_return,
           "\e[3~"   => :delete,
           "\u232B"  => :delete,
-          "\e[B"    => :down,
-          "\u2193"  => :down,
           "\e[F"    => :end,
           "\r"      => :enter,
           "\n"      => :enter,
@@ -134,21 +159,15 @@ module Vedeu
           "\e[H"    => :home,
           "\eOH"    => :home,
           "\e[2~"   => :insert,
-          "\e[D"    => :left,
-          "\u2190"  => :left,
           "\u240A"  => :line_feed,
           "\e[5~"   => :page_up,
           "\e[6~"   => :page_down,
           "\e[1;2R" => :pause_break,
           "\e[1;2P" => :print_screen,
-          "\e[C"    => :right,
-          "\u2192"  => :right,
           "\e[1;2Q" => :scroll_lock,
           "\e[Z"    => :shift_tab,
           "\t"      => :tab,
           "\u21B9"  => :tab,
-          "\e[A"    => :up,
-          "\u2191"  => :up,
         }
       end
 

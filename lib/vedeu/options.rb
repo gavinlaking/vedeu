@@ -8,7 +8,7 @@ module Vedeu
     # @param options [Hash]
     # @param defaults [Hash]
     def initialize(options = {}, defaults = {})
-      @options  = options  || {}
+      @options  = options || {}
       @defaults = defaults || {}
 
       @defaults.merge!(@options).each do |key, value|

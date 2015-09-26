@@ -21,18 +21,7 @@ module Vedeu
           new(document.lines)
 
         elsif document.is_a?(Array)
-          lines = document.map do |line|
-            if line.is_a?(Vedeu::Editor::Line)
-              line
-
-            elsif line.is_a?(String)
-              Vedeu::Editor::Line.coerce(line)
-
-            else
-              Vedeu::Editor::Line.new
-
-            end
-          end
+          lines = document.map { |line| Vedeu::Editor::Line.coerce(line) }
 
           new(lines)
 
