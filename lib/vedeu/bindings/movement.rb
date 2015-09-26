@@ -37,7 +37,7 @@ module Vedeu
 
             Vedeu.trigger(:_clear_)
             Vedeu.trigger(:_refresh_)
-            Vedeu.trigger(:_clear_, name)
+            Vedeu.trigger(:_clear_view_, name)
             Vedeu.trigger(:_refresh_view_, name)
           end
 
@@ -67,7 +67,7 @@ module Vedeu
         Vedeu.bind(:_cursor_reposition_) do |name, y, x|
           Vedeu.cursors.by_name(name).reposition(y, x)
 
-          Vedeu.trigger(:_clear_, name)
+          Vedeu.trigger(:_clear_view_, name)
           Vedeu.trigger(:_refresh_view_, name)
           Vedeu.trigger(:_refresh_cursor_, name)
         end

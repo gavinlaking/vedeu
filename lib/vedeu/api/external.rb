@@ -138,8 +138,8 @@ module Vedeu
       def_delegators Vedeu::Runtime::Application, :exit
 
       # @!method clear
-      #   @see Vedeu::Terminal#clear
-      def_delegators Vedeu::Terminal, :clear
+      #   @see Vedeu::Terminal::Buffer#clear
+      def_delegators Vedeu::Terminal::Buffer, :clear
 
       # @!method clear_by_name
       #   @see Vedeu::Clear::Interface.render

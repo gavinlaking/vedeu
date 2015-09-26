@@ -80,7 +80,7 @@ module Vedeu
       def render
         return [] unless visible?
 
-        Vedeu.trigger(:_clear_, name)
+        Vedeu.trigger(:_clear_view_, name)
 
         output = [
           Vedeu::Output::Viewport.render(self),

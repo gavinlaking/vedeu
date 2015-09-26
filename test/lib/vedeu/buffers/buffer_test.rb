@@ -107,7 +107,7 @@ module Vedeu
         subject { instance.hide }
 
         it {
-          Vedeu.expects(:trigger).with(:_clear_, _name)
+          Vedeu.expects(:trigger).with(:_clear_view_, _name)
           subject
         }
       end

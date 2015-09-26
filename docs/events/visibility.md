@@ -3,11 +3,10 @@
 ## Visibility Events
 
 ### :_clear_
-Clears the whole terminal space, or when a name is given, the named
-interface area will be cleared.
+Clears the whole terminal space.
 
     Vedeu.trigger(:_clear_)
-    Vedeu.clear_by_name(name)
+    Vedeu.clear
 
 ### :_clear_group_
 Clears the spaces occupied by the interfaces belonging to the named
@@ -15,6 +14,12 @@ group.
 
     Vedeu.trigger(:_clear_group_, name)
     Vedeu.clear_by_group(name)
+
+### :_clear_view_
+Clears the named view/interface area.
+
+    Vedeu.trigger(:_clear_view_, name)
+    Vedeu.clear_by_name(name)
 
 ### :_hide_cursor_
 Hide the cursor of the named interface or when a name is not given,

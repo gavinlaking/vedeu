@@ -16,6 +16,7 @@ module Vedeu
       def setup!
         clear!
         clear_group!
+        clear_view!
         hide_cursor!
         hide_group!
         hide_interface!
@@ -31,23 +32,20 @@ module Vedeu
 
       # :nocov:
 
-      # See {file:docs/events/system.md#\_cleanup_}
+      # See {file:docs/events/visibility.md#\_cleanup_}
       def clear!
-        Vedeu.bind(:_clear_) do |name|
-          if name
-            Vedeu::Clear::Interface.render(name)
-
-          else
-            Vedeu::Terminal::Buffer.clear
-
-          end
-        end
+        Vedeu.bind(:_clear_) { Vedeu::Terminal::Buffer.clear }
       end
 
       # See {file:docs/events/visibility.md#\_clear_group_}
       def clear_group!
-        Vedeu.bind(:_clear_group_) do |name|
-          Vedeu::Clear::Group.render(name)
+        Vedeu.bind(:_clear_group_) { |name| Vedeu::Clear::Group.render(name) }
+      end
+
+      # See {file:docs/events/visibility.md#\_clear_view_}
+      def clear_view!
+        Vedeu.bind(:_clear_view_) do |name|
+          Vedeu::Clear::Interface.render(name)
         end
       end
 
