@@ -114,7 +114,7 @@ module Vedeu
 
       describe '#show' do
         before do
-          # Vedeu::Clear::NamedInterface.stubs(:render)
+          # Vedeu::Clear::Interface.stubs(:render)
           Vedeu::Output::Output.stubs(:render)
         end
 

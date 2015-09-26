@@ -35,7 +35,7 @@ module Vedeu
       def clear!
         Vedeu.bind(:_clear_) do |name|
           if name
-            Vedeu::Clear::NamedInterface.render(name)
+            Vedeu::Clear::Interface.render(name)
 
           else
             Vedeu::Terminal::Buffer.clear
@@ -47,7 +47,7 @@ module Vedeu
       # See {file:docs/events/visibility.md#\_clear_group_}
       def clear_group!
         Vedeu.bind(:_clear_group_) do |name|
-          Vedeu::Clear::NamedGroup.render(name)
+          Vedeu::Clear::Group.render(name)
         end
       end
 

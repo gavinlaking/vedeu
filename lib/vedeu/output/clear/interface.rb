@@ -1,13 +1,10 @@
 module Vedeu
 
-  # Provides the mechanisms to clear an interface or group of
-  # interfaces.
-  #
   module Clear
 
     # Clear the named interface.
     #
-    class NamedInterface
+    class Interface
 
       class << self
 
@@ -26,10 +23,10 @@ module Vedeu
 
       end # Eigenclass
 
-      # Return a new instance of Vedeu::Clear::NamedInterface.
+      # Return a new instance of Vedeu::Clear::Interface.
       #
       # @param name [String] The name of the interface to clear.
-      # @return [Vedeu::Clear::NamedInterface]
+      # @return [Vedeu::Clear::Interface]
       def initialize(name)
         @name = name
       end
@@ -81,7 +78,7 @@ module Vedeu
         end
       end
 
-    end # NamedInterface
+    end # Interface
 
   end # Clear
 
