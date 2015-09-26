@@ -453,14 +453,9 @@ module Vedeu
       # @see Vedeu::Config::API#fake!
       # @see Vedeu::Config::API#raw!
       def terminal_mode(mode)
-        if [:cooked, :fake, :raw].include?(mode)
-          options[:terminal_mode] = mode
+        return invalid_mode! unless valid_mode?(mode)
 
-        else
-          fail Vedeu::Error::InvalidSyntax,
-               'Terminal mode can be set to either :cooked, :fake or :raw'
-
-        end
+        options[:terminal_mode] = mode
       end
 
       # Sets the width of the terminal.
@@ -478,6 +473,12 @@ module Vedeu
 
       private
 
+      # @raise [Vedeu::Error::InvalidSyntax]
+      def invalid_mode!
+        fail Vedeu::Error::InvalidSyntax,
+             'Terminal mode can be set to either :cooked, :fake or :raw'
+      end
+
       # Returns the options set via the configuration API DSL or an
       # empty Hash when none were set.
       #
@@ -492,6 +493,14 @@ module Vedeu
       # @return [Boolean]
       def valid_colour_mode?(value)
         value.is_a?(Fixnum) && [8, 16, 256, 16_777_216].include?(value)
+      end
+
+      # Checks that the mode provided is valid.
+      #
+      # @param mode [Symbol] :cooked, :fake or :raw are valid
+      # @return [Boolean]
+      def valid_mode?(mode)
+        [:cooked, :fake, :raw].include?(mode)
       end
 
     end # API

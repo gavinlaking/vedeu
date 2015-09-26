@@ -136,7 +136,7 @@ module Vedeu
       #
       # @return [Array<Vedeu::Models::Escape>]
       def render
-        Vedeu::Output::Output.render(visibility)
+        Vedeu::Output::Output.render(escape_sequence)
       end
 
       # Arbitrarily move the cursor to a given position.
@@ -158,9 +158,9 @@ module Vedeu
       #
       # @return [String]
       def to_s
-        return "#{visibility}" unless block_given?
+        return escape_sequence.to_s unless block_given?
 
-        "#{position}#{yield}#{visibility}"
+        "#{position}#{yield}#{escape_sequence}"
       end
       alias_method :to_str, :to_s
 
@@ -267,6 +267,11 @@ module Vedeu
           x:          1,
           y:          1,
         }
+      end
+
+      # @return [Vedeu::Models::Escape]
+      def escape_sequence
+        Vedeu::Models::Escape.new(position: position, value: visibility)
       end
 
       # @return [Hash]
