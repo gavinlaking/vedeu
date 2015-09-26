@@ -170,7 +170,7 @@ module Vedeu
       #
       # @return [Array]
       def refresh
-        Vedeu.trigger(:_refresh_, current)
+        Vedeu.trigger(:_refresh_view_, current)
       end
 
       # Returns a collection of the names of all the registered

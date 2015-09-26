@@ -23,7 +23,7 @@ module Vedeu
       def all
         Vedeu.timer('Refreshing all') do
           Vedeu.interfaces.zindexed.each do |interface|
-            Vedeu.trigger(:_refresh_, interface.name)
+            Vedeu.trigger(:_refresh_view_, interface.name)
           end
         end
       end

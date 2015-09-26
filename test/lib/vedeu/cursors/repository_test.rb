@@ -18,7 +18,7 @@ module Vedeu
             Vedeu::Models::Focus.reset
             Vedeu.cursors.reset
             Vedeu::Models::Focus.add('Vedeu.cursor')
-            Vedeu::Cursors::Cursor.new(name: 'Vedeu.cursor').store
+            Vedeu::Cursors::Cursor.store(name: 'Vedeu.cursor')
           end
 
           it { subject.must_be_instance_of(Vedeu::Cursors::Cursor) }

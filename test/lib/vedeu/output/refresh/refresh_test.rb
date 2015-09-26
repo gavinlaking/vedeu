@@ -31,7 +31,8 @@ module Vedeu
           before { Vedeu.interfaces.stubs(:zindexed).returns(interfaces) }
 
           it {
-            Vedeu.expects(:trigger).with(:_refresh_, 'Vedeu::Output::Refresh')
+            Vedeu.expects(:trigger).with(:_refresh_view_,
+                                         'Vedeu::Output::Refresh')
             subject
           }
 
