@@ -93,13 +93,9 @@ module Vedeu
 
       # @return [String]
       def value
-        if border
-          Vedeu::EscapeSequences::Esc.border { @value }
+        return @value unless border
 
-        else
-          @value
-
-        end
+        Vedeu::EscapeSequences::Esc.border { @value }
       end
 
       # Returns the x position for the Vedeu::Views::Char when set.
@@ -154,17 +150,13 @@ module Vedeu
 
       # @return [Hash<Symbol => String>]
       def parent_to_hash
-        if parent
-          {
-            background: parent.background.to_s,
-            foreground: parent.foreground.to_s,
-            style:      parent.style.to_s,
-          }
+        return {} unless parent
 
-        else
-          {}
-
-        end
+        {
+          background: parent.background.to_s,
+          foreground: parent.foreground.to_s,
+          style:      parent.style.to_s,
+        }
       end
 
       # @return [Has<Symbol => Fixnum>]

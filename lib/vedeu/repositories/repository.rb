@@ -65,13 +65,9 @@ module Vedeu
       def by_name(name)
         name ||= Vedeu.focus
 
-        if registered?(name)
-          find(name)
+        return find(name) if registered?(name)
 
-        else
-          null_model.new(name: name)
-
-        end
+        null_model.new(name: name)
       end
 
       # Return the model for the interface currently in focus.
@@ -107,16 +103,12 @@ module Vedeu
       # @param name [String]
       # @return [void]
       def find_or_create(name)
-        if registered?(name)
-          find(name)
+        return find(name) if registered?(name)
 
-        else
-          Vedeu.log(type: :store,
-                    message: "Model (#{model}) not found, " \
-                             "registering: '#{name}'")
+        Vedeu.log(type:    :store,
+                  message: "Model (#{model}) not found, registering: '#{name}'")
 
-          model.new(name).store
-        end
+        model.new(name).store
       end
 
       # @return [String]
@@ -143,15 +135,10 @@ module Vedeu
       # @return [Hash|FalseClass]
       def remove(name)
         return false if empty?
+        return false unless registered?(name)
 
-        if registered?(name)
-          storage.delete(name)
-          storage unless storage.is_a?(Set)
-
-        else
-          false
-
-        end
+        storage.delete(name)
+        storage unless storage.is_a?(Set)
       end
       alias_method :destroy,    :remove
       alias_method :delete,     :remove

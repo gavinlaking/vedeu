@@ -137,13 +137,9 @@ module Vedeu
       # @param dimension [Fixnum] Either the height or width.
       # @return [Fixnum]
       def content_offset(offset, dimension)
-        if offset >= dimension
-          offset - dimension
+        return 0 unless offset >= dimension
 
-        else
-          0
-
-        end
+        offset - dimension
       end
 
       # Return the border associated with the interface/view we are

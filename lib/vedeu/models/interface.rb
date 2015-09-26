@@ -94,13 +94,9 @@ module Vedeu
       #
       # @return [void]
       def toggle
-        if visible?
-          hide
+        return hide if visible?
 
-        else
-          show
-
-        end
+        show
       end
 
       private

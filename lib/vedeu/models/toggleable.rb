@@ -36,13 +36,9 @@ module Vedeu
     #
     # @return [FalseClass|TrueClass]
     def toggle
-      if visible?
-        hide
+      return hide if visible?
 
-      else
-        show
-
-      end
+      show
     end
 
     # Provide class methods to models to allow the visibility to be

@@ -158,13 +158,9 @@ module Vedeu
       #
       # @return [String]
       def to_s
-        if block_given?
-          "#{position}#{yield}#{visibility}"
+        return "#{visibility}" unless block_given?
 
-        else
-          "#{visibility}"
-
-        end
+        "#{position}#{yield}#{visibility}"
       end
       alias_method :to_str, :to_s
 
@@ -221,13 +217,9 @@ module Vedeu
       #
       # @return [Vedeu::Models::Escape]
       def toggle
-        if visible?
-          hide
+        return hide if visible?
 
-        else
-          show
-
-        end
+        show
       end
 
       # @return [Fixnum] The column/character coordinate.
@@ -287,15 +279,9 @@ module Vedeu
       #
       # @return [String]
       def visibility
-        value = if visible?
-                  Vedeu::EscapeSequences::Esc.show_cursor
+        return Vedeu::EscapeSequences::Esc.show_cursor if visible?
 
-                else
-                  Vedeu::EscapeSequences::Esc.hide_cursor
-
-                end
-
-        Vedeu::Models::Escape.new(position: position, value: value)
+        Vedeu::EscapeSequences::Esc.hide_cursor
       end
 
     end # Cursor

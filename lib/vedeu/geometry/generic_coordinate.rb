@@ -28,13 +28,9 @@ module Vedeu
       #
       # @return [Fixnum]
       def dn
-        if d_dn <= 0
-          0
+        return 0 if d_dn <= 0
 
-        else
-          d + d_dn
-
-        end
+        d + d_dn
       end
       alias_method :xn, :dn
       alias_method :yn, :dn
@@ -137,13 +133,9 @@ module Vedeu
       #
       # @return [Fixnum]
       def dn_index
-        if d_dn < 1
-          0
+        return 0 if d_dn < 1
 
-        else
-          d_dn - 1
-
-        end
+        d_dn - 1
       end
 
       # Returns an array with all coordinates from d to dn.
