@@ -20,6 +20,7 @@ module Vedeu
 
       describe '.by_name' do
         before do
+          Vedeu.stubs(:log)
           Vedeu.geometry 'refresh_cursor' do
             x  1
             xn 3

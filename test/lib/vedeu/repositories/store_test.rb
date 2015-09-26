@@ -127,6 +127,8 @@ module Vedeu
       end
 
       describe '#reset' do
+        before { Vedeu.stubs(:log) }
+
         it 'returns a Hash' do
           instance.reset.must_be_instance_of(Hash)
         end

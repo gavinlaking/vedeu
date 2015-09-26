@@ -111,6 +111,7 @@ module Vedeu
 
         context 'when the alias name is registered' do
           before do
+            Vedeu.stubs(:log)
             Vedeu::Events::Trigger.stubs(:trigger)
 
             described.add(:some_alias, :some_event)

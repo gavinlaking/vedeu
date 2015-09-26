@@ -24,6 +24,7 @@ module Vedeu
 
       describe '.start' do
         before do
+          Vedeu.stubs(:log)
           Vedeu::Configuration.stubs(:root).
             returns([:controller, :action, :args])
           Vedeu.stubs(:trigger)

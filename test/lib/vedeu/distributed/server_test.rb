@@ -13,6 +13,7 @@ module Vedeu
       let(:running)       { false }
 
       before do
+        Vedeu.stubs(:log)
         Vedeu::Configuration.stubs(:drb?).returns(enabled)
         DRb.stubs(:thread).returns(running)
       end

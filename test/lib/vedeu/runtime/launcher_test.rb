@@ -37,6 +37,7 @@ module Vedeu
 
     describe '#execute!' do
       before do
+        Vedeu.stubs(:log_stdout)
         Vedeu::Runtime::Application.stubs(:start)
         Kernel.stubs(:exit)
         Kernel.stubs(:puts)

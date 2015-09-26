@@ -34,6 +34,8 @@ module Vedeu
       describe '.keypress' do
         let(:keymap) { 'test' }
 
+        before { Vedeu.stubs(:log) }
+
         subject { described.keypress(key, keymap) }
 
         context 'when the key is not provided' do

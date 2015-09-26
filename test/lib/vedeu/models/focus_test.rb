@@ -9,6 +9,8 @@ module Vedeu
       let(:described) { Vedeu::Models::Focus }
 
       before do
+        Vedeu.stubs(:log)
+
         Vedeu::Models::Focus.reset
         Vedeu.interfaces.reset
 

@@ -41,6 +41,8 @@ module Vedeu
     end
 
     describe '.input' do
+      before { Vedeu.stubs(:log) }
+
       subject { Vedeu::Terminal.input }
 
       it { described.must_respond_to(:read) }
