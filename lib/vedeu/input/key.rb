@@ -2,6 +2,12 @@ module Vedeu
 
   module Input
 
+    # A collection of {Vedeu::Input::Key} instances.
+    #
+    class Keys < Vedeu::Repositories::Collection
+
+    end # Keys
+
     # A single keypress or combination of keypresses bound to a
     # specific action.
     #
