@@ -5,14 +5,14 @@ module Vedeu
     # Captures input from the user via {Vedeu::Terminal#input} and
     # translates special characters into symbols.
     #
-    class Input
+    class Capture
 
       # Instantiate Vedeu::Input::Input and capture keypress(es).
       #
       # @param (see #initialize)
       # @return [String|Symbol]
-      def self.capture(reader)
-        new(reader).capture
+      def self.read(reader)
+        new(reader).read
       end
 
       # Returns a new instance of Vedeu::Input::Input.
@@ -29,7 +29,7 @@ module Vedeu
       # event with the key(s) pressed.
       #
       # @return [Array|String|Symbol]
-      def capture
+      def read
         if reader.raw_mode?
           Vedeu.trigger(:_keypress_, keypress)
 
