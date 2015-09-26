@@ -135,15 +135,10 @@ module Vedeu
       # TODO: Move cursor also.
       # @return [Vedeu::Geometry::Geometry]
       def move_down
-        if yn + 1 > Vedeu.height
-          dy  = y
-          dyn = yn
-        else
-          dy  = y + 1
-          dyn = yn + 1
-        end
+        return self if yn + 1 > Vedeu.height
 
-        Vedeu::Geometry::Geometry.store(move_attributes.merge!(y: dy, yn: dyn))
+        Vedeu::Geometry::Geometry.store(move_attributes.merge!(y:  y + 1,
+                                                               yn: yn + 1))
       end
 
       # Moves the geometry left by one column.
@@ -151,15 +146,10 @@ module Vedeu
       # TODO: Move cursor also.
       # @return [Vedeu::Geometry::Geometry]
       def move_left
-        if x - 1 < 1
-          dx  = x
-          dxn = xn
-        else
-          dx  = x - 1
-          dxn = xn - 1
-        end
+        return self if x - 1 < 1
 
-        Vedeu::Geometry::Geometry.store(move_attributes.merge!(x: dx, xn: dxn))
+        Vedeu::Geometry::Geometry.store(move_attributes.merge!(x:  x - 1,
+                                                               xn: xn - 1))
       end
 
       # Moves the geometry to the top left of the terminal.
@@ -179,15 +169,10 @@ module Vedeu
       # TODO: Move cursor also.
       # @return [Vedeu::Geometry::Geometry]
       def move_right
-        if xn + 1 > Vedeu.width
-          dx  = x
-          dxn = xn
-        else
-          dx  = x + 1
-          dxn = xn + 1
-        end
+        return self if xn + 1 > Vedeu.width
 
-        Vedeu::Geometry::Geometry.store(move_attributes.merge!(x: dx, xn: dxn))
+        Vedeu::Geometry::Geometry.store(move_attributes.merge!(x:  x + 1,
+                                                               xn: xn + 1))
       end
 
       # Moves the geometry up by one column.
@@ -195,15 +180,10 @@ module Vedeu
       # TODO: Move cursor also.
       # @return [Vedeu::Geometry::Geometry]
       def move_up
-        if y - 1 < 1
-          dy  = y
-          dyn = yn
-        else
-          dy  = y - 1
-          dyn = yn - 1
-        end
+        return self if y - 1 < 1
 
-        Vedeu::Geometry::Geometry.store(move_attributes.merge!(y: dy, yn: dyn))
+        Vedeu::Geometry::Geometry.store(move_attributes.merge!(y:  y - 1,
+                                                               yn: yn - 1))
       end
 
       # Will unmaximise the named interface geometry. Previously, when
