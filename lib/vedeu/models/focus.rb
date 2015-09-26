@@ -7,23 +7,26 @@ module Vedeu
     # is currently being focussed.
     #
     # @note
-    #   - Interfaces are added to the collection in the order they are defined.
+    #   - Interfaces are added to the collection in the order they are
+    #     defined.
     #   - If the interface definition contains `focus!`,
-    #     (see Vedeu::DSL::Interface#focus!) then that interface is prepended to
-    #     the list.
-    #   - If the `Vedeu.focus_by_name 'some_interface'` declaration is used,
-    #     then the list pointer (`current`) is set to the interface of
-    #     that name.
+    #     (see Vedeu::DSL::Interface#focus!) then that interface is
+    #     prepended to the list.
+    #   - If the `Vedeu.focus_by_name 'some_interface'` declaration is
+    #     used, then the list pointer (`current`) is set to the
+    #     interface of that name.
     #
     module Focus
 
       extend self
 
-      # Add an interface name to the focus list unless it is already registered.
+      # Add an interface name to the focus list unless it is already
+      # registered.
       #
       # @param name [String] The name of the interface.
-      # @param focus [Boolean] When true, prepends the interface name to the
-      #   collection, making that interface the currently focussed interface.
+      # @param focus [Boolean] When true, prepends the interface name
+      #   to the collection, making that interface the currently
+      #   focussed interface.
       # @return [Array] The collection of interface names.
       def add(name, focus = false)
         if registered?(name)
@@ -53,7 +56,8 @@ module Vedeu
       #   Vedeu.focus_by_name('name')
       #
       # @param name [String] The interface to focus; must be defined.
-      # @raise [Vedeu::Error::ModelNotFound] When the interface cannot be found.
+      # @raise [Vedeu::Error::ModelNotFound] When the interface cannot
+      #   be found.
       # @return [String] The name of the interface now in focus.
       def by_name(name)
         unless registered?(name)
@@ -79,7 +83,8 @@ module Vedeu
       end
       alias_method :focus, :current
 
-      # Returns a boolean indicating whether the named interface is focussed.
+      # Returns a boolean indicating whether the named interface is
+      # focussed.
       #
       # @example
       #   Vedeu.focussed?(name)
@@ -98,7 +103,8 @@ module Vedeu
         storage.empty?
       end
 
-      # Put the next interface relative to the current interfaces in focus.
+      # Put the next interface relative to the current interfaces in
+      # focus.
       #
       # @example
       #   Vedeu.trigger(:_focus_next_)
@@ -112,8 +118,8 @@ module Vedeu
       end
       alias_method :next, :next_item
 
-      # Put the next visible interface relative to the current interfaces in
-      # focus.
+      # Put the next visible interface relative to the current
+      # interfaces in focus.
       #
       # @return [String]
       def next_visible_item
@@ -128,7 +134,8 @@ module Vedeu
       end
       alias_method :focus_next, :next_visible_item
 
-      # Put the previous interface relative to the current interface in focus.
+      # Put the previous interface relative to the current interface
+      # in focus.
       #
       # @example
       #   Vedeu.trigger(:_focus_prev_)
@@ -143,8 +150,8 @@ module Vedeu
       alias_method :prev,     :prev_item
       alias_method :previous, :prev_item
 
-      # Put the previous visible interface relative to the current interfaces in
-      # focus.
+      # Put the previous visible interface relative to the current
+      # interfaces in focus.
       #
       # @return [String]
       def prev_visible_item
@@ -166,7 +173,8 @@ module Vedeu
         Vedeu.trigger(:_refresh_, current)
       end
 
-      # Returns a collection of the names of all the registered entities.
+      # Returns a collection of the names of all the registered
+      # entities.
       #
       # @return [Array]
       def registered
@@ -175,7 +183,8 @@ module Vedeu
         storage
       end
 
-      # Returns a boolean indicating whether the named model is registered.
+      # Returns a boolean indicating whether the named model is
+      # registered.
       #
       # @param name [String]
       # @return [Boolean]
@@ -194,8 +203,9 @@ module Vedeu
 
       private
 
-      # Return the name of the interface in focus after triggering the refresh
-      # event for that interface. Returns false when the storage is empty.
+      # Return the name of the interface in focus after triggering the
+      # refresh event for that interface. Returns false when the
+      # storage is empty.
       #
       # @return [String|FalseClass]
       def update
@@ -215,7 +225,8 @@ module Vedeu
         @storage ||= in_memory
       end
 
-      # Returns an empty collection ready for the storing of interface names.
+      # Returns an empty collection ready for the storing of interface
+      # names.
       #
       # @return [Array]
       def in_memory

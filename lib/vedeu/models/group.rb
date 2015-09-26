@@ -68,13 +68,14 @@ module Vedeu
         interfaces.sort { |a, b| a.zindex <=> b.zindex }.map(&:name)
       end
 
-      # Hide the named group of interfaces, or without a name, the group of the
-      # currently focussed interface. Useful for hiding part of that which is
-      # currently displaying in the terminal.
+      # Hide the named group of interfaces, or without a name, the
+      # group of the currently focussed interface. Useful for hiding
+      # part of that which is currently displaying in the terminal.
       #
       # @note
-      #   The action of showing a group will effectively clear the terminal and
-      #   show the new group, therefore hiding the group may not be necessary.
+      #   The action of showing a group will effectively clear the
+      #   terminal and show the new group, therefore hiding the group
+      #   may not be necessary.
       #
       # @example
       #   Vedeu.trigger(:_hide_group_, name)
@@ -117,8 +118,8 @@ module Vedeu
         Vedeu::Models::Group.new(attrs).store
       end
 
-      # Show the named group of interfaces, or without a name, the group of the
-      # currently focussed interface.
+      # Show the named group of interfaces, or without a name, the
+      # group of the currently focussed interface.
       #
       # @example
       #   Vedeu.trigger(:_show_group_, name)

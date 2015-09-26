@@ -10,8 +10,8 @@ module Vedeu
     end # Streams
 
     # Represents a character or collection of characters as part of a
-    # {Vedeu::Views::Line} which you wish to colour and style independently of
-    # the other characters in that line.
+    # {Vedeu::Views::Line} which you wish to colour and style
+    # independently of the other characters in that line.
     #
     class Stream
 
@@ -58,10 +58,10 @@ module Vedeu
       end
       alias_method :<<, :add
 
-      # Returns an array of characters, each element is the escape sequences of
-      # colours and styles for this stream, the character itself, and the escape
-      # sequences of colours and styles for the parent of the stream
-      # ({Vedeu::Views::Line}).
+      # Returns an array of characters, each element is the escape
+      # sequences of colours and styles for this stream, the character
+      # itself, and the escape sequences of colours and styles for the
+      # parent of the stream ({Vedeu::Views::Line}).
       #
       # @return [Array]
       def chars
@@ -87,7 +87,8 @@ module Vedeu
       end
       alias_method :==, :eql?
 
-      # Returns the size of the content in characters without formatting.
+      # Returns the size of the content in characters without
+      # formatting.
       #
       # @return [Fixnum]
       def size

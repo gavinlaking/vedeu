@@ -9,8 +9,8 @@ module Vedeu
 
     end # ViewCollection
 
-    # Represents a container for {Vedeu::Views::Line} and {Vedeu::Views::Stream}
-    # objects.
+    # Represents a container for {Vedeu::Views::Line} and
+    # {Vedeu::Views::Stream} objects.
     #
     class View
 
@@ -90,8 +90,8 @@ module Vedeu
         output
       end
 
-      # Store the view and immediately refresh it; causing to be pushed to the
-      # Terminal. Called by {Vedeu::DSL::View.renders}.
+      # Store the view and immediately refresh it; causing to be
+      # pushed to the Terminal. Called by {Vedeu::DSL::View.renders}.
       #
       # @return [Vedeu::Views::View]
       def store_immediate
@@ -102,9 +102,9 @@ module Vedeu
         self
       end
 
-      # When a name is given, the view is stored with this name. This view will
-      # be shown next time a refresh event is triggered with this name.
-      # Called by {Vedeu::DSL::View.views}.
+      # When a name is given, the view is stored with this name. This
+      # view will be shown next time a refresh event is triggered with
+      # this name. Called by {Vedeu::DSL::View.views}.
       #
       # @raise [Vedeu::Error::InvalidSyntax] The name is not defined.
       # @return [Vedeu::Views::View]

@@ -2,16 +2,18 @@ module Vedeu
 
   module DSL
 
-    # There are two ways to construct views with Vedeu. You would like to draw
-    # the view to the screen immediately (immediate render) or you want to save
-    # a view to be drawn when you trigger a refresh event later (deferred view).
+    # There are two ways to construct views with Vedeu. You would like
+    # to draw the view to the screen immediately (immediate render) or
+    # you want to save a view to be drawn when you trigger a refresh
+    # event later (deferred view).
     #
-    # Both of these approaches require that you have defined an interface (or
-    # 'visible area') first. You can find out how to define an interface with
-    # Vedeu below or in {Vedeu::DSL::Interface}. The examples in 'Immediate
-    # Render' and 'Deferred View' use these interface definitions: (Note: should
-    # you use these examples, ensure your terminal is at least 70 characters in
-    # width and 5 lines in height.)
+    # Both of these approaches require that you have defined an
+    # interface (or 'visible area') first. You can find out how to
+    # define an interface with Vedeu below or in
+    # {Vedeu::DSL::Interface}. The examples in 'Immediate Render' and
+    # 'Deferred View' use these interface definitions: (Note: should
+    # you use these examples, ensure your terminal is at least 70
+    # characters in width and 5 lines in height.)
     #
     #   Vedeu.interface 'main' do
     #     geometry do
@@ -30,26 +32,27 @@ module Vedeu
     #     end
     #   end
     #
-    # Both of these approaches use a concept of Buffers in Vedeu. There are
-    # three buffers for any defined interface. These are imaginatively called:
-    # 'back', 'front' and 'previous'.
+    # Both of these approaches use a concept of Buffers in Vedeu.
+    # There are three buffers for any defined interface. These are
+    # imaginatively called: 'back', 'front' and 'previous'.
     #
-    # The 'back' buffer is the content for an interface which will be shown next
-    # time a refresh event is fired globally or for that interface. So, 'back'
-    # becomes 'front'.
+    # The 'back' buffer is the content for an interface which will be
+    # shown next time a refresh event is fired globally or for that
+    # interface. So, 'back' becomes 'front'.
     #
-    # The 'front' buffer is the content for an interface which is currently
-    # showing. When a refresh event is fired, again, globally or for that
-    # interface specifically, the content of this 'front' buffer is first copied
-    # to the 'previous' buffer, and then the current 'back' buffer overwrites
-    # this 'front' buffer.
+    # The 'front' buffer is the content for an interface which is
+    # currently showing. When a refresh event is fired, again,
+    # globally or for that interface specifically, the content of this
+    # 'front' buffer is first copied to the 'previous' buffer, and
+    # then the current 'back' buffer overwrites this 'front' buffer.
     #
-    # The 'previous' buffer contains what was shown on the 'front' before the
-    # current 'front'.
+    # The 'previous' buffer contains what was shown on the 'front'
+    # before the current 'front'.
     #
-    # You can only write to either the 'front' (you want the content to be drawn
-    # immediately (immediate render)) or the 'back' (you would like the content
-    # to be drawn on the next refresh (deferred view)).
+    # You can only write to either the 'front' (you want the content
+    # to be drawn immediately (immediate render)) or the 'back' (you
+    # would like the content to be drawn on the next refresh
+    # (deferred view)).
     #
     # The basic view DSL methods look like this:
     #
@@ -91,9 +94,10 @@ module Vedeu
 
         include Vedeu::Common
 
-        # Directly write a view buffer to the terminal. Using this method means
-        # that the refresh event does not need to be triggered after creating
-        # the views, though can be later triggered when needed.
+        # Directly write a view buffer to the terminal. Using this
+        # method means that the refresh event does not need to be
+        # triggered after creating the views, though can be later
+        # triggered when needed.
         #
         #   Vedeu.renders do
         #     view 'some_interface' do
@@ -124,8 +128,9 @@ module Vedeu
         #     end
         #   end
         #
-        # @param block [Proc] The directives you wish to send to render.
-        #   Typically includes `view` with associated sub-directives.
+        # @param block [Proc] The directives you wish to send to
+        #   render. Typically includes `view` with associated
+        #   sub-directives.
         # @raise [Vedeu::Error::RequiresBlock]
         # @return [Array<View>]
         def renders(&block)
@@ -137,15 +142,15 @@ module Vedeu
 
         # Define a view (content) for an interface.
         #
-        # As you can see by comparing the examples above to these below, the
-        # immediate render simply wraps what is already here in the deferred
-        # view.
+        # As you can see by comparing the examples above to these
+        # below, the immediate render simply wraps what is already
+        # here in the deferred view.
         #
-        # The views declared within this block are stored in their respective
-        # interface back buffers until a refresh event occurs. When the refresh
-        # event is triggered, the back buffers are swapped into the front
-        # buffers and the content here will be rendered to
-        # {Vedeu::Terminal#output}.
+        # The views declared within this block are stored in their
+        # respective interface back buffers until a refresh event
+        # occurs. When the refresh event is triggered, the back
+        # buffers are swapped into the front buffers and the content
+        # here will be rendered to {Vedeu::Terminal#output}.
         #
         #   Vedeu.views do
         #     view 'some_interface' do
@@ -168,8 +173,9 @@ module Vedeu
         #     # ... some code
         #   end
         #
-        # @param block [Proc] The directives you wish to send to render.
-        #   Typically includes `view` with associated sub-directives.
+        # @param block [Proc] The directives you wish to send to
+        #   render. Typically includes `view` with associated
+        #   sub-directives.
         # @raise [Vedeu::Error::RequiresBlock]
         # @return [Array<View>]
         def views(&block)
@@ -188,8 +194,8 @@ module Vedeu
           eval('self', block.binding)
         end
 
-        # Creates a new Vedeu::Views::Composition which may contain one or more
-        # views (Vedeu::Views::View objects).
+        # Creates a new Vedeu::Views::Composition which may contain
+        # one or more views (Vedeu::Views::View objects).
         #
         # @param client [Object]
         # @param block [Proc]
@@ -198,12 +204,12 @@ module Vedeu
           Vedeu::Views::Composition.build(client: client, &block)
         end
 
-        # Stores each of the views defined in their respective buffers ready to
-        # be rendered on next refresh.
+        # Stores each of the views defined in their respective buffers
+        # ready to be rendered on next refresh.
         #
         # @param method [Symbol] An instruction; `:store_immediate` or
-        #   `:store_deferred` which determines whether the view will be shown
-        #   immediately or later respectively.
+        #   `:store_deferred` which determines whether the view will
+        #   be shown immediately or later respectively.
         # @param block [Proc]
         # @return [Array]
         def store(method, &block)
