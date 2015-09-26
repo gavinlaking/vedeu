@@ -7,7 +7,7 @@ module Vedeu
     #
     class Terminal
 
-      include Vedeu::Renderers::RendererOptions
+      include Vedeu::Renderers::Options
 
       # Returns a new instance of Vedeu::Renderers::Terminal.
       #

@@ -101,7 +101,7 @@ module Vedeu
 
 end # Vedeu
 
-require 'vedeu/output/renderers/renderer_options'
+require 'vedeu/output/renderers/options'
 require 'vedeu/output/renderers/escape_sequence'
 require 'vedeu/output/renderers/file'
 require 'vedeu/output/renderers/html'

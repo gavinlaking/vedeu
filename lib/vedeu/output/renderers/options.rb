@@ -5,7 +5,7 @@ module Vedeu
     # Provides shared functionality to Vedeu::Renderer classes.
     #
     # :nocov:
-    module RendererOptions
+    module Options
 
       private
 
@@ -24,7 +24,7 @@ module Vedeu
         {}
       end
 
-    end # RendererOptions
+    end # Options
     # :nocov:
 
   end # Renderers

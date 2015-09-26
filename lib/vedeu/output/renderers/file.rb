@@ -6,7 +6,7 @@ module Vedeu
     #
     class File
 
-      include Vedeu::Renderers::RendererOptions
+      include Vedeu::Renderers::Options
 
       # Returns a new instance of Vedeu::Renderers::File.
       #
