@@ -1,6 +1,5 @@
 inherit_from:
   - config/rubocop_enabled.yml
-  - config/rubocop_disabled.yml
 
 # Common configuration.
 AllCops:
