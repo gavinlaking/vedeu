@@ -12,14 +12,14 @@ module Vedeu
 
       Vedeu::Bindings::Application.setup!
       Vedeu::Bindings::Document.setup!
-      Vedeu::Bindings::Visibility.setup!
-      Vedeu::Bindings::Movement.setup!
-      Vedeu::Bindings::Menus.setup!
       Vedeu::Bindings::DRB.setup!
       Vedeu::Bindings::Focus.setup!
+      Vedeu::Bindings::Menus.setup!
+      Vedeu::Bindings::Movement.setup!
       Vedeu::Bindings::Refresh.setup!
       Vedeu::Bindings::System.setup!
       Vedeu::Bindings::View.setup!
+      Vedeu::Bindings::Visibility.setup!
 
       true
     end
