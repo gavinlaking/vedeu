@@ -13,6 +13,8 @@ module Vedeu
       let(:options)    { {} }
 
       describe '.bind' do
+        before { Vedeu.stubs(:log) }
+
         subject { described.bind(event_name, options) { :event_triggered } }
 
         it { described.must_respond_to(:event) }
@@ -95,6 +97,8 @@ module Vedeu
       end
 
       describe '#unbind' do
+        before { Vedeu.stubs(:log) }
+
         context 'when the event exists' do
           before { Vedeu.bind(:gallium) { :some_action } }
 

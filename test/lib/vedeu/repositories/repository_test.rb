@@ -166,6 +166,8 @@ module Vedeu
       describe '#find_or_create' do
         let(:model_instance) { Vedeu::Repositories::TestModel.new('niobium') }
 
+        before { Vedeu.stubs(:log) }
+
         subject { instance.find_or_create(model_name) }
 
         context 'when the model exists' do
@@ -250,6 +252,8 @@ module Vedeu
 
       describe '#store' do
         subject { instance.store(model_instance) }
+
+        before { Vedeu.stubs(:log) }
 
         it { instance.must_respond_to(:register) }
 

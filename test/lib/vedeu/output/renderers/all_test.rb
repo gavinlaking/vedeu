@@ -19,7 +19,10 @@ module Vedeu
     let(:described) { Vedeu::Renderers }
     let(:output)    {}
 
-    before { Vedeu::Renderers.reset }
+    before {
+      Vedeu.stubs(:log)
+      Vedeu::Renderers.reset
+    }
     after  { Vedeu::Renderers.reset }
 
     describe '.renderers' do

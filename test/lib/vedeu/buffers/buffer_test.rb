@@ -114,6 +114,7 @@ module Vedeu
 
       describe '#show' do
         before do
+          Vedeu.stubs(:log)
           # Vedeu::Clear::Interface.stubs(:render)
           Vedeu::Output::Output.stubs(:render)
         end
@@ -127,7 +128,10 @@ module Vedeu
       end
 
       describe '#render' do
-        before { Vedeu::Output::Output.stubs(:render) }
+        before {
+          Vedeu.stubs(:log)
+          Vedeu::Output::Output.stubs(:render)
+        }
 
         subject { instance.render }
 

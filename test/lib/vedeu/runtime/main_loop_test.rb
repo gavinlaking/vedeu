@@ -9,6 +9,8 @@ module Vedeu
       let(:described) { Vedeu::Runtime::MainLoop }
 
       describe '.start!' do
+        before { Vedeu.stubs(:log) }
+
         subject { described.start! { } }
       end
 

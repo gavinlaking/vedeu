@@ -9,10 +9,10 @@ module Vedeu
 
 end # Vedeu
 
-require 'vedeu/input/input'
+require 'vedeu/input/capture'
 require 'vedeu/input/key'
 require 'vedeu/input/keymap'
 require 'vedeu/input/keymaps'
-require 'vedeu/input/keys'
 require 'vedeu/input/mapper'
+require 'vedeu/input/store'
 require 'vedeu/input/translator'

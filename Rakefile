@@ -8,7 +8,7 @@ Rake::TestTask.new(:test) do |task|
   task.libs.push 'test'
   task.pattern = 'test/**/*_test.rb'
   task.verbose = false
-  task.warning = true # set to true for Ruby warnings (ruby -w)
+  task.warning = false # set to true for Ruby warnings (ruby -w)
 end
 
 YARD::Rake::YardocTask.new(:yard) do |task|

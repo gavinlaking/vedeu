@@ -23,7 +23,10 @@ module Vedeu
     end
 
     describe '.registered' do
-      before { described.reset! }
+      before {
+        Vedeu.stubs(:log)
+        described.reset!
+      }
 
       subject { described.registered }
 

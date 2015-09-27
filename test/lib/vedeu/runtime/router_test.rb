@@ -25,6 +25,8 @@ module Vedeu
         let(:controller) {}
         let(:klass) { "SomeController" }
 
+        before { Vedeu.stubs(:log) }
+
         subject { described.add_controller(controller, klass) }
 
         context 'when a name is not given' do
@@ -67,6 +69,8 @@ module Vedeu
       describe '.add_action' do
         let(:controller) {}
         let(:action)     {}
+
+        before { Vedeu.stubs(:log) }
 
         subject { described.add_action(controller, action) }
 
@@ -124,6 +128,8 @@ module Vedeu
             product_id:  88,
           }
         }
+
+        before { Vedeu.stubs(:log) }
 
         subject { described.goto(controller, action, **args) }
 

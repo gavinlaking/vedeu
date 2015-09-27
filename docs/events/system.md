@@ -43,7 +43,7 @@ to 'do things'. If the `escape` key is pressed, then `key` is triggered
 with the argument `:escape`, also an internal event `_mode_switch_` is
 triggered. Vedeu recognises most key presses and some 'extended'
 keypress (eg. Ctrl+J), a list of supported keypresses can be found here:
-{Vedeu::Input::Input#specials} and {Vedeu::Input::Input#f_keys}.
+{Vedeu::Input::Input}.
 
     Vedeu.trigger(:_keypress_, key)
 

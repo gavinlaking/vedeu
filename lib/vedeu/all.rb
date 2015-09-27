@@ -12,8 +12,6 @@ require 'vedeu/configuration/configuration'
 require 'vedeu/terminal/all'
 require 'vedeu/repositories/all'
 
-require 'vedeu/input/keys'
-
 require 'vedeu/models/toggleable'
 
 require 'vedeu/output/presentation/presentation'

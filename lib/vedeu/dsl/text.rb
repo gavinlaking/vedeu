@@ -11,9 +11,8 @@ module Vedeu
       # string (or object responding to `to_s`), and add it as a Line
       # or to the Stream.
       #
-      # @note If using the convenience methods; {left}, {centre},
-      #   {center} or {right}, then a specified anchor will be
-      #   ignored.
+      # @note If using the convenience methods; left, centre, center
+      #   or right, then a specified anchor will be ignored.
       #
       # @example
       #   lines do

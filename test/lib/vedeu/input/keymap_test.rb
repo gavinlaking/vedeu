@@ -33,6 +33,8 @@ module Vedeu
       end
 
       describe '#add' do
+        before { Vedeu.stubs(:log) }
+
         subject { instance.add(key) }
 
         context 'when the key is already defined' do
@@ -67,6 +69,8 @@ module Vedeu
 
       describe '#use' do
         let(:input) { 'b' }
+
+        before { Vedeu.stubs(:log) }
 
         subject { instance.use(input) }
 

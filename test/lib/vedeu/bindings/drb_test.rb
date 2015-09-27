@@ -6,6 +6,10 @@ module Vedeu
 
     describe DRB do
 
+      before do
+        Vedeu.stubs(:log)
+      end
+
       context 'the drb specific events are defined' do
         it { Vedeu.bound?(:_drb_input_).must_equal(true) }
         it { Vedeu.bound?(:_drb_retrieve_output_).must_equal(true) }

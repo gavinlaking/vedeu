@@ -12,6 +12,7 @@ module Vedeu
       let(:server)    {}
 
       before do
+        Vedeu.stubs(:log)
         $stdout.stubs(:puts)
         DRbObject.stubs(:new_with_uri).returns(server)
       end

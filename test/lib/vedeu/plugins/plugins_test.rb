@@ -23,6 +23,8 @@ module Vedeu
       let(:_name) {}
       let(:plugin) { false }
 
+      before { Vedeu.stubs(:log) }
+
       subject { instance.register(_name, plugin) }
 
       # @todo Add more tests.

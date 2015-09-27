@@ -89,7 +89,7 @@ module Vedeu
       def trigger(alias_name, *args)
         return [] unless registered?(alias_name)
 
-        storage[alias_name].map do |event_name|
+        find(alias_name).map do |event_name|
           Vedeu.log(type: :debug, message: "#{event_name}")
           Vedeu::Events::Trigger.trigger(event_name, *args)
         end

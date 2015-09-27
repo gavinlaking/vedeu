@@ -4,11 +4,11 @@ module Vedeu
 
   module Input
 
-    describe Input do
+    describe Capture do
 
       let(:reader)    { Vedeu::Terminal }
       let(:keypress)  { 'a' }
-      let(:described) { Vedeu::Input::Input }
+      let(:described) { Vedeu::Input::Capture }
       let(:instance)  { described.new(reader) }
       let(:raw_mode)  { true }
 
@@ -17,14 +17,14 @@ module Vedeu
         it { instance.instance_variable_get('@reader').must_equal(reader) }
       end
 
-      describe '.capture' do
+      describe '.read' do
         before do
           reader.stubs(:raw_mode?).returns(raw_mode)
           reader.stubs(:fake_mode?).returns(fake_mode)
           Vedeu.stubs(:trigger).returns([false])
         end
 
-        subject { described.capture(reader) }
+        subject { described.read(reader) }
 
         context 'when in cooked mode' do
           let(:raw_mode)  { false }
