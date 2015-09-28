@@ -6,7 +6,7 @@ bundler_message = 'Bundler is required. Please install bundler with ' \
 begin
   require 'bundler'
 rescue LoadError
-  puts bundler_message
+  STDERR.puts bundler_message
 end
 
 fail bundler_message unless defined?(Bundler)
