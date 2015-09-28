@@ -1,19 +1,20 @@
 # @title The Vedeu DSL
 # The Vedeu DSL
 
-Coupled with the API (for interacting with the running client application), the
- DSL provides the mechanism to configure aspects of your application whilst
- using Vedeu.
+Coupled with the API (for interacting with the running client
+application), the DSL provides the mechanism to configure aspects of
+your application whilst using Vedeu.
 
 ## Interfaces
 
-An Interface is a basic element in the GUI. It usually but does not necessarily
-correspond to a region of the terminal screen (for example, an Interface might
-not be displayed at certain points in an application life cycle).
+An Interface is a basic element in the GUI. It usually but does not
+necessarily correspond to a region of the terminal screen (for
+example, an Interface might not be displayed at certain points in an
+application life cycle).
 
-Much of the behavior of an Interface comes from child objects that are defined
-under the Interface. These objects are described in more detail in their
-respective sections below.
+Much of the behavior of an Interface comes from child objects that
+are defined under the Interface. These objects are described in more
+detail in their respective sections below.
 
 Here is an example of declarations for an `interface` block:
 
@@ -43,13 +44,13 @@ end
 
 ### Declaring interface sub-objects
 
-Every object in the DSL besides interface itself is defined for a particular
-interface. This can either be declared implicitly by defining the object inside
-an `interface` block or explicitly, by passing the interface name as a first
-argument to the declaration.
+Every object in the DSL besides interface itself is defined for a
+particular interface. This can either be declared implicitly by
+defining the object inside an `interface` block or explicitly, by
+passing the interface name as a first argument to the declaration.
 
-That is, these are equivalent ways to declare a Geometry for an existing
-interface
+That is, these are equivalent ways to declare a Geometry for an
+existing interface
 
 ```ruby
 interface 'main' do
@@ -162,8 +163,9 @@ end
 
 #### Authors Notes
 
-The Rubydoc documentation has more specific information about the DSL methods
- demonstrated above: [RubyDoc](http://rubydoc.info/gems/vedeu).
+The Rubydoc documentation has more specific information about the DSL
+methods demonstrated above: [RubyDoc](http://rubydoc.info/gems/vedeu).
 
-I've tried to write the DSL in a way which makes it read nice; believing that
- this will make it easier to use. I hope this is the case for you.
+I've tried to write the DSL in a way which makes it read nice;
+believing that this will make it easier to use. I hope this is the
+case for you.

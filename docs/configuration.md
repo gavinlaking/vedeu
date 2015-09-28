@@ -5,14 +5,16 @@ Vedeu provides a simple DSL for configuration.
 
     Vedeu.configure do
 
-      # add configuration options here, each of which are listed below...
+      # add configuration options here, each of which are listed
+      # below...
 
     end
 
-If you need to access the value of Vedeu's configuration for whatever reason,
-simply ask for it:
+If you need to access the value of Vedeu's configuration for whatever
+reason, simply ask for it:
 
-    Vedeu.configuration.base_path # => The current value of 'base_path'
+    # => The current value of 'base_path'
+    Vedeu.configuration.base_path
 
 ## Configuration Options
 

@@ -165,8 +165,7 @@ module Vedeu
       alias_method :to_str, :to_s
 
       # Hide a named cursor, or without a name, the cursor of the
-      # currently
-      # focussed interface.
+      # currently focussed interface.
       #
       # @example
       #   Vedeu.hide_cursor(name)
