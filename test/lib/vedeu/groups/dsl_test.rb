@@ -2,13 +2,13 @@ require 'test_helper'
 
 module Vedeu
 
-  module DSL
+  module Groups
 
-    describe Group do
+    describe DSL do
 
-      let(:described)  { Vedeu::DSL::Group }
+      let(:described)  { Vedeu::Groups::DSL }
       let(:instance)   { described.new(model, client) }
-      let(:model)      { Vedeu::Models::Group.new }
+      let(:model)      { Vedeu::Groups::Group.new }
       let(:client)     {}
       let(:group_name) { 'main_screen' }
 
@@ -42,7 +42,7 @@ module Vedeu
           end
         }
 
-        it { subject.must_be_instance_of(Vedeu::Models::Group) }
+        it { subject.must_be_instance_of(Vedeu::Groups::Group) }
 
         it { subject.members.must_equal(Set['editor_interface']) }
       end
@@ -58,7 +58,7 @@ module Vedeu
           end
         }
 
-        it { subject.must_be_instance_of(Vedeu::Models::Group) }
+        it { subject.must_be_instance_of(Vedeu::Groups::Group) }
 
         it { subject.members.must_equal(expected) }
       end
@@ -109,8 +109,8 @@ module Vedeu
         ) }
       end
 
-    end
+    end # DSL
 
-  end # DSL
+  end # Groups
 
 end # Vedeu

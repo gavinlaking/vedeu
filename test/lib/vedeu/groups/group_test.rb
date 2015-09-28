@@ -2,11 +2,11 @@ require 'test_helper'
 
 module Vedeu
 
-  module Models
+  module Groups
 
     describe Group do
 
-      let(:described)  { Vedeu::Models::Group }
+      let(:described)  { Vedeu::Groups::Group }
       let(:instance)   { described.new(attributes) }
       let(:attributes) {
         {
@@ -42,7 +42,7 @@ module Vedeu
       describe '#add' do
         subject { instance.add('hydrogen') }
 
-        it { subject.must_be_instance_of(Vedeu::Models::Group) }
+        it { subject.must_be_instance_of(Vedeu::Groups::Group) }
 
         context 'when the member already exists' do
           it 'does not add the member again but returns a new Group' do
@@ -121,7 +121,7 @@ module Vedeu
       describe '#reset' do
         subject { instance.reset }
 
-        it { subject.must_be_instance_of(Vedeu::Models::Group) }
+        it { subject.must_be_instance_of(Vedeu::Groups::Group) }
         it { subject.members.must_be_empty }
       end
 
@@ -133,6 +133,6 @@ module Vedeu
 
     end # Group
 
-  end # Models
+  end # Groups
 
 end # Vedeu

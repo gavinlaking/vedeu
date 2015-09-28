@@ -26,6 +26,6 @@ module Vedeu
 
   end # Bindings
 
-end # Vedeu
+  Vedeu::Bindings.setup!
 
-Vedeu::Bindings.setup!
+end # Vedeu

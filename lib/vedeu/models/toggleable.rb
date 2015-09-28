@@ -4,7 +4,7 @@ module Vedeu
   # toggled between being shown and hidden.
   #
   # Currently using this are: {Vedeu::Cursors::Cursor},
-  # {Vedeu::Models::Group} and {Vedeu::Models::Interface}.
+  # {Vedeu::Groups::Group} and {Vedeu::Models::Interface}.
   #
   module Toggleable
 

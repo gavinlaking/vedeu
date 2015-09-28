@@ -121,11 +121,11 @@ end
 
 ## Groups
 
-{include:Vedeu::DSL::Group}
+{include:Vedeu::Groups::DSL}
 
 ### Add interfaces to groups
 
-{include:Vedeu::DSL::Group.group}
+{include:Vedeu::Groups::DSL.group}
 
 ## Keymaps
 

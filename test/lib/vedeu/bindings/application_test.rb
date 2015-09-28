@@ -8,6 +8,7 @@ module Vedeu
 
       context 'the application specific events are defined' do
         it { Vedeu.bound?(:_goto_).must_equal(true) }
+        it { Vedeu.bound?(:_action_).must_equal(true) }
       end
 
       describe '.goto!' do

@@ -213,7 +213,7 @@ module Vedeu
 
         subject { instance.group(_value) }
 
-        it { subject.must_be_instance_of(Vedeu::Models::Group) }
+        it { subject.must_be_instance_of(Vedeu::Groups::Group) }
 
         context 'when the value is empty or nil' do
           let(:_value) { '' }
@@ -225,7 +225,7 @@ module Vedeu
           let(:members) { Set['actinium', 'lanthanum'] }
 
           before do
-            Vedeu::Models::Group.new(name:    'elements',
+            Vedeu::Groups::Group.new(name:    'elements',
                                      members: ['lanthanum']).store
           end
 

@@ -55,8 +55,8 @@ module Vedeu
       def_delegators Vedeu::Geometry::DSL, :geometry
 
       # @!method group
-      #   @see Vedeu::DSL::Group.group
-      def_delegators Vedeu::DSL::Group, :group
+      #   @see Vedeu::Groups::DSL.group
+      def_delegators Vedeu::Groups::DSL, :group
 
       # @!method keymap
       #   @see Vedeu::DSL::Keymap.keymap
@@ -162,16 +162,16 @@ module Vedeu
       def_delegators Vedeu::Cursors::Cursor, :toggle_cursor
 
       # @!method hide_group
-      #   @see Vedeu::Models::Group#hide
-      def_delegators Vedeu::Models::Group, :hide_group
+      #   @see Vedeu::Groups::Group#hide
+      def_delegators Vedeu::Groups::Group, :hide_group
 
       # @!method show_group
-      #   @see Vedeu::Models::Group#show
-      def_delegators Vedeu::Models::Group, :show_group
+      #   @see Vedeu::Groups::Group#show
+      def_delegators Vedeu::Groups::Group, :show_group
 
       # @!method toggle_group
-      #   @see Vedeu::Models::Group#toggle
-      def_delegators Vedeu::Models::Group, :toggle_group
+      #   @see Vedeu::Groups::Group#toggle
+      def_delegators Vedeu::Groups::Group, :toggle_group
 
       # @!method hide_interface
       #   @see Vedeu::Models::Interface#hide

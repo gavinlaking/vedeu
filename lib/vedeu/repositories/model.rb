@@ -129,6 +129,7 @@ module Vedeu
         when 'Border'   then 'Vedeu::Borders::DSL'
         when 'Buffer'   then 'Vedeu::Buffers::DSL'
         when 'Geometry' then 'Vedeu::Geometry::DSL'
+        when 'Group'    then 'Vedeu::Groups::DSL'
         when 'Menu'     then 'Vedeu::Menus::DSL'
         # when 'ModelTestClass' then 'Vedeu::Repositories::ModelTestClass::DSL'
         else

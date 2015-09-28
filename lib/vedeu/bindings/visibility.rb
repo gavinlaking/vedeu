@@ -61,7 +61,7 @@ module Vedeu
       # See {file:docs/events/visibility.md#\_hide_group_}
       def hide_group!
         Vedeu.bind(:_hide_group_) do |name|
-          Vedeu::Models::Group.hide_group(name)
+          Vedeu::Groups::Group.hide_group(name)
         end
       end
 
@@ -84,7 +84,7 @@ module Vedeu
       # See {file:docs/events/visibility.md#\_show_group_}
       def show_group!
         Vedeu.bind(:_show_group_) do |name|
-          Vedeu::Models::Group.show_group(name)
+          Vedeu::Groups::Group.show_group(name)
         end
       end
 
@@ -105,7 +105,7 @@ module Vedeu
       # See {file:docs/events/visibility.md#\_toggle_group_}
       def toggle_group!
         Vedeu.bind(:_toggle_group_) do |name|
-          Vedeu::Models::Group.toggle_group(name)
+          Vedeu::Groups::Group.toggle_group(name)
         end
       end
 

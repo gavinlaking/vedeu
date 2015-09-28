@@ -16,7 +16,7 @@ module Vedeu
       end
 
       describe '.render' do
-        let(:group) { Vedeu::Models::Group.new(members: [_name]) }
+        let(:group) { Vedeu::Groups::Group.new(members: [_name]) }
 
         before { Vedeu.groups.stubs(:by_name).returns(group) }
 

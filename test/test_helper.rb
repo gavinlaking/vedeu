@@ -30,6 +30,7 @@ unless ENV['NO_SIMPLECOV']
     add_group  'esc',           'vedeu/esc'
     add_group  'events',        'vedeu/events'
     add_group  'geometry',      'vedeu/geometry'
+    add_group  'groups',        'vedeu/groups'
     add_group  'input',         'vedeu/input'
     add_group  'logging',       'vedeu/logging'
     add_group  'menus',         'vedeu/menus'
