@@ -9,6 +9,8 @@ module Vedeu
 
 end # Vedeu
 
+require 'vedeu/groups/clear'
 require 'vedeu/groups/dsl'
 require 'vedeu/groups/group'
+require 'vedeu/groups/refresh'
 require 'vedeu/groups/repository'

@@ -25,7 +25,6 @@ require 'vedeu/output/output'
 require 'vedeu/output/viewport'
 require 'vedeu/output/wordwrap'
 require 'vedeu/output/refresh/refresh'
-require 'vedeu/output/refresh/refresh_group'
 require 'vedeu/output/renderers/all'
 
 require 'vedeu/esc/all'

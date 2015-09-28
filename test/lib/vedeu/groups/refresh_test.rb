@@ -2,13 +2,13 @@ require 'test_helper'
 
 module Vedeu
 
-  module Output
+  module Groups
 
-    describe RefreshGroup do
+    describe Refresh do
 
-      let(:described) { Vedeu::Output::RefreshGroup }
+      let(:described) { Vedeu::Groups::Refresh }
       let(:instance)  { described.new(_name) }
-      let(:_name)     { 'Vedeu::Output::RefreshGroup' }
+      let(:_name)     { 'Vedeu::Groups::Refresh' }
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
@@ -26,7 +26,7 @@ module Vedeu
 
         context 'when the name is present' do
           it {
-            Vedeu::Output::RefreshGroup.expects(:by_name).with(_name)
+            Vedeu::Groups::Refresh.expects(:by_name).with(_name)
             subject
           }
         end
@@ -36,8 +36,8 @@ module Vedeu
         it { instance.must_respond_to(:by_name) }
       end
 
-    end # RefreshGroup
+    end # Refresh
 
-  end # Output
+  end # Groups
 
 end # Vedeu

@@ -1,10 +1,10 @@
 module Vedeu
 
-  module Clear
+  module Groups
 
     # Clear the interfaces belonging to the named group.
     #
-    class Group
+    class Clear
 
       class << self
 
@@ -23,17 +23,17 @@ module Vedeu
 
       end # Eigenclass
 
-      # Return a new instance of Vedeu::Clear::Group.
+      # Return a new instance of Vedeu::Groups::Clear.
       #
       # @param name [String]
-      # @return [Vedeu::Clear::Group]
+      # @return [Vedeu::Groups::Clear]
       def initialize(name)
         @name = name
       end
 
       # @return [void]
       def render
-        members.each { |name| Vedeu::Clear::Interface.render(name) }
+        members.each { |name| Vedeu.trigger(:_clear_view_, name) }
       end
 
       protected
@@ -49,8 +49,8 @@ module Vedeu
         Vedeu.groups.by_name(name).members
       end
 
-    end # Group
+    end # Clear
 
-  end # Clear
+  end # Groups
 
 end # Vedeu

@@ -39,7 +39,7 @@ module Vedeu
 
       # See {file:docs/events/visibility.md#\_clear_group_}
       def clear_group!
-        Vedeu.bind(:_clear_group_) { |name| Vedeu::Clear::Group.render(name) }
+        Vedeu.bind(:_clear_group_) { |name| Vedeu::Groups::Clear.render(name) }
       end
 
       # See {file:docs/events/visibility.md#\_clear_view_}

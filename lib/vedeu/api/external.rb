@@ -146,8 +146,8 @@ module Vedeu
       def_delegators Vedeu::Clear::Interface, :clear_by_name
 
       # @!method clear_by_group
-      #   @see Vedeu::Clear::Group.render
-      def_delegators Vedeu::Clear::Group, :clear_by_group
+      #   @see Vedeu::Groups::Clear.render
+      def_delegators Vedeu::Groups::Clear, :clear_by_group
 
       # @!method hide_cursor
       #   @see Vedeu::Cursors::Cursor#hide
