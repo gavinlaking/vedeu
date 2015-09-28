@@ -123,11 +123,9 @@ module Vedeu
 
         @maximised = true
 
-        work = store
-
-        Vedeu.trigger(:_refresh_view_, name)
-
-        work
+        store do
+          Vedeu.trigger(:_refresh_view_, name)
+        end
       end
 
       # Moves the geometry down by one row.
@@ -196,11 +194,9 @@ module Vedeu
 
         @maximised = false
 
-        work = store
-
-        Vedeu.trigger(:_refresh_)
-
-        work
+        store do
+          Vedeu.trigger(:_refresh_)
+        end
       end
 
       private

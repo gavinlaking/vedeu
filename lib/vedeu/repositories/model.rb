@@ -107,10 +107,16 @@ module Vedeu
         Object.const_get(dsl_class).new(self, client)
       end
 
+      # @note If a block is given, store the model, return the model
+      #   after yielding.
       # @todo Perhaps some validation could be added here?
       # @return [void] The model instance stored in the repository.
       def store
-        repository.store(self) # if valid?
+        new_model = repository.store(self)
+
+        yield if block_given?
+
+        new_model
       end
 
       private
