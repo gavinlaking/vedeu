@@ -137,8 +137,7 @@ module Vedeu
       def move_down
         return self if yn + 1 > Vedeu.height
 
-        Vedeu::Geometry::Geometry.store(move_attributes.merge!(y:  y + 1,
-                                                               yn: yn + 1))
+        Vedeu::Geometry::Geometry.store(move_attributes(y: y + 1, yn: yn + 1))
       end
 
       # Moves the geometry left by one column.
@@ -148,8 +147,7 @@ module Vedeu
       def move_left
         return self if x - 1 < 1
 
-        Vedeu::Geometry::Geometry.store(move_attributes.merge!(x:  x - 1,
-                                                               xn: xn - 1))
+        Vedeu::Geometry::Geometry.store(move_attributes(x: x - 1, xn: xn - 1))
       end
 
       # Moves the geometry to the top left of the terminal.
@@ -158,10 +156,7 @@ module Vedeu
       # @return [Vedeu::Geometry::Geometry]
       def move_origin
         Vedeu::Geometry::Geometry.store(
-          move_attributes.merge!(x:  1,
-                                 xn: (xn - x + 1),
-                                 y:  1,
-                                 yn: (yn - y + 1)))
+          move_attributes(x: 1, xn: (xn - x + 1), y: 1, yn: (yn - y + 1)))
       end
 
       # Moves the geometry right by one column.
@@ -171,8 +166,7 @@ module Vedeu
       def move_right
         return self if xn + 1 > Vedeu.width
 
-        Vedeu::Geometry::Geometry.store(move_attributes.merge!(x:  x + 1,
-                                                               xn: xn + 1))
+        Vedeu::Geometry::Geometry.store(move_attributes(x: x + 1, xn: xn + 1))
       end
 
       # Moves the geometry up by one column.
@@ -182,8 +176,7 @@ module Vedeu
       def move_up
         return self if y - 1 < 1
 
-        Vedeu::Geometry::Geometry.store(move_attributes.merge!(y:  y - 1,
-                                                               yn: yn - 1))
+        Vedeu::Geometry::Geometry.store(move_attributes(y: y - 1, yn: yn - 1))
       end
 
       # Will unmaximise the named interface geometry. Previously, when
@@ -233,15 +226,20 @@ module Vedeu
         }
       end
 
+      # @param attrs [Hash<Symbol => Fixnum>]
+      # @option attrs x [Fixnum]
+      # @option attrs xn [Fixnum]
+      # @option attrs y [Fixnum]
+      # @option attrs yn [Fixnum]
       # @return [Hash<Symbol => Boolean, Fixnum>]
-      def move_attributes
-        @attributes.merge(
+      def move_attributes(attrs = {})
+        @attributes.merge!(
           centred:   false,
           maximised: false,
           x:         x,
           xn:        xn,
           y:         y,
-          yn:        yn)
+          yn:        yn).merge!(attrs)
       end
 
       # Returns the row/line start position for the interface.
