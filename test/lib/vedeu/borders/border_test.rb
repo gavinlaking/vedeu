@@ -32,8 +32,6 @@ module Vedeu
       }
       let(:geometry) {}
 
-      before { Vedeu.geometries.stubs(:by_name).returns(geometry) }
-
       describe '.build' do
         subject {
           described.build(attributes) do
@@ -116,8 +114,10 @@ module Vedeu
                                         x:    2,
                                         xn:   6,
                                         y:    2,
-                                        yn: 6)
+                                        yn:   6)
         }
+
+        before { Vedeu.geometries.stubs(:by_name).returns(geometry) }
 
         describe '#bx' do
           subject { instance.bx }
@@ -213,6 +213,8 @@ module Vedeu
           Vedeu::Geometry::Geometry.new(name: 'borders', width: 8)
         }
 
+        before { Vedeu.geometries.stubs(:by_name).returns(geometry) }
+
         subject { instance.width }
 
         context 'when the border is not enabled' do
@@ -264,6 +266,8 @@ module Vedeu
         let(:geometry) {
           Vedeu::Geometry::Geometry.new(name: 'borders', height: 5)
         }
+
+        before { Vedeu.geometries.stubs(:by_name).returns(geometry) }
 
         subject { instance.height }
 
