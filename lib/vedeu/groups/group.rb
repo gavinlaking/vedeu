@@ -83,9 +83,7 @@ module Vedeu
       def hide
         super
 
-        @members.each do |member|
-          Vedeu::Models::Interface.hide_interface(member)
-        end
+        @members.each { |member| Vedeu.trigger(:_hide_interface_, member) }
 
         self
       end
@@ -127,9 +125,7 @@ module Vedeu
       def show
         super
 
-        @members.each do |member|
-          Vedeu::Models::Interface.show_interface(member)
-        end
+        @members.each { |member| Vedeu.trigger(:_show_interface_, member) }
 
         self
       end
