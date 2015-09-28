@@ -1,8 +1,3 @@
-$LIB_DIR = File.dirname(__FILE__) + '/../lib'
-$LOAD_PATH.unshift($LIB_DIR) unless $LOAD_PATH.include?($LIB_DIR)
-
-require 'bundler/setup'
-
 require 'base64'
 require 'date'
 require 'drb'
