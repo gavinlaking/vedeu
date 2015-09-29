@@ -8,8 +8,6 @@ module Vedeu
 
       let(:described) { Vedeu::EscapeSequences::Actions }
 
-      before { Vedeu::Terminal.stubs(:size).returns([80, 25]) }
-
       describe 'action methods' do
         it { described.hide_cursor.must_equal("\e[?25l") }
         it { described.show_cursor.must_equal("\e[?25h") }
