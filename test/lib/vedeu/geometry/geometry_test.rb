@@ -32,6 +32,8 @@ module Vedeu
       let(:y)         {}
       let(:yn)        {}
 
+      before { Terminal.stubs(:size).returns([12, 40]) }
+
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
         it {
@@ -113,8 +115,6 @@ module Vedeu
         let(:y)  { 4 }
         let(:yn) { 8 }
 
-        before { Terminal.stubs(:size).returns([12, 40]) }
-
         subject { instance.move_down }
 
         it { subject.must_be_instance_of(described) }
@@ -138,8 +138,6 @@ module Vedeu
         let(:xn) { 25 }
         let(:y)  { 4 }
         let(:yn) { 8 }
-
-        before { Terminal.stubs(:size).returns([12, 40]) }
 
         subject { instance.move_left }
 
@@ -165,8 +163,6 @@ module Vedeu
         let(:y)  { 4 }
         let(:yn) { 8 }
 
-        before { Terminal.stubs(:size).returns([12, 40]) }
-
         subject { instance.move_origin }
 
         it { subject.must_be_instance_of(described) }
@@ -181,8 +177,6 @@ module Vedeu
         let(:xn) { 25 }
         let(:y)  { 4 }
         let(:yn) { 8 }
-
-        before { Terminal.stubs(:size).returns([12, 40]) }
 
         subject { instance.move_right }
 
@@ -207,8 +201,6 @@ module Vedeu
         let(:xn) { 25 }
         let(:y)  { 4 }
         let(:yn) { 8 }
-
-        before { Terminal.stubs(:size).returns([12, 40]) }
 
         subject { instance.move_up }
 
@@ -247,8 +239,6 @@ module Vedeu
       end
 
       describe '#top, #right, #bottom, #left' do
-        before { Terminal.stubs(:size).returns([12, 40]) }
-
         context 'maximised is true' do
           let(:attributes) { { maximised: true } }
 
@@ -325,8 +315,6 @@ module Vedeu
       describe '#maximise' do
         let(:attributes) { { maximised: true } }
 
-        before { Terminal.stubs(:size).returns([12, 40]) }
-
         subject { instance.maximise }
 
         it { instance.top.must_equal(1) }
@@ -337,8 +325,6 @@ module Vedeu
 
       describe '#unmaximise' do
         let(:attributes) { { maximised: false } }
-
-        before { Terminal.stubs(:size).returns([12, 40]) }
 
         subject { instance.unmaximise }
 
