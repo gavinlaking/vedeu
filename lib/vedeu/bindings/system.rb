@@ -49,7 +49,7 @@ module Vedeu
 
       # See {file:docs/events/system.md#\_exit_}
       def exit!
-        Vedeu.bind(:_exit_) { Vedeu::Runtime::Application.stop }
+        Vedeu.bind(:_exit_) { Vedeu.exit }
       end
 
       # See {file:docs/events/system.md#\_initialize_}
