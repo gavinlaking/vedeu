@@ -65,8 +65,24 @@ module Vedeu
         end
 
         context 'when the view is visible' do
-          # @todo Add more tests.
-          # it { skip }
+          let(:interface) { Vedeu::Models::Interface.new(visible: true) }
+          let(:border)    { Vedeu::Borders::Border.new(name: _name, enabled: false) }
+
+          before do
+            Vedeu.stubs(:trigger)
+            Vedeu.interfaces.stubs(:by_name).with(_name).returns(interface)
+            Vedeu::Output::Viewport.stubs(:render)
+            Vedeu.borders.stubs(:by_name).with(_name).returns(border)
+            border.stubs(:render)
+          end
+
+          it {
+            Vedeu.expects(:trigger).with(:_clear_view_, _name)
+            Vedeu::Output::Viewport.expects(:render).with(instance)
+            Vedeu.borders.expects(:by_name).with(_name).returns(border)
+            border.expects(:render)
+            subject
+          }
         end
       end
 
