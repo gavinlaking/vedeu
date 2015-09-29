@@ -87,18 +87,6 @@ module Vedeu
         Vedeu.buffers.by_name(name).show
       end
 
-      # Toggle the visibility of the interface with the given name.
-      #
-      # @example
-      #   Vedeu.toggle_interface(name)
-      #
-      # @return [void]
-      def toggle
-        return hide if visible?
-
-        show
-      end
-
       private
 
       # The default values for a new instance of this class.

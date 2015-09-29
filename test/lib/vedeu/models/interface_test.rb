@@ -93,32 +93,6 @@ module Vedeu
         }
       end
 
-      describe '#toggle' do
-        let(:buffer) { Vedeu::Buffers::Buffer.new }
-
-        before { Vedeu.buffers.stubs(:by_name).returns(buffer) }
-
-        subject { instance.toggle }
-
-        context 'when the interface is not visible' do
-          let(:visible) { false }
-
-          it {
-            Vedeu.buffers.by_name('hydrogen').expects(:show)
-            subject
-          }
-        end
-
-        context 'when the interface is visible' do
-          let(:visible) { true }
-
-          it {
-            Vedeu.buffers.by_name('hydrogen').expects(:hide)
-            subject
-          }
-        end
-      end
-
     end # Interface
 
   end # Models
