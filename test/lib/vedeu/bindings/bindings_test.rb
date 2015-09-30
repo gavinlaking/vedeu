@@ -77,6 +77,33 @@ module Vedeu
       it { subject.must_equal(true) }
     end
 
+    describe '.setup_aliases!' do
+      before do
+        Vedeu::Bindings::Application.stubs(:setup_aliases!)
+        Vedeu::Bindings::Movement.stubs(:setup_aliases!)
+        Vedeu::Bindings::Visibility.stubs(:setup_aliases!)
+      end
+
+      subject { described.setup_aliases! }
+
+      it {
+        Vedeu::Bindings::Application.expects(:setup_aliases!)
+        subject
+      }
+
+      it {
+        Vedeu::Bindings::Movement.expects(:setup_aliases!)
+        subject
+      }
+
+      it {
+        Vedeu::Bindings::Visibility.expects(:setup_aliases!)
+        subject
+      }
+
+      it { subject.must_equal(true) }
+    end
+
   end # Bindings
 
 end # Vedeu

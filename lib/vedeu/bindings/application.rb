@@ -16,6 +16,11 @@ module Vedeu
         goto!
       end
 
+      # @return [TrueClass]
+      def setup_aliases!
+        Vedeu.bind_alias(:_action_, :_goto_)
+      end
+
       private
 
       # :nocov:
@@ -25,8 +30,6 @@ module Vedeu
         Vedeu.bind(:_goto_) do |controller, action, **args|
           Vedeu::Runtime::Router.goto(controller, action, **args)
         end
-
-        Vedeu.bind_alias(:_action_, :_goto_)
       end
 
       # :nocov:

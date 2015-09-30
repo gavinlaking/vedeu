@@ -28,6 +28,13 @@ module Vedeu
         toggle_interface!
       end
 
+      # @return [TrueClass]
+      def setup_aliases!
+        Vedeu.bind_alias(:_cursor_hide_, :_hide_cursor_)
+
+        Vedeu.bind_alias(:_cursor_show_, :_show_cursor_)
+      end
+
       private
 
       # :nocov:
@@ -50,8 +57,6 @@ module Vedeu
       # See {file:docs/events/visibility.md#\_hide_cursor_}
       def hide_cursor!
         Vedeu.bind(:_hide_cursor_) { |name| Vedeu.hide_cursor(name) }
-
-        Vedeu.bind_alias(:_cursor_hide_, :_hide_cursor_)
       end
 
       # See {file:docs/events/visibility.md#\_hide_group_}
@@ -67,8 +72,6 @@ module Vedeu
       # See {file:docs/events/visibility.md#\_show_cursor_}
       def show_cursor!
         Vedeu.bind(:_show_cursor_) { |name| Vedeu.show_cursor(name) }
-
-        Vedeu.bind_alias(:_cursor_show_, :_show_cursor_)
       end
 
       # See {file:docs/events/visibility.md#\_show_group_}
