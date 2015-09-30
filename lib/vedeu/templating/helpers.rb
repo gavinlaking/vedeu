@@ -6,6 +6,8 @@ module Vedeu
     #
     module Helpers
 
+      include Vedeu::View
+
       # @param value [String] The HTML/CSS colour.
       # @param block [Proc]
       # @raise [Vedeu::Error::RequiresBlock]
