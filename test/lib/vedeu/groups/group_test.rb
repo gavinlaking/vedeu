@@ -41,20 +41,30 @@ module Vedeu
         }
       end
 
+      describe '.store' do
+        subject { described.store(attributes) }
+
+        it { subject.must_equal(instance) }
+      end
+
       describe '#add' do
         subject { instance.add('hydrogen') }
 
-        it { subject.must_be_instance_of(Vedeu::Groups::Group) }
+        it { subject.must_be_instance_of(described) }
 
         context 'when the member already exists' do
+          let(:members) { ['hydrogen', 'carbon', 'nitrogen', 'oxygen'] }
+
           it 'does not add the member again but returns a new Group' do
-            subject.wont_equal(instance)
+            subject.members.must_equal(Set.new(members))
           end
         end
 
         context 'when the member does not exist' do
+          let(:members) { ['carbon', 'nitrogen', 'oxygen'] }
+
           it 'adds the member and returns a new Group' do
-            subject.wont_equal(instance)
+            subject.members.must_include('hydrogen')
           end
         end
       end
@@ -104,18 +114,16 @@ module Vedeu
         context 'when the group is already empty' do
           let(:members) { [] }
 
-          it { subject.wont_equal(instance) }
+          it { subject.members.must_equal(Set.new) }
         end
 
         context 'when the member exists' do
           let(:member) { 'oxygen' }
 
-          it { subject.wont_equal(instance) }
           it { subject.members.wont_include(member) }
         end
 
         context 'when the member does not exist' do
-          it { subject.wont_equal(instance) }
           it { subject.members.wont_include(member) }
         end
       end
@@ -123,7 +131,7 @@ module Vedeu
       describe '#reset' do
         subject { instance.reset }
 
-        it { subject.must_be_instance_of(Vedeu::Groups::Group) }
+        it { subject.must_be_instance_of(described) }
         it { subject.members.must_be_empty }
       end
 
