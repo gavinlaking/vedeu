@@ -21,7 +21,7 @@ module Vedeu
 
       # Returns a new instance of Vedeu::Cursors::Refresh.
       #
-      # @param name [String] The name of the cursor.
+      # @param name [String|Symbol] The name of the cursor.
       # @return [Vedeu::Cursors::Refresh]
       def initialize(name = nil)
         @name = name || Vedeu.focus
@@ -44,7 +44,7 @@ module Vedeu
       protected
 
       # @!attribute [r] name
-      # @return [String]
+      # @return [String|Symbol]
       attr_reader :name
 
       private

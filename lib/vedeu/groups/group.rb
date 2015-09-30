@@ -23,7 +23,7 @@ module Vedeu
       # @param attributes [Hash]
       # @option attributes members [Set] A collection of names of
       #   interfaces belonging to this group.
-      # @option attributes name [String] The name of the group.
+      # @option attributes name [String|Symbol] The name of the group.
       # @option attributes repository
       #   [Vedeu::Repositories::Repository]
       #   The storage for all Group models.

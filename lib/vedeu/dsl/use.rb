@@ -14,10 +14,10 @@ module Vedeu
       # Border, Geometry and Interface.
       #
       # @example
-      #   # Here the character used for 'my_border' is used in
-      #   # 'my_other_border'.
-      #   Vedeu.border 'my_other_border' do
-      #     top_right use('my_border').top_right
+      #   # Here the character used for :my_border is used in
+      #   # :my_other_border.
+      #   Vedeu.border :my_other_border do
+      #     top_right use(:my_border).top_right
       #   end
       #
       # @note
@@ -27,8 +27,8 @@ module Vedeu
       #     exception may be raised, or the request for an attribute
       #     may raise a NoMethodError exception.
       #
-      # @param name [String] The name of the model with the value you
-      #   wish to use.
+      # @param name [String|Symbol] The name of the model with the
+      #   value you wish to use.
       # @raise
       #   [Vedeu::Error::ModelNotFound|Vedeu::Error::NoMethodError]
       #   The model or attribute cannot be found.

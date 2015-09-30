@@ -11,7 +11,7 @@ module Vedeu
 
       include Vedeu::Common
 
-      # @param name [String] The name of the interface to be refreshed
+      # @param name [String|Symbol] The name of the interface to be refreshed
       #   using the named buffer.
       # @return [Array|Vedeu::Error::ModelNotFound]
       def self.by_name(name)
@@ -20,7 +20,7 @@ module Vedeu
 
       # Return a new instance of Vedeu::Buffers::Refresh.
       #
-      # @param name [String]
+      # @param name [String|Symbol]
       # @return [Vedeu::Buffers::Refresh]
       def initialize(name)
         @name = name
@@ -36,14 +36,14 @@ module Vedeu
       protected
 
       # # @!attribute [r] name
-      # @return [String]
+      # @return [String|Symbol]
       attr_reader :name
 
       private
 
       # @raise [Vedeu::Error::MissingRequired] When the name is empty
       #   or nil.
-      # @return [String]
+      # @return [String|Symbol]
       def buffer_name
         return name if present?(name)
 

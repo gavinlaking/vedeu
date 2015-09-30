@@ -11,13 +11,13 @@ module Vedeu
       attr_reader :attributes
 
       # @!attribute [r] name
-      # @return [String]
+      # @return [String|Symbol]
       attr_reader :name
 
       # Returns an instance of the Vedeu::Null::Generic class.
       #
       # @param attributes [Hash<Symbol => void>]
-      # @option attributes name [String|NilClass]
+      # @option attributes name [String|Symbol|NilClass]
       # @return [Vedeu::Null::Generic]
       def initialize(attributes = {})
         @attributes = attributes

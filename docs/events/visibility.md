@@ -2,6 +2,8 @@
 
 ## Visibility Events
 
+Note: 'name' is a Symbol unless mentioned otherwise.
+
 ### :_clear_
 Clears the whole terminal space.
 

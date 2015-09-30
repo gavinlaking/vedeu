@@ -2,6 +2,8 @@
 
 ## Document Events
 
+Note: 'name' is a Symbol unless mentioned otherwise.
+
 ### :_editor_execute_
 
     Vedeu.trigger(:_editor_execute_, name)
@@ -28,6 +30,8 @@ line in the named document.
 This event attempts to insert the given character in the named
 document at the current virtual cursor position.
 
+Note: 'character' is a string.
+
     Vedeu.trigger(:_editor_insert_character_, name, character)
 
 ### :_editor_insert_line_
@@ -42,13 +46,11 @@ character in the named document.
 
     Vedeu.trigger(:_editor_left_, name)
 
-
 ### :_editor_right_
 This event attempts to move the virtual cursor right by one
 character in the named document.
 
     Vedeu.trigger(:_editor_right_, name)
-
 
 ### :_editor_up_
 This event attempts to move the virtual cursor up by one line

@@ -22,7 +22,7 @@ module Vedeu
       attr_reader :attributes
 
       # @!attribute [r] name
-      # @return [String]
+      # @return [String|Symbol]
       attr_reader :name
 
       # @!attribute [w] ox
@@ -54,8 +54,8 @@ module Vedeu
       # Returns a new instance of Vedeu::Cursors::Cursor.
       #
       # @param attributes [Hash]
-      # @option attributes name [String] The name of the interface
-      #   this cursor belongs to.
+      # @option attributes name [String|Symbol] The name of the
+      #   interface this cursor belongs to.
       # @option attributes ox [Fixnum] The offset x coordinate.
       # @option attributes oy [Fixnum] The offset y coordinate.
       # @option attributes repository

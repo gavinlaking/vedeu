@@ -42,7 +42,7 @@ class VedeuTestApplication
 
   Vedeu.bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
 
-  Vedeu.border 'test_interface' do
+  Vedeu.border :test_interface do
     # Define colour and style of border
     colour foreground: '#ffff00', background: '#0000ff'
     style  'normal'
@@ -62,7 +62,7 @@ class VedeuTestApplication
     vertical     '|'
   end
 
-  Vedeu.geometry 'test_interface' do
+  Vedeu.geometry :test_interface do
     # centred!
     height 6
     width  26
@@ -70,24 +70,24 @@ class VedeuTestApplication
     y      4
   end
 
-  Vedeu.interface 'test_interface' do
+  Vedeu.interface :test_interface do
     colour foreground: '#ff0000', background: '#000000'
     cursor!
   end
 
-  Vedeu.keymap 'test_interface' do
+  Vedeu.keymap :test_interface do
     key(:up,    'k') { Vedeu.trigger(:_cursor_up_)    }
     key(:right, 'l') { Vedeu.trigger(:_cursor_right_) }
     key(:down,  'j') { Vedeu.trigger(:_cursor_down_)  }
     key(:left,  'h') { Vedeu.trigger(:_cursor_left_)  }
   end
 
-  Vedeu.menu 'test_interface' do
+  Vedeu.menu :test_interface do
     # ...
   end
 
   Vedeu.renders do
-    view 'test_interface' do
+    view :test_interface do
       lines do
         line 'a1b1c1d1e1f1g1h1i1j1k1l1m1n1o1p1q1r1s1t1u1v1w1x1y1z1'
         line 'a2b2c2d2e2f2g2h2i2j2k2l2m2n2o2p2q2r2s2t2u2v2w2x2y2z2'

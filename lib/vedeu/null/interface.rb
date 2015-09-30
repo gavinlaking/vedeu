@@ -15,7 +15,7 @@ module Vedeu
       # Returns a new instance of Vedeu::Null::Interface.
       #
       # @param attributes [Hash<Symbol => void>]
-      # @option attributes name [String]
+      # @option attributes name [String|Symbol]
       # @return [Vedeu::Null::Interface]
       def initialize(attributes = {})
         @attributes = attributes

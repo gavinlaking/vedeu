@@ -2,6 +2,8 @@
 
 ## Menu Events
 
+Note: 'name' is a Symbol unless mentioned otherwise.
+
 ### :_menu_bottom_
 Makes the last menu item the current menu item.
 

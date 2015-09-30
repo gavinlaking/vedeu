@@ -23,7 +23,7 @@ module Vedeu
       # Add an interface name to the focus list unless it is already
       # registered.
       #
-      # @param name [String] The name of the interface.
+      # @param name [String|Symbol] The name of the interface.
       # @param focus [Boolean] When true, prepends the interface name
       #   to the collection, making that interface the currently
       #   focussed interface.
@@ -55,10 +55,12 @@ module Vedeu
       #   Vedeu.trigger(:_focus_by_name_, name)
       #   Vedeu.focus_by_name('name')
       #
-      # @param name [String] The interface to focus; must be defined.
+      # @param name [String|Symbol] The interface to focus; must be
+      #   defined.
       # @raise [Vedeu::Error::ModelNotFound] When the interface cannot
       #   be found.
-      # @return [String] The name of the interface now in focus.
+      # @return [String|Symbol] The name of the interface now in
+      #   focus.
       def by_name(name)
         unless registered?(name)
           fail Vedeu::Error::ModelNotFound,
@@ -89,7 +91,7 @@ module Vedeu
       # @example
       #   Vedeu.focussed?(name)
       #
-      # @param name [String]
+      # @param name [String|Symbol]
       # @return [Boolean]
       def current?(name)
         current == name
@@ -186,7 +188,7 @@ module Vedeu
       # Returns a boolean indicating whether the named model is
       # registered.
       #
-      # @param name [String]
+      # @param name [String|Symbol]
       # @return [Boolean]
       def registered?(name)
         return false if empty?

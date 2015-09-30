@@ -19,7 +19,8 @@ module Vedeu
       # Returns a new instance of Vedeu::Input::Keymap.
       #
       # @param attributes [Hash]
-      # @option attributes name [String] The name of the keymap.
+      # @option attributes name [String|Symbol] The name of the
+      #   keymap.
       # @option attributes keys [Vedeu::Input::Keys|Array]
       #   A collection of keys.
       # @option attributes repository

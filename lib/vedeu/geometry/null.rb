@@ -35,7 +35,7 @@ module Vedeu
       # Returns a new instance of Vedeu::Geometry::Null.
       #
       # @param attributes [Hash<Symbol => void>]
-      # @option attributes name [String|NilClass]
+      # @option attributes name [String|Symbol|NilClass]
       # @return [Vedeu::Geometry::Null]
       def initialize(attributes = {})
         @attributes = attributes

@@ -46,7 +46,7 @@ module Vedeu
       # @option attributes colour [Vedeu::Colours::Colour]
       # @option attributes delay [Float]
       # @option attributes group [String]
-      # @option attributes name [String]
+      # @option attributes name [String|Symbol]
       # @option attributes parent [Vedeu::Views::Composition]
       # @option attributes repository [Vedeu::Models::Interfaces]
       # @option attributes style [Vedeu::Presentation::Style]

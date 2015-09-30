@@ -84,7 +84,7 @@ module Vedeu
       # @option attributes centred [Boolean]
       # @option attributes maximised [Boolean]
       # @option attributes height [Fixnum]
-      # @option attributes name [String]
+      # @option attributes name [String|Symbol]
       # @option attributes repository [Vedeu::Geometry::Repository]
       # @option attributes width [Fixnum]
       # @option attributes x [Fixnum]

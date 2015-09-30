@@ -22,12 +22,12 @@ module Vedeu
         # define your the views of your application without their
         # content.
         #
-        #   Vedeu.interface 'my_interface' do
+        #   Vedeu.interface :my_interface do
         #     # ... some code
         #   end
         #
-        # @param name [String] The name of the interface. Used to
-        #   reference the interface throughout your application's
+        # @param name [String|Symbol] The name of the interface. Used
+        #   to reference the interface throughout your application's
         #   execution lifetime.
         # @param block [Proc] A set of attributes which define the
         #   features of the interface.
@@ -54,6 +54,7 @@ module Vedeu
         # registered, and also adds interface's name to list of
         # focussable interfaces.
         #
+        # @param name [String|Symbol]
         # @see Vedeu::Buffers::Buffer
         # @return [Vedeu::Buffers::Buffer]
         def add_buffers!(name)
@@ -63,6 +64,7 @@ module Vedeu
         # Registers a new cursor for the interface unless already
         # registered.
         #
+        # @param name [String|Symbol]
         # @return [Vedeu::Cursors::Cursor]
         def add_cursor!(name)
           Vedeu::Cursors::Cursor.store(name: name)
@@ -71,6 +73,7 @@ module Vedeu
         # Registers interface name in focus list unless already
         # registered.
         #
+        # @param name [String|Symbol]
         # @return [void]
         def add_focusable!(name)
           Vedeu.focusable.add(name) unless Vedeu.focusable.registered?(name)
@@ -103,7 +106,7 @@ module Vedeu
       #   to true.
       #
       # @example
-      #   Vedeu.interface 'my_interface' do
+      #   Vedeu.interface :my_interface do
       #     cursor  true  # => show the cursor for this interface
       #     # or...
       #     cursor  :show # => both of these are equivalent to line
@@ -113,14 +116,14 @@ module Vedeu
       #     # ...
       #   end
       #
-      #   Vedeu.interface 'my_interface' do
+      #   Vedeu.interface :my_interface do
       #     cursor false # => hide the cursor for this interface
       #     # or...
       #     cursor nil   # => as above
       #     # ...
       #   end
       #
-      #   Vedeu.view 'my_interface' do
+      #   Vedeu.view :my_interface do
       #     cursor true # => Specify the visibility of the cursor when
       #                 #    the view is rendered.
       #     # ...
@@ -147,7 +150,7 @@ module Vedeu
       # @param value [Fixnum|Float] Time in seconds. (0.5 = 500ms).
       #
       # @example
-      #   Vedeu.interface 'my_interface' do
+      #   Vedeu.interface :my_interface do
       #     delay 0.5 # interface will not update more often than
       #               # every 500ms.
       #     # ...
@@ -166,7 +169,7 @@ module Vedeu
       #   focus. However, this behaviour can be overridden:
       #
       #   ```ruby
-      #   Vedeu.focus_by_name 'some_interface'
+      #   Vedeu.focus_by_name :some_interface
       #   ```
       #
       #   When the above is specified (outside of a `Vedeu.interface`
@@ -182,13 +185,13 @@ module Vedeu
       # multiple interfaces at once.
       #
       # @example
-      #   Vedeu.interface 'my_interface' do
-      #     group 'main_screen'
+      #   Vedeu.interface :my_interface do
+      #     group :main_screen
       #     # ...
       #   end
       #
-      # @param name [String] The name of the group to which this
-      #   interface should belong.
+      # @param name [String|Symbol] The name of the group to which
+      #   this interface should belong.
       # @return [Vedeu::Groups::Group]
       def group(name)
         return false unless present?(name)
@@ -198,6 +201,8 @@ module Vedeu
         Vedeu.groups.by_name(name).add(model.name)
       end
 
+      # @param name [String|Symbol] The name of the interface to which
+      #   this keymap should belong.
       # @see Vedeu::DSL::Keymap.keymap
       def keymap(name = model.name, &block)
         Vedeu.keymap(name, &block)
@@ -207,15 +212,15 @@ module Vedeu
       # The name of the interface. Used to reference the interface
       # throughout your application's execution lifetime.
       #
-      # @param value [String]
+      # @param value [String|Symbol]
       #
       # @example
       #   Vedeu.interface do
-      #     name 'my_interface'
+      #     name :my_interface
       #     # ...
       #   end
       #
-      # @return [String]
+      # @return [String|Symbol]
       def name(value)
         model.name = value
       end
@@ -230,7 +235,7 @@ module Vedeu
       # Set the interface to visible.
       #
       # @example
-      #   Vedeu.interface('my_interface') do
+      #   Vedeu.interface :my_interface do
       #     show!
       #
       #     # ... some code
@@ -244,7 +249,7 @@ module Vedeu
       # Set the interface to invisible.
       #
       # @example
-      #   Vedeu.interface('my_interface') do
+      #   Vedeu.interface :my_interface do
       #     # ... some code
       #   end
       #
@@ -255,8 +260,8 @@ module Vedeu
 
       # Use a value from another model.
       #
-      # @param name [String] The name of the interface model you wish
-      #   to use a value from.
+      # @param name [String|Symbol] The name of the interface model
+      #   you wish to use a value from.
       # @return [Vedeu::Models::Interface]
       def use(name)
         model.repository.by_name(name)
@@ -268,21 +273,21 @@ module Vedeu
       #   evaluate to true.
       #
       # @example
-      #   Vedeu.interface 'my_interface' do
+      #   Vedeu.interface :my_interface do
       #     visible true  # => show the interface
       #     # or...
       #     show!         # => as above
       #     # ... some code
       #   end
       #
-      #   Vedeu.interface 'my_interface' do
+      #   Vedeu.interface :my_interface do
       #     visible false # => hide the interface
       #     # or...
       #     hide!         # => as above
       #     # ... some code
       #   end
       #
-      #   Vedeu.view 'my_interface' do
+      #   Vedeu.view :my_interface do
       #     visible false
       #     # ... some code
       #   end
@@ -304,7 +309,7 @@ module Vedeu
       #   --2--
       #   --1-- # rendered first
       #
-      #   Vedeu.interface 'my_interface' do
+      #   Vedeu.interface :my_interface do
       #     zindex 3
       #     # ...
       #   end

@@ -45,7 +45,7 @@ module Vedeu
 
         # Fetch an instance of a repository's model by name.
         #
-        # @param name [String]
+        # @param name [String|Symbol]
         # @return [void]
         def by_name(name)
           repository.by_name(name) if repository

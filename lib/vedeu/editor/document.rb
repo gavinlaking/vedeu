@@ -33,14 +33,14 @@ module Vedeu
       attr_accessor :data
 
       # @!attribute [rw] name
-      # @return [String]
+      # @return [String|Symbol]
       attr_accessor :name
 
       # Returns a new instance of Vedeu::Editor::Document.
       #
       # @param attributes [Hash]
       # @option attributes data [String]
-      # @option attributes name [String]
+      # @option attributes name [String|Symbol]
       # @option attributes repository
       #   [Vedeu::Repositories::Repository]
       # @return [Vedeu::Editor::Document]
@@ -234,7 +234,7 @@ module Vedeu
 
       # Returns the default options/attributes for this class.
       #
-      # @return [Hash]
+      # @return [Hash<Symbol => void|Symbol]
       def defaults
         {
           data:       Vedeu::Editor::Lines.new([Vedeu::Editor::Line.new]),

@@ -5,7 +5,7 @@ module Vedeu
     # Provides methods to be used to define views.
     #
     #   Vedeu.renders do
-    #     view 'my_interface' do
+    #     view :my_interface do
     #       lines do
     #         background '#000000'
     #         foreground '#ffffff'
@@ -49,7 +49,7 @@ module Vedeu
       # Specify a single line in a view.
       #
       #   Vedeu.renders do
-      #     view 'my_interface' do
+      #     view :my_interface do
       #       line 'some text...'
       #       # ... some code
       #
@@ -85,7 +85,7 @@ module Vedeu
       # required block.
       #
       #   Vedeu.renders do
-      #     view 'my_interface' do
+      #     view :my_interface do
       #       line do
       #         streams do
       #           # ... some code

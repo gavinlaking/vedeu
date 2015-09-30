@@ -104,8 +104,8 @@ module Vedeu
       #   border is to be shown for this interface.
       # @option attributes horizontal [String] The horizontal border
       #   character.
-      # @option attributes name [String] The name of the interface to
-      #   which this border relates.
+      # @option attributes name [String|Symbol] The name of the
+      #   interface to which this border relates.
       # @option attributes style [Vedeu::Presentation::Style]
       # @option attributes show_bottom [Boolean] Indicate whether the
       #   bottom border is to be shown.

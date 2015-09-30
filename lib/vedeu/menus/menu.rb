@@ -38,19 +38,19 @@ module Vedeu
       # items for your users to select; and provide interactivity
       # within your application.
       #
-      # @param name [String]
+      # @param name [String|Symbol]
       # @param block [Proc] A set of attributes which define the
       #   features of the menu. See {Vedeu::Menus::DSL#items} and
       #   {Vedeu::Menus::DSL#name}.
       #
       # @example
-      #   Vedeu.menu 'my_interface' do
+      #   Vedeu.menu :my_interface do
       #     items [:item_1, :item_2, :item_3]
       #     # ...
       #   end
       #
       #   Vedeu.menu do
-      #     name 'menus_must_have_a_name'
+      #     name :menus_must_have_a_name
       #     items Track.all_my_favourites
       #     # ...
       #   end
@@ -67,7 +67,7 @@ module Vedeu
       #
       # @param attributes [Hash]
       # @option attributes collection [Array]
-      # @option attributes name [String]
+      # @option attributes name [String|Symbol]
       # @option attributes current [Fixnum]
       # @option attributes selected [Fixnum|NilClass]
       # @return [Vedeu::Menus::Menu]

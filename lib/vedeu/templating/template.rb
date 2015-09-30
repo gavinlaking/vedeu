@@ -17,7 +17,7 @@ module Vedeu
       # @param object [Class]
       # @param path [String]
       # @param options [Hash]
-      # @option options name [String] The name of an interface.
+      # @option options name [String|Symbol] The name of an interface.
       # @return [Vedeu::Templating::Template]
       def initialize(object, path, options = {})
         @object  = object

@@ -19,13 +19,13 @@ detail in their respective sections below.
 Here is an example of declarations for an `interface` block:
 
 ```ruby
-interface 'main' do
+interface :main do
   visible true # whether to show the interface
   focus! # focus this interface
   cursor true # Show the cursor when this section is focused
   colour foreground: '#ffffff', # set interface foreground
          background: '#000033'  # and background colors
-  group 'general' # set interface group
+  group :general # set interface group
 
   geometry do
     # size and position details
@@ -53,7 +53,7 @@ That is, these are equivalent ways to declare a Geometry for an
 existing interface
 
 ```ruby
-interface 'main' do
+interface :main do
   geometry do
     # some geometry
   end
@@ -65,11 +65,11 @@ end
 or you can say
 
 ```ruby
-interface 'main' do
+interface :main do
   # some other declarations
 end
 
-geometry 'main' do
+geometry :main do
   # some geometry
 end
 ```

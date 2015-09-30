@@ -19,12 +19,12 @@ module Vedeu
       attr_accessor :parent
 
       # @!attribute [rw] name
-      # @return [String]
+      # @return [String|Symbol|NilClass]
       attr_accessor :name
 
       # @param collection [Array|Vedeu::Repositories::Collection]
       # @param parent [void]
-      # @param name [String|NilClass]
+      # @param name [String|Symbol|NilClass]
       # @return [Vedeu::Repositories::Collection]
       def self.coerce(collection = [], parent = nil, name = nil)
         if collection.is_a?(Vedeu::Repositories::Collection)
@@ -40,7 +40,7 @@ module Vedeu
       #
       # @param collection [void]
       # @param parent [void]
-      # @param name [String|NilClass]
+      # @param name [String|Symbol|NilClass]
       # @return [Vedeu::Repositories::Collection]
       def initialize(collection = [], parent = nil, name = nil)
         @collection = collection

@@ -2,6 +2,8 @@
 
 ## Movement Events
 
+Note: 'name' is a Symbol unless mentioned otherwise.
+
 ### :_cursor_origin_
 This event moves the cursor to the interface origin; the top left
 corner of the named interface.
@@ -25,7 +27,7 @@ Adjusts the position of the cursor or view.
 When a name is not given, the cursor in the interface which is
 currently in focus should move in the direction specified.
 
-    Vedeu.trigger(:_cursor_left_, 'my_interface')
+    Vedeu.trigger(:_cursor_left_, name)
     Vedeu.trigger(:_cursor_left_)
     Vedeu.trigger(:_cursor_right_)
     Vedeu.trigger(:_cursor_up_)
@@ -49,9 +51,9 @@ See {file:docs/events.md#\_cursor__up_down_left_right_}
 
 Please note that the name of the view is required for these events.
 
-    Vedeu.trigger(:_view_down_,  'my_interface')
-    Vedeu.trigger(:_view_left_,  'my_interface')
-    Vedeu.trigger(:_view_right_, 'my_interface')
-    Vedeu.trigger(:_view_up_,    'my_interface')
+    Vedeu.trigger(:_view_down_, name)
+    Vedeu.trigger(:_view_left_, name)
+    Vedeu.trigger(:_view_right_, name)
+    Vedeu.trigger(:_view_up_, name)
 
 Each of the :_view_* events has an alias, :_geometry_* if you prefer.

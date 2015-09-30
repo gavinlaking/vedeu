@@ -61,13 +61,13 @@ module Vedeu
       # don't need to specify everything again.
       #
       # @todo More documentation required.
-      # @param name [String] The name of the interface you are
+      # @param name [String|Symbol] The name of the interface you are
       #   targetting for this view.
       # @param block [Proc] The directives you wish to send to this
       #   interface.
       #
       # @example
-      #   view 'my_interface' do
+      #   view :my_interface do
       #     # ...
       #   end
       #
@@ -85,14 +85,14 @@ module Vedeu
       #
       # @example
       #   Vedeu.renders do
-      #     template_for('my_interface',
+      #     template_for(:my_interface,
       #                  '/path/to/template.erb',
       #                  @some_object, options)
       #   end
       #
       # @todo More documentation required.
       #
-      # @param name [String] The name of interface for which this
+      # @param name [String|Symbol] The name of interface for which this
       #   template's content belongs to.
       # @param filename [String] The filename (including path) to the
       #   template to be used. Yoy can use `File.dirname(__FILE__)` to
@@ -123,7 +123,7 @@ module Vedeu
 
       private
 
-      # @param name [String]
+      # @param name [String|Symbol]
       # @param lines [Vedeu::Views::Lines]
       # @return [Hash]
       def template_attributes(name, lines)
@@ -133,7 +133,7 @@ module Vedeu
       # Return the current attributes combined with the existing
       # interface attributes defined by the interface.
       #
-      # @param name [String] The name of the interface.
+      # @param name [String|Symbol] The name of the interface.
       # @return [Hash]
       def new_attributes(name)
         attributes.merge!(existing_attributes(name))
@@ -141,7 +141,7 @@ module Vedeu
 
       # Retrieve the attributes of the interface by name.
       #
-      # @param name [String] The name of the interface.
+      # @param name [String|Symbol] The name of the interface.
       # @return [Hash]
       def existing_attributes(name)
         Vedeu.interfaces.by_name(name).attributes

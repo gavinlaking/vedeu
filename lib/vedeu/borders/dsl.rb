@@ -12,12 +12,12 @@ module Vedeu
 
       # Specify the border of an interface or view with a simple DSL.
       #
-      #   Vedeu.border 'some_interface' do
+      #   Vedeu.border :some_interface do
       #     # ...
       #   end
       #
-      # @param name [String] The name of the interface or view to
-      #   which this border belongs.
+      # @param name [String|Symbol] The name of the interface or view
+      #   to which this border belongs.
       # @param block [Proc]
       # @raise [Vedeu::Error::RequiresBlock]
       # @return [Vedeu::Borders::Border]
@@ -40,7 +40,7 @@ module Vedeu
       # Set the character to be used to draw the bottom left corner of
       # the border.
       #
-      #   Vedeu.border 'border_demo' do
+      #   Vedeu.border :border_demo do
       #     bottom_left '+'
       #     # ... some code
       #   end
@@ -56,7 +56,7 @@ module Vedeu
       # Set the character to be used to draw the bottom right corner
       # of the border.
       #
-      #   Vedeu.border 'border_demo' do
+      #   Vedeu.border :border_demo do
       #     bottom_right '+'
       #     # ... some code
       #   end
@@ -71,7 +71,7 @@ module Vedeu
 
       # Disable the border:
       #
-      #   Vedeu.border 'border_demo' do
+      #   Vedeu.border :border_demo do
       #     disable!
       #     # ... some other code (will be ignored)
       #   end
@@ -92,7 +92,7 @@ module Vedeu
       # (Borders are enabled by default when defined for an
       # interface).
       #
-      #   Vedeu.border 'border_demo' do
+      #   Vedeu.border :border_demo do
       #     enable!
       #     # ... some code
       #   end
@@ -112,7 +112,7 @@ module Vedeu
       # Set the character to be used to draw a horizontal part of the
       # border.
       #
-      #   Vedeu.border 'border_demo' do
+      #   Vedeu.border :border_demo do
       #     horizontal '-'
       #     # ... some code
       #   end
@@ -127,7 +127,7 @@ module Vedeu
 
       # Enable/disable the bottom border.
       #
-      #   Vedeu.border 'border_demo' do
+      #   Vedeu.border :border_demo do
       #     bottom true  # or...
       #     bottom false # or...
       #     hide_bottom! # or...
@@ -162,7 +162,7 @@ module Vedeu
 
       # Enable/disable the left border.
       #
-      #   Vedeu.border 'border_demo' do
+      #   Vedeu.border :border_demo do
       #     left true  # or...
       #     left false # or...
       #     hide_left! # or...
@@ -197,7 +197,7 @@ module Vedeu
 
       # Enable/disable the right border.
       #
-      #   Vedeu.border 'border_demo' do
+      #   Vedeu.border :border_demo do
       #     right true  # or...
       #     right false # or...
       #     hide_right! # or...
@@ -233,7 +233,7 @@ module Vedeu
       # If you have you are showing a top border, you could add a
       # title.
       #
-      #   Vedeu.border 'border_demo' do
+      #   Vedeu.border :border_demo do
       #     title 'My Cool Title'
       #     # ... some code
       #   end
@@ -252,7 +252,7 @@ module Vedeu
       # If you have you are showing a bottom border, you could add a
       # caption.
       #
-      #   Vedeu.border 'border_demo' do
+      #   Vedeu.border :border_demo do
       #     caption 'My Cool Caption'
       #     # ... some code
       #   end
@@ -270,7 +270,7 @@ module Vedeu
 
       # Enable/disable the top border.
       #
-      #   Vedeu.border 'border_demo' do
+      #   Vedeu.border :border_demo do
       #     top true  # or...
       #     top false # or...
       #     hide_top! # or...
@@ -306,7 +306,7 @@ module Vedeu
       # Set the character to be used to draw the top left corner of
       # the border.
       #
-      #   Vedeu.border 'border_demo' do
+      #   Vedeu.border :border_demo do
       #     top_left '+'
       #     # ... some code
       #   end
@@ -322,7 +322,7 @@ module Vedeu
       # Set the character to be used to draw the top right corner of
       # the border.
       #
-      #   Vedeu.border 'border_demo' do
+      #   Vedeu.border :border_demo do
       #     top_right '+'
       #     # ... some code
       #   end
@@ -338,7 +338,7 @@ module Vedeu
       # Set the character to be used to draw a vertical part of the
       # border.
       #
-      #   Vedeu.border 'border_demo' do
+      #   Vedeu.border :border_demo do
       #     vertical '|'
       #     # ... some code
       #   end

@@ -13,7 +13,7 @@ module Vedeu
         # @example
         #   Vedeu.clear_by_group(name)
         #
-        # @param name [String]
+        # @param name [String|Symbol]
         # @return [void]
         def render(name)
           new(name).render
@@ -25,7 +25,7 @@ module Vedeu
 
       # Return a new instance of Vedeu::Groups::Clear.
       #
-      # @param name [String]
+      # @param name [String|Symbol]
       # @return [Vedeu::Groups::Clear]
       def initialize(name)
         @name = name
@@ -39,7 +39,7 @@ module Vedeu
       protected
 
       # @!attribute [r] name
-      # @return [String]
+      # @return [String|Symbol]
       attr_reader :name
 
       private

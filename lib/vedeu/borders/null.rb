@@ -8,13 +8,13 @@ module Vedeu
     class Null
 
       # @!attribute [r] name
-      # @return [String|NilClass]
+      # @return [String|Symbol|NilClass]
       attr_reader :name
 
       # Returns a new instance of Vedeu::Borders::Null.
       #
       # @param attributes [Hash<Symbol => void>]
-      # @option attributes name [String|NilClass]
+      # @option attributes name [String|Symbol|NilClass]
       # @return [Vedeu::Borders::Null]
       def initialize(attributes = {})
         @attributes = attributes

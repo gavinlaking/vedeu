@@ -25,7 +25,7 @@ module Vedeu
 
       # Send given input to the named document.
       #
-      # @param name [String]
+      # @param name [String|Symbol]
       # @param input [String|Symbol]
       # @return [String|Symbol]
       def self.keypress(input:, name:)
@@ -34,7 +34,7 @@ module Vedeu
 
       # Returns a new instance of Vedeu::Editor::Editor.
       #
-      # @param name [String]
+      # @param name [String|Symbol]
       # @param input [String|Symbol]
       # @return [Vedeu::Editor::Editor]
       def initialize(input:, name:)

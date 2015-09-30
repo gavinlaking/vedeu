@@ -24,7 +24,7 @@ module Vedeu
       # @param element [Object] An object you wish to add to the
       #   collection.
       #
-      #   Vedeu.menu 'my_menu' do
+      #   Vedeu.menu :my_menu do
       #     item SomeClass.new
       #     item SomeClass.new
       #   end
@@ -38,14 +38,14 @@ module Vedeu
       # Define the items for the menu. Most powerful when used with
       # one of your model classes.
       #
-      # In the 'my_playlist' example below, your `Track` model may
+      # In the :my_playlist example below, your `Track` model may
       # return a collection of tracks to populate the menu.
       #
-      #   Vedeu.menu 'my_menu' do
+      #   Vedeu.menu :my_menu do
       #     items [:item_1, :item_2, :item_3]
       #   end
       #
-      #   Vedeu.menu 'my_playlist' do
+      #   Vedeu.menu :my_playlist do
       #     items Track.all_my_favourites
       #   end
       #
@@ -61,14 +61,14 @@ module Vedeu
       # your application's execution lifetime.
       #
       #   Vedeu.menu do
-      #     name 'my_menu'
+      #     name :my_menu
       #     # ...
       #   end
       #
-      # @param value [String]
+      # @param name [String|Symbol]
       # @return [String]
-      def name(value)
-        model.name = value
+      def name(name)
+        model.name = name
       end
       alias_method :name=, :name
 

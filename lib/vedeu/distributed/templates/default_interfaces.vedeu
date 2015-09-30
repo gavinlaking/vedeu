@@ -1,4 +1,4 @@
-Vedeu.interface 'test_interface' do
+Vedeu.interface :test_interface do
   colour foreground: '#ff0000', background: '#000000'
   cursor!
 end

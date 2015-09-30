@@ -8,20 +8,20 @@ module Vedeu
   #
   # @example
   #   # Borders can be defined when defining your interface...
-  #   Vedeu.interface 'my_interface' do
+  #   Vedeu.interface :my_interface do
   #     border do
   #     # ...
   #   end
   #
   #   # ...or as part of a view definition...
   #   Vedeu.renders do
-  #     view 'border_demo' do
+  #     view :border_demo do
   #       border do
   #       # ...
   #     end
   #
   #   # ...or standalone; referencing the target interface or view.
-  #   Vedeu.border 'some_interface' do
+  #   Vedeu.border :some_interface do
   #     # ...
   #   end
   #
