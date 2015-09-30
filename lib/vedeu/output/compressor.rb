@@ -9,6 +9,8 @@ module Vedeu
     #
     class Compressor
 
+      include Vedeu::Common
+
       # @param output [Array<Array<Vedeu::Views::Char>>]
       # @return [String]
       def self.render(output)
@@ -44,7 +46,7 @@ module Vedeu
 
       # @return [Array]
       def content
-        return [] if output.nil? || output.empty?
+        return [] if absent?(output)
 
         output.content.delete_if { |cell| cell.is_a?(Vedeu::Models::Cell) }
       end

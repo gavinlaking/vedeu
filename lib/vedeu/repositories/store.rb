@@ -7,6 +7,7 @@ module Vedeu
     module Store
 
       include Enumerable
+      include Vedeu::Common
 
       # @param block [Proc]
       # @return [Enumerator]
@@ -27,7 +28,7 @@ module Vedeu
       # @param name [String]
       # @return [Boolean]
       def exists?(name)
-        return false if empty? || name.nil? || name.empty?
+        return false if empty? || absent?(name)
 
         storage.include?(name)
       end

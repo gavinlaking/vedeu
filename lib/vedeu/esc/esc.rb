@@ -11,6 +11,7 @@ module Vedeu
     #
     module Esc
 
+      include Vedeu::Common
       include Vedeu::EscapeSequences::Actions
       include Vedeu::EscapeSequences::Borders
       include Vedeu::EscapeSequences::Colours
@@ -25,7 +26,7 @@ module Vedeu
       # @param stream [String]
       # @return [String]
       def escape(stream = '')
-        return stream if stream.nil? || stream.empty?
+        return stream if absent?(stream)
 
         stream.gsub(/\e/, '\\e')
       end

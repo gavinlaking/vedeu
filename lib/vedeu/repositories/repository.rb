@@ -122,7 +122,7 @@ module Vedeu
       # @param name [String]
       # @return [Boolean]
       def registered?(name)
-        return false if name.nil? || name.empty?
+        return false if absent?(name)
         return false if empty?
 
         storage.include?(name)
