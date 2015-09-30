@@ -7,10 +7,10 @@ your application whilst using Vedeu.
 
 ## Interfaces
 
-An Interface is a basic element in the GUI. It usually but does not
-necessarily correspond to a region of the terminal screen (for
-example, an Interface might not be displayed at certain points in an
-application life cycle).
+An Interface is a basic element in the GUI. You can think of it as a
+container for a portion of the terminal screen. Interfaces can be set
+to be show or hidden, and combined into groups to form the different
+'screens' of your application.
 
 Much of the behavior of an Interface comes from child objects that
 are defined under the Interface. These objects are described in more
@@ -36,11 +36,11 @@ interface 'main' do
   keymap do
     # keymap that is in effect when this interface is focused
   end
-  views do
-    # details about how to render the interface
-  end
 end
 ```
+
+The content for an interface is handled by a 'view'. More details on
+these can be found here: {file:docs/dsl.md#Views Views}
 
 ### Declaring interface sub-objects
 
