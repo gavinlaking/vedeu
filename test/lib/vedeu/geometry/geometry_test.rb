@@ -32,7 +32,7 @@ module Vedeu
       let(:y)         {}
       let(:yn)        {}
 
-      before { Terminal.stubs(:size).returns([12, 40]) }
+      before { Vedeu::Terminal.stubs(:size).returns([12, 40]) }
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
