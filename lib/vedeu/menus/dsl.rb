@@ -9,16 +9,6 @@ module Vedeu
 
       include Vedeu::DSL
 
-      # Return a new instance of Vedeu::Menus::DSL.
-      #
-      # @param model [Vedeu::Menus::Menu]
-      # @param client [Object]
-      # @return [Vedeu::Menus::DSL]
-      def initialize(model, client = nil)
-        @model  = model
-        @client = client
-      end
-
       # Add an individual item to the menu.
       #
       # @param element [Object] An object you wish to add to the

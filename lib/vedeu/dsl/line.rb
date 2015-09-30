@@ -36,16 +36,6 @@ module Vedeu
       include Vedeu::DSL::Presentation
       include Vedeu::DSL::Text
 
-      # Returns an instance of DSL::Line.
-      #
-      # @param model [Vedeu::Views::Line]
-      # @param client [Object]
-      # @return [Vedeu::DSL::Line]
-      def initialize(model, client = nil)
-        @model  = model
-        @client = client
-      end
-
       # Specify a single line in a view.
       #
       #   Vedeu.renders do

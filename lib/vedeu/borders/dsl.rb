@@ -27,16 +27,6 @@ module Vedeu
         Vedeu::Borders::Border.build(enabled: true, name: name, &block).store
       end
 
-      # Returns an instance of Borders::DSL.
-      #
-      # @param model [Vedeu::Borders::Border]
-      # @param client [Object]
-      # @return [Vedeu::Borders::DSL]
-      def initialize(model, client = nil)
-        @model  = model
-        @client = client
-      end
-
       # Set the character to be used to draw the bottom left corner of
       # the border.
       #

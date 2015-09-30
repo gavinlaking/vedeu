@@ -58,16 +58,6 @@ module Vedeu
         Vedeu::Input::Keymap.build(name: name, &block).store
       end
 
-      # Returns an instance of DSL::Keymap.
-      #
-      # @param model [Vedeu::Input::Keymap]
-      # @param client [Object]
-      # @return [Vedeu::DSL::Keymap]
-      def initialize(model, client = nil)
-        @model  = model
-        @client = client
-      end
-
       # Define keypress(es) to perform an action.
       #
       # @param values [Array<String>|Array<Symbol>|String|Symbol]

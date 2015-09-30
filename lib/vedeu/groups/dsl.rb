@@ -62,16 +62,6 @@ module Vedeu
         Vedeu::Groups::Group.build(name: name, &block).store
       end
 
-      # Returns an instance of Groups::DSL.
-      #
-      # @param model [Vedeu::Groups::Group]
-      # @param client [Object]
-      # @return [Vedeu::Groups::DSL]
-      def initialize(model, client = nil)
-        @model  = model
-        @client = client
-      end
-
       # Add the named interface to this group.
       #
       #   Vedeu.group :main_screen do

@@ -10,11 +10,6 @@ module Vedeu
       let(:instance)  { described.new(model) }
       let(:model)     { Vedeu::Geometry::Geometry.new }
 
-      describe '#initialize' do
-        it { instance.must_be_instance_of(described) }
-        it { instance.instance_variable_get('@model').must_equal(model) }
-      end
-
       describe '.geometry' do
         it { described.must_respond_to(:geometry) }
       end

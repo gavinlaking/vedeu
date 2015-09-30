@@ -4,6 +4,18 @@ module Vedeu
   #
   module DSL
 
+    # Returns an instance of the DSL class including {Vedeu::DSL}.
+    #
+    # @param model [void] The model class which the DSL class is
+    #   wrapping.
+    # @param client [void] The class where the DSL methods are being
+    #   used.
+    # @return [void] An instance of the DSL class.
+    def initialize(model, client = nil)
+      @model  = model
+      @client = client
+    end
+
     protected
 
     # @!attribute [r] client

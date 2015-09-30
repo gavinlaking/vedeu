@@ -89,16 +89,6 @@ module Vedeu
 
       end # Eigenclass
 
-      # Returns an instance of Vedeu::DSL::Interface.
-      #
-      # @param model [Vedeu::DSL::Interface]
-      # @param client [Object]
-      # @return [Vedeu::DSL::Interface]
-      def initialize(model, client = nil)
-        @model  = model
-        @client = client
-      end
-
       # Set the cursor visibility on an interface.
       #
       # @param value [Boolean] Any value other than nil or false will

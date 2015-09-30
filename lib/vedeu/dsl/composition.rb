@@ -42,16 +42,6 @@ module Vedeu
 
       include Vedeu::DSL
 
-      # Returns an instance of DSL::Composition.
-      #
-      # @param model [Vedeu::Views::Composition]
-      # @param client [Object]
-      # @return [Vedeu::DSL::Composition]
-      def initialize(model, client = nil)
-        @model  = model
-        @client = client
-      end
-
       # Define a view.
       #
       # A view is just an Interface object.

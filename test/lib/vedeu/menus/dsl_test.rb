@@ -18,11 +18,6 @@ module Vedeu
       let(:collection) { [:sodium, :magnesium, :aluminium, :silicon] }
       let(:menu_name)  { 'elements' }
 
-      describe '#initialize' do
-        it { instance.must_be_instance_of(described) }
-        it { instance.instance_variable_get('@model').must_equal(model) }
-      end
-
       describe '#item' do
         let(:_value) { :platinum }
 

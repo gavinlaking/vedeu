@@ -220,16 +220,6 @@ module Vedeu
 
       end # Eigenclass
 
-      # Returns an instance of Vedeu::DSL::View.
-      #
-      # @param model [Vedeu::DSL::View]
-      # @param client [Object]
-      # @return [Vedeu::DSL::View]
-      def initialize(model, client = nil)
-        @model  = model
-        @client = client
-      end
-
       # Specify multiple lines in a view.
       #
       # @param block [Proc]

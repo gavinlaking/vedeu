@@ -94,16 +94,6 @@ module Vedeu
         Vedeu::Geometry::Geometry.build(name: name, &block).store
       end
 
-      # Returns an instance of Vedeu::Geometry::DSL.
-      #
-      # @param model [Vedeu::Geometry::Geometry]
-      # @param client [Object]
-      # @return [Vedeu::Geometry::DSL]
-      def initialize(model, client = nil)
-        @model  = model
-        @client = client
-      end
-
       # Instructs Vedeu to calculate x and y geometry automatically
       # based on the centre character of the terminal, the width and
       # the height.

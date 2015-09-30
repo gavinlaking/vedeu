@@ -9,14 +9,7 @@ module Vedeu
       let(:described) { Vedeu::DSL::Stream }
       let(:instance)  { described.new(model) }
       let(:model)     { Vedeu::Views::Stream.new(parent: parent) }
-      let(:client)    {}
       let(:parent)    { Vedeu::Views::Line.new }
-
-      describe '#initialize' do
-        it { instance.must_be_instance_of(described) }
-        it { instance.instance_variable_get('@model').must_equal(model) }
-        it { instance.instance_variable_get('@client').must_equal(client) }
-      end
 
       describe '#stream' do
         subject { instance.stream { } }
