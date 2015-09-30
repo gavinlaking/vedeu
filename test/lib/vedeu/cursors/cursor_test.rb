@@ -61,15 +61,17 @@ module Vedeu
       end
 
       describe 'accessors' do
-        it { instance.must_respond_to(:attributes) }
-        it { instance.must_respond_to(:name) }
-        it { instance.must_respond_to(:ox) }
-        it { instance.must_respond_to(:ox=) }
-        it { instance.must_respond_to(:oy) }
-        it { instance.must_respond_to(:oy=) }
-        it { instance.must_respond_to(:state) }
-        it { instance.must_respond_to(:x=) }
-        it { instance.must_respond_to(:y=) }
+        it {
+          instance.must_respond_to(:attributes)
+          instance.must_respond_to(:name)
+          instance.must_respond_to(:ox)
+          instance.must_respond_to(:ox=)
+          instance.must_respond_to(:oy)
+          instance.must_respond_to(:oy=)
+          instance.must_respond_to(:state)
+          instance.must_respond_to(:x=)
+          instance.must_respond_to(:y=)
+        }
       end
 
       describe '.store' do

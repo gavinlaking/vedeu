@@ -1,6 +1,6 @@
 module Vedeu
 
-  module Models
+  module Groups
 
     # Interfaces can be associated with one another by being members
     # of the same Group. A Group is a collection of interface names.
@@ -14,7 +14,7 @@ module Vedeu
       # @return [String]
       attr_accessor :name
 
-      # Return a new instance of Vedeu::Models::Group.
+      # Return a new instance of Vedeu::Groups::Group.
       #
       # @note
       #   A group being visible or not may not necessarily mean the
@@ -29,7 +29,7 @@ module Vedeu
       #   The storage for all Group models.
       # @option attributes visible [Boolean] Whether the group is
       #   visible or not.
-      # @return [Vedeu::Models::Group]
+      # @return [Vedeu::Groups::Group]
       def initialize(attributes = {})
         defaults.merge!(attributes).each do |key, value|
           instance_variable_set("@#{key}", value)
@@ -39,11 +39,11 @@ module Vedeu
       # Add a member to the group by name.
       #
       # @param member [String]
-      # @return [Vedeu::Models::Group]
+      # @return [Vedeu::Groups::Group]
       def add(member)
         attrs = attributes.merge!(members: members.add(member))
 
-        Vedeu::Models::Group.new(attrs).store
+        Vedeu::Groups::Group.new(attrs).store
       end
 
       # Returns the attributes of the group.
@@ -79,13 +79,11 @@ module Vedeu
       #   Vedeu.trigger(:_hide_group_, name)
       #   Vedeu.hide_group(name)
       #
-      # @return [Vedeu::Models::Group]
+      # @return [Vedeu::Groups::Group]
       def hide
         super
 
-        @members.each do |member|
-          Vedeu::Models::Interface.hide_interface(member)
-        end
+        @members.each { |member| Vedeu.trigger(:_hide_interface_, member) }
 
         self
       end
@@ -100,20 +98,20 @@ module Vedeu
       # Remove a member from the group by name.
       #
       # @param member [String]
-      # @return [Vedeu::Models::Group]
+      # @return [Vedeu::Groups::Group]
       def remove(member)
         attrs = attributes.merge!(members: members.delete(member))
 
-        Vedeu::Models::Group.new(attrs).store
+        Vedeu::Groups::Group.new(attrs).store
       end
 
       # Remove all members from the group.
       #
-      # @return [Vedeu::Models::Group]
+      # @return [Vedeu::Groups::Group]
       def reset
         attrs = defaults.merge!(name: name)
 
-        Vedeu::Models::Group.new(attrs).store
+        Vedeu::Groups::Group.new(attrs).store
       end
 
       # Show the named group of interfaces, or without a name, the
@@ -123,26 +121,11 @@ module Vedeu
       #   Vedeu.trigger(:_show_group_, name)
       #   Vedeu.show_group(name)
       #
-      # @return [Vedeu::Models::Group]
+      # @return [Vedeu::Groups::Group]
       def show
         super
 
-        @members.each do |member|
-          Vedeu::Models::Interface.show_interface(member)
-        end
-
-        self
-      end
-
-      # Toggle the visibility of the group with the given name.
-      #
-      # @example
-      #   Vedeu.trigger(:_toggle_group, name)
-      #   Vedeu.toggle_group(name)
-      #
-      # @return [Vedeu::Models::Group]
-      def toggle
-        super
+        @members.each { |member| Vedeu.trigger(:_show_interface_, member) }
 
         self
       end
@@ -170,6 +153,6 @@ module Vedeu
 
     end # Group
 
-  end # Models
+  end # Groups
 
 end # Vedeu

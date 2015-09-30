@@ -12,10 +12,12 @@ module Vedeu
       let(:x)         { 19 }
 
       describe 'accessors' do
-        it { instance.must_respond_to(:y) }
-        it { instance.must_respond_to(:first) }
-        it { instance.must_respond_to(:x) }
-        it { instance.must_respond_to(:last) }
+        it {
+          instance.must_respond_to(:y)
+          instance.must_respond_to(:first)
+          instance.must_respond_to(:x)
+          instance.must_respond_to(:last)
+        }
       end
 
       describe '#initialize' do

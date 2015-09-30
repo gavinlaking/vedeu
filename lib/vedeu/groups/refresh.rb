@@ -1,6 +1,6 @@
 module Vedeu
 
-  module Output
+  module Groups
 
     # Refresh an interface, or collection of interfaces belonging to a
     # group.
@@ -12,7 +12,7 @@ module Vedeu
     # @example
     #   Vedeu.trigger(:_refresh_group_, group_name)
     #
-    class RefreshGroup
+    class Refresh
 
       include Vedeu::Common
 
@@ -24,10 +24,10 @@ module Vedeu
         new(name).by_name
       end
 
-      # Return a new instance of Vedeu::Output::RefreshGroup.
+      # Return a new instance of Vedeu::Groups::Refresh.
       #
       # @param name [String]
-      # @return [Vedeu::Output::RefreshGroup]
+      # @return [Vedeu::Groups::Refresh]
       def initialize(name)
         @name = name
       end
@@ -36,7 +36,7 @@ module Vedeu
       def by_name
         Vedeu.timer("Refresh Group: '#{group_name}'") do
           Vedeu.groups.by_name(group_name).by_zindex.each do |name|
-            Vedeu::Buffers::Refresh.by_name(name)
+            Vedeu.trigger(:_refresh_view_, name)
           end
         end
       end
@@ -59,8 +59,8 @@ module Vedeu
              'Cannot refresh group with an empty group name.'
       end
 
-    end # RefreshGroup
+    end # Refresh
 
-  end # Output
+  end # Groups
 
 end # Vedeu

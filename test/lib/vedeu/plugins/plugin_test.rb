@@ -21,12 +21,14 @@ module Vedeu
     end
 
     describe 'accessors' do
-      it { instance.must_respond_to(:name) }
-      it { instance.must_respond_to(:gem) }
-      it { instance.must_respond_to(:gem_name) }
-      it { instance.must_respond_to(:enabled) }
-      it { instance.must_respond_to(:enabled=) }
-      it { instance.must_respond_to(:enabled?) }
+      it {
+        instance.must_respond_to(:name)
+        instance.must_respond_to(:gem)
+        instance.must_respond_to(:gem_name)
+        instance.must_respond_to(:enabled)
+        instance.must_respond_to(:enabled=)
+        instance.must_respond_to(:enabled?)
+      }
     end
 
     describe '#load!' do

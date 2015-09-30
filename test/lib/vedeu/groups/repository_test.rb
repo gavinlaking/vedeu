@@ -2,11 +2,11 @@ require 'test_helper'
 
 module Vedeu
 
-  module Models
+  module Groups
 
-    describe Groups do
+    describe Repository do
 
-      let(:described) { Vedeu::Models::Groups }
+      let(:described) { Vedeu::Groups::Repository }
 
       it { described.must_respond_to(:groups) }
 
@@ -15,11 +15,11 @@ module Vedeu
 
         subject { described.groups.by_name(_name) }
 
-        it { subject.must_be_instance_of(Vedeu::Models::Group) }
+        it { subject.must_be_instance_of(Vedeu::Groups::Group) }
       end
 
-    end # Groups
+    end # Repository
 
-  end # Models
+  end # Groups
 
 end # Vedeu

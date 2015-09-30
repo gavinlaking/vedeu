@@ -2,13 +2,13 @@ require 'test_helper'
 
 module Vedeu
 
-  module Clear
+  module Groups
 
-    describe Group do
+    describe Clear do
 
-      let(:described) { Vedeu::Clear::Group }
+      let(:described) { Vedeu::Groups::Clear }
       let(:instance)  { described.new(_name) }
-      let(:_name)     { 'Vedeu::Clear::Group' }
+      let(:_name)     { 'Vedeu::Groups::Clear' }
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
@@ -16,14 +16,14 @@ module Vedeu
       end
 
       describe '.render' do
-        let(:group) { Vedeu::Models::Group.new(members: [_name]) }
+        let(:group) { Vedeu::Groups::Group.new(members: [_name]) }
 
         before { Vedeu.groups.stubs(:by_name).returns(group) }
 
         subject { described.render(_name) }
 
         it {
-          Vedeu::Clear::Interface.expects(:render).with(_name)
+          Vedeu.expects(:trigger).with(:_clear_view_, _name)
           subject
         }
 
@@ -35,8 +35,8 @@ module Vedeu
         it { instance.must_respond_to(:render) }
       end
 
-    end # Group
+    end # Clear
 
-  end # Clear
+  end # Groups
 
 end # Vedeu

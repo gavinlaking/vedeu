@@ -36,6 +36,10 @@ module Vedeu
       end
 
       describe '#render' do
+        it { instance.must_respond_to(:render) }
+      end
+
+      describe '.with' do
         let(:geometry) {
           Vedeu::Geometry::Geometry.new(name: _name, x: 1, xn: 7, y: 1, yn: 4)
         }
@@ -47,7 +51,7 @@ module Vedeu
           Vedeu.interfaces.stubs(:by_name).returns(interface)
         end
 
-        subject { instance.render }
+        subject { described.with(border) }
 
         context 'when the interface is not visible' do
           it { subject.must_equal([]) }

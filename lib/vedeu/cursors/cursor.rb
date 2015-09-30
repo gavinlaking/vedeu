@@ -165,8 +165,7 @@ module Vedeu
       alias_method :to_str, :to_s
 
       # Hide a named cursor, or without a name, the cursor of the
-      # currently
-      # focussed interface.
+      # currently focussed interface.
       #
       # @example
       #   Vedeu.hide_cursor(name)
@@ -208,18 +207,6 @@ module Vedeu
         super
 
         render
-      end
-
-      # Toggle the visibility of the cursor with the given name.
-      #
-      # @example
-      #   Vedeu.toggle_cursor(name)
-      #
-      # @return [Vedeu::Models::Escape]
-      def toggle
-        return hide if visible?
-
-        show
       end
 
       # @return [Fixnum] The column/character coordinate.

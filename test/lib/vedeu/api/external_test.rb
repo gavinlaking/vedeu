@@ -32,7 +32,7 @@ module Vedeu
       it { Vedeu.must_respond_to(:group) }
 
       describe 'Vedeu.height' do
-        before { Terminal.stubs(:size).returns([25, 40]) }
+        before { Vedeu::Terminal.stubs(:size).returns([25, 40]) }
 
         it { Vedeu.must_respond_to(:height) }
         it { Vedeu.height.must_equal(25) }

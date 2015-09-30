@@ -1,6 +1,6 @@
 module Vedeu
 
-  module DSL
+  module Groups
 
     # Interfaces can be configured to be part of a named group. Once
     # an interface is a member of group, the group can be affected by
@@ -13,7 +13,7 @@ module Vedeu
     # showing or hiding the group would of course, show or hide the
     # interfaces of that group.
     #
-    class Group
+    class DSL
 
       include Vedeu::DSL
 
@@ -55,18 +55,18 @@ module Vedeu
       # @param name [String] The name of this group.
       # @param block [Proc]
       # @raise [Vedeu::Error::RequiresBlock]
-      # @return [Vedeu::Models::Group]
+      # @return [Vedeu::Groups::Group]
       def self.group(name, &block)
         fail Vedeu::Error::RequiresBlock unless block_given?
 
-        Vedeu::Models::Group.build(name: name, &block).store
+        Vedeu::Groups::Group.build(name: name, &block).store
       end
 
-      # Returns an instance of DSL::Group.
+      # Returns an instance of Groups::DSL.
       #
-      # @param model [Vedeu::Models::Group]
+      # @param model [Vedeu::Groups::Group]
       # @param client [Object]
-      # @return [Vedeu::DSL::Group]
+      # @return [Vedeu::Groups::DSL]
       def initialize(model, client = nil)
         @model  = model
         @client = client
@@ -79,7 +79,7 @@ module Vedeu
       #   end
       #
       # @param interface_name [String]
-      # @return [Vedeu::Models::Group]
+      # @return [Vedeu::Groups::Group]
       def add(interface_name)
         model.add(interface_name)
       end
@@ -98,8 +98,8 @@ module Vedeu
         interface_names.each { |name| add(name) }
       end
 
-    end # Group
+    end # DSL
 
-  end # DSL
+  end # Groups
 
 end # Vedeu

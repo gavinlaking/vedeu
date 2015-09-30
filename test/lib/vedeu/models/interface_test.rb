@@ -49,22 +49,24 @@ module Vedeu
       end
 
       describe 'accessors' do
-        it { instance.must_respond_to(:client) }
-        it { instance.must_respond_to(:client=) }
-        it { instance.must_respond_to(:delay) }
-        it { instance.must_respond_to(:delay=) }
-        it { instance.must_respond_to(:group) }
-        it { instance.must_respond_to(:group=) }
-        it { instance.must_respond_to(:name) }
-        it { instance.must_respond_to(:name=) }
-        it { instance.must_respond_to(:parent) }
-        it { instance.must_respond_to(:parent=) }
-        it { instance.must_respond_to(:zindex) }
-        it { instance.must_respond_to(:zindex=) }
-        it { instance.must_respond_to(:visible) }
-        it { instance.must_respond_to(:visible=) }
-        it { instance.must_respond_to(:visible?) }
-        it { instance.must_respond_to(:attributes) }
+        it {
+          instance.must_respond_to(:client)
+          instance.must_respond_to(:client=)
+          instance.must_respond_to(:delay)
+          instance.must_respond_to(:delay=)
+          instance.must_respond_to(:group)
+          instance.must_respond_to(:group=)
+          instance.must_respond_to(:name)
+          instance.must_respond_to(:name=)
+          instance.must_respond_to(:parent)
+          instance.must_respond_to(:parent=)
+          instance.must_respond_to(:zindex)
+          instance.must_respond_to(:zindex=)
+          instance.must_respond_to(:visible)
+          instance.must_respond_to(:visible=)
+          instance.must_respond_to(:visible?)
+          instance.must_respond_to(:attributes)
+        }
       end
 
       describe '#hide' do
@@ -91,32 +93,6 @@ module Vedeu
           Vedeu.buffers.by_name('hydrogen').expects(:show)
           subject
         }
-      end
-
-      describe '#toggle' do
-        let(:buffer) { Vedeu::Buffers::Buffer.new }
-
-        before { Vedeu.buffers.stubs(:by_name).returns(buffer) }
-
-        subject { instance.toggle }
-
-        context 'when the interface is not visible' do
-          let(:visible) { false }
-
-          it {
-            Vedeu.buffers.by_name('hydrogen').expects(:show)
-            subject
-          }
-        end
-
-        context 'when the interface is visible' do
-          let(:visible) { true }
-
-          it {
-            Vedeu.buffers.by_name('hydrogen').expects(:hide)
-            subject
-          }
-        end
       end
 
     end # Interface

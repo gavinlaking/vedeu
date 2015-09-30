@@ -24,11 +24,11 @@ module Vedeu
           while @loop
             yield
 
-            Vedeu::Cursors::Cursor.hide_cursor
+            Vedeu.trigger(:_hide_cursor_)
 
             Vedeu::Terminal::Buffer.render
 
-            Vedeu::Cursors::Cursor.show_cursor
+            Vedeu.trigger(:_show_cursor_)
 
             safe_exit_point!
           end

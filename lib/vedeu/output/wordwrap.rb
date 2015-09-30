@@ -38,10 +38,8 @@ module Vedeu
       def prune
         return text if text.size <= pruned_width
 
-        processed = if split_lines.size > 1
-          split_lines.reduce([]) do |acc, line|
-            acc << ellipsis_string(line)
-          end
+        if split_lines.size > 1
+          split_lines.reduce([]) { |a, e| a << ellipsis_string(e) }
 
         else
           ellipsis_string(text)
@@ -71,7 +69,7 @@ module Vedeu
           processed << reformatted
         end
 
-        processed.reduce([]) { |output, line| output << line.join(' ') }
+        processed.reduce([]) { |a, e| a << e.join(' ') }
       end
 
       protected

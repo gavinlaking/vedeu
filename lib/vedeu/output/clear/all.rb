@@ -9,5 +9,4 @@ module Vedeu
 
 end # Vedeu
 
-require 'vedeu/output/clear/group'
 require 'vedeu/output/clear/interface'

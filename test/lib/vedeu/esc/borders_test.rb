@@ -8,8 +8,6 @@ module Vedeu
 
       let(:described) { Vedeu::EscapeSequences::Borders }
 
-      before { Vedeu::Terminal.stubs(:size).returns([80, 25]) }
-
       describe 'border methods' do
         it { described.border_on.must_equal("\e(0") }
         it { described.border_off.must_equal("\e(B") }

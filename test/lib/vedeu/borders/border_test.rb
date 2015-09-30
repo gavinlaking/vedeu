@@ -32,8 +32,6 @@ module Vedeu
       }
       let(:geometry) {}
 
-      before { Vedeu.geometries.stubs(:by_name).returns(geometry) }
-
       describe '.build' do
         subject {
           described.build(attributes) do
@@ -53,40 +51,42 @@ module Vedeu
       end
 
       describe 'accessors' do
-        it { instance.must_respond_to(:attributes) }
-        it { instance.must_respond_to(:attributes=) }
-        it { instance.must_respond_to(:bottom_left) }
-        it { instance.must_respond_to(:bottom_left=) }
-        it { instance.must_respond_to(:bottom_right) }
-        it { instance.must_respond_to(:bottom_right=) }
-        it { instance.must_respond_to(:caption) }
-        it { instance.must_respond_to(:caption=) }
-        it { instance.must_respond_to(:horizontal) }
-        it { instance.must_respond_to(:horizontal=) }
-        it { instance.must_respond_to(:show_bottom) }
-        it { instance.must_respond_to(:bottom?) }
-        it { instance.must_respond_to(:show_bottom=) }
-        it { instance.must_respond_to(:show_left) }
-        it { instance.must_respond_to(:left?) }
-        it { instance.must_respond_to(:show_left=) }
-        it { instance.must_respond_to(:show_right) }
-        it { instance.must_respond_to(:right?) }
-        it { instance.must_respond_to(:show_right=) }
-        it { instance.must_respond_to(:show_top) }
-        it { instance.must_respond_to(:top?) }
-        it { instance.must_respond_to(:show_top=) }
-        it { instance.must_respond_to(:title) }
-        it { instance.must_respond_to(:title=) }
-        it { instance.must_respond_to(:top_left) }
-        it { instance.must_respond_to(:top_left=) }
-        it { instance.must_respond_to(:top_right) }
-        it { instance.must_respond_to(:top_right=) }
-        it { instance.must_respond_to(:vertical) }
-        it { instance.must_respond_to(:vertical=) }
-        it { instance.must_respond_to(:name) }
-        it { instance.must_respond_to(:enabled) }
-        it { instance.must_respond_to(:enabled=) }
-        it { instance.must_respond_to(:enabled?) }
+        it {
+          instance.must_respond_to(:attributes)
+          instance.must_respond_to(:attributes=)
+          instance.must_respond_to(:bottom_left)
+          instance.must_respond_to(:bottom_left=)
+          instance.must_respond_to(:bottom_right)
+          instance.must_respond_to(:bottom_right=)
+          instance.must_respond_to(:caption)
+          instance.must_respond_to(:caption=)
+          instance.must_respond_to(:horizontal)
+          instance.must_respond_to(:horizontal=)
+          instance.must_respond_to(:show_bottom)
+          instance.must_respond_to(:bottom?)
+          instance.must_respond_to(:show_bottom=)
+          instance.must_respond_to(:show_left)
+          instance.must_respond_to(:left?)
+          instance.must_respond_to(:show_left=)
+          instance.must_respond_to(:show_right)
+          instance.must_respond_to(:right?)
+          instance.must_respond_to(:show_right=)
+          instance.must_respond_to(:show_top)
+          instance.must_respond_to(:top?)
+          instance.must_respond_to(:show_top=)
+          instance.must_respond_to(:title)
+          instance.must_respond_to(:title=)
+          instance.must_respond_to(:top_left)
+          instance.must_respond_to(:top_left=)
+          instance.must_respond_to(:top_right)
+          instance.must_respond_to(:top_right=)
+          instance.must_respond_to(:vertical)
+          instance.must_respond_to(:vertical=)
+          instance.must_respond_to(:name)
+          instance.must_respond_to(:enabled)
+          instance.must_respond_to(:enabled=)
+          instance.must_respond_to(:enabled?)
+        }
       end
 
       describe 'border offset methods; bx, bxn, by, byn' do
@@ -116,8 +116,10 @@ module Vedeu
                                         x:    2,
                                         xn:   6,
                                         y:    2,
-                                        yn: 6)
+                                        yn:   6)
         }
+
+        before { Vedeu.geometries.stubs(:by_name).returns(geometry) }
 
         describe '#bx' do
           subject { instance.bx }
@@ -213,6 +215,8 @@ module Vedeu
           Vedeu::Geometry::Geometry.new(name: 'borders', width: 8)
         }
 
+        before { Vedeu.geometries.stubs(:by_name).returns(geometry) }
+
         subject { instance.width }
 
         context 'when the border is not enabled' do
@@ -264,6 +268,8 @@ module Vedeu
         let(:geometry) {
           Vedeu::Geometry::Geometry.new(name: 'borders', height: 5)
         }
+
+        before { Vedeu.geometries.stubs(:by_name).returns(geometry) }
 
         subject { instance.height }
 

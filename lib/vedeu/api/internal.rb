@@ -100,8 +100,8 @@ module Vedeu
       #   Vedeu.groups
       #
       # @!method groups
-      # @return [Vedeu::Models::Groups]
-      def_delegators Vedeu::Models::Groups, :groups
+      # @return [Vedeu::Groups::Repository]
+      def_delegators Vedeu::Groups::Repository, :groups
 
       # Manipulate the repository of interfaces.
       #

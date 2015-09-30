@@ -19,6 +19,16 @@ module Vedeu
         directional!
       end
 
+      # @return [TrueClass]
+      def setup_aliases!
+        %w(down left right up).each do |direction|
+          Vedeu.bind_alias("_geometry_#{direction}_".to_sym,
+                           "_view_#{direction}_".to_sym)
+        end
+
+        Vedeu.bind_alias(:_cursor_reset_, :_cursor_origin_)
+      end
+
       private
 
       # :nocov:
@@ -40,9 +50,6 @@ module Vedeu
             Vedeu.trigger(:_clear_view_, name)
             Vedeu.trigger(:_refresh_view_, name)
           end
-
-          Vedeu.bind_alias("_geometry_#{direction}_".to_sym,
-                           "_view_#{direction}_".to_sym)
         end
       end
 
@@ -51,8 +58,6 @@ module Vedeu
         Vedeu.bind(:_cursor_origin_) do |name|
           Vedeu.cursors.by_name(name).move_origin
         end
-
-        Vedeu.bind_alias(:_cursor_reset_, :_cursor_origin_)
       end
 
       # See {file:docs/events/movement.md#\_cursor_position_}

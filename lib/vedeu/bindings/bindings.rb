@@ -24,8 +24,21 @@ module Vedeu
       true
     end
 
+    # Setup aliases for certain registered events.
+    # This method is called by Vedeu.
+    #
+    # @return [TrueClass]
+    def setup_aliases!
+      Vedeu::Bindings::Application.setup_aliases!
+      Vedeu::Bindings::Movement.setup_aliases!
+      Vedeu::Bindings::Visibility.setup_aliases!
+
+      true
+    end
+
   end # Bindings
 
-end # Vedeu
+  Vedeu::Bindings.setup!
+  Vedeu::Bindings.setup_aliases!
 
-Vedeu::Bindings.setup!
+end # Vedeu

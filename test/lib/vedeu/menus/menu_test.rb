@@ -51,11 +51,13 @@ module Vedeu
       end
 
       describe 'accessors' do
-        it { instance.must_respond_to(:collection) }
-        it { instance.must_respond_to(:collection=) }
-        it { instance.must_respond_to(:current=) }
-        it { instance.must_respond_to(:name) }
-        it { instance.must_respond_to(:name=) }
+        it {
+          instance.must_respond_to(:collection)
+          instance.must_respond_to(:collection=)
+          instance.must_respond_to(:current=)
+          instance.must_respond_to(:name)
+          instance.must_respond_to(:name=)
+        }
       end
 
       describe '#current' do

@@ -52,13 +52,15 @@ module Vedeu
       end
 
       describe 'accessors' do
-        it { instance.must_respond_to(:parent) }
-        it { instance.must_respond_to(:parent=) }
-        it { instance.must_respond_to(:value) }
-        it { instance.must_respond_to(:content) }
-        it { instance.must_respond_to(:text) }
-        it { instance.must_respond_to(:value=) }
-        it { instance.must_respond_to(:attributes) }
+        it {
+          instance.must_respond_to(:parent)
+          instance.must_respond_to(:parent=)
+          instance.must_respond_to(:value)
+          instance.must_respond_to(:content)
+          instance.must_respond_to(:text)
+          instance.must_respond_to(:value=)
+          instance.must_respond_to(:attributes)
+        }
       end
 
       describe '#add' do

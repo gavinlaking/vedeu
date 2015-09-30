@@ -38,7 +38,7 @@ module Vedeu
       # See {file:docs/events/refresh.md#\_refresh_group_}
       def refresh_group!
         Vedeu.bind(:_refresh_group_) do |name|
-          Vedeu::Output::RefreshGroup.by_name(name)
+          Vedeu::Groups::Refresh.by_name(name)
         end
       end
 

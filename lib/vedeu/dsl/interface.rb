@@ -189,7 +189,7 @@ module Vedeu
       #
       # @param name [String] The name of the group to which this
       #   interface should belong.
-      # @return [Vedeu::Models::Group]
+      # @return [Vedeu::Groups::Group]
       def group(name)
         return false unless present?(name)
 

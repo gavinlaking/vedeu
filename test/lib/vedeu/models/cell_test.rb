@@ -30,9 +30,11 @@ module Vedeu
       end
 
       describe 'accessors' do
-        it { instance.must_respond_to(:colour) }
-        it { instance.must_respond_to(:style) }
-        it { instance.must_respond_to(:value) }
+        it {
+          instance.must_respond_to(:colour)
+          instance.must_respond_to(:style)
+          instance.must_respond_to(:value)
+        }
       end
 
       describe '#eql?' do

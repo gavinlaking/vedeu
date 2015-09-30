@@ -79,7 +79,7 @@ module Vedeu
       # @return [void]
       def define_backgrounds!
         background_codes.each do |key, code|
-          define_method('on_' + key.to_s) do |&blk|
+          define_method("on_#{key}") do |&blk|
             "\e[#{code}m" + (blk ? blk.call + "\e[49m" : '')
           end
         end

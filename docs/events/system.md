@@ -17,7 +17,7 @@ define to 'do things'.
     Vedeu.trigger(:_command_, command)
 
 ### :_editor_
-This event is called by {Vedeu::Input::Input#capture}. When
+This event is called by {Vedeu::Input::Capture#read}. When
 invoked, the key will be passed to the editor for currently
 focussed view.
 
@@ -39,11 +39,11 @@ action(s), like render the first screen, interface or make a sound.
 
 ### :_keypress_
 Will cause the triggering of the `:key` event; which you should define
-to 'do things'. If the `escape` key is pressed, then `key` is triggered
-with the argument `:escape`, also an internal event `_mode_switch_` is
-triggered. Vedeu recognises most key presses and some 'extended'
-keypress (eg. Ctrl+J), a list of supported keypresses can be found here:
-{Vedeu::Input::Input}.
+to 'do things'. If the `escape` key is pressed, then `key` is
+triggered with the argument `:escape`, also an internal event
+`_mode_switch_` is triggered. Vedeu recognises most key presses and
+some 'extended' keypress (eg. Ctrl+J), a list of supported keypresses
+can be found here: {Vedeu::Input::Capture}.
 
     Vedeu.trigger(:_keypress_, key)
 
@@ -56,8 +56,8 @@ logging is enabled in the configuration.
 ### :_mode_switch_
 When triggered (by default, after the user presses `escape`), Vedeu
 switches between modes of the terminal. The idea here being
-that the raw mode is for single keypress actions, whilst fake and cooked
-modes allow the user to enter more elaborate commands- such as commands
-with arguments.
+that the raw mode is for single keypress actions, whilst fake and
+cooked modes allow the user to enter more elaborate commands- such as
+commands with arguments.
 
     Vedeu.trigger(:_mode_switch_)

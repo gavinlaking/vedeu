@@ -12,7 +12,7 @@ module Vedeu
 
       before do
         configuration.stubs(:drb?).returns(false)
-        Terminal.stubs(:open).returns([''])
+        Vedeu::Terminal.stubs(:open).returns([''])
 
         Vedeu.stubs(:trigger)
       end

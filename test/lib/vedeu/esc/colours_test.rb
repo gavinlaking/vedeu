@@ -8,8 +8,6 @@ module Vedeu
 
       let(:described) { Vedeu::EscapeSequences::Colours }
 
-      before { Vedeu::Terminal.stubs(:size).returns([80, 25]) }
-
       describe 'foreground colour methods' do
         it { described.black.must_equal("\e[30m") }
         it { described.red.must_equal("\e[31m") }

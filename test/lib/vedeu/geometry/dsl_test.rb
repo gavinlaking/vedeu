@@ -55,7 +55,7 @@ module Vedeu
       end
 
       describe '#columns' do
-        before { Terminal.stubs(:size).returns([25, 80]) }
+        before { Vedeu::Terminal.stubs(:size).returns([25, 80]) }
 
         subject { instance.columns(3) }
 
@@ -99,7 +99,7 @@ module Vedeu
       end
 
       describe '#rows' do
-        before { Terminal.stubs(:size).returns([25, 80]) }
+        before { Vedeu::Terminal.stubs(:size).returns([25, 80]) }
 
         subject { instance.rows(3) }
 

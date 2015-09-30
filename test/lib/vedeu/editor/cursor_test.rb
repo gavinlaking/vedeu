@@ -62,22 +62,24 @@ module Vedeu
       end
 
       describe '#accessors' do
-        it { instance.must_respond_to(:bx) }
-        it { instance.must_respond_to(:bx=) }
-        it { instance.must_respond_to(:by) }
-        it { instance.must_respond_to(:by=) }
-        it { instance.must_respond_to(:bxn) }
-        it { instance.must_respond_to(:bxn=) }
-        it { instance.must_respond_to(:byn) }
-        it { instance.must_respond_to(:byn=) }
-        it { instance.must_respond_to(:ox) }
-        it { instance.must_respond_to(:ox=) }
-        it { instance.must_respond_to(:oy) }
-        it { instance.must_respond_to(:oy=) }
-        it { instance.must_respond_to(:x) }
-        it { instance.must_respond_to(:x=) }
-        it { instance.must_respond_to(:y) }
-        it { instance.must_respond_to(:y=) }
+        it {
+          instance.must_respond_to(:bx)
+          instance.must_respond_to(:bx=)
+          instance.must_respond_to(:by)
+          instance.must_respond_to(:by=)
+          instance.must_respond_to(:bxn)
+          instance.must_respond_to(:bxn=)
+          instance.must_respond_to(:byn)
+          instance.must_respond_to(:byn=)
+          instance.must_respond_to(:ox)
+          instance.must_respond_to(:ox=)
+          instance.must_respond_to(:oy)
+          instance.must_respond_to(:oy=)
+          instance.must_respond_to(:x)
+          instance.must_respond_to(:x=)
+          instance.must_respond_to(:y)
+          instance.must_respond_to(:y=)
+        }
       end
 
       describe '#bol' do

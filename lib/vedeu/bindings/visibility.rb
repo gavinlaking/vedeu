@@ -28,92 +28,75 @@ module Vedeu
         toggle_interface!
       end
 
-      private
-
-      # :nocov:
-
-      # See {file:docs/events/visibility.md#\_cleanup_}
-      def clear!
-        Vedeu.bind(:_clear_) { Vedeu::Terminal::Buffer.clear }
-      end
-
-      # See {file:docs/events/visibility.md#\_clear_group_}
-      def clear_group!
-        Vedeu.bind(:_clear_group_) { |name| Vedeu::Clear::Group.render(name) }
-      end
-
-      # See {file:docs/events/visibility.md#\_clear_view_}
-      def clear_view!
-        Vedeu.bind(:_clear_view_) do |name|
-          Vedeu::Clear::Interface.render(name)
-        end
-      end
-
-      # See {file:docs/events/visibility.md#\_hide_cursor_}
-      def hide_cursor!
-        Vedeu.bind(:_hide_cursor_) do |name|
-          Vedeu::Cursors::Cursor.hide_cursor(name)
-        end
-
+      # @return [TrueClass]
+      def setup_aliases!
         Vedeu.bind_alias(:_cursor_hide_, :_hide_cursor_)
-      end
-
-      # See {file:docs/events/visibility.md#\_hide_group_}
-      def hide_group!
-        Vedeu.bind(:_hide_group_) do |name|
-          Vedeu::Models::Group.hide_group(name)
-        end
-      end
-
-      # See {file:docs/events/visibility.md#\_hide_interface_}
-      def hide_interface!
-        Vedeu.bind(:_hide_interface_) do |name|
-          Vedeu::Models::Interface.hide_interface(name)
-        end
-      end
-
-      # See {file:docs/events/visibility.md#\_show_cursor_}
-      def show_cursor!
-        Vedeu.bind(:_show_cursor_) do |name|
-          Vedeu::Cursors::Cursor.show_cursor(name)
-        end
 
         Vedeu.bind_alias(:_cursor_show_, :_show_cursor_)
       end
 
+      private
+
+      # :nocov:
+
+      # See {file:docs/events/visibility.md#\_clear_}
+      def clear!
+        Vedeu.bind(:_clear_) { Vedeu.clear }
+      end
+
+      # See {file:docs/events/visibility.md#\_clear_group_}
+      def clear_group!
+        Vedeu.bind(:_clear_group_) { |name| Vedeu.clear_by_group(name) }
+      end
+
+      # See {file:docs/events/visibility.md#\_clear_view_}
+      def clear_view!
+        Vedeu.bind(:_clear_view_) { |name| Vedeu.clear_by_name(name) }
+      end
+
+      # See {file:docs/events/visibility.md#\_hide_cursor_}
+      def hide_cursor!
+        Vedeu.bind(:_hide_cursor_) { |name| Vedeu.hide_cursor(name) }
+      end
+
+      # See {file:docs/events/visibility.md#\_hide_group_}
+      def hide_group!
+        Vedeu.bind(:_hide_group_) { |name| Vedeu.hide_group(name) }
+      end
+
+      # See {file:docs/events/visibility.md#\_hide_interface_}
+      def hide_interface!
+        Vedeu.bind(:_hide_interface_) { |name| Vedeu.hide_interface(name) }
+      end
+
+      # See {file:docs/events/visibility.md#\_show_cursor_}
+      def show_cursor!
+        Vedeu.bind(:_show_cursor_) { |name| Vedeu.show_cursor(name) }
+      end
+
       # See {file:docs/events/visibility.md#\_show_group_}
       def show_group!
-        Vedeu.bind(:_show_group_) do |name|
-          Vedeu::Models::Group.show_group(name)
-        end
+        Vedeu.bind(:_show_group_) { |name| Vedeu.show_group(name) }
       end
 
       # See {file:docs/events/visibility.md#\_show_interface_}
       def show_interface!
-        Vedeu.bind(:_show_interface_) do |name|
-          Vedeu::Models::Interface.show_interface(name)
-        end
+        Vedeu.bind(:_show_interface_) { |name| Vedeu.show_interface(name) }
       end
 
       # See {file:docs/events/visibility.md#\_toggle_cursor_}
       def toggle_cursor!
-        Vedeu.bind(:_toggle_cursor_) do |name|
-          Vedeu::Cursors::Cursor.toggle_cursor(name)
-        end
+        Vedeu.bind(:_toggle_cursor_) { |name| Vedeu.toggle_cursor(name) }
       end
 
       # See {file:docs/events/visibility.md#\_toggle_group_}
       def toggle_group!
-        Vedeu.bind(:_toggle_group_) do |name|
-          Vedeu::Models::Group.toggle_group(name)
-        end
+        Vedeu.bind(:_toggle_group_) { |name| Vedeu.toggle_group(name) }
       end
 
       # See {file:docs/events/visibility.md#\_toggle_interface_}
       def toggle_interface!
-        Vedeu.bind(:_toggle_interface_) do |name|
-          Vedeu::Models::Interface.toggle_interface(name)
-        end
+        Vedeu.bind(:_toggle_interface_) { |name| Vedeu.toggle_interface(name) }
       end
 
       # :nocov:
