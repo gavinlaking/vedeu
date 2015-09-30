@@ -11,6 +11,7 @@ module Vedeu
       let(:width)     { 3 }
 
       before do
+        Vedeu.stubs(:ready?).returns(true)
         Vedeu.stubs(:height).returns(height)
         Vedeu.stubs(:width).returns(width)
         Vedeu::Terminal::Buffer.reset
@@ -18,8 +19,8 @@ module Vedeu
 
       describe '#buffer' do
         let(:expected) {
-          Array.new(height) do |y|
-            Array.new(width) do |x|
+          Array.new(Vedeu.height) do |y|
+            Array.new(Vedeu.width) do |x|
               Vedeu::Models::Cell.new(position: [y + 1, x + 1])
             end
           end
