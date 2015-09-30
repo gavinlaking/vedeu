@@ -15,14 +15,16 @@ module Vedeu
       let(:offset)    { 1 }
 
       describe 'accessors' do
-        it { instance.must_respond_to(:y) }
-        it { instance.must_respond_to(:yn) }
-        it { instance.must_respond_to(:x) }
-        it { instance.must_respond_to(:xn) }
-        it { instance.must_respond_to(:top) }
-        it { instance.must_respond_to(:bottom) }
-        it { instance.must_respond_to(:left) }
-        it { instance.must_respond_to(:right) }
+        it {
+          instance.must_respond_to(:y)
+          instance.must_respond_to(:yn)
+          instance.must_respond_to(:x)
+          instance.must_respond_to(:xn)
+          instance.must_respond_to(:top)
+          instance.must_respond_to(:bottom)
+          instance.must_respond_to(:left)
+          instance.must_respond_to(:right)
+        }
       end
 
       describe '#initialize' do

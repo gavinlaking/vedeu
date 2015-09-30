@@ -55,20 +55,22 @@ module Vedeu
       end
 
       describe 'accessors' do
-        it { instance.must_respond_to(:centred) }
-        it { instance.must_respond_to(:centred=) }
-        it { instance.must_respond_to(:attributes) }
-        it { instance.must_respond_to(:name) }
-        it { instance.must_respond_to(:name=) }
-        it { instance.must_respond_to(:height=) }
-        it { instance.must_respond_to(:maximised) }
-        it { instance.must_respond_to(:maximised?) }
-        it { instance.must_respond_to(:maximised=) }
-        it { instance.must_respond_to(:width=) }
-        it { instance.must_respond_to(:x=) }
-        it { instance.must_respond_to(:xn=) }
-        it { instance.must_respond_to(:y=) }
-        it { instance.must_respond_to(:yn=) }
+        it {
+          instance.must_respond_to(:centred)
+          instance.must_respond_to(:centred=)
+          instance.must_respond_to(:attributes)
+          instance.must_respond_to(:name)
+          instance.must_respond_to(:name=)
+          instance.must_respond_to(:height=)
+          instance.must_respond_to(:maximised)
+          instance.must_respond_to(:maximised?)
+          instance.must_respond_to(:maximised=)
+          instance.must_respond_to(:width=)
+          instance.must_respond_to(:x=)
+          instance.must_respond_to(:xn=)
+          instance.must_respond_to(:y=)
+          instance.must_respond_to(:yn=)
+        }
       end
 
       describe '.store' do

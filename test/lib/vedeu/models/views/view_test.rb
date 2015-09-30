@@ -29,16 +29,18 @@ module Vedeu
       let(:_name)      { 'Vedeu::Views::View' }
 
       describe 'accessors' do
-        it { instance.must_respond_to(:attributes) }
-        it { instance.must_respond_to(:client) }
-        it { instance.must_respond_to(:client=) }
-        it { instance.must_respond_to(:name) }
-        it { instance.must_respond_to(:name=) }
-        it { instance.must_respond_to(:parent) }
-        it { instance.must_respond_to(:parent=) }
-        it { instance.must_respond_to(:lines=) }
-        it { instance.must_respond_to(:zindex) }
-        it { instance.must_respond_to(:zindex=) }
+        it {
+          instance.must_respond_to(:attributes)
+          instance.must_respond_to(:client)
+          instance.must_respond_to(:client=)
+          instance.must_respond_to(:name)
+          instance.must_respond_to(:name=)
+          instance.must_respond_to(:parent)
+          instance.must_respond_to(:parent=)
+          instance.must_respond_to(:lines=)
+          instance.must_respond_to(:zindex)
+          instance.must_respond_to(:zindex=)
+        }
       end
 
       describe '#add' do

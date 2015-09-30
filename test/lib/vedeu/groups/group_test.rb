@@ -32,11 +32,13 @@ module Vedeu
       end
 
       describe 'accessors' do
-        it { instance.must_respond_to(:name) }
-        it { instance.must_respond_to(:name=) }
-        it { instance.must_respond_to(:visible) }
-        it { instance.must_respond_to(:visible=) }
-        it { instance.must_respond_to(:visible?) }
+        it {
+          instance.must_respond_to(:name)
+          instance.must_respond_to(:name=)
+          instance.must_respond_to(:visible)
+          instance.must_respond_to(:visible=)
+          instance.must_respond_to(:visible?)
+        }
       end
 
       describe '#add' do

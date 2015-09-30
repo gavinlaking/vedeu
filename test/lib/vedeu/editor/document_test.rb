@@ -34,11 +34,13 @@ module Vedeu
       end
 
       describe 'accessors' do
-        it { instance.must_respond_to(:attributes) }
-        it { instance.must_respond_to(:data) }
-        it { instance.must_respond_to(:data=) }
-        it { instance.must_respond_to(:name) }
-        it { instance.must_respond_to(:name=) }
+        it {
+          instance.must_respond_to(:attributes)
+          instance.must_respond_to(:data)
+          instance.must_respond_to(:data=)
+          instance.must_respond_to(:name)
+          instance.must_respond_to(:name=)
+        }
       end
 
       describe '#clear' do

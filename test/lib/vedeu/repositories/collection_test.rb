@@ -20,12 +20,14 @@ module Vedeu
       end
 
       describe 'accessors' do
-        it { instance.must_respond_to(:collection) }
-        it { instance.must_respond_to(:all) }
-        it { instance.must_respond_to(:parent) }
-        it { instance.must_respond_to(:parent=) }
-        it { instance.must_respond_to(:name) }
-        it { instance.must_respond_to(:name=) }
+        it {
+          instance.must_respond_to(:collection)
+          instance.must_respond_to(:all)
+          instance.must_respond_to(:parent)
+          instance.must_respond_to(:parent=)
+          instance.must_respond_to(:name)
+          instance.must_respond_to(:name=)
+        }
       end
 
       describe '.coerce' do

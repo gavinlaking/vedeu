@@ -21,9 +21,11 @@ module Vedeu
     let(:visible) { false }
 
     describe 'accessors' do
-      it { instance.must_respond_to(:visible) }
-      it { instance.must_respond_to(:visible=) }
-      it { instance.must_respond_to(:visible?) }
+      it {
+        instance.must_respond_to(:visible)
+        instance.must_respond_to(:visible=)
+        instance.must_respond_to(:visible?)
+      }
     end
 
     describe '#hide' do

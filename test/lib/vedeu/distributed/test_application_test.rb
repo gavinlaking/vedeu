@@ -13,22 +13,24 @@ module Vedeu
     end
 
     describe 'accessors' do
-      it { instance.must_respond_to(:borders) }
-      it { instance.must_respond_to(:borders=) }
-      it { instance.must_respond_to(:configuration) }
-      it { instance.must_respond_to(:configuration=) }
-      it { instance.must_respond_to(:events) }
-      it { instance.must_respond_to(:events=) }
-      it { instance.must_respond_to(:geometries) }
-      it { instance.must_respond_to(:geometries=) }
-      it { instance.must_respond_to(:interfaces) }
-      it { instance.must_respond_to(:interfaces=) }
-      it { instance.must_respond_to(:keymaps) }
-      it { instance.must_respond_to(:keymaps=) }
-      it { instance.must_respond_to(:menus) }
-      it { instance.must_respond_to(:menus=) }
-      it { instance.must_respond_to(:views) }
-      it { instance.must_respond_to(:views=) }
+      it {
+        instance.must_respond_to(:borders)
+        instance.must_respond_to(:borders=)
+        instance.must_respond_to(:configuration)
+        instance.must_respond_to(:configuration=)
+        instance.must_respond_to(:events)
+        instance.must_respond_to(:events=)
+        instance.must_respond_to(:geometries)
+        instance.must_respond_to(:geometries=)
+        instance.must_respond_to(:interfaces)
+        instance.must_respond_to(:interfaces=)
+        instance.must_respond_to(:keymaps)
+        instance.must_respond_to(:keymaps=)
+        instance.must_respond_to(:menus)
+        instance.must_respond_to(:menus=)
+        instance.must_respond_to(:views)
+        instance.must_respond_to(:views=)
+      }
     end
 
     describe '.build' do
