@@ -11,22 +11,22 @@ module Vedeu
 
       include Vedeu::Common
 
-      # @param name [String|Symbol] The name of the interface to be refreshed
-      #   using the named buffer.
-      # @return [Array|Vedeu::Error::ModelNotFound]
+      # @param (see #initialize)
+      # @return (see #by_name)
       def self.by_name(name)
         new(name).by_name
       end
 
       # Return a new instance of Vedeu::Buffers::Refresh.
       #
-      # @param name [String|Symbol]
+      # @param name [String|Symbol] The name of the interface to be refreshed
+      #   using the named buffer.
       # @return [Vedeu::Buffers::Refresh]
       def initialize(name)
         @name = name
       end
 
-      # @return [void]
+      # @return [Array|Vedeu::Error::ModelNotFound]
       def by_name
         Vedeu.timer("Refresh Buffer: '#{buffer_name}'") do
           Vedeu.buffers.by_name(buffer_name).render
@@ -35,7 +35,7 @@ module Vedeu
 
       protected
 
-      # # @!attribute [r] name
+      # @!attribute [r] name
       # @return [String|Symbol]
       attr_reader :name
 

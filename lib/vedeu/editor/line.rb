@@ -14,7 +14,7 @@ module Vedeu
       # Coerce a line into a new instance of Vedeu::Editor::Line.
       #
       # @param line [String|Vedeu::Editor::Line]
-      # @return [Vedeu::Editor::Line]
+      # @return (see #initialize)
       def self.coerce(line)
         return line      if line.is_a?(self)
         return new(line) if line.is_a?(String)

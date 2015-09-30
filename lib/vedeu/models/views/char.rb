@@ -159,7 +159,7 @@ module Vedeu
         }
       end
 
-      # @return [Has<Symbol => Fixnum>]
+      # @return [Hash<Symbol => Fixnum>]
       def position_to_hash
         {
           y: y,

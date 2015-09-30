@@ -9,10 +9,7 @@ module Vedeu
 
       include Vedeu::Common
 
-      # @param char [Vedeu::Views::Char]
-      # @param options [Hash<Symbol => String>]
-      # @option options start_tag [String]
-      # @option options end_tag [String]
+      # @param (see #initialize)
       # @return [String]
       def self.render(char, options = {})
         new(char, options).render

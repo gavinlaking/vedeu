@@ -40,7 +40,7 @@ module Vedeu
                      :yn
 
       # @return [Array<Array<Vedeu::Views::Char>>]
-      # @see Vedeu::Borders::Render#initialize
+      # @param (see #initialize)
       def self.with(border)
         new(border).render
       end

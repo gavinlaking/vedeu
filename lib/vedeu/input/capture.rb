@@ -10,7 +10,7 @@ module Vedeu
       # Instantiate Vedeu::Input::Input and capture keypress(es).
       #
       # @param (see #initialize)
-      # @return [String|Symbol]
+      # @return (see #read)
       def self.read(reader)
         new(reader).read
       end

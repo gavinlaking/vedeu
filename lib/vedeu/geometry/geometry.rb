@@ -72,8 +72,8 @@ module Vedeu
       # @return [Fixnum]
       attr_writer :yn
 
-      # @param attributes [Hash] See #initialize
-      # @return [Vedeu::Geometry::Geometry]
+      # @param (see #initialize)
+      # @return (see #initialize)
       def self.store(attributes)
         new(attributes).store
       end

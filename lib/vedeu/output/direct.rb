@@ -6,9 +6,7 @@ module Vedeu
     #
     class Direct
 
-      # @param value [String]
-      # @param x [Fixnum]
-      # @param y [Fixnum]
+      # @param (see #initialize)
       # @return [String]
       def self.write(value:, x:, y:)
         new(value: value, x: x, y: y).write

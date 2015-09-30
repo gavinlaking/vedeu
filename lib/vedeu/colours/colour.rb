@@ -46,7 +46,7 @@ module Vedeu
       attr_reader :foreground
 
       # @param value [Vedeu::Colours::Colour|Hash<Symbol => void>]
-      # @return [Object]
+      # @return [Vedeu::Colours::Colour]
       def self.coerce(value)
         return value if value.is_a?(self)
         return new unless value.is_a?(Hash)

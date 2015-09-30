@@ -7,7 +7,7 @@ module Vedeu
     #
     class Encoder
 
-      # @param data [Object]
+      # @param (see #initialize)
       # @return [String]
       def self.process(data)
         new(data).process

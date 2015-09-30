@@ -18,7 +18,7 @@ Note: See {Vedeu::Distributed::Server#input} for parameter details.
 Triggering this event with 'data' will push data into the running
 application's virtual buffer.
 
-Note: See {Vedeu::Terminal::Buffer.write} for parameter details.
+Note: See {Vedeu::Terminal::Buffer#write} for parameter details.
 
     Vedeu.trigger(:_drb_store_output_, data)
 

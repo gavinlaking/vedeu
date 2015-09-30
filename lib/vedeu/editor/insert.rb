@@ -6,8 +6,8 @@ module Vedeu
     #
     class Insert
 
+      # @param (see #initialize)
       # @return [Vedeu::Editor::Line|Vedeu::Editor::Lines]
-      # @see #initialize
       def self.into(collection, entity, index = nil, size = 0)
         new(collection, entity, index, size).insert
       end

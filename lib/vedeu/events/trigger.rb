@@ -14,10 +14,7 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:my_event, :oxidize, 'nitrogen')
       #
-      # @param name [Symbol] The name of the event you wish to
-      #   trigger. The event does not have to exist.
-      # @param args [Array] Any arguments the event needs to execute
-      #   correctly.
+      # @param (see #initialize)
       # @return [Array]
       def self.trigger(name, *args)
         new(name, *args).trigger
@@ -25,7 +22,10 @@ module Vedeu
 
       # Returns a new instance of Vedeu::Events::Trigger.
       #
-      # @param (see .trigger)
+      # @param name [Symbol] The name of the event you wish to
+      #   trigger. The event does not have to exist.
+      # @param args [Array] Any arguments the event needs to execute
+      #   correctly.
       # @return [Vedeu::Events::Trigger]
       def initialize(name, *args)
         @name = name

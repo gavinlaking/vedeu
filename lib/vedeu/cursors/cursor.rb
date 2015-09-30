@@ -45,7 +45,7 @@ module Vedeu
       # @return [Fixnum]
       attr_writer :y
 
-      # @param attributes [Hash] See #initialize
+      # @param (see #initialize)
       # @return [Vedeu::Cursors::Cursor]
       def self.store(attributes)
         new(attributes).store

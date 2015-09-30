@@ -25,9 +25,8 @@ module Vedeu
 
       # Send given input to the named document.
       #
-      # @param name [String|Symbol]
-      # @param input [String|Symbol]
-      # @return [String|Symbol]
+      # @param (see #initialize)
+      # @return (see #keypress)
       def self.keypress(input:, name:)
         new(input: input, name: name).keypress
       end

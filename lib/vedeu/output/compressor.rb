@@ -11,7 +11,7 @@ module Vedeu
 
       include Vedeu::Common
 
-      # @param output [Array<Array<Vedeu::Views::Char>>]
+      # @param (see #initialize)
       # @return [String]
       def self.render(output)
         new(output).render

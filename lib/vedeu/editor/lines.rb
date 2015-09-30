@@ -15,7 +15,7 @@ module Vedeu
       # Coerce a document into a new instance of Vedeu::Editor::Lines.
       #
       # @param document [Array<String>|Vedeu::Editor::Lines]
-      # @return [Vedeu::Editor::Lines]
+      # @return (see #initialize)
       def self.coerce(document)
         if document.is_a?(self)
           new(document.lines)
