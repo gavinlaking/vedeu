@@ -16,11 +16,24 @@ YARD::Rake::YardocTask.new(:yard) do |task|
     'lib/**/*.rb',
     '-',
     'docs/api.md',
+    'docs/configuration.md',
     'docs/dsl.md',
     'docs/events.md',
     'docs/getting_started.md',
     'docs/object_graph.md',
+    'docs/events/application.md',
+    'docs/events/document.md',
+    'docs/events/drb.md',
+    'docs/events/focus.md',
+    'docs/events/menu.md',
+    'docs/events/movement.md',
+    'docs/events/refresh.md',
+    'docs/events/system.md',
+    'docs/events/view.md',
+    'docs/events/visibility.md',
   ]
+  task.options = ['--highlight']
+  task.stats_options = ['--list-undoc']
 end
 
 RuboCop::RakeTask.new(:rubocop) do |task|
