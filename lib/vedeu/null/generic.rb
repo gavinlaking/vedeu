@@ -24,12 +24,23 @@ module Vedeu
         @name       = @attributes[:name]
       end
 
+      # @return [FalseClass]
+      def falsy
+        false
+      end
+      alias_method :centred, :falsy
+      alias_method :enabled?, :falsy
+      alias_method :maximise, :falsy
+      alias_method :maximised?, :falsy
+      alias_method :unmaximise, :falsy
+
       # @return [NilClass]
       def null(*)
         nil
       end
       alias_method :add,           :null
       alias_method :bottom_item,   :null
+      alias_method :clear,         :null
       alias_method :colour,        :null
       alias_method :current_item,  :null
       alias_method :deselect_item, :null
@@ -39,6 +50,7 @@ module Vedeu
       alias_method :next_item,     :null
       alias_method :parent,        :null
       alias_method :prev_item,     :null
+      alias_method :render,        :null
       alias_method :select_item,   :null
       alias_method :selected_item, :null
       alias_method :show,          :null

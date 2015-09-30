@@ -28,12 +28,24 @@ module Vedeu
         }
       end
 
+      describe '#falsy' do
+        subject { instance.falsy }
+
+        it { subject.must_be_instance_of(FalseClass) }
+
+        it { instance.must_respond_to(:centred) }
+        it { instance.must_respond_to(:maximise) }
+        it { instance.must_respond_to(:maximised?) }
+        it { instance.must_respond_to(:unmaximise) }
+      end
+
       describe '#null' do
         subject { instance.null }
 
         it { subject.must_be_instance_of(NilClass) }
         it { instance.must_respond_to(:add) }
         it { instance.must_respond_to(:bottom_item) }
+        it { instance.must_respond_to(:clear) }
         it { instance.must_respond_to(:colour) }
         it { instance.must_respond_to(:current_item) }
         it { instance.must_respond_to(:deselect_item) }
@@ -43,6 +55,7 @@ module Vedeu
         it { instance.must_respond_to(:next_item) }
         it { instance.must_respond_to(:parent) }
         it { instance.must_respond_to(:prev_item) }
+        it { instance.must_respond_to(:render) }
         it { instance.must_respond_to(:select_item) }
         it { instance.must_respond_to(:selected_item) }
         it { instance.must_respond_to(:show) }

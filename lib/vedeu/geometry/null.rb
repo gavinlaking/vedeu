@@ -4,7 +4,7 @@ module Vedeu
 
     # Provides a non-existent model to swallow messages.
     #
-    class Null
+    class Null < Vedeu::Null::Generic
 
       extend Forwardable
 
@@ -41,28 +41,6 @@ module Vedeu
         @attributes = attributes
         @name       = @attributes[:name]
         @maximised  = @attributes.fetch(:maximised, false)
-      end
-
-      # @return [FalseClass]
-      def centred
-        false
-      end
-
-      # @return [FalseClass]
-      def maximised?
-        false
-      end
-      alias_method :maximise, :maximised?
-      alias_method :unmaximise, :maximised?
-
-      # @return [Boolean]
-      def null?
-        true
-      end
-
-      # @return [Vedeu::Geometry::Null]
-      def store
-        self
       end
 
       private

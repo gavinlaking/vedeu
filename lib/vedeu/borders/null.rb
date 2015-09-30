@@ -45,22 +45,9 @@ module Vedeu
       end
       alias_method :yn, :byn
 
-      # The null border should not be enabled, so that named geometry
-      # or null geometry is used.
-      #
-      # @return [FalseClass]
-      def enabled?
-        false
-      end
-
       # @return [Fixnum]
       def height
         (by..byn).size
-      end
-
-      # @return [Boolean]
-      def null?
-        true
       end
 
       # @return [Array]
