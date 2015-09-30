@@ -53,4 +53,8 @@ module Vedeu
 
   end # Groups
 
+  # @!method clear_by_group
+  #   @see Vedeu::Groups::Clear.render
+  def_delegators Vedeu::Groups::Clear, :clear_by_group
+
 end # Vedeu

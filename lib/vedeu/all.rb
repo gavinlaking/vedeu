@@ -1,3 +1,4 @@
+require 'vedeu/logging/all'
 require 'vedeu/version'
 require 'vedeu/options'
 
@@ -46,6 +47,5 @@ require 'vedeu/input/all'
 require 'vedeu/menus/all'
 require 'vedeu/templating/all'
 
-require 'vedeu/api/all'
 require 'vedeu/bindings/all'
 require 'vedeu/plugins/all'

@@ -260,4 +260,12 @@ module Vedeu
 
   end # DSL
 
+  # @!method render
+  #   @see Vedeu::DSL::View.render
+  # @!method renders
+  #   @see Vedeu::DSL::View.renders
+  # @!method views
+  #   @see Vedeu::DSL::View.views
+  def_delegators Vedeu::DSL::View, :renders, :render, :views
+
 end # Vedeu

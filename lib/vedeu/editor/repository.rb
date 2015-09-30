@@ -15,4 +15,13 @@ module Vedeu
 
   end # Editor
 
+  # Manipulate the repository of documents.
+  #
+  # @example
+  #   Vedeu.documents
+  #
+  # @!method documents
+  # @return [Vedeu::Editor::Repository]
+  def_delegators Vedeu::Editor::Repository, :documents
+
 end # Vedeu

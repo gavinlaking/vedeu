@@ -124,4 +124,8 @@ module Vedeu
 
   end # DSL
 
+  # @!method keymap
+  #   @see Vedeu::DSL::Keymap.keymap
+  def_delegators Vedeu::DSL::Keymap, :keymap
+
 end # Vedeu

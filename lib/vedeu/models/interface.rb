@@ -112,4 +112,13 @@ module Vedeu
 
   end # Models
 
+  # @!method hide_interface
+  #   @see Vedeu::Toggleable::ClassMethods#hide
+  # @!method show_interface
+  #   @see Vedeu::Toggleable::ClassMethods#show
+  # @!method toggle_interface
+  #   @see Vedeu::Toggleable::ClassMethods#toggle
+  def_delegators Vedeu::Models::Interface, :hide_interface, :show_interface,
+                 :toggle_interface
+
 end # Vedeu

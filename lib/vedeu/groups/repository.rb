@@ -21,4 +21,13 @@ module Vedeu
 
   end # Groups
 
+  # Manipulate the repository of groups.
+  #
+  # @example
+  #   Vedeu.groups
+  #
+  # @!method groups
+  # @return [Vedeu::Groups::Repository]
+  def_delegators Vedeu::Groups::Repository, :groups
+
 end # Vedeu

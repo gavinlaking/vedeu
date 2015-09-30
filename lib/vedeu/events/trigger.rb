@@ -81,4 +81,8 @@ module Vedeu
 
   end # Events
 
+  # @!method trigger
+  #   @see Vedeu::Events::Trigger.trigger
+  def_delegators Vedeu::Events::Trigger, :trigger
+
 end # Vedeu

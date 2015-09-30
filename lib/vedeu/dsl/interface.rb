@@ -321,4 +321,8 @@ module Vedeu
 
   end # DSL
 
+  # @!method interface
+  #   @see Vedeu::DSL::Interface.interface
+  def_delegators Vedeu::DSL::Interface, :interface
+
 end # Vedeu

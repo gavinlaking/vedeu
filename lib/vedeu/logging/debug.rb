@@ -13,6 +13,9 @@ module Vedeu
       # Helps to debug a running application by providing a stack
       # trace of its execution upon exiting.
       #
+      # @example
+      #   Vedeu.debug
+      #
       # @param filename [String]
       # @return [void]
       # @yieldreturn [void] The section of the application to debug.
@@ -80,5 +83,15 @@ module Vedeu
     end # Debug
 
   end # Logging
+
+  # Allow debugging via the creation of stack traces courtesy of
+  # ruby-prof.
+  #
+  # @example
+  #   Vedeu.debug
+  #
+  # @!method debug
+  # @return [Vedeu::Logging::Debug]
+  def_delegators Vedeu::Logging::Debug, :debug
 
 end # Vedeu

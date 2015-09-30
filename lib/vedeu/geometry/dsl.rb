@@ -285,4 +285,8 @@ module Vedeu
 
   end # Geometry
 
+  # @!method geometry
+  #   @see Vedeu::Geometry::DSL.geometry
+  def_delegators Vedeu::Geometry::DSL, :geometry
+
 end # Vedeu

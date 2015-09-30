@@ -102,4 +102,8 @@ module Vedeu
 
   end # Groups
 
+  # @!method group
+  #   @see Vedeu::Groups::DSL.group
+  def_delegators Vedeu::Groups::DSL, :group
+
 end # Vedeu

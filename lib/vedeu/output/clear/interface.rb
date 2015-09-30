@@ -82,4 +82,8 @@ module Vedeu
 
   end # Clear
 
+  # @!method clear_by_name
+  #   @see Vedeu::Clear::Interface.render
+  def_delegators Vedeu::Clear::Interface, :clear_by_name
+
 end # Vedeu

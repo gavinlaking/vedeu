@@ -280,4 +280,13 @@ module Vedeu
 
   end # Cursors
 
+  # @!method hide_cursor
+  #   @see Vedeu::Toggleable::ClassMethods.hide
+  # @!method show_cursor
+  #   @see Vedeu::Toggleable::ClassMethods#show
+  # @!method toggle_cursor
+  #   @see Vedeu::Toggleable::ClassMethods#toggle
+  def_delegators Vedeu::Cursors::Cursor, :hide_cursor, :show_cursor,
+                 :toggle_cursor
+
 end # Vedeu

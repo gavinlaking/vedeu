@@ -27,4 +27,13 @@ module Vedeu
 
   end # Events
 
+  # Manipulate the repository of events.
+  #
+  # @example
+  #   Vedeu.events
+  #
+  # @!method events
+  # @return [Vedeu::Events::Repository]
+  def_delegators Vedeu::Events::Repository, :events
+
 end # Vedeu

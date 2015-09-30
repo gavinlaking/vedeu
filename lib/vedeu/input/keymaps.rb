@@ -14,4 +14,13 @@ module Vedeu
 
   end # Input
 
+  # Manipulate the repository of keymaps.
+  #
+  # @example
+  #   Vedeu.keymaps
+  #
+  # @!method keymaps
+  # @return [Vedeu::Input::Keymaps]
+  def_delegators Vedeu::Input::Keymaps, :keymaps
+
 end # Vedeu

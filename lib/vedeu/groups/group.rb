@@ -155,4 +155,12 @@ module Vedeu
 
   end # Groups
 
+  # @!method hide_group
+  #   @see Vedeu::Toggleable::ClassMethods#hide
+  # @!method show_group
+  #   @see Vedeu::Toggleable::ClassMethods#show
+  # @!method toggle_group
+  #   @see Vedeu::Toggleable::ClassMethods#toggle
+  def_delegators Vedeu::Groups::Group, :hide_group, :show_group, :toggle_group
+
 end # Vedeu

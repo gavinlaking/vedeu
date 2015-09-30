@@ -16,4 +16,13 @@ module Vedeu
 
   end # Borders
 
+  # Manipulate the repository of borders.
+  #
+  # @example
+  #   Vedeu.borders
+  #
+  # @!method borders
+  # @return [Vedeu::Borders::Repository]
+  def_delegators Vedeu::Borders::Repository, :borders
+
 end # Vedeu

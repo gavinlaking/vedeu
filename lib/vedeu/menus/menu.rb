@@ -228,4 +228,8 @@ module Vedeu
 
   end # Menus
 
+  # @!method menu
+  #   @see Vedeu::Menus::Menu.menu
+  def_delegators Vedeu::Menus::Menu, :menu
+
 end # Vedeu

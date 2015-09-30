@@ -293,4 +293,12 @@ module Vedeu
 
   end # Events
 
+  # @!method bind
+  #   @see Vedeu::Events::Event.bind
+  # @!method bound?
+  #   @see Vedeu::Events::Event.bound?
+  # @!method unbind
+  #   @see Vedeu::Events::Event.unbind
+  def_delegators Vedeu::Events::Event, :bind, :bound?, :unbind
+
 end # Vedeu

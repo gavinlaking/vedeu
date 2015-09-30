@@ -48,6 +48,11 @@ module Vedeu
 
       # Hides the model.
       #
+      # @example
+      #   Vedeu.hide_cursor(name)
+      #   Vedeu.hide_group(name)
+      #   Vedeu.hide_interface(name)
+      #
       # @param name [String]
       # @return [void]
       def hide(name = nil)
@@ -59,6 +64,11 @@ module Vedeu
 
       # Shows the model.
       #
+      # @example
+      #   Vedeu.show_cursor(name)
+      #   Vedeu.show_group(name)
+      #   Vedeu.show_interface(name)
+      #
       # @param name [String]
       # @return [void]
       def show(name = nil)
@@ -69,6 +79,11 @@ module Vedeu
       alias_method :show_interface, :show
 
       # Toggles the visibility of the model.
+      #
+      # @example
+      #   Vedeu.toggle_cursor(name)
+      #   Vedeu.toggle_group(name)
+      #   Vedeu.toggle_interface(name)
       #
       # @param name [String]
       # @return [void]
