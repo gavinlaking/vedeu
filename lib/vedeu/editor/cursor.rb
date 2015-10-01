@@ -23,6 +23,10 @@ module Vedeu
       # @return [Fixnum]
       attr_accessor :byn
 
+      # @!attribute [r] name
+      # @return [String|Symbol]
+      attr_reader :name
+
       # @!attribute [rw] ox
       # @return [Fixnum]
       attr_accessor :ox
@@ -49,6 +53,7 @@ module Vedeu
       # @option attributes bx [Fixnum]
       # @option attributes byn [Fixnum]
       # @option attributes bxn [Fixnum]
+      # @option attributes name [String|Symbol]
       # @option attributes oy [Fixnum]
       # @option attributes ox [Fixnum]
       # @return [Vedeu::Editor::Cursor]
@@ -87,6 +92,22 @@ module Vedeu
         self
       end
 
+      # Overwrite the cursor of the same name. This ensure that on
+      # refresh the cursor stays in the correct position for the
+      # document being edited.
+      #
+      # @return [Vedeu::Editor::Cursor]
+      def store
+        Vedeu::Cursors::Cursor.store(name:    name,
+                                     x:       real_x,
+                                     y:       real_y,
+                                     ox:      0,
+                                     oy:      0,
+                                     visible: true)
+
+        self
+      end
+
       # Move the virtual cursor to the origin (0, 0).
       #
       # @return [Vedeu::Editor::Cursor]
@@ -108,8 +129,8 @@ module Vedeu
         self
       end
 
-      # Return the escape sequence for setting the cursor position and
-      # show the cursor.
+      # Return the escape sequence as a string for setting the cursor
+      # position and show the cursor.
       #
       # @return [String]
       def to_s
@@ -149,14 +170,15 @@ module Vedeu
       # @return [Hash<Symbol => Fixnum|NilClass>]
       def defaults
         {
-          y:   0,
-          x:   0,
-          by:  nil,
-          bx:  nil,
-          byn: nil,
-          bxn: nil,
-          ox:  0,
-          oy:  0,
+          y:    0,
+          x:    0,
+          by:   nil,
+          bx:   nil,
+          byn:  nil,
+          bxn:  nil,
+          name: '',
+          ox:   0,
+          oy:   0,
         }
       end
 

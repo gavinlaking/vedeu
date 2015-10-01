@@ -10,14 +10,15 @@ module Vedeu
       let(:instance)   { described.new(attributes) }
       let(:attributes) {
         {
-          y:   y,
-          x:   x,
-          bx:  bx,
-          by:  by,
-          byn: byn,
-          bxn: bxn,
-          oy:  oy,
-          ox:  ox
+          y:    y,
+          x:    x,
+          bx:   bx,
+          by:   by,
+          byn:  byn,
+          bxn:  bxn,
+          name: _name,
+          oy:   oy,
+          ox:   ox
         }
       }
       let(:y)         { 0 }
@@ -26,6 +27,7 @@ module Vedeu
       let(:bx)        { 1 }
       let(:byn)       { 6 }
       let(:bxn)       { 6 }
+      let(:_name)     { 'editor_cursor' }
       let(:oy)        { 0 }
       let(:ox)        { 0 }
 
@@ -37,6 +39,7 @@ module Vedeu
         it { instance.instance_variable_get('@bx').must_equal(bx) }
         it { instance.instance_variable_get('@byn').must_equal(byn) }
         it { instance.instance_variable_get('@bxn').must_equal(bxn) }
+        it { instance.instance_variable_get('@name').must_equal(_name) }
         it { instance.instance_variable_get('@oy').must_equal(0) }
         it { instance.instance_variable_get('@ox').must_equal(0) }
 
@@ -71,6 +74,7 @@ module Vedeu
           instance.must_respond_to(:bxn=)
           instance.must_respond_to(:byn)
           instance.must_respond_to(:byn=)
+          instance.must_respond_to(:name)
           instance.must_respond_to(:ox)
           instance.must_respond_to(:ox=)
           instance.must_respond_to(:oy)
@@ -114,6 +118,17 @@ module Vedeu
 
         it { subject.x.must_equal(10) }
         it { subject.ox.must_equal(3) }
+      end
+
+      describe '#store' do
+        before { Vedeu::Cursors::Cursor.stubs(:store) }
+
+        subject { instance.store }
+
+        it 'stores the virtual cursor in place of the real cursor' do
+          Vedeu::Cursors::Cursor.expects(:store)
+          subject.must_be_instance_of(described)
+        end
       end
 
       describe '#reset!' do
