@@ -21,6 +21,7 @@ AllCops:
     - '**/Cheffile'
     - '**/Vagabondfile'
   Exclude:
+    - 'examples/**/*'
     - 'test/**/*'
     - 'vendor/**/*'
   # By default, the rails cops are not run. Override in project or home
