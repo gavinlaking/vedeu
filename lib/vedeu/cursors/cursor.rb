@@ -33,10 +33,6 @@ module Vedeu
       # @return [Fixnum]
       attr_writer :oy
 
-      # @!attribute [r] state
-      # @return [Boolean|Symbol]
-      attr_reader :state
-
       # @!attribute [w] x
       # @return [Fixnum]
       attr_writer :x

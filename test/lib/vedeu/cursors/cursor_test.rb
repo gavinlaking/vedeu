@@ -68,7 +68,7 @@ module Vedeu
           instance.must_respond_to(:ox=)
           instance.must_respond_to(:oy)
           instance.must_respond_to(:oy=)
-          instance.must_respond_to(:state)
+          instance.must_respond_to(:visible)
           instance.must_respond_to(:x=)
           instance.must_respond_to(:y=)
         }
