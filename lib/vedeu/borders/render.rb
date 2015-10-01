@@ -41,7 +41,7 @@ module Vedeu
 
       # @return [Array<Array<Vedeu::Views::Char>>]
       # @param (see #initialize)
-      def self.with(border)
+      def self.render(border)
         new(border).render
       end
 

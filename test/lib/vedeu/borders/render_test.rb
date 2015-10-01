@@ -28,8 +28,6 @@ module Vedeu
       let(:show_left)   { true }
       let(:show_right)  { true }
 
-      it { described.must_respond_to(:with) }
-
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
         it { instance.instance_variable_get('@border').must_equal(border) }
@@ -39,7 +37,7 @@ module Vedeu
         it { instance.must_respond_to(:render) }
       end
 
-      describe '.with' do
+      describe '.render' do
         let(:geometry) {
           Vedeu::Geometry::Geometry.new(name: _name, x: 1, xn: 7, y: 1, yn: 4)
         }
@@ -51,7 +49,7 @@ module Vedeu
           Vedeu.interfaces.stubs(:by_name).returns(interface)
         end
 
-        subject { described.with(border) }
+        subject { described.render(border) }
 
         context 'when the interface is not visible' do
           it { subject.must_equal([]) }

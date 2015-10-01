@@ -172,7 +172,7 @@ module Vedeu
 
       # @return [Array<Array<Vedeu::Views::Char>>]
       def render
-        Vedeu::Borders::Render.with(self)
+        Vedeu::Borders::Render.render(self)
       end
 
       private
