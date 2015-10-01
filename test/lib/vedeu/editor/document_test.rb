@@ -59,12 +59,12 @@ module Vedeu
       end
 
       describe '#clear' do
-        before { Vedeu.stubs(:trigger).with(:_clear_view_, _name) }
+        before { Vedeu.stubs(:trigger).with(:_clear_view_content_, _name) }
 
         subject { instance.clear }
 
         it {
-          Vedeu.expects(:trigger).with(:_clear_view_, _name)
+          Vedeu.expects(:trigger).with(:_clear_view_content_, _name)
           subject
         }
       end
@@ -183,7 +183,7 @@ module Vedeu
         let(:output) { "\e[1;1HA\e[2;1HB\e[3;1HC\e[1;1H\e[?25h" }
 
         before {
-          Vedeu.stubs(:trigger).with(:_clear_view_, _name)
+          Vedeu.stubs(:trigger).with(:_clear_view_content_, _name)
           Vedeu::Output::Output.stubs(:render)
         }
 

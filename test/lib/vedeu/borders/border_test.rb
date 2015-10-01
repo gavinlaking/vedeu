@@ -408,12 +408,12 @@ module Vedeu
       end
 
       describe '#render' do
-        before { Vedeu::Borders::Render.stubs(:with) }
+        before { Vedeu::Borders::Render.stubs(:render) }
 
         subject { instance.render }
 
         it {
-          Vedeu::Borders::Render.expects(:with).with(instance)
+          Vedeu::Borders::Render.expects(:render).with(instance)
           subject
         }
       end

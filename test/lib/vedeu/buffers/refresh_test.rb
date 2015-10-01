@@ -30,16 +30,8 @@ module Vedeu
         end
 
         context 'when Vedeu is ready' do
-          context 'when the name is not present' do
-            let(:_name) { '' }
-
-            it { proc { subject }.must_raise(Vedeu::Error::MissingRequired) }
-          end
-
-          context 'when the name is present' do
-            # @todo Add more tests.
-            # it { skip }
-          end
+          # @todo Add more tests.
+          # it { skip }
         end
       end
 

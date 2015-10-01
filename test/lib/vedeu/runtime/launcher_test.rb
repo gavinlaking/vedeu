@@ -46,7 +46,8 @@ module Vedeu
       subject { instance.execute! }
 
       it 'returns 0 for successful execution' do
-        subject.must_equal(0)
+        subject
+        instance.exit_code.must_equal(0)
       end
 
       context 'when an uncaught exception occurs' do

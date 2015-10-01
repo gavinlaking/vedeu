@@ -28,13 +28,31 @@ module Vedeu
       end
 
       describe '#measure' do
-        subject { instance.measure { } }
+        context 'when the block is given' do
+          subject { instance.measure { :thing_to_be_measured } }
 
-        it {
-          Vedeu.expects(:log).with(type:    :timer,
-                                   message: "Testing took 0.0ms.")
-          subject
-        }
+          context 'when debugging is enabled' do
+            before { Vedeu::Configuration.stubs(:debug?).returns(true) }
+
+            it {
+              Vedeu.expects(:log).with(type:    :timer,
+                                       message: "Testing took 0.0ms.")
+              subject
+            }
+          end
+
+          context 'when debugging is disabled' do
+            before { Vedeu::Configuration.stubs(:debug?).returns(false) }
+
+            it { subject.must_equal(:thing_to_be_measured) }
+          end
+        end
+
+        context 'when the block is not given' do
+          subject { instance.measure }
+
+          it { proc { subject }.must_raise(Vedeu::Error::RequiresBlock) }
+        end
       end
 
     end # Timer

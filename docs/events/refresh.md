@@ -29,3 +29,8 @@ Will cause all interfaces in the named group to refresh.
 Will cause the named view to refresh.
 
     Vedeu.trigger(:_refresh_view_, name)
+
+### :_refresh_view_content_
+Will cause only the content of the named view to refresh.
+
+    Vedeu.trigger(:_refresh_view_content_, name)

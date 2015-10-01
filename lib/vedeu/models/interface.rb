@@ -61,30 +61,42 @@ module Vedeu
         end
       end
 
-      # Hide a named interface buffer, or without a name, the buffer
-      # of the currently focussed interface.
+      # Hide the named interface.
+      #
+      # Will hide the named interface. If the interface is currently
+      # visible, it will be cleared- rendered blank. To show the
+      # interface, the ':_show_interface_' event should be triggered.
+      # Triggering the ':_hide_group_' event to which this named
+      # interface belongs will also hide the interface.
       #
       # @example
+      #   Vedeu.trigger(:_hide_interface_, name)
       #   Vedeu.hide_interface(name)
       #
       # @return [void]
       def hide
         super
 
-        Vedeu.buffers.by_name(name).hide
+        Vedeu.trigger(:_clear_view_, name)
       end
 
-      # Show the named interface buffer, or without a name, the buffer
-      # of the currently focussed interface.
+      # Show the named interface.
+      #
+      # Will hide the named interface. If the interface is currently
+      # visible, it will be cleared- rendered blank. To show the
+      # interface, the ':_show_interface_' event should be triggered.
+      # Triggering the ':_hide_group_' event to which this named
+      # interface belongs will also hide the interface.
       #
       # @example
+      #   Vedeu.trigger(:_show_interface_, name)
       #   Vedeu.show_interface(name)
       #
       # @return [void]
       def show
         super
 
-        Vedeu.buffers.by_name(name).show
+        Vedeu.trigger(:_refresh_view_, name)
       end
 
       private

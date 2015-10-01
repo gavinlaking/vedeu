@@ -8,12 +8,7 @@ require 'vedeu'
 #
 # If you have cloned this repository from GitHub, you can run this example:
 #
-#     ./examples/material_colours_app.rb
-#
-# Running this application once, and immediately exiting produces the diagram
-# at `./examples/material_colours_app_20150721.svg`. Hopefully this will help
-# you to understand how parts of Vedeu work together. Questions are always
-# welcome at `https://github.com/gavinlaking/vedeu/issues`
+#     ./test/support/examples/material_colours_app.rb
 #
 class VedeuMaterialColoursApp
 
@@ -22,7 +17,8 @@ class VedeuMaterialColoursApp
   # Be aware that running an application with debugging enabled will affect
   # performance.
   Vedeu.configure do
-    # debug!
+    debug!
+    # profile!
     log '/tmp/vedeu_material_colours_app.log'
     # height 11
     # width  20
@@ -187,41 +183,6 @@ class VedeuMaterialColoursApp
     view 'empty_interface' do
       line { line '' }
     end
-
-Vedeu.keymap('_global_') do
-    key(:up)    { Vedeu.trigger(:_cursor_up_)    }
-    key(:right) { Vedeu.trigger(:_cursor_right_) }
-    key(:down)  { Vedeu.trigger(:_cursor_down_)  }
-    key(:left)  { Vedeu.trigger(:_cursor_left_)  }
-
-    key('q')        { Vedeu.trigger(:_exit_) }
-    key(:escape)    { Vedeu.trigger(:_mode_switch_) }
-    key(:shift_tab) { Vedeu.trigger(:_focus_prev_) }
-    key(:tab)       { Vedeu.trigger(:_focus_next_) }
-
-    key('a') { Vedeu.trigger(:_view_left_, 'main_interface')  }
-    key('s') { Vedeu.trigger(:_view_down_, 'main_interface')  }
-    key('d') { Vedeu.trigger(:_view_up_, 'main_interface')    }
-    key('f') { Vedeu.trigger(:_view_right_, 'main_interface') }
-
-    key('h') { Vedeu.trigger(:_view_left_, 'other_interface')  }
-    key('j') { Vedeu.trigger(:_view_down_, 'other_interface')  }
-    key('k') { Vedeu.trigger(:_view_up_, 'other_interface')    }
-    key('l') { Vedeu.trigger(:_view_right_, 'other_interface') }
-
-    key('t') do
-      Vedeu.trigger(:_toggle_interface_, 'main_interface')
-      Vedeu.trigger(:_toggle_interface_, 'other_interface')
-    end
-    key('1') { Vedeu.trigger(:_hide_interface_, 'main_interface') }
-    key('2') { Vedeu.trigger(:_show_interface_, 'main_interface') }
-    key('3') { Vedeu.trigger(:_hide_interface_, 'other_interface') }
-    key('4') { Vedeu.trigger(:_show_interface_, 'other_interface') }
-    key('m') { Vedeu.trigger(:_maximise_, 'main_interface') }
-    key('n') { Vedeu.trigger(:_unmaximise_, 'main_interface') }
-    key('b') { Vedeu.trigger(:_maximise_, 'other_interface') }
-    key('v') { Vedeu.trigger(:_unmaximise_, 'other_interface') }
-  end
 
     view 'keys_interface' do
       line { left 'left,down,up,right - Move cursor' }

@@ -26,8 +26,6 @@ module Vedeu
 
       # @return [String]
       def write
-        Vedeu.log(type:    :output,
-                  message: 'Directly writing output to terminal.')
         Vedeu::Terminal.output(output)
 
         output

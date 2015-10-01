@@ -58,7 +58,7 @@ module Vedeu
       #
       # @return [void]
       def clear
-        Vedeu.trigger(:_clear_view_, name)
+        Vedeu.trigger(:_clear_view_content_, name)
       end
 
       # Deletes the character from the line where the cursor is
@@ -248,8 +248,6 @@ module Vedeu
                                           position: position)
           end
         end
-
-        out << border.render
 
         cursor.store
 

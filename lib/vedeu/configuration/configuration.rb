@@ -89,8 +89,8 @@ module Vedeu
       end
 
       # Returns whether debugging is enabled or disabled. Default is
-      # false; meaning nothing apart from warnings are written to the
-      # log file.
+      # false; meaning only the top line of a backtrace from an
+      # exception is shown to the user of the client application.
       #
       # @return [Boolean]
       def debug?
@@ -182,6 +182,15 @@ module Vedeu
         instance.options[:once]
       end
       alias_method :once, :once?
+
+      # Returns a boolean indicating whether profiling has been
+      # enabled.
+      #
+      # @return [Boolean]
+      def profile?
+        instance.options[:profile]
+      end
+      alias_method :profile, :profile?
 
       # Returns the renderers which should receive output.
       #
@@ -304,6 +313,7 @@ module Vedeu
         log:           nil,
         log_only:      [],
         once:          false,
+        profile:       false,
         renderers:     [Vedeu::Renderers::Terminal.new],
         root:          nil,
         stdin:         nil,
@@ -334,6 +344,10 @@ module Vedeu
     end
 
   end # Configuration
+
+  require 'vedeu/output/renderers/all'
+
+  Vedeu::Configuration.configure({})
 
   # @!method configure
   #   @see Vedeu::Configuration.configure

@@ -78,16 +78,9 @@ module Vedeu
 
       # @return [Array<Array<Vedeu::Views::Char>>]
       def render
-        return [] unless visible?
+        Vedeu.trigger(:_clear_view_content_, name)
 
-        Vedeu.trigger(:_clear_view_, name)
-
-        output = [
-          Vedeu::Output::Viewport.render(self),
-          Vedeu.borders.by_name(name).render,
-        ]
-
-        output
+        Vedeu::Output::Viewport.render(self)
       end
 
       # Store the view and immediately refresh it; causing to be

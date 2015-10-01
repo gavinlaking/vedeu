@@ -60,32 +60,22 @@ module Vedeu
       end
 
       describe '#render' do
+        before do
+          Vedeu.stubs(:trigger).with(:_clear_view_content_, _name)
+          Vedeu::Output::Viewport.stubs(:render).with(instance)
+        end
+
         subject { instance.render }
 
-        context 'when the view is not visible' do
-          it { subject.must_equal([]) }
-        end
+        it {
+          Vedeu.expects(:trigger).with(:_clear_view_content_, _name)
+          subject
+        }
 
-        context 'when the view is visible' do
-          let(:interface) { Vedeu::Models::Interface.new(visible: true) }
-          let(:border)    { Vedeu::Borders::Border.new(name: _name, enabled: false) }
-
-          before do
-            Vedeu.stubs(:trigger)
-            Vedeu.interfaces.stubs(:by_name).with(_name).returns(interface)
-            Vedeu::Output::Viewport.stubs(:render)
-            Vedeu.borders.stubs(:by_name).with(_name).returns(border)
-            border.stubs(:render)
-          end
-
-          it {
-            Vedeu.expects(:trigger).with(:_clear_view_, _name)
-            Vedeu::Output::Viewport.expects(:render).with(instance)
-            Vedeu.borders.expects(:by_name).with(_name).returns(border)
-            border.expects(:render)
-            subject
-          }
-        end
+        it {
+          Vedeu::Output::Viewport.expects(:render).with(instance)
+          subject
+        }
       end
 
       describe '#store_immediate' do

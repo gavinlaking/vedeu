@@ -7,17 +7,18 @@ require 'vedeu'
 #
 # If you have cloned this repository from GitHub, you can run this example:
 #
-#     ./examples/borders_app.rb
+#     ./test/support/examples/borders_app.rb
 #
 class VedeuBordersApp
 
   Vedeu.bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
 
-  # Be aware that running an application with debugging enabled will affect
+  # Be aware that running an application with profiling enabled will affect
   # performance.
   Vedeu.configure do
-    # debug!
+    debug!
     log '/tmp/vedeu_borders_app.log'
+    # profile!
     raw!
     run_once!
     standalone!

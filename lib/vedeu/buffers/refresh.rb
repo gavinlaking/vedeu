@@ -4,32 +4,45 @@ module Vedeu
 
     # Refreshes the given named interface.
     #
-    # @example
-    #   Vedeu.trigger(:_refresh_view_, name)
-    #
     class Refresh
 
       include Vedeu::Common
 
+      # @example
+      #   Vedeu.trigger(:_refresh_view_, name)
+      #
       # @param (see #initialize)
       # @return (see #by_name)
       def self.by_name(name)
         new(name).by_name
       end
 
+      # @example
+      #   Vedeu.trigger(:_refresh_view_content_, name)
+      #
+      # @param (see #initialize)
+      # @return (see #by_name)
+      def self.refresh_content_by_name(name)
+        new(name, content_only: true).by_name
+      end
+
       # Return a new instance of Vedeu::Buffers::Refresh.
       #
       # @param name [String|Symbol] The name of the interface to be refreshed
       #   using the named buffer.
+      # @param options [Hash]
+      # @option options content_only [Boolean]
       # @return [Vedeu::Buffers::Refresh]
-      def initialize(name)
-        @name = name
+      def initialize(name, options = {})
+        @name    = name
+        @options = options
       end
 
       # @return [Array|Vedeu::Error::ModelNotFound]
       def by_name
-        Vedeu.timer("Refresh Buffer: '#{buffer_name}'") do
-          Vedeu.buffers.by_name(buffer_name).render
+        Vedeu.timer("Refresh Buffer: '#{name}'") do
+          Vedeu.buffers.by_name(name).render
+          Vedeu.borders.by_name(name).render unless content_only?
         end if Vedeu.ready?
       end
 
@@ -39,16 +52,21 @@ module Vedeu
       # @return [String|Symbol]
       attr_reader :name
 
-      private
+      # @return [Boolean]
+      def content_only?
+        options[:content_only] == true
+      end
 
-      # @raise [Vedeu::Error::MissingRequired] When the name is empty
-      #   or nil.
-      # @return [String|Symbol]
-      def buffer_name
-        return name if present?(name)
+      # @return [Hash<Symbol => Boolean>]
+      def options
+        defaults.merge!(@options)
+      end
 
-        fail Vedeu::Error::MissingRequired,
-             'Cannot refresh interface with an empty interface name.'
+      # @return [Hash<Symbol => Boolean>]
+      def defaults
+        {
+          content_only: false,
+        }
       end
 
     end # Refresh

@@ -42,10 +42,28 @@ module Vedeu
 
       # Returns the content for the view.
       #
-      # @return [Array<Array<String>>]
+      # @return [Array<Array<String>>|NilClass]
       def render
-        return [] unless visible?
+        Vedeu::Output::Output.render(output) if visible?
+      end
 
+      # Returns a string representation of the viewport.
+      #
+      # @return [String]
+      def to_s
+        Array(render).map(&:to_s).join("\n")
+      end
+      alias_method :to_str, :to_s
+
+      protected
+
+      # @!attribute [r] view
+      # @return [Vedeu::Views::View]
+      attr_reader :view
+
+      private
+
+      def output
         Vedeu.timer("Rendering: '#{name}'") do
           out = []
 
@@ -59,22 +77,6 @@ module Vedeu
           out
         end
       end
-
-      # Returns a string representation of the viewport.
-      #
-      # @return [String]
-      def to_s
-        render.map(&:to_s).join("\n")
-      end
-      alias_method :to_str, :to_s
-
-      protected
-
-      # @!attribute [r] view
-      # @return [Vedeu::Views::View]
-      attr_reader :view
-
-      private
 
       # Returns the visible content for the view.
       #

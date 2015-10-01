@@ -103,32 +103,6 @@ module Vedeu
         end
       end
 
-      describe '#hide' do
-        before { Vedeu.stubs(:trigger) }
-
-        subject { instance.hide }
-
-        it {
-          Vedeu.expects(:trigger).with(:_clear_view_, _name)
-          subject
-        }
-      end
-
-      describe '#show' do
-        before do
-          Vedeu.stubs(:log)
-          # Vedeu::Clear::Interface.stubs(:render)
-          Vedeu::Output::Output.stubs(:render)
-        end
-
-        subject { instance.show }
-
-        it {
-          Vedeu::Output::Output.expects(:render)
-          subject
-        }
-      end
-
       describe '#render' do
         before {
           Vedeu.stubs(:log)
@@ -136,11 +110,6 @@ module Vedeu
         }
 
         subject { instance.render }
-
-        it {
-          Vedeu::Output::Output.expects(:render)
-          subject
-        }
       end
 
     end # Buffer

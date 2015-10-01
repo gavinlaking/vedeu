@@ -3,17 +3,22 @@ module Vedeu
   module Logging
 
     # Measure the duration. Used for debugging.
+    # The configuration option 'debug' must be set to true to enable
+    # this functionality.
     #
     class Timer
 
       class << self
 
         # Measure the execution time of the code in the given block.
+        # The message provided will have ' took <time>ms.' appended.
         #
         # @example
-        #   Vedeu.timer 'message' do
+        #   Vedeu.timer 'Really complex code' do
         #     # ... code to be measured
         #   end
+        #
+        #   # => 'Really complex code took 0.234ms.'
         #
         # @param message [String]
         # @param block [Proc]
@@ -36,13 +41,22 @@ module Vedeu
       # Write an entry to the log file stating how long a section of
       # code took in milliseconds. Useful for debugging performance.
       #
+      # @raise [Vedeu::Error::RequiresBlock]
       # @return [void] The return value of the executed block.
       def measure
-        work = yield
+        fail Vedeu::Error::RequiresBlock unless block_given?
 
-        Vedeu.log(type: :timer, message: "#{message} took #{elapsed}ms.")
+        if Vedeu::Configuration.debug?
+          work = yield
 
-        work
+          Vedeu.log(type: :timer, message: "#{message} took #{elapsed}ms.")
+
+          work
+
+        else
+          yield
+
+        end
       end
 
       protected
