@@ -22,7 +22,7 @@ class VedeuEditorApp
   # Be aware that running an application with debugging enabled will affect
   # performance.
   Vedeu.configure do
-    # debug!
+    debug!
     fake!
     log '/tmp/vedeu_editor_app.log'
     # renderers Vedeu::Renderers::File.new

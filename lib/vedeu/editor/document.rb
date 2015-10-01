@@ -24,6 +24,10 @@ module Vedeu
                      :x,
                      :y
 
+      def_delegators :interface,
+                     :colour,
+                     :style
+
       # @!attribute [r] attributes
       # @return [Hash]
       attr_reader :attributes
@@ -54,7 +58,7 @@ module Vedeu
       #
       # @return [void]
       def clear
-        Vedeu::Output::Direct.write(value: clear_output, x: bx, y: by)
+        Vedeu.trigger(:_clear_view_, name)
       end
 
       # Deletes the character from the line where the cursor is
@@ -76,8 +80,6 @@ module Vedeu
         @lines = lines.delete_line(y)
 
         up
-
-        refresh
       end
 
       # Move the virtual cursor down.
@@ -116,8 +118,6 @@ module Vedeu
         @lines = lines.insert_character(character, y, x)
 
         right
-
-        refresh
       end
 
       # Insert an empty line.
@@ -163,7 +163,7 @@ module Vedeu
       def render
         clear
 
-        Vedeu::Output::Direct.write(value: output, x: bx, y: by)
+        Vedeu::Output::Output.render(output)
       end
 
       # Reset the document to the empty state.
@@ -217,19 +217,9 @@ module Vedeu
         @border ||= Vedeu.borders.by_name(name)
       end
 
-      # Return the data needed to clear the area which the document is
-      # using.
-      #
-      # @return [String]
-      def clear_output
-        clear_output = ''
-
-        (by..byn).each do |row|
-          clear_output << "\e[#{row};#{bx}H" + (' ' * width)
-        end
-
-        # reset cursor to top left of document
-        clear_output << "\e[#{by};#{bx}H"
+      # @return [Vedeu::Models::Interface]
+      def interface
+        @interface ||= Vedeu.interfaces.by_name(name)
       end
 
       # Returns the default options/attributes for this class.
@@ -247,16 +237,23 @@ module Vedeu
       #
       # @return [String]
       def output
-        output = ''
+        out = []
 
-        visible.each_with_index do |line, y_index|
-          output << Vedeu::Geometry::Position.new((by + y_index), bx).to_s
-          output << line.to_s
+        visible_lines.each_with_index do |line, y_index|
+          line.chars.each_with_index do |char, x_index|
+            position = [(by + y_index), (bx + x_index)]
+
+            out << Vedeu::Views::Char.new(value:    char,
+                                          parent:   interface,
+                                          position: position)
+          end
         end
 
-        output << cursor.to_s
+        out << border.render
 
-        output
+        cursor.store
+
+        out.flatten
       end
 
       # Return a virtual cursor to track the cursor position within
@@ -264,19 +261,20 @@ module Vedeu
       #
       # @return [Vedeu::Editor::Cursor]
       def cursor
-        @cursor ||= Vedeu::Editor::Cursor.new(y:   0,
-                                              x:   0,
-                                              by:  by,
-                                              bx:  bx,
-                                              byn: byn,
-                                              bxn: bxn)
+        @cursor ||= Vedeu::Editor::Cursor.new(y:    0,
+                                              x:    0,
+                                              by:   by,
+                                              bx:   bx,
+                                              byn:  byn,
+                                              bxn:  bxn,
+                                              name: name)
       end
 
       # Return only the visible lines for the document based on the
       # current virtual cursor position.
       #
       # @return [Vedeu::Editor::Lines]
-      def visible
+      def visible_lines
         Vedeu::Editor::Cropper.new(lines:  lines,
                                    height: height,
                                    width:  width,
