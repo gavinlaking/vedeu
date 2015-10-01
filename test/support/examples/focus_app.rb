@@ -7,8 +7,7 @@ require 'vedeu'
 #
 # If you have cloned this repository from GitHub, you can run this example:
 #
-#     ./examples/focus_app.rb
-#
+#     ./test/support/examples/focus_app.rb
 #
 # First, we set up the interfaces, noting that 'copper' should have focus when
 # the application starts. Also note that 'status' should not show a cursor.
@@ -20,11 +19,12 @@ class VedeuFocusApp
 
   Vedeu.bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
 
-  # Be aware that running an application with debugging enabled will affect
+  # Be aware that running an application with profiling enabled will affect
   # performance.
   Vedeu.configure do
-    # debug!
+    debug!
     log '/tmp/vedeu_focus_app.log'
+    # profile!
   end
 
   update = proc do

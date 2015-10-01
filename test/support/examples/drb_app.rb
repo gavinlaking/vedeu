@@ -6,17 +6,18 @@ require 'vedeu'
 # An example application to demonstrate the DRb server.
 # If you have cloned this repository from GitHub, you can run this example:
 #
-#     ./examples/drb_app.rb
+#     ./test/support/examples/drb_app.rb
 #
 class VedeuTestApplication
 
   Vedeu.bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
 
-  # Be aware that running an application with debugging enabled will affect
+  # Be aware that running an application with profiling enabled will affect
   # performance.
   Vedeu.configure do
     log         '/tmp/vedeu_test_helper.log'
-    # debug!
+    debug!
+    # profile!
     drb!
     drb_host    'localhost'
     drb_port    21_420

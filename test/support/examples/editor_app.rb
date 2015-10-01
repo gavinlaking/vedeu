@@ -8,18 +8,13 @@ require 'vedeu'
 #
 # If you have cloned this repository from GitHub, you can run this example:
 #
-#     ./examples/material_colours_app.rb
-#
-# Running this application once, and immediately exiting produces the diagram
-# at `./examples/material_colours_app_20150721.svg`. Hopefully this will help
-# you to understand how parts of Vedeu work together. Questions are always
-# welcome at `https://github.com/gavinlaking/vedeu/issues`
+#     ./test/support/examples/material_colours_app.rb
 #
 class VedeuEditorApp
 
   Vedeu.bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
 
-  # Be aware that running an application with debugging enabled will affect
+  # Be aware that running an application with profiling enabled will affect
   # performance.
   Vedeu.configure do
     debug!
