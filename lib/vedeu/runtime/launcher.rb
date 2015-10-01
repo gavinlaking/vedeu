@@ -20,7 +20,7 @@ module Vedeu
                       stdout = STDOUT,
                       stderr = STDERR,
                       kernel = Kernel)
-      new(argv, stdin, stdout, stderr, kernel).debug_execute!
+      new(argv, stdin, stdout, stderr, kernel).execute!
     end
     # :nocov:
 
@@ -45,29 +45,14 @@ module Vedeu
       @exit_code = 1
     end
 
-    # :nocov:
-    # If debugging is enabled, execute the application within the
-    # debugging context. At the moment, this simple uses 'ruby-prof'
-    # to profile the running application.
-    #
-    # @return [void]
-    def debug_execute!
-      if configuration.debug?
-        Vedeu.debug { execute! }
-
-      else
-        execute!
-
-      end
-
-      terminate!
-    end
-    # :nocov:
-
     # Alters the STD[IN|OUT|ERR] to those requested by the client
     # application, then starts the application. If an uncaught
     # exception occurs during the application runtime, we exit
     # ungracefully with any error message(s).
+    #
+    # If profiling is enabled, execute the application within the
+    # profiling context. At the moment, this simple uses 'ruby-prof'
+    # to profile the running application.
     #
     # @return [void]
     def execute!
@@ -75,17 +60,20 @@ module Vedeu
       $stdout = @stdout
       $stderr = @stderr
 
-      Vedeu::Runtime::Application.start(configuration)
+      optionally_profile { Vedeu::Runtime::Application.start(configuration) }
 
       @exit_code = 0
 
-    rescue StandardError => uncaught_exception
-      Vedeu.log_stdout(type: :error, message: uncaught_exception.message)
+      terminate!
 
-      if configuration.debug?
-        Vedeu.log_stdout(type:    :error,
-                         message: uncaught_exception.backtrace.join("\n"))
-      end
+    rescue StandardError => uncaught_exception
+      output = if configuration.debug?
+                 uncaught_exception.backtrace.join("\n")
+               else
+                 uncaught_exception.message
+               end
+
+      Vedeu.log_stdout(type: :error, message: output)
     end
 
     protected
@@ -95,6 +83,17 @@ module Vedeu
     attr_reader :argv
 
     private
+
+    # @return [void]
+    def optionally_profile
+      if configuration.profile?
+        Vedeu.profile { yield }
+
+      else
+        yield
+
+      end
+    end
 
     # :nocov:
     # Terminates the application after resetting $stdin, $stdout and

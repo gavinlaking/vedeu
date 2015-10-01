@@ -57,6 +57,9 @@ reason, simply ask for it:
 ### log_only
 {include:Vedeu::Config::API#log_only}
 
+### profile / profile!
+{include:Vedeu::Config::API#profile}
+
 ### raw / raw!
 {include:Vedeu::Config::API#raw}
 

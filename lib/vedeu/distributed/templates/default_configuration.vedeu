@@ -2,6 +2,7 @@ Vedeu.configure do
   # compression false
   # log         '/tmp/your_app.log'
   # debug!
+  # profile!
   # drb!
   # drb_host    'localhost'
   # drb_port    21420

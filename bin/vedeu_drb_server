@@ -12,6 +12,7 @@ class VedeuTestApplication
     colour_mode 16_777_216
     log         '/tmp/vedeu_test_helper.log'
     debug!
+    profile!
     drb!
     drb_host    'localhost'
     drb_port    21_420

@@ -221,9 +221,8 @@ module Vedeu
       # setting is for debugging to be disabled. Using `debug!` or
       # setting `debug` to true will enable debugging.
       #
-      # @note
-      #   Be aware that running an application with debugging enabled
-      #   will affect performance.
+      # At this time, debugging only toggles between viewing a full
+      # backtrace (true) upon exception or only its top line (false).
       #
       #   Vedeu.configure do
       #     debug!
@@ -309,6 +308,36 @@ module Vedeu
       def log_only(*types)
         options[:log_only] = types
       end
+
+      # Sets boolean to enable/disable profiling. Vedeu's default
+      # setting is for profiling to be disabled. Using `profile!` or
+      # setting `profile` to true will enable profiling.
+      #
+      # Profile uses 'ruby-prof' to write a 'profile.html' file to
+      # the /tmp directory which contains a call trace of the running
+      # application. Upon exit, this file can be examined to ascertain
+      # certain behaviours of Vedeu.
+      #
+      # @note
+      #   Be aware that running an application with profiling enabled
+      #   will affect performance.
+      #
+      #   Vedeu.configure do
+      #     profile!
+      #     # ...
+      #   end
+      #
+      #   Vedeu.configure do
+      #     profile false
+      #     # ...
+      #   end
+      #
+      # @param value [Boolean]
+      # @return [Boolean]
+      def profile!(value = true)
+        options[:profile] = value
+      end
+      alias_method :profile, :profile!
 
       # Sets the renderers for Vedeu. Each renderer added must have
       # the class method '.render' defined as this will be called when

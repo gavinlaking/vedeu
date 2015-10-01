@@ -10,16 +10,19 @@ module Vedeu
       extend self
 
       # :nocov:
-      # Helps to debug a running application by providing a stack
+      # Helps to profile a running application by providing a stack
       # trace of its execution upon exiting.
       #
       # @example
-      #   Vedeu.debug
+      #   Vedeu.profile('some_file.html') do
+      #     # ... code to profile ...
+      #   end
       #
-      # @param filename [String]
+      # @param filename [String] Optional, and defaults to being
+      #   written to the /tmp directory.
       # @return [void]
-      # @yieldreturn [void] The section of the application to debug.
-      def self.debug(filename = 'profile.html')
+      # @yieldreturn [void] The section of the application to profile.
+      def self.profile(filename = 'profile.html')
         return nil unless block_given?
 
         require 'ruby-prof'
@@ -88,10 +91,10 @@ module Vedeu
   # ruby-prof.
   #
   # @example
-  #   Vedeu.debug
+  #   Vedeu.profile
   #
-  # @!method debug
+  # @!method profile
   # @return [Vedeu::Logging::Debug]
-  def_delegators Vedeu::Logging::Debug, :debug
+  def_delegators Vedeu::Logging::Debug, :profile
 
 end # Vedeu

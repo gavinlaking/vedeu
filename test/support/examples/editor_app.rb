@@ -25,6 +25,7 @@ class VedeuEditorApp
     debug!
     fake!
     log '/tmp/vedeu_editor_app.log'
+    # profile!
     # renderers Vedeu::Renderers::File.new
   end
 

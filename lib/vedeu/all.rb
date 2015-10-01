@@ -1,10 +1,10 @@
-require 'vedeu/logging/all'
 require 'vedeu/version'
+
+require 'vedeu/logging/all'
 require 'vedeu/options'
 
 require 'vedeu/error'
 require 'vedeu/common'
-require 'vedeu/logging/all'
 require 'vedeu/runtime/all'
 
 require 'vedeu/configuration/api'
