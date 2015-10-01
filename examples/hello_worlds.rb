@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+require 'bundler/setup'
 require 'vedeu'
 
 # An example application to demonstrate 'Hello World' and a minimum of
@@ -27,6 +28,7 @@ class HelloWorldsApp
       height   5
       width    24
     end
+    # (You usually specify the views outside the interface block).
     Vedeu.views do
       view :hello do
         lines do
