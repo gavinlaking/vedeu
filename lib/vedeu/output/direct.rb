@@ -51,7 +51,7 @@ module Vedeu
 
       # @return [String]
       def output
-        (Array(position) + Array(value)).join
+        @output ||= (Array(position) + Array(value)).join
       end
 
       # @return [String]
