@@ -26,6 +26,8 @@ module Vedeu
 
             Vedeu.trigger(:_hide_cursor_)
 
+            Vedeu.log(type:    :info,
+                      message: 'MainLoop rendering terminal buffer.')
             Vedeu::Terminal::Buffer.render
 
             Vedeu.trigger(:_show_cursor_)
