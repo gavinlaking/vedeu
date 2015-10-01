@@ -60,7 +60,7 @@ class HelloWorldsApp
           height  5 + 2
           width   24 + 2
         end
-        border :hello do
+        border do
           colour foreground: ["#00ff00", "#000033", "#cddc39", "#03a9f4"].sample
           title ["atlantis", "oceania", "utopia", "midgard", "middle-earth"].sample
         end
