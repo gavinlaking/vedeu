@@ -68,6 +68,10 @@ module Vedeu
         }
       end
 
+      describe '#cell?' do
+        it { instance.cell?.must_equal(false) }
+      end
+
       describe '#chars' do
         subject { instance.chars }
 

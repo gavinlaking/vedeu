@@ -56,6 +56,11 @@ module Vedeu
         @value      = @attributes[:value]
       end
 
+      # @return [Boolean]
+      def cell?
+        false
+      end
+
       # When {Vedeu::Output::Viewport#show} has less lines that
       # required to fill the visible area of the interface, it creates
       # a line that contains a single {Vedeu::Views::Char} containing

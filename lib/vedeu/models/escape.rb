@@ -23,6 +23,11 @@ module Vedeu
         end
       end
 
+      # @return [Boolean]
+      def cell?
+        false
+      end
+
       # @return [NilClass]
       def null
         nil
