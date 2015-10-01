@@ -178,4 +178,12 @@ module Vedeu
 
   end # Logging
 
+  # @!method log
+  #   @see Vedeu::Logging::Log.log
+  # @!method log_stdout
+  #   @see Vedeu::Logging::Log.log_stdout
+  # @!method log_stderr
+  #   @see Vedeu::Logging::Log.log_stderr
+  def_delegators Vedeu::Logging::Log, :log, :log_stdout, :log_stderr
+
 end # Vedeu

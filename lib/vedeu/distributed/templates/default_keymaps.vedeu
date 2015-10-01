@@ -1,4 +1,4 @@
-Vedeu.keymap 'test_interface' do
+Vedeu.keymap :test_interface do
   key(:up,    'k') { Vedeu.trigger(:_cursor_up_)    }
   key(:right, 'l') { Vedeu.trigger(:_cursor_right_) }
   key(:down,  'j') { Vedeu.trigger(:_cursor_down_)  }

@@ -10,8 +10,12 @@ module Vedeu
 
       class << self
 
+        # Fetch the cursor of the currently focussed interface/view.
+        #
+        # @example
+        #   Vedeu.cursor
+        #
         # @return [Vedeu::Cursors::Cursor]
-        # @see Vedeu::API::External.cursor
         def cursor
           cursors.by_name(Vedeu.focus) if Vedeu.focus
         end
@@ -30,5 +34,18 @@ module Vedeu
     end # Cursor
 
   end # Cursors
+
+  # @!method cursor
+  #   @see Vedeu::Cursors::Repository.cursor
+  def_delegators Vedeu::Cursors::Repository, :cursor
+
+  # Manipulate the repository of cursors.
+  #
+  # @example
+  #   Vedeu.cursors
+  #
+  # @!method cursors
+  # @return [Vedeu::Cursors::Repository]
+  def_delegators Vedeu::Cursors::Repository, :cursors
 
 end # Vedeu

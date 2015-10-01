@@ -10,7 +10,7 @@ module Vedeu
     #
     class Bootstrap
 
-      # @param argv [Array<String>]
+      # @param (see #initialize)
       # @return [void]
       def self.start(argv = ARGV)
         new(argv).start

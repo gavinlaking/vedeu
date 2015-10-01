@@ -16,7 +16,6 @@ unless ENV['NO_SIMPLECOV']
     formatter SimpleCov::Formatter::Console if ENV['CONSOLE_COVERAGE']
     command_name 'MiniTest::Spec'
     add_filter '/test/'
-    add_group  'api',           'vedeu/api'
     add_group  'application',   'vedeu/application'
     add_group  'bindings',      'vedeu/bindings'
     add_group  'borders',       'vedeu/borders'

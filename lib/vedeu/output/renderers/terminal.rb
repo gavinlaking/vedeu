@@ -27,9 +27,7 @@ module Vedeu
       # @param output [Vedeu::Models::Page]
       # @return [Array<String>]
       def render(output)
-        output = parse(output)
-
-        Vedeu::Terminal.output(output)
+        Vedeu::Terminal.output(parse(output))
       end
 
       private

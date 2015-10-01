@@ -5,7 +5,7 @@ module Vedeu
     # Provides methods to be used to define views.
     #
     #   Vedeu.renders do
-    #     view 'my_interface' do
+    #     view :my_interface do
     #       lines do
     #         background '#000000'
     #         foreground '#ffffff'
@@ -36,20 +36,10 @@ module Vedeu
       include Vedeu::DSL::Presentation
       include Vedeu::DSL::Text
 
-      # Returns an instance of DSL::Line.
-      #
-      # @param model [Vedeu::Views::Line]
-      # @param client [Object]
-      # @return [Vedeu::DSL::Line]
-      def initialize(model, client = nil)
-        @model  = model
-        @client = client
-      end
-
       # Specify a single line in a view.
       #
       #   Vedeu.renders do
-      #     view 'my_interface' do
+      #     view :my_interface do
       #       line 'some text...'
       #       # ... some code
       #
@@ -85,7 +75,7 @@ module Vedeu
       # required block.
       #
       #   Vedeu.renders do
-      #     view 'my_interface' do
+      #     view :my_interface do
       #       line do
       #         streams do
       #           # ... some code

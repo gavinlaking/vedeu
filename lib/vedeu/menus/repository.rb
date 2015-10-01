@@ -15,4 +15,13 @@ module Vedeu
 
   end # Menus
 
+  # Manipulate the repository of menus.
+  #
+  # @example
+  #   Vedeu.menus
+  #
+  # @!method menus
+  # @return [Vedeu::Menus::Repository]
+  def_delegators Vedeu::Menus::Repository, :menus
+
 end # Vedeu

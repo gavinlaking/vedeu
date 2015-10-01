@@ -10,14 +10,14 @@ module Vedeu
       # Allows the setting of a border for the interface.
       #
       # @example
-      #   Vedeu.interface 'my_interface' do
+      #   Vedeu.interface :my_interface do
       #     border do
       #       # ... see Vedeu::Borders::DSL for DSL methods for
       #       #     borders.
       #     end
       #   end
       #
-      # @param name [String] The name of the interface; this is
+      # @param name [String|Symbol] The name of the interface; this is
       #   already provided when we define the interface or view,
       #   setting it here is just mirroring functionality of
       #   {Vedeu::Borders::DSL.border}.
@@ -39,7 +39,7 @@ module Vedeu
       # Applies the default border to the interface.
       #
       # @example
-      #   Vedeu.interface 'my_interface' do
+      #   Vedeu.interface :my_interface do
       #     border!
       #
       #     # ... some code
@@ -55,14 +55,14 @@ module Vedeu
       # Define the geometry for an interface.
       #
       # @example
-      #   Vedeu.interface 'my_interface' do
+      #   Vedeu.interface :my_interface do
       #     geometry do
       #       # ... see Vedeu::Geometry::DSL for DSL methods for
       #       #     geometries.
       #     end
       #   end
       #
-      # @param name [String] The name of the interface; this is
+      # @param name [String|Symbol] The name of the interface; this is
       #   already provided when we define the interface or view,
       #   setting it here is just mirroring functionality of
       #   {Vedeu::Geometry::DSL.geometry}.

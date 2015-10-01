@@ -19,9 +19,24 @@ module Vedeu
         "Helium\n"    \
         "Lithium\n"
       }
-      let(:_name)  { 'Vedeu::Editor::Document' }
+      let(:_name)    { 'Vedeu::Editor::Document' }
+      let(:border)   {
+        Vedeu::Borders::Border.new({ name: _name, enabled: false })
+      }
+      let(:geometry) {
+        Vedeu::Geometry::Geometry.new({ name: _name, x: 1, xn: 5, y: 1, yn: 5 })
+      }
+      let(:interface) {
+        Vedeu::Models::Interface.new({ name: _name })
+      }
 
-      before { Vedeu::Output::Direct.stubs(:write) }
+      before {
+        Vedeu.borders.stubs(:by_name).with(_name).returns(border)
+        Vedeu.geometries.stubs(:by_name).with(_name).returns(geometry)
+        Vedeu.interfaces.stubs(:by_name).with(_name).returns(interface)
+
+        Vedeu::Output::Output.stubs(:render)
+      }
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
@@ -44,28 +59,14 @@ module Vedeu
       end
 
       describe '#clear' do
-        let(:expected) {
-          "\e[1;1H\e[1;1H     " \
-          "\e[2;1H     " \
-          "\e[3;1H     " \
-          "\e[4;1H     " \
-          "\e[5;1H     " \
-          "\e[1;1H"
-        }
-
-        before do
-          Vedeu::Geometry::Geometry.new(name: _name,
-                                        x:    1,
-                                        y:    1,
-                                        xn:   5,
-                                        yn:   5).store
-          Vedeu::Terminal.stubs(:output)
-          Vedeu::Output::Direct.stubs(:write).returns(expected)
-        end
+        before { Vedeu.stubs(:trigger).with(:_clear_view_, _name) }
 
         subject { instance.clear }
 
-        it { subject.must_equal(expected) }
+        it {
+          Vedeu.expects(:trigger).with(:_clear_view_, _name)
+          subject
+        }
       end
 
       describe '#delete_character' do
@@ -181,12 +182,15 @@ module Vedeu
         }
         let(:output) { "\e[1;1HA\e[2;1HB\e[3;1HC\e[1;1H\e[?25h" }
 
-        before { Vedeu::Output::Direct.stubs(:write) }
+        before {
+          Vedeu.stubs(:trigger).with(:_clear_view_, _name)
+          Vedeu::Output::Output.stubs(:render)
+        }
 
         subject { instance.render }
 
         it {
-          Vedeu::Output::Direct.expects(:write).with(value: output, x: 1, y: 1)
+          Vedeu::Output::Output.expects(:render)
           subject
         }
       end

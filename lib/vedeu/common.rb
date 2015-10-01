@@ -4,6 +4,15 @@ module Vedeu
   #
   module Common
 
+    # Returns a boolean indicating whether a variable is nil or empty.
+    #
+    # @param variable [String|Symbol|Array|Fixnum] The variable to
+    #   check.
+    # @return [Boolean]
+    def absent?(variable)
+      !present?(variable)
+    end
+
     # Removes the module part from the expression in the string.
     #
     # @example
@@ -15,6 +24,19 @@ module Vedeu
       klass = klass.to_s
 
       klass[(klass.rindex('::') + 2)..-1]
+    end
+
+    # Returns a boolean indicating whether a variable has a useful
+    # value.
+    #
+    # @param variable [String|Symbol|Array|Fixnum] The variable to
+    #   check.
+    # @return [Boolean]
+    def present?(variable)
+      return true if variable.is_a?(Fixnum)
+      return true unless variable.nil? || variable.empty?
+
+      false
     end
 
     # Converts a class name to a lowercase snake case string.
@@ -33,19 +55,6 @@ module Vedeu
       name.tr!('-', '_')
       name.downcase!
       name
-    end
-
-    # Returns a boolean indicating whether a variable has a useful
-    # value.
-    #
-    # @param variable [String|Symbol|Array|Fixnum] The variable to
-    #   check.
-    # @return [Boolean]
-    def present?(variable)
-      return true if variable.is_a?(Fixnum)
-      return true unless variable.nil? || variable.empty?
-
-      false
     end
 
   end # Common

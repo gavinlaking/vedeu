@@ -9,7 +9,7 @@ module Vedeu
       # Returns an instance of the Vedeu::Menus::Null class.
       #
       # @param attributes [Hash<Symbol => void>]
-      # @option attributes name [String|NilClass]
+      # @option attributes name [String|Symbol|NilClass]
       # @return [Vedeu::Menus::Null]
       def initialize(attributes = {})
         @attributes = attributes

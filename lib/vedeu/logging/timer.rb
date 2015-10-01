@@ -8,6 +8,8 @@ module Vedeu
 
       class << self
 
+        # Measure the execution time of the code in the given block.
+        #
         # @example
         #   Vedeu.timer 'message' do
         #     # ... code to be measured
@@ -64,5 +66,16 @@ module Vedeu
     end # Timer
 
   end # Logging
+
+  # Measure the execution time of the code in the given block.
+  #
+  # @example
+  #   Vedeu.timer do
+  #     # ... some code here ...
+  #   end
+  #
+  # @!method timer
+  #   @see Vedeu::Logging::Timer.timer
+  def_delegators Vedeu::Logging::Timer, :timer
 
 end # Vedeu

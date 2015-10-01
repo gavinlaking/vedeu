@@ -17,7 +17,7 @@ module Vedeu
       # assumed to be global, meaning its action will happen
       # regardless of the interface in focus.
       #
-      #   Vedeu.keymap 'some_interface' do
+      #   Vedeu.keymap :my_interface do
       #     key('s')        { Vedeu.trigger(:save) }
       #     key('h', :left) { Vedeu.trigger(:left) }
       #     key('j', :down) { Vedeu.trigger(:down) }
@@ -29,13 +29,13 @@ module Vedeu
       #
       #   # or...
       #
-      #   Vedeu.keys 'some_interface' do
+      #   Vedeu.keys :my_interface do
       #     # ... some code
       #   end
       #
       #   # or...
       #
-      #   Vedeu.interface 'some_interface' do
+      #   Vedeu.interface :my_interface do
       #     keymap do
       #       # ... some code
       #     end # or...
@@ -45,8 +45,8 @@ module Vedeu
       #     end
       #   end
       #
-      # @param name [String] The name of the interface which this
-      #   keymap relates to.
+      # @param name [String|Symbol] The name of the interface which
+      #   this keymap relates to.
       # @param block [Proc]
       # @raise [Vedeu::Error::RequiresBlock]
       # @return [Vedeu::Input::Keymap]
@@ -56,16 +56,6 @@ module Vedeu
         Vedeu::Input::Keymap.new(name: name).store
 
         Vedeu::Input::Keymap.build(name: name, &block).store
-      end
-
-      # Returns an instance of DSL::Keymap.
-      #
-      # @param model [Vedeu::Input::Keymap]
-      # @param client [Object]
-      # @return [Vedeu::DSL::Keymap]
-      def initialize(model, client = nil)
-        @model  = model
-        @client = client
       end
 
       # Define keypress(es) to perform an action.
@@ -104,16 +94,16 @@ module Vedeu
       # To only allow certain keys to work with specific interfaces,
       # use the same name as the interface.
       #
-      # When the name '_global_' is used, all keys in the keymap block
+      # When the name :_global_ is used, all keys in the keymap block
       # will be available to all interfaces. Once a key has been
-      # defined in the '_global_' keymap, it cannot be used for a
+      # defined in the :_global_ keymap, it cannot be used for a
       # specific interface.
       #
       #   Vedeu.keymap do
-      #     name 'some_interface'
+      #     name :some_interface
       #   end
       #
-      # @param value [String]
+      # @param value [String|Symbol]
       # @return [String]
       def name(value)
         model.name = value
@@ -123,5 +113,9 @@ module Vedeu
     end # Keymap
 
   end # DSL
+
+  # @!method keymap
+  #   @see Vedeu::DSL::Keymap.keymap
+  def_delegators Vedeu::DSL::Keymap, :keymap
 
 end # Vedeu

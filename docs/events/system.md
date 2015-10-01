@@ -21,6 +21,9 @@ This event is called by {Vedeu::Input::Capture#read}. When
 invoked, the key will be passed to the editor for currently
 focussed view.
 
+Note: 'key' is a String for alphanumeric keys and special keys are
+represented by Symbols.
+
     Vedeu.trigger(:_editor_, key)
 
 ### :_exit_
@@ -50,6 +53,8 @@ can be found here: {Vedeu::Input::Capture}.
 ### :_log_
 When triggered with a message will cause Vedeu to log the message if
 logging is enabled in the configuration.
+
+Note: 'message' is a String.
 
     Vedeu.trigger(:_log_, message)
 

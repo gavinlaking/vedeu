@@ -15,7 +15,7 @@ module Vedeu
     # you use these examples, ensure your terminal is at least 70
     # characters in width and 5 lines in height.)
     #
-    #   Vedeu.interface 'main' do
+    #   Vedeu.interface :main do
     #     geometry do
     #       centred!
     #       height 4
@@ -23,7 +23,7 @@ module Vedeu
     #     end
     #   end
     #
-    #   Vedeu.interface 'title' do
+    #   Vedeu.interface :title do
     #     geometry do
     #       height 1
     #       width  50
@@ -100,7 +100,7 @@ module Vedeu
         # triggered when needed.
         #
         #   Vedeu.renders do
-        #     view 'some_interface' do
+        #     view :some_interface do
         #       line do
         #         stream do
         #           left 'Title goes here', width: 35
@@ -110,7 +110,7 @@ module Vedeu
         #         end
         #       end
         #     end
-        #     view 'other_interface' do
+        #     view :other_interface do
         #       lines do
         #         line 'This is content for the main interface.'
         #         line ''
@@ -123,7 +123,7 @@ module Vedeu
         #   # or...
         #
         #   Vedeu.render do
-        #     view 'my_interface' do
+        #     view :my_interface do
         #       # ... some code
         #     end
         #   end
@@ -153,7 +153,7 @@ module Vedeu
         # here will be rendered to {Vedeu::Terminal#output}.
         #
         #   Vedeu.views do
-        #     view 'some_interface' do
+        #     view :some_interface do
         #       line do
         #         stream do
         #           left 'Title goes here', width: 35
@@ -163,7 +163,7 @@ module Vedeu
         #         end
         #       end
         #     end
-        #     view 'other_interface' do
+        #     view :other_interface do
         #       lines do
         #         line 'This is content for the main interface.'
         #         line ''
@@ -220,28 +220,18 @@ module Vedeu
 
       end # Eigenclass
 
-      # Returns an instance of Vedeu::DSL::View.
-      #
-      # @param model [Vedeu::DSL::View]
-      # @param client [Object]
-      # @return [Vedeu::DSL::View]
-      def initialize(model, client = nil)
-        @model  = model
-        @client = client
-      end
-
       # Specify multiple lines in a view.
       #
       # @param block [Proc]
       #
       # @example
-      #   Vedeu.view 'my_interface' do
+      #   Vedeu.view :my_interface do
       #     lines do
       #       # ... see {Vedeu::DSL::Line} and {Vedeu::DSL::Stream}
       #     end
       #   end
       #
-      #   Vedeu.view 'my_interface' do
+      #   Vedeu.view :my_interface do
       #     line do
       #       # ... see {Vedeu::DSL::Line} and {Vedeu::DSL::Stream}
       #     end
@@ -259,5 +249,13 @@ module Vedeu
     end # View
 
   end # DSL
+
+  # @!method render
+  #   @see Vedeu::DSL::View.render
+  # @!method renders
+  #   @see Vedeu::DSL::View.renders
+  # @!method views
+  #   @see Vedeu::DSL::View.views
+  def_delegators Vedeu::DSL::View, :renders, :render, :views
 
 end # Vedeu

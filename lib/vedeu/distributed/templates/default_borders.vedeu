@@ -1,4 +1,4 @@
-Vedeu.border 'test_interface' do
+Vedeu.border :test_interface do
   # Define colour and style of border
   colour foreground: '#ffff00', background: '#0000ff'
   style  'normal'

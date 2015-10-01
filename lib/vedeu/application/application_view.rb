@@ -10,7 +10,7 @@ module Vedeu
 
     # Renders the view.
     #
-    # @param params [Hash]
+    # @param (see #initialize)
     # @return [void]
     def self.render(**params)
       new(params).render

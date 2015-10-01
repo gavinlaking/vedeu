@@ -48,7 +48,12 @@ module Vedeu
 
       # Hides the model.
       #
-      # @param name [String]
+      # @example
+      #   Vedeu.hide_cursor(name)
+      #   Vedeu.hide_group(name)
+      #   Vedeu.hide_interface(name)
+      #
+      # @param name [String|Symbol]
       # @return [void]
       def hide(name = nil)
         model_by_name(repository, name).hide
@@ -59,7 +64,12 @@ module Vedeu
 
       # Shows the model.
       #
-      # @param name [String]
+      # @example
+      #   Vedeu.show_cursor(name)
+      #   Vedeu.show_group(name)
+      #   Vedeu.show_interface(name)
+      #
+      # @param name [String|Symbol]
       # @return [void]
       def show(name = nil)
         model_by_name(repository, name).show
@@ -70,7 +80,12 @@ module Vedeu
 
       # Toggles the visibility of the model.
       #
-      # @param name [String]
+      # @example
+      #   Vedeu.toggle_cursor(name)
+      #   Vedeu.toggle_group(name)
+      #   Vedeu.toggle_interface(name)
+      #
+      # @param name [String|Symbol]
       # @return [void]
       def toggle(name = nil)
         model_by_name(repository, name).toggle
@@ -83,7 +98,7 @@ module Vedeu
 
       # Fetch the model by name.
       #
-      # @param name [String]
+      # @param name [String|Symbol]
       # @param klass [void] The repository of the model.
       # @return [void]
       def model_by_name(klass, name = nil)

@@ -104,6 +104,16 @@ module Vedeu
 
   end # Renderers
 
+  # @example
+  #   Vedeu.renderer
+  #   Vedeu.renderers
+  #
+  # @!method renderer
+  #   @see Vedeu::Renderers#renderer
+  # @!method renderers
+  #   @see Vedeu::Renderers#renderers
+  def_delegators Vedeu::Renderers, :renderer, :renderers
+
 end # Vedeu
 
 require 'vedeu/output/renderers/options'

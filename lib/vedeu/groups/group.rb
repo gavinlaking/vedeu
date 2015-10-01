@@ -14,6 +14,12 @@ module Vedeu
       # @return [String]
       attr_accessor :name
 
+      # @param (see #initialize)
+      # @return (see #initialize)
+      def self.store(attributes = {})
+        new(attributes).store
+      end
+
       # Return a new instance of Vedeu::Groups::Group.
       #
       # @note
@@ -23,7 +29,7 @@ module Vedeu
       # @param attributes [Hash]
       # @option attributes members [Set] A collection of names of
       #   interfaces belonging to this group.
-      # @option attributes name [String] The name of the group.
+      # @option attributes name [String|Symbol] The name of the group.
       # @option attributes repository
       #   [Vedeu::Repositories::Repository]
       #   The storage for all Group models.
@@ -43,7 +49,7 @@ module Vedeu
       def add(member)
         attrs = attributes.merge!(members: members.add(member))
 
-        Vedeu::Groups::Group.new(attrs).store
+        Vedeu::Groups::Group.store(attrs)
       end
 
       # Returns the attributes of the group.
@@ -65,6 +71,16 @@ module Vedeu
       def by_zindex
         interfaces.sort { |a, b| a.zindex <=> b.zindex }.map(&:name)
       end
+
+      # An object is equal when its values are the same.
+      #
+      # @param other [Vedeu::Groups::Group]
+      # @return [Boolean]
+      def eql?(other)
+        self.class == other.class && name == other.name &&
+          members == other.members
+      end
+      alias_method :==, :eql?
 
       # Hide the named group of interfaces, or without a name, the
       # group of the currently focussed interface. Useful for hiding
@@ -102,7 +118,7 @@ module Vedeu
       def remove(member)
         attrs = attributes.merge!(members: members.delete(member))
 
-        Vedeu::Groups::Group.new(attrs).store
+        Vedeu::Groups::Group.store(attrs)
       end
 
       # Remove all members from the group.
@@ -111,7 +127,7 @@ module Vedeu
       def reset
         attrs = defaults.merge!(name: name)
 
-        Vedeu::Groups::Group.new(attrs).store
+        Vedeu::Groups::Group.store(attrs)
       end
 
       # Show the named group of interfaces, or without a name, the
@@ -154,5 +170,13 @@ module Vedeu
     end # Group
 
   end # Groups
+
+  # @!method hide_group
+  #   @see Vedeu::Toggleable::ClassMethods#hide
+  # @!method show_group
+  #   @see Vedeu::Toggleable::ClassMethods#show
+  # @!method toggle_group
+  #   @see Vedeu::Toggleable::ClassMethods#toggle
+  def_delegators Vedeu::Groups::Group, :hide_group, :show_group, :toggle_group
 
 end # Vedeu

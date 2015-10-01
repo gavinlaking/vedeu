@@ -130,4 +130,8 @@ module Vedeu
 
   end # Input
 
+  # @!method keypress
+  #   @see Vedeu::Input::Mapper.keypress
+  def_delegators Vedeu::Input::Mapper, :keypress
+
 end # Vedeu

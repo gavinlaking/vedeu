@@ -6,9 +6,7 @@ module Vedeu
     #
     class Direct
 
-      # @param value [String]
-      # @param x [Fixnum]
-      # @param y [Fixnum]
+      # @param (see #initialize)
       # @return [String]
       def self.write(value:, x:, y:)
         new(value: value, x: x, y: y).write
@@ -28,6 +26,8 @@ module Vedeu
 
       # @return [String]
       def write
+        Vedeu.log(type:    :output,
+                  message: 'Directly writing output to terminal.')
         Vedeu::Terminal.output(output)
 
         output
@@ -51,7 +51,7 @@ module Vedeu
 
       # @return [String]
       def output
-        (Array(position) + Array(value)).join
+        @output ||= (Array(position) + Array(value)).join
       end
 
       # @return [String]

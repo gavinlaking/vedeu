@@ -18,7 +18,7 @@ module Vedeu
 
       # Returns a new instance of Vedeu::Geometry::Coordinate.
       #
-      # @param name [String]
+      # @param name [String|Symbol]
       # @param oy [Fixnum]
       # @param ox [Fixnum]
       # @return [Vedeu::Geometry::Coordinate]
@@ -31,7 +31,7 @@ module Vedeu
       protected
 
       # @!attribute [r] name
-      # @return [String]
+      # @return [String|Symbol]
       attr_reader :name
 
       # @!attribute [rw] ox

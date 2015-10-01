@@ -1,3 +1,4 @@
+require 'vedeu/logging/all'
 require 'vedeu/version'
 require 'vedeu/options'
 
@@ -14,16 +15,14 @@ require 'vedeu/repositories/all'
 
 require 'vedeu/models/toggleable'
 
-require 'vedeu/output/presentation/presentation'
 require 'vedeu/output/direct'
-
 require 'vedeu/output/clear/all'
-
 require 'vedeu/output/compressor'
 require 'vedeu/output/text'
 require 'vedeu/output/output'
 require 'vedeu/output/viewport'
 require 'vedeu/output/wordwrap'
+require 'vedeu/output/presentation/all'
 require 'vedeu/output/refresh/refresh'
 require 'vedeu/output/renderers/all'
 
@@ -46,6 +45,5 @@ require 'vedeu/input/all'
 require 'vedeu/menus/all'
 require 'vedeu/templating/all'
 
-require 'vedeu/api/all'
 require 'vedeu/bindings/all'
 require 'vedeu/plugins/all'

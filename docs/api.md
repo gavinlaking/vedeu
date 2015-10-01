@@ -14,6 +14,20 @@ applications. Below is a list of all the API methods:
       # ...
     end
 
+Most of Vedeu's core functionality comes from its API methods, these
+methods are used in a variety of ways, sometimes in combination:
+
+    # with parameters
+    Vedeu.method_name(*params)
+
+    # with a block
+    Vedeu.method_name(*params) do
+      # ...
+    end
+
+    # with other methods
+    Vedeu.method_name.other_method
+
 ## Configuration
 
 See {file:docs/configuration.md}

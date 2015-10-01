@@ -34,6 +34,11 @@ module Vedeu
         end
       end
 
+      # @return [Boolean]
+      def cell?
+        true
+      end
+
       # An object is equal when its values are the same.
       #
       # @param other [Vedeu::Models::Cell]

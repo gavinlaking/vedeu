@@ -1,6 +1,6 @@
 --private
 --protected
---embed-mixin ClassMethods
+--embed-mixins
 -
 docs/api.md
 docs/configuration.md

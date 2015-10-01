@@ -4,7 +4,7 @@ module Vedeu
 
     # Provides a non-existent model to swallow messages.
     #
-    class Null
+    class Null < Vedeu::Null::Generic
 
       extend Forwardable
 
@@ -35,34 +35,12 @@ module Vedeu
       # Returns a new instance of Vedeu::Geometry::Null.
       #
       # @param attributes [Hash<Symbol => void>]
-      # @option attributes name [String|NilClass]
+      # @option attributes name [String|Symbol|NilClass]
       # @return [Vedeu::Geometry::Null]
       def initialize(attributes = {})
         @attributes = attributes
         @name       = @attributes[:name]
         @maximised  = @attributes.fetch(:maximised, false)
-      end
-
-      # @return [FalseClass]
-      def centred
-        false
-      end
-
-      # @return [FalseClass]
-      def maximised?
-        false
-      end
-      alias_method :maximise, :maximised?
-      alias_method :unmaximise, :maximised?
-
-      # @return [Boolean]
-      def null?
-        true
-      end
-
-      # @return [Vedeu::Geometry::Null]
-      def store
-        self
       end
 
       private

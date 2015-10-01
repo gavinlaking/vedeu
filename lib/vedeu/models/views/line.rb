@@ -90,7 +90,7 @@ module Vedeu
 
       # The default values for a new instance of this class.
       #
-      # @return [Hash]
+      # @return [Hash<Symbol => void>]
       def defaults
         {
           client: nil,

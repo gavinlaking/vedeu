@@ -1,11 +1,6 @@
 #!/usr/bin/env ruby
 
-lib_dir = File.dirname(__FILE__) + '/../lib'
-$LOAD_PATH.unshift(lib_dir) unless $LOAD_PATH.include?(lib_dir)
-
-trap('INT') { exit! }
-
-# require 'bundler/setup' # uncomment to remove the need to do `bundle exec`.
+require 'bundler/setup'
 require 'vedeu'
 
 # An example application to demonstrate 'Hello World'.

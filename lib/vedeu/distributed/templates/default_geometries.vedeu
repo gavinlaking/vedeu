@@ -1,4 +1,4 @@
-Vedeu.geometry 'test_interface' do
+Vedeu.geometry :test_interface do
   # centred!
   height 6
   width  26

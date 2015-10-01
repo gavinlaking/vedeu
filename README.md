@@ -74,6 +74,10 @@ Any branch on the repository that is not `master` is probably experimental; do
  into `master` before a release, and branches prefixed with `spike/` are me
  playing with ideas.
 
+I may have left some TODO items lying around, which you can find with:
+
+    yard list --query '@todo'
+
 ### General contribution help
 
 1. Fork it ([https://github.com/gavinlaking/vedeu/fork](https://github.com/gavinlaking/vedeu/fork))

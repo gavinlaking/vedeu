@@ -29,36 +29,6 @@ module Vedeu
         it { instance.must_respond_to(:name) }
       end
 
-      describe '#null?' do
-        subject { instance.null? }
-
-        it { subject.must_be_instance_of(TrueClass) }
-      end
-
-      describe '#centred' do
-        subject { instance.centred }
-
-        it { subject.must_equal(false) }
-      end
-
-      describe '#maximise' do
-        subject { instance.maximise }
-
-        it { subject.must_equal(false) }
-      end
-
-      describe '#store' do
-        subject { instance.store }
-
-        it { subject.must_be_instance_of(described) }
-      end
-
-      describe '#unmaximise' do
-        subject { instance.unmaximise }
-
-        it { subject.must_equal(false) }
-      end
-
       describe '#height' do
         before { Vedeu::Terminal.stubs(:size).returns([25, 40]) }
 

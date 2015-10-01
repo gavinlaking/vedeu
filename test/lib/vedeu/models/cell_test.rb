@@ -37,6 +37,10 @@ module Vedeu
         }
       end
 
+      describe '#cell?' do
+        it { instance.cell?.must_equal(true) }
+      end
+
       describe '#eql?' do
         let(:other) { described.new(value: nil, position: nil) }
 

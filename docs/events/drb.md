@@ -6,6 +6,8 @@
 Triggering this event will send input to the running application as
 long as it has the DRb server running.
 
+Note: See {Vedeu::Distributed::Server#input} for parameter details.
+
     Vedeu.trigger(:_drb_input_, data, type)
 
 ### :_drb_retrieve_output_
@@ -15,6 +17,8 @@ long as it has the DRb server running.
 ### :_drb_store_output_
 Triggering this event with 'data' will push data into the running
 application's virtual buffer.
+
+Note: See {Vedeu::Terminal::Buffer#write} for parameter details.
 
     Vedeu.trigger(:_drb_store_output_, data)
 

@@ -2,6 +2,8 @@
 
 ## View Events
 
+Note: 'name' is a Symbol unless mentioned otherwise.
+
 ### :_maximise_
 Maximising an interface.
 

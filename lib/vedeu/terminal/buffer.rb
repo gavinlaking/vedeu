@@ -26,6 +26,9 @@ module Vedeu
 
       # Clear the output.
       #
+      # @example
+      #   Vedeu.clear
+      #
       # @return [String|void] Most likely to be a String.
       def clear
         reset
@@ -136,5 +139,9 @@ module Vedeu
     end # Buffer
 
   end # Terminal
+
+  # @!method clear
+  #   @see Vedeu::Terminal::Buffer#clear
+  def_delegators Vedeu::Terminal::Buffer, :clear
 
 end # Vedeu

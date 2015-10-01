@@ -13,7 +13,7 @@ module Vedeu
     #
     # A standalone geometry definition:
     #
-    #   Vedeu.geometry 'some_interface' do
+    #   Vedeu.geometry :some_interface do
     #     height 5 # Sets the height of the view to 5
     #     width 20 # Sets the width of the view to 20
     #     x 3      # Start drawing 3 spaces from left
@@ -24,7 +24,7 @@ module Vedeu
     #
     # An interface including a geometry definition:
     #
-    #   Vedeu.interface 'some_interface' do
+    #   Vedeu.interface :some_interface do
     #     geometry do
     #       height 5
     #       width 20
@@ -43,14 +43,14 @@ module Vedeu
     # You can also make a geometry declaration dependent on another
     # view:
     #
-    #   Vedeu.interface 'other_panel' do
+    #   Vedeu.interface :other_panel do
     #     # ... some code here
     #   end
     #
-    #   Vedeu.interface 'main' do
+    #   Vedeu.interface :main do
     #     geometry do
     #       height 10
-    #       y { use('other_panel').south }
+    #       y { use(:other_panel).south }
     #     end
     #     # ... some code here
     #   end
@@ -79,12 +79,12 @@ module Vedeu
       # Specify the geometry of an interface or view with a simple
       # DSL.
       #
-      #   Vedeu.geometry 'some_interface' do
+      #   Vedeu.geometry :some_interface do
       #     # ...
       #   end
       #
-      # @param name [String] The name of the interface or view to
-      #   which this geometry belongs.
+      # @param name [String|Symbol] The name of the interface or view
+      #   to which this geometry belongs.
       # @param block [Proc]
       # @raise [Vedeu::Error::RequiresBlock]
       # @return [Vedeu::Geometry::Geometry]
@@ -94,21 +94,11 @@ module Vedeu
         Vedeu::Geometry::Geometry.build(name: name, &block).store
       end
 
-      # Returns an instance of Vedeu::Geometry::DSL.
-      #
-      # @param model [Vedeu::Geometry::Geometry]
-      # @param client [Object]
-      # @return [Vedeu::Geometry::DSL]
-      def initialize(model, client = nil)
-        @model  = model
-        @client = client
-      end
-
       # Instructs Vedeu to calculate x and y geometry automatically
       # based on the centre character of the terminal, the width and
       # the height.
       #
-      #   Vedeu.geometry 'some_interface' do
+      #   Vedeu.geometry :some_interface do
       #     centred false # or...
       #
       #     centred true  # or...
@@ -130,7 +120,7 @@ module Vedeu
       # Returns the width in characters for the number of columns
       # specified.
       #
-      #   Vedeu.geometry 'main_interface' do
+      #   Vedeu.geometry :main_interface do
       #     # ... some code
       #     width columns(9) # Vedeu.width # => 92 (for example)
       #                      # 92 / 12 = 7
@@ -149,7 +139,7 @@ module Vedeu
       # Specify the number of characters/rows/lines tall the interface
       # will be. This value will be ignored when `y` and `yn` are set.
       #
-      #   Vedeu.geometry 'some_interface' do
+      #   Vedeu.geometry :some_interface do
       #     height 8
       #     # ... some code
       #   end
@@ -164,7 +154,7 @@ module Vedeu
       # Returns the height in characters for the number of rows
       # specified.
       #
-      #   Vedeu.geometry 'main_interface' do
+      #   Vedeu.geometry :main_interface do
       #     # ... some code
       #     height rows(3)  # Vedeu.height # => 38 (for example)
       #                     # 38 / 12 = 3
@@ -183,7 +173,7 @@ module Vedeu
       # Specify the number of characters/columns wide the interface
       # will be. This value will be ignored when `x` and `xn` are set.
       #
-      #   Vedeu.geometry 'some_interface' do
+      #   Vedeu.geometry :some_interface do
       #     width 25
       #     # ... some code
       #   end
@@ -197,12 +187,12 @@ module Vedeu
 
       # Specify the starting x position (column) of the interface.
       #
-      #   Vedeu.geometry 'some_interface' do
+      #   Vedeu.geometry :some_interface do
       #     x 7 # start on column 7.
       #
-      #     # start on column 8, if `other_interface` changes position
-      #     # then `some_interface` will too.
-      #     x { use('other_interface').east }
+      #     # start on column 8, if :other_interface changes position
+      #     # then :some_interface will too.
+      #     x { use(:other_interface).east }
       #     # ... some code
       #   end
       #
@@ -219,12 +209,12 @@ module Vedeu
       # Specify the ending x position (column) of the interface.
       # This value will override `width`.
       #
-      #   Vedeu.geometry 'some_interface' do
+      #   Vedeu.geometry :some_interface do
       #     xn 37 # end at column 37.
       #
-      #     # when `other_interface` changes position,
-      #     # `some_interface` will too.
-      #     xn  { use('other_interface').right }
+      #     # when :other_interface changes position,
+      #     # :some_interface will too.
+      #     xn  { use(:other_interface).right }
       #     # ... some code
       #   end
       #
@@ -240,12 +230,12 @@ module Vedeu
 
       # Specify the starting y position (row/line) of the interface.
       #
-      #   Vedeu.geometry 'some_interface' do
+      #   Vedeu.geometry :some_interface do
       #     y  4 # start at row 4
       #
-      #     # start on row/line 3, when `other_interface` changes
-      #     # position, `some_interface` will too.
-      #     y  { use('other_interface').north }
+      #     # start on row/line 3, when :other_interface changes
+      #     # position, :some_interface will too.
+      #     y  { use(:other_interface).north }
       #     # ... some code
       #   end
       #
@@ -262,12 +252,12 @@ module Vedeu
       # Specify the ending y position (row/line) of the interface.
       # This value will override `height`.
       #
-      #   Vedeu.geometry 'some_interface' do
+      #   Vedeu.geometry :some_interface do
       #     yn 24 # end at row 24.
       #
-      #     # if `other_interface` changes position, `some_interface`
+      #     # if :other_interface changes position, :some_interface
       #     # will too.
-      #     yn { use('other_interface').bottom }
+      #     yn { use(:other_interface).bottom }
       #     # ... some code
       #   end
       #
@@ -284,5 +274,9 @@ module Vedeu
     end # DSL
 
   end # Geometry
+
+  # @!method geometry
+  #   @see Vedeu::Geometry::DSL.geometry
+  def_delegators Vedeu::Geometry::DSL, :geometry
 
 end # Vedeu

@@ -24,35 +24,35 @@ module Vedeu
       # The example below resembles 'vim' (the popular terminal-based
       # text editor):
       #
-      #   Vedeu.group 'title_screen' do
-      #     add 'welcome_interface'
+      #   Vedeu.group :title_screen do
+      #     add :welcome_interface
       #     # ... some code
       #   end
       #
-      #   Vedeu.group 'main_screen' do
-      #     add 'editor_interface'
-      #     add 'status_interface'
-      #     add 'command_interface'
+      #   Vedeu.group :main_screen do
+      #     add :editor_interface
+      #     add :status_interface
+      #     add :command_interface
       #     # ... some code
       #   end
       #
       # or more succinctly:
       #
-      #   Vedeu.group 'main_screen' do
-      #     members 'editor_interface',
-      #             'status_interface',
-      #             'command_interface'
+      #   Vedeu.group :main_screen do
+      #     members :editor_interface,
+      #             :status_interface,
+      #             :command_interface
       #     # ... some code
       #   end
       #
       # or when defining an interface:
       #
-      #   Vedeu.interface 'some_interface' do
-      #     group 'some_group'
+      #   Vedeu.interface :some_interface do
+      #     group :some_group
       #     # ... some code
       #   end
       #
-      # @param name [String] The name of this group.
+      # @param name [String|Symbol] The name of this group.
       # @param block [Proc]
       # @raise [Vedeu::Error::RequiresBlock]
       # @return [Vedeu::Groups::Group]
@@ -62,44 +62,38 @@ module Vedeu
         Vedeu::Groups::Group.build(name: name, &block).store
       end
 
-      # Returns an instance of Groups::DSL.
-      #
-      # @param model [Vedeu::Groups::Group]
-      # @param client [Object]
-      # @return [Vedeu::Groups::DSL]
-      def initialize(model, client = nil)
-        @model  = model
-        @client = client
-      end
-
       # Add the named interface to this group.
       #
-      #   Vedeu.group 'main_screen' do
-      #     add 'editor_interface'
+      #   Vedeu.group :main_screen do
+      #     add :editor_interface
       #   end
       #
-      # @param interface_name [String]
+      # @param name [String|Symbol]
       # @return [Vedeu::Groups::Group]
-      def add(interface_name)
-        model.add(interface_name)
+      def add(name)
+        model.add(name)
       end
 
       # Add the named interfaces to this group in bulk.
       #
-      #   Vedeu.group 'main_screen' do
-      #     members ['editor_interface',
-      #              'some_interface',
-      #              'other_interface']
+      #   Vedeu.group :main_screen do
+      #     members [:editor_interface,
+      #              :some_interface,
+      #              :other_interface]
       #   end
       #
-      # @param interface_names [Array<String>]
+      # @param names [Array<String|Symbol>]
       # @return [Array<String>]
-      def members(*interface_names)
-        interface_names.each { |name| add(name) }
+      def members(*names)
+        names.each { |name| add(name) }
       end
 
     end # DSL
 
   end # Groups
+
+  # @!method group
+  #   @see Vedeu::Groups::DSL.group
+  def_delegators Vedeu::Groups::DSL, :group
 
 end # Vedeu

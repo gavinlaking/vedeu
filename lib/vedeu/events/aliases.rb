@@ -10,6 +10,7 @@ module Vedeu
     #
     module Aliases
 
+      include Vedeu::Common
       extend self
 
       # Add events by name to the alias name group. When an alias is
@@ -48,7 +49,7 @@ module Vedeu
       # @param alias_name [Symbol]
       # @return [Boolean]
       def registered?(alias_name)
-        return false if empty? || alias_name.nil? || alias_name.empty?
+        return false if empty? || absent?(alias_name)
 
         storage.include?(alias_name)
       end
@@ -105,5 +106,11 @@ module Vedeu
     end # Aliases
 
   end # Events
+
+  # @!method bind_alias
+  #   @see Vedeu::Events::Aliases#bind_alias
+  # @!method unbind_alias
+  #   @see Vedeu::Events::Aliases#unbind_alias
+  def_delegators Vedeu::Events::Aliases, :bind_alias, :unbind_alias
 
 end # Vedeu

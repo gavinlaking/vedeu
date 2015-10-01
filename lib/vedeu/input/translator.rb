@@ -7,7 +7,7 @@ module Vedeu
     #
     class Translator
 
-      # @param code [String]
+      # @param (see #initialize)
       # @return [Symbol]
       def self.translate(code)
         new(code).translate

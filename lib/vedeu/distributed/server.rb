@@ -87,6 +87,9 @@ module Vedeu
 
       # Restart the DRb server.
       #
+      # @example
+      #   Vedeu.drb_restart
+      #
       # @return [void]
       def restart
         log('Attempting to restart')
@@ -128,6 +131,9 @@ module Vedeu
 
       # Start the DRb server.
       #
+      # @example
+      #   Vedeu.drb_start
+      #
       # @return [Vedeu::Distributed::Server]
       def start
         log('Attempting to start')
@@ -147,6 +153,9 @@ module Vedeu
       end
 
       # Fetch the status of the DRb server.
+      #
+      # @example
+      #   Vedeu.drb_status
       #
       # @return [Symbol]
       def status
@@ -168,6 +177,9 @@ module Vedeu
       end
 
       # Stop the DRb server.
+      #
+      # @example
+      #   Vedeu.drb_stop
       #
       # @return [void]
       def stop
@@ -224,5 +236,16 @@ module Vedeu
     end # Server
 
   end # Distributed
+
+  # @!method drb_restart
+  #   @see Vedeu::Distributed::Server#restart
+  # @!method drb_start
+  #   @see Vedeu::Distributed::Server#start
+  # @!method drb_status
+  #   @see Vedeu::Distributed::Server#status
+  # @!method drb_stop
+  #   @see Vedeu::Distributed::Server#stop
+  def_delegators Vedeu::Distributed::Server, :drb_restart, :drb_start,
+                 :drb_status, :drb_stop
 
 end # Vedeu

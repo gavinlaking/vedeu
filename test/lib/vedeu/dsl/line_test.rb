@@ -24,13 +24,6 @@ module Vedeu
         }
       }
 
-
-      describe '#initialize' do
-        it { instance.must_be_instance_of(described) }
-        it { instance.instance_variable_get('@model').must_equal(model) }
-        it { instance.instance_variable_get('@client').must_equal(client) }
-      end
-
       describe '#line' do
         let(:_value) { '' }
 

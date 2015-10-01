@@ -55,12 +55,12 @@ module Vedeu
       # @example
       #   # Fetch the cursor belonging to the interface of the same
       #   # name.
-      #   Vedeu.cursors.by_name('some_name')
+      #   Vedeu.cursors.by_name(:some_name)
       #
       #   # Fetch the names of the interfaces belonging to this group.
       #   Vedeu.groups.by_name(name)
       #
-      # @param name [String] The name of the stored model.
+      # @param name [String|Symbol] The name of the stored model.
       # @return [void]
       def by_name(name)
         name ||= Vedeu.focus
@@ -79,7 +79,7 @@ module Vedeu
 
       # Find the model by name.
       #
-      # @param name [String]
+      # @param name [String|Symbol]
       # @return [Hash<String => Object>|NilClass]
       def find(name)
         storage[name]
@@ -88,7 +88,7 @@ module Vedeu
       # Find the model attributes by name, raises an exception when
       # the model cannot be found.
       #
-      # @param name [String]
+      # @param name [String|Symbol]
       # @raise [Vedeu::Error::ModelNotFound] When the model cannot be
       #   found with this name.
       # @return [Hash<String => Object>]
@@ -100,7 +100,7 @@ module Vedeu
       # Find a model by name, registers the model by name when not
       # found.
       #
-      # @param name [String]
+      # @param name [String|Symbol]
       # @return [void]
       def find_or_create(name)
         return find(name) if registered?(name)
@@ -119,10 +119,10 @@ module Vedeu
       # Returns a boolean indicating whether the named model is
       # registered.
       #
-      # @param name [String]
+      # @param name [String|Symbol]
       # @return [Boolean]
       def registered?(name)
-        return false if name.nil? || name.empty?
+        return false if absent?(name)
         return false if empty?
 
         storage.include?(name)
@@ -131,7 +131,7 @@ module Vedeu
       # Returns the storage with the named model removed, or false
       # when the model does not exist.
       #
-      # @param name [String]
+      # @param name [String|Symbol]
       # @return [Hash|FalseClass]
       def remove(name)
         return false if empty?

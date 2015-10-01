@@ -9,7 +9,7 @@ module Vedeu
       # Return a new instance of Vedeu::Geometry::GenericCoordinate.
       #
       # @param attributes [Hash]
-      # @option attributes name [String]
+      # @option attributes name [String|Symbol]
       # @option attributes type [Symbol]
       # @option attributes offset [Fixnum]
       # @return [Vedeu::Geometry::GenericCoordinate]

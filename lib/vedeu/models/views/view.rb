@@ -50,7 +50,7 @@ module Vedeu
       # @option attributes client [Vedeu::Client]
       # @option attributes colour [Vedeu::Colours::Colour]
       # @option attributes value [Vedeu::Views::Lines]
-      # @option attributes name [String]
+      # @option attributes name [String|Symbol]
       # @option attributes parent [Vedeu::Views::Composition]
       # @option attributes style [Vedeu::Presentation::Style]
       # @option attributes zindex [Fixnum]

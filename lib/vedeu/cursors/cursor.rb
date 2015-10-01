@@ -22,7 +22,7 @@ module Vedeu
       attr_reader :attributes
 
       # @!attribute [r] name
-      # @return [String]
+      # @return [String|Symbol]
       attr_reader :name
 
       # @!attribute [w] ox
@@ -33,10 +33,6 @@ module Vedeu
       # @return [Fixnum]
       attr_writer :oy
 
-      # @!attribute [r] state
-      # @return [Boolean|Symbol]
-      attr_reader :state
-
       # @!attribute [w] x
       # @return [Fixnum]
       attr_writer :x
@@ -45,7 +41,7 @@ module Vedeu
       # @return [Fixnum]
       attr_writer :y
 
-      # @param attributes [Hash] See #initialize
+      # @param (see #initialize)
       # @return [Vedeu::Cursors::Cursor]
       def self.store(attributes)
         new(attributes).store
@@ -54,8 +50,8 @@ module Vedeu
       # Returns a new instance of Vedeu::Cursors::Cursor.
       #
       # @param attributes [Hash]
-      # @option attributes name [String] The name of the interface
-      #   this cursor belongs to.
+      # @option attributes name [String|Symbol] The name of the
+      #   interface this cursor belongs to.
       # @option attributes ox [Fixnum] The offset x coordinate.
       # @option attributes oy [Fixnum] The offset y coordinate.
       # @option attributes repository
@@ -279,5 +275,14 @@ module Vedeu
     end # Cursor
 
   end # Cursors
+
+  # @!method hide_cursor
+  #   @see Vedeu::Toggleable::ClassMethods.hide
+  # @!method show_cursor
+  #   @see Vedeu::Toggleable::ClassMethods#show
+  # @!method toggle_cursor
+  #   @see Vedeu::Toggleable::ClassMethods#toggle
+  def_delegators Vedeu::Cursors::Cursor, :hide_cursor, :show_cursor,
+                 :toggle_cursor
 
 end # Vedeu

@@ -58,4 +58,11 @@ module Vedeu
 
   end # Runtime
 
+  # Manipulate the internal flags.
+  #
+  # @!method ready?
+  # @!method ready!
+  # @return [Boolean]
+  def_delegators Vedeu::Runtime::Flags, :ready?, :ready!
+
 end # Vedeu

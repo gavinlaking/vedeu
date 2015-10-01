@@ -2,6 +2,8 @@
 
 ## Refresh Events
 
+Note: 'name' is a Symbol unless mentioned otherwise.
+
 ### :_refresh_
 Refreshes all registered interfaces.
 

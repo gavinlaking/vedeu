@@ -21,4 +21,13 @@ module Vedeu
 
   end # Buffers
 
+  # Manipulate the repository of buffers.
+  #
+  # @example
+  #   Vedeu.buffers
+  #
+  # @!method buffers
+  # @return [Vedeu::Buffers::Repository]
+  def_delegators Vedeu::Buffers::Repository, :buffers
+
 end # Vedeu

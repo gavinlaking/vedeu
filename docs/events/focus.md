@@ -2,6 +2,8 @@
 
 ## Focus Events
 
+Note: 'name' is a Symbol unless mentioned otherwise.
+
 ### :_focus_by_name_
 When triggered with an interface name will focus that interface and
 restore the cursor position and visibility.

@@ -32,4 +32,13 @@ module Vedeu
 
   end # Models
 
+  # Manipulate the repository of interfaces.
+  #
+  # @example
+  #   Vedeu.interfaces
+  #
+  # @!method interfaces
+  # @return [Vedeu::Models::Interfaces]
+  def_delegators Vedeu::Models::Interfaces, :interfaces
+
 end # Vedeu

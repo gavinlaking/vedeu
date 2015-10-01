@@ -25,7 +25,7 @@ module Vedeu
 
       # Return a new instance of Vedeu::Clear::Interface.
       #
-      # @param name [String] The name of the interface to clear.
+      # @param name [String|Symbol] The name of the interface to clear.
       # @return [Vedeu::Clear::Interface]
       def initialize(name)
         @name = name
@@ -81,5 +81,9 @@ module Vedeu
     end # Interface
 
   end # Clear
+
+  # @!method clear_by_name
+  #   @see Vedeu::Clear::Interface.render
+  def_delegators Vedeu::Clear::Interface, :clear_by_name
 
 end # Vedeu

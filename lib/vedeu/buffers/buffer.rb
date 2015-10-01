@@ -37,8 +37,8 @@ module Vedeu
       # Return a new instance of Buffer. Generally a Buffer is
       # initialized with only a 'name' and 'back' parameter.
       #
-      # @option attributes name [String] The name of the interface for
-      #   which the buffer belongs.
+      # @option attributes name [String|Symbol] The name of the
+      #   interface for which the buffer belongs.
       # @option attributes back [Vedeu::Views::View]
       # @option attributes front [Vedeu::Views::View]
       # @option attributes previous [Vedeu::Views::View]

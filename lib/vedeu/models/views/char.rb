@@ -56,6 +56,11 @@ module Vedeu
         @value      = @attributes[:value]
       end
 
+      # @return [Boolean]
+      def cell?
+        false
+      end
+
       # When {Vedeu::Output::Viewport#show} has less lines that
       # required to fill the visible area of the interface, it creates
       # a line that contains a single {Vedeu::Views::Char} containing
@@ -159,7 +164,7 @@ module Vedeu
         }
       end
 
-      # @return [Has<Symbol => Fixnum>]
+      # @return [Hash<Symbol => Fixnum>]
       def position_to_hash
         {
           y: y,

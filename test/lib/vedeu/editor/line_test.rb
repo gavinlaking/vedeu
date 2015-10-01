@@ -282,36 +282,6 @@ module Vedeu
         end
       end
 
-      describe '#to_chars' do
-        subject { instance.to_chars }
-
-        context 'when the line is empty' do
-          let(:line) {}
-
-          it { subject.must_equal([]) }
-        end
-
-        context 'when the line is not empty' do
-          let(:expected) {
-            [
-              Vedeu::Views::Char.new(value: 'S'),
-              Vedeu::Views::Char.new(value: 'o'),
-              Vedeu::Views::Char.new(value: 'm'),
-              Vedeu::Views::Char.new(value: 'e'),
-              Vedeu::Views::Char.new(value: ' '),
-              Vedeu::Views::Char.new(value: 't'),
-              Vedeu::Views::Char.new(value: 'e'),
-              Vedeu::Views::Char.new(value: 'x'),
-              Vedeu::Views::Char.new(value: 't'),
-              Vedeu::Views::Char.new(value: '.'),
-              Vedeu::Views::Char.new(value: '.'),
-              Vedeu::Views::Char.new(value: '.'),
-            ]
-          }
-          it { subject.must_equal(expected) }
-        end
-      end
-
       describe '#to_s' do
         subject { instance.to_s }
 

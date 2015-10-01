@@ -72,8 +72,8 @@ module Vedeu
       # @return [Fixnum]
       attr_writer :yn
 
-      # @param attributes [Hash] See #initialize
-      # @return [Vedeu::Geometry::Geometry]
+      # @param (see #initialize)
+      # @return (see #initialize)
       def self.store(attributes)
         new(attributes).store
       end
@@ -84,7 +84,7 @@ module Vedeu
       # @option attributes centred [Boolean]
       # @option attributes maximised [Boolean]
       # @option attributes height [Fixnum]
-      # @option attributes name [String]
+      # @option attributes name [String|Symbol]
       # @option attributes repository [Vedeu::Geometry::Repository]
       # @option attributes width [Fixnum]
       # @option attributes x [Fixnum]

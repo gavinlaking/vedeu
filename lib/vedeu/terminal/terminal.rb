@@ -216,4 +216,12 @@ module Vedeu
 
   end # Terminal
 
+  # @!method height
+  #   @see Vedeu::Terminal#height
+  # @!method resize
+  #   @see Vedeu::Terminal#resize
+  # @!method width
+  #   @see Vedeu::Terminal#width
+  def_delegators Vedeu::Terminal, :height, :resize, :width
+
 end # Vedeu

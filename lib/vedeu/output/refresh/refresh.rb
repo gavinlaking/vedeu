@@ -5,9 +5,7 @@ module Vedeu
     # @see Vedeu::Bindings::System#refresh!
     class Refresh
 
-      # Refresh all registered interfaces.
-      #
-      # @return [Array<Vedeu::Models::Interface>]
+      # @see #all
       def self.all
         new.all
       end

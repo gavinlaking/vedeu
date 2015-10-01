@@ -1,8 +1,6 @@
 #!/usr/bin/env ruby
 
-lib_dir = File.dirname(__FILE__) + '/../lib'
-$LOAD_PATH.unshift(lib_dir) unless $LOAD_PATH.include?(lib_dir)
-
+require 'bundler/setup'
 require 'vedeu'
 
 # An example application to demonstrate colours, cursor and interface movement,
@@ -24,7 +22,7 @@ class VedeuEditorApp
   # Be aware that running an application with debugging enabled will affect
   # performance.
   Vedeu.configure do
-    # debug!
+    debug!
     fake!
     log '/tmp/vedeu_editor_app.log'
     # renderers Vedeu::Renderers::File.new

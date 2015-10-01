@@ -14,7 +14,7 @@ module Vedeu
       # Coerce a line into a new instance of Vedeu::Editor::Line.
       #
       # @param line [String|Vedeu::Editor::Line]
-      # @return [Vedeu::Editor::Line]
+      # @return (see #initialize)
       def self.coerce(line)
         return line      if line.is_a?(self)
         return new(line) if line.is_a?(String)
@@ -114,13 +114,6 @@ module Vedeu
       # @return [Fixnum]
       def size
         line.size
-      end
-
-      # Return the line as a collection of Vedeu::Views::Char objects.
-      #
-      # @return [Array<Vedeu::Views::Char>]
-      def to_chars
-        line.chars.map { |char| Vedeu::Views::Char.new(value: char) }
       end
 
     end # Line

@@ -10,16 +10,6 @@ module Vedeu
       include Vedeu::DSL::Presentation
       include Vedeu::DSL::Text
 
-      # Returns an instance of Vedeu::DSL::Stream.
-      #
-      # @param model [Vedeu::Views::Stream]
-      # @param client [Object]
-      # @return [Vedeu::DSL::Stream]
-      def initialize(model, client = nil)
-        @model  = model
-        @client = client
-      end
-
       # @param block [Proc]
       # @raise [Vedeu::Error::RequiresBlock]
       # @return [void]

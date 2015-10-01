@@ -9,7 +9,9 @@ module Vedeu
     #
     class Compressor
 
-      # @param output [Array<Array<Vedeu::Views::Char>>]
+      include Vedeu::Common
+
+      # @param (see #initialize)
       # @return [String]
       def self.render(output)
         new(output).render
@@ -44,9 +46,9 @@ module Vedeu
 
       # @return [Array]
       def content
-        return [] if output.nil? || output.empty?
+        return [] if absent?(output)
 
-        output.content.delete_if { |cell| cell.is_a?(Vedeu::Models::Cell) }
+        @content ||= output.content.delete_if(&:cell?)
       end
 
       # @return [String]
@@ -69,7 +71,9 @@ module Vedeu
       def uncompress
         out = ''
 
-        content.each { |cell| out << cell.to_s }
+        content.each do |cell|
+          out << cell.to_s
+        end
 
         out
       end

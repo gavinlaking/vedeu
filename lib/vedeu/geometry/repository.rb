@@ -16,4 +16,13 @@ module Vedeu
 
   end # Geometry
 
+  # Manipulate the repository of geometries.
+  #
+  # @example
+  #   Vedeu.geometries
+  #
+  # @!method geometries
+  # @return [Vedeu::Geometry::Repository]
+  def_delegators Vedeu::Geometry::Repository, :geometries
+
 end # Vedeu
