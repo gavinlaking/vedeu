@@ -7,12 +7,18 @@ module Vedeu
     describe Interface do
 
       let(:described) { Vedeu::Clear::Interface }
-      let(:instance)  { described.new(_name) }
+      let(:instance)  { described.new(_name, options) }
+      let(:options)   {
+        {
+          content_only: false
+        }
+      }
       let(:_name)     { 'Vedeu::Clear::Interface' }
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
         it { instance.instance_variable_get('@name').must_equal(_name) }
+        it { instance.instance_variable_get('@options').must_equal(options) }
       end
 
       describe '.render' do

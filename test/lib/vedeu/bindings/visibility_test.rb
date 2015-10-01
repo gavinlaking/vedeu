@@ -10,6 +10,7 @@ module Vedeu
         it { Vedeu.bound?(:_clear_).must_equal(true) }
         it { Vedeu.bound?(:_clear_group_).must_equal(true) }
         it { Vedeu.bound?(:_clear_view_).must_equal(true) }
+        it { Vedeu.bound?(:_clear_view_content_).must_equal(true) }
 
         it { Vedeu.bound?(:_cursor_hide_).must_equal(true) }
         it { Vedeu.bound?(:_cursor_show_).must_equal(true) }

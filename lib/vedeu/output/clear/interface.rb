@@ -11,6 +11,7 @@ module Vedeu
         # Clear the interface with the given name.
         #
         # @example
+        #   Vedeu.trigger(:_clear_view_, name)
         #   Vedeu.clear_by_name(name)
         #
         # @return [Array<Array<Vedeu::Views::Char>>]
@@ -21,14 +22,31 @@ module Vedeu
         alias_method :clear_by_name, :render
         alias_method :by_name, :render
 
+        # Clear the content of the interface with the given name.
+        #
+        # @example
+        #   Vedeu.trigger(:_clear_view_content_, name)
+        #   Vedeu.clear_content_by_name(name)
+        #
+        # @return [Array<Array<Vedeu::Views::Char>>]
+        # @see #initialize
+        def clear_content_by_name(name)
+          new(name, content_only: true).render
+        end
+
       end # Eigenclass
 
       # Return a new instance of Vedeu::Clear::Interface.
       #
-      # @param name [String|Symbol] The name of the interface to clear.
+      # @param name [String|Symbol] The name of the interface to
+      #   clear.
+      # @param options [Hash]
+      # @option options content_only [Boolean] Only clear the content
+      #   not the border as well. Defaults to false.
       # @return [Vedeu::Clear::Interface]
-      def initialize(name)
-        @name = name
+      def initialize(name, options = {})
+        @name    = name
+        @options = options
       end
 
       # @return [Array<Array<Vedeu::Views::Char>>]
@@ -44,14 +62,48 @@ module Vedeu
 
       private
 
+      # @see Vedeu::Borders::Repository#by_name
+      def border
+        @border ||= Vedeu.borders.by_name(name)
+      end
+
+      # @return [Vedeu::Colours::Colour]
+      def colour
+        interface.colour
+      end
+
+      # @return [Boolean]
+      def content_only?
+        options[:content_only]
+      end
+
+      # @return [Hash<Symbol => Boolean>]
+      def defaults
+        {
+          content_only: false,
+        }
+      end
+
       # @see Vedeu::Geometry::Repository#by_name
       def geometry
         @geometry ||= Vedeu.geometries.by_name(name)
       end
 
+      # @return [Fixnum]
+      def height
+        return border.height if content_only?
+
+        geometry.height
+      end
+
       # @see Vedeu::Models::Interfaces#by_name
       def interface
         @interface ||= Vedeu.interfaces.by_name(name)
+      end
+
+      # @return [Hash<Symbol => Boolean>]
+      def options
+        defaults.merge!(@options)
       end
 
       # For each visible line of the interface, set the foreground and
@@ -61,12 +113,12 @@ module Vedeu
       #
       # @return [Array<Array<Vedeu::Views::Char>>]
       def output
-        Vedeu.timer("Clearing: '#{name}'") do
-          @y      = geometry.y
-          @x      = geometry.x
-          @width  = geometry.width
-          @height = geometry.height
-          @colour = interface.colour
+        Vedeu.timer("Clearing #{clearing}: '#{name}'") do
+          @y      = y
+          @x      = x
+          @width  = width
+          @height = height
+          @colour = colour
 
           @clear ||= Array.new(@height) do |iy|
             Array.new(@width) do |ix|
@@ -78,6 +130,34 @@ module Vedeu
         end
       end
 
+      # @return [String]
+      def clearing
+        return '(content only)' if content_only?
+
+        '(all)'
+      end
+
+      # @return [Fixnum]
+      def width
+        return border.width if content_only?
+
+        geometry.width
+      end
+
+      # @return [Fixnum]
+      def y
+        return border.by if content_only?
+
+        geometry.y
+      end
+
+      # @return [Fixnum]
+      def x
+        return border.bx if content_only?
+
+        geometry.x
+      end
+
     end # Interface
 
   end # Clear
@@ -85,5 +165,9 @@ module Vedeu
   # @!method clear_by_name
   #   @see Vedeu::Clear::Interface.render
   def_delegators Vedeu::Clear::Interface, :clear_by_name
+
+  # @!method clear_content_by_name
+  #   @see Vedeu::Clear::Interface.clear_content_by_name
+  def_delegators Vedeu::Clear::Interface, :clear_content_by_name
 
 end # Vedeu

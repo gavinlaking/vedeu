@@ -17,6 +17,7 @@ module Vedeu
         clear!
         clear_group!
         clear_view!
+        clear_view_content!
         hide_cursor!
         hide_group!
         hide_interface!
@@ -52,6 +53,13 @@ module Vedeu
       # See {file:docs/events/visibility.md#\_clear_view_}
       def clear_view!
         Vedeu.bind(:_clear_view_) { |name| Vedeu.clear_by_name(name) }
+      end
+
+      # See {file:docs/events/visibility.md#\_clear_view_content_}
+      def clear_view_content!
+        Vedeu.bind(:_clear_view_content_) do |name|
+          Vedeu.clear_content_by_name(name)
+        end
       end
 
       # See {file:docs/events/visibility.md#\_hide_cursor_}

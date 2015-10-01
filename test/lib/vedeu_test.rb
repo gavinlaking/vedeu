@@ -12,7 +12,7 @@ describe Vedeu do
   it { Vedeu.must_respond_to(:clear) }
   it { Vedeu.must_respond_to(:clear_by_group) }
   it { Vedeu.must_respond_to(:clear_by_name) }
-
+  it { Vedeu.must_respond_to(:clear_content_by_name) }
   it { Vedeu.must_respond_to(:configuration) }
   it { Vedeu.must_respond_to(:configure) }
   it { Vedeu.must_respond_to(:cursor) }
