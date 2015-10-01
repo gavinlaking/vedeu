@@ -17,6 +17,7 @@ module Vedeu
         refresh_cursor!
         refresh_group!
         refresh_view!
+        refresh_view_content!
       end
 
       private
@@ -46,6 +47,13 @@ module Vedeu
       def refresh_view!
         Vedeu.bind(:_refresh_view_) do |name|
           Vedeu::Buffers::Refresh.by_name(name)
+        end
+      end
+
+      # See {file:docs/events/refresh.md#\_refresh_view_content_}
+      def refresh_view_content!
+        Vedeu.bind(:_refresh_view_content_) do |name|
+          Vedeu::Buffers::Refresh.refresh_content_by_name(name)
         end
       end
 

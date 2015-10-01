@@ -36,7 +36,7 @@ module Vedeu
       def by_name
         Vedeu.log(type: :info, message: "Refreshing cursor: '#{name}'")
 
-        Vedeu.trigger(:_refresh_view_, name) if refresh_view?
+        Vedeu.trigger(:_refresh_view_content_, name) if refresh_view?
 
         cursor.render
       end

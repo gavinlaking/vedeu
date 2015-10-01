@@ -55,15 +55,7 @@ module Vedeu
 
       # @return [Array<Array<Vedeu::Views::Char>>]
       def render
-        return [] unless enabled?
-
-        Vedeu.timer("Bordering: '#{name}'") do
-          out = [top, bottom]
-
-          height.times { |y| out << [left(y), right(y)] }
-
-          out.flatten
-        end
+        Vedeu::Output::Output.render(output) if enabled?
       end
 
       protected
@@ -73,6 +65,17 @@ module Vedeu
       attr_reader :border
 
       private
+
+      # @return [Array<Array<Vedeu::Views::Char>>]
+      def output
+        Vedeu.timer("Bordering: '#{name}'") do
+          out = [top, bottom]
+
+          height.times { |y| out << [left(y), right(y)] }
+
+          out.flatten
+        end
+      end
 
       # @param value [String]
       # @param type [Symbol|NilClass]

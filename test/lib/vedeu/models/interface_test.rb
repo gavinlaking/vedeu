@@ -70,27 +70,23 @@ module Vedeu
       end
 
       describe '#hide' do
-        let(:buffer) { Vedeu::Buffers::Buffer.new }
-
-        before { Vedeu.buffers.stubs(:by_name).returns(buffer) }
+        before { Vedeu.stubs(:trigger) }
 
         subject { instance.hide }
 
         it {
-          Vedeu.buffers.by_name('hydrogen').expects(:hide)
+          Vedeu.expects(:trigger).with(:_clear_view_, _name)
           subject
         }
       end
 
       describe '#show' do
-        let(:buffer) { Vedeu::Buffers::Buffer.new }
-
-        before { Vedeu.buffers.stubs(:by_name).returns(buffer) }
+        before { Vedeu.stubs(:trigger) }
 
         subject { instance.show }
 
         it {
-          Vedeu.buffers.by_name('hydrogen').expects(:show)
+          Vedeu.expects(:trigger).with(:_refresh_view_, _name)
           subject
         }
       end

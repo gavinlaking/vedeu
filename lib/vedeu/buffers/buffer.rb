@@ -94,24 +94,7 @@ module Vedeu
         true
       end
 
-      # Hide this buffer.
-      #
-      # @example
-      #   Vedeu.trigger(:_hide_interface_, name)
-      #   Vedeu.hide_interface(name)
-      #
-      # Will hide the named interface. If the interface is currently
-      # visible, it will be cleared- rendered blank. To show the
-      # interface, the ':_show_interface_' event should be triggered.
-      # Triggering the ':_hide_group_' event to which this named
-      # interface belongs will also hide the interface.
-      #
-      # @return [Array<Array<Array<Vedeu::Views::Char>>>]
-      def hide
-        Vedeu.trigger(:_clear_view_, name)
-      end
-
-      # Return the content for this buffer.
+      # Retrieve the latest content from the buffer.
       #
       # - If we have new content (i.e. content on 'back') to be shown,
       #   we first clear the area occupied by the previous content,
@@ -126,45 +109,18 @@ module Vedeu
       #
       # @return [Array<Array<Array<Vedeu::Views::Char>>>]
       def render
-        Vedeu::Output::Output.render(buffer)
-      end
-
-      # Show this buffer.
-      #
-      # @example
-      #   Vedeu.trigger(:_show_interface_, name)
-      #   Vedeu.show_interface(name)
-      #
-      # Will show the named interface. If the interface is currently
-      # invisible, it will be shown- rendered with its latest content.
-      # To hide the interface, the ':_hide_interface_' event should be
-      # triggered. Triggering the ':_show_group_' event to which this
-      # named interface belongs will also show the interface.
-      #
-      # @return [Array<Array<Array<Vedeu::Views::Char>>>]
-      def show
-        Vedeu::Output::Output.render(buffer)
-      end
-
-      private
-
-      # Retrieve the latest content from the buffer.
-      #
-      # @return [Array<Array<Array<Vedeu::Views::Char>>>]
-      def buffer
         swap if back?
 
         if front?
-          [front.render]
+          front.render
 
         elsif previous?
-          [previous.render]
-
-        else
-          []
+          previous.render
 
         end
       end
+
+      private
 
       # Returns the default options/attributes for this class.
       #

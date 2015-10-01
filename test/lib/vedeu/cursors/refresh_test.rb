@@ -48,14 +48,14 @@ module Vedeu
           let(:oy) { 3 }
 
           it 'refreshes the view' do
-            Vedeu.expects(:trigger).with(:_refresh_view_, _name)
+            Vedeu.expects(:trigger).with(:_refresh_view_content_, _name)
             subject
           end
         end
 
         context 'when the cursors offset position is inside the viewable area' do
           it 'does not refresh the view' do
-            Vedeu.expects(:trigger).with(:_refresh_view_, _name).never
+            Vedeu.expects(:trigger).with(:_refresh_view_content_, _name).never
             subject
           end
         end

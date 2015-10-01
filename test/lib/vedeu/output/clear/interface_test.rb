@@ -10,7 +10,7 @@ module Vedeu
       let(:instance)  { described.new(_name, options) }
       let(:options)   {
         {
-          content_only: false
+          content_only: false,
         }
       }
       let(:_name)     { 'Vedeu::Clear::Interface' }

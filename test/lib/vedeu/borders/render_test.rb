@@ -42,7 +42,7 @@ module Vedeu
           Vedeu::Geometry::Geometry.new(name: _name, x: 1, xn: 7, y: 1, yn: 4)
         }
         let(:interface) {
-          Vedeu::Models::Interface.new(name: _name, visible: visible)
+          Vedeu::Models::Interface.new(name: _name, visible: true)
         }
         before do
           Vedeu.geometries.stubs(:by_name).returns(geometry)
@@ -51,72 +51,17 @@ module Vedeu
 
         subject { described.render(border) }
 
-        context 'when the interface is not visible' do
-          it { subject.must_equal([]) }
+        context 'when the border is enabled' do
+          let(:enabled) { true }
+
+          it {
+            Vedeu::Output::Output.expects(:render)
+            subject
+          }
         end
 
-        context 'when the interface is visible' do
-          let(:visible) { true }
-
-          context 'when the border is not enabled' do
-            it { subject.must_equal([]) }
-          end
-
-          context 'when the border is enabled' do
-            let(:enabled) { true }
-
-            context 'and a title is given' do
-              let(:title) { 'T' }
-
-              # @todo Add more tests.
-              it { subject.size.must_equal(18) }
-            end
-
-            context 'and a title is not given' do
-              # @todo Add more tests.
-              it { subject.size.must_equal(18) }
-            end
-
-            context 'and a caption is given' do
-              let(:caption) { 'C' }
-
-              # @todo Add more tests.
-              it { subject.size.must_equal(18) }
-            end
-
-            context 'and a caption is not given' do
-              # @todo Add more tests.
-              it { subject.size.must_equal(18) }
-            end
-
-            context 'and the left side is disabled' do
-              let(:show_left) { false }
-
-              # @todo Add more tests.
-              it { subject.size.must_equal(16) }
-            end
-
-            context 'and the right side is disabled' do
-              let(:show_right) { false }
-
-              # @todo Add more tests.
-              it { subject.size.must_equal(16) }
-            end
-
-            context 'and the top side is disabled' do
-              let(:show_top) { false }
-
-              # @todo Add more tests.
-              it { subject.size.must_equal(13) }
-            end
-
-            context 'and the bottom side is disabled' do
-              let(:show_bottom) { false }
-
-              # @todo Add more tests.
-              it { subject.size.must_equal(13) }
-            end
-          end
+        context 'when the border is not enabled' do
+          it { subject.must_equal(nil) }
         end
       end
 

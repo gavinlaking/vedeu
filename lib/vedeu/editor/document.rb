@@ -249,8 +249,6 @@ module Vedeu
           end
         end
 
-        out << border.render
-
         cursor.store
 
         out.flatten
