@@ -9,24 +9,11 @@ module Vedeu
       include Vedeu::Repositories::Model
       extend Forwardable
 
-      def_delegators :border,
-                     :bx,
-                     :bxn,
-                     :by,
-                     :byn,
-                     :height,
-                     :width
-
       def_delegators :cursor,
-                     :bol,
                      :ox,
                      :oy,
                      :x,
                      :y
-
-      def_delegators :interface,
-                     :colour,
-                     :style
 
       # @!attribute [r] attributes
       # @return [Hash]
@@ -54,13 +41,6 @@ module Vedeu
         end
       end
 
-      # Clear the document content in the terminal.
-      #
-      # @return [void]
-      def clear
-        Vedeu.trigger(:_clear_view_content_, name)
-      end
-
       # Deletes the character from the line where the cursor is
       # currently positioned.
       #
@@ -69,8 +49,6 @@ module Vedeu
         @lines = lines.delete_character(y, x - 1)
 
         left
-
-        refresh
       end
 
       # Delete a line.
@@ -82,15 +60,6 @@ module Vedeu
         up
       end
 
-      # Move the virtual cursor down.
-      #
-      # @return [Vedeu::Editor::Document]
-      def down
-        cursor.down
-
-        refresh
-      end
-
       # Returns the document as a string with line breaks if there is
       # more than one line.
       #
@@ -100,7 +69,7 @@ module Vedeu
 
         reset!
 
-        clear
+        Vedeu.trigger(:_clear_view_content_, name)
 
         Vedeu.trigger(:_command_, command)
 
@@ -129,17 +98,6 @@ module Vedeu
         @lines = lines.insert_line(Vedeu::Editor::Line.new, y)
 
         bol
-
-        refresh
-      end
-
-      # Move the virtual cursor left.
-      #
-      # @return [Vedeu::Editor::Document]
-      def left
-        cursor.left
-
-        refresh
       end
 
       # Returns the current line from the collection of lines.
@@ -157,15 +115,6 @@ module Vedeu
         @lines ||= Vedeu::Editor::Lines.coerce(data)
       end
 
-      # Render the document content in the terminal.
-      #
-      # @return [void]
-      def render
-        clear
-
-        Vedeu::Output::Output.render(output)
-      end
-
       # Reset the document to the empty state.
       #
       # @return [Vedeu::Editor::Document]
@@ -178,15 +127,28 @@ module Vedeu
       end
 
       # Store the document in the documents repository, clear and
-      # render the view.
+      # send the content to the terminal.
       #
       # @return [Vedeu::Editor::Document]
       def refresh
         store
 
-        render
+        Vedeu.trigger(:_clear_view_content_, name)
+
+        Vedeu::Output::Output.render(output)
+
+        cursor.refresh
 
         self
+      end
+
+      # Move the virtual cursor left.
+      #
+      # @return [Vedeu::Editor::Document]
+      def left
+        cursor.left
+
+        refresh
       end
 
       # Move the virtual cursor right.
@@ -207,20 +169,25 @@ module Vedeu
         refresh
       end
 
-      private
-
-      # Retrieve the dimensions of the document from the interface of
-      # the same name.
+      # Move the virtual cursor down.
       #
-      # @return [Vedeu::Borders::Border]
-      def border
-        @border ||= Vedeu.borders.by_name(name)
+      # @return [Vedeu::Editor::Document]
+      def down
+        cursor.down
+
+        refresh
       end
 
-      # @return [Vedeu::Models::Interface]
-      def interface
-        @interface ||= Vedeu.interfaces.by_name(name)
+      # Move the virtual cursor to the beginning of the line.
+      #
+      # @return [Vedeu::Editor::Document]
+      def bol
+        cursor.bol
+
+        refresh
       end
+
+      private
 
       # Returns the default options/attributes for this class.
       #
@@ -233,25 +200,17 @@ module Vedeu
         }
       end
 
-      # Return the data needed to render the document.
+      # Return the data needed to render the document, based on the
+      # current virtual cursor position. This output may be a cropped
+      # representation of the full document depending on the size of
+      # the interface.
       #
-      # @return [String]
+      # @return [Array<Vedeu::Views::Char>]
       def output
-        out = []
-
-        visible_lines.each_with_index do |line, y_index|
-          line.chars.each_with_index do |char, x_index|
-            position = [(by + y_index), (bx + x_index)]
-
-            out << Vedeu::Views::Char.new(value:    char,
-                                          parent:   interface,
-                                          position: position)
-          end
-        end
-
-        cursor.store
-
-        out.flatten
+        Vedeu::Editor::Cropper.new(lines:  lines,
+                                   name:   name,
+                                   ox:     ox,
+                                   oy:     oy).viewport
       end
 
       # Return a virtual cursor to track the cursor position within
@@ -259,25 +218,7 @@ module Vedeu
       #
       # @return [Vedeu::Editor::Cursor]
       def cursor
-        @cursor ||= Vedeu::Editor::Cursor.new(y:    0,
-                                              x:    0,
-                                              by:   by,
-                                              bx:   bx,
-                                              byn:  byn,
-                                              bxn:  bxn,
-                                              name: name)
-      end
-
-      # Return only the visible lines for the document based on the
-      # current virtual cursor position.
-      #
-      # @return [Vedeu::Editor::Lines]
-      def visible_lines
-        Vedeu::Editor::Cropper.new(lines:  lines,
-                                   height: height,
-                                   width:  width,
-                                   ox:     ox,
-                                   oy:     oy).cropped
+        @cursor ||= Vedeu::Editor::Cursor.new(name: name)
       end
 
     end # Document

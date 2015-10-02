@@ -58,17 +58,6 @@ module Vedeu
         }
       end
 
-      describe '#clear' do
-        before { Vedeu.stubs(:trigger).with(:_clear_view_content_, _name) }
-
-        subject { instance.clear }
-
-        it {
-          Vedeu.expects(:trigger).with(:_clear_view_content_, _name)
-          subject
-        }
-      end
-
       describe '#delete_character' do
         let(:y) { 0 }
         let(:x) { 0 }
@@ -172,29 +161,6 @@ module Vedeu
         it { subject.must_equal(expected) }
       end
 
-      describe '#render' do
-        let(:data) {
-          Vedeu::Editor::Lines.new([
-            Vedeu::Editor::Line.new('A'),
-            Vedeu::Editor::Line.new('B'),
-            Vedeu::Editor::Line.new('C'),
-          ])
-        }
-        let(:output) { "\e[1;1HA\e[2;1HB\e[3;1HC\e[1;1H\e[?25h" }
-
-        before {
-          Vedeu.stubs(:trigger).with(:_clear_view_content_, _name)
-          Vedeu::Output::Output.stubs(:render)
-        }
-
-        subject { instance.render }
-
-        it {
-          Vedeu::Output::Output.expects(:render)
-          subject
-        }
-      end
-
       describe '#reset!' do
         subject { instance.reset! }
 
@@ -202,12 +168,22 @@ module Vedeu
       end
 
       describe '#refresh' do
+        before do
+          Vedeu.stubs(:trigger)
+          Vedeu::Output::Output.stubs(:render)
+        end
+
         subject { instance.refresh }
 
         it { subject.must_be_instance_of(described) }
 
         it {
-          instance.expects(:render)
+          Vedeu.expects(:trigger).with(:_clear_view_content_, _name)
+          subject
+        }
+
+        it {
+          Vedeu::Output::Output.expects(:render)
           subject
         }
       end
