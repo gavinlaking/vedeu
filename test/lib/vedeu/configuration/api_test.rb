@@ -246,6 +246,11 @@ module Vedeu
           configuration = Vedeu.configure { log_only :debug, :store }
           configuration.log_only.must_equal([:debug, :store])
         end
+
+        it 'sets the options to the desired value' do
+          configuration = Vedeu.configure { log_only [:debug, :info] }
+          configuration.log_only.must_equal([:debug, :info])
+        end
       end
 
       describe '#renderer' do
