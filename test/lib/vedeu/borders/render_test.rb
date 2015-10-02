@@ -7,7 +7,7 @@ module Vedeu
     describe Render do
 
       let(:described)   { Vedeu::Borders::Render }
-      let(:instance)    { described.new(border) }
+      let(:instance)    { described.new(_name) }
       let(:border)      {
         Vedeu::Borders::Border.new(enabled:     enabled,
                                    name:        _name,
@@ -30,14 +30,14 @@ module Vedeu
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
-        it { instance.instance_variable_get('@border').must_equal(border) }
+        it { instance.instance_variable_get('@name').must_equal(_name) }
       end
 
       describe '#render' do
         it { instance.must_respond_to(:render) }
       end
 
-      describe '.render' do
+      describe '.by_name' do
         let(:geometry) {
           Vedeu::Geometry::Geometry.new(name: _name, x: 1, xn: 7, y: 1, yn: 4)
         }
@@ -45,11 +45,12 @@ module Vedeu
           Vedeu::Models::Interface.new(name: _name, visible: true)
         }
         before do
+          Vedeu.borders.stubs(:by_name).returns(border)
           Vedeu.geometries.stubs(:by_name).returns(geometry)
           Vedeu.interfaces.stubs(:by_name).returns(interface)
         end
 
-        subject { described.render(border) }
+        subject { described.by_name(_name) }
 
         context 'when the border is enabled' do
           let(:enabled) { true }

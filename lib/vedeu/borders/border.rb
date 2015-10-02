@@ -172,7 +172,7 @@ module Vedeu
 
       # @return [Array<Array<Vedeu::Views::Char>>]
       def render
-        Vedeu::Borders::Render.render(self)
+        Vedeu.trigger(:_refresh_border_, name)
       end
 
       private

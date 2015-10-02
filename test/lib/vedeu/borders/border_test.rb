@@ -17,7 +17,7 @@ module Vedeu
           colour:       nil,
           enabled:      false,
           horizontal:   'q',
-          name:         'borders',
+          name:         _name,
           repository:   Vedeu.borders,
           show_bottom:  true,
           show_left:    true,
@@ -31,6 +31,7 @@ module Vedeu
         }
       }
       let(:geometry) {}
+      let(:_name)    { 'borders' }
 
       describe '.build' do
         subject {
@@ -96,7 +97,7 @@ module Vedeu
             bottom_right: 'D',
             enabled:      enabled,
             horizontal:   'H',
-            name:         'Border#bxbxnbybyn',
+            name:         _name,
             show_top:     top,
             show_bottom:  bottom,
             show_left:    left,
@@ -106,13 +107,14 @@ module Vedeu
             vertical:     'V'
           }
         }
+        let(:_name)   { 'Border#bxbxnbybyn' }
         let(:enabled) { false }
         let(:top)     { false }
         let(:bottom)  { false }
         let(:left)    { false }
         let(:right)   { false }
         let(:geometry) {
-          Vedeu::Geometry::Geometry.new(name: 'Border#bxbxnbybyn',
+          Vedeu::Geometry::Geometry.new(name: _name,
                                         x:    2,
                                         xn:   6,
                                         y:    2,
@@ -212,7 +214,7 @@ module Vedeu
 
       describe '#width' do
         let(:geometry) {
-          Vedeu::Geometry::Geometry.new(name: 'borders', width: 8)
+          Vedeu::Geometry::Geometry.new(name: _name, width: 8)
         }
 
         before { Vedeu.geometries.stubs(:by_name).returns(geometry) }
@@ -230,7 +232,7 @@ module Vedeu
             let(:attributes) {
               {
                 enabled: true,
-                name:    'borders',
+                name:    _name,
               }
             }
 
@@ -241,7 +243,7 @@ module Vedeu
             let(:attributes) {
               {
                 enabled:   true,
-                name:      'borders',
+                name:      _name,
                 show_left: false
               }
             }
@@ -253,7 +255,7 @@ module Vedeu
             let(:attributes) {
               {
                 enabled:    true,
-                name:       'borders',
+                name:       _name,
                 show_left:  false,
                 show_right: false
               }
@@ -266,7 +268,7 @@ module Vedeu
 
       describe '#height' do
         let(:geometry) {
-          Vedeu::Geometry::Geometry.new(name: 'borders', height: 5)
+          Vedeu::Geometry::Geometry.new(name: _name, height: 5)
         }
 
         before { Vedeu.geometries.stubs(:by_name).returns(geometry) }
@@ -284,7 +286,7 @@ module Vedeu
             let(:attributes) {
               {
                 enabled: true,
-                name:    'borders',
+                name:    _name,
               }
             }
 
@@ -295,7 +297,7 @@ module Vedeu
             let(:attributes) {
               {
                 enabled:  true,
-                name:     'borders',
+                name:     _name,
                 show_top: false
               }
             }
@@ -307,7 +309,7 @@ module Vedeu
             let(:attributes) {
               {
                 enabled:     true,
-                name:        'borders',
+                name:        _name,
                 show_top:    false,
                 show_bottom: false
               }
@@ -327,7 +329,7 @@ module Vedeu
           let(:attributes) {
             {
               enabled: true,
-              name:    'borders',
+              name:    _name,
             }
           }
 
@@ -344,7 +346,7 @@ module Vedeu
           let(:attributes) {
             {
               enabled:     true,
-              name:        'borders',
+              name:        _name,
               show_bottom: false,
             }
           }
@@ -362,7 +364,7 @@ module Vedeu
           let(:attributes) {
             {
               enabled:   true,
-              name:      'borders',
+              name:      _name,
               show_left: false,
             }
           }
@@ -380,7 +382,7 @@ module Vedeu
           let(:attributes) {
             {
               enabled:    true,
-              name:       'borders',
+              name:       _name,
               show_right: false,
             }
           }
@@ -398,7 +400,7 @@ module Vedeu
           let(:attributes) {
             {
               enabled:  true,
-              name:     'borders',
+              name:     _name,
               show_top: false,
             }
           }
@@ -408,12 +410,12 @@ module Vedeu
       end
 
       describe '#render' do
-        before { Vedeu::Borders::Render.stubs(:render) }
+        before { Vedeu.stubs(:trigger).with(:_refresh_border_, _name) }
 
         subject { instance.render }
 
         it {
-          Vedeu::Borders::Render.expects(:render).with(instance)
+          Vedeu.expects(:trigger).with(:_refresh_border_, _name)
           subject
         }
       end

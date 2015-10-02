@@ -2,7 +2,7 @@ module Vedeu
 
   module Borders
 
-    # Renders the provided border.
+    # Renders the named border.
     #
     class Render
 
@@ -23,7 +23,6 @@ module Vedeu
                      :height,
                      :horizontal,
                      :left?,
-                     :name,
                      :right?,
                      :style,
                      :title,
@@ -39,18 +38,21 @@ module Vedeu
                      :y,
                      :yn
 
+      # @example
+      #   Vedeu.trigger(:_refresh_border_, name)
+      #
+      # @param name [String|Symbol] The name of the border to render.
       # @return [Array<Array<Vedeu::Views::Char>>]
-      # @param (see #initialize)
-      def self.render(border)
-        new(border).render
+      def self.by_name(name)
+        new(name).render
       end
 
       # Returns a new instance of Vedeu::Borders::Render.
       #
-      # @param border [Vedeu::Borders::Border]
+      # @param name [String|Symbol]
       # @return [Vedeu::Borders::Render]
-      def initialize(border)
-        @border = border
+      def initialize(name)
+        @name = name
       end
 
       # @return [Array<Array<Vedeu::Views::Char>>]
@@ -60,11 +62,16 @@ module Vedeu
 
       protected
 
-      # @!attribute [r] border
-      # @return [Vedeu::Borders::Border]
-      attr_reader :border
+      # @!attribute [r] name
+      # @return [String|Symbol]
+      attr_reader :name
 
       private
+
+      # @return [Vedeu::Borders::Border]
+      def border
+        @border ||= Vedeu.borders.by_name(name)
+      end
 
       # @return [Array<Array<Vedeu::Views::Char>>]
       def output
