@@ -42,9 +42,7 @@ module Vedeu
       def by_name
         Vedeu.trigger(:_clear_view_content_, name)
 
-        Vedeu.timer("Refresh Buffer: '#{name}'") do
-          Vedeu.buffers.by_name(name).render
-        end
+        Vedeu.buffers.by_name(name).render
 
         Vedeu.trigger(:_refresh_border_, name) unless content_only?
       end

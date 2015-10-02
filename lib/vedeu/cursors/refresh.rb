@@ -14,6 +14,9 @@ module Vedeu
                      :height,
                      :width
 
+      # @example
+      #   Vedeu.trigger(:_refresh_cursor_, name)
+      #
       # @param (see #initialize)
       def self.by_name(name = nil)
         new(name).by_name

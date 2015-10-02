@@ -81,7 +81,7 @@ module Vedeu
       #
       # @return [Array<Array<Vedeu::Models::Cell>>]
       def reset
-        @output = empty_buffer if Vedeu.ready?
+        @output = empty_buffer
       end
 
       # Write a collection of cells to the virtual terminal.

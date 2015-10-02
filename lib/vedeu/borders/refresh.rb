@@ -57,7 +57,7 @@ module Vedeu
 
       # @return [Array<Array<Vedeu::Views::Char>>]
       def render
-        Vedeu::Output::Output.render(output) if enabled? && Vedeu.ready?
+        Vedeu::Output::Output.render(output) if enabled?
       end
 
       protected
@@ -75,7 +75,7 @@ module Vedeu
 
       # @return [Array<Array<Vedeu::Views::Char>>]
       def output
-        Vedeu.timer("Bordering: '#{name}'") do
+        Vedeu.timer("Drawing border: '#{name}'") do
           out = [top, bottom]
 
           height.times { |y| out << [left(y), right(y)] }

@@ -51,7 +51,7 @@ module Vedeu
 
       # @return [Array<Array<Vedeu::Views::Char>>]
       def render
-        Vedeu::Output::Output.render(output) if Vedeu.ready?
+        Vedeu::Output::Output.render(output)
       end
 
       protected
@@ -132,9 +132,9 @@ module Vedeu
 
       # @return [String]
       def clearing
-        return '(content only)' if content_only?
+        return 'content' if content_only?
 
-        '(all)'
+        'interface'
       end
 
       # @return [Fixnum]
