@@ -14,6 +14,7 @@ module Vedeu
       # @return [TrueClass]
       def setup!
         refresh!
+        refresh_border!
         refresh_cursor!
         refresh_group!
         refresh_view!
@@ -27,6 +28,13 @@ module Vedeu
       # See {file:docs/events/refresh.md#\_refresh_}
       def refresh!
         Vedeu.bind(:_refresh_) { Vedeu::Output::Refresh.all }
+      end
+
+      # See {file:docs/events/refresh.md#\_refresh_border_}
+      def refresh_border!
+        Vedeu.bind(:_refresh_border_) do |name|
+          Vedeu::Borders::Refresh.by_name(name)
+        end
       end
 
       # See {file:docs/events/refresh.md#\_refresh_cursor_}

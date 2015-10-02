@@ -14,6 +14,11 @@ will be still refreshed in memory but not shown.
 
     Vedeu.trigger(:_refresh_)
 
+### :_refresh_border_
+Will cause the named border to refresh.
+
+    Vedeu.trigger(:_refresh_border_, name)
+
 ### :_refresh_cursor_
 Will cause the named cursor to refresh, or the cursor of the interface
 which is currently in focus.

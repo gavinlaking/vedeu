@@ -38,7 +38,7 @@ module Vedeu
 
       # @return [Array<Array<Vedeu::Models::Cell>>]
       def empty_buffer
-        Array.new(Vedeu.height) do |y|
+        @empty_buffer ||= Array.new(Vedeu.height) do |y|
           Array.new(Vedeu.width) do |x|
             Vedeu::Models::Cell.new(position: [y + 1, x + 1])
           end

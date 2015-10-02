@@ -25,6 +25,7 @@ module Vedeu
         Vedeu::Models::Interface.new(style: nil, visible: visible)
       }
       let(:geometry)  { Vedeu::Geometry::Geometry.new(height: 3, width: 3) }
+      let(:ready)     { true }
 
       before do
         Vedeu.interfaces.stubs(:by_name).returns(interface)
@@ -40,15 +41,24 @@ module Vedeu
       describe '.render' do
         before do
           Vedeu::Output::Output.stubs(:render)
+          Vedeu.stubs(:ready?).returns(ready)
         end
 
         subject { described.render(view) }
 
         context 'when the interface is visible' do
-          it {
-            Vedeu::Output::Output.expects(:render)
-            subject
-          }
+          context 'and Vedeu is ready' do
+            it {
+              Vedeu::Output::Output.expects(:render)
+              subject
+            }
+          end
+
+          context 'but Vedeu is not ready' do
+            let(:ready) { false }
+
+            it { subject.must_equal(nil) }
+          end
         end
 
         context 'when the interface is not visible' do

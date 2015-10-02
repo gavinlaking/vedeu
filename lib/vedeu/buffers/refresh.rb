@@ -40,10 +40,13 @@ module Vedeu
 
       # @return [Array|Vedeu::Error::ModelNotFound]
       def by_name
+        Vedeu.trigger(:_clear_view_content_, name)
+
         Vedeu.timer("Refresh Buffer: '#{name}'") do
           Vedeu.buffers.by_name(name).render
-          Vedeu.borders.by_name(name).render unless content_only?
-        end if Vedeu.ready?
+        end
+
+        Vedeu.trigger(:_refresh_border_, name) unless content_only?
       end
 
       protected

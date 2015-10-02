@@ -44,7 +44,7 @@ module Vedeu
       #
       # @return [Array<Array<String>>|NilClass]
       def render
-        Vedeu::Output::Output.render(output) if visible?
+        Vedeu::Output::Output.render(output) if visible? && Vedeu.ready?
       end
 
       # Returns a string representation of the viewport.
@@ -63,6 +63,7 @@ module Vedeu
 
       private
 
+      # @return [Array<Array<Vedeu::Views::Char>>]
       def output
         Vedeu.timer("Rendering: '#{name}'") do
           out = []

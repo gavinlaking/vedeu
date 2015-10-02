@@ -11,6 +11,7 @@ module Vedeu
         # Clears the group of interfaces belonging to the given name.
         #
         # @example
+        #   Vedeu.trigger(:_clear_group_, name)
         #   Vedeu.clear_by_group(name)
         #
         # @param name [String|Symbol]

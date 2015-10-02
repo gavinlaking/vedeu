@@ -2,9 +2,9 @@ module Vedeu
 
   module Borders
 
-    # Renders the provided border.
+    # Renders and refreshes the named border.
     #
-    class Render
+    class Refresh
 
       extend Forwardable
       include Vedeu::Common
@@ -23,7 +23,6 @@ module Vedeu
                      :height,
                      :horizontal,
                      :left?,
-                     :name,
                      :right?,
                      :style,
                      :title,
@@ -39,32 +38,40 @@ module Vedeu
                      :y,
                      :yn
 
+      # @example
+      #   Vedeu.trigger(:_refresh_border_, name)
+      #
+      # @param name [String|Symbol] The name of the border to render.
       # @return [Array<Array<Vedeu::Views::Char>>]
-      # @param (see #initialize)
-      def self.render(border)
-        new(border).render
+      def self.by_name(name)
+        new(name).render
       end
 
-      # Returns a new instance of Vedeu::Borders::Render.
+      # Returns a new instance of Vedeu::Borders::Refresh.
       #
-      # @param border [Vedeu::Borders::Border]
-      # @return [Vedeu::Borders::Render]
-      def initialize(border)
-        @border = border
+      # @param name [String|Symbol]
+      # @return [Vedeu::Borders::Refresh]
+      def initialize(name)
+        @name = name
       end
 
       # @return [Array<Array<Vedeu::Views::Char>>]
       def render
-        Vedeu::Output::Output.render(output) if enabled?
+        Vedeu::Output::Output.render(output) if enabled? && Vedeu.ready?
       end
 
       protected
 
-      # @!attribute [r] border
-      # @return [Vedeu::Borders::Border]
-      attr_reader :border
+      # @!attribute [r] name
+      # @return [String|Symbol]
+      attr_reader :name
 
       private
+
+      # @return [Vedeu::Borders::Border]
+      def border
+        @border ||= Vedeu.borders.by_name(name)
+      end
 
       # @return [Array<Array<Vedeu::Views::Char>>]
       def output
@@ -348,7 +355,7 @@ module Vedeu
         caption.chomp.slice(0..(width - 5))
       end
 
-    end # Render
+    end # Refresh
 
   end # Borders
 

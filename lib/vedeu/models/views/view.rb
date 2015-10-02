@@ -78,8 +78,6 @@ module Vedeu
 
       # @return [Array<Array<Vedeu::Views::Char>>]
       def render
-        Vedeu.trigger(:_clear_view_content_, name)
-
         Vedeu::Output::Viewport.render(self)
       end
 

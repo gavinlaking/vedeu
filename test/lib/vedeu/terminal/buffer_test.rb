@@ -18,19 +18,9 @@ module Vedeu
       end
 
       describe '#buffer' do
-        let(:expected) {
-          Array.new(Vedeu.height) do |y|
-            Array.new(Vedeu.width) do |x|
-              Vedeu::Models::Cell.new(position: [y + 1, x + 1])
-            end
-          end
-        }
-
         subject { described.buffer }
 
         it { subject.must_be_instance_of(Array) }
-        it { described.instance_variable_get('@output').must_equal(expected) }
-        it { subject.must_equal(expected) }
       end
 
       describe '#clear' do
@@ -57,18 +47,9 @@ module Vedeu
       end
 
       describe '#empty_buffer' do
-        let(:expected) {
-          Array.new(height) do |y|
-            Array.new(width) do |x|
-              Vedeu::Models::Cell.new(position: [y + 1, x + 1])
-            end
-          end
-        }
-
         subject { described.empty_buffer }
 
         it { subject.must_be_instance_of(Array) }
-        it { subject.must_equal(expected) }
       end
 
       # describe '#output' do
@@ -121,19 +102,9 @@ module Vedeu
       end
 
       describe '#reset' do
-        let(:output) {
-          Array.new(height) do |y|
-            Array.new(width) do |x|
-              Vedeu::Models::Cell.new(position: [y + 1, x + 1])
-            end
-          end
-        }
-
         subject { described.reset }
 
-        it { described.instance_variable_get('@output').must_equal(output) }
         it { subject.must_be_instance_of(Array) }
-        it { subject.must_equal(output) }
       end
 
       describe '#write' do

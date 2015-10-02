@@ -48,7 +48,7 @@ module Vedeu
       def content
         return [] if absent?(output)
 
-        @content ||= output.content.delete_if(&:cell?)
+        @content ||= output.content.reject(&:cell?)
       end
 
       # @return [String]

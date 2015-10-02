@@ -45,6 +45,11 @@ module Vedeu
       end
       alias_method :yn, :byn
 
+      # @return [Boolean]
+      def enabled?
+        false
+      end
+
       # @return [Fixnum]
       def height
         (by..byn).size

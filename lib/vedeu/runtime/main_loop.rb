@@ -22,15 +22,9 @@ module Vedeu
           @loop    = true
 
           while @loop
+            Vedeu.trigger(:_refresh_cursor_, Vedeu.focus)
+
             yield
-
-            Vedeu.trigger(:_hide_cursor_)
-
-            Vedeu.log(type:    :info,
-                      message: 'MainLoop rendering terminal buffer.')
-            Vedeu::Terminal::Buffer.render
-
-            Vedeu.trigger(:_show_cursor_)
 
             safe_exit_point!
           end
