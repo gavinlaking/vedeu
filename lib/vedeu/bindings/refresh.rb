@@ -33,7 +33,7 @@ module Vedeu
       # See {file:docs/events/refresh.md#\_refresh_border_}
       def refresh_border!
         Vedeu.bind(:_refresh_border_) do |name|
-          Vedeu::Borders::Render.by_name(name)
+          Vedeu::Borders::Refresh.by_name(name)
         end
       end
 

@@ -2,9 +2,9 @@ module Vedeu
 
   module Borders
 
-    # Renders the named border.
+    # Renders and refreshes the named border.
     #
-    class Render
+    class Refresh
 
       extend Forwardable
       include Vedeu::Common
@@ -47,10 +47,10 @@ module Vedeu
         new(name).render
       end
 
-      # Returns a new instance of Vedeu::Borders::Render.
+      # Returns a new instance of Vedeu::Borders::Refresh.
       #
       # @param name [String|Symbol]
-      # @return [Vedeu::Borders::Render]
+      # @return [Vedeu::Borders::Refresh]
       def initialize(name)
         @name = name
       end
@@ -355,7 +355,7 @@ module Vedeu
         caption.chomp.slice(0..(width - 5))
       end
 
-    end # Render
+    end # Refresh
 
   end # Borders
 

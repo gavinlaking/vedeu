@@ -4,9 +4,9 @@ module Vedeu
 
   module Borders
 
-    describe Render do
+    describe Refresh do
 
-      let(:described)   { Vedeu::Borders::Render }
+      let(:described)   { Vedeu::Borders::Refresh }
       let(:instance)    { described.new(_name) }
       let(:border)      {
         Vedeu::Borders::Border.new(enabled:     enabled,
@@ -20,7 +20,7 @@ module Vedeu
       }
       let(:visible)     { false }
       let(:enabled)     { false }
-      let(:_name)       { 'Vedeu::RenderBorder' }
+      let(:_name)       { 'Vedeu::Borders::Refresh' }
       let(:title)       {}
       let(:caption)     {}
       let(:show_top)    { true }
