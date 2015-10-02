@@ -61,16 +61,10 @@ module Vedeu
 
       describe '#render' do
         before do
-          Vedeu.stubs(:trigger).with(:_clear_view_content_, _name)
           Vedeu::Output::Viewport.stubs(:render).with(instance)
         end
 
         subject { instance.render }
-
-        it {
-          Vedeu.expects(:trigger).with(:_clear_view_content_, _name)
-          subject
-        }
 
         it {
           Vedeu::Output::Viewport.expects(:render).with(instance)

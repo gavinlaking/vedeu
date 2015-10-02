@@ -26,7 +26,7 @@ module Vedeu
         context 'when Vedeu is not yet ready' do
           let(:ready) { false }
 
-          it { subject.must_equal(nil) }
+          it { subject.must_equal([nil]) }
         end
 
         context 'when Vedeu is ready' do
