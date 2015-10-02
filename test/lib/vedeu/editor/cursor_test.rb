@@ -10,78 +10,47 @@ module Vedeu
       let(:instance)   { described.new(attributes) }
       let(:attributes) {
         {
-          y:    y,
-          x:    x,
-          bx:   bx,
-          by:   by,
-          byn:  byn,
-          bxn:  bxn,
           name: _name,
+          ox:   ox,
           oy:   oy,
-          ox:   ox
+          x:    x,
+          y:    y,
         }
       }
-      let(:y)         { 0 }
-      let(:x)         { 0 }
-      let(:by)        { 1 }
-      let(:bx)        { 1 }
-      let(:byn)       { 6 }
-      let(:bxn)       { 6 }
-      let(:_name)     { 'editor_cursor' }
-      let(:oy)        { 0 }
-      let(:ox)        { 0 }
+      let(:_name) { 'editor_cursor' }
+      let(:ox)    { 0 }
+      let(:oy)    { 0 }
+      let(:x)     { 0 }
+      let(:y)     { 0 }
+
+      let(:border) {
+        Vedeu::Borders::Border.new(name: _name, enabled: false)
+      }
+      let(:geometry) {
+        Vedeu::Geometry::Geometry.new(name: _name,
+                                      x:    1,
+                                      y:    1,
+                                      xn:   6,
+                                      yn:   6)
+      }
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
         it { instance.instance_variable_get('@y').must_equal(y) }
         it { instance.instance_variable_get('@x').must_equal(x) }
-        it { instance.instance_variable_get('@by').must_equal(by) }
-        it { instance.instance_variable_get('@bx').must_equal(bx) }
-        it { instance.instance_variable_get('@byn').must_equal(byn) }
-        it { instance.instance_variable_get('@bxn').must_equal(bxn) }
         it { instance.instance_variable_get('@name').must_equal(_name) }
         it { instance.instance_variable_get('@oy').must_equal(0) }
         it { instance.instance_variable_get('@ox').must_equal(0) }
-
-        context 'when x is nil' do
-          it { instance.instance_variable_get('@x').must_equal(0) }
-        end
-
-        context 'when x is not nil' do
-          let(:x) { 3 }
-
-          it { instance.instance_variable_get('@x').must_equal(3) }
-        end
-
-        context 'when y is nil' do
-          it { instance.instance_variable_get('@y').must_equal(0) }
-        end
-
-        context 'when y is not nil' do
-          let(:y) { 6 }
-
-          it { instance.instance_variable_get('@y').must_equal(6) }
-        end
       end
 
       describe '#accessors' do
         it {
-          instance.must_respond_to(:bx)
-          instance.must_respond_to(:bx=)
-          instance.must_respond_to(:by)
-          instance.must_respond_to(:by=)
-          instance.must_respond_to(:bxn)
-          instance.must_respond_to(:bxn=)
-          instance.must_respond_to(:byn)
-          instance.must_respond_to(:byn=)
           instance.must_respond_to(:name)
           instance.must_respond_to(:ox)
           instance.must_respond_to(:ox=)
           instance.must_respond_to(:oy)
           instance.must_respond_to(:oy=)
-          instance.must_respond_to(:x)
           instance.must_respond_to(:x=)
-          instance.must_respond_to(:y)
           instance.must_respond_to(:y=)
         }
       end
@@ -120,13 +89,18 @@ module Vedeu
         it { subject.ox.must_equal(3) }
       end
 
-      describe '#store' do
-        before { Vedeu::Cursors::Cursor.stubs(:store) }
+      describe '#refresh' do
+        before {
+          Vedeu::Cursors::Cursor.stubs(:store)
+          Vedeu.stubs(:trigger)
+        }
 
-        subject { instance.store }
+        subject { instance.refresh }
 
         it 'stores the virtual cursor in place of the real cursor' do
           Vedeu::Cursors::Cursor.expects(:store)
+          Vedeu.expects(:trigger).with(:_refresh_cursor_, _name)
+
           subject.must_be_instance_of(described)
         end
       end
@@ -157,14 +131,16 @@ module Vedeu
       end
 
       describe '#to_s' do
-        let(:x) { 11 }
-        let(:y) { 5 }
+        let(:x)  { 11 }
+        let(:y)  { 5 }
+        let(:ox) { 0 }
+        let(:oy) { 0 }
 
         subject { instance.to_s }
 
         it { subject.must_be_instance_of(String) }
 
-        it { subject.must_equal("\e[6;6H\e[?25h") }
+        it { subject.must_equal("\e[6;12H\e[?25h") }
       end
 
       describe '#up' do

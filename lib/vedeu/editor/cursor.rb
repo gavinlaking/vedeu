@@ -7,21 +7,13 @@ module Vedeu
     #
     class Cursor
 
-      # @!attribute [rw] bx
-      # @return [Fixnum]
-      attr_accessor :bx
+      extend Forwardable
 
-      # @!attribute [rw] by
-      # @return [Fixnum]
-      attr_accessor :by
-
-      # @!attribute [rw] bxn
-      # @return [Fixnum]
-      attr_accessor :bxn
-
-      # @!attribute [rw] byn
-      # @return [Fixnum]
-      attr_accessor :byn
+      def_delegators :border,
+                     :bx,
+                     :bxn,
+                     :by,
+                     :byn
 
       # @!attribute [r] name
       # @return [String|Symbol]
@@ -49,10 +41,6 @@ module Vedeu
       # @option attributes y [Fixnum] The current line.
       # @option attributes x [Fixnum] The current character with the
       #   line.
-      # @option attributes by [Fixnum]
-      # @option attributes bx [Fixnum]
-      # @option attributes byn [Fixnum]
-      # @option attributes bxn [Fixnum]
       # @option attributes name [String|Symbol]
       # @option attributes oy [Fixnum]
       # @option attributes ox [Fixnum]
@@ -97,13 +85,16 @@ module Vedeu
       # document being edited.
       #
       # @return [Vedeu::Editor::Cursor]
-      def store
+      # @todo GL 2015-10-02 Should ox/oy be 0; or set to @ox/@oy?
+      def refresh
         Vedeu::Cursors::Cursor.store(name:    name,
                                      x:       real_x,
                                      y:       real_y,
                                      ox:      0,
                                      oy:      0,
                                      visible: true)
+
+        Vedeu.trigger(:_refresh_cursor_, name)
 
         self
       end
@@ -165,20 +156,21 @@ module Vedeu
 
       private
 
+      # @return [Vedeu::Borders::Border]
+      def border
+        @border ||= Vedeu.borders.by_name(name)
+      end
+
       # Returns the default options/attributes for this class.
       #
-      # @return [Hash<Symbol => Fixnum|NilClass>]
+      # @return [Hash<Symbol => Fixnum|NilClass|String|Symbol>]
       def defaults
         {
-          y:    0,
-          x:    0,
-          by:   nil,
-          bx:   nil,
-          byn:  nil,
-          bxn:  nil,
           name: '',
           ox:   0,
           oy:   0,
+          x:    0,
+          y:    0,
         }
       end
 
