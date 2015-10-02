@@ -132,9 +132,9 @@ module Vedeu
 
       # @return [String]
       def clearing
-        return '(content only)' if content_only?
+        return 'content' if content_only?
 
-        '(all)'
+        'interface'
       end
 
       # @return [Fixnum]
