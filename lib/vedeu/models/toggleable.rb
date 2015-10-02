@@ -55,8 +55,8 @@ module Vedeu
       #
       # @param name [String|Symbol]
       # @return [void]
-      def hide(name = nil)
-        model_by_name(repository, name).hide
+      def hide(name = Vedeu.focus)
+        repository.by_name(name).hide
       end
       alias_method :hide_cursor,    :hide
       alias_method :hide_group,     :hide
@@ -71,8 +71,8 @@ module Vedeu
       #
       # @param name [String|Symbol]
       # @return [void]
-      def show(name = nil)
-        model_by_name(repository, name).show
+      def show(name = Vedeu.focus)
+        repository.by_name(name).show
       end
       alias_method :show_cursor,    :show
       alias_method :show_group,     :show
@@ -87,23 +87,12 @@ module Vedeu
       #
       # @param name [String|Symbol]
       # @return [void]
-      def toggle(name = nil)
-        model_by_name(repository, name).toggle
+      def toggle(name = Vedeu.focus)
+        repository.by_name(name).toggle
       end
       alias_method :toggle_cursor,    :toggle
       alias_method :toggle_group,     :toggle
       alias_method :toggle_interface, :toggle
-
-      private
-
-      # Fetch the model by name.
-      #
-      # @param name [String|Symbol]
-      # @param klass [void] The repository of the model.
-      # @return [void]
-      def model_by_name(klass, name = nil)
-        klass.by_name(name || Vedeu.focus)
-      end
 
     end # ClassMethods
 

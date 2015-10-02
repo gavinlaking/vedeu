@@ -13,6 +13,7 @@ module Vedeu
       class << self
 
         # :nocov:
+
         # Start the main loop.
         #
         # @return [void]
@@ -32,6 +33,7 @@ module Vedeu
           Vedeu.log(type:    :info,
                     message: 'Vedeu execution interrupted, exiting.')
         end
+
         # :nocov:
 
         # Signal that we wish to terminate the running application.
@@ -42,6 +44,7 @@ module Vedeu
         end
 
         # :nocov:
+
         # Check the application has started and we wish to continue
         # running.
         #
@@ -51,6 +54,7 @@ module Vedeu
         def safe_exit_point!
           fail Vedeu::Error::Interrupt if @started && !@loop
         end
+
         # :nocov:
 
       end # Eigenclass
