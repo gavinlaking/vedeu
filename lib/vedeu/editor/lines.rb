@@ -61,7 +61,8 @@ module Vedeu
       # @param x [Fixnum]
       # @return [Vedeu::Editor::Lines]
       def delete_character(y, x)
-        lines[y] = line(y).delete_character(x)
+        lines[y] = line(y).delete_character(x) unless line(y).empty?
+
         Vedeu::Editor::Lines.coerce(lines)
       end
 
@@ -70,7 +71,7 @@ module Vedeu
       # @param index [Fixnum|NilClass]
       # @return [String]
       def delete_line(index = nil)
-        return self if lines.empty? || (index && index <= 0)
+        return self if lines.empty? || (index && index < 0)
 
         new_lines = if index && index <= size
                       lines.dup.tap { |lines| lines.slice!(index) }
@@ -120,14 +121,14 @@ module Vedeu
 
       # Insert the line on the line below the given index.
       #
-      # @param line [String]
       # @param index [Fixnum|NilClass]
       # @return [Vedeu::Editor::Lines]
-      def insert_line(line, index = nil)
-        return self unless line
-
-        Vedeu::Editor::Lines.coerce(Vedeu::Editor::Insert
-                                    .into(lines, line, index, size))
+      def insert_line(index = nil)
+        Vedeu::Editor::Lines.coerce(
+          Vedeu::Editor::Insert.into(lines,
+                                     Vedeu::Editor::Line.new,
+                                     index,
+                                     size))
       end
 
       # Returns the line at the given index.

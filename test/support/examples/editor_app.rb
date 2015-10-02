@@ -36,7 +36,7 @@ class VedeuEditorApp
       x  columns(1)
       xn columns(11)
       y  rows(1)
-      yn rows(1) + 4
+      yn rows(1) + 10
     end
     zindex 1
   end

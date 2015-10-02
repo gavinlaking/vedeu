@@ -140,7 +140,7 @@ module Vedeu
           context 'and x is the first character of the line' do
             let(:x) { 0 }
             let(:expected) {
-              Vedeu::Editor::Lines.new([Vedeu::Editor::Line.new('Hydrogen')])
+              Vedeu::Editor::Lines.new([Vedeu::Editor::Line.new('ydrogen')])
             }
 
             it { subject.must_equal(expected) }
@@ -180,7 +180,7 @@ module Vedeu
             let(:expected) {
               Vedeu::Editor::Lines.new([
                 Vedeu::Editor::Line.new('Hydrogen'),
-                Vedeu::Editor::Line.new('Helium'),
+                Vedeu::Editor::Line.new('elium'),
                 Vedeu::Editor::Line.new('Lithium'),
               ])
             }
@@ -411,67 +411,56 @@ module Vedeu
       end
 
       describe '#insert_line' do
-        let(:line)  { "Many text..." }
         let(:index) { 1 }
 
-        subject { instance.insert_line(line, index) }
+        subject { instance.insert_line(index) }
 
         it { subject.must_be_instance_of(described) }
 
-        context 'when a line is not given' do
-          let(:line) {}
+        context 'and an index is not given' do
+          let(:index) {}
           let(:expected) {
-            Vedeu::Editor::Lines.coerce(['Some text...', 'More text...', 'Other text...'])
+            Vedeu::Editor::Lines.coerce(['Some text...', 'More text...', 'Other text...', ''])
           }
 
           it { subject.must_equal(expected) }
         end
 
-        context 'when a line is given' do
-          context 'and an index is not given' do
-            let(:index) {}
-            let(:expected) {
-              Vedeu::Editor::Lines.coerce(['Some text...', 'More text...', 'Other text...', 'Many text...'])
-            }
+        context 'and a negative index is given' do
+          let(:index) { -4 }
+          let(:expected) {
+            Vedeu::Editor::Lines.coerce(['', 'Some text...', 'More text...', 'Other text...'])
+          }
 
-            it { subject.must_equal(expected) }
-          end
-
-          context 'and a negative index is given' do
-            let(:index) { -4 }
-            let(:expected) {
-              Vedeu::Editor::Lines.coerce(['Many text...', 'Some text...', 'More text...', 'Other text...'])
-            }
-
-            it { subject.must_equal(expected) }
-          end
-
-          context 'and an index is given' do
-            let(:expected) {
-              Vedeu::Editor::Lines.coerce(['Some text...', 'Many text...', 'More text...', 'Other text...'])
-            }
-
-            it { subject.must_equal(expected) }
-          end
-
-          context 'and an index of the last line is given' do
-            let(:index) { 5 }
-            let(:expected) {
-              Vedeu::Editor::Lines.coerce(['Some text...', 'More text...', 'Other text...', 'Many text...'])
-            }
-
-            it { subject.must_equal(expected) }
-          end
-
-          context 'and an index greater than the number of lines is given' do
-            let(:index) { 10 }
-            let(:expected) {
-              Vedeu::Editor::Lines.coerce(['Some text...', 'More text...', 'Other text...', 'Many text...'])
-            }
-
-            it { subject.must_equal(expected) }
-          end
+          it { subject.must_equal(expected) }
         end
+
+        context 'and an index is given' do
+          let(:expected) {
+            Vedeu::Editor::Lines.coerce(['Some text...', '', 'More text...', 'Other text...'])
+          }
+
+          it { subject.must_equal(expected) }
+        end
+
+        context 'and an index of the last line is given' do
+          let(:index) { 5 }
+          let(:expected) {
+            Vedeu::Editor::Lines.coerce(['Some text...', 'More text...', 'Other text...', ''])
+          }
+
+          it { subject.must_equal(expected) }
+        end
+
+        context 'and an index greater than the number of lines is given' do
+          let(:index) { 10 }
+          let(:expected) {
+            Vedeu::Editor::Lines.coerce(['Some text...', 'More text...', 'Other text...', ''])
+          }
+
+          it { subject.must_equal(expected) }
+        end
+
       end
 
       describe '#line' do
