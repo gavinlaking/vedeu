@@ -59,31 +59,15 @@ module Vedeu
       end
 
       describe '#delete_character' do
-        let(:y) { 0 }
-        let(:x) { 0 }
-
-        subject { instance.delete_character }
-
-        it { subject.must_be_instance_of(described) }
-
-        # it { skip }
+        it { instance.must_respond_to(:delete_character) }
       end
 
       describe '#delete_line' do
-        let(:y) { 0 }
-
-        subject { instance.delete_line }
-
-        it { subject.must_be_instance_of(described) }
-
-        # it { skip }
+        it { instance.must_respond_to(:delete_line) }
       end
 
       describe '#down' do
-        subject { instance.down }
-
-        it { subject.must_be_instance_of(described) }
-        # it { skip }
+        it { instance.must_respond_to(:down) }
       end
 
       describe '#execute' do
@@ -95,33 +79,23 @@ module Vedeu
       end
 
       describe '#insert_character' do
-        let(:character) { 'a' }
-
-        subject { instance.insert_character(character) }
-
-        it { subject.must_be_instance_of(described) }
-
-        # it { skip }
+        it { instance.must_respond_to(:insert_character) }
 
         context 'when the character is a Symbol' do
           let(:character) { :a }
+
+          subject { instance.insert_character(character) }
 
           it { subject.must_equal(instance) }
         end
       end
 
       describe '#insert_line' do
-        let(:y) { 2 }
-
-        subject { instance.insert_line }
-
-        it { subject.must_be_instance_of(described) }
+        it { instance.must_respond_to(:insert_line) }
       end
 
       describe '#left' do
-        subject { instance.left }
-
-        it { subject.must_be_instance_of(described) }
+        it { instance.must_respond_to(:left) }
       end
 
       describe '#line' do
@@ -153,27 +127,27 @@ module Vedeu
       end
 
       describe '#reset!' do
-        subject { instance.reset! }
-
-        it { subject.must_be_instance_of(described) }
+        it { instance.must_respond_to(:reset!) }
       end
 
       describe '#refresh' do
-        subject { instance.refresh }
-
-        it { subject.must_be_instance_of(described) }
+        it { instance.must_respond_to(:refresh) }
       end
 
       describe '#right' do
-        subject { instance.right }
-
-        it { subject.must_be_instance_of(described) }
+        it { instance.must_respond_to(:right) }
       end
 
       describe '#up' do
-        subject { instance.up }
+        it { instance.must_respond_to(:up) }
+      end
 
-        it { subject.must_be_instance_of(described) }
+      describe '#bol' do
+        it { instance.must_respond_to(:bol) }
+      end
+
+      describe '#eol' do
+        it { instance.must_respond_to(:eol) }
       end
 
     end # Editor
