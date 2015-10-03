@@ -40,7 +40,7 @@ module Vedeu
 
       describe '.render' do
         before do
-          Vedeu::Output::Output.stubs(:render)
+          Vedeu.stubs(:render_output)
           Vedeu.stubs(:ready?).returns(ready)
         end
 
@@ -49,7 +49,7 @@ module Vedeu
         context 'when the interface is visible' do
           context 'and Vedeu is ready' do
             it {
-              Vedeu::Output::Output.expects(:render)
+              Vedeu.expects(:render_output)
               subject
             }
           end

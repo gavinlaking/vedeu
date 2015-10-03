@@ -35,7 +35,7 @@ module Vedeu
         Vedeu.geometries.stubs(:by_name).with(_name).returns(geometry)
         Vedeu.interfaces.stubs(:by_name).with(_name).returns(interface)
 
-        Vedeu::Output::Output.stubs(:render)
+        Vedeu.stubs(:render_output)
       }
 
       describe '#initialize' do
@@ -170,7 +170,7 @@ module Vedeu
       describe '#refresh' do
         before do
           Vedeu.stubs(:trigger)
-          Vedeu::Output::Output.stubs(:render)
+          Vedeu.stubs(:render_output)
         end
 
         subject { instance.refresh }
@@ -183,7 +183,7 @@ module Vedeu
         }
 
         it {
-          Vedeu::Output::Output.expects(:render)
+          Vedeu.expects(:render_output)
           subject
         }
       end

@@ -44,7 +44,7 @@ module Vedeu
       #
       # @return [Array<Array<String>>|NilClass]
       def render
-        Vedeu::Output::Output.render(output) if visible?
+        Vedeu.render_output(output) if visible?
       end
 
       # Returns a string representation of the viewport.

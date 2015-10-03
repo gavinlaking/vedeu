@@ -13,8 +13,8 @@ module Vedeu
       #
       # @return [Array|String]
       # @see #initialize
-      def self.render(output)
-        new(output).render
+      def self.render_output(output)
+        new(output).render_output
       end
 
       # Return a new instance of Vedeu::Output::Output.
@@ -33,7 +33,7 @@ module Vedeu
       # not other renderers.
       #
       # @return [Array|NilClass]
-      def render
+      def render_output
         return nil if output.nil?
         return render_terminal_buffer unless output.is_a?(Vedeu::Models::Escape)
 
@@ -54,5 +54,14 @@ module Vedeu
     end # Output
 
   end # Output
+
+  # Write the given output to the configured or default renderers.
+  #
+  # @example
+  #   Vedeu.render_output(output)
+  #
+  # @!method render_output
+  # @return [Array|NilClass]
+  def_delegators Vedeu::Output::Output, :render_output
 
 end # Vedeu

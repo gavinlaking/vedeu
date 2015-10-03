@@ -132,7 +132,7 @@ module Vedeu
       #
       # @return [Array<Vedeu::Models::Escape>]
       def render
-        Vedeu::Output::Output.render(escape_sequence)
+        Vedeu.render_output(escape_sequence)
       end
 
       # Arbitrarily move the cursor to a given position.

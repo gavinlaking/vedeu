@@ -146,7 +146,7 @@ module Vedeu
 
         Vedeu.trigger(:_clear_view_content_, name)
 
-        Vedeu::Output::Output.render(output)
+        Vedeu.render_output(output)
 
         cursor.refresh
 

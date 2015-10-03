@@ -16,8 +16,8 @@ module Vedeu
         it { instance.instance_variable_get('@output').must_equal(output) }
       end
 
-      describe '.render' do
-        subject { described.render(output) }
+      describe '.render_output' do
+        subject { described.render_output(output) }
 
         context 'when the output is empty' do
           it { subject.must_be_instance_of(NilClass) }
@@ -51,8 +51,8 @@ module Vedeu
         end
       end
 
-      describe '#render' do
-        it { instance.must_respond_to(:render) }
+      describe '#render_output' do
+        it { instance.must_respond_to(:render_output) }
       end
 
     end # Output
