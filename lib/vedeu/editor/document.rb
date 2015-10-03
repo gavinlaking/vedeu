@@ -52,7 +52,6 @@ module Vedeu
         elsif x - 1 < 0 && y > 0
           delete_line
 
-          eol
         else
           @lines = lines.delete_character(y, x - 1)
 
