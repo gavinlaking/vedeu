@@ -156,7 +156,7 @@ module Vedeu
       #
       # @return [Vedeu::Editor::Document]
       def left
-        return self unless x - 1 < 0
+        return self if x - 1 < 0
 
         cursor.left
 
