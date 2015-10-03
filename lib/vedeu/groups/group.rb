@@ -69,7 +69,7 @@ module Vedeu
       #
       # @return [Array<String>]
       def by_zindex
-        interfaces.sort { |a, b| a.zindex <=> b.zindex }.map(&:name)
+        interfaces.sort_by(&:zindex).map(&:name)
       end
 
       # An object is equal when its values are the same.

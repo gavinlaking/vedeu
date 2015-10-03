@@ -70,12 +70,20 @@ module Vedeu
       end
 
       describe '#by_zindex' do
+        let(:interfaces) {
+          [
+            Vedeu::Models::Interface.new(zindex: 3, name: 'c'),
+            Vedeu::Models::Interface.new(zindex: 1, name: 'a'),
+            Vedeu::Models::Interface.new(zindex: 2, name: 'b'),
+          ]
+        }
+
+        before { instance.stubs(:interfaces).returns(interfaces) }
+
         subject { instance.by_zindex }
 
         it { subject.must_be_instance_of(Array) }
-
-        # @todo Add more tests.
-        # it { skip }
+        it { subject.must_equal(['a', 'b', 'c']) }
       end
 
       describe '#hide' do
