@@ -59,19 +59,6 @@ module Vedeu
         # it { skip }
       end
 
-      describe '#render' do
-        before do
-          Vedeu::Output::Viewport.stubs(:render).with(instance)
-        end
-
-        subject { instance.render }
-
-        it {
-          Vedeu::Output::Viewport.expects(:render).with(instance)
-          subject
-        }
-      end
-
       describe '#store_immediate' do
         before { Vedeu.stubs(:trigger) }
 

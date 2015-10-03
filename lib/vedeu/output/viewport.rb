@@ -26,8 +26,8 @@ module Vedeu
                      :ox,
                      :oy
 
-      # @param view [Vedeu::Views::View]
-      # @return [Array<Array<Vedeu::Views::Char>>]
+      # @param (see #initialize)
+      # @return (see #render)
       def self.render(view)
         new(view).render
       end
