@@ -132,6 +132,8 @@ module Vedeu
       #
       # @return [Array<Vedeu::Models::Escape>]
       def render
+        Vedeu.log(type: :info, message: "Refreshing cursor: '#{name}'")
+
         Vedeu.render_output(escape_sequence)
       end
 
