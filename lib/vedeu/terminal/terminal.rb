@@ -173,7 +173,7 @@ module Vedeu
       return Vedeu::Configuration.drb_height if Vedeu::Configuration.drb?
       return Vedeu::Configuration.height     if Vedeu::Configuration.height
 
-      size.first
+      size[0]
     end
     alias_method :yn, :height
     alias_method :tyn, :height

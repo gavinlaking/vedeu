@@ -36,12 +36,12 @@ module Vedeu
 
       # @return [NilClass|Symbol|String]
       def last_command
-        all_commands.last
+        all_commands[-1]
       end
 
       # @return [NilClass|Symbol|String]
       def last_keypress
-        all_keypresses.last
+        all_keypresses[-1]
       end
 
       # @return [Hash<Symbol => Array<Symbol|String>>]

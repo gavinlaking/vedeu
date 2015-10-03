@@ -136,17 +136,17 @@ module Vedeu
       # @param index [Fixnum|NilClass]
       # @return [Vedeu::Editor::Line]
       def line(index = nil)
-        return Vedeu::Editor::Line.new                unless lines
-        return Vedeu::Editor::Line.coerce(lines.last) unless index
+        return Vedeu::Editor::Line.new unless lines
+        return Vedeu::Editor::Line.coerce(lines[-1]) unless index
 
         indexed = if index <= 0
-                    lines.first
+                    lines[0]
 
                   elsif index && index <= size
                     lines[index]
 
                   else
-                    lines.last
+                    lines[-1]
 
                   end
 
