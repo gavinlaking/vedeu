@@ -116,6 +116,7 @@ module Vedeu
       # @return [Vedeu::Editor::Lines]
       def insert_character(character, y, x)
         lines[y] = line(y).insert_character(character, x)
+
         Vedeu::Editor::Lines.coerce(lines)
       end
 

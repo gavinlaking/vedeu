@@ -116,15 +116,12 @@ module Vedeu
         subject { instance.insert_line }
 
         it { subject.must_be_instance_of(described) }
-
-        # it { skip }
       end
 
       describe '#left' do
         subject { instance.left }
 
         it { subject.must_be_instance_of(described) }
-        # it { skip }
       end
 
       describe '#line' do
@@ -139,12 +136,6 @@ module Vedeu
         context 'when the line is not empty' do
           it { subject.must_equal(Vedeu::Editor::Line.new('Hydrogen')) }
         end
-
-        # context 'when y is set' do
-        #   let(:y) { 2 }
-
-        #   it { subject.must_equal(Vedeu::Editor::Line.new('Lithium')) }
-        # end
       end
 
       describe '#lines' do
@@ -168,38 +159,21 @@ module Vedeu
       end
 
       describe '#refresh' do
-        before do
-          Vedeu.stubs(:trigger)
-          Vedeu.stubs(:render_output)
-        end
-
         subject { instance.refresh }
 
         it { subject.must_be_instance_of(described) }
-
-        it {
-          Vedeu.expects(:trigger).with(:_clear_view_content_, _name)
-          subject
-        }
-
-        it {
-          Vedeu.expects(:render_output)
-          subject
-        }
       end
 
       describe '#right' do
         subject { instance.right }
 
         it { subject.must_be_instance_of(described) }
-        # it { skip }
       end
 
       describe '#up' do
         subject { instance.up }
 
         it { subject.must_be_instance_of(described) }
-        # it { skip }
       end
 
     end # Editor
