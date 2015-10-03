@@ -106,7 +106,7 @@ module Vedeu
       describe '#render' do
         before {
           Vedeu.stubs(:log)
-          Vedeu::Output::Output.stubs(:render)
+          Vedeu.stubs(:render_output)
         }
 
         subject { instance.render }

@@ -142,6 +142,7 @@ module Vedeu
             create: [:light_green,   :green],
             debug:  [:light_red,     :red],
             error:  [:light_red,     :red],
+            editor: [:light_blue,    :blue],
             drb:    [:light_blue,    :blue],
             event:  [:light_magenta, :magenta],
             info:   [:white,         :default],

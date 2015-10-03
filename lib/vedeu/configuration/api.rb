@@ -299,14 +299,18 @@ module Vedeu
       #
       #   Vedeu.configure do
       #     log_only :debug, :event
+      #
+      #     # or
+      #     log_only [:debug, :info]
+      #
       #     # ...
       #   end
       #
       # @param types [Array<Symbol>] The message types which should be
-      #   slogged.
+      #   logged.
       # @return [Array<Symbol>]
       def log_only(*types)
-        options[:log_only] = types
+        options[:log_only] = types.flatten
       end
 
       # Sets boolean to enable/disable profiling. Vedeu's default

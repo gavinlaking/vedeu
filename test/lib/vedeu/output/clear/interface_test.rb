@@ -52,14 +52,14 @@ module Vedeu
         before do
           Vedeu.interfaces.stubs(:by_name).returns(interface)
           Vedeu.geometries.stubs(:by_name).returns(geometry)
-          Vedeu::Output::Output.stubs(:render).returns(output)
+          Vedeu.stubs(:render_output).returns(output)
         end
 
         subject { instance.render }
 
         it { subject.must_be_instance_of(Array) }
         it {
-          Vedeu::Output::Output.expects(:render).with(output)
+          Vedeu.expects(:render_output).with(output)
           subject
         }
         it { subject.must_equal(output) }

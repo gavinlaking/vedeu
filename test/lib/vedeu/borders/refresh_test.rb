@@ -56,7 +56,7 @@ module Vedeu
           let(:enabled) { true }
 
           it {
-            Vedeu::Output::Output.expects(:render)
+            Vedeu.expects(:render_output)
             subject
           }
         end

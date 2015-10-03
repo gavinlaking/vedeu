@@ -76,11 +76,6 @@ module Vedeu
       end
       alias_method :lines, :value
 
-      # @return [Array<Array<Vedeu::Views::Char>>]
-      def render
-        Vedeu::Output::Viewport.render(self)
-      end
-
       # Store the view and immediately refresh it; causing to be
       # pushed to the Terminal. Called by {Vedeu::DSL::View.renders}.
       #

@@ -26,8 +26,8 @@ module Vedeu
                      :ox,
                      :oy
 
-      # @param view [Vedeu::Views::View]
-      # @return [Array<Array<Vedeu::Views::Char>>]
+      # @param (see #initialize)
+      # @return (see #render)
       def self.render(view)
         new(view).render
       end
@@ -44,7 +44,7 @@ module Vedeu
       #
       # @return [Array<Array<String>>|NilClass]
       def render
-        Vedeu::Output::Output.render(output) if visible?
+        Vedeu.render_output(output) if visible?
       end
 
       # Returns a string representation of the viewport.

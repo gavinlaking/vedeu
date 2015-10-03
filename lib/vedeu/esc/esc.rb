@@ -40,7 +40,7 @@ module Vedeu
       def string(value = '')
         return '' if value.empty?
 
-        send(value.to_sym)
+        send(value)
       rescue NoMethodError
         ''
       end

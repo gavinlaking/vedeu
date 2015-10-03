@@ -13,6 +13,7 @@ module Vedeu
       def_delegators :document,
                      :clear,
                      :delete_character,
+                     :delete_line,
                      :down,
                      :insert_character,
                      :insert_line,
@@ -49,6 +50,7 @@ module Vedeu
 
         case input
         when :backspace then delete_character
+        when :delete    then delete_line
         when :ctrl_c    then Vedeu.trigger(:_exit_)
         when :down      then down
         when :enter     then insert_line
@@ -57,7 +59,6 @@ module Vedeu
         when :right     then right
         when :tab       then execute
         when :up        then up
-        # when ''         then delete_line
         else
           insert_character(input)
         end

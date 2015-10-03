@@ -112,10 +112,10 @@ module Vedeu
         swap if back?
 
         if front?
-          front.render
+          Vedeu::Output::Viewport.render(front)
 
         elsif previous?
-          previous.render
+          Vedeu::Output::Viewport.render(previous)
 
         end
       end

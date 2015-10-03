@@ -66,7 +66,7 @@ module Vedeu
       # @param index [Fixnum|NilClass]
       # @return [String]
       def delete_character(index = nil)
-        return self if line.empty? || (index && index <= 0)
+        return self if line.empty? || (index && index < 0)
 
         new_line = if index && index <= size
                      line.dup.tap { |line| line.slice!(index) }

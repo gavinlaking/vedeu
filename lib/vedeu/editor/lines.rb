@@ -61,7 +61,8 @@ module Vedeu
       # @param x [Fixnum]
       # @return [Vedeu::Editor::Lines]
       def delete_character(y, x)
-        lines[y] = line(y).delete_character(x)
+        lines[y] = line(y).delete_character(x) unless line(y).empty?
+
         Vedeu::Editor::Lines.coerce(lines)
       end
 
@@ -70,7 +71,7 @@ module Vedeu
       # @param index [Fixnum|NilClass]
       # @return [String]
       def delete_line(index = nil)
-        return self if lines.empty? || (index && index <= 0)
+        return self if lines.empty? || (index && index < 0)
 
         new_lines = if index && index <= size
                       lines.dup.tap { |lines| lines.slice!(index) }
@@ -95,7 +96,7 @@ module Vedeu
       #
       # @return [Boolean]
       def empty?
-        size == 0
+        lines.empty?
       end
 
       # An object is equal when its values are the same.
@@ -115,19 +116,20 @@ module Vedeu
       # @return [Vedeu::Editor::Lines]
       def insert_character(character, y, x)
         lines[y] = line(y).insert_character(character, x)
+
         Vedeu::Editor::Lines.coerce(lines)
       end
 
       # Insert the line on the line below the given index.
       #
-      # @param line [String]
       # @param index [Fixnum|NilClass]
       # @return [Vedeu::Editor::Lines]
-      def insert_line(line, index = nil)
-        return self unless line
-
-        Vedeu::Editor::Lines.coerce(Vedeu::Editor::Insert
-                                    .into(lines, line, index, size))
+      def insert_line(index = nil)
+        Vedeu::Editor::Lines.coerce(
+          Vedeu::Editor::Insert.into(lines,
+                                     Vedeu::Editor::Line.new,
+                                     index,
+                                     size))
       end
 
       # Returns the line at the given index.
@@ -135,17 +137,17 @@ module Vedeu
       # @param index [Fixnum|NilClass]
       # @return [Vedeu::Editor::Line]
       def line(index = nil)
-        return Vedeu::Editor::Line.new                unless lines
-        return Vedeu::Editor::Line.coerce(lines.last) unless index
+        return Vedeu::Editor::Line.new unless lines
+        return Vedeu::Editor::Line.coerce(lines[-1]) unless index
 
         indexed = if index <= 0
-                    lines.first
+                    lines[0]
 
                   elsif index && index <= size
                     lines[index]
 
                   else
-                    lines.last
+                    lines[-1]
 
                   end
 

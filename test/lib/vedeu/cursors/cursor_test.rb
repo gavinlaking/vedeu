@@ -102,8 +102,7 @@ module Vedeu
         }
 
         before do
-          Vedeu::Output::Output.stubs(:render).
-            with(hide_cursor).returns(hide_cursor)
+          Vedeu.stubs(:render_output).with(hide_cursor).returns(hide_cursor)
         end
 
         subject { instance.hide }
@@ -229,8 +228,7 @@ module Vedeu
         }
 
         before do
-          Vedeu::Output::Output.stubs(:render).
-            with(show_cursor).returns(show_cursor)
+          Vedeu.stubs(:render_output).with(show_cursor).returns(show_cursor)
         end
 
         subject { instance.show }

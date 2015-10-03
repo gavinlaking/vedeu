@@ -46,9 +46,17 @@ module Vedeu
       #
       # @return [Vedeu::Editor::Document]
       def delete_character
-        @lines = lines.delete_character(y, x - 1)
+        if x - 1 < 0 && y == 0
+          bol
 
-        left
+        elsif x - 1 < 0 && y > 0
+          delete_line
+
+        else
+          @lines = lines.delete_character(y, x - 1)
+
+          left
+        end
       end
 
       # Delete a line.
@@ -58,6 +66,8 @@ module Vedeu
         @lines = lines.delete_line(y)
 
         up
+
+        eol
       end
 
       # Returns the document as a string with line breaks if there is
@@ -93,9 +103,9 @@ module Vedeu
       #
       # @return [Vedeu::Editor::Document]
       def insert_line
-        down
+        @lines = lines.insert_line(y + 1)
 
-        @lines = lines.insert_line(Vedeu::Editor::Line.new, y)
+        down
 
         bol
       end
@@ -103,8 +113,8 @@ module Vedeu
       # Returns the current line from the collection of lines.
       #
       # @return [Array<String|void>]
-      def line
-        lines.line(y)
+      def line(index = y)
+        lines.line(index)
       end
 
       # Returns the collection of lines which constitutes the document
@@ -135,7 +145,7 @@ module Vedeu
 
         Vedeu.trigger(:_clear_view_content_, name)
 
-        Vedeu::Output::Output.render(output)
+        Vedeu.render_output(output)
 
         cursor.refresh
 
@@ -146,6 +156,8 @@ module Vedeu
       #
       # @return [Vedeu::Editor::Document]
       def left
+        return self if x - 1 < 0
+
         cursor.left
 
         refresh
@@ -155,6 +167,8 @@ module Vedeu
       #
       # @return [Vedeu::Editor::Document]
       def right
+        return self if x + 1 > line.size
+
         cursor.right
 
         refresh
@@ -164,18 +178,36 @@ module Vedeu
       #
       # @return [Vedeu::Editor::Document]
       def up
-        cursor.up
+        if x > line(y - 1).size
+          cursor.up
 
-        refresh
+          eol
+
+        else
+          cursor.up
+
+          refresh
+
+        end
       end
 
       # Move the virtual cursor down.
       #
       # @return [Vedeu::Editor::Document]
       def down
-        cursor.down
+        return self if y + 1 >= lines.size
 
-        refresh
+        if x > line(y + 1).size
+          cursor.down
+
+          eol
+
+        else
+          cursor.down
+
+          refresh
+
+        end
       end
 
       # Move the virtual cursor to the beginning of the line.
@@ -183,6 +215,15 @@ module Vedeu
       # @return [Vedeu::Editor::Document]
       def bol
         cursor.bol
+
+        refresh
+      end
+
+      # Move the virtual cursor to the end of the line.
+      #
+      # @return [Vedeu::Editor::Document]
+      def eol
+        cursor.x = line.size
 
         refresh
       end

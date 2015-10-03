@@ -60,6 +60,7 @@ describe Vedeu do
   it { Vedeu.must_respond_to(:ready!) }
   it { Vedeu.must_respond_to(:ready?) }
   it { Vedeu.must_respond_to(:render) }
+  it { Vedeu.must_respond_to(:render_output) }
   it { Vedeu.must_respond_to(:renders) }
   it { Vedeu.must_respond_to(:renderer) }
   it { Vedeu.must_respond_to(:renderers) }
