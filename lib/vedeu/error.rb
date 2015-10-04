@@ -82,7 +82,7 @@ module Vedeu
 
       # @return [String]
       def message
-        'Valid value is between 1 and 12 inclusive.'
+        'Valid value is between 1 and 12 inclusive.'.freeze
       end
 
     end # OutOfRange

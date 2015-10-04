@@ -38,11 +38,11 @@ module Vedeu
       # @param value [String|Symbol]
       # @return [String]
       def string(value = '')
-        return '' if value.empty?
+        return ''.freeze if value.empty?
 
         send(value)
       rescue NoMethodError
-        ''
+        ''.freeze
       end
 
       # Return the escape sequence to render a border character.
@@ -53,39 +53,40 @@ module Vedeu
       def border
         return '' unless block_given?
 
-        "#{border_on}#{yield}#{border_off}"
+        "#{border_on}#{yield}#{border_off}".freeze
       end
 
       private
 
       # @return [String]
       def clear
-        "#{colour_reset}\e[2J"
+        "#{colour_reset}\e[2J".freeze
       end
 
       # @return [String]
       def clear_line
-        "#{colour_reset}\e[2K"
+        "#{colour_reset}\e[2K".freeze
       end
 
       # @return [String]
       def colour_reset
-        "#{fg_reset}#{bg_reset}"
+        "#{fg_reset}#{bg_reset}".freeze
       end
 
       # @return [String]
       def normal
-        "#{underline_off}#{bold_off}#{positive}"
+        "#{underline_off}#{bold_off}#{positive}".freeze
       end
 
       # @return [String]
       def screen_init
-        "#{reset}#{clear}#{hide_cursor}"
+        "#{reset}#{clear}#{hide_cursor}".freeze
       end
 
       # @return [String]
       def screen_exit
-        "#{show_cursor}#{colour_reset}#{reset}#{last_character_position}\n"
+        "#{show_cursor}#{colour_reset}#{reset}" \
+        "#{last_character_position}\n".freeze
       end
 
       # @return [String]

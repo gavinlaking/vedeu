@@ -125,7 +125,7 @@ module Vedeu
       #
       # @return [String]
       def to_s
-        "\e[#{real_y};#{real_x}H\e[?25h"
+        "\e[#{real_y};#{real_x}H\e[?25h".freeze
       end
 
       # Move the virtual cursor up by one line.

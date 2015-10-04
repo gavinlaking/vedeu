@@ -49,7 +49,8 @@ module Vedeu
         if Vedeu::Configuration.debug?
           work = yield
 
-          Vedeu.log(type: :timer, message: "#{message} took #{elapsed}ms.")
+          Vedeu.log(type:    :timer,
+                    message: "#{message} took #{elapsed}ms.".freeze)
 
           work
 

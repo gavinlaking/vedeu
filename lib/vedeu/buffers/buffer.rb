@@ -140,7 +140,7 @@ module Vedeu
       #
       # @return [Boolean]
       def swap
-        Vedeu.log(type: :output, message: "Buffer swapping: '#{name}'")
+        Vedeu.log(type: :output, message: "Buffer swapping: '#{name}'".freeze)
 
         @previous = front
         @front    = back

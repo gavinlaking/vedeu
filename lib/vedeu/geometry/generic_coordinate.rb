@@ -121,7 +121,7 @@ module Vedeu
                    when :y then [:y, :by, :byn, :height]
                    else
                      fail Vedeu::Error::InvalidSyntax,
-                          'Coordinate type not given, cannot continue.'
+                          'Coordinate type not given, cannot continue.'.freeze
                    end
       end
 

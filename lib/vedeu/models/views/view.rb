@@ -96,7 +96,8 @@ module Vedeu
       # @return [Vedeu::Views::View]
       def store_deferred
         fail Vedeu::Error::InvalidSyntax,
-             'Cannot store an interface without a name.' unless present?(name)
+             'Cannot store an interface ' \
+             'without a name.'.freeze unless present?(name)
 
         Vedeu.buffers.by_name(name).add(self)
 

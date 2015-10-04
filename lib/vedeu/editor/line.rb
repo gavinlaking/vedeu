@@ -84,7 +84,7 @@ module Vedeu
       #
       # @return [Boolean]
       def empty?
-        size == 0
+        line.empty?
       end
 
       # An object is equal when its values are the same.

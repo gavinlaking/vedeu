@@ -19,12 +19,12 @@ module Vedeu
 
       # @return [String]
       def border_on
-        "\e(0"
+        "\e(0".freeze
       end
 
       # @return [String]
       def border_off
-        "\e(B"
+        "\e(B".freeze
       end
 
       # Provides all the semigraphic characters.
@@ -36,16 +36,16 @@ module Vedeu
       # @return [Hash<Symbol => String>]
       def characters
         {
-          bottom_right:      "\x6A", # ┘ # \u2518
-          top_right:         "\x6B", # ┐ # \u2510
-          top_left:          "\x6C", # ┌ # \u250C
-          bottom_left:       "\x6D", # └ # \u2514
-          horizontal:        "\x71", # ─ # \u2500
-          vertical_left:     "\x74", # ├ # \u251C
-          vertical_right:    "\x75", # ┤ # \u2524
-          horizontal_bottom: "\x76", # ┴ # \u2534
-          horizontal_top:    "\x77", # ┬ # \u252C
-          vertical:          "\x78", # │ # \u2502
+          bottom_right:      "\x6A".freeze, # ┘ # \u2518
+          top_right:         "\x6B".freeze, # ┐ # \u2510
+          top_left:          "\x6C".freeze, # ┌ # \u250C
+          bottom_left:       "\x6D".freeze, # └ # \u2514
+          horizontal:        "\x71".freeze, # ─ # \u2500
+          vertical_left:     "\x74".freeze, # ├ # \u251C
+          vertical_right:    "\x75".freeze, # ┤ # \u2524
+          horizontal_bottom: "\x76".freeze, # ┴ # \u2534
+          horizontal_top:    "\x77".freeze, # ┬ # \u252C
+          vertical:          "\x78".freeze, # │ # \u2502
         }
       end
 

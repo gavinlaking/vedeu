@@ -113,7 +113,7 @@ module Vedeu
       #
       # @return [Array<Array<Vedeu::Views::Char>>]
       def output
-        Vedeu.timer("Clearing #{clearing}: '#{name}'") do
+        Vedeu.timer("Clearing #{clearing}: '#{name}'".freeze) do
           @y      = y
           @x      = x
           @width  = width
@@ -122,7 +122,7 @@ module Vedeu
 
           @clear ||= Array.new(@height) do |iy|
             Array.new(@width) do |ix|
-              Vedeu::Views::Char.new(value:    ' ',
+              Vedeu::Views::Char.new(value:    ' '.freeze,
                                      colour:   @colour,
                                      position: [@y + iy, @x + ix])
             end
@@ -132,9 +132,9 @@ module Vedeu
 
       # @return [String]
       def clearing
-        return 'content' if content_only?
+        return 'content'.freeze if content_only?
 
-        'interface'
+        'interface'.freeze
       end
 
       # @return [Fixnum]

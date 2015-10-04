@@ -65,7 +65,7 @@ module Vedeu
 
       # @return [Array<Array<Vedeu::Views::Char>>]
       def output
-        Vedeu.timer("Rendering content: '#{name}'") do
+        Vedeu.timer("Rendering content: '#{name}'".freeze) do
           out = []
 
           show.each_with_index do |line, iy|

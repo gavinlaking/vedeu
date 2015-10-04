@@ -143,7 +143,7 @@ module Vedeu
       #
       # @return [String]
       def named
-        "\e[#{named_codes}m"
+        "\e[#{named_codes}m".freeze
       end
 
       # Returns a boolean indicating whether the colour provided is a
@@ -166,7 +166,7 @@ module Vedeu
       #
       # @return [String]
       def numbered
-        "#{numbered_prefix}#{css_to_numbered}m"
+        "#{numbered_prefix}#{css_to_numbered}m".freeze
       end
 
       # Returns a boolean indicated whether the colour is a valid
@@ -174,7 +174,7 @@ module Vedeu
       #
       # @return [Boolean]
       def rgb?
-        return true if colour =~ /^#([A-Fa-f0-9]{6})$/
+        return true if colour =~ /^#([A-Fa-f0-9]{6})$/.freeze
 
         false
       end
@@ -255,7 +255,7 @@ module Vedeu
       #   must implement this method.
       # @return [Vedeu::Error::NotImplemented]
       def not_implemented
-        fail Vedeu::Error::NotImplemented, 'Subclasses implement this.'
+        fail Vedeu::Error::NotImplemented, 'Subclasses implement this.'.freeze
       end
       alias_method :named_codes,     :not_implemented
       alias_method :numbered_prefix, :not_implemented

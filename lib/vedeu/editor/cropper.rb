@@ -42,7 +42,7 @@ module Vedeu
           line.chars.each_with_index do |char, ix|
             out << Vedeu::Views::Char.new(parent:   interface,
                                           position: [(by + iy), (bx + ix)],
-                                          value:    char)
+                                          value:    char.freeze)
           end
         end
 

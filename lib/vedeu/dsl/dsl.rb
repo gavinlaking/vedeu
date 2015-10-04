@@ -54,7 +54,8 @@ module Vedeu
     # @return [void]
     def method_missing(method, *args, &block)
       Vedeu.log(type:    :debug,
-                message: "!!!method_missing '#{method}' (#{client.inspect})")
+                message: "!!!method_missing '#{method}' " \
+                         "(#{client.inspect})".freeze)
 
       client.send(method, *args, &block) if client
     end

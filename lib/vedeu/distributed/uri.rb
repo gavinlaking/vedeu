@@ -33,7 +33,7 @@ module Vedeu
       #
       # @return [String] The host and port as a single value.
       def to_s
-        "druby://#{host}:#{port}"
+        "druby://#{host}:#{port}".freeze
       end
       alias_method :to_str, :to_s
 

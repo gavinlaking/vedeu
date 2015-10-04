@@ -13,10 +13,10 @@ module Vedeu
       #
       # @return [Hash<Symbol => Fixnum>]
       def background_codes
-        hash = {}
-        foreground_codes.inject(hash) do |h, (k, v)|
-          h.merge!(k => v + 10)
-        end
+        foreground_codes.each_with_object({}) do |(k, v), h|
+          h[k] = v + 10
+          h
+        end.freeze
       end
 
       # Produces the foreground named colour escape sequence hash. The
@@ -64,7 +64,7 @@ module Vedeu
           light_magenta: 95,
           light_cyan:    96,
           white:         97,
-        }
+        }.freeze
       end
       alias_method :codes, :foreground_codes
 
@@ -79,8 +79,9 @@ module Vedeu
       # @return [void]
       def define_backgrounds!
         background_codes.each do |key, code|
-          define_method("on_#{key}") do |&blk|
-            "\e[#{code}m" + (blk ? blk.call + "\e[49m" : '')
+          define_method(:"on_#{key}") do |&blk|
+            "\e[#{code}m".freeze +
+              (blk ? blk.call + "\e[49m".freeze : ''.freeze)
           end
         end
       end
@@ -93,7 +94,8 @@ module Vedeu
       def define_foregrounds!
         foreground_codes.each do |key, code|
           define_method(key) do |&blk|
-            "\e[#{code}m" + (blk ? blk.call + "\e[39m" : '')
+            "\e[#{code}m".freeze +
+              (blk ? blk.call + "\e[39m".freeze : ''.freeze)
           end
         end
       end

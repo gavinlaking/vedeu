@@ -30,7 +30,7 @@ module Vedeu
     #
     # @return [String]
     def render_colour
-      "#{colour}#{yield}"
+      "#{colour}#{yield}".freeze
     end
 
     # @return [String]
@@ -45,7 +45,7 @@ module Vedeu
     #
     # @return [String]
     def render_style
-      "#{style}#{yield}"
+      "#{style}#{yield}".freeze
     end
 
   end # Presentation

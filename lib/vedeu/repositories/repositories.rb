@@ -23,7 +23,7 @@ module Vedeu
 
         Vedeu.log(type:    :store,
                   message: "Repository '#{repository.class.name}':" \
-                           " #{registered.inspect}")
+                           " #{registered.inspect}".freeze)
 
         registered
       end

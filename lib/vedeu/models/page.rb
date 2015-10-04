@@ -39,7 +39,7 @@ module Vedeu
 
         else
           fail Vedeu::Error::InvalidSyntax,
-               'Cannot coerce as value is not an Array.'
+               'Cannot coerce as value is not an Array.'.freeze
 
         end
       end

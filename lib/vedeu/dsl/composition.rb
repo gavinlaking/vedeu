@@ -94,9 +94,10 @@ module Vedeu
       # @return [Vedeu::Views::Views<Vedeu::Views::View>]
       def template_for(name, filename, object = nil, options = {})
         fail Vedeu::Error::MissingRequired,
-             'Cannot render template without the name of the view.' unless name
+             'Cannot render template without the name of the ' \
+             'view.'.freeze unless name
         fail Vedeu::Error::MissingRequired,
-             'Cannot render template without a filename.' unless filename
+             'Cannot render template without a filename.'.freeze unless filename
 
         options.merge!(name: name)
 

@@ -51,7 +51,7 @@ module Vedeu
       # @return [Array|Hash|Set]
       def reset
         Vedeu.log(type:    :reset,
-                  message: "(#{self.class.name}) #{registered.inspect}")
+                  message: "(#{self.class.name}) #{registered.inspect}".freeze)
 
         @storage = in_memory
       end

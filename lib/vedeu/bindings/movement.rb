@@ -22,8 +22,8 @@ module Vedeu
       # @return [TrueClass]
       def setup_aliases!
         %w(down left right up).each do |direction|
-          Vedeu.bind_alias("_geometry_#{direction}_".to_sym,
-                           "_view_#{direction}_".to_sym)
+          Vedeu.bind_alias(:"_geometry_#{direction}_",
+                           :"_view_#{direction}_")
         end
 
         Vedeu.bind_alias(:_cursor_reset_, :_cursor_origin_)
@@ -36,13 +36,13 @@ module Vedeu
       # See {file:docs/events/movement.md#\_cursor_up_down_left_right_}
       def directional!
         %w(down left right up).each do |direction|
-          Vedeu.bind("_cursor_#{direction}_".to_sym) do |name|
+          Vedeu.bind(:"_cursor_#{direction}_") do |name|
             Vedeu.cursors.by_name(name).send("move_#{direction}")
 
             Vedeu.trigger(:_refresh_cursor_, name)
           end
 
-          Vedeu.bind("_view_#{direction}_".to_sym) do |name|
+          Vedeu.bind(:"_view_#{direction}_") do |name|
             Vedeu.geometries.by_name(name).send("move_#{direction}")
 
             Vedeu.trigger(:_clear_)

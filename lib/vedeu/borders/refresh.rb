@@ -78,7 +78,7 @@ module Vedeu
 
       # @return [Array<Array<Vedeu::Views::Char>>]
       def output
-        Vedeu.timer("Drawing border: '#{name}'") do
+        Vedeu.timer("Drawing border: '#{name}'".freeze) do
           out = [top, bottom]
 
           height.times { |y| out << [left(y), right(y)] }

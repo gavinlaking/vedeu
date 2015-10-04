@@ -43,7 +43,7 @@ module Vedeu
 
       # @return [String]
       def filename
-        options[:filename] + "_#{timestamp}"
+        options[:filename] + "_#{timestamp}".freeze
       end
 
       # @return [Float]

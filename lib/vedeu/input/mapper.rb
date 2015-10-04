@@ -58,7 +58,7 @@ module Vedeu
 
         return true if global_key? && keymap('_global_').use(key)
 
-        Vedeu.log(type: :input, message: "Key detected: #{key.inspect}")
+        Vedeu.log(type: :input, message: "Key detected: #{key.inspect}".freeze)
 
         false
       end

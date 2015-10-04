@@ -8,10 +8,11 @@ module Vedeu
 
       let(:described) { Vedeu::Colours::Repository }
       let(:instance)  { described.new }
+      let(:storage)   { {} }
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
-        it { instance.instance_variable_get('@storage').must_equal({}) }
+        it { instance.instance_variable_get('@storage').must_equal(storage) }
       end
 
       describe 'accessors' do
