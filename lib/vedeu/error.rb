@@ -94,7 +94,7 @@ module Vedeu
 
       # @return [String]
       def message
-        'The required block was not given.'
+        'The required block was not given.'.freeze
       end
 
     end

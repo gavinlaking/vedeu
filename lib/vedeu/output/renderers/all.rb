@@ -11,6 +11,8 @@ module Vedeu
     # content.
     #
     # @example
+    #   Vedeu.clear
+    #   Vedeu.trigger(:_clear_)
     #   Vedeu.renderers.clear
     #
     # @return [Array<void>]

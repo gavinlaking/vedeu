@@ -38,6 +38,9 @@ module Vedeu
                      :y,
                      :yn
 
+      def_delegators :interface,
+                     :visible?
+
       # @example
       #   Vedeu.trigger(:_refresh_border_, name)
       #

@@ -25,8 +25,6 @@ module Vedeu
                      :y,
                      :yn
 
-      def_delegators :interface, :visible?
-
       # @!attribute [rw] attributes
       # @return [Hash]
       attr_accessor :attributes
@@ -86,6 +84,10 @@ module Vedeu
       # @!attribute [r] name
       # @return [String]
       attr_reader :name
+
+      # @!attribute [r] parent
+      # @return [Vedeu::Models::Interface|NilClass]
+      attr_reader :parent
 
       # @!attribute [r] enabled
       # @return [Boolean]
@@ -170,23 +172,12 @@ module Vedeu
         (by..byn).size
       end
 
-      # @return [Array<Array<Vedeu::Views::Char>>]
-      def render
-        Vedeu.trigger(:_refresh_border_, name)
-      end
-
       private
 
       # @return [Vedeu::Geometry::Geometry]
       def geometry
         Vedeu.geometries.by_name(name)
       end
-
-      # @return [Vedeu::Models::Interface]
-      def interface
-        @interface ||= Vedeu.interfaces.by_name(name)
-      end
-      alias_method :parent, :interface
 
       # The default values for a new instance of this class.
       #
@@ -202,6 +193,7 @@ module Vedeu
           enabled:      false,
           horizontal:   Vedeu::EscapeSequences::Borders.horizontal,
           name:         '',
+          parent:       nil,
           repository:   Vedeu.borders,
           show_bottom:  true,
           show_left:    true,

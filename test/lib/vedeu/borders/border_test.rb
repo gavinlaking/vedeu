@@ -18,6 +18,7 @@ module Vedeu
           enabled:      false,
           horizontal:   'q',
           name:         _name,
+          parent:       nil,
           repository:   Vedeu.borders,
           show_bottom:  true,
           show_left:    true,
@@ -407,17 +408,6 @@ module Vedeu
 
           it { subject.must_be_instance_of(FalseClass) }
         end
-      end
-
-      describe '#render' do
-        before { Vedeu.stubs(:trigger).with(:_refresh_border_, _name) }
-
-        subject { instance.render }
-
-        it {
-          Vedeu.expects(:trigger).with(:_refresh_border_, _name)
-          subject
-        }
       end
 
     end # Border
