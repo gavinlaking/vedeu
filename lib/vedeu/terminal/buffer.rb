@@ -20,7 +20,11 @@ module Vedeu
       #
       # @return [Array<Array<Vedeu::Models::Cell>>]
       def buffer
-        @output ||= empty_buffer.dup
+        @output ||= Array.new(Vedeu.height) do |y|
+          Array.new(Vedeu.width) do |x|
+            Vedeu::Models::Cell.new(position: [y + 1, x + 1])
+          end
+        end
       end
       alias_method :cells, :buffer
 
@@ -34,15 +38,6 @@ module Vedeu
         reset
 
         Vedeu.renderers.clear if Vedeu.ready?
-      end
-
-      # @return [Array<Array<Vedeu::Models::Cell>>]
-      def empty_buffer
-        @empty_buffer ||= Array.new(Vedeu.height) do |y|
-          Array.new(Vedeu.width) do |x|
-            Vedeu::Models::Cell.new(position: [y + 1, x + 1])
-          end
-        end
       end
 
       # @return [Vedeu::Models::Page]
@@ -81,7 +76,11 @@ module Vedeu
       #
       # @return [Array<Array<Vedeu::Models::Cell>>]
       def reset
-        @output = empty_buffer
+        @output = Array.new(Vedeu.height) do |y|
+          Array.new(Vedeu.width) do |x|
+            Vedeu::Models::Cell.new(position: [y + 1, x + 1])
+          end
+        end
       end
 
       # Write a collection of cells to the virtual terminal.

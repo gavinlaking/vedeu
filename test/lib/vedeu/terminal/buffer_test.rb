@@ -46,12 +46,6 @@ module Vedeu
         end
       end
 
-      describe '#empty_buffer' do
-        subject { described.empty_buffer }
-
-        it { subject.must_be_instance_of(Array) }
-      end
-
       describe '#render' do
         let(:ready) { false }
 
