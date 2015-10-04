@@ -119,11 +119,10 @@ module Vedeu
       def maximise
         return self if maximised?
 
-        Vedeu.trigger(:_clear_)
-
         @maximised = true
 
         store do
+          Vedeu.trigger(:_clear_)
           Vedeu.trigger(:_refresh_view_, name)
         end
       end
@@ -190,11 +189,10 @@ module Vedeu
       def unmaximise
         return self unless maximised?
 
-        Vedeu.trigger(:_clear_)
-
         @maximised = false
 
         store do
+          Vedeu.trigger(:_clear_)
           Vedeu.trigger(:_refresh_)
         end
       end

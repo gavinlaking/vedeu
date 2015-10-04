@@ -33,7 +33,7 @@ module Vedeu
     def render
       fail Vedeu::Error::NotImplemented,
            'The subclass of Vedeu::ApplicationView must implement the #render' \
-           'method.'
+           'method.'.freeze
     end
 
     protected
@@ -51,7 +51,7 @@ module Vedeu
     # @return [String]
     def template(value)
       @template = Vedeu::Configuration.base_path +
-                  "/app/views/templates/#{value}.erb"
+                  "/app/views/templates/#{value}.erb".freeze
     end
 
   end # ApplicationView

@@ -31,7 +31,7 @@ module Vedeu
           end
         rescue Vedeu::Error::Interrupt
           Vedeu.log(type:    :info,
-                    message: 'Vedeu execution interrupted, exiting.')
+                    message: 'Vedeu execution interrupted, exiting.'.freeze)
         end
 
         # :nocov:

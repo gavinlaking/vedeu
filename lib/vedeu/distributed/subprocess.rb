@@ -59,7 +59,7 @@ module Vedeu
 
       # @return [String]
       def command
-        "ruby #{file_path}"
+        "ruby #{file_path}".freeze
       end
 
       # @return [Fixnum] The number of bytes written.
@@ -74,7 +74,7 @@ module Vedeu
 
       # @return [Fixnum] The number of files removed; 1.
       def file_unlink
-        File.unlink("/tmp/foo_#{timestamp}")
+        File.unlink("/tmp/foo_#{timestamp}".freeze)
       end
 
       # return [String]

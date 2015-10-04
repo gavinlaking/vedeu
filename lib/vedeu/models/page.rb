@@ -39,7 +39,7 @@ module Vedeu
 
         else
           fail Vedeu::Error::InvalidSyntax,
-               'Cannot coerce as value is not an Array.'
+               'Cannot coerce as value is not an Array.'.freeze
 
         end
       end
@@ -54,7 +54,7 @@ module Vedeu
 
       # @return [Array<void>]
       def content
-        rows.map(&:content).flatten
+        rows.flat_map(&:content)
       end
 
       # @param row_index [Fixnum]

@@ -34,7 +34,7 @@ module Vedeu
     #
     # @return [String]
     def input
-      Vedeu.log(type: :input, message: 'Waiting for user input...')
+      Vedeu.log(type: :input, message: 'Waiting for user input...'.freeze)
 
       if raw_mode? || fake_mode?
         Vedeu::Editor::Capture.read(console)
@@ -75,7 +75,7 @@ module Vedeu
     # @param mode [Symbol]
     # @return [void]
     def initialize_screen(mode)
-      Vedeu.log(type: :info, message: "Terminal entering '#{mode}' mode")
+      Vedeu.log(type: :info, message: "Terminal entering '#{mode}' mode".freeze)
 
       output(Vedeu::EscapeSequences::Esc.string('screen_init'))
 

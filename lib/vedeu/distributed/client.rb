@@ -40,7 +40,7 @@ module Vedeu
 
       rescue DRb::DRbBadURI
         Vedeu.log_stdout(message: 'Could not connect to DRb server, URI may ' \
-                                  'be bad.')
+                                  'be bad.'.freeze)
 
         :drb_bad_uri
       end
@@ -85,7 +85,7 @@ module Vedeu
         drb_connection_error
 
       rescue Interrupt
-        Vedeu.log_stdout(message: 'Client application exited.')
+        Vedeu.log_stdout(message: 'Client application exited.'.freeze)
 
       ensure
         :shutdown
@@ -106,7 +106,7 @@ module Vedeu
 
       # @return [Symbol]
       def drb_connection_error
-        Vedeu.log_stdout(message: 'Could not connect to DRb server.')
+        Vedeu.log_stdout(message: 'Could not connect to DRb server.'.freeze)
 
         :drb_connection_error
       end

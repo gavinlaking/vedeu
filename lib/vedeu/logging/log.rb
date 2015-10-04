@@ -73,7 +73,7 @@ module Vedeu
         #   coloured and combined.
         # @return [String]
         def formatted_message(message)
-          "#{timestamp}#{message}\n" if message
+          "#{timestamp}#{message}\n".freeze if message
         end
 
         # Returns the message:
@@ -85,7 +85,7 @@ module Vedeu
         #   log file, useful for debugging.
         # @return [String]
         def log_entry(type, message)
-          "#{message_type(type)}#{message_body(type, message)}"
+          "#{message_type(type)}#{message_body(type, message)}".freeze
         end
 
         # Fetches the filename from the configuration.

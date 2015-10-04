@@ -32,7 +32,7 @@ module Vedeu
         @dev.write(message)
 
       rescue StandardError => exception
-        warn("log writing failed. #{exception}")
+        warn("log writing failed. #{exception}".freeze)
       end
 
       # @return [void]

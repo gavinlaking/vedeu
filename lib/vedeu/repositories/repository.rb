@@ -30,8 +30,8 @@ module Vedeu
       # @param storage [Class|Hash]
       # @return [Vedeu::Repositories::Repository]
       def initialize(model = nil, storage = {})
-        @model      = model
-        @storage    = storage
+        @model   = model
+        @storage = storage
       end
 
       # Returns the repository class.
@@ -94,7 +94,7 @@ module Vedeu
       # @return [Hash<String => Object>]
       def find!(name)
         find(name) || fail(Vedeu::Error::ModelNotFound,
-                           "Cannot find model by name: '#{name}'")
+                           "Cannot find model by name: '#{name}'".freeze)
       end
 
       # Find a model by name, registers the model by name when not
@@ -106,14 +106,15 @@ module Vedeu
         return find(name) if registered?(name)
 
         Vedeu.log(type:    :store,
-                  message: "Model (#{model}) not found, registering: '#{name}'")
+                  message: "Model (#{model}) not found, " \
+                           "registering: '#{name}'".freeze)
 
         model.new(name).store
       end
 
       # @return [String]
       def inspect
-        "<#{self.class.name}>"
+        "<#{self.class.name}>".freeze
       end
 
       # Returns a boolean indicating whether the named model is
@@ -140,9 +141,7 @@ module Vedeu
         storage.delete(name)
         storage unless storage.is_a?(Set)
       end
-      alias_method :destroy,    :remove
-      alias_method :delete,     :remove
-      alias_method :deregister, :remove
+      alias_method :delete, :remove
 
       # Stores the model instance by name in the repository of the
       # model.
@@ -154,7 +153,8 @@ module Vedeu
       def store(model)
         unless present?(model.name)
           fail Vedeu::Error::MissingRequired,
-               "Cannot store model '#{model.class}' without a name attribute."
+               "Cannot store model '#{model.class}' " \
+               'without a name attribute.'.freeze
         end
 
         log_store(model)
@@ -170,7 +170,8 @@ module Vedeu
       def log_store(model)
         type = registered?(model.name) ? :update : :create
 
-        Vedeu.log(type: type, message: "#{model.class.name}: '#{model.name}'")
+        Vedeu.log(type: type,
+                  message: "#{model.class.name}: '#{model.name}'".freeze)
       end
 
     end # Repository

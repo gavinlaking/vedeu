@@ -109,7 +109,7 @@ module Vedeu
       def ellipsis_string(string)
         return prune_string(string) if string.size < ellipsis.size
 
-        "#{prune_string(string)}#{ellipsis}"
+        "#{prune_string(string)}#{ellipsis}".freeze
       end
 
       # Returns the string pruned.
@@ -131,7 +131,7 @@ module Vedeu
       #
       # @return [String]
       def ellipsis
-        options.fetch(:ellipsis)
+        options[:ellipsis]
       end
 
       # Returns the word wrapping mode. One of :default, :prune or
@@ -143,14 +143,14 @@ module Vedeu
       #                width.
       # @return [Symbol]
       def mode
-        options.fetch(:mode)
+        options[:mode]
       end
 
       # Returns the width to prune or wrap to.
       #
       # @return [Fixnum]
       def width
-        options.fetch(:width)
+        options[:width]
       end
 
       # Returns the default options/attributes for this class.

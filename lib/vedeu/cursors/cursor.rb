@@ -132,7 +132,7 @@ module Vedeu
       #
       # @return [Array<Vedeu::Models::Escape>]
       def render
-        Vedeu.log(type: :info, message: "Refreshing cursor: '#{name}'")
+        Vedeu.log(type: :info, message: "Refreshing cursor: '#{name}'".freeze)
 
         Vedeu.render_output(escape_sequence)
       end
@@ -158,7 +158,7 @@ module Vedeu
       def to_s
         return escape_sequence.to_s unless block_given?
 
-        "#{position}#{yield}#{escape_sequence}"
+        "#{position}#{yield}#{escape_sequence}".freeze
       end
       alias_method :to_str, :to_s
 

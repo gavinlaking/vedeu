@@ -53,7 +53,7 @@ module Vedeu
 
       # @return [String]
       def compress
-        Vedeu.timer('Compression') do
+        Vedeu.timer('Compression'.freeze) do
           out = ''
 
           content.each do |cell|
@@ -81,7 +81,7 @@ module Vedeu
       # @param char [Vedeu::Views::Char]
       # @return [String]
       def colour_for(char)
-        return '' if char.colour == @colour
+        return ''.freeze if char.colour == @colour
 
         @colour = char.colour
         @colour.to_s
@@ -90,7 +90,7 @@ module Vedeu
       # @param char [Vedeu::Views::Char]
       # @return [String]
       def style_for(char)
-        return '' if char.style == @style
+        return ''.freeze if char.style == @style
 
         @style = char.style
         @style.to_s

@@ -24,7 +24,8 @@ module Vedeu
     # @param plugin [Vedeu::Plugin]
     # @return [Array<void>]
     def register(name, plugin = false)
-      Vedeu.log(type: :debug, message: "Attempting to register plugin: #{name}")
+      Vedeu.log(type:    :debug,
+                message: "Attempting to register plugin: #{name}".freeze)
 
       plugins << plugin if plugin && not_loaded?(name)
     end
@@ -36,7 +37,7 @@ module Vedeu
       Gem.refresh
 
       Gem::Specification.each do |gem|
-        next unless gem.name =~ /^#{prefix}/
+        next unless gem.name =~ /^#{prefix}/.freeze
 
         plugin_name = gem.name[/^#{prefix}(.*)/, 1]
 
@@ -75,7 +76,7 @@ module Vedeu
 
     # @return [String]
     def prefix
-      'vedeu_'
+      'vedeu_'.freeze
     end
 
   end # Plugins

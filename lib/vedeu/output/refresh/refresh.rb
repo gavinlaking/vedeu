@@ -19,7 +19,7 @@ module Vedeu
       #
       # @return [Array<Vedeu::Models::Interface>]
       def all
-        Vedeu.timer('Refreshing all') do
+        Vedeu.timer('Refreshing all'.freeze) do
           Vedeu.interfaces.zindexed.each do |interface|
             Vedeu.trigger(:_refresh_view_, interface.name)
           end

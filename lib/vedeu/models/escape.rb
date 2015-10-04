@@ -65,12 +65,12 @@ module Vedeu
       # @param _options [Hash] Ignored.
       # @return [String]
       def to_html(_options = {})
-        ''
+        ''.freeze
       end
 
       # @return [String]
       def to_s
-        "#{position}#{value}"
+        "#{position}#{value}".freeze
       end
       alias_method :to_str, :to_s
 

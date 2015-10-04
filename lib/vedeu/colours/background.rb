@@ -17,7 +17,7 @@ module Vedeu
 
       # @return [String]
       def numbered_prefix
-        "\e[48;5;"
+        "\e[48;5;".freeze
       end
 
       # @return [Vedeu::Colours::Backgrounds]
@@ -27,7 +27,7 @@ module Vedeu
 
       # @return [String]
       def rgb_prefix
-        "\e[48;2;%s;%s;%sm"
+        "\e[48;2;%s;%s;%sm".freeze
       end
 
     end # Background

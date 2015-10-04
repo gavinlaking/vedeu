@@ -5,9 +5,6 @@ module Vedeu
     # Allows the storing of event aliases. Each alias can contain
     # multiple event names.
     #
-    # @note
-    #
-    #
     module Aliases
 
       include Vedeu::Common
@@ -91,7 +88,7 @@ module Vedeu
         return [] unless registered?(alias_name)
 
         find(alias_name).map do |event_name|
-          Vedeu.log(type: :debug, message: "#{event_name}")
+          Vedeu.log(type: :debug, message: "#{event_name}".freeze)
           Vedeu::Events::Trigger.trigger(event_name, *args)
         end
       end

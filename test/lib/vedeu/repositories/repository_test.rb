@@ -218,9 +218,7 @@ module Vedeu
       describe '#remove' do
         subject { instance.remove('francium') }
 
-        it { instance.must_respond_to(:destroy) }
         it { instance.must_respond_to(:delete) }
-        it { instance.must_respond_to(:deregister) }
 
         context 'when the storage is empty' do
           before { instance.reset }

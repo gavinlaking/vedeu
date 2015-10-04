@@ -29,7 +29,7 @@ module Vedeu
 
       # @return [String]
       def render
-        "#{start_tag}#{tag_style}>#{tag_value}#{end_tag}"
+        "#{start_tag}#{tag_style}>#{tag_value}#{end_tag}".freeze
       end
 
       protected
@@ -53,17 +53,17 @@ module Vedeu
       # @return [String]
       def tag_style_background
         "border:1px #{char.background.to_html} solid;" \
-          "background:#{char.background.to_html};"
+          "background:#{char.background.to_html};".freeze
       end
 
       # @return [String]
       def tag_style_foreground
-        "color:#{char.foreground.to_html};#{border_style}"
+        "color:#{char.foreground.to_html};#{border_style}".freeze
       end
 
       # @return [String]
       def tag_value
-        return '&nbsp;' if border || !present?(value)
+        return '&nbsp;'.freeze if border || !present?(value)
 
         value
       end
@@ -71,22 +71,23 @@ module Vedeu
       # @return [String]
       def border_style
         case border
-        when :top_horizontal    then css('top')
-        when :left_vertical     then css('left')
-        when :right_vertical    then css('right')
-        when :bottom_horizontal then css('bottom')
-        when :top_left     then "#{css('top')}#{css('left')}"
-        when :top_right    then "#{css('top')}#{css('right')}"
-        when :bottom_left  then "#{css('bottom')}#{css('left')}"
-        when :bottom_right then "#{css('bottom')}#{css('right')}"
+        when :top_horizontal    then css(:top)
+        when :left_vertical     then css(:left)
+        when :right_vertical    then css(:right)
+        when :bottom_horizontal then css(:bottom)
+        when :top_left     then "#{css(:top)}#{css(:left)}".freeze
+        when :top_right    then "#{css(:top)}#{css(:right)}".freeze
+        when :bottom_left  then "#{css(:bottom)}#{css(:left)}".freeze
+        when :bottom_right then "#{css(:bottom)}#{css(:right)}".freeze
         else
           ''
         end
       end
 
+      # @param direction [Symbol]
       # @return [String]
-      def css(direction = '')
-        "border-#{direction}:1px #{char.foreground.to_html} solid;"
+      def css(direction)
+        "border-#{direction}:1px #{char.foreground.to_html} solid;".freeze
       end
 
       # @return [Symbol|NilClass]

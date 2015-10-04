@@ -102,7 +102,7 @@ module Vedeu
       # @yieldreturn [String] Returns the block wrapped in position
       #   escape sequences.
       def to_s
-        return "#{sequence}#{yield}" if block_given?
+        return "#{sequence}#{yield}".freeze if block_given?
 
         sequence
       end
@@ -143,7 +143,7 @@ module Vedeu
       #
       # @return [String]
       def sequence
-        "\e[#{y};#{x}H"
+        "\e[#{y};#{x}H".freeze
       end
 
     end # Position

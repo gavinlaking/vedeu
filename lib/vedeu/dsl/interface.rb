@@ -37,7 +37,7 @@ module Vedeu
         def interface(name, &block)
           fail Vedeu::Error::RequiresBlock unless block_given?
           fail Vedeu::Error::MissingRequired,
-               'name not given' unless present?(name)
+               'name not given'.freeze unless present?(name)
 
           add_buffers!(name)
           add_cursor!(name)

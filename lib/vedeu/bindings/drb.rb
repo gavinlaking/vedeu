@@ -27,7 +27,7 @@ module Vedeu
       # See {file:docs/events/drb.md#\_drb_input_}
       def drb_input!
         Vedeu.bind(:_drb_input_) do |data, type|
-          Vedeu.log(type: :drb, message: "Sending input (#{type})")
+          Vedeu.log(type: :drb, message: "Sending input (#{type})".freeze)
 
           case type
           when :command  then Vedeu.trigger(:_command_, data)

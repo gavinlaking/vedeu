@@ -66,7 +66,7 @@ module Vedeu
       def to_s
         return '' unless present?(value)
 
-        @sequences ||= Array(value).flatten.map do |v|
+        @sequences ||= Array(value).flat_map do |v|
           Vedeu::EscapeSequences::Esc.string(v)
         end.join
       end

@@ -29,7 +29,7 @@ module Vedeu
     def initialize(name, gem)
       @name     = name
       @gem      = gem
-      @gem_name = "vedeu_#{name}"
+      @gem_name = "vedeu_#{name}".freeze
       @enabled  = false
     end
 
@@ -41,10 +41,10 @@ module Vedeu
         require gem_name unless enabled?
       rescue LoadError => error
         raise Vedeu::Error::Fatal,
-              "Unable to load plugin #{gem_name} due to #{error}."
+              "Unable to load plugin #{gem_name} due to #{error}.".freeze
       rescue => error
         raise Vedeu::Error::Fatal,
-              "require '#{gem_name}' failed with #{error}."
+              "require '#{gem_name}' failed with #{error}.".freeze
       end
 
       @enabled = true

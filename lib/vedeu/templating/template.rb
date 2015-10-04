@@ -52,11 +52,11 @@ module Vedeu
       # @return [String]
       def path
         fail Vedeu::Error::MissingRequired,
-             'No path to template specified.' if @path.empty?
+             'No path to template specified.'.freeze if @path.empty?
 
         unless File.exist?(@path)
           fail Vedeu::Error::MissingRequired,
-               "Template file cannot be found. (#{@path})"
+               "Template file cannot be found. (#{@path})".freeze
         end
 
         @path
