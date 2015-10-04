@@ -173,8 +173,8 @@ module Vedeu
 
         subject { instance.title(_value) }
 
-        it { subject.must_be_instance_of(String) }
-        it { subject.must_equal('Some title') }
+        it { subject.must_be_instance_of(Vedeu::Borders::Title) }
+        it { subject.title.must_equal('Some title') }
         it { instance.must_respond_to(:title=) }
       end
 
@@ -183,8 +183,8 @@ module Vedeu
 
         subject { instance.caption(_value) }
 
-        it { subject.must_be_instance_of(String) }
-        it { subject.must_equal('Some caption') }
+        it { subject.must_be_instance_of(Vedeu::Borders::Caption) }
+        it { subject.caption.must_equal('Some caption') }
         it { instance.must_respond_to(:caption=) }
       end
 
@@ -223,7 +223,7 @@ module Vedeu
 
         it 'allows the use of another models attributes' do
           subject
-          Vedeu.borders.by_name('other_border').title.must_equal('Some border')
+          Vedeu.borders.by_name('other_border').title.to_s.must_equal('Some border')
         end
       end
 
