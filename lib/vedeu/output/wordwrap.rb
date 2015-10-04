@@ -143,14 +143,14 @@ module Vedeu
       #                width.
       # @return [Symbol]
       def mode
-        options.fetch(:mode)
+        options[:mode]
       end
 
       # Returns the width to prune or wrap to.
       #
       # @return [Fixnum]
       def width
-        options.fetch(:width)
+        options[:width]
       end
 
       # Returns the default options/attributes for this class.
