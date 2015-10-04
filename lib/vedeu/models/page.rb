@@ -54,7 +54,7 @@ module Vedeu
 
       # @return [Array<void>]
       def content
-        rows.map(&:content).flatten
+        rows.flat_map(&:content)
       end
 
       # @param row_index [Fixnum]
