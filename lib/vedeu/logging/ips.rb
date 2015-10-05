@@ -1,17 +1,5 @@
 require 'benchmark/ips'
 
-module Benchmark
-  module IPS
-    class Report
-      class Entry
-        def display
-          Vedeu.log(type: :debug, message: to_s)
-        end
-      end
-    end
-  end
-end
-
 module Vedeu
 
   module Logging

@@ -20,6 +20,16 @@ have any problems with either of these operating systems.
 **Note**: You may have trouble running Vedeu with Windows installations. (Pull
  requests welcome!)
 
+## Dependencies
+
+Vedeu relies on the following gems, these will be automatically
+ installed when you install Vedeu (as documented below).
+
+- bundler
+- rake
+- ruby-prof
+- thor
+- vedeu_cli
 
 ## Installation
 
