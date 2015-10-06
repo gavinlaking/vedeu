@@ -11,6 +11,7 @@ module Vedeu
       Vedeu::Events::Repository.reset!
 
       Vedeu::Bindings::Application.setup!
+      Vedeu::Bindings::Cursors.setup!
       Vedeu::Bindings::Document.setup!
       Vedeu::Bindings::DRB.setup!
       Vedeu::Bindings::Focus.setup!
@@ -30,6 +31,7 @@ module Vedeu
     # @return [TrueClass]
     def setup_aliases!
       Vedeu::Bindings::Application.setup_aliases!
+      Vedeu::Bindings::Cursors.setup_aliases!
       Vedeu::Bindings::Movement.setup_aliases!
       Vedeu::Bindings::Visibility.setup_aliases!
 
