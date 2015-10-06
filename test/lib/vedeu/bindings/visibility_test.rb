@@ -25,6 +25,9 @@ module Vedeu
         it { Vedeu.bound?(:_hide_interface_).must_equal(true) }
         it { Vedeu.bound?(:_show_interface_).must_equal(true) }
         it { Vedeu.bound?(:_toggle_interface_).must_equal(true) }
+        it { Vedeu.bound?(:_hide_view_).must_equal(true) }
+        it { Vedeu.bound?(:_show_view_).must_equal(true) }
+        it { Vedeu.bound?(:_toggle_view_).must_equal(true) }
       end
 
       # describe ':_some_event_' do

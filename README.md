@@ -45,13 +45,21 @@ to your project here.
 
 Vedeu is documented using Yard. I hope to produce more 'General Usage'
 documentation shortly. In the meantime, please browse the
-[RubyDoc](http://rubydoc.info/gems/vedeu).
+[RubyDoc](http://rubydoc.info/gems/vedeu). In no particular order,
+here is some documentation for the various aspects of Vedeu:
 
+- [Interfaces](http://rubydoc.info/gems/vedeu/file/docs/.md)
+- [Groups](http://rubydoc.info/gems/vedeu/file/docs/group.md)
+- [Views](http://rubydoc.info/gems/vedeu/file/docs/view.md)
+- [Buffers](http://rubydoc.info/gems/vedeu/file/docs/buffer.md)
+- [Geometry](http://rubydoc.info/gems/vedeu/file/docs/geometry.md)
+- [Borders](http://rubydoc.info/gems/vedeu/file/docs/border.md)
+- [Cursors](http://rubydoc.info/gems/vedeu/file/docs/cursor.md)
+- [Events](http://rubydoc.info/gems/vedeu/file/docs/events.md)
+- [Configuration](http://rubydoc.info/gems/vedeu/file/docs/configuration.md)
 - [Getting Started](http://rubydoc.info/gems/vedeu/file/docs/getting_started.md)
 - [The Vedeu DSL](http://rubydoc.info/gems/vedeu/file/docs/dsl.md)
 - [The Vedeu API](http://rubydoc.info/gems/vedeu/file/docs/api.md)
-- [Vedeu Configuration](http://rubydoc.info/gems/vedeu/file/docs/configuration.md)
-- [Vedeu Events](http://rubydoc.info/gems/vedeu/file/docs/events.md)
 - [Object Graphs](http://rubydoc.info/gems/vedeu/file/docs/object_graph.md)
 
 ## Development / Contributing

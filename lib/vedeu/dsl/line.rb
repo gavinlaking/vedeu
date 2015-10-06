@@ -40,10 +40,11 @@ module Vedeu
       #
       #   Vedeu.renders do
       #     view :my_interface do
-      #       line 'some text...'
-      #       # ... some code
+      #       lines do
+      #         line 'some text...'
+      #         # ... some code
       #
-      #       line do
+      #         line 'some more text...'
       #         # ... some code
       #       end
       #     end
@@ -76,13 +77,15 @@ module Vedeu
       #
       #   Vedeu.renders do
       #     view :my_interface do
-      #       line do
-      #         streams do
-      #           # ... some code
-      #         end
+      #       lines do
+      #         line do
+      #           streams do
+      #             # ... some code
+      #           end
       #
-      #         stream do
-      #           # ... some code
+      #           stream do
+      #             # ... some code
+      #           end
       #         end
       #       end
       #     end

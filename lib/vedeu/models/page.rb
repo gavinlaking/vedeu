@@ -26,15 +26,8 @@ module Vedeu
           Vedeu::Models::Page.new([Vedeu::Models::Row.coerce(value)])
 
         elsif value.is_a?(Array)
-          values = value.map do |v|
-            if v.is_a?(Vedeu::Models::Row)
-              v
+          values = value.map { |v| Vedeu::Models::Row.coerce(v) }
 
-            else
-              Vedeu::Models::Row.coerce(v)
-
-            end
-          end
           Vedeu::Models::Page.new(values)
 
         else

@@ -244,7 +244,11 @@ module Vedeu
 
         model.add(model.member.build(attributes, &block))
       end
-      alias_method :line, :lines
+
+      # @return [Vedeu::Views::Line]
+      def line(value = '')
+        lines { line(value) }
+      end
 
     end # View
 

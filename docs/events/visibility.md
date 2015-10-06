@@ -44,7 +44,7 @@ Hiding a group of interfaces.
     Vedeu.hide_group(name)
 
 ### :_hide_interface_
-Hiding an interface.
+Hide an interface by name.
 
     Vedeu.trigger(:_hide_interface_, name)
     Vedeu.hide_interface(name)
@@ -64,7 +64,7 @@ Showing a group of interfaces.
     Vedeu.show_group(name)
 
 ### :_show_interface_
-Showing an interface.
+Show an interface by name.
 
     Vedeu.trigger(:_show_interface_, name)
     Vedeu.show_interface(name)

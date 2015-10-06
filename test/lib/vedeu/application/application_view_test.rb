@@ -35,11 +35,6 @@ module Vedeu
       end
     end
 
-    # describe 'accessors' do
-    #   it { instance.must_respond_to(:params) }
-    #   it { instance.must_respond_to(:params=) }
-    # end
-
     describe '.render' do
       subject { described.render(params) }
 
