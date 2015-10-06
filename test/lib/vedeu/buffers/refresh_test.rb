@@ -24,9 +24,25 @@ module Vedeu
         subject { described.by_name(_name) }
 
         context 'when Vedeu is not yet ready' do
+          let(:buffer) { mock(render: '') }
+
+          before do
+            Vedeu.stubs(:trigger).with(:_clear_view_content_, _name)
+            Vedeu.buffers.expects(:by_name).with(_name).returns(buffer)
+            Vedeu.stubs(:trigger).with(:_refresh_border_, _name)
+          end
+
           let(:ready) { false }
 
-          it { subject.must_equal([nil]) }
+          it {
+            Vedeu.expects(:trigger).with(:_clear_view_content_, _name)
+            subject
+          }
+
+          it {
+            Vedeu.expects(:trigger).with(:_refresh_border_, _name)
+            subject
+          }
         end
 
         context 'when Vedeu is ready' do
