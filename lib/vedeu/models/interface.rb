@@ -82,11 +82,12 @@ module Vedeu
 
       # Show the named interface.
       #
-      # Will hide the named interface. If the interface is currently
-      # visible, it will be cleared- rendered blank. To show the
-      # interface, the ':_show_interface_' event should be triggered.
-      # Triggering the ':_hide_group_' event to which this named
-      # interface belongs will also hide the interface.
+      # Will show the named interface. If the interface is currently
+      # visible, it will be refreshed- showing any new content
+      # available. To hide the interface, the ':_hide_interface_'
+      # event should be triggered.
+      # Triggering the ':_show_group_' event to which this named
+      # interface belongs will also show the interface.
       #
       # @example
       #   Vedeu.trigger(:_show_interface_, name)
@@ -115,7 +116,7 @@ module Vedeu
           parent:     nil,
           repository: Vedeu.interfaces,
           style:      :normal,
-          visible:    true,
+          visible:    false,
           zindex:     0,
         }
       end
