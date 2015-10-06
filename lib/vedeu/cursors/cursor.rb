@@ -82,6 +82,9 @@ module Vedeu
 
       # Moves the cursor down by one row.
       #
+      #   Vedeu.trigger(:_cursor_down_, name)
+      #   Vedeu.trigger(:_cursor_down_, Vedeu.focus)
+      #
       # @return [Vedeu::Cursors::Cursor]
       def move_down
         @oy += 1
@@ -91,6 +94,9 @@ module Vedeu
       end
 
       # Moves the cursor left by one column.
+      #
+      #   Vedeu.trigger(:_cursor_left_, name)
+      #   Vedeu.trigger(:_cursor_left_, Vedeu.focus)
       #
       # @return [Vedeu::Cursors::Cursor]
       def move_left
@@ -102,6 +108,9 @@ module Vedeu
 
       # Moves the cursor to the top left of the named interface.
       #
+      #   Vedeu.trigger(:_cursor_origin_, name)
+      #   Vedeu.trigger(:_cursor_origin_, Vedeu.focus)
+      #
       # @return [Vedeu::Cursors::Cursor]
       def move_origin
         Vedeu::Cursors::Cursor.store(
@@ -109,6 +118,9 @@ module Vedeu
       end
 
       # Moves the cursor right by one column.
+      #
+      #   Vedeu.trigger(:_cursor_right_, name)
+      #   Vedeu.trigger(:_cursor_right_, Vedeu.focus)
       #
       # @return [Vedeu::Cursors::Cursor]
       def move_right
@@ -119,6 +131,9 @@ module Vedeu
       end
 
       # Moves the cursor up by one row.
+      #
+      #   Vedeu.trigger(:_cursor_up_, name)
+      #   Vedeu.trigger(:_cursor_up_, Vedeu.focus)
       #
       # @return [Vedeu::Cursors::Cursor]
       def move_up
@@ -171,7 +186,10 @@ module Vedeu
       # currently focussed interface.
       #
       # @example
+      #   Vedeu.trigger(:_hide_cursor_, name)
+      #   Vedeu.trigger(:_hide_cursor_, Vedeu.focus)
       #   Vedeu.hide_cursor(name)
+      #   Vedeu.hide_cursor(Vedeu.focus)
       #
       # @return [Vedeu::Models::Escape]
       def hide
@@ -203,7 +221,10 @@ module Vedeu
       # currently focussed interface.
       #
       # @example
+      #   Vedeu.trigger(:_show_cursor_, name)
+      #   Vedeu.trigger(:_show_cursor_, Vedeu.focus)
       #   Vedeu.show_cursor(name)
+      #   Vedeu.show_cursor(Vedeu.focus)
       #
       # @return [Vedeu::Models::Escape]
       def show
