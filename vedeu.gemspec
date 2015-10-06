@@ -37,5 +37,4 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'ruby-prof', '0.15.8'
   spec.add_dependency 'thor',      '0.19.1'
   spec.add_dependency 'vedeu_cli', '0.0.7'
-
 end

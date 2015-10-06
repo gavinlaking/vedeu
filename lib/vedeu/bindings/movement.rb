@@ -63,7 +63,7 @@ module Vedeu
       # See {file:docs/events/movement.md#\_cursor_position_}
       def cursor_position!
         Vedeu.bind(:_cursor_position_) do |name|
-          Vedeu.cursors.by_name(name).position
+          Vedeu.cursors.by_name(name).to_a
         end
       end
 

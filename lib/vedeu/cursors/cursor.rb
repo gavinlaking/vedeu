@@ -150,6 +150,11 @@ module Vedeu
           new_attributes(coordinate.y_position, coordinate.x_position, oy, ox))
       end
 
+      # @return [Array<Fixnum>]
+      def to_a
+        position.to_a
+      end
+
       # Returns an escape sequence to position the cursor and set its
       # visibility. When passed a block, will position the cursor,
       # yield and return the original position.
