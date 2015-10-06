@@ -32,8 +32,10 @@ module Vedeu
       # @return [TrueClass]
       def setup_aliases!
         Vedeu.bind_alias(:_cursor_hide_, :_hide_cursor_)
-
         Vedeu.bind_alias(:_cursor_show_, :_show_cursor_)
+        Vedeu.bind_alias(:_hide_view_, :_hide_interface_)
+        Vedeu.bind_alias(:_show_view_, :_show_interface_)
+        Vedeu.bind_alias(:_toggle_view_, :_toggle_interface_)
       end
 
       private

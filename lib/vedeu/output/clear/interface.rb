@@ -51,7 +51,7 @@ module Vedeu
 
       # @return [Array<Array<Vedeu::Views::Char>>]
       def render
-        Vedeu.render_output(output)
+        Vedeu.render_output(output) if interface.visible?
       end
 
       protected
