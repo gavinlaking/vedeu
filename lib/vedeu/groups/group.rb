@@ -156,7 +156,7 @@ module Vedeu
           members:    Set.new,
           name:       '',
           repository: Vedeu.groups,
-          visible:    false,
+          visible:    true,
         }
       end
 
