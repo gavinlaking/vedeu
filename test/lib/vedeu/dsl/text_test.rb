@@ -13,6 +13,7 @@ module Vedeu
           {
             anchor: anchor,
             model:  model,
+            client: nil,
           }
         }
         let(:anchor)   { :text }

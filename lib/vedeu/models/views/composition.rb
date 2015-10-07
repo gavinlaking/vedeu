@@ -12,10 +12,6 @@ module Vedeu
       collection Vedeu::Views::ViewCollection
       member     Vedeu::Views::View
 
-      # @!attribute [r] attributes
-      # @return [Hash]
-      attr_reader :attributes
-
       # @!attribute [r] parent
       # @return [NilClass] Composition objects do not have a parent.
       attr_reader :parent
@@ -29,9 +25,7 @@ module Vedeu
       # @option attributes value [Vedeu::Views::ViewCollection]
       # @return [Vedeu::Views::Composition]
       def initialize(attributes = {})
-        @attributes = defaults.merge!(attributes)
-
-        @attributes.each do |key, value|
+        defaults.merge!(attributes).each do |key, value|
           instance_variable_set("@#{key}", value)
         end
       end
@@ -42,6 +36,17 @@ module Vedeu
         @value = value.add(child)
       end
       alias_method :<<, :add
+
+      # @return [Hash]
+      def attributes
+        {
+          client: @client,
+          colour: @colour,
+          parent: @parent,
+          style:  @style,
+          value:  value,
+        }
+      end
 
       # @return [Vedeu::Views::ViewCollection]
       def value

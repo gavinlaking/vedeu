@@ -72,6 +72,10 @@ module Vedeu
       # @return [Fixnum]
       attr_writer :yn
 
+      # @!attribute [rw] client
+      # @return [Object]
+      attr_accessor :client
+
       # @param (see #initialize)
       # @return (see #initialize)
       def self.store(attributes)
@@ -283,6 +287,7 @@ module Vedeu
       # @return [Hash]
       def defaults
         {
+          client:     nil,
           centred:    nil,
           height:     nil,
           maximised:  false,

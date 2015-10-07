@@ -79,8 +79,8 @@ module Vedeu
         # @return [Hash<Symbol => NilClass, String>]
         def defaults
           {
-            client:    nil,
-            name:      '',
+            client: nil,
+            name:   '',
           }
         end
 

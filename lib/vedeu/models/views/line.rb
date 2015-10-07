@@ -32,6 +32,7 @@ module Vedeu
       # Returns a new instance of Vedeu::Views::Line.
       #
       # @param attributes [Hash]
+      # @option attributes client [void]
       # @option attributes colour [Vedeu::Colours::Colour]
       # @option attributes parent [Vedeu::Views::View]
       # @option attributes style [Vedeu::Presentation::Style]

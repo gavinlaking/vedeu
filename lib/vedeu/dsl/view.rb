@@ -136,7 +136,9 @@ module Vedeu
         def renders(&block)
           fail Vedeu::Error::RequiresBlock unless block_given?
 
-          store(:store_immediate, &block)
+          client = eval('self', block.binding)
+
+          store(:store_immediate, client, &block)
         end
         alias_method :render, :renders
 
@@ -181,18 +183,12 @@ module Vedeu
         def views(&block)
           fail Vedeu::Error::RequiresBlock unless block_given?
 
-          store(:store_deferred, &block)
+          client = eval('self', block.binding)
+
+          store(:store_deferred, client, &block)
         end
 
         private
-
-        # Returns the client object which called the DSL method.
-        #
-        # @param block [Proc]
-        # @return [Object]
-        def client(&block)
-          eval('self', block.binding)
-        end
 
         # Creates a new Vedeu::Views::Composition which may contain
         # one or more views (Vedeu::Views::View objects).
@@ -210,10 +206,12 @@ module Vedeu
         # @param method [Symbol] An instruction; `:store_immediate` or
         #   `:store_deferred` which determines whether the view will
         #   be shown immediately or later respectively.
+        # @param client [Object] The client class which called the DSL
+        #   object.
         # @param block [Proc]
         # @return [Array]
-        def store(method, &block)
-          composition(client(&block), &block).views.map do |view|
+        def store(method, client, &block)
+          composition(client, &block).views.map do |view|
             view.public_send(method)
           end
         end

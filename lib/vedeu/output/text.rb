@@ -83,6 +83,11 @@ module Vedeu
         string.center(width, pad)
       end
 
+      # @return [Object]
+      def client
+        options[:client]
+      end
+
       # If a colour, background or foreground option is set, use them
       # as the colour settings for the new Vedeu::Views::Stream.
       #
@@ -114,6 +119,7 @@ module Vedeu
       # @return [Hash<Symbol => NilClass, String, Symbol>]
       def defaults
         {
+          client: nil,
           anchor: :left,
           colour: nil,
           model:  nil,
@@ -131,7 +137,7 @@ module Vedeu
 
       # @return [Vedeu::Views::Line]
       def line
-        @line ||= Vedeu::Views::Line.build(parent: parent)
+        @line ||= Vedeu::Views::Line.build(parent: parent, client: client)
       end
 
       # Returns the model option when set.
@@ -169,7 +175,8 @@ module Vedeu
       #
       # @return [void]
       def stream
-        @stream ||= Vedeu::Views::Stream.build(colour: colour,
+        @stream ||= Vedeu::Views::Stream.build(client: client,
+                                               colour: colour,
                                                parent: parent,
                                                style:  style,
                                                value:  aligned)

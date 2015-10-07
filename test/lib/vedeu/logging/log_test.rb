@@ -27,7 +27,7 @@ module Vedeu
 
         it {
           capture_io { subject }.must_equal(
-            ["\e[92m[create] \e[39m\e[32mLogging to stdout...\e[39m\n", ""]
+            ["\e[96m[create] \e[39m\e[36mLogging to stdout...\e[39m\n", ""]
           )
         }
       end
@@ -40,7 +40,7 @@ module Vedeu
 
         it {
           capture_io { subject }.must_equal(
-            ["", "\e[91m[debug]  \e[39m\e[31mLogging to stderr...\e[39m\n"]
+            ["", "\e[97m[debug]  \e[39m\e[39mLogging to stderr...\e[39m\n"]
           )
         }
       end
