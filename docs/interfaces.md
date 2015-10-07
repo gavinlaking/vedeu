@@ -6,7 +6,7 @@ Think of interfaces as being discrete sections of the terminal space.
 - It has a name, which all other aspects of Vedeu will be related.
 - It has a size, in terms of a width and height, determined by
   {file:docs/geometry.md Geometry}.
-- It can have a {file:docs/border.md} Border.
+- It can have a {file:docs/border.md Border}.
 - It can be part of a {file:docs/group.md Group}.
 - An interface is empty unless it has an associated
   {file:docs/view.md View}.

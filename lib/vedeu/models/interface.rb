@@ -116,7 +116,7 @@ module Vedeu
           parent:     nil,
           repository: Vedeu.interfaces,
           style:      :normal,
-          visible:    false,
+          visible:    true,
           zindex:     0,
         }
       end

@@ -21,6 +21,7 @@ module Vedeu
 end # Vedeu
 
 require 'vedeu/bindings/application'
+require 'vedeu/bindings/cursors'
 require 'vedeu/bindings/document'
 require 'vedeu/bindings/drb'
 require 'vedeu/bindings/menus'

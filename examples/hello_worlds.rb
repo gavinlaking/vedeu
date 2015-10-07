@@ -13,7 +13,10 @@ require 'vedeu'
 #
 class HelloWorldsApp
 
-  Vedeu.bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
+  Vedeu.bind(:_initialize_) {
+    Vedeu.trigger(:_show_view_, :hello)
+    Vedeu.trigger(:_refresh_)
+  }
 
   Vedeu.configure do
     # Empty configure block is needed.
@@ -69,6 +72,7 @@ class HelloWorldsApp
           line
           line { centre "Press 'q' to exit,",     width: 24 }
           line { centre " 'w' to switch worlds.", width: 24 }
+          line { centre "#{Vedeu.trigger(:_cursor_position_, Vedeu.focus)" }
         end
       end
     end

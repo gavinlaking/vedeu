@@ -250,6 +250,13 @@ module Vedeu
         it { subject.oy.must_equal(3) }
       end
 
+      describe '#to_a' do
+        subject { instance.to_a }
+
+        it { subject.must_be_instance_of(Array) }
+        it { subject.must_equal([8, 19]) }
+      end
+
       describe '#to_s' do
         let(:visible) { true }
 
