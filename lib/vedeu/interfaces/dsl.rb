@@ -193,7 +193,7 @@ module Vedeu
 
       # @param name [String|Symbol] The name of the interface to which
       #   this keymap should belong.
-      # @see Vedeu::DSL::Keymap.keymap
+      # @see Vedeu::Keymaps::DSL.keymap
       def keymap(name = model.name, &block)
         Vedeu.keymap(name, &block)
       end
