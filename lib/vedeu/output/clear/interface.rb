@@ -51,7 +51,9 @@ module Vedeu
 
       # @return [Array<Array<Vedeu::Views::Char>>]
       def render
+        Vedeu.hide_cursor(name)
         Vedeu.render_output(output) if interface.visible?
+        Vedeu.show_cursor(name)
       end
 
       protected

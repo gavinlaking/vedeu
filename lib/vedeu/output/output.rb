@@ -48,7 +48,11 @@ module Vedeu
 
       # @return [Array]
       def render_terminal_buffer
+        Vedeu.hide_cursor(Vedeu.focus)
+
         Vedeu::Terminal::Buffer.write(output).render
+
+        Vedeu.show_cursor(Vedeu.focus)
       end
 
     end # Output

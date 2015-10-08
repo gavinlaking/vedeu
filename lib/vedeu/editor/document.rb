@@ -178,14 +178,14 @@ module Vedeu
       #
       # @return [Vedeu::Editor::Document]
       def up
-        if x > line(y - 1).size
-          cursor.up
+        return self if y - 1 < 0
 
+        cursor.up
+
+        if x > line(y).size
           eol
 
         else
-          cursor.up
-
           refresh
 
         end
@@ -197,14 +197,12 @@ module Vedeu
       def down
         return self if y + 1 >= lines.size
 
-        if x > line(y + 1).size
-          cursor.down
+        cursor.down
 
+        if x > line(y).size
           eol
 
         else
-          cursor.down
-
           refresh
 
         end
