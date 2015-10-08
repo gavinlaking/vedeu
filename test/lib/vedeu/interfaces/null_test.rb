@@ -2,11 +2,11 @@ require 'test_helper'
 
 module Vedeu
 
-  module Null
+  module Interfaces
 
-    describe Interface do
+    describe Null do
 
-      let(:described)  { Vedeu::Null::Interface }
+      let(:described)  { Vedeu::Interfaces::Null }
       let(:instance)   { described.new(attributes) }
       let(:_name)      { 'null_interface' }
       let(:attributes) {
@@ -23,8 +23,8 @@ module Vedeu
         it { instance.instance_variable_get('@name').must_equal(_name) }
       end
 
-    end # Interface
+    end # Null
 
-  end # Null
+  end # Interfaces
 
 end # Vedeu

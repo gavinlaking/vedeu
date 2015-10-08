@@ -7,8 +7,8 @@ module Vedeu
     describe Presentation do
 
       let(:described)  { Vedeu::DSL::Presentation }
-      let(:instance)   { Vedeu::DSL::Interface.new(model) }
-      let(:model)      { Vedeu::Models::Interface.new }
+      let(:instance)   { Vedeu::Interfaces::DSL.new(model) }
+      let(:model)      { Vedeu::Interfaces::Interface.new }
       let(:background) { '#00ff00' }
       let(:foreground) { '#ff00ff' }
 

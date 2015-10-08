@@ -174,7 +174,7 @@ module Vedeu
 
       # The parent of a border is always an interface.
       #
-      # @return [Vedeu::Models::Interface]
+      # @return [Vedeu::Interfaces::Interface]
       def interface
         @interface ||= Vedeu.interfaces.by_name(name)
       end

@@ -88,7 +88,7 @@ module Vedeu
         subject { instance.visible? }
 
         context 'when the interface is visible' do
-          let(:interface) { Vedeu::Models::Interface.new(visible: true) }
+          let(:interface) { Vedeu::Interfaces::Interface.new(visible: true) }
 
           before do
             Vedeu.interfaces.stubs(:by_name).with(_name).returns(interface)

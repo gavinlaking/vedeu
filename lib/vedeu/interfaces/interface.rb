@@ -1,6 +1,6 @@
 module Vedeu
 
-  module Models
+  module Interfaces
 
     # An Interface represents a portion of the terminal defined by
     # {Vedeu::Geometry::Geometry}.
@@ -39,7 +39,7 @@ module Vedeu
       # @return [Fixnum]
       attr_accessor :zindex
 
-      # Return a new instance of Vedeu::Models::Interface.
+      # Return a new instance of Vedeu::Interfaces::Interface.
       #
       # @param attributes [Hash]
       # @option attributes client [Vedeu::Client]
@@ -48,11 +48,11 @@ module Vedeu
       # @option attributes group [String]
       # @option attributes name [String|Symbol]
       # @option attributes parent [Vedeu::Views::Composition]
-      # @option attributes repository [Vedeu::Models::Interfaces]
+      # @option attributes repository [Vedeu::Interfaces::Repository]
       # @option attributes style [Vedeu::Presentation::Style]
       # @option attributes visible [Boolean]
       # @option attributes zindex [Fixnum]
-      # @return [Vedeu::Models::Interface]
+      # @return [Vedeu::Interfaces::Interface]
       def initialize(attributes = {})
         @attributes = defaults.merge!(attributes)
 
@@ -123,7 +123,7 @@ module Vedeu
 
     end # Interface
 
-  end # Models
+  end # Interfaces
 
   # @!method hide_interface
   #   @see Vedeu::Toggleable::ClassMethods#hide
@@ -131,7 +131,7 @@ module Vedeu
   #   @see Vedeu::Toggleable::ClassMethods#show
   # @!method toggle_interface
   #   @see Vedeu::Toggleable::ClassMethods#toggle
-  def_delegators Vedeu::Models::Interface, :hide_interface, :show_interface,
+  def_delegators Vedeu::Interfaces::Interface, :hide_interface, :show_interface,
                  :toggle_interface
 
 end # Vedeu

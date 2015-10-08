@@ -1,10 +1,10 @@
 module Vedeu
 
-  module DSL
+  module Interfaces
 
     # DSL for creating interfaces.
     #
-    class Interface
+    class DSL
 
       include Vedeu::Common
       include Vedeu::DSL
@@ -32,7 +32,7 @@ module Vedeu
         # @param block [Proc] A set of attributes which define the
         #   features of the interface.
         # @raise [Vedeu::Error::RequiresBlock]
-        # @return [Vedeu::Models::Interface]
+        # @return [Vedeu::Interfaces::Interface]
         # @todo More documentation required.
         def interface(name, &block)
           fail Vedeu::Error::RequiresBlock unless block_given?
@@ -45,7 +45,7 @@ module Vedeu
 
           attributes = { client: client(&block), name: name }
 
-          Vedeu::Models::Interface.build(attributes, &block).store
+          Vedeu::Interfaces::Interface.build(attributes, &block).store
         end
 
         private
@@ -252,7 +252,7 @@ module Vedeu
       #
       # @param name [String|Symbol] The name of the interface model
       #   you wish to use a value from.
-      # @return [Vedeu::Models::Interface]
+      # @return [Vedeu::Interfaces::Interface]
       def use(name)
         model.repository.by_name(name)
       end
@@ -312,12 +312,12 @@ module Vedeu
       alias_method :z_index, :zindex
       alias_method :z,       :zindex
 
-    end # Interface
+    end # DSL
 
-  end # DSL
+  end # Interfaces
 
   # @!method interface
-  #   @see Vedeu::DSL::Interface.interface
-  def_delegators Vedeu::DSL::Interface, :interface
+  #   @see Vedeu::Interfaces::DSL.interface
+  def_delegators Vedeu::Interfaces::DSL, :interface
 
 end # Vedeu

@@ -72,9 +72,9 @@ module Vedeu
       describe '#by_zindex' do
         let(:interfaces) {
           [
-            Vedeu::Models::Interface.new(zindex: 3, name: 'c'),
-            Vedeu::Models::Interface.new(zindex: 1, name: 'a'),
-            Vedeu::Models::Interface.new(zindex: 2, name: 'b'),
+            Vedeu::Interfaces::Interface.new(zindex: 3, name: 'c'),
+            Vedeu::Interfaces::Interface.new(zindex: 1, name: 'a'),
+            Vedeu::Interfaces::Interface.new(zindex: 2, name: 'b'),
           ]
         }
 

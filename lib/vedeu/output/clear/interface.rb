@@ -96,7 +96,7 @@ module Vedeu
         geometry.height
       end
 
-      # @see Vedeu::Models::Interfaces#by_name
+      # @see Vedeu::Interfaces::Repository#by_name
       def interface
         @interface ||= Vedeu.interfaces.by_name(name)
       end

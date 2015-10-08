@@ -11,5 +11,4 @@ module Vedeu
 end # Vedeu
 
 require 'vedeu/null/generic'
-require 'vedeu/null/interface'
 require 'vedeu/null/view'

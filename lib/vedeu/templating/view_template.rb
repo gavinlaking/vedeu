@@ -74,7 +74,7 @@ module Vedeu
 
       # Fetch the interface by name.
       #
-      # @return [Vedeu::Models::Interface]
+      # @return [Vedeu::Interfaces::Interface]
       def interface
         Vedeu.interfaces.by_name(options[:name])
       end

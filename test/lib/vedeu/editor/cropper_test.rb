@@ -26,7 +26,7 @@ module Vedeu
                                         yn:     3)
       }
       let(:interface) {
-        Vedeu::Models::Interface.new(name: _name)
+        Vedeu::Interfaces::Interface.new(name: _name)
       }
 
       before do

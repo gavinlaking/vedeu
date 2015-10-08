@@ -2,11 +2,11 @@ require 'test_helper'
 
 module Vedeu
 
-  module Models
+  module Interfaces
 
     describe Interface do
 
-      let(:described)  { Vedeu::Models::Interface }
+      let(:described)  { Vedeu::Interfaces::Interface }
       let(:instance)   { described.new(attributes) }
       let(:attributes) {
         {
@@ -93,6 +93,6 @@ module Vedeu
 
     end # Interface
 
-  end # Models
+  end # Interfaces
 
 end # Vedeu

@@ -2,14 +2,14 @@ require 'test_helper'
 
 module Vedeu
 
-  module DSL
+  module Interfaces
 
-    describe Interface do
+    describe DSL do
 
-      let(:described) { Vedeu::DSL::Interface }
+      let(:described) { Vedeu::Interfaces::DSL }
       let(:instance)  { described.new(model, client) }
       let(:model)     {
-        Vedeu::Models::Interface.new(name: _name)
+        Vedeu::Interfaces::Interface.new(name: _name)
       }
       let(:_name)  { 'actinium' }
       let(:client) {}
@@ -23,7 +23,7 @@ module Vedeu
           end
         }
 
-        it { subject.must_be_instance_of(Vedeu::Models::Interface) }
+        it { subject.must_be_instance_of(Vedeu::Interfaces::Interface) }
 
         context 'when the block is not given' do
           subject { described.interface('fluorine') }
@@ -322,8 +322,8 @@ module Vedeu
         it { instance.must_respond_to(:z) }
       end
 
-    end # Interface
+    end # DSL
 
-  end # DSL
+  end # Interfaces
 
 end # Vedeu

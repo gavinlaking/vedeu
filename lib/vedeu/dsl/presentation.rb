@@ -3,7 +3,7 @@ module Vedeu
   module DSL
 
     # Provides colour and style helpers for use in the
-    # {Vedeu::DSL::Interface}, {Vedeu::DSL::Line} and
+    # {Vedeu::Interfaces::DSL}, {Vedeu::DSL::Line} and
     # {Vedeu::DSL::Stream} classes.
     #
     module Presentation

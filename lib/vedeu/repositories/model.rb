@@ -126,11 +126,12 @@ module Vedeu
       # @return [String]
       def dsl_class
         case demodulize(self.class.name)
-        when 'Border'.freeze   then 'Vedeu::Borders::DSL'.freeze
-        when 'Buffer'.freeze   then 'Vedeu::Buffers::DSL'.freeze
-        when 'Geometry'.freeze then 'Vedeu::Geometry::DSL'.freeze
-        when 'Group'.freeze    then 'Vedeu::Groups::DSL'.freeze
-        when 'Menu'.freeze     then 'Vedeu::Menus::DSL'.freeze
+        when 'Border'.freeze    then 'Vedeu::Borders::DSL'.freeze
+        when 'Buffer'.freeze    then 'Vedeu::Buffers::DSL'.freeze
+        when 'Geometry'.freeze  then 'Vedeu::Geometry::DSL'.freeze
+        when 'Group'.freeze     then 'Vedeu::Groups::DSL'.freeze
+        when 'Interface'.freeze then 'Vedeu::Interfaces::DSL'.freeze
+        when 'Menu'.freeze      then 'Vedeu::Menus::DSL'.freeze
         # when 'ModelTestClass' then 'Vedeu::Repositories::ModelTestClass::DSL'
         else
           'Vedeu::DSL::'.freeze + demodulize(self.class.name)

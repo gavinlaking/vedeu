@@ -42,6 +42,7 @@ require 'vedeu/events/all'
 require 'vedeu/geometry/all'
 require 'vedeu/groups/all'
 require 'vedeu/input/all'
+require 'vedeu/interfaces/all'
 require 'vedeu/menus/all'
 require 'vedeu/templating/all'
 

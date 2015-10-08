@@ -10,7 +10,7 @@ module Vedeu
     #   - Interfaces are added to the collection in the order they are
     #     defined.
     #   - If the interface definition contains `focus!`,
-    #     (see Vedeu::DSL::Interface#focus!) then that interface is
+    #     (see Vedeu::Interfaces::DSL#focus!) then that interface is
     #     prepended to the list.
     #   - If the `Vedeu.focus_by_name 'some_interface'` declaration is
     #     used, then the list pointer (`current`) is set to the

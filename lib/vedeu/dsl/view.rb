@@ -10,7 +10,7 @@ module Vedeu
     # Both of these approaches require that you have defined an
     # interface (or 'visible area') first. You can find out how to
     # define an interface with Vedeu below or in
-    # {Vedeu::DSL::Interface}. The examples in 'Immediate Render' and
+    # {Vedeu::Interfaces::DSL}. The examples in 'Immediate Render' and
     # 'Deferred View' use these interface definitions: (Note: should
     # you use these examples, ensure your terminal is at least 70
     # characters in width and 5 lines in height.)

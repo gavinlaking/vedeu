@@ -143,7 +143,7 @@ end
 ## Views
 
 {include:Vedeu::DSL::View}
-{include:Vedeu::DSL::Interface.interface}
+{include:Vedeu::Interfaces::DSL.interface}
 
 ### Immediate rendering
 

@@ -2,11 +2,11 @@ require 'test_helper'
 
 module Vedeu
 
-  module Models
+  module Interfaces
 
-    describe Interfaces do
+    describe Repository do
 
-      let(:described) { Vedeu::Models::Interfaces }
+      let(:described) { Vedeu::Interfaces::Repository }
 
       it { described.must_respond_to(:interfaces) }
 
@@ -31,8 +31,8 @@ module Vedeu
         it { subject.must_equal([@lithium, @hydrogen, @helium]) }
       end
 
-    end # Interfaces
+    end # Repository
 
-  end # Models
+  end # Interfaces
 
 end # Vedeu
