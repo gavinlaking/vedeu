@@ -48,14 +48,13 @@ module Vedeu
 
       describe '#render' do
         let(:ready)  { false }
-        let(:_value) {}
 
         before do
           Vedeu.stubs(:ready?).returns(ready)
           Vedeu.renderers.stubs(:render)
         end
 
-        subject { described.render(value) }
+        subject { described.render }
 
         context 'when Vedeu is not ready' do
           it { subject.must_equal(nil) }

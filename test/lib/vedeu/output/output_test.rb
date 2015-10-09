@@ -39,7 +39,7 @@ module Vedeu
             let(:output) { Vedeu::Models::Page.new }
 
             it {
-              Vedeu::Terminal::Buffer.expects(:render).with(output)
+              Vedeu::Terminal::Buffer.expects(:write).with(output)
               subject
             }
           end

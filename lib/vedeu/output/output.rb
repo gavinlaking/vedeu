@@ -56,7 +56,7 @@ module Vedeu
 
       # @return [Array]
       def buffer_write!
-        Vedeu::Terminal::Buffer.render(output)
+        Vedeu::Terminal::Buffer.write(output)
       end
 
       # @return [Array<String>]

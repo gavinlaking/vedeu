@@ -66,13 +66,11 @@ module Vedeu
 
       # Send the cells to the renderer and return the rendered result.
       #
-      # @param value [Array<Array<Vedeu::Views::Char>>|NilClass]
       # @return [String|void] Most likely to be a String.
-      def render(value = nil)
-        write(value) unless value.nil?
-
+      def render
         Vedeu.renderers.render(output) if Vedeu.ready?
       end
+      alias_method :refresh, :render
 
       # Removes all content from the virtual terminal; effectively
       # clearing it.
@@ -145,5 +143,6 @@ module Vedeu
   # @!method clear
   #   @see Vedeu::Terminal::Buffer#clear
   def_delegators Vedeu::Terminal::Buffer, :clear
+  def_delegators Vedeu::Terminal::Buffer, :refresh
 
 end # Vedeu
