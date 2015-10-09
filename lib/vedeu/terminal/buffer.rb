@@ -66,8 +66,11 @@ module Vedeu
 
       # Send the cells to the renderer and return the rendered result.
       #
+      # @param value [Array<Array<Vedeu::Views::Char>>|NilClass]
       # @return [String|void] Most likely to be a String.
-      def render
+      def render(value = nil)
+        write(value) unless value.nil?
+
         Vedeu.renderers.render(output) if Vedeu.ready?
       end
 
