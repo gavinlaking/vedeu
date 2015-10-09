@@ -87,7 +87,7 @@ module Vedeu
         @lines[oy...(oy + height)] || []
       end
 
-      # @return [Vedeu::Models::Interface]
+      # @return [Vedeu::Interfaces::Interface]
       def interface
         @interface ||= Vedeu.interfaces.by_name(name)
       end

@@ -70,6 +70,7 @@ module Vedeu
       def render
         Vedeu.renderers.render(output) if Vedeu.ready?
       end
+      alias_method :refresh, :render
 
       # Removes all content from the virtual terminal; effectively
       # clearing it.
@@ -142,5 +143,6 @@ module Vedeu
   # @!method clear
   #   @see Vedeu::Terminal::Buffer#clear
   def_delegators Vedeu::Terminal::Buffer, :clear
+  def_delegators Vedeu::Terminal::Buffer, :refresh
 
 end # Vedeu

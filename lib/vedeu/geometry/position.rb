@@ -47,6 +47,8 @@ module Vedeu
       def initialize(y = 1, x = 1)
         @y = (y.nil? || y < 1) ? 1 : y
         @x = (x.nil? || x < 1) ? 1 : x
+
+        freeze
       end
 
       # Converts a position into an index for the terminal. An index

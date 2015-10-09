@@ -16,7 +16,7 @@ module Vedeu
     # Removes the module part from the expression in the string.
     #
     # @example
-    #   demodulize('Vedeu::DSL::Interface') # => "Interface"
+    #   demodulize('Vedeu::SomeModule::SomeClass') # => "SomeClass"
     #
     # @param klass [Class|String]
     # @return [String]

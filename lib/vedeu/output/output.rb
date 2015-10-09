@@ -11,9 +11,11 @@ module Vedeu
 
       # Writes output to the defined renderers.
       #
-      # @return [Array|String]
+      # @return [Array|NilClass|String]
       # @see #initialize
       def self.render_output(output)
+        return nil if output.nil?
+
         new(output).render_output
       end
 
@@ -32,23 +34,39 @@ module Vedeu
       # because escape sequences only make sense to the terminal and
       # not other renderers.
       #
-      # @return [Array|NilClass]
+      # @return [Array|String|NilClass]
       def render_output
-        return nil if output.nil?
-        return render_terminal_buffer unless output.is_a?(Vedeu::Models::Escape)
+        if escape_sequence?
+          direct_write!
 
-        Vedeu::Output::Direct.write(value: output.value,
-                                    x:     output.position.x,
-                                    y:     output.position.y)
+        else
+          buffer_write!
+
+        end
       end
 
+      protected
+
       # @!attribute [r] output
-      # @return [Array<Array<Vedeu::Views::Char>>]
+      # @return [Array<Array<Vedeu::Views::Char>>|
+      #   NilClass|Vedeu::Models::Escape]
       attr_reader :output
 
+      private
+
       # @return [Array]
-      def render_terminal_buffer
-        Vedeu::Terminal::Buffer.write(output).render
+      def buffer_write!
+        Vedeu::Terminal::Buffer.write(output)
+      end
+
+      # @return [Array<String>]
+      def direct_write!
+        Vedeu::Terminal.output(output.to_s)
+      end
+
+      # @return [Boolean]
+      def escape_sequence?
+        output.is_a?(Vedeu::Models::Escape)
       end
 
     end # Output

@@ -22,7 +22,7 @@ module Vedeu
       }
       let(:visible)   { true }
       let(:interface) {
-        Vedeu::Models::Interface.new(style: nil, visible: visible)
+        Vedeu::Interfaces::Interface.new(style: nil, visible: visible)
       }
       let(:geometry)  { Vedeu::Geometry::Geometry.new(height: 3, width: 3) }
       let(:ready)     { true }

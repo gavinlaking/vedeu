@@ -162,7 +162,7 @@ module Vedeu
 
       # Return the interfaces for all members of the group.
       #
-      # @return [Array<Vedeu::Models::Interface]
+      # @return [Array<Vedeu::Interfaces::Interface]
       def interfaces
         members.map { |name| Vedeu.interfaces.by_name(name) }
       end

@@ -29,22 +29,17 @@ module Vedeu
               Vedeu::Models::Escape.new(value: "\e[?25h", position: [1, 1])
             }
 
-            before { Vedeu::Output::Direct.stubs(:write).returns(output.to_s) }
-
-            it { subject.must_equal("\e[1;1H\e[?25h") }
+            it {
+              Vedeu::Terminal.expects(:output)
+              subject
+            }
           end
 
           context 'and the output is not an escape sequence' do
             let(:output) { Vedeu::Models::Page.new }
-            let(:buffer) { mock('Vedeu::Terminal::Buffer') }
-
-            before do
-              Vedeu::Terminal::Buffer.stubs(:write)
-              buffer.expects(:render).returns(output)
-            end
 
             it {
-              Vedeu::Terminal::Buffer.expects(:write).with(output).returns(buffer)
+              Vedeu::Terminal::Buffer.expects(:write).with(output)
               subject
             }
           end

@@ -13,6 +13,7 @@ module Vedeu
           {
             anchor: anchor,
             model:  model,
+            client: nil,
           }
         }
         let(:anchor)   { :text }
@@ -30,7 +31,7 @@ module Vedeu
 
         context 'when the model is a Vedeu::Views::View' do
           let(:model)    { Vedeu::Views::View.new }
-          let(:instance) { Vedeu::DSL::Interface.new(model) }
+          let(:instance) { Vedeu::Interfaces::DSL.new(model) }
 
           it { subject.must_be_instance_of(Vedeu::Views::Lines) }
 

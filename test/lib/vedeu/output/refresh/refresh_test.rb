@@ -24,7 +24,7 @@ module Vedeu
 
         context 'when there are registered interfaces' do
           let(:interface)  {
-            Vedeu::Models::Interface.new(name: 'Vedeu::Output::Refresh')
+            Vedeu::Interfaces::Interface.new(name: 'Vedeu::Output::Refresh')
           }
           let(:interfaces) { [interface] }
 

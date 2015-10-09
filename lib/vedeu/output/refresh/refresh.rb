@@ -17,7 +17,7 @@ module Vedeu
 
       # Refresh all registered interfaces.
       #
-      # @return [Array<Vedeu::Models::Interface>]
+      # @return [Array<Vedeu::Interfaces::Interface>]
       def all
         Vedeu.timer('Refreshing all'.freeze) do
           Vedeu.interfaces.zindexed.each do |interface|

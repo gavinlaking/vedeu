@@ -86,7 +86,7 @@ module Vedeu
       attr_reader :name
 
       # @!attribute [r] parent
-      # @return [Vedeu::Models::Interface|NilClass]
+      # @return [Vedeu::Interfaces::Interface|NilClass]
       attr_reader :parent
 
       # @!attribute [r] enabled

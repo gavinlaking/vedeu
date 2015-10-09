@@ -25,6 +25,8 @@ module Vedeu
           Vedeu.trigger(:_refresh_cursor_, Vedeu.focus)
 
           while @loop
+            Vedeu.refresh
+
             yield
 
             safe_exit_point!

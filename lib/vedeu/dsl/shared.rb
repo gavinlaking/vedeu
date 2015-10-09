@@ -3,7 +3,7 @@ module Vedeu
   module DSL
 
     # Provides behaviour to be shared between both
-    # {Vedeu::DSL::Interface} and {Vedeu::DSL::View} objects.
+    # {Vedeu::Interfaces::DSL} and {Vedeu::DSL::View} objects.
     #
     module Shared
 

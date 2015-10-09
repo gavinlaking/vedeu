@@ -47,7 +47,7 @@ module Vedeu
       end
 
       describe '#render' do
-        let(:ready) { false }
+        let(:ready)  { false }
 
         before do
           Vedeu.stubs(:ready?).returns(ready)

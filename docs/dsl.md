@@ -129,9 +129,9 @@ end
 
 ## Keymaps
 
-{include:Vedeu::DSL::Keymap}
-{include:Vedeu::DSL::Keymap.keymap}
-{include:Vedeu::DSL::Keymap#name}
+{include:Vedeu::Keymaps::DSL}
+{include:Vedeu::Keymaps::DSL.keymap}
+{include:Vedeu::Keymaps::DSL#name}
 
 ## Menus
 
@@ -143,7 +143,7 @@ end
 ## Views
 
 {include:Vedeu::DSL::View}
-{include:Vedeu::DSL::Interface.interface}
+{include:Vedeu::Interfaces::DSL.interface}
 
 ### Immediate rendering
 

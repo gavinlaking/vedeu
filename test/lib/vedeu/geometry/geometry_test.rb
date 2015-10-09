@@ -11,6 +11,7 @@ module Vedeu
       let(:attributes) {
         {
           centred:    centred,
+          client:     client,
           height:     height,
           maximised:  maximised,
           name:       _name,
@@ -23,6 +24,7 @@ module Vedeu
         }
       }
       let(:centred)   { false }
+      let(:client)    {}
       let(:height)    {}
       let(:maximised) { false }
       let(:_name)     { 'vedeu_geometry_geometry' }
@@ -40,6 +42,7 @@ module Vedeu
           instance.instance_variable_get('@attributes').must_equal(attributes)
         }
         it { instance.instance_variable_get('@centred').must_equal(centred) }
+        it { instance.instance_variable_get('@client').must_equal(client) }
         it { instance.instance_variable_get('@height').must_equal(height) }
         it { instance.instance_variable_get('@maximised').must_equal(maximised) }
         it { instance.instance_variable_get('@name').must_equal(_name) }

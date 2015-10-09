@@ -1,13 +1,13 @@
 module Vedeu
 
-  module DSL
+  module Keymaps
 
     # You can define keymaps by name which matches a defined
     # interface. When that interface is in focus, keys pressed as part
     # of this definition will affect that interface. This allows you
     # to form context driven behaviour for your application.
     #
-    class Keymap
+    class DSL
 
       include Vedeu::Common
       include Vedeu::DSL
@@ -110,12 +110,12 @@ module Vedeu
       end
       alias_method :name=, :name
 
-    end # Keymap
+    end # DSL
 
-  end # DSL
+  end # Keymaps
 
   # @!method keymap
-  #   @see Vedeu::DSL::Keymap.keymap
-  def_delegators Vedeu::DSL::Keymap, :keymap
+  #   @see Vedeu::Keymaps::DSL.keymap
+  def_delegators Vedeu::Keymaps::DSL, :keymap
 
 end # Vedeu

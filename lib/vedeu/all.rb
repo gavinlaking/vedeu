@@ -15,7 +15,6 @@ require 'vedeu/repositories/all'
 
 require 'vedeu/models/toggleable'
 
-require 'vedeu/output/direct'
 require 'vedeu/output/clear/all'
 require 'vedeu/output/compressor'
 require 'vedeu/output/text'
@@ -42,6 +41,7 @@ require 'vedeu/events/all'
 require 'vedeu/geometry/all'
 require 'vedeu/groups/all'
 require 'vedeu/input/all'
+require 'vedeu/interfaces/all'
 require 'vedeu/menus/all'
 require 'vedeu/templating/all'
 

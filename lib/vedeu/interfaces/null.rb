@@ -1,10 +1,10 @@
 module Vedeu
 
-  module Null
+  module Interfaces
 
     # Provides a non-existent model to swallow messages.
     #
-    class Interface < Vedeu::Null::Generic
+    class Null < Vedeu::Null::Generic
 
       include Vedeu::Presentation
 
@@ -12,19 +12,19 @@ module Vedeu
       # @return [String]
       attr_reader :attributes
 
-      # Returns a new instance of Vedeu::Null::Interface.
+      # Returns a new instance of Vedeu::Interfaces::Null.
       #
       # @param attributes [Hash<Symbol => void>]
       # @option attributes name [String|Symbol]
-      # @return [Vedeu::Null::Interface]
+      # @return [Vedeu::Interfaces::Null]
       def initialize(attributes = {})
         @attributes = attributes
         @name       = @attributes[:name]
         @visible    = false
       end
 
-    end # Interface
+    end # Null
 
-  end # Null
+  end # Interfaces
 
 end # Vedeu

@@ -27,7 +27,7 @@ module Vedeu
         Vedeu::Geometry::Geometry.new({ name: _name, x: 1, xn: 5, y: 1, yn: 5 })
       }
       let(:interface) {
-        Vedeu::Models::Interface.new({ name: _name })
+        Vedeu::Interfaces::Interface.new({ name: _name })
       }
 
       before {

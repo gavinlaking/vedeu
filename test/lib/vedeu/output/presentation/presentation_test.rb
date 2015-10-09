@@ -53,7 +53,7 @@ module Vedeu
       }
       let(:line) {
         Vedeu::Views::Line.new(value:  [],
-                               parent: Vedeu::Models::Interface.new,
+                               parent: Vedeu::Interfaces::Interface.new,
                                colour: green,
                                style:  Vedeu::Presentation::Style.new('normal'))
       }

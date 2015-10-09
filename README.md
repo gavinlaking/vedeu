@@ -55,6 +55,7 @@ here is some documentation for the various aspects of Vedeu:
 - [Geometry](http://rubydoc.info/gems/vedeu/file/docs/geometry.md)
 - [Borders](http://rubydoc.info/gems/vedeu/file/docs/border.md)
 - [Cursors](http://rubydoc.info/gems/vedeu/file/docs/cursor.md)
+- [Keymaps](http://rubydoc.info/gems/vedeu/file/docs/keymaps.md)
 - [Events](http://rubydoc.info/gems/vedeu/file/docs/events.md)
 - [Configuration](http://rubydoc.info/gems/vedeu/file/docs/configuration.md)
 - [Getting Started](http://rubydoc.info/gems/vedeu/file/docs/getting_started.md)

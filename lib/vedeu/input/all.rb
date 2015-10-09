@@ -10,6 +10,7 @@ module Vedeu
 end # Vedeu
 
 require 'vedeu/input/capture'
+require 'vedeu/input/dsl'
 require 'vedeu/input/key'
 require 'vedeu/input/keymap'
 require 'vedeu/input/keymaps'

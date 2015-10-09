@@ -6,6 +6,13 @@ module Vedeu
 
     extend self
 
+    # Access all the repositories stored.
+    #
+    # @return [Array]
+    def all
+      storage.map(&:repository)
+    end
+
     # Register a repository with the collection of Vedeu repositories.
     #
     # @param klass [Class]
@@ -39,13 +46,6 @@ module Vedeu
     end
 
     private
-
-    # Access all the repositories stored.
-    #
-    # @return [Array]
-    def all
-      storage.map(&:repository)
-    end
 
     # Access to the storage for this repository.
     #

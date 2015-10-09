@@ -29,7 +29,7 @@ module Vedeu
 
       describe '#render' do
         let(:interface) {
-          Vedeu::Models::Interface.new(name: _name, visible: visible)
+          Vedeu::Interfaces::Interface.new(name: _name, visible: visible)
         }
         let(:visible)   { true }
         let(:geometry)  {

@@ -31,6 +31,7 @@ unless ENV['NO_SIMPLECOV']
     add_group  'geometry',      'vedeu/geometry'
     add_group  'groups',        'vedeu/groups'
     add_group  'input',         'vedeu/input'
+    add_group  'interfaces',    'vedeu/interfaces'
     add_group  'logging',       'vedeu/logging'
     add_group  'menus',         'vedeu/menus'
     add_group  'models',        'vedeu/models'
