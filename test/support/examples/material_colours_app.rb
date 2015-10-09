@@ -185,13 +185,27 @@ class VedeuMaterialColoursApp
     end
 
     view 'keys_interface' do
-      line { left 'left,down,up,right - Move cursor' }
-      line { left 'q - exit' }
+      line {
+        stream {
+          left "\u2190, \u2193, \u2191, \u2192", width: 20
+        }
+        stream {
+          left "Move cursor"
+        }
+      }
+      line {
+        stream {
+          left "q", width: 20
+        }
+        stream {
+          left "Exit"
+        }
+      }
       line { left 'escape - mode switch'}
       line { left 'shift+tab - focus previous'}
       line { left 'tab - focus next'}
-      line { left 'a,s,d,f - Move Rainbow! left, down, up, right' }
-      line { left 'h,j,k,l - Move Wow! left, down, up, right' }
+      line { left 'a, s, d, f - Move Rainbow! left, down, up, right' }
+      line { left 'h, j, k, l - Move Wow! left, down, up, right' }
       line { left 't - Toggle Rainbow!/Wow!' }
       line { left '1,2 - Hide/Show Rainbow!'}
       line { left '3,4 - Hide/Show Wow!'}
