@@ -20,7 +20,7 @@ module Vedeu
       threads = storage.map do |renderer|
         Thread.new(renderer) do
           mutex.synchronize do
-            renderer.clear
+            toggle_cursor { renderer.clear }
           end
         end
       end
@@ -51,7 +51,7 @@ module Vedeu
       threads = storage.map do |renderer|
         Thread.new(renderer) do
           mutex.synchronize do
-            renderer.render(output)
+            toggle_cursor { renderer.render(output) }
           end
         end
       end
@@ -99,6 +99,15 @@ module Vedeu
     # @return [Set]
     def storage
       @storage ||= in_memory
+    end
+
+    # @return [void]
+    def toggle_cursor
+      Vedeu.hide_cursor(Vedeu.focus)
+
+      yield
+
+      Vedeu.show_cursor(Vedeu.focus)
     end
 
   end # Renderers

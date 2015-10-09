@@ -63,6 +63,8 @@ module Vedeu
       before do
         Vedeu::Renderers.reset
         Vedeu::Renderers.renderer(DummyRenderer)
+        Vedeu.stubs(:hide_cursor)
+        Vedeu.stubs(:show_cursor)
       end
 
       subject { described.render(output) }
