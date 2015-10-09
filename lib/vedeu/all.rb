@@ -15,7 +15,6 @@ require 'vedeu/repositories/all'
 
 require 'vedeu/models/toggleable'
 
-require 'vedeu/output/direct'
 require 'vedeu/output/clear/all'
 require 'vedeu/output/compressor'
 require 'vedeu/output/text'
