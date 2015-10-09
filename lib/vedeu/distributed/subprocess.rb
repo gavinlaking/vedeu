@@ -74,7 +74,7 @@ module Vedeu
 
       # @return [Fixnum] The number of files removed; 1.
       def file_unlink
-        File.unlink("/tmp/foo_#{timestamp}".freeze)
+        File.unlink(file_name)
       end
 
       # return [String]
@@ -84,9 +84,14 @@ module Vedeu
 
       # @return [File]
       def file_open
-        @file ||= File.new("/tmp/foo_#{timestamp}", 'w', 0755)
+        @file ||= File.new(file_name, 'w', 0755)
       end
       alias_method :file, :file_open
+
+      # @return [String]
+      def file_name
+        "/tmp/foo_#{timestamp}".freeze
+      end
 
       # return [Fixnum]
       def timestamp
