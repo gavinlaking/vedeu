@@ -104,8 +104,6 @@ module Vedeu
     def terminate!
       Vedeu.log(type: :info, message: 'Exiting gracefully.'.freeze)
 
-      Vedeu.log(type: :info, message: "#{Vedeu.events.all.size}")
-
       $stdin  = STDIN
       $stdout = STDOUT
       $stderr = STDERR
