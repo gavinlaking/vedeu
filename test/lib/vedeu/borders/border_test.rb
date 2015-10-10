@@ -46,10 +46,6 @@ module Vedeu
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
-        it do
-          instance.instance_variable_get('@attributes').
-            must_equal(attributes)
-        end
       end
 
       describe 'accessors' do

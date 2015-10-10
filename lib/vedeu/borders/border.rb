@@ -129,11 +129,34 @@ module Vedeu
       #   character.
       # @return [Vedeu::Borders::Border]
       def initialize(attributes = {})
-        @attributes = defaults.merge!(attributes)
-
-        @attributes.each do |key, value|
+        defaults.merge!(attributes).each do |key, value|
           instance_variable_set("@#{key}", value)
         end
+      end
+
+      # @return [Hash]
+      def attributes
+        {
+          bottom_left:  @bottom_left,
+          bottom_right: @bottom_right,
+          caption:      @caption,
+          client:       @client,
+          colour:       @colour,
+          enabled:      @enabled,
+          horizontal:   @horizontal,
+          name:         @name,
+          parent:       @parent,
+          repository:   @repository,
+          show_bottom:  @show_bottom,
+          show_left:    @show_,
+          show_right:   @show_,
+          show_top:     @show_,
+          style:        @style,
+          title:        @title,
+          top_left:     @top_left,
+          top_right:    @top_right,
+          vertical:     @vertical,
+        }
       end
 
       # @return [Fixnum]
