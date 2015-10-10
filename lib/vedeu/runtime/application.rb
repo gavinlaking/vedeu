@@ -106,6 +106,7 @@ module Vedeu
 
         else
           Vedeu.trigger(:_standalone_)
+          Vedeu.refresh
 
         end
       end
