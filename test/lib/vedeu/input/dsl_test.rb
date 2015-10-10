@@ -2,11 +2,11 @@ require 'test_helper'
 
 module Vedeu
 
-  module Keymaps
+  module Input
 
     describe DSL do
 
-      let(:described) { Vedeu::Keymaps::DSL }
+      let(:described) { Vedeu::Input::DSL }
       let(:instance)  { described.new(model) }
       let(:model)     { Vedeu::Input::Keymap.new(name: '_test_') }
 
@@ -66,6 +66,6 @@ module Vedeu
 
     end # DSL
 
-  end # Keymaps
+  end # Input
 
 end # Vedeu

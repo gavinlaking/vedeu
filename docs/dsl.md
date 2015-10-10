@@ -129,9 +129,9 @@ end
 
 ## Keymaps
 
-{include:Vedeu::Keymaps::DSL}
-{include:Vedeu::Keymaps::DSL.keymap}
-{include:Vedeu::Keymaps::DSL#name}
+{include:Vedeu::Input::DSL}
+{include:Vedeu::Input::DSL.keymap}
+{include:Vedeu::Input::DSL#name}
 
 ## Menus
 
