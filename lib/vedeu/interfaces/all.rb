@@ -1,5 +1,6 @@
 module Vedeu
 
+  # {include:file:docs/interfaces.md}
   module Interfaces
 
   end # Interfaces
