@@ -51,7 +51,7 @@ module Vedeu
 
       # @return [Array<Array<Vedeu::Views::Char>>]
       def render
-        Vedeu.render_output(output) if interface.visible?
+        Vedeu.render_output(output)
       end
 
       protected
@@ -169,5 +169,13 @@ module Vedeu
   # @!method clear_content_by_name
   #   @see Vedeu::Clear::Interface.clear_content_by_name
   def_delegators Vedeu::Clear::Interface, :clear_content_by_name
+
+  # See {file:docs/events/visibility.md#\_clear_view_}
+  Vedeu.bind(:_clear_view_) { |name| Vedeu.clear_by_name(name) }
+
+  # See {file:docs/events/visibility.md#\_clear_view_content_}
+  Vedeu.bind(:_clear_view_content_) do |name|
+    Vedeu.clear_content_by_name(name)
+  end
 
 end # Vedeu

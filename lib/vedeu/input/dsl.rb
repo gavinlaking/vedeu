@@ -1,6 +1,6 @@
 module Vedeu
 
-  module Keymaps
+  module Input
 
     # You can define keymaps by name which matches a defined
     # interface. When that interface is in focus, keys pressed as part
@@ -112,10 +112,10 @@ module Vedeu
 
     end # DSL
 
-  end # Keymaps
+  end # Input
 
   # @!method keymap
-  #   @see Vedeu::Keymaps::DSL.keymap
-  def_delegators Vedeu::Keymaps::DSL, :keymap
+  #   @see Vedeu::Input::DSL.keymap
+  def_delegators Vedeu::Input::DSL, :keymap
 
 end # Vedeu

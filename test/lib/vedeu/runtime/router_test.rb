@@ -13,6 +13,11 @@ module Vedeu
 
   end # SomeController
 
+  describe 'Bindings' do
+    it { Vedeu.bound?(:_goto_).must_equal(true) }
+    # it { Vedeu.bound?(:_action_).must_equal(true) }
+  end
+
   module Runtime
 
     describe Router do
@@ -118,6 +123,27 @@ module Vedeu
           end
         end
       end
+
+      # describe '.goto!' do
+      #   let(:controller) { :some_controller }
+      #   let(:action)     { :show_basket }
+      #   let(:args)       {
+      #     {
+      #       customer_id: 3,
+      #       product_id: 16,
+      #     }
+      #   }
+
+      #   before { Vedeu::Runtime::Router.stubs(:goto) }
+
+      #   subject { Vedeu.trigger(:_goto_, controller, action, **args) }
+
+      #   it {
+      #     Vedeu::Runtime::Router.expects(:goto)
+      #       .with(:some_controller, :show_basket, args)
+      #     subject
+      #   }
+      # end
 
       describe '.goto' do
         let(:controller) { :some_controller }

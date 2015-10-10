@@ -2,6 +2,10 @@ require 'test_helper'
 
 module Vedeu
 
+  describe 'Bindings' do
+    it { Vedeu.bound?(:_refresh_cursor_).must_equal(true) }
+  end
+
   module Cursors
 
     describe Refresh do

@@ -2,6 +2,10 @@ require 'test_helper'
 
 module Vedeu
 
+  describe 'Bindings' do
+    it { Vedeu.bound?(:_log_).must_equal(true) }
+  end
+
   module Logging
 
     describe Log do

@@ -75,17 +75,63 @@ Pull requests are very welcome! Please try to follow these simple rules if
 * Make sure your patches are well tested.
 * Update the [Yard](http://yardoc.org/) documentation.
   (Use `yard stats --list-undoc` to locate undocumented code)
-* Update the [README](https://github.com/gavinlaking/vedeu/blob/master/README.md).
+* Update the
+  [README](https://github.com/gavinlaking/vedeu/blob/master/README.md),
+  if appropriate.
 * Please **do not change** the version number.
+
+Raising issues and finding bugs, updating documentation and improving
+ the code are all welcome contributions. I may also have left some TODO
+ items lying around, which you're quite welcome to and can find
+ with either Yard, or git:
+
+    yard list --query '@todo'
+
+    git grep --line-number '@todo'
+
 
 Any branch on the repository that is not `master` is probably experimental; do
  not rely on anything in these branches. Typically, `twerks` will be merged
  into `master` before a release, and branches prefixed with `spike/` are me
- playing with ideas.
+ playing with ideas- they aren't guaranteed to work at all.
 
-I may have left some TODO items lying around, which you can find with:
+Various environment variables are available to you to help with testing, all of
+ which can be used in combination, prefaced to `rake`:
 
-    yard list --query '@todo'
+- Produce statistics on the slowest performing parts of the
+  application/tests. Useful when used multiple times. See
+  `test/test_helper.rb` for configuration.
+
+        PERFORMANCE=1 rake
+
+- Produce a 'SimpleCov' test coverage report in the `coverage/`
+  directory.
+
+        SIMPLECOV=1 rake
+
+- Produces a 'SimpleCov' test coverage report with output to the
+  console.
+
+        CONSOLE_COVERAGE=1 rake
+
+- Enable Ruby's warnings mode (this can usually be quote verbose, but
+  thankfully more so with gem dependencies rather than Vedeu itself).
+
+        WARNINGS=1 rake
+
+- Disable Ruby's garbage collection for this test run.
+
+        DISABLE_GC=1 rake
+
+- Use Rubocop to catch coding misdemeanours for this test run. (Or
+  use `rake rubocop`).
+
+        RUBOCOP=1 rake
+
+- Build the Yard documentation for the project. (Or use `rake yard`).
+
+        YARD=1 rake
+
 
 ### General contribution help
 

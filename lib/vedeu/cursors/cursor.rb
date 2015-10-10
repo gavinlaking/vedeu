@@ -313,4 +313,63 @@ module Vedeu
   def_delegators Vedeu::Cursors::Cursor, :hide_cursor, :show_cursor,
                  :toggle_cursor
 
+  # See {file:docs/events/visibility.md#\_hide_cursor_}
+  Vedeu.bind(:_hide_cursor_) { |name| Vedeu.hide_cursor(name) }
+  # Vedeu.bind_alias(:_cursor_hide_, :_hide_cursor_)
+
+  # See {file:docs/events/visibility.md#\_show_cursor_}
+  Vedeu.bind(:_show_cursor_) { |name| Vedeu.show_cursor(name) }
+  # Vedeu.bind_alias(:_cursor_show_, :_show_cursor_)
+
+  # See {file:docs/events/visibility.md#\_toggle_cursor_}
+  Vedeu.bind(:_toggle_cursor_) { |name| Vedeu.toggle_cursor(name) }
+
+  # See {file:docs/cursors.md}
+  Vedeu.bind(:_cursor_left_) do |name|
+    Vedeu.cursors.by_name(name).move_left
+
+    Vedeu.trigger(:_refresh_cursor_, name)
+  end
+
+  # See {file:docs/cursors.md}
+  Vedeu.bind(:_cursor_down_) do |name|
+    Vedeu.cursors.by_name(name).move_down
+
+    Vedeu.trigger(:_refresh_cursor_, name)
+  end
+
+  # See {file:docs/cursors.md}
+  Vedeu.bind(:_cursor_up_) do |name|
+    Vedeu.cursors.by_name(name).move_up
+
+    Vedeu.trigger(:_refresh_cursor_, name)
+  end
+
+  # See {file:docs/cursors.md}
+  Vedeu.bind(:_cursor_right_) do |name|
+    Vedeu.cursors.by_name(name).move_right
+
+    Vedeu.trigger(:_refresh_cursor_, name)
+  end
+
+  # See {file:docs/cursors.md}
+  Vedeu.bind(:_cursor_origin_) do |name|
+    Vedeu.cursors.by_name(name).move_origin
+  end
+  # Vedeu.bind_alias(:_cursor_reset_, :_cursor_origin_)
+
+  # See {file:docs/cursors.md}
+  Vedeu.bind(:_cursor_position_) do |name|
+    Vedeu.cursors.by_name(name).to_a
+  end
+
+  # See {file:docs/cursors.md}
+  Vedeu.bind(:_cursor_reposition_) do |name, y, x|
+    Vedeu.cursors.by_name(name).reposition(y, x)
+
+    Vedeu.trigger(:_clear_view_, name)
+    Vedeu.trigger(:_refresh_view_, name)
+    Vedeu.trigger(:_refresh_cursor_, name)
+  end
+
 end # Vedeu

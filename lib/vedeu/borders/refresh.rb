@@ -362,4 +362,9 @@ module Vedeu
 
   end # Borders
 
+  # See {file:docs/events/refresh.md#\_refresh_border_}
+  Vedeu.bind(:_refresh_border_) do |name|
+    Vedeu::Borders::Refresh.by_name(name)
+  end
+
 end # Vedeu

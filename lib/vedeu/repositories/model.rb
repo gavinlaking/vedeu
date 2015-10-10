@@ -43,14 +43,6 @@ module Vedeu
           model
         end
 
-        # Fetch an instance of a repository's model by name.
-        #
-        # @param name [String|Symbol]
-        # @return [void]
-        def by_name(name)
-          repository.by_name(name) if repository
-        end
-
         # Provide a convenient way to define the child or children of
         # a model.
         #
@@ -131,7 +123,7 @@ module Vedeu
         when 'Geometry'.freeze  then 'Vedeu::Geometry::DSL'.freeze
         when 'Group'.freeze     then 'Vedeu::Groups::DSL'.freeze
         when 'Interface'.freeze then 'Vedeu::Interfaces::DSL'.freeze
-        when 'Keymap'.freeze    then 'Vedeu::Keymaps::DSL'.freeze
+        when 'Keymap'.freeze    then 'Vedeu::Input::DSL'.freeze
         when 'Menu'.freeze      then 'Vedeu::Menus::DSL'.freeze
         # when 'ModelTestClass' then 'Vedeu::Repositories::ModelTestClass::DSL'
         else

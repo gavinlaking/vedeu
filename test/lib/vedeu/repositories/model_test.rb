@@ -28,21 +28,6 @@ module Vedeu
         # it { skip }
       end
 
-      describe '.by_name' do
-        let(:_name) {}
-
-        subject { described.by_name(_name) }
-
-        context 'when the model has no repository set' do
-          it { subject.must_be_instance_of(NilClass) }
-        end
-
-        context 'when the model has a repository set' do
-          # @todo Add more tests.
-          # it { skip }
-        end
-      end
-
       describe '.child' do
         let(:klass) {}
 

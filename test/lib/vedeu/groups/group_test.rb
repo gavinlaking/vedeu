@@ -2,6 +2,12 @@ require 'test_helper'
 
 module Vedeu
 
+  describe 'Bindings' do
+    it { Vedeu.bound?(:_hide_group_).must_equal(true) }
+    it { Vedeu.bound?(:_show_group_).must_equal(true) }
+    it { Vedeu.bound?(:_toggle_group_).must_equal(true) }
+  end
+
   module Groups
 
     describe Group do

@@ -2,6 +2,10 @@ require 'test_helper'
 
 module Vedeu
 
+  describe 'Bindings' do
+    it { Vedeu.bound?(:_initialize_).must_equal(true) }
+  end
+
   module Runtime
 
     describe Flags do

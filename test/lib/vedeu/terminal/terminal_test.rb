@@ -2,6 +2,10 @@ require 'test_helper'
 
 module Vedeu
 
+  describe 'Bindings' do
+    it { Vedeu.bound?(:_resize_).must_equal(true) }
+  end
+
   describe Terminal do
 
     let(:described) { Vedeu::Terminal }

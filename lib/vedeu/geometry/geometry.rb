@@ -39,10 +39,6 @@ module Vedeu
       # @return [String]
       attr_accessor :name
 
-      # @!attribute [r] attributes
-      # @return [Hash]
-      attr_reader :attributes
-
       # @!attribute [w] height
       # @return [Fixnum]
       attr_writer :height
@@ -97,11 +93,26 @@ module Vedeu
       # @option attributes yn [Fixnum]
       # @return [Vedeu::Geometry::Geometry]
       def initialize(attributes = {})
-        @attributes = defaults.merge!(attributes)
-
-        @attributes.each do |key, value|
+        defaults.merge!(attributes).each do |key, value|
           instance_variable_set("@#{key}", value)
         end
+      end
+
+      # @return [Hash]
+      def attributes
+        {
+          client:     @client,
+          centred:    @centred,
+          height:     _height,
+          maximised:  @maximised,
+          name:       @name,
+          repository: @repository,
+          width:      _width,
+          x:          _x,
+          xn:         _xn,
+          y:          _y,
+          yn:         _yn,
+        }
       end
 
       # An object is equal when its values are the same.
@@ -232,7 +243,7 @@ module Vedeu
       # @option attrs yn [Fixnum]
       # @return [Hash<Symbol => Boolean, Fixnum>]
       def move_attributes(attrs = {})
-        @attributes.merge!(
+        attributes.merge!(
           centred:   false,
           maximised: false,
           x:         x,

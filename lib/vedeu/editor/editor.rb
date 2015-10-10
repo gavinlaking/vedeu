@@ -87,4 +87,9 @@ module Vedeu
 
   end # Editor
 
+  # See {file:docs/events/system.md#\_editor_}
+  Vedeu.bind(:_editor_) do |key|
+    Vedeu::Editor::Editor.keypress(name: Vedeu.focus, input: key)
+  end
+
 end # Vedeu

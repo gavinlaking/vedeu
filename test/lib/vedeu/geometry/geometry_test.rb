@@ -38,9 +38,6 @@ module Vedeu
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
-        it {
-          instance.instance_variable_get('@attributes').must_equal(attributes)
-        }
         it { instance.instance_variable_get('@centred').must_equal(centred) }
         it { instance.instance_variable_get('@client').must_equal(client) }
         it { instance.instance_variable_get('@height').must_equal(height) }
