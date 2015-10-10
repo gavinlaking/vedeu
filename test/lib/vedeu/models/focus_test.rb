@@ -2,6 +2,12 @@ require 'test_helper'
 
 module Vedeu
 
+  describe 'Bindings' do
+    it { Vedeu.bound?(:_focus_by_name_).must_equal(true) }
+    it { Vedeu.bound?(:_focus_next_).must_equal(true) }
+    it { Vedeu.bound?(:_focus_prev_).must_equal(true) }
+  end
+
   module Models
 
     describe Focus do

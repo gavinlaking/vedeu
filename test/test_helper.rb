@@ -119,7 +119,7 @@ def test_configuration
     # log '/tmp/vedeu_test_helper.log'
   end
 
-  Vedeu::Repositories.reset!
+  # Vedeu::Repositories.reset!
 end
 
 test_configuration

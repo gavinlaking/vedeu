@@ -30,4 +30,7 @@ module Vedeu
 
   end # Output
 
+  # See {file:docs/events/refresh.md#\_refresh_}
+  Vedeu.bind(:_refresh_) { Vedeu::Output::Refresh.all }
+
 end # Vedeu

@@ -193,4 +193,11 @@ module Vedeu
   #   @see Vedeu::Runtime::Router#goto
   def_delegators Vedeu::Runtime::Router, :goto
 
+  # See {file:docs/events/application.md#\_goto_}
+  Vedeu.bind(:_goto_) do |controller, action, **args|
+    Vedeu::Runtime::Router.goto(controller, action, **args)
+  end
+
+  # Vedeu.bind_alias(:_action_, :_goto_)
+
 end # Vedeu

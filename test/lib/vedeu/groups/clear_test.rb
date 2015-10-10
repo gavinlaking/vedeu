@@ -2,6 +2,10 @@ require 'test_helper'
 
 module Vedeu
 
+  describe 'Bindings' do
+    it { Vedeu.bound?(:_clear_group_).must_equal(true) }
+  end
+
   module Groups
 
     describe Clear do

@@ -2,6 +2,10 @@ require 'test_helper'
 
 module Vedeu
 
+  describe 'Bindings' do
+    it { Vedeu.bound?(:_keypress_).must_equal(true) }
+  end
+
   module Input
 
     describe Mapper do

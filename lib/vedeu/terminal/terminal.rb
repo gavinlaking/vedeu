@@ -224,4 +224,7 @@ module Vedeu
   #   @see Vedeu::Terminal#width
   def_delegators Vedeu::Terminal, :height, :resize, :width
 
+  # See {file:docs/events/view.md#\_resize_}
+  Vedeu.bind(:_resize_, delay: 0.25) { Vedeu.resize }
+
 end # Vedeu

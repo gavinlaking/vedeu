@@ -2,6 +2,10 @@ require 'test_helper'
 
 module Vedeu
 
+  describe 'Bindings' do
+    it { Vedeu.bound?(:_refresh_border_).must_equal(true) }
+  end
+
   module Borders
 
     describe Refresh do

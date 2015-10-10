@@ -2,6 +2,13 @@ require 'test_helper'
 
 module Vedeu
 
+  describe 'Bindings' do
+    it { Vedeu.bound?(:_drb_restart_).must_equal(true) }
+    it { Vedeu.bound?(:_drb_start_).must_equal(true) }
+    it { Vedeu.bound?(:_drb_status_).must_equal(true) }
+    it { Vedeu.bound?(:_drb_stop_).must_equal(true) }
+  end
+
   module Distributed
 
     describe Server do

@@ -95,4 +95,13 @@ module Vedeu
 
   end # Interfaces
 
+  describe 'Bindings' do
+    it { Vedeu.bound?(:_hide_interface_).must_equal(true) }
+    it { Vedeu.bound?(:_show_interface_).must_equal(true) }
+    it { Vedeu.bound?(:_toggle_interface_).must_equal(true) }
+    # it { Vedeu.bound?(:_hide_view_).must_equal(true) }
+    # it { Vedeu.bound?(:_show_view_).must_equal(true) }
+    # it { Vedeu.bound?(:_toggle_view_).must_equal(true) }
+  end
+
 end # Vedeu

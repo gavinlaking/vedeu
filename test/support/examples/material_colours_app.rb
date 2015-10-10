@@ -38,6 +38,7 @@ class VedeuMaterialColoursApp
       y  2
       yn 13
     end
+    group :my_group
     zindex 2
   end
 
@@ -85,6 +86,7 @@ class VedeuMaterialColoursApp
       y(5)
       yn(13)
     end
+    group :my_group
     zindex(1)
   end
 
@@ -115,6 +117,10 @@ class VedeuMaterialColoursApp
     key('s') { Vedeu.trigger(:_view_down_, 'main_interface')  }
     key('d') { Vedeu.trigger(:_view_up_, 'main_interface')    }
     key('f') { Vedeu.trigger(:_view_right_, 'main_interface') }
+
+    key('w') { Vedeu.trigger(:_toggle_group_, :my_group) }
+    key('e') { Vedeu.trigger(:_hide_group_, :my_group) }
+    key('r') { Vedeu.trigger(:_show_group_, :my_group) }
 
     key('h') { Vedeu.trigger(:_view_left_, 'other_interface')  }
     key('j') { Vedeu.trigger(:_view_down_, 'other_interface')  }

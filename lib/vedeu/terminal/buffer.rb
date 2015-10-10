@@ -145,4 +145,15 @@ module Vedeu
   def_delegators Vedeu::Terminal::Buffer, :clear
   def_delegators Vedeu::Terminal::Buffer, :refresh
 
+  # See {file:docs/events/visibility.md#\_clear_}
+  Vedeu.bind(:_clear_) { Vedeu.clear }
+
+  # See {file:docs/events/drb.md#\_drb_retrieve_output_}
+  Vedeu.bind(:_drb_retrieve_output_) { Vedeu::Terminal::Buffer.output }
+
+  # See {file:docs/events/drb.md#\_drb_store_output_}
+  Vedeu.bind(:_drb_store_output_) do |data|
+    Vedeu::Terminal::Buffer.write(data)
+  end
+
 end # Vedeu

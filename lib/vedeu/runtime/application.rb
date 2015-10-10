@@ -136,4 +136,10 @@ module Vedeu
   #   @see Vedeu::Runtime::Application.stop
   def_delegators Vedeu::Runtime::Application, :exit
 
+  # See {file:docs/events/system.md#\_exit_}
+  Vedeu.bind(:_exit_) { Vedeu.exit }
+
+  # See {file:docs/events/system.md#\_mode_switch_}
+  Vedeu.bind(:_mode_switch_) { fail Vedeu::Error::ModeSwitch }
+
 end # Vedeu

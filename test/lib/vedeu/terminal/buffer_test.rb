@@ -2,6 +2,12 @@ require 'test_helper'
 
 module Vedeu
 
+  describe 'Bindings' do
+    it { Vedeu.bound?(:_clear_).must_equal(true) }
+    it { Vedeu.bound?(:_drb_retrieve_output_).must_equal(true) }
+    it { Vedeu.bound?(:_drb_store_output_).must_equal(true) }
+  end
+
   module Terminal
 
     describe Buffer do
@@ -85,5 +91,7 @@ module Vedeu
     end # Buffer
 
   end # Terminal
+
+
 
 end # Vedeu

@@ -2,6 +2,10 @@ require 'test_helper'
 
 module Vedeu
 
+  describe 'Bindings' do
+    it { Vedeu.bound?(:_editor_).must_equal(true) }
+  end
+
   module Editor
 
     describe Editor do

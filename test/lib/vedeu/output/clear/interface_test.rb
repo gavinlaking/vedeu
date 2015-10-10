@@ -2,6 +2,11 @@ require 'test_helper'
 
 module Vedeu
 
+  describe 'Bindings' do
+    it { Vedeu.bound?(:_clear_view_).must_equal(true) }
+    it { Vedeu.bound?(:_clear_view_content_).must_equal(true) }
+  end
+
   module Clear
 
     describe Interface do
