@@ -95,6 +95,7 @@ if ENV['PERFORMANCE']
 
   Minitest::Reporters.use!(
     Minitest::Reporters::MeanTimeReporter.new({
+      show_count: 20,
       previous_runs_filename: "/tmp/durations",
       report_filename:        "/tmp/durations_results"
     })
