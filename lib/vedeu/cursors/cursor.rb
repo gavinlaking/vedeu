@@ -240,7 +240,7 @@ module Vedeu
 
       # @return [Fixnum] The column/character coordinate.
       def x
-        @x = (@x < bx)  ? bx : @x
+        @x = (@x < bx) ? bx : @x
         @x = (@x > bxn) ? bxn : @x
         @x
       end
