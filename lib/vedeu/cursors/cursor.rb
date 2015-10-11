@@ -43,7 +43,7 @@ module Vedeu
 
       # @param (see #initialize)
       # @return [Vedeu::Cursors::Cursor]
-      def self.store(attributes)
+      def self.store(attributes = {})
         new(attributes).store
       end
 
@@ -64,11 +64,22 @@ module Vedeu
       #   the cursor.
       # @return [Vedeu::Cursors::Cursor]
       def initialize(attributes = {})
-        @attributes = defaults.merge!(attributes)
-
-        @attributes.each do |key, value|
+        defaults.merge!(attributes).each do |key, value|
           instance_variable_set("@#{key}", value)
         end
+      end
+
+      # @return [Hash]
+      def attributes
+        {
+          name:       @name,
+          ox:         ox,
+          oy:         oy,
+          repository: @repository,
+          visible:    @visible,
+          x:          x,
+          y:          y,
+        }
       end
 
       # An object is equal when its values are the same.
@@ -90,7 +101,7 @@ module Vedeu
         @oy += 1
 
         Vedeu::Cursors::Cursor.store(
-          new_attributes(coordinate.y_position, x, oy, ox))
+          new_attributes(coordinate(oy, :y).y, x, oy, ox))
       end
 
       # Moves the cursor left by one column.
@@ -103,7 +114,7 @@ module Vedeu
         @ox -= 1
 
         Vedeu::Cursors::Cursor.store(
-          new_attributes(y, coordinate.x_position, oy, ox))
+          new_attributes(y, coordinate(ox, :x).x, oy, ox))
       end
 
       # Moves the cursor to the top left of the named interface.
@@ -127,7 +138,7 @@ module Vedeu
         @ox += 1
 
         Vedeu::Cursors::Cursor.store(
-          new_attributes(y, coordinate.x_position, oy, ox))
+          new_attributes(y, coordinate(ox, :x).x, oy, ox))
       end
 
       # Moves the cursor up by one row.
@@ -140,7 +151,7 @@ module Vedeu
         @oy -= 1
 
         Vedeu::Cursors::Cursor.store(
-          new_attributes(coordinate.y_position, x, oy, ox))
+          new_attributes(coordinate(oy, :y).y, x, oy, ox))
       end
 
       # Renders the cursor.
@@ -162,7 +173,7 @@ module Vedeu
         @ox = new_ox
 
         Vedeu::Cursors::Cursor.store(
-          new_attributes(coordinate.y_position, coordinate.x_position, oy, ox))
+          new_attributes(coordinate(oy, :y).y, coordinate(ox, :x).x, oy, ox))
       end
 
       # @return [Array<Fixnum>]
@@ -200,14 +211,12 @@ module Vedeu
 
       # @return [Fixnum]
       def ox
-        @ox = 0 if @ox < 0
-        @ox
+        @ox < 0 ? 0 : @ox
       end
 
       # @return [Fixnum]
       def oy
-        @oy = 0 if @oy < 0
-        @oy
+        @oy < 0 ? 0 : @oy
       end
 
       # Return the position of this cursor.
@@ -235,21 +244,15 @@ module Vedeu
 
       # @return [Fixnum] The column/character coordinate.
       def x
-        @x = bx  if @x < bx
-        @x = bxn if @x > bxn
-
-        @attributes[:x] = @x
-
+        @x = (@x < bx)  ? bx : @x
+        @x = (@x > bxn) ? bxn : @x
         @x
       end
 
       # @return [Fixnum] The row/line coordinate.
       def y
-        @y = by  if @y < by
-        @y = byn if @y > byn
-
-        @attributes[:y] = @y
-
+        @y = (@y < by) ? by : @y
+        @y = (@y > byn) ? byn : @y
         @y
       end
 
@@ -260,9 +263,11 @@ module Vedeu
         @border ||= Vedeu.borders.by_name(name)
       end
 
+      # Determine correct x and y related coordinates.
+      #
       # @return [Vedeu::Geometry::Coordinate]
-      def coordinate
-        @coordinate ||= Vedeu::Geometry::Coordinate.new(name, oy, ox)
+      def coordinate(offset, type)
+        Vedeu::Geometry::Coordinate.new(name: name, offset: offset, type: type)
       end
 
       # The default values for a new instance of this class.
