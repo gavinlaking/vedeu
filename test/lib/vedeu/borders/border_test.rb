@@ -51,7 +51,6 @@ module Vedeu
       describe 'accessors' do
         it {
           instance.must_respond_to(:attributes)
-          instance.must_respond_to(:attributes=)
           instance.must_respond_to(:bottom_left)
           instance.must_respond_to(:bottom_left=)
           instance.must_respond_to(:bottom_right)

@@ -25,10 +25,6 @@ module Vedeu
                      :y,
                      :yn
 
-      # @!attribute [rw] attributes
-      # @return [Hash]
-      attr_accessor :attributes
-
       # @!attribute [rw] bottom_left
       # @return [String]
       attr_accessor :bottom_left

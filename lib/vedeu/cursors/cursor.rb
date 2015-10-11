@@ -17,10 +17,6 @@ module Vedeu
                      :by,
                      :byn
 
-      # @!attribute [r] attributes
-      # @return [Hash]
-      attr_reader :attributes
-
       # @!attribute [r] name
       # @return [String|Symbol]
       attr_reader :name
