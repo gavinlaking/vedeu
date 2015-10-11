@@ -25,10 +25,6 @@ module Vedeu
                      :y,
                      :yn
 
-      # @!attribute [rw] attributes
-      # @return [Hash]
-      attr_accessor :attributes
-
       # @!attribute [rw] bottom_left
       # @return [String]
       attr_accessor :bottom_left
@@ -148,9 +144,9 @@ module Vedeu
           parent:       @parent,
           repository:   @repository,
           show_bottom:  @show_bottom,
-          show_left:    @show_,
-          show_right:   @show_,
-          show_top:     @show_,
+          show_left:    @show_left,
+          show_right:   @show_right,
+          show_top:     @show_top,
           style:        @style,
           title:        @title,
           top_left:     @top_left,

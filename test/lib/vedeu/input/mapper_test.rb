@@ -4,6 +4,8 @@ module Vedeu
 
   describe 'Bindings' do
     it { Vedeu.bound?(:_keypress_).must_equal(true) }
+    it { Vedeu.bound?(:_drb_input_).must_equal(true) }
+    it { Vedeu.bound?(:_command_).must_equal(true) }
   end
 
   module Input

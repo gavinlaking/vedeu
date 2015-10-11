@@ -137,6 +137,13 @@ module Vedeu
 
       # Fetch the ending coordinate.
       #
+      # 1) if an end value was given, use that.
+      # 2) if a start value wasn't given, but a width or height was,
+      #    use the width or height
+      # 3) if a start value was given and a width or height was given,
+      #    add the width or height to the start and minus 1.
+      # 4) otherwise, use the terminal default width or height
+      #
       # @return [Fixnum]
       def _dn
         if dn

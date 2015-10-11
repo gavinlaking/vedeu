@@ -24,6 +24,8 @@ module Vedeu
   # @return [Vedeu::Editor::Repository]
   def_delegators Vedeu::Editor::Repository, :documents
 
+  # :nocov:
+
   # See {file:docs/events/document.md#\_editor_execute_}
   Vedeu.bind(:_editor_execute_) do |name|
     Vedeu.documents.by_name(name).execute
@@ -64,5 +66,7 @@ module Vedeu
 
   # See {file:docs/events/document.md#\_editor_up_}
   Vedeu.bind(:_editor_up_) { |name| Vedeu.documents.by_name(name).up }
+
+  # :nocov:
 
 end # Vedeu

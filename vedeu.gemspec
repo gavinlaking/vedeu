@@ -24,7 +24,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'guard-minitest',     '2.4.4'
   spec.add_development_dependency 'guard-rubocop',      '1.2.0'
   spec.add_development_dependency 'minitest',           '5.8.1'
-  spec.add_development_dependency 'minitest-reporters', '1.1.2'
+  spec.add_development_dependency 'minitest-reporters', '1.1.3'
   spec.add_development_dependency 'mocha',              '1.1.0'
   spec.add_development_dependency 'pry',                '0.10.2'
   spec.add_development_dependency 'rubocop',            '0.34.2'

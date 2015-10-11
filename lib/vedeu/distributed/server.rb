@@ -249,6 +249,8 @@ module Vedeu
   def_delegators Vedeu::Distributed::Server, :drb_restart, :drb_start,
                  :drb_status, :drb_stop
 
+  # :nocov:
+
   # See {file:docs/events/drb.md#\_drb_restart_}
   Vedeu.bind(:_drb_restart_) { Vedeu::Distributed::Server.restart }
 
@@ -260,5 +262,7 @@ module Vedeu
 
   # See {file:docs/events/drb.md#\_drb_stop_}
   Vedeu.bind(:_drb_stop_) { Vedeu::Distributed::Server.stop }
+
+  # :nocov:
 
 end # Vedeu

@@ -145,6 +145,8 @@ module Vedeu
   def_delegators Vedeu::Terminal::Buffer, :clear
   def_delegators Vedeu::Terminal::Buffer, :refresh
 
+  # :nocov:
+
   # See {file:docs/events/visibility.md#\_clear_}
   Vedeu.bind(:_clear_) { Vedeu.clear }
 
@@ -155,5 +157,7 @@ module Vedeu
   Vedeu.bind(:_drb_store_output_) do |data|
     Vedeu::Terminal::Buffer.write(data)
   end
+
+  # :nocov:
 
 end # Vedeu

@@ -65,7 +65,11 @@ module Vedeu
   # @return [Boolean]
   def_delegators Vedeu::Runtime::Flags, :ready?, :ready!
 
+  # :nocov:
+
   # See {file:docs/events/system.md#\_initialize_}
   Vedeu.bind(:_initialize_) { Vedeu.ready! }
+
+  # :nocov:
 
 end # Vedeu

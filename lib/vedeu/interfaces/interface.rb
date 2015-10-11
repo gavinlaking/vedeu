@@ -134,6 +134,8 @@ module Vedeu
   def_delegators Vedeu::Interfaces::Interface, :hide_interface, :show_interface,
                  :toggle_interface
 
+  # :nocov:
+
   # See {file:docs/events/visibility.md#\_hide_interface_}
   Vedeu.bind(:_hide_interface_) { |name| Vedeu.hide_interface(name) }
   Vedeu.bind_alias(:_hide_view_, :_hide_interface_)
@@ -145,5 +147,7 @@ module Vedeu
   # See {file:docs/events/visibility.md#\_toggle_interface_}
   Vedeu.bind(:_toggle_interface_) { |name| Vedeu.toggle_interface(name) }
   Vedeu.bind_alias(:_toggle_view_, :_toggle_interface_)
+
+  # :nocov:
 
 end # Vedeu

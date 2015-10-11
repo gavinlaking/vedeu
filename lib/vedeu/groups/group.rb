@@ -179,6 +179,8 @@ module Vedeu
   #   @see Vedeu::Toggleable::ClassMethods#toggle
   def_delegators Vedeu::Groups::Group, :hide_group, :show_group, :toggle_group
 
+  # :nocov:
+
   # See {file:docs/events/visibility.md#\_hide_group_}
   Vedeu.bind(:_hide_group_) { |name| Vedeu.hide_group(name) }
 
@@ -187,5 +189,7 @@ module Vedeu
 
   # See {file:docs/events/visibility.md#\_toggle_group_}
   Vedeu.bind(:_toggle_group_) { |name| Vedeu.toggle_group(name) }
+
+  # :nocov:
 
 end # Vedeu

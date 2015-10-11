@@ -7,7 +7,6 @@ if ENV['SIMPLECOV'] || ENV['CONSOLE_COVERAGE']
     command_name 'MiniTest::Spec'
     add_filter '/test/'
     add_group  'application',   'vedeu/application'
-    add_group  'bindings',      'vedeu/bindings'
     add_group  'borders',       'vedeu/borders'
     add_group  'buffers',       'vedeu/buffers'
     add_group  'colours',       'vedeu/colours'
@@ -96,6 +95,7 @@ if ENV['PERFORMANCE']
 
   Minitest::Reporters.use!(
     Minitest::Reporters::MeanTimeReporter.new({
+      show_count: 20,
       previous_runs_filename: "/tmp/durations",
       report_filename:        "/tmp/durations_results"
     })

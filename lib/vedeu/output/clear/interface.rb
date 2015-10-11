@@ -170,6 +170,8 @@ module Vedeu
   #   @see Vedeu::Clear::Interface.clear_content_by_name
   def_delegators Vedeu::Clear::Interface, :clear_content_by_name
 
+  # :nocov:
+
   # See {file:docs/events/visibility.md#\_clear_view_}
   Vedeu.bind(:_clear_view_) { |name| Vedeu.clear_by_name(name) }
 
@@ -177,5 +179,7 @@ module Vedeu
   Vedeu.bind(:_clear_view_content_) do |name|
     Vedeu.clear_content_by_name(name)
   end
+
+  # :nocov:
 
 end # Vedeu

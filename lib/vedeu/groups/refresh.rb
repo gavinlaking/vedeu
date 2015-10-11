@@ -64,9 +64,13 @@ module Vedeu
 
   end # Groups
 
+  # :nocov:
+
   # See {file:docs/events/refresh.md#\_refresh_group_}
   Vedeu.bind(:_refresh_group_) do |name|
     Vedeu::Groups::Refresh.by_name(name)
   end
+
+  # :nocov:
 
 end # Vedeu

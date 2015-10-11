@@ -194,7 +194,12 @@ module Vedeu
         @now         = 0    # reset now
 
         message = "Triggering: '#{name.inspect}'"
-        message << " with '#{args.inspect}'" if args.any?
+
+        if args.size > 1
+          message << " with #{args.inspect}"
+        elsif args.one?
+          message << " for #{args.first.inspect}"
+        end
 
         Vedeu.log(type: :event, message: message)
 

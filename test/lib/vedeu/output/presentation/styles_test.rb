@@ -6,7 +6,6 @@ module Vedeu
 
     include Vedeu::Presentation
 
-    attr_reader :attributes
     attr_reader :parent
 
     def attributes
