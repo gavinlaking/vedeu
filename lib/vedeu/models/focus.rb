@@ -261,6 +261,8 @@ module Vedeu
   def_delegators Vedeu::Models::Focus, :focus, :focus_by_name, :focussed?,
                  :focus_next, :focus_previous
 
+  # :nocov:
+
   # See {file:docs/events/focus.md#\_focus_by_name_}
   Vedeu.bind(:_focus_by_name_) { |name| Vedeu.focus_by_name(name) }
 
@@ -269,5 +271,7 @@ module Vedeu
 
   # See {file:docs/events/focus.md#\_focus_prev_}
   Vedeu.bind(:_focus_prev_) { Vedeu.focus_previous }
+
+  # :nocov:
 
 end # Vedeu

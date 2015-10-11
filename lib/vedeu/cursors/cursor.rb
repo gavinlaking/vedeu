@@ -319,6 +319,8 @@ module Vedeu
   def_delegators Vedeu::Cursors::Cursor, :hide_cursor, :show_cursor,
                  :toggle_cursor
 
+  # :nocov:
+
   # See {file:docs/events/visibility.md#\_hide_cursor_}
   Vedeu.bind(:_hide_cursor_) { |name| Vedeu.hide_cursor(name) }
   # Vedeu.bind_alias(:_cursor_hide_, :_hide_cursor_)
@@ -377,5 +379,7 @@ module Vedeu
     Vedeu.trigger(:_refresh_view_, name)
     Vedeu.trigger(:_refresh_cursor_, name)
   end
+
+  # :nocov:
 
 end # Vedeu

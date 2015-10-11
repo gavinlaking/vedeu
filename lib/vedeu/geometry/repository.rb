@@ -25,6 +25,8 @@ module Vedeu
   # @return [Vedeu::Geometry::Repository]
   def_delegators Vedeu::Geometry::Repository, :geometries
 
+  # :nocov:
+
   # See {file:docs/events/view.md#\_maximise_}
   Vedeu.bind(:_maximise_) do |name|
     Vedeu.geometries.by_name(name).maximise
@@ -49,5 +51,7 @@ module Vedeu
   %w(down left right up).each do |direction|
     Vedeu.bind_alias(:"_geometry_#{direction}_", :"_view_#{direction}_")
   end
+
+  # :nocov:
 
 end # Vedeu

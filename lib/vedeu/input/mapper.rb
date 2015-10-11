@@ -134,6 +134,8 @@ module Vedeu
   #   @see Vedeu::Input::Mapper.keypress
   def_delegators Vedeu::Input::Mapper, :keypress
 
+  # :nocov:
+
   # See {file:docs/events/system.md#\_keypress_}
   Vedeu.bind(:_keypress_) { |key| Vedeu.keypress(key) }
 
@@ -150,5 +152,7 @@ module Vedeu
 
   # See {file:docs/events/system.md#\_command_}
   Vedeu.bind(:_command_) { |command| Vedeu.trigger(:command, command) }
+
+  # :nocov:
 
 end # Vedeu

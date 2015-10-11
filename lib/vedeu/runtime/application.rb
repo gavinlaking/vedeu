@@ -137,6 +137,8 @@ module Vedeu
   #   @see Vedeu::Runtime::Application.stop
   def_delegators Vedeu::Runtime::Application, :exit
 
+  # :nocov:
+
   # See {file:docs/events/system.md#\_exit_}
   Vedeu.bind(:_exit_) { Vedeu.exit }
 
@@ -148,5 +150,7 @@ module Vedeu
     Vedeu.trigger(:_drb_stop_)
     Vedeu.trigger(:cleanup)
   end
+
+  # :nocov:
 
 end # Vedeu

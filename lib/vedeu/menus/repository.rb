@@ -24,6 +24,8 @@ module Vedeu
   # @return [Vedeu::Menus::Repository]
   def_delegators Vedeu::Menus::Repository, :menus
 
+  # :nocov:
+
   # See {file:docs/events/menu.md#\_menu_bottom_}
   Vedeu.bind(:_menu_bottom_) do |name|
     Vedeu.menus.by_name(name).bottom_item
@@ -63,5 +65,7 @@ module Vedeu
 
   # See {file:docs/events/menu.md#\_menu_view_}
   Vedeu.bind(:_menu_view_) { |name| Vedeu.menus.by_name(name).view }
+
+  # :nocov:
 
 end # Vedeu

@@ -193,7 +193,11 @@ module Vedeu
   #   @see Vedeu::Logging::Log.log_stderr
   def_delegators Vedeu::Logging::Log, :log, :log_stdout, :log_stderr
 
+  # :nocov:
+
   # See {file:docs/events/system.md#\_log_}
   Vedeu.bind(:_log_) { |msg| Vedeu.log(type: :debug, message: msg) }
+
+  # :nocov:
 
 end # Vedeu
