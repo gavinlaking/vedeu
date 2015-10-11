@@ -109,13 +109,19 @@ module Vedeu
       #
       # @return [Array<Array<Array<Vedeu::Views::Char>>>]
       def render
-        swap if back?
+        if back?
+          swap
 
-        if front?
+          Vedeu::Output::Viewport.render(front)
+
+        elsif front?
           Vedeu::Output::Viewport.render(front)
 
         elsif previous?
           Vedeu::Output::Viewport.render(previous)
+
+        else
+          nil
 
         end
       end
