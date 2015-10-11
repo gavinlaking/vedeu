@@ -95,9 +95,9 @@ module Vedeu
       # @return [Vedeu::Cursors::Cursor]
       def move_down
         @oy += 1
+        @y = coordinate(oy, :y).y
 
-        Vedeu::Cursors::Cursor.store(
-          new_attributes(coordinate(oy, :y).y, x, oy, ox))
+        store
       end
 
       # Moves the cursor left by one column.
@@ -108,9 +108,9 @@ module Vedeu
       # @return [Vedeu::Cursors::Cursor]
       def move_left
         @ox -= 1
+        @x = coordinate(ox, :x).x
 
-        Vedeu::Cursors::Cursor.store(
-          new_attributes(y, coordinate(ox, :x).x, oy, ox))
+        store
       end
 
       # Moves the cursor to the top left of the named interface.
@@ -120,8 +120,12 @@ module Vedeu
       #
       # @return [Vedeu::Cursors::Cursor]
       def move_origin
-        Vedeu::Cursors::Cursor.store(
-          attributes.merge!(x: bx, y: by, ox: 0, oy: 0))
+        @x = bx
+        @y = by
+        @ox = 0
+        @oy = 0
+
+        store
       end
 
       # Moves the cursor right by one column.
@@ -132,9 +136,9 @@ module Vedeu
       # @return [Vedeu::Cursors::Cursor]
       def move_right
         @ox += 1
+        @x = coordinate(ox, :x).x
 
-        Vedeu::Cursors::Cursor.store(
-          new_attributes(y, coordinate(ox, :x).x, oy, ox))
+        store
       end
 
       # Moves the cursor up by one row.
@@ -145,9 +149,9 @@ module Vedeu
       # @return [Vedeu::Cursors::Cursor]
       def move_up
         @oy -= 1
+        @y = coordinate(oy, :y).y
 
-        Vedeu::Cursors::Cursor.store(
-          new_attributes(coordinate(oy, :y).y, x, oy, ox))
+        store
       end
 
       # Renders the cursor.
@@ -167,9 +171,10 @@ module Vedeu
       def reposition(new_oy, new_ox)
         @oy = new_oy
         @ox = new_ox
+        @y  = coordinate(oy, :y).y
+        @x  = coordinate(ox, :x).x
 
-        Vedeu::Cursors::Cursor.store(
-          new_attributes(coordinate(oy, :y).y, coordinate(ox, :x).x, oy, ox))
+        store
       end
 
       # @return [Array<Fixnum>]
