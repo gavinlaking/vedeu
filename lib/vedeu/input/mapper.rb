@@ -137,4 +137,18 @@ module Vedeu
   # See {file:docs/events/system.md#\_keypress_}
   Vedeu.bind(:_keypress_) { |key| Vedeu.keypress(key) }
 
+  # See {file:docs/events/drb.md#\_drb_input_}
+  Vedeu.bind(:_drb_input_) do |data, type|
+    Vedeu.log(type: :drb, message: "Sending input (#{type})".freeze)
+
+    case type
+    when :command  then Vedeu.trigger(:_command_, data)
+    when :keypress then Vedeu.trigger(:_keypress_, data)
+    else Vedeu.trigger(:_keypress_, data)
+    end
+  end
+
+  # See {file:docs/events/system.md#\_command_}
+  Vedeu.bind(:_command_) { |command| Vedeu.trigger(:command, command) }
+
 end # Vedeu

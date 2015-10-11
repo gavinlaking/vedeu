@@ -143,4 +143,10 @@ module Vedeu
   # See {file:docs/events/system.md#\_mode_switch_}
   Vedeu.bind(:_mode_switch_) { fail Vedeu::Error::ModeSwitch }
 
+  # See {file:docs/events/system.md#\_cleanup_}
+  Vedeu.bind(:_cleanup_) do
+    Vedeu.trigger(:_drb_stop_)
+    Vedeu.trigger(:cleanup)
+  end
+
 end # Vedeu

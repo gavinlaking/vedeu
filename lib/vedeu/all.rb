@@ -42,6 +42,4 @@ require 'vedeu/input/all'
 require 'vedeu/interfaces/all'
 require 'vedeu/menus/all'
 require 'vedeu/templating/all'
-
-require 'vedeu/bindings/all'
 require 'vedeu/plugins/all'
