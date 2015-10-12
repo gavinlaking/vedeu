@@ -63,7 +63,7 @@ module Vedeu
 
         it { subject.must_be_instance_of(Vedeu::Views::Lines) }
 
-        context 'when the required block is not provided' do
+        context 'when the required block is not given' do
           subject { instance.lines }
 
           it { proc { subject }.must_raise(Vedeu::Error::RequiresBlock) }
