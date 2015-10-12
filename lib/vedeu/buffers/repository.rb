@@ -11,7 +11,7 @@ module Vedeu
       null Vedeu::Buffers::Null
       real Vedeu::Buffers::Buffer
 
-    end # Buffers
+    end # Repository
 
     class Buffer
 

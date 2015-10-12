@@ -120,9 +120,6 @@ module Vedeu
         elsif previous?
           Vedeu::Output::Viewport.render(previous)
 
-        else
-          nil
-
         end
       end
 
