@@ -21,22 +21,6 @@ module Vedeu
       let(:current)    { 0 }
       let(:selected)   {}
 
-      describe '.menu' do
-        subject {
-          described.menu('elements') do
-            # ...
-          end
-        }
-
-        it { subject.must_be_instance_of(described) }
-
-        context 'when the block is not given' do
-          subject { described.menu }
-
-          it { proc { subject }.must_raise(Vedeu::Error::RequiresBlock) }
-        end
-      end
-
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
         it {

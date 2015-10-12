@@ -18,6 +18,22 @@ module Vedeu
       let(:collection) { [:sodium, :magnesium, :aluminium, :silicon] }
       let(:menu_name)  { 'elements' }
 
+      describe '.menu' do
+        subject {
+          described.menu('elements') do
+            # ...
+          end
+        }
+
+        it { subject.must_be_instance_of(Vedeu::Menus::Menu) }
+
+        context 'when the block is not given' do
+          subject { described.menu }
+
+          it { proc { subject }.must_raise(Vedeu::Error::RequiresBlock) }
+        end
+      end
+
       describe '#item' do
         let(:_value) { :platinum }
 
