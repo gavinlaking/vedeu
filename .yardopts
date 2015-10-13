@@ -3,10 +3,10 @@
 --embed-mixins
 -
 docs/api.md
-docs/border.md
+docs/borders.md
 docs/buffer.md
 docs/configuration.md
-docs/cursor.md
+docs/cursors.md
 docs/dsl.md
 docs/events.md
 docs/geometry.md
