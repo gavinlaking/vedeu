@@ -7,6 +7,8 @@ module Vedeu
     # the border parts (e.g. the corners, verticals and horizontals)
     # can be customised as can the colours and styles.
     #
+    # More information can be found at: {file:docs/borders.md Borders}
+    #
     # @note
     #   Refer to UTF-8 U+2500 to U+257F for border characters.
     #   More details can be found at:
@@ -58,11 +60,13 @@ module Vedeu
       alias_method :top?, :show_top
 
       # @!attribute [rw] caption
-      # @return [String]
+      # @return [String] An optional caption for when the bottom
+      #   border is to be shown.
       attr_accessor :caption
 
       # @!attribute [rw] title
-      # @return [String]
+      # @return [String] An optional title for when the top
+      #   border is to be shown.
       attr_accessor :title
 
       # @!attribute [rw] top_left
