@@ -72,7 +72,7 @@ class HelloWorldsApp
           line
           line { centre "Press 'q' to exit,",     width: 24 }
           line { centre " 'w' to switch worlds.", width: 24 }
-          line { centre "#{Vedeu.trigger(:_cursor_position_, Vedeu.focus)" }
+          line { centre "#{Vedeu.trigger(:_cursor_position_, Vedeu.focus)}" }
         end
       end
     end

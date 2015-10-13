@@ -127,7 +127,7 @@ module Vedeu
       # @param name [String|Symbol] The name of the interface.
       # @return [Hash]
       def new_attributes(name)
-        attributes.merge!(existing_attributes(name))
+        existing_attributes(name).merge!(attributes)
       end
 
       # Retrieve the attributes of the interface by name.

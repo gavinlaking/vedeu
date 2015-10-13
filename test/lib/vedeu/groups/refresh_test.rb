@@ -29,10 +29,10 @@ module Vedeu
         end
 
         context 'when the name is present' do
-          it {
-            Vedeu::Groups::Refresh.expects(:by_name).with(_name)
-            subject
-          }
+          # it {
+          #   Vedeu.expects(:trigger).with(:_refresh_view_)
+          #   subject
+          # }
         end
       end
 

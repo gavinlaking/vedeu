@@ -34,35 +34,6 @@ module Vedeu
       # @return [Fixnum]
       attr_accessor :selected
 
-      # Register a menu by name which will display a collection of
-      # items for your users to select; and provide interactivity
-      # within your application.
-      #
-      # @param name [String|Symbol]
-      # @param block [Proc] A set of attributes which define the
-      #   features of the menu. See {Vedeu::Menus::DSL#items} and
-      #   {Vedeu::Menus::DSL#name}.
-      #
-      # @example
-      #   Vedeu.menu :my_interface do
-      #     items [:item_1, :item_2, :item_3]
-      #     # ...
-      #   end
-      #
-      #   Vedeu.menu do
-      #     name :menus_must_have_a_name
-      #     items Track.all_my_favourites
-      #     # ...
-      #   end
-      #
-      # @raise [Vedeu::Error::RequiresBlock]
-      # @return [API::Menu]
-      def self.menu(name = '', &block)
-        fail Vedeu::Error::RequiresBlock unless block_given?
-
-        build(name: name, &block).store
-      end
-
       # Returns a new instance of Vedeu::Menus::Menu.
       #
       # @param attributes [Hash]
@@ -229,7 +200,7 @@ module Vedeu
   end # Menus
 
   # @!method menu
-  #   @see Vedeu::Menus::Menu.menu
-  def_delegators Vedeu::Menus::Menu, :menu
+  #   @see Vedeu::Menus::DSL.menu
+  def_delegators Vedeu::Menus::DSL, :menu
 
 end # Vedeu

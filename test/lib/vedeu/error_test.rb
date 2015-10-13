@@ -4,6 +4,33 @@ module Vedeu
 
   module Error
 
+    describe ActionNotFound do
+    end
+
+    describe ControllerNotFound do
+    end
+
+    describe Fatal do
+    end
+
+    describe Interrupt do
+    end
+
+    describe InvalidSyntax do
+    end
+
+    describe MissingRequired do
+    end
+
+    describe ModelNotFound do
+    end
+
+    describe ModeSwitch do
+    end
+
+    describe NotImplemented do
+    end
+
     describe OutOfRange do
 
       let(:described) { Vedeu::Error::OutOfRange }

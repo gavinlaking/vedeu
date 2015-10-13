@@ -47,8 +47,6 @@ module Vedeu
         subject { instance.to_a }
 
         context 'when there are no lines' do
-          let(:lines) { Vedeu::Editor::Lines.new }
-
           it { subject.must_equal([]) }
         end
 
@@ -67,51 +65,47 @@ module Vedeu
         end
       end
 
-      # describe '#viewport' do
-      #   subject { instance.viewport }
+      describe '#viewport' do
+        subject { instance.viewport }
 
-      #   context 'when there are no lines' do
-      #     let(:lines) { Vedeu::Editor::Lines.new }
+        context 'when there are no lines' do
+          it { subject.must_equal([]) }
+        end
 
-      #     it { subject.must_equal([]) }
-      #   end
+        context 'when there are lines' do
+          let(:lines) {
+            Vedeu::Editor::Lines.new([
+              Vedeu::Editor::Line.new('Hydrogen'),
+              Vedeu::Editor::Line.new('Helium'),
+              Vedeu::Editor::Line.new('Lithium'),
+              Vedeu::Editor::Line.new('Beryllium'),
+              Vedeu::Editor::Line.new('Boron'),
+            ])
+          }
+          let(:expected) {
+            [
+              "\e[1;1H\e[39m\e[49m\e[24m\e[22m\e[27me",
+              "\e[1;2H\e[39m\e[49m\e[24m\e[22m\e[27ml",
+              "\e[1;3H\e[39m\e[49m\e[24m\e[22m\e[27mi",
+              "\e[1;4H\e[39m\e[49m\e[24m\e[22m\e[27mu",
+              "\e[1;5H\e[39m\e[49m\e[24m\e[22m\e[27mm",
+              "\e[2;1H\e[39m\e[49m\e[24m\e[22m\e[27mi",
+              "\e[2;2H\e[39m\e[49m\e[24m\e[22m\e[27mt",
+              "\e[2;3H\e[39m\e[49m\e[24m\e[22m\e[27mh",
+              "\e[2;4H\e[39m\e[49m\e[24m\e[22m\e[27mi",
+              "\e[2;5H\e[39m\e[49m\e[24m\e[22m\e[27mu",
+              "\e[3;1H\e[39m\e[49m\e[24m\e[22m\e[27me",
+              "\e[3;2H\e[39m\e[49m\e[24m\e[22m\e[27mr",
+              "\e[3;3H\e[39m\e[49m\e[24m\e[22m\e[27my",
+              "\e[3;4H\e[39m\e[49m\e[24m\e[22m\e[27ml",
+              "\e[3;5H\e[39m\e[49m\e[24m\e[22m\e[27ml"
+            ]
+          }
 
-      #   context 'when there are lines' do
-      #     let(:lines) {
-      #       Vedeu::Editor::Lines.new([
-      #         Vedeu::Editor::Line.new('Hydrogen'),
-      #         Vedeu::Editor::Line.new('Helium'),
-      #         Vedeu::Editor::Line.new('Lithium'),
-      #         Vedeu::Editor::Line.new('Beryllium'),
-      #         Vedeu::Editor::Line.new('Boron'),
-      #       ])
-      #     }
-
-      #     it { subject.must_equal(['elium', 'ithiu', 'eryll']) }
-
-      #     context 'when oy is near the bottom' do
-      #       let(:oy) { 6 }
-
-      #       it { subject.must_equal([]) }
-      #     end
-
-      #     context 'when ox is nearly past the content width' do
-      #       let(:oy) { 5 }
-      #       let(:ox) { 10 }
-
-      #       it 'returns only that which is visible, discarding empty lines' do
-      #         subject.must_equal([])
-      #       end
-      #     end
-
-      #     context 'when both oy and ox are effectively out of range' do
-      #       let(:oy) { 10 }
-      #       let(:ox) { 20 }
-
-      #       it { subject.must_equal([]) }
-      #     end
-      #   end
-      # end
+          it { subject.size.must_equal(15) }
+          it { subject.map(&:to_s).must_equal(expected) }
+        end
+      end
 
     end # Cropper
 

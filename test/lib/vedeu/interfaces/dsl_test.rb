@@ -42,44 +42,6 @@ module Vedeu
         end
       end
 
-      describe '#border' do
-        after { Vedeu.borders.reset }
-
-        context 'when the block is not given' do
-          subject { instance.border }
-
-          it { proc { subject }.must_raise(Vedeu::Error::RequiresBlock) }
-        end
-
-        context 'when the block is given' do
-          subject { instance.border { } }
-
-          it { subject.must_be_instance_of(Vedeu::Borders::Border) }
-
-          context 'when the name is not given' do
-            it 'uses the interface name for storing the border' do
-              subject.name.must_equal('actinium')
-            end
-          end
-
-          context 'when the name is given' do
-            subject { instance.border('magnesium') { } }
-
-            it 'uses the name for storing the border' do
-              subject.name.must_equal('magnesium')
-            end
-          end
-        end
-      end
-
-      describe '#border!' do
-        after { Vedeu.borders.reset }
-
-        subject { instance.border! }
-
-        it { subject.must_be_instance_of(Vedeu::Borders::Border) }
-      end
-
       describe '#cursor' do
         let(:_value) {}
 
@@ -169,34 +131,6 @@ module Vedeu
           before { Vedeu::Models::Focus.reset }
 
           it { subject.must_equal(['actinium']) }
-        end
-      end
-
-      describe '#geometry' do
-        context 'when the required block is not provided' do
-          subject { instance.geometry }
-
-          it { proc { subject }.must_raise(Vedeu::Error::RequiresBlock) }
-        end
-
-        context 'when the block is given' do
-          subject { instance.geometry { } }
-
-          it { subject.must_be_instance_of(Vedeu::Geometry::Geometry) }
-
-          context 'when the name is not given' do
-            it 'uses the interface name for storing the geometry' do
-              subject.name.must_equal('actinium')
-            end
-          end
-
-          context 'when the name is given' do
-            subject { instance.geometry('magnesium') { } }
-
-            it 'uses the name for storing the geometry' do
-              subject.name.must_equal('magnesium')
-            end
-          end
         end
       end
 
