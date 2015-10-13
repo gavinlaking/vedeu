@@ -113,6 +113,11 @@ class VedeuMaterialColoursApp
     key(:shift_tab) { Vedeu.trigger(:_focus_prev_) }
     key(:tab)       { Vedeu.trigger(:_focus_next_) }
 
+    key('1') { Vedeu.trigger(:_hide_interface_, 'main_interface') }
+    key('2') { Vedeu.trigger(:_show_interface_, 'main_interface') }
+    key('3') { Vedeu.trigger(:_hide_interface_, 'other_interface') }
+    key('4') { Vedeu.trigger(:_show_interface_, 'other_interface') }
+
     key('a') { Vedeu.trigger(:_view_left_, 'main_interface')  }
     key('s') { Vedeu.trigger(:_view_down_, 'main_interface')  }
     key('d') { Vedeu.trigger(:_view_up_, 'main_interface')    }
@@ -121,24 +126,23 @@ class VedeuMaterialColoursApp
     key('w') { Vedeu.trigger(:_toggle_group_, :my_group) }
     key('e') { Vedeu.trigger(:_hide_group_, :my_group) }
     key('r') { Vedeu.trigger(:_show_group_, :my_group) }
+    key('t') do
+      Vedeu.trigger(:_toggle_interface_, 'main_interface')
+      Vedeu.trigger(:_toggle_interface_, 'other_interface')
+    end
 
     key('h') { Vedeu.trigger(:_view_left_, 'other_interface')  }
     key('j') { Vedeu.trigger(:_view_down_, 'other_interface')  }
     key('k') { Vedeu.trigger(:_view_up_, 'other_interface')    }
     key('l') { Vedeu.trigger(:_view_right_, 'other_interface') }
 
-    key('t') do
-      Vedeu.trigger(:_toggle_interface_, 'main_interface')
-      Vedeu.trigger(:_toggle_interface_, 'other_interface')
-    end
-    key('1') { Vedeu.trigger(:_hide_interface_, 'main_interface') }
-    key('2') { Vedeu.trigger(:_show_interface_, 'main_interface') }
-    key('3') { Vedeu.trigger(:_hide_interface_, 'other_interface') }
-    key('4') { Vedeu.trigger(:_show_interface_, 'other_interface') }
     key('m') { Vedeu.trigger(:_maximise_, 'main_interface') }
     key('n') { Vedeu.trigger(:_unmaximise_, 'main_interface') }
     key('b') { Vedeu.trigger(:_maximise_, 'other_interface') }
     key('v') { Vedeu.trigger(:_unmaximise_, 'other_interface') }
+
+    key('x') { Vedeu.trigger(:_set_border_caption_, Vedeu.focus, 'Amazing!') }
+    key('z') { Vedeu.trigger(:_set_border_title_, Vedeu.focus, 'Surprise!') }
   end
 
   Vedeu.renders do
