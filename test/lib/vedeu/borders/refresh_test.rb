@@ -22,7 +22,7 @@ module Vedeu
                                    show_left:   show_left,
                                    show_right:  show_right)
       }
-      let(:visible)     { false }
+      let(:visible)     { true }
       let(:enabled)     { false }
       let(:_name)       { 'Vedeu::Borders::Refresh' }
       let(:title)       {}
@@ -46,7 +46,7 @@ module Vedeu
           Vedeu::Geometry::Geometry.new(name: _name, x: 1, xn: 7, y: 1, yn: 4)
         }
         let(:interface) {
-          Vedeu::Interfaces::Interface.new(name: _name, visible: true)
+          Vedeu::Interfaces::Interface.new(name: _name, visible: visible)
         }
         before do
           Vedeu.borders.stubs(:by_name).returns(border)
@@ -63,9 +63,17 @@ module Vedeu
             Vedeu.expects(:render_output)
             subject
           }
+
+          context 'but the interface/view is not visible' do
+            let(:visible) { false }
+
+            it { Vedeu.expects(:render_output).never }
+            it { subject.must_equal(nil) }
+          end
         end
 
         context 'when the border is not enabled' do
+          it { Vedeu.expects(:render_output).never }
           it { subject.must_equal(nil) }
         end
       end

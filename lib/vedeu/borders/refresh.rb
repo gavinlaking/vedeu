@@ -60,7 +60,7 @@ module Vedeu
 
       # @return [Array<Array<Vedeu::Views::Char>>]
       def render
-        Vedeu.render_output(output) if enabled?
+        Vedeu.render_output(output) if enabled? && visible?
       end
 
       protected
