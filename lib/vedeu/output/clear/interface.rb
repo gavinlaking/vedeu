@@ -6,6 +6,8 @@ module Vedeu
     #
     class Interface
 
+      include Vedeu::Common
+
       class << self
 
         # Clear the interface with the given name.

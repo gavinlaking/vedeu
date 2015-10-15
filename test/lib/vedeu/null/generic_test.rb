@@ -47,6 +47,8 @@ module Vedeu
         it { instance.must_respond_to(:maximise) }
         it { instance.must_respond_to(:maximised?) }
         it { instance.must_respond_to(:unmaximise) }
+        it { instance.must_respond_to(:visible) }
+        it { instance.must_respond_to(:visible?) }
       end
 
       describe '#null' do
@@ -86,13 +88,6 @@ module Vedeu
         subject { instance.store }
 
         it { subject.must_be_instance_of(described) }
-      end
-
-      describe '#visible' do
-        subject { instance.visible }
-
-        it { subject.must_be_instance_of(FalseClass) }
-        it { instance.must_respond_to(:visible?) }
       end
 
       describe '#visible=' do

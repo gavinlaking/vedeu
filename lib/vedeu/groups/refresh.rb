@@ -55,9 +55,15 @@ module Vedeu
       # @return [String]
       def group_name
         return name if present?(name)
+        return group_from_interface if present?(group_from_interface)
 
         fail Vedeu::Error::MissingRequired,
              'Cannot refresh group with an empty group name.'.freeze
+      end
+
+      # @return [String|Symbol]
+      def group_from_interface
+        @_group_name ||= Vedeu.interfaces.by_name(name).group
       end
 
     end # Refresh
