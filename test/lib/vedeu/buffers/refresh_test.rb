@@ -12,48 +12,69 @@ module Vedeu
     describe Refresh do
 
       let(:described) { Vedeu::Buffers::Refresh }
-      let(:instance)  { described.new(_name) }
+      let(:instance)  { described.new(_name, options) }
       let(:_name)     { 'Vedeu::Buffers::Refresh' }
-      let(:ready)     { true }
+      let(:options)   {
+        {
+          content_only: content_only,
+        }
+      }
+      let(:content_only) { false }
+      let(:ready)        { true }
+      let(:buffer)       { mock('Vedeu::Buffers::Buffer', render: nil) }
 
       before do
-        Vedeu.stubs(:ready?).returns(ready)
+        Vedeu.stubs(:trigger).with(:_clear_view_content_, _name)
+        Vedeu.stubs(:trigger).with(:_refresh_border_, _name)
       end
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
         it { instance.instance_variable_get('@name').must_equal(_name) }
+        it { instance.instance_variable_get('@options').must_equal(options) }
       end
 
       describe '.by_name' do
+        before do
+          Vedeu.buffers.stubs(:by_name).with(_name).returns(buffer)
+        end
+
         subject { described.by_name(_name) }
 
-        context 'when Vedeu is not yet ready' do
-          let(:buffer) { mock(render: '') }
+        it {
+          Vedeu.expects(:trigger).with(:_clear_view_content_, _name)
+          subject
+        }
 
-          before do
-            Vedeu.stubs(:trigger).with(:_clear_view_content_, _name)
-            Vedeu.buffers.expects(:by_name).with(_name).returns(buffer)
-            Vedeu.stubs(:trigger).with(:_refresh_border_, _name)
-          end
+        it {
+          Vedeu.buffers.expects(:by_name).with(_name).returns(buffer)
+          subject
+        }
 
-          let(:ready) { false }
+        it {
+          Vedeu.expects(:trigger).with(:_refresh_border_, _name)
+          subject
+        }
+      end
 
-          it {
-            Vedeu.expects(:trigger).with(:_clear_view_content_, _name)
-            subject
-          }
+      describe '.refresh_content_by_name' do
+        let(:content_only) { true }
 
-          it {
-            Vedeu.expects(:trigger).with(:_refresh_border_, _name)
-            subject
-          }
+        before do
+          Vedeu.buffers.stubs(:by_name).with(_name).returns(buffer)
         end
 
-        context 'when Vedeu is ready' do
-          # @todo Add more tests.
-          # it { skip }
-        end
+        subject { described.refresh_content_by_name(_name) }
+
+        it {
+          Vedeu.expects(:trigger).with(:_clear_view_content_, _name)
+          subject
+        }
+
+        it {
+          Vedeu.buffers.expects(:by_name).with(_name).returns(buffer)
+          subject
+        }
       end
 
       describe '#by_name' do
