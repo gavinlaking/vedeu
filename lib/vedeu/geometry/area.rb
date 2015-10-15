@@ -46,7 +46,7 @@ module Vedeu
           d:         attributes[:y],
           dn:        attributes[:yn],
           d_dn:      attributes[:y_yn],
-          default:   attributes[:y_default],
+          default:   Vedeu.height,
           maximised: attributes[:maximised],
           centred:   attributes[:centred],
         }
@@ -54,7 +54,7 @@ module Vedeu
           d:         attributes[:x],
           dn:        attributes[:xn],
           d_dn:      attributes[:x_xn],
-          default:   attributes[:x_default],
+          default:   Vedeu.width,
           maximised: attributes[:maximised],
           centred:   attributes[:centred],
         }
