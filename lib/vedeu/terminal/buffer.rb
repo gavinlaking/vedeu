@@ -95,6 +95,8 @@ module Vedeu
           buffer[v.position.y][v.position.x] = v if valid_position?(v)
         end
 
+        render
+
         self
       end
 

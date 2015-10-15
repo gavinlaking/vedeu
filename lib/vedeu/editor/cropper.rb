@@ -8,6 +8,7 @@ module Vedeu
     class Cropper
 
       extend Forwardable
+      include Vedeu::Common
 
       def_delegators :border,
                      :bx,
@@ -26,7 +27,7 @@ module Vedeu
       # @return [Vedeu::Editor::Cropper]
       def initialize(lines:, ox:, oy:, name:)
         @lines = lines
-        @name  = name
+        @name  = present?(name) ? name : Vedeu.focus
         @ox    = ox
         @oy    = oy
       end

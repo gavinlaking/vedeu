@@ -21,7 +21,7 @@ module Vedeu
       # @return [Vedeu::Null::Generic]
       def initialize(attributes = {})
         @attributes = attributes
-        @name       = @attributes[:name]
+        @name       = @attributes.fetch(:name, '')
       end
 
       # @return [FalseClass]
@@ -33,6 +33,8 @@ module Vedeu
       alias_method :maximise, :falsy
       alias_method :maximised?, :falsy
       alias_method :unmaximise, :falsy
+      alias_method :visible, :falsy
+      alias_method :visible?, :falsy
 
       # @return [NilClass]
       def null(*)
@@ -69,14 +71,6 @@ module Vedeu
       def store
         self
       end
-
-      # The generic null should not be visible.
-      #
-      # @return [FalseClass]
-      def visible?
-        false
-      end
-      alias_method :visible, :visible?
 
       # @return [FalseClass]
       def visible=(*)

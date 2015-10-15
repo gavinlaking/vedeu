@@ -26,6 +26,16 @@ module Vedeu
         it {
           instance.instance_variable_get('@attributes').must_equal(attributes)
         }
+
+        context 'when a name is given' do
+          it { instance.instance_variable_get('@name').must_equal(_name) }
+        end
+
+        context 'when a name is not given' do
+          let(:attributes) { {} }
+
+          it { instance.instance_variable_get('@name').must_equal('') }
+        end
       end
 
       describe '#falsy' do
@@ -37,6 +47,8 @@ module Vedeu
         it { instance.must_respond_to(:maximise) }
         it { instance.must_respond_to(:maximised?) }
         it { instance.must_respond_to(:unmaximise) }
+        it { instance.must_respond_to(:visible) }
+        it { instance.must_respond_to(:visible?) }
       end
 
       describe '#null' do
@@ -76,13 +88,6 @@ module Vedeu
         subject { instance.store }
 
         it { subject.must_be_instance_of(described) }
-      end
-
-      describe '#visible' do
-        subject { instance.visible }
-
-        it { subject.must_be_instance_of(FalseClass) }
-        it { instance.must_respond_to(:visible?) }
       end
 
       describe '#visible=' do

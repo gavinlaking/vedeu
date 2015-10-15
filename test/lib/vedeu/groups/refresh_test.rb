@@ -20,15 +20,43 @@ module Vedeu
       end
 
       describe '.by_name' do
+        let(:interface) {
+          Vedeu::Interfaces::Interface.new(name: _name, group: group)
+        }
+        let(:group) { :vedeu_groups_refresh_group }
+
         subject { described.by_name(_name) }
 
         context 'when the name is not present' do
           let(:_name) { '' }
 
-          it { proc { subject }.must_raise(Vedeu::Error::MissingRequired) }
+          context 'when the currently focussed interface/view has a group' do
+            before { Vedeu.interfaces.stubs(:by_name).returns(interface) }
+
+            # @todo Add more tests.
+            # it { skip }
+          end
+
+          context 'when the currently focussed interface/view does not have ' \
+                  'a group' do
+            let(:group) { '' }
+
+            before { Vedeu.interfaces.stubs(:by_name).returns(interface) }
+
+            it { proc { subject }.must_raise(Vedeu::Error::MissingRequired) }
+          end
+
+          context 'when no interfaces/views have been registered' do
+            before { Vedeu::Models::Focus.reset }
+
+            it { proc { subject }.must_raise(Vedeu::Error::Fatal) }
+          end
         end
 
         context 'when the name is present' do
+          # @todo Add more tests.
+          # it { skip }
+
           # it {
           #   Vedeu.expects(:trigger).with(:_refresh_view_)
           #   subject

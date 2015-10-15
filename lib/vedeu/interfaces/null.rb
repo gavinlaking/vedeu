@@ -12,15 +12,9 @@ module Vedeu
       # @return [String]
       attr_reader :attributes
 
-      # Returns a new instance of Vedeu::Interfaces::Null.
-      #
-      # @param attributes [Hash<Symbol => void>]
-      # @option attributes name [String|Symbol]
-      # @return [Vedeu::Interfaces::Null]
-      def initialize(attributes = {})
-        @attributes = attributes
-        @name       = @attributes[:name]
-        @visible    = false
+      # @return [String]
+      def group
+        ''
       end
 
     end # Null

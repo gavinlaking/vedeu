@@ -2,7 +2,7 @@
 
 ## System Events
 
-### :\_cleanup_
+### `:\_cleanup\_`
 Vedeu triggers this event when `:_exit_` is triggered. You can hook
 into this to perform a special action before the application
 terminates. Saving the user's work, session or preferences might be
@@ -10,13 +10,13 @@ popular here.
 
     Vedeu.trigger(:_exit_)
 
-### :\_command_
+### `:\_command\_`
 Will cause the triggering of the `:command` event; which you should
 define to 'do things'.
 
     Vedeu.trigger(:_command_, command)
 
-### :\_editor_
+### `:\_editor\_`
 This event is called by {Vedeu::Input::Capture#read}. When
 invoked, the key will be passed to the editor for currently
 focussed view.
@@ -26,21 +26,21 @@ represented by Symbols.
 
     Vedeu.trigger(:_editor_, key)
 
-### :\_exit_
+### `:\_exit\_`
 When triggered, Vedeu will trigger a `:cleanup` event which you can
 define (to save files, etc) and attempt to exit.
 
     Vedeu.trigger(:_exit_)
     Vedeu.exit
 
-### :\_initialize_
+### `:\_initialize\_`
 Vedeu triggers this event when it is ready to enter the main loop.
 Client applications can listen for this event and perform some
 action(s), like render the first screen, interface or make a sound.
 
     Vedeu.trigger(:_initialize_)
 
-### :\_keypress_
+### `:\_keypress\_`
 Will cause the triggering of the `:key` event; which you should define
 to 'do things'. If the `escape` key is pressed, then `key` is
 triggered with the argument `:escape`, also an internal event
@@ -50,7 +50,7 @@ can be found here: {Vedeu::Input::Capture}.
 
     Vedeu.trigger(:_keypress_, key)
 
-### :\_log_
+### `:\_log\_`
 When triggered with a message will cause Vedeu to log the message if
 logging is enabled in the configuration.
 
@@ -58,7 +58,7 @@ Note: 'message' is a String.
 
     Vedeu.trigger(:_log_, message)
 
-### :\_mode_switch_
+### `:\_mode_switch\_`
 When triggered (by default, after the user presses `escape`), Vedeu
 switches between modes of the terminal. The idea here being
 that the raw mode is for single keypress actions, whilst fake and

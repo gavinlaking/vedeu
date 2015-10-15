@@ -6,6 +6,8 @@ module Vedeu
     #
     class Interface
 
+      include Vedeu::Common
+
       class << self
 
         # Clear the interface with the given name.
@@ -16,7 +18,9 @@ module Vedeu
         #
         # @return [Array<Array<Vedeu::Views::Char>>]
         # @see #initialize
-        def render(name)
+        def render(name = Vedeu.focus)
+          name || Vedeu.focus
+
           new(name).render
         end
         alias_method :clear_by_name, :render
@@ -30,7 +34,9 @@ module Vedeu
         #
         # @return [Array<Array<Vedeu::Views::Char>>]
         # @see #initialize
-        def clear_content_by_name(name)
+        def clear_content_by_name(name = Vedeu.focus)
+          name || Vedeu.focus
+
           new(name, content_only: true).render
         end
 
@@ -45,7 +51,7 @@ module Vedeu
       #   not the border as well. Defaults to false.
       # @return [Vedeu::Clear::Interface]
       def initialize(name, options = {})
-        @name    = name
+        @name    = present?(name) ? name : Vedeu.focus
         @options = options
       end
 

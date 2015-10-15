@@ -61,6 +61,7 @@ module Vedeu
       let(:output) {}
 
       before do
+        Vedeu.stubs(:focus).returns(:vedeu_renderers_render)
         Vedeu::Renderers.reset
         Vedeu::Renderers.renderer(DummyRenderer)
         Vedeu.stubs(:hide_cursor)
@@ -69,24 +70,30 @@ module Vedeu
 
       subject { described.render(output) }
 
-      # it { subject.must_be_instance_of(Array) }
-
-      it {
-        DummyRenderer.expects(:render).with(output)
-        subject
-      }
-
-      context 'when there is content' do
-        let(:output) {
-          Vedeu::Models::Escape
-            .new(value: Vedeu::EscapeSequences::Esc.hide_cursor)
+      context 'when an interface/view has been defined' do
+        it {
+          DummyRenderer.expects(:render).with(output)
+          subject
         }
 
-        it { subject.must_be_instance_of(Vedeu::Models::Escape) }
+        context 'when there is content' do
+          let(:output) {
+            Vedeu::Models::Escape
+              .new(value: Vedeu::EscapeSequences::Esc.hide_cursor)
+          }
+
+          it { subject.must_be_instance_of(Vedeu::Models::Escape) }
+        end
+
+        context 'when there is no content' do
+          it { subject.must_be_instance_of(NilClass) }
+        end
       end
 
-      context 'when there is no content' do
-        it { subject.must_be_instance_of(NilClass) }
+      context 'when no interfaces/view have been defined' do
+        before { Vedeu.stubs(:focus).raises(Vedeu::Error::Fatal) }
+
+        it { proc { subject }.must_raise(Vedeu::Error::Fatal) }
       end
     end
 
