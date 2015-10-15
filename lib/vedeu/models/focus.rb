@@ -82,7 +82,11 @@ module Vedeu
       #
       # @return [String]
       def current
-        storage[0]
+        return storage[0] unless empty?
+
+        fail Vedeu::Error::Fatal,
+             'No interfaces or views have been registered, therefore the ' \
+             'focus table is empty.'.freeze
       end
       alias_method :focus, :current
 
