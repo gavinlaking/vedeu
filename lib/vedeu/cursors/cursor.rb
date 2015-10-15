@@ -363,6 +363,8 @@ module Vedeu
   # See {file:docs/cursors.md}
   Vedeu.bind(:_cursor_origin_) do |name|
     Vedeu.cursors.by_name(name).move_origin
+
+    Vedeu.trigger(:_refresh_cursor_, name)
   end
   # Vedeu.bind_alias(:_cursor_reset_, :_cursor_origin_)
 
