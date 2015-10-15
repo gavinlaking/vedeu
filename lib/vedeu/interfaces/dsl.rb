@@ -76,7 +76,7 @@ module Vedeu
         # @param name [String|Symbol]
         # @return [void]
         def add_focusable!(name)
-          Vedeu.focusable.add(name) unless Vedeu.focusable.registered?(name)
+          Vedeu::Models::Focus.add(name)
         end
 
         # Returns the client object which called the DSL method.
