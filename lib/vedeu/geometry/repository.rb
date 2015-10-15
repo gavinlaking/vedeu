@@ -32,6 +32,13 @@ module Vedeu
     Vedeu.geometries.by_name(name).maximise
   end
 
+  Vedeu.bind(:_movement_refresh_) do |name|
+    Vedeu.trigger(:_clear_)
+    Vedeu.trigger(:_refresh_)
+    Vedeu.trigger(:_clear_view_, name)
+    Vedeu.trigger(:_refresh_view_, name)
+  end
+
   # See {file:docs/events/view.md#\_unmaximise_}
   Vedeu.bind(:_unmaximise_) do |name|
     Vedeu.geometries.by_name(name).unmaximise
@@ -41,10 +48,7 @@ module Vedeu
     Vedeu.bind(:"_view_#{direction}_") do |name|
       Vedeu.geometries.by_name(name).send("move_#{direction}")
 
-      Vedeu.trigger(:_clear_)
-      Vedeu.trigger(:_refresh_)
-      Vedeu.trigger(:_clear_view_, name)
-      Vedeu.trigger(:_refresh_view_, name)
+      Vedeu.trigger(:_movement_refresh_, name)
     end
   end
 

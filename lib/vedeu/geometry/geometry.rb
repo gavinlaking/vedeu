@@ -103,15 +103,15 @@ module Vedeu
         {
           client:     @client,
           centred:    @centred,
-          height:     _height,
+          height:     height,
           maximised:  @maximised,
           name:       @name,
           repository: @repository,
-          width:      _width,
-          x:          _x,
-          xn:         _xn,
-          y:          _y,
-          yn:         _yn,
+          width:      width,
+          x:          x,
+          xn:         xn,
+          y:          y,
+          yn:         yn,
         }
       end
 
@@ -144,51 +144,50 @@ module Vedeu
 
       # Moves the geometry down by one row.
       #
-      # TODO: Move cursor also.
+      # @todo Move cursor also.
       # @return [Vedeu::Geometry::Geometry]
       def move_down
         return self if yn + 1 > Vedeu.height
 
-        Vedeu::Geometry::Geometry.store(move_attributes(y: y + 1, yn: yn + 1))
+        move(y: y + 1, yn: yn + 1)
       end
 
       # Moves the geometry left by one column.
       #
-      # TODO: Move cursor also.
+      # @todo Move cursor also.
       # @return [Vedeu::Geometry::Geometry]
       def move_left
         return self if x - 1 < 1
 
-        Vedeu::Geometry::Geometry.store(move_attributes(x: x - 1, xn: xn - 1))
+        move(x: x - 1, xn: xn - 1)
       end
 
       # Moves the geometry to the top left of the terminal.
       #
-      # TODO: Move cursor also.
+      # @todo Move cursor also.
       # @return [Vedeu::Geometry::Geometry]
       def move_origin
-        Vedeu::Geometry::Geometry.store(
-          move_attributes(x: 1, xn: (xn - x + 1), y: 1, yn: (yn - y + 1)))
+        move(x: 1, xn: (xn - x + 1), y: 1, yn: (yn - y + 1))
       end
 
       # Moves the geometry right by one column.
       #
-      # TODO: Move cursor also.
+      # @todo Move cursor also.
       # @return [Vedeu::Geometry::Geometry]
       def move_right
         return self if xn + 1 > Vedeu.width
 
-        Vedeu::Geometry::Geometry.store(move_attributes(x: x + 1, xn: xn + 1))
+        move(x: x + 1, xn: xn + 1)
       end
 
       # Moves the geometry up by one column.
       #
-      # TODO: Move cursor also.
+      # @todo Move cursor also.
       # @return [Vedeu::Geometry::Geometry]
       def move_up
         return self if y - 1 < 1
 
-        Vedeu::Geometry::Geometry.store(move_attributes(y: y - 1, yn: yn - 1))
+        move(y: y - 1, yn: yn - 1)
       end
 
       # Will unmaximise the named interface geometry. Previously, when
@@ -223,75 +222,38 @@ module Vedeu
       # @return [Hash<Symbol => Boolean, Fixnum>]
       def area_attributes
         {
-          y:         _y,
-          yn:        _yn,
-          y_yn:      _height,
-          y_default: Vedeu.height,
-          x:         _x,
-          xn:        _xn,
-          x_xn:      _width,
-          x_default: Vedeu.width,
-          centred:   centred,
-          maximised: maximised,
+          centred:   @centred,
+          maximised: @maximised,
+          x:         @x.is_a?(Proc)      ? @x.call      : @x,
+          xn:        @xn.is_a?(Proc)     ? @xn.call     : @xn,
+          x_xn:      @width.is_a?(Proc)  ? @width.call  : @width,
+          y:         @y.is_a?(Proc)      ? @y.call      : @y,
+          yn:        @yn.is_a?(Proc)     ? @yn.call     : @yn,
+          y_yn:      @height.is_a?(Proc) ? @height.call : @height,
         }
       end
 
-      # @param attrs [Hash<Symbol => Fixnum>]
-      # @option attrs x [Fixnum]
-      # @option attrs xn [Fixnum]
-      # @option attrs y [Fixnum]
-      # @option attrs yn [Fixnum]
+      # When moving an interface;
+      # 1) Reset the centred and maximised states to false; it wont be
+      #    centred if moved, and cannot be moved if maximised.
+      # 2) Get the current coordinates of the interface, then:
+      # 3) Override the attributes with the new coordinates for
+      #    desired movement; these are usually +/- 1 of the current
+      #    state, depending on direction.
+      #
+      # @param coordinates [Hash<Symbol => Fixnum>]
+      # @option coordinates x [Fixnum] The starting column/character
+      #   position.
+      # @option coordinates xn [Fixnum] The ending column/character
+      #   position.
+      # @option coordinates y [Fixnum] The starting row/line position.
+      # @option coordinates yn [Fixnum] The ending row/line position.
       # @return [Hash<Symbol => Boolean, Fixnum>]
-      def move_attributes(attrs = {})
-        attributes.merge!(
-          centred:   false,
-          maximised: false,
-          x:         x,
-          xn:        xn,
-          y:         y,
-          yn:        yn).merge!(attrs)
-      end
+      def move(coordinates = {})
+        attrs = attributes.merge!(centred: false, maximised: false)
+                .merge!(coordinates)
 
-      # Returns the row/line start position for the interface.
-      #
-      # @return [Fixnum]
-      def _y
-        @y.is_a?(Proc) ? @y.call : @y
-      end
-
-      # Returns the row/line end position for the interface.
-      #
-      # @return [Fixnum]
-      def _yn
-        @yn.is_a?(Proc) ? @yn.call : @yn
-      end
-
-      # Returns the column/character start position for the interface.
-      #
-      # @return [Fixnum]
-      def _x
-        @x.is_a?(Proc) ? @x.call : @x
-      end
-
-      # Returns the column/character end position for the interface.
-      #
-      # @return [Fixnum]
-      def _xn
-        @xn.is_a?(Proc) ? @xn.call : @xn
-      end
-
-      # Returns the width of the interface.
-      #
-      # @return [Fixnum]
-      def _width
-        @width.is_a?(Proc) ? @width.call : @width
-      end
-
-      # Returns the height of the interface.
-      #
-      # @return [Fixnum]
-      def _height
-        @height.is_a?(Proc) ? @height.call : @height
+        Vedeu::Geometry::Geometry.store(attrs)
       end
 
       # Returns the default options/attributes for this class.
@@ -300,7 +262,7 @@ module Vedeu
       def defaults
         {
           client:     nil,
-          centred:    nil,
+          centred:    false,
           height:     nil,
           maximised:  false,
           name:       nil,

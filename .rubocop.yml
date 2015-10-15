@@ -93,6 +93,9 @@ Style/Next:
     - skip_modifier_ifs
     - always
 
+Style/SpaceAroundOperators:
+  Enabled: false
+
 Style/SpaceAroundEqualsInParameterDefault:
   EnforcedStyle: space
 

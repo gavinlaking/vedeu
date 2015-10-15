@@ -23,13 +23,6 @@ module Vedeu
   extend Forwardable
   extend self
 
-  # Return the name of currently focussed interface.
-  #
-  # @return [Vedeu::Models::Focus]
-  def self.focusable
-    @focusable ||= Vedeu::Models::Focus
-  end
-
 end # Vedeu
 
 require 'vedeu/all'
