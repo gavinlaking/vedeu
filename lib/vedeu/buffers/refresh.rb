@@ -13,7 +13,9 @@ module Vedeu
       #
       # @param (see #initialize)
       # @return (see #by_name)
-      def self.by_name(name)
+      def self.by_name(name = Vedeu.focus)
+        name ||= Vedeu.focus
+
         new(name).by_name
       end
 
@@ -22,19 +24,21 @@ module Vedeu
       #
       # @param (see #initialize)
       # @return (see #by_name)
-      def self.refresh_content_by_name(name)
+      def self.refresh_content_by_name(name = Vedeu.focus)
+        name ||= Vedeu.focus
+
         new(name, content_only: true).by_name
       end
 
       # Return a new instance of Vedeu::Buffers::Refresh.
       #
-      # @param name [String|Symbol] The name of the interface to be refreshed
-      #   using the named buffer.
+      # @param name [String|Symbol] The name of the interface/view to
+      #   be refreshed. Defaults to `Vedeu.focus`.
       # @param options [Hash]
       # @option options content_only [Boolean]
       # @return [Vedeu::Buffers::Refresh]
       def initialize(name, options = {})
-        @name    = name
+        @name    = present?(name) ? name : Vedeu.focus
         @options = options
       end
 

@@ -9,6 +9,7 @@ module Vedeu
     class Refresh
 
       extend Forwardable
+      include Vedeu::Common
 
       def_delegators :border,
                      :height,
@@ -18,16 +19,20 @@ module Vedeu
       #   Vedeu.trigger(:_refresh_cursor_, name)
       #
       # @param (see #initialize)
-      def self.by_name(name = nil)
+      # @return (see #by_name)
+      def self.by_name(name = Vedeu.focus)
+        name || Vedeu.focus
+
         new(name).by_name
       end
 
       # Returns a new instance of Vedeu::Cursors::Refresh.
       #
-      # @param name [String|Symbol] The name of the cursor.
+      # @param name [String|Symbol] The name of the interface/view
+      #   cursor to be refreshed. Defaults to `Vedeu.focus`.
       # @return [Vedeu::Cursors::Refresh]
-      def initialize(name = nil)
-        @name = name || Vedeu.focus
+      def initialize(name)
+        @name = present?(name) ? name : Vedeu.focus
       end
 
       # Renders the cursor in the terminal. If the cursor's x or y

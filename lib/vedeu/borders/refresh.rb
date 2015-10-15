@@ -44,24 +44,28 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:_refresh_border_, name)
       #
-      # @param name [String|Symbol] The name of the border to render.
-      # @return [Array<Array<Vedeu::Views::Char>>]
-      def self.by_name(name)
-        new(name).render
+      # @param (see #initialize)
+      # @return (see #by_name)
+      def self.by_name(name = Vedeu.focus)
+        name || Vedeu.focus
+
+        new(name).by_name
       end
 
       # Returns a new instance of Vedeu::Borders::Refresh.
       #
-      # @param name [String|Symbol]
+      # @param name [String|Symbol] The name of the interface/view
+      #   border to be refreshed. Defaults to `Vedeu.focus`.
       # @return [Vedeu::Borders::Refresh]
-      def initialize(name)
-        @name = name
+      def initialize(name = Vedeu.focus)
+        @name = present?(name) ? name : Vedeu.focus
       end
 
       # @return [Array<Array<Vedeu::Views::Char>>]
-      def render
+      def by_name
         Vedeu.render_output(output) if enabled? && visible?
       end
+      alias_method :render, :by_name
 
       protected
 

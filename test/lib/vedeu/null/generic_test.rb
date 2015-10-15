@@ -26,6 +26,16 @@ module Vedeu
         it {
           instance.instance_variable_get('@attributes').must_equal(attributes)
         }
+
+        context 'when a name is given' do
+          it { instance.instance_variable_get('@name').must_equal(_name) }
+        end
+
+        context 'when a name is not given' do
+          let(:attributes) { {} }
+
+          it { instance.instance_variable_get('@name').must_equal('') }
+        end
       end
 
       describe '#falsy' do

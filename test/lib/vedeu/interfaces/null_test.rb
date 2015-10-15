@@ -7,20 +7,13 @@ module Vedeu
     describe Null do
 
       let(:described)  { Vedeu::Interfaces::Null }
-      let(:instance)   { described.new(attributes) }
-      let(:_name)      { 'null_interface' }
-      let(:attributes) {
-        {
-          name: _name
-        }
-      }
+      let(:instance)   { described.new }
 
-      describe '#initialize' do
-        it { instance.must_be_instance_of(described) }
-        it {
-          instance.instance_variable_get('@attributes').must_equal(attributes)
-        }
-        it { instance.instance_variable_get('@name').must_equal(_name) }
+      describe '#group' do
+        subject { instance.group }
+
+        it { subject.must_be_instance_of(String) }
+        it { subject.must_equal('') }
       end
 
     end # Null

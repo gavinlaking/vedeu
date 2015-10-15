@@ -29,15 +29,11 @@ module Vedeu
 
   # See {file:docs/borders.md#label-3A_refresh_border_}
   Vedeu.bind(:_refresh_border_) do |name|
-    name ||= Vedeu.focus
-
     Vedeu::Borders::Refresh.by_name(name)
   end
 
   # See {file:docs/borders.md#label-3A_set_border_caption_}
   Vedeu.bind(:_set_border_caption_) do |name, caption|
-    name ||= Vedeu.focus
-
     border = Vedeu.borders.by_name(name)
     border.caption = caption
     border.store { Vedeu.trigger(:_refresh_border_, name) }
@@ -45,8 +41,6 @@ module Vedeu
 
   # See {file:docs/borders.md#label-3A_set_border_title_}
   Vedeu.bind(:_set_border_title_) do |name, title|
-    name ||= Vedeu.focus
-
     border = Vedeu.borders.by_name(name)
     border.title = title
     border.store { Vedeu.trigger(:_refresh_border_, name) }

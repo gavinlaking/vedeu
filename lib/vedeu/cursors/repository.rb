@@ -17,7 +17,7 @@ module Vedeu
         #
         # @return [Vedeu::Cursors::Cursor]
         def cursor
-          cursors.by_name(Vedeu.focus) if Vedeu.focus
+          cursors.by_name
         end
 
       end # Eigenclass
