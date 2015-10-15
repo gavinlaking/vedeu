@@ -7,24 +7,26 @@ module Vedeu
     class Area
 
       # @!attribute [r] y
-      # @return [Fixnum] Returns the top coordinate of the interface.
+      # @return [Fixnum] Returns the top coordinate (row/line start
+      #   position) of the interface.
       attr_reader :y
       alias_method :top, :y
 
       # @!attribute [r] yn
-      # @return [Fixnum] Returns the bottom coordinate of the
-      #   interface.
+      # @return [Fixnum] Returns the bottom coordinate (row/line end
+      #   position) of the interface.
       attr_reader :yn
       alias_method :bottom, :yn
 
       # @!attribute [r] x
-      # @return [Fixnum] Returns the left coordinate of the interface.
+      # @return [Fixnum] Returns the left coordinate (column/character
+      #   start position) of the interface.
       attr_reader :x
       alias_method :left, :x
 
       # @!attribute [r] xn
-      # @return [Fixnum] Returns the right coordinate of the
-      #   interface.
+      # @return [Fixnum] Returns the right coordinate (column/
+      #   character end position) of the interface.
       attr_reader :xn
       alias_method :right, :xn
 
@@ -86,26 +88,39 @@ module Vedeu
       end
       alias_method :==, :eql?
 
+      # Returns an array containing the centred y and x coordinates of
+      # the interface.
+      #
       # @return [Array<Fixnum>]
       def centre
         [centre_y, centre_x]
       end
 
+      # Returns the centred y coordinate (the vertical centre row) of
+      # the interface.
+      #
       # @return [Fixnum]
       def centre_y
         (height / 2) + y
       end
 
+      # Returns the centred x coordinate (the horizontal centre
+      # character) of the interface.
+      #
       # @return [Fixnum]
       def centre_x
         (width / 2) + x
       end
 
+      # Returns the height of the interface.
+      #
       # @return [Fixnum]
       def height
         (y..yn).size
       end
 
+      # Returns the width of the interface.
+      #
       # @return [Fixnum]
       def width
         (x..xn).size
@@ -117,7 +132,7 @@ module Vedeu
       #   `top` or `y` is 4.
       #
       #   north     # => 3
-      #   north(2)  # => 2 (positive goes north)
+      #   north(2)  # => 2 (positive goes 'more' north)
       #   north(-4) # => 8 (negative goes south)
       #
       # @param offset [Fixnum]
@@ -132,7 +147,7 @@ module Vedeu
       #   `right` or `xn` is 19.
       #
       #   east     # => 20
-      #   east(2)  # => 21 (positive goes east)
+      #   east(2)  # => 21 (positive goes 'more' east)
       #   east(-4) # => 15 (negative goes west)
       #
       # @param offset [Fixnum]
@@ -147,7 +162,7 @@ module Vedeu
       #   `bottom` or `yn` is 12.
       #
       #   south     # => 13
-      #   south(2)  # => 14 (positive goes south)
+      #   south(2)  # => 14 (positive goes 'more' south)
       #   south(-4) # => 8  (negative goes north)
       #
       # @param offset [Fixnum]
@@ -162,7 +177,7 @@ module Vedeu
       #   `left` or `x` is 8.
       #
       #   west      # => 7
-      #   west(2)   # => 6  (positive goes west)
+      #   west(2)   # => 6  (positive goes 'more' west)
       #   west(-4)  # => 12 (negative goes east)
       #
       # @param offset [Fixnum]
