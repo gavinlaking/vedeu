@@ -19,7 +19,12 @@ module Vedeu
 
     end # ControllerNotFound
 
-    # Raised when Vedeu encounters an error.
+    # Raised when Vedeu encounters an error it cannot recover from.
+    # This would happen if there was not interfaces, or specifically
+    # if there were no entries in {Vedeu::Models::Focus}, since the
+    # fallback for most of the system when a name is not given or
+    # cannot be found is to use the name of the currently focussed
+    # interface.
     #
     class Fatal < StandardError
 
