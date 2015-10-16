@@ -220,8 +220,7 @@ module Vedeu
       def update
         return false if empty?
 
-        Vedeu.log(type:    :info,
-                  message: "Interface in focus: '#{current}'".freeze)
+        Vedeu.log(message: "Interface in focus: '#{current}'".freeze)
 
         refresh
 
