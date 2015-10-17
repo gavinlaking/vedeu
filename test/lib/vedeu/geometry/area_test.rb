@@ -48,6 +48,7 @@ module Vedeu
             x_default: x_default,
             maximised: maximised,
             centred:   centred,
+            alignment: alignment,
           }
         }
         let(:y)         {}
@@ -60,6 +61,7 @@ module Vedeu
         let(:x_default) {}
         let(:maximised) {}
         let(:centred)   {}
+        let(:alignment) {}
 
         subject { described.from_attributes(attributes) }
 
