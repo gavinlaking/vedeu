@@ -13,6 +13,7 @@ module Vedeu
 
 end # Vedeu
 
+require 'vedeu/geometry/alignment'
 require 'vedeu/geometry/area'
 require 'vedeu/geometry/coordinate'
 require 'vedeu/geometry/dimension'
