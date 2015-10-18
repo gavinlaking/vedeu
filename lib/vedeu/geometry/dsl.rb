@@ -73,8 +73,10 @@ module Vedeu
     #
     class DSL
 
+      include Vedeu::Common
       include Vedeu::DSL
       include Vedeu::DSL::Use
+
 
       # Specify the geometry of an interface or view with a simple
       # DSL.
@@ -92,6 +94,39 @@ module Vedeu
         fail Vedeu::Error::RequiresBlock unless block_given?
 
         Vedeu::Geometry::Geometry.build(name: name, &block).store
+      end
+
+      # @param value [Symbol] One of :center, :centre, :left, :none,
+      #   :right
+      # @return [Vedeu::Geometry::Geometry]
+      def alignment(value, width)
+        fail Vedeu::Error::InvalidSyntax,
+             'No alignment given. Valid values are :center, :centre, :left, ' \
+             ':none, :right.'.freeze unless present?(value)
+        fail Vedeu::Error::InvalidSyntax, 'No width given.'.freeze unless present?(width)
+
+        model.alignment = Vedeu::Geometry::Alignment.align(value)
+        model.width     = width
+        model
+      end
+
+      # @param width [Fixnum]
+      # @return [Vedeu::Geometry::Geometry]
+      def align_centre(width)
+        alignment(:centre, width)
+      end
+      alias_method :align_center, :align_centre
+
+      # @param width [Fixnum]
+      # @return [Vedeu::Geometry::Geometry]
+      def align_left(width)
+        alignment(:left, width)
+      end
+
+      # @param width [Fixnum]
+      # @return [Vedeu::Geometry::Geometry]
+      def align_right(width)
+        alignment(:right, width)
       end
 
       # Instructs Vedeu to calculate x and y geometry automatically

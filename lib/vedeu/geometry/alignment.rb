@@ -41,17 +41,19 @@ module Vedeu
       end
 
       # @return [Boolean]
+      def none?
+        @value.nil? || !(@value.is_a?(Symbol)) || @value == :alignment
+      end
+
+      # @return [Boolean]
       def valid?
         values.include?(value)
       end
 
       # @return [Symbol]
       def value
-        @_value ||= if @value.nil? || !(@value.is_a?(Symbol))
-                      :left
-
-                    elsif @value == :alignment
-                      :left
+        @_value ||= if none?
+                      :none
 
                     elsif @value == :center
                       :centre
@@ -70,6 +72,7 @@ module Vedeu
         [
           :centre,
           :left,
+          :none,
           :right,
         ]
       end

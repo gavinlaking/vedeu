@@ -19,13 +19,13 @@ module Vedeu
         subject { described.align(_value) }
 
         context 'when the value is nil' do
-          it { subject.must_equal(:left) }
+          it { subject.must_equal(:none) }
         end
 
         context 'when the value is not a Symbol' do
           let(:_value) { 'invalid' }
 
-          it { subject.must_equal(:left) }
+          it { subject.must_equal(:none) }
         end
 
         context 'when the value is :center' do
@@ -55,7 +55,7 @@ module Vedeu
         context 'when the value is :alignment' do
           let(:_value) { :alignment }
 
-          it { subject.must_equal(:left) }
+          it { subject.must_equal(:none) }
         end
 
         context 'when the value is :align_center' do

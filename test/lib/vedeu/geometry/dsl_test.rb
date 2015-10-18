@@ -14,6 +14,102 @@ module Vedeu
         it { described.must_respond_to(:geometry) }
       end
 
+      describe '#alignment' do
+        let(:_value) { :none }
+        let(:width)  { 20 }
+
+        subject { instance.alignment(_value, width) }
+
+        context 'when a value and width is given' do
+          it { subject.must_be_instance_of(Vedeu::Geometry::Geometry) }
+
+          context 'when the value is :center' do
+            let(:_value) { :center }
+
+            it { subject.alignment.must_equal(:centre) }
+          end
+
+          context 'when the value is :centre' do
+            let(:_value) { :centre }
+
+            it { subject.alignment.must_equal(:centre) }
+          end
+
+          context 'when the value is :left' do
+            let(:_value) { :left }
+
+            it { subject.alignment.must_equal(:left) }
+          end
+
+          context 'when the value is :right' do
+            let(:_value) { :right }
+
+            it { subject.alignment.must_equal(:right) }
+          end
+        end
+
+        context 'when a value is not given' do
+          let(:_value) {}
+
+          it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
+        end
+
+        context 'when a width is not given' do
+          let(:_value) { :none }
+          let(:width)  {}
+
+          it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
+        end
+      end
+
+      describe '#align_centre' do
+        let(:width) { 20 }
+
+        subject { instance.align_centre(width) }
+
+        it { instance.must_respond_to(:align_center) }
+
+        context 'when a width is given' do
+          it { subject.must_be_instance_of(Vedeu::Geometry::Geometry) }
+        end
+
+        context 'when a width is not given' do
+          let(:width) {}
+
+          it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
+        end
+      end
+
+      describe '#align_left' do
+        let(:width) { 20 }
+
+        subject { instance.align_left(width) }
+
+        context 'when a width is given' do
+        end
+
+        context 'when a width is not given' do
+          let(:width) {}
+
+          it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
+        end
+      end
+
+      describe '#align_right' do
+        let(:width) { 20 }
+
+        subject { instance.align_right(width) }
+
+        context 'when a width is given' do
+        end
+
+        context 'when a width is not given' do
+          let(:width) {}
+
+          it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
+        end
+      end
+
       describe '#centred' do
         subject { instance.centred(true) }
 

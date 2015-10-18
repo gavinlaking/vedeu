@@ -51,7 +51,7 @@ module Vedeu
           default:   Vedeu.height,
           maximised: attributes[:maximised],
           centred:   attributes[:centred],
-          alignment: attributes[:alignment],
+          # alignment: attributes[:alignment],
         }
         x_attributes = {
           d:         attributes[:x],

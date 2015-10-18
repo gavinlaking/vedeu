@@ -31,6 +31,10 @@ module Vedeu
                      :height,
                      :width
 
+      # @!attribute [rw] alignment
+      # @return [Symbol]
+      attr_accessor :alignment
+
       # @!attribute [rw] centred
       # @return [Boolean]
       attr_accessor :centred
@@ -101,6 +105,7 @@ module Vedeu
       # @return [Hash]
       def attributes
         {
+          alignment:  @alignment,
           client:     @client,
           centred:    @centred,
           height:     height,
@@ -222,6 +227,7 @@ module Vedeu
       # @return [Hash<Symbol => Boolean, Fixnum>]
       def area_attributes
         {
+          alignment: @alignment,
           centred:   @centred,
           maximised: @maximised,
           x:         @x.is_a?(Proc)      ? @x.call      : @x,
@@ -261,6 +267,7 @@ module Vedeu
       # @return [Hash]
       def defaults
         {
+          alignment:  Vedeu::Geometry::Alignment.align(:none),
           client:     nil,
           centred:    false,
           height:     nil,
