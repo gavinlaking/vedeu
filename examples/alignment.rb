@@ -31,6 +31,36 @@ class AlignmentApp
     border_stats(:right_interface)
   end
 
+  class CentreAlignmentView
+    def render
+      Vedeu.render do
+        view(:centre_interface) do
+          lines do
+            line "x:#{gc.x}, xn:#{gc.xn} (w:#{gc.width})"
+            line "y:#{gc.y}, yn:#{gc.yn} (h:#{gc.height})"
+            line ""
+            line "bx:#{bc.bx}, bxn:#{bc.bxn} (bw:#{bc.width})"
+            line "by:#{bc.by}, byn:#{bc.byn} (bh:#{bc.height})"
+            line ""
+            line "The 'h', 'j', 'k' and 'l' keys will"
+            line "move this view left, down, up, and"
+            line "right respectively."
+          end
+        end
+      end
+
+      Vedeu.trigger(:_refresh_view, :centre_interface)
+    end
+
+    def gc
+      Vedeu.geometries.by_name(:centre_interface)
+    end
+
+    def bc
+      Vedeu.borders.by_name(:centre_interface)
+    end
+  end
+
   Vedeu.bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
 
   Vedeu.configure do
@@ -83,10 +113,26 @@ class AlignmentApp
   Vedeu.keymap '_global_' do
     key('q') { Vedeu.exit }
 
-    key('h') { Vedeu.trigger(:_view_left_, :centre_interface)  }
-    key('j') { Vedeu.trigger(:_view_down_, :centre_interface)  }
-    key('k') { Vedeu.trigger(:_view_up_, :centre_interface)    }
-    key('l') { Vedeu.trigger(:_view_right_, :centre_interface) }
+    key('h') {
+      Vedeu.trigger(:_view_left_, :centre_interface)
+
+      AlignmentApp::CentreAlignmentView.new.render
+    }
+    key('j') {
+      Vedeu.trigger(:_view_down_, :centre_interface)
+
+      AlignmentApp::CentreAlignmentView.new.render
+    }
+    key('k') {
+      Vedeu.trigger(:_view_up_, :centre_interface)
+
+      AlignmentApp::CentreAlignmentView.new.render
+    }
+    key('l') {
+      Vedeu.trigger(:_view_right_, :centre_interface)
+
+      AlignmentApp::CentreAlignmentView.new.render
+    }
   end
 
   Vedeu.render do
@@ -110,7 +156,10 @@ class AlignmentApp
         line ""
         line "The 'h', 'j', 'k' and 'l' keys will"
         line "move this view left, down, up, and"
-        line "right respectively."
+        line "right respectively. The coordinates"
+        line "will not change in this example"
+        line "because they have not been"
+        line "instructed to do so."
       end
     end
 
