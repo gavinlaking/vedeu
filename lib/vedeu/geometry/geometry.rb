@@ -31,6 +31,10 @@ module Vedeu
                      :height,
                      :width
 
+      # @!attribute [rw] alignment
+      # @return [Symbol]
+      attr_accessor :alignment
+
       # @!attribute [rw] centred
       # @return [Boolean]
       attr_accessor :centred
@@ -101,6 +105,7 @@ module Vedeu
       # @return [Hash]
       def attributes
         {
+          alignment:  @alignment,
           client:     @client,
           centred:    @centred,
           height:     height,
@@ -222,6 +227,7 @@ module Vedeu
       # @return [Hash<Symbol => Boolean, Fixnum>]
       def area_attributes
         {
+          alignment: @alignment,
           centred:   @centred,
           maximised: @maximised,
           x:         @x.is_a?(Proc)      ? @x.call      : @x,
@@ -234,8 +240,9 @@ module Vedeu
       end
 
       # When moving an interface;
-      # 1) Reset the centred and maximised states to false; it wont be
-      #    centred if moved, and cannot be moved if maximised.
+      # 1) Reset the alignment, centred and maximised states to false;
+      #    it wont be aligned to a side if moved, nor centred if
+      #    moved, and cannot be moved if maximised.
       # 2) Get the current coordinates of the interface, then:
       # 3) Override the attributes with the new coordinates for
       #    desired movement; these are usually +/- 1 of the current
@@ -250,7 +257,9 @@ module Vedeu
       # @option coordinates yn [Fixnum] The ending row/line position.
       # @return [Hash<Symbol => Boolean, Fixnum>]
       def move(coordinates = {})
-        attrs = attributes.merge!(centred: false, maximised: false)
+        attrs = attributes.merge!(alignment: :none,
+                                  centred:   false,
+                                  maximised: false)
                 .merge!(coordinates)
 
         Vedeu::Geometry::Geometry.store(attrs)
@@ -261,6 +270,7 @@ module Vedeu
       # @return [Hash]
       def defaults
         {
+          alignment:  Vedeu::Geometry::Alignment.align(:none),
           client:     nil,
           centred:    false,
           height:     nil,

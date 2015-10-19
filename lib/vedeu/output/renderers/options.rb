@@ -7,6 +7,14 @@ module Vedeu
     # :nocov:
     module Options
 
+      # @!attribute [w] options
+      # @return [Hash<Symbol => void>]
+      attr_writer :options
+
+      def compress?
+        options[:compression] || false
+      end
+
       private
 
       # Combines the options provided at instantiation with the

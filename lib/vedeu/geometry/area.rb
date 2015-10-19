@@ -39,7 +39,9 @@ module Vedeu
       # @option attributes xn [Fixnum]
       # @option attributes x_xn [Fixnum]
       # @option attributes x_default [Fixnum]
-      # @option attributes options [Hash<Symbol => Boolean>]
+      # @option attributes maximised [Boolean]
+      # @option attributes centred [Boolean]
+      # @option attributes alignment [Symbol]
       # @return [Vedeu::Geometry::Area]
       def self.from_attributes(attributes = {})
         y_attributes = {
@@ -49,6 +51,7 @@ module Vedeu
           default:   Vedeu.height,
           maximised: attributes[:maximised],
           centred:   attributes[:centred],
+          # alignment: attributes[:alignment],
         }
         x_attributes = {
           d:         attributes[:x],
@@ -57,6 +60,7 @@ module Vedeu
           default:   Vedeu.width,
           maximised: attributes[:maximised],
           centred:   attributes[:centred],
+          alignment: attributes[:alignment],
         }
         y_yn = Vedeu::Geometry::Dimension.pair(y_attributes)
         x_xn = Vedeu::Geometry::Dimension.pair(x_attributes)

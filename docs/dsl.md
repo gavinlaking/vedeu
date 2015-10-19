@@ -109,6 +109,10 @@ end
 
 ### Setting the interface dimensions
 
+{include:Vedeu::Geometry::DSL#alignment}
+{include:Vedeu::Geometry::DSL#align_left}
+{include:Vedeu::Geometry::DSL#align_centre}
+{include:Vedeu::Geometry::DSL#align_right}
 {include:Vedeu::Geometry::DSL#centred}
 {include:Vedeu::Geometry::DSL#height}
 {include:Vedeu::Geometry::DSL#width}

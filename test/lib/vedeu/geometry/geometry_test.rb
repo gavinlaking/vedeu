@@ -10,6 +10,7 @@ module Vedeu
       let(:instance)   { described.new(attributes) }
       let(:attributes) {
         {
+          alignment:  alignment,
           centred:    centred,
           client:     client,
           height:     height,
@@ -23,6 +24,7 @@ module Vedeu
           yn:         yn,
         }
       }
+      let(:alignment) {}
       let(:centred)   { false }
       let(:client)    {}
       let(:height)    {}
@@ -38,6 +40,7 @@ module Vedeu
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
+        it { instance.instance_variable_get('@alignment').must_equal(alignment) }
         it { instance.instance_variable_get('@centred').must_equal(centred) }
         it { instance.instance_variable_get('@client').must_equal(client) }
         it { instance.instance_variable_get('@height').must_equal(height) }
@@ -56,9 +59,10 @@ module Vedeu
 
       describe 'accessors' do
         it {
+          instance.must_respond_to(:alignment)
+          instance.must_respond_to(:alignment=)
           instance.must_respond_to(:centred)
           instance.must_respond_to(:centred=)
-          instance.must_respond_to(:attributes)
           instance.must_respond_to(:name)
           instance.must_respond_to(:name=)
           instance.must_respond_to(:height=)
@@ -77,6 +81,15 @@ module Vedeu
         subject { described.store(attributes) }
 
         it { subject.must_equal(instance) }
+      end
+
+      describe '#attributes' do
+        subject { instance.attributes }
+
+        it { subject.must_be_instance_of(Hash) }
+
+        # @todo Add more tests.
+        # it { skip }
       end
 
       describe '#eql?' do

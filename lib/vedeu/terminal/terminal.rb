@@ -75,7 +75,7 @@ module Vedeu
     # @param mode [Symbol]
     # @return [void]
     def initialize_screen(mode)
-      Vedeu.log(type: :info, message: "Terminal entering '#{mode}' mode".freeze)
+      Vedeu.log(message: "Terminal entering '#{mode}' mode".freeze)
 
       output(Vedeu::EscapeSequences::Esc.string('screen_init'))
 

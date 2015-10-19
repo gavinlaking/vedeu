@@ -73,6 +73,7 @@ module Vedeu
     #
     class DSL
 
+      include Vedeu::Common
       include Vedeu::DSL
       include Vedeu::DSL::Use
 
@@ -92,6 +93,100 @@ module Vedeu
         fail Vedeu::Error::RequiresBlock unless block_given?
 
         Vedeu::Geometry::Geometry.build(name: name, &block).store
+      end
+
+      # Instructs Vedeu to align the interface/view either left,
+      # centre or right. A width is also required so that required
+      # coordinates are calculated correctly.
+      #
+      #   Vedeu.geometry :some_interface do
+      #     # :some_value must be one of: :left, :none, :center,
+      #     #   :centre, or :right
+      #     # `width` is a positive integer, e.g. 30
+      #     alignment(:some_value, width)
+      #
+      #     # ... some code
+      #   end
+      #
+      # @param value [Symbol] One of :center, :centre, :left, :none,
+      #   :right.
+      # @param width [Fixnum] The width of the aligned interface/view.
+      # @raise [Vedeu::Error::InvalidSyntax] When the value or width
+      #   is not given.
+      # @return [Vedeu::Geometry::Geometry]
+      def alignment(value, width)
+        fail Vedeu::Error::InvalidSyntax,
+             'No alignment given. Valid values are :center, :centre, :left, ' \
+             ':none, :right.'.freeze unless present?(value)
+        fail Vedeu::Error::InvalidSyntax,
+             'No width given.'.freeze unless present?(width)
+
+        model.alignment = Vedeu::Geometry::Alignment.align(value)
+        model.width     = width
+        model
+      end
+
+      # Align the interface/view centrally.
+      #
+      #   Vedeu.geometry :some_interface do
+      #     # `width` is a positive integer, e.g. 30
+      #     align_centre 30
+      #
+      #     # this is the same as:
+      #     # alignment(:centre, 30)
+      #
+      #     # ... some code
+      #   end
+      #
+      #   # Also allows `align_center` if preferred.
+      #
+      # @param width [Fixnum] The number of characters/columns.
+      # @raise [Vedeu::Error::InvalidSyntax] When the width is not
+      #   given.
+      # @return [Vedeu::Geometry::Geometry]
+      def align_centre(width)
+        alignment(:centre, width)
+      end
+      alias_method :align_center, :align_centre
+
+      # Align the interface/view to the left.
+      #
+      #   Vedeu.geometry :some_interface do
+      #     # `width` is a positive integer, e.g. 30
+      #     align_left 30
+      #
+      #     # this is the same as:
+      #     # alignment(:left, 30)
+      #
+      #     # ... some code
+      #   end
+      #
+      # @param width [Fixnum] The number of characters/columns.
+      # @raise [Vedeu::Error::InvalidSyntax] When the width is not
+      #   given.
+      # @return [Vedeu::Geometry::Geometry]
+      def align_left(width)
+        alignment(:left, width)
+      end
+
+      # Align the interface/view to the right.
+      #
+      #   Vedeu.geometry :some_interface do
+      #     # `width` is a positive integer, e.g. 30
+      #     align_right 30
+      #
+      #     # this is the same as:
+      #     # alignment(:right, 30)
+      #
+      #     # ... some code
+      #   end
+      #
+      # @param width [Fixnum] The number of characters/columns.
+      # @raise [Vedeu::Error::InvalidSyntax] When the width is not
+      #   given.
+      # @return [Vedeu::Geometry::Geometry]
+      def align_right(width)
+        alignment(:right, width)
       end
 
       # Instructs Vedeu to calculate x and y geometry automatically
@@ -178,7 +273,7 @@ module Vedeu
       #     # ... some code
       #   end
       #
-      # @param value [Fixnum]
+      # @param value [Fixnum] The number of characters/columns.
       # @return [Fixnum]
       def width(value)
         model.width = proc { value }

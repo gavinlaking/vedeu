@@ -20,9 +20,9 @@ module Vedeu
       #
       # @return [Array<Array<Vedeu::Models::Cell>>]
       def buffer
-        @output ||= Array.new(Vedeu.height) do |y|
-          Array.new(Vedeu.width) do |x|
-            Vedeu::Models::Cell.new(position: [y + 1, x + 1])
+        @output ||= Array.new(Vedeu.height + 1) do |y|
+          Array.new(Vedeu.width + 1) do |x|
+            Vedeu::Models::Cell.new(position: [y, x])
           end
         end
       end
@@ -77,9 +77,9 @@ module Vedeu
       #
       # @return [Array<Array<Vedeu::Models::Cell>>]
       def reset
-        @output = Array.new(Vedeu.height) do |y|
-          Array.new(Vedeu.width) do |x|
-            Vedeu::Models::Cell.new(position: [y + 1, x + 1])
+        @output = Array.new(Vedeu.height + 1) do |y|
+          Array.new(Vedeu.width + 1) do |x|
+            Vedeu::Models::Cell.new(position: [y, x])
           end
         end
       end

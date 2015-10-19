@@ -33,19 +33,12 @@ module Vedeu
           return storage unless focus
 
           by_name(name)
-          storage
 
         else
           Vedeu.log(type:    :store,
                     message: "Storing focus entry: '#{name}'".freeze)
 
-          if focus
-            storage.unshift(name)
-
-          else
-            storage.push(name)
-
-          end
+          focus ? storage.unshift(name) : storage.push(name)
         end
       end
 
@@ -63,11 +56,7 @@ module Vedeu
       # @return [String|Symbol] The name of the interface now in
       #   focus.
       def by_name(name)
-        unless registered?(name)
-          fail Vedeu::Error::ModelNotFound,
-               "Cannot focus '#{name}' as this interface has not been " \
-               'registered.'.freeze
-        end
+        not_registered! unless registered?(name)
 
         storage.rotate!(storage.index(name))
 
@@ -84,9 +73,7 @@ module Vedeu
       def current
         return storage[0] unless empty?
 
-        fail Vedeu::Error::Fatal,
-             'No interfaces or views have been registered, therefore the ' \
-             'focus table is empty.'.freeze
+        no_interfaces_registered!
       end
       alias_method :focus, :current
 
@@ -212,6 +199,20 @@ module Vedeu
 
       private
 
+      # @raise [Vedeu::Error::Fatal]
+      def no_interfaces_registered!
+        fail Vedeu::Error::Fatal,
+             'No interfaces or views have been registered, therefore the ' \
+             'focus table is empty.'.freeze
+      end
+
+      # @raise [Vedeu::Error::ModelNotFound]
+      def not_registered!
+        fail Vedeu::Error::ModelNotFound,
+             "Cannot focus '#{name}' as this interface has not been " \
+             'registered.'.freeze
+      end
+
       # Return the name of the interface in focus after triggering the
       # refresh event for that interface. Returns false when the
       # storage is empty.
@@ -220,8 +221,7 @@ module Vedeu
       def update
         return false if empty?
 
-        Vedeu.log(type:    :info,
-                  message: "Interface in focus: '#{current}'".freeze)
+        Vedeu.log(message: "Interface in focus: '#{current}'".freeze)
 
         refresh
 

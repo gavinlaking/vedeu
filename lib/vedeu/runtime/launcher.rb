@@ -102,7 +102,7 @@ module Vedeu
     #
     # @return [void]
     def terminate!
-      Vedeu.log(type: :info, message: 'Exiting gracefully.'.freeze)
+      Vedeu.log(message: 'Exiting gracefully.'.freeze)
 
       $stdin  = STDIN
       $stdout = STDOUT
