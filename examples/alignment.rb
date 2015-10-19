@@ -57,12 +57,12 @@ class AlignmentApp
       title 'Align: Centre'
     end
     geometry do
-      alignment :centre, 30
+      alignment :centre, 40
 
       # or you can use:
       # align_centre 30
 
-      height 10
+      height 15
     end
   end
 
@@ -82,6 +82,11 @@ class AlignmentApp
 
   Vedeu.keymap '_global_' do
     key('q') { Vedeu.exit }
+
+    key('h') { Vedeu.trigger(:_view_left_, :centre_interface)  }
+    key('j') { Vedeu.trigger(:_view_down_, :centre_interface)  }
+    key('k') { Vedeu.trigger(:_view_up_, :centre_interface)    }
+    key('l') { Vedeu.trigger(:_view_right_, :centre_interface) }
   end
 
   Vedeu.render do
@@ -102,6 +107,10 @@ class AlignmentApp
         line ""
         line "bx:#{bc.bx}, bxn:#{bc.bxn} (bw:#{bc.width})"
         line "by:#{bc.by}, byn:#{bc.byn} (bh:#{bc.height})"
+        line ""
+        line "The 'h', 'j', 'k' and 'l' keys will"
+        line "move this view left, down, up, and"
+        line "right respectively."
       end
     end
 
