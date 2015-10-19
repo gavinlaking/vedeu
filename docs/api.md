@@ -67,6 +67,11 @@ See {file:docs/events.md}
   - focus!
   - foreground
   - geometry
+    - alignment
+    - align_left
+    - align_center
+    - align_centre
+    - align_right
     - centred (or centred!)
     - height
     - width

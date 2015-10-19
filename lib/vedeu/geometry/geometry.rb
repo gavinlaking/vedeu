@@ -240,8 +240,9 @@ module Vedeu
       end
 
       # When moving an interface;
-      # 1) Reset the centred and maximised states to false; it wont be
-      #    centred if moved, and cannot be moved if maximised.
+      # 1) Reset the alignment, centred and maximised states to false;
+      #    it wont be aligned to a side if moved, nor centred if
+      #    moved, and cannot be moved if maximised.
       # 2) Get the current coordinates of the interface, then:
       # 3) Override the attributes with the new coordinates for
       #    desired movement; these are usually +/- 1 of the current

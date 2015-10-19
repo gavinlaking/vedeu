@@ -24,5 +24,8 @@ of the terminal.
 - Geometry can be maximised- to use all the available terminal space.
 - It can also be unmaximised- to return to the pre-defined dimensions
   as mentioned above.
+- Geometry can be aligned; either left, centre or right. When defined
+  in this way, the 'x', 'xn', 'y' and 'yn' parameters will be
+  calculated automatically.
 - Geometry like a {file:docs/cursors.md Cursor}, via events can be
   moved; left, right, up or down.

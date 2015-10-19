@@ -44,6 +44,10 @@ class AlignmentApp
     end
     geometry do
       alignment :left, 30
+
+      # or you can use:
+      # align_left 30
+
       height 10
     end
   end
@@ -54,6 +58,10 @@ class AlignmentApp
     end
     geometry do
       alignment :centre, 30
+
+      # or you can use:
+      # align_centre 30
+
       height 10
     end
   end
@@ -64,6 +72,10 @@ class AlignmentApp
     end
     geometry do
       alignment :right, 30
+
+      # or you can use:
+      # align_right 30
+
       height 10
     end
   end
