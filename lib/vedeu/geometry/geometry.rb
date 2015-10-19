@@ -257,7 +257,9 @@ module Vedeu
       # @option coordinates yn [Fixnum] The ending row/line position.
       # @return [Hash<Symbol => Boolean, Fixnum>]
       def move(coordinates = {})
-        attrs = attributes.merge!(centred: false, maximised: false)
+        attrs = attributes.merge!(alignment: :none,
+                                  centred:   false,
+                                  maximised: false)
                 .merge!(coordinates)
 
         Vedeu::Geometry::Geometry.store(attrs)
