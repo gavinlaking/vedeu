@@ -7,6 +7,10 @@ module Vedeu
     # :nocov:
     module Options
 
+      # @!attribute [w] options
+      # @return [Hash<Symbol => void>]
+      attr_writer :options
+
       private
 
       # Combines the options provided at instantiation with the
