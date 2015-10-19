@@ -77,7 +77,6 @@ module Vedeu
       include Vedeu::DSL
       include Vedeu::DSL::Use
 
-
       # Specify the geometry of an interface or view with a simple
       # DSL.
       #

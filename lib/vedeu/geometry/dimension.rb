@@ -36,7 +36,7 @@ module Vedeu
       #
       # @return [Fixnum]
       def d1
-        dimension[0] #< 1 ? 1 : dimension[0]
+        dimension[0] < 1 ? 1 : dimension[0]
       end
 
       # Fetch the ending coordinate.
