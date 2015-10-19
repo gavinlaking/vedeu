@@ -2,6 +2,9 @@ module Vedeu
 
   module Geometry
 
+    # Provides the mechanism to align an interface/view horizontally
+    # to the available terminal space.
+    #
     class Alignment
 
       # @param (see #initialize)
