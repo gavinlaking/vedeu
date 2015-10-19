@@ -103,7 +103,8 @@ module Vedeu
         fail Vedeu::Error::InvalidSyntax,
              'No alignment given. Valid values are :center, :centre, :left, ' \
              ':none, :right.'.freeze unless present?(value)
-        fail Vedeu::Error::InvalidSyntax, 'No width given.'.freeze unless present?(width)
+        fail Vedeu::Error::InvalidSyntax,
+             'No width given.'.freeze unless present?(width)
 
         model.alignment = Vedeu::Geometry::Alignment.align(value)
         model.width     = width

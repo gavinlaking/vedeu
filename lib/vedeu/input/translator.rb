@@ -123,7 +123,7 @@ module Vedeu
     "\e[1;2Q" => :scroll_lock,
     "\e[Z" => :shift_tab,
     "\t" => :tab,
-    "\u21B9" => :tab
+    "\u21B9" => :tab,
   }.freeze
 
 end # Vedeu
