@@ -18,6 +18,26 @@ module Vedeu
       describe '.align' do
         subject { described.align(_value) }
 
+        it { proc { subject }.must_raise(Vedeu::Error::NotImplemented) }
+      end
+
+      describe '#align' do
+        subject { instance.align }
+
+        it { proc { subject }.must_raise(Vedeu::Error::NotImplemented) }
+      end
+
+    end # Alignment
+
+    describe HorizontalAlignment do
+
+      let(:described) { Vedeu::Geometry::HorizontalAlignment }
+      let(:instance)  { described.new(_value) }
+      let(:_value)    {}
+
+      describe '.align' do
+        subject { described.align(_value) }
+
         context 'when the value is nil' do
           it { subject.must_equal(:none) }
         end
@@ -26,12 +46,6 @@ module Vedeu
           let(:_value) { 'invalid' }
 
           it { subject.must_equal(:none) }
-        end
-
-        context 'when the value is :bottom' do
-          let(:_value) { :bottom }
-
-          it { subject.must_equal(:bottom) }
         end
 
         context 'when the value is :center' do
@@ -52,68 +66,54 @@ module Vedeu
           it { subject.must_equal(:left) }
         end
 
-        context 'when the value is :middle' do
-          let(:_value) { :middle }
-
-          it { subject.must_equal(:middle) }
-        end
-
         context 'when the value is :right' do
           let(:_value) { :right }
 
           it { subject.must_equal(:right) }
         end
 
-        context 'when the value is :top' do
-          let(:_value) { :top }
+        context 'when the value is :align_invalid' do
+          let(:_value) { :align_invalid }
 
-          it { subject.must_equal(:top) }
+          it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
+        end
+      end
+
+    end # HorizontalAlignment
+
+    describe VerticalAlignment do
+
+      let(:described) { Vedeu::Geometry::VerticalAlignment }
+      let(:instance)  { described.new(_value) }
+      let(:_value)    {}
+
+      describe '.align' do
+        subject { described.align(_value) }
+
+        context 'when the value is nil' do
+          it { subject.must_equal(:none) }
         end
 
-        context 'when the value is :alignment' do
-          let(:_value) { :alignment }
+        context 'when the value is not a Symbol' do
+          let(:_value) { 'invalid' }
 
           it { subject.must_equal(:none) }
         end
 
-        context 'when the value is :align_bottom' do
-          let(:_value) { :align_bottom }
+        context 'when the value is :bottom' do
+          let(:_value) { :bottom }
 
           it { subject.must_equal(:bottom) }
         end
 
-        context 'when the value is :align_center' do
-          let(:_value) { :align_center }
-
-          it { subject.must_equal(:centre) }
-        end
-
-        context 'when the value is :align_centre' do
-          let(:_value) { :align_centre }
-
-          it { subject.must_equal(:centre) }
-        end
-
-        context 'when the value is :align_left' do
-          let(:_value) { :align_left }
-
-          it { subject.must_equal(:left) }
-        end
-
-        context 'when the value is :align_middle' do
-          let(:_value) { :align_middle }
+        context 'when the value is :middle' do
+          let(:_value) { :middle }
 
           it { subject.must_equal(:middle) }
         end
 
-        context 'when the value is :align_right' do
-          let(:_value) { :align_right }
-
-          it { subject.must_equal(:right) }
-        end
-
-        context 'when the value is :align_top' do
-          let(:_value) { :align_top }
+        context 'when the value is :top' do
+          let(:_value) { :top }
 
           it { subject.must_equal(:top) }
         end
@@ -124,18 +124,6 @@ module Vedeu
           it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
         end
       end
-
-      describe '#align' do
-        it { instance.must_respond_to(:align) }
-      end
-
-    end # Alignment
-
-    describe HorizontalAlignment do
-
-    end # HorizontalAlignment
-
-    describe VerticalAlignment do
 
     end # VerticalAlignment
 
