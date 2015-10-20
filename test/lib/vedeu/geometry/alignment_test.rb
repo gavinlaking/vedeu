@@ -131,6 +131,14 @@ module Vedeu
 
     end # Alignment
 
+    describe HorizontalAlignment do
+
+    end # HorizontalAlignment
+
+    describe VerticalAlignment do
+
+    end # VerticalAlignment
+
   end # Geometry
 
 end # Vedeu

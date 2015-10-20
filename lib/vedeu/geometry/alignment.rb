@@ -85,6 +85,14 @@ module Vedeu
 
     end # Alignment
 
+    class HorizontalAlignment < Alignment
+
+    end # HorizontalAlignment
+
+    class VerticalAlignment < Alignment
+
+    end # VerticalAlignment
+
   end # Geometry
 
 end # Vedeu
