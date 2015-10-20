@@ -3,7 +3,7 @@ module Vedeu
   module Geometry
 
     # Provides the mechanism to align an interface/view horizontally
-    # to the available terminal space.
+    # or vertically within the available terminal space.
     #
     class Alignment
 
@@ -20,7 +20,7 @@ module Vedeu
       end
 
       # @raise [Vedeu::Error::InvalidSyntax] When the value is not one
-      #   of :centre, :left, :right
+      #   of :bottom, :centre, :left, :middle, :right, :top.
       # @return [Symbol]
       def align
         return value if valid?
@@ -73,10 +73,13 @@ module Vedeu
       # @return [Array<Symbol>]
       def values
         [
+          :bottom,
           :centre,
           :left,
+          :middle,
           :none,
           :right,
+          :top,
         ]
       end
 

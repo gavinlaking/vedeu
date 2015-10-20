@@ -28,6 +28,12 @@ module Vedeu
           it { subject.must_equal(:none) }
         end
 
+        context 'when the value is :bottom' do
+          let(:_value) { :bottom }
+
+          it { subject.must_equal(:bottom) }
+        end
+
         context 'when the value is :center' do
           let(:_value) { :center }
 
@@ -46,16 +52,34 @@ module Vedeu
           it { subject.must_equal(:left) }
         end
 
+        context 'when the value is :middle' do
+          let(:_value) { :middle }
+
+          it { subject.must_equal(:middle) }
+        end
+
         context 'when the value is :right' do
           let(:_value) { :right }
 
           it { subject.must_equal(:right) }
         end
 
+        context 'when the value is :top' do
+          let(:_value) { :top }
+
+          it { subject.must_equal(:top) }
+        end
+
         context 'when the value is :alignment' do
           let(:_value) { :alignment }
 
           it { subject.must_equal(:none) }
+        end
+
+        context 'when the value is :align_bottom' do
+          let(:_value) { :align_bottom }
+
+          it { subject.must_equal(:bottom) }
         end
 
         context 'when the value is :align_center' do
@@ -76,10 +100,22 @@ module Vedeu
           it { subject.must_equal(:left) }
         end
 
+        context 'when the value is :align_middle' do
+          let(:_value) { :align_middle }
+
+          it { subject.must_equal(:middle) }
+        end
+
         context 'when the value is :align_right' do
           let(:_value) { :align_right }
 
           it { subject.must_equal(:right) }
+        end
+
+        context 'when the value is :align_top' do
+          let(:_value) { :align_top }
+
+          it { subject.must_equal(:top) }
         end
 
         context 'when the value is :align_invalid' do
