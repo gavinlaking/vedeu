@@ -38,30 +38,32 @@ module Vedeu
       describe '.from_attributes' do
         let(:attributes) {
           {
-            y:         y,
-            yn:        yn,
-            y_yn:      y_yn,
-            y_default: y_default,
-            x:         x,
-            xn:        xn,
-            x_xn:      x_xn,
-            x_default: x_default,
-            maximised: maximised,
-            centred:   centred,
-            alignment: alignment,
+            y:                    y,
+            yn:                   yn,
+            y_yn:                 y_yn,
+            y_default:            y_default,
+            x:                    x,
+            xn:                   xn,
+            x_xn:                 x_xn,
+            x_default:            x_default,
+            maximised:            maximised,
+            centred:              centred,
+            horizontal_alignment: horizontal_alignment,
+            vertical_alignment:   vertical_alignment,
           }
         }
-        let(:y)         {}
-        let(:yn)        {}
-        let(:y_yn)      {}
-        let(:y_default) {}
-        let(:x)         {}
-        let(:xn)        {}
-        let(:x_xn)      {}
-        let(:x_default) {}
-        let(:maximised) {}
-        let(:centred)   {}
-        let(:alignment) {}
+        let(:y)                    {}
+        let(:yn)                   {}
+        let(:y_yn)                 {}
+        let(:y_default)            {}
+        let(:x)                    {}
+        let(:xn)                   {}
+        let(:x_xn)                 {}
+        let(:x_default)            {}
+        let(:maximised)            {}
+        let(:centred)              {}
+        let(:horizontal_alignment) {}
+        let(:vertical_alignment)   {}
 
         subject { described.from_attributes(attributes) }
 
