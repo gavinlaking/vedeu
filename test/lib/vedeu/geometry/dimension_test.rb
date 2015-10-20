@@ -54,6 +54,12 @@ module Vedeu
           it { subject.must_equal([1, 80]) }
         end
 
+        context 'when bottom aligned' do
+          let(:alignment) { :bottom }
+
+          it { proc { subject }.must_raise(Vedeu::Error::NotImplemented) }
+        end
+
         context 'when left aligned' do
           let(:alignment) { :left }
           let(:default)   { 80 }
@@ -79,6 +85,12 @@ module Vedeu
 
             it { subject.must_equal([1, 80]) }
           end
+        end
+
+        context 'when middle aligned' do
+          let(:alignment) { :middle }
+
+          it { proc { subject }.must_raise(Vedeu::Error::NotImplemented) }
         end
 
         context 'when right aligned' do
@@ -108,6 +120,12 @@ module Vedeu
 
             it { subject.must_equal([1, 80]) }
           end
+        end
+
+        context 'when top aligned' do
+          let(:alignment) { :top }
+
+          it { proc { subject }.must_raise(Vedeu::Error::NotImplemented) }
         end
 
         context 'when centre aligned' do
@@ -247,6 +265,14 @@ module Vedeu
       end
 
     end # Dimension
+
+    describe XDimension do
+
+    end # XDimension
+
+    describe YDimension do
+
+    end # YDimension
 
   end # Geometry
 

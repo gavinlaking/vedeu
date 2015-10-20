@@ -126,6 +126,10 @@ module Vedeu
         model
       end
 
+      def align_bottom(height)
+        alignment(:bottom, height)
+      end
+
       # Align the interface/view centrally.
       #
       #   Vedeu.geometry :some_interface do
@@ -169,6 +173,10 @@ module Vedeu
         alignment(:left, width)
       end
 
+      def align_middle(height)
+        alignment(:middle, height)
+      end
+
       # Align the interface/view to the right.
       #
       #   Vedeu.geometry :some_interface do
@@ -187,6 +195,10 @@ module Vedeu
       # @return [Vedeu::Geometry::Geometry]
       def align_right(width)
         alignment(:right, width)
+      end
+
+      def align_top(height)
+        alignment(:top, height)
       end
 
       # Instructs Vedeu to calculate x and y geometry automatically
