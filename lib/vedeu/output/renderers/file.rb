@@ -84,7 +84,7 @@ module Vedeu
       # @return [Hash]
       def defaults
         {
-          compression: false,
+          compression: Vedeu::Configuration.compression?,
           filename:    'out',
           timestamp:   false,
           write_file:  true,
