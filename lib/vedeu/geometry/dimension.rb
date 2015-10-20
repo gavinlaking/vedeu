@@ -173,6 +173,13 @@ module Vedeu
         dn > default ? default : dn
       end
 
+      # Ascertains the ending coordinate for a left aligned
+      # interface/view.
+      #
+      # 1) Use the width (d_dn), or
+      # 2) Use the xn (dn), or
+      # 3) Default to the terminal width.
+      #
       # @return [Fixnum]
       def left_dn
         if d_dn
@@ -187,6 +194,13 @@ module Vedeu
         end
       end
 
+      # Ascertains the starting coordinate for a right aligned
+      # interface/view.
+      #
+      # 1) Use the width (d_dn), or
+      # 2) Use the x (d), or
+      # 3) Default to 1.
+      #
       # @return [Fixnum]
       def right_d
         if d_dn
