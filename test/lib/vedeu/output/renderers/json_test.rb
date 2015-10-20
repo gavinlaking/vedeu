@@ -15,7 +15,6 @@ module Vedeu
         ::File.stubs(:write)
         Vedeu.stubs(:height).returns(1)
         Vedeu.stubs(:width).returns(1)
-        # Vedeu::Configuration.stubs(:compression?).returns(false)
         Vedeu::Terminal::Buffer.reset
       end
 

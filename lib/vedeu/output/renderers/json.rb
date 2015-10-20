@@ -20,7 +20,7 @@ module Vedeu
       def clear
         json = parse({})
 
-        super(json)
+        super(json, { compression: false })
 
         json
       end
@@ -30,7 +30,7 @@ module Vedeu
       def render(output)
         json = parse(output)
 
-        super(json)
+        super(json, { compression: false })
 
         json
       end
