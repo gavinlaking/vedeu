@@ -13,18 +13,21 @@ module Vedeu
 
       # @param (see #initialize)
       # @return [String]
-      def self.render(output)
-        new(output).render
+      def self.render(output, options = {})
+        new(output, options).render
       end
 
       # Returns a new instance of Vedeu::Output::Compressor.
       #
       # @param output [Array<Array<Vedeu::Views::Char>>]
+      # @param options [Hash]
+      # @option options compression [Boolean]
       # @return [Vedeu::Output::Compressor]
-      def initialize(output)
-        @output = output
-        @colour = ''
-        @style  = ''
+      def initialize(output, options = {})
+        @output  = output
+        @options = options
+        @colour  = ''
+        @style   = ''
       end
 
       # @note
