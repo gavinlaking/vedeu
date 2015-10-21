@@ -2,6 +2,6 @@ ratings:
   paths:
     - lib/**
 exclude_paths:
-  - "examples/**/*"
-  - "test/**/*"
-  - "vendor/**/*"
+  - "examples/*"
+  - "test/*"
+  - "vendor/*"
