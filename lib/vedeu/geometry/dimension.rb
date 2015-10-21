@@ -32,20 +32,6 @@ module Vedeu
         end
       end
 
-      # Fetch the starting coordinate.
-      #
-      # @return [Fixnum]
-      def d1
-        dimension[0] < 1 ? 1 : dimension[0]
-      end
-
-      # Fetch the ending coordinate.
-      #
-      # @return [Fixnum]
-      def d2
-        dimension[-1]
-      end
-
       # Fetch the coordinates.
       #
       # @return [Array<Fixnum>]
