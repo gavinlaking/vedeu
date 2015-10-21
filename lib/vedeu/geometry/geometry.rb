@@ -31,9 +31,13 @@ module Vedeu
                      :height,
                      :width
 
-      # @!attribute [rw] alignment
+      # @!attribute [rw] horizontal_alignment
       # @return [Symbol]
-      attr_accessor :alignment
+      attr_accessor :horizontal_alignment
+
+      # @!attribute [rw] vertical_alignment
+      # @return [Symbol]
+      attr_accessor :vertical_alignment
 
       # @!attribute [rw] centred
       # @return [Boolean]
@@ -85,6 +89,8 @@ module Vedeu
       # Returns a new instance of Vedeu::Geometry::Geometry.
       #
       # @param attributes [Hash]
+      # @option attributes horizontal_alignment [Symbol]
+      # @option attributes vertical_alignment [Symbol]
       # @option attributes centred [Boolean]
       # @option attributes maximised [Boolean]
       # @option attributes height [Fixnum]
@@ -105,18 +111,19 @@ module Vedeu
       # @return [Hash]
       def attributes
         {
-          alignment:  @alignment,
-          client:     @client,
-          centred:    @centred,
-          height:     height,
-          maximised:  @maximised,
-          name:       @name,
-          repository: @repository,
-          width:      width,
-          x:          x,
-          xn:         xn,
-          y:          y,
-          yn:         yn,
+          client:               @client,
+          centred:              @centred,
+          height:               height,
+          horizontal_alignment: @horizontal_alignment,
+          maximised:            @maximised,
+          name:                 @name,
+          repository:           @repository,
+          vertical_alignment:   @vertical_alignment,
+          width:                width,
+          x:                    x,
+          xn:                   xn,
+          y:                    y,
+          yn:                   yn,
         }
       end
 
@@ -227,15 +234,16 @@ module Vedeu
       # @return [Hash<Symbol => Boolean, Fixnum>]
       def area_attributes
         {
-          alignment: @alignment,
-          centred:   @centred,
-          maximised: @maximised,
-          x:         @x.is_a?(Proc)      ? @x.call      : @x,
-          xn:        @xn.is_a?(Proc)     ? @xn.call     : @xn,
-          x_xn:      @width.is_a?(Proc)  ? @width.call  : @width,
-          y:         @y.is_a?(Proc)      ? @y.call      : @y,
-          yn:        @yn.is_a?(Proc)     ? @yn.call     : @yn,
-          y_yn:      @height.is_a?(Proc) ? @height.call : @height,
+          centred:              @centred,
+          horizontal_alignment: @horizontal_alignment,
+          maximised:            @maximised,
+          vertical_alignment:   @vertical_alignment,
+          x:                    @x.is_a?(Proc)      ? @x.call      : @x,
+          xn:                   @xn.is_a?(Proc)     ? @xn.call     : @xn,
+          x_xn:                 @width.is_a?(Proc)  ? @width.call  : @width,
+          y:                    @y.is_a?(Proc)      ? @y.call      : @y,
+          yn:                   @yn.is_a?(Proc)     ? @yn.call     : @yn,
+          y_yn:                 @height.is_a?(Proc) ? @height.call : @height,
         }
       end
 
@@ -257,9 +265,10 @@ module Vedeu
       # @option coordinates yn [Fixnum] The ending row/line position.
       # @return [Hash<Symbol => Boolean, Fixnum>]
       def move(coordinates = {})
-        attrs = attributes.merge!(alignment: :none,
-                                  centred:   false,
-                                  maximised: false)
+        attrs = attributes.merge!(centred:              false,
+                                  horizontal_alignment: :none,
+                                  maximised:            false,
+                                  vertical_alignment:   :none)
                 .merge!(coordinates)
 
         Vedeu::Geometry::Geometry.store(attrs)
@@ -270,19 +279,30 @@ module Vedeu
       # @return [Hash]
       def defaults
         {
-          alignment:  Vedeu::Geometry::Alignment.align(:none),
-          client:     nil,
-          centred:    false,
-          height:     nil,
-          maximised:  false,
-          name:       nil,
-          repository: Vedeu.geometries,
-          width:      nil,
-          x:          nil,
-          xn:         nil,
-          y:          nil,
-          yn:         nil,
+          client:               nil,
+          centred:              false,
+          height:               nil,
+          horizontal_alignment: default_horizontal_alignment,
+          maximised:            false,
+          name:                 nil,
+          repository:           Vedeu.geometries,
+          vertical_alignment:   default_vertical_alignment,
+          width:                nil,
+          x:                    nil,
+          xn:                   nil,
+          y:                    nil,
+          yn:                   nil,
         }
+      end
+
+      # @return [Symbol]
+      def default_horizontal_alignment
+        Vedeu::Geometry::HorizontalAlignment.align(:none)
+      end
+
+      # @return [Symbol]
+      def default_vertical_alignment
+        Vedeu::Geometry::VerticalAlignment.align(:none)
       end
 
     end # Geometry

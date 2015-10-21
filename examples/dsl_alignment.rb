@@ -5,62 +5,6 @@ require 'vedeu'
 
 class AlignmentApp
 
-  def self.geometry_stats(name)
-    Vedeu.geometries.by_name(name)
-  end
-  def self.gl
-    geometry_stats(:left_interface)
-  end
-  def self.gc
-    geometry_stats(:centre_interface)
-  end
-  def self.gr
-    geometry_stats(:right_interface)
-  end
-
-  def self.border_stats(name)
-    Vedeu.borders.by_name(name)
-  end
-  def self.bl
-    border_stats(:left_interface)
-  end
-  def self.bc
-    border_stats(:centre_interface)
-  end
-  def self.br
-    border_stats(:right_interface)
-  end
-
-  class CentreAlignmentView
-    def render
-      Vedeu.render do
-        view(:centre_interface) do
-          lines do
-            line "x:#{gc.x}, xn:#{gc.xn} (w:#{gc.width})"
-            line "y:#{gc.y}, yn:#{gc.yn} (h:#{gc.height})"
-            line ""
-            line "bx:#{bc.bx}, bxn:#{bc.bxn} (bw:#{bc.width})"
-            line "by:#{bc.by}, byn:#{bc.byn} (bh:#{bc.height})"
-            line ""
-            line "The 'h', 'j', 'k' and 'l' keys will"
-            line "move this view left, down, up, and"
-            line "right respectively."
-          end
-        end
-      end
-
-      Vedeu.trigger(:_refresh_view, :centre_interface)
-    end
-
-    def gc
-      Vedeu.geometries.by_name(:centre_interface)
-    end
-
-    def bc
-      Vedeu.borders.by_name(:centre_interface)
-    end
-  end
-
   Vedeu.bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
 
   Vedeu.configure do
@@ -68,108 +12,143 @@ class AlignmentApp
     renderers Vedeu::Renderers::File.new(filename: './tmp/alignment.out')
   end
 
-  Vedeu.interface :left_interface do
+  Vedeu.interface :top_left_view do
     border do
-      title 'Align: Left'
+      title 'Top Left'
     end
     geometry do
-      alignment :left, 30
-
-      # or you can use:
-      # align_left 30
-
-      height 10
+      align(:top, :left, 20, 4)
     end
   end
 
-  Vedeu.interface :centre_interface do
+  Vedeu.interface :top_centre_view do
     border do
-      title 'Align: Centre'
+      title 'Top Centre'
     end
     geometry do
-      alignment :centre, 40
-
-      # or you can use:
-      # align_centre 30
-
-      height 15
+      align(:top, :centre, 20, 4)
     end
   end
 
-  Vedeu.interface :right_interface do
+  Vedeu.interface :top_right_view do
     border do
-      title 'Align: Right'
+      title 'Top Right'
     end
     geometry do
-      alignment :right, 30
+      align(:top, :right, 20, 4)
+    end
+  end
 
-      # or you can use:
-      # align_right 30
+  Vedeu.interface :middle_left_view do
+    border do
+      title 'Middle Left'
+    end
+    geometry do
+      align(:middle, :left, 20, 4)
+    end
+  end
 
-      height 10
+  Vedeu.interface :middle_centre_view do
+    border do
+      title 'Middle Centre'
+    end
+    geometry do
+      align(:middle, :centre, 20, 4)
+    end
+  end
+
+  Vedeu.interface :middle_right_view do
+    border do
+      title 'Middle Right'
+    end
+    geometry do
+      align(:middle, :right, 20, 4)
+    end
+  end
+
+  Vedeu.interface :bottom_left_view do
+    border do
+      title 'Bottom Left'
+    end
+    geometry do
+      align(:bottom, :left, 20, 4)
+    end
+  end
+
+  Vedeu.interface :bottom_centre_view do
+    border do
+      title 'Bottom Centre'
+    end
+    geometry do
+      align(:bottom, :centre, 20, 4)
+    end
+  end
+
+  Vedeu.interface :bottom_right_view do
+    border do
+      title 'Bottom Right'
+    end
+    geometry do
+      align(:bottom, :right, 20, 4)
     end
   end
 
   Vedeu.keymap '_global_' do
     key('q') { Vedeu.exit }
-
-    key('h') {
-      Vedeu.trigger(:_view_left_, :centre_interface)
-
-      AlignmentApp::CentreAlignmentView.new.render
-    }
-    key('j') {
-      Vedeu.trigger(:_view_down_, :centre_interface)
-
-      AlignmentApp::CentreAlignmentView.new.render
-    }
-    key('k') {
-      Vedeu.trigger(:_view_up_, :centre_interface)
-
-      AlignmentApp::CentreAlignmentView.new.render
-    }
-    key('l') {
-      Vedeu.trigger(:_view_right_, :centre_interface)
-
-      AlignmentApp::CentreAlignmentView.new.render
-    }
   end
 
   Vedeu.render do
-    view(:left_interface) do
+    view(:top_left_view) do
       lines do
-        line "x:#{gl.x}, xn:#{gl.xn} (w:#{gl.width})"
-        line "y:#{gl.y}, yn:#{gl.yn} (h:#{gl.height})"
-        line ""
-        line "bx:#{bl.bx}, bxn:#{bl.bxn} (bw:#{bl.width})"
-        line "by:#{bl.by}, byn:#{bl.byn} (bh:#{bl.height})"
+        line "top left"
       end
     end
 
-    view(:centre_interface) do
+    view(:top_centre_view) do
       lines do
-        line "x:#{gc.x}, xn:#{gc.xn} (w:#{gc.width})"
-        line "y:#{gc.y}, yn:#{gc.yn} (h:#{gc.height})"
-        line ""
-        line "bx:#{bc.bx}, bxn:#{bc.bxn} (bw:#{bc.width})"
-        line "by:#{bc.by}, byn:#{bc.byn} (bh:#{bc.height})"
-        line ""
-        line "The 'h', 'j', 'k' and 'l' keys will"
-        line "move this view left, down, up, and"
-        line "right respectively. The coordinates"
-        line "will not change in this example"
-        line "because they have not been"
-        line "instructed to do so."
+        line "top centre"
       end
     end
 
-    view(:right_interface) do
+    view(:top_right_view) do
       lines do
-        line "x:#{gr.x}, xn:#{gr.xn} (w:#{gr.width})"
-        line "y:#{gr.y}, yn:#{gr.yn} (h:#{gr.height})"
-        line ""
-        line "bx:#{br.bx}, bxn:#{br.bxn} (bw:#{br.width})"
-        line "by:#{br.by}, byn:#{br.byn} (bh:#{br.height})"
+        line "top right"
+      end
+    end
+
+    view(:middle_left_view) do
+      lines do
+        line "middle left"
+      end
+    end
+
+    view(:middle_centre_view) do
+      lines do
+        line "middle centre"
+      end
+    end
+
+    view(:middle_right_view) do
+      lines do
+        line "middle right"
+      end
+    end
+
+    view(:bottom_left_view) do
+      lines do
+        line "bottom left"
+      end
+    end
+
+    view(:bottom_centre_view) do
+      lines do
+        line "bottom centre"
+      end
+    end
+
+    view(:bottom_right_view) do
+      lines do
+        line "bottom right"
       end
     end
   end

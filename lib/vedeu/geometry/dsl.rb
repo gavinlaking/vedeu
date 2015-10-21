@@ -114,59 +114,204 @@ module Vedeu
       # @raise [Vedeu::Error::InvalidSyntax] When the value or width
       #   is not given.
       # @return [Vedeu::Geometry::Geometry]
-      def alignment(value, width)
+      # def alignment(value, width)
+      #   fail Vedeu::Error::InvalidSyntax,
+      #        'No alignment given. Valid values are :center, :centre, ' \
+      #        ':left, :none, :right.'.freeze unless present?(value)
+      #   fail Vedeu::Error::InvalidSyntax,
+      #        'No width given.'.freeze unless present?(width)
+
+      #   model.alignment = Vedeu::Geometry::Alignment.align(value)
+      #   model.width     = width
+      #   model
+      # end
+
+      # Align the interface/view horizontally or vertically within
+      # the terminal.
+      #
+      # @param vertical [Symbol] One of :bottom, :middle, :none, :top.
+      # @param horizontal [Symbol] One of :center, :centre, :left,
+      #   :none, :right.
+      # @param width [Fixnum] The number of characters/columns wide;
+      #   this is required when the given value for horizontal is any
+      #   value other than :none.
+      # @param height [Fixnum] The number of lines/rows tall; this is
+      #   required when the given value for vertical is any value
+      #   other than :none.
+      # @raise [Vedeu::Error::InvalidSyntax]
+      #   - When the vertical is not given.
+      #   - When the horizontal is not given.
+      #   - When the horizontal is given (and not :none) and the width
+      #     is not given.
+      #   - When the vertical is given (and not :none) and the height
+      #     is not given.
+      # @return [Vedeu::Geometry::Geometry]
+      def align(vertical, horizontal, width, height)
         fail Vedeu::Error::InvalidSyntax,
-             'No alignment given. Valid values are :center, :centre, :left, ' \
-             ':none, :right.'.freeze unless present?(value)
+             'No vertical alignment given. Valid values are :bottom, ' \
+             ':middle, :none, :top.'.freeze unless present?(vertical)
+        fail Vedeu::Error::InvalidSyntax,
+             'No horizontal alignment given. Valid values are :center, ' \
+             ':centre, :left, :none, :right.'.freeze unless present?(horizontal)
+
+        unless vertical == :none
+          fail Vedeu::Error::InvalidSyntax,
+               'No height given.'.freeze if absent?(height)
+        end
+
+        unless horizontal == :none
+          fail Vedeu::Error::InvalidSyntax,
+               'No width given.'.freeze if absent?(width)
+        end
+
+        horizontal_alignment(horizontal, width)
+        vertical_alignment(vertical, height)
+      end
+
+      # @param value [Symbol] One of :center, :centre, :left, :none,
+      #   :right.
+      # @param width [Fixnum] The number of characters/columns.
+      # @return [Vedeu::Geometry::Geometry]
+      def horizontal_alignment(value, width)
+        fail Vedeu::Error::InvalidSyntax,
+             'No horizontal alignment given. Valid values are :center, ' \
+             ':centre, :left, :none, :right.'.freeze unless present?(value)
         fail Vedeu::Error::InvalidSyntax,
              'No width given.'.freeze unless present?(width)
 
-        model.alignment = Vedeu::Geometry::Alignment.align(value)
-        model.width     = width
+        model.horizontal_alignment = Vedeu::Geometry::HorizontalAlignment
+          .align(value)
+        model.width = width
         model
       end
 
-      # Align the interface/view centrally.
+      # @param value [Symbol] One of :bottom, :middle, :none, :top.
+      # @param height [Fixnum] The number of lines/rows.
+      # @return [Vedeu::Geometry::Geometry]
+      def vertical_alignment(value, height)
+        fail Vedeu::Error::InvalidSyntax,
+             'No vertical alignment given. Valid values are :bottom, ' \
+             ':middle, :none, :top.'.freeze unless present?(value)
+        fail Vedeu::Error::InvalidSyntax,
+             'No height given.'.freeze unless present?(height)
+
+        model.vertical_alignment = Vedeu::Geometry::VerticalAlignment
+          .align(value)
+        model.height = height
+        model
+      end
+
+      # Vertically align the interface/view to the bottom of the
+      # terminal.
+      #
+      #   Vedeu.geometry :some_interface do
+      #     # `height` is a positive integer, e.g. 30
+      #     align_bottom 30
+      #
+      #     # this is the same as:
+      #     # vertical_alignment(:bottom, 30)
+      #
+      #     # or you can use: (see notes)
+      #     # align(:bottom, :none, Vedeu.width, 30)
+      #
+      #     # ... some code
+      #   end
+      #
+      # @note
+      #   Vedeu.width in the example above will set the width to the
+      #   default width of the terminal, this can be substituted for
+      #   your own positive integer.
+      # @param height [Fixnum] The number of lines/rows.
+      # @raise [Vedeu::Error::InvalidSyntax] When the height is not
+      #   given.
+      # @return [Vedeu::Geometry::Geometry]
+      def align_bottom(height)
+        vertical_alignment(:bottom, height)
+      end
+
+      # Horizontally align the interface/view centrally.
       #
       #   Vedeu.geometry :some_interface do
       #     # `width` is a positive integer, e.g. 30
       #     align_centre 30
       #
       #     # this is the same as:
-      #     # alignment(:centre, 30)
+      #     # horizontal_alignment(:centre, 30)
+      #
+      #     # or you can use: (see notes)
+      #     # align(:none, :centre, 30, Vedeu.height)
       #
       #     # ... some code
       #   end
       #
       #   # Also allows `align_center` if preferred.
       #
+      # @note
+      #   Vedeu.height in the example above will set the height to the
+      #   default height of the terminal, this can be substituted for
+      #   your own positive integer.
       # @param width [Fixnum] The number of characters/columns.
       # @raise [Vedeu::Error::InvalidSyntax] When the width is not
       #   given.
       # @return [Vedeu::Geometry::Geometry]
       def align_centre(width)
-        alignment(:centre, width)
+        horizontal_alignment(:centre, width)
       end
       alias_method :align_center, :align_centre
 
-      # Align the interface/view to the left.
+      # Horizontally align the interface/view to the left.
       #
       #   Vedeu.geometry :some_interface do
       #     # `width` is a positive integer, e.g. 30
       #     align_left 30
       #
       #     # this is the same as:
-      #     # alignment(:left, 30)
+      #     # horizontal_alignment(:left, 30)
+      #
+      #     # or you can use: (see notes)
+      #     # align(:none, :left, 30, Vedeu.height)
       #
       #     # ... some code
       #   end
       #
+      # @note
+      #   Vedeu.height in the example above will set the height to the
+      #   default height of the terminal, this can be substituted for
+      #   your own positive integer.
       # @param width [Fixnum] The number of characters/columns.
       # @raise [Vedeu::Error::InvalidSyntax] When the width is not
       #   given.
       # @return [Vedeu::Geometry::Geometry]
       def align_left(width)
-        alignment(:left, width)
+        horizontal_alignment(:left, width)
+      end
+
+      # Vertically align the interface/view to the middle of the
+      # terminal.
+      #
+      #   Vedeu.geometry :some_interface do
+      #     # `height` is a positive integer, e.g. 30
+      #     align_middle 30
+      #
+      #     # this is the same as:
+      #     # vertical_alignment(:middle, 30)
+      #
+      #     # or you can use: (see notes)
+      #     # align(:middle, :none, Vedeu.width, 30)
+      #
+      #     # ... some code
+      #   end
+      #
+      # @note
+      #   Vedeu.width in the example above will set the width to the
+      #   default width of the terminal, this can be substituted for
+      #   your own positive integer.
+      # @param height [Fixnum] The number of lines/rows.
+      # @raise [Vedeu::Error::InvalidSyntax] When the height is not
+      #   given.
+      # @return [Vedeu::Geometry::Geometry]
+      def align_middle(height)
+        vertical_alignment(:middle, height)
       end
 
       # Align the interface/view to the right.
@@ -176,17 +321,52 @@ module Vedeu
       #     align_right 30
       #
       #     # this is the same as:
-      #     # alignment(:right, 30)
+      #     # horizontal_alignment(:right, 30)
+      #
+      #     # or you can use: (see notes)
+      #     # align(:none, :right, 30, Vedeu.height)
       #
       #     # ... some code
       #   end
       #
+      # @note
+      #   Vedeu.height in the example above will set the height to the
+      #   default height of the terminal, this can be substituted for
+      #   your own positive integer.
       # @param width [Fixnum] The number of characters/columns.
       # @raise [Vedeu::Error::InvalidSyntax] When the width is not
       #   given.
       # @return [Vedeu::Geometry::Geometry]
       def align_right(width)
-        alignment(:right, width)
+        horizontal_alignment(:right, width)
+      end
+
+      # Vertically align the interface/view to the top of the
+      # terminal.
+      #
+      #   Vedeu.geometry :some_interface do
+      #     # `height` is a positive integer, e.g. 30
+      #     align_top 30
+      #
+      #     # this is the same as:
+      #     # vertical_alignment(:top, 30)
+      #
+      #     # or you can use: (see notes)
+      #     # align(:top, :none, Vedeu.width, 30)
+      #
+      #     # ... some code
+      #   end
+      #
+      # @note
+      #   Vedeu.width in the example above will set the width to the
+      #   default width of the terminal, this can be substituted for
+      #   your own positive integer.
+      # @param height [Fixnum] The number of lines/rows.
+      # @raise [Vedeu::Error::InvalidSyntax] When the height is not
+      #   given.
+      # @return [Vedeu::Geometry::Geometry]
+      def align_top(height)
+        vertical_alignment(:top, height)
       end
 
       # Instructs Vedeu to calculate x and y geometry automatically

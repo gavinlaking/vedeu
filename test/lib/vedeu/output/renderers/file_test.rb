@@ -11,12 +11,14 @@ module Vedeu
       let(:output)    { 'Some content...' }
       let(:options)   {
         {
-          filename:  filename,
-          timestamp: timestamp,
+          filename:    filename,
+          timestamp:   timestamp,
+          compression: compression,
         }
       }
-      let(:filename)  { 'vedeu_renderers_file' }
-      let(:timestamp) { false }
+      let(:filename)    { 'vedeu_renderers_file' }
+      let(:timestamp)   { false }
+      let(:compression) { false }
 
       before { ::File.stubs(:write) }
 

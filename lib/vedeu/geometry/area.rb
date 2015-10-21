@@ -41,29 +41,30 @@ module Vedeu
       # @option attributes x_default [Fixnum]
       # @option attributes maximised [Boolean]
       # @option attributes centred [Boolean]
-      # @option attributes alignment [Symbol]
+      # @option attributes horizontal_alignment [Symbol]
+      # @option attributes vertical_alignment [Symbol]
       # @return [Vedeu::Geometry::Area]
       def self.from_attributes(attributes = {})
         y_attributes = {
-          d:         attributes[:y],
-          dn:        attributes[:yn],
-          d_dn:      attributes[:y_yn],
-          default:   Vedeu.height,
-          maximised: attributes[:maximised],
-          centred:   attributes[:centred],
-          # alignment: attributes[:alignment],
+          d:                  attributes[:y],
+          dn:                 attributes[:yn],
+          d_dn:               attributes[:y_yn],
+          default:            Vedeu.height,
+          maximised:          attributes[:maximised],
+          centred:            attributes[:centred],
+          vertical_alignment: attributes[:vertical_alignment],
         }
         x_attributes = {
-          d:         attributes[:x],
-          dn:        attributes[:xn],
-          d_dn:      attributes[:x_xn],
-          default:   Vedeu.width,
-          maximised: attributes[:maximised],
-          centred:   attributes[:centred],
-          alignment: attributes[:alignment],
+          d:                    attributes[:x],
+          dn:                   attributes[:xn],
+          d_dn:                 attributes[:x_xn],
+          default:              Vedeu.width,
+          maximised:            attributes[:maximised],
+          centred:              attributes[:centred],
+          horizontal_alignment: attributes[:horizontal_alignment],
         }
-        y_yn = Vedeu::Geometry::Dimension.pair(y_attributes)
-        x_xn = Vedeu::Geometry::Dimension.pair(x_attributes)
+        y_yn = Vedeu::Geometry::YDimension.pair(y_attributes)
+        x_xn = Vedeu::Geometry::XDimension.pair(x_attributes)
 
         new(y: y_yn[0], yn: y_yn[-1], x: x_xn[0], xn: x_xn[-1])
       end

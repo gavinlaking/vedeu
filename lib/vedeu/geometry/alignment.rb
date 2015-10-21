@@ -2,8 +2,13 @@ module Vedeu
 
   module Geometry
 
-    # Provides the mechanism to align an interface/view horizontally
-    # to the available terminal space.
+    # The subclasses of this class, HorizontalAlignment and
+    # VerticalAlignment provide the mechanism to align an interface or
+    # view horizontally or vertically within the available terminal
+    # space.
+    #
+    # @see Vedeu::Geometry::HorizontalAlignment
+    # @see Vedeu::Geometry::VerticalAlignment
     #
     class Alignment
 
@@ -19,33 +24,17 @@ module Vedeu
         @value = value
       end
 
-      # @raise [Vedeu::Error::InvalidSyntax] When the value is not one
-      #   of :centre, :left, :right
-      # @return [Symbol]
+      # @raise [Vedeu::Error::NotImplemented] Subclasses of this class
+      #   must implement this method.
       def align
-        return value if valid?
-
-        fail Vedeu::Error::InvalidSyntax,
-             'Cannot align as value is invalid or undefined.'.freeze
+        fail Vedeu::Error::NotImplemented, 'Subclasses implement this.'.freeze
       end
 
       private
 
       # @return [Boolean]
-      def align_value?
-        @value.to_s.start_with?('align_')
-      end
-
-      # @return [Symbol]
-      def coerced_value
-        coerced = @value.to_s.gsub!('align_', '').to_sym
-
-        coerced == :center ? :centre : coerced
-      end
-
-      # @return [Boolean]
       def none?
-        @value.nil? || !(@value.is_a?(Symbol)) || @value == :alignment
+        @value.nil? || !(@value.is_a?(Symbol))
       end
 
       # @return [Boolean]
@@ -61,9 +50,6 @@ module Vedeu
                     elsif @value == :center
                       :centre
 
-                    elsif align_value?
-                      coerced_value
-
                     else
                       @value.to_sym
 
@@ -73,10 +59,13 @@ module Vedeu
       # @return [Array<Symbol>]
       def values
         [
+          :bottom,
           :centre,
           :left,
+          :middle,
           :none,
           :right,
+          :top,
         ]
       end
 

@@ -14,9 +14,13 @@ module Vedeu
 end # Vedeu
 
 require 'vedeu/geometry/alignment'
+require 'vedeu/geometry/horizontal_alignment'
+require 'vedeu/geometry/vertical_alignment'
 require 'vedeu/geometry/area'
 require 'vedeu/geometry/coordinate'
 require 'vedeu/geometry/dimension'
+require 'vedeu/geometry/x_dimension'
+require 'vedeu/geometry/y_dimension'
 require 'vedeu/geometry/dsl'
 require 'vedeu/geometry/coordinate'
 require 'vedeu/geometry/geometry'

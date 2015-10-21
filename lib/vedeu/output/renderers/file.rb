@@ -24,31 +24,54 @@ module Vedeu
 
       # Render a cleared output.
       #
+      # @param output [Vedeu::Models::Page]
+      # @param opts [Hash]
       # @return [String]
-      def clear(output = '')
-        ::File.write(filename, output) if write_file?
+      def clear(output = '', opts = {})
+        @options = options.merge!(opts)
 
-        output
+        ::File.write(filename, out(output)) if write_file?
+
+        out(output)
       end
 
       # @param output [Vedeu::Models::Page]
+      # @param opts [Hash]
       # @return [String]
-      def render(output)
-        ::File.write(filename, output) if write_file?
+      def render(output = '', opts = {})
+        @options = options.merge!(opts)
 
-        output
+        ::File.write(filename, out(output)) if write_file?
+
+        out(output)
       end
 
       private
 
+      def out(output)
+        if compress?
+          Vedeu::Output::Compressor.render(output, options)
+
+        else
+          output
+
+        end
+      end
+
       # @return [String]
       def filename
-        options[:filename] + "_#{timestamp}".freeze
+        options[:filename] + timestamp
       end
 
       # @return [Float]
       def timestamp
-        Time.now.to_f if options[:timestamp]
+        if options[:timestamp]
+          "_#{Time.now.to_f}".freeze
+
+        else
+          ''.freeze
+
+        end
       end
 
       # @return [Boolean]
@@ -61,9 +84,10 @@ module Vedeu
       # @return [Hash]
       def defaults
         {
-          filename:   'out',
-          timestamp:  false,
-          write_file: true,
+          compression: Vedeu::Configuration.compression?,
+          filename:    'out',
+          timestamp:   false,
+          write_file:  true,
         }
       end
 

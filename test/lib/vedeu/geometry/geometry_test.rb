@@ -10,42 +10,45 @@ module Vedeu
       let(:instance)   { described.new(attributes) }
       let(:attributes) {
         {
-          alignment:  alignment,
-          centred:    centred,
-          client:     client,
-          height:     height,
-          maximised:  maximised,
-          name:       _name,
-          repository: Vedeu.geometries,
-          width:      width,
-          x:          x,
-          xn:         xn,
-          y:          y,
-          yn:         yn,
+          centred:              centred,
+          client:               client,
+          height:               height,
+          horizontal_alignment: horizontal_alignment,
+          maximised:            maximised,
+          name:                 _name,
+          repository:           Vedeu.geometries,
+          vertical_alignment:   vertical_alignment,
+          width:                width,
+          x:                    x,
+          xn:                   xn,
+          y:                    y,
+          yn:                   yn,
         }
       }
-      let(:alignment) {}
-      let(:centred)   { false }
-      let(:client)    {}
-      let(:height)    {}
-      let(:maximised) { false }
-      let(:_name)     { 'vedeu_geometry_geometry' }
-      let(:width)     {}
-      let(:x)         {}
-      let(:xn)        {}
-      let(:y)         {}
-      let(:yn)        {}
+      let(:centred)              { false }
+      let(:client)               {}
+      let(:height)               {}
+      let(:horizontal_alignment) {}
+      let(:maximised)            { false }
+      let(:_name)                { 'vedeu_geometry_geometry' }
+      let(:vertical_alignment)   {}
+      let(:width)                {}
+      let(:x)                    {}
+      let(:xn)                   {}
+      let(:y)                    {}
+      let(:yn)                   {}
 
       before { Vedeu::Terminal.stubs(:size).returns([12, 40]) }
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
-        it { instance.instance_variable_get('@alignment').must_equal(alignment) }
         it { instance.instance_variable_get('@centred').must_equal(centred) }
         it { instance.instance_variable_get('@client').must_equal(client) }
         it { instance.instance_variable_get('@height').must_equal(height) }
+        it { instance.instance_variable_get('@horizontal_alignment').must_equal(horizontal_alignment) }
         it { instance.instance_variable_get('@maximised').must_equal(maximised) }
         it { instance.instance_variable_get('@name').must_equal(_name) }
+        it { instance.instance_variable_get('@vertical_alignment').must_equal(vertical_alignment) }
         it { instance.instance_variable_get('@width').must_equal(width) }
         it { instance.instance_variable_get('@x').must_equal(x) }
         it { instance.instance_variable_get('@xn').must_equal(xn) }
@@ -59,16 +62,18 @@ module Vedeu
 
       describe 'accessors' do
         it {
-          instance.must_respond_to(:alignment)
-          instance.must_respond_to(:alignment=)
           instance.must_respond_to(:centred)
           instance.must_respond_to(:centred=)
           instance.must_respond_to(:name)
           instance.must_respond_to(:name=)
           instance.must_respond_to(:height=)
+          instance.must_respond_to(:horizontal_alignment)
+          instance.must_respond_to(:horizontal_alignment=)
           instance.must_respond_to(:maximised)
           instance.must_respond_to(:maximised?)
           instance.must_respond_to(:maximised=)
+          instance.must_respond_to(:vertical_alignment)
+          instance.must_respond_to(:vertical_alignment=)
           instance.must_respond_to(:width=)
           instance.must_respond_to(:x=)
           instance.must_respond_to(:xn=)
