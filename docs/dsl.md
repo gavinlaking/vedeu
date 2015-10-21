@@ -118,7 +118,6 @@ end
 {include:Vedeu::Geometry::DSL#align_bottom}
 {include:Vedeu::Geometry::DSL#horizontal_alignment}
 {include:Vedeu::Geometry::DSL#vertical_alignment}
-{include:Vedeu::Geometry::DSL#centred}
 {include:Vedeu::Geometry::DSL#height}
 {include:Vedeu::Geometry::DSL#width}
 {include:Vedeu::Geometry::DSL#columns}

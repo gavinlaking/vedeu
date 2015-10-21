@@ -27,9 +27,7 @@ class HelloWorldsApp
     background '#000000'
     foreground '#00ff00'
     geometry do
-      centred!
-      height   5
-      width    24
+      align(:middle, :centre, 24, 5)
     end
     # (You usually specify the views outside the interface block).
     Vedeu.views do
@@ -59,9 +57,7 @@ class HelloWorldsApp
     Vedeu.render do
       view :hello do
         geometry do
-          centred!
-          height  5 + 2
-          width   24 + 2
+          align(:middle, :centre, (24 + 2), (5 + 2))
         end
         border do
           colour foreground: ["#00ff00", "#000033", "#cddc39", "#03a9f4"].sample

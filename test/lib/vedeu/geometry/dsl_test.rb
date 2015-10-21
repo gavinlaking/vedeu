@@ -277,41 +277,6 @@ module Vedeu
         end
       end
 
-      describe '#centred' do
-        subject { instance.centred(true) }
-
-        it { instance.must_respond_to(:centred!) }
-        it { instance.must_respond_to(:centred=) }
-
-        it 'sets the attribute to the value' do
-          subject.must_equal(true)
-        end
-
-        context 'DSL #centred' do
-          subject {
-            Vedeu.geometry 'geometry' do
-              centred false
-            end
-          }
-
-          it { subject.must_be_instance_of(Vedeu::Geometry::Geometry) }
-
-          it 'allows the use of centred within geometry' do
-            subject.centred.must_equal(false)
-          end
-
-          context 'when no value is given' do
-            subject {
-              Vedeu.geometry 'geometry' do
-                centred
-              end
-            }
-
-            it { subject.centred.must_equal(true) }
-          end
-        end
-      end
-
       describe '#columns' do
         before { Vedeu::Terminal.stubs(:size).returns([25, 80]) }
 

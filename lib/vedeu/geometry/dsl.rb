@@ -369,29 +369,6 @@ module Vedeu
         vertical_alignment(:top, height)
       end
 
-      # Instructs Vedeu to calculate x and y geometry automatically
-      # based on the centre character of the terminal, the width and
-      # the height.
-      #
-      #   Vedeu.geometry :some_interface do
-      #     centred false # or...
-      #
-      #     centred true  # or...
-      #     centred!      # or...
-      #     # ... some code
-      #   end
-      #
-      # @param value [Boolean] Any value other than nil or false will
-      #   evaluate to true.
-      # @return [Boolean]
-      def centred(value = true)
-        boolean = value ? true : false
-
-        model.centred = boolean
-      end
-      alias_method :centred!, :centred
-      alias_method :centred=, :centred
-
       # Returns the width in characters for the number of columns
       # specified.
       #

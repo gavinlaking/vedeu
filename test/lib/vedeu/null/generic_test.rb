@@ -43,7 +43,6 @@ module Vedeu
 
         it { subject.must_be_instance_of(FalseClass) }
 
-        it { instance.must_respond_to(:centred) }
         it { instance.must_respond_to(:maximise) }
         it { instance.must_respond_to(:maximised?) }
         it { instance.must_respond_to(:unmaximise) }

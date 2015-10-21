@@ -23,7 +23,6 @@ module Vedeu
       # @option attributes default [Fixnum|NilClass]
       #   The terminal width or height.
       # @option attributes maximised [Boolean]
-      # @option attributes centered [Boolean]
       # @option attributes horizontal_alignment [Symbol]
       # @option attributes vertical_alignment [Symbol]
       # @return [Vedeu::Geometry::Dimension]
@@ -62,11 +61,6 @@ module Vedeu
       # @return [Boolean]
       attr_reader :maximised
       alias_method :maximised?, :maximised
-
-      # @!attribute [r] centred
-      # @return [Boolean]
-      attr_reader :centred
-      alias_method :centred?, :centred
 
       # @!attribute [r] horizontal_alignment
       # @return [Symbol]
@@ -113,9 +107,6 @@ module Vedeu
 
                      elsif top_aligned?
                        [1, top_dn]
-
-                     elsif centred? && length?
-                       [centred_d, centred_dn]
 
                      else
                        [_d, _dn]
@@ -310,7 +301,6 @@ module Vedeu
           dn:        nil,
           d_dn:      nil,
           default:   nil,
-          centred:   false,
           maximised: false,
         }
       end

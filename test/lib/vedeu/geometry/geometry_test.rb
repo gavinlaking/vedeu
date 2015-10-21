@@ -10,7 +10,6 @@ module Vedeu
       let(:instance)   { described.new(attributes) }
       let(:attributes) {
         {
-          centred:              centred,
           client:               client,
           height:               height,
           horizontal_alignment: horizontal_alignment,
@@ -25,7 +24,6 @@ module Vedeu
           yn:                   yn,
         }
       }
-      let(:centred)              { false }
       let(:client)               {}
       let(:height)               {}
       let(:horizontal_alignment) {}
@@ -42,7 +40,6 @@ module Vedeu
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
-        it { instance.instance_variable_get('@centred').must_equal(centred) }
         it { instance.instance_variable_get('@client').must_equal(client) }
         it { instance.instance_variable_get('@height').must_equal(height) }
         it { instance.instance_variable_get('@horizontal_alignment').must_equal(horizontal_alignment) }
@@ -62,8 +59,6 @@ module Vedeu
 
       describe 'accessors' do
         it {
-          instance.must_respond_to(:centred)
-          instance.must_respond_to(:centred=)
           instance.must_respond_to(:name)
           instance.must_respond_to(:name=)
           instance.must_respond_to(:height=)
@@ -259,69 +254,6 @@ module Vedeu
       end
 
       describe '#top, #right, #bottom, #left' do
-        context 'maximised is true' do
-          let(:attributes) { { maximised: true } }
-
-          it { instance.top.must_equal(1) }
-          it { instance.right.must_equal(40) }
-          it { instance.bottom.must_equal(12) }
-          it { instance.left.must_equal(1) }
-        end
-
-        context 'centred is true' do
-          let(:attributes) { { height: 6, width: 18, centred: true } }
-
-          it { instance.top.must_equal(3) }
-          it { instance.right.must_equal(29) }
-          it { instance.bottom.must_equal(9) }
-          it { instance.left.must_equal(11) }
-        end
-
-        context 'centred is true and y is set, y is ignored' do
-          let(:attributes) { { height: 6, width: 18, centred: true, y: 4 } }
-
-          it { instance.top.must_equal(3) }
-          it { instance.right.must_equal(29) }
-          it { instance.bottom.must_equal(9) }
-          it { instance.left.must_equal(11) }
-        end
-
-        context 'centred is true and x is set, x is ignored' do
-          let(:attributes) { { height: 6, width: 18, centred: true, x: 4 } }
-
-          it { instance.top.must_equal(3) }
-          it { instance.right.must_equal(29) }
-          it { instance.bottom.must_equal(9) }
-          it { instance.left.must_equal(11) }
-        end
-
-        context 'centred is false' do
-          let(:attributes) { { height: 6, width: 18 } }
-
-          it { instance.top.must_equal(1) }
-          it { instance.right.must_equal(18) }
-          it { instance.bottom.must_equal(6) }
-          it { instance.left.must_equal(1) }
-        end
-
-        context 'centred is false and y is set' do
-          let(:attributes) { { height: 6, width: 18, y: 4 } }
-
-          it { instance.top.must_equal(4) }
-          it { instance.right.must_equal(18) }
-          it { instance.bottom.must_equal(9) }
-          it { instance.left.must_equal(1) }
-        end
-
-        context 'centred is false and x is set' do
-          let(:attributes) { { height: 6, width: 18, x: 4 } }
-
-          it { instance.top.must_equal(1) }
-          it { instance.right.must_equal(21) }
-          it { instance.bottom.must_equal(6) }
-          it { instance.left.must_equal(4) }
-        end
-
         context 'maximised' do
           let(:attributes) { { maximised: true } }
 

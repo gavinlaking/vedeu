@@ -28,7 +28,6 @@ module Vedeu
       def falsy
         false
       end
-      alias_method :centred, :falsy
       alias_method :enabled?, :falsy
       alias_method :maximise, :falsy
       alias_method :maximised?, :falsy
