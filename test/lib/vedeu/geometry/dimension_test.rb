@@ -266,14 +266,6 @@ module Vedeu
 
     end # Dimension
 
-    describe XDimension do
-
-    end # XDimension
-
-    describe YDimension do
-
-    end # YDimension
-
   end # Geometry
 
 end # Vedeu

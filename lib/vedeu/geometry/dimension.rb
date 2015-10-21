@@ -310,14 +310,6 @@ module Vedeu
 
     end # Dimension
 
-    class XDimension < Dimension
-
-    end # XDimension
-
-    class YDimension < Dimension
-
-    end # YDimension
-
   end # Geometry
 
 end # Vedeu
