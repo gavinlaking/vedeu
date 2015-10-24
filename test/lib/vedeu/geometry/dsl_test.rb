@@ -89,8 +89,8 @@ module Vedeu
 
           context 'when the height is given' do
             it { subject.must_be_instance_of(Vedeu::Geometry::Geometry) }
-            it { subject.vertical_alignment.must_equal(:top) }
-            it { subject.horizontal_alignment.must_equal(:left) }
+            it { subject.vertical_alignment.must_be_instance_of(Vedeu::Geometry::VerticalAlignment) }
+            it { subject.horizontal_alignment.must_be_instance_of(Vedeu::Geometry::HorizontalAlignment) }
             it { subject.height.must_equal(20) }
             it { subject.width.must_equal(20) }
           end
@@ -115,8 +115,8 @@ module Vedeu
 
           context 'when the width is given' do
             it { subject.must_be_instance_of(Vedeu::Geometry::Geometry) }
-            it { subject.vertical_alignment.must_equal(:top) }
-            it { subject.horizontal_alignment.must_equal(:left) }
+            it { subject.vertical_alignment.must_be_instance_of(Vedeu::Geometry::VerticalAlignment) }
+            it { subject.horizontal_alignment.must_be_instance_of(Vedeu::Geometry::HorizontalAlignment) }
             it { subject.height.must_equal(20) }
             it { subject.width.must_equal(20) }
           end

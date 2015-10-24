@@ -6,6 +6,17 @@ module Vedeu
     #
     class Dimension
 
+      extend Forwardable
+
+      def_delegators :alignment,
+                     :bottom_aligned?,
+                     :centre_aligned?,
+                     :left_aligned?,
+                     :middle_aligned?,
+                     :right_aligned?,
+                     :top_aligned?,
+                     :unaligned?
+
       # @param (see #initialize)
       # @return [Array<Fixnum>]
       def self.pair(attributes = {})
@@ -23,8 +34,7 @@ module Vedeu
       # @option attributes default [Fixnum|NilClass]
       #   The terminal width or height.
       # @option attributes maximised [Boolean]
-      # @option attributes horizontal_alignment [Symbol]
-      # @option attributes vertical_alignment [Symbol]
+      # @option attributes alignment [Symbol]
       # @return [Vedeu::Geometry::Dimension]
       def initialize(attributes = {})
         defaults.merge!(attributes).each do |key, value|
@@ -62,14 +72,6 @@ module Vedeu
       attr_reader :maximised
       alias_method :maximised?, :maximised
 
-      # @!attribute [r] horizontal_alignment
-      # @return [Symbol]
-      attr_reader :horizontal_alignment
-
-      # @!attribute [r] vertical_alignment
-      # @return [Symbol]
-      attr_reader :vertical_alignment
-
       private
 
       # @raise [Vedeu::Error::NotImplemented] Subclasses of this class
@@ -90,23 +92,14 @@ module Vedeu
         @dimension = if maximised?
                        [1, default]
 
-                     elsif bottom_aligned?
-                       [bottom_d, default]
+                     elsif bottom_aligned? || right_aligned?
+                       [start_coordinate, default]
 
-                     elsif centre_aligned?
+                     elsif centre_aligned? || middle_aligned?
                        [centred_d, centred_dn]
 
-                     elsif left_aligned?
-                       [1, left_dn]
-
-                     elsif middle_aligned?
-                       [centred_d, centred_dn]
-
-                     elsif right_aligned?
-                       [right_d, default]
-
-                     elsif top_aligned?
-                       [1, top_dn]
+                     elsif left_aligned? || top_aligned?
+                       [1, end_coordinate]
 
                      else
                        [_d, _dn]
@@ -178,7 +171,7 @@ module Vedeu
       # 3) Default to the terminal width or height.
       #
       # @return [Fixnum]
-      def left_dn
+      def end_coordinate
         if d_dn
           (d_dn > default) ? default : d_dn
 
@@ -190,7 +183,6 @@ module Vedeu
 
         end
       end
-      alias_method :top_dn, :left_dn
 
       # Ascertains the starting coordinate for a right or bottom
       # aligned interface/view.
@@ -200,7 +192,7 @@ module Vedeu
       # 3) Default to 1.
       #
       # @return [Fixnum]
-      def right_d
+      def start_coordinate
         if d_dn
           (default - d_dn) < 1 ? 1 : (default - d_dn)
 
@@ -212,7 +204,6 @@ module Vedeu
 
         end
       end
-      alias_method :bottom_d, :right_d
 
       # Fetch the starting coordinate, or use 1 when not set.
       #
@@ -250,48 +241,6 @@ module Vedeu
         end
       end
 
-      # Return a boolean indicating alignment was set to :left.
-      #
-      # @return [Boolean]
-      def left_aligned?
-        alignment == :left
-      end
-
-      # Return a boolean indicating alignment was set to :middle.
-      #
-      # @return [Boolean]
-      def middle_aligned?
-        alignment == :middle
-      end
-
-      # Return a boolean indicating alignment was set to :bottom.
-      #
-      # @return [Boolean]
-      def bottom_aligned?
-        alignment == :bottom
-      end
-
-      # Return a boolean indicating alignment was set to :centre.
-      #
-      # @return [Boolean]
-      def centre_aligned?
-        alignment == :centre
-      end
-
-      # Return a boolean indicating alignment was set to :right.
-      #
-      # @return [Boolean]
-      def right_aligned?
-        alignment == :right
-      end
-
-      # Return a boolean indicating alignment was set to :top.
-      #
-      # @return [Boolean]
-      def top_aligned?
-        alignment == :top
-      end
-
       # Returns the default options/attributes for this class.
       #
       # @return [Hash<Symbol => NilClass,Boolean,Symbol>]
@@ -300,7 +249,6 @@ module Vedeu
           d:         nil,
           dn:        nil,
           d_dn:      nil,
-          default:   nil,
           maximised: false,
         }
       end

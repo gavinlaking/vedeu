@@ -8,22 +8,17 @@ module Vedeu
 
       private
 
-      # @return [Symbol]
+      # @return [Vedeu::Geometry::HorizontalAlignment]
       def alignment
-        horizontal_alignment
+        Vedeu::Geometry::Alignment.coerce(@alignment)
       end
 
       # @return [Hash<Symbol => NilClass,Boolean,Symbol>]
       def defaults
         super.merge!(
-          default:              Vedeu.width,
-          horizontal_alignment: default_alignment,
+          default:   Vedeu.width,
+          alignment: :none,
         )
-      end
-
-      # @return [Symbol]
-      def default_alignment
-        Vedeu::Geometry::HorizontalAlignment.align(:none)
       end
 
     end # XDimension

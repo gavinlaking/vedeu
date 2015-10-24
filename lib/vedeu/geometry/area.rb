@@ -45,20 +45,18 @@ module Vedeu
       # @return [Vedeu::Geometry::Area]
       def self.from_attributes(attributes = {})
         y_attributes = {
-          d:                  attributes[:y],
-          dn:                 attributes[:yn],
-          d_dn:               attributes[:y_yn],
-          default:            Vedeu.height,
-          maximised:          attributes[:maximised],
-          vertical_alignment: attributes[:vertical_alignment],
+          d:         attributes[:y],
+          dn:        attributes[:yn],
+          d_dn:      attributes[:y_yn],
+          maximised: attributes[:maximised],
+          alignment: attributes[:vertical_alignment],
         }
         x_attributes = {
-          d:                    attributes[:x],
-          dn:                   attributes[:xn],
-          d_dn:                 attributes[:x_xn],
-          default:              Vedeu.width,
-          maximised:            attributes[:maximised],
-          horizontal_alignment: attributes[:horizontal_alignment],
+          d:         attributes[:x],
+          dn:        attributes[:xn],
+          d_dn:      attributes[:x_xn],
+          maximised: attributes[:maximised],
+          alignment: attributes[:horizontal_alignment],
         }
         y_yn = Vedeu::Geometry::YDimension.pair(y_attributes)
         x_xn = Vedeu::Geometry::XDimension.pair(x_attributes)

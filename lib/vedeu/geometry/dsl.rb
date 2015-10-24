@@ -180,7 +180,7 @@ module Vedeu
              'No width given.'.freeze unless present?(width)
 
         model.horizontal_alignment = Vedeu::Geometry::HorizontalAlignment
-          .align(value)
+          .coerce(value)
         model.width = width
         model
       end
@@ -196,7 +196,7 @@ module Vedeu
              'No height given.'.freeze unless present?(height)
 
         model.vertical_alignment = Vedeu::Geometry::VerticalAlignment
-          .align(value)
+          .coerce(value)
         model.height = height
         model
       end

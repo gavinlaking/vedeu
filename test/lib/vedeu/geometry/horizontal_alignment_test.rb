@@ -13,6 +13,12 @@ module Vedeu
       describe '.align' do
         subject { described.align(_value) }
 
+        context 'when the value is :none' do
+          let(:_value) { :none }
+
+          it { subject.must_equal(:none) }
+        end
+
         context 'when the value is nil' do
           it { subject.must_equal(:none) }
         end

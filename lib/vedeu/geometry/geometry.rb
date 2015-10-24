@@ -273,27 +273,17 @@ module Vedeu
         {
           client:               nil,
           height:               nil,
-          horizontal_alignment: default_horizontal_alignment,
+          horizontal_alignment: :none,
           maximised:            false,
           name:                 nil,
           repository:           Vedeu.geometries,
-          vertical_alignment:   default_vertical_alignment,
+          vertical_alignment:   :none,
           width:                nil,
           x:                    nil,
           xn:                   nil,
           y:                    nil,
           yn:                   nil,
         }
-      end
-
-      # @return [Symbol]
-      def default_horizontal_alignment
-        Vedeu::Geometry::HorizontalAlignment.align(:none)
-      end
-
-      # @return [Symbol]
-      def default_vertical_alignment
-        Vedeu::Geometry::VerticalAlignment.align(:none)
       end
 
     end # Geometry

@@ -18,6 +18,21 @@ module Vedeu
         new(value).align
       end
 
+      # @param value [NilClass|Symbol|Vedeu::Geometry::Alignment]
+      # @return [Vedeu::Geometry::Alignment]
+      def self.coerce(value = nil)
+        if value.is_a?(self)
+          value
+
+        elsif value.is_a?(Symbol)
+          new(value)
+
+        else
+          new(:none)
+
+        end
+      end
+
       # @param value [NilClass|Symbol]
       # @return [Vedeu::Geometry::Alignment]
       def initialize(value = nil)
@@ -30,11 +45,60 @@ module Vedeu
         fail Vedeu::Error::NotImplemented, 'Subclasses implement this.'.freeze
       end
 
+      # Return a boolean indicating alignment was set to :bottom.
+      #
+      # @return [Boolean]
+      def bottom_aligned?
+        value == :bottom
+      end
+
+      # Return a boolean indicating alignment was set to :centre.
+      #
+      # @return [Boolean]
+      def centre_aligned?
+        value == :centre
+      end
+
+      # Return a boolean indicating alignment was set to :left.
+      #
+      # @return [Boolean]
+      def left_aligned?
+        value == :left
+      end
+
+      # Return a boolean indicating alignment was set to :middle.
+      #
+      # @return [Boolean]
+      def middle_aligned?
+        value == :middle
+      end
+
+      # Return a boolean indicating alignment was set to :right.
+      #
+      # @return [Boolean]
+      def right_aligned?
+        value == :right
+      end
+
+      # Return a boolean indicating alignment was set to :top.
+      #
+      # @return [Boolean]
+      def top_aligned?
+        value == :top
+      end
+
+      # Return a boolean indicating alignment was set to, or is :none.
+      #
+      # @return [Boolean]
+      def unaligned?
+        value == :none
+      end
+
       private
 
       # @return [Boolean]
       def none?
-        @value.nil? || !(@value.is_a?(Symbol))
+        @value == :none || @value.nil? || !(@value.is_a?(Symbol))
       end
 
       # @return [Boolean]
