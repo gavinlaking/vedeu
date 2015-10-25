@@ -56,7 +56,13 @@ module Vedeu
       #
       # @return [void]
       def add
-        model.add(content)
+        if wrap?
+          model.add(wrapped)
+
+        else
+          model.add(content)
+
+        end
       end
 
       protected
