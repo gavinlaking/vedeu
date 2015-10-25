@@ -23,6 +23,11 @@ module Vedeu
       # @return [Fixnum|Float]
       attr_accessor :delay
 
+      # @!attribute [rw] editable
+      # @return [Boolean]
+      attr_accessor :editable
+      alias_method :editable?, :editable
+
       # @!attribute [rw] group
       # @return [Symbol|String]
       attr_accessor :group
@@ -111,6 +116,7 @@ module Vedeu
           colour:     Vedeu::Colours::Colour.coerce(background: :default,
                                                     foreground: :default),
           delay:      0.0,
+          editable:   false,
           group:      '',
           name:       '',
           parent:     nil,

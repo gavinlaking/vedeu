@@ -10,20 +10,22 @@ module Vedeu
       let(:instance)   { described.new(attributes) }
       let(:attributes) {
         {
-          client:  client,
-          colour:  colour,
-          delay:   delay,
-          group:   group,
-          name:    _name,
-          parent:  parent,
-          style:   style,
-          visible: visible,
-          zindex:  zindex,
+          client:   client,
+          colour:   colour,
+          delay:    delay,
+          editable: editable,
+          group:    group,
+          name:     _name,
+          parent:   parent,
+          style:    style,
+          visible:  visible,
+          zindex:   zindex,
         }
       }
       let(:client)     {}
       let(:colour)     {}
       let(:delay)      { 0.0 }
+      let(:editable)   { false }
       let(:group)      { '' }
       let(:_name)      { 'hydrogen' }
       let(:parent)     {}
@@ -38,6 +40,7 @@ module Vedeu
         it { subject.must_be_instance_of(described) }
         it { subject.instance_variable_get('@client').must_equal(client) }
         it { subject.instance_variable_get('@delay').must_equal(delay) }
+        it { subject.instance_variable_get('@editable').must_equal(editable) }
         it { subject.instance_variable_get('@group').must_equal(group) }
         it { subject.instance_variable_get('@name').must_equal(_name) }
         it { subject.instance_variable_get('@parent').must_equal(parent) }
@@ -54,6 +57,9 @@ module Vedeu
           instance.must_respond_to(:client=)
           instance.must_respond_to(:delay)
           instance.must_respond_to(:delay=)
+          instance.must_respond_to(:editable)
+          instance.must_respond_to(:editable=)
+          instance.must_respond_to(:editable?)
           instance.must_respond_to(:group)
           instance.must_respond_to(:group=)
           instance.must_respond_to(:name)

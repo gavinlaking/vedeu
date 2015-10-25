@@ -118,6 +118,34 @@ module Vedeu
         }
       end
 
+      describe '#editable' do
+        let(:_value) {}
+
+        subject { instance.editable(_value) }
+
+        context 'when the value is nil' do
+          it { subject.must_equal(false) }
+        end
+
+        context 'when the value is false' do
+          let(:_value) { false }
+
+          it { subject.must_equal(false) }
+        end
+
+        context 'when the value is true' do
+          let(:_value) { true }
+
+          it { subject.must_equal(true) }
+        end
+      end
+
+      describe '#editable!' do
+        subject { instance.editable! }
+
+        it { subject.must_equal(true) }
+      end
+
       describe '#focus!' do
         subject { instance.focus! }
 
