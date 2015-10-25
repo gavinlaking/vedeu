@@ -27,6 +27,14 @@ module Vedeu
       # @return [String|Symbol]
       attr_accessor :name
 
+      # Store an instance of this class with its repository.
+      #
+      # @param (see #initialize)
+      # @return (see #initialize)
+      def self.store(attributes = {})
+        new(attributes).store
+      end
+
       # Returns a new instance of Vedeu::Editor::Document.
       #
       # @param attributes [Hash]
