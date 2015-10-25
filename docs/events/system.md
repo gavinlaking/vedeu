@@ -41,14 +41,31 @@ action(s), like render the first screen, interface or make a sound.
     Vedeu.trigger(:_initialize_)
 
 ### `:\_keypress\_`
-Will cause the triggering of the `:key` event; which you should define
-to 'do things'. If the `escape` key is pressed, then `key` is
-triggered with the argument `:escape`, also an internal event
-`_mode_switch_` is triggered. Vedeu recognises most key presses and
-some 'extended' keypress (eg. Ctrl+J), a list of supported keypresses
-can be found here: {Vedeu::Input::Capture}.
+When the name is given:
 
-    Vedeu.trigger(:_keypress_, key)
+- The given key is passed to the named keymap. If the keymap is
+  registered, and the key has an associated action assigned, then
+  the action will be called/triggered.
+- If the keymap is not registered, the key will be passed to the
+  global keymap to be actioned, or ignored if the global keymap does
+  not have an action assigned for the key pressed.
+
+When the name is not given:
+
+- The given key is passed to the named keymap associated with the
+  interface/view currently in focus. If the key has an associated
+  action assigned, then the action will be called or triggered,
+  otherwise, the key is (as above) passed to the global keymap to be
+  processed.
+
+It is also to be noted, that a `:key` event will be triggered
+irrespective of the conditions above, you can bind to this event
+separately to 'do things'.
+
+A list of supported keypresses can be found here:
+{Vedeu::Input::Capture}.
+
+    Vedeu.trigger(:_keypress_, key, optional_name)
 
 ### `:\_log\_`
 When triggered with a message will cause Vedeu to log the message if
@@ -59,10 +76,9 @@ Note: 'message' is a String.
     Vedeu.trigger(:_log_, message)
 
 ### `:\_mode_switch\_`
-When triggered (by default, after the user presses `escape`), Vedeu
-switches between modes of the terminal. The idea here being
-that the raw mode is for single keypress actions, whilst fake and
-cooked modes allow the user to enter more elaborate commands- such as
-commands with arguments.
+When triggered, Vedeu switches between modes of the terminal. The idea
+here being that the raw mode is for single keypress actions, whilst
+fake and cooked modes allow the user to enter more elaborate commands-
+such as commands with arguments.
 
     Vedeu.trigger(:_mode_switch_)
