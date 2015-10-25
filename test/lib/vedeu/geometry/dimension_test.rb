@@ -10,24 +10,20 @@ module Vedeu
       let(:instance)   { described.new(attributes) }
       let(:attributes) {
         {
-          d:                    d,
-          dn:                   dn,
-          d_dn:                 d_dn,
-          default:              default,
-          maximised:            maximised,
-          centred:              centred,
-          horizontal_alignment: horizontal_alignment,
-          vertical_alignment:   vertical_alignment,
+          d:         d,
+          dn:        dn,
+          d_dn:      d_dn,
+          default:   default,
+          maximised: maximised,
+          alignment: alignment,
         }
       }
-      let(:d)                    {}
-      let(:dn)                   {}
-      let(:d_dn)                 {}
-      let(:default)              {}
-      let(:maximised)            {}
-      let(:centred)              {}
-      let(:horizontal_alignment) {}
-      let(:vertical_alignment)   {}
+      let(:d)         {}
+      let(:dn)        {}
+      let(:d_dn)      {}
+      let(:default)   {}
+      let(:maximised) {}
+      let(:alignment) {}
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
@@ -36,9 +32,7 @@ module Vedeu
         it { instance.instance_variable_get('@d_dn').must_equal(d_dn) }
         it { instance.instance_variable_get('@default').must_equal(default) }
         it { instance.instance_variable_get('@maximised').must_equal(maximised) }
-        it { instance.instance_variable_get('@centred').must_equal(centred) }
-        it { instance.instance_variable_get('@horizontal_alignment').must_equal(horizontal_alignment) }
-        it { instance.instance_variable_get('@vertical_alignment').must_equal(vertical_alignment) }
+        it { instance.instance_variable_get('@alignment').must_equal(alignment) }
       end
 
       # describe '.pair' do

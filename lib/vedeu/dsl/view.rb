@@ -17,7 +17,6 @@ module Vedeu
     #
     #   Vedeu.interface :main do
     #     geometry do
-    #       centred!
     #       height 4
     #       width  50
     #     end

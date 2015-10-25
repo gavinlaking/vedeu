@@ -89,8 +89,8 @@ module Vedeu
 
           context 'when the height is given' do
             it { subject.must_be_instance_of(Vedeu::Geometry::Geometry) }
-            it { subject.vertical_alignment.must_equal(:top) }
-            it { subject.horizontal_alignment.must_equal(:left) }
+            it { subject.vertical_alignment.must_be_instance_of(Vedeu::Geometry::VerticalAlignment) }
+            it { subject.horizontal_alignment.must_be_instance_of(Vedeu::Geometry::HorizontalAlignment) }
             it { subject.height.must_equal(20) }
             it { subject.width.must_equal(20) }
           end
@@ -115,8 +115,8 @@ module Vedeu
 
           context 'when the width is given' do
             it { subject.must_be_instance_of(Vedeu::Geometry::Geometry) }
-            it { subject.vertical_alignment.must_equal(:top) }
-            it { subject.horizontal_alignment.must_equal(:left) }
+            it { subject.vertical_alignment.must_be_instance_of(Vedeu::Geometry::VerticalAlignment) }
+            it { subject.horizontal_alignment.must_be_instance_of(Vedeu::Geometry::HorizontalAlignment) }
             it { subject.height.must_equal(20) }
             it { subject.width.must_equal(20) }
           end
@@ -274,41 +274,6 @@ module Vedeu
           let(:height) {}
 
           it { proc { subject }.must_raise(Vedeu::Error::InvalidSyntax) }
-        end
-      end
-
-      describe '#centred' do
-        subject { instance.centred(true) }
-
-        it { instance.must_respond_to(:centred!) }
-        it { instance.must_respond_to(:centred=) }
-
-        it 'sets the attribute to the value' do
-          subject.must_equal(true)
-        end
-
-        context 'DSL #centred' do
-          subject {
-            Vedeu.geometry 'geometry' do
-              centred false
-            end
-          }
-
-          it { subject.must_be_instance_of(Vedeu::Geometry::Geometry) }
-
-          it 'allows the use of centred within geometry' do
-            subject.centred.must_equal(false)
-          end
-
-          context 'when no value is given' do
-            subject {
-              Vedeu.geometry 'geometry' do
-                centred
-              end
-            }
-
-            it { subject.centred.must_equal(true) }
-          end
         end
       end
 

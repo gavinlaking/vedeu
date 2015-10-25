@@ -8,22 +8,17 @@ module Vedeu
 
       private
 
-      # @return [Symbol]
+      # @return [Vedeu::Geometry::VerticalAlignment]
       def alignment
-        vertical_alignment
+        Vedeu::Geometry::Alignment.coerce(@alignment)
       end
 
       # @return [Hash<Symbol => NilClass,Boolean,Symbol>]
       def defaults
         super.merge!(
-          default:            Vedeu.height,
-          vertical_alignment: default_alignment,
+          default:   Vedeu.height,
+          alignment: :none,
         )
-      end
-
-      # @return [Symbol]
-      def default_alignment
-        Vedeu::Geometry::VerticalAlignment.align(:none)
       end
 
     end # YDimension

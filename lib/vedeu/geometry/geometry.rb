@@ -39,10 +39,6 @@ module Vedeu
       # @return [Symbol]
       attr_accessor :vertical_alignment
 
-      # @!attribute [rw] centred
-      # @return [Boolean]
-      attr_accessor :centred
-
       # @!attribute [rw] name
       # @return [String]
       attr_accessor :name
@@ -91,7 +87,6 @@ module Vedeu
       # @param attributes [Hash]
       # @option attributes horizontal_alignment [Symbol]
       # @option attributes vertical_alignment [Symbol]
-      # @option attributes centred [Boolean]
       # @option attributes maximised [Boolean]
       # @option attributes height [Fixnum]
       # @option attributes name [String|Symbol]
@@ -112,7 +107,6 @@ module Vedeu
       def attributes
         {
           client:               @client,
-          centred:              @centred,
           height:               height,
           horizontal_alignment: @horizontal_alignment,
           maximised:            @maximised,
@@ -234,7 +228,6 @@ module Vedeu
       # @return [Hash<Symbol => Boolean, Fixnum>]
       def area_attributes
         {
-          centred:              @centred,
           horizontal_alignment: @horizontal_alignment,
           maximised:            @maximised,
           vertical_alignment:   @vertical_alignment,
@@ -248,9 +241,9 @@ module Vedeu
       end
 
       # When moving an interface;
-      # 1) Reset the alignment, centred and maximised states to false;
-      #    it wont be aligned to a side if moved, nor centred if
-      #    moved, and cannot be moved if maximised.
+      # 1) Reset the alignment and maximised states to false;
+      #    it wont be aligned to a side if moved, and cannot be moved
+      #    if maximised.
       # 2) Get the current coordinates of the interface, then:
       # 3) Override the attributes with the new coordinates for
       #    desired movement; these are usually +/- 1 of the current
@@ -265,8 +258,7 @@ module Vedeu
       # @option coordinates yn [Fixnum] The ending row/line position.
       # @return [Hash<Symbol => Boolean, Fixnum>]
       def move(coordinates = {})
-        attrs = attributes.merge!(centred:              false,
-                                  horizontal_alignment: :none,
+        attrs = attributes.merge!(horizontal_alignment: :none,
                                   maximised:            false,
                                   vertical_alignment:   :none)
                 .merge!(coordinates)
@@ -280,29 +272,18 @@ module Vedeu
       def defaults
         {
           client:               nil,
-          centred:              false,
           height:               nil,
-          horizontal_alignment: default_horizontal_alignment,
+          horizontal_alignment: :none,
           maximised:            false,
           name:                 nil,
           repository:           Vedeu.geometries,
-          vertical_alignment:   default_vertical_alignment,
+          vertical_alignment:   :none,
           width:                nil,
           x:                    nil,
           xn:                   nil,
           y:                    nil,
           yn:                   nil,
         }
-      end
-
-      # @return [Symbol]
-      def default_horizontal_alignment
-        Vedeu::Geometry::HorizontalAlignment.align(:none)
-      end
-
-      # @return [Symbol]
-      def default_vertical_alignment
-        Vedeu::Geometry::VerticalAlignment.align(:none)
       end
 
     end # Geometry

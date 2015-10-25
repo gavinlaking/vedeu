@@ -67,7 +67,6 @@ class VedeuTestApplication
   end
 
   Vedeu.geometry 'test_interface' do
-    # centred!
     height 6
     width  26
     x      4

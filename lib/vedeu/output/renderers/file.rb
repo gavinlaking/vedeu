@@ -48,6 +48,10 @@ module Vedeu
 
       private
 
+      # Compresses the output depending on configuration.
+      #
+      # @param output [Vedeu::Models::Page]
+      # @return [String]
       def out(output)
         if compress?
           Vedeu::Output::Compressor.render(output, options)

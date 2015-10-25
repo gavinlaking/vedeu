@@ -12,9 +12,11 @@ docs/events.md
 docs/geometry.md
 docs/getting_started.md
 docs/group.md
+docs/input.md
 docs/interfaces.md
 docs/keymaps.md
 docs/object_graph.md
+docs/output.md
 docs/view.md
 docs/events/application.md
 docs/events/document.md

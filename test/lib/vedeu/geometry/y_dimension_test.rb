@@ -15,7 +15,6 @@ module Vedeu
           d_dn:                 d_dn,
           default:              default,
           maximised:            maximised,
-          centred:              centred,
           horizontal_alignment: horizontal_alignment,
           vertical_alignment:   vertical_alignment,
         }
@@ -25,7 +24,6 @@ module Vedeu
       let(:d_dn)                 {}
       let(:default)              { Vedeu.height }
       let(:maximised)            {}
-      let(:centred)              {}
       let(:horizontal_alignment) {}
       let(:vertical_alignment)   {}
 

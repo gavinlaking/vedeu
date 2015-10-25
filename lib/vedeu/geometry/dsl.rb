@@ -180,7 +180,7 @@ module Vedeu
              'No width given.'.freeze unless present?(width)
 
         model.horizontal_alignment = Vedeu::Geometry::HorizontalAlignment
-          .align(value)
+          .coerce(value)
         model.width = width
         model
       end
@@ -196,7 +196,7 @@ module Vedeu
              'No height given.'.freeze unless present?(height)
 
         model.vertical_alignment = Vedeu::Geometry::VerticalAlignment
-          .align(value)
+          .coerce(value)
         model.height = height
         model
       end
@@ -368,29 +368,6 @@ module Vedeu
       def align_top(height)
         vertical_alignment(:top, height)
       end
-
-      # Instructs Vedeu to calculate x and y geometry automatically
-      # based on the centre character of the terminal, the width and
-      # the height.
-      #
-      #   Vedeu.geometry :some_interface do
-      #     centred false # or...
-      #
-      #     centred true  # or...
-      #     centred!      # or...
-      #     # ... some code
-      #   end
-      #
-      # @param value [Boolean] Any value other than nil or false will
-      #   evaluate to true.
-      # @return [Boolean]
-      def centred(value = true)
-        boolean = value ? true : false
-
-        model.centred = boolean
-      end
-      alias_method :centred!, :centred
-      alias_method :centred=, :centred
 
       # Returns the width in characters for the number of columns
       # specified.

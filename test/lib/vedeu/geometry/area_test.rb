@@ -47,7 +47,6 @@ module Vedeu
             x_xn:                 x_xn,
             x_default:            x_default,
             maximised:            maximised,
-            centred:              centred,
             horizontal_alignment: horizontal_alignment,
             vertical_alignment:   vertical_alignment,
           }
@@ -61,7 +60,6 @@ module Vedeu
         let(:x_xn)                 {}
         let(:x_default)            {}
         let(:maximised)            {}
-        let(:centred)              {}
         let(:horizontal_alignment) {}
         let(:vertical_alignment)   {}
 

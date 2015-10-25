@@ -83,16 +83,24 @@ class DemoGroupsApp
 
   Vedeu.views do
     view(:apple) do
-      line 'apple'
+      lines do
+        line 'apple'
+      end
     end
     view(:banana) do
-      line 'banana'
+      lines do
+        line 'banana'
+      end
     end
     view(:carrot) do
-      line 'carrot'
+      lines do
+        line 'carrot'
+      end
     end
     view(:dill) do
-      line 'dill'
+      lines do
+        line 'dill'
+      end
     end
   end
 
