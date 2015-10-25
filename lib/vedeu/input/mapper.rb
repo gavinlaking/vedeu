@@ -6,34 +6,51 @@ module Vedeu
     #
     class Mapper
 
-      # Takes a key as a keypress and sends it to registered keymaps.
-      # If found, the associated action is fired, otherwise, we move
-      # to the next keymap or return false.
-      #
-      # @example
-      #   Vedeu.keypress(key_name, keymap_name)
-      #
-      # @param (see #initialize)
-      # @return [Boolean]
-      def self.keypress(key = nil, name = nil)
-        Vedeu.trigger(:key, key)
+      class << self
 
-        return false unless key
+        include Vedeu::Common
 
-        new(key, name).keypress
-      end
+        # Takes a key as a keypress and sends it to registered
+        # keymaps. If found, the associated action is fired,
+        # otherwise, we move to the next keymap or return false.
+        #
+        # @example
+        #   Vedeu.keypress(key_name, keymap_name)
+        #
+        # @param (see #initialize)
+        # @return [Boolean]
+        def keypress(key = nil, name = nil)
+          Vedeu.trigger(:key, key)
 
-      # Checks a key is valid; i.e. not already registered to a
-      # keymap. When the key is registered, then the key is invalid
-      # and cannot be used again.
-      #
-      # @param (see #initialize)
-      # @return [Boolean]
-      def self.valid?(key = nil, name = nil)
-        return false unless key
+          return false unless key
 
-        new(key, name).valid?
-      end
+          new(key, name).keypress
+        end
+
+        def registered?(key = nil, name = nil)
+          fail Vedeu::Error::MissingRequired,
+               'Cannot check whether a key is registered to a keymap without ' \
+               'the key.' if absent?(key)
+          fail Vedeu::Error::MissingRequired,
+               'Cannot check whether a key is registered to a keymap without ' \
+               'the keymap name.' if absent?(name)
+
+          new(key, name).registered?
+        end
+
+        # Checks a key is valid; i.e. not already registered to a
+        # keymap. When the key is registered, then the key is invalid
+        # and cannot be used again.
+        #
+        # @param (see #initialize)
+        # @return [Boolean]
+        def valid?(key = nil, name = nil)
+          return false unless key
+
+          new(key, name).valid?
+        end
+
+      end # Eigenclass
 
       # Returns a new instance of Vedeu::Input::Mapper.
       #
@@ -63,6 +80,15 @@ module Vedeu
         false
       end
 
+      # Is the key defined in the named keymap?
+      #
+      # @param named [NilClass|String]
+      # @return [Boolean]
+      def key_defined?(named = name)
+        keymap?(named) && keymap(named).key_defined?(key)
+      end
+      alias_method :registered?, :key_defined?
+
       # Returns a boolean indicating that the key is not registered to
       # the current keymap, or the global keymap.
       #
@@ -90,14 +116,6 @@ module Vedeu
       # @return [Boolean]
       def global_key?
         key_defined?('_global_')
-      end
-
-      # Is the key defined in the named keymap?
-      #
-      # @param named [NilClass|String]
-      # @return [Boolean]
-      def key_defined?(named = name)
-        keymap?(named) && keymap(named).key_defined?(key)
       end
 
       # Fetch the named keymap from the repository.
@@ -137,7 +155,7 @@ module Vedeu
   # :nocov:
 
   # See {file:docs/events/system.md#\_keypress_}
-  Vedeu.bind(:_keypress_) { |key| Vedeu.keypress(key) }
+  Vedeu.bind(:_keypress_) { |key, name| Vedeu.keypress(key, name) }
 
   # See {file:docs/events/drb.md#\_drb_input_}
   Vedeu.bind(:_drb_input_) do |data, type|

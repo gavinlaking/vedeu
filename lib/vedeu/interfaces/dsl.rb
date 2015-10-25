@@ -39,13 +39,18 @@ module Vedeu
           fail Vedeu::Error::MissingRequired,
                'name not given'.freeze unless present?(name)
 
-          add_buffers!(name)
-          add_cursor!(name)
-          add_focusable!(name)
-
           attributes = { client: client(&block), name: name }
 
-          Vedeu::Interfaces::Interface.build(attributes, &block).store
+          interface = Vedeu::Interfaces::Interface
+                      .build(attributes, &block)
+                      .store
+
+          add_buffers!(name)
+          add_cursor!(name)
+          add_editor!(name) if interface.editable?
+          add_focusable!(name)
+
+          interface
         end
 
         private
@@ -70,6 +75,13 @@ module Vedeu
           Vedeu::Cursors::Cursor.store(name: name)
         end
 
+        # Registers a new document with the interface.
+        #
+        # @param name [String|Symbol]
+        def add_editor!(name)
+          Vedeu::Editor::Document.store(name: name)
+        end
+
         # Registers interface name in focus list unless already
         # registered.
         #
@@ -92,8 +104,7 @@ module Vedeu
       # Set the cursor visibility on an interface.
       #
       # @param value [Boolean] Any value other than nil or false will
-      #   evaluate
-      #   to true.
+      #   evaluate to true.
       #
       # @example
       #   Vedeu.interface :my_interface do
@@ -149,6 +160,51 @@ module Vedeu
       # @return [Fixnum|Float]
       def delay(value)
         model.delay = value
+      end
+
+      # Set whether the interface is editable.
+      #
+      # @note
+      #   When an interface is made editable, then the cursor
+      #   visibility will be set to visible.
+      #
+      # @param value [Boolean] Any value other than nil or false will
+      #   evaluate to true.
+      #
+      # @example
+      #   Vedeu.interface :my_interface do
+      #     editable true # => The interface/view can be edited.
+      #
+      #     # or...
+      #
+      #     editable! # => Convenience method for above.
+      #
+      #     # ...
+      #   end
+      #
+      #   Vedeu.interface :my_interface do
+      #     editable false # => The interface/view cannot be edited.
+      #
+      #     # or...
+      #
+      #     editable # => as above
+      #     # ...
+      #   end
+      #
+      # @return [Boolean]
+      def editable(value = true)
+        boolean = value ? true : false
+
+        cursor(true) if boolean
+
+        model.editable = boolean
+      end
+
+      # Set the interface to be editable.
+      #
+      # @return [Boolean]
+      def editable!
+        editable(true)
       end
 
       # Specify this interface as being in focus when the application

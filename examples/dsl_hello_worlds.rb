@@ -18,9 +18,11 @@ class HelloWorldsApp
     Vedeu.trigger(:_refresh_)
   }
 
-  Vedeu.configure do
-    # Empty configure block is needed.
-  end
+  # Add specific configuration for the client application.
+  #
+  # Vedeu.configure do
+  #   log './tmp/hello_worlds.log'
+  # end
 
   Vedeu.interface :hello do
     # Define all of the interface in one place.
@@ -29,20 +31,20 @@ class HelloWorldsApp
     geometry do
       align(:middle, :centre, 24, 5)
     end
-    # (You usually specify the views outside the interface block).
-    Vedeu.views do
-      view :hello do
-        lines do
-          line { centre 'Hello Worlds!', width: 24 }
-          line
-          line { centre "Press 'q' to exit,",     width: 24 }
-          line { centre " 'w' to switch worlds.", width: 24 }
-        end
-      end
-    end
     keymap do
       key('q') { Vedeu.exit }
       key('w') { HelloWorldsApp.render_world }
+    end
+  end
+
+  Vedeu.renders do
+    view :hello do
+      lines do
+        line { centre 'Hello Worlds!', width: 24 }
+        line
+        line { centre "Press 'q' to exit,",     width: 24 }
+        line { centre " 'w' to switch worlds.", width: 24 }
+      end
     end
   end
 

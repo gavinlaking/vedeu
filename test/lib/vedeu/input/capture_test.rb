@@ -46,10 +46,60 @@ module Vedeu
 
           before { reader.stubs(:read).returns(keypress) }
 
-          it 'triggers an event with the keypress' do
-            Vedeu.expects(:trigger).with(:_editor_, keypress)
-            subject
+          context 'when an interface or view has been registered' do
+            let(:interface_name) { :fake_interface }
+            let(:interface)      {
+              Vedeu::Interfaces::Interface.new(name: interface_name, editable: editable)
+            }
+            let(:editable)       { false }
+            let(:registered)     { false }
+
+            before do
+              Vedeu.stubs(:focus).returns(interface_name)
+              Vedeu.interfaces.stubs(:by_name).with(interface_name).returns(interface)
+              Vedeu::Input::Mapper.expects(:registered?).with(keypress, interface_name).returns(registered)
+            end
+
+            context 'when the keypress is registered with the keymap' do
+              let(:registered) { true }
+
+              it 'triggers an event with the keypress' do
+                Vedeu.expects(:trigger).with(:_keypress_, keypress, interface_name)
+                subject
+              end
+            end
+
+            context 'when the keypress is not registered with the keymap' do
+              let(:registered) { false }
+
+              context 'when the interface or view is editable' do
+                let(:editable) { true }
+
+                it 'triggers an event with the keypress' do
+                  Vedeu.expects(:trigger).with(:_editor_, keypress)
+                  subject
+                end
+              end
+
+              context 'when the interface or view is not editable' do
+                let(:editable) { false }
+
+                it 'triggers an event with the keypress' do
+                  Vedeu.expects(:trigger).with(:key, keypress)
+                  subject
+                end
+              end
+            end
           end
+
+          # context 'when no interfaces or views have been registered' do
+          #   before {
+          #     Vedeu.focus.reset
+          #     Vedeu.interfaces.reset
+          #   }
+
+          #   it { proc { subject }.must_raise(Vedeu::Error::Fatal) }
+          # end
         end
 
         context 'when in raw mode' do

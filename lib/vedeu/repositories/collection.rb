@@ -60,8 +60,14 @@ module Vedeu
       #
       # @param other [Vedeu::Repositories::Collection]
       # @return [Vedeu::Repositories::Collection]
-      def add(*other)
-        self.class.new(@collection += other, parent, name)
+      def add(other)
+        if other.is_a?(Vedeu::Repositories::Collection)
+          return self.class.coerce(other, parent, name) if empty?
+
+        else
+          self.class.new(@collection += Array(other), parent, name)
+
+        end
       end
       alias_method :<<, :add
 

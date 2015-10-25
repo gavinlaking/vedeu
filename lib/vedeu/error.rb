@@ -45,8 +45,9 @@ module Vedeu
 
     end # InvalidSyntax
 
-    # Raised when a name is not provided for a model when attempting
-    # to store it in a repository.
+    # Raised when value required by Vedeu to proceed is not given.
+    # For example, when a name is not provided for a model when
+    # attempting to store it in a repository.
     #
     class MissingRequired < StandardError
 

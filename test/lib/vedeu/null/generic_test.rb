@@ -43,11 +43,13 @@ module Vedeu
 
         it { subject.must_be_instance_of(FalseClass) }
 
+        it { instance.must_respond_to(:enabled?) }
         it { instance.must_respond_to(:maximise) }
         it { instance.must_respond_to(:maximised?) }
         it { instance.must_respond_to(:unmaximise) }
         it { instance.must_respond_to(:visible) }
         it { instance.must_respond_to(:visible?) }
+        it { instance.must_respond_to(:editable?) }
       end
 
       describe '#null' do
