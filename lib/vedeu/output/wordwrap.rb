@@ -6,6 +6,8 @@ module Vedeu
     #
     class Wordwrap
 
+      include Vedeu::Common
+
       # @see Vedeu::Output::Wordwrap#initialize
       def self.for(text, options = {})
         new(text, options).content
@@ -17,6 +19,7 @@ module Vedeu
       # @param options [Hash]
       # @option options ellipsis [String] See {#ellipsis}.
       # @option options mode [Symbol] See {#mode}.
+      # @option options name [String|Symbol] See {#name}.
       # @option options width [Fixnum] See {#width}.
       # @return [Vedeu::Output::Wordwrap]
       def initialize(text, options = {})
@@ -136,31 +139,58 @@ module Vedeu
 
       # Returns the word wrapping mode. One of :default, :prune or
       #   :wrap;
+      #
       #     :default = Renders the content as is.
       #     :prune   = Discards the remainder of the content line
       #                after width.
       #     :wrap    = Forces the content on to a new line after
       #                width.
+      #
       # @return [Symbol]
       def mode
         options[:mode]
       end
 
+      # Returns the value of the :name option. When given, and a
+      # geometry is registered with this name, the width of the
+      # geometry is used if the :width option was not given.
+      #
+      # @return [String|Symbol]
+      def name
+        options[:name]
+      end
+
+      # Returns a boolean indicating the :name option was given and
+      # a geometry is registered with that name.
+      #
+      # @return [Boolean]
+      def registered?
+        present?(name) && Vedeu.geometries.registered?(name)
+      end
+
       # Returns the width to prune or wrap to.
       #
+      # @raise [Vedeu::Error::MissingRequired]
       # @return [Fixnum]
       def width
-        options[:width]
+        return options[:width] if present?(options[:width])
+        return Vedeu.geometries.by_name(name).width if registered?
+
+        fail Vedeu::Error::MissingRequired,
+             'The text provided cannot be wrapped or pruned because a :width ' \
+             'option was not given, or a :name option was either not given ' \
+             'or there is no geometry registered with that name.'
       end
 
       # Returns the default options/attributes for this class.
       #
-      # @return [Hash<Symbol => Fixnum, String, Symbol>]
+      # @return [Hash<Symbol => NilClass, String, Symbol>]
       def defaults
         {
           ellipsis: '...',
           mode:     :default,
-          width:    70,
+          name:     nil,
+          width:    nil,
         }
       end
 

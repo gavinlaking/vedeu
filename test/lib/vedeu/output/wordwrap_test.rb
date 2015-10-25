@@ -9,15 +9,17 @@ module Vedeu
       let(:described) { Vedeu::Output::Wordwrap }
       let(:instance)  { described.new(text, options) }
       let(:text)      { '' }
+      let(:mode)      { :default }
+      let(:_name)     {}
+      let(:width)     { 30 }
       let(:options)   {
         {
           ellipsis: '...',
           mode:     mode,
+          name:     _name,
           width:    width,
         }
       }
-      let(:mode)      { :default }
-      let(:width)     { 30 }
 
       let(:text_line) {
         "Krypton (from Greek: κρυπτός kryptos 'the hidden one')."
