@@ -26,6 +26,7 @@ module Vedeu
       # @option options foreground [String]
       # @option options model
       #   [Vedeu::Views::View|Vedeu::Views::Line|Vedeu::Views::Stream]
+      # @option options mode (see Vedeu::Output::Wordwrap#mode)
       # @option options pad [String]
       # @option options width [Integer]
       # @return [Vedeu::Output::Text]
@@ -123,6 +124,7 @@ module Vedeu
           anchor: :left,
           colour: nil,
           model:  nil,
+          mode:   :default,
           pad:    ' ',
           width:  nil,
         }
@@ -148,6 +150,12 @@ module Vedeu
       #          Vedeu::Views::Stream]
       def model
         @model ||= options[:model] || Vedeu::Null::Generic.new
+      end
+
+      # @see Vedeu::Output::Wordwrap#mode
+      # @return [Symbol]
+      def mode
+        options[:mode]
       end
 
       # The character to use for padding the string.
@@ -216,6 +224,21 @@ module Vedeu
       # @return [Fixnum]
       def width
         options[:width]
+      end
+
+      # Return a boolean indicating whether the string should be
+      # wrapped.
+      #
+      # @return [Boolean]
+      def wrap?
+        options[:mode] == :wrap
+      end
+
+      # Return the content as wrapped lines.
+      #
+      # @return [Vedeu::Views::Lines]
+      def wrapped
+        Vedeu::Output::Wordwrap.for(string, options)
       end
 
     end # Text

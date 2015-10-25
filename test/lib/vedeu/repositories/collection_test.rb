@@ -51,16 +51,8 @@ module Vedeu
         subject { instance.add(:hydrogen) }
 
         it { instance.must_respond_to(:<<) }
-        it { subject.must_be_instance_of(Collection) }
+        it { subject.must_be_instance_of(Vedeu::Repositories::Collection) }
         it { subject.all.must_equal([:hydrogen]) }
-
-        context 'with multiple objects' do
-          subject { instance.add(:hydrogen, :helium) }
-
-          it 'adds all the objects to the collection' do
-            subject.all.must_equal([:hydrogen, :helium])
-          end
-        end
       end
 
       describe '#all' do

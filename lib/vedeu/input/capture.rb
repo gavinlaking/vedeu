@@ -24,9 +24,21 @@ module Vedeu
         @reader = reader
       end
 
-      # Triggers either a ':_command_' event with the command when the
-      # reader is in cooked mode, or when in raw mode, the keypress
-      # event with the key(s) pressed.
+      # Triggers various events dependent on the terminal mode.
+      #
+      # - When in raw mode, the :_keypress_ event is triggered with
+      #   the key(s) pressed.
+      # - When in fake mode, the keypress will be checked against the
+      #   keymap relating to the interface/view currently in focus.
+      #   - If registered, the :_keypress_ event is triggered with the
+      #     key(s) pressed.
+      #   - If the keypress is not registered, we check whether the
+      #     interface in focus is editable, if so, the :_editor_
+      #     event is triggered.
+      #   - Otherwise, the :key event is triggered for the client
+      #     application to handle.
+      # - When in cooked mode, the :_command_ event is triggered with
+      #   the input given.
       #
       # @return [Array|String|Symbol]
       def read
@@ -34,8 +46,20 @@ module Vedeu
           Vedeu.trigger(:_keypress_, keypress)
 
         elsif reader.fake_mode?
-          Vedeu.trigger(:_editor_, keypress)
+          name      = Vedeu.focus
+          interface = Vedeu.interfaces.by_name(name)
+          key       = keypress
 
+          if Vedeu::Input::Mapper.registered?(key, name)
+            Vedeu.trigger(:_keypress_, key, name)
+
+          elsif interface.editable?
+            Vedeu.trigger(:_editor_, key)
+
+          else
+            Vedeu.trigger(:key, key)
+
+          end
         else
           Vedeu.trigger(:_command_, command)
 
