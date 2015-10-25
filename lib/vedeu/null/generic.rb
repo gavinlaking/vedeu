@@ -34,6 +34,7 @@ module Vedeu
       alias_method :unmaximise, :falsy
       alias_method :visible, :falsy
       alias_method :visible?, :falsy
+      alias_method :editable?, :falsy
 
       # @return [NilClass]
       def null(*)
