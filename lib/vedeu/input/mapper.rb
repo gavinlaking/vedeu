@@ -155,7 +155,11 @@ module Vedeu
   # :nocov:
 
   # See {file:docs/events/system.md#\_keypress_}
-  Vedeu.bind(:_keypress_) { |key, name| Vedeu.keypress(key, name) }
+  Vedeu.bind(:_keypress_) do |key, name|
+    Vedeu.add_keypress(key)
+
+    Vedeu.keypress(key, name)
+  end
 
   # See {file:docs/events/drb.md#\_drb_input_}
   Vedeu.bind(:_drb_input_) do |data, type|
@@ -169,7 +173,11 @@ module Vedeu
   end
 
   # See {file:docs/events/system.md#\_command_}
-  Vedeu.bind(:_command_) { |command| Vedeu.trigger(:command, command) }
+  Vedeu.bind(:_command_) do |command|
+    Vedeu.add_command(command)
+
+    Vedeu.trigger(:command, command)
+  end
 
   # :nocov:
 

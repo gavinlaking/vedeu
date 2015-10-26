@@ -35,10 +35,11 @@ class EditorApp
   # When pressing Return/Enter in the editor view, the :_command_
   # event will be triggered with any typed content you have provided.
   #
-  # Bind to this event to retrieve the content entered, and then
-  # process yourself in whatever way appropriate.
+  # The :_command_ event in turn triggers the :command event. Bind to
+  # :command to retrieve the content entered, and then process
+  # yourself in whatever way appropriate.
   #
-  #     Vedeu.bind(:_command_) do |data|
+  #     Vedeu.bind(:command) do |data|
   #        # ... do something with 'data'
   #     end
   #
@@ -60,7 +61,7 @@ class EditorApp
       lines do
         line 'Type into the editor dialog above,'
         line 'and press Return. This will trigger the'
-        line ':_command_ event with the contents of '
+        line ':command event with the contents of '
         line 'the view.'
 
         # @todo Not implemented yet:
