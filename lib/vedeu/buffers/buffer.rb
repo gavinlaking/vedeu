@@ -123,6 +123,26 @@ module Vedeu
         end
       end
 
+      # Returns the number of lines of content for the buffer or 0 if
+      # the buffer is empty.
+      #
+      # @return [Fixnum]
+      def size
+        if back?
+          back.lines.size
+
+        elsif front?
+          front.lines.size
+
+        elsif previous?
+          previous.lines.size
+
+        else
+          0
+
+        end
+      end
+
       private
 
       # Returns the default options/attributes for this class.
