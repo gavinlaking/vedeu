@@ -97,7 +97,7 @@ class VedeuMaterialColoursApp
       x(3)
       xn(64)
       y(15)
-      yn(32)
+      yn(34)
     end
     zindex(1)
   end
@@ -107,6 +107,8 @@ class VedeuMaterialColoursApp
     key(:right) { Vedeu.trigger(:_cursor_right_) }
     key(:down)  { Vedeu.trigger(:_cursor_down_)  }
     key(:left)  { Vedeu.trigger(:_cursor_left_)  }
+    key(:home)  { Vedeu.trigger(:_cursor_top_) }
+    key(:end)   { Vedeu.trigger(:_cursor_bottom_) }
 
     key('q')        { Vedeu.trigger(:_exit_) }
     key(:escape)    { Vedeu.trigger(:_mode_switch_) }
@@ -201,6 +203,20 @@ class VedeuMaterialColoursApp
                foreground: '#ffff00', width: 20
         }
         stream { left "Move cursor" }
+      }
+      line {
+        stream {
+          left "home",
+               foreground: '#ffff00', width: 20
+        }
+        stream { left "Move cursor to first line of content." }
+      }
+      line {
+        stream {
+          left "end",
+               foreground: '#ffff00', width: 20
+        }
+        stream { left "Move cursor to last line of content." }
       }
       line {}
       line {
