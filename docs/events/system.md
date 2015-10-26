@@ -11,10 +11,24 @@ popular here.
     Vedeu.trigger(:_exit_)
 
 ### `:\_command\_`
+This event is used by Vedeu internally, though you can bind to it if
+you wish. It is preferred for you to bind to `:command` though.
+
 Will cause the triggering of the `:command` event; which you should
 define to 'do things'.
 
     Vedeu.trigger(:_command_, command)
+
+    Vedeu.bind(:command) do
+      # ... your code here ...
+    end
+
+Alternatively, you can access commands entered using the following
+API methods: (See {Vedeu::Input::Store} for more details).
+
+    Vedeu.all_commands
+
+    Vedeu.last_command
 
 ### `:\_editor\_`
 This event is called by {Vedeu::Input::Capture#read}. When
@@ -41,6 +55,9 @@ action(s), like render the first screen, interface or make a sound.
     Vedeu.trigger(:_initialize_)
 
 ### `:\_keypress\_`
+This event is used by Vedeu internally, though you can bind to it if
+you wish. It is preferred for you to bind to `:key` though.
+
 When the name is given:
 
 - The given key is passed to the named keymap. If the keymap is
@@ -61,6 +78,17 @@ When the name is not given:
 It is also to be noted, that a `:key` event will be triggered
 irrespective of the conditions above, you can bind to this event
 separately to 'do things'.
+
+    Vedeu.bind(:key) do
+      # ... your code here ...
+    end
+
+Alternatively, you can access keypresses entered using the following
+API methods: (See {Vedeu::Input::Store} for more details).
+
+    Vedeu.all_keypresses
+
+    Vedeu.last_keypress
 
 A list of supported keypresses can be found here:
 {Vedeu::Input::Capture}.

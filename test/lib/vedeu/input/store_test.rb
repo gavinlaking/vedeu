@@ -7,14 +7,13 @@ module Vedeu
     describe Store do
 
       let(:described) { Vedeu::Input::Store }
-      let(:instance)  { described.new }
 
-      before { instance.reset }
+      before { described.reset }
 
       describe '#add_command' do
         let(:command) { 'command_1' }
 
-        subject { instance.add_command(command) }
+        subject { described.add_command(command) }
 
         it { subject.must_equal(['command_1']) }
       end
@@ -22,13 +21,13 @@ module Vedeu
       describe '#add_keypress' do
         let(:keypress) { 'a' }
 
-        subject { instance.add_keypress(keypress) }
+        subject { described.add_keypress(keypress) }
 
         it { subject.must_equal(['a']) }
       end
 
       describe '#all' do
-        subject { instance.all }
+        subject { described.all }
 
         context 'when empty' do
           it { subject.must_equal({ commands: [], keypresses: [] }) }
@@ -43,10 +42,10 @@ module Vedeu
           }
 
           before do
-            instance.add_command('command_1')
-            instance.add_command('command_2')
-            instance.add_keypress('a')
-            instance.add_keypress('b')
+            described.add_command('command_1')
+            described.add_command('command_2')
+            described.add_keypress('a')
+            described.add_keypress('b')
           end
 
           it { subject.must_equal(expected) }
@@ -54,7 +53,7 @@ module Vedeu
       end
 
       describe '#all_commands' do
-        subject { instance.all_commands }
+        subject { described.all_commands }
 
         context 'when there are no stored commands' do
           it { subject.must_equal([]) }
@@ -62,9 +61,9 @@ module Vedeu
 
         context 'when there are stored commands' do
           before do
-            instance.add_command('command_1')
-            instance.add_command('command_2')
-            instance.add_command('command_3')
+            described.add_command('command_1')
+            described.add_command('command_2')
+            described.add_command('command_3')
           end
 
           it { subject.must_equal(['command_1', 'command_2', 'command_3']) }
@@ -72,7 +71,7 @@ module Vedeu
       end
 
       describe '#all_keypresses' do
-        subject { instance.all_keypresses }
+        subject { described.all_keypresses }
 
         context 'when there are no stored keypresses' do
           it { subject.must_equal([]) }
@@ -80,9 +79,9 @@ module Vedeu
 
         context 'when there are stored keypresses' do
           before do
-            instance.add_keypress('a')
-            instance.add_keypress('b')
-            instance.add_keypress('c')
+            described.add_keypress('a')
+            described.add_keypress('b')
+            described.add_keypress('c')
           end
 
           it { subject.must_equal(['a', 'b', 'c']) }
@@ -90,7 +89,7 @@ module Vedeu
       end
 
       describe '#last_command' do
-        subject { instance.last_command }
+        subject { described.last_command }
 
         context 'when there are no stored commands' do
           it { subject.must_equal(nil) }
@@ -98,9 +97,9 @@ module Vedeu
 
         context 'when there are stored commands' do
           before do
-            instance.add_command('command_1')
-            instance.add_command('command_2')
-            instance.add_command('command_3')
+            described.add_command('command_1')
+            described.add_command('command_2')
+            described.add_command('command_3')
           end
 
           it { subject.must_equal('command_3') }
@@ -108,7 +107,7 @@ module Vedeu
       end
 
       describe '#last_keypress' do
-        subject { instance.last_keypress }
+        subject { described.last_keypress }
 
         context 'when there are no stored keypresses' do
           it { subject.must_equal(nil) }
@@ -116,9 +115,9 @@ module Vedeu
 
         context 'when there are stored keypresses' do
           before do
-            instance.add_keypress('a')
-            instance.add_keypress('b')
-            instance.add_keypress('c')
+            described.add_keypress('a')
+            described.add_keypress('b')
+            described.add_keypress('c')
           end
 
           it { subject.must_equal('c') }
@@ -126,7 +125,7 @@ module Vedeu
       end
 
       describe '#reset' do
-        subject { instance.reset }
+        subject { described.reset }
 
         it { subject.must_equal({ commands: [], keypresses: [] }) }
       end
