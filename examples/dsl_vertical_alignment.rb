@@ -64,8 +64,8 @@ class VerticalAlignmentApp
   Vedeu.bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
 
   Vedeu.configure do
-    log './tmp/vertical_alignment.log'
-    renderers Vedeu::Renderers::File.new(filename: './tmp/vertical_alignment.out')
+    log '/tmp/vertical_alignment.log'
+    renderers Vedeu::Renderers::File.new(filename: '/tmp/vertical_alignment.out')
   end
 
   Vedeu.interface :top_interface do

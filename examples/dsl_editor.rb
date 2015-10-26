@@ -8,8 +8,8 @@ class EditorApp
   Vedeu.bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
 
   Vedeu.configure do
-    log './tmp/editor.log'
-    renderers Vedeu::Renderers::File.new(filename: './tmp/editor.out')
+    log '/tmp/editor.log'
+    renderers Vedeu::Renderers::File.new(filename: '/tmp/editor.out')
     fake!
   end
 
