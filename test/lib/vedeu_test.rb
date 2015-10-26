@@ -2,6 +2,10 @@ require 'test_helper'
 
 describe Vedeu do
 
+  it { Vedeu.must_respond_to(:add_command) }
+  it { Vedeu.must_respond_to(:add_keypress) }
+  it { Vedeu.must_respond_to(:all_commands) }
+  it { Vedeu.must_respond_to(:all_keypresses) }
   it { Vedeu.must_respond_to(:background_colours) }
   it { Vedeu.must_respond_to(:bind) }
   it { Vedeu.must_respond_to(:bind_alias) }
@@ -51,6 +55,8 @@ describe Vedeu do
   it { Vedeu.must_respond_to(:keymap) }
   it { Vedeu.must_respond_to(:keymaps) }
   it { Vedeu.must_respond_to(:keypress) }
+  it { Vedeu.must_respond_to(:last_command) }
+  it { Vedeu.must_respond_to(:last_keypress) }
   it { Vedeu.must_respond_to(:log) }
   it { Vedeu.must_respond_to(:log_stderr) }
   it { Vedeu.must_respond_to(:log_stdout) }
