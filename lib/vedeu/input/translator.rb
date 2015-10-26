@@ -108,6 +108,7 @@ module Vedeu
     "\e[3~" => :delete,
     "\u232B" => :delete,
     "\e[F" => :end,
+    "\eOF" => :end,
     "\r" => :enter,
     "\n" => :enter,
     "\e" => :escape,
