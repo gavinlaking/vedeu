@@ -64,8 +64,8 @@ module Vedeu
         Vedeu.stubs(:focus).returns(:vedeu_renderers_render)
         Vedeu::Renderers.reset
         Vedeu::Renderers.renderer(DummyRenderer)
-        Vedeu.stubs(:hide_cursor)
-        Vedeu.stubs(:show_cursor)
+        Vedeu.stubs(:trigger).with(:_hide_cursor_)
+        Vedeu.stubs(:trigger).with(:_show_cursor_)
       end
 
       subject { described.render(output) }
@@ -82,18 +82,23 @@ module Vedeu
               .new(value: Vedeu::EscapeSequences::Esc.hide_cursor)
           }
 
+          it 'hides the cursor before rendering the content to avoid cursor ' \
+             'flicker' do
+            Vedeu.expects(:trigger).with(:_hide_cursor_)
+            subject
+          end
+
+          it 'shows the cursor after rendering the content' do
+            Vedeu.expects(:trigger).with(:_show_cursor_)
+            subject
+          end
+
           it { subject.must_be_instance_of(Vedeu::Models::Escape) }
         end
 
         context 'when there is no content' do
           it { subject.must_be_instance_of(NilClass) }
         end
-      end
-
-      context 'when no interfaces/view have been defined' do
-        before { Vedeu.stubs(:focus).raises(Vedeu::Error::Fatal) }
-
-        it { proc { subject }.must_raise(Vedeu::Error::Fatal) }
       end
     end
 
