@@ -149,6 +149,38 @@ module Vedeu
         end
       end
 
+      describe '#size' do
+        subject { instance.size }
+
+        context 'when there is new content on the back buffer' do
+          let(:back) {
+            Vedeu::Views::View.new(value: [Vedeu::Views::Line.new])
+          }
+
+          it { subject.must_equal(1) }
+        end
+
+        context 'when there is existing content on the front buffer' do
+          let(:front) {
+            Vedeu::Views::View.new(value: [Vedeu::Views::Line.new])
+          }
+
+          it { subject.must_equal(1) }
+        end
+
+        context 'when there is content on the previous buffer' do
+          let(:previous) {
+            Vedeu::Views::View.new(value: [Vedeu::Views::Line.new])
+          }
+
+          it { subject.must_equal(1) }
+        end
+
+        context 'when there is no content on any buffer' do
+          it { subject.must_equal(0) }
+        end
+      end
+
     end # Buffer
 
   end # Buffers

@@ -212,12 +212,12 @@ module Vedeu
 
       # @return [Fixnum]
       def ox
-        @ox < 0 ? 0 : @ox
+        @ox = @ox < 0 ? 0 : @ox
       end
 
       # @return [Fixnum]
       def oy
-        @oy < 0 ? 0 : @oy
+        @oy = @oy < 0 ? 0 : @oy
       end
 
       # Return the position of this cursor.
@@ -380,6 +380,18 @@ module Vedeu
     Vedeu.trigger(:_clear_view_, name)
     Vedeu.trigger(:_refresh_view_, name)
     Vedeu.trigger(:_refresh_cursor_, name)
+  end
+
+  # See {file:docs/cursors.md}
+  Vedeu.bind(:_cursor_top_) do |name|
+    Vedeu.trigger(:_cursor_reposition_, name, 0, 0)
+  end
+
+  # See {file:docs/cursors.md}
+  Vedeu.bind(:_cursor_bottom_) do |name|
+    count = Vedeu.buffers.by_name(name).size
+
+    Vedeu.trigger(:_cursor_reposition_, name, count, 0)
   end
 
   # :nocov:

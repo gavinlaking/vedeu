@@ -8,8 +8,8 @@ class AlignmentApp
   Vedeu.bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
 
   Vedeu.configure do
-    log './tmp/alignment.log'
-    renderers Vedeu::Renderers::File.new(filename: './tmp/alignment.out')
+    log '/tmp/alignment.log'
+    renderers Vedeu::Renderers::File.new(filename: '/tmp/alignment.out')
   end
 
   Vedeu.interface :top_left_view do

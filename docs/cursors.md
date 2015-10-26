@@ -57,6 +57,8 @@ specified. If 'name' is unknown, using 'Vedeu.focus' will use the
 interface currently in focus.
 
 ### `:\_cursor_left\_`
+Moves the cursor one character left, unless the left-most position
+for the view or terminal is reached.
 
     Vedeu.trigger(:_cursor_left_, name)
     Vedeu.trigger(:_cursor_left_, Vedeu.focus)
@@ -67,6 +69,8 @@ interface currently in focus.
     Vedeu.trigger(:_cursor_down_, Vedeu.focus)
 
 ### `:\_cursor_up\_`
+Moves the cursor one line up, unless the top-most position for the
+view or terminal is reached.
 
     Vedeu.trigger(:_cursor_up_, name)
     Vedeu.trigger(:_cursor_up_, Vedeu.focus)
@@ -76,3 +80,18 @@ interface currently in focus.
     Vedeu.trigger(:_cursor_right_, name)
     Vedeu.trigger(:_cursor_right_, Vedeu.focus)
 
+### `:\_cursor_top\_`
+Moves the cursor to the top-most position for the view or terminal.
+If the view contains content, then this event will effectively scroll
+to the first line of the content.
+
+    Vedeu.trigger(:_cursor_top_, name)
+    Vedeu.trigger(:_cursor_top_, Vedeu.focus)
+
+### `:\_cursor_bottom\_`
+Moves the cursor to the bottom-most position for the view or terminal.
+If the view contains content, then this event will effectively scroll
+to the last line of the content.
+
+    Vedeu.trigger(:_cursor_bottom_, name)
+    Vedeu.trigger(:_cursor_bottom_, Vedeu.focus)

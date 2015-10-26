@@ -64,8 +64,8 @@ class HorizontalAlignmentApp
   Vedeu.bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
 
   Vedeu.configure do
-    log './tmp/horizontal_alignment.log'
-    renderers Vedeu::Renderers::File.new(filename: './tmp/horizontal_alignment.out')
+    log '/tmp/horizontal_alignment.log'
+    renderers Vedeu::Renderers::File.new(filename: '/tmp/horizontal_alignment.out')
   end
 
   Vedeu.interface :left_interface do

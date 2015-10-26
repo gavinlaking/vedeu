@@ -166,6 +166,7 @@ module Vedeu
 
       private
 
+      # @param model [void] A model instance.
       # @return [String]
       def log_store(model)
         type = registered?(model.name) ? :update : :create
