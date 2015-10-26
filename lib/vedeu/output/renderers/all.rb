@@ -103,11 +103,11 @@ module Vedeu
 
     # @return [void]
     def toggle_cursor
-      Vedeu.hide_cursor(Vedeu.focus)
+      Vedeu.trigger(:_hide_cursor_)
 
       yield
 
-      Vedeu.show_cursor(Vedeu.focus)
+      Vedeu.trigger(:_show_cursor_)
     end
 
   end # Renderers
