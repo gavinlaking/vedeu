@@ -110,6 +110,13 @@ class VedeuMaterialColoursApp
     key(:home)  { Vedeu.trigger(:_cursor_top_) }
     key(:end)   { Vedeu.trigger(:_cursor_bottom_) }
 
+    key(:insert) do
+      Vedeu.log(type:    :debug,
+                message: "Commands: #{Vedeu.all_commands.inspect}")
+      Vedeu.log(type:    :debug,
+                message: "Keypresses: #{Vedeu.all_keypresses.inspect}")
+    end
+
     key('q')        { Vedeu.trigger(:_exit_) }
     key(:escape)    { Vedeu.trigger(:_mode_switch_) }
     key(:shift_tab) { Vedeu.trigger(:_focus_prev_) }
