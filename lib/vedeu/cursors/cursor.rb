@@ -212,12 +212,12 @@ module Vedeu
 
       # @return [Fixnum]
       def ox
-        @ox < 0 ? 0 : @ox
+        @ox = @ox < 0 ? 0 : @ox
       end
 
       # @return [Fixnum]
       def oy
-        @oy < 0 ? 0 : @oy
+        @oy = @oy < 0 ? 0 : @oy
       end
 
       # Return the position of this cursor.
