@@ -382,6 +382,18 @@ module Vedeu
     Vedeu.trigger(:_refresh_cursor_, name)
   end
 
+  # See {file:docs/cursors.md}
+  Vedeu.bind(:_cursor_top_) do |name|
+    Vedeu.trigger(:_cursor_reposition_, name, 0, 0)
+  end
+
+  # See {file:docs/cursors.md}
+  Vedeu.bind(:_cursor_bottom_) do |name|
+    count = Vedeu.buffers.by_name(name).size
+
+    Vedeu.trigger(:_cursor_reposition_, name, count, 0)
+  end
+
   # :nocov:
 
 end # Vedeu
