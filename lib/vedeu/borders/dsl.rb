@@ -347,6 +347,7 @@ module Vedeu
 
   # @!method border
   #   @see Vedeu::Borders::DSL.border
-  def_delegators Vedeu::Borders::DSL, :border
+  def_delegators Vedeu::Borders::DSL,
+                 :border
 
 end # Vedeu

@@ -144,8 +144,9 @@ module Vedeu
 
   # @!method clear
   #   @see Vedeu::Terminal::Buffer#clear
-  def_delegators Vedeu::Terminal::Buffer, :clear
-  def_delegators Vedeu::Terminal::Buffer, :refresh
+  def_delegators Vedeu::Terminal::Buffer,
+                 :clear,
+                 :refresh
 
   # :nocov:
 

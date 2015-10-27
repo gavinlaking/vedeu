@@ -28,6 +28,7 @@ module Vedeu
   #
   # @!method buffers
   # @return [Vedeu::Buffers::Repository]
-  def_delegators Vedeu::Buffers::Repository, :buffers
+  def_delegators Vedeu::Buffers::Repository,
+                 :buffers
 
 end # Vedeu

@@ -95,6 +95,7 @@ module Vedeu
   #
   # @!method profile
   # @return [Vedeu::Logging::Debug]
-  def_delegators Vedeu::Logging::Debug, :profile
+  def_delegators Vedeu::Logging::Debug,
+                 :profile
 
 end # Vedeu

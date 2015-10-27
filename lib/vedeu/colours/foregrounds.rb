@@ -23,6 +23,7 @@ module Vedeu
 
   # @!method foreground_colours
   # @return [Vedeu::Colours::Foregrounds]
-  def_delegators Vedeu::Colours::Foregrounds, :foreground_colours
+  def_delegators Vedeu::Colours::Foregrounds,
+                 :foreground_colours
 
 end # Vedeu

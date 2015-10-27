@@ -34,6 +34,7 @@ module Vedeu
   #
   # @!method events
   # @return [Vedeu::Events::Repository]
-  def_delegators Vedeu::Events::Repository, :events
+  def_delegators Vedeu::Events::Repository,
+                 :events
 
 end # Vedeu

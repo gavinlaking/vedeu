@@ -39,6 +39,7 @@ module Vedeu
   #
   # @!method interfaces
   # @return [Vedeu::Interfaces::Repository]
-  def_delegators Vedeu::Interfaces::Repository, :interfaces
+  def_delegators Vedeu::Interfaces::Repository,
+                 :interfaces
 
 end # Vedeu

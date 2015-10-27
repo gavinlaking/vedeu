@@ -80,6 +80,7 @@ module Vedeu
   #
   # @!method render_output
   # @return [Array|NilClass]
-  def_delegators Vedeu::Output::Output, :render_output
+  def_delegators Vedeu::Output::Output,
+                 :render_output
 
 end # Vedeu

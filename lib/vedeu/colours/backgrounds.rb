@@ -23,6 +23,7 @@ module Vedeu
 
   # @!method background_colours
   # @return [Vedeu::Colours::Backgrounds]
-  def_delegators Vedeu::Colours::Backgrounds, :background_colours
+  def_delegators Vedeu::Colours::Backgrounds,
+                 :background_colours
 
 end # Vedeu

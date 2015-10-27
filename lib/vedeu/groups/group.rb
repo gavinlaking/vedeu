@@ -177,7 +177,10 @@ module Vedeu
   #   @see Vedeu::Toggleable::ClassMethods#show
   # @!method toggle_group
   #   @see Vedeu::Toggleable::ClassMethods#toggle
-  def_delegators Vedeu::Groups::Group, :hide_group, :show_group, :toggle_group
+  def_delegators Vedeu::Groups::Group,
+                 :hide_group,
+                 :show_group,
+                 :toggle_group
 
   # :nocov:
 

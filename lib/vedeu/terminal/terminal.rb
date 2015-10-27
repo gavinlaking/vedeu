@@ -222,7 +222,10 @@ module Vedeu
   #   @see Vedeu::Terminal#resize
   # @!method width
   #   @see Vedeu::Terminal#width
-  def_delegators Vedeu::Terminal, :height, :resize, :width
+  def_delegators Vedeu::Terminal,
+                 :height,
+                 :resize,
+                 :width
 
   # :nocov:
 

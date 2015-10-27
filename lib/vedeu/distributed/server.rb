@@ -246,8 +246,11 @@ module Vedeu
   #   @see Vedeu::Distributed::Server#status
   # @!method drb_stop
   #   @see Vedeu::Distributed::Server#stop
-  def_delegators Vedeu::Distributed::Server, :drb_restart, :drb_start,
-                 :drb_status, :drb_stop
+  def_delegators Vedeu::Distributed::Server,
+                 :drb_restart,
+                 :drb_start,
+                 :drb_status,
+                 :drb_stop
 
   # :nocov:
 

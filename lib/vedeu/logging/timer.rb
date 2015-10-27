@@ -91,6 +91,7 @@ module Vedeu
   #
   # @!method timer
   #   @see Vedeu::Logging::Timer.timer
-  def_delegators Vedeu::Logging::Timer, :timer
+  def_delegators Vedeu::Logging::Timer,
+                 :timer
 
 end # Vedeu

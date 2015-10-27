@@ -37,7 +37,8 @@ module Vedeu
 
   # @!method cursor
   #   @see Vedeu::Cursors::Repository.cursor
-  def_delegators Vedeu::Cursors::Repository, :cursor
+  def_delegators Vedeu::Cursors::Repository,
+                 :cursor
 
   # Manipulate the repository of cursors.
   #
@@ -46,6 +47,7 @@ module Vedeu
   #
   # @!method cursors
   # @return [Vedeu::Cursors::Repository]
-  def_delegators Vedeu::Cursors::Repository, :cursors
+  def_delegators Vedeu::Cursors::Repository,
+                 :cursors
 
 end # Vedeu

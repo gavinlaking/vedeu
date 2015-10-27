@@ -56,7 +56,8 @@ module Vedeu
 
   # @!method clear_by_group
   #   @see Vedeu::Groups::Clear.render
-  def_delegators Vedeu::Groups::Clear, :clear_by_group
+  def_delegators Vedeu::Groups::Clear,
+                 :clear_by_group
 
   # :nocov:
 

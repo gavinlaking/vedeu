@@ -170,11 +170,13 @@ module Vedeu
 
   # @!method clear_by_name
   #   @see Vedeu::Clear::Interface.render
-  def_delegators Vedeu::Clear::Interface, :clear_by_name
+  def_delegators Vedeu::Clear::Interface,
+                 :clear_by_name
 
   # @!method clear_content_by_name
   #   @see Vedeu::Clear::Interface.clear_content_by_name
-  def_delegators Vedeu::Clear::Interface, :clear_content_by_name
+  def_delegators Vedeu::Clear::Interface,
+                 :clear_content_by_name
 
   # :nocov:
 

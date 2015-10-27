@@ -108,6 +108,8 @@ module Vedeu
   #   @see Vedeu::Events::Aliases#bind_alias
   # @!method unbind_alias
   #   @see Vedeu::Events::Aliases#unbind_alias
-  def_delegators Vedeu::Events::Aliases, :bind_alias, :unbind_alias
+  def_delegators Vedeu::Events::Aliases,
+                 :bind_alias,
+                 :unbind_alias
 
 end # Vedeu
