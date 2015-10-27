@@ -28,6 +28,13 @@ methods are used in a variety of ways, sometimes in combination:
     # with other methods
     Vedeu.method_name.other_method
 
+Nearly all of the API methods have associated
+{file:docs/events.md Vedeu Events} which you can bind to or trigger to
+achieve the same effect. It is favoured that you trigger events
+instead of calling API methods as this gives you a bit more visibility
+when debugging, and flexibility when running your application.
+However, how you build your application is up to you! (Of course!)
+
 ## Configuration
 
 See {file:docs/configuration.md}
