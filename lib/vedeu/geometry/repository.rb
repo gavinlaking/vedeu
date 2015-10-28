@@ -23,7 +23,8 @@ module Vedeu
   #
   # @!method geometries
   # @return [Vedeu::Geometry::Repository]
-  def_delegators Vedeu::Geometry::Repository, :geometries
+  def_delegators Vedeu::Geometry::Repository,
+                 :geometries
 
   # :nocov:
 

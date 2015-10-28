@@ -22,7 +22,8 @@ module Vedeu
   #
   # @!method documents
   # @return [Vedeu::Editor::Repository]
-  def_delegators Vedeu::Editor::Repository, :documents
+  def_delegators Vedeu::Editor::Repository,
+                 :documents
 
   # :nocov:
 

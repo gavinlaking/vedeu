@@ -135,7 +135,8 @@ module Vedeu
 
   # @!method exit
   #   @see Vedeu::Runtime::Application.stop
-  def_delegators Vedeu::Runtime::Application, :exit
+  def_delegators Vedeu::Runtime::Application,
+                 :exit
 
   # :nocov:
 

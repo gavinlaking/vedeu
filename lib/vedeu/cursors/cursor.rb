@@ -316,7 +316,9 @@ module Vedeu
   #   @see Vedeu::Toggleable::ClassMethods#show
   # @!method toggle_cursor
   #   @see Vedeu::Toggleable::ClassMethods#toggle
-  def_delegators Vedeu::Cursors::Cursor, :hide_cursor, :show_cursor,
+  def_delegators Vedeu::Cursors::Cursor,
+                 :hide_cursor,
+                 :show_cursor,
                  :toggle_cursor
 
   # :nocov:

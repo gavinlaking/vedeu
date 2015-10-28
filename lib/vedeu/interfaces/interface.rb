@@ -137,7 +137,9 @@ module Vedeu
   #   @see Vedeu::Toggleable::ClassMethods#show
   # @!method toggle_interface
   #   @see Vedeu::Toggleable::ClassMethods#toggle
-  def_delegators Vedeu::Interfaces::Interface, :hide_interface, :show_interface,
+  def_delegators Vedeu::Interfaces::Interface,
+                 :hide_interface,
+                 :show_interface,
                  :toggle_interface
 
   # :nocov:

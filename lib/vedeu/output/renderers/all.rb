@@ -120,7 +120,9 @@ module Vedeu
   #   @see Vedeu::Renderers#renderer
   # @!method renderers
   #   @see Vedeu::Renderers#renderers
-  def_delegators Vedeu::Renderers, :renderer, :renderers
+  def_delegators Vedeu::Renderers,
+                 :renderer,
+                 :renderers
 
 end # Vedeu
 

@@ -21,6 +21,7 @@ module Vedeu
   #
   # @!method keymaps
   # @return [Vedeu::Input::Keymaps]
-  def_delegators Vedeu::Input::Keymaps, :keymaps
+  def_delegators Vedeu::Input::Keymaps,
+                 :keymaps
 
 end # Vedeu

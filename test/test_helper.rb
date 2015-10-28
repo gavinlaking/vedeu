@@ -123,3 +123,24 @@ def test_configuration
 end
 
 test_configuration
+
+# require "benchmark/ips"
+
+# def fast
+# end
+
+# def slow
+# end
+
+# Benchmark.ips do |x|
+#   x.report("describe") { fast }
+#   x.report("describe") { slow }
+#   x.compare!
+# end
+
+# ips = Vedeu::Logging::Debug::IPS.new
+# ips.add_item('original') do
+# end
+# ips.add_item('newimproved') do
+# end
+# ips.execute!

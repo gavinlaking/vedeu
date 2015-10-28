@@ -150,7 +150,8 @@ module Vedeu
 
   # @!method keypress
   #   @see Vedeu::Input::Mapper.keypress
-  def_delegators Vedeu::Input::Mapper, :keypress
+  def_delegators Vedeu::Input::Mapper,
+                 :keypress
 
   # :nocov:
 

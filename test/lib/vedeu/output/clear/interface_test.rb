@@ -16,6 +16,7 @@ module Vedeu
       let(:options)   {
         {
           content_only: false,
+          direct:       false,
         }
       }
       let(:_name)     { 'Vedeu::Clear::Interface' }

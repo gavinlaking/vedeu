@@ -64,6 +64,7 @@ module Vedeu
           @lines = lines.delete_character(y, x - 1)
 
           left
+
         end
       end
 
@@ -76,6 +77,8 @@ module Vedeu
         up
 
         eol
+
+        refresh
       end
 
       # Returns the document as a string with line breaks if there is
@@ -105,6 +108,8 @@ module Vedeu
         @lines = lines.insert_character(character, y, x)
 
         right
+
+        refresh
       end
 
       # Insert an empty line.
@@ -116,6 +121,8 @@ module Vedeu
         down
 
         bol
+
+        refresh
       end
 
       # Returns the current line from the collection of lines.
@@ -166,9 +173,7 @@ module Vedeu
       def left
         return self if x - 1 < 0
 
-        cursor.left
-
-        refresh
+        cursor.left.refresh
       end
 
       # Move the virtual cursor right.
@@ -177,9 +182,7 @@ module Vedeu
       def right
         return self if x + 1 > line.size
 
-        cursor.right
-
-        refresh
+        cursor.right.refresh
       end
 
       # Move the virtual cursor up.
@@ -188,7 +191,7 @@ module Vedeu
       def up
         return self if y - 1 < 0
 
-        cursor.up
+        cursor.up.refresh
 
         if x > line(y).size
           eol
@@ -205,7 +208,7 @@ module Vedeu
       def down
         return self if y + 1 >= lines.size
 
-        cursor.down
+        cursor.down.refresh
 
         if x > line(y).size
           eol
@@ -220,9 +223,7 @@ module Vedeu
       #
       # @return [Vedeu::Editor::Document]
       def bol
-        cursor.bol
-
-        refresh
+        cursor.bol.refresh
       end
 
       # Move the virtual cursor to the end of the line.
@@ -231,7 +232,7 @@ module Vedeu
       def eol
         cursor.x = line.size
 
-        refresh
+        cursor.refresh
       end
 
       private

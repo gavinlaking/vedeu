@@ -126,7 +126,8 @@ module Vedeu
 
         extend Forwardable
 
-        def_delegators Vedeu::Events::Trigger, :trigger
+        def_delegators Vedeu::Events::Trigger,
+                       :trigger
 
       end # Eigenclass
 
@@ -305,6 +306,9 @@ module Vedeu
   #   @see Vedeu::Events::Event.bound?
   # @!method unbind
   #   @see Vedeu::Events::Event.unbind
-  def_delegators Vedeu::Events::Event, :bind, :bound?, :unbind
+  def_delegators Vedeu::Events::Event,
+                 :bind,
+                 :bound?,
+                 :unbind
 
 end # Vedeu

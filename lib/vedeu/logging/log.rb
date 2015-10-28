@@ -191,7 +191,10 @@ module Vedeu
   #   @see Vedeu::Logging::Log.log_stdout
   # @!method log_stderr
   #   @see Vedeu::Logging::Log.log_stderr
-  def_delegators Vedeu::Logging::Log, :log, :log_stdout, :log_stderr
+  def_delegators Vedeu::Logging::Log,
+                 :log,
+                 :log_stdout,
+                 :log_stderr
 
   # :nocov:
 

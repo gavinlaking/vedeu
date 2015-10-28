@@ -37,7 +37,7 @@ module Vedeu
         def clear_content_by_name(name = Vedeu.focus)
           name || Vedeu.focus
 
-          new(name, content_only: true).render
+          new(name, content_only: true, direct: true).render
         end
 
       end # Eigenclass
@@ -49,6 +49,11 @@ module Vedeu
       # @param options [Hash]
       # @option options content_only [Boolean] Only clear the content
       #   not the border as well. Defaults to false.
+      # @option options direct [Boolean] Write the content directly
+      #   to the terminal using a faster mechanism. The virtual buffer
+      #   will still be updated. This improves the refresh time for
+      #   Vedeu as we will not be building a grid of
+      #   {Vedeu::Views::Char} objects.
       # @return [Vedeu::Clear::Interface]
       def initialize(name, options = {})
         @name    = present?(name) ? name : Vedeu.focus
@@ -57,7 +62,15 @@ module Vedeu
 
       # @return [Array<Array<Vedeu::Views::Char>>]
       def render
-        Vedeu.render_output(output)
+        if direct?
+          Vedeu.direct_write(optimised_output)
+
+          Vedeu::Terminal::Buffer.update(output)
+
+        else
+          Vedeu.render_output(output)
+
+        end
       end
 
       protected
@@ -87,7 +100,13 @@ module Vedeu
       def defaults
         {
           content_only: false,
+          direct:       false,
         }
+      end
+
+      # @return [Boolean]
+      def direct?
+        options[:direct]
       end
 
       # @see Vedeu::Geometry::Repository#by_name
@@ -110,6 +129,27 @@ module Vedeu
       # @return [Hash<Symbol => Boolean>]
       def options
         defaults.merge!(@options)
+      end
+
+      # @return [String]
+      def optimised_output
+        Vedeu.timer("Optimised clearing #{clearing}: '#{name}'".freeze) do
+          output = ''
+
+          @y = y
+          @x = x
+          @colour = colour.to_s
+          @chars  = (' ' * width).freeze
+
+          height.times do |iy|
+            output << Vedeu::Geometry::Position.new(@y + iy, @x).to_s
+            output << @colour
+            output << @chars
+          end
+
+          output << Vedeu::Geometry::Position.new(@y, @x).to_s
+          output
+        end
       end
 
       # For each visible line of the interface, set the foreground and
@@ -170,11 +210,13 @@ module Vedeu
 
   # @!method clear_by_name
   #   @see Vedeu::Clear::Interface.render
-  def_delegators Vedeu::Clear::Interface, :clear_by_name
+  def_delegators Vedeu::Clear::Interface,
+                 :clear_by_name
 
   # @!method clear_content_by_name
   #   @see Vedeu::Clear::Interface.clear_content_by_name
-  def_delegators Vedeu::Clear::Interface, :clear_content_by_name
+  def_delegators Vedeu::Clear::Interface,
+                 :clear_content_by_name
 
   # :nocov:
 

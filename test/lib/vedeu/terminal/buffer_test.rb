@@ -49,6 +49,7 @@ module Vedeu
         end
 
         context 'when Vedeu is not ready' do
+          # @todo Add more tests.
         end
       end
 
@@ -86,6 +87,16 @@ module Vedeu
         let(:_value) {}
 
         subject { described.write(_value) }
+
+        # @todo Add more tests.
+      end
+
+      describe '#update' do
+        let(:_value) {}
+
+        subject { described.update(_value) }
+
+        # @todo Add more tests.
       end
 
     end # Buffer

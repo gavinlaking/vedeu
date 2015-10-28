@@ -22,7 +22,8 @@ module Vedeu
   #
   # @!method menus
   # @return [Vedeu::Menus::Repository]
-  def_delegators Vedeu::Menus::Repository, :menus
+  def_delegators Vedeu::Menus::Repository,
+                 :menus
 
   # :nocov:
 

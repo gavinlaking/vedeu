@@ -201,6 +201,7 @@ module Vedeu
 
   # @!method menu
   #   @see Vedeu::Menus::DSL.menu
-  def_delegators Vedeu::Menus::DSL, :menu
+  def_delegators Vedeu::Menus::DSL,
+                 :menu
 
 end # Vedeu

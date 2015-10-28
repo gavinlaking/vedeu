@@ -84,18 +84,26 @@ module Vedeu
         end
       end
 
-      # Write a collection of cells to the virtual terminal.
+      # Write a collection of cells to the virtual terminal, will
+      # then send written content to be rendered by a renderer.
       #
       # @param value [Array<Array<Vedeu::Views::Char>>]
       # @return [Array<Array<Vedeu::Views::Char>>]
       def write(value)
-        values = Array(value).flatten
-
-        values.each do |v|
-          buffer[v.position.y][v.position.x] = v if valid_position?(v)
-        end
+        update_buffer(value)
 
         render
+
+        self
+      end
+
+      # Write a collection of cells to the virtual terminal, but do
+      # not send to a renderer.
+      #
+      # @param value [Array<Array<Vedeu::Views::Char>>]
+      # @return [Array<Array<Vedeu::Views::Char>>]
+      def update(value)
+        update_buffer(value)
 
         self
       end
@@ -118,6 +126,16 @@ module Vedeu
       def position?(value)
         value.respond_to?(:position) &&
           value.position.is_a?(Vedeu::Geometry::Position)
+      end
+
+      # @param value [Array<Array<Vedeu::Views::Char>>]
+      # @return [Array<Array<Vedeu::Views::Char>>]
+      def update_buffer(value)
+        values = Array(value).flatten
+
+        values.each do |v|
+          buffer[v.position.y][v.position.x] = v if valid_position?(v)
+        end
       end
 
       # Returns a boolean indicating the value has a position
@@ -144,8 +162,9 @@ module Vedeu
 
   # @!method clear
   #   @see Vedeu::Terminal::Buffer#clear
-  def_delegators Vedeu::Terminal::Buffer, :clear
-  def_delegators Vedeu::Terminal::Buffer, :refresh
+  def_delegators Vedeu::Terminal::Buffer,
+                 :clear,
+                 :refresh
 
   # :nocov:
 

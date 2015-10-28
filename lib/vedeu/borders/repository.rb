@@ -23,7 +23,8 @@ module Vedeu
   #
   # @!method borders
   # @return [Vedeu::Borders::Repository]
-  def_delegators Vedeu::Borders::Repository, :borders
+  def_delegators Vedeu::Borders::Repository,
+                 :borders
 
   # :nocov:
 

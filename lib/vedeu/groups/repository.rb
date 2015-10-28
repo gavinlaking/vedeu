@@ -28,6 +28,7 @@ module Vedeu
   #
   # @!method groups
   # @return [Vedeu::Groups::Repository]
-  def_delegators Vedeu::Groups::Repository, :groups
+  def_delegators Vedeu::Groups::Repository,
+                 :groups
 
 end # Vedeu

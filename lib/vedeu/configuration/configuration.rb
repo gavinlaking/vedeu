@@ -353,6 +353,8 @@ module Vedeu
   #   @see Vedeu::Configuration.configure
   # @!method configuration
   #   @see Vedeu::Configuration.configuration
-  def_delegators Vedeu::Configuration, :configure, :configuration
+  def_delegators Vedeu::Configuration,
+                 :configure,
+                 :configuration
 
 end # Vedeu
