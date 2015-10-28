@@ -35,6 +35,7 @@ module Vedeu
         Vedeu.geometries.stubs(:by_name).with(_name).returns(geometry)
         Vedeu.interfaces.stubs(:by_name).with(_name).returns(interface)
 
+        Vedeu.stubs(:direct_write)
         Vedeu.stubs(:render_output)
       }
 
