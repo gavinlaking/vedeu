@@ -221,14 +221,14 @@ module Vedeu
 
       # Move the virtual cursor to the beginning of the line.
       #
-      # @return [Vedeu::Editor::Document]
+      # @return [Vedeu::Editor::Cursor]
       def bol
         cursor.bol.refresh
       end
 
       # Move the virtual cursor to the end of the line.
       #
-      # @return [Vedeu::Editor::Document]
+      # @return [Vedeu::Editor::Cursor]
       def eol
         cursor.x = line.size
 

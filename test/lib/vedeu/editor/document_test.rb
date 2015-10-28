@@ -76,15 +76,33 @@ module Vedeu
       end
 
       describe '#delete_character' do
-        it { instance.must_respond_to(:delete_character) }
+        subject { instance.delete_character }
+
+        it { subject.must_be_instance_of(Vedeu::Editor::Cursor) }
+
+        context 'when on the first column of the first row' do
+          it { subject.must_be_instance_of(Vedeu::Editor::Cursor) }
+        end
+
+        context 'when on the first column of not the first row' do
+          # @todo Add more tests.
+        end
+
+        context 'when not on the first column' do
+          # @todo Add more tests.
+        end
       end
 
       describe '#delete_line' do
-        it { instance.must_respond_to(:delete_line) }
+        subject { instance.delete_line }
+
+        it { subject.must_be_instance_of(Vedeu::Editor::Document) }
       end
 
       describe '#down' do
-        it { instance.must_respond_to(:down) }
+        subject { instance.down }
+
+        it { subject.must_be_instance_of(Vedeu::Editor::Document) }
       end
 
       describe '#execute' do
@@ -108,11 +126,21 @@ module Vedeu
       end
 
       describe '#insert_line' do
-        it { instance.must_respond_to(:insert_line) }
+        subject { instance.left }
+
+        it { subject.must_be_instance_of(Vedeu::Editor::Document) }
       end
 
       describe '#left' do
-        it { instance.must_respond_to(:left) }
+        subject { instance.left }
+
+        context 'when moving goes out of bounds' do
+          it { subject.must_be_instance_of(Vedeu::Editor::Document) }
+        end
+
+        # context 'when moving does not go out of bounds' do
+        #   it { subject.must_be_instance_of(Vedeu::Editor::Cursor) }
+        # end
       end
 
       describe '#line' do
@@ -152,19 +180,27 @@ module Vedeu
       end
 
       describe '#right' do
-        it { instance.must_respond_to(:right) }
+        subject { instance.right }
+
+        it { subject.must_be_instance_of(Vedeu::Editor::Cursor) }
       end
 
       describe '#up' do
-        it { instance.must_respond_to(:up) }
+        subject { instance.up }
+
+        it { subject.must_be_instance_of(Vedeu::Editor::Document) }
       end
 
       describe '#bol' do
-        it { instance.must_respond_to(:bol) }
+        subject { instance.bol }
+
+        it { subject.must_be_instance_of(Vedeu::Editor::Cursor) }
       end
 
       describe '#eol' do
-        it { instance.must_respond_to(:eol) }
+        subject { instance.eol }
+
+        it { subject.must_be_instance_of(Vedeu::Editor::Cursor) }
       end
 
     end # Editor

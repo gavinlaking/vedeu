@@ -209,7 +209,7 @@ module Vedeu
   end # Interfaces
 
   # @!method clear_by_name
-  #   @see Vedeu::Interfaces::Clear.render
+  #   @see Vedeu::Interfaces::Clear.clear_by_name
   def_delegators Vedeu::Interfaces::Clear,
                  :clear_by_name
 
