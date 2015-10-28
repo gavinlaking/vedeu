@@ -21,6 +21,7 @@ AllCops:
     - '**/Cheffile'
     - '**/Vagabondfile'
   Exclude:
+    - 'benchmarks/**/*'
     - 'examples/**/*'
     - 'test/**/*'
     - 'vendor/**/*'
