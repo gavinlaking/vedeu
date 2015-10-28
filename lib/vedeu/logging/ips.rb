@@ -11,7 +11,7 @@ module Vedeu
         attr_accessor :samples
         attr_accessor :benchmark
 
-        def initialize(&block)
+        def initialize
           @old_stdout = $stdout
           $stdout     = StringIO.new
           @samples    = {}
@@ -38,9 +38,14 @@ module Vedeu
           Vedeu.log(type: :debug, message: "IPS:\n#{$stdout.string}")
           $stdout = @old_stdout
 
-          key = samples.keys.sample
           Vedeu.log(type: :debug, message: "Running: #{key}")
           samples[key].call
+        end
+
+        private
+
+        def key
+          @key ||= samples.keys.sample
         end
 
       end # IPS
