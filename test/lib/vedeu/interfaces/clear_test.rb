@@ -7,11 +7,11 @@ module Vedeu
     it { Vedeu.bound?(:_clear_view_content_).must_equal(true) }
   end
 
-  module Clear
+  module Interfaces
 
-    describe Interface do
+    describe Clear do
 
-      let(:described) { Vedeu::Clear::Interface }
+      let(:described) { Vedeu::Interfaces::Clear }
       let(:instance)  { described.new(_name, options) }
       let(:options)   {
         {
@@ -19,7 +19,7 @@ module Vedeu
           direct:       false,
         }
       }
-      let(:_name)     { 'Vedeu::Clear::Interface' }
+      let(:_name)     { 'Vedeu::Interfaces::Clear' }
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
@@ -71,8 +71,8 @@ module Vedeu
         it { subject.must_equal(output) }
       end
 
-    end # Interface
+    end # Clear
 
-  end # Clear
+  end # Interfaces
 
 end # Vedeu

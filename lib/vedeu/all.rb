@@ -13,7 +13,6 @@ require 'vedeu/terminal/all'
 
 require 'vedeu/models/toggleable'
 
-require 'vedeu/output/clear/all'
 require 'vedeu/output/compressor'
 require 'vedeu/output/text'
 require 'vedeu/output/output'

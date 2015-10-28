@@ -1,10 +1,10 @@
 module Vedeu
 
-  module Clear
+  module Interfaces
 
     # Clear the named interface.
     #
-    class Interface
+    class Clear
 
       include Vedeu::Common
 
@@ -42,7 +42,7 @@ module Vedeu
 
       end # Eigenclass
 
-      # Return a new instance of Vedeu::Clear::Interface.
+      # Return a new instance of Vedeu::Interfaces::Clear.
       #
       # @param name [String|Symbol] The name of the interface to
       #   clear.
@@ -54,7 +54,7 @@ module Vedeu
       #   will still be updated. This improves the refresh time for
       #   Vedeu as we will not be building a grid of
       #   {Vedeu::Views::Char} objects.
-      # @return [Vedeu::Clear::Interface]
+      # @return [Vedeu::Interfaces::Clear]
       def initialize(name, options = {})
         @name    = present?(name) ? name : Vedeu.focus
         @options = options
@@ -204,18 +204,18 @@ module Vedeu
         geometry.x
       end
 
-    end # Interface
+    end # Clear
 
-  end # Clear
+  end # Interfaces
 
   # @!method clear_by_name
-  #   @see Vedeu::Clear::Interface.render
-  def_delegators Vedeu::Clear::Interface,
+  #   @see Vedeu::Interfaces::Clear.render
+  def_delegators Vedeu::Interfaces::Clear,
                  :clear_by_name
 
   # @!method clear_content_by_name
-  #   @see Vedeu::Clear::Interface.clear_content_by_name
-  def_delegators Vedeu::Clear::Interface,
+  #   @see Vedeu::Interfaces.Clear.clear_content_by_name
+  def_delegators Vedeu::Interfaces::Clear,
                  :clear_content_by_name
 
   # :nocov:
