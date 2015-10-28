@@ -5,8 +5,12 @@
 docs/api.md
 docs/borders.md
 docs/buffer.md
+docs/cell.md
+docs/chars.md
+docs/colours_styles.md
 docs/configuration.md
 docs/cursors.md
+docs/debugging.md
 docs/dsl.md
 docs/events.md
 docs/geometry.md
@@ -15,8 +19,11 @@ docs/group.md
 docs/input.md
 docs/interfaces.md
 docs/keymaps.md
+docs/lines.md
 docs/object_graph.md
 docs/output.md
+docs/streams.md
+docs/template.md
 docs/view.md
 docs/events/application.md
 docs/events/document.md

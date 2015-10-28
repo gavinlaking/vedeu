@@ -5,4 +5,8 @@
 
 ## Vedeu Background Colours
 
+More coming soon.
+
 ## Vedeu Foreground Colours
+
+More coming soon.
