@@ -56,7 +56,7 @@ module Vedeu
 
       # @return [String]
       def compress
-        Vedeu.timer('Compression'.freeze) do
+        Vedeu.timer("Compression for #{content.size} characters".freeze) do
           out = ''
 
           content.each do |cell|
