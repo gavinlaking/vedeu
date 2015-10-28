@@ -20,7 +20,6 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ['lib']
 
-  spec.add_development_dependency 'benchmark-ips',      '2.3.0'
   spec.add_development_dependency 'guard',              '2.13.0'
   spec.add_development_dependency 'guard-minitest',     '2.4.4'
   spec.add_development_dependency 'guard-rubocop',      '1.2.0'
@@ -33,9 +32,10 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'simplecov-console',  '0.2.0'
   spec.add_development_dependency 'yard',               '0.8.7.6'
 
-  spec.add_dependency 'bundler',   '~> 1.10'
-  spec.add_dependency 'rake',      '~> 10.4'
-  spec.add_dependency 'ruby-prof', '0.15.8'
-  spec.add_dependency 'thor',      '0.19.1'
-  spec.add_dependency 'vedeu_cli', '0.0.7'
+  spec.add_dependency 'benchmark-ips', '2.3.0'
+  spec.add_dependency 'bundler',       '~> 1.10'
+  spec.add_dependency 'rake',          '~> 10.4'
+  spec.add_dependency 'ruby-prof',     '0.15.8'
+  spec.add_dependency 'thor',          '0.19.1'
+  spec.add_dependency 'vedeu_cli',     '0.0.7'
 end
