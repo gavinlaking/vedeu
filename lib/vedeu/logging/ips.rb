@@ -6,11 +6,14 @@ module Vedeu
 
     module Debug
 
+      # Provide wrapper for 'benchmark-ips' gem.
+      #
       class IPS
 
         attr_accessor :samples
         attr_accessor :benchmark
 
+        # @return [Vedeu::Logging::Debug::IPS]
         def initialize
           @old_stdout = $stdout
           $stdout     = StringIO.new
@@ -19,6 +22,8 @@ module Vedeu
           @count      = 0
         end
 
+        # @param label [String]
+        # @return [void]
         def add_item(label = '', &blk)
           samples[label] = blk
           @count += 1
@@ -26,6 +31,7 @@ module Vedeu
           benchmark.item(label, &blk)
         end
 
+        # @return [void]
         def execute!
           benchmark.compare!
           benchmark.run_warmup
@@ -44,6 +50,7 @@ module Vedeu
 
         private
 
+        # @return [void]
         def key
           @key ||= samples.keys.sample
         end
