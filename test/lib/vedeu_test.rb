@@ -13,6 +13,7 @@ describe Vedeu do
   it { Vedeu.must_respond_to(:borders) }
   it { Vedeu.must_respond_to(:bound?) }
   it { Vedeu.must_respond_to(:buffers) }
+  it { Vedeu.must_respond_to(:buffer_write) }
   it { Vedeu.must_respond_to(:clear) }
   it { Vedeu.must_respond_to(:clear_by_group) }
   it { Vedeu.must_respond_to(:clear_by_name) }
@@ -21,6 +22,7 @@ describe Vedeu do
   it { Vedeu.must_respond_to(:configure) }
   it { Vedeu.must_respond_to(:cursor) }
   it { Vedeu.must_respond_to(:cursors) }
+  it { Vedeu.must_respond_to(:direct_write) }
   it { Vedeu.must_respond_to(:documents) }
   it { Vedeu.must_respond_to(:drb_restart) }
   it { Vedeu.must_respond_to(:drb_start) }

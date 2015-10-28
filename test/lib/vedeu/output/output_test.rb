@@ -16,6 +16,42 @@ module Vedeu
         it { instance.instance_variable_get('@output').must_equal(output) }
       end
 
+      describe '.buffer_write' do
+        subject { described.buffer_write(output) }
+
+        context 'when the output is empty' do
+          it { subject.must_be_instance_of(NilClass) }
+        end
+
+        context 'when the output is not empty' do
+          let(:output) { Vedeu::Models::Page.new }
+
+          it {
+            Vedeu::Terminal::Buffer.expects(:write).with(output)
+            subject
+          }
+        end
+      end
+
+      describe '.direct_write' do
+        subject { described.direct_write(output) }
+
+        context 'when the output is empty' do
+          it { subject.must_be_instance_of(NilClass) }
+        end
+
+        context 'when the output is not empty' do
+          let(:output) {
+            Vedeu::Models::Escape.new(value: "\e[?25h", position: [1, 1])
+          }
+
+          it {
+            Vedeu::Terminal.expects(:output).with(output.to_s)
+            subject
+          }
+        end
+      end
+
       describe '.render_output' do
         subject { described.render_output(output) }
 
@@ -30,7 +66,7 @@ module Vedeu
             }
 
             it {
-              Vedeu::Terminal.expects(:output)
+              Vedeu::Terminal.expects(:output).with(output.to_s)
               subject
             }
           end
@@ -44,6 +80,14 @@ module Vedeu
             }
           end
         end
+      end
+
+      describe '#buffer_write' do
+        it { instance.must_respond_to(:buffer_write) }
+      end
+
+      describe '#direct_write' do
+        it { instance.must_respond_to(:direct_write) }
       end
 
       describe '#render_output' do
