@@ -18,6 +18,9 @@ module Vedeu
     # @return [Array<void>]
     def clear
       threads = storage.map do |renderer|
+        Vedeu.log(type:    :output,
+                  message: "Clearing via #{renderer.class.name}")
+
         Thread.new(renderer) do
           mutex.synchronize do
             toggle_cursor { renderer.clear }
@@ -49,6 +52,9 @@ module Vedeu
     # @return [Array<void>]
     def render(output)
       threads = storage.map do |renderer|
+        Vedeu.log(type:    :output,
+                  message: "Rendering via #{renderer.class.name}")
+
         Thread.new(renderer) do
           mutex.synchronize do
             toggle_cursor { renderer.render(output) }
@@ -127,10 +133,7 @@ module Vedeu
 end # Vedeu
 
 require 'vedeu/output/renderers/options'
-require 'vedeu/output/renderers/escape_sequence'
 require 'vedeu/output/renderers/file'
 require 'vedeu/output/renderers/html'
 require 'vedeu/output/renderers/json'
-require 'vedeu/output/renderers/null'
 require 'vedeu/output/renderers/terminal'
-require 'vedeu/output/renderers/text'
