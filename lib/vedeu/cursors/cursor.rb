@@ -362,7 +362,7 @@ module Vedeu
 
   # See {file:docs/cursors.md}
   Vedeu.bind(:_cursor_up_) do |name|
-    cursor = Vedeu.cursors.by_name(name).move_up
+    cursor = Vedeu.cursors.by_name(name)
 
     if cursor.visible?
       cursor.move_up
