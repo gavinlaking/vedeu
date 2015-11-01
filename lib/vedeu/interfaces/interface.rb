@@ -120,7 +120,7 @@ module Vedeu
         {
           client:         nil,
           colour:         Vedeu::Colours::Colour.default,
-          cursor_visible: false,
+          cursor_visible: true,
           delay:          0.0,
           editable:       false,
           group:          '',

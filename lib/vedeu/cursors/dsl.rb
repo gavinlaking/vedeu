@@ -40,8 +40,6 @@ module Vedeu
       def cursor(value = true)
         boolean = value ? true : false
 
-        Vedeu.log(message: "---------- #{self.class.name} #{__callee__} #{model.class.name} #{boolean}")
-
         model.cursor_visible = boolean
 
         Vedeu::Cursors::Cursor.store(name: model.name, visible: boolean)
