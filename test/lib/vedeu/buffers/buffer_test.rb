@@ -71,6 +71,77 @@ module Vedeu
         end
       end
 
+      describe '#cursor_visible?' do
+        let(:buffer) {
+          Vedeu::Views::View.new(value: [Vedeu::Views::Line.new],
+                                 cursor_visible: cursor_visible)
+        }
+        let(:cursor_visible) { false }
+
+        subject { instance.cursor_visible? }
+
+        context 'when there is a front buffer' do
+          let(:front) { buffer }
+
+          context 'when the cursor is visible' do
+            let(:cursor_visible) { true }
+
+            it { subject.must_equal(true) }
+          end
+
+          context 'when the cursor is not visible' do
+            it { subject.must_equal(false) }
+          end
+        end
+
+        context 'when there is a previous buffer' do
+          let(:front)    {}
+          let(:previous) { buffer }
+
+          context 'when the cursor is visible' do
+            let(:cursor_visible) { true }
+
+            it { subject.must_equal(true) }
+          end
+
+          context 'when the cursor is not visible' do
+            it { subject.must_equal(false) }
+          end
+        end
+
+        context 'when neither a front or previous buffer exists (yet)' do
+          let(:front)     {}
+          let(:previous)  {}
+
+          context 'when an interface exists' do
+            let(:interface) {
+              Vedeu::Interfaces::Interface.new(name: _name, cursor_visible: cursor_visible)
+            }
+            let(:cursor_visible) { false }
+
+            before do
+              Vedeu.interfaces.stubs(:by_name).with(_name).returns(interface)
+            end
+
+            context 'when the interface cursor_visible is false' do
+              it { subject.must_equal(false) }
+            end
+
+            context 'when the interface cursor_visible is true' do
+              let(:cursor_visible) { true }
+
+              it { subject.must_equal(true) }
+            end
+          end
+
+          context 'when an interface does not exist' do
+            it 'uses the Interface::Null cursor_visible (always false)' do
+              subject.must_equal(false)
+            end
+          end
+        end
+      end
+
       describe '#front?' do
         subject { instance.front? }
 

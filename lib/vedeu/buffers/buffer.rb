@@ -74,6 +74,34 @@ module Vedeu
         true
       end
 
+      # Return a boolean indicating whether the cursor should be
+      # visible for this view.
+      #
+      # On a per-view (and per-interface) basis, the cursor can be
+      # set to be visible or not visible.
+      #
+      # - If the cursor is visible, then refresh actions or events
+      #   involving the cursor will act as normal; hiding and showing
+      #   as the view is rendered or as events are triggered to change
+      #   the visibility state.
+      # - If the cursor is not visible, then refresh actions and
+      #   events involving the cursor will be ignored- the cursor is
+      #   not shown, so do no work.
+      #
+      # @return [Boolean]
+      def cursor_visible?
+        if front?
+          front.cursor_visible?
+
+        elsif previous?
+          previous.cursor_visible?
+
+        else
+          Vedeu.interfaces.by_name(name).cursor_visible?
+
+        end
+      end
+
       # Return a boolean indicating content presence on the buffer
       # type.
       #
