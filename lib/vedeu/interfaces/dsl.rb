@@ -8,6 +8,7 @@ module Vedeu
 
       include Vedeu::Common
       include Vedeu::DSL
+      include Vedeu::Cursors::DSL
       include Vedeu::DSL::Presentation
       include Vedeu::DSL::Shared
       include Vedeu::DSL::Text
@@ -100,49 +101,6 @@ module Vedeu
         end
 
       end # Eigenclass
-
-      # Set the cursor visibility on an interface.
-      #
-      # @param value [Boolean] Any value other than nil or false will
-      #   evaluate to true.
-      #
-      # @example
-      #   Vedeu.interface :my_interface do
-      #     cursor  true  # => show the cursor for this interface
-      #     # or...
-      #     cursor  :show # => both of these are equivalent to line
-      #                   #    above
-      #     # or...
-      #     cursor!       #
-      #     # ...
-      #   end
-      #
-      #   Vedeu.interface :my_interface do
-      #     cursor false # => hide the cursor for this interface
-      #     # or...
-      #     cursor nil   # => as above
-      #     # ...
-      #   end
-      #
-      #   Vedeu.view :my_interface do
-      #     cursor true # => Specify the visibility of the cursor when
-      #                 #    the view is rendered.
-      #     # ...
-      #   end
-      #
-      # @return [Vedeu::Cursors::Cursor]
-      def cursor(value = true)
-        boolean = value ? true : false
-
-        Vedeu::Cursors::Cursor.store(name: model.name, visible: boolean)
-      end
-
-      # Set the cursor to visible for the interface.
-      #
-      # @return [Vedeu::Cursors::Cursor]
-      def cursor!
-        cursor(true)
-      end
 
       # To maintain performance interfaces can be delayed from
       # refreshing too often, the reduces artefacts particularly when
@@ -269,13 +227,6 @@ module Vedeu
       # @return [String|Symbol]
       def name(value)
         model.name = value
-      end
-
-      # Set the cursor to invisible for the interface.
-      #
-      # @return [Vedeu::Cursors::Cursor]
-      def no_cursor!
-        cursor(false)
       end
 
       # Set the interface to visible.

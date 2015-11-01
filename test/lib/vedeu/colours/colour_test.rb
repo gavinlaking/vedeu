@@ -167,6 +167,12 @@ module Vedeu
         end
       end
 
+      describe '.default' do
+        subject { described.default }
+
+        it { subject.must_be_instance_of(Vedeu::Colours::Colour) }
+      end
+
       describe '#background=' do
         let(:_value) { '#000000' }
 

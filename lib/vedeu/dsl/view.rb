@@ -84,6 +84,7 @@ module Vedeu
 
       include Vedeu::Common
       include Vedeu::DSL
+      include Vedeu::Cursors::DSL
       include Vedeu::DSL::Presentation
       include Vedeu::DSL::Shared
       include Vedeu::DSL::Text

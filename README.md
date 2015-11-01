@@ -25,6 +25,7 @@ have any problems with either of these operating systems.
 Vedeu relies on the following gems, these will be automatically
  installed when you install Vedeu (as documented below).
 
+- benchmark-ips
 - bundler
 - rake
 - ruby-prof

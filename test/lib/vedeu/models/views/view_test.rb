@@ -33,6 +33,8 @@ module Vedeu
           instance.must_respond_to(:attributes)
           instance.must_respond_to(:client)
           instance.must_respond_to(:client=)
+          instance.must_respond_to(:cursor_visible)
+          instance.must_respond_to(:cursor_visible=)
           instance.must_respond_to(:name)
           instance.must_respond_to(:name=)
           instance.must_respond_to(:parent)

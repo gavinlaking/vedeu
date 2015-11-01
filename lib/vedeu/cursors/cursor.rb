@@ -200,8 +200,10 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:_hide_cursor_, name)
       #   Vedeu.trigger(:_hide_cursor_, Vedeu.focus)
+      #   Vedeu.trigger(:_hide_cursor_)
       #   Vedeu.hide_cursor(name)
       #   Vedeu.hide_cursor(Vedeu.focus)
+      #   Vedeu.hide_cursor
       #
       # @return [Vedeu::Models::Escape]
       def hide
@@ -233,8 +235,10 @@ module Vedeu
       # @example
       #   Vedeu.trigger(:_show_cursor_, name)
       #   Vedeu.trigger(:_show_cursor_, Vedeu.focus)
+      #   Vedeu.trigger(:_show_cursor_)
       #   Vedeu.show_cursor(name)
       #   Vedeu.show_cursor(Vedeu.focus)
+      #   Vedeu.show_cursor
       #
       # @return [Vedeu::Models::Escape]
       def show
@@ -336,30 +340,46 @@ module Vedeu
 
   # See {file:docs/cursors.md}
   Vedeu.bind(:_cursor_left_) do |name|
-    Vedeu.cursors.by_name(name).move_left
+    cursor = Vedeu.cursors.by_name(name)
 
-    Vedeu.trigger(:_refresh_cursor_, name)
+    if cursor.visible?
+      cursor.move_left
+
+      Vedeu.trigger(:_refresh_cursor_, name)
+    end
   end
 
   # See {file:docs/cursors.md}
   Vedeu.bind(:_cursor_down_) do |name|
-    Vedeu.cursors.by_name(name).move_down
+    cursor = Vedeu.cursors.by_name(name)
 
-    Vedeu.trigger(:_refresh_cursor_, name)
+    if cursor.visible?
+      cursor.move_down
+
+      Vedeu.trigger(:_refresh_cursor_, name)
+    end
   end
 
   # See {file:docs/cursors.md}
   Vedeu.bind(:_cursor_up_) do |name|
-    Vedeu.cursors.by_name(name).move_up
+    cursor = Vedeu.cursors.by_name(name)
 
-    Vedeu.trigger(:_refresh_cursor_, name)
+    if cursor.visible?
+      cursor.move_up
+
+      Vedeu.trigger(:_refresh_cursor_, name)
+    end
   end
 
   # See {file:docs/cursors.md}
   Vedeu.bind(:_cursor_right_) do |name|
-    Vedeu.cursors.by_name(name).move_right
+    cursor = Vedeu.cursors.by_name(name)
 
-    Vedeu.trigger(:_refresh_cursor_, name)
+    if cursor.visible?
+      cursor.move_right
+
+      Vedeu.trigger(:_refresh_cursor_, name)
+    end
   end
 
   # See {file:docs/cursors.md}

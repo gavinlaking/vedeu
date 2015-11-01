@@ -14,8 +14,15 @@ module Vedeu
       let(:instance)  { described.new(_name) }
       let(:_name)     { 'refresh_cursor' }
       let(:expected)  {}
+      let(:cursor)    {
+        Vedeu::Cursors::Cursor.store(name:    _name,
+                                     ox:      ox,
+                                     oy:      oy,
+                                     visible: visible)
+      }
       let(:ox)        { 0 }
       let(:oy)        { 0 }
+      let(:visible)   { false }
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
@@ -31,37 +38,40 @@ module Vedeu
             y  1
             yn 3
           end
-          Vedeu::Cursors::Cursor.store(name: 'refresh_cursor',
-                                       ox:   ox,
-                                       oy:   oy)
-
+          Vedeu.cursors.stubs(:by_name).with(_name).returns(cursor)
           Vedeu::Terminal.stubs(:output).returns(expected)
-
-          Vedeu.stubs(:trigger)
         end
 
         subject { described.by_name(_name) }
 
-        it 'renders the cursor in the terminal' do
-          Vedeu::Terminal.expects(:output).with("\e[1;1H\e[?25l")
-          subject
-        end
+        context 'when the cursor is visible' do
+          let(:visible) { true }
 
-        context 'when the cursors offset position is outside the viewable area' do
-          let(:ox) { 3 }
-          let(:oy) { 3 }
-
-          it 'refreshes the view' do
-            Vedeu.expects(:trigger).with(:_refresh_view_content_, _name)
+          it 'renders the cursor in the terminal' do
+            cursor.expects(:render)
             subject
+          end
+
+          context 'when the cursors offset position is outside the viewable area' do
+            let(:ox) { 3 }
+            let(:oy) { 3 }
+
+            it 'refreshes the view' do
+              Vedeu.expects(:trigger).with(:_refresh_view_content_, _name)
+              subject
+            end
+          end
+
+          context 'when the cursors offset position is inside the viewable area' do
+            it 'does not refresh the view' do
+              Vedeu.expects(:trigger).with(:_refresh_view_content_, _name).never
+              subject
+            end
           end
         end
 
-        context 'when the cursors offset position is inside the viewable area' do
-          it 'does not refresh the view' do
-            Vedeu.expects(:trigger).with(:_refresh_view_content_, _name).never
-            subject
-          end
+        context 'when the cursor is not visible' do
+          it { subject.must_equal(nil) }
         end
       end
 

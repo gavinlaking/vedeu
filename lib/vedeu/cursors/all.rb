@@ -16,5 +16,6 @@ module Vedeu
 end # Vedeu
 
 require 'vedeu/cursors/cursor'
+require 'vedeu/cursors/dsl'
 require 'vedeu/cursors/refresh'
 require 'vedeu/cursors/repository'

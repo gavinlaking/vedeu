@@ -31,7 +31,6 @@ class VedeuMaterialColoursApp
       caption('Unicorns!')
     end
     colour foreground: '#ffffff', background: :default
-    cursor!
     geometry 'main_interface' do
       x  3
       xn 24
@@ -58,7 +57,6 @@ class VedeuMaterialColoursApp
       bottom_left('+')
     end
     colour(foreground: '#ffffff', background: :default)
-    cursor!
     geometry 'other_interface' do
       x(27)
       xn(47)
@@ -79,7 +77,6 @@ class VedeuMaterialColoursApp
       bottom_left('+')
     end
     colour(foreground: '#ffffff', background: :default)
-    cursor!
     geometry 'empty_interface' do
       x(50)
       xn(64)
@@ -92,7 +89,6 @@ class VedeuMaterialColoursApp
 
   Vedeu.interface 'keys_interface' do
     colour(foreground: '#ffffff', background: :default)
-    cursor!
     geometry 'keys_interface' do
       x(3)
       xn(64)
@@ -204,6 +200,7 @@ class VedeuMaterialColoursApp
     end
 
     view 'keys_interface' do
+      cursor false
       line {
         stream {
           left "\u2190 \u2193 \u2191 \u2192",

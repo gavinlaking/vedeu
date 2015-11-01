@@ -78,6 +78,23 @@ module Vedeu
       end
     end
 
+    describe '#hide_cursor' do
+      subject { instance.hide_cursor }
+
+      # @todo Add more tests.
+    end
+
+    describe '#show_cursor' do
+      subject { instance.show_cursor }
+
+      # @todo Add more tests.
+    end
+
+    describe '#toggle_cursor' do
+      subject { instance.toggle_cursor }
+
+      # @todo Add more tests.
+    end
   end # Toggleable
 
 end # Vedeu
