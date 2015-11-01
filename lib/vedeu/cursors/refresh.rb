@@ -21,8 +21,6 @@ module Vedeu
       # @param (see #initialize)
       # @return (see #by_name)
       def self.by_name(name = Vedeu.focus)
-        name || Vedeu.focus
-
         new(name).by_name
       end
 
@@ -32,7 +30,7 @@ module Vedeu
       #   cursor to be refreshed. Defaults to `Vedeu.focus`.
       # @return [Vedeu::Cursors::Refresh]
       def initialize(name)
-        @name = present?(name) ? name : Vedeu.focus
+        @name = name
       end
 
       # Renders the cursor in the terminal. If the cursor's x or y
@@ -42,18 +40,22 @@ module Vedeu
       #
       # @return [Array]
       def by_name
-        Vedeu.trigger(:_refresh_view_content_, name) if refresh_view?
+        refresh_view if refresh_view?
 
         cursor.render
       end
 
-      protected
-
-      # @!attribute [r] name
-      # @return [String|Symbol]
-      attr_reader :name
-
       private
+
+      # @return [String|Symbol]
+      def name
+        present?(@name) ? @name : Vedeu.focus
+      end
+
+      # @return [void]
+      def refresh_view
+        Vedeu.trigger(:_refresh_view_content_, name)
+      end
 
       # Returns true when the view should be refreshed. This is
       # determined by checking that the offsets for x and y are
@@ -61,7 +63,7 @@ module Vedeu
       #
       # @return [Boolean]
       def refresh_view?
-        cursor.ox >= width || cursor.oy >= height
+        cursor.visible? && cursor.ox >= width || cursor.oy >= height
       end
 
       # @return [Vedeu::Cursors::Cursor]
