@@ -28,6 +28,11 @@ module Vedeu
       # @return [Fixnum|Float]
       attr_accessor :client
 
+      # @!attribute [rw] cursor_visible
+      # @return [Boolean]
+      attr_accessor :cursor_visible
+      alias_method :cursor_visible?, :cursor_visible
+
       # @!attribute [rw] name
       # @return [String]
       attr_accessor :name
@@ -49,6 +54,7 @@ module Vedeu
       # @param attributes [Hash]
       # @option attributes client [Vedeu::Client]
       # @option attributes colour [Vedeu::Colours::Colour]
+      # @option attributes cursor_visible [Boolean]
       # @option attributes value [Vedeu::Views::Lines]
       # @option attributes name [String|Symbol]
       # @option attributes parent [Vedeu::Views::Composition]
@@ -118,14 +124,14 @@ module Vedeu
       # @return [Hash]
       def defaults
         {
-          client: nil,
-          colour: Vedeu::Colours::Colour.coerce(background: :default,
-                                                foreground: :default),
-          name:   '',
-          parent: nil,
-          style:  :normal,
-          value:  [],
-          zindex: 0,
+          client:         nil,
+          colour:         Vedeu::Colours::Colour.default,
+          cursor_visible: true,
+          name:           '',
+          parent:         nil,
+          style:          :normal,
+          value:          [],
+          zindex:         0,
         }
       end
 

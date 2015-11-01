@@ -10,35 +10,38 @@ module Vedeu
       let(:instance)   { described.new(attributes) }
       let(:attributes) {
         {
-          client:   client,
-          colour:   colour,
-          delay:    delay,
-          editable: editable,
-          group:    group,
-          name:     _name,
-          parent:   parent,
-          style:    style,
-          visible:  visible,
-          zindex:   zindex,
+          client:         client,
+          colour:         colour,
+          cursor_visible: cursor_visible,
+          delay:          delay,
+          editable:       editable,
+          group:          group,
+          name:           _name,
+          parent:         parent,
+          style:          style,
+          visible:        visible,
+          zindex:         zindex,
         }
       }
-      let(:client)     {}
-      let(:colour)     {}
-      let(:delay)      { 0.0 }
-      let(:editable)   { false }
-      let(:group)      { '' }
-      let(:_name)      { 'hydrogen' }
-      let(:parent)     {}
-      let(:repository) { Vedeu.interfaces }
-      let(:style)      {}
-      let(:visible)    { true }
-      let(:zindex)     { 1 }
+      let(:client)         {}
+      let(:colour)         {}
+      let(:cursor_visible) { true }
+      let(:delay)          { 0.0 }
+      let(:editable)       { false }
+      let(:group)          { '' }
+      let(:_name)          { 'hydrogen' }
+      let(:parent)         {}
+      let(:repository)     { Vedeu.interfaces }
+      let(:style)          {}
+      let(:visible)        { true }
+      let(:zindex)         { 1 }
 
       describe '#initialize' do
         subject { instance }
 
         it { subject.must_be_instance_of(described) }
         it { subject.instance_variable_get('@client').must_equal(client) }
+        it { subject.instance_variable_get('@cursor_visible').must_equal(cursor_visible) }
         it { subject.instance_variable_get('@delay').must_equal(delay) }
         it { subject.instance_variable_get('@editable').must_equal(editable) }
         it { subject.instance_variable_get('@group').must_equal(group) }
@@ -55,6 +58,8 @@ module Vedeu
         it {
           instance.must_respond_to(:client)
           instance.must_respond_to(:client=)
+          instance.must_respond_to(:cursor_visible)
+          instance.must_respond_to(:cursor_visible=)
           instance.must_respond_to(:delay)
           instance.must_respond_to(:delay=)
           instance.must_respond_to(:editable)

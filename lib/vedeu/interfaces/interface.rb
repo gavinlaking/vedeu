@@ -19,6 +19,11 @@ module Vedeu
       # @return [Fixnum|Float]
       attr_accessor :client
 
+      # @!attribute [rw] cursor_visible
+      # @return [Boolean]
+      attr_accessor :cursor_visible
+      alias_method :cursor_visible?, :cursor_visible
+
       # @!attribute [rw] delay
       # @return [Fixnum|Float]
       attr_accessor :delay
@@ -49,6 +54,7 @@ module Vedeu
       # @param attributes [Hash]
       # @option attributes client [Vedeu::Client]
       # @option attributes colour [Vedeu::Colours::Colour]
+      # @option attributes cursor_visible [Boolean]
       # @option attributes delay [Float]
       # @option attributes group [String]
       # @option attributes name [String|Symbol]
@@ -112,18 +118,18 @@ module Vedeu
       # @return [Hash]
       def defaults
         {
-          client:     nil,
-          colour:     Vedeu::Colours::Colour.coerce(background: :default,
-                                                    foreground: :default),
-          delay:      0.0,
-          editable:   false,
-          group:      '',
-          name:       '',
-          parent:     nil,
-          repository: Vedeu.interfaces,
-          style:      :normal,
-          visible:    true,
-          zindex:     0,
+          client:         nil,
+          colour:         Vedeu::Colours::Colour.default,
+          cursor_visible: false,
+          delay:          0.0,
+          editable:       false,
+          group:          '',
+          name:           '',
+          parent:         nil,
+          repository:     Vedeu.interfaces,
+          style:          :normal,
+          visible:        true,
+          zindex:         0,
         }
       end
 
