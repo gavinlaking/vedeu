@@ -46,7 +46,8 @@ module Vedeu
     #
     module ClassMethods
 
-      # Hides the model.
+      # Hides the named model, or without a name, the model with same
+      # name as the currently focussed interface.
       #
       # @example
       #   Vedeu.hide_cursor(name)
@@ -58,11 +59,12 @@ module Vedeu
       def hide(name = Vedeu.focus)
         repository.by_name(name).hide
       end
-      alias_method :hide_cursor,    :hide
+      # alias_method :hide_cursor,    :hide
       alias_method :hide_group,     :hide
       alias_method :hide_interface, :hide
 
-      # Shows the model.
+      # Shows the named model, or without a name, the model with same
+      # name as the currently focussed interface.
       #
       # @example
       #   Vedeu.show_cursor(name)
@@ -74,11 +76,12 @@ module Vedeu
       def show(name = Vedeu.focus)
         repository.by_name(name).show
       end
-      alias_method :show_cursor,    :show
+      # alias_method :show_cursor,    :show
       alias_method :show_group,     :show
       alias_method :show_interface, :show
 
-      # Toggles the visibility of the model.
+      # Toggles the visibility of the named model, or without a name,
+      # the model with same name as the currently focussed interface.
       #
       # @example
       #   Vedeu.toggle_cursor(name)
