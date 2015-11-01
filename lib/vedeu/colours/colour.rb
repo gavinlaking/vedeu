@@ -66,6 +66,11 @@ module Vedeu
         end
       end
 
+      # @return [Vedeu::Colours::Colour]
+      def self.default
+        new(background: :default, foreground: :default)
+      end
+
       # Returns a new instance of Vedeu::Colours::Colour.
       #
       # @param attributes [Hash]
