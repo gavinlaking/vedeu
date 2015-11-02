@@ -118,11 +118,7 @@ module Vedeu
       # @param lines [Vedeu::Views::Lines]
       # @return [Hash]
       def template_attributes(name, lines)
-        templ = new_attributes(name).merge!(value: lines)
-
-        Vedeu.log(type: :debug, message: "#{__callee__}\n #{templ.inspect}")
-
-        templ
+        new_attributes(name).merge!(value: lines)
       end
 
       # Return the current attributes combined with the existing
@@ -131,11 +127,7 @@ module Vedeu
       # @param name [String|Symbol] The name of the interface.
       # @return [Hash]
       def new_attributes(name)
-        attrs = existing_attributes(name).merge!(attributes)
-
-        Vedeu.log(type: :debug, message: "#{__callee__}\n attributes:#{attributes.inspect}\n attrs:#{attrs.inspect}")
-
-        attrs
+        existing_attributes(name).merge!(attributes)
       end
 
       # Retrieve the attributes of the interface by name.
@@ -143,11 +135,7 @@ module Vedeu
       # @param name [String|Symbol] The name of the interface.
       # @return [Hash]
       def existing_attributes(name)
-        existing = Vedeu.interfaces.by_name(name).attributes
-
-        Vedeu.log(type: :debug, message: "#{__callee__}\n #{existing.inspect}")
-
-        existing
+        Vedeu.interfaces.by_name(name).attributes
       end
 
     end # Composition

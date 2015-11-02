@@ -195,11 +195,7 @@ module Vedeu
         # @param block [Proc]
         # @return [Object]
         def client(&block)
-          this = eval('self', block.binding)
-
-          Vedeu.log(message: "This: #{this.inspect}")
-
-          this
+          eval('self', block.binding)
         end
 
         # Creates a new Vedeu::Views::Composition which may contain
