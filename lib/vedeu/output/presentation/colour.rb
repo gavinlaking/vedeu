@@ -53,7 +53,7 @@ module Vedeu
       #
       # @return [Vedeu::Colours::Colour]
       def colour=(value)
-        @colour = Vedeu::Colours::Colour.coerce(value)
+        @colour = attributes[:colour] = Vedeu::Colours::Colour.coerce(value)
       end
 
       # When the foreground colour for the model exists, return it,
@@ -79,7 +79,7 @@ module Vedeu
       #
       # @return [Vedeu::Colours::Foreground]
       def foreground=(value)
-        @colour = Vedeu::Colours::Colour.coerce(
+        @colour = attributes[:colour] = Vedeu::Colours::Colour.coerce(
           background: colour.background,
           foreground: Vedeu::Colours::Foreground.coerce(value))
       end
