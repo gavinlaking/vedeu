@@ -76,6 +76,7 @@ module Vedeu
       include Vedeu::Common
       include Vedeu::DSL
       include Vedeu::DSL::Use
+      include Vedeu::Geometry::Validator
 
       # Specify the geometry of an interface or view with a simple
       # DSL.
@@ -147,22 +148,10 @@ module Vedeu
       #     is not given.
       # @return [Vedeu::Geometry::Geometry]
       def align(vertical, horizontal, width, height)
-        fail Vedeu::Error::InvalidSyntax,
-             'No vertical alignment given. Valid values are :bottom, ' \
-             ':middle, :none, :top.'.freeze unless present?(vertical)
-        fail Vedeu::Error::InvalidSyntax,
-             'No horizontal alignment given. Valid values are :center, ' \
-             ':centre, :left, :none, :right.'.freeze unless present?(horizontal)
-
-        unless vertical == :none
-          fail Vedeu::Error::InvalidSyntax,
-               'No height given.'.freeze if absent?(height)
-        end
-
-        unless horizontal == :none
-          fail Vedeu::Error::InvalidSyntax,
-               'No width given.'.freeze if absent?(width)
-        end
+        validate_vertical_alignment!(vertical)
+        validate_horizontal_alignment!(horizontal)
+        validate_height!(height) unless vertical == :none
+        validate_width!(width)   unless horizontal == :none
 
         horizontal_alignment(horizontal, width)
         vertical_alignment(vertical, height)
@@ -173,11 +162,8 @@ module Vedeu
       # @param width [Fixnum] The number of characters/columns.
       # @return [Vedeu::Geometry::Geometry]
       def horizontal_alignment(value, width)
-        fail Vedeu::Error::InvalidSyntax,
-             'No horizontal alignment given. Valid values are :center, ' \
-             ':centre, :left, :none, :right.'.freeze unless present?(value)
-        fail Vedeu::Error::InvalidSyntax,
-             'No width given.'.freeze unless present?(width)
+        validate_horizontal_alignment!(value)
+        validate_width!(width)
 
         model.horizontal_alignment = Vedeu::Geometry::HorizontalAlignment
           .coerce(value)
@@ -189,11 +175,8 @@ module Vedeu
       # @param height [Fixnum] The number of lines/rows.
       # @return [Vedeu::Geometry::Geometry]
       def vertical_alignment(value, height)
-        fail Vedeu::Error::InvalidSyntax,
-             'No vertical alignment given. Valid values are :bottom, ' \
-             ':middle, :none, :top.'.freeze unless present?(value)
-        fail Vedeu::Error::InvalidSyntax,
-             'No height given.'.freeze unless present?(height)
+        validate_vertical_alignment!(value)
+        validate_height!(height)
 
         model.vertical_alignment = Vedeu::Geometry::VerticalAlignment
           .coerce(value)
