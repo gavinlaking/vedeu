@@ -97,7 +97,7 @@ module Vedeu
         @oy += 1
         @y = coordinate(oy, :y).y
 
-        store
+        store_and_refresh
       end
 
       # Moves the cursor left by one column.
@@ -110,7 +110,7 @@ module Vedeu
         @ox -= 1
         @x = coordinate(ox, :x).x
 
-        store
+        store_and_refresh
       end
 
       # Moves the cursor to the top left of the named interface.
@@ -138,7 +138,7 @@ module Vedeu
         @ox += 1
         @x = coordinate(ox, :x).x
 
-        store
+        store_and_refresh
       end
 
       # Moves the cursor up by one row.
@@ -151,7 +151,7 @@ module Vedeu
         @oy -= 1
         @y = coordinate(oy, :y).y
 
-        store
+        store_and_refresh
       end
 
       # Renders the cursor.
@@ -300,6 +300,17 @@ module Vedeu
         attributes.merge!(x: new_x, y: new_y, ox: new_ox, oy: new_oy)
       end
 
+      # Store the cursor and refresh the cursor.
+      #
+      # @return [void]
+      def store_and_refresh
+        store
+
+        Vedeu.trigger(:_refresh_cursor_, name)
+
+        self
+      end
+
       # Returns the escape sequence for setting the visibility of the
       # cursor.
       #
@@ -340,45 +351,29 @@ module Vedeu
 
   # See {file:docs/cursors.md}
   Vedeu.bind(:_cursor_left_) do |name|
-    cursor = Vedeu.cursors.by_name(name)
-
-    if cursor.visible?
-      cursor.move_left
-
-      Vedeu.trigger(:_refresh_cursor_, name)
+    Vedeu.cursors.by_name(name).tap do |cursor|
+      cursor.move_left if cursor.visible?
     end
   end
 
   # See {file:docs/cursors.md}
   Vedeu.bind(:_cursor_down_) do |name|
-    cursor = Vedeu.cursors.by_name(name)
-
-    if cursor.visible?
-      cursor.move_down
-
-      Vedeu.trigger(:_refresh_cursor_, name)
+    Vedeu.cursors.by_name(name).tap do |cursor|
+      cursor.move_down if cursor.visible?
     end
   end
 
   # See {file:docs/cursors.md}
   Vedeu.bind(:_cursor_up_) do |name|
-    cursor = Vedeu.cursors.by_name(name)
-
-    if cursor.visible?
-      cursor.move_up
-
-      Vedeu.trigger(:_refresh_cursor_, name)
+    Vedeu.cursors.by_name(name).tap do |cursor|
+      cursor.move_up if cursor.visible?
     end
   end
 
   # See {file:docs/cursors.md}
   Vedeu.bind(:_cursor_right_) do |name|
-    cursor = Vedeu.cursors.by_name(name)
-
-    if cursor.visible?
-      cursor.move_right
-
-      Vedeu.trigger(:_refresh_cursor_, name)
+    Vedeu.cursors.by_name(name).tap do |cursor|
+      cursor.move_right if cursor.visible?
     end
   end
 
