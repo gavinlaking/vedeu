@@ -5,9 +5,9 @@ require 'vedeu'
 
 # If you have cloned this repository from GitHub, you can run this example:
 #
-#     bundle exec ./examples/demo_groups.rb
+#     bundle exec ./examples/dsl_menus.rb
 #
-class FileBrowser
+class DSLMenus
   include Vedeu
 
   Vedeu.bind(:_initialize_) {
@@ -16,7 +16,8 @@ class FileBrowser
   }
 
   Vedeu.configure do
-    log '/tmp/file_browser.log'
+    debug!
+    log '/tmp/dsl_menus.log'
   end
 
   Vedeu.interface :files do
@@ -25,7 +26,7 @@ class FileBrowser
     end
     foreground '#ffffff'
     geometry do
-      width  (Vedeu.width / 2) - 1
+      width  columns(3) - 1
       height Vedeu.height - 1
       x  1
       y  1
@@ -34,12 +35,14 @@ class FileBrowser
     keymap do
       key('k', :up) do
         Vedeu.trigger(:_menu_prev_, :files)
-        Vedeu.trigger(:_refresh_view_, :files)
         Vedeu.trigger(:update)
       end
       key('j', :down) do
         Vedeu.trigger(:_menu_next_, :files)
-        Vedeu.trigger(:_refresh_view_, :files)
+        Vedeu.trigger(:update)
+      end
+      key(:enter) do
+        Vedeu.trigger(:_menu_select_, :files)
         Vedeu.trigger(:update)
       end
     end
@@ -51,21 +54,29 @@ class FileBrowser
     end
     foreground '#ffffff'
     geometry do
-      width  (Vedeu.width / 2) - 1
+      width  Vedeu.width - (columns(3) - 1)
       height Vedeu.height - 1
       x  use(:files).east
       y  1
     end
     group :file_browser
+    keymap do
+      key('k', :up) do
+        Vedeu.trigger(:_cursor_up_, :contents)
+      end
+      key('j', :down) do
+        Vedeu.trigger(:_cursor_down_, :contents)
+      end
+    end
   end
 
   Vedeu.keymap '_global_' do
-    key('q') { Vedeu.exit }
+    key('q')        { Vedeu.exit }
+    key(:shift_tab) { Vedeu.trigger(:_focus_prev_) }
+    key(:tab)       { Vedeu.trigger(:_focus_next_) }
   end
 
   class Controller
-    require 'pry'
-
     def initialize(args = [])
       @args = args
 
@@ -73,15 +84,9 @@ class FileBrowser
 
       Vedeu.bind :update do
         FilesView.new.show
-
-        # Vedeu.trigger(:_refresh_view_, :file)
+        ContentsView.new.show
+        Vedeu.trigger(:_refresh_group_, :file_browser)
       end
-
-      #Vedeu.log(type: :debug, message: "#{__callee__} \e[32m#{menu.items.inspect}\e[39m")
-
-      #Vedeu.log(type: :debug, message: "#{__callee__} #{files.pretty_inspect}")
-
-
 
       FilesView.new.show
     end
@@ -101,19 +106,19 @@ class FileBrowser
     end
 
     def all_files
-      files.map { |file| SomeFile.new(file) }
-    end
-
-    def files
-      @_files ||= Dir.glob(recursive).select { |file| File.file?(file) }
+      @_all_files ||= files.map { |file| SomeFile.new(file) }.sort_by(&:name)
     end
 
     private
 
     attr_reader :args
 
+    def files
+      @_files ||= Dir.glob(recursive).select { |file| File.file?(file) }
+    end
+
     def recursive
-      directory + '/*'#**/*'
+      directory + '/*'
     end
 
     def directory
@@ -131,9 +136,15 @@ class FileBrowser
     def name
       file.to_s
     end
+
+    def data
+      @data ||= Contents.new(file).contents
+    end
   end
 
   class Contents
+    attr_reader :path
+
     def initialize(path)
       @path = path
     end
@@ -182,7 +193,7 @@ class FileBrowser
     end
 
     def files_menu
-      @files_menu = Vedeu.trigger(:_menu_view_, :files)
+      @files_menu ||= Vedeu.trigger(:_menu_view_, :files)
     end
   end
 
@@ -190,14 +201,17 @@ class FileBrowser
     def show
       Vedeu.renders do
         view :contents do
-          lines do
-            line
-          end
+          open_file.data.each do |data_line|
+            line do
+              text "#{data_line.chomp}"
+            end
+          end if open_file
         end
       end
     end
 
     def open_file
+      @file_contents ||= Vedeu.trigger(:_menu_selected_, :files)
     end
   end
 
@@ -207,6 +221,6 @@ class FileBrowser
     Vedeu::Launcher.execute!(argv)
   end
 
-end # FileBrowser
+end # DSLMenus
 
-FileBrowser.start
+DSLMenus.start
