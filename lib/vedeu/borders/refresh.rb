@@ -75,7 +75,9 @@ module Vedeu
 
       private
 
-      # @return [Vedeu::Borders::Border]
+      # Returns the border for the interface.
+      #
+      # @return (see Vedeu::Borders::Repository#by_name)
       def border
         @border ||= Vedeu.borders.by_name(name)
       end
@@ -161,7 +163,9 @@ module Vedeu
         [build_bottom_left, captionbar, build_bottom_right].compact
       end
 
-      # @return [Vedeu::Geometry::Geometry]
+      # Returns the geometry for the interface.
+      #
+      # @return (see Vedeu::Geometry::Repository#by_name)
       def geometry
         Vedeu.geometries.by_name(name)
       end
@@ -176,9 +180,12 @@ module Vedeu
         end
       end
 
-      # The parent of a border is always an interface.
+      # Returns the interface by name.
       #
-      # @return [Vedeu::Interfaces::Interface]
+      # @note
+      #   The parent of a border is always an interface.
+      #
+      # @return (see Vedeu::Interfaces::Repository#by_name)
       def interface
         @interface ||= Vedeu.interfaces.by_name(name)
       end

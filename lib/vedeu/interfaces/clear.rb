@@ -81,7 +81,9 @@ module Vedeu
 
       private
 
-      # @see Vedeu::Borders::Repository#by_name
+      # Returns the border for the interface.
+      #
+      # @return (see Vedeu::Borders::Repository#by_name)
       def border
         @border ||= Vedeu.borders.by_name(name)
       end
@@ -109,7 +111,9 @@ module Vedeu
         options[:direct]
       end
 
-      # @see Vedeu::Geometry::Repository#by_name
+      # Returns the geometry for the interface.
+      #
+      # @return (see Vedeu::Geometry::Repository#by_name)
       def geometry
         @geometry ||= Vedeu.geometries.by_name(name)
       end
@@ -121,7 +125,9 @@ module Vedeu
         geometry.height
       end
 
-      # @see Vedeu::Interfaces::Repository#by_name
+      # Returns the interface by name.
+      #
+      # @return (see Vedeu::Interfaces::Repository#by_name)
       def interface
         @interface ||= Vedeu.interfaces.by_name(name)
       end

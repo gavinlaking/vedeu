@@ -28,34 +28,41 @@ module Vedeu
                      :yn
 
       # @!attribute [rw] bottom_left
-      # @return [String]
+      # @return [String] The character to be used for the bottom left
+      #   border if enabled.
       attr_accessor :bottom_left
 
       # @!attribute [rw] bottom_right
-      # @return [String]
+      # @return [String] The character to be used for the bottom right
+      #   border if enabled.
       attr_accessor :bottom_right
 
       # @!attribute [rw] horizontal
-      # @return [String]
+      # @return [String] The character to be used for the horizontal
+      #   side border.
       attr_accessor :horizontal
 
       # @!attribute [rw] show_bottom
-      # @return [Boolean]
+      # @return [Boolean] Determines whether the bottom border should
+      #   be shown.
       attr_accessor :show_bottom
       alias_method :bottom?, :show_bottom
 
       # @!attribute [rw] show_left
-      # @return [Boolean]
+      # @return [Boolean] Determines whether the left border should
+      #   be shown.
       attr_accessor :show_left
       alias_method :left?, :show_left
 
       # @!attribute [rw] show_right
-      # @return [Boolean]
+      # @return [Boolean] Determines whether the right border should
+      #   be shown.
       attr_accessor :show_right
       alias_method :right?, :show_right
 
       # @!attribute [rw] show_top
-      # @return [Boolean]
+      # @return [Boolean] Determines whether the top border should
+      #   be shown.
       attr_accessor :show_top
       alias_method :top?, :show_top
 
@@ -70,27 +77,33 @@ module Vedeu
       attr_accessor :title
 
       # @!attribute [rw] top_left
-      # @return [String]
+      # @return [String] The character to be used for the top left
+      #   border if enabled.
       attr_accessor :top_left
 
       # @!attribute [rw] top_right
-      # @return [String]
+      # @return [String] The character to be used for the top right
+      #   border if enabled.
       attr_accessor :top_right
 
       # @!attribute [rw] vertical
-      # @return [String]
+      # @return [String] The character to be used for the vertical
+      #   side border.
       attr_accessor :vertical
 
       # @!attribute [r] name
-      # @return [String]
+      # @return [String] Associates the border with the same-named
+      #   interface/view.
       attr_reader :name
 
       # @!attribute [r] parent
-      # @return [Vedeu::Interfaces::Interface|NilClass]
+      # @return [Vedeu::Interfaces::Interface|NilClass] The interface/
+      #   view associated with this border.
       attr_reader :parent
 
       # @!attribute [r] enabled
-      # @return [Boolean]
+      # @return [Boolean] Determines whether this border should be
+      #   rendered.
       attr_accessor :enabled
       alias_method :enabled?, :enabled
 
@@ -159,21 +172,33 @@ module Vedeu
         }
       end
 
+      # Return the column position for 1 character right of the left
+      #   border.
+      #
       # @return [Fixnum]
       def bx
         (enabled? && left?) ? x + 1 : x
       end
 
+      # Return the column position for 1 character left of the right
+      #   border.
+      #
       # @return [Fixnum]
       def bxn
         (enabled? && right?) ? xn - 1 : xn
       end
 
+      # Return the row position for 1 character under of the top
+      #   border.
+      #
       # @return [Fixnum]
       def by
         (enabled? && top?) ? y + 1 : y
       end
 
+      # Return the column position for 1 character above of the bottom
+      #   border.
+      #
       # @return [Fixnum]
       def byn
         (enabled? && bottom?) ? yn - 1 : yn
@@ -197,7 +222,9 @@ module Vedeu
 
       private
 
-      # @return [Vedeu::Geometry::Geometry]
+      # Returns the geometry for the interface.
+      #
+      # @return (see Vedeu::Geometry::Repository#by_name)
       def geometry
         Vedeu.geometries.by_name(name)
       end
