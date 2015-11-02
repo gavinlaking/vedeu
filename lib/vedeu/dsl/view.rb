@@ -190,6 +190,18 @@ module Vedeu
 
         private
 
+        # Returns the client object which called the DSL method.
+        #
+        # @param block [Proc]
+        # @return [Object]
+        def client(&block)
+          this = eval('self', block.binding)
+
+          Vedeu.log(message: "This: #{this.inspect}")
+
+          this
+        end
+
         # Creates a new Vedeu::Views::Composition which may contain
         # one or more views (Vedeu::Views::View objects).
         #
@@ -202,6 +214,9 @@ module Vedeu
           Vedeu::Views::Composition.build(attrs, &block)
         end
 
+        # Creates a new Vedeu::Views::Composition which may contain
+        # one or more views (Vedeu::Views::View objects).
+        #
         # Stores each of the views defined in their respective buffers
         # ready to be rendered on next refresh.
         #

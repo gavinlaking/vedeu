@@ -12,7 +12,13 @@ require 'vedeu'
 #
 class VedeuMaterialColoursApp
 
-  Vedeu.bind(:_initialize_) { Vedeu.trigger(:_refresh_) }
+  Vedeu.bind(:_initialize_) {
+    # Vedeu.trigger(:_show_view_, 'main_interface')
+    # Vedeu.trigger(:_show_view_, 'other_interface')
+    # Vedeu.trigger(:_show_view_, 'empty_interface')
+    # Vedeu.trigger(:_show_view_, 'keys_interface')
+    Vedeu.trigger(:_refresh_)
+  }
 
   # Be aware that running an application with debugging enabled will affect
   # performance.
