@@ -33,7 +33,7 @@ class EditorApp
     end
   end
 
-  # When pressing Return/Enter in the editor view, the :_command_
+  # When pressing Escape in the editor view, the :_command_
   # event will be triggered with any typed content you have provided.
   #
   # The :_command_ event in turn triggers the :command event. Bind to
@@ -45,7 +45,8 @@ class EditorApp
   #     end
   #
   Vedeu.keymap :editor_view do
-    key(:enter) { Vedeu.trigger(:_editor_execute_, :editor_view) }
+    key(:escape) { Vedeu.trigger(:_editor_execute_, :editor_view) }
+    key(:enter)  { Vedeu.trigger(:_editor_insert_line_, :editor_view) }
     key(:insert) do
       Vedeu.log(type:    :debug,
                 message: "Commands: #{Vedeu.all_commands.inspect}")
@@ -67,7 +68,7 @@ class EditorApp
     view(:help_view) do
       lines do
         line 'Type into the editor dialog above,'
-        line 'and press Return. This will trigger the'
+        line 'and press Escape. This will trigger the'
         line ':command event with the contents of '
         line 'the view.'
 
