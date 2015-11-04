@@ -57,6 +57,8 @@ module Vedeu
         if x - 1 < 0 && y == 0
           bol
 
+          refresh
+
         elsif x - 1 < 0 && y > 0
           delete_line
 
@@ -64,6 +66,8 @@ module Vedeu
           @lines = lines.delete_character(y, x - 1)
 
           left
+
+          refresh
 
         end
       end
