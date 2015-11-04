@@ -71,8 +71,6 @@ module Vedeu
       # @param index [Fixnum|NilClass]
       # @return [String]
       def delete_line(index = nil)
-        return self if lines.empty? || (index && index < 0)
-
         Vedeu::Editor::Lines.coerce(Vedeu::Editor::Delete
                                     .from(lines, index, size))
       end

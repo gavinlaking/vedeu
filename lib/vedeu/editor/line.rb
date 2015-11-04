@@ -66,8 +66,6 @@ module Vedeu
       # @param index [Fixnum|NilClass]
       # @return [String]
       def delete_character(index = nil)
-        return self if line.empty? || (index && index < 0)
-
         Vedeu::Editor::Line.coerce(Vedeu::Editor::Delete
                                    .from(line, index, size))
       end

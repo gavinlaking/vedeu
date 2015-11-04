@@ -40,7 +40,7 @@ module Vedeu
             context 'when the index < 0' do
               let(:index) { -3 }
 
-              it { subject.must_equal('ome text') }
+              it { subject.must_equal('Some text') }
             end
           end
 
@@ -67,7 +67,7 @@ module Vedeu
             context 'when the index < 0' do
               let(:index) { -3 }
 
-              it { subject.must_equal([:helium, :lithium, :beryllium]) }
+              it { subject.must_equal([:hydrogen, :helium, :lithium, :beryllium]) }
             end
           end
 

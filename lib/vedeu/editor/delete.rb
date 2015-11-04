@@ -26,6 +26,7 @@ module Vedeu
 
       # @return [Vedeu::Editor::Line|Vedeu::Editor::Lines]
       def delete
+        return collection if collection.empty? || (index && index < 0)
         return collection.dup.tap { |c| c.slice!(index) } if index
 
         if collection.is_a?(Array)
@@ -53,7 +54,6 @@ module Vedeu
       def index
         return nil unless @index
 
-        @index = 0        if @index < 0
         @index = size - 1 if @index > size
         @index
       end
