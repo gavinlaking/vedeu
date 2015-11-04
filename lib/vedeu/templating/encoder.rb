@@ -41,7 +41,7 @@ module Vedeu
       #
       # @return [String]
       def wrap
-        "{{#{encode64}}}"
+        "{{#{encode64}}}".freeze
       end
 
       # Encode the compressed, marshalled object or objects into a

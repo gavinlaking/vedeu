@@ -69,7 +69,7 @@ module Vedeu
     rescue StandardError => uncaught_exception
       output = if configuration.debug?
                  uncaught_exception.message + "\n" +
-                 uncaught_exception.backtrace.join("\n")
+                 uncaught_exception.backtrace.join("\n".freeze)
                else
                  uncaught_exception.message
                end

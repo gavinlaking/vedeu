@@ -47,7 +47,7 @@ end
 module VedeuMiniTestPlugin
   # def before_setup
   #   # Vedeu::Repositories.reset!
-  #   # Vedeu.log(type: :debug, message: "#{self.class}")
+  #   # Vedeu.log(type: :debug, message: "#{self.class}".freeze)
   #
   #   super
   # end

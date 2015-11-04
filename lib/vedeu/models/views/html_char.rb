@@ -47,7 +47,7 @@ module Vedeu
         out = " style='"
         out << tag_style_background unless char.background.empty?
         out << tag_style_foreground unless char.foreground.empty?
-        out << "'"
+        out << "'".freeze
       end
 
       # @return [String]
