@@ -70,7 +70,7 @@ module Vedeu
 
       # @return [String]
       def colour_reset
-        "#{fg_reset}#{bg_reset}".freeze
+        Vedeu::Configuration.colour.to_s
       end
 
       # @return [String]
@@ -84,8 +84,13 @@ module Vedeu
       end
 
       # @return [String]
+      def screen_colour_reset
+        "#{fg_reset}#{bg_reset}".freeze
+      end
+
+      # @return [String]
       def screen_exit
-        "#{show_cursor}#{colour_reset}#{reset}" \
+        "#{show_cursor}#{screen_colour_reset}#{reset}" \
         "#{last_character_position}\n".freeze
       end
 

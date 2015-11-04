@@ -50,6 +50,7 @@ module Vedeu
           it { described.string('clear').must_equal("\e[39m\e[49m\e[2J") }
           it { described.string('clear_line').must_equal("\e[39m\e[49m\e[2K") }
           it { described.string('colour_reset').must_equal("\e[39m\e[49m") }
+          it { described.string('screen_colour_reset').must_equal("\e[39m\e[49m") }
           it { described.string('fg_reset').must_equal("\e[39m") }
           it { described.string('hide_cursor').must_equal("\e[?25l") }
           it { described.string('screen_init').
