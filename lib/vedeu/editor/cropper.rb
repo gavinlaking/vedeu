@@ -88,7 +88,9 @@ module Vedeu
         @lines[oy...(oy + height)] || []
       end
 
-      # @return [Vedeu::Interfaces::Interface]
+      # Returns the interface by name.
+      #
+      # @return (see Vedeu::Interfaces::Repository#by_name)
       def interface
         @interface ||= Vedeu.interfaces.by_name(name)
       end
@@ -100,7 +102,9 @@ module Vedeu
         line[ox...(ox + width)] || ''
       end
 
-      # @return [Vedeu::Borders::Border]
+      # Returns the border for the interface.
+      #
+      # @return (see Vedeu::Borders::Repository#by_name)
       def border
         @border ||= Vedeu.borders.by_name(name)
       end

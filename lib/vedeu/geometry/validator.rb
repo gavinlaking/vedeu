@@ -2,6 +2,8 @@ module Vedeu
 
   module Geometry
 
+    # Validate values given to {Vedeu::Geometry::DSL}.
+    #
     module Validator
 
       include Vedeu::Common
@@ -28,7 +30,7 @@ module Vedeu
         true
       end
 
-      # @param vertical [Symbol] One of :bottom, :middle, :none, :top.
+      # @param value [Symbol] One of :bottom, :middle, :none, :top.
       # @raise [Vedeu::Error::InvalidSyntax] When the value is nil.
       # @return [TrueClass]
       def validate_vertical_alignment!(value)

@@ -18,8 +18,14 @@ reason, simply ask for it:
 
 ## Configuration Options
 
+### background
+{include:Vedeu::Config::API#background}
+
 ### base_path
 {include:Vedeu::Config::API#base_path}
+
+### colour
+{include:Vedeu::Config::API#colour}
 
 ### colour_mode
 {include:Vedeu::Config::API#colour_mode}
@@ -47,6 +53,9 @@ reason, simply ask for it:
 
 ### drb_width
 {include:Vedeu::Config::API#drb_width}
+
+### foreground
+{include:Vedeu::Config::API#foreground}
 
 ### interactive / interactive!
 {include:Vedeu::Config::API#interactive}

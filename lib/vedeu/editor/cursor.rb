@@ -156,7 +156,9 @@ module Vedeu
 
       private
 
-      # @return [Vedeu::Borders::Border]
+      # Returns the border for the interface.
+      #
+      # @return (see Vedeu::Borders::Repository#by_name)
       def border
         @border ||= Vedeu.borders.by_name(name)
       end

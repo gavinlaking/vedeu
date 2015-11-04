@@ -86,6 +86,8 @@ module Vedeu
     #
     class OutOfRange < StandardError
 
+      # Returns an error message.
+      #
       # @return [String]
       def message
         'Valid value is between 1 and 12 inclusive.'.freeze
@@ -98,6 +100,8 @@ module Vedeu
     #
     class RequiresBlock < StandardError
 
+      # Returns an error message.
+      #
       # @return [String]
       def message
         'The required block was not given.'.freeze

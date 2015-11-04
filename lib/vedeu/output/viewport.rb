@@ -145,8 +145,7 @@ module Vedeu
         offset - dimension
       end
 
-      # Return the border associated with the interface/view we are
-      # drawing.
+      # Returns the border for the interface.
       #
       # @return (see Vedeu::Borders::Repository#by_name)
       def border

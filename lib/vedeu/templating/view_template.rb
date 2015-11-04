@@ -72,9 +72,9 @@ module Vedeu
         :normal
       end
 
-      # Fetch the interface by name.
+      # Returns the interface by name.
       #
-      # @return [Vedeu::Interfaces::Interface]
+      # @return (see Vedeu::Interfaces::Repository#by_name)
       def interface
         Vedeu.interfaces.by_name(options[:name])
       end
