@@ -504,7 +504,68 @@ module Vedeu
         options[:width] = width
       end
 
+      # Sets the background of the terminal.
+      #
+      #   Vedeu.configure do
+      #     background '#ff0000'
+      #     # ...
+      #   end
+      #
+      # @param value [String]
+      # @return [Vedeu::Colours::Background]
+      def background(value = nil)
+        return options[:background] unless value
+
+        options[:background] = colour_attributes(
+          background: Vedeu::Colours::Background.coerce(value)
+        ).fetch(:background)
+      end
+
+      # Sets the foreground of the terminal.
+      #
+      #   Vedeu.configure do
+      #     foreground '#ffff00'
+      #     # ...
+      #   end
+      #
+      # @param value [String]
+      # @return [Vedeu::Colours::Foreground]
+      def foreground(value = nil)
+        return options[:foreground] unless value
+
+        options[:foreground] = colour_attributes(
+          foreground: Vedeu::Colours::Foreground.coerce(value)
+        ).fetch(:foreground)
+      end
+
+      # Sets the background and foreground of the terminal.
+      #
+      #   Vedeu.configure do
+      #     colour background: '#ff0000', foreground: '#ffff00'
+      #     # ...
+      #   end
+      #
+      # @param attrs [Hash<Symbol => String>]
+      # @return [Hash]
+      def colour(attrs = {})
+        options[:background] = background(attrs[:background])
+        options[:foreground] = foreground(attrs[:foreground])
+        options
+      end
+
       private
+
+      # @params attrs [Hash<Symbol => Vedeu::Colours::Background,
+      #   Vedeu::Colours::Foreground>]
+      # @options attrs background [Vedeu::Colours::Background]
+      # @options attrs foreground [Vedeu::Colours::Foreground]
+      # @return [Hash<Symbol => Symbol>]
+      def colour_attributes(attrs = {})
+        {
+          background: Vedeu::Configuration.background,
+          foreground: Vedeu::Configuration.foreground,
+        }.merge!(attrs)
+      end
 
       # @raise [Vedeu::Error::InvalidSyntax]
       def invalid_mode!
