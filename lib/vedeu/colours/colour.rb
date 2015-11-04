@@ -82,6 +82,15 @@ module Vedeu
         @foreground = Vedeu::Colours::Foreground.coerce(attributes[:foreground])
       end
 
+      # @return [Hash<Symbol => Vedeu::Colours::Background,
+      #   Vedeu::Colours::Foreground>]
+      def attributes
+        {
+          background: Vedeu::Colours::Background.coerce(@background),
+          foreground: Vedeu::Colours::Foreground.coerce(@foreground),
+        }
+      end
+
       # Converts the value into a Vedeu::Colours::Background.
       #
       # @param value [String]
