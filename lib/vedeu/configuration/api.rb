@@ -516,9 +516,10 @@ module Vedeu
       def background(value = nil)
         return options[:background] unless value
 
-        options[:background] = colour_attributes(
-          background: Vedeu::Colours::Background.coerce(value)
-        ).fetch(:background)
+        new_background = Vedeu::Colours::Background.coerce(value)
+
+        options[:background] = colour_attributes(background: new_background)
+                               .fetch(:background)
       end
 
       # Sets the foreground of the terminal.
@@ -533,9 +534,10 @@ module Vedeu
       def foreground(value = nil)
         return options[:foreground] unless value
 
-        options[:foreground] = colour_attributes(
-          foreground: Vedeu::Colours::Foreground.coerce(value)
-        ).fetch(:foreground)
+        new_foreground = Vedeu::Colours::Foreground.coerce(value)
+
+        options[:foreground] = colour_attributes(foreground: new_foreground)
+                               .fetch(:foreground)
       end
 
       # Sets the background and foreground of the terminal.
