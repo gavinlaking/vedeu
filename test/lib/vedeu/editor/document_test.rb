@@ -78,10 +78,10 @@ module Vedeu
       describe '#delete_character' do
         subject { instance.delete_character }
 
-        it { subject.must_be_instance_of(Vedeu::Editor::Cursor) }
+        it { subject.must_be_instance_of(Vedeu::Editor::Document) }
 
         context 'when on the first column of the first row' do
-          it { subject.must_be_instance_of(Vedeu::Editor::Cursor) }
+          it { subject.must_be_instance_of(Vedeu::Editor::Document) }
         end
 
         context 'when on the first column of not the first row' do

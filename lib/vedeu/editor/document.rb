@@ -60,12 +60,16 @@ module Vedeu
         elsif x - 1 < 0 && y > 0
           delete_line
 
+          return
+
         else
           @lines = lines.delete_character(y, x - 1)
 
           left
 
         end
+
+        refresh
       end
 
       # Delete a line.

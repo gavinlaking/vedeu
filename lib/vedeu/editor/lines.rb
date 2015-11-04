@@ -73,15 +73,8 @@ module Vedeu
       def delete_line(index = nil)
         return self if lines.empty? || (index && index < 0)
 
-        new_lines = if index && index <= size
-                      lines.dup.tap { |lines| lines.slice!(index) }
-
-                    else
-                      lines.dup.tap(&:pop)
-
-                    end
-
-        Vedeu::Editor::Lines.coerce(new_lines)
+        Vedeu::Editor::Lines.coerce(Vedeu::Editor::Delete
+                                    .from(lines, index, size))
       end
 
       # Provides iteration over the collection.

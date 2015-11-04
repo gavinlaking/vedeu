@@ -10,6 +10,7 @@ end # Vedeu
 
 require 'vedeu/editor/capture'
 require 'vedeu/editor/cropper'
+require 'vedeu/editor/delete'
 require 'vedeu/editor/editor'
 require 'vedeu/editor/insert'
 require 'vedeu/editor/line'
