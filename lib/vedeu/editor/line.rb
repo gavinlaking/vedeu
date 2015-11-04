@@ -68,15 +68,8 @@ module Vedeu
       def delete_character(index = nil)
         return self if line.empty? || (index && index < 0)
 
-        new_line = if index && index <= size
-                     line.dup.tap { |line| line.slice!(index) }
-
-                   else
-                     line.chop
-
-                   end
-
-        Vedeu::Editor::Line.coerce(new_line)
+        Vedeu::Editor::Line.coerce(Vedeu::Editor::Delete
+                                   .from(line, index, size))
       end
 
       # Returns a boolean indicating whether there are characters on
