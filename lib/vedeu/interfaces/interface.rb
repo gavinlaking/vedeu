@@ -119,7 +119,7 @@ module Vedeu
       def defaults
         {
           client:         nil,
-          colour:         Vedeu::Colours::Colour.default,
+          colour:         Vedeu::Configuration.colour,
           cursor_visible: true,
           delay:          0.0,
           editable:       false,

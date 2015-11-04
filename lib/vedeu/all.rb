@@ -1,6 +1,7 @@
 require 'vedeu/version'
 
 require 'vedeu/common'
+require 'vedeu/colours/all'
 require 'vedeu/configuration/api'
 require 'vedeu/configuration/configuration'
 require 'vedeu/repositories/all'

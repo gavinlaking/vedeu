@@ -197,7 +197,9 @@ module Vedeu
         # @param block [Proc]
         # @return [Vedeu::Views::Composition]
         def composition(client, &block)
-          Vedeu::Views::Composition.build(client: client, &block)
+          attrs = { client: client, colour: Vedeu::Configuration.colour }
+
+          Vedeu::Views::Composition.build(attrs, &block)
         end
 
         # Stores each of the views defined in their respective buffers

@@ -173,6 +173,20 @@ module Vedeu
         it { subject.must_be_instance_of(Vedeu::Colours::Colour) }
       end
 
+      describe '#attributes' do
+        let(:expected) {
+          {
+            background: Vedeu::Colours::Background.new,
+            foreground: Vedeu::Colours::Foreground.new,
+          }
+        }
+
+        subject { instance.attributes }
+
+        it { subject.must_be_instance_of(Hash) }
+        it { subject.must_equal(expected) }
+      end
+
       describe '#background=' do
         let(:_value) { '#000000' }
 

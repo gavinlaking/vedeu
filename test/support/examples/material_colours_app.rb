@@ -17,7 +17,10 @@ class VedeuMaterialColoursApp
   # Be aware that running an application with debugging enabled will affect
   # performance.
   Vedeu.configure do
+    # background '#607d8b'
+    # colour background: '#607d8b', foreground: '#ffff00'
     debug!
+    # foreground '#ffff00'
     # profile!
     log '/tmp/vedeu_material_colours_app.log'
     # height 11

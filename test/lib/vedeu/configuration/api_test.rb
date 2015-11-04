@@ -356,6 +356,76 @@ module Vedeu
         end
       end
 
+      describe '#background' do
+        context 'when a value is given' do
+          it {
+            configuration = Vedeu.configure { background '#ff0000' }
+            configuration.background.must_be_instance_of(Vedeu::Colours::Background)
+            configuration.background.to_s.must_equal("\e[48;2;255;0;0m")
+          }
+        end
+
+        context 'when a value is not given' do
+          it {
+            configuration = Vedeu.configure { background nil }
+            configuration.background.must_be_instance_of(Vedeu::Colours::Background)
+            configuration.background.to_s.must_equal("\e[49m")
+          }
+        end
+      end
+
+      describe '#colour' do
+        context 'when a background and foreground is given' do
+          it {
+            configuration = Vedeu.configure { colour background: '#ff0000', foreground: '#ffff00' }
+            configuration.colour.must_be_instance_of(Vedeu::Colours::Colour)
+            configuration.colour.to_s.must_equal("\e[38;2;255;255;0m\e[48;2;255;0;0m")
+          }
+        end
+
+        context 'when only a background is given' do
+          it {
+            configuration = Vedeu.configure { colour background: '#ff0000' }
+            configuration.colour.must_be_instance_of(Vedeu::Colours::Colour)
+            configuration.colour.to_s.must_equal("\e[48;2;255;0;0m")
+          }
+        end
+
+        context 'when only a foreground is given' do
+          it {
+            configuration = Vedeu.configure { colour foreground: '#ffff00' }
+            configuration.colour.must_be_instance_of(Vedeu::Colours::Colour)
+            configuration.colour.to_s.must_equal("\e[38;2;255;255;0m")
+          }
+        end
+
+        context 'when neither a background nor foreground is given' do
+          it {
+            configuration = Vedeu.configure { colour background: nil, foreground: nil }
+            configuration.colour.must_be_instance_of(Vedeu::Colours::Colour)
+            configuration.colour.to_s.must_equal('')
+          }
+        end
+      end
+
+      describe '#foreground' do
+        context 'when a value is given' do
+          it {
+            configuration = Vedeu.configure { foreground '#ffff00' }
+            configuration.foreground.must_be_instance_of(Vedeu::Colours::Foreground)
+            configuration.foreground.to_s.must_equal("\e[38;2;255;255;0m")
+          }
+        end
+
+        context 'when a value is not given' do
+          it {
+            configuration = Vedeu.configure { background nil }
+            configuration.foreground.must_be_instance_of(Vedeu::Colours::Foreground)
+            configuration.foreground.to_s.must_equal("\e[39m")
+          }
+        end
+      end
+
     end # API
 
   end # Config
