@@ -92,6 +92,14 @@ module Vedeu
         it { subject.must_equal(['a', 'b', 'c']) }
       end
 
+      describe '#deputy' do
+        subject { instance.deputy }
+
+        it 'returns the DSL instance' do
+          subject.must_be_instance_of(Vedeu::Groups::DSL)
+        end
+      end
+
       describe '#hide' do
         subject { instance.hide }
 

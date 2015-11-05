@@ -208,6 +208,14 @@ module Vedeu
         end
       end
 
+      describe '#deputy' do
+        subject { instance.deputy }
+
+        it 'returns the DSL instance' do
+          subject.must_be_instance_of(Vedeu::Borders::DSL)
+        end
+      end
+
       describe '#width' do
         let(:geometry) {
           Vedeu::Geometry::Geometry.new(name: _name, width: 8)

@@ -87,18 +87,6 @@ module Vedeu
         klass.send(:extend, ClassMethods)
       end
 
-      # Returns a DSL instance responsible for defining the DSL
-      # methods of this model.
-      #
-      # @param client [Object|NilClass] The client binding represents
-      #   the client application object that is currently invoking a
-      #   DSL method. It is required so that we can send messages to
-      #   the client application object should we need to.
-      # @return [void] The DSL instance for this model.
-      def deputy(client = nil)
-        Object.const_get(dsl_class).new(self, client)
-      end
-
       # @note If a block is given, store the model, return the model
       #   after yielding.
       # @todo Perhaps some validation could be added here?
@@ -109,26 +97,6 @@ module Vedeu
         yield if block_given?
 
         new_model
-      end
-
-      private
-
-      # Returns the DSL class name responsible for this model.
-      #
-      # @return [String]
-      def dsl_class
-        case demodulize(self.class.name)
-        when 'Border'.freeze    then 'Vedeu::Borders::DSL'.freeze
-        when 'Buffer'.freeze    then 'Vedeu::Buffers::DSL'.freeze
-        when 'Geometry'.freeze  then 'Vedeu::Geometry::DSL'.freeze
-        when 'Group'.freeze     then 'Vedeu::Groups::DSL'.freeze
-        when 'Interface'.freeze then 'Vedeu::Interfaces::DSL'.freeze
-        when 'Keymap'.freeze    then 'Vedeu::Input::DSL'.freeze
-        when 'Menu'.freeze      then 'Vedeu::Menus::DSL'.freeze
-        # when 'ModelTestClass' then 'Vedeu::Repositories::ModelTestClass::DSL'
-        else
-          'Vedeu::DSL::'.freeze + demodulize(self.class.name)
-        end
       end
 
     end # Model

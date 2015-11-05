@@ -49,14 +49,6 @@ module Vedeu
         # it { skip }
       end
 
-      describe '#deputy' do
-        subject { instance.deputy }
-
-        # it 'returns the DSL instance' do
-        #   subject.must_be_instance_of(Vedeu::Repositories::ModelTestClass::DSL)
-        # end
-      end
-
       describe '#store' do
         subject { instance.store }
 

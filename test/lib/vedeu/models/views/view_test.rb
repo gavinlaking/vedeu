@@ -54,6 +54,14 @@ module Vedeu
         # it { skip }
       end
 
+      describe '#deputy' do
+        subject { instance.deputy }
+
+        it 'returns the DSL instance' do
+          subject.must_be_instance_of(Vedeu::DSL::View)
+        end
+      end
+
       describe '#value' do
         subject { instance.value }
 
