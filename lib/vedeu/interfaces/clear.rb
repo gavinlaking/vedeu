@@ -88,6 +88,7 @@ module Vedeu
         @border ||= Vedeu.borders.by_name(name)
       end
 
+      # @return [String] A string of blank characters.
       def chars
         @chars ||= (' ' * width).freeze
       end
