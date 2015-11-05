@@ -88,9 +88,13 @@ module Vedeu
         @border ||= Vedeu.borders.by_name(name)
       end
 
+      def chars
+        @chars ||= (' ' * width).freeze
+      end
+
       # @return [Vedeu::Colours::Colour]
       def colour
-        interface.colour
+        @colour ||= interface.colour
       end
 
       # @return [Boolean]
@@ -120,9 +124,13 @@ module Vedeu
 
       # @return [Fixnum]
       def height
-        return border.height if content_only?
+        @height ||= if content_only?
+                      border.height
 
-        geometry.height
+                    else
+                      geometry.height
+
+                    end
       end
 
       # Returns the interface by name.
@@ -140,21 +148,9 @@ module Vedeu
       # @return [String]
       def optimised_output
         Vedeu.timer("Optimised clearing #{clearing}: '#{name}'".freeze) do
-          output = ''
-
-          @y = y
-          @x = x
-          @colour = colour.to_s
-          @chars  = (' ' * width).freeze
-
-          height.times do |iy|
-            output << Vedeu::Geometry::Position.new(@y + iy, @x).to_s
-            output << @colour
-            output << @chars
-          end
-
-          output << Vedeu::Geometry::Position.new(@y, @x).to_s
-          output
+          height.times.map do |iy|
+            Vedeu::Geometry::Position.new(y + iy, x).to_s + colour.to_s + chars
+          end.join + Vedeu::Geometry::Position.new(y, x).to_s
         end
       end
 
@@ -166,17 +162,11 @@ module Vedeu
       # @return [Array<Array<Vedeu::Views::Char>>]
       def output
         Vedeu.timer("Clearing #{clearing}: '#{name}'".freeze) do
-          @y      = y
-          @x      = x
-          @width  = width
-          @height = height
-          @colour = colour
-
-          @clear ||= Array.new(@height) do |iy|
-            Array.new(@width) do |ix|
+          @clear ||= Array.new(height) do |iy|
+            Array.new(width) do |ix|
               Vedeu::Views::Char.new(value:    ' '.freeze,
-                                     colour:   @colour,
-                                     position: [@y + iy, @x + ix])
+                                     colour:   colour,
+                                     position: [y + iy, x + ix])
             end
           end
         end
@@ -184,30 +174,46 @@ module Vedeu
 
       # @return [String]
       def clearing
-        return 'content'.freeze if content_only?
+        @clearing ||= if content_only?
+                        'content'.freeze
 
-        'interface'.freeze
+                      else
+                        'interface'.freeze
+
+                      end
       end
 
       # @return [Fixnum]
       def width
-        return border.width if content_only?
+        @width ||= if content_only?
+                     border.width
 
-        geometry.width
+                   else
+                     geometry.width
+
+                   end
       end
 
       # @return [Fixnum]
       def y
-        return border.by if content_only?
+        @y ||= if content_only?
+                 border.by
 
-        geometry.y
+               else
+                 geometry.y
+
+               end
       end
 
       # @return [Fixnum]
       def x
-        return border.bx if content_only?
+        @x ||= if content_only?
+                 border.bx
 
-        geometry.x
+               else
+                 geometry.x
+
+               end
       end
 
     end # Clear
