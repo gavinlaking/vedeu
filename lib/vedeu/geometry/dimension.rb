@@ -74,10 +74,9 @@ module Vedeu
 
       private
 
-      # @raise [Vedeu::Error::NotImplemented] Subclasses of this class
-      #   must implement this method.
+      # @return [Vedeu::Geometry::Alignment]
       def alignment
-        fail Vedeu::Error::NotImplemented, 'Subclasses implement this.'.freeze
+        Vedeu::Geometry::Alignment.coerce(@alignment)
       end
 
       # Return the dimension.
@@ -243,9 +242,10 @@ module Vedeu
 
       # Returns the default options/attributes for this class.
       #
-      # @return [Hash<Symbol => NilClass,Boolean,Symbol>]
+      # @return [Hash<Symbol => Boolean,Fixnum,NilClass,Symbol>]
       def defaults
         {
+          alignment: :none,
           d:         nil,
           dn:        nil,
           d_dn:      nil,
