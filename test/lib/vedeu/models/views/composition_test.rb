@@ -61,6 +61,13 @@ module Vedeu
         it { subject.must_be_instance_of(Vedeu::Views::ViewCollection) }
       end
 
+      describe '#deputy' do
+        subject { instance.deputy }
+
+        it 'returns the DSL instance' do
+          subject.must_be_instance_of(Vedeu::DSL::Composition)
+        end
+      end
 
     end # Composition
 

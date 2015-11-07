@@ -59,7 +59,7 @@ module Vedeu
           out << "#{end_row_tag}\n"
         end
 
-        out
+        out.freeze
       end
 
       private

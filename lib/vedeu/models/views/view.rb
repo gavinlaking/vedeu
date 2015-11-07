@@ -76,6 +76,18 @@ module Vedeu
       end
       alias_method :<<, :add
 
+      # Returns a DSL instance responsible for defining the DSL
+      # methods of this model.
+      #
+      # @param client [Object|NilClass] The client binding represents
+      #   the client application object that is currently invoking a
+      #   DSL method. It is required so that we can send messages to
+      #   the client application object should we need to.
+      # @return [Vedeu::DSL::View] The DSL instance for this model.
+      def deputy(client = nil)
+        Vedeu::DSL::View.new(self, client)
+      end
+
       # @return [Vedeu::Views::Lines]
       def value
         collection.coerce(@value, self)

@@ -557,10 +557,10 @@ module Vedeu
 
       private
 
-      # @params attrs [Hash<Symbol => Vedeu::Colours::Background,
+      # @param attrs [Hash<Symbol => Vedeu::Colours::Background,
       #   Vedeu::Colours::Foreground>]
-      # @options attrs background [Vedeu::Colours::Background]
-      # @options attrs foreground [Vedeu::Colours::Foreground]
+      # @option attrs background [Vedeu::Colours::Background]
+      # @option attrs foreground [Vedeu::Colours::Foreground]
       # @return [Hash<Symbol => Symbol>]
       def colour_attributes(attrs = {})
         {

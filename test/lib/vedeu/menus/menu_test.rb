@@ -52,6 +52,14 @@ module Vedeu
         end
       end
 
+      describe '#deputy' do
+        subject { instance.deputy }
+
+        it 'returns the DSL instance' do
+          subject.must_be_instance_of(Vedeu::Menus::DSL)
+        end
+      end
+
       describe '#selected' do
         subject { instance.selected }
 

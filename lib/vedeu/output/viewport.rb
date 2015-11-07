@@ -51,7 +51,7 @@ module Vedeu
       #
       # @return [String]
       def to_s
-        Array(render).map(&:to_s).join("\n")
+        Array(render).map(&:to_s).join("\n".freeze)
       end
       alias_method :to_str, :to_s
 

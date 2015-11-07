@@ -26,15 +26,10 @@ module Vedeu
 
       # @return [Vedeu::Editor::Line|Vedeu::Editor::Lines]
       def delete
+        return collection if collection.empty? || negative_index?
         return collection.dup.tap { |c| c.slice!(index) } if index
-
-        if collection.is_a?(Array)
-          collection.dup.tap(&:pop)
-
-        elsif collection.is_a?(String)
-          collection.chop
-
-        end
+        return collection.dup.tap(&:pop) if lines?
+        return collection.chop if line?
       end
 
       protected
@@ -53,9 +48,31 @@ module Vedeu
       def index
         return nil unless @index
 
-        @index = 0        if @index < 0
         @index = size - 1 if @index > size
         @index
+      end
+
+      # If true, we are dealing with a {Vedeu::Editor::Line} object.
+      #
+      # @return [Boolean]
+      def line?
+        collection.is_a?(String)
+      end
+
+      # If true, we are dealing with a {Vedeu::Editor::Lines}
+      # collection.
+      #
+      # @return [Boolean]
+      def lines?
+        collection.is_a?(Array)
+      end
+
+      # Returns a boolean indicating whether the index was given or
+      # negative.
+      #
+      # @return [Boolean]
+      def negative_index?
+        index && index < 0
       end
 
     end # Delete

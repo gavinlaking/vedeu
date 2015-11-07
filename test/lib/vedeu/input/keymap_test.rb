@@ -51,6 +51,14 @@ module Vedeu
         end
       end
 
+      describe '#deputy' do
+        subject { instance.deputy }
+
+        it 'returns the DSL instance' do
+          subject.must_be_instance_of(Vedeu::Input::DSL)
+        end
+      end
+
       describe '#key_defined?' do
         let(:input) { 'a' }
 

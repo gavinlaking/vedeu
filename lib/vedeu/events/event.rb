@@ -202,7 +202,7 @@ module Vedeu
           message << " for #{args.first.inspect}"
         end
 
-        Vedeu.log(type: :event, message: message)
+        Vedeu.log(type: :event, message: message.freeze)
 
         closure.call(*args)
       end

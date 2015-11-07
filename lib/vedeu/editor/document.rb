@@ -49,15 +49,30 @@ module Vedeu
         end
       end
 
+      # Returns the document as a string with line breaks if there is
+      # more than one line.
+      #
+      # @return [String]
+      def execute
+        command = lines.map(&:to_s).join("\n".freeze)
+
+        reset!
+
+        Vedeu.trigger(:_clear_view_content_, name)
+
+        Vedeu.trigger(:_command_, command)
+
+        command
+      end
+
       # Deletes the character from the line where the cursor is
       # currently positioned.
       #
       # @return [Vedeu::Editor::Document]
       def delete_character
-        if x - 1 < 0 && y == 0
-          bol
+        return self if (x == 0 || x - 1 < 0) && y == 0
 
-        elsif x - 1 < 0 && y > 0
+        if (x == 0 || x - 1 < 0) && y > 0
           delete_line
 
           return
@@ -80,25 +95,11 @@ module Vedeu
 
         up
 
-        eol
+        cursor.x = line.size
+
+        cursor.refresh
 
         refresh
-      end
-
-      # Returns the document as a string with line breaks if there is
-      # more than one line.
-      #
-      # @return [String]
-      def execute
-        command = lines.map(&:to_s).join("\n")
-
-        reset!
-
-        Vedeu.trigger(:_clear_view_content_, name)
-
-        Vedeu.trigger(:_command_, command)
-
-        command
       end
 
       # Inserts the given character in to the line where the cursor is
@@ -124,7 +125,7 @@ module Vedeu
 
         down
 
-        bol
+        cursor.bol.refresh
 
         refresh
       end
@@ -178,6 +179,8 @@ module Vedeu
         return self if x - 1 < 0
 
         cursor.left.refresh
+
+        self
       end
 
       # Move the virtual cursor right.
@@ -187,6 +190,8 @@ module Vedeu
         return self if x + 1 > line.size
 
         cursor.right.refresh
+
+        self
       end
 
       # Move the virtual cursor up.
@@ -197,13 +202,9 @@ module Vedeu
 
         cursor.up.refresh
 
-        if x > line(y).size
-          eol
+        reposition_cursor_x!
 
-        else
-          refresh
-
-        end
+        self
       end
 
       # Move the virtual cursor down.
@@ -214,32 +215,26 @@ module Vedeu
 
         cursor.down.refresh
 
-        if x > line(y).size
-          eol
+        reposition_cursor_x!
 
-        else
-          refresh
-
-        end
-      end
-
-      # Move the virtual cursor to the beginning of the line.
-      #
-      # @return [Vedeu::Editor::Cursor]
-      def bol
-        cursor.bol.refresh
-      end
-
-      # Move the virtual cursor to the end of the line.
-      #
-      # @return [Vedeu::Editor::Cursor]
-      def eol
-        cursor.x = line.size
-
-        cursor.refresh
+        self
       end
 
       private
+
+      # Repositions the x coordinate of the virtual cursor to the end
+      # of the line if the x coordinate is beyond the end of the line.
+      #
+      # This is used when the cursor moves up or down, moving from a
+      # long line to a shorter line.
+      #
+      # @return [Vedeu::Editor::Cursor]
+      def reposition_cursor_x!
+        if x > line.size
+          cursor.x = line.size
+          cursor.refresh
+        end
+      end
 
       # Returns the default options/attributes for this class.
       #
@@ -259,10 +254,10 @@ module Vedeu
       #
       # @return [Array<Vedeu::Views::Char>]
       def output
-        Vedeu::Editor::Cropper.new(lines:  lines,
-                                   name:   name,
-                                   ox:     ox,
-                                   oy:     oy).viewport
+        Vedeu::Editor::Cropper.new(lines: lines,
+                                   name:  name,
+                                   ox:    ox,
+                                   oy:    oy).viewport
       end
 
       # Return a virtual cursor to track the cursor position within

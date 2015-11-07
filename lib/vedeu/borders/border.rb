@@ -204,6 +204,18 @@ module Vedeu
         (enabled? && bottom?) ? yn - 1 : yn
       end
 
+      # Returns a DSL instance responsible for defining the DSL
+      # methods of this model.
+      #
+      # @param client [Object|NilClass] The client binding represents
+      #   the client application object that is currently invoking a
+      #   DSL method. It is required so that we can send messages to
+      #   the client application object should we need to.
+      # @return [Vedeu::Borders::DSL] The DSL instance for this model.
+      def deputy(client = nil)
+        Vedeu::Borders::DSL.new(self, client)
+      end
+
       # Returns the width of the interface determined by whether a
       # left, right, both or neither borders are shown.
       #

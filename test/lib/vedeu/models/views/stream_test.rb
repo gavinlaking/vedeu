@@ -91,6 +91,14 @@ module Vedeu
         end
       end
 
+      describe '#deputy' do
+        subject { instance.deputy }
+
+        it 'returns the DSL instance' do
+          subject.must_be_instance_of(Vedeu::DSL::Stream)
+        end
+      end
+
       describe '#eql?' do
         let(:other) { described.new(attributes) }
 

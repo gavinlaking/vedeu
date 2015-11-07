@@ -72,6 +72,19 @@ module Vedeu
         end
       end
 
+      # Returns a DSL instance responsible for defining the DSL
+      # methods of this model.
+      #
+      # @param client [Object|NilClass] The client binding represents
+      #   the client application object that is currently invoking a
+      #   DSL method. It is required so that we can send messages to
+      #   the client application object should we need to.
+      # @return [Vedeu::Interfaces::DSL] The DSL instance for this
+      #   model.
+      def deputy(client = nil)
+        Vedeu::Interfaces::DSL.new(self, client)
+      end
+
       # Hide the named interface.
       #
       # Will hide the named interface. If the interface is currently

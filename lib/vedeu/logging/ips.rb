@@ -41,10 +41,10 @@ module Vedeu
           benchmark.run_comparison
           benchmark.full_report
 
-          Vedeu.log(type: :debug, message: "IPS:\n#{$stdout.string}")
+          Vedeu.log(type: :debug, message: "IPS:\n#{$stdout.string}".freeze)
           $stdout = @old_stdout
 
-          Vedeu.log(type: :debug, message: "Running: #{key}")
+          Vedeu.log(type: :debug, message: "Running: #{key}".freeze)
           samples[key].call
         end
 

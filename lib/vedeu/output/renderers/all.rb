@@ -19,7 +19,7 @@ module Vedeu
     def clear
       threads = storage.map do |renderer|
         Vedeu.log(type:    :output,
-                  message: "Clearing via #{renderer.class.name}")
+                  message: "Clearing via #{renderer.class.name}".freeze)
 
         Thread.new(renderer) do
           mutex.synchronize do
@@ -53,7 +53,7 @@ module Vedeu
     def render(output)
       threads = storage.map do |renderer|
         Vedeu.log(type:    :output,
-                  message: "Rendering via #{renderer.class.name}")
+                  message: "Rendering via #{renderer.class.name}".freeze)
 
         Thread.new(renderer) do
           mutex.synchronize do
