@@ -214,32 +214,26 @@ module Vedeu
 
         cursor.down.refresh
 
-        if x > line(y).size
-          eol
+        reposition_cursor_x!
 
-        else
-          refresh
-
-        end
-      end
-
-      # Move the virtual cursor to the beginning of the line.
-      #
-      # @return [Vedeu::Editor::Cursor]
-      def bol
-        cursor.bol.refresh
-      end
-
-      # Move the virtual cursor to the end of the line.
-      #
-      # @return [Vedeu::Editor::Cursor]
-      def eol
-        cursor.x = line.size
-
-        cursor.refresh
+        self
       end
 
       private
+
+      # Repositions the x coordinate of the virtual cursor to the end
+      # of the line if the x coordinate is beyond the end of the line.
+      #
+      # This is used when the cursor moves up or down, moving from a
+      # long line to a shorter line.
+      #
+      # @return [Vedeu::Editor::Cursor]
+      def reposition_cursor_x!
+        if x > line.size
+          cursor.x = line.size
+          cursor.refresh
+        end
+      end
 
       # Returns the default options/attributes for this class.
       #
