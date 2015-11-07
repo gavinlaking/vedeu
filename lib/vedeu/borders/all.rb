@@ -33,6 +33,7 @@ module Vedeu
 
 end # Vedeu
 
+require 'vedeu/borders/title'
 require 'vedeu/borders/border'
 require 'vedeu/borders/dsl'
 require 'vedeu/borders/null'

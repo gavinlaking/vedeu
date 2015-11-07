@@ -16,9 +16,10 @@ module Vedeu
 
   describe Toggleable do
 
-    let(:described) { Vedeu::Toggleable }
-    let(:instance) { Vedeu::ToggleableTestClass.new(visible) }
-    let(:visible) { false }
+    let(:described)          { Vedeu::Toggleable }
+    let(:described_included) { Vedeu::ToggleableTestClass }
+    let(:instance)           { described_included.new(visible) }
+    let(:visible)            { false }
 
     describe 'accessors' do
       it {
@@ -78,22 +79,40 @@ module Vedeu
       end
     end
 
-    describe '#hide_cursor' do
-      subject { instance.hide_cursor }
+    describe '.hide_cursor' do
+      subject { described_included.hide_cursor }
 
-      # @todo Add more tests.
+      context 'when the cursor is visible' do
+        # @todo Add more tests.
+      end
+
+      context 'when the cursor is not visible' do
+        # @todo Add more tests.
+      end
     end
 
-    describe '#show_cursor' do
-      subject { instance.show_cursor }
+    describe '.show_cursor' do
+      subject { described_included.show_cursor }
 
-      # @todo Add more tests.
+      context 'when the cursor is visible' do
+        # @todo Add more tests.
+      end
+
+      context 'when the cursor is not visible' do
+        # @todo Add more tests.
+      end
     end
 
-    describe '#toggle_cursor' do
-      subject { instance.toggle_cursor }
+    describe '.toggle_cursor' do
+      subject { described_included.toggle_cursor }
 
-      # @todo Add more tests.
+      context 'when the cursor is visible' do
+        # @todo Add more tests.
+      end
+
+      context 'when the cursor is not visible' do
+        # @todo Add more tests.
+      end
     end
   end # Toggleable
 

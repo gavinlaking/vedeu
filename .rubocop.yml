@@ -79,6 +79,9 @@ Style/IndentHash:
     - special_inside_parentheses
     - consistent
 
+Style/MultilineOperationIndentation:
+  Enabled: false
+
 Style/ModuleFunction:
   Enabled: false
 

@@ -74,6 +74,7 @@ module Vedeu
                  uncaught_exception.message
                end
 
+      Vedeu.log(type: :error, message: output)
       Vedeu.log_stdout(type: :error, message: output)
     end
 

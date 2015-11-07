@@ -1,6 +1,5 @@
 [![Code Climate](https://codeclimate.com/github/gavinlaking/vedeu.png)](https://codeclimate.com/github/gavinlaking/vedeu)
 [![Build Status](https://travis-ci.org/gavinlaking/vedeu.svg?branch=master)](https://travis-ci.org/gavinlaking/vedeu)
-[![Test Coverage](https://codeclimate.com/github/gavinlaking/vedeu/badges/coverage.svg)](https://codeclimate.com/github/gavinlaking/vedeu/coverage)
 
 # Vedeu
 

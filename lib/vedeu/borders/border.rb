@@ -66,15 +66,15 @@ module Vedeu
       attr_accessor :show_top
       alias_method :top?, :show_top
 
-      # @!attribute [rw] caption
-      # @return [String] An optional caption for when the bottom
+      # # @!attribute [rw] caption
+      # # @return [String] An optional caption for when the bottom
       #   border is to be shown.
-      attr_accessor :caption
+      # attr_accessor :caption
 
       # @!attribute [rw] title
       # @return [String] An optional title for when the top
       #   border is to be shown.
-      attr_accessor :title
+      # attr_accessor :title
 
       # @!attribute [rw] top_left
       # @return [String] The character to be used for the top left
@@ -202,6 +202,28 @@ module Vedeu
       # @return [Fixnum]
       def byn
         (enabled? && bottom?) ? yn - 1 : yn
+      end
+
+      # @return [Vedeu::Borders::Caption]
+      def caption
+        Vedeu::Borders::Caption.coerce(@caption, width)
+      end
+
+      # @param value [String]
+      # @return [Vedeu::Borders::Caption]
+      def caption=(value)
+        @caption = Vedeu::Borders::Caption.coerce(value, width)
+      end
+
+      # @return [Vedeu::Borders::Title]
+      def title
+        Vedeu::Borders::Title.coerce(@title, width)
+      end
+
+      # @param value [String]
+      # @return [Vedeu::Borders::Title]
+      def title=(value)
+        @title = Vedeu::Borders::Title.coerce(value, width)
       end
 
       # Returns a DSL instance responsible for defining the DSL

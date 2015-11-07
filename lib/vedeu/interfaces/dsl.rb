@@ -242,6 +242,7 @@ module Vedeu
       def show!
         visible(true)
       end
+      alias_method :visible!, :show!
 
       # Set the interface to invisible.
       #

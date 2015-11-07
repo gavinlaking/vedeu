@@ -33,6 +33,8 @@ module Vedeu
         end
       end
 
+      # Returns a new instance of Vedeu::Geometry::Alignment.
+      #
       # @param value [NilClass|Symbol]
       # @return [Vedeu::Geometry::Alignment]
       def initialize(value = nil)

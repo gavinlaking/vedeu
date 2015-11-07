@@ -91,6 +91,8 @@ module Vedeu
       alias_method :toggle_group,     :toggle
       alias_method :toggle_interface, :toggle
 
+      # Hide the cursor if visible.
+      #
       # @example
       #   Vedeu.hide_cursor(name)
       #
@@ -101,6 +103,8 @@ module Vedeu
         hide(name) if cursor_visible?(name)
       end
 
+      # Show the cursor if not already visible.
+      #
       # @example
       #   Vedeu.show_cursor(name)
       #
@@ -108,9 +112,11 @@ module Vedeu
       # @return [void]
       # @see Vedeu::Toggleable#show
       def show_cursor(name = Vedeu.focus)
-        show(name) if cursor_visible?(name)
+        show(name) unless cursor_visible?(name)
       end
 
+      # Toggle the cursor visibility.
+      #
       # @example
       #   Vedeu.toggle_cursor(name)
       #
@@ -118,11 +124,13 @@ module Vedeu
       # @return [void]
       # @see Vedeu::Toggleable#toggle
       def toggle_cursor(name = Vedeu.focus)
-        toggle(name) if cursor_visible?(name)
+        toggle(name)
       end
 
       private
 
+      # Returns a boolean indicating whether the cursor is visible.
+      #
       # @param name [String|Symbol]
       # @return [Boolean]
       def cursor_visible?(name)

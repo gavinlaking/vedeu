@@ -233,9 +233,10 @@ module Vedeu
       #   +- My Cool Title --------------------------------+
       #
       # @param value [String] The title.
-      # @return [String]
+      # @return [Vedeu::Borders::Title]
       def title(value)
         model.title = value
+        model.title
       end
       alias_method :title=, :title
 
@@ -252,9 +253,10 @@ module Vedeu
       #   +------------------------------ My Cool Caption -+
       #
       # @param value [String] The caption.
-      # @return [String]
+      # @return [Vedeu::Borders::Caption]
       def caption(value)
         model.caption = value
+        model.caption
       end
       alias_method :caption=, :caption
 

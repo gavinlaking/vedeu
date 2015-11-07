@@ -230,17 +230,17 @@ module Vedeu
       #
       # @return [Array<Vedeu::Views::Char>]
       def captionbar
-        return build_bottom unless caption? && caption_fits?
+        return build_bottom if caption.empty?
 
-        caption_starts_at = (width - caption_characters.size) - 2
+        caption_starts_at = (width - caption.size) - 2
 
-        caption_char = 0
+        caption_index = 0
         build_bottom.each_with_index do |char, index|
           next if index <= caption_starts_at || index > (width - 2)
 
-          char.border  = nil
-          char.value   = caption_characters[caption_char]
-          caption_char += 1
+          char.border   = nil
+          char.value    = caption.characters[caption_index]
+          caption_index += 1
         end
       end
 
@@ -249,124 +249,14 @@ module Vedeu
       #
       # @return [Array<Vedeu::Views::Char>]
       def titlebar
-        return build_top unless title? && title_fits?
+        return build_top if title.empty?
 
         build_top.each_with_index do |char, index|
-          next if index == 0 || index > title_characters.size
+          next if index == 0 || index > title.size
 
           char.border = nil
-          char.value  = title_characters[(index - 1)]
+          char.value  = title.characters[index - 1]
         end
-      end
-
-      # Return boolean indicating whether this border has a non-empty
-      # title.
-      #
-      # @return [Boolean]
-      def title?
-        present?(title)
-      end
-
-      # Return boolean indicating whether this border has a non-empty
-      # caption.
-      #
-      # @return [Boolean]
-      def caption?
-        present?(caption)
-      end
-
-      # Return boolean indicating whether the title fits within the
-      # width of the top border.
-      #
-      # @return [Boolean]
-      def title_fits?
-        width > title_characters.size
-      end
-
-      # Return boolean indicating whether the caption fits within the
-      # width of the bottom border.
-      #
-      # @return [Boolean]
-      def caption_fits?
-        width > caption_characters.size
-      end
-
-      # @return [Array<String>]
-      def title_characters
-        @title_characters ||= title_padded.chars
-      end
-
-      # @return [Array<String>]
-      def caption_characters
-        @caption_characters ||= caption_padded.chars
-      end
-
-      # Pads the title with a single whitespace either side.
-      #
-      # @example
-      #   title = 'Truncated!'
-      #   width = 20
-      #   # => ' Truncated! '
-      #
-      #   width = 10
-      #   # => ' Trunca '
-      #
-      # @return [String]
-      # @see #truncated_title
-      def title_padded
-        truncated_title.center(truncated_title.size + 2)
-      end
-
-      # Pads the caption with a single whitespace either side.
-      #
-      # @example
-      #   caption = 'Truncated!'
-      #   width = 20
-      #   # => ' Truncated! '
-      #
-      #   width = 10
-      #   # => ' Trunca '
-      #
-      # @return [String]
-      # @see #truncated_caption
-      def caption_padded
-        truncated_caption.center(truncated_caption.size + 2)
-      end
-
-      # Truncates the title to the width of the interface, minus
-      # characters needed to ensure there is at least a single
-      # character of horizontal border and a whitespace on either side
-      # of the title.
-      #
-      # @example
-      #   title = 'Truncated!'
-      #   width = 20
-      #   # => 'Truncated!'
-      #
-      #   width = 10
-      #   # => 'Trunca'
-      #
-      # @return [String]
-      def truncated_title
-        title.chomp.slice(0..(width - 5))
-      end
-
-      # Truncates the caption to the width of the interface, minus
-      # characters needed to ensure there is at least a single
-      # character of horizontal border and a whitespace on either
-      # side of the caption.
-      #
-      # @example
-      #   caption = 'Truncated!'
-      #   width = 20
-      #   # => 'Truncated!'
-      #
-      #   width = 10
-      #   # => 'Trunca'
-      #
-      # @return [String]
-      def truncated_caption
-        caption.chomp.slice(0..(width - 5))
       end
 
     end # Refresh
