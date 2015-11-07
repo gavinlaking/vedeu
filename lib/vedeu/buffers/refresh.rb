@@ -70,7 +70,7 @@ module Vedeu
       # @return [Hash<Symbol => Boolean>]
       def defaults
         {
-          content_only: false,
+          content_only: false
         }
       end
 

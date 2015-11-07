@@ -50,7 +50,7 @@ module Vedeu
       # @return [Hash]
       def defaults
         {
-          ready: false,
+          ready: false
         }
       end
 
