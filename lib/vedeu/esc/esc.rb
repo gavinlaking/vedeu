@@ -15,6 +15,7 @@ module Vedeu
       include Vedeu::EscapeSequences::Actions
       include Vedeu::EscapeSequences::Borders
       include Vedeu::EscapeSequences::Colours
+      include Vedeu::EscapeSequences::Mouse
       extend self
 
       # Return the stream with the escape sequences escaped so that
@@ -74,13 +75,35 @@ module Vedeu
       end
 
       # @return [String]
+      def disable_mouse
+        if Vedeu::Configuration.mouse == true
+          "#{mouse_x10_off}#{mouse_off}".freeze
+
+        else
+          ''.freeze
+
+        end
+      end
+
+      # @return [String]
+      def enable_mouse
+        if Vedeu::Configuration.mouse == true
+          "#{mouse_x10_on}#{mouse_on}".freeze
+
+        else
+          ''.freeze
+
+        end
+      end
+
+      # @return [String]
       def normal
         "#{underline_off}#{bold_off}#{positive}".freeze
       end
 
       # @return [String]
       def screen_init
-        "#{reset}#{clear}#{hide_cursor}".freeze
+        "#{reset}#{clear}#{hide_cursor}#{enable_mouse}".freeze
       end
 
       # @return [String]
@@ -90,7 +113,7 @@ module Vedeu
 
       # @return [String]
       def screen_exit
-        "#{show_cursor}#{screen_colour_reset}#{reset}" \
+        "#{disable_mouse}#{show_cursor}#{screen_colour_reset}#{reset}" \
         "#{last_character_position}\n".freeze
       end
 
