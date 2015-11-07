@@ -76,6 +76,8 @@ class DSLMenus
     key(:tab)       { Vedeu.trigger(:_focus_next_) }
   end
 
+  # Orchestrates the user interactions with the application.
+  #
   class Controller
     def initialize(args = [])
       @args = args
@@ -100,6 +102,8 @@ class DSLMenus
     end
   end
 
+  # Get all the files in the current or specified directory.
+  #
   class Files
     def initialize(args = [])
       @args = args
@@ -126,6 +130,9 @@ class DSLMenus
     end
   end
 
+  # A class to wrap a file, providing its name and contents (in the
+  # form of 'data').
+  #
   class SomeFile
     attr_reader :file
 
@@ -142,6 +149,8 @@ class DSLMenus
     end
   end
 
+  # The contents of a file.
+  #
   class Contents
     attr_reader :path
 
@@ -154,6 +163,8 @@ class DSLMenus
     end
   end
 
+  # Displays a list of files from the current or specified directory.
+  #
   class FilesView
     def show
       Vedeu.renders do
@@ -197,6 +208,8 @@ class DSLMenus
     end
   end
 
+  # Displays the contents of a selected file.
+  #
   class ContentsView
     def show
       Vedeu.renders do
