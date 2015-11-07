@@ -253,10 +253,10 @@ module Vedeu
       #
       # @return [Array<Vedeu::Views::Char>]
       def output
-        Vedeu::Editor::Cropper.new(lines:  lines,
-                                   name:   name,
-                                   ox:     ox,
-                                   oy:     oy).viewport
+        Vedeu::Editor::Cropper.new(lines: lines,
+                                   name:  name,
+                                   ox:    ox,
+                                   oy:    oy).viewport
       end
 
       # Return a virtual cursor to track the cursor position within
