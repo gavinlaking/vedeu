@@ -54,10 +54,9 @@ module Vedeu
       #
       # @return [Vedeu::Editor::Document]
       def delete_character
-        if x - 1 < 0 && y == 0
-          bol
+        return self if (x == 0 || x - 1 < 0) && y == 0
 
-        elsif x - 1 < 0 && y > 0
+        if (x == 0 || x - 1 < 0) && y > 0
           delete_line
 
           return
@@ -80,7 +79,9 @@ module Vedeu
 
         up
 
-        eol
+        cursor.x = line.size
+
+        cursor.refresh
 
         refresh
       end
@@ -124,7 +125,7 @@ module Vedeu
 
         down
 
-        bol
+        cursor.bol.refresh
 
         refresh
       end
@@ -201,13 +202,9 @@ module Vedeu
 
         cursor.up.refresh
 
-        if x > line(y).size
-          eol
+        reposition_cursor_x!
 
-        else
-          refresh
-
-        end
+        self
       end
 
       # Move the virtual cursor down.

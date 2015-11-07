@@ -185,18 +185,6 @@ module Vedeu
         it { subject.must_be_instance_of(Vedeu::Editor::Document) }
       end
 
-      describe '#bol' do
-        subject { instance.bol }
-
-        it { subject.must_be_instance_of(Vedeu::Editor::Cursor) }
-      end
-
-      describe '#eol' do
-        subject { instance.eol }
-
-        it { subject.must_be_instance_of(Vedeu::Editor::Cursor) }
-      end
-
     end # Editor
 
   end # Editor
