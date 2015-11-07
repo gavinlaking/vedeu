@@ -17,7 +17,7 @@ module Vedeu
     # escape sequence on both button press and release. Modifier
     # information is also sent. It is enabled by sending `\e[?1000h`
     # and disabled with `\e[?1000l`. On button press or release,
-    # xterm(1) sends ESC [ M bxy. The low two bits of b encode button
+    # xterm(1) sends `\e[Mbxy`. The low two bits of b encode button
     # information: 0=MB1 pressed, 1=MB2 pressed, 2=MB3 pressed,
     # 3=release. The upper bits encode what modifiers were down when
     # the button was pressed and are added together: 4=Shift, 8=Meta,

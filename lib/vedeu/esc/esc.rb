@@ -77,7 +77,7 @@ module Vedeu
       # @return [String]
       def disable_mouse
         if Vedeu::Configuration.mouse == true
-          "#{mouse_x10_off}#{mouse_off}".freeze
+          "#{mouse_x10_off}".freeze
 
         else
           ''.freeze
@@ -88,7 +88,7 @@ module Vedeu
       # @return [String]
       def enable_mouse
         if Vedeu::Configuration.mouse == true
-          "#{mouse_x10_on}#{mouse_on}".freeze
+          "#{mouse_x10_on}".freeze
 
         else
           ''.freeze

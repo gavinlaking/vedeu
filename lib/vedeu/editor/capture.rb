@@ -34,7 +34,7 @@ module Vedeu
         keys = console.getch
 
         if keys.ord == ESCAPE_KEY_CODE
-          @chars = 3
+          @chars = 5
 
           begin
             keys << console.read_nonblock(@chars)
@@ -50,6 +50,12 @@ module Vedeu
             retry
 
           end
+        end
+
+        if keys.start_with?("\e[M")
+          chars = keys.chars[3..-1].map { |c| c.ord - 32 }
+
+          Vedeu.log(type: :debug, message: "#{chars.inspect}")
         end
 
         keys

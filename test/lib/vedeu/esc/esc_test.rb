@@ -54,7 +54,7 @@ module Vedeu
           it { described.string('fg_reset').must_equal("\e[39m") }
           it { described.string('hide_cursor').must_equal("\e[?25l") }
           it { described.string('screen_init').
-                 must_equal("\e[0m\e[39m\e[49m\e[2J\e[?25l\e[?9h\e[?1000h") }
+                 must_equal("\e[0m\e[39m\e[49m\e[2J\e[?25l\e[?9h") }
           it { described.string('negative').must_equal("\e[7m") }
           it { described.string('positive').must_equal("\e[27m") }
           it { described.string('reset').must_equal("\e[0m") }
@@ -70,7 +70,7 @@ module Vedeu
           before { Vedeu::Terminal.stubs(:size).returns([80, 25]) }
 
           it { described.string('screen_exit').
-                 must_equal("\e[?9l\e[?1000l\e[?25h\e[39m\e[49m\e[0m\e[80;25H\n") }
+                 must_equal("\e[?9l\e[?25h\e[39m\e[49m\e[0m\e[80;25H\n") }
         end
       end
 
