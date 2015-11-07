@@ -4,11 +4,7 @@ module Vedeu
 
     class Title
 
-      attr_reader :value
-      alias_method :title, :value
-      alias_method :caption, :value
-
-      def self.coerce(value = nil, width = Vedeu.width)
+      def self.coerce(value = '', width = Vedeu.width)
         if value.is_a?(self)
           value
 
@@ -18,9 +14,9 @@ module Vedeu
         end
       end
 
-      def initialize(value = nil, width = Vedeu.width)
-        @value = value || ''
-        @width = width || Vedeu.width
+      def initialize(value = '', width = Vedeu.width)
+        @value = value
+        @width = width
       end
 
       # @return [Array<String>]
@@ -35,6 +31,15 @@ module Vedeu
         value.empty?
       end
 
+      # An object is equal when its values are the same.
+      #
+      # @param other [Vedeu::Borders::Title]
+      # @return [Boolean]
+      def eql?(other)
+        self.class == other.class && value == other.value
+      end
+      alias_method :==, :eql?
+
       # @return [Fixnum]
       def size
         pad.size
@@ -45,9 +50,12 @@ module Vedeu
         value.to_s
       end
 
-      protected
-
-      attr_reader :width
+      # @return [String]
+      def value
+        @value || ''
+      end
+      alias_method :title, :value
+      alias_method :caption, :value
 
       private
 
@@ -83,6 +91,11 @@ module Vedeu
       # @return [String]
       def truncate
         title.chomp.slice(0...(width - 4))
+      end
+
+      # @return [Fixnum]
+      def width
+        @width || Vedeu.width
       end
 
     end # Title

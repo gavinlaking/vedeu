@@ -13,27 +13,21 @@ module Vedeu
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
+        it { instance.instance_variable_get('@value').must_equal(_value) }
+        it { instance.instance_variable_get('@width').must_equal(width) }
+      end
 
-        context 'when the value is nil' do
-          let(:_value) {}
+      describe '.coerce' do
+        subject { described.coerce(_value, width) }
 
-          it { instance.instance_variable_get('@value').must_equal('') }
+        context 'when the value is an instance of Vedeu::Borders::Title' do
+          let(:_value) { Vedeu::Borders::Title.new('Aluminium', 10) }
+
+          it { subject.must_equal(_value) }
         end
 
-        context 'when the valus is not nil' do
-          it { instance.instance_variable_get('@value').must_equal(_value) }
-        end
-
-        context 'when the width is nil' do
-          let(:width) {}
-
-          before { Vedeu.stubs(:width).returns(40) }
-
-          it { instance.instance_variable_get('@width').must_equal(40) }
-        end
-
-        context 'when the width is not nil' do
-          it { instance.instance_variable_get('@width').must_equal(width) }
+        context 'when the value is not an instance of Vedeu::Borders::Title' do
+          it { subject.must_equal(instance) }
         end
       end
 
@@ -57,6 +51,20 @@ module Vedeu
         end
       end
 
+      describe '#eql?' do
+        let(:other) { instance }
+
+        subject { instance.eql?(other) }
+
+        it { subject.must_equal(true) }
+
+        context 'when different to other' do
+          let(:other) { described.new('Vanadium') }
+
+          it { subject.must_equal(false) }
+        end
+      end
+
       describe '#size' do
         subject { instance.size }
 
@@ -67,6 +75,23 @@ module Vedeu
         subject { instance.to_s }
 
         it { subject.must_equal('Aluminium') }
+      end
+
+      describe '#value' do
+        subject { instance.value }
+
+        it { instance.must_respond_to(:title) }
+        it { instance.must_respond_to(:caption) }
+
+        context 'when the value is nil' do
+          let(:_value) {}
+
+          it { subject.must_equal('') }
+        end
+
+        context 'when the value is not nil' do
+          it { subject.must_equal('Aluminium') }
+        end
       end
 
     end # Title
