@@ -75,6 +75,14 @@ module Vedeu
         }
       end
 
+      describe '#execute' do
+        subject { instance.execute }
+
+        it { subject.must_be_instance_of(String) }
+
+        it { subject.must_equal("Hydrogen\nHelium\nLithium") }
+      end
+
       describe '#delete_character' do
         subject { instance.delete_character }
 
@@ -97,14 +105,6 @@ module Vedeu
         subject { instance.delete_line }
 
         it { subject.must_be_instance_of(Vedeu::Editor::Document) }
-      end
-
-      describe '#execute' do
-        subject { instance.execute }
-
-        it { subject.must_be_instance_of(String) }
-
-        it { subject.must_equal("Hydrogen\nHelium\nLithium") }
       end
 
       describe '#insert_character' do

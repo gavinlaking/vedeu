@@ -49,6 +49,22 @@ module Vedeu
         end
       end
 
+      # Returns the document as a string with line breaks if there is
+      # more than one line.
+      #
+      # @return [String]
+      def execute
+        command = lines.map(&:to_s).join("\n".freeze)
+
+        reset!
+
+        Vedeu.trigger(:_clear_view_content_, name)
+
+        Vedeu.trigger(:_command_, command)
+
+        command
+      end
+
       # Deletes the character from the line where the cursor is
       # currently positioned.
       #
@@ -84,22 +100,6 @@ module Vedeu
         cursor.refresh
 
         refresh
-      end
-
-      # Returns the document as a string with line breaks if there is
-      # more than one line.
-      #
-      # @return [String]
-      def execute
-        command = lines.map(&:to_s).join("\n".freeze)
-
-        reset!
-
-        Vedeu.trigger(:_clear_view_content_, name)
-
-        Vedeu.trigger(:_command_, command)
-
-        command
       end
 
       # Inserts the given character in to the line where the cursor is
