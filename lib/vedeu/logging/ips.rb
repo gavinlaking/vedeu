@@ -13,6 +13,8 @@ module Vedeu
         attr_accessor :samples
         attr_accessor :benchmark
 
+        # Returns a new instance of Vedeu::Logging::Debug::IPS.
+        #
         # @return [Vedeu::Logging::Debug::IPS]
         def initialize
           @old_stdout = $stdout

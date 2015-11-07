@@ -13,6 +13,8 @@ module Vedeu
         new(collection, index).by_index
       end
 
+      # Returns a new instance of Vedeu::Editor::Item.
+      #
       # @param collection [Vedeu::Editor::Line|Vedeu::Editor::Lines]
       # @param index [Fixnum]
       # @return [Vedeu::Editor::item]
