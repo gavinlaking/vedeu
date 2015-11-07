@@ -99,12 +99,6 @@ module Vedeu
         it { subject.must_be_instance_of(Vedeu::Editor::Document) }
       end
 
-      describe '#down' do
-        subject { instance.down }
-
-        it { subject.must_be_instance_of(Vedeu::Editor::Document) }
-      end
-
       describe '#execute' do
         subject { instance.execute }
 
@@ -129,18 +123,6 @@ module Vedeu
         subject { instance.left }
 
         it { subject.must_be_instance_of(Vedeu::Editor::Document) }
-      end
-
-      describe '#left' do
-        subject { instance.left }
-
-        context 'when moving goes out of bounds' do
-          it { subject.must_be_instance_of(Vedeu::Editor::Document) }
-        end
-
-        # context 'when moving does not go out of bounds' do
-        #   it { subject.must_be_instance_of(Vedeu::Editor::Cursor) }
-        # end
       end
 
       describe '#line' do
@@ -179,10 +161,22 @@ module Vedeu
         it { instance.must_respond_to(:refresh) }
       end
 
+      describe '#down' do
+        subject { instance.down }
+
+        it { subject.must_be_instance_of(Vedeu::Editor::Document) }
+      end
+
+      describe '#left' do
+        subject { instance.left }
+
+        it { subject.must_be_instance_of(Vedeu::Editor::Document) }
+      end
+
       describe '#right' do
         subject { instance.right }
 
-        it { subject.must_be_instance_of(Vedeu::Editor::Cursor) }
+        it { subject.must_be_instance_of(Vedeu::Editor::Document) }
       end
 
       describe '#up' do

@@ -178,6 +178,8 @@ module Vedeu
         return self if x - 1 < 0
 
         cursor.left.refresh
+
+        self
       end
 
       # Move the virtual cursor right.
@@ -187,6 +189,8 @@ module Vedeu
         return self if x + 1 > line.size
 
         cursor.right.refresh
+
+        self
       end
 
       # Move the virtual cursor up.
