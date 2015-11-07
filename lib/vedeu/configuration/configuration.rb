@@ -195,6 +195,14 @@ module Vedeu
         instance.options[:log_only] || []
       end
 
+      # Returns whether mouse support was enabled or disabled.
+      #
+      # @return [Boolean]
+      def mouse?
+        instance.options[:mouse]
+      end
+      alias_method :mouse, :mouse?
+
       # Returns whether the application will run through its main loop
       # once or not. Default is false; meaning the application will
       # loop forever or until terminated by the user.
@@ -336,6 +344,7 @@ module Vedeu
         interactive:   true,
         log:           nil,
         log_only:      [],
+        mouse:         true,
         once:          false,
         profile:       false,
         renderers:     [Vedeu::Renderers::Terminal.new],

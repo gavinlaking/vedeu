@@ -426,6 +426,30 @@ module Vedeu
         end
       end
 
+      describe '#mouse!' do
+        it { instance.must_respond_to(:mouse) }
+
+        it 'sets the option to the desired value' do
+          configuration = Vedeu.configure { mouse! }
+          configuration.mouse.must_equal(true)
+        end
+
+        it 'sets the option to the desired value' do
+          configuration = Vedeu.configure { mouse(false) }
+          configuration.mouse.must_equal(false)
+        end
+
+        it 'sets the option to the desired value' do
+          configuration = Vedeu.configure { mouse(true) }
+          configuration.mouse.must_equal(true)
+        end
+
+        it 'sets the option to the desired value' do
+          configuration = Vedeu.configure { mouse }
+          configuration.mouse.must_equal(true)
+        end
+      end
+
     end # API
 
   end # Config
