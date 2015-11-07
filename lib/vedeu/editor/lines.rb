@@ -131,18 +131,7 @@ module Vedeu
         return Vedeu::Editor::Line.new unless lines
         return Vedeu::Editor::Line.coerce(lines[-1]) unless index
 
-        indexed = if index <= 0
-                    lines[0]
-
-                  elsif index && index <= size
-                    lines[index]
-
-                  else
-                    lines[-1]
-
-                  end
-
-        Vedeu::Editor::Line.coerce(indexed)
+        Vedeu::Editor::Line.coerce(Vedeu::Editor::Item.by_index(lines, index))
       end
 
       # Return the number of lines.

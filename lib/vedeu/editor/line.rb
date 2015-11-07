@@ -39,8 +39,7 @@ module Vedeu
         line[index]
       end
 
-      # Return the character from the line positioned at the given
-      # index.
+      # Return the character at the given index.
       #
       # @param index [Fixnum|NilClass]
       # @return [String|NilClass]
@@ -48,16 +47,7 @@ module Vedeu
         return ''       if line && line.empty?
         return line[-1] unless index
 
-        if index <= 0
-          line[0]
-
-        elsif index && index <= size
-          line[index]
-
-        else
-          line[-1]
-
-        end
+        Vedeu::Editor::Item.by_index(line, index)
       end
 
       # Delete the character from the line positioned at the given
