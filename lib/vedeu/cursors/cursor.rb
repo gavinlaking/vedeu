@@ -404,23 +404,37 @@ module Vedeu
 
   # See {file:docs/cursors.md}
   Vedeu.bind(:_cursor_reposition_) do |name, y, x|
-    Vedeu.cursors.by_name(name).reposition(y, x)
-
-    Vedeu.trigger(:_clear_view_, name)
-    Vedeu.trigger(:_refresh_view_, name)
-    Vedeu.trigger(:_refresh_cursor_, name)
+    Vedeu::Cursors::Reposition.new(name: name,
+                                   y:    y,
+                                   x:    x,
+                                   mode: :absolute).reposition
   end
 
   # See {file:docs/cursors.md}
   Vedeu.bind(:_cursor_top_) do |name|
-    Vedeu.trigger(:_cursor_reposition_, name, 0, 0)
+    name ||= Vedeu.focus
+
+    Vedeu::Cursors::Reposition.new(name: name,
+                                   y:    0,
+                                   x:    0,
+                                   mode: :relative).reposition
+
+    Vedeu.trigger(:_clear_view_, name)
+    Vedeu.trigger(:_refresh_view_, name)
   end
 
   # See {file:docs/cursors.md}
   Vedeu.bind(:_cursor_bottom_) do |name|
+    name ||= Vedeu.focus
     count = Vedeu.buffers.by_name(name).size
 
-    Vedeu.trigger(:_cursor_reposition_, name, count, 0)
+    Vedeu::Cursors::Reposition.new(name: name,
+                                   y:    count,
+                                   x:    0,
+                                   mode: :relative).reposition
+
+    Vedeu.trigger(:_clear_view_, name)
+    Vedeu.trigger(:_refresh_view_, name)
   end
 
   # :nocov:
