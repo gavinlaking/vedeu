@@ -52,25 +52,18 @@ module Vedeu
           end
         end
 
-        if keys.start_with?("\e[M")
-          button, x, y = keys.chars[3..-1].map { |c| c.ord - 32 }
-
-          Vedeu.log(type:    :input,
-                    message: "Mouse pressed: '#{button}' (x: #{x}, y: #{y})")
-
-          if button == 0 # left mouse button
-            Vedeu.trigger(:_cursor_reposition_, Vedeu.focus, y, x)
-
-          elsif button == 64 # scroll wheel up
-            Vedeu.trigger(:_cursor_up_, Vedeu.focus)
-
-          elsif button == 65 # scroll wheel down
-            Vedeu.trigger(:_cursor_down_, Vedeu.focus)
-
-          end
-        end
+        Vedeu::Input::Mouse.click(keys) if click?(keys)
 
         keys
+      end
+
+      # Returns a boolean indicating whether a mouse click was
+      # received.
+      #
+      # @param keys [String]
+      # @return [Boolean]
+      def click?(keys)
+        keys.start_with?("\e[M")
       end
 
       # @return [IO]
