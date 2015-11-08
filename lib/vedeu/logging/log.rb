@@ -138,27 +138,28 @@ module Vedeu
         # @return [Hash<Symbol => Array<Symbol>>]
         def message_types
           {
-            create: [:light_cyan,    :cyan],
-            store:  [:light_cyan,    :cyan],
-            update: [:light_cyan,    :cyan],
-            reset:  [:light_cyan,    :cyan],
+            create: [:light_cyan, :cyan],
+            store:  [:light_cyan, :cyan],
+            update: [:light_cyan, :cyan],
+            reset:  [:light_cyan, :cyan],
 
             event:  [:light_magenta, :magenta],
 
-            timer:  [:light_yellow,  :yellow],
+            timer:  [:light_blue, :blue],
 
-            info:   [:white,   :default],
-            test:   [:white,   :default],
-            debug:  [:white,   :default],
+            info:   [:white, :light_grey],
+            test:   [:white, :light_grey],
+            debug:  [:white, :light_grey],
 
-            input:  [:light_red,     :red],
-            output: [:light_red,     :red],
-            error:  [:light_red,     :red],
+            input:  [:light_yellow, :yellow],
+            output: [:light_green,  :green],
 
-            config: [:light_blue,    :blue],
-            dsl:    [:light_blue,    :blue],
-            editor: [:light_blue,    :blue],
-            drb:    [:light_blue,    :blue],
+            error:  [:light_red, :red],
+
+            config: [:light_blue, :blue],
+            dsl:    [:light_blue, :blue],
+            editor: [:light_blue, :blue],
+            drb:    [:light_blue, :blue],
           }
         end
 

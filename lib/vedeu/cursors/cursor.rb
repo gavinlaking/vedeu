@@ -158,7 +158,7 @@ module Vedeu
       #
       # @return [Array<Vedeu::Models::Escape>]
       def render
-        Vedeu.log(message: "Refreshing cursor: '#{name}'".freeze)
+        Vedeu.log(type: :output, message: "Refreshing cursor: '#{name}'".freeze)
 
         Vedeu.render_output(escape_sequence)
       end
