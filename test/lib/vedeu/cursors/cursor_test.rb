@@ -257,20 +257,6 @@ module Vedeu
         it { subject.must_be_instance_of(Vedeu::Models::Escape) }
       end
 
-      describe '#reposition' do
-        let(:new_y) { 3 }
-        let(:new_x) { 5 }
-
-        subject { instance.reposition(new_y, new_x) }
-
-        it { subject.must_be_instance_of(described) }
-
-        it { subject.x.must_equal(10) }
-        it { subject.y.must_equal(8) }
-        it { subject.ox.must_equal(5) }
-        it { subject.oy.must_equal(3) }
-      end
-
       describe '#to_a' do
         subject { instance.to_a }
 
