@@ -109,6 +109,14 @@ module Vedeu
       end
     end
 
+    describe '.mouse?' do
+      it { described.must_respond_to(:mouse) }
+
+      it 'returns the value of the mouse option' do
+        described.mouse?.must_equal(true)
+      end
+    end
+
     describe '.once?' do
       it { described.must_respond_to(:once) }
 

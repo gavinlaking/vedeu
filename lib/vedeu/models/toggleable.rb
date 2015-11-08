@@ -112,7 +112,7 @@ module Vedeu
       # @return [void]
       # @see Vedeu::Toggleable#show
       def show_cursor(name = Vedeu.focus)
-        show(name) unless cursor_visible?(name)
+        show(name) if cursor_visible?(name)
       end
 
       # Toggle the cursor visibility.

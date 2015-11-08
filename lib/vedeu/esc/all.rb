@@ -11,4 +11,5 @@ end # Vedeu
 require 'vedeu/esc/actions'
 require 'vedeu/esc/borders'
 require 'vedeu/esc/colours'
+require 'vedeu/esc/mouse'
 require 'vedeu/esc/esc'

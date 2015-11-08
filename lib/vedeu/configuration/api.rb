@@ -555,6 +555,25 @@ module Vedeu
         options
       end
 
+      # Sets boolean to enable/disable mouse support.
+      #
+      #   Vedeu.configure do
+      #     mouse! # => same as `mouse true`
+      #
+      #     # or...
+      #     mouse true
+      #
+      #     mouse false
+      #
+      #   end
+      #
+      # @param value [Boolean]
+      # @return [Boolean]
+      def mouse!(value = true)
+        options[:mouse] = value
+      end
+      alias_method :mouse, :mouse!
+
       private
 
       # @param attrs [Hash<Symbol => Vedeu::Colours::Background,

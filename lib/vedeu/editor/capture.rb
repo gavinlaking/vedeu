@@ -34,7 +34,7 @@ module Vedeu
         keys = console.getch
 
         if keys.ord == ESCAPE_KEY_CODE
-          @chars = 3
+          @chars = 5
 
           begin
             keys << console.read_nonblock(@chars)
@@ -48,6 +48,24 @@ module Vedeu
             IO.select(nil, [console])
             @chars -= 1
             retry
+
+          end
+        end
+
+        if keys.start_with?("\e[M")
+          button, x, y = keys.chars[3..-1].map { |c| c.ord - 32 }
+
+          Vedeu.log(type:    :input,
+                    message: "Mouse pressed: '#{button}' (x: #{x}, y: #{y})")
+
+          if button == 0 # left mouse button
+            Vedeu.trigger(:_cursor_reposition_, Vedeu.focus, y, x)
+
+          elsif button == 64 # scroll wheel up
+            Vedeu.trigger(:_cursor_up_, Vedeu.focus)
+
+          elsif button == 65 # scroll wheel down
+            Vedeu.trigger(:_cursor_down_, Vedeu.focus)
 
           end
         end
