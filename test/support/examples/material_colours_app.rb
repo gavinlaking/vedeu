@@ -34,6 +34,7 @@ class VedeuMaterialColoursApp
       caption('Unicorns!')
     end
     colour foreground: '#ffffff', background: :default
+    cursor!
     geometry 'main_interface' do
       x  3
       xn 24
@@ -60,6 +61,7 @@ class VedeuMaterialColoursApp
       bottom_left('+')
     end
     colour(foreground: '#ffffff', background: :default)
+    cursor!
     geometry 'other_interface' do
       x(27)
       xn(47)
@@ -80,6 +82,7 @@ class VedeuMaterialColoursApp
       bottom_left('+')
     end
     colour(foreground: '#ffffff', background: :default)
+    cursor!
     geometry 'empty_interface' do
       x(50)
       xn(64)
