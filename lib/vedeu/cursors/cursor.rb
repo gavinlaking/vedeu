@@ -165,6 +165,16 @@ module Vedeu
 
       # Arbitrarily move the cursor to a given position.
       #
+      # @note
+      #   The 'new_oy' and 'new_ox' parameters are interface geometry
+      #   relative coordinates- not absolute coordinates. This means
+      #   that if you provide:
+      #
+      #   #reposition(3, 4) # This is the third row/line, fourth
+      #                     # column/character coordinate of the
+      #                     # interface/view with the same name as the
+      #                     # cursor.
+      #
       # @param new_oy [Fixnum] The row/line position.
       # @param new_ox [Fixnum] The column/character position.
       # @return [Vedeu::Cursors::Cursor]
