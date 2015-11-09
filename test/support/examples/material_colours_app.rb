@@ -120,7 +120,10 @@ class VedeuMaterialColoursApp
     end
 
     key('q')        { Vedeu.trigger(:_exit_) }
-    key(:escape)    { Vedeu.trigger(:_mode_switch_) }
+    # key(:escape)    { Vedeu.trigger(:_mode_switch_, :fake) }
+    key(:f1)    { Vedeu.trigger(:_mode_switch_, :fake) }
+    key(:f2)    { Vedeu.trigger(:_mode_switch_, :raw) }
+    key(:f3)    { Vedeu.trigger(:_mode_switch_, :cooked) }
     key(:shift_tab) { Vedeu.trigger(:_focus_prev_) }
     key(:tab)       { Vedeu.trigger(:_focus_next_) }
 
