@@ -21,7 +21,7 @@ module Vedeu
       #
       # @return [Symbol]
       def cooked_mode!
-        @mode = :cooked
+        switch_mode!(:cooked)
       end
 
       # Returns a boolean indicating whether the terminal is currently
@@ -36,7 +36,7 @@ module Vedeu
       #
       # @return [Symbol]
       def fake_mode!
-        @mode = :fake
+        switch_mode!(:fake)
       end
 
       # Returns a boolean indicating whether the terminal is currently
@@ -51,7 +51,7 @@ module Vedeu
       #
       # @return [Symbol]
       def raw_mode!
-        @mode = :raw
+        switch_mode!(:raw)
       end
 
       # Changes the mode of the terminal to the mode given or toggles
@@ -62,13 +62,14 @@ module Vedeu
       # @return [Symbol]
       def switch_mode!(mode = nil)
         if present?(mode) && valid_mode?(mode)
-          @mode = mode
+          Vedeu.configure { |config| config.terminal_mode = mode }
 
         else
           return fake_mode!   if raw_mode?
           return cooked_mode! if fake_mode?
 
           raw_mode!
+
         end
       end
 
@@ -78,7 +79,7 @@ module Vedeu
       #
       # @return [Symbol]
       def mode
-        @mode ||= Vedeu::Configuration.terminal_mode
+        @mode = Vedeu::Configuration.terminal_mode
       end
 
       private
