@@ -484,6 +484,12 @@ module Vedeu
       #
       #     terminal_mode :raw
       #
+      #     # or...
+      #
+      #     terminal_mode = :raw
+      #     terminal_mode = :fake
+      #     terminal_mode = :cooked
+      #
       #     # ... some code
       #   end
       #
