@@ -5,6 +5,7 @@ module Vedeu
     # A collection of {Vedeu::Views::Stream} instances.
     #
     # @api private
+    #
     class Streams < Vedeu::Repositories::Collection
 
     end # Streams

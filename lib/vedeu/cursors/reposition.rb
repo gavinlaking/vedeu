@@ -4,6 +4,8 @@ module Vedeu
 
     # Arbitrarily move the cursor to a given position.
     #
+    # @api private
+    #
     class Reposition
 
       # Returns a new instance of Vedeu::Cursors::Reposition.

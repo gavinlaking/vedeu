@@ -6,6 +6,8 @@ module Vedeu
     # the whole interface; unless the cursor's offset has caused the
     # view to change.
     #
+    # @api private
+    #
     class Refresh
 
       extend Forwardable

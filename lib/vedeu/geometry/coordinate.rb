@@ -4,6 +4,8 @@ module Vedeu
 
     # Crudely corrects out of range values.
     #
+    # @api private
+    #
     class Coordinate
 
       # Return a new instance of Vedeu::Geometry::Coordinate.

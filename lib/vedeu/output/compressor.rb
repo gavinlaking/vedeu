@@ -7,6 +7,8 @@ module Vedeu
     # occurences of the same escape sequence, resulting in a smaller
     # payload being sent to the renderer.
     #
+    # @api private
+    #
     class Compressor
 
       include Vedeu::Common

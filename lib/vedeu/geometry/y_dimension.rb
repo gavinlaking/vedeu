@@ -4,6 +4,8 @@ module Vedeu
 
     # The Y Dimension provides the height of an entity.
     #
+    # @api private
+    #
     class YDimension < Vedeu::Geometry::Dimension
 
       private

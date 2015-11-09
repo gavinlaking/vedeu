@@ -4,6 +4,8 @@ module Vedeu
 
     # Manipulate a single line of an Vedeu::Editor::Document.
     #
+    # @api private
+    #
     class Line
 
       # @!attribute [rw] line

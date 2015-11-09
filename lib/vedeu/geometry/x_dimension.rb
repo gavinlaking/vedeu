@@ -4,6 +4,8 @@ module Vedeu
 
     # The X Dimension provides the width of an entity.
     #
+    # @api private
+    #
     class XDimension < Vedeu::Geometry::Dimension
 
       private

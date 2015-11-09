@@ -5,6 +5,8 @@ module Vedeu
     # Converts an object or collection of objects into an encoded
     # String.
     #
+    # @api private
+    #
     class Encoder
 
       # @param (see #initialize)

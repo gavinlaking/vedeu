@@ -4,6 +4,8 @@ module Vedeu
 
     # Validate values given to {Vedeu::Geometry::DSL}.
     #
+    # @api private
+    #
     module Validator
 
       include Vedeu::Common

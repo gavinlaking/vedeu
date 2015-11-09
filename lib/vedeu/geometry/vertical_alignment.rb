@@ -5,6 +5,8 @@ module Vedeu
     # Provides the mechanism to align an interface/view vertically
     # within the available terminal space.
     #
+    # @api private
+    #
     class VerticalAlignment < Vedeu::Geometry::Alignment
 
       # @raise [Vedeu::Error::InvalidSyntax] When the value is not one

@@ -4,6 +4,8 @@ module Vedeu
 
     # Manipulate the lines of an Vedeu::Editor::Document.
     #
+    # @api private
+    #
     class Delete
 
       # @param (see #initialize)

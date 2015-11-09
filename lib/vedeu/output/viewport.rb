@@ -9,6 +9,8 @@ module Vedeu
     # columns than the defined width of the interface, this class
     # provides 'scrolling' via the cursor's position.
     #
+    # @api private
+    #
     class Viewport
 
       extend Forwardable

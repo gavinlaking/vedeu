@@ -4,6 +4,8 @@ module Vedeu
 
     # Renders and refreshes the named border.
     #
+    # @api private
+    #
     class Refresh
 
       extend Forwardable

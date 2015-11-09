@@ -10,6 +10,8 @@ module Vedeu
     # @see Vedeu::Geometry::HorizontalAlignment
     # @see Vedeu::Geometry::VerticalAlignment
     #
+    # @api private
+    #
     class Alignment
 
       # @param (see #initialize)

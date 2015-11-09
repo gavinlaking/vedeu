@@ -4,6 +4,8 @@ module Vedeu
 
     # Represents an invisible escape character sequence.
     #
+    # @api private
+    #
     class Escape
 
       # @!attribute [r] value

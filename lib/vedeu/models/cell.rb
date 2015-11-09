@@ -4,6 +4,8 @@ module Vedeu
 
     # A Cell represents a single square of the terminal.
     #
+    # @api private
+    #
     class Cell
 
       # @!attribute [r] colour
@@ -19,6 +21,11 @@ module Vedeu
       attr_reader :value
 
       # Returns a new instance of Vedeu::Models::Cell.
+      #
+      # @note
+      #   If a particular key is missing from the attributes
+      #   parameter, then it is added with the respective value from
+      #   #defaults.
       #
       # @param attributes [Hash<Symbol => Array<Symbol|String>,
       #                                   Fixnum, String, Symbol]

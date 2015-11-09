@@ -5,6 +5,8 @@ module Vedeu
     # Ensures we can always write to the log file by creating a
     # lock-less log device.
     #
+    # @api private
+    #
     class LocklessLogDevice < ::Logger::LogDevice
 
       # Returns a new instance of Vedeu::Logging::LocklessLogDevice.

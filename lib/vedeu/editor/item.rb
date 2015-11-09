@@ -4,6 +4,8 @@ module Vedeu
 
     # Fetches an item from a collection.
     #
+    # @api private
+    #
     class Item
 
       # @param collection [Vedeu::Editor::Line|Vedeu::Editor::Lines]
