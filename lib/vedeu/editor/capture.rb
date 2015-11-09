@@ -34,22 +34,10 @@ module Vedeu
         keys = console.getch
 
         if keys.ord == ESCAPE_KEY_CODE
-          @chars = 5
-
-          begin
-            keys << console.read_nonblock(@chars)
-
-          rescue IO::WaitReadable
-            IO.select([console])
-            @chars -= 1
-            retry
-
-          rescue IO::WaitWritable
-            IO.select(nil, [console])
-            @chars -= 1
-            retry
-
-          end
+          keys << console.read_nonblock(5) rescue nil
+          keys << console.read_nonblock(4) rescue nil
+          keys << console.read_nonblock(3) rescue nil
+          keys << console.read_nonblock(2) rescue nil
         end
 
         return Vedeu::Input::Mouse.click(keys) if click?(keys)
