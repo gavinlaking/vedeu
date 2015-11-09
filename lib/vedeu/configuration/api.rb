@@ -516,9 +516,9 @@ module Vedeu
       def background(value = nil)
         return options[:background] unless value
 
-        new_background = Vedeu::Colours::Background.coerce(value)
+        bg = Vedeu::Colours::Background.coerce(value)
 
-        options[:background] = colour_attributes(background: new_background)
+        options[:background] = colour_attributes(background: bg)
                                .fetch(:background)
       end
 
@@ -534,9 +534,9 @@ module Vedeu
       def foreground(value = nil)
         return options[:foreground] unless value
 
-        new_foreground = Vedeu::Colours::Foreground.coerce(value)
+        fg = Vedeu::Colours::Foreground.coerce(value)
 
-        options[:foreground] = colour_attributes(foreground: new_foreground)
+        options[:foreground] = colour_attributes(foreground: fg)
                                .fetch(:foreground)
       end
 
