@@ -275,6 +275,11 @@ module Vedeu
       #
       #   Vedeu.configure do
       #     height 25
+      #
+      #     # or...
+      #
+      #     height = 25
+      #
       #     # ...
       #   end
       #
@@ -283,6 +288,7 @@ module Vedeu
       def height(height = 25)
         options[:height] = height
       end
+      alias_method :height=, :height
 
       # Sets the location of the log file.
       #
@@ -493,11 +499,17 @@ module Vedeu
 
         options[:terminal_mode] = mode
       end
+      alias_method :terminal_mode=, :terminal_mode
 
       # Sets the width of the terminal.
       #
       #   Vedeu.configure do
       #     width 80
+      #
+      #     # or...
+      #
+      #     width = 80
+      #
       #     # ...
       #   end
       #
@@ -506,6 +518,7 @@ module Vedeu
       def width(width = 80)
         options[:width] = width
       end
+      alias_method :width=, :width
 
       # Sets the background of the terminal.
       #
