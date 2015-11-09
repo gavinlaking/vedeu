@@ -14,13 +14,26 @@ module Vedeu
 
         # :nocov:
 
+        # @param mode [Symbol]
+        def mode_switch!(mode = nil)
+          @loop        = false
+          @mode_switch = true
+
+          Vedeu::Terminal::Mode.switch_mode!(mode)
+
+          Vedeu.trigger(:_drb_restart_)
+
+          fail Vedeu::Error::ModeSwitch
+        end
+
         # Start the main loop.
         #
         # @return [void]
         # @yieldreturn [void] The client application.
         def start!
-          @started = true
-          @loop    = true
+          @started     = true
+          @loop        = true
+          @mode_switch = false
 
           Vedeu.trigger(:_refresh_cursor_, Vedeu.focus)
 
@@ -35,16 +48,12 @@ module Vedeu
           Vedeu.log(message: 'Vedeu execution interrupted, exiting.'.freeze)
         end
 
-        # :nocov:
-
         # Signal that we wish to terminate the running application.
         #
         # @return [void]
         def stop!
           @loop = false
         end
-
-        # :nocov:
 
         # Check the application has started and we wish to continue
         # running.

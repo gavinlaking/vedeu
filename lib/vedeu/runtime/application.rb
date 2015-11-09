@@ -44,7 +44,7 @@ module Vedeu
       #
       # @param configuration [Vedeu::Configuration]
       # @return [Vedeu::Runtime::Application]
-      def initialize(configuration)
+      def initialize(configuration = Vedeu::Configuration)
         @configuration = configuration
       end
 
@@ -120,11 +120,7 @@ module Vedeu
         Vedeu::Runtime::MainLoop.start! { yield }
 
       rescue Vedeu::Error::ModeSwitch
-        Vedeu::Terminal.switch_mode!
-
-        Vedeu.trigger(:_drb_restart_)
-
-        Vedeu::Runtime::Application.restart(configuration)
+        Vedeu::Runtime::Application.restart(Vedeu::Configuration)
       end
 
       # :nocov:
@@ -144,7 +140,9 @@ module Vedeu
   Vedeu.bind(:_exit_) { Vedeu.exit }
 
   # See {file:docs/events/system.md#\_mode_switch_}
-  Vedeu.bind(:_mode_switch_) { fail Vedeu::Error::ModeSwitch }
+  Vedeu.bind(:_mode_switch_) do |mode|
+    Vedeu::Runtime::MainLoop.mode_switch!(mode)
+  end
 
   # See {file:docs/events/system.md#\_cleanup_}
   Vedeu.bind(:_cleanup_) do
