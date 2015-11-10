@@ -52,7 +52,7 @@ module Vedeu
           end
         end
 
-        Vedeu::Input::Mouse.click(keys) if click?(keys)
+        return Vedeu::Input::Mouse.click(keys) if click?(keys)
 
         keys
       end
