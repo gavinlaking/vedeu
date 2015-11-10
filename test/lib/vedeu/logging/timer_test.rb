@@ -9,18 +9,16 @@ module Vedeu
       let(:described) { Vedeu::Logging::Timer }
       let(:instance)  { described.new(_message) }
       let(:_message)  { 'Testing' }
-      let(:_time)     { mock('Time') }
-      let(:started)   { 1434492219.5238185 }
+      let(:_time)     { 1219.523818 }
 
       before do
-        Time.stubs(:now).returns(_time)
-        _time.stubs(:to_f).returns(started)
+        Vedeu.stubs(:clock_time).returns(_time)
       end
 
       describe '#initialize' do
         it { instance.must_be_instance_of(described) }
         it { instance.instance_variable_get('@message').must_equal(_message) }
-        it { instance.instance_variable_get('@started').must_equal(started) }
+        it { instance.instance_variable_get('@started').must_equal(_time) }
       end
 
       describe '.timer' do

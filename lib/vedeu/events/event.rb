@@ -213,7 +213,7 @@ module Vedeu
       #
       # @return [Boolean]
       def throttling?
-        @now = Time.now.to_f
+        @now = Vedeu.clock_time
 
         options[:delay] > 0
       end
@@ -238,7 +238,7 @@ module Vedeu
       #
       # @return [Boolean]
       def debouncing?
-        @now = Time.now.to_f
+        @now = Vedeu.clock_time
 
         @deadline = @now + debounce unless deadline?
 

@@ -9,6 +9,7 @@ module Vedeu
 
 end # Vedeu
 
+require 'vedeu/logging/clock_time'
 require 'vedeu/logging/lockless_log_device'
 require 'vedeu/logging/mono_logger'
 require 'vedeu/logging/log'
