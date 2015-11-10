@@ -4,6 +4,8 @@ module Vedeu
 
     # Provides a non-existent model to swallow messages.
     #
+    # @api private
+    #
     class Null < Vedeu::Null::Generic
 
       # Returns an instance of the Vedeu::Menus::Null class.

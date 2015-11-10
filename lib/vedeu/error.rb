@@ -3,6 +3,8 @@ module Vedeu
   # Custom exceptions/errors which Vedeu will raise in certain
   # circumstances.
   #
+  # @api private
+  #
   module Error
 
     # Raised with Vedeu attempts to access a client application

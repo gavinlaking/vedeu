@@ -6,6 +6,8 @@ module Vedeu
     # title is longer than the interface is wide, and pad with a space
     # either side.
     #
+    # @api private
+    #
     class Title
 
       # @param value [String|Vedeu::Borders::Title|
@@ -128,6 +130,8 @@ module Vedeu
     # When a {Vedeu::Borders::Border} has a caption, truncate it if
     # the caption is longer than the interface is wide, and pad with a
     # space either side.
+    #
+    # @api private
     #
     class Caption < Title
 

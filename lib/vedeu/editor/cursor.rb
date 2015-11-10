@@ -5,6 +5,8 @@ module Vedeu
     # Maintains a cursor position within the {Vedeu::Editor::Document}
     # class.
     #
+    # @api private
+    #
     class Cursor
 
       extend Forwardable

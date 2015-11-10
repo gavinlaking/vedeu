@@ -4,8 +4,9 @@ module Vedeu
 
     # Provides shared functionality to Vedeu::Renderer classes.
     #
-    # :nocov:
     module Options
+
+      # :nocov:
 
       # @!attribute [w] options
       # @return [Hash<Symbol => void>]
@@ -32,8 +33,9 @@ module Vedeu
         {}
       end
 
+      # :nocov:
+
     end # Options
-    # :nocov:
 
   end # Renderers
 

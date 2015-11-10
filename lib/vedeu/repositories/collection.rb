@@ -5,6 +5,8 @@ module Vedeu
     # Convert an Array into an object which has some meaning in the
     # context it is being used.
     #
+    # @api private
+    #
     class Collection
 
       include Enumerable

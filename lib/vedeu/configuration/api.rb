@@ -221,8 +221,11 @@ module Vedeu
       # setting is for debugging to be disabled. Using `debug!` or
       # setting `debug` to true will enable debugging.
       #
-      # At this time, debugging only toggles between viewing a full
-      # backtrace (true) upon exception or only its top line (false).
+      # Enabling debugging will:
+      # - Enable `Vedeu::Logging::Timer` meaning various timing
+      #   information is output to the log file.
+      # - Produce a full a backtrace to STDOUT and the log file upon
+      #   unrecoverable error or unhandled exception.
       #
       #   Vedeu.configure do
       #     debug!
@@ -516,9 +519,9 @@ module Vedeu
       def background(value = nil)
         return options[:background] unless value
 
-        new_background = Vedeu::Colours::Background.coerce(value)
+        bg = Vedeu::Colours::Background.coerce(value)
 
-        options[:background] = colour_attributes(background: new_background)
+        options[:background] = colour_attributes(background: bg)
                                .fetch(:background)
       end
 
@@ -534,9 +537,9 @@ module Vedeu
       def foreground(value = nil)
         return options[:foreground] unless value
 
-        new_foreground = Vedeu::Colours::Foreground.coerce(value)
+        fg = Vedeu::Colours::Foreground.coerce(value)
 
-        options[:foreground] = colour_attributes(foreground: new_foreground)
+        options[:foreground] = colour_attributes(foreground: fg)
                                .fetch(:foreground)
       end
 

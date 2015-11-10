@@ -33,6 +33,7 @@ module Vedeu
     Vedeu.geometries.by_name(name).maximise
   end
 
+  # See {file:docs/events/view.md#\_movement_refresh_}
   Vedeu.bind(:_movement_refresh_) do |name|
     Vedeu.trigger(:_clear_)
     Vedeu.trigger(:_refresh_)

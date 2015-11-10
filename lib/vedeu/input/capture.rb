@@ -42,7 +42,10 @@ module Vedeu
       #
       # @return [Array|String|Symbol]
       def read
-        if reader.raw_mode?
+        if click?(keypress)
+          Vedeu.trigger(:_mouse_event_, keypress)
+
+        elsif reader.raw_mode?
           Vedeu.trigger(:_keypress_, keypress)
 
         elsif reader.fake_mode?
@@ -74,13 +77,24 @@ module Vedeu
 
       private
 
+      # Returns a boolean indicating whether a mouse click was
+      # received.
+      #
+      # @param key [String]
+      # @return [Boolean]
+      def click?(key)
+        return false if key.is_a?(Symbol)
+
+        key.is_a?(Vedeu::Cursors::Cursor) || key.start_with?("\e[M")
+      end
+
       # Returns the translated (when possible) keypress(es).
       #
       # @return [String|Symbol]
       def keypress
         key = input
 
-        Vedeu::Input::Translator.translate(key)
+        @keypress ||= Vedeu::Input::Translator.translate(key)
       end
 
       # Returns the input from the terminal.

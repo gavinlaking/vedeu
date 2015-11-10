@@ -4,6 +4,8 @@ module Vedeu
 
     # A collection of keypresses ordered by input.
     #
+    # @api private
+    #
     class Document
 
       include Vedeu::Repositories::Model
@@ -36,6 +38,11 @@ module Vedeu
       end
 
       # Returns a new instance of Vedeu::Editor::Document.
+      #
+      # @note
+      #   If a particular key is missing from the attributes
+      #   parameter, then it is added with the respective value from
+      #   #defaults.
       #
       # @param attributes [Hash]
       # @option attributes data [String]

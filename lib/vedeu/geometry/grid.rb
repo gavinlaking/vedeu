@@ -7,6 +7,8 @@ module Vedeu
     # If the terminal height or width is not a multiple of 12, then
     # Grid chooses the maximum value which will fit.
     #
+    # @api private
+    #
     class Grid
 
       # @see #initialize

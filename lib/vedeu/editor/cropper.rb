@@ -5,6 +5,8 @@ module Vedeu
     # Crop the lines to the visible area of the document, as defined
     # by the geometry provided.
     #
+    # @api private
+    #
     class Cropper
 
       extend Forwardable

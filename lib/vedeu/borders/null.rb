@@ -5,6 +5,8 @@ module Vedeu
     # Provides a non-existent Vedeu::Borders::Border that acts like
     # the real thing, but does nothing.
     #
+    # @api private
+    #
     class Null
 
       # @!attribute [r] name
