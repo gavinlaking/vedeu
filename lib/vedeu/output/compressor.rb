@@ -58,7 +58,7 @@ module Vedeu
 
       # @return [String]
       def compress
-        Vedeu.timer("Compression for #{content.size} characters".freeze) do
+        Vedeu.timer("Compression for #{content.size} objects".freeze) do
           out = ''
 
           content.each do |cell|
@@ -67,6 +67,10 @@ module Vedeu
             out << style_for(cell)
             out << cell.value
           end
+
+          Vedeu.log(type:    :output,
+                    message: "Compression: #{content.size} objects -> " \
+                             "#{out.size} characters".freeze)
 
           out
         end
@@ -79,6 +83,10 @@ module Vedeu
         content.each do |cell|
           out << cell.to_s
         end
+
+        Vedeu.log(type:    :output,
+                  message: "No compression: #{content.size} objects -> " \
+                           "#{out.size} characters".freeze)
 
         out
       end
